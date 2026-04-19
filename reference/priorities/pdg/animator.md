@@ -1,19 +1,19 @@
-# pdgview
+# animator
 
 ## LLM Instructions
 
 - Keep `Priorities` ordered as the current work queue, with the most important active item first.
 - Keep `Design` descriptive and stable; move task-shaped material into `Priorities`.
-- Keep pdgview focused on staging, observer work, overlays, playback, and scene output.
-- Do not restate solver internals or PDG-ingest plans here except where pdgview must interface with them.
+- Keep animator focused on staging, observer work, overlays, playback, and scene output.
+- Do not restate upstream ingest or solve plans here except where animator must interface with imported authored material.
 - Keep cross-app handoff details brief here and prefer the contract-owning document when it exists.
-- Keep cross-cutting app-boundary and modularity doctrine in [pdgapps](pdgapps.md); keep only pdgview-specific seams and boundaries here.
+- Keep cross-cutting app-boundary and modularity doctrine in the broader architecture notes; keep only animator-specific seams and boundaries here.
 
 ## Purpose
 
-pdgview is the animation authoring surface for visualizing architrino assemblies.
+Animator is the animation authoring surface for visualizing architrino assemblies.
 
-Its job is to turn solved reaction flow and authored scene material into a staged scene with:
+Its job is to turn authored scene material into a staged scene with:
 
 - assemblies and paths;
 - reaction timing;
@@ -32,30 +32,28 @@ It owns:
 
 It does not own:
 
-- low-level reaction solving;
-- PDG channel ingest;
-- or live cross-app runtime behavior with upstream authoring apps.
+- upstream ingest or solve workflows;
+- imported-source acceptance or publication policy;
+- or live cross-app runtime behavior.
 
 ## Current State
 
-- pdgview already has a substantial runtime surface rather than a placeholder shell.
+- Animator already has a substantial runtime surface rather than a placeholder shell.
 - It can build a canonical scene document, generate preview scene data, export JSON, save browser-local drafts, and download repo-ready scene JSON.
-- The main runtime already exposes scene-tree, path, orbit, preview, and export-style workflows through the current pdgview overlay.
+- The main runtime already exposes scene-tree, path, orbit, preview, and export-style workflows through the current animator overlay.
 - The timeline already supports pause, warp, image, video, and graphic items.
 - `Audio` and `Observer` already appear in the add menu, but those paths are still placeholder authoring blocks rather than fully implemented timeline objects.
 - User-facing language has started shifting toward `Observer`, but the underlying document path still uses `cameraPaths` and `cameraShots`.
-- The current framing runtime `PdgviewViewportFramingRuntime.js` already normalizes shot framing, required versus optional assembly participation, and autoscale target selection.
+- The current framing runtime already normalizes shot framing, required versus optional assembly participation, and autoscale target selection.
 - A first-pass autoscale behavior already exists in code, but the authored framing UI is still missing.
-- A canonical structure bridge exists, and a narrow live mutation path exists for `Split Group`, but pdgview-side structural editing is still incomplete.
-- pdgview now sits cleanly on the downstream side of the solve/publication path.
-- Upstream request loading, solving, review, and publication stay entirely outside pdgview; the intended forward input is accepted pdgedit output or an equivalent downstream contract.
-- The first accepted-pdgedit import contract now exists as `pdgview-staging/v1`, carrying observer framing, preview identifiers, and export scene data from accepted `pdgedit/v1` output without importing upstream app runtimes.
+- A canonical structure bridge exists, and a narrow live mutation path exists for `Split Group`, but animator-side structural editing is still incomplete.
+- Imported staging data already carries observer framing, preview identifiers, and export scene data through a dedicated scene-staging contract without importing external app runtimes.
 
 ## Design
 
 ### Role In The Scene System
 
-pdgview should not replace the current explicit scene network. It should add an authored composed-scene type within it.
+Animator should not replace the current explicit scene network. It should add an authored composed-scene type within it.
 
 That means:
 
@@ -66,7 +64,7 @@ That means:
 
 ### Authoring Stance
 
-pdgview should remain an overlay editor controlling a live 3D viewport.
+Animator should remain an overlay editor controlling a live 3D viewport.
 
 The intended authoring grammar is:
 
@@ -77,11 +75,11 @@ The intended authoring grammar is:
 - transport and playback controls should stay compact and timeline-adjacent;
 - and import/export should remain canonical JSON rather than ad hoc UI state.
 
-pdgview should stay visual and canvas-first rather than turning back into a large inspector-driven tool.
+Animator should stay visual and canvas-first rather than turning back into a large inspector-driven tool.
 
 ### Observer And Framing Model
 
-pdgview should speak in observer language rather than camera language at the author-facing layer.
+Animator should speak in observer language rather than camera language at the author-facing layer.
 
 The target model is:
 
@@ -96,7 +94,7 @@ The implementation may still use camera objects internally, but the author-facin
 
 ### Design View And Observer View
 
-pdgview has two closely related but not identical visual jobs:
+Animator has two closely related but not identical visual jobs:
 
 - a design view where we place assemblies, paths, reactions, and timeline objects;
 - and an observer view where we judge what the authored interval actually shows.
@@ -115,32 +113,32 @@ One language rule should stay explicit from the start:
 
 Another boundary should stay explicit too:
 
-- viewport tools are downstream of accepted pdgedit output or an equivalent downstream staging contract derived from it;
+- viewport tools are downstream of accepted authored scene material or an equivalent scene-staging contract;
 - they should not solve upstream composition again or repair missing upstream geometry;
-- any composite/grouping metadata seen here should come from downstream staging/adapters over explicit accepted assemblies rather than from solver-core ontology;
-- and they should treat upstream structure as authored input rather than something to reinterpret.
+- any composite or grouping metadata seen here should come from explicit staging or adapter layers over accepted assemblies rather than from solver-core ontology;
+- and they should treat imported structure as authored input rather than something to reinterpret.
 
 ### Post-Solver Grouping Display Rule
 
-In pdgview, the only admitted composite language is **composite of assemblies**.
+In animator, the only admitted composite language is **composite of assemblies**.
 
 That means:
 
-- it is future post-solver grouping metadata over related 4-tile assemblies;
-- it may be created or refined by downstream staging/adapters after import;
-- it may carry adjacency, label, span, reveal, and proxy/constituent presentation metadata;
-- a composite label may use an observer-facing label tile or label token such as `Photon`, but that tile/token is span-label artwork rather than an assembly row;
+- it is future post-solver grouping metadata over related `4`-tile assemblies;
+- it may be created or refined by downstream staging or adapters after import;
+- it may carry adjacency, label, span, reveal, and proxy or constituent presentation metadata;
+- a composite label may use an observer-facing label tile or label token such as `Photon`, but that tile or token is span-label artwork rather than an assembly row;
 - it is not itself a single assembly;
 - it is not a dissociate or associate target;
-- it should initially be limited to pdgview lanes `1` and `20`;
-- and pdgview must not introduce a grouping-level `Dissociate` or `Associate` interpretation.
+- it should initially be limited to lanes `1` and `20`;
+- and animator must not introduce a grouping-level `Dissociate` or `Associate` interpretation.
 
-When pdgview receives upstream stage timing for dissociate, transit, associate, or reassembly intervals, those timings should remain anchored to the upstream 4-tile assembly endpoints.
+When animator receives upstream stage timing for dissociate, transit, associate, or reassembly intervals, those timings should remain anchored to the upstream `4`-tile assembly endpoints.
 
 Specifically:
 
-- a dissociate interval starts from one 4-tile assembly reactant;
-- an associate interval ends at one 4-tile assembly product;
+- a dissociate interval starts from one `4`-tile assembly reactant;
+- an associate interval ends at one `4`-tile assembly product;
 - a composite of assemblies may be highlighted or revealed around those rows;
 - but the grouping is not the thing being opened or gathered.
 
@@ -215,7 +213,7 @@ Shared controls should include:
 - selection and focus target;
 - point-of-interest targeting;
 - object visibility filters like labels, paths, envelopes, and history traces;
-- playback scale and pause/warp interpretation;
+- playback scale and pause or warp interpretation;
 - and object identity, so a selected assembly in one view is the same selected assembly in the other.
 
 The views should diverge only where author intent diverges.
@@ -237,7 +235,7 @@ The observer view should favor:
 
 ### Architrino-Specific Viewport Opportunity
 
-In pdgview the scene is not just geometry. It is assemblies, nested local frames, transport paths, reaction choreography, and delayed structure. That means the design view must remain truth-bearing about structure, while the observer view must remain truth-bearing about what the audience perceives.
+In animator the scene is not just geometry. It is assemblies, nested local frames, transport paths, reaction choreography, and delayed structure. That means the design view must remain truth-bearing about structure, while the observer view must remain truth-bearing about what the audience perceives.
 
 The strongest unifying idea is:
 
@@ -272,7 +270,7 @@ The observer view should be backed by visible guides in the design view:
 - focus cone or attention corridor;
 - and optional composition or safe-region guides.
 
-These guides should be draggable and targetable like other pdgview objects rather than hidden in forms.
+These guides should be draggable and targetable like other animator objects rather than hidden in forms.
 
 #### One Scene, Two Readings
 
@@ -333,11 +331,7 @@ Supported formats for this phase:
 
 The current implementation should not broaden into `webp`, `webm`, `aac`, or `m4a` during this pass.
 
-Imported media should live in:
-
-- `content/assets/pdgview/images/`
-- `content/assets/pdgview/video/`
-- `content/assets/pdgview/audio/`
+Imported media should live in the animator image, video, and audio asset directories.
 
 For the current design:
 
@@ -348,7 +342,7 @@ For the current design:
 
 ### Visual Grammar
 
-pdgview should behave like a unified authoring instrument built from the core architrino visual grammar rather than like a generic media editor.
+Animator should behave like a unified authoring instrument built from the core architrino visual grammar rather than like a generic media editor.
 
 The canonical rendered primitive set should remain small:
 
@@ -377,12 +371,12 @@ Preferred viewport rendering stack:
 
 ### Structure Editing Direction
 
-The canonical-structure bridge is the right direction of travel for deeper pdgview editing.
+The canonical-structure bridge is the right direction of travel for deeper animator editing.
 
 That means:
 
 - extend the existing read path into more viewport and editor surfaces;
-- move real mutation paths onto shared structure transforms rather than bespoke pdgview-only logic;
+- move real mutation paths onto shared structure transforms rather than bespoke animator-only logic;
 - make parent and child nesting read as local structure rather than grouped ids alone;
 - keep `Unbound Architrinos` as outputs of structure-changing edits rather than top-level add-menu stamps;
 - and continue expanding richer structure depiction only after the canonical edit path is in place.
@@ -392,8 +386,8 @@ That means:
 ### Inputs
 
 - authored scene documents and local drafts;
-- assembly, path, and timing data authored directly in pdgview;
-- imported accepted pdgedit output or equivalent downstream staging contracts derived from it;
+- assembly, path, and timing data authored directly in animator;
+- imported accepted authored output or equivalent scene-staging contracts;
 - and referenced media assets for overlays and editorial material.
 
 ### Outputs
@@ -401,50 +395,42 @@ That means:
 - canonical composed scene documents;
 - preview scene data and browser-local drafts;
 - repo-ready scene JSON exports;
-- and authored observer/framing/overlay state suitable for playback and publication.
+- and authored observer, framing, and overlay state suitable for playback and publication.
 
-### Upstream And Downstream Boundaries
+### App Boundaries
 
-pdgview should consume accepted pdgedit output or an equivalent explicit downstream staging contract derived from it and translate that data into pdgview-owned scene state.
+Animator should consume accepted authored scene output or an equivalent explicit scene-staging contract and translate that data into animator-owned scene state.
 
-pdgview should not:
+Animator should not:
 
-- solve the reaction again;
-- consume pdgsolve review state or live upstream request selections directly;
-- import pdgsolve or pdgedit runtime code to perform the handoff;
-- or depend on shared live UI state across the upstream/downstream app boundary.
+- resolve upstream reaction logic again;
+- consume live upstream review state or request selections directly;
+- import external runtime code to perform the handoff;
+- or depend on shared live UI state across app boundaries.
 
-The pdgview-side intake should be strong enough to receive:
+The intake should be strong enough to receive:
 
 - participant identities and roles;
 - solved mapping corridors or equivalent provenance paths;
-- stage timing such as dissociate, transit, and associate / reassembly intervals anchored to 4-tile assembly endpoints;
+- stage timing such as dissociate, transit, and associate or reassembly intervals anchored to `4`-tile assembly endpoints;
 - observer hints such as initial framing targets or flyby anchors;
 - and labels or overlays needed to explain the reaction.
 
-### Neighboring Components
-
-- [pdgsolve](./pdgsolve.md) owns solve review, acceptance, and publication upstream of pdgview.
-- [pdgedit](./pdgedit.md) owns the final authored surface and `pdgedit/v1` document model that should feed pdgview.
-- [pdgfeed](./pdgfeed.md) is future upstream seed/proposal work and should stay outside pdgview runtime concerns.
-- [pdgapps](pdgapps.md) owns the app-boundary rule that keeps the handoff explicit.
-- [pdgapps](pdgapps.md) owns the cross-cutting app-boundary and modularity discipline.
-
 ## Priorities
 
-### 1. Finish The pdgview-Owned Runtime Cut-Over From `app.js`
+### 1. Finish The Animator-Owned Runtime Cut-Over From `app.js`
 
 Status: `active`
 
 Current:
 
-- `src/apps/pdgview/` now covers import, draft state, document workspace, playback, pointer, viewport, and authoring runtimes;
-- `src/apps/pdgview/main.js` no longer imports root `app.js`, and root `app.js` is now thin entry glue;
-- but substantial pdgview behavior still remains in the shared `src/apps/architrino/ArchitrinoSceneAppRuntime.js` scene shell.
+- the app runtime now covers import, draft state, document workspace, playback, pointer, viewport, and authoring runtimes;
+- the app entrypoint no longer imports root `app.js`, and root `app.js` is now thin entry glue;
+- but substantial animator behavior still remains in the shared Architrino scene-shell runtime.
 
 Objective:
 
-- finish moving the remaining pdgview scene-shell behavior into a fully app-owned bootstrap/runtime path.
+- finish moving the remaining scene-shell behavior into a fully app-owned bootstrap and runtime path.
 
 ### 2. Finish Authored Observer Framing And Autoscale UI
 
@@ -452,7 +438,7 @@ Status: `active`
 
 Current:
 
-- framing normalization, required/optional assembly targeting, autoscale math, and upstream observer-hint import are already live;
+- framing normalization, required or optional assembly targeting, autoscale math, and imported observer hints are already live;
 - but there is still no compact author-facing UI for editing that model.
 
 Objective:
@@ -477,20 +463,12 @@ Status: `pending`
 
 Current:
 
-- pdgview can already carry imported `structureKey` and stage data, and a narrow canonical edit path exists;
-- more authoring flows still depend on pdgview-local mutations.
+- animator can already carry imported `structureKey` and stage data, and a narrow canonical edit path exists;
+- more authoring flows still depend on animator-local mutations.
 
 Objective:
 
 - make structure reads and edits share one canonical model so nesting, scale, and transfer staging stay coherent.
-
-## Related Priorities
-
-- [pdg](./pdg.md)
-- [pdgsolve](./pdgsolve.md)
-- [pdgedit](./pdgedit.md)
-- [pdgfeed](./pdgfeed.md)
-- [pdgapps](pdgapps.md)
 
 ## Related AAA Notes
 

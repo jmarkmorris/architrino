@@ -26,7 +26,7 @@ PDG_SOURCE_CONTRACT = {
     "reactionAcceptanceRequired": True,
     "reactionAcceptanceBoundary": "reaction-review",
     "acceptedReactionHandoff": "reaction-owned",
-    "pdgviewHandoff": "accepted-reaction-only",
+    "downstreamHandoff": "accepted-reaction-only",
 }
 
 SUPPORTED_REACTION_CSV_COLUMNS = (

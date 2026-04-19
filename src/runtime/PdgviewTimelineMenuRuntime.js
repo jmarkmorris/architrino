@@ -551,7 +551,7 @@ export function buildPdgviewTimelineMenu(config) {
     } else if (addType === "camera") {
       appendPlaceholderBlock("Observer", [
         "Observer intervals need to coordinate the design viewport, observer framing, and the authored observer path.",
-        "The first pass for that shared viewport design is being captured in pdgview.md.",
+        "The first pass for that shared viewport design is being captured in animator.md.",
       ]);
     }
   } else if (editKind === "graphic") {

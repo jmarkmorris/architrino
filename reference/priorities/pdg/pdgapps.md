@@ -2,23 +2,23 @@
 
 ## LLM Instructions
 
-- Keep this document focused on the overall architectural approach for how dedicated apps fit inside the broader Architrino web app.
+- Keep this document focused on the overall architectural approach for how the PDG workstream fits inside the broader Architrino web app.
 - Keep `Design` descriptive and durable; move task-shaped work into `Priorities`.
 - Prefer app-boundary rules, ownership, and runtime-structure guidance over file-by-file migration detail.
-- Do not restate app-specific product design that belongs in [pdgview](pdgview.md), [pdgsolve](pdgsolve.md), [pdgedit](pdgedit.md), or [pdgfeed](pdgfeed.md).
+- Do not restate app-specific product design that belongs in [pdgsolve](pdgsolve.md), [pdgedit](pdgedit.md), or [pdgfeed](pdgfeed.md).
 - Keep app-specific migration inventories in the owning app docs rather than turning this architecture note into a file-by-file tracker.
 
 ## Purpose
 
-This document defines the overall architectural approach for incorporating dedicated apps into the Architrino web app.
+This document defines the overall architectural approach for incorporating the PDG workstream into the Architrino web app.
 
 It owns:
 
 - the role of the main Architrino web app as launcher and discovery surface;
-- the role of dedicated web apps such as pdgview and pdgedit as independent runtimes within one repo;
-- the role of adjacent non-UI PDG boundaries such as pdgfeed and pdgsolve within the same forward pipeline;
+- the role of dedicated web apps such as `pdgedit` as independent runtimes within one repo;
+- the role of adjacent non-UI PDG boundaries such as `pdgfeed` and `pdgsolve` within the same forward pipeline;
 - the rules for app boundaries, shared code, and cross-app exchange;
-- the modularity rules that keep app growth from collapsing back into one shared runtime;
+- the modularity rules that keep growth from collapsing back into one shared runtime;
 - and the testing and enforcement posture that protects those boundaries over time.
 
 It does not own:
@@ -30,29 +30,28 @@ It does not own:
 
 ## Current State
 
-- The codebase still has `pdgview.html` and `pdgedit.html` as standalone entrypoints in-repo, but the main Architrino web surface no longer exposes launcher routes into those archived PDG tools; `pdgsolve` intentionally remains a Python/contract boundary without a standalone UI.
-- pdgview now owns a meaningful app tree under `src/apps/pdgview/`, and root `app.js` has been thinned to entry glue, but too much live behavior still remains concentrated in the shared `src/apps/architrino/ArchitrinoSceneAppRuntime.js` scene shell.
-- The forward architectural split is now clearer in docs: `pdgfeed -> pdgsolve -> pdgedit -> pdgview`.
+- The codebase still has `pdgedit.html` as a standalone entrypoint in-repo, but the main Architrino web surface no longer exposes launcher routes into archived PDG tools; `pdgsolve` intentionally remains a Python and contract boundary without a standalone UI.
+- `pdgedit` now owns a meaningful app tree under `src/apps/pdgedit/`, and root `app.js` has been thinned to entry glue.
+- The forward architectural split is now clearer in docs: `pdgfeed -> pdgsolve -> pdgedit`.
 - The main remaining structural debt is concentrated in oversized shared roots, broad coordinator files, and migration-era assumptions that still reflect older shared-runtime thinking.
 - The repository has the right overall direction, but the architecture still needs stronger enforcement so improvements do not drift back into shared-runtime coupling.
-- Near-term work still has to run on two tracks at once: make the dedicated web apps more useful, and keep improving seams so that usefulness does not come at the cost of tighter coupling.
+- Near-term work still has to run on two tracks at once: make the dedicated authored-surface app more useful, and keep improving seams so that usefulness does not come at the cost of tighter coupling.
 
 ## Design
 
 ### Overall Runtime Shape
 
-The Architrino web app should be understood as one product with multiple dedicated runtimes plus adjacent non-UI PDG boundaries.
+The Architrino web app should be understood as one product with a dedicated authored-surface runtime plus adjacent non-UI PDG boundaries.
 
 The intended structure is:
 
 - one repo;
 - one main Architrino discovery surface;
-- one pdgview runtime;
-- one pdgedit runtime;
+- one `pdgedit` runtime;
 - `pdgfeed` and `pdgsolve` as contract-first CLI boundaries in the same chain;
 - and explicit data boundaries between those stages.
 
-This is not a multi-product split. It is one product with a launcher/discovery layer, dedicated web tools that open into their own app runtimes when the user enters them, and upstream PDG boundaries that stay outside the browser runtime.
+This is not a multi-product split. It is one product with a launcher and discovery layer, a dedicated web tool that opens into its own runtime when the user enters it, and upstream PDG boundaries that stay outside the browser runtime.
 
 ### Main Web App Role
 
@@ -69,14 +68,14 @@ The main web app should not continue accumulating app-specific state or logic ju
 
 ### Dedicated App Role
 
-Dedicated web apps such as pdgview and pdgedit should be treated as standalone runtimes within the overall Architrino experience.
+Dedicated web apps such as `pdgedit` should be treated as standalone runtimes within the overall Architrino experience.
 
 Each dedicated web app should own:
 
 - its own app composition;
 - its own runtime state and UI behavior;
 - its own domain logic and supporting modules;
-- and its own import/export adapters at the app boundary.
+- and its own import or export adapters at the app boundary.
 
 Each dedicated web app should avoid reaching back into another app's runtime for behavior that belongs behind an explicit data boundary.
 
@@ -86,13 +85,13 @@ Adjacent non-UI boundaries such as `pdgfeed` and `pdgsolve` should follow the sa
 - avoid becoming hidden browser runtimes by accident;
 - and hand off only explicit versioned data to downstream apps.
 
-Boundary translation should usually live inside the app that owns that boundary rather than becoming a new middle app by default.
+Boundary translation should usually live inside the component that owns that boundary rather than becoming a new middle app by default.
 
 In particular:
 
-- upstream components may translate higher-scale composite language into explicit assembly-native request data before that data reaches pdgsolve;
-- downstream components may translate explicit accepted assemblies into grouping/composite display language after pdgsolve finishes;
-- and pdgsolve core should not absorb either translation job.
+- upstream components may translate higher-scale composite language into explicit assembly-native request data before that data reaches `pdgsolve`;
+- downstream publication components may translate explicit accepted assemblies into grouping or composite display language after `pdgsolve` finishes;
+- and `pdgsolve` core should not absorb either translation job.
 
 ### Cross-App Boundary Rule
 
@@ -117,30 +116,30 @@ Not allowed:
 
 When dedicated apps exchange information, or when `pdgsolve` hands published output to `pdgedit`, the exchange should happen through a versioned contract rather than through shared executable helpers.
 
-For the intended forward solve/publication chain:
+For the intended forward solve and publication chain:
 
 - `pdgfeed` emits explicit upstream request data and owns upstream composite-to-assembly translation for PDG-facing terms;
-- pdgsolve owns solve, review, acceptance, and publication;
-- pdgedit owns final `pdgedit/v1` documents, direct authored-surface editing, and downstream visual grouping effects in that document family;
-- and pdgview owns downstream observer-stage staging, presentation, and any later observer-facing grouping overlays.
+- `pdgsolve` owns solve, review, acceptance, and publication;
+- `pdgedit` owns final `pdgedit/v1` documents, direct authored-surface editing, and downstream visual grouping effects in that document family;
+- and the connections between them are explicit data rather than shared runtime logic.
 
 ### Boundary Translation Ownership
 
-The preferred pattern is boundary translators/adapters, not extra dedicated apps inserted into the middle of the chain.
+The preferred pattern is boundary translators and adapters, not extra dedicated apps inserted into the middle of the chain.
 
 That means:
 
 - if a higher-scale description such as `neutron`, `proton`, or another composite term needs to become explicit assemblies, that translation belongs to the upstream boundary owner;
-- if explicit accepted assemblies later need to reappear as composite labels, spans, or observer-facing groupings, that translation belongs to the downstream boundary owner;
-- and dedicated new apps should be added only when the translation step itself becomes a substantial operator-facing workflow with its own independent review/runtime needs.
+- if explicit accepted assemblies later need to reappear as composite labels or spans, that translation belongs to the downstream publication owner;
+- and dedicated new apps should be added only when the translation step itself becomes a substantial operator-facing workflow with its own independent review or runtime needs.
 
-So the default answer is not "add a composite app between pdgfeed and pdgsolve."
+So the default answer is not "add a composite app between `pdgfeed` and `pdgsolve`."
 
 The default answer is:
 
-- keep the existing app chain;
+- keep the existing workstream chain;
 - sharpen the versioned contracts;
-- and keep translation modules/review surfaces with the app that already owns the relevant seam.
+- and keep translation modules and review surfaces with the component that already owns the relevant seam.
 
 ### Composition Roots And Ownership
 
@@ -150,10 +149,10 @@ The architecture should keep moving toward:
 
 - thin composition roots;
 - focused modules with one job;
-- explicit ownership of state, layout, rendering, interaction, import/export, validation, and persistence;
+- explicit ownership of state, layout, rendering, interaction, import or export, validation, and persistence;
 - and local module families under each app tree rather than app logic living in generic coordinators.
 
-This applies especially to large shared-root hotspots such as `app.js` and to app-owned runtimes that start accumulating too many responsibilities.
+This applies especially to large shared-root hotspots such as `app.js`.
 
 ### One Source Of Truth
 
@@ -177,7 +176,7 @@ Prefer:
 
 - explicit stores and state builders;
 - typed or structured document structures;
-- explicit import/export adapters;
+- explicit import or export adapters;
 - and data contracts that survive independent app evolution.
 
 Avoid:
@@ -190,7 +189,7 @@ Avoid:
 
 The strongest reason for this architecture is change isolation.
 
-If dedicated apps continue to run as one shared runtime, a local refactor in one tool can still leak into another through:
+If dedicated workstream components continue to run as one shared runtime, a local refactor in one tool can still leak into another through:
 
 - shared boot order;
 - shared state;
@@ -198,7 +197,7 @@ If dedicated apps continue to run as one shared runtime, a local refactor in one
 - shared imports;
 - or a large shared composition root.
 
-Independent app runtimes plus explicit contracts reduce that risk while keeping the whole system inside one coherent product.
+Independent runtimes plus explicit contracts reduce that risk while keeping the whole system inside one coherent product.
 
 This is why architectural cleanup is not optional follow-on work. It is part of feature delivery for this workstream.
 
@@ -210,21 +209,15 @@ The main web app should hand off to dedicated apps through route, scene, or laun
 
 ### Dedicated App To Dedicated App
 
-Dedicated apps should talk through versioned data contracts.
+Dedicated components should talk through versioned data contracts.
 
-For the intended pdgsolve/pdgedit/pdgview architecture, that means:
+For the intended `pdgfeed -> pdgsolve -> pdgedit` architecture, that means:
 
-- pdgsolve owns accepted solve state and publication;
-- pdgedit owns the final authored-surface document boundary;
-- pdgview owns downstream staging and explanatory presentation;
-- any composite/grouping translation happens in boundary adapters owned by the upstream or downstream app rather than in shared middle runtime logic;
-- and the connections between them are explicit data rather than shared runtime logic.
-
-Other dedicated-app relationships should follow the same rule:
-
+- `pdgfeed` owns explicit upstream request data;
+- `pdgsolve` owns accepted solve state and publication;
+- `pdgedit` owns the final authored-surface document boundary and downstream visual grouping effects in that document family;
 - app-to-app exchange happens through explicit versioned data;
-- app-specific runtime behavior stays local to the owning app;
-- and launcher/runtime boundaries should stay clear even as new dedicated apps are added.
+- and app-specific runtime behavior stays local to the owning app.
 
 ### Shared Infrastructure Surface
 
@@ -243,7 +236,7 @@ Bad shared surfaces:
 - app-specific stores;
 - app-specific UI runtime helpers;
 - app-specific catalogs that change behavior;
-- checked-in generated solved app-state catalogs when the intended boundary is a runtime request/result seam;
+- checked-in generated solved app-state catalogs when the intended boundary is a runtime request or result seam;
 - or compatibility shims that become permanent architecture by accident.
 
 ### Cross-App Checks
@@ -252,61 +245,46 @@ The architecture should keep the following checks in place:
 
 - forbidden cross-import checks;
 - contract validation for test cases;
-- pdgsolve publication-contract tests;
-- pdgedit document validation tests;
-- pdgview import tests;
-- and smoke tests proving each app boots independently.
+- `pdgsolve` publication-contract tests;
+- `pdgedit` document validation tests;
+- and smoke tests proving `pdgedit` boots independently.
 
 ## Priorities
 
-### 1. Finish The Standalone App Cut-Over For pdgview
+### 1. Keep Cross-App Exchange Contract-First
 
 Status: `active`
 
 Current:
 
-- the standalone entrypoints still exist for `pdgview` and `pdgedit`, but the main launcher no longer routes into them;
-- `pdgsolve` intentionally remains off the standalone launcher surface;
-- and `pdgview` still shares the larger Architrino scene-shell runtime while the remaining pdgview-owned behavior is moved out of that shell.
+- explicit app-boundary contracts already exist for the `pdgfeed -> pdgsolve -> pdgedit` chain;
+- and `pdgedit` already consumes published handoff data without importing upstream runtime code.
 
 Objective:
 
-- keep making the main web app a launcher and discovery surface only, with pdgview and pdgedit owning their own runtime paths while pdgsolve stays on the explicit CLI/data boundary.
+- keep component exchange versioned and data-first as the contract grows.
 
-### 2. Keep Cross-App Exchange Contract-First
-
-Status: `active`
-
-Current:
-
-- explicit app-boundary contracts already exist or are defined in the observer notes for the `pdgfeed -> pdgsolve -> pdgedit -> pdgview` chain;
-- and pdgview already consumes upstream handoff data without importing upstream runtime code.
-
-Objective:
-
-- keep app-to-app exchange versioned and data-first as the contract grows.
-
-### 3. Reduce The Remaining Oversized Composition Roots
+### 2. Reduce The Remaining Oversized Composition Roots
 
 Status: `active`
 
 Current:
 
-- root `app.js` is now thin, while `src/apps/architrino/ArchitrinoSceneAppRuntime.js` still carries the large scene-shell composition root;
-- and some editor/runtime concentration is still larger than the intended long-term boundaries.
+- root `app.js` is now thin;
+- but some runtime concentration is still larger than the intended long-term boundaries.
 
 Objective:
 
 - move app-owned behavior into smaller modules and leave composition roots with wiring only.
 
-### 4. Keep New Work Landing In App-Owned Trees
+### 3. Keep New Work Landing In App-Owned Trees
 
 Status: `pending`
 
 Current:
 
-- both apps now have substantial `src/apps/*` module families;
-- pdgview still relies more heavily on shared `src/runtime/` surfaces than the intended app-owned pattern does.
+- the dedicated authored-surface app now has a substantial `src/apps/pdgedit/` module family;
+- but new work can still drift toward generic shared roots if ownership is not enforced.
 
 Objective:
 
@@ -321,14 +299,14 @@ Based on the way this codebase has already evolved, the most important way to av
 Best practices:
 
 - decide the target ownership first, so each move has an obvious destination rather than becoming one more temporary stop;
-- move one responsibility cluster at a time instead of trying to "clean up everything" in one pass;
+- move one responsibility cluster at a time instead of trying to clean up everything in one pass;
 - keep composition roots thin while you refactor, rather than adding new behavior there because it feels convenient during the transition;
 - add or preserve tests and contract test cases before high-risk moves so the refactor has a visible safety rail;
 - prefer explicit adapters, facades, and temporary re-exports over hidden compatibility behavior;
 - keep temporary shims obviously temporary and delete them once callers migrate;
 - avoid mixing app-boundary cleanup with unrelated behavior changes unless the two are tightly coupled;
 - prefer small supervised extractions over giant codemod-style rewrites when state, rendering, and input behavior are involved;
-- and keep one source of truth intact while moving code, instead of duplicating semantics across old and new homes "just for now."
+- and keep one source of truth intact while moving code, instead of duplicating semantics across old and new homes just for now.
 
 The codebase tends to bog down when a refactor turns into broad anonymous movement. It tends to keep momentum when each pass has:
 
@@ -381,7 +359,6 @@ Practical order:
 ## Related Priorities
 
 - [pdg](pdg.md)
-- [pdgview](pdgview.md)
 - [pdgsolve](pdgsolve.md)
 - [pdgedit](pdgedit.md)
 - [pdgfeed](pdgfeed.md)

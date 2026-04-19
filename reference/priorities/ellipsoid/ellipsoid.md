@@ -208,7 +208,7 @@ The combined shape-plus-scale deformation is the structural feature that disting
 
 ## Related Priorities
 
-- [pdgview](../pdg/pdgview.md)
+- [animator](../pdg/animator.md)
 - [simulations](../deferred/simulations.md)
 - [strong-field-closure](../strong-field-closure/strong-field-closure.md)
 

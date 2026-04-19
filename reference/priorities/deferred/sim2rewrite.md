@@ -49,7 +49,7 @@ This document captures the integration strategy for porting the sim2 physics gen
 
 - [simulations](simulations.md)
 - [pdgview-reaction](../pdg/pdg.md)
-- [pdgview](../pdg/pdgview.md)
+- [animator](../pdg/animator.md)
 
 ## Related AAA Notes
 

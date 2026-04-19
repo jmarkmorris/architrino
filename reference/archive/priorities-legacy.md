@@ -134,13 +134,13 @@ Scoring system:
 - Test the first map against electron / muon / tau or hadron constraints.
 - Keep the constants question attached to the mass map only if it sharpens that derivation; otherwise leave it as background, not as part of the active deliverable.
 
-### 3. Scene system, pdgview, PDG solver, and remaining pdgview objectives
+### 3. Scene system, animator, PDG solver, and remaining animator objectives
 - Value `9`, Cost `4`, ROI `2.25`.
-- The canonical references now live in pdgview.md, reaction.md, and pdg-solver.md. Treat those notes as the implementation-aware references for the current pdgview, reaction, and PDG-solver surfaces rather than repeating the full completed baseline here.
+- The canonical references now live in animator.md, reaction.md, and pdg-solver.md. Treat those notes as the implementation-aware references for the current animator, reaction, and PDG-solver surfaces rather than repeating the full completed baseline here.
 - Current state, only what matters for the remainder:
-  - the pdgview shell is already real enough that the remaining work is about closing specific gaps rather than inventing the whole authoring model;
+  - the animator shell is already real enough that the remaining work is about closing specific gaps rather than inventing the whole authoring model;
   - the reaction app is now the primary manual provenance surface, and the old `Map On Canvas` bridge should be treated as transitional scaffolding only;
-  - the first shared canonical-structure bridge now exists in the pdgview as a read-only integration path, but it does not yet drive live structure mutations;
+  - the first shared canonical-structure bridge now exists in the animator as a read-only integration path, but it does not yet drive live structure mutations;
   - observer-path controls exist, but true authored observer intervals still do not;
   - and `Audio` remains placeholder-only.
 - Remaining pdgview objectives, in order:

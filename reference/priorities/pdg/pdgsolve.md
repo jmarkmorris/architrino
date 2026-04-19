@@ -25,7 +25,7 @@ It does not own:
 
 - PDG data access and normalization logic that belongs in [pdgfeed](./pdgfeed.md);
 - free-form pdgedit authoring behavior that belongs in [pdgedit](./pdgedit.md);
-- or downstream viewer staging behavior that belongs in `pdgview`.
+- or downstream scene-staging behavior that belongs outside `pdgsolve`.
 
 ## Current State
 

@@ -393,7 +393,7 @@ The standard row-level tile set may include row-level constituent tiles that app
 
 The shared review catalog may carry composite label tiles such as `Photon` as `type: "composite-label"` reference artwork. Those label tiles are span-label primitives, not valid row-level assembly payloads.
 
-When pdgview implements composite labels and spans, it may need a `Photon` label tile or label token for the observer-facing span. That should be modeled as a label/span primitive in the downstream staging layer, not as a row-level pdgedit assembly tile.
+When a downstream staging layer implements composite labels and spans, it may need a `Photon` label tile or label token for the observer-facing span. That should be modeled as a label or span primitive in that staging layer, not as a row-level pdgedit assembly tile.
 
 ### Weak Boson Intermediate-Assemblies Classification
 

@@ -6,7 +6,7 @@
 - Do not restate pdgsolve solve behavior here except where the PDG layer depends on the explicit request boundary.
 - Keep `Priorities` ordered as the active work queue.
 - Keep `Design` about durable component boundaries, not speculative product sprawl.
-- Treat downstream publication and staging as pdgsolve/pdgedit/pdgview concerns, not as part of PDG ingest logic.
+- Treat downstream publication and later scene-staging as out of scope for PDG ingest logic.
 
 ## Purpose
 
@@ -25,7 +25,7 @@ It does not own:
 - solver search rules or solver internals;
 - pdgsolve review/runtime behavior;
 - pdgedit surface behavior;
-- pdgview runtime behavior;
+- downstream scene-staging runtime behavior;
 - downstream collapse of accepted assemblies back into composite/grouping display language;
 - or downstream animation/export concerns.
 
