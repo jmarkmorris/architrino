@@ -37,6 +37,7 @@ function normalizeAssembly(record) {
         }
       : null;
   const primitiveCounts = normalizePrimitiveCounts(record?.primitiveCounts);
+  const orderGroup = normalizeText(record?.orderGroup);
   return {
     id: normalizeText(record?.id),
     type: normalizeText(record?.type),
@@ -45,6 +46,7 @@ function normalizeAssembly(record) {
     title: normalizeText(record?.title),
     role: normalizeText(record?.role),
     tiles: normalizeTileKeys(record?.tiles),
+    ...((orderGroup === "pdg" || orderGroup === "aaa" || orderGroup === "closure") ? { orderGroup } : {}),
     ...(sampleCounts?.topCount && sampleCounts?.bottomCount ? { sampleCounts } : {}),
     ...(
       primitiveCounts &&

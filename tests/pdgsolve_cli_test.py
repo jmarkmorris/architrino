@@ -687,6 +687,135 @@ class PdgsolveCliTests(unittest.TestCase):
             (5, 5),
         )
 
+    def test_pdgedit_request_review_document_keeps_pdg_rows_above_augments_and_closure(self):
+        request = {
+            "schema": "pdgsolve-request/v1",
+            "requestId": "review_order_groups",
+            "source": {
+                "kind": "developer",
+                "title": "Review order groups",
+                "sourceDocumentId": "developer:review_order_groups",
+            },
+            "reactants": [
+                {"id": "reactant_noether_pair_1.row.1", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+                {"id": "reactant_particle_1", "assemblyId": "pro_up_quark_I", "title": "Up Quark"},
+                {"id": "reactant_noether_pair_1.row.2", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+            ],
+            "products": [
+                {
+                    "id": "product_unbound_architrinos_residue_1",
+                    "assemblyId": "unbound_architrinos_residue",
+                    "title": "Unbound Architrinos",
+                    "electrinoCount": 6,
+                    "positrinoCount": 6,
+                },
+                {"id": "product_particle_1", "assemblyId": "pro_electron_I", "title": "Electron"},
+            ],
+            "policy": {
+                "exactClosureRequired": True,
+                "allowedBoundaryAugmentations": ["none"],
+            },
+        }
+
+        published = pdgsolve.build_pdgedit_document_from_request_review(request)
+
+        self.assertEqual(
+            [
+                (assembly["id"], assembly["y"], assembly.get("orderGroup"))
+                for assembly in published["assemblies"]
+                if assembly["role"] == "reactant"
+            ],
+            [
+                ("review_reactant_1", 0, "pdg"),
+                ("review_reactant_2", 1, "aaa"),
+                ("review_reactant_3", 2, "aaa"),
+            ],
+        )
+        self.assertEqual(
+            [
+                (assembly["id"], assembly["y"], assembly.get("orderGroup"))
+                for assembly in published["assemblies"]
+                if assembly["role"] == "product"
+            ],
+            [
+                ("review_product_1", 0, "pdg"),
+                ("review_product_2", 1, "closure"),
+            ],
+        )
+
+    def test_pdgedit_publication_graph_document_keeps_pdg_rows_above_augments_and_closure(self):
+        publication_graph = {
+            "schema": "pdgsolve-publication-graph/v2",
+            "units": [
+                {
+                    "id": "graph_reactant_aaa_1",
+                    "kind": "assembly",
+                    "stage": "reactantAssemblies",
+                    "recipeId": "pro_noether_core_I",
+                    "occurrenceKey": "reactant_noether_pair_1.row.1",
+                    "title": "Pro Noether Core",
+                    "electrinoCount": 3,
+                    "positrinoCount": 3,
+                },
+                {
+                    "id": "graph_reactant_pdg_1",
+                    "kind": "assembly",
+                    "stage": "reactantAssemblies",
+                    "recipeId": "pro_up_quark_I",
+                    "occurrenceKey": "reactant_particle_1",
+                    "title": "Up Quark",
+                    "electrinoCount": 4,
+                    "positrinoCount": 8,
+                },
+                {
+                    "id": "graph_product_closure_1",
+                    "kind": "assembly",
+                    "stage": "productAssemblies",
+                    "recipeId": "unbound_architrinos_residue",
+                    "occurrenceKey": "product_unbound_architrinos_residue_1",
+                    "title": "Unbound Architrinos",
+                    "electrinoCount": 6,
+                    "positrinoCount": 6,
+                },
+                {
+                    "id": "graph_product_pdg_1",
+                    "kind": "assembly",
+                    "stage": "productAssemblies",
+                    "recipeId": "pro_electron_I",
+                    "occurrenceKey": "product_particle_1",
+                    "title": "Electron",
+                    "electrinoCount": 9,
+                    "positrinoCount": 3,
+                },
+            ],
+            "edges": [],
+        }
+
+        published = pdgsolve.build_pdgedit_document_from_publication_graph(publication_graph)
+
+        self.assertEqual(
+            [
+                (assembly["id"], assembly["title"], assembly["y"], assembly.get("orderGroup"))
+                for assembly in published["assemblies"]
+                if assembly["role"] == "reactant"
+            ],
+            [
+                ("graph_reactant_pdg_1", "Up Quark", 0, "pdg"),
+                ("graph_reactant_aaa_1", "Pro Noether Core", 1, "aaa"),
+            ],
+        )
+        self.assertEqual(
+            [
+                (assembly["id"], assembly["title"], assembly["y"], assembly.get("orderGroup"))
+                for assembly in published["assemblies"]
+                if assembly["role"] == "product"
+            ],
+            [
+                ("graph_product_pdg_1", "Electron", 0, "pdg"),
+                ("graph_product_closure_1", "Unbound Architrinos", 1, "closure"),
+            ],
+        )
+
     def test_muon_decay_mode_1_returns_exact_available_under_core_first_rules(self):
         request = make_muon_decay_mode_1_request()
         result = pdgsolve.solve_request(request)

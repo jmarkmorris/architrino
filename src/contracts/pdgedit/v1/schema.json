@@ -224,6 +224,10 @@
               "product"
             ]
           },
+          "orderGroup": {
+            "type": "string",
+            "enum": ["pdg", "aaa", "closure"]
+          },
           "tiles": {
             "type": "array",
             "minItems": 4,

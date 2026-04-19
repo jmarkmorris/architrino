@@ -39,7 +39,7 @@ function createAssemblyPresentationResolver() {
   };
 }
 
-function createAssembly({ id, type, role, x, y }) {
+function createAssembly({ id, type, role, x, y, orderGroup = "" }) {
   return {
     id,
     type,
@@ -48,6 +48,7 @@ function createAssembly({ id, type, role, x, y }) {
     title: id,
     role,
     tiles: ["tile_a", "tile_b", "tile_c", "tile_d"],
+    ...(orderGroup ? { orderGroup } : {}),
   };
 }
 
@@ -216,6 +217,51 @@ test("catalyst top-sorting lifts synchronized catalyst blocks while keeping othe
   assert.deepEqual(
     sorted.links.map((link) => link.id),
     ["alpha_1", "alpha_2", "alpha_3", "alpha_4", "beta_1", "beta_2", "beta_3", "beta_4"]
+  );
+});
+
+test("catalyst top-sorting keeps PDG rows above AAA rows when order groups are present", () => {
+  const document = {
+    schema: "pdgedit/v1",
+    assemblies: [
+      createAssembly({ id: "reactant_aaa", type: "alpha", role: "reactant", x: 2, y: 0, orderGroup: "aaa" }),
+      createAssembly({ id: "reactant_pdg", type: "beta", role: "reactant", x: 2, y: 1, orderGroup: "pdg" }),
+      createAssembly({ id: "intermediate_aaa", type: "alpha", role: "intermediate", x: 9, y: 0, orderGroup: "aaa" }),
+      createAssembly({ id: "product_aaa", type: "alpha", role: "product", x: 16, y: 0, orderGroup: "aaa" }),
+      createAssembly({ id: "product_pdg", type: "beta", role: "product", x: 16, y: 1, orderGroup: "pdg" }),
+    ],
+    operators: [
+      createOperator({ id: "left_aaa", type: "pass-thru", x: 7, y: 0 }),
+      createOperator({ id: "right_aaa", type: "pass-thru", x: 14, y: 0 }),
+    ],
+    links: [
+      { id: "aaa_1", endpointA: "reactant_aaa", endpointB: "left_aaa" },
+      { id: "aaa_2", endpointA: "left_aaa", endpointB: "intermediate_aaa" },
+      { id: "aaa_3", endpointA: "intermediate_aaa", endpointB: "right_aaa" },
+      { id: "aaa_4", endpointA: "right_aaa", endpointB: "product_aaa" },
+    ],
+    compositeLabels: [],
+  };
+
+  const sorted = sortPdgeditCatalystPassThruChainsToTop(document);
+
+  assert.deepEqual(
+    sorted.assemblies
+      .filter((assembly) => assembly.role === "reactant")
+      .map((assembly) => [assembly.id, assembly.y]),
+    [
+      ["reactant_pdg", 0],
+      ["reactant_aaa", 1],
+    ]
+  );
+  assert.deepEqual(
+    sorted.assemblies
+      .filter((assembly) => assembly.role === "product")
+      .map((assembly) => [assembly.id, assembly.y]),
+    [
+      ["product_pdg", 0],
+      ["product_aaa", 1],
+    ]
   );
 });
 

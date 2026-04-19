@@ -29,6 +29,11 @@ function normalizePrimitiveCounts(rawCounts) {
   return { electrinoCount, positrinoCount };
 }
 
+function normalizeOrderGroup(value) {
+  const normalized = normalizeText(value);
+  return normalized === "pdg" || normalized === "aaa" || normalized === "closure" ? normalized : "";
+}
+
 function normalizeBalanceTotals(rawTotals) {
   if (!rawTotals || typeof rawTotals !== "object") {
     return null;
@@ -733,6 +738,18 @@ export function sortPdgeditCatalystPassThruChainsToTop(document = {}) {
     reactant: catalystChains.map((chain) => chain.reactantOperatorId),
     product: catalystChains.map((chain) => chain.productOperatorId),
   };
+  const preferredTopAssemblyIdsByRole = {
+    reactant: assemblies
+      .filter((assembly) => normalizeText(assembly.role) === "reactant")
+      .filter((assembly) => normalizeOrderGroup(assembly.orderGroup) === "pdg")
+      .sort(compareByYThenXThenId)
+      .map((assembly) => assembly.id),
+    product: assemblies
+      .filter((assembly) => normalizeText(assembly.role) === "product")
+      .filter((assembly) => normalizeOrderGroup(assembly.orderGroup) === "pdg")
+      .sort(compareByYThenXThenId)
+      .map((assembly) => assembly.id),
+  };
   const trailingAssemblyIdsByRole = {
     intermediate: assemblies
       .filter((assembly) => normalizeText(assembly.role) === "intermediate")
@@ -759,7 +776,7 @@ export function sortPdgeditCatalystPassThruChainsToTop(document = {}) {
   );
 
   const reactantAssemblyLane = buildLaneStateFromGroups(reactantAssemblyBlocks, reactantAssemblies, {
-    pinnedTopIds: catalystAssemblyIdsByRole.reactant,
+    pinnedTopIds: [...preferredTopAssemblyIdsByRole.reactant, ...catalystAssemblyIdsByRole.reactant],
   });
   const reactantOperatorLane = buildLaneState(reactantOperators, {
     pinnedTopIds: catalystOperatorIdsBySide.reactant,
@@ -772,7 +789,7 @@ export function sortPdgeditCatalystPassThruChainsToTop(document = {}) {
     pinnedTopIds: catalystOperatorIdsBySide.product,
   });
   const productAssemblyLane = buildLaneStateFromGroups(productAssemblyBlocks, productAssemblies, {
-    pinnedTopIds: catalystAssemblyIdsByRole.product,
+    pinnedTopIds: [...preferredTopAssemblyIdsByRole.product, ...catalystAssemblyIdsByRole.product],
     pinnedBottomIds: trailingAssemblyIdsByRole.product,
   });
 
