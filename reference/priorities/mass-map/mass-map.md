@@ -28,21 +28,21 @@ This is the parameter-closure and first mass-formula bucket. Treat [parameter-le
 ## Concrete Deliverables
 
 - Derive one tri-binary attractor family with radii, frequencies, binding scales, and a shielding-extraction protocol.
-- Derive `\zeta(A)` strongly enough to predict a baseline electron mass and a first hierarchy check such as `m_\mu / m_e`.
-- Decide which shared inputs survive across the mass-side program, especially `\kappa`, the role of `\eta`, and whether the first map also constrains `h` and `G`.
+- Derive $\zeta(A)$ strongly enough to predict a baseline electron mass and a first hierarchy check such as $m_\mu / m_e$.
+- Decide which shared inputs survive across the mass-side program, especially $\kappa$, the role of $\eta$, and whether the first map also constrains $h$ and $G$.
 
 ## Core Work
 
 - Solve the exact 6-body non-Markovian path-history equations for the tri-binary and locate the relevant limit cycles or other robust attractors.
-- Derive the minimum radius `R_{\text{min}}`, radii ratios, frequency structure, binding scales, shielding and leakage factors, and far-field cancellation directly from the delayed `1/r^2` kernel rather than from calibration targets.
-- Turn `\zeta` from a placeholder into a derived quantity and use it to predict the baseline electron mass plus a first hierarchy check such as `m_\mu / m_e`.
-- Test whether the same derived geometry explains the structural origin of the fine-structure constant `\alpha` from `\kappa` and `c_f`.
+- Derive the minimum radius $R_{\text{min}}$, radii ratios, frequency structure, binding scales, shielding and leakage factors, and far-field cancellation directly from the delayed $1/r^2$ kernel rather than from calibration targets.
+- Turn $\zeta$ from a placeholder into a derived quantity and use it to predict the baseline electron mass plus a first hierarchy check such as $m_\mu / m_e$.
+- Test whether the same derived geometry explains the structural origin of the fine-structure constant $\alpha$ from $\kappa$ and $c_f$.
 - Test the first map against electron / muon / tau or hadron constraints.
 
 ## Open Decisions
 
-- Decide which quantities survive as shared inputs across the whole mass-side program, especially `\kappa` and the physical role of `\eta`.
-- Decide whether the first mass map should also constrain the bridge to `h` and `G`, or whether those constants should remain downstream until the mass derivation is stable.
+- Decide which quantities survive as shared inputs across the whole mass-side program, especially $\kappa$ and the physical role of $\eta$.
+- Decide whether the first mass map should also constrain the bridge to $h$ and $G$, or whether those constants should remain downstream until the mass derivation is stable.
 
 ## Related Priorities
 

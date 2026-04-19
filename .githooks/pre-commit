@@ -9,13 +9,9 @@ if [[ "${ALLOW_MAIN_COMMIT:-}" != "1" && "$current_branch" == "main" ]]; then
   exit 1
 fi
 
-bash .githooks/refresh-pdg-live-artifacts.sh stage
-
 echo "[pre-commit] validating content indexes and references..."
 node scripts/validate-content.mjs --check --strict
 echo "[pre-commit] validating scene graph manifest..."
 node scripts/build-scene-graph.mjs --check --strict
-echo "[pre-commit] auditing PDG architecture boundaries..."
-node scripts/check-pdg-architecture.mjs
-echo "[pre-commit] auditing pdgview runtime wiring..."
-node scripts/check-pdgview-runtime-wiring.mjs
+echo "[pre-commit] auditing animator runtime wiring..."
+node scripts/check-animator-runtime-wiring.mjs

@@ -15,11 +15,11 @@
 2. `overlap_integrals` — Derive CKM and PMNS overlap integrals from geometry. Status: `pending`. Depends on: `quark_mass_predictions`.
 3. `confinement_energetics` — Derive confinement-scale behavior from topological or strain energetics. Status: `pending`. Depends on: `overlap_integrals`.
 4. `chirality_crisis` — Test whether the spiral-handedness story can produce weak V-A selection. Status: `pending`. Depends on: `overlap_integrals`.
-5. `weak_corridor_provenance` — Determine whether `W^\pm` corridors carry pro/anti Noether-core provenance, or only charged transaction delta, and close how outgoing lepton / antilepton cores are sourced in weak reactions. Status: `pending`. Depends on: `overlap_integrals`.
+5. `weak_corridor_provenance` — Determine whether $W^\pm$ corridors carry pro/anti Noether-core provenance, or only charged transaction delta, and close how outgoing lepton / antilepton cores are sourced in weak reactions. Status: `pending`. Depends on: `overlap_integrals`.
 
 ## Scope
 
-The quark catalog and basic `SU(3)\times SU(2)\times U(1)` bookkeeping are in place. The remaining leverage is mass prediction, explicit overlap-integral flavor mixing, confinement energetics, and the chirality crisis.
+The quark catalog and basic $SU(3)\times SU(2)\times U(1)$ bookkeeping are in place. The remaining leverage is mass prediction, explicit overlap-integral flavor mixing, confinement energetics, and the chirality crisis.
 
 ## Remaining Leverage
 
@@ -33,7 +33,7 @@ The quark catalog and basic `SU(3)\times SU(2)\times U(1)` bookkeeping are in pl
 - Derive CKM / PMNS data from explicit overlap integrals rather than fit knobs.
 - Derive confinement behavior from topological or strain energetics.
 - Work the chirality crisis hard enough to test weak `V-A` closure.
-- Close the provenance question for weak corridors: whether `W^\pm` should be modeled as carrying final-state pro/anti Noether-core identity, or only as transient charge-routing bundles while the local pro/anti core reservoir supplies outgoing lepton cores.
+- Close the provenance question for weak corridors: whether $W^\pm$ should be modeled as carrying final-state pro/anti Noether-core identity, or only as transient charge-routing bundles while the local pro/anti core reservoir supplies outgoing lepton cores.
 
 ## Geometry-First Program
 
@@ -43,15 +43,15 @@ $$
 V_{ij} = \int \psi_{j,\text{mass}}^\ast \psi_{i,\text{weak}} \, d\mu
 $$
 rather than treating transport costs as fit knobs.
-- Derive `\kappa_{12}`, `\kappa_{23}`, and analogous transport parameters from radii ratios, field drag, and shielding mismatch.
-- Test whether the CP phase can be recovered as a holonomy or torsion consequence, including the current closure target `\cos\delta = s_{13}/(s_{12}s_{23})`.
-- Derive confinement-scale behavior from topological or strain energetics of flux tubes, braids, or other line defects, aiming for linear tension `V \propto r` or `\sigma_{\mathrm{eff}} L` and finite relaxed bounds for closed color-singlet configurations.
+- Derive $\kappa_{12}$, $\kappa_{23}$, and analogous transport parameters from radii ratios, field drag, and shielding mismatch.
+- Test whether the CP phase can be recovered as a holonomy or torsion consequence, including the current closure target $\cos\delta = s_{13}/(s_{12}s_{23})$.
+- Derive confinement-scale behavior from topological or strain energetics of flux tubes, braids, or other line defects, aiming for linear tension $V \propto r$ or $\sigma_{\mathrm{eff}} L$ and finite relaxed bounds for closed color-singlet configurations.
 
 ## Hard Failure Tests
 
 - Work the chirality crisis explicitly: if spiral handedness cannot generate the weak `V-A` selection rule, the model fails on this front.
 - If right-handed neutrinos couple to `W` with the same strength as left-handed ones, the model fails.
-- Keep trying to derive `\alpha` and the other coupling constants from geometry rather than treating them as arbitrary inputs.
+- Keep trying to derive $\alpha$ and the other coupling constants from geometry rather than treating them as arbitrary inputs.
 - If the model cannot say where outgoing weak-reaction lepton and antilepton cores actually come from, then electroweak provenance closure remains incomplete even if coarse CKM-style bookkeeping is reproduced.
 
 ## Related Priorities

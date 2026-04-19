@@ -36,7 +36,7 @@ where $W_1$ is 1-Wasserstein distance and JSD is Jensen-Shannon divergence.
 
 ### Required refinements with pass/fail thresholds
 
-1. Temporal refinement (`\Delta t` and `\Delta t/2`, plus `\Delta t/4` for order check):
+1. Temporal refinement ($\Delta t$ and $\Delta t/2$, plus $\Delta t/4$ for order check):
 - Pass if $E_{\mathrm{rel}}(\Phi)\le 0.02$, $E_{\mathrm{rel}}(\|\nabla\Phi\|)\le 0.03$, and $|\Delta\lambda_{\text{self}}|/\lambda_{\text{self}}\le 0.05$.
 - Estimated observed order:
 $$

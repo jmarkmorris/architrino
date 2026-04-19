@@ -202,7 +202,7 @@ A tool scene presents an interactive experience whose primary value is manipulat
 
 Current practical example:
 
-- pdgview-related scenes
+- animator-related scenes
 
 ### Diagram scenes
 

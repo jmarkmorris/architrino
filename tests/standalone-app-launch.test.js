@@ -11,8 +11,8 @@ function readRepoFile(relativePath) {
   return readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8");
 }
 
-test("pdgview scene no longer resolves to a standalone app path from the main webapp", () => {
-  assert.equal(getStandaloneAppPathForScene("pdgview"), null);
+test("animator scene no longer resolves to a standalone app path from the main webapp", () => {
+  assert.equal(getStandaloneAppPathForScene("animator"), null);
 });
 
 test("pdgedit scene no longer resolves to a standalone app path from the main webapp", () => {
@@ -21,7 +21,7 @@ test("pdgedit scene no longer resolves to a standalone app path from the main we
 
 test("unknown scene ids do not resolve to a standalone app path", () => {
   assert.equal(getStandaloneAppPathForScene(""), null);
-  assert.equal(getStandaloneAppPathForScene("pdgview"), null);
+  assert.equal(getStandaloneAppPathForScene("animator"), null);
   assert.equal(getStandaloneAppPathForScene("pdgedit"), null);
   assert.equal(getStandaloneAppPathForScene("pdgsolve"), null);
   assert.equal(getStandaloneAppPathForScene("not_a_scene"), null);
@@ -29,7 +29,7 @@ test("unknown scene ids do not resolve to a standalone app path", () => {
 
 test("archived PDG scenes no longer resolve to standalone launch hrefs from the main webapp", () => {
   assert.equal(
-    resolveStandaloneAppHrefForScene("pdgview", "http://127.0.0.1:5173/index.html"),
+    resolveStandaloneAppHrefForScene("animator", "http://127.0.0.1:5173/index.html"),
     null
   );
   assert.equal(
@@ -40,14 +40,14 @@ test("archived PDG scenes no longer resolve to standalone launch hrefs from the 
 
 test("standalone app entrypoints stay outside root app.js", () => {
   const rootEntrypoint = readRepoFile("app.js").trim();
-  const pdgviewEntrypoint = readRepoFile("src/apps/animator/main.js");
+  const animatorEntrypoint = readRepoFile("src/apps/animator/main.js");
   const pdgeditEntrypoint = readRepoFile("src/apps/pdgedit/main.js");
 
   assert.equal(
     rootEntrypoint,
     'import "./src/apps/architrino/ArchitrinoSceneAppRuntime.js";'
   );
-  assert.equal(pdgviewEntrypoint.includes("../../../app.js"), false);
-  assert.equal(pdgviewEntrypoint.includes("../architrino/ArchitrinoSceneAppRuntime.js"), true);
+  assert.equal(animatorEntrypoint.includes("../../../app.js"), false);
+  assert.equal(animatorEntrypoint.includes("../architrino/ArchitrinoSceneAppRuntime.js"), true);
   assert.equal(pdgeditEntrypoint.includes("../../../app.js"), false);
 });

@@ -17,16 +17,16 @@
 
 ## Scope
 
-Lock the simulation and numerics side tightly enough to support the analytic closure program. This includes tier-0 / tier-1 runs, convergence, maximum-curvature orbit behavior, and the formal `\eta > 0` package.
+Lock the simulation and numerics side tightly enough to support the analytic closure program. This includes tier-0 / tier-1 runs, convergence, maximum-curvature orbit behavior, and the formal $\eta > 0$ package.
 
 ## Main Work
 
 - Implement tier-0 and tier-1 simulations per [run-protocols](../../../content/markdown/aaa/validation/simulations/run-protocols.md) and the `validation/simulations/action-energy/*` material.
 - Lock the maximum-curvature orbit, history resolution, and binary / tri-binary stability numerically.
-- Publish convergence plots and `\mathbb{U}_{\text{now}}` provenance logs.
-- Consolidate a formal `\eta > 0` package covering existence, uniqueness, continuation criteria, and no-runaway bounds.
+- Publish convergence plots and $\mathbb{U}_{\text{now}}$ provenance logs.
+- Consolidate a formal $\eta > 0$ package covering existence, uniqueness, continuation criteria, and no-runaway bounds.
 - Tie the Planck mapping back to the master equation and validate it numerically instead of leaving key identifications conjectural.
-- If a quick intuition tool would help, build a simple model with sliders for escaping potential versus different frequencies so the `f_{\mathrm{MCB}}` behavior is easier to see.
+- If a quick intuition tool would help, build a simple model with sliders for escaping potential versus different frequencies so the $f_{\mathrm{MCB}}$ behavior is easier to see.
 
 ## Related Priorities
 

@@ -21,13 +21,13 @@ Keep dynamics, geometry, and mapping centered on [master-equation.md](../../../c
 
 ## Live Targets
 
-- Full 3D translating tri-binary NFDE / DDE control for emergent `\gamma`-scaling.
+- Full 3D translating tri-binary NFDE / DDE control for emergent $\gamma$-scaling.
 - Transfer-operator and invariant-measure control for Born-rule emergence.
 - Exact 6-body core stability and shielding extraction for the first-principles mass program.
 
 ## Fixed Footholds
 
-- New circular self-hit branches are born at `\tan\xi=\xi`.
+- New circular self-hit branches are born at $\tan\xi=\xi$.
 - Each such branch is born on a Jacobian-null surface.
 - Circular self-branch count grows only linearly.
 - The symmetric isolated circular two-body ansatz has a tangential obstruction.
@@ -35,7 +35,7 @@ Keep dynamics, geometry, and mapping centered on [master-equation.md](../../../c
 ## Chapter State To Preserve
 
 - The null separatrix and Jacobian-null surface now function as an amplitude wall for the self branch, not by themselves as a proof of circular closure.
-- The exact partner-only circular formulas are already recorded at theorem level, including the strict tangential-positivity corollary for the isolated sub-`c_f` circular binary.
+- The exact partner-only circular formulas are already recorded at theorem level, including the strict tangential-positivity corollary for the isolated sub-$c_f$ circular binary.
 - A first non-circular logarithmic-spiral benchmark is already in place, with the delayed-root equation and Frenet-frame force projections.
 
 ## Parallel Tracks
@@ -46,7 +46,7 @@ Keep dynamics, geometry, and mapping centered on [master-equation.md](../../../c
 ## Circular Work Order
 
 1. Extend higher-winding branch asymptotics beyond leading order.
-2. Derive large-`\beta` asymptotics for the full circular self-force sum.
+2. Derive large-$\beta$ asymptotics for the full circular self-force sum.
 3. Prove either the bare-kernel circular MCB no-go theorem or an existence theorem.
 4. Push the isolated binary to non-circular periodic-orbit closure.
 
@@ -56,10 +56,10 @@ Keep dynamics, geometry, and mapping centered on [master-equation.md](../../../c
 - A true spiral introduces radial velocity, varying curvature, intersections between later tighter turns and earlier wider-turn wakes, changing Jacobian amplification, and the possibility of a turning point before singular continuation.
 - The live question remains: does the symmetric delayed spiral admit a self-consistent limit cycle or radial turning point that the circular ansatz misses?
 - The next concrete spiral targets are:
-  - upgrade the constant-`\Omega` logarithmic-spiral benchmark into a variable-pitch or otherwise non-circular ansatz that can realize `\dot r = 0`;
+  - upgrade the constant-$\Omega$ logarithmic-spiral benchmark into a variable-pitch or otherwise non-circular ansatz that can realize $\dot r = 0$;
   - determine whether admissible delayed roots actually realize a negative tangential numerator in the Frenet projection rather than merely allowing it algebraically;
   - add the self-branch analogue of the spiral Frenet decomposition and compare it to the partner branch on the same orbit;
-  - derive a genuine minimum-radius turning condition with `\dot r = 0` and `\ddot r \ge 0`;
+  - derive a genuine minimum-radius turning condition with $\dot r = 0$ and $\ddot r \ge 0$;
   - and test whether any such non-circular closure can beat the circular tangential obstruction without extra medium coupling.
 
 ## Maximum-Curvature Wall
@@ -69,27 +69,27 @@ Keep the maximum-curvature-wall question tied to both tracks. The Jacobian-null 
 ## Lorentz And GR Bridge Program
 
 - Treat the Lorentz / GR bridge as a two-stage theorem program:
-  1. prove that moving tri-binaries in the Noether Sea realize `R_\parallel = R_\perp / \gamma` and `T(v) = T_0 \gamma` as a stable delayed-dynamics attractor rather than by tuning;
-  2. coarse-grain the same causal medium into a constitutive response that yields `g_{\mu\nu}^{\mathrm{eff}}`, weak-field PPN closure, and suppressed preferred-frame leakage.
-- Close `d\tau/dt = F(v,\rho,\Phi)` and the substrate-to-metric functional.
-- Derive the weak-field map from hit-density and medium variables to `g_{\mathrm{eff}}` constraints in [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md) and [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md).
+  1. prove that moving tri-binaries in the Noether Sea realize $R_\parallel = R_\perp / \gamma$ and $T(v) = T_0 \gamma$ as a stable delayed-dynamics attractor rather than by tuning;
+  2. coarse-grain the same causal medium into a constitutive response that yields $g_{\mu\nu}^{\mathrm{eff}}$, weak-field PPN closure, and suppressed preferred-frame leakage.
+- Close $d\tau/dt = F(v,\rho,\Phi)$ and the substrate-to-metric functional.
+- Derive the weak-field map from hit-density and medium variables to $g_{\mathrm{eff}}$ constraints in [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md) and [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md).
 - Derive the constitutive closure from the coarse-grained medium itself rather than postulating it:
-  - take the continuum limit of the `\eta`-regularized delayed action and effective medium Lagrangian seriously;
+  - take the continuum limit of the $\eta$-regularized delayed action and effective medium Lagrangian seriously;
   - compute the relevant continuum stress-strain or equivalent constitutive variables of the causal medium;
-  - derive the PPN numbers `\gamma`, `\beta`, and `\alpha_i` to Cassini / LLR precision;
-  - recover the weak-field targets `\gamma_{\mathrm{eff}} = 1`, `\beta_{\mathrm{eff}} = 1`, and vanishing preferred-frame coefficients `\alpha_1`, `\alpha_2`, `\alpha_3`;
-  - and show Shapiro delay and light-bending equivalence to GR at the advertised `10^{-5}` level.
+  - derive the PPN numbers $\gamma$, $\beta$, and $\alpha_i$ to Cassini / LLR precision;
+  - recover the weak-field targets $\gamma_{\mathrm{eff}} = 1$, $\beta_{\mathrm{eff}} = 1$, and vanishing preferred-frame coefficients $\alpha_1$, $\alpha_2$, $\alpha_3$;
+  - and show Shapiro delay and light-bending equivalence to GR at the advertised $10^{-5}$ level.
 
 ## Empirical Stakes
 
-- The absolute-time and Euclidean-void ontology survives only if the exact compensation works at modern Lorentz-violation bounds below `10^{-17}`.
-- If the contraction or clock-slowing law requires ad hoc tuning of `\kappa`, `\eta`, or axial-structure-specific detail, the bridge fails.
+- The absolute-time and Euclidean-void ontology survives only if the exact compensation works at modern Lorentz-violation bounds below $10^{-17}$.
+- If the contraction or clock-slowing law requires ad hoc tuning of $\kappa$, $\eta$, or axial-structure-specific detail, the bridge fails.
 - Match GR in the weak field first, then let strong-field deviations emerge as predictions rather than assertions.
 
 ## Longer-Tail Dynamics Program
 
 1. Exact Noether derivation of momentum and angular momentum from the delayed action.
-2. `\eta \to 0` existence and uniqueness theory for the exact shell model.
+2. $\eta \to 0$ existence and uniqueness theory for the exact shell model.
 3. Controlled kinetic or coarse-grained equation from the master law.
 4. Lorentz-suppression emergence for moving assemblies in the full dynamics, ideally independent of axial-layer details.
 5. Effective magnetic and Lorentz-force emergence from assemblies.

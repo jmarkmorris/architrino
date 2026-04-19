@@ -33,7 +33,7 @@ A sphere can resolve to different content types, not only text:
 
 - Markdown document
 - Another sphere scene
-- Web application experience such as pdgview
+- Web application experience such as animator
 - Image or visual asset
 - Video or media embed
 - Hybrid combinations of the above

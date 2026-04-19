@@ -121,8 +121,6 @@ This pattern reflects the fact that orbital energies depend on more than just $n
 
 Period number alone therefore does not tell the whole story. Period 4, for example, includes the filling of $4s$, then $3d$, then $4p$. The table reflects energy ordering, not a perfectly clean shell-by-shell filling rule.
 
-
-
 ### 5. The Noble-Gas Shorthand
 
 Because full configurations get long very quickly, chemists usually compress the inner closed-shell core using the nearest preceding noble gas in brackets.
@@ -132,7 +130,7 @@ Because full configurations get long very quickly, chemists usually compress the
 | Na (11) | $1s^2 2s^2 2p^6 3s^1$ | **[Ne] $3s^1$** |
 | Fe (26) | $1s^2 2s^2 2p^6 3s^2 3p^6 4s^2 3d^6$ | **[Ar] $4s^2 3d^6$** |
 | Au (79) | long form omitted here | **[Xe] $4f^{14} 5d^{10} 6s^1$** |
-
+[[]]
 This shorthand is not just a convenience. It also foregrounds the chemically active outer electrons. For example, instead of writing Iron as the full long sequence, we write **[Ar] $4s^2 3d^6$**, which immediately says that Iron contains an Argon-like core plus 8 outer electrons relevant to its chemistry and magnetism.
 
 ### 6. Periodic-Table Meaning

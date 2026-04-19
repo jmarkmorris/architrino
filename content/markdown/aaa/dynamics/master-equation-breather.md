@@ -7106,7 +7106,7 @@ This is the first honest recapture lemma for the planar three-body bridge. It do
 > $$
 > are twice differentiable and obey the comparison identities already derived above.
 >
-> 1. **Channel `\rho^{\mathrm{mb}}_1`.**
+> 1. **Channel $\rho^{\mathrm{mb}}_1$.**
 >    Insert the decomposition
 >    $$
 >    \Lambda^{\mathrm{mb}}_1
@@ -7134,7 +7134,7 @@ This is the first honest recapture lemma for the planar three-body bridge. It do
 >    \ddot{\rho}^{\mathrm{mb}}_1(t)<0.
 >    $$
 >
-> 2. **Channel `\rho^{\mathrm{mb}}_2`.**
+> 2. **Channel $\rho^{\mathrm{mb}}_2$.**
 >    The same argument applied to
 >    $$
 >    \Lambda^{\mathrm{mb}}_2

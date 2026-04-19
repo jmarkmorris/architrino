@@ -28,7 +28,7 @@ Populate the missing quantum closure notes only after the work becomes testable.
 
 - Construct the relevant transfer operator for metastable assemblies under causal driving.
 - Identify the invariant measure on competing attractor basins.
-- Show that basin weights recover `P \propto |\psi|^2`.
+- Show that basin weights recover $P \propto |\psi|^2$.
 - Keep Bell / CHSH / Tsirelson as a hard gate.
 
 ## Measure-Theoretic Closure Requirements
@@ -36,7 +36,7 @@ Populate the missing quantum closure notes only after the work becomes testable.
 - Construct the relevant Perron-Frobenius or equivalent transfer operator for metastable assemblies under causal background driving.
 - Identify the invariant measure on competing attractor basins during deterministic finite-time separatrix crossing.
 - Model the background causal weather specifically enough that the noise floor is part of the theorem rather than a handwave.
-- Show that the basin weights recover `P \propto |\psi|^2` and the squared amplitudes of the effective linear envelope equation rather than only qualitative multistability.
+- Show that the basin weights recover $P \propto |\psi|^2$ and the squared amplitudes of the effective linear envelope equation rather than only qualitative multistability.
 - Use that closure to support quantitative scattering and decay predictions rather than interpretive rhetoric alone.
 
 ## Side Question To Preserve

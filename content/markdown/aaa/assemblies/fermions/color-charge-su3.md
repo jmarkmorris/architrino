@@ -164,11 +164,11 @@ Therefore:
 
 - **Colorless**: H,M,L all same class (e.g., all P− or all Pm).  
 - **Colored quark**: H,M,L pattern is one of:
-  - P\_bkg, P\_bkg, P\_exc  
-  where P\_exc ≠ P\_bkg.
+  - $P_{\text{bkg}}, P_{\text{bkg}}, P_{\text{exc}}$  
+  where $P_{\text{exc}} \ne P_{\text{bkg}}$.
 
 Color degree of freedom is then:  
-**which axis carries P\_exc?**
+**which axis carries $P_{\text{exc}}$?**
 
 
 

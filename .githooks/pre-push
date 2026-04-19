@@ -1,13 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-bash .githooks/refresh-pdg-live-artifacts.sh always
-
 echo "[pre-push] validating content indexes and references..."
 node scripts/validate-content.mjs --check --strict
 echo "[pre-push] validating scene graph manifest..."
 node scripts/build-scene-graph.mjs --check --strict
-echo "[pre-push] auditing PDG architecture boundaries..."
-node scripts/check-pdg-architecture.mjs
-echo "[pre-push] auditing pdgview runtime wiring..."
-node scripts/check-pdgview-runtime-wiring.mjs
+echo "[pre-push] auditing animator runtime wiring..."
+node scripts/check-animator-runtime-wiring.mjs

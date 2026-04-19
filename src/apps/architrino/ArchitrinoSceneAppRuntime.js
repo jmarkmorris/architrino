@@ -5,47 +5,47 @@ import { createLevelRuntime } from "../../runtime/LevelRuntime.js";
 import { createMarkdownRuntime } from "../../runtime/MarkdownRuntime.js";
 import { createNodeFactory } from "../../runtime/NodeFactoryRuntime.js";
 import {
-  clampPdgviewTimelineSpan,
-  PDGVIEW_TIMELINE_MIN_DURATION_SECONDS as pdgviewTimelineMinDurationSeconds,
-  getPdgviewSceneTimeWindow,
-  getPdgviewTimelineFraction,
-  getPdgviewTimelineTimeAtClientX as getPdgviewTimelineTimeAtClientXRuntime,
-} from "../../runtime/PdgviewTimelineRuntime.js";
+  clampAnimatorTimelineSpan,
+  ANIMATOR_TIMELINE_MIN_DURATION_SECONDS as animatorTimelineMinDurationSeconds,
+  getAnimatorSceneTimeWindow,
+  getAnimatorTimelineFraction,
+  getAnimatorTimelineTimeAtClientX as getAnimatorTimelineTimeAtClientXRuntime,
+} from "../../runtime/AnimatorTimelineRuntime.js";
 import {
-  pdgviewAssemblyTemplateMenuRows,
-  pdgviewTimelineAddTypeEntries,
-  pdgviewTimelineAddTypeIds,
+  animatorAssemblyTemplateMenuRows,
+  animatorTimelineAddTypeEntries,
+  animatorTimelineAddTypeIds,
   generationTransitions,
-} from "../../runtime/PdgviewCatalogRuntime.js";
+} from "../../runtime/AnimatorCatalogRuntime.js";
 import {
-  encodePdgviewGraphicTargetValue,
-  getPdgviewGraphicOverlayLabel,
-  getPdgviewMediaDefaultRect,
-  getPdgviewMediaOverlayLabel,
-  getPdgviewOverlayKind,
-} from "../../runtime/PdgviewOverlayRuntime.js";
+  encodeAnimatorGraphicTargetValue,
+  getAnimatorGraphicOverlayLabel,
+  getAnimatorMediaDefaultRect,
+  getAnimatorMediaOverlayLabel,
+  getAnimatorOverlayKind,
+} from "../../runtime/AnimatorOverlayRuntime.js";
 import {
-  buildPdgviewJsonPreviewMenu,
-  buildPdgviewLibraryMenu,
-  buildPdgviewSceneMenu,
-  buildPdgviewTimelineSummaryMenu,
-} from "../../runtime/PdgviewSceneMenuRuntime.js";
-import { buildPdgviewTimelineMenu } from "../../runtime/PdgviewTimelineMenuRuntime.js";
+  buildAnimatorJsonPreviewMenu,
+  buildAnimatorLibraryMenu,
+  buildAnimatorSceneMenu,
+  buildAnimatorTimelineSummaryMenu,
+} from "../../runtime/AnimatorSceneMenuRuntime.js";
+import { buildAnimatorTimelineMenu } from "../../runtime/AnimatorTimelineMenuRuntime.js";
 import {
-  openPdgviewAssemblyPropertiesMenu,
-  openPdgviewAssemblyTemplateMenu,
-  openPdgviewMemberMenu,
-  openPdgviewPathPointMenu,
-  openPdgviewPersonalitySlotMenu,
-  openPdgviewSubassemblyMenu,
-} from "../../runtime/PdgviewCanvasMenuRuntime.js";
-import { createBuiltInPdgviewAssemblyDraftRuntime } from "../../runtime/PdgviewAssemblyFactoryRuntime.js";
+  openAnimatorAssemblyPropertiesMenu,
+  openAnimatorAssemblyTemplateMenu,
+  openAnimatorMemberMenu,
+  openAnimatorPathPointMenu,
+  openAnimatorPersonalitySlotMenu,
+  openAnimatorSubassemblyMenu,
+} from "../../runtime/AnimatorCanvasMenuRuntime.js";
+import { createBuiltInAnimatorAssemblyDraftRuntime } from "../../runtime/AnimatorAssemblyFactoryRuntime.js";
 import {
-  buildPdgviewAssemblyStructure,
-  formatPdgviewAssemblyStructureSummary,
-  summarizePdgviewAssemblyStructure,
-} from "../../runtime/PdgviewAssemblyStructureBridgeRuntime.js";
-import { splitPdgviewAssemblyGroup as splitPdgviewAssemblyGroupRuntime } from "../../runtime/PdgviewAssemblyStructureMutationRuntime.js";
+  buildAnimatorAssemblyStructure,
+  formatAnimatorAssemblyStructureSummary,
+  summarizeAnimatorAssemblyStructure,
+} from "../../runtime/AnimatorAssemblyStructureBridgeRuntime.js";
+import { splitAnimatorAssemblyGroup as splitAnimatorAssemblyGroupRuntime } from "../../runtime/AnimatorAssemblyStructureMutationRuntime.js";
 import { createInteractionRuntime } from "../../runtime/InteractionRuntime.js";
 import { createPeriodicOverlayRuntime } from "../../runtime/PeriodicOverlayRuntime.js";
 import { createSceneSearchRuntime } from "../../runtime/SceneSearchRuntime.js";
@@ -55,15 +55,15 @@ import { createSceneSearchUiRuntime } from "../../runtime/SceneSearchUiRuntime.j
 import { createScenePanelUiRuntime } from "../../runtime/ScenePanelUiRuntime.js";
 import { createAppShellUiRuntime } from "../../runtime/AppShellUiRuntime.js";
 import { createAppSceneChromeRuntime } from "../../runtime/AppSceneChromeRuntime.js";
-import { wirePdgviewCanvasUiListeners } from "../../runtime/PdgviewCanvasUiRuntime.js";
+import { wireAnimatorCanvasUiListeners } from "../../runtime/AnimatorCanvasUiRuntime.js";
 import {
-  computePdgviewViewportAutoscaleCameraState,
-  getPdgviewActiveCameraShot,
-  getPdgviewActiveCameraPathId,
-  getPdgviewViewportAutoscaleTargetIds,
-  resolvePdgviewShotInterval,
-  resolvePdgviewViewportFramingState,
-} from "../../runtime/PdgviewViewportFramingRuntime.js";
+  computeAnimatorViewportAutoscaleCameraState,
+  getAnimatorActiveCameraShot,
+  getAnimatorActiveCameraPathId,
+  getAnimatorViewportAutoscaleTargetIds,
+  resolveAnimatorShotInterval,
+  resolveAnimatorViewportFramingState,
+} from "../../runtime/AnimatorViewportFramingRuntime.js";
 import { createSceneGraphRuntime } from "../../runtime/SceneGraphRuntime.js";
 import { createTransitionEngine } from "../../runtime/TransitionEngine.js";
 import { SceneRepository } from "../../services/SceneRepository.js";
@@ -97,70 +97,70 @@ import {
 } from "../../services/SceneCapabilitiesService.js";
 import { resolveStandaloneAppHrefForScene } from "../navigator/StandaloneAppLaunchRuntime.js";
 import {
-  PDGVIEW_SCENE_PATH,
-  STANDALONE_PDGVIEW_NAVIGATOR_HREF,
-  createPdgviewAppRuntime,
-  createPdgviewAppStore,
-  getPdgviewAppMode,
-  getPdgviewInitialScenePath,
-  isStandalonePdgviewAppMode,
-  navigateStandalonePdgviewHome,
-} from "../animator/PdgviewAppModeRuntime.js";
+  ANIMATOR_SCENE_PATH,
+  STANDALONE_ANIMATOR_NAVIGATOR_HREF,
+  createAnimatorAppRuntime,
+  createAnimatorAppStore,
+  getAnimatorAppMode,
+  getAnimatorInitialScenePath,
+  isStandaloneAnimatorAppMode,
+  navigateStandaloneAnimatorHome,
+} from "../animator/AnimatorAppModeRuntime.js";
 import {
-  PDGVIEW_MEDIA_ASSET_DIRECTORIES as pdgviewMediaAssetDirectories,
-  PDGVIEW_SUPPORTED_MEDIA_EXTENSIONS as pdgviewSupportedMediaExtensions,
-  DEFAULT_PDGVIEW_ROOT_LAYOUT_MARGIN_PX as defaultRootLayoutMarginPx,
-  getPdgviewDomElements,
-} from "../animator/PdgviewDomRuntime.js";
+  ANIMATOR_MEDIA_ASSET_DIRECTORIES as animatorMediaAssetDirectories,
+  ANIMATOR_SUPPORTED_MEDIA_EXTENSIONS as animatorSupportedMediaExtensions,
+  DEFAULT_ANIMATOR_ROOT_LAYOUT_MARGIN_PX as defaultRootLayoutMarginPx,
+  getAnimatorDomElements,
+} from "../animator/AnimatorDomRuntime.js";
 import {
-  createPdgviewDefaultCoreSpec,
-  createPdgviewDefaultPathPoints,
-  createDefaultPdgviewAssemblyDraft,
-  sanitizePdgviewEntityId,
-  sanitizePdgviewId,
-} from "../animator/PdgviewDraftScaffoldRuntime.js";
+  createAnimatorDefaultCoreSpec,
+  createAnimatorDefaultPathPoints,
+  createDefaultAnimatorAssemblyDraft,
+  sanitizeAnimatorEntityId,
+  sanitizeAnimatorId,
+} from "../animator/AnimatorDraftScaffoldRuntime.js";
 import {
-  formatPdgviewMemberList,
-  formatPdgviewSubassemblyList,
-  getPdgviewMemberId,
-  getPdgviewMemberPosition,
-  getPdgviewMemberState,
-  getPdgviewSubassemblyId,
-  isPdgviewPersonalityMember,
-  normalizePdgviewMemberList,
-  normalizePdgviewMemberPosition,
-  normalizePdgviewSubassemblyList,
-  parsePdgviewMemberEntry,
-  prunePdgviewSubassemblyList,
-  roundPdgviewTriplet,
-} from "../animator/PdgviewAssemblyListRuntime.js";
+  formatAnimatorMemberList,
+  formatAnimatorSubassemblyList,
+  getAnimatorMemberId,
+  getAnimatorMemberPosition,
+  getAnimatorMemberState,
+  getAnimatorSubassemblyId,
+  isAnimatorPersonalityMember,
+  normalizeAnimatorMemberList,
+  normalizeAnimatorMemberPosition,
+  normalizeAnimatorSubassemblyList,
+  parseAnimatorMemberEntry,
+  pruneAnimatorSubassemblyList,
+  roundAnimatorTriplet,
+} from "../animator/AnimatorAssemblyListRuntime.js";
 import {
-  createPdgviewGenIFermionPersonalityMembers,
-  createPdgviewPersonalityMembers,
-  describePdgviewTransferProvenance,
-  formatPdgviewTransferEndpointLabel,
-  formatPdgviewTransferList,
-  getPdgviewBuiltInPersonalityStates,
-  getPdgviewGraphicDefaultOffset,
-  sanitizePdgviewGraphicTarget,
-} from "../animator/PdgviewAuthoringHelpersRuntime.js";
-import { createPdgviewAssemblyAuthoringRuntime } from "../animator/PdgviewAssemblyAuthoringRuntime.js";
-import { createPdgviewAssemblyInspectorRuntime } from "../animator/PdgviewAssemblyInspectorRuntime.js";
-import { createPdgviewAssemblyLabelRuntime } from "../animator/PdgviewAssemblyLabelRuntime.js";
-import { createPdgviewAuthoringStateRuntime } from "../animator/PdgviewAuthoringStateRuntime.js";
-import { createPdgviewCanvasBootstrapRuntime } from "../animator/PdgviewCanvasBootstrapRuntime.js";
-import { createPdgviewCameraPathRuntime } from "../animator/PdgviewCameraPathRuntime.js";
-import { createPdgviewDraftStateRuntime } from "../animator/PdgviewDraftStateRuntime.js";
-import { createPdgviewPlaybackTimelineRuntime } from "../animator/PdgviewPlaybackTimelineRuntime.js";
-import { createPdgviewPointerHitRuntime } from "../animator/PdgviewPointerHitRuntime.js";
-import { createPdgviewPointerInteractionRuntime } from "../animator/PdgviewPointerInteractionRuntime.js";
-import { createPdgviewRenderAssetsRuntime } from "../animator/PdgviewRenderAssetsRuntime.js";
-import { createPdgviewStructureGeometryRuntime } from "../animator/PdgviewStructureGeometryRuntime.js";
-import { createPdgviewTimelineOverlayRuntime } from "../animator/PdgviewTimelineOverlayRuntime.js";
-import { createPdgviewDocumentWorkspaceRuntime } from "../animator/PdgviewDocumentWorkspaceRuntime.js";
-import { createPdgviewViewportDisplayRuntime } from "../animator/PdgviewViewportDisplayRuntime.js";
-import { createPdgviewViewportOverlayPillRuntime } from "../animator/PdgviewViewportOverlayPillRuntime.js";
-import { createPdgviewViewportRenderRuntime } from "../animator/PdgviewViewportRenderRuntime.js";
+  createAnimatorGenIFermionPersonalityMembers,
+  createAnimatorPersonalityMembers,
+  describeAnimatorTransferProvenance,
+  formatAnimatorTransferEndpointLabel,
+  formatAnimatorTransferList,
+  getAnimatorBuiltInPersonalityStates,
+  getAnimatorGraphicDefaultOffset,
+  sanitizeAnimatorGraphicTarget,
+} from "../animator/AnimatorAuthoringHelpersRuntime.js";
+import { createAnimatorAssemblyAuthoringRuntime } from "../animator/AnimatorAssemblyAuthoringRuntime.js";
+import { createAnimatorAssemblyInspectorRuntime } from "../animator/AnimatorAssemblyInspectorRuntime.js";
+import { createAnimatorAssemblyLabelRuntime } from "../animator/AnimatorAssemblyLabelRuntime.js";
+import { createAnimatorAuthoringStateRuntime } from "../animator/AnimatorAuthoringStateRuntime.js";
+import { createAnimatorCanvasBootstrapRuntime } from "../animator/AnimatorCanvasBootstrapRuntime.js";
+import { createAnimatorCameraPathRuntime } from "../animator/AnimatorCameraPathRuntime.js";
+import { createAnimatorDraftStateRuntime } from "../animator/AnimatorDraftStateRuntime.js";
+import { createAnimatorPlaybackTimelineRuntime } from "../animator/AnimatorPlaybackTimelineRuntime.js";
+import { createAnimatorPointerHitRuntime } from "../animator/AnimatorPointerHitRuntime.js";
+import { createAnimatorPointerInteractionRuntime } from "../animator/AnimatorPointerInteractionRuntime.js";
+import { createAnimatorRenderAssetsRuntime } from "../animator/AnimatorRenderAssetsRuntime.js";
+import { createAnimatorStructureGeometryRuntime } from "../animator/AnimatorStructureGeometryRuntime.js";
+import { createAnimatorTimelineOverlayRuntime } from "../animator/AnimatorTimelineOverlayRuntime.js";
+import { createAnimatorDocumentWorkspaceRuntime } from "../animator/AnimatorDocumentWorkspaceRuntime.js";
+import { createAnimatorViewportDisplayRuntime } from "../animator/AnimatorViewportDisplayRuntime.js";
+import { createAnimatorViewportOverlayPillRuntime } from "../animator/AnimatorViewportOverlayPillRuntime.js";
+import { createAnimatorViewportRenderRuntime } from "../animator/AnimatorViewportRenderRuntime.js";
 
 const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
@@ -208,81 +208,81 @@ const elementNavDownButton = document.getElementById("element-nav-down");
 const elementNavLeftButton = document.getElementById("element-nav-left");
 const elementNavRightButton = document.getElementById("element-nav-right");
 const {
-  pdgviewOverlay,
-  pdgviewViewDesignButton,
-  pdgviewViewAuthoredButton,
-  pdgviewSceneButton,
-  pdgviewClearButton,
-  pdgviewSaveButton,
-  pdgviewDocsButton,
-  pdgviewExitButton,
-  pdgviewTabs,
-  pdgviewPanels,
-  pdgviewSceneIdInput,
-  pdgviewSceneNameInput,
-  pdgviewAssemblyList,
-  pdgviewAssemblyDetail,
-  pdgviewAssemblyAddButton,
-  pdgviewPreviewButton,
-  pdgviewExportButton,
-  pdgviewLibrarySaveButton,
-  pdgviewRepoSaveButton,
-  pdgviewLibrarySelect,
-  pdgviewLibraryLoadButton,
-  pdgviewLibraryDeleteButton,
-  pdgviewLibraryStatus,
-  pdgviewPlayToggleButton,
-  pdgviewPlayResetButton,
-  pdgviewMarkerPrevButton,
-  pdgviewMarkerNextButton,
-  pdgviewMarkerJumpSelect,
-  pdgviewPlayheadScrubInput,
-  pdgviewStatus,
-  pdgviewJsonPreview,
-  pdgviewCanvas,
-  pdgviewCanvasWrap,
-  pdgviewViewportOverlays,
-  pdgviewAssemblyMenu,
-  pdgviewHudLabelsToggle,
-  pdgviewHudPathsToggle,
-  pdgviewHudHistoryToggle,
-  pdgviewHudEnvelopesToggle,
-  pdgviewHudCameraGuidesToggle,
-  pdgviewHudViewportToggleBindings,
-  pdgviewPathModeSelect,
-  pdgviewPathResetButton,
-  pdgviewFrameResetButton,
-  pdgviewFrameScaleInput,
-  pdgviewFrameScaleLabel,
-  pdgviewCameraSpeedInput,
-  pdgviewCameraSpeedLabel,
-  pdgviewCameraRadiusInput,
-  pdgviewCameraRadiusLabel,
-  pdgviewCameraResetButton,
-  pdgviewCameraPoiSelect,
-  pdgviewCameraWaypointAdd,
-  pdgviewCameraWaypointClear,
-  pdgviewCameraWaypointCount,
-  pdgviewCameraPoiStatus,
-  pdgviewCameraFlightToggle,
-  pdgviewSceneDurationInput,
-  pdgviewSceneLoopInput,
-  pdgviewMarkerListInput,
-  pdgviewPauseListInput,
-  pdgviewWarpListInput,
-  pdgviewTransferListInput,
-  pdgviewMarkerStatus,
-  pdgviewPauseStatus,
-  pdgviewWarpStatus,
-  pdgviewTransferStatus,
-  pdgviewTimelineSummary,
-  pdgviewTimelineActive,
-  pdgviewTimelineTrack,
-  pdgviewTimelineWarps,
-  pdgviewTimelinePauses,
-  pdgviewTimelineMarkers,
-  pdgviewTimelinePlayhead,
-} = getPdgviewDomElements(document);
+  animatorOverlay,
+  animatorViewDesignButton,
+  animatorViewAuthoredButton,
+  animatorSceneButton,
+  animatorClearButton,
+  animatorSaveButton,
+  animatorDocsButton,
+  animatorExitButton,
+  animatorTabs,
+  animatorPanels,
+  animatorSceneIdInput,
+  animatorSceneNameInput,
+  animatorAssemblyList,
+  animatorAssemblyDetail,
+  animatorAssemblyAddButton,
+  animatorPreviewButton,
+  animatorExportButton,
+  animatorLibrarySaveButton,
+  animatorRepoSaveButton,
+  animatorLibrarySelect,
+  animatorLibraryLoadButton,
+  animatorLibraryDeleteButton,
+  animatorLibraryStatus,
+  animatorPlayToggleButton,
+  animatorPlayResetButton,
+  animatorMarkerPrevButton,
+  animatorMarkerNextButton,
+  animatorMarkerJumpSelect,
+  animatorPlayheadScrubInput,
+  animatorStatus,
+  animatorJsonPreview,
+  animatorCanvas,
+  animatorCanvasWrap,
+  animatorViewportOverlays,
+  animatorAssemblyMenu,
+  animatorHudLabelsToggle,
+  animatorHudPathsToggle,
+  animatorHudHistoryToggle,
+  animatorHudEnvelopesToggle,
+  animatorHudCameraGuidesToggle,
+  animatorHudViewportToggleBindings,
+  animatorPathModeSelect,
+  animatorPathResetButton,
+  animatorFrameResetButton,
+  animatorFrameScaleInput,
+  animatorFrameScaleLabel,
+  animatorCameraSpeedInput,
+  animatorCameraSpeedLabel,
+  animatorCameraRadiusInput,
+  animatorCameraRadiusLabel,
+  animatorCameraResetButton,
+  animatorCameraPoiSelect,
+  animatorCameraWaypointAdd,
+  animatorCameraWaypointClear,
+  animatorCameraWaypointCount,
+  animatorCameraPoiStatus,
+  animatorCameraFlightToggle,
+  animatorSceneDurationInput,
+  animatorSceneLoopInput,
+  animatorMarkerListInput,
+  animatorPauseListInput,
+  animatorWarpListInput,
+  animatorTransferListInput,
+  animatorMarkerStatus,
+  animatorPauseStatus,
+  animatorWarpStatus,
+  animatorTransferStatus,
+  animatorTimelineSummary,
+  animatorTimelineActive,
+  animatorTimelineTrack,
+  animatorTimelineWarps,
+  animatorTimelinePauses,
+  animatorTimelineMarkers,
+  animatorTimelinePlayhead,
+} = getAnimatorDomElements(document);
 let zoomToastTimeoutId = null;
 let zoomToastDismissedForSession = false;
 const periodicTableDataPath = "content/scenes/chemistry/periodic_table.json";
@@ -389,273 +389,273 @@ const defaultAutoMarkdownPaletteName = "legacy";
 const defaultSphereColorSchemeName = "jewel";
 const defaultAutoMarkdownPalette =
   autoMarkdownPalettes[defaultAutoMarkdownPaletteName] ?? autoMarkdownPalettes.legacy;
-let pdgviewCurrentDocument = null;
+let animatorCurrentDocument = null;
 const {
-  panelMap: pdgviewPanelMap,
-  palette: pdgviewPalette,
-  pathState: pdgviewPathState,
-  storeFacade: pdgviewEditorStoreFacade,
-} = createPdgviewAppStore({
+  panelMap: animatorPanelMap,
+  palette: animatorPalette,
+  pathState: animatorPathState,
+  storeFacade: animatorEditorStoreFacade,
+} = createAnimatorAppStore({
   palette: defaultAutoMarkdownPalette,
 });
-const pdgviewDraftStateRuntime = createPdgviewDraftStateRuntime({
-  storeFacade: pdgviewEditorStoreFacade,
-  normalizeAssemblyDraft: normalizePdgviewAssemblyDraft,
+const animatorDraftStateRuntime = createAnimatorDraftStateRuntime({
+  storeFacade: animatorEditorStoreFacade,
+  normalizeAssemblyDraft: normalizeAnimatorAssemblyDraft,
 });
 const {
-  getAssemblyDraftsState: getPdgviewAssemblyDraftsState,
-  getGraphicOverlayDraftsState: getPdgviewGraphicOverlayDraftsState,
-  getSelectedPointIndexState: getPdgviewSelectedPointIndexState,
-  getSelectedAssemblyIdState: getPdgviewSelectedAssemblyIdState,
-  getPendingTransferSourceState: getPdgviewPendingTransferSourceState,
-  setAssemblyDraftsState: setPdgviewAssemblyDraftsState,
-  appendAssemblyDraftState: appendPdgviewAssemblyDraftState,
-  updateAssemblyDraftByIdState: updatePdgviewAssemblyDraftByIdState,
-  setGraphicOverlayDraftsState: setPdgviewGraphicOverlayDraftsState,
-  upsertGraphicOverlayDraftState: upsertPdgviewGraphicOverlayDraftState,
-  removeGraphicOverlayDraftByIdState: removePdgviewGraphicOverlayDraftByIdState,
-  updateGraphicOverlayDraftByIdState: updatePdgviewGraphicOverlayDraftByIdState,
-  setSelectedPointIndexState: setPdgviewSelectedPointIndexState,
-  setSelectedAssemblyIdState: setPdgviewSelectedAssemblyIdState,
-  setTransferListRawStateValue: setPdgviewTransferListRawStateValue,
-  updatePathPointAtState: updatePdgviewPathPointAtState,
-  mutatePathStateState: mutatePdgviewPathStateState,
-  getAssemblyDraftIndexById: getPdgviewAssemblyDraftIndexById,
-  getAssemblyDraftById: getPdgviewAssemblyDraftById,
-  ensureAssemblyDrafts: ensurePdgviewAssemblyDrafts,
-  getSelectedAssembly: getPdgviewSelectedAssembly,
-  validateSelectedAssemblyId: validatePdgviewSelectedAssemblyId,
-} = pdgviewDraftStateRuntime;
-const pdgviewAssemblyLabelRuntime = createPdgviewAssemblyLabelRuntime({
-  getCurrentDocument: () => pdgviewCurrentDocument,
-  getAssemblyDrafts: getPdgviewAssemblyDraftsState,
-  getSelectedAssemblyId: getPdgviewSelectedAssemblyIdState,
-  normalizeMemberList: normalizePdgviewMemberList,
-  normalizeSubassemblyList: normalizePdgviewSubassemblyList,
-  getMemberId: getPdgviewMemberId,
+  getAssemblyDraftsState: getAnimatorAssemblyDraftsState,
+  getGraphicOverlayDraftsState: getAnimatorGraphicOverlayDraftsState,
+  getSelectedPointIndexState: getAnimatorSelectedPointIndexState,
+  getSelectedAssemblyIdState: getAnimatorSelectedAssemblyIdState,
+  getPendingTransferSourceState: getAnimatorPendingTransferSourceState,
+  setAssemblyDraftsState: setAnimatorAssemblyDraftsState,
+  appendAssemblyDraftState: appendAnimatorAssemblyDraftState,
+  updateAssemblyDraftByIdState: updateAnimatorAssemblyDraftByIdState,
+  setGraphicOverlayDraftsState: setAnimatorGraphicOverlayDraftsState,
+  upsertGraphicOverlayDraftState: upsertAnimatorGraphicOverlayDraftState,
+  removeGraphicOverlayDraftByIdState: removeAnimatorGraphicOverlayDraftByIdState,
+  updateGraphicOverlayDraftByIdState: updateAnimatorGraphicOverlayDraftByIdState,
+  setSelectedPointIndexState: setAnimatorSelectedPointIndexState,
+  setSelectedAssemblyIdState: setAnimatorSelectedAssemblyIdState,
+  setTransferListRawStateValue: setAnimatorTransferListRawStateValue,
+  updatePathPointAtState: updateAnimatorPathPointAtState,
+  mutatePathStateState: mutateAnimatorPathStateState,
+  getAssemblyDraftIndexById: getAnimatorAssemblyDraftIndexById,
+  getAssemblyDraftById: getAnimatorAssemblyDraftById,
+  ensureAssemblyDrafts: ensureAnimatorAssemblyDrafts,
+  getSelectedAssembly: getAnimatorSelectedAssembly,
+  validateSelectedAssemblyId: validateAnimatorSelectedAssemblyId,
+} = animatorDraftStateRuntime;
+const animatorAssemblyLabelRuntime = createAnimatorAssemblyLabelRuntime({
+  getCurrentDocument: () => animatorCurrentDocument,
+  getAssemblyDrafts: getAnimatorAssemblyDraftsState,
+  getSelectedAssemblyId: getAnimatorSelectedAssemblyIdState,
+  normalizeMemberList: normalizeAnimatorMemberList,
+  normalizeSubassemblyList: normalizeAnimatorSubassemblyList,
+  getMemberId: getAnimatorMemberId,
 });
 const {
-  getAssemblyLetter: getPdgviewAssemblyLetter,
-  getPrimaryPathAssemblyLetter: getPdgviewPrimaryPathAssemblyLetter,
-  isBareArchitrinoAssembly: isPdgviewBareArchitrinoAssembly,
-  normalizeAssemblySceneRole: normalizePdgviewAssemblySceneRole,
-  getAssemblySceneRoleLabel: getPdgviewAssemblySceneRoleLabel,
-  getAssemblySceneRoleGlyph: getPdgviewAssemblySceneRoleGlyph,
-  getAssemblySceneRoleColor: getPdgviewAssemblySceneRoleColor,
-  getAssemblyViewportLabel: getPdgviewAssemblyViewportLabel,
-  getSelectedAssemblyLetter: getPdgviewSelectedAssemblyLetter,
-} = pdgviewAssemblyLabelRuntime;
-const pdgviewViewportDisplayRuntime = createPdgviewViewportDisplayRuntime({
-  bindings: pdgviewHudViewportToggleBindings,
+  getAssemblyLetter: getAnimatorAssemblyLetter,
+  getPrimaryPathAssemblyLetter: getAnimatorPrimaryPathAssemblyLetter,
+  isBareArchitrinoAssembly: isAnimatorBareArchitrinoAssembly,
+  normalizeAssemblySceneRole: normalizeAnimatorAssemblySceneRole,
+  getAssemblySceneRoleLabel: getAnimatorAssemblySceneRoleLabel,
+  getAssemblySceneRoleGlyph: getAnimatorAssemblySceneRoleGlyph,
+  getAssemblySceneRoleColor: getAnimatorAssemblySceneRoleColor,
+  getAssemblyViewportLabel: getAnimatorAssemblyViewportLabel,
+  getSelectedAssemblyLetter: getAnimatorSelectedAssemblyLetter,
+} = animatorAssemblyLabelRuntime;
+const animatorViewportDisplayRuntime = createAnimatorViewportDisplayRuntime({
+  bindings: animatorHudViewportToggleBindings,
 });
 const {
-  isFlagEnabled: isPdgviewViewportDisplayFlagEnabled,
-  setFlag: setPdgviewViewportDisplayFlag,
-  toggleFlag: togglePdgviewViewportDisplayFlag,
-  updateToggleState: updatePdgviewHudViewportToggleState,
-} = pdgviewViewportDisplayRuntime;
-const pdgviewRenderAssetsRuntime = createPdgviewRenderAssetsRuntime({
+  isFlagEnabled: isAnimatorViewportDisplayFlagEnabled,
+  setFlag: setAnimatorViewportDisplayFlag,
+  toggleFlag: toggleAnimatorViewportDisplayFlag,
+  updateToggleState: updateAnimatorHudViewportToggleState,
+} = animatorViewportDisplayRuntime;
+const animatorRenderAssetsRuntime = createAnimatorRenderAssetsRuntime({
   THREE,
   documentLike: document,
 });
 const {
-  createPdgviewLozengeTexture,
-  createPdgviewPointLabelTexture,
-  createPdgviewMemberLabelTexture,
-  createPdgviewGraphicOverlayTextTexture,
-  createPdgviewGraphicOverlayTextSprite,
-  updatePdgviewGraphicOverlayTextSprite,
-  updatePdgviewPointLabelSprite,
-  createPdgviewPointLabelSprite,
-  createPdgviewCameraWaypointLabelTexture,
-  updatePdgviewCameraWaypointLabelSprite,
-  createPdgviewCameraWaypointLabelSprite,
-  createPdgviewMemberLabelSprite,
-  createPdgviewAssemblyBadgeTexture,
-  createPdgviewAssemblyBadgeSprite,
-  createPdgviewChildBadgeSprite,
-} = pdgviewRenderAssetsRuntime;
-const pdgviewStructureGeometryRuntime = createPdgviewStructureGeometryRuntime({
+  createAnimatorLozengeTexture,
+  createAnimatorPointLabelTexture,
+  createAnimatorMemberLabelTexture,
+  createAnimatorGraphicOverlayTextTexture,
+  createAnimatorGraphicOverlayTextSprite,
+  updateAnimatorGraphicOverlayTextSprite,
+  updateAnimatorPointLabelSprite,
+  createAnimatorPointLabelSprite,
+  createAnimatorCameraWaypointLabelTexture,
+  updateAnimatorCameraWaypointLabelSprite,
+  createAnimatorCameraWaypointLabelSprite,
+  createAnimatorMemberLabelSprite,
+  createAnimatorAssemblyBadgeTexture,
+  createAnimatorAssemblyBadgeSprite,
+  createAnimatorChildBadgeSprite,
+} = animatorRenderAssetsRuntime;
+const animatorStructureGeometryRuntime = createAnimatorStructureGeometryRuntime({
   THREE,
   clampFn: clamp,
   vectorFromTriplet,
-  resolveGraphicTargetPosition: (...args) => resolvePdgviewGraphicTargetPosition(...args),
-  getGraphicTargetRadius: (...args) => getPdgviewAssemblyGraphicTargetRadius(...args),
-  normalizeAssemblyPathPoints: normalizePdgviewAssemblyPathPoints,
-  updateAssemblyDraftByIdState: updatePdgviewAssemblyDraftByIdState,
-  getMemberId: getPdgviewMemberId,
-  getAssemblyWorldCenters: () => pdgviewAssemblyWorldCenters,
-  getFrameGroup: () => pdgviewFrameGroup,
-  getCamera: () => pdgviewCamera,
-  getViewportAutoscaleTargetIds: getPdgviewViewportAutoscaleTargetIds,
-  computeViewportAutoscaleCameraState: computePdgviewViewportAutoscaleCameraState,
+  resolveGraphicTargetPosition: (...args) => resolveAnimatorGraphicTargetPosition(...args),
+  getGraphicTargetRadius: (...args) => getAnimatorAssemblyGraphicTargetRadius(...args),
+  normalizeAssemblyPathPoints: normalizeAnimatorAssemblyPathPoints,
+  updateAssemblyDraftByIdState: updateAnimatorAssemblyDraftByIdState,
+  getMemberId: getAnimatorMemberId,
+  getAssemblyWorldCenters: () => animatorAssemblyWorldCenters,
+  getFrameGroup: () => animatorFrameGroup,
+  getCamera: () => animatorCamera,
+  getViewportAutoscaleTargetIds: getAnimatorViewportAutoscaleTargetIds,
+  computeViewportAutoscaleCameraState: computeAnimatorViewportAutoscaleCameraState,
 });
 const {
-  resolvePdgviewGraphicTargetContactPosition,
-  getPdgviewProxyMemberOffset,
-  clearPdgviewMemberAnchors,
-  setPdgviewMemberAnchor,
-  getPdgviewOrbitBasis,
-  getPdgviewOrbitOffsetAtTime,
-  resolvePdgviewTransferEndpointPosition,
-  findPdgviewCoreMemberId,
-  getPdgviewPersonalitySlotLocalOffset,
-  getPdgviewAssemblyWorldCenterById,
-  shiftPdgviewPointTriplets,
-  rebasePdgviewAssemblyParentFrame,
-  computePdgviewAssemblyBasePosition,
-  samplePdgviewPointAt,
-  samplePdgviewCurvePoints,
-  getPdgviewAutoscaledCameraState,
-} = pdgviewStructureGeometryRuntime;
-const pdgviewCameraPathRuntime = createPdgviewCameraPathRuntime({
+  resolveAnimatorGraphicTargetContactPosition,
+  getAnimatorProxyMemberOffset,
+  clearAnimatorMemberAnchors,
+  setAnimatorMemberAnchor,
+  getAnimatorOrbitBasis,
+  getAnimatorOrbitOffsetAtTime,
+  resolveAnimatorTransferEndpointPosition,
+  findAnimatorCoreMemberId,
+  getAnimatorPersonalitySlotLocalOffset,
+  getAnimatorAssemblyWorldCenterById,
+  shiftAnimatorPointTriplets,
+  rebaseAnimatorAssemblyParentFrame,
+  computeAnimatorAssemblyBasePosition,
+  sampleAnimatorPointAt,
+  sampleAnimatorCurvePoints,
+  getAnimatorAutoscaledCameraState,
+} = animatorStructureGeometryRuntime;
+const animatorCameraPathRuntime = createAnimatorCameraPathRuntime({
   THREE,
   clampFn: clamp,
   formatScaleLabel,
   vectorFromTriplet,
-  createDefaultPathPoints: createPdgviewDefaultPathPoints,
-  getSelectedAssembly: getPdgviewSelectedAssembly,
-  getSelectedAssemblyLetter: getPdgviewSelectedAssemblyLetter,
-  getSelectedPointIndexState: getPdgviewSelectedPointIndexState,
-  setSelectedPointIndexState: setPdgviewSelectedPointIndexState,
-  getPathState: () => pdgviewPathState,
-  mutatePathStateState: mutatePdgviewPathStateState,
-  persistPathStateToSelectedAssembly: () => persistPdgviewPathStateToSelectedAssembly(),
-  rebuildControlPoints: () => rebuildPdgviewControlPoints(),
-  updatePathGeometry: () => updatePdgviewPathGeometry(),
-  getCameraFlightState: () => pdgviewCameraFlightState,
-  getCameraWaypointMeshes: () => pdgviewCameraWaypointMeshes,
-  getCamera: () => pdgviewCamera,
-  getCanvas: () => pdgviewCanvas,
-  getBackgroundPathMarkers: () => pdgviewBackgroundPathMarkers,
-  getPointMeshes: () => pdgviewPointMeshes,
-  getPointMaterial: () => pdgviewPointMaterial,
-  getPointMaterialActive: () => pdgviewPointMaterialActive,
-  updatePointLabelSprite: (...args) => updatePdgviewPointLabelSprite(...args),
+  createDefaultPathPoints: createAnimatorDefaultPathPoints,
+  getSelectedAssembly: getAnimatorSelectedAssembly,
+  getSelectedAssemblyLetter: getAnimatorSelectedAssemblyLetter,
+  getSelectedPointIndexState: getAnimatorSelectedPointIndexState,
+  setSelectedPointIndexState: setAnimatorSelectedPointIndexState,
+  getPathState: () => animatorPathState,
+  mutatePathStateState: mutateAnimatorPathStateState,
+  persistPathStateToSelectedAssembly: () => persistAnimatorPathStateToSelectedAssembly(),
+  rebuildControlPoints: () => rebuildAnimatorControlPoints(),
+  updatePathGeometry: () => updateAnimatorPathGeometry(),
+  getCameraFlightState: () => animatorCameraFlightState,
+  getCameraWaypointMeshes: () => animatorCameraWaypointMeshes,
+  getCamera: () => animatorCamera,
+  getCanvas: () => animatorCanvas,
+  getBackgroundPathMarkers: () => animatorBackgroundPathMarkers,
+  getPointMeshes: () => animatorPointMeshes,
+  getPointMaterial: () => animatorPointMaterial,
+  getPointMaterialActive: () => animatorPointMaterialActive,
+  updatePointLabelSprite: (...args) => updateAnimatorPointLabelSprite(...args),
   updateCameraWaypointLabelSprite: (...args) =>
-    updatePdgviewCameraWaypointLabelSprite(...args),
-  getCameraOrbitState: () => pdgviewCameraOrbitState,
-  getCameraState: () => pdgviewCameraState,
-  updateCamera: () => updatePdgviewCamera(),
-  getFrameGroup: () => pdgviewFrameGroup,
-  getSelectedCameraWaypointIndex: () => pdgviewSelectedCameraWaypointIndex,
+    updateAnimatorCameraWaypointLabelSprite(...args),
+  getCameraOrbitState: () => animatorCameraOrbitState,
+  getCameraState: () => animatorCameraState,
+  updateCamera: () => updateAnimatorCamera(),
+  getFrameGroup: () => animatorFrameGroup,
+  getSelectedCameraWaypointIndex: () => animatorSelectedCameraWaypointIndex,
   setSelectedCameraWaypointIndex: (value) => {
-    pdgviewSelectedCameraWaypointIndex = value;
+    animatorSelectedCameraWaypointIndex = value;
   },
-  updateCameraFlightDisplay: () => updatePdgviewCameraFlightDisplay(),
-  renderJsonPreview: () => renderPdgviewJsonPreview(),
-  getFrameState: () => pdgviewFrameState,
+  updateCameraFlightDisplay: () => updateAnimatorCameraFlightDisplay(),
+  renderJsonPreview: () => renderAnimatorJsonPreview(),
+  getFrameState: () => animatorFrameState,
   dom: {
-    frameScaleInput: pdgviewFrameScaleInput,
-    frameScaleLabel: pdgviewFrameScaleLabel,
-    cameraSpeedInput: pdgviewCameraSpeedInput,
-    cameraSpeedLabel: pdgviewCameraSpeedLabel,
-    cameraRadiusInput: pdgviewCameraRadiusInput,
-    cameraRadiusLabel: pdgviewCameraRadiusLabel,
-    cameraPoiStatus: pdgviewCameraPoiStatus,
-    cameraWaypointCount: pdgviewCameraWaypointCount,
-    cameraFlightToggle: pdgviewCameraFlightToggle,
-    pathModeSelect: pdgviewPathModeSelect,
+    frameScaleInput: animatorFrameScaleInput,
+    frameScaleLabel: animatorFrameScaleLabel,
+    cameraSpeedInput: animatorCameraSpeedInput,
+    cameraSpeedLabel: animatorCameraSpeedLabel,
+    cameraRadiusInput: animatorCameraRadiusInput,
+    cameraRadiusLabel: animatorCameraRadiusLabel,
+    cameraPoiStatus: animatorCameraPoiStatus,
+    cameraWaypointCount: animatorCameraWaypointCount,
+    cameraFlightToggle: animatorCameraFlightToggle,
+    pathModeSelect: animatorPathModeSelect,
   },
 });
 const {
-  setPdgviewFrameDefaults,
-  setPdgviewCameraDefaults,
-  updatePdgviewWaypointCount,
-  updatePdgviewCameraWaypointMaterials,
-  updatePdgviewCameraPoiStatus,
-  getPdgviewOrbitTargetWorld,
-  updatePdgviewOrbitFromPosition,
-  syncPdgviewCameraRadiusInput,
-  applyPdgviewCameraRadiusInput,
-  addPdgviewCameraWaypoint,
-  clearPdgviewCameraWaypoints,
-  resetPdgviewPathPoints,
-  addPdgviewPathPoint,
-  updatePdgviewPointMaterials,
-  updatePdgviewPathMarkerScales,
-  samplePdgviewCameraWaypointState,
-  getPdgviewCameraWaypointDisplayPosition,
-  startPdgviewCameraFlightPreview,
-  stopPdgviewCameraFlightPreview,
-} = pdgviewCameraPathRuntime;
-const pdgviewViewportOverlayPillRuntime = createPdgviewViewportOverlayPillRuntime({
+  setAnimatorFrameDefaults,
+  setAnimatorCameraDefaults,
+  updateAnimatorWaypointCount,
+  updateAnimatorCameraWaypointMaterials,
+  updateAnimatorCameraPoiStatus,
+  getAnimatorOrbitTargetWorld,
+  updateAnimatorOrbitFromPosition,
+  syncAnimatorCameraRadiusInput,
+  applyAnimatorCameraRadiusInput,
+  addAnimatorCameraWaypoint,
+  clearAnimatorCameraWaypoints,
+  resetAnimatorPathPoints,
+  addAnimatorPathPoint,
+  updateAnimatorPointMaterials,
+  updateAnimatorPathMarkerScales,
+  sampleAnimatorCameraWaypointState,
+  getAnimatorCameraWaypointDisplayPosition,
+  startAnimatorCameraFlightPreview,
+  stopAnimatorCameraFlightPreview,
+} = animatorCameraPathRuntime;
+const animatorViewportOverlayPillRuntime = createAnimatorViewportOverlayPillRuntime({
   THREE,
   documentLike: document,
   HTMLInputElementCtor: globalThis.HTMLInputElement,
   clampFn: clamp,
-  samplePath: samplePdgviewPath,
-  formatTimeLabel: formatPdgviewTimeLabel,
+  samplePath: sampleAnimatorPath,
+  formatTimeLabel: formatAnimatorTimeLabel,
   getPlaybackTimeForMotionProgress: (...args) =>
-    getPdgviewPlaybackTimeForMotionProgress(...args),
-  getViewportOverlays: () => pdgviewViewportOverlays,
-  getCanvasWrap: () => pdgviewCanvasWrap,
-  getCamera: () => pdgviewCamera,
-  getFrameGroup: () => pdgviewFrameGroup,
-  getOverlay: () => pdgviewOverlay,
-  getCameraFlightState: () => pdgviewCameraFlightState,
-  getViewportModeState: () => pdgviewViewportModeState,
-  getSelectedPointIndexState: getPdgviewSelectedPointIndexState,
-  setSelectedPointIndexState: setPdgviewSelectedPointIndexState,
-  getPathState: () => pdgviewPathState,
-  getPointMeshes: () => pdgviewPointMeshes,
-  updatePointMaterials: (...args) => updatePdgviewPointMaterials(...args),
-  updateCameraPoiStatus: () => updatePdgviewCameraPoiStatus(),
-  updatePathPointAtState: updatePdgviewPathPointAtState,
-  updatePathGeometry: () => updatePdgviewPathGeometry(),
-  renderJsonPreview: () => renderPdgviewJsonPreview(),
-  getCurrentDocument: () => pdgviewCurrentDocument,
+    getAnimatorPlaybackTimeForMotionProgress(...args),
+  getViewportOverlays: () => animatorViewportOverlays,
+  getCanvasWrap: () => animatorCanvasWrap,
+  getCamera: () => animatorCamera,
+  getFrameGroup: () => animatorFrameGroup,
+  getOverlay: () => animatorOverlay,
+  getCameraFlightState: () => animatorCameraFlightState,
+  getViewportModeState: () => animatorViewportModeState,
+  getSelectedPointIndexState: getAnimatorSelectedPointIndexState,
+  setSelectedPointIndexState: setAnimatorSelectedPointIndexState,
+  getPathState: () => animatorPathState,
+  getPointMeshes: () => animatorPointMeshes,
+  updatePointMaterials: (...args) => updateAnimatorPointMaterials(...args),
+  updateCameraPoiStatus: () => updateAnimatorCameraPoiStatus(),
+  updatePathPointAtState: updateAnimatorPathPointAtState,
+  updatePathGeometry: () => updateAnimatorPathGeometry(),
+  renderJsonPreview: () => renderAnimatorJsonPreview(),
+  getCurrentDocument: () => animatorCurrentDocument,
 });
 const {
-  clearPdgviewSelectedPoint,
-  hidePdgviewPathPointInfoPill,
-  updatePdgviewPathPointInfoPill,
-} = pdgviewViewportOverlayPillRuntime;
-const pdgviewPointerHitRuntime = createPdgviewPointerHitRuntime({
-  getCanvas: () => pdgviewCanvas,
+  clearAnimatorSelectedPoint,
+  hideAnimatorPathPointInfoPill,
+  updateAnimatorPathPointInfoPill,
+} = animatorViewportOverlayPillRuntime;
+const animatorPointerHitRuntime = createAnimatorPointerHitRuntime({
+  getCanvas: () => animatorCanvas,
 });
 const {
-  resolvePdgviewIndexedHit,
-  getPdgviewPointerNdc,
-  resolvePdgviewAssemblyHit,
-  resolvePdgviewMemberHandleHit,
-  resolvePdgviewSubassemblyHandleHit,
-  resolvePdgviewGraphicOverlayHit,
-  resolvePdgviewPersonalityHandleHit,
-  resolvePdgviewAssemblyIdHit,
-  findPdgviewShellSurfaceHit,
-  findPdgviewCenterMarkerIntersection,
-  shouldPreferPdgviewCenterMarker,
-} = pdgviewPointerHitRuntime;
-const pdgviewAssemblyInspectorRuntime = createPdgviewAssemblyInspectorRuntime({
+  resolveAnimatorIndexedHit,
+  getAnimatorPointerNdc,
+  resolveAnimatorAssemblyHit,
+  resolveAnimatorMemberHandleHit,
+  resolveAnimatorSubassemblyHandleHit,
+  resolveAnimatorGraphicOverlayHit,
+  resolveAnimatorPersonalityHandleHit,
+  resolveAnimatorAssemblyIdHit,
+  findAnimatorShellSurfaceHit,
+  findAnimatorCenterMarkerIntersection,
+  shouldPreferAnimatorCenterMarker,
+} = animatorPointerHitRuntime;
+const animatorAssemblyInspectorRuntime = createAnimatorAssemblyInspectorRuntime({
   documentLike: document,
-  getAssemblyListElement: () => pdgviewAssemblyList,
-  getAssemblyDetailElement: () => pdgviewAssemblyDetail,
-  validateSelectedAssemblyId: validatePdgviewSelectedAssemblyId,
-  ensureAssemblyDrafts: ensurePdgviewAssemblyDrafts,
-  getAssemblyDraftsState: getPdgviewAssemblyDraftsState,
-  getSelectedAssemblyIdState: getPdgviewSelectedAssemblyIdState,
-  getSelectedAssembly: getPdgviewSelectedAssembly,
-  setSelectedAssembly: (...args) => setPdgviewSelectedAssembly(...args),
-  renderJsonPreview: () => renderPdgviewJsonPreview(),
-  openAssemblyPropertiesMenuAt: (...args) => openPdgviewAssemblyPropertiesMenuAt(...args),
-  mutatePathStateState: mutatePdgviewPathStateState,
-  setSelectedPointIndexState: setPdgviewSelectedPointIndexState,
-  rebuildControlPoints: () => rebuildPdgviewControlPoints(),
-  updatePathGeometry: () => updatePdgviewPathGeometry(),
-  loadPathStateFromSelectedAssembly: () => loadPdgviewPathStateFromSelectedAssembly(),
-  buildAssemblyStructure: buildPdgviewAssemblyStructure,
-  summarizeAssemblyStructure: summarizePdgviewAssemblyStructure,
-  formatAssemblyStructureSummary: formatPdgviewAssemblyStructureSummary,
-  getAssemblyDraftById: getPdgviewAssemblyDraftById,
+  getAssemblyListElement: () => animatorAssemblyList,
+  getAssemblyDetailElement: () => animatorAssemblyDetail,
+  validateSelectedAssemblyId: validateAnimatorSelectedAssemblyId,
+  ensureAssemblyDrafts: ensureAnimatorAssemblyDrafts,
+  getAssemblyDraftsState: getAnimatorAssemblyDraftsState,
+  getSelectedAssemblyIdState: getAnimatorSelectedAssemblyIdState,
+  getSelectedAssembly: getAnimatorSelectedAssembly,
+  setSelectedAssembly: (...args) => setAnimatorSelectedAssembly(...args),
+  renderJsonPreview: () => renderAnimatorJsonPreview(),
+  openAssemblyPropertiesMenuAt: (...args) => openAnimatorAssemblyPropertiesMenuAt(...args),
+  mutatePathStateState: mutateAnimatorPathStateState,
+  setSelectedPointIndexState: setAnimatorSelectedPointIndexState,
+  rebuildControlPoints: () => rebuildAnimatorControlPoints(),
+  updatePathGeometry: () => updateAnimatorPathGeometry(),
+  loadPathStateFromSelectedAssembly: () => loadAnimatorPathStateFromSelectedAssembly(),
+  buildAssemblyStructure: buildAnimatorAssemblyStructure,
+  summarizeAssemblyStructure: summarizeAnimatorAssemblyStructure,
+  formatAssemblyStructureSummary: formatAnimatorAssemblyStructureSummary,
+  getAssemblyDraftById: getAnimatorAssemblyDraftById,
   showHoverTooltip,
   hideHoverTooltip,
 });
 const {
-  renderPdgviewAssemblyEditor,
-  updatePdgviewAssemblyHoverTooltip,
-  clearPdgviewAssemblyHoverTooltipState,
-} = pdgviewAssemblyInspectorRuntime;
+  renderAnimatorAssemblyEditor,
+  updateAnimatorAssemblyHoverTooltip,
+  clearAnimatorAssemblyHoverTooltipState,
+} = animatorAssemblyInspectorRuntime;
 const linkStyle = {
   minLength: 0.7,
   tipClearance: 0.12,
@@ -697,7 +697,7 @@ function normalizeVelocity(value) {
   return [0, 0, 0];
 }
 
-function normalizePdgviewPathPoint(rawPoint) {
+function normalizeAnimatorPathPoint(rawPoint) {
   if (rawPoint instanceof THREE.Vector3) {
     return [
       Number(rawPoint.x.toFixed(3)),
@@ -721,17 +721,17 @@ function normalizePdgviewPathPoint(rawPoint) {
   ];
 }
 
-function normalizePdgviewAssemblyPathPoints(rawPoints) {
+function normalizeAnimatorAssemblyPathPoints(rawPoints) {
   const source = Array.isArray(rawPoints) ? rawPoints : [];
   return source
-    .map((point) => normalizePdgviewPathPoint(point))
+    .map((point) => normalizeAnimatorPathPoint(point))
     .filter(Boolean);
 }
 
-function normalizePdgviewAssemblyDraft(draft = {}, index = 0) {
-  const fallback = createDefaultPdgviewAssemblyDraft(index);
+function normalizeAnimatorAssemblyDraft(draft = {}, index = 0) {
+  const fallback = createDefaultAnimatorAssemblyDraft(index);
   const name = String(draft.name ?? draft.label ?? fallback.name).trim() || fallback.name;
-  const id = sanitizePdgviewEntityId(draft.id || name, fallback.id);
+  const id = sanitizeAnimatorEntityId(draft.id || name, fallback.id);
   const position = Array.isArray(draft.position)
     ? [
         Number(draft.position[0] ?? 0) || 0,
@@ -743,12 +743,12 @@ function normalizePdgviewAssemblyDraft(draft = {}, index = 0) {
     id,
     name,
     role: draft.role || fallback.role || "assembly",
-    sceneRole: normalizePdgviewAssemblySceneRole(draft.sceneRole ?? fallback.sceneRole),
-    parentId: draft.parentId ? sanitizePdgviewEntityId(draft.parentId, "") : "",
+    sceneRole: normalizeAnimatorAssemblySceneRole(draft.sceneRole ?? fallback.sceneRole),
+    parentId: draft.parentId ? sanitizeAnimatorEntityId(draft.parentId, "") : "",
     position,
-    members: normalizePdgviewMemberList(draft.members),
-    subassemblies: normalizePdgviewSubassemblyList(draft.subassemblies),
-    pathPoints: normalizePdgviewAssemblyPathPoints(draft.pathPoints ?? fallback.pathPoints),
+    members: normalizeAnimatorMemberList(draft.members),
+    subassemblies: normalizeAnimatorSubassemblyList(draft.subassemblies),
+    pathPoints: normalizeAnimatorAssemblyPathPoints(draft.pathPoints ?? fallback.pathPoints),
     pathInterpolate: draft.pathInterpolate === "polyline" ? "polyline" : fallback.pathInterpolate,
     pathClosed: !!draft.pathClosed,
     historyTraceEnabled: !!draft.historyTraceEnabled,
@@ -757,12 +757,12 @@ function normalizePdgviewAssemblyDraft(draft = {}, index = 0) {
   };
 }
 
-function normalizePdgviewTimelineAddType(rawType = "graphic") {
+function normalizeAnimatorTimelineAddType(rawType = "graphic") {
   const requestedAddType = String(rawType ?? "graphic").trim().toLowerCase();
-  return pdgviewTimelineAddTypeIds.has(requestedAddType) ? requestedAddType : "graphic";
+  return animatorTimelineAddTypeIds.has(requestedAddType) ? requestedAddType : "graphic";
 }
 
-function getPdgviewTimelineEditKindTitle(editKind = "add") {
+function getAnimatorTimelineEditKindTitle(editKind = "add") {
   if (editKind === "add") {
     return "Add";
   }
@@ -784,111 +784,111 @@ function getPdgviewTimelineEditKindTitle(editKind = "add") {
   return "Timeline";
 }
 
-const pdgviewTimelineOverlayRuntime = createPdgviewTimelineOverlayRuntime({
+const animatorTimelineOverlayRuntime = createAnimatorTimelineOverlayRuntime({
   clampFn: clamp,
-  minDurationSeconds: pdgviewTimelineMinDurationSeconds,
-  sanitizeEntityId: sanitizePdgviewEntityId,
-  sanitizeTarget: sanitizePdgviewGraphicTarget,
-  getAssemblyDrafts: getPdgviewAssemblyDraftsState,
-  getSelectedAssemblyId: getPdgviewSelectedAssemblyIdState,
-  getSelectedPointIndex: getPdgviewSelectedPointIndexState,
-  getGraphicOverlayDrafts: getPdgviewGraphicOverlayDraftsState,
-  getCurrentDocument: () => pdgviewCurrentDocument,
-  getAssemblyLetter: getPdgviewAssemblyLetter,
-  normalizeAssemblyPathPoints: normalizePdgviewAssemblyPathPoints,
-  normalizeMemberList: normalizePdgviewMemberList,
-  normalizeSubassemblyList: normalizePdgviewSubassemblyList,
+  minDurationSeconds: animatorTimelineMinDurationSeconds,
+  sanitizeEntityId: sanitizeAnimatorEntityId,
+  sanitizeTarget: sanitizeAnimatorGraphicTarget,
+  getAssemblyDrafts: getAnimatorAssemblyDraftsState,
+  getSelectedAssemblyId: getAnimatorSelectedAssemblyIdState,
+  getSelectedPointIndex: getAnimatorSelectedPointIndexState,
+  getGraphicOverlayDrafts: getAnimatorGraphicOverlayDraftsState,
+  getCurrentDocument: () => animatorCurrentDocument,
+  getAssemblyLetter: getAnimatorAssemblyLetter,
+  normalizeAssemblyPathPoints: normalizeAnimatorAssemblyPathPoints,
+  normalizeMemberList: normalizeAnimatorMemberList,
+  normalizeSubassemblyList: normalizeAnimatorSubassemblyList,
   vectorFromTriplet,
-  isBareArchitrinoAssembly: isPdgviewBareArchitrinoAssembly,
+  isBareArchitrinoAssembly: isAnimatorBareArchitrinoAssembly,
   readNumberInput,
-  formatTimeLabel: formatPdgviewTimeLabel,
-  setStatus: setPdgviewStatus,
-  mediaAssetDirectories: pdgviewMediaAssetDirectories,
-  supportedMediaExtensions: pdgviewSupportedMediaExtensions,
+  formatTimeLabel: formatAnimatorTimeLabel,
+  setStatus: setAnimatorStatus,
+  mediaAssetDirectories: animatorMediaAssetDirectories,
+  supportedMediaExtensions: animatorSupportedMediaExtensions,
   dom: {
-    sceneDurationInput: pdgviewSceneDurationInput,
-    sceneLoopInput: pdgviewSceneLoopInput,
-    markerListInput: pdgviewMarkerListInput,
-    pauseListInput: pdgviewPauseListInput,
-    warpListInput: pdgviewWarpListInput,
-    transferListInput: pdgviewTransferListInput,
-    markerStatus: pdgviewMarkerStatus,
-    pauseStatus: pdgviewPauseStatus,
-    warpStatus: pdgviewWarpStatus,
-    transferStatus: pdgviewTransferStatus,
+    sceneDurationInput: animatorSceneDurationInput,
+    sceneLoopInput: animatorSceneLoopInput,
+    markerListInput: animatorMarkerListInput,
+    pauseListInput: animatorPauseListInput,
+    warpListInput: animatorWarpListInput,
+    transferListInput: animatorTransferListInput,
+    markerStatus: animatorMarkerStatus,
+    pauseStatus: animatorPauseStatus,
+    warpStatus: animatorWarpStatus,
+    transferStatus: animatorTransferStatus,
   },
 });
 
 const {
-  parsePdgviewTransfers,
-  getPdgviewTimelineAuthoringItems,
-  findPdgviewTimelineOverlap,
-  reportPdgviewTimelineOverlap,
-  getPdgviewGraphicEnd,
-  getPdgviewGraphicDefaultTarget,
-  decodePdgviewGraphicTargetValue,
-  getPdgviewGraphicTargetEntries,
-  normalizePdgviewMediaRect,
-  sanitizePdgviewMediaSource,
-  normalizePdgviewGraphicOverlayDraft,
-  normalizePdgviewGraphicOverlayList,
-  getPdgviewGraphicOverlayDraftIndexById,
-  getPdgviewGraphicOverlayDraftById,
-  getNextPdgviewGraphicOverlayId,
-  getPdgviewGraphicTimelineOverlays,
-  getPdgviewViewportMediaTimelineOverlays,
-  isPdgviewTimeWithinSpan,
-  resolvePdgviewGraphicTargetPosition,
-  getPdgviewAssemblyGraphicTargetRadius,
-  formatPdgviewTimingStatus,
-  updatePdgviewTimingDiagnostics,
-  readPdgviewTimingState,
-} = pdgviewTimelineOverlayRuntime;
-const pdgviewAuthoringStateRuntime = createPdgviewAuthoringStateRuntime({
-  draftStateRuntime: pdgviewDraftStateRuntime,
-  getPathState: () => pdgviewPathState,
-  getPlaybackState: () => pdgviewPlaybackState,
+  parseAnimatorTransfers,
+  getAnimatorTimelineAuthoringItems,
+  findAnimatorTimelineOverlap,
+  reportAnimatorTimelineOverlap,
+  getAnimatorGraphicEnd,
+  getAnimatorGraphicDefaultTarget,
+  decodeAnimatorGraphicTargetValue,
+  getAnimatorGraphicTargetEntries,
+  normalizeAnimatorMediaRect,
+  sanitizeAnimatorMediaSource,
+  normalizeAnimatorGraphicOverlayDraft,
+  normalizeAnimatorGraphicOverlayList,
+  getAnimatorGraphicOverlayDraftIndexById,
+  getAnimatorGraphicOverlayDraftById,
+  getNextAnimatorGraphicOverlayId,
+  getAnimatorGraphicTimelineOverlays,
+  getAnimatorViewportMediaTimelineOverlays,
+  isAnimatorTimeWithinSpan,
+  resolveAnimatorGraphicTargetPosition,
+  getAnimatorAssemblyGraphicTargetRadius,
+  formatAnimatorTimingStatus,
+  updateAnimatorTimingDiagnostics,
+  readAnimatorTimingState,
+} = animatorTimelineOverlayRuntime;
+const animatorAuthoringStateRuntime = createAnimatorAuthoringStateRuntime({
+  draftStateRuntime: animatorDraftStateRuntime,
+  getPathState: () => animatorPathState,
+  getPlaybackState: () => animatorPlaybackState,
   dom: {
-    pathModeSelect: pdgviewPathModeSelect,
-    transferListInput: pdgviewTransferListInput,
-    sceneDurationInput: pdgviewSceneDurationInput,
-    sceneLoopInput: pdgviewSceneLoopInput,
+    pathModeSelect: animatorPathModeSelect,
+    transferListInput: animatorTransferListInput,
+    sceneDurationInput: animatorSceneDurationInput,
+    sceneLoopInput: animatorSceneLoopInput,
   },
-  parseTransfers: parsePdgviewTransfers,
-  createDefaultPathPoints: createPdgviewDefaultPathPoints,
-  normalizeAssemblyPathPoints: normalizePdgviewAssemblyPathPoints,
-  normalizePathPoint: normalizePdgviewPathPoint,
+  parseTransfers: parseAnimatorTransfers,
+  createDefaultPathPoints: createAnimatorDefaultPathPoints,
+  normalizeAssemblyPathPoints: normalizeAnimatorAssemblyPathPoints,
+  normalizePathPoint: normalizeAnimatorPathPoint,
   vectorFromTriplet,
   operations: {
-    rebuildControlPoints: rebuildPdgviewControlPoints,
-    updatePathGeometry: updatePdgviewPathGeometry,
-    updateCameraPoiStatus: updatePdgviewCameraPoiStatus,
+    rebuildControlPoints: rebuildAnimatorControlPoints,
+    updatePathGeometry: updateAnimatorPathGeometry,
+    updateCameraPoiStatus: updateAnimatorCameraPoiStatus,
   },
   windowLike: window,
 });
 const {
-  appendAuthoringLine: appendPdgviewAuthoringLine,
-  replaceAuthoringLineById: replacePdgviewAuthoringLineById,
-  setSceneDurationValue: setPdgviewSceneDurationValue,
-  setSceneLoopValue: setPdgviewSceneLoopValue,
-  getTransferListRaw: getPdgviewTransferListRaw,
-  setTransferListRaw: setPdgviewTransferListRaw,
-  appendTransferLine: appendPdgviewTransferLine,
-  getParsedTransferEntries: getPdgviewParsedTransferEntries,
-  clearPendingTransfer: clearPdgviewPendingTransfer,
-  startTransferFromAssembly: startPdgviewTransferFromAssembly,
-  completeTransferToAssembly: completePdgviewTransferToAssembly,
-  persistPathStateToAssembly: persistPdgviewPathStateToAssembly,
-  loadPathStateFromSelectedAssembly: loadPdgviewPathStateFromSelectedAssembly,
-  persistPathStateToSelectedAssembly: persistPdgviewPathStateToSelectedAssembly,
-  setSelectedAssembly: setPdgviewSelectedAssembly,
-} = pdgviewAuthoringStateRuntime;
+  appendAuthoringLine: appendAnimatorAuthoringLine,
+  replaceAuthoringLineById: replaceAnimatorAuthoringLineById,
+  setSceneDurationValue: setAnimatorSceneDurationValue,
+  setSceneLoopValue: setAnimatorSceneLoopValue,
+  getTransferListRaw: getAnimatorTransferListRaw,
+  setTransferListRaw: setAnimatorTransferListRaw,
+  appendTransferLine: appendAnimatorTransferLine,
+  getParsedTransferEntries: getAnimatorParsedTransferEntries,
+  clearPendingTransfer: clearAnimatorPendingTransfer,
+  startTransferFromAssembly: startAnimatorTransferFromAssembly,
+  completeTransferToAssembly: completeAnimatorTransferToAssembly,
+  persistPathStateToAssembly: persistAnimatorPathStateToAssembly,
+  loadPathStateFromSelectedAssembly: loadAnimatorPathStateFromSelectedAssembly,
+  persistPathStateToSelectedAssembly: persistAnimatorPathStateToSelectedAssembly,
+  setSelectedAssembly: setAnimatorSelectedAssembly,
+} = animatorAuthoringStateRuntime;
 
-function getPdgviewMemberColor(memberId, index = 0) {
+function getAnimatorMemberColor(memberId, index = 0) {
   const normalized = typeof memberId === "object" && memberId !== null && !Array.isArray(memberId)
-    ? getPdgviewMemberId(memberId, index).trim().toLowerCase()
+    ? getAnimatorMemberId(memberId, index).trim().toLowerCase()
     : String(memberId ?? "").trim().toLowerCase();
-  const explicitState = getPdgviewMemberState(memberId);
+  const explicitState = getAnimatorMemberState(memberId);
   if (explicitState === "unset") {
     return "#f4f7ff";
   }
@@ -907,23 +907,23 @@ function getPdgviewMemberColor(memberId, index = 0) {
   return index % 2 === 0 ? binaryStyle.positrinoColor : binaryStyle.electrinoColor;
 }
 
-function addPdgviewMemberLabel(assemblyId, memberId, color, options = {}) {
-  if (!pdgviewViewportGroup || !assemblyId || !memberId) {
+function addAnimatorMemberLabel(assemblyId, memberId, color, options = {}) {
+  if (!animatorViewportGroup || !assemblyId || !memberId) {
     return;
   }
-  const sprite = createPdgviewMemberLabelSprite(memberId, color);
+  const sprite = createAnimatorMemberLabelSprite(memberId, color);
   const offset = Array.isArray(options.offset)
     ? new THREE.Vector3(options.offset[0] ?? 0, options.offset[1] ?? 0.08, options.offset[2] ?? 0)
     : new THREE.Vector3(0, 0.08, 0);
   sprite.userData.assemblyId = assemblyId;
   sprite.userData.memberId = memberId;
   sprite.userData.offset = offset;
-  pdgviewViewportGroup.add(sprite);
-  pdgviewMemberLabelSprites.push(sprite);
+  animatorViewportGroup.add(sprite);
+  animatorMemberLabelSprites.push(sprite);
 }
 
-function getPdgviewPersonalityMembers(assembly) {
-  return normalizePdgviewMemberList(assembly?.members).filter((member) => isPdgviewPersonalityMember(member));
+function getAnimatorPersonalityMembers(assembly) {
+  return normalizeAnimatorMemberList(assembly?.members).filter((member) => isAnimatorPersonalityMember(member));
 }
 
 function readNumberInput(input, fallback = 0) {
@@ -944,7 +944,7 @@ function vectorFromTriplet(source) {
   return new THREE.Vector3(source?.x ?? 0, source?.y ?? 0, source?.z ?? 0);
 }
 
-function setPdgviewTransportButtonIcon(button, kind) {
+function setAnimatorTransportButtonIcon(button, kind) {
   if (!button) {
     return;
   }
@@ -968,7 +968,7 @@ function setPdgviewTransportButtonIcon(button, kind) {
   button.title = icon.label;
 }
 
-function createPdgviewMarkerHitProxy(radius) {
+function createAnimatorMarkerHitProxy(radius) {
   const material = new THREE.MeshBasicMaterial({
     transparent: true,
     opacity: 0,
@@ -979,7 +979,7 @@ function createPdgviewMarkerHitProxy(radius) {
   return new THREE.Mesh(new THREE.SphereGeometry(radius, 12, 12), material);
 }
 
-function disposePdgviewMarkerHandle(mesh, labelKey = "pointLabelSprite") {
+function disposeAnimatorMarkerHandle(mesh, labelKey = "pointLabelSprite") {
   if (!mesh) {
     return;
   }
@@ -1003,24 +1003,24 @@ function formatScaleLabel(value) {
   return `${normalized.toFixed(2)}x`;
 }
 
-const PDGVIEW_FRAME_SCALE_BASELINE = 0.4;
+const ANIMATOR_FRAME_SCALE_BASELINE = 0.4;
 
-function getPdgviewEffectiveFrameScale(value = pdgviewFrameState.scale) {
+function getAnimatorEffectiveFrameScale(value = animatorFrameState.scale) {
   const normalized = Math.max(0.01, Number(value ?? 1) || 1);
-  return normalized * PDGVIEW_FRAME_SCALE_BASELINE;
+  return normalized * ANIMATOR_FRAME_SCALE_BASELINE;
 }
 
-function formatPdgviewTimeLabel(value) {
+function formatAnimatorTimeLabel(value) {
   const normalized = Number.isFinite(value) ? value : 0;
   return `${normalized.toFixed(1)}s`;
 }
 
-function formatPdgviewTimeInputValue(value) {
+function formatAnimatorTimeInputValue(value) {
   const normalized = Number(value);
   return Number.isFinite(normalized) ? normalized.toFixed(1) : "0.0";
 }
 
-function getPdgviewNumericInputPrecision(step = null) {
+function getAnimatorNumericInputPrecision(step = null) {
   if (step == null) {
     return null;
   }
@@ -1031,111 +1031,111 @@ function getPdgviewNumericInputPrecision(step = null) {
   return Math.max(0, stepText.length - stepText.indexOf(".") - 1);
 }
 
-function formatPdgviewNumericInputValue(value, step = null) {
+function formatAnimatorNumericInputValue(value, step = null) {
   const normalized = Number(value);
   if (!Number.isFinite(normalized)) {
     return "";
   }
-  const precision = getPdgviewNumericInputPrecision(step);
+  const precision = getAnimatorNumericInputPrecision(step);
   if (precision == null) {
     return String(normalized);
   }
   return normalized.toFixed(precision);
 }
 
-const pdgviewAssemblyAuthoringRuntime = createPdgviewAssemblyAuthoringRuntime({
-  getPdgviewAssemblyDraftById,
-  updatePdgviewAssemblyDraftByIdState,
-  setPdgviewStatus,
-  getPdgviewPersonalityMembers,
-  getPdgviewProxyMemberOffset,
-  splitPdgviewAssemblyGroupRuntime,
+const animatorAssemblyAuthoringRuntime = createAnimatorAssemblyAuthoringRuntime({
+  getAnimatorAssemblyDraftById,
+  updateAnimatorAssemblyDraftByIdState,
+  setAnimatorStatus,
+  getAnimatorPersonalityMembers,
+  getAnimatorProxyMemberOffset,
+  splitAnimatorAssemblyGroupRuntime,
 });
 const {
-  addPdgviewAssemblyMemberByKind,
-  createPdgviewSubassemblyFromMembers,
-  ensurePdgviewAssemblyMemberRecord,
-  getPdgviewAssemblySubassemblyIndex,
-  getPdgviewAvailablePersonalitySlotCount,
-  getPdgviewMemberSubassemblyId,
-  getPdgviewPersonalitySlotCapacity,
-  getNextPdgviewAssemblyMemberId,
-  getNextPdgviewPersonalitySlotIndex,
-  getNextPdgviewSubassemblyId,
-  movePdgviewMemberToRoot,
-  movePdgviewMemberToSubassembly,
-  removePdgviewAssemblyMember,
-  resolvePdgviewAssemblyMemberLocalOffset,
-  setPdgviewAssemblyMemberPosition,
-  setPdgviewSubassemblyPosition,
-  splitPdgviewAssemblyGroup,
-} = pdgviewAssemblyAuthoringRuntime;
+  addAnimatorAssemblyMemberByKind,
+  createAnimatorSubassemblyFromMembers,
+  ensureAnimatorAssemblyMemberRecord,
+  getAnimatorAssemblySubassemblyIndex,
+  getAnimatorAvailablePersonalitySlotCount,
+  getAnimatorMemberSubassemblyId,
+  getAnimatorPersonalitySlotCapacity,
+  getNextAnimatorAssemblyMemberId,
+  getNextAnimatorPersonalitySlotIndex,
+  getNextAnimatorSubassemblyId,
+  moveAnimatorMemberToRoot,
+  moveAnimatorMemberToSubassembly,
+  removeAnimatorAssemblyMember,
+  resolveAnimatorAssemblyMemberLocalOffset,
+  setAnimatorAssemblyMemberPosition,
+  setAnimatorSubassemblyPosition,
+  splitAnimatorAssemblyGroup,
+} = animatorAssemblyAuthoringRuntime;
 
-function getPdgviewCanvasLocalPointFromEvent(event) {
-  if (!pdgviewCanvas || !pdgviewCamera || !pdgviewRaycaster || !pdgviewFrameGroup) {
+function getAnimatorCanvasLocalPointFromEvent(event) {
+  if (!animatorCanvas || !animatorCamera || !animatorRaycaster || !animatorFrameGroup) {
     return new THREE.Vector3();
   }
-  const { x, y } = getPdgviewPointerNdc(event);
-  pdgviewRaycaster.setFromCamera({ x, y }, pdgviewCamera);
-  const worldOrigin = pdgviewFrameGroup.getWorldPosition(new THREE.Vector3());
+  const { x, y } = getAnimatorPointerNdc(event);
+  animatorRaycaster.setFromCamera({ x, y }, animatorCamera);
+  const worldOrigin = animatorFrameGroup.getWorldPosition(new THREE.Vector3());
   const planeNormal = new THREE.Vector3(0, 0, 1).applyQuaternion(
-    pdgviewFrameGroup.quaternion
+    animatorFrameGroup.quaternion
   );
   const plane = new THREE.Plane().setFromNormalAndCoplanarPoint(planeNormal, worldOrigin);
   const intersection = new THREE.Vector3();
-  if (pdgviewRaycaster.ray.intersectPlane(plane, intersection)) {
-    return pdgviewFrameGroup.worldToLocal(intersection.clone());
+  if (animatorRaycaster.ray.intersectPlane(plane, intersection)) {
+    return animatorFrameGroup.worldToLocal(intersection.clone());
   }
   return new THREE.Vector3();
 }
 
-function closePdgviewAssemblyMenu() {
-  if (!pdgviewAssemblyMenu) {
+function closeAnimatorAssemblyMenu() {
+  if (!animatorAssemblyMenu) {
     return;
   }
-  resetPdgviewAssemblyMenu();
-  pdgviewAssemblyMenu.classList.remove("is-open");
-  pdgviewAssemblyMenu.setAttribute("aria-hidden", "true");
+  resetAnimatorAssemblyMenu();
+  animatorAssemblyMenu.classList.remove("is-open");
+  animatorAssemblyMenu.setAttribute("aria-hidden", "true");
 }
 
-function resetPdgviewAssemblyMenu(mode = "") {
-  if (!pdgviewAssemblyMenu) {
+function resetAnimatorAssemblyMenu(mode = "") {
+  if (!animatorAssemblyMenu) {
     return;
   }
-  pdgviewAssemblyMenu.innerHTML = "";
-  pdgviewAssemblyMenu.classList.remove("is-timeline-menu");
+  animatorAssemblyMenu.innerHTML = "";
+  animatorAssemblyMenu.classList.remove("is-timeline-menu");
   if (mode === "timeline") {
-    pdgviewAssemblyMenu.classList.add("is-timeline-menu");
+    animatorAssemblyMenu.classList.add("is-timeline-menu");
   }
 }
 
-function getPdgviewPathOwnerAssemblyId(path) {
+function getAnimatorPathOwnerAssemblyId(path) {
   return path?.metadata?.ownerAssemblyId ?? path?.ownerAssemblyId ?? null;
 }
 
-function clearPdgviewBackgroundPathLines() {
-  pdgviewBackgroundPathLines.forEach((line) => {
-    pdgviewFrameGroup?.remove(line);
+function clearAnimatorBackgroundPathLines() {
+  animatorBackgroundPathLines.forEach((line) => {
+    animatorFrameGroup?.remove(line);
     line.geometry?.dispose?.();
     line.material?.dispose?.();
   });
-  pdgviewBackgroundPathLines = [];
-  pdgviewBackgroundPathMarkers.forEach((marker) => {
+  animatorBackgroundPathLines = [];
+  animatorBackgroundPathMarkers.forEach((marker) => {
     const labelSprite = marker.userData?.pointLabelSprite;
     if (labelSprite?.material?.map) {
       labelSprite.material.map.dispose?.();
     }
     labelSprite?.material?.dispose?.();
-    pdgviewFrameGroup?.remove(marker);
+    animatorFrameGroup?.remove(marker);
     marker.geometry?.dispose?.();
     marker.material?.dispose?.();
   });
-  pdgviewBackgroundPathMarkers = [];
+  animatorBackgroundPathMarkers = [];
 }
 
-function rebuildPdgviewPathDisplayFromDocument(documentData) {
-  clearPdgviewBackgroundPathLines();
-  if (!pdgviewPathGeometry || !pdgviewFrameGroup) {
+function rebuildAnimatorPathDisplayFromDocument(documentData) {
+  clearAnimatorBackgroundPathLines();
+  if (!animatorPathGeometry || !animatorFrameGroup) {
     return;
   }
   const paths = Array.isArray(documentData?.paths) ? documentData.paths : [];
@@ -1143,27 +1143,27 @@ function rebuildPdgviewPathDisplayFromDocument(documentData) {
   const assemblyById = new Map(
     assemblies.map((assembly) => [assembly?.id ?? "", assembly])
   );
-  const assemblyDrafts = getPdgviewAssemblyDraftsState();
-  const selectedAssemblyId = getPdgviewSelectedAssemblyIdState() ?? assemblyDrafts[0]?.id ?? null;
+  const assemblyDrafts = getAnimatorAssemblyDraftsState();
+  const selectedAssemblyId = getAnimatorSelectedAssemblyIdState() ?? assemblyDrafts[0]?.id ?? null;
   const selectedOwnedPath =
     selectedAssemblyId != null
-      ? paths.find((path) => getPdgviewPathOwnerAssemblyId(path) === selectedAssemblyId) ?? null
+      ? paths.find((path) => getAnimatorPathOwnerAssemblyId(path) === selectedAssemblyId) ?? null
       : null;
   const selectedPath =
     selectedOwnedPath ??
     (paths.length === 1 ? paths[0] : null);
-  const selectedSamples = samplePdgviewPath(
+  const selectedSamples = sampleAnimatorPath(
     selectedPath?.payload?.points ?? [],
-    selectedPath?.payload?.interpolate ?? pdgviewPathState.interpolate,
+    selectedPath?.payload?.interpolate ?? animatorPathState.interpolate,
     !!selectedPath?.payload?.closed
   );
-  pdgviewPathGeometry.setFromPoints(selectedSamples);
+  animatorPathGeometry.setFromPoints(selectedSamples);
   if (selectedSamples.length) {
-    pdgviewPathGeometry.computeBoundingSphere();
+    animatorPathGeometry.computeBoundingSphere();
   }
 
   paths.forEach((path) => {
-    const samples = samplePdgviewPath(
+    const samples = sampleAnimatorPath(
       path?.payload?.points ?? [],
       path?.payload?.interpolate ?? "spline",
       !!path?.payload?.closed
@@ -1179,62 +1179,62 @@ function rebuildPdgviewPathDisplayFromDocument(documentData) {
         opacity: 0.28,
       })
     );
-    line.userData.ownerAssemblyId = getPdgviewPathOwnerAssemblyId(path);
+    line.userData.ownerAssemblyId = getAnimatorPathOwnerAssemblyId(path);
     line.userData.isSelectedPathBackground = path === selectedPath;
-    pdgviewFrameGroup.add(line);
-    pdgviewBackgroundPathLines.push(line);
+    animatorFrameGroup.add(line);
+    animatorBackgroundPathLines.push(line);
     const labelPrefix = path?.metadata?.labelPrefix ?? "";
     const pathPoints = Array.isArray(path?.payload?.points) ? path.payload.points : [];
-    if (pathPoints.length && labelPrefix && pdgviewPointGeometry && pdgviewPointMaterial) {
-      const bareOriginMarker = isPdgviewBareArchitrinoAssembly(
-        assemblyById.get(getPdgviewPathOwnerAssemblyId(path))
+    if (pathPoints.length && labelPrefix && animatorPointGeometry && animatorPointMaterial) {
+      const bareOriginMarker = isAnimatorBareArchitrinoAssembly(
+        assemblyById.get(getAnimatorPathOwnerAssemblyId(path))
       );
       pathPoints.forEach((point, index) => {
-        const marker = new THREE.Mesh(pdgviewPointGeometry, pdgviewPointMaterial);
+        const marker = new THREE.Mesh(animatorPointGeometry, animatorPointMaterial);
         marker.position.copy(vectorFromTriplet(point));
         if (!(bareOriginMarker && index === 0)) {
-          const labelSprite = createPdgviewPointLabelSprite(labelPrefix);
+          const labelSprite = createAnimatorPointLabelSprite(labelPrefix);
           labelSprite.position.set(0, 0, 0);
           marker.userData.pointLabelSprite = labelSprite;
           marker.add(labelSprite);
         }
-        pdgviewFrameGroup.add(marker);
-        pdgviewBackgroundPathMarkers.push(marker);
+        animatorFrameGroup.add(marker);
+        animatorBackgroundPathMarkers.push(marker);
       });
     }
   });
 }
 
-function applyPdgviewViewportDisplayState() {
-  const showTransportPath = isPdgviewViewportDisplayFlagEnabled("showTransportPath");
-  const showCameraGuides = isPdgviewViewportDisplayFlagEnabled("showCameraGuides");
-  const showLabels = isPdgviewViewportDisplayFlagEnabled("showLabels");
-  const showHistoryTraces = isPdgviewViewportDisplayFlagEnabled("showHistoryTraces");
-  const showEnvelopes = isPdgviewViewportDisplayFlagEnabled("showEnvelopes");
+function applyAnimatorViewportDisplayState() {
+  const showTransportPath = isAnimatorViewportDisplayFlagEnabled("showTransportPath");
+  const showCameraGuides = isAnimatorViewportDisplayFlagEnabled("showCameraGuides");
+  const showLabels = isAnimatorViewportDisplayFlagEnabled("showLabels");
+  const showHistoryTraces = isAnimatorViewportDisplayFlagEnabled("showHistoryTraces");
+  const showEnvelopes = isAnimatorViewportDisplayFlagEnabled("showEnvelopes");
   const isObserverViewActive =
-    pdgviewCameraFlightState.preview || pdgviewViewportModeState.cameraSource === "authored";
+    animatorCameraFlightState.preview || animatorViewportModeState.cameraSource === "authored";
   const showObserverGuidesInViewport = showCameraGuides && !isObserverViewActive;
-  if (pdgviewPathLine) {
-    pdgviewPathLine.visible = showTransportPath;
+  if (animatorPathLine) {
+    animatorPathLine.visible = showTransportPath;
   }
-  pdgviewBackgroundPathLines.forEach((line) => {
+  animatorBackgroundPathLines.forEach((line) => {
     line.visible = showTransportPath;
   });
-  pdgviewBackgroundPathMarkers.forEach((marker) => {
+  animatorBackgroundPathMarkers.forEach((marker) => {
     marker.visible = showTransportPath;
     const labelSprite = marker.userData?.pointLabelSprite;
     if (labelSprite) {
       labelSprite.visible = true;
     }
   });
-  pdgviewPointMeshes.forEach((mesh) => {
+  animatorPointMeshes.forEach((mesh) => {
     mesh.visible = showTransportPath;
     const labelSprite = mesh.userData?.pointLabelSprite;
     if (labelSprite) {
       labelSprite.visible = true;
     }
   });
-  pdgviewAssemblyMeshes.forEach((mesh) => {
+  animatorAssemblyMeshes.forEach((mesh) => {
     mesh.visible = true;
     mesh.traverse?.((child) => {
       const labelSprite = child.userData?.pointLabelSprite;
@@ -1247,52 +1247,52 @@ function applyPdgviewViewportDisplayState() {
       }
     });
   });
-  if (pdgviewDocumentCameraPathLine) {
-    pdgviewDocumentCameraPathLine.visible = showObserverGuidesInViewport;
+  if (animatorDocumentCameraPathLine) {
+    animatorDocumentCameraPathLine.visible = showObserverGuidesInViewport;
   }
-  pdgviewDocumentCameraWaypointMeshes.forEach((mesh) => {
+  animatorDocumentCameraWaypointMeshes.forEach((mesh) => {
     mesh.visible = showObserverGuidesInViewport;
   });
-  if (pdgviewDocumentCameraShotMesh) {
-    pdgviewDocumentCameraShotMesh.visible = showObserverGuidesInViewport;
+  if (animatorDocumentCameraShotMesh) {
+    animatorDocumentCameraShotMesh.visible = showObserverGuidesInViewport;
   }
-  if (pdgviewDocumentCameraTargetMesh) {
-    pdgviewDocumentCameraTargetMesh.visible = showObserverGuidesInViewport;
+  if (animatorDocumentCameraTargetMesh) {
+    animatorDocumentCameraTargetMesh.visible = showObserverGuidesInViewport;
   }
-  if (pdgviewDocumentCameraLookLine) {
-    pdgviewDocumentCameraLookLine.visible = showObserverGuidesInViewport;
+  if (animatorDocumentCameraLookLine) {
+    animatorDocumentCameraLookLine.visible = showObserverGuidesInViewport;
   }
-  if (pdgviewCameraFlightGroup) {
-    pdgviewCameraFlightGroup.visible = showObserverGuidesInViewport;
+  if (animatorCameraFlightGroup) {
+    animatorCameraFlightGroup.visible = showObserverGuidesInViewport;
   }
-  pdgviewHistoryTraceLines.forEach((line) => {
+  animatorHistoryTraceLines.forEach((line) => {
     line.visible = showHistoryTraces;
   });
-  pdgviewEnvelopeMeshes.forEach((mesh) => {
+  animatorEnvelopeMeshes.forEach((mesh) => {
     mesh.visible = showEnvelopes;
   });
-  pdgviewCameraWaypointMeshes.forEach((mesh) => {
+  animatorCameraWaypointMeshes.forEach((mesh) => {
     const labelSprite = mesh.userData?.labelSprite;
     if (labelSprite) {
       labelSprite.visible = showLabels;
     }
   });
-  pdgviewMemberLabelSprites.forEach((sprite) => {
+  animatorMemberLabelSprites.forEach((sprite) => {
     sprite.visible = showLabels;
   });
-  updatePdgviewHudViewportToggleState();
+  updateAnimatorHudViewportToggleState();
 }
 
-function positionPdgviewAssemblyMenu(clientX, clientY, width = 220, height = 160) {
-  if (!pdgviewAssemblyMenu || !pdgviewCanvasWrap) {
+function positionAnimatorAssemblyMenu(clientX, clientY, width = 220, height = 160) {
+  if (!animatorAssemblyMenu || !animatorCanvasWrap) {
     return;
   }
-  const wrapRect = pdgviewCanvasWrap.getBoundingClientRect();
-  pdgviewAssemblyMenu.style.width = `${width}px`;
-  pdgviewAssemblyMenu.classList.add("is-open");
-  pdgviewAssemblyMenu.setAttribute("aria-hidden", "false");
-  const measuredWidth = pdgviewAssemblyMenu.offsetWidth || width;
-  const measuredHeight = pdgviewAssemblyMenu.offsetHeight || height;
+  const wrapRect = animatorCanvasWrap.getBoundingClientRect();
+  animatorAssemblyMenu.style.width = `${width}px`;
+  animatorAssemblyMenu.classList.add("is-open");
+  animatorAssemblyMenu.setAttribute("aria-hidden", "false");
+  const measuredWidth = animatorAssemblyMenu.offsetWidth || width;
+  const measuredHeight = animatorAssemblyMenu.offsetHeight || height;
   const left = clamp(
     clientX - wrapRect.left,
     12,
@@ -1303,11 +1303,11 @@ function positionPdgviewAssemblyMenu(clientX, clientY, width = 220, height = 160
     12,
     Math.max(12, wrapRect.height - measuredHeight - 12)
   );
-  pdgviewAssemblyMenu.style.left = `${left}px`;
-  pdgviewAssemblyMenu.style.top = `${top}px`;
+  animatorAssemblyMenu.style.left = `${left}px`;
+  animatorAssemblyMenu.style.top = `${top}px`;
 }
 
-function getPdgviewMenuAnchorClientPosition(element) {
+function getAnimatorMenuAnchorClientPosition(element) {
   const rect = element?.getBoundingClientRect?.();
   if (!rect) {
     return { x: 24, y: 24 };
@@ -1318,7 +1318,7 @@ function getPdgviewMenuAnchorClientPosition(element) {
   };
 }
 
-function appendPdgviewMenuRangeControl(parent, options = {}) {
+function appendAnimatorMenuRangeControl(parent, options = {}) {
   if (!parent) {
     return null;
   }
@@ -1332,20 +1332,20 @@ function appendPdgviewMenuRangeControl(parent, options = {}) {
     onInput = null,
   } = options;
   const field = document.createElement("label");
-  field.className = "pdgview-field pdgview-range-field";
+  field.className = "animator-field animator-range-field";
   const fieldLabel = document.createElement("span");
   fieldLabel.textContent = label;
   const row = document.createElement("div");
-  row.className = "pdgview-range-row";
+  row.className = "animator-range-row";
   const input = document.createElement("input");
-  input.className = "pdgview-range";
+  input.className = "animator-range";
   input.type = "range";
   input.min = String(min);
   input.max = String(max);
   input.step = String(step);
   input.value = String(value);
   const output = document.createElement("span");
-  output.className = "pdgview-range-value";
+  output.className = "animator-range-value";
   output.textContent = valueLabel;
   input.addEventListener("input", () => {
     if (typeof onInput !== "function") {
@@ -1362,19 +1362,19 @@ function appendPdgviewMenuRangeControl(parent, options = {}) {
   return { field, input, output };
 }
 
-function appendPdgviewMenuSectionHeader(parent, title, tag = "") {
+function appendAnimatorMenuSectionHeader(parent, title, tag = "") {
   if (!parent) {
     return null;
   }
   const header = document.createElement("div");
-  header.className = "pdgview-assembly-menu-section-header";
+  header.className = "animator-assembly-menu-section-header";
   const titleNode = document.createElement("div");
-  titleNode.className = "pdgview-assembly-menu-subtitle";
+  titleNode.className = "animator-assembly-menu-subtitle";
   titleNode.textContent = title;
   header.appendChild(titleNode);
   if (tag) {
     const tagNode = document.createElement("div");
-    tagNode.className = "pdgview-assembly-menu-section-tag";
+    tagNode.className = "animator-assembly-menu-section-tag";
     tagNode.textContent = tag;
     header.appendChild(tagNode);
   }
@@ -1382,16 +1382,16 @@ function appendPdgviewMenuSectionHeader(parent, title, tag = "") {
   return header;
 }
 
-function appendPdgviewMenuButtonRow(parent, configs = []) {
+function appendAnimatorMenuButtonRow(parent, configs = []) {
   if (!parent || !Array.isArray(configs) || !configs.length) {
     return [];
   }
   const row = document.createElement("div");
-  row.className = "pdgview-button-row";
+  row.className = "animator-button-row";
   const buttons = configs.map((config) => {
     if (!config) {
       const spacer = document.createElement("div");
-      spacer.className = "pdgview-assembly-menu-spacer";
+      spacer.className = "animator-assembly-menu-spacer";
       row.appendChild(spacer);
       return null;
     }
@@ -1417,7 +1417,7 @@ function appendPdgviewMenuButtonRow(parent, configs = []) {
   return buttons;
 }
 
-function appendPdgviewMenuField(parent, options = {}) {
+function appendAnimatorMenuField(parent, options = {}) {
   if (!parent) {
     return null;
   }
@@ -1431,7 +1431,7 @@ function appendPdgviewMenuField(parent, options = {}) {
     selectOnFocus = false,
   } = options;
   const field = document.createElement("label");
-  field.className = "pdgview-field";
+  field.className = "animator-field";
   const labelNode = document.createElement("span");
   labelNode.textContent = label;
   const input = document.createElement("input");
@@ -1450,7 +1450,7 @@ function appendPdgviewMenuField(parent, options = {}) {
   } else {
     input.value =
       type === "number"
-        ? formatPdgviewNumericInputValue(value, step)
+        ? formatAnimatorNumericInputValue(value, step)
         : String(value ?? "");
   }
   if (selectOnFocus && type !== "number") {
@@ -1469,7 +1469,7 @@ function appendPdgviewMenuField(parent, options = {}) {
   return input;
 }
 
-function appendPdgviewMenuSelectField(parent, options = {}) {
+function appendAnimatorMenuSelectField(parent, options = {}) {
   if (!parent) {
     return null;
   }
@@ -1480,7 +1480,7 @@ function appendPdgviewMenuSelectField(parent, options = {}) {
     placeholder = "None",
   } = options;
   const field = document.createElement("label");
-  field.className = "pdgview-field";
+  field.className = "animator-field";
   const labelNode = document.createElement("span");
   labelNode.textContent = label;
   const select = document.createElement("select");
@@ -1506,23 +1506,23 @@ function appendPdgviewMenuSelectField(parent, options = {}) {
   return select;
 }
 
-function appendPdgviewMenuBlock(parent, title, actionConfig = null) {
+function appendAnimatorMenuBlock(parent, title, actionConfig = null) {
   if (!parent) {
     return null;
   }
   const block = document.createElement("div");
-  block.className = "pdgview-assembly-menu-block";
+  block.className = "animator-assembly-menu-block";
   const header = document.createElement("div");
-  header.className = "pdgview-assembly-menu-block-header";
+  header.className = "animator-assembly-menu-block-header";
   const titleNode = document.createElement("div");
-  titleNode.className = "pdgview-assembly-menu-subtitle";
+  titleNode.className = "animator-assembly-menu-subtitle";
   titleNode.textContent = title;
   header.appendChild(titleNode);
   let actionButton = null;
   if (actionConfig && typeof actionConfig.onClick === "function") {
     actionButton = document.createElement("button");
     actionButton.type = "button";
-    actionButton.className = "pdgview-assembly-menu-inline-action";
+    actionButton.className = "animator-assembly-menu-inline-action";
     actionButton.textContent = actionConfig.text ?? "Add";
     actionButton.addEventListener("click", actionConfig.onClick);
     header.appendChild(actionButton);
@@ -1532,164 +1532,164 @@ function appendPdgviewMenuBlock(parent, title, actionConfig = null) {
   return { block, header, titleNode, actionButton };
 }
 
-function appendPdgviewMenuNote(parent, text) {
+function appendAnimatorMenuNote(parent, text) {
   if (!parent || !text) {
     return null;
   }
   const note = document.createElement("div");
-  note.className = "pdgview-field-note";
+  note.className = "animator-field-note";
   note.textContent = text;
   parent.appendChild(note);
   return note;
 }
 
-function openPdgviewMemberMenuAt(clientX, clientY, assemblyId, memberId) {
-  openPdgviewMemberMenu({
-    menu: pdgviewAssemblyMenu,
+function openAnimatorMemberMenuAt(clientX, clientY, assemblyId, memberId) {
+  openAnimatorMemberMenu({
+    menu: animatorAssemblyMenu,
     clientX,
     clientY,
     assemblyId,
     memberId,
-    getAssemblyDraftById: getPdgviewAssemblyDraftById,
-    sanitizeEntityId: sanitizePdgviewEntityId,
-    getMemberSubassemblyId: getPdgviewMemberSubassemblyId,
-    resolveAssemblyMemberLocalOffset: resolvePdgviewAssemblyMemberLocalOffset,
-    normalizeSubassemblyList: normalizePdgviewSubassemblyList,
-    getSubassemblyId: getPdgviewSubassemblyId,
-    resetMenu: resetPdgviewAssemblyMenu,
-    appendMenuNote: appendPdgviewMenuNote,
-    appendMenuButtonRow: appendPdgviewMenuButtonRow,
-    appendMenuSectionHeader: appendPdgviewMenuSectionHeader,
-    closeMenu: closePdgviewAssemblyMenu,
-    renderAssemblyEditor: renderPdgviewAssemblyEditor,
-    renderJsonPreview: renderPdgviewJsonPreview,
-    moveMemberToRoot: movePdgviewMemberToRoot,
-    openMemberMenuAt: openPdgviewMemberMenuAt,
-    createSubassemblyFromMembers: createPdgviewSubassemblyFromMembers,
-    openSubassemblyMenuAt: openPdgviewSubassemblyMenuAt,
-    removeAssemblyMember: removePdgviewAssemblyMember,
-    openAssemblyPropertiesMenuAt: openPdgviewAssemblyPropertiesMenuAt,
-    moveMemberToSubassembly: movePdgviewMemberToSubassembly,
-    positionMenu: positionPdgviewAssemblyMenu,
+    getAssemblyDraftById: getAnimatorAssemblyDraftById,
+    sanitizeEntityId: sanitizeAnimatorEntityId,
+    getMemberSubassemblyId: getAnimatorMemberSubassemblyId,
+    resolveAssemblyMemberLocalOffset: resolveAnimatorAssemblyMemberLocalOffset,
+    normalizeSubassemblyList: normalizeAnimatorSubassemblyList,
+    getSubassemblyId: getAnimatorSubassemblyId,
+    resetMenu: resetAnimatorAssemblyMenu,
+    appendMenuNote: appendAnimatorMenuNote,
+    appendMenuButtonRow: appendAnimatorMenuButtonRow,
+    appendMenuSectionHeader: appendAnimatorMenuSectionHeader,
+    closeMenu: closeAnimatorAssemblyMenu,
+    renderAssemblyEditor: renderAnimatorAssemblyEditor,
+    renderJsonPreview: renderAnimatorJsonPreview,
+    moveMemberToRoot: moveAnimatorMemberToRoot,
+    openMemberMenuAt: openAnimatorMemberMenuAt,
+    createSubassemblyFromMembers: createAnimatorSubassemblyFromMembers,
+    openSubassemblyMenuAt: openAnimatorSubassemblyMenuAt,
+    removeAssemblyMember: removeAnimatorAssemblyMember,
+    openAssemblyPropertiesMenuAt: openAnimatorAssemblyPropertiesMenuAt,
+    moveMemberToSubassembly: moveAnimatorMemberToSubassembly,
+    positionMenu: positionAnimatorAssemblyMenu,
   });
 }
 
-function openPdgviewPersonalitySlotMenuAt(clientX, clientY, assemblyId, memberId) {
-  return openPdgviewPersonalitySlotMenu({
-    menu: pdgviewAssemblyMenu,
+function openAnimatorPersonalitySlotMenuAt(clientX, clientY, assemblyId, memberId) {
+  return openAnimatorPersonalitySlotMenu({
+    menu: animatorAssemblyMenu,
     clientX,
     clientY,
     assemblyId,
     memberId,
-    getAssemblyDraftById: getPdgviewAssemblyDraftById,
-    normalizeMemberList: normalizePdgviewMemberList,
-    getMemberId: getPdgviewMemberId,
-    sanitizeEntityId: sanitizePdgviewEntityId,
-    isPersonalityMember: isPdgviewPersonalityMember,
-    getMemberState: getPdgviewMemberState,
-    resetMenu: resetPdgviewAssemblyMenu,
-    appendMenuNote: appendPdgviewMenuNote,
-    appendMenuButtonRow: appendPdgviewMenuButtonRow,
-    ensureAssemblyMemberRecord: ensurePdgviewAssemblyMemberRecord,
-    closeMenu: closePdgviewAssemblyMenu,
-    renderJsonPreview: renderPdgviewJsonPreview,
-    positionMenu: positionPdgviewAssemblyMenu,
+    getAssemblyDraftById: getAnimatorAssemblyDraftById,
+    normalizeMemberList: normalizeAnimatorMemberList,
+    getMemberId: getAnimatorMemberId,
+    sanitizeEntityId: sanitizeAnimatorEntityId,
+    isPersonalityMember: isAnimatorPersonalityMember,
+    getMemberState: getAnimatorMemberState,
+    resetMenu: resetAnimatorAssemblyMenu,
+    appendMenuNote: appendAnimatorMenuNote,
+    appendMenuButtonRow: appendAnimatorMenuButtonRow,
+    ensureAssemblyMemberRecord: ensureAnimatorAssemblyMemberRecord,
+    closeMenu: closeAnimatorAssemblyMenu,
+    renderJsonPreview: renderAnimatorJsonPreview,
+    positionMenu: positionAnimatorAssemblyMenu,
   });
 }
 
-function openPdgviewSubassemblyMenuAt(clientX, clientY, assemblyId, subassemblyId) {
-  openPdgviewSubassemblyMenu({
-    menu: pdgviewAssemblyMenu,
+function openAnimatorSubassemblyMenuAt(clientX, clientY, assemblyId, subassemblyId) {
+  openAnimatorSubassemblyMenu({
+    menu: animatorAssemblyMenu,
     clientX,
     clientY,
     assemblyId,
     subassemblyId,
-    getAssemblyDraftById: getPdgviewAssemblyDraftById,
-    sanitizeEntityId: sanitizePdgviewEntityId,
-    normalizeSubassemblyList: normalizePdgviewSubassemblyList,
-    getSubassemblyId: getPdgviewSubassemblyId,
-    resetMenu: resetPdgviewAssemblyMenu,
-    appendMenuNote: appendPdgviewMenuNote,
-    appendMenuButtonRow: appendPdgviewMenuButtonRow,
-    appendMenuSectionHeader: appendPdgviewMenuSectionHeader,
-    splitGroup: splitPdgviewAssemblyGroup,
-    closeMenu: closePdgviewAssemblyMenu,
-    renderAssemblyEditor: renderPdgviewAssemblyEditor,
-    renderJsonPreview: renderPdgviewJsonPreview,
-    openAssemblyPropertiesMenuAt: openPdgviewAssemblyPropertiesMenuAt,
-    openMemberMenuAt: openPdgviewMemberMenuAt,
-    positionMenu: positionPdgviewAssemblyMenu,
+    getAssemblyDraftById: getAnimatorAssemblyDraftById,
+    sanitizeEntityId: sanitizeAnimatorEntityId,
+    normalizeSubassemblyList: normalizeAnimatorSubassemblyList,
+    getSubassemblyId: getAnimatorSubassemblyId,
+    resetMenu: resetAnimatorAssemblyMenu,
+    appendMenuNote: appendAnimatorMenuNote,
+    appendMenuButtonRow: appendAnimatorMenuButtonRow,
+    appendMenuSectionHeader: appendAnimatorMenuSectionHeader,
+    splitGroup: splitAnimatorAssemblyGroup,
+    closeMenu: closeAnimatorAssemblyMenu,
+    renderAssemblyEditor: renderAnimatorAssemblyEditor,
+    renderJsonPreview: renderAnimatorJsonPreview,
+    openAssemblyPropertiesMenuAt: openAnimatorAssemblyPropertiesMenuAt,
+    openMemberMenuAt: openAnimatorMemberMenuAt,
+    positionMenu: positionAnimatorAssemblyMenu,
   });
 }
 
-function openPdgviewAssemblyTemplateMenuAt(event) {
-  openPdgviewAssemblyTemplateMenu({
-    menu: pdgviewAssemblyMenu,
+function openAnimatorAssemblyTemplateMenuAt(event) {
+  openAnimatorAssemblyTemplateMenu({
+    menu: animatorAssemblyMenu,
     event,
-    localPoint: getPdgviewCanvasLocalPointFromEvent(event),
-    resetMenu: resetPdgviewAssemblyMenu,
-    appendMenuButtonRow: appendPdgviewMenuButtonRow,
-    appendMenuNote: appendPdgviewMenuNote,
-    appendMenuSectionHeader: appendPdgviewMenuSectionHeader,
-    templateMenuRows: pdgviewAssemblyTemplateMenuRows,
-    openSceneMenuAt: openPdgviewSceneMenuAt,
-    openLibraryMenuAt: openPdgviewLibraryMenuAt,
-    cameraFlightState: pdgviewCameraFlightState,
-    addCameraWaypoint: addPdgviewCameraWaypoint,
-    closeMenu: closePdgviewAssemblyMenu,
-    updateCameraPoiStatus: updatePdgviewCameraPoiStatus,
-    clearCameraWaypoints: clearPdgviewCameraWaypoints,
-    getSelectedAssemblyLetter: getPdgviewSelectedAssemblyLetter,
-    pdgviewFrameEditModeRef: {
-      get: () => pdgviewFrameEditMode,
+    localPoint: getAnimatorCanvasLocalPointFromEvent(event),
+    resetMenu: resetAnimatorAssemblyMenu,
+    appendMenuButtonRow: appendAnimatorMenuButtonRow,
+    appendMenuNote: appendAnimatorMenuNote,
+    appendMenuSectionHeader: appendAnimatorMenuSectionHeader,
+    templateMenuRows: animatorAssemblyTemplateMenuRows,
+    openSceneMenuAt: openAnimatorSceneMenuAt,
+    openLibraryMenuAt: openAnimatorLibraryMenuAt,
+    cameraFlightState: animatorCameraFlightState,
+    addCameraWaypoint: addAnimatorCameraWaypoint,
+    closeMenu: closeAnimatorAssemblyMenu,
+    updateCameraPoiStatus: updateAnimatorCameraPoiStatus,
+    clearCameraWaypoints: clearAnimatorCameraWaypoints,
+    getSelectedAssemblyLetter: getAnimatorSelectedAssemblyLetter,
+    animatorFrameEditModeRef: {
+      get: () => animatorFrameEditMode,
       set: (value) => {
-        pdgviewFrameEditMode = !!value;
+        animatorFrameEditMode = !!value;
       },
     },
-    setPdgviewFrameDefaults,
-    updatePdgviewFrame,
-    appendMenuRangeControl: appendPdgviewMenuRangeControl,
+    setAnimatorFrameDefaults,
+    updateAnimatorFrame,
+    appendMenuRangeControl: appendAnimatorMenuRangeControl,
     formatScaleLabel,
-    pdgviewFrameState,
-    renderJsonPreview: renderPdgviewJsonPreview,
-    setPdgviewCameraDefaults,
-    updatePdgviewCamera,
-    pdgviewCameraState,
-    pdgviewCameraOrbitState,
-    positionMenu: positionPdgviewAssemblyMenu,
+    animatorFrameState,
+    renderJsonPreview: renderAnimatorJsonPreview,
+    setAnimatorCameraDefaults,
+    updateAnimatorCamera,
+    animatorCameraState,
+    animatorCameraOrbitState,
+    positionMenu: positionAnimatorAssemblyMenu,
   });
 }
 
-function openPdgviewAssemblyPropertiesMenuAt(clientX, clientY, assemblyId) {
-  openPdgviewAssemblyPropertiesMenu({
-    menu: pdgviewAssemblyMenu,
+function openAnimatorAssemblyPropertiesMenuAt(clientX, clientY, assemblyId) {
+  openAnimatorAssemblyPropertiesMenu({
+    menu: animatorAssemblyMenu,
     clientX,
     clientY,
     assemblyId,
-    getAssemblyDraftIndexById: getPdgviewAssemblyDraftIndexById,
-    assemblyDrafts: getPdgviewAssemblyDraftsState(),
-    setSelectedAssembly: setPdgviewSelectedAssembly,
-    resetMenu: resetPdgviewAssemblyMenu,
-    pendingTransferSource: getPdgviewPendingTransferSourceState(),
-    appendMenuNote: appendPdgviewMenuNote,
-    appendMenuSectionHeader: appendPdgviewMenuSectionHeader,
-    appendMenuButtonRow: appendPdgviewMenuButtonRow,
-    getAssemblyDraftById: getPdgviewAssemblyDraftById,
-    renderAssemblyEditor: renderPdgviewAssemblyEditor,
-    renderJsonPreview: renderPdgviewJsonPreview,
-    closeMenu: closePdgviewAssemblyMenu,
-    clearPendingTransfer: clearPdgviewPendingTransfer,
-    openAssemblyPropertiesMenuAt: openPdgviewAssemblyPropertiesMenuAt,
-    ensureAssemblyDrafts: ensurePdgviewAssemblyDrafts,
-    positionMenu: positionPdgviewAssemblyMenu,
+    getAssemblyDraftIndexById: getAnimatorAssemblyDraftIndexById,
+    assemblyDrafts: getAnimatorAssemblyDraftsState(),
+    setSelectedAssembly: setAnimatorSelectedAssembly,
+    resetMenu: resetAnimatorAssemblyMenu,
+    pendingTransferSource: getAnimatorPendingTransferSourceState(),
+    appendMenuNote: appendAnimatorMenuNote,
+    appendMenuSectionHeader: appendAnimatorMenuSectionHeader,
+    appendMenuButtonRow: appendAnimatorMenuButtonRow,
+    getAssemblyDraftById: getAnimatorAssemblyDraftById,
+    renderAssemblyEditor: renderAnimatorAssemblyEditor,
+    renderJsonPreview: renderAnimatorJsonPreview,
+    closeMenu: closeAnimatorAssemblyMenu,
+    clearPendingTransfer: clearAnimatorPendingTransfer,
+    openAssemblyPropertiesMenuAt: openAnimatorAssemblyPropertiesMenuAt,
+    ensureAssemblyDrafts: ensureAnimatorAssemblyDrafts,
+    positionMenu: positionAnimatorAssemblyMenu,
   });
 }
 
-function getNextPdgviewAssemblyId(baseId) {
-  const normalizedBase = sanitizePdgviewEntityId(baseId, "assembly");
+function getNextAnimatorAssemblyId(baseId) {
+  const normalizedBase = sanitizeAnimatorEntityId(baseId, "assembly");
   let suffix = 1;
   let candidate = normalizedBase;
-  const existingIds = new Set(getPdgviewAssemblyDraftsState().map((assembly) => assembly?.id));
+  const existingIds = new Set(getAnimatorAssemblyDraftsState().map((assembly) => assembly?.id));
   while (existingIds.has(candidate)) {
     suffix += 1;
     candidate = `${normalizedBase}_${suffix}`;
@@ -1697,68 +1697,68 @@ function getNextPdgviewAssemblyId(baseId) {
   return candidate;
 }
 
-function createBuiltInPdgviewAssemblyDraft(templateId, position = [0, 0, 0], options = {}) {
-  return createBuiltInPdgviewAssemblyDraftRuntime(templateId, position, {
+function createBuiltInAnimatorAssemblyDraft(templateId, position = [0, 0, 0], options = {}) {
+  return createBuiltInAnimatorAssemblyDraftRuntime(templateId, position, {
     sceneRole: options.sceneRole,
-    normalizeSceneRole: normalizePdgviewAssemblySceneRole,
-    normalizeAssemblyDraft: normalizePdgviewAssemblyDraft,
-    getDraftCount: () => getPdgviewAssemblyDraftsState().length,
-    getNextAssemblyId: getNextPdgviewAssemblyId,
-    createDefaultPathPoints: createPdgviewDefaultPathPoints,
-    createDefaultCoreSpec: createPdgviewDefaultCoreSpec,
-    createPersonalityMembers: createPdgviewPersonalityMembers,
-    getBuiltInPersonalityStates: getPdgviewBuiltInPersonalityStates,
-    createGenIFermionPersonalityMembers: createPdgviewGenIFermionPersonalityMembers,
+    normalizeSceneRole: normalizeAnimatorAssemblySceneRole,
+    normalizeAssemblyDraft: normalizeAnimatorAssemblyDraft,
+    getDraftCount: () => getAnimatorAssemblyDraftsState().length,
+    getNextAssemblyId: getNextAnimatorAssemblyId,
+    createDefaultPathPoints: createAnimatorDefaultPathPoints,
+    createDefaultCoreSpec: createAnimatorDefaultCoreSpec,
+    createPersonalityMembers: createAnimatorPersonalityMembers,
+    getBuiltInPersonalityStates: getAnimatorBuiltInPersonalityStates,
+    createGenIFermionPersonalityMembers: createAnimatorGenIFermionPersonalityMembers,
   });
 }
 
-function addBuiltInPdgviewAssembly(templateId, position, options = {}) {
-  const nextAssembly = createBuiltInPdgviewAssemblyDraft(templateId, position, options);
-  appendPdgviewAssemblyDraftState(nextAssembly);
-  setPdgviewSelectedAssembly(nextAssembly.id);
-  renderPdgviewAssemblyEditor();
-  renderPdgviewJsonPreview();
+function addBuiltInAnimatorAssembly(templateId, position, options = {}) {
+  const nextAssembly = createBuiltInAnimatorAssemblyDraft(templateId, position, options);
+  appendAnimatorAssemblyDraftState(nextAssembly);
+  setAnimatorSelectedAssembly(nextAssembly.id);
+  renderAnimatorAssemblyEditor();
+  renderAnimatorJsonPreview();
 }
 
-function setPdgviewStatus(message) {
-  if (!pdgviewStatus) {
+function setAnimatorStatus(message) {
+  if (!animatorStatus) {
     return;
   }
-  pdgviewStatus.textContent = message;
+  animatorStatus.textContent = message;
 }
 
-function rebuildPdgviewControlPoints() {
-  if (!pdgviewFrameGroup || !pdgviewPointGeometry) {
+function rebuildAnimatorControlPoints() {
+  if (!animatorFrameGroup || !animatorPointGeometry) {
     return;
   }
-  const selectedAssembly = getPdgviewSelectedAssembly();
-  const bareOriginMarker = isPdgviewBareArchitrinoAssembly(selectedAssembly);
-  pdgviewPointMeshes.forEach((mesh) => {
-    disposePdgviewMarkerHandle(mesh);
-    pdgviewFrameGroup.remove(mesh);
+  const selectedAssembly = getAnimatorSelectedAssembly();
+  const bareOriginMarker = isAnimatorBareArchitrinoAssembly(selectedAssembly);
+  animatorPointMeshes.forEach((mesh) => {
+    disposeAnimatorMarkerHandle(mesh);
+    animatorFrameGroup.remove(mesh);
   });
-  pdgviewPointMeshes = pdgviewPathState.points.map((point, index) => {
-    const mesh = new THREE.Mesh(pdgviewPointGeometry, pdgviewPointMaterial);
+  animatorPointMeshes = animatorPathState.points.map((point, index) => {
+    const mesh = new THREE.Mesh(animatorPointGeometry, animatorPointMaterial);
     mesh.position.copy(point);
     mesh.renderOrder = 12;
     mesh.userData.pointIndex = index;
     if (!(bareOriginMarker && index === 0)) {
-      const labelSprite = createPdgviewPointLabelSprite(getPdgviewSelectedAssemblyLetter());
+      const labelSprite = createAnimatorPointLabelSprite(getAnimatorSelectedAssemblyLetter());
       labelSprite.position.set(0, 0, 0);
       mesh.userData.pointLabelSprite = labelSprite;
       mesh.add(labelSprite);
     }
-    const hitProxy = createPdgviewMarkerHitProxy(0.19);
+    const hitProxy = createAnimatorMarkerHitProxy(0.19);
     mesh.userData.hitProxy = hitProxy;
     mesh.add(hitProxy);
-    pdgviewFrameGroup.add(mesh);
+    animatorFrameGroup.add(mesh);
     return mesh;
   });
-  updatePdgviewPointMaterials();
-  applyPdgviewViewportDisplayState();
+  updateAnimatorPointMaterials();
+  applyAnimatorViewportDisplayState();
 }
 
-function samplePdgviewPath(points, interpolate = "spline", closed = false) {
+function sampleAnimatorPath(points, interpolate = "spline", closed = false) {
   const source = Array.isArray(points)
     ? points.map((point) =>
         point instanceof THREE.Vector3 ? point.clone() : new THREE.Vector3(point[0], point[1], point[2])
@@ -1777,25 +1777,25 @@ function samplePdgviewPath(points, interpolate = "spline", closed = false) {
   return source;
 }
 
-function updatePdgviewPathGeometry(points = pdgviewPathState.points) {
-  if (!pdgviewPathGeometry) {
+function updateAnimatorPathGeometry(points = animatorPathState.points) {
+  if (!animatorPathGeometry) {
     return [];
   }
-  const samples = samplePdgviewPath(
+  const samples = sampleAnimatorPath(
     points,
-    pdgviewPathState.interpolate,
-    pdgviewPathState.closed
+    animatorPathState.interpolate,
+    animatorPathState.closed
   );
-  pdgviewPathGeometry.setFromPoints(samples);
+  animatorPathGeometry.setFromPoints(samples);
   if (samples.length) {
-    pdgviewPathGeometry.computeBoundingSphere();
+    animatorPathGeometry.computeBoundingSphere();
   }
   return samples;
 }
 
-function clearPdgviewViewportVisuals() {
-  pdgviewAssemblyMeshes.forEach((mesh) => {
-    pdgviewViewportGroup?.remove(mesh);
+function clearAnimatorViewportVisuals() {
+  animatorAssemblyMeshes.forEach((mesh) => {
+    animatorViewportGroup?.remove(mesh);
     mesh.traverse?.((child) => {
       if (child === mesh) {
         return;
@@ -1808,11 +1808,11 @@ function clearPdgviewViewportVisuals() {
     mesh.material?.dispose?.();
     mesh.material?.map?.dispose?.();
   });
-  pdgviewAssemblyMeshes = [];
-  pdgviewMemberHandleMeshes = [];
-  pdgviewSubassemblyHandleMeshes = [];
-  pdgviewShellMeshes.forEach((mesh) => {
-    pdgviewViewportGroup?.remove(mesh);
+  animatorAssemblyMeshes = [];
+  animatorMemberHandleMeshes = [];
+  animatorSubassemblyHandleMeshes = [];
+  animatorShellMeshes.forEach((mesh) => {
+    animatorViewportGroup?.remove(mesh);
     mesh.traverse?.((child) => {
       if (child === mesh) {
         return;
@@ -1823,9 +1823,9 @@ function clearPdgviewViewportVisuals() {
     mesh.geometry?.dispose?.();
     mesh.material?.dispose?.();
   });
-  pdgviewShellMeshes = [];
-  pdgviewEnvelopeMeshes.forEach((mesh) => {
-    pdgviewViewportGroup?.remove(mesh);
+  animatorShellMeshes = [];
+  animatorEnvelopeMeshes.forEach((mesh) => {
+    animatorViewportGroup?.remove(mesh);
     mesh.traverse?.((child) => {
       if (child === mesh) {
         return;
@@ -1836,45 +1836,45 @@ function clearPdgviewViewportVisuals() {
     mesh.geometry?.dispose?.();
     mesh.material?.dispose?.();
   });
-  pdgviewEnvelopeMeshes = [];
-  pdgviewOrbitTraceLines.forEach((line) => {
-    pdgviewViewportGroup?.remove(line);
+  animatorEnvelopeMeshes = [];
+  animatorOrbitTraceLines.forEach((line) => {
+    animatorViewportGroup?.remove(line);
     line.geometry?.dispose?.();
     line.material?.dispose?.();
   });
-  pdgviewOrbitTraceLines = [];
-  pdgviewHistoryTraceLines.forEach((line) => {
-    pdgviewViewportGroup?.remove(line);
+  animatorOrbitTraceLines = [];
+  animatorHistoryTraceLines.forEach((line) => {
+    animatorViewportGroup?.remove(line);
     line.geometry?.dispose?.();
     line.material?.dispose?.();
   });
-  pdgviewHistoryTraceLines = [];
-  pdgviewTransferLines.forEach((line) => {
-    pdgviewViewportGroup?.remove(line);
+  animatorHistoryTraceLines = [];
+  animatorTransferLines.forEach((line) => {
+    animatorViewportGroup?.remove(line);
     line.geometry?.dispose?.();
     line.material?.dispose?.();
   });
-  pdgviewTransferLines = [];
-  pdgviewAxisGuideLines.forEach((line) => {
-    pdgviewViewportGroup?.remove(line);
+  animatorTransferLines = [];
+  animatorAxisGuideLines.forEach((line) => {
+    animatorViewportGroup?.remove(line);
     line.geometry?.dispose?.();
     line.material?.dispose?.();
   });
-  pdgviewAxisGuideLines = [];
-  pdgviewOrbitParticleMeshes.forEach((mesh) => {
-    pdgviewViewportGroup?.remove(mesh);
+  animatorAxisGuideLines = [];
+  animatorOrbitParticleMeshes.forEach((mesh) => {
+    animatorViewportGroup?.remove(mesh);
     mesh.geometry?.dispose?.();
     mesh.material?.dispose?.();
   });
-  pdgviewOrbitParticleMeshes = [];
-  pdgviewMemberLabelSprites.forEach((sprite) => {
-    pdgviewViewportGroup?.remove(sprite);
+  animatorOrbitParticleMeshes = [];
+  animatorMemberLabelSprites.forEach((sprite) => {
+    animatorViewportGroup?.remove(sprite);
     sprite.material?.map?.dispose?.();
     sprite.material?.dispose?.();
   });
-  pdgviewMemberLabelSprites = [];
-  pdgviewGraphicOverlayGroups.forEach((group) => {
-    pdgviewViewportGroup?.remove(group);
+  animatorMemberLabelSprites = [];
+  animatorGraphicOverlayGroups.forEach((group) => {
+    animatorViewportGroup?.remove(group);
     group.traverse?.((child) => {
       if (child === group) {
         return;
@@ -1884,50 +1884,50 @@ function clearPdgviewViewportVisuals() {
       child.material?.dispose?.();
     });
   });
-  pdgviewGraphicOverlayGroups = [];
-  pdgviewGraphicOverlayHandleMeshes = [];
-  pdgviewPersonalityHandleMeshes = [];
-  clearPdgviewViewportMediaOverlays();
-  clearPdgviewMemberAnchors();
-  if (pdgviewDocumentCameraPathLine) {
-    pdgviewViewportGroup?.remove(pdgviewDocumentCameraPathLine);
-    pdgviewDocumentCameraPathLine.geometry?.dispose?.();
-    pdgviewDocumentCameraPathLine.material?.dispose?.();
-    pdgviewDocumentCameraPathLine = null;
+  animatorGraphicOverlayGroups = [];
+  animatorGraphicOverlayHandleMeshes = [];
+  animatorPersonalityHandleMeshes = [];
+  clearAnimatorViewportMediaOverlays();
+  clearAnimatorMemberAnchors();
+  if (animatorDocumentCameraPathLine) {
+    animatorViewportGroup?.remove(animatorDocumentCameraPathLine);
+    animatorDocumentCameraPathLine.geometry?.dispose?.();
+    animatorDocumentCameraPathLine.material?.dispose?.();
+    animatorDocumentCameraPathLine = null;
   }
-  pdgviewDocumentCameraWaypointMeshes.forEach((mesh) => {
-    pdgviewViewportGroup?.remove(mesh);
+  animatorDocumentCameraWaypointMeshes.forEach((mesh) => {
+    animatorViewportGroup?.remove(mesh);
     mesh.geometry?.dispose?.();
     mesh.material?.dispose?.();
   });
-  pdgviewDocumentCameraWaypointMeshes = [];
-  if (pdgviewDocumentCameraShotMesh) {
-    pdgviewViewportGroup?.remove(pdgviewDocumentCameraShotMesh);
-    pdgviewDocumentCameraShotMesh.geometry?.dispose?.();
-    pdgviewDocumentCameraShotMesh.material?.dispose?.();
-    pdgviewDocumentCameraShotMesh = null;
+  animatorDocumentCameraWaypointMeshes = [];
+  if (animatorDocumentCameraShotMesh) {
+    animatorViewportGroup?.remove(animatorDocumentCameraShotMesh);
+    animatorDocumentCameraShotMesh.geometry?.dispose?.();
+    animatorDocumentCameraShotMesh.material?.dispose?.();
+    animatorDocumentCameraShotMesh = null;
   }
-  if (pdgviewDocumentCameraTargetMesh) {
-    pdgviewViewportGroup?.remove(pdgviewDocumentCameraTargetMesh);
-    pdgviewDocumentCameraTargetMesh.geometry?.dispose?.();
-    pdgviewDocumentCameraTargetMesh.material?.dispose?.();
-    pdgviewDocumentCameraTargetMesh = null;
+  if (animatorDocumentCameraTargetMesh) {
+    animatorViewportGroup?.remove(animatorDocumentCameraTargetMesh);
+    animatorDocumentCameraTargetMesh.geometry?.dispose?.();
+    animatorDocumentCameraTargetMesh.material?.dispose?.();
+    animatorDocumentCameraTargetMesh = null;
   }
-  if (pdgviewDocumentCameraLookLine) {
-    pdgviewViewportGroup?.remove(pdgviewDocumentCameraLookLine);
-    pdgviewDocumentCameraLookLine.geometry?.dispose?.();
-    pdgviewDocumentCameraLookLine.material?.dispose?.();
-    pdgviewDocumentCameraLookLine = null;
+  if (animatorDocumentCameraLookLine) {
+    animatorViewportGroup?.remove(animatorDocumentCameraLookLine);
+    animatorDocumentCameraLookLine.geometry?.dispose?.();
+    animatorDocumentCameraLookLine.material?.dispose?.();
+    animatorDocumentCameraLookLine = null;
   }
 }
 
-function getPdgviewDocumentCameraStateAtTime(documentData, timeSeconds) {
-  if (!documentData || !pdgviewFrameGroup) {
+function getAnimatorDocumentCameraStateAtTime(documentData, timeSeconds) {
+  if (!documentData || !animatorFrameGroup) {
     return null;
   }
-  const timeWindow = getPdgviewSceneTimeWindow(documentData);
-  const activeShot = getPdgviewActiveCameraShot(documentData, timeSeconds, timeWindow);
-  const activeCameraPathId = getPdgviewActiveCameraPathId(documentData, timeSeconds, timeWindow);
+  const timeWindow = getAnimatorSceneTimeWindow(documentData);
+  const activeShot = getAnimatorActiveCameraShot(documentData, timeSeconds, timeWindow);
+  const activeCameraPathId = getAnimatorActiveCameraPathId(documentData, timeSeconds, timeWindow);
   if (!activeCameraPathId) {
     return null;
   }
@@ -1939,50 +1939,50 @@ function getPdgviewDocumentCameraStateAtTime(documentData, timeSeconds) {
   }
   let normalizedT = 0;
   if (activeShot) {
-    const interval = resolvePdgviewShotInterval(activeShot, timeWindow);
+    const interval = resolveAnimatorShotInterval(activeShot, timeWindow);
     const duration = Math.max(0.000001, interval.end - interval.start);
     normalizedT = clamp((timeSeconds - interval.start) / duration, 0, 1);
   } else if (timeWindow.end > timeWindow.start) {
     normalizedT = clamp((timeSeconds - timeWindow.start) / (timeWindow.end - timeWindow.start), 0, 1);
   }
-  const localState = samplePdgviewCameraWaypointState(waypoints, normalizedT);
+  const localState = sampleAnimatorCameraWaypointState(waypoints, normalizedT);
   return {
-    position: pdgviewFrameGroup.localToWorld(localState.position.clone()),
-    lookAt: pdgviewFrameGroup.localToWorld(localState.lookAt.clone()),
+    position: animatorFrameGroup.localToWorld(localState.position.clone()),
+    lookAt: animatorFrameGroup.localToWorld(localState.lookAt.clone()),
     cameraPathId: activeCameraPathId,
     shotId: activeShot?.id ?? null,
     normalizedT,
   };
 }
 
-function getPdgviewPreviewCameraStateAtTime(timeSeconds) {
-  if (!pdgviewFrameGroup) {
+function getAnimatorPreviewCameraStateAtTime(timeSeconds) {
+  if (!animatorFrameGroup) {
     return null;
   }
-  const waypoints = pdgviewCameraFlightState.waypoints;
+  const waypoints = animatorCameraFlightState.waypoints;
   if (!Array.isArray(waypoints) || waypoints.length < 2) {
     return null;
   }
-  const timeWindow = pdgviewCurrentDocument
-    ? getPdgviewSceneTimeWindow(pdgviewCurrentDocument)
+  const timeWindow = animatorCurrentDocument
+    ? getAnimatorSceneTimeWindow(animatorCurrentDocument)
     : { start: 0, end: 24 };
   const duration = Math.max(0.000001, timeWindow.end - timeWindow.start);
   const normalizedT = clamp((timeSeconds - timeWindow.start) / duration, 0, 1);
-  const localState = samplePdgviewCameraWaypointState(waypoints, normalizedT);
+  const localState = sampleAnimatorCameraWaypointState(waypoints, normalizedT);
   return {
-    position: pdgviewFrameGroup.localToWorld(localState.position.clone()),
-    lookAt: pdgviewFrameGroup.localToWorld(localState.lookAt.clone()),
+    position: animatorFrameGroup.localToWorld(localState.position.clone()),
+    lookAt: animatorFrameGroup.localToWorld(localState.lookAt.clone()),
     normalizedT,
   };
 }
 
-function getPdgviewPlaybackRateAtTime(documentData, timeSeconds) {
+function getAnimatorPlaybackRateAtTime(documentData, timeSeconds) {
   const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
   const activeWarp = timeWarps.find((warp) => timeSeconds >= warp.start && timeSeconds < warp.end);
   return Number(activeWarp?.rate ?? 1) || 1;
 }
 
-function getPdgviewMotionRateAtTime(documentData, timeSeconds) {
+function getAnimatorMotionRateAtTime(documentData, timeSeconds) {
   const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
   const activePause = pauses.find((pause) => {
     const start = Number(pause?.start ?? 0);
@@ -1992,11 +1992,11 @@ function getPdgviewMotionRateAtTime(documentData, timeSeconds) {
   if (activePause) {
     return 0;
   }
-  return getPdgviewPlaybackRateAtTime(documentData, timeSeconds);
+  return getAnimatorPlaybackRateAtTime(documentData, timeSeconds);
 }
 
-function getPdgviewIntegratedMotionTime(documentData, timeSeconds) {
-  const timeWindow = getPdgviewSceneTimeWindow(documentData);
+function getAnimatorIntegratedMotionTime(documentData, timeSeconds) {
+  const timeWindow = getAnimatorSceneTimeWindow(documentData);
   const targetTime = clamp(Number(timeSeconds) || 0, timeWindow.start, timeWindow.end);
   if (targetTime <= timeWindow.start) {
     return 0;
@@ -2023,27 +2023,27 @@ function getPdgviewIntegratedMotionTime(documentData, timeSeconds) {
       continue;
     }
     const sampleTime = start + (end - start) * 0.5;
-    total += (end - start) * getPdgviewMotionRateAtTime(documentData, sampleTime);
+    total += (end - start) * getAnimatorMotionRateAtTime(documentData, sampleTime);
   }
   return total;
 }
 
-function getPdgviewTotalMotionDuration(documentData) {
-  const timeWindow = getPdgviewSceneTimeWindow(documentData);
-  return Math.max(0.0001, getPdgviewIntegratedMotionTime(documentData, timeWindow.end));
+function getAnimatorTotalMotionDuration(documentData) {
+  const timeWindow = getAnimatorSceneTimeWindow(documentData);
+  return Math.max(0.0001, getAnimatorIntegratedMotionTime(documentData, timeWindow.end));
 }
 
-function getPdgviewMotionProgress(documentData, timeSeconds) {
-  const totalMotionDuration = getPdgviewTotalMotionDuration(documentData);
+function getAnimatorMotionProgress(documentData, timeSeconds) {
+  const totalMotionDuration = getAnimatorTotalMotionDuration(documentData);
   if (!(totalMotionDuration > 0)) {
     return 0;
   }
-  return clamp(getPdgviewIntegratedMotionTime(documentData, timeSeconds) / totalMotionDuration, 0, 1);
+  return clamp(getAnimatorIntegratedMotionTime(documentData, timeSeconds) / totalMotionDuration, 0, 1);
 }
 
-function getPdgviewPlaybackTimeForMotionTime(documentData, targetMotionTime) {
-  const timeWindow = getPdgviewSceneTimeWindow(documentData);
-  const totalMotionDuration = getPdgviewTotalMotionDuration(documentData);
+function getAnimatorPlaybackTimeForMotionTime(documentData, targetMotionTime) {
+  const timeWindow = getAnimatorSceneTimeWindow(documentData);
+  const totalMotionDuration = getAnimatorTotalMotionDuration(documentData);
   const normalizedTarget = clamp(Number(targetMotionTime) || 0, 0, totalMotionDuration);
   if (normalizedTarget <= 0) {
     return timeWindow.start;
@@ -2055,7 +2055,7 @@ function getPdgviewPlaybackTimeForMotionTime(documentData, targetMotionTime) {
   let high = timeWindow.end;
   for (let iteration = 0; iteration < 36; iteration += 1) {
     const mid = (low + high) * 0.5;
-    const motionTime = getPdgviewIntegratedMotionTime(documentData, mid);
+    const motionTime = getAnimatorIntegratedMotionTime(documentData, mid);
     if (motionTime < normalizedTarget) {
       low = mid;
     } else {
@@ -2065,8 +2065,8 @@ function getPdgviewPlaybackTimeForMotionTime(documentData, targetMotionTime) {
   return Number(high.toFixed(3));
 }
 
-function getPdgviewPlaybackTimeForMotionProgress(documentData, targetProgress) {
-  const timeWindow = getPdgviewSceneTimeWindow(documentData);
+function getAnimatorPlaybackTimeForMotionProgress(documentData, targetProgress) {
+  const timeWindow = getAnimatorSceneTimeWindow(documentData);
   const normalizedTarget = clamp(Number(targetProgress) || 0, 0, 1);
   if (normalizedTarget <= 0) {
     return timeWindow.start;
@@ -2078,7 +2078,7 @@ function getPdgviewPlaybackTimeForMotionProgress(documentData, targetProgress) {
   let high = timeWindow.end;
   for (let iteration = 0; iteration < 36; iteration += 1) {
     const mid = (low + high) * 0.5;
-    const progress = getPdgviewMotionProgress(documentData, mid);
+    const progress = getAnimatorMotionProgress(documentData, mid);
     if (progress < normalizedTarget) {
       low = mid;
     } else {
@@ -2088,7 +2088,7 @@ function getPdgviewPlaybackTimeForMotionProgress(documentData, targetProgress) {
   return Number(high.toFixed(3));
 }
 
-function clearPdgviewTimelineLayer(layer) {
+function clearAnimatorTimelineLayer(layer) {
   if (!layer) {
     return;
   }
@@ -2097,9 +2097,9 @@ function clearPdgviewTimelineLayer(layer) {
   }
 }
 
-function createPdgviewTimelineBand(fractionStart, fractionEnd, className, title, label = "") {
+function createAnimatorTimelineBand(fractionStart, fractionEnd, className, title, label = "") {
   const band = document.createElement("div");
-  band.className = `pdgview-timeline-band ${className}`;
+  band.className = `animator-timeline-band ${className}`;
   const widthFraction = Math.max(0.002, fractionEnd - fractionStart);
   band.style.left = `${fractionStart * 100}%`;
   band.style.width = `${widthFraction * 100}%`;
@@ -2108,16 +2108,16 @@ function createPdgviewTimelineBand(fractionStart, fractionEnd, className, title,
   }
   if (label) {
     const bandLabel = document.createElement("span");
-    bandLabel.className = "pdgview-timeline-band-label";
+    bandLabel.className = "animator-timeline-band-label";
     bandLabel.textContent = label;
     band.appendChild(bandLabel);
   }
   return band;
 }
 
-function createPdgviewTimelineMarker(fraction, label, title) {
+function createAnimatorTimelineMarker(fraction, label, title) {
   const marker = document.createElement("div");
-  marker.className = "pdgview-timeline-marker";
+  marker.className = "animator-timeline-marker";
   const shouldShowLabel = String(label ?? "").trim().toLowerCase() !== "start";
   if (fraction <= 0.02) {
     marker.classList.add("is-edge-start");
@@ -2130,47 +2130,47 @@ function createPdgviewTimelineMarker(fraction, label, title) {
   }
   if (shouldShowLabel) {
     const markerLabel = document.createElement("span");
-    markerLabel.className = "pdgview-timeline-marker-label";
+    markerLabel.className = "animator-timeline-marker-label";
     markerLabel.textContent = label;
     marker.appendChild(markerLabel);
   }
   return marker;
 }
 
-function openPdgviewTimelineSummaryMenuAt(clientX, clientY) {
-  if (!pdgviewAssemblyMenu) {
+function openAnimatorTimelineSummaryMenuAt(clientX, clientY) {
+  if (!animatorAssemblyMenu) {
     return;
   }
-  buildPdgviewTimelineSummaryMenu({
-    menu: pdgviewAssemblyMenu,
+  buildAnimatorTimelineSummaryMenu({
+    menu: animatorAssemblyMenu,
     clientX,
     clientY,
-    currentDuration: Math.max(1, readNumberInput(pdgviewSceneDurationInput, 24)),
-    isLooping: !!pdgviewSceneLoopInput?.checked,
-    resetPdgviewAssemblyMenu,
-    appendPdgviewMenuBlock,
-    appendPdgviewMenuField,
-    formatPdgviewTimeInputValue,
-    setPdgviewSceneDurationValue,
-    setPdgviewSceneLoopValue,
-    renderPdgviewJsonPreview,
-    positionPdgviewAssemblyMenu,
+    currentDuration: Math.max(1, readNumberInput(animatorSceneDurationInput, 24)),
+    isLooping: !!animatorSceneLoopInput?.checked,
+    resetAnimatorAssemblyMenu,
+    appendAnimatorMenuBlock,
+    appendAnimatorMenuField,
+    formatAnimatorTimeInputValue,
+    setAnimatorSceneDurationValue,
+    setAnimatorSceneLoopValue,
+    renderAnimatorJsonPreview,
+    positionAnimatorAssemblyMenu,
   });
 }
 
-function applyPdgviewSceneIdentityDraft(sceneIdValue, sceneNameValue, options = {}) {
-  const nextId = sanitizePdgviewId(sceneIdValue ?? pdgviewSceneIdInput?.value ?? "pdgview_scene")
-    || "pdgview_scene";
-  const nextName = String(sceneNameValue ?? pdgviewSceneNameInput?.value ?? "").trim()
-    || "pdgview scene";
-  if (pdgviewSceneIdInput) {
-    pdgviewSceneIdInput.value = nextId;
+function applyAnimatorSceneIdentityDraft(sceneIdValue, sceneNameValue, options = {}) {
+  const nextId = sanitizeAnimatorId(sceneIdValue ?? animatorSceneIdInput?.value ?? "animator_scene")
+    || "animator_scene";
+  const nextName = String(sceneNameValue ?? animatorSceneNameInput?.value ?? "").trim()
+    || "animator scene";
+  if (animatorSceneIdInput) {
+    animatorSceneIdInput.value = nextId;
   }
-  if (pdgviewSceneNameInput) {
-    pdgviewSceneNameInput.value = nextName;
+  if (animatorSceneNameInput) {
+    animatorSceneNameInput.value = nextName;
   }
   if (options.renderPreview !== false) {
-    renderPdgviewJsonPreview();
+    renderAnimatorJsonPreview();
   }
   return {
     id: nextId,
@@ -2178,100 +2178,100 @@ function applyPdgviewSceneIdentityDraft(sceneIdValue, sceneNameValue, options = 
   };
 }
 
-function openPdgviewSceneMenuAt(clientX, clientY) {
-  if (!pdgviewAssemblyMenu) {
+function openAnimatorSceneMenuAt(clientX, clientY) {
+  if (!animatorAssemblyMenu) {
     return;
   }
-  buildPdgviewSceneMenu({
-    menu: pdgviewAssemblyMenu,
+  buildAnimatorSceneMenu({
+    menu: animatorAssemblyMenu,
     clientX,
     clientY,
-    currentId: sanitizePdgviewId(pdgviewSceneIdInput?.value ?? "pdgview_scene"),
-    currentName: String(pdgviewSceneNameInput?.value ?? "").trim() || "pdgview scene",
-    resetPdgviewAssemblyMenu,
-    appendPdgviewMenuBlock,
-    appendPdgviewMenuButtonRow,
-    appendPdgviewMenuField,
-    appendPdgviewMenuNote,
-    applyPdgviewSceneIdentityDraft,
-    closePdgviewAssemblyMenu,
-    openPdgviewLibraryMenuAt,
-    pdgviewDocsButton,
-    positionPdgviewAssemblyMenu,
+    currentId: sanitizeAnimatorId(animatorSceneIdInput?.value ?? "animator_scene"),
+    currentName: String(animatorSceneNameInput?.value ?? "").trim() || "animator scene",
+    resetAnimatorAssemblyMenu,
+    appendAnimatorMenuBlock,
+    appendAnimatorMenuButtonRow,
+    appendAnimatorMenuField,
+    appendAnimatorMenuNote,
+    applyAnimatorSceneIdentityDraft,
+    closeAnimatorAssemblyMenu,
+    openAnimatorLibraryMenuAt,
+    animatorDocsButton,
+    positionAnimatorAssemblyMenu,
   });
 }
 
-function openPdgviewJsonPreviewMenuAt(clientX, clientY) {
-  if (!pdgviewAssemblyMenu) {
+function openAnimatorJsonPreviewMenuAt(clientX, clientY) {
+  if (!animatorAssemblyMenu) {
     return;
   }
-  persistPdgviewPathStateToSelectedAssembly();
-  const draftState = readPdgviewDraftState();
-  const sceneDocument = buildPdgviewDocumentData(draftState);
+  persistAnimatorPathStateToSelectedAssembly();
+  const draftState = readAnimatorDraftState();
+  const sceneDocument = buildAnimatorDocumentData(draftState);
   const json = JSON.stringify(sceneDocument, null, 2);
-  buildPdgviewJsonPreviewMenu({
-    menu: pdgviewAssemblyMenu,
+  buildAnimatorJsonPreviewMenu({
+    menu: animatorAssemblyMenu,
     clientX,
     clientY,
     draftState,
     json,
-    pdgviewJsonPreview,
-    resetPdgviewAssemblyMenu,
-    appendPdgviewMenuButtonRow,
-    openPdgviewLibraryMenuAt,
-    closePdgviewAssemblyMenu,
-    pdgviewExportButton,
-    positionPdgviewAssemblyMenu,
+    animatorJsonPreview,
+    resetAnimatorAssemblyMenu,
+    appendAnimatorMenuButtonRow,
+    openAnimatorLibraryMenuAt,
+    closeAnimatorAssemblyMenu,
+    animatorExportButton,
+    positionAnimatorAssemblyMenu,
   });
 }
 
-function openPdgviewLibraryMenuAt(clientX, clientY) {
-  if (!pdgviewAssemblyMenu) {
+function openAnimatorLibraryMenuAt(clientX, clientY) {
+  if (!animatorAssemblyMenu) {
     return;
   }
-  const entries = getPdgviewSortedLibraryEntries();
-  buildPdgviewLibraryMenu({
-    menu: pdgviewAssemblyMenu,
+  const entries = getAnimatorSortedLibraryEntries();
+  buildAnimatorLibraryMenu({
+    menu: animatorAssemblyMenu,
     clientX,
     clientY,
     entries,
-    pdgviewLibrarySelect,
-    pdgviewLibraryLoadButton,
-    pdgviewLibraryDeleteButton,
-    pdgviewLibraryStatus,
-    pdgviewRepoSaveButton,
-    pdgviewLibrarySaveButton,
-    pdgviewExportButton,
-    resetPdgviewAssemblyMenu,
-    refreshPdgviewLibraryUi,
-    appendPdgviewMenuBlock,
-    appendPdgviewMenuButtonRow,
-    appendPdgviewMenuNote,
-    appendPdgviewMenuSelectField,
-    closePdgviewAssemblyMenu,
-    openPdgviewJsonPreviewMenuAt,
-    positionPdgviewAssemblyMenu,
+    animatorLibrarySelect,
+    animatorLibraryLoadButton,
+    animatorLibraryDeleteButton,
+    animatorLibraryStatus,
+    animatorRepoSaveButton,
+    animatorLibrarySaveButton,
+    animatorExportButton,
+    resetAnimatorAssemblyMenu,
+    refreshAnimatorLibraryUi,
+    appendAnimatorMenuBlock,
+    appendAnimatorMenuButtonRow,
+    appendAnimatorMenuNote,
+    appendAnimatorMenuSelectField,
+    closeAnimatorAssemblyMenu,
+    openAnimatorJsonPreviewMenuAt,
+    positionAnimatorAssemblyMenu,
   });
 }
 
-function getPdgviewTimelineTimeAtClientX(clientX, documentData = pdgviewCurrentDocument) {
-  if (!pdgviewTimelineTrack || !documentData) {
+function getAnimatorTimelineTimeAtClientX(clientX, documentData = animatorCurrentDocument) {
+  if (!animatorTimelineTrack || !documentData) {
     return 0;
   }
-  return getPdgviewTimelineTimeAtClientXRuntime(clientX, documentData, {
-    trackRect: pdgviewTimelineTrack.getBoundingClientRect(),
+  return getAnimatorTimelineTimeAtClientXRuntime(clientX, documentData, {
+    trackRect: animatorTimelineTrack.getBoundingClientRect(),
     clampFn: clamp,
-    getTimeWindow: getPdgviewSceneTimeWindow,
+    getTimeWindow: getAnimatorSceneTimeWindow,
   });
 }
 
-function openPdgviewTimelineMenuAt(clientX, clientY, options = {}) {
-  if (!pdgviewAssemblyMenu) {
+function openAnimatorTimelineMenuAt(clientX, clientY, options = {}) {
+  if (!animatorAssemblyMenu) {
     return;
   }
-  const documentData = pdgviewCurrentDocument;
+  const documentData = animatorCurrentDocument;
   const overlays = Array.isArray(documentData?.overlays) ? documentData.overlays : [];
-  const graphics = getPdgviewGraphicTimelineOverlays(documentData);
+  const graphics = getAnimatorGraphicTimelineOverlays(documentData);
   const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
   const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
   const overlayId = options.overlayId ?? options.graphicId ?? options.markerId ?? null;
@@ -2288,12 +2288,12 @@ function openPdgviewTimelineMenuAt(clientX, clientY, options = {}) {
     overlay?.start ??
     pause?.start ??
     warp?.start ??
-    getPdgviewTimelineTimeAtClientX(clientX, documentData);
-  const duration = Math.max(1, readNumberInput(pdgviewSceneDurationInput, 24));
+    getAnimatorTimelineTimeAtClientX(clientX, documentData);
+  const duration = Math.max(1, readNumberInput(animatorSceneDurationInput, 24));
   const editKind = warp ? "warp" : pause ? "pause" : overlay ? overlay.kind : "add";
-  const addType = normalizePdgviewTimelineAddType(options.addType);
-  buildPdgviewTimelineMenu({
-    menu: pdgviewAssemblyMenu,
+  const addType = normalizeAnimatorTimelineAddType(options.addType);
+  buildAnimatorTimelineMenu({
+    menu: animatorAssemblyMenu,
     clientX,
     clientY,
     documentData,
@@ -2307,97 +2307,97 @@ function openPdgviewTimelineMenuAt(clientX, clientY, options = {}) {
     editKind,
     addType,
     timelineMenuWidth: 256,
-    pdgviewTimelineAddTypeEntries,
-    pdgviewTimelineMinDurationSeconds,
-    pdgviewPauseListInput,
-    pdgviewWarpListInput,
-    resetPdgviewAssemblyMenu,
-    positionPdgviewAssemblyMenu,
-    appendPdgviewMenuBlock,
-    appendPdgviewMenuButtonRow,
-    appendPdgviewMenuField,
-    appendPdgviewMenuNote,
-    appendPdgviewMenuSelectField,
-    appendPdgviewAuthoringLine,
-    replacePdgviewAuthoringLineById,
-    normalizePdgviewTimelineAddType,
-    getPdgviewTimelineEditKindTitle,
-    formatPdgviewTimeLabel,
-    formatPdgviewTimeInputValue,
-    clampPdgviewTimelineSpan,
-    getPdgviewGraphicOverlayLabel,
-    getPdgviewMediaOverlayLabel,
-    normalizePdgviewGraphicOverlayDraft,
-    getNextPdgviewGraphicOverlayId,
-    getPdgviewGraphicDefaultTarget,
-    getPdgviewGraphicOverlayDraftIndexById,
-    findPdgviewTimelineOverlap,
-    showPdgviewStatus: setPdgviewStatus,
-    upsertPdgviewGraphicOverlayDraft: upsertPdgviewGraphicOverlayDraftState,
-    removePdgviewGraphicOverlayDraftById: removePdgviewGraphicOverlayDraftByIdState,
-    closePdgviewAssemblyMenu,
-    renderPdgviewJsonPreview,
-    encodePdgviewGraphicTargetValue,
-    getPdgviewGraphicTargetEntries,
-    decodePdgviewGraphicTargetValue,
-    pdgviewMediaAssetDirectories,
-    sanitizePdgviewMediaSource,
-    getPdgviewMediaDefaultRect,
+    animatorTimelineAddTypeEntries,
+    animatorTimelineMinDurationSeconds,
+    animatorPauseListInput,
+    animatorWarpListInput,
+    resetAnimatorAssemblyMenu,
+    positionAnimatorAssemblyMenu,
+    appendAnimatorMenuBlock,
+    appendAnimatorMenuButtonRow,
+    appendAnimatorMenuField,
+    appendAnimatorMenuNote,
+    appendAnimatorMenuSelectField,
+    appendAnimatorAuthoringLine,
+    replaceAnimatorAuthoringLineById,
+    normalizeAnimatorTimelineAddType,
+    getAnimatorTimelineEditKindTitle,
+    formatAnimatorTimeLabel,
+    formatAnimatorTimeInputValue,
+    clampAnimatorTimelineSpan,
+    getAnimatorGraphicOverlayLabel,
+    getAnimatorMediaOverlayLabel,
+    normalizeAnimatorGraphicOverlayDraft,
+    getNextAnimatorGraphicOverlayId,
+    getAnimatorGraphicDefaultTarget,
+    getAnimatorGraphicOverlayDraftIndexById,
+    findAnimatorTimelineOverlap,
+    showAnimatorStatus: setAnimatorStatus,
+    upsertAnimatorGraphicOverlayDraft: upsertAnimatorGraphicOverlayDraftState,
+    removeAnimatorGraphicOverlayDraftById: removeAnimatorGraphicOverlayDraftByIdState,
+    closeAnimatorAssemblyMenu,
+    renderAnimatorJsonPreview,
+    encodeAnimatorGraphicTargetValue,
+    getAnimatorGraphicTargetEntries,
+    decodeAnimatorGraphicTargetValue,
+    animatorMediaAssetDirectories,
+    sanitizeAnimatorMediaSource,
+    getAnimatorMediaDefaultRect,
   });
 }
 
-function removePdgviewPathPoint(pointIndex) {
-  if (!Number.isInteger(pointIndex) || pointIndex < 0 || pointIndex >= pdgviewPathState.points.length) {
+function removeAnimatorPathPoint(pointIndex) {
+  if (!Number.isInteger(pointIndex) || pointIndex < 0 || pointIndex >= animatorPathState.points.length) {
     return;
   }
-  mutatePdgviewPathStateState((pathState) => {
+  mutateAnimatorPathStateState((pathState) => {
     pathState.points.splice(pointIndex, 1);
   });
-  setPdgviewSelectedPointIndexState(
-    pdgviewPathState.points.length > 0
-      ? Math.min(pointIndex, pdgviewPathState.points.length - 1)
+  setAnimatorSelectedPointIndexState(
+    animatorPathState.points.length > 0
+      ? Math.min(pointIndex, animatorPathState.points.length - 1)
       : null
   );
-  persistPdgviewPathStateToSelectedAssembly();
-  rebuildPdgviewControlPoints();
-  updatePdgviewPathGeometry();
+  persistAnimatorPathStateToSelectedAssembly();
+  rebuildAnimatorControlPoints();
+  updateAnimatorPathGeometry();
 }
 
-function openPdgviewPathPointMenuAt(clientX, clientY, pointIndex) {
-  openPdgviewPathPointMenu({
-    menu: pdgviewAssemblyMenu,
+function openAnimatorPathPointMenuAt(clientX, clientY, pointIndex) {
+  openAnimatorPathPointMenu({
+    menu: animatorAssemblyMenu,
     clientX,
     clientY,
     pointIndex,
-    getSelectedAssemblyLetter: getPdgviewSelectedAssemblyLetter,
+    getSelectedAssemblyLetter: getAnimatorSelectedAssemblyLetter,
     setSelectedPointIndex: (value) => {
-      setPdgviewSelectedPointIndexState(value);
+      setAnimatorSelectedPointIndexState(value);
     },
-    resetMenu: resetPdgviewAssemblyMenu,
-    cameraFlightState: pdgviewCameraFlightState,
-    updatePointMaterials: updatePdgviewPointMaterials,
-    updateCameraPoiStatus: updatePdgviewCameraPoiStatus,
-    closeMenu: closePdgviewAssemblyMenu,
+    resetMenu: resetAnimatorAssemblyMenu,
+    cameraFlightState: animatorCameraFlightState,
+    updatePointMaterials: updateAnimatorPointMaterials,
+    updateCameraPoiStatus: updateAnimatorCameraPoiStatus,
+    closeMenu: closeAnimatorAssemblyMenu,
     THREE,
-    pathState: pdgviewPathState,
+    pathState: animatorPathState,
     vectorFromTriplet,
-    addPathPoint: addPdgviewPathPoint,
-    renderJsonPreview: renderPdgviewJsonPreview,
-    resetPathPoints: resetPdgviewPathPoints,
-    removePathPoint: removePdgviewPathPoint,
-    positionMenu: positionPdgviewAssemblyMenu,
+    addPathPoint: addAnimatorPathPoint,
+    renderJsonPreview: renderAnimatorJsonPreview,
+    resetPathPoints: resetAnimatorPathPoints,
+    removePathPoint: removeAnimatorPathPoint,
+    positionMenu: positionAnimatorAssemblyMenu,
   });
 }
 
-function describePdgviewTimelineState(timeSeconds, documentData) {
-  const graphics = getPdgviewGraphicTimelineOverlays(documentData);
+function describeAnimatorTimelineState(timeSeconds, documentData) {
+  const graphics = getAnimatorGraphicTimelineOverlays(documentData);
   const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
   const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
-  const activeReactionStage = getPdgviewActiveReactionStage(documentData, timeSeconds);
+  const activeReactionStage = getAnimatorActiveReactionStage(documentData, timeSeconds);
   const activeWarp = timeWarps.find((warp) => timeSeconds >= warp.start && timeSeconds < warp.end);
   const activeGraphic = [...graphics]
     .sort((left, right) => left.start - right.start)
-    .filter((graphic) => isPdgviewTimeWithinSpan(timeSeconds, graphic.start, graphic.end))
+    .filter((graphic) => isAnimatorTimeWithinSpan(timeSeconds, graphic.start, graphic.end))
     .pop();
   const activePause = pauses.find(
     (pause) =>
@@ -2409,7 +2409,7 @@ function describePdgviewTimelineState(timeSeconds, documentData) {
     parts.push(activeGraphic.label);
   }
   if (activePause) {
-    parts.push(`Pause ${formatPdgviewTimeLabel(activePause.duration)}`);
+    parts.push(`Pause ${formatAnimatorTimeLabel(activePause.duration)}`);
   }
   if (activeWarp) {
     parts.push(`Warp ${Number(activeWarp.rate ?? 1).toFixed(2)}x`);
@@ -2420,7 +2420,7 @@ function describePdgviewTimelineState(timeSeconds, documentData) {
   return parts.join(" | ") || "Steady";
 }
 
-function getPdgviewActiveReaction(documentData, timeSeconds) {
+function getAnimatorActiveReaction(documentData, timeSeconds) {
   const reactions = Array.isArray(documentData?.reactions) ? documentData.reactions : [];
   return (
     reactions.find((reaction) => {
@@ -2431,8 +2431,8 @@ function getPdgviewActiveReaction(documentData, timeSeconds) {
   );
 }
 
-function getPdgviewActiveReactionStage(documentData, timeSeconds) {
-  const activeReaction = getPdgviewActiveReaction(documentData, timeSeconds);
+function getAnimatorActiveReactionStage(documentData, timeSeconds) {
+  const activeReaction = getAnimatorActiveReaction(documentData, timeSeconds);
   const stages = Array.isArray(activeReaction?.stages) ? activeReaction.stages : [];
   return (
     stages.find((stage) => {
@@ -2443,8 +2443,8 @@ function getPdgviewActiveReactionStage(documentData, timeSeconds) {
   );
 }
 
-function getPdgviewReactionParticipantRoleMap(documentData, timeSeconds) {
-  const activeReaction = getPdgviewActiveReaction(documentData, timeSeconds);
+function getAnimatorReactionParticipantRoleMap(documentData, timeSeconds) {
+  const activeReaction = getAnimatorActiveReaction(documentData, timeSeconds);
   const participantMap = new Map();
   const participants = Array.isArray(activeReaction?.participants) ? activeReaction.participants : [];
   participants.forEach((participant) => {
@@ -2457,11 +2457,11 @@ function getPdgviewReactionParticipantRoleMap(documentData, timeSeconds) {
   return participantMap;
 }
 
-function getPdgviewAssemblyStageEmphasis(assemblyId, documentData, timeSeconds, participantRoleMap = null) {
-  const activeStage = getPdgviewActiveReactionStage(documentData, timeSeconds);
+function getAnimatorAssemblyStageEmphasis(assemblyId, documentData, timeSeconds, participantRoleMap = null) {
+  const activeStage = getAnimatorActiveReactionStage(documentData, timeSeconds);
   const roleMap = participantRoleMap instanceof Map
     ? participantRoleMap
-    : getPdgviewReactionParticipantRoleMap(documentData, timeSeconds);
+    : getAnimatorReactionParticipantRoleMap(documentData, timeSeconds);
   const role = roleMap.get(assemblyId) ?? "neutral";
   const action = String(activeStage?.action ?? "").trim().toLowerCase();
   if (!action) {
@@ -2497,7 +2497,7 @@ function getPdgviewAssemblyStageEmphasis(assemblyId, documentData, timeSeconds, 
   return { opacity: 1, scale: 1 };
 }
 
-function setPdgviewObjectOpacity(object3d, opacityFactor = 1) {
+function setAnimatorObjectOpacity(object3d, opacityFactor = 1) {
   if (!object3d) {
     return;
   }
@@ -2516,13 +2516,13 @@ function setPdgviewObjectOpacity(object3d, opacityFactor = 1) {
         return;
       }
       const baseOpacity =
-        Number.isFinite(Number(material.userData?.pdgviewBaseOpacity))
-          ? Number(material.userData.pdgviewBaseOpacity)
+        Number.isFinite(Number(material.userData?.animatorBaseOpacity))
+          ? Number(material.userData.animatorBaseOpacity)
           : material.opacity;
       if (!material.userData) {
         material.userData = {};
       }
-      material.userData.pdgviewBaseOpacity = baseOpacity;
+      material.userData.animatorBaseOpacity = baseOpacity;
       material.transparent = true;
       material.opacity = clamp(baseOpacity * factor, 0, 1);
     });
@@ -2536,46 +2536,46 @@ function setPdgviewObjectOpacity(object3d, opacityFactor = 1) {
   }
 }
 
-function applyPdgviewStageVisualState(documentData, timeSeconds) {
-  const participantRoleMap = getPdgviewReactionParticipantRoleMap(documentData, timeSeconds);
-  const stage = getPdgviewActiveReactionStage(documentData, timeSeconds);
+function applyAnimatorStageVisualState(documentData, timeSeconds) {
+  const participantRoleMap = getAnimatorReactionParticipantRoleMap(documentData, timeSeconds);
+  const stage = getAnimatorActiveReactionStage(documentData, timeSeconds);
   const stageTransferIds = new Set(
     Array.isArray(stage?.transferIds) ? stage.transferIds.filter(Boolean) : []
   );
 
-  pdgviewAssemblyMeshes.forEach((group) => {
+  animatorAssemblyMeshes.forEach((group) => {
     const assemblyId = group?.userData?.assemblyId ?? null;
-    const emphasis = getPdgviewAssemblyStageEmphasis(
+    const emphasis = getAnimatorAssemblyStageEmphasis(
       assemblyId,
       documentData,
       timeSeconds,
       participantRoleMap
     );
     group.scale.setScalar(emphasis.scale);
-    setPdgviewObjectOpacity(group, emphasis.opacity);
+    setAnimatorObjectOpacity(group, emphasis.opacity);
   });
 
   const applyAssemblyOpacityToEntries = (entries = []) => {
     entries.forEach((entry) => {
       const assemblyId = entry?.userData?.assemblyId ?? null;
-      const emphasis = getPdgviewAssemblyStageEmphasis(
+      const emphasis = getAnimatorAssemblyStageEmphasis(
         assemblyId,
         documentData,
         timeSeconds,
         participantRoleMap
       );
-      setPdgviewObjectOpacity(entry, emphasis.opacity);
+      setAnimatorObjectOpacity(entry, emphasis.opacity);
     });
   };
 
-  applyAssemblyOpacityToEntries(pdgviewShellMeshes);
-  applyAssemblyOpacityToEntries(pdgviewEnvelopeMeshes);
-  applyAssemblyOpacityToEntries(pdgviewOrbitTraceLines);
-  applyAssemblyOpacityToEntries(pdgviewAxisGuideLines);
-  applyAssemblyOpacityToEntries(pdgviewOrbitParticleMeshes);
-  applyAssemblyOpacityToEntries(pdgviewMemberLabelSprites);
+  applyAssemblyOpacityToEntries(animatorShellMeshes);
+  applyAssemblyOpacityToEntries(animatorEnvelopeMeshes);
+  applyAssemblyOpacityToEntries(animatorOrbitTraceLines);
+  applyAssemblyOpacityToEntries(animatorAxisGuideLines);
+  applyAssemblyOpacityToEntries(animatorOrbitParticleMeshes);
+  applyAssemblyOpacityToEntries(animatorMemberLabelSprites);
 
-  pdgviewTransferLines.forEach((line) => {
+  animatorTransferLines.forEach((line) => {
     const transfer = line?.userData?.transfer ?? null;
     const transferId = String(transfer?.id ?? "").trim();
     const stageAction = String(stage?.action ?? "").trim().toLowerCase();
@@ -2598,30 +2598,30 @@ function applyPdgviewStageVisualState(documentData, timeSeconds) {
   });
 }
 
-function updatePdgviewAnimatedViewport(timeSeconds) {
-  if (!pdgviewCurrentDocument) {
+function updateAnimatorAnimatedViewport(timeSeconds) {
+  if (!animatorCurrentDocument) {
     return;
   }
-  pdgviewCurrentViewportFramingState = resolvePdgviewViewportFramingState(
-    pdgviewCurrentDocument,
+  animatorCurrentViewportFramingState = resolveAnimatorViewportFramingState(
+    animatorCurrentDocument,
     timeSeconds,
-    getPdgviewSceneTimeWindow(pdgviewCurrentDocument)
+    getAnimatorSceneTimeWindow(animatorCurrentDocument)
   );
   const motionTime =
-    pdgviewEditorPreviewState.renderMotionTimeOverride != null &&
-    Math.abs(timeSeconds - Number(pdgviewEditorPreviewState.renderMotionTimePlayhead ?? NaN)) <= 0.0005
-      ? Number(pdgviewEditorPreviewState.renderMotionTimeOverride)
-      : getPdgviewIntegratedMotionTime(pdgviewCurrentDocument, timeSeconds);
-  const paths = Array.isArray(pdgviewCurrentDocument.paths) ? pdgviewCurrentDocument.paths : [];
+    animatorEditorPreviewState.renderMotionTimeOverride != null &&
+    Math.abs(timeSeconds - Number(animatorEditorPreviewState.renderMotionTimePlayhead ?? NaN)) <= 0.0005
+      ? Number(animatorEditorPreviewState.renderMotionTimeOverride)
+      : getAnimatorIntegratedMotionTime(animatorCurrentDocument, timeSeconds);
+  const paths = Array.isArray(animatorCurrentDocument.paths) ? animatorCurrentDocument.paths : [];
   const pathById = new Map(paths.map((path) => [path.id, path]));
-  const assemblies = Array.isArray(pdgviewCurrentDocument.assemblies)
-    ? pdgviewCurrentDocument.assemblies
+  const assemblies = Array.isArray(animatorCurrentDocument.assemblies)
+    ? animatorCurrentDocument.assemblies
     : [];
-  const totalMotionDuration = getPdgviewTotalMotionDuration(pdgviewCurrentDocument);
+  const totalMotionDuration = getAnimatorTotalMotionDuration(animatorCurrentDocument);
   const normalizedSceneT =
-    pdgviewEditorPreviewState.renderMotionProgressOverride != null &&
-    Math.abs(timeSeconds - Number(pdgviewEditorPreviewState.renderMotionProgressPlayhead ?? NaN)) <= 0.0005
-      ? clamp(Number(pdgviewEditorPreviewState.renderMotionProgressOverride), 0, 1)
+    animatorEditorPreviewState.renderMotionProgressOverride != null &&
+    Math.abs(timeSeconds - Number(animatorEditorPreviewState.renderMotionProgressPlayhead ?? NaN)) <= 0.0005
+      ? clamp(Number(animatorEditorPreviewState.renderMotionProgressOverride), 0, 1)
       : totalMotionDuration > 0
         ? clamp(motionTime / totalMotionDuration, 0, 1)
         : 0;
@@ -2636,7 +2636,7 @@ function updatePdgviewAnimatedViewport(timeSeconds) {
       return assemblyCenters.get(assembly.id).clone();
     }
     if (stack.has(assembly.id)) {
-      return computePdgviewAssemblyBasePosition(assembly, index, assemblies.length, pathById);
+      return computeAnimatorAssemblyBasePosition(assembly, index, assemblies.length, pathById);
     }
     stack.add(assembly.id);
     const motions = Array.isArray(assembly.motion)
@@ -2645,7 +2645,7 @@ function updatePdgviewAnimatedViewport(timeSeconds) {
         ? [assembly.motion]
         : [];
     const transportMotion = motions.find((motion) => motion?.type === "path.transport");
-    let center = computePdgviewAssemblyBasePosition(assembly, index, assemblies.length, pathById);
+    let center = computeAnimatorAssemblyBasePosition(assembly, index, assemblies.length, pathById);
     if (transportMotion?.pathId && pathById.has(transportMotion.pathId)) {
       const path = pathById.get(transportMotion.pathId);
       const points = Array.isArray(path?.payload?.points) ? path.payload.points : [];
@@ -2655,7 +2655,7 @@ function updatePdgviewAnimatedViewport(timeSeconds) {
           0,
           1
         );
-        center = samplePdgviewPointAt(points, motionT, {
+        center = sampleAnimatorPointAt(points, motionT, {
           interpolate: path?.payload?.interpolate ?? "spline",
           closed: !!path?.payload?.closed,
         });
@@ -2676,16 +2676,16 @@ function updatePdgviewAnimatedViewport(timeSeconds) {
 
   assemblies.forEach((assembly, index) => {
     const center = resolveAssemblyCenter(assembly, index);
-    const mesh = pdgviewAssemblyMeshes[index];
+    const mesh = animatorAssemblyMeshes[index];
     if (mesh) {
       mesh.position.copy(center);
     }
   });
-  pdgviewAssemblyWorldCenters = new Map(
+  animatorAssemblyWorldCenters = new Map(
     [...assemblyCenters.entries()].map(([assemblyId, center]) => [assemblyId, center.clone()])
   );
 
-  pdgviewShellMeshes.forEach((mesh) => {
+  animatorShellMeshes.forEach((mesh) => {
     const assemblyId = mesh.userData.assemblyId;
     const center = assemblyCenters.get(assemblyId);
     if (center) {
@@ -2693,7 +2693,7 @@ function updatePdgviewAnimatedViewport(timeSeconds) {
     }
   });
 
-  pdgviewEnvelopeMeshes.forEach((mesh) => {
+  animatorEnvelopeMeshes.forEach((mesh) => {
     const assemblyId = mesh.userData.assemblyId;
     const center = assemblyCenters.get(assemblyId);
     if (center) {
@@ -2701,7 +2701,7 @@ function updatePdgviewAnimatedViewport(timeSeconds) {
     }
   });
 
-  pdgviewOrbitTraceLines.forEach((line) => {
+  animatorOrbitTraceLines.forEach((line) => {
     const assemblyId = line.userData.assemblyId;
     const center = assemblyCenters.get(assemblyId);
     if (center) {
@@ -2709,7 +2709,7 @@ function updatePdgviewAnimatedViewport(timeSeconds) {
     }
   });
 
-  pdgviewAxisGuideLines.forEach((line) => {
+  animatorAxisGuideLines.forEach((line) => {
     const assemblyId = line.userData.assemblyId;
     const center = assemblyCenters.get(assemblyId);
     if (center) {
@@ -2717,7 +2717,7 @@ function updatePdgviewAnimatedViewport(timeSeconds) {
     }
   });
 
-  pdgviewHistoryTraceLines.forEach((line) => {
+  animatorHistoryTraceLines.forEach((line) => {
     const historyTrace = line.userData.historyTrace;
     const path = historyTrace?.pathId ? pathById.get(historyTrace.pathId) : null;
     const assemblyId = historyTrace?.assemblyId ?? null;
@@ -2727,7 +2727,7 @@ function updatePdgviewAnimatedViewport(timeSeconds) {
       line.visible = false;
       return;
     }
-    const sampledPoints = samplePdgviewPath(
+    const sampledPoints = sampleAnimatorPath(
       points,
       path?.payload?.interpolate ?? "spline",
       !!path?.payload?.closed
@@ -2736,7 +2736,7 @@ function updatePdgviewAnimatedViewport(timeSeconds) {
       line.visible = false;
       return;
     }
-    const currentSample = samplePdgviewPointAt(points, normalizedSceneT, {
+    const currentSample = sampleAnimatorPointAt(points, normalizedSceneT, {
       interpolate: path?.payload?.interpolate ?? "spline",
       closed: !!path?.payload?.closed,
     });
@@ -2757,21 +2757,21 @@ function updatePdgviewAnimatedViewport(timeSeconds) {
     line.geometry.setFromPoints(visiblePoints);
   });
 
-  pdgviewOrbitParticleMeshes.forEach((mesh) => {
+  animatorOrbitParticleMeshes.forEach((mesh) => {
     const assemblyId = mesh.userData.assemblyId;
     const center = assemblyCenters.get(assemblyId);
     const motion = mesh.userData.motion;
     if (!center || motion?.type !== "orbit.circular") {
       return;
     }
-    const offset = getPdgviewOrbitOffsetAtTime(motion, mesh.userData.chargeType, motionTime);
+    const offset = getAnimatorOrbitOffsetAtTime(motion, mesh.userData.chargeType, motionTime);
     mesh.position.copy(center).add(offset);
   });
 
-  pdgviewMemberLabelSprites.forEach((sprite) => {
+  animatorMemberLabelSprites.forEach((sprite) => {
     const assemblyId = sprite.userData.assemblyId;
     const memberId = sprite.userData.memberId;
-    const anchorPosition = resolvePdgviewTransferEndpointPosition(
+    const anchorPosition = resolveAnimatorTransferEndpointPosition(
       { assemblyId, memberId },
       assemblyCenters,
       motionTime
@@ -2785,14 +2785,14 @@ function updatePdgviewAnimatedViewport(timeSeconds) {
     sprite.position.copy(anchorPosition).add(offset);
   });
 
-  pdgviewTransferLines.forEach((line) => {
+  animatorTransferLines.forEach((line) => {
     const transfer = line.userData.transfer;
-    const sourcePoint = resolvePdgviewTransferEndpointPosition(
+    const sourcePoint = resolveAnimatorTransferEndpointPosition(
       transfer?.source,
       assemblyCenters,
       motionTime
     );
-    const targetPoint = resolvePdgviewTransferEndpointPosition(
+    const targetPoint = resolveAnimatorTransferEndpointPosition(
       transfer?.target,
       assemblyCenters,
       motionTime
@@ -2809,24 +2809,24 @@ function updatePdgviewAnimatedViewport(timeSeconds) {
     line.material.opacity = isActiveByTime ? 0.82 : 0.32;
   });
 
-  pdgviewPersonalityHandleMeshes.forEach((mesh) => {
+  animatorPersonalityHandleMeshes.forEach((mesh) => {
     const assemblyId = mesh?.userData?.assemblyId ?? null;
     const memberId = mesh?.userData?.memberId ?? null;
     const assembly = assemblyId ? assemblyById.get(assemblyId) : null;
     const member = Array.isArray(assembly?.members)
-      ? assembly.members.find((entry, index) => getPdgviewMemberId(entry, index) === memberId)
+      ? assembly.members.find((entry, index) => getAnimatorMemberId(entry, index) === memberId)
       : null;
     if (!assembly || !member) {
       mesh.visible = false;
       return;
     }
     const slotIndex = Math.max(0, Number(member?.slotIndex ?? 0) || 0);
-    const localOffset = getPdgviewPersonalitySlotLocalOffset(assembly, slotIndex);
+    const localOffset = getAnimatorPersonalitySlotLocalOffset(assembly, slotIndex);
     mesh.position.copy(localOffset);
     if (mesh.material?.color) {
-      mesh.material.color.set(getPdgviewMemberColor(member, slotIndex));
+      mesh.material.color.set(getAnimatorMemberColor(member, slotIndex));
     }
-    setPdgviewMemberAnchor(assemblyId, memberId, {
+    setAnimatorMemberAnchor(assemblyId, memberId, {
       type: "proxy",
       offset: [localOffset.x, localOffset.y, localOffset.z],
     });
@@ -2834,44 +2834,44 @@ function updatePdgviewAnimatedViewport(timeSeconds) {
   });
 
   try {
-    updatePdgviewGraphicOverlayVisuals(timeSeconds, pdgviewCurrentDocument, assemblyCenters);
+    updateAnimatorGraphicOverlayVisuals(timeSeconds, animatorCurrentDocument, assemblyCenters);
   } catch (error) {
-    console.error("pdgview graphic overlay update failed.", error);
+    console.error("animator graphic overlay update failed.", error);
   }
-  updatePdgviewViewportMediaOverlays(timeSeconds, pdgviewCurrentDocument);
-  applyPdgviewStageVisualState(pdgviewCurrentDocument, timeSeconds);
+  updateAnimatorViewportMediaOverlays(timeSeconds, animatorCurrentDocument);
+  applyAnimatorStageVisualState(animatorCurrentDocument, timeSeconds);
 
-  if (pdgviewCameraFlightState.preview && pdgviewCamera) {
-    const previewCameraState = getPdgviewAutoscaledCameraState(
-      getPdgviewPreviewCameraStateAtTime(timeSeconds),
-      pdgviewCurrentDocument,
+  if (animatorCameraFlightState.preview && animatorCamera) {
+    const previewCameraState = getAnimatorAutoscaledCameraState(
+      getAnimatorPreviewCameraStateAtTime(timeSeconds),
+      animatorCurrentDocument,
       assemblyCenters,
-      pdgviewCurrentViewportFramingState
+      animatorCurrentViewportFramingState
     );
     if (previewCameraState) {
-      pdgviewCamera.position.copy(previewCameraState.position);
-      pdgviewCamera.lookAt(previewCameraState.lookAt);
+      animatorCamera.position.copy(previewCameraState.position);
+      animatorCamera.lookAt(previewCameraState.lookAt);
     }
-  } else if (pdgviewCamera && pdgviewViewportModeState.cameraSource === "authored") {
-    const authoredCameraState = getPdgviewAutoscaledCameraState(
-      getPdgviewDocumentCameraStateAtTime(pdgviewCurrentDocument, timeSeconds),
-      pdgviewCurrentDocument,
+  } else if (animatorCamera && animatorViewportModeState.cameraSource === "authored") {
+    const authoredCameraState = getAnimatorAutoscaledCameraState(
+      getAnimatorDocumentCameraStateAtTime(animatorCurrentDocument, timeSeconds),
+      animatorCurrentDocument,
       assemblyCenters,
-      pdgviewCurrentViewportFramingState
+      animatorCurrentViewportFramingState
     );
     if (authoredCameraState) {
-      pdgviewCamera.position.copy(authoredCameraState.position);
-      pdgviewCamera.lookAt(authoredCameraState.lookAt);
+      animatorCamera.position.copy(authoredCameraState.position);
+      animatorCamera.lookAt(authoredCameraState.lookAt);
     }
   }
 }
 
-function addPdgviewOrbitTrace(center, motion, color) {
+function addAnimatorOrbitTrace(center, motion, color) {
   const radius = Number(motion?.radius ?? 0);
   if (!radius || radius <= 0) {
     return;
   }
-  const { u, v } = getPdgviewOrbitBasis(motion);
+  const { u, v } = getAnimatorOrbitBasis(motion);
   const points = [];
   const segments = 96;
   for (let i = 0; i <= segments; i += 1) {
@@ -2891,11 +2891,11 @@ function addPdgviewOrbitTrace(center, motion, color) {
   });
   const line = new THREE.Line(geometry, material);
   line.position.copy(center);
-  pdgviewViewportGroup?.add(line);
-  pdgviewOrbitTraceLines.push(line);
+  animatorViewportGroup?.add(line);
+  animatorOrbitTraceLines.push(line);
 }
 
-function addPdgviewAxisGuide(center, axisGuide) {
+function addAnimatorAxisGuide(center, axisGuide) {
   if (!axisGuide?.visible) {
     return;
   }
@@ -2920,11 +2920,11 @@ function addPdgviewAxisGuide(center, axisGuide) {
   const line = new THREE.Line(geometry, material);
   line.position.copy(center);
   line.userData.axisGuide = axisGuide;
-  pdgviewViewportGroup?.add(line);
-  pdgviewAxisGuideLines.push(line);
+  animatorViewportGroup?.add(line);
+  animatorAxisGuideLines.push(line);
 }
 
-function addPdgviewShell(center, shell) {
+function addAnimatorShell(center, shell) {
   const radius = Number(shell?.radius ?? 0);
   if (!radius || radius <= 0) {
     return;
@@ -2948,15 +2948,15 @@ function addPdgviewShell(center, shell) {
       opacity: Math.min(0.4, Math.max(0.14, Number(shell?.opacity ?? 0.08) * 2.2)),
     })
   );
-  wireframe.userData.isPdgviewShellGuide = true;
+  wireframe.userData.isAnimatorShellGuide = true;
   mesh.add(wireframe);
   mesh.position.copy(center);
   mesh.userData.assemblyId = shell?.assemblyId ?? null;
-  pdgviewViewportGroup?.add(mesh);
-  pdgviewShellMeshes.push(mesh);
+  animatorViewportGroup?.add(mesh);
+  animatorShellMeshes.push(mesh);
 }
 
-function addPdgviewEnvelope(center, envelope) {
+function addAnimatorEnvelope(center, envelope) {
   const radius = Number(
     envelope?.geometry?.radius ??
       envelope?.radius ??
@@ -2987,12 +2987,12 @@ function addPdgviewEnvelope(center, envelope) {
   mesh.add(wireframe);
   mesh.position.copy(center);
   mesh.userData.assemblyId = envelope?.assemblyId ?? null;
-  pdgviewViewportGroup?.add(mesh);
-  pdgviewEnvelopeMeshes.push(mesh);
+  animatorViewportGroup?.add(mesh);
+  animatorEnvelopeMeshes.push(mesh);
 }
 
-function addPdgviewHistoryTrace(historyTrace) {
-  if (!pdgviewViewportGroup) {
+function addAnimatorHistoryTrace(historyTrace) {
+  if (!animatorViewportGroup) {
     return;
   }
   const line = new THREE.Line(
@@ -3004,11 +3004,11 @@ function addPdgviewHistoryTrace(historyTrace) {
     })
   );
   line.userData.historyTrace = historyTrace;
-  pdgviewViewportGroup.add(line);
-  pdgviewHistoryTraceLines.push(line);
+  animatorViewportGroup.add(line);
+  animatorHistoryTraceLines.push(line);
 }
 
-function addPdgviewOrbitParticle(center, motion, chargeType, memberId = null) {
+function addAnimatorOrbitParticle(center, motion, chargeType, memberId = null) {
   if (motion?.type !== "orbit.circular") {
     return;
   }
@@ -3025,12 +3025,12 @@ function addPdgviewOrbitParticle(center, motion, chargeType, memberId = null) {
   mesh.userData.chargeType = chargeType;
   mesh.userData.phaseOffset = chargeType === "electrino" ? Math.PI : 0;
   mesh.userData.memberId = memberId;
-  pdgviewViewportGroup?.add(mesh);
-  pdgviewOrbitParticleMeshes.push(mesh);
+  animatorViewportGroup?.add(mesh);
+  animatorOrbitParticleMeshes.push(mesh);
 }
 
-function addPdgviewTransferLine(transfer) {
-  if (!pdgviewViewportGroup) {
+function addAnimatorTransferLine(transfer) {
+  if (!animatorViewportGroup) {
     return;
   }
   const geometry = new THREE.BufferGeometry().setFromPoints([
@@ -3047,17 +3047,17 @@ function addPdgviewTransferLine(transfer) {
   const line = new THREE.Line(geometry, material);
   line.computeLineDistances();
   line.userData.transfer = transfer;
-  pdgviewViewportGroup.add(line);
-  pdgviewTransferLines.push(line);
+  animatorViewportGroup.add(line);
+  animatorTransferLines.push(line);
 }
 
-function addPdgviewGraphicOverlayVisual(overlay) {
-  if (!pdgviewViewportGroup || !overlay?.id) {
+function addAnimatorGraphicOverlayVisual(overlay) {
+  if (!animatorViewportGroup || !overlay?.id) {
     return;
   }
   const group = new THREE.Group();
   group.userData.overlayId = overlay.id;
-  group.userData.isPdgviewGraphicOverlay = true;
+  group.userData.isAnimatorGraphicOverlay = true;
 
   const haloRadius = Math.max(0.18, Number(overlay.size ?? 0.42) || 0.42);
   const calloutLine = new THREE.Line(
@@ -3074,46 +3074,46 @@ function addPdgviewGraphicOverlayVisual(overlay) {
   calloutLine.userData.overlayId = overlay.id;
   group.add(calloutLine);
 
-  const textSprite = createPdgviewGraphicOverlayTextSprite(overlay.text, haloRadius);
+  const textSprite = createAnimatorGraphicOverlayTextSprite(overlay.text, haloRadius);
   textSprite.userData.overlayId = overlay.id;
-  textSprite.userData.isPdgviewGraphicHandle = true;
+  textSprite.userData.isAnimatorGraphicHandle = true;
   textSprite.userData.draggable = true;
-  const textHitProxy = createPdgviewMarkerHitProxy(Math.max(0.24, haloRadius * 0.84));
+  const textHitProxy = createAnimatorMarkerHitProxy(Math.max(0.24, haloRadius * 0.84));
   textSprite.userData.hitProxy = textHitProxy;
   textSprite.add(textHitProxy);
   group.add(textSprite);
-  pdgviewGraphicOverlayHandleMeshes.push(textSprite);
+  animatorGraphicOverlayHandleMeshes.push(textSprite);
 
   group.userData.calloutLine = calloutLine;
   group.userData.textSprite = textSprite;
   group.userData.radius = haloRadius;
   group.userData.textSignature = "";
 
-  pdgviewViewportGroup.add(group);
-  pdgviewGraphicOverlayGroups.push(group);
+  animatorViewportGroup.add(group);
+  animatorGraphicOverlayGroups.push(group);
 }
 
-function updatePdgviewGraphicOverlayVisuals(timeSeconds, documentData, assemblyCenters = new Map()) {
-  const overlayById = new Map(getPdgviewGraphicTimelineOverlays(documentData).map((overlay) => [overlay.id, overlay]));
-  pdgviewGraphicOverlayGroups.forEach((group) => {
+function updateAnimatorGraphicOverlayVisuals(timeSeconds, documentData, assemblyCenters = new Map()) {
+  const overlayById = new Map(getAnimatorGraphicTimelineOverlays(documentData).map((overlay) => [overlay.id, overlay]));
+  animatorGraphicOverlayGroups.forEach((group) => {
     const overlayId = group?.userData?.overlayId;
     const overlay = overlayId ? overlayById.get(overlayId) : null;
     if (!overlay) {
       group.visible = false;
       return;
     }
-    const isActive = isPdgviewTimeWithinSpan(timeSeconds, overlay.start, overlay.end);
+    const isActive = isAnimatorTimeWithinSpan(timeSeconds, overlay.start, overlay.end);
     group.visible = isActive;
     if (!isActive) {
       return;
     }
     const targetPosition =
-      resolvePdgviewGraphicTargetPosition(overlay.target, assemblyCenters, documentData) ??
+      resolveAnimatorGraphicTargetPosition(overlay.target, assemblyCenters, documentData) ??
       new THREE.Vector3();
     const offset = vectorFromTriplet(overlay.offset ?? [0, 0, 0]);
     const sphereCenter = targetPosition.clone().add(offset);
     const anchorPosition =
-      resolvePdgviewGraphicTargetContactPosition(overlay.target, sphereCenter, assemblyCenters, documentData) ??
+      resolveAnimatorGraphicTargetContactPosition(overlay.target, sphereCenter, assemblyCenters, documentData) ??
       targetPosition;
     group.position.copy(sphereCenter);
     group.userData.anchorPosition = anchorPosition.clone();
@@ -3124,7 +3124,7 @@ function updatePdgviewGraphicOverlayVisuals(timeSeconds, documentData, assemblyC
     const textSprite = group.userData.textSprite ?? null;
     const nextSignature = `${overlay.text}|${radius.toFixed(3)}`;
     if (textSprite && group.userData.textSignature !== nextSignature) {
-      updatePdgviewGraphicOverlayTextSprite(textSprite, overlay.text, radius);
+      updateAnimatorGraphicOverlayTextSprite(textSprite, overlay.text, radius);
       group.userData.textSignature = nextSignature;
     }
     if (calloutLine) {
@@ -3137,7 +3137,7 @@ function updatePdgviewGraphicOverlayVisuals(timeSeconds, documentData, assemblyC
   });
 }
 
-function setPdgviewViewportMediaOverlayFrame(element, rect) {
+function setAnimatorViewportMediaOverlayFrame(element, rect) {
   if (!element || !rect) {
     return;
   }
@@ -3147,24 +3147,24 @@ function setPdgviewViewportMediaOverlayFrame(element, rect) {
   element.style.height = `${rect.height * 100}%`;
 }
 
-function clearPdgviewViewportMediaOverlays() {
-  pdgviewViewportMediaOverlayElements.forEach((element) => {
+function clearAnimatorViewportMediaOverlays() {
+  animatorViewportMediaOverlayElements.forEach((element) => {
     element?.remove?.();
   });
-  pdgviewViewportMediaOverlayElements.clear();
+  animatorViewportMediaOverlayElements.clear();
 }
 
-function createPdgviewViewportMediaOverlayElement(overlay) {
-  if (!pdgviewViewportOverlays || !overlay?.id || !(overlay.kind === "image" || overlay.kind === "video")) {
+function createAnimatorViewportMediaOverlayElement(overlay) {
+  if (!animatorViewportOverlays || !overlay?.id || !(overlay.kind === "image" || overlay.kind === "video")) {
     return null;
   }
   const wrapper = document.createElement("div");
-  wrapper.className = "pdgview-media-overlay";
+  wrapper.className = "animator-media-overlay";
   wrapper.dataset.overlayId = overlay.id;
   wrapper.dataset.overlayKind = overlay.kind;
 
   const mediaElement = document.createElement(overlay.kind === "video" ? "video" : "img");
-  mediaElement.className = "pdgview-media-overlay-media";
+  mediaElement.className = "animator-media-overlay-media";
   if (overlay.kind === "video") {
     mediaElement.muted = overlay.muted !== false;
     mediaElement.loop = false;
@@ -3186,40 +3186,40 @@ function createPdgviewViewportMediaOverlayElement(overlay) {
   wrapper.appendChild(mediaElement);
 
   const handle = document.createElement("div");
-  handle.className = "pdgview-media-overlay-handle";
+  handle.className = "animator-media-overlay-handle";
   wrapper.appendChild(handle);
 
   const endInteraction = (event) => {
-    const state = wrapper.__pdgviewDragState;
+    const state = wrapper.__animatorDragState;
     if (!state || (event && state.pointerId !== event.pointerId)) {
       return;
     }
-    wrapper.__pdgviewDragState = null;
+    wrapper.__animatorDragState = null;
     wrapper.classList.remove("is-active");
     if (wrapper.hasPointerCapture?.(state.pointerId)) {
       wrapper.releasePointerCapture(state.pointerId);
     }
-    renderPdgviewJsonPreview();
+    renderAnimatorJsonPreview();
   };
 
   const startInteraction = (mode, event) => {
     if (event.button !== 0) {
       return;
     }
-    const draftOverlay = getPdgviewGraphicOverlayDraftById(overlay.id);
+    const draftOverlay = getAnimatorGraphicOverlayDraftById(overlay.id);
     if (!draftOverlay) {
       return;
     }
     event.preventDefault();
     event.stopPropagation();
-    closePdgviewAssemblyMenu();
+    closeAnimatorAssemblyMenu();
     wrapper.classList.add("is-active");
-    wrapper.__pdgviewDragState = {
+    wrapper.__animatorDragState = {
       mode,
       pointerId: event.pointerId,
       startX: event.clientX,
       startY: event.clientY,
-      startRect: { ...(draftOverlay.rect ?? getPdgviewMediaDefaultRect(draftOverlay.kind)) },
+      startRect: { ...(draftOverlay.rect ?? getAnimatorMediaDefaultRect(draftOverlay.kind)) },
       aspect:
         Number(draftOverlay?.rect?.width ?? 0) > 0 && Number(draftOverlay?.rect?.height ?? 0) > 0
           ? Number(draftOverlay.rect.width) / Number(draftOverlay.rect.height)
@@ -3240,20 +3240,20 @@ function createPdgviewViewportMediaOverlayElement(overlay) {
     startInteraction("resize", event);
   });
   wrapper.addEventListener("pointermove", (event) => {
-    const state = wrapper.__pdgviewDragState;
-    if (!state || state.pointerId !== event.pointerId || !pdgviewCanvasWrap) {
+    const state = wrapper.__animatorDragState;
+    if (!state || state.pointerId !== event.pointerId || !animatorCanvasWrap) {
       return;
     }
-    const draftOverlay = getPdgviewGraphicOverlayDraftById(overlay.id);
+    const draftOverlay = getAnimatorGraphicOverlayDraftById(overlay.id);
     if (!draftOverlay) {
       return;
     }
     event.preventDefault();
-    const wrapRect = pdgviewCanvasWrap.getBoundingClientRect();
+    const wrapRect = animatorCanvasWrap.getBoundingClientRect();
     const dx = wrapRect.width ? (event.clientX - state.startX) / wrapRect.width : 0;
     const dy = wrapRect.height ? (event.clientY - state.startY) / wrapRect.height : 0;
     if (state.mode === "move") {
-      draftOverlay.rect = normalizePdgviewMediaRect({
+      draftOverlay.rect = normalizeAnimatorMediaRect({
         x: state.startRect.x + dx,
         y: state.startRect.y + dy,
         width: state.startRect.width,
@@ -3266,51 +3266,51 @@ function createPdgviewViewportMediaOverlayElement(overlay) {
       if (state.startRect.y + nextHeight > 0.96) {
         nextHeight = 0.96 - state.startRect.y;
       }
-      draftOverlay.rect = normalizePdgviewMediaRect({
+      draftOverlay.rect = normalizeAnimatorMediaRect({
         x: state.startRect.x,
         y: state.startRect.y,
         width: nextWidth,
         height: nextHeight,
       }, draftOverlay.kind);
     }
-    setPdgviewViewportMediaOverlayFrame(wrapper, draftOverlay.rect);
+    setAnimatorViewportMediaOverlayFrame(wrapper, draftOverlay.rect);
   });
   wrapper.addEventListener("pointerup", endInteraction);
   wrapper.addEventListener("pointercancel", endInteraction);
   wrapper.addEventListener("contextmenu", (event) => {
     event.preventDefault();
     event.stopPropagation();
-    openPdgviewTimelineMenuAt(event.clientX, event.clientY, {
+    openAnimatorTimelineMenuAt(event.clientX, event.clientY, {
       overlayId: overlay.id,
     });
   });
 
-  pdgviewViewportOverlays.appendChild(wrapper);
-  pdgviewViewportMediaOverlayElements.set(overlay.id, wrapper);
-  setPdgviewViewportMediaOverlayFrame(wrapper, overlay.rect ?? getPdgviewMediaDefaultRect(overlay.kind));
+  animatorViewportOverlays.appendChild(wrapper);
+  animatorViewportMediaOverlayElements.set(overlay.id, wrapper);
+  setAnimatorViewportMediaOverlayFrame(wrapper, overlay.rect ?? getAnimatorMediaDefaultRect(overlay.kind));
   return wrapper;
 }
 
-function syncPdgviewViewportMediaOverlays(documentData) {
-  clearPdgviewViewportMediaOverlays();
-  const overlays = getPdgviewViewportMediaTimelineOverlays(documentData);
+function syncAnimatorViewportMediaOverlays(documentData) {
+  clearAnimatorViewportMediaOverlays();
+  const overlays = getAnimatorViewportMediaTimelineOverlays(documentData);
   overlays.forEach((overlay) => {
-    createPdgviewViewportMediaOverlayElement(overlay);
+    createAnimatorViewportMediaOverlayElement(overlay);
   });
 }
 
-function updatePdgviewViewportMediaOverlays(timeSeconds, documentData) {
-  const overlays = getPdgviewViewportMediaTimelineOverlays(documentData);
+function updateAnimatorViewportMediaOverlays(timeSeconds, documentData) {
+  const overlays = getAnimatorViewportMediaTimelineOverlays(documentData);
   const overlayById = new Map(overlays.map((overlay) => [overlay.id, overlay]));
-  pdgviewViewportMediaOverlayElements.forEach((element, overlayId) => {
+  animatorViewportMediaOverlayElements.forEach((element, overlayId) => {
     const overlay = overlayById.get(overlayId);
-    const mediaElement = element?.querySelector?.(".pdgview-media-overlay-media");
+    const mediaElement = element?.querySelector?.(".animator-media-overlay-media");
     if (!overlay || !mediaElement) {
       element?.classList.remove("is-visible");
       return;
     }
-    setPdgviewViewportMediaOverlayFrame(element, overlay.rect ?? getPdgviewMediaDefaultRect(overlay.kind));
-    const isActive = isPdgviewTimeWithinSpan(timeSeconds, overlay.start, overlay.end);
+    setAnimatorViewportMediaOverlayFrame(element, overlay.rect ?? getAnimatorMediaDefaultRect(overlay.kind));
+    const isActive = isAnimatorTimeWithinSpan(timeSeconds, overlay.start, overlay.end);
     element.classList.toggle("is-visible", isActive);
     if (!isActive) {
       if (overlay.kind === "video") {
@@ -3320,14 +3320,14 @@ function updatePdgviewViewportMediaOverlays(timeSeconds, documentData) {
     }
     if (overlay.kind === "video") {
       const localTime = Math.max(0, timeSeconds - overlay.start);
-      if (!pdgviewPlaybackState.playing || Math.abs((mediaElement.currentTime ?? 0) - localTime) > 0.25) {
+      if (!animatorPlaybackState.playing || Math.abs((mediaElement.currentTime ?? 0) - localTime) > 0.25) {
         try {
           mediaElement.currentTime = localTime;
         } catch (_error) {
           // Ignore sync failures while metadata is still loading.
         }
       }
-      if (pdgviewPlaybackState.playing) {
+      if (animatorPlaybackState.playing) {
         mediaElement.play?.().catch?.(() => {});
       } else {
         mediaElement.pause?.();
@@ -3336,21 +3336,21 @@ function updatePdgviewViewportMediaOverlays(timeSeconds, documentData) {
   });
 }
 
-function addPdgviewAssemblyProxy(center, assembly, index) {
+function addAnimatorAssemblyProxy(center, assembly, index) {
   const group = new THREE.Group();
   group.position.copy(center);
   group.userData.assemblyId = assembly?.id ?? null;
   group.userData.assemblyIndex = index;
   group.userData.draggable = true;
-  const isBareArchitrino = isPdgviewBareArchitrinoAssembly(assembly);
+  const isBareArchitrino = isAnimatorBareArchitrinoAssembly(assembly);
   let centerMarker = null;
 
   if (!isBareArchitrino) {
-    const sceneRole = normalizePdgviewAssemblySceneRole(assembly?.sceneRole);
+    const sceneRole = normalizeAnimatorAssemblySceneRole(assembly?.sceneRole);
     centerMarker = new THREE.Mesh(
       new THREE.SphereGeometry(0.085, 20, 20),
       new THREE.MeshBasicMaterial({
-        color: getPdgviewAssemblySceneRoleColor(sceneRole),
+        color: getAnimatorAssemblySceneRoleColor(sceneRole),
         transparent: true,
         opacity: 0.98,
         depthTest: false,
@@ -3363,10 +3363,10 @@ function addPdgviewAssemblyProxy(center, assembly, index) {
     centerMarker.userData.sceneRole = sceneRole;
     centerMarker.userData.draggable = true;
     centerMarker.userData.isAssemblyCenterMarker = true;
-    const centerLabel = createPdgviewPointLabelSprite(getPdgviewAssemblyViewportLabel(assembly, index));
+    const centerLabel = createAnimatorPointLabelSprite(getAnimatorAssemblyViewportLabel(assembly, index));
     centerLabel.position.set(0, 0, 0);
     centerMarker.userData.pointLabelSprite = centerLabel;
-    const centerHitProxy = createPdgviewMarkerHitProxy(0.22);
+    const centerHitProxy = createAnimatorMarkerHitProxy(0.22);
     centerMarker.userData.hitProxy = centerHitProxy;
     centerMarker.add(centerHitProxy);
     centerMarker.add(centerLabel);
@@ -3375,12 +3375,12 @@ function addPdgviewAssemblyProxy(center, assembly, index) {
 
   const rawMembers = Array.isArray(assembly?.members) ? assembly.members : [];
   const members = rawMembers.map((member, memberIndex) => ({
-    id: getPdgviewMemberId(member, memberIndex),
-    position: getPdgviewMemberPosition(member),
+    id: getAnimatorMemberId(member, memberIndex),
+    position: getAnimatorMemberPosition(member),
   }));
   const memberCount = members.length;
   const hasCore = Array.isArray(assembly?.core?.shells) && assembly.core.shells.length > 0;
-  const baseColor = pdgviewPalette[index % Math.max(1, pdgviewPalette.length)] ?? "#6ea8fe";
+  const baseColor = animatorPalette[index % Math.max(1, animatorPalette.length)] ?? "#6ea8fe";
   let proxyBadgeOffset = new THREE.Vector3(0.52, 0.52, 0);
 
   if (!hasCore) {
@@ -3397,8 +3397,8 @@ function addPdgviewAssemblyProxy(center, assembly, index) {
         ? new THREE.Vector3(authoredPosition[0], authoredPosition[1], authoredPosition[2])
         : isBareArchitrino
           ? new THREE.Vector3(0, 0, 0)
-          : getPdgviewProxyMemberOffset(memberIndex, rootMembers.length, baseRadius);
-      setPdgviewMemberAnchor(assembly?.id, memberId, {
+          : getAnimatorProxyMemberOffset(memberIndex, rootMembers.length, baseRadius);
+      setAnimatorMemberAnchor(assembly?.id, memberId, {
         type: "proxy",
         offset: [memberOffset.x, memberOffset.y, memberOffset.z],
       });
@@ -3408,7 +3408,7 @@ function addPdgviewAssemblyProxy(center, assembly, index) {
       const memberDot = new THREE.Mesh(
         new THREE.SphereGeometry(isBareArchitrino ? 0.052 : 0.03, 12, 10),
         new THREE.MeshBasicMaterial({
-          color: getPdgviewMemberColor(memberId, memberIndex),
+          color: getAnimatorMemberColor(memberId, memberIndex),
           transparent: true,
           opacity: 0.95,
           depthTest: !isBareArchitrino,
@@ -3423,12 +3423,12 @@ function addPdgviewAssemblyProxy(center, assembly, index) {
       memberDot.userData.memberId = memberId;
       memberDot.userData.subassemblyId = "";
       memberDot.userData.draggable = true;
-      memberDot.userData.isPdgviewMemberHandle = true;
-      const memberHitProxy = createPdgviewMarkerHitProxy(isBareArchitrino ? 0.18 : 0.12);
+      memberDot.userData.isAnimatorMemberHandle = true;
+      const memberHitProxy = createAnimatorMarkerHitProxy(isBareArchitrino ? 0.18 : 0.12);
       memberDot.userData.hitProxy = memberHitProxy;
       memberDot.add(memberHitProxy);
       group.add(memberDot);
-      pdgviewMemberHandleMeshes.push(memberDot);
+      animatorMemberHandleMeshes.push(memberDot);
     });
 
     children.forEach((child, childIndex) => {
@@ -3449,14 +3449,14 @@ function addPdgviewAssemblyProxy(center, assembly, index) {
       );
       childMesh.position.copy(childPosition);
       childMesh.userData.assemblyId = assembly?.id ?? null;
-      childMesh.userData.subassemblyId = getPdgviewSubassemblyId(child, childIndex);
+      childMesh.userData.subassemblyId = getAnimatorSubassemblyId(child, childIndex);
       childMesh.userData.draggable = true;
-      childMesh.userData.isPdgviewSubassemblyHandle = true;
-      const childHitProxy = createPdgviewMarkerHitProxy(childRadius + 0.1);
+      childMesh.userData.isAnimatorSubassemblyHandle = true;
+      const childHitProxy = createAnimatorMarkerHitProxy(childRadius + 0.1);
       childMesh.userData.hitProxy = childHitProxy;
       childMesh.add(childHitProxy);
       group.add(childMesh);
-      pdgviewSubassemblyHandleMeshes.push(childMesh);
+      animatorSubassemblyHandleMeshes.push(childMesh);
       const childOutline = new THREE.LineSegments(
         new THREE.WireframeGeometry(new THREE.SphereGeometry(childRadius, 12, 9)),
         new THREE.LineBasicMaterial({
@@ -3473,9 +3473,9 @@ function addPdgviewAssemblyProxy(center, assembly, index) {
         const memberId = memberEntry.id;
         const localMemberOffset = memberEntry.position
           ? new THREE.Vector3(memberEntry.position[0], memberEntry.position[1], memberEntry.position[2])
-          : getPdgviewProxyMemberOffset(memberIndex, childMembers.length, childRadius);
+          : getAnimatorProxyMemberOffset(memberIndex, childMembers.length, childRadius);
         const memberOffset = childPosition.clone().add(localMemberOffset);
-        setPdgviewMemberAnchor(assembly?.id, memberId, {
+        setAnimatorMemberAnchor(assembly?.id, memberId, {
           type: "proxy",
           offset: [memberOffset.x, memberOffset.y, memberOffset.z],
         });
@@ -3485,7 +3485,7 @@ function addPdgviewAssemblyProxy(center, assembly, index) {
         const memberDot = new THREE.Mesh(
           new THREE.SphereGeometry(0.038, 12, 10),
           new THREE.MeshBasicMaterial({
-            color: getPdgviewMemberColor(memberId, memberIndex + childIndex),
+            color: getAnimatorMemberColor(memberId, memberIndex + childIndex),
             transparent: true,
             opacity: 0.95,
           })
@@ -3493,14 +3493,14 @@ function addPdgviewAssemblyProxy(center, assembly, index) {
         memberDot.position.copy(memberOffset);
         memberDot.userData.assemblyId = assembly?.id ?? null;
         memberDot.userData.memberId = memberId;
-        memberDot.userData.subassemblyId = getPdgviewSubassemblyId(child, childIndex);
+        memberDot.userData.subassemblyId = getAnimatorSubassemblyId(child, childIndex);
         memberDot.userData.draggable = true;
-        memberDot.userData.isPdgviewMemberHandle = true;
-        const childMemberHitProxy = createPdgviewMarkerHitProxy(0.13);
+        memberDot.userData.isAnimatorMemberHandle = true;
+        const childMemberHitProxy = createAnimatorMarkerHitProxy(0.13);
         memberDot.userData.hitProxy = childMemberHitProxy;
         memberDot.add(childMemberHitProxy);
         group.add(memberDot);
-        pdgviewMemberHandleMeshes.push(memberDot);
+        animatorMemberHandleMeshes.push(memberDot);
       });
     });
     proxyBadgeOffset = isBareArchitrino
@@ -3517,19 +3517,19 @@ function addPdgviewAssemblyProxy(center, assembly, index) {
     const diagonal = markerRadius * Math.SQRT1_2;
     proxyBadgeOffset = new THREE.Vector3(diagonal, diagonal, 0);
 
-    const personalityMembers = getPdgviewPersonalityMembers(assembly);
+    const personalityMembers = getAnimatorPersonalityMembers(assembly);
     personalityMembers.forEach((member, memberIndex) => {
-      const memberId = getPdgviewMemberId(member, memberIndex);
+      const memberId = getAnimatorMemberId(member, memberIndex);
       const slotIndex = Math.max(0, Number(member?.slotIndex ?? memberIndex) || 0);
-      const localOffset = getPdgviewPersonalitySlotLocalOffset(assembly, slotIndex);
-      setPdgviewMemberAnchor(assembly?.id, memberId, {
+      const localOffset = getAnimatorPersonalitySlotLocalOffset(assembly, slotIndex);
+      setAnimatorMemberAnchor(assembly?.id, memberId, {
         type: "proxy",
         offset: [localOffset.x, localOffset.y, localOffset.z],
       });
       const memberDot = new THREE.Mesh(
         new THREE.SphereGeometry(0.05, 14, 12),
         new THREE.MeshBasicMaterial({
-          color: getPdgviewMemberColor(member, memberIndex),
+          color: getAnimatorMemberColor(member, memberIndex),
           transparent: true,
           opacity: 0.98,
           depthTest: false,
@@ -3541,19 +3541,19 @@ function addPdgviewAssemblyProxy(center, assembly, index) {
       memberDot.userData.assemblyId = assembly?.id ?? null;
       memberDot.userData.memberId = memberId;
       memberDot.userData.draggable = false;
-      memberDot.userData.isPdgviewPersonalityHandle = true;
-      const memberHitProxy = createPdgviewMarkerHitProxy(0.16);
+      memberDot.userData.isAnimatorPersonalityHandle = true;
+      const memberHitProxy = createAnimatorMarkerHitProxy(0.16);
       memberDot.userData.hitProxy = memberHitProxy;
       memberDot.add(memberHitProxy);
       group.add(memberDot);
-      pdgviewPersonalityHandleMeshes.push(memberDot);
+      animatorPersonalityHandleMeshes.push(memberDot);
     });
 
     const binaryMemberIds = new Set();
     const binaries = Array.isArray(assembly?.core?.binaries) ? assembly.core.binaries : [];
     binaries.forEach((_binary, binaryIndex) => {
-      const positrinoMemberId = findPdgviewCoreMemberId(assembly?.members, "positrino", binaryIndex);
-      const electrinoMemberId = findPdgviewCoreMemberId(assembly?.members, "electrino", binaryIndex);
+      const positrinoMemberId = findAnimatorCoreMemberId(assembly?.members, "positrino", binaryIndex);
+      const electrinoMemberId = findAnimatorCoreMemberId(assembly?.members, "electrino", binaryIndex);
       if (positrinoMemberId) {
         binaryMemberIds.add(positrinoMemberId);
       }
@@ -3566,7 +3566,7 @@ function addPdgviewAssemblyProxy(center, assembly, index) {
       (memberEntry) =>
         !binaryMemberIds.has(memberEntry.id) &&
         !personalityMembers.some((personalityMember, personalityIndex) =>
-          getPdgviewMemberId(personalityMember, personalityIndex) === memberEntry.id
+          getAnimatorMemberId(personalityMember, personalityIndex) === memberEntry.id
         )
     );
     const genericCoreBaseRadius = Math.max(markerRadius, outerRadius + 0.2);
@@ -3574,15 +3574,15 @@ function addPdgviewAssemblyProxy(center, assembly, index) {
       const memberId = memberEntry.id;
       const localOffset = memberEntry.position
         ? new THREE.Vector3(memberEntry.position[0], memberEntry.position[1], memberEntry.position[2])
-        : getPdgviewProxyMemberOffset(memberIndex, genericCoreMembers.length, genericCoreBaseRadius);
-      setPdgviewMemberAnchor(assembly?.id, memberId, {
+        : getAnimatorProxyMemberOffset(memberIndex, genericCoreMembers.length, genericCoreBaseRadius);
+      setAnimatorMemberAnchor(assembly?.id, memberId, {
         type: "proxy",
         offset: [localOffset.x, localOffset.y, localOffset.z],
       });
       const memberDot = new THREE.Mesh(
         new THREE.SphereGeometry(0.04, 12, 10),
         new THREE.MeshBasicMaterial({
-          color: getPdgviewMemberColor(memberId, memberIndex),
+          color: getAnimatorMemberColor(memberId, memberIndex),
           transparent: true,
           opacity: 0.95,
           depthTest: false,
@@ -3594,39 +3594,39 @@ function addPdgviewAssemblyProxy(center, assembly, index) {
       memberDot.userData.assemblyId = assembly?.id ?? null;
       memberDot.userData.memberId = memberId;
       memberDot.userData.draggable = true;
-      memberDot.userData.isPdgviewMemberHandle = true;
-      const memberHitProxy = createPdgviewMarkerHitProxy(0.14);
+      memberDot.userData.isAnimatorMemberHandle = true;
+      const memberHitProxy = createAnimatorMarkerHitProxy(0.14);
       memberDot.userData.hitProxy = memberHitProxy;
       memberDot.add(memberHitProxy);
       group.add(memberDot);
-      pdgviewMemberHandleMeshes.push(memberDot);
+      animatorMemberHandleMeshes.push(memberDot);
     });
   }
 
-  pdgviewViewportGroup?.add(group);
-  pdgviewAssemblyMeshes.push(group);
+  animatorViewportGroup?.add(group);
+  animatorAssemblyMeshes.push(group);
 }
 
-function addPdgviewDocumentCameraVisuals(documentData) {
-  if ((pdgviewCameraFlightState?.waypoints?.length ?? 0) > 0) {
+function addAnimatorDocumentCameraVisuals(documentData) {
+  if ((animatorCameraFlightState?.waypoints?.length ?? 0) > 0) {
     return;
   }
   const cameraPaths = Array.isArray(documentData?.cameraPaths) ? documentData.cameraPaths : [];
   const pathById = new Map(cameraPaths.map((path) => [path.id, path]));
-  const activeCameraPathId = getPdgviewActiveCameraPathId(
+  const activeCameraPathId = getAnimatorActiveCameraPathId(
     documentData,
-    pdgviewPlaybackState.playheadSeconds,
-    getPdgviewSceneTimeWindow(documentData)
+    animatorPlaybackState.playheadSeconds,
+    getAnimatorSceneTimeWindow(documentData)
   );
   const cameraPath = activeCameraPathId ? pathById.get(activeCameraPathId) : null;
   const waypoints = Array.isArray(cameraPath?.waypoints) ? cameraPath.waypoints : [];
-  if (!waypoints.length || !pdgviewViewportGroup) {
+  if (!waypoints.length || !animatorViewportGroup) {
     return;
   }
 
-  const pathPoints = samplePdgviewCurvePoints(
+  const pathPoints = sampleAnimatorCurvePoints(
     waypoints.map((waypoint) => {
-      const visiblePosition = getPdgviewCameraWaypointDisplayPosition(waypoint);
+      const visiblePosition = getAnimatorCameraWaypointDisplayPosition(waypoint);
       return [visiblePosition.x, visiblePosition.y, visiblePosition.z];
     }),
     Math.max(20, waypoints.length * 18)
@@ -3642,10 +3642,10 @@ function addPdgviewDocumentCameraVisuals(documentData) {
       depthTest: false,
       depthWrite: false,
     });
-    pdgviewDocumentCameraPathLine = new THREE.Line(geometry, material);
-    pdgviewDocumentCameraPathLine.renderOrder = 9;
-    pdgviewDocumentCameraPathLine.computeLineDistances();
-    pdgviewViewportGroup.add(pdgviewDocumentCameraPathLine);
+    animatorDocumentCameraPathLine = new THREE.Line(geometry, material);
+    animatorDocumentCameraPathLine.renderOrder = 9;
+    animatorDocumentCameraPathLine.computeLineDistances();
+    animatorViewportGroup.add(animatorDocumentCameraPathLine);
   }
 
   waypoints.forEach((waypoint, index) => {
@@ -3659,41 +3659,41 @@ function addPdgviewDocumentCameraVisuals(documentData) {
         depthWrite: false,
       })
     );
-    marker.position.copy(getPdgviewCameraWaypointDisplayPosition(waypoint));
+    marker.position.copy(getAnimatorCameraWaypointDisplayPosition(waypoint));
     marker.renderOrder = 9;
-    pdgviewViewportGroup.add(marker);
-    pdgviewDocumentCameraWaypointMeshes.push(marker);
+    animatorViewportGroup.add(marker);
+    animatorDocumentCameraWaypointMeshes.push(marker);
   });
 }
 
-function updatePdgviewViewportFromDocument(documentData) {
-  const previousDocument = pdgviewCurrentDocument;
-  const previousSceneId = pdgviewCurrentDocument?.scene?.id ?? null;
-  const previousPlaybackPlaying = pdgviewPlaybackState.playing;
+function updateAnimatorViewportFromDocument(documentData) {
+  const previousDocument = animatorCurrentDocument;
+  const previousSceneId = animatorCurrentDocument?.scene?.id ?? null;
+  const previousPlaybackPlaying = animatorPlaybackState.playing;
   const shouldPreserveRenderedMotionTime =
     previousDocument &&
     previousSceneId &&
     previousSceneId === (documentData?.scene?.id ?? null);
   const previousMotionTime = shouldPreserveRenderedMotionTime
-    ? getPdgviewIntegratedMotionTime(previousDocument, pdgviewPlaybackState.playheadSeconds)
+    ? getAnimatorIntegratedMotionTime(previousDocument, animatorPlaybackState.playheadSeconds)
     : null;
   const previousMotionProgress = shouldPreserveRenderedMotionTime
-    ? getPdgviewMotionProgress(previousDocument, pdgviewPlaybackState.playheadSeconds)
+    ? getAnimatorMotionProgress(previousDocument, animatorPlaybackState.playheadSeconds)
     : null;
-  pdgviewCurrentDocument = documentData;
-  if (!pdgviewViewportGroup || !pdgviewPathGeometry) {
+  animatorCurrentDocument = documentData;
+  if (!animatorViewportGroup || !animatorPathGeometry) {
     return;
   }
 
-  rebuildPdgviewPathDisplayFromDocument(documentData);
-  clearPdgviewViewportVisuals();
+  rebuildAnimatorPathDisplayFromDocument(documentData);
+  clearAnimatorViewportVisuals();
 
   const paths = Array.isArray(documentData?.paths) ? documentData.paths : [];
   const pathById = new Map(paths.map((path) => [path.id, path]));
   const assemblies = Array.isArray(documentData?.assemblies) ? documentData.assemblies : [];
   assemblies.forEach((assembly, index) => {
-    const center = computePdgviewAssemblyBasePosition(assembly, index, assemblies.length, pathById);
-    addPdgviewAssemblyProxy(center, assembly, index);
+    const center = computeAnimatorAssemblyBasePosition(assembly, index, assemblies.length, pathById);
+    addAnimatorAssemblyProxy(center, assembly, index);
 
     const hasCore = Array.isArray(assembly?.core?.shells) && assembly.core.shells.length > 0;
     if (!hasCore) {
@@ -3702,11 +3702,11 @@ function updatePdgviewViewportFromDocument(documentData) {
 
     const shells = Array.isArray(assembly?.core?.shells) ? assembly.core.shells : [];
     shells.forEach((shell) => {
-      addPdgviewShell(center, {
+      addAnimatorShell(center, {
         ...shell,
         assemblyId: assembly.id,
       });
-      const shellMesh = pdgviewShellMeshes[pdgviewShellMeshes.length - 1] ?? null;
+      const shellMesh = animatorShellMeshes[animatorShellMeshes.length - 1] ?? null;
       if (shellMesh) {
         shellMesh.userData.assemblyId = assembly.id;
       }
@@ -3715,101 +3715,101 @@ function updatePdgviewViewportFromDocument(documentData) {
     const binaries = Array.isArray(assembly?.core?.binaries) ? assembly.core.binaries : [];
     binaries.forEach((binary, binaryIndex) => {
       if (binary?.motion?.type === "orbit.circular") {
-        const positrinoMemberId = findPdgviewCoreMemberId(assembly?.members, "positrino", binaryIndex);
-        const electrinoMemberId = findPdgviewCoreMemberId(assembly?.members, "electrino", binaryIndex);
+        const positrinoMemberId = findAnimatorCoreMemberId(assembly?.members, "positrino", binaryIndex);
+        const electrinoMemberId = findAnimatorCoreMemberId(assembly?.members, "electrino", binaryIndex);
         if (positrinoMemberId) {
-          setPdgviewMemberAnchor(assembly.id, positrinoMemberId, {
+          setAnimatorMemberAnchor(assembly.id, positrinoMemberId, {
             type: "orbit",
             motion: binary.motion,
             chargeType: "positrino",
           });
         }
         if (electrinoMemberId) {
-          setPdgviewMemberAnchor(assembly.id, electrinoMemberId, {
+          setAnimatorMemberAnchor(assembly.id, electrinoMemberId, {
             type: "orbit",
             motion: binary.motion,
             chargeType: "electrino",
           });
         }
-        addPdgviewOrbitParticle(center, binary.motion, "positrino", positrinoMemberId);
-        addPdgviewOrbitParticle(center, binary.motion, "electrino", electrinoMemberId);
-        const particleCount = pdgviewOrbitParticleMeshes.length;
-        if (pdgviewOrbitParticleMeshes[particleCount - 1]) {
-          pdgviewOrbitParticleMeshes[particleCount - 1].userData.assemblyId = assembly.id;
+        addAnimatorOrbitParticle(center, binary.motion, "positrino", positrinoMemberId);
+        addAnimatorOrbitParticle(center, binary.motion, "electrino", electrinoMemberId);
+        const particleCount = animatorOrbitParticleMeshes.length;
+        if (animatorOrbitParticleMeshes[particleCount - 1]) {
+          animatorOrbitParticleMeshes[particleCount - 1].userData.assemblyId = assembly.id;
         }
-        if (pdgviewOrbitParticleMeshes[particleCount - 2]) {
-          pdgviewOrbitParticleMeshes[particleCount - 2].userData.assemblyId = assembly.id;
+        if (animatorOrbitParticleMeshes[particleCount - 2]) {
+          animatorOrbitParticleMeshes[particleCount - 2].userData.assemblyId = assembly.id;
         }
       }
     });
   });
   const historyTraces = Array.isArray(documentData?.historyTraces) ? documentData.historyTraces : [];
   historyTraces.forEach((historyTrace) => {
-    addPdgviewHistoryTrace(historyTrace);
+    addAnimatorHistoryTrace(historyTrace);
   });
   const envelopes = Array.isArray(documentData?.envelopes) ? documentData.envelopes : [];
   envelopes.forEach((envelope) => {
     const assemblyIndex = assemblies.findIndex((assembly) => assembly?.id === envelope?.assemblyId);
     const center =
       assemblyIndex >= 0
-        ? computePdgviewAssemblyBasePosition(assemblies[assemblyIndex], assemblyIndex, assemblies.length, pathById)
+        ? computeAnimatorAssemblyBasePosition(assemblies[assemblyIndex], assemblyIndex, assemblies.length, pathById)
         : new THREE.Vector3();
-    addPdgviewEnvelope(center, envelope);
+    addAnimatorEnvelope(center, envelope);
   });
   const transfers = Array.isArray(documentData?.transfers) ? documentData.transfers : [];
   transfers.forEach((transfer) => {
-    addPdgviewTransferLine(transfer);
+    addAnimatorTransferLine(transfer);
   });
-  const graphicOverlays = getPdgviewGraphicTimelineOverlays(documentData);
+  const graphicOverlays = getAnimatorGraphicTimelineOverlays(documentData);
   graphicOverlays.forEach((overlay) => {
     try {
-      addPdgviewGraphicOverlayVisual(overlay);
+      addAnimatorGraphicOverlayVisual(overlay);
     } catch (error) {
-      console.error("pdgview graphic overlay setup failed.", overlay?.id, error);
+      console.error("animator graphic overlay setup failed.", overlay?.id, error);
     }
   });
-  syncPdgviewViewportMediaOverlays(documentData);
-  addPdgviewDocumentCameraVisuals(documentData);
-  applyPdgviewViewportDisplayState();
+  syncAnimatorViewportMediaOverlays(documentData);
+  addAnimatorDocumentCameraVisuals(documentData);
+  applyAnimatorViewportDisplayState();
 
-  const timeWindow = getPdgviewSceneTimeWindow(documentData);
-  if (pdgviewPlaybackState.playheadSeconds < timeWindow.start || previousSceneId !== documentData?.scene?.id) {
-    pdgviewPlaybackState.playheadSeconds = timeWindow.start;
-    clearPdgviewEditorPreviewState();
+  const timeWindow = getAnimatorSceneTimeWindow(documentData);
+  if (animatorPlaybackState.playheadSeconds < timeWindow.start || previousSceneId !== documentData?.scene?.id) {
+    animatorPlaybackState.playheadSeconds = timeWindow.start;
+    clearAnimatorEditorPreviewState();
   } else if (shouldPreserveRenderedMotionTime && previousMotionTime != null) {
-    pdgviewPlaybackState.playheadSeconds = clamp(
-      pdgviewPlaybackState.playheadSeconds,
+    animatorPlaybackState.playheadSeconds = clamp(
+      animatorPlaybackState.playheadSeconds,
       timeWindow.start,
       timeWindow.end
     );
-    pdgviewEditorPreviewState.renderMotionTimeOverride = previousMotionTime;
-    pdgviewEditorPreviewState.renderMotionTimePlayhead = pdgviewPlaybackState.playheadSeconds;
-    pdgviewEditorPreviewState.renderMotionProgressOverride = previousMotionProgress;
-    pdgviewEditorPreviewState.renderMotionProgressPlayhead = pdgviewPlaybackState.playheadSeconds;
+    animatorEditorPreviewState.renderMotionTimeOverride = previousMotionTime;
+    animatorEditorPreviewState.renderMotionTimePlayhead = animatorPlaybackState.playheadSeconds;
+    animatorEditorPreviewState.renderMotionProgressOverride = previousMotionProgress;
+    animatorEditorPreviewState.renderMotionProgressPlayhead = animatorPlaybackState.playheadSeconds;
   } else {
-    pdgviewPlaybackState.playheadSeconds = clamp(
-      pdgviewPlaybackState.playheadSeconds,
+    animatorPlaybackState.playheadSeconds = clamp(
+      animatorPlaybackState.playheadSeconds,
       timeWindow.start,
       timeWindow.end
     );
-    clearPdgviewEditorPreviewState();
+    clearAnimatorEditorPreviewState();
   }
-  pdgviewPlaybackState.playing = previousPlaybackPlaying;
-  pdgviewPlaybackState.lastTickMs = 0;
-  renderPdgviewTimeline(documentData);
-  updatePdgviewAnimatedViewport(pdgviewPlaybackState.playheadSeconds);
-  updatePdgviewTimelinePlayhead(pdgviewPlaybackState.playheadSeconds, documentData);
+  animatorPlaybackState.playing = previousPlaybackPlaying;
+  animatorPlaybackState.lastTickMs = 0;
+  renderAnimatorTimeline(documentData);
+  updateAnimatorAnimatedViewport(animatorPlaybackState.playheadSeconds);
+  updateAnimatorTimelinePlayhead(animatorPlaybackState.playheadSeconds, documentData);
 }
 
-function updatePdgviewCameraFlightDisplay() {
-  if (!pdgviewFrameGroup) {
+function updateAnimatorCameraFlightDisplay() {
+  if (!animatorFrameGroup) {
     return;
   }
-  if (!pdgviewCameraFlightGroup) {
-    pdgviewCameraFlightGroup = new THREE.Group();
-    pdgviewCameraFlightGeometry = new THREE.BufferGeometry();
-    pdgviewCameraFlightLine = new THREE.Line(
-      pdgviewCameraFlightGeometry,
+  if (!animatorCameraFlightGroup) {
+    animatorCameraFlightGroup = new THREE.Group();
+    animatorCameraFlightGeometry = new THREE.BufferGeometry();
+    animatorCameraFlightLine = new THREE.Line(
+      animatorCameraFlightGeometry,
       new THREE.LineBasicMaterial({
         color: 0x7fe7cb,
         transparent: true,
@@ -3818,11 +3818,11 @@ function updatePdgviewCameraFlightDisplay() {
         depthWrite: false,
       })
     );
-    pdgviewCameraFlightLine.renderOrder = 10;
-    pdgviewCameraFlightGroup.add(pdgviewCameraFlightLine);
-    pdgviewFrameGroup.add(pdgviewCameraFlightGroup);
-    pdgviewCameraWaypointGeometry = new THREE.SphereGeometry(0.085, 18, 18);
-    pdgviewCameraWaypointMaterial = new THREE.MeshBasicMaterial({
+    animatorCameraFlightLine.renderOrder = 10;
+    animatorCameraFlightGroup.add(animatorCameraFlightLine);
+    animatorFrameGroup.add(animatorCameraFlightGroup);
+    animatorCameraWaypointGeometry = new THREE.SphereGeometry(0.085, 18, 18);
+    animatorCameraWaypointMaterial = new THREE.MeshBasicMaterial({
       color: 0x7fe7cb,
       transparent: true,
       opacity: 0.95,
@@ -3831,50 +3831,50 @@ function updatePdgviewCameraFlightDisplay() {
     });
   }
 
-  pdgviewCameraWaypointMeshes.forEach((mesh) => {
-    disposePdgviewMarkerHandle(mesh, "labelSprite");
-    pdgviewCameraFlightGroup.remove(mesh);
+  animatorCameraWaypointMeshes.forEach((mesh) => {
+    disposeAnimatorMarkerHandle(mesh, "labelSprite");
+    animatorCameraFlightGroup.remove(mesh);
   });
-  pdgviewCameraWaypointMeshes = [];
+  animatorCameraWaypointMeshes = [];
 
-  const displayPoints = pdgviewCameraFlightState.waypoints.map((waypoint) =>
-    getPdgviewCameraWaypointDisplayPosition(waypoint)
+  const displayPoints = animatorCameraFlightState.waypoints.map((waypoint) =>
+    getAnimatorCameraWaypointDisplayPosition(waypoint)
   );
   const curvePoints =
     displayPoints.length >= 2
-      ? samplePdgviewCurvePoints(
+      ? sampleAnimatorCurvePoints(
           displayPoints.map((point) => [point.x, point.y, point.z]),
           Math.max(20, displayPoints.length * 18)
         )
       : displayPoints;
-  pdgviewCameraFlightGeometry.setFromPoints(curvePoints.length ? curvePoints : []);
+  animatorCameraFlightGeometry.setFromPoints(curvePoints.length ? curvePoints : []);
 
-  if (displayPoints.length && pdgviewCameraWaypointGeometry && pdgviewCameraWaypointMaterial) {
+  if (displayPoints.length && animatorCameraWaypointGeometry && animatorCameraWaypointMaterial) {
     displayPoints.forEach((point) => {
       const marker = new THREE.Mesh(
-        pdgviewCameraWaypointGeometry,
-        pdgviewCameraWaypointMaterial.clone()
+        animatorCameraWaypointGeometry,
+        animatorCameraWaypointMaterial.clone()
       );
       marker.position.copy(point);
       marker.renderOrder = 12;
-      marker.userData.cameraWaypointIndex = pdgviewCameraWaypointMeshes.length;
-      const labelSprite = createPdgviewCameraWaypointLabelSprite(`🎥${pdgviewCameraWaypointMeshes.length + 1}`);
+      marker.userData.cameraWaypointIndex = animatorCameraWaypointMeshes.length;
+      const labelSprite = createAnimatorCameraWaypointLabelSprite(`🎥${animatorCameraWaypointMeshes.length + 1}`);
       labelSprite.position.set(0, 0, 0);
       marker.userData.labelSprite = labelSprite;
-      const hitProxy = createPdgviewMarkerHitProxy(0.19);
+      const hitProxy = createAnimatorMarkerHitProxy(0.19);
       marker.userData.hitProxy = hitProxy;
       marker.add(hitProxy);
       marker.add(labelSprite);
-      pdgviewCameraFlightGroup.add(marker);
-      pdgviewCameraWaypointMeshes.push(marker);
+      animatorCameraFlightGroup.add(marker);
+      animatorCameraWaypointMeshes.push(marker);
     });
   }
-  updatePdgviewCameraWaypointMaterials(pdgviewSelectedCameraWaypointIndex);
-  applyPdgviewViewportDisplayState();
+  updateAnimatorCameraWaypointMaterials(animatorSelectedCameraWaypointIndex);
+  applyAnimatorViewportDisplayState();
 }
 
-function onPdgviewTimelineClick(event) {
-  const timelineBand = event.target.closest?.(".pdgview-timeline-band") ?? null;
+function onAnimatorTimelineClick(event) {
+  const timelineBand = event.target.closest?.(".animator-timeline-band") ?? null;
   if (!timelineBand) {
     return;
   }
@@ -3959,22 +3959,22 @@ const sceneGraphManifestPath = "content/graph/scene_graph.json";
 const rootScenePath = "content/scenes/architrino_assembly_architecture.json";
 const archieScenePath = "content/scenes/archie/archie.json";
 const textbookTocScenePath = "content/scenes/archie/textbook_toc.json";
-const pdgviewScenePath = PDGVIEW_SCENE_PATH;
-const pdgviewSceneId = "pdgview";
-const pdgviewPreviewSceneId = "pdgview_preview";
-const pdgviewPreviewScenePath = "__pdgview_preview__";
-const pdgviewDocsPath =
+const animatorScenePath = ANIMATOR_SCENE_PATH;
+const animatorSceneId = "animator";
+const animatorPreviewSceneId = "animator_preview";
+const animatorPreviewScenePath = "__animator_preview__";
+const animatorDocsPath =
   "reference/priorities/animator/animator.md";
-const appMode = getPdgviewAppMode(globalThis.window);
-const isStandalonePdgviewApp = isStandalonePdgviewAppMode(appMode);
-const standaloneNavigatorHref = STANDALONE_PDGVIEW_NAVIGATOR_HREF;
+const appMode = getAnimatorAppMode(globalThis.window);
+const isStandaloneAnimatorApp = isStandaloneAnimatorAppMode(appMode);
+const standaloneNavigatorHref = STANDALONE_ANIMATOR_NAVIGATOR_HREF;
 
-function isPdgviewOverlaySceneId(sceneId = "") {
-  return sceneId === pdgviewSceneId || sceneId === pdgviewPreviewSceneId;
+function isAnimatorOverlaySceneId(sceneId = "") {
+  return sceneId === animatorSceneId || sceneId === animatorPreviewSceneId;
 }
 
-function shouldHideLevelForPdgviewOverlayScene(sceneId = "") {
-  return sceneId === pdgviewSceneId;
+function shouldHideLevelForAnimatorOverlayScene(sceneId = "") {
+  return sceneId === animatorSceneId;
 }
 const markdownDocBadgeCharacterThreshold = 512;
 const markdownOpenCharacterThreshold = 512;
@@ -4096,16 +4096,16 @@ const markdownSceneRegistry = createMarkdownSceneRegistry({
   resolveMarkdownColumnsForPath,
 });
 
-const pdgviewFrameState = {
+const animatorFrameState = {
   rotation: new THREE.Euler(0, 0, 0, "YXZ"),
   scale: 1,
 };
-let pdgviewFrameEditMode = false;
-const pdgviewCameraState = {
+let animatorFrameEditMode = false;
+const animatorCameraState = {
   position: new THREE.Vector3(0, 2.6, 6.5),
   speed: 1,
 };
-const pdgviewCameraOrbitState = {
+const animatorCameraOrbitState = {
   target: new THREE.Vector3(),
   minDistance: 0.3,
   maxDistance: 2000,
@@ -4113,15 +4113,15 @@ const pdgviewCameraOrbitState = {
   theta: 0,
   phi: Math.PI / 2,
 };
-const pdgviewCameraFlightState = {
+const animatorCameraFlightState = {
   waypoints: [],
   poiMode: "origin",
   preview: false,
   savedPosition: new THREE.Vector3(),
   savedTarget: new THREE.Vector3(),
 };
-let pdgviewSelectedCameraWaypointIndex = null;
-const pdgviewDragState = {
+let animatorSelectedCameraWaypointIndex = null;
+const animatorDragState = {
   mode: null,
   button: 0,
   pointIndex: null,
@@ -4152,453 +4152,453 @@ const pdgviewDragState = {
   startOrbitPhi: 0,
   plane: new THREE.Plane(),
 };
-let pdgviewRenderer = null;
-let pdgviewScene = null;
-let pdgviewCamera = null;
-let pdgviewFrameGroup = null;
-let pdgviewViewportGroup = null;
-let pdgviewPathLine = null;
-let pdgviewPathGeometry = null;
-let pdgviewBackgroundPathLines = [];
-let pdgviewBackgroundPathMarkers = [];
-let pdgviewPointMeshes = [];
-let pdgviewPointGeometry = null;
-let pdgviewPointMaterial = null;
-let pdgviewPointMaterialActive = null;
-let pdgviewRaycaster = null;
-let pdgviewNeedsResize = false;
-let pdgviewCameraFlightGroup = null;
-let pdgviewCameraFlightLine = null;
-let pdgviewCameraFlightGeometry = null;
-let pdgviewCameraWaypointMeshes = [];
-let pdgviewCameraWaypointGeometry = null;
-let pdgviewCameraWaypointMaterial = null;
-let pdgviewAssemblyMeshes = [];
-let pdgviewMemberHandleMeshes = [];
-let pdgviewPersonalityHandleMeshes = [];
-let pdgviewSubassemblyHandleMeshes = [];
-let pdgviewAssemblyWorldCenters = new Map();
-let pdgviewShellMeshes = [];
-let pdgviewEnvelopeMeshes = [];
-let pdgviewOrbitTraceLines = [];
-let pdgviewHistoryTraceLines = [];
-let pdgviewTransferLines = [];
-let pdgviewAxisGuideLines = [];
-let pdgviewOrbitParticleMeshes = [];
-let pdgviewMemberLabelSprites = [];
-let pdgviewGraphicOverlayGroups = [];
-let pdgviewGraphicOverlayHandleMeshes = [];
-let pdgviewViewportMediaOverlayElements = new Map();
-let pdgviewDocumentCameraPathLine = null;
-let pdgviewDocumentCameraWaypointMeshes = [];
-let pdgviewDocumentCameraShotMesh = null;
-let pdgviewDocumentCameraTargetMesh = null;
-let pdgviewDocumentCameraLookLine = null;
-let pdgviewCurrentViewportFramingState = null;
-const pdgviewPlaybackTimelineRuntime = createPdgviewPlaybackTimelineRuntime({
+let animatorRenderer = null;
+let animatorScene = null;
+let animatorCamera = null;
+let animatorFrameGroup = null;
+let animatorViewportGroup = null;
+let animatorPathLine = null;
+let animatorPathGeometry = null;
+let animatorBackgroundPathLines = [];
+let animatorBackgroundPathMarkers = [];
+let animatorPointMeshes = [];
+let animatorPointGeometry = null;
+let animatorPointMaterial = null;
+let animatorPointMaterialActive = null;
+let animatorRaycaster = null;
+let animatorNeedsResize = false;
+let animatorCameraFlightGroup = null;
+let animatorCameraFlightLine = null;
+let animatorCameraFlightGeometry = null;
+let animatorCameraWaypointMeshes = [];
+let animatorCameraWaypointGeometry = null;
+let animatorCameraWaypointMaterial = null;
+let animatorAssemblyMeshes = [];
+let animatorMemberHandleMeshes = [];
+let animatorPersonalityHandleMeshes = [];
+let animatorSubassemblyHandleMeshes = [];
+let animatorAssemblyWorldCenters = new Map();
+let animatorShellMeshes = [];
+let animatorEnvelopeMeshes = [];
+let animatorOrbitTraceLines = [];
+let animatorHistoryTraceLines = [];
+let animatorTransferLines = [];
+let animatorAxisGuideLines = [];
+let animatorOrbitParticleMeshes = [];
+let animatorMemberLabelSprites = [];
+let animatorGraphicOverlayGroups = [];
+let animatorGraphicOverlayHandleMeshes = [];
+let animatorViewportMediaOverlayElements = new Map();
+let animatorDocumentCameraPathLine = null;
+let animatorDocumentCameraWaypointMeshes = [];
+let animatorDocumentCameraShotMesh = null;
+let animatorDocumentCameraTargetMesh = null;
+let animatorDocumentCameraLookLine = null;
+let animatorCurrentViewportFramingState = null;
+const animatorPlaybackTimelineRuntime = createAnimatorPlaybackTimelineRuntime({
   THREE,
   documentLike: document,
   clampFn: clamp,
-  formatTimeLabel: formatPdgviewTimeLabel,
-  getSceneTimeWindow: getPdgviewSceneTimeWindow,
-  getTimelineFraction: getPdgviewTimelineFraction,
-  getGraphicEnd: getPdgviewGraphicEnd,
-  getGraphicOverlayLabel: getPdgviewGraphicOverlayLabel,
-  getMediaOverlayLabel: getPdgviewMediaOverlayLabel,
-  getGraphicTimelineOverlays: (...args) => getPdgviewGraphicTimelineOverlays(...args),
-  getViewportMediaTimelineOverlays: (...args) => getPdgviewViewportMediaTimelineOverlays(...args),
-  setTransportButtonIcon: (...args) => setPdgviewTransportButtonIcon(...args),
-  updateAnimatedViewport: (...args) => updatePdgviewAnimatedViewport(...args),
-  applyViewportDisplayState: () => applyPdgviewViewportDisplayState(),
-  getCurrentDocument: () => pdgviewCurrentDocument,
-  getPlaybackState: () => pdgviewPlaybackState,
-  getEditorPreviewState: () => pdgviewEditorPreviewState,
-  getViewportModeState: () => pdgviewViewportModeState,
-  clearTimelineLayer: (...args) => clearPdgviewTimelineLayer(...args),
-  createTimelineBand: (...args) => createPdgviewTimelineBand(...args),
+  formatTimeLabel: formatAnimatorTimeLabel,
+  getSceneTimeWindow: getAnimatorSceneTimeWindow,
+  getTimelineFraction: getAnimatorTimelineFraction,
+  getGraphicEnd: getAnimatorGraphicEnd,
+  getGraphicOverlayLabel: getAnimatorGraphicOverlayLabel,
+  getMediaOverlayLabel: getAnimatorMediaOverlayLabel,
+  getGraphicTimelineOverlays: (...args) => getAnimatorGraphicTimelineOverlays(...args),
+  getViewportMediaTimelineOverlays: (...args) => getAnimatorViewportMediaTimelineOverlays(...args),
+  setTransportButtonIcon: (...args) => setAnimatorTransportButtonIcon(...args),
+  updateAnimatedViewport: (...args) => updateAnimatorAnimatedViewport(...args),
+  applyViewportDisplayState: () => applyAnimatorViewportDisplayState(),
+  getCurrentDocument: () => animatorCurrentDocument,
+  getPlaybackState: () => animatorPlaybackState,
+  getEditorPreviewState: () => animatorEditorPreviewState,
+  getViewportModeState: () => animatorViewportModeState,
+  clearTimelineLayer: (...args) => clearAnimatorTimelineLayer(...args),
+  createTimelineBand: (...args) => createAnimatorTimelineBand(...args),
   dom: {
-    viewDesignButton: pdgviewViewDesignButton,
-    viewAuthoredButton: pdgviewViewAuthoredButton,
-    markerJumpSelect: pdgviewMarkerJumpSelect,
-    markerPrevButton: pdgviewMarkerPrevButton,
-    markerNextButton: pdgviewMarkerNextButton,
-    timelineTrack: pdgviewTimelineTrack,
-    timelineWarps: pdgviewTimelineWarps,
-    timelinePauses: pdgviewTimelinePauses,
-    timelineMarkers: pdgviewTimelineMarkers,
-    timelinePlayhead: pdgviewTimelinePlayhead,
-    playheadScrubInput: pdgviewPlayheadScrubInput,
-    timelineSummary: pdgviewTimelineSummary,
-    playToggleButton: pdgviewPlayToggleButton,
+    viewDesignButton: animatorViewDesignButton,
+    viewAuthoredButton: animatorViewAuthoredButton,
+    markerJumpSelect: animatorMarkerJumpSelect,
+    markerPrevButton: animatorMarkerPrevButton,
+    markerNextButton: animatorMarkerNextButton,
+    timelineTrack: animatorTimelineTrack,
+    timelineWarps: animatorTimelineWarps,
+    timelinePauses: animatorTimelinePauses,
+    timelineMarkers: animatorTimelineMarkers,
+    timelinePlayhead: animatorTimelinePlayhead,
+    playheadScrubInput: animatorPlayheadScrubInput,
+    timelineSummary: animatorTimelineSummary,
+    playToggleButton: animatorPlayToggleButton,
   },
 });
 const {
-  renderPdgviewTimeline,
-  updatePdgviewTimelinePlayhead,
-  clearPdgviewEditorPreviewState,
-  updatePdgviewViewportModeButtons,
-  setPdgviewViewportCameraSource,
-  setPdgviewPlaybackPlayhead,
-  startPdgviewPlayback,
-  togglePdgviewPlayback,
-  restartPdgviewPlayback,
-  jumpToPdgviewMarker,
-  jumpPdgviewMarkerByOffset,
-  scrubPdgviewPlayback,
-  updatePdgviewPlaybackState,
-  syncPdgviewMarkerNavigation,
-  getPdgviewSortedMarkers,
-} = pdgviewPlaybackTimelineRuntime;
-const pdgviewViewportRenderRuntime = createPdgviewViewportRenderRuntime({
+  renderAnimatorTimeline,
+  updateAnimatorTimelinePlayhead,
+  clearAnimatorEditorPreviewState,
+  updateAnimatorViewportModeButtons,
+  setAnimatorViewportCameraSource,
+  setAnimatorPlaybackPlayhead,
+  startAnimatorPlayback,
+  toggleAnimatorPlayback,
+  restartAnimatorPlayback,
+  jumpToAnimatorMarker,
+  jumpAnimatorMarkerByOffset,
+  scrubAnimatorPlayback,
+  updateAnimatorPlaybackState,
+  syncAnimatorMarkerNavigation,
+  getAnimatorSortedMarkers,
+} = animatorPlaybackTimelineRuntime;
+const animatorViewportRenderRuntime = createAnimatorViewportRenderRuntime({
   THREE,
   clampFn: clamp,
   readNumberInput,
   formatScaleLabel,
-  getEffectiveFrameScale: () => getPdgviewEffectiveFrameScale(),
-  getOrbitTargetWorld: () => getPdgviewOrbitTargetWorld(),
-  updatePathMarkerScales: () => updatePdgviewPathMarkerScales(),
-  updatePathPointInfoPill: () => updatePdgviewPathPointInfoPill(),
-  hidePathPointInfoPill: () => hidePdgviewPathPointInfoPill(),
-  updateTimelinePlayhead: (...args) => updatePdgviewTimelinePlayhead(...args),
-  updateAnimatedViewport: (...args) => updatePdgviewAnimatedViewport(...args),
-  updatePlaybackState: (...args) => updatePdgviewPlaybackState(...args),
-  getRenderer: () => pdgviewRenderer,
-  getScene: () => pdgviewScene,
-  getCanvas: () => pdgviewCanvas,
-  getCamera: () => pdgviewCamera,
-  getOverlay: () => pdgviewOverlay,
-  getFrameGroup: () => pdgviewFrameGroup,
-  getFrameState: () => pdgviewFrameState,
-  getCameraState: () => pdgviewCameraState,
-  getCameraOrbitState: () => pdgviewCameraOrbitState,
-  getCameraFlightState: () => pdgviewCameraFlightState,
-  getCurrentDocument: () => pdgviewCurrentDocument,
-  getNeedsResize: () => pdgviewNeedsResize,
+  getEffectiveFrameScale: () => getAnimatorEffectiveFrameScale(),
+  getOrbitTargetWorld: () => getAnimatorOrbitTargetWorld(),
+  updatePathMarkerScales: () => updateAnimatorPathMarkerScales(),
+  updatePathPointInfoPill: () => updateAnimatorPathPointInfoPill(),
+  hidePathPointInfoPill: () => hideAnimatorPathPointInfoPill(),
+  updateTimelinePlayhead: (...args) => updateAnimatorTimelinePlayhead(...args),
+  updateAnimatedViewport: (...args) => updateAnimatorAnimatedViewport(...args),
+  updatePlaybackState: (...args) => updateAnimatorPlaybackState(...args),
+  getRenderer: () => animatorRenderer,
+  getScene: () => animatorScene,
+  getCanvas: () => animatorCanvas,
+  getCamera: () => animatorCamera,
+  getOverlay: () => animatorOverlay,
+  getFrameGroup: () => animatorFrameGroup,
+  getFrameState: () => animatorFrameState,
+  getCameraState: () => animatorCameraState,
+  getCameraOrbitState: () => animatorCameraOrbitState,
+  getCameraFlightState: () => animatorCameraFlightState,
+  getCurrentDocument: () => animatorCurrentDocument,
+  getNeedsResize: () => animatorNeedsResize,
   setNeedsResize: (value) => {
-    pdgviewNeedsResize = value;
+    animatorNeedsResize = value;
   },
   dom: {
-    frameScaleInput: pdgviewFrameScaleInput,
-    frameScaleLabel: pdgviewFrameScaleLabel,
-    cameraSpeedInput: pdgviewCameraSpeedInput,
-    cameraSpeedLabel: pdgviewCameraSpeedLabel,
+    frameScaleInput: animatorFrameScaleInput,
+    frameScaleLabel: animatorFrameScaleLabel,
+    cameraSpeedInput: animatorCameraSpeedInput,
+    cameraSpeedLabel: animatorCameraSpeedLabel,
   },
 });
 const {
-  resizePdgviewCanvas,
-  updatePdgviewFrame,
-  applyPdgviewFrameScaleInput,
-  updatePdgviewCamera,
-  applyPdgviewCameraSpeedInput,
-  renderPdgviewCanvas,
-} = pdgviewViewportRenderRuntime;
-const pdgviewPointerInteractionRuntime = createPdgviewPointerInteractionRuntime({
+  resizeAnimatorCanvas,
+  updateAnimatorFrame,
+  applyAnimatorFrameScaleInput,
+  updateAnimatorCamera,
+  applyAnimatorCameraSpeedInput,
+  renderAnimatorCanvas,
+} = animatorViewportRenderRuntime;
+const animatorPointerInteractionRuntime = createAnimatorPointerInteractionRuntime({
   THREE,
   clampFn: clamp,
   vectorFromTriplet,
-  normalizeAssemblyPathPoints: normalizePdgviewAssemblyPathPoints,
-  normalizeMemberPosition: normalizePdgviewMemberPosition,
-  isBareArchitrinoAssembly: isPdgviewBareArchitrinoAssembly,
-  getAssemblySubassemblyIndex: getPdgviewAssemblySubassemblyIndex,
-  setAssemblyMemberPosition: setPdgviewAssemblyMemberPosition,
-  setSubassemblyPosition: setPdgviewSubassemblyPosition,
-  resolveGraphicTargetPosition: (...args) => resolvePdgviewGraphicTargetPosition(...args),
-  getCanvas: () => pdgviewCanvas,
-  getCamera: () => pdgviewCamera,
-  getRaycaster: () => pdgviewRaycaster,
-  getFrameGroup: () => pdgviewFrameGroup,
-  getDragState: () => pdgviewDragState,
-  getAssemblyWorldCenters: () => pdgviewAssemblyWorldCenters,
-  getCurrentDocument: () => pdgviewCurrentDocument,
-  getPathState: () => pdgviewPathState,
-  getFrameEditMode: () => pdgviewFrameEditMode,
-  getFrameState: () => pdgviewFrameState,
-  getCameraState: () => pdgviewCameraState,
-  getCameraOrbitState: () => pdgviewCameraOrbitState,
-  getCameraFlightState: () => pdgviewCameraFlightState,
-  getSelectedCameraWaypointIndex: () => pdgviewSelectedCameraWaypointIndex,
+  normalizeAssemblyPathPoints: normalizeAnimatorAssemblyPathPoints,
+  normalizeMemberPosition: normalizeAnimatorMemberPosition,
+  isBareArchitrinoAssembly: isAnimatorBareArchitrinoAssembly,
+  getAssemblySubassemblyIndex: getAnimatorAssemblySubassemblyIndex,
+  setAssemblyMemberPosition: setAnimatorAssemblyMemberPosition,
+  setSubassemblyPosition: setAnimatorSubassemblyPosition,
+  resolveGraphicTargetPosition: (...args) => resolveAnimatorGraphicTargetPosition(...args),
+  getCanvas: () => animatorCanvas,
+  getCamera: () => animatorCamera,
+  getRaycaster: () => animatorRaycaster,
+  getFrameGroup: () => animatorFrameGroup,
+  getDragState: () => animatorDragState,
+  getAssemblyWorldCenters: () => animatorAssemblyWorldCenters,
+  getCurrentDocument: () => animatorCurrentDocument,
+  getPathState: () => animatorPathState,
+  getFrameEditMode: () => animatorFrameEditMode,
+  getFrameState: () => animatorFrameState,
+  getCameraState: () => animatorCameraState,
+  getCameraOrbitState: () => animatorCameraOrbitState,
+  getCameraFlightState: () => animatorCameraFlightState,
+  getSelectedCameraWaypointIndex: () => animatorSelectedCameraWaypointIndex,
   setSelectedCameraWaypointIndex: (value) => {
-    pdgviewSelectedCameraWaypointIndex = value;
+    animatorSelectedCameraWaypointIndex = value;
   },
-  getAssemblyDraftsState: getPdgviewAssemblyDraftsState,
-  getAssemblyDraftById: getPdgviewAssemblyDraftById,
-  getAssemblyDraftIndexById: getPdgviewAssemblyDraftIndexById,
-  updateAssemblyDraftByIdState: updatePdgviewAssemblyDraftByIdState,
-  getGraphicOverlayDraftById: getPdgviewGraphicOverlayDraftById,
-  updateGraphicOverlayDraftByIdState: updatePdgviewGraphicOverlayDraftByIdState,
-  getSelectedAssemblyIdState: getPdgviewSelectedAssemblyIdState,
-  getSelectedPointIndexState: getPdgviewSelectedPointIndexState,
-  setSelectedPointIndexState: setPdgviewSelectedPointIndexState,
-  mutatePathStateState: mutatePdgviewPathStateState,
-  updatePathPointAtState: updatePdgviewPathPointAtState,
-  rebuildControlPoints: () => rebuildPdgviewControlPoints(),
-  updatePathGeometry: () => updatePdgviewPathGeometry(),
-  updatePointMaterials: (...args) => updatePdgviewPointMaterials(...args),
-  updateCameraWaypointMaterials: (...args) => updatePdgviewCameraWaypointMaterials(...args),
-  updateCameraFlightDisplay: () => updatePdgviewCameraFlightDisplay(),
-  stopCameraFlightPreview: () => stopPdgviewCameraFlightPreview(),
-  updateCamera: () => updatePdgviewCamera(),
-  updateFrame: () => updatePdgviewFrame(),
-  renderJsonPreview: () => renderPdgviewJsonPreview(),
-  renderAssemblyEditor: () => renderPdgviewAssemblyEditor(),
-  setSelectedAssembly: (...args) => setPdgviewSelectedAssembly(...args),
-  clearSelectedPoint: (...args) => clearPdgviewSelectedPoint(...args),
+  getAssemblyDraftsState: getAnimatorAssemblyDraftsState,
+  getAssemblyDraftById: getAnimatorAssemblyDraftById,
+  getAssemblyDraftIndexById: getAnimatorAssemblyDraftIndexById,
+  updateAssemblyDraftByIdState: updateAnimatorAssemblyDraftByIdState,
+  getGraphicOverlayDraftById: getAnimatorGraphicOverlayDraftById,
+  updateGraphicOverlayDraftByIdState: updateAnimatorGraphicOverlayDraftByIdState,
+  getSelectedAssemblyIdState: getAnimatorSelectedAssemblyIdState,
+  getSelectedPointIndexState: getAnimatorSelectedPointIndexState,
+  setSelectedPointIndexState: setAnimatorSelectedPointIndexState,
+  mutatePathStateState: mutateAnimatorPathStateState,
+  updatePathPointAtState: updateAnimatorPathPointAtState,
+  rebuildControlPoints: () => rebuildAnimatorControlPoints(),
+  updatePathGeometry: () => updateAnimatorPathGeometry(),
+  updatePointMaterials: (...args) => updateAnimatorPointMaterials(...args),
+  updateCameraWaypointMaterials: (...args) => updateAnimatorCameraWaypointMaterials(...args),
+  updateCameraFlightDisplay: () => updateAnimatorCameraFlightDisplay(),
+  stopCameraFlightPreview: () => stopAnimatorCameraFlightPreview(),
+  updateCamera: () => updateAnimatorCamera(),
+  updateFrame: () => updateAnimatorFrame(),
+  renderJsonPreview: () => renderAnimatorJsonPreview(),
+  renderAssemblyEditor: () => renderAnimatorAssemblyEditor(),
+  setSelectedAssembly: (...args) => setAnimatorSelectedAssembly(...args),
+  clearSelectedPoint: (...args) => clearAnimatorSelectedPoint(...args),
   hideHoverTooltip,
-  clearAssemblyHoverTooltipState: () => clearPdgviewAssemblyHoverTooltipState(),
-  updateAssemblyHoverTooltip: (...args) => updatePdgviewAssemblyHoverTooltip(...args),
-  closeAssemblyMenu: () => closePdgviewAssemblyMenu(),
-  openAssemblyPropertiesMenuAt: (...args) => openPdgviewAssemblyPropertiesMenuAt(...args),
-  openPersonalitySlotMenuAt: (...args) => openPdgviewPersonalitySlotMenuAt(...args),
-  openTimelineMenuAt: (...args) => openPdgviewTimelineMenuAt(...args),
-  openPathPointMenuAt: (...args) => openPdgviewPathPointMenuAt(...args),
-  openMemberMenuAt: (...args) => openPdgviewMemberMenuAt(...args),
-  openSubassemblyMenuAt: (...args) => openPdgviewSubassemblyMenuAt(...args),
-  openAssemblyTemplateMenuAt: (...args) => openPdgviewAssemblyTemplateMenuAt(...args),
-  openTimelineSummaryMenuAt: (...args) => openPdgviewTimelineSummaryMenuAt(...args),
-  getTimelineTimeAtClientX: (...args) => getPdgviewTimelineTimeAtClientX(...args),
-  getTimelineTrack: () => pdgviewTimelineTrack,
-  resolveIndexedHit: (...args) => resolvePdgviewIndexedHit(...args),
-  getPointerNdc: (...args) => getPdgviewPointerNdc(...args),
-  resolveAssemblyHit: (...args) => resolvePdgviewAssemblyHit(...args),
-  resolveMemberHandleHit: (...args) => resolvePdgviewMemberHandleHit(...args),
-  resolveSubassemblyHandleHit: (...args) => resolvePdgviewSubassemblyHandleHit(...args),
-  resolveGraphicOverlayHit: (...args) => resolvePdgviewGraphicOverlayHit(...args),
-  resolvePersonalityHandleHit: (...args) => resolvePdgviewPersonalityHandleHit(...args),
-  resolveAssemblyIdHit: (...args) => resolvePdgviewAssemblyIdHit(...args),
-  findShellSurfaceHit: (...args) => findPdgviewShellSurfaceHit(...args),
-  shouldPreferCenterMarker: (...args) => shouldPreferPdgviewCenterMarker(...args),
-  getAssemblyMeshes: () => pdgviewAssemblyMeshes,
-  getPointMeshes: () => pdgviewPointMeshes,
-  getMemberHandleMeshes: () => pdgviewMemberHandleMeshes,
-  getPersonalityHandleMeshes: () => pdgviewPersonalityHandleMeshes,
-  getSubassemblyHandleMeshes: () => pdgviewSubassemblyHandleMeshes,
-  getGraphicOverlayHandleMeshes: () => pdgviewGraphicOverlayHandleMeshes,
-  getShellMeshes: () => pdgviewShellMeshes,
-  getOrbitParticleMeshes: () => pdgviewOrbitParticleMeshes,
-  getCameraWaypointMeshes: () => pdgviewCameraWaypointMeshes,
+  clearAssemblyHoverTooltipState: () => clearAnimatorAssemblyHoverTooltipState(),
+  updateAssemblyHoverTooltip: (...args) => updateAnimatorAssemblyHoverTooltip(...args),
+  closeAssemblyMenu: () => closeAnimatorAssemblyMenu(),
+  openAssemblyPropertiesMenuAt: (...args) => openAnimatorAssemblyPropertiesMenuAt(...args),
+  openPersonalitySlotMenuAt: (...args) => openAnimatorPersonalitySlotMenuAt(...args),
+  openTimelineMenuAt: (...args) => openAnimatorTimelineMenuAt(...args),
+  openPathPointMenuAt: (...args) => openAnimatorPathPointMenuAt(...args),
+  openMemberMenuAt: (...args) => openAnimatorMemberMenuAt(...args),
+  openSubassemblyMenuAt: (...args) => openAnimatorSubassemblyMenuAt(...args),
+  openAssemblyTemplateMenuAt: (...args) => openAnimatorAssemblyTemplateMenuAt(...args),
+  openTimelineSummaryMenuAt: (...args) => openAnimatorTimelineSummaryMenuAt(...args),
+  getTimelineTimeAtClientX: (...args) => getAnimatorTimelineTimeAtClientX(...args),
+  getTimelineTrack: () => animatorTimelineTrack,
+  resolveIndexedHit: (...args) => resolveAnimatorIndexedHit(...args),
+  getPointerNdc: (...args) => getAnimatorPointerNdc(...args),
+  resolveAssemblyHit: (...args) => resolveAnimatorAssemblyHit(...args),
+  resolveMemberHandleHit: (...args) => resolveAnimatorMemberHandleHit(...args),
+  resolveSubassemblyHandleHit: (...args) => resolveAnimatorSubassemblyHandleHit(...args),
+  resolveGraphicOverlayHit: (...args) => resolveAnimatorGraphicOverlayHit(...args),
+  resolvePersonalityHandleHit: (...args) => resolveAnimatorPersonalityHandleHit(...args),
+  resolveAssemblyIdHit: (...args) => resolveAnimatorAssemblyIdHit(...args),
+  findShellSurfaceHit: (...args) => findAnimatorShellSurfaceHit(...args),
+  shouldPreferCenterMarker: (...args) => shouldPreferAnimatorCenterMarker(...args),
+  getAssemblyMeshes: () => animatorAssemblyMeshes,
+  getPointMeshes: () => animatorPointMeshes,
+  getMemberHandleMeshes: () => animatorMemberHandleMeshes,
+  getPersonalityHandleMeshes: () => animatorPersonalityHandleMeshes,
+  getSubassemblyHandleMeshes: () => animatorSubassemblyHandleMeshes,
+  getGraphicOverlayHandleMeshes: () => animatorGraphicOverlayHandleMeshes,
+  getShellMeshes: () => animatorShellMeshes,
+  getOrbitParticleMeshes: () => animatorOrbitParticleMeshes,
+  getCameraWaypointMeshes: () => animatorCameraWaypointMeshes,
 });
 const {
-  onPdgviewPointerDown,
-  onPdgviewContextMenu,
-  onPdgviewTimelineContextMenu,
-  onPdgviewTimelineSummaryContextMenu,
-  onPdgviewPointerMove,
-  onPdgviewPointerUp,
-  onPdgviewWheel,
-} = pdgviewPointerInteractionRuntime;
-const pdgviewCanvasBootstrapRuntime = createPdgviewCanvasBootstrapRuntime({
+  onAnimatorPointerDown,
+  onAnimatorContextMenu,
+  onAnimatorTimelineContextMenu,
+  onAnimatorTimelineSummaryContextMenu,
+  onAnimatorPointerMove,
+  onAnimatorPointerUp,
+  onAnimatorWheel,
+} = animatorPointerInteractionRuntime;
+const animatorCanvasBootstrapRuntime = createAnimatorCanvasBootstrapRuntime({
   THREE,
   windowLike: globalThis.window,
-  wireCanvasUiListeners: wirePdgviewCanvasUiListeners,
+  wireCanvasUiListeners: wireAnimatorCanvasUiListeners,
   dom: {
-    pdgviewCanvas,
-    sceneButton: pdgviewSceneButton,
-    saveButton: pdgviewSaveButton,
-    cameraPoiSelect: pdgviewCameraPoiSelect,
-    assemblyAddButton: pdgviewAssemblyAddButton,
-    hudViewportToggleBindings: pdgviewHudViewportToggleBindings,
-    timelineTrack: pdgviewTimelineTrack,
-    timelineSummary: pdgviewTimelineSummary,
-    assemblyMenu: pdgviewAssemblyMenu,
-    overlay: pdgviewOverlay,
-    playToggleButton: pdgviewPlayToggleButton,
-    playResetButton: pdgviewPlayResetButton,
-    sceneIdInput: pdgviewSceneIdInput,
+    animatorCanvas,
+    sceneButton: animatorSceneButton,
+    saveButton: animatorSaveButton,
+    cameraPoiSelect: animatorCameraPoiSelect,
+    assemblyAddButton: animatorAssemblyAddButton,
+    hudViewportToggleBindings: animatorHudViewportToggleBindings,
+    timelineTrack: animatorTimelineTrack,
+    timelineSummary: animatorTimelineSummary,
+    assemblyMenu: animatorAssemblyMenu,
+    overlay: animatorOverlay,
+    playToggleButton: animatorPlayToggleButton,
+    playResetButton: animatorPlayResetButton,
+    sceneIdInput: animatorSceneIdInput,
   },
-  getRenderer: () => pdgviewRenderer,
+  getRenderer: () => animatorRenderer,
   setRenderer: (value) => {
-    pdgviewRenderer = value;
+    animatorRenderer = value;
   },
   setScene: (value) => {
-    pdgviewScene = value;
+    animatorScene = value;
   },
   setCamera: (value) => {
-    pdgviewCamera = value;
+    animatorCamera = value;
   },
   setFrameGroup: (value) => {
-    pdgviewFrameGroup = value;
+    animatorFrameGroup = value;
   },
   setViewportGroup: (value) => {
-    pdgviewViewportGroup = value;
+    animatorViewportGroup = value;
   },
   setPathGeometry: (value) => {
-    pdgviewPathGeometry = value;
+    animatorPathGeometry = value;
   },
   setPathLine: (value) => {
-    pdgviewPathLine = value;
+    animatorPathLine = value;
   },
   setPointGeometry: (value) => {
-    pdgviewPointGeometry = value;
+    animatorPointGeometry = value;
   },
   setPointMaterial: (value) => {
-    pdgviewPointMaterial = value;
+    animatorPointMaterial = value;
   },
   setPointMaterialActive: (value) => {
-    pdgviewPointMaterialActive = value;
+    animatorPointMaterialActive = value;
   },
   setRaycaster: (value) => {
-    pdgviewRaycaster = value;
+    animatorRaycaster = value;
   },
-  getCameraFlightState: () => pdgviewCameraFlightState,
-  getAssemblyDraftsState: getPdgviewAssemblyDraftsState,
+  getCameraFlightState: () => animatorCameraFlightState,
+  getAssemblyDraftsState: getAnimatorAssemblyDraftsState,
   operations: {
-    setFrameDefaults: () => setPdgviewFrameDefaults(),
-    setCameraDefaults: () => setPdgviewCameraDefaults(),
-    setTransportButtonIcon: (...args) => setPdgviewTransportButtonIcon(...args),
-    getMenuAnchorClientPosition: (...args) => getPdgviewMenuAnchorClientPosition(...args),
-    openSceneMenuAt: (...args) => openPdgviewSceneMenuAt(...args),
-    openLibraryMenuAt: (...args) => openPdgviewLibraryMenuAt(...args),
-    updateCameraPoiStatus: () => updatePdgviewCameraPoiStatus(),
-    syncCameraRadiusInput: () => syncPdgviewCameraRadiusInput(),
-    ensureAssemblyDrafts: () => ensurePdgviewAssemblyDrafts(),
-    appendAssemblyDraftState: (...args) => appendPdgviewAssemblyDraftState(...args),
-    createDefaultAssemblyDraft: (...args) => createDefaultPdgviewAssemblyDraft(...args),
-    renderAssemblyEditor: () => renderPdgviewAssemblyEditor(),
-    renderJsonPreview: () => renderPdgviewJsonPreview(),
-    toggleViewportDisplayFlag: (...args) => togglePdgviewViewportDisplayFlag(...args),
-    applyViewportDisplayState: () => applyPdgviewViewportDisplayState(),
-    onPointerDown: (...args) => onPdgviewPointerDown(...args),
-    onPointerMove: (...args) => onPdgviewPointerMove(...args),
-    onPointerUp: (...args) => onPdgviewPointerUp(...args),
-    onWheel: (...args) => onPdgviewWheel(...args),
-    onContextMenu: (...args) => onPdgviewContextMenu(...args),
-    onTimelineContextMenu: (...args) => onPdgviewTimelineContextMenu(...args),
-    onTimelineClick: (...args) => onPdgviewTimelineClick(...args),
-    onTimelineSummaryContextMenu: (...args) => onPdgviewTimelineSummaryContextMenu(...args),
-    closeAssemblyMenu: () => closePdgviewAssemblyMenu(),
-    openTimelineSummaryMenuAt: (...args) => openPdgviewTimelineSummaryMenuAt(...args),
-    addBuiltInAssembly: (...args) => addBuiltInPdgviewAssembly(...args),
-    loadPathStateFromSelectedAssembly: () => loadPdgviewPathStateFromSelectedAssembly(),
-    refreshLibraryUi: (...args) => refreshPdgviewLibraryUi(...args),
-    updateCameraFlightDisplay: () => updatePdgviewCameraFlightDisplay(),
-    updateWaypointCount: () => updatePdgviewWaypointCount(),
-    updateFrame: () => updatePdgviewFrame(),
-    updateCamera: () => updatePdgviewCamera(),
-    resizeCanvas: () => resizePdgviewCanvas(),
+    setFrameDefaults: () => setAnimatorFrameDefaults(),
+    setCameraDefaults: () => setAnimatorCameraDefaults(),
+    setTransportButtonIcon: (...args) => setAnimatorTransportButtonIcon(...args),
+    getMenuAnchorClientPosition: (...args) => getAnimatorMenuAnchorClientPosition(...args),
+    openSceneMenuAt: (...args) => openAnimatorSceneMenuAt(...args),
+    openLibraryMenuAt: (...args) => openAnimatorLibraryMenuAt(...args),
+    updateCameraPoiStatus: () => updateAnimatorCameraPoiStatus(),
+    syncCameraRadiusInput: () => syncAnimatorCameraRadiusInput(),
+    ensureAssemblyDrafts: () => ensureAnimatorAssemblyDrafts(),
+    appendAssemblyDraftState: (...args) => appendAnimatorAssemblyDraftState(...args),
+    createDefaultAssemblyDraft: (...args) => createDefaultAnimatorAssemblyDraft(...args),
+    renderAssemblyEditor: () => renderAnimatorAssemblyEditor(),
+    renderJsonPreview: () => renderAnimatorJsonPreview(),
+    toggleViewportDisplayFlag: (...args) => toggleAnimatorViewportDisplayFlag(...args),
+    applyViewportDisplayState: () => applyAnimatorViewportDisplayState(),
+    onPointerDown: (...args) => onAnimatorPointerDown(...args),
+    onPointerMove: (...args) => onAnimatorPointerMove(...args),
+    onPointerUp: (...args) => onAnimatorPointerUp(...args),
+    onWheel: (...args) => onAnimatorWheel(...args),
+    onContextMenu: (...args) => onAnimatorContextMenu(...args),
+    onTimelineContextMenu: (...args) => onAnimatorTimelineContextMenu(...args),
+    onTimelineClick: (...args) => onAnimatorTimelineClick(...args),
+    onTimelineSummaryContextMenu: (...args) => onAnimatorTimelineSummaryContextMenu(...args),
+    closeAssemblyMenu: () => closeAnimatorAssemblyMenu(),
+    openTimelineSummaryMenuAt: (...args) => openAnimatorTimelineSummaryMenuAt(...args),
+    addBuiltInAssembly: (...args) => addBuiltInAnimatorAssembly(...args),
+    loadPathStateFromSelectedAssembly: () => loadAnimatorPathStateFromSelectedAssembly(),
+    refreshLibraryUi: (...args) => refreshAnimatorLibraryUi(...args),
+    updateCameraFlightDisplay: () => updateAnimatorCameraFlightDisplay(),
+    updateWaypointCount: () => updateAnimatorWaypointCount(),
+    updateFrame: () => updateAnimatorFrame(),
+    updateCamera: () => updateAnimatorCamera(),
+    resizeCanvas: () => resizeAnimatorCanvas(),
   },
 });
-const { initPdgviewCanvas } = pdgviewCanvasBootstrapRuntime;
-const pdgviewEditorPreviewState = {
+const { initAnimatorCanvas } = animatorCanvasBootstrapRuntime;
+const animatorEditorPreviewState = {
   renderMotionTimeOverride: null,
   renderMotionTimePlayhead: null,
   renderMotionProgressOverride: null,
   renderMotionProgressPlayhead: null,
 };
-const pdgviewViewportModeState = {
+const animatorViewportModeState = {
   cameraSource: "design",
 };
-const pdgviewPlaybackState = {
+const animatorPlaybackState = {
   playing: false,
   playheadSeconds: 0,
   lastTickMs: 0,
 };
-let pdgviewSupplementalDraftState = {};
+let animatorSupplementalDraftState = {};
 
-const pdgviewDocumentWorkspaceRuntime = createPdgviewDocumentWorkspaceRuntime({
+const animatorDocumentWorkspaceRuntime = createAnimatorDocumentWorkspaceRuntime({
   documentLike: document,
   storage: globalThis.window?.localStorage ?? null,
-  storageKey: "architrino.pdgview.library.v1",
+  storageKey: "architrino.animator.library.v1",
   dom: {
-    sceneIdInput: pdgviewSceneIdInput,
-    sceneNameInput: pdgviewSceneNameInput,
-    sceneDurationInput: pdgviewSceneDurationInput,
-    sceneLoopInput: pdgviewSceneLoopInput,
-    markerListInput: pdgviewMarkerListInput,
-    pauseListInput: pdgviewPauseListInput,
-    warpListInput: pdgviewWarpListInput,
-    transferListInput: pdgviewTransferListInput,
-    librarySelect: pdgviewLibrarySelect,
-    libraryLoadButton: pdgviewLibraryLoadButton,
-    libraryDeleteButton: pdgviewLibraryDeleteButton,
-    libraryStatus: pdgviewLibraryStatus,
-    jsonPreview: pdgviewJsonPreview,
-    frameScaleInput: pdgviewFrameScaleInput,
-    frameScaleLabel: pdgviewFrameScaleLabel,
-    cameraSpeedInput: pdgviewCameraSpeedInput,
-    cameraSpeedLabel: pdgviewCameraSpeedLabel,
-    cameraPoiSelect: pdgviewCameraPoiSelect,
+    sceneIdInput: animatorSceneIdInput,
+    sceneNameInput: animatorSceneNameInput,
+    sceneDurationInput: animatorSceneDurationInput,
+    sceneLoopInput: animatorSceneLoopInput,
+    markerListInput: animatorMarkerListInput,
+    pauseListInput: animatorPauseListInput,
+    warpListInput: animatorWarpListInput,
+    transferListInput: animatorTransferListInput,
+    librarySelect: animatorLibrarySelect,
+    libraryLoadButton: animatorLibraryLoadButton,
+    libraryDeleteButton: animatorLibraryDeleteButton,
+    libraryStatus: animatorLibraryStatus,
+    jsonPreview: animatorJsonPreview,
+    frameScaleInput: animatorFrameScaleInput,
+    frameScaleLabel: animatorFrameScaleLabel,
+    cameraSpeedInput: animatorCameraSpeedInput,
+    cameraSpeedLabel: animatorCameraSpeedLabel,
+    cameraPoiSelect: animatorCameraPoiSelect,
   },
   state: {
-    pathState: pdgviewPathState,
-    frameState: pdgviewFrameState,
-    cameraState: pdgviewCameraState,
-    cameraOrbitState: pdgviewCameraOrbitState,
-    cameraFlightState: pdgviewCameraFlightState,
-    playbackState: pdgviewPlaybackState,
-    palette: pdgviewPalette,
+    pathState: animatorPathState,
+    frameState: animatorFrameState,
+    cameraState: animatorCameraState,
+    cameraOrbitState: animatorCameraOrbitState,
+    cameraFlightState: animatorCameraFlightState,
+    playbackState: animatorPlaybackState,
+    palette: animatorPalette,
   },
   helpers: {
-    sanitizeSceneId: sanitizePdgviewId,
-    normalizeAssemblyDraft: normalizePdgviewAssemblyDraft,
-    normalizeAssemblyPathPoints: normalizePdgviewAssemblyPathPoints,
-    formatTransferList: formatPdgviewTransferList,
-    normalizeGraphicOverlayList: normalizePdgviewGraphicOverlayList,
-    parseTransfers: parsePdgviewTransfers,
-    readTimingState: readPdgviewTimingState,
-    updateTimingDiagnostics: updatePdgviewTimingDiagnostics,
-    formatTimingStatus: formatPdgviewTimingStatus,
+    sanitizeSceneId: sanitizeAnimatorId,
+    normalizeAssemblyDraft: normalizeAnimatorAssemblyDraft,
+    normalizeAssemblyPathPoints: normalizeAnimatorAssemblyPathPoints,
+    formatTransferList: formatAnimatorTransferList,
+    normalizeGraphicOverlayList: normalizeAnimatorGraphicOverlayList,
+    parseTransfers: parseAnimatorTransfers,
+    readTimingState: readAnimatorTimingState,
+    updateTimingDiagnostics: updateAnimatorTimingDiagnostics,
+    formatTimingStatus: formatAnimatorTimingStatus,
     formatScaleLabel,
     clampFn: clamp,
     vectorFromTriplet,
-    getTransferListRaw: getPdgviewTransferListRaw,
+    getTransferListRaw: getAnimatorTransferListRaw,
   },
   operations: {
-    ensureAssemblyDrafts: ensurePdgviewAssemblyDrafts,
-    persistPathStateToSelectedAssembly: persistPdgviewPathStateToSelectedAssembly,
-    renderAssemblyEditor: renderPdgviewAssemblyEditor,
-    validateSelectedAssemblyId: validatePdgviewSelectedAssemblyId,
-    setSelectedAssembly: setPdgviewSelectedAssembly,
-    rebuildControlPoints: rebuildPdgviewControlPoints,
-    updatePathGeometry: updatePdgviewPathGeometry,
-    updatePointMaterials: updatePdgviewPointMaterials,
-    updateFrame: updatePdgviewFrame,
-    syncCameraRadiusInput: syncPdgviewCameraRadiusInput,
-    stopCameraFlightPreview: stopPdgviewCameraFlightPreview,
-    updateCameraFlightDisplay: updatePdgviewCameraFlightDisplay,
-    updateWaypointCount: updatePdgviewWaypointCount,
-    updateCameraPoiStatus: updatePdgviewCameraPoiStatus,
-    updateCamera: updatePdgviewCamera,
-    updateViewportFromDocument: updatePdgviewViewportFromDocument,
-    renderTimeline: renderPdgviewTimeline,
-    updateTimelinePlayhead: updatePdgviewTimelinePlayhead,
-    setStatus: setPdgviewStatus,
+    ensureAssemblyDrafts: ensureAnimatorAssemblyDrafts,
+    persistPathStateToSelectedAssembly: persistAnimatorPathStateToSelectedAssembly,
+    renderAssemblyEditor: renderAnimatorAssemblyEditor,
+    validateSelectedAssemblyId: validateAnimatorSelectedAssemblyId,
+    setSelectedAssembly: setAnimatorSelectedAssembly,
+    rebuildControlPoints: rebuildAnimatorControlPoints,
+    updatePathGeometry: updateAnimatorPathGeometry,
+    updatePointMaterials: updateAnimatorPointMaterials,
+    updateFrame: updateAnimatorFrame,
+    syncCameraRadiusInput: syncAnimatorCameraRadiusInput,
+    stopCameraFlightPreview: stopAnimatorCameraFlightPreview,
+    updateCameraFlightDisplay: updateAnimatorCameraFlightDisplay,
+    updateWaypointCount: updateAnimatorWaypointCount,
+    updateCameraPoiStatus: updateAnimatorCameraPoiStatus,
+    updateCamera: updateAnimatorCamera,
+    updateViewportFromDocument: updateAnimatorViewportFromDocument,
+    renderTimeline: renderAnimatorTimeline,
+    updateTimelinePlayhead: updateAnimatorTimelinePlayhead,
+    setStatus: setAnimatorStatus,
   },
   accessors: {
-    getAssemblyDraftsState: getPdgviewAssemblyDraftsState,
-    setAssemblyDraftsState: setPdgviewAssemblyDraftsState,
-    updateAssemblyDraftByIdState: updatePdgviewAssemblyDraftByIdState,
-    getGraphicOverlayDraftsState: getPdgviewGraphicOverlayDraftsState,
-    setGraphicOverlayDraftsState: setPdgviewGraphicOverlayDraftsState,
-    getSelectedPointIndexState: getPdgviewSelectedPointIndexState,
-    setSelectedPointIndexState: setPdgviewSelectedPointIndexState,
-    getSelectedAssemblyIdState: getPdgviewSelectedAssemblyIdState,
-    setTransferListRawStateValue: setPdgviewTransferListRawStateValue,
-    getSupplementalDraftState: () => pdgviewSupplementalDraftState,
+    getAssemblyDraftsState: getAnimatorAssemblyDraftsState,
+    setAssemblyDraftsState: setAnimatorAssemblyDraftsState,
+    updateAssemblyDraftByIdState: updateAnimatorAssemblyDraftByIdState,
+    getGraphicOverlayDraftsState: getAnimatorGraphicOverlayDraftsState,
+    setGraphicOverlayDraftsState: setAnimatorGraphicOverlayDraftsState,
+    getSelectedPointIndexState: getAnimatorSelectedPointIndexState,
+    setSelectedPointIndexState: setAnimatorSelectedPointIndexState,
+    getSelectedAssemblyIdState: getAnimatorSelectedAssemblyIdState,
+    setTransferListRawStateValue: setAnimatorTransferListRawStateValue,
+    getSupplementalDraftState: () => animatorSupplementalDraftState,
     setSupplementalDraftState: (nextValue) => {
-      pdgviewSupplementalDraftState =
+      animatorSupplementalDraftState =
         nextValue && typeof nextValue === "object" ? { ...nextValue } : {};
     },
     setCurrentDocument: (documentData) => {
-      pdgviewCurrentDocument = documentData;
+      animatorCurrentDocument = documentData;
     },
   },
 });
 
 const {
-  readPdgviewDraftState,
-  getPdgviewLibraryEntries,
-  writePdgviewLibraryEntries,
-  getPdgviewSortedLibraryEntries,
-  refreshPdgviewLibraryUi,
-  applyPdgviewDraftState,
-  buildPdgviewDocumentData,
-  buildPdgviewPreviewData,
-  savePdgviewSceneToLibrary,
-  loadPdgviewSceneFromLibrary,
-  clearPdgviewScene,
-  deletePdgviewSceneFromLibrary,
-  renderPdgviewJsonPreview,
-} = pdgviewDocumentWorkspaceRuntime;
+  readAnimatorDraftState,
+  getAnimatorLibraryEntries,
+  writeAnimatorLibraryEntries,
+  getAnimatorSortedLibraryEntries,
+  refreshAnimatorLibraryUi,
+  applyAnimatorDraftState,
+  buildAnimatorDocumentData,
+  buildAnimatorPreviewData,
+  saveAnimatorSceneToLibrary,
+  loadAnimatorSceneFromLibrary,
+  clearAnimatorScene,
+  deleteAnimatorSceneFromLibrary,
+  renderAnimatorJsonPreview,
+} = animatorDocumentWorkspaceRuntime;
 
 const levels = new Map();
 const navigationStack = [];
@@ -5264,8 +5264,8 @@ async function resetToRootScene(options = {}) {
     return;
   }
   if (
-    isStandalonePdgviewApp &&
-    navigateStandalonePdgviewHome(globalThis.window?.location, standaloneNavigatorHref)
+    isStandaloneAnimatorApp &&
+    navigateStandaloneAnimatorHome(globalThis.window?.location, standaloneNavigatorHref)
   ) {
     return;
   }
@@ -5333,9 +5333,9 @@ async function jumpToScene(scenePath, options = {}) {
   if (scenePath !== currentLevel?.id) {
     recordBrowserBackHistory(options);
   }
-  const forceInstantPdgviewEntry = isPdgviewOverlaySceneId(config?.sceneId);
-  const shouldHideLevelForPdgview = shouldHideLevelForPdgviewOverlayScene(config?.sceneId);
-  if (options.mode === "instant" || forceInstantPdgviewEntry) {
+  const forceInstantAnimatorEntry = isAnimatorOverlaySceneId(config?.sceneId);
+  const shouldHideLevelForAnimator = shouldHideLevelForAnimatorOverlayScene(config?.sceneId);
+  if (options.mode === "instant" || forceInstantAnimatorEntry) {
     purgeWorldState();
     worldGroup.position.copy(jumpWorldTarget);
     const level = buildLevel(scenePath);
@@ -5346,9 +5346,9 @@ async function jumpToScene(scenePath, options = {}) {
       level.group.position.set(0, 0, 0);
     }
     level.group.scale.setScalar(1);
-    setLevelOpacity(level, shouldHideLevelForPdgview ? 0 : 1);
+    setLevelOpacity(level, shouldHideLevelForAnimator ? 0 : 1);
     setLevelLabelOpacity(level, 0);
-    setLevelLinkOpacity(level, shouldHideLevelForPdgview ? 0 : 1);
+    setLevelLinkOpacity(level, shouldHideLevelForAnimator ? 0 : 1);
     currentLevel = level;
     navigationStack.length = 0;
     if (!options.preserveGenerationBackStack) {
@@ -6178,7 +6178,7 @@ async function startLevelTransitionFromNode(targetNode) {
     config.sceneId,
     globalThis.window?.location?.href
   );
-  if (isPdgviewOverlaySceneId(config.sceneId) || standaloneAppHref) {
+  if (isAnimatorOverlaySceneId(config.sceneId) || standaloneAppHref) {
     closeDetailPanel();
     hideHoverTooltip();
     markdownRuntime.hideMarkdownPanel();
@@ -6450,104 +6450,104 @@ function wireElementNavigationControls() {
   elementNavigationRuntime.wireControls();
 }
 
-const pdgviewAppRuntime = createPdgviewAppRuntime({
+const animatorAppRuntime = createAnimatorAppRuntime({
   ui: {
     app,
-    pdgviewOverlay,
-    pdgviewTabs,
-    pdgviewPanels,
-    pdgviewSceneId,
-    pdgviewPreviewSceneId,
-    pdgviewPreviewScenePath,
-    pdgviewDocsPath,
+    animatorOverlay,
+    animatorTabs,
+    animatorPanels,
+    animatorSceneId,
+    animatorPreviewSceneId,
+    animatorPreviewScenePath,
+    animatorDocsPath,
     levelConfigs,
     levels,
-    initPdgviewCanvas,
-    renderPdgviewJsonPreview,
-    stopPdgviewCameraFlightPreview,
+    initAnimatorCanvas,
+    renderAnimatorJsonPreview,
+    stopAnimatorCameraFlightPreview,
     showMarkdownPanel: (level) => markdownRuntime.showMarkdownPanel(level),
-    readPdgviewDraftState,
-    buildPdgviewSceneDocument: buildPdgviewDocumentData,
-    buildPdgviewPreviewSceneData: buildPdgviewPreviewData,
+    readAnimatorDraftState,
+    buildAnimatorSceneDocument: buildAnimatorDocumentData,
+    buildAnimatorPreviewSceneData: buildAnimatorPreviewData,
     jumpToScene,
-    setPdgviewStatus,
-    setPdgviewNeedsResize: (value) => {
-      pdgviewNeedsResize = value;
+    setAnimatorStatus,
+    setAnimatorNeedsResize: (value) => {
+      animatorNeedsResize = value;
     },
   },
   controls: {
-    pdgviewTabs,
-    pdgviewClearButton,
-    pdgviewDocsButton,
-    pdgviewExitButton,
-    pdgviewPreviewButton,
-    pdgviewViewDesignButton,
-    pdgviewViewAuthoredButton,
-    pdgviewExportButton,
-    pdgviewLibrarySaveButton,
-    pdgviewRepoSaveButton,
-    pdgviewLibrarySelect,
-    pdgviewLibraryLoadButton,
-    pdgviewLibraryDeleteButton,
-    pdgviewPlayToggleButton,
-    pdgviewPlayResetButton,
-    pdgviewMarkerPrevButton,
-    pdgviewMarkerNextButton,
-    pdgviewMarkerJumpSelect,
-    pdgviewPlayheadScrubInput,
-    pdgviewTimelineTrack,
-    pdgviewSceneIdInput,
-    pdgviewSceneNameInput,
-    pdgviewPathModeSelect,
-    pdgviewPathResetButton,
-    pdgviewFrameResetButton,
-    pdgviewFrameScaleInput,
-    pdgviewCameraPoiSelect,
-    pdgviewCameraWaypointAdd,
-    pdgviewCameraWaypointClear,
-    pdgviewCameraFlightToggle,
-    pdgviewSceneDurationInput,
-    pdgviewSceneLoopInput,
-    pdgviewMarkerListInput,
-    pdgviewPauseListInput,
-    pdgviewWarpListInput,
-    pdgviewTransferListInput,
-    pdgviewCameraSpeedInput,
-    pdgviewCameraRadiusInput,
-    pdgviewCameraResetButton,
-    pdgviewPathState,
-    pdgviewCameraFlightState,
-    updatePdgviewPathGeometry,
-    resetPdgviewPathPoints,
-    setPdgviewFrameDefaults,
-    updatePdgviewFrame,
-    addPdgviewCameraWaypoint,
-    clearPdgviewCameraWaypoints,
-    stopPdgviewCameraFlightPreview,
-    startPdgviewCameraFlightPreview,
-    setPdgviewViewportCameraSource,
-    applyPdgviewFrameScaleInput,
-    applyPdgviewCameraSpeedInput,
-    applyPdgviewCameraRadiusInput,
-    setPdgviewCameraDefaults,
-    updatePdgviewCamera,
-    updatePdgviewCameraPoiStatus,
-    persistPdgviewPathStateToSelectedAssembly,
-    togglePdgviewPlayback,
-    restartPdgviewPlayback,
-    jumpToPdgviewMarker,
-    jumpPdgviewMarkerByOffset,
-    scrubPdgviewPlayback,
-    renderPdgviewJsonPreview,
-    clearPdgviewScene,
-    savePdgviewSceneToLibrary,
-    loadPdgviewSceneFromLibrary,
-    deletePdgviewSceneFromLibrary,
+    animatorTabs,
+    animatorClearButton,
+    animatorDocsButton,
+    animatorExitButton,
+    animatorPreviewButton,
+    animatorViewDesignButton,
+    animatorViewAuthoredButton,
+    animatorExportButton,
+    animatorLibrarySaveButton,
+    animatorRepoSaveButton,
+    animatorLibrarySelect,
+    animatorLibraryLoadButton,
+    animatorLibraryDeleteButton,
+    animatorPlayToggleButton,
+    animatorPlayResetButton,
+    animatorMarkerPrevButton,
+    animatorMarkerNextButton,
+    animatorMarkerJumpSelect,
+    animatorPlayheadScrubInput,
+    animatorTimelineTrack,
+    animatorSceneIdInput,
+    animatorSceneNameInput,
+    animatorPathModeSelect,
+    animatorPathResetButton,
+    animatorFrameResetButton,
+    animatorFrameScaleInput,
+    animatorCameraPoiSelect,
+    animatorCameraWaypointAdd,
+    animatorCameraWaypointClear,
+    animatorCameraFlightToggle,
+    animatorSceneDurationInput,
+    animatorSceneLoopInput,
+    animatorMarkerListInput,
+    animatorPauseListInput,
+    animatorWarpListInput,
+    animatorTransferListInput,
+    animatorCameraSpeedInput,
+    animatorCameraRadiusInput,
+    animatorCameraResetButton,
+    animatorPathState,
+    animatorCameraFlightState,
+    updateAnimatorPathGeometry,
+    resetAnimatorPathPoints,
+    setAnimatorFrameDefaults,
+    updateAnimatorFrame,
+    addAnimatorCameraWaypoint,
+    clearAnimatorCameraWaypoints,
+    stopAnimatorCameraFlightPreview,
+    startAnimatorCameraFlightPreview,
+    setAnimatorViewportCameraSource,
+    applyAnimatorFrameScaleInput,
+    applyAnimatorCameraSpeedInput,
+    applyAnimatorCameraRadiusInput,
+    setAnimatorCameraDefaults,
+    updateAnimatorCamera,
+    updateAnimatorCameraPoiStatus,
+    persistAnimatorPathStateToSelectedAssembly,
+    toggleAnimatorPlayback,
+    restartAnimatorPlayback,
+    jumpToAnimatorMarker,
+    jumpAnimatorMarkerByOffset,
+    scrubAnimatorPlayback,
+    renderAnimatorJsonPreview,
+    clearAnimatorScene,
+    saveAnimatorSceneToLibrary,
+    loadAnimatorSceneFromLibrary,
+    deleteAnimatorSceneFromLibrary,
     isTransitionActive: () => transitionState.active,
-    exitPdgview: () => {
+    exitAnimator: () => {
       if (
-        isStandalonePdgviewApp &&
-        navigateStandalonePdgviewHome(globalThis.window?.location, standaloneNavigatorHref)
+        isStandaloneAnimatorApp &&
+        navigateStandaloneAnimatorHome(globalThis.window?.location, standaloneNavigatorHref)
       ) {
         return;
       }
@@ -6559,7 +6559,7 @@ const pdgviewAppRuntime = createPdgviewAppRuntime({
     },
   },
 });
-const { pdgviewUiRuntime } = pdgviewAppRuntime;
+const { animatorUiRuntime } = animatorAppRuntime;
 
 const appSceneChromeRuntime = createAppSceneChromeRuntime({
   sceneLabel,
@@ -6604,7 +6604,7 @@ function updateSceneLabel() {
   });
   appSceneChromeRuntime.updateMarkdownLayoutToggleButton(currentLevel);
   appSceneChromeRuntime.updateMarkdownDocButton(currentLevel);
-  pdgviewUiRuntime.updatePdgviewOverlay(currentLevel);
+  animatorUiRuntime.updateAnimatorOverlay(currentLevel);
   periodicOverlayRuntime.updatePeriodicOverlay();
   periodicOverlayRuntime.updateElementLegend();
   periodicOverlayRuntime.updateElementInfoPanel();
@@ -6763,12 +6763,12 @@ function focusOnPointer(clientX, clientY) {
   const canOpenMarkdown =
     hasMarkdownTarget && targetNode.data.markdownOpenEligible === true;
 
-  if (currentLevel?.sceneId === pdgviewSceneId) {
-    const panelId = pdgviewPanelMap.get(targetNode.data.id ?? "");
+  if (currentLevel?.sceneId === animatorSceneId) {
+    const panelId = animatorPanelMap.get(targetNode.data.id ?? "");
     if (panelId) {
       closeDetailPanel();
       hideHoverTooltip();
-      pdgviewUiRuntime.setPdgviewPanel(panelId);
+      animatorUiRuntime.setAnimatorPanel(panelId);
       return true;
     }
   }
@@ -6984,15 +6984,15 @@ function animate(now = 0) {
 
   renderer.render(scene, camera);
   labelRenderer.render(scene, camera);
-  renderPdgviewCanvas();
+  renderAnimatorCanvas();
 }
 
 function onResize() {
   updateCamera();
   renderer.setSize(window.innerWidth, window.innerHeight, false);
   labelRenderer.setSize(window.innerWidth, window.innerHeight);
-  if (pdgviewRenderer) {
-    pdgviewNeedsResize = true;
+  if (animatorRenderer) {
+    animatorNeedsResize = true;
   }
   if (currentLevel) {
     layoutRootLevel(currentLevel);
@@ -7003,8 +7003,8 @@ function onResize() {
 async function init() {
   closeDetailPanel();
   const requestedSceneState = sceneStateHashService.getSceneStateFromHash();
-  const requestedInitialScenePath = isStandalonePdgviewApp
-    ? getPdgviewInitialScenePath({
+  const requestedInitialScenePath = isStandaloneAnimatorApp
+    ? getAnimatorInitialScenePath({
         requestedScenePath: requestedSceneState.scenePath,
         rootScenePath,
       })
@@ -7098,20 +7098,20 @@ const appShellUiRuntime = createAppShellUiRuntime({
 appDirector.init();
 appShellUiRuntime.wireListeners();
 scenePanelUiRuntime.wireListeners();
-pdgviewAppRuntime.wireListeners();
+animatorAppRuntime.wireListeners();
 sceneSearchUiRuntime.wireListeners();
-updatePdgviewViewportModeButtons();
+updateAnimatorViewportModeButtons();
 window.addEventListener("keydown", (event) => {
   if (
     event.code === "Space" &&
-    pdgviewOverlay?.classList.contains("is-open") &&
+    animatorOverlay?.classList.contains("is-open") &&
     !event.defaultPrevented &&
     !event.metaKey &&
     !event.ctrlKey &&
     !event.altKey &&
     !isEditingTextInput(event.target)
   ) {
-    togglePdgviewPlayback();
+    toggleAnimatorPlayback();
     event.preventDefault();
   }
 });

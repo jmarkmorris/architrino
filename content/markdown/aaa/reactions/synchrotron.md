@@ -96,9 +96,9 @@ These break structures are testable against broadband SEDs in AGN jets, GRBs, an
 
 This chapter uses a dominant-channel rule: include reactions/channels that contribute at least about 1% in the relevant regime. Where PDG branching ratios are defined, this is a `BR > 1%` rule; where transport channels are not tabulated by PDG branching, use contribution to modeled emissivity/opacity.
 
-- `e^\pm + B \rightarrow e^\pm + \gamma_{\mathrm{syn}}` (effective synchrotron emission channel).
-- `\gamma + \gamma \rightarrow e^+ + e^-` (Breit-Wheeler two-photon interaction / photon-photon annihilation channel in dense radiation fields, distinct from Schwinger vacuum pair production).
-- Secondary-loop channel: newly produced `e^\pm` re-enter synchrotron emission, closing the cascade.
+- $e^\pm + B \rightarrow e^\pm + \gamma_{\mathrm{syn}}$ (effective synchrotron emission channel).
+- $\gamma + \gamma \rightarrow e^+ + e^-$ (Breit-Wheeler two-photon interaction / photon-photon annihilation channel in dense radiation fields, distinct from Schwinger vacuum pair production).
+- Secondary-loop channel: newly produced $e^\pm$ re-enter synchrotron emission, closing the cascade.
 
 Secondary channels below the 1% contribution level are treated as corrections unless a specific regime elevates them.
 This 1% threshold is a modeling convention for cascade tractability, not a fundamental physics cutoff. Subdominant channels (for example, triplet pair production $e^\pm + \gamma \rightarrow e^\pm + e^+ + e^-$, relevant in strong magnetic fields) may be included in detailed transport codes but are omitted here for pedagogical focus.
@@ -254,7 +254,7 @@ This mapping aims at mechanistic compression across channels:
 
 - One substrate language for synchrotron, pair production, and bremsstrahlung as wake/assembly transport outcomes.
 - A single timing-conversion layer for rate equations (`observer` vs `assembly` clocks) used consistently in simulation bookkeeping.
-- A testable mapping hypothesis that pair-loading boundaries depend on local Noether-Sea state variables (`\rho_{\mathrm{NS}}`, anisotropy) in addition to standard observer-level compactness controls.
+- A testable mapping hypothesis that pair-loading boundaries depend on local Noether-Sea state variables ($\rho_{\mathrm{NS}}$, anisotropy) in addition to standard observer-level compactness controls.
 
 If future derivations show no measurable deviations in tested regimes, the remaining claim is ontological unification rather than new phenomenology.
 
