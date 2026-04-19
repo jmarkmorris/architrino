@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+bash .githooks/refresh-pdg-live-artifacts.sh always
+
 echo "[pre-push] validating content indexes and references..."
 node scripts/validate-content.mjs --check --strict
 echo "[pre-push] validating scene graph manifest..."

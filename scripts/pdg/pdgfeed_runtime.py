@@ -1175,29 +1175,73 @@ def build_live_supported_reaction_csv_rows(
     return sorted(rows, key=supported_reaction_sort_key)
 
 
+def entry_is_incomplete_for_aaa_funnel(entry: dict[str, Any]) -> bool:
+    category = classify_proposal_payload(entry)
+    if category in ("incomplete", "AAAcomplete"):
+        return True
+    probability = normalize_branching_probability(entry.get("branchingProbability"))
+    return probability is None
+
+
+def build_aaa_funnel_entries(
+    manifest: dict[str, Any],
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
+    all_entries = [
+        entry
+        for entry in [*manifest.get("readyEntries", []), *manifest.get("blockedEntries", [])]
+        if isinstance(entry, dict)
+    ]
+    incomplete_entries = [entry for entry in all_entries if entry_is_incomplete_for_aaa_funnel(entry)]
+    low_probability_entries = [
+        entry
+        for entry in all_entries
+        if entry not in incomplete_entries
+        and (normalize_branching_probability(entry.get("branchingProbability")) or 0.0) + 1e-12
+        < PDGEDIT_APP_MIN_BRANCHING_PROBABILITY
+    ]
+    eligible_entries = [
+        entry
+        for entry in all_entries
+        if entry not in incomplete_entries and entry not in low_probability_entries
+    ]
+    return incomplete_entries, low_probability_entries, eligible_entries
+
+
 def build_live_reaction_summary_rows(
     database_url: str | None = None,
     *,
     source: str = "pdg-reactions",
     api: Any | None = None,
+    manifest: dict[str, Any] | None = None,
+    supported_rows: list[dict[str, str | int]] | None = None,
+    probability_deciles: list[tuple[str, int]] | None = None,
 ) -> tuple[
     list[tuple[str, int]],
     list[tuple[str, int]],
-    list[tuple[str, str, int, str]],
     list[tuple[str, str, int, str]],
     list[tuple[str, int]],
 ]:
     if source != "pdg-reactions":
         raise ValueError(f"Unsupported source: {source}")
     api = api or connect_pdg(database_url, pedantic=False)
-    manifest = build_live_manifest_payload(database_url, api=api)
-    supported_rows = build_live_supported_reaction_csv_rows(database_url, api=api, manifest=manifest)
-    probability_deciles = build_live_branching_probability_deciles(database_url, api=api, source=source)
+    if manifest is None:
+        manifest = build_live_manifest_payload(database_url, api=api)
     total_reaction_count = int(manifest.get("readyCount", 0) or 0) + int(manifest.get("blockedCount", 0) or 0)
+    incomplete_entries, low_probability_entries, eligible_entries = build_aaa_funnel_entries(manifest)
+    eligible_ready_entries = [
+        entry
+        for entry in eligible_entries
+        if isinstance(entry.get("pdgsolveRequest"), dict)
+    ]
+    eligible_blocked_entries = [
+        entry
+        for entry in eligible_entries
+        if not isinstance(entry.get("pdgsolveRequest"), dict)
+    ]
     total_balance_closure_count = 0
     total_balance_with_residue_count = 0
     ready_without_total_balance_count = 0
-    for entry in manifest.get("readyEntries", []):
+    for entry in eligible_ready_entries:
         if not isinstance(entry, dict):
             continue
         pdgsolve_request = entry.get("pdgsolveRequest", {})
@@ -1208,73 +1252,38 @@ def build_live_reaction_summary_rows(
         if request_has_unbound_architrino_residue_product(pdgsolve_request):
             total_balance_with_residue_count += 1
     total_balance_without_residue_count = total_balance_closure_count - total_balance_with_residue_count
-    incomplete_count = 0
-    aaa_complete_count = 0
-    backlog_count = 0
-    app_excluded_low_probability_count = 0
-    app_excluded_missing_probability_count = 0
     backlog_particle_counts: Counter[str] = Counter()
-    for entry in [*manifest.get("readyEntries", []), *manifest.get("blockedEntries", [])]:
-        if not isinstance(entry, dict):
-            continue
-        probability = normalize_branching_probability(entry.get("branchingProbability"))
-        if probability is None:
-            app_excluded_missing_probability_count += 1
-            continue
-        if probability + 1e-12 < PDGEDIT_APP_MIN_BRANCHING_PROBABILITY:
-            app_excluded_low_probability_count += 1
-    for entry in manifest.get("readyEntries", []):
-        if not isinstance(entry, dict):
-            continue
+    for entry in eligible_blocked_entries:
         category = classify_proposal_payload(entry)
-        if category == "AAAcomplete":
-            aaa_complete_count += 1
-    for entry in manifest.get("blockedEntries", []):
-        if not isinstance(entry, dict):
+        if category != "backlog":
             continue
-        category = classify_proposal_payload(entry)
-        if category == "incomplete":
-            incomplete_count += 1
-            continue
-        if category == "backlog":
-            backlog_count += 1
-            for particle_name in entry.get("blockedParticles", []):
-                if isinstance(particle_name, str) and particle_name:
-                    backlog_particle_counts[particle_name] += 1
+        for particle_name in entry.get("blockedParticles", []):
+            if isinstance(particle_name, str) and particle_name:
+                backlog_particle_counts[particle_name] += 1
 
     rows: list[tuple[str, int]] = [
         ("Number of total PDG reactions", total_reaction_count),
-        ("Number of incomplete PDG reactions", incomplete_count),
-        ("Number of AAAcomplete reactions", aaa_complete_count),
-        ("Number of backlog reactions", backlog_count),
-        ("Number of PDG reactions supported and transformed into AAA", len(supported_rows)),
         (
-            f"Number of reactions excluded from app (<{PDGEDIT_APP_MIN_BRANCHING_PROBABILITY * 100:.1f}% branching probability)",
-            app_excluded_low_probability_count,
+            "Number of reactions excluded as incomplete or without numeric branching probability",
+            len(incomplete_entries),
         ),
         (
-            "Number of reactions excluded from app (no branching probability specified)",
-            app_excluded_missing_probability_count,
+            f"Number of reactions excluded below {PDGEDIT_APP_MIN_BRANCHING_PROBABILITY * 100:.1f}% branching probability",
+            len(low_probability_entries),
         ),
-        ("Number of reactions closed by total primitive balance", total_balance_closure_count),
-        ("Number of total-balance closures with product unbound architrinos", total_balance_with_residue_count),
-        ("Number of total-balance closures without product unbound architrinos", total_balance_without_residue_count),
-        ("Number of ready reactions lacking total primitive balance", ready_without_total_balance_count),
+        ("Number of reactions remaining to solve with AAA", len(eligible_entries)),
     ]
-    rows.extend(
-        [
-            ("Number of reactions ready", int(manifest.get("readyCount", 0) or 0)),
-            ("Number of reactions blocked", int(manifest.get("blockedCount", 0) or 0)),
-        ]
-    )
-    residue_counts_above_threshold = build_live_residue_count_rows(
-        manifest.get("readyEntries", []),
-        set_label=f"Ready total-balance closures with branching probability >= {PDGEDIT_APP_MIN_BRANCHING_PROBABILITY * 100:.1f}%",
-        minimum_branching_probability=PDGEDIT_APP_MIN_BRANCHING_PROBABILITY,
-    )
-    residue_counts_all = build_live_residue_count_rows(
-        manifest.get("readyEntries", []),
-        set_label="All ready total-balance closures",
+    breakdown_rows: list[tuple[str, int]] = [
+        ("Number of remaining reactions ready and transformed into AAA", len(eligible_ready_entries)),
+        ("Number of remaining reactions blocked by AAA backlog", len(eligible_blocked_entries)),
+        ("Number of remaining ready reactions closed by total primitive balance", total_balance_closure_count),
+        ("Number of remaining closures with product unbound architrinos", total_balance_with_residue_count),
+        ("Number of remaining closures without product unbound architrinos", total_balance_without_residue_count),
+        ("Number of remaining ready reactions lacking total primitive balance", ready_without_total_balance_count),
+    ]
+    residue_counts = build_live_residue_count_rows(
+        eligible_ready_entries,
+        set_label="AAA-eligible ready total-balance closures",
     )
     backlog_particles = [
         (particle_name, count)
@@ -1283,7 +1292,7 @@ def build_live_reaction_summary_rows(
             key=lambda item: (-item[1], item[0]),
         )[:10]
     ]
-    return rows, probability_deciles, residue_counts_above_threshold, residue_counts_all, backlog_particles
+    return rows, breakdown_rows, residue_counts, backlog_particles
 
 
 def build_live_residue_count_rows(
@@ -1384,10 +1393,12 @@ def write_request_artifacts(case: PdgCase, output_dir: Path) -> list[Path]:
 def build_cases_by_source(
     source: str,
     database_url: str | None = None,
+    *,
+    api: Any | None = None,
 ) -> list[PdgCase]:
     if source != "pdg-reactions":
         raise SystemExit(f"Unsupported source: {source}")
-    api = connect_pdg(database_url, pedantic=False)
+    api = api or connect_pdg(database_url, pedantic=False)
     return load_live_cases(database_url, api=api)
 
 
@@ -1458,6 +1469,24 @@ def build_list_row_cells(case: PdgCase) -> tuple[str, str, str, str, str, str, s
     )
 
 
+def write_live_reaction_list_report(
+    source: str,
+    database_url: str | None = None,
+    *,
+    api: Any | None = None,
+    cases: list[PdgCase] | None = None,
+    output_path: Path | None = None,
+) -> Path:
+    cases = cases if cases is not None else build_cases_by_source(source, database_url, api=api)
+    path = output_path or list_markdown_output_path(source)
+    write_markdown_table(
+        path,
+        ("K/U", "MCID", "PDG ID", "Reaction ID", "Title", "Channel", "Category", "Status"),
+        [build_list_row_cells(case) for case in cases],
+    )
+    return path
+
+
 def write_supported_reaction_markdown(path: Path, rows: Sequence[dict[str, str | int]]) -> None:
     write_markdown_table(
         path,
@@ -1510,9 +1539,8 @@ def write_live_reaction_summary_markdown(
     path: Path,
     rows: Sequence[tuple[str, int]],
     *,
-    probability_deciles: Sequence[tuple[str, int]] = (),
-    residue_counts_above_threshold: Sequence[tuple[str, str, int, str]] = (),
-    residue_counts_all: Sequence[tuple[str, str, int, str]] = (),
+    breakdown_rows: Sequence[tuple[str, int]] = (),
+    residue_counts: Sequence[tuple[str, str, int, str]] = (),
     backlog_particles: Sequence[tuple[str, int]] = (),
 ) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -1525,19 +1553,19 @@ def write_live_reaction_summary_markdown(
             for row in metrics
         ],
     ]
-    if probability_deciles:
+    if breakdown_rows:
         body.extend(
             [
                 "",
-                "| Branching Probability Decile (%) | Count |",
+                "| Metric | Count |",
                 "| --- | --- |",
                 *[
                     "| " + " | ".join(escape_markdown_table_cell(cell) for cell in row) + " |"
-                    for row in probability_deciles
+                    for row in breakdown_rows
                 ],
             ]
         )
-    if residue_counts_above_threshold:
+    if residue_counts:
         body.extend(
             [
                 "",
@@ -1545,19 +1573,7 @@ def write_live_reaction_summary_markdown(
                 "| --- | --- | --- | --- |",
                 *[
                     "| " + " | ".join(escape_markdown_table_cell(cell) for cell in row) + " |"
-                    for row in residue_counts_above_threshold
-                ],
-            ]
-        )
-    if residue_counts_all:
-        body.extend(
-            [
-                "",
-                "| Reaction Set | Product Unbound Architrino Counts | Count | Example Mode |",
-                "| --- | --- | --- | --- |",
-                *[
-                    "| " + " | ".join(escape_markdown_table_cell(cell) for cell in row) + " |"
-                    for row in residue_counts_all
+                    for row in residue_counts
                 ],
             ]
         )
@@ -1581,19 +1597,25 @@ def write_live_reaction_summary_report(
     database_url: str | None = None,
     *,
     api: Any | None = None,
+    manifest: dict[str, Any] | None = None,
+    supported_rows: list[dict[str, str | int]] | None = None,
+    probability_deciles: list[tuple[str, int]] | None = None,
+    output_path: Path | None = None,
 ) -> Path:
-    metrics, probability_deciles, residue_counts_above_threshold, residue_counts_all, backlog_particles = build_live_reaction_summary_rows(
+    metrics, breakdown_rows, residue_counts, backlog_particles = build_live_reaction_summary_rows(
         database_url,
         source=source,
         api=api,
+        manifest=manifest,
+        supported_rows=supported_rows,
+        probability_deciles=probability_deciles,
     )
-    path = summary_markdown_output_path(source)
+    path = output_path or summary_markdown_output_path(source)
     write_live_reaction_summary_markdown(
         path,
         metrics,
-        probability_deciles=probability_deciles,
-        residue_counts_above_threshold=residue_counts_above_threshold,
-        residue_counts_all=residue_counts_all,
+        breakdown_rows=breakdown_rows,
+        residue_counts=residue_counts,
         backlog_particles=backlog_particles,
     )
     return path
@@ -1700,13 +1722,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = parse_args(argv)
 
     if args.command == "list":
-        cases = build_cases_by_source(args.source, args.database_url)
-        output_path = list_markdown_output_path(args.source)
-        write_markdown_table(
-            output_path,
-            ("K/U", "MCID", "PDG ID", "Reaction ID", "Title", "Channel", "Category", "Status"),
-            [build_list_row_cells(case) for case in cases],
-        )
+        output_path = write_live_reaction_list_report(args.source, args.database_url)
         print(format_output_path(output_path))
         return 0
 
