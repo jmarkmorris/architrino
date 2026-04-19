@@ -336,6 +336,94 @@ test("lane ordering reduces crossings for non-catalyst rows while keeping cataly
   );
 });
 
+test("reactant rows keep their chosen order while reactant-side operators align horizontally", () => {
+  const document = {
+    schema: "pdgedit/v1",
+    assemblies: [
+      createAssembly({ id: "reactant_gamma", type: "gamma", role: "reactant", x: 2, y: 0 }),
+      createAssembly({ id: "reactant_delta", type: "delta", role: "reactant", x: 2, y: 1 }),
+      createAssembly({ id: "intermediate_delta", type: "delta", role: "intermediate", x: 9, y: 0 }),
+      createAssembly({ id: "intermediate_gamma", type: "gamma", role: "intermediate", x: 9, y: 1 }),
+    ],
+    operators: [
+      createOperator({ id: "left_gamma", type: "associate", x: 7, y: 0 }),
+      createOperator({ id: "left_delta", type: "associate", x: 7, y: 1 }),
+    ],
+    links: [
+      { id: "gamma_1", endpointA: "reactant_gamma", endpointB: "left_gamma" },
+      { id: "gamma_2", endpointA: "left_gamma", endpointB: "intermediate_delta" },
+      { id: "delta_1", endpointA: "reactant_delta", endpointB: "left_delta" },
+      { id: "delta_2", endpointA: "left_delta", endpointB: "intermediate_gamma" },
+    ],
+    compositeLabels: [],
+  };
+
+  const sorted = sortPdgeditCatalystPassThruChainsToTop(document);
+
+  assert.deepEqual(
+    sorted.assemblies
+      .filter((assembly) => assembly.role === "reactant")
+      .map((assembly) => [assembly.id, assembly.y]),
+    [
+      ["reactant_gamma", 0],
+      ["reactant_delta", 1],
+    ]
+  );
+  assert.deepEqual(
+    sorted.operators
+      .filter((operator) => operator.x === 7)
+      .map((operator) => [operator.id, operator.y]),
+    [
+      ["left_gamma", 0],
+      ["left_delta", 1],
+    ]
+  );
+});
+
+test("product rows keep their chosen order while product-side operators align horizontally", () => {
+  const document = {
+    schema: "pdgedit/v1",
+    assemblies: [
+      createAssembly({ id: "intermediate_gamma", type: "gamma", role: "intermediate", x: 9, y: 0 }),
+      createAssembly({ id: "intermediate_delta", type: "delta", role: "intermediate", x: 9, y: 1 }),
+      createAssembly({ id: "product_gamma", type: "gamma", role: "product", x: 16, y: 0 }),
+      createAssembly({ id: "product_delta", type: "delta", role: "product", x: 16, y: 1 }),
+    ],
+    operators: [
+      createOperator({ id: "right_gamma", type: "associate", x: 14, y: 0 }),
+      createOperator({ id: "right_delta", type: "associate", x: 14, y: 1 }),
+    ],
+    links: [
+      { id: "gamma_1", endpointA: "intermediate_gamma", endpointB: "right_gamma" },
+      { id: "gamma_2", endpointA: "right_gamma", endpointB: "product_delta" },
+      { id: "delta_1", endpointA: "intermediate_delta", endpointB: "right_delta" },
+      { id: "delta_2", endpointA: "right_delta", endpointB: "product_gamma" },
+    ],
+    compositeLabels: [],
+  };
+
+  const sorted = sortPdgeditCatalystPassThruChainsToTop(document);
+
+  assert.deepEqual(
+    sorted.assemblies
+      .filter((assembly) => assembly.role === "product")
+      .map((assembly) => [assembly.id, assembly.y]),
+    [
+      ["product_gamma", 0],
+      ["product_delta", 1],
+    ]
+  );
+  assert.deepEqual(
+    sorted.operators
+      .filter((operator) => operator.x === 14)
+      .map((operator) => [operator.id, operator.y]),
+    [
+      ["right_delta", 0],
+      ["right_gamma", 1],
+    ]
+  );
+});
+
 test("lane ordering keeps unbound architrinos last while reordering free rows between pinned blocks", () => {
   const document = {
     schema: "pdgedit/v1",
@@ -401,8 +489,8 @@ test("lane ordering keeps unbound architrinos last while reordering free rows be
       .map((assembly) => [assembly.id, assembly.y]),
     [
       ["intermediate_alpha", 0],
-      ["intermediate_gamma", 1],
-      ["intermediate_delta", 2],
+      ["intermediate_delta", 1],
+      ["intermediate_gamma", 2],
       ["intermediate_residue", 3],
     ]
   );
@@ -412,8 +500,8 @@ test("lane ordering keeps unbound architrinos last while reordering free rows be
       .map((assembly) => [assembly.id, assembly.y]),
     [
       ["product_alpha", 0],
-      ["product_gamma", 1],
-      ["product_delta", 2],
+      ["product_delta", 1],
+      ["product_gamma", 2],
       ["product_residue", 3],
     ]
   );
@@ -433,8 +521,8 @@ test("lane ordering keeps unbound architrinos last while reordering free rows be
       .map((operator) => [operator.id, operator.y]),
     [
       ["right_alpha", 0],
-      ["right_gamma", 1],
-      ["right_delta", 2],
+      ["right_delta", 1],
+      ["right_gamma", 2],
     ]
   );
 });

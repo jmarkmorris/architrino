@@ -1178,7 +1178,13 @@ def build_live_reaction_summary_rows(
     *,
     source: str = "pdg-reactions",
     api: Any | None = None,
-) -> tuple[list[tuple[str, int]], list[tuple[str, int]], list[tuple[str, int, str]], list[tuple[str, int]]]:
+) -> tuple[
+    list[tuple[str, int]],
+    list[tuple[str, int]],
+    list[tuple[str, str, int, str]],
+    list[tuple[str, str, int, str]],
+    list[tuple[str, int]],
+]:
     if source != "pdg-reactions":
         raise ValueError(f"Unsupported source: {source}")
     api = api or connect_pdg(database_url, pedantic=False)
@@ -1189,8 +1195,6 @@ def build_live_reaction_summary_rows(
     total_balance_closure_count = 0
     total_balance_with_residue_count = 0
     ready_without_total_balance_count = 0
-    residue_count_buckets: Counter[tuple[int, int]] = Counter()
-    residue_count_examples: dict[tuple[int, int], str] = {}
     for entry in manifest.get("readyEntries", []):
         if not isinstance(entry, dict):
             continue
@@ -1199,16 +1203,6 @@ def build_live_reaction_summary_rows(
             ready_without_total_balance_count += 1
             continue
         total_balance_closure_count += 1
-        residue_counts = get_request_residue_counts(pdgsolve_request)
-        if residue_counts is not None:
-            residue_count_buckets[residue_counts] += 1
-            if residue_counts not in residue_count_examples:
-                residue_count_examples[residue_counts] = (
-                    str(entry.get("title", "")).strip()
-                    or str(entry.get("caseId", "")).strip()
-                    or str(entry.get("proposalId", "")).strip()
-                    or str(pdgsolve_request.get("requestId", "")).strip()
-                )
         if request_has_unbound_architrino_residue_product(pdgsolve_request):
             total_balance_with_residue_count += 1
     total_balance_without_residue_count = total_balance_closure_count - total_balance_with_residue_count
@@ -1271,8 +1265,59 @@ def build_live_reaction_summary_rows(
             ("Number of reactions blocked", int(manifest.get("blockedCount", 0) or 0)),
         ]
     )
-    residue_counts = [
+    residue_counts_above_threshold = build_live_residue_count_rows(
+        manifest.get("readyEntries", []),
+        set_label=f"Ready total-balance closures with branching probability >= {PDGEDIT_APP_MIN_BRANCHING_PROBABILITY * 100:.1f}%",
+        minimum_branching_probability=PDGEDIT_APP_MIN_BRANCHING_PROBABILITY,
+    )
+    residue_counts_all = build_live_residue_count_rows(
+        manifest.get("readyEntries", []),
+        set_label="All ready total-balance closures",
+    )
+    backlog_particles = [
+        (particle_name, count)
+        for particle_name, count in sorted(
+            backlog_particle_counts.items(),
+            key=lambda item: (-item[1], item[0]),
+        )[:10]
+    ]
+    return rows, probability_deciles, residue_counts_above_threshold, residue_counts_all, backlog_particles
+
+
+def build_live_residue_count_rows(
+    entries: Sequence[Any],
+    *,
+    set_label: str,
+    minimum_branching_probability: float | None = None,
+) -> list[tuple[str, str, int, str]]:
+    residue_count_buckets: Counter[tuple[int, int]] = Counter()
+    residue_count_examples: dict[tuple[int, int], str] = {}
+    for entry in entries:
+        if not isinstance(entry, dict):
+            continue
+        probability = normalize_branching_probability(entry.get("branchingProbability"))
+        if minimum_branching_probability is not None:
+            if probability is None:
+                continue
+            if probability + 1e-12 < minimum_branching_probability:
+                continue
+        pdgsolve_request = entry.get("pdgsolveRequest", {})
+        if not request_has_total_primitive_balance(pdgsolve_request):
+            continue
+        residue_counts = get_request_residue_counts(pdgsolve_request)
+        if residue_counts is None:
+            continue
+        residue_count_buckets[residue_counts] += 1
+        if residue_counts not in residue_count_examples:
+            residue_count_examples[residue_counts] = (
+                str(entry.get("title", "")).strip()
+                or str(entry.get("caseId", "")).strip()
+                or str(entry.get("proposalId", "")).strip()
+                or str(pdgsolve_request.get("requestId", "")).strip()
+            )
+    return [
         (
+            set_label,
             format_residue_counts(residue_count),
             count,
             residue_count_examples.get(residue_count, ""),
@@ -1282,14 +1327,6 @@ def build_live_reaction_summary_rows(
             key=lambda item: (-item[1], item[0][0], item[0][1]),
         )
     ]
-    backlog_particles = [
-        (particle_name, count)
-        for particle_name, count in sorted(
-            backlog_particle_counts.items(),
-            key=lambda item: (-item[1], item[0]),
-        )[:10]
-    ]
-    return rows, probability_deciles, residue_counts, backlog_particles
 
 
 def write_supported_reaction_csv(path: Path, rows: list[dict[str, str | int]]) -> None:
@@ -1472,7 +1509,8 @@ def write_live_reaction_summary_markdown(
     rows: Sequence[tuple[str, int]],
     *,
     probability_deciles: Sequence[tuple[str, int]] = (),
-    residue_counts: Sequence[tuple[str, int, str]] = (),
+    residue_counts_above_threshold: Sequence[tuple[str, str, int, str]] = (),
+    residue_counts_all: Sequence[tuple[str, str, int, str]] = (),
     backlog_particles: Sequence[tuple[str, int]] = (),
 ) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -1497,15 +1535,27 @@ def write_live_reaction_summary_markdown(
                 ],
             ]
         )
-    if residue_counts:
+    if residue_counts_above_threshold:
         body.extend(
             [
                 "",
-                "| Product Unbound Architrino Counts | Count | Example Mode |",
-                "| --- | --- | --- |",
+                "| Reaction Set | Product Unbound Architrino Counts | Count | Example Mode |",
+                "| --- | --- | --- | --- |",
                 *[
                     "| " + " | ".join(escape_markdown_table_cell(cell) for cell in row) + " |"
-                    for row in residue_counts
+                    for row in residue_counts_above_threshold
+                ],
+            ]
+        )
+    if residue_counts_all:
+        body.extend(
+            [
+                "",
+                "| Reaction Set | Product Unbound Architrino Counts | Count | Example Mode |",
+                "| --- | --- | --- | --- |",
+                *[
+                    "| " + " | ".join(escape_markdown_table_cell(cell) for cell in row) + " |"
+                    for row in residue_counts_all
                 ],
             ]
         )
@@ -1530,7 +1580,7 @@ def write_live_reaction_summary_report(
     *,
     api: Any | None = None,
 ) -> Path:
-    metrics, probability_deciles, residue_counts, backlog_particles = build_live_reaction_summary_rows(
+    metrics, probability_deciles, residue_counts_above_threshold, residue_counts_all, backlog_particles = build_live_reaction_summary_rows(
         database_url,
         source=source,
         api=api,
@@ -1540,7 +1590,8 @@ def write_live_reaction_summary_report(
         path,
         metrics,
         probability_deciles=probability_deciles,
-        residue_counts=residue_counts,
+        residue_counts_above_threshold=residue_counts_above_threshold,
+        residue_counts_all=residue_counts_all,
         backlog_particles=backlog_particles,
     )
     return path

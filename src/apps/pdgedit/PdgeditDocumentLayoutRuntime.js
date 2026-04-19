@@ -550,6 +550,45 @@ function buildOrderedLaneRecords(laneState = {}) {
     .sort(compareByYThenXThenId);
 }
 
+function freezeLaneState(laneState = {}, orderIds = laneState.orderIds ?? []) {
+  updateLaneOrder(laneState, orderIds);
+  laneState.pinnedTopCount = laneState.orderIds.length;
+  laneState.pinnedBottomCount = 0;
+  return laneState;
+}
+
+function buildOperatorOrderIdsForAssemblyRole(
+  operatorLane = {},
+  assemblyLane = {},
+  document = {},
+  assemblyRole = ""
+) {
+  const assemblyRowById = buildLaneRowById(assemblyLane);
+  const objectsById = buildObjectsById(document);
+  const neighborsById = buildNeighborIdsByObjectId(document);
+
+  return [...operatorLane.orderIds].sort((leftId, rightId) => {
+    const leftOperator = operatorLane.recordById.get(leftId);
+    const rightOperator = operatorLane.recordById.get(rightId);
+    const leftAssemblyRows = [...(neighborsById.get(leftId) ?? [])]
+      .map((objectId) => objectsById.get(objectId))
+      .filter((object) => normalizeText(object?.role) === normalizeText(assemblyRole))
+      .map((object) => assemblyRowById.get(object.id))
+      .filter((row) => Number.isFinite(row));
+    const rightAssemblyRows = [...(neighborsById.get(rightId) ?? [])]
+      .map((objectId) => objectsById.get(objectId))
+      .filter((object) => normalizeText(object?.role) === normalizeText(assemblyRole))
+      .map((object) => assemblyRowById.get(object.id))
+      .filter((row) => Number.isFinite(row));
+    const leftRow = leftAssemblyRows.length === 1 ? leftAssemblyRows[0] : Number.MAX_SAFE_INTEGER;
+    const rightRow = rightAssemblyRows.length === 1 ? rightAssemblyRows[0] : Number.MAX_SAFE_INTEGER;
+    return (
+      leftRow - rightRow ||
+      compareByYThenXThenId(leftOperator, rightOperator)
+    );
+  });
+}
+
 function isAssemblyForRoleAndType(assembly = {}, role = "", type = "") {
   const normalizedRole = normalizeText(role);
   return (
@@ -792,6 +831,17 @@ export function sortPdgeditCatalystPassThruChainsToTop(document = {}) {
     pinnedTopIds: [...preferredTopAssemblyIdsByRole.product, ...catalystAssemblyIdsByRole.product],
     pinnedBottomIds: trailingAssemblyIdsByRole.product,
   });
+
+  freezeLaneState(reactantAssemblyLane);
+  freezeLaneState(
+    reactantOperatorLane,
+    buildOperatorOrderIdsForAssemblyRole(reactantOperatorLane, reactantAssemblyLane, nextDocument, "reactant")
+  );
+  freezeLaneState(productAssemblyLane);
+  freezeLaneState(
+    productOperatorLane,
+    buildOperatorOrderIdsForAssemblyRole(productOperatorLane, productAssemblyLane, nextDocument, "product")
+  );
 
   reduceLaneCrossings(
     [

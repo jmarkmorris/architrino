@@ -276,7 +276,7 @@ class PdgfeedCliTests(unittest.TestCase):
 
             self.assertEqual(output_path, tmp_dir / "pdgfeed.summary.pdg_reactions.md")
             content = output_path.read_text(encoding="utf-8").strip().split("\n\n")
-            self.assertEqual(len(content), 3)
+            self.assertEqual(len(content), 4)
             headers, rows = self.parse_markdown_table(content[0].splitlines())
             self.assertEqual(headers, ["Metric", "Count"])
             self.assertEqual(
@@ -316,14 +316,71 @@ class PdgfeedCliTests(unittest.TestCase):
                 ],
             )
             residue_headers, residue_rows = self.parse_markdown_table(content[2].splitlines())
-            self.assertEqual(residue_headers, ["Product Unbound Architrino Counts", "Count", "Example Mode"])
+            self.assertEqual(
+                residue_headers,
+                ["Reaction Set", "Product Unbound Architrino Counts", "Count", "Example Mode"],
+            )
             self.assertEqual(
                 residue_rows,
                 [
-                    {"Product Unbound Architrino Counts": "0:0", "Count": "2", "Example Mode": "mu- decay mode 1"},
-                    {"Product Unbound Architrino Counts": "2:2", "Count": "1", "Example Mode": "pi+ decay mode 1"},
-                    {"Product Unbound Architrino Counts": "12:12", "Count": "1", "Example Mode": "pi0 decay mode 2"},
-                    {"Product Unbound Architrino Counts": "18:18", "Count": "1", "Example Mode": "pi0 decay mode 1"},
+                    {
+                        "Reaction Set": "Ready total-balance closures with branching probability >= 5.0%",
+                        "Product Unbound Architrino Counts": "0:0",
+                        "Count": "2",
+                        "Example Mode": "mu- decay mode 1",
+                    },
+                    {
+                        "Reaction Set": "Ready total-balance closures with branching probability >= 5.0%",
+                        "Product Unbound Architrino Counts": "2:2",
+                        "Count": "1",
+                        "Example Mode": "pi+ decay mode 1",
+                    },
+                    {
+                        "Reaction Set": "Ready total-balance closures with branching probability >= 5.0%",
+                        "Product Unbound Architrino Counts": "12:12",
+                        "Count": "1",
+                        "Example Mode": "pi0 decay mode 2",
+                    },
+                    {
+                        "Reaction Set": "Ready total-balance closures with branching probability >= 5.0%",
+                        "Product Unbound Architrino Counts": "18:18",
+                        "Count": "1",
+                        "Example Mode": "pi0 decay mode 1",
+                    },
+                ],
+            )
+            all_residue_headers, all_residue_rows = self.parse_markdown_table(content[3].splitlines())
+            self.assertEqual(
+                all_residue_headers,
+                ["Reaction Set", "Product Unbound Architrino Counts", "Count", "Example Mode"],
+            )
+            self.assertEqual(
+                all_residue_rows,
+                [
+                    {
+                        "Reaction Set": "All ready total-balance closures",
+                        "Product Unbound Architrino Counts": "0:0",
+                        "Count": "2",
+                        "Example Mode": "mu- decay mode 1",
+                    },
+                    {
+                        "Reaction Set": "All ready total-balance closures",
+                        "Product Unbound Architrino Counts": "2:2",
+                        "Count": "1",
+                        "Example Mode": "pi+ decay mode 1",
+                    },
+                    {
+                        "Reaction Set": "All ready total-balance closures",
+                        "Product Unbound Architrino Counts": "12:12",
+                        "Count": "1",
+                        "Example Mode": "pi0 decay mode 2",
+                    },
+                    {
+                        "Reaction Set": "All ready total-balance closures",
+                        "Product Unbound Architrino Counts": "18:18",
+                        "Count": "1",
+                        "Example Mode": "pi0 decay mode 1",
+                    },
                 ],
             )
 
@@ -354,7 +411,7 @@ class PdgfeedCliTests(unittest.TestCase):
                 output_path = pdgfeed.write_live_reaction_summary_report("pdg-reactions")
 
             content = output_path.read_text(encoding="utf-8").strip().split("\n\n")
-            self.assertEqual(len(content), 3)
+            self.assertEqual(len(content), 4)
             metric_headers, metric_rows = self.parse_markdown_table(content[0].splitlines())
             self.assertEqual(metric_headers, ["Metric", "Count"])
             self.assertEqual(metric_rows[2], {"Metric": "Number of AAAcomplete reactions", "Count": "0"})
@@ -399,11 +456,120 @@ class PdgfeedCliTests(unittest.TestCase):
                 ],
             )
             residue_headers, residue_rows = self.parse_markdown_table(content[2].splitlines())
-            self.assertEqual(residue_headers, ["Product Unbound Architrino Counts", "Count", "Example Mode"])
+            self.assertEqual(
+                residue_headers,
+                ["Reaction Set", "Product Unbound Architrino Counts", "Count", "Example Mode"],
+            )
             self.assertEqual(
                 residue_rows,
                 [
-                    {"Product Unbound Architrino Counts": "1:1", "Count": "1", "Example Mode": "B+ decay mode 1"},
+                    {
+                        "Reaction Set": "Ready total-balance closures with branching probability >= 5.0%",
+                        "Product Unbound Architrino Counts": "1:1",
+                        "Count": "1",
+                        "Example Mode": "B+ decay mode 1",
+                    },
+                ],
+            )
+            all_residue_headers, all_residue_rows = self.parse_markdown_table(content[3].splitlines())
+            self.assertEqual(
+                all_residue_headers,
+                ["Reaction Set", "Product Unbound Architrino Counts", "Count", "Example Mode"],
+            )
+            self.assertEqual(
+                all_residue_rows,
+                [
+                    {
+                        "Reaction Set": "All ready total-balance closures",
+                        "Product Unbound Architrino Counts": "1:1",
+                        "Count": "1",
+                        "Example Mode": "B+ decay mode 1",
+                    },
+                ],
+            )
+
+    def test_summary_report_splits_residue_tables_by_branching_threshold(self):
+        api = FakeApi(
+            [
+                FakeParticle(
+                    "mu-",
+                    [
+                        FakeDecay(
+                            "TEST.MU.LOW",
+                            "mu- -> e- nubar_e nu_mu",
+                            [
+                                FakeDecayProduct("e-"),
+                                FakeDecayProduct("nubar_e"),
+                                FakeDecayProduct("nu_mu"),
+                            ],
+                            value=0.04,
+                        ),
+                    ],
+                    mcid=13,
+                ),
+                FakeParticle(
+                    "pi+",
+                    [
+                        FakeDecay(
+                            "TEST.PI.THRESHOLD",
+                            "pi+ -> mu+ nu_mu",
+                            [
+                                FakeDecayProduct("mu+"),
+                                FakeDecayProduct("nu_mu"),
+                            ],
+                            value=0.05,
+                        ),
+                    ],
+                    mcid=211,
+                ),
+            ]
+        )
+        with tempfile.TemporaryDirectory() as tmp_dir_name:
+            tmp_dir = Path(tmp_dir_name)
+            with (
+                patch.object(pdgfeed_runtime, "connect_pdg", return_value=api),
+                patch.object(pdgfeed_live, "connect_pdg", return_value=api),
+                patch.object(pdgfeed_runtime, "DEFAULT_TMP_DIR", tmp_dir),
+            ):
+                output_path = pdgfeed.write_live_reaction_summary_report("pdg-reactions")
+
+            content = output_path.read_text(encoding="utf-8").strip().split("\n\n")
+            threshold_headers, threshold_rows = self.parse_markdown_table(content[2].splitlines())
+            self.assertEqual(
+                threshold_headers,
+                ["Reaction Set", "Product Unbound Architrino Counts", "Count", "Example Mode"],
+            )
+            self.assertEqual(
+                threshold_rows,
+                [
+                    {
+                        "Reaction Set": "Ready total-balance closures with branching probability >= 5.0%",
+                        "Product Unbound Architrino Counts": "2:2",
+                        "Count": "1",
+                        "Example Mode": "pi+ decay mode 1",
+                    }
+                ],
+            )
+            all_headers, all_rows = self.parse_markdown_table(content[3].splitlines())
+            self.assertEqual(
+                all_headers,
+                ["Reaction Set", "Product Unbound Architrino Counts", "Count", "Example Mode"],
+            )
+            self.assertEqual(
+                all_rows,
+                [
+                    {
+                        "Reaction Set": "All ready total-balance closures",
+                        "Product Unbound Architrino Counts": "0:0",
+                        "Count": "1",
+                        "Example Mode": "mu- decay mode 1",
+                    },
+                    {
+                        "Reaction Set": "All ready total-balance closures",
+                        "Product Unbound Architrino Counts": "2:2",
+                        "Count": "1",
+                        "Example Mode": "pi+ decay mode 1",
+                    },
                 ],
             )
 
