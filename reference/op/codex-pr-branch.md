@@ -201,6 +201,9 @@ git checkout -b codex/<element-name>
 - Refresh remote-tracking refs first so all later decisions are based on the current `origin/main`, not stale local knowledge.
 - The worktree should be clean at this point.
 - The local branch `HEAD` and `origin/<current-branch>` should resolve to the same commit.
+- Also determine whether the branch actually contains work relative to the current base branch.
+- Do not treat `HEAD == origin/<current-branch>` as evidence that there is nothing to publish. That only proves the branch tip is pushed.
+- Before concluding that the workflow is a no-op, compare the current branch against `origin/main`.
 - Do not skip this check just because `git push` printed success earlier in the session.
 - Do not open or update a PR from `main`.
 
@@ -212,6 +215,9 @@ git branch --show-current
 git status -sb
 git rev-parse HEAD
 git rev-parse origin/$(git branch --show-current)
+git rev-list --count origin/main..HEAD
+git log --oneline origin/main..HEAD
+git diff --stat origin/main..HEAD
 ```
 
 Interpretation:
@@ -219,6 +225,8 @@ Interpretation:
 - if the current branch is `main`, stop and create or switch to a working branch first;
 - if `git status -sb` is not clean, stop and either commit or intentionally discard/stash the remaining edits before PR work;
 - if the two SHAs do not match, stop and push the branch tip you actually want reviewed before touching the PR.
+- if `git rev-list --count origin/main..HEAD` is `0`, the branch currently has no commits beyond the base branch, so there is nothing to publish yet;
+- if `git rev-list --count origin/main..HEAD` is greater than `0`, the branch contains reviewable work relative to base even if it is already pushed cleanly.
 
 Only continue to PR checks after this gate passes.
 
@@ -247,6 +255,7 @@ Interpretation:
 - This is the primary guard against continuing on a branch whose PR already merged.
 - Do this after pushing the branch tip and before opening, updating, or relying on a PR.
 - First determine whether the branch already has a PR.
+- Also determine whether the branch has any commits beyond `origin/main` before treating an empty PR list as a no-op.
 - If no PR exists yet, open a new one normally.
 - If a PR exists and is still open, update that PR normally.
 - If a PR exists and is already merged, stop immediately.
@@ -258,12 +267,14 @@ Suggested checks:
 ```bash
 git branch --show-current
 git rev-parse HEAD
+git rev-list --count origin/main..HEAD
 gh pr list --head "$(git branch --show-current)" --state all --json state,mergedAt,headRefOid,headRefName,url
 ```
 
 Interpretation:
 
-- if `gh pr list` returns an empty array, create a new PR;
+- if `gh pr list` returns an empty array and `git rev-list --count origin/main..HEAD` is greater than `0`, create a new PR;
+- if `gh pr list` returns an empty array and `git rev-list --count origin/main..HEAD` is `0`, there is no PR yet because there is no branch work to publish yet;
 - if `state` is `OPEN`, continue using that PR;
 - if `state` is `MERGED` and `headRefOid` matches `HEAD`, the current branch tip is already what the merged PR contained, so roll over before doing more work;
 - if `state` is `MERGED` and `headRefOid` does not match `HEAD`, the branch contains newer local commits that were not part of the merged PR, so stop and recover them onto a fresh branch before continuing.
