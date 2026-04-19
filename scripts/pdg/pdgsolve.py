@@ -13,6 +13,7 @@ import argparse
 import copy
 import hashlib
 import json
+import math
 import sys
 from collections import OrderedDict
 from pathlib import Path
@@ -32,6 +33,11 @@ PDGSOLVE_PUBLICATION_GRAPH_SCHEMA = "pdgsolve-publication-graph/v2"
 PDGSOLVE_PDGEDIT_PACKAGE_SCHEMA = "pdgsolve-pdgedit-package/v1"
 PDGEDIT_SCHEMA = "pdgedit/v1"
 ASSEMBLY_ALPHABET_ID = "pdgsolve-assemblies/v1-standard-model"
+PDGEDIT_ORDER_GROUP_PRIORITY = {
+    "pdg": 0,
+    "aaa": 1,
+    "closure": 2,
+}
 PRIMITIVE_BASIS_ID = "pdgsolve-primitives/electrino-positrino/v1"
 LAW_TABLE_ID = "pdgsolve-laws/v1-standard-model"
 
@@ -1187,6 +1193,18 @@ def build_residue_totals(records: list[dict[str, Any]]) -> dict[str, int]:
         totals["electrinoCount"] += int(record.get("electrinoCount", 0) or 0)
         totals["positrinoCount"] += int(record.get("positrinoCount", 0) or 0)
     return totals
+
+
+def normalize_branching_probability(value: Any) -> float | None:
+    try:
+        probability = float(value)
+    except (TypeError, ValueError):
+        return None
+    if not math.isfinite(probability):
+        return None
+    if -1e-12 <= probability <= 1.0 + 1e-12:
+        return min(1.0, max(0.0, probability))
+    return None
 
 
 def canonical_counted_assemblies_from_records(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -3066,6 +3084,7 @@ def build_pdgedit_assembly_entry(
     role: str,
     x: int,
     y: int,
+    order_group: str | None = None,
 ) -> dict[str, Any]:
     assembly_id = normalize_text(occurrence.get("assemblyId"))
     metadata = ASSEMBLY_DISPLAY[assembly_id]
@@ -3088,6 +3107,7 @@ def build_pdgedit_assembly_entry(
             if primitive_counts is not None
             else {}
         ),
+        **({"orderGroup": normalize_text(order_group)} if normalize_text(order_group) else {}),
     }
     if assembly_id == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID:
         entry["sampleCounts"] = {
@@ -3095,6 +3115,55 @@ def build_pdgedit_assembly_entry(
             "bottomCount": str(int(occurrence.get("positrinoCount", 0) or 0)),
         }
     return entry
+
+
+def classify_pdgedit_order_group(*, assembly_id: str = "", occurrence_key: str = "") -> str:
+    normalized_assembly_id = normalize_text(assembly_id)
+    normalized_occurrence_key = normalize_text(occurrence_key)
+    if normalized_assembly_id == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID:
+        return "closure"
+    if (
+        normalized_occurrence_key.startswith("reactant_noether_pair_")
+        or normalized_occurrence_key.startswith("product_noether_pair_")
+        or "core_balance_noether_pair" in normalized_occurrence_key
+    ):
+        return "aaa"
+    return "pdg"
+
+
+def sort_pdgedit_side_occurrences(occurrences: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    enumerated_occurrences = list(enumerate(occurrences))
+    enumerated_occurrences.sort(
+        key=lambda entry: (
+            PDGEDIT_ORDER_GROUP_PRIORITY[
+                classify_pdgedit_order_group(
+                    assembly_id=normalize_text(entry[1].get("assemblyId")),
+                    occurrence_key=normalize_text(entry[1].get("id")),
+                )
+            ],
+            entry[0],
+        )
+    )
+    return [occurrence for _, occurrence in enumerated_occurrences]
+
+
+def sort_pdgedit_stage_units(stage: str, units: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    normalized_stage = normalize_text(stage)
+    if normalized_stage not in {"reactantAssemblies", "productAssemblies"}:
+        return list(units)
+    enumerated_units = list(enumerate(units))
+    enumerated_units.sort(
+        key=lambda entry: (
+            PDGEDIT_ORDER_GROUP_PRIORITY[
+                classify_pdgedit_order_group(
+                    assembly_id=normalize_text(entry[1].get("recipeId")),
+                    occurrence_key=normalize_text(entry[1].get("occurrenceKey")),
+                )
+            ],
+            entry[0],
+        )
+    )
+    return [unit for _, unit in enumerated_units]
 
 
 def build_pdgedit_document_from_publication_graph(
@@ -3108,78 +3177,99 @@ def build_pdgedit_document_from_publication_graph(
     incoming_by_unit_id, outgoing_by_unit_id = build_publication_graph_adjacency_maps(publication_graph)
     assemblies = []
     operators = []
-    next_row_by_stage: dict[str, int] = {}
+    stage_order = (
+        "reactantAssemblies",
+        "reactantSideOperators",
+        "intermediateAssemblies",
+        "productSideOperators",
+        "productAssemblies",
+    )
+    units_by_stage: dict[str, list[dict[str, Any]]] = {}
     for unit in publication_graph.get("units", []):
         stage = normalize_text(unit.get("stage"))
-        if stage not in PDGEDIT_X_BY_STAGE:
+        if not stage:
             continue
-        x = PDGEDIT_X_BY_STAGE[stage]
-        y = next_row_by_stage.get(stage, 0)
-        next_row_by_stage[stage] = y + 1
-        if normalize_text(unit.get("kind")) == "assembly":
-            assembly_id = normalize_text(unit.get("recipeId"))
-            metadata = ASSEMBLY_DISPLAY[assembly_id]
-            residue_counts = (
-                residue_counts_from_publication_graph_unit(
+        units_by_stage.setdefault(stage, []).append(unit)
+    next_row_by_stage: dict[str, int] = {}
+    ordered_stage_units = {
+        stage: sort_pdgedit_stage_units(stage, units_by_stage.get(stage, []))
+        for stage in stage_order
+    }
+    for stage in stage_order:
+        for unit in ordered_stage_units.get(stage, []):
+            if stage not in PDGEDIT_X_BY_STAGE:
+                continue
+            x = PDGEDIT_X_BY_STAGE[stage]
+            y = next_row_by_stage.get(stage, 0)
+            next_row_by_stage[stage] = y + 1
+            if normalize_text(unit.get("kind")) == "assembly":
+                assembly_id = normalize_text(unit.get("recipeId"))
+                metadata = ASSEMBLY_DISPLAY[assembly_id]
+                residue_counts = (
+                    residue_counts_from_publication_graph_unit(
+                        unit,
+                        units_by_id=units_by_id,
+                        incoming_by_unit_id=incoming_by_unit_id,
+                        outgoing_by_unit_id=outgoing_by_unit_id,
+                    )
+                    if assembly_id == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID
+                    else None
+                )
+                primitive_counts = residue_counts or build_assembly_counts_from_publication_unit(unit)
+                assemblies.append(
+                    {
+                        "id": normalize_text(unit.get("id")),
+                        "type": metadata["pdgeditType"],
+                        "x": x,
+                        "y": y,
+                        "title": normalize_text(unit.get("title")) or metadata["title"],
+                        "role": PDGEDIT_ROLE_BY_PUBLICATION_STAGE[stage],
+                        "tiles": clone_json(metadata["tiles"]),
+                        "orderGroup": classify_pdgedit_order_group(
+                            assembly_id=assembly_id,
+                            occurrence_key=normalize_text(unit.get("occurrenceKey")),
+                        ),
+                        **(
+                            {
+                                "primitiveCounts": {
+                                    "electrinoCount": primitive_counts["electrinoCount"],
+                                    "positrinoCount": primitive_counts["positrinoCount"],
+                                }
+                            }
+                            if primitive_counts is not None
+                            else {}
+                        ),
+                        **(
+                            {
+                                "sampleCounts": {
+                                    "topCount": str(int((residue_counts or {}).get("electrinoCount", 0))),
+                                    "bottomCount": str(int((residue_counts or {}).get("positrinoCount", 0))),
+                                }
+                            }
+                            if normalize_text(unit.get("recipeId")) == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID
+                            else {}
+                        ),
+                    }
+                )
+                continue
+            if normalize_text(unit.get("kind")) == "operator":
+                positrino_count, electrino_count = operator_counts_from_publication_graph(
                     unit,
                     units_by_id=units_by_id,
                     incoming_by_unit_id=incoming_by_unit_id,
                     outgoing_by_unit_id=outgoing_by_unit_id,
                 )
-                if assembly_id == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID
-                else None
-            )
-            primitive_counts = residue_counts or build_assembly_counts_from_publication_unit(unit)
-            assemblies.append(
-                {
-                    "id": normalize_text(unit.get("id")),
-                    "type": metadata["pdgeditType"],
-                    "x": x,
-                    "y": y,
-                    "title": normalize_text(unit.get("title")) or metadata["title"],
-                    "role": PDGEDIT_ROLE_BY_PUBLICATION_STAGE[stage],
-                    "tiles": clone_json(metadata["tiles"]),
-                    **(
-                        {
-                            "primitiveCounts": {
-                                "electrinoCount": primitive_counts["electrinoCount"],
-                                "positrinoCount": primitive_counts["positrinoCount"],
-                            }
-                        }
-                        if primitive_counts is not None
-                        else {}
-                    ),
-                    **(
-                        {
-                            "sampleCounts": {
-                                "topCount": str(int((residue_counts or {}).get("electrinoCount", 0))),
-                                "bottomCount": str(int((residue_counts or {}).get("positrinoCount", 0))),
-                            }
-                        }
-                        if normalize_text(unit.get("recipeId")) == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID
-                        else {}
-                    ),
-                }
-            )
-            continue
-        if normalize_text(unit.get("kind")) == "operator":
-            positrino_count, electrino_count = operator_counts_from_publication_graph(
-                unit,
-                units_by_id=units_by_id,
-                incoming_by_unit_id=incoming_by_unit_id,
-                outgoing_by_unit_id=outgoing_by_unit_id,
-            )
-            operators.append(
-                {
-                    "id": normalize_text(unit.get("id")),
-                    "type": normalize_text(unit.get("recipeId")),
-                    "x": x,
-                    "y": y,
-                    "title": normalize_text(unit.get("title")),
-                    "positrinoCount": positrino_count,
-                    "electrinoCount": electrino_count,
-                }
-            )
+                operators.append(
+                    {
+                        "id": normalize_text(unit.get("id")),
+                        "type": normalize_text(unit.get("recipeId")),
+                        "x": x,
+                        "y": y,
+                        "title": normalize_text(unit.get("title")),
+                        "positrinoCount": positrino_count,
+                        "electrinoCount": electrino_count,
+                    }
+                )
 
     links = [
         {
@@ -3204,16 +3294,14 @@ def build_pdgedit_document_from_publication_graph(
             "recipeId": normalize_text(unit.get("recipeId")),
             "occurrenceKey": normalize_text(unit.get("occurrenceKey")),
         }
-        for unit in publication_graph.get("units", [])
-        if normalize_text(unit.get("stage")) == "reactantAssemblies"
+        for unit in ordered_stage_units.get("reactantAssemblies", [])
     ]
     product_composite_rows = [
         {
             "recipeId": normalize_text(unit.get("recipeId")),
             "occurrenceKey": normalize_text(unit.get("occurrenceKey")),
         }
-        for unit in publication_graph.get("units", [])
-        if normalize_text(unit.get("stage")) == "productAssemblies"
+        for unit in ordered_stage_units.get("productAssemblies", [])
     ]
     _ = document_id, document_title
     normalized_reaction_summary = clone_reaction_summary(reaction_summary)
@@ -3257,8 +3345,8 @@ def build_pdgedit_document_from_request_review(
     document_id: str | None = None,
     document_title: str | None = None,
 ) -> dict[str, Any]:
-    reactants = list(request.get("reactants", []))
-    products = list(request.get("products", []))
+    reactants = sort_pdgedit_side_occurrences(list(request.get("reactants", [])))
+    products = sort_pdgedit_side_occurrences(list(request.get("products", [])))
     assemblies = []
     for row_index, reactant in enumerate(reactants):
         assemblies.append(
@@ -3268,6 +3356,10 @@ def build_pdgedit_document_from_request_review(
                 role="reactant",
                 x=PDGEDIT_X_BY_STAGE["reactantAssemblies"],
                 y=row_index,
+                order_group=classify_pdgedit_order_group(
+                    assembly_id=normalize_text(reactant.get("assemblyId")),
+                    occurrence_key=normalize_text(reactant.get("id")),
+                ),
             )
         )
     for row_index, product in enumerate(products):
@@ -3278,6 +3370,10 @@ def build_pdgedit_document_from_request_review(
                 role="product",
                 x=PDGEDIT_X_BY_STAGE["productAssemblies"],
                 y=row_index,
+                order_group=classify_pdgedit_order_group(
+                    assembly_id=normalize_text(product.get("assemblyId")),
+                    occurrence_key=normalize_text(product.get("id")),
+                ),
             )
         )
     _ = document_id, document_title
@@ -3368,6 +3464,8 @@ def build_pdgedit_manifest_entry(
     document_title: str,
     document_path: str,
     source_kind: str = "exact",
+    branching_probability: float | None = None,
+    product_unbound_architrino_counts: dict[str, int] | None = None,
     is_default: bool = False,
 ) -> dict[str, Any]:
     entry = {
@@ -3377,6 +3475,14 @@ def build_pdgedit_manifest_entry(
         "sourceKind": source_kind,
         "documentPath": document_path,
     }
+    normalized_branching_probability = normalize_branching_probability(branching_probability)
+    if normalized_branching_probability is not None:
+        entry["branchingProbability"] = normalized_branching_probability
+    if isinstance(product_unbound_architrino_counts, dict):
+        entry["productUnboundArchitrinoCounts"] = build_primitive_counts(
+            max(0, int(product_unbound_architrino_counts.get("electrinoCount", 0) or 0)),
+            max(0, int(product_unbound_architrino_counts.get("positrinoCount", 0) or 0)),
+        )
     if is_default:
         entry["isDefault"] = True
     return entry
@@ -3497,6 +3603,10 @@ def solve_manifest_payload(
                 "request": clone_json(request),
                 "result": clone_json(result),
                 "record": record,
+                "branchingProbability": normalize_branching_probability(entry.get("branchingProbability")),
+                "productUnboundArchitrinoCounts": build_residue_totals(
+                    request.get("products") if isinstance(request.get("products"), list) else []
+                ),
             }
         )
 
@@ -3544,6 +3654,8 @@ def solve_manifest_payload(
         request = candidate["request"]
         result = candidate["result"]
         record = candidate["record"]
+        branching_probability = normalize_branching_probability(candidate.get("branchingProbability"))
+        product_unbound_architrino_counts = candidate.get("productUnboundArchitrinoCounts")
         source_title = normalize_text(request.get("source", {}).get("title"))
         base_title = source_title or normalize_text(request.get("requestId")) or case_id
         pdgedit_filename = f"{batch_id:04d}_{slugify(case_id)}.pdgedit.v1.json"
@@ -3567,6 +3679,8 @@ def solve_manifest_payload(
                 document_title=base_title,
                 document_path="",
                 source_kind="exact",
+                branching_probability=branching_probability,
+                product_unbound_architrino_counts=product_unbound_architrino_counts,
                 is_default=not pdgedit_manifest_entries,
             )
         else:
@@ -3580,6 +3694,8 @@ def solve_manifest_payload(
                 document_title=f"Review: {base_title}",
                 document_path="",
                 source_kind="unsolved",
+                branching_probability=branching_probability,
+                product_unbound_architrino_counts=product_unbound_architrino_counts,
                 is_default=not pdgedit_manifest_entries,
             )
         write_json(pdgedit_document_path, pdgedit_document)

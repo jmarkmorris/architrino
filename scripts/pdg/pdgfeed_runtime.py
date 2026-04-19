@@ -12,7 +12,15 @@ from pathlib import Path
 from typing import Any, Sequence
 
 from scripts.pdg.pdgfeed_generic_family import canonicalize_generic_family_name, is_supported_generic_family
-from scripts.pdg.pdgfeed_live import connect_pdg, known_reaction_status, load_live_case_by_id, load_live_cases
+from scripts.pdg.pdgfeed_live import (
+    connect_pdg,
+    iter_candidate_branching_fractions,
+    iter_live_particles,
+    known_reaction_status,
+    load_live_case_by_id,
+    load_live_cases,
+    normalize_branching_probability_from_display,
+)
 from scripts.pdg.pdgfeed_model import (
     DEFAULT_OUTPUT_DIR,
     DEFAULT_PDGSOLVE_REQUEST_POLICY,
@@ -49,6 +57,7 @@ REQUEST_ASSEMBLY_TITLE_BY_ID = {
 }
 UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID = "unbound_architrinos_residue"
 UNBOUND_ARCHITRINOS_RESIDUE_TITLE = "Unbound Architrinos"
+PDGEDIT_APP_MIN_BRANCHING_PROBABILITY = 0.20
 NOETHER_CORE_GENERATIONS = ("I", "II", "III")
 NOETHER_PAIR_PRIMITIVE_TOTALS_BY_GENERATION = {
     generation: {
@@ -79,6 +88,22 @@ INCOMPLETE_NOTE_MARKERS = (
     ":generic-family-unresolved",
     ":missing-name",
 )
+BRANCHING_PROBABILITY_DECILE_LABELS = tuple(
+    f"{lower}-{upper}"
+    for lower, upper in (
+        (90, 100),
+        (80, 90),
+        (70, 80),
+        (60, 70),
+        (50, 60),
+        (40, 50),
+        (30, 40),
+        (20, 30),
+        (10, 20),
+        (0, 10),
+    )
+)
+NO_NUMERIC_BRANCHING_PROBABILITY_LABEL = "No numeric value"
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -427,10 +452,10 @@ def merge_unbound_architrinos_residue_product(
     ]
 
 
-def add_minimum_noether_pair_reactants_for_balance(
+def compute_minimum_reactant_noether_pair_count_for_balance(
     reactants: list[dict[str, Any]],
     products: list[dict[str, Any]],
-) -> list[dict[str, Any]] | None:
+) -> int | None:
     reactant_totals = get_pdgsolve_occurrence_primitive_totals(reactants)
     product_totals = get_pdgsolve_occurrence_primitive_totals(products)
     if reactant_totals is None or product_totals is None:
@@ -446,9 +471,25 @@ def add_minimum_noether_pair_reactants_for_balance(
         if positrino_deficit
         else 0,
     )
+    return pair_count
+
+
+def add_reactant_noether_pairs_for_balance(
+    reactants: list[dict[str, Any]],
+    products: list[dict[str, Any]],
+) -> list[dict[str, Any]] | None:
+    minimum_pair_count = compute_minimum_reactant_noether_pair_count_for_balance(reactants, products)
+    if minimum_pair_count is None:
+        return None
+
+    provisional_reactants = [
+        *reactants,
+        *build_noether_pair_occurrences("reactant", minimum_pair_count),
+    ]
+    additional_pair_count = compute_required_full_noether_pair_count(provisional_reactants, products)
+    pair_count = minimum_pair_count + additional_pair_count
     if pair_count == 0:
         return reactants
-
     return [*reactants, *build_noether_pair_occurrences("reactant", pair_count)]
 
 
@@ -593,33 +634,6 @@ def compute_required_full_noether_pair_count(
     return max(required_pair_count_by_charge.values())
 
 
-def add_core_balance_support_pairs_and_unbound_residue(
-    reactants: list[dict[str, Any]],
-    products: list[dict[str, Any]],
-) -> tuple[list[dict[str, Any]], list[dict[str, Any]]] | None:
-    pair_count = compute_required_full_noether_pair_count(reactants, products)
-    if pair_count == 0:
-        return reactants, products
-
-    updated_reactants = [
-        *reactants,
-        *build_noether_pair_occurrences(
-            "reactant",
-            pair_count,
-            generation="I",
-            id_prefix="core_balance_noether_pair",
-        ),
-    ]
-    updated_products = merge_unbound_architrinos_residue_product(
-        products,
-        pair_count * NOETHER_PAIR_PRIMITIVE_TOTALS_BY_GENERATION["I"]["electrinoCount"],
-        pair_count * NOETHER_PAIR_PRIMITIVE_TOTALS_BY_GENERATION["I"]["positrinoCount"],
-    )
-    if updated_products is None:
-        return None
-    return updated_reactants, updated_products
-
-
 def add_maximum_noether_pair_products_from_surplus(
     reactants: list[dict[str, Any]],
     products: list[dict[str, Any]],
@@ -662,23 +676,18 @@ def add_unbound_architrino_residue_product_from_surplus(
 def transform_proposal_for_pdgsolve(proposal: Proposal) -> dict[str, list[dict[str, Any]]] | None:
     if has_unsupported_transform_notes(proposal.notes):
         return None
+    if not proposal.products:
+        return None
     reactants = transform_participants_for_pdgsolve(proposal.reactants)
     products = transform_participants_for_pdgsolve(proposal.products)
     if reactants is None or products is None:
         return None
-    reactants = add_minimum_noether_pair_reactants_for_balance(reactants, products)
+    reactants = add_reactant_noether_pairs_for_balance(reactants, products)
     if reactants is None:
-        return None
-    products = add_maximum_noether_pair_products_from_surplus(reactants, products)
-    if products is None:
         return None
     products = add_unbound_architrino_residue_product_from_surplus(reactants, products)
     if products is None:
         return None
-    core_balanced = add_core_balance_support_pairs_and_unbound_residue(reactants, products)
-    if core_balanced is None:
-        return None
-    reactants, products = core_balanced
     return {
         "reactants": reactants,
         "products": products,
@@ -1017,6 +1026,52 @@ def supported_reaction_sort_key(row: dict[str, str | int]) -> tuple[int, int, in
     )
 
 
+def normalize_branching_probability(value: Any) -> float | None:
+    try:
+        probability = float(value)
+    except (TypeError, ValueError):
+        return None
+    if not math.isfinite(probability):
+        return None
+    if -1e-12 <= probability <= 1.0 + 1e-12:
+        return min(1.0, max(0.0, probability))
+    return None
+
+
+def branching_probability_decile_label(probability: float) -> str:
+    percent = probability * 100.0
+    if percent >= 100.0:
+        return "90-100"
+    lower = int(percent // 10) * 10
+    upper = lower + 10
+    return f"{lower}-{upper}"
+
+
+def build_live_branching_probability_deciles(
+    database_url: str | None = None,
+    *,
+    api: Any | None = None,
+    source: str = "pdg-reactions",
+) -> list[tuple[str, int]]:
+    if source != "pdg-reactions":
+        raise ValueError(f"Unsupported source: {source}")
+    api = api or connect_pdg(database_url, pedantic=False)
+    counts: Counter[str] = Counter()
+    for particle in iter_live_particles(api):
+        for decay in iter_candidate_branching_fractions(particle):
+            probability = normalize_branching_probability(getattr(decay, "value", None))
+            if probability is None:
+                probability = normalize_branching_probability_from_display(getattr(decay, "display_value_text", ""))
+            if probability is None:
+                counts[NO_NUMERIC_BRANCHING_PROBABILITY_LABEL] += 1
+                continue
+            counts[branching_probability_decile_label(probability)] += 1
+    return [
+        *((label, counts.get(label, 0)) for label in BRANCHING_PROBABILITY_DECILE_LABELS),
+        (NO_NUMERIC_BRANCHING_PROBABILITY_LABEL, counts.get(NO_NUMERIC_BRANCHING_PROBABILITY_LABEL, 0)),
+    ]
+
+
 def build_supported_reaction_csv_rows(cases: list[PdgCase]) -> list[dict[str, str | int]]:
     rows: list[dict[str, str | int]] = []
     for case in cases:
@@ -1059,6 +1114,9 @@ def build_live_manifest_payload(
             "blockedParticles": blocked_names,
             "proposal": proposal.to_dict(),
         }
+        branching_probability = normalize_branching_probability(live_case.source.get("branchingProbability"))
+        if branching_probability is not None:
+            entry["branchingProbability"] = branching_probability
         if pdgsolve_request is None:
             blocked_entries.append(entry)
             continue
@@ -1122,18 +1180,23 @@ def build_live_reaction_summary_rows(
     *,
     source: str = "pdg-reactions",
     api: Any | None = None,
-) -> tuple[list[tuple[str, int]], list[tuple[str, int, str]], list[tuple[str, int]]]:
+) -> tuple[
+    list[tuple[str, int]],
+    list[tuple[str, int]],
+    list[tuple[str, str, int, str]],
+    list[tuple[str, str, int, str]],
+    list[tuple[str, int]],
+]:
     if source != "pdg-reactions":
         raise ValueError(f"Unsupported source: {source}")
     api = api or connect_pdg(database_url, pedantic=False)
     manifest = build_live_manifest_payload(database_url, api=api)
     supported_rows = build_live_supported_reaction_csv_rows(database_url, api=api, manifest=manifest)
+    probability_deciles = build_live_branching_probability_deciles(database_url, api=api, source=source)
     total_reaction_count = int(manifest.get("readyCount", 0) or 0) + int(manifest.get("blockedCount", 0) or 0)
     total_balance_closure_count = 0
     total_balance_with_residue_count = 0
     ready_without_total_balance_count = 0
-    residue_count_buckets: Counter[tuple[int, int]] = Counter()
-    residue_count_examples: dict[tuple[int, int], str] = {}
     for entry in manifest.get("readyEntries", []):
         if not isinstance(entry, dict):
             continue
@@ -1142,23 +1205,24 @@ def build_live_reaction_summary_rows(
             ready_without_total_balance_count += 1
             continue
         total_balance_closure_count += 1
-        residue_counts = get_request_residue_counts(pdgsolve_request)
-        if residue_counts is not None:
-            residue_count_buckets[residue_counts] += 1
-            if residue_counts not in residue_count_examples:
-                residue_count_examples[residue_counts] = (
-                    str(entry.get("title", "")).strip()
-                    or str(entry.get("caseId", "")).strip()
-                    or str(entry.get("proposalId", "")).strip()
-                    or str(pdgsolve_request.get("requestId", "")).strip()
-                )
         if request_has_unbound_architrino_residue_product(pdgsolve_request):
             total_balance_with_residue_count += 1
     total_balance_without_residue_count = total_balance_closure_count - total_balance_with_residue_count
     incomplete_count = 0
     aaa_complete_count = 0
     backlog_count = 0
+    app_excluded_low_probability_count = 0
+    app_excluded_missing_probability_count = 0
     backlog_particle_counts: Counter[str] = Counter()
+    for entry in [*manifest.get("readyEntries", []), *manifest.get("blockedEntries", [])]:
+        if not isinstance(entry, dict):
+            continue
+        probability = normalize_branching_probability(entry.get("branchingProbability"))
+        if probability is None:
+            app_excluded_missing_probability_count += 1
+            continue
+        if probability + 1e-12 < PDGEDIT_APP_MIN_BRANCHING_PROBABILITY:
+            app_excluded_low_probability_count += 1
     for entry in manifest.get("readyEntries", []):
         if not isinstance(entry, dict):
             continue
@@ -1184,6 +1248,14 @@ def build_live_reaction_summary_rows(
         ("Number of AAAcomplete reactions", aaa_complete_count),
         ("Number of backlog reactions", backlog_count),
         ("Number of PDG reactions supported and transformed into AAA", len(supported_rows)),
+        (
+            f"Number of reactions excluded from app (<{PDGEDIT_APP_MIN_BRANCHING_PROBABILITY * 100:.1f}% branching probability)",
+            app_excluded_low_probability_count,
+        ),
+        (
+            "Number of reactions excluded from app (no branching probability specified)",
+            app_excluded_missing_probability_count,
+        ),
         ("Number of reactions closed by total primitive balance", total_balance_closure_count),
         ("Number of total-balance closures with product unbound architrinos", total_balance_with_residue_count),
         ("Number of total-balance closures without product unbound architrinos", total_balance_without_residue_count),
@@ -1195,8 +1267,59 @@ def build_live_reaction_summary_rows(
             ("Number of reactions blocked", int(manifest.get("blockedCount", 0) or 0)),
         ]
     )
-    residue_counts = [
+    residue_counts_above_threshold = build_live_residue_count_rows(
+        manifest.get("readyEntries", []),
+        set_label=f"Ready total-balance closures with branching probability >= {PDGEDIT_APP_MIN_BRANCHING_PROBABILITY * 100:.1f}%",
+        minimum_branching_probability=PDGEDIT_APP_MIN_BRANCHING_PROBABILITY,
+    )
+    residue_counts_all = build_live_residue_count_rows(
+        manifest.get("readyEntries", []),
+        set_label="All ready total-balance closures",
+    )
+    backlog_particles = [
+        (particle_name, count)
+        for particle_name, count in sorted(
+            backlog_particle_counts.items(),
+            key=lambda item: (-item[1], item[0]),
+        )[:10]
+    ]
+    return rows, probability_deciles, residue_counts_above_threshold, residue_counts_all, backlog_particles
+
+
+def build_live_residue_count_rows(
+    entries: Sequence[Any],
+    *,
+    set_label: str,
+    minimum_branching_probability: float | None = None,
+) -> list[tuple[str, str, int, str]]:
+    residue_count_buckets: Counter[tuple[int, int]] = Counter()
+    residue_count_examples: dict[tuple[int, int], str] = {}
+    for entry in entries:
+        if not isinstance(entry, dict):
+            continue
+        probability = normalize_branching_probability(entry.get("branchingProbability"))
+        if minimum_branching_probability is not None:
+            if probability is None:
+                continue
+            if probability + 1e-12 < minimum_branching_probability:
+                continue
+        pdgsolve_request = entry.get("pdgsolveRequest", {})
+        if not request_has_total_primitive_balance(pdgsolve_request):
+            continue
+        residue_counts = get_request_residue_counts(pdgsolve_request)
+        if residue_counts is None:
+            continue
+        residue_count_buckets[residue_counts] += 1
+        if residue_counts not in residue_count_examples:
+            residue_count_examples[residue_counts] = (
+                str(entry.get("title", "")).strip()
+                or str(entry.get("caseId", "")).strip()
+                or str(entry.get("proposalId", "")).strip()
+                or str(pdgsolve_request.get("requestId", "")).strip()
+            )
+    return [
         (
+            set_label,
             format_residue_counts(residue_count),
             count,
             residue_count_examples.get(residue_count, ""),
@@ -1206,14 +1329,6 @@ def build_live_reaction_summary_rows(
             key=lambda item: (-item[1], item[0][0], item[0][1]),
         )
     ]
-    backlog_particles = [
-        (particle_name, count)
-        for particle_name, count in sorted(
-            backlog_particle_counts.items(),
-            key=lambda item: (-item[1], item[0]),
-        )[:10]
-    ]
-    return rows, residue_counts, backlog_particles
 
 
 def write_supported_reaction_csv(path: Path, rows: list[dict[str, str | int]]) -> None:
@@ -1395,7 +1510,9 @@ def write_live_reaction_summary_markdown(
     path: Path,
     rows: Sequence[tuple[str, int]],
     *,
-    residue_counts: Sequence[tuple[str, int, str]] = (),
+    probability_deciles: Sequence[tuple[str, int]] = (),
+    residue_counts_above_threshold: Sequence[tuple[str, str, int, str]] = (),
+    residue_counts_all: Sequence[tuple[str, str, int, str]] = (),
     backlog_particles: Sequence[tuple[str, int]] = (),
 ) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -1408,15 +1525,39 @@ def write_live_reaction_summary_markdown(
             for row in metrics
         ],
     ]
-    if residue_counts:
+    if probability_deciles:
         body.extend(
             [
                 "",
-                "| Product Unbound Architrino Counts | Count | Example Mode |",
-                "| --- | --- | --- |",
+                "| Branching Probability Decile (%) | Count |",
+                "| --- | --- |",
                 *[
                     "| " + " | ".join(escape_markdown_table_cell(cell) for cell in row) + " |"
-                    for row in residue_counts
+                    for row in probability_deciles
+                ],
+            ]
+        )
+    if residue_counts_above_threshold:
+        body.extend(
+            [
+                "",
+                "| Reaction Set | Product Unbound Architrino Counts | Count | Example Mode |",
+                "| --- | --- | --- | --- |",
+                *[
+                    "| " + " | ".join(escape_markdown_table_cell(cell) for cell in row) + " |"
+                    for row in residue_counts_above_threshold
+                ],
+            ]
+        )
+    if residue_counts_all:
+        body.extend(
+            [
+                "",
+                "| Reaction Set | Product Unbound Architrino Counts | Count | Example Mode |",
+                "| --- | --- | --- | --- |",
+                *[
+                    "| " + " | ".join(escape_markdown_table_cell(cell) for cell in row) + " |"
+                    for row in residue_counts_all
                 ],
             ]
         )
@@ -1441,9 +1582,20 @@ def write_live_reaction_summary_report(
     *,
     api: Any | None = None,
 ) -> Path:
-    metrics, residue_counts, backlog_particles = build_live_reaction_summary_rows(database_url, source=source, api=api)
+    metrics, probability_deciles, residue_counts_above_threshold, residue_counts_all, backlog_particles = build_live_reaction_summary_rows(
+        database_url,
+        source=source,
+        api=api,
+    )
     path = summary_markdown_output_path(source)
-    write_live_reaction_summary_markdown(path, metrics, residue_counts=residue_counts, backlog_particles=backlog_particles)
+    write_live_reaction_summary_markdown(
+        path,
+        metrics,
+        probability_deciles=probability_deciles,
+        residue_counts_above_threshold=residue_counts_above_threshold,
+        residue_counts_all=residue_counts_all,
+        backlog_particles=backlog_particles,
+    )
     return path
 
 
