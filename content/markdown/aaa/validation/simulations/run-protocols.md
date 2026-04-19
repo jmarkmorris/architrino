@@ -10,14 +10,14 @@ The opening gives the top-level simulation rule set; the later sections unpack t
 2. **Clock Rate**: The simulator uses a global `Time` counter (absolute $t$). No relativistic scaling is applied to the integration step itself.
 3. **$\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$) Interface**: Every run must instantiate an array of fixed Virtual Sensors to log $\Phi$ and $\nabla\Phi$ at absolute addresses.
 4. **Noether Sea Initialization**: Standard "Vacuum" runs must pre-populate the grid with a lattice of coupled pro/anti tri-binary assemblies to simulate the medium's influence on test particles.
-5. **Convergence**: $\Delta$t refinement must be accompanied by "History Resolution" refinement to ensure self-hit calculations are numerically stable.
+5. **Convergence**: $\Delta t$ refinement must be accompanied by "History Resolution" refinement to ensure self-hit calculations are numerically stable.
 
 ## Run Protocol: Absolute-Frame + $\mathbb{U}_{\text{now}}$ Logging
 
 ### Absolute frame rule
 All simulations integrate dynamics in the absolute Euclidean frame:
 - Fixed Cartesian coordinates (x,y,z) representing the Euclidean void
-- Global absolute time t with step $\Delta$t
+- Global absolute time $t$ with step $\Delta t$
 - No relativistic time dilation applied to the integration clock (proper time is derived only in post-processing)
 
 ### Void vs medium terminology (simulation-facing)
@@ -27,18 +27,18 @@ All simulations integrate dynamics in the absolute Euclidean frame:
 ### Mandatory $\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$) grid
 Every run must instantiate $\mathbb{U}_{\text{now}}$ sensors:
 - $\mathbb{U}_{\text{now}}$ grid definition: points/worldlines, spacing, bounds, boundary conditions
-- Logged channels (minimum): $\Phi$, ∇$\Phi$
-- Optional: medium state variables ($\rho$_core, alignment metrics)
-- Provenance tables: (receiver_id, t, emitter_id, t_emit, contribution_strength) when feasible
+- Logged channels (minimum): $\Phi$, $\nabla\Phi$
+- Optional: medium state variables (for example, $\rho_{\text{core}}$ and alignment metrics)
+- Provenance tables: `receiver_id`, $t$, `emitter_id`, $t_{\text{emit}}$, `contribution_strength` when feasible
 
 ### Causal wake surface bookkeeping requirement
-When a potential wake surface intersects a $\mathbb{U}_{\text{now}}$ sensor or contributes to $\Phi$(x,t), the code must:
-- Solve for emission time t_emit using |x − x_emitter(t_emit)| = c_f (t − t_emit)
-- Record emitter identity + t_emit (provenance logging)
+When a potential wake surface intersects a $\mathbb{U}_{\text{now}}$ sensor or contributes to $\Phi(x,t)$, the code must:
+- Solve for emission time $t_{\text{emit}}$ using $\lVert x - x_{\text{emitter}}(t_{\text{emit}})\rVert = c_f (t - t_{\text{emit}})$
+- Record emitter identity plus $t_{\text{emit}}$ (provenance logging)
 
 ### Metadata (required)
 Each run must store:
-- c_f, kernel parameters, $\Delta$t, integrator name/order, tolerances
+- $c_f$, kernel parameters, $\Delta t$, integrator name/order, tolerances
 - history-window/compression settings (if any)
 - initial conditions seed
 - version hash / commit id
@@ -46,7 +46,7 @@ Each run must store:
 ### Acceptance gate
 No major physical claim is accepted without:
 - $\mathbb{U}_{\text{now}}$ logs
-- $\Delta$t convergence
+- $\Delta t$ convergence
 - history-resolution convergence
 - cross-integrator comparison (for critical results)
 

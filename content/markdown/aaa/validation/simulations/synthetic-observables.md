@@ -17,12 +17,12 @@ A $\mathbb{U}_{\text{now}}$ is defined by:
   - Local potential $\Phi(x_k,t)$
   - Local gradient $\nabla\Phi(x_k,t)$ (force proxy)
   - Optional local medium state variables for Noether-core sea (e.g., $\rho_{\text{core}}$, alignment/orientation metrics)
-  - Causal wake surface provenance/event tags: for each received contribution at $(x_k,t)$, record $(\mathrm{emitter\_id}, t_{\text{emit}})$ satisfying $\lVert x_k - x_{\text{emitter}}(t_{\text{emit}})\rVert = c_f (t - t_{\text{emit}})$
+  - Causal wake surface provenance/event tags: for each received contribution at $(x_k,t)$, record `emitter_id` together with $t_{\text{emit}}$, satisfying $\lVert x_k - x_{\text{emitter}}(t_{\text{emit}})\rVert = c_f (t - t_{\text{emit}})$
 
 ### Minimal synthetic products
 - Time series: $\Phi(t)$, $\nabla\Phi(t)$ at fixed points ("stationary detectors")
 - Snapshot field maps: $\Phi(x,t_0)$, $\nabla\Phi(x,t_0)$ over grids at fixed $t_0$
-- Provenance tables: $(\mathrm{receiver\_id}, t, \mathrm{emitter\_id}, t_{\text{emit}}, \mathrm{contribution\_strength})$
+- Provenance tables: `receiver_id`, $t$, `emitter_id`, $t_{\text{emit}}$, `contribution_strength`
 - Propagation diagnostics: arrival-time distributions, dispersion tests, effective $c_{\text{eff}}$ estimates
 
 ### Mapping: $\mathbb{U}_{\text{now}}$ data → Physical observables

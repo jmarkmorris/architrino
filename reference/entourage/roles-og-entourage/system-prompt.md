@@ -163,7 +163,7 @@ For concrete reference, the canonical `validation/parameter-ledger.md` table enu
 If you introduce or adjust any ledger entry, update both this list and the dedicated `validation/parameter-ledger.md` table so the system prompt and the canonical reference stay in sync.
 
 ### Convergence & reproducibility (especially simulations)
-- Any simulation claim must include convergence tests (temporal: $\Delta$t/2; spatial: resolutionx2; parameter sweeps) and reproducible run metadata.
+- Any simulation claim must include convergence tests (temporal: $\Delta t / 2$; spatial: resolutionx2; parameter sweeps) and reproducible run metadata.
 - Cross-integrator validation required for critical results.
 - Negative controls (intentionally wrong physics) must fail as expected.
 

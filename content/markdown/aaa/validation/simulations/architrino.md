@@ -8,10 +8,10 @@ The file is therefore an implementation-facing checklist rather than a general t
 
 ### Provenance-resolved propagation test
 Implement 1-architrino and 2-architrino setups with $\mathbb{U}_{\text{now}}$ sensors arranged on causal rings:
-- Verify causal isochron propagation at c\_f
+- Verify causal isochron propagation at $c_f$
 - Verify correct arrival ordering and phase behavior (per kernel)
-- Verify numerical stability of t\_emit inversion as $\Delta$t → $\Delta$t/2
-- Produce provenance tables showing correct emitter\_id and emission times
+- Verify numerical stability of $t_{\text{emit}}$ inversion as $\Delta t \to \Delta t / 2$
+- Produce provenance tables showing correct `emitter_id` values and emission times
 
 ### Baseline diagnostics
 - Energy/momentum bookkeeping (as defined by the model) must be stable under refinement
