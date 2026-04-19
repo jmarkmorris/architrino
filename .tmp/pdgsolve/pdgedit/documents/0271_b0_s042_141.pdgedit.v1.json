@@ -1,0 +1,712 @@
+{
+  "schema": "pdgedit/v1",
+  "metadata": {
+    "reactionSummary": {
+      "title": "B0 decay mode 546",
+      "pdgReactants": [
+        {
+          "text": "Down Quark"
+        },
+        {
+          "text": "Anti Bottom Quark"
+        }
+      ],
+      "aaaReactants": [
+        {
+          "text": "Pro Noether Core"
+        },
+        {
+          "text": "Anti Noether Core"
+        },
+        {
+          "text": "Pro Noether Core"
+        },
+        {
+          "text": "Anti Noether Core"
+        }
+      ],
+      "pdgProducts": [
+        {
+          "text": "Photon [Pro Noether Core + Anti Noether Core]"
+        },
+        {
+          "text": "Photon [Pro Noether Core + Anti Noether Core]"
+        }
+      ],
+      "aaaProducts": [
+        {
+          "text": "Unbound Architrinos"
+        }
+      ],
+      "pdgIdentifier": "S042.141/2025"
+    },
+    "balanceSummary": {
+      "reactantTotals": {
+        "epsilonMinusCount": 22,
+        "epsilonPlusCount": 22
+      },
+      "productTotals": {
+        "epsilonMinusCount": 22,
+        "epsilonPlusCount": 22
+      },
+      "isBalanced": true
+    }
+  },
+  "assemblies": [
+    {
+      "id": "graph_reactantassemblies_pro_down_quark_i_1",
+      "type": "pro-down-quark-assembly",
+      "x": 2,
+      "y": 0,
+      "title": "Down Quark",
+      "role": "reactant",
+      "tiles": [
+        "pro-down-quark",
+        "binary-full-br-br",
+        "binary-full-br-bb",
+        "binary-full-br-br"
+      ],
+      "orderGroup": "pdg",
+      "primitiveCounts": {
+        "electrinoCount": 7,
+        "positrinoCount": 5
+      }
+    },
+    {
+      "id": "graph_reactantassemblies_anti_bottom_quark_iii_2",
+      "type": "anti-bottom-quark-assembly",
+      "x": 2,
+      "y": 1,
+      "title": "Anti Bottom Quark",
+      "role": "reactant",
+      "tiles": [
+        "anti-bottom-quark",
+        "binary-full-rb-rb",
+        "binary-polar-none-rr",
+        "binary-polar-none-rb"
+      ],
+      "orderGroup": "pdg",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 5
+      }
+    },
+    {
+      "id": "graph_reactantassemblies_pro_noether_core_i_3",
+      "type": "pro-noether-core-assembly",
+      "x": 2,
+      "y": 2,
+      "title": "Pro Noether Core",
+      "role": "reactant",
+      "tiles": [
+        "pro-noether-core",
+        "binary-bare-br-none",
+        "binary-bare-br-none",
+        "binary-bare-br-none"
+      ],
+      "orderGroup": "aaa",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "graph_reactantassemblies_anti_noether_core_i_4",
+      "type": "anti-noether-core-assembly",
+      "x": 2,
+      "y": 3,
+      "title": "Anti Noether Core",
+      "role": "reactant",
+      "tiles": [
+        "anti-noether-core",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none"
+      ],
+      "orderGroup": "aaa",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "graph_reactantassemblies_pro_noether_core_i_5",
+      "type": "pro-noether-core-assembly",
+      "x": 2,
+      "y": 4,
+      "title": "Pro Noether Core",
+      "role": "reactant",
+      "tiles": [
+        "pro-noether-core",
+        "binary-bare-br-none",
+        "binary-bare-br-none",
+        "binary-bare-br-none"
+      ],
+      "orderGroup": "aaa",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "graph_reactantassemblies_anti_noether_core_i_6",
+      "type": "anti-noether-core-assembly",
+      "x": 2,
+      "y": 5,
+      "title": "Anti Noether Core",
+      "role": "reactant",
+      "tiles": [
+        "anti-noether-core",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none"
+      ],
+      "orderGroup": "aaa",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "graph_intermediateassemblies_pro_noether_core_i_1",
+      "type": "pro-noether-core-assembly",
+      "x": 9,
+      "y": 0,
+      "title": "Pro Noether Core",
+      "role": "intermediate",
+      "tiles": [
+        "pro-noether-core",
+        "binary-bare-br-none",
+        "binary-bare-br-none",
+        "binary-bare-br-none"
+      ],
+      "orderGroup": "pdg",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "graph_intermediateassemblies_anti_noether_core_i_2",
+      "type": "anti-noether-core-assembly",
+      "x": 9,
+      "y": 1,
+      "title": "Anti Noether Core",
+      "role": "intermediate",
+      "tiles": [
+        "anti-noether-core",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none"
+      ],
+      "orderGroup": "pdg",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "graph_intermediateassemblies_pro_noether_core_i_3",
+      "type": "pro-noether-core-assembly",
+      "x": 9,
+      "y": 2,
+      "title": "Pro Noether Core",
+      "role": "intermediate",
+      "tiles": [
+        "pro-noether-core",
+        "binary-bare-br-none",
+        "binary-bare-br-none",
+        "binary-bare-br-none"
+      ],
+      "orderGroup": "pdg",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "graph_intermediateassemblies_anti_noether_core_i_4",
+      "type": "anti-noether-core-assembly",
+      "x": 9,
+      "y": 3,
+      "title": "Anti Noether Core",
+      "role": "intermediate",
+      "tiles": [
+        "anti-noether-core",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none"
+      ],
+      "orderGroup": "pdg",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "graph_intermediateassemblies_unbound_architrinos_residue_5",
+      "type": "unbound-architrinos-assembly",
+      "x": 9,
+      "y": 4,
+      "title": "Unbound Architrinos",
+      "role": "intermediate",
+      "tiles": [
+        "unbound",
+        "unbound-electrinos",
+        "unbound-positrinos",
+        "architrinos"
+      ],
+      "orderGroup": "closure",
+      "primitiveCounts": {
+        "electrinoCount": 10,
+        "positrinoCount": 10
+      },
+      "sampleCounts": {
+        "topCount": "10",
+        "bottomCount": "10"
+      }
+    },
+    {
+      "id": "graph_productassemblies_pro_noether_core_i_1",
+      "type": "pro-noether-core-assembly",
+      "x": 16,
+      "y": 0,
+      "title": "Pro Noether Core",
+      "role": "product",
+      "tiles": [
+        "pro-noether-core",
+        "binary-bare-br-none",
+        "binary-bare-br-none",
+        "binary-bare-br-none"
+      ],
+      "orderGroup": "pdg",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "graph_productassemblies_anti_noether_core_i_2",
+      "type": "anti-noether-core-assembly",
+      "x": 16,
+      "y": 1,
+      "title": "Anti Noether Core",
+      "role": "product",
+      "tiles": [
+        "anti-noether-core",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none"
+      ],
+      "orderGroup": "pdg",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "graph_productassemblies_pro_noether_core_i_3",
+      "type": "pro-noether-core-assembly",
+      "x": 16,
+      "y": 2,
+      "title": "Pro Noether Core",
+      "role": "product",
+      "tiles": [
+        "pro-noether-core",
+        "binary-bare-br-none",
+        "binary-bare-br-none",
+        "binary-bare-br-none"
+      ],
+      "orderGroup": "pdg",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "graph_productassemblies_anti_noether_core_i_4",
+      "type": "anti-noether-core-assembly",
+      "x": 16,
+      "y": 3,
+      "title": "Anti Noether Core",
+      "role": "product",
+      "tiles": [
+        "anti-noether-core",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none"
+      ],
+      "orderGroup": "pdg",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "graph_productassemblies_unbound_architrinos_residue_5",
+      "type": "unbound-architrinos-assembly",
+      "x": 16,
+      "y": 4,
+      "title": "Unbound Architrinos",
+      "role": "product",
+      "tiles": [
+        "unbound",
+        "unbound-electrinos",
+        "unbound-positrinos",
+        "architrinos"
+      ],
+      "orderGroup": "closure",
+      "primitiveCounts": {
+        "electrinoCount": 10,
+        "positrinoCount": 10
+      },
+      "sampleCounts": {
+        "topCount": "10",
+        "bottomCount": "10"
+      }
+    }
+  ],
+  "operators": [
+    {
+      "id": "graph_reactantsideoperators_family_exact_1_pass_thru_1",
+      "type": "pass-thru",
+      "x": 7,
+      "y": 0,
+      "title": "Pass Thru",
+      "positrinoCount": 3,
+      "electrinoCount": 3
+    },
+    {
+      "id": "graph_reactantsideoperators_family_exact_1_pass_thru_2",
+      "type": "pass-thru",
+      "x": 7,
+      "y": 1,
+      "title": "Pass Thru",
+      "positrinoCount": 3,
+      "electrinoCount": 3
+    },
+    {
+      "id": "graph_reactantsideoperators_family_exact_1_pass_thru_3",
+      "type": "pass-thru",
+      "x": 7,
+      "y": 2,
+      "title": "Pass Thru",
+      "positrinoCount": 3,
+      "electrinoCount": 3
+    },
+    {
+      "id": "graph_reactantsideoperators_family_exact_1_pass_thru_4",
+      "type": "pass-thru",
+      "x": 7,
+      "y": 3,
+      "title": "Pass Thru",
+      "positrinoCount": 3,
+      "electrinoCount": 3
+    },
+    {
+      "id": "graph_reactantsideoperators_family_exact_1_dissociate_5",
+      "type": "dissociate",
+      "x": 7,
+      "y": 4,
+      "title": "Dissociate",
+      "positrinoCount": 5,
+      "electrinoCount": 7
+    },
+    {
+      "id": "graph_reactantsideoperators_family_exact_1_dissociate_6",
+      "type": "dissociate",
+      "x": 7,
+      "y": 5,
+      "title": "Dissociate",
+      "positrinoCount": 5,
+      "electrinoCount": 3
+    },
+    {
+      "id": "graph_productsideoperators_family_exact_1_pass_thru_1",
+      "type": "pass-thru",
+      "x": 14,
+      "y": 0,
+      "title": "Pass Thru",
+      "positrinoCount": 3,
+      "electrinoCount": 3
+    },
+    {
+      "id": "graph_productsideoperators_family_exact_1_pass_thru_2",
+      "type": "pass-thru",
+      "x": 14,
+      "y": 1,
+      "title": "Pass Thru",
+      "positrinoCount": 3,
+      "electrinoCount": 3
+    },
+    {
+      "id": "graph_productsideoperators_family_exact_1_pass_thru_3",
+      "type": "pass-thru",
+      "x": 14,
+      "y": 2,
+      "title": "Pass Thru",
+      "positrinoCount": 3,
+      "electrinoCount": 3
+    },
+    {
+      "id": "graph_productsideoperators_family_exact_1_pass_thru_4",
+      "type": "pass-thru",
+      "x": 14,
+      "y": 3,
+      "title": "Pass Thru",
+      "positrinoCount": 3,
+      "electrinoCount": 3
+    },
+    {
+      "id": "graph_productsideoperators_family_exact_1_pass_thru_5",
+      "type": "pass-thru",
+      "x": 14,
+      "y": 4,
+      "title": "Pass Thru",
+      "positrinoCount": 10,
+      "electrinoCount": 10
+    }
+  ],
+  "links": [
+    {
+      "id": "edge_family_exact_1_reactant_operator_catalyst_1_pass_thru_input_1",
+      "endpointA": "graph_reactantassemblies_pro_noether_core_i_3",
+      "endpointB": "graph_reactantsideoperators_family_exact_1_pass_thru_1",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "edge_family_exact_1_reactant_operator_catalyst_1_pass_thru_output_1",
+      "endpointA": "graph_reactantsideoperators_family_exact_1_pass_thru_1",
+      "endpointB": "graph_intermediateassemblies_pro_noether_core_i_1",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "edge_family_exact_1_reactant_operator_catalyst_2_pass_thru_input_1",
+      "endpointA": "graph_reactantassemblies_anti_noether_core_i_4",
+      "endpointB": "graph_reactantsideoperators_family_exact_1_pass_thru_2",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "edge_family_exact_1_reactant_operator_catalyst_2_pass_thru_output_1",
+      "endpointA": "graph_reactantsideoperators_family_exact_1_pass_thru_2",
+      "endpointB": "graph_intermediateassemblies_anti_noether_core_i_2",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "edge_family_exact_1_reactant_operator_catalyst_3_pass_thru_input_1",
+      "endpointA": "graph_reactantassemblies_pro_noether_core_i_5",
+      "endpointB": "graph_reactantsideoperators_family_exact_1_pass_thru_3",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "edge_family_exact_1_reactant_operator_catalyst_3_pass_thru_output_1",
+      "endpointA": "graph_reactantsideoperators_family_exact_1_pass_thru_3",
+      "endpointB": "graph_intermediateassemblies_pro_noether_core_i_3",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "edge_family_exact_1_reactant_operator_catalyst_4_pass_thru_input_1",
+      "endpointA": "graph_reactantassemblies_anti_noether_core_i_6",
+      "endpointB": "graph_reactantsideoperators_family_exact_1_pass_thru_4",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "edge_family_exact_1_reactant_operator_catalyst_4_pass_thru_output_1",
+      "endpointA": "graph_reactantsideoperators_family_exact_1_pass_thru_4",
+      "endpointB": "graph_intermediateassemblies_anti_noether_core_i_4",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "edge_family_exact_1_reactant_operator_reactant_1_to_residue_dissociate_input_1",
+      "endpointA": "graph_reactantassemblies_pro_down_quark_i_1",
+      "endpointB": "graph_reactantsideoperators_family_exact_1_dissociate_5",
+      "primitiveCounts": {
+        "electrinoCount": 7,
+        "positrinoCount": 5
+      }
+    },
+    {
+      "id": "edge_family_exact_1_reactant_operator_reactant_1_to_residue_dissociate_output_1",
+      "endpointA": "graph_reactantsideoperators_family_exact_1_dissociate_5",
+      "endpointB": "graph_intermediateassemblies_unbound_architrinos_residue_5",
+      "primitiveCounts": {
+        "electrinoCount": 7,
+        "positrinoCount": 5
+      }
+    },
+    {
+      "id": "edge_family_exact_1_reactant_operator_reactant_2_to_residue_dissociate_input_1",
+      "endpointA": "graph_reactantassemblies_anti_bottom_quark_iii_2",
+      "endpointB": "graph_reactantsideoperators_family_exact_1_dissociate_6",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 5
+      }
+    },
+    {
+      "id": "edge_family_exact_1_reactant_operator_reactant_2_to_residue_dissociate_output_1",
+      "endpointA": "graph_reactantsideoperators_family_exact_1_dissociate_6",
+      "endpointB": "graph_intermediateassemblies_unbound_architrinos_residue_5",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 5
+      }
+    },
+    {
+      "id": "edge_family_exact_1_product_operator_catalyst_1_pass_thru_input_1",
+      "endpointA": "graph_intermediateassemblies_pro_noether_core_i_1",
+      "endpointB": "graph_productsideoperators_family_exact_1_pass_thru_1",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "edge_family_exact_1_product_operator_catalyst_1_pass_thru_output_1",
+      "endpointA": "graph_productsideoperators_family_exact_1_pass_thru_1",
+      "endpointB": "graph_productassemblies_pro_noether_core_i_1",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "edge_family_exact_1_product_operator_catalyst_2_pass_thru_input_1",
+      "endpointA": "graph_intermediateassemblies_anti_noether_core_i_2",
+      "endpointB": "graph_productsideoperators_family_exact_1_pass_thru_2",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "edge_family_exact_1_product_operator_catalyst_2_pass_thru_output_1",
+      "endpointA": "graph_productsideoperators_family_exact_1_pass_thru_2",
+      "endpointB": "graph_productassemblies_anti_noether_core_i_2",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "edge_family_exact_1_product_operator_catalyst_3_pass_thru_input_1",
+      "endpointA": "graph_intermediateassemblies_pro_noether_core_i_3",
+      "endpointB": "graph_productsideoperators_family_exact_1_pass_thru_3",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "edge_family_exact_1_product_operator_catalyst_3_pass_thru_output_1",
+      "endpointA": "graph_productsideoperators_family_exact_1_pass_thru_3",
+      "endpointB": "graph_productassemblies_pro_noether_core_i_3",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "edge_family_exact_1_product_operator_catalyst_4_pass_thru_input_1",
+      "endpointA": "graph_intermediateassemblies_anti_noether_core_i_4",
+      "endpointB": "graph_productsideoperators_family_exact_1_pass_thru_4",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "edge_family_exact_1_product_operator_catalyst_4_pass_thru_output_1",
+      "endpointA": "graph_productsideoperators_family_exact_1_pass_thru_4",
+      "endpointB": "graph_productassemblies_anti_noether_core_i_4",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "edge_family_exact_1_product_operator_residue_1_pass_thru_input_1",
+      "endpointA": "graph_intermediateassemblies_unbound_architrinos_residue_5",
+      "endpointB": "graph_productsideoperators_family_exact_1_pass_thru_5",
+      "primitiveCounts": {
+        "electrinoCount": 10,
+        "positrinoCount": 10
+      }
+    },
+    {
+      "id": "edge_family_exact_1_product_operator_residue_1_pass_thru_output_1",
+      "endpointA": "graph_productsideoperators_family_exact_1_pass_thru_5",
+      "endpointB": "graph_productassemblies_unbound_architrinos_residue_5",
+      "primitiveCounts": {
+        "electrinoCount": 10,
+        "positrinoCount": 10
+      }
+    }
+  ],
+  "compositeLabels": [
+    {
+      "id": "label.left.neutral-b-meson-d.reactant_neutral_b_meson_1",
+      "type": "neutral-b-meson-d-composite",
+      "side": "left",
+      "text": "Neutral B Meson",
+      "rowStart": 0,
+      "rowEnd": 1
+    },
+    {
+      "id": "label.left.noether-pair.reactant_noether_pair_1",
+      "type": "noether-pair-composite",
+      "side": "left",
+      "text": "Noether Pair",
+      "rowStart": 2,
+      "rowEnd": 3
+    },
+    {
+      "id": "label.left.noether-pair.reactant_noether_pair_2",
+      "type": "noether-pair-composite",
+      "side": "left",
+      "text": "Noether Pair",
+      "rowStart": 4,
+      "rowEnd": 5
+    },
+    {
+      "id": "label.right.photon.product_photon_1",
+      "type": "photon-composite",
+      "side": "right",
+      "text": "Photon",
+      "rowStart": 0,
+      "rowEnd": 1
+    },
+    {
+      "id": "label.right.photon.product_photon_2",
+      "type": "photon-composite",
+      "side": "right",
+      "text": "Photon",
+      "rowStart": 2,
+      "rowEnd": 3
+    }
+  ]
+}

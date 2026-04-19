@@ -1,0 +1,470 @@
+{
+  "schema": "pdgedit/v1",
+  "metadata": {
+    "reactionSummary": {
+      "title": "K- decay mode 1",
+      "pdgReactants": [
+        {
+          "text": "Anti Up Quark"
+        },
+        {
+          "text": "Strange Quark"
+        }
+      ],
+      "aaaReactants": [
+        {
+          "text": "Pro Noether Core"
+        },
+        {
+          "text": "Anti Noether Core"
+        }
+      ],
+      "pdgProducts": [
+        {
+          "text": "Electron"
+        },
+        {
+          "text": "Anti Electron Neutrino"
+        }
+      ],
+      "aaaProducts": [
+        {
+          "text": "Unbound Architrinos"
+        }
+      ],
+      "pdgIdentifier": "S010.11/2025"
+    },
+    "balanceSummary": {
+      "reactantTotals": {
+        "epsilonMinusCount": 20,
+        "epsilonPlusCount": 14
+      },
+      "productTotals": {
+        "epsilonMinusCount": 20,
+        "epsilonPlusCount": 14
+      },
+      "isBalanced": true
+    }
+  },
+  "assemblies": [
+    {
+      "id": "graph_reactantassemblies_anti_up_quark_i_1",
+      "type": "anti-up-quark-assembly",
+      "x": 2,
+      "y": 0,
+      "title": "Anti Up Quark",
+      "role": "reactant",
+      "tiles": [
+        "anti-up-quark",
+        "binary-full-rb-bb",
+        "binary-full-rb-rb",
+        "binary-full-rb-bb"
+      ],
+      "orderGroup": "pdg",
+      "primitiveCounts": {
+        "electrinoCount": 8,
+        "positrinoCount": 4
+      }
+    },
+    {
+      "id": "graph_reactantassemblies_pro_strange_quark_ii_2",
+      "type": "pro-strange-quark-assembly",
+      "x": 2,
+      "y": 1,
+      "title": "Strange Quark",
+      "role": "reactant",
+      "tiles": [
+        "pro-strange-quark",
+        "binary-full-br-br",
+        "binary-full-br-bb",
+        "binary-polar-none-br"
+      ],
+      "orderGroup": "pdg",
+      "primitiveCounts": {
+        "electrinoCount": 6,
+        "positrinoCount": 4
+      }
+    },
+    {
+      "id": "graph_reactantassemblies_pro_noether_core_i_3",
+      "type": "pro-noether-core-assembly",
+      "x": 2,
+      "y": 2,
+      "title": "Pro Noether Core",
+      "role": "reactant",
+      "tiles": [
+        "pro-noether-core",
+        "binary-bare-br-none",
+        "binary-bare-br-none",
+        "binary-bare-br-none"
+      ],
+      "orderGroup": "aaa",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "graph_reactantassemblies_anti_noether_core_i_4",
+      "type": "anti-noether-core-assembly",
+      "x": 2,
+      "y": 3,
+      "title": "Anti Noether Core",
+      "role": "reactant",
+      "tiles": [
+        "anti-noether-core",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none"
+      ],
+      "orderGroup": "aaa",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "graph_intermediateassemblies_pro_noether_core_i_1",
+      "type": "pro-noether-core-assembly",
+      "x": 9,
+      "y": 0,
+      "title": "Pro Noether Core",
+      "role": "intermediate",
+      "tiles": [
+        "pro-noether-core",
+        "binary-bare-br-none",
+        "binary-bare-br-none",
+        "binary-bare-br-none"
+      ],
+      "orderGroup": "pdg",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "graph_intermediateassemblies_anti_noether_core_i_2",
+      "type": "anti-noether-core-assembly",
+      "x": 9,
+      "y": 1,
+      "title": "Anti Noether Core",
+      "role": "intermediate",
+      "tiles": [
+        "anti-noether-core",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none"
+      ],
+      "orderGroup": "pdg",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "graph_intermediateassemblies_unbound_architrinos_residue_3",
+      "type": "unbound-architrinos-assembly",
+      "x": 9,
+      "y": 2,
+      "title": "Unbound Architrinos",
+      "role": "intermediate",
+      "tiles": [
+        "unbound",
+        "unbound-electrinos",
+        "unbound-positrinos",
+        "architrinos"
+      ],
+      "orderGroup": "closure",
+      "primitiveCounts": {
+        "electrinoCount": 14,
+        "positrinoCount": 8
+      },
+      "sampleCounts": {
+        "topCount": "14",
+        "bottomCount": "8"
+      }
+    },
+    {
+      "id": "graph_productassemblies_pro_electron_i_1",
+      "type": "pro-electron-assembly",
+      "x": 16,
+      "y": 0,
+      "title": "Electron",
+      "role": "product",
+      "tiles": [
+        "pro-electron",
+        "binary-full-br-bb",
+        "binary-full-br-bb",
+        "binary-full-br-bb"
+      ],
+      "orderGroup": "pdg",
+      "primitiveCounts": {
+        "electrinoCount": 9,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "graph_productassemblies_anti_electron_neutrino_i_2",
+      "type": "anti-electron-neutrino-assembly",
+      "x": 16,
+      "y": 1,
+      "title": "Anti Electron Neutrino",
+      "role": "product",
+      "tiles": [
+        "anti-electron-neutrino",
+        "binary-full-rb-rb",
+        "binary-full-rb-rb",
+        "binary-full-rb-rb"
+      ],
+      "orderGroup": "pdg",
+      "primitiveCounts": {
+        "electrinoCount": 6,
+        "positrinoCount": 6
+      }
+    },
+    {
+      "id": "graph_productassemblies_unbound_architrinos_residue_3",
+      "type": "unbound-architrinos-assembly",
+      "x": 16,
+      "y": 2,
+      "title": "Unbound Architrinos",
+      "role": "product",
+      "tiles": [
+        "unbound",
+        "unbound-electrinos",
+        "unbound-positrinos",
+        "architrinos"
+      ],
+      "orderGroup": "closure",
+      "primitiveCounts": {
+        "electrinoCount": 5,
+        "positrinoCount": 5
+      },
+      "sampleCounts": {
+        "topCount": "5",
+        "bottomCount": "5"
+      }
+    }
+  ],
+  "operators": [
+    {
+      "id": "graph_reactantsideoperators_family_exact_1_pass_thru_1",
+      "type": "pass-thru",
+      "x": 7,
+      "y": 0,
+      "title": "Pass Thru",
+      "positrinoCount": 3,
+      "electrinoCount": 3
+    },
+    {
+      "id": "graph_reactantsideoperators_family_exact_1_pass_thru_2",
+      "type": "pass-thru",
+      "x": 7,
+      "y": 1,
+      "title": "Pass Thru",
+      "positrinoCount": 3,
+      "electrinoCount": 3
+    },
+    {
+      "id": "graph_reactantsideoperators_family_exact_1_dissociate_3",
+      "type": "dissociate",
+      "x": 7,
+      "y": 2,
+      "title": "Dissociate",
+      "positrinoCount": 4,
+      "electrinoCount": 8
+    },
+    {
+      "id": "graph_reactantsideoperators_family_exact_1_dissociate_4",
+      "type": "dissociate",
+      "x": 7,
+      "y": 3,
+      "title": "Dissociate",
+      "positrinoCount": 4,
+      "electrinoCount": 6
+    },
+    {
+      "id": "graph_productsideoperators_family_exact_1_associate_1",
+      "type": "associate",
+      "x": 14,
+      "y": 0,
+      "title": "Associate",
+      "positrinoCount": 3,
+      "electrinoCount": 9
+    },
+    {
+      "id": "graph_productsideoperators_family_exact_1_associate_2",
+      "type": "associate",
+      "x": 14,
+      "y": 1,
+      "title": "Associate",
+      "positrinoCount": 6,
+      "electrinoCount": 6
+    },
+    {
+      "id": "graph_productsideoperators_family_exact_1_pass_thru_3",
+      "type": "pass-thru",
+      "x": 14,
+      "y": 2,
+      "title": "Pass Thru",
+      "positrinoCount": 5,
+      "electrinoCount": 5
+    }
+  ],
+  "links": [
+    {
+      "id": "edge_family_exact_1_reactant_operator_reactant_noether_pair_1_row_1_direct_core_pro_noether_core_i_1_pass_thru_input_1",
+      "endpointA": "graph_reactantassemblies_pro_noether_core_i_3",
+      "endpointB": "graph_reactantsideoperators_family_exact_1_pass_thru_1",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "edge_family_exact_1_reactant_operator_reactant_noether_pair_1_row_1_direct_core_pro_noether_core_i_1_pass_thru_output_1",
+      "endpointA": "graph_reactantsideoperators_family_exact_1_pass_thru_1",
+      "endpointB": "graph_intermediateassemblies_pro_noether_core_i_1",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "edge_family_exact_1_reactant_operator_reactant_noether_pair_1_row_2_direct_core_anti_noether_core_i_1_pass_thru_input_1",
+      "endpointA": "graph_reactantassemblies_anti_noether_core_i_4",
+      "endpointB": "graph_reactantsideoperators_family_exact_1_pass_thru_2",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "edge_family_exact_1_reactant_operator_reactant_noether_pair_1_row_2_direct_core_anti_noether_core_i_1_pass_thru_output_1",
+      "endpointA": "graph_reactantsideoperators_family_exact_1_pass_thru_2",
+      "endpointB": "graph_intermediateassemblies_anti_noether_core_i_2",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "edge_family_exact_1_reactant_operator_reactant_1_to_residue_dissociate_input_1",
+      "endpointA": "graph_reactantassemblies_anti_up_quark_i_1",
+      "endpointB": "graph_reactantsideoperators_family_exact_1_dissociate_3",
+      "primitiveCounts": {
+        "electrinoCount": 8,
+        "positrinoCount": 4
+      }
+    },
+    {
+      "id": "edge_family_exact_1_reactant_operator_reactant_1_to_residue_dissociate_output_1",
+      "endpointA": "graph_reactantsideoperators_family_exact_1_dissociate_3",
+      "endpointB": "graph_intermediateassemblies_unbound_architrinos_residue_3",
+      "primitiveCounts": {
+        "electrinoCount": 8,
+        "positrinoCount": 4
+      }
+    },
+    {
+      "id": "edge_family_exact_1_reactant_operator_reactant_2_to_residue_dissociate_input_1",
+      "endpointA": "graph_reactantassemblies_pro_strange_quark_ii_2",
+      "endpointB": "graph_reactantsideoperators_family_exact_1_dissociate_4",
+      "primitiveCounts": {
+        "electrinoCount": 6,
+        "positrinoCount": 4
+      }
+    },
+    {
+      "id": "edge_family_exact_1_reactant_operator_reactant_2_to_residue_dissociate_output_1",
+      "endpointA": "graph_reactantsideoperators_family_exact_1_dissociate_4",
+      "endpointB": "graph_intermediateassemblies_unbound_architrinos_residue_3",
+      "primitiveCounts": {
+        "electrinoCount": 6,
+        "positrinoCount": 4
+      }
+    },
+    {
+      "id": "edge_family_exact_1_product_operator_product_1_associate_input_1",
+      "endpointA": "graph_intermediateassemblies_pro_noether_core_i_1",
+      "endpointB": "graph_productsideoperators_family_exact_1_associate_1",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "edge_family_exact_1_product_operator_product_1_associate_input_2",
+      "endpointA": "graph_intermediateassemblies_unbound_architrinos_residue_3",
+      "endpointB": "graph_productsideoperators_family_exact_1_associate_1",
+      "primitiveCounts": {
+        "electrinoCount": 6,
+        "positrinoCount": 0
+      }
+    },
+    {
+      "id": "edge_family_exact_1_product_operator_product_1_associate_output_1",
+      "endpointA": "graph_productsideoperators_family_exact_1_associate_1",
+      "endpointB": "graph_productassemblies_pro_electron_i_1",
+      "primitiveCounts": {
+        "electrinoCount": 9,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "edge_family_exact_1_product_operator_product_2_associate_input_1",
+      "endpointA": "graph_intermediateassemblies_anti_noether_core_i_2",
+      "endpointB": "graph_productsideoperators_family_exact_1_associate_2",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "edge_family_exact_1_product_operator_product_2_associate_input_2",
+      "endpointA": "graph_intermediateassemblies_unbound_architrinos_residue_3",
+      "endpointB": "graph_productsideoperators_family_exact_1_associate_2",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "edge_family_exact_1_product_operator_product_2_associate_output_1",
+      "endpointA": "graph_productsideoperators_family_exact_1_associate_2",
+      "endpointB": "graph_productassemblies_anti_electron_neutrino_i_2",
+      "primitiveCounts": {
+        "electrinoCount": 6,
+        "positrinoCount": 6
+      }
+    },
+    {
+      "id": "edge_family_exact_1_product_operator_residue_1_pass_thru_input_1",
+      "endpointA": "graph_intermediateassemblies_unbound_architrinos_residue_3",
+      "endpointB": "graph_productsideoperators_family_exact_1_pass_thru_3",
+      "primitiveCounts": {
+        "electrinoCount": 5,
+        "positrinoCount": 5
+      }
+    },
+    {
+      "id": "edge_family_exact_1_product_operator_residue_1_pass_thru_output_1",
+      "endpointA": "graph_productsideoperators_family_exact_1_pass_thru_3",
+      "endpointB": "graph_productassemblies_unbound_architrinos_residue_3",
+      "primitiveCounts": {
+        "electrinoCount": 5,
+        "positrinoCount": 5
+      }
+    }
+  ],
+  "compositeLabels": [
+    {
+      "id": "label.left.noether-pair.reactant_noether_pair_1",
+      "type": "noether-pair-composite",
+      "side": "left",
+      "text": "Noether Pair",
+      "rowStart": 2,
+      "rowEnd": 3
+    }
+  ]
+}
