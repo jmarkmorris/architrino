@@ -22,8 +22,8 @@ Convert the current cosmology story from narrative strength to equation-level cl
 
 - Turn the current CMB and tri-binary cosmology story into a predictive transfer-function pipeline.
 - Build the pipeline so removing one foundation assumption does not collapse the whole stack.
-- Expose exactly where `\mathbb{A}\mathbb{A}\mathbb{A}` matches, replaces, or diverges from each observable component.
-- Use the result for direct CMB, `H_0`, and `S_8` comparison rather than narrative analogy.
+- Expose exactly where $\mathbb{A}\mathbb{A}\mathbb{A}$ matches, replaces, or diverges from each observable component.
+- Use the result for direct CMB, $H_0$, and $S_8$ comparison rather than narrative analogy.
 
 ## Main Interfaces
 
@@ -33,7 +33,7 @@ Convert the current cosmology story from narrative strength to equation-level cl
 - Growth and lensing
 - Distance-ladder calibration
 
-The goal is to expose exactly where `\mathbb{A}\mathbb{A}\mathbb{A}` matches, replaces, or diverges from each component.
+The goal is to expose exactly where $\mathbb{A}\mathbb{A}\mathbb{A}$ matches, replaces, or diverges from each component.
 
 ## Related Priorities
 

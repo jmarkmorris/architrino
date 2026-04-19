@@ -59,8 +59,6 @@ This single table is the canonical rollup for every direct child of `priorities`
 |   11 | [`quantum-closure`](../quantum-closure/quantum-closure.md)                         | Born-rule / quantum closure with hard tests                                        |     4 |    8 | 0.50 |
 |   12 | [`cosmology-closure`](../cosmology-closure/cosmology-closure.md)                   | Cosmology transfer-function closure                                                |     2 |    9 | 0.22 |
 |   14 | [`planar-bridge-closure`](../planar-bridge-closure/planar-bridge-closure.md)       | First planar delayed-bridge closure and tame return map                            |     6 |    5 | 1.20 |
-|    — | [`SUMMARY`](./priorities.md)                                                       | Action-items report control surface                                                |     — |    — |    — |
-|    — | [`archive`](../deferred/priorities-legacy.md)                                    | Archive                                                                            |     — |    — |    — |
 |    — | [`animator`](../animator/animator.md)                                              | animator                                                                           |     — |    — |    — |
 |    — | [`3x3`](../3x3/3x3.md)                                                             | 3x3 binary-slot matrix                                                             |     — |    — |    — |
 |    — | [`ellipsoid`](../ellipsoid/ellipsoid.md)                                           | Ellipsoid app idea                                                                 |     — |    — |    — |

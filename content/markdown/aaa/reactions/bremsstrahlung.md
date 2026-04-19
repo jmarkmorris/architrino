@@ -135,8 +135,8 @@ Baseline takeaway: these equations are the standard observer-level scaffold that
 
 This chapter uses a dominant-channel rule: include reactions/channels that contribute at least about 1% in the relevant regime. Where PDG branching ratios are defined, this is a `BR > 1%` rule; where transport channels are not tabulated by PDG branching, use contribution to modeled emissivity/opacity.
 
-- `e^- + Z \rightarrow e^- + Z + \gamma` (electron-ion/nuclear bremsstrahlung baseline channel).
-- `e^+ + Z \rightarrow e^+ + Z + \gamma` (positron analog in mixed plasmas/beams).
+- $e^- + Z \rightarrow e^- + Z + \gamma$ (electron-ion/nuclear bremsstrahlung baseline channel).
+- $e^+ + Z \rightarrow e^+ + Z + \gamma$ (positron analog in mixed plasmas/beams).
 - Thermal free-free ensemble channel (many-event superposition governing continuum emissivity).
 
 Associated pair/Compton channels are included when they exceed the same contribution threshold in the modeled zone.

@@ -79,7 +79,7 @@ rather than to a mismatched tame-subclass / macro-envelope pair.
 1. Turn the delayed seed-margin persistence lemma into a clean formal proof, including:
   - the explicit implicit-function argument for unique simple seed-side branches;
   - the retardation estimate;
-  - the `\varepsilon_A` neighborhood correction;
+  - the $\varepsilon_A$ neighborhood correction;
   - the Jacobian perturbation estimate;
   - and the projected-force perturbation bounds for
 $$

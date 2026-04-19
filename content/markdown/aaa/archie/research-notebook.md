@@ -150,7 +150,7 @@ This error cascades through the mathematical framing of the entire repository. Y
 When scanning markdown files, search for the following conceptual red flags and literal strings:
 
 - **Regex / Strings:**
-  - `\frac{|q_i q_j|}{r_{ij}^2} \, \hat{\mathbf{r}}_{ij}` (Look for EOM definitions missing the Jacobian denominator).
+  - $\frac{|q_i q_j|}{r_{ij}^2} \, \hat{\mathbf{r}}_{ij}$ (Look for EOM definitions missing the Jacobian denominator).
   - `reduced branch-sum` or `reduced model`
   - `candidate action-based completion`
   - `constant per-wavefront amplitude` (Where used to justify dropping velocity dependence).

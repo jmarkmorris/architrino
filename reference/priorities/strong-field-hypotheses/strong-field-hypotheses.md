@@ -28,7 +28,7 @@ This is a watchlist workstream. It exists to keep strong-field and tri-binary id
 ## Open Strong-Field Questions
 
 - Avoiding zero volume at the event horizon is still unresolved.
-- It is still unclear whether there is a viable exact solution at the horizon when all three binaries sit at `c_f`.
+- It is still unclear whether there is a viable exact solution at the horizon when all three binaries sit at $c_f$.
 - An alternative horizon geometry may look more like a throat or cylinder than a sphere.
 - There may be a nontrivial connection to Fermi-Dirac versus Pauli exclusion.
 
@@ -36,11 +36,11 @@ This is a watchlist workstream. It exists to keep strong-field and tri-binary id
 
 - Maybe the zero on the `4:2:1` scale is wrong.
 - Maybe the correct baseline is the MCB frequency rather than `1` Hz.
-- Maybe the reference scale is `f_{\mathrm{MCB}}`, with `f_{\max}`, `f_{\max}/2`, `f_{\max}/4`, then subtracting `1`, `2`, `4` from there for each click.
+- Maybe the reference scale is $f_{\mathrm{MCB}}$, with $f_{\max}$, $f_{\max}/2$, $f_{\max}/4$, then subtracting `1`, `2`, `4` from there for each click.
 - Maybe the MCB should be treated as zero potential energy and maximum kinetic energy until freeze-out.
-- Maybe nature wants `v = c_f` and the Planck-scale juncture to define zero.
+- Maybe nature wants $v = c_f$ and the Planck-scale juncture to define zero.
 - Maybe the internal radius can enter self-hit first as the tri-binary rides the rail.
-- One gravity / MOND-style intuition may still be loosely tied to the inner binary crossing `c_f`, though that currently looks doubtful.
+- One gravity / MOND-style intuition may still be loosely tied to the inner binary crossing $c_f$, though that currently looks doubtful.
 
 ## Related Priorities
 
