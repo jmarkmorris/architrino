@@ -1,19 +1,6 @@
 
 
-make an app page that shows a 3D ellipsoid volume, 
-    - maybe three orthogonal views. 
-    - eventually animate the orbit, path, trinos, etc
-    - add slider for velocity (nines of c?)
-    - a dashboard of measures about the "volume"
-        - it's strange to think of volume when in some cases it is moving so fast.
-    - show axes tilting as oblateness occurs
-    - each release of an h causes r adjustment to middle and outer orbits.
-    - we need to show formulas to learn what depends on what and why
-        - look for the beta factor from lorentz
-    - as it drops towards 0 Hz and some point it must fall apart?
-    - offer different spiral functions (exponential, etc.)
-    - frequency intuitions
-    - frequency to radius and velocity of the outer binary as an unknown function. 
+
 
 closed form equations?
     - seems like AI should be able to do the math to calculate the 'energy' accounted for passing through an enclosing sphere.
@@ -54,7 +41,7 @@ inside the black hole
         - food for thought.
         - this may also relate to temperature and what implements temperature
 
-- look for a research that links ellipsoids to the mathematics of general relativity ellipsoid’s
+
 
 ---
 
