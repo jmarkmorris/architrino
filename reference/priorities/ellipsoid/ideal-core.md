@@ -4,7 +4,7 @@ This note presents ideas for a controllable web app that presents a Noether core
 
 ## Purpose
 
-The app should make the path geometry legible at a glance while leaving room for meters, orthogonal views, and modeling overlays. The page should avoid unnecessary jargon in both design and code. When a stable $\mathbb{A}\mathbb{A}\mathbb{A}$ term already exists, reuse it rather than inventing a new label.
+The app should make the path geometry legible at a glance while leaving room for meters, camera controls, and modeling overlays. The page should avoid unnecessary jargon in both design and code. When a stable $\mathbb{A}\mathbb{A}\mathbb{A}$ term already exists, reuse it rather than inventing a new label.
 
 ## Primary Design Goal
 
@@ -12,8 +12,8 @@ The app should make the path geometry legible at a glance while leaving room for
 - Show the Noether core inside that stage as moving architrino paths rather than as a solid body.
 - Keep the central viewing stage visually dominant.
 - Make relative path behavior the primary visual read of the core.
-- Make path scale, group velocity, precession, and orbit behavior readable from one screen.
-- Make the orbit parameters of the inner binary, middle binary, and outer binary explicitly specifiable.
+- Make path scale, group velocity, precession, and binary path behavior readable from one screen.
+- Make the path parameters of the inner binary, middle binary, and outer binary explicitly specifiable.
 - Make viewing the emitted potential field over a spherical test surface a primary analytical goal.
 - Make that field view readable both as isolated inner-binary, middle-binary, and outer-binary contributions and as their superposition.
 - Treat ideal elliptical-like relative paths, normalized to group velocity and precession, as a working hypothesis to inspect rather than as a settled geometry.
@@ -28,7 +28,7 @@ The app should make the path geometry legible at a glance while leaving room for
 - The surrounding page should use a central circular display with supporting readouts around it, but should avoid clutter, tiny text, and overly dense instrument blocks.
 - In the default screen composition, keep the displayed path system large enough for the relative trajectories to remain legible.
 - Do not make the central view imply that the core is a solid body or fixed envelope.
-- Do not imply that velocity changes produce a predetermined compressed body shape.
+- Do not imply that velocity changes produce a predetermined compressed body boundary.
 - If an effective exclusion volume is ever visualized, present it as a tentative inference from the path and field state rather than as the object being modeled.
 - Let some UI elements attach to or ride along the edge of the circular boundary when that improves readability.
 - Use the circular edge for compact readouts and a few small meters, but not for the larger analytical panels.
@@ -39,8 +39,8 @@ The app should make the path geometry legible at a glance while leaving room for
 ## Layout Architecture
 
 - Reserve the center of the page for the spherical viewing stage first, then fit the supporting UI around it.
-- Keep the central sphere somewhat smaller than earlier drafts assumed so the corner panels, side bands, and technical surfaces have enough room to breathe.
-- Treat the outer page as four primary corner zones around the central sphere, with optional secondary placement zones along the left and right sides.
+- Keep the central spherical viewing stage somewhat smaller than earlier drafts assumed so the corner panels, side bands, and technical surfaces have enough room to breathe.
+- Treat the outer page as four primary corner zones around the central spherical viewing stage, with optional secondary placement zones along the left and right sides.
 - Treat the circular edge as an attachment zone for compact controls, compact readouts, and a few small meters that benefit from immediate spatial association with the core.
 - Allow short sparkline-style arc sections to occupy small portions of the circular edge when they can summarize a changing quantity without pulling attention away from the core.
 - Treat sparklines as summary instruments first: compact trend indicators that can expand into full graphs on demand.
@@ -52,10 +52,10 @@ The app should make the path geometry legible at a glance while leaving room for
 
 ## Core Path Views And Interaction
 
-- Allow the user to rotate the core freely to any view.
-- Provide preset views tied to the group-velocity direction, the net-angular-momentum direction, and the precession reference frame once those quantities are defined.
+- Allow the user to rotate the camera view freely around the layered core.
+- Provide camera presets tied to the group-velocity direction, the net-angular-momentum direction, and the precession reference frame once those quantities are defined.
 - Allow the user to toggle reference-frame lines on and off.
-- Support two or three orthogonal companion views when the screen has enough room.
+- Use one camera view in the first pass.
 - Animate the binary paths and the architrinos continuously.
 - Normalize the displayed motion as needed so the central visual emphasizes relative path behavior, scale, group velocity, and precession rather than only six architrinos whipping around at raw literal speeds.
 - Provide a precession-following view mode that lets the user inspect whether the relative paths remain elliptical-like in the moving, precessing frame.
@@ -70,14 +70,14 @@ The app should make the path geometry legible at a glance while leaving room for
 - Show scale factors for radii, frequencies, and velocities as dedicated meters.
 - Render scale factors in scientific notation as `$y.z \times 10^x$`.
 - Let the settings panel choose what counts as the `1.0` reference scale, with at least a human-scale option and an event-horizon option.
-- Show per-orbit frequency after scale-factor application.
+- Show per-binary path frequency after scale-factor application.
 - Provide a detailed binary-measures table for the inner binary, middle binary, and outer binary.
 - Use four columns in that table: measure name, inner binary, middle binary, and outer binary.
-- Use that table for repeated binary-level quantities such as path radius or scale, orbit frequency, architrino velocity, phase, precession state, and energy level.
+- Use that table for repeated binary-level quantities such as path radius or scale, path frequency, architrino velocity, phase, precession state, and energy level.
 - Render those table values in compact scientific notation so dense quantitative comparison remains readable.
 - Show group velocity, net angular momentum, and precession state as assembly-level readouts associated with the binary table, not as per-binary cell values.
 - Do not present the current binary radii as if they determine an enclosing volume.
-- If an effective exclusion-volume estimate is later added, label it as an inferred and model-dependent quantity whose shape and time evolution are still unresolved.
+- If an effective exclusion-volume estimate is later added, label it as an inferred and model-dependent quantity whose boundary geometry and time evolution are still unresolved.
 - Use the surrounding readouts, graphs, and table values to communicate changes in relative path behavior, group velocity, net angular momentum, and precession.
 - Add a fluctuation chart or similar trace view for test-point behavior.
 - Add readouts and graphs that expose how the generated potential pattern evolves in 3D space over time.
@@ -105,11 +105,12 @@ The app should make the path geometry legible at a glance while leaving room for
 ## Control Panel Scope
 
 - The first-pass control panel should cover the things a user is most likely to want to see differently from one moment to the next.
-- That includes view presets, reference-frame visibility, orbit visibility, graph selection, equation-panel visibility, scale-reference selection, and test-point visibility.
+- That includes camera presets, reference-frame visibility, path visibility, graph selection, equation-panel visibility, scale-reference selection, and test-point visibility.
 - That includes selection of the test-sphere radius used for potential-field inspection.
 - That includes placement and selection of test points on the spherical test surfaces.
 - That includes switching between preset test-point layouts and manual test-point placement.
-- That control surface should also allow direct specification of the key orbit parameters for each binary.
+- That control surface should also allow direct specification of the key path parameters for each binary.
+- That control surface should also allow direct specification of each binary path frame's orientation.
 - That control surface should also let the user choose which rows appear in the detailed binary-measures table.
 - Keep frequently used display controls in one place so the user does not have to hunt across the page to reconfigure the instrument.
 - Make it easy to return to a clean default arrangement after exploratory changes.
@@ -119,7 +120,7 @@ The app should make the path geometry legible at a glance while leaving room for
 
 - Use one detailed quantitative table for side-by-side comparison of the three binaries.
 - The default column order should be: measure, inner binary, middle binary, outer binary.
-- The default first-pass rows should include path radius or scale, orbit frequency, architrino velocity, phase, precession state, and energy level.
+- The default first-pass rows should include path radius or scale, path frequency, architrino velocity, phase, precession state, and energy level.
 - Group velocity should appear adjacent to this table as an assembly-level quantity rather than being forced into the binary columns.
 - Treat this table as a deliberate analytical surface similar to the denser technical portions of an instrument display, while still preserving row clarity and alignment.
 - Keep this table outside the central spherical stage.
@@ -139,7 +140,7 @@ The app should make the path geometry legible at a glance while leaving room for
 - Use the side bands for secondary quantities that should remain visible without competing with the four main corner panels.
 - Use the left side band for always-visible summary readouts anchored by group velocity, net angular momentum, and precession state.
 - Use the right side band for current view and state summaries that support the control stack without duplicating the full control panel.
-- Keep the corner layout balanced so no single zone overwhelms the central sphere.
+- Keep the corner layout balanced so no single zone overwhelms the central spherical viewing stage.
 
 ## Controls
 
@@ -149,8 +150,8 @@ The app should make the path geometry legible at a glance while leaving room for
 - Keep the most frequently used controls visible at all times.
 - Collapse secondary controls behind a clean disclosure pattern so advanced options remain available without cluttering the default view.
 - Make state changes feel immediate; the control panel should behave like part of the instrument, not like a separate settings page.
-- Make the inner-binary, middle-binary, and outer-binary orbit parameters directly specifiable from the control surface.
-- At minimum, allow the user to specify the radius, frequency, and velocity inputs for each binary orbit.
+- Make the inner-binary, middle-binary, and outer-binary path parameters directly specifiable from the control surface.
+- At minimum, allow the user to specify the radius, frequency, velocity, and orientation inputs for each binary path frame.
 - Provide a clear pause or freeze control so the user can stop the live instrument for close inspection.
 - Make the paused state explicit in the UI so the user always knows whether the surface is live or frozen.
 - In the frozen state, hold the streamed state, graphs, and table values fixed together so the full instrument remains internally consistent during inspection.
@@ -176,7 +177,15 @@ The app should make the path geometry legible at a glance while leaving room for
 - `Tab` and `Shift+Tab` shall remain reserved for focus navigation.
 - The first-pass core shortcut set shall not use function keys, `Home`, `End`, `PageUp`, or `PageDown`.
 - The first-pass core shortcut set shall not use browser-reserved or system-reserved combinations.
-- When the spherical viewing stage has focus, the arrow keys shall orbit the camera.
+- The keyboard shortcut layer shall operate on one camera view of the layered core, binary paths, and field surfaces.
+- Keyboard rotation shortcuts shall rotate the camera view only.
+- Binary path-frame orientation shall be set through dedicated controls rather than through camera shortcuts.
+- The spherical test surface shall not use camera rotation shortcuts; its first-pass controls shall be radius, field visibility, and test-point layout.
+- When the spherical viewing stage has focus, the arrow keys shall turn or tilt the camera view.
+- `ArrowLeft` and `ArrowRight` shall turn the camera view left or right.
+- `ArrowUp` and `ArrowDown` shall tilt the camera view upward or downward.
+- `Q` and `E` shall rotate the camera view counterclockwise or clockwise in the screen plane.
+- `R` shall reset the camera view to its default orientation.
 - `Space` shall freeze or resume the live instrument surface.
 - `Enter` shall advance the instrument by one coherent step while the surface is frozen.
 - `0` shall select the superposed potential-field view.
@@ -190,7 +199,7 @@ The app should make the path geometry legible at a glance while leaving room for
 - `T` shall toggle test-point visibility.
 - `H` shall open a compact keyboard-help overlay.
 - `Escape` shall close transient overlays and return focus to the spherical viewing stage.
-- Exact binary radius, frequency, velocity, and other quantitative inputs shall be edited only through dedicated parameter controls and shall not be assigned to first-pass single-key shortcuts.
+- Exact binary radius, frequency, velocity, orientation, and other quantitative inputs shall be edited only through dedicated parameter controls and shall not be assigned to first-pass single-key shortcuts.
 
 ## Path Geometry Content To Support
 
@@ -203,18 +212,18 @@ The app should make the path geometry legible at a glance while leaving room for
 
 ## Model Relations To Expose
 
-- At this stage of the app, the velocity, frequency, and radius of each binary orbit must be explicitly specifiable.
+- At this stage of the app, the velocity, frequency, radius, and orientation of each binary path frame must be explicitly specifiable.
 - The displayed core state should be defined by the architrino paths and emitted fields, not by a solid enclosing body.
-- The ideal elliptical-like relative path, after normalizing to group velocity and precession, is a hypothesis to inspect.
+- Ideal elliptical-like relative paths, after normalizing to group velocity and precession, are hypotheses to inspect.
 - The app should expose whether the relative paths maintain net angular momentum while precessing.
 - The app should not assume that the relative paths are perfect ellipses, because the paths are expected to adjust continuously.
 - Deviations from elliptical-like relative paths should be treated as meaningful data rather than as rendering errors.
-- Any effective exclusion volume implied by the path system remains unresolved; its implementation, shape, time evolution, and velocity dependence are open modeling targets.
-- The relation between outer-binary frequency, radius, and translation velocity is still open and should be presented as a live modeling target, not as settled law.
+- Any effective exclusion volume implied by the path system remains unresolved; its implementation, boundary geometry, time evolution, and velocity dependence are open modeling targets.
+- The relation between outer-binary frequency, path radius, and translation velocity is still open and should be presented as a live modeling target, not as settled law.
 - The app should eventually be able to show the geometric formulas that govern the displayed state.
 - One explicit investigation target is whether a clean geometric route to the Lorentz beta factor emerges from the normalized path behavior or the generated field structure.
-- The most analytically interesting inspection path is expected to come from changes in energy scale and velocity scale, not from watching unnormalized raw orbital motion alone.
-- One of the main objectives is to examine the potential field generated by those specified orbit states so the actual governing formulas can be determined from the observed 3D patterns over time.
+- The most analytically interesting inspection path is expected to come from changes in energy scale and velocity scale, not from watching unnormalized raw binary motion alone.
+- One of the main objectives is to examine the potential field generated by those specified path states so the actual governing formulas can be determined from the observed 3D patterns over time.
 - Treat low and moderate group velocity as a regime where the normalized relative paths may remain close to their baseline path family, but do not hard-code that behavior as settled law.
 - Treat the above-threshold regime as a distinct path-behavior domain rather than as an ordinary continuation of the sub-threshold path family.
 - In that distinct path-behavior domain, prioritize visible path transformation first.
@@ -222,7 +231,7 @@ The app should make the path geometry legible at a glance while leaving room for
 ## Potential Field Objective
 
 - Observing the potential field in 3D space over time is one of the main objectives of the app.
-- The app should support direct inspection of how specified orbit parameters generate evolving potential patterns.
+- The app should support direct inspection of how specified path parameters generate evolving potential patterns.
 - The primary field-inspection surface should be one or more spherical test surfaces at selectable radius.
 - The app should allow user-defined test points on those spherical test surfaces.
 - The app should also provide preset test-point layouts, with presets serving as the default entry path for field inspection.
@@ -247,7 +256,7 @@ The app should make the path geometry legible at a glance while leaving room for
 - Use JavaScript for rendering, interaction, layout, camera behavior, panel behavior, and other browser-native visual work.
 - Keep the model boundary clean: JavaScript should display and manipulate the Python-produced state rather than re-implementing the core calculations independently.
 - Treat the Python side as the canonical source for the detailed binary table values, group velocity, net angular momentum, precession state, and other derived quantitative outputs.
-- Treat the Python side as the canonical source for the specified per-binary orbit parameters and the resulting potential-field evolution.
+- Treat the Python side as the canonical source for the specified per-binary path parameters and the resulting potential-field evolution.
 - Reuse the animator visual language from the JavaScript side where it helps, but keep the architrino path logic owned by the Python model.
 - Have the JavaScript UI talk to the live local Python process for state snapshots and other dynamic updates rather than relying on precomputed files.
 - Use a push-style live update path between Python and JavaScript rather than a poll-first design.
@@ -262,7 +271,7 @@ The app should make the path geometry legible at a glance while leaving room for
 - Do not place the overall UI inside decorative inner frames.
 - Use the full screen area for the central spherical stage and its supporting readouts.
 - Do not allow surrounding panels to erode the reserved central circle below the size needed for clear multi-view inspection.
-- Do not oversize the central sphere; preserve enough area for the analytical surfaces because the main view is conceptually simple compared with the surrounding inspection tools.
+- Do not oversize the central spherical viewing stage; preserve enough area for the analytical surfaces because the main view is conceptually simple compared with the surrounding inspection tools.
 - Keep the circular boundary elegant and precise; it should read like a crafted instrument rim, not like a crowded dashboard bezel.
 
 ## Edge Visual Language
@@ -277,13 +286,13 @@ The app should make the path geometry legible at a glance while leaving room for
 ## Potential Future Features and Lines of Inquiry
 
 - Implement path precession controls once the precession reference frame is defined.
-- Investigate which orbit radii change on each `h` exchange, and by how much.
+- Investigate which path radii change on each `h` exchange, and by how much.
 
 ## Open Questions
 
 - Which quantities deserve the limited circular-edge positions on the first pass?
 - What exact ladders should govern `$N*h$` energy stepping and velocity-scale stepping?
-- Is there a clean constitutive relation between outer-binary frequency, outer radius, and translation velocity?
+- Is there a clean constitutive relation between outer-binary frequency, outer path radius, and translation velocity?
 - What is the correct behavior at or above the unresolved threshold regime?
 - Does the path system imply an effective exclusion volume, and if so how does that inferred volume change over time and velocity?
 - Should the middle and inner binary frequency changes be shown directly, or only implied through changing relative path behavior?
@@ -293,4 +302,4 @@ The app should make the path geometry legible at a glance while leaving room for
 
 - Start from the existing animator visualization and camera behavior on the JavaScript side rather than inventing a separate rendering language for the first pass.
 - In parallel, define the Python core model that supplies the canonical state and derived measures for the UI.
-- Extend the combined system toward normalized architrino paths, precession-aware views, reference-frame overlays, companion views, and meter readouts in that order.
+- Extend the combined system toward normalized architrino paths, precession-aware camera presets, reference-frame overlays, layer controls, and meter readouts in that order.
