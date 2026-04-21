@@ -175,7 +175,6 @@ The app should make the core geometry legible at a glance while leaving room for
 - For the oblate deformation used here, only the minor-axis radius changes.
 - Keep the major-axis radius fixed while increasing oblateness.
 - At this stage of the app, the velocity, frequency, and radius of each binary orbit must be explicitly specifiable.
-- Each exchange of `h` is expected to adjust the radius of one or more orbits.
 - The relation between outer-binary frequency, radius, and translation velocity is still open and should be presented as a live modeling target, not as settled law.
 - The app should eventually be able to show the geometric formulas that govern the displayed state.
 - One explicit investigation target is whether a clean geometric route to the Lorentz beta factor emerges from the ellipsoidal deformation.
@@ -241,11 +240,15 @@ The app should make the core geometry legible at a glance while leaving room for
 - Favor a small number of high-value edge complications over filling the full circumference with constant activity.
 - Keep edge readouts genuinely readable; precision should come from disciplined layout and typography, not from shrinking more information into the ring.
 
+## Potential Future Features and Lines of Inquiry
+
+- Implement axial precession with independent parameters for each axis.
+- Investigate which orbit radii change on each `h` exchange, and by how much.
+
 ## Open Questions
 
 - Which quantities deserve the limited circular-edge positions on the first pass?
 - What exact ladders should govern `$N*h$` energy stepping and velocity-scale stepping?
-- Which orbit radii change on each `h` exchange, and by how much?
 - Is there a clean constitutive relation between outer-binary frequency, outer radius, and translation velocity?
 - What is the correct behavior at or above the unresolved threshold regime?
 - What is the best definition of the occupied-volume metric for the UI?
