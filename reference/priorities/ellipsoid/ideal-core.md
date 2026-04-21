@@ -17,16 +17,16 @@ The first pass should support:
 - one straight-on central spherical area with rotatable sphere contents,
 - animated architrino paths for the inner binary, middle binary, and outer binary,
 - direct specification of per-binary path parameters,
-- reference-frame overlays for group velocity and net angular momentum once those quantities are defined,
+- reference-frame overlays once their displayed quantities are defined,
 - selectable spherical test-surface field inspection,
 - isolated inner-binary, middle-binary, and outer-binary field contributions plus their superposition,
 - test-point presets and manual test-point placement,
-- readouts for path scale, group velocity, net angular momentum, binary path behavior, and scale factors,
+- readouts for path scale, binary path behavior, and scale factors,
 - a detailed binary-measures table,
 - freeze, resume, and coherent step controls,
 - and a clean split between Python-owned model state and JavaScript-owned presentation.
 
-The first pass should not treat path precession, sphere edge visual language, or effective exclusion volume as active layout requirements. Those remain future considerations until their model and control semantics are clearer.
+Deferred topics are listed in `Future Considerations And Open Questions`.
 
 ## UI Elements
 
@@ -38,7 +38,7 @@ The first-pass UI is organized around one central spherical area and four surrou
 - Size the central spherical area for clear inspection rather than maximum footprint: preserve enough room for the four corner zones and supporting side-band readouts.
 - Use one straight-on camera view of the central spherical area; rotate the sphere contents inside that fixed view instead of rotating the camera.
 - Keep the displayed path system large enough for relative trajectories to remain legible from the default screen composition.
-- Render the Noether core as moving architrino paths rather than as a solid body, fixed envelope, or predetermined velocity-compressed boundary.
+- Render the Noether core as moving architrino paths rather than as a solid body or fixed envelope.
 - Support spherical test-surface field inspection at selectable radius, with field values and test points visible inside the same central area.
 - Keep larger analytical surfaces outside the central spherical area.
 - Do not fragment the page into nested interior frames.
@@ -77,7 +77,6 @@ The first-pass UI is organized around one central spherical area and four surrou
 - The default first-pass rows should include path radius or scale, path frequency, architrino velocity, phase, and energy level.
 - Show per-binary path frequency after scale-factor application.
 - Use compact scientific notation for dense quantitative comparison.
-- Show group velocity and net angular momentum as assembly-level readouts adjacent to this table, not as per-binary cell values.
 - Do not present the current binary radii as if they determine an enclosing volume.
 - Keep the table tight and technical, but still readable enough that rows can be scanned without degrading into a dense diagnostic wall.
 
@@ -87,9 +86,9 @@ The first-pass UI is organized around one central spherical area and four surrou
 - Show scale factors for radii, frequencies, and velocities as dedicated meters.
 - Show velocities relative to field speed `$v = c_f$`.
 - Render scale factors in scientific notation as `$y.z \times 10^x$`.
-- Use the left side band for always-visible summary readouts anchored by group velocity and net angular momentum.
+- Use the left side band for always-visible summary readouts anchored by scale state and selected assembly-level measures.
 - Use the right side band for current view and state summaries that support the control stack without duplicating the full control panel.
-- Use the surrounding readouts, graphs, and table values to communicate changes in relative path behavior, group velocity, and net angular momentum.
+- Use the surrounding readouts, graphs, and table values to communicate changes in relative path behavior and scale state.
 - Use the side bands for secondary quantities that should remain visible without competing with the four main corner zones.
 - Keep the corner layout balanced so no single zone overwhelms the central spherical area.
 
@@ -98,11 +97,8 @@ The first-pass UI is organized around one central spherical area and four surrou
 ### Path Inspection
 
 - Animate the binary paths and the architrinos continuously.
-- Normalize the displayed motion as needed so the central visual emphasizes relative path behavior, scale, and group velocity rather than only six architrinos moving at raw literal speeds.
-- Treat ideal elliptical-like relative paths, normalized to group velocity, as a working hypothesis to inspect rather than as a settled geometry.
-- Do not assume that the relative paths are perfect ellipses, because the paths are expected to adjust continuously.
-- Treat deviations from elliptical-like relative paths as meaningful data rather than rendering errors.
-- Use path-first terminology for overlays and readouts: architrino paths, relative paths, group velocity, net angular momentum, path radius or scale, phase, and frequency.
+- Normalize the displayed motion as needed so the central visual emphasizes relative path behavior and scale rather than only six architrinos moving at raw literal speeds.
+- Use path-first terminology for overlays and readouts: architrino paths, relative paths, path radius or scale, phase, and frequency.
 
 ### Spherical Test-Surface Field Inspection
 
@@ -118,7 +114,7 @@ The first-pass UI is organized around one central spherical area and four surrou
 
 - At this stage of the app, the velocity, frequency, radius, and orientation of each binary path frame must be explicitly specifiable.
 - The displayed core state should be defined by the architrino paths and emitted fields, not by a solid enclosing body.
-- Use the binary table and adjacent assembly-level readouts to compare binary-level path behavior against group velocity and net angular momentum.
+- Use the binary table and adjacent assembly-level readouts to compare binary-level path behavior against scale state.
 - The relation between outer-binary frequency, path radius, and translation velocity is still open and should be presented as a live modeling target, not as settled law.
 
 ### Freeze And Scale Stepping
@@ -131,16 +127,12 @@ The first-pass UI is organized around one central spherical area and four surrou
 - Make energy-level stepping and velocity-scale stepping the primary step families for inspection.
 - Treat stepping through scales of `$N*h$` and scales of velocity as more important than raw time stepping.
 - Include a way to choose the stepping family and adjust the step size within that family, while leaving exact ladder definitions open until the model semantics are better defined.
-- Add a velocity control that approaches the field-speed limit with a logarithmic ladder.
-- Use repeating-nines resolution below the field-speed threshold so the UI can resolve increasingly sharp changes near that boundary.
-- End the standard velocity mode at the field-speed threshold.
-- Treat any above-threshold behavior as a separate path-behavior mode with its own controls and presentation rather than as a blind continuation of the sub-threshold slider.
 
 ## Interaction Model
 
 The interaction model has one fixed rule: the camera is straight on. Rotation controls rotate the sphere contents, not the camera.
 
-- Provide sphere contents orientation presets tied to the group-velocity direction and the net-angular-momentum direction once those quantities are defined.
+- Provide sphere contents orientation presets once the relevant reference directions are defined.
 - Allow reference-frame lines to be toggled on and off.
 - Keep path and reference-frame overlays optional so the default view remains readable.
 - Keep exact binary radius, frequency, velocity, orientation, and other quantitative inputs in dedicated controls rather than assigning them to single-key shortcuts.
@@ -187,22 +179,12 @@ The interaction model has one fixed rule: the camera is straight on. Rotation co
 - Prefer clear numeric values, short labels, and restrained trend indicators over dense control-room blocks.
 - Prefer summary-first disclosure: show compact trend indicators by default, then reveal the full graph when the user selects that quantity.
 
-## Model Relations To Expose
-
-- Any effective exclusion volume implied by the path system remains unresolved; its implementation, boundary geometry, time evolution, and velocity dependence are open modeling targets.
-- The app should eventually be able to show the geometric formulas that govern the displayed state.
-- One explicit investigation target is whether a clean geometric route to the Lorentz beta factor emerges from the normalized path behavior or the generated field structure.
-- The most analytically interesting inspection path is expected to come from changes in energy scale and velocity scale, not from watching unnormalized raw binary motion alone.
-- Treat low and moderate group velocity as a regime where the normalized relative paths may remain close to their baseline path family, but do not hard-code that behavior as settled law.
-- Treat the above-threshold regime as a distinct path-behavior domain rather than as an ordinary continuation of the sub-threshold path family.
-- In that distinct path-behavior domain, prioritize visible path transformation first.
-
 ## Runtime Contract
 
 - Implement the main core model in Python.
 - Use Python for the core state, path calculations, field calculations, derived measures, and the quantitative data that feeds the readouts, graphs, and tables.
 - Run that Python model as a live local process so the dynamic UI can request updated state during interaction.
-- Treat the Python side as the canonical source for the detailed binary table values, group velocity, net angular momentum, and other derived quantitative outputs.
+- Treat the Python side as the canonical source for the detailed binary table values and other derived quantitative outputs.
 - Treat the Python side as the canonical source for the specified per-binary path parameters and the resulting potential-field evolution.
 - Implement the visualization layer in JavaScript.
 - Use JavaScript for rendering, interaction, layout, straight-on camera setup, sphere contents orientation behavior, panel behavior, and other browser-native visual work.
@@ -220,21 +202,27 @@ The interaction model has one fixed rule: the camera is straight on. Rotation co
 
 - Start from the existing animator visualization and adapt its camera behavior to a single straight-on camera with rotatable sphere contents rather than inventing a separate rendering language for the first pass.
 - In parallel, define the Python core model that supplies the canonical state and derived measures for the UI.
-- Extend the combined system toward normalized architrino paths, reference-frame overlays, layer controls, and meter readouts in that order.
-
-## Supporting Reference Content
-
-- Keep a short path-geometry reference available either inline or in a companion markdown panel.
-- That reference should cover normalized relative paths, group velocity, net angular momentum, and the unresolved status of any effective exclusion volume.
-- Do not make an earlier solid-body approximation the controlling companion note for this app brief unless that approximation is explicitly reintroduced later as a labeled hypothesis.
+- Extend the combined system toward architrino paths, reference-frame overlays, layer controls, and meter readouts in that order.
 
 ## Future Considerations And Open Questions
 
+- Determine how any effective exclusion volume implied by the path system should be implemented, including boundary geometry, time evolution, and velocity dependence.
+- Decide how and when the app should show the geometric formulas that govern the displayed state.
+- Keep energy-scale and velocity-scale changes as likely high-value inspection paths while the exact stepping semantics remain open.
+- Define how group velocity should be calculated, displayed, and used in reference-frame overlays and readouts.
+- Determine whether normalized relative path behavior relative to group velocity remains elliptical-like, and how any deformation away from that family should be represented.
+- Decide whether deviations from elliptical-like relative paths should become first-class analytical data or remain a later modeling note.
+- Determine whether a clean geometric route to the Lorentz beta factor emerges from normalized path behavior or generated field structure.
+- Treat low and moderate group velocity as a possible regime where normalized relative paths may remain close to a baseline path family, but do not hard-code that behavior as settled law.
+- Treat the above-threshold regime as a distinct path-behavior domain rather than as an ordinary continuation of the sub-threshold path family.
+- In that distinct path-behavior domain, prioritize visible path transformation first.
 - Treat path precession as a future line of inquiry once its reference frame and control model are defined.
 - Treat sphere edge visual language as a future consideration, not a first-pass layout requirement.
 - Investigate which path radii change on each `h` exchange, and by how much.
 - Determine whether the path system implies an effective exclusion volume, and if so how that inferred volume changes over time and velocity.
 - Decide what exact ladders should govern `$N*h$` energy stepping and velocity-scale stepping.
+- Decide whether velocity controls should approach the field-speed limit with a logarithmic ladder and repeating-nines resolution near that boundary.
+- Decide where standard velocity mode ends relative to field speed and how above-threshold behavior should be presented.
 - Determine whether there is a clean constitutive relation between outer-binary frequency, outer path radius, and translation velocity.
 - Determine the correct behavior at or above the unresolved threshold regime.
 - Decide whether middle and inner binary frequency changes should be shown directly or only implied through changing relative path behavior.
