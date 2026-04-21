@@ -164,6 +164,31 @@ The app should make the core geometry legible at a glance while leaving room for
 - In that above-threshold geometry mode, make changing shape the first-class visual subject.
 - Keep geometry overlays optional so the default view remains readable.
 
+## Keyboard Shortcuts
+
+- Treat the keyboard layer as an instrument shortcut layer for inspection, navigation, and playback rather than as the main path for exact numeric entry.
+- Enable those shortcuts only when an element in the spherical viewing stage has focus.
+- Ignore scene-level shortcuts while a text input, numeric input, textarea, select control, or other editable field has focus.
+- For the first pass, treat the safest one-key pool common to macOS, Windows, and Linux as: arrow keys, `Space`, `Enter`, `Escape`, digits `0` through `9`, letters `A` through `Z`, `-`, and `=`.
+- Do not allow `Tab` or `Shift+Tab` for shortcuts.
+- Do not allow function keys, `Home`, `End`, `PageUp`, or `PageDown` as shortcuts.
+- Do not use browser- or system-reserved combinations as part of the core shortcut language.
+- Make camera orbit the meaning of the arrow keys when the spherical viewing stage has focus.
+- Use `Space` to freeze or resume the live instrument surface.
+- Use `Enter` to advance one coherent step while the instrument is frozen.
+- Use `0` to show the superposed potential-field view.
+- Use `1` to show the inner-binary field contribution by itself.
+- Use `2` to show the middle-binary field contribution by itself.
+- Use `3` to show the outer-binary field contribution by itself.
+- Use `-` to decrease the spherical test-surface radius to r/2.
+- Use `=` to increase the spherical test-surface radius to 2r.
+- Use `X` to toggle axes visibility.
+- Use `P` to toggle the spherical potential surface visualization.
+- Use `T` to toggle test-point visibility.
+- Use `H` to open a compact keyboard-help overlay.
+- Use `Escape` to close transient overlays and return focus to the spherical viewing stage.
+- Keep exact specification of binary radius, frequency, velocity, and other quantitative inputs in focused controls rather than assigning those edits to the first-pass one-key layer. 
+
 ## Geometry Content To Support
 
 - The app should make the ellipsoid geometry understandable, not just decorative.
