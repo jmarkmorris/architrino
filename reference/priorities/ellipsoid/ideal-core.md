@@ -1,6 +1,6 @@
 # Ideal Core App Design Brief
 
-This note reorganizes the initial rough ideas for an app page that presents a Noether core as a 3D ellipsoidal volume.
+This note presents ideas for a controllable web app that presents a Noether core as a 3D ellipsoidal volume and offers visualizations of the core and the emitted potential fields.
 
 ## Purpose
 
@@ -14,6 +14,8 @@ The app should make the core geometry legible at a glance while leaving room for
 - Make flattening the primary visual read of the core.
 - Make shape, scale, velocity, and orbit behavior readable from one screen.
 - Make the orbit parameters of the inner binary, middle binary, and outer binary explicitly specifiable.
+- Make viewing the emitted potential field over a spherical test surface a primary analytical goal.
+- Make that field view readable both as isolated inner-binary, middle-binary, and outer-binary contributions and as their superposition.
 - Reuse the existing animator motion language as the starting point, then extend it from spherical to ellipsoidal geometry.
 
 ## Main Visual Metaphor
