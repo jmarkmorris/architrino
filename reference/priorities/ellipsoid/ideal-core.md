@@ -252,7 +252,6 @@ The app should make the path geometry legible at a glance while leaving room for
 ## Sphere Edge Visual Language
 
 - Treat sphere edge visual language as a future consideration, not a first-pass layout requirement.
-- Use the circumference of a luxury watch as the reference metaphor for the circular edge; it should read like a crafted instrument rim, not like a crowded dashboard bezel.
 - Prefer polished, precise, tightly integrated instrumentation over bulky floating controls.
 - Let the user feel that the circular edge is part of the core-reading instrument itself, not a separate overlay pasted on top.
 - Treat the circular edge as an attachment zone for compact controls, compact readouts, and a few small meters that benefit from immediate spatial association with the core.
