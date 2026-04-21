@@ -166,28 +166,29 @@ The app should make the core geometry legible at a glance while leaving room for
 
 ## Keyboard Shortcuts
 
-- Treat the keyboard layer as an instrument shortcut layer for inspection, navigation, and playback rather than as the main path for exact numeric entry.
-- Enable those shortcuts only when an element in the spherical viewing stage has focus.
-- Ignore scene-level shortcuts while a text input, numeric input, textarea, select control, or other editable field has focus.
-- For the first pass, treat the safest one-key pool common to macOS, Windows, and Linux as: arrow keys, `Space`, `Enter`, `Escape`, digits `0` through `9`, letters `A` through `Z`, `-`, and `=`.
-- Do not allow `Tab` or `Shift+Tab` for shortcuts.
-- Do not allow function keys, `Home`, `End`, `PageUp`, or `PageDown` as shortcuts.
-- Do not use browser- or system-reserved combinations as part of the core shortcut language.
-- Make camera orbit the meaning of the arrow keys when the spherical viewing stage has focus.
-- Use `Space` to freeze or resume the live instrument surface.
-- Use `Enter` to advance one coherent step while the instrument is frozen.
-- Use `0` to show the superposed potential-field view.
-- Use `1` to show the inner-binary field contribution by itself.
-- Use `2` to show the middle-binary field contribution by itself.
-- Use `3` to show the outer-binary field contribution by itself.
-- Use `-` to decrease the spherical test-surface radius to r/2.
-- Use `=` to increase the spherical test-surface radius to 2r.
-- Use `X` to toggle axes visibility.
-- Use `P` to toggle the spherical potential surface visualization.
-- Use `T` to toggle test-point visibility.
-- Use `H` to open a compact keyboard-help overlay.
-- Use `Escape` to close transient overlays and return focus to the spherical viewing stage.
-- Keep exact specification of binary radius, frequency, velocity, and other quantitative inputs in focused controls rather than assigning those edits to the first-pass one-key layer. 
+- The app shall provide a keyboard shortcut layer for inspection, navigation, and playback.
+- The keyboard shortcut layer shall not serve as the main path for exact quantitative parameter entry.
+- Scene-level shortcuts shall be active only when an element in the spherical viewing stage has focus.
+- Scene-level shortcuts shall be inactive while a text input, numeric input, textarea, select control, or other editable field has focus.
+- The first-pass single-key shortcut pool shall be limited to keys common to macOS, Windows, and Linux: arrow keys, `Space`, `Enter`, `Escape`, digits `0` through `9`, letters `A` through `Z`, `-`, and `=`.
+- `Tab` and `Shift+Tab` shall remain reserved for focus navigation.
+- The first-pass core shortcut set shall not use function keys, `Home`, `End`, `PageUp`, or `PageDown`.
+- The first-pass core shortcut set shall not use browser-reserved or system-reserved combinations.
+- When the spherical viewing stage has focus, the arrow keys shall orbit the camera.
+- `Space` shall freeze or resume the live instrument surface.
+- `Enter` shall advance the instrument by one coherent step while the surface is frozen.
+- `0` shall select the superposed potential-field view.
+- `1` shall select the inner-binary field contribution by itself.
+- `2` shall select the middle-binary field contribution by itself.
+- `3` shall select the outer-binary field contribution by itself.
+- `-` shall decrease the spherical test-surface radius to `r/2`.
+- `=` shall increase the spherical test-surface radius to `2r`.
+- `X` shall toggle axis visibility.
+- `P` shall toggle spherical potential-surface visibility.
+- `T` shall toggle test-point visibility.
+- `H` shall open a compact keyboard-help overlay.
+- `Escape` shall close transient overlays and return focus to the spherical viewing stage.
+- Exact binary radius, frequency, velocity, and other quantitative inputs shall be edited only through dedicated parameter controls and shall not be assigned to first-pass single-key shortcuts.
 
 ## Geometry Content To Support
 
