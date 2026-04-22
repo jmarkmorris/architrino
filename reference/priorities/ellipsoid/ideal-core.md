@@ -17,13 +17,11 @@ The first pass should support:
 - one straight-on central spherical area with rotatable sphere contents,
 - animated architrino paths for the inner binary, middle binary, and outer binary,
 - direct specification of per-binary path parameters,
-- reference-frame overlays once their displayed quantities are defined,
 - selectable spherical test-surface field inspection,
 - isolated inner-binary, middle-binary, and outer-binary field contributions plus their superposition,
-- test-point presets and manual test-point placement,
 - readouts for path scale, binary path behavior, and scale factors,
 - a detailed binary-measures table,
-- freeze, resume, and coherent step controls,
+- freeze and resume controls,
 - and a clean split between Python-owned model state and JavaScript-owned presentation.
 
 Deferred topics are listed in `Future Considerations And Open Questions`.
@@ -35,7 +33,7 @@ The first-pass UI is organized around one central spherical area and four surrou
 ### Central Spherical Area
 
 - In 2D, the central spherical area should read as a large reserved circle for the core path view and spherical test-surface field view.
-- Size the central spherical area for clear inspection rather than maximum footprint: preserve enough room for the four corner zones and supporting side-band readouts.
+- Size the central spherical area for clear inspection rather than maximum footprint: preserve enough room for the four corner zones.
 - Use one straight-on camera view of the central spherical area; rotate the sphere contents inside that fixed view instead of rotating the camera.
 - Keep the displayed path system large enough for relative trajectories to remain legible from the default screen composition.
 - Render the Noether core as moving architrino paths rather than as a solid body or fixed envelope.
@@ -47,27 +45,22 @@ The first-pass UI is organized around one central spherical area and four surrou
 
 - Use the upper-left corner as the default home for graph panels and trace views.
 - Show fluctuation traces and field-evolution graphs for the spherical test-surface workflow.
-- Open the corresponding full graph in this zone when the user selects a compact trend indicator.
 - Treat graphs as deliberate analytical surfaces, not as places to dump every available variable at once.
 
 ### Upper-Right Corner: Control Panel Zone
 
 - Use the upper-right corner as the default home for the main control panel.
-- Include controls for sphere contents orientation presets, reference-frame visibility, path visibility, spherical test-surface visibility, graph selection, equation-panel visibility, scale-reference selection, and test-point visibility.
-- Include field-inspection controls for test-surface radius and preset or manual test-point placement.
-- Let the settings panel choose what counts as the `1.0` reference scale, with at least a human-scale option and an event-horizon option.
+- Include controls for sphere contents orientation presets, path visibility, spherical test-surface visibility, and test-point visibility.
+- Include field-inspection controls for test-surface radius.
 - Allow direct specification of the key path parameters for each binary.
 - Allow direct specification of each binary path frame's orientation.
-- Let the user choose which rows appear in the detailed binary-measures table.
 - Keep frequently used display controls in one place so the user does not have to hunt across the page to reconfigure the instrument.
 - Make it easy to return to a clean default arrangement after exploratory changes.
 
-### Lower-Left Corner: Equation Zone
+### Lower-Left Corner: Reserved Equation Zone
 
-- Use the lower-left corner as the default home for equation panels and compact formula references.
-- Render displayed formulas in KaTeX and follow the project math rules.
-- Use this zone for formulas that govern the displayed state once those formulas are defined.
-- Keep equation panels readable and focused rather than mixing them with dense diagnostic readouts.
+- Reserve the lower-left corner as a future-use zone for formula surfaces.
+- Keep the reserved area visually compatible with the graph and table zones without requiring populated formulas in the first pass.
 
 ### Lower-Right Corner: Technical Table Zone
 
@@ -79,18 +72,6 @@ The first-pass UI is organized around one central spherical area and four surrou
 - Use compact scientific notation for dense quantitative comparison.
 - Do not present the current binary radii as if they determine an enclosing volume.
 - Keep the table tight and technical, but still readable enough that rows can be scanned without degrading into a dense diagnostic wall.
-
-### Side Bands
-
-- Use the left and right side bands as persistent summary-readout zones.
-- Show scale factors for radii, frequencies, and velocities as dedicated meters.
-- Show velocities relative to field speed `$v = c_f$`.
-- Render scale factors in scientific notation as `$y.z \times 10^x$`.
-- Use the left side band for always-visible summary readouts anchored by scale state and selected assembly-level measures.
-- Use the right side band for current view and state summaries that support the control stack without duplicating the full control panel.
-- Use the surrounding readouts, graphs, and table values to communicate changes in relative path behavior and scale state.
-- Use the side bands for secondary quantities that should remain visible without competing with the four main corner zones.
-- Keep the corner layout balanced so no single zone overwhelms the central spherical area.
 
 ## Analytical Workflows
 
@@ -106,7 +87,6 @@ The first-pass UI is organized around one central spherical area and four surrou
 - Use one or more spherical test surfaces at selectable radius as the primary field-inspection surface.
 - Show potential-field values on those surfaces with a colored logarithmic scale so weak and strong structure can be seen together.
 - Allow isolated inner-binary, middle-binary, and outer-binary contributions as well as their superposition.
-- Support preset test-point layouts as the default workflow, with manual test-point placement available for targeted inspection.
 - Show selected test-point traces as logarithmic charts so frequencies from all three binaries can be picked up from the local signal over time.
 - Treat evolving potential patterns as part of the method for discovering or validating formulas relating frequency, radius, velocity, and resulting field structure.
 
@@ -117,55 +97,38 @@ The first-pass UI is organized around one central spherical area and four surrou
 - Use the binary table and adjacent assembly-level readouts to compare binary-level path behavior against scale state.
 - The relation between outer-binary frequency, path radius, and translation velocity is still open and should be presented as a live modeling target, not as settled law.
 
-### Freeze And Scale Stepping
+### Freeze And Resume
 
 - Provide a clear pause or freeze control so the user can stop the live instrument for close inspection.
 - Make the paused state explicit in the UI so the user always knows whether the surface is live or frozen.
-- In the frozen state, hold the streamed state, graphs, and table values fixed together so the full instrument remains internally consistent during inspection.
-- Keep sphere contents rotation, panel interaction, and other local inspection behavior available while the streamed data is frozen.
-- Provide a single-step control so the user can advance the frozen instrument in deliberate increments during close inspection.
-- Make energy-level stepping and velocity-scale stepping the primary step families for inspection.
-- Treat stepping through scales of `$N*h$` and scales of velocity as more important than raw time stepping.
-- Include a way to choose the stepping family and adjust the step size within that family, while leaving exact ladder definitions open until the model semantics are better defined.
+- In the frozen state, hold the model state, graphs, and table values fixed together so the full instrument remains internally consistent during inspection.
+- Keep sphere contents rotation, panel interaction, and other local inspection behavior available while the model state is frozen.
 
 ## Interaction Model
 
 The interaction model has one fixed rule: the camera is straight on. Rotation controls rotate the sphere contents, not the camera.
 
 - Provide sphere contents orientation presets once the relevant reference directions are defined.
-- Allow reference-frame lines to be toggled on and off.
-- Keep path and reference-frame overlays optional so the default view remains readable.
 - Keep exact binary radius, frequency, velocity, orientation, and other quantitative inputs in dedicated controls rather than assigning them to single-key shortcuts.
 
 ### Keyboard Shortcuts
 
 - Scene-level shortcuts shall be active only when an element in the spherical viewing stage has focus.
 - Scene-level shortcuts shall be inactive while a text input, numeric input, textarea, select control, or other editable field has focus.
-- The first-pass single-key shortcut pool shall be limited to keys common to macOS, Windows, and Linux: arrow keys, `Space`, `Enter`, `Escape`, digits `0` through `9`, letters `A` through `Z`, `-`, and `=`.
+- The first-pass single-key shortcut pool shall be limited to keys common to macOS, Windows, and Linux: arrow keys, `Space`, `Escape`, `Q`, `E`, and `R`.
 - `Tab` and `Shift+Tab` shall remain reserved for focus navigation.
 - The first-pass core shortcut set shall not use function keys, `Home`, `End`, `PageUp`, or `PageDown`.
 - The first-pass core shortcut set shall not use browser-reserved or system-reserved combinations.
 - The keyboard shortcut layer shall operate within the one straight-on camera view of the layered core, binary paths, and field surfaces.
 - Keyboard rotation shortcuts shall rotate the sphere contents only.
 - Binary path-frame orientation shall be set through dedicated controls rather than through sphere contents rotation shortcuts.
-- The spherical test surface shall share the sphere contents rotation model; its first-pass controls shall be radius, field visibility, and test-point layout.
+- The spherical test surface shall share the sphere contents rotation model; its first-pass controls shall be radius, field visibility, and test-point visibility.
 - When the spherical viewing stage has focus, the arrow keys shall turn or tilt the sphere contents within the straight-on view.
 - `ArrowLeft` and `ArrowRight` shall turn the sphere contents left or right.
 - `ArrowUp` and `ArrowDown` shall tilt the sphere contents upward or downward.
 - `Q` and `E` shall rotate the sphere contents counterclockwise or clockwise in the screen plane.
 - `R` shall reset the sphere contents to the default orientation.
 - `Space` shall freeze or resume the live instrument surface.
-- `Enter` shall advance the instrument by one coherent step while the surface is frozen.
-- `0` shall select the superposed potential-field view.
-- `1` shall select the inner-binary field contribution by itself.
-- `2` shall select the middle-binary field contribution by itself.
-- `3` shall select the outer-binary field contribution by itself.
-- `-` shall decrease the spherical test-surface radius to `r/2`.
-- `=` shall increase the spherical test-surface radius to `2r`.
-- `X` shall toggle reference-frame visibility.
-- `P` shall toggle spherical potential-surface visibility.
-- `T` shall toggle test-point visibility.
-- `H` shall open a compact keyboard-help overlay.
 - `Escape` shall close transient overlays and return focus to the spherical viewing stage.
 
 ## Readout Standard
@@ -177,7 +140,6 @@ The interaction model has one fixed rule: the camera is straight on. Rotation co
 - When a value matters for reasoning, show it directly as text rather than forcing the user to infer it from a gauge alone.
 - Treat surrounding instrumentation as part of the core-reading workflow, not as secondary decoration.
 - Prefer clear numeric values, short labels, and restrained trend indicators over dense control-room blocks.
-- Prefer summary-first disclosure: show compact trend indicators by default, then reveal the full graph when the user selects that quantity.
 
 ## Runtime Contract
 
@@ -191,24 +153,30 @@ The interaction model has one fixed rule: the camera is straight on. Rotation co
 - Keep the model boundary clean: JavaScript should display and manipulate the Python-produced state rather than re-implementing the core calculations independently.
 - Reuse the animator visual language from the JavaScript side where it helps, but keep the architrino path logic owned by the Python model.
 - Have the JavaScript UI talk to the live local Python process for state snapshots and other dynamic updates rather than relying on precomputed files.
-- Use a push-style live update path between Python and JavaScript rather than a poll-first design.
-- Treat the UI as a continuously updating instrument surface driven by streamed state from the Python model.
-- Allow the user to pause or freeze the streamed surface for inspection without abandoning the live-process architecture.
-- When frozen, suspend incoming streamed state updates to the readouts, graphs, and binary table together, while preserving local client-side inspection controls.
-- Support stepwise advancement from the frozen state so the Python model can emit the next coherent state increment on demand.
-- Support stepwise advancement by energy-scale and velocity-scale changes as first-class streamed transitions from the Python model.
+- Treat the UI as an instrument surface driven by state from the Python model.
+- Allow the user to pause or freeze the live surface for inspection without abandoning the live-process architecture.
+- When frozen, suspend incoming model updates to the readouts, graphs, and binary table together, while preserving local client-side inspection controls.
 
 ## Implementation Starting Point
 
 - Start from the existing animator visualization and adapt its camera behavior to a single straight-on camera with rotatable sphere contents rather than inventing a separate rendering language for the first pass.
 - In parallel, define the Python core model that supplies the canonical state and derived measures for the UI.
-- Extend the combined system toward architrino paths, reference-frame overlays, layer controls, and meter readouts in that order.
+- Extend the combined system toward architrino paths, layer controls, and meter readouts in that order.
 
 ## Future Considerations And Open Questions
 
 - Determine how any effective exclusion volume implied by the path system should be implemented, including boundary geometry, time evolution, and velocity dependence.
 - Decide how and when the app should show the geometric formulas that govern the displayed state.
+- Decide when to populate the lower-left reserved equation zone with rendered formula panels and compact formula references.
 - Keep energy-scale and velocity-scale changes as likely high-value inspection paths while the exact stepping semantics remain open.
+- Decide when to add reference-frame overlays once their displayed quantities and reference directions are defined.
+- Decide when to add graph selection beyond a default graph view.
+- Decide when to allow the user to choose which rows appear in the detailed binary-measures table.
+- Decide when to add human-scale, event-horizon, or other scale-reference presets beyond a fixed first-pass reference.
+- Decide when to add preset test-point layouts beyond a single default test-point layout.
+- Decide when to add coherent single-step advancement from the frozen state.
+- Decide when velocity-scale stepping should join or replace simpler first-pass stepping.
+- Decide when side-band summary readout zones should be added around the four-corner layout.
 - Define how group velocity should be calculated, displayed, and used in reference-frame overlays and readouts.
 - Determine whether normalized relative path behavior relative to group velocity remains elliptical-like, and how any deformation away from that family should be represented.
 - Decide whether deviations from elliptical-like relative paths should become first-class analytical data or remain a later modeling note.
@@ -226,6 +194,10 @@ The interaction model has one fixed rule: the camera is straight on. Rotation co
 - Determine whether there is a clean constitutive relation between outer-binary frequency, outer path radius, and translation velocity.
 - Determine the correct behavior at or above the unresolved threshold regime.
 - Decide whether middle and inner binary frequency changes should be shown directly or only implied through changing relative path behavior.
+- Decide when to add manual test-point placement beyond the default test-point layout.
+- Decide when to add summary-first disclosure where compact trend indicators expand into full graphs.
+- Expand keyboard shortcuts beyond core orientation and playback controls, including field-contribution selection, test-surface radius changes, overlay toggles, test-point visibility, and keyboard-help shortcuts.
+- Upgrade the Python-to-JavaScript state path from request/snapshot updates to push-style live streaming when the runtime needs it.
 - Decide whether the first version should include the markdown reference panel or wait until the main core view is stable.
 
 ### Sphere Edge Visual Language
