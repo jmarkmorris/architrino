@@ -1,0 +1,677 @@
+import * as THREE from "../../../vendor/three/three.module.js";
+import { createAnimatorDefaultCoreSpec } from "../animator/AnimatorDraftScaffoldRuntime.js";
+import { createAnimatorStructureGeometryRuntime } from "../animator/AnimatorStructureGeometryRuntime.js";
+
+const BINARY_META = [
+  { id: "inner", label: "Inner", color: "#7dd3fc" },
+  { id: "middle", label: "Middle", color: "#fbbf24" },
+  { id: "outer", label: "Outer", color: "#f472b6" },
+];
+
+const STANDARD_POSITRINO_COLOR = "#ff0000";
+const STANDARD_ELECTRINO_COLOR = "#0000ff";
+
+const CHARGE_META = {
+  positrino: { q: 1, color: STANDARD_POSITRINO_COLOR },
+  electrino: { q: -1, color: STANDARD_ELECTRINO_COLOR },
+};
+
+const SURFACE_LATITUDE_COUNT = 25;
+const SURFACE_LONGITUDE_COUNT = 48;
+const TWO_PI = Math.PI * 2;
+
+function clampNumber(value, min, max) {
+  return Math.min(max, Math.max(min, value));
+}
+
+function formatFixed(value, digits = 2) {
+  if (!Number.isFinite(value)) {
+    return "0";
+  }
+  return value.toFixed(digits);
+}
+
+function formatScientific(value) {
+  if (!Number.isFinite(value) || value === 0) {
+    return "0.00";
+  }
+  const absValue = Math.abs(value);
+  if (absValue >= 1000 || absValue < 0.01) {
+    return value.toExponential(2);
+  }
+  return value.toFixed(3);
+}
+
+function normalizeViewId(value) {
+  const normalized = String(value ?? "all").trim().toLowerCase();
+  return ["all", "inner", "middle", "outer"].includes(normalized) ? normalized : "all";
+}
+
+function getMotionAngle(motion, chargeType, timeSeconds) {
+  const frequency = Number(motion?.frequencyHz ?? 0.25);
+  const phase = Number(motion?.phase ?? 0);
+  const direction = motion?.direction === "cw" ? -1 : 1;
+  const phaseOffset = chargeType === "electrino" ? Math.PI : 0;
+  return phase + phaseOffset + direction * timeSeconds * TWO_PI * frequency;
+}
+
+export function createIdealCoreModel(options = {}) {
+  const Three = options.THREE ?? THREE;
+  const coreSpec = options.coreSpec ?? createAnimatorDefaultCoreSpec("ideal_core");
+  const geometryRuntime =
+    options.geometryRuntime ?? createAnimatorStructureGeometryRuntime({ THREE: Three });
+  const binaries = coreSpec.binaries.map((binary, index) => {
+    const meta = BINARY_META[index] ?? {
+      id: `binary_${index + 1}`,
+      label: `Binary ${index + 1}`,
+      color: "#cbd5e1",
+    };
+    const motion = binary.motion ?? {};
+    const basis = geometryRuntime.getAnimatorOrbitBasis(motion);
+    const radius = Number(motion.radius ?? 1) || 1;
+    const frequencyHz = Number(motion.frequencyHz ?? 0.2) || 0.2;
+    return {
+      ...meta,
+      binaryIndex: index,
+      motion,
+      basis,
+      radius,
+      frequencyHz,
+      speed: radius * TWO_PI * frequencyHz,
+    };
+  });
+
+  const architrinos = binaries.flatMap((binary) =>
+    ["positrino", "electrino"].map((chargeType) => {
+      const chargeMeta = CHARGE_META[chargeType];
+      return {
+        id: `${binary.id}_${chargeType}`,
+        binaryId: binary.id,
+        binaryLabel: binary.label,
+        chargeType,
+        q: chargeMeta.q,
+        color: chargeMeta.color,
+        motion: binary.motion,
+        positionAt(timeSeconds) {
+          return geometryRuntime.getAnimatorOrbitOffsetAtTime(
+            binary.motion,
+            chargeType,
+            timeSeconds
+          );
+        },
+        velocityAt(timeSeconds) {
+          const angle = getMotionAngle(binary.motion, chargeType, timeSeconds);
+          const direction = binary.motion?.direction === "cw" ? -1 : 1;
+          const omega = direction * TWO_PI * binary.frequencyHz;
+          return binary.basis.u
+            .clone()
+            .multiplyScalar(-Math.sin(angle) * binary.radius * omega)
+            .add(
+              binary.basis.v
+                .clone()
+                .multiplyScalar(Math.cos(angle) * binary.radius * omega)
+            );
+        },
+      };
+    })
+  );
+
+  return {
+    coreSpec,
+    binaries,
+    architrinos,
+  };
+}
+
+export function solveFlightTime(samplePoint, architrino, observationTime, options = {}) {
+  const fieldSpeed = Math.max(0.001, Number(options.fieldSpeed ?? 6) || 6);
+  const iterations = Math.max(1, Math.round(Number(options.iterations ?? 4) || 4));
+  let tau = samplePoint.distanceTo(architrino.positionAt(observationTime)) / fieldSpeed;
+  for (let index = 0; index < iterations; index += 1) {
+    const emittedPosition = architrino.positionAt(observationTime - tau);
+    tau = samplePoint.distanceTo(emittedPosition) / fieldSpeed;
+  }
+  return tau;
+}
+
+export function computePotentialContribution(samplePoint, architrino, observationTime, options = {}) {
+  const fieldSpeed = Math.max(0.001, Number(options.fieldSpeed ?? 6) || 6);
+  const normalization = Number(options.normalization ?? 1) || 1;
+  const softening = Math.max(0.0001, Number(options.softening ?? 0.08) || 0.08);
+  const tau = Number.isFinite(options.flightTime)
+    ? Number(options.flightTime)
+    : solveFlightTime(samplePoint, architrino, observationTime, options);
+  const emissionTime = observationTime - tau;
+  const emittedPosition = architrino.positionAt(emissionTime);
+  const displacement = samplePoint.clone().sub(emittedPosition);
+  const distance = Math.max(0.0001, displacement.length());
+  let denominator = Math.sqrt(distance * distance + softening * softening);
+  if (options.useCausalDenominator) {
+    const direction = displacement.clone().multiplyScalar(1 / distance);
+    const velocity = architrino.velocityAt(emissionTime);
+    const kappa = 1 - direction.dot(velocity) / fieldSpeed;
+    denominator *= Math.max(0.08, Math.abs(kappa));
+  }
+  return {
+    potential: (normalization * architrino.q) / denominator,
+    tau,
+    distance,
+    emissionTime,
+  };
+}
+
+export function getSelectedArchitrinos(model, viewId) {
+  const selectedView = normalizeViewId(viewId);
+  if (selectedView === "all") {
+    return model.architrinos;
+  }
+  return model.architrinos.filter((architrino) => architrino.binaryId === selectedView);
+}
+
+export function computePotentialSum(samplePoint, model, viewId, observationTime, options = {}) {
+  const selectedArchitrinos = getSelectedArchitrinos(model, viewId);
+  const contributions = selectedArchitrinos.map((architrino) =>
+    computePotentialContribution(samplePoint, architrino, observationTime, options)
+  );
+  return {
+    potential: contributions.reduce((sum, contribution) => sum + contribution.potential, 0),
+    contributions,
+  };
+}
+
+function createOrbitLine(Three, binary) {
+  const points = [];
+  const segments = 160;
+  for (let index = 0; index < segments; index += 1) {
+    const angle = (index / segments) * TWO_PI;
+    points.push(
+      binary.basis.u
+        .clone()
+        .multiplyScalar(Math.cos(angle) * binary.radius)
+        .add(binary.basis.v.clone().multiplyScalar(Math.sin(angle) * binary.radius))
+    );
+  }
+  const geometry = new Three.BufferGeometry().setFromPoints(points);
+  const material = new Three.LineBasicMaterial({
+    color: binary.color,
+    transparent: true,
+    opacity: 0.74,
+  });
+  return new Three.LineLoop(geometry, material);
+}
+
+function createShellLine(Three, radius, color, opacity) {
+  const geometry = new Three.SphereGeometry(radius, 36, 18);
+  const material = new Three.MeshBasicMaterial({
+    color,
+    wireframe: true,
+    transparent: true,
+    opacity,
+    depthWrite: false,
+  });
+  return new Three.Mesh(geometry, material);
+}
+
+function createSurfaceSamples(Three) {
+  const samples = [];
+  for (let latIndex = 0; latIndex < SURFACE_LATITUDE_COUNT; latIndex += 1) {
+    const theta = (latIndex / (SURFACE_LATITUDE_COUNT - 1)) * Math.PI;
+    const y = Math.cos(theta);
+    const ring = Math.sin(theta);
+    for (let lonIndex = 0; lonIndex < SURFACE_LONGITUDE_COUNT; lonIndex += 1) {
+      const phi = (lonIndex / SURFACE_LONGITUDE_COUNT) * TWO_PI;
+      samples.push({
+        unit: new Three.Vector3(ring * Math.cos(phi), y, ring * Math.sin(phi)),
+        phi,
+      });
+    }
+  }
+  return samples;
+}
+
+function colorForPotential(Three, value, maxAbs) {
+  const positive = new Three.Color(STANDARD_POSITRINO_COLOR);
+  const negative = new Three.Color(STANDARD_ELECTRINO_COLOR);
+  const normalized = clampNumber(value / Math.max(0.0001, maxAbs), -1, 1);
+  return new Three.Color().lerpColors(negative, positive, (normalized + 1) / 2);
+}
+
+function colorToCanvasFill(color) {
+  return `rgb(${Math.round(color.r * 255)}, ${Math.round(color.g * 255)}, ${Math.round(
+    color.b * 255
+  )})`;
+}
+
+function makeMaterial(Three, color, options = {}) {
+  const material = new Three.MeshBasicMaterial({
+    color,
+    transparent: true,
+    opacity: options.opacity ?? 1,
+  });
+  material.depthWrite = options.depthWrite ?? false;
+  return material;
+}
+
+function queryRequiredElement(documentLike, selector) {
+  const element = documentLike.querySelector(selector);
+  if (!element) {
+    throw new Error(`Missing ideal-core prototype element: ${selector}`);
+  }
+  return element;
+}
+
+export function mountIdealCorePrototype(options = {}) {
+  const documentLike = options.documentLike ?? globalThis.document;
+  const windowLike = options.windowLike ?? globalThis.window;
+  const Three = options.THREE ?? THREE;
+  const canvas = queryRequiredElement(documentLike, "#ideal-core-canvas");
+  const model = createIdealCoreModel({ THREE: Three });
+  const renderer = new Three.WebGLRenderer({
+    canvas,
+    antialias: true,
+    alpha: true,
+    preserveDrawingBuffer: true,
+  });
+  renderer.setPixelRatio(Math.min(2, windowLike.devicePixelRatio || 1));
+  renderer.setClearColor(0x000000, 0);
+
+  const scene = new Three.Scene();
+  const camera = new Three.PerspectiveCamera(34, 1, 0.1, 100);
+  camera.position.set(0, 0, 6.7);
+  camera.lookAt(0, 0, 0);
+
+  const sphereContents = new Three.Group();
+  scene.add(sphereContents);
+
+  const shellGroup = new Three.Group();
+  model.coreSpec.shells.slice(0, 3).forEach((shell) => {
+    shellGroup.add(createShellLine(Three, shell.radius, shell.color, Math.max(0.04, shell.opacity)));
+  });
+  sphereContents.add(shellGroup);
+
+  const pathGroup = new Three.Group();
+  model.binaries.forEach((binary) => {
+    pathGroup.add(createOrbitLine(Three, binary));
+  });
+  sphereContents.add(pathGroup);
+
+  const architrinoGeometry = new Three.SphereGeometry(0.0375, 18, 14);
+  const architrinoMeshes = model.architrinos.map((architrino) => {
+    const mesh = new Three.Mesh(
+      architrinoGeometry,
+      makeMaterial(Three, architrino.color, { opacity: 0.96 })
+    );
+    mesh.userData.architrino = architrino;
+    sphereContents.add(mesh);
+    return mesh;
+  });
+
+  const surfaceSamples = createSurfaceSamples(Three);
+  const surfacePositions = new Float32Array(surfaceSamples.length * 3);
+  const surfaceColors = new Float32Array(surfaceSamples.length * 3);
+  const surfaceGeometry = new Three.BufferGeometry();
+  surfaceGeometry.setAttribute("position", new Three.BufferAttribute(surfacePositions, 3));
+  surfaceGeometry.setAttribute("color", new Three.BufferAttribute(surfaceColors, 3));
+  const surfaceMaterial = new Three.PointsMaterial({
+    size: 0.022,
+    transparent: true,
+    opacity: 0.88,
+    vertexColors: true,
+    depthWrite: false,
+  });
+  const surfacePoints = new Three.Points(surfaceGeometry, surfaceMaterial);
+  sphereContents.add(surfacePoints);
+
+  const testPointGroup = new Three.Group();
+  const testPointGeometry = new Three.SphereGeometry(0.035, 12, 10);
+  const testPointMaterial = makeMaterial(Three, "#f8fafc", { opacity: 0.9 });
+  [
+    new Three.Vector3(1, 0, 0),
+    new Three.Vector3(-1, 0, 0),
+    new Three.Vector3(0, 1, 0),
+    new Three.Vector3(0, -1, 0),
+    new Three.Vector3(0, 0, 1),
+    new Three.Vector3(0, 0, -1),
+  ].forEach((unit) => {
+    const marker = new Three.Mesh(testPointGeometry, testPointMaterial);
+    marker.userData.unit = unit;
+    testPointGroup.add(marker);
+  });
+  sphereContents.add(testPointGroup);
+
+  const dom = {
+    viewButtons: [...documentLike.querySelectorAll("[data-view]")],
+    pathToggle: queryRequiredElement(documentLike, "#ideal-core-path-toggle"),
+    surfaceToggle: queryRequiredElement(documentLike, "#ideal-core-surface-toggle"),
+    pointsToggle: queryRequiredElement(documentLike, "#ideal-core-points-toggle"),
+    freezeToggle: queryRequiredElement(documentLike, "#ideal-core-freeze-toggle"),
+    resetButton: queryRequiredElement(documentLike, "#ideal-core-reset-button"),
+    focusButton: queryRequiredElement(documentLike, "#ideal-core-focus-button"),
+    radiusInput: queryRequiredElement(documentLike, "#ideal-core-radius-input"),
+    radiusOutput: queryRequiredElement(documentLike, "#ideal-core-radius-output"),
+    speedInput: queryRequiredElement(documentLike, "#ideal-core-speed-input"),
+    speedOutput: queryRequiredElement(documentLike, "#ideal-core-speed-output"),
+    viewLabel: queryRequiredElement(documentLike, "#ideal-core-view-label"),
+    rangeLabel: queryRequiredElement(documentLike, "#ideal-core-range-label"),
+    sampleLabel: queryRequiredElement(documentLike, "#ideal-core-sample-label"),
+    stripCanvas: queryRequiredElement(documentLike, "#ideal-core-potential-strip"),
+    tableBody: queryRequiredElement(documentLike, "#ideal-core-table-body"),
+  };
+  const stripContext = dom.stripCanvas.getContext("2d");
+
+  const state = {
+    view: "all",
+    pathsVisible: true,
+    surfaceVisible: true,
+    testPointsVisible: true,
+    frozen: false,
+    radius: Number(dom.radiusInput.value) || 1.62,
+    speed: Number(dom.speedInput.value) || 1,
+    modelTime: 0,
+    lastFrameTime: performance.now(),
+    dragging: false,
+    lastPointer: { x: 0, y: 0 },
+    surfaceRange: { min: 0, max: 0, maxAbs: 1 },
+    samplePotential: 0,
+  };
+
+  function resize() {
+    const rect = canvas.getBoundingClientRect();
+    const width = Math.max(1, Math.floor(rect.width));
+    const height = Math.max(1, Math.floor(rect.height));
+    renderer.setSize(width, height, false);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+  }
+
+  function setButtonActive(button, active) {
+    button.classList.toggle("is-active", !!active);
+    button.setAttribute("aria-pressed", active ? "true" : "false");
+  }
+
+  function syncControls() {
+    dom.viewButtons.forEach((button) => {
+      setButtonActive(button, button.dataset.view === state.view);
+    });
+    setButtonActive(dom.pathToggle, state.pathsVisible);
+    setButtonActive(dom.surfaceToggle, state.surfaceVisible);
+    setButtonActive(dom.pointsToggle, state.testPointsVisible);
+    setButtonActive(dom.freezeToggle, state.frozen);
+    dom.freezeToggle.textContent = state.frozen ? "Resume" : "Freeze";
+    dom.radiusOutput.value = formatFixed(state.radius, 2);
+    dom.speedOutput.value = formatFixed(state.speed, 2);
+    dom.viewLabel.textContent =
+      BINARY_META.find((binary) => binary.id === state.view)?.label ?? "Full";
+    dom.rangeLabel.textContent = `${formatScientific(state.surfaceRange.min)} to ${formatScientific(
+      state.surfaceRange.max
+    )}`;
+    dom.sampleLabel.textContent = formatScientific(state.samplePotential);
+  }
+
+  function updateArchitrinoMeshes() {
+    architrinoMeshes.forEach((mesh) => {
+      const architrino = mesh.userData.architrino;
+      mesh.position.copy(architrino.positionAt(state.modelTime));
+      const isSelected = state.view === "all" || architrino.binaryId === state.view;
+      mesh.scale.setScalar(isSelected ? 1.18 : 0.74);
+      mesh.material.opacity = isSelected ? 0.96 : 0.32;
+    });
+  }
+
+  function updateSurface() {
+    const potentials = surfaceSamples.map((sample, sampleIndex) => {
+      const position = sample.unit.clone().multiplyScalar(state.radius);
+      surfacePositions[sampleIndex * 3] = position.x;
+      surfacePositions[sampleIndex * 3 + 1] = position.y;
+      surfacePositions[sampleIndex * 3 + 2] = position.z;
+      return computePotentialSum(position, model, state.view, state.modelTime, {
+        fieldSpeed: 6,
+        softening: 0.1,
+      }).potential;
+    });
+    const maxAbs = Math.max(0.0001, ...potentials.map((value) => Math.abs(value)));
+    const min = Math.min(...potentials);
+    const max = Math.max(...potentials);
+    potentials.forEach((potential, index) => {
+      const color = colorForPotential(Three, potential, maxAbs);
+      surfaceColors[index * 3] = color.r;
+      surfaceColors[index * 3 + 1] = color.g;
+      surfaceColors[index * 3 + 2] = color.b;
+    });
+    surfaceGeometry.attributes.position.needsUpdate = true;
+    surfaceGeometry.attributes.color.needsUpdate = true;
+    surfaceGeometry.computeBoundingSphere();
+    state.surfaceRange = { min, max, maxAbs };
+    state.samplePotential = computePotentialSum(
+      new Three.Vector3(state.radius, 0, 0),
+      model,
+      state.view,
+      state.modelTime,
+      { fieldSpeed: 6, softening: 0.1 }
+    ).potential;
+  }
+
+  function updateTestPoints() {
+    testPointGroup.children.forEach((marker) => {
+      marker.position.copy(marker.userData.unit).multiplyScalar(state.radius);
+    });
+  }
+
+  function drawPotentialStrip() {
+    if (!stripContext) {
+      return;
+    }
+    const width = dom.stripCanvas.width;
+    const height = dom.stripCanvas.height;
+    stripContext.clearRect(0, 0, width, height);
+    stripContext.fillStyle = "rgba(2, 6, 23, 0.78)";
+    stripContext.fillRect(0, 0, width, height);
+    const values = [];
+    for (let x = 0; x < width; x += 1) {
+      const phi = (x / Math.max(1, width - 1)) * TWO_PI;
+      const sample = new Three.Vector3(
+        Math.cos(phi) * state.radius,
+        0,
+        Math.sin(phi) * state.radius
+      );
+      values.push(
+        computePotentialSum(sample, model, state.view, state.modelTime, {
+          fieldSpeed: 6,
+          softening: 0.1,
+        }).potential
+      );
+    }
+    const maxAbs = Math.max(0.0001, ...values.map((value) => Math.abs(value)));
+    values.forEach((value, x) => {
+      stripContext.fillStyle = colorToCanvasFill(colorForPotential(Three, value, maxAbs));
+      stripContext.fillRect(x, 0, 1, height);
+    });
+    stripContext.strokeStyle = "rgba(238, 243, 255, 0.5)";
+    stripContext.lineWidth = 1;
+    stripContext.beginPath();
+    stripContext.moveTo(0, height / 2);
+    stripContext.lineTo(width, height / 2);
+    stripContext.stroke();
+  }
+
+  function renderTable() {
+    const rows = [
+      {
+        label: "Path radius",
+        values: model.binaries.map((binary) => formatFixed(binary.radius, 2)),
+      },
+      {
+        label: "Path frequency",
+        values: model.binaries.map((binary) => `${formatFixed(binary.frequencyHz, 2)} Hz`),
+      },
+      {
+        label: "Architrino velocity",
+        values: model.binaries.map((binary) => formatFixed(binary.speed, 2)),
+      },
+      {
+        label: "Phase",
+        values: model.binaries.map((binary) => {
+          const degrees = ((state.modelTime * binary.frequencyHz * 360) % 360 + 360) % 360;
+          return `${formatFixed(degrees, 0)} deg`;
+        }),
+      },
+    ];
+    dom.tableBody.innerHTML = rows
+      .map(
+        (row) =>
+          `<tr><td>${row.label}</td>${row.values.map((value) => `<td>${value}</td>`).join("")}</tr>`
+      )
+      .join("");
+  }
+
+  function updateVisibility() {
+    pathGroup.visible = state.pathsVisible;
+    surfacePoints.visible = state.surfaceVisible;
+    testPointGroup.visible = state.testPointsVisible;
+  }
+
+  function resetRotation() {
+    sphereContents.rotation.set(-0.18, 0.36, 0.04);
+  }
+
+  function setFrozen(frozen) {
+    state.frozen = !!frozen;
+    syncControls();
+  }
+
+  function toggleFrozen() {
+    setFrozen(!state.frozen);
+  }
+
+  function renderFrame(now) {
+    const deltaSeconds = Math.min(0.05, Math.max(0, (now - state.lastFrameTime) / 1000));
+    state.lastFrameTime = now;
+    if (!state.frozen) {
+      state.modelTime += deltaSeconds * state.speed;
+    }
+    updateVisibility();
+    updateArchitrinoMeshes();
+    updateSurface();
+    updateTestPoints();
+    drawPotentialStrip();
+    renderTable();
+    syncControls();
+    renderer.render(scene, camera);
+    windowLike.requestAnimationFrame(renderFrame);
+  }
+
+  dom.viewButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      state.view = normalizeViewId(button.dataset.view);
+      syncControls();
+      canvas.focus();
+    });
+  });
+  dom.pathToggle.addEventListener("click", () => {
+    state.pathsVisible = !state.pathsVisible;
+    syncControls();
+    canvas.focus();
+  });
+  dom.surfaceToggle.addEventListener("click", () => {
+    state.surfaceVisible = !state.surfaceVisible;
+    syncControls();
+    canvas.focus();
+  });
+  dom.pointsToggle.addEventListener("click", () => {
+    state.testPointsVisible = !state.testPointsVisible;
+    syncControls();
+    canvas.focus();
+  });
+  dom.freezeToggle.addEventListener("click", () => {
+    toggleFrozen();
+    canvas.focus();
+  });
+  dom.radiusInput.addEventListener("input", () => {
+    state.radius = Number(dom.radiusInput.value) || state.radius;
+    syncControls();
+  });
+  dom.speedInput.addEventListener("input", () => {
+    state.speed = Number(dom.speedInput.value) || state.speed;
+    syncControls();
+  });
+  dom.resetButton.addEventListener("click", () => {
+    resetRotation();
+    canvas.focus();
+  });
+  dom.focusButton.addEventListener("click", () => {
+    canvas.focus();
+  });
+
+  canvas.addEventListener("pointerdown", (event) => {
+    state.dragging = true;
+    state.lastPointer = { x: event.clientX, y: event.clientY };
+    canvas.setPointerCapture?.(event.pointerId);
+    canvas.focus();
+  });
+  canvas.addEventListener("pointermove", (event) => {
+    if (!state.dragging) {
+      return;
+    }
+    const dx = event.clientX - state.lastPointer.x;
+    const dy = event.clientY - state.lastPointer.y;
+    sphereContents.rotation.y += dx * 0.008;
+    sphereContents.rotation.x += dy * 0.008;
+    state.lastPointer = { x: event.clientX, y: event.clientY };
+  });
+  canvas.addEventListener("pointerup", (event) => {
+    state.dragging = false;
+    canvas.releasePointerCapture?.(event.pointerId);
+  });
+  canvas.addEventListener("pointercancel", () => {
+    state.dragging = false;
+  });
+  canvas.addEventListener("keydown", (event) => {
+    const rotationStep = event.shiftKey ? 0.16 : 0.08;
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      sphereContents.rotation.y -= rotationStep;
+    } else if (event.key === "ArrowRight") {
+      event.preventDefault();
+      sphereContents.rotation.y += rotationStep;
+    } else if (event.key === "ArrowUp") {
+      event.preventDefault();
+      sphereContents.rotation.x -= rotationStep;
+    } else if (event.key === "ArrowDown") {
+      event.preventDefault();
+      sphereContents.rotation.x += rotationStep;
+    } else if (event.key.toLowerCase() === "q") {
+      event.preventDefault();
+      sphereContents.rotation.z += rotationStep;
+    } else if (event.key.toLowerCase() === "e") {
+      event.preventDefault();
+      sphereContents.rotation.z -= rotationStep;
+    } else if (event.key.toLowerCase() === "r") {
+      event.preventDefault();
+      resetRotation();
+    } else if (event.key === " ") {
+      event.preventDefault();
+      toggleFrozen();
+    }
+  });
+
+  const resizeObserver = new ResizeObserver(resize);
+  resizeObserver.observe(canvas);
+  resetRotation();
+  resize();
+  syncControls();
+  canvas.focus();
+  windowLike.requestAnimationFrame(renderFrame);
+
+  return {
+    model,
+    state,
+    scene,
+    camera,
+    renderer,
+    sphereContents,
+    destroy() {
+      resizeObserver.disconnect();
+      renderer.dispose();
+    },
+  };
+}
