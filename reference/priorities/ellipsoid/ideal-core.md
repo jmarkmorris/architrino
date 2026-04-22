@@ -134,6 +134,98 @@ The interaction model has one fixed rule: the camera is straight on. Rotation co
 - In parallel, define the Python core model that supplies the canonical state and derived measures for the UI.
 - Extend the combined system toward architrino paths, layer controls, and meter readouts in that order.
 
+## Appendix: Circular-Orbit Potential Math
+
+The reduced first target assumes three circular binary paths, giving six architrinos total. For each binary $b$, choose a fixed center $\mathbf{C}_b$, path radius $a_b$, angular frequency $\omega_b$, and orthonormal orbit-plane basis vectors $\mathbf{u}_b$ and $\mathbf{v}_b$:
+
+$$
+\mathbf{u}_b\cdot\mathbf{v}_b=0,\qquad \left\|\mathbf{u}_b\right\|=\left\|\mathbf{v}_b\right\|=1
+$$
+
+For architrino $i$ in binary $b(i)$, the phase at emission is:
+
+$$
+\theta_i(t_i^e)=\omega_{b(i)}t_i^e+\phi_i
+$$
+
+where $t_i^e$ is the emission time and $\phi_i$ is the architrino's phase offset. The two architrinos in one binary can be represented by phase offsets separated by $\pi$.
+
+The emitted position is:
+
+$$
+\mathbf{s}_i(t_i^e)=\mathbf{C}_{b(i)}+a_{b(i)}\left(\mathbf{u}_{b(i)}\cos\theta_i+\mathbf{v}_{b(i)}\sin\theta_i\right)
+$$
+
+For a field sample point $\mathbf{x}=(x,y,z)$ at observation time $t$, let $\tau_i$ be the flight time of the arriving emission from architrino $i$. Then:
+
+$$
+t_i^e=t-\tau_i
+$$
+
+The source-to-sample displacement, distance, and direction are:
+
+$$
+\mathbf{R}_i(\mathbf{x},t)=\mathbf{x}-\mathbf{s}_i(t-\tau_i)
+$$
+
+$$
+R_i(\mathbf{x},t)=\left\|\mathbf{R}_i(\mathbf{x},t)\right\|
+$$
+
+$$
+\mathbf{n}_i(\mathbf{x},t)=\frac{\mathbf{R}_i(\mathbf{x},t)}{R_i(\mathbf{x},t)}
+$$
+
+If $\tau_i$ is already known, the first-pass inverse-distance scalar potential from architrino $i$ is closed form:
+
+$$
+\Phi_i^{(0)}(\mathbf{x},t)=\frac{Kq_i}{R_i(\mathbf{x},t)}
+$$
+
+Here $K$ is the model's potential normalization and $q_i$ is the signed or weighted source strength assigned to that architrino. If the supplied flight time is consistent with field propagation speed $c_f$, then $R_i=c_f\tau_i$, so the same expression can also be written as:
+
+$$
+\Phi_i^{(0)}(\mathbf{x},t)=\frac{Kq_i}{c_f\tau_i}
+$$
+
+If the model later chooses a moving-source causal normalization, the architrino velocity at emission is also closed form:
+
+$$
+\dot{\mathbf{s}}_i(t_i^e)=a_{b(i)}\omega_{b(i)}\left(-\mathbf{u}_{b(i)}\sin\theta_i+\mathbf{v}_{b(i)}\cos\theta_i\right)
+$$
+
+That gives the optional causal denominator:
+
+$$
+\kappa_i(\mathbf{x},t)=1-\frac{\mathbf{n}_i(\mathbf{x},t)\cdot\dot{\mathbf{s}}_i(t_i^e)}{c_f}
+$$
+
+and the corresponding scalar potential:
+
+$$
+\Phi_i(\mathbf{x},t)=\frac{Kq_i}{R_i(\mathbf{x},t)\kappa_i(\mathbf{x},t)}
+$$
+
+The hard part is not evaluating $\Phi_i$ after $\tau_i$ is known. The hard part is finding $\tau_i$ from the causal flight-time condition:
+
+$$
+\tau_i=\frac{\left\|\mathbf{x}-\mathbf{s}_i(t-\tau_i)\right\|}{c_f}
+$$
+
+That equation generally requires a numerical solve even for circular paths. Once the six flight times are available, however, the displayed superposition is a simple scalar sum over the six arriving emissions. Let $\Phi_i$ denote the selected per-architrino potential term; for the first-pass inverse-distance model, use $\Phi_i=\Phi_i^{(0)}$.
+
+$$
+\Phi_{\mathrm{total}}(\mathbf{x},t)=\sum_{i=1}^{6}\Phi_i(\mathbf{x},t)
+$$
+
+The isolated binary contributions are the corresponding two-term sums:
+
+$$
+\Phi_b(\mathbf{x},t)=\sum_{i\in b}\Phi_i(\mathbf{x},t)
+$$
+
+The UI can therefore expose inner-binary, middle-binary, outer-binary, and full-superposition field views. When one binary is selected for display, the field view shows that binary's two arriving emissions summed together; when full superposition is selected, it shows the six-term total.
+
 ## Future Considerations And Open Questions
 
 - Determine how any effective exclusion volume implied by the path system should be implemented, including boundary geometry, time evolution, velocity dependence, and whether current binary radii affect that inferred volume.
