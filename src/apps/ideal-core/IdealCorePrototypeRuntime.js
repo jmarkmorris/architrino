@@ -18,6 +18,7 @@ const CHARGE_META = {
 
 const SURFACE_LATITUDE_COUNT = 25;
 const SURFACE_LONGITUDE_COUNT = 48;
+const AXIS_REFERENCE_CIRCLE_SEGMENTS = 48;
 const TWO_PI = Math.PI * 2;
 
 function clampNumber(value, min, max) {
@@ -212,6 +213,95 @@ function createShellLine(Three, radius, color, opacity) {
   return new Three.Mesh(geometry, material);
 }
 
+function createAxisReferenceGroup(Three) {
+  const group = new Three.Group();
+  const axisPositions = new Float32Array(6 * 3);
+  const axisGeometry = new Three.BufferGeometry();
+  axisGeometry.setAttribute("position", new Three.BufferAttribute(axisPositions, 3));
+  const material = new Three.LineBasicMaterial({
+    color: "#f8fafc",
+    transparent: true,
+    opacity: 0.72,
+    depthWrite: false,
+  });
+  group.add(new Three.LineSegments(axisGeometry, material));
+
+  const circles = Array.from({ length: 6 }, () => {
+    const positions = new Float32Array(AXIS_REFERENCE_CIRCLE_SEGMENTS * 3);
+    const geometry = new Three.BufferGeometry();
+    geometry.setAttribute("position", new Three.BufferAttribute(positions, 3));
+    const line = new Three.LineLoop(geometry, material);
+    group.add(line);
+    return { geometry, positions };
+  });
+
+  group.userData.axisPositions = axisPositions;
+  group.userData.axisGeometry = axisGeometry;
+  group.userData.circles = circles;
+  return group;
+}
+
+function updateAxisReferenceGroup(Three, group, radius) {
+  const axisPositions = group.userData.axisPositions;
+  const axisGeometry = group.userData.axisGeometry;
+  const circleRadius = Math.max(0.07, radius * 0.045);
+  const axes = [
+    {
+      axis: new Three.Vector3(1, 0, 0),
+      circleU: new Three.Vector3(0, 1, 0),
+      circleV: new Three.Vector3(0, 0, 1),
+    },
+    {
+      axis: new Three.Vector3(0, 1, 0),
+      circleU: new Three.Vector3(1, 0, 0),
+      circleV: new Three.Vector3(0, 0, 1),
+    },
+    {
+      axis: new Three.Vector3(0, 0, 1),
+      circleU: new Three.Vector3(1, 0, 0),
+      circleV: new Three.Vector3(0, 1, 0),
+    },
+  ];
+  let axisOffset = 0;
+  let circleIndex = 0;
+
+  function pushAxisPoint(point) {
+    axisPositions[axisOffset] = point.x;
+    axisPositions[axisOffset + 1] = point.y;
+    axisPositions[axisOffset + 2] = point.z;
+    axisOffset += 3;
+  }
+
+  function pushAxisSegment(start, end) {
+    pushAxisPoint(start);
+    pushAxisPoint(end);
+  }
+
+  axes.forEach(({ axis, circleU, circleV }) => {
+    pushAxisSegment(axis.clone().multiplyScalar(-radius), axis.clone().multiplyScalar(radius));
+    [-1, 1].forEach((direction) => {
+      const center = axis.clone().multiplyScalar(direction * radius);
+      const circle = group.userData.circles[circleIndex];
+      circleIndex += 1;
+      for (let index = 0; index < AXIS_REFERENCE_CIRCLE_SEGMENTS; index += 1) {
+        const angle = (index / AXIS_REFERENCE_CIRCLE_SEGMENTS) * TWO_PI;
+        const point = center
+          .clone()
+          .add(circleU.clone().multiplyScalar(Math.cos(angle) * circleRadius))
+          .add(circleV.clone().multiplyScalar(Math.sin(angle) * circleRadius));
+        circle.positions[index * 3] = point.x;
+        circle.positions[index * 3 + 1] = point.y;
+        circle.positions[index * 3 + 2] = point.z;
+      }
+      circle.geometry.attributes.position.needsUpdate = true;
+      circle.geometry.computeBoundingSphere();
+    });
+  });
+
+  axisGeometry.attributes.position.needsUpdate = true;
+  axisGeometry.computeBoundingSphere();
+}
+
 function createSurfaceSamples(Three) {
   const samples = [];
   for (let latIndex = 0; latIndex < SURFACE_LATITUDE_COUNT; latIndex += 1) {
@@ -322,28 +412,14 @@ export function mountIdealCorePrototype(options = {}) {
   const surfacePoints = new Three.Points(surfaceGeometry, surfaceMaterial);
   sphereContents.add(surfacePoints);
 
-  const testPointGroup = new Three.Group();
-  const testPointGeometry = new Three.SphereGeometry(0.035, 12, 10);
-  const testPointMaterial = makeMaterial(Three, "#f8fafc", { opacity: 0.9 });
-  [
-    new Three.Vector3(1, 0, 0),
-    new Three.Vector3(-1, 0, 0),
-    new Three.Vector3(0, 1, 0),
-    new Three.Vector3(0, -1, 0),
-    new Three.Vector3(0, 0, 1),
-    new Three.Vector3(0, 0, -1),
-  ].forEach((unit) => {
-    const marker = new Three.Mesh(testPointGeometry, testPointMaterial);
-    marker.userData.unit = unit;
-    testPointGroup.add(marker);
-  });
-  sphereContents.add(testPointGroup);
+  const axisReferenceGroup = createAxisReferenceGroup(Three);
+  sphereContents.add(axisReferenceGroup);
 
   const dom = {
     viewButtons: [...documentLike.querySelectorAll("[data-view]")],
     pathToggle: queryRequiredElement(documentLike, "#ideal-core-path-toggle"),
     surfaceToggle: queryRequiredElement(documentLike, "#ideal-core-surface-toggle"),
-    pointsToggle: queryRequiredElement(documentLike, "#ideal-core-points-toggle"),
+    axesToggle: queryRequiredElement(documentLike, "#ideal-core-axes-toggle"),
     freezeToggle: queryRequiredElement(documentLike, "#ideal-core-freeze-toggle"),
     resetButton: queryRequiredElement(documentLike, "#ideal-core-reset-button"),
     focusButton: queryRequiredElement(documentLike, "#ideal-core-focus-button"),
@@ -363,7 +439,7 @@ export function mountIdealCorePrototype(options = {}) {
     view: "all",
     pathsVisible: true,
     surfaceVisible: true,
-    testPointsVisible: true,
+    axesVisible: true,
     frozen: false,
     radius: Number(dom.radiusInput.value) || 1.62,
     speed: Number(dom.speedInput.value) || 1,
@@ -395,7 +471,7 @@ export function mountIdealCorePrototype(options = {}) {
     });
     setButtonActive(dom.pathToggle, state.pathsVisible);
     setButtonActive(dom.surfaceToggle, state.surfaceVisible);
-    setButtonActive(dom.pointsToggle, state.testPointsVisible);
+    setButtonActive(dom.axesToggle, state.axesVisible);
     setButtonActive(dom.freezeToggle, state.frozen);
     dom.freezeToggle.textContent = state.frozen ? "Resume" : "Freeze";
     dom.radiusOutput.value = formatFixed(state.radius, 2);
@@ -451,10 +527,8 @@ export function mountIdealCorePrototype(options = {}) {
     ).potential;
   }
 
-  function updateTestPoints() {
-    testPointGroup.children.forEach((marker) => {
-      marker.position.copy(marker.userData.unit).multiplyScalar(state.radius);
-    });
+  function updateAxisReference() {
+    updateAxisReferenceGroup(Three, axisReferenceGroup, state.radius);
   }
 
   function drawPotentialStrip() {
@@ -527,7 +601,7 @@ export function mountIdealCorePrototype(options = {}) {
   function updateVisibility() {
     pathGroup.visible = state.pathsVisible;
     surfacePoints.visible = state.surfaceVisible;
-    testPointGroup.visible = state.testPointsVisible;
+    axisReferenceGroup.visible = state.axesVisible;
   }
 
   function resetRotation() {
@@ -552,7 +626,7 @@ export function mountIdealCorePrototype(options = {}) {
     updateVisibility();
     updateArchitrinoMeshes();
     updateSurface();
-    updateTestPoints();
+    updateAxisReference();
     drawPotentialStrip();
     renderTable();
     syncControls();
@@ -577,8 +651,8 @@ export function mountIdealCorePrototype(options = {}) {
     syncControls();
     canvas.focus();
   });
-  dom.pointsToggle.addEventListener("click", () => {
-    state.testPointsVisible = !state.testPointsVisible;
+  dom.axesToggle.addEventListener("click", () => {
+    state.axesVisible = !state.axesVisible;
     syncControls();
     canvas.focus();
   });
