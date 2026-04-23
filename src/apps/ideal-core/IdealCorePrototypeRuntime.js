@@ -16,6 +16,7 @@ const CHARGE_META = {
   positrino: { q: 1, color: STANDARD_POSITRINO_COLOR },
   electrino: { q: -1, color: STANDARD_ELECTRINO_COLOR },
 };
+const CHARGE_TYPES = ["positrino", "electrino"];
 
 const ORBIT_PATH_SEGMENTS = 192;
 const SURFACE_LATITUDE_COUNT = 25;
@@ -29,6 +30,13 @@ const ORBIT_PATH_TINT_PROFILES = {
   middle: { forwardSpan: 0, backwardSpan: QUARTER_TURN, falloff: 1.15 },
   outer: { forwardSpan: QUARTER_TURN, backwardSpan: Math.PI / 6, falloff: 1.05 },
 };
+const ORBIT_PATH_EMPHASIS_SEGMENTS = 22;
+const ORBIT_PATH_EMPHASIS_LAYERS = [
+  { coverage: 1, opacity: 0.22, radiusOffsetFactor: 0 },
+  { coverage: 0.62, opacity: 0.28, radiusOffsetFactor: -0.012 },
+  { coverage: 0.62, opacity: 0.28, radiusOffsetFactor: 0.012 },
+  { coverage: 0.32, opacity: 0.34, radiusOffsetFactor: 0 },
+];
 
 function clampNumber(value, min, max) {
   return Math.min(max, Math.max(min, value));
@@ -205,13 +213,7 @@ function createOrbitPathLine(Three, binary) {
   const geometry = new Three.BufferGeometry();
 
   function writeVertex(vertexIndex, angle) {
-    const point = binary.basis.u
-      .clone()
-      .multiplyScalar(Math.cos(angle) * binary.radius)
-      .add(binary.basis.v.clone().multiplyScalar(Math.sin(angle) * binary.radius));
-    positions[vertexIndex * 3] = point.x;
-    positions[vertexIndex * 3 + 1] = point.y;
-    positions[vertexIndex * 3 + 2] = point.z;
+    writeOrbitPathPosition(positions, vertexIndex, binary, angle, binary.radius);
     angles[vertexIndex] = angle;
   }
 
@@ -238,11 +240,19 @@ function createOrbitPathLine(Three, binary) {
   return line;
 }
 
+function writeOrbitPathPosition(positions, vertexIndex, binary, angle, radius) {
+  const cos = Math.cos(angle) * radius;
+  const sin = Math.sin(angle) * radius;
+  positions[vertexIndex * 3] = binary.basis.u.x * cos + binary.basis.v.x * sin;
+  positions[vertexIndex * 3 + 1] = binary.basis.u.y * cos + binary.basis.v.y * sin;
+  positions[vertexIndex * 3 + 2] = binary.basis.u.z * cos + binary.basis.v.z * sin;
+}
+
 function colorForOrbitPathAngle(Three, binary, angle, timeSeconds) {
   const direction = binary.motion?.direction === "cw" ? -1 : 1;
   const profile = getOrbitPathTintProfile(binary.id);
   const neutral = new Three.Color(NEUTRAL_PATH_COLOR);
-  const influences = ["positrino", "electrino"].map((chargeType) => {
+  const influences = CHARGE_TYPES.map((chargeType) => {
     const chargeAngle = getMotionAngle(binary.motion, chargeType, timeSeconds);
     const signedTravelDistance = wrapSignedAngle(angle - chargeAngle) * direction;
     const distance = Math.abs(signedTravelDistance);
@@ -278,6 +288,97 @@ function updateOrbitPathColors(Three, pathLine, timeSeconds) {
     colors[index * 3 + 2] = color.b;
   });
   pathLine.geometry.attributes.color.needsUpdate = true;
+}
+
+function createOrbitPathEmphasisLine(Three, binary, layer) {
+  const maxArcCount = 4;
+  const vertexCount = maxArcCount * ORBIT_PATH_EMPHASIS_SEGMENTS * 2;
+  const positions = new Float32Array(vertexCount * 3);
+  const colors = new Float32Array(vertexCount * 3);
+  const geometry = new Three.BufferGeometry();
+  geometry.setAttribute("position", new Three.BufferAttribute(positions, 3));
+  geometry.setAttribute("color", new Three.BufferAttribute(colors, 3));
+  geometry.setDrawRange(0, 0);
+  const material = new Three.LineBasicMaterial({
+    color: "#ffffff",
+    transparent: true,
+    opacity: layer.opacity,
+    vertexColors: true,
+    depthWrite: false,
+  });
+  const line = new Three.LineSegments(geometry, material);
+  line.frustumCulled = false;
+  line.userData.binary = binary;
+  line.userData.layer = layer;
+  line.userData.positions = positions;
+  line.userData.colors = colors;
+  return line;
+}
+
+function createOrbitPathVisual(Three, binary) {
+  const group = new Three.Group();
+  const baseLine = createOrbitPathLine(Three, binary);
+  const emphasisLines = ORBIT_PATH_EMPHASIS_LAYERS.map((layer) =>
+    createOrbitPathEmphasisLine(Three, binary, layer)
+  );
+  group.add(baseLine);
+  emphasisLines.forEach((line) => group.add(line));
+  group.userData.pathLine = baseLine;
+  group.userData.emphasisLines = emphasisLines;
+  return group;
+}
+
+function updateOrbitPathEmphasisLine(Three, line, timeSeconds) {
+  const binary = line.userData.binary;
+  const layer = line.userData.layer;
+  const positions = line.userData.positions;
+  const colors = line.userData.colors;
+  const profile = getOrbitPathTintProfile(binary.id);
+  const direction = binary.motion?.direction === "cw" ? -1 : 1;
+  const radius = binary.radius * (1 + layer.radiusOffsetFactor);
+  let vertexIndex = 0;
+
+  function writeArc(chargeAngle, travelSign, span) {
+    if (span <= 0) {
+      return;
+    }
+    const coveredSpan = span * layer.coverage;
+    function writeVertexAtTravelDistance(travelDistance) {
+      const angle = chargeAngle + travelDistance * direction;
+      const color = colorForOrbitPathAngle(Three, binary, angle, timeSeconds);
+      writeOrbitPathPosition(positions, vertexIndex, binary, angle, radius);
+      colors[vertexIndex * 3] = color.r;
+      colors[vertexIndex * 3 + 1] = color.g;
+      colors[vertexIndex * 3 + 2] = color.b;
+      vertexIndex += 1;
+    }
+
+    for (let segmentIndex = 0; segmentIndex < ORBIT_PATH_EMPHASIS_SEGMENTS; segmentIndex += 1) {
+      const startDistance =
+        travelSign * (segmentIndex / ORBIT_PATH_EMPHASIS_SEGMENTS) * coveredSpan;
+      const endDistance =
+        travelSign * ((segmentIndex + 1) / ORBIT_PATH_EMPHASIS_SEGMENTS) * coveredSpan;
+      writeVertexAtTravelDistance(startDistance);
+      writeVertexAtTravelDistance(endDistance);
+    }
+  }
+
+  CHARGE_TYPES.forEach((chargeType) => {
+    const chargeAngle = getMotionAngle(binary.motion, chargeType, timeSeconds);
+    writeArc(chargeAngle, 1, profile.forwardSpan);
+    writeArc(chargeAngle, -1, profile.backwardSpan);
+  });
+
+  line.geometry.setDrawRange(0, vertexIndex);
+  line.geometry.attributes.position.needsUpdate = true;
+  line.geometry.attributes.color.needsUpdate = true;
+}
+
+function updateOrbitPathVisual(Three, pathVisual, timeSeconds) {
+  updateOrbitPathColors(Three, pathVisual.userData.pathLine, timeSeconds);
+  pathVisual.userData.emphasisLines.forEach((line) => {
+    updateOrbitPathEmphasisLine(Three, line, timeSeconds);
+  });
 }
 
 function createShellLine(Three, radius, color, opacity) {
@@ -460,7 +561,7 @@ export function mountIdealCorePrototype(options = {}) {
 
   const pathGroup = new Three.Group();
   model.binaries.forEach((binary) => {
-    pathGroup.add(createOrbitPathLine(Three, binary));
+    pathGroup.add(createOrbitPathVisual(Three, binary));
   });
   sphereContents.add(pathGroup);
 
@@ -574,8 +675,8 @@ export function mountIdealCorePrototype(options = {}) {
   }
 
   function updateOrbitPaths() {
-    pathGroup.children.forEach((pathLine) => {
-      updateOrbitPathColors(Three, pathLine, state.modelTime);
+    pathGroup.children.forEach((pathVisual) => {
+      updateOrbitPathVisual(Three, pathVisual, state.modelTime);
     });
   }
 
