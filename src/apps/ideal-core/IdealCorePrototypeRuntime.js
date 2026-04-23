@@ -30,12 +30,31 @@ const ORBIT_PATH_TINT_PROFILES = {
   middle: { forwardSpan: 0, backwardSpan: QUARTER_TURN, falloff: 1.15 },
   outer: { forwardSpan: QUARTER_TURN, backwardSpan: Math.PI / 6, falloff: 1.05 },
 };
-const ORBIT_PATH_EMPHASIS_SEGMENTS = 22;
-const ORBIT_PATH_EMPHASIS_LAYERS = [
-  { coverage: 1, opacity: 0.22, radiusOffsetFactor: 0 },
-  { coverage: 0.62, opacity: 0.28, radiusOffsetFactor: -0.012 },
-  { coverage: 0.62, opacity: 0.28, radiusOffsetFactor: 0.012 },
-  { coverage: 0.32, opacity: 0.34, radiusOffsetFactor: 0 },
+const ORBIT_PATH_TRAIL_SEGMENTS = 30;
+const ORBIT_PATH_TRAIL_MAX_ARCS = 4;
+const ORBIT_PATH_TRAIL_LAYERS = [
+  {
+    coverage: 1.08,
+    opacity: 0.5,
+    widthFactor: 0.105,
+    minWidth: 0.07,
+    maxWidth: 0.145,
+    tailWidthFactor: 0.08,
+    alphaFalloff: 1.28,
+    widthFalloff: 1.2,
+    edgeAlpha: 0.08,
+  },
+  {
+    coverage: 0.72,
+    opacity: 0.82,
+    widthFactor: 0.052,
+    minWidth: 0.038,
+    maxWidth: 0.074,
+    tailWidthFactor: 0.04,
+    alphaFalloff: 2.1,
+    widthFalloff: 1.7,
+    edgeAlpha: 0.16,
+  },
 ];
 
 function clampNumber(value, min, max) {
@@ -229,11 +248,12 @@ function createOrbitPathLine(Three, binary) {
   const material = new Three.LineBasicMaterial({
     color: "#ffffff",
     transparent: true,
-    opacity: 0.78,
+    opacity: 0.62,
     vertexColors: true,
     depthWrite: false,
   });
   const line = new Three.LineSegments(geometry, material);
+  line.renderOrder = 8;
   line.userData.binary = binary;
   line.userData.angles = angles;
   line.userData.colors = colors;
@@ -246,6 +266,28 @@ function writeOrbitPathPosition(positions, vertexIndex, binary, angle, radius) {
   positions[vertexIndex * 3] = binary.basis.u.x * cos + binary.basis.v.x * sin;
   positions[vertexIndex * 3 + 1] = binary.basis.u.y * cos + binary.basis.v.y * sin;
   positions[vertexIndex * 3 + 2] = binary.basis.u.z * cos + binary.basis.v.z * sin;
+}
+
+function setOrbitPathPoint(target, binary, angle, radius) {
+  const cos = Math.cos(angle) * radius;
+  const sin = Math.sin(angle) * radius;
+  return target.set(
+    binary.basis.u.x * cos + binary.basis.v.x * sin,
+    binary.basis.u.y * cos + binary.basis.v.y * sin,
+    binary.basis.u.z * cos + binary.basis.v.z * sin
+  );
+}
+
+function setOrbitPathTangent(target, binary, angle) {
+  const cos = Math.cos(angle);
+  const sin = Math.sin(angle);
+  return target
+    .set(
+      binary.basis.u.x * -sin + binary.basis.v.x * cos,
+      binary.basis.u.y * -sin + binary.basis.v.y * cos,
+      binary.basis.u.z * -sin + binary.basis.v.z * cos
+    )
+    .normalize();
 }
 
 function colorForOrbitPathAngle(Three, binary, angle, timeSeconds) {
@@ -290,76 +332,194 @@ function updateOrbitPathColors(Three, pathLine, timeSeconds) {
   pathLine.geometry.attributes.color.needsUpdate = true;
 }
 
-function createOrbitPathEmphasisLine(Three, binary, layer) {
-  const maxArcCount = 4;
-  const vertexCount = maxArcCount * ORBIT_PATH_EMPHASIS_SEGMENTS * 2;
+function createOrbitPathTrailMaterial(Three, opacity) {
+  return new Three.ShaderMaterial({
+    uniforms: {
+      opacity: { value: opacity },
+    },
+    vertexShader: `
+      attribute vec3 color;
+      attribute float trailAlpha;
+      varying vec3 vColor;
+      varying float vTrailAlpha;
+
+      void main() {
+        vColor = color;
+        vTrailAlpha = trailAlpha;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    `,
+    fragmentShader: `
+      uniform float opacity;
+      varying vec3 vColor;
+      varying float vTrailAlpha;
+
+      void main() {
+        gl_FragColor = vec4(vColor, opacity * vTrailAlpha);
+      }
+    `,
+    transparent: true,
+    depthWrite: false,
+    side: Three.DoubleSide,
+  });
+}
+
+function createOrbitPathTrailRibbon(Three, binary, layer) {
+  const vertexCount = ORBIT_PATH_TRAIL_MAX_ARCS * (ORBIT_PATH_TRAIL_SEGMENTS + 1) * 3;
+  const indexCount = ORBIT_PATH_TRAIL_MAX_ARCS * ORBIT_PATH_TRAIL_SEGMENTS * 12;
   const positions = new Float32Array(vertexCount * 3);
   const colors = new Float32Array(vertexCount * 3);
+  const alphas = new Float32Array(vertexCount);
+  const indices = new Uint16Array(indexCount);
   const geometry = new Three.BufferGeometry();
   geometry.setAttribute("position", new Three.BufferAttribute(positions, 3));
   geometry.setAttribute("color", new Three.BufferAttribute(colors, 3));
+  geometry.setAttribute("trailAlpha", new Three.BufferAttribute(alphas, 1));
+  geometry.setIndex(new Three.BufferAttribute(indices, 1));
   geometry.setDrawRange(0, 0);
-  const material = new Three.LineBasicMaterial({
-    color: "#ffffff",
-    transparent: true,
-    opacity: layer.opacity,
-    vertexColors: true,
-    depthWrite: false,
-  });
-  const line = new Three.LineSegments(geometry, material);
-  line.frustumCulled = false;
-  line.userData.binary = binary;
-  line.userData.layer = layer;
-  line.userData.positions = positions;
-  line.userData.colors = colors;
-  return line;
+  const mesh = new Three.Mesh(geometry, createOrbitPathTrailMaterial(Three, layer.opacity));
+  mesh.frustumCulled = false;
+  mesh.renderOrder = 9;
+  mesh.userData.binary = binary;
+  mesh.userData.layer = layer;
+  mesh.userData.positions = positions;
+  mesh.userData.colors = colors;
+  mesh.userData.alphas = alphas;
+  mesh.userData.indices = indices;
+  mesh.userData.scratch = {
+    center: new Three.Vector3(),
+    tangentLocal: new Three.Vector3(),
+    tangentWorld: new Three.Vector3(),
+    sideWorld: new Three.Vector3(),
+    sideLocal: new Three.Vector3(),
+    worldPoint: new Three.Vector3(),
+    cameraWorld: new Three.Vector3(),
+    cameraDirection: new Three.Vector3(),
+    localFromWorld: new Three.Matrix4(),
+  };
+  return mesh;
 }
 
 function createOrbitPathVisual(Three, binary) {
   const group = new Three.Group();
   const baseLine = createOrbitPathLine(Three, binary);
-  const emphasisLines = ORBIT_PATH_EMPHASIS_LAYERS.map((layer) =>
-    createOrbitPathEmphasisLine(Three, binary, layer)
+  const trailRibbons = ORBIT_PATH_TRAIL_LAYERS.map((layer) =>
+    createOrbitPathTrailRibbon(Three, binary, layer)
   );
   group.add(baseLine);
-  emphasisLines.forEach((line) => group.add(line));
+  trailRibbons.forEach((mesh) => group.add(mesh));
   group.userData.pathLine = baseLine;
-  group.userData.emphasisLines = emphasisLines;
+  group.userData.trailRibbons = trailRibbons;
   return group;
 }
 
-function updateOrbitPathEmphasisLine(Three, line, timeSeconds) {
-  const binary = line.userData.binary;
-  const layer = line.userData.layer;
-  const positions = line.userData.positions;
-  const colors = line.userData.colors;
+function updateOrbitPathTrailRibbon(Three, mesh, timeSeconds, camera) {
+  const binary = mesh.userData.binary;
+  const layer = mesh.userData.layer;
+  const positions = mesh.userData.positions;
+  const colors = mesh.userData.colors;
+  const alphas = mesh.userData.alphas;
+  const indices = mesh.userData.indices;
+  const scratch = mesh.userData.scratch;
   const profile = getOrbitPathTintProfile(binary.id);
   const direction = binary.motion?.direction === "cw" ? -1 : 1;
-  const radius = binary.radius * (1 + layer.radiusOffsetFactor);
+  const headWidth = clampNumber(
+    binary.radius * layer.widthFactor,
+    layer.minWidth,
+    layer.maxWidth
+  );
+  const tailWidth = headWidth * layer.tailWidthFactor;
   let vertexIndex = 0;
+  let indexOffset = 0;
+
+  camera.updateWorldMatrix(true, false);
+  mesh.updateWorldMatrix(true, false);
+  camera.getWorldPosition(scratch.cameraWorld);
+  scratch.localFromWorld.copy(mesh.matrixWorld).invert();
+
+  function writeTrailVertex(center, sideLocal, widthOffset, alpha, color) {
+    positions[vertexIndex * 3] = center.x + sideLocal.x * widthOffset;
+    positions[vertexIndex * 3 + 1] = center.y + sideLocal.y * widthOffset;
+    positions[vertexIndex * 3 + 2] = center.z + sideLocal.z * widthOffset;
+    colors[vertexIndex * 3] = color.r;
+    colors[vertexIndex * 3 + 1] = color.g;
+    colors[vertexIndex * 3 + 2] = color.b;
+    alphas[vertexIndex] = alpha;
+    vertexIndex += 1;
+  }
+
+  function writeTrailSample(angle, trailProgress) {
+    const tailProgress = clampNumber(trailProgress, 0, 1);
+    const headProgress = 1 - tailProgress;
+    const alpha = Math.pow(headProgress, layer.alphaFalloff);
+    const width =
+      tailWidth + (headWidth - tailWidth) * Math.pow(headProgress, layer.widthFalloff);
+    const color = colorForOrbitPathAngle(Three, binary, angle, timeSeconds);
+
+    setOrbitPathPoint(scratch.center, binary, angle, binary.radius);
+    setOrbitPathTangent(scratch.tangentLocal, binary, angle);
+    scratch.worldPoint.copy(scratch.center).applyMatrix4(mesh.matrixWorld);
+    scratch.tangentWorld.copy(scratch.tangentLocal).transformDirection(mesh.matrixWorld);
+    scratch.cameraDirection.copy(scratch.cameraWorld).sub(scratch.worldPoint).normalize();
+    scratch.sideWorld.crossVectors(scratch.tangentWorld, scratch.cameraDirection);
+    if (scratch.sideWorld.lengthSq() < 0.0001) {
+      scratch.sideWorld.copy(binary.basis.normal).transformDirection(mesh.matrixWorld);
+    }
+    scratch.sideLocal
+      .copy(scratch.sideWorld.normalize())
+      .transformDirection(scratch.localFromWorld)
+      .normalize();
+
+    writeTrailVertex(
+      scratch.center,
+      scratch.sideLocal,
+      width * -0.5,
+      alpha * layer.edgeAlpha,
+      color
+    );
+    writeTrailVertex(scratch.center, scratch.sideLocal, 0, alpha, color);
+    writeTrailVertex(
+      scratch.center,
+      scratch.sideLocal,
+      width * 0.5,
+      alpha * layer.edgeAlpha,
+      color
+    );
+  }
 
   function writeArc(chargeAngle, travelSign, span) {
     if (span <= 0) {
       return;
     }
     const coveredSpan = span * layer.coverage;
-    function writeVertexAtTravelDistance(travelDistance) {
-      const angle = chargeAngle + travelDistance * direction;
-      const color = colorForOrbitPathAngle(Three, binary, angle, timeSeconds);
-      writeOrbitPathPosition(positions, vertexIndex, binary, angle, radius);
-      colors[vertexIndex * 3] = color.r;
-      colors[vertexIndex * 3 + 1] = color.g;
-      colors[vertexIndex * 3 + 2] = color.b;
-      vertexIndex += 1;
+    const arcVertexStart = vertexIndex;
+
+    for (let sampleIndex = 0; sampleIndex <= ORBIT_PATH_TRAIL_SEGMENTS; sampleIndex += 1) {
+      const trailProgress = sampleIndex / ORBIT_PATH_TRAIL_SEGMENTS;
+      const travelDistance = travelSign * trailProgress * coveredSpan;
+      writeTrailSample(chargeAngle + travelDistance * direction, trailProgress);
     }
 
-    for (let segmentIndex = 0; segmentIndex < ORBIT_PATH_EMPHASIS_SEGMENTS; segmentIndex += 1) {
-      const startDistance =
-        travelSign * (segmentIndex / ORBIT_PATH_EMPHASIS_SEGMENTS) * coveredSpan;
-      const endDistance =
-        travelSign * ((segmentIndex + 1) / ORBIT_PATH_EMPHASIS_SEGMENTS) * coveredSpan;
-      writeVertexAtTravelDistance(startDistance);
-      writeVertexAtTravelDistance(endDistance);
+    for (let segmentIndex = 0; segmentIndex < ORBIT_PATH_TRAIL_SEGMENTS; segmentIndex += 1) {
+      const vertexA = arcVertexStart + segmentIndex * 3;
+      const vertexB = vertexA + 1;
+      const vertexC = vertexA + 2;
+      const vertexD = vertexA + 3;
+      const vertexE = vertexA + 4;
+      const vertexF = vertexA + 5;
+      indices[indexOffset] = vertexA;
+      indices[indexOffset + 1] = vertexD;
+      indices[indexOffset + 2] = vertexB;
+      indices[indexOffset + 3] = vertexB;
+      indices[indexOffset + 4] = vertexD;
+      indices[indexOffset + 5] = vertexE;
+      indices[indexOffset + 6] = vertexB;
+      indices[indexOffset + 7] = vertexE;
+      indices[indexOffset + 8] = vertexC;
+      indices[indexOffset + 9] = vertexC;
+      indices[indexOffset + 10] = vertexE;
+      indices[indexOffset + 11] = vertexF;
+      indexOffset += 12;
     }
   }
 
@@ -369,15 +529,17 @@ function updateOrbitPathEmphasisLine(Three, line, timeSeconds) {
     writeArc(chargeAngle, -1, profile.backwardSpan);
   });
 
-  line.geometry.setDrawRange(0, vertexIndex);
-  line.geometry.attributes.position.needsUpdate = true;
-  line.geometry.attributes.color.needsUpdate = true;
+  mesh.geometry.setDrawRange(0, indexOffset);
+  mesh.geometry.attributes.position.needsUpdate = true;
+  mesh.geometry.attributes.color.needsUpdate = true;
+  mesh.geometry.attributes.trailAlpha.needsUpdate = true;
+  mesh.geometry.index.needsUpdate = true;
 }
 
-function updateOrbitPathVisual(Three, pathVisual, timeSeconds) {
+function updateOrbitPathVisual(Three, pathVisual, timeSeconds, camera) {
   updateOrbitPathColors(Three, pathVisual.userData.pathLine, timeSeconds);
-  pathVisual.userData.emphasisLines.forEach((line) => {
-    updateOrbitPathEmphasisLine(Three, line, timeSeconds);
+  pathVisual.userData.trailRibbons.forEach((mesh) => {
+    updateOrbitPathTrailRibbon(Three, mesh, timeSeconds, camera);
   });
 }
 
@@ -571,6 +733,7 @@ export function mountIdealCorePrototype(options = {}) {
       architrinoGeometry,
       makeMaterial(Three, architrino.color, { opacity: 0.96 })
     );
+    mesh.renderOrder = 12;
     mesh.userData.architrino = architrino;
     sphereContents.add(mesh);
     return mesh;
@@ -676,7 +839,7 @@ export function mountIdealCorePrototype(options = {}) {
 
   function updateOrbitPaths() {
     pathGroup.children.forEach((pathVisual) => {
-      updateOrbitPathVisual(Three, pathVisual, state.modelTime);
+      updateOrbitPathVisual(Three, pathVisual, state.modelTime, camera);
     });
   }
 
