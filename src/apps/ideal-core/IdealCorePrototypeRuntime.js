@@ -1,11 +1,32 @@
 import * as THREE from "../../../vendor/three/three.module.js";
 import { createAnimatorDefaultCoreSpec } from "../animator/AnimatorDraftScaffoldRuntime.js";
 import { createAnimatorStructureGeometryRuntime } from "../animator/AnimatorStructureGeometryRuntime.js";
+import {
+  BINARY_FIELD_SPEED_RATIOS,
+  getFieldSpeedRegimeLabel,
+  getOrbitPathBranchGain,
+  getOrbitPathTintProfile as resolveOrbitPathTintProfile,
+} from "./IdealCorePathPotentialProfile.js";
 
 const BINARY_META = [
-  { id: "inner", label: "Inner", color: "#7dd3fc" },
-  { id: "middle", label: "Middle", color: "#fbbf24" },
-  { id: "outer", label: "Outer", color: "#f472b6" },
+  {
+    id: "inner",
+    label: "Inner",
+    color: "#7dd3fc",
+    fieldSpeedRatio: BINARY_FIELD_SPEED_RATIOS.inner,
+  },
+  {
+    id: "middle",
+    label: "Middle",
+    color: "#fbbf24",
+    fieldSpeedRatio: BINARY_FIELD_SPEED_RATIOS.middle,
+  },
+  {
+    id: "outer",
+    label: "Outer",
+    color: "#f472b6",
+    fieldSpeedRatio: BINARY_FIELD_SPEED_RATIOS.outer,
+  },
 ];
 
 const STANDARD_POSITRINO_COLOR = "#ff0000";
@@ -23,13 +44,6 @@ const SURFACE_LATITUDE_COUNT = 25;
 const SURFACE_LONGITUDE_COUNT = 48;
 const AXIS_REFERENCE_CIRCLE_SEGMENTS = 48;
 const TWO_PI = Math.PI * 2;
-const QUARTER_TURN = Math.PI / 2;
-
-const ORBIT_PATH_TINT_PROFILES = {
-  inner: { forwardSpan: Math.PI / 4, backwardSpan: Math.PI / 4, falloff: 2.1 },
-  middle: { forwardSpan: 0, backwardSpan: QUARTER_TURN, falloff: 1.15 },
-  outer: { forwardSpan: QUARTER_TURN, backwardSpan: Math.PI / 6, falloff: 1.05 },
-};
 const ORBIT_PATH_LOG_WIDTH_FLOOR = 0.78;
 const ORBIT_PATH_TRAIL_SEGMENTS = 30;
 const ORBIT_PATH_TRAIL_MAX_ARCS = CHARGE_TYPES.length;
@@ -61,10 +75,10 @@ const ORBIT_PATH_TRAIL_LAYERS = [
     edgeAlpha: 0.18,
   },
   {
-    role: "wake",
+    role: "wake-glow",
     travelSign: -1,
-    coverage: 0.34,
-    opacity: 0.2,
+    coverage: 0.48,
+    opacity: 0.18,
     widthFactor: 0.034,
     minWidth: 0.024,
     maxWidth: 0.048,
@@ -72,6 +86,19 @@ const ORBIT_PATH_TRAIL_LAYERS = [
     alphaFalloff: 2.45,
     widthFalloff: 1.9,
     edgeAlpha: 0.1,
+  },
+  {
+    role: "wake-core",
+    travelSign: -1,
+    coverage: 0.82,
+    opacity: 0.34,
+    widthFactor: 0.026,
+    minWidth: 0.018,
+    maxWidth: 0.036,
+    tailWidthFactor: 0.04,
+    alphaFalloff: 2.2,
+    widthFalloff: 1.7,
+    edgeAlpha: 0.14,
   },
 ];
 
@@ -114,8 +141,8 @@ function getMotionAngle(motion, chargeType, timeSeconds) {
   return phase + phaseOffset + direction * timeSeconds * TWO_PI * frequency;
 }
 
-export function getOrbitPathTintProfile(binaryId) {
-  return ORBIT_PATH_TINT_PROFILES[binaryId] ?? ORBIT_PATH_TINT_PROFILES.middle;
+export function getOrbitPathTintProfile(binaryOrId) {
+  return resolveOrbitPathTintProfile(binaryOrId);
 }
 
 function getOrbitPathLogWidthScale(radius, referenceRadius) {
@@ -139,6 +166,7 @@ export function createIdealCoreModel(options = {}) {
     const basis = geometryRuntime.getAnimatorOrbitBasis(motion);
     const radius = Number(motion.radius ?? 1) || 1;
     const frequencyHz = Number(motion.frequencyHz ?? 0.2) || 0.2;
+    const fieldSpeedRatio = Number(meta.fieldSpeedRatio ?? 1) || 1;
     return {
       ...meta,
       binaryIndex: index,
@@ -147,6 +175,8 @@ export function createIdealCoreModel(options = {}) {
       radius,
       frequencyHz,
       speed: radius * TWO_PI * frequencyHz,
+      fieldSpeedRatio,
+      fieldSpeedRegime: getFieldSpeedRegimeLabel(fieldSpeedRatio),
     };
   });
   const orbitPathReferenceRadius = Math.max(0.0001, ...binaries.map((binary) => binary.radius));
@@ -169,6 +199,8 @@ export function createIdealCoreModel(options = {}) {
         q: chargeMeta.q,
         color: chargeMeta.color,
         motion: binary.motion,
+        fieldSpeedRatio: binary.fieldSpeedRatio,
+        fieldSpeedRegime: binary.fieldSpeedRegime,
         positionAt(timeSeconds) {
           return geometryRuntime.getAnimatorOrbitOffsetAtTime(
             binary.motion,
@@ -324,7 +356,7 @@ function setOrbitPathTangent(target, binary, angle) {
 
 function colorForOrbitPathAngle(Three, binary, angle, timeSeconds) {
   const direction = binary.motion?.direction === "cw" ? -1 : 1;
-  const profile = getOrbitPathTintProfile(binary.id);
+  const profile = resolveOrbitPathTintProfile(binary);
   const neutral = new Three.Color(NEUTRAL_PATH_COLOR);
   const influences = CHARGE_TYPES.map((chargeType) => {
     const chargeAngle = getMotionAngle(binary.motion, chargeType, timeSeconds);
@@ -332,9 +364,10 @@ function colorForOrbitPathAngle(Three, binary, angle, timeSeconds) {
     const distance = Math.abs(signedTravelDistance);
     const span = signedTravelDistance > 0 ? profile.forwardSpan : profile.backwardSpan;
     const rawWeight = distance >= span ? 0 : 1 - distance / Math.max(0.0001, span);
+    const branchGain = signedTravelDistance > 0 ? profile.forwardGain : profile.backwardGain;
     return {
       chargeType,
-      weight: Math.pow(rawWeight, profile.falloff),
+      weight: clampNumber(Math.pow(rawWeight, profile.falloff) * branchGain, 0, 1),
     };
   });
   const strongest = influences.reduce(
@@ -453,8 +486,11 @@ function updateOrbitPathTrailRibbon(Three, mesh, timeSeconds, camera) {
   const alphas = mesh.userData.alphas;
   const indices = mesh.userData.indices;
   const scratch = mesh.userData.scratch;
-  const profile = getOrbitPathTintProfile(binary.id);
+  const profile = resolveOrbitPathTintProfile(binary);
   const direction = binary.motion?.direction === "cw" ? -1 : 1;
+  const branchGain = getOrbitPathBranchGain(profile, layer.travelSign);
+  const branchAlphaGain = clampNumber(branchGain, 0.2, 1.55);
+  const branchWidthGain = 0.88 + branchAlphaGain * 0.12;
   const referenceRadius = Number(binary.orbitPathReferenceRadius ?? binary.radius);
   const referenceWidth = clampNumber(
     referenceRadius * layer.widthFactor,
@@ -489,9 +525,14 @@ function updateOrbitPathTrailRibbon(Three, mesh, timeSeconds, camera) {
   function writeTrailSample(angle, trailProgress) {
     const tailProgress = clampNumber(trailProgress, 0, 1);
     const headProgress = 1 - tailProgress;
-    const alpha = Math.pow(headProgress, layer.alphaFalloff);
+    const alpha = clampNumber(
+      Math.pow(headProgress, layer.alphaFalloff) * branchAlphaGain,
+      0,
+      1
+    );
     const width =
-      tailWidth + (headWidth - tailWidth) * Math.pow(headProgress, layer.widthFalloff);
+      (tailWidth + (headWidth - tailWidth) * Math.pow(headProgress, layer.widthFalloff)) *
+      branchWidthGain;
     const color = colorForOrbitPathAngle(Three, binary, angle, timeSeconds);
 
     setOrbitPathPoint(scratch.center, binary, angle, binary.radius);
@@ -966,8 +1007,16 @@ export function mountIdealCorePrototype(options = {}) {
         values: model.binaries.map((binary) => `${formatFixed(binary.frequencyHz, 2)} Hz`),
       },
       {
-        label: "Architrino velocity",
+        label: "Path speed",
         values: model.binaries.map((binary) => formatFixed(binary.speed, 2)),
+      },
+      {
+        label: "Speed / field speed",
+        values: model.binaries.map((binary) => formatFixed(binary.fieldSpeedRatio, 2)),
+      },
+      {
+        label: "Wake regime",
+        values: model.binaries.map((binary) => binary.fieldSpeedRegime),
       },
       {
         label: "Phase",

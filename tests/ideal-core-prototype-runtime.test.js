@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import * as THREE from "../vendor/three/three.module.js";
+import { solveCircularSelfHitSpan } from "../src/apps/ideal-core/IdealCorePathPotentialProfile.js";
 import {
   computePotentialContribution,
   computePotentialSum,
@@ -19,6 +20,10 @@ test("ideal core model reuses three animator circular binaries", () => {
   assert.deepEqual(
     model.binaries.map((binary) => binary.id),
     ["inner", "middle", "outer"]
+  );
+  assert.deepEqual(
+    model.binaries.map((binary) => binary.fieldSpeedRegime),
+    ["faster", "field speed", "slower"]
   );
   assert.deepEqual(
     model.architrinos.map((architrino) => architrino.chargeType).slice(0, 2),
@@ -81,9 +86,22 @@ test("orbit path tint profiles distinguish inner middle and outer binaries", () 
   const middle = getOrbitPathTintProfile("middle");
   const outer = getOrbitPathTintProfile("outer");
 
-  assert.equal(middle.forwardSpan, 0);
+  assert.equal(middle.regime, "field speed");
+  assert.equal(inner.regime, "faster");
+  assert.equal(outer.regime, "slower");
+  assert.ok(middle.forwardSpan > 0);
   assert.ok(middle.backwardSpan > 0);
-  assert.equal(inner.forwardSpan, inner.backwardSpan);
-  assert.ok(inner.backwardSpan < middle.backwardSpan);
+  assert.ok(Math.abs(middle.forwardSpan - middle.backwardSpan) < 1e-12);
+  assert.ok(inner.backwardSpan > inner.forwardSpan);
+  assert.ok(inner.backwardGain > middle.backwardGain);
   assert.ok(outer.forwardSpan > outer.backwardSpan);
+});
+
+test("super-field profile expands the path-history span from circular self-hit geometry", () => {
+  const nearThresholdSpan = solveCircularSelfHitSpan(1.08);
+  const innerSpan = solveCircularSelfHitSpan(1.35);
+
+  assert.ok(nearThresholdSpan > 0);
+  assert.ok(innerSpan > nearThresholdSpan);
+  assert.ok(Math.abs(getOrbitPathTintProfile("inner").selfHitSpan - innerSpan) < 1e-12);
 });
