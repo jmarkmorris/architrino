@@ -77,27 +77,29 @@ const ORBIT_PATH_TRAIL_LAYERS = [
   {
     role: "wake-glow",
     travelSign: -1,
-    coverage: 0.48,
-    opacity: 0.18,
-    widthFactor: 0.034,
-    minWidth: 0.024,
-    maxWidth: 0.048,
-    tailWidthFactor: 0.08,
-    alphaFalloff: 2.45,
-    widthFalloff: 1.9,
-    edgeAlpha: 0.1,
+    pathRole: "wake",
+    coverage: 0.72,
+    opacity: 0.32,
+    widthFactor: 0.072,
+    minWidth: 0.04,
+    maxWidth: 0.13,
+    tailWidthFactor: 0.5,
+    alphaFalloff: 0.9,
+    widthFalloff: 0.45,
+    edgeAlpha: 0.06,
   },
   {
     role: "wake-core",
     travelSign: -1,
-    coverage: 0.82,
-    opacity: 0.34,
-    widthFactor: 0.026,
-    minWidth: 0.018,
-    maxWidth: 0.036,
-    tailWidthFactor: 0.04,
-    alphaFalloff: 2.2,
-    widthFalloff: 1.7,
+    pathRole: "wake",
+    coverage: 0.9,
+    opacity: 0.46,
+    widthFactor: 0.046,
+    minWidth: 0.028,
+    maxWidth: 0.07,
+    tailWidthFactor: 0.32,
+    alphaFalloff: 1.2,
+    widthFalloff: 0.65,
     edgeAlpha: 0.14,
   },
 ];
@@ -354,6 +356,15 @@ function setOrbitPathTangent(target, binary, angle) {
     .normalize();
 }
 
+function colorForChargeType(Three, chargeType, weight = 1) {
+  const neutral = new Three.Color(NEUTRAL_PATH_COLOR);
+  const chargeColor =
+    chargeType === "electrino"
+      ? new Three.Color(STANDARD_ELECTRINO_COLOR)
+      : new Three.Color(STANDARD_POSITRINO_COLOR);
+  return neutral.lerp(chargeColor, clampNumber(weight, 0, 1));
+}
+
 function colorForOrbitPathAngle(Three, binary, angle, timeSeconds) {
   const direction = binary.motion?.direction === "cw" ? -1 : 1;
   const profile = resolveOrbitPathTintProfile(binary);
@@ -377,11 +388,7 @@ function colorForOrbitPathAngle(Three, binary, angle, timeSeconds) {
   if (strongest.weight <= 0) {
     return neutral;
   }
-  const chargeColor =
-    strongest.chargeType === "electrino"
-      ? new Three.Color(STANDARD_ELECTRINO_COLOR)
-      : new Three.Color(STANDARD_POSITRINO_COLOR);
-  return neutral.lerp(chargeColor, strongest.weight);
+  return colorForChargeType(Three, strongest.chargeType, strongest.weight);
 }
 
 function updateOrbitPathColors(Three, pathLine, timeSeconds) {
@@ -490,7 +497,13 @@ function updateOrbitPathTrailRibbon(Three, mesh, timeSeconds, camera) {
   const direction = binary.motion?.direction === "cw" ? -1 : 1;
   const branchGain = getOrbitPathBranchGain(profile, layer.travelSign);
   const branchAlphaGain = clampNumber(branchGain, 0.2, 1.55);
-  const branchWidthGain = 0.88 + branchAlphaGain * 0.12;
+  let pathWidthScale = 1;
+  if (layer.travelSign > 0) {
+    pathWidthScale = Number(profile.forwardWidthScale ?? 1);
+  } else if (layer.pathRole === "wake") {
+    pathWidthScale = Number(profile.wakeWidthScale ?? 1);
+  }
+  const branchWidthGain = (0.88 + branchAlphaGain * 0.12) * pathWidthScale;
   const referenceRadius = Number(binary.orbitPathReferenceRadius ?? binary.radius);
   const referenceWidth = clampNumber(
     referenceRadius * layer.widthFactor,
@@ -763,6 +776,13 @@ function makeMaterial(Three, color, options = {}) {
   return material;
 }
 
+function makeArchitrinoMaterial(Three, color) {
+  const material = new Three.MeshBasicMaterial({ color });
+  material.depthTest = false;
+  material.depthWrite = false;
+  return material;
+}
+
 function queryRequiredElement(documentLike, selector) {
   const element = documentLike.querySelector(selector);
   if (!element) {
@@ -810,7 +830,7 @@ export function mountIdealCorePrototype(options = {}) {
   const architrinoMeshes = model.architrinos.map((architrino) => {
     const mesh = new Three.Mesh(
       architrinoGeometry,
-      makeMaterial(Three, architrino.color, { opacity: 0.96 })
+      makeArchitrinoMaterial(Three, architrino.color)
     );
     mesh.renderOrder = 12;
     mesh.userData.architrino = architrino;
@@ -910,9 +930,9 @@ export function mountIdealCorePrototype(options = {}) {
     architrinoMeshes.forEach((mesh) => {
       const architrino = mesh.userData.architrino;
       mesh.position.copy(architrino.positionAt(state.modelTime));
-      const isSelected = state.view === "all" || architrino.binaryId === state.view;
-      mesh.scale.setScalar(isSelected ? 1.18 : 0.74);
-      mesh.material.opacity = isSelected ? 0.96 : 0.32;
+      mesh.scale.setScalar(1.18);
+      mesh.material.color.set(architrino.color);
+      mesh.material.opacity = 1;
     });
   }
 

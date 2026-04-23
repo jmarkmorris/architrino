@@ -1,4 +1,5 @@
 const QUARTER_TURN = Math.PI / 2;
+const NO_FORWARD_SPAN = 0;
 const FIELD_SPEED_TOLERANCE = 0.015;
 const SELF_HIT_SOLVE_ITERATIONS = 28;
 
@@ -100,6 +101,8 @@ function createSubFieldProfile(fieldSpeedRatio) {
     falloff: lerpNumber(0.95, 1.05, subProgress),
     forwardGain: lerpNumber(1.12, 1, subProgress),
     backwardGain: lerpNumber(1.05, 0.72, subProgress),
+    forwardWidthScale: lerpNumber(1, 0.58, subProgress),
+    wakeWidthScale: lerpNumber(1.2, 2.65, subProgress),
     selfHitSpan: 0,
   };
 }
@@ -108,11 +111,13 @@ function createFieldSpeedProfile() {
   return {
     fieldSpeedRatio: 1,
     regime: "field speed",
-    forwardSpan: QUARTER_TURN,
+    forwardSpan: NO_FORWARD_SPAN,
     backwardSpan: QUARTER_TURN,
-    falloff: 0.95,
-    forwardGain: 1.12,
-    backwardGain: 1.05,
+    falloff: 0.78,
+    forwardGain: 0,
+    backwardGain: 1.35,
+    forwardWidthScale: 1,
+    wakeWidthScale: 1.52,
     selfHitSpan: 0,
   };
 }
@@ -123,11 +128,13 @@ function createSuperFieldProfile(fieldSpeedRatio) {
   return {
     fieldSpeedRatio,
     regime: getFieldSpeedRegimeLabel(fieldSpeedRatio),
-    forwardSpan: QUARTER_TURN,
+    forwardSpan: NO_FORWARD_SPAN,
     backwardSpan: clampNumber(selfHitSpan, QUARTER_TURN, Math.PI * 0.92),
-    falloff: lerpNumber(0.95, 0.82, superProgress),
-    forwardGain: lerpNumber(1.12, 0.96, superProgress),
-    backwardGain: lerpNumber(1.05, 1.48, superProgress),
+    falloff: lerpNumber(0.85, 0.72, superProgress),
+    forwardGain: 0,
+    backwardGain: lerpNumber(0.78, 0.9, superProgress),
+    forwardWidthScale: 1,
+    wakeWidthScale: lerpNumber(1.05, 1.26, superProgress),
     selfHitSpan,
   };
 }

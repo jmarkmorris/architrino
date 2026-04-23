@@ -89,12 +89,21 @@ test("orbit path tint profiles distinguish inner middle and outer binaries", () 
   assert.equal(middle.regime, "field speed");
   assert.equal(inner.regime, "faster");
   assert.equal(outer.regime, "slower");
-  assert.ok(middle.forwardSpan > 0);
+  assert.equal(middle.forwardSpan, 0);
   assert.ok(middle.backwardSpan > 0);
-  assert.ok(Math.abs(middle.forwardSpan - middle.backwardSpan) < 1e-12);
+  assert.ok(middle.backwardGain > 1);
+  assert.ok(middle.wakeWidthScale > 1.4);
+  assert.equal(inner.forwardSpan, 0);
   assert.ok(inner.backwardSpan > inner.forwardSpan);
-  assert.ok(inner.backwardGain > middle.backwardGain);
+  assert.ok(inner.backwardGain > 0.85);
+  assert.ok(inner.backwardGain < middle.backwardGain);
+  assert.ok(inner.falloff < middle.falloff);
+  assert.ok(inner.wakeWidthScale > 1);
+  assert.ok(inner.wakeWidthScale < middle.wakeWidthScale);
+  assert.ok(Math.abs(inner.wakeWidthScale - 1 - (middle.wakeWidthScale - 1) / 2) < 0.02);
   assert.ok(outer.forwardSpan > outer.backwardSpan);
+  assert.ok(outer.forwardWidthScale < 1);
+  assert.ok(outer.wakeWidthScale > 2.5);
 });
 
 test("super-field profile expands the path-history span from circular self-hit geometry", () => {
