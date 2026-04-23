@@ -6,6 +6,7 @@ import {
   computePotentialContribution,
   computePotentialSum,
   createIdealCoreModel,
+  getOrbitPathTintProfile,
   getSelectedArchitrinos,
   solveFlightTime,
 } from "../src/apps/ideal-core/IdealCorePrototypeRuntime.js";
@@ -73,4 +74,16 @@ test("flight time solver returns a positive emission delay", () => {
 
   assert.ok(tau > 0);
   assert.ok(Number.isFinite(tau));
+});
+
+test("orbit path tint profiles distinguish inner middle and outer binaries", () => {
+  const inner = getOrbitPathTintProfile("inner");
+  const middle = getOrbitPathTintProfile("middle");
+  const outer = getOrbitPathTintProfile("outer");
+
+  assert.equal(middle.forwardSpan, 0);
+  assert.ok(middle.backwardSpan > 0);
+  assert.equal(inner.forwardSpan, inner.backwardSpan);
+  assert.ok(inner.backwardSpan < middle.backwardSpan);
+  assert.ok(outer.forwardSpan > outer.backwardSpan);
 });
