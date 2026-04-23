@@ -30,30 +30,48 @@ const ORBIT_PATH_TINT_PROFILES = {
   middle: { forwardSpan: 0, backwardSpan: QUARTER_TURN, falloff: 1.15 },
   outer: { forwardSpan: QUARTER_TURN, backwardSpan: Math.PI / 6, falloff: 1.05 },
 };
+const ORBIT_PATH_LOG_WIDTH_FLOOR = 0.78;
 const ORBIT_PATH_TRAIL_SEGMENTS = 30;
-const ORBIT_PATH_TRAIL_MAX_ARCS = 4;
+const ORBIT_PATH_TRAIL_MAX_ARCS = CHARGE_TYPES.length;
 const ORBIT_PATH_TRAIL_LAYERS = [
   {
-    coverage: 1.08,
-    opacity: 0.5,
-    widthFactor: 0.105,
-    minWidth: 0.07,
-    maxWidth: 0.145,
-    tailWidthFactor: 0.08,
-    alphaFalloff: 1.28,
-    widthFalloff: 1.2,
-    edgeAlpha: 0.08,
+    role: "headlamp-glow",
+    travelSign: 1,
+    coverage: 1.12,
+    opacity: 0.38,
+    widthFactor: 0.12,
+    minWidth: 0.08,
+    maxWidth: 0.16,
+    tailWidthFactor: 0.04,
+    alphaFalloff: 1.45,
+    widthFalloff: 1.25,
+    edgeAlpha: 0.05,
   },
   {
-    coverage: 0.72,
-    opacity: 0.82,
-    widthFactor: 0.052,
-    minWidth: 0.038,
-    maxWidth: 0.074,
-    tailWidthFactor: 0.04,
-    alphaFalloff: 2.1,
-    widthFalloff: 1.7,
-    edgeAlpha: 0.16,
+    role: "headlamp-core",
+    travelSign: 1,
+    coverage: 0.66,
+    opacity: 0.86,
+    widthFactor: 0.046,
+    minWidth: 0.034,
+    maxWidth: 0.064,
+    tailWidthFactor: 0.02,
+    alphaFalloff: 2.35,
+    widthFalloff: 1.8,
+    edgeAlpha: 0.18,
+  },
+  {
+    role: "wake",
+    travelSign: -1,
+    coverage: 0.34,
+    opacity: 0.2,
+    widthFactor: 0.034,
+    minWidth: 0.024,
+    maxWidth: 0.048,
+    tailWidthFactor: 0.08,
+    alphaFalloff: 2.45,
+    widthFalloff: 1.9,
+    edgeAlpha: 0.1,
   },
 ];
 
@@ -100,6 +118,12 @@ export function getOrbitPathTintProfile(binaryId) {
   return ORBIT_PATH_TINT_PROFILES[binaryId] ?? ORBIT_PATH_TINT_PROFILES.middle;
 }
 
+function getOrbitPathLogWidthScale(radius, referenceRadius) {
+  const normalizedRadius = clampNumber(radius / Math.max(0.0001, referenceRadius), 0, 1);
+  const compressedRadius = Math.log1p(normalizedRadius * 3) / Math.log1p(3);
+  return ORBIT_PATH_LOG_WIDTH_FLOOR + (1 - ORBIT_PATH_LOG_WIDTH_FLOOR) * compressedRadius;
+}
+
 export function createIdealCoreModel(options = {}) {
   const Three = options.THREE ?? THREE;
   const coreSpec = options.coreSpec ?? createAnimatorDefaultCoreSpec("ideal_core");
@@ -124,6 +148,14 @@ export function createIdealCoreModel(options = {}) {
       frequencyHz,
       speed: radius * TWO_PI * frequencyHz,
     };
+  });
+  const orbitPathReferenceRadius = Math.max(0.0001, ...binaries.map((binary) => binary.radius));
+  binaries.forEach((binary) => {
+    binary.orbitPathReferenceRadius = orbitPathReferenceRadius;
+    binary.orbitPathWidthScale = getOrbitPathLogWidthScale(
+      binary.radius,
+      orbitPathReferenceRadius
+    );
   });
 
   const architrinos = binaries.flatMap((binary) =>
@@ -423,8 +455,14 @@ function updateOrbitPathTrailRibbon(Three, mesh, timeSeconds, camera) {
   const scratch = mesh.userData.scratch;
   const profile = getOrbitPathTintProfile(binary.id);
   const direction = binary.motion?.direction === "cw" ? -1 : 1;
+  const referenceRadius = Number(binary.orbitPathReferenceRadius ?? binary.radius);
+  const referenceWidth = clampNumber(
+    referenceRadius * layer.widthFactor,
+    layer.minWidth,
+    layer.maxWidth
+  );
   const headWidth = clampNumber(
-    binary.radius * layer.widthFactor,
+    referenceWidth * Number(binary.orbitPathWidthScale ?? 1),
     layer.minWidth,
     layer.maxWidth
   );
@@ -525,8 +563,8 @@ function updateOrbitPathTrailRibbon(Three, mesh, timeSeconds, camera) {
 
   CHARGE_TYPES.forEach((chargeType) => {
     const chargeAngle = getMotionAngle(binary.motion, chargeType, timeSeconds);
-    writeArc(chargeAngle, 1, profile.forwardSpan);
-    writeArc(chargeAngle, -1, profile.backwardSpan);
+    const span = layer.travelSign > 0 ? profile.forwardSpan : profile.backwardSpan;
+    writeArc(chargeAngle, layer.travelSign, span);
   });
 
   mesh.geometry.setDrawRange(0, indexOffset);
