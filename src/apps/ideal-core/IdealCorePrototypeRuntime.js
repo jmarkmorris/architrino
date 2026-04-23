@@ -1,24 +1,108 @@
 import * as THREE from "../../../vendor/three/three.module.js";
 import { createAnimatorDefaultCoreSpec } from "../animator/AnimatorDraftScaffoldRuntime.js";
 import { createAnimatorStructureGeometryRuntime } from "../animator/AnimatorStructureGeometryRuntime.js";
+import {
+  BINARY_FIELD_SPEED_RATIOS,
+  getFieldSpeedRegimeLabel,
+  getOrbitPathBranchGain,
+  getOrbitPathTintProfile as resolveOrbitPathTintProfile,
+} from "./IdealCorePathPotentialProfile.js";
 
 const BINARY_META = [
-  { id: "inner", label: "Inner", color: "#7dd3fc" },
-  { id: "middle", label: "Middle", color: "#fbbf24" },
-  { id: "outer", label: "Outer", color: "#f472b6" },
+  {
+    id: "inner",
+    label: "Inner",
+    color: "#7dd3fc",
+    fieldSpeedRatio: BINARY_FIELD_SPEED_RATIOS.inner,
+  },
+  {
+    id: "middle",
+    label: "Middle",
+    color: "#fbbf24",
+    fieldSpeedRatio: BINARY_FIELD_SPEED_RATIOS.middle,
+  },
+  {
+    id: "outer",
+    label: "Outer",
+    color: "#f472b6",
+    fieldSpeedRatio: BINARY_FIELD_SPEED_RATIOS.outer,
+  },
 ];
 
 const STANDARD_POSITRINO_COLOR = "#ff0000";
 const STANDARD_ELECTRINO_COLOR = "#0000ff";
+const NEUTRAL_PATH_COLOR = "#800080";
 
 const CHARGE_META = {
   positrino: { q: 1, color: STANDARD_POSITRINO_COLOR },
   electrino: { q: -1, color: STANDARD_ELECTRINO_COLOR },
 };
+const CHARGE_TYPES = ["positrino", "electrino"];
 
+const ORBIT_PATH_SEGMENTS = 192;
 const SURFACE_LATITUDE_COUNT = 25;
 const SURFACE_LONGITUDE_COUNT = 48;
+const AXIS_REFERENCE_CIRCLE_SEGMENTS = 48;
 const TWO_PI = Math.PI * 2;
+const ORBIT_PATH_LOG_WIDTH_FLOOR = 0.78;
+const ORBIT_PATH_TRAIL_SEGMENTS = 30;
+const ORBIT_PATH_TRAIL_MAX_ARCS = CHARGE_TYPES.length;
+const ORBIT_PATH_TRAIL_LAYERS = [
+  {
+    role: "headlamp-glow",
+    travelSign: 1,
+    coverage: 1.12,
+    opacity: 0.38,
+    widthFactor: 0.12,
+    minWidth: 0.08,
+    maxWidth: 0.16,
+    tailWidthFactor: 0.04,
+    alphaFalloff: 1.45,
+    widthFalloff: 1.25,
+    edgeAlpha: 0.05,
+  },
+  {
+    role: "headlamp-core",
+    travelSign: 1,
+    coverage: 0.66,
+    opacity: 0.86,
+    widthFactor: 0.046,
+    minWidth: 0.034,
+    maxWidth: 0.064,
+    tailWidthFactor: 0.02,
+    alphaFalloff: 2.35,
+    widthFalloff: 1.8,
+    edgeAlpha: 0.18,
+  },
+  {
+    role: "wake-glow",
+    travelSign: -1,
+    pathRole: "wake",
+    coverage: 0.72,
+    opacity: 0.32,
+    widthFactor: 0.072,
+    minWidth: 0.04,
+    maxWidth: 0.13,
+    tailWidthFactor: 0.5,
+    alphaFalloff: 0.9,
+    widthFalloff: 0.45,
+    edgeAlpha: 0.06,
+  },
+  {
+    role: "wake-core",
+    travelSign: -1,
+    pathRole: "wake",
+    coverage: 0.9,
+    opacity: 0.46,
+    widthFactor: 0.046,
+    minWidth: 0.028,
+    maxWidth: 0.07,
+    tailWidthFactor: 0.32,
+    alphaFalloff: 1.2,
+    widthFalloff: 0.65,
+    edgeAlpha: 0.14,
+  },
+];
 
 function clampNumber(value, min, max) {
   return Math.min(max, Math.max(min, value));
@@ -47,12 +131,26 @@ function normalizeViewId(value) {
   return ["all", "inner", "middle", "outer"].includes(normalized) ? normalized : "all";
 }
 
+function wrapSignedAngle(value) {
+  return ((((value + Math.PI) % TWO_PI) + TWO_PI) % TWO_PI) - Math.PI;
+}
+
 function getMotionAngle(motion, chargeType, timeSeconds) {
   const frequency = Number(motion?.frequencyHz ?? 0.25);
   const phase = Number(motion?.phase ?? 0);
   const direction = motion?.direction === "cw" ? -1 : 1;
   const phaseOffset = chargeType === "electrino" ? Math.PI : 0;
   return phase + phaseOffset + direction * timeSeconds * TWO_PI * frequency;
+}
+
+export function getOrbitPathTintProfile(binaryOrId) {
+  return resolveOrbitPathTintProfile(binaryOrId);
+}
+
+function getOrbitPathLogWidthScale(radius, referenceRadius) {
+  const normalizedRadius = clampNumber(radius / Math.max(0.0001, referenceRadius), 0, 1);
+  const compressedRadius = Math.log1p(normalizedRadius * 3) / Math.log1p(3);
+  return ORBIT_PATH_LOG_WIDTH_FLOOR + (1 - ORBIT_PATH_LOG_WIDTH_FLOOR) * compressedRadius;
 }
 
 export function createIdealCoreModel(options = {}) {
@@ -70,6 +168,7 @@ export function createIdealCoreModel(options = {}) {
     const basis = geometryRuntime.getAnimatorOrbitBasis(motion);
     const radius = Number(motion.radius ?? 1) || 1;
     const frequencyHz = Number(motion.frequencyHz ?? 0.2) || 0.2;
+    const fieldSpeedRatio = Number(meta.fieldSpeedRatio ?? 1) || 1;
     return {
       ...meta,
       binaryIndex: index,
@@ -78,7 +177,17 @@ export function createIdealCoreModel(options = {}) {
       radius,
       frequencyHz,
       speed: radius * TWO_PI * frequencyHz,
+      fieldSpeedRatio,
+      fieldSpeedRegime: getFieldSpeedRegimeLabel(fieldSpeedRatio),
     };
+  });
+  const orbitPathReferenceRadius = Math.max(0.0001, ...binaries.map((binary) => binary.radius));
+  binaries.forEach((binary) => {
+    binary.orbitPathReferenceRadius = orbitPathReferenceRadius;
+    binary.orbitPathWidthScale = getOrbitPathLogWidthScale(
+      binary.radius,
+      orbitPathReferenceRadius
+    );
   });
 
   const architrinos = binaries.flatMap((binary) =>
@@ -92,6 +201,8 @@ export function createIdealCoreModel(options = {}) {
         q: chargeMeta.q,
         color: chargeMeta.color,
         motion: binary.motion,
+        fieldSpeedRatio: binary.fieldSpeedRatio,
+        fieldSpeedRegime: binary.fieldSpeedRegime,
         positionAt(timeSeconds) {
           return geometryRuntime.getAnimatorOrbitOffsetAtTime(
             binary.motion,
@@ -179,25 +290,349 @@ export function computePotentialSum(samplePoint, model, viewId, observationTime,
   };
 }
 
-function createOrbitLine(Three, binary) {
-  const points = [];
-  const segments = 160;
-  for (let index = 0; index < segments; index += 1) {
-    const angle = (index / segments) * TWO_PI;
-    points.push(
-      binary.basis.u
-        .clone()
-        .multiplyScalar(Math.cos(angle) * binary.radius)
-        .add(binary.basis.v.clone().multiplyScalar(Math.sin(angle) * binary.radius))
+function createOrbitPathLine(Three, binary) {
+  const vertexCount = ORBIT_PATH_SEGMENTS * 2;
+  const positions = new Float32Array(vertexCount * 3);
+  const colors = new Float32Array(vertexCount * 3);
+  const angles = new Float32Array(vertexCount);
+  const geometry = new Three.BufferGeometry();
+
+  function writeVertex(vertexIndex, angle) {
+    writeOrbitPathPosition(positions, vertexIndex, binary, angle, binary.radius);
+    angles[vertexIndex] = angle;
+  }
+
+  for (let index = 0; index < ORBIT_PATH_SEGMENTS; index += 1) {
+    const startAngle = (index / ORBIT_PATH_SEGMENTS) * TWO_PI;
+    const endAngle = ((index + 1) / ORBIT_PATH_SEGMENTS) * TWO_PI;
+    writeVertex(index * 2, startAngle);
+    writeVertex(index * 2 + 1, endAngle);
+  }
+
+  geometry.setAttribute("position", new Three.BufferAttribute(positions, 3));
+  geometry.setAttribute("color", new Three.BufferAttribute(colors, 3));
+  const material = new Three.LineBasicMaterial({
+    color: "#ffffff",
+    transparent: true,
+    opacity: 0.62,
+    vertexColors: true,
+    depthWrite: false,
+  });
+  const line = new Three.LineSegments(geometry, material);
+  line.renderOrder = 8;
+  line.userData.binary = binary;
+  line.userData.angles = angles;
+  line.userData.colors = colors;
+  return line;
+}
+
+function writeOrbitPathPosition(positions, vertexIndex, binary, angle, radius) {
+  const cos = Math.cos(angle) * radius;
+  const sin = Math.sin(angle) * radius;
+  positions[vertexIndex * 3] = binary.basis.u.x * cos + binary.basis.v.x * sin;
+  positions[vertexIndex * 3 + 1] = binary.basis.u.y * cos + binary.basis.v.y * sin;
+  positions[vertexIndex * 3 + 2] = binary.basis.u.z * cos + binary.basis.v.z * sin;
+}
+
+function setOrbitPathPoint(target, binary, angle, radius) {
+  const cos = Math.cos(angle) * radius;
+  const sin = Math.sin(angle) * radius;
+  return target.set(
+    binary.basis.u.x * cos + binary.basis.v.x * sin,
+    binary.basis.u.y * cos + binary.basis.v.y * sin,
+    binary.basis.u.z * cos + binary.basis.v.z * sin
+  );
+}
+
+function setOrbitPathTangent(target, binary, angle) {
+  const cos = Math.cos(angle);
+  const sin = Math.sin(angle);
+  return target
+    .set(
+      binary.basis.u.x * -sin + binary.basis.v.x * cos,
+      binary.basis.u.y * -sin + binary.basis.v.y * cos,
+      binary.basis.u.z * -sin + binary.basis.v.z * cos
+    )
+    .normalize();
+}
+
+function colorForChargeType(Three, chargeType, weight = 1) {
+  const neutral = new Three.Color(NEUTRAL_PATH_COLOR);
+  const chargeColor =
+    chargeType === "electrino"
+      ? new Three.Color(STANDARD_ELECTRINO_COLOR)
+      : new Three.Color(STANDARD_POSITRINO_COLOR);
+  return neutral.lerp(chargeColor, clampNumber(weight, 0, 1));
+}
+
+function colorForOrbitPathAngle(Three, binary, angle, timeSeconds) {
+  const direction = binary.motion?.direction === "cw" ? -1 : 1;
+  const profile = resolveOrbitPathTintProfile(binary);
+  const neutral = new Three.Color(NEUTRAL_PATH_COLOR);
+  const influences = CHARGE_TYPES.map((chargeType) => {
+    const chargeAngle = getMotionAngle(binary.motion, chargeType, timeSeconds);
+    const signedTravelDistance = wrapSignedAngle(angle - chargeAngle) * direction;
+    const distance = Math.abs(signedTravelDistance);
+    const span = signedTravelDistance > 0 ? profile.forwardSpan : profile.backwardSpan;
+    const rawWeight = distance >= span ? 0 : 1 - distance / Math.max(0.0001, span);
+    const branchGain = signedTravelDistance > 0 ? profile.forwardGain : profile.backwardGain;
+    return {
+      chargeType,
+      weight: clampNumber(Math.pow(rawWeight, profile.falloff) * branchGain, 0, 1),
+    };
+  });
+  const strongest = influences.reduce(
+    (selected, influence) => (influence.weight > selected.weight ? influence : selected),
+    { chargeType: "positrino", weight: 0 }
+  );
+  if (strongest.weight <= 0) {
+    return neutral;
+  }
+  return colorForChargeType(Three, strongest.chargeType, strongest.weight);
+}
+
+function updateOrbitPathColors(Three, pathLine, timeSeconds) {
+  const binary = pathLine.userData.binary;
+  const angles = pathLine.userData.angles;
+  const colors = pathLine.userData.colors;
+  angles.forEach((angle, index) => {
+    const color = colorForOrbitPathAngle(Three, binary, angle, timeSeconds);
+    colors[index * 3] = color.r;
+    colors[index * 3 + 1] = color.g;
+    colors[index * 3 + 2] = color.b;
+  });
+  pathLine.geometry.attributes.color.needsUpdate = true;
+}
+
+function createOrbitPathTrailMaterial(Three, opacity) {
+  return new Three.ShaderMaterial({
+    uniforms: {
+      opacity: { value: opacity },
+    },
+    vertexShader: `
+      attribute vec3 color;
+      attribute float trailAlpha;
+      varying vec3 vColor;
+      varying float vTrailAlpha;
+
+      void main() {
+        vColor = color;
+        vTrailAlpha = trailAlpha;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    `,
+    fragmentShader: `
+      uniform float opacity;
+      varying vec3 vColor;
+      varying float vTrailAlpha;
+
+      void main() {
+        gl_FragColor = vec4(vColor, opacity * vTrailAlpha);
+      }
+    `,
+    transparent: true,
+    depthWrite: false,
+    side: Three.DoubleSide,
+  });
+}
+
+function createOrbitPathTrailRibbon(Three, binary, layer) {
+  const vertexCount = ORBIT_PATH_TRAIL_MAX_ARCS * (ORBIT_PATH_TRAIL_SEGMENTS + 1) * 3;
+  const indexCount = ORBIT_PATH_TRAIL_MAX_ARCS * ORBIT_PATH_TRAIL_SEGMENTS * 12;
+  const positions = new Float32Array(vertexCount * 3);
+  const colors = new Float32Array(vertexCount * 3);
+  const alphas = new Float32Array(vertexCount);
+  const indices = new Uint16Array(indexCount);
+  const geometry = new Three.BufferGeometry();
+  geometry.setAttribute("position", new Three.BufferAttribute(positions, 3));
+  geometry.setAttribute("color", new Three.BufferAttribute(colors, 3));
+  geometry.setAttribute("trailAlpha", new Three.BufferAttribute(alphas, 1));
+  geometry.setIndex(new Three.BufferAttribute(indices, 1));
+  geometry.setDrawRange(0, 0);
+  const mesh = new Three.Mesh(geometry, createOrbitPathTrailMaterial(Three, layer.opacity));
+  mesh.frustumCulled = false;
+  mesh.renderOrder = 9;
+  mesh.userData.binary = binary;
+  mesh.userData.layer = layer;
+  mesh.userData.positions = positions;
+  mesh.userData.colors = colors;
+  mesh.userData.alphas = alphas;
+  mesh.userData.indices = indices;
+  mesh.userData.scratch = {
+    center: new Three.Vector3(),
+    tangentLocal: new Three.Vector3(),
+    tangentWorld: new Three.Vector3(),
+    sideWorld: new Three.Vector3(),
+    sideLocal: new Three.Vector3(),
+    worldPoint: new Three.Vector3(),
+    cameraWorld: new Three.Vector3(),
+    cameraDirection: new Three.Vector3(),
+    localFromWorld: new Three.Matrix4(),
+  };
+  return mesh;
+}
+
+function createOrbitPathVisual(Three, binary) {
+  const group = new Three.Group();
+  const baseLine = createOrbitPathLine(Three, binary);
+  const trailRibbons = ORBIT_PATH_TRAIL_LAYERS.map((layer) =>
+    createOrbitPathTrailRibbon(Three, binary, layer)
+  );
+  group.add(baseLine);
+  trailRibbons.forEach((mesh) => group.add(mesh));
+  group.userData.pathLine = baseLine;
+  group.userData.trailRibbons = trailRibbons;
+  return group;
+}
+
+function updateOrbitPathTrailRibbon(Three, mesh, timeSeconds, camera) {
+  const binary = mesh.userData.binary;
+  const layer = mesh.userData.layer;
+  const positions = mesh.userData.positions;
+  const colors = mesh.userData.colors;
+  const alphas = mesh.userData.alphas;
+  const indices = mesh.userData.indices;
+  const scratch = mesh.userData.scratch;
+  const profile = resolveOrbitPathTintProfile(binary);
+  const direction = binary.motion?.direction === "cw" ? -1 : 1;
+  const branchGain = getOrbitPathBranchGain(profile, layer.travelSign);
+  const branchAlphaGain = clampNumber(branchGain, 0.2, 1.55);
+  let pathWidthScale = 1;
+  if (layer.travelSign > 0) {
+    pathWidthScale = Number(profile.forwardWidthScale ?? 1);
+  } else if (layer.pathRole === "wake") {
+    pathWidthScale = Number(profile.wakeWidthScale ?? 1);
+  }
+  const branchWidthGain = (0.88 + branchAlphaGain * 0.12) * pathWidthScale;
+  const referenceRadius = Number(binary.orbitPathReferenceRadius ?? binary.radius);
+  const referenceWidth = clampNumber(
+    referenceRadius * layer.widthFactor,
+    layer.minWidth,
+    layer.maxWidth
+  );
+  const headWidth = clampNumber(
+    referenceWidth * Number(binary.orbitPathWidthScale ?? 1),
+    layer.minWidth,
+    layer.maxWidth
+  );
+  const tailWidth = headWidth * layer.tailWidthFactor;
+  let vertexIndex = 0;
+  let indexOffset = 0;
+
+  camera.updateWorldMatrix(true, false);
+  mesh.updateWorldMatrix(true, false);
+  camera.getWorldPosition(scratch.cameraWorld);
+  scratch.localFromWorld.copy(mesh.matrixWorld).invert();
+
+  function writeTrailVertex(center, sideLocal, widthOffset, alpha, color) {
+    positions[vertexIndex * 3] = center.x + sideLocal.x * widthOffset;
+    positions[vertexIndex * 3 + 1] = center.y + sideLocal.y * widthOffset;
+    positions[vertexIndex * 3 + 2] = center.z + sideLocal.z * widthOffset;
+    colors[vertexIndex * 3] = color.r;
+    colors[vertexIndex * 3 + 1] = color.g;
+    colors[vertexIndex * 3 + 2] = color.b;
+    alphas[vertexIndex] = alpha;
+    vertexIndex += 1;
+  }
+
+  function writeTrailSample(angle, trailProgress) {
+    const tailProgress = clampNumber(trailProgress, 0, 1);
+    const headProgress = 1 - tailProgress;
+    const alpha = clampNumber(
+      Math.pow(headProgress, layer.alphaFalloff) * branchAlphaGain,
+      0,
+      1
+    );
+    const width =
+      (tailWidth + (headWidth - tailWidth) * Math.pow(headProgress, layer.widthFalloff)) *
+      branchWidthGain;
+    const color = colorForOrbitPathAngle(Three, binary, angle, timeSeconds);
+
+    setOrbitPathPoint(scratch.center, binary, angle, binary.radius);
+    setOrbitPathTangent(scratch.tangentLocal, binary, angle);
+    scratch.worldPoint.copy(scratch.center).applyMatrix4(mesh.matrixWorld);
+    scratch.tangentWorld.copy(scratch.tangentLocal).transformDirection(mesh.matrixWorld);
+    scratch.cameraDirection.copy(scratch.cameraWorld).sub(scratch.worldPoint).normalize();
+    scratch.sideWorld.crossVectors(scratch.tangentWorld, scratch.cameraDirection);
+    if (scratch.sideWorld.lengthSq() < 0.0001) {
+      scratch.sideWorld.copy(binary.basis.normal).transformDirection(mesh.matrixWorld);
+    }
+    scratch.sideLocal
+      .copy(scratch.sideWorld.normalize())
+      .transformDirection(scratch.localFromWorld)
+      .normalize();
+
+    writeTrailVertex(
+      scratch.center,
+      scratch.sideLocal,
+      width * -0.5,
+      alpha * layer.edgeAlpha,
+      color
+    );
+    writeTrailVertex(scratch.center, scratch.sideLocal, 0, alpha, color);
+    writeTrailVertex(
+      scratch.center,
+      scratch.sideLocal,
+      width * 0.5,
+      alpha * layer.edgeAlpha,
+      color
     );
   }
-  const geometry = new Three.BufferGeometry().setFromPoints(points);
-  const material = new Three.LineBasicMaterial({
-    color: binary.color,
-    transparent: true,
-    opacity: 0.74,
+
+  function writeArc(chargeAngle, travelSign, span) {
+    if (span <= 0) {
+      return;
+    }
+    const coveredSpan = span * layer.coverage;
+    const arcVertexStart = vertexIndex;
+
+    for (let sampleIndex = 0; sampleIndex <= ORBIT_PATH_TRAIL_SEGMENTS; sampleIndex += 1) {
+      const trailProgress = sampleIndex / ORBIT_PATH_TRAIL_SEGMENTS;
+      const travelDistance = travelSign * trailProgress * coveredSpan;
+      writeTrailSample(chargeAngle + travelDistance * direction, trailProgress);
+    }
+
+    for (let segmentIndex = 0; segmentIndex < ORBIT_PATH_TRAIL_SEGMENTS; segmentIndex += 1) {
+      const vertexA = arcVertexStart + segmentIndex * 3;
+      const vertexB = vertexA + 1;
+      const vertexC = vertexA + 2;
+      const vertexD = vertexA + 3;
+      const vertexE = vertexA + 4;
+      const vertexF = vertexA + 5;
+      indices[indexOffset] = vertexA;
+      indices[indexOffset + 1] = vertexD;
+      indices[indexOffset + 2] = vertexB;
+      indices[indexOffset + 3] = vertexB;
+      indices[indexOffset + 4] = vertexD;
+      indices[indexOffset + 5] = vertexE;
+      indices[indexOffset + 6] = vertexB;
+      indices[indexOffset + 7] = vertexE;
+      indices[indexOffset + 8] = vertexC;
+      indices[indexOffset + 9] = vertexC;
+      indices[indexOffset + 10] = vertexE;
+      indices[indexOffset + 11] = vertexF;
+      indexOffset += 12;
+    }
+  }
+
+  CHARGE_TYPES.forEach((chargeType) => {
+    const chargeAngle = getMotionAngle(binary.motion, chargeType, timeSeconds);
+    const span = layer.travelSign > 0 ? profile.forwardSpan : profile.backwardSpan;
+    writeArc(chargeAngle, layer.travelSign, span);
   });
-  return new Three.LineLoop(geometry, material);
+
+  mesh.geometry.setDrawRange(0, indexOffset);
+  mesh.geometry.attributes.position.needsUpdate = true;
+  mesh.geometry.attributes.color.needsUpdate = true;
+  mesh.geometry.attributes.trailAlpha.needsUpdate = true;
+  mesh.geometry.index.needsUpdate = true;
+}
+
+function updateOrbitPathVisual(Three, pathVisual, timeSeconds, camera) {
+  updateOrbitPathColors(Three, pathVisual.userData.pathLine, timeSeconds);
+  pathVisual.userData.trailRibbons.forEach((mesh) => {
+    updateOrbitPathTrailRibbon(Three, mesh, timeSeconds, camera);
+  });
 }
 
 function createShellLine(Three, radius, color, opacity) {
@@ -210,6 +645,95 @@ function createShellLine(Three, radius, color, opacity) {
     depthWrite: false,
   });
   return new Three.Mesh(geometry, material);
+}
+
+function createAxisReferenceGroup(Three) {
+  const group = new Three.Group();
+  const axisPositions = new Float32Array(6 * 3);
+  const axisGeometry = new Three.BufferGeometry();
+  axisGeometry.setAttribute("position", new Three.BufferAttribute(axisPositions, 3));
+  const material = new Three.LineBasicMaterial({
+    color: "#f8fafc",
+    transparent: true,
+    opacity: 0.72,
+    depthWrite: false,
+  });
+  group.add(new Three.LineSegments(axisGeometry, material));
+
+  const circles = Array.from({ length: 6 }, () => {
+    const positions = new Float32Array(AXIS_REFERENCE_CIRCLE_SEGMENTS * 3);
+    const geometry = new Three.BufferGeometry();
+    geometry.setAttribute("position", new Three.BufferAttribute(positions, 3));
+    const line = new Three.LineLoop(geometry, material);
+    group.add(line);
+    return { geometry, positions };
+  });
+
+  group.userData.axisPositions = axisPositions;
+  group.userData.axisGeometry = axisGeometry;
+  group.userData.circles = circles;
+  return group;
+}
+
+function updateAxisReferenceGroup(Three, group, radius) {
+  const axisPositions = group.userData.axisPositions;
+  const axisGeometry = group.userData.axisGeometry;
+  const circleRadius = Math.max(0.07, radius * 0.045);
+  const axes = [
+    {
+      axis: new Three.Vector3(1, 0, 0),
+      circleU: new Three.Vector3(0, 1, 0),
+      circleV: new Three.Vector3(0, 0, 1),
+    },
+    {
+      axis: new Three.Vector3(0, 1, 0),
+      circleU: new Three.Vector3(1, 0, 0),
+      circleV: new Three.Vector3(0, 0, 1),
+    },
+    {
+      axis: new Three.Vector3(0, 0, 1),
+      circleU: new Three.Vector3(1, 0, 0),
+      circleV: new Three.Vector3(0, 1, 0),
+    },
+  ];
+  let axisOffset = 0;
+  let circleIndex = 0;
+
+  function pushAxisPoint(point) {
+    axisPositions[axisOffset] = point.x;
+    axisPositions[axisOffset + 1] = point.y;
+    axisPositions[axisOffset + 2] = point.z;
+    axisOffset += 3;
+  }
+
+  function pushAxisSegment(start, end) {
+    pushAxisPoint(start);
+    pushAxisPoint(end);
+  }
+
+  axes.forEach(({ axis, circleU, circleV }) => {
+    pushAxisSegment(axis.clone().multiplyScalar(-radius), axis.clone().multiplyScalar(radius));
+    [-1, 1].forEach((direction) => {
+      const center = axis.clone().multiplyScalar(direction * radius);
+      const circle = group.userData.circles[circleIndex];
+      circleIndex += 1;
+      for (let index = 0; index < AXIS_REFERENCE_CIRCLE_SEGMENTS; index += 1) {
+        const angle = (index / AXIS_REFERENCE_CIRCLE_SEGMENTS) * TWO_PI;
+        const point = center
+          .clone()
+          .add(circleU.clone().multiplyScalar(Math.cos(angle) * circleRadius))
+          .add(circleV.clone().multiplyScalar(Math.sin(angle) * circleRadius));
+        circle.positions[index * 3] = point.x;
+        circle.positions[index * 3 + 1] = point.y;
+        circle.positions[index * 3 + 2] = point.z;
+      }
+      circle.geometry.attributes.position.needsUpdate = true;
+      circle.geometry.computeBoundingSphere();
+    });
+  });
+
+  axisGeometry.attributes.position.needsUpdate = true;
+  axisGeometry.computeBoundingSphere();
 }
 
 function createSurfaceSamples(Three) {
@@ -252,6 +776,13 @@ function makeMaterial(Three, color, options = {}) {
   return material;
 }
 
+function makeArchitrinoMaterial(Three, color) {
+  const material = new Three.MeshBasicMaterial({ color });
+  material.depthTest = false;
+  material.depthWrite = false;
+  return material;
+}
+
 function queryRequiredElement(documentLike, selector) {
   const element = documentLike.querySelector(selector);
   if (!element) {
@@ -291,7 +822,7 @@ export function mountIdealCorePrototype(options = {}) {
 
   const pathGroup = new Three.Group();
   model.binaries.forEach((binary) => {
-    pathGroup.add(createOrbitLine(Three, binary));
+    pathGroup.add(createOrbitPathVisual(Three, binary));
   });
   sphereContents.add(pathGroup);
 
@@ -299,8 +830,9 @@ export function mountIdealCorePrototype(options = {}) {
   const architrinoMeshes = model.architrinos.map((architrino) => {
     const mesh = new Three.Mesh(
       architrinoGeometry,
-      makeMaterial(Three, architrino.color, { opacity: 0.96 })
+      makeArchitrinoMaterial(Three, architrino.color)
     );
+    mesh.renderOrder = 12;
     mesh.userData.architrino = architrino;
     sphereContents.add(mesh);
     return mesh;
@@ -322,28 +854,14 @@ export function mountIdealCorePrototype(options = {}) {
   const surfacePoints = new Three.Points(surfaceGeometry, surfaceMaterial);
   sphereContents.add(surfacePoints);
 
-  const testPointGroup = new Three.Group();
-  const testPointGeometry = new Three.SphereGeometry(0.035, 12, 10);
-  const testPointMaterial = makeMaterial(Three, "#f8fafc", { opacity: 0.9 });
-  [
-    new Three.Vector3(1, 0, 0),
-    new Three.Vector3(-1, 0, 0),
-    new Three.Vector3(0, 1, 0),
-    new Three.Vector3(0, -1, 0),
-    new Three.Vector3(0, 0, 1),
-    new Three.Vector3(0, 0, -1),
-  ].forEach((unit) => {
-    const marker = new Three.Mesh(testPointGeometry, testPointMaterial);
-    marker.userData.unit = unit;
-    testPointGroup.add(marker);
-  });
-  sphereContents.add(testPointGroup);
+  const axisReferenceGroup = createAxisReferenceGroup(Three);
+  sphereContents.add(axisReferenceGroup);
 
   const dom = {
     viewButtons: [...documentLike.querySelectorAll("[data-view]")],
     pathToggle: queryRequiredElement(documentLike, "#ideal-core-path-toggle"),
     surfaceToggle: queryRequiredElement(documentLike, "#ideal-core-surface-toggle"),
-    pointsToggle: queryRequiredElement(documentLike, "#ideal-core-points-toggle"),
+    axesToggle: queryRequiredElement(documentLike, "#ideal-core-axes-toggle"),
     freezeToggle: queryRequiredElement(documentLike, "#ideal-core-freeze-toggle"),
     resetButton: queryRequiredElement(documentLike, "#ideal-core-reset-button"),
     focusButton: queryRequiredElement(documentLike, "#ideal-core-focus-button"),
@@ -363,7 +881,7 @@ export function mountIdealCorePrototype(options = {}) {
     view: "all",
     pathsVisible: true,
     surfaceVisible: true,
-    testPointsVisible: true,
+    axesVisible: true,
     frozen: false,
     radius: Number(dom.radiusInput.value) || 1.62,
     speed: Number(dom.speedInput.value) || 1,
@@ -395,7 +913,7 @@ export function mountIdealCorePrototype(options = {}) {
     });
     setButtonActive(dom.pathToggle, state.pathsVisible);
     setButtonActive(dom.surfaceToggle, state.surfaceVisible);
-    setButtonActive(dom.pointsToggle, state.testPointsVisible);
+    setButtonActive(dom.axesToggle, state.axesVisible);
     setButtonActive(dom.freezeToggle, state.frozen);
     dom.freezeToggle.textContent = state.frozen ? "Resume" : "Freeze";
     dom.radiusOutput.value = formatFixed(state.radius, 2);
@@ -412,9 +930,15 @@ export function mountIdealCorePrototype(options = {}) {
     architrinoMeshes.forEach((mesh) => {
       const architrino = mesh.userData.architrino;
       mesh.position.copy(architrino.positionAt(state.modelTime));
-      const isSelected = state.view === "all" || architrino.binaryId === state.view;
-      mesh.scale.setScalar(isSelected ? 1.18 : 0.74);
-      mesh.material.opacity = isSelected ? 0.96 : 0.32;
+      mesh.scale.setScalar(1.18);
+      mesh.material.color.set(architrino.color);
+      mesh.material.opacity = 1;
+    });
+  }
+
+  function updateOrbitPaths() {
+    pathGroup.children.forEach((pathVisual) => {
+      updateOrbitPathVisual(Three, pathVisual, state.modelTime, camera);
     });
   }
 
@@ -451,10 +975,8 @@ export function mountIdealCorePrototype(options = {}) {
     ).potential;
   }
 
-  function updateTestPoints() {
-    testPointGroup.children.forEach((marker) => {
-      marker.position.copy(marker.userData.unit).multiplyScalar(state.radius);
-    });
+  function updateAxisReference() {
+    updateAxisReferenceGroup(Three, axisReferenceGroup, state.radius);
   }
 
   function drawPotentialStrip() {
@@ -505,8 +1027,16 @@ export function mountIdealCorePrototype(options = {}) {
         values: model.binaries.map((binary) => `${formatFixed(binary.frequencyHz, 2)} Hz`),
       },
       {
-        label: "Architrino velocity",
+        label: "Path speed",
         values: model.binaries.map((binary) => formatFixed(binary.speed, 2)),
+      },
+      {
+        label: "Speed / field speed",
+        values: model.binaries.map((binary) => formatFixed(binary.fieldSpeedRatio, 2)),
+      },
+      {
+        label: "Wake regime",
+        values: model.binaries.map((binary) => binary.fieldSpeedRegime),
       },
       {
         label: "Phase",
@@ -527,7 +1057,7 @@ export function mountIdealCorePrototype(options = {}) {
   function updateVisibility() {
     pathGroup.visible = state.pathsVisible;
     surfacePoints.visible = state.surfaceVisible;
-    testPointGroup.visible = state.testPointsVisible;
+    axisReferenceGroup.visible = state.axesVisible;
   }
 
   function resetRotation() {
@@ -550,9 +1080,10 @@ export function mountIdealCorePrototype(options = {}) {
       state.modelTime += deltaSeconds * state.speed;
     }
     updateVisibility();
+    updateOrbitPaths();
     updateArchitrinoMeshes();
     updateSurface();
-    updateTestPoints();
+    updateAxisReference();
     drawPotentialStrip();
     renderTable();
     syncControls();
@@ -577,8 +1108,8 @@ export function mountIdealCorePrototype(options = {}) {
     syncControls();
     canvas.focus();
   });
-  dom.pointsToggle.addEventListener("click", () => {
-    state.testPointsVisible = !state.testPointsVisible;
+  dom.axesToggle.addEventListener("click", () => {
+    state.axesVisible = !state.axesVisible;
     syncControls();
     canvas.focus();
   });

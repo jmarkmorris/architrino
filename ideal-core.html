@@ -45,21 +45,6 @@
         outline: none;
       }
 
-      .ideal-core-stage-ring {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: min(62vw, 70vh);
-        aspect-ratio: 1;
-        border: 1px solid rgba(148, 163, 184, 0.22);
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        pointer-events: none;
-        box-shadow:
-          inset 0 0 36px rgba(120, 184, 255, 0.08),
-          0 0 48px rgba(56, 189, 248, 0.05);
-      }
-
       .ideal-core-title {
         position: absolute;
         left: 50%;
@@ -235,10 +220,6 @@
           display: none;
         }
 
-        .ideal-core-stage-ring {
-          width: min(82vw, 58vh);
-        }
-
         .ideal-core-panel {
           width: calc(50vw - 18px);
           padding: 8px;
@@ -310,7 +291,6 @@
   <body>
     <main id="ideal-core-app">
       <canvas id="ideal-core-canvas" tabindex="0" aria-label="Ideal Core prototype stage"></canvas>
-      <div class="ideal-core-stage-ring" aria-hidden="true"></div>
       <div class="ideal-core-title">Ideal Core Prototype</div>
 
       <section class="ideal-core-panel is-upper-left" aria-label="Graph zone">
@@ -338,7 +318,7 @@
           <div class="ideal-core-toggle-row">
             <button id="ideal-core-path-toggle" class="ideal-core-button is-active" type="button">Paths</button>
             <button id="ideal-core-surface-toggle" class="ideal-core-button is-active" type="button">Surface</button>
-            <button id="ideal-core-points-toggle" class="ideal-core-button is-active" type="button">Points</button>
+            <button id="ideal-core-axes-toggle" class="ideal-core-button is-active" type="button">Axes</button>
             <button id="ideal-core-freeze-toggle" class="ideal-core-button" type="button">Freeze</button>
           </div>
           <div class="ideal-core-range-row">
