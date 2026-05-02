@@ -632,25 +632,6 @@
 
 ## use galleries in ‘new physics in pictures’  to pick up the finished slides in wordpress.
 
-## npqg 101 blog is too intense
-
-### Really need to go step by step.
-
-### One topic dealt with in detail, but only at the present level of understanding.
-
-### Define terminology.
-
-### This all needs to in powerpoint first and then into the blog scripts and videos.
-
-### absolute space
-
-### absolute time.
-
-### point potentials , electrino, positrino, and symbols…. etc.
-
-### point potential paths
-
-### point potential emissions, tracer conventions, 2D animations
 
 ### action
 - action on a straight line
@@ -663,18 +644,6 @@
 - track positive and negative seperately
 
 ### action = 0 at v = 0?  (too advanced)
-
-## Then post link to blog article on reddit, facebook, linkedin
-
-### Facebook, Linked In NPQG universe - autopost
-
-## Make sure I am telling a story 
-
-## Work on draft article
-
-## Review all my word press blog articles and continue working on Drafts
-
-### start a pass through the 32 most popular posts.
 
 # PowerPoint ideas
 
@@ -746,15 +715,7 @@
 
 ## review powerpoints and make improvements.  there is always more to do.
 
-## realizing planck scale corresponds to v = @.
-
-### this explains a lot!
-
-### and this may be the mid binary 
-
 ## Binary — this is the focus
-
-### solve equations
 
 ### work on math with binary II at @ and binary I at pi@/2?
 
@@ -799,4 +760,4 @@
 
 ### and those gradients cause fermionic matter to gather which creates even more gradient, and etc.
 
-# **Videos**
+
