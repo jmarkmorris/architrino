@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 125,
-      "sections": 854
+      "sections": 855
     }
   },
   "tocRoot": {
@@ -6847,6 +6847,14 @@
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
                     "markdownSection": "Quantum Field Theory (QFT)",
                     "sectionKey": "quantum field theory qft",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Relativistic Scalar Fields / Klein-Gordon Equation",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+                    "markdownSection": "Relativistic Scalar Fields / Klein-Gordon Equation",
+                    "sectionKey": "relativistic scalar fields klein gordon equation",
                     "headingLevel": 3
                   },
                   {

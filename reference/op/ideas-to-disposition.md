@@ -122,3 +122,44 @@
 ### which is gravity.
 
 ### and those gradients cause fermionic matter to gather which creates even more gradient, and etc.
+
+
+---
+
+Notes to disposition from Ai Discussions - May 2026 is the first entry below.
+
+A scalar field is a field that assigns one value to each point, like temperature in a room. It has magnitude but no direction. In quantum field theory, a scalar field’s quanta are spin-0 particles. In general relativity, scalar fields can be matter sources or extra gravity degrees of freedom, but GR’s core gravitational field is the metric tensor, not a scalar.
+
+Yes, we discuss scalar fields in content/markdown/aaa, but mostly as comparison/effective language, not as preferred fundamental ontology.
+
+Quantum Theory
+
+In QFT, a scalar field is usually written $\phi(x)$. It is “scalar” because it does not carry spacetime direction under Lorentz transformations. Its excitations are spin-0 bosons.
+
+Common examples:
+
+
+Klein-Gordon field: the basic relativistic scalar field.
+
+Higgs field: Lorentz-scalar, though internally it has electroweak gauge structure.
+
+Inflaton/quintessence: hypothetical cosmological scalar fields.
+
+Axion-like fields: often pseudoscalar fields, similar scalar degree of freedom but with different parity behavior.
+
+
+A standard scalar-field action appears in our AAA theory map at theory-mapping.md (line 97).
+
+General Relativity
+
+In GR, the main gravitational field is $g_{\mu\nu}$, the metric tensor. Scalar fields enter in three main ways:
+
+
+As matter fields: $\phi(x)$ carries energy and pressure, so it contributes to $T_{\mu\nu}$ and curves spacetime.
+
+As cosmological fields: inflation or quintessence can be modeled by scalar fields with potentials $V(\phi)$.
+
+As modified-gravity fields: scalar-tensor theories add a scalar degree of freedom beside the spin-2 metric field.
+
+
+Our docs explicitly flag the scalar-tensor issue in causal-action-functional.md (line 346), including the risk of fifth-force behavior from an unconstrained scalar sector.

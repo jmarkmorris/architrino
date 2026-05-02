@@ -832,6 +832,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Core Assembly Layer (Noether Core / Tri-Binary)](../aaa/philosophy-history/theory-mapping.md?section=Core+Assembly+Layer+%28Noether+Core+%2F+Tri-Binary%29)
       - [Standard Model (SM)](../aaa/philosophy-history/theory-mapping.md?section=Standard+Model+%28SM%29)
       - [Quantum Field Theory (QFT)](../aaa/philosophy-history/theory-mapping.md?section=Quantum+Field+Theory+%28QFT%29)
+      - [Relativistic Scalar Fields / Klein-Gordon Equation](../aaa/philosophy-history/theory-mapping.md?section=Relativistic+Scalar+Fields+%2F+Klein-Gordon+Equation)
       - [Quantum Chromodynamics (QCD)](../aaa/philosophy-history/theory-mapping.md?section=Quantum+Chromodynamics+%28QCD%29)
       - [Quantum Electrodynamics (QED)](../aaa/philosophy-history/theory-mapping.md?section=Quantum+Electrodynamics+%28QED%29)
       - [Electroweak Theory (EW)](../aaa/philosophy-history/theory-mapping.md?section=Electroweak+Theory+%28EW%29)
