@@ -1,10 +1,10 @@
 # Cameras
 
-## ~~Lowest resolution? - Mac 720p FaceTime HD camera~~
+## Lowest resolution? - Mac 720p FaceTime HD camera
 - 1080x720
 - This is terrible. Do not use.
 
-## ~~Mid resolution - iPad?~~
+## Mid resolution - iPad
 - ***4K video recording at 24 fps, 25 fps, 30 fps, or 60 fps (Wide)***
 - 1080p HD video recording at 25 fps, 30 fps, or 60 fps
 - 720p HD video recording at 30 fps
@@ -21,7 +21,7 @@
 - Stereo recording
 - ***1920x1080***
 
-## ~~iPhone 12~~
+## iPhone 12
 
 ### Video Recording
 - HDR video recording with Dolby Vision up to 60 fps
@@ -123,8 +123,8 @@
 ### Power
 - Built In
     - 1300 mah
-        - 116m in 4k60
-        - 166m in 1080p
+    - 116m in 4k60
+    - 166m in 1080p
 - Large Extension
 - If this isn’t enough for a day out filming, then might need to get a recharging pack
 
@@ -199,7 +199,8 @@
 ### DaVinci Video/Audio Editing
 - can overlay my slides and animations
 - Set DaVinci project settings
-    - dimensions : normally 4K 16:9 3840x2160
+    - dimensions : 
+        - normally 4K 16:9 3840x2160
         - UHD 2160p 60
             - The term “2160p” is commonly used to refer to the 4K UHD (Ultra High Definition) resolution of 3840 × 2160 pixels12. This resolution is often associated with a frame rate of 60 frames per second (fps), hence “2160p 60”.
     - frame rate : normally 60 fps
@@ -243,7 +244,7 @@
 
 ### neoclassical.ai rename
 
-### jmarkmorris channel?
+### architrino channel!!!
 
 ### Make neoclassical.ai Logins on Everything
 - facebook?
@@ -259,16 +260,16 @@
 - Landscape
 - Emergent Nature News
 
-### New idea : LinkedIn awareness ad campaign. Probably cheap because my audience is poor academics. This is brilliant. I can create ads for chemists, philosophers, or whomever. Even high school teachers.
+### LinkedIn awareness ad campaign. Probably cheap because my audience is poor academics. I can create ads for chemists, philosophers, or whomever. 
 
-### Make TikTok videos - just for fun?
+### Make animated TikTok videos - just for fun?
 - What would the theme be?
-    - Teach point charge theory as if GR/QM/LCDM never existed.
+- Teach point charge theory as if GR/QM/LCDM never existed.
 - What about YouTube shorts?
 
-## Streaming
+## Streaming - No I don't think so with my voice. Better to animate and edit with OBS.
 - Need to move in this direction.
 - So I can make videos with efficient prep and limited editing afterward.
 
 ## Target Workflow
-- Need a simple, efficient, repeatable process that results in a decent lecture.
+- Need a simple, efficient, repeatable process that results in a decent video.
