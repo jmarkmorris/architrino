@@ -116,7 +116,7 @@ $$
 
 **Summary:** The Klein-Gordon equation is the canonical relativistic wave equation for a spin-0 scalar degree of freedom. It is not a complete particle-physics theory by itself, but it is the simplest bridge between scalar fields in quantum theory, curved-spacetime field theory, and cosmological scalar-field models.
 
-**Conceptual View:** As a pure mathematical object, a scalar field is a map $\phi:M\to K$, usually with $K=\mathbb{R}$ or $\mathbb{C}$. It assigns one scalar value to each point of the domain and carries no intrinsic direction, orientation, or tensor index. Singular or distributional sources, such as Dirac deltas, are generalized scalar objects rather than ordinary finite-valued scalar fields; regularized versions recover ordinary scalar profiles. In relativistic quantum theory, a free massive scalar mode obeys a second-order wave equation whose mass term acts like a restoring gap. In curved spacetime, the same field is written with the metric-compatible wave operator, so the scalar mode propagates on, and contributes stress-energy to, the gravitational geometry.
+**Conceptual View:** As a pure mathematical object, a scalar field is a map $\phi:M\to K$, usually with $K=\mathbb{R}$ or $\mathbb{C}$. It assigns one scalar value to each point of the domain and carries no intrinsic direction, orientation, or tensor index. Here scalar primarily means Lorentz scalar: the field has no spacetime vector or tensor index. Within spin-0 sectors, an ordinary scalar is parity-even, while a pseudoscalar is parity-odd; axions and pion-like modes are standard pseudoscalar examples. The Standard Model Higgs is Lorentz-scalar in spacetime, but the full Higgs field also carries electroweak gauge structure before symmetry breaking. Singular or distributional sources, such as Dirac deltas, are generalized scalar objects rather than ordinary finite-valued scalar fields; regularized versions recover ordinary scalar profiles. In relativistic quantum theory, a free massive scalar mode obeys a second-order wave equation whose mass term acts like a restoring gap. In curved spacetime, the same field is written with the metric-compatible wave operator, so the scalar mode propagates on, and contributes stress-energy to, the gravitational geometry.
 
 The Klein-Gordon equation can be read as the wave-equation form of the relativistic energy-momentum relation
 $$
@@ -259,7 +259,7 @@ Historically, the Liénard-Wiechert moving-source potentials already pointed in 
 **Summary:** Unifies electromagnetic and weak interactions via symmetry breaking.
 
 **Conceptual View:** SU(2)$\times$U(1) gauge theory; the Higgs mechanism gives masses
-to W/Z bosons while leaving the photon massless.
+to W/Z bosons while leaving the photon massless. The physical Higgs excitation is a spin-0 scalar mode, while the full Higgs sector is an electroweak-gauge-structured scalar field rather than a plain gauge-singlet scalar.
 
 **Key Equation:** Gauge symmetry and spontaneous breaking:
 $$
@@ -307,13 +307,13 @@ $$
 **Summary:** A new field solves the strong CP problem and predicts axions.
 
 **Conceptual View:** A global U(1) symmetry breaks, promoting the CP-violating angle
-to a dynamical field that relaxes to zero.
+to a dynamical field that relaxes to zero. Axions and axion-like particles are usually pseudoscalar fields: spin-0 scalar degrees of freedom with parity-odd transformation behavior.
 
 **Key Equation:** Axion coupling:
 $$
 \mathcal{L} \supset \frac{a}{f_a} G\tilde G.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** An axion-like field can be modeled as a long-wavelength phase mode of a particular architrino/tri-binary sub-sector (a quasi-Goldstone of an approximate assembly symmetry). Whether a strong-CP problem exists at the $\mathbb{A}\mathbb{A}\mathbb{A}$ level depends on how QCD emerges from the underlying assembly symmetries; PQ-like dynamics may be an effective stand-in for deeper alignment mechanisms in the Noether Sea.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** An axion-like field can be modeled as a long-wavelength phase or handedness-sensitive mode of a particular architrino/tri-binary sub-sector (a quasi-Goldstone of an approximate assembly symmetry). Whether a strong-CP problem exists at the $\mathbb{A}\mathbb{A}\mathbb{A}$ level depends on how QCD emerges from the underlying assembly symmetries; PQ-like dynamics may be an effective stand-in for deeper alignment mechanisms in the Noether Sea.
 
 **What Still Works:** Axion Theory (Peccei-Quinn) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of tri-binary assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
@@ -728,15 +728,14 @@ $$
 
 **Summary:** The universe's expansion is accelerating for unknown reasons.
 
-**Conceptual View:** Could be a cosmological constant, a new scalar field, or modified
-gravity on large scales.
+**Conceptual View:** Could be a cosmological constant, quintessence as the standard dynamical-scalar-field option, or modified gravity on large scales.
 
 **Key Equation:** Equation of state:
 $$
 w = \frac{p}{\rho}, \quad w=-1.
 $$
 For a cosmological constant, $w=-1$.
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Dark-energy-like behavior arises from the residual energy density and stress of the Noether Sea itself, or in bridge prose the spacetime medium. Its effective equation of state $w$ reflects how the Noether Sea responds to expansion—whether it behaves like a quasi-constant tension, a slowly evolving scalar-like field, or a more complex assembly phase.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Dark-energy-like behavior arises from the residual energy density and stress of the Noether Sea itself, or in bridge prose the spacetime medium. Its effective equation of state $w$ reflects how the Noether Sea responds to expansion—whether it behaves like a quasi-constant tension, quintessence-like behavior, or a more complex assembly phase. In this view, quintessence-like dynamics are an effective large-scale Noether-Sea/spacetime-medium response, not a fundamental scalar ontology.
 
 **What Still Works:** Dark Energy (Beyond $\Lambda$) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
