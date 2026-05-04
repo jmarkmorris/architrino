@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 125,
-      "sections": 856
+      "sections": 857
     }
   },
   "tocRoot": {
@@ -7133,6 +7133,14 @@
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
                     "markdownSection": "Schrödinger Equation",
                     "sectionKey": "schrodinger equation",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Quantum Spin / Pauli-Dirac Map",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+                    "markdownSection": "Quantum Spin / Pauli-Dirac Map",
+                    "sectionKey": "quantum spin pauli dirac map",
                     "headingLevel": 3
                   },
                   {
