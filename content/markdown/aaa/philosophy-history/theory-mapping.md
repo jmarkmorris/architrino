@@ -931,6 +931,87 @@ $$
 
 ---
 
+### Schrödinger Equation
+
+**Theory Name:** Schrödinger Equation. **Short Name:** Schrödinger. **Layer Bucket:** Epistemic / Effective Observation Theories.
+
+**Summary:** The Schrödinger equation is the canonical non-relativistic quantum evolution law. It is not valid at all energies and velocities; it works when particle speeds and energies are low enough that relativity, spin-relativity coupling, and particle creation can be ignored.
+
+**Conceptual View:** The ordinary Schrödinger equation assumes
+$$
+v \ll c.
+$$
+More precisely, it uses the low-speed expansion of relativistic energy:
+$$
+E = mc^2 + \frac{p^2}{2m} - \frac{p^4}{8m^3c^2}+\cdots.
+$$
+Schrödinger keeps only the kinetic term $\frac{p^2}{2m}$ after dropping the constant rest energy $mc^2$. Relative to the speed of light, the practical velocity scale is:
+
+| Regime | Velocity | Meaning |
+| --- | --- | --- |
+| Very safe | $v \lesssim 0.1c$ | Relativistic correction below about $1\%$ |
+| Borderline | $v \sim 0.3c$ | Relativistic corrections become noticeable |
+| Broken | $v \to c$ | Use relativistic quantum theory or quantum field theory |
+
+At high velocity, one uses the Dirac equation for relativistic spin-$1/2$ particles such as electrons, the Klein-Gordon equation for relativistic spin-0 scalar particles, and quantum field theory when creation and annihilation matter.
+
+For a particle of mass $m$, Schrödinger also requires kinetic and binding energies much smaller than rest energy:
+$$
+K \ll mc^2.
+$$
+This criterion places the Schrödinger equation at the extreme low-energy end relative to Planck energy, not near the Planck regime itself. With
+$$
+E_{\mathrm{P}} \approx 1.22\times 10^{28}\ \mathrm{eV},
+\qquad
+\beta=\frac{v}{c},
+$$
+the useful comparison is
+$$
+\frac{K}{E_{\mathrm{P}}}
+=
+(\gamma-1)\frac{mc^2}{E_{\mathrm{P}}}
+\approx
+\frac{1}{2}\frac{m}{m_{\mathrm{P}}}\left(\frac{v}{c}\right)^2,
+\qquad
+\gamma=\frac{1}{\sqrt{1-v^2/c^2}}.
+$$
+The local validity test remains $K/mc^2 \ll 1$; $K/E_{\mathrm{P}}$ shows how far below the Planck scale ordinary Schrödinger regimes sit.
+
+| Particle / scale | Energy | Fraction of Planck energy |
+| --- | --- | --- |
+| Atomic scale | $1\ \mathrm{eV}$ | $8.2\times10^{-29}E_{\mathrm{P}}$ |
+| Electron rest energy | $511\ \mathrm{keV}$ | $4.2\times10^{-23}E_{\mathrm{P}}$ |
+| Electron at $0.1c$ | $2.57\ \mathrm{keV}$ kinetic | $2.1\times10^{-25}E_{\mathrm{P}}$ |
+| Electron at $0.3c$ | $24.7\ \mathrm{keV}$ kinetic | $2.0\times10^{-24}E_{\mathrm{P}}$ |
+| Proton rest energy | $938\ \mathrm{MeV}$ | $7.7\times10^{-20}E_{\mathrm{P}}$ |
+| Proton at $0.1c$ | $4.73\ \mathrm{MeV}$ kinetic | $3.9\times10^{-22}E_{\mathrm{P}}$ |
+| Proton at $0.3c$ | $45.3\ \mathrm{MeV}$ kinetic | $3.7\times10^{-21}E_{\mathrm{P}}$ |
+
+The table should be read as a scale marker, not as a separate validity rule. In Planck units, the characteristic energy scales of ordinary Schrödinger applications usually sit around $10^{-29}E_{\mathrm{P}}$ to $10^{-22}E_{\mathrm{P}}$, because atomic and low-energy nuclear energies are tiny compared with $E_{\mathrm{P}}$. The actual test for a given particle is still local: its kinetic or binding energy must be small compared with that particle's own rest energy. For an electron, $mc^2 \approx 511\ \mathrm{keV}$, so eV-scale atomic energies satisfy $K/mc^2 \ll 1$ and are safely non-relativistic; tens to hundreds of keV no longer satisfy that approximation cleanly. For a proton, $mc^2 \approx 938\ \mathrm{MeV}$, so MeV-scale motion can still be approximately non-relativistic, while higher-energy nuclear or particle collisions require relativistic theory. The equation also fails once the process can create or annihilate particles, because ordinary Schrödinger quantum mechanics assumes a fixed number of particles.
+
+Main breakdown points are: particle speed is not small compared with $c$; kinetic or binding energy is not small compared with $mc^2$; particle creation or annihilation becomes possible; spin-relativistic effects matter strongly; electromagnetic fields must be quantized rather than treated as external backgrounds; massless particles such as photons are involved; or gravity and spacetime curvature are strong enough that non-relativistic flat-space assumptions fail. The equation does not break because an energy is close to Planck energy directly; it breaks when the process is relativistic for the particle, when fixed-particle-number quantum mechanics fails, or when the assumed flat, weak-field, background-potential setup no longer describes the observation.
+
+**Key Equation:** Time-dependent Schrödinger equation:
+$$
+i\hbar \frac{\partial}{\partial t}\psi(\mathbf{x},t)=\hat H\psi(\mathbf{x},t).
+$$
+
+For a single non-relativistic particle in a potential $V(\mathbf{x},t)$,
+$$
+i\hbar \frac{\partial}{\partial t}\psi(\mathbf{x},t)
+=
+\left(-\frac{\hbar^2}{2m}\nabla^2+V(\mathbf{x},t)\right)\psi(\mathbf{x},t).
+$$
+
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Schrödinger evolution is an effective low-energy, low-velocity envelope law. It is not the substrate-level dynamics. It should emerge only in the non-relativistic, weak-field, fixed-particle-number regime, where the coarse-grained wake or assembly-state envelope reduces to a linear wavefunction description. Outside that regime, the underlying nonlinear, history-dependent architrino dynamics should generate relativistic corrections, particle-number-changing behavior, or medium-coupled departures.
+
+**What Still Works:** The Schrödinger equation remains indispensable for atomic, molecular, condensed-matter, and low-energy scattering calculations wherever non-relativistic fixed-particle-number quantum mechanics is accurate.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, $\psi$ and $\hat H$ are reclassified as effective envelope and generator summaries over deeper assembly histories, not as final substrate objects.
+**Transition Relevance:** Transition relevance is high because the equation is the entry point for most practical quantum mechanics and the benchmark that any substrate theory must recover in the low-energy, low-velocity limit.
+**Long-Term Relevance:** Long-term relevance is as a derived continuum-limit envelope equation, with its failure modes marking where relativistic field theory, quantum field theory, or direct substrate dynamics must replace it.
+
+---
+
 ### Statistical Mechanics / Thermodynamics
 
 **Theory Name:** Statistical Mechanics / Thermodynamics. **Short Name:** Statistical Mechanics Thermodynamics. **Layer Bucket:** Epistemic / Effective Observation Theories.

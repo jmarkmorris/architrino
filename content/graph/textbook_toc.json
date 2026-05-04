@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 125,
-      "sections": 855
+      "sections": 856
     }
   },
   "tocRoot": {
@@ -7125,6 +7125,14 @@
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
                     "markdownSection": "Quantum Mechanics (QM)",
                     "sectionKey": "quantum mechanics qm",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Schrödinger Equation",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+                    "markdownSection": "Schrödinger Equation",
+                    "sectionKey": "schrodinger equation",
                     "headingLevel": 3
                   },
                   {

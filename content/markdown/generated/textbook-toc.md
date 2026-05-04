@@ -866,6 +866,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
       - [Anthropic Principle](../aaa/philosophy-history/theory-mapping.md?section=Anthropic+Principle)
     - [Epistemic / Effective](../aaa/philosophy-history/theory-mapping.md?section=Epistemic+%2F+Effective+Observation+Theories)
       - [Quantum Mechanics (QM)](../aaa/philosophy-history/theory-mapping.md?section=Quantum+Mechanics+%28QM%29)
+      - [Schrödinger Equation](../aaa/philosophy-history/theory-mapping.md?section=Schr%C3%B6dinger+Equation)
       - [Statistical Mechanics / Thermodynamics](../aaa/philosophy-history/theory-mapping.md?section=Statistical+Mechanics+%2F+Thermodynamics)
       - [Copenhagen Interpretation](../aaa/philosophy-history/theory-mapping.md?section=Copenhagen+Interpretation)
       - [Many-Worlds (Everett)](../aaa/philosophy-history/theory-mapping.md?section=Many-Worlds+%28Everett%29)
