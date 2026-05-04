@@ -7,7 +7,6 @@
 - Keep the clips concise and respond with point potential implementation
 - Audio and video are played in the movie export in the order assigned in the animation pane.
 - I can even read through portions of my textbook when covering a slide.
-- My first video loses a lot of viewers early on. I need something more eye-catching.
 
 ### PowerPoint Slide Image Exports
 - On MacAir I am using 4000 x 2250
@@ -20,7 +19,6 @@
 - Load into OBS is working on “single shot” type sessions
 
 ## neoclassical.ai Source Material
-- mind maps
 - blog
 - videos
 
@@ -28,7 +26,6 @@
 - 2023+ methodology includes Ai generation of the basic comic strip cels and then editing to add balloons in PowerPoint 2x2 or 2x3 format, and then exporting the comic. Sweet!
 - Deleted application “Comic Strip Factory” from MacPro April 15, 2023
 
-### Wikipedia
 
 ## DJI Talking Points
 - Can also use DJI talking points, which I could record anywhere
@@ -40,7 +37,7 @@
     - sounds terrible when speak selection is chosen
 - FAIL
 
-## Edge Read Aloud
+## ~~Edge Read Aloud~~
 - Excellent controls (my settings)
     - there is a 5 line focus, but I think it’s too annoying
 - keyboard
@@ -48,8 +45,8 @@
     - arrow keys work
     - they have an onscreen arrow as well
     - at some point it got confused though
-        - now it doesn’t work anymore
-            - FAIL
+    - now it doesn’t work anymore
+    - FAIL
 - The problem now is the appearance. I thought it looked better, but it is graying everything out.
 - FAIL
 
@@ -72,13 +69,13 @@
 - 2 TB SSD
 
 ### iPhone 16
-- iPhone 12
-    - 1920 x 888 in test
-    - records audio even when microphone is off
+- 1920 x 888 in test
+- records audio even when microphone is off
 
-### iPad Pro (12.9 inch) (5th generation)
+### ~~iPad Pro (12.9 inch) (5th generation)~~
 - 2732x2048
-- Recording on the iPad Pro seems to pick up both audio and video and not the external microphone!!!  Also the iPad volume doesn’t affect the recording.
+- Recording on the iPad Pro seems to pick up both audio and video and not the external microphone!!!  
+    - Also the iPad volume doesn’t affect the recording.
 - can use iPencil
     - GOOD - is this a requirement?
     - can use iPencil to sweep from bottom right to make a screen clip which I can write on.
@@ -111,5 +108,5 @@
 - 256GB SSD
 
 ### YouTube Original Dimensions
-- Always make sure YouTube video is pinched in to show original dimensions or top and bottom will get cut off.
+- Always make sure YouTube video is pinched in during recording to show original dimensions or top and bottom will get cut off.
 

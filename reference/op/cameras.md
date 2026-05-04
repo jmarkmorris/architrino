@@ -259,6 +259,7 @@
 - reinterpret relevant science news from the point charge perspective
 - Landscape
 - Emergent Nature News
+- review the most referenced papers in particle physics and cosmology, with the help of Ai.
 
 ### LinkedIn awareness ad campaign. Probably cheap because my audience is poor academics. I can create ads for chemists, philosophers, or whomever. 
 
