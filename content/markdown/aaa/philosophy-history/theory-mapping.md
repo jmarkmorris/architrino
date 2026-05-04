@@ -937,45 +937,59 @@ $$
 
 **Summary:** The Schrödinger equation is the canonical non-relativistic quantum evolution law. It is not valid at all energies and velocities; it works when particle speeds and energies are low enough that relativity, spin-relativity coupling, and particle creation can be ignored.
 
-**Conceptual View:** The ordinary Schrödinger equation assumes
+**Conceptual View:** The ordinary Schrödinger equation applies when the state being modeled is non-relativistic. That means its characteristic speed is small compared with the speed of light:
 $$
 v \ll c.
 $$
-More precisely, it uses the low-speed expansion of relativistic energy:
+This is not merely a verbal condition. The equation is obtained by taking the low-speed expansion of relativistic energy,
 $$
 E = mc^2 + \frac{p^2}{2m} - \frac{p^4}{8m^3c^2}+\cdots.
 $$
-Schrödinger keeps only the kinetic term $\frac{p^2}{2m}$ after dropping the constant rest energy $mc^2$. Relative to the speed of light, the practical velocity scale is:
+The term $mc^2$ is the rest energy of a particle of mass $m$. For a fixed particle species in non-relativistic quantum mechanics, this term shifts every energy by the same constant and contributes only a uniform phase to the wavefunction, so it is normally removed. The Schrödinger Hamiltonian then keeps the leading kinetic term $\frac{p^2}{2m}$ and neglects the relativistic correction terms that follow it. Relative to the speed of light, the practical velocity scale is:
 
-| Regime | Velocity | Meaning |
+| Regime | Characteristic speed | Meaning |
 | --- | --- | --- |
-| Very safe | $v \lesssim 0.1c$ | Relativistic correction below about $1\%$ |
-| Borderline | $v \sim 0.3c$ | Relativistic corrections become noticeable |
-| Broken | $v \to c$ | Use relativistic quantum theory or quantum field theory |
+| Strongly non-relativistic | $v \lesssim 0.1c$ | Schrödinger dynamics usually give an accurate leading approximation |
+| Relativistic corrections important | $v \sim 0.3c$ | Corrections to $\frac{p^2}{2m}$ are no longer negligible |
+| Relativistic regime | $v \to c$ | Use relativistic quantum theory or quantum field theory |
 
 At high velocity, one uses the Dirac equation for relativistic spin-$1/2$ particles such as electrons, the Klein-Gordon equation for relativistic spin-0 scalar particles, and quantum field theory when creation and annihilation matter.
 
-For a particle of mass $m$, Schrödinger also requires kinetic and binding energies much smaller than rest energy:
+The same restriction can be stated as an energy condition. For a particle of mass $m$, the kinetic energy $K$ and relevant binding-energy scale must be much smaller than that particle's rest energy:
 $$
 K \ll mc^2.
 $$
-This criterion places the Schrödinger equation at the extreme low-energy end relative to Planck energy, not near the Planck regime itself. With
+For a free particle, kinetic energy and speed are related by
+$$
+\gamma = 1+\frac{K}{mc^2},
+\qquad
+\frac{v}{c}=\sqrt{1-\frac{1}{\gamma^2}}.
+$$
+In the non-relativistic limit this reduces to $v/c\approx\sqrt{2K/(mc^2)}$. For a bound atomic electron, there is no single classical velocity assigned by the wavefunction; the values below are characteristic speeds inferred from the kinetic-energy scale.
+
+| Electron kinetic-energy scale | Characteristic speed |
+| --- | --- |
+| $1\ \mathrm{eV}$ | $0.002c$ |
+| $13.6\ \mathrm{eV}$, hydrogen scale | $0.0073c$ |
+| $10\ \mathrm{keV}$ | $0.20c$ |
+| $50\ \mathrm{keV}$ | $0.41c$ |
+| $100\ \mathrm{keV}$ | $0.55c$ |
+
+Planck energy is useful only as a scale comparison. It is not the criterion that decides whether the Schrödinger equation is valid. With
 $$
 E_{\mathrm{P}} \approx 1.22\times 10^{28}\ \mathrm{eV},
 \qquad
-\beta=\frac{v}{c},
+m_{\mathrm{P}}=\frac{E_{\mathrm{P}}}{c^2},
 $$
-the useful comparison is
+the Planck-normalized kinetic energy is
 $$
 \frac{K}{E_{\mathrm{P}}}
 =
 (\gamma-1)\frac{mc^2}{E_{\mathrm{P}}}
 \approx
-\frac{1}{2}\frac{m}{m_{\mathrm{P}}}\left(\frac{v}{c}\right)^2,
-\qquad
-\gamma=\frac{1}{\sqrt{1-v^2/c^2}}.
+\frac{1}{2}\frac{m}{m_{\mathrm{P}}}\left(\frac{v}{c}\right)^2.
 $$
-The local validity test remains $K/mc^2 \ll 1$; $K/E_{\mathrm{P}}$ shows how far below the Planck scale ordinary Schrödinger regimes sit.
+This comparison explains where Schrödinger applications sit on a universal energy chart. It does not replace the particle-specific test $K/mc^2 \ll 1$.
 
 | Particle / scale | Energy | Fraction of Planck energy |
 | --- | --- | --- |
@@ -987,9 +1001,9 @@ The local validity test remains $K/mc^2 \ll 1$; $K/E_{\mathrm{P}}$ shows how far
 | Proton at $0.1c$ | $4.73\ \mathrm{MeV}$ kinetic | $3.9\times10^{-22}E_{\mathrm{P}}$ |
 | Proton at $0.3c$ | $45.3\ \mathrm{MeV}$ kinetic | $3.7\times10^{-21}E_{\mathrm{P}}$ |
 
-The table should be read as a scale marker, not as a separate validity rule. In Planck units, the characteristic energy scales of ordinary Schrödinger applications usually sit around $10^{-29}E_{\mathrm{P}}$ to $10^{-22}E_{\mathrm{P}}$, because atomic and low-energy nuclear energies are tiny compared with $E_{\mathrm{P}}$. The actual test for a given particle is still local: its kinetic or binding energy must be small compared with that particle's own rest energy. For an electron, $mc^2 \approx 511\ \mathrm{keV}$, so eV-scale atomic energies satisfy $K/mc^2 \ll 1$ and are safely non-relativistic; tens to hundreds of keV no longer satisfy that approximation cleanly. For a proton, $mc^2 \approx 938\ \mathrm{MeV}$, so MeV-scale motion can still be approximately non-relativistic, while higher-energy nuclear or particle collisions require relativistic theory. The equation also fails once the process can create or annihilate particles, because ordinary Schrödinger quantum mechanics assumes a fixed number of particles.
+In Planck units, the characteristic energy scales of standard Schrödinger applications usually sit around $10^{-29}E_{\mathrm{P}}$ to $10^{-22}E_{\mathrm{P}}$. That statement says only that atomic and low-energy nuclear energy scales are extremely small compared with $E_{\mathrm{P}}$. The validity decision is still made by comparing the modeled kinetic or binding energy with the rest energy of the particle involved. For an electron, $mc^2 \approx 511\ \mathrm{keV}$; eV-scale atomic energies therefore satisfy $K/mc^2 \ll 1$, while tens to hundreds of keV correspond to speeds that are a significant fraction of $c$. For a proton, $mc^2 \approx 938\ \mathrm{MeV}$; MeV-scale motion can remain approximately non-relativistic, but higher-energy nuclear or particle collisions require relativistic theory. The equation also fails once the process can create or annihilate particles, because ordinary Schrödinger quantum mechanics uses a wavefunction for a fixed set of particles.
 
-Main breakdown points are: particle speed is not small compared with $c$; kinetic or binding energy is not small compared with $mc^2$; particle creation or annihilation becomes possible; spin-relativistic effects matter strongly; electromagnetic fields must be quantized rather than treated as external backgrounds; massless particles such as photons are involved; or gravity and spacetime curvature are strong enough that non-relativistic flat-space assumptions fail. The equation does not break because an energy is close to Planck energy directly; it breaks when the process is relativistic for the particle, when fixed-particle-number quantum mechanics fails, or when the assumed flat, weak-field, background-potential setup no longer describes the observation.
+The main breakdown points are therefore specific: the characteristic speed is not small compared with $c$; the kinetic or binding energy is not small compared with $mc^2$; particle creation or annihilation becomes possible; spin-relativistic effects matter strongly; electromagnetic fields must be quantized rather than treated as external backgrounds; massless particles such as photons are involved; or gravity and spacetime curvature are strong enough that non-relativistic flat-space assumptions fail. The equation does not fail merely because a quoted energy is large or small compared with Planck energy. It fails when the modeled system leaves the non-relativistic, fixed-particle-number, weak-field regime.
 
 **Key Equation:** Time-dependent Schrödinger equation:
 $$
