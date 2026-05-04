@@ -18,7 +18,7 @@ $$
 
 where $\nabla_k$ is the gradient with respect to $\mathbf{q}_k$. The particle follows a deterministic trajectory through configuration space, steered at every instant by the phase gradient of $\psi$.
 
-**2. The Wave Equation.** The wavefunction $\psi$ evolves according to the standard Schrödinger equation:
+**2. The Wave Equation.** In its ordinary non-relativistic, fixed-particle-number form, the wavefunction $\psi$ evolves according to the standard Schrödinger equation:
 
 $$
 i\hbar \frac{\partial \psi}{\partial t} = \hat{H} \psi,

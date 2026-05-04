@@ -2096,7 +2096,7 @@ f(t,\mathbf{x},\mathbf{v})
 $$
 
 Closure condition for this interface:
-- the same coarse-graining window that preserves validated dynamical invariants must recover the effective Schrödinger limit in the non-relativistic weak-field regime;
+- the same coarse-graining window that preserves validated dynamical invariants must recover the effective Schrödinger limit in the non-relativistic, weak-field, fixed-particle-number regime;
 - residual non-Markovian terms must be explicitly retained as correction operators, not absorbed into uncontrolled fitting.
 
 ---
