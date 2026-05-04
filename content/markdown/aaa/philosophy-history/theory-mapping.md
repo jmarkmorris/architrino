@@ -14,6 +14,8 @@ The document is organized as a matrix rather than a linear history. The first se
 
 **Observation Stack:** Many inherited spacetime and field variables are calibrated through Physical Observer readout (often photon-mediated historically, and now also neutrino- and gravitational-wave-mediated where applicable). In $\mathbb{A}\mathbb{A}\mathbb{A}$, this does not invalidate the theories; it locates their coordinate, metric, and field variables in an observer-facing effective layer rather than directly in the substrate ledger available to the Absolute Observer.
 
+**Regime-Capture Warning:** Modern physics has achieved extraordinary precision inside narrow regions of empirical regime space, but it has too often treated that precision as permission to speak for ontology as a whole. Equations such as the Schrödinger equation, perturbative quantum field models, weak-field GR, and cosmological parameter fits are powerful closures over limited conditions, not final access to substrate reality. The institutional failure is that these regime-bound successes became gatekeeping standards for what could count as fundamental explanation. From the $\mathbb{A}\mathbb{A}\mathbb{A}$ standpoint, this has delayed recognition of the deeper substrate solution: inherited theories must be recovered as effective limits, not enthroned as the architecture of reality.
+
 **Document Type:** Matrix-split chapter with two axes:
 - Layer axis (`##`): ontological/phenomenological domains.
 - Theory axis (`###`): individual theories mapped within each domain.
