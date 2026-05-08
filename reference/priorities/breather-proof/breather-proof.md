@@ -7,15 +7,15 @@
 - Value: `10`
 - Cost: `4`
 - ROI: `2.50`
-- Status: `active`
+- Status: `completed`
 
 ## Task Queue
 
-1. `apocenter_entry_window` — Prove the speed-decay / apocenter-entry lemma that produces the strict sub-field-speed apocenter window without assuming an outer turn. Status: `next`. Depends on: none.
+No open `breather-proof` task remains in this priority file.
 
 ## Scope
 
-Treat [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md) as a frozen reference scaffold and [master-equation-breather.md](../../../content/markdown/aaa/dynamics/master-equation-breather.md) as the frozen proof-program blueprint. The active job is proof execution inside the existing theorem DAG, not architectural redesign.
+Treat [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md) as a frozen reference scaffold and [master-equation-breather.md](../../../content/markdown/aaa/dynamics/master-equation-breather.md) as the frozen proof-program blueprint. This local proof-execution queue is now complete; the remaining work belongs to the closure and coupled-regime priorities.
 
 ## Current State
 
@@ -70,12 +70,11 @@ rather than to a mismatched tame-subclass / macro-envelope pair.
 
 - Read the seed-side through Schauder packages in [master-equation-breather.md](../../../content/markdown/aaa/dynamics/master-equation-breather.md) treating the architecture as frozen.
 - Do not add fresh theorem layers unless a real proof-breaking defect is discovered.
-- Start with the apocenter-entry lemma because the seed-side, branch-regularity, and Type II caustic-transit proof-writing tasks have now been executed in [master-equation-breather.md](../../../content/markdown/aaa/dynamics/master-equation-breather.md).
+- The seed-side, branch-regularity, Type II caustic-transit, and apocenter-entry proof-writing tasks have now been executed in [master-equation-breather.md](../../../content/markdown/aaa/dynamics/master-equation-breather.md) and [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md).
 
 ## Proof-Writing Order
 
-1. Prove the speed-decay / apocenter-entry estimate without assuming an already-existing outer turn.
-2. Preserve the theorem-program structure exactly as written. The active work is proof execution, not another architecture pass.
+1. Preserve the theorem-program structure exactly as written. The remaining work belongs to the closure and coupled-regime priorities rather than this local breather-proof queue.
 
 ## Related Priorities
 

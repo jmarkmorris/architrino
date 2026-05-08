@@ -2645,17 +2645,16 @@ This target isolates the remaining algebraic compatibility issue. Once collapse-
 
 At this stage the remaining blockers are narrow and explicit:
 
-1. prove a non-circular speed-decay or apocenter-entry estimate that supplies the strict sub-field-speed apocenter window used by Lemma 29;
-2. produce a nonempty closed convex tame envelope
+1. produce a nonempty closed convex tame envelope
    $$
    \mathcal{K}_{x_\ast,\eta};
    $$
-3. solve the coupled regime inequalities in
+2. solve the coupled regime inequalities in
    $$
    (\eta,\epsilon_c,X_{\max},U_{\max},A_{\max},T_{\max},h)
    $$
    rather than treating local margins and envelope constants as independent;
-4. verify continuity and precompactness of
+3. verify continuity and precompactness of
    $$
    P_\eta
    $$
@@ -6634,7 +6633,200 @@ $$
 $$
 which proves the corollary.
 
-**Lemma 29: Strict sub-field-speed apocenter window.**
+**Lemma 29: Coarse speed-decay entry into a strict sub-field-speed apocenter window.**
+Fix a desired strict sub-field-speed gap
+$$
+\sigma_{\mathrm{out}}>0,
+$$
+and write
+$$
+v_{\mathrm{sub}}^{\mathrm{out}}
+\equiv
+c_f-\sigma_{\mathrm{out}}.
+$$
+Assume there is an outbound outer-entry interval
+$$
+I_{\mathrm{ent}}\equiv[t_0,t_1]
+$$
+on which the branch has not yet been shown to turn, but the following non-circular data are available:
+
+- the trajectory is on the right exterior outbound branch as long as no turn has occurred,
+  $$
+  x_\ast\le x(t)\le X_{\mathrm{out},\max},
+  \qquad
+  \dot x(t)\ge 0;
+  $$
+- the entry interval carries a coarse inward braking margin at the sub-field-speed boundary and above it:
+  $$
+  \ddot x(t)\le -a_{\mathrm{ent}}^{\mathrm{out}}<0
+  \qquad
+  \text{whenever }
+  t\in I_{\mathrm{ent}}
+  \text{ and }
+  \dot x(t)\ge v_{\mathrm{sub}}^{\mathrm{out}};
+  $$
+- the interval is long enough for entry plus a retained sub-field-speed window of length
+  $$
+  \tau_{\mathrm{sub}}^{\mathrm{out}}>0:
+  $$
+  $$
+  t_1-t_0
+  \ge
+  \frac{\big(\dot x(t_0)-v_{\mathrm{sub}}^{\mathrm{out}}\big)_+}
+  {a_{\mathrm{ent}}^{\mathrm{out}}}
+  +
+  \tau_{\mathrm{sub}}^{\mathrm{out}}.
+  $$
+
+Then one of the following alternatives holds:
+
+1. a finite outer turn occurs before the retained sub-field-speed window is exhausted; or
+2. there exists an entry time
+   $$
+   t_a\in
+   \left[
+   t_0,\,
+   t_0+
+   \frac{\big(\dot x(t_0)-v_{\mathrm{sub}}^{\mathrm{out}}\big)_+}
+   {a_{\mathrm{ent}}^{\mathrm{out}}}
+   \right]
+   $$
+   such that the branch remains strictly sub-field-speed and outbound on
+   $$
+   I_{\mathrm{sub}}\equiv
+   [t_a,t_a+\tau_{\mathrm{sub}}^{\mathrm{out}}],
+   $$
+   namely
+   $$
+   0\le \dot x(t)\le c_f-\sigma_{\mathrm{out}}
+   \qquad
+   \text{for every }t\in I_{\mathrm{sub}}.
+   $$
+
+The coarse margin can be certified without using the sub-field-speed sorting argument. For example, it is enough to have on
+$$
+I_{\mathrm{ent}}
+$$
+a partner floor and a coarse total outward ceiling satisfying
+$$
+\underline A_p^{\mathrm{out}}
+-
+\overline A_{s,\mathrm{ent}}^{\mathrm{out}}
+\ge
+a_{\mathrm{ent}}^{\mathrm{out}}>0,
+$$
+where
+$$
+\overline A_{s,\mathrm{ent}}^{\mathrm{out}}
+$$
+includes all outward self, fold, shell, and deep-past channels on the entry interval. This ceiling is deliberately coarse: it is not allowed to use Lemma 26 or Lemma 27, because those lemmas are consequences of the sub-field-speed window produced here.
+
+Proof.
+Let
+$$
+v(t)\equiv \dot x(t).
+$$
+If
+$$
+v(t_0)\le v_{\mathrm{sub}}^{\mathrm{out}},
+$$
+set
+$$
+t_a=t_0.
+$$
+Otherwise, as long as
+$$
+v(t)\ge v_{\mathrm{sub}}^{\mathrm{out}}
+$$
+and no turn has occurred, the coarse margin gives
+$$
+v'(t)=\ddot x(t)\le -a_{\mathrm{ent}}^{\mathrm{out}}.
+$$
+Integrating from
+$$
+t_0
+$$
+shows that
+$$
+v(t)
+\le
+v(t_0)-a_{\mathrm{ent}}^{\mathrm{out}}(t-t_0)
+$$
+throughout the portion of the interval where
+$$
+v\ge v_{\mathrm{sub}}^{\mathrm{out}}.
+$$
+Hence either the velocity reaches zero first, giving a finite outer turn, or it reaches
+$$
+v_{\mathrm{sub}}^{\mathrm{out}}
+$$
+no later than
+$$
+t_0+
+\frac{\big(v(t_0)-v_{\mathrm{sub}}^{\mathrm{out}}\big)_+}
+{a_{\mathrm{ent}}^{\mathrm{out}}}.
+$$
+Call the first such time
+$$
+t_a.
+$$
+
+It remains to show that the trajectory cannot immediately exit back above
+$$
+v_{\mathrm{sub}}^{\mathrm{out}}
+$$
+before the retained window is exhausted. Suppose instead that, after entry and before any turn, there is a first time
+$$
+t_{\mathrm{exit}}>t_a
+$$
+at which
+$$
+v(t_{\mathrm{exit}})=v_{\mathrm{sub}}^{\mathrm{out}}
+$$
+and the velocity is about to cross from
+$$
+v\le v_{\mathrm{sub}}^{\mathrm{out}}
+$$
+to
+$$
+v>v_{\mathrm{sub}}^{\mathrm{out}}.
+$$
+At this boundary point the same coarse margin applies, so
+$$
+v'(t_{\mathrm{exit}})
+\le
+-a_{\mathrm{ent}}^{\mathrm{out}}<0,
+$$
+which is incompatible with an upward first exit. Therefore the sub-field-speed inequality is forward invariant on the retained part of
+$$
+I_{\mathrm{ent}}
+$$
+until a turn occurs.
+
+The length hypothesis ensures that
+$$
+[t_a,t_a+\tau_{\mathrm{sub}}^{\mathrm{out}}]\subseteq I_{\mathrm{ent}}.
+$$
+If no turn occurs on that retained interval, then the outbound condition supplies
+$$
+v(t)\ge 0,
+$$
+and the forward-invariance argument supplies
+$$
+v(t)\le v_{\mathrm{sub}}^{\mathrm{out}}=c_f-\sigma_{\mathrm{out}}.
+$$
+This is exactly the claimed strict sub-field-speed apocenter window. The final displayed partner-floor condition implies the coarse acceleration hypothesis directly from the signed dynamics
+$$
+\ddot x(t)\le -A_p(t)+A_s^{\mathrm{out}}(t),
+$$
+using
+$$
+A_p(t)\ge \underline A_p^{\mathrm{out}},
+\qquad
+A_s^{\mathrm{out}}(t)\le \overline A_{s,\mathrm{ent}}^{\mathrm{out}}.
+$$
+
+**Corollary 29.1: Strict sub-field-speed apocenter window.**
 Assume there exists an apocenter window
 $$
 I_{\mathrm{sub}}\equiv[t_a,t_b]\subseteq[t_\ast,\infty)
@@ -6650,10 +6842,11 @@ $$
 I_{\mathrm{sub}}.
 $$
 
-This lemma is intentionally a non-circular window hypothesis. It does not derive the sub-field-speed window from an already-known outer turn. A separate speed-decay or apocenter-entry estimate must supply
+This corollary is intentionally separated from the entry mechanism. Lemma 29 supplies
 $$
-I_{\mathrm{sub}}.
+I_{\mathrm{sub}}
 $$
+under the coarse speed-decay hypotheses; if that lemma instead reaches the first alternative, then the outer turn has already occurred and the local sub-field-speed criterion is not needed for existence.
 
 Proof.
 The displayed speed bound is exactly the strict sub-field-speed hypothesis used by Lemma 26. Lemma 27 then applies to the local shell-smeared contribution on the same window.
@@ -6716,7 +6909,7 @@ x(t_a)+\frac{\dot x(t_a)^2}{2a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}}.
 $$
 
 Proof.
-Lemma 29 activates Lemmas 26 and 27 on
+Corollary 29.1 activates Lemmas 26 and 27 on
 $$
 I_{\mathrm{sub}},
 $$
@@ -7987,7 +8180,7 @@ The scaffold is now coherent enough to freeze as a proof program, but the follow
 - **Origin singularity.** The shell regularization $\delta_\eta$ does not by itself remove the divergence of the amplitude factor $1/r^2$ at the origin crossing. For the current braking-dominance theorem target, an explicit core mollifier of the denominator should be treated as required rather than optional, for example by replacing $r^{-2}$ with $(r^2+\epsilon_c^2)^{-1}$ or an equivalent short-distance regularization.
 - **State-space labeling.** The theorem program is safest in true signed coordinates $x\in\mathbb{R}$, with recapture phrased in the radial variable $\rho=|x|$. Any language suggesting a rebound on the same $x>0$ branch before the origin should be treated as provisional shorthand rather than as a derived dynamical fact.
 - **Physical plausibility boundary.** In the collinear geometry the self term is not a centrifugal barrier. On the physically relevant post-crossing outbound branch it tends to reinforce the current radial motion. So the only plausible recapture mechanism in this model is that delayed partner attraction eventually dominates that outward self-drive on the outer leg. If the outer-turn theorem target fails, then the collinear breather should be read as a failed stabilization test rather than as an almost-closed proof.
-- **Apocenter-entry window.** The local outer-turn criterion now requires a strict sub-field-speed apocenter window before it can force the outer turn. That window must be supplied by a separate speed-decay or apocenter-entry estimate, not by assuming an already-existing outer turn.
+- **Apocenter-entry window.** Lemma 29 now supplies the strict sub-field-speed window from a coarse entry-brake margin, or else reaches the outer turn before that window is needed. The global proof still has to include the coarse entry-brake ceiling inside the coupled parameter regime rather than smuggling it in through the local z-map argument.
 - **Past-velocity transversality.** The Jacobians $J_p$ and $J_s$ depend on emission-time velocities, not current velocity. Turning through $\dot x=0$ at the present time does not by itself preserve transversality, so the lower bounds on $|J|$ must be checked against the delayed high-speed part of the history.
 - **Partner-root inequality, not equality.** As the trajectory brakes after the crossing, the true partner distance can only become smaller than the leading linear prediction, which strengthens the partner force. So the partner-root estimate should be used as an upper bound on $r_p(t)$ and therefore a lower bound on $A_p^{\rho}(t)$, not as an exact identity on the nonlinear window.
 - **Inner rebound region.** The theorem program still packages the actual near-center reversal into the admissible history class. That is acceptable for the current reduced problem, but it means the hardest local dynamics near the inner rebound is not yet derived from first principles here.
