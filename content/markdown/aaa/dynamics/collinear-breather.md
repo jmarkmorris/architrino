@@ -2308,6 +2308,162 @@ $$
 $$
 is the required nonempty closed convex tame envelope.
 
+The finite-certificate language can be made concrete by using a sampled
+$$
+C^1
+$$
+tube around one strictly controlled seed-cycle history. This avoids treating the nonlinear branch-chart conditions themselves as convex constraints.
+
+> **Proposition (Sampled seed-cycle tube gives a finite tame certificate).**
+> Let
+> $$
+> \phi_{\mathrm{cyc}}\in\mathcal{C}_{x_\ast,\eta}
+> $$
+> be a seed-propagated history whose one-cycle continuation is defined on
+> $$
+> [0,T_{\max}]
+> $$
+> and has strict margins:
+> 1. every active delayed root on the stored interval and on the controlled continuation is simple with
+>    $$
+>    |J|\ge 2\nu_{\mathrm{chart}}>0;
+>    $$
+> 2. every inactive candidate root equation has gap at least
+>    $$
+>    2\gamma_{\mathrm{gap}}>0
+>    $$
+>    on the compact chart complement;
+> 3. all memory depths stay at distance at least
+>    $$
+>    2\gamma_h>0
+>    $$
+>    from the boundary of the stored horizon;
+> 4. the position, speed, and Lipschitz-velocity envelope bounds hold with strict slack.
+>
+> Assume also that the dual-mollified solution map is continuous from initial
+> $$
+> C^1([-h,0])
+> $$
+> data into
+> $$
+> C^1([-h,T_{\max}])
+> $$
+> on the corresponding branch chart. Then there are a radius
+> $$
+> r_{\mathrm{cert}}>0,
+> $$
+> a finite mesh
+> $$
+> -h=\theta_0<\theta_1<\cdots<\theta_N=0,
+> $$
+> and finitely many affine sample inequalities
+> $$
+> |\phi(\theta_j)-\phi_{\mathrm{cyc}}(\theta_j)|\le \frac{r_{\mathrm{cert}}}{4},
+> \qquad
+> |\dot\phi(\theta_j)-\dot\phi_{\mathrm{cyc}}(\theta_j)|
+> \le \frac{r_{\mathrm{cert}}}{4},
+> \qquad
+> 0\le j\le N,
+> $$
+> such that every
+> $$
+> \phi\in\mathcal{C}_{x_\ast,\eta}
+> $$
+> satisfying those finite inequalities lies in a
+> $$
+> C^1
+> $$
+> neighborhood on which the same active branch chart, Jacobian floor, root-count ceiling, and memory-depth bound persist through the controlled continuation. Consequently these sample inequalities form a finite tame certificate of the kind used in the previous proposition.
+
+Proof.
+By the strict branch-chart margins and compactness of the stored and controlled continuation intervals, there is a radius
+$$
+r_{\mathrm{chart}}>0
+$$
+such that any history whose controlled continuation stays within
+$$
+r_{\mathrm{chart}}
+$$
+of the seed-cycle continuation in
+$$
+C^1
+$$
+has the same active roots, no inactive root births, Jacobian floor at least
+$$
+\nu_{\mathrm{chart}},
+$$
+and the same memory-depth bound. The strict envelope slack gives a second radius
+$$
+r_{\mathrm{env}}>0
+$$
+for the position, speed, and Lipschitz-velocity constraints. By continuous dependence of the branch-chart solution map, shrink to
+$$
+r_{\mathrm{cert}}
+\le
+\min\{r_{\mathrm{chart}},r_{\mathrm{env}}\}
+$$
+so that initial
+$$
+C^1
+$$
+distance at most
+$$
+r_{\mathrm{cert}}
+$$
+from
+$$
+\phi_{\mathrm{cyc}}
+$$
+keeps the full controlled continuation inside the required chart tube.
+
+Choose the mesh with maximum step
+$$
+\Delta
+$$
+small enough that
+$$
+2U_{\max}\Delta\le \frac{r_{\mathrm{cert}}}{2},
+\qquad
+2A_{\max}\Delta\le \frac{r_{\mathrm{cert}}}{2}.
+$$
+If the displayed sample inequalities hold, then for any
+$$
+\theta\in[-h,0]
+$$
+and a nearest mesh point
+$$
+\theta_j
+$$
+one has
+$$
+|\phi(\theta)-\phi_{\mathrm{cyc}}(\theta)|
+\le
+|\phi(\theta)-\phi(\theta_j)|
++|\phi(\theta_j)-\phi_{\mathrm{cyc}}(\theta_j)|
++|\phi_{\mathrm{cyc}}(\theta_j)-\phi_{\mathrm{cyc}}(\theta)|
+\le
+r_{\mathrm{cert}},
+$$
+and the same estimate with the Lipschitz-velocity bound gives
+$$
+|\dot\phi(\theta)-\dot\phi_{\mathrm{cyc}}(\theta)|
+\le
+r_{\mathrm{cert}}.
+$$
+Thus the finite sample tube implies the required
+$$
+C^1
+$$
+tube. Each absolute-value sample condition is just two continuous affine inequalities in
+$$
+C^1([-h,0]).
+$$
+The previous proposition then turns their finite intersection with
+$$
+\mathcal{C}_{x_\ast,\eta}
+$$
+into a closed convex tame envelope.
+
 ### Precompactness of returned histories
 
 > **Proposition (Precompactness of the Return Image).**
@@ -2722,7 +2878,13 @@ This theorem should be read narrowly. It records the exact self-map statement ob
 > \qquad
 > \tau_{\mathrm{sub}}^{\mathrm{out}},
 > \qquad
+> a_{\mathrm{ent}}^{\mathrm{out}},
+> \qquad
+> T_{\mathrm{ent}}^{\mathrm{out}},
+> \qquad
 > \sigma_{\mathrm{out}},
+> \qquad
+> \overline A_s^\rho,
 > \qquad
 > \overline A_{s,\mathrm{ent}}^{\mathrm{out}},
 > \qquad
@@ -2826,32 +2988,321 @@ This theorem should be read narrowly. It records the exact self-map statement ob
 > $$
 > (\eta,\epsilon_c,X_{\max},U_{\max},A_{\max},T_{\max},h,
 > V_{\mathrm{ent}}^{\mathrm{out}},
+> a_{\mathrm{ent}}^{\mathrm{out}},
+> T_{\mathrm{ent}}^{\mathrm{out}},
 > \overline A_{s,\mathrm{ent}}^{\mathrm{out}}),
 > $$
 > rather than verify the local margins first and choose the envelope constants afterward with arbitrary slack.
 
 This target isolates the remaining algebraic compatibility issue. Once collapse-to-crossing bounds, the inner recapture margin, the outer-turn margin, and the envelope bookkeeping constants are packaged on one coupled regime, invariant-envelope closure becomes an actual self-map statement. Until then, simultaneous solvability of the displayed inequalities remains part of the scaffold rather than a completed proposition.
 
+For later proof checking, the finite strict-regime list can be taken to include:
+$$
+\tau_1-\frac{\epsilon_c}{2\beta_{p,\max}}>0,
+\qquad
+\frac{\epsilon_c}{4c_fC_p}-\eta>0,
+\qquad
+\frac{\beta_{p,\max}^2}{c_fC_p}-\epsilon_c>0,
+$$
+$$
+\frac{\kappa\epsilon^2}{4\beta_{p,\max}\epsilon_c}
+-
+\frac{\overline A_s^\rho\epsilon_c}{2\beta_{p,\max}}
+-
+V_{\max}
+>0,
+$$
+$$
+\underline A_p^{\mathrm{out}}
+-
+\overline A_{s,\mathrm{ent}}^{\mathrm{out}}
+-
+a_{\mathrm{ent}}^{\mathrm{out}}
+\ge 0,
+\qquad
+a_{\mathrm{ent}}^{\mathrm{out}}>0,
+$$
+$$
+\underline A_p^{\mathrm{out}}
+-
+\frac{\kappa\epsilon^2}{c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2}
+-
+\frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
+\sigma_{\mathrm{out}}\epsilon_c^2}
+>0,
+$$
+$$
+T_{\mathrm{ent}}^{\mathrm{out}}
+-
+\frac{\big(V_{\mathrm{ent}}^{\mathrm{out}}-(c_f-\sigma_{\mathrm{out}})\big)_+}
+{a_{\mathrm{ent}}^{\mathrm{out}}}
+-
+\tau_{\mathrm{sub}}^{\mathrm{out}}
+\ge 0,
+$$
+together with the five envelope domination inequalities for
+$$
+X_{\max},
+\qquad
+U_{\max},
+\qquad
+A_{\max},
+\qquad
+T_{\max},
+\qquad
+h.
+$$
+Any dependence of
+$$
+V_{\max},
+\qquad
+V_{\mathrm{ent}}^{\mathrm{out}},
+\qquad
+T_{\mathrm{ent}}^{\mathrm{out}},
+\qquad
+\overline A_{s,\mathrm{ent}}^{\mathrm{out}}
+$$
+on the envelope constants must be inserted into this list before claiming a strict slack point.
+
+> **Proposition (Strict slack point gives a nonempty coupled regime).**
+> Let
+> $$
+> p
+> \equiv
+> (\eta,\epsilon_c,X_{\max},U_{\max},A_{\max},T_{\max},h,
+> V_{\mathrm{ent}}^{\mathrm{out}},
+> a_{\mathrm{ent}}^{\mathrm{out}},
+> T_{\mathrm{ent}}^{\mathrm{out}},
+> \overline A_{s,\mathrm{ent}}^{\mathrm{out}})
+> $$
+> denote the coupled parameter tuple, and suppose the coupled-regime requirements can be written as a finite family of continuous inequalities
+> $$
+> F_q(p)>0,
+> \qquad
+> q\in\mathcal{Q}_{\mathrm{reg}},
+> $$
+> together with the finite envelope domination inequalities
+> $$
+> G_r(p)\ge 0,
+> \qquad
+> r\in\mathcal{Q}_{\mathrm{env}}.
+> $$
+> Here the list includes the inner-window inequalities, the margins
+> $$
+> \mathfrak M_{\mathrm{in}}>0,
+> \qquad
+> \mathfrak M_{\mathrm{ent}}\ge a_{\mathrm{ent}}^{\mathrm{out}}>0,
+> \qquad
+> \mathfrak M_{\mathrm{out}}>0,
+> $$
+> the outer-entry interval budget, and the envelope bounds for
+> $$
+> X_{\max},
+> \qquad
+> U_{\max},
+> \qquad
+> A_{\max},
+> \qquad
+> T_{\max},
+> \qquad
+> h.
+> $$
+> If there exists one parameter tuple
+> $$
+> p_0
+> $$
+> such that all strict inequalities have positive slack and all envelope inequalities have nonnegative slack, with the zero-slack envelope inequalities allowed only where increasing the corresponding envelope constant preserves every other inequality, then the admissible coupled-regime set is nonempty. If the envelope inequalities also have strict slack at
+> $$
+> p_0,
+> $$
+> then the admissible regime contains an open neighborhood of
+> $$
+> p_0.
+> $$
+
+Proof.
+Because the family
+$$
+\mathcal{Q}_{\mathrm{reg}}
+$$
+is finite and each
+$$
+F_q
+$$
+is continuous, positive slack at
+$$
+p_0
+$$
+persists on a small neighborhood of
+$$
+p_0.
+$$
+The same argument applies to every envelope inequality with strict slack. If one envelope inequality is saturated but the corresponding envelope constant can be increased without weakening the other inequalities, enlarge that constant slightly first; this turns the saturated domination inequality into a strict one while preserving the already strict margin inequalities. After this finite adjustment, all inequalities hold with strict slack on one neighborhood. Hence the coupled admissible set is nonempty, and in the strict-slack case open.
+
+This proposition reduces the coupled-regime problem to a finite arithmetic certificate: exhibit one tuple
+$$
+p_0
+$$
+at which the inner margin, apocenter-entry margin, outer margin, entry-time budget, and envelope domination inequalities all hold simultaneously.
+
+> **Proposition (Certified self-map criterion).**
+> Let
+> $$
+> \mathcal{K}_{x_\ast,\eta}
+> =
+> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> $$
+> be a closed convex tame envelope produced by a finite certificate
+> $$
+> \{\ell_\alpha\le b_\alpha\}_{\alpha\in\mathcal{I}_{\mathrm{cert}}}.
+> $$
+> Assume:
+> 1. the invariant-envelope closure theorem applies on
+>    $$
+>    \mathcal{K}_{x_\ast,\eta},
+>    $$
+>    so that
+>    $$
+>    P_\eta(\phi)\in\mathcal{C}_{x_\ast,\eta}
+>    \qquad
+>    \text{for every }\phi\in\mathcal{K}_{x_\ast,\eta};
+>    $$
+> 2. each certificate inequality is preserved by one return:
+>    $$
+>    \ell_\alpha(P_\eta(\phi))\le b_\alpha
+>    \qquad
+>    \text{for every }
+>    \alpha\in\mathcal{I}_{\mathrm{cert}}
+>    \text{ and every }
+>    \phi\in\mathcal{K}_{x_\ast,\eta}.
+>    $$
+>
+> Then
+> $$
+> P_\eta(\mathcal{K}_{x_\ast,\eta})
+> \subseteq
+> \mathcal{K}_{x_\ast,\eta}.
+> $$
+
+Proof.
+Fix
+$$
+\phi\in\mathcal{K}_{x_\ast,\eta}.
+$$
+By invariant-envelope closure,
+$$
+P_\eta(\phi)\in\mathcal{C}_{x_\ast,\eta}.
+$$
+By certificate preservation,
+$$
+\ell_\alpha(P_\eta(\phi))\le b_\alpha
+\qquad
+\text{for every }\alpha\in\mathcal{I}_{\mathrm{cert}}.
+$$
+Therefore
+$$
+P_\eta(\phi)
+\in
+\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+=
+\mathcal{K}_{x_\ast,\eta}.
+$$
+Since
+$$
+\phi
+$$
+was arbitrary, the claimed self-map inclusion follows.
+
+For the sampled certificate above, certificate preservation has an entirely finite form.
+
+> **Proposition (Finite sampled preservation criterion).**
+> Suppose
+> $$
+> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> $$
+> is defined by the sampled seed-cycle tube in Proposition `Sampled seed-cycle tube gives a finite tame certificate`, with mesh
+> $$
+> \{\theta_j\}_{j=0}^N
+> $$
+> and radius
+> $$
+> r_{\mathrm{cert}}.
+> $$
+> Assume invariant-envelope closure gives
+> $$
+> P_\eta(\phi)\in\mathcal{C}_{x_\ast,\eta}
+> \qquad
+> \text{for every }\phi\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+> $$
+> If, for every
+> $$
+> \phi\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> $$
+> and every mesh index
+> $$
+> 0\le j\le N,
+> $$
+> the returned history obeys
+> $$
+> |P_\eta(\phi)(\theta_j)-\phi_{\mathrm{cyc}}(\theta_j)|
+> \le \frac{r_{\mathrm{cert}}}{4},
+> \qquad
+> |\partial_\theta P_\eta(\phi)(\theta_j)-\dot\phi_{\mathrm{cyc}}(\theta_j)|
+> \le \frac{r_{\mathrm{cert}}}{4},
+> $$
+> then
+> $$
+> P_\eta(\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}})
+> \subseteq
+> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+> $$
+
+Proof.
+The invariant-envelope theorem gives the returned-history membership in
+$$
+\mathcal{C}_{x_\ast,\eta}.
+$$
+The displayed finite sample inequalities are exactly the certificate inequalities defining
+$$
+\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+$$
+in the sampled construction. Hence every returned history satisfies all certificate inequalities and therefore lies in
+$$
+\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+$$
+
+The hard part of applying this criterion is proving the finite mesh inequalities uniformly. One useful route is a boundary-trapping check: for each certificate face
+$$
+\ell_\alpha=b_\alpha,
+$$
+show that any trajectory whose returned history would otherwise touch that face is pushed strictly back toward
+$$
+\ell_\alpha<b_\alpha
+$$
+by one of the established cycle margins. Because the certificate family is finite, these facewise checks reduce the global self-map property to finitely many inward-pointing inequalities.
+
 ### Remaining blockers before Schauder
 
 At this stage the remaining blockers are narrow and explicit:
 
-1. produce the finite tame certificate whose affine tube gives
+1. verify a strictly controlled seed-cycle tube with the branch-chart, gap, memory-depth, and envelope margins required by the sampled finite tame certificate for
    $$
    \mathcal{K}_{x_\ast,\eta};
    $$
-2. solve the coupled regime inequalities in
+2. exhibit a strict slack point for the finite coupled-regime inequality system in
    $$
    (\eta,\epsilon_c,X_{\max},U_{\max},A_{\max},T_{\max},h,
    V_{\mathrm{ent}}^{\mathrm{out}},
+   a_{\mathrm{ent}}^{\mathrm{out}},
+   T_{\mathrm{ent}}^{\mathrm{out}},
    \overline A_{s,\mathrm{ent}}^{\mathrm{out}})
    $$
    rather than treating local margins and envelope constants as independent;
-3. prove the self-map property
+3. verify finite certificate preservation under one return, equivalently prove the finite boundary-trapping checks that imply
    $$
    P_\eta(\mathcal{K}_{x_\ast,\eta})\subseteq \mathcal{K}_{x_\ast,\eta}
    $$
-   on that same domain.
+   on that same domain; in the sampled-certificate formulation this is the finite set of returned position and velocity sample inequalities.
 
 Once these three items are theorem-level, the remaining Schauder step is formally routine because continuity and precompactness have been isolated above as conditional propositions on the same domain.
 
@@ -3900,15 +4351,15 @@ P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
 $$
 is exactly the conclusion of the returned-history reentry step. Hence the invariant-envelope theorem is nonvacuous on a genuine delayed history class.
 
-This theorem closes the remaining logical gap in the global existence program. The note now contains:
+This theorem closes the seed-side nonvacuity gap in the global existence program. The note now contains:
 
 - an explicit nonempty section-side seed,
 - a propagation ladder from that seed to a nonempty tame class,
 - explicit inner and outer recapture regimes,
-- invariant-envelope closure on a closed convex history set,
+- invariant-envelope closure on a certified closed convex history set, conditional on the sampled certificate and coupled strict-slack arithmetic,
 - and the previously stated precompactness, continuity, and Schauder route.
 
-The remaining work is therefore no longer to construct a nonempty delayed class, but to tighten the continuity and compactness inputs on that same class until the fixed-point step can be stated as a final theorem rather than as a route.
+The remaining work is therefore no longer to construct a nonempty delayed class. It is to verify the sampled tame-envelope certificate, solve the coupled strict-slack inequalities, and prove finite certificate preservation under one return on that same class.
 
 ### Collapse-to-crossing target
 
