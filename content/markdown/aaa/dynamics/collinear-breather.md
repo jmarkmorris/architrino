@@ -2645,27 +2645,28 @@ This target isolates the remaining algebraic compatibility issue. Once collapse-
 
 At this stage the remaining blockers are narrow and explicit:
 
-1. produce a nonempty closed convex tame envelope
+1. prove a non-circular speed-decay or apocenter-entry estimate that supplies the strict sub-field-speed apocenter window used by Lemma 29;
+2. produce a nonempty closed convex tame envelope
    $$
    \mathcal{K}_{x_\ast,\eta};
    $$
-2. solve the coupled regime inequalities in
+3. solve the coupled regime inequalities in
    $$
    (\eta,\epsilon_c,X_{\max},U_{\max},A_{\max},T_{\max},h)
    $$
    rather than treating local margins and envelope constants as independent;
-3. verify continuity and precompactness of
+4. verify continuity and precompactness of
    $$
    P_\eta
    $$
    on that same closed convex domain;
-4. and prove the self-map property
+5. and prove the self-map property
    $$
    P_\eta(\mathcal{K}_{x_\ast,\eta})\subseteq \mathcal{K}_{x_\ast,\eta}
    $$
    on that same domain.
 
-Once these four items are theorem-level, the remaining Schauder step is formally routine.
+Once these five items are theorem-level, the remaining Schauder step is formally routine.
 
 ### Schauder capstone
 
@@ -7986,6 +7987,7 @@ The scaffold is now coherent enough to freeze as a proof program, but the follow
 - **Origin singularity.** The shell regularization $\delta_\eta$ does not by itself remove the divergence of the amplitude factor $1/r^2$ at the origin crossing. For the current braking-dominance theorem target, an explicit core mollifier of the denominator should be treated as required rather than optional, for example by replacing $r^{-2}$ with $(r^2+\epsilon_c^2)^{-1}$ or an equivalent short-distance regularization.
 - **State-space labeling.** The theorem program is safest in true signed coordinates $x\in\mathbb{R}$, with recapture phrased in the radial variable $\rho=|x|$. Any language suggesting a rebound on the same $x>0$ branch before the origin should be treated as provisional shorthand rather than as a derived dynamical fact.
 - **Physical plausibility boundary.** In the collinear geometry the self term is not a centrifugal barrier. On the physically relevant post-crossing outbound branch it tends to reinforce the current radial motion. So the only plausible recapture mechanism in this model is that delayed partner attraction eventually dominates that outward self-drive on the outer leg. If the outer-turn theorem target fails, then the collinear breather should be read as a failed stabilization test rather than as an almost-closed proof.
+- **Apocenter-entry window.** The local outer-turn criterion now requires a strict sub-field-speed apocenter window before it can force the outer turn. That window must be supplied by a separate speed-decay or apocenter-entry estimate, not by assuming an already-existing outer turn.
 - **Past-velocity transversality.** The Jacobians $J_p$ and $J_s$ depend on emission-time velocities, not current velocity. Turning through $\dot x=0$ at the present time does not by itself preserve transversality, so the lower bounds on $|J|$ must be checked against the delayed high-speed part of the history.
 - **Partner-root inequality, not equality.** As the trajectory brakes after the crossing, the true partner distance can only become smaller than the leading linear prediction, which strengthens the partner force. So the partner-root estimate should be used as an upper bound on $r_p(t)$ and therefore a lower bound on $A_p^{\rho}(t)$, not as an exact identity on the nonlinear window.
 - **Inner rebound region.** The theorem program still packages the actual near-center reversal into the admissible history class. That is acceptable for the current reduced problem, but it means the hardest local dynamics near the inner rebound is not yet derived from first principles here.
