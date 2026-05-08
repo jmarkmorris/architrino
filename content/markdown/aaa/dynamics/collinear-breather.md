@@ -2208,6 +2208,106 @@ $$
 $$
 is to put the same convex bounds and the tame delayed geometry on one matching domain. In particular, this target does not assert that Jacobian lower bounds or branch-count restrictions are convex by inspection. It isolates the additional burden of producing a closed convex subset on which those tame conditions persist. The self-map property is a separate dynamical burden supplied later by invariant-envelope closure.
 
+The clean way to discharge that burden is not to put the nonconvex delayed-root labels directly into the definition of
+$$
+\mathcal{K}_{x_\ast,\eta}.
+$$
+Instead, one should produce a finite tame certificate: a finite family of continuous affine functionals
+$$
+\ell_\alpha:C^1([-h,0])\to\mathbb{R},
+\qquad
+\alpha\in\mathcal{I}_{\mathrm{cert}},
+$$
+and constants
+$$
+b_\alpha
+$$
+such that the closed affine tube
+$$
+\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+\equiv
+\left\{
+\phi\in\mathcal{C}_{x_\ast,\eta}
+\;\middle|\;
+\ell_\alpha(\phi)\le b_\alpha
+\text{ for every }\alpha\in\mathcal{I}_{\mathrm{cert}}
+\right\}
+$$
+implies the desired finite branch chart, Jacobian floors, root-count ceilings, and memory-depth bounds.
+
+> **Proposition (Finite certificate construction of a closed convex tame envelope).**
+> Suppose there exists a finite tame certificate
+> $$
+> \{\ell_\alpha\le b_\alpha\}_{\alpha\in\mathcal{I}_{\mathrm{cert}}}
+> $$
+> with the following properties:
+>
+> 1. one seed-propagated history
+>    $$
+>    \phi_{\mathrm{seed,cyc}}\in\mathcal{C}_{x_\ast,\eta}
+>    $$
+>    satisfies all certificate inequalities with strict slack;
+> 2. every
+>    $$
+>    \phi\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+>    $$
+>    has the same finite active branch chart on the stored interval and on the controlled one-cycle continuation;
+> 3. on that chart the delayed roots remain simple with uniform Jacobian floor
+>    $$
+>    |J|\ge \nu_{\mathrm{cert}}>0;
+>    $$
+> 4. the active branch count, memory depth, position, speed, and Lipschitz-velocity bounds are bounded by the constants used in
+>    $$
+>    \mathcal{C}_{x_\ast,\eta};
+>    $$
+> 5. and these certificate implications are closed under
+>    $$
+>    C^1
+>    $$
+>    limits inside
+>    $$
+>    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+>    $$
+>
+> Then
+> $$
+> \mathcal{K}_{x_\ast,\eta}
+> \equiv
+> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> $$
+> is a nonempty closed convex tame envelope.
+
+Proof.
+The set
+$$
+\mathcal{C}_{x_\ast,\eta}
+$$
+is closed and convex by its affine section condition, interval bounds, speed bounds, and Lipschitz-velocity bound. Each certificate condition
+$$
+\ell_\alpha(\phi)\le b_\alpha
+$$
+is a closed half-space in
+$$
+C^1([-h,0]),
+$$
+so the finite intersection
+$$
+\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+$$
+is closed and convex. It is nonempty because
+$$
+\phi_{\mathrm{seed,cyc}}
+$$
+lies in it with strict slack. Items 2-4 give the finite branch chart, Jacobian floors, branch-count ceilings, memory-depth bounds, and Banach-envelope bounds required for tameness. Item 5 says exactly that these tame properties persist under
+$$
+C^1
+$$
+limits inside the certified set. Hence
+$$
+\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+$$
+is the required nonempty closed convex tame envelope.
+
 ### Precompactness of returned histories
 
 > **Proposition (Precompactness of the Return Image).**
@@ -2342,7 +2442,7 @@ This proposition deliberately stops short of invariance. Its role is only to sho
 
 ### Continuity on the tame envelope
 
-> **Target Proposition (Continuity of the Return Map on $\mathcal{K}_{x_\ast,\eta}$).**
+> **Proposition (Continuity of the Return Map on $\mathcal{K}_{x_\ast,\eta}$).**
 > Let
 > $$
 > \mathcal{K}_{x_\ast,\eta}
@@ -2378,7 +2478,7 @@ This proposition deliberately stops short of invariance. Its role is only to sho
 > $$
 > is continuous.
 
-Proof sketch.
+Proof.
 Take
 $$
 \psi_n\to \psi
@@ -2399,7 +2499,19 @@ The tame root-persistence hypothesis prevents branch changes and Jacobian loss, 
 $$
 G(t,\psi)\equiv x(t;\psi)-x_\ast,
 $$
-uniform transversality gives
+the convergence of
+$$
+x_n
+$$
+to
+$$
+x
+$$
+is uniform in a fixed neighborhood of
+$$
+T(\psi).
+$$
+Uniform transversality gives
 $$
 G(T(\psi),\psi)=0,
 \qquad
@@ -2408,6 +2520,30 @@ $$
 and therefore
 $$
 T(\psi_n)\to T(\psi).
+$$
+Indeed, for small
+$$
+\delta>0
+$$
+the values
+$$
+G(T(\psi)-\delta,\psi)
+\qquad
+\text{and}
+\qquad
+G(T(\psi)+\delta,\psi)
+$$
+have opposite signs, and the same sign separation holds for
+$$
+G(\cdot,\psi_n)
+$$
+for all sufficiently large
+$$
+n.
+$$
+The uniform transversality bound excludes a second nearby return and identifies this zero with
+$$
+T(\psi_n).
 $$
 Finally,
 $$
@@ -2424,7 +2560,7 @@ $$
 
 ### Invariant-envelope closure
 
-The cycle estimates now reduce to two explicit margins:
+The cycle estimates now reduce to three explicit margins:
 $$
 \mathfrak M_{\mathrm{in}}
 \equiv
@@ -2436,6 +2572,14 @@ V_{\max},
 $$
 coming from Proposition `Explicit short-window recapture regime`, and
 $$
+\mathfrak M_{\mathrm{ent}}
+\equiv
+\underline A_p^{\mathrm{out}}
+-
+\overline A_{s,\mathrm{ent}}^{\mathrm{out}},
+$$
+coming from Lemma 29, and
+$$
 \mathfrak M_{\mathrm{out}}
 \equiv
 \underline A_p^{\mathrm{out}}
@@ -2445,9 +2589,9 @@ $$
 \frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
 \sigma_{\mathrm{out}}\epsilon_c^2},
 $$
-coming from the unified trimmed-apocenter outer-turn criterion. The first margin forces the initial post-crossing turnaround; the second forces the final apocenter turn.
+coming from the unified trimmed-apocenter outer-turn criterion. The first margin forces the initial post-crossing turnaround, the second supplies the non-circular sub-field-speed apocenter-entry window, and the third forces the final apocenter turn once that window exists.
 
-> **Target Theorem (Invariant-Envelope Closure from Compatible Explicit Regimes).**
+> **Theorem (Invariant-Envelope Closure from Compatible Explicit Regimes).**
 > Fix
 > $$
 > x_\ast>0
@@ -2471,11 +2615,18 @@ coming from the unified trimmed-apocenter outer-turn criterion. The first margin
 >    $$
 >    \mathfrak M_{\mathrm{in}}>0;
 >    $$
-> 3. Proposition `Unified trimmed-apocenter outer-turn criterion` applies on the final apocenter window, so that
+> 3. Lemma 29 applies on the outer-entry interval with
+>    $$
+>    \mathfrak M_{\mathrm{ent}}
+>    \ge
+>    a_{\mathrm{ent}}^{\mathrm{out}}>0,
+>    $$
+>    and with enough interval length to produce either a finite outer turn or a retained strict sub-field-speed window;
+> 4. Proposition `Unified trimmed-apocenter outer-turn criterion` applies on the final apocenter window supplied by the entry step, so that
 >    $$
 >    \mathfrak M_{\mathrm{out}}>0;
 >    $$
-> 4. the turn-to-section return lemmas give class-uniform section-return bounds
+> 5. the turn-to-section return lemmas give class-uniform section-return bounds
 >    $$
 >    X_{\mathrm{out},\max},
 >    \qquad
@@ -2485,12 +2636,12 @@ coming from the unified trimmed-apocenter outer-turn criterion. The first margin
 >    \qquad
 >    T_{\mathrm{cyc},\max};
 >    $$
-> 5. the envelope parameters satisfy
+> 6. the envelope parameters satisfy
 >    $$
 >    X_{\max}\ge \max\{x_\ast,X_{\mathrm{out},\max}\},
 >    $$
 >    $$
->    U_{\max}\ge \max\{V_{\max},U_{\mathrm{sec},\max}\},
+>    U_{\max}\ge \max\{V_{\max},V_{\mathrm{ent}}^{\mathrm{out}},U_{\mathrm{sec},\max}\},
 >    $$
 >    $$
 >    A_{\max}\ge A_{\mathrm{cyc},\max},
@@ -2499,7 +2650,7 @@ coming from the unified trimmed-apocenter outer-turn criterion. The first margin
 >    \qquad
 >    h\ge \frac{2X_{\max}}{c_f};
 >    $$
-> 6. the returned history preserves the same Jacobian and branch-count bounds used to define tameness.
+> 7. the returned history preserves the same Jacobian and branch-count bounds used to define tameness.
 >
 > Then
 > $$
@@ -2508,7 +2659,7 @@ coming from the unified trimmed-apocenter outer-turn criterion. The first margin
 > \mathcal{C}_{x_\ast,\eta}.
 > $$
 
-Proof sketch.
+Proof.
 Collapse-to-crossing control delivers an admissible crossing with speed at most
 $$
 V_{\max}.
@@ -2517,7 +2668,11 @@ The strict inner margin
 $$
 \mathfrak M_{\mathrm{in}}>0
 $$
-then gives the first post-crossing turn by Proposition `Explicit short-window recapture regime`. On the return half, Proposition `Unified trimmed-apocenter outer-turn criterion` supplies the final apocenter turn because
+then gives the first post-crossing turn by Proposition `Explicit short-window recapture regime`. On the return half, the entry margin
+$$
+\mathfrak M_{\mathrm{ent}}\ge a_{\mathrm{ent}}^{\mathrm{out}}>0
+$$
+activates Lemma 29. Thus either the outer turn has already occurred, or the trajectory enters a retained strict sub-field-speed apocenter window. In the second case, Proposition `Unified trimmed-apocenter outer-turn criterion` supplies the final apocenter turn because
 $$
 \mathfrak M_{\mathrm{out}}>0.
 $$
@@ -2525,7 +2680,7 @@ The return lemmas then give re-entry to
 $$
 x=x_\ast
 $$
-with class-uniform position, speed, acceleration, time, and tame delayed-root bounds. The envelope inequalities in item 5 place the entire returned history back inside
+with class-uniform position, speed, acceleration, time, and tame delayed-root bounds. The envelope inequalities in item 6 place the entire returned history back inside
 $$
 \mathcal{C}_{x_\ast,\eta}.
 $$
@@ -2538,12 +2693,14 @@ $$
 P_\eta.
 $$
 
-This target should be read narrowly. It records the exact self-map statement one wants once the tame envelope exists and the compatibility inequalities are jointly solvable. It does not by itself close either of those two burdens.
+This theorem should be read narrowly. It records the exact self-map statement obtained once the tame envelope exists and the compatibility inequalities are jointly solvable. It does not by itself close either of those two burdens.
 
 > **Target Proposition (Coupled admissible parameter regime).**
 > Fix the geometric and dynamical constants extracted from the cycle estimates:
 > $$
 > V_{\max},
+> \qquad
+> V_{\mathrm{ent}}^{\mathrm{out}},
 > \qquad
 > X_{\mathrm{out},\max},
 > \qquad
@@ -2563,7 +2720,11 @@ This target should be read narrowly. It records the exact self-map statement one
 > \qquad
 > \tau_{\mathrm{deep}},
 > \qquad
+> \tau_{\mathrm{sub}}^{\mathrm{out}},
+> \qquad
 > \sigma_{\mathrm{out}},
+> \qquad
+> \overline A_{s,\mathrm{ent}}^{\mathrm{out}},
 > \qquad
 > \underline A_p^{\mathrm{out}}.
 > $$
@@ -2583,7 +2744,24 @@ This target should be read narrowly. It records the exact self-map statement one
 > $$
 > \mathfrak M_{\mathrm{in}}>0,
 > \qquad
+> \mathfrak M_{\mathrm{ent}}
+> =
+> \underline A_p^{\mathrm{out}}
+> -
+> \overline A_{s,\mathrm{ent}}^{\mathrm{out}}
+> \ge
+> a_{\mathrm{ent}}^{\mathrm{out}}>0,
+> \qquad
 > \mathfrak M_{\mathrm{out}}>0.
+> $$
+> Also assume the outer-entry interval budget satisfies
+> $$
+> T_{\mathrm{ent}}^{\mathrm{out}}
+> \ge
+> \frac{\big(V_{\mathrm{ent}}^{\mathrm{out}}-(c_f-\sigma_{\mathrm{out}})\big)_+}
+> {a_{\mathrm{ent}}^{\mathrm{out}}}
+> +
+> \tau_{\mathrm{sub}}^{\mathrm{out}}.
 > $$
 > Then there exist envelope constants
 > $$
@@ -2602,7 +2780,7 @@ This target should be read narrowly. It records the exact self-map statement one
 > X_{\max}\ge \max\{x_\ast,X_{\mathrm{out},\max}\},
 > $$
 > $$
-> U_{\max}\ge \max\{V_{\max},U_{\mathrm{sec},\max}\},
+> U_{\max}\ge \max\{V_{\max},V_{\mathrm{ent}}^{\mathrm{out}},U_{\mathrm{sec},\max}\},
 > $$
 > $$
 > A_{\max}\ge A_{\mathrm{cyc},\max},
@@ -2615,6 +2793,8 @@ This target should be read narrowly. It records the exact self-map statement one
 > $$
 > \mathfrak M_{\mathrm{in}}>0,
 > \qquad
+> \mathfrak M_{\mathrm{ent}}\ge a_{\mathrm{ent}}^{\mathrm{out}}>0,
+> \qquad
 > \mathfrak M_{\mathrm{out}}>0
 > $$
 > as algebraically independent of the envelope constants. The crossing-speed bound
@@ -2623,7 +2803,7 @@ This target should be read narrowly. It records the exact self-map statement one
 > $$
 > enters
 > $$
-> U_{\max}\ge \max\{V_{\max},U_{\mathrm{sec},\max}\},
+> U_{\max}\ge \max\{V_{\max},V_{\mathrm{ent}}^{\mathrm{out}},U_{\mathrm{sec},\max}\},
 > $$
 > while the collapse estimates producing
 > $$
@@ -2633,9 +2813,20 @@ This target should be read narrowly. It records the exact self-map statement one
 > $$
 > X_{\max}.
 > $$
+> Likewise, the coarse entry ceiling
+> $$
+> \overline A_{s,\mathrm{ent}}^{\mathrm{out}}
+> $$
+> and the entry speed ceiling
+> $$
+> V_{\mathrm{ent}}^{\mathrm{out}}
+> $$
+> are envelope-level quantities: they depend on the same branch-count, fold-ceiling, deep-past, speed, and position bounds that define the controlled cycle.
 > A valid nonemptiness proof must therefore close a coupled algebraic system in
 > $$
-> (\eta,\epsilon_c,X_{\max},U_{\max},A_{\max},T_{\max},h),
+> (\eta,\epsilon_c,X_{\max},U_{\max},A_{\max},T_{\max},h,
+> V_{\mathrm{ent}}^{\mathrm{out}},
+> \overline A_{s,\mathrm{ent}}^{\mathrm{out}}),
 > $$
 > rather than verify the local margins first and choose the envelope constants afterward with arbitrary slack.
 
@@ -2645,27 +2836,24 @@ This target isolates the remaining algebraic compatibility issue. Once collapse-
 
 At this stage the remaining blockers are narrow and explicit:
 
-1. produce a nonempty closed convex tame envelope
+1. produce the finite tame certificate whose affine tube gives
    $$
    \mathcal{K}_{x_\ast,\eta};
    $$
 2. solve the coupled regime inequalities in
    $$
-   (\eta,\epsilon_c,X_{\max},U_{\max},A_{\max},T_{\max},h)
+   (\eta,\epsilon_c,X_{\max},U_{\max},A_{\max},T_{\max},h,
+   V_{\mathrm{ent}}^{\mathrm{out}},
+   \overline A_{s,\mathrm{ent}}^{\mathrm{out}})
    $$
    rather than treating local margins and envelope constants as independent;
-3. verify continuity and precompactness of
-   $$
-   P_\eta
-   $$
-   on that same closed convex domain;
-5. and prove the self-map property
+3. prove the self-map property
    $$
    P_\eta(\mathcal{K}_{x_\ast,\eta})\subseteq \mathcal{K}_{x_\ast,\eta}
    $$
    on that same domain.
 
-Once these five items are theorem-level, the remaining Schauder step is formally routine.
+Once these three items are theorem-level, the remaining Schauder step is formally routine because continuity and precompactness have been isolated above as conditional propositions on the same domain.
 
 ### Schauder capstone
 
