@@ -942,10 +942,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Appendix: AI Henri Poincare on the Unlikelihood of a Closed-Form Solution",
+                "title": "Appendix: Why a Closed-Form Solution Is Unlikely",
                 "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
-                "markdownSection": "Appendix: AI Henri Poincare on the Unlikelihood of a Closed-Form Solution",
-                "sectionKey": "appendix ai henri poincare on the unlikelihood of a closed form solution",
+                "markdownSection": "Appendix: Why a Closed-Form Solution Is Unlikely",
+                "sectionKey": "appendix why a closed form solution is unlikely",
                 "headingLevel": 2
               },
               {

@@ -346,7 +346,15 @@ This is the natural branch on which to analyze collapse, rebound, and return to 
 
 ### Partner term
 
-On the exterior branch, the partner source sits on the opposite side of the origin, so the line of action points inward. Thus the partner contribution always accelerates the right-hand particle toward the origin.
+On the exterior branch, the partner source points inward only for active partner roots whose delayed source remains on the opposite side of the current right-hand particle. In the signed variables this is the branch condition
+$$
+x(t)+x(t_0)>0.
+$$
+The recapture estimates below use a tame exterior-root class in which all active partner roots entering the lower-bound arguments satisfy this condition. Any partner roots with
+$$
+x(t)+x(t_0)<0
+$$
+are not inward partner roots; they must either be excluded by the delayed-root hypotheses or carried as a separate error channel.
 
 Write
 $$
@@ -354,16 +362,16 @@ A_p(t)
 \equiv
 \kappa \epsilon^2
 \sum_{t_0\in\mathcal{C}_p(t)}
-\frac{1}{|x(t)+x(t_0)|^2\,|J_p(t;t_0)|}
->0.
+\frac{\mathbf{1}_{\{x(t)+x(t_0)>0\}}}{|x(t)+x(t_0)|^2\,|J_p(t;t_0)|}
+\ge 0.
 $$
 
-Then the partner contribution is
+On that inward exterior partner channel the signed contribution is
 $$
 a_p(t)=-A_p(t).
 $$
 
-Therefore:
+Therefore, when the inward exterior partner channel is active:
 
 - on the inbound leg, $a_p$ has the **same sign as the velocity** and speeds the collapse up,
 - on the outbound leg, $a_p$ has the **opposite sign to the velocity** and brakes the escape.
@@ -414,7 +422,7 @@ A_s^{\text{in}}(t)
 \frac{1}{|x(t)-x(t_0)|^2\,|J_s(t;t_0)|}.
 $$
 
-Then the total acceleration on the exterior branch is
+On the tame exterior-root class where all active partner roots are inward exterior roots, the total acceleration on the exterior branch is
 $$
 \ddot x(t)= -A_p(t)-A_s^{\text{out}}(t)+A_s^{\text{in}}(t).
 $$
@@ -424,12 +432,12 @@ This is the key reduced formula.
 ### Physical interpretation
 
 - **Inbound** ($\dot x<0$):
-  - the partner term always strengthens infall,
+  - the retained inward partner channel strengthens infall,
   - outer-memory self roots also strengthen infall,
   - inner-memory self roots oppose infall.
 
 - **Outbound** ($\dot x>0$):
-  - the partner term always brakes the outward motion,
+  - the retained inward partner channel brakes the outward motion,
   - outer-memory self roots also brake the outward motion,
   - inner-memory self roots drive further escape.
 
@@ -511,7 +519,7 @@ This criterion is not expected to be the final theorem, but it gives the correct
 
 ## Regularized Return Map
 
-To state a breather problem precisely, define a Poincare-type section on the symmetric history space rather than on instantaneous phase space alone.
+To state a breather problem precisely, define a return section on the symmetric history space rather than on instantaneous phase space alone.
 
 Fix:
 
@@ -552,7 +560,7 @@ Because the section histories are anchored by
 $$
 \phi(0)=x_\ast
 $$
-with prescribed crossing sign, this Poincare-type section quotients out the absolute time-translation symmetry of the continuous delayed flow. A periodic trajectory therefore appears as a fixed returned history rather than as an unpinned one-parameter family of time shifts.
+with prescribed crossing sign, this return section quotients out the absolute time-translation symmetry of the continuous delayed flow. A periodic trajectory therefore appears as a fixed returned history rather than as an unpinned one-parameter family of time shifts.
 
 The first workable theorem domain should not be the full sections
 $$
@@ -577,9 +585,13 @@ denote an admissible reflection-symmetric history class with the following prope
   $$
   |\dot\phi(\theta)|\le u_{\max},
   $$
-- uniform acceleration bounds
+- uniform Lipschitz-velocity bounds
   $$
-  |\ddot\phi(\theta)|\le a_{\max},
+  |\dot\phi(\theta_1)-\dot\phi(\theta_2)|
+  \le
+  a_{\max}|\theta_1-\theta_2|,
+  \qquad
+  \theta_1,\theta_2\in[-h,0],
   $$
 - and a transversality bound on every active partner and self root,
   $$
@@ -601,7 +613,7 @@ The role of
 $$
 \mathcal{H}^{\mathrm{adm}}_{x_\ast,\eta}
 $$
-is simple: it isolates a tame region of history space on which the regularized vector field, root selection, and section crossings can plausibly be controlled. The acceleration bound is the first compactness-oriented ingredient for a later Arzela-Ascoli step in $C^1$, and the memory-depth bound ensures the delayed law really closes on the chosen history interval. Whether the eventual theorem program allows histories that approach $x=0$ arbitrarily closely is a separate question and should not be conflated with the first well-posedness regime.
+is simple: it isolates a tame region of history space on which the regularized vector field, root selection, and section crossings can plausibly be controlled. The Lipschitz-velocity bound is the first compactness-oriented ingredient for a later Arzela-Ascoli step in $C^1$; equivalently, $\ddot\phi$ exists almost everywhere with $|\ddot\phi|\le a_{\max}$ in the weak sense. The memory-depth bound ensures the delayed law really closes on the chosen history interval. Whether the eventual theorem program allows histories that approach $x=0$ arbitrarily closely is a separate question and should not be conflated with the first well-posedness regime.
 
 For
 $$
@@ -1009,11 +1021,13 @@ denote the class of signed crossing histories $\phi$ satisfying:
   \qquad
   \nu(\phi)\ge \nu,
   $$
-- a uniform pre-crossing acceleration bound,
+- a uniform pre-crossing Lipschitz-velocity bound,
   $$
-  |\ddot\phi(\theta)|\le a_{\max}
+  |\dot\phi(\theta_1)-\dot\phi(\theta_2)|
+  \le
+  a_{\max}|\theta_1-\theta_2|
   \qquad
-  \text{for }\theta\in[-h,0],
+  \text{for }\theta_1,\theta_2\in[-h,0],
   $$
 - a uniform pre-caustic radius bound,
   $$
@@ -1940,7 +1954,7 @@ in one step.
 > or equivalently
 > $$
 > \kappa\epsilon^2
-> >
+> \mathrel{>}
 > 4\beta_{p,\max}V_{\max}\,\epsilon_c
 > +
 > 2\overline A_s^\rho\,\epsilon_c^2.
@@ -2121,11 +2135,13 @@ to be the set of histories $\phi\in C^1([-h,0])$ such that:
   \qquad
   \text{for }\theta\in[-h,0];
   $$
-- acceleration envelope:
+- Lipschitz-velocity envelope:
   $$
-  |\ddot\phi(\theta)|\le A_{\max}
+  |\dot\phi(\theta_1)-\dot\phi(\theta_2)|
+  \le
+  A_{\max}|\theta_1-\theta_2|
   \qquad
-  \text{for }\theta\in[-h,0].
+  \text{for }\theta_1,\theta_2\in[-h,0].
   $$
 
 This set is closed and convex in the $C^1$ topology. The horizon condition is handled externally: if
@@ -2224,9 +2240,11 @@ is to put the same convex bounds and the tame delayed geometry on one matching d
 >    \qquad
 >    |\dot\phi(\theta)|\le U_{\max},
 >    \qquad
->    |\ddot\phi(\theta)|\le A_{\max},
+>    |\dot\phi(\theta_1)-\dot\phi(\theta_2)|
+>    \le
+>    A_{\max}|\theta_1-\theta_2|,
 >    \qquad
->    \theta\in[-h,0],
+>    \theta,\theta_1,\theta_2\in[-h,0],
 >    $$
 >    together with
 >    $$
@@ -2263,7 +2281,7 @@ so
 $$
 \{\phi_n\}
 $$
-is equicontinuous. The acceleration bound gives
+is equicontinuous. The Lipschitz-velocity bound gives
 $$
 |\dot\phi_n(\theta_1)-\dot\phi_n(\theta_2)|
 \le
@@ -3813,9 +3831,15 @@ Assume the pre-crossing leg of a tame inbound trajectory satisfies:
   \qquad
   \dot x(t)\le 0,
   $$
-- at least one active partner branch for each
+- at least one inward exterior active partner branch for each
   $$
   t\in[0,t_{\mathrm{cross}}],
+  $$
+  with
+  $$
+  x(t)+x(t_p)>0,
+  \qquad
+  0\le x(t_p)\le X_{\max},
   $$
 - the speed bound
   $$
@@ -3842,11 +3866,11 @@ a_p(t)=-A_p(t)\le -\underline A_p^{\mathrm{in}}<0.
 $$
 
 Proof.
-Along the right exterior inbound branch, the partner source lies on the opposite side of the origin, so every active partner contribution points inward and has the form
+Along the retained inward exterior partner channel, the delayed source remains on the opposite side of the current right-hand particle, so each retained partner contribution points inward and has the form
 $$
 a_p(t)=-A_p(t).
 $$
-For any active partner root
+For any retained active partner root
 $$
 t_p<t,
 $$
@@ -3882,7 +3906,7 @@ $$
 |J_p(t;t_p)|\le 1+\frac{U_{\max}}{c_f}.
 $$
 
-Therefore each active partner branch contributes at least
+Therefore each retained active partner branch contributes at least
 $$
 \kappa\epsilon^2
 \frac{1}{
@@ -3894,7 +3918,7 @@ $$
 \left(1+\frac{U_{\max}}{c_f}\right)
 }.
 $$
-Since at least one partner branch is active, summing over all active partner roots yields
+Since at least one inward exterior partner branch is active, summing over the retained active partner roots yields
 $$
 A_p(t)\ge \underline A_p^{\mathrm{in}},
 $$
@@ -5795,7 +5819,7 @@ Assume the post-second-crossing outer branch satisfies:
   \qquad
   \dot x(t)\ge 0,
   $$
-- at least one active partner branch for each
+- at least one retained active partner branch for each
   $$
   t\in[t_\ast,t_{\mathrm{turn}}^{\mathrm{out}}],
   $$
@@ -5803,19 +5827,28 @@ Assume the post-second-crossing outer branch satisfies:
   $$
   |\dot x(t)|\le U_{\max},
   $$
-- and the partner Jacobian transversality bound
+- the partner roots retained in this lower bound remain inward exterior roots with
   $$
-  |J_p(t;t_p)|\ge \nu_p^{\mathrm{out}}>0
+  x(t)+x(t_p)>0,
+  \qquad
+  0\le x(t_p)\le X_{\mathrm{out},\max},
   $$
-  on every active partner root.
+- and the partner Jacobian upper bound
+  $$
+  |J_p(t;t_p)|\le J_{p,\max}^{\mathrm{out}}
+  $$
+  on every retained active partner root.
+  The speed bound permits the conservative choice
+  $$
+  J_{p,\max}^{\mathrm{out}}=1+\frac{U_{\max}}{c_f}.
+  $$
 
 Then the partner contribution to the inward acceleration obeys the class-uniform lower bound
 $$
 A_p(t)\ge \underline A_p^{\mathrm{out}}
 \equiv
-\frac{\kappa\epsilon^2\,\nu_p^{\mathrm{out}}}{
-4X_{\mathrm{out},\max}^2+\epsilon_c^2
-}.
+\frac{\kappa\epsilon^2}{
+\left(4X_{\mathrm{out},\max}^2+\epsilon_c^2\right)J_{p,\max}^{\mathrm{out}}}.
 $$
 Equivalently, the partner acceleration satisfies
 $$
@@ -5824,7 +5857,7 @@ $$
 on the outer branch.
 
 Proof.
-Along the right exterior outbound branch, the partner source lies on the opposite side of the origin, so every active partner contribution points inward and therefore contributes with signed acceleration
+Along the retained inward exterior partner channel, the delayed source remains on the opposite side of the current right-hand particle, so each retained contribution points inward and therefore contributes with signed acceleration
 $$
 a_p(t)=-A_p(t).
 $$
@@ -5853,15 +5886,15 @@ r_p(t;t_p)^2+\epsilon_c^2
 4X_{\mathrm{out},\max}^2+\epsilon_c^2.
 $$
 
-Each active partner contribution therefore has magnitude at least
+Each retained active partner contribution therefore has magnitude at least
 $$
-\frac{\kappa\epsilon^2\,|J_p(t;t_p)|}{
-r_p(t;t_p)^2+\epsilon_c^2}
+\frac{\kappa\epsilon^2}{
+\left(r_p(t;t_p)^2+\epsilon_c^2\right)|J_p(t;t_p)|}
 \ge
-\frac{\kappa\epsilon^2\,\nu_p^{\mathrm{out}}}{
-4X_{\mathrm{out},\max}^2+\epsilon_c^2}.
+\frac{\kappa\epsilon^2}{
+\left(4X_{\mathrm{out},\max}^2+\epsilon_c^2\right)J_{p,\max}^{\mathrm{out}}}.
 $$
-Summing over the active partner branches and retaining only one branch yields
+Summing over the retained active partner branches and retaining only one branch yields
 $$
 A_p(t)\ge \underline A_p^{\mathrm{out}},
 $$
@@ -5976,9 +6009,8 @@ $$
 
 In particular, Lemmas 20 and 21 reduce the outer-turn force margin to the parameter inequality
 $$
-\frac{\kappa\epsilon^2\,\nu_p^{\mathrm{out}}}{
-4X_{\mathrm{out},\max}^2+\epsilon_c^2
-}
+\frac{\kappa\epsilon^2}{
+\left(4X_{\mathrm{out},\max}^2+\epsilon_c^2\right)J_{p,\max}^{\mathrm{out}}}
 -
 N_{s,\max}^{\mathrm{out}}\,
 \frac{\kappa\epsilon^2}{
@@ -6351,7 +6383,7 @@ which proves the lemma.
 **Lemma 26: Exact same-side self-root exclusion on a strictly sub-field-speed outer window.**
 Assume there exists an outer-branch window
 $$
-[t_a,t_b]\subseteq [t_\ast,t_{\mathrm{turn}}^{\mathrm{out}}]
+[t_a,t_b]\subseteq [t_\ast,\infty)
 $$
 on which the outbound speed stays strictly below field speed:
 $$
@@ -6421,7 +6453,7 @@ This shows that on a strictly sub-field-speed apocenter window the exact delayed
 **Lemma 27: Shell-tail bound on a strictly sub-field-speed outer window.**
 Assume the hypotheses of Lemma 26 on a window
 $$
-[t_a,t_b]\subseteq [t_\ast,t_{\mathrm{turn}}^{\mathrm{out}}],
+[t_a,t_b]\subseteq [t_\ast,\infty),
 $$
 and assume that the same-side outer self contribution is evaluated in the dual-mollified integral form with:
 
@@ -6450,23 +6482,29 @@ For each fixed
 $$
 t\in[t_a,t_b],
 $$
-let the same-side shell contribution be integrated over delayed times
+let the **local** same-side shell contribution be integrated only over delayed times
 $$
-t_0\in[t-h,t]
+t_0\in[t_a,t]
 $$
 for which the outer sorting-map mismatch
 $$
 z(t_0)-z(t)
 $$
-lies in the shell support. Then the same-side outer self contribution obeys the pointwise bound
+lies in the shell support. Then the local same-side outer self contribution obeys the pointwise bound
 $$
-A_{s,\mathrm{shell}}^{\mathrm{out}}(t)
+A_{s,\mathrm{shell,loc}}^{\mathrm{out}}(t)
 \le
 \frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
 \sigma_{\mathrm{out}}\,\epsilon_c^2}.
 $$
 
-In particular, on a strictly sub-field-speed apocenter window the outer self term coming from same-side shell leakage is uniformly bounded by an
+This lemma controls only the same-window shell leakage. Same-side contributions from
+$$
+t_0<t_a
+$$
+are deep-past channels and must be excluded or bounded separately by the later deep-past suppression package.
+
+In particular, on a strictly sub-field-speed apocenter window the local outer self term coming from same-side shell leakage is uniformly bounded by an
 $$
 \mathcal{O}\!\left(\frac{\eta}{\sigma_{\mathrm{out}}\epsilon_c^2}\right)
 $$
@@ -6508,16 +6546,16 @@ $$
 \frac{2\eta}{\sigma_{\mathrm{out}}}.
 $$
 
-Evaluating the same-side self term in integral form and using
+Evaluating the local same-side self term in integral form and using
 $$
 |x(t)-x(t_0)|^2+\epsilon_c^2\ge \epsilon_c^2
 $$
 gives
 $$
-A_{s,\mathrm{shell}}^{\mathrm{out}}(t)
+A_{s,\mathrm{shell,loc}}^{\mathrm{out}}(t)
 \le
 \kappa\epsilon^2
-\int_{t-h}^{t}
+\int_{t_a}^{t}
 \frac{\delta_\eta(\cdots)}{|x(t)-x(t_0)|^2+\epsilon_c^2}\,dt_0
 \le
 \frac{\kappa\epsilon^2\,\|\delta_\eta\|_\infty}{\epsilon_c^2}
@@ -6526,19 +6564,19 @@ A_{s,\mathrm{shell}}^{\mathrm{out}}(t)
 $$
 Using the support-measure bound yields
 $$
-A_{s,\mathrm{shell}}^{\mathrm{out}}(t)
+A_{s,\mathrm{shell,loc}}^{\mathrm{out}}(t)
 \le
 \frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
 \sigma_{\mathrm{out}}\,\epsilon_c^2},
 $$
 which proves the lemma.
 
-**Corollary 28: Sub-field-speed outer-force margin from partner floor versus shell tail.**
+**Corollary 28: Sub-field-speed outer-force margin from partner floor versus local shell tail.**
 Assume there exists an apocenter window
 $$
-[t_a,t_b]\subseteq [t_\ast,t_{\mathrm{turn}}^{\mathrm{out}}]
+[t_a,t_b]\subseteq [t_\ast,\infty)
 $$
-on which:
+on which the branch has not yet turned and:
 
 - the outer branch is strictly sub-field-speed,
   $$
@@ -6548,7 +6586,8 @@ on which:
   $$
   A_p(t)\ge \underline A_p^{\mathrm{out}},
   $$
-- and the only outward self contribution on that window is the same-side shell tail estimated in Lemma 27.
+- the only local same-window outward self contribution on that window is the same-side shell tail estimated in Lemma 27,
+- and deep-past outward self channels are absent or have already been bounded by zero on this local-only corollary.
 
 If
 $$
@@ -6564,16 +6603,16 @@ $$
 \ddot x(t)\le -a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}<0.
 $$
 
-In particular, on a strictly sub-field-speed apocenter window the outer-force margin reduces to a direct parameter race between the partner floor and the shell-mollified same-side self leakage.
+In particular, on a strictly sub-field-speed apocenter window with no remaining deep-past outward self channel, the outer-force margin reduces to a direct parameter race between the partner floor and the shell-mollified same-window self leakage.
 
 Proof.
 Lemma 20 gives
 $$
 A_p(t)\ge \underline A_p^{\mathrm{out}}.
 $$
-By Lemma 26, there are no exact same-side self roots on the stated window, and Lemma 27 therefore bounds the surviving same-side shell contribution by
+By Lemma 26, there are no exact same-side self roots with both times on the stated window, and Lemma 27 therefore bounds the surviving same-window shell contribution by
 $$
-A_s^{\mathrm{out}}(t)\le
+A_s^{\mathrm{out}}(t)=A_{s,\mathrm{shell,loc}}^{\mathrm{out}}(t)\le
 \frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
 \sigma_{\mathrm{out}}\,\epsilon_c^2}.
 $$
@@ -6594,204 +6633,95 @@ $$
 $$
 which proves the corollary.
 
-**Lemma 29: Final sub-field-speed window before the outer turn.**
-Assume there exists a pre-turn apocenter window
+**Lemma 29: Strict sub-field-speed apocenter window.**
+Assume there exists an apocenter window
 $$
-[t_{\mathrm{turn}}^{\mathrm{out}}-\tau_{\mathrm{apo}}^{\mathrm{pre}},\,t_{\mathrm{turn}}^{\mathrm{out}}]
+I_{\mathrm{sub}}\equiv[t_a,t_b]\subseteq[t_\ast,\infty)
 $$
-on which:
-
-- the branch remains outbound until the first outer turn,
-  $$
-  0\le \dot x(t),
-  $$
-- the turning condition holds at the endpoint,
-  $$
-  \dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=0,
-  $$
-- and the acceleration admits a class-uniform lower bound
-  $$
-  \ddot x(t)\ge -a_{+,\mathrm{pre}}^{\mathrm{out}}
-  \qquad
-  \text{for }
-  t\in[t_{\mathrm{turn}}^{\mathrm{out}}-\tau_{\mathrm{apo}}^{\mathrm{pre}},\,t_{\mathrm{turn}}^{\mathrm{out}}].
-  $$
-
-Fix any
+on which the branch has not yet turned and satisfies
 $$
-0<\sigma_{\mathrm{out}}<c_f.
-$$
-If
-$$
-\tau_{\mathrm{apo}}^{\mathrm{pre}}
-\ge
-\frac{c_f-\sigma_{\mathrm{out}}}{a_{+,\mathrm{pre}}^{\mathrm{out}}},
-$$
-then the final subwindow
-$$
-I_{\mathrm{sub}}
-\equiv
-\left[
-t_{\mathrm{turn}}^{\mathrm{out}}
--
-\frac{c_f-\sigma_{\mathrm{out}}}{a_{+,\mathrm{pre}}^{\mathrm{out}}},
-\,
-t_{\mathrm{turn}}^{\mathrm{out}}
-\right]
-$$
-lies inside the pre-turn window and satisfies the strict sub-field-speed bound
-$$
-0\le \dot x(t)\le c_f-\sigma_{\mathrm{out}}
+0\le \dot x(t)\le c_f-\sigma_{\mathrm{out}}<c_f
 \qquad
 \text{for every }t\in I_{\mathrm{sub}}.
 $$
+Then the hypotheses of Lemmas 26 and 27 hold on
+$$
+I_{\mathrm{sub}}.
+$$
+
+This lemma is intentionally a non-circular window hypothesis. It does not derive the sub-field-speed window from an already-known outer turn. A separate speed-decay or apocenter-entry estimate must supply
+$$
+I_{\mathrm{sub}}.
+$$
 
 Proof.
-Fix
-$$
-t\in
-[t_{\mathrm{turn}}^{\mathrm{out}}-\tau_{\mathrm{apo}}^{\mathrm{pre}},\,t_{\mathrm{turn}}^{\mathrm{out}}].
-$$
-Integrating the acceleration lower bound from
-$$
-t
-$$
-to the turning time gives
-$$
-\dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)-\dot x(t)
-=
-\int_t^{t_{\mathrm{turn}}^{\mathrm{out}}}\ddot x(s)\,ds
-\ge
--a_{+,\mathrm{pre}}^{\mathrm{out}}
-\big(t_{\mathrm{turn}}^{\mathrm{out}}-t\big).
-$$
-Using
-$$
-\dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=0
-$$
-yields
-$$
-\dot x(t)\le
-a_{+,\mathrm{pre}}^{\mathrm{out}}
-\big(t_{\mathrm{turn}}^{\mathrm{out}}-t\big).
-$$
-Hence, whenever
-$$
-t_{\mathrm{turn}}^{\mathrm{out}}-t
-\le
-\frac{c_f-\sigma_{\mathrm{out}}}{a_{+,\mathrm{pre}}^{\mathrm{out}}},
-$$
-one obtains
-$$
-\dot x(t)\le c_f-\sigma_{\mathrm{out}}.
-$$
-By the assumed size of the pre-turn window, the entire interval
-$$
-I_{\mathrm{sub}}
-$$
-lies inside
-$$
-[t_{\mathrm{turn}}^{\mathrm{out}}-\tau_{\mathrm{apo}}^{\mathrm{pre}},\,t_{\mathrm{turn}}^{\mathrm{out}}],
-$$
-and the outbound sign assumption gives
-$$
-0\le \dot x(t)
-$$
-there. This proves the lemma.
-
-In particular, Lemma 29 supplies the geometric hypothesis needed to apply Lemmas 26 and 27, and therefore to activate Corollary 28 on a final pre-turn apocenter window.
+The displayed speed bound is exactly the strict sub-field-speed hypothesis used by Lemma 26. Lemma 27 then applies to the local shell-smeared contribution on the same window.
 
 **Proposition: Explicit sub-field-speed apocenter recapture regime.**
-Assume the outer branch reaches a pre-turn window
+Assume the outer branch reaches an apocenter window
 $$
-[t_{\mathrm{turn}}^{\mathrm{out}}-\tau_{\mathrm{apo}}^{\mathrm{pre}},\,t_{\mathrm{turn}}^{\mathrm{out}}]
+I_{\mathrm{sub}}\equiv[t_a,t_b]
 $$
-on which:
+before any known outer turn, and on that window:
 
-- the branch stays outbound up to the first outer turn,
+- the branch remains outbound,
   $$
   0\le \dot x(t),
+  $$
+- the branch is strictly sub-field-speed,
+  $$
+  \dot x(t)\le c_f-\sigma_{\mathrm{out}}<c_f,
   $$
 - the partner lower bound of Lemma 20 holds with
   $$
   A_p(t)\ge \underline A_p^{\mathrm{out}},
   $$
-- the pre-turn acceleration lower bound
-  $$
-  \ddot x(t)\ge -a_{+,\mathrm{pre}}^{\mathrm{out}}
-  $$
-  holds,
-- and the window length satisfies
-  $$
-  \tau_{\mathrm{apo}}^{\mathrm{pre}}
-  \ge
-  \frac{c_f-\sigma_{\mathrm{out}}}{a_{+,\mathrm{pre}}^{\mathrm{out}}}
-  \qquad
-  \text{for some }
-  0<\sigma_{\mathrm{out}}<c_f.
-  $$
+- and deep-past outward self channels are absent or already bounded by zero, so the only outward self contribution on this local criterion is the same-window shell leakage of Lemma 27.
 
 If, in addition, the parameter inequality
 $$
-\frac{\kappa\epsilon^2\,\nu_p^{\mathrm{out}}}{
-4X_{\mathrm{out},\max}^2+\epsilon_c^2
-}
+\frac{\kappa\epsilon^2}{
+\left(4X_{\mathrm{out},\max}^2+\epsilon_c^2\right)J_{p,\max}^{\mathrm{out}}}
 -
 \frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
 \sigma_{\mathrm{out}}\,\epsilon_c^2}
 \ge
 a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}>0
 $$
-holds, then on the final subwindow
+holds, then on
 $$
 I_{\mathrm{sub}}
-\equiv
-\left[
-t_{\mathrm{turn}}^{\mathrm{out}}
--
-\frac{c_f-\sigma_{\mathrm{out}}}{a_{+,\mathrm{pre}}^{\mathrm{out}}},
-\,
-t_{\mathrm{turn}}^{\mathrm{out}}
-\right]
 $$
-one has the unconditional inward acceleration bound
+one has the inward acceleration bound
 $$
 \ddot x(t)\le -a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}<0.
 $$
 
-In particular, if this inward margin extends long enough to cover
+In particular, if
 $$
-\frac{v_\ast}{a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}},
+t_b-t_a
+\ge
+\frac{\dot x(t_a)}{a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}},
 $$
-then Lemma 23 yields a finite outer turn with
+then a finite outer turn occurs on
+$$
+\left[t_a,\,t_a+\frac{\dot x(t_a)}{a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}}\right],
+$$
+with radius bound
 $$
 X_{\mathrm{out}}
 \le
-x_\ast+\frac{v_\ast^2}{2a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}}.
+x(t_a)+\frac{\dot x(t_a)^2}{2a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}}.
 $$
 
 Proof.
-Lemma 29 shows that the stated pre-turn window contains the final strictly sub-field-speed interval
-$$
-I_{\mathrm{sub}}
-\subseteq
-\left[
-t_{\mathrm{turn}}^{\mathrm{out}}-\tau_{\mathrm{apo}}^{\mathrm{pre}},
-\,
-t_{\mathrm{turn}}^{\mathrm{out}}
-\right]
-$$
-on which
-$$
-0\le \dot x(t)\le c_f-\sigma_{\mathrm{out}}<c_f.
-$$
-Lemmas 26 and 27 therefore apply on
+Lemma 29 activates Lemmas 26 and 27 on
 $$
 I_{\mathrm{sub}},
 $$
-so the same-side outer self contribution is reduced to the shell-tail bound
+so the same-window outer self contribution is reduced to the shell-tail bound
 $$
-A_s^{\mathrm{out}}(t)\le
+A_{s,\mathrm{shell,loc}}^{\mathrm{out}}(t)\le
 \frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
 \sigma_{\mathrm{out}}\,\epsilon_c^2}.
 $$
@@ -6804,17 +6734,23 @@ $$
 I_{\mathrm{sub}}.
 $$
 
-If that inward margin persists long enough to satisfy
+Integrating from
 $$
-|I_{\mathrm{sub}}|
-\ge
-\frac{v_\ast}{a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}},
+t_a
 $$
-then Lemma 23 applies with
+to
 $$
-a_{\mathrm{in}}^{\mathrm{out}}=a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}},
+t\in I_{\mathrm{sub}}
 $$
-which yields the stated finite-radius outer-turn bound.
+gives
+$$
+\dot x(t)\le \dot x(t_a)-a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}(t-t_a).
+$$
+If the displayed window-length condition holds, continuity of
+$$
+\dot x
+$$
+forces a first zero of the velocity inside the stated interval. Integrating the same comparison once more gives the radius bound.
 
 ### Deep-past outer self suppression target
 
@@ -6834,7 +6770,7 @@ $$
 > **Target Theorem (Deep-Past Outer Self Suppression).**
 > Fix a final sub-field-speed apocenter window
 > $$
-> [t_a,t_b]\subseteq [t_\ast,t_{\mathrm{turn}}^{\mathrm{out}}]
+> [t_a,t_b]\subseteq [t_\ast,\infty)
 > $$
 > on which
 > $$
@@ -7528,7 +7464,7 @@ c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2}.
 $$
 By Lemma 27, the local same-side shell leakage satisfies
 $$
-A_{s,\mathrm{shell}}^{\mathrm{out}}(t)
+A_{s,\mathrm{shell,loc}}^{\mathrm{out}}(t)
 \le
 \frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
 \sigma_{\mathrm{out}}\,\epsilon_c^2}.
@@ -8055,7 +7991,7 @@ The scaffold is now coherent enough to freeze as a proof program, but the follow
 - **Inner rebound region.** The theorem program still packages the actual near-center reversal into the admissible history class. That is acceptable for the current reduced problem, but it means the hardest local dynamics near the inner rebound is not yet derived from first principles here.
 - **Root multiplicity control.** The branch sums defining $A_p$, $A_s^{\text{out}}$, and $A_s^{\text{in}}$ are only tame if the number of active roots stays controlled. The regularized model softens each branch contribution, but it does not by itself prevent root proliferation from defeating the envelope bounds.
 - **Compactness is conditional.** The added acceleration bound is the right first step toward precompactness in $C^1$, but a later fixed-point theorem will still need the exact topology and continuity properties of the return map to be verified rather than assumed.
-- **Continuity through the crossing.** The theorem uses a history class in which velocity is continuous through $t=0$, but the dual-mollified acceleration can still develop a very sharp gradient near the origin. Any Banach-space formulation must therefore keep enough control on $\ddot\phi$ near the boundary of the history interval that the delayed integrals remain well behaved at the crossing.
+- **Continuity through the crossing.** The theorem uses a history class in which velocity is continuous through $t=0$, but the dual-mollified acceleration can still develop a very sharp gradient near the origin. Any Banach-space formulation must therefore keep enough Lipschitz-velocity, or weak acceleration, control near the boundary of the history interval that the delayed integrals remain well behaved at the crossing.
 
 ## Capstone Statement
 
@@ -8134,14 +8070,14 @@ This reduced problem fails as a stabilization test if:
 - the self-hit branches do not produce reversal strongly enough to create recurrence,
 - or the $\eta\to 0^+$ limit destroys every regularized bounded orbit.
 
-## Appendix: AI Henri Poincare on the Unlikelihood of a Closed-Form Solution
+## Appendix: Why a Closed-Form Solution Is Unlikely
 
 The following boxed aside is heuristic rather than theorem-level. Its purpose is not to prove a no-closed-form theorem, but to explain why the fixed-point and envelope route is mathematically more realistic than a search for an explicit formula
 $$
 x(t)=f(t,X_0,V_0).
 $$
 
-> **AI Henri.**
+> **Heuristic aside.**
 >
 > Ah, my friend. You look at the beautiful symmetries of the 1D line, the inexorable return of the particle, and the elegance of the integrals we have just bounded, and you hope for a formula: an equation
 > $$
