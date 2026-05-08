@@ -3817,6 +3817,73 @@ $$
 $$
 Finally, the residual-plus-sensitivity criterion implies the returned-sample budget certificate; alternatively, the budget certificate may be proved directly. In either case the finite sampled preservation criterion gives the certificate inequalities after one return. Therefore the returned history lies in the certified set itself, proving the self-map inclusion.
 
+The finite closure audit is now exactly the following three-row ledger:
+
+1. **Seed-chart row.**
+   Verify
+   $$
+   \nu_{\mathrm{seed}}>0,
+   \qquad
+   \gamma_{\mathrm{gap}}>0,
+   \qquad
+   \gamma_h>0,
+   \qquad
+   \gamma_{\mathrm{env}}>0,
+   $$
+   and finite sensitivities
+   $$
+   L_J,
+   \qquad
+   L_F,
+   \qquad
+   L_h,
+   \qquad
+   L_{\mathrm{env}}.
+   $$
+   This row chooses
+   $$
+   r_{\mathrm{cert}}
+   $$
+   and produces the closed convex tame certificate.
+2. **Coupled-corridor row.**
+   Verify
+   $$
+   C_{\mathrm{in}}(\epsilon_c)>0,
+   \qquad
+   P_{\mathrm{out}}-S_{\mathrm{ent}}^{\mathrm{out}}-m_{\mathrm{ent}}>0,
+   \qquad
+   P_{\mathrm{out}}-D_{\mathrm{deep}}(\epsilon_c)-L_{\mathrm{shell}}(\eta,\epsilon_c)>0,
+   $$
+   choose
+   $$
+   g=\kappa\epsilon^2
+   $$
+   above the factorized threshold, and set
+   $$
+   a_{\mathrm{ent}}^{\mathrm{out}}=gm_{\mathrm{ent}}.
+   $$
+   This row supplies the strict coupled-regime point.
+3. **Returned-sample row.**
+   Either verify
+   $$
+   \max\{R_{j,+}^{x},R_{j,-}^{x}\}+L_j^x r_{\mathrm{cert}}
+   <
+   \frac{r_{\mathrm{cert}}}{4},
+   \qquad
+   \max\{R_{j,+}^{v},R_{j,-}^{v}\}+L_j^v r_{\mathrm{cert}}
+   <
+   \frac{r_{\mathrm{cert}}}{4}
+   $$
+   for every mesh index, or prove the corresponding one-sided budgets
+   $$
+   E_{j,\pm}^{x},
+   \qquad
+   E_{j,\pm}^{v}
+   $$
+   directly by boundary trapping. This row supplies certificate preservation under one return.
+
+This ledger is deliberately finite. Passing all three rows turns the domain-production burden into the self-map inclusion; failing any row identifies the exact obstruction.
+
 ### Remaining blockers before Schauder
 
 At this stage the remaining blockers are narrow and explicit:
@@ -3837,7 +3904,7 @@ At this stage the remaining blockers are narrow and explicit:
    $$
    to choose the sampled finite tame certificate for
    $$
-   \mathcal{K}_{x_\ast,\eta};
+   \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}};
    $$
 2. verify the factorized coupled-corridor inequalities
    $$
@@ -3874,7 +3941,9 @@ At this stage the remaining blockers are narrow and explicit:
    $$
    from the cycle estimates with strict sample slack, equivalently prove the finite boundary-trapping checks that imply
    $$
-   P_\eta(\mathcal{K}_{x_\ast,\eta})\subseteq \mathcal{K}_{x_\ast,\eta}
+   P_\eta(\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}})
+   \subseteq
+   \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
    $$
    on that same domain.
 
@@ -3885,30 +3954,35 @@ Once these three items are theorem-level, the finite-certificate invariant closu
 > **Target Theorem (Schauder Existence of a Dual-Mollified Collinear Breather).**
 > Assume:
 > 1. the theorem `Seed-to-Tame Full-Cycle Propagation`;
-> 2. the proposition `Closed Convex Tame Envelope`;
+> 2. the finite-certificate invariant closure package, producing the nonempty closed convex tame self-map domain
+>    $$
+>    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}};
+>    $$
 > 3. the continuity proposition for
 >    $$
 >    P_\eta
 >    $$
 >    on
 >    $$
->    \mathcal{K}_{x_\ast,\eta};
+>    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}};
 >    $$
 > 4. the precompactness proposition applied to
 >    $$
->    \mathcal{K}_{x_\ast,\eta};
+>    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}};
 >    $$
 > 5. and the self-map property
 >    $$
->    P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}\big)\subseteq \mathcal{K}_{x_\ast,\eta},
+>    P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}\big)
+>    \subseteq
+>    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}},
 >    $$
->    obtained by combining invariant-envelope closure with the chosen envelope construction.
+>    as supplied by that finite-certificate package.
 >
 > Then there exists
 > $$
 > \phi_\eta^\ast
 > \in
-> \mathcal{K}_{x_\ast,\eta}
+> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
 > $$
 > such that
 > $$
@@ -3917,9 +3991,9 @@ Once these three items are theorem-level, the finite-certificate invariant closu
 > The corresponding delayed trajectory is an exact bounded periodic origin-crossing two-body motion in the dual-mollified collinear model.
 
 Proof sketch.
-`Seed-to-Tame Full-Cycle Propagation` supplies a nonempty tame class. `Closed Convex Tame Envelope` places that class inside a nonempty closed convex domain
+`Seed-to-Tame Full-Cycle Propagation` supplies a nonempty tame class. The finite-certificate invariant closure package places that class inside a nonempty closed convex self-map domain
 $$
-\mathcal{K}_{x_\ast,\eta}.
+\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
 $$
 Continuity and precompactness place the return image inside a compact subset of that same domain, while invariant-envelope closure prevents escape. Schauder therefore yields a fixed point of
 $$
@@ -3927,10 +4001,10 @@ P_\eta
 $$
 on
 $$
-\mathcal{K}_{x_\ast,\eta},
+\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}},
 $$
 and by construction that fixed point is exactly a periodic returned history.
-This capstone remains fully conditional on the previous domain-production targets. Without one nonempty closed convex tame self-map domain carrying propagation, continuity, precompactness, and invariance all at once, Schauder does not yet apply.
+This capstone remains conditional on the finite closure audit and on continuity and precompactness on the same certified domain. Without one nonempty closed convex tame self-map domain carrying propagation, continuity, precompactness, and invariance all at once, Schauder does not yet apply.
 
 ### Seed history and tame-class nonemptiness
 
