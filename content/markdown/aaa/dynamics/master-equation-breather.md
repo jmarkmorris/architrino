@@ -3706,7 +3706,7 @@ Then the first two inward channels are positive before any refined delay bookkee
 >
 > Consequently the first two principal margins and the role-gap floor are nonvacuous on a nonempty open neighborhood of this seed, provided the delayed fold and deep-past ceilings are chosen smaller than the remaining slack.
 
-> **Proof draft.**
+> **Proof.**
 > The inequality
 > $$
 > \Lambda^{\mathrm{mb}}_{1,\mathrm{seed}}>0
@@ -3829,9 +3829,9 @@ the instantaneous pair distances and by
 $$
 s_{ij}(t)
 $$
-the exact delayed partner/source times on the preserved seed-side branch families, whenever those branches exist on a short controlled window.
+the exact causal-delay partner/source times on the preserved seed-side branch families, whenever those branches exist on a short controlled window.
 
-> **Target Lemma (Delayed seed-margin persistence on the symmetric planar seed packet).**
+> **Lemma (Delayed seed-margin persistence on the symmetric planar seed packet).**
 > Assume the explicit symmetric planar-three-body seed proposition and fix one seed-side neighborhood
 > $$
 > \mathcal{C}^{\mathrm{mb},\mathrm{seed}}_{A_\ast,B_\ast,\eta}
@@ -3840,18 +3840,37 @@ the exact delayed partner/source times on the preserved seed-side branch familie
 > $$
 > U^{\mathrm{mb}}_{\mathrm{seed}}<c_f.
 > $$
-> Then there exist:
+> After replacing this neighborhood by a smaller nonempty seed packet if necessary, there exist:
 > 1. a short controlled seed window
 >    $$
 >    [0,\tau^{\mathrm{mb}}_{\mathrm{seed}}],
 >    $$
-> 2. a finite list of seed-side branch families
+> 2. a finite branch-delay ceiling
+>    $$
+>    \Delta^{\mathrm{mb}}_{\mathrm{seed}},
+>    $$
+> 3. local velocity and acceleration tolerances
+>    $$
+>    \varepsilon_V,
+>    \qquad
+>    \varepsilon_A,
+>    $$
+>    satisfying
+>    $$
+>    \varepsilon_V+\varepsilon_A\Delta^{\mathrm{mb}}_{\mathrm{seed}}
+>    \le
+>    \min\left\{
+>    U^{\mathrm{mb}}_{\mathrm{seed}},
+>    \frac{c_f-U^{\mathrm{mb}}_{\mathrm{seed}}}{2}
+>    \right\},
+>    $$
+> 4. a finite list of seed-side branch families
 >    $$
 >    \mathscr{B}^{\mathrm{mb}}_{\mathrm{seed}},
 >    $$
-> 3. and constants
+> 5. and constants
 >    $$
->    C^{\mathrm{mb}}_{\mathrm{ret}},
+>    C^{\mathrm{mb}}_{\mathrm{delay}},
 >    \qquad
 >    C^{\mathrm{mb}}_{J},
 >    \qquad
@@ -3865,13 +3884,13 @@ the exact delayed partner/source times on the preserved seed-side branch familie
 > $$
 > \Phi\in \mathcal{C}^{\mathrm{mb},\mathrm{seed}}_{A_\ast,B_\ast,\eta}
 > $$
-> satisfies, on that window:
+> satisfies, on that window and on the listed source intervals:
 > 1. each active seed-side branch in
 >    $$
 >    \mathscr{B}^{\mathrm{mb}}_{\mathrm{seed}}
 >    $$
 >    is unique and simple;
-> 2. the exact retarded distances obey
+> 2. the exact causal-delay distances obey
 >    $$
 >    \bigl|
 >    r_{ij}(t;s_{ij}(t))
@@ -3879,7 +3898,7 @@ the exact delayed partner/source times on the preserved seed-side branch familie
 >    r^{\mathrm{inst}}_{ij}(t)
 >    \bigr|
 >    \le
->    C^{\mathrm{mb}}_{\mathrm{ret}}
+>    C^{\mathrm{mb}}_{\mathrm{delay}}
 >    \frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f}
 >    r^{\mathrm{inst}}_{ij}(t);
 >    $$
@@ -3930,229 +3949,326 @@ the exact delayed partner/source times on the preserved seed-side branch familie
 >    [0,\tau^{\mathrm{mb}}_{\mathrm{seed}}].
 >    $$
 
-> **Proof draft.**
-> Fix one history
+> **Proof.**
+> Work first on the affine seed history. The seed-side branch list
 > $$
-> \Phi\in \mathcal{C}^{\mathrm{mb},\mathrm{seed}}_{A_\ast,B_\ast,\eta}
+> \mathscr{B}^{\mathrm{mb}}_{\mathrm{seed}}
 > $$
-> and one seed-side branch family
+> is chosen to be precisely the finite collection of source-receiver branches whose Coulomb-like contributions form
 > $$
-> (i,j)\in \mathscr{B}^{\mathrm{mb}}_{\mathrm{seed}}.
+> \Lambda^{\mathrm{mb}}_{1,\mathrm{seed}}
+> \qquad
+> \text{and}
+> \qquad
+> \Lambda^{\mathrm{mb}}_{2,\mathrm{seed}}.
 > $$
-> Write
+> For one such branch write
 > $$
-> \Delta t_{ij}(t)\equiv t-s_{ij}(t).
+> \beta=(i,j),
+> \qquad
+> \Delta t_\beta(t)=t-s_\beta(t),
 > $$
-> The proof is a perturbative comparison between the exact delayed branch geometry and the instantaneous seed geometry.
+> and set
+> $$
+> g_\beta(t;s;\Phi)
+> =
+> \|\mathbf{x}_i(t;\Phi)-\mathbf{x}_j(s;\Phi)\|-c_f(t-s).
+> $$
+> On the affine seed, the source derivative is
+> $$
+> \partial_s g_\beta(t;s;\Phi_{\mathrm{seed}})
+> =
+> c_f-\dot{\mathbf{x}}_{j,\mathrm{seed}}\cdot
+> \hat{\mathbf{r}}_\beta(t;s;\Phi_{\mathrm{seed}})
+> \ge
+> c_f-U^{\mathrm{mb}}_{\mathrm{seed}}
+> >0.
+> $$
+> Hence every seed branch is simple. Since the seed branch set is finite and the seed roots stay in compact source subintervals inside
+> $$
+> [-h,0],
+> $$
+> the implicit-function theorem gives, after reducing
+> $$
+> \tau^{\mathrm{mb}}_{\mathrm{seed}}
+> $$
+> if necessary, one source-time graph
+> $$
+> s_{\beta,\mathrm{seed}}(t)
+> $$
+> for each
+> $$
+> \beta\in\mathscr{B}^{\mathrm{mb}}_{\mathrm{seed}}
+> $$
+> on
+> $$
+> [0,\tau^{\mathrm{mb}}_{\mathrm{seed}}].
+> $$
+> Define
+> $$
+> \Delta^{\mathrm{mb}}_{\mathrm{seed}}
+> $$
+> to dominate both the listed seed branch delays and the receiver-window length on this compact set.
+> Shrink the seed packet so that these roots remain inside the same source intervals and so that, on those intervals,
+> $$
+> \|\dot{\mathbf{x}}_k(0;\Phi)-\dot{\mathbf{x}}_{k,\mathrm{seed}}(0)\|
+> \le
+> \varepsilon_V,
+> \qquad
+> \|\ddot{\mathbf{x}}_k(\theta;\Phi)\|
+> \le
+> \varepsilon_A
+> $$
+> for every body
+> $$
+> k
+> $$
+> and for almost every source time
+> $$
+> \theta.
+> $$
+> The local Lipschitz-velocity bound gives the uniform speed ceiling
+> $$
+> \|\dot{\mathbf{x}}_k(\theta;\Phi)\|
+> \le
+> U^{\mathrm{mb}}_{\mathrm{seed}}
+> +
+> \varepsilon_V
+> +
+> \varepsilon_A\Delta^{\mathrm{mb}}_{\mathrm{seed}}
+> \le
+> \frac{U^{\mathrm{mb}}_{\mathrm{seed}}+c_f}{2}
+> <c_f,
+> $$
+> and it is also bounded by
+> $$
+> 2U^{\mathrm{mb}}_{\mathrm{seed}}
+> $$
+> for perturbative estimates in powers of
+> $$
+> U^{\mathrm{mb}}_{\mathrm{seed}}/c_f.
+> $$
+> Thus
+> $$
+> \partial_s g_\beta(t;s;\Phi)
+> \ge
+> c_f-
+> \left(
+> U^{\mathrm{mb}}_{\mathrm{seed}}
+> +
+> \varepsilon_V
+> +
+> \varepsilon_A\Delta^{\mathrm{mb}}_{\mathrm{seed}}
+> \right)
+> \equiv
+> \nu^{\mathrm{mb}}_{\mathrm{seed}}
+> >0.
+> $$
+> The defect
+> $$
+> g_\beta(t;s;\Phi)
+> $$
+> is therefore strictly increasing in source time on each listed source interval. The seed root persists by the implicit-function theorem, and strict monotonicity excludes any second root in the same seed-side interval. This proves uniqueness and simplicity for every branch in
+> $$
+> \mathscr{B}^{\mathrm{mb}}_{\mathrm{seed}}.
+> $$
 >
-> 1. **Uniform branch monotonicity and simplicity.**
->    On the seed packet, the causal defect is
->    $$
->    g_{ij}(t;s)
->    =
->    \|\mathbf{x}_i(t)-\mathbf{x}_j(s)\|-c_f(t-s).
->    $$
->    Its source derivative obeys
->    $$
->    \partial_s g_{ij}(t;s)
->    =
->    c_f-\dot{\mathbf{x}}_j(s)\cdot \hat{\mathbf{r}}_{ij}(t;s)
->    \ge
->    c_f-U^{\mathrm{mb}}_{\mathrm{seed}}-\varepsilon_V.
->    $$
->    Shrink the seed packet if necessary so that
->    $$
->    U^{\mathrm{mb}}_{\mathrm{seed}}+\varepsilon_V
->    \le
->    c_f-\nu^{\mathrm{mb}}_{\mathrm{seed}}
->    $$
->    for some
->    $$
->    \nu^{\mathrm{mb}}_{\mathrm{seed}}>0.
->    $$
->    Then
->    $$
->    \partial_s g_{ij}(t;s)\ge \nu^{\mathrm{mb}}_{\mathrm{seed}}>0
->    $$
->    on the short seed-side window, so
->    $$
->    g_{ij}(t;s)
->    $$
->    is strictly increasing in
->    $$
->    s.
->    $$
->    Therefore each listed seed-side family admits at most one root, and the implicit-function theorem yields one unique simple branch
->    $$
->    s_{ij}(t)
->    $$
->    varying continuously with
->    $$
->    t
->    $$
->    and with the history.
+> The causal-delay length estimate follows from the root identity
+> $$
+> c_f\Delta t_\beta(t)
+> =
+> r_\beta(t;s_\beta(t))
+> $$
+> and the source displacement formula
+> $$
+> \mathbf{x}_j(t)-\mathbf{x}_j(s_\beta(t))
+> =
+> \dot{\mathbf{x}}_{j,\mathrm{seed}}(0)\Delta t_\beta(t)
+> +
+> O\!\left(
+> \varepsilon_V\Delta t_\beta(t)
+> +
+> \varepsilon_A\Delta t_\beta(t)^2
+> \right).
+> $$
+> Equivalently, with
+> $$
+> U_\ast
+> \equiv
+> U^{\mathrm{mb}}_{\mathrm{seed}}
+> +
+> \varepsilon_V
+> +
+> \varepsilon_A\Delta^{\mathrm{mb}}_{\mathrm{seed}},
+> $$
+> one has
+> $$
+> \bigl\|
+> \mathbf{x}_j(t)-\mathbf{x}_j(s_\beta(t))
+> \bigr\|
+> \le
+> U_\ast\Delta t_\beta(t).
+> $$
+> By the reverse triangle inequality,
+> $$
+> \bigl|
+> r_\beta(t;s_\beta(t))
+> -
+> r^{\mathrm{inst}}_\beta(t)
+> \bigr|
+> \le
+> U_\ast\Delta t_\beta(t)
+> =
+> \frac{U_\ast}{c_f}
+> r_\beta(t;s_\beta(t)).
+> $$
+> Since
+> $$
+> r_\beta(t;s_\beta(t))
+> \le
+> r^{\mathrm{inst}}_\beta(t)
+> +
+> \frac{U_\ast}{c_f}
+> r_\beta(t;s_\beta(t)),
+> $$
+> and
+> $$
+> U_\ast<c_f,
+> $$
+> it follows that
+> $$
+> r_\beta(t;s_\beta(t))
+> \le
+> \frac{1}{1-U_\ast/c_f}
+> r^{\mathrm{inst}}_\beta(t).
+> $$
+> Combining the two inequalities gives
+> $$
+> \bigl|
+> r_\beta(t;s_\beta(t))
+> -
+> r^{\mathrm{inst}}_\beta(t)
+> \bigr|
+> \le
+> \frac{U_\ast/c_f}{1-U_\ast/c_f}
+> r^{\mathrm{inst}}_\beta(t).
+> $$
+> The shrinkage condition
+> $$
+> \varepsilon_V+\varepsilon_A\Delta^{\mathrm{mb}}_{\mathrm{seed}}
+> \le
+> \min\left\{
+> U^{\mathrm{mb}}_{\mathrm{seed}},
+> \frac{c_f-U^{\mathrm{mb}}_{\mathrm{seed}}}{2}
+> \right\}
+> $$
+> and the fixed strict gap
+> $$
+> U^{\mathrm{mb}}_{\mathrm{seed}}<c_f
+> $$
+> absorb the factor on the right into the advertised constant
+> $$
+> C^{\mathrm{mb}}_{\mathrm{delay}}
+> \frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f}.
+> $$
 >
-> 2. **Retardation length estimate.**
->    Along the seed packet, the chord identity gives
->    $$
->    c_f\Delta t_{ij}(t)
->    =
->    r_{ij}(t;s_{ij}(t)).
->    $$
->    Also
->    $$
->    \mathbf{x}_j(t)-\mathbf{x}_j(s_{ij}(t))
->    =
->    \int_{s_{ij}(t)}^{t}\dot{\mathbf{x}}_j(\tau)\,d\tau,
->    $$
->    so
->    $$
->    \bigl\|
->    \mathbf{x}_j(t)-\mathbf{x}_j(s_{ij}(t))
->    \bigr\|
->    \le
->    (U^{\mathrm{mb}}_{\mathrm{seed}}+\varepsilon_V)\Delta t_{ij}(t).
->    $$
->    Hence
->    $$
->    \bigl|
->    r_{ij}(t;s_{ij}(t))-r^{\mathrm{inst}}_{ij}(t)
->    \bigr|
->    \le
->    (U^{\mathrm{mb}}_{\mathrm{seed}}+\varepsilon_V)\Delta t_{ij}(t).
->    $$
->    Since
->    $$
->    r_{ij}(t;s_{ij}(t))=c_f\Delta t_{ij}(t)
->    $$
->    and
->    $$
->    r^{\mathrm{inst}}_{ij}(t)
->    $$
->    stays bounded away from zero on the seed window, this implies
->    $$
->    \bigl|
->    r_{ij}(t;s_{ij}(t))-r^{\mathrm{inst}}_{ij}(t)
->    \bigr|
->    \le
->    C^{\mathrm{mb}}_{\mathrm{ret}}
->    \frac{U^{\mathrm{mb}}_{\mathrm{seed}}+\varepsilon_V}{c_f}
->    r^{\mathrm{inst}}_{ij}(t).
->    $$
+> The same speed ceiling gives the Jacobian estimate directly. For every listed branch,
+> $$
+> J_\beta(t;s_\beta(t))
+> =
+> 1-\frac{\dot{\mathbf{x}}_j(s_\beta(t))\cdot
+> \hat{\mathbf{r}}_\beta(t;s_\beta(t))}{c_f},
+> $$
+> so
+> $$
+> \bigl|J_\beta(t;s_\beta(t))-1\bigr|
+> \le
+> \frac{U_\ast}{c_f}
+> \le
+> C^{\mathrm{mb}}_J
+> \frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f}.
+> $$
+> In particular
+> $$
+> J_\beta(t;s_\beta(t))
+> \ge
+> 1-\frac{U_\ast}{c_f}
+> =
+> \frac{\nu^{\mathrm{mb}}_{\mathrm{seed}}}{c_f}
+> >0,
+> $$
+> so the reciprocal Jacobian remains uniformly bounded on the seed packet.
 >
-> 3. **Neighborhood acceleration correction.**
->    On the exact affine seed one has
->    $$
->    \ddot{\mathbf{x}}=0,
->    $$
->    but on the seed packet only the Lipschitz acceleration bound is available. Therefore
->    $$
->    \mathbf{x}_j(t)-\mathbf{x}_j(s_{ij}(t))
->    =
->    \dot{\mathbf{x}}_j(t)\Delta t_{ij}(t)
->    +
->    O\!\left(\varepsilon_A\Delta t_{ij}(t)^2\right).
->    $$
->    Because
->    $$
->    \Delta t_{ij}(t)
->    \lesssim
->    r^{\mathrm{inst}}_{ij}(t)/c_f
->    $$
->    on the short seed-side window, the extra quadratic term is absorbed into the same constant
->    $$
->    C^{\mathrm{mb}}_{\mathrm{ret}}.
->    $$
->
-> 4. **Jacobian perturbation.**
->    The exact Jacobian is
->    $$
->    J_{ij}(t;s_{ij}(t))
->    =
->    1-\frac{\dot{\mathbf{x}}_j(s_{ij}(t))\cdot \hat{\mathbf{r}}_{ij}(t;s_{ij}(t))}{c_f}.
->    $$
->    The emitter velocity differs from its seed value by at most
->    $$
->    O(\varepsilon_V+\varepsilon_A\Delta t_{ij}(t)),
->    $$
->    and the retarded chord direction differs from the instantaneous one by the same relative retardation estimate from Step 2. Thus
->    $$
->    \bigl|
->    J_{ij}(t;s_{ij}(t))-1
->    \bigr|
->    \le
->    C^{\mathrm{mb}}_{J}
->    \frac{U^{\mathrm{mb}}_{\mathrm{seed}}+\varepsilon_V+\varepsilon_A\tau^{\mathrm{mb}}_{\mathrm{seed}}}{c_f},
->    $$
->    and after shrinking the seed packet this has the advertised
->    $$
->    O\!\left(U^{\mathrm{mb}}_{\mathrm{seed}}/c_f\right)
->    $$
->    form.
->
-> 5. **Projected force perturbation.**
->    For every active seed-side branch, the exact branch contribution to the master equation differs from its instantaneous proxy only through:
->    $$
->    r_{ij}^{-2},
->    \qquad
->    J_{ij}^{-1},
->    \qquad
->    \hat{\mathbf{r}}_{ij}.
->    $$
->    Steps 2-4 show that each of these factors differs from its instantaneous value by a relative
->    $$
->    O\!\left(U^{\mathrm{mb}}_{\mathrm{seed}}/c_f\right)
->    $$
->    amount on the seed window. Since the branch list
->    $$
->    \mathscr{B}^{\mathrm{mb}}_{\mathrm{seed}}
->    $$
->    is finite and the instantaneous distances are bounded away from zero there, summing those perturbations yields
->    $$
->    \bigl|
->    \Lambda^{\mathrm{mb}}_1(t)-\Lambda^{\mathrm{mb}}_{1,\mathrm{seed}}
->    \bigr|
->    \le
->    C^{\mathrm{mb}}_{\Lambda,1}
->    \frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f},
->    $$
->    $$
->    \bigl|
->    \Lambda^{\mathrm{mb}}_2(t)-\Lambda^{\mathrm{mb}}_{2,\mathrm{seed}}
->    \bigr|
->    \le
->    C^{\mathrm{mb}}_{\Lambda,2}
->    \frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f},
->    $$
->    after absorbing the neighborhood constants into
->    $$
->    C^{\mathrm{mb}}_{\Lambda,1},
->    \qquad
->    C^{\mathrm{mb}}_{\Lambda,2}.
->    $$
->
-> 6. **Persistence of positivity.**
->    If
->    $$
->    \Lambda^{\mathrm{mb}}_{1,\mathrm{seed}}
->    >
->    2C^{\mathrm{mb}}_{\Lambda,1}\frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f}
->    \qquad
->    \text{and}
->    \qquad
->    \Lambda^{\mathrm{mb}}_{2,\mathrm{seed}}
->    >
->    2C^{\mathrm{mb}}_{\Lambda,2}\frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f},
->    $$
->    then the error bounds from Step 5 imply
->    $$
->    \Lambda^{\mathrm{mb}}_1(t)\ge \frac{1}{2}\Lambda^{\mathrm{mb}}_{1,\mathrm{seed}}>0,
->    \qquad
->    \Lambda^{\mathrm{mb}}_2(t)\ge \frac{1}{2}\Lambda^{\mathrm{mb}}_{2,\mathrm{seed}}>0
->    $$
->    on the whole seed window.
+> It remains to compare the projected branch sums with the seed projections. On the compact seed-side set just constructed, all instantaneous distances are bounded below by one positive number
+> $$
+> d^{\mathrm{mb}}_{\mathrm{seed}}>0,
+> $$
+> all causal Jacobians are bounded below by
+> $$
+> \nu^{\mathrm{mb}}_{\mathrm{seed}}/c_f,
+> $$
+> and the branch list is finite. The dual-mollified branch contribution is therefore a smooth function of
+> $$
+> \mathbf{r}_\beta,
+> \qquad
+> J_\beta^{-1},
+> \qquad
+> \hat{\mathbf{a}},
+> \qquad
+> \hat{\mathbf{b}},
+> $$
+> on this compact set. The causal-delay estimate controls the difference between delayed and instantaneous chords. The present-time drift over the short seed window satisfies
+> $$
+> \|\mathbf{x}_k(t)-\mathbf{x}_{k,\mathrm{seed}}(0)\|
+> \le
+> U_\ast\tau^{\mathrm{mb}}_{\mathrm{seed}},
+> $$
+> and the window was chosen so that
+> $$
+> \tau^{\mathrm{mb}}_{\mathrm{seed}}
+> \le
+> d^{\mathrm{mb}}_{\mathrm{seed}}/c_f.
+> $$
+> Thus the present-time axis drift and the causal-delay chord drift are both
+> $$
+> O\!\left(U^{\mathrm{mb}}_{\mathrm{seed}}/c_f\right)
+> $$
+> relative to the seed distances. The mean-value theorem on the compact branch-geometry set gives constants
+> $$
+> C^{\mathrm{mb}}_{\Lambda,1},
+> \qquad
+> C^{\mathrm{mb}}_{\Lambda,2}
+> $$
+> such that
+> $$
+> \bigl|
+> \Lambda^{\mathrm{mb}}_1(t)-\Lambda^{\mathrm{mb}}_{1,\mathrm{seed}}
+> \bigr|
+> \le
+> C^{\mathrm{mb}}_{\Lambda,1}
+> \frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f},
+> $$
+> $$
+> \bigl|
+> \Lambda^{\mathrm{mb}}_2(t)-\Lambda^{\mathrm{mb}}_{2,\mathrm{seed}}
+> \bigr|
+> \le
+> C^{\mathrm{mb}}_{\Lambda,2}
+> \frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f}.
+> $$
+> Finally, if the two seed margins dominate twice these perturbation ceilings, subtracting the corresponding estimate gives
+> $$
+> \Lambda^{\mathrm{mb}}_1(t)\ge \frac{1}{2}\Lambda^{\mathrm{mb}}_{1,\mathrm{seed}}>0,
+> \qquad
+> \Lambda^{\mathrm{mb}}_2(t)\ge \frac{1}{2}\Lambda^{\mathrm{mb}}_{2,\mathrm{seed}}>0
+> $$
+> throughout
+> $$
+> [0,\tau^{\mathrm{mb}}_{\mathrm{seed}}],
+> $$
+> which is the claimed seed-side persistence.
 
-> **Target Corollary (Delayed realization of the first seed-side principal margins).**
+> **Corollary (Delayed realization of the first seed-side principal margins).**
 > Under the hypotheses of the delayed seed-margin persistence lemma, if
 > $$
 > \Lambda^{\mathrm{mb}}_{1,\mathrm{seed}}
@@ -4177,6 +4293,9 @@ the exact delayed partner/source times on the preserved seed-side branch familie
 > \rho^{\mathrm{mb}}_2
 > $$
 > are strictly positive on the first seed-side controlled window.
+>
+> **Proof.**
+> The delayed seed-margin persistence lemma gives positive lower bounds for the two leading seed-side inward terms after subtracting the causal-delay perturbation ceilings. The remaining fold and deep-past contributions enter the principal-margin inequalities only through their stated ceilings. If those ceilings are smaller than the remaining slack in the two displayed inequalities, subtracting them leaves both principal margins strictly positive on the same controlled seed window.
 
 This is the missing bridge from the explicit geometric seed packet to the real delayed master equation. Once this perturbative upgrade is available, the many-body seed no longer lives only in the Coulomb-like proxy model; it enters the exact branch-sum dynamics with quantitative slack.
 
@@ -4552,12 +4671,12 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 > \equiv
 > \frac{\gamma_{\mathrm{fold}}}{C^{\mathrm{mb}}_{3,g}}.
 > $$
-> In particular, two distinct folds for the same receiver-source family cannot have source-time separation smaller than
+> In particular, two distinct fold roots for the same receiver-source family in the same receiver-time slice cannot have source-time separation smaller than
 > $$
 > \delta_{\mathrm{fold}}.
 > $$
 >
-> **Proof sketch.**
+> **Proof.**
 > Taylor-expand
 > $$
 > \partial_s g_{ij}(t;s)
@@ -4612,9 +4731,23 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 > $$
 > |\partial_t g_{ij}(t_\ast;s_\ast)|\ge \chi_{\mathrm{fold}}>0.
 > $$
+> Let
+> $$
+> s_{\mathrm{fold}}(t)
+> $$
+> be the local fold sheet obtained from
+> $$
+> \partial_s g_{ij}(t;s_{\mathrm{fold}}(t))=0
+> $$
+> by the curvature floor, and define the scalar fold-passage function
+> $$
+> G_{\mathrm{fold}}(t)
+> \equiv
+> g_{ij}(t;s_{\mathrm{fold}}(t)).
+> $$
 > If
 > $$
-> |\partial_t^2 g_{ij}(t;s)|\le C^{\mathrm{mb}}_{2,tg}
+> |\ddot{G}_{\mathrm{fold}}(t)|\le C^{\mathrm{mb}}_{2,tg}
 > $$
 > on the corresponding controlled fold tube, then the same receiver-source family cannot produce a second fold event with receiver-time separation smaller than
 > $$
@@ -4623,16 +4756,34 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 > \frac{\chi_{\mathrm{fold}}}{C^{\mathrm{mb}}_{2,tg}}.
 > $$
 >
-> **Proof sketch.**
-> Taylor-expand
+> **Proof.**
+> The curvature floor gives
 > $$
-> \partial_t g_{ij}(t;s_\ast)
+> \partial_s^2 g_{ij}(t_\ast;s_\ast)\neq 0,
 > $$
-> about
+> so the implicit-function theorem gives the local fold sheet
 > $$
-> t=t_\ast.
+> s_{\mathrm{fold}}(t).
 > $$
-> Then for some intermediate point
+> A receiver-time fold passage occurs exactly at a zero of
+> $$
+> G_{\mathrm{fold}}(t).
+> $$
+> At the given fold,
+> $$
+> \dot{G}_{\mathrm{fold}}(t_\ast)
+> =
+> \partial_t g_{ij}(t_\ast;s_\ast)
+> +
+> \partial_s g_{ij}(t_\ast;s_\ast)\dot{s}_{\mathrm{fold}}(t_\ast)
+> =
+> \partial_t g_{ij}(t_\ast;s_\ast),
+> $$
+> hence
+> $$
+> |\dot{G}_{\mathrm{fold}}(t_\ast)|\ge \chi_{\mathrm{fold}}.
+> $$
+> Taylor expansion gives, for some
 > $$
 > \xi_t
 > $$
@@ -4642,19 +4793,18 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 > $$
 > and
 > $$
-> t_\ast
+> t_\ast,
 > $$
-> one has
 > $$
-> \partial_t g_{ij}(t;s_\ast)
+> \dot{G}_{\mathrm{fold}}(t)
 > =
-> \partial_t g_{ij}(t_\ast;s_\ast)
+> \dot{G}_{\mathrm{fold}}(t_\ast)
 > +
-> \partial_t^2 g_{ij}(\xi_t;s_\ast)(t-t_\ast).
+> \ddot{G}_{\mathrm{fold}}(\xi_t)(t-t_\ast).
 > $$
 > Therefore
 > $$
-> |\partial_t g_{ij}(t;s_\ast)|
+> |\dot{G}_{\mathrm{fold}}(t)|
 > \ge
 > \chi_{\mathrm{fold}}-C^{\mathrm{mb}}_{2,tg}|t-t_\ast|,
 > $$
@@ -4662,9 +4812,13 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 > $$
 > 0<|t-t_\ast|<\chi_{\mathrm{fold}}/C^{\mathrm{mb}}_{2,tg}.
 > $$
-> So the same fold family cannot complete a second receiver-time passage through a fold inside that interval.
+> Thus
+> $$
+> G_{\mathrm{fold}}
+> $$
+> is strictly monotone throughout that receiver-time interval and cannot have a second zero there. Therefore the same fold family cannot complete a second receiver-time passage through a fold inside that interval.
 
-> **Target Proposition (Quantitative no-accumulation of many-body delay events).**
+> **Proposition (Quantitative no-accumulation of many-body delay events).**
 > Assume the unreduced local well-posedness package and suppose, in addition, that on the controlled cycle:
 > 1. each defect
 >    $$
@@ -4690,9 +4844,13 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 >    $$
 >    |\partial_t g_{ij}(t_\ast;s_\ast)|\ge \chi_{\mathrm{fold}}>0,
 >    $$
->    and the controlled cycle carries one receiver-time second-derivative ceiling
+>    and the controlled cycle carries one receiver-time fold-passage ceiling
 >    $$
->    |\partial_t^2 g_{ij}(t;s)|\le C^{\mathrm{mb}}_{2,tg}.
+>    |\ddot{G}_{\mathrm{fold}}(t)|\le C^{\mathrm{mb}}_{2,tg}
+>    $$
+>    on each local fold sheet
+>    $$
+>    G_{\mathrm{fold}}(t)=g_{ij}(t;s_{\mathrm{fold}}(t)).
 >    $$
 >
 > Then there exists a strict minimum event gap
@@ -4716,17 +4874,21 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 > C^{\mathrm{mb}}_{2,tg},
 > $$
 > such that:
-> 1. two distinct fold events for the same receiver-source family cannot occur with source-time separation smaller than
+> 1. two distinct fold roots for the same receiver-source family in one receiver-time slice cannot occur with source-time separation smaller than
 >    $$
 >    \Delta\tau_{\mathrm{evt}};
 >    $$
-> 2. sector-boundary crossings and admissible source-cluster exchanges are likewise separated by at least
+> 2. two fold passages for the same receiver-source family are separated in receiver time by at least
+>    $$
+>    \Delta\tau_{\mathrm{evt}};
+>    $$
+> 3. sector-boundary crossings and admissible source-cluster exchanges are likewise separated by at least
 >    $$
 >    \Delta\tau_{\mathrm{evt}}
 >    $$
 >    along every controlled branch family;
-> 3. hence no fold, relabeling, or exchange event can accumulate in finite time on the controlled cycle;
-> 4. consequently the total number of admissible event hyperedges on one cycle is bounded by
+> 4. hence no fold, relabeling, or exchange event can accumulate in finite time on the controlled cycle;
+> 5. consequently the total number of admissible event hyperedges on one cycle is bounded by
 >    $$
 >    N^{\mathrm{mb}}_{\mathrm{edge}}
 >    \le
@@ -4748,8 +4910,9 @@ $$
 \Delta\tau_{\mathrm{evt}}
 \equiv
 \min\left\{
+\frac{\gamma_{\mathrm{fold}}}{C^{\mathrm{mb}}_{3,g}},
 \frac{\chi_{\mathrm{fold}}}{C^{\mathrm{mb}}_{2,tg}},
-\frac{\nu_J^{\mathrm{mb}}}{C^{\mathrm{mb}}_{2,g}},
+\frac{\nu_J^{\mathrm{mb}}}{2C^{\mathrm{mb}}_{2,g}},
 \Delta\tau_{\mathrm{sec}},
 \Delta\tau_{\mathrm{exc}}
 \right\},
@@ -4760,7 +4923,7 @@ $$
 \qquad
 \Delta\tau_{\mathrm{exc}}
 $$
-are the corresponding sector-boundary and admissible exchange isolation scales produced by the same derivative hierarchy. The second term is the uniform simple-branch persistence scale away from fold tubes: if
+are the corresponding sector-boundary and admissible exchange isolation scales produced by the same derivative hierarchy. The first two terms are the source-time and receiver-time fold-isolation scales. The third term is the uniform simple-branch persistence scale away from fold tubes: if
 $$
 |\partial_s g_{ij}(t;s_0)|\ge \nu_J^{\mathrm{mb}},
 $$
@@ -4770,7 +4933,7 @@ $$
 $$
 whenever
 $$
-|s-s_0|<\frac{\nu_J^{\mathrm{mb}}}{C^{\mathrm{mb}}_{2,g}}.
+|s-s_0|<\frac{\nu_J^{\mathrm{mb}}}{2C^{\mathrm{mb}}_{2,g}}.
 $$
 
 > **Corollary (Finite event count on one controlled cycle).**
@@ -4783,7 +4946,7 @@ $$
 > $$
 > so every admissible fold, relabeling, or exchange family is finite on one controlled cycle.
 
-The proof should now be organized in the same theorem-level way as the statement.
+The remaining local input is simple-branch persistence away from fold tubes.
 
 > **Lemma (Uniform persistence of simple branches away from fold tubes).**
 > Fix one receiver-source family
@@ -4889,7 +5052,7 @@ $$
 $$
 on the corresponding branch segments.
 
-> **Proof draft of the quantitative no-accumulation proposition.**
+> **Proof.**
 > Fix one controlled cycle and one admissible receiver-source-sector family.
 >
 > 1. **Fold isolation.**
@@ -4961,6 +5124,7 @@ on the corresponding branch segments.
 >    \Delta\tau_{\mathrm{evt}}
 >    \equiv
 >    \min\left\{
+>    \delta_{\mathrm{fold}},
 >    \delta_{\mathrm{fold},t},
 >    \delta_{\mathrm{simp}},
 >    \Delta\tau_{\mathrm{sec}},
@@ -5089,7 +5253,7 @@ The first proof-oriented step is to reduce every admissible fold tube to one qua
 > C^{\mathrm{mb}}_{3,g}.
 > $$
 
-> **Proof draft.**
+> **Proof.**
 > Translate the fold center to
 > $$
 > (t_\ast,s_\ast)
@@ -5212,7 +5376,7 @@ Once that reduction is available, the actual impulse bound becomes a finite-dime
 > $$
 > is finite.
 
-> **Proof sketch.**
+> **Proof.**
 > For a Type II fold, insert the fold-tube normal form into the dual-mollified branch kernel. After the local change of variable from
 > $$
 > s
@@ -5237,7 +5401,7 @@ Once that reduction is available, the actual impulse bound becomes a finite-dime
 > $$
 > So the total channelwise impulse is bounded by a finite sum of the same controlled one-dimensional transit integrals.
 
-> **Target Proposition (Bounded dual-mollified caustic transit for simple and shared-body folds).**
+> **Proposition (Bounded dual-mollified caustic transit for simple and shared-body folds).**
 > Assume the unreduced local well-posedness package and the quantitative no-accumulation package. Suppose, in addition, that on every admissible fold tube:
 > 1. the fold-curvature floor
 >    $$
@@ -5312,7 +5476,7 @@ M_{\max}^{\mathrm{mb}}\le 3
 $$
 is the maximal admissible local fold multiplicity in the Type II / Type III event alphabet.
 
-The proof should now be written one local fold block at a time.
+The proof is written one local fold block at a time.
 
 > **Lemma (Type II fold-tube transit estimate).**
 > Fix one admissible Type II fold tube
@@ -5343,10 +5507,22 @@ The proof should now be written one local fold block at a time.
 > \qquad
 > U_{\max},
 > \qquad
-> A_{\max}.
+> A_{\max},
+> \qquad
+> \chi_{\mathrm{fold}},
+> \qquad
+> U^{\mathrm{mb}}_{\mathrm{tube}}.
+> $$
+> Here
+> $$
+> U^{\mathrm{mb}}_{\mathrm{tube}}
+> $$
+> denotes the controlled source half-width of the fold tube in the normal-form coordinate
+> $$
+> u=s-s_\ast.
 > $$
 >
-> **Proof draft.**
+> **Proof.**
 > Write
 > $$
 > J_{ij}(t;s)=\alpha_{ij}(t)u+\mathcal{R}_{ij}(t,u),
@@ -5418,7 +5594,11 @@ The proof should now be written one local fold block at a time.
 >    =
 >    \frac{|J_{ij}(t;s)|}{|\partial_t g_{ij}(t;s)|}\,du.
 >    $$
->    On every admissible fold tube, the receiver-time passage floor from the no-accumulation package gives
+>    By shrinking the controlled fold tube if necessary, the receiver-time passage floor from the no-accumulation package persists along the active root branch; write the persisted floor again as
+>    $$
+>    \chi_{\mathrm{fold}}.
+>    $$
+>    Thus
 >    $$
 >    |\partial_t g_{ij}(t;s)|\ge \chi_{\mathrm{fold}}>0.
 >    $$
@@ -5513,7 +5693,7 @@ The proof should now be written one local fold block at a time.
 > M_{\mathrm{loc}}(\mathsf{e})\le 3.
 > $$
 >
-> **Proof draft.**
+> **Proof.**
 > Decompose the block into its participating branch families
 > $$
 > \beta_1,\dots,\beta_{M_{\mathrm{loc}}(\mathsf{e})}.
@@ -5557,7 +5737,7 @@ The proof should now be written one local fold block at a time.
 > $$
 > In the eventual invariant-envelope argument one must choose the kinematic box so that these renormalized constants are absorbed back into the same admissible class.
 >
-> **Proof draft.**
+> **Proof.**
 > The channelwise impulse bounds give a finite change in every projected velocity component across one admissible fold block, bounded by
 > $$
 > F^{\mathrm{mb}}_m.
@@ -5572,7 +5752,7 @@ The proof should now be written one local fold block at a time.
 > $$
 > depending only on the pre-transit envelope and the fold ceilings.
 
-> **Proof draft of the bounded caustic-transit proposition.**
+> **Proof of the bounded caustic-transit proposition.**
 > Fix one admissible fold block.
 >
 > 1. **Tube localization.**

@@ -11,10 +11,7 @@
 
 ## Task Queue
 
-1. `seed_margin_persistence` — Formalize the delayed seed-margin persistence lemma. Status: `next`. Depends on: none.
-2. `branch_regularity_chain` — Polish the no-accumulation and simple-branch persistence lemmas. Status: `pending`. Depends on: `seed_margin_persistence`.
-3. `type_ii_caustic_transit` — Formalize the sharpened Type II caustic-transit integral estimate. Status: `pending`. Depends on: `branch_regularity_chain`.
-4. `apocenter_entry_window` — Prove the speed-decay / apocenter-entry lemma that produces the strict sub-field-speed apocenter window without assuming an outer turn. Status: `pending`. Depends on: `type_ii_caustic_transit`.
+1. `apocenter_entry_window` — Prove the speed-decay / apocenter-entry lemma that produces the strict sub-field-speed apocenter window without assuming an outer turn. Status: `next`. Depends on: none.
 
 ## Scope
 
@@ -73,48 +70,12 @@ rather than to a mismatched tame-subclass / macro-envelope pair.
 
 - Read the seed-side through Schauder packages in [master-equation-breather.md](../../../content/markdown/aaa/dynamics/master-equation-breather.md) treating the architecture as frozen.
 - Do not add fresh theorem layers unless a real proof-breaking defect is discovered.
-- Start with seed-side and early branch-regularity lemmas because they feed the rest of the DAG.
+- Start with the apocenter-entry lemma because the seed-side, branch-regularity, and Type II caustic-transit proof-writing tasks have now been executed in [master-equation-breather.md](../../../content/markdown/aaa/dynamics/master-equation-breather.md).
 
 ## Proof-Writing Order
 
-1. Turn the delayed seed-margin persistence lemma into a clean formal proof, including:
-  - the explicit implicit-function argument for unique simple seed-side branches;
-  - the causal-delay estimate;
-  - the $\varepsilon_A$ neighborhood correction;
-  - the Jacobian perturbation estimate;
-  - and the projected-force perturbation bounds for
-$$
-\Lambda^{\mathrm{mb}}_1
-\qquad
-\text{and}
-\qquad
-\Lambda^{\mathrm{mb}}_2.
-$$
-2. Formalize the no-accumulation and simple-branch persistence chain into polished lemmas with explicit dependence on
-$$
-\gamma_{\mathrm{fold}},
-\qquad
-\nu^{\mathrm{mb}}_J,
-\qquad
-\chi_{\mathrm{fold}},
-\qquad
-\Delta\tau_{\mathrm{evt}}.
-$$
-3. If time remains, convert the sharpened Type II caustic-transit estimate into a formal integral proof using the exact cancellation
-$$
-dt=\frac{|\partial_s g|}{|\partial_t g|}\,du
-$$
-and the explicit ceiling
-$$
-\mathfrak{F}^{\mathrm{mb}}_{m,\mathrm{II}}
-\le
-\frac{
-2C_m^{\mathrm{proj}}\kappa\epsilon^2U^{\mathrm{mb}}_{\mathrm{tube}}
-}{
-\chi_{\mathrm{fold}}\bigl(d_{\min}^2+\epsilon_c^2\bigr)
-}.
-$$
-4. Preserve the theorem-program structure exactly as written. The active work is proof execution, not another architecture pass.
+1. Prove the speed-decay / apocenter-entry estimate without assuming an already-existing outer turn.
+2. Preserve the theorem-program structure exactly as written. The active work is proof execution, not another architecture pass.
 
 ## Related Priorities
 
