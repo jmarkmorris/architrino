@@ -3209,6 +3209,136 @@ p_0
 $$
 at which the inner margin, apocenter-entry margin, outer margin, entry-time budget, and envelope domination inequalities all hold simultaneously.
 
+The following sufficient corridor is the scalar form of that arithmetic certificate. It does not prove the geometric coefficients by itself; it separates the coefficient audit from the final coupling choice.
+
+> **Proposition (Factorized corridor for a strict coupled-regime point).**
+> Write
+> $$
+> g\equiv \kappa\epsilon^2.
+> $$
+> Suppose the force bounds on a chosen envelope factor as
+> $$
+> \overline A_s^\rho=gS_{\mathrm{in}}^\rho,
+> \qquad
+> \underline A_p^{\mathrm{out}}=gP_{\mathrm{out}},
+> \qquad
+> \overline A_{s,\mathrm{ent}}^{\mathrm{out}}=gS_{\mathrm{ent}}^{\mathrm{out}},
+> $$
+> where the coefficients are independent of
+> $$
+> g.
+> $$
+> Define
+> $$
+> D_{\mathrm{deep}}(\epsilon_c)
+> \equiv
+> \frac{1}{c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2},
+> \qquad
+> L_{\mathrm{shell}}(\eta,\epsilon_c)
+> \equiv
+> \frac{2\eta\|\delta_\eta\|_\infty}{\sigma_{\mathrm{out}}\epsilon_c^2}.
+> $$
+> Assume the selected
+> $$
+> (\eta,\epsilon_c)
+> $$
+> satisfy the strict short-window inequalities
+> $$
+> \frac{\epsilon_c}{2\beta_{p,\max}}<\tau_1,
+> \qquad
+> \eta<\frac{\epsilon_c}{4c_fC_p},
+> \qquad
+> \epsilon_c<\frac{\beta_{p,\max}^2}{c_fC_p},
+> $$
+> and that there exists
+> $$
+> m_{\mathrm{ent}}>0
+> $$
+> with
+> $$
+> P_{\mathrm{out}}-S_{\mathrm{ent}}^{\mathrm{out}}-m_{\mathrm{ent}}>0.
+> $$
+> Also assume
+> $$
+> C_{\mathrm{in}}(\epsilon_c)
+> \equiv
+> \frac{1}{4\beta_{p,\max}\epsilon_c}
+> -
+> \frac{S_{\mathrm{in}}^\rho\,\epsilon_c}{2\beta_{p,\max}}
+> >0,
+> $$
+> $$
+> P_{\mathrm{out}}
+> -
+> D_{\mathrm{deep}}(\epsilon_c)
+> -
+> L_{\mathrm{shell}}(\eta,\epsilon_c)
+> >0,
+> $$
+> and
+> $$
+> T_{\mathrm{ent}}^{\mathrm{out}}>\tau_{\mathrm{sub}}^{\mathrm{out}}.
+> $$
+> Then every coupling scale
+> $$
+> g
+> >
+> \max\left\{
+> \frac{V_{\max}}{C_{\mathrm{in}}(\epsilon_c)},
+> \frac{\big(V_{\mathrm{ent}}^{\mathrm{out}}-(c_f-\sigma_{\mathrm{out}})\big)_+}
+> {m_{\mathrm{ent}}\big(T_{\mathrm{ent}}^{\mathrm{out}}-\tau_{\mathrm{sub}}^{\mathrm{out}}\big)}
+> \right\}
+> $$
+> gives a strict coupled-regime point by setting
+> $$
+> a_{\mathrm{ent}}^{\mathrm{out}}=gm_{\mathrm{ent}}.
+> $$
+
+Proof.
+The short-window inequalities are strict by assumption. The inner margin becomes
+$$
+\mathfrak M_{\mathrm{in}}
+=
+gC_{\mathrm{in}}(\epsilon_c)-V_{\max},
+$$
+which is positive by the lower bound on
+$$
+g.
+$$
+The entry margin satisfies
+$$
+\mathfrak M_{\mathrm{ent}}-a_{\mathrm{ent}}^{\mathrm{out}}
+=
+g\big(P_{\mathrm{out}}-S_{\mathrm{ent}}^{\mathrm{out}}-m_{\mathrm{ent}}\big)
+>0.
+$$
+The outer margin factors as
+$$
+\mathfrak M_{\mathrm{out}}
+=
+g\big(
+P_{\mathrm{out}}
+-
+D_{\mathrm{deep}}(\epsilon_c)
+-
+L_{\mathrm{shell}}(\eta,\epsilon_c)
+\big),
+$$
+which is positive by the coefficient hypothesis. Finally, the lower bound on
+$$
+g
+$$
+also gives
+$$
+T_{\mathrm{ent}}^{\mathrm{out}}
+\ge
+\frac{\big(V_{\mathrm{ent}}^{\mathrm{out}}-(c_f-\sigma_{\mathrm{out}})\big)_+}
+{gm_{\mathrm{ent}}}
++
+\tau_{\mathrm{sub}}^{\mathrm{out}}.
+$$
+Thus the finite strict-regime list holds. Choosing the envelope constants with strict domination slack then supplies the strict slack point required by the previous proposition.
+
 > **Proposition (Certified self-map criterion).**
 > Let
 > $$
@@ -3400,6 +3530,97 @@ $$
 $$
 for every mesh index. Proposition `Finite sampled preservation criterion` then gives the self-map inclusion.
 
+> **Proposition (Residual-plus-sensitivity sampled preservation).**
+> In the setting above, assume the center history
+> $$
+> \phi_{\mathrm{cyc}}
+> $$
+> has a defined return
+> $$
+> P_\eta(\phi_{\mathrm{cyc}}),
+> $$
+> and define the one-sided returned residuals
+> $$
+> R_{j,+}^{x}
+> \equiv
+> \big(P_\eta(\phi_{\mathrm{cyc}})(\theta_j)-\phi_{\mathrm{cyc}}(\theta_j)\big)_+,
+> \qquad
+> R_{j,-}^{x}
+> \equiv
+> \big(\phi_{\mathrm{cyc}}(\theta_j)-P_\eta(\phi_{\mathrm{cyc}})(\theta_j)\big)_+,
+> $$
+> $$
+> R_{j,+}^{v}
+> \equiv
+> \big(\partial_\theta P_\eta(\phi_{\mathrm{cyc}})(\theta_j)-\dot\phi_{\mathrm{cyc}}(\theta_j)\big)_+,
+> \qquad
+> R_{j,-}^{v}
+> \equiv
+> \big(\dot\phi_{\mathrm{cyc}}(\theta_j)-\partial_\theta P_\eta(\phi_{\mathrm{cyc}})(\theta_j)\big)_+.
+> $$
+> Suppose also that the return map sample functionals have finite local sensitivity constants on
+> $$
+> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}},
+> $$
+> namely
+> $$
+> |P_\eta(\phi)(\theta_j)-P_\eta(\phi_{\mathrm{cyc}})(\theta_j)|
+> \le
+> L_j^x\|\phi-\phi_{\mathrm{cyc}}\|_{C^1},
+> $$
+> $$
+> |\partial_\theta P_\eta(\phi)(\theta_j)
+> -
+> \partial_\theta P_\eta(\phi_{\mathrm{cyc}})(\theta_j)|
+> \le
+> L_j^v\|\phi-\phi_{\mathrm{cyc}}\|_{C^1}
+> $$
+> for every
+> $$
+> \phi\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+> $$
+> If
+> $$
+> \max\{R_{j,+}^{x},R_{j,-}^{x}\}+L_j^x r_{\mathrm{cert}}
+> <
+> \frac{r_{\mathrm{cert}}}{4},
+> $$
+> and
+> $$
+> \max\{R_{j,+}^{v},R_{j,-}^{v}\}+L_j^v r_{\mathrm{cert}}
+> <
+> \frac{r_{\mathrm{cert}}}{4}
+> $$
+> for every
+> $$
+> 0\le j\le N,
+> $$
+> then the returned-sample budget certificate holds, and hence
+> $$
+> P_\eta(\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}})
+> \subseteq
+> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+> $$
+
+Proof.
+The sampled certificate construction gives
+$$
+\|\phi-\phi_{\mathrm{cyc}}\|_{C^1}\le r_{\mathrm{cert}}
+$$
+for every
+$$
+\phi\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+$$
+Therefore
+$$
+P_\eta(\phi)(\theta_j)-\phi_{\mathrm{cyc}}(\theta_j)
+\le
+R_{j,+}^{x}+L_j^x r_{\mathrm{cert}},
+$$
+and the same triangle-inequality argument gives the other three one-sided bounds. The displayed strict inequalities therefore define returned-sample budgets satisfying the previous proposition. The self-map inclusion follows.
+
+This criterion is only a sufficient route. If the raw local sensitivity is too large, the boundary-trapping lemma below can still prove preservation by direct inward-margin estimates at the certificate faces.
+
 > **Lemma (Boundary trapping for the sampled certificate).**
 > Assume the returned-sample budget certificate and write
 > $$
@@ -3470,7 +3691,19 @@ At this stage the remaining blockers are narrow and explicit:
    $$
    \mathcal{K}_{x_\ast,\eta};
    $$
-2. exhibit a strict slack point for the finite coupled-regime inequality system in
+2. verify the factorized coupled-corridor inequalities
+   $$
+   C_{\mathrm{in}}(\epsilon_c)>0,
+   \qquad
+   P_{\mathrm{out}}-S_{\mathrm{ent}}^{\mathrm{out}}-m_{\mathrm{ent}}>0,
+   \qquad
+   P_{\mathrm{out}}-D_{\mathrm{deep}}(\epsilon_c)-L_{\mathrm{shell}}(\eta,\epsilon_c)>0,
+   $$
+   then choose
+   $$
+   g=\kappa\epsilon^2
+   $$
+   above the displayed corridor threshold for the finite coupled-regime system in
    $$
    (\eta,\epsilon_c,X_{\max},U_{\max},A_{\max},T_{\max},h,
    V_{\mathrm{ent}}^{\mathrm{out}},
@@ -3479,7 +3712,13 @@ At this stage the remaining blockers are narrow and explicit:
    \overline A_{s,\mathrm{ent}}^{\mathrm{out}})
    $$
    rather than treating local margins and envelope constants as independent;
-3. derive returned-sample budgets
+3. derive returned-sample budgets, either by the residual-plus-sensitivity inequalities
+   $$
+   R_{j,\pm}^{x}+L_j^x r_{\mathrm{cert}}<\frac{r_{\mathrm{cert}}}{4},
+   \qquad
+   R_{j,\pm}^{v}+L_j^v r_{\mathrm{cert}}<\frac{r_{\mathrm{cert}}}{4},
+   $$
+   or by direct boundary trapping, for
    $$
    E_{j,\pm}^{x},
    \qquad
@@ -4546,7 +4785,7 @@ This theorem closes the seed-side nonvacuity gap in the global existence program
 - invariant-envelope closure on a certified closed convex history set, conditional on the sampled certificate and coupled strict-slack arithmetic,
 - and the previously stated precompactness, continuity, and Schauder route.
 
-The remaining work is therefore no longer to construct a nonempty delayed class. It is to verify the sampled tame-envelope certificate, solve the coupled strict-slack inequalities, and derive returned-sample budgets with strict sample slack on that same class.
+The remaining work is therefore no longer to construct a nonempty delayed class. It is to verify the sampled tame-envelope certificate, verify the factorized coupled-corridor inequalities, and derive returned-sample budgets with strict sample slack, either through residual-plus-sensitivity control or direct boundary trapping, on that same class.
 
 ### Collapse-to-crossing target
 
