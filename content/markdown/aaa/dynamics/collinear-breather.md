@@ -3951,7 +3951,7 @@ Once these three items are theorem-level, the finite-certificate invariant closu
 
 ### Schauder capstone
 
-> **Target Theorem (Schauder Existence of a Dual-Mollified Collinear Breather).**
+> **Conditional Theorem (Schauder Existence of a Dual-Mollified Collinear Breather).**
 > Assume:
 > 1. the theorem `Seed-to-Tame Full-Cycle Propagation`;
 > 2. the finite-certificate invariant closure package, producing the nonempty closed convex tame self-map domain
@@ -3990,7 +3990,7 @@ Once these three items are theorem-level, the finite-certificate invariant closu
 > $$
 > The corresponding delayed trajectory is an exact bounded periodic origin-crossing two-body motion in the dual-mollified collinear model.
 
-Proof sketch.
+Proof.
 `Seed-to-Tame Full-Cycle Propagation` supplies a nonempty tame class. The finite-certificate invariant closure package places that class inside a nonempty closed convex self-map domain
 $$
 \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
