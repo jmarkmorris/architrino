@@ -2528,6 +2528,103 @@ $$
 r_{\mathrm{cert}}.
 $$
 
+> **Proposition (Quantitative seed-cycle radius choice).**
+> Assume the seed-cycle margin ledger satisfies
+> $$
+> \nu_{\mathrm{seed}}>0,
+> \qquad
+> \gamma_{\mathrm{gap}}>0,
+> \qquad
+> \gamma_h>0,
+> \qquad
+> \gamma_{\mathrm{env}}>0.
+> $$
+> Suppose also that on the certified chart there are finite local sensitivity constants
+> $$
+> L_J,
+> \qquad
+> L_F,
+> \qquad
+> L_h,
+> \qquad
+> L_{\mathrm{env}}
+> $$
+> such that a
+> $$
+> C^1
+> $$
+> perturbation of size
+> $$
+> r
+> $$
+> changes active Jacobians by at most
+> $$
+> L_Jr,
+> $$
+> inactive root-equation gaps by at most
+> $$
+> L_Fr,
+> $$
+> active memory-depth distances by at most
+> $$
+> L_hr,
+> $$
+> and the envelope slacks by at most
+> $$
+> L_{\mathrm{env}}r.
+> $$
+> Then any radius satisfying
+> $$
+> 0<r_{\mathrm{cert}}
+> <
+> \min\left\{
+> \frac{\nu_{\mathrm{seed}}}{2L_J},
+> \frac{\gamma_{\mathrm{gap}}}{2L_F},
+> \frac{\gamma_h}{2L_h},
+> \frac{\gamma_{\mathrm{env}}}{2L_{\mathrm{env}}}
+> \right\}
+> $$
+> produces the strict chart margins required by Proposition `Sampled seed-cycle tube gives a finite tame certificate`, after omitting any quotient with zero sensitivity because that margin is then unchanged to first order on the chart.
+
+Proof.
+For any history within
+$$
+r_{\mathrm{cert}}
+$$
+of
+$$
+\phi_{\mathrm{cyc}}
+$$
+in
+$$
+C^1,
+$$
+the active Jacobian floor is at least
+$$
+\nu_{\mathrm{seed}}-L_Jr_{\mathrm{cert}}
+>
+\frac{\nu_{\mathrm{seed}}}{2}>0.
+$$
+The inactive root-equation gap remains at least
+$$
+\gamma_{\mathrm{gap}}-L_Fr_{\mathrm{cert}}
+>
+\frac{\gamma_{\mathrm{gap}}}{2}>0,
+$$
+so no inactive branch is born. The active memory-depth distance remains at least
+$$
+\gamma_h-L_hr_{\mathrm{cert}}
+>
+\frac{\gamma_h}{2}>0,
+$$
+so no active root reaches the stored-horizon boundary. Finally, the envelope slack remains at least
+$$
+\gamma_{\mathrm{env}}-L_{\mathrm{env}}r_{\mathrm{cert}}
+>
+\frac{\gamma_{\mathrm{env}}}{2}>0.
+$$
+These four strict inequalities are precisely the branch-chart, gap, memory-depth, and envelope margins required for the sampled finite certificate.
+
 ### Precompactness of returned histories
 
 > **Proposition (Precompactness of the Return Image).**
@@ -3673,6 +3770,53 @@ $$
 $$
 by one of the established cycle margins. Because the certificate family is finite, these facewise checks reduce the global self-map property to finitely many inward-pointing inequalities.
 
+> **Theorem (Finite-certificate invariant closure package).**
+> Assume:
+> 1. the seed-cycle margin ledger is positive and the quantitative radius criterion has been used to choose
+>    $$
+>    r_{\mathrm{cert}};
+>    $$
+> 2. the sampled finite certificate defines
+>    $$
+>    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}};
+>    $$
+> 3. the factorized coupled-regime corridor holds, so invariant-envelope closure gives
+>    $$
+>    P_\eta(\phi)\in\mathcal{C}_{x_\ast,\eta}
+>    \qquad
+>    \text{for every }\phi\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}};
+>    $$
+> 4. and either the residual-plus-sensitivity sampled preservation criterion or the direct returned-sample budget certificate holds on
+>    $$
+>    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+>    $$
+>
+> Then
+> $$
+> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> $$
+> is a nonempty closed convex tame self-map domain for
+> $$
+> P_\eta,
+> $$
+> namely
+> $$
+> P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}\big)
+> \subseteq
+> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+> $$
+
+Proof.
+The positive seed-cycle ledger and the radius criterion give the strict branch-chart, gap, memory-depth, and envelope margins required by the sampled finite certificate. The finite certificate construction then makes
+$$
+\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+$$
+a nonempty closed convex tame envelope. The factorized corridor supplies the coupled strict-slack point needed by invariant-envelope closure, so returned histories lie in
+$$
+\mathcal{C}_{x_\ast,\eta}.
+$$
+Finally, the residual-plus-sensitivity criterion implies the returned-sample budget certificate; alternatively, the budget certificate may be proved directly. In either case the finite sampled preservation criterion gives the certificate inequalities after one return. Therefore the returned history lies in the certified set itself, proving the self-map inclusion.
+
 ### Remaining blockers before Schauder
 
 At this stage the remaining blockers are narrow and explicit:
@@ -3687,7 +3831,11 @@ At this stage the remaining blockers are narrow and explicit:
    \qquad
    \gamma_{\mathrm{env}}>0
    $$
-   and use it to choose the sampled finite tame certificate for
+   then apply the quantitative radius criterion for
+   $$
+   r_{\mathrm{cert}}
+   $$
+   to choose the sampled finite tame certificate for
    $$
    \mathcal{K}_{x_\ast,\eta};
    $$
@@ -3730,7 +3878,7 @@ At this stage the remaining blockers are narrow and explicit:
    $$
    on that same domain.
 
-Once these three items are theorem-level, the remaining Schauder step is formally routine because continuity and precompactness have been isolated above as conditional propositions on the same domain.
+Once these three items are theorem-level, the finite-certificate invariant closure package supplies the self-map domain. The remaining Schauder step is then formally routine because continuity and precompactness have been isolated above as conditional propositions on that same domain.
 
 ### Schauder capstone
 
