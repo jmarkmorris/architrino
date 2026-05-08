@@ -12,6 +12,8 @@ Its purpose is differential classification, not sociological ranking. The chapte
 
 One governing distinction in this chapter is the difference between predictive closure and implementation closure. A theory may organize observations with extraordinary precision while still leaving open what physically implements the successful mathematics. In that case the formalism is not discarded, but its stack placement must remain disciplined. The central comparative question is therefore not only whether a framework works, but whether it explains by exposing a generator or only by stabilizing an effective summary.
 
+This distinction also names a regime-capture problem. Modern physics has often converted success inside a measured domain into a boundary on what may count as fundamental explanation. In this chapter, such success is treated as evidence for an effective closure, not as automatic evidence for final ontology. A framework that works only inside a narrow range of speed, energy, curvature, particle-number stability, or observational access may still be indispensable, but under $\mathbb{A}\mathbb{A}\mathbb{A}$ it must be classified by the regime it actually governs and by the substrate mapping it still owes.
+
 ### Theory-Differential Template (Unified)
 
 Use this template for every concept entry (theory, framework, program, interpretation, law, principle, quantity, observable, parameter, or construct). Repetition is intentional: this chapter is a controlled comparison instrument, not a sequence of free-form essays.

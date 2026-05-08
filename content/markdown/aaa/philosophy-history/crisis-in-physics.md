@@ -10,6 +10,8 @@ Companion bridge chapters for this map are [Theory Mapping](theory-mapping.md), 
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is not a complaint about science failing. It is a diagnosis that several domains of modern physics may be mathematically mature while still being ontologically incomplete, mislocated, or over-interpreted.
 
+The sharper accountability claim is that modern physics has often mistaken precision inside narrow measured regimes for authority over ontology itself. That is a methodological failure, not a failure of measurement. The field learned to trust successful closures so strongly that regime-limited equations became standards of admissible explanation, even when those equations openly depended on restricted energy, velocity, curvature, density, coupling, or observer-access conditions. From the $\mathbb{A}\mathbb{A}\mathbb{A}$ standpoint, this delayed recognition of the substrate layer: the inherited stack remained useful as effective theory while blocking the conceptual move needed to reinterpret its variables.
+
 This document should map the main crisis-axes rather than collapse them into one slogan. The point is to separate:
 
 - where prediction outran explanation,

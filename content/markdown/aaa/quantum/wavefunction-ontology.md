@@ -21,7 +21,7 @@ The wavefunction encodes:
 *   **Informational ambiguity:** The integrated ignorance of exact source identities, distances, and path-history emission times.
 *   **Assembly resonance modes:** The allowed stable configuration limits of the tri-binary assemblies.
 
-When standard quantum mechanics uses a unitary evolution equation (the Schrödinger equation), it is tracking the linear, idealized propagation of these coarse-grained potential distributions across the Noether Sea.
+When standard non-relativistic, fixed-particle-number quantum mechanics uses a unitary evolution equation (the Schrödinger equation), it is tracking the linear, idealized propagation of these coarse-grained potential distributions across the Noether Sea.
 
 ## The Origin of Uncertainty
 

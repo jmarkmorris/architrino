@@ -4,7 +4,7 @@ This document maps the traditional "Measurement Problem" and the phenomenon of w
 
 ### The Traditional Measurement Problem
 
-In standard quantum mechanics, the evolution of a closed system is strictly linear and unitary, governed by the Schrödinger equation. However, upon "measurement," the system is postulated to undergo a discontinuous, non-unitary projection (collapse) into an eigenstate of the measured observable. 
+In the textbook non-relativistic, fixed-particle-number framing of quantum mechanics, the evolution of a closed system is strictly linear and unitary, governed by the Schrödinger equation. However, upon "measurement," the system is postulated to undergo a discontinuous, non-unitary projection (collapse) into an eigenstate of the measured observable. 
 
 This dualistic evolution introduces the Measurement Problem: 
 1. The formalism provides no physical definition of what constitutes a "measurement" or an "observer."

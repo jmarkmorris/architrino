@@ -14,6 +14,7 @@
 1. `seed_margin_persistence` — Formalize the delayed seed-margin persistence lemma. Status: `next`. Depends on: none.
 2. `branch_regularity_chain` — Polish the no-accumulation and simple-branch persistence lemmas. Status: `pending`. Depends on: `seed_margin_persistence`.
 3. `type_ii_caustic_transit` — Formalize the sharpened Type II caustic-transit integral estimate. Status: `pending`. Depends on: `branch_regularity_chain`.
+4. `apocenter_entry_window` — Prove the speed-decay / apocenter-entry lemma that produces the strict sub-field-speed apocenter window without assuming an outer turn. Status: `pending`. Depends on: `type_ii_caustic_transit`.
 
 ## Scope
 
@@ -78,7 +79,7 @@ rather than to a mismatched tame-subclass / macro-envelope pair.
 
 1. Turn the delayed seed-margin persistence lemma into a clean formal proof, including:
   - the explicit implicit-function argument for unique simple seed-side branches;
-  - the retardation estimate;
+  - the causal-delay estimate;
   - the $\varepsilon_A$ neighborhood correction;
   - the Jacobian perturbation estimate;
   - and the projected-force perturbation bounds for

@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 125,
-      "sections": 854
+      "sections": 857
     }
   },
   "tocRoot": {
@@ -942,10 +942,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Appendix: AI Henri Poincare on the Unlikelihood of a Closed-Form Solution",
+                "title": "Appendix: Why a Closed-Form Solution Is Unlikely",
                 "markdownPath": "content/markdown/aaa/dynamics/collinear-breather.md",
-                "markdownSection": "Appendix: AI Henri Poincare on the Unlikelihood of a Closed-Form Solution",
-                "sectionKey": "appendix ai henri poincare on the unlikelihood of a closed form solution",
+                "markdownSection": "Appendix: Why a Closed-Form Solution Is Unlikely",
+                "sectionKey": "appendix why a closed form solution is unlikely",
                 "headingLevel": 2
               },
               {
@@ -6851,6 +6851,14 @@
                   },
                   {
                     "kind": "markdown-section",
+                    "title": "Relativistic Scalar Fields / Klein-Gordon Equation",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+                    "markdownSection": "Relativistic Scalar Fields / Klein-Gordon Equation",
+                    "sectionKey": "relativistic scalar fields klein gordon equation",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Quantum Chromodynamics (QCD)",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
                     "markdownSection": "Quantum Chromodynamics (QCD)",
@@ -7117,6 +7125,22 @@
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
                     "markdownSection": "Quantum Mechanics (QM)",
                     "sectionKey": "quantum mechanics qm",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Schrödinger Equation",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+                    "markdownSection": "Schrödinger Equation",
+                    "sectionKey": "schrodinger equation",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Quantum Spin / Pauli-Dirac Map",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+                    "markdownSection": "Quantum Spin / Pauli-Dirac Map",
+                    "sectionKey": "quantum spin pauli dirac map",
                     "headingLevel": 3
                   },
                   {
