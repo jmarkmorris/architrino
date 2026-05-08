@@ -2464,6 +2464,70 @@ $$
 $$
 into a closed convex tame envelope.
 
+For the first remaining blocker, the seed-cycle certificate should therefore be audited by the following finite margin ledger:
+$$
+\nu_{\mathrm{seed}}
+\equiv
+\min_{\beta\in\mathcal{B}_{\mathrm{act}}}
+\inf_{t\in I_\beta}|J_\beta(t)|,
+$$
+$$
+\gamma_{\mathrm{gap}}
+\equiv
+\min_{\beta\in\mathcal{B}_{\mathrm{inact}}}
+\inf_{(t,\theta)\in Q_\beta}
+|F_\beta(t,\theta)|,
+$$
+$$
+\gamma_h
+\equiv
+\min_{\beta\in\mathcal{B}_{\mathrm{act}}}
+\inf_{t\in I_\beta}
+\operatorname{dist}\big(\theta_\beta(t),\{-h,0\}\big),
+$$
+together with the envelope slack
+$$
+\gamma_{\mathrm{env}}
+\equiv
+\min\left\{
+X_{\max}-\sup|\phi_{\mathrm{cyc}}|,
+\;
+U_{\max}-\sup|\dot\phi_{\mathrm{cyc}}|,
+\;
+A_{\max}-\operatorname{Lip}(\dot\phi_{\mathrm{cyc}})
+\right\}.
+$$
+Here
+$$
+F_\beta(t,\theta)=0
+$$
+denotes the delayed-root equation for branch candidate
+$$
+\beta,
+$$
+the sets
+$$
+I_\beta
+$$
+are the compact active branch intervals, and
+$$
+Q_\beta
+$$
+is the compact inactive chart complement after deleting small neighborhoods of the active roots. Positivity of
+$$
+\nu_{\mathrm{seed}},
+\qquad
+\gamma_{\mathrm{gap}},
+\qquad
+\gamma_h,
+\qquad
+\gamma_{\mathrm{env}}
+$$
+is exactly the strict seed-cycle tube condition needed to choose
+$$
+r_{\mathrm{cert}}.
+$$
+
 ### Precompactness of returned histories
 
 > **Proposition (Precompactness of the Return Image).**
@@ -3271,7 +3335,114 @@ $$
 \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
 $$
 
-The hard part of applying this criterion is proving the finite mesh inequalities uniformly. One useful route is a boundary-trapping check: for each certificate face
+The hard part of applying this criterion is proving the finite mesh inequalities uniformly. The following budget form is the one that should be used in later proof checking.
+
+> **Proposition (Returned-sample budget certificate).**
+> In the setting of Proposition `Finite sampled preservation criterion`, suppose there are finite returned-sample budgets
+> $$
+> E_{j,+}^{x},
+> \qquad
+> E_{j,-}^{x},
+> \qquad
+> E_{j,+}^{v},
+> \qquad
+> E_{j,-}^{v},
+> \qquad
+> 0\le j\le N,
+> $$
+> such that for every
+> $$
+> \phi\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> $$
+> the returned history satisfies
+> $$
+> P_\eta(\phi)(\theta_j)-\phi_{\mathrm{cyc}}(\theta_j)
+> \le E_{j,+}^{x},
+> \qquad
+> \phi_{\mathrm{cyc}}(\theta_j)-P_\eta(\phi)(\theta_j)
+> \le E_{j,-}^{x},
+> $$
+> and
+> $$
+> \partial_\theta P_\eta(\phi)(\theta_j)-\dot\phi_{\mathrm{cyc}}(\theta_j)
+> \le E_{j,+}^{v},
+> \qquad
+> \dot\phi_{\mathrm{cyc}}(\theta_j)-\partial_\theta P_\eta(\phi)(\theta_j)
+> \le E_{j,-}^{v}.
+> $$
+> If the strict sample-slack inequalities
+> $$
+> \max\{E_{j,+}^{x},E_{j,-}^{x},E_{j,+}^{v},E_{j,-}^{v}\}
+> <
+> \frac{r_{\mathrm{cert}}}{4}
+> \qquad
+> \text{for every }0\le j\le N
+> $$
+> hold, then
+> $$
+> P_\eta(\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}})
+> \subseteq
+> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+> $$
+
+Proof.
+The one-sided budget inequalities imply
+$$
+|P_\eta(\phi)(\theta_j)-\phi_{\mathrm{cyc}}(\theta_j)|
+<
+\frac{r_{\mathrm{cert}}}{4},
+$$
+and
+$$
+|\partial_\theta P_\eta(\phi)(\theta_j)-\dot\phi_{\mathrm{cyc}}(\theta_j)|
+<
+\frac{r_{\mathrm{cert}}}{4}
+$$
+for every mesh index. Proposition `Finite sampled preservation criterion` then gives the self-map inclusion.
+
+> **Lemma (Boundary trapping for the sampled certificate).**
+> Assume the returned-sample budget certificate and write
+> $$
+> s_{\mathrm{sam}}
+> \equiv
+> \frac{r_{\mathrm{cert}}}{4}
+> -
+> \max_{0\le j\le N}
+> \max\{E_{j,+}^{x},E_{j,-}^{x},E_{j,+}^{v},E_{j,-}^{v}\}.
+> $$
+> If
+> $$
+> s_{\mathrm{sam}}>0,
+> $$
+> then every codimension-one sample face of
+> $$
+> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> $$
+> is strictly inward under one return.
+
+Proof.
+The sample faces are exactly the four one-sided equalities, for each mesh index
+$$
+j,
+$$
+obtained by replacing one of
+$$
+|\phi(\theta_j)-\phi_{\mathrm{cyc}}(\theta_j)|\le \frac{r_{\mathrm{cert}}}{4},
+\qquad
+|\dot\phi(\theta_j)-\dot\phi_{\mathrm{cyc}}(\theta_j)|
+\le \frac{r_{\mathrm{cert}}}{4}
+$$
+with equality and choosing a sign. If a returned history touched one such face, the corresponding returned-sample defect would equal
+$$
+\frac{r_{\mathrm{cert}}}{4}.
+$$
+But the returned-sample budget bounds that same defect by at most
+$$
+\frac{r_{\mathrm{cert}}}{4}-s_{\mathrm{sam}},
+$$
+a contradiction. Hence no returned history reaches any sample face; all sample faces are strictly inward.
+
+One useful route for proving the budget hypotheses is a boundary-trapping check: for each certificate face
 $$
 \ell_\alpha=b_\alpha,
 $$
@@ -3285,7 +3456,17 @@ by one of the established cycle margins. Because the certificate family is finit
 
 At this stage the remaining blockers are narrow and explicit:
 
-1. verify a strictly controlled seed-cycle tube with the branch-chart, gap, memory-depth, and envelope margins required by the sampled finite tame certificate for
+1. verify the seed-cycle margin ledger
+   $$
+   \nu_{\mathrm{seed}}>0,
+   \qquad
+   \gamma_{\mathrm{gap}}>0,
+   \qquad
+   \gamma_h>0,
+   \qquad
+   \gamma_{\mathrm{env}}>0
+   $$
+   and use it to choose the sampled finite tame certificate for
    $$
    \mathcal{K}_{x_\ast,\eta};
    $$
@@ -3298,11 +3479,17 @@ At this stage the remaining blockers are narrow and explicit:
    \overline A_{s,\mathrm{ent}}^{\mathrm{out}})
    $$
    rather than treating local margins and envelope constants as independent;
-3. verify finite certificate preservation under one return, equivalently prove the finite boundary-trapping checks that imply
+3. derive returned-sample budgets
+   $$
+   E_{j,\pm}^{x},
+   \qquad
+   E_{j,\pm}^{v}
+   $$
+   from the cycle estimates with strict sample slack, equivalently prove the finite boundary-trapping checks that imply
    $$
    P_\eta(\mathcal{K}_{x_\ast,\eta})\subseteq \mathcal{K}_{x_\ast,\eta}
    $$
-   on that same domain; in the sampled-certificate formulation this is the finite set of returned position and velocity sample inequalities.
+   on that same domain.
 
 Once these three items are theorem-level, the remaining Schauder step is formally routine because continuity and precompactness have been isolated above as conditional propositions on the same domain.
 
@@ -4268,7 +4455,7 @@ $$
 $$
 on which those properties hold both before and after one full return. This gives exactly the forward-propagation tame class required by the invariant-envelope theorem.
 
-This proposition closes the seed-propagation ladder. The only remaining logical step is to package the four seed-neighborhood propositions into a single nonempty tame-class theorem, after which the invariant-envelope synthesis and the Schauder route apply directly.
+This proposition closes the seed-propagation ladder at the nonvacuity level. The remaining logical step inside that ladder is to package the four seed-neighborhood propositions into a single nonempty tame-class theorem. The later Schauder route still requires the sampled tame-envelope certificate, coupled strict-slack arithmetic, and returned-sample preservation on the same domain.
 
 > **Theorem (Nonempty tame class from seed propagation).**
 > Assume:
@@ -4303,7 +4490,7 @@ This proposition closes the seed-propagation ladder. The only remaining logical 
 >    $$
 > 4. and the invariant-envelope theorem is therefore nonvacuous on a genuine delayed history class.
 >
-> In particular, once the continuity and precompactness propositions are verified on this same class, the Schauder route applies on a nonempty domain.
+> In particular, once the sampled certificate, coupled strict-slack inequalities, returned-sample preservation, continuity, and precompactness are verified on this same class, the Schauder route applies on a nonempty self-map domain.
 
 Proof sketch.
 The seed proposition and its neighborhood corollary provide a nonempty section-side class
@@ -4359,7 +4546,7 @@ This theorem closes the seed-side nonvacuity gap in the global existence program
 - invariant-envelope closure on a certified closed convex history set, conditional on the sampled certificate and coupled strict-slack arithmetic,
 - and the previously stated precompactness, continuity, and Schauder route.
 
-The remaining work is therefore no longer to construct a nonempty delayed class. It is to verify the sampled tame-envelope certificate, solve the coupled strict-slack inequalities, and prove finite certificate preservation under one return on that same class.
+The remaining work is therefore no longer to construct a nonempty delayed class. It is to verify the sampled tame-envelope certificate, solve the coupled strict-slack inequalities, and derive returned-sample budgets with strict sample slack on that same class.
 
 ### Collapse-to-crossing target
 
