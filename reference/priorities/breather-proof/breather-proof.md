@@ -12,12 +12,13 @@
 ## Task Queue
 
 1. `master_equation_law` — Record the exact dual-mollified absolute-time evolution law in the master-equation stack. Status: `done`. Depends on: none.
-2. `seed_chart_packet` — Produce `certificate/phi_cyc.json`, `certificate/branch_chart.json`, `certificate/mesh.json`, and the seed-chart interval report. Status: `next`. Depends on: `master_equation_law`.
-3. `coupled_corridor_certificate` — Produce `certificate/parameters.json` and the coupled-corridor interval report for one strict parameter tuple. Status: `pending`. Depends on: `seed_chart_packet`.
-4. `monodromy_diagnostic` — Produce the section-anchored monodromy spectrum and route returned-sample preservation to sensitivities or boundary trapping. Status: `pending`. Depends on: `seed_chart_packet`, `coupled_corridor_certificate`.
-5. `returned_sample_certificate` — Produce returned-sample residuals or boundary-trapping budgets on the certified mesh. Status: `pending`. Depends on: `seed_chart_packet`, `coupled_corridor_certificate`, `monodromy_diagnostic`.
-6. `topology_certificate` — Verify return transversality, origin-layer continuity, certified fold-event atlas, and certified branch-chart well-posedness on the same domain. Status: `pending`. Depends on: `returned_sample_certificate`.
-7. `schauder_closeout` — Promote the conditional Schauder theorem to an existence theorem after all certificate rows pass. Status: `pending`. Depends on: `topology_certificate`.
+2. `velocity_itinerary_verification` — Produce `certificate/itinerary.json` and `certificate/itinerary_parity_report.md` proving the proposed velocity-class itinerary satisfies the fold-parity invariants. Status: `next`. Depends on: `master_equation_law`.
+3. `seed_chart_packet` — Produce `certificate/phi_cyc.json`, `certificate/branch_chart.json`, `certificate/mesh.json`, and the seed-chart interval report. Status: `pending`. Depends on: `velocity_itinerary_verification`.
+4. `coupled_corridor_certificate` — Produce `certificate/corridor_nonemptiness_report.md`, `certificate/parameters.json`, and the coupled-corridor interval report for one strict parameter tuple. Status: `pending`. Depends on: `seed_chart_packet`.
+5. `monodromy_diagnostic` — Produce the section-anchored monodromy spectrum and route returned-sample preservation to sensitivities or boundary trapping. Status: `pending`. Depends on: `seed_chart_packet`, `coupled_corridor_certificate`.
+6. `returned_sample_certificate` — Produce returned-sample residuals or boundary-trapping budgets on the certified mesh. Status: `pending`. Depends on: `seed_chart_packet`, `coupled_corridor_certificate`, `monodromy_diagnostic`.
+7. `topology_certificate` — Verify return transversality, origin-layer continuity, certified fold-event atlas, and certified branch-chart well-posedness on the same domain. Status: `pending`. Depends on: `returned_sample_certificate`.
+8. `schauder_closeout` — Promote the conditional Schauder theorem to an existence theorem after all certificate rows pass. Status: `pending`. Depends on: `topology_certificate`.
 
 ## Scope
 
@@ -86,14 +87,21 @@ not a new roadmap.
 ## Immediate Cross-Document Action Plan
 
 1. The exact dual-mollified absolute-time equation now belongs in [master-equation.md](../../../content/markdown/aaa/dynamics/master-equation.md) as the canonical evolution law for certification. Branch sums are local simple-root reductions of that law.
-2. Generate one candidate collinear cycle
+2. Verify the proposed velocity-class itinerary before generating a candidate cycle. For the four-arc skeleton or any replacement itinerary, check the fold-parity constraints
+   $$
+   \Delta N\in 2\mathbb{Z},
+   \qquad
+   \Delta D=0,
+   $$
+   from Proposition 3 of [master-equation.md](../../../content/markdown/aaa/dynamics/master-equation.md).
+3. Generate one candidate collinear cycle
    $$
    \phi_{\mathrm{cyc}}
    $$
    by ansatz, collocation, or simulation.
-3. Enumerate active and inactive path-history roots on a finite mesh around that candidate.
-4. Verify the five audit rows below on the same certified domain.
-5. Promote the conditional Schauder theorem in [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md) only after the finite audit passes.
+4. Enumerate active and inactive path-history roots on a finite mesh around that candidate.
+5. Verify the five audit rows below on the same certified domain.
+6. Promote the conditional Schauder theorem in [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md) only after the finite audit passes.
 
 The vulnerable assumption is that a finite active branch chart with positive Jacobian floors and positive inactive-root gaps exists around one candidate cycle. The direct test is root enumeration plus interval certification for
 $$
@@ -116,6 +124,11 @@ $$
 \phi_{\mathrm{cyc}},
 $$
 sample mesh, coefficient table, numerical certificate, or symbolic certificate in the repository. Therefore the proof cannot honestly be marked complete without constructing or computing that candidate and verifying its finite audit rows.
+
+Before the five audit rows begin, the itinerary gate must pass. Its executable artifacts are:
+
+- `certificate/itinerary.json`: velocity-class itinerary, arc labels, separator events, proposed fold events, and expected root-count jumps.
+- `certificate/itinerary_parity_report.md`: algebraic check that every separator event satisfies the even-jump law and signed-degree conservation, and that the closed-cycle branch ledger returns to itself.
 
 The finite audit rows are:
 
@@ -186,7 +199,15 @@ The finite audit rows are:
      L_{\mathrm{env}}.
      $$
 2. **Coupled-corridor row.**
-   Verify the factorized coefficient inequalities
+   First prove that the corridor is algebraically nonempty before searching for a strict tuple
+   $$
+   p_0.
+   $$
+   This means deriving a nonempty window for the coupled
+   $$
+   (\eta,\epsilon_c,g)
+   $$
+   constraints, including the competing lower and upper core-scale bounds from the corridor nonemptiness criterion in [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md). After that, verify the factorized coefficient inequalities
    $$
    C_{\mathrm{in}}(\epsilon_c)>0,
    \qquad
@@ -201,6 +222,11 @@ The finite audit rows are:
    above the displayed corridor threshold in the manuscript.
 
    **Executable artifacts.**
+   - `certificate/corridor_nonemptiness_report.md`: one-page algebraic proof that the coupled corridor has admissible
+     $$
+     (\eta,\epsilon_c,g)
+     $$
+     solutions, or a pass/fail obstruction if the core-scale window is empty.
    - `certificate/parameters.json`: one proposed strict tuple
      $$
      p_0=(\eta,\epsilon_c,X_{\max},U_{\max},A_{\max},T_{\max},h,
@@ -210,7 +236,7 @@ The finite audit rows are:
      \overline A_{s,\mathrm{ent}}^{\mathrm{out}},g)
      $$
      with interval bounds for all dependent coefficients.
-   - `certificate/coupled_corridor_interval_report.md`: pass/fail interval ledger for the inner margin, apocenter-entry margin, outer margin, entry-time budget, and envelope domination inequalities.
+   - `certificate/coupled_corridor_interval_report.md`: pass/fail interval ledger for the corridor nonemptiness gate, inner margin, apocenter-entry margin, outer margin, entry-time budget, and envelope domination inequalities.
 3. **Monodromy diagnostic row.**
    Compute or interval-bound the section-anchored linearized return map
    $$
@@ -223,7 +249,7 @@ The finite audit rows are:
      $$
      \delta_{\mathrm{mon}}.
      $$
-   - `certificate/monodromy_interval_report.md`: pass/fail report deciding whether the returned-sample row may use sensitivities or must use boundary trapping.
+   - `certificate/monodromy_report.md`: eigenvalue spectrum, spectral-radius enclosure, and pass/fail route decision for whether the returned-sample row may use sensitivities or must use boundary trapping.
 4. **Returned-sample row.**
    On the chosen mesh, verify either the residual-plus-sensitivity inequalities
    $$
@@ -273,12 +299,13 @@ Only after all five rows are verified on the same certified domain does the cond
 
 ## Proof-Writing Order
 
-1. Produce the seed-chart packet.
-2. Produce one strict coupled-corridor parameter certificate.
-3. Produce the monodromy diagnostic and choose the returned-sample proof route.
-4. Produce returned-sample preservation, preferring boundary trapping if residual sensitivities are too large.
-5. Produce the topology certificate.
-6. Only after all five rows pass, update [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md) from conditional theorem to completed dual-mollified existence theorem.
+1. Produce the velocity-class itinerary and parity report.
+2. Produce the seed-chart packet.
+3. Prove corridor nonemptiness, then produce one strict coupled-corridor parameter certificate.
+4. Produce the monodromy diagnostic and choose the returned-sample proof route.
+5. Produce returned-sample preservation, preferring boundary trapping if residual sensitivities are too large.
+6. Produce the topology certificate.
+7. Only after the itinerary gate and all five audit rows pass, update [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md) from conditional theorem to completed dual-mollified existence theorem.
 
 ## Related Priorities
 

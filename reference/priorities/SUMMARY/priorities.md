@@ -68,7 +68,7 @@ This single table is the canonical rollup for every direct child of `priorities`
 
 ## Current Focus
 
-- Workstream `breather-proof`: architecture complete, certificate pending; the dual-mollified master-equation law is now recorded, and the next closure task is generating one candidate collinear cycle for finite audit.
+- Workstream `breather-proof`: architecture complete, certificate pending; the dual-mollified master-equation law is now recorded, and the next closure task is verifying the velocity-class itinerary and fold-parity ledger before generating one candidate collinear cycle.
 - Workstream `mass-map`: derive the first reusable mass map from tri-binary geometry rather than bookkeeping the parameter ledger in isolation.
 - Workstream `animator-reaction`: finish the forward pdgsolve/pdgedit/animator split and keep the active app path clean and contract-first.
 - Workstream `master-equation-closure`: carry the tractable master-equation stack far enough to support Lorentz / GR closure, quantum closure, and the first-principles mass program.
@@ -76,7 +76,7 @@ This single table is the canonical rollup for every direct child of `priorities`
 
 ## Top Cross-Workstream Next Actions
 
-1. Generate the breather candidate cycle and build its finite certificate packet: branch chart, mesh, coupled corridor, monodromy diagnostic, returned-sample report, and topology ledger.
+1. Verify the breather velocity-class itinerary and fold-parity ledger, then generate the candidate cycle and build its finite certificate packet: branch chart, mesh, corridor nonemptiness proof, coupled corridor, monodromy diagnostic, returned-sample report, and topology ledger.
 2. Turn the mass-side placeholders into a first derived map with one attractor family, shielding extraction, and a baseline electron-mass prediction target.
 3. Freeze the pdgsolve-to-pdgedit publication seam and land the first clean downstream handoff into animator.
 
