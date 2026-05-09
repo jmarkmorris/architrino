@@ -8,6 +8,34 @@ The central claim is that rest mass, annihilation energy, quantized action trans
 
 If the argument closes, the result would have large impact. It would mean that several quantities normally treated as fundamental or postulated at the effective level are recovered from delayed causal wake geometry, root-ledger multiplicity, Noether-Sea shielding, and refractive medium response. The claim is therefore strong, but it must be stated with exact scope: the present document gives the synthesis-level derivation target and theorem roadmap, not the final theorem.
 
+## Reviewer Orientation
+
+The document should be read as a substrate-to-effective bridge. It does not begin from Minkowski spacetime, quantum fields, or primitive particle masses. It begins from the $\mathbb{A}\mathbb{A}\mathbb{A}$ substrate: architrino motion in a Euclidean void, absolute substrate time, finite-speed causal wakes, and stable assemblies produced by delayed path-history closure. The objective is to show how several familiar effective quantities may emerge from one assembly mechanism rather than being added as independent postulates.
+
+Four levels of claim are kept distinct throughout:
+
+| Level | Meaning in this document |
+| --- | --- |
+| Substrate ontology | Euclidean void, absolute time $t$, architrinos, causal wakes, and causal-root branch structure. |
+| Assembly dynamics | Noether cores, tri-binary phase closure, self-hit multiplicity, shielding, and ledger transitions. |
+| Effective physics | Rest mass, proper time, photon propagation, Lorentz kinematics, geodesics, and horizon behavior as seen by assembly-built observers. |
+| Theorem roadmap | Mathematical tasks that must be completed before the synthesis can be treated as proved. |
+
+Several symbols recur across sections:
+
+| Symbol or term | Role |
+| --- | --- |
+| $c_f$ | Primitive wake propagation speed in the substrate. |
+| $c_{\text{eff}}$ | Local effective signal speed through the Noether Sea for assembly-level closure. |
+| $c_\gamma$ | Local photon-channel speed; in this document $c_\gamma(\mathbf{x})\equiv c_{\text{eff}}(\mathbf{x})$, with $c_\gamma<c_f$ allowed in a resolved medium. |
+| Noether core | A tri-binary assembly: three nested binary pairs functioning as inner engine, middle fulcrum, and outer shield. |
+| Root ledger | The integer bookkeeping of active partner-hit and self-hit causal branches required for stable phase closure. |
+| $\zeta(A)$ | Shielding or leakage factor governing how much of assembly $A$'s internal energy couples to external probes. |
+| Proper time $\tau$ | The cycle count of a stable assembly clock, not the substrate time $t$ itself. |
+| Photon planar mode | A propagating pro/anti planar-pair ledger, massless at the effective level and lacking a rest proper-time clock. |
+
+The reading order is intentional. The first sections define the energy zero, root-ledger regimes, and stored internal energy. The middle sections explain how that stored energy becomes inertia, gravitational response, proper time, and coasting motion. The later sections derive effective relativity, photon propagation, strong-field deformation, and the theorem roadmap. The appendix then restates the relativity bridge in plain language for readers who want the mechanical picture before returning to the formal sections.
+
 ## Starting Point: The Inner Energy Zero
 
 The energy chapter adopts the convention
@@ -126,6 +154,8 @@ In the inner-boundary gauge, those assemblies are not hidden below zero. They oc
 
 The claim is not that the Dirac equation loses its historical or effective value. The claim is that its negative-energy bookkeeping may be an effective-level symptom of using an infinity-based energy zero in a theory that omits the self-hit lower boundary. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology, the apparent negative sea becomes a positive-content, strongly shielded Noether Sea.
 
+The argument has therefore reached a turning point. The preceding sections reinterpret where internal energy resides and how it can remain externally quiet. The next task is to explain why that same hidden ledger becomes externally measurable as inertia when a bound assembly is forced to change its motion.
+
 ## Why Trapped Energy Resists Acceleration
 
 The next question is why trapped geometric history should behave as inertial mass. The answer is that bulk acceleration biases the internal causal exchange of a bound state. The assembly does not resist acceleration because it contains a primitive mass substance. It resists acceleration because changing its center-of-mass motion forces its internal causal wakes to re-close under a new kinematic bias.
@@ -226,6 +256,8 @@ At the effective level, the deformation of these three spiraling-helix binaries 
 Thus external work applied as linear acceleration is stored as changed internal phase geometry, angular momentum distribution, and Noether-Sea coupling. The linear velocity of the assembly is not merely a tag attached to an otherwise unchanged object. It is encoded in the pitch, tilt, and timing of the moving causal resonance.
 
 Because the stable states depend on integer causal-root closure, the deformation is not an arbitrary smooth rubber deformation at the effective level. Smooth microscopic motion can still produce discrete accepted state updates when the assembly crosses a separator between basins of attraction.
+
+Once velocity is encoded as internal geometry, the clock question becomes unavoidable. A stable assembly measures time by completing internal cycles. If bulk motion changes the geometry and timing of those cycles, then proper time must be derived from the same spiral-helical closure rather than introduced as a separate relativistic postulate.
 
 ## The Geometry of Time, the Field-Speed Separator, and the Event Horizon Limit
 
@@ -443,6 +475,8 @@ The event horizon is therefore treated here as a forced geometric alignment surf
 
 This statement should still be read as a constitutive derivation target. The exterior observer-level phenomenology must continue to recover the tested general-relativistic horizon behavior. What changes is the ontology: infinite time dilation at the horizon and the special-relativistic speed limit become two faces of the same physical constraint, the geometric exhaustion of the tri-binary causal lock.
 
+The time section establishes how an individual stable clock slows, freezes, or fails. The next two sections return to motion itself: why an already-established moving lock keeps coasting in a straight line, and why free motion through an inhomogeneous Noether Sea appears as geodesic motion to assembly-built observers.
+
 ## Why Momentum Coasts
 
 Once the external force stops, the assembly no longer needs additional energy to maintain constant velocity. The reason is that the assembly has already settled into a new moving resonance. Its internal wakes form a helical path-history pattern rather than the rest-state pattern, and the internal root ledger closes along that moving helix.
@@ -637,12 +671,12 @@ At the effective observer level, the corresponding mass-shell relation is the ma
 $$
 E_\gamma^2
 =
-\|\mathbf{p}_\gamma\|^2 c_{\text{eff}}^2,
+\|\mathbf{p}_\gamma\|^2 c_\gamma^2,
 \qquad
-E_\gamma=\|\mathbf{p}_\gamma\|c_{\text{eff}}.
+E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma.
 $$
 
-This is not a claim that the photon has hidden rest mass. It is the opposite: the photon is the channel that propagates at the local signal speed $c_{\text{eff}}$ precisely because it is not carrying the closed transverse clock ledger that makes massive assemblies resist acceleration.
+This is not a claim that the photon has hidden rest mass. It is the opposite: the photon is the channel that propagates at the local photon-channel speed $c_\gamma=c_{\text{eff}}$ precisely because it is not carrying the closed transverse clock ledger that makes massive assemblies resist acceleration.
 
 The transverse-budget discussion clarifies why no photon rest frame appears. For a massive Noether core, motion at $\|\mathbf{V}_{\text{cm}}\|\to c_{\text{eff}}$ exhausts the transverse causal budget and destroys ordinary internal clock closure. A photon is already organized as the propagating planar-mode channel at that boundary-like role. Its two constituent cores have transverse phase structure, which supports polarization and helicity, but the coupled pair does not have the three-dimensional orthogonal tri-binary closure that would define a rest frame and proper-time count. In standard language, the photon follows a null path; in this framework, it is pro/anti planar-pair propagation of causal ledger action through the Sea.
 
@@ -674,7 +708,7 @@ Emission and absorption then become ledger transitions between massive assemblie
 
 This also explains why photons dominate measurement. A measurement record is produced when a planar mode couples strongly enough to update an apparatus ledger: a detector click, an atomic transition, an interference fringe, a photographic grain, or a macroscopic electronic pulse. The observer does not access the substrate directly. The observer accesses stable records made by photon-like planar modes and other interaction channels. Consequently, much of "spacetime" as operationally reconstructed by physics is photon-channel structure: clock comparisons, distances, causal order, redshift, lensing, and spectra are all read through the behavior of these propagating modes in the Noether Sea.
 
-In homogeneous weak-field conditions, the planar-mode train propagates at the effective light speed $c_{\text{eff}}\approx c_f$ and reproduces the ordinary massless relativistic relations. In material media, plasma, or dense Noether-Sea gradients, the same mode transiently recouples to ambient assemblies. At the effective level this appears as refraction, dispersion, scattering, attenuation, or gravitational lensing. The Euclidean substrate path and the observer's effective optical path need not be described the same way: the substrate account tracks propagation through a medium, while the observer account summarizes the same behavior using null geodesics of an effective metric.
+In homogeneous weak-field conditions, the planar-mode train propagates at the effective light speed $c_\gamma\approx c_f$ and reproduces the ordinary massless relativistic relations. In material media, plasma, or dense Noether-Sea gradients, the same mode transiently recouples to ambient assemblies. At the effective level this appears as refraction, dispersion, scattering, attenuation, or gravitational lensing. The Euclidean substrate path and the observer's effective optical path need not be described the same way: the substrate account tracks propagation through a medium, while the observer account summarizes the same behavior using null geodesics of an effective metric.
 
 The photon section also fixes a major proof target. The framework must recover Maxwell/QED phenomenology in the validated regime: polarization, interference, diffraction, blackbody spectra, pair production thresholds, atomic transition rates, and the universality of photon speed in vacuum tests. The proposed ontology can differ from field-theoretic language, but it cannot weaken these empirical constraints. If the planar-mode account cannot recover the photon channel, then the larger mass, time, and metric synthesis cannot be considered closed, because those claims are experimentally accessed mostly through photons.
 
