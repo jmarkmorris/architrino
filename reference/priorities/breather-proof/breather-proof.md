@@ -11,11 +11,12 @@
 
 ## Task Queue
 
-1. `seed_chart_packet` — Produce `certificate/phi_cyc.json`, `certificate/branch_chart.json`, `certificate/mesh.json`, and the seed-chart interval report. Status: `next`. Depends on: none.
-2. `coupled_corridor_certificate` — Produce `certificate/parameters.json` and the coupled-corridor interval report for one strict parameter tuple. Status: `pending`. Depends on: `seed_chart_packet`.
-3. `returned_sample_certificate` — Produce returned-sample residuals or boundary-trapping budgets on the certified mesh. Status: `pending`. Depends on: `seed_chart_packet`, `coupled_corridor_certificate`.
-4. `topology_certificate` — Verify return transversality and certified branch-chart well-posedness on the same domain. Status: `pending`. Depends on: `returned_sample_certificate`.
-5. `schauder_closeout` — Promote the conditional Schauder theorem to an existence theorem after all certificate rows pass. Status: `pending`. Depends on: `topology_certificate`.
+1. `master_equation_law` — Record the exact dual-mollified absolute-time evolution law in the master-equation stack. Status: `done`. Depends on: none.
+2. `seed_chart_packet` — Produce `certificate/phi_cyc.json`, `certificate/branch_chart.json`, `certificate/mesh.json`, and the seed-chart interval report. Status: `next`. Depends on: `master_equation_law`.
+3. `coupled_corridor_certificate` — Produce `certificate/parameters.json` and the coupled-corridor interval report for one strict parameter tuple. Status: `pending`. Depends on: `seed_chart_packet`.
+4. `returned_sample_certificate` — Produce returned-sample residuals or boundary-trapping budgets on the certified mesh. Status: `pending`. Depends on: `seed_chart_packet`, `coupled_corridor_certificate`.
+5. `topology_certificate` — Verify return transversality and certified branch-chart well-posedness on the same domain. Status: `pending`. Depends on: `returned_sample_certificate`.
+6. `schauder_closeout` — Promote the conditional Schauder theorem to an existence theorem after all certificate rows pass. Status: `pending`. Depends on: `topology_certificate`.
 
 ## Scope
 
@@ -80,6 +81,23 @@ $$
 \phi_{\mathrm{cyc}},
 $$
 not a new roadmap.
+
+## Immediate Cross-Document Action Plan
+
+1. The exact dual-mollified absolute-time equation now belongs in [master-equation.md](../../../content/markdown/aaa/dynamics/master-equation.md) as the canonical evolution law for certification. Branch sums are local simple-root reductions of that law.
+2. Generate one candidate collinear cycle
+   $$
+   \phi_{\mathrm{cyc}}
+   $$
+   by ansatz, collocation, or simulation.
+3. Enumerate active and inactive path-history roots on a finite mesh around that candidate.
+4. Verify the four audit rows below on the same certified domain.
+5. Promote the conditional Schauder theorem in [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md) only after the finite audit passes.
+
+The vulnerable assumption is that a finite active branch chart with positive Jacobian floors and positive inactive-root gaps exists around one candidate cycle. The direct test is root enumeration plus interval certification for
+$$
+\phi_{\mathrm{cyc}}.
+$$
 
 ## Current Closure Assessment
 

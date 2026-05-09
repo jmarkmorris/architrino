@@ -112,6 +112,74 @@ An architrino emits potential at a constant rate per unit absolute time, but a m
 
 Numerical implementations discretize this representation by sampling candidate emission times and solving for the active roots. The familiar “sum over spherical wake surfaces” is therefore a numerical realization of the same branch-selection rule, not a separate physical mechanism.
 
+#### Dual-Mollified Absolute-Time Evolution Law
+
+For proof work, branch sums should be derived from one regularized absolute-time law rather than treated as the primary definition through every causal fold. Fix a memory horizon
+$$
+h>0,
+$$
+a shell width
+$$
+\eta>0,
+$$
+and a short-distance core scale
+$$
+\epsilon_c>0.
+$$
+Define
+$$
+\mathbf r_{ij}(t,s)
+\equiv
+\mathbf{x}_i(t)-\mathbf{x}_j(s),
+\qquad
+r_{ij}(t,s)\equiv \|\mathbf r_{ij}(t,s)\|,
+$$
+and, away from the zero vector,
+$$
+\widehat{\mathbf r}_{ij}(t,s)
+\equiv
+\frac{\mathbf r_{ij}(t,s)}{r_{ij}(t,s)}.
+$$
+The dual-mollified finite-memory evolution law is
+$$
+\boxed{
+\ddot{\mathbf{x}}_i(t)
+=
+\kappa
+\sum_j \sigma_{ij}|q_iq_j|
+\int_{t-h}^{t}
+\frac{\widehat{\mathbf r}_{ij}(t,s)}
+{r_{ij}^2(t,s)+\epsilon_c^2}\,
+\delta_\eta\!\big(r_{ij}(t,s)-c_f(t-s)\big)\,ds
+}
+$$
+with the same sign convention
+$$
+\sigma_{ij}=\mathrm{sign}(q_iq_j)
+$$
+used in the exact branch law. For equal-magnitude charges
+$$
+|q_i|=\epsilon,
+$$
+the factor
+$$
+|q_iq_j|
+$$
+reduces to
+$$
+\epsilon^2.
+$$
+
+This equation is the certification-level law for the dual-mollified problem. The shell mollifier
+$$
+\delta_\eta
+$$
+selects causal surfaces with finite width, while
+$$
+\epsilon_c
+$$
+caps the near-collision inverse-square amplitude. Branch-resolved formulas with Jacobian factors are local reductions of this equation on finite simple-root charts. They should not be used as the global definition across causal folds, caustic transit, or chart-boundary verification.
+
 ---
 
 #### Regularized Evaluation of the Exact Energy Charge
