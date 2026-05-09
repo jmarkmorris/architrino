@@ -4343,7 +4343,7 @@ $$
 $$
 Finally, a direct returned-sample budget certificate gives the finite sampled preservation criterion immediately. If that direct route is not used, the residual-plus-sensitivity criterion implies the same returned-sample budget certificate. In either case the finite sampled preservation criterion gives the certificate inequalities after one return. Therefore the returned history lies in the certified set itself, proving the self-map inclusion.
 
-The finite closure audit is now the following four-row ledger. The first, second, and fourth rows produce the self-map certificate; the third row is a stability diagnostic that decides whether returned-sample preservation should be attempted by sensitivities or by boundary trapping.
+The finite self-map ledger has four rows. The first, second, and fourth rows produce the self-map certificate; the third row is a stability diagnostic that decides whether returned-sample preservation should be attempted by sensitivities or by boundary trapping. Adding the certified topology row below gives the full five-row Schauder-ready audit.
 
 1. **Seed-chart row.**
    Verify

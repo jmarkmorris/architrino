@@ -568,6 +568,8 @@ $$
 I_1(\mathcal{K}),\ldots,I_m(\mathcal{K}).
 $$
 
+For the first certificate attempt, use the doubled four-arc itinerary. It is the generic transverse choice: every field-speed separator is treated as a simple fold event, while the glancing itinerary is reserved as a fallback if the generic branch enumeration fails or the corridor arithmetic forces a degenerate outer turn.
+
 The periodicity condition is not merely
 $$
 x(T)=x(0).
@@ -639,6 +641,58 @@ subject to the sign consistency condition
 $$
 \pm\bigl(x_\alpha(t)-x_\beta(s)\bigr)>0.
 $$
+On an affine pair of arcs,
+$$
+x_\alpha(t)=a_\alpha+v_\alpha t,
+\qquad
+x_\beta(s)=a_\beta+v_\beta s,
+$$
+write the orientation sign as
+$$
+\chi\in\{-1,+1\}.
+$$
+The signed self-image defect is
+$$
+g_{\alpha\beta}^{\chi}(t,s)
+=
+\chi\bigl(x_\alpha(t)-x_\beta(s)\bigr)-c_f(t-s).
+$$
+If the source-side denominator has a certified floor
+$$
+\left|c_f-\chi v_\beta\right|\ge \nu_{\alpha\beta}c_f>0,
+$$
+then the affine root is explicit:
+$$
+s_{\alpha\beta}^{\chi}(t)
+=
+\frac{(c_f-\chi v_\alpha)t-\chi(a_\alpha-a_\beta)}
+{c_f-\chi v_\beta}.
+$$
+The source Jacobian on that row is
+$$
+J_{\alpha\beta}^{\chi}
+=
+1-\frac{\chi v_\beta}{c_f}
+=
+\frac{c_f-\chi v_\beta}{c_f}.
+$$
+Thus every affine self-image row reduces to interval validation of the following predicates:
+$$
+t\in I_\alpha,
+\qquad
+s_{\alpha\beta}^{\chi}(t)\in I_\beta,
+\qquad
+s_{\alpha\beta}^{\chi}(t)<t,
+$$
+$$
+0<t-s_{\alpha\beta}^{\chi}(t)\le h,
+\qquad
+\chi\bigl(x_\alpha(t)-x_\beta(s_{\alpha\beta}^{\chi}(t))\bigr)>0,
+\qquad
+\left|J_{\alpha\beta}^{\chi}\right|\ge \nu_{\alpha\beta}.
+$$
+If the denominator loses its floor, the row is not a simple affine branch; it is a separator or fold row and must be certified by the dual-mollified fold normal form rather than by the branch-sum formula.
+
 For every root branch, record
 $$
 \hat r_s=\operatorname{sgn}(x_\alpha(t)-x_\beta(s)),
@@ -938,7 +992,7 @@ $$
    |\dot x|=c_f
    $$
    event.
-3. Choose an admissible velocity-class itinerary
+3. Use the doubled four-arc itinerary as the first admissible velocity-class itinerary
    $$
    \mathcal{K}
    $$
@@ -982,7 +1036,7 @@ $$
    \mathfrak{C}_{\mathrm{ans}}
    $$
    and compute its returned section residuals.
-10. If the residuals have strict slack, compute the finite certificate data and test the four audit rows in [collinear-breather.md](./collinear-breather.md).
+10. If the residuals have strict slack, compute the finite certificate data and test the five audit rows in [collinear-breather.md](./collinear-breather.md).
 
 ## Provisional Assessment
 
@@ -998,4 +1052,4 @@ $$
 $$
 and certify the finite active branches numerically.
 
-The next concrete decision is therefore algebraic and topological: choose the velocity-class itinerary, compute the itinerary-keyed self-image structure, and test both finite branch closure and the parity ledger. The accepted output is the finite audit packet, not an elegant formula.
+The next concrete task is therefore algebraic and topological: compute the doubled-itinerary self-image structure, test finite branch closure, and refine the parity ledger from the coarse separator count to the actual branch table. The accepted output is the finite audit packet, not an elegant formula.
