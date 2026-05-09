@@ -7,15 +7,19 @@
 - Value: `10`
 - Cost: `4`
 - ROI: `2.50`
-- Status: `completed`
+- Status: `active-closure`
 
 ## Task Queue
 
-No open `breather-proof` task remains in this priority file.
+1. `seed_chart_packet` — Produce `certificate/phi_cyc.json`, `certificate/branch_chart.json`, `certificate/mesh.json`, and the seed-chart interval report. Status: `next`. Depends on: none.
+2. `coupled_corridor_certificate` — Produce `certificate/parameters.json` and the coupled-corridor interval report for one strict parameter tuple. Status: `pending`. Depends on: `seed_chart_packet`.
+3. `returned_sample_certificate` — Produce returned-sample residuals or boundary-trapping budgets on the certified mesh. Status: `pending`. Depends on: `seed_chart_packet`, `coupled_corridor_certificate`.
+4. `topology_certificate` — Verify return transversality and certified branch-chart well-posedness on the same domain. Status: `pending`. Depends on: `returned_sample_certificate`.
+5. `schauder_closeout` — Promote the conditional Schauder theorem to an existence theorem after all certificate rows pass. Status: `pending`. Depends on: `topology_certificate`.
 
 ## Scope
 
-Treat [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md) as a frozen reference scaffold and [master-equation-breather.md](../../../content/markdown/aaa/dynamics/master-equation-breather.md) as the frozen proof-program blueprint. This local proof-execution queue is now complete; the remaining work belongs to the closure and coupled-regime priorities.
+Treat [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md) as the proof core and [master-equation-breather.md](../../../content/markdown/aaa/dynamics/master-equation-breather.md) as the theorem-program atlas. The architecture is complete, but the proof is certificate-pending. This workstream now tracks the active closure package needed to turn the conditional fixed-point theorem into an existence theorem.
 
 ## Current State
 
@@ -48,7 +52,7 @@ $$
 \overline{A}^{\mathrm{mb}}_{\mathrm{deep}},
 $$
 rather than qualitative smallness language.
-- Repeated review-and-repair cycles have frozen the bridge architecture. There are no known structural gaps left in the theorem program, so the next phase should be literal proof writing.
+- Repeated review-and-repair cycles have frozen the bridge architecture. There are no known structural gaps left in the theorem program, so the next phase is executable certificate production.
 
 ## Pivots To Preserve
 
@@ -68,9 +72,14 @@ rather than to a mismatched tame-subclass / macro-envelope pair.
 
 ## Active Handoff
 
-- Read the seed-side through Schauder packages in [master-equation-breather.md](../../../content/markdown/aaa/dynamics/master-equation-breather.md) treating the architecture as frozen.
-- Do not add fresh theorem layers unless a real proof-breaking defect is discovered.
-- The seed-side, branch-regularity, Type II caustic-transit, and apocenter-entry proof-writing tasks have now been executed in [master-equation-breather.md](../../../content/markdown/aaa/dynamics/master-equation-breather.md) and [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md).
+- Treat the theorem architecture as frozen unless a proof-breaking defect is discovered.
+- Do not add fresh theorem layers before the finite certificate packet has been attempted.
+- Build the active closure package under `reference/priorities/breather-proof/certificate/`.
+- The accepted proof artifact is a pass/fail finite audit on one candidate
+$$
+\phi_{\mathrm{cyc}},
+$$
+not a new roadmap.
 
 ## Current Closure Assessment
 
@@ -124,6 +133,39 @@ The finite audit rows are:
    $$
    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
    $$
+
+   **Executable artifacts.**
+   - `certificate/phi_cyc.json`: candidate center history, period
+     $$
+     T_{\mathrm{cyc}},
+     $$
+     normalization, and interpolation or basis data.
+   - `certificate/branch_chart.json`: active branch list, inactive complements, signed sheet labels, origin-crossing layer labels, memory-depth ranges, and Jacobian formulas.
+   - `certificate/mesh.json`: sampled certificate mesh
+     $$
+     \{\theta_j\}_{j=0}^{N}
+     $$
+     with sample tolerances.
+   - `certificate/seed_chart_interval_report.md`: interval proof of
+     $$
+     \nu_{\mathrm{seed}}>0,
+     \qquad
+     \gamma_{\mathrm{gap}}>0,
+     \qquad
+     \gamma_h>0,
+     \qquad
+     \gamma_{\mathrm{env}}>0,
+     $$
+     plus
+     $$
+     L_J,
+     \qquad
+     L_F,
+     \qquad
+     L_h,
+     \qquad
+     L_{\mathrm{env}}.
+     $$
 2. **Coupled-corridor row.**
    Verify the factorized coefficient inequalities
    $$
@@ -138,6 +180,18 @@ The finite audit rows are:
    g=\kappa\epsilon^2
    $$
    above the displayed corridor threshold in the manuscript.
+
+   **Executable artifacts.**
+   - `certificate/parameters.json`: one proposed strict tuple
+     $$
+     p_0=(\eta,\epsilon_c,X_{\max},U_{\max},A_{\max},T_{\max},h,
+     V_{\mathrm{ent}}^{\mathrm{out}},
+     a_{\mathrm{ent}}^{\mathrm{out}},
+     T_{\mathrm{ent}}^{\mathrm{out}},
+     \overline A_{s,\mathrm{ent}}^{\mathrm{out}},g)
+     $$
+     with interval bounds for all dependent coefficients.
+   - `certificate/coupled_corridor_interval_report.md`: pass/fail interval ledger for the inner margin, apocenter-entry margin, outer margin, entry-time budget, and envelope domination inequalities.
 3. **Returned-sample row.**
    On the chosen mesh, verify either the residual-plus-sensitivity inequalities
    $$
@@ -152,6 +206,19 @@ The finite audit rows are:
    E_{j,\pm}^{v}
    $$
    with strict sample slack.
+
+   **Executable artifacts.**
+   - `certificate/returned_samples.json`: returned sample values, velocity samples, and residuals against
+     $$
+     \phi_{\mathrm{cyc}}.
+     $$
+   - `certificate/returned_sample_interval_report.md`: either residual-plus-sensitivity verification or direct boundary-trapping budgets
+     $$
+     E_{j,\pm}^{x},
+     \qquad
+     E_{j,\pm}^{v}
+     $$
+     with strict slack at every mesh index.
 4. **Topology row.**
    Verify
    $$
@@ -162,11 +229,23 @@ The finite audit rows are:
    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
    $$
 
+   **Executable artifacts.**
+   - `certificate/topology_interval_report.md`: verification of
+     $$
+     u_{\mathrm{ret}}^{\mathrm{cert}}>0
+     $$
+     and certified branch-chart well-posedness on the stored history and one-cycle continuation.
+   - `certificate/pass_fail_ledger.md`: one table summarizing all four rows, artifact hashes or versions, pass/fail status, and the exact obstruction if any row fails.
+
 Only after all four rows are verified on the same certified domain does the conditional Schauder theorem in [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md) become an actual existence theorem. Until then, the project has a precise fixed-point proof architecture, not a completed breather proof and not a closed-form solution.
 
 ## Proof-Writing Order
 
-1. Preserve the theorem-program structure exactly as written. The remaining work belongs to the closure and coupled-regime priorities rather than this local breather-proof queue.
+1. Produce the seed-chart packet.
+2. Produce one strict coupled-corridor parameter certificate.
+3. Produce returned-sample preservation, preferring boundary trapping if residual sensitivities are too large.
+4. Produce the topology certificate.
+5. Only after all four rows pass, update [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md) from conditional theorem to completed dual-mollified existence theorem.
 
 ## Related Priorities
 
