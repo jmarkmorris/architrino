@@ -4,9 +4,9 @@
 
 This document is a working synthesis of the energy argument extending [Kinetic and Potential Energy](../../../content/markdown/aaa/dynamics/energy.md). It is not yet a completed proof. Its purpose is to organize the current claim in academic order, retain the conceptual content of the source discussion, remove repetition, and identify the mathematical closures that must eventually be promoted into the main dynamics or assembly chapters.
 
-The central claim is that rest mass, annihilation energy, quantized action transfer, negative-energy bookkeeping, inertia, momentum conservation, and effective special-relativistic kinematics may all be different projections of the same underlying mechanism: super-field-speed causal-root multiplicity in phase-locked architrino assemblies.
+The central claim is that rest mass, annihilation energy, quantized action transfer, negative-energy bookkeeping, inertia, proper time, momentum conservation, effective geodesic motion, effective special-relativistic kinematics, and strong-field structural failure may all be different projections of the same underlying mechanism: super-field-speed causal-root multiplicity in phase-locked architrino assemblies.
 
-If the argument closes, the result would have large impact. It would mean that several quantities normally treated as fundamental or postulated at the effective level are recovered from delayed causal wake geometry, root-ledger multiplicity, and Noether-Sea shielding. The claim is therefore strong, but it must be stated with exact scope: the present document gives the ordered derivation target, not the final theorem.
+If the argument closes, the result would have large impact. It would mean that several quantities normally treated as fundamental or postulated at the effective level are recovered from delayed causal wake geometry, root-ledger multiplicity, Noether-Sea shielding, and refractive medium response. The claim is therefore strong, but it must be stated with exact scope: the present document gives the ordered derivation target, not the final theorem.
 
 ## Starting Point: The Inner Energy Zero
 
@@ -225,6 +225,65 @@ Thus external work applied as linear acceleration is stored as changed internal 
 
 Because the stable states depend on integer causal-root closure, the deformation is not an arbitrary smooth rubber deformation at the effective level. Smooth microscopic motion can still produce discrete accepted state updates when the assembly crosses a separator between basins of attraction.
 
+## Proper Time as the Internal Cycle Counter
+
+The geometry of time must be stated carefully. At the substrate level there is only absolute time $t$: the universal parameter indexing the Euclidean-void dynamics and the full universe state. A macroscopic observer does not directly measure this parameter. A physical clock is itself an assembly, and the time it reports is the count of its internal phase-locked cycles.
+
+Thus proper time $\tau$ is an assembly functional. One tick is one completed circuit of the internal causal exchange that preserves the $(N,M)$ root ledger. If the assembly completes fewer internal cycles per unit absolute time, the observer records less proper time. Time dilation is therefore not a slowing of $t$ itself. It is a change in the cycle rate of the observer's own clock assembly.
+
+For an assembly at rest in a homogeneous Noether Sea, the internal causal exchange is effectively transverse. The causal trip across the clock is the shortest allowed internal route compatible with the rest-state ledger. When the same assembly moves with center-of-mass speed $\|\mathbf{V}_{\text{cm}}\|$, the internal causal trip becomes a diagonal segment of a helical path-history pattern. Since the causal signal still propagates at $c_{\text{eff}}$, a longer diagonal trip consumes more absolute time per completed internal cycle.
+
+The dilation relation follows from the same triangle used in the energy-momentum closure:
+
+$$
+(c_{\text{eff}}\Delta t)^2
+=
+(\|\mathbf{V}_{\text{cm}}\|\Delta t)^2
++
+(c_{\text{eff}}\Delta\tau)^2.
+$$
+
+Solving for the clock count gives
+
+$$
+\frac{\Delta\tau}{\Delta t}
+=
+\sqrt{1-\frac{\|\mathbf{V}_{\text{cm}}\|^2}{c_{\text{eff}}^2}}.
+$$
+
+In this form, time dilation is the geometric lengthening of the helical pitch of a moving causal lock. The assembly does not run slowly because time itself changes. It runs slowly because each completed internal ledger cycle requires a longer path-history closure in absolute time.
+
+## Logarithmic-Observer View of the Moving Lock
+
+A useful diagnostic view is the logarithmic-observer view: an observer or visualization that tracks multiplicative changes in radius, pitch, frequency, and root-ledger state rather than only linear displacements. This is not a separate ontology. It is a way of seeing scale changes in a spiral or helical assembly without losing the small structure near the field-speed limit.
+
+In that view, increasing $\|\mathbf{V}_{\text{cm}}\|$ has three linked signatures. First, the effective transverse causal radius ratchets downward as the assembly preserves integer phase closure while the causal trip becomes more diagonal. In the limiting relation
+
+$$
+D_{\text{rest}}
+=
+c_{\text{eff}}\Delta t
+\sqrt{1-\frac{\|\mathbf{V}_{\text{cm}}\|^2}{c_{\text{eff}}^2}},
+$$
+
+the transverse part of the causal trip tends toward zero as $\|\mathbf{V}_{\text{cm}}\|\to c_{\text{eff}}$.
+
+Second, the internal exchange path tilts toward the direction of motion. Let $\theta_{\text{tilt}}$ denote the angle of the causal exchange path relative to the transverse rest plane. The distance triangle gives
+
+$$
+\tan\theta_{\text{tilt}}
+=
+\frac{\|\mathbf{V}_{\text{cm}}\|\Delta t}{c_{\text{eff}}\Delta\tau}
+=
+\frac{\beta}{\sqrt{1-\beta^2}},
+\qquad
+\beta\equiv\frac{\|\mathbf{V}_{\text{cm}}\|}{c_{\text{eff}}}.
+$$
+
+Equivalently, $\sin\theta_{\text{tilt}}=\beta$. At rest, $\theta_{\text{tilt}}=0$: the causal exchange is transverse. As $\beta\to1$, $\theta_{\text{tilt}}\to90^\circ$: the exchange becomes nearly axial.
+
+Third, the logarithmic view makes the failure limit visible. Near $c_{\text{eff}}$, the helical lock no longer looks like a wide spiral with a transverse cycle; it approaches a line of axial transport. The assembly is then outrunning its ability to close transverse internal communication. At the exact limit, transverse closure vanishes, the integer root ledger cannot be maintained, and the clock ceases to tick as a stable bound assembly.
+
 ## Why Momentum Coasts
 
 Once the external force stops, the assembly no longer needs additional energy to maintain constant velocity. The reason is that the assembly has already settled into a new moving resonance. Its internal wakes form a helical path-history pattern rather than the rest-state pattern, and the internal root ledger closes along that moving helix.
@@ -234,6 +293,22 @@ Momentum is therefore conserved because the moving assembly is a self-sustaining
 The symmetry statement is equally important. The underlying causal action is invariant under spatial translations in the Euclidean void. The same internal lock can be reconstructed at one spatial location or another. That translational symmetry is the Noether-style reason that, once the moving resonance has been established, there is no internal bookkeeping preference for slowing down or speeding up in the absence of further interaction.
 
 The straight-line character of this coasting follows from spatial isotropy. A moving helical lock has an axis of propagation set by $\mathbf{V}_{\text{cm}}$. If that axis bends, the internal causal trips on opposite sides of the assembly no longer see the same Jacobian and phase geometry. One side of the tri-binary would have to relock differently from the other, which is a transverse acceleration rather than free coasting. Maintaining such a turn requires external work. Newton's first law is therefore the macroscopic limit of two substrate symmetries: translation invariance keeps the pitch of the moving lock from changing, and rotational isotropy keeps its propagation axis fixed unless an external interaction breaks the symmetry.
+
+## Geodesics as Causal Refraction
+
+Straight-line coasting is the homogeneous-medium limit. In the presence of macroscopic matter, the Noether Sea develops gradients in density, compliance, stress, and effective signal speed. Then the moving helical lock no longer propagates through a uniform medium.
+
+Across the finite diameter of a tri-binary, $c_{\text{eff}}$ and shielding geometry can vary slightly. The causal trips on the denser or slower side of the assembly take longer than the corresponding trips on the less dense side. To preserve the internal root ledger with minimal phase distortion, the assembly's propagation axis continuously refracts toward the slower region of the Noether Sea.
+
+At the observer level, this refracted least-phase-distortion path is what general relativity describes as geodesic motion in curved spacetime. In the substrate description, the Euclidean void remains flat; the effective geodesic is the path of a causal soliton moving through a graded Noether Sea. The bridge to the emergent metric is therefore:
+
+$$
+\text{effective geodesic}
+\quad\leftrightarrow\quad
+\text{minimal phase-distortion path through } c_{\text{eff}}(\mathbf{x}) \text{ and medium gradients}.
+$$
+
+This statement preserves Newton's first law as the uniform limit while explaining why free-fall in an inhomogeneous Noether Sea appears curved to assembly-based observers.
 
 ## Effective Special Relativity from Causal Geometry
 
@@ -339,6 +414,18 @@ In this interpretation, the relativistic mass-shell relation is not a primitive 
 
 This does not weaken special relativity at the observational level. It relocates its origin. The effective Lorentz geometry is recovered as the macroscopic rule obeyed by stable assemblies whose internal causal signals must preserve phase closure at speed $c_{\text{eff}}$.
 
+## Extreme Dual-Deformation Regime
+
+The preceding sections separate kinematic deformation from medium-gradient deformation for clarity. The most demanding regime is their overlap: a high-speed assembly moving through an intense Noether-Sea gradient, as in pulsar environments, near black-hole peripheries, or high-energy astrophysical transport.
+
+In that dual-deformation regime, the assembly experiences two coupled stresses. Kinematically, the helical lock is stretched along the direction of travel, its effective transverse causal closure shrinks, and the internal exchange path tilts toward axial alignment. Gravitationally, the inhomogeneous Noether Sea refracts the same internal wakes asymmetrically across the assembly diameter, adding transverse phase delay and medium-compliance stress.
+
+These effects do not simply add as independent linear corrections. The resonance lock requires integer closure of the $(N,M)$ ledger, so a deformation in one channel changes the admissible slack in the other. A high-speed assembly near a steep medium gradient can therefore be driven close to a structural boundary even if neither stress alone would destroy it.
+
+Survival in this region requires dynamic rerouting of internal action. The assembly may shed energy into outgoing wake modes, reassign action across binary layers, or transition to a different locked branch. In observer-level language, this substrate struggle is a candidate mechanism for anomalous precession, intense synchrotron-like radiative shedding, and the approach to horizon-like structural crushing. The strong-field alignment condition then appears as a limiting case in which the moving lock is forced toward planar or axial closure and ordinary stable tri-binary clock behavior can no longer be maintained.
+
+This section is a frontier target rather than a completed derivation. Its value is to name the nonlinear regime where Lorentz kinematics, refractive gravity, radiation channels, and structural failure must be solved together rather than patched together after separate approximations.
+
 ## Consolidated Thesis
 
 The organized argument can be stated compactly:
@@ -354,9 +441,13 @@ The organized argument can be stated compactly:
 9. Inertia arises because acceleration skews the internal causal Jacobian balance of a bound state.
 10. Inertial and gravitational mass agree because bulk acceleration and Noether-Sea gradients perturb the same shielded causal lock.
 11. Momentum coasts in a straight line because translation invariance preserves the moving lock and spatial isotropy preserves its axis.
-12. Effective special relativity follows from the diagonal causal path required to keep internal phase closure in motion.
-13. The assembly-level speed limit at $c_{\text{eff}}$ is the structural failure limit of a phase-locked internal clock.
-14. The Planck relation $E=h\nu$ emerges when the energy of a stable internal clock is written as action per causal cycle times cycle frequency.
+12. Proper time is the internal cycle count of a phase-locked assembly, and time dilation is the longer helical closure time required by motion.
+13. A logarithmic-observer view exposes the radius contraction, tilt increase, and axial-alignment limit of the moving lock.
+14. Effective geodesics are minimal phase-distortion paths of causal solitons refracting through graded Noether-Sea variables.
+15. Effective special relativity follows from the diagonal causal path required to keep internal phase closure in motion.
+16. The assembly-level speed limit at $c_{\text{eff}}$ is the structural failure limit of a phase-locked internal clock.
+17. The Planck relation $E=h\nu$ emerges when the energy of a stable internal clock is written as action per causal cycle times cycle frequency.
+18. Extreme high-speed/high-gradient environments force nonlinear dual deformation, action shedding, and possible horizon-like structural failure.
 
 ## Proof Obligations
 
@@ -374,9 +465,13 @@ The document points to several concrete mathematical tasks before these claims c
 4. Show that a moving tri-binary has a stable deformed resonance branch whose contraction, clock-rate change, and phase relocking reproduce $\gamma_{\text{eff}}$.
 5. Derive the weak-field equality of inertial and gravitational coefficients from one shared shielded-energy response map.
 6. Prove that free coasting preserves both speed and direction unless an external interaction supplies the transverse work needed to bend the helical lock.
-7. Establish the assembly failure criterion as $\|\mathbf{V}_{\text{cm}}\|\to c_{\text{eff}}$ and distinguish it from any substrate-level speed behavior of unbound architrinos.
-8. Derive the action-per-cycle constant $h$ from separator closure or Planck-alignment geometry, rather than inserting it as a calibration.
-9. Prove that resonance disruption routes the stored internal energy into outgoing wake and Noether-Sea modes with a closed conservation ledger.
-10. Clarify the precise relationship between the Noether-Sea reinterpretation and the historical Dirac-sea/effective-QFT formalism, preserving empirical successes while relocating ontology.
+7. Derive proper time as an internal cycle-count functional and show that the helical pitch formula reproduces the standard dilation law.
+8. Formalize the logarithmic-observer diagnostics for radius contraction, tilt angle, frequency shift, and root-ledger jumps.
+9. Derive effective geodesic motion as minimal phase distortion through $c_{\text{eff}}(\mathbf{x})$, Noether-Sea density, compliance, and stress gradients.
+10. Establish the assembly failure criterion as $\|\mathbf{V}_{\text{cm}}\|\to c_{\text{eff}}$ and distinguish it from any substrate-level speed behavior of unbound architrinos.
+11. Derive the action-per-cycle constant $h$ from separator closure or Planck-alignment geometry, rather than inserting it as a calibration.
+12. Build a coupled dual-deformation model for high-speed assemblies in strong Noether-Sea gradients, including nonlinear action shedding and branch failure.
+13. Prove that resonance disruption routes the stored internal energy into outgoing wake and Noether-Sea modes with a closed conservation ledger.
+14. Clarify the precise relationship between the Noether-Sea reinterpretation and the historical Dirac-sea/effective-QFT formalism, preserving empirical successes while relocating ontology.
 
 The high-impact version of the claim is therefore clear: rest mass and relativistic kinematics may emerge from super-field-speed causal-root bookkeeping. The rigorous version still requires branch-certified derivations, shielding extraction, and energy-conservation closure.
