@@ -2378,6 +2378,16 @@ C^1([-h,0];\Pi)
 $$
 chart. Beyond that regime, even the correct Banach chart and the right convex section envelope may become part of the theorem burden rather than fixed background data.
 
+The burden growth is cumulative:
+
+| Burden | Reduced planar binary | Unreduced planar binary | Many-body bridge |
+| --- | --- | --- | --- |
+| Section and gauge | one radius section plus one rotation reset | quotient chart with explicit $SE(2)$ selector and holonomy | atlas-level gauge selector with chart-stability theorem |
+| Delayed-root topology | finite sector-labeled branch family | canonical finite branch graph with fold edges | finite active delay hypergraph |
+| Deep-past control | sector relocation or exclusion | branch-graph provenance or exclusion | cluster-valued ancestry or exclusion |
+| Recapture | one radial channel plus one angular leakage term | finite leakage-channel comparison with resonance control | finite escape-observable family with channel margins |
+| Closure domain | closed convex tame envelope in one reduced chart | quotient-space convex envelope preserving graph and holonomy data | atlas-level convex core preserving hypergraph, ancestry, and recapture windows |
+
 For that reason, the present chapter should be read as the first 2D bridge, not as the general planar theorem program. Only after these additional burdens are isolated and given their own theorem targets would it be honest to say that the work has moved beyond the reduced planar bridge.
 
 ### First unreduced planar theorem targets
@@ -2595,33 +2605,42 @@ $$
 
 This is the first unreduced-planar replacement for the reduced planar section anchoring. Its purpose is to make the quotient representative, the return section, and the gauge reset part of the theorem burden before any branch-graph or recapture package is attempted.
 
-As in the reduced planar bridge, a fixed point of
-$$
-P^{\sharp}_{\eta}
-$$
-is first a quotient-space fixed point. Let the full-cycle gauge reset be represented by the Euclidean holonomy
-$$
-H_{\Psi^\ast}
-=
-(\mathbf a_{\Psi^\ast},\mathcal R_{\Psi^\ast})
-\in SE(2),
-$$
-where
-$$
-\mathbf a_{\Psi^\ast}
-$$
-is the translation removed by the selector and
-$$
-\mathcal R_{\Psi^\ast}
-$$
-is the rotation back to the canonical chord. The reconstructed physical motion is absolute periodic only if
-$$
-H_{\Psi^\ast}=(0,\mathrm{Id}).
-$$
-Otherwise the fixed point is a relative breather modulo
-$$
-SE(2).
-$$
+> **Target Proposition (Holonomy reconstruction for quotient fixed points).**
+> As in the reduced planar bridge, a fixed point of
+> $$
+> P^{\sharp}_{\eta}
+> $$
+> is first a quotient-space fixed point. Let the full-cycle gauge reset be represented by the Euclidean holonomy
+> $$
+> H_{\Psi^\ast}
+> =
+> (\mathbf a_{\Psi^\ast},\mathcal R_{\Psi^\ast})
+> \in SE(2),
+> $$
+> where
+> $$
+> \mathbf a_{\Psi^\ast}
+> $$
+> is the translation removed by the selector and
+> $$
+> \mathcal R_{\Psi^\ast}
+> $$
+> is the rotation back to the canonical chord. The reconstructed physical motion is absolute periodic only if
+> $$
+> H_{\Psi^\ast}=(0,\mathrm{Id}).
+> $$
+> Otherwise the fixed point is a relative breather modulo
+> $$
+> SE(2).
+> $$
+>
+> In symmetry-reduced regimes this condition may be forced by the symmetry itself. For example, the reflection-symmetric reduced planar bridge can force the rotational part to be
+> $$
+> \mathcal R_{\Psi^\ast}=\mathrm{Id}
+> $$
+> once the gauge is chosen compatibly with the reflection. In the unreduced planar bridge there is no such automatic cancellation. The absolute-periodic problem is therefore a separate finite-dimensional zero-holonomy reconstruction problem, with two effective holonomy components after the section-and-gauge constraints are imposed.
+
+This proposition should be treated as part of every quotient-space Schauder capstone. Schauder on the quotient gives a relative breather; zero holonomy is an additional reconstruction condition, analogous in role to a characteristic multiplier condition in Floquet theory.
 
 #### Finite branch-graph target for the unreduced planar bridge
 
@@ -3154,6 +3173,42 @@ where:
 > \alpha.
 > $$
 
+> **Target Hypothesis (Leakage-channel independence and resonance control).**
+> The leakage-channel ceilings in the preceding force split are usable in the recapture margin only under one of two certified conditions:
+> 1. **simultaneous pointwise ceiling:** the inequalities
+>    $$
+>    0\le \Lambda^{\sharp}_{\alpha}(t)\le \Theta^{\sharp}_{\alpha,\bullet}
+>    $$
+>    are proved on the same controlled tube, at the same times, for all
+>    $$
+>    \alpha=1,\dots,Q^{\sharp}_{\mathrm{esc}};
+>    $$
+> 2. **non-resonant channel decomposition:** the leakage subsystem obtained by linearizing the quotient dynamics along the candidate cycle has Floquet exponents or channel frequencies
+>    $$
+>    \omega_1,\ldots,\omega_{Q^{\sharp}_{\mathrm{esc}}}
+>    $$
+>    satisfying an explicit finite-order non-resonance gap
+>    $$
+>    |n\cdot\omega|
+>    \ge
+>    \gamma^{\sharp}_{\mathrm{res}}>0
+>    \qquad
+>    \text{for every }0\ne n\in\mathbb{Z}^{Q^{\sharp}_{\mathrm{esc}}},
+>    \quad
+>    |n|_1\le N^{\sharp}_{\mathrm{res}},
+>    $$
+>    or equivalently a monodromy certificate with non-resonant Floquet multipliers on the leakage block.
+>
+> If neither condition is certified, the scalar leakage budget
+> $$
+> \sum_{\alpha}\Theta^{\sharp}_{\alpha,\bullet}
+> $$
+> is not an admissible proof input. It must be replaced by a coupled leakage budget
+> $$
+> \Theta^{\sharp}_{\mathrm{coupled},\bullet}
+> $$
+> computed from the full leakage block, including possible parametric resonance between channels.
+
 Define the unreduced-planar recapture margins
 $$
 \mathfrak{M}^{\sharp}_{\mathrm{in}}
@@ -3170,6 +3225,12 @@ $$
 -\overline A^{\sharp}_{s,\mathrm{loc,out}}
 -\overline A^{\sharp}_{s,\mathrm{deep,out}}
 -\sum_{\alpha=1}^{Q^{\sharp}_{\mathrm{esc}}}\Theta^{\sharp}_{\alpha,\mathrm{out}}.
+$$
+These displayed margins are the simultaneous-ceiling form. In the non-resonant averaged form, or in any case where the channels are only bounded after coupling, replace the sums by the certified coupled budgets
+$$
+\Theta^{\sharp}_{\mathrm{coupled,in}},
+\qquad
+\Theta^{\sharp}_{\mathrm{coupled,out}}.
 $$
 Whenever these are positive, the primary escape observable obeys the comparison inequalities
 $$
@@ -3238,6 +3299,7 @@ $$
 \sum_{\alpha=1}^{Q^{\sharp}_{\mathrm{esc}}}\Theta^{\sharp}_{\alpha,\bullet},
 $$
 because coercivity can now be lost through several quotient modes rather than through one scalar angular channel.
+That sum is proof-valid only when the preceding resonance-control hypothesis has been discharged. Otherwise the recapture criterion must consume the coupled leakage budget produced by the full leakage monodromy block.
 
 The dependency chain should be stated explicitly here:
 
@@ -3268,7 +3330,7 @@ The dependency chain should be stated explicitly here:
    \qquad
    \Theta^{\sharp}_{\alpha,\mathrm{out}},
    $$
-   on the same windows.
+   on the same windows, together with either simultaneous pointwise validity or the non-resonant leakage-block certificate.
 
 #### Why the unreduced planar object is still called a breather
 
@@ -3495,7 +3557,7 @@ The extra burden beyond the reduced planar case is that continuity must now abso
 > $$
 > SE(2)
 > $$
-> gauge. It reconstructs to an absolute periodic solution in the fixed Euclidean void only if the full-cycle holonomy satisfies
+> gauge. By Proposition `Holonomy reconstruction for quotient fixed points`, it reconstructs to an absolute periodic solution in the fixed Euclidean void only if the full-cycle holonomy satisfies
 > $$
 > H_{\Psi^\ast_\eta}=(0,\mathrm{Id}).
 > $$
@@ -3642,6 +3704,31 @@ $$
 $$
 three-body bridge.
 
+This compensation is a dynamical hypothesis, not only an ontological interpretation. A nonneutral local subsystem may carry a long-wavelength radiation or reaction channel that slowly drains or injects energy relative to the local bridge variables. The three-body bridge must therefore use one of the following two conventions:
+
+1. replace the seed by a globally neutral four-body packet, for example
+   $$
+   (+,-,+,-)
+   $$
+   in a quadrupole-like arrangement, before claiming a neutral many-body theorem;
+2. keep the local
+   $$
+   (+,-,+)
+   $$
+   subsystem but add an external compensation budget
+   $$
+   E_{\mathrm{ext}}
+   $$
+   from the surrounding neutral assembly, and subtract that budget from every local recapture margin that could be weakened by uncompensated radiation or far-field reaction.
+
+Under the second convention, every many-body margin below should be read in compensated form, for example
+$$
+\mathfrak{M}^{\mathrm{mb}}_{m,\bullet}
+\quad\leadsto\quad
+\mathfrak{M}^{\mathrm{mb}}_{m,\bullet}-E_{\mathrm{ext}},
+$$
+unless a sharper channel-specific external budget has been certified. Without one of these conventions, the planar three-body bridge is only a local nonneutral transport test and cannot be promoted to a globally neutral breather theorem.
+
 This is the smallest regime in which the binary-relative chart fails for structural rather than cosmetic reasons. It preserves enough symmetry to permit a clean gauge discussion, but it already introduces the genuinely new burdens that the binary bridge cannot see:
 
 - no single present chord canonically fixes orientation;
@@ -3678,6 +3765,36 @@ $$
 =
 -\frac{1}{2}\mathbf{a}-\frac{1}{3}\mathbf{b}.
 $$
+These factors are the standard equal-mass Jacobi coordinates for the chosen labels:
+$$
+\mathbf{a}=\mathbf{x}_1-\mathbf{x}_3,
+\qquad
+\mathbf{b}=\mathbf{x}_2-\frac{\mathbf{x}_1+\mathbf{x}_3}{2},
+\qquad
+\mathbf{x}_1+\mathbf{x}_2+\mathbf{x}_3=0.
+$$
+Thus the factors
+$$
+-\frac{1}{3}\mathbf{b}
+$$
+in
+$$
+\mathbf{x}_1
+\quad
+\text{and}
+\quad
+\mathbf{x}_3
+$$
+are intentional: the same-sign outer pair lies on the base line with midpoint
+$$
+-\frac{1}{3}\mathbf{b},
+$$
+the opposite-sign body lies at
+$$
+\frac{2}{3}\mathbf{b},
+$$
+and the center of mass remains at the origin on the axis of symmetry.
+
 Choose seed parameters
 $$
 A_\ast>0,
