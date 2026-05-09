@@ -834,6 +834,44 @@ $$
 $$
 with every local unsigned jump even. This is a discrete consistency test on the ansatz. A candidate branch list that fails it should be rejected before any quadrature or collocation residual is computed.
 
+### Causal-Root Ledger and Action Bookkeeping
+
+The enumeration table is also the bridge to the discrete-step language in [energy.md](energy.md). Let
+$$
+N_{\alpha\beta}
+$$
+denote the unsigned self-root count in an itinerary-keyed row, and let
+$$
+M_{\alpha\beta}
+$$
+denote the analogous partner-root channel count supplied by the partner branch table. The pair
+$$
+(N_{\alpha\beta},M_{\alpha\beta})
+$$
+is the local causal-root ledger for that arc pair.
+
+On a fixed simple-root chart with fixed
+$$
+(N_{\alpha\beta},M_{\alpha\beta},D_{\alpha\beta}),
+$$
+the motion is still continuous and any energy or phase quadrature is ordinary continuous bookkeeping. No separate energy atom is inserted. A discrete action step enters only when a separator or fold changes the admissible integer ledger. In the raw self-root table, a generic fold changes the unsigned root count by an even jump,
+$$
+\Delta N\in 2\mathbb{Z},
+$$
+while preserving
+$$
+\Delta D=0.
+$$
+When that root pair is grouped as one newly active channel for action-angle bookkeeping, the same event is recorded as one channel update. This is the sense in which an $h$-like transaction can correspond to
+$$
+N\to N+1
+\qquad\text{or}\qquad
+M\to M+1
+$$
+in the grouped causal-root ledger, without treating energy itself as discontinuous at the substrate level.
+
+Thus any claimed $h$-like or $2h$-like energy step must be backed by three certificate facts: the branch-list update across the separator, the parity law for the underlying simple roots, and returned-history closure of the full cycle. This is the precise route by which continuous delayed geometry can produce discrete effective action bookkeeping.
+
 If this table closes to a finite branch list with strict separation, memory-depth, and Jacobian floors, the ansatz can feed the finite certificate audit. If the self images do not close algebraically into a finite list, the next certificate generator should be a piecewise fractionally augmented Chebyshev or cubic
 $$
 C^1
@@ -981,7 +1019,7 @@ A candidate ansatz packet must produce:
    $$
    \mathcal{K}
    $$
-   and an itinerary-keyed self-image table with root counts, signed degrees, and separator parity jumps;
+   and an itinerary-keyed self-image table with root counts, signed degrees, grouped channel counts, and separator parity jumps;
 5. a symmetry chart, either apocenter-even in
    $$
    q
@@ -1187,17 +1225,22 @@ $$
    $$
 7. Add the parity ledger
    $$
-   \Delta N\in2\mathbb{Z},
+   \Delta N\in 2\mathbb{Z},
    \qquad
    \Delta D=0
    $$
    at every generic fold and verify that the closed-cycle sums vanish.
-8. If the self-image table closes, convert it into
+8. Record the grouped causal-root ledger
+   $$
+   (N,M)
+   $$
+   used for action bookkeeping, distinguishing it from the raw simple-root counts whenever fold pairs are grouped into one active channel.
+9. If the self-image table closes, convert it into
    $$
    \mathcal{B}_{\mathrm{act}},
    $$
    inactive branch complements, Jacobian floors, separation margins, and memory-depth bounds.
-9. If the self-image table does not close algebraically, build a piecewise fractionally augmented Chebyshev or cubic
+10. If the self-image table does not close algebraically, build a piecewise fractionally augmented Chebyshev or cubic
    $$
    C^1
    $$
@@ -1206,17 +1249,17 @@ $$
    \phi_{\mathrm{cyc}}
    $$
    and certify the finite active branches numerically by interval validation.
-10. Sweep
+11. Sweep
    $$
    (\eta,\epsilon_c,V_{\max})
    $$
    or a justified lower-dimensional slice to locate the itinerary-admissible parameter region before attempting the full corridor certificate.
-11. Build the first certificate packet
+12. Build the first certificate packet
    $$
    \mathfrak{C}_{\mathrm{ans}}
    $$
    and compute its returned section residuals.
-12. If the residuals have strict slack, compute the finite certificate data and test the five audit rows in [collinear-breather.md](./collinear-breather.md).
+13. If the residuals have strict slack, compute the finite certificate data and test the five audit rows in [collinear-breather.md](./collinear-breather.md).
 
 ## Provisional Assessment
 
