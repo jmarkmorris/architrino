@@ -72,6 +72,98 @@ rather than to a mismatched tame-subclass / macro-envelope pair.
 - Do not add fresh theorem layers unless a real proof-breaking defect is discovered.
 - The seed-side, branch-regularity, Type II caustic-transit, and apocenter-entry proof-writing tasks have now been executed in [master-equation-breather.md](../../../content/markdown/aaa/dynamics/master-equation-breather.md) and [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md).
 
+## Current Closure Assessment
+
+The remaining collinear-breather work is now kept in two places:
+
+- the manuscript-level theorem ledger in [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md), under `Remaining blockers before Schauder`;
+- this priority handoff, which records why those blockers are still open and what data must be produced next.
+
+The current scaffold is no longer blocked by abstract Schauder theory. It is blocked by the missing finite certificate data for one candidate certified cycle
+$$
+\phi_{\mathrm{cyc}}.
+$$
+There is not yet an instantiated
+$$
+\phi_{\mathrm{cyc}},
+$$
+sample mesh, coefficient table, numerical certificate, or symbolic certificate in the repository. Therefore the proof cannot honestly be marked complete without constructing or computing that candidate and verifying its finite audit rows.
+
+The finite audit rows are:
+
+1. **Seed-chart row.**
+   Produce
+   $$
+   \phi_{\mathrm{cyc}},
+   $$
+   an active branch list, inactive branch complements, and envelope constants. Verify
+   $$
+   \nu_{\mathrm{seed}}>0,
+   \qquad
+   \gamma_{\mathrm{gap}}>0,
+   \qquad
+   \gamma_h>0,
+   \qquad
+   \gamma_{\mathrm{env}}>0,
+   $$
+   plus finite sensitivity constants
+   $$
+   L_J,
+   \qquad
+   L_F,
+   \qquad
+   L_h,
+   \qquad
+   L_{\mathrm{env}}.
+   $$
+   This row chooses
+   $$
+   r_{\mathrm{cert}}
+   $$
+   and the finite sampled certificate defining
+   $$
+   \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+   $$
+2. **Coupled-corridor row.**
+   Verify the factorized coefficient inequalities
+   $$
+   C_{\mathrm{in}}(\epsilon_c)>0,
+   \qquad
+   P_{\mathrm{out}}-S_{\mathrm{ent}}^{\mathrm{out}}-m_{\mathrm{ent}}>0,
+   \qquad
+   P_{\mathrm{out}}-D_{\mathrm{deep}}(\epsilon_c)-L_{\mathrm{shell}}(\eta,\epsilon_c)>0,
+   $$
+   then choose
+   $$
+   g=\kappa\epsilon^2
+   $$
+   above the displayed corridor threshold in the manuscript.
+3. **Returned-sample row.**
+   On the chosen mesh, verify either the residual-plus-sensitivity inequalities
+   $$
+   R_{j,\pm}^{x}+L_j^x r_{\mathrm{cert}}<\frac{r_{\mathrm{cert}}}{4},
+   \qquad
+   R_{j,\pm}^{v}+L_j^v r_{\mathrm{cert}}<\frac{r_{\mathrm{cert}}}{4},
+   $$
+   or direct boundary-trapping budgets
+   $$
+   E_{j,\pm}^{x},
+   \qquad
+   E_{j,\pm}^{v}
+   $$
+   with strict sample slack.
+4. **Topology row.**
+   Verify
+   $$
+   u_{\mathrm{ret}}^{\mathrm{cert}}>0
+   $$
+   and local Lipschitz dependence of the dual-mollified vector field on the certified branch chart. This supplies continuity and precompactness on
+   $$
+   \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+   $$
+
+Only after all four rows are verified on the same certified domain does the conditional Schauder theorem in [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md) become an actual existence theorem. Until then, the project has a precise fixed-point proof architecture, not a completed breather proof and not a closed-form solution.
+
 ## Proof-Writing Order
 
 1. Preserve the theorem-program structure exactly as written. The remaining work belongs to the closure and coupled-regime priorities rather than this local breather-proof queue.
