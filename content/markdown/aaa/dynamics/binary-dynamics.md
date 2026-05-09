@@ -423,11 +423,18 @@ If a stable MCB exists, it provides a concrete **rod** and **clock** defined ent
 $$
 d_0 := R_{\text{MCB}}, \qquad T_0 := \frac{2\pi}{\omega_{\text{MCB}}}.
 $$
-Then $d_0$ is the fundamental length scale of the architecture, and $T_0$ is the fundamental time scale. The field speed becomes the ratio
+Then $d_0$ is the fundamental length scale of the architecture, and $T_0$ is the fundamental time scale. Their comparison with the wake propagation speed is the dimensionless MCB speed factor
 $$
-c_f = \frac{d_0}{T_0},
+\beta_{\mathrm{MCB}}
+=
+\frac{R_{\mathrm{MCB}}\omega_{\mathrm{MCB}}}{c_f}
+=
+\frac{2\pi d_0}{c_fT_0},
 $$
-so the universal speed bound is not an external postulate but an emergent relation among the MCB radius and period.
+so the wake propagation speed is not an imposed particle-speed limit. It is the propagation reference used to compare the MCB rod and clock, while individual architrinos may enter super-field regimes with
+$$
+v>c_f.
+$$
 
 In this view, any ruler or clock built from architrino assemblies ultimately reduces to multiples of $(d_0, T_0)$. Measurement standards are therefore **dynamical invariants** of the two-body attractor: they persist because the underlying limit cycle (if realized) is stable and reproducible across assemblies.
 
@@ -515,9 +522,62 @@ The emission points on the circle that can produce hits "now" form a **finite, d
 
 ---
 
+### Super-Field Root Ledgers and Resonance Lock
 
+The super-field regime is not merely the same spiral at a larger speed. It changes the root topology of the binary. Once
+$$
+v>c_f,
+$$
+the receiver can intersect multiple older causal wake surfaces from both its own path and its partner's path. In the circular reduced model, these intersections are counted by two integer ledgers:
+$$
+N_s(s)
+\equiv
+\#\{m\ge0:\text{self branch }m\text{ is active at speed }s\},
+$$
+$$
+M_p(s)
+\equiv
+\#\{m\ge0:\text{partner branch }m\text{ is active at speed }s\}.
+$$
+The self-ledger
+$$
+N_s
+$$
+tracks outward self-hit channels. The partner-ledger
+$$
+M_p
+$$
+tracks inward partner-hit channels. Both are integer-valued because a causal root either exists or it does not. As
+$$
+s
+$$
+varies, these counts change only at branch birth/death thresholds where a causal delay equation develops a tangency.
 
+A candidate stable super-field bound state therefore cannot be described by a single smooth force curve alone. It must satisfy a finite root-ledger balance:
+$$
+\sum_{m\in\mathcal{M}_p(s)}
+A_{p,m}^{\mathrm{rad}}(R,s)
+-
+\sum_{m\in\mathcal{M}_s(s)}
+A_{s,m}^{\mathrm{rad}}(R,s)
+=
+\frac{s^2}{R},
+$$
+together with whatever tangential closure condition is supplied by the full regularized dynamics. The radial equation says that partner-root accumulation supplies inward pull while self-root accumulation supplies outward response. The tangential condition remains the hard part: in the bare isolated two-body kernel, the no-go result above shows that every active branch contributes positive tangential drive, so exact circular closure is not yet proved.
 
+This gives a precise, conditional meaning to binary resonance lock. A stable slot would be a region of history space in which the integer pair
+$$
+(N_s,M_p)
+$$
+is fixed, the branch Jacobians stay transversal, and perturbations that approach a root threshold are pushed back into the same ledger rather than escaping to a neighboring one. If such a self-map certificate exists, the discreteness of
+$$
+N_s
+\quad\text{and}\quad
+M_p
+$$
+would provide a deterministic mechanism for quantized bound-state geometry: allowed radii and frequencies would be selected by integer causal-root ledgers rather than by a continuum of arbitrary circular orbits.
+
+This statement is deliberately conditional. The present chapter derives the discrete root ledgers and the radial balance target, but the stability and quantization claims require the missing full-history certificate: finite active branches, positive Jacobian floors, returned-history closure, and a monodromy or boundary-trapping argument. In practice, that certificate may close first in a collinear breather or tri-binary setting rather than in the bare circular two-body kernel.
 
 #### Finite-dimensional projection caveat
 

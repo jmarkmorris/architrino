@@ -100,6 +100,30 @@ $$\Phi_{\text{net}}(\mathbf{s},t) = \sum_o \Phi_o(\mathbf{s},t).$$
 
 Each $\Phi_o$ is built from the expanding causal isochrons emitted by source $o$, using the measure-valued or mollified emission density described in the architrino section. In the mollified representation with causal-surface width $\eta>0$, $\Phi_{\text{net}}$ is a smooth function of $(\mathbf{s},t)$; in the ideal limit $\eta\to 0$ it becomes measure-valued ("paint on isochrons").
 
+### Potential Availability Is Geometric
+
+The phrase "an architrino emits potential" should not be read as a source continually spending an internal fuel. The emission is the causal-wake geometry of the architrino itself: at each emission time, an expanding causal isochron is added to the source's path history. That causal structure can later participate in work, but it is not a material energy substance stored inside the Euclidean void.
+
+Potential energy is therefore relational. It is assigned when a receiver is placed in a source's path-history wake landscape and its trajectory intersects the relevant causal wake surfaces. The receiver's energy accounting depends on the active causal roots, their inverse-square distance factors, their polarity signs, the branch Jacobians, and the receiver's radial motion through the line of action. In the general per-hit law the source-side branch factor is
+
+$$
+J_{o'\leftarrow o}(t;t_0)
+=
+1-\frac{\mathbf{v}_o(t_0)\cdot\hat{\mathbf{r}}}{c_f},
+$$
+
+while the instantaneous power delivered to the receiver is controlled by
+
+$$
+\mathbf{a}_{o'\leftarrow o}\cdot\mathbf{v}_{o'}
+=
+\lVert\mathbf{a}_{o'\leftarrow o}\rVert\,v_r.
+$$
+
+On the affine partner chart used in the [closed-form collinear breather ansatz](closed-form-collinear-breather-ansatz.md), the same causal bunching appears in the simple branch factor $J_p=1+\dot{x}/c_f$. That formula is not a new global definition of energy; it is the one-dimensional branch expression for how emission cadence is received on that chart.
+
+Thus the potential to do work is broadly available wherever causal wakes pass, but work is realized only through an actual receiver trajectory. A quiet region is not a region with no causal activity; it is a region where the active wake contributions sum to negligible net acceleration and negligible net power for the assemblies present there.
+
 ### Potential Energy
 
 For a particle $o'$ with charge $q_{o'}$ at position $\mathbf{s}_{o'}(t)$, the potential energy $U_{o'}(t)$ is defined as the work required to assemble the current configuration against the causal path-history wake landscape:
@@ -115,11 +139,25 @@ $$\mathbf{F}_{o'}(t) = -\nabla_{\mathbf{s}_{o'}}U_{o'}(t) = -q_{o'} \nabla_{\mat
 and this is equivalent to the Master Equation in the quasi-static, resolved-in-time limit.
 The force-as-gradient identity is valid only when taking the gradient at fixed causal history; the fundamental force law remains the per-hit sum of the Master EOM.
 
+### Macroscopic Cancellation and Localized Resonance
+
+Constant causal emission by many architrinos does not imply a large random macroscopic force. The net potential wake landscape is a superposition, and in a large, incoherent population the leading gradients arrive with many signs, distances, phases, and line-of-action directions. For a receiver sampling such a population, positive and negative gradient influences cancel statistically:
+
+$$
+\left\langle \nabla \Phi_{\text{net}}\right\rangle_{\text{incoherent}}
+\approx
+\mathbf{0}.
+$$
+
+This cancellation is one reason the Noether Sea can be densely active while remaining macroscopically quiet. What standard prose may call a vacuum state is not empty Euclidean void; it is the effective limit in which the local Noether-Sea assemblies and their causal wakes balance so well that only small residual gradients remain available to ordinary probes.
+
+Phase-locked bound states are the important exception. In a localized assembly, nearby constituents do not sample random phases; their active causal roots are correlated, and the $1/r^2$ distance factor lets the nearest coherent branches dominate over the far incoherent background. A [collinear breather](collinear-breather.md), for example, is precisely a reduced setting in which two opposite-polarity architrinos can form a localized, non-canceling causal resonance. The breather ansatz isolates this effect: instead of averaging away, the partner-hit and self-hit branches stay phase organized enough to exchange kinetic and potential energy across a bounded cycle.
+
 ---
 
 ## Energy Conservation and Exchange
 
-In the exact causal theory, energy conservation is enforced via the continuous exchange of energy between kinetic and interaction forms, plus energy stored in propagating wakes. For mollified working models, the strongest exact conservation claims remain conditional on the regularization being derived from the same time-translation-invariant causal action rather than inserted only at the equation-of-motion level.
+In the exact causal theory, energy conservation is enforced through exchange between kinetic motion and the causal-history interaction content encoded by wakes. This wake term should not be read as an independent material reservoir that drains from the emitter with every unreceived isochron; it is the nonlocal bookkeeping required by the same delayed causal action that generates the hits. For mollified working models, the strongest exact conservation claims remain conditional on the regularization being derived from the same time-translation-invariant causal action rather than inserted only at the equation-of-motion level.
 
 For a single architrino:
 
@@ -294,6 +332,7 @@ Architrinos and their assemblies are where all the energy lives. The tri-binary 
 - **At the architrino level:**
   
   Kinetic energy and potential energy are defined via the Master EOM. Exact global conservation belongs to the exact causal-action theory; in mollified working models it is the target bookkeeping structure and is exact only when the regularization preserves the underlying time-translation symmetry. The substrate law is acceleration-first; no particle-specific fundamental mass is assigned to architrinos, and speeds are unbounded in principle.
+  Potential availability is geometric rather than fuel-like: causal wakes are emitted as path-history structure, while work appears only when a receiver intersects active wake branches with nonzero radial power.
 
 - **At the assembly level:**
   
@@ -302,6 +341,7 @@ Architrinos and their assemblies are where all the energy lives. The tri-binary 
   - Shielded external fields (tiny apparent energy compared to internal),
   - Generation dependence through how many outer screening shells still surround the deepest core,
   - An emergent speed scale $c_{\text{eff}}$ and relativistic-like behavior.
+  Macroscopic quietness follows from superposition and shielding: incoherent populations cancel statistically, while phase-locked assemblies such as collinear breathers preserve localized, non-canceling wake structure.
 
 - **For spacetime and gravity:**
   
