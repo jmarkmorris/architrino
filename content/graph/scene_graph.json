@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 419,
+      "nodes": 420,
       "edges": 1163,
       "scenes": 288,
       "markdownIndexes": 0,
-      "markdownDocs": 131,
+      "markdownDocs": 132,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2114,6 +2114,12 @@
       "id": "content/markdown/aaa/dynamics/causal-action-functional.md",
       "name": "Causal Action Functional",
       "path": "content/markdown/aaa/dynamics/causal-action-functional.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/dynamics/closed-form-collinear-breather-ansatz.md",
+      "name": "Closed-Form Collinear Breather Ansatz",
+      "path": "content/markdown/aaa/dynamics/closed-form-collinear-breather-ansatz.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5614,6 +5620,15 @@
       "name": "Causal Action Functional",
       "path": "content/markdown/aaa/dynamics/causal-action-functional.md",
       "searchTarget": "content/markdown/aaa/dynamics/causal-action-functional.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/dynamics/closed-form-collinear-breather-ansatz.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/dynamics/closed-form-collinear-breather-ansatz.md",
+      "name": "Closed-Form Collinear Breather Ansatz",
+      "path": "content/markdown/aaa/dynamics/closed-form-collinear-breather-ansatz.md",
+      "searchTarget": "content/markdown/aaa/dynamics/closed-form-collinear-breather-ansatz.md",
       "implicit": false
     },
     {
