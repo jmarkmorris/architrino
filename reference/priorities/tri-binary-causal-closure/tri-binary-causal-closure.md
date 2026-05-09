@@ -1,10 +1,30 @@
 # Tri-Binary Causal Closure: Rest Mass, Proper Time, and Relativistic Limits
 
-## Status and Scope
+## Workstream Metadata
+
+- Kind: `priority`
+- Rank: `3`
+- Value: `10`
+- Cost: `4`
+- ROI: `2.50`
+- Status: `active-development`
+
+## Task Queue
+
+1. `dependency_map` — Maintain the proof-dependency map and deployment handoff table. Status: `done`. Depends on: none.
+2. `continuity_pass` — Walk the synthesis section by section against the dependency map and remove hidden logical jumps. Status: `next`. Depends on: `dependency_map`.
+3. `photon_qed_gate` — Build the photon/QED stress-test packet for masslessness, two polarizations, nondispersion, and QED recovery. Status: `pending`. Depends on: `continuity_pass`.
+4. `deployment_handoff` — Route any unresolved synthesis claims into explicit roadmap or priority items before deployment. Status: `pending`. Depends on: `continuity_pass`.
+
+## Scope
+
+This workstream owns the synthesis bridge from tri-binary Noether-core closure to rest mass, proper time, effective Lorentz/GR behavior, photon propagation, and measurement. It is a proof-architecture and routing surface: active-development claims can live here while the dependency ladder is being built, but unresolved claims must be closed, retained as explicit roadmap items, routed to another priority workstream, or cut before deployment.
+
+## Synthesis Status and Scope
 
 This document is a synthesis and proof roadmap for the energy argument extending [Kinetic and Potential Energy](../../../content/markdown/aaa/dynamics/energy.md). It is not yet a completed theorem. Its purpose is to organize the current claim in academic order, preserve the conceptual content of the development, remove repetition, and identify the mathematical closures that must eventually be carried into the main dynamics, assembly, and spacetime chapters.
 
-The active development dependency map for this synthesis is [Tri-Binary Causal Closure Dependency Map](tri-binary-causal-closure-dependency-map.md). Before any deployed or textbook-facing promotion, unresolved items in that map must either be closed, retained as explicit roadmap targets, routed into the priority system, or cut.
+The active development dependency map for this synthesis is [Tri-Binary Causal Closure Dependency Map](dependency-map.md). Before any deployed or textbook-facing promotion, unresolved items in that map must either be closed, retained as explicit roadmap targets, routed into the priority system, or cut.
 
 The central claim is that rest mass, annihilation energy, quantized action transfer, negative-energy bookkeeping, inertia, proper time, momentum conservation, effective geodesic motion, effective special-relativistic kinematics, and strong-field structural failure may all be different projections of the same underlying mechanism: super-field-speed causal-root multiplicity in phase-locked tri-binary Noether cores and the larger architrino assemblies built on them.
 

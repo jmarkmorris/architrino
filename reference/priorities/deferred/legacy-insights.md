@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `deferred-priority`
-- Rank: `13`
+- Rank: `15`
 - Value: `1`
 - Cost: `6`
 - ROI: `0.17`
@@ -35,5 +35,4 @@ This bucket includes:
 - Try to sell the `neoclassical.ai` domain.
 - Make a new subreddit.
 - Rename the blog.
-
 
