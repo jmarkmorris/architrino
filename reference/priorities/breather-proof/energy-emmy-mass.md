@@ -340,6 +340,92 @@ Causal signals can no longer complete the forward stroke of the tri-binary reson
 
 This is why the field-speed separator is more than a velocity ceiling. It is a structural failure boundary for a macroscopic phase-locked clock. A stable Noether-core-based assembly cannot remain an ordinary ticking object at the exact separator. If forced to that limit, it must shed action into outgoing wake modes, drop back into a sub-field-speed resonant slot, or dissociate and return its trapped geometric history to the surrounding Noether Sea.
 
+### Transverse Causal Budget and Quantum Step Closure
+
+The preceding clock-freeze statement can be made more concrete by separating the causal motion available to an emitted wake into two pieces. Choose the instantaneous propagation direction of the assembly as the axial direction. Any relevant internal emission then has an axial part, which keeps pace with the moving Noether core, and a transverse part, which crosses sideways between binary partners and between the inner, middle, and outer layers.
+
+The total available causal speed is fixed by the local medium:
+
+$$
+c_{\text{eff}}^2
+=
+c_{\parallel}^2+c_{\perp}^2.
+$$
+
+For an emission to remain phase-relevant to a receiver carried along with the assembly, its axial component must match the assembly's center-of-mass motion:
+
+$$
+c_{\parallel}=\|\mathbf{V}_{\text{cm}}\|.
+$$
+
+The remaining transverse causal budget is therefore
+
+$$
+c_{\perp}
+=
+\sqrt{c_{\text{eff}}^2-\|\mathbf{V}_{\text{cm}}\|^2}
+=
+c_{\text{eff}}\sqrt{1-\beta^2}
+=
+\frac{c_{\text{eff}}}{\gamma_{\text{eff}}},
+\qquad
+\beta\equiv\frac{\|\mathbf{V}_{\text{cm}}\|}{c_{\text{eff}}}.
+$$
+
+This is the operational meaning of the transverse part. It is not a separate force or a new speed limit. It is the sideways portion of the same causal propagation budget, after the axial motion of the whole assembly has been accounted for.
+
+At rest, $\beta=0$ and $c_{\perp}=c_{\text{eff}}$. The full causal budget is available for transverse closure. The inner, middle, and outer binaries can maintain their mutually orthogonal circuits, and their emissions can cross the finite internal separations needed to preserve the $(N,M)$ ledger.
+
+At ordinary nonzero velocity, $0<\beta<1$, some of the causal budget is consumed by axial tracking. The transverse part remains positive, but smaller. The internal circular circuits therefore cannot remain the same rest-state circuits. They are drawn into spiral-helical cables whose pitch, radius, phase, and clock rate adjust together. This is the same statement as time dilation written in component form:
+
+$$
+\frac{\Delta\tau}{\Delta t}
+=
+\frac{c_{\perp}}{c_{\text{eff}}}
+=
+\sqrt{1-\beta^2}.
+$$
+
+At the field-speed separator, $\beta=1$ and $c_{\perp}=0$. The ongoing emissions do not disappear. Rather, they lose the transverse component required to close the internal communication loops. An emission aimed partly sideways has $c_{\parallel}<c_{\text{eff}}$ and cannot keep up with the receiver carried by the assembly. An emission aimed exactly axially can keep pace, but has no sideways component and therefore cannot cross from partner to partner or from layer to layer. Thus the three coaxial binaries still have causal activity, but no closed transverse exchange channel.
+
+This observation supplies a useful equation-building principle for the quantum structure of the Noether core. A proposed state is not specified by a radius alone, a velocity alone, or a frequency alone. It is an accepted state only if the inner, middle, and outer binaries all retain causal connection under the same transverse budget.
+
+Let $i\in\{I,M,O\}$ label the inner, middle, and outer binaries. For each layer, an internal transverse path length $\ell_i$ has a crossing time
+
+$$
+T_i
+=
+\frac{\ell_i}{c_{\perp}}.
+$$
+
+If $\Omega_i$ is the corresponding orbital or phase frequency, layer closure requires
+
+$$
+\Omega_i T_i
+=
+2\pi k_i,
+\qquad
+k_i\in\mathbb{Z}.
+$$
+
+Layer-to-layer communication imposes additional integer phase conditions. If $\ell_{ij}$ is the effective transverse exchange path between layers $i$ and $j$, then
+
+$$
+T_{ij}
+=
+\frac{\ell_{ij}}{c_{\perp}},
+\qquad
+\Delta\Phi_{ij}(T_{ij})
+=
+2\pi q_{ij},
+\qquad
+q_{ij}\in\mathbb{Z}.
+$$
+
+These equations are deliberately schematic, but they identify the mathematical target. The radii, velocities, frequencies, and phase lags of the three binaries cannot be chosen independently. At every accepted quantum step, the same $c_{\perp}$ must permit partner closure within each binary, inter-layer closure across the tri-binary, and global closure of the $(N,M)$ root ledger.
+
+This gives a direct route from the geometric picture to solvable equations. First compute the transverse causal budget from the bulk velocity and local medium state. Then impose integer closure on the inner, middle, and outer binaries. Then impose integer closure on the inter-layer exchanges. The allowed quantum states are the simultaneous solutions. As $\|\mathbf{V}_{\text{cm}}\|\to c_{\text{eff}}$, $c_{\perp}\to0$, so the crossing times diverge for any nonzero internal separation. The only remaining limiting geometry is the degenerate axial alignment already identified with clock freeze and structural failure.
+
 ### Event Horizon Limit as Macroscopic Structural Failure
 
 The same mechanism gives the strong-field route to the event-horizon limit. In this framework, a gravitational field is not curvature of the Euclidean void. It is a density, compliance, stress, and refractive gradient in the ambient tri-binary Noether Sea. As a bound assembly moves into a steeper gradient near a compact massive body, $c_{\text{eff}}$ is depressed and the refractive stress on the assembly's internal causal wakes increases.
@@ -519,12 +605,14 @@ The organized argument can be stated compactly:
 12. Proper time is the internal cycle count of a phase-locked assembly, and time dilation is the longer helical closure time required by the nested spiral-helical cables in motion.
 13. A logarithmic-observer view exposes the radius contraction, tilt increase, and axial-alignment limit of the moving lock.
 14. At the field-speed separator, the orthogonal Noether-core clock is forced toward concentric axial alignment and its proper-time cycle count freezes.
-15. Effective geodesics are minimal phase-distortion paths of causal solitons refracting through graded Noether-Sea variables.
-16. Effective special relativity follows from the diagonal causal path required to keep internal phase closure in motion.
-17. The assembly-level speed limit at $c_{\text{eff}}$ is the structural failure limit of a phase-locked internal clock.
-18. The Planck relation $E=h\nu$ emerges when the energy of a stable internal clock is written as action per causal cycle times cycle frequency.
-19. The event horizon is a forced geometric alignment surface where ordinary Noether-core clock behavior reaches the same structural failure limit.
-20. Extreme high-speed/high-gradient environments force nonlinear dual deformation, action shedding, and possible horizon-like structural failure.
+15. The transverse causal budget $c_{\perp}=c_{\text{eff}}\sqrt{1-\beta^2}$ is the internal communication channel that must remain positive for the three binaries to preserve partner and layer-to-layer closure.
+16. Quantum state steps are simultaneous integer-closure solutions for tri-binary radii, velocities, frequencies, phases, and inter-layer exchange paths under the same transverse causal budget.
+17. Effective geodesics are minimal phase-distortion paths of causal solitons refracting through graded Noether-Sea variables.
+18. Effective special relativity follows from the diagonal causal path required to keep internal phase closure in motion.
+19. The assembly-level speed limit at $c_{\text{eff}}$ is the structural failure limit of a phase-locked internal clock.
+20. The Planck relation $E=h\nu$ emerges when the energy of a stable internal clock is written as action per causal cycle times cycle frequency.
+21. The event horizon is a forced geometric alignment surface where ordinary Noether-core clock behavior reaches the same structural failure limit.
+22. Extreme high-speed/high-gradient environments force nonlinear dual deformation, action shedding, and possible horizon-like structural failure.
 
 ## Proof Obligations
 
@@ -545,12 +633,13 @@ The document points to several concrete mathematical tasks before these claims c
 7. Derive proper time as an internal cycle-count functional and show that the helical pitch formula reproduces the standard dilation law.
 8. Formalize the logarithmic-observer diagnostics for radius contraction, tilt angle, frequency shift, orthogonal-plane collapse, and root-ledger jumps.
 9. Derive the separator clock-freeze condition from the same branch chart that controls $D_{\text{rest}}\to0$, $J\to0$, and $\Delta\tau/\Delta t\to0$.
-10. Derive effective geodesic motion as minimal phase distortion through $c_{\text{eff}}(\mathbf{x})$, Noether-Sea density, compliance, and stress gradients.
-11. Establish the assembly failure criterion as $\|\mathbf{V}_{\text{cm}}\|\to c_{\text{eff}}$ and distinguish it from any substrate-level speed behavior of unbound architrinos.
-12. Connect the event-horizon alignment condition to forced orthogonal-to-axial Noether-core geometry while preserving exterior GR phenomenology.
-13. Derive the action-per-cycle constant $h$ from separator closure or Planck-alignment geometry, rather than inserting it as a calibration.
-14. Build a coupled dual-deformation model for high-speed assemblies in strong Noether-Sea gradients, including nonlinear action shedding and branch failure.
-15. Prove that resonance disruption routes the stored internal energy into outgoing wake and Noether-Sea modes with a closed conservation ledger.
-16. Clarify the precise relationship between the Noether-Sea reinterpretation and the historical Dirac-sea/effective-QFT formalism, preserving empirical successes while relocating ontology.
+10. Derive the coupled transverse-budget closure equations for the inner, middle, and outer binaries, showing how accepted quantum steps arise as simultaneous integer solutions for radii, velocities, frequencies, phases, and inter-layer exchange paths.
+11. Derive effective geodesic motion as minimal phase distortion through $c_{\text{eff}}(\mathbf{x})$, Noether-Sea density, compliance, and stress gradients.
+12. Establish the assembly failure criterion as $\|\mathbf{V}_{\text{cm}}\|\to c_{\text{eff}}$ and distinguish it from any substrate-level speed behavior of unbound architrinos.
+13. Connect the event-horizon alignment condition to forced orthogonal-to-axial Noether-core geometry while preserving exterior GR phenomenology.
+14. Derive the action-per-cycle constant $h$ from separator closure or Planck-alignment geometry, rather than inserting it as a calibration.
+15. Build a coupled dual-deformation model for high-speed assemblies in strong Noether-Sea gradients, including nonlinear action shedding and branch failure.
+16. Prove that resonance disruption routes the stored internal energy into outgoing wake and Noether-Sea modes with a closed conservation ledger.
+17. Clarify the precise relationship between the Noether-Sea reinterpretation and the historical Dirac-sea/effective-QFT formalism, preserving empirical successes while relocating ontology.
 
 The high-impact version of the claim is therefore clear: rest mass, proper time, relativistic kinematics, and horizon behavior may emerge from super-field-speed causal-root bookkeeping. The rigorous version still requires branch-certified derivations, shielding extraction, time-cycle closure, and energy-conservation closure.
