@@ -3884,6 +3884,117 @@ The finite closure audit is now exactly the following three-row ledger:
 
 This ledger is deliberately finite. Passing all three rows turns the domain-production burden into the self-map inclusion; failing any row identifies the exact obstruction.
 
+### Certified topology row
+
+After the finite closure audit supplies
+$$
+P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}\big)
+\subseteq
+\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}},
+$$
+precompactness is no longer a separate dynamical mystery: the returned histories already lie in the same certified
+$$
+C^1
+$$
+envelope. Continuity still requires one extra topological margin, namely strict transversality of the returned section.
+
+Define the certified return-speed margin
+$$
+u_{\mathrm{ret}}^{\mathrm{cert}}
+\equiv
+-\dot\phi_{\mathrm{cyc}}(0)-\frac{r_{\mathrm{cert}}}{4}.
+$$
+Because the mesh includes
+$$
+\theta_N=0,
+$$
+the returned-sample inequalities imply
+$$
+\partial_\theta P_\eta(\phi)(0)
+\le
+\dot\phi_{\mathrm{cyc}}(0)+\frac{r_{\mathrm{cert}}}{4}
+=
+-u_{\mathrm{ret}}^{\mathrm{cert}}.
+$$
+Thus
+$$
+u_{\mathrm{ret}}^{\mathrm{cert}}>0
+$$
+is the finite section-transversality check needed by the continuity proposition.
+
+> **Proposition (Certified topology on the finite self-map domain).**
+> Assume the finite-certificate invariant closure package, and assume in addition:
+> 1. the certified return-speed margin satisfies
+>    $$
+>    u_{\mathrm{ret}}^{\mathrm{cert}}>0;
+>    $$
+> 2. on the certified branch chart, the dual-mollified vector field is locally Lipschitz in the stored history segment with respect to the
+>    $$
+>    C^1
+>    $$
+>    topology;
+> 3. the active delayed roots persist on
+>    $$
+>    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+>    $$
+>    with the Jacobian floors, branch-count ceilings, and memory-depth bounds supplied by the certificate.
+>
+> Then
+> $$
+> P_\eta:
+> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> \to
+> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> $$
+> is continuous, and
+> $$
+> P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}\big)
+> $$
+> is precompact in
+> $$
+> C^1([-h,0]).
+> $$
+
+Proof.
+The finite-certificate invariant closure package gives
+$$
+P_\eta(\phi)\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+\subseteq
+\mathcal{C}_{x_\ast,\eta}
+$$
+for every
+$$
+\phi\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+$$
+Hence every returned history satisfies the position, speed, Lipschitz-velocity, and horizon bounds required by Proposition `Precompactness of the Return Image`; that proposition gives precompactness.
+
+For continuity, the local Lipschitz vector-field hypothesis gives continuous dependence of the controlled continuation on the initial history while the certificate keeps the same active branch chart and Jacobian floors. The displayed return-speed estimate gives the uniform transverse return condition
+$$
+\dot x(T(\phi);\phi)\le -u_{\mathrm{ret}}^{\mathrm{cert}}<0.
+$$
+Therefore the continuity proposition for the return map applies with
+$$
+\mathcal{K}_{x_\ast,\eta}
+=
+\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}},
+$$
+and yields continuity of
+$$
+P_\eta
+$$
+on the certified domain.
+
+The full Schauder-ready audit therefore has four rows:
+
+1. the seed-chart row;
+2. the coupled-corridor row;
+3. the returned-sample row;
+4. and the topology row
+   $$
+   u_{\mathrm{ret}}^{\mathrm{cert}}>0
+   $$
+   plus local Lipschitz dependence on the certified branch chart.
+
 ### Remaining blockers before Schauder
 
 At this stage the remaining blockers are narrow and explicit:
@@ -3946,8 +4057,16 @@ At this stage the remaining blockers are narrow and explicit:
    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
    $$
    on that same domain.
+4. verify the topology row:
+   $$
+   u_{\mathrm{ret}}^{\mathrm{cert}}>0
+   $$
+   and local Lipschitz dependence of the dual-mollified vector field on the certified branch chart, so the certified topology proposition gives continuity and precompactness on
+   $$
+   \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+   $$
 
-Once these three items are theorem-level, the finite-certificate invariant closure package supplies the self-map domain. The remaining Schauder step is then formally routine because continuity and precompactness have been isolated above as conditional propositions on that same domain.
+Once these four items are theorem-level, the finite-certificate invariant closure package supplies the self-map domain and the certified topology proposition supplies continuity and precompactness. The remaining Schauder step is then formally routine.
 
 ### Schauder capstone
 
@@ -3958,25 +4077,11 @@ Once these three items are theorem-level, the finite-certificate invariant closu
 >    $$
 >    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}};
 >    $$
-> 3. the continuity proposition for
+> 3. and the certified topology proposition, giving continuity and precompactness of
 >    $$
 >    P_\eta
 >    $$
->    on
->    $$
->    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}};
->    $$
-> 4. the precompactness proposition applied to
->    $$
->    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}};
->    $$
-> 5. and the self-map property
->    $$
->    P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}\big)
->    \subseteq
->    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}},
->    $$
->    as supplied by that finite-certificate package.
+>    on that same certified domain.
 >
 > Then there exists
 > $$
@@ -4004,7 +4109,7 @@ $$
 \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}},
 $$
 and by construction that fixed point is exactly a periodic returned history.
-This capstone remains conditional on the finite closure audit and on continuity and precompactness on the same certified domain. Without one nonempty closed convex tame self-map domain carrying propagation, continuity, precompactness, and invariance all at once, Schauder does not yet apply.
+This capstone remains conditional on the finite closure audit and certified topology row. Without one nonempty closed convex tame self-map domain carrying propagation, continuity, precompactness, and invariance all at once, Schauder does not yet apply.
 
 ### Seed history and tame-class nonemptiness
 
