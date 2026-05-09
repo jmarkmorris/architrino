@@ -1,4 +1,4 @@
-# Super-Field Energy, Rest Mass, and Relativistic Closure
+# Tri-Binary Causal Closure: Rest Mass, Proper Time, and Relativistic Limits
 
 ## Status and Scope
 
