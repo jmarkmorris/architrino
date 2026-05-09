@@ -76,7 +76,7 @@ This single table is the canonical rollup for every direct child of `priorities`
 
 ## Top Cross-Workstream Next Actions
 
-1. Generate the breather candidate cycle and build its finite certificate packet: branch chart, mesh, coupled corridor, returned-sample report, and topology ledger.
+1. Generate the breather candidate cycle and build its finite certificate packet: branch chart, mesh, coupled corridor, monodromy diagnostic, returned-sample report, and topology ledger.
 2. Turn the mass-side placeholders into a first derived map with one attractor family, shielding extraction, and a baseline electron-mass prediction target.
 3. Freeze the pdgsolve-to-pdgedit publication seam and land the first clean downstream handoff into animator.
 

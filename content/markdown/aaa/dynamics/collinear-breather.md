@@ -41,7 +41,7 @@ This chapter is the proof core for the breather program. Completion now means re
 $$
 \phi_{\mathrm{cyc}},
 $$
-a finite branch chart, a closed convex certificate, a strict coupled corridor, returned-sample preservation, certified topology, and then Schauder.
+a finite branch chart, a closed convex certificate, a strict coupled corridor, a monodromy diagnostic, returned-sample preservation, certified topology, and then Schauder.
 
 ## Reading Map
 
@@ -401,6 +401,83 @@ The regularized formulation is the one best suited to:
 - numerical return-map construction,
 - and eventually the controlled limit $\eta\to 0^+$.
 
+### Origin-layer continuity of the dual-mollified 1D field
+
+On an interval that contains an origin crossing, the working equation is the absolute-time integral law above, not the branch-sum reduction. The branch-sum signs
+$$
+\hat r_p,
+\qquad
+\hat r_s
+$$
+are exterior-chart data. They must be reattached to the correct outgoing sheet after the crossing, and they should not be treated as a smooth scalar formula through
+$$
+x=0.
+$$
+
+> **Lemma (Origin-layer continuity of the dual-mollified 1D field).**
+> Fix
+> $$
+> \eta>0,
+> \qquad
+> \epsilon_c>0,
+> \qquad
+> h>0.
+> $$
+> Let a signed collinear history have a single label-preserving origin crossing on a layer
+> $$
+> |t|\le \tau_{\mathrm{cross}},
+> $$
+> with fixed incoming and outgoing exterior-sheet labels. Define the sheet-projected radial acceleration on the layer by applying the absolute-time integral law in the signed coordinate and then projecting to the active radial sheet:
+> $$
+> F^\rho_{\eta,\epsilon_c}(t)
+> \equiv
+> \sigma_{\mathrm{out}}(t)F^x_{\eta,\epsilon_c}(t),
+> \qquad
+> \rho(t)=|x(t)|.
+> $$
+> Assume the layer has a uniform velocity bound, a uniform acceleration bound, and no uncontrolled nontransverse root accumulation except the certified fold events carried by the layer chart. Then
+> $$
+> F^\rho_{\eta,\epsilon_c}
+> $$
+> extends as a
+> $$
+> C^1
+> $$
+> function of the radial coordinate and stored history across
+> $$
+> \rho=0.
+> $$
+> In particular, the sign flip of the exterior scalar branch terms is absorbed by the sheet projection, and the radial equation may be continued through the origin layer without introducing a scalar force discontinuity.
+
+Proof.
+The absolute-time integral law has denominator bounded below by
+$$
+\epsilon_c^2,
+$$
+and the shell factor
+$$
+\delta_\eta
+$$
+is a fixed
+$$
+C^1
+$$
+mollifier with compact support. Hence the layer integrand and its first variations in the stored
+$$
+C^1
+$$
+history are dominated by constants depending only on
+$$
+(\eta,\epsilon_c,h)
+$$
+and the layer tube bounds. The signed exterior direction changes when the trajectory passes through
+$$
+x=0,
+$$
+but the radial projection multiplies by the outgoing sheet label at the same crossing. On the two sides of the layer this converts the exterior signed direction into the same radial direction field. Any remaining sign changes occur only across the certified causal-root surfaces inside the integral; away from certified folds they are simple-root changes of variables, and at certified folds the fold tube is handled by the integral law rather than by a branch sum. Dominated convergence, with the standard one-dimensional coarea calculation on the simple-root pieces, gives continuity and the first radial derivative on the whole layer.
+
+Thus the core scale controls the amplitude and the shell scale controls the root selection, while the sheet projection controls the origin sign flip. Exterior branch-sum formulas may be resumed after the trajectory leaves the crossing layer and the signed sheet labels are again fixed.
+
 ## Inbound/Outbound Sign Structure
 
 The first genuine dynamical question is not whether self-hit exists, but whether its sign structure permits recapture. In 1D this can be stated exactly.
@@ -526,6 +603,15 @@ $$
 $$
 
 In that formulation, a full oscillation alternates between the right and left exterior branches with label-preserving passage through $x=0$. The theorem targets later in this note should therefore be read as targets for post-crossing recapture of the radial distance rather than as literal pre-origin bounce statements on a single $x>0$ branch.
+
+Every theorem that crosses the origin must use the origin-layer integral chart from Lemma `Origin-layer continuity of the dual-mollified 1D field`. The signed branch-sum formulas are valid again only after the crossing layer has been exited and the exterior sheet labels have been fixed. In particular, local recapture estimates stated in
+$$
+\rho(t)=|x(t)|
+$$
+are radial post-crossing estimates; they are not proofs that the signed scalar branch-sum field is smooth at
+$$
+x=0.
+$$
 
 In particular, the present 1D geometry should not be treated as a radial simplification of the 2D circular case. Along a true collinear history, the self-hit term is naturally read as an anti-damping or positive-work contribution on the physically relevant post-crossing outbound branch: the self interaction tends to reinforce the current radial motion rather than furnish a centrifugal-style barrier. The corrected theorem program therefore asks whether partner attraction can recapture the motion **despite** that self-drive, not because self-hit itself creates the turnaround.
 
@@ -1170,6 +1256,27 @@ On this subclass:
 - and the explicit short-window proposition can be written uniformly by replacing $(V_0,\beta_p)$ with the class-wide worst-case pair $(V_{\max},\beta_{p,\max})$, while the delayed-entry time uses the lower-speed bound $\sigma_{\min}$.
 
 This is the sense in which the later local constants are inherited by construction rather than introduced ad hoc.
+
+The crossing subclass uses the following constants.
+
+| Constant | Bound or role | Used by |
+| --- | --- | --- |
+| $V_{\min}$ | lower crossing speed, strictly above $c_f$ | Lemma 1, Lemma 3 |
+| $V_{\max}$ | upper crossing speed and worst-case radial speed | Lemma 3, Lemma 4, explicit recapture regime |
+| $\gamma_w$ | compact pre-crossing sorting-gap trimming scale | (H2), Lemma 2 |
+| $\delta_{w,\min}$ | class-wide lower sorting gap on the trimmed interval | shell-width exclusion in Lemma 2 |
+| $\nu$ | self-root Jacobian floor, scaled by $c_f$ in the statement | Lemma 2 and tame topology |
+| $\rho_{0,\min}$ | minimum pre-caustic radius at $t_{\mathrm{zero}}$ | Lemma 2 delayed-source separation |
+| $a_{\max}$ | stored-history Lipschitz-velocity bound | Lemma 3 partner-root remainder |
+| $a_{\mathrm{tube}}$ | forward acceleration ceiling on the local tube | Lemma 1 and Lemma 3 |
+| $\tau_{\mathrm{tube}}$ | guaranteed forward continuation window | Lemma 1 |
+| $N_s^{\max}$ | active self-root count ceiling | Lemma 2 self-drive bound |
+| $\sigma_{\min}$ | uniform super-field crossing surplus $(V_{\min}-c_f)/2$ | Lemma 1 and delayed-entry time |
+| $a_\ast$ | common acceleration remainder bound $\max\{a_{\max},a_{\mathrm{tube}}\}$ | Lemma 3 |
+| $\beta_{p,\min}$ | lower partner linear coefficient from $V_{\min}$ | short-window dominance checks |
+| $\beta_{p,\max}$ | upper partner linear coefficient from $V_{\max}$ | explicit recapture regime |
+| $\tau_1$ | class-uniform post-crossing monotonicity window | Lemma 1 through Lemma 4 |
+| $\tau_\rho$ | window on which delayed sources stay away from the origin layer | Lemma 2 delayed-window refinement |
 
 ### Lemma ladder
 
@@ -2095,6 +2202,27 @@ Proof sketch:
 4. The stated algebraic inequality is exactly the condition that this class-uniform inward partner impulse beats the class-uniform outward self-drive loss by time $\tau_\epsilon$.
 5. Lemma 4 then gives a zero of the radial speed on $[0,\tau_\epsilon]$, proving local post-crossing recapture for every history in the subclass.
 
+The rectangle-area estimate in Step 3 is deliberately conservative. A sharper certificate should keep the exact arctangent impulse from Lemma 4, or certify a Cauchy-Schwarz lower bound on the partner integrand over the same short window. Record this improvement by a factor
+$$
+Q_{\mathrm{CS}}\ge 1
+$$
+in
+$$
+\Delta V_p(\tau_\epsilon)
+\ge
+Q_{\mathrm{CS}}\,
+\frac{\kappa\epsilon^2}{4\beta_{p,\max}\epsilon_c}.
+$$
+In the standard half-core window the target refinement is
+$$
+Q_{\mathrm{CS}}=\sqrt{2},
+$$
+provided the interval certificate proves the required monotone coverage of the partner-distance strip. The later corridor arithmetic should use the certified value of
+$$
+Q_{\mathrm{CS}},
+$$
+not assume the improvement without an interval report.
+
 In the joint short-window regime
 $$
 \eta=\mathcal{O}(\epsilon_c),
@@ -2893,13 +3021,14 @@ The continuity row used later should be a theorem on certified branch charts, no
 >    \mathcal{B}_{\mathrm{act}};
 >    $$
 > 2. signed sheet and crossing-layer labels fixed on the chart;
-> 3. active causal roots satisfying
+> 3. if a chart interval meets an origin-crossing layer, the vector field there is evaluated by Lemma `Origin-layer continuity of the dual-mollified 1D field`, not by an exterior branch-sum formula;
+> 4. active causal roots satisfying
 >    $$
 >    |J_\beta|\ge \nu>0
 >    \qquad
 >    \text{for every }\beta\in\mathcal{B}_{\mathrm{act}};
 >    $$
-> 4. uniform bounds
+> 5. uniform bounds
 >    $$
 >    \|\phi\|_{C^1}\le M,
 >    \qquad
@@ -2911,7 +3040,7 @@ The continuity row used later should be a theorem on certified branch charts, no
 >    $$
 >    \gamma_h>0;
 >    $$
-> 5. and inactive branch gaps bounded away from zero on the chart complement.
+> 6. and inactive branch gaps bounded away from zero on the chart complement.
 >
 > Then there exists
 > $$
@@ -2941,7 +3070,7 @@ The continuity row used later should be a theorem on certified branch charts, no
 > $$
 
 Proof.
-On the certified chart the active root functions persist with
+On exterior certified charts the active root functions persist with
 $$
 |J|\ge\nu,
 $$
@@ -2957,6 +3086,11 @@ with denominator at least
 $$
 \epsilon_c^2.
 $$
+On an origin-crossing chart, the previous origin-layer lemma supplies the same local
+$$
+C^1
+$$
+radial vector-field control after the sheet projection, so the signed scalar branch-sum discontinuity is not part of the local well-posedness argument.
 Together with the finite branch count and the fixed horizon
 $$
 h,
@@ -2983,6 +3117,42 @@ $$
 $$
 on the initial history.
 
+### Certified fold-event atlas
+
+The continuity theorem must distinguish uncontrolled branch changes from certified separator events. A full origin-crossing cycle may pass through field-speed folds, so the certificate should not require a single unchanged branch list on the whole cycle.
+
+> **Definition (Certified fold-event atlas).**
+> A certified fold-event atlas for one return consists of finitely many fold layers
+> $$
+> \mathfrak{F}_1,\ldots,\mathfrak{F}_{N_{\mathrm{fold}}}
+> $$
+> together with:
+> 1. incoming and outgoing active branch lists
+>    $$
+>    \mathcal{B}_{k}^{-},
+>    \qquad
+>    \mathcal{B}_{k}^{+};
+>    $$
+> 2. a local fold normal form
+>    $$
+>    g_k(t,s;\lambda)
+>    =
+>    a_k(s-s_k)^2+b_k\lambda+\mathrm{higher\ order},
+>    \qquad
+>    a_kb_k\ne 0;
+>    $$
+> 3. parity data
+>    $$
+>    \Delta N_k\in2\mathbb{Z},
+>    \qquad
+>    \Delta D_k=0;
+>    $$
+> 4. a finite fold-impulse ceiling and an outgoing chart on which the post-fold roots again have a positive Jacobian floor.
+>
+> Outside the union of the fold layers, the active roots must remain simple with the certified Jacobian floors and inactive-root gaps.
+
+This reconciles the continuity row with the causal-fold geometry. A field-speed separator may be a genuine root-pair birth or death, but it is not an uncontrolled discontinuity if the atlas records the parity-preserving transition and hands the trajectory to a certified outgoing chart.
+
 ### Continuity on the tame envelope
 
 > **Proposition (Continuity of the Return Map on $\mathcal{K}_{x_\ast,\eta}$).**
@@ -3002,8 +3172,8 @@ on the initial history.
 >    [0,T_{\max}]
 >    $$
 >    with class-uniform position, speed, acceleration, Jacobian, and memory-depth bounds;
-> 2. on that forward tube, Proposition `Local well-posedness on a certified branch chart` applies on finitely many chart intervals covering the continuation;
-> 3. the active delayed roots persist continuously with the history, with no root birth, root collision, or Jacobian loss of transversality;
+> 2. on that forward tube, Proposition `Local well-posedness on a certified branch chart` applies on finitely many exterior and origin-layer chart intervals covering the continuation;
+> 3. outside a certified fold-event atlas the active delayed roots persist continuously with the history, with no root birth, root collision, or Jacobian loss of transversality; across each certified fold layer, the active branch list undergoes the parity-preserving transition recorded in the atlas;
 > 4. the first return to the inbound section is uniformly transverse:
 >    $$
 >    x(T(\psi);\psi)=x_\ast,
@@ -3034,7 +3204,7 @@ uniformly on compact intervals in
 $$
 [0,T_{\max}].
 $$
-The tame root-persistence hypothesis prevents branch changes and Jacobian loss, so the forward solution map is continuous on the entire tame envelope. For the section function
+The tame root-persistence hypothesis prevents uncontrolled branch changes and Jacobian loss. The certified fold-event atlas covers the finitely many permitted separator transitions by integral-law fold layers with fixed incoming and outgoing charts, so the forward solution map is continuous on the entire tame envelope. For the section function
 $$
 G(t,\psi)\equiv x(t;\psi)-x_\ast,
 $$
@@ -3533,6 +3703,105 @@ $$
 $$
 is not enough, because the outer caustic and self terms may worsen under the same parameter move.
 
+The following nonemptiness test should be run before the full coupled-corridor certificate. It isolates the core-scale conflict between the inner recapture estimate and the outer shell-leakage estimate.
+
+> **Proposition (Corridor nonemptiness criterion).**
+> Use the fixed mollifier normalization
+> $$
+> \Lambda_\delta
+> \equiv
+> \eta\|\delta_\eta\|_\infty
+> =
+> \|\delta\|_\infty.
+> $$
+> Suppose
+> $$
+> S_{\mathrm{in}}^\rho>0,
+> \qquad
+> \sigma_{\mathrm{out}}>0,
+> \qquad
+> P_{\mathrm{out}}>0.
+> $$
+> The inner coefficient condition
+> $$
+> C_{\mathrm{in}}(\epsilon_c)>0
+> $$
+> is equivalent to
+> $$
+> \epsilon_c^2
+> <
+> \frac{1}{2S_{\mathrm{in}}^\rho}.
+> $$
+> The outer shell-deep coefficient condition is equivalent to
+> $$
+> P_{\mathrm{eff}}(\epsilon_c)>0,
+> \qquad
+> \epsilon_c^2
+> >
+> \frac{2\Lambda_\delta}
+> {\sigma_{\mathrm{out}}P_{\mathrm{eff}}(\epsilon_c)},
+> $$
+> where
+> $$
+> P_{\mathrm{eff}}(\epsilon_c)
+> \equiv
+> P_{\mathrm{out}}-D_{\mathrm{deep}}(\epsilon_c).
+> $$
+> Therefore the factorized corridor has a possible core-scale window only if there exists
+> $$
+> \epsilon_c>0
+> $$
+> such that
+> $$
+> \frac{2\Lambda_\delta}
+> {\sigma_{\mathrm{out}}P_{\mathrm{eff}}(\epsilon_c)}
+> <
+> \epsilon_c^2
+> <
+> \frac{1}{2S_{\mathrm{in}}^\rho}.
+> $$
+> In the coarse audit where
+> $$
+> D_{\mathrm{deep}}(\epsilon_c)
+> $$
+> is negligible, this reduces to the explicit window
+> $$
+> \sqrt{\frac{2\Lambda_\delta}{\sigma_{\mathrm{out}}P_{\mathrm{out}}}}
+> \lesssim
+> \epsilon_c
+> \lesssim
+> \frac{1}{\sqrt{2S_{\mathrm{in}}^\rho}},
+> $$
+> and the approximate nonemptiness condition
+> $$
+> \sigma_{\mathrm{out}}P_{\mathrm{out}}S_{\mathrm{in}}^\rho
+> >
+> 4\Lambda_\delta.
+> $$
+
+Proof.
+The first equivalence follows directly from
+$$
+\frac{1}{4\beta_{p,\max}\epsilon_c}
+-
+\frac{S_{\mathrm{in}}^\rho\epsilon_c}{2\beta_{p,\max}}
+>0.
+$$
+The second follows from
+$$
+P_{\mathrm{out}}
+-
+D_{\mathrm{deep}}(\epsilon_c)
+-
+\frac{2\eta\|\delta_\eta\|_\infty}{\sigma_{\mathrm{out}}\epsilon_c^2}
+>0
+$$
+and the definition of
+$$
+\Lambda_\delta.
+$$
+Combining the lower and upper core-scale requirements gives the displayed window. If this window is empty, the factorized corridor fails by parameter incompatibility before any seed-cycle residual or return-map argument is relevant.
+
 The following sufficient corridor is the scalar form of that arithmetic certificate. It does not prove the geometric coefficients by itself; it separates the coefficient audit from the final coupling choice.
 
 > **Proposition (Factorized corridor for a strict coupled-regime point).**
@@ -3591,6 +3860,15 @@ The following sufficient corridor is the scalar form of that arithmetic certific
 > \frac{S_{\mathrm{in}}^\rho\,\epsilon_c}{2\beta_{p,\max}}
 > >0,
 > $$
+> or, if the Cauchy-Schwarz partner-impulse refinement has been interval-certified,
+> $$
+> C_{\mathrm{in}}^{\mathrm{CS}}(\epsilon_c)
+> \equiv
+> \frac{Q_{\mathrm{CS}}}{4\beta_{p,\max}\epsilon_c}
+> -
+> \frac{S_{\mathrm{in}}^\rho\,\epsilon_c}{2\beta_{p,\max}}
+> >0.
+> $$
 > $$
 > P_{\mathrm{out}}
 > -
@@ -3613,6 +3891,15 @@ The following sufficient corridor is the scalar form of that arithmetic certific
 > {m_{\mathrm{ent}}\big(T_{\mathrm{ent}}^{\mathrm{out}}-\tau_{\mathrm{sub}}^{\mathrm{out}}\big)}
 > \right\}
 > $$
+> with
+> $$
+> C_{\mathrm{in}}(\epsilon_c)
+> $$
+> replaced by the certified
+> $$
+> C_{\mathrm{in}}^{\mathrm{CS}}(\epsilon_c)
+> $$
+> if that refinement is used,
 > gives a strict coupled-regime point by setting
 > $$
 > a_{\mathrm{ent}}^{\mathrm{out}}=gm_{\mathrm{ent}}.
@@ -3628,6 +3915,14 @@ $$
 which is positive by the lower bound on
 $$
 g.
+$$
+If the certified Cauchy-Schwarz refinement is used, the same argument replaces
+$$
+C_{\mathrm{in}}
+$$
+by
+$$
+C_{\mathrm{in}}^{\mathrm{CS}}.
 $$
 The entry margin satisfies
 $$
@@ -4048,7 +4343,7 @@ $$
 $$
 Finally, a direct returned-sample budget certificate gives the finite sampled preservation criterion immediately. If that direct route is not used, the residual-plus-sensitivity criterion implies the same returned-sample budget certificate. In either case the finite sampled preservation criterion gives the certificate inequalities after one return. Therefore the returned history lies in the certified set itself, proving the self-map inclusion.
 
-The finite closure audit is now exactly the following three-row ledger:
+The finite closure audit is now the following four-row ledger. The first, second, and fourth rows produce the self-map certificate; the third row is a stability diagnostic that decides whether returned-sample preservation should be attempted by sensitivities or by boundary trapping.
 
 1. **Seed-chart row.**
    Verify
@@ -4098,7 +4393,31 @@ The finite closure audit is now exactly the following three-row ledger:
    p_0
    $$
    in the coupled system, not separate local parameter choices.
-3. **Returned-sample row.**
+3. **Monodromy diagnostic row.**
+   Compute an interval enclosure for the section-anchored linearized return map
+   $$
+   D P_\eta(\phi_{\mathrm{cyc}})
+   $$
+   on the certificate mesh. The section anchoring removes the neutral time-translation direction before the spectrum is interpreted. Record the discrete monodromy matrix
+   $$
+   M_N,
+   $$
+   an interval spectral enclosure, and an explicit diagnostic margin
+   $$
+   \delta_{\mathrm{mon}}>0.
+   $$
+   If any certified eigenvalue satisfies
+   $$
+   |\lambda|>1+\delta_{\mathrm{mon}},
+   $$
+   the residual-plus-sensitivity route should be considered closed for that unstable direction, and the returned-sample row must use direct one-sided boundary trapping. If the spectrum and operator-norm enclosure are small enough to give usable constants
+   $$
+   L_j^x,
+   \qquad
+   L_j^v,
+   $$
+   this row authorizes the residual-plus-sensitivity route. Schauder itself does not require linear stability; this row is a proof-strategy selector for the finite preservation audit.
+4. **Returned-sample row.**
    Prefer the direct one-sided budget route when local sensitivities are large: prove
    $$
    E_{j,\pm}^{x},
@@ -4117,7 +4436,7 @@ The finite closure audit is now exactly the following three-row ledger:
    $$
    for every mesh index. This row supplies certificate preservation under one return.
 
-This ledger is deliberately finite. Passing all three rows turns the domain-production burden into the self-map inclusion; failing any row identifies the exact obstruction.
+This ledger is deliberately finite. Passing the seed-chart, coupled-corridor, and returned-sample rows turns the domain-production burden into the self-map inclusion; the monodromy row identifies whether the returned-sample proof should use sensitivity control or boundary trapping. Failing any required row identifies the exact obstruction.
 
 ### Certified topology row
 
@@ -4168,7 +4487,7 @@ is the finite section-transversality check needed by the continuity proposition.
 >    $$
 >    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
 >    $$
->    with the Jacobian floors, branch-count ceilings, and memory-depth bounds supplied by the certificate.
+>    with the Jacobian floors, branch-count ceilings, and memory-depth bounds supplied by the certificate outside the certified fold-event atlas, and each fold layer in that atlas has a parity-preserving incoming-to-outgoing chart transition.
 >
 > Then
 > $$
@@ -4199,7 +4518,7 @@ $$
 $$
 Hence every returned history satisfies the position, speed, Lipschitz-velocity, and horizon bounds required by Proposition `Precompactness of the Return Image`; that proposition gives precompactness.
 
-For continuity, certified branch-chart well-posedness gives continuous dependence of the controlled continuation on the initial history while the certificate keeps the same active branch chart and Jacobian floors. The displayed return-speed estimate gives the uniform transverse return condition
+For continuity, certified branch-chart well-posedness gives continuous dependence of the controlled continuation on the initial history while the certificate keeps the same exterior charts, origin-layer charts, fold-event atlas, and Jacobian floors. The displayed return-speed estimate gives the uniform transverse return condition
 $$
 \dot x(T(\phi);\phi)\le -u_{\mathrm{ret}}^{\mathrm{cert}}<0.
 $$
@@ -4215,16 +4534,17 @@ P_\eta
 $$
 on the certified domain.
 
-The full Schauder-ready audit therefore has four rows:
+The full Schauder-ready audit therefore has five rows:
 
 1. the seed-chart row;
 2. the coupled-corridor row;
-3. the returned-sample row;
-4. and the topology row
+3. the monodromy diagnostic row;
+4. the returned-sample row;
+5. and the topology row
    $$
    u_{\mathrm{ret}}^{\mathrm{cert}}>0
    $$
-   plus certified branch-chart well-posedness on the controlled continuation.
+   plus certified branch-chart well-posedness and a certified fold-event atlas on the controlled continuation.
 
 ### Remaining blockers before Schauder
 
@@ -4282,7 +4602,16 @@ $$
    p_0
    $$
    rather than treating local margins and envelope constants as independent;
-3. derive returned-sample budgets. If the sample sensitivities
+3. compute the monodromy diagnostic for
+   $$
+   D P_\eta(\phi_{\mathrm{cyc}})
+   $$
+   on the section-anchored mesh. If the interval spectral enclosure has an unstable direction
+   $$
+   |\lambda|>1+\delta_{\mathrm{mon}},
+   $$
+   use the result to route the returned-sample proof to boundary trapping rather than residual-plus-sensitivity estimates.
+4. derive returned-sample budgets. If the sample sensitivities
    $$
    L_j^x,
    \qquad
@@ -4307,16 +4636,16 @@ $$
    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
    $$
    on that same domain.
-4. verify the topology row:
+5. verify the topology row:
    $$
    u_{\mathrm{ret}}^{\mathrm{cert}}>0
    $$
-   and certified branch-chart well-posedness for the dual-mollified vector field on the controlled continuation, so the certified topology proposition gives continuity and precompactness on
+   and certified branch-chart well-posedness for the dual-mollified vector field on the controlled continuation, including the origin-layer chart and certified fold-event atlas, so the certified topology proposition gives continuity and precompactness on
    $$
    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
    $$
 
-Once these four items are theorem-level, the finite-certificate invariant closure package supplies the self-map domain and the certified topology proposition supplies continuity and precompactness. The remaining Schauder step is then formally routine.
+Once these five items are theorem-level, the finite-certificate invariant closure package supplies the self-map domain and the certified topology proposition supplies continuity and precompactness. The remaining Schauder step is then formally routine.
 
 ### Schauder capstone
 

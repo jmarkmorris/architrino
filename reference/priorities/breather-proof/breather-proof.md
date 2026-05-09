@@ -14,9 +14,10 @@
 1. `master_equation_law` — Record the exact dual-mollified absolute-time evolution law in the master-equation stack. Status: `done`. Depends on: none.
 2. `seed_chart_packet` — Produce `certificate/phi_cyc.json`, `certificate/branch_chart.json`, `certificate/mesh.json`, and the seed-chart interval report. Status: `next`. Depends on: `master_equation_law`.
 3. `coupled_corridor_certificate` — Produce `certificate/parameters.json` and the coupled-corridor interval report for one strict parameter tuple. Status: `pending`. Depends on: `seed_chart_packet`.
-4. `returned_sample_certificate` — Produce returned-sample residuals or boundary-trapping budgets on the certified mesh. Status: `pending`. Depends on: `seed_chart_packet`, `coupled_corridor_certificate`.
-5. `topology_certificate` — Verify return transversality and certified branch-chart well-posedness on the same domain. Status: `pending`. Depends on: `returned_sample_certificate`.
-6. `schauder_closeout` — Promote the conditional Schauder theorem to an existence theorem after all certificate rows pass. Status: `pending`. Depends on: `topology_certificate`.
+4. `monodromy_diagnostic` — Produce the section-anchored monodromy spectrum and route returned-sample preservation to sensitivities or boundary trapping. Status: `pending`. Depends on: `seed_chart_packet`, `coupled_corridor_certificate`.
+5. `returned_sample_certificate` — Produce returned-sample residuals or boundary-trapping budgets on the certified mesh. Status: `pending`. Depends on: `seed_chart_packet`, `coupled_corridor_certificate`, `monodromy_diagnostic`.
+6. `topology_certificate` — Verify return transversality, origin-layer continuity, certified fold-event atlas, and certified branch-chart well-posedness on the same domain. Status: `pending`. Depends on: `returned_sample_certificate`.
+7. `schauder_closeout` — Promote the conditional Schauder theorem to an existence theorem after all certificate rows pass. Status: `pending`. Depends on: `topology_certificate`.
 
 ## Scope
 
@@ -91,7 +92,7 @@ not a new roadmap.
    $$
    by ansatz, collocation, or simulation.
 3. Enumerate active and inactive path-history roots on a finite mesh around that candidate.
-4. Verify the four audit rows below on the same certified domain.
+4. Verify the five audit rows below on the same certified domain.
 5. Promote the conditional Schauder theorem in [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md) only after the finite audit passes.
 
 The vulnerable assumption is that a finite active branch chart with positive Jacobian floors and positive inactive-root gaps exists around one candidate cycle. The direct test is root enumeration plus interval certification for
@@ -210,7 +211,20 @@ The finite audit rows are:
      $$
      with interval bounds for all dependent coefficients.
    - `certificate/coupled_corridor_interval_report.md`: pass/fail interval ledger for the inner margin, apocenter-entry margin, outer margin, entry-time budget, and envelope domination inequalities.
-3. **Returned-sample row.**
+3. **Monodromy diagnostic row.**
+   Compute or interval-bound the section-anchored linearized return map
+   $$
+   D P_\eta(\phi_{\mathrm{cyc}})
+   $$
+   on the sample mesh, with the time-translation direction removed by section anchoring. If an unstable direction is certified, returned-sample preservation must use boundary trapping rather than residual-plus-sensitivity control.
+
+   **Executable artifacts.**
+   - `certificate/monodromy.json`: discretized monodromy matrix or interval enclosure, eigenvalue or spectral-radius enclosure, and the diagnostic margin
+     $$
+     \delta_{\mathrm{mon}}.
+     $$
+   - `certificate/monodromy_interval_report.md`: pass/fail report deciding whether the returned-sample row may use sensitivities or must use boundary trapping.
+4. **Returned-sample row.**
    On the chosen mesh, verify either the residual-plus-sensitivity inequalities
    $$
    R_{j,\pm}^{x}+L_j^x r_{\mathrm{cert}}<\frac{r_{\mathrm{cert}}}{4},
@@ -237,12 +251,12 @@ The finite audit rows are:
      E_{j,\pm}^{v}
      $$
      with strict slack at every mesh index.
-4. **Topology row.**
+5. **Topology row.**
    Verify
    $$
    u_{\mathrm{ret}}^{\mathrm{cert}}>0
    $$
-   and local Lipschitz dependence of the dual-mollified vector field on the certified branch chart. This supplies continuity and precompactness on
+   origin-layer continuity, the certified fold-event atlas, and local Lipschitz dependence of the dual-mollified vector field on the certified branch charts. This supplies continuity and precompactness on
    $$
    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
    $$
@@ -252,18 +266,19 @@ The finite audit rows are:
      $$
      u_{\mathrm{ret}}^{\mathrm{cert}}>0
      $$
-     and certified branch-chart well-posedness on the stored history and one-cycle continuation.
-   - `certificate/pass_fail_ledger.md`: one table summarizing all four rows, artifact hashes or versions, pass/fail status, and the exact obstruction if any row fails.
+     origin-layer continuity, certified fold-event transitions, and certified branch-chart well-posedness on the stored history and one-cycle continuation.
+   - `certificate/pass_fail_ledger.md`: one table summarizing all five rows, artifact hashes or versions, pass/fail status, and the exact obstruction if any row fails.
 
-Only after all four rows are verified on the same certified domain does the conditional Schauder theorem in [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md) become an actual existence theorem. Until then, the project has a precise fixed-point proof architecture, not a completed breather proof and not a closed-form solution.
+Only after all five rows are verified on the same certified domain does the conditional Schauder theorem in [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md) become an actual existence theorem. Until then, the project has a precise fixed-point proof architecture, not a completed breather proof and not a closed-form solution.
 
 ## Proof-Writing Order
 
 1. Produce the seed-chart packet.
 2. Produce one strict coupled-corridor parameter certificate.
-3. Produce returned-sample preservation, preferring boundary trapping if residual sensitivities are too large.
-4. Produce the topology certificate.
-5. Only after all four rows pass, update [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md) from conditional theorem to completed dual-mollified existence theorem.
+3. Produce the monodromy diagnostic and choose the returned-sample proof route.
+4. Produce returned-sample preservation, preferring boundary trapping if residual sensitivities are too large.
+5. Produce the topology certificate.
+6. Only after all five rows pass, update [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md) from conditional theorem to completed dual-mollified existence theorem.
 
 ## Related Priorities
 
