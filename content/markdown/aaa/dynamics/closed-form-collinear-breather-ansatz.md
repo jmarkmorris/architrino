@@ -275,6 +275,92 @@ This suggests a closed-form strategy:
 
 The separator is metastable in the sense that small perturbations decide whether the sorting map keeps descending, stalls, or reverses. In the dual-mollified model the separator should become a thin transition layer rather than an infinite impulse.
 
+### Separator normal form and fold scaling
+
+For certificate purposes, the field-speed separator is a codimension-one event surface in the reduced phase data together with an active branch label:
+$$
+\Sigma_{\mathcal{B}}
+=
+\{(x,v,\mathcal{B}): |v|=c_f\}.
+$$
+Here
+$$
+\mathcal{B}
+$$
+is part of the state description, because crossing
+$$
+\Sigma_{\mathcal{B}}
+$$
+can create, annihilate, or relabel path-history roots even when
+$$
+(x,v)
+$$
+remains continuous.
+
+Near a separator event, the dual-mollified vector field should be treated as a regularized perturbation of the bare branch-sum field. The shell width
+$$
+\eta
+$$
+and core radius
+$$
+\epsilon_c
+$$
+are then small but fixed certificate parameters, not limiting symbols to be discarded before the impulse budget is computed.
+
+Let
+$$
+g(t,s;\lambda)=0
+$$
+denote one signed causal-root defect on a local chart, with
+$$
+\lambda
+$$
+the transverse separator coordinate. A generic branch-topology change has the fold normal form
+$$
+g(t,s;\lambda)
+=
+a(s-s_\Sigma)^2+b\lambda
++O(|s-s_\Sigma|^3+|\lambda||s-s_\Sigma|+\lambda^2),
+\qquad
+ab\ne 0.
+$$
+Thus the active-root change is a saddle-node of branch labels: two simple roots are born or annihilated as the sign of
+$$
+b\lambda/a
+$$
+changes. In the dual-mollified chart, the shell support
+$$
+|g|\lesssim\eta
+$$
+gives the fold-root thickness
+$$
+|s-s_\Sigma|=O(\eta^{1/2}).
+$$
+Under a transverse passage through the fold coordinate, the unresolved fold layer has the same
+$$
+O(\eta^{1/2})
+$$
+clock-time scale after reparametrizing by the local fold coordinate. If a concrete chart uses a different clock normalization, the certificate must record the interval enclosure directly.
+
+Consequently the fold impulse ceiling is not a free assertion. It must be supplied by an interval bound of the form
+$$
+|\Delta v_\Sigma|
+\le
+I^{\mathrm{fold}}_{\eta,\epsilon_c}
+\le
+C_\Sigma\eta^{1/2}
+A_{\Sigma,\eta,\epsilon_c},
+$$
+where
+$$
+A_{\Sigma,\eta,\epsilon_c}
+$$
+is an interval upper bound for the dual-mollified acceleration on the certified fold tube and
+$$
+C_\Sigma
+$$
+is the corresponding transversality constant. The certificate may use a sharper direct quadrature bound, but it must expose the normal-form constants and the resulting finite slack.
+
 ## Piecewise Chart Ansatz
 
 Let
@@ -416,6 +502,72 @@ A first closed-form skeleton should use four arcs:
    \dot x<0.
    $$
 
+### Velocity-class itinerary ledger
+
+The four arc names above are a compressed return graph, not yet a complete velocity-class itinerary. Define
+$$
+\mathfrak{v}(t)\in
+\{\mathsf{S}_{\mathrm{sub}},\mathsf{S}_{\mathrm{sep}},\mathsf{S}_{\mathrm{sup}}\}
+$$
+by
+$$
+\mathsf{S}_{\mathrm{sub}}:\ |\dot x|<c_f,
+\qquad
+\mathsf{S}_{\mathrm{sep}}:\ |\dot x|=c_f,
+\qquad
+\mathsf{S}_{\mathrm{sup}}:\ |\dot x|>c_f.
+$$
+A full origin-crossing breather may pass through more separator events than the compressed four-arc naming suggests. The current self-image table below assumes the simple compressed itinerary in which the apocenter recapture remains sub-field after the outer separator. Before using that table as a certificate input, the ansatz packet must specify the actual itinerary.
+
+Two admissible itinerary templates are:
+$$
+\mathsf{S}_{\mathrm{sub}}
+\to
+\mathsf{S}_{\mathrm{sep}}
+\to
+\mathsf{S}_{\mathrm{sup}}
+\to
+\mathsf{S}_{\mathrm{sep}}
+\to
+\mathsf{S}_{\mathrm{sub}}
+\to
+\mathsf{S}_{\mathrm{sep}}
+\to
+\mathsf{S}_{\mathrm{sup}}
+\to
+\mathsf{S}_{\mathrm{sep}}
+\to
+\mathsf{S}_{\mathrm{sub}},
+$$
+the doubled four-arc itinerary, and
+$$
+\mathsf{S}_{\mathrm{sub}}
+\to
+\mathsf{S}_{\mathrm{sep}}
+\to
+\mathsf{S}_{\mathrm{sup}}
+\to
+\mathsf{S}_{\mathrm{sep}}
+\to
+\mathsf{S}_{\mathrm{sub}}
+\to
+\mathsf{S}_{\mathrm{sep}}
+\to
+\mathsf{S}_{\mathrm{sep}}
+\to
+\mathsf{S}_{\mathrm{sep}}
+\to
+\mathsf{S}_{\mathrm{sub}},
+$$
+a glancing apocenter itinerary in which the path touches the separator without entering another super-field arc. These templates have different self-image tables. The certificate generator should therefore key every branch table by the chosen itinerary
+$$
+\mathcal{K}
+$$
+and its ordered interval list
+$$
+I_1(\mathcal{K}),\ldots,I_m(\mathcal{K}).
+$$
+
 The periodicity condition is not merely
 $$
 x(T)=x(0).
@@ -433,7 +585,7 @@ P_\eta(\phi)(\theta_j)=\phi(\theta_j),
 0\le j\le N.
 $$
 
-## Four-Arc Self-Image Enumeration
+## Itinerary-Keyed Self-Image Enumeration
 
 The decisive algebraic test is not the partner root. It is the same-path self-root equation
 $$
@@ -443,7 +595,7 @@ s<t,
 $$
 across the four-arc skeleton.
 
-Let the candidate cycle be partitioned into four time intervals:
+For the compressed four-arc itinerary, let the candidate cycle be partitioned into four time intervals:
 $$
 I_1=\text{inbound sub-field},
 \qquad
@@ -454,6 +606,16 @@ I_3=\text{outbound super-field or near-field-speed},
 \qquad
 I_4=\text{apocenter sub-field recapture}.
 $$
+For any richer itinerary
+$$
+\mathcal{K},
+$$
+replace this list by
+$$
+I_1(\mathcal{K}),\ldots,I_m(\mathcal{K})
+$$
+and fill the same table over all ordered interval pairs. The sixteen-row table below is therefore not the universal branch table; it is the compressed four-arc case.
+
 For each ordered pair
 $$
 (\alpha,\beta)\in\{1,2,3,4\}^2,
@@ -485,28 +647,49 @@ J_s
 =
 1-\frac{\dot x_\beta(s)\hat r_s}{c_f},
 $$
-the interval of existence, and the contribution sign in the reduced equation.
+the interval of existence, and the contribution sign in the reduced equation. Also record the signed degree contribution
+$$
+D_{\alpha\beta}
+=
+\sum_{g_{\alpha\beta}^{\pm}(t,s)=0}
+\operatorname{sgn} J_s,
+$$
+with the sum taken over certified root branches on that interval pair. On a simple-root chart with a positive Jacobian floor, this degree equals the unsigned root count. Near separators it is the invariant that survives the fold.
 
 The enumeration deliverable is the following table, filled with exact formulas or interval-validated enclosures:
 
-| Receiver arc $I_\alpha$ | Source arc $I_\beta$ | Root count | Root formula or enclosure | $\hat r_s$ | $J_s$ floor | Contribution sign | Certificate status |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| $I_1$ | $I_1$ | target | target | target | target | target | open |
-| $I_1$ | $I_2$ | target | target | target | target | target | open |
-| $I_1$ | $I_3$ | target | target | target | target | target | open |
-| $I_1$ | $I_4$ | target | target | target | target | target | open |
-| $I_2$ | $I_1$ | target | target | target | target | target | open |
-| $I_2$ | $I_2$ | target | target | target | target | target | open |
-| $I_2$ | $I_3$ | target | target | target | target | target | open |
-| $I_2$ | $I_4$ | target | target | target | target | target | open |
-| $I_3$ | $I_1$ | target | target | target | target | target | open |
-| $I_3$ | $I_2$ | target | target | target | target | target | open |
-| $I_3$ | $I_3$ | target | target | target | target | target | open |
-| $I_3$ | $I_4$ | target | target | target | target | target | open |
-| $I_4$ | $I_1$ | target | target | target | target | target | open |
-| $I_4$ | $I_2$ | target | target | target | target | target | open |
-| $I_4$ | $I_3$ | target | target | target | target | target | open |
-| $I_4$ | $I_4$ | target | target | target | target | target | open |
+| Receiver arc $I_\alpha$ | Source arc $I_\beta$ | Root count $N$ | Signed degree $D$ | Root formula or enclosure | $\hat r_s$ | $J_s$ floor | Contribution sign | Separator jumps | Certificate status |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| $I_1$ | $I_1$ | target | target | target | target | target | target | target | open |
+| $I_1$ | $I_2$ | target | target | target | target | target | target | target | open |
+| $I_1$ | $I_3$ | target | target | target | target | target | target | target | open |
+| $I_1$ | $I_4$ | target | target | target | target | target | target | target | open |
+| $I_2$ | $I_1$ | target | target | target | target | target | target | target | open |
+| $I_2$ | $I_2$ | target | target | target | target | target | target | target | open |
+| $I_2$ | $I_3$ | target | target | target | target | target | target | target | open |
+| $I_2$ | $I_4$ | target | target | target | target | target | target | target | open |
+| $I_3$ | $I_1$ | target | target | target | target | target | target | target | open |
+| $I_3$ | $I_2$ | target | target | target | target | target | target | target | open |
+| $I_3$ | $I_3$ | target | target | target | target | target | target | target | open |
+| $I_3$ | $I_4$ | target | target | target | target | target | target | target | open |
+| $I_4$ | $I_1$ | target | target | target | target | target | target | target | open |
+| $I_4$ | $I_2$ | target | target | target | target | target | target | target | open |
+| $I_4$ | $I_3$ | target | target | target | target | target | target | target | open |
+| $I_4$ | $I_4$ | target | target | target | target | target | target | target | open |
+
+The parity check is imported from Proposition 3 in [master-equation.md](./master-equation.md): generic folds create or annihilate one root pair, so
+$$
+\Delta N\in 2\mathbb{Z},
+\qquad
+\Delta D=0.
+$$
+On a closed cycle the branch ledger must return to itself, hence
+$$
+\sum_{\Sigma}\Delta N=0,
+\qquad
+\sum_{\Sigma}\Delta D=0,
+$$
+with every local unsigned jump even. This is a discrete consistency test on the ansatz. A candidate branch list that fails it should be rejected before any quadrature or collocation residual is computed.
 
 If this table closes to a finite branch list with strict separation, memory-depth, and Jacobian floors, the ansatz can feed the finite certificate audit. If the self images do not close algebraically into a finite list, the next certificate generator should be a piecewise Chebyshev or cubic
 $$
@@ -568,6 +751,28 @@ The ansatz must impose four matching conditions:
    $$
    is the finite caustic-transit impulse ceiling imported from the proof scaffold.
 
+The normal-form section above makes this ceiling an auditable number. For each separator, the ansatz packet must report the local fold coefficients
+$$
+a,
+\qquad
+b,
+$$
+the transversality constant
+$$
+C_\Sigma,
+$$
+the shell and core parameters
+$$
+(\eta,\epsilon_c),
+$$
+and either the bound
+$$
+I^{\mathrm{fold}}_{\eta,\epsilon_c}
+\le
+C_\Sigma\eta^{1/2}A_{\Sigma,\eta,\epsilon_c}
+$$
+or a sharper interval quadrature bound over the certified fold layer. The matching law is usable only after this finite impulse estimate has strict slack against the adjacent arc budgets.
+
 This formulation keeps the separator tied to the same estimates used in [collinear-breather.md](./collinear-breather.md). Energy constants on the adjacent arcs may still be useful bookkeeping devices, but they are not the primitive matching data at
 $$
 |\dot x|=c_f.
@@ -592,22 +797,32 @@ A candidate ansatz packet must produce:
    \mathcal{B}_{\mathrm{act}}
    $$
    on every arc, together with inactive branch complements;
-4. a certificate mesh
+4. an itinerary ledger
+   $$
+   \mathcal{K}
+   $$
+   and an itinerary-keyed self-image table with root counts, signed degrees, and separator parity jumps;
+5. a certificate mesh
    $$
    \{\theta_j\}_{j=0}^{N}
    \subset[-h,0];
    $$
-5. algebraic, quadrature, Chebyshev, cubic
+6. algebraic, quadrature, Chebyshev, cubic
    $$
    C^1,
    $$
    or other interval-validated formulas for each arc;
-6. separator impulse laws at every
+7. separator impulse laws at every
    $$
    |\dot x|=c_f
    $$
-   event;
-7. returned-history residuals
+   event, including the fold normal-form constants and finite impulse bounds;
+8. a bifurcation-parameter sweep over
+   $$
+   (\eta,\epsilon_c,V_{\max})
+   $$
+   or a justified lower-dimensional slice, identifying the region where the itinerary is admissible, the required roots exist, inactive-root gaps are positive, and fold impulses are finite;
+9. returned-history residuals
    $$
    R_j^x,
    \qquad
@@ -630,9 +845,11 @@ and the returned-sample residuals or boundary budgets.
 
 ## First Working Guess
 
-Closed-by-quadrature is only one possible certificate generator. The first analytic guess may be a two-parameter family:
+Closed-by-quadrature is only one possible certificate generator. A two-parameter family is generally too small: the compressed skeleton has arc-junction conditions, separator impulse conditions, branch-list updates, and a returned-history residual. It is acceptable only if reflection symmetry or a certified degeneracy removes the surplus constraints.
+
+The first analytic guess should therefore be at least a three-parameter family:
 $$
-\phi_{\mathrm{cyc}}(\theta;u_\ast,X_\ast),
+\phi_{\mathrm{cyc}}(\theta;u_\ast,X_\ast,E_{>}),
 $$
 where
 $$
@@ -640,7 +857,17 @@ X_\ast=x_\ast,
 \qquad
 0<u_\ast<c_f,
 $$
-and each arc is generated by a potential curve of the form
+and
+$$
+E_{>}
+$$
+is the energy or shape parameter for the super-field arc. It should not be identified with the sub-field energy until the separator impulse law proves the matching. In a collocation version,
+$$
+E_{>}
+$$
+is replaced by the analogous independent shape coefficient for the inner super-field segment.
+
+On a fixed branch chart, each quadrature arc is generated by a potential curve of the form
 $$
 \frac{1}{2}\dot x^2
 -
@@ -670,7 +897,9 @@ The parameters
 $$
 u_\ast,
 \qquad
-X_\ast
+X_\ast,
+\qquad
+E_{>}
 $$
 are then chosen so that the returned section state satisfies
 $$
@@ -678,7 +907,15 @@ x(T)=x_\ast,
 \qquad
 \dot x(T)=-u_\ast,
 $$
-and the sampled history residuals are minimized.
+the outer and inner separator impulses match the adjacent arcs, and the sampled history residuals are minimized. In the intended symmetric case,
+$$
+E_{>}
+$$
+is determined by separator matching from the apocenter side while
+$$
+u_\ast
+$$
+is determined by the outer separator and returned section condition.
 
 In the strict closed-form version, the residuals vanish:
 $$
@@ -696,7 +933,17 @@ $$
 ## Immediate Derivation Tasks
 
 1. Complete the signed partner branch table for affine and fixed-chart arcs, including the core-mollified force coefficient and validity margins.
-2. Fill the four-arc self-image enumeration table for
+2. Compute the separator normal-form constants and fold-layer impulse bounds for every proposed
+   $$
+   |\dot x|=c_f
+   $$
+   event.
+3. Choose an admissible velocity-class itinerary
+   $$
+   \mathcal{K}
+   $$
+   and key the arc partition to that itinerary rather than assuming the compressed four-arc graph by default.
+4. Fill the itinerary-keyed self-image enumeration table for
    $$
    |x(t)-x(s)|=c_f(t-s)
    $$
@@ -704,12 +951,19 @@ $$
    $$
    (I_\alpha,I_\beta).
    $$
-3. If the self-image table closes, convert it into
+5. Add the parity ledger
+   $$
+   \Delta N\in2\mathbb{Z},
+   \qquad
+   \Delta D=0
+   $$
+   at every generic fold and verify that the closed-cycle sums vanish.
+6. If the self-image table closes, convert it into
    $$
    \mathcal{B}_{\mathrm{act}},
    $$
    inactive branch complements, Jacobian floors, separation margins, and memory-depth bounds.
-4. If the self-image table does not close algebraically, build a piecewise Chebyshev or cubic
+7. If the self-image table does not close algebraically, build a piecewise Chebyshev or cubic
    $$
    C^1
    $$
@@ -718,17 +972,17 @@ $$
    \phi_{\mathrm{cyc}}
    $$
    and certify the finite active branches numerically by interval validation.
-5. Write the separator impulse law at
+8. Sweep
    $$
-   |\dot x|=c_f
+   (\eta,\epsilon_c,V_{\max})
    $$
-   using the dual-mollified finite fold impulse from the main proof scaffold.
-6. Build the first certificate packet
+   or a justified lower-dimensional slice to locate the itinerary-admissible parameter region before attempting the full corridor certificate.
+9. Build the first certificate packet
    $$
    \mathfrak{C}_{\mathrm{ans}}
    $$
    and compute its returned section residuals.
-7. If the residuals have strict slack, compute the finite certificate data and test the four audit rows in [collinear-breather.md](./collinear-breather.md).
+10. If the residuals have strict slack, compute the finite certificate data and test the four audit rows in [collinear-breather.md](./collinear-breather.md).
 
 ## Provisional Assessment
 
@@ -744,4 +998,4 @@ $$
 $$
 and certify the finite active branches numerically.
 
-The next concrete decision is therefore algebraic: compute the self-image structure for the four-arc skeleton and see whether the branch list closes. The accepted output is the finite audit packet, not an elegant formula.
+The next concrete decision is therefore algebraic and topological: choose the velocity-class itinerary, compute the itinerary-keyed self-image structure, and test both finite branch closure and the parity ledger. The accepted output is the finite audit packet, not an elegant formula.
