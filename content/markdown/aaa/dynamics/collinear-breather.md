@@ -37,6 +37,12 @@ This chapter now has three different status layers, and they should be read sepa
 
 In particular, the manuscript already contains substantial outer-turn and apocenter material. The main remaining burden is not to invent an outer-turn mechanism from scratch, but to assemble the local theorem packages into one coupled invariant-envelope regime on which the return map is continuous, precompact, and self-mapping.
 
+This chapter is the proof core for the breather program. Completion now means replacing the conditional finite-certificate rows with one verified certificate: an instantiated
+$$
+\phi_{\mathrm{cyc}},
+$$
+a finite branch chart, a closed convex certificate, a strict coupled corridor, returned-sample preservation, certified topology, and then Schauder.
+
 ## Reading Map
 
 Readers looking for the main structural bottlenecks can use the following map.
@@ -310,6 +316,54 @@ $$
 \delta_\eta\!\big(|x(t)-x(t_0)|-c_f(t-t_0)\big),
 $$
 with the understanding that the exact Jacobian factors reappear in the branch-sum representation when the mollified shell collapses onto isolated roots.
+
+The normalization convention for the shell mollifier is fixed once and used throughout the estimates below. Choose a nonnegative even
+$$
+C^1
+$$
+function
+$$
+\delta\in C^1_c(\mathbb{R}),
+\qquad
+\operatorname{supp}\delta\subset[-1,1],
+\qquad
+\int_{\mathbb{R}}\delta(y)\,dy=1,
+$$
+and set
+$$
+\delta_\eta(y)\equiv \eta^{-1}\delta(y/\eta).
+$$
+Thus
+$$
+\operatorname{supp}\delta_\eta\subset[-\eta,\eta],
+\qquad
+\int_{\mathbb{R}}\delta_\eta(y)\,dy=1,
+\qquad
+\|\delta_\eta\|_\infty=\eta^{-1}\|\delta\|_\infty.
+$$
+Every shell-leakage, fold-impulse, and outer-self estimate using
+$$
+\|\delta_\eta\|_\infty
+$$
+uses this convention. On a simple-root chart,
+$$
+\int f(s)\delta_\eta(g(t,s))\,ds
+\longrightarrow
+\sum_{g(t,s_k)=0}
+\frac{f(s_k)}{|\partial_s g(t,s_k)|},
+$$
+and the fixed factor
+$$
+c_f^{-1}
+$$
+from
+$$
+\partial_s g=c_fJ
+$$
+is absorbed into the branch-law normalization of
+$$
+\kappa.
+$$
 
 For theorem work across the origin crossing, shell regularization alone is not enough to control the inverse-square amplitude. A more robust local model therefore introduces a **dual mollification**: the shell mollifier $\delta_\eta$ for delayed root selection together with a short-distance core mollifier $\epsilon_c>0$ in the amplitude denominator,
 $$
@@ -2146,7 +2200,7 @@ to be the set of histories $\phi\in C^1([-h,0])$ such that:
   $$
 - position envelope:
   $$
-  0\le \phi(\theta)\le X_{\max}
+  -X_{\max}\le \phi(\theta)\le X_{\max}
   \qquad
   \text{for }\theta\in[-h,0];
   $$
@@ -2167,7 +2221,7 @@ to be the set of histories $\phi\in C^1([-h,0])$ such that:
 
 This set is closed and convex in the $C^1$ topology. The horizon condition is handled externally: if
 $$
-0\le \phi(\theta)\le X_{\max}
+|\phi(\theta)|\le X_{\max}
 $$
 on the stored interval, then every partner or self chord is at most
 $$
@@ -2182,6 +2236,19 @@ $$
 \mathcal{C}_{x_\ast,\eta},
 $$
 while postponing nonlocal tame delayed-root conditions to a sub-envelope.
+The envelope is intentionally written in the signed coordinate
+$$
+x\in[-X_{\max},X_{\max}]
+$$
+rather than in a one-sided radial coordinate. A genuine origin-crossing cycle may store data from both sign sheets inside
+$$
+[-h,0],
+$$
+so a one-sided condition
+$$
+0\le \phi\le X_{\max}
+$$
+would exclude valid histories whenever the memory window crosses the origin. Branch labels, exterior sheets, and origin-crossing status belong to the finite tame certificate, not to the convex Banach envelope.
 Those delayed-root conditions are not visibly convex inside
 $$
 \mathcal{C}_{x_\ast,\eta},
@@ -2273,6 +2340,11 @@ implies the desired finite branch chart, Jacobian floors, root-count ceilings, a
 >    \phi\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
 >    $$
 >    has the same finite active branch chart on the stored interval and on the controlled one-cycle continuation;
+>    this chart includes the signed exterior sheet labels and origin-crossing layer labels needed to interpret the signed
+>    $$
+>    x
+>    $$
+>    history;
 > 3. on that chart the delayed roots remain simple with uniform Jacobian floor
 >    $$
 >    |J|\ge \nu_{\mathrm{cert}}>0;
@@ -2334,6 +2406,24 @@ $$
 C^1
 $$
 tube around one strictly controlled seed-cycle history. This avoids treating the nonlinear branch-chart conditions themselves as convex constraints.
+
+For completion, the center history cannot remain schematic. The proof needs an instantiated
+$$
+\phi_{\mathrm{cyc}}
+$$
+with a period
+$$
+T_{\mathrm{cyc}},
+$$
+a finite active branch list
+$$
+\mathcal{B}_{\mathrm{act}},
+$$
+inactive branch complements, a mesh
+$$
+\{\theta_j\}_{j=0}^{N},
+$$
+and returned-sample residuals. Until that data packet exists, every finite-certificate statement below is conditional.
 
 > **Proposition (Sampled seed-cycle tube gives a finite tame certificate).**
 > Let
@@ -2674,7 +2764,7 @@ These four strict inequalities are precisely the branch-chart, gap, memory-depth
 >    $$
 >    satisfies the bounds
 >    $$
->    0\le \phi(\theta)\le X_{\max},
+>    -X_{\max}\le \phi(\theta)\le X_{\max},
 >    \qquad
 >    |\dot\phi(\theta)|\le U_{\max},
 >    \qquad
@@ -2778,6 +2868,121 @@ $$
 
 This proposition deliberately stops short of invariance. Its role is only to show that once the return map is defined on a uniformly controlled class, its image cannot spread out arbitrarily in history space.
 
+### Certified branch-chart well-posedness
+
+The continuity row used later should be a theorem on certified branch charts, not an informal regularity assumption. The following proposition is the local analytic input needed by the return-map proof.
+
+> **Proposition (Local well-posedness on a certified branch chart).**
+> Fix dual-mollified parameters
+> $$
+> \eta>0,
+> \qquad
+> \epsilon_c>0,
+> $$
+> and a memory horizon
+> $$
+> h>0.
+> $$
+> Let
+> $$
+> \mathcal{U}\subset C^1([-h,0])
+> $$
+> be a certified branch-chart neighborhood with:
+> 1. a finite active branch list
+>    $$
+>    \mathcal{B}_{\mathrm{act}};
+>    $$
+> 2. signed sheet and crossing-layer labels fixed on the chart;
+> 3. active causal roots satisfying
+>    $$
+>    |J_\beta|\ge \nu>0
+>    \qquad
+>    \text{for every }\beta\in\mathcal{B}_{\mathrm{act}};
+>    $$
+> 4. uniform bounds
+>    $$
+>    \|\phi\|_{C^1}\le M,
+>    \qquad
+>    \operatorname{Lip}(\dot\phi)\le A_{\max},
+>    \qquad
+>    \tau_\beta(t)\in[0,h-\gamma_h]
+>    $$
+>    for some
+>    $$
+>    \gamma_h>0;
+>    $$
+> 5. and inactive branch gaps bounded away from zero on the chart complement.
+>
+> Then there exists
+> $$
+> \tau_{\mathrm{wp}}>0
+> $$
+> such that every
+> $$
+> \phi\in\mathcal{U}
+> $$
+> has a unique dual-mollified forward continuation on
+> $$
+> [0,\tau_{\mathrm{wp}}],
+> $$
+> and the solution map
+> $$
+> \phi
+> \longmapsto
+> x_\phi|_{[-h,\tau_{\mathrm{wp}}]}
+> $$
+> is locally Lipschitz from
+> $$
+> C^1([-h,0])
+> $$
+> into
+> $$
+> C^1([-h,\tau_{\mathrm{wp}}]).
+> $$
+
+Proof.
+On the certified chart the active root functions persist with
+$$
+|J|\ge\nu,
+$$
+so the implicit-function theorem makes each root time locally Lipschitz in the receiver time and in the stored history. The inactive gap prevents any additional root from entering the finite chart on the controlled interval. The dual-mollified kernel is smooth on the shell scale
+$$
+\eta
+$$
+and is uniformly bounded on the core scale
+$$
+\epsilon_c>0,
+$$
+with denominator at least
+$$
+\epsilon_c^2.
+$$
+Together with the finite branch count and the fixed horizon
+$$
+h,
+$$
+these bounds make the branch-chart vector field locally Lipschitz as a map from the stored
+$$
+C^1
+$$
+history segment to acceleration. The integral equation
+$$
+x(t)=\phi(0)+t\dot\phi(0)+\int_0^t(t-s)\,F_\eta(x_s)\,ds
+$$
+then gives local existence and uniqueness by the standard contraction argument on a short
+$$
+C^1
+$$
+tube. Applying the same Lipschitz estimate to two solutions and using Gronwall on the controlled interval gives local Lipschitz dependence of
+$$
+x
+$$
+and
+$$
+\dot x
+$$
+on the initial history.
+
 ### Continuity on the tame envelope
 
 > **Proposition (Continuity of the Return Map on $\mathcal{K}_{x_\ast,\eta}$).**
@@ -2797,11 +3002,7 @@ This proposition deliberately stops short of invariance. Its role is only to sho
 >    [0,T_{\max}]
 >    $$
 >    with class-uniform position, speed, acceleration, Jacobian, and memory-depth bounds;
-> 2. on that forward tube, the dual-mollified vector field is locally Lipschitz in the stored history segment with respect to the
->    $$
->    C^1
->    $$
->    topology;
+> 2. on that forward tube, Proposition `Local well-posedness on a certified branch chart` applies on finitely many chart intervals covering the continuation;
 > 3. the active delayed roots persist continuously with the history, with no root birth, root collision, or Jacobian loss of transversality;
 > 4. the first return to the inbound section is uniformly transverse:
 >    $$
@@ -2823,7 +3024,7 @@ $$
 \qquad
 \text{in }C^1([-h,0]).
 $$
-Local Lipschitz dependence of the dual-mollified vector field and the class-uniform tube bounds imply
+The certified branch-chart well-posedness proposition and the class-uniform tube bounds imply
 $$
 x_n\to x,
 \qquad
@@ -3326,6 +3527,11 @@ $$
 p_0
 $$
 at which the inner margin, apocenter-entry margin, outer margin, entry-time budget, and envelope domination inequalities all hold simultaneously.
+For completion this tuple must be actual data, either concrete numbers or interval enclosures whose lower endpoints give strict positive slack. A qualitative statement that the inner margin improves as
+$$
+\epsilon_c\downarrow 0
+$$
+is not enough, because the outer caustic and self terms may worsen under the same parameter move.
 
 The following sufficient corridor is the scalar form of that arithmetic certificate. It does not prove the geometric coefficients by itself; it separates the coefficient audit from the final coupling choice.
 
@@ -3807,7 +4013,11 @@ by one of the established cycle margins. Because the certificate family is finit
 >    \qquad
 >    \text{for every }\phi\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}};
 >    $$
-> 4. and either the residual-plus-sensitivity sampled preservation criterion or the direct returned-sample budget certificate holds on
+> 4. and either the direct returned-sample budget certificate holds on
+>    $$
+>    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}},
+>    $$
+>    for example by boundary trapping, or the residual-plus-sensitivity sampled preservation criterion holds on
 >    $$
 >    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
 >    $$
@@ -3836,7 +4046,7 @@ a nonempty closed convex tame envelope. The factorized corridor supplies the cou
 $$
 \mathcal{C}_{x_\ast,\eta}.
 $$
-Finally, the residual-plus-sensitivity criterion implies the returned-sample budget certificate; alternatively, the budget certificate may be proved directly. In either case the finite sampled preservation criterion gives the certificate inequalities after one return. Therefore the returned history lies in the certified set itself, proving the self-map inclusion.
+Finally, a direct returned-sample budget certificate gives the finite sampled preservation criterion immediately. If that direct route is not used, the residual-plus-sensitivity criterion implies the same returned-sample budget certificate. In either case the finite sampled preservation criterion gives the certificate inequalities after one return. Therefore the returned history lies in the certified set itself, proving the self-map inclusion.
 
 The finite closure audit is now exactly the following three-row ledger:
 
@@ -3883,9 +4093,19 @@ The finite closure audit is now exactly the following three-row ledger:
    $$
    a_{\mathrm{ent}}^{\mathrm{out}}=gm_{\mathrm{ent}}.
    $$
-   This row supplies the strict coupled-regime point.
+   This row supplies the strict coupled-regime point. For a completed proof, this row must be a concrete numerical or interval certificate for one tuple
+   $$
+   p_0
+   $$
+   in the coupled system, not separate local parameter choices.
 3. **Returned-sample row.**
-   Either verify
+   Prefer the direct one-sided budget route when local sensitivities are large: prove
+   $$
+   E_{j,\pm}^{x},
+   \qquad
+   E_{j,\pm}^{v}
+   $$
+   by boundary trapping with strict sample slack. Equivalently, when the sensitivity constants are tame enough, verify
    $$
    \max\{R_{j,+}^{x},R_{j,-}^{x}\}+L_j^x r_{\mathrm{cert}}
    <
@@ -3895,13 +4115,7 @@ The finite closure audit is now exactly the following three-row ledger:
    <
    \frac{r_{\mathrm{cert}}}{4}
    $$
-   for every mesh index, or prove the corresponding one-sided budgets
-   $$
-   E_{j,\pm}^{x},
-   \qquad
-   E_{j,\pm}^{v}
-   $$
-   directly by boundary trapping. This row supplies certificate preservation under one return.
+   for every mesh index. This row supplies certificate preservation under one return.
 
 This ledger is deliberately finite. Passing all three rows turns the domain-production burden into the self-map inclusion; failing any row identifies the exact obstruction.
 
@@ -3949,11 +4163,7 @@ is the finite section-transversality check needed by the continuity proposition.
 >    $$
 >    u_{\mathrm{ret}}^{\mathrm{cert}}>0;
 >    $$
-> 2. on the certified branch chart, the dual-mollified vector field is locally Lipschitz in the stored history segment with respect to the
->    $$
->    C^1
->    $$
->    topology;
+> 2. the certified branch-chart well-posedness proposition applies on the finite chart intervals covering the stored history and one-cycle continuation;
 > 3. the active delayed roots persist on
 >    $$
 >    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
@@ -3989,7 +4199,7 @@ $$
 $$
 Hence every returned history satisfies the position, speed, Lipschitz-velocity, and horizon bounds required by Proposition `Precompactness of the Return Image`; that proposition gives precompactness.
 
-For continuity, the local Lipschitz vector-field hypothesis gives continuous dependence of the controlled continuation on the initial history while the certificate keeps the same active branch chart and Jacobian floors. The displayed return-speed estimate gives the uniform transverse return condition
+For continuity, certified branch-chart well-posedness gives continuous dependence of the controlled continuation on the initial history while the certificate keeps the same active branch chart and Jacobian floors. The displayed return-speed estimate gives the uniform transverse return condition
 $$
 \dot x(T(\phi);\phi)\le -u_{\mathrm{ret}}^{\mathrm{cert}}<0.
 $$
@@ -4014,7 +4224,7 @@ The full Schauder-ready audit therefore has four rows:
    $$
    u_{\mathrm{ret}}^{\mathrm{cert}}>0
    $$
-   plus local Lipschitz dependence on the certified branch chart.
+   plus certified branch-chart well-posedness on the controlled continuation.
 
 ### Remaining blockers before Schauder
 
@@ -4067,20 +4277,30 @@ $$
    T_{\mathrm{ent}}^{\mathrm{out}},
    \overline A_{s,\mathrm{ent}}^{\mathrm{out}})
    $$
+   by producing one strict numeric or interval tuple
+   $$
+   p_0
+   $$
    rather than treating local margins and envelope constants as independent;
-3. derive returned-sample budgets, either by the residual-plus-sensitivity inequalities
+3. derive returned-sample budgets. If the sample sensitivities
    $$
-   R_{j,\pm}^{x}+L_j^x r_{\mathrm{cert}}<\frac{r_{\mathrm{cert}}}{4},
+   L_j^x,
    \qquad
-   R_{j,\pm}^{v}+L_j^v r_{\mathrm{cert}}<\frac{r_{\mathrm{cert}}}{4},
+   L_j^v
    $$
-   or by direct boundary trapping, for
+   are too large to close the residual-plus-sensitivity route, use direct boundary trapping for
    $$
    E_{j,\pm}^{x},
    \qquad
    E_{j,\pm}^{v}
    $$
-   from the cycle estimates with strict sample slack, equivalently prove the finite boundary-trapping checks that imply
+   with strict sample slack. When sensitivities are small enough, the residual-plus-sensitivity inequalities
+   $$
+   R_{j,\pm}^{x}+L_j^x r_{\mathrm{cert}}<\frac{r_{\mathrm{cert}}}{4},
+   \qquad
+   R_{j,\pm}^{v}+L_j^v r_{\mathrm{cert}}<\frac{r_{\mathrm{cert}}}{4},
+   $$
+   are sufficient. In either case, prove the finite checks that imply
    $$
    P_\eta(\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}})
    \subseteq
@@ -4091,7 +4311,7 @@ $$
    $$
    u_{\mathrm{ret}}^{\mathrm{cert}}>0
    $$
-   and local Lipschitz dependence of the dual-mollified vector field on the certified branch chart, so the certified topology proposition gives continuity and precompactness on
+   and certified branch-chart well-posedness for the dual-mollified vector field on the controlled continuation, so the certified topology proposition gives continuity and precompactness on
    $$
    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
    $$
