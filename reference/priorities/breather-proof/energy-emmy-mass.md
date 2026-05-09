@@ -183,6 +183,31 @@ $$
 
 The strong conclusion is that inertial mass is a kinematic response coefficient of a shielded causal resonance. The proof obligation is to derive the first-order momentum skew from the full delayed root sum, not merely from the radiation-box analogy.
 
+## Equivalence of Inertial and Gravitational Response
+
+The same mechanism gives a natural route to the equivalence of inertial and gravitational mass. Inertial mass measures how strongly a phase-locked assembly resists a bulk kinematic push. Gravitational mass, in the $\mathbb{A}\mathbb{A}\mathbb{A}$ setting, measures how strongly the same assembly couples to macroscopic gradients in the Noether Sea.
+
+At the effective level, a gravitational field is a density, compliance, and stress gradient in the tri-binary medium. A test assembly moving through such a gradient does not respond to curved void geometry. Its internal wakes are refracted by the local Noether-Sea state, and the assembly must adjust its shape, clock rate, and root-ledger phase in order to preserve its $(N,M)$ resonance lock.
+
+The amount of deformation required by this medium gradient is controlled by the same internal energy ledger that controls inertial resistance. A larger trapped causal history has more internal exchange to rebalance; a more strongly shielded assembly exposes less of that exchange to the outside. Thus, to first order in the weak-field regime, both coefficients are governed by the same combination
+
+$$
+\frac{\zeta(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2}.
+$$
+
+In this interpretation, the equivalence principle is not an independent postulate. It is the effective statement that bulk acceleration and Noether-Sea gradient response perturb the same internal causal lock and therefore measure the same shielded energy ledger. The proof burden is to show that the same calibration constant appears in both the force-response and medium-gradient-response maps:
+
+$$
+m_{\text{inertial}}(A)
+\approx
+m_{\text{gravitational}}(A)
+\approx
+\alpha\,
+\frac{\zeta(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2},
+$$
+
+within the weak-field closure regime where the emergent metric and refractive-gravity chapters are intended to match general relativity.
+
 ## Bulk Velocity as Internal Geometry
 
 Acceleration also explains how linear motion becomes internal geometric deformation. A tri-binary at rest is a nested phase-locked causal clock. Its internal causal emissions cross between partners with timings tuned to the integer multiplicities that keep the assembly stable.
@@ -207,6 +232,8 @@ Once the external force stops, the assembly no longer needs additional energy to
 Momentum is therefore conserved because the moving assembly is a self-sustaining causal soliton in the Euclidean void. Changing the pitch of the helix requires work; continuing at fixed pitch does not. This is the mechanism behind inertial coasting.
 
 The symmetry statement is equally important. The underlying causal action is invariant under spatial translations in the Euclidean void. The same internal lock can be reconstructed at one spatial location or another. That translational symmetry is the Noether-style reason that, once the moving resonance has been established, there is no internal bookkeeping preference for slowing down or speeding up in the absence of further interaction.
+
+The straight-line character of this coasting follows from spatial isotropy. A moving helical lock has an axis of propagation set by $\mathbf{V}_{\text{cm}}$. If that axis bends, the internal causal trips on opposite sides of the assembly no longer see the same Jacobian and phase geometry. One side of the tri-binary would have to relock differently from the other, which is a transverse acceleration rather than free coasting. Maintaining such a turn requires external work. Newton's first law is therefore the macroscopic limit of two substrate symmetries: translation invariance keeps the pitch of the moving lock from changing, and rotational isotropy keeps its propagation axis fixed unless an external interaction breaks the symmetry.
 
 ## Effective Special Relativity from Causal Geometry
 
@@ -260,6 +287,16 @@ $$
 \frac{1}{\sqrt{1-\|\mathbf{V}_{\text{cm}}\|^2/c_{\text{eff}}^2}}.
 $$
 
+This equation also states the assembly-level speed limit. Rearranging the distance triangle gives
+
+$$
+D_{\text{rest}}^2
+=
+\left(c_{\text{eff}}^2-\|\mathbf{V}_{\text{cm}}\|^2\right)\Delta t^2.
+$$
+
+As $\|\mathbf{V}_{\text{cm}}\|\to c_{\text{eff}}$, the transverse internal causal trip shrinks toward zero and the internal clock rate tends toward zero relative to the observer interval. A finite tri-binary cannot preserve its integer root ledger with no transverse causal volume. Before a macroscopic phase-locked assembly could exceed $c_{\text{eff}}$, it would be driven into complete oblation or structural failure, losing the resonance that made it a stable assembly. The familiar light-speed barrier is therefore an effective structural limit for bound assemblies moving through the Noether Sea, not a claim that free substrate architrinos possess the same assembly-level speed cap.
+
 With the standard effective definitions
 
 $$
@@ -280,6 +317,24 @@ $$
 
 Equivalently, the distance triangle becomes an energy triangle after scaling by the internal cycle frequency that converts causal path length into action and energy. The Pythagorean form is therefore not imported as spacetime geometry; it is inherited from the diagonal causal trip required by a moving internal clock.
 
+That scaling also gives the route to the Planck relation. A stable bound assembly is an internal causal clock with frequency $\nu_{\text{int}}$. If one closed root-ledger cycle carries action $S_{\text{cycle}}$, then the associated rest-energy scale is
+
+$$
+E_{\text{rest}}
+\sim
+S_{\text{cycle}}\nu_{\text{int}}.
+$$
+
+For universal locked transitions, the action per accepted cycle is identified with the quantum of action $h$:
+
+$$
+S_{\text{cycle}}\to h,
+\qquad
+E_{\text{rest}}\sim h\nu_{\text{int}}.
+$$
+
+Thus $E=h\nu$ is not introduced as a separate quantum postulate in this synthesis. It is the effective statement that energy is action per cycle times cycles per unit time, with $h$ naming the universal action increment of the closed causal ledger. The open mathematical task is to derive the universality of that increment from the separator and tri-binary alignment program.
+
 In this interpretation, the relativistic mass-shell relation is not a primitive statement about a fundamental four-dimensional metric. It is the continuum shadow of a moving causal clock: a phase-locked architrino assembly preserving internal wake closure while translating through the Euclidean void and Noether Sea.
 
 This does not weaken special relativity at the observational level. It relocates its origin. The effective Lorentz geometry is recovered as the macroscopic rule obeyed by stable assemblies whose internal causal signals must preserve phase closure at speed $c_{\text{eff}}$.
@@ -297,8 +352,11 @@ The organized argument can be stated compactly:
 7. Discrete action transfer arises from integer root-ledger transitions, not from a primitive granular energy substance.
 8. Negative-energy bookkeeping is reinterpreted as a consequence of using the infinity-zero convention in a theory with no causal lower wall.
 9. Inertia arises because acceleration skews the internal causal Jacobian balance of a bound state.
-10. Momentum coasts because the accelerated assembly settles into a new translationally invariant moving resonance.
-11. Effective special relativity follows from the diagonal causal path required to keep internal phase closure in motion.
+10. Inertial and gravitational mass agree because bulk acceleration and Noether-Sea gradients perturb the same shielded causal lock.
+11. Momentum coasts in a straight line because translation invariance preserves the moving lock and spatial isotropy preserves its axis.
+12. Effective special relativity follows from the diagonal causal path required to keep internal phase closure in motion.
+13. The assembly-level speed limit at $c_{\text{eff}}$ is the structural failure limit of a phase-locked internal clock.
+14. The Planck relation $E=h\nu$ emerges when the energy of a stable internal clock is written as action per causal cycle times cycle frequency.
 
 ## Proof Obligations
 
@@ -314,7 +372,11 @@ The document points to several concrete mathematical tasks before these claims c
 2. Connect separator fold parity, root-ledger multiplicity, and $h$-like action transfer in one certified branch chart.
 3. Quantify $\zeta(A)$ for representative assemblies from far-field wake fits rather than treating it as a symbolic leakage factor.
 4. Show that a moving tri-binary has a stable deformed resonance branch whose contraction, clock-rate change, and phase relocking reproduce $\gamma_{\text{eff}}$.
-5. Prove that resonance disruption routes the stored internal energy into outgoing wake and Noether-Sea modes with a closed conservation ledger.
-6. Clarify the precise relationship between the Noether-Sea reinterpretation and the historical Dirac-sea/effective-QFT formalism, preserving empirical successes while relocating ontology.
+5. Derive the weak-field equality of inertial and gravitational coefficients from one shared shielded-energy response map.
+6. Prove that free coasting preserves both speed and direction unless an external interaction supplies the transverse work needed to bend the helical lock.
+7. Establish the assembly failure criterion as $\|\mathbf{V}_{\text{cm}}\|\to c_{\text{eff}}$ and distinguish it from any substrate-level speed behavior of unbound architrinos.
+8. Derive the action-per-cycle constant $h$ from separator closure or Planck-alignment geometry, rather than inserting it as a calibration.
+9. Prove that resonance disruption routes the stored internal energy into outgoing wake and Noether-Sea modes with a closed conservation ledger.
+10. Clarify the precise relationship between the Noether-Sea reinterpretation and the historical Dirac-sea/effective-QFT formalism, preserving empirical successes while relocating ontology.
 
 The high-impact version of the claim is therefore clear: rest mass and relativistic kinematics may emerge from super-field-speed causal-root bookkeeping. The rigorous version still requires branch-certified derivations, shielding extraction, and energy-conservation closure.
