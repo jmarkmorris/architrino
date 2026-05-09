@@ -2,11 +2,11 @@
 
 ## Status and Scope
 
-This document is a working synthesis of the energy argument extending [Kinetic and Potential Energy](../../../content/markdown/aaa/dynamics/energy.md). It is not yet a completed proof. Its purpose is to organize the current claim in academic order, retain the conceptual content of the source discussion, remove repetition, and identify the mathematical closures that must eventually be promoted into the main dynamics or assembly chapters.
+This document is a synthesis and proof roadmap for the energy argument extending [Kinetic and Potential Energy](../../../content/markdown/aaa/dynamics/energy.md). It is not yet a completed theorem. Its purpose is to organize the current claim in academic order, preserve the conceptual content of the development, remove repetition, and identify the mathematical closures that must eventually be carried into the main dynamics, assembly, and spacetime chapters.
 
 The central claim is that rest mass, annihilation energy, quantized action transfer, negative-energy bookkeeping, inertia, proper time, momentum conservation, effective geodesic motion, effective special-relativistic kinematics, and strong-field structural failure may all be different projections of the same underlying mechanism: super-field-speed causal-root multiplicity in phase-locked tri-binary Noether cores and the larger architrino assemblies built on them.
 
-If the argument closes, the result would have large impact. It would mean that several quantities normally treated as fundamental or postulated at the effective level are recovered from delayed causal wake geometry, root-ledger multiplicity, Noether-Sea shielding, and refractive medium response. The claim is therefore strong, but it must be stated with exact scope: the present document gives the ordered derivation target, not the final theorem.
+If the argument closes, the result would have large impact. It would mean that several quantities normally treated as fundamental or postulated at the effective level are recovered from delayed causal wake geometry, root-ledger multiplicity, Noether-Sea shielding, and refractive medium response. The claim is therefore strong, but it must be stated with exact scope: the present document gives the synthesis-level derivation target and theorem roadmap, not the final theorem.
 
 ## Starting Point: The Inner Energy Zero
 
@@ -573,6 +573,42 @@ In this interpretation, the relativistic mass-shell relation is not a primitive 
 
 This does not weaken special relativity at the observational level. It relocates its origin. The effective Lorentz geometry is recovered as the macroscopic rule obeyed by stable assemblies whose internal causal signals must preserve phase closure at speed $c_{\text{eff}}$.
 
+## Photon Planar Modes and the Measurement Channel
+
+Photons require a separate placement in this synthesis because they are not ordinary massive Noether-core clocks. Modern physics is built largely from photon-mediated access: spectroscopy, interferometry, atomic clocks, scattering experiments, astronomical observation, thermometry, and most precision tests of relativity all depend on photon channels or instruments calibrated by photon channels. A substrate account that derives mass and proper time but leaves photons only as an afterthought would not yet explain how the observed world is measured.
+
+The conservative placement is that a photon is a massless planar-mode excitation of the Noether Sea, not a volumetric rest assembly with a stable internal proper-time clock. The boson-side chapters describe this as a phase-locked planar-mode train: a coherent, propagating bundle of causal action history with transverse phase structure, polarization, and momentum. In the present closure language, the photon is the limiting propagation channel whose rest-clock degree of freedom is absent. It carries phase cycles, but it does not carry a massive Noether core's closed transverse proper-time cycle.
+
+This distinction separates two uses of frequency. For a massive assembly, $\nu_{\text{int}}$ is the frequency of the internal Noether-core clock, and $E_{\text{rest}}\sim h\nu_{\text{int}}$ describes rest energy as action per internal cycle. For a photon, $\nu$ is the phase frequency of the planar-mode train as emitted, transported, and received through the Noether Sea. Its energy is still
+
+$$
+E_\gamma=h\nu,
+$$
+
+but the cycle being counted is a propagating planar-mode phase cycle rather than a rest-state volumetric clock cycle.
+
+At the effective observer level, the corresponding mass-shell relation is the massless limit of the energy-momentum closure:
+
+$$
+E_\gamma^2
+=
+\|\mathbf{p}_\gamma\|^2 c_{\text{eff}}^2,
+\qquad
+E_\gamma=\|\mathbf{p}_\gamma\|c_{\text{eff}}.
+$$
+
+This is not a claim that the photon has hidden rest mass. It is the opposite: the photon is the channel that propagates at the local signal speed $c_{\text{eff}}$ precisely because it is not carrying the closed transverse clock ledger that makes massive assemblies resist acceleration.
+
+The transverse-budget discussion clarifies why no photon rest frame appears. For a massive Noether core, motion at $\|\mathbf{V}_{\text{cm}}\|\to c_{\text{eff}}$ exhausts the transverse causal budget and destroys ordinary internal clock closure. A photon is already organized as the propagating planar-mode channel at that boundary-like role. It has transverse phase structure, which supports polarization and helicity, but it does not have the three-dimensional orthogonal tri-binary closure that would define a rest frame and proper-time count. In standard language, the photon follows a null path; in this framework, it is the planar-mode propagation of causal ledger action through the Sea.
+
+Emission and absorption then become ledger transitions between massive assemblies and planar modes. During emission, a source assembly sheds an accepted action increment into a stable planar-mode train. During absorption, a target assembly captures that mode and folds its energy, momentum, angular momentum, and phase into a new internal ledger state. The photon is therefore not merely a passive messenger. It is the transaction channel by which assemblies exchange discrete action while preserving energy-momentum closure.
+
+This also explains why photons dominate measurement. A measurement record is produced when a planar mode couples strongly enough to update an apparatus ledger: a detector click, an atomic transition, an interference fringe, a photographic grain, or a macroscopic electronic pulse. The observer does not access the substrate directly. The observer accesses stable records made by photon-like planar modes and other interaction channels. Consequently, much of "spacetime" as operationally reconstructed by physics is photon-channel structure: clock comparisons, distances, causal order, redshift, lensing, and spectra are all read through the behavior of these propagating modes in the Noether Sea.
+
+In homogeneous weak-field conditions, the planar-mode train propagates at the effective light speed $c_{\text{eff}}\approx c_f$ and reproduces the ordinary massless relativistic relations. In material media, plasma, or dense Noether-Sea gradients, the same mode transiently recouples to ambient assemblies. At the effective level this appears as refraction, dispersion, scattering, attenuation, or gravitational lensing. The Euclidean substrate path and the observer's effective optical path need not be described the same way: the substrate account tracks propagation through a medium, while the observer account summarizes the same behavior using null geodesics of an effective metric.
+
+The photon section also fixes a major proof target. The framework must recover Maxwell/QED phenomenology in the validated regime: polarization, interference, diffraction, blackbody spectra, pair production thresholds, atomic transition rates, and the universality of photon speed in vacuum tests. The proposed ontology can differ from field-theoretic language, but it cannot weaken these empirical constraints. If the planar-mode account cannot recover the photon channel, then the larger mass, time, and metric synthesis cannot be considered closed, because those claims are experimentally accessed mostly through photons.
+
 ## Extreme Dual-Deformation Regime
 
 The preceding sections separate kinematic deformation from medium-gradient deformation for clarity. The most demanding regime is their overlap: a high-speed assembly moving through an intense Noether-Sea gradient, as in pulsar environments, near black-hole peripheries, or high-energy astrophysical transport.
@@ -611,12 +647,14 @@ The organized argument can be stated compactly:
 18. Effective special relativity follows from the diagonal causal path required to keep internal phase closure in motion.
 19. The assembly-level speed limit at $c_{\text{eff}}$ is the structural failure limit of a phase-locked internal clock.
 20. The Planck relation $E=h\nu$ emerges when the energy of a stable internal clock is written as action per causal cycle times cycle frequency.
-21. The event horizon is a forced geometric alignment surface where ordinary Noether-core clock behavior reaches the same structural failure limit.
-22. Extreme high-speed/high-gradient environments force nonlinear dual deformation, action shedding, and possible horizon-like structural failure.
+21. Photons are massless planar-mode trains: propagating causal-ledger action with transverse phase structure, but without the closed volumetric proper-time cycle of massive Noether cores.
+22. Photon emission and absorption are ledger transitions between massive assemblies and planar modes, making the photon channel the dominant operational basis of measurement.
+23. The event horizon is a forced geometric alignment surface where ordinary Noether-core clock behavior reaches the same structural failure limit.
+24. Extreme high-speed/high-gradient environments force nonlinear dual deformation, action shedding, and possible horizon-like structural failure.
 
-## Proof Obligations
+## Theorem Roadmap
 
-The document points to several concrete mathematical tasks before these claims can be promoted from synthesis to theorem:
+The following tasks define the theorem roadmap for the chapter. Each item names a mathematical closure requirement that must be met before the synthesis-level claims can be promoted to theorem status:
 
 1. Derive the first-order internal momentum skew
    $$
@@ -638,11 +676,13 @@ The document points to several concrete mathematical tasks before these claims c
 12. Establish the assembly failure criterion as $\|\mathbf{V}_{\text{cm}}\|\to c_{\text{eff}}$ and distinguish it from any substrate-level speed behavior of unbound architrinos.
 13. Connect the event-horizon alignment condition to forced orthogonal-to-axial Noether-core geometry while preserving exterior GR phenomenology.
 14. Derive the action-per-cycle constant $h$ from separator closure or Planck-alignment geometry, rather than inserting it as a calibration.
-15. Build a coupled dual-deformation model for high-speed assemblies in strong Noether-Sea gradients, including nonlinear action shedding and branch failure.
-16. Prove that resonance disruption routes the stored internal energy into outgoing wake and Noether-Sea modes with a closed conservation ledger.
-17. Clarify the precise relationship between the Noether-Sea reinterpretation and the historical Dirac-sea/effective-QFT formalism, preserving empirical successes while relocating ontology.
+15. Derive photon planar-mode closure from tri-binary and Noether-Sea dynamics, including $E_\gamma=h\nu$, $E_\gamma=\|\mathbf{p}_\gamma\|c_{\text{eff}}$, polarization, helicity, and the absence of a rest proper-time clock.
+16. Recover the validated photon-channel phenomenology of Maxwell/QED in the appropriate limit: interference, diffraction, refraction, blackbody spectra, pair-production thresholds, and emission/absorption rates.
+17. Build a coupled dual-deformation model for high-speed assemblies in strong Noether-Sea gradients, including nonlinear action shedding and branch failure.
+18. Prove that resonance disruption routes the stored internal energy into outgoing wake and Noether-Sea modes with a closed conservation ledger.
+19. Clarify the precise relationship between the Noether-Sea reinterpretation and the historical Dirac-sea/effective-QFT formalism, preserving empirical successes while relocating ontology.
 
-The high-impact version of the claim is therefore clear: rest mass, proper time, relativistic kinematics, and horizon behavior may emerge from super-field-speed causal-root bookkeeping. The rigorous version still requires branch-certified derivations, shielding extraction, time-cycle closure, and energy-conservation closure.
+The synthesis-level claim is therefore clear: rest mass, proper time, relativistic kinematics, and horizon behavior may emerge from super-field-speed causal-root bookkeeping. The theorem-level version still requires branch-certified derivations, shielding extraction, time-cycle closure, and energy-conservation closure.
 
 ## Appendix: Plain-Language Bridge to Relativity
 
