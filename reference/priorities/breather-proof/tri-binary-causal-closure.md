@@ -577,7 +577,52 @@ This does not weaken special relativity at the observational level. It relocates
 
 Photons require a separate placement in this synthesis because they are not ordinary massive Noether-core clocks. Modern physics is built largely from photon-mediated access: spectroscopy, interferometry, atomic clocks, scattering experiments, astronomical observation, thermometry, and most precision tests of relativity all depend on photon channels or instruments calibrated by photon channels. A substrate account that derives mass and proper time but leaves photons only as an afterthought would not yet explain how the observed world is measured.
 
-The conservative placement is that a photon is a massless planar-mode excitation of the Noether Sea, not a volumetric rest assembly with a stable internal proper-time clock. The boson-side chapters describe this as a phase-locked planar-mode train: a coherent, propagating bundle of causal action history with transverse phase structure, polarization, and momentum. In the present closure language, the photon is the limiting propagation channel whose rest-clock degree of freedom is absent. It carries phase cycles, but it does not carry a massive Noether core's closed transverse proper-time cycle.
+The conservative placement is that a photon is a massless planar-mode excitation of the Noether Sea, not a volumetric rest assembly with a stable internal proper-time clock. The boson-side chapters describe this as a phase-locked planar-mode train: a coherent, propagating bundle of causal action history with transverse phase structure, polarization, and momentum. The more specific geometry suggested by the tri-binary closure argument is that the photon is a coupled pro/anti Noether-core pair. One core carries the pro orientation and the other carries the anti orientation; both are driven into the planar, propagation-locked regime and move together at the local photon speed.
+
+It is useful to distinguish two speeds in this discussion. Let
+
+$$
+c_\gamma(\mathbf{x})\equiv c_{\text{eff}}(\mathbf{x})
+$$
+
+denote the local photon-channel speed through the Noether Sea, while $c_f$ remains the primitive wake speed in the underlying substrate. In weak homogeneous conditions $c_\gamma\approx c_f$, but in a medium or strong Noether-Sea gradient one expects $c_\gamma<c_f$. The photon pair propagates at $c_\gamma$, so it is lightlike at the operational level. Yet the causal wakes available for internal pair communication still propagate at $c_f$, so the two planarized cores can remain coupled even though each core, taken alone, no longer behaves like an ordinary volumetric clock.
+
+This resolves an otherwise difficult point. A Noether core moving at the photon-channel speed cannot maintain the same internal transverse closure that defines rest proper time for a massive particle. Its ordinary group-internal communication is effectively flattened. But it can still participate in a longitudinal pro/anti coupling with the other core in the photon pair, because the pair closure uses axial wake exchange between two planar cores rather than full three-dimensional internal clock closure inside one core. The stable photon is therefore not one isolated planarized core. It is the coupled two-core ledger.
+
+In a simple axial model, let the leading and trailing planar cores be separated by a distance $d$ along the propagation axis, both moving at $c_\gamma$. A wake sent backward from the leading core reaches the trailing core with approximate delay
+
+$$
+\tau_{L\to T}
+\approx
+\frac{d}{c_f+c_\gamma},
+$$
+
+while a wake sent forward from the trailing core catches the leading core with approximate delay
+
+$$
+\tau_{T\to L}
+\approx
+\frac{d}{c_f-c_\gamma}.
+$$
+
+The two directions are therefore not symmetric in substrate time. If $c_\gamma$ is close to $c_f$, the trailing-to-leading channel is strongly delayed, while the leading-to-trailing channel remains comparatively fast. This axial delay asymmetry is a candidate substrate origin for the phase lag carried by a propagating photon. The photon closes its ledger only when the pro/anti pair, the two axial delays, and the transverse phase rotation remain mutually locked.
+
+This is the point at which the photon differs sharply from a massive particle pushed to the separator. The trailing planar core may no longer maintain full communication among the members of its own flattened tri-binary group. Nevertheless, it can still receive the integrated wake signature of the leading planar core. Conversely, the leading core can receive the trailing core only through the slower catch-up channel, provided $c_\gamma<c_f$. The two cores therefore stabilize one another as a coupled pair: the missing ordinary volumetric self-closure of each flattened core is replaced by axial pro/anti pair closure.
+
+Schematic pair closure can be written as
+
+$$
+\Phi_{\gamma}
+=
+\omega\left(\tau_{L\to T}+\tau_{T\to L}\right)
++\phi_{\text{geom}}
+=
+2\pi k,
+\qquad
+k\in\mathbb{Z},
+$$
+
+where $\omega=2\pi\nu$ is the planar-mode phase frequency and $\phi_{\text{geom}}$ records the pro/anti orientation, transverse polarization state, and any medium-induced phase offset. This is not yet a final photon equation, but it identifies the right unknowns: photon frequency, pair separation, axial delay asymmetry, polarization geometry, and local medium speed.
 
 This distinction separates two uses of frequency. For a massive assembly, $\nu_{\text{int}}$ is the frequency of the internal Noether-core clock, and $E_{\text{rest}}\sim h\nu_{\text{int}}$ describes rest energy as action per internal cycle. For a photon, $\nu$ is the phase frequency of the planar-mode train as emitted, transported, and received through the Noether Sea. Its energy is still
 
@@ -599,9 +644,33 @@ $$
 
 This is not a claim that the photon has hidden rest mass. It is the opposite: the photon is the channel that propagates at the local signal speed $c_{\text{eff}}$ precisely because it is not carrying the closed transverse clock ledger that makes massive assemblies resist acceleration.
 
-The transverse-budget discussion clarifies why no photon rest frame appears. For a massive Noether core, motion at $\|\mathbf{V}_{\text{cm}}\|\to c_{\text{eff}}$ exhausts the transverse causal budget and destroys ordinary internal clock closure. A photon is already organized as the propagating planar-mode channel at that boundary-like role. It has transverse phase structure, which supports polarization and helicity, but it does not have the three-dimensional orthogonal tri-binary closure that would define a rest frame and proper-time count. In standard language, the photon follows a null path; in this framework, it is the planar-mode propagation of causal ledger action through the Sea.
+The transverse-budget discussion clarifies why no photon rest frame appears. For a massive Noether core, motion at $\|\mathbf{V}_{\text{cm}}\|\to c_{\text{eff}}$ exhausts the transverse causal budget and destroys ordinary internal clock closure. A photon is already organized as the propagating planar-mode channel at that boundary-like role. Its two constituent cores have transverse phase structure, which supports polarization and helicity, but the coupled pair does not have the three-dimensional orthogonal tri-binary closure that would define a rest frame and proper-time count. In standard language, the photon follows a null path; in this framework, it is pro/anti planar-pair propagation of causal ledger action through the Sea.
 
-Emission and absorption then become ledger transitions between massive assemblies and planar modes. During emission, a source assembly sheds an accepted action increment into a stable planar-mode train. During absorption, a target assembly captures that mode and folds its energy, momentum, angular momentum, and phase into a new internal ledger state. The photon is therefore not merely a passive messenger. It is the transaction channel by which assemblies exchange discrete action while preserving energy-momentum closure.
+The pro/anti structure also explains why the photon can be neutral while still carrying an electromagnetic effect. The two planar cores cancel the static charge-like exposure of the pair, but their coupled transverse phase does not cancel. The surviving observable is a transverse oscillatory action pattern. In standard language this is the electromagnetic field of the photon. In $\mathbb{A}\mathbb{A}\mathbb{A}$ language it is the far-field signature of a neutral pro/anti planar pair whose internal ledger carries a definite transverse phase orientation.
+
+Polarization is then the orientation state of that transverse phase ledger. A linearly polarized photon has a stable transverse axis set by the pro/anti coupling geometry. A circularly polarized photon corresponds to a transverse phase state that rotates by a quarter-cycle relation between the two orthogonal transverse components, carrying helicity relative to the propagation axis. Elliptical polarization is the general intermediate case. The essential point is that polarization is not added after propagation; it is the visible orientation of the planar-pair closure itself.
+
+This gives a direct mechanical route to Malus' law. A polarizing analyzer is an assembly whose acceptance geometry selects one transverse ledger direction. If the incoming photon has polarization axis $\hat{\mathbf{e}}_\gamma$ and the analyzer accepts axis $\hat{\mathbf{a}}$, the coupling amplitude is the geometric projection
+
+$$
+\mathcal{A}_{\text{pass}}
+\propto
+\hat{\mathbf{e}}_\gamma\cdot\hat{\mathbf{a}}
+=
+\cos\theta.
+$$
+
+The transmitted intensity or single-photon pass probability is proportional to the squared coupling amplitude:
+
+$$
+I_{\text{pass}}
+=
+I_0\cos^2\theta.
+$$
+
+Thus Malus' law becomes a projection rule for coupling a planar pro/anti photon ledger into an analyzer ledger. The orthogonal component is not accepted into the same through-channel; it must be reflected, absorbed, scattered, or converted into another allowed ledger update depending on the material.
+
+Emission and absorption then become ledger transitions between massive assemblies and pro/anti planar pairs. During emission, a source assembly sheds an accepted action increment into a stable coupled pair. During absorption, a target assembly captures that pair and folds its energy, momentum, angular momentum, and phase into a new internal ledger state. The photon is therefore not merely a passive messenger. It is the transaction channel by which assemblies exchange discrete action while preserving energy-momentum closure.
 
 This also explains why photons dominate measurement. A measurement record is produced when a planar mode couples strongly enough to update an apparatus ledger: a detector click, an atomic transition, an interference fringe, a photographic grain, or a macroscopic electronic pulse. The observer does not access the substrate directly. The observer accesses stable records made by photon-like planar modes and other interaction channels. Consequently, much of "spacetime" as operationally reconstructed by physics is photon-channel structure: clock comparisons, distances, causal order, redshift, lensing, and spectra are all read through the behavior of these propagating modes in the Noether Sea.
 
@@ -647,10 +716,11 @@ The organized argument can be stated compactly:
 18. Effective special relativity follows from the diagonal causal path required to keep internal phase closure in motion.
 19. The assembly-level speed limit at $c_{\text{eff}}$ is the structural failure limit of a phase-locked internal clock.
 20. The Planck relation $E=h\nu$ emerges when the energy of a stable internal clock is written as action per causal cycle times cycle frequency.
-21. Photons are massless planar-mode trains: propagating causal-ledger action with transverse phase structure, but without the closed volumetric proper-time cycle of massive Noether cores.
-22. Photon emission and absorption are ledger transitions between massive assemblies and planar modes, making the photon channel the dominant operational basis of measurement.
-23. The event horizon is a forced geometric alignment surface where ordinary Noether-core clock behavior reaches the same structural failure limit.
-24. Extreme high-speed/high-gradient environments force nonlinear dual deformation, action shedding, and possible horizon-like structural failure.
+21. Photons are massless pro/anti planar pairs: coupled Noether-core modes propagating at the local photon speed $c_\gamma=c_{\text{eff}}$ while retaining axial pair coupling through substrate wakes at $c_f$.
+22. Photon polarization is the transverse phase orientation of the pro/anti planar-pair ledger, and Malus' law follows as the squared projection of that ledger onto an analyzer's accepted transverse direction.
+23. Photon emission and absorption are ledger transitions between massive assemblies and planar pairs, making the photon channel the dominant operational basis of measurement.
+24. The event horizon is a forced geometric alignment surface where ordinary Noether-core clock behavior reaches the same structural failure limit.
+25. Extreme high-speed/high-gradient environments force nonlinear dual deformation, action shedding, and possible horizon-like structural failure.
 
 ## Theorem Roadmap
 
@@ -676,13 +746,14 @@ The following tasks define the theorem roadmap for the chapter. Each item names 
 12. Establish the assembly failure criterion as $\|\mathbf{V}_{\text{cm}}\|\to c_{\text{eff}}$ and distinguish it from any substrate-level speed behavior of unbound architrinos.
 13. Connect the event-horizon alignment condition to forced orthogonal-to-axial Noether-core geometry while preserving exterior GR phenomenology.
 14. Derive the action-per-cycle constant $h$ from separator closure or Planck-alignment geometry, rather than inserting it as a calibration.
-15. Derive photon planar-mode closure from tri-binary and Noether-Sea dynamics, including $E_\gamma=h\nu$, $E_\gamma=\|\mathbf{p}_\gamma\|c_{\text{eff}}$, polarization, helicity, and the absence of a rest proper-time clock.
-16. Recover the validated photon-channel phenomenology of Maxwell/QED in the appropriate limit: interference, diffraction, refraction, blackbody spectra, pair-production thresholds, and emission/absorption rates.
-17. Build a coupled dual-deformation model for high-speed assemblies in strong Noether-Sea gradients, including nonlinear action shedding and branch failure.
-18. Prove that resonance disruption routes the stored internal energy into outgoing wake and Noether-Sea modes with a closed conservation ledger.
-19. Clarify the precise relationship between the Noether-Sea reinterpretation and the historical Dirac-sea/effective-QFT formalism, preserving empirical successes while relocating ontology.
+15. Derive photon planar-pair closure from tri-binary and Noether-Sea dynamics, including the pro/anti pair geometry, axial delay asymmetry, $E_\gamma=h\nu$, $E_\gamma=\|\mathbf{p}_\gamma\|c_{\text{eff}}$, polarization, helicity, and the absence of a rest proper-time clock.
+16. Derive Malus' law from analyzer coupling as a squared projection of the incoming transverse photon ledger, and extend the same overlap formalism to circular and elliptical polarization.
+17. Recover the validated photon-channel phenomenology of Maxwell/QED in the appropriate limit: interference, diffraction, refraction, blackbody spectra, pair-production thresholds, and emission/absorption rates.
+18. Build a coupled dual-deformation model for high-speed assemblies in strong Noether-Sea gradients, including nonlinear action shedding and branch failure.
+19. Prove that resonance disruption routes the stored internal energy into outgoing wake and Noether-Sea modes with a closed conservation ledger.
+20. Clarify the precise relationship between the Noether-Sea reinterpretation and the historical Dirac-sea/effective-QFT formalism, preserving empirical successes while relocating ontology.
 
-The synthesis-level claim is therefore clear: rest mass, proper time, relativistic kinematics, and horizon behavior may emerge from super-field-speed causal-root bookkeeping. The theorem-level version still requires branch-certified derivations, shielding extraction, time-cycle closure, and energy-conservation closure.
+The synthesis-level claim is therefore clear: rest mass, proper time, photon propagation, relativistic kinematics, and horizon behavior may emerge from super-field-speed causal-root bookkeeping. The theorem-level version still requires branch-certified derivations, shielding extraction, photon-channel closure, time-cycle closure, and energy-conservation closure.
 
 ## Appendix: Plain-Language Bridge to Relativity
 
