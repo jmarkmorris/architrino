@@ -1,8 +1,8 @@
 # Master-Equation Breather Program
 
-This chapter sits between the canonical delayed law in [master-equation.md](./master-equation.md) and the frozen one-dimensional reference scaffold in [collinear-breather.md](./collinear-breather.md). Its purpose is not to reopen the 1D proof program, but to extract the transportable theorem architecture and to state clearly which replacement lemmas are required before a genuine breather theorem can be pursued at the level of the master equation.
+This chapter sits between the canonical delayed law in [master-equation.md](./master-equation.md) and the one-dimensional reference scaffold in [collinear-breather.md](./collinear-breather.md). It is a theorem-program atlas, not the proof itself. Its purpose is to extract the transportable theorem architecture and to state clearly which replacement lemmas would be required before a genuine breather theorem can be pursued at the level of the master equation.
 
-The strategic point is simple. The collinear chapter should now be treated as a resolved reference model for delayed recapture, tame-envelope packaging, and fixed-point closure. The next task is therefore not further compression of the 1D note, but abstraction: identify what part of that scaffold belongs to the general delayed dynamics, what part uses the ordered geometry of the line, and what new geometry must replace those 1D-only moves in higher dimension.
+The strategic point is simple. The proof should first close in the collinear dual-mollified model by producing a candidate cycle, a finite branch chart, a closed convex certificate, a return self-map, and the Schauder fixed point. Only after that closure is certified should the higher-dimensional sections below be reused as dependency maps. The next task in this chapter is therefore abstraction: identify what part of the collinear scaffold belongs to the general delayed dynamics, what part uses the ordered geometry of the line, and what new geometry must replace those 1D-only moves in higher dimension.
 
 ## Purpose
 
@@ -14,17 +14,17 @@ The breather problem for the full delayed master equation is not a single obstru
 - packaging the resulting trajectories into a single closed convex tame self-map domain,
 - and closing the fixed-point step on that domain.
 
-The frozen collinear scaffold shows that these burdens can be separated cleanly. In particular, it shows that the final existence theorem should be organized around a history-space return map rather than around a scalar speed closure alone. This chapter records that abstraction in a form suitable for later use in the master-equation stack.
+The collinear scaffold shows that these burdens can be separated cleanly. In particular, it shows that the final existence theorem should be organized around a history-space return map rather than around a scalar speed closure alone. This chapter records that abstraction in a form suitable for later use in the master-equation stack.
 
 ## Position in the Dynamics Stack
 
 The intended division of labor is:
 
 - [master-equation.md](./master-equation.md) gives the exact delayed law, the branch-sum form, the path-history integral form, and the causal Jacobians.
-- [collinear-breather.md](./collinear-breather.md) supplies the first near-complete global existence scaffold in a reduced geometry where ordering on the line eliminates tangential drift.
-- this chapter translates the 1D scaffold into a master-equation theorem program by separating portable structure from collinear-specific arguments.
+- [collinear-breather.md](./collinear-breather.md) supplies the live reduced proof target in a geometry where ordering on the line eliminates tangential drift.
+- this chapter translates the 1D scaffold into a master-equation theorem atlas by separating portable structure from collinear-specific arguments.
 
-Accordingly, this document should be read neither as a replacement for the master equation nor as a second reduced-model note. It is a bridge chapter: a theorem blueprint for transporting the 1D existence architecture into the higher-dimensional delayed dynamics.
+Accordingly, this document should be read neither as a replacement for the master equation nor as a second reduced-model note. It is a bridge chapter: a theorem blueprint for transporting the 1D existence architecture into higher-dimensional delayed dynamics after the collinear certificate has closed.
 
 ## Portable Return-Map Architecture
 
@@ -146,7 +146,19 @@ is the short-distance core scale.
 
 Branch-sum formulas are derived from this absolute-time integral only on simple-root charts, where the causal shell has isolated transversal roots. They are therefore local analytic reductions, not the global definition of the dynamics through fold transit or certified topology.
 
-The proof burden is consequently finite-certificate closure: instantiate a candidate history
+The proof burden is consequently finite-certificate closure:
+$$
+\text{candidate cycle}
+\to
+\text{finite branch chart}
+\to
+\text{closed convex certificate}
+\to
+\text{return self-map}
+\to
+\text{Schauder}.
+$$
+In concrete terms, instantiate a candidate history
 $$
 \Phi_{\mathrm{cyc}},
 $$
@@ -155,6 +167,8 @@ $$
 P_\eta
 $$
 is continuous, precompact, and self-mapping on that one domain.
+
+The planar and many-body sections below should therefore be read as roadmap layers. They record dependencies that must eventually be discharged, but they are not themselves completed proofs.
 
 ## What the 1D Reference Model Already Settled
 
@@ -232,14 +246,18 @@ The analogue of
 $$
 \mathcal{K}_{\mathscr{S},\eta}
 $$
-must then add the genuinely delayed geometry:
+must not be defined by a raw intersection of delayed-root predicates. Persistence of active branches, Jacobian floors, memory-depth bounds, and caustic exclusions are generally not convex conditions when imposed pointwise on histories. Instead, the standard method throughout this chapter is:
+
+1. choose a finite affine or sampled certificate around a candidate cycle;
+2. make the defining inequalities of the certificate visibly convex in the stored history data;
+3. prove that those convex certificate inequalities imply the delayed-geometry package:
 
 - persistence of active partner and self roots,
 - lower bounds on the causal Jacobians,
 - branch-count control,
 - and exclusion of root birth, root collision, and other topological degeneracies along the controlled cycle.
 
-This is the natural packaging in which Arzela-Ascoli and Schauder can later be used. Anything looser risks repeating the old domain/codomain mismatch.
+Convexity lives in the certificate. The delayed-root topology is a theorem-level consequence of the certificate, not the definition of the convex set itself. This is the natural packaging in which Arzela-Ascoli and Schauder can later be used. Anything looser risks repeating the old domain/codomain mismatch.
 
 ## 1D-Only Mechanisms and Their Replacement Obligations
 
@@ -363,7 +381,7 @@ The portable theorem ladder should therefore look as follows.
 > $$
 > \mathcal{K}_{\mathscr{S},\eta}\subseteq \mathcal{C}_{\mathscr{S},\eta}\subseteq \Sigma^-_{\mathscr{S}}
 > $$
-> that contains the propagated tame class, is closed under the relevant delayed-root constraints, and carries a well-defined return map
+> defined by finite affine or sampled certificate inequalities. It contains the propagated tame class, and its certificate implies the relevant branch labels, Jacobian floors, memory-depth bounds, and caustic exclusions needed to carry a well-defined return map
 > $$
 > P_\eta:\mathcal{K}_{\mathscr{S},\eta}\to \mathcal{K}_{\mathscr{S},\eta}.
 > $$
@@ -386,9 +404,9 @@ The portable theorem ladder should therefore look as follows.
 > \qquad
 > P_\eta(\Phi^\ast_\eta)=\Phi^\ast_\eta.
 > $$
-> The associated delayed trajectory is a bounded periodic solution of the dual-mollified master equation.
+> If the section is posed in absolute configuration space with no quotient gauge reset, the associated delayed trajectory is a bounded periodic solution of the dual-mollified master equation.
 
-This is the correct abstract endpoint. The real work is not the formal Schauder step itself, but the geometric production of the tame self-map domain on which Schauder is allowed to act.
+This is the abstract endpoint once no quotient gauge reset is being used. In any reduced or gauge-fixed planar setting, the same fixed-point statement first gives a relative breather in the quotient variables. An absolute periodic trajectory in the fixed Euclidean void requires an additional zero-holonomy reconstruction condition. The real work is not the formal Schauder step itself, but the geometric production and certification of the tame self-map domain on which Schauder is allowed to act.
 
 ## Immediate Geometric Research Burdens
 
@@ -1910,7 +1928,7 @@ The dependency chain should be recorded explicitly:
 
 ## Synthesis of the Reduced Planar Bridge
 
-At this point the live bridge note is not yet treating the completely general planar master equation. It is treating a symmetry-reduced planar binary with:
+At this point the reduced-planar bridge layer is not treating the completely general planar master equation. It records a symmetry-reduced planar binary dependency map with:
 
 - reflection symmetry,
 - center-of-mass reduction,
@@ -2001,6 +2019,27 @@ the returned history would not land back in the fixed representative section
 $$
 \Sigma^-_{\rho_\ast,\Pi}.
 $$
+The price of this gauge reset is a reconstruction condition. A fixed point of
+$$
+P^\Pi_\eta
+$$
+is periodic in the reduced representative section, but in the fixed Euclidean void it reconstructs as
+$$
+\mathbf r(T^\Pi+\theta)
+=
+\mathcal{R}_{\Phi^\ast}^{-1}\mathbf r(\theta),
+\qquad
+\theta\in[-h,0].
+$$
+Thus the physical trajectory is an absolute periodic orbit only when the rotational holonomy is trivial:
+$$
+\mathcal{R}_{\Phi^\ast}=\mathrm{Id}.
+$$
+Without that additional condition, the result is a relative breather modulo the chosen
+$$
+SO(2)
+$$
+gauge.
 
 The planar envelope target should now be phrased in terms of the constants already produced by the local packages:
 $$
@@ -2035,6 +2074,7 @@ $$
 \mathcal{C}^{\Pi}_{\rho_\ast,\eta}
 $$
 with all root-label predicates pointwise. That would generally destroy convexity. The correct target is the existence of one closed convex subset on which these constants imply the whole delayed-geometry package uniformly.
+Equivalently, the reduced planar bridge should use the same finite certificate convention as the collinear proof: a finite affine or sampled certificate defines the convex set, and the branch labels, Jacobian floors, memory-depth bounds, and caustic exclusions are consequences proved from that certificate.
 
 > **Target Proposition (Closed convex tame envelope in the reduced planar section).**
 > There exists a nonempty closed convex set
@@ -2104,8 +2144,8 @@ This proposition is the reduced planar analogue of the 1D envelope-construction 
 >    \qquad
 >    \operatorname{Lip}(\dot\Phi)\le A_{\max};
 >    $$
-> 2. the returned branch family preserves the same sector labels, branch-count bound, and separation margin;
-> 3. the returned histories preserve the same Jacobian floors
+> 2. the returned finite certificate implies the same sector labels, branch-count bound, and separation margin;
+> 3. the returned finite certificate implies the same Jacobian floors
 >    $$
 >    \nu_{J,\mathrm{cyc}},
 >    \qquad
@@ -2125,7 +2165,7 @@ This proposition is the reduced planar analogue of the 1D envelope-construction 
 > \mathcal{K}^{\Pi}_{\rho_\ast,\eta}.
 > $$
 
-This is the self-map statement the entire bridge has been building toward. It says that after one full physical excursion and one gauge reset back to the reduced section, no envelope constant is lost.
+This is the self-map statement the entire bridge has been building toward. It says that after one full physical excursion and one gauge reset back to the reduced section, the same finite certificate remains valid and no envelope constant is lost.
 
 > **Target Proposition (Continuity and precompactness of the reduced planar return map).**
 > On
@@ -2179,7 +2219,10 @@ also varies continuously.
 > $$
 > P^\Pi_\eta(\Phi^\ast_\eta)=\Phi^\ast_\eta.
 > $$
-> The corresponding reduced planar trajectory is a bounded periodic solution of the dual-mollified master equation within the reflection-symmetric planar binary regime.
+> The corresponding reduced planar trajectory is a bounded relative breather of the dual-mollified master equation within the reflection-symmetric planar binary regime. It is an absolute periodic solution in the fixed Euclidean void only if the reconstructed rotational holonomy satisfies
+> $$
+> \mathcal{R}_{\Phi^\ast_\eta}=\mathrm{Id}.
+> $$
 
 This is the honest endpoint of the current bridge note. It is still conditional, but it is now conditional on one sharply identified reduced planar closure problem rather than on a diffuse collection of unresolved local lemmas.
 
@@ -2477,6 +2520,34 @@ $$
 >    $$
 
 This is the first unreduced-planar replacement for the reduced planar section anchoring. Its purpose is to make the quotient representative, the return section, and the gauge reset part of the theorem burden before any branch-graph or recapture package is attempted.
+
+As in the reduced planar bridge, a fixed point of
+$$
+P^{\sharp}_{\eta}
+$$
+is first a quotient-space fixed point. Let the full-cycle gauge reset be represented by the Euclidean holonomy
+$$
+H_{\Psi^\ast}
+=
+(\mathbf a_{\Psi^\ast},\mathcal R_{\Psi^\ast})
+\in SE(2),
+$$
+where
+$$
+\mathbf a_{\Psi^\ast}
+$$
+is the translation removed by the selector and
+$$
+\mathcal R_{\Psi^\ast}
+$$
+is the rotation back to the canonical chord. The reconstructed physical motion is absolute periodic only if
+$$
+H_{\Psi^\ast}=(0,\mathrm{Id}).
+$$
+Otherwise the fixed point is a relative breather modulo
+$$
+SE(2).
+$$
 
 #### Finite branch-graph target for the unreduced planar bridge
 
@@ -3153,7 +3224,7 @@ Q^{\sharp}_{\mathrm{esc}},
 \quad
 \mathfrak{M}^{\sharp}_{\mathrm{out}}.
 $$
-The point is again not to define the tame class by pointwise intersection of every branch-graph or provenance predicate. That would generally fail to preserve convexity. The correct theorem target is one closed convex subset on which all of those constants hold uniformly.
+The point is again not to define the tame class by pointwise intersection of every branch-graph or provenance predicate. That would generally fail to preserve convexity. The correct theorem target is one finite certificate whose affine or sampled inequalities define a closed convex subset; the branch graph, provenance count, leakage channels, Jacobian floors, and recapture margins must then be proved from that certificate with uniform slack.
 
 Write
 $$
@@ -3239,7 +3310,7 @@ This is the unreduced-planar analogue of the earlier envelope-construction targe
 >    \qquad
 >    \operatorname{Lip}(\dot{\Psi})\le A^{\sharp}_{\max};
 >    $$
-> 2. the returned active delayed-root topology preserves the same branch-graph bound, separation margin, provenance count, and leakage-channel count
+> 2. the returned finite certificate implies the same branch-graph bound, separation margin, provenance count, and leakage-channel count
 >    $$
 >    N^{\sharp}_{\mathrm{br}},
 >    \qquad
@@ -3249,7 +3320,7 @@ This is the unreduced-planar analogue of the earlier envelope-construction targe
 >    \qquad
 >    Q^{\sharp}_{\mathrm{esc}};
 >    $$
-> 3. the returned histories preserve the same Jacobian floors
+> 3. the returned finite certificate implies the same Jacobian floors
 >    $$
 >    \nu^{\sharp}_{J},
 >    \qquad
@@ -3320,11 +3391,14 @@ The extra burden beyond the reduced planar case is that continuity must now abso
 > $$
 > P^{\sharp}_{\eta}(\Psi^\ast_{\eta})=\Psi^\ast_{\eta}.
 > $$
-> The corresponding gauge-fixed trajectory is a bounded periodic solution modulo the chosen
+> The corresponding gauge-fixed trajectory is a bounded relative breather modulo the chosen
 > $$
 > SE(2)
 > $$
-> gauge, and therefore a genuine unreduced-planar breather of the dual-mollified master equation in the first non-reflection-symmetric binary regime.
+> gauge. It reconstructs to an absolute periodic solution in the fixed Euclidean void only if the full-cycle holonomy satisfies
+> $$
+> H_{\Psi^\ast_\eta}=(0,\mathrm{Id}).
+> $$
 
 The unreduced-planar bridge can therefore now be read as one explicit ladder:
 gauge-fixed section and return map
@@ -3458,6 +3532,16 @@ q_3=+\epsilon,
 $$
 with all three trajectories constrained to one plane.
 
+This seed is not charge-neutral:
+$$
+q_1+q_2+q_3=+\epsilon.
+$$
+It should therefore be read as a local nonneutral three-body subsystem, or as a compensated subsystem inside a larger neutral assembly whose compensating charge remains outside the reduced bridge model. A globally neutral many-body theorem would need a different seed, for example a neutral four-body packet, and should not be inferred from the present
+$$
+(+,-,+)
+$$
+three-body bridge.
+
 This is the smallest regime in which the binary-relative chart fails for structural rather than cosmetic reasons. It preserves enough symmetry to permit a clean gauge discussion, but it already introduces the genuinely new burdens that the binary bridge cannot see:
 
 - no single present chord canonically fixes orientation;
@@ -3468,9 +3552,13 @@ This is the smallest regime in which the binary-relative chart fails for structu
 The theorem objective is not yet a classification of all planar three-body bounded motions. It is the first transport test for the breather architecture itself:
 
 > **Planar-three-body bridge objective.**
-> Construct a history-space return map for a charge-neutral planar three-body delayed system and isolate a nonempty closed convex tame domain on which that return map is well defined. If this succeeds, the corresponding Schauder capstone becomes the first many-body breather theorem in the master-equation stack. If it fails, the obstruction should be written down in section/gauge, hypergraph, ancestry, recapture, or atlas-closure terms.
+> Construct a history-space return map for the compensated local
+> $$
+> (+,-,+)
+> $$
+> planar three-body delayed subsystem and isolate a nonempty closed convex tame domain on which that return map is well defined. If this succeeds, the corresponding Schauder capstone becomes the first local many-body breather theorem in the master-equation stack. If it fails, the obstruction should be written down in section/gauge, hypergraph, ancestry, recapture, or atlas-closure terms. A globally neutral theorem is a later four-body-or-larger closure problem.
 
-The package ladder below is now the right place to resume work. It turns the present many-body discussion from a boundary marker into a live theorem program.
+The package ladder below records the dependency map for a later many-body proof attempt. It should not be treated as active proof work until the collinear certificate chain has closed.
 
 ### Seed-side leading-order geometry for the planar three-body bridge
 
@@ -9248,7 +9336,14 @@ This is the correct tame-structure target because the first two Jacobi channels 
 > \in
 > \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta},
 > $$
-> and the associated delayed trajectory is a bounded periodic planar-three-body solution of the dual-mollified master equation.
+> and the associated delayed trajectory is a bounded relative-periodic planar-three-body solution of the dual-mollified master equation modulo the canonical
+> $$
+> SE(2)
+> $$
+> gauge. It is an absolute periodic solution in the fixed Euclidean void only if the accumulated full-cycle holonomy is
+> $$
+> H^{\mathrm{mb}}_{\Phi^{\ast,\mathrm{mb}}_\eta}=(0,\mathrm{Id}).
+> $$
 >
 > In particular, the fixed-point trajectory preserves one common gauge chart, one common active delay hypergraph, one common ancestry complex, and one common family of post-crossing and late-turn recapture margins through every return. That is the many-body analogue of the earlier bridge closures on one tame self-map domain.
 
@@ -9280,9 +9375,9 @@ This is the correct tame-structure target because the first two Jacobi channels 
 > \subseteq
 > \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta}.
 > $$
-> The corresponding trajectory is periodic by construction of the return map and remains bounded because it never leaves the same controlled Banach box and tame data class.
+> The corresponding trajectory is relative-periodic by construction of the gauge-reset return map and remains bounded because it never leaves the same controlled Banach box and tame data class. Absolute periodicity is the separate zero-holonomy reconstruction condition stated above.
 
-This is the first honest many-body breather target in the chapter. Everything above it is there only to make this statement legitimate.
+This is the first honest local many-body breather target in the chapter. Everything above it is there only to make this statement legitimate.
 
 The planar-three-body bridge now has the same explicit theorem-ladder shape as the earlier binary bridges:
 
@@ -9300,6 +9395,22 @@ The 1D collinear chapter should now be used as a frozen reference theorem scaffo
 
 > **Theorem Program (Breather architecture for the master equation).**
 > A master-equation breather theorem should be pursued from the dual-mollified absolute-time integral law, with branch sums used only on certified simple-root charts. The proof task is to construct a sectioned history-space return map, produce one candidate cycle with finite certificate data, separate convex Banach bounds from tame delayed-root geometry, and then close the resulting return map on one closed convex tame self-map domain. The unresolved burden is no longer the abstract fixed-point theorem or an elementary closed-form orbit. It is the geometric production and certification of that domain outside the ordered 1D setting.
+
+Operationally, the live proof burden remains the collinear certificate chain:
+$$
+\phi_{\mathrm{cyc}}
+\to
+\text{finite branch chart}
+\to
+\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+\to
+P_\eta(\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}})
+\subseteq
+\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+\to
+\text{Schauder}.
+$$
+The reduced planar, unreduced planar, and planar three-body sections should stay frozen as dependency maps until that chain is closed.
 
 This is the correct point from which to resume work on the broader dynamics stack.
 
