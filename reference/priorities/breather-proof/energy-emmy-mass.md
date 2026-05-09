@@ -52,7 +52,7 @@ The energy stored by these multiplicities is best described as trapped geometric
 
 In the extreme super-field-speed case, the internal component speeds may satisfy $\|\mathbf{v}_{\text{int}}\| \gg c_f$. The assembly can still appear externally quiet if its root families are balanced and shielded. What matters observationally is not the raw size of the internal ledger alone, but how much of that ledger leaks into the external wake signature.
 
-In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, the fundamental bound state is the Noether core: a tri-binary assembly consisting of three nested binary pairs. At rest, this architecture stabilizes into nested, phase-locked circular or near-circular orbits, with spherical averaging when the full three-dimensional assembly is considered. The inner binary operates deep in the self-hit regime and acts as the high-multiplicity engine; the middle binary acts as the resonant fulcrum; and the outer binary interfaces with the sub-field-speed environment. This three-layer organization is the core scaffold that gives electron and positron assemblies their stability, isotropic shielding, and well-defined rest mass.
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, the fundamental bound state is the Noether core: a tri-binary assembly consisting of three nested binary pairs. At rest, this architecture stabilizes into nested, phase-locked circular or near-circular orbits arranged in mutually orthogonal orbital planes. The inner binary operates deep in the self-hit regime and acts as the high-multiplicity engine; the middle binary acts as the resonant fulcrum; and the outer binary interfaces with the sub-field-speed environment. The orthogonal three-layer organization minimizes inter-layer interference, produces an isotropic shielding profile, and supplies the core scaffold that gives electron and positron assemblies their stability and well-defined rest mass.
 
 The central identification is:
 
@@ -212,30 +212,54 @@ within the weak-field closure regime where the emergent metric and refractive-gr
 
 ## Bulk Velocity as Internal Geometry
 
-Acceleration also explains how linear motion becomes internal geometric deformation. A Noether core at rest is a nested phase-locked causal clock consisting of three coplanar, or spherically averaged, circular binary orbits. Its internal causal emissions cross within and between the inner, middle, and outer layers with timings tuned to the integer multiplicities that keep the assembly stable.
+Acceleration also explains how linear motion becomes internal geometric deformation. A Noether core at rest is a nested phase-locked causal clock consisting of three circular binary orbits in mutually orthogonal planes. Its internal causal emissions cross within and between the inner, middle, and outer layers with timings tuned to the integer multiplicities that keep the assembly stable.
 
-When this tri-binary core moves with center-of-mass velocity $\mathbf{V}_{\text{cm}}$, the nested circular orbits unfold through the Euclidean void into a triad of coaxial, spiraling helices. A causal wake traveling between internal partners, or between the inner, middle, and outer layers, must now follow a diagonal path through the void to reach a moving receiver. Since the wake still propagates at the relevant signal speed, the entire three-layer assembly must dynamically deform its internal timing and geometry to preserve phase closure simultaneously across all layers.
+When this tri-binary core moves with center-of-mass velocity $\mathbf{V}_{\text{cm}}$, the orthogonal circular orbits are drawn through the Euclidean void into a braided triad of spiraling helices. A causal wake traveling between internal partners, or between the inner, middle, and outer layers, must now follow a diagonal path through the void to reach a moving receiver. Since the wake still propagates at the relevant signal speed, the entire three-layer assembly must dynamically deform its internal timing and geometry to preserve phase closure simultaneously across all layers.
 
 At the effective level, the deformation of these three spiraling-helix binaries appears as a combination of:
 
-- directional contraction or oblation of the nested coaxial structure;
+- directional contraction or oblation of the nested structure;
 - clock-rate change shared across the internal causal cycles;
 - tilt of the internal orbital planes into the helical pitch angle;
-- phase relocking of the $(N,M)$ root ledgers to maintain structural harmony between the inner engine and the outer shield.
+- phase relocking of the $(N,M)$ root ledgers to maintain structural harmony between the inner engine, middle fulcrum, and outer shield.
 
 Thus external work applied as linear acceleration is stored as changed internal phase geometry, angular momentum distribution, and Noether-Sea coupling. The linear velocity of the assembly is not merely a tag attached to an otherwise unchanged object. It is encoded in the pitch, tilt, and timing of the moving causal resonance.
 
 Because the stable states depend on integer causal-root closure, the deformation is not an arbitrary smooth rubber deformation at the effective level. Smooth microscopic motion can still produce discrete accepted state updates when the assembly crosses a separator between basins of attraction.
 
-## Proper Time as the Internal Cycle Counter
+## The Geometry of Time, the Field-Speed Separator, and the Event Horizon Limit
 
-The geometry of time must be stated carefully. At the substrate level there is only absolute time $t$: the universal parameter indexing the Euclidean-void dynamics and the full universe state. A macroscopic observer does not directly measure this parameter. A physical clock is itself an assembly, and the time it reports is the count of its internal phase-locked cycles.
+To understand time, time dilation, and the limiting boundary of observable assembly behavior, one must separate the uniform substrate of the Euclidean void from the geometric mechanisms of the phase-locked assemblies within it. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology, time exists at two distinct levels. Absolute substrate time $t$ globally indexes deterministic causal-hit evaluations. Proper time $\tau$ is an emergent local functional: the cycle count of a stable Noether core.
 
-Thus proper time $\tau$ is an assembly functional. One tick is one completed circuit of the internal causal exchange that preserves the $(N,M)$ root ledger. If the assembly completes fewer internal cycles per unit absolute time, the observer records less proper time. Time dilation is therefore not a slowing of $t$ itself. It is a change in the cycle rate of the observer's own clock assembly.
+The transition from the sub-field-speed regime to the field-speed separator controls the limits of this internal cycle count. At ordinary speeds, the Noether core can complete transverse internal circuits and therefore function as a clock. Near the separator, the spiral-helical cable geometry is forced toward axial alignment, transverse communication collapses, and proper time ceases to advance for that assembly.
 
-For an assembly at rest in a homogeneous Noether Sea, the internal causal exchange is effectively transverse. The causal trip across the clock is the shortest allowed internal route compatible with the rest-state ledger. When the same assembly moves with center-of-mass speed $\|\mathbf{V}_{\text{cm}}\|$, the internal causal trip becomes a diagonal segment of a helical path-history pattern. Since the causal signal still propagates at $c_{\text{eff}}$, a longer diagonal trip consumes more absolute time per completed internal cycle.
+### Proper Time and Orthogonal Stability in the Sub-Field Regime
 
-The dilation relation follows from the same triangle used in the energy-momentum closure:
+In the sub-field-speed regime, the center-of-mass velocity of an assembly remains strictly below the local Noether-Sea effective signal speed:
+
+$$
+\|\mathbf{V}_{\text{cm}}\| < c_{\text{eff}}.
+$$
+
+In this domain, the relevant forward-directed causal exchanges retain positive Jacobian margin rather than collapsing into a caustic:
+
+$$
+J
+=
+1-\frac{\mathbf{v}\cdot\hat{\mathbf{r}}}{c_f}
+>
+0
+$$
+
+on the active sub-field branches. The root ledger therefore has enough causal slack to close.
+
+A resting Noether core is not a flat disk. It is a three-dimensional orthogonal lock. The inner, middle, and outer binaries occupy mutually perpendicular orbital planes, with large differences in radius, velocity, and energy separating the layers. This orthogonal arrangement reduces direct inter-layer phase collision, permits precession and nutation as lower-order correction modes, and generates the spherical shielding profile expected of a resting fundamental particle such as an electron or positron.
+
+Proper time is defined mechanically inside this structure. One tick of $\tau$ corresponds to one completed transverse circuit of the internal causal exchange that preserves the integer $(N,M)$ root ledger across the three binary layers. Because transverse causal communication remains open, the internal cycles are continuous, well ordered, and stable enough to function as a physical clock.
+
+When the Noether core moves with bulk velocity $\mathbf{V}_{\text{cm}}$, the orthogonal circular orbits are drawn into a braided triad of spiral-helical cables. Proper time still counts completed internal cycles, but each cycle now requires causal signals to travel diagonally through the Euclidean void to reach moving internal receivers. Since those signals propagate at $c_{\text{eff}}$ through the local Noether Sea, the absolute time required to complete one cycle increases.
+
+The dilation relation follows from the same distance triangle used in the energy-momentum closure:
 
 $$
 (c_{\text{eff}}\Delta t)^2
@@ -253,13 +277,13 @@ $$
 \sqrt{1-\frac{\|\mathbf{V}_{\text{cm}}\|^2}{c_{\text{eff}}^2}}.
 $$
 
-In this form, time dilation is the geometric lengthening of the helical pitch of a moving causal lock. The assembly does not run slowly because time itself changes. It runs slowly because each completed internal ledger cycle requires a longer path-history closure in absolute time.
+Time dilation is therefore the geometric lengthening of the helical pitch of a moving causal lock. The assembly does not run slowly because time itself changes. It runs slowly because each completed internal ledger cycle requires a longer spiral-helical path-history closure in absolute time.
 
-## Logarithmic-Observer View of the Moving Lock
+### The Approach to the Hinge: Forced Axial Alignment
 
 A useful diagnostic view is the logarithmic-observer view: an observer or visualization that tracks multiplicative changes in radius, pitch, frequency, and root-ledger state rather than only linear displacements. This is not a separate ontology. It is a way of seeing scale changes in a spiral or helical assembly without losing the small structure near the field-speed limit.
 
-In that view, increasing $\|\mathbf{V}_{\text{cm}}\|$ has three linked signatures. First, the effective transverse causal radius ratchets downward as the assembly preserves integer phase closure while the causal trip becomes more diagonal. In the limiting relation
+In that view, increasing $\|\mathbf{V}_{\text{cm}}\|$ has three linked signatures. First, the effective transverse causal radius contracts as the assembly preserves integer phase closure while the causal trip becomes more diagonal. In the limiting relation
 
 $$
 D_{\text{rest}}
@@ -270,7 +294,7 @@ $$
 
 the transverse part of the causal trip tends toward zero as $\|\mathbf{V}_{\text{cm}}\|\to c_{\text{eff}}$.
 
-Second, the internal exchange path tilts toward the direction of motion. Let $\theta_{\text{tilt}}$ denote the angle of the causal exchange path relative to the transverse rest plane. The distance triangle gives
+Second, the formerly orthogonal planes are forced toward the direction of motion. Let $\theta_{\text{tilt}}$ denote the angle of the causal exchange path relative to the transverse rest plane. The distance triangle gives
 
 $$
 \tan\theta_{\text{tilt}}
@@ -284,13 +308,60 @@ $$
 
 Equivalently, $\sin\theta_{\text{tilt}}=\beta$. At rest, $\theta_{\text{tilt}}=0$: the causal exchange is transverse. As $\beta\to1$, $\theta_{\text{tilt}}\to90^\circ$: the exchange becomes nearly axial.
 
-Third, the logarithmic view makes the failure limit visible. Near $c_{\text{eff}}$, the helical lock no longer looks like a wide spiral with a transverse cycle; it approaches a line of axial transport. The assembly is then outrunning its ability to close transverse internal communication. At the exact limit, transverse closure vanishes, the integer root ledger cannot be maintained, and the clock ceases to tick as a stable bound assembly.
+Third, the lower-order precession and nutation channels lose slack. The orthogonal three-dimensional braid is driven toward a narrowed axial funnel. Near $c_{\text{eff}}$, the helical lock no longer looks like a three-dimensional gyroscopic structure with transverse cycles; it approaches concentric axial alignment around the propagation vector. The particle-scale assembly is then close to losing the transverse degrees of freedom that make it a stable clock.
+
+### The Field-Speed Separator and Clock Freeze
+
+The field-speed separator is the kinematic hinge at which the relevant assembly-level motion reaches the local causal speed:
+
+$$
+\|\mathbf{V}_{\text{cm}}\| = c_{\text{eff}},
+$$
+
+or, for primitive component motion, the corresponding substrate condition $\|\mathbf{v}\|=c_f$. At this threshold, the transverse term in the cycle triangle is forced to zero:
+
+$$
+D_{\text{rest}}\to 0,
+\qquad
+\frac{\Delta\tau}{\Delta t}\to 0.
+$$
+
+The forward causal Jacobian simultaneously loses its positive margin. In the ideal limiting branch,
+
+$$
+J
+=
+1-\frac{\mathbf{v}\cdot\hat{\mathbf{r}}}{c_f}
+\to
+0.
+$$
+
+Causal signals can no longer complete the forward stroke of the tri-binary resonance loop in the required transverse direction. The previously orthogonal inner, middle, and outer binary planes are forced into concentric axial alignment. Because a tick requires a completed transverse internal cycle, proper time ceases to advance for the bound assembly.
+
+This is why the field-speed separator is more than a velocity ceiling. It is a structural failure boundary for a macroscopic phase-locked clock. A stable Noether-core-based assembly cannot remain an ordinary ticking object at the exact separator. If forced to that limit, it must shed action into outgoing wake modes, drop back into a sub-field-speed resonant slot, or dissociate and return its trapped geometric history to the surrounding Noether Sea.
+
+### Event Horizon Limit as Macroscopic Structural Failure
+
+The same mechanism gives the strong-field route to the event-horizon limit. In this framework, a gravitational field is not curvature of the Euclidean void. It is a density, compliance, stress, and refractive gradient in the ambient tri-binary Noether Sea. As a bound assembly moves into a steeper gradient near a compact massive body, $c_{\text{eff}}$ is depressed and the refractive stress on the assembly's internal causal wakes increases.
+
+To preserve phase closure in this environment, the Noether core undergoes dual deformation. The kinematic channel stretches the spiral-helical cables along the direction of motion. The medium-gradient channel refracts the internal wakes asymmetrically across the assembly and forces the orthogonal planes to tilt, compress, and align. In the horizon limit, the local medium state drives ordinary in-falling assemblies into the same structural boundary described above.
+
+At that boundary:
+
+- the internal orthogonal orbits of matter assemblies are forced toward concentric axial alignment;
+- transverse communication within Noether cores is severed;
+- the proper-time cycle counter freezes in the limiting sense $\Delta\tau/\Delta t\to0$;
+- the closed $(N,M)$ root ledger cannot remain an ordinary volumetric clock ledger.
+
+The event horizon is therefore treated here as a forced geometric alignment surface rather than an ontic tear in space or an infinite-curvature endpoint. This is consistent with the strong-field alignment rule used elsewhere in the project: the middle and outer binary channels are driven to field-speed alignment with the inner binary, and ordinary three-dimensional assembly behavior is compressed into a terminal interface state.
+
+This statement should still be read as a constitutive derivation target. The exterior observer-level phenomenology must continue to recover the tested general-relativistic horizon behavior. What changes is the ontology: infinite time dilation at the horizon and the special-relativistic speed limit become two faces of the same physical constraint, the geometric exhaustion of the tri-binary causal lock.
 
 ## Why Momentum Coasts
 
 Once the external force stops, the assembly no longer needs additional energy to maintain constant velocity. The reason is that the assembly has already settled into a new moving resonance. Its internal wakes form a helical path-history pattern rather than the rest-state pattern, and the internal root ledger closes along that moving helix.
 
-Momentum is therefore conserved because the moving assembly is a self-sustaining causal soliton in the Euclidean void. The moving Noether core is a highly organized coaxial-cable-like bundle of three spiraling helices. Changing the pitch of these nested helices requires external work; continuing at fixed pitch does not. The internal root ledger closes along that moving tri-helical pattern. This is the mechanism behind inertial coasting.
+Momentum is therefore conserved because the moving assembly is a self-sustaining causal soliton in the Euclidean void. The moving Noether core is a highly organized spiral-helical cable bundle. Changing the pitch of the nested helices requires external work; continuing at fixed pitch does not. The internal root ledger closes along that moving tri-helical pattern. This is the mechanism behind inertial coasting.
 
 The symmetry statement is equally important. The underlying causal action is invariant under spatial translations in the Euclidean void. The same internal lock can be reconstructed at one spatial location or another. That translational symmetry is the Noether-style reason that, once the moving resonance has been established, there is no internal bookkeeping preference for slowing down or speeding up in the absence of further interaction.
 
@@ -445,13 +516,15 @@ The organized argument can be stated compactly:
 9. Inertia arises because acceleration skews the internal causal Jacobian balance of a bound state.
 10. Inertial and gravitational mass agree because bulk acceleration and Noether-Sea gradients perturb the same shielded causal lock.
 11. Momentum coasts in a straight line because translation invariance preserves the moving lock and spatial isotropy preserves its axis.
-12. Proper time is the internal cycle count of a phase-locked assembly, and time dilation is the longer helical closure time required by the nested coaxial helices in motion.
+12. Proper time is the internal cycle count of a phase-locked assembly, and time dilation is the longer helical closure time required by the nested spiral-helical cables in motion.
 13. A logarithmic-observer view exposes the radius contraction, tilt increase, and axial-alignment limit of the moving lock.
-14. Effective geodesics are minimal phase-distortion paths of causal solitons refracting through graded Noether-Sea variables.
-15. Effective special relativity follows from the diagonal causal path required to keep internal phase closure in motion.
-16. The assembly-level speed limit at $c_{\text{eff}}$ is the structural failure limit of a phase-locked internal clock.
-17. The Planck relation $E=h\nu$ emerges when the energy of a stable internal clock is written as action per causal cycle times cycle frequency.
-18. Extreme high-speed/high-gradient environments force nonlinear dual deformation, action shedding, and possible horizon-like structural failure.
+14. At the field-speed separator, the orthogonal Noether-core clock is forced toward concentric axial alignment and its proper-time cycle count freezes.
+15. Effective geodesics are minimal phase-distortion paths of causal solitons refracting through graded Noether-Sea variables.
+16. Effective special relativity follows from the diagonal causal path required to keep internal phase closure in motion.
+17. The assembly-level speed limit at $c_{\text{eff}}$ is the structural failure limit of a phase-locked internal clock.
+18. The Planck relation $E=h\nu$ emerges when the energy of a stable internal clock is written as action per causal cycle times cycle frequency.
+19. The event horizon is a forced geometric alignment surface where ordinary Noether-core clock behavior reaches the same structural failure limit.
+20. Extreme high-speed/high-gradient environments force nonlinear dual deformation, action shedding, and possible horizon-like structural failure.
 
 ## Proof Obligations
 
@@ -466,16 +539,18 @@ The document points to several concrete mathematical tasks before these claims c
    directly from the delayed root sum and causal Jacobian.
 2. Connect separator fold parity, root-ledger multiplicity, and $h$-like action transfer in one certified branch chart.
 3. Quantify $\zeta(A)$ for representative assemblies from far-field wake fits rather than treating it as a symbolic leakage factor.
-4. Show that a moving tri-binary Noether core has a stable deformed resonance branch whose three nested layers, realized as coaxial spiraling helices in motion, simultaneously achieve contraction, clock-rate change, and phase relocking to reproduce $\gamma_{\text{eff}}$.
+4. Show that a moving tri-binary Noether core has a stable deformed resonance branch whose three nested layers, realized as braided spiral-helical cables in motion, simultaneously achieve contraction, clock-rate change, and phase relocking to reproduce $\gamma_{\text{eff}}$.
 5. Derive the weak-field equality of inertial and gravitational coefficients from one shared shielded-energy response map.
 6. Prove that free coasting preserves both speed and direction unless an external interaction supplies the transverse work needed to bend the helical lock.
 7. Derive proper time as an internal cycle-count functional and show that the helical pitch formula reproduces the standard dilation law.
-8. Formalize the logarithmic-observer diagnostics for radius contraction, tilt angle, frequency shift, and root-ledger jumps.
-9. Derive effective geodesic motion as minimal phase distortion through $c_{\text{eff}}(\mathbf{x})$, Noether-Sea density, compliance, and stress gradients.
-10. Establish the assembly failure criterion as $\|\mathbf{V}_{\text{cm}}\|\to c_{\text{eff}}$ and distinguish it from any substrate-level speed behavior of unbound architrinos.
-11. Derive the action-per-cycle constant $h$ from separator closure or Planck-alignment geometry, rather than inserting it as a calibration.
-12. Build a coupled dual-deformation model for high-speed assemblies in strong Noether-Sea gradients, including nonlinear action shedding and branch failure.
-13. Prove that resonance disruption routes the stored internal energy into outgoing wake and Noether-Sea modes with a closed conservation ledger.
-14. Clarify the precise relationship between the Noether-Sea reinterpretation and the historical Dirac-sea/effective-QFT formalism, preserving empirical successes while relocating ontology.
+8. Formalize the logarithmic-observer diagnostics for radius contraction, tilt angle, frequency shift, orthogonal-plane collapse, and root-ledger jumps.
+9. Derive the separator clock-freeze condition from the same branch chart that controls $D_{\text{rest}}\to0$, $J\to0$, and $\Delta\tau/\Delta t\to0$.
+10. Derive effective geodesic motion as minimal phase distortion through $c_{\text{eff}}(\mathbf{x})$, Noether-Sea density, compliance, and stress gradients.
+11. Establish the assembly failure criterion as $\|\mathbf{V}_{\text{cm}}\|\to c_{\text{eff}}$ and distinguish it from any substrate-level speed behavior of unbound architrinos.
+12. Connect the event-horizon alignment condition to forced orthogonal-to-axial Noether-core geometry while preserving exterior GR phenomenology.
+13. Derive the action-per-cycle constant $h$ from separator closure or Planck-alignment geometry, rather than inserting it as a calibration.
+14. Build a coupled dual-deformation model for high-speed assemblies in strong Noether-Sea gradients, including nonlinear action shedding and branch failure.
+15. Prove that resonance disruption routes the stored internal energy into outgoing wake and Noether-Sea modes with a closed conservation ledger.
+16. Clarify the precise relationship between the Noether-Sea reinterpretation and the historical Dirac-sea/effective-QFT formalism, preserving empirical successes while relocating ontology.
 
-The high-impact version of the claim is therefore clear: rest mass and relativistic kinematics may emerge from super-field-speed causal-root bookkeeping. The rigorous version still requires branch-certified derivations, shielding extraction, and energy-conservation closure.
+The high-impact version of the claim is therefore clear: rest mass, proper time, relativistic kinematics, and horizon behavior may emerge from super-field-speed causal-root bookkeeping. The rigorous version still requires branch-certified derivations, shielding extraction, time-cycle closure, and energy-conservation closure.
