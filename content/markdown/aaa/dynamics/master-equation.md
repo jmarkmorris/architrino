@@ -295,6 +295,8 @@ between regular intervals.
 
 *Proof sketch:* Local normal form near a generic fold is equivalent to $u^2\pm\mu=0$, yielding either 0 or 2 simple roots. The two roots carry opposite Jacobian signs, so the degree is unchanged.
 
+This delay-map theorem pack is foundational rather than merely model-specific. It should eventually be promoted or mirrored into the foundations layer as the general fold-geometry reference for every delayed-root construction in the theory.
+
 #### Single-Hit Regime (Unique $t_0$)
 
 In the **sub-field-speed regime** ($|\mathbf{v}_j(t_0)| < c_f$ locally), Proposition 2 applies, and the map is strictly monotone:
@@ -409,6 +411,44 @@ T(v)=T_0\gamma,\quad T_0=\frac{2L_0}{c_f}.
 $$
 
 This gives a derived target for Lorentz suppression. The full unresolved step is proving the same scaling for the complete multi-hit NFDE tri-binary dynamics without reducing to a two-leg closure model.
+
+The two-leg loop is only a checkpoint. It has two phase points and one chosen orientation relative to the absolute motion. A real assembly has an effective internal phase cloud distributed over a finite three-dimensional volume, and operational isotropy has to hold for all loop orientations at once. The closure target is therefore a full ellipsoid-to-sphere reduction in the internal tri-binary phase space, not just the equality
+$$
+T_\parallel=T_\perp
+$$
+for one leg pair.
+
+Accelerated motion adds a second burden. Even if the inertial moving-frame scaling is recovered, orbital or gravitational acceleration requires a transport law for the internal phase of the assembly through the Noether Sea. This is the substrate analogue of Thomas-precession bookkeeping: without a controlled transport rule, moving atomic clocks in gravitational fields would accumulate orientation-dependent phase errors.
+
+> **Target Proposition (Lorentz suppression under acceleration).**
+> For a stable tri-binary assembly of rest size
+> $$
+> L_0
+> $$
+> moving through the Noether Sea with center speed
+> $$
+> v(t)
+> $$
+> and small acceleration scale
+> $$
+> a(t),
+> $$
+> the internal phase-locking law transports all admissible loop orientations so that the observer-level proper-time increment satisfies
+> $$
+> d\tau
+> =
+> \sqrt{1-\frac{v^2}{c_f^2}}\,
+> \left(1+\frac{\Phi}{c_f^2}\right)dt
+> +
+> O\!\left(\frac{a^2L_0^2}{c_f^2}\right)dt.
+> $$
+> Here
+> $$
+> \Phi
+> $$
+> is the weak Noether-Sea potential experienced by the assembly. The residual term is the finite-loop-size, non-Markovian correction caused by acceleration during one internal phase cycle.
+>
+> The Tier-1 Lorentz ledger requires that this residual remain below the preferred-frame leakage bounds recorded in [Constraint Ledger](../validation/constraint-ledger.md). Thus the reduced derivation is not complete until both the all-orientation inertial phase-locking problem and this accelerated-transport problem are closed.
 
 ---
 
@@ -720,6 +760,15 @@ $$
 \mathbf{Y}_t(\theta)=\mathbf{Y}(t+\theta),\ \theta\in[-h,0],
 $$
 with phase space $\mathcal{H}=C^1([-h,0],\mathbb{R}^{6N})$.
+This is the convenient proof scaffold used here because the active-root extraction uses the implicit-function theorem on
+$$
+C^1
+$$
+histories. For sharper state-dependent delay work, especially when acceleration bounds rather than classical second derivatives are the natural control, the phase space may need to be
+$$
+W^{1,\infty}([-h,0],\mathbb{R}^{6N})
+$$
+or an absolutely continuous history class. The exact choice is a regularity burden of the theorem being proved, not a change in the causal law.
 
 **Assumptions (regularized regime):**
 
@@ -745,8 +794,23 @@ $$
 \inf_{t<t^\ast,\ i,j,\ell} r_{ij,\ell}(t)>0,\quad
 \inf_{t<t^\ast,\ i,j,\ell}|\partial_\tau g_{ij,\ell}(t)|>0,
 $$
+and
+$$
+\sup_{t<t^\ast,\ i,j}B^{\mathrm{active}}_{ij}(t)<\infty,
+$$
 then $t_{\max}=\infty$.
-Here $r_{ij,\ell}(t)$ denotes the source-receiver distance on branch $\ell$.
+Here $r_{ij,\ell}(t)$ denotes the source-receiver distance on branch $\ell$, and
+$$
+B^{\mathrm{active}}_{ij}(t)
+$$
+denotes the number of active causal branches of pair
+$$
+(i,j)
+$$
+inside the chosen memory horizon at receiver time
+$$
+t.
+$$
 
 **Proof.**
 
@@ -754,7 +818,7 @@ Here $r_{ij,\ell}(t)$ denotes the source-receiver distance on branch $\ell$.
 2. Each per-branch acceleration term is a composition of $C^1$ maps (evaluation, subtraction, norm, mollifier, and unit-direction projection). By (W4), denominators stay away from zero; by (W5), coefficients are bounded. Hence each branch term is locally Lipschitz in $\phi$.
 3. By (W2), only finitely many branches contribute, so their sum $\mathcal{G}$ is locally Lipschitz on an open subset of $\mathcal{H}$ where (W3)-(W4) hold.
 4. Standard state-dependent DDE existence/uniqueness theory on Banach spaces applies, yielding a unique local $C^1$ solution and a maximal extension.
-5. Continuation follows from the same theorem: finite-time breakdown can occur only by leaving every bounded subset of the admissible set, i.e. via unbounded speed, vanishing separation on active support, or transversality loss/root accumulation.
+5. Continuation follows from the same theorem: finite-time breakdown can occur only by leaving every bounded subset of the admissible set, i.e. via unbounded speed, vanishing separation on active support, transversality loss/root accumulation, or unbounded active branch-count growth.
 
 Therefore the regularized delayed dynamics are locally well-posed, with global existence whenever those failure modes are excluded. This conditional statement applies to the finite-$\eta$ regularized model; the ideal $\eta\to 0$ shell limit still requires separate control of root accumulation and Jacobian-degenerate branches. $\square$
 
@@ -1452,6 +1516,23 @@ N_{\text{self}}(\beta)=\frac{\beta}{\pi}+O(1),
 $$
 This branch-count law is enough to control the combinatorics of the circular self-hit sum even before one has a full closed-form force series.
 
+> **Benchmark Proposition (Circular branch-count bound).**
+> In the symmetric circular benchmark, if the speed ratio obeys
+> $$
+> |\beta(t)|\le \beta_\ast<\infty
+> $$
+> uniformly, then the active circular self-hit count is uniformly bounded:
+> $$
+> N_{\mathrm{self}}(t)
+> \le
+> \frac{\beta_\ast}{\pi}+C_{\mathrm{circ}},
+> $$
+> where
+> $$
+> C_{\mathrm{circ}}
+> $$
+> is an absolute endpoint-count constant for the circular root equation. This supplies the missing branch-count input in the continuation criterion for that benchmark. A general super-field-speed trajectory still needs its own no-proliferation theorem; tight spirals or repeatedly folded histories can otherwise leave the finite-branch chart even without speed blowup, collision, or a single Jacobian floor loss.
+
 That already:
 
 - Gives us analytic control of the causal roots (as solutions of a simple scalar transcendental),
@@ -1517,6 +1598,35 @@ So:
 
 - Analytically: we can reduce the existence question to algebraic conditions and asymptotic expansions, and in the bare circular ansatz we can already identify the tangential no-cancellation obstruction.
 - Dynamically: the stability question remains separate from the algebraic construction and requires numerical analysis of attractivity versus fine-tuned orbit families.
+
+The expected answer for the bare two-body kernel is instability, not robust attraction. Existence of a circular or maximum-curvature solution would only solve the algebraic balance conditions
+$$
+\overline F_{\mathrm{rad}}(R,v)=\omega^2R,
+\qquad
+\overline F_{\mathrm{tan}}(R,v)=0.
+$$
+Stability is a different question: linearizing the delayed dynamics about the candidate orbit gives a delay operator
+$$
+L(\lambda)
+$$
+and the characteristic equation
+$$
+\det(\lambda I-L(\lambda))=0.
+$$
+Any root with
+$$
+\operatorname{Re}\lambda>0
+$$
+is an unstable mode.
+
+> **Target Proposition (MCB transverse stability diagnostic).**
+> For any candidate bare two-body maximum-curvature binary, compute the linearized delay operator on radial and tangential perturbations. The null-separatrix self-hit wall may stabilize or block the radial collapse channel, but the sign-definite tangential partner contribution generically leaves a transverse unstable direction unless an additional medium, tri-binary, or multi-body locking mechanism cancels it. Thus a bare MCB should be treated as a saddle-type organizing orbit in
+> $$
+> (R,v)
+> $$
+> space, not as the stable particle assembly itself.
+
+This is the intended dynamical interpretation. Stable particles in the present architecture are tri-binary assemblies; a bare MCB, if it exists, is a high-curvature component or limiting scaffold whose instability explains why additional locking structure is needed.
 
 This would be an “analytic scaffold + numerical check” situation, not full closed forms.
 
@@ -1953,6 +2063,30 @@ $$
 {r_{ij}^2(t;t_0)\,\left|1-\hat{\mathbf{r}}_{ij}(t;t_0)\cdot\mathbf{v}_j(t_0)/c_f\right|},
 $$
 
+The inverse-square factor follows from the variation of the scale-invariant kernel. On a simple-root chart, the interaction density is
+$$
+\frac{1}{r_{ij}}\delta(g_{ij}),
+\qquad
+g_{ij}=t-t'-\frac{r_{ij}}{c_f}.
+$$
+Varying the receiver position gives
+$$
+\delta r_{ij}
+=
+\hat{\mathbf r}_{ij}\cdot \delta\mathbf{x}_i,
+\qquad
+\delta\!\left(\frac{1}{r_{ij}}\right)
+=
+-\frac{\hat{\mathbf r}_{ij}\cdot\delta\mathbf{x}_i}{r_{ij}^2}.
+$$
+The variation of
+$$
+\delta(g_{ij})
+$$
+contributes the same causal-root Jacobian factor after integration by parts on the root-selected chart, while preserving the line-of-action direction. Therefore the branch-resolved Euler-Lagrange term is proportional to
+$$
+\frac{\hat{\mathbf r}_{ij}}{r_{ij}^2|J_{ij}|}.
+$$
 This $1/r^2$ scaling is not an added ansatz: it is the unique pull-back of a scale-invariant causal-cone constraint in 3D when varying a $1/r$ Fokker kernel.
 
 Self‑interaction ($i=j$) is included by adding $S_{ii}$ with the same kernel, but explicitly excluding the trivial coincidence $t'=t$ (no instantaneous self‑push at the moment of emission). Self‑hit corresponds to nontrivial roots $t_0<t$ where the worldline re‑intersects its own causal isochrons, which are captured naturally by the same double‑integral structure.
