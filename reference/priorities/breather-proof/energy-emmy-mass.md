@@ -4,7 +4,7 @@
 
 This document is a working synthesis of the energy argument extending [Kinetic and Potential Energy](../../../content/markdown/aaa/dynamics/energy.md). It is not yet a completed proof. Its purpose is to organize the current claim in academic order, retain the conceptual content of the source discussion, remove repetition, and identify the mathematical closures that must eventually be promoted into the main dynamics or assembly chapters.
 
-The central claim is that rest mass, annihilation energy, quantized action transfer, negative-energy bookkeeping, inertia, proper time, momentum conservation, effective geodesic motion, effective special-relativistic kinematics, and strong-field structural failure may all be different projections of the same underlying mechanism: super-field-speed causal-root multiplicity in phase-locked architrino assemblies.
+The central claim is that rest mass, annihilation energy, quantized action transfer, negative-energy bookkeeping, inertia, proper time, momentum conservation, effective geodesic motion, effective special-relativistic kinematics, and strong-field structural failure may all be different projections of the same underlying mechanism: super-field-speed causal-root multiplicity in phase-locked tri-binary Noether cores and the larger architrino assemblies built on them.
 
 If the argument closes, the result would have large impact. It would mean that several quantities normally treated as fundamental or postulated at the effective level are recovered from delayed causal wake geometry, root-ledger multiplicity, Noether-Sea shielding, and refractive medium response. The claim is therefore strong, but it must be stated with exact scope: the present document gives the ordered derivation target, not the final theorem.
 
@@ -51,6 +51,8 @@ When an assembly enters the self-hit regime, it does more than receive a larger 
 The energy stored by these multiplicities is best described as trapped geometric history. It is not a new substance placed inside the Euclidean void. It is kinetic energy, interaction energy, and wake-mediated path-history content locked into a repeating causal circuit. A stable bound state exists when the inward and outward root families close over a cycle, so the internal storm remains localized rather than dispersing.
 
 In the extreme super-field-speed case, the internal component speeds may satisfy $\|\mathbf{v}_{\text{int}}\| \gg c_f$. The assembly can still appear externally quiet if its root families are balanced and shielded. What matters observationally is not the raw size of the internal ledger alone, but how much of that ledger leaks into the external wake signature.
+
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, the fundamental bound state is the Noether core: a tri-binary assembly consisting of three nested binary pairs. At rest, this architecture stabilizes into nested, phase-locked circular or near-circular orbits, with spherical averaging when the full three-dimensional assembly is considered. The inner binary operates deep in the self-hit regime and acts as the high-multiplicity engine; the middle binary acts as the resonant fulcrum; and the outer binary interfaces with the sub-field-speed environment. This three-layer organization is the core scaffold that gives electron and positron assemblies their stability, isotropic shielding, and well-defined rest mass.
 
 The central identification is:
 
@@ -210,16 +212,16 @@ within the weak-field closure regime where the emergent metric and refractive-gr
 
 ## Bulk Velocity as Internal Geometry
 
-Acceleration also explains how linear motion becomes internal geometric deformation. A tri-binary at rest is a nested phase-locked causal clock. Its internal causal emissions cross between partners with timings tuned to the integer multiplicities that keep the assembly stable.
+Acceleration also explains how linear motion becomes internal geometric deformation. A Noether core at rest is a nested phase-locked causal clock consisting of three coplanar, or spherically averaged, circular binary orbits. Its internal causal emissions cross within and between the inner, middle, and outer layers with timings tuned to the integer multiplicities that keep the assembly stable.
 
-When the same tri-binary moves with center-of-mass velocity $\mathbf{V}_{\text{cm}}$, a causal wake traveling between internal partners must follow a diagonal path through the Euclidean void in order to reach the moving receiver. Since the wake still propagates at the relevant signal speed, the assembly must deform its internal timing and geometry to preserve phase closure.
+When this tri-binary core moves with center-of-mass velocity $\mathbf{V}_{\text{cm}}$, the nested circular orbits unfold through the Euclidean void into a triad of coaxial, spiraling helices. A causal wake traveling between internal partners, or between the inner, middle, and outer layers, must now follow a diagonal path through the void to reach a moving receiver. Since the wake still propagates at the relevant signal speed, the entire three-layer assembly must dynamically deform its internal timing and geometry to preserve phase closure simultaneously across all layers.
 
-At the effective level this deformation appears as a combination of:
+At the effective level, the deformation of these three spiraling-helix binaries appears as a combination of:
 
-- directional contraction or oblation of the moving assembly;
-- clock-rate change in the internal causal cycle;
-- tilt of the internal orbital planes or causal exchange geometry;
-- phase relocking into integer root-ledger states.
+- directional contraction or oblation of the nested coaxial structure;
+- clock-rate change shared across the internal causal cycles;
+- tilt of the internal orbital planes into the helical pitch angle;
+- phase relocking of the $(N,M)$ root ledgers to maintain structural harmony between the inner engine and the outer shield.
 
 Thus external work applied as linear acceleration is stored as changed internal phase geometry, angular momentum distribution, and Noether-Sea coupling. The linear velocity of the assembly is not merely a tag attached to an otherwise unchanged object. It is encoded in the pitch, tilt, and timing of the moving causal resonance.
 
@@ -288,7 +290,7 @@ Third, the logarithmic view makes the failure limit visible. Near $c_{\text{eff}
 
 Once the external force stops, the assembly no longer needs additional energy to maintain constant velocity. The reason is that the assembly has already settled into a new moving resonance. Its internal wakes form a helical path-history pattern rather than the rest-state pattern, and the internal root ledger closes along that moving helix.
 
-Momentum is therefore conserved because the moving assembly is a self-sustaining causal soliton in the Euclidean void. Changing the pitch of the helix requires work; continuing at fixed pitch does not. This is the mechanism behind inertial coasting.
+Momentum is therefore conserved because the moving assembly is a self-sustaining causal soliton in the Euclidean void. The moving Noether core is a highly organized coaxial-cable-like bundle of three spiraling helices. Changing the pitch of these nested helices requires external work; continuing at fixed pitch does not. The internal root ledger closes along that moving tri-helical pattern. This is the mechanism behind inertial coasting.
 
 The symmetry statement is equally important. The underlying causal action is invariant under spatial translations in the Euclidean void. The same internal lock can be reconstructed at one spatial location or another. That translational symmetry is the Noether-style reason that, once the moving resonance has been established, there is no internal bookkeeping preference for slowing down or speeding up in the absence of further interaction.
 
@@ -422,6 +424,8 @@ In that dual-deformation regime, the assembly experiences two coupled stresses. 
 
 These effects do not simply add as independent linear corrections. The resonance lock requires integer closure of the $(N,M)$ ledger, so a deformation in one channel changes the admissible slack in the other. A high-speed assembly near a steep medium gradient can therefore be driven close to a structural boundary even if neither stress alone would destroy it.
 
+The tri-binary architecture matters precisely in this regime. A simple binary has little internal capacity to distribute competing stresses. A Noether core has an inner engine, a middle buffer, and an outer shield. The middle binary can absorb part of the geometric stress, allowing the inner binary to preserve its self-hit lock while the outer binary handles refractive drag and environmental coupling to the Noether Sea. This is why the moving-particle picture should be the triad of coaxial, spiraling helices rather than a single generic helix.
+
 Survival in this region requires dynamic rerouting of internal action. The assembly may shed energy into outgoing wake modes, reassign action across binary layers, or transition to a different locked branch. In observer-level language, this substrate struggle is a candidate mechanism for anomalous precession, intense synchrotron-like radiative shedding, and the approach to horizon-like structural crushing. The strong-field alignment condition then appears as a limiting case in which the moving lock is forced toward planar or axial closure and ordinary stable tri-binary clock behavior can no longer be maintained.
 
 This section is a frontier target rather than a completed derivation. Its value is to name the nonlinear regime where Lorentz kinematics, refractive gravity, radiation channels, and structural failure must be solved together rather than patched together after separate approximations.
@@ -432,7 +436,7 @@ The organized argument can be stated compactly:
 
 1. The inner turning point $r_{\min}$ supplies a finite physical zero for potential energy.
 2. The field-speed separator changes the active causal-root ledger.
-3. In the self-hit regime, additional self and partner roots trap geometric path history inside a localized resonance.
+3. In the self-hit regime, additional self and partner roots trap geometric path history inside a localized resonance, natively structured as a tri-binary Noether core with three nested binary layers.
 4. The trapped internal energy is the candidate physical basis of rest energy.
 5. Shielding by assembly geometry and the Noether Sea determines the apparent external mass.
 6. Resonance failure releases the stored path-history energy as outgoing causal wakes and medium excitation, giving the native account of annihilation.
@@ -441,7 +445,7 @@ The organized argument can be stated compactly:
 9. Inertia arises because acceleration skews the internal causal Jacobian balance of a bound state.
 10. Inertial and gravitational mass agree because bulk acceleration and Noether-Sea gradients perturb the same shielded causal lock.
 11. Momentum coasts in a straight line because translation invariance preserves the moving lock and spatial isotropy preserves its axis.
-12. Proper time is the internal cycle count of a phase-locked assembly, and time dilation is the longer helical closure time required by motion.
+12. Proper time is the internal cycle count of a phase-locked assembly, and time dilation is the longer helical closure time required by the nested coaxial helices in motion.
 13. A logarithmic-observer view exposes the radius contraction, tilt increase, and axial-alignment limit of the moving lock.
 14. Effective geodesics are minimal phase-distortion paths of causal solitons refracting through graded Noether-Sea variables.
 15. Effective special relativity follows from the diagonal causal path required to keep internal phase closure in motion.
@@ -462,7 +466,7 @@ The document points to several concrete mathematical tasks before these claims c
    directly from the delayed root sum and causal Jacobian.
 2. Connect separator fold parity, root-ledger multiplicity, and $h$-like action transfer in one certified branch chart.
 3. Quantify $\zeta(A)$ for representative assemblies from far-field wake fits rather than treating it as a symbolic leakage factor.
-4. Show that a moving tri-binary has a stable deformed resonance branch whose contraction, clock-rate change, and phase relocking reproduce $\gamma_{\text{eff}}$.
+4. Show that a moving tri-binary Noether core has a stable deformed resonance branch whose three nested layers, realized as coaxial spiraling helices in motion, simultaneously achieve contraction, clock-rate change, and phase relocking to reproduce $\gamma_{\text{eff}}$.
 5. Derive the weak-field equality of inertial and gravitational coefficients from one shared shielded-energy response map.
 6. Prove that free coasting preserves both speed and direction unless an external interaction supplies the transverse work needed to bend the helical lock.
 7. Derive proper time as an internal cycle-count functional and show that the helical pitch formula reproduces the standard dilation law.
