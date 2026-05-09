@@ -2,6 +2,8 @@
 
 This note starts a parallel ansatz program for the 1D collinear breather. It does not replace the fixed-point proof architecture in [collinear-breather.md](./collinear-breather.md). Its purpose is to ask whether the same delayed geometry might admit a natural closed-form or closed-by-quadrature solution once the motion is decomposed by field-speed regions.
 
+This program is optional for the existence proof. The proof does not need an elementary closed-form orbit; it needs one candidate certified cycle and a finite certificate for the return map on a closed convex tame domain.
+
 The guiding suspicion is:
 
 - below field speed, the active causal roots are tame and the force may reduce to a small number of effective $1/r$ potential curves;
@@ -22,7 +24,9 @@ because the finite Schauder audit now needs an instantiated center history, a me
 $$
 \phi_{\mathrm{cyc}}
 $$
-without first solving the return-map fixed point abstractly.
+without first solving the return-map fixed point abstractly. A numerical enclosure, validated quadrature orbit, or other certified construction would serve the same proof role if it supplies the same certificate rows.
+
+The governing law for that certification is the dual-mollified absolute-time integral law from [collinear-breather.md](./collinear-breather.md). Branch-sum formulas inside this note are working reductions on simple-root charts, not replacements for the integral law through separator layers or causal folds.
 
 ## Variables and Speed Classes
 
@@ -395,6 +399,8 @@ $$
 may instead encode the finite caustic-transit impulse already isolated in the proof scaffold.
 
 ## What Would Count as a Successful Closed-Form Candidate
+
+A closed-form candidate is successful only as a certificate generator. It is not a separate proof route.
 
 A candidate closed-form breather must produce:
 

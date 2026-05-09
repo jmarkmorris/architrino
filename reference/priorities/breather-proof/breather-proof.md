@@ -83,7 +83,7 @@ The current scaffold is no longer blocked by abstract Schauder theory. It is blo
 $$
 \phi_{\mathrm{cyc}}.
 $$
-There is not yet an instantiated
+It is not blocked by the absence of an elementary closed-form orbit. The dual-mollified absolute-time integral law is sufficient as the evolution law; branch-sum formulas are simple-root reductions used on certified charts. What is still absent is an instantiated
 $$
 \phi_{\mathrm{cyc}},
 $$

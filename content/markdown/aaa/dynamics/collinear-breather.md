@@ -319,6 +319,27 @@ $$
 $$
 This leaves the delayed shell selection controlled by $\eta$ while the core mollifier caps the near-origin amplitude spike strongly enough for a clean $C^1$ theorem program.
 
+For the certified finite-memory problem, the exact dual-mollified reduced evolution law is the absolute-time integral
+$$
+\ddot x(t)
+=
+-\,\kappa\epsilon^2
+\int_{t-h}^{t}
+\frac{\hat r_p(t;s)}
+{|x(t)+x(s)|^2+\epsilon_c^2}\,
+\delta_\eta\!\big(|x(t)+x(s)|-c_f(t-s)\big)\,ds
+$$
+$$
+\qquad
++
+\kappa\epsilon^2
+\int_{t-h}^{t}
+\frac{\hat r_s(t;s)}
+{|x(t)-x(s)|^2+\epsilon_c^2}\,
+\delta_\eta\!\big(|x(t)-x(s)|-c_f(t-s)\big)\,ds.
+$$
+The branch-sum equations used throughout the proof scaffold are simple-root reductions of this law. Across causal folds, caustic transit, and certified topology arguments, the integral law is the primary object.
+
 The regularized formulation is the one best suited to:
 
 - local well-posedness,
@@ -3998,6 +4019,15 @@ The full Schauder-ready audit therefore has four rows:
 ### Remaining blockers before Schauder
 
 At this stage the remaining blockers are narrow and explicit:
+
+No remaining blocker asks for an elementary closed-form orbit. The proof needs one instantiated candidate cycle
+$$
+\phi_{\mathrm{cyc}},
+$$
+defined against the dual-mollified absolute-time law, and finite certificate data proving that the same closed convex tame domain is self-mapping, continuous, and precompact under
+$$
+P_\eta.
+$$
 
 1. verify the seed-cycle margin ledger
    $$
@@ -9663,6 +9693,7 @@ The following boxed aside is heuristic rather than theorem-level. Its purpose is
 $$
 x(t)=f(t,X_0,V_0).
 $$
+Here "closed-form solution" means an elementary formula for the orbit. It does not mean that the evolution law itself is unavailable. The dual-mollified absolute-time integral law is already an exact certified-law target; branch sums are local reductions on simple-root charts.
 
 > **Heuristic aside.**
 >
@@ -9728,7 +9759,11 @@ $$
 > $$
 > x(t)
 > $$
-> valid for arbitrary data. We need a proof that a bounded cycle exists and closes in history space.
+> valid for arbitrary data. We need one candidate cycle
+> $$
+> \phi_{\mathrm{cyc}},
+> $$
+> and a finite certificate proving that the return map is continuous, precompact, and self-mapping on one closed convex tame domain.
 >
 > If one ever seeks formulas again, the natural place is not the global initial-value problem but the periodic orbit itself: after a fixed point
 > $$

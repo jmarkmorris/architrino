@@ -105,6 +105,57 @@ P_\eta,
 $$
 not substitutes for it.
 
+### Absolute-time evolution law for certification
+
+The return-map program does not require an elementary closed-form orbit. It requires a precise evolution law, one candidate cycle, and a finite certificate showing that the same closed convex tame domain is preserved by the return map.
+
+For the dual-mollified master equation, the certification-level evolution law may be written directly in absolute time as
+$$
+\ddot{\mathbf{x}}_i(t)
+=
+\kappa\epsilon^2
+\sum_j \sigma_{ij}
+\int_{t-h}^{t}
+\frac{\widehat{\mathbf r}_{ij}(t,s)}
+{\|\mathbf r_{ij}(t,s)\|^2+\epsilon_c^2}\,
+\delta_\eta\!\big(\|\mathbf r_{ij}(t,s)\|-c_f(t-s)\big)\,ds,
+$$
+where
+$$
+\mathbf r_{ij}(t,s)
+\equiv
+\mathbf{x}_i(t)-\mathbf{x}_j(s),
+\qquad
+\widehat{\mathbf r}_{ij}(t,s)
+\equiv
+\frac{\mathbf r_{ij}(t,s)}{\|\mathbf r_{ij}(t,s)\|}.
+$$
+Here
+$$
+h
+$$
+is the certified memory horizon,
+$$
+\eta
+$$
+is the causal-shell width, and
+$$
+\epsilon_c
+$$
+is the short-distance core scale.
+
+Branch-sum formulas are derived from this absolute-time integral only on simple-root charts, where the causal shell has isolated transversal roots. They are therefore local analytic reductions, not the global definition of the dynamics through fold transit or certified topology.
+
+The proof burden is consequently finite-certificate closure: instantiate a candidate history
+$$
+\Phi_{\mathrm{cyc}},
+$$
+choose the certified domain around it, and prove that
+$$
+P_\eta
+$$
+is continuous, precompact, and self-mapping on that one domain.
+
 ## What the 1D Reference Model Already Settled
 
 The frozen collinear chapter contributes five structural lessons that should now be treated as stable.
@@ -9248,7 +9299,7 @@ The planar-three-body bridge now has the same explicit theorem-ladder shape as t
 The 1D collinear chapter should now be used as a frozen reference theorem scaffold. The present chapter records the higher-level lesson:
 
 > **Theorem Program (Breather architecture for the master equation).**
-> A master-equation breather theorem should be pursued by constructing a sectioned history-space return map, proving a nonempty tame propagated class, separating convex Banach bounds from tame delayed-root geometry, and then closing the resulting return map on one closed convex tame self-map domain. The unresolved burden is no longer the abstract fixed-point theorem. It is the geometric production of that domain outside the ordered 1D setting.
+> A master-equation breather theorem should be pursued from the dual-mollified absolute-time integral law, with branch sums used only on certified simple-root charts. The proof task is to construct a sectioned history-space return map, produce one candidate cycle with finite certificate data, separate convex Banach bounds from tame delayed-root geometry, and then close the resulting return map on one closed convex tame self-map domain. The unresolved burden is no longer the abstract fixed-point theorem or an elementary closed-form orbit. It is the geometric production and certification of that domain outside the ordered 1D setting.
 
 This is the correct point from which to resume work on the broader dynamics stack.
 
