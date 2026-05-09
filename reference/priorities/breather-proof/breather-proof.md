@@ -83,6 +83,7 @@ $$
 \phi_{\mathrm{cyc}},
 $$
 not a new roadmap.
+- Treat [tri-binary-causal-closure-dependency-map.md](tri-binary-causal-closure-dependency-map.md) as an active-development synthesis workbench, not as a replacement for the finite certificate packet. Before deployment, unresolved synthesis items must be closed, kept as explicit roadmap targets, routed into the relevant priority workstream, or cut.
 
 ## Immediate Cross-Document Action Plan
 

@@ -4,6 +4,8 @@
 
 This document is a synthesis and proof roadmap for the energy argument extending [Kinetic and Potential Energy](../../../content/markdown/aaa/dynamics/energy.md). It is not yet a completed theorem. Its purpose is to organize the current claim in academic order, preserve the conceptual content of the development, remove repetition, and identify the mathematical closures that must eventually be carried into the main dynamics, assembly, and spacetime chapters.
 
+The active development dependency map for this synthesis is [Tri-Binary Causal Closure Dependency Map](tri-binary-causal-closure-dependency-map.md). Before any deployed or textbook-facing promotion, unresolved items in that map must either be closed, retained as explicit roadmap targets, routed into the priority system, or cut.
+
 The central claim is that rest mass, annihilation energy, quantized action transfer, negative-energy bookkeeping, inertia, proper time, momentum conservation, effective geodesic motion, effective special-relativistic kinematics, and strong-field structural failure may all be different projections of the same underlying mechanism: super-field-speed causal-root multiplicity in phase-locked tri-binary Noether cores and the larger architrino assemblies built on them.
 
 If the argument closes, the result would have large impact. It would mean that several quantities normally treated as fundamental or postulated at the effective level are recovered from delayed causal wake geometry, root-ledger multiplicity, Noether-Sea shielding, and refractive medium response. The claim is therefore strong, but it must be stated with exact scope: the present document gives the synthesis-level derivation target and theorem roadmap, not the final theorem.
