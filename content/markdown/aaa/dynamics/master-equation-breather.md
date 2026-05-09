@@ -678,6 +678,36 @@ S^1.
 $$
 The sector family is fixed once and for all for the chosen tame class. What varies from trajectory to trajectory is only which subfamily is active on a given controlled window.
 
+For each direction, distinguish the instantaneous directional phases
+$$
+\zeta^-_{\hat{\mathbf{u}}}(t)
+\equiv
+\mathbf{r}(t)\cdot\hat{\mathbf{u}}-c_f t,
+\qquad
+\zeta^+_{\hat{\mathbf{u}}}(t)
+\equiv
+\mathbf{r}(t)\cdot\hat{\mathbf{u}}+c_f t,
+$$
+from the automatic running envelopes
+$$
+\underline{\zeta}^-_{\hat{\mathbf{u}}}(t)
+\equiv
+\inf_{\theta\le t}\zeta^-_{\hat{\mathbf{u}}}(\theta),
+\qquad
+\overline{\zeta}^+_{\hat{\mathbf{u}}}(t)
+\equiv
+\sup_{\theta\le t}\zeta^+_{\hat{\mathbf{u}}}(\theta).
+$$
+The running infimum
+$$
+\underline{\zeta}^-_{\hat{\mathbf{u}}}
+$$
+is non-increasing by definition, and the running supremum
+$$
+\overline{\zeta}^+_{\hat{\mathbf{u}}}
+$$
+is non-decreasing by definition. The nontrivial theorem burden is therefore not monotonicity of those running envelopes. It is the stronger active-sector assertion that, on the windows where a delayed chord is actually active, the running envelope is achieved by the current time and the instantaneous phase has a strict derivative margin.
+
 Two cycle windows should then be named explicitly:
 $$
 I_{\mathrm{in}}=[t_{\mathrm{in}}^-,t_{\mathrm{x}}],
@@ -722,7 +752,7 @@ $$
 $$
 after shrinking the tame class so that active directions stay a positive angular distance away from sector overlaps.
 
-> **Target Proposition (Windowed directional monotonicity).**
+> **Target Proposition (Two-tier windowed directional monotonicity).**
 > There exist positive constants
 > $$
 > \sigma_{\mathrm{in}},
@@ -754,7 +784,8 @@ after shrinking the tame class so that active directions stay a positive angular
 >    $$
 >    \mathcal{U}_{\mathrm{ap}};
 >    $$
-> 3. for every
+> 3. these active subfamilies are stable on their windows: active chord directions stay a positive angular distance away from sector boundaries, except inside the later certified sector-boundary or fold tubes;
+> 4. for every
 >    $$
 >    \hat{\mathbf{u}}_k\in \mathcal{U}_{\mathrm{in}},
 >    \qquad
@@ -762,9 +793,13 @@ after shrinking the tame class so that active directions stay a positive angular
 >    $$
 >    the support function obeys
 >    $$
+>    \underline{\zeta}^-_{\hat{\mathbf{u}}_k}(t)
+>    =
+>    \zeta^-_{\hat{\mathbf{u}}_k}(t),
+>    \qquad
 >    \frac{d}{dt}\zeta^-_{\hat{\mathbf{u}}_k}(t)\le -\sigma_{\mathrm{in}};
 >    $$
-> 4. for every
+> 5. for every
 >    $$
 >    \hat{\mathbf{u}}_k\in \mathcal{U}_{\mathrm{ap}},
 >    \qquad
@@ -772,16 +807,45 @@ after shrinking the tame class so that active directions stay a positive angular
 >    $$
 >    one has
 >    $$
+>    \underline{\zeta}^-_{\hat{\mathbf{u}}_k}(t)
+>    =
+>    \zeta^-_{\hat{\mathbf{u}}_k}(t),
+>    \qquad
 >    \frac{d}{dt}\zeta^-_{\hat{\mathbf{u}}_k}(t)\le -\sigma_{\mathrm{ap}},
+>    \qquad
+>    \overline{\zeta}^+_{\hat{\mathbf{u}}_k}(t)
+>    =
+>    \zeta^+_{\hat{\mathbf{u}}_k}(t),
 >    \qquad
 >    \frac{d}{dt}\zeta^+_{\hat{\mathbf{u}}_k}(t)\ge \sigma_{\mathrm{ap}}.
 >    $$
+> 6. for inactive sector centers
+>    $$
+>    \hat{\mathbf{u}}_k\notin\mathcal{U}_{\mathrm{in}}
+>    \quad\text{or}\quad
+>    \hat{\mathbf{u}}_k\notin\mathcal{U}_{\mathrm{ap}},
+>    $$
+>    only the automatic running-envelope monotonicity is required. No strict derivative margin is imposed on transverse directions with no active branch on the corresponding window.
 
 The first monotonicity statement is the planar replacement for the inbound ordered fall that, in the collinear chapter, feeds collapse and root control. The second is the higher-dimensional descendant of the late
 $$
 z
 $$
 -descent package: it separates the outgoing and incoming directional support levels on the apocenter window instead of relying on a single global scalar order.
+
+This two-tier form is intentionally weaker than universal sectorwise descent. Tangential motion can make transverse sector centers move with the wrong instantaneous sign even while the active chord geometry remains controlled. The theorem target only asks for strict descent in the finite active sector subfamily
+$$
+\mathcal{U}_{\mathrm{in}}
+\quad
+\text{or}
+\quad
+\mathcal{U}_{\mathrm{ap}},
+$$
+and asks the certificate to prove that this subfamily does not migrate continuously around
+$$
+S^1
+$$
+during the window.
 
 The exact root equations now reveal why these support functions are the right replacement objects. If
 $$
@@ -864,7 +928,17 @@ $$
 >    in that sector on the window under consideration;
 > 3. the total number of active self and partner roots on either window is therefore bounded by
 >    $$
->    2M;
+>    2M_{\mathrm{act},W}
+>    \le
+>    2M,
+>    $$
+>    where
+>    $$
+>    M_{\mathrm{act},W}
+>    $$
+>    is the number of active sector centers on the window
+>    $$
+>    W\in\{I_{\mathrm{in}},I_{\mathrm{ap}}\};
 >    $$
 > 4. branch birth, branch death, or branch relabeling can occur only when an active chord direction meets a sector boundary or when the relevant monotonicity margin
 >    $$
@@ -2626,13 +2700,21 @@ The branch graph
 $$
 \mathscr{G}^{\sharp}_{\mathrm{br}}
 $$
-should then be defined as follows.
+should then be defined by one canonical convention.
 
-- A vertex is one local branch label
+- A vertex is one maximal simple local branch segment
   $$
   v=(\tau,k,\ell,m).
   $$
-- Two vertices are joined by an edge when they represent the same simple root branch continued across adjacent windows, or when they meet one admissible fold tube where a branch birth, branch death, or branch handoff occurs.
+- The multiplicity label
+  $$
+  m
+  $$
+  is assigned by the source-time order of the simple roots inside the fixed type-sector-window cell after the fold tubes and sector-boundary tubes have been removed.
+- Folds are represented as edges, not as additional vertices. A fold edge carries the fold-tube label, the incoming and outgoing local branch labels, and the parity data for the root-count jump.
+- Continuation across adjacent windows is also represented by an edge. Thus a window-boundary fold is never represented by a vertex split; it is one labeled fold edge between the adjacent simple-branch vertices that enter and exit the certified tube.
+
+With this convention, the graph is uniquely determined by a gauge-fixed history, the fixed window partition, the fixed sector atlas, and the listed caustic tubes: vertices are maximal connected components of the simple-root set after the controlled tubes are removed, and edges record the unique admissible continuation or fold transition through the adjacent tube.
 
 This is the correct replacement object. In the reduced planar bridge the active roots could be recorded as a finite list because one relative geometry and one sector family were enough. In the unreduced planar bridge the natural finite object is instead a graph whose vertices remember both the chord type and the local window.
 
@@ -2644,6 +2726,8 @@ This is the correct replacement object. In the reduced planar bridge the active 
 > M^{\sharp},
 > \qquad
 > N^{\sharp}_{\mathrm{br}},
+> \qquad
+> N_{\mathrm{mult}}^{\max},
 > \qquad
 > \delta^{\sharp}_{\mathrm{sep}},
 > \qquad
@@ -2689,8 +2773,23 @@ This is the correct replacement object. In the reduced planar bridge the active 
 >    $$
 >    and the total number of vertices is bounded by
 >    $$
->    N^{\sharp}_{\mathrm{br}};
+>    N^{\sharp}_{\mathrm{br}}
+>    \le
+>    4M^{\sharp}L^{\sharp}N_{\mathrm{mult}}^{\max};
 >    $$
+>    here the factor
+>    $$
+>    4
+>    $$
+>    is the number of source-receiver chord types
+>    $$
+>    |\{1,2\}\times\{1,2\}|,
+>    $$
+>    and
+>    $$
+>    N_{\mathrm{mult}}^{\max}
+>    $$
+>    is the certified maximum number of simple root branches in one fixed type-sector-window cell;
 > 2. on every vertex domain outside the caustic tubes, the root branch is
 >    $$
 >    C^1
@@ -2723,15 +2822,16 @@ This is the correct replacement object. In the reduced planar bridge the active 
 >    $$
 >    \mathscr{G}^{\sharp}_{\mathrm{br}}(\Psi)
 >    $$
->    is of exactly one of the following kinds:
->    continuation across adjacent windows,
->    fold birth/death inside one caustic tube,
->    or one admissible branch handoff between two vertices meeting the same tube;
+>    is of exactly one of the following kinds under the canonical convention:
+>    a continuation edge across adjacent windows,
+>    a fold birth/death edge labeled by one caustic tube,
+>    or one admissible branch-handoff edge labeled by the same tube;
 > 5. outside the union of the caustic tubes the graph is locally constant in
 >    $$
 >    t,
 >    $$
 >    so no uncontrolled simultaneous fold accumulation or instantaneous infinite relabeling can occur along the cycle.
+> 6. the graph construction is canonical: no admissible fold tube may be encoded alternatively as a vertex split, and the source-time ordering convention fixes the multiplicity labels.
 >
 > In particular, the active delayed-root topology of the unreduced planar binary is encoded by one finite graph rather than by an a priori continuum of chord directions.
 
