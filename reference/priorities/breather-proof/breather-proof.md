@@ -13,7 +13,7 @@
 
 1. `master_equation_law` — Record the exact dual-mollified absolute-time evolution law in the master-equation stack. Status: `done`. Depends on: none.
 2. `velocity_itinerary_verification` — Produce `certificate/itinerary.json` and `certificate/itinerary_parity_report.md` proving the proposed velocity-class itinerary satisfies the fold-parity invariants. Status: `done`. Depends on: `master_equation_law`.
-3. `seed_chart_packet` — Produce `certificate/phi_cyc.json`, `certificate/branch_chart.json`, `certificate/mesh.json`, and the seed-chart interval report. Status: `next`. Depends on: `velocity_itinerary_verification`.
+3. `seed_chart_packet` — Produce `certificate/phi_cyc.json`, `certificate/causal_ledger.json`, `certificate/branch_chart.json`, `certificate/mesh.json`, and the seed-chart interval report. Status: `next`. Depends on: `velocity_itinerary_verification`.
 4. `coupled_corridor_certificate` — Produce `certificate/corridor_nonemptiness_report.md`, `certificate/parameters.json`, and the coupled-corridor interval report for one strict parameter tuple. Status: `pending`. Depends on: `seed_chart_packet`.
 5. `monodromy_diagnostic` — Produce the section-anchored monodromy spectrum and route returned-sample preservation to sensitivities or boundary trapping. Status: `pending`. Depends on: `seed_chart_packet`, `coupled_corridor_certificate`.
 6. `returned_sample_certificate` — Produce returned-sample residuals or boundary-trapping budgets on the certified mesh. Status: `pending`. Depends on: `seed_chart_packet`, `coupled_corridor_certificate`, `monodromy_diagnostic`.
@@ -173,7 +173,8 @@ The finite audit rows are:
      $$
      T_{\mathrm{cyc}},
      $$
-     normalization, and interpolation or basis data.
+     normalization, symmetry chart, and interpolation or basis data.
+   - `certificate/causal_ledger.json`: null-coordinate pre-ledger for the self-image equation, with certified empty blocks, candidate nonempty blocks, monotone subarc splits, and separator/fold rows.
    - `certificate/branch_chart.json`: active branch list, inactive complements, signed sheet labels, origin-crossing layer labels, memory-depth ranges, and Jacobian formulas.
    - `certificate/mesh.json`: sampled certificate mesh
      $$

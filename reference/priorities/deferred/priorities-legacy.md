@@ -79,7 +79,7 @@ Scoring system:
   - first target:
     - turn the delayed seed-margin persistence lemma into a clean formal proof, including:
       - the explicit implicit-function argument for unique simple seed-side branches,
-      - the retardation estimate,
+      - the causal-delay estimate,
       - the $\varepsilon_A$ neighborhood correction,
       - the Jacobian perturbation estimate,
       - and the projected-force perturbation bound for

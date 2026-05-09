@@ -32,7 +32,7 @@ is the finite active branch list with inactive complements, and the sampled resi
 
 The guiding suspicion is:
 
-- below field speed, the active causal roots are tame and the force may reduce to a small number of effective $1/r$ potential curves;
+- below field speed, the active causal roots are tame and the force may reduce to a small number of effective $1/r$ phase-space curves, with conservative potential curves only as a certified special case;
 - at field speed, the sorting maps become marginal and the orbit passes through a metastable separator;
 - above field speed, the active branch structure changes and must be matched by explicit crossing laws rather than by one smooth formula.
 
@@ -169,18 +169,48 @@ A_p
 \frac{g(1+\beta)}{4x^2}.
 $$
 
-This is the first hint of a potential-curve description. On any branch where
+This is not, by itself, a conservative potential curve. The Jacobian factor makes the affine partner force velocity dependent, so the local model is a Lienard-type phase equation. On the bare affine partner chart,
 $$
-\beta
+\ddot x
+=
+-\frac{g}{4x^2}
+\left(1+\frac{\dot x}{c_f}\right).
 $$
-is constant or slowly varying, the partner attraction behaves like the derivative of an effective
+Writing
 $$
--\frac{\mu_p(\beta)}{x}
+v(x)=\dot x,
+\qquad
+\ddot x=v\frac{dv}{dx},
 $$
-potential, with
+gives the separable phase equation
 $$
-\mu_p(\beta)=\frac{g(1+\beta)}{4}.
+\frac{v}{1+v/c_f}\,dv
+=
+-\frac{g}{4x^2}\,dx.
 $$
+Hence the exact affine partner invariant is
+$$
+c_f v-c_f^2\ln|c_f+v|
+=
+\frac{g}{4x}+C_{\mathcal{R}}.
+$$
+This implicit phase-space curve replaces the naive energy curve on the affine partner chart. The logarithmic term also exposes a useful topology check: in the unsoftened affine partner model, reaching
+$$
+v=-c_f
+$$
+requires
+$$
+x\to0.
+$$
+Thus the inbound field-speed separator and the origin-crossing layer are tightly coupled in the bare model. The dual core scale
+$$
+\epsilon_c
+$$
+and shell width
+$$
+\eta
+$$
+soften this coincidence, but the certificate should still treat the separator and origin layer as coupled events unless interval data prove a strict separation.
 
 The exact core-mollified version replaces
 $$
@@ -190,7 +220,7 @@ by the corresponding branch distance square plus
 $$
 \epsilon_c^2.
 $$
-Thus the candidate potential curves should use
+When a conservative approximation is separately certified, the candidate potential curves should use
 $$
 R_{\epsilon_c}(r)\equiv \sqrt{r^2+\epsilon_c^2}
 $$
@@ -269,7 +299,7 @@ Therefore a perfectly affine segment has no same-side exact self root away from 
 
 This suggests a closed-form strategy:
 
-1. solve sub-field and super-field segments as effective potential-curve arcs;
+1. solve sub-field and super-field segments as certified phase-space arcs, using Lienard quadrature where the causal Jacobian remains velocity dependent;
 2. treat the field-speed separator as the event where causal images are born, die, or switch branch labels;
 3. impose matching laws at those separator events.
 
@@ -377,74 +407,63 @@ On each open region away from the separator, first fix a branch chart
 $$
 \mathcal{I}_{\mathcal{R}}
 $$
-containing the active partner and self-image data. Only after that chart is fixed may one try to replace the delayed force by an effective potential. The required condition is
+containing the active partner and self-image data. On that chart the delayed force should first be written as a phase-space law
 $$
-F_{\mathcal{R}}(x;\mathcal{I}_{\mathcal{R}})
+v\frac{dv}{dx}
 =
--\partial_x U_{\mathcal{R}}(x;\mathcal{I}_{\mathcal{R}})
+F_{\mathcal{R}}(x,v;\mathcal{I}_{\mathcal{R}}),
+\qquad
+v=\dot x,
 $$
-along the chart, with the path-history data in
+with the path-history data in
 $$
 \mathcal{I}_{\mathcal{R}}
 $$
 held fixed by the certificate.
 
-If that derivative identity is proved, the arc may be represented by an effective energy equation
+The affine partner calculation gives the model row
 $$
-\frac{1}{2}\dot x^2+U_{\mathcal{R}}(x;\mathcal{I}_{\mathcal{R}})=E_{\mathcal{R}},
-$$
-with a minimal potential-curve form
-$$
-U_{\mathcal{R}}(x;\mathcal{I}_{\mathcal{R}})
+v\frac{dv}{dx}
 =
--\frac{\mu_{p,\mathcal{R}}}{R_{\epsilon_c}(r_p(x))}
-+
-\sum_{m\in\mathcal{I}_{s,\mathcal{R}}}
-\sigma_m
-\frac{\mu_{s,m,\mathcal{R}}}{R_{\epsilon_c}(r_{s,m}(x))}.
+-\frac{g}{4x^2}\left(1+\frac{v}{c_f}\right),
 $$
-Here:
-
-- the partner term is inward and carries negative potential sign;
-- each same-side self image carries a sign
-  $$
-  \sigma_m
-  \in\{-1,+1\}
-  $$
-  depending on whether it contributes inward or outward in the signed branch convention;
-- the image distances
-  $$
-  r_p(x),
-  \qquad
-  r_{s,m}(x)
-  $$
-  are determined by the causal root equations on that branch;
-- the coefficients
-  $$
-  \mu_{p,\mathcal{R}},
-  \qquad
-  \mu_{s,m,\mathcal{R}}
-  $$
-  absorb the causal Jacobian factors.
-
-This chart ansatz becomes closed by quadrature:
+with exact implicit quadrature
 $$
-t-t_i
+c_f v-c_f^2\ln|c_f+v|
 =
-\pm
-\int_{x_i}^{x}
-\frac{d\xi}{
-\sqrt{2\left(E_{\mathcal{R}}-U_{\mathcal{R}}(\xi;\mathcal{I}_{\mathcal{R}})\right)}
-}.
+\frac{g}{4x}+C_{\mathcal{R}}.
 $$
-The field-speed separator radii are the roots of
+More generally, if the certified branch chart yields a separable Lienard row
 $$
-2\left(E_{\mathcal{R}}-U_{\mathcal{R}}(x;\mathcal{I}_{\mathcal{R}})\right)
+\frac{v}{Q_{\mathcal{R}}(v)}\,dv
 =
-c_f^2.
+P_{\mathcal{R}}(x)\,dx,
 $$
+the quadrature invariant is
+$$
+\int^v \frac{\zeta}{Q_{\mathcal{R}}(\zeta)}\,d\zeta
+-
+\int^x P_{\mathcal{R}}(\xi)\,d\xi
+=
+C_{\mathcal{R}}.
+$$
+This is the preferred closed-form object for branch charts with velocity-dependent causal Jacobians.
 
-If the delayed force on a chart is not an exact derivative of a one-variable potential, the chart can still be used for certification. In that case the arc should be represented directly by a collocation or validated ODE residual for the dual-mollified absolute-time law rather than by a conservative energy curve.
+A conservative potential is allowed only as a special certified reduction. The required condition is
+$$
+F_{\mathcal{R}}(x,v;\mathcal{I}_{\mathcal{R}})
+=
+-\partial_x U_{\mathcal{R}}(x;\mathcal{I}_{\mathcal{R}})
+$$
+with no residual
+$$
+v
+$$
+dependence after the active image data are fixed. If that identity is proved, the arc may use the energy equation
+$$
+\frac{1}{2}\dot x^2+U_{\mathcal{R}}(x;\mathcal{I}_{\mathcal{R}})=E_{\mathcal{R}}.
+$$
+Absent that proof, the chart must use the Lienard phase invariant, direct interval quadrature, or collocation residuals for the dual-mollified absolute-time law.
 
 Thus the ansatz search reduces to two questions:
 
@@ -693,6 +712,76 @@ $$
 $$
 If the denominator loses its floor, the row is not a simple affine branch; it is a separator or fold row and must be certified by the dual-mollified fold normal form rather than by the branch-sum formula.
 
+### Null-coordinate causal pre-ledger
+
+Before running interval root validation, reduce the search by a 1D Minkowski diagnostic. Use null coordinates
+$$
+u(t)=c_f t-x(t),
+\qquad
+w(t)=c_f t+x(t).
+$$
+The self-image equation
+$$
+|x(t)-x(s)|=c_f(t-s),
+\qquad
+s<t,
+$$
+splits into two exact ledgers:
+$$
+x(t)>x(s)
+\quad\Longleftrightarrow\quad
+u(t)=u(s),
+$$
+and
+$$
+x(t)<x(s)
+\quad\Longleftrightarrow\quad
+w(t)=w(s).
+$$
+Geometrically, this is just the intersection of the path with the past-directed causal cone from
+$$
+(x(t),c_f t).
+$$
+Computationally, it means that each ordered arc pair
+$$
+(I_\alpha,I_\beta)
+$$
+should be preclassified by interval ranges of
+$$
+u(I_\alpha),
+\quad
+u(I_\beta),
+\quad
+w(I_\alpha),
+\quad
+w(I_\beta).
+$$
+If the relevant null-coordinate ranges are disjoint, that block of the self-image table is empty before any root solve. If the ranges overlap on monotone subarcs, the root count is the number of interval-certified level crossings, and the sign of
+$$
+\hat r_s
+$$
+is already known from whether the
+$$
+u
+$$
+or
+$$
+w
+$$
+ledger is active.
+
+This also fixes the Jacobian sign test in a coordinate-free way:
+$$
+J_u=\frac{d u/ds}{c_f}=1-\frac{\dot x(s)}{c_f},
+\qquad
+J_w=\frac{d w/ds}{c_f}=1+\frac{\dot x(s)}{c_f}.
+$$
+The interval validator should therefore start from a causal pre-ledger with three outcomes for each block:
+
+1. null-coordinate ranges disjoint, so the block is certified empty;
+2. ranges overlap with monotone source and receiver subarcs, so the root count and sign are bounded before solving;
+3. a separator or turning interval is present, so the block must be split or sent to the fold-layer certificate.
+
 For every root branch, record
 $$
 \hat r_s=\operatorname{sgn}(x_\alpha(t)-x_\beta(s)),
@@ -745,7 +834,7 @@ $$
 $$
 with every local unsigned jump even. This is a discrete consistency test on the ansatz. A candidate branch list that fails it should be rejected before any quadrature or collocation residual is computed.
 
-If this table closes to a finite branch list with strict separation, memory-depth, and Jacobian floors, the ansatz can feed the finite certificate audit. If the self images do not close algebraically into a finite list, the next certificate generator should be a piecewise Chebyshev or cubic
+If this table closes to a finite branch list with strict separation, memory-depth, and Jacobian floors, the ansatz can feed the finite certificate audit. If the self images do not close algebraically into a finite list, the next certificate generator should be a piecewise fractionally augmented Chebyshev or cubic
 $$
 C^1
 $$
@@ -832,6 +921,43 @@ $$
 |\dot x|=c_f.
 $$
 
+## Fold-Adapted Fractional Basis
+
+Pure polynomial splines are not the preferred certificate basis near a field-speed separator. The fold normal form produces square-root source-time scaling in the simple-root reduction. In the bare fold model this gives a local hierarchy of the form
+$$
+\Delta v(\tau)\sim |\tau|^{1/2},
+\qquad
+\Delta x(\tau)\sim |\tau|^{3/2},
+\qquad
+\tau=t-t_\Sigma.
+$$
+The dual mollifiers make the actual certificate function smooth at fixed
+$$
+(\eta,\epsilon_c),
+$$
+but the unsoftened fold asymptotic remains the right shape for reducing residuals and avoiding artificial derivative ringing.
+
+Near every certified separator, use a fractionally augmented local basis
+$$
+\phi_{\mathrm{local}}(\tau)
+=
+a_0+a_1\tau+a_{3/2}|\tau|^{3/2}
++a_2\tau^2+a_{5/2}|\tau|^{5/2}+\cdots,
+$$
+optionally multiplied by a compact blending function that hands off to the ordinary polynomial or Chebyshev basis outside the fold layer. The coefficients
+$$
+a_{3/2},
+\qquad
+a_{5/2},
+\ldots
+$$
+are not aesthetic parameters; they encode the known separator singularity budget. The interval report should record which separator layers use the fractional basis, the layer radii, and the residual improvement against the velocity sample budget
+$$
+R_j^v+L_j^v r_{\mathrm{cert}}<\frac{r_{\mathrm{cert}}}{4}.
+$$
+
+Away from separators, ordinary Chebyshev, cubic, or other validated bases remain acceptable. The required standard is not polynomial purity; it is strict interval slack in the returned-history residuals and the branch-chart margins.
+
 ## What Would Count as a Successful Closed-Form Candidate
 
 A closed-form candidate is successful only as a certificate generator. It is not a separate proof route.
@@ -856,27 +982,43 @@ A candidate ansatz packet must produce:
    \mathcal{K}
    $$
    and an itinerary-keyed self-image table with root counts, signed degrees, and separator parity jumps;
-5. a certificate mesh
+5. a symmetry chart, either apocenter-even in
+   $$
+   q
+   $$
+   or origin-crossing-odd in
+   $$
+   x,
+   $$
+   together with the paired branch-label rule;
+6. a null-coordinate causal pre-ledger in
+   $$
+   u=c_f t-x,
+   \qquad
+   w=c_f t+x,
+   $$
+   marking empty, candidate nonempty, and fold-split self-image blocks before interval root solving;
+7. a certificate mesh
    $$
    \{\theta_j\}_{j=0}^{N}
    \subset[-h,0];
    $$
-6. algebraic, quadrature, Chebyshev, cubic
+8. algebraic, Lienard phase quadrature, fractionally augmented Chebyshev or cubic
    $$
    C^1,
    $$
    or other interval-validated formulas for each arc;
-7. separator impulse laws at every
+9. separator impulse laws at every
    $$
    |\dot x|=c_f
    $$
    event, including the fold normal-form constants and finite impulse bounds;
-8. a bifurcation-parameter sweep over
+10. a bifurcation-parameter sweep over
    $$
    (\eta,\epsilon_c,V_{\max})
    $$
    or a justified lower-dimensional slice, identifying the region where the itinerary is admissible, the required roots exist, inactive-root gaps are positive, and fold impulses are finite;
-9. returned-history residuals
+11. returned-history residuals
    $$
    R_j^x,
    \qquad
@@ -899,11 +1041,11 @@ and the returned-sample residuals or boundary budgets.
 
 ## First Working Guess
 
-Closed-by-quadrature is only one possible certificate generator. A two-parameter family is generally too small: the compressed skeleton has arc-junction conditions, separator impulse conditions, branch-list updates, and a returned-history residual. It is acceptable only if reflection symmetry or a certified degeneracy removes the surplus constraints.
+Closed-by-quadrature is only one possible certificate generator. A two-parameter family is generally too small unless the cycle symmetry is built into the parametrization: the compressed skeleton has arc-junction conditions, separator impulse conditions, branch-list updates, and a returned-history residual.
 
 The first analytic guess should therefore be at least a three-parameter family:
 $$
-\phi_{\mathrm{cyc}}(\theta;u_\ast,X_\ast,E_{>}),
+\phi_{\mathrm{cyc}}(\theta;u_\ast,X_\ast,C_{>}),
 $$
 where
 $$
@@ -913,31 +1055,33 @@ X_\ast=x_\ast,
 $$
 and
 $$
-E_{>}
+C_{>}
 $$
-is the energy or shape parameter for the super-field arc. It should not be identified with the sub-field energy until the separator impulse law proves the matching. In a collocation version,
+is the phase-curve or shape parameter for the super-field arc. It should not be interpreted as a conservative energy unless the fixed branch chart has separately passed the potential-reduction test. In a collocation version,
 $$
-E_{>}
+C_{>}
 $$
 is replaced by the analogous independent shape coefficient for the inner super-field segment.
 
-On a fixed branch chart, each quadrature arc is generated by a potential curve of the form
+On a fixed affine partner chart, the default quadrature arc is generated by the Lienard phase invariant
 $$
-\frac{1}{2}\dot x^2
--
-\frac{\mu_{p,\mathcal{R}}}{R_{\epsilon_c}(r_p(x))}
-+
-\frac{\mu_{s,\mathcal{R}}}{R_{\epsilon_c}(r_s(x))}
+c_f v-c_f^2\ln|c_f+v|
 =
-E_{\mathcal{R}}.
+\frac{g}{4x}+C_{\mathcal{R}},
+\qquad
+v=\dot x.
 $$
-This form is admissible only on a fixed branch chart where the delayed force has already been shown to be an exact
+When self-image terms are included, this invariant is replaced by the corresponding certified phase quadrature or by interval collocation of the dual-mollified absolute-time law. A potential curve of the form
+$$
+\frac{1}{2}\dot x^2+U_{\mathcal{R}}(x)=E_{\mathcal{R}}
+$$
+is admissible only on a fixed branch chart where the delayed force has already been shown to be an exact
 $$
 -\partial_x U_{\mathcal{R}}
 $$
 derivative along that chart.
 
-The more certificate-friendly parallel guess is a piecewise Chebyshev or cubic
+The more certificate-friendly parallel guess is a piecewise fractionally augmented Chebyshev or cubic
 $$
 C^1
 $$
@@ -947,13 +1091,33 @@ $$
 $$
 chosen by collocation against the dual-mollified absolute-time law. In that version, the active branch list and returned residuals are interval-validated directly rather than inferred from symbolic quadrature.
 
+The first reduction should impose cycle-reversal symmetry rather than leave periodicity to unrestricted shooting. One convenient phase choice places the apocenter at
+$$
+\theta=0
+$$
+and imposes the radial condition
+$$
+q(-\theta)=q(\theta),
+\qquad
+\dot q(0)=0.
+$$
+Equivalently, a signed-coordinate chart centered on an origin crossing may impose the odd sheet condition
+$$
+x(-\theta)=-x(\theta).
+$$
+The certificate must state which symmetry chart is used and how the branch labels pair under the symmetry. When the paired branch ledger and regularization preserve this cycle-reversal symmetry, the net-work integral cancels by parity:
+$$
+\oint F_{\mathrm{net}}\,dx=0.
+$$
+If the causal-delay branch data do not pair in this way, the failure appears as a returned-history residual rather than as an adjustable energy defect. This is why the symmetry constraint belongs in the ansatz, not as a post-hoc interpretation of a numerically closed orbit.
+
 The parameters
 $$
 u_\ast,
 \qquad
 X_\ast,
 \qquad
-E_{>}
+C_{>}
 $$
 are then chosen so that the returned section state satisfies
 $$
@@ -963,7 +1127,7 @@ x(T)=x_\ast,
 $$
 the outer and inner separator impulses match the adjacent arcs, and the sampled history residuals are minimized. In the intended symmetric case,
 $$
-E_{>}
+C_{>}
 $$
 is determined by separator matching from the apocenter side while
 $$
@@ -997,7 +1161,23 @@ $$
    \mathcal{K}
    $$
    and key the arc partition to that itinerary rather than assuming the compressed four-arc graph by default.
-4. Fill the itinerary-keyed self-image enumeration table for
+4. Choose the symmetry chart: apocenter-even in
+   $$
+   q
+   $$
+   or origin-crossing-odd in
+   $$
+   x,
+   $$
+   and record the paired branch-label rule.
+5. Build the null-coordinate causal pre-ledger in
+   $$
+   u=c_f t-x,
+   \qquad
+   w=c_f t+x,
+   $$
+   marking certified empty blocks, candidate nonempty blocks, and separator/fold blocks.
+6. Fill the itinerary-keyed self-image enumeration table for
    $$
    |x(t)-x(s)|=c_f(t-s)
    $$
@@ -1005,19 +1185,19 @@ $$
    $$
    (I_\alpha,I_\beta).
    $$
-5. Add the parity ledger
+7. Add the parity ledger
    $$
    \Delta N\in2\mathbb{Z},
    \qquad
    \Delta D=0
    $$
    at every generic fold and verify that the closed-cycle sums vanish.
-6. If the self-image table closes, convert it into
+8. If the self-image table closes, convert it into
    $$
    \mathcal{B}_{\mathrm{act}},
    $$
    inactive branch complements, Jacobian floors, separation margins, and memory-depth bounds.
-7. If the self-image table does not close algebraically, build a piecewise Chebyshev or cubic
+9. If the self-image table does not close algebraically, build a piecewise fractionally augmented Chebyshev or cubic
    $$
    C^1
    $$
@@ -1026,25 +1206,25 @@ $$
    \phi_{\mathrm{cyc}}
    $$
    and certify the finite active branches numerically by interval validation.
-8. Sweep
+10. Sweep
    $$
    (\eta,\epsilon_c,V_{\max})
    $$
    or a justified lower-dimensional slice to locate the itinerary-admissible parameter region before attempting the full corridor certificate.
-9. Build the first certificate packet
+11. Build the first certificate packet
    $$
    \mathfrak{C}_{\mathrm{ans}}
    $$
    and compute its returned section residuals.
-10. If the residuals have strict slack, compute the finite certificate data and test the five audit rows in [collinear-breather.md](./collinear-breather.md).
+12. If the residuals have strict slack, compute the finite certificate data and test the five audit rows in [collinear-breather.md](./collinear-breather.md).
 
 ## Provisional Assessment
 
-The ansatz is plausible because the partner force on a locally affine branch already collapses to a velocity-weighted inverse-square law. On a fixed branch chart, that is the sort of structure that can generate a natural
+The ansatz is plausible because the partner force on a locally affine branch already collapses to a velocity-weighted inverse-square law with an exact implicit phase invariant. On a fixed branch chart, that is the sort of structure that can generate a natural
 $$
 1/r
 $$
-potential curve.
+phase-space curve; a conservative potential curve is only a special certified reduction.
 
 The hard part is the same-side self-image term. If the self images collapse to a finite branch list across the field-speed separator, a closed-form or closed-by-quadrature certificate packet is credible. If they do not close algebraically, the next route is still productive: use a spline or collocation
 $$

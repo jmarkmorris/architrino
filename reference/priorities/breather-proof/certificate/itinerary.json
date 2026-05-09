@@ -112,6 +112,7 @@
   ],
   "next_required_artifacts": [
     "certificate/phi_cyc.json",
+    "certificate/causal_ledger.json",
     "certificate/branch_chart.json",
     "certificate/mesh.json",
     "certificate/seed_chart_interval_report.md"

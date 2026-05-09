@@ -67,7 +67,7 @@ The origin-layer continuity and signed-kernel handling still belong to the topol
 
 ## Conclusion
 
-The doubled four-arc generic itinerary passes the necessary velocity-class parity gate. The next ansatz step is not another itinerary choice; it is the actual self-image enumeration for
+The doubled four-arc generic itinerary passes the necessary velocity-class parity gate. The next ansatz step is not another itinerary choice; it is the null-coordinate causal ledger and then the actual self-image enumeration for
 $$
 |x(t)-x(s)|=c_f(t-s)
 $$
