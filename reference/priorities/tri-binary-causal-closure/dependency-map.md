@@ -61,7 +61,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 - Inputs: nested binary assemblies, self-hit engine, middle fulcrum, outer shield.
 - Mechanism: three mutually supporting binary layers distribute high-multiplicity internal closure, buffer phase stress, and regulate external coupling.
 - Output: the tri-binary Noether core becomes the proposed stable matter unit.
-- Proof burden: prove tri-binary universality or derive an $n$-layer generalization for assemblies that do not fit the three-layer template.
+- Proof burden: prove tri-binary universality, including why a two-layer construction cannot simultaneously isolate the self-hit engine, buffer phase stress, and present an isotropic far-field shield, or derive an $n$-layer generalization for assemblies that do not fit the three-layer template.
 - Priority route: `mass-map`, `master-equation-closure`.
 - Current disposition: `priority`.
 
@@ -77,7 +77,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 ### 6. Momentum Skew To Inertia
 
 - Inputs: moving Noether core with center-of-mass velocity $\mathbf{V}_{\text{cm}}$.
-- Mechanism: the delayed causal Jacobian skews forward and backward internal wake exchange.
+- Mechanism: the delayed causal Jacobian skews forward and backward internal wake exchange; expanding $J=J_{\text{rest}}-(\mathbf{V}_{\text{cm}}\cdot\hat{\mathbf{r}})/c_f+O(\|\mathbf{V}_{\text{cm}}\|^2)$ leaves a first-order residual after the resting symmetric loop cancels.
 - Output:
   $$
   \mathbf{p}_{\text{int}}
@@ -119,9 +119,9 @@ The deployment gate is passed only when every non-closed item in this map has a 
 ### 9. Quantum Step Selection
 
 - Inputs: inner, middle, and outer binary radii, frequencies, phase lags, inter-layer paths, and $c_{\perp}$.
-- Mechanism: simultaneous integer closure selects candidate states.
+- Mechanism: simultaneous integer closure selects candidate states, with $\ell_i$, $\ell_{ij}$, $\Omega_i$, phase lags, and $c_{\perp}$ solved as coupled branch-dependent functions rather than fixed rest quantities.
 - Output: accepted quantum states are integer-closure and stability-basin solutions.
-- Proof burden: add Floquet, Poincare-section, or Lyapunov diagnostics to distinguish stable basins from unstable integer-labeled solutions.
+- Proof burden: solve the coupled root-finding problem and add Floquet, Poincare-section, or Lyapunov diagnostics to distinguish stable basins from unstable integer-labeled solutions.
 - Priority route: `master-equation-closure`, `quantum-closure`.
 - Current disposition: `priority`.
 
@@ -160,7 +160,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 - Inputs: massive-clock transverse-budget failure at $c_{\text{eff}}$, pro/anti Noether-core orientations, and primitive wake speed $c_f$.
 - Mechanism: a photon is a planar pro/anti pair with axial pair communication rather than volumetric transverse clock closure.
 - Output: a massless measurement channel with energy, momentum, transverse polarization, and no rest proper-time clock.
-- Proof burden: recover masslessness, two physical polarizations, no longitudinal mode, no rest branch, no static charge leakage, no birefringence, and no unacceptable dispersion.
+- Proof burden: photon gate A must recover masslessness, no rest branch, no static charge leakage, no birefringence, no unacceptable dispersion, and no rest proper-time clock before the photon channel is used as an empirical measurement basis.
 - Priority route: `standard-model-closure`, `quantum-closure`, `planar-bridge-closure`.
 - Current disposition: `priority`.
 
@@ -177,16 +177,16 @@ The deployment gate is passed only when every non-closed item in this map has a 
   $$
   \omega d/(c_f-c_\gamma)=O(1)
   $$
-  on the resolved branch without violating dispersion, birefringence, photon mass, or preferred-frame bounds.
+  on the resolved branch without violating dispersion, birefringence, photon mass, or preferred-frame bounds; the first branch to test is proportional collapse or rescaling of $d$, while a strict residual catch-up margin remains a null-test branch.
 - Priority route: `planar-bridge-closure`, `standard-model-closure`.
 - Current disposition: `priority`.
 
 ### 14. Polarization And Measurement
 
 - Inputs: transverse photon ledger orientation and analyzer acceptance geometry.
-- Mechanism: coupling amplitude is a projection; pass probability is the squared overlap.
+- Mechanism: coupling amplitude is a projection through the transverse tensor $P_{\perp}=I-\hat{\mathbf{k}}\hat{\mathbf{k}}^T$; pass probability is the squared overlap.
 - Output: Malus' law and a measurement-channel account based on ledger transitions.
-- Proof burden: derive the squared-amplitude rule natively, recover Born-rule probabilities, and preserve no signaling in entangled-polarization tests.
+- Proof burden: photon gate B must derive the squared-amplitude rule from native topological ledger capture, recover Born-rule probabilities, prove helicity $\pm1$ with exactly two transverse modes and no longitudinal mode, and preserve no signaling in entangled-polarization tests.
 - Priority route: `quantum-closure`, `standard-model-closure`.
 - Current disposition: `priority`.
 
@@ -195,7 +195,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 - Inputs: photon planar-pair ontology, emission/absorption ledger transitions, and charged assembly overlaps.
 - Mechanism: effective Maxwell/QED behavior must arise as the validated limit of planar-pair interactions.
 - Output: $E=h\nu$, $p=h/\lambda$, $U(1)$-like phase behavior, Aharonov-Bohm shifts, transition rates, pair production, Compton scattering, blackbody spectra, and $\alpha$.
-- Proof burden: recover QED without extra modes, dispersion, birefringence, or wrong statistics.
+- Proof burden: photon gate C must map emission, absorption, pair production, transition rates, and $\alpha$ as allowed topological surgery between massive Noether cores and planar pro/anti pairs, while recovering QED without extra modes, dispersion, birefringence, or wrong statistics.
 - Priority route: `standard-model-closure`.
 - Current disposition: `priority`.
 
@@ -219,19 +219,21 @@ The deployment gate is passed only when every non-closed item in this map has a 
 
 ## Critical Path
 
-1. Photon/QED viability is the first empirical gate.
-2. Transverse causal budget is the reusable dynamics lemma.
-3. Momentum skew is the mass/inertia bridge.
-4. Equivalence and weak-field GR matching are the observer-level consistency gate.
-5. Topological certification is the computable invariant layer.
+1. Photon gate A, kinematics and optics: masslessness, $c_\gamma\to c_f$, finite-phase closure, and nondispersion.
+2. Photon gate B, polarization and spin: transverse projector, helicity $\pm1$, two physical modes, no longitudinal mode, and Malus/Born recovery.
+3. Photon gate C, vertices and transitions: emission, absorption, pair production, transition rates, and $\alpha$.
+4. Transverse causal budget is the reusable dynamics lemma.
+5. Momentum skew is the mass/inertia bridge.
+6. Equivalence and weak-field GR matching are the observer-level consistency gate.
+7. Topological certification is the computable invariant layer.
 
 ## Deployment Handoff Table
 
 | Open item | If unresolved at deploy | Priority route |
 | --- | --- | --- |
-| Photon masslessness and two-polarization proof | keep as roadmap and create task | `standard-model-closure` |
-| Axial delay finite-phase condition | keep as roadmap and create task | `planar-bridge-closure` |
-| QED recovery targets | keep as roadmap and create task | `standard-model-closure` |
+| Photon gate A, kinematics and optics | keep as roadmap and create task | `planar-bridge-closure`, `standard-model-closure` |
+| Photon gate B, polarization and spin | keep as roadmap and create task | `quantum-closure`, `standard-model-closure` |
+| Photon gate C, vertices and transitions | keep as roadmap and create task | `standard-model-closure`, `planar-bridge-closure` |
 | Transverse causal budget lemma | extract or create task | `master-equation-closure` |
 | Momentum skew derivation | create task | `mass-map`, `master-equation-closure` |
 | Equivalence-principle residual bound | create task | `master-equation-closure`, `strong-field-closure` |
@@ -246,5 +248,5 @@ The next pass over [tri-binary-causal-closure.md](tri-binary-causal-closure.md) 
 1. Confirm every section advances one dependency node.
 2. Move any sentence that belongs only to a proof burden into the theorem roadmap or this map.
 3. Check that every symbol introduced in a later node is already defined in an earlier node.
-4. Verify that all photon claims are separated into ontology, operational measurement, and empirical QED recovery.
-5. Verify that every unresolved deployment item appears either in the theorem roadmap or in the deployment handoff table above.
+4. Verify that all photon claims are separated into kinematics and optics, polarization and spin, and vertices and transitions.
+5. Verify that every unresolved deployment item appears either as an inline theorem-roadmap tag in the synthesis or in the deployment handoff table above.
