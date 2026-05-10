@@ -16,10 +16,6 @@
         "scenePath": "content/scenes/dynamics/binary_dynamics.json"
       },
       {
-        "nodeId": "collinear_breather",
-        "scenePath": "content/scenes/proof-programs/collinear_breather.json"
-      },
-      {
         "nodeId": "causal_action_functional",
         "scenePath": "content/scenes/dynamics/causal_action_functional.json"
       },
@@ -48,20 +44,12 @@
         "scenePath": "content/scenes/spacetime/mapping_planck_scale.json"
       },
       {
-        "nodeId": "planar_bridge_closure",
-        "scenePath": "content/scenes/proof-programs/planar_bridge_closure.json"
-      },
-      {
         "nodeId": "horizon_chirality",
         "scenePath": "content/scenes/spacetime/horizon_chirality.json"
       },
       {
         "nodeId": "master_equation_of_motion",
         "scenePath": "content/scenes/dynamics/master_equation_of_motion.json"
-      },
-      {
-        "nodeId": "master_equation_breather",
-        "scenePath": "content/scenes/proof-programs/master_equation_breather.json"
       },
       {
         "nodeId": "mode_taxonomy",
@@ -93,17 +81,6 @@
         "type": "fixed"
       },
       "labelTitle": "Binary Dynamics",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "collinear_breather",
-      "title": "1D Collinear Binary",
-      "radius": 2.688,
-      "color": "#7a5c2f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "1D Collinear Binary",
       "labelBadge": "doc"
     },
     {
@@ -184,17 +161,6 @@
       "labelBadge": "doc"
     },
     {
-      "id": "planar_bridge_closure",
-      "title": "Planar Bridge Closure",
-      "radius": 2.688,
-      "color": "#6f5a2f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Planar Bridge Closure",
-      "labelBadge": "doc"
-    },
-    {
       "id": "horizon_chirality",
       "title": "Horizon Chirality",
       "radius": 2.688,
@@ -214,17 +180,6 @@
         "type": "fixed"
       },
       "labelTitle": "Master Equation of Motion",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "master_equation_breather",
-      "title": "Master Equation Breather",
-      "radius": 2.688,
-      "color": "#5b3f7a",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Master Equation Breather",
       "labelBadge": "doc"
     },
     {

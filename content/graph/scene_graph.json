@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 429,
-      "edges": 1169,
-      "scenes": 291,
+      "nodes": 431,
+      "edges": 1174,
+      "scenes": 293,
       "markdownIndexes": 0,
       "markdownDocs": 138,
       "runtimeEdges": 476,
@@ -1892,6 +1892,18 @@
       "id": "foundations__architrino",
       "name": "Architrino",
       "path": "content/scenes/foundations/architrino.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "proof_programs__closed_form_collinear_breather_ansatz",
+      "name": "Closed-Form Collinear Breather Ansatz",
+      "path": "content/scenes/proof-programs/closed_form_collinear_breather_ansatz.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "proof_programs",
+      "name": "Proof Programs",
+      "path": "content/scenes/proof-programs/proof_programs.json",
       "nodeType": "scene"
     },
     {
@@ -4696,6 +4708,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/proof-programs/closed_form_collinear_breather_ansatz.json",
+      "nodeType": "scene",
+      "id": "proof_programs__closed_form_collinear_breather_ansatz",
+      "name": "Closed-Form Collinear Breather Ansatz",
+      "path": "content/scenes/proof-programs/closed_form_collinear_breather_ansatz.json",
+      "searchTarget": "content/scenes/proof-programs/closed_form_collinear_breather_ansatz.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/proof-programs/collinear_breather.json",
       "nodeType": "scene",
       "id": "dynamics__collinear_breather",
@@ -4720,6 +4741,15 @@
       "name": "Planar Bridge Closure",
       "path": "content/scenes/proof-programs/planar_bridge_closure.json",
       "searchTarget": "content/scenes/proof-programs/planar_bridge_closure.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/proof-programs/proof_programs.json",
+      "nodeType": "scene",
+      "id": "proof_programs",
+      "name": "Proof Programs",
+      "path": "content/scenes/proof-programs/proof_programs.json",
+      "searchTarget": "content/scenes/proof-programs/proof_programs.json",
       "implicit": false
     },
     {
@@ -9997,6 +10027,34 @@
       "field": "scene.children[0]"
     },
     {
+      "from": "scene:content/scenes/proof-programs/proof_programs.json",
+      "to": "scene:content/scenes/proof-programs/closed_form_collinear_breather_ansatz.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/proof-programs/proof_programs.json",
+      "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/proof-programs/proof_programs.json",
+      "to": "scene:content/scenes/proof-programs/collinear_breather.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/proof-programs/proof_programs.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/proof-programs/proof_programs.json",
+      "to": "scene:content/scenes/proof-programs/master_equation_breather.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/proof-programs/proof_programs.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/proof-programs/proof_programs.json",
+      "to": "scene:content/scenes/proof-programs/planar_bridge_closure.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/proof-programs/proof_programs.json",
+      "field": "scene.children[3]"
+    },
+    {
       "from": "scene:content/scenes/quantum/quantum.json",
       "to": "scene:content/scenes/quantum/bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response.json",
       "edgeType": "subscene",
@@ -11065,6 +11123,13 @@
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/unknowns_paradoxes.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/proof-programs/closed_form_collinear_breather_ansatz.json",
+      "to": "markdown_doc:content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/proof-programs/closed_form_collinear_breather_ansatz.json",
       "field": "scene.source.path"
     },
     {

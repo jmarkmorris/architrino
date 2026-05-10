@@ -1454,6 +1454,16 @@
       "id": "foundations__architrino",
       "name": "Architrino",
       "path": "content/scenes/foundations/architrino.json"
+    },
+    {
+      "id": "proof_programs__closed_form_collinear_breather_ansatz",
+      "name": "Closed-Form Collinear Breather Ansatz",
+      "path": "content/scenes/proof-programs/closed_form_collinear_breather_ansatz.json"
+    },
+    {
+      "id": "proof_programs",
+      "name": "Proof Programs",
+      "path": "content/scenes/proof-programs/proof_programs.json"
     }
   ]
 }
