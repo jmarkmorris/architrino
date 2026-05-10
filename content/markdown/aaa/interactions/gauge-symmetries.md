@@ -5,7 +5,7 @@ This chapter provides a minimal theorem-backed bridge from architrino/assembly d
 Interface chapters:
 - Electroweak emergence narrative: [gauge-structure-emergence](./gauge-structure-emergence.md)
 - Color SU(3) algebra closure: [color-charge-su3](../assemblies/fermions/color-charge-su3.md)
-- Variational substrate: [effective-lagrangian](./effective-lagrangian.md)
+- Variational substrate: [effective-lagrangian](../dynamics/effective-lagrangian.md)
 
 ## Regularized Setting
 
@@ -103,7 +103,7 @@ Required consistency conditions:
 3. **Energy-side compatibility:** gauge sector must admit open-vs-closed braid scaling laws without violating local covariance of the effective Lagrangian.
 
 Interface chapters:
-- topology and action invariants: [dynamics/causal-action-functional.md](./causal-action-functional.md)
+- topology and action invariants: [dynamics/causal-action-functional.md](../dynamics/causal-action-functional.md)
 - color structure and confinement geometry: [assemblies/fermions/color-charge-su3.md](../assemblies/fermions/color-charge-su3.md)
 - preferred-frame closure: [spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md)
 

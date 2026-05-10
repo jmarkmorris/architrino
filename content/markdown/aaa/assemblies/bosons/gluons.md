@@ -1,7 +1,7 @@
 # Gluons and the Strong Force: Geometric Origins
 
 **Scope:** Definition of color charge, gluon structure, and confinement.
-This chapter should be read together with [Quarks](../fermions/quarks.md), [Color Charge and SU(3)](../fermions/color-charge-su3.md), and [Gauge Symmetries](../../dynamics/gauge-symmetries.md).
+This chapter should be read together with [Quarks](../fermions/quarks.md), [Color Charge and SU(3)](../fermions/color-charge-su3.md), and [Gauge Symmetries](../../interactions/gauge-symmetries.md).
 
 ## The Geometric Origin of Color Charge
 

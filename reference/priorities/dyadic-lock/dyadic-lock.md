@@ -53,4 +53,4 @@ Treat [dyadic-resonance-lock.md](../../../content/markdown/aaa/dynamics/dyadic-r
 
 - [dyadic-resonance-lock](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md)
 - [binary-dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md)
-- [mode-taxonomy](../../../content/markdown/aaa/dynamics/mode-taxonomy.md)
+- [mode-taxonomy](../../../content/markdown/aaa/interactions/mode-taxonomy.md)

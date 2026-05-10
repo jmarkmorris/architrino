@@ -2099,12 +2099,6 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/dynamics/algorithmic-resonance.md",
-      "name": "Algorithmic Resonance and Shor's Algorithm",
-      "path": "content/markdown/aaa/dynamics/algorithmic-resonance.md",
-      "nodeType": "markdown_doc"
-    },
-    {
       "id": "content/markdown/aaa/dynamics/binary-dynamics.md",
       "name": "Binary Dynamics",
       "path": "content/markdown/aaa/dynamics/binary-dynamics.md",
@@ -2135,18 +2129,6 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/dynamics/gauge-structure-emergence.md",
-      "name": "Emergence of U(1)/SU(2)",
-      "path": "content/markdown/aaa/dynamics/gauge-structure-emergence.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/dynamics/gauge-symmetries.md",
-      "name": "Gauge Symmetries",
-      "path": "content/markdown/aaa/dynamics/gauge-symmetries.md",
-      "nodeType": "markdown_doc"
-    },
-    {
       "id": "content/markdown/aaa/dynamics/horizon-chirality.md",
       "name": "Horizon Chirality and Planar Spin",
       "path": "content/markdown/aaa/dynamics/horizon-chirality.md",
@@ -2162,18 +2144,6 @@
       "id": "content/markdown/aaa/dynamics/master-equation.md",
       "name": "Master Equation of Motion",
       "path": "content/markdown/aaa/dynamics/master-equation.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/dynamics/mode-taxonomy.md",
-      "name": "Mode Taxonomy",
-      "path": "content/markdown/aaa/dynamics/mode-taxonomy.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/dynamics/quantum-operator-mapping.md",
-      "name": "Quantum Operator Mapping",
-      "path": "content/markdown/aaa/dynamics/quantum-operator-mapping.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2216,6 +2186,24 @@
       "id": "content/markdown/aaa/foundations/ontology.md",
       "name": "Foundational Ontology",
       "path": "content/markdown/aaa/foundations/ontology.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+      "name": "Emergence of U(1)/SU(2)",
+      "path": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/interactions/gauge-symmetries.md",
+      "name": "Gauge Symmetries",
+      "path": "content/markdown/aaa/interactions/gauge-symmetries.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/interactions/mode-taxonomy.md",
+      "name": "Mode Taxonomy",
+      "path": "content/markdown/aaa/interactions/mode-taxonomy.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2351,6 +2339,12 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/quantum/algorithmic-resonance.md",
+      "name": "Algorithmic Resonance and Shor's Algorithm",
+      "path": "content/markdown/aaa/quantum/algorithmic-resonance.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/quantum/bell-theorem.md",
       "name": "Bell's Theorem: Traditional Derivation and Architrino Assembly Architecture Response",
       "path": "content/markdown/aaa/quantum/bell-theorem.md",
@@ -2378,6 +2372,12 @@
       "id": "content/markdown/aaa/quantum/pilot-wave-character.md",
       "name": "Pilot-Wave Character: Traditional de Broglie–Bohm Theory and Architrino Assembly Architecture",
       "path": "content/markdown/aaa/quantum/pilot-wave-character.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
+      "name": "Quantum Operator Mapping",
+      "path": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5596,15 +5596,6 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/dynamics/algorithmic-resonance.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/dynamics/algorithmic-resonance.md",
-      "name": "Algorithmic Resonance and Shor's Algorithm",
-      "path": "content/markdown/aaa/dynamics/algorithmic-resonance.md",
-      "searchTarget": "content/markdown/aaa/dynamics/algorithmic-resonance.md",
-      "implicit": false
-    },
-    {
       "nodeId": "markdown_doc:content/markdown/aaa/dynamics/binary-dynamics.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/dynamics/binary-dynamics.md",
@@ -5650,24 +5641,6 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/dynamics/gauge-structure-emergence.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/dynamics/gauge-structure-emergence.md",
-      "name": "Emergence of U(1)/SU(2)",
-      "path": "content/markdown/aaa/dynamics/gauge-structure-emergence.md",
-      "searchTarget": "content/markdown/aaa/dynamics/gauge-structure-emergence.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/dynamics/gauge-symmetries.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/dynamics/gauge-symmetries.md",
-      "name": "Gauge Symmetries",
-      "path": "content/markdown/aaa/dynamics/gauge-symmetries.md",
-      "searchTarget": "content/markdown/aaa/dynamics/gauge-symmetries.md",
-      "implicit": false
-    },
-    {
       "nodeId": "markdown_doc:content/markdown/aaa/dynamics/horizon-chirality.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/dynamics/horizon-chirality.md",
@@ -5692,24 +5665,6 @@
       "name": "Master Equation of Motion",
       "path": "content/markdown/aaa/dynamics/master-equation.md",
       "searchTarget": "content/markdown/aaa/dynamics/master-equation.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/dynamics/mode-taxonomy.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/dynamics/mode-taxonomy.md",
-      "name": "Mode Taxonomy",
-      "path": "content/markdown/aaa/dynamics/mode-taxonomy.md",
-      "searchTarget": "content/markdown/aaa/dynamics/mode-taxonomy.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/dynamics/quantum-operator-mapping.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/dynamics/quantum-operator-mapping.md",
-      "name": "Quantum Operator Mapping",
-      "path": "content/markdown/aaa/dynamics/quantum-operator-mapping.md",
-      "searchTarget": "content/markdown/aaa/dynamics/quantum-operator-mapping.md",
       "implicit": false
     },
     {
@@ -5773,6 +5728,33 @@
       "name": "Foundational Ontology",
       "path": "content/markdown/aaa/foundations/ontology.md",
       "searchTarget": "content/markdown/aaa/foundations/ontology.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/interactions/gauge-structure-emergence.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+      "name": "Emergence of U(1)/SU(2)",
+      "path": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+      "searchTarget": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/interactions/gauge-symmetries.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/interactions/gauge-symmetries.md",
+      "name": "Gauge Symmetries",
+      "path": "content/markdown/aaa/interactions/gauge-symmetries.md",
+      "searchTarget": "content/markdown/aaa/interactions/gauge-symmetries.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/interactions/mode-taxonomy.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/interactions/mode-taxonomy.md",
+      "name": "Mode Taxonomy",
+      "path": "content/markdown/aaa/interactions/mode-taxonomy.md",
+      "searchTarget": "content/markdown/aaa/interactions/mode-taxonomy.md",
       "implicit": false
     },
     {
@@ -5974,6 +5956,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/quantum/algorithmic-resonance.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/quantum/algorithmic-resonance.md",
+      "name": "Algorithmic Resonance and Shor's Algorithm",
+      "path": "content/markdown/aaa/quantum/algorithmic-resonance.md",
+      "searchTarget": "content/markdown/aaa/quantum/algorithmic-resonance.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/quantum/bell-theorem.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/quantum/bell-theorem.md",
@@ -6016,6 +6007,15 @@
       "name": "Pilot-Wave Character: Traditional de Broglie–Bohm Theory and Architrino Assembly Architecture",
       "path": "content/markdown/aaa/quantum/pilot-wave-character.md",
       "searchTarget": "content/markdown/aaa/quantum/pilot-wave-character.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/quantum/quantum-operator-mapping.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
+      "name": "Quantum Operator Mapping",
+      "path": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
+      "searchTarget": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
       "implicit": false
     },
     {
@@ -10696,14 +10696,14 @@
     },
     {
       "from": "scene:content/scenes/dynamics/emergence_of_u_1_su_2.json",
-      "to": "markdown_doc:content/markdown/aaa/dynamics/gauge-structure-emergence.md",
+      "to": "markdown_doc:content/markdown/aaa/interactions/gauge-structure-emergence.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/dynamics/emergence_of_u_1_su_2.json",
       "field": "scene.source.path"
     },
     {
       "from": "scene:content/scenes/dynamics/gauge_symmetries.json",
-      "to": "markdown_doc:content/markdown/aaa/dynamics/gauge-symmetries.md",
+      "to": "markdown_doc:content/markdown/aaa/interactions/gauge-symmetries.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/dynamics/gauge_symmetries.json",
       "field": "scene.source.path"
@@ -10745,7 +10745,7 @@
     },
     {
       "from": "scene:content/scenes/dynamics/mode_taxonomy.json",
-      "to": "markdown_doc:content/markdown/aaa/dynamics/mode-taxonomy.md",
+      "to": "markdown_doc:content/markdown/aaa/interactions/mode-taxonomy.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/dynamics/mode_taxonomy.json",
       "field": "scene.source.path"

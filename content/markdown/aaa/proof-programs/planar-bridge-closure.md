@@ -198,7 +198,7 @@ This chapter is the top bottleneck because it is upstream of several attractive 
 
 - It is upstream of the terminal aligned-mode story in [Mapping the Planck Scale to the Tri-Binary Geometry](../dynamics/mapping-Planck-scale.md).
 - It is upstream of the planar-lock and branch-selection story in [Horizon Chirality and Planar Spin](../dynamics/horizon-chirality.md).
-- It is upstream of any reliable effective reduction in [Effective Lagrangian](../dynamics/effective-lagrangian.md) and [Gauge Symmetries](../dynamics/gauge-symmetries.md).
+- It is upstream of any reliable effective reduction in [Effective Lagrangian](../dynamics/effective-lagrangian.md) and [Gauge Symmetries](../interactions/gauge-symmetries.md).
 
 If planar bridge closure fails, those higher-level chapters must become more conditional. If it succeeds, they gain a much firmer substrate basis.
 

@@ -112,7 +112,7 @@ In the Standard Model, mass arises via the **Higgs Mechanism**: particles acquir
 
 In the architrino framework, the Higgs-sector comparison is an effective matching problem, not yet a derived replacement. The working expectation is that Standard Model mass parameters and Yukawa couplings would be reinterpreted as effective summaries of assembly geometry, shielding, and Noether-Sea response. The 125 GeV Higgs mode may eventually be modeled as a collective excitation of this medium, but that identification is a theorem target, not an established result.
 
-For the electroweak medium interpretation behind this replacement, see [Emergence of U(1)/SU(2)](../dynamics/gauge-structure-emergence.md).
+For the electroweak medium interpretation behind this replacement, see [Emergence of U(1)/SU(2)](../interactions/gauge-structure-emergence.md).
 
 ## Speculative Charged-Lepton Benchmark: Koide
 

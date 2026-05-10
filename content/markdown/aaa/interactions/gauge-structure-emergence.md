@@ -137,7 +137,7 @@ $$
 $$
 where $R_L$ is the outer-binary scale.
 
-For the formal closure layer beneath this working map, see [Gauge Symmetries](./gauge-symmetries.md) and [Effective Lagrangian](./effective-lagrangian.md).
+For the formal closure layer beneath this working map, see [Gauge Symmetries](./gauge-symmetries.md) and [Effective Lagrangian](../dynamics/effective-lagrangian.md).
 
 ### Parameter Dictionary (Substrate -> Electroweak)
 

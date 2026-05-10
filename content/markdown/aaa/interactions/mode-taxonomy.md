@@ -246,6 +246,6 @@ If these are not maintained, standard QED/SM transport language is authoritative
 ## Related Chapters
 
 - [Gauge Structure Emergence](gauge-structure-emergence.md)
-- [Effective Lagrangian](effective-lagrangian.md)
+- [Effective Lagrangian](../dynamics/effective-lagrangian.md)
 - [Bremsstrahlung](../reactions/bremsstrahlung.md)
 - [Synchrotron](../reactions/synchrotron.md)

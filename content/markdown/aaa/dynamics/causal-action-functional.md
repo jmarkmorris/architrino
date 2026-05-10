@@ -401,7 +401,7 @@ Combined with causal-locus class constraints, this gives a quantitative separati
 
 - causal-locus topology and bifurcation class invariants: **this chapter**
 - color-algebra and singlet braid structure: [assemblies/fermions/color-charge-su3.md](../assemblies/fermions/color-charge-su3.md)
-- gauge-covariant effective layer and failure criteria: [dynamics/gauge-symmetries.md](./gauge-symmetries.md)
+- gauge-covariant effective layer and failure criteria: [interactions/gauge-symmetries.md](../interactions/gauge-symmetries.md)
 
 ## Summary and Status
 - We defined a causal self-action and total-action functional directly from the Jacobian-weighted inverse-square delayed kernel, plus its normalized form for periodic orbits.
