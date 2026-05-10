@@ -19,7 +19,35 @@
 
 This is the parameter-closure and first mass-formula bucket. Treat [parameter-ledger.md](../../../content/markdown/aaa/validation/parameter-ledger.md) as bookkeeping only. The live target is one reusable derived mass map.
 
-This workstream is the organizer for mass-side integration. It should decide what belongs in canonical AAA prose, what remains an active theorem target, and what must be routed to other priority workstreams before any stronger mass claim is deployed.
+This workstream is the organizer for mass-side integration. It should decide what belongs in canonical $\mathbb{A}\mathbb{A}\mathbb{A}$ prose, what remains an active theorem target, and what must be routed to other priority workstreams before any stronger mass claim is deployed.
+
+## Mass Translation Doctrine
+
+Preserve `mass` as the standard observer-facing scalar. The $\mathbb{A}\mathbb{A}\mathbb{A}$ task is not to replace the word with a new term, but to derive the mechanism behind it from Noether-core geometry, shielding, and Noether-Sea response.
+
+- Individual architrinos do not carry primitive particle-specific mass.
+- Stable assemblies may carry effective mass because their trapped Noether-core energy ledger has an externally exposed response.
+- The internal ledger itself should be called $E_{\text{internal}}(A)$, not mass. Mass is the observer-level scalar extracted from how the shielded ledger responds to acceleration, momentum transfer, and Noether-Sea gradients.
+- The rest-energy and energy-momentum relations are retained as effective closure laws to be recovered:
+
+$$
+E_{\text{rest}}(A)=m(A)c_{\text{eff}}^2,
+$$
+
+$$
+E^2=p^2c_{\text{eff}}^2+m(A)^2c_{\text{eff}}^4.
+$$
+
+- The working derivation target is therefore
+
+$$
+m(A)c_{\text{eff}}^2\sim\zeta(A)E_{\text{internal}}(A),
+$$
+
+Here $\zeta(A)$ is the shielding or exposure coefficient and $c_{\text{eff}}$ is the local observer-facing light-speed scale set by the Noether-Sea state.
+
+- Stronger mass claims must declare which role is meant: rest mass, inertial response, gravitational response, external mass footprint, effective boson mass scale, neutral-assembly mass, or internal energy ledger.
+- Avoid treating Noether-Sea response as ordinary dissipative drag unless dissipation is actually being modeled. The preferred derivation language is medium-dressed inertial response.
 
 ## Source-of-Truth Map
 
@@ -53,7 +81,7 @@ This workstream is the organizer for mass-side integration. It should decide wha
 - Compute one robust tri-binary attractor family with radii, frequencies, branch data, and Floquet stability gap.
 - Extract $\zeta(A)$ from far-field wake cancellation and shielding geometry.
 - Produce a baseline electron-mass prediction and at least one hierarchy check, such as $m_\mu/m_e$.
-- Decide whether Noether-Sea drag remains a separate additive mass contribution, or whether it should be absorbed into the same medium-dressed response tensor used by the causal-closure synthesis.
+- Decide whether Noether-Sea response remains a separate additive mass contribution, or whether it should be absorbed into the same medium-dressed response tensor used by the causal-closure synthesis.
 
 ## Program Notes
 
