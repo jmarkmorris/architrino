@@ -66,12 +66,21 @@ The deployment gate is passed only when every non-closed item in this map has a 
 - Priority route: `breather-proof` certificate branch charts.
 - Current disposition: `priority`.
 
+### 3b. Grazing Bifurcation Classification
+
+- Inputs: separator function $h(\mathbf{x},\dot{\mathbf{x}}) = \|\dot{\mathbf{x}}\|^2 - c_f^2$, smooth pre-separator trajectory, and second-order causal Jacobian.
+- Mechanism: causal-cone tangency at $h=0$ produces a non-smooth grazing bifurcation; post-separator deviation scales as $\sqrt{t-t_*}$ along the eigenvector of the newly active self-hit root.
+- Output: classification of the separator as a square-root grazing event with predicted period-adding cascade signatures and a thin-strip Lyapunov-exponent profile on the self-hit side.
+- Proof burden: derive the normal form; verify square-root scaling and period-adding cascades in simulation; connect $\Delta N\in 2\mathbb{Z}$ to fold-pair adding events in the cascade.
+- Priority route: `breather-proof`, `simulations`.
+- Current disposition: `priority`.
+
 ### 4. Noether Core Architecture
 
 - Inputs: nested binary assemblies, self-hit engine, middle fulcrum, outer shield.
 - Mechanism: three mutually supporting binary layers distribute high-multiplicity internal closure, buffer phase stress, and regulate external coupling.
 - Output: the tri-binary Noether core becomes the proposed stable matter unit.
-- Proof burden: prove tri-binary universality, including why a two-layer construction cannot simultaneously isolate the self-hit engine, buffer phase stress, and present an isotropic far-field shield, or derive an $n$-layer generalization for assemblies that do not fit the three-layer template.
+- Proof burden: prove tri-binary universality via slow-fast decomposition. Show that under simultaneous kinematic stress $\beta>0$ and Noether-Sea gradient stress $G>0$, the stable slow manifold of an $n$-layer nested assembly persists for $n\ge 3$ and loses normal hyperbolicity for $n\le 2$ on a codimension-one set in $(\beta,G)$. Equivalently, derive the corresponding $n$-layer closure law with explicit role-counting in the slow-fast decomposition.
 - Priority route: `mass-map`, `master-equation-closure`.
 - Current disposition: `priority`.
 
@@ -135,6 +144,15 @@ The deployment gate is passed only when every non-closed item in this map has a 
 - Output: accepted quantum states are integer-closure and stability-basin solutions.
 - Proof burden: solve the coupled root-finding problem, identify the integer winding numbers as topological data, and add Floquet, Poincare-section, or Lyapunov diagnostics to distinguish stable basins from unstable integer-labeled solutions.
 - Priority route: `master-equation-closure`, `quantum-closure`.
+- Current disposition: `priority`.
+
+### 9b. Floquet Stability Functional
+
+- Inputs: candidate accepted state $\mathcal{S}_{\mathbf{k}}$ from Node 9, closed-cycle period $T_{\mathbf{k}}$, and linearized delay-differential operator around the periodic orbit.
+- Mechanism: monodromy operator $\mathcal{M}_{\mathbf{k}}$ on the tangent bundle of delay state space; spectral radius off the symmetry directions controls basin robustness.
+- Output: spectral gap $\Delta_{\mathbf{k}} = 1 - \max_{i\notin G}\|\mu_i(\mathbf{k})\|$ as the quantitative basin-robustness functional; accepted states are those with $\Delta_{\mathbf{k}}>0$.
+- Proof burden: establish discreteness of the Floquet spectrum off the unit circle for state-dependent self-hit delays; compute leading multipliers for representative tri-binary cycles; verify that the spectral gap closes precisely at the transverse-budget separator $\beta\to 1$ and at gradient-driven structural failure thresholds.
+- Priority route: `master-equation-closure`, `quantum-closure`, `simulations`.
 - Current disposition: `priority`.
 
 ### 10. Effective Lorentz Map
@@ -235,13 +253,16 @@ The deployment gate is passed only when every non-closed item in this map has a 
 
 ## Critical Path
 
-1. Photon gate A, kinematics and optics: masslessness, $c_\gamma\to c_f$, proportional-collapse finite-phase closure, and nondispersion.
-2. Photon gate B, polarization and spin: transverse projector, helicity $\pm1$, two physical modes, no longitudinal mode, and Malus/Born recovery.
-3. Photon gate C, vertices and transitions: emission, absorption, pair production, transition rates, and $\alpha$.
-4. Transverse causal budget is the reusable dynamics lemma.
-5. Momentum skew is the mass/inertia bridge.
-6. Equivalence and weak-field GR matching are the observer-level consistency gate.
-7. Topological certification is the computable invariant layer.
+1. Floquet stability functional for tri-binary integer-closure states, with basin-robustness gap $\Delta_{\mathbf{k}}$.
+2. Grazing-bifurcation classification of the separator, with square-root scaling and period-adding diagnostics.
+3. Photon gate A, kinematics and optics, with proportional-collapse selection theorem.
+4. Photon gate B, polarization and spin.
+5. Photon gate C, vertices and transitions.
+6. Transverse causal budget lemma with Floquet-gap closure at $\beta\to 1$.
+7. Slow-fast tri-binary universality theorem.
+8. Momentum skew with Noether-Sea dressing tensor.
+9. Equivalence and weak-field GR matching.
+10. Topological certification.
 
 ## Deployment Handoff Table
 

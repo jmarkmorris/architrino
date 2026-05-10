@@ -171,6 +171,23 @@ Quantization here is emergent: only delay-locked, stable closures persist as dis
 - **Prediction:** As alignment strengthens, $\theta_{ij}$ and $\theta_{\text{cone}}$ should decrease monotonically; the rotation test should transition from $4\pi$ to $2\pi$ return.
 As alignment increases and planes coincide, the remaining degree of freedom is a single in-plane phase (U(1)-like), consistent with a boson-like terminal configuration.
 
+### Floquet and Grazing Diagnostics
+
+Two nonlinear-dynamics diagnostics extend the standard alignment invariants and connect this chapter to the active-development causal-closure synthesis.
+
+**Floquet basin-robustness gap:** For a periodic tri-binary state $\mathcal{S}_{\mathbf{k}}$ with integer winding $\mathbf{k}$ and period $T_{\mathbf{k}}$, linearize the delay system around the periodic orbit and compute the leading Floquet multipliers $\{\mu_i\}$ off the symmetry directions. Define
+$$
+\Delta_{\mathbf{k}} = 1 - \max_{i\notin G}\|\mu_i(\mathbf{k})\|.
+$$
+Track $\Delta_{\mathbf{k}}$ along scans in $\beta = v_{\text{trans}}/c_f$ and $G_{\text{grad}}$. Stable rungs have $\Delta_{\mathbf{k}}>0$; rung termination, separator clock-freeze, and gradient-driven failure should all coincide with $\Delta_{\mathbf{k}}\to 0^+$.
+
+**Grazing-bifurcation diagnostics at the separator:** Near $\|\mathbf{v}\|=c_f$, the post-crossing trajectory deviation is predicted to scale as $\sqrt{t-t_*}$ along the eigenvector of the newly activated self-hit root. Two simulation tests follow:
+
+- log-log fit of phase-deviation versus time-since-crossing, expected to yield slope $1/2$;
+- parameter sweep across the separator looking for a period-adding cascade in the integer ledger, with each adding event respecting $\Delta N\in 2\mathbb{Z}$.
+
+These diagnostics belong here as observational quantities for the dynamics chapter; their proof burdens, including Floquet-spectrum discreteness for state-dependent self-hit delays and grazing-normal-form derivation, are routed to the causal-closure workstream.
+
 ---
 
 ## Observables and Diagnostics (Summary)

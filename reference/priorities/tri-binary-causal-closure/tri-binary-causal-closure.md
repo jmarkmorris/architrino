@@ -127,6 +127,16 @@ The important point is not that the force law becomes discontinuous. The energy 
 
 The separator branch chart must therefore carry both the smooth force matching and the integer root-ledger updates. [→ Target 2](#theorem-roadmap) [→ Target 10](#theorem-roadmap)
 
+The separator can be classified more sharply using non-smooth dynamics. With the separator function $h(\mathbf{x},\dot{\mathbf{x}}) = \|\dot{\mathbf{x}}\|^2-c_f^2$, a trajectory grazing the separator at $t=t_*$ admits the local normal form
+$$
+h(t) = \alpha(t-t_*)^2 + O((t-t_*)^3),
+$$
+with $\alpha$ fixed by the second-order causal Jacobian. The post-separator trajectory deviates from the smooth-extension trajectory by
+$$
+\delta\boldsymbol{\xi}(t) \sim \Theta(t-t_*)\sqrt{t-t_*}\,\mathbf{e}_{\text{self}},
+$$
+where $\mathbf{e}_{\text{self}}$ is the eigendirection of the newly activated self-hit root. This identifies the separator as a square-root grazing bifurcation in the delay-differential system. The predicted signatures are square-root scaling of post-separator phase deviation, period-adding cascades in parameter sweeps across the separator with the even-jump rule $\Delta N\in 2\mathbb{Z}$ realized as fold-pair adding events, and a thin-strip Lyapunov-exponent profile on the self-hit side that decays as one moves deeper into the regime. [→ Target 2](#theorem-roadmap)
+
 ## Super-Field Multiplicity as Trapped Geometric History
 
 When an assembly enters the self-hit regime, it does more than receive a larger ordinary force. It folds multiple layers of its own causal wake, and the partner's causal wake, into a localized region. The resulting active ledger contains the usual partner hit plus additional partner channels and self-hit channels. In the notation of the source discussion, the relevant multiplicities are $N$ self-hits and $M-1$ additional partner-hits beyond the base partner interaction.
@@ -138,6 +148,8 @@ In the extreme super-field-speed case, the internal component speeds may satisfy
 In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, the fundamental bound state is the Noether core: a tri-binary assembly consisting of three nested binary pairs. At rest, this architecture stabilizes into nested, phase-locked circular or near-circular orbits arranged in mutually orthogonal orbital planes. The inner binary operates deep in the self-hit regime and acts as the high-multiplicity engine; the middle binary acts as the resonant fulcrum; and the outer binary interfaces with the sub-field-speed environment. The orthogonal three-layer organization minimizes inter-layer interference, produces an isotropic shielding profile, and supplies the core scaffold that gives electron and positron assemblies their stability and well-defined rest mass. [→ Target 25](#theorem-roadmap)
 
 The tri-binary assumption is therefore structural, not decorative. Three layers supply the minimum roles needed by this synthesis: an inner self-hit engine, a middle phase-buffer or fulcrum, and an outer shielding/interface layer. A two-layer construction can pair an engine with an interface, or an engine with a buffer, but it cannot at the same time isolate high-multiplicity self-hit activity, preserve a phase-relay layer, and present an isotropic far-field coupling surface. In that sense, three is the proposed minimum role count for stable matter rather than a numerological preference. The present document assumes that stable bound matter assemblies are Noether cores or are built from Noether-core units. If later branch work requires single-binary, four-layer, or mixed assemblies, the mass and time claims must be generalized from a tri-binary closure law to an $n$-layer closure law; the spirit of $m\sim \zeta E_{\text{internal}}/c_{\text{eff}}^2$ may survive, but the transverse-budget equations would no longer be universal in their present three-layer form. [→ Target 25](#theorem-roadmap)
+
+The structural minimality argument can be promoted to a slow-fast statement. Decompose the tri-binary by characteristic period, $\tau_I\ll\tau_M\ll\tau_O$, and apply the Fenichel reduction target for non-Markovian slow-fast systems. Under simultaneous kinematic stress $\beta>0$ and Noether-Sea gradient stress $G>0$, the stable slow manifold of an $n$-layer nested assembly is conjectured to persist with normal hyperbolicity for $n\ge 3$ and to degenerate on a codimension-one set in $(\beta,G)$ for $n\le 2$. The mechanism is role-counting: one scale must carry the active self-hit memory, one must absorb commensurability mismatches between that memory and external stress, and one must regulate boundary coupling at the rate of external probes. A two-scale system can absorb either kinematic or gradient stress in isolation, but combined stress drives its slow manifold into a fold catastrophe. This converts the proposed minimum role count from a structural assertion into a structural-stability target. [→ Target 25](#theorem-roadmap) [→ Target 28](#theorem-roadmap)
 
 The shielding factor enters at this point mechanically. The outer binary is not only a passive shell; it is the interface layer that geometrically intercepts, redirects, and cancels part of the inner engine's wake signature before that signature reaches the far field. The middle fulcrum buffers the phase relation between the inner self-hit engine and the outer interface, so the exterior sees a leaked residual of the internal ledger rather than the raw internal storm. Thus $\zeta(A)$ is not a detector-efficiency parameter added after the fact. It records how much of assembly $A$'s trapped geometric history survives the tri-binary shielding geometry and couples to external probes. [→ Target 3](#theorem-roadmap)
 
@@ -628,6 +640,16 @@ with corresponding inter-layer equations for $\ell_{ij}(\beta)$ and $\Delta\Phi_
 
 This gives a direct route from the geometric picture to solvable equations. Solve the transverse causal budget, inner/middle/outer binary closures, and inter-layer exchange closures as one coupled system. The candidate quantum states are the simultaneous integer solutions. Integer closure is necessary but not sufficient: an accepted state must also be a stable basin of attraction under perturbation. The theorem program therefore needs a stability diagnostic, for example Floquet multipliers for the closed cycle, a Poincare-section return map, or a Lyapunov-type condition showing that nearby phase errors decay rather than grow. As $\|\mathbf{V}_{\text{cm}}\|\to c_{\text{eff}}$, $c_{\perp}\to0$, so the crossing times diverge for any nonzero internal separation. The only remaining limiting geometry is the degenerate axial alignment already identified with clock freeze and structural failure.
 
+The stability diagnostic can be made concrete. Let $\mathcal{S}_{\mathbf{k}}$ denote a candidate accepted state with integer winding $\mathbf{k}=(k_I,k_M,k_O,\{q_{ij}\})$ and closed-cycle period $T_{\mathbf{k}}$. Linearizing the delay system around the periodic orbit $\boldsymbol{\xi}_{\mathbf{k}}(t)$ yields a monodromy operator $\mathcal{M}_{\mathbf{k}}$ on the tangent bundle of delay state space. A candidate is dynamically accepted if and only if
+$$
+\rho(\mathcal{M}_{\mathbf{k}}) \le 1,
+$$
+with equality permitted only on the directions associated with continuous symmetries of the substrate action: substrate-time translation, spatial translation, and isotropy. The quantitative basin-robustness functional is the spectral gap
+$$
+\Delta_{\mathbf{k}} \equiv 1 - \max_{i\notin G}\|\mu_i(\mathbf{k})\|,
+$$
+where $\{\mu_i\}$ are the Floquet multipliers and $G$ is the symmetry subspace. Accepted states have $\Delta_{\mathbf{k}}>0$; the basin is more robust as $\Delta_{\mathbf{k}}$ grows. The transverse-budget separator $\beta\to 1$ and the gradient-driven structural-failure threshold are the loci on which $\Delta_{\mathbf{k}}\to 0^+$, providing a single quantitative criterion that unifies sub-field-speed clock breakdown, horizon-interface failure, and ledger-jump events. [→ Target 12](#theorem-roadmap) [→ Target 27](#theorem-roadmap)
+
 Because the same transverse-budget lemma controls time dilation, length contraction, quantum-step admissibility, photon/rest-frame separation, and structural failure, it should eventually be promoted into a standalone dynamics derivation rather than remaining only a subsection of this synthesis. [→ Target 11](#theorem-roadmap)
 
 ### Event Horizon Limit as Macroscopic Structural Failure
@@ -895,6 +917,16 @@ This also identifies a nontrivial vacuum-limit problem. In the idealized limit $
 
 For the present topological-certification program, proportional collapse is the favored first branch to test. The strict residual catch-up-margin branch remains an explicit null-test branch: even deep free space would retain a tiny effective refractive separation between $c_\gamma$ and $c_f$, and that is viable only if it produces no measurable preferred-frame anisotropy or frequency dispersion. [→ Target 18](#theorem-roadmap) [→ Target 19](#theorem-roadmap) [→ Target 26](#theorem-roadmap)
 
+The selection of the proportional-collapse branch over fixed-$d$ alternatives can be argued dynamically. Treating the planar-pair separation $d$ as a slow variable governed by the residual of the fast transverse-phase closure, define the photon-pair effective potential
+$$
+\mathcal{U}_\gamma(d;\omega,\delta_\gamma) = \frac{1}{2}\left[\frac{\omega d}{c_f-c_\gamma} - 2\pi k\right]^2 + \mathcal{V}_{\text{coupling}}(d),
+$$
+with $\mathcal{V}_{\text{coupling}}$ the pro/anti coupling potential, monotonically increasing in $d$ on the relevant branch. The attractor condition $\partial_d\mathcal{U}_\gamma=0$ gives
+$$
+d^*(\omega,\delta_\gamma) = \frac{c_f-c_\gamma}{\omega}\left[2\pi k - \frac{(c_f-c_\gamma)}{\omega}\mathcal{V}_{\text{coupling}}'(d^*)\right].
+$$
+In the vacuum limit $\delta_\gamma\to 0^+$, the leading term recovers $d^*\sim \Lambda_\gamma(c_f-c_\gamma)/\omega$ with $\Lambda_\gamma=2\pi k$. The fixed-$d$ branch corresponds to singular $\partial_d\mathcal{V}_{\text{coupling}}$ and is therefore non-generic. Proportional collapse is the generic attractor; fixed-$d$ is a measure-zero alternative. [→ Target 18](#theorem-roadmap)
+
 One possible interpretation is that the divergence is not a defect but a stability feature. In a near-ideal vacuum, the trailing core may asymptotically chase the leading core with its catch-up update stretched beyond any local interaction time, suppressing spontaneous internal recoupling or decay. When the photon enters a medium, analyzer, detector, or strong field, the effective $c_\gamma$ and the capture geometry change, and the delayed ledger can become operationally available again. This remains a theorem target, not an established result: the delayed equations must decide whether vacuum divergence stabilizes the photon channel, forces longitudinal collapse of $d$, or changes the closure class.
 
 Because this is a translating pair rather than a stationary cavity, the primary closure condition should be phrased as a relative phase relation between the leading and trailing planar cores. With the sign convention above, $d>0$ places the leading core ahead of the trailing core and the catch-up branch exists only for $c_\gamma<c_f$. A schematic propagating-mode closure is therefore
@@ -1074,6 +1106,8 @@ The following tasks define the theorem roadmap for the chapter. Each item names 
 24. Clarify the precise relationship between the Noether-Sea reinterpretation and the historical Dirac-sea/effective-QFT formalism, preserving empirical successes while relocating ontology.
 25. Prove or generalize the tri-binary universality assumption: show why stable bound matter requires the inner-engine, middle-fulcrum, and outer-shield layer roles, or derive the corresponding $n$-layer closure law for assemblies that do not fit the Noether-core template.
 26. Build the topological certification layer: closure graphs $G_A$, braid/framing data, causal-loop holonomies, phase winding numbers, root-ledger intersection numbers, allowed surgery moves for emission, absorption, annihilation, decay, and photon planarization, and transverse-rank collapse diagnostics at the separator.
+27. Establish the discreteness of the Floquet spectrum off the unit circle for delay-differential systems with state-dependent self-hit retardation, and compute leading multipliers for representative tri-binary periodic orbits. Show that the spectral gap $\Delta_{\mathbf{k}}$ closes precisely at the transverse-budget separator $\beta\to 1$ and at gradient-driven structural-failure thresholds, supplying a unified basin-robustness functional for accepted quantum steps.
+28. Derive the slow-fast minimality theorem for the tri-binary: under combined kinematic and gradient stress, the stable slow manifold of an $n$-layer nested assembly persists for $n\ge 3$ and loses normal hyperbolicity for $n\le 2$ on a codimension-one set in $(\beta,G)$ space. Equivalently, supply the corresponding $n$-layer closure law via explicit role-counting.
 
 The synthesis-level claim is therefore clear: rest mass, proper time, photon propagation, relativistic kinematics, and horizon behavior may emerge from super-field-speed causal-root bookkeeping. The theorem-level version still requires branch-certified derivations, shielding extraction, photon-channel closure, time-cycle closure, and energy-conservation closure.
 
@@ -1086,6 +1120,7 @@ The photon channel is now the critical path, because it carries the operational 
 3. Cos, General Relativist and Cosmologist: verify local-versus-coordinate speed language, weak-field clock maps, equivalence-principle matching, horizon wording, gravitational-wave speed compatibility, and exterior GR recovery.
 4. Red, Red-Team Reviewer: attack photon gate B and the empirical null tests: preferred-frame leakage, photon dispersion, photon mass, birefringence, residual longitudinal modes, squared-amplitude/Born-rule failure, equivalence-principle composition dependence, and no-signaling constraints.
 5. Sol, Simulation Reviewer: build the minimal axial photon-pair closure simulation with parameters $(d,\nu,c_f,c_\gamma,\phi_{\text{geom}})$, including the proportional-collapse branch $d(\omega,\delta_\gamma)$, plus null-test diagnostics for dispersion, birefringence, rest-frame leakage, and longitudinal-mode leakage, then implement closure graphs, braid/framing observables, holonomy winding, root-ledger counts, and transverse-rank collapse diagnostics.
+6. Henri, Nonlinear Dynamics Reviewer: own the Floquet stability functional, the grazing-bifurcation classification of the separator, and the slow-fast tri-binary minimality theorem. Verify that the basin-robustness gap $\Delta_{\mathbf{k}}$ is a unified diagnostic across clock-freeze, structural failure, and ledger jumps; supply numerical Floquet multipliers for the simplest super-field-speed binary as the discreteness test for state-dependent delays.
 
 ## Appendix: Plain-Language Bridge to Relativity
 
