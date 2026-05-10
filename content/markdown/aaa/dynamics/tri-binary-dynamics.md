@@ -8,7 +8,131 @@ It should be read together with [Binary Dynamics](binary-dynamics.md), [Dyadic R
 
 This chapter owns the dynamics baseline: the Noether-core roles, speed-regime conventions, delay-envelope geometry, gradient response, local clock diagnostics, and stability tests that define the tri-binary mechanism. It does not try to close the full rest-mass, proper-time, photon, or relativistic-limit proof program.
 
-The active-development proof synthesis lives outside the deployed AAA chapter. That workstream uses the mechanism defined here as an input and carries the theorem burdens, deployment handoff tags, and unresolved priority routes.
+The stronger causal-closure program uses the mechanism defined here as an input. In this chapter, those stronger claims are included only where they clarify the dynamics baseline, and they are marked as reconstruction targets rather than completed theorems.
+
+## Publication Status and Claim Scope
+
+This chapter is publishable as a canonical dynamics baseline. It is not a completed derivation of rest mass, photon behavior, or general relativity from first principles. Its claims are organized into three classes:
+
+| Class | Treatment in this chapter |
+| --- | --- |
+| Dynamics baseline | Noether-core roles, speed-regime conventions, delay-envelope geometry, spiral-helical motion, clock diagnostics, and stability tests. |
+| Reconstruction target | Mass response, proper time, observer-level metric data, photon-channel behavior, and weak-field matching as quantities to be derived from the dynamics. |
+| Open proof burden | Shielding extraction, momentum-skew derivation, Floquet stability, photon closure, equivalence-principle residual bounds, and ADM/Cartan closure. |
+
+The chapter should therefore be read as the stable dynamics layer beneath the causal-closure program. It preserves the mechanism and the diagnostic quantities while leaving the full theorem burden explicit.
+
+## Substrate and Effective Levels
+
+Tri-binary dynamics uses four levels of description:
+
+| Level | Meaning |
+| --- | --- |
+| Substrate ontology | Euclidean void, absolute substrate time $t$, architrinos, causal wakes, and causal-root branch structure. |
+| Assembly dynamics | Noether cores, three coupled binary layers, self-hit multiplicity, shielding, phase closure, and root-ledger transitions. |
+| Effective physics | Rest mass, proper time, photon propagation, Lorentz kinematics, geodesics, and horizon behavior as reconstructed by assembly-built observers. |
+| Theorem roadmap | Mathematical closures that remain to be derived before the effective claims can be treated as proved. |
+
+The distinction matters because the Euclidean void is not being curved at the substrate level. Curvature, geodesic motion, lapse, and horizon language enter as observer-level bookkeeping reconstructed from Noether-Sea state variables and assembly response.
+
+## Speed Hierarchy
+
+Several speed symbols must remain separated:
+
+| Symbol or phrase | Meaning |
+| --- | --- |
+| $c_f$ | Primitive wake propagation speed in the substrate. |
+| $c_{\text{eff}}(\mathbf{x})$ | Local effective signal speed through the Noether Sea for assembly-level closure. |
+| $c_\gamma(\mathbf{x})$ | Local photon-channel speed; in the working observer-level photon branch, $c_\gamma(\mathbf{x})\equiv c_{\text{eff}}(\mathbf{x})$. |
+| Locally measured light speed | The operational speed reconstructed by assembly clocks, rulers, and photon synchronization. |
+
+The primitive speed $c_f$ is used for wake-intersection and self-hit geometry. The effective speed $c_{\text{eff}}$ is used for Noether-Sea dressed closure and observer-level comparisons. These are not interchangeable. Any diagnostic that moves from primitive wake geometry to observer-level clocks, rulers, or photons must declare its dressing map.
+
+## Mass Thesis as a Dynamics Target
+
+The conservative mass thesis is that rest mass is not primitive architrino substance. It is the externally measurable response of shielded, phase-locked internal causal history.
+
+In roadmap form, the target relation is
+
+$$
+m_0(A)c_{\text{eff}}^2
+\sim
+\zeta(A)E_{\text{internal}}(A),
+$$
+
+where $E_{\text{internal}}(A)$ is the trapped internal causal-history ledger of assembly $A$, and $\zeta(A)$ is the shielding or leakage factor that controls how much of that ledger couples to external probes. This is not yet a derived mass formula. It becomes a theorem only after the shielding factor, the internal energy ledger, and the first-order momentum-skew response are derived from the closed tri-binary dynamics.
+
+## Spiral-Helical Motion Picture
+
+A resting Noether core is modeled as a nested, phase-locked tri-binary structure with three coupled binary planes. When the core moves with center-of-mass velocity $\mathbf{V}_{\text{cm}}$, the rest-state circular or near-circular binary motions are drawn into braided spiral-helical cable patterns through the Euclidean void.
+
+The spiral-helical picture is not decorative. A causal wake sent between partners, or between the inner, middle, and outer layers, must now reach a receiver that has moved during the wake's travel time. The internal phase geometry must therefore retune its pitch, radius, tilt, and timing to preserve the same closure ledger. In dynamics language, bulk velocity is encoded as internal geometry.
+
+This is the common mechanical basis for three later effective readouts:
+
+- clock-rate change, because each completed internal cycle requires a different causal path;
+- longitudinal ruler contraction, because inter-assembly spacing must retune for forward and backward exchange;
+- inertial response, because acceleration forces the internal causal ledger to re-close under a changing kinematic bias.
+
+## Proper Time as Internal Cycle Count
+
+Proper time $\tau$ is the cycle count of a stable Noether-core clock, not the absolute substrate time $t$ itself. In a homogeneous Noether-Sea cell, the transverse causal budget for a moving assembly is
+
+$$
+c_{\perp}
+=
+c_{\text{eff}}
+\sqrt{1-\frac{\|\mathbf{V}_{\text{cm}}\|^2}{c_{\text{eff}}^2}}.
+$$
+
+The clock-rate diagnostic is therefore
+
+$$
+\frac{\Delta\tau}{\Delta t}
+=
+\frac{c_{\perp}}{c_{\text{eff}}}
+=
+\sqrt{1-\frac{\|\mathbf{V}_{\text{cm}}\|^2}{c_{\text{eff}}^2}}.
+$$
+
+This is the causal-budget route to the standard effective dilation law. The chapter treats it as a working mechanism: moving assembly clocks tick more slowly because less transverse causal capacity remains for closing their internal tri-binary cycles.
+
+## ADM/Cartan Reconstruction Target
+
+For observer-level comparison with effective geometry, tri-binary dynamics should reconstruct three local fields from Noether-Sea state variables and assembly response:
+
+$$
+N(\mathbf{x},t),
+\qquad
+u^i_{\text{sea}}(\mathbf{x},t),
+\qquad
+\gamma_{ij}(\mathbf{x},t)=\delta_{ab}e^a{}_i e^b{}_j.
+$$
+
+Here $N$ is the effective clock-rate or lapse field, $u^i_{\text{sea}}$ is medium drift, and $\gamma_{ij}$ is the spatial compliance metric. The observer-level bookkeeping metric target is
+
+$$
+ds_{\rm eff}^2
+=
+-N^2c_0^2dt^2
++
+\gamma_{ij}
+\left(dx^i-u^i_{\text{sea}}dt\right)
+\left(dx^j-u^j_{\text{sea}}dt\right).
+$$
+
+This metric is not substrate ontology. It is the effective clock, ruler, and null-path bookkeeping induced by the Noether-Sea state. The open reconstruction task is to show that the resulting connection reproduces Newtonian acceleration, redshift, Shapiro delay, lensing, and the required weak-field PPN coefficients while keeping torsion, nonmetricity, dispersion, birefringence, and preferred-frame residuals below observational limits.
+
+## Dynamics-Side Roadmap
+
+The dynamics chapter contributes the stable pieces needed by the larger theorem program:
+
+1. Define the speed hierarchy and the causal-speed guardrails.
+2. Model the tri-binary Noether core as inner engine, middle fulcrum, and outer shielding/interface layer.
+3. Track how motion deforms the rest-state lock into braided spiral-helical geometry.
+4. Derive local clock diagnostics from transverse causal budget.
+5. Output alignment, closure, Floquet, grazing, and Cartan reconstruction diagnostics.
+6. Keep mass, photon, equivalence-principle, and full GR matching claims at the level of reconstruction targets until their proof burdens close.
 
 ## Working Hypotheses
 
@@ -191,7 +315,7 @@ As alignment increases and planes coincide, the remaining degree of freedom is a
 
 ### Floquet and Grazing Diagnostics
 
-Two nonlinear-dynamics diagnostics extend the standard alignment invariants and connect this chapter to the active-development causal-closure synthesis.
+Two nonlinear-dynamics diagnostics extend the standard alignment invariants and connect this chapter to the broader causal-closure program.
 
 **Floquet basin-robustness gap:** For a periodic tri-binary state $\mathcal{S}_{\mathbf{k}}$ with integer winding $\mathbf{k}$ and period $T_{\mathbf{k}}$, linearize the delay system around the periodic orbit and compute the leading Floquet multipliers $\{\mu_i\}$ off the symmetry directions. Define
 $$
@@ -204,7 +328,7 @@ Track $\Delta_{\mathbf{k}}$ along scans in $\beta = v_{\text{trans}}/c_f$ and $G
 - log-log fit of phase-deviation versus time-since-crossing, expected to yield slope $1/2$;
 - parameter sweep across the separator looking for a period-adding cascade in the integer ledger, with each adding event respecting $\Delta N\in 2\mathbb{Z}$.
 
-These diagnostics belong here as observational quantities for the dynamics chapter; their proof burdens, including Floquet-spectrum discreteness for state-dependent self-hit delays and grazing-normal-form derivation, are routed to the causal-closure workstream.
+These diagnostics belong here as observational quantities for the dynamics chapter. Their proof burdens include Floquet-spectrum discreteness for state-dependent self-hit path-history delays and grazing-normal-form derivation.
 
 ---
 
@@ -311,7 +435,7 @@ If those quantities cannot be matched between the gradient-driven and accelerati
 
 ## Routed Extensions
 
-The following items are retained here only as dynamics-facing boundary conditions. Their full proof burdens belong to the active-development causal-closure workstream, not to this chapter.
+The following items are retained here only as dynamics-facing boundary conditions. Their full proof burdens belong to the broader causal-closure program, not to this chapter.
 
 ### Tri-Binary Role Hypotheses
 
@@ -319,10 +443,10 @@ An electrino:positrino binary is the most primitive assembly considered in the c
 
 - **Inner binary** (MCB, CFT-exterior role): typically in/near self-hit branch ($v \gtrsim c_f$ by history), and would define fundamental units if MCB attractor is confirmed.
 - **Middle binary** (CFT-exterior role): near the symmetry hinge ($v \approx c_f$) with variable radius/frequency; energy-storage fulcrum and coupling bridge.
-- **Outer binary** (CFT-exterior role): typically $v < c_f$ with expansion/contraction modes; couples strongly to Noether-sea gravitational/cosmological response.
+- **Outer binary** (CFT-exterior role): typically $v < c_f$ with expansion/contraction modes; couples strongly to Noether-Sea gravitational/cosmological response.
 At the holographic horizon, the three binaries are treated as a different regime where forward-sector components approach $c_f$ together; in interior AdS-like hypotheses, wake-closure can be described with combined $v_{\text{eff}} > c_f$ without requiring every component speed to exceed $c_f$.
 
-The stronger claim that this architecture supplies the basis for rest mass, proper time, photon behavior, and standard-model particle families is routed to the causal-closure synthesis and its dependency map.
+The stronger claim that this architecture supplies the basis for rest mass, proper time, photon behavior, and standard-model particle families remains a theorem burden for the broader causal-closure program.
 
 ### Hinge Equation Sketch
 
@@ -345,7 +469,7 @@ $$
 $$
 The symmetry breaking at the hinge is geometric: as $\tilde{\delta}_s\to 0^+$ the self-hit radial factor scales like $1/\sin(\tilde{\delta}_s/2)$, turning on a large outward term while the state remains continuous.
 
-The working guess that the self-hit regime may change the effective action-step scale from $\Delta L_c$ to $2\Delta L_c$ is a theorem burden for the causal-closure workstream. This chapter keeps only the local hinge geometry needed to state the dynamical branch condition.
+The working guess that the self-hit regime may change the effective action-step scale from $\Delta L_c$ to $2\Delta L_c$ is a theorem burden for the broader causal-closure program. This chapter keeps only the local hinge geometry needed to state the dynamical branch condition.
 
 ### Black-Hole Regime Note
 

@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 125,
-      "sections": 859
+      "sections": 867
     }
   },
   "tocRoot": {
@@ -2082,6 +2082,70 @@
                 "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
                 "markdownSection": "Relation to the Causal Closure Workstream",
                 "sectionKey": "relation to the causal closure workstream",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Publication Status and Claim Scope",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Publication Status and Claim Scope",
+                "sectionKey": "publication status and claim scope",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Substrate and Effective Levels",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Substrate and Effective Levels",
+                "sectionKey": "substrate and effective levels",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Speed Hierarchy",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Speed Hierarchy",
+                "sectionKey": "speed hierarchy",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Mass Thesis as a Dynamics Target",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Mass Thesis as a Dynamics Target",
+                "sectionKey": "mass thesis as a dynamics target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Spiral-Helical Motion Picture",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Spiral-Helical Motion Picture",
+                "sectionKey": "spiral helical motion picture",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Proper Time as Internal Cycle Count",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Proper Time as Internal Cycle Count",
+                "sectionKey": "proper time as internal cycle count",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "ADM/Cartan Reconstruction Target",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "ADM/Cartan Reconstruction Target",
+                "sectionKey": "adm cartan reconstruction target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Dynamics-Side Roadmap",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Dynamics-Side Roadmap",
+                "sectionKey": "dynamics side roadmap",
                 "headingLevel": 2
               },
               {
