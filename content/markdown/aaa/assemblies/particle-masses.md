@@ -1,44 +1,59 @@
 # Particle Masses: Emergent Inertia in the Noether Sea
 
-**Purpose:** Articulate how "mass" emerges in the architrino framework and outline the path toward quantitative mass predictions.
+**Purpose:** Articulate the current canonical mass thesis in the architrino framework and outline the path toward quantitative mass predictions. This chapter gives the reader-facing statement. The active derivation of a numerical mass map remains a priority workstream until the shielding, stability, and medium-response terms are computed.
 
 ---
 
 ## The Mass Hypothesis: Inertia as Medium Interaction
 
 ### Core Thesis
-In the architrino framework, **mass is not a fundamental property** of individual architrinos. There is no intrinsic "mass parameter" $m$ assigned at the substrate level. Instead, what we observe as mass—**inertial resistance to acceleration**—emerges from the interaction between assemblies and the surrounding **Noether Sea** (the [spacetime medium](../spacetime/spacetime-assemblies.md) composed of neutral tri-binary assemblies).
+In the architrino framework, **mass is not a fundamental property** of individual architrinos. There is no intrinsic particle-specific "mass parameter" $m$ assigned at the substrate level. Instead, what we observe as mass, especially **inertial resistance to acceleration**, is treated as an emergent response of stable assemblies embedded in the surrounding **Noether Sea** (the [spacetime medium](../spacetime/spacetime-assemblies.md) composed of neutral tri-binary assemblies).
 
-**Mass is coupling to Noether-Sea assemblies.**
+The conservative thesis is:
 
-### The Two-Component Mechanism
+$$
+\text{observed mass}
+\quad\leftrightarrow\quad
+\text{the externally exposed response of trapped internal causal history.}
+$$
 
-Apparent inertial mass arises from two intertwined effects:
+That response is shaped by internal energy storage, shielding, and the medium-dressed way the Noether Sea couples to a moving or accelerated assembly.
+
+### The Noether Core as a Causal Knot
+
+A Noether core can be read as a causal knot: not a material knot in space, but a stable closure of delayed path-history relations. The inner, middle, and outer binaries continually exchange partner-hit, self-hit, and inter-layer wakes. When those returns close with stable phase and integer ledger structure, the assembly traps geometric history in a localized causal circuit.
+
+In this view, rest energy is the energy stored in the closed causal ledger, and mass is the externally exposed response of that ledger when the knot is accelerated, perturbed, or placed in a Noether-Sea gradient. Shielding determines how much of the internal knot couples to the far field.
+
+### Mechanism Stack
+
+Apparent inertial mass is expected to arise from a connected stack of effects:
 
 #### Internal Energy Shielding ($\zeta$-Factor)
 - **Energy Storage:** Assemblies contain enormous internal energy in the form of high-speed, nested binary rotations. For a tri-binary, the total internal energy $E_{\text{internal}}$ can be orders of magnitude larger than the observed rest mass $m c^2$.
 - **Shielding:** The pro/anti structure of the [Noether core](./noether-core.md) creates destructive interference in the far field. The external "handle" (the field observable at large distances) represents only a small fraction $\zeta \ll 1$ of the total internal energy.
-- **Result:** When an external force attempts to accelerate the assembly, it only "sees" this shielded fraction:
+- **Result:** When an external force attempts to accelerate the assembly, the effective far-field response couples only to the exposed, shielded part of the internal ledger:
   $$
-  m_{\text{apparent}} \propto \zeta \, E_{\text{internal}}.
+  m_{\text{apparent}}c_{\text{eff}}^2 \sim \zeta(A)\,E_{\text{internal}}(A).
   $$
 - **Generational Hierarchy:** Heavier generations (Gen II, Gen III) have **reduced shielding** because outer binaries are missing. With fewer layers, more of the inner high-energy core is exposed, increasing $\zeta$ and thus the apparent mass.
 
-#### Noether Sea Drag (Medium Coupling)
-- **The Medium:** The Noether Sea is not empty space; it is a dynamic lattice of neutral tri-binaries. Moving an assembly through this medium requires navigating, displacing, or reorganizing these Noether-Sea nodes.
-- **The Drag:** As the assembly accelerates, it must "push" the surrounding sea structures out of the way. This creates a **resistance to motion** analogous to hydrodynamic drag or the friction experienced by a solid moving through a fluid.
-- **Velocity Dependence:** The drag increases with speed, producing an effective relativistic response:
+#### Medium-Dressed Inertial Response
+- **The Medium:** The Noether Sea is not empty space; it is a dynamic population of neutral tri-binary assemblies. Moving or accelerating an assembly changes how its internal causal ledger closes relative to this medium.
+- **The Response:** The assembly resists acceleration because its internal path-history exchange must relock under a biased causal geometry. This should be modeled as a medium-dressed response tensor, not as ordinary dissipative friction.
+- **Velocity Dependence:** In the homogeneous weak-field limit, the same closure geometry should recover the effective relativistic response:
   $$
-  F_{\text{drag}} \propto v, \quad \text{giving rise to} \quad m_{\text{eff}}(v) \sim \frac{m_0}{\sqrt{1 - v^2/c^2}}.
+  m_{\text{eff}}(v) \sim \frac{m_0}{\sqrt{1 - v^2/c_{\text{eff}}^2}}.
   $$
-- **Environment Dependence:** Local variations in Noether Sea density $\rho_{\text{vac}}(\mathbf{x})$ modulate the drag. In regions of higher Noether-Sea density (e.g., near massive objects), the effective inertia increases.
+- **Environment Dependence:** Local variations in Noether-Sea density, compliance, drift, and effective lapse can modulate the response. In dense or strongly graded regions, the effective inertial and gravitational response must be computed from the same medium-dressed closure map.
 
 ### Stability Constraint
-A critical requirement: assemblies in **equilibrium** with the Noether Sea (e.g., atoms in stable orbits) must experience **zero net drag**. Otherwise, electron orbitals would lose stability, radiate energy, and collapse into the nucleus (classical electron catastrophe).
+A critical requirement: assemblies in **equilibrium** with the Noether Sea (e.g., atoms in stable orbitals) must experience no dissipative drag in the ordinary sense. Otherwise, electron orbitals would lose stability, radiate energy, and collapse into the nucleus (the classical electron catastrophe).
 
 **Resolution Hypothesis:**
-- Stable configurations (e.g., bound states at specific radii and frequencies) are those where the assembly's internal dynamics are **phase-locked** with the surrounding sea oscillations, creating a resonance that cancels net drag.
-- This is analogous to superconductivity or superfluidity: below a critical energy threshold, the medium presents zero resistance.
+- Stable configurations are phase-locked causal ledgers whose perturbations remain in an attracting basin.
+- The relevant diagnostic is not a phenomenological friction coefficient but a stability test: nearby phase errors should decay under the return map or Floquet analysis of the closed assembly cycle.
+- The medium can still shape inertia, but a stable bound state must not leak energy through a dissipative drag channel.
 
 ### Ontological Distinctions
 It is crucial to clarify what is **fundamental** versus what is **emergent**:
@@ -47,17 +62,26 @@ It is crucial to clarify what is **fundamental** versus what is **emergent**:
 |:--------|:-------------------------------|
 | **Architrino Position/Velocity** | Fundamental (substrate level) |
 | **Architrino Charge ($\epsilon = e/6$)** | Fundamental |
-| **Noether Sea Density ($\rho_{\text{vac}}$)** | Emergent (assembly density in void) |
-| **Inertial Mass ($m$)** | **Emergent** (shielding + drag) |
+| **Noether Sea State** | Emergent density, compliance, drift, and clock-response fields |
+| **Inertial Mass ($m$)** | **Emergent** (shielded internal energy + medium-dressed response) |
 | **Gravitational Mass** | **Emergent** (Noether Sea gradient response) |
+
+### Status of Mass Claims
+
+| Claim | Status |
+| --- | --- |
+| Architrinos do not carry a primitive particle-specific inertial mass. | Canonical framework assumption. |
+| Stable assemblies have externally measured inertial response. | Operational definition. |
+| The mass response is governed by shielded internal causal history. | Canonical thesis, still requiring quantitative derivation. |
+| $m_0(A)c_{\text{eff}}^2\sim \zeta(A)E_{\text{internal}}(A)$. | Roadmap formula, not yet a theorem. |
+| $\zeta(A)$ explains the charged-lepton hierarchy. | Priority target. |
+| Inertial and gravitational mass share one shielded-energy response map. | Priority target constrained by equivalence-principle tests. |
+| The Higgs sector is recovered as an effective matching layer. | Open comparison target. |
 
 ### Comparison to Standard Model
 In the Standard Model, mass arises via the **Higgs Mechanism**: particles acquire mass by coupling to a background Higgs field (a scalar condensate with vacuum expectation value $v \approx 246$ GeV).
 
-In the architrino framework:
-- The Higgs field is **replaced** by the Noether Sea (a dynamic lattice of assemblies, not a scalar field).
-- Mass is **not a coupling constant** ($y_f$ Yukawa couplings) but a **geometric property** (shielding factor $\zeta$ + drag coefficient).
-- The 125 GeV "Higgs Boson" is reinterpreted as a **radial breathing mode** of the sea lattice, not the source of mass itself (see).
+In the architrino framework, the Higgs-sector comparison is an effective matching problem, not yet a derived replacement. The working expectation is that Standard Model mass parameters and Yukawa couplings would be reinterpreted as effective summaries of assembly geometry, shielding, and Noether-Sea response. The 125 GeV Higgs mode may eventually be modeled as a collective excitation of this medium, but that identification is a theorem target, not an established result.
 
 For the electroweak medium interpretation behind this replacement, see [Emergence of U(1)/SU(2)](../dynamics/gauge-structure-emergence.md).
 
@@ -99,119 +123,17 @@ That means a Koide-like benchmark, if it is useful at all, belongs first to the 
 
 ---
 
-## Research Plan: From Hypothesis to Calculation
+## Quantitative Derivation Path
 
-To advance from qualitative hypothesis to quantitative mass predictions, we must complete the following stages.
+To advance from qualitative thesis to quantitative mass prediction, the active mass program must close five linked steps.
 
-### **Stage 1: Establish the Energy Ledger (Prerequisite)**
-**Objective:** Quantify the internal energy of tri-binary assemblies.
+1. **Stable tri-binary attractor:** derive one robust Noether-core attractor family with radii, frequencies, branch data, and stability diagnostics.
+2. **Internal energy ledger:** compute the dimensionless internal energy stored in that attractor without assuming the particle mass being derived.
+3. **Shielding extraction:** derive $\zeta(A)$ from far-field wake cancellation and exposed coupling geometry.
+4. **Medium-dressed response:** derive the response tensor that turns shielded internal energy into inertial and gravitational response in the weak-field regime.
+5. **Benchmark prediction:** use the derived quantities to target a baseline electron mass and at least one hierarchy check, such as $m_\mu/m_e$.
 
-**Actions:**
-1. **Define the Tri-Binary Stability Conditions**
- - Derive the radius $R_{\text{min}}$ and frequency $\omega_{\text{max}}$ of the maximum-curvature orbit (inner binary).
- - Derive the middle and outer binary parameters from symmetry-breaking and self-hit balance.
- - **Deliverable:** A table of $(R_i, \omega_i)$ for each binary level (H, M, L).
-
-2. **Calculate Total Internal Energy**:
-   - For each tri-binary (Gen I, II, III), compute the kinetic energy stored in the rotating binaries:
-     $$
-     E_{\text{internal}} = \sum_{i=1}^{N_{\text{bins}}} \frac{1}{2} m_{\text{eff},i} v_i^2,
-     $$
-     where $m_{\text{eff},i}$ is the apparent inertia of the $i$-th binary at its speed $v_i$.
-   - **Challenge:** This is circular (we need mass to calculate energy). Resolution: Start with a dimensionless energy ratio $E_{\text{internal}} / E_0$, where $E_0 = \kappa \epsilon^2 / d_0$ (fundamental energy scale).
-   - **Deliverable:** Internal energy budget for electron, up quark, down quark (Gen I).
-
-3. **Cross-Reference with Observations**:
- - Compare $E_{\text{internal}}$ to observed rest masses ($m_e c^2 = 0.511$ MeV, $m_u \sim 2.2$ MeV, $m_d \sim 4.7$ MeV).
- - If $E_{\text{internal}} \gg m c^2$, this confirms massive shielding ($\zeta \ll 1$).
-
-**Milestone:** Energy ledger complete. We know what energy is "stored" internally.
-
----
-
-### **Stage 2: Derive the Shielding Factor ($\zeta$)**
-**Objective:** Calculate what fraction of internal energy is visible externally.
-
-**Actions:**
-1. **Far-Field Potential Calculation**:
- - Use the master equation to compute the net potential field at large distances from a tri-binary assembly.
- - For a perfectly neutral, pro/anti symmetric assembly, most of the field should cancel.
- - **Method:** Numerical integration of potential wakes over all architrino trajectories; compute $\Phi_{\text{far}}(r \to \infty)$.
-
-2. **Define the Shielding Factor**:
- $$
- \zeta = \frac{|\Phi_{\text{far}}|}{|\Phi_{\text{internal}}|}.
- $$
- - For a perfectly shielded assembly (e.g., neutrino), $\zeta \to 0$.
- - For an unshielded charge (e.g., electron), $\zeta$ is determined by the asymmetry in the axial layer.
-
-3. **Generational Scaling**:
- - Show that $\zeta_{\text{Gen I}} < \zeta_{\text{Gen II}} < \zeta_{\text{Gen III}}$ due to missing shielding binaries.
- - Predict the mass ratios: $m_{\mu} / m_e$, $m_{\tau} / m_{\mu}$ from the $\zeta$ scaling.
-
-**Milestone:** Shielding factors tabulated for all fermions. Mass hierarchy explained geometrically.
-
----
-
-### **Stage 3: Calculate Noether Sea Drag Coefficient**
-**Objective:** Quantify the resistance of the medium to assembly motion.
-
-**Actions:**
-1. **Medium Density Model**:
- - Define $\rho_{\text{vac}}(\mathbf{x})$ (number of Noether cores per unit volume).
- - In free space: $\rho_{\text{vac}} = \rho_0$ (baseline).
- - Near massive objects: $\rho_{\text{vac}} = \rho_0 (1 + \alpha \Phi / c^2)$ (density increases in gravitational wells).
-
-2. **Drag Force Derivation**:
- - Model the assembly as a "defect" in the lattice. As it moves, it creates a wake of perturbed Noether-Sea nodes.
- - Use continuum mechanics (or lattice simulations) to compute the drag force $F_{\text{drag}} = -\beta v$, where $\beta$ is the drag coefficient.
- - **Prediction:** $\beta \propto \rho_{\text{vac}} \times (\text{cross-section})$.
-
-3. **Effective Mass Formula**:
- $$
- m_{\text{eff}} = \zeta E_{\text{internal}} / c^2 + m_{\text{drag}},
- $$
- where $m_{\text{drag}} = \beta / c$ (from integrating drag over acceleration).
-
-**Milestone:** Drag coefficient $\beta$ derived. Inertial mass formula complete.
-
----
-
-### **Stage 4: Numerical Validation (Simulations)**
-**Objective:** Test the mass formula against Standard Model predictions.
-
-**Actions:**
-1. **Electron Mass Calculation**:
- - Input: Tri-binary radius, frequency, axial layer ($6E$).
- - Compute: $E_{\text{internal}}$, $\zeta$, $\beta$.
- - Output: Predicted $m_e$.
- - **Target:** Match $m_e = 0.511$ MeV to within 10%.
-
-2. **Quark Masses**:
- - Repeat for Up and Down quarks.
- - **Challenge:** Confinement effects (quarks don't exist freely). Use hadron data (proton/neutron mass difference) to infer quark masses.
-
-3. **Muon/Tau Scaling**:
- - Test the generational mass formula: $m_{\mu} / m_e \sim \zeta_{\mu} / \zeta_e$.
- - **Target:** Match PDG values to within 20%.
-
-**Milestone:** First-principles mass predictions validated numerically.
-
----
-
-### **Stage 5: Environmental Tests (Extreme Regimes)**
-**Objective:** Test predictions in non-standard environments.
-
-**Actions:**
-1. **Dense Plasma**:
- - Predict shifts in W/Z boson masses in high-density environments (quark-gluon plasma).
- - Compare to LHC heavy-ion collision data.
-
-2. **Cosmological Evolution**:
- - If $\rho_{\text{vac}}$ evolves over cosmological time, particle masses should evolve slightly.
- - Check for any observational constraints (e.g., BBN, CMB).
-
-**Milestone:** Theory makes novel, testable predictions distinguishing it from SM.
+The canonical chapter should not carry the detailed simulation protocol. Its role is to state the mass thesis, define the terms, and make clear which derivations remain open.
 
 ---
 
@@ -224,7 +146,7 @@ To advance from qualitative hypothesis to quantitative mass predictions, we must
 
 ### Potential Falsifications
 - **If $\zeta E_{\text{internal}} \neq m c^2$:** The shielding hypothesis is wrong.
-- **If drag causes orbital collapse in atoms:** The stability condition fails; the model is incompatible with chemistry.
+- **If the medium response behaves like dissipative drag in stable atoms:** The stability condition fails; the model is incompatible with chemistry.
 - **If generational masses don't scale with shielding:** The "missing binary" explanation for the hierarchy is wrong.
 
 ---

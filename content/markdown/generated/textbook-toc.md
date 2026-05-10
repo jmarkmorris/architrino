@@ -269,7 +269,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
   - [Particle Masses](../../scenes/assemblies/particle_masses.json)
     - [The Mass Hypothesis: Inertia as Medium Interaction](../aaa/assemblies/particle-masses.md?section=The+Mass+Hypothesis%3A+Inertia+as+Medium+Interaction)
     - [Speculative Charged-Lepton Benchmark: Koide](../aaa/assemblies/particle-masses.md?section=Speculative+Charged-Lepton+Benchmark%3A+Koide)
-    - [Research Plan: From Hypothesis to Calculation](../aaa/assemblies/particle-masses.md?section=Research+Plan%3A+From+Hypothesis+to+Calculation)
+    - [Quantitative Derivation Path](../aaa/assemblies/particle-masses.md?section=Quantitative+Derivation+Path)
     - [Open Questions & Failure Modes](../aaa/assemblies/particle-masses.md?section=Open+Questions+%26+Failure+Modes)
   - [Standard Model](../../scenes/standard-model-particles/standard_model.json) _(diagram)_
   - [Fermions](../../scenes/assemblies/fermions.json)

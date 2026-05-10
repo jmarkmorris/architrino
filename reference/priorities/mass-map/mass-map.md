@@ -19,6 +19,42 @@
 
 This is the parameter-closure and first mass-formula bucket. Treat [parameter-ledger.md](../../../content/markdown/aaa/validation/parameter-ledger.md) as bookkeeping only. The live target is one reusable derived mass map.
 
+This workstream is the organizer for mass-side integration. It should decide what belongs in canonical AAA prose, what remains an active theorem target, and what must be routed to other priority workstreams before any stronger mass claim is deployed.
+
+## Source-of-Truth Map
+
+| Layer | Document | Ownership |
+| --- | --- | --- |
+| Canonical mass chapter | [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md) | Reader-facing statement of the current mass thesis, definitions, and conservative explanatory path. |
+| Energy ledger source | [Energy](../../../content/markdown/aaa/dynamics/energy.md) | Energy-zero convention, assembly energy bookkeeping, and the operational definition of inertial mass. |
+| Dynamics baseline | [Tri-Binary Dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md) | Noether-core roles, speed-regime conventions, delay geometry, stability diagnostics, and metric/connection reconstruction diagnostics. |
+| Proof synthesis | [Tri-Binary Causal Closure](../tri-binary-causal-closure/tri-binary-causal-closure.md) | Active-development bridge from tri-binary closure to rest mass, inertia, proper time, photon behavior, and effective geometry. |
+| Proof-control ledger | [Tri-Binary Dependency Map](../tri-binary-causal-closure/tri-binary-dependency-map.md) | Open theorem burdens and deployment handoff routes, especially shielding, momentum skew, slow-fast tri-binary minimality, and metric closure. |
+| Quantitative mass workstream | This document | First derived mass map, shielding extraction, baseline electron-mass target, and hierarchy checks. |
+
+## Mass Claim Maturity Buckets
+
+### Canonical
+
+- Individual architrinos do not carry a primitive particle-specific inertial mass parameter.
+- Inertial mass is defined operationally by the force-response coefficient of a stable assembly.
+- The current mass thesis is that observed rest/inertial mass is the externally exposed response of trapped internal causal history, shaped by shielding and Noether-Sea coupling.
+- The canonical mass chapter should state this thesis conservatively and route unresolved derivations to this workstream.
+
+### Roadmap
+
+- Derive $m_0(A)c_{\text{eff}}^2\sim \zeta(A)E_{\text{internal}}(A)$ from a closed tri-binary root ledger rather than using it as a heuristic.
+- Derive the first-order momentum skew that makes trapped internal energy behave as inertial mass under acceleration.
+- Show that inertial and gravitational response share the same shielded-energy coefficient within equivalence-principle bounds.
+- Derive the slow-fast tri-binary minimality theorem needed before claiming that three nested binaries are the universal stable matter unit.
+
+### Priority
+
+- Compute one robust tri-binary attractor family with radii, frequencies, branch data, and Floquet stability gap.
+- Extract $\zeta(A)$ from far-field wake cancellation and shielding geometry.
+- Produce a baseline electron-mass prediction and at least one hierarchy check, such as $m_\mu/m_e$.
+- Decide whether Noether-Sea drag remains a separate additive mass contribution, or whether it should be absorbed into the same medium-dressed response tensor used by the causal-closure synthesis.
+
 ## Program Notes
 
 - For scorecard purposes, this is the main Parameter Closure + Mass Formulas bucket.

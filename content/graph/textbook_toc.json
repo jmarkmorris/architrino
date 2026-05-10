@@ -2201,10 +2201,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Research Plan: From Hypothesis to Calculation",
+                "title": "Quantitative Derivation Path",
                 "markdownPath": "content/markdown/aaa/assemblies/particle-masses.md",
-                "markdownSection": "Research Plan: From Hypothesis to Calculation",
-                "sectionKey": "research plan from hypothesis to calculation",
+                "markdownSection": "Quantitative Derivation Path",
+                "sectionKey": "quantitative derivation path",
                 "headingLevel": 2
               },
               {
