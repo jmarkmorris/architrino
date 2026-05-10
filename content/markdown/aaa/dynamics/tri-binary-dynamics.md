@@ -31,6 +31,14 @@ To keep speed claims consistent across documents, all binary-speed statements sh
 
 **Notation guardrail:** "$v < c_f$" or "$v = c_f$" in role summaries refers to a component/regime statement, while $v_{\text{eff}} > c_f$ refers to the **combined in-plane effective motion** used in wake-geometry closure.
 
+**Geometry speed guardrail:** Use a declared causal speed $c_\star$ in envelope and closure diagnostics. For primitive architrino wake intersections, set $c_\star=c_f$. For observer-level Noether-Sea dressed closure, set $c_\star=c_{\text{eff}}(\mathbf{x})$. The corresponding kinematic parameter is
+$$
+\beta_\star=\frac{v_{\text{trans}}}{c_\star},
+\qquad
+\gamma_\star=\frac{1}{\sqrt{1-\beta_\star^2}}.
+$$
+Primitive dynamics scans and effective-metric comparisons must not mix $c_f$ and $c_{\text{eff}}$ in the same diagnostic without an explicit dressing map.
+
 ---
 
 ## Geometry Focus
@@ -96,7 +104,7 @@ $$
 
 ### C) Exclusion Volume Under Precession (Caveat)
 
-**Implication:** Outer-binary precession sweeps an exclusion region that is larger than a static orbit. The effective exclusion volume is the union of the orbit's causal envelope over a precession cycle, not just a single instantaneous shell.
+**Implication:** Outer-binary precession sweeps an exclusion region that is larger than a static orbit. The effective exclusion volume is the union of the orbit's causal envelope over a precession cycle, not just a single instantaneous envelope.
 This union geometry sets packing and overlap limits by construction, rather than relying on point-particle exclusion rules.
 
 **Modeling at $v>0$:** Use the oblate envelope as a time-dependent exclusion region whose axis precesses. The exclusion volume becomes anisotropic and typically increases with precession cone angle.
@@ -110,7 +118,17 @@ At sufficiently high stress, this implies a terminal rung: further increases can
 
 **Goal:** Define "time in spacetime" as a geometric effect in the delay loop, not a relativistic postulate.
 
-**Absolute clock:** Use the outer-binary Planck cadence as the invariant clock: $T_0 = 1/f_P$. This is a reference for absolute time in the model.
+**Absolute clock:** Use the outer-binary Planck cadence as a reference cadence: $T_0 = 1/f_P$.
+
+The cadence $T_0=1/f_P$ is a reference assembly cadence, not the absolute substrate time itself. Absolute time $t$ remains the uniform ordering parameter for causal-hit evaluation. The local clock diagnostic compares assembly cycle counts to this reference cadence:
+$$
+N_{\text{clock}}(\mathbf{x})
+\equiv
+\frac{d\tau}{dt}
+=
+\frac{T_0}{T_{\text{local}}(\mathbf{x})}
+$$
+in the rest branch of the local Noether-Sea cell. This quantity is the dynamics-side precursor of the effective lapse field used in the emergent-metric construction.
 
 **Local clock from delay geometry:** Define a reference round-trip delay $\Delta t_{\text{rt,ref}}$ and a local delay $\Delta t_{\text{rt}}(\theta, G_{\text{grad}})$. Then
 $$
@@ -190,6 +208,51 @@ These diagnostics belong here as observational quantities for the dynamics chapt
 
 ---
 
+## Metric and Connection Reconstruction Diagnostics
+
+For comparison with the emergent-metric chapters, each dynamics scan should output the local Cartan data reconstructed from the Noether-core response:
+$$
+N(\mathbf{x},t),\qquad
+u^i_{\text{sea}}(\mathbf{x},t),\qquad
+e^a{}_i(\mathbf{x},t),
+\qquad
+\gamma_{ij}=\delta_{ab}e^a{}_i e^b{}_j.
+$$
+The effective bookkeeping line element is
+$$
+ds_{\rm eff}^2
+=
+-N^2c_0^2dt^2
++
+\gamma_{ij}
+\left(dx^i-u^i_{\text{sea}}dt\right)
+\left(dx^j-u^j_{\text{sea}}dt\right).
+$$
+The corresponding connection diagnostic is the Levi-Civita connection of $g^{\rm eff}_{\mu\nu}$ in the GR-matching regime, with any torsion or nonmetricity treated as a deviation observable:
+$$
+\Gamma^\mu{}_{\nu\rho}
+=
+\frac12 g_{\rm eff}^{\mu\sigma}
+\left(
+\partial_\nu g^{\rm eff}_{\rho\sigma}
++
+\partial_\rho g^{\rm eff}_{\nu\sigma}
+-
+\partial_\sigma g^{\rm eff}_{\nu\rho}
+\right).
+$$
+Simulation output should therefore include geodesic residuals
+$$
+\mathcal{R}^\mu
+=
+\frac{d^2x^\mu}{d\lambda^2}
++
+\Gamma^\mu{}_{\nu\rho}
+\frac{dx^\nu}{d\lambda}
+\frac{dx^\rho}{d\lambda},
+$$
+evaluated on coarse-grained assembly trajectories and photon planar-mode rays.
+
 ## Observables and Diagnostics (Summary)
 
 - Core invariants: $R_{\text{core}}$, $\omega_{\text{core}}$, phase offsets.
@@ -198,6 +261,8 @@ These diagnostics belong here as observational quantities for the dynamics chapt
 - Orientation metrics: inter-plane angles, precession cone angle.
 - Stability metrics: sign of $\partial \Phi_n/\partial r$, phase-closure residuals.
 - Gradient metric: $G_{\text{grad}}$ and its effect on stability thresholds.
+- Cartan reconstruction metrics: lapse $N$, drift $u^i_{\text{sea}}$, spatial compliance $\gamma_{ij}$, frame fields $e^a{}_i$, effective connection $\Gamma^\mu{}_{\nu\rho}$, and geodesic residual $\mathcal{R}^\mu$.
+- Weak-field matching metrics: Newtonian acceleration residual, redshift residual, Shapiro-delay residual, lensing residual, and extracted PPN coefficients $\gamma_{\rm PPN}$ and $\beta_{\rm PPN}$.
 
 ---
 
@@ -229,6 +294,16 @@ The practical diagnostics are the same in both cases:
 - stability thresholds for aligned and oblate states.
 
 For resonance questions, one additional diagnostic is worth tracking explicitly: a cycle-averaged causal-work or phase-slip variance. The working intuition is that non-commensurate drift samples the large-$1/|J|$ region irregularly, producing large cycle-to-cycle swings in delayed work, whereas a true lock should compress that variance and make the return map locally contractive.
+
+In connection language, the local equivalence-principle test is a first-jet matching condition. At a reference event $x_0$, compare the reconstructed Cartan data for an accelerated assembly in a homogeneous Noether-Sea cell with the data for a stationary assembly in a matched Noether-Sea gradient:
+$$
+\mathcal{J}_1(e,\omega)_{\rm accel}(x_0)
+=
+\mathcal{J}_1(e,\omega)_{\rm grad}(x_0)
++
+O(L^2\nabla R_{\rm eff}),
+$$
+where $\mathcal{J}_1$ denotes the frame and connection through first order over a laboratory scale $L$. The residual is tidal: it depends on second gradients of the effective metric data and therefore cannot be removed by a local acceleration comparison.
 
 If those quantities cannot be matched between the gradient-driven and acceleration-driven cases in the local limit, then the observer-level recovery of the equivalence principle fails and the constitutive map must be revised.
 

@@ -131,7 +131,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
   $$
   c_{\perp}=c_{\text{eff}}\sqrt{1-\beta^2}.
   $$
-- Effective-metric bridge: the same budget should be expressible as an observer-level acoustic-metric-like null condition $g^{\text{eff}}_{\mu\nu}dx^\mu dx^\nu=0$ built from $c_{\text{eff}}$, Noether-Sea drift $\mathbf{u}_{\text{sea}}$, density, compliance, and stress, without promoting that metric to substrate ontology.
+- Effective-metric bridge: the same budget should be expressible through the ADM/Cartan bookkeeping fields $N$, $u^i_{\text{sea}}$, and $\gamma_{ij}$, without promoting that metric to substrate ontology.
 - Output: one resource controls time dilation, length contraction, clock freeze, quantum-step admissibility, photon/rest-frame separation, and the local Lorentz map.
 - Proof burden: promote this from a synthesis subsection into a standalone dynamics lemma, including the metric diagonalization that yields $\gamma_{\text{eff}}$ and the residual preferred-frame null tests.
 - Priority route: `master-equation-closure`.
@@ -185,6 +185,25 @@ The deployment gate is passed only when every non-closed item in this map has a 
 - Priority route: `strong-field-closure`, `master-equation-closure`.
 - Current disposition: `priority`.
 
+### 11b. Effective Metric And Cartan Connection
+
+- Inputs: Noether-Sea density, compliance, stress, drift $u^i_{\text{sea}}$, local clock response $N$, spatial frame fields $e^a{}_i$, spatial compliance metric $\gamma_{ij}=\delta_{ab}e^a{}_i e^b{}_j$, and tri-binary orientation fields.
+- Mechanism: reconstruct the observer-level bookkeeping metric
+  $$
+  ds_{\rm eff}^2
+  =
+  -N^2c_0^2dt^2
+  +
+  \gamma_{ij}
+  \left(dx^i-u^i_{\text{sea}}dt\right)
+  \left(dx^j-u^j_{\text{sea}}dt\right),
+  $$
+  and derive the Levi-Civita connection in the GR-matching regime, with torsion and nonmetricity tracked as deviation observables.
+- Output: explicit observer-level fields for lapse, medium drift, spatial compliance, frame orientation, geodesics, redshift, lensing, Shapiro delay, horizon null surfaces, and PPN matching.
+- Proof burden: derive $N$, $u^i_{\text{sea}}$, $e^a{}_i$, and $\gamma_{ij}$ from Noether-Sea state variables and tri-binary response; recover $N=1+\Phi_N/c_0^2+O(c_0^{-4})$, $\gamma_{ij}=(1-2\Phi_N/c_0^2)h_{ij}+O(c_0^{-4})$, $u^i_{\text{sea}}=O(c_0^{-3})$, and PPN coefficients within current bounds while suppressing preferred-frame, torsion, nonmetricity, birefringence, and dispersion residuals.
+- Priority route: `master-equation-closure`, `strong-field-closure`, `standard-model-closure`.
+- Current disposition: `priority`.
+
 ### 12. Photon Planar Pair
 
 - Inputs: massive-clock transverse-budget failure at $c_{\text{eff}}$, pro/anti Noether-core orientations, and primitive wake speed $c_f$.
@@ -211,7 +230,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
   $$
   d(\omega,\delta_\gamma)\sim\Lambda_\gamma\frac{c_f-c_\gamma}{\omega},
   $$
-  so fixed free-space photon speed is compatible with $d\propto\lambda$ and the vacuum limit sends $d\to0$ as $c_\gamma\to c_f$. A strict residual catch-up margin remains a null-test branch.
+  so fixed free-space photon speed is compatible with $d\propto\lambda$ and the weak homogeneous Noether-Sea limit sends $d\to0$ as $c_\gamma\to c_f$. A strict residual catch-up margin remains a null-test branch.
 - Priority route: `planar-bridge-closure`, `standard-model-closure`.
 - Current disposition: `priority`.
 
@@ -238,7 +257,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 - Inputs: $c_{\text{eff}}(\mathbf{x})$, Noether-Sea density, compliance, stress, tidal gradients, and phase-closure variables.
 - Mechanism: observer-level redshift/phase-lock and local assembly failure are distinct; local failure requires a strain or gradient threshold.
 - Output: exterior GR behavior plus a substrate failure condition when transverse closure is locally exhausted.
-- Proof burden: recover smooth local infall for large black holes in weak tidal regions while retaining structural failure in genuine high-strain regimes.
+- Proof burden: define observer-level horizons as null surfaces of $g^{\rm eff}_{\mu\nu}$, for example $\gamma_{ij}u_\perp^i u_\perp^j=N^2c_0^2$ in stationary flow form, while keeping local structural failure as a separate strain/tidal threshold.
 - Priority route: `strong-field-closure`, `cosmology-closure`.
 - Current disposition: `priority`.
 
@@ -261,8 +280,9 @@ The deployment gate is passed only when every non-closed item in this map has a 
 6. Transverse causal budget lemma with Floquet-gap closure at $\beta\to 1$.
 7. Slow-fast tri-binary universality theorem.
 8. Momentum skew with Noether-Sea dressing tensor.
-9. Equivalence and weak-field GR matching.
-10. Topological certification.
+9. Effective metric and Cartan connection reconstruction.
+10. Equivalence and weak-field GR matching.
+11. Topological certification.
 
 ## Deployment Handoff Table
 
@@ -271,6 +291,10 @@ The deployment gate is passed only when every non-closed item in this map has a 
 | Photon gate A, kinematics and optics | keep as roadmap and create task | `planar-bridge-closure`, `standard-model-closure` |
 | Photon gate B, polarization and spin | keep as roadmap and create task | `quantum-closure`, `standard-model-closure` |
 | Photon gate C, vertices and transitions | keep as roadmap and create task | `standard-model-closure`, `planar-bridge-closure` |
+| Floquet stability functional | create task | `master-equation-closure`, `quantum-closure`, `simulations` |
+| Grazing-bifurcation separator classification | create task | `breather-proof`, `simulations` |
+| Slow-fast tri-binary minimality theorem | create task | `mass-map`, `master-equation-closure` |
+| Effective metric and Cartan connection | create task | `master-equation-closure`, `strong-field-closure` |
 | Transverse causal budget lemma | extract or create task | `master-equation-closure` |
 | Momentum skew derivation | create task | `mass-map`, `master-equation-closure` |
 | Equivalence-principle residual bound | create task | `master-equation-closure`, `strong-field-closure` |

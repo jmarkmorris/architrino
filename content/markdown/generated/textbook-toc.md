@@ -259,6 +259,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Regime Map for Speed Statements (CFT / Horizon / AdS)](../aaa/dynamics/tri-binary-dynamics.md?section=Regime+Map+for+Speed+Statements+%28CFT+%2F+Horizon+%2F+AdS%29)
     - [Geometry Focus](../aaa/dynamics/tri-binary-dynamics.md?section=Geometry+Focus)
     - [Minimal Models](../aaa/dynamics/tri-binary-dynamics.md?section=Minimal+Models)
+    - [Metric and Connection Reconstruction Diagnostics](../aaa/dynamics/tri-binary-dynamics.md?section=Metric+and+Connection+Reconstruction+Diagnostics)
     - [Observables and Diagnostics (Summary)](../aaa/dynamics/tri-binary-dynamics.md?section=Observables+and+Diagnostics+%28Summary%29)
     - [Revision Triggers (Failure Modes)](../aaa/dynamics/tri-binary-dynamics.md?section=Revision+Triggers+%28Failure+Modes%29)
     - [Equivalence Principle (Working Constraint)](../aaa/dynamics/tri-binary-dynamics.md?section=Equivalence+Principle+%28Working+Constraint%29)

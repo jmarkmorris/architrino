@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 125,
-      "sections": 858
+      "sections": 859
     }
   },
   "tocRoot": {
@@ -2114,6 +2114,14 @@
                 "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
                 "markdownSection": "Minimal Models",
                 "sectionKey": "minimal models",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Metric and Connection Reconstruction Diagnostics",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Metric and Connection Reconstruction Diagnostics",
+                "sectionKey": "metric and connection reconstruction diagnostics",
                 "headingLevel": 2
               },
               {
