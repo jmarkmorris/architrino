@@ -73,7 +73,7 @@ This is not yet a derived strong-field theorem. It is a compact way of expressin
 
 A viable black-hole account in $\mathbb{A}\mathbb{A}\mathbb{A}$ must work at two scales simultaneously. It must reproduce the compact-object phenomenology of the local exterior, and it must remain coherent when the object is embedded in the evolving large-scale medium. This requirement matters because many intuitive pictures of black holes tacitly treat them as if they lived in asymptotically isolated settings, whereas the cosmological sector requires a compact object to sit inside a time-dependent background.
 
-For that reason, the framework treats horizon regularity under cosmological embedding as a non-negotiable structural requirement. If a proposed strong-field description becomes pathological precisely when one asks how the local object couples to the surrounding medium, then it is not yet a closed black-hole model. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the regularity requirement is met not by postulating a passive background but by letting the local strong-field geometry and the ambient Noether-Sea state backreact on one another through the same constitutive variables.
+For that reason, the framework treats horizon regularity under cosmological embedding as a non-negotiable structural requirement. If a proposed strong-field description becomes pathological precisely when one asks how the local object couples to the surrounding medium, then it is not yet a closed black-hole model. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the regularity requirement is met not by postulating a passive background but by letting the local strong-field geometry and the ambient Noether Sea state backreact on one another through the same constitutive variables.
 
 This point sharpens the role of the horizon interface. The interface is not just the place where local assembly geometry reaches terminal alignment. It is also the layer through which the compact object remains connected to the surrounding medium without forcing a curvature blowup at the very location where the constitutive transition is most intense. In that sense, horizon regularity is not cosmetic. It is a closure test for whether the black-hole regime can genuinely communicate with cosmology.
 
@@ -135,13 +135,13 @@ This is the disciplined way to keep jets in the chapter: as one important releas
 
 ## Relation to Dark Energy and Expansion History
 
-The black-hole chapter does not identify dark energy with black holes by definition. The baseline dark-energy mechanism in $\mathbb{A}\mathbb{A}\mathbb{A}$ remains Noether-Sea medium relaxation, as developed in [../cosmology/dark-energy.md](../cosmology/dark-energy.md). Black holes enter that story only if strong-field recycling makes a measurable contribution to the slowly varying outer-binary tension sector.
+The black-hole chapter does not identify dark energy with black holes by definition. The baseline dark-energy mechanism in $\mathbb{A}\mathbb{A}\mathbb{A}$ remains Noether Sea medium relaxation, as developed in [../cosmology/dark-energy.md](../cosmology/dark-energy.md). Black holes enter that story only if strong-field recycling makes a measurable contribution to the slowly varying outer-binary tension sector.
 
 The clean constitutive chain is:
 
 1. strong-field compression drives assemblies into horizon and interior recycling regimes;
 2. recycling redistributes energy between locked internal modes and outward-propagating medium excitations;
-3. those excitations can, in principle, alter the large-scale Noether-Sea state;
+3. those excitations can, in principle, alter the large-scale Noether Sea state;
 4. the cosmology module then reads that altered medium state as part of $\rho_{\mathrm{DE,eff}}(z)$ or its source term.
 
 This means black holes are candidate contributors to dark-energy phenomenology, not substitutes for the medium ontology.
@@ -203,4 +203,4 @@ This chapter centralizes the black-hole ontology and hands specific tasks to adj
 
 ## Summary
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, black holes are strong-field Noether-Sea regimes rather than ontic singularities or void defects. Their horizon is a terminal alignment interface, their interior is a maximum-curvature recycling medium, and their cosmological importance depends on whether that recycling measurably feeds the late-time medium state. What remains strongest from standard black-hole theory is the observer-level phenomenology. What is reclassified is the underlying ontology: geometry becomes an effective summary of constitutive medium behavior, and singularity language becomes a marker of failed extrapolation rather than the final story.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, black holes are strong-field Noether Sea regimes rather than ontic singularities or void defects. Their horizon is a terminal alignment interface, their interior is a maximum-curvature recycling medium, and their cosmological importance depends on whether that recycling measurably feeds the late-time medium state. What remains strongest from standard black-hole theory is the observer-level phenomenology. What is reclassified is the underlying ontology: geometry becomes an effective summary of constitutive medium behavior, and singularity language becomes a marker of failed extrapolation rather than the final story.

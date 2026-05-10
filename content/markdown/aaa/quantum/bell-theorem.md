@@ -234,7 +234,7 @@ The existence of a global time parameter $t$ is essential for the internal consi
 
 No step involves faster-than-$c_f$ influence. The correlations are visible only upon comparison. The objective temporal ordering removes the frame-dependence puzzle entirely: there is no ambiguity about "which measurement collapses which particle first," because collapse is local threshold resolution and the correlations are pre-established.
 
-**Emergent Lorentz invariance.** Physical Observers, who lack access to absolute time and use assembly-based clocks and rulers, reconstruct an effective Minkowski geometry in which the temporal ordering of spacelike-separated events is frame-dependent. This does not contradict the underlying absolute ordering; it reflects the epistemic limitations of assembly-based measurement (see [foundations/ontology.md](../foundations/ontology.md), Section 4).
+**Emergent Lorentz invariance.** Physical Observers, who lack access to absolute time and use assembly-based clocks and rulers, reconstruct an effective Minkowski geometry in which the temporal ordering of spacelike-separated events is frame-dependent. This does not contradict the underlying absolute ordering; it reflects the epistemic limitations of assembly-based measurement; see [Observer Framework](../spacetime/observer-framework.md).
 
 ---
 

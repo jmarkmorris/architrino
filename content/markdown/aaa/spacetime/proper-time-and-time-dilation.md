@@ -1,6 +1,8 @@
 # Proper Time and Time Dilation
 
-**Goal:** Derive the relation between **absolute time** $t$ (used to index $\mathbb{U}_{\text{now}}$, the universe-now state, in the Euclidean void) and the **proper time** $\tau$ measured by physical clocks built from tri‑binary assemblies, and show how GR‑like time dilation and gravitational redshift arise as effective behavior.
+**Goal:** Derive the relation between **absolute time** $t$ (used by the $\mathbb{U}_{\text{now}}$ universe-state perspective in the Euclidean void) and the **proper time** $\tau$ measured by physical clocks built from tri‑binary assemblies, and show how GR‑like time dilation and gravitational redshift arise as effective behavior.
+
+This chapter is the canonical home for proper time, observer clocks, clock slowing, and the clock map from absolute time $t$ to measured proper time $\tau$. Foundation and ontology pages should point here once the discussion becomes a clock law, frequency extraction, observer-clock comparison, or Lorentz/GR time-dilation recovery.
 
 We seek a map
 $$

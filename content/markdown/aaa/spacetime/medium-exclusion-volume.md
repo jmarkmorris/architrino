@@ -99,7 +99,7 @@ Think of maximally packed van der Waals volumes as a **molecular fortress**. Ord
 ## Background Timespace vs. Implemented Medium
 
 - Background: the mathematical arena in this project is absolute timespace (one global time × Euclidean 3-space). It is fixed, non-dynamical, and does not curve.
-- Implemented “spacetime”: the effective medium that carries corridors and supports propagation is realized by coherent assembly architecture at scales far smaller than molecules (a Noether-Sea implementation layer, or in bridge prose a spacetime-medium layer, not a separate field inventory). Their microstructure can modulate effective propagation, boundaries, and coherence without altering the background kinematics.
+- Implemented “spacetime”: the effective medium that carries corridors and supports propagation is realized by coherent assembly architecture at scales far smaller than molecules (a Noether Sea implementation layer, or in bridge prose a spacetime medium layer, not a separate field inventory). Their microstructure can modulate effective propagation, boundaries, and coherence without altering the background kinematics.
 
 This is the same implementation layer developed in [Emergent Metric](./emergent-metric.md) and [Spacetime Assemblies](./spacetime-assemblies.md).
 

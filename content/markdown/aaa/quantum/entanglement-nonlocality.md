@@ -146,7 +146,7 @@ The correlations become visible only when outcomes from both sides are **compare
 |:---|:---|
 | **Entangled state** $\lvert\Psi\rangle_{AB}$ | Joint constraint on the hidden variables $(\Gamma_A, \Gamma_B)$ inherited from a shared creation event; the microstate is non-factorizable because conservation laws at fragmentation enforce correlated binary phases and orientations. |
 | **Non-separability** (no product-state decomposition) | The hidden-variable space $\lambda$ encodes geometric correlations (relative binary-plane angles, wake-phase offsets) that cannot be decomposed into independent local assignments without losing information. |
-| **Measurement collapse** (distant state update) | Local threshold resolution at each detector independently; the Absolute Observer sees two separate, causally disconnected basin crossings whose outcomes are correlated by shared $\lambda$. |
+| **Measurement collapse** (distant state update) | Local threshold resolution at each detector independently; the $\mathbb{U}_{\text{now}}$ universe-state perspective sees two separate, causally disconnected basin crossings whose outcomes are correlated by shared $\lambda$. |
 | **Bell inequality violation** ($\lvert S\rvert = 2\sqrt{2}$) | The correlated hidden-variable geometry produces outcome statistics that violate Bell locality because $\lambda$ is non-separable; the violation arises from the structure of the shared creation constraints, not from any superluminal influence. |
 | **No-signaling** | Marginal statistics at each detector are independent of the distant setting; correlations are visible only upon classical comparison of results. |
 | **Decoherence of entanglement** | Progressive loss of phase correlation between the two assemblies as each interacts with its local Noether Sea environment, randomizing the internal wake phases that carry the correlated information. |
@@ -158,7 +158,7 @@ The correlations become visible only when outcomes from both sides are **compare
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework supports a clean two-level interpretation of entanglement:
 
-**Ontic level (Absolute Observer).** The microstate $\Gamma(t)$ is always definite and global. After a creation event at $t_0$, the daughter microstates $\Gamma_A(t)$ and $\Gamma_B(t)$ are each fully determined for all $t > t_0$. The "entanglement" is simply the fact that $\Gamma_A$ and $\Gamma_B$ are jointly constrained—a bookkeeping statement about the initial conditions, not a dynamical link.
+**Ontic level ($\mathbb{U}_{\text{now}}$ universe-state perspective).** The microstate $\Gamma(t)$ is always definite and global. After a creation event at $t_0$, the daughter microstates $\Gamma_A(t)$ and $\Gamma_B$ are each fully determined for all $t > t_0$. The "entanglement" is simply the fact that $\Gamma_A$ and $\Gamma_B$ are jointly constrained: a bookkeeping statement about the initial conditions, not a dynamical link.
 
 **Epistemic level (Physical Observer).** The PO has access only to coarse-grained observables (effective fields, detector clicks). Unable to track the full microstate, the PO describes the system with a density matrix $\rho_{AB}$ that is non-separable. The PO interprets correlations as "entanglement" and the resolution of metastability as "collapse." These are accurate operational descriptions but do not reflect ontological indeterminacy or nonlocal influence.
 

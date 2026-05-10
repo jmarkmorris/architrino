@@ -4,6 +4,8 @@ This chapter develops two-body architrino dynamics from the appearance of self-h
 
 It is the foundational precursor to [Tri-Binary Dynamics](tri-binary-dynamics.md), [Dyadic Resonance Lock](dyadic-resonance-lock.md), [Master Equation](master-equation.md), and the assembly-level [Noether Core](../assemblies/noether-core.md).
 
+This chapter is the canonical home for two-body wake regimes, partner-hit versus self-hit behavior, spiral contraction, and maximum-curvature binary analysis. The primitive-entity ontology in [Architrino](../foundations/architrino.md) should point here once the discussion becomes a behavioral regime or assembly-stability mechanism.
+
 ## The Spiral Orbiting Binary and the Contraction Phase
 
 An orbiting binary is the simplest emergent assembly, consisting of two architrinos of opposite polarity: an electrino and a positrino. With polarities $-\epsilon$ and $+\epsilon$, the assembly is electrically neutral overall. This system demonstrates the fundamental principles of interaction, including the consequences of delayed potential and the role of the wake-speed symmetry point.

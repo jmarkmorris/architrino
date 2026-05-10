@@ -14,7 +14,7 @@ At the substrate level:
 
 - space remains Euclidean,
 - time remains absolute,
-- and the Noether-core sea is the dynamical medium.
+- and the [Noether Sea](noether-sea.md) is the dynamical medium.
 
 At the observer level, the same medium must generate the effective metric behavior usually attributed to curved spacetime. Therefore the phenomenology requirement is:
 
@@ -110,7 +110,7 @@ $$
 \left|\frac{v_{\mathrm{GW}}-c}{c}\right| \ll 1.
 $$
 
-In repo terms, gravitational waves are propagating collective disturbances of the Noether-core sea. Their speed, dispersion, and polarization content must remain consistent with current timing bounds. Any large medium-dispersion signature in already-tested bands is excluded.
+In repo terms, gravitational waves are propagating collective disturbances of the Noether Sea. Their speed, dispersion, and polarization content must remain consistent with current timing bounds. Any large medium-dispersion signature in already-tested bands is excluded.
 
 ## Strong-Field Regime
 

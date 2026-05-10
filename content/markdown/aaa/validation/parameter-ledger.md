@@ -67,13 +67,34 @@ The following observer-level quantities are closure targets, not primitive input
 
 If the theory must reset them independently for each chapter, parameter closure has failed.
 
+### Naturalness and sensitivity
+
+When a symbol is claimed as a closure output rather than a free fit, use the fine-tuning quotient
+$$
+\mathrm{FTQ}(p)=
+\frac{\Delta p/p}{\Delta \mathrm{obs}/\mathrm{obs}}
+$$
+as the default sensitivity diagnostic.
+
+Here $\Delta p/p$ is the fractional perturbation of a parameter or closure output, and $\Delta \mathrm{obs}/\mathrm{obs}$ is the resulting fractional perturbation of the observable being tested. Values $\mathrm{FTQ}(p)>10$ should be treated as fine-tuning pressure unless a discrete topology, symmetry, attractor basin, or measured benchmark explains the sensitivity.
+
+Current status:
+
+- $\epsilon=|e|/6$ is treated as a discrete polarity-unit input and an explanatory target, not as a continuous fit.
+- $\kappa$ remains to be assessed because its primitive, derived, or normalization-sensitive status is still open.
+- $\rho_{\text{core},0}$ and related medium-density normalizations remain naturalness risks until energy shielding and cosmological closure are quantified.
+
+### Regulator versus physical pulse
+
+The wake-width regulator $\eta$ is a computational and analytic regularization, not a claim that causal wakes are fundamentally pulsed. It smooths causal wake surfaces so integrals and simulations can be evaluated with finite resolution. As $\eta\to0$, the intended limit is the continuous path-history law, with each discrete time step in a simulation approximating the contribution from a narrow causal wake surface rather than replacing the underlying continuous emission.
+
 ## Layer I: Substrate and Kernel Parameters
 
 These symbols belong to the delayed microscopic law itself.
 
 | ID | Symbol | Class | Current status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
-| K1 | $c_f$ | Fundamental parameter | Primitive | field speed of causal wake propagation | [../dynamics/master-equation.md](../dynamics/master-equation.md), [../foundations/ontology.md](../foundations/ontology.md) |
+| K1 | $c_f$ | Fundamental parameter | Primitive | field speed of causal wake propagation | [../dynamics/master-equation.md](../dynamics/master-equation.md), [../foundations/absolute-timespace.md](../foundations/absolute-timespace.md) |
 | K2 | $\epsilon$ | Fundamental parameter | Primitive | unit architrino charge magnitude, with observer-level charge reconstructed from it | [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md), [../interactions/gauge-structure-emergence.md](../interactions/gauge-structure-emergence.md) |
 | K3 | $\kappa$ | Fundamental parameter or normalization-sensitive coupling | Open | universal coupling strength in the per-hit acceleration law | [../dynamics/master-equation.md](../dynamics/master-equation.md), [architrino-si-base-units.md](./architrino-si-base-units.md) |
 | K4 | $\eta$ | Regulator / convention | Open but non-ontological | mollifier width used to regularize causal wake surfaces for smooth dynamics and numerics | [simulations/action-energy/well-posedness-and-regularization.md](./simulations/action-energy/well-posedness-and-regularization.md), [../dynamics/master-equation.md](../dynamics/master-equation.md) |
@@ -85,7 +106,7 @@ These quantities belong to tri-binary architecture, shielding, branch structure,
 
 | ID | Symbol | Class | Current status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
-| G1 | $R_{\text{inner}},R_{\text{middle}},R_{\text{outer}}$ | Geometric closure target | Open | characteristic radii of the nested binaries in the Noether core | [../assemblies/noether-core.md](../assemblies/noether-core.md), [../dynamics/tri-binary-dynamics.md](../dynamics/tri-binary-dynamics.md) |
+| G1 | $R_{\text{inner}},R_{\text{middle}},R_{\text{outer}}$ | Geometric closure target | Open | characteristic radii of the nested binaries in the Noether core | [../assemblies/noether-core.md](../assemblies/noether-core.md), [../assemblies/noether-core-geometry.md](../assemblies/noether-core-geometry.md), [../dynamics/tri-binary-dynamics.md](../dynamics/tri-binary-dynamics.md) |
 | G2 | $\omega_{\text{inner}},\omega_{\text{middle}},\omega_{\text{outer}}$ | Geometric closure target | Open | characteristic binary frequencies associated with the nested radii | [../dynamics/tri-binary-dynamics.md](../dynamics/tri-binary-dynamics.md), [../assemblies/particle-masses.md](../assemblies/particle-masses.md) |
 | G3 | $R_{\text{align}}$ | Geometric closure target | Open, conjectural | outer-binary alignment radius in the terminal Planck-alignment map | [../spacetime/mapping-planck-scale.md](../spacetime/mapping-planck-scale.md) |
 | G4 | $L_{\text{align}}$ | Geometric closure target | Open, conjectural | action / angular-momentum increment of the aligned terminal mode | [../spacetime/mapping-planck-scale.md](../spacetime/mapping-planck-scale.md) |

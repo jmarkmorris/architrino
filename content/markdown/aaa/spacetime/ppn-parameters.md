@@ -79,12 +79,12 @@ In the weak-field solar-system regime, $\gamma_{\text{eff}}$ is the direct refra
 
 #### Parameter $\gamma$ (Space Curvature / Refraction)
 * **GR Context:** Measures the amount of space curvature produced by unit rest mass.
-* **Architrino Interpretation:** Measures the "Refractive Index" of the Sea of Noether Cores. A massive body increases local assembly density, slowing the effective speed of light $c$ relative to the field speed $c_f$.
+* **Architrino Interpretation:** Measures the refractive response of the [Noether Sea](noether-sea.md). A massive body increases local assembly density, slowing the effective speed of light $c$ relative to the wake speed $c_f$.
 * **Observable:** Shapiro-delay coefficient in the explicit refractive integral above.
 
 #### Parameter $\beta$ (Non-linearity of Gravity)
 * **GR Context:** Measures the non-linearity in the superposition of gravitational fields.
-* **Architrino Interpretation:** Captures second-order (in potential) clock/medium response from self-hit and Noether-Sea constitutive nonlinearity.
+* **Architrino Interpretation:** Captures second-order (in potential) clock/medium response from self-hit and Noether Sea constitutive nonlinearity.
 * **Explicit map from constitutive expansion:** Let $U\equiv-\Phi_N>0$ and expand the static clock law
 $$
 \frac{d\tau}{dt}\bigg|_{v=0}

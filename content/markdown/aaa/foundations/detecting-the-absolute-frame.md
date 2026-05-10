@@ -118,7 +118,7 @@ The concentric-wake measurement requires access to full microdynamics: something
 - **Effective coordinates** via local rulers
 - **Relative velocities** via Doppler shifts and aberration
 
-Assembly-based measuring devices are themselves distorted by motion and coupling to the Noether-Sea medium. At accessible energies and weak Noether-Sea density gradients, emergent **Lorentz symmetry** suppresses preferred-frame signatures below experimental detection thresholds. The absolute frame exists as the ontological foundation, but emergent effective geometry shields it from direct operational observation.
+Assembly-based measuring devices are themselves distorted by motion and coupling to the Noether Sea medium. At accessible energies and weak Noether Sea density gradients, emergent **Lorentz symmetry** suppresses preferred-frame signatures below experimental detection thresholds. The absolute frame exists as the ontological foundation, but emergent effective geometry shields it from direct operational observation.
 
 ### The Source-Independence Assumption
 

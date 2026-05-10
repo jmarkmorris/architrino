@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 125,
-      "sections": 867
+      "sections": 882
     }
   },
   "tocRoot": {
@@ -218,10 +218,106 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "The Noether Sea: Noether Core Occupancy",
+                "title": "Core Concept",
                 "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
-                "markdownSection": "The Noether Sea: Noether Core Occupancy",
-                "sectionKey": "the noether sea noether core occupancy",
+                "markdownSection": "Core Concept",
+                "sectionKey": "core concept",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Manifold and Metric",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Manifold and Metric",
+                "sectionKey": "manifold and metric",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Flat Geometry and Topology",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Flat Geometry and Topology",
+                "sectionKey": "flat geometry and topology",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Canonical Coordinates and Event Identity",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Canonical Coordinates and Event Identity",
+                "sectionKey": "canonical coordinates and event identity",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Curvilinear Coordinates",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Curvilinear Coordinates",
+                "sectionKey": "curvilinear coordinates",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Index Notation and Tensor Operations",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Index Notation and Tensor Operations",
+                "sectionKey": "index notation and tensor operations",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Spatial Differential Operators",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Spatial Differential Operators",
+                "sectionKey": "spatial differential operators",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Homogeneity, Isotropy, and the Euclidean Group",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Homogeneity, Isotropy, and the Euclidean Group",
+                "sectionKey": "homogeneity isotropy and the euclidean group",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Geodesics and Dynamics",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Geodesics and Dynamics",
+                "sectionKey": "geodesics and dynamics",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Forbidden Transformations",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Forbidden Transformations",
+                "sectionKey": "forbidden transformations",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Boundary With the Noether Sea",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Boundary With the Noether Sea",
+                "sectionKey": "boundary with the noether sea",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Distinction From Curved Space",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Distinction From Curved Space",
+                "sectionKey": "distinction from curved space",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary Postulate",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Summary Postulate",
+                "sectionKey": "summary postulate",
                 "headingLevel": 2
               }
             ]
@@ -292,10 +388,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Open Ontological Questions",
+                "title": "Open Questions and Validation Routing",
                 "markdownPath": "content/markdown/aaa/foundations/ontology.md",
-                "markdownSection": "Open Ontological Questions",
-                "sectionKey": "open ontological questions",
+                "markdownSection": "Open Questions and Validation Routing",
+                "sectionKey": "open questions and validation routing",
                 "headingLevel": 2
               },
               {
@@ -3342,6 +3438,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Noether-Core Deformation and Metric Language",
+                "markdownPath": "content/markdown/aaa/spacetime/emergent-metric.md",
+                "markdownSection": "Noether-Core Deformation and Metric Language",
+                "sectionKey": "noether core deformation and metric language",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Jacobson-Type Support: Metric as Equation of State",
                 "markdownPath": "content/markdown/aaa/spacetime/emergent-metric.md",
                 "markdownSection": "Jacobson-Type Support: Metric as Equation of State",
@@ -3850,6 +3954,14 @@
                 "markdownPath": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
                 "markdownSection": "Why This Matters for Spacetime Phenomenology",
                 "sectionKey": "why this matters for spacetime phenomenology",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Ownership Boundary",
+                "markdownPath": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
+                "markdownSection": "Ownership Boundary",
+                "sectionKey": "ownership boundary",
                 "headingLevel": 2
               },
               {
@@ -5436,6 +5548,14 @@
                 "markdownPath": "content/markdown/aaa/validation/known-tensions.md",
                 "markdownSection": "Interdependence Map",
                 "sectionKey": "interdependence map",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Ontology Watchlist",
+                "markdownPath": "content/markdown/aaa/validation/known-tensions.md",
+                "markdownSection": "Ontology Watchlist",
+                "sectionKey": "ontology watchlist",
                 "headingLevel": 2
               },
               {

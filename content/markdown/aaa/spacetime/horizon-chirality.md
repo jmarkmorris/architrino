@@ -20,7 +20,7 @@ This chapter does not alter that constitutive rule. It asks what chirality infor
 
 ## Pro/Anti Before Planar Lock
 
-Away from the horizon, the project already treats `pro/anti` as a handedness or ordering property of the 3D tri-binary scaffold rather than as a net-charge distinction. The standard working convention appears in [../foundations/ontology.md](../foundations/ontology.md) and [../assemblies/fermions/color-charge-su3.md](../assemblies/fermions/color-charge-su3.md):
+Away from the horizon, the project already treats `pro/anti` as a handedness or ordering property of the 3D tri-binary scaffold rather than as a net-charge distinction. The standard working convention appears in [spacetime-assemblies.md](spacetime-assemblies.md) and [../assemblies/fermions/color-charge-su3.md](../assemblies/fermions/color-charge-su3.md):
 
 - `pro`: $H \to M \to L$ ordering in time;
 - `anti`: $H \to L \to M$ ordering in time.
@@ -137,7 +137,7 @@ The next question is whether a rapidly translating tri-binary should drive the t
 
 The answer is dynamical rather than purely kinematic. Straight-line translation does **not** require that result merely from conservation laws. In the path-history dynamics, total linear momentum and total angular momentum are distinct conserved quantities, so an isolated translating assembly may in principle carry internal angular momentum whose axis is not parallel to the center-of-mass velocity.
 
-The stronger argument comes from the high-velocity delay geometry. Let the translation direction define the $z$-axis and use the oblate envelope from [tri-binary-dynamics.md](../dynamics/tri-binary-dynamics.md):
+The stronger argument comes from the high-velocity delay geometry. Let the translation direction define the $z$-axis and use the oblate envelope from [Noether Core Geometry](../assemblies/noether-core-geometry.md) and its dynamics treatment in [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md):
 
 $$
 \frac{x^2+y^2}{R_\perp^2} + \frac{z^2}{R_\parallel^2} = 1,

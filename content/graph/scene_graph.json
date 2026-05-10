@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 420,
+      "nodes": 426,
       "edges": 1163,
       "scenes": 288,
       "markdownIndexes": 0,
-      "markdownDocs": 132,
+      "markdownDocs": 138,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2033,6 +2033,12 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/assemblies/noether-core-geometry.md",
+      "name": "Noether Core Geometry",
+      "path": "content/markdown/aaa/assemblies/noether-core-geometry.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/assemblies/noether-core.md",
       "name": "Nested Binaries and the Noether Core",
       "path": "content/markdown/aaa/assemblies/noether-core.md",
@@ -2144,6 +2150,24 @@
       "id": "content/markdown/aaa/foundations/absolute-time-defense.md",
       "name": "Absolute Time Defense",
       "path": "content/markdown/aaa/foundations/absolute-time-defense.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/foundations/absolute-time.md",
+      "name": "Absolute Time",
+      "path": "content/markdown/aaa/foundations/absolute-time.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/foundations/absolute-timespace.md",
+      "name": "Absolute Timespace",
+      "path": "content/markdown/aaa/foundations/absolute-timespace.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/foundations/architrino.md",
+      "name": "Architrino",
+      "path": "content/markdown/aaa/foundations/architrino.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2444,6 +2468,18 @@
       "id": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
       "name": "Medium Exclusion Volume",
       "path": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/spacetime/noether-sea.md",
+      "name": "Noether Sea",
+      "path": "content/markdown/aaa/spacetime/noether-sea.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/spacetime/observer-framework.md",
+      "name": "Observer Framework",
+      "path": "content/markdown/aaa/spacetime/observer-framework.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5497,6 +5533,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/assemblies/noether-core-geometry.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/assemblies/noether-core-geometry.md",
+      "name": "Noether Core Geometry",
+      "path": "content/markdown/aaa/assemblies/noether-core-geometry.md",
+      "searchTarget": "content/markdown/aaa/assemblies/noether-core-geometry.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/assemblies/noether-core.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/assemblies/noether-core.md",
@@ -5665,6 +5710,33 @@
       "name": "Absolute Time Defense",
       "path": "content/markdown/aaa/foundations/absolute-time-defense.md",
       "searchTarget": "content/markdown/aaa/foundations/absolute-time-defense.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/foundations/absolute-time.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/foundations/absolute-time.md",
+      "name": "Absolute Time",
+      "path": "content/markdown/aaa/foundations/absolute-time.md",
+      "searchTarget": "content/markdown/aaa/foundations/absolute-time.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/foundations/absolute-timespace.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/foundations/absolute-timespace.md",
+      "name": "Absolute Timespace",
+      "path": "content/markdown/aaa/foundations/absolute-timespace.md",
+      "searchTarget": "content/markdown/aaa/foundations/absolute-timespace.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/foundations/architrino.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/foundations/architrino.md",
+      "name": "Architrino",
+      "path": "content/markdown/aaa/foundations/architrino.md",
+      "searchTarget": "content/markdown/aaa/foundations/architrino.md",
       "implicit": false
     },
     {
@@ -6115,6 +6187,24 @@
       "name": "Medium Exclusion Volume",
       "path": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
       "searchTarget": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/spacetime/noether-sea.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/spacetime/noether-sea.md",
+      "name": "Noether Sea",
+      "path": "content/markdown/aaa/spacetime/noether-sea.md",
+      "searchTarget": "content/markdown/aaa/spacetime/noether-sea.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/spacetime/observer-framework.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/spacetime/observer-framework.md",
+      "name": "Observer Framework",
+      "path": "content/markdown/aaa/spacetime/observer-framework.md",
+      "searchTarget": "content/markdown/aaa/spacetime/observer-framework.md",
       "implicit": false
     },
     {

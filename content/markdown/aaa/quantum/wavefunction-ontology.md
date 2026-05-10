@@ -14,7 +14,7 @@ The framework explicitly separates the **ontic reality** of architrino trajector
 
 In the architrino framework, the wavefunction $\psi(\mathbf{x}, t)$ is not a fundamental physical field propagating in a high-dimensional configuration space. Instead, it is an **effective, coarse-grained epistemic tool** utilized by Physical Observers. 
 
-The universe at the ontic level (accessible only to the conceptual Absolute Observer) consists of point-like architrinos executing definite trajectories $\mathbf{x}_i(t)$ in a 3D Euclidean void, interacting via a continuous superposition of causal wake surfaces. Because Physical Observers (assemblies) cannot access the exact microstate or the full path-history of the Noether Sea, they must rely on statistical descriptions.
+The universe at the ontic level, as represented by the $\mathbb{U}_{\text{now}}$ universe-state perspective, consists of point-like architrinos executing definite trajectories $\mathbf{x}_i(t)$ in a 3D Euclidean void, interacting via a continuous superposition of causal wake surfaces. Because Physical Observers (assemblies) cannot access the exact microstate or the full path-history of the Noether Sea, they must rely on statistical descriptions.
 
 The wavefunction encodes:
 *   **The superposed potential landscape:** A coarse-grained representation of the ambient causal wake intersections.
