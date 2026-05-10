@@ -67,6 +67,52 @@ This workstream is the organizer for mass-side integration. It should decide wha
 - Derive $\zeta(A)$ strongly enough to predict a baseline electron mass and a first hierarchy check such as $m_\mu / m_e$.
 - Decide which shared inputs survive across the mass-side program, especially $\kappa$, the role of $\eta$, and whether the first map also constrains $h$ and $G$.
 
+## First Quantitative Deliverable: Reference Attractor Family $A_0$
+
+The first mass-side calculation should not begin with a particle label. It should begin with the simplest stable Noether-core attractor family that can emit the data needed for a mass calculation.
+
+Define $A_0$ as a neutral, rest-branch tri-binary Noether core in a weak homogeneous Noether-Sea cell. The family contains three nested pro/anti binaries:
+
+| Layer | Role | Baseline branch |
+| --- | --- | --- |
+| Inner binary $I$ | active path-history memory carrier | self-hit/history-supported, typically near or above the primitive field-speed separator |
+| Middle binary $M$ | commensurability buffer and phase-lock hinge | near-separator transition branch |
+| Outer binary $O$ | shielding and boundary-coupling interface | sub-field-speed observer-facing branch |
+
+This reference family should be solved first in the local rest frame of the Noether-Sea cell with $G_{\text{grad}}=0$ and $u^i_{\text{sea}}=0$. Primitive wake geometry may use $c_f$, but all observer-facing mass outputs must declare the dressing map to $c_{\text{eff}}$ or mark it as unresolved. The family must not be calibrated to the electron mass or to any charged-lepton hierarchy value; those comparisons are downstream tests.
+
+### Required Output Contract
+
+| Quantity class | Required outputs | Why mass needs it |
+| --- | --- | --- |
+| Geometry | $R_I,R_M,R_O$; radius ratios; binary-plane normals $\mathbf{n}_I,\mathbf{n}_M,\mathbf{n}_O$; inter-plane angles; handedness; center-of-closure frame | Fixes the spiral-helical Noether-core shape and the lever arms that determine stored energy, shielding, and external response. |
+| Phase and winding | $\omega_I,\omega_M,\omega_O$; $T_I,T_M,T_O$; closed-cycle period $T_{\mathbf{k}}$; phase offsets; layer windings $(k_I,k_M,k_O)$; inter-layer closure integers $q_{ij}$ | Turns the causal knot into an integer-labeled attractor rather than a loose configuration sketch. |
+| Root ledger | partner-hit counts; self-hit counts; inter-layer hit channels; signed parity/degree data; any separator events $\Delta N\in 2\mathbb{Z}$ | Supplies the causal-history inventory whose trapped energy is proposed to appear externally as mass response. |
+| Stability | closure residuals; return-map residuals; leading Floquet multipliers; basin gap $\Delta_{\mathbf{k}}$; sensitivity to small perturbations | Distinguishes accepted attractors from integer-closed but dynamically unstable rungs. |
+| Internal energy ledger | layer energies $E_I,E_M,E_O$; interaction/wake terms; total $E_{\text{internal}}(A_0)$ in dimensionless units; action per closed cycle | Provides the unshielded energy reservoir in $m_0(A)c_{\text{eff}}^2\sim\zeta(A)E_{\text{internal}}(A)$. |
+| Shielding extraction | far-field multipole coefficients; exposed leading amplitude; naive constituent sum; preliminary $\zeta(A_0)$; angular anisotropy/leakage tensor | Converts stored internal motion into the externally visible response coefficient instead of assuming $\zeta$. |
+| Medium response | local lapse precursor $N$; spatial compliance response $\gamma_{ij}$ or homogeneous baseline; response tensor for acceleration and gradient probes; equivalence residual placeholder | Connects inertial response, gravitational response, and the later Cartan/ADM reconstruction. |
+| Mass-facing summary | dimensionless exposed-energy coefficient $\zeta(A_0)E_{\text{internal}}(A_0)/E_0$; unresolved constants list; calibration-free comparison handles | Gives the first object that can later be compared with a particle mass after constants and dressing are fixed. |
+
+### Acceptance Gates
+
+The $A_0$ deliverable is not accepted until all of the following are true:
+
+1. The closure residuals are below a declared tolerance over at least one full closed cycle.
+2. The non-symmetry Floquet gap satisfies $\Delta_{\mathbf{k}}>0$ for the reported branch.
+3. The reported branch has no secular drift in the local rest frame after symmetry modes are removed.
+4. The shielding estimate is stable under increasing far-field extraction radius and angular resolution.
+5. No observed particle mass, electron radius, charged-lepton ratio, or measured $\alpha$ value is used as a fitting input.
+6. The output is sufficient to evaluate the roadmap expression $m_0(A)c_{\text{eff}}^2\sim\zeta(A)E_{\text{internal}}(A)$ as a prediction once the dressing constants are supplied.
+
+### Immediate Work Packet
+
+1. Formalize the $A_0$ state vector: six architrino trajectories, three binary center frames, three binary phase variables, and the shared Noether-Sea cell data.
+2. Write the closure equations for partner hits, self hits, and inter-layer hits with path-history delays and integer winding labels.
+3. Define the numerical output schema for the required output contract above before running simulations.
+4. Run the simplest reduced $A_0$ scan: homogeneous Noether-Sea cell, zero drift, no imposed external gradient, and primitive speed selector $c_\star=c_f$ for wake intersections.
+5. Promote only stable, calibration-free outputs into the $\zeta$ and hierarchy steps.
+
 ## Core Work
 
 - Solve the exact 6-body non-Markovian path-history equations for the tri-binary and locate the relevant limit cycles or other robust attractors.
