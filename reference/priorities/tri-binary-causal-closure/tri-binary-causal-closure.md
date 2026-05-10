@@ -12,9 +12,9 @@
 ## Task Queue
 
 1. `tri_binary_dependency_map` — Maintain the proof-dependency map and deployment handoff table. Status: `done`. Depends on: none.
-2. `continuity_pass` — Walk the synthesis section by section against the dependency map, especially shielding, momentum skew, and transverse-budget root-finding jumps. Status: `next`. Depends on: `tri_binary_dependency_map`.
+2. `continuity_pass` — Walk the synthesis section by section against the dependency map, especially shielding, momentum skew, and transverse-budget root-finding jumps. Status: `done`. Depends on: `tri_binary_dependency_map`.
 3. `photon_qed_gate` — Build the three photon/QED stress-test packets for kinematics and optics, polarization and spin, and vertices and transitions. Status: `pending`. Depends on: `continuity_pass`.
-4. `deployment_handoff` — Route unresolved synthesis claims through inline theorem-roadmap tags and priority-table handoff rows before deployment. Status: `pending`. Depends on: `continuity_pass`.
+4. `deployment_handoff` — Route unresolved synthesis claims through inline theorem-roadmap tags and priority-table handoff rows before deployment. Status: `done`. Depends on: `continuity_pass`.
 
 ## Scope
 
@@ -26,13 +26,25 @@ The deployed dynamics baseline is [Tri-Binary Dynamics](../../../content/markdow
 
 This document is a synthesis and proof roadmap for the energy argument extending [Kinetic and Potential Energy](../../../content/markdown/aaa/dynamics/energy.md). It is not yet a completed theorem. Its purpose is to organize the current claim in academic order, preserve the conceptual content of the development, remove repetition, and identify the mathematical closures that must eventually be carried into the main dynamics, assembly, and spacetime chapters.
 
-The active development dependency map for this synthesis is [Tri-Binary Dependency Map](tri-binary-dependency-map.md). Before any deployed or textbook-facing promotion, unresolved items in that map must either be closed, retained as explicit roadmap targets, routed into the priority system, or cut.
+The active development dependency map for this synthesis is [Tri-Binary Dependency Map](tri-binary-dependency-map.md). For publication as a reference priority document, unresolved items must be retained as explicit roadmap targets, routed into the priority system, or cut from theorem-level prose. Before textbook-facing promotion, those items must be mathematically closed or recast as clearly labeled conjectures.
 
 Inline roadmap tags of the form [→ Target N](#theorem-roadmap) are deployment handoff markers. They do not prove the tagged claim; they identify the numbered theorem burden that must close before the claim can leave active-development status.
 
 The central claim is that rest mass, annihilation energy, quantized action transfer, negative-energy bookkeeping, inertia, proper time, momentum conservation, effective geodesic motion, effective special-relativistic kinematics, and strong-field structural failure may all be different projections of the same underlying mechanism: super-field-speed causal-root multiplicity in phase-locked tri-binary Noether cores and the larger architrino assemblies built on them.
 
 If the argument closes, the result would have large impact. It would mean that several quantities normally treated as fundamental or postulated at the effective level are recovered from delayed causal wake geometry, root-ledger multiplicity, Noether-Sea shielding, and refractive medium response. The claim is therefore strong, but it must be stated with exact scope: the present document gives the synthesis-level derivation target and theorem roadmap, not the final theorem.
+
+## Publication Status
+
+This document is publishable as a reference-priority synthesis, not as a completed physics derivation. Its claims are organized into three classes:
+
+| Class | Treatment in this document |
+| --- | --- |
+| Working mechanism | The proposed causal path from tri-binary closure to rest mass, proper time, effective relativity, photons, and horizon behavior. |
+| Derived or standard effective limit | Standard observer-level formulas that must be recovered, such as Lorentz kinematics, weak-field redshift, geodesic motion, and photon masslessness. |
+| Open theorem burden | Any step tagged by the theorem roadmap, including shielding extraction, Floquet stability, photon closure, ADM/Cartan reconstruction, and equivalence-principle residual bounds. |
+
+Publication should therefore frame this as a proof architecture and dependency ledger. It should not be introduced as established breakthrough physics, a replacement for validated effective theories, or a completed derivation of particle masses.
 
 ## Reviewer Orientation
 
@@ -1248,13 +1260,13 @@ The synthesis-level claim is therefore clear: rest mass, proper time, photon pro
 
 The photon channel is now the critical path, because it carries the operational measurements used to test the mass, time, and metric claims. Review should follow the three photon-gate packets rather than treating all QED recovery as one pass.
 
-1. Phe, Standard Model and QFT Phenomenologist: own photon gate C, vertices and transitions. Verify emission and absorption rates including the Fermi's Golden Rule limit, pair-production thresholds, planar-to-volumetric electron/positron conversion, Compton scattering, photon-photon scattering suppression, blackbody spectra, Bose-Einstein occupation behavior, $U(1)$-like phase behavior, Aharonov-Bohm phase shifts, gauge-like redundancy, and the effective coupling scale $\alpha$.
-2. Dyna, Dynamical Systems Reviewer: own photon gate A, kinematics and optics. Branch-certify the pro/anti planar-pair closure, axial delay asymmetry, relative phase ledger, finite-phase condition, proportional-collapse $c_\gamma\to c_f$ weak homogeneous Noether-Sea limit, and integer stability basins.
-3. Cos, General Relativist and Cosmologist: verify local-versus-coordinate speed language, weak-field clock maps, equivalence-principle matching, horizon wording, gravitational-wave speed compatibility, and exterior GR recovery.
-4. Red, Red-Team Reviewer: attack photon gate B and the empirical null tests: preferred-frame leakage, photon dispersion, photon mass, birefringence, residual longitudinal modes, squared-amplitude/Born-rule failure, equivalence-principle composition dependence, and no-signaling constraints.
-5. Sol, Simulation Reviewer: build the minimal axial photon-pair closure simulation with parameters $(d,\nu,c_f,c_\gamma,\phi_{\text{geom}})$, including the proportional-collapse branch $d(\omega,\delta_\gamma)$, plus null-test diagnostics for dispersion, birefringence, rest-frame leakage, and longitudinal-mode leakage, then implement closure graphs, braid/framing observables, holonomy winding, root-ledger counts, and transverse-rank collapse diagnostics.
-6. Henri, Nonlinear Dynamics Reviewer: own the Floquet stability functional, the grazing-bifurcation classification of the separator, and the slow-fast tri-binary minimality theorem. Verify that the basin-robustness gap $\Delta_{\mathbf{k}}$ is a unified diagnostic across clock-freeze, structural failure, and ledger jumps; supply numerical Floquet multipliers for the simplest super-field-speed binary as the discreteness test for state-dependent delays.
-7. Eli, Emergent Geometry and Connection Reviewer: own the ADM/Cartan reconstruction layer. Verify the lapse $N$, medium drift $u^i_{\text{sea}}$, spatial compliance $\gamma_{ij}$, frame fields $e^a{}_i$, connection $\Gamma^\mu{}_{\nu\rho}$, horizon null-surface condition, and PPN targets, including lensing and Shapiro-delay closure beyond scalar refractive-speed models.
+1. Standard Model and QFT phenomenology review: own photon gate C, vertices and transitions. Verify emission and absorption rates including the Fermi's Golden Rule limit, pair-production thresholds, planar-to-volumetric electron/positron conversion, Compton scattering, photon-photon scattering suppression, blackbody spectra, Bose-Einstein occupation behavior, $U(1)$-like phase behavior, Aharonov-Bohm phase shifts, gauge-like redundancy, and the effective coupling scale $\alpha$.
+2. Dynamical-systems review: own photon gate A, kinematics and optics. Branch-certify the pro/anti planar-pair closure, axial delay asymmetry, relative phase ledger, finite-phase condition, proportional-collapse $c_\gamma\to c_f$ weak homogeneous Noether-Sea limit, and integer stability basins.
+3. General-relativity and cosmology review: verify local-versus-coordinate speed language, weak-field clock maps, equivalence-principle matching, horizon wording, gravitational-wave speed compatibility, and exterior GR recovery.
+4. Red-team empirical review: attack photon gate B and the empirical null tests: preferred-frame leakage, photon dispersion, photon mass, birefringence, residual longitudinal modes, squared-amplitude/Born-rule failure, equivalence-principle composition dependence, and no-signaling constraints.
+5. Simulation review: build the minimal axial photon-pair closure simulation with parameters $(d,\nu,c_f,c_\gamma,\phi_{\text{geom}})$, including the proportional-collapse branch $d(\omega,\delta_\gamma)$, plus null-test diagnostics for dispersion, birefringence, rest-frame leakage, and longitudinal-mode leakage, then implement closure graphs, braid/framing observables, holonomy winding, root-ledger counts, and transverse-rank collapse diagnostics.
+6. Nonlinear-dynamics review: own the Floquet stability functional, the grazing-bifurcation classification of the separator, and the slow-fast tri-binary minimality theorem. Verify that the basin-robustness gap $\Delta_{\mathbf{k}}$ is a unified diagnostic across clock-freeze, structural failure, and ledger jumps; supply numerical Floquet multipliers for the simplest super-field-speed binary as the discreteness test for state-dependent delays.
+7. Emergent-geometry and connection review: own the ADM/Cartan reconstruction layer. Verify the lapse $N$, medium drift $u^i_{\text{sea}}$, spatial compliance $\gamma_{ij}$, frame fields $e^a{}_i$, connection $\Gamma^\mu{}_{\nu\rho}$, horizon null-surface condition, and PPN targets, including lensing and Shapiro-delay closure beyond scalar refractive-speed models.
 
 ## Appendix: Plain-Language Bridge to Relativity
 
