@@ -78,13 +78,14 @@ The deployment gate is passed only when every non-closed item in this map has a 
 
 - Inputs: moving Noether core with center-of-mass velocity $\mathbf{V}_{\text{cm}}$.
 - Mechanism: the delayed causal Jacobian skews forward and backward internal wake exchange; expanding $J=J_{\text{rest}}-(\mathbf{V}_{\text{cm}}\cdot\hat{\mathbf{r}})/c_f+O(\|\mathbf{V}_{\text{cm}}\|^2)$ leaves a first-order residual after the resting symmetric loop cancels.
+- Renormalization gap: the primitive Jacobian is written with $c_f$, while the macroscopic inertia coefficient is written with $c_{\text{eff}}^{-2}$. The Noether-Sea dressing of the closed root sum must explicitly convert primitive wake-delay weighting into the effective inverse-speed-squared response.
 - Output:
   $$
   \mathbf{p}_{\text{int}}
   \approx
   \frac{E_{\text{internal}}}{c_{\text{eff}}^2}\mathbf{V}_{\text{cm}}.
   $$
-- Proof burden: compute the first-order momentum skew from the full delayed root sum around a closed tri-binary cycle, not by radiation-box analogy alone.
+- Proof burden: compute the first-order momentum skew from the full delayed root sum around a closed tri-binary cycle, including the medium response tensor that reduces to $h^{ab}/c_{\text{eff}}^2$ in a homogeneous isotropic Noether-Sea cell, with $h^{ab}$ the inverse Euclidean spatial metric, not by radiation-box analogy alone.
 - Priority route: `master-equation-closure`, `mass-map`.
 - Current disposition: `priority`.
 
@@ -111,17 +112,18 @@ The deployment gate is passed only when every non-closed item in this map has a 
   $$
   c_{\perp}=c_{\text{eff}}\sqrt{1-\beta^2}.
   $$
-- Output: one resource controls time dilation, length contraction, clock freeze, quantum-step admissibility, and photon/rest-frame separation.
-- Proof burden: promote this from a synthesis subsection into a standalone dynamics lemma.
+- Effective-metric bridge: the same budget should be expressible as an observer-level acoustic-metric-like null condition $g^{\text{eff}}_{\mu\nu}dx^\mu dx^\nu=0$ built from $c_{\text{eff}}$, Noether-Sea drift $\mathbf{u}_{\text{sea}}$, density, compliance, and stress, without promoting that metric to substrate ontology.
+- Output: one resource controls time dilation, length contraction, clock freeze, quantum-step admissibility, photon/rest-frame separation, and the local Lorentz map.
+- Proof burden: promote this from a synthesis subsection into a standalone dynamics lemma, including the metric diagonalization that yields $\gamma_{\text{eff}}$ and the residual preferred-frame null tests.
 - Priority route: `master-equation-closure`.
 - Current disposition: `priority`.
 
 ### 9. Quantum Step Selection
 
 - Inputs: inner, middle, and outer binary radii, frequencies, phase lags, inter-layer paths, and $c_{\perp}$.
-- Mechanism: simultaneous integer closure selects candidate states, with $\ell_i$, $\ell_{ij}$, $\Omega_i$, phase lags, and $c_{\perp}$ solved as coupled branch-dependent functions rather than fixed rest quantities.
+- Mechanism: simultaneous integer closure selects candidate states, with $\ell_i$, $\ell_{ij}$, $\Omega_i$, phase lags, and $c_{\perp}$ solved as coupled branch-dependent functions rather than fixed rest quantities. The phase conditions should be treated as the native $\mathbb{A}\mathbb{A}\mathbb{A}$ analogue of Wilson-loop or Bohr-Sommerfeld closure: a causal-loop holonomy must wind by $2\pi k$.
 - Output: accepted quantum states are integer-closure and stability-basin solutions.
-- Proof burden: solve the coupled root-finding problem and add Floquet, Poincare-section, or Lyapunov diagnostics to distinguish stable basins from unstable integer-labeled solutions.
+- Proof burden: solve the coupled root-finding problem, identify the integer winding numbers as topological data, and add Floquet, Poincare-section, or Lyapunov diagnostics to distinguish stable basins from unstable integer-labeled solutions.
 - Priority route: `master-equation-closure`, `quantum-closure`.
 - Current disposition: `priority`.
 
@@ -158,9 +160,9 @@ The deployment gate is passed only when every non-closed item in this map has a 
 ### 12. Photon Planar Pair
 
 - Inputs: massive-clock transverse-budget failure at $c_{\text{eff}}$, pro/anti Noether-core orientations, and primitive wake speed $c_f$.
-- Mechanism: a photon is a planar pro/anti pair with axial pair communication rather than volumetric transverse clock closure.
+- Mechanism: a photon is a planar pro/anti pair with axial pair communication rather than volumetric transverse clock closure. The transition from a three-dimensional Noether-core invariant to a planar photon invariant must be treated as separator-mediated dimensional reduction, not as a smooth flattening of an orthogonal braid.
 - Output: a massless measurement channel with energy, momentum, transverse polarization, and no rest proper-time clock.
-- Proof burden: photon gate A must recover masslessness, no rest branch, no static charge leakage, no birefringence, no unacceptable dispersion, and no rest proper-time clock before the photon channel is used as an empirical measurement basis.
+- Proof burden: photon gate A must recover masslessness, no rest branch, no static charge leakage, no birefringence, no unacceptable dispersion, no rest proper-time clock, and the topological surgery rule that destroys the volumetric clock invariant before the photon channel is used as an empirical measurement basis.
 - Priority route: `standard-model-closure`, `quantum-closure`, `planar-bridge-closure`.
 - Current disposition: `priority`.
 
@@ -177,7 +179,11 @@ The deployment gate is passed only when every non-closed item in this map has a 
   $$
   \omega d/(c_f-c_\gamma)=O(1)
   $$
-  on the resolved branch without violating dispersion, birefringence, photon mass, or preferred-frame bounds; the first branch to test is proportional collapse or rescaling of $d$, while a strict residual catch-up margin remains a null-test branch.
+  on the resolved branch without violating dispersion, birefringence, photon mass, or preferred-frame bounds. The primary branch to test is proportional collapse,
+  $$
+  d(\omega,\delta_\gamma)\sim\Lambda_\gamma\frac{c_f-c_\gamma}{\omega},
+  $$
+  so fixed free-space photon speed is compatible with $d\propto\lambda$ and the vacuum limit sends $d\to0$ as $c_\gamma\to c_f$. A strict residual catch-up margin remains a null-test branch.
 - Priority route: `planar-bridge-closure`, `standard-model-closure`.
 - Current disposition: `priority`.
 
@@ -219,7 +225,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 
 ## Critical Path
 
-1. Photon gate A, kinematics and optics: masslessness, $c_\gamma\to c_f$, finite-phase closure, and nondispersion.
+1. Photon gate A, kinematics and optics: masslessness, $c_\gamma\to c_f$, proportional-collapse finite-phase closure, and nondispersion.
 2. Photon gate B, polarization and spin: transverse projector, helicity $\pm1$, two physical modes, no longitudinal mode, and Malus/Born recovery.
 3. Photon gate C, vertices and transitions: emission, absorption, pair production, transition rates, and $\alpha$.
 4. Transverse causal budget is the reusable dynamics lemma.

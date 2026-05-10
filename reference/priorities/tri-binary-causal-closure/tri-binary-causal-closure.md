@@ -240,7 +240,30 @@ $$
 
 On a resting closed cycle, opposite internal strokes cancel in the integrated momentum ledger. After the bulk velocity is added, the first-order $\mathbf{V}_{\text{cm}}\cdot\hat{\mathbf{r}}$ term weights the forward and backward halves differently. The zeroth-order symmetric contribution still cancels, but the Taylor residue leaves a net transported momentum proportional to the total trapped action or energy in the loop and to $\mathbf{V}_{\text{cm}}$. In effective language, the forward causal exchanges are Jacobian-shifted upward and the backward exchanges are shifted downward. The moving bound state must carry a skewed internal momentum in order to preserve the resonance lock. [→ Target 1](#theorem-roadmap)
 
-To first order in $\|\mathbf{V}_{\text{cm}}\|/c_{\text{eff}}$, the internal momentum associated with the trapped causal exchange has the form
+This step contains a necessary dressing map. The microscopic Jacobian has a primitive factor $1/c_f$, while the macroscopic inertia relation is expressed with $c_{\text{eff}}^{-2}$. Those are not interchangeable symbols. The missing theorem must sum the primitive delayed-root weights, wake amplitudes, path lengths, and Noether-Sea compliance into an effective response tensor:
+
+$$
+\mathcal{M}_{\text{sea}}^{ab}
+\equiv
+\frac{1}{E_{\text{internal}}}
+\left.
+\frac{\partial p_{\text{int}}^a}{\partial V_{\text{cm}}^b}
+\right|_{\mathbf{V}_{\text{cm}}=\mathbf{0}}.
+$$
+
+In a homogeneous isotropic Noether-Sea cell, the target reduction is
+
+$$
+\mathcal{M}_{\text{sea}}^{ab}
+\to
+\frac{h^{ab}}{c_{\text{eff}}^2}.
+$$
+
+Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice.
+
+Only after this primitive-to-effective renormalization is derived does the $c_f$ Jacobian support an $E/c_{\text{eff}}^2$ inertia coefficient.
+
+If that medium-dressed root sum closes, then to first order in $\|\mathbf{V}_{\text{cm}}\|/c_{\text{eff}}$, the internal momentum associated with the trapped causal exchange has the form
 
 $$
 \mathbf{p}_{\text{int}}
@@ -281,7 +304,7 @@ m_{\text{inertial}}(A)
 \frac{\zeta(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2}.
 $$
 
-The strong conclusion is that inertial mass is a kinematic response coefficient of a shielded causal resonance. The proof obligation is to derive the first-order momentum skew from the full delayed root sum around a closed tri-binary cycle, not merely from the radiation-box analogy. Until that closed-cycle integral is supplied, the inertia relation remains a controlled heuristic rather than a completed theorem.
+The strong conclusion is that inertial mass is a kinematic response coefficient of a shielded causal resonance. The proof obligation is to derive the first-order momentum skew from the full delayed root sum around a closed tri-binary cycle, including the Noether-Sea dressing that turns primitive wake delays into the effective inverse-speed-squared tensor, not merely from the radiation-box analogy. Until that closed-cycle integral is supplied, the inertia relation remains a controlled heuristic rather than a completed theorem.
 
 This is the local mass-side closure target for the synthesis. [→ Target 1](#theorem-roadmap) [→ Target 3](#theorem-roadmap)
 
@@ -434,6 +457,8 @@ Equivalently, $\sin\theta_{\text{tilt}}=\beta$. At rest, $\theta_{\text{tilt}}=0
 
 Third, the lower-order precession and nutation channels lose slack. The orthogonal three-dimensional braid is driven toward a narrowed axial funnel. Near $c_{\text{eff}}$, the helical lock no longer looks like a three-dimensional gyroscopic structure with transverse cycles; it approaches concentric axial alignment around the propagation vector. The particle-scale assembly is then close to losing the transverse degrees of freedom that make it a stable clock.
 
+This limiting description should not be read as an ordinary smooth flattening. A three-dimensional orthogonal braid cannot be continuously deformed into a planar or axial invariant while preserving all strand separations and closure data. The separator must therefore be treated as a topological dimensional-reduction event: the volumetric Noether-core invariant loses transverse rank and is replaced, if a stable branch exists, by a lower-dimensional planar or axial ledger. This is the mathematical reason the proper-time clock can break rather than merely slow.
+
 ### The Field-Speed Separator and Clock Freeze
 
 The field-speed separator is the kinematic hinge at which the relevant assembly-level motion reaches the local causal speed:
@@ -460,7 +485,7 @@ J
 0.
 $$
 
-Causal signals can no longer complete the forward stroke of the tri-binary resonance loop in the required transverse direction. The previously orthogonal inner, middle, and outer binary planes are forced into concentric axial alignment. Because a tick requires a completed transverse internal cycle, proper time ceases to advance for the bound assembly.
+Causal signals can no longer complete the forward stroke of the tri-binary resonance loop in the required transverse direction. The previously orthogonal inner, middle, and outer binary planes are forced into concentric axial alignment through separator surgery, not through a harmless geometric deformation. Because a tick requires a completed transverse internal cycle, proper time ceases to advance for the bound assembly.
 
 This is why the field-speed separator is more than a velocity ceiling. It is a structural failure boundary for a macroscopic phase-locked clock. A stable Noether-core-based assembly cannot remain an ordinary ticking object at the exact separator. If forced to that limit, it must shed action into outgoing wake modes, drop back into a sub-field-speed resonant slot, or dissociate and return its trapped geometric history to the surrounding Noether Sea.
 
@@ -514,6 +539,26 @@ $$
 
 At the field-speed separator, $\beta=1$ and $c_{\perp}=0$. The ongoing emissions do not disappear. Rather, they lose the transverse component required to close the internal communication loops. An emission aimed partly sideways has $c_{\parallel}<c_{\text{eff}}$ and cannot keep up with the receiver carried by the assembly. An emission aimed exactly axially can keep pace, but has no sideways component and therefore cannot cross from partner to partner or from layer to layer. Thus the three coaxial binaries still have causal activity, but no closed transverse exchange channel.
 
+The same budget can be repackaged as an effective acoustic-metric bridge for observer-level calculations. In a local Noether-Sea cell with drift velocity $\mathbf{u}_{\text{sea}}$ and Euclidean spatial metric $h_{ij}$, define the effective null bookkeeping form
+
+$$
+g^{\text{eff}}_{\mu\nu}dx^\mu dx^\nu
+\equiv
+-c_{\text{eff}}^2dt_{\text{sea}}^2
++
+h_{ij}
+\left(dx^i-u_{\text{sea}}^i dt_{\text{sea}}\right)
+\left(dx^j-u_{\text{sea}}^j dt_{\text{sea}}\right).
+$$
+
+The condition
+
+$$
+g^{\text{eff}}_{\mu\nu}dx^\mu dx^\nu=0
+$$
+
+states that the causal exchange is null with respect to the local medium response, not that the Euclidean substrate has become a primitive Lorentzian spacetime. In the Sea rest frame, diagonalizing this null condition gives the same split $c_{\text{eff}}^2=c_{\parallel}^2+c_{\perp}^2$ and therefore the same $\gamma_{\text{eff}}$. In an inhomogeneous medium, density, compliance, stress, and drift alter $c_{\text{eff}}$ and $\mathbf{u}_{\text{sea}}$, giving the formal bridge from the transverse-budget lemma to effective geodesic and Lorentz-map calculations. [→ Target 8](#theorem-roadmap) [→ Target 13](#theorem-roadmap)
+
 This observation supplies a useful equation-building principle for the quantum structure of the Noether core. A proposed state is not specified by a radius alone, a velocity alone, or a frequency alone. It is an accepted state only if the inner, middle, and outer binaries all retain causal connection under the same transverse budget.
 
 Let $i\in\{I,M,O\}$ label the inner, middle, and outer binaries. For each layer, an internal transverse path length $\ell_i$ has a crossing time
@@ -549,6 +594,22 @@ q_{ij}\in\mathbb{Z}.
 $$
 
 These equations are deliberately schematic, but they identify the mathematical target. The radii, velocities, frequencies, and phase lags of the three binaries cannot be chosen independently. At every accepted quantum step, the same $c_{\perp}$ must permit partner closure within each binary, inter-layer closure across the tri-binary, and global closure of the $(N,M)$ root ledger.
+
+This is also the point where the integer conditions should be connected to established topological language. Native $\mathbb{A}\mathbb{A}\mathbb{A}$ closure is a causal-loop holonomy condition: for a closed ledger path $C_i$,
+
+$$
+\mathcal{W}_i
+=
+\exp\left(i\oint_{C_i}d\Phi_i\right)
+=
+1,
+\qquad
+\oint_{C_i}d\Phi_i
+=
+2\pi k_i.
+$$
+
+In action variables, the analogous effective statement is the Bohr-Sommerfeld form $\oint p\,dq=n h$. The point is not to import canonical quantum mechanics as an axiom. It is to identify the winding number carried by the causal wake as topological data, so the topological certification layer can test whether a proposed integer-labeled state is a preserved branch or an unstable crossing.
 
 The path lengths in these expressions are not fixed rest-state constants. Each $\ell_i$ and $\ell_{ij}$ is a deformed-path functional of the moving branch, for example $\ell_i(\beta,\rho_i,\Omega_i,\Phi_i,\rho_{\text{sea}})$, and $c_{\perp}$ is itself a function of $\beta$ and the local medium state. Quantum step selection is therefore a simultaneous root-finding problem, not a sequential recipe. In schematic form, each accepted layer must satisfy
 
@@ -767,7 +828,7 @@ $$
 
 denote the local photon-channel speed through the Noether Sea, while $c_f$ remains the primitive wake speed in the underlying substrate. In weak homogeneous conditions $c_\gamma\approx c_f$, but in a medium or strong Noether-Sea gradient one expects $c_\gamma<c_f$. The photon pair propagates at $c_\gamma$, so it is lightlike at the operational level. Yet the causal wakes available for internal pair communication still propagate at $c_f$, so the two planarized cores can remain coupled even though each core, taken alone, no longer behaves like an ordinary volumetric clock.
 
-This resolves an otherwise difficult point. A Noether core moving at the photon-channel speed cannot maintain the same internal transverse closure that defines rest proper time for a massive particle. Its ordinary group-internal communication is effectively flattened. But it can still participate in a longitudinal pro/anti coupling with the other core in the photon pair, because the pair closure uses axial wake exchange between two planar cores rather than full three-dimensional internal clock closure inside one core. The stable photon is therefore not one isolated planarized core. It is the coupled two-core ledger.
+This resolves an otherwise difficult point. A Noether core moving at the photon-channel speed cannot maintain the same internal transverse closure that defines rest proper time for a massive particle. Its ordinary group-internal communication undergoes separator-mediated dimensional reduction from a volumetric clock invariant to a planar or axial ledger. But it can still participate in a longitudinal pro/anti coupling with the other core in the photon pair, because the pair closure uses axial wake exchange between two planar cores rather than full three-dimensional internal clock closure inside one core. The stable photon is therefore not one isolated planarized core. It is the coupled two-core ledger.
 
 In a simple axial model, let the leading and trailing planar cores be separated by a distance $d$ along the propagation axis, both moving at $c_\gamma$. A wake sent backward from the leading core reaches the trailing core with approximate delay
 
@@ -811,15 +872,26 @@ $$
 O(1).
 $$
 
-If $d$ is fixed while $\omega$ varies, this condition pushes $c_\gamma$ toward frequency dependence and therefore toward photon dispersion. If $c_\gamma$ is fixed in the validated free-space regime, the pair separation must scale with wavelength or the closure class must change. The accepted branch must preserve observed photon nondispersion, two transverse polarizations, and the absence of a photon rest proper-time clock.
+If $d$ is fixed while $\omega$ varies, this condition pushes $c_\gamma$ toward frequency dependence and therefore toward photon dispersion. That fixed-$d$ branch is therefore not acceptable for the validated free-space photon. If $c_\gamma$ is fixed in the nondispersive regime, the longitudinal pair separation must be a branch variable that scales with wavelength and with the catch-up margin:
+
+$$
+d(\omega,\delta_\gamma)
+=
+\Lambda_\gamma
+\frac{c_f-c_\gamma}{\omega}
++
+o\!\left(\frac{c_f-c_\gamma}{\omega}\right),
+$$
+
+where $\Lambda_\gamma$ is the finite phase constant selected by the planar-pair branch. Equivalently, near $c_\gamma\approx c_f$, $d\propto\delta_\gamma\lambda$ up to the branch constant and factors of $2\pi$. This is the proportional-collapse branch: as $c_\gamma\to c_f$ in the ideal vacuum limit, the longitudinal separation tends to zero while the phase $\omega d/(c_f-c_\gamma)$ remains finite. The photon becomes an asymptotically zero-separation planar pair with transverse phase structure, not a volumetric separated pair with a rest clock. The accepted branch must preserve observed photon nondispersion, two transverse polarizations, and the absence of a photon rest proper-time clock.
 
 The two directions are therefore not symmetric in substrate time. If $c_\gamma$ is close to $c_f$, the trailing-to-leading channel is strongly delayed, while the leading-to-trailing channel remains comparatively fast. This axial delay asymmetry is a candidate substrate origin for the phase lag carried by a propagating photon. The photon closes its ledger only when the pro/anti pair, the two axial delays, and the transverse phase rotation remain mutually locked.
 
-This is the point at which the photon differs sharply from a massive particle pushed to the separator. The trailing planar core may no longer maintain full communication among the members of its own flattened tri-binary group. Nevertheless, it can still receive the integrated wake signature of the leading planar core. Conversely, the leading core can receive the trailing core only through the slower catch-up channel, provided $c_\gamma<c_f$. The two cores therefore stabilize one another as a coupled pair: the missing ordinary volumetric self-closure of each flattened core is replaced by axial pro/anti pair closure.
+This is the point at which the photon differs sharply from a massive particle pushed to the separator. The trailing planar core may no longer maintain full communication among the members of its own dimensionally reduced tri-binary group. Nevertheless, it can still receive the integrated wake signature of the leading planar core. Conversely, the leading core can receive the trailing core only through the slower catch-up channel, provided $c_\gamma<c_f$. The two cores therefore stabilize one another as a coupled pair: the missing ordinary volumetric self-closure of each dimensionally reduced core is replaced by axial pro/anti pair closure.
 
-This also identifies a nontrivial vacuum-limit problem. In the idealized limit $c_\gamma\to c_f$, the catch-up denominator in $\tau_{T\to L}$ tends toward zero. If the pair spacing $d$ remains finite, the trailing-to-leading delay diverges. A finite photon closure time therefore requires one of three outcomes: the longitudinal spacing $d$ shrinks with $c_f-c_\gamma$ so that $d/(c_f-c_\gamma)$ remains finite; the exact equality $c_\gamma=c_f$ is never reached by a photon embedded in a resolved Noether Sea; or the limiting photon becomes a one-way or boundary-memory mode rather than an ordinary two-way axial pair closure. This is not a rhetorical detail. It is a sharp mathematical boundary condition for the photon theorem. In particular, $d$, $\omega$, and $c_\gamma$ cannot be treated as independent free parameters near the vacuum limit; photon closure must solve them jointly.
+This also identifies a nontrivial vacuum-limit problem. In the idealized limit $c_\gamma\to c_f$, the catch-up denominator in $\tau_{T\to L}$ tends toward zero. If the pair spacing $d$ remains finite, the trailing-to-leading delay diverges. The deployment branch should therefore close proportional collapse first: $d$ shrinks with $c_f-c_\gamma$ and with $1/\omega$ so that $d/(c_f-c_\gamma)$ remains finite and nondispersion is preserved. The other branches remain null-test alternatives: the exact equality $c_\gamma=c_f$ might never be reached by a photon embedded in a resolved Noether Sea, or the limiting photon might become a one-way or boundary-memory mode rather than an ordinary two-way axial pair closure. This is not a rhetorical detail. It is a sharp mathematical boundary condition for the photon theorem. In particular, $d$, $\omega$, and $c_\gamma$ cannot be treated as independent free parameters near the vacuum limit; photon closure must solve them jointly.
 
-For the present topological-certification program, the collapse or rescaling branch is the favored first branch to test: $d$ should scale with the catch-up margin, wavelength, or planar-pair closure class so that the operational photon speed remains nondispersive while the resolved delay stays finite. The strict residual catch-up-margin branch remains an explicit null-test branch: even deep free space would retain a tiny effective refractive separation between $c_\gamma$ and $c_f$, and that is viable only if it produces no measurable preferred-frame anisotropy or frequency dispersion. [→ Target 18](#theorem-roadmap) [→ Target 19](#theorem-roadmap) [→ Target 26](#theorem-roadmap)
+For the present topological-certification program, proportional collapse is the favored first branch to test. The strict residual catch-up-margin branch remains an explicit null-test branch: even deep free space would retain a tiny effective refractive separation between $c_\gamma$ and $c_f$, and that is viable only if it produces no measurable preferred-frame anisotropy or frequency dispersion. [→ Target 18](#theorem-roadmap) [→ Target 19](#theorem-roadmap) [→ Target 26](#theorem-roadmap)
 
 One possible interpretation is that the divergence is not a defect but a stability feature. In a near-ideal vacuum, the trailing core may asymptotically chase the leading core with its catch-up update stretched beyond any local interaction time, suppressing spontaneous internal recoupling or decay. When the photon enters a medium, analyzer, detector, or strong field, the effective $c_\gamma$ and the capture geometry change, and the delayed ledger can become operationally available again. This remains a theorem target, not an established result: the delayed equations must decide whether vacuum divergence stabilizes the photon channel, forces longitudinal collapse of $d$, or changes the closure class.
 
@@ -949,18 +1021,20 @@ The organized argument can be stated compactly:
 7. Inertia arises because acceleration skews the delayed causal Jacobian balance of a bound state; inertial and gravitational mass agree when bulk acceleration and Noether-Sea gradients perturb the same shielded lock.
 8. Momentum coasts because translation invariance preserves the moving lock and spatial isotropy preserves its axis in the homogeneous-medium limit.
 9. Proper time is the internal cycle count of a phase-locked assembly; time dilation, length contraction, clock freeze, and the assembly-level speed limit are consequences of the shared transverse causal budget $c_{\perp}=c_{\text{eff}}\sqrt{1-\beta^2}$.
-10. Quantum state steps are simultaneous integer-closure and stability-basin solutions for tri-binary radii, velocities, frequencies, phases, and inter-layer exchange paths under that same transverse budget.
+10. Quantum state steps are simultaneous integer-closure and stability-basin solutions for tri-binary radii, velocities, frequencies, phases, and inter-layer exchange paths under that same transverse budget; equivalently, they are native causal-loop holonomy conditions with integer winding.
 11. Effective geodesics are minimal phase-distortion paths of causal solitons refracting through graded Noether-Sea variables.
-12. Effective special relativity follows from the diagonal causal path required to keep internal phase closure in motion.
+12. Effective special relativity follows from the diagonal causal path required to keep internal phase closure in motion, or in observer-level language from the diagonalized null condition of the local effective medium metric.
 13. The Planck relation $E=h\nu$ emerges when stable internal clocks or propagating photon phases are written as action per causal cycle times cycle frequency.
-14. Photons are massless pro/anti planar pairs whose axial delay asymmetry, transverse phase ledger, polarization, emission, and absorption make them the dominant operational measurement channel.
-15. The event-horizon and extreme dual-deformation regimes are structural failure limits where kinematic stress, medium-gradient stress, action shedding, and forced axial alignment must be solved together.
+14. Photons are massless pro/anti planar pairs whose axial delay asymmetry, proportional-collapse vacuum branch, transverse phase ledger, polarization, emission, and absorption make them the dominant operational measurement channel.
+15. The event-horizon and extreme dual-deformation regimes are structural failure limits where kinematic stress, medium-gradient stress, action shedding, separator-mediated dimensional reduction, and forced axial alignment must be solved together.
 
 ## Topological Certification Target
 
 The geometric language in this document should ultimately be promoted into a topological certification system. Define an assembly closure graph $G_A$ whose vertices are architrino strands or binary layers and whose edges are active partner, self-hit, and inter-layer causal channels. The topological state of an assembly is then specified by the braid class of its worldline bundle, its framing data, charge decorations, and root-ledger counts.
 
-Stable branches preserve this data under smooth evolution. Emission, absorption, annihilation, and decay are allowed only through causal surgery moves generated by separator events or resonance failure. At the field-speed separator, the transverse subgraph loses rank as $c_{\perp}\to0$, giving a topological signature of clock freeze and structural failure. This layer should give simulation work computable observables: closure-graph rank, braid/framing class, root-ledger intersection numbers, permitted surgery moves, and transverse-rank collapse diagnostics. [→ Target 26](#theorem-roadmap)
+Stable branches preserve this data under smooth evolution. Emission, absorption, annihilation, and decay are allowed only through causal surgery moves generated by separator events or resonance failure. At the field-speed separator, the transverse subgraph loses rank as $c_{\perp}\to0$, giving a topological signature of clock freeze, structural failure, and possible dimensional reduction from a volumetric Noether-core invariant to a planar photon invariant.
+
+The integer phase conditions in the quantum-step section should become part of this same certification language. Each closed causal loop carries a holonomy, analogous to a Wilson loop in gauge language or a Bohr-Sommerfeld cycle in action language. The certification packet should therefore track not only root-ledger counts and braid/framing class, but also phase winding numbers and the allowed surgery moves that preserve or change them. This layer should give simulation work computable observables: closure-graph rank, braid/framing class, phase holonomy, root-ledger intersection numbers, permitted surgery moves, and transverse-rank collapse diagnostics. [→ Target 26](#theorem-roadmap)
 
 ## Theorem Roadmap
 
@@ -972,32 +1046,32 @@ The following tasks define the theorem roadmap for the chapter. Each item names 
    \approx
    \frac{E_{\text{internal}}}{c_{\text{eff}}^2}\mathbf{V}_{\text{cm}}
    $$
-   directly from the delayed root sum and causal Jacobian.
+   directly from the delayed root sum and causal Jacobian, including the Noether-Sea dressing map that converts primitive $c_f$ wake-delay weighting into the effective tensor $\mathcal{M}_{\text{sea}}^{ab}\to h^{ab}/c_{\text{eff}}^2$ in the homogeneous isotropic limit.
 2. Connect separator fold parity, root-ledger multiplicity, and $h$-like action transfer in one certified branch chart.
 3. Quantify $\zeta(A)$ for representative assemblies from far-field wake fits rather than treating it as detector efficiency or a symbolic leakage factor.
 4. Show that a moving tri-binary Noether core has a stable deformed resonance branch whose three nested layers, realized as braided spiral-helical cables in motion, simultaneously achieve contraction, clock-rate change, and phase relocking to reproduce $\gamma_{\text{eff}}$.
 5. Derive the weak-field equality of inertial and gravitational coefficients from one shared shielded-energy response map, with composition-dependent residuals satisfying $\eta_{AB}\lesssim10^{-13}$ across tested material pairs.
 6. Quantify the perturbative limits of the coasting symmetry argument: show how finite-size effects, residual Noether-Sea gradients, and external interactions supply the transverse work needed to bend or retune the helical lock.
 7. Derive proper time as an internal cycle-count functional and show that the helical pitch formula reproduces the standard dilation law.
-8. Derive the operational Lorentz coordinate map built from assembly clocks, rulers, and photon synchronization in a homogeneous Noether-Sea cell, while suppressing preferred-frame anisotropy to tested limits.
+8. Derive the operational Lorentz coordinate map built from assembly clocks, rulers, and photon synchronization in a homogeneous Noether-Sea cell, including the effective acoustic-metric null condition whose diagonalized invariant yields $\gamma_{\text{eff}}$, while suppressing preferred-frame anisotropy to tested limits.
 9. Formalize the logarithmic-observer diagnostics for radius contraction, tilt angle, frequency shift, orthogonal-plane collapse, and root-ledger jumps.
 10. Derive the separator clock-freeze condition from the same branch chart that controls $D_{\text{rest}}\to0$, $J\to0$, and $\Delta\tau/\Delta t\to0$.
-11. Derive the coupled transverse-budget closure equations for the inner, middle, and outer binaries, showing how candidate quantum steps arise as simultaneous integer solutions for radii, velocities, frequencies, phases, and inter-layer exchange paths.
+11. Derive the coupled transverse-budget closure equations for the inner, middle, and outer binaries, showing how candidate quantum steps arise as simultaneous integer solutions for radii, velocities, frequencies, phases, inter-layer exchange paths, and causal-loop holonomies.
 12. Add the dynamical stability criterion for accepted quantum steps, using a Floquet, Poincare-section, or Lyapunov-style diagnostic to distinguish stable basins from unstable integer-labeled solutions.
 13. Derive effective geodesic motion as minimal phase distortion through $c_{\text{eff}}(\mathbf{x})$, Noether-Sea density, compliance, and stress gradients.
 14. Establish the assembly failure criterion as $\|\mathbf{V}_{\text{cm}}\|\to c_{\text{eff}}$ and distinguish it from any substrate-level speed behavior of unbound architrinos.
 15. Connect event-horizon alignment to static or externally supported redshift/phase-lock descriptions while preserving local freely falling clock behavior and exterior GR phenomenology.
 16. Derive the action-per-cycle constant $h$ from separator closure or Planck-alignment geometry, rather than inserting it as a calibration.
-17. Photon gate A, kinematics and optics: derive photon planar-pair closure from tri-binary and Noether-Sea dynamics, including the pro/anti pair geometry, axial delay asymmetry as a relative phase condition, $E_\gamma=h\nu$, $p=h/\lambda$, $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$, masslessness, nondispersion, no residual rest branch, and the absence of a rest proper-time clock.
-18. Photon gate A, vacuum limit: resolve the condition as $c_\gamma\to c_f$ and determine whether the pair spacing $d$ collapses proportionally to $c_f-c_\gamma$, whether a resolved Noether Sea always keeps a strict residual catch-up margin $c_\gamma<c_f$, whether the catch-up divergence stabilizes the vacuum photon against spontaneous decay, or whether the limiting mode changes closure class.
-19. Photon gate A, finite phase: close the finite-phase condition $\omega d/(c_f-c_\gamma)=O(1)$ on the resolved axial-delay branch without producing unacceptable photon dispersion, birefringence, or preferred-frame leakage.
+17. Photon gate A, kinematics and optics: derive photon planar-pair closure from tri-binary and Noether-Sea dynamics, including the pro/anti pair geometry, separator-mediated dimensional reduction from volumetric clock closure to planar-pair closure, axial delay asymmetry as a relative phase condition, $E_\gamma=h\nu$, $p=h/\lambda$, $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$, masslessness, nondispersion, no residual rest branch, and the absence of a rest proper-time clock.
+18. Photon gate A, vacuum limit: close the proportional-collapse branch first, with $d(\omega,\delta_\gamma)\sim\Lambda_\gamma(c_f-c_\gamma)/\omega$ so that $d\to0$ as $c_\gamma\to c_f$ while the finite phase remains well defined; then test whether a resolved Noether Sea always keeps a strict residual catch-up margin $c_\gamma<c_f$, whether the catch-up divergence stabilizes the vacuum photon against spontaneous decay, or whether the limiting mode changes closure class.
+19. Photon gate A, finite phase: close the finite-phase condition $\omega d/(c_f-c_\gamma)=O(1)$ on the resolved axial-delay branch without producing unacceptable photon dispersion, birefringence, or preferred-frame leakage; in the nondispersive branch, rule out fixed longitudinal spacing and require $d\propto\lambda$ at fixed free-space $c_\gamma$.
 20. Photon gate B, polarization and spin: derive Malus' law from analyzer coupling as a squared projection of the incoming transverse photon ledger, justify the squared-amplitude probability from native ledger capture, derive helicity $\pm1$, prove exactly two physical polarizations and no longitudinal mode, and extend the overlap formalism to circular, elliptical, single-photon, and entangled-polarization regimes with no signaling.
 21. Photon gate C, vertices and transitions: recover the validated photon-channel phenomenology of Maxwell/QED in the appropriate limit, including interference, diffraction, refraction, blackbody spectra, Bose-Einstein occupation behavior, $U(1)$-like phase bookkeeping, Aharonov-Bohm phase shifts, gauge-like redundancy, pair-production thresholds and planar-to-volumetric conversion, Compton scattering, photon-photon scattering limits, emission/absorption rates including the Fermi's Golden Rule limit, and the effective electromagnetic coupling scale $\alpha$.
 22. Build a coupled dual-deformation model for high-speed assemblies in strong Noether-Sea gradients, including nonlinear action shedding and branch failure.
 23. Prove that resonance disruption routes the stored internal energy into outgoing wake and Noether-Sea modes with a closed conservation ledger.
 24. Clarify the precise relationship between the Noether-Sea reinterpretation and the historical Dirac-sea/effective-QFT formalism, preserving empirical successes while relocating ontology.
 25. Prove or generalize the tri-binary universality assumption: show why stable bound matter requires the inner-engine, middle-fulcrum, and outer-shield layer roles, or derive the corresponding $n$-layer closure law for assemblies that do not fit the Noether-core template.
-26. Build the topological certification layer: closure graphs $G_A$, braid/framing data, root-ledger intersection numbers, allowed surgery moves for emission, absorption, annihilation, and decay, and transverse-rank collapse diagnostics at the separator.
+26. Build the topological certification layer: closure graphs $G_A$, braid/framing data, causal-loop holonomies, phase winding numbers, root-ledger intersection numbers, allowed surgery moves for emission, absorption, annihilation, decay, and photon planarization, and transverse-rank collapse diagnostics at the separator.
 
 The synthesis-level claim is therefore clear: rest mass, proper time, photon propagation, relativistic kinematics, and horizon behavior may emerge from super-field-speed causal-root bookkeeping. The theorem-level version still requires branch-certified derivations, shielding extraction, photon-channel closure, time-cycle closure, and energy-conservation closure.
 
@@ -1006,10 +1080,10 @@ The synthesis-level claim is therefore clear: rest mass, proper time, photon pro
 The photon channel is now the critical path, because it carries the operational measurements used to test the mass, time, and metric claims. Review should follow the three photon-gate packets rather than treating all QED recovery as one pass.
 
 1. Phe, Standard Model and QFT Phenomenologist: own photon gate C, vertices and transitions. Verify emission and absorption rates including the Fermi's Golden Rule limit, pair-production thresholds, planar-to-volumetric electron/positron conversion, Compton scattering, photon-photon scattering suppression, blackbody spectra, Bose-Einstein occupation behavior, $U(1)$-like phase behavior, Aharonov-Bohm phase shifts, gauge-like redundancy, and the effective coupling scale $\alpha$.
-2. Dyna, Dynamical Systems Reviewer: own photon gate A, kinematics and optics. Branch-certify the pro/anti planar-pair closure, axial delay asymmetry, relative phase ledger, finite-phase condition, $c_\gamma\to c_f$ vacuum limit, and integer stability basins.
+2. Dyna, Dynamical Systems Reviewer: own photon gate A, kinematics and optics. Branch-certify the pro/anti planar-pair closure, axial delay asymmetry, relative phase ledger, finite-phase condition, proportional-collapse $c_\gamma\to c_f$ vacuum limit, and integer stability basins.
 3. Cos, General Relativist and Cosmologist: verify local-versus-coordinate speed language, weak-field clock maps, equivalence-principle matching, horizon wording, gravitational-wave speed compatibility, and exterior GR recovery.
 4. Red, Red-Team Reviewer: attack photon gate B and the empirical null tests: preferred-frame leakage, photon dispersion, photon mass, birefringence, residual longitudinal modes, squared-amplitude/Born-rule failure, equivalence-principle composition dependence, and no-signaling constraints.
-5. Sol, Simulation Reviewer: build the minimal axial photon-pair closure simulation with parameters $(d,\nu,c_f,c_\gamma,\phi_{\text{geom}})$ plus null-test diagnostics for dispersion, birefringence, rest-frame leakage, and longitudinal-mode leakage, then implement closure graphs, braid/framing observables, root-ledger counts, and transverse-rank collapse diagnostics.
+5. Sol, Simulation Reviewer: build the minimal axial photon-pair closure simulation with parameters $(d,\nu,c_f,c_\gamma,\phi_{\text{geom}})$, including the proportional-collapse branch $d(\omega,\delta_\gamma)$, plus null-test diagnostics for dispersion, birefringence, rest-frame leakage, and longitudinal-mode leakage, then implement closure graphs, braid/framing observables, holonomy winding, root-ledger counts, and transverse-rank collapse diagnostics.
 
 ## Appendix: Plain-Language Bridge to Relativity
 
