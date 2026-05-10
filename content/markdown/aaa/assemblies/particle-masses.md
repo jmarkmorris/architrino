@@ -23,6 +23,8 @@ That response is shaped by internal energy storage, shielding, and the medium-dr
 
 A Noether core can be read as a causal knot: not a material knot in space, but a stable closure of delayed path-history relations. The inner, middle, and outer binaries continually exchange partner-hit, self-hit, and inter-layer wakes. When those returns close with stable phase and integer ledger structure, the assembly traps geometric history in a localized causal circuit.
 
+When the core moves or is placed under a gradient, the knot does not remain a static set of circular binaries. The inner, middle, and outer binary planes are drawn into a coupled spiral-helical pattern: pitch, radius, phase, and inter-layer timing retune together so delayed wakes still return to the correct partners and layers. This spiral-helical relocking is the geometric carrier of inertia in the present thesis.
+
 In this view, rest energy is the energy stored in the closed causal ledger, and mass is the externally exposed response of that ledger when the knot is accelerated, perturbed, or placed in a Noether-Sea gradient. Shielding determines how much of the internal knot couples to the far field.
 
 ### Mechanism Stack
