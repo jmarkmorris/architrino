@@ -37,6 +37,12 @@ This chapter now has three different status layers, and they should be read sepa
 
 In particular, the manuscript already contains substantial outer-turn and apocenter material. The main remaining burden is not to invent an outer-turn mechanism from scratch, but to assemble the local theorem packages into one coupled invariant-envelope regime on which the return map is continuous, precompact, and self-mapping.
 
+This chapter is the proof core for the breather program. Completion now means replacing the conditional finite-certificate rows with one verified certificate: an instantiated
+$$
+\phi_{\mathrm{cyc}},
+$$
+a finite branch chart, a closed convex certificate, a strict coupled corridor, a monodromy diagnostic, returned-sample preservation, certified topology, and then Schauder.
+
 ## Reading Map
 
 Readers looking for the main structural bottlenecks can use the following map.
@@ -311,6 +317,54 @@ $$
 $$
 with the understanding that the exact Jacobian factors reappear in the branch-sum representation when the mollified shell collapses onto isolated roots.
 
+The normalization convention for the shell mollifier is fixed once and used throughout the estimates below. Choose a nonnegative even
+$$
+C^1
+$$
+function
+$$
+\delta\in C^1_c(\mathbb{R}),
+\qquad
+\operatorname{supp}\delta\subset[-1,1],
+\qquad
+\int_{\mathbb{R}}\delta(y)\,dy=1,
+$$
+and set
+$$
+\delta_\eta(y)\equiv \eta^{-1}\delta(y/\eta).
+$$
+Thus
+$$
+\operatorname{supp}\delta_\eta\subset[-\eta,\eta],
+\qquad
+\int_{\mathbb{R}}\delta_\eta(y)\,dy=1,
+\qquad
+\|\delta_\eta\|_\infty=\eta^{-1}\|\delta\|_\infty.
+$$
+Every shell-leakage, fold-impulse, and outer-self estimate using
+$$
+\|\delta_\eta\|_\infty
+$$
+uses this convention. On a simple-root chart,
+$$
+\int f(s)\delta_\eta(g(t,s))\,ds
+\longrightarrow
+\sum_{g(t,s_k)=0}
+\frac{f(s_k)}{|\partial_s g(t,s_k)|},
+$$
+and the fixed factor
+$$
+c_f^{-1}
+$$
+from
+$$
+\partial_s g=c_fJ
+$$
+is absorbed into the branch-law normalization of
+$$
+\kappa.
+$$
+
 For theorem work across the origin crossing, shell regularization alone is not enough to control the inverse-square amplitude. A more robust local model therefore introduces a **dual mollification**: the shell mollifier $\delta_\eta$ for delayed root selection together with a short-distance core mollifier $\epsilon_c>0$ in the amplitude denominator,
 $$
 \frac{1}{r^2}
@@ -319,12 +373,110 @@ $$
 $$
 This leaves the delayed shell selection controlled by $\eta$ while the core mollifier caps the near-origin amplitude spike strongly enough for a clean $C^1$ theorem program.
 
+For the certified finite-memory problem, the exact dual-mollified reduced evolution law is the absolute-time integral
+$$
+\ddot x(t)
+=
+-\,\kappa\epsilon^2
+\int_{t-h}^{t}
+\frac{\hat r_p(t;s)}
+{|x(t)+x(s)|^2+\epsilon_c^2}\,
+\delta_\eta\!\big(|x(t)+x(s)|-c_f(t-s)\big)\,ds
+$$
+$$
+\qquad
++
+\kappa\epsilon^2
+\int_{t-h}^{t}
+\frac{\hat r_s(t;s)}
+{|x(t)-x(s)|^2+\epsilon_c^2}\,
+\delta_\eta\!\big(|x(t)-x(s)|-c_f(t-s)\big)\,ds.
+$$
+The branch-sum equations used throughout the proof scaffold are simple-root reductions of this law. Across causal folds, caustic transit, and certified topology arguments, the integral law is the primary object.
+
 The regularized formulation is the one best suited to:
 
 - local well-posedness,
 - continuation criteria,
 - numerical return-map construction,
 - and eventually the controlled limit $\eta\to 0^+$.
+
+### Origin-layer continuity of the dual-mollified 1D field
+
+On an interval that contains an origin crossing, the working equation is the absolute-time integral law above, not the branch-sum reduction. The branch-sum signs
+$$
+\hat r_p,
+\qquad
+\hat r_s
+$$
+are exterior-chart data. They must be reattached to the correct outgoing sheet after the crossing, and they should not be treated as a smooth scalar formula through
+$$
+x=0.
+$$
+
+> **Lemma (Origin-layer continuity of the dual-mollified 1D field).**
+> Fix
+> $$
+> \eta>0,
+> \qquad
+> \epsilon_c>0,
+> \qquad
+> h>0.
+> $$
+> Let a signed collinear history have a single label-preserving origin crossing on a layer
+> $$
+> |t|\le \tau_{\mathrm{cross}},
+> $$
+> with fixed incoming and outgoing exterior-sheet labels. Define the sheet-projected radial acceleration on the layer by applying the absolute-time integral law in the signed coordinate and then projecting to the active radial sheet:
+> $$
+> F^\rho_{\eta,\epsilon_c}(t)
+> \equiv
+> \sigma_{\mathrm{out}}(t)F^x_{\eta,\epsilon_c}(t),
+> \qquad
+> \rho(t)=|x(t)|.
+> $$
+> Assume the layer has a uniform velocity bound, a uniform acceleration bound, and no uncontrolled nontransverse root accumulation except the certified fold events carried by the layer chart. Then
+> $$
+> F^\rho_{\eta,\epsilon_c}
+> $$
+> extends as a
+> $$
+> C^1
+> $$
+> function of the radial coordinate and stored history across
+> $$
+> \rho=0.
+> $$
+> In particular, the sign flip of the exterior scalar branch terms is absorbed by the sheet projection, and the radial equation may be continued through the origin layer without introducing a scalar force discontinuity.
+
+Proof.
+The absolute-time integral law has denominator bounded below by
+$$
+\epsilon_c^2,
+$$
+and the shell factor
+$$
+\delta_\eta
+$$
+is a fixed
+$$
+C^1
+$$
+mollifier with compact support. Hence the layer integrand and its first variations in the stored
+$$
+C^1
+$$
+history are dominated by constants depending only on
+$$
+(\eta,\epsilon_c,h)
+$$
+and the layer tube bounds. The signed exterior direction changes when the trajectory passes through
+$$
+x=0,
+$$
+but the radial projection multiplies by the outgoing sheet label at the same crossing. On the two sides of the layer this converts the exterior signed direction into the same radial direction field. Any remaining sign changes occur only across the certified causal-root surfaces inside the integral; away from certified folds they are simple-root changes of variables, and at certified folds the fold tube is handled by the integral law rather than by a branch sum. Dominated convergence, with the standard one-dimensional coarea calculation on the simple-root pieces, gives continuity and the first radial derivative on the whole layer.
+
+Thus the core scale controls the amplitude and the shell scale controls the root selection, while the sheet projection controls the origin sign flip. Exterior branch-sum formulas may be resumed after the trajectory leaves the crossing layer and the signed sheet labels are again fixed.
 
 ## Inbound/Outbound Sign Structure
 
@@ -451,6 +603,15 @@ $$
 $$
 
 In that formulation, a full oscillation alternates between the right and left exterior branches with label-preserving passage through $x=0$. The theorem targets later in this note should therefore be read as targets for post-crossing recapture of the radial distance rather than as literal pre-origin bounce statements on a single $x>0$ branch.
+
+Every theorem that crosses the origin must use the origin-layer integral chart from Lemma `Origin-layer continuity of the dual-mollified 1D field`. The signed branch-sum formulas are valid again only after the crossing layer has been exited and the exterior sheet labels have been fixed. In particular, local recapture estimates stated in
+$$
+\rho(t)=|x(t)|
+$$
+are radial post-crossing estimates; they are not proofs that the signed scalar branch-sum field is smooth at
+$$
+x=0.
+$$
 
 In particular, the present 1D geometry should not be treated as a radial simplification of the 2D circular case. Along a true collinear history, the self-hit term is naturally read as an anti-damping or positive-work contribution on the physically relevant post-crossing outbound branch: the self interaction tends to reinforce the current radial motion rather than furnish a centrifugal-style barrier. The corrected theorem program therefore asks whether partner attraction can recapture the motion **despite** that self-drive, not because self-hit itself creates the turnaround.
 
@@ -1095,6 +1256,27 @@ On this subclass:
 - and the explicit short-window proposition can be written uniformly by replacing $(V_0,\beta_p)$ with the class-wide worst-case pair $(V_{\max},\beta_{p,\max})$, while the delayed-entry time uses the lower-speed bound $\sigma_{\min}$.
 
 This is the sense in which the later local constants are inherited by construction rather than introduced ad hoc.
+
+The crossing subclass uses the following constants.
+
+| Constant | Bound or role | Used by |
+| --- | --- | --- |
+| $V_{\min}$ | lower crossing speed, strictly above $c_f$ | Lemma 1, Lemma 3 |
+| $V_{\max}$ | upper crossing speed and worst-case radial speed | Lemma 3, Lemma 4, explicit recapture regime |
+| $\gamma_w$ | compact pre-crossing sorting-gap trimming scale | (H2), Lemma 2 |
+| $\delta_{w,\min}$ | class-wide lower sorting gap on the trimmed interval | shell-width exclusion in Lemma 2 |
+| $\nu$ | self-root Jacobian floor, scaled by $c_f$ in the statement | Lemma 2 and tame topology |
+| $\rho_{0,\min}$ | minimum pre-caustic radius at $t_{\mathrm{zero}}$ | Lemma 2 delayed-source separation |
+| $a_{\max}$ | stored-history Lipschitz-velocity bound | Lemma 3 partner-root remainder |
+| $a_{\mathrm{tube}}$ | forward acceleration ceiling on the local tube | Lemma 1 and Lemma 3 |
+| $\tau_{\mathrm{tube}}$ | guaranteed forward continuation window | Lemma 1 |
+| $N_s^{\max}$ | active self-root count ceiling | Lemma 2 self-drive bound |
+| $\sigma_{\min}$ | uniform super-field crossing surplus $(V_{\min}-c_f)/2$ | Lemma 1 and delayed-entry time |
+| $a_\ast$ | common acceleration remainder bound $\max\{a_{\max},a_{\mathrm{tube}}\}$ | Lemma 3 |
+| $\beta_{p,\min}$ | lower partner linear coefficient from $V_{\min}$ | short-window dominance checks |
+| $\beta_{p,\max}$ | upper partner linear coefficient from $V_{\max}$ | explicit recapture regime |
+| $\tau_1$ | class-uniform post-crossing monotonicity window | Lemma 1 through Lemma 4 |
+| $\tau_\rho$ | window on which delayed sources stay away from the origin layer | Lemma 2 delayed-window refinement |
 
 ### Lemma ladder
 
@@ -2020,6 +2202,27 @@ Proof sketch:
 4. The stated algebraic inequality is exactly the condition that this class-uniform inward partner impulse beats the class-uniform outward self-drive loss by time $\tau_\epsilon$.
 5. Lemma 4 then gives a zero of the radial speed on $[0,\tau_\epsilon]$, proving local post-crossing recapture for every history in the subclass.
 
+The rectangle-area estimate in Step 3 is deliberately conservative. A sharper certificate should keep the exact arctangent impulse from Lemma 4, or certify a Cauchy-Schwarz lower bound on the partner integrand over the same short window. Record this improvement by a factor
+$$
+Q_{\mathrm{CS}}\ge 1
+$$
+in
+$$
+\Delta V_p(\tau_\epsilon)
+\ge
+Q_{\mathrm{CS}}\,
+\frac{\kappa\epsilon^2}{4\beta_{p,\max}\epsilon_c}.
+$$
+In the standard half-core window the target refinement is
+$$
+Q_{\mathrm{CS}}=\sqrt{2},
+$$
+provided the interval certificate proves the required monotone coverage of the partner-distance strip. The later corridor arithmetic should use the certified value of
+$$
+Q_{\mathrm{CS}},
+$$
+not assume the improvement without an interval report.
+
 In the joint short-window regime
 $$
 \eta=\mathcal{O}(\epsilon_c),
@@ -2125,7 +2328,7 @@ to be the set of histories $\phi\in C^1([-h,0])$ such that:
   $$
 - position envelope:
   $$
-  0\le \phi(\theta)\le X_{\max}
+  -X_{\max}\le \phi(\theta)\le X_{\max}
   \qquad
   \text{for }\theta\in[-h,0];
   $$
@@ -2146,7 +2349,7 @@ to be the set of histories $\phi\in C^1([-h,0])$ such that:
 
 This set is closed and convex in the $C^1$ topology. The horizon condition is handled externally: if
 $$
-0\le \phi(\theta)\le X_{\max}
+|\phi(\theta)|\le X_{\max}
 $$
 on the stored interval, then every partner or self chord is at most
 $$
@@ -2161,6 +2364,19 @@ $$
 \mathcal{C}_{x_\ast,\eta},
 $$
 while postponing nonlocal tame delayed-root conditions to a sub-envelope.
+The envelope is intentionally written in the signed coordinate
+$$
+x\in[-X_{\max},X_{\max}]
+$$
+rather than in a one-sided radial coordinate. A genuine origin-crossing cycle may store data from both sign sheets inside
+$$
+[-h,0],
+$$
+so a one-sided condition
+$$
+0\le \phi\le X_{\max}
+$$
+would exclude valid histories whenever the memory window crosses the origin. Branch labels, exterior sheets, and origin-crossing status belong to the finite tame certificate, not to the convex Banach envelope.
 Those delayed-root conditions are not visibly convex inside
 $$
 \mathcal{C}_{x_\ast,\eta},
@@ -2208,6 +2424,446 @@ $$
 $$
 is to put the same convex bounds and the tame delayed geometry on one matching domain. In particular, this target does not assert that Jacobian lower bounds or branch-count restrictions are convex by inspection. It isolates the additional burden of producing a closed convex subset on which those tame conditions persist. The self-map property is a separate dynamical burden supplied later by invariant-envelope closure.
 
+The clean way to discharge that burden is not to put the nonconvex delayed-root labels directly into the definition of
+$$
+\mathcal{K}_{x_\ast,\eta}.
+$$
+Instead, one should produce a finite tame certificate: a finite family of continuous affine functionals
+$$
+\ell_\alpha:C^1([-h,0])\to\mathbb{R},
+\qquad
+\alpha\in\mathcal{I}_{\mathrm{cert}},
+$$
+and constants
+$$
+b_\alpha
+$$
+such that the closed affine tube
+$$
+\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+\equiv
+\left\{
+\phi\in\mathcal{C}_{x_\ast,\eta}
+\;\middle|\;
+\ell_\alpha(\phi)\le b_\alpha
+\text{ for every }\alpha\in\mathcal{I}_{\mathrm{cert}}
+\right\}
+$$
+implies the desired finite branch chart, Jacobian floors, root-count ceilings, and memory-depth bounds.
+
+> **Proposition (Finite certificate construction of a closed convex tame envelope).**
+> Suppose there exists a finite tame certificate
+> $$
+> \{\ell_\alpha\le b_\alpha\}_{\alpha\in\mathcal{I}_{\mathrm{cert}}}
+> $$
+> with the following properties:
+>
+> 1. one seed-propagated history
+>    $$
+>    \phi_{\mathrm{seed,cyc}}\in\mathcal{C}_{x_\ast,\eta}
+>    $$
+>    satisfies all certificate inequalities with strict slack;
+> 2. every
+>    $$
+>    \phi\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+>    $$
+>    has the same finite active branch chart on the stored interval and on the controlled one-cycle continuation;
+>    this chart includes the signed exterior sheet labels and origin-crossing layer labels needed to interpret the signed
+>    $$
+>    x
+>    $$
+>    history;
+> 3. on that chart the delayed roots remain simple with uniform Jacobian floor
+>    $$
+>    |J|\ge \nu_{\mathrm{cert}}>0;
+>    $$
+> 4. the active branch count, memory depth, position, speed, and Lipschitz-velocity bounds are bounded by the constants used in
+>    $$
+>    \mathcal{C}_{x_\ast,\eta};
+>    $$
+> 5. and these certificate implications are closed under
+>    $$
+>    C^1
+>    $$
+>    limits inside
+>    $$
+>    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+>    $$
+>
+> Then
+> $$
+> \mathcal{K}_{x_\ast,\eta}
+> \equiv
+> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> $$
+> is a nonempty closed convex tame envelope.
+
+Proof.
+The set
+$$
+\mathcal{C}_{x_\ast,\eta}
+$$
+is closed and convex by its affine section condition, interval bounds, speed bounds, and Lipschitz-velocity bound. Each certificate condition
+$$
+\ell_\alpha(\phi)\le b_\alpha
+$$
+is a closed half-space in
+$$
+C^1([-h,0]),
+$$
+so the finite intersection
+$$
+\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+$$
+is closed and convex. It is nonempty because
+$$
+\phi_{\mathrm{seed,cyc}}
+$$
+lies in it with strict slack. Items 2-4 give the finite branch chart, Jacobian floors, branch-count ceilings, memory-depth bounds, and Banach-envelope bounds required for tameness. Item 5 says exactly that these tame properties persist under
+$$
+C^1
+$$
+limits inside the certified set. Hence
+$$
+\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+$$
+is the required nonempty closed convex tame envelope.
+
+The finite-certificate language can be made concrete by using a sampled
+$$
+C^1
+$$
+tube around one strictly controlled seed-cycle history. This avoids treating the nonlinear branch-chart conditions themselves as convex constraints.
+
+For completion, the center history cannot remain schematic. The proof needs an instantiated
+$$
+\phi_{\mathrm{cyc}}
+$$
+with a period
+$$
+T_{\mathrm{cyc}},
+$$
+a finite active branch list
+$$
+\mathcal{B}_{\mathrm{act}},
+$$
+inactive branch complements, a mesh
+$$
+\{\theta_j\}_{j=0}^{N},
+$$
+and returned-sample residuals. Until that data packet exists, every finite-certificate statement below is conditional.
+
+> **Proposition (Sampled seed-cycle tube gives a finite tame certificate).**
+> Let
+> $$
+> \phi_{\mathrm{cyc}}\in\mathcal{C}_{x_\ast,\eta}
+> $$
+> be a seed-propagated history whose one-cycle continuation is defined on
+> $$
+> [0,T_{\max}]
+> $$
+> and has strict margins:
+> 1. every active delayed root on the stored interval and on the controlled continuation is simple with
+>    $$
+>    |J|\ge 2\nu_{\mathrm{chart}}>0;
+>    $$
+> 2. every inactive candidate root equation has gap at least
+>    $$
+>    2\gamma_{\mathrm{gap}}>0
+>    $$
+>    on the compact chart complement;
+> 3. all memory depths stay at distance at least
+>    $$
+>    2\gamma_h>0
+>    $$
+>    from the boundary of the stored horizon;
+> 4. the position, speed, and Lipschitz-velocity envelope bounds hold with strict slack.
+>
+> Assume also that the dual-mollified solution map is continuous from initial
+> $$
+> C^1([-h,0])
+> $$
+> data into
+> $$
+> C^1([-h,T_{\max}])
+> $$
+> on the corresponding branch chart. Then there are a radius
+> $$
+> r_{\mathrm{cert}}>0,
+> $$
+> a finite mesh
+> $$
+> -h=\theta_0<\theta_1<\cdots<\theta_N=0,
+> $$
+> and finitely many affine sample inequalities
+> $$
+> |\phi(\theta_j)-\phi_{\mathrm{cyc}}(\theta_j)|\le \frac{r_{\mathrm{cert}}}{4},
+> \qquad
+> |\dot\phi(\theta_j)-\dot\phi_{\mathrm{cyc}}(\theta_j)|
+> \le \frac{r_{\mathrm{cert}}}{4},
+> \qquad
+> 0\le j\le N,
+> $$
+> such that every
+> $$
+> \phi\in\mathcal{C}_{x_\ast,\eta}
+> $$
+> satisfying those finite inequalities lies in a
+> $$
+> C^1
+> $$
+> neighborhood on which the same active branch chart, Jacobian floor, root-count ceiling, and memory-depth bound persist through the controlled continuation. Consequently these sample inequalities form a finite tame certificate of the kind used in the previous proposition.
+
+Proof.
+By the strict branch-chart margins and compactness of the stored and controlled continuation intervals, there is a radius
+$$
+r_{\mathrm{chart}}>0
+$$
+such that any history whose controlled continuation stays within
+$$
+r_{\mathrm{chart}}
+$$
+of the seed-cycle continuation in
+$$
+C^1
+$$
+has the same active roots, no inactive root births, Jacobian floor at least
+$$
+\nu_{\mathrm{chart}},
+$$
+and the same memory-depth bound. The strict envelope slack gives a second radius
+$$
+r_{\mathrm{env}}>0
+$$
+for the position, speed, and Lipschitz-velocity constraints. By continuous dependence of the branch-chart solution map, shrink to
+$$
+r_{\mathrm{cert}}
+\le
+\min\{r_{\mathrm{chart}},r_{\mathrm{env}}\}
+$$
+so that initial
+$$
+C^1
+$$
+distance at most
+$$
+r_{\mathrm{cert}}
+$$
+from
+$$
+\phi_{\mathrm{cyc}}
+$$
+keeps the full controlled continuation inside the required chart tube.
+
+Choose the mesh with maximum step
+$$
+\Delta
+$$
+small enough that
+$$
+2U_{\max}\Delta\le \frac{r_{\mathrm{cert}}}{2},
+\qquad
+2A_{\max}\Delta\le \frac{r_{\mathrm{cert}}}{2}.
+$$
+If the displayed sample inequalities hold, then for any
+$$
+\theta\in[-h,0]
+$$
+and a nearest mesh point
+$$
+\theta_j
+$$
+one has
+$$
+|\phi(\theta)-\phi_{\mathrm{cyc}}(\theta)|
+\le
+|\phi(\theta)-\phi(\theta_j)|
++|\phi(\theta_j)-\phi_{\mathrm{cyc}}(\theta_j)|
++|\phi_{\mathrm{cyc}}(\theta_j)-\phi_{\mathrm{cyc}}(\theta)|
+\le
+r_{\mathrm{cert}},
+$$
+and the same estimate with the Lipschitz-velocity bound gives
+$$
+|\dot\phi(\theta)-\dot\phi_{\mathrm{cyc}}(\theta)|
+\le
+r_{\mathrm{cert}}.
+$$
+Thus the finite sample tube implies the required
+$$
+C^1
+$$
+tube. Each absolute-value sample condition is just two continuous affine inequalities in
+$$
+C^1([-h,0]).
+$$
+The previous proposition then turns their finite intersection with
+$$
+\mathcal{C}_{x_\ast,\eta}
+$$
+into a closed convex tame envelope.
+
+For the first remaining blocker, the seed-cycle certificate should therefore be audited by the following finite margin ledger:
+$$
+\nu_{\mathrm{seed}}
+\equiv
+\min_{\beta\in\mathcal{B}_{\mathrm{act}}}
+\inf_{t\in I_\beta}|J_\beta(t)|,
+$$
+$$
+\gamma_{\mathrm{gap}}
+\equiv
+\min_{\beta\in\mathcal{B}_{\mathrm{inact}}}
+\inf_{(t,\theta)\in Q_\beta}
+|F_\beta(t,\theta)|,
+$$
+$$
+\gamma_h
+\equiv
+\min_{\beta\in\mathcal{B}_{\mathrm{act}}}
+\inf_{t\in I_\beta}
+\operatorname{dist}\big(\theta_\beta(t),\{-h,0\}\big),
+$$
+together with the envelope slack
+$$
+\gamma_{\mathrm{env}}
+\equiv
+\min\left\{
+X_{\max}-\sup|\phi_{\mathrm{cyc}}|,
+\;
+U_{\max}-\sup|\dot\phi_{\mathrm{cyc}}|,
+\;
+A_{\max}-\operatorname{Lip}(\dot\phi_{\mathrm{cyc}})
+\right\}.
+$$
+Here
+$$
+F_\beta(t,\theta)=0
+$$
+denotes the delayed-root equation for branch candidate
+$$
+\beta,
+$$
+the sets
+$$
+I_\beta
+$$
+are the compact active branch intervals, and
+$$
+Q_\beta
+$$
+is the compact inactive chart complement after deleting small neighborhoods of the active roots. Positivity of
+$$
+\nu_{\mathrm{seed}},
+\qquad
+\gamma_{\mathrm{gap}},
+\qquad
+\gamma_h,
+\qquad
+\gamma_{\mathrm{env}}
+$$
+is exactly the strict seed-cycle tube condition needed to choose
+$$
+r_{\mathrm{cert}}.
+$$
+
+> **Proposition (Quantitative seed-cycle radius choice).**
+> Assume the seed-cycle margin ledger satisfies
+> $$
+> \nu_{\mathrm{seed}}>0,
+> \qquad
+> \gamma_{\mathrm{gap}}>0,
+> \qquad
+> \gamma_h>0,
+> \qquad
+> \gamma_{\mathrm{env}}>0.
+> $$
+> Suppose also that on the certified chart there are finite local sensitivity constants
+> $$
+> L_J,
+> \qquad
+> L_F,
+> \qquad
+> L_h,
+> \qquad
+> L_{\mathrm{env}}
+> $$
+> such that a
+> $$
+> C^1
+> $$
+> perturbation of size
+> $$
+> r
+> $$
+> changes active Jacobians by at most
+> $$
+> L_Jr,
+> $$
+> inactive root-equation gaps by at most
+> $$
+> L_Fr,
+> $$
+> active memory-depth distances by at most
+> $$
+> L_hr,
+> $$
+> and the envelope slacks by at most
+> $$
+> L_{\mathrm{env}}r.
+> $$
+> Then any radius satisfying
+> $$
+> 0<r_{\mathrm{cert}}
+> <
+> \min\left\{
+> \frac{\nu_{\mathrm{seed}}}{2L_J},
+> \frac{\gamma_{\mathrm{gap}}}{2L_F},
+> \frac{\gamma_h}{2L_h},
+> \frac{\gamma_{\mathrm{env}}}{2L_{\mathrm{env}}}
+> \right\}
+> $$
+> produces the strict chart margins required by Proposition `Sampled seed-cycle tube gives a finite tame certificate`, after omitting any quotient with zero sensitivity because that margin is then unchanged to first order on the chart.
+
+Proof.
+For any history within
+$$
+r_{\mathrm{cert}}
+$$
+of
+$$
+\phi_{\mathrm{cyc}}
+$$
+in
+$$
+C^1,
+$$
+the active Jacobian floor is at least
+$$
+\nu_{\mathrm{seed}}-L_Jr_{\mathrm{cert}}
+>
+\frac{\nu_{\mathrm{seed}}}{2}>0.
+$$
+The inactive root-equation gap remains at least
+$$
+\gamma_{\mathrm{gap}}-L_Fr_{\mathrm{cert}}
+>
+\frac{\gamma_{\mathrm{gap}}}{2}>0,
+$$
+so no inactive branch is born. The active memory-depth distance remains at least
+$$
+\gamma_h-L_hr_{\mathrm{cert}}
+>
+\frac{\gamma_h}{2}>0,
+$$
+so no active root reaches the stored-horizon boundary. Finally, the envelope slack remains at least
+$$
+\gamma_{\mathrm{env}}-L_{\mathrm{env}}r_{\mathrm{cert}}
+>
+\frac{\gamma_{\mathrm{env}}}{2}>0.
+$$
+These four strict inequalities are precisely the branch-chart, gap, memory-depth, and envelope margins required for the sampled finite certificate.
+
 ### Precompactness of returned histories
 
 > **Proposition (Precompactness of the Return Image).**
@@ -2236,7 +2892,7 @@ is to put the same convex bounds and the tame delayed geometry on one matching d
 >    $$
 >    satisfies the bounds
 >    $$
->    0\le \phi(\theta)\le X_{\max},
+>    -X_{\max}\le \phi(\theta)\le X_{\max},
 >    \qquad
 >    |\dot\phi(\theta)|\le U_{\max},
 >    \qquad
@@ -2340,9 +2996,166 @@ $$
 
 This proposition deliberately stops short of invariance. Its role is only to show that once the return map is defined on a uniformly controlled class, its image cannot spread out arbitrarily in history space.
 
+### Certified branch-chart well-posedness
+
+The continuity row used later should be a theorem on certified branch charts, not an informal regularity assumption. The following proposition is the local analytic input needed by the return-map proof.
+
+> **Proposition (Local well-posedness on a certified branch chart).**
+> Fix dual-mollified parameters
+> $$
+> \eta>0,
+> \qquad
+> \epsilon_c>0,
+> $$
+> and a memory horizon
+> $$
+> h>0.
+> $$
+> Let
+> $$
+> \mathcal{U}\subset C^1([-h,0])
+> $$
+> be a certified branch-chart neighborhood with:
+> 1. a finite active branch list
+>    $$
+>    \mathcal{B}_{\mathrm{act}};
+>    $$
+> 2. signed sheet and crossing-layer labels fixed on the chart;
+> 3. if a chart interval meets an origin-crossing layer, the vector field there is evaluated by Lemma `Origin-layer continuity of the dual-mollified 1D field`, not by an exterior branch-sum formula;
+> 4. active causal roots satisfying
+>    $$
+>    |J_\beta|\ge \nu>0
+>    \qquad
+>    \text{for every }\beta\in\mathcal{B}_{\mathrm{act}};
+>    $$
+> 5. uniform bounds
+>    $$
+>    \|\phi\|_{C^1}\le M,
+>    \qquad
+>    \operatorname{Lip}(\dot\phi)\le A_{\max},
+>    \qquad
+>    \tau_\beta(t)\in[0,h-\gamma_h]
+>    $$
+>    for some
+>    $$
+>    \gamma_h>0;
+>    $$
+> 6. and inactive branch gaps bounded away from zero on the chart complement.
+>
+> Then there exists
+> $$
+> \tau_{\mathrm{wp}}>0
+> $$
+> such that every
+> $$
+> \phi\in\mathcal{U}
+> $$
+> has a unique dual-mollified forward continuation on
+> $$
+> [0,\tau_{\mathrm{wp}}],
+> $$
+> and the solution map
+> $$
+> \phi
+> \longmapsto
+> x_\phi|_{[-h,\tau_{\mathrm{wp}}]}
+> $$
+> is locally Lipschitz from
+> $$
+> C^1([-h,0])
+> $$
+> into
+> $$
+> C^1([-h,\tau_{\mathrm{wp}}]).
+> $$
+
+Proof.
+On exterior certified charts the active root functions persist with
+$$
+|J|\ge\nu,
+$$
+so the implicit-function theorem makes each root time locally Lipschitz in the receiver time and in the stored history. The inactive gap prevents any additional root from entering the finite chart on the controlled interval. The dual-mollified kernel is smooth on the shell scale
+$$
+\eta
+$$
+and is uniformly bounded on the core scale
+$$
+\epsilon_c>0,
+$$
+with denominator at least
+$$
+\epsilon_c^2.
+$$
+On an origin-crossing chart, the previous origin-layer lemma supplies the same local
+$$
+C^1
+$$
+radial vector-field control after the sheet projection, so the signed scalar branch-sum discontinuity is not part of the local well-posedness argument.
+Together with the finite branch count and the fixed horizon
+$$
+h,
+$$
+these bounds make the branch-chart vector field locally Lipschitz as a map from the stored
+$$
+C^1
+$$
+history segment to acceleration. The integral equation
+$$
+x(t)=\phi(0)+t\dot\phi(0)+\int_0^t(t-s)\,F_\eta(x_s)\,ds
+$$
+then gives local existence and uniqueness by the standard contraction argument on a short
+$$
+C^1
+$$
+tube. Applying the same Lipschitz estimate to two solutions and using Gronwall on the controlled interval gives local Lipschitz dependence of
+$$
+x
+$$
+and
+$$
+\dot x
+$$
+on the initial history.
+
+### Certified fold-event atlas
+
+The continuity theorem must distinguish uncontrolled branch changes from certified separator events. A full origin-crossing cycle may pass through field-speed folds, so the certificate should not require a single unchanged branch list on the whole cycle.
+
+> **Definition (Certified fold-event atlas).**
+> A certified fold-event atlas for one return consists of finitely many fold layers
+> $$
+> \mathfrak{F}_1,\ldots,\mathfrak{F}_{N_{\mathrm{fold}}}
+> $$
+> together with:
+> 1. incoming and outgoing active branch lists
+>    $$
+>    \mathcal{B}_{k}^{-},
+>    \qquad
+>    \mathcal{B}_{k}^{+};
+>    $$
+> 2. a local fold normal form
+>    $$
+>    g_k(t,s;\lambda)
+>    =
+>    a_k(s-s_k)^2+b_k\lambda+\mathrm{higher\ order},
+>    \qquad
+>    a_kb_k\ne 0;
+>    $$
+> 3. parity data
+>    $$
+>    \Delta N_k\in2\mathbb{Z},
+>    \qquad
+>    \Delta D_k=0;
+>    $$
+> 4. a finite fold-impulse ceiling and an outgoing chart on which the post-fold roots again have a positive Jacobian floor.
+>
+> Outside the union of the fold layers, the active roots must remain simple with the certified Jacobian floors and inactive-root gaps.
+
+This reconciles the continuity row with the causal-fold geometry. A field-speed separator may be a genuine root-pair birth or death, but it is not an uncontrolled discontinuity if the atlas records the parity-preserving transition and hands the trajectory to a certified outgoing chart.
+
 ### Continuity on the tame envelope
 
-> **Target Proposition (Continuity of the Return Map on $\mathcal{K}_{x_\ast,\eta}$).**
+> **Proposition (Continuity of the Return Map on $\mathcal{K}_{x_\ast,\eta}$).**
 > Let
 > $$
 > \mathcal{K}_{x_\ast,\eta}
@@ -2359,12 +3172,8 @@ This proposition deliberately stops short of invariance. Its role is only to sho
 >    [0,T_{\max}]
 >    $$
 >    with class-uniform position, speed, acceleration, Jacobian, and memory-depth bounds;
-> 2. on that forward tube, the dual-mollified vector field is locally Lipschitz in the stored history segment with respect to the
->    $$
->    C^1
->    $$
->    topology;
-> 3. the active delayed roots persist continuously with the history, with no root birth, root collision, or Jacobian loss of transversality;
+> 2. on that forward tube, Proposition `Local well-posedness on a certified branch chart` applies on finitely many exterior and origin-layer chart intervals covering the continuation;
+> 3. outside a certified fold-event atlas the active delayed roots persist continuously with the history, with no root birth, root collision, or Jacobian loss of transversality; across each certified fold layer, the active branch list undergoes the parity-preserving transition recorded in the atlas;
 > 4. the first return to the inbound section is uniformly transverse:
 >    $$
 >    x(T(\psi);\psi)=x_\ast,
@@ -2378,14 +3187,14 @@ This proposition deliberately stops short of invariance. Its role is only to sho
 > $$
 > is continuous.
 
-Proof sketch.
+Proof.
 Take
 $$
 \psi_n\to \psi
 \qquad
 \text{in }C^1([-h,0]).
 $$
-Local Lipschitz dependence of the dual-mollified vector field and the class-uniform tube bounds imply
+The certified branch-chart well-posedness proposition and the class-uniform tube bounds imply
 $$
 x_n\to x,
 \qquad
@@ -2395,11 +3204,23 @@ uniformly on compact intervals in
 $$
 [0,T_{\max}].
 $$
-The tame root-persistence hypothesis prevents branch changes and Jacobian loss, so the forward solution map is continuous on the entire tame envelope. For the section function
+The tame root-persistence hypothesis prevents uncontrolled branch changes and Jacobian loss. The certified fold-event atlas covers the finitely many permitted separator transitions by integral-law fold layers with fixed incoming and outgoing charts, so the forward solution map is continuous on the entire tame envelope. For the section function
 $$
 G(t,\psi)\equiv x(t;\psi)-x_\ast,
 $$
-uniform transversality gives
+the convergence of
+$$
+x_n
+$$
+to
+$$
+x
+$$
+is uniform in a fixed neighborhood of
+$$
+T(\psi).
+$$
+Uniform transversality gives
 $$
 G(T(\psi),\psi)=0,
 \qquad
@@ -2408,6 +3229,30 @@ $$
 and therefore
 $$
 T(\psi_n)\to T(\psi).
+$$
+Indeed, for small
+$$
+\delta>0
+$$
+the values
+$$
+G(T(\psi)-\delta,\psi)
+\qquad
+\text{and}
+\qquad
+G(T(\psi)+\delta,\psi)
+$$
+have opposite signs, and the same sign separation holds for
+$$
+G(\cdot,\psi_n)
+$$
+for all sufficiently large
+$$
+n.
+$$
+The uniform transversality bound excludes a second nearby return and identifies this zero with
+$$
+T(\psi_n).
 $$
 Finally,
 $$
@@ -2424,7 +3269,7 @@ $$
 
 ### Invariant-envelope closure
 
-The cycle estimates now reduce to two explicit margins:
+The cycle estimates now reduce to three explicit margins:
 $$
 \mathfrak M_{\mathrm{in}}
 \equiv
@@ -2436,6 +3281,14 @@ V_{\max},
 $$
 coming from Proposition `Explicit short-window recapture regime`, and
 $$
+\mathfrak M_{\mathrm{ent}}
+\equiv
+\underline A_p^{\mathrm{out}}
+-
+\overline A_{s,\mathrm{ent}}^{\mathrm{out}},
+$$
+coming from Lemma 29, and
+$$
 \mathfrak M_{\mathrm{out}}
 \equiv
 \underline A_p^{\mathrm{out}}
@@ -2445,9 +3298,9 @@ $$
 \frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
 \sigma_{\mathrm{out}}\epsilon_c^2},
 $$
-coming from the unified trimmed-apocenter outer-turn criterion. The first margin forces the initial post-crossing turnaround; the second forces the final apocenter turn.
+coming from the unified trimmed-apocenter outer-turn criterion. The first margin forces the initial post-crossing turnaround, the second supplies the non-circular sub-field-speed apocenter-entry window, and the third forces the final apocenter turn once that window exists.
 
-> **Target Theorem (Invariant-Envelope Closure from Compatible Explicit Regimes).**
+> **Theorem (Invariant-Envelope Closure from Compatible Explicit Regimes).**
 > Fix
 > $$
 > x_\ast>0
@@ -2471,11 +3324,18 @@ coming from the unified trimmed-apocenter outer-turn criterion. The first margin
 >    $$
 >    \mathfrak M_{\mathrm{in}}>0;
 >    $$
-> 3. Proposition `Unified trimmed-apocenter outer-turn criterion` applies on the final apocenter window, so that
+> 3. Lemma 29 applies on the outer-entry interval with
+>    $$
+>    \mathfrak M_{\mathrm{ent}}
+>    \ge
+>    a_{\mathrm{ent}}^{\mathrm{out}}>0,
+>    $$
+>    and with enough interval length to produce either a finite outer turn or a retained strict sub-field-speed window;
+> 4. Proposition `Unified trimmed-apocenter outer-turn criterion` applies on the final apocenter window supplied by the entry step, so that
 >    $$
 >    \mathfrak M_{\mathrm{out}}>0;
 >    $$
-> 4. the turn-to-section return lemmas give class-uniform section-return bounds
+> 5. the turn-to-section return lemmas give class-uniform section-return bounds
 >    $$
 >    X_{\mathrm{out},\max},
 >    \qquad
@@ -2485,12 +3345,12 @@ coming from the unified trimmed-apocenter outer-turn criterion. The first margin
 >    \qquad
 >    T_{\mathrm{cyc},\max};
 >    $$
-> 5. the envelope parameters satisfy
+> 6. the envelope parameters satisfy
 >    $$
 >    X_{\max}\ge \max\{x_\ast,X_{\mathrm{out},\max}\},
 >    $$
 >    $$
->    U_{\max}\ge \max\{V_{\max},U_{\mathrm{sec},\max}\},
+>    U_{\max}\ge \max\{V_{\max},V_{\mathrm{ent}}^{\mathrm{out}},U_{\mathrm{sec},\max}\},
 >    $$
 >    $$
 >    A_{\max}\ge A_{\mathrm{cyc},\max},
@@ -2499,7 +3359,7 @@ coming from the unified trimmed-apocenter outer-turn criterion. The first margin
 >    \qquad
 >    h\ge \frac{2X_{\max}}{c_f};
 >    $$
-> 6. the returned history preserves the same Jacobian and branch-count bounds used to define tameness.
+> 7. the returned history preserves the same Jacobian and branch-count bounds used to define tameness.
 >
 > Then
 > $$
@@ -2508,7 +3368,7 @@ coming from the unified trimmed-apocenter outer-turn criterion. The first margin
 > \mathcal{C}_{x_\ast,\eta}.
 > $$
 
-Proof sketch.
+Proof.
 Collapse-to-crossing control delivers an admissible crossing with speed at most
 $$
 V_{\max}.
@@ -2517,7 +3377,11 @@ The strict inner margin
 $$
 \mathfrak M_{\mathrm{in}}>0
 $$
-then gives the first post-crossing turn by Proposition `Explicit short-window recapture regime`. On the return half, Proposition `Unified trimmed-apocenter outer-turn criterion` supplies the final apocenter turn because
+then gives the first post-crossing turn by Proposition `Explicit short-window recapture regime`. On the return half, the entry margin
+$$
+\mathfrak M_{\mathrm{ent}}\ge a_{\mathrm{ent}}^{\mathrm{out}}>0
+$$
+activates Lemma 29. Thus either the outer turn has already occurred, or the trajectory enters a retained strict sub-field-speed apocenter window. In the second case, Proposition `Unified trimmed-apocenter outer-turn criterion` supplies the final apocenter turn because
 $$
 \mathfrak M_{\mathrm{out}}>0.
 $$
@@ -2525,7 +3389,7 @@ The return lemmas then give re-entry to
 $$
 x=x_\ast
 $$
-with class-uniform position, speed, acceleration, time, and tame delayed-root bounds. The envelope inequalities in item 5 place the entire returned history back inside
+with class-uniform position, speed, acceleration, time, and tame delayed-root bounds. The envelope inequalities in item 6 place the entire returned history back inside
 $$
 \mathcal{C}_{x_\ast,\eta}.
 $$
@@ -2538,12 +3402,14 @@ $$
 P_\eta.
 $$
 
-This target should be read narrowly. It records the exact self-map statement one wants once the tame envelope exists and the compatibility inequalities are jointly solvable. It does not by itself close either of those two burdens.
+This theorem should be read narrowly. It records the exact self-map statement obtained once the tame envelope exists and the compatibility inequalities are jointly solvable. It does not by itself close either of those two burdens.
 
 > **Target Proposition (Coupled admissible parameter regime).**
 > Fix the geometric and dynamical constants extracted from the cycle estimates:
 > $$
 > V_{\max},
+> \qquad
+> V_{\mathrm{ent}}^{\mathrm{out}},
 > \qquad
 > X_{\mathrm{out},\max},
 > \qquad
@@ -2563,7 +3429,17 @@ This target should be read narrowly. It records the exact self-map statement one
 > \qquad
 > \tau_{\mathrm{deep}},
 > \qquad
+> \tau_{\mathrm{sub}}^{\mathrm{out}},
+> \qquad
+> a_{\mathrm{ent}}^{\mathrm{out}},
+> \qquad
+> T_{\mathrm{ent}}^{\mathrm{out}},
+> \qquad
 > \sigma_{\mathrm{out}},
+> \qquad
+> \overline A_s^\rho,
+> \qquad
+> \overline A_{s,\mathrm{ent}}^{\mathrm{out}},
 > \qquad
 > \underline A_p^{\mathrm{out}}.
 > $$
@@ -2583,7 +3459,24 @@ This target should be read narrowly. It records the exact self-map statement one
 > $$
 > \mathfrak M_{\mathrm{in}}>0,
 > \qquad
+> \mathfrak M_{\mathrm{ent}}
+> =
+> \underline A_p^{\mathrm{out}}
+> -
+> \overline A_{s,\mathrm{ent}}^{\mathrm{out}}
+> \ge
+> a_{\mathrm{ent}}^{\mathrm{out}}>0,
+> \qquad
 > \mathfrak M_{\mathrm{out}}>0.
+> $$
+> Also assume the outer-entry interval budget satisfies
+> $$
+> T_{\mathrm{ent}}^{\mathrm{out}}
+> \ge
+> \frac{\big(V_{\mathrm{ent}}^{\mathrm{out}}-(c_f-\sigma_{\mathrm{out}})\big)_+}
+> {a_{\mathrm{ent}}^{\mathrm{out}}}
+> +
+> \tau_{\mathrm{sub}}^{\mathrm{out}}.
 > $$
 > Then there exist envelope constants
 > $$
@@ -2602,7 +3495,7 @@ This target should be read narrowly. It records the exact self-map statement one
 > X_{\max}\ge \max\{x_\ast,X_{\mathrm{out},\max}\},
 > $$
 > $$
-> U_{\max}\ge \max\{V_{\max},U_{\mathrm{sec},\max}\},
+> U_{\max}\ge \max\{V_{\max},V_{\mathrm{ent}}^{\mathrm{out}},U_{\mathrm{sec},\max}\},
 > $$
 > $$
 > A_{\max}\ge A_{\mathrm{cyc},\max},
@@ -2615,6 +3508,8 @@ This target should be read narrowly. It records the exact self-map statement one
 > $$
 > \mathfrak M_{\mathrm{in}}>0,
 > \qquad
+> \mathfrak M_{\mathrm{ent}}\ge a_{\mathrm{ent}}^{\mathrm{out}}>0,
+> \qquad
 > \mathfrak M_{\mathrm{out}}>0
 > $$
 > as algebraically independent of the envelope constants. The crossing-speed bound
@@ -2623,7 +3518,7 @@ This target should be read narrowly. It records the exact self-map statement one
 > $$
 > enters
 > $$
-> U_{\max}\ge \max\{V_{\max},U_{\mathrm{sec},\max}\},
+> U_{\max}\ge \max\{V_{\max},V_{\mathrm{ent}}^{\mathrm{out}},U_{\mathrm{sec},\max}\},
 > $$
 > while the collapse estimates producing
 > $$
@@ -2633,70 +3528,1145 @@ This target should be read narrowly. It records the exact self-map statement one
 > $$
 > X_{\max}.
 > $$
+> Likewise, the coarse entry ceiling
+> $$
+> \overline A_{s,\mathrm{ent}}^{\mathrm{out}}
+> $$
+> and the entry speed ceiling
+> $$
+> V_{\mathrm{ent}}^{\mathrm{out}}
+> $$
+> are envelope-level quantities: they depend on the same branch-count, fold-ceiling, deep-past, speed, and position bounds that define the controlled cycle.
 > A valid nonemptiness proof must therefore close a coupled algebraic system in
 > $$
-> (\eta,\epsilon_c,X_{\max},U_{\max},A_{\max},T_{\max},h),
+> (\eta,\epsilon_c,X_{\max},U_{\max},A_{\max},T_{\max},h,
+> V_{\mathrm{ent}}^{\mathrm{out}},
+> a_{\mathrm{ent}}^{\mathrm{out}},
+> T_{\mathrm{ent}}^{\mathrm{out}},
+> \overline A_{s,\mathrm{ent}}^{\mathrm{out}}),
 > $$
 > rather than verify the local margins first and choose the envelope constants afterward with arbitrary slack.
 
 This target isolates the remaining algebraic compatibility issue. Once collapse-to-crossing bounds, the inner recapture margin, the outer-turn margin, and the envelope bookkeeping constants are packaged on one coupled regime, invariant-envelope closure becomes an actual self-map statement. Until then, simultaneous solvability of the displayed inequalities remains part of the scaffold rather than a completed proposition.
 
+For later proof checking, the finite strict-regime list can be taken to include:
+$$
+\tau_1-\frac{\epsilon_c}{2\beta_{p,\max}}>0,
+\qquad
+\frac{\epsilon_c}{4c_fC_p}-\eta>0,
+\qquad
+\frac{\beta_{p,\max}^2}{c_fC_p}-\epsilon_c>0,
+$$
+$$
+\frac{\kappa\epsilon^2}{4\beta_{p,\max}\epsilon_c}
+-
+\frac{\overline A_s^\rho\epsilon_c}{2\beta_{p,\max}}
+-
+V_{\max}
+>0,
+$$
+$$
+\underline A_p^{\mathrm{out}}
+-
+\overline A_{s,\mathrm{ent}}^{\mathrm{out}}
+-
+a_{\mathrm{ent}}^{\mathrm{out}}
+\ge 0,
+\qquad
+a_{\mathrm{ent}}^{\mathrm{out}}>0,
+$$
+$$
+\underline A_p^{\mathrm{out}}
+-
+\frac{\kappa\epsilon^2}{c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2}
+-
+\frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
+\sigma_{\mathrm{out}}\epsilon_c^2}
+>0,
+$$
+$$
+T_{\mathrm{ent}}^{\mathrm{out}}
+-
+\frac{\big(V_{\mathrm{ent}}^{\mathrm{out}}-(c_f-\sigma_{\mathrm{out}})\big)_+}
+{a_{\mathrm{ent}}^{\mathrm{out}}}
+-
+\tau_{\mathrm{sub}}^{\mathrm{out}}
+\ge 0,
+$$
+together with the five envelope domination inequalities for
+$$
+X_{\max},
+\qquad
+U_{\max},
+\qquad
+A_{\max},
+\qquad
+T_{\max},
+\qquad
+h.
+$$
+Any dependence of
+$$
+V_{\max},
+\qquad
+V_{\mathrm{ent}}^{\mathrm{out}},
+\qquad
+T_{\mathrm{ent}}^{\mathrm{out}},
+\qquad
+\overline A_{s,\mathrm{ent}}^{\mathrm{out}}
+$$
+on the envelope constants must be inserted into this list before claiming a strict slack point.
+
+> **Proposition (Strict slack point gives a nonempty coupled regime).**
+> Let
+> $$
+> p
+> \equiv
+> (\eta,\epsilon_c,X_{\max},U_{\max},A_{\max},T_{\max},h,
+> V_{\mathrm{ent}}^{\mathrm{out}},
+> a_{\mathrm{ent}}^{\mathrm{out}},
+> T_{\mathrm{ent}}^{\mathrm{out}},
+> \overline A_{s,\mathrm{ent}}^{\mathrm{out}})
+> $$
+> denote the coupled parameter tuple, and suppose the coupled-regime requirements can be written as a finite family of continuous inequalities
+> $$
+> F_q(p)>0,
+> \qquad
+> q\in\mathcal{Q}_{\mathrm{reg}},
+> $$
+> together with the finite envelope domination inequalities
+> $$
+> G_r(p)\ge 0,
+> \qquad
+> r\in\mathcal{Q}_{\mathrm{env}}.
+> $$
+> Here the list includes the inner-window inequalities, the margins
+> $$
+> \mathfrak M_{\mathrm{in}}>0,
+> \qquad
+> \mathfrak M_{\mathrm{ent}}\ge a_{\mathrm{ent}}^{\mathrm{out}}>0,
+> \qquad
+> \mathfrak M_{\mathrm{out}}>0,
+> $$
+> the outer-entry interval budget, and the envelope bounds for
+> $$
+> X_{\max},
+> \qquad
+> U_{\max},
+> \qquad
+> A_{\max},
+> \qquad
+> T_{\max},
+> \qquad
+> h.
+> $$
+> If there exists one parameter tuple
+> $$
+> p_0
+> $$
+> such that all strict inequalities have positive slack and all envelope inequalities have nonnegative slack, with the zero-slack envelope inequalities allowed only where increasing the corresponding envelope constant preserves every other inequality, then the admissible coupled-regime set is nonempty. If the envelope inequalities also have strict slack at
+> $$
+> p_0,
+> $$
+> then the admissible regime contains an open neighborhood of
+> $$
+> p_0.
+> $$
+
+Proof.
+Because the family
+$$
+\mathcal{Q}_{\mathrm{reg}}
+$$
+is finite and each
+$$
+F_q
+$$
+is continuous, positive slack at
+$$
+p_0
+$$
+persists on a small neighborhood of
+$$
+p_0.
+$$
+The same argument applies to every envelope inequality with strict slack. If one envelope inequality is saturated but the corresponding envelope constant can be increased without weakening the other inequalities, enlarge that constant slightly first; this turns the saturated domination inequality into a strict one while preserving the already strict margin inequalities. After this finite adjustment, all inequalities hold with strict slack on one neighborhood. Hence the coupled admissible set is nonempty, and in the strict-slack case open.
+
+This proposition reduces the coupled-regime problem to a finite arithmetic certificate: exhibit one tuple
+$$
+p_0
+$$
+at which the inner margin, apocenter-entry margin, outer margin, entry-time budget, and envelope domination inequalities all hold simultaneously.
+For completion this tuple must be actual data, either concrete numbers or interval enclosures whose lower endpoints give strict positive slack. A qualitative statement that the inner margin improves as
+$$
+\epsilon_c\downarrow 0
+$$
+is not enough, because the outer caustic and self terms may worsen under the same parameter move.
+
+The following nonemptiness test should be run before the full coupled-corridor certificate. It isolates the core-scale conflict between the inner recapture estimate and the outer shell-leakage estimate.
+
+> **Proposition (Corridor nonemptiness criterion).**
+> Use the fixed mollifier normalization
+> $$
+> \Lambda_\delta
+> \equiv
+> \eta\|\delta_\eta\|_\infty
+> =
+> \|\delta\|_\infty.
+> $$
+> Suppose
+> $$
+> S_{\mathrm{in}}^\rho>0,
+> \qquad
+> \sigma_{\mathrm{out}}>0,
+> \qquad
+> P_{\mathrm{out}}>0.
+> $$
+> The inner coefficient condition
+> $$
+> C_{\mathrm{in}}(\epsilon_c)>0
+> $$
+> is equivalent to
+> $$
+> \epsilon_c^2
+> <
+> \frac{1}{2S_{\mathrm{in}}^\rho}.
+> $$
+> The outer shell-deep coefficient condition is equivalent to
+> $$
+> P_{\mathrm{eff}}(\epsilon_c)>0,
+> \qquad
+> \epsilon_c^2
+> >
+> \frac{2\Lambda_\delta}
+> {\sigma_{\mathrm{out}}P_{\mathrm{eff}}(\epsilon_c)},
+> $$
+> where
+> $$
+> P_{\mathrm{eff}}(\epsilon_c)
+> \equiv
+> P_{\mathrm{out}}-D_{\mathrm{deep}}(\epsilon_c).
+> $$
+> Therefore the factorized corridor has a possible core-scale window only if there exists
+> $$
+> \epsilon_c>0
+> $$
+> such that
+> $$
+> \frac{2\Lambda_\delta}
+> {\sigma_{\mathrm{out}}P_{\mathrm{eff}}(\epsilon_c)}
+> <
+> \epsilon_c^2
+> <
+> \frac{1}{2S_{\mathrm{in}}^\rho}.
+> $$
+> In the coarse audit where
+> $$
+> D_{\mathrm{deep}}(\epsilon_c)
+> $$
+> is negligible, this reduces to the explicit window
+> $$
+> \sqrt{\frac{2\Lambda_\delta}{\sigma_{\mathrm{out}}P_{\mathrm{out}}}}
+> \lesssim
+> \epsilon_c
+> \lesssim
+> \frac{1}{\sqrt{2S_{\mathrm{in}}^\rho}},
+> $$
+> and the approximate nonemptiness condition
+> $$
+> \sigma_{\mathrm{out}}P_{\mathrm{out}}S_{\mathrm{in}}^\rho
+> >
+> 4\Lambda_\delta.
+> $$
+
+Proof.
+The first equivalence follows directly from
+$$
+\frac{1}{4\beta_{p,\max}\epsilon_c}
+-
+\frac{S_{\mathrm{in}}^\rho\epsilon_c}{2\beta_{p,\max}}
+>0.
+$$
+The second follows from
+$$
+P_{\mathrm{out}}
+-
+D_{\mathrm{deep}}(\epsilon_c)
+-
+\frac{2\eta\|\delta_\eta\|_\infty}{\sigma_{\mathrm{out}}\epsilon_c^2}
+>0
+$$
+and the definition of
+$$
+\Lambda_\delta.
+$$
+Combining the lower and upper core-scale requirements gives the displayed window. If this window is empty, the factorized corridor fails by parameter incompatibility before any seed-cycle residual or return-map argument is relevant.
+
+The following sufficient corridor is the scalar form of that arithmetic certificate. It does not prove the geometric coefficients by itself; it separates the coefficient audit from the final coupling choice.
+
+> **Proposition (Factorized corridor for a strict coupled-regime point).**
+> Write
+> $$
+> g\equiv \kappa\epsilon^2.
+> $$
+> Suppose the force bounds on a chosen envelope factor as
+> $$
+> \overline A_s^\rho=gS_{\mathrm{in}}^\rho,
+> \qquad
+> \underline A_p^{\mathrm{out}}=gP_{\mathrm{out}},
+> \qquad
+> \overline A_{s,\mathrm{ent}}^{\mathrm{out}}=gS_{\mathrm{ent}}^{\mathrm{out}},
+> $$
+> where the coefficients are independent of
+> $$
+> g.
+> $$
+> Define
+> $$
+> D_{\mathrm{deep}}(\epsilon_c)
+> \equiv
+> \frac{1}{c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2},
+> \qquad
+> L_{\mathrm{shell}}(\eta,\epsilon_c)
+> \equiv
+> \frac{2\eta\|\delta_\eta\|_\infty}{\sigma_{\mathrm{out}}\epsilon_c^2}.
+> $$
+> Assume the selected
+> $$
+> (\eta,\epsilon_c)
+> $$
+> satisfy the strict short-window inequalities
+> $$
+> \frac{\epsilon_c}{2\beta_{p,\max}}<\tau_1,
+> \qquad
+> \eta<\frac{\epsilon_c}{4c_fC_p},
+> \qquad
+> \epsilon_c<\frac{\beta_{p,\max}^2}{c_fC_p},
+> $$
+> and that there exists
+> $$
+> m_{\mathrm{ent}}>0
+> $$
+> with
+> $$
+> P_{\mathrm{out}}-S_{\mathrm{ent}}^{\mathrm{out}}-m_{\mathrm{ent}}>0.
+> $$
+> Also assume
+> $$
+> C_{\mathrm{in}}(\epsilon_c)
+> \equiv
+> \frac{1}{4\beta_{p,\max}\epsilon_c}
+> -
+> \frac{S_{\mathrm{in}}^\rho\,\epsilon_c}{2\beta_{p,\max}}
+> >0,
+> $$
+> or, if the Cauchy-Schwarz partner-impulse refinement has been interval-certified,
+> $$
+> C_{\mathrm{in}}^{\mathrm{CS}}(\epsilon_c)
+> \equiv
+> \frac{Q_{\mathrm{CS}}}{4\beta_{p,\max}\epsilon_c}
+> -
+> \frac{S_{\mathrm{in}}^\rho\,\epsilon_c}{2\beta_{p,\max}}
+> >0.
+> $$
+> $$
+> P_{\mathrm{out}}
+> -
+> D_{\mathrm{deep}}(\epsilon_c)
+> -
+> L_{\mathrm{shell}}(\eta,\epsilon_c)
+> >0,
+> $$
+> and
+> $$
+> T_{\mathrm{ent}}^{\mathrm{out}}>\tau_{\mathrm{sub}}^{\mathrm{out}}.
+> $$
+> Then every coupling scale
+> $$
+> g
+> >
+> \max\left\{
+> \frac{V_{\max}}{C_{\mathrm{in}}(\epsilon_c)},
+> \frac{\big(V_{\mathrm{ent}}^{\mathrm{out}}-(c_f-\sigma_{\mathrm{out}})\big)_+}
+> {m_{\mathrm{ent}}\big(T_{\mathrm{ent}}^{\mathrm{out}}-\tau_{\mathrm{sub}}^{\mathrm{out}}\big)}
+> \right\}
+> $$
+> with
+> $$
+> C_{\mathrm{in}}(\epsilon_c)
+> $$
+> replaced by the certified
+> $$
+> C_{\mathrm{in}}^{\mathrm{CS}}(\epsilon_c)
+> $$
+> if that refinement is used,
+> gives a strict coupled-regime point by setting
+> $$
+> a_{\mathrm{ent}}^{\mathrm{out}}=gm_{\mathrm{ent}}.
+> $$
+
+Proof.
+The short-window inequalities are strict by assumption. The inner margin becomes
+$$
+\mathfrak M_{\mathrm{in}}
+=
+gC_{\mathrm{in}}(\epsilon_c)-V_{\max},
+$$
+which is positive by the lower bound on
+$$
+g.
+$$
+If the certified Cauchy-Schwarz refinement is used, the same argument replaces
+$$
+C_{\mathrm{in}}
+$$
+by
+$$
+C_{\mathrm{in}}^{\mathrm{CS}}.
+$$
+The entry margin satisfies
+$$
+\mathfrak M_{\mathrm{ent}}-a_{\mathrm{ent}}^{\mathrm{out}}
+=
+g\big(P_{\mathrm{out}}-S_{\mathrm{ent}}^{\mathrm{out}}-m_{\mathrm{ent}}\big)
+>0.
+$$
+The outer margin factors as
+$$
+\mathfrak M_{\mathrm{out}}
+=
+g\big(
+P_{\mathrm{out}}
+-
+D_{\mathrm{deep}}(\epsilon_c)
+-
+L_{\mathrm{shell}}(\eta,\epsilon_c)
+\big),
+$$
+which is positive by the coefficient hypothesis. Finally, the lower bound on
+$$
+g
+$$
+also gives
+$$
+T_{\mathrm{ent}}^{\mathrm{out}}
+\ge
+\frac{\big(V_{\mathrm{ent}}^{\mathrm{out}}-(c_f-\sigma_{\mathrm{out}})\big)_+}
+{gm_{\mathrm{ent}}}
++
+\tau_{\mathrm{sub}}^{\mathrm{out}}.
+$$
+Thus the finite strict-regime list holds. Choosing the envelope constants with strict domination slack then supplies the strict slack point required by the previous proposition.
+
+> **Proposition (Certified self-map criterion).**
+> Let
+> $$
+> \mathcal{K}_{x_\ast,\eta}
+> =
+> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> $$
+> be a closed convex tame envelope produced by a finite certificate
+> $$
+> \{\ell_\alpha\le b_\alpha\}_{\alpha\in\mathcal{I}_{\mathrm{cert}}}.
+> $$
+> Assume:
+> 1. the invariant-envelope closure theorem applies on
+>    $$
+>    \mathcal{K}_{x_\ast,\eta},
+>    $$
+>    so that
+>    $$
+>    P_\eta(\phi)\in\mathcal{C}_{x_\ast,\eta}
+>    \qquad
+>    \text{for every }\phi\in\mathcal{K}_{x_\ast,\eta};
+>    $$
+> 2. each certificate inequality is preserved by one return:
+>    $$
+>    \ell_\alpha(P_\eta(\phi))\le b_\alpha
+>    \qquad
+>    \text{for every }
+>    \alpha\in\mathcal{I}_{\mathrm{cert}}
+>    \text{ and every }
+>    \phi\in\mathcal{K}_{x_\ast,\eta}.
+>    $$
+>
+> Then
+> $$
+> P_\eta(\mathcal{K}_{x_\ast,\eta})
+> \subseteq
+> \mathcal{K}_{x_\ast,\eta}.
+> $$
+
+Proof.
+Fix
+$$
+\phi\in\mathcal{K}_{x_\ast,\eta}.
+$$
+By invariant-envelope closure,
+$$
+P_\eta(\phi)\in\mathcal{C}_{x_\ast,\eta}.
+$$
+By certificate preservation,
+$$
+\ell_\alpha(P_\eta(\phi))\le b_\alpha
+\qquad
+\text{for every }\alpha\in\mathcal{I}_{\mathrm{cert}}.
+$$
+Therefore
+$$
+P_\eta(\phi)
+\in
+\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+=
+\mathcal{K}_{x_\ast,\eta}.
+$$
+Since
+$$
+\phi
+$$
+was arbitrary, the claimed self-map inclusion follows.
+
+For the sampled certificate above, certificate preservation has an entirely finite form.
+
+> **Proposition (Finite sampled preservation criterion).**
+> Suppose
+> $$
+> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> $$
+> is defined by the sampled seed-cycle tube in Proposition `Sampled seed-cycle tube gives a finite tame certificate`, with mesh
+> $$
+> \{\theta_j\}_{j=0}^N
+> $$
+> and radius
+> $$
+> r_{\mathrm{cert}}.
+> $$
+> Assume invariant-envelope closure gives
+> $$
+> P_\eta(\phi)\in\mathcal{C}_{x_\ast,\eta}
+> \qquad
+> \text{for every }\phi\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+> $$
+> If, for every
+> $$
+> \phi\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> $$
+> and every mesh index
+> $$
+> 0\le j\le N,
+> $$
+> the returned history obeys
+> $$
+> |P_\eta(\phi)(\theta_j)-\phi_{\mathrm{cyc}}(\theta_j)|
+> \le \frac{r_{\mathrm{cert}}}{4},
+> \qquad
+> |\partial_\theta P_\eta(\phi)(\theta_j)-\dot\phi_{\mathrm{cyc}}(\theta_j)|
+> \le \frac{r_{\mathrm{cert}}}{4},
+> $$
+> then
+> $$
+> P_\eta(\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}})
+> \subseteq
+> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+> $$
+
+Proof.
+The invariant-envelope theorem gives the returned-history membership in
+$$
+\mathcal{C}_{x_\ast,\eta}.
+$$
+The displayed finite sample inequalities are exactly the certificate inequalities defining
+$$
+\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+$$
+in the sampled construction. Hence every returned history satisfies all certificate inequalities and therefore lies in
+$$
+\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+$$
+
+The hard part of applying this criterion is proving the finite mesh inequalities uniformly. The following budget form is the one that should be used in later proof checking.
+
+> **Proposition (Returned-sample budget certificate).**
+> In the setting of Proposition `Finite sampled preservation criterion`, suppose there are finite returned-sample budgets
+> $$
+> E_{j,+}^{x},
+> \qquad
+> E_{j,-}^{x},
+> \qquad
+> E_{j,+}^{v},
+> \qquad
+> E_{j,-}^{v},
+> \qquad
+> 0\le j\le N,
+> $$
+> such that for every
+> $$
+> \phi\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> $$
+> the returned history satisfies
+> $$
+> P_\eta(\phi)(\theta_j)-\phi_{\mathrm{cyc}}(\theta_j)
+> \le E_{j,+}^{x},
+> \qquad
+> \phi_{\mathrm{cyc}}(\theta_j)-P_\eta(\phi)(\theta_j)
+> \le E_{j,-}^{x},
+> $$
+> and
+> $$
+> \partial_\theta P_\eta(\phi)(\theta_j)-\dot\phi_{\mathrm{cyc}}(\theta_j)
+> \le E_{j,+}^{v},
+> \qquad
+> \dot\phi_{\mathrm{cyc}}(\theta_j)-\partial_\theta P_\eta(\phi)(\theta_j)
+> \le E_{j,-}^{v}.
+> $$
+> If the strict sample-slack inequalities
+> $$
+> \max\{E_{j,+}^{x},E_{j,-}^{x},E_{j,+}^{v},E_{j,-}^{v}\}
+> <
+> \frac{r_{\mathrm{cert}}}{4}
+> \qquad
+> \text{for every }0\le j\le N
+> $$
+> hold, then
+> $$
+> P_\eta(\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}})
+> \subseteq
+> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+> $$
+
+Proof.
+The one-sided budget inequalities imply
+$$
+|P_\eta(\phi)(\theta_j)-\phi_{\mathrm{cyc}}(\theta_j)|
+<
+\frac{r_{\mathrm{cert}}}{4},
+$$
+and
+$$
+|\partial_\theta P_\eta(\phi)(\theta_j)-\dot\phi_{\mathrm{cyc}}(\theta_j)|
+<
+\frac{r_{\mathrm{cert}}}{4}
+$$
+for every mesh index. Proposition `Finite sampled preservation criterion` then gives the self-map inclusion.
+
+> **Proposition (Residual-plus-sensitivity sampled preservation).**
+> In the setting above, assume the center history
+> $$
+> \phi_{\mathrm{cyc}}
+> $$
+> has a defined return
+> $$
+> P_\eta(\phi_{\mathrm{cyc}}),
+> $$
+> and define the one-sided returned residuals
+> $$
+> R_{j,+}^{x}
+> \equiv
+> \big(P_\eta(\phi_{\mathrm{cyc}})(\theta_j)-\phi_{\mathrm{cyc}}(\theta_j)\big)_+,
+> \qquad
+> R_{j,-}^{x}
+> \equiv
+> \big(\phi_{\mathrm{cyc}}(\theta_j)-P_\eta(\phi_{\mathrm{cyc}})(\theta_j)\big)_+,
+> $$
+> $$
+> R_{j,+}^{v}
+> \equiv
+> \big(\partial_\theta P_\eta(\phi_{\mathrm{cyc}})(\theta_j)-\dot\phi_{\mathrm{cyc}}(\theta_j)\big)_+,
+> \qquad
+> R_{j,-}^{v}
+> \equiv
+> \big(\dot\phi_{\mathrm{cyc}}(\theta_j)-\partial_\theta P_\eta(\phi_{\mathrm{cyc}})(\theta_j)\big)_+.
+> $$
+> Suppose also that the return map sample functionals have finite local sensitivity constants on
+> $$
+> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}},
+> $$
+> namely
+> $$
+> |P_\eta(\phi)(\theta_j)-P_\eta(\phi_{\mathrm{cyc}})(\theta_j)|
+> \le
+> L_j^x\|\phi-\phi_{\mathrm{cyc}}\|_{C^1},
+> $$
+> $$
+> |\partial_\theta P_\eta(\phi)(\theta_j)
+> -
+> \partial_\theta P_\eta(\phi_{\mathrm{cyc}})(\theta_j)|
+> \le
+> L_j^v\|\phi-\phi_{\mathrm{cyc}}\|_{C^1}
+> $$
+> for every
+> $$
+> \phi\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+> $$
+> If
+> $$
+> \max\{R_{j,+}^{x},R_{j,-}^{x}\}+L_j^x r_{\mathrm{cert}}
+> <
+> \frac{r_{\mathrm{cert}}}{4},
+> $$
+> and
+> $$
+> \max\{R_{j,+}^{v},R_{j,-}^{v}\}+L_j^v r_{\mathrm{cert}}
+> <
+> \frac{r_{\mathrm{cert}}}{4}
+> $$
+> for every
+> $$
+> 0\le j\le N,
+> $$
+> then the returned-sample budget certificate holds, and hence
+> $$
+> P_\eta(\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}})
+> \subseteq
+> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+> $$
+
+Proof.
+The sampled certificate construction gives
+$$
+\|\phi-\phi_{\mathrm{cyc}}\|_{C^1}\le r_{\mathrm{cert}}
+$$
+for every
+$$
+\phi\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+$$
+Therefore
+$$
+P_\eta(\phi)(\theta_j)-\phi_{\mathrm{cyc}}(\theta_j)
+\le
+R_{j,+}^{x}+L_j^x r_{\mathrm{cert}},
+$$
+and the same triangle-inequality argument gives the other three one-sided bounds. The displayed strict inequalities therefore define returned-sample budgets satisfying the previous proposition. The self-map inclusion follows.
+
+This criterion is only a sufficient route. If the raw local sensitivity is too large, the boundary-trapping lemma below can still prove preservation by direct inward-margin estimates at the certificate faces.
+
+> **Lemma (Boundary trapping for the sampled certificate).**
+> Assume the returned-sample budget certificate and write
+> $$
+> s_{\mathrm{sam}}
+> \equiv
+> \frac{r_{\mathrm{cert}}}{4}
+> -
+> \max_{0\le j\le N}
+> \max\{E_{j,+}^{x},E_{j,-}^{x},E_{j,+}^{v},E_{j,-}^{v}\}.
+> $$
+> If
+> $$
+> s_{\mathrm{sam}}>0,
+> $$
+> then every codimension-one sample face of
+> $$
+> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> $$
+> is strictly inward under one return.
+
+Proof.
+The sample faces are exactly the four one-sided equalities, for each mesh index
+$$
+j,
+$$
+obtained by replacing one of
+$$
+|\phi(\theta_j)-\phi_{\mathrm{cyc}}(\theta_j)|\le \frac{r_{\mathrm{cert}}}{4},
+\qquad
+|\dot\phi(\theta_j)-\dot\phi_{\mathrm{cyc}}(\theta_j)|
+\le \frac{r_{\mathrm{cert}}}{4}
+$$
+with equality and choosing a sign. If a returned history touched one such face, the corresponding returned-sample defect would equal
+$$
+\frac{r_{\mathrm{cert}}}{4}.
+$$
+But the returned-sample budget bounds that same defect by at most
+$$
+\frac{r_{\mathrm{cert}}}{4}-s_{\mathrm{sam}},
+$$
+a contradiction. Hence no returned history reaches any sample face; all sample faces are strictly inward.
+
+One useful route for proving the budget hypotheses is a boundary-trapping check: for each certificate face
+$$
+\ell_\alpha=b_\alpha,
+$$
+show that any trajectory whose returned history would otherwise touch that face is pushed strictly back toward
+$$
+\ell_\alpha<b_\alpha
+$$
+by one of the established cycle margins. Because the certificate family is finite, these facewise checks reduce the global self-map property to finitely many inward-pointing inequalities.
+
+> **Theorem (Finite-certificate invariant closure package).**
+> Assume:
+> 1. the seed-cycle margin ledger is positive and the quantitative radius criterion has been used to choose
+>    $$
+>    r_{\mathrm{cert}};
+>    $$
+> 2. the sampled finite certificate defines
+>    $$
+>    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}};
+>    $$
+> 3. the factorized coupled-regime corridor holds, so invariant-envelope closure gives
+>    $$
+>    P_\eta(\phi)\in\mathcal{C}_{x_\ast,\eta}
+>    \qquad
+>    \text{for every }\phi\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}};
+>    $$
+> 4. and either the direct returned-sample budget certificate holds on
+>    $$
+>    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}},
+>    $$
+>    for example by boundary trapping, or the residual-plus-sensitivity sampled preservation criterion holds on
+>    $$
+>    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+>    $$
+>
+> Then
+> $$
+> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> $$
+> is a nonempty closed convex tame self-map domain for
+> $$
+> P_\eta,
+> $$
+> namely
+> $$
+> P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}\big)
+> \subseteq
+> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+> $$
+
+Proof.
+The positive seed-cycle ledger and the radius criterion give the strict branch-chart, gap, memory-depth, and envelope margins required by the sampled finite certificate. The finite certificate construction then makes
+$$
+\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+$$
+a nonempty closed convex tame envelope. The factorized corridor supplies the coupled strict-slack point needed by invariant-envelope closure, so returned histories lie in
+$$
+\mathcal{C}_{x_\ast,\eta}.
+$$
+Finally, a direct returned-sample budget certificate gives the finite sampled preservation criterion immediately. If that direct route is not used, the residual-plus-sensitivity criterion implies the same returned-sample budget certificate. In either case the finite sampled preservation criterion gives the certificate inequalities after one return. Therefore the returned history lies in the certified set itself, proving the self-map inclusion.
+
+The finite self-map ledger has four rows. The first, second, and fourth rows produce the self-map certificate; the third row is a stability diagnostic that decides whether returned-sample preservation should be attempted by sensitivities or by boundary trapping. Adding the certified topology row below gives the full five-row Schauder-ready audit.
+
+1. **Seed-chart row.**
+   Verify
+   $$
+   \nu_{\mathrm{seed}}>0,
+   \qquad
+   \gamma_{\mathrm{gap}}>0,
+   \qquad
+   \gamma_h>0,
+   \qquad
+   \gamma_{\mathrm{env}}>0,
+   $$
+   and finite sensitivities
+   $$
+   L_J,
+   \qquad
+   L_F,
+   \qquad
+   L_h,
+   \qquad
+   L_{\mathrm{env}}.
+   $$
+   This row chooses
+   $$
+   r_{\mathrm{cert}}
+   $$
+   and produces the closed convex tame certificate.
+2. **Coupled-corridor row.**
+   Verify
+   $$
+   C_{\mathrm{in}}(\epsilon_c)>0,
+   \qquad
+   P_{\mathrm{out}}-S_{\mathrm{ent}}^{\mathrm{out}}-m_{\mathrm{ent}}>0,
+   \qquad
+   P_{\mathrm{out}}-D_{\mathrm{deep}}(\epsilon_c)-L_{\mathrm{shell}}(\eta,\epsilon_c)>0,
+   $$
+   choose
+   $$
+   g=\kappa\epsilon^2
+   $$
+   above the factorized threshold, and set
+   $$
+   a_{\mathrm{ent}}^{\mathrm{out}}=gm_{\mathrm{ent}}.
+   $$
+   This row supplies the strict coupled-regime point. For a completed proof, this row must be a concrete numerical or interval certificate for one tuple
+   $$
+   p_0
+   $$
+   in the coupled system, not separate local parameter choices.
+3. **Monodromy diagnostic row.**
+   Compute an interval enclosure for the section-anchored linearized return map
+   $$
+   D P_\eta(\phi_{\mathrm{cyc}})
+   $$
+   on the certificate mesh. The section anchoring removes the neutral time-translation direction before the spectrum is interpreted. Record the discrete monodromy matrix
+   $$
+   M_N,
+   $$
+   an interval spectral enclosure, and an explicit diagnostic margin
+   $$
+   \delta_{\mathrm{mon}}>0.
+   $$
+   If any certified eigenvalue satisfies
+   $$
+   |\lambda|>1+\delta_{\mathrm{mon}},
+   $$
+   the residual-plus-sensitivity route should be considered closed for that unstable direction, and the returned-sample row must use direct one-sided boundary trapping. If the spectrum and operator-norm enclosure are small enough to give usable constants
+   $$
+   L_j^x,
+   \qquad
+   L_j^v,
+   $$
+   this row authorizes the residual-plus-sensitivity route. Schauder itself does not require linear stability; this row is a proof-strategy selector for the finite preservation audit.
+4. **Returned-sample row.**
+   Prefer the direct one-sided budget route when local sensitivities are large: prove
+   $$
+   E_{j,\pm}^{x},
+   \qquad
+   E_{j,\pm}^{v}
+   $$
+   by boundary trapping with strict sample slack. Equivalently, when the sensitivity constants are tame enough, verify
+   $$
+   \max\{R_{j,+}^{x},R_{j,-}^{x}\}+L_j^x r_{\mathrm{cert}}
+   <
+   \frac{r_{\mathrm{cert}}}{4},
+   \qquad
+   \max\{R_{j,+}^{v},R_{j,-}^{v}\}+L_j^v r_{\mathrm{cert}}
+   <
+   \frac{r_{\mathrm{cert}}}{4}
+   $$
+   for every mesh index. This row supplies certificate preservation under one return.
+
+This ledger is deliberately finite. Passing the seed-chart, coupled-corridor, and returned-sample rows turns the domain-production burden into the self-map inclusion; the monodromy row identifies whether the returned-sample proof should use sensitivity control or boundary trapping. Failing any required row identifies the exact obstruction.
+
+### Certified topology row
+
+After the finite closure audit supplies
+$$
+P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}\big)
+\subseteq
+\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}},
+$$
+precompactness is no longer a separate dynamical mystery: the returned histories already lie in the same certified
+$$
+C^1
+$$
+envelope. Continuity still requires one extra topological margin, namely strict transversality of the returned section.
+
+Define the certified return-speed margin
+$$
+u_{\mathrm{ret}}^{\mathrm{cert}}
+\equiv
+-\dot\phi_{\mathrm{cyc}}(0)-\frac{r_{\mathrm{cert}}}{4}.
+$$
+Because the mesh includes
+$$
+\theta_N=0,
+$$
+the returned-sample inequalities imply
+$$
+\partial_\theta P_\eta(\phi)(0)
+\le
+\dot\phi_{\mathrm{cyc}}(0)+\frac{r_{\mathrm{cert}}}{4}
+=
+-u_{\mathrm{ret}}^{\mathrm{cert}}.
+$$
+Thus
+$$
+u_{\mathrm{ret}}^{\mathrm{cert}}>0
+$$
+is the finite section-transversality check needed by the continuity proposition.
+
+> **Proposition (Certified topology on the finite self-map domain).**
+> Assume the finite-certificate invariant closure package, and assume in addition:
+> 1. the certified return-speed margin satisfies
+>    $$
+>    u_{\mathrm{ret}}^{\mathrm{cert}}>0;
+>    $$
+> 2. the certified branch-chart well-posedness proposition applies on the finite chart intervals covering the stored history and one-cycle continuation;
+> 3. the active delayed roots persist on
+>    $$
+>    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+>    $$
+>    with the Jacobian floors, branch-count ceilings, and memory-depth bounds supplied by the certificate outside the certified fold-event atlas, and each fold layer in that atlas has a parity-preserving incoming-to-outgoing chart transition.
+>
+> Then
+> $$
+> P_\eta:
+> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> \to
+> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> $$
+> is continuous, and
+> $$
+> P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}\big)
+> $$
+> is precompact in
+> $$
+> C^1([-h,0]).
+> $$
+
+Proof.
+The finite-certificate invariant closure package gives
+$$
+P_\eta(\phi)\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+\subseteq
+\mathcal{C}_{x_\ast,\eta}
+$$
+for every
+$$
+\phi\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+$$
+Hence every returned history satisfies the position, speed, Lipschitz-velocity, and horizon bounds required by Proposition `Precompactness of the Return Image`; that proposition gives precompactness.
+
+For continuity, certified branch-chart well-posedness gives continuous dependence of the controlled continuation on the initial history while the certificate keeps the same exterior charts, origin-layer charts, fold-event atlas, and Jacobian floors. The displayed return-speed estimate gives the uniform transverse return condition
+$$
+\dot x(T(\phi);\phi)\le -u_{\mathrm{ret}}^{\mathrm{cert}}<0.
+$$
+Therefore the continuity proposition for the return map applies with
+$$
+\mathcal{K}_{x_\ast,\eta}
+=
+\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}},
+$$
+and yields continuity of
+$$
+P_\eta
+$$
+on the certified domain.
+
+The full Schauder-ready audit therefore has five rows:
+
+1. the seed-chart row;
+2. the coupled-corridor row;
+3. the monodromy diagnostic row;
+4. the returned-sample row;
+5. and the topology row
+   $$
+   u_{\mathrm{ret}}^{\mathrm{cert}}>0
+   $$
+   plus certified branch-chart well-posedness and a certified fold-event atlas on the controlled continuation.
+
 ### Remaining blockers before Schauder
 
 At this stage the remaining blockers are narrow and explicit:
 
-1. prove a non-circular speed-decay or apocenter-entry estimate that supplies the strict sub-field-speed apocenter window used by Lemma 29;
-2. produce a nonempty closed convex tame envelope
+No remaining blocker asks for an elementary closed-form orbit. The proof needs one instantiated candidate cycle
+$$
+\phi_{\mathrm{cyc}},
+$$
+defined against the dual-mollified absolute-time law, and finite certificate data proving that the same closed convex tame domain is self-mapping, continuous, and precompact under
+$$
+P_\eta.
+$$
+
+1. verify the seed-cycle margin ledger
    $$
-   \mathcal{K}_{x_\ast,\eta};
+   \nu_{\mathrm{seed}}>0,
+   \qquad
+   \gamma_{\mathrm{gap}}>0,
+   \qquad
+   \gamma_h>0,
+   \qquad
+   \gamma_{\mathrm{env}}>0
    $$
-3. solve the coupled regime inequalities in
+   then apply the quantitative radius criterion for
    $$
-   (\eta,\epsilon_c,X_{\max},U_{\max},A_{\max},T_{\max},h)
+   r_{\mathrm{cert}}
+   $$
+   to choose the sampled finite tame certificate for
+   $$
+   \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}};
+   $$
+2. verify the factorized coupled-corridor inequalities
+   $$
+   C_{\mathrm{in}}(\epsilon_c)>0,
+   \qquad
+   P_{\mathrm{out}}-S_{\mathrm{ent}}^{\mathrm{out}}-m_{\mathrm{ent}}>0,
+   \qquad
+   P_{\mathrm{out}}-D_{\mathrm{deep}}(\epsilon_c)-L_{\mathrm{shell}}(\eta,\epsilon_c)>0,
+   $$
+   then choose
+   $$
+   g=\kappa\epsilon^2
+   $$
+   above the displayed corridor threshold for the finite coupled-regime system in
+   $$
+   (\eta,\epsilon_c,X_{\max},U_{\max},A_{\max},T_{\max},h,
+   V_{\mathrm{ent}}^{\mathrm{out}},
+   a_{\mathrm{ent}}^{\mathrm{out}},
+   T_{\mathrm{ent}}^{\mathrm{out}},
+   \overline A_{s,\mathrm{ent}}^{\mathrm{out}})
+   $$
+   by producing one strict numeric or interval tuple
+   $$
+   p_0
    $$
    rather than treating local margins and envelope constants as independent;
-4. verify continuity and precompactness of
+3. compute the monodromy diagnostic for
    $$
-   P_\eta
+   D P_\eta(\phi_{\mathrm{cyc}})
    $$
-   on that same closed convex domain;
-5. and prove the self-map property
+   on the section-anchored mesh. If the interval spectral enclosure has an unstable direction
    $$
-   P_\eta(\mathcal{K}_{x_\ast,\eta})\subseteq \mathcal{K}_{x_\ast,\eta}
+   |\lambda|>1+\delta_{\mathrm{mon}},
+   $$
+   use the result to route the returned-sample proof to boundary trapping rather than residual-plus-sensitivity estimates.
+4. derive returned-sample budgets. If the sample sensitivities
+   $$
+   L_j^x,
+   \qquad
+   L_j^v
+   $$
+   are too large to close the residual-plus-sensitivity route, use direct boundary trapping for
+   $$
+   E_{j,\pm}^{x},
+   \qquad
+   E_{j,\pm}^{v}
+   $$
+   with strict sample slack. When sensitivities are small enough, the residual-plus-sensitivity inequalities
+   $$
+   R_{j,\pm}^{x}+L_j^x r_{\mathrm{cert}}<\frac{r_{\mathrm{cert}}}{4},
+   \qquad
+   R_{j,\pm}^{v}+L_j^v r_{\mathrm{cert}}<\frac{r_{\mathrm{cert}}}{4},
+   $$
+   are sufficient. In either case, prove the finite checks that imply
+   $$
+   P_\eta(\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}})
+   \subseteq
+   \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
    $$
    on that same domain.
+5. verify the topology row:
+   $$
+   u_{\mathrm{ret}}^{\mathrm{cert}}>0
+   $$
+   and certified branch-chart well-posedness for the dual-mollified vector field on the controlled continuation, including the origin-layer chart and certified fold-event atlas, so the certified topology proposition gives continuity and precompactness on
+   $$
+   \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+   $$
 
-Once these five items are theorem-level, the remaining Schauder step is formally routine.
+Once these five items are theorem-level, the finite-certificate invariant closure package supplies the self-map domain and the certified topology proposition supplies continuity and precompactness. The remaining Schauder step is then formally routine.
 
 ### Schauder capstone
 
-> **Target Theorem (Schauder Existence of a Dual-Mollified Collinear Breather).**
+> **Conditional Theorem (Schauder Existence of a Dual-Mollified Collinear Breather).**
 > Assume:
 > 1. the theorem `Seed-to-Tame Full-Cycle Propagation`;
-> 2. the proposition `Closed Convex Tame Envelope`;
-> 3. the continuity proposition for
+> 2. the finite-certificate invariant closure package, producing the nonempty closed convex tame self-map domain
+>    $$
+>    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}};
+>    $$
+> 3. and the certified topology proposition, giving continuity and precompactness of
 >    $$
 >    P_\eta
 >    $$
->    on
->    $$
->    \mathcal{K}_{x_\ast,\eta};
->    $$
-> 4. the precompactness proposition applied to
->    $$
->    \mathcal{K}_{x_\ast,\eta};
->    $$
-> 5. and the self-map property
->    $$
->    P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}\big)\subseteq \mathcal{K}_{x_\ast,\eta},
->    $$
->    obtained by combining invariant-envelope closure with the chosen envelope construction.
+>    on that same certified domain.
 >
 > Then there exists
 > $$
 > \phi_\eta^\ast
 > \in
-> \mathcal{K}_{x_\ast,\eta}
+> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
 > $$
 > such that
 > $$
@@ -2704,10 +4674,10 @@ Once these five items are theorem-level, the remaining Schauder step is formally
 > $$
 > The corresponding delayed trajectory is an exact bounded periodic origin-crossing two-body motion in the dual-mollified collinear model.
 
-Proof sketch.
-`Seed-to-Tame Full-Cycle Propagation` supplies a nonempty tame class. `Closed Convex Tame Envelope` places that class inside a nonempty closed convex domain
+Proof.
+`Seed-to-Tame Full-Cycle Propagation` supplies a nonempty tame class. The finite-certificate invariant closure package places that class inside a nonempty closed convex self-map domain
 $$
-\mathcal{K}_{x_\ast,\eta}.
+\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
 $$
 Continuity and precompactness place the return image inside a compact subset of that same domain, while invariant-envelope closure prevents escape. Schauder therefore yields a fixed point of
 $$
@@ -2715,10 +4685,10 @@ P_\eta
 $$
 on
 $$
-\mathcal{K}_{x_\ast,\eta},
+\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}},
 $$
 and by construction that fixed point is exactly a periodic returned history.
-This capstone remains fully conditional on the previous domain-production targets. Without one nonempty closed convex tame self-map domain carrying propagation, continuity, precompactness, and invariance all at once, Schauder does not yet apply.
+This capstone remains conditional on the finite closure audit and certified topology row. Without one nonempty closed convex tame self-map domain carrying propagation, continuity, precompactness, and invariance all at once, Schauder does not yet apply.
 
 ### Seed history and tame-class nonemptiness
 
@@ -3630,7 +5600,7 @@ $$
 $$
 on which those properties hold both before and after one full return. This gives exactly the forward-propagation tame class required by the invariant-envelope theorem.
 
-This proposition closes the seed-propagation ladder. The only remaining logical step is to package the four seed-neighborhood propositions into a single nonempty tame-class theorem, after which the invariant-envelope synthesis and the Schauder route apply directly.
+This proposition closes the seed-propagation ladder at the nonvacuity level. The remaining logical step inside that ladder is to package the four seed-neighborhood propositions into a single nonempty tame-class theorem. The later Schauder route still requires the sampled tame-envelope certificate, coupled strict-slack arithmetic, and returned-sample preservation on the same domain.
 
 > **Theorem (Nonempty tame class from seed propagation).**
 > Assume:
@@ -3665,7 +5635,7 @@ This proposition closes the seed-propagation ladder. The only remaining logical 
 >    $$
 > 4. and the invariant-envelope theorem is therefore nonvacuous on a genuine delayed history class.
 >
-> In particular, once the continuity and precompactness propositions are verified on this same class, the Schauder route applies on a nonempty domain.
+> In particular, once the sampled certificate, coupled strict-slack inequalities, returned-sample preservation, continuity, and precompactness are verified on this same class, the Schauder route applies on a nonempty self-map domain.
 
 Proof sketch.
 The seed proposition and its neighborhood corollary provide a nonempty section-side class
@@ -3713,15 +5683,15 @@ P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
 $$
 is exactly the conclusion of the returned-history reentry step. Hence the invariant-envelope theorem is nonvacuous on a genuine delayed history class.
 
-This theorem closes the remaining logical gap in the global existence program. The note now contains:
+This theorem closes the seed-side nonvacuity gap in the global existence program. The note now contains:
 
 - an explicit nonempty section-side seed,
 - a propagation ladder from that seed to a nonempty tame class,
 - explicit inner and outer recapture regimes,
-- invariant-envelope closure on a closed convex history set,
+- invariant-envelope closure on a certified closed convex history set, conditional on the sampled certificate and coupled strict-slack arithmetic,
 - and the previously stated precompactness, continuity, and Schauder route.
 
-The remaining work is therefore no longer to construct a nonempty delayed class, but to tighten the continuity and compactness inputs on that same class until the fixed-point step can be stated as a final theorem rather than as a route.
+The remaining work is therefore no longer to construct a nonempty delayed class. It is to verify the sampled tame-envelope certificate, verify the factorized coupled-corridor inequalities, and derive returned-sample budgets with strict sample slack, either through residual-plus-sensitivity control or direct boundary trapping, on that same class.
 
 ### Collapse-to-crossing target
 
@@ -6634,7 +8604,200 @@ $$
 $$
 which proves the corollary.
 
-**Lemma 29: Strict sub-field-speed apocenter window.**
+**Lemma 29: Coarse speed-decay entry into a strict sub-field-speed apocenter window.**
+Fix a desired strict sub-field-speed gap
+$$
+\sigma_{\mathrm{out}}>0,
+$$
+and write
+$$
+v_{\mathrm{sub}}^{\mathrm{out}}
+\equiv
+c_f-\sigma_{\mathrm{out}}.
+$$
+Assume there is an outbound outer-entry interval
+$$
+I_{\mathrm{ent}}\equiv[t_0,t_1]
+$$
+on which the branch has not yet been shown to turn, but the following non-circular data are available:
+
+- the trajectory is on the right exterior outbound branch as long as no turn has occurred,
+  $$
+  x_\ast\le x(t)\le X_{\mathrm{out},\max},
+  \qquad
+  \dot x(t)\ge 0;
+  $$
+- the entry interval carries a coarse inward braking margin at the sub-field-speed boundary and above it:
+  $$
+  \ddot x(t)\le -a_{\mathrm{ent}}^{\mathrm{out}}<0
+  \qquad
+  \text{whenever }
+  t\in I_{\mathrm{ent}}
+  \text{ and }
+  \dot x(t)\ge v_{\mathrm{sub}}^{\mathrm{out}};
+  $$
+- the interval is long enough for entry plus a retained sub-field-speed window of length
+  $$
+  \tau_{\mathrm{sub}}^{\mathrm{out}}>0:
+  $$
+  $$
+  t_1-t_0
+  \ge
+  \frac{\big(\dot x(t_0)-v_{\mathrm{sub}}^{\mathrm{out}}\big)_+}
+  {a_{\mathrm{ent}}^{\mathrm{out}}}
+  +
+  \tau_{\mathrm{sub}}^{\mathrm{out}}.
+  $$
+
+Then one of the following alternatives holds:
+
+1. a finite outer turn occurs before the retained sub-field-speed window is exhausted; or
+2. there exists an entry time
+   $$
+   t_a\in
+   \left[
+   t_0,\,
+   t_0+
+   \frac{\big(\dot x(t_0)-v_{\mathrm{sub}}^{\mathrm{out}}\big)_+}
+   {a_{\mathrm{ent}}^{\mathrm{out}}}
+   \right]
+   $$
+   such that the branch remains strictly sub-field-speed and outbound on
+   $$
+   I_{\mathrm{sub}}\equiv
+   [t_a,t_a+\tau_{\mathrm{sub}}^{\mathrm{out}}],
+   $$
+   namely
+   $$
+   0\le \dot x(t)\le c_f-\sigma_{\mathrm{out}}
+   \qquad
+   \text{for every }t\in I_{\mathrm{sub}}.
+   $$
+
+The coarse margin can be certified without using the sub-field-speed sorting argument. For example, it is enough to have on
+$$
+I_{\mathrm{ent}}
+$$
+a partner floor and a coarse total outward ceiling satisfying
+$$
+\underline A_p^{\mathrm{out}}
+-
+\overline A_{s,\mathrm{ent}}^{\mathrm{out}}
+\ge
+a_{\mathrm{ent}}^{\mathrm{out}}>0,
+$$
+where
+$$
+\overline A_{s,\mathrm{ent}}^{\mathrm{out}}
+$$
+includes all outward self, fold, shell, and deep-past channels on the entry interval. This ceiling is deliberately coarse: it is not allowed to use Lemma 26 or Lemma 27, because those lemmas are consequences of the sub-field-speed window produced here.
+
+Proof.
+Let
+$$
+v(t)\equiv \dot x(t).
+$$
+If
+$$
+v(t_0)\le v_{\mathrm{sub}}^{\mathrm{out}},
+$$
+set
+$$
+t_a=t_0.
+$$
+Otherwise, as long as
+$$
+v(t)\ge v_{\mathrm{sub}}^{\mathrm{out}}
+$$
+and no turn has occurred, the coarse margin gives
+$$
+v'(t)=\ddot x(t)\le -a_{\mathrm{ent}}^{\mathrm{out}}.
+$$
+Integrating from
+$$
+t_0
+$$
+shows that
+$$
+v(t)
+\le
+v(t_0)-a_{\mathrm{ent}}^{\mathrm{out}}(t-t_0)
+$$
+throughout the portion of the interval where
+$$
+v\ge v_{\mathrm{sub}}^{\mathrm{out}}.
+$$
+Hence either the velocity reaches zero first, giving a finite outer turn, or it reaches
+$$
+v_{\mathrm{sub}}^{\mathrm{out}}
+$$
+no later than
+$$
+t_0+
+\frac{\big(v(t_0)-v_{\mathrm{sub}}^{\mathrm{out}}\big)_+}
+{a_{\mathrm{ent}}^{\mathrm{out}}}.
+$$
+Call the first such time
+$$
+t_a.
+$$
+
+It remains to show that the trajectory cannot immediately exit back above
+$$
+v_{\mathrm{sub}}^{\mathrm{out}}
+$$
+before the retained window is exhausted. Suppose instead that, after entry and before any turn, there is a first time
+$$
+t_{\mathrm{exit}}>t_a
+$$
+at which
+$$
+v(t_{\mathrm{exit}})=v_{\mathrm{sub}}^{\mathrm{out}}
+$$
+and the velocity is about to cross from
+$$
+v\le v_{\mathrm{sub}}^{\mathrm{out}}
+$$
+to
+$$
+v>v_{\mathrm{sub}}^{\mathrm{out}}.
+$$
+At this boundary point the same coarse margin applies, so
+$$
+v'(t_{\mathrm{exit}})
+\le
+-a_{\mathrm{ent}}^{\mathrm{out}}<0,
+$$
+which is incompatible with an upward first exit. Therefore the sub-field-speed inequality is forward invariant on the retained part of
+$$
+I_{\mathrm{ent}}
+$$
+until a turn occurs.
+
+The length hypothesis ensures that
+$$
+[t_a,t_a+\tau_{\mathrm{sub}}^{\mathrm{out}}]\subseteq I_{\mathrm{ent}}.
+$$
+If no turn occurs on that retained interval, then the outbound condition supplies
+$$
+v(t)\ge 0,
+$$
+and the forward-invariance argument supplies
+$$
+v(t)\le v_{\mathrm{sub}}^{\mathrm{out}}=c_f-\sigma_{\mathrm{out}}.
+$$
+This is exactly the claimed strict sub-field-speed apocenter window. The final displayed partner-floor condition implies the coarse acceleration hypothesis directly from the signed dynamics
+$$
+\ddot x(t)\le -A_p(t)+A_s^{\mathrm{out}}(t),
+$$
+using
+$$
+A_p(t)\ge \underline A_p^{\mathrm{out}},
+\qquad
+A_s^{\mathrm{out}}(t)\le \overline A_{s,\mathrm{ent}}^{\mathrm{out}}.
+$$
+
+**Corollary 29.1: Strict sub-field-speed apocenter window.**
 Assume there exists an apocenter window
 $$
 I_{\mathrm{sub}}\equiv[t_a,t_b]\subseteq[t_\ast,\infty)
@@ -6650,10 +8813,11 @@ $$
 I_{\mathrm{sub}}.
 $$
 
-This lemma is intentionally a non-circular window hypothesis. It does not derive the sub-field-speed window from an already-known outer turn. A separate speed-decay or apocenter-entry estimate must supply
+This corollary is intentionally separated from the entry mechanism. Lemma 29 supplies
 $$
-I_{\mathrm{sub}}.
+I_{\mathrm{sub}}
 $$
+under the coarse speed-decay hypotheses; if that lemma instead reaches the first alternative, then the outer turn has already occurred and the local sub-field-speed criterion is not needed for existence.
 
 Proof.
 The displayed speed bound is exactly the strict sub-field-speed hypothesis used by Lemma 26. Lemma 27 then applies to the local shell-smeared contribution on the same window.
@@ -6716,7 +8880,7 @@ x(t_a)+\frac{\dot x(t_a)^2}{2a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}}.
 $$
 
 Proof.
-Lemma 29 activates Lemmas 26 and 27 on
+Corollary 29.1 activates Lemmas 26 and 27 on
 $$
 I_{\mathrm{sub}},
 $$
@@ -7987,7 +10151,7 @@ The scaffold is now coherent enough to freeze as a proof program, but the follow
 - **Origin singularity.** The shell regularization $\delta_\eta$ does not by itself remove the divergence of the amplitude factor $1/r^2$ at the origin crossing. For the current braking-dominance theorem target, an explicit core mollifier of the denominator should be treated as required rather than optional, for example by replacing $r^{-2}$ with $(r^2+\epsilon_c^2)^{-1}$ or an equivalent short-distance regularization.
 - **State-space labeling.** The theorem program is safest in true signed coordinates $x\in\mathbb{R}$, with recapture phrased in the radial variable $\rho=|x|$. Any language suggesting a rebound on the same $x>0$ branch before the origin should be treated as provisional shorthand rather than as a derived dynamical fact.
 - **Physical plausibility boundary.** In the collinear geometry the self term is not a centrifugal barrier. On the physically relevant post-crossing outbound branch it tends to reinforce the current radial motion. So the only plausible recapture mechanism in this model is that delayed partner attraction eventually dominates that outward self-drive on the outer leg. If the outer-turn theorem target fails, then the collinear breather should be read as a failed stabilization test rather than as an almost-closed proof.
-- **Apocenter-entry window.** The local outer-turn criterion now requires a strict sub-field-speed apocenter window before it can force the outer turn. That window must be supplied by a separate speed-decay or apocenter-entry estimate, not by assuming an already-existing outer turn.
+- **Apocenter-entry window.** Lemma 29 now supplies the strict sub-field-speed window from a coarse entry-brake margin, or else reaches the outer turn before that window is needed. The global proof still has to include the coarse entry-brake ceiling inside the coupled parameter regime rather than smuggling it in through the local z-map argument.
 - **Past-velocity transversality.** The Jacobians $J_p$ and $J_s$ depend on emission-time velocities, not current velocity. Turning through $\dot x=0$ at the present time does not by itself preserve transversality, so the lower bounds on $|J|$ must be checked against the delayed high-speed part of the history.
 - **Partner-root inequality, not equality.** As the trajectory brakes after the crossing, the true partner distance can only become smaller than the leading linear prediction, which strengthens the partner force. So the partner-root estimate should be used as an upper bound on $r_p(t)$ and therefore a lower bound on $A_p^{\rho}(t)$, not as an exact identity on the nonlinear window.
 - **Inner rebound region.** The theorem program still packages the actual near-center reversal into the admissible history class. That is acceptable for the current reduced problem, but it means the hardest local dynamics near the inner rebound is not yet derived from first principles here.
@@ -8078,6 +10242,7 @@ The following boxed aside is heuristic rather than theorem-level. Its purpose is
 $$
 x(t)=f(t,X_0,V_0).
 $$
+Here "closed-form solution" means an elementary formula for the orbit. It does not mean that the evolution law itself is unavailable. The dual-mollified absolute-time integral law is already an exact certified-law target; branch sums are local reductions on simple-root charts.
 
 > **Heuristic aside.**
 >
@@ -8143,7 +10308,11 @@ $$
 > $$
 > x(t)
 > $$
-> valid for arbitrary data. We need a proof that a bounded cycle exists and closes in history space.
+> valid for arbitrary data. We need one candidate cycle
+> $$
+> \phi_{\mathrm{cyc}},
+> $$
+> and a finite certificate proving that the return map is continuous, precompact, and self-mapping on one closed convex tame domain.
 >
 > If one ever seeks formulas again, the natural place is not the global initial-value problem but the periodic orbit itself: after a fixed point
 > $$

@@ -7,7 +7,7 @@ Scaling the single-qubit dynamics to multi-register algorithmic execution.
 
 ## The Quantum Fourier Transform as Physical Interference
 Mapping the QFT to the continuum limit of $\mathbb{A}\mathbb{A}\mathbb{A}$ dynamics.
-* **Wake Superposition:** The physical superposition of retarded potentials $\sum V(t_{\text{ret}})$ within the macroscopic assembly.
+* **Wake Superposition:** The physical superposition of delayed causal wake contributions $\sum V(t_0)$ within the macroscopic assembly.
 * **Destructive Interference:** Cancellation of opposing electrino/positrino fluxes for non-periodic path-histories, suppressing corresponding dynamical trajectories.
 * **Constructive Interference:** Alignment of phase wakes for periodic path-histories, creating deep, macroscopic basins of attraction.
 * **Amplification:** The role of $v > c_f$ inner binary self-hit mechanics in rapidly driving the system toward resonant frequencies.

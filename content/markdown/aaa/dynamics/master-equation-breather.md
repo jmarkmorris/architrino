@@ -1,8 +1,8 @@
 # Master-Equation Breather Program
 
-This chapter sits between the canonical delayed law in [master-equation.md](./master-equation.md) and the frozen one-dimensional reference scaffold in [collinear-breather.md](./collinear-breather.md). Its purpose is not to reopen the 1D proof program, but to extract the transportable theorem architecture and to state clearly which replacement lemmas are required before a genuine breather theorem can be pursued at the level of the master equation.
+This chapter sits between the canonical delayed law in [master-equation.md](./master-equation.md) and the one-dimensional reference scaffold in [collinear-breather.md](./collinear-breather.md). It is a theorem-program atlas, not the proof itself. Its purpose is to extract the transportable theorem architecture and to state clearly which replacement lemmas would be required before a genuine breather theorem can be pursued at the level of the master equation.
 
-The strategic point is simple. The collinear chapter should now be treated as a resolved reference model for delayed recapture, tame-envelope packaging, and fixed-point closure. The next task is therefore not further compression of the 1D note, but abstraction: identify what part of that scaffold belongs to the general delayed dynamics, what part uses the ordered geometry of the line, and what new geometry must replace those 1D-only moves in higher dimension.
+The strategic point is simple. The proof should first close in the collinear dual-mollified model by producing a candidate cycle, a finite branch chart, a closed convex certificate, a return self-map, and the Schauder fixed point. Only after that closure is certified should the higher-dimensional sections below be reused as dependency maps. The next task in this chapter is therefore abstraction: identify what part of the collinear scaffold belongs to the general delayed dynamics, what part uses the ordered geometry of the line, and what new geometry must replace those 1D-only moves in higher dimension.
 
 ## Purpose
 
@@ -14,17 +14,17 @@ The breather problem for the full delayed master equation is not a single obstru
 - packaging the resulting trajectories into a single closed convex tame self-map domain,
 - and closing the fixed-point step on that domain.
 
-The frozen collinear scaffold shows that these burdens can be separated cleanly. In particular, it shows that the final existence theorem should be organized around a history-space return map rather than around a scalar speed closure alone. This chapter records that abstraction in a form suitable for later use in the master-equation stack.
+The collinear scaffold shows that these burdens can be separated cleanly. In particular, it shows that the final existence theorem should be organized around a history-space return map rather than around a scalar speed closure alone. This chapter records that abstraction in a form suitable for later use in the master-equation stack.
 
 ## Position in the Dynamics Stack
 
 The intended division of labor is:
 
 - [master-equation.md](./master-equation.md) gives the exact delayed law, the branch-sum form, the path-history integral form, and the causal Jacobians.
-- [collinear-breather.md](./collinear-breather.md) supplies the first near-complete global existence scaffold in a reduced geometry where ordering on the line eliminates tangential drift.
-- this chapter translates the 1D scaffold into a master-equation theorem program by separating portable structure from collinear-specific arguments.
+- [collinear-breather.md](./collinear-breather.md) supplies the live reduced proof target in a geometry where ordering on the line eliminates tangential drift.
+- this chapter translates the 1D scaffold into a master-equation theorem atlas by separating portable structure from collinear-specific arguments.
 
-Accordingly, this document should be read neither as a replacement for the master equation nor as a second reduced-model note. It is a bridge chapter: a theorem blueprint for transporting the 1D existence architecture into the higher-dimensional delayed dynamics.
+Accordingly, this document should be read neither as a replacement for the master equation nor as a second reduced-model note. It is a bridge chapter: a theorem blueprint for transporting the 1D existence architecture into higher-dimensional delayed dynamics after the collinear certificate has closed.
 
 ## Portable Return-Map Architecture
 
@@ -105,6 +105,71 @@ P_\eta,
 $$
 not substitutes for it.
 
+### Absolute-time evolution law for certification
+
+The return-map program does not require an elementary closed-form orbit. It requires a precise evolution law, one candidate cycle, and a finite certificate showing that the same closed convex tame domain is preserved by the return map.
+
+For the dual-mollified master equation, the certification-level evolution law may be written directly in absolute time as
+$$
+\ddot{\mathbf{x}}_i(t)
+=
+\kappa\epsilon^2
+\sum_j \sigma_{ij}
+\int_{t-h}^{t}
+\frac{\widehat{\mathbf r}_{ij}(t,s)}
+{\|\mathbf r_{ij}(t,s)\|^2+\epsilon_c^2}\,
+\delta_\eta\!\big(\|\mathbf r_{ij}(t,s)\|-c_f(t-s)\big)\,ds,
+$$
+where
+$$
+\mathbf r_{ij}(t,s)
+\equiv
+\mathbf{x}_i(t)-\mathbf{x}_j(s),
+\qquad
+\widehat{\mathbf r}_{ij}(t,s)
+\equiv
+\frac{\mathbf r_{ij}(t,s)}{\|\mathbf r_{ij}(t,s)\|}.
+$$
+Here
+$$
+h
+$$
+is the certified memory horizon,
+$$
+\eta
+$$
+is the causal-shell width, and
+$$
+\epsilon_c
+$$
+is the short-distance core scale.
+
+Branch-sum formulas are derived from this absolute-time integral only on simple-root charts, where the causal shell has isolated transversal roots. They are therefore local analytic reductions, not the global definition of the dynamics through fold transit or certified topology.
+
+The proof burden is consequently finite-certificate closure:
+$$
+\text{candidate cycle}
+\to
+\text{finite branch chart}
+\to
+\text{closed convex certificate}
+\to
+\text{return self-map}
+\to
+\text{Schauder}.
+$$
+In concrete terms, instantiate a candidate history
+$$
+\Phi_{\mathrm{cyc}},
+$$
+choose the certified domain around it, and prove that
+$$
+P_\eta
+$$
+is continuous, precompact, and self-mapping on that one domain.
+
+The planar and many-body sections below should therefore be read as roadmap layers. They record dependencies that must eventually be discharged, but they are not themselves completed proofs.
+
 ## What the 1D Reference Model Already Settled
 
 The frozen collinear chapter contributes five structural lessons that should now be treated as stable.
@@ -181,14 +246,18 @@ The analogue of
 $$
 \mathcal{K}_{\mathscr{S},\eta}
 $$
-must then add the genuinely delayed geometry:
+must not be defined by a raw intersection of delayed-root predicates. Persistence of active branches, Jacobian floors, memory-depth bounds, and caustic exclusions are generally not convex conditions when imposed pointwise on histories. Instead, the standard method throughout this chapter is:
+
+1. choose a finite affine or sampled certificate around a candidate cycle;
+2. make the defining inequalities of the certificate visibly convex in the stored history data;
+3. prove that those convex certificate inequalities imply the delayed-geometry package:
 
 - persistence of active partner and self roots,
 - lower bounds on the causal Jacobians,
 - branch-count control,
 - and exclusion of root birth, root collision, and other topological degeneracies along the controlled cycle.
 
-This is the natural packaging in which Arzela-Ascoli and Schauder can later be used. Anything looser risks repeating the old domain/codomain mismatch.
+Convexity lives in the certificate. The delayed-root topology is a theorem-level consequence of the certificate, not the definition of the convex set itself. This is the natural packaging in which Arzela-Ascoli and Schauder can later be used. Anything looser risks repeating the old domain/codomain mismatch.
 
 ## 1D-Only Mechanisms and Their Replacement Obligations
 
@@ -312,7 +381,7 @@ The portable theorem ladder should therefore look as follows.
 > $$
 > \mathcal{K}_{\mathscr{S},\eta}\subseteq \mathcal{C}_{\mathscr{S},\eta}\subseteq \Sigma^-_{\mathscr{S}}
 > $$
-> that contains the propagated tame class, is closed under the relevant delayed-root constraints, and carries a well-defined return map
+> defined by finite affine or sampled certificate inequalities. It contains the propagated tame class, and its certificate implies the relevant branch labels, Jacobian floors, memory-depth bounds, and caustic exclusions needed to carry a well-defined return map
 > $$
 > P_\eta:\mathcal{K}_{\mathscr{S},\eta}\to \mathcal{K}_{\mathscr{S},\eta}.
 > $$
@@ -335,9 +404,9 @@ The portable theorem ladder should therefore look as follows.
 > \qquad
 > P_\eta(\Phi^\ast_\eta)=\Phi^\ast_\eta.
 > $$
-> The associated delayed trajectory is a bounded periodic solution of the dual-mollified master equation.
+> If the section is posed in absolute configuration space with no quotient gauge reset, the associated delayed trajectory is a bounded periodic solution of the dual-mollified master equation.
 
-This is the correct abstract endpoint. The real work is not the formal Schauder step itself, but the geometric production of the tame self-map domain on which Schauder is allowed to act.
+This is the abstract endpoint once no quotient gauge reset is being used. In any reduced or gauge-fixed planar setting, the same fixed-point statement first gives a relative breather in the quotient variables. An absolute periodic trajectory in the fixed Euclidean void requires an additional zero-holonomy reconstruction condition. The real work is not the formal Schauder step itself, but the geometric production and certification of the tame self-map domain on which Schauder is allowed to act.
 
 ## Immediate Geometric Research Burdens
 
@@ -609,6 +678,36 @@ S^1.
 $$
 The sector family is fixed once and for all for the chosen tame class. What varies from trajectory to trajectory is only which subfamily is active on a given controlled window.
 
+For each direction, distinguish the instantaneous directional phases
+$$
+\zeta^-_{\hat{\mathbf{u}}}(t)
+\equiv
+\mathbf{r}(t)\cdot\hat{\mathbf{u}}-c_f t,
+\qquad
+\zeta^+_{\hat{\mathbf{u}}}(t)
+\equiv
+\mathbf{r}(t)\cdot\hat{\mathbf{u}}+c_f t,
+$$
+from the automatic running envelopes
+$$
+\underline{\zeta}^-_{\hat{\mathbf{u}}}(t)
+\equiv
+\inf_{\theta\le t}\zeta^-_{\hat{\mathbf{u}}}(\theta),
+\qquad
+\overline{\zeta}^+_{\hat{\mathbf{u}}}(t)
+\equiv
+\sup_{\theta\le t}\zeta^+_{\hat{\mathbf{u}}}(\theta).
+$$
+The running infimum
+$$
+\underline{\zeta}^-_{\hat{\mathbf{u}}}
+$$
+is non-increasing by definition, and the running supremum
+$$
+\overline{\zeta}^+_{\hat{\mathbf{u}}}
+$$
+is non-decreasing by definition. The nontrivial theorem burden is therefore not monotonicity of those running envelopes. It is the stronger active-sector assertion that, on the windows where a delayed chord is actually active, the running envelope is achieved by the current time and the instantaneous phase has a strict derivative margin.
+
 Two cycle windows should then be named explicitly:
 $$
 I_{\mathrm{in}}=[t_{\mathrm{in}}^-,t_{\mathrm{x}}],
@@ -653,7 +752,7 @@ $$
 $$
 after shrinking the tame class so that active directions stay a positive angular distance away from sector overlaps.
 
-> **Target Proposition (Windowed directional monotonicity).**
+> **Target Proposition (Two-tier windowed directional monotonicity).**
 > There exist positive constants
 > $$
 > \sigma_{\mathrm{in}},
@@ -685,7 +784,8 @@ after shrinking the tame class so that active directions stay a positive angular
 >    $$
 >    \mathcal{U}_{\mathrm{ap}};
 >    $$
-> 3. for every
+> 3. these active subfamilies are stable on their windows: active chord directions stay a positive angular distance away from sector boundaries, except inside the later certified sector-boundary or fold tubes;
+> 4. for every
 >    $$
 >    \hat{\mathbf{u}}_k\in \mathcal{U}_{\mathrm{in}},
 >    \qquad
@@ -693,9 +793,13 @@ after shrinking the tame class so that active directions stay a positive angular
 >    $$
 >    the support function obeys
 >    $$
+>    \underline{\zeta}^-_{\hat{\mathbf{u}}_k}(t)
+>    =
+>    \zeta^-_{\hat{\mathbf{u}}_k}(t),
+>    \qquad
 >    \frac{d}{dt}\zeta^-_{\hat{\mathbf{u}}_k}(t)\le -\sigma_{\mathrm{in}};
 >    $$
-> 4. for every
+> 5. for every
 >    $$
 >    \hat{\mathbf{u}}_k\in \mathcal{U}_{\mathrm{ap}},
 >    \qquad
@@ -703,16 +807,45 @@ after shrinking the tame class so that active directions stay a positive angular
 >    $$
 >    one has
 >    $$
+>    \underline{\zeta}^-_{\hat{\mathbf{u}}_k}(t)
+>    =
+>    \zeta^-_{\hat{\mathbf{u}}_k}(t),
+>    \qquad
 >    \frac{d}{dt}\zeta^-_{\hat{\mathbf{u}}_k}(t)\le -\sigma_{\mathrm{ap}},
+>    \qquad
+>    \overline{\zeta}^+_{\hat{\mathbf{u}}_k}(t)
+>    =
+>    \zeta^+_{\hat{\mathbf{u}}_k}(t),
 >    \qquad
 >    \frac{d}{dt}\zeta^+_{\hat{\mathbf{u}}_k}(t)\ge \sigma_{\mathrm{ap}}.
 >    $$
+> 6. for inactive sector centers
+>    $$
+>    \hat{\mathbf{u}}_k\notin\mathcal{U}_{\mathrm{in}}
+>    \quad\text{or}\quad
+>    \hat{\mathbf{u}}_k\notin\mathcal{U}_{\mathrm{ap}},
+>    $$
+>    only the automatic running-envelope monotonicity is required. No strict derivative margin is imposed on transverse directions with no active branch on the corresponding window.
 
 The first monotonicity statement is the planar replacement for the inbound ordered fall that, in the collinear chapter, feeds collapse and root control. The second is the higher-dimensional descendant of the late
 $$
 z
 $$
 -descent package: it separates the outgoing and incoming directional support levels on the apocenter window instead of relying on a single global scalar order.
+
+This two-tier form is intentionally weaker than universal sectorwise descent. Tangential motion can make transverse sector centers move with the wrong instantaneous sign even while the active chord geometry remains controlled. The theorem target only asks for strict descent in the finite active sector subfamily
+$$
+\mathcal{U}_{\mathrm{in}}
+\quad
+\text{or}
+\quad
+\mathcal{U}_{\mathrm{ap}},
+$$
+and asks the certificate to prove that this subfamily does not migrate continuously around
+$$
+S^1
+$$
+during the window.
 
 The exact root equations now reveal why these support functions are the right replacement objects. If
 $$
@@ -795,7 +928,17 @@ $$
 >    in that sector on the window under consideration;
 > 3. the total number of active self and partner roots on either window is therefore bounded by
 >    $$
->    2M;
+>    2M_{\mathrm{act},W}
+>    \le
+>    2M,
+>    $$
+>    where
+>    $$
+>    M_{\mathrm{act},W}
+>    $$
+>    is the number of active sector centers on the window
+>    $$
+>    W\in\{I_{\mathrm{in}},I_{\mathrm{ap}}\};
 >    $$
 > 4. branch birth, branch death, or branch relabeling can occur only when an active chord direction meets a sector boundary or when the relevant monotonicity margin
 >    $$
@@ -1859,7 +2002,7 @@ The dependency chain should be recorded explicitly:
 
 ## Synthesis of the Reduced Planar Bridge
 
-At this point the live bridge note is not yet treating the completely general planar master equation. It is treating a symmetry-reduced planar binary with:
+At this point the reduced-planar bridge layer is not treating the completely general planar master equation. It records a symmetry-reduced planar binary dependency map with:
 
 - reflection symmetry,
 - center-of-mass reduction,
@@ -1950,6 +2093,27 @@ the returned history would not land back in the fixed representative section
 $$
 \Sigma^-_{\rho_\ast,\Pi}.
 $$
+The price of this gauge reset is a reconstruction condition. A fixed point of
+$$
+P^\Pi_\eta
+$$
+is periodic in the reduced representative section, but in the fixed Euclidean void it reconstructs as
+$$
+\mathbf r(T^\Pi+\theta)
+=
+\mathcal{R}_{\Phi^\ast}^{-1}\mathbf r(\theta),
+\qquad
+\theta\in[-h,0].
+$$
+Thus the physical trajectory is an absolute periodic orbit only when the rotational holonomy is trivial:
+$$
+\mathcal{R}_{\Phi^\ast}=\mathrm{Id}.
+$$
+Without that additional condition, the result is a relative breather modulo the chosen
+$$
+SO(2)
+$$
+gauge.
 
 The planar envelope target should now be phrased in terms of the constants already produced by the local packages:
 $$
@@ -1984,6 +2148,7 @@ $$
 \mathcal{C}^{\Pi}_{\rho_\ast,\eta}
 $$
 with all root-label predicates pointwise. That would generally destroy convexity. The correct target is the existence of one closed convex subset on which these constants imply the whole delayed-geometry package uniformly.
+Equivalently, the reduced planar bridge should use the same finite certificate convention as the collinear proof: a finite affine or sampled certificate defines the convex set, and the branch labels, Jacobian floors, memory-depth bounds, and caustic exclusions are consequences proved from that certificate.
 
 > **Target Proposition (Closed convex tame envelope in the reduced planar section).**
 > There exists a nonempty closed convex set
@@ -2053,8 +2218,8 @@ This proposition is the reduced planar analogue of the 1D envelope-construction 
 >    \qquad
 >    \operatorname{Lip}(\dot\Phi)\le A_{\max};
 >    $$
-> 2. the returned branch family preserves the same sector labels, branch-count bound, and separation margin;
-> 3. the returned histories preserve the same Jacobian floors
+> 2. the returned finite certificate implies the same sector labels, branch-count bound, and separation margin;
+> 3. the returned finite certificate implies the same Jacobian floors
 >    $$
 >    \nu_{J,\mathrm{cyc}},
 >    \qquad
@@ -2074,7 +2239,7 @@ This proposition is the reduced planar analogue of the 1D envelope-construction 
 > \mathcal{K}^{\Pi}_{\rho_\ast,\eta}.
 > $$
 
-This is the self-map statement the entire bridge has been building toward. It says that after one full physical excursion and one gauge reset back to the reduced section, no envelope constant is lost.
+This is the self-map statement the entire bridge has been building toward. It says that after one full physical excursion and one gauge reset back to the reduced section, the same finite certificate remains valid and no envelope constant is lost.
 
 > **Target Proposition (Continuity and precompactness of the reduced planar return map).**
 > On
@@ -2128,7 +2293,10 @@ also varies continuously.
 > $$
 > P^\Pi_\eta(\Phi^\ast_\eta)=\Phi^\ast_\eta.
 > $$
-> The corresponding reduced planar trajectory is a bounded periodic solution of the dual-mollified master equation within the reflection-symmetric planar binary regime.
+> The corresponding reduced planar trajectory is a bounded relative breather of the dual-mollified master equation within the reflection-symmetric planar binary regime. It is an absolute periodic solution in the fixed Euclidean void only if the reconstructed rotational holonomy satisfies
+> $$
+> \mathcal{R}_{\Phi^\ast_\eta}=\mathrm{Id}.
+> $$
 
 This is the honest endpoint of the current bridge note. It is still conditional, but it is now conditional on one sharply identified reduced planar closure problem rather than on a diffuse collection of unresolved local lemmas.
 
@@ -2209,6 +2377,16 @@ $$
 C^1([-h,0];\Pi)
 $$
 chart. Beyond that regime, even the correct Banach chart and the right convex section envelope may become part of the theorem burden rather than fixed background data.
+
+The burden growth is cumulative:
+
+| Burden | Reduced planar binary | Unreduced planar binary | Many-body bridge |
+| --- | --- | --- | --- |
+| Section and gauge | one radius section plus one rotation reset | quotient chart with explicit $SE(2)$ selector and holonomy | atlas-level gauge selector with chart-stability theorem |
+| Delayed-root topology | finite sector-labeled branch family | canonical finite branch graph with fold edges | finite active delay hypergraph |
+| Deep-past control | sector relocation or exclusion | branch-graph provenance or exclusion | cluster-valued ancestry or exclusion |
+| Recapture | one radial channel plus one angular leakage term | finite leakage-channel comparison with resonance control | finite escape-observable family with channel margins |
+| Closure domain | closed convex tame envelope in one reduced chart | quotient-space convex envelope preserving graph and holonomy data | atlas-level convex core preserving hypergraph, ancestry, and recapture windows |
 
 For that reason, the present chapter should be read as the first 2D bridge, not as the general planar theorem program. Only after these additional burdens are isolated and given their own theorem targets would it be honest to say that the work has moved beyond the reduced planar bridge.
 
@@ -2427,6 +2605,43 @@ $$
 
 This is the first unreduced-planar replacement for the reduced planar section anchoring. Its purpose is to make the quotient representative, the return section, and the gauge reset part of the theorem burden before any branch-graph or recapture package is attempted.
 
+> **Target Proposition (Holonomy reconstruction for quotient fixed points).**
+> As in the reduced planar bridge, a fixed point of
+> $$
+> P^{\sharp}_{\eta}
+> $$
+> is first a quotient-space fixed point. Let the full-cycle gauge reset be represented by the Euclidean holonomy
+> $$
+> H_{\Psi^\ast}
+> =
+> (\mathbf a_{\Psi^\ast},\mathcal R_{\Psi^\ast})
+> \in SE(2),
+> $$
+> where
+> $$
+> \mathbf a_{\Psi^\ast}
+> $$
+> is the translation removed by the selector and
+> $$
+> \mathcal R_{\Psi^\ast}
+> $$
+> is the rotation back to the canonical chord. The reconstructed physical motion is absolute periodic only if
+> $$
+> H_{\Psi^\ast}=(0,\mathrm{Id}).
+> $$
+> Otherwise the fixed point is a relative breather modulo
+> $$
+> SE(2).
+> $$
+>
+> In symmetry-reduced regimes this condition may be forced by the symmetry itself. For example, the reflection-symmetric reduced planar bridge can force the rotational part to be
+> $$
+> \mathcal R_{\Psi^\ast}=\mathrm{Id}
+> $$
+> once the gauge is chosen compatibly with the reflection. In the unreduced planar bridge there is no such automatic cancellation. The absolute-periodic problem is therefore a separate finite-dimensional zero-holonomy reconstruction problem, with two effective holonomy components after the section-and-gauge constraints are imposed.
+
+This proposition should be treated as part of every quotient-space Schauder capstone. Schauder on the quotient gives a relative breather; zero holonomy is an additional reconstruction condition, analogous in role to a characteristic multiplier condition in Floquet theory.
+
 #### Finite branch-graph target for the unreduced planar bridge
 
 Once the gauge-fixed section is available, the next missing object is the delayed-root replacement for the reduced planar sector-labeled branch family. In the unreduced planar binary one no longer follows a single relative chord geometry. Instead one must track several source-receiver chord types at once.
@@ -2504,13 +2719,21 @@ The branch graph
 $$
 \mathscr{G}^{\sharp}_{\mathrm{br}}
 $$
-should then be defined as follows.
+should then be defined by one canonical convention.
 
-- A vertex is one local branch label
+- A vertex is one maximal simple local branch segment
   $$
   v=(\tau,k,\ell,m).
   $$
-- Two vertices are joined by an edge when they represent the same simple root branch continued across adjacent windows, or when they meet one admissible fold tube where a branch birth, branch death, or branch handoff occurs.
+- The multiplicity label
+  $$
+  m
+  $$
+  is assigned by the source-time order of the simple roots inside the fixed type-sector-window cell after the fold tubes and sector-boundary tubes have been removed.
+- Folds are represented as edges, not as additional vertices. A fold edge carries the fold-tube label, the incoming and outgoing local branch labels, and the parity data for the root-count jump.
+- Continuation across adjacent windows is also represented by an edge. Thus a window-boundary fold is never represented by a vertex split; it is one labeled fold edge between the adjacent simple-branch vertices that enter and exit the certified tube.
+
+With this convention, the graph is uniquely determined by a gauge-fixed history, the fixed window partition, the fixed sector atlas, and the listed caustic tubes: vertices are maximal connected components of the simple-root set after the controlled tubes are removed, and edges record the unique admissible continuation or fold transition through the adjacent tube.
 
 This is the correct replacement object. In the reduced planar bridge the active roots could be recorded as a finite list because one relative geometry and one sector family were enough. In the unreduced planar bridge the natural finite object is instead a graph whose vertices remember both the chord type and the local window.
 
@@ -2522,6 +2745,8 @@ This is the correct replacement object. In the reduced planar bridge the active 
 > M^{\sharp},
 > \qquad
 > N^{\sharp}_{\mathrm{br}},
+> \qquad
+> N_{\mathrm{mult}}^{\max},
 > \qquad
 > \delta^{\sharp}_{\mathrm{sep}},
 > \qquad
@@ -2567,8 +2792,23 @@ This is the correct replacement object. In the reduced planar bridge the active 
 >    $$
 >    and the total number of vertices is bounded by
 >    $$
->    N^{\sharp}_{\mathrm{br}};
+>    N^{\sharp}_{\mathrm{br}}
+>    \le
+>    4M^{\sharp}L^{\sharp}N_{\mathrm{mult}}^{\max};
 >    $$
+>    here the factor
+>    $$
+>    4
+>    $$
+>    is the number of source-receiver chord types
+>    $$
+>    |\{1,2\}\times\{1,2\}|,
+>    $$
+>    and
+>    $$
+>    N_{\mathrm{mult}}^{\max}
+>    $$
+>    is the certified maximum number of simple root branches in one fixed type-sector-window cell;
 > 2. on every vertex domain outside the caustic tubes, the root branch is
 >    $$
 >    C^1
@@ -2601,15 +2841,16 @@ This is the correct replacement object. In the reduced planar bridge the active 
 >    $$
 >    \mathscr{G}^{\sharp}_{\mathrm{br}}(\Psi)
 >    $$
->    is of exactly one of the following kinds:
->    continuation across adjacent windows,
->    fold birth/death inside one caustic tube,
->    or one admissible branch handoff between two vertices meeting the same tube;
+>    is of exactly one of the following kinds under the canonical convention:
+>    a continuation edge across adjacent windows,
+>    a fold birth/death edge labeled by one caustic tube,
+>    or one admissible branch-handoff edge labeled by the same tube;
 > 5. outside the union of the caustic tubes the graph is locally constant in
 >    $$
 >    t,
 >    $$
 >    so no uncontrolled simultaneous fold accumulation or instantaneous infinite relabeling can occur along the cycle.
+> 6. the graph construction is canonical: no admissible fold tube may be encoded alternatively as a vertex split, and the source-time ordering convention fixes the multiplicity labels.
 >
 > In particular, the active delayed-root topology of the unreduced planar binary is encoded by one finite graph rather than by an a priori continuum of chord directions.
 
@@ -2932,6 +3173,42 @@ where:
 > \alpha.
 > $$
 
+> **Target Hypothesis (Leakage-channel independence and resonance control).**
+> The leakage-channel ceilings in the preceding force split are usable in the recapture margin only under one of two certified conditions:
+> 1. **simultaneous pointwise ceiling:** the inequalities
+>    $$
+>    0\le \Lambda^{\sharp}_{\alpha}(t)\le \Theta^{\sharp}_{\alpha,\bullet}
+>    $$
+>    are proved on the same controlled tube, at the same times, for all
+>    $$
+>    \alpha=1,\dots,Q^{\sharp}_{\mathrm{esc}};
+>    $$
+> 2. **non-resonant channel decomposition:** the leakage subsystem obtained by linearizing the quotient dynamics along the candidate cycle has Floquet exponents or channel frequencies
+>    $$
+>    \omega_1,\ldots,\omega_{Q^{\sharp}_{\mathrm{esc}}}
+>    $$
+>    satisfying an explicit finite-order non-resonance gap
+>    $$
+>    |n\cdot\omega|
+>    \ge
+>    \gamma^{\sharp}_{\mathrm{res}}>0
+>    \qquad
+>    \text{for every }0\ne n\in\mathbb{Z}^{Q^{\sharp}_{\mathrm{esc}}},
+>    \quad
+>    |n|_1\le N^{\sharp}_{\mathrm{res}},
+>    $$
+>    or equivalently a monodromy certificate with non-resonant Floquet multipliers on the leakage block.
+>
+> If neither condition is certified, the scalar leakage budget
+> $$
+> \sum_{\alpha}\Theta^{\sharp}_{\alpha,\bullet}
+> $$
+> is not an admissible proof input. It must be replaced by a coupled leakage budget
+> $$
+> \Theta^{\sharp}_{\mathrm{coupled},\bullet}
+> $$
+> computed from the full leakage block, including possible parametric resonance between channels.
+
 Define the unreduced-planar recapture margins
 $$
 \mathfrak{M}^{\sharp}_{\mathrm{in}}
@@ -2948,6 +3225,12 @@ $$
 -\overline A^{\sharp}_{s,\mathrm{loc,out}}
 -\overline A^{\sharp}_{s,\mathrm{deep,out}}
 -\sum_{\alpha=1}^{Q^{\sharp}_{\mathrm{esc}}}\Theta^{\sharp}_{\alpha,\mathrm{out}}.
+$$
+These displayed margins are the simultaneous-ceiling form. In the non-resonant averaged form, or in any case where the channels are only bounded after coupling, replace the sums by the certified coupled budgets
+$$
+\Theta^{\sharp}_{\mathrm{coupled,in}},
+\qquad
+\Theta^{\sharp}_{\mathrm{coupled,out}}.
 $$
 Whenever these are positive, the primary escape observable obeys the comparison inequalities
 $$
@@ -3016,6 +3299,7 @@ $$
 \sum_{\alpha=1}^{Q^{\sharp}_{\mathrm{esc}}}\Theta^{\sharp}_{\alpha,\bullet},
 $$
 because coercivity can now be lost through several quotient modes rather than through one scalar angular channel.
+That sum is proof-valid only when the preceding resonance-control hypothesis has been discharged. Otherwise the recapture criterion must consume the coupled leakage budget produced by the full leakage monodromy block.
 
 The dependency chain should be stated explicitly here:
 
@@ -3046,7 +3330,7 @@ The dependency chain should be stated explicitly here:
    \qquad
    \Theta^{\sharp}_{\alpha,\mathrm{out}},
    $$
-   on the same windows.
+   on the same windows, together with either simultaneous pointwise validity or the non-resonant leakage-block certificate.
 
 #### Why the unreduced planar object is still called a breather
 
@@ -3102,7 +3386,7 @@ Q^{\sharp}_{\mathrm{esc}},
 \quad
 \mathfrak{M}^{\sharp}_{\mathrm{out}}.
 $$
-The point is again not to define the tame class by pointwise intersection of every branch-graph or provenance predicate. That would generally fail to preserve convexity. The correct theorem target is one closed convex subset on which all of those constants hold uniformly.
+The point is again not to define the tame class by pointwise intersection of every branch-graph or provenance predicate. That would generally fail to preserve convexity. The correct theorem target is one finite certificate whose affine or sampled inequalities define a closed convex subset; the branch graph, provenance count, leakage channels, Jacobian floors, and recapture margins must then be proved from that certificate with uniform slack.
 
 Write
 $$
@@ -3188,7 +3472,7 @@ This is the unreduced-planar analogue of the earlier envelope-construction targe
 >    \qquad
 >    \operatorname{Lip}(\dot{\Psi})\le A^{\sharp}_{\max};
 >    $$
-> 2. the returned active delayed-root topology preserves the same branch-graph bound, separation margin, provenance count, and leakage-channel count
+> 2. the returned finite certificate implies the same branch-graph bound, separation margin, provenance count, and leakage-channel count
 >    $$
 >    N^{\sharp}_{\mathrm{br}},
 >    \qquad
@@ -3198,7 +3482,7 @@ This is the unreduced-planar analogue of the earlier envelope-construction targe
 >    \qquad
 >    Q^{\sharp}_{\mathrm{esc}};
 >    $$
-> 3. the returned histories preserve the same Jacobian floors
+> 3. the returned finite certificate implies the same Jacobian floors
 >    $$
 >    \nu^{\sharp}_{J},
 >    \qquad
@@ -3269,11 +3553,14 @@ The extra burden beyond the reduced planar case is that continuity must now abso
 > $$
 > P^{\sharp}_{\eta}(\Psi^\ast_{\eta})=\Psi^\ast_{\eta}.
 > $$
-> The corresponding gauge-fixed trajectory is a bounded periodic solution modulo the chosen
+> The corresponding gauge-fixed trajectory is a bounded relative breather modulo the chosen
 > $$
 > SE(2)
 > $$
-> gauge, and therefore a genuine unreduced-planar breather of the dual-mollified master equation in the first non-reflection-symmetric binary regime.
+> gauge. By Proposition `Holonomy reconstruction for quotient fixed points`, it reconstructs to an absolute periodic solution in the fixed Euclidean void only if the full-cycle holonomy satisfies
+> $$
+> H_{\Psi^\ast_\eta}=(0,\mathrm{Id}).
+> $$
 
 The unreduced-planar bridge can therefore now be read as one explicit ladder:
 gauge-fixed section and return map
@@ -3407,6 +3694,41 @@ q_3=+\epsilon,
 $$
 with all three trajectories constrained to one plane.
 
+This seed is not charge-neutral:
+$$
+q_1+q_2+q_3=+\epsilon.
+$$
+It should therefore be read as a local nonneutral three-body subsystem, or as a compensated subsystem inside a larger neutral assembly whose compensating charge remains outside the reduced bridge model. A globally neutral many-body theorem would need a different seed, for example a neutral four-body packet, and should not be inferred from the present
+$$
+(+,-,+)
+$$
+three-body bridge.
+
+This compensation is a dynamical hypothesis, not only an ontological interpretation. A nonneutral local subsystem may carry a long-wavelength radiation or reaction channel that slowly drains or injects energy relative to the local bridge variables. The three-body bridge must therefore use one of the following two conventions:
+
+1. replace the seed by a globally neutral four-body packet, for example
+   $$
+   (+,-,+,-)
+   $$
+   in a quadrupole-like arrangement, before claiming a neutral many-body theorem;
+2. keep the local
+   $$
+   (+,-,+)
+   $$
+   subsystem but add an external compensation budget
+   $$
+   E_{\mathrm{ext}}
+   $$
+   from the surrounding neutral assembly, and subtract that budget from every local recapture margin that could be weakened by uncompensated radiation or far-field reaction.
+
+Under the second convention, every many-body margin below should be read in compensated form, for example
+$$
+\mathfrak{M}^{\mathrm{mb}}_{m,\bullet}
+\quad\leadsto\quad
+\mathfrak{M}^{\mathrm{mb}}_{m,\bullet}-E_{\mathrm{ext}},
+$$
+unless a sharper channel-specific external budget has been certified. Without one of these conventions, the planar three-body bridge is only a local nonneutral transport test and cannot be promoted to a globally neutral breather theorem.
+
 This is the smallest regime in which the binary-relative chart fails for structural rather than cosmetic reasons. It preserves enough symmetry to permit a clean gauge discussion, but it already introduces the genuinely new burdens that the binary bridge cannot see:
 
 - no single present chord canonically fixes orientation;
@@ -3417,9 +3739,13 @@ This is the smallest regime in which the binary-relative chart fails for structu
 The theorem objective is not yet a classification of all planar three-body bounded motions. It is the first transport test for the breather architecture itself:
 
 > **Planar-three-body bridge objective.**
-> Construct a history-space return map for a charge-neutral planar three-body delayed system and isolate a nonempty closed convex tame domain on which that return map is well defined. If this succeeds, the corresponding Schauder capstone becomes the first many-body breather theorem in the master-equation stack. If it fails, the obstruction should be written down in section/gauge, hypergraph, ancestry, recapture, or atlas-closure terms.
+> Construct a history-space return map for the compensated local
+> $$
+> (+,-,+)
+> $$
+> planar three-body delayed subsystem and isolate a nonempty closed convex tame domain on which that return map is well defined. If this succeeds, the corresponding Schauder capstone becomes the first local many-body breather theorem in the master-equation stack. If it fails, the obstruction should be written down in section/gauge, hypergraph, ancestry, recapture, or atlas-closure terms. A globally neutral theorem is a later four-body-or-larger closure problem.
 
-The package ladder below is now the right place to resume work. It turns the present many-body discussion from a boundary marker into a live theorem program.
+The package ladder below records the dependency map for a later many-body proof attempt. It should not be treated as active proof work until the collinear certificate chain has closed.
 
 ### Seed-side leading-order geometry for the planar three-body bridge
 
@@ -3439,6 +3765,36 @@ $$
 =
 -\frac{1}{2}\mathbf{a}-\frac{1}{3}\mathbf{b}.
 $$
+These factors are the standard equal-mass Jacobi coordinates for the chosen labels:
+$$
+\mathbf{a}=\mathbf{x}_1-\mathbf{x}_3,
+\qquad
+\mathbf{b}=\mathbf{x}_2-\frac{\mathbf{x}_1+\mathbf{x}_3}{2},
+\qquad
+\mathbf{x}_1+\mathbf{x}_2+\mathbf{x}_3=0.
+$$
+Thus the factors
+$$
+-\frac{1}{3}\mathbf{b}
+$$
+in
+$$
+\mathbf{x}_1
+\quad
+\text{and}
+\quad
+\mathbf{x}_3
+$$
+are intentional: the same-sign outer pair lies on the base line with midpoint
+$$
+-\frac{1}{3}\mathbf{b},
+$$
+the opposite-sign body lies at
+$$
+\frac{2}{3}\mathbf{b},
+$$
+and the center of mass remains at the origin on the axis of symmetry.
+
 Choose seed parameters
 $$
 A_\ast>0,
@@ -3706,7 +4062,7 @@ Then the first two inward channels are positive before any refined delay bookkee
 >
 > Consequently the first two principal margins and the role-gap floor are nonvacuous on a nonempty open neighborhood of this seed, provided the delayed fold and deep-past ceilings are chosen smaller than the remaining slack.
 
-> **Proof draft.**
+> **Proof.**
 > The inequality
 > $$
 > \Lambda^{\mathrm{mb}}_{1,\mathrm{seed}}>0
@@ -3829,9 +4185,9 @@ the instantaneous pair distances and by
 $$
 s_{ij}(t)
 $$
-the exact delayed partner/source times on the preserved seed-side branch families, whenever those branches exist on a short controlled window.
+the exact causal-delay partner/source times on the preserved seed-side branch families, whenever those branches exist on a short controlled window.
 
-> **Target Lemma (Delayed seed-margin persistence on the symmetric planar seed packet).**
+> **Lemma (Delayed seed-margin persistence on the symmetric planar seed packet).**
 > Assume the explicit symmetric planar-three-body seed proposition and fix one seed-side neighborhood
 > $$
 > \mathcal{C}^{\mathrm{mb},\mathrm{seed}}_{A_\ast,B_\ast,\eta}
@@ -3840,18 +4196,37 @@ the exact delayed partner/source times on the preserved seed-side branch familie
 > $$
 > U^{\mathrm{mb}}_{\mathrm{seed}}<c_f.
 > $$
-> Then there exist:
+> After replacing this neighborhood by a smaller nonempty seed packet if necessary, there exist:
 > 1. a short controlled seed window
 >    $$
 >    [0,\tau^{\mathrm{mb}}_{\mathrm{seed}}],
 >    $$
-> 2. a finite list of seed-side branch families
+> 2. a finite branch-delay ceiling
+>    $$
+>    \Delta^{\mathrm{mb}}_{\mathrm{seed}},
+>    $$
+> 3. local velocity and acceleration tolerances
+>    $$
+>    \varepsilon_V,
+>    \qquad
+>    \varepsilon_A,
+>    $$
+>    satisfying
+>    $$
+>    \varepsilon_V+\varepsilon_A\Delta^{\mathrm{mb}}_{\mathrm{seed}}
+>    \le
+>    \min\left\{
+>    U^{\mathrm{mb}}_{\mathrm{seed}},
+>    \frac{c_f-U^{\mathrm{mb}}_{\mathrm{seed}}}{2}
+>    \right\},
+>    $$
+> 4. a finite list of seed-side branch families
 >    $$
 >    \mathscr{B}^{\mathrm{mb}}_{\mathrm{seed}},
 >    $$
-> 3. and constants
+> 5. and constants
 >    $$
->    C^{\mathrm{mb}}_{\mathrm{ret}},
+>    C^{\mathrm{mb}}_{\mathrm{delay}},
 >    \qquad
 >    C^{\mathrm{mb}}_{J},
 >    \qquad
@@ -3865,13 +4240,13 @@ the exact delayed partner/source times on the preserved seed-side branch familie
 > $$
 > \Phi\in \mathcal{C}^{\mathrm{mb},\mathrm{seed}}_{A_\ast,B_\ast,\eta}
 > $$
-> satisfies, on that window:
+> satisfies, on that window and on the listed source intervals:
 > 1. each active seed-side branch in
 >    $$
 >    \mathscr{B}^{\mathrm{mb}}_{\mathrm{seed}}
 >    $$
 >    is unique and simple;
-> 2. the exact retarded distances obey
+> 2. the exact causal-delay distances obey
 >    $$
 >    \bigl|
 >    r_{ij}(t;s_{ij}(t))
@@ -3879,7 +4254,7 @@ the exact delayed partner/source times on the preserved seed-side branch familie
 >    r^{\mathrm{inst}}_{ij}(t)
 >    \bigr|
 >    \le
->    C^{\mathrm{mb}}_{\mathrm{ret}}
+>    C^{\mathrm{mb}}_{\mathrm{delay}}
 >    \frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f}
 >    r^{\mathrm{inst}}_{ij}(t);
 >    $$
@@ -3930,229 +4305,326 @@ the exact delayed partner/source times on the preserved seed-side branch familie
 >    [0,\tau^{\mathrm{mb}}_{\mathrm{seed}}].
 >    $$
 
-> **Proof draft.**
-> Fix one history
+> **Proof.**
+> Work first on the affine seed history. The seed-side branch list
 > $$
-> \Phi\in \mathcal{C}^{\mathrm{mb},\mathrm{seed}}_{A_\ast,B_\ast,\eta}
+> \mathscr{B}^{\mathrm{mb}}_{\mathrm{seed}}
 > $$
-> and one seed-side branch family
+> is chosen to be precisely the finite collection of source-receiver branches whose Coulomb-like contributions form
 > $$
-> (i,j)\in \mathscr{B}^{\mathrm{mb}}_{\mathrm{seed}}.
+> \Lambda^{\mathrm{mb}}_{1,\mathrm{seed}}
+> \qquad
+> \text{and}
+> \qquad
+> \Lambda^{\mathrm{mb}}_{2,\mathrm{seed}}.
 > $$
-> Write
+> For one such branch write
 > $$
-> \Delta t_{ij}(t)\equiv t-s_{ij}(t).
+> \beta=(i,j),
+> \qquad
+> \Delta t_\beta(t)=t-s_\beta(t),
 > $$
-> The proof is a perturbative comparison between the exact delayed branch geometry and the instantaneous seed geometry.
+> and set
+> $$
+> g_\beta(t;s;\Phi)
+> =
+> \|\mathbf{x}_i(t;\Phi)-\mathbf{x}_j(s;\Phi)\|-c_f(t-s).
+> $$
+> On the affine seed, the source derivative is
+> $$
+> \partial_s g_\beta(t;s;\Phi_{\mathrm{seed}})
+> =
+> c_f-\dot{\mathbf{x}}_{j,\mathrm{seed}}\cdot
+> \hat{\mathbf{r}}_\beta(t;s;\Phi_{\mathrm{seed}})
+> \ge
+> c_f-U^{\mathrm{mb}}_{\mathrm{seed}}
+> >0.
+> $$
+> Hence every seed branch is simple. Since the seed branch set is finite and the seed roots stay in compact source subintervals inside
+> $$
+> [-h,0],
+> $$
+> the implicit-function theorem gives, after reducing
+> $$
+> \tau^{\mathrm{mb}}_{\mathrm{seed}}
+> $$
+> if necessary, one source-time graph
+> $$
+> s_{\beta,\mathrm{seed}}(t)
+> $$
+> for each
+> $$
+> \beta\in\mathscr{B}^{\mathrm{mb}}_{\mathrm{seed}}
+> $$
+> on
+> $$
+> [0,\tau^{\mathrm{mb}}_{\mathrm{seed}}].
+> $$
+> Define
+> $$
+> \Delta^{\mathrm{mb}}_{\mathrm{seed}}
+> $$
+> to dominate both the listed seed branch delays and the receiver-window length on this compact set.
+> Shrink the seed packet so that these roots remain inside the same source intervals and so that, on those intervals,
+> $$
+> \|\dot{\mathbf{x}}_k(0;\Phi)-\dot{\mathbf{x}}_{k,\mathrm{seed}}(0)\|
+> \le
+> \varepsilon_V,
+> \qquad
+> \|\ddot{\mathbf{x}}_k(\theta;\Phi)\|
+> \le
+> \varepsilon_A
+> $$
+> for every body
+> $$
+> k
+> $$
+> and for almost every source time
+> $$
+> \theta.
+> $$
+> The local Lipschitz-velocity bound gives the uniform speed ceiling
+> $$
+> \|\dot{\mathbf{x}}_k(\theta;\Phi)\|
+> \le
+> U^{\mathrm{mb}}_{\mathrm{seed}}
+> +
+> \varepsilon_V
+> +
+> \varepsilon_A\Delta^{\mathrm{mb}}_{\mathrm{seed}}
+> \le
+> \frac{U^{\mathrm{mb}}_{\mathrm{seed}}+c_f}{2}
+> <c_f,
+> $$
+> and it is also bounded by
+> $$
+> 2U^{\mathrm{mb}}_{\mathrm{seed}}
+> $$
+> for perturbative estimates in powers of
+> $$
+> U^{\mathrm{mb}}_{\mathrm{seed}}/c_f.
+> $$
+> Thus
+> $$
+> \partial_s g_\beta(t;s;\Phi)
+> \ge
+> c_f-
+> \left(
+> U^{\mathrm{mb}}_{\mathrm{seed}}
+> +
+> \varepsilon_V
+> +
+> \varepsilon_A\Delta^{\mathrm{mb}}_{\mathrm{seed}}
+> \right)
+> \equiv
+> \nu^{\mathrm{mb}}_{\mathrm{seed}}
+> >0.
+> $$
+> The defect
+> $$
+> g_\beta(t;s;\Phi)
+> $$
+> is therefore strictly increasing in source time on each listed source interval. The seed root persists by the implicit-function theorem, and strict monotonicity excludes any second root in the same seed-side interval. This proves uniqueness and simplicity for every branch in
+> $$
+> \mathscr{B}^{\mathrm{mb}}_{\mathrm{seed}}.
+> $$
 >
-> 1. **Uniform branch monotonicity and simplicity.**
->    On the seed packet, the causal defect is
->    $$
->    g_{ij}(t;s)
->    =
->    \|\mathbf{x}_i(t)-\mathbf{x}_j(s)\|-c_f(t-s).
->    $$
->    Its source derivative obeys
->    $$
->    \partial_s g_{ij}(t;s)
->    =
->    c_f-\dot{\mathbf{x}}_j(s)\cdot \hat{\mathbf{r}}_{ij}(t;s)
->    \ge
->    c_f-U^{\mathrm{mb}}_{\mathrm{seed}}-\varepsilon_V.
->    $$
->    Shrink the seed packet if necessary so that
->    $$
->    U^{\mathrm{mb}}_{\mathrm{seed}}+\varepsilon_V
->    \le
->    c_f-\nu^{\mathrm{mb}}_{\mathrm{seed}}
->    $$
->    for some
->    $$
->    \nu^{\mathrm{mb}}_{\mathrm{seed}}>0.
->    $$
->    Then
->    $$
->    \partial_s g_{ij}(t;s)\ge \nu^{\mathrm{mb}}_{\mathrm{seed}}>0
->    $$
->    on the short seed-side window, so
->    $$
->    g_{ij}(t;s)
->    $$
->    is strictly increasing in
->    $$
->    s.
->    $$
->    Therefore each listed seed-side family admits at most one root, and the implicit-function theorem yields one unique simple branch
->    $$
->    s_{ij}(t)
->    $$
->    varying continuously with
->    $$
->    t
->    $$
->    and with the history.
+> The causal-delay length estimate follows from the root identity
+> $$
+> c_f\Delta t_\beta(t)
+> =
+> r_\beta(t;s_\beta(t))
+> $$
+> and the source displacement formula
+> $$
+> \mathbf{x}_j(t)-\mathbf{x}_j(s_\beta(t))
+> =
+> \dot{\mathbf{x}}_{j,\mathrm{seed}}(0)\Delta t_\beta(t)
+> +
+> O\!\left(
+> \varepsilon_V\Delta t_\beta(t)
+> +
+> \varepsilon_A\Delta t_\beta(t)^2
+> \right).
+> $$
+> Equivalently, with
+> $$
+> U_\ast
+> \equiv
+> U^{\mathrm{mb}}_{\mathrm{seed}}
+> +
+> \varepsilon_V
+> +
+> \varepsilon_A\Delta^{\mathrm{mb}}_{\mathrm{seed}},
+> $$
+> one has
+> $$
+> \bigl\|
+> \mathbf{x}_j(t)-\mathbf{x}_j(s_\beta(t))
+> \bigr\|
+> \le
+> U_\ast\Delta t_\beta(t).
+> $$
+> By the reverse triangle inequality,
+> $$
+> \bigl|
+> r_\beta(t;s_\beta(t))
+> -
+> r^{\mathrm{inst}}_\beta(t)
+> \bigr|
+> \le
+> U_\ast\Delta t_\beta(t)
+> =
+> \frac{U_\ast}{c_f}
+> r_\beta(t;s_\beta(t)).
+> $$
+> Since
+> $$
+> r_\beta(t;s_\beta(t))
+> \le
+> r^{\mathrm{inst}}_\beta(t)
+> +
+> \frac{U_\ast}{c_f}
+> r_\beta(t;s_\beta(t)),
+> $$
+> and
+> $$
+> U_\ast<c_f,
+> $$
+> it follows that
+> $$
+> r_\beta(t;s_\beta(t))
+> \le
+> \frac{1}{1-U_\ast/c_f}
+> r^{\mathrm{inst}}_\beta(t).
+> $$
+> Combining the two inequalities gives
+> $$
+> \bigl|
+> r_\beta(t;s_\beta(t))
+> -
+> r^{\mathrm{inst}}_\beta(t)
+> \bigr|
+> \le
+> \frac{U_\ast/c_f}{1-U_\ast/c_f}
+> r^{\mathrm{inst}}_\beta(t).
+> $$
+> The shrinkage condition
+> $$
+> \varepsilon_V+\varepsilon_A\Delta^{\mathrm{mb}}_{\mathrm{seed}}
+> \le
+> \min\left\{
+> U^{\mathrm{mb}}_{\mathrm{seed}},
+> \frac{c_f-U^{\mathrm{mb}}_{\mathrm{seed}}}{2}
+> \right\}
+> $$
+> and the fixed strict gap
+> $$
+> U^{\mathrm{mb}}_{\mathrm{seed}}<c_f
+> $$
+> absorb the factor on the right into the advertised constant
+> $$
+> C^{\mathrm{mb}}_{\mathrm{delay}}
+> \frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f}.
+> $$
 >
-> 2. **Retardation length estimate.**
->    Along the seed packet, the chord identity gives
->    $$
->    c_f\Delta t_{ij}(t)
->    =
->    r_{ij}(t;s_{ij}(t)).
->    $$
->    Also
->    $$
->    \mathbf{x}_j(t)-\mathbf{x}_j(s_{ij}(t))
->    =
->    \int_{s_{ij}(t)}^{t}\dot{\mathbf{x}}_j(\tau)\,d\tau,
->    $$
->    so
->    $$
->    \bigl\|
->    \mathbf{x}_j(t)-\mathbf{x}_j(s_{ij}(t))
->    \bigr\|
->    \le
->    (U^{\mathrm{mb}}_{\mathrm{seed}}+\varepsilon_V)\Delta t_{ij}(t).
->    $$
->    Hence
->    $$
->    \bigl|
->    r_{ij}(t;s_{ij}(t))-r^{\mathrm{inst}}_{ij}(t)
->    \bigr|
->    \le
->    (U^{\mathrm{mb}}_{\mathrm{seed}}+\varepsilon_V)\Delta t_{ij}(t).
->    $$
->    Since
->    $$
->    r_{ij}(t;s_{ij}(t))=c_f\Delta t_{ij}(t)
->    $$
->    and
->    $$
->    r^{\mathrm{inst}}_{ij}(t)
->    $$
->    stays bounded away from zero on the seed window, this implies
->    $$
->    \bigl|
->    r_{ij}(t;s_{ij}(t))-r^{\mathrm{inst}}_{ij}(t)
->    \bigr|
->    \le
->    C^{\mathrm{mb}}_{\mathrm{ret}}
->    \frac{U^{\mathrm{mb}}_{\mathrm{seed}}+\varepsilon_V}{c_f}
->    r^{\mathrm{inst}}_{ij}(t).
->    $$
+> The same speed ceiling gives the Jacobian estimate directly. For every listed branch,
+> $$
+> J_\beta(t;s_\beta(t))
+> =
+> 1-\frac{\dot{\mathbf{x}}_j(s_\beta(t))\cdot
+> \hat{\mathbf{r}}_\beta(t;s_\beta(t))}{c_f},
+> $$
+> so
+> $$
+> \bigl|J_\beta(t;s_\beta(t))-1\bigr|
+> \le
+> \frac{U_\ast}{c_f}
+> \le
+> C^{\mathrm{mb}}_J
+> \frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f}.
+> $$
+> In particular
+> $$
+> J_\beta(t;s_\beta(t))
+> \ge
+> 1-\frac{U_\ast}{c_f}
+> =
+> \frac{\nu^{\mathrm{mb}}_{\mathrm{seed}}}{c_f}
+> >0,
+> $$
+> so the reciprocal Jacobian remains uniformly bounded on the seed packet.
 >
-> 3. **Neighborhood acceleration correction.**
->    On the exact affine seed one has
->    $$
->    \ddot{\mathbf{x}}=0,
->    $$
->    but on the seed packet only the Lipschitz acceleration bound is available. Therefore
->    $$
->    \mathbf{x}_j(t)-\mathbf{x}_j(s_{ij}(t))
->    =
->    \dot{\mathbf{x}}_j(t)\Delta t_{ij}(t)
->    +
->    O\!\left(\varepsilon_A\Delta t_{ij}(t)^2\right).
->    $$
->    Because
->    $$
->    \Delta t_{ij}(t)
->    \lesssim
->    r^{\mathrm{inst}}_{ij}(t)/c_f
->    $$
->    on the short seed-side window, the extra quadratic term is absorbed into the same constant
->    $$
->    C^{\mathrm{mb}}_{\mathrm{ret}}.
->    $$
->
-> 4. **Jacobian perturbation.**
->    The exact Jacobian is
->    $$
->    J_{ij}(t;s_{ij}(t))
->    =
->    1-\frac{\dot{\mathbf{x}}_j(s_{ij}(t))\cdot \hat{\mathbf{r}}_{ij}(t;s_{ij}(t))}{c_f}.
->    $$
->    The emitter velocity differs from its seed value by at most
->    $$
->    O(\varepsilon_V+\varepsilon_A\Delta t_{ij}(t)),
->    $$
->    and the retarded chord direction differs from the instantaneous one by the same relative retardation estimate from Step 2. Thus
->    $$
->    \bigl|
->    J_{ij}(t;s_{ij}(t))-1
->    \bigr|
->    \le
->    C^{\mathrm{mb}}_{J}
->    \frac{U^{\mathrm{mb}}_{\mathrm{seed}}+\varepsilon_V+\varepsilon_A\tau^{\mathrm{mb}}_{\mathrm{seed}}}{c_f},
->    $$
->    and after shrinking the seed packet this has the advertised
->    $$
->    O\!\left(U^{\mathrm{mb}}_{\mathrm{seed}}/c_f\right)
->    $$
->    form.
->
-> 5. **Projected force perturbation.**
->    For every active seed-side branch, the exact branch contribution to the master equation differs from its instantaneous proxy only through:
->    $$
->    r_{ij}^{-2},
->    \qquad
->    J_{ij}^{-1},
->    \qquad
->    \hat{\mathbf{r}}_{ij}.
->    $$
->    Steps 2-4 show that each of these factors differs from its instantaneous value by a relative
->    $$
->    O\!\left(U^{\mathrm{mb}}_{\mathrm{seed}}/c_f\right)
->    $$
->    amount on the seed window. Since the branch list
->    $$
->    \mathscr{B}^{\mathrm{mb}}_{\mathrm{seed}}
->    $$
->    is finite and the instantaneous distances are bounded away from zero there, summing those perturbations yields
->    $$
->    \bigl|
->    \Lambda^{\mathrm{mb}}_1(t)-\Lambda^{\mathrm{mb}}_{1,\mathrm{seed}}
->    \bigr|
->    \le
->    C^{\mathrm{mb}}_{\Lambda,1}
->    \frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f},
->    $$
->    $$
->    \bigl|
->    \Lambda^{\mathrm{mb}}_2(t)-\Lambda^{\mathrm{mb}}_{2,\mathrm{seed}}
->    \bigr|
->    \le
->    C^{\mathrm{mb}}_{\Lambda,2}
->    \frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f},
->    $$
->    after absorbing the neighborhood constants into
->    $$
->    C^{\mathrm{mb}}_{\Lambda,1},
->    \qquad
->    C^{\mathrm{mb}}_{\Lambda,2}.
->    $$
->
-> 6. **Persistence of positivity.**
->    If
->    $$
->    \Lambda^{\mathrm{mb}}_{1,\mathrm{seed}}
->    >
->    2C^{\mathrm{mb}}_{\Lambda,1}\frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f}
->    \qquad
->    \text{and}
->    \qquad
->    \Lambda^{\mathrm{mb}}_{2,\mathrm{seed}}
->    >
->    2C^{\mathrm{mb}}_{\Lambda,2}\frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f},
->    $$
->    then the error bounds from Step 5 imply
->    $$
->    \Lambda^{\mathrm{mb}}_1(t)\ge \frac{1}{2}\Lambda^{\mathrm{mb}}_{1,\mathrm{seed}}>0,
->    \qquad
->    \Lambda^{\mathrm{mb}}_2(t)\ge \frac{1}{2}\Lambda^{\mathrm{mb}}_{2,\mathrm{seed}}>0
->    $$
->    on the whole seed window.
+> It remains to compare the projected branch sums with the seed projections. On the compact seed-side set just constructed, all instantaneous distances are bounded below by one positive number
+> $$
+> d^{\mathrm{mb}}_{\mathrm{seed}}>0,
+> $$
+> all causal Jacobians are bounded below by
+> $$
+> \nu^{\mathrm{mb}}_{\mathrm{seed}}/c_f,
+> $$
+> and the branch list is finite. The dual-mollified branch contribution is therefore a smooth function of
+> $$
+> \mathbf{r}_\beta,
+> \qquad
+> J_\beta^{-1},
+> \qquad
+> \hat{\mathbf{a}},
+> \qquad
+> \hat{\mathbf{b}},
+> $$
+> on this compact set. The causal-delay estimate controls the difference between delayed and instantaneous chords. The present-time drift over the short seed window satisfies
+> $$
+> \|\mathbf{x}_k(t)-\mathbf{x}_{k,\mathrm{seed}}(0)\|
+> \le
+> U_\ast\tau^{\mathrm{mb}}_{\mathrm{seed}},
+> $$
+> and the window was chosen so that
+> $$
+> \tau^{\mathrm{mb}}_{\mathrm{seed}}
+> \le
+> d^{\mathrm{mb}}_{\mathrm{seed}}/c_f.
+> $$
+> Thus the present-time axis drift and the causal-delay chord drift are both
+> $$
+> O\!\left(U^{\mathrm{mb}}_{\mathrm{seed}}/c_f\right)
+> $$
+> relative to the seed distances. The mean-value theorem on the compact branch-geometry set gives constants
+> $$
+> C^{\mathrm{mb}}_{\Lambda,1},
+> \qquad
+> C^{\mathrm{mb}}_{\Lambda,2}
+> $$
+> such that
+> $$
+> \bigl|
+> \Lambda^{\mathrm{mb}}_1(t)-\Lambda^{\mathrm{mb}}_{1,\mathrm{seed}}
+> \bigr|
+> \le
+> C^{\mathrm{mb}}_{\Lambda,1}
+> \frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f},
+> $$
+> $$
+> \bigl|
+> \Lambda^{\mathrm{mb}}_2(t)-\Lambda^{\mathrm{mb}}_{2,\mathrm{seed}}
+> \bigr|
+> \le
+> C^{\mathrm{mb}}_{\Lambda,2}
+> \frac{U^{\mathrm{mb}}_{\mathrm{seed}}}{c_f}.
+> $$
+> Finally, if the two seed margins dominate twice these perturbation ceilings, subtracting the corresponding estimate gives
+> $$
+> \Lambda^{\mathrm{mb}}_1(t)\ge \frac{1}{2}\Lambda^{\mathrm{mb}}_{1,\mathrm{seed}}>0,
+> \qquad
+> \Lambda^{\mathrm{mb}}_2(t)\ge \frac{1}{2}\Lambda^{\mathrm{mb}}_{2,\mathrm{seed}}>0
+> $$
+> throughout
+> $$
+> [0,\tau^{\mathrm{mb}}_{\mathrm{seed}}],
+> $$
+> which is the claimed seed-side persistence.
 
-> **Target Corollary (Delayed realization of the first seed-side principal margins).**
+> **Corollary (Delayed realization of the first seed-side principal margins).**
 > Under the hypotheses of the delayed seed-margin persistence lemma, if
 > $$
 > \Lambda^{\mathrm{mb}}_{1,\mathrm{seed}}
@@ -4177,6 +4649,9 @@ the exact delayed partner/source times on the preserved seed-side branch familie
 > \rho^{\mathrm{mb}}_2
 > $$
 > are strictly positive on the first seed-side controlled window.
+>
+> **Proof.**
+> The delayed seed-margin persistence lemma gives positive lower bounds for the two leading seed-side inward terms after subtracting the causal-delay perturbation ceilings. The remaining fold and deep-past contributions enter the principal-margin inequalities only through their stated ceilings. If those ceilings are smaller than the remaining slack in the two displayed inequalities, subtracting them leaves both principal margins strictly positive on the same controlled seed window.
 
 This is the missing bridge from the explicit geometric seed packet to the real delayed master equation. Once this perturbative upgrade is available, the many-body seed no longer lives only in the Coulomb-like proxy model; it enters the exact branch-sum dynamics with quantitative slack.
 
@@ -4552,12 +5027,12 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 > \equiv
 > \frac{\gamma_{\mathrm{fold}}}{C^{\mathrm{mb}}_{3,g}}.
 > $$
-> In particular, two distinct folds for the same receiver-source family cannot have source-time separation smaller than
+> In particular, two distinct fold roots for the same receiver-source family in the same receiver-time slice cannot have source-time separation smaller than
 > $$
 > \delta_{\mathrm{fold}}.
 > $$
 >
-> **Proof sketch.**
+> **Proof.**
 > Taylor-expand
 > $$
 > \partial_s g_{ij}(t;s)
@@ -4612,9 +5087,23 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 > $$
 > |\partial_t g_{ij}(t_\ast;s_\ast)|\ge \chi_{\mathrm{fold}}>0.
 > $$
+> Let
+> $$
+> s_{\mathrm{fold}}(t)
+> $$
+> be the local fold sheet obtained from
+> $$
+> \partial_s g_{ij}(t;s_{\mathrm{fold}}(t))=0
+> $$
+> by the curvature floor, and define the scalar fold-passage function
+> $$
+> G_{\mathrm{fold}}(t)
+> \equiv
+> g_{ij}(t;s_{\mathrm{fold}}(t)).
+> $$
 > If
 > $$
-> |\partial_t^2 g_{ij}(t;s)|\le C^{\mathrm{mb}}_{2,tg}
+> |\ddot{G}_{\mathrm{fold}}(t)|\le C^{\mathrm{mb}}_{2,tg}
 > $$
 > on the corresponding controlled fold tube, then the same receiver-source family cannot produce a second fold event with receiver-time separation smaller than
 > $$
@@ -4623,16 +5112,34 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 > \frac{\chi_{\mathrm{fold}}}{C^{\mathrm{mb}}_{2,tg}}.
 > $$
 >
-> **Proof sketch.**
-> Taylor-expand
+> **Proof.**
+> The curvature floor gives
 > $$
-> \partial_t g_{ij}(t;s_\ast)
+> \partial_s^2 g_{ij}(t_\ast;s_\ast)\neq 0,
 > $$
-> about
+> so the implicit-function theorem gives the local fold sheet
 > $$
-> t=t_\ast.
+> s_{\mathrm{fold}}(t).
 > $$
-> Then for some intermediate point
+> A receiver-time fold passage occurs exactly at a zero of
+> $$
+> G_{\mathrm{fold}}(t).
+> $$
+> At the given fold,
+> $$
+> \dot{G}_{\mathrm{fold}}(t_\ast)
+> =
+> \partial_t g_{ij}(t_\ast;s_\ast)
+> +
+> \partial_s g_{ij}(t_\ast;s_\ast)\dot{s}_{\mathrm{fold}}(t_\ast)
+> =
+> \partial_t g_{ij}(t_\ast;s_\ast),
+> $$
+> hence
+> $$
+> |\dot{G}_{\mathrm{fold}}(t_\ast)|\ge \chi_{\mathrm{fold}}.
+> $$
+> Taylor expansion gives, for some
 > $$
 > \xi_t
 > $$
@@ -4642,19 +5149,18 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 > $$
 > and
 > $$
-> t_\ast
+> t_\ast,
 > $$
-> one has
 > $$
-> \partial_t g_{ij}(t;s_\ast)
+> \dot{G}_{\mathrm{fold}}(t)
 > =
-> \partial_t g_{ij}(t_\ast;s_\ast)
+> \dot{G}_{\mathrm{fold}}(t_\ast)
 > +
-> \partial_t^2 g_{ij}(\xi_t;s_\ast)(t-t_\ast).
+> \ddot{G}_{\mathrm{fold}}(\xi_t)(t-t_\ast).
 > $$
 > Therefore
 > $$
-> |\partial_t g_{ij}(t;s_\ast)|
+> |\dot{G}_{\mathrm{fold}}(t)|
 > \ge
 > \chi_{\mathrm{fold}}-C^{\mathrm{mb}}_{2,tg}|t-t_\ast|,
 > $$
@@ -4662,9 +5168,13 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 > $$
 > 0<|t-t_\ast|<\chi_{\mathrm{fold}}/C^{\mathrm{mb}}_{2,tg}.
 > $$
-> So the same fold family cannot complete a second receiver-time passage through a fold inside that interval.
+> Thus
+> $$
+> G_{\mathrm{fold}}
+> $$
+> is strictly monotone throughout that receiver-time interval and cannot have a second zero there. Therefore the same fold family cannot complete a second receiver-time passage through a fold inside that interval.
 
-> **Target Proposition (Quantitative no-accumulation of many-body delay events).**
+> **Proposition (Quantitative no-accumulation of many-body delay events).**
 > Assume the unreduced local well-posedness package and suppose, in addition, that on the controlled cycle:
 > 1. each defect
 >    $$
@@ -4690,9 +5200,13 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 >    $$
 >    |\partial_t g_{ij}(t_\ast;s_\ast)|\ge \chi_{\mathrm{fold}}>0,
 >    $$
->    and the controlled cycle carries one receiver-time second-derivative ceiling
+>    and the controlled cycle carries one receiver-time fold-passage ceiling
 >    $$
->    |\partial_t^2 g_{ij}(t;s)|\le C^{\mathrm{mb}}_{2,tg}.
+>    |\ddot{G}_{\mathrm{fold}}(t)|\le C^{\mathrm{mb}}_{2,tg}
+>    $$
+>    on each local fold sheet
+>    $$
+>    G_{\mathrm{fold}}(t)=g_{ij}(t;s_{\mathrm{fold}}(t)).
 >    $$
 >
 > Then there exists a strict minimum event gap
@@ -4716,17 +5230,21 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 > C^{\mathrm{mb}}_{2,tg},
 > $$
 > such that:
-> 1. two distinct fold events for the same receiver-source family cannot occur with source-time separation smaller than
+> 1. two distinct fold roots for the same receiver-source family in one receiver-time slice cannot occur with source-time separation smaller than
 >    $$
 >    \Delta\tau_{\mathrm{evt}};
 >    $$
-> 2. sector-boundary crossings and admissible source-cluster exchanges are likewise separated by at least
+> 2. two fold passages for the same receiver-source family are separated in receiver time by at least
+>    $$
+>    \Delta\tau_{\mathrm{evt}};
+>    $$
+> 3. sector-boundary crossings and admissible source-cluster exchanges are likewise separated by at least
 >    $$
 >    \Delta\tau_{\mathrm{evt}}
 >    $$
 >    along every controlled branch family;
-> 3. hence no fold, relabeling, or exchange event can accumulate in finite time on the controlled cycle;
-> 4. consequently the total number of admissible event hyperedges on one cycle is bounded by
+> 4. hence no fold, relabeling, or exchange event can accumulate in finite time on the controlled cycle;
+> 5. consequently the total number of admissible event hyperedges on one cycle is bounded by
 >    $$
 >    N^{\mathrm{mb}}_{\mathrm{edge}}
 >    \le
@@ -4748,8 +5266,9 @@ $$
 \Delta\tau_{\mathrm{evt}}
 \equiv
 \min\left\{
+\frac{\gamma_{\mathrm{fold}}}{C^{\mathrm{mb}}_{3,g}},
 \frac{\chi_{\mathrm{fold}}}{C^{\mathrm{mb}}_{2,tg}},
-\frac{\nu_J^{\mathrm{mb}}}{C^{\mathrm{mb}}_{2,g}},
+\frac{\nu_J^{\mathrm{mb}}}{2C^{\mathrm{mb}}_{2,g}},
 \Delta\tau_{\mathrm{sec}},
 \Delta\tau_{\mathrm{exc}}
 \right\},
@@ -4760,7 +5279,7 @@ $$
 \qquad
 \Delta\tau_{\mathrm{exc}}
 $$
-are the corresponding sector-boundary and admissible exchange isolation scales produced by the same derivative hierarchy. The second term is the uniform simple-branch persistence scale away from fold tubes: if
+are the corresponding sector-boundary and admissible exchange isolation scales produced by the same derivative hierarchy. The first two terms are the source-time and receiver-time fold-isolation scales. The third term is the uniform simple-branch persistence scale away from fold tubes: if
 $$
 |\partial_s g_{ij}(t;s_0)|\ge \nu_J^{\mathrm{mb}},
 $$
@@ -4770,7 +5289,7 @@ $$
 $$
 whenever
 $$
-|s-s_0|<\frac{\nu_J^{\mathrm{mb}}}{C^{\mathrm{mb}}_{2,g}}.
+|s-s_0|<\frac{\nu_J^{\mathrm{mb}}}{2C^{\mathrm{mb}}_{2,g}}.
 $$
 
 > **Corollary (Finite event count on one controlled cycle).**
@@ -4783,7 +5302,7 @@ $$
 > $$
 > so every admissible fold, relabeling, or exchange family is finite on one controlled cycle.
 
-The proof should now be organized in the same theorem-level way as the statement.
+The remaining local input is simple-branch persistence away from fold tubes.
 
 > **Lemma (Uniform persistence of simple branches away from fold tubes).**
 > Fix one receiver-source family
@@ -4889,7 +5408,7 @@ $$
 $$
 on the corresponding branch segments.
 
-> **Proof draft of the quantitative no-accumulation proposition.**
+> **Proof.**
 > Fix one controlled cycle and one admissible receiver-source-sector family.
 >
 > 1. **Fold isolation.**
@@ -4961,6 +5480,7 @@ on the corresponding branch segments.
 >    \Delta\tau_{\mathrm{evt}}
 >    \equiv
 >    \min\left\{
+>    \delta_{\mathrm{fold}},
 >    \delta_{\mathrm{fold},t},
 >    \delta_{\mathrm{simp}},
 >    \Delta\tau_{\mathrm{sec}},
@@ -5089,7 +5609,7 @@ The first proof-oriented step is to reduce every admissible fold tube to one qua
 > C^{\mathrm{mb}}_{3,g}.
 > $$
 
-> **Proof draft.**
+> **Proof.**
 > Translate the fold center to
 > $$
 > (t_\ast,s_\ast)
@@ -5212,7 +5732,7 @@ Once that reduction is available, the actual impulse bound becomes a finite-dime
 > $$
 > is finite.
 
-> **Proof sketch.**
+> **Proof.**
 > For a Type II fold, insert the fold-tube normal form into the dual-mollified branch kernel. After the local change of variable from
 > $$
 > s
@@ -5237,7 +5757,7 @@ Once that reduction is available, the actual impulse bound becomes a finite-dime
 > $$
 > So the total channelwise impulse is bounded by a finite sum of the same controlled one-dimensional transit integrals.
 
-> **Target Proposition (Bounded dual-mollified caustic transit for simple and shared-body folds).**
+> **Proposition (Bounded dual-mollified caustic transit for simple and shared-body folds).**
 > Assume the unreduced local well-posedness package and the quantitative no-accumulation package. Suppose, in addition, that on every admissible fold tube:
 > 1. the fold-curvature floor
 >    $$
@@ -5312,7 +5832,7 @@ M_{\max}^{\mathrm{mb}}\le 3
 $$
 is the maximal admissible local fold multiplicity in the Type II / Type III event alphabet.
 
-The proof should now be written one local fold block at a time.
+The proof is written one local fold block at a time.
 
 > **Lemma (Type II fold-tube transit estimate).**
 > Fix one admissible Type II fold tube
@@ -5343,10 +5863,22 @@ The proof should now be written one local fold block at a time.
 > \qquad
 > U_{\max},
 > \qquad
-> A_{\max}.
+> A_{\max},
+> \qquad
+> \chi_{\mathrm{fold}},
+> \qquad
+> U^{\mathrm{mb}}_{\mathrm{tube}}.
+> $$
+> Here
+> $$
+> U^{\mathrm{mb}}_{\mathrm{tube}}
+> $$
+> denotes the controlled source half-width of the fold tube in the normal-form coordinate
+> $$
+> u=s-s_\ast.
 > $$
 >
-> **Proof draft.**
+> **Proof.**
 > Write
 > $$
 > J_{ij}(t;s)=\alpha_{ij}(t)u+\mathcal{R}_{ij}(t,u),
@@ -5418,7 +5950,11 @@ The proof should now be written one local fold block at a time.
 >    =
 >    \frac{|J_{ij}(t;s)|}{|\partial_t g_{ij}(t;s)|}\,du.
 >    $$
->    On every admissible fold tube, the receiver-time passage floor from the no-accumulation package gives
+>    By shrinking the controlled fold tube if necessary, the receiver-time passage floor from the no-accumulation package persists along the active root branch; write the persisted floor again as
+>    $$
+>    \chi_{\mathrm{fold}}.
+>    $$
+>    Thus
 >    $$
 >    |\partial_t g_{ij}(t;s)|\ge \chi_{\mathrm{fold}}>0.
 >    $$
@@ -5513,7 +6049,7 @@ The proof should now be written one local fold block at a time.
 > M_{\mathrm{loc}}(\mathsf{e})\le 3.
 > $$
 >
-> **Proof draft.**
+> **Proof.**
 > Decompose the block into its participating branch families
 > $$
 > \beta_1,\dots,\beta_{M_{\mathrm{loc}}(\mathsf{e})}.
@@ -5557,7 +6093,7 @@ The proof should now be written one local fold block at a time.
 > $$
 > In the eventual invariant-envelope argument one must choose the kinematic box so that these renormalized constants are absorbed back into the same admissible class.
 >
-> **Proof draft.**
+> **Proof.**
 > The channelwise impulse bounds give a finite change in every projected velocity component across one admissible fold block, bounded by
 > $$
 > F^{\mathrm{mb}}_m.
@@ -5572,7 +6108,7 @@ The proof should now be written one local fold block at a time.
 > $$
 > depending only on the pre-transit envelope and the fold ceilings.
 
-> **Proof draft of the bounded caustic-transit proposition.**
+> **Proof of the bounded caustic-transit proposition.**
 > Fix one admissible fold block.
 >
 > 1. **Tube localization.**
@@ -9017,7 +9553,14 @@ This is the correct tame-structure target because the first two Jacobi channels 
 > \in
 > \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta},
 > $$
-> and the associated delayed trajectory is a bounded periodic planar-three-body solution of the dual-mollified master equation.
+> and the associated delayed trajectory is a bounded relative-periodic planar-three-body solution of the dual-mollified master equation modulo the canonical
+> $$
+> SE(2)
+> $$
+> gauge. It is an absolute periodic solution in the fixed Euclidean void only if the accumulated full-cycle holonomy is
+> $$
+> H^{\mathrm{mb}}_{\Phi^{\ast,\mathrm{mb}}_\eta}=(0,\mathrm{Id}).
+> $$
 >
 > In particular, the fixed-point trajectory preserves one common gauge chart, one common active delay hypergraph, one common ancestry complex, and one common family of post-crossing and late-turn recapture margins through every return. That is the many-body analogue of the earlier bridge closures on one tame self-map domain.
 
@@ -9049,9 +9592,9 @@ This is the correct tame-structure target because the first two Jacobi channels 
 > \subseteq
 > \mathcal{K}^{\mathrm{mb}}_{A_\ast,\eta}.
 > $$
-> The corresponding trajectory is periodic by construction of the return map and remains bounded because it never leaves the same controlled Banach box and tame data class.
+> The corresponding trajectory is relative-periodic by construction of the gauge-reset return map and remains bounded because it never leaves the same controlled Banach box and tame data class. Absolute periodicity is the separate zero-holonomy reconstruction condition stated above.
 
-This is the first honest many-body breather target in the chapter. Everything above it is there only to make this statement legitimate.
+This is the first honest local many-body breather target in the chapter. Everything above it is there only to make this statement legitimate.
 
 The planar-three-body bridge now has the same explicit theorem-ladder shape as the earlier binary bridges:
 
@@ -9068,7 +9611,23 @@ The planar-three-body bridge now has the same explicit theorem-ladder shape as t
 The 1D collinear chapter should now be used as a frozen reference theorem scaffold. The present chapter records the higher-level lesson:
 
 > **Theorem Program (Breather architecture for the master equation).**
-> A master-equation breather theorem should be pursued by constructing a sectioned history-space return map, proving a nonempty tame propagated class, separating convex Banach bounds from tame delayed-root geometry, and then closing the resulting return map on one closed convex tame self-map domain. The unresolved burden is no longer the abstract fixed-point theorem. It is the geometric production of that domain outside the ordered 1D setting.
+> A master-equation breather theorem should be pursued from the dual-mollified absolute-time integral law, with branch sums used only on certified simple-root charts. The proof task is to construct a sectioned history-space return map, produce one candidate cycle with finite certificate data, separate convex Banach bounds from tame delayed-root geometry, and then close the resulting return map on one closed convex tame self-map domain. The unresolved burden is no longer the abstract fixed-point theorem or an elementary closed-form orbit. It is the geometric production and certification of that domain outside the ordered 1D setting.
+
+Operationally, the live proof burden remains the collinear certificate chain:
+$$
+\phi_{\mathrm{cyc}}
+\to
+\text{finite branch chart}
+\to
+\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+\to
+P_\eta(\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}})
+\subseteq
+\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+\to
+\text{Schauder}.
+$$
+The reduced planar, unreduced planar, and planar three-body sections should stay frozen as dependency maps until that chain is closed.
 
 This is the correct point from which to resume work on the broader dynamics stack.
 
