@@ -85,6 +85,8 @@ $$
 $$
 and the architrino is the source of the causal wake surface emitted at $t_\text{emit}$.
 
+**Terminology split:** Hit type is determined by **source identity**. A **self-hit** has the same source and receiver; a **partner hit** has a different source and receiver. Root count is a separate question: either source can contribute one active causal root or multiple active roots at the same reception time. Thus "self-hit" does not mean "multi-hit," and "partner hit" does not mean "single-hit."
+
 **Dynamical role:**
 - At low velocities ($v < c_f$), self-hit is absent, unless previously in the self-hit region ($v > c_f$).
 - As velocities exceed $c_f$, emission isochrons catch up with the emitter's future positions, generating nonlocal feedback and effective restoring or destabilizing forces depending on configuration.
@@ -99,7 +101,7 @@ Once the architrinos' speeds exceed the field speed $c_f$, they cross the symmet
 $$
 \mathbf{a}_{1, \text{total}}(t) = \mathbf{a}_{1,2}(t) + \mathbf{a}_{1,1}(t)
 $$
-At $|\mathbf{v}| > c_f$, a principal self-hit branch ($m=0$) becomes available; at higher speeds, additional branches turn on (see **Self-Hit Multiplicity vs. Speed**). The new self-repulsive term, $\mathbf{a}_{1,1}(t)$, grows rapidly as the path curvature increases, and it also adds tangential acceleration. In this regime the spiral typically tightens **more** each turn: the radius decreases faster while speed continues to rise. We still call this the **deflationary** phase, but in the sense that any radial arrest is a **late** effect—there is no soft landing early on. The balance that halts contraction is expected, if realized, only near the final turn where the orbit settles into the conjectured limiting circle; see **What "Maximum Curvature" Demands** for the balance mechanism.
+At $|\mathbf{v}| > c_f$, a principal self-hit branch ($m=0$) becomes available; at higher speeds, additional self-hit and partner-hit roots can turn on (see **Root Multiplicity vs. Speed**). The new self-repulsive term, $\mathbf{a}_{1,1}(t)$, grows rapidly as the path curvature increases, and it also adds tangential acceleration. In this regime the spiral typically tightens **more** each turn: the radius decreases faster while speed continues to rise. We still call this the **deflationary** phase, but in the sense that any radial arrest is a **late** effect—there is no soft landing early on. The balance that halts contraction is expected, if realized, only near the final turn where the orbit settles into the conjectured limiting circle; see **What "Maximum Curvature" Demands** for the balance mechanism.
 
 ## Maximum-Curvature Binary — Circular
 
@@ -109,7 +111,7 @@ MCB stability claims rely on the well-posedness of the regularized SD-NDDE. In t
 
 **Goal**: Characterize the circular, constant-speed, constant-radius configuration of two opposite-charge architrinos and investigate where curvature $\kappa = 1/R$ is maximized. We work in units with field speed $c_f = 1$ and use the canonical delayed per-hit law with radial line of action and Jacobian-weighted magnitude.
 
-**Plain language**: We seek the tightest (smallest-$R$) steady circle an opposite-charge pair can trace when the only forces come from delayed, Jacobian-weighted line-of-action interactions with the partner (multiple-hits) and from one's own past emissions (self-hits, active only when speed exceeds field speed).
+**Plain language**: We seek the tightest (smallest-$R$) steady circle an opposite-charge pair can trace when the only forces come from delayed, Jacobian-weighted line-of-action interactions with the partner (partner hits, possibly multiple at higher speed) and from one's own past emissions (self-hits, active only when speed exceeds field speed).
 
 ### Foundational Context (Ontological Clarification)
 
@@ -431,7 +433,7 @@ $$
 =
 \frac{2\pi d_0}{c_fT_0},
 $$
-so the wake propagation speed is not an imposed particle-speed limit. It is the propagation reference used to compare the MCB rod and clock, while individual architrinos may enter super-field regimes with
+so the wake propagation speed is not an imposed particle-speed limit. It is the propagation reference used to compare the MCB rod and clock, while individual architrinos may enter super-field-speed regimes with
 $$
 v>c_f.
 $$
@@ -440,7 +442,14 @@ In this view, any ruler or clock built from architrino assemblies ultimately red
 
 If the MCB does not exist as a stable attractor, these emergent standards must be replaced by whatever stable limit structure the dynamics actually support.
 
-### Self-Hit Multiplicity vs. Speed
+### Root Multiplicity vs. Speed
+
+This section separates the two terminology axes used throughout the chapter:
+
+- **Source identity**: self-hit ($j=i$) or partner hit ($j\ne i$).
+- **Root count**: single-root or multi-root on the current branch chart.
+
+The self-hit onset is dynamically special because it introduces same-source feedback and an outward self-repulsive channel. Partner multi-hit is still part of the same super-field-speed root topology: at higher speeds, older partner wake surfaces can also satisfy the causal-root condition and contribute additional inward channels.
 
 In uniform circular, non-translating geometry, admissible self-roots are indexed by winding number $m \ge 0$ and minimal angular separation $\tilde{\delta}_s \in (0, \pi]$:
 
@@ -501,6 +510,7 @@ The emission points on the circle that can produce hits "now" form a **finite, d
 
 - **Existence thresholds**: For each $m \ge 0$, a solution exists only if $s > m\pi$.
 - As $m$ increases, $\tilde{\delta}_p$ decreases -> $\varphi_p$ drifts monotonically toward $\pi$ (diametrically opposite point).
+- Partner multi-hit means $M_p(s)>1$: the base partner branch plus one or more older partner roots. These additional roots affect the inward partner-root ledger, but they do not create same-source feedback.
 
 #### Self-Hits
 
@@ -522,9 +532,9 @@ The emission points on the circle that can produce hits "now" form a **finite, d
 
 ---
 
-### Super-Field Root Ledgers and Resonance Lock
+### Super-Field-Speed Root Ledgers and Resonance Lock
 
-The super-field regime is not merely the same spiral at a larger speed. It changes the root topology of the binary. Once
+The super-field-speed regime is not merely the same spiral at a larger speed. It changes the root topology of the binary. Once
 $$
 v>c_f,
 $$
@@ -553,7 +563,7 @@ s
 $$
 varies, these counts change only at branch birth/death thresholds where a causal delay equation develops a tangency.
 
-A candidate stable super-field bound state therefore cannot be described by a single smooth force curve alone. It must satisfy a finite root-ledger balance:
+A candidate stable super-field-speed bound state therefore cannot be described by a single smooth force curve alone. It must satisfy a finite root-ledger balance:
 $$
 \sum_{m\in\mathcal{M}_p(s)}
 A_{p,m}^{\mathrm{rad}}(R,s)
@@ -623,7 +633,7 @@ g_{ij}(\tau, \phi) \equiv \|\phi_i(0) - \phi_j(-\tau)\| - c_f \tau = 0.
 $$
 
 #### Lemma 1 (Regularity of the Delay Map)
-*Assumption:* The velocities are sub-field-speed relative to the separation, i.e., $|\mathbf{v}_j| < c_f$ (Single-Hit Regime) OR we isolate a specific branch of the multi-hit solution where the relative radial velocity is not $c_f$.
+*Assumption:* The velocities are sub-field-speed relative to the separation, i.e., $|\mathbf{v}_j| < c_f$ (single-root regime) OR we isolate a specific branch of the multi-root solution where the relative radial velocity is not $c_f$.
 
 *Statement:* If $\phi \in \mathcal{H}$ and $\tau^*$ is a simple root of $g_{ij}(\tau, \phi) = 0$ (i.e., $\partial_\tau g_{ij} \neq 0$), then there exists a neighborhood $U \subset \mathcal{H}$ of $\phi$ and a continuously differentiable functional $\tau: U \to \mathbb{R}^+$ such that $\tau(\phi) = \tau^*$.
 
