@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 125,
-      "sections": 882
+      "entries": 128,
+      "sections": 927
     }
   },
   "tocRoot": {
@@ -26,6 +26,136 @@
         "sceneType": "Scene-Index",
         "scenePath": "content/scenes/foundations/foundations.json",
         "children": [
+          {
+            "id": "foundations__absolute_time",
+            "title": "Absolute Time",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/foundations/absolute_time.json",
+            "markdownPath": "content/markdown/aaa/foundations/absolute-time.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Core Concept",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time.md",
+                "markdownSection": "Core Concept",
+                "sectionKey": "core concept",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Mathematical Description",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time.md",
+                "markdownSection": "Mathematical Description",
+                "sectionKey": "mathematical description",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Dimensionalization",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time.md",
+                "markdownSection": "Dimensionalization",
+                "sectionKey": "dimensionalization",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Duration and Linear Advancement",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time.md",
+                "markdownSection": "Duration and Linear Advancement",
+                "sectionKey": "duration and linear advancement",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Time Orientation and Causal Ordering",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time.md",
+                "markdownSection": "Time Orientation and Causal Ordering",
+                "sectionKey": "time orientation and causal ordering",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Absolute and Universal Nature",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time.md",
+                "markdownSection": "Absolute and Universal Nature",
+                "sectionKey": "absolute and universal nature",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "No Absolute Origin and Completeness",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time.md",
+                "markdownSection": "No Absolute Origin and Completeness",
+                "sectionKey": "no absolute origin and completeness",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Symmetries of Absolute Time",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time.md",
+                "markdownSection": "Symmetries of Absolute Time",
+                "sectionKey": "symmetries of absolute time",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Role of Time in Dynamics",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time.md",
+                "markdownSection": "Role of Time in Dynamics",
+                "sectionKey": "role of time in dynamics",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Causality and Finite Propagation Speed",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time.md",
+                "markdownSection": "Causality and Finite Propagation Speed",
+                "sectionKey": "causality and finite propagation speed",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Path History and Non-Markovian Memory",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time.md",
+                "markdownSection": "Path History and Non-Markovian Memory",
+                "sectionKey": "path history and non markovian memory",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Provenance and Identity Through Time",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time.md",
+                "markdownSection": "Provenance and Identity Through Time",
+                "sectionKey": "provenance and identity through time",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Geodesics and the Absence of Temporal Dynamics",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time.md",
+                "markdownSection": "Geodesics and the Absence of Temporal Dynamics",
+                "sectionKey": "geodesics and the absence of temporal dynamics",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Distinction from Relativistic Time",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time.md",
+                "markdownSection": "Distinction from Relativistic Time",
+                "sectionKey": "distinction from relativistic time",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary Postulate",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time.md",
+                "markdownSection": "Summary Postulate",
+                "sectionKey": "summary postulate",
+                "headingLevel": 2
+              }
+            ]
+          },
           {
             "id": "foundations__absolute_time_defense",
             "title": "Absolute Time Defense",
@@ -48,6 +178,266 @@
                 "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
                 "markdownSection": "Absolute Time, Global Foliation, and Proper Time",
                 "sectionKey": "absolute time global foliation and proper time",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "foundations__absolute_timespace",
+            "title": "Absolute Timespace",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/foundations/absolute_timespace.json",
+            "markdownPath": "content/markdown/aaa/foundations/absolute-timespace.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Core Concept",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-timespace.md",
+                "markdownSection": "Core Concept",
+                "sectionKey": "core concept",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Product Manifold",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-timespace.md",
+                "markdownSection": "Product Manifold",
+                "sectionKey": "product manifold",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Foliation and Simultaneity Slices",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-timespace.md",
+                "markdownSection": "Foliation and Simultaneity Slices",
+                "sectionKey": "foliation and simultaneity slices",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Newton-Cartan Data",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-timespace.md",
+                "markdownSection": "Newton-Cartan Data",
+                "sectionKey": "newton cartan data",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "No Fundamental 4D Metric",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-timespace.md",
+                "markdownSection": "No Fundamental 4D Metric",
+                "sectionKey": "no fundamental 4d metric",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Measurement and Geometry",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-timespace.md",
+                "markdownSection": "Measurement and Geometry",
+                "sectionKey": "measurement and geometry",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Velocity, Acceleration, and Momentum",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-timespace.md",
+                "markdownSection": "Velocity, Acceleration, and Momentum",
+                "sectionKey": "velocity acceleration and momentum",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Galilean Kinematic Structure",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-timespace.md",
+                "markdownSection": "Galilean Kinematic Structure",
+                "sectionKey": "galilean kinematic structure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Preferred Rest Frame and Dynamical Symmetry Breaking",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-timespace.md",
+                "markdownSection": "Preferred Rest Frame and Dynamical Symmetry Breaking",
+                "sectionKey": "preferred rest frame and dynamical symmetry breaking",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Causal Wake Geometry",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-timespace.md",
+                "markdownSection": "Causal Wake Geometry",
+                "sectionKey": "causal wake geometry",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Coordinates and Forbidden Transformations",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-timespace.md",
+                "markdownSection": "Coordinates and Forbidden Transformations",
+                "sectionKey": "coordinates and forbidden transformations",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Measures and Operators",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-timespace.md",
+                "markdownSection": "Measures and Operators",
+                "sectionKey": "measures and operators",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Regularity and Boundary Conditions",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-timespace.md",
+                "markdownSection": "Regularity and Boundary Conditions",
+                "sectionKey": "regularity and boundary conditions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Relation to Relativistic Spacetime",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-timespace.md",
+                "markdownSection": "Relation to Relativistic Spacetime",
+                "sectionKey": "relation to relativistic spacetime",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Role in $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-timespace.md",
+                "markdownSection": "Role in $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
+                "sectionKey": "role in mathbb a mathbb a mathbb a",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary Postulate",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-timespace.md",
+                "markdownSection": "Summary Postulate",
+                "sectionKey": "summary postulate",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "foundations__architrino",
+            "title": "Architrino",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/foundations/architrino.json",
+            "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Core Definition",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Core Definition",
+                "sectionKey": "core definition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Ontological Status",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Ontological Status",
+                "sectionKey": "ontological status",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Polarity and Electric Bookkeeping",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Polarity and Electric Bookkeeping",
+                "sectionKey": "polarity and electric bookkeeping",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Provenance and Persistence",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Provenance and Persistence",
+                "sectionKey": "provenance and persistence",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Non-Creation and Non-Destruction",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Non-Creation and Non-Destruction",
+                "sectionKey": "non creation and non destruction",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Point-Transceiver Status",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Point-Transceiver Status",
+                "sectionKey": "point transceiver status",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Worldlines and Path History",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Worldlines and Path History",
+                "sectionKey": "worldlines and path history",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Wake History Boundary",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Wake History Boundary",
+                "sectionKey": "wake history boundary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Reception Rule Boundary",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Reception Rule Boundary",
+                "sectionKey": "reception rule boundary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Dynamics and Regime Boundary",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Dynamics and Regime Boundary",
+                "sectionKey": "dynamics and regime boundary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Determinism and Multistability",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Determinism and Multistability",
+                "sectionKey": "determinism and multistability",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Absolute Rest Case",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Absolute Rest Case",
+                "sectionKey": "absolute rest case",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Boundary With Assemblies and Effective Particles",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Boundary With Assemblies and Effective Particles",
+                "sectionKey": "boundary with assemblies and effective particles",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary Postulate",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Summary Postulate",
+                "sectionKey": "summary postulate",
                 "headingLevel": 2
               }
             ]
@@ -400,64 +790,6 @@
                 "markdownPath": "content/markdown/aaa/foundations/ontology.md",
                 "markdownSection": "Summary",
                 "sectionKey": "summary",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "information_computation",
-            "title": "Information / Computation",
-            "kind": "markdown-split",
-            "sceneType": "Scene-Markdown-Split",
-            "scenePath": "content/scenes/philosophy_history/information_computation.json",
-            "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Overview",
-                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Information / Ontology",
-                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-                "markdownSection": "Information as Ontology",
-                "sectionKey": "information as ontology",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Computation / Ontology",
-                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-                "markdownSection": "Computation as Ontology",
-                "sectionKey": "computation as ontology",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Digital Physics",
-                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-                "markdownSection": "Digital Physics and Discrete Substrate Programs",
-                "sectionKey": "digital physics and discrete substrate programs",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Observer / Encoding",
-                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-                "markdownSection": "Observer, Encoding, and Representation",
-                "sectionKey": "observer encoding and representation",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Simulation / Computability",
-                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-                "markdownSection": "Simulation, Modeling, and Computability Limits",
-                "sectionKey": "simulation modeling and computability limits",
                 "headingLevel": 2
               }
             ]
@@ -6788,6 +7120,64 @@
                     "headingLevel": 3
                   }
                 ]
+              }
+            ]
+          },
+          {
+            "id": "information_computation",
+            "title": "Information / Computation",
+            "kind": "markdown-split",
+            "sceneType": "Scene-Markdown-Split",
+            "scenePath": "content/scenes/philosophy_history/information_computation.json",
+            "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Overview",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownSection": "Overview",
+                "sectionKey": "overview",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Information / Ontology",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownSection": "Information as Ontology",
+                "sectionKey": "information as ontology",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Computation / Ontology",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownSection": "Computation as Ontology",
+                "sectionKey": "computation as ontology",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Digital Physics",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownSection": "Digital Physics and Discrete Substrate Programs",
+                "sectionKey": "digital physics and discrete substrate programs",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Observer / Encoding",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownSection": "Observer, Encoding, and Representation",
+                "sectionKey": "observer encoding and representation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Simulation / Computability",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownSection": "Simulation, Modeling, and Computability Limits",
+                "sectionKey": "simulation modeling and computability limits",
+                "headingLevel": 2
               }
             ]
           },

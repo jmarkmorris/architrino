@@ -67,13 +67,15 @@
       "sceneId": "foundations",
       "sceneName": "Foundations",
       "objects": {
+        "absolute_time": "Absolute Time",
         "absolute_time_defense": "Absolute Time Defense",
+        "absolute_timespace": "Absolute Timespace",
+        "architrino": "Architrino",
         "detecting_the_absolute_frame": "Detecting the Absolute Frame",
         "bootstrapping_the_absolute_frame": "Bootstrapping a Coordinate Frame",
         "emergence_of_structure": "Emergence of Structure",
         "euclidean_void": "Euclidean Void",
-        "foundational_ontology": "Foundational Ontology",
-        "information_computation": "Information / Computation"
+        "foundational_ontology": "Foundational Ontology"
       }
     },
     "content/scenes/archie/archie.json": {
@@ -150,6 +152,7 @@
         "agency_and_internal_causation": "Agency and Internal Causation",
         "crisis_in_physics": "Crisis in Physics",
         "historical_context_missed_opportunities": "Historical Context and Missed Opportunities",
+        "information_computation": "Information / Computation",
         "major_thinkers": "Major Thinkers",
         "philosophy_of_science": "Philosophy of Science",
         "religious_ontologies": "Religious Ontologies",

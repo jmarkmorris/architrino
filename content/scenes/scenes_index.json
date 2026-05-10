@@ -1439,6 +1439,21 @@
       "id": "archie__user_interface",
       "name": "User Interface",
       "path": "content/scenes/archie/user_interface.json"
+    },
+    {
+      "id": "foundations__absolute_time",
+      "name": "Absolute Time",
+      "path": "content/scenes/foundations/absolute_time.json"
+    },
+    {
+      "id": "foundations__absolute_timespace",
+      "name": "Absolute Timespace",
+      "path": "content/scenes/foundations/absolute_timespace.json"
+    },
+    {
+      "id": "foundations__architrino",
+      "name": "Architrino",
+      "path": "content/scenes/foundations/architrino.json"
     }
   ]
 }

@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 426,
-      "edges": 1163,
-      "scenes": 288,
+      "nodes": 429,
+      "edges": 1169,
+      "scenes": 291,
       "markdownIndexes": 0,
       "markdownDocs": 138,
       "runtimeEdges": 476,
@@ -1874,6 +1874,24 @@
       "id": "archie__user_interface",
       "name": "User Interface",
       "path": "content/scenes/archie/user_interface.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "foundations__absolute_time",
+      "name": "Absolute Time",
+      "path": "content/scenes/foundations/absolute_time.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "foundations__absolute_timespace",
+      "name": "Absolute Timespace",
+      "path": "content/scenes/foundations/absolute_timespace.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "foundations__architrino",
+      "name": "Architrino",
+      "path": "content/scenes/foundations/architrino.json",
       "nodeType": "scene"
     },
     {
@@ -4351,6 +4369,33 @@
       "name": "Absolute Time Defense",
       "path": "content/scenes/foundations/absolute_time_defense.json",
       "searchTarget": "content/scenes/foundations/absolute_time_defense.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/foundations/absolute_time.json",
+      "nodeType": "scene",
+      "id": "foundations__absolute_time",
+      "name": "Absolute Time",
+      "path": "content/scenes/foundations/absolute_time.json",
+      "searchTarget": "content/scenes/foundations/absolute_time.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/foundations/absolute_timespace.json",
+      "nodeType": "scene",
+      "id": "foundations__absolute_timespace",
+      "name": "Absolute Timespace",
+      "path": "content/scenes/foundations/absolute_timespace.json",
+      "searchTarget": "content/scenes/foundations/absolute_timespace.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/foundations/architrino.json",
+      "nodeType": "scene",
+      "id": "foundations__architrino",
+      "name": "Architrino",
+      "path": "content/scenes/foundations/architrino.json",
+      "searchTarget": "content/scenes/foundations/architrino.json",
       "implicit": false
     },
     {
@@ -9683,49 +9728,63 @@
       "to": "scene:content/scenes/foundations/absolute_time_defense.json",
       "edgeType": "subscene",
       "source": "content/scenes/foundations/foundations.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/foundations/foundations.json",
+      "to": "scene:content/scenes/foundations/absolute_time.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/foundations/foundations.json",
       "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/foundations/foundations.json",
-      "to": "scene:content/scenes/foundations/bootstrapping_the_absolute_frame.json",
+      "to": "scene:content/scenes/foundations/absolute_timespace.json",
       "edgeType": "subscene",
       "source": "content/scenes/foundations/foundations.json",
       "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/foundations/foundations.json",
-      "to": "scene:content/scenes/foundations/detecting_the_absolute_frame.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/foundations/foundations.json",
-      "field": "scene.children[1]"
-    },
-    {
-      "from": "scene:content/scenes/foundations/foundations.json",
-      "to": "scene:content/scenes/foundations/emergence_of_structure.json",
+      "to": "scene:content/scenes/foundations/architrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/foundations/foundations.json",
       "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/foundations/foundations.json",
-      "to": "scene:content/scenes/foundations/euclidean_void.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/foundations/foundations.json",
-      "field": "scene.children[4]"
-    },
-    {
-      "from": "scene:content/scenes/foundations/foundations.json",
-      "to": "scene:content/scenes/foundations/foundational_ontology.json",
+      "to": "scene:content/scenes/foundations/bootstrapping_the_absolute_frame.json",
       "edgeType": "subscene",
       "source": "content/scenes/foundations/foundations.json",
       "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/foundations/foundations.json",
-      "to": "scene:content/scenes/philosophy_history/information_computation.json",
+      "to": "scene:content/scenes/foundations/detecting_the_absolute_frame.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/foundations/foundations.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/foundations/foundations.json",
+      "to": "scene:content/scenes/foundations/emergence_of_structure.json",
       "edgeType": "subscene",
       "source": "content/scenes/foundations/foundations.json",
       "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/foundations/foundations.json",
+      "to": "scene:content/scenes/foundations/euclidean_void.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/foundations/foundations.json",
+      "field": "scene.children[7]"
+    },
+    {
+      "from": "scene:content/scenes/foundations/foundations.json",
+      "to": "scene:content/scenes/foundations/foundational_ontology.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/foundations/foundations.json",
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/nuclear/atom.json",
@@ -9890,6 +9949,13 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/information_computation.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
@@ -9900,28 +9966,28 @@
       "to": "scene:content/scenes/philosophy_history/philosophy_of_science.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/religious_ontologies.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/theory_differentials.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/theory_mapping.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -10803,6 +10869,27 @@
       "to": "markdown_doc:content/markdown/aaa/foundations/absolute-time-defense.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/foundations/absolute_time_defense.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/foundations/absolute_time.json",
+      "to": "markdown_doc:content/markdown/aaa/foundations/absolute-time.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/foundations/absolute_time.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/foundations/absolute_timespace.json",
+      "to": "markdown_doc:content/markdown/aaa/foundations/absolute-timespace.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/foundations/absolute_timespace.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/foundations/architrino.json",
+      "to": "markdown_doc:content/markdown/aaa/foundations/architrino.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/foundations/architrino.json",
       "field": "scene.source.path"
     },
     {

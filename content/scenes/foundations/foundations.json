@@ -11,8 +11,20 @@
     },
     "children": [
       {
+        "nodeId": "absolute_time",
+        "scenePath": "content/scenes/foundations/absolute_time.json"
+      },
+      {
         "nodeId": "absolute_time_defense",
         "scenePath": "content/scenes/foundations/absolute_time_defense.json"
+      },
+      {
+        "nodeId": "absolute_timespace",
+        "scenePath": "content/scenes/foundations/absolute_timespace.json"
+      },
+      {
+        "nodeId": "architrino",
+        "scenePath": "content/scenes/foundations/architrino.json"
       },
       {
         "nodeId": "detecting_the_absolute_frame",
@@ -33,14 +45,21 @@
       {
         "nodeId": "foundational_ontology",
         "scenePath": "content/scenes/foundations/foundational_ontology.json"
-      },
-      {
-        "nodeId": "information_computation",
-        "scenePath": "content/scenes/philosophy_history/information_computation.json"
       }
     ]
   },
   "objects": [
+    {
+      "id": "absolute_time",
+      "title": "Absolute Time",
+      "radius": 2.688,
+      "color": "#7a4a1f",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Absolute Time",
+      "labelBadge": "doc"
+    },
     {
       "id": "absolute_time_defense",
       "title": "Absolute Time Defense",
@@ -50,6 +69,28 @@
         "type": "fixed"
       },
       "labelTitle": "Absolute Time Defense",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "absolute_timespace",
+      "title": "Absolute Timespace",
+      "radius": 2.688,
+      "color": "#3f6a5a",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Absolute Timespace",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "architrino",
+      "title": "Architrino",
+      "radius": 2.688,
+      "color": "#6a3c3c",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Architrino",
       "labelBadge": "doc"
     },
     {
@@ -106,16 +147,6 @@
       },
       "labelTitle": "Foundational Ontology",
       "labelBadge": "doc"
-    },
-    {
-      "id": "information_computation",
-      "title": "Information / Computation",
-      "radius": 2.688,
-      "color": "#2f4f7a",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Information / Computation"
     }
   ]
 }
