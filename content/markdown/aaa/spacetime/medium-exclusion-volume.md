@@ -1,6 +1,6 @@
-# Visualizing Volumes and Exclusion in the Universe
+# Medium Exclusion Volume
 
-This chapter complements [Condensed Matter](../nuclear-atomic/condensed-matter.md), [Molecular Geometry](../nuclear-atomic/molecular-geometry.md), [Spacetime Assemblies](./spacetime-assemblies.md), and [Gravitational Waves](./gravitational-waves.md) by asking how ordinary exclusion boundaries coexist with deeper medium-level propagation.
+This chapter visualizes volumes and exclusion in the universe. It complements [Condensed Matter](../nuclear-atomic/condensed-matter.md), [Molecular Geometry](../nuclear-atomic/molecular-geometry.md), [Spacetime Assemblies](./spacetime-assemblies.md), and [Gravitational Waves](./gravitational-waves.md) by asking how ordinary exclusion boundaries coexist with deeper medium-level propagation.
 
 When chemists talk about the **van der Waals (VdW) volume** of a molecule, they mean the space excluded by its electron cloud — the “hard sphere” a molecule presents to its neighbors. This is estimated from atomic van der Waals radii (Bondi, 1964) and corrected for bond overlaps. For example:
 

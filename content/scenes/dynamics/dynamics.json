@@ -17,7 +17,7 @@
       },
       {
         "nodeId": "collinear_breather",
-        "scenePath": "content/scenes/dynamics/collinear_breather.json"
+        "scenePath": "content/scenes/proof-programs/collinear_breather.json"
       },
       {
         "nodeId": "causal_action_functional",
@@ -37,23 +37,23 @@
       },
       {
         "nodeId": "emergence_of_u_1_su_2",
-        "scenePath": "content/scenes/dynamics/emergence_of_u_1_su_2.json"
+        "scenePath": "content/scenes/interactions/emergence_of_u_1_su_2.json"
       },
       {
         "nodeId": "gauge_symmetries",
-        "scenePath": "content/scenes/dynamics/gauge_symmetries.json"
+        "scenePath": "content/scenes/interactions/gauge_symmetries.json"
       },
       {
         "nodeId": "mapping_planck_scale",
-        "scenePath": "content/scenes/dynamics/mapping_planck_scale.json"
+        "scenePath": "content/scenes/spacetime/mapping_planck_scale.json"
       },
       {
         "nodeId": "planar_bridge_closure",
-        "scenePath": "content/scenes/dynamics/planar_bridge_closure.json"
+        "scenePath": "content/scenes/proof-programs/planar_bridge_closure.json"
       },
       {
         "nodeId": "horizon_chirality",
-        "scenePath": "content/scenes/dynamics/horizon_chirality.json"
+        "scenePath": "content/scenes/spacetime/horizon_chirality.json"
       },
       {
         "nodeId": "master_equation_of_motion",
@@ -61,11 +61,11 @@
       },
       {
         "nodeId": "master_equation_breather",
-        "scenePath": "content/scenes/dynamics/master_equation_breather.json"
+        "scenePath": "content/scenes/proof-programs/master_equation_breather.json"
       },
       {
         "nodeId": "mode_taxonomy",
-        "scenePath": "content/scenes/dynamics/mode_taxonomy.json"
+        "scenePath": "content/scenes/interactions/mode_taxonomy.json"
       },
       {
         "nodeId": "tri_binary_dynamics",

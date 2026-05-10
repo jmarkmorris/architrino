@@ -39,7 +39,7 @@ The main black-hole and strong-field chapter architecture is already in place. T
 - [strong-field-hypotheses](../strong-field-hypotheses/strong-field-hypotheses.md)
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
 - [cosmology-closure](../cosmology-closure/cosmology-closure.md)
-- [simulations](../deferred/simulations.md)
+- [simulations](../simulations/simulations.md)
 
 ## Related AAA Notes
 

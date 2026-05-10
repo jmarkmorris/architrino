@@ -40,7 +40,7 @@ The goal is to expose exactly where $\mathbb{A}\mathbb{A}\mathbb{A}$ matches, re
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
 - [strong-field-closure](../strong-field-closure/strong-field-closure.md)
 - [strong-field-hypotheses](../strong-field-hypotheses/strong-field-hypotheses.md)
-- [simulations](../deferred/simulations.md)
+- [simulations](../simulations/simulations.md)
 
 ## Related AAA Notes
 

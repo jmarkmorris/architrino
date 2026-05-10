@@ -36,7 +36,7 @@
       },
       {
         "nodeId": "displacement_of_spacetime",
-        "scenePath": "content/scenes/nuclear/displacement_of_spacetime.json"
+        "scenePath": "content/scenes/spacetime/medium_exclusion_volume.json"
       },
       {
         "nodeId": "molecular_geometry",

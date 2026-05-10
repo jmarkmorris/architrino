@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "dynamics__collinear_breather",
-    "title": "1D Collinear Binary (Reduced Model)",
+    "id": "spacetime__mapping_planck_scale",
+    "title": "Mapping Planck Scale",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/proof-programs/collinear-breather.md"
+      "path": "content/markdown/aaa/spacetime/mapping-planck-scale.md"
     },
     "view": {
       "autoOpen": true

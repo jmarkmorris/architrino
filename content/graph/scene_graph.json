@@ -1291,13 +1291,13 @@
     {
       "id": "dynamics__emergence_of_u_1_su_2",
       "name": "Emergence of U(1)/SU(2)",
-      "path": "content/scenes/dynamics/emergence_of_u_1_su_2.json",
+      "path": "content/scenes/interactions/emergence_of_u_1_su_2.json",
       "nodeType": "scene"
     },
     {
       "id": "dynamics__gauge_symmetries",
       "name": "Gauge Symmetries",
-      "path": "content/scenes/dynamics/gauge_symmetries.json",
+      "path": "content/scenes/interactions/gauge_symmetries.json",
       "nodeType": "scene"
     },
     {
@@ -1309,7 +1309,7 @@
     {
       "id": "dynamics__mapping_planck_scale",
       "name": "Mapping Planck Scale",
-      "path": "content/scenes/dynamics/mapping_planck_scale.json",
+      "path": "content/scenes/spacetime/mapping_planck_scale.json",
       "nodeType": "scene"
     },
     {
@@ -1321,13 +1321,13 @@
     {
       "id": "dynamics__master_equation_breather",
       "name": "Master Equation Breather",
-      "path": "content/scenes/dynamics/master_equation_breather.json",
+      "path": "content/scenes/proof-programs/master_equation_breather.json",
       "nodeType": "scene"
     },
     {
       "id": "dynamics__mode_taxonomy",
       "name": "Mode Taxonomy",
-      "path": "content/scenes/dynamics/mode_taxonomy.json",
+      "path": "content/scenes/interactions/mode_taxonomy.json",
       "nodeType": "scene"
     },
     {
@@ -1387,7 +1387,7 @@
     {
       "id": "nuclear_atomic__displacement_of_spacetime",
       "name": "Displacement of Spacetime",
-      "path": "content/scenes/nuclear/displacement_of_spacetime.json",
+      "path": "content/scenes/spacetime/medium_exclusion_volume.json",
       "nodeType": "scene"
     },
     {
@@ -1837,19 +1837,19 @@
     {
       "id": "dynamics__collinear_breather",
       "name": "1D Collinear Binary (Reduced Model)",
-      "path": "content/scenes/dynamics/collinear_breather.json",
+      "path": "content/scenes/proof-programs/collinear_breather.json",
       "nodeType": "scene"
     },
     {
       "id": "dynamics__horizon_chirality",
       "name": "Horizon Chirality",
-      "path": "content/scenes/dynamics/horizon_chirality.json",
+      "path": "content/scenes/spacetime/horizon_chirality.json",
       "nodeType": "scene"
     },
     {
       "id": "dynamics__planar_bridge_closure",
       "name": "Planar Bridge Closure",
-      "path": "content/scenes/dynamics/planar_bridge_closure.json",
+      "path": "content/scenes/proof-programs/planar_bridge_closure.json",
       "nodeType": "scene"
     },
     {
@@ -2442,7 +2442,7 @@
     },
     {
       "id": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
-      "name": "Visualizing Volumes and Exclusion in the Universe",
+      "name": "Medium Exclusion Volume",
       "path": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
       "nodeType": "markdown_doc"
     },
@@ -3184,15 +3184,6 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/dynamics/collinear_breather.json",
-      "nodeType": "scene",
-      "id": "dynamics__collinear_breather",
-      "name": "1D Collinear Binary (Reduced Model)",
-      "path": "content/scenes/dynamics/collinear_breather.json",
-      "searchTarget": "content/scenes/dynamics/collinear_breather.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/dynamics/dyadic_resonance_lock.json",
       "nodeType": "scene",
       "id": "dynamics__dyadic_resonance_lock",
@@ -3220,33 +3211,6 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/dynamics/emergence_of_u_1_su_2.json",
-      "nodeType": "scene",
-      "id": "dynamics__emergence_of_u_1_su_2",
-      "name": "Emergence of U(1)/SU(2)",
-      "path": "content/scenes/dynamics/emergence_of_u_1_su_2.json",
-      "searchTarget": "content/scenes/dynamics/emergence_of_u_1_su_2.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/dynamics/gauge_symmetries.json",
-      "nodeType": "scene",
-      "id": "dynamics__gauge_symmetries",
-      "name": "Gauge Symmetries",
-      "path": "content/scenes/dynamics/gauge_symmetries.json",
-      "searchTarget": "content/scenes/dynamics/gauge_symmetries.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/dynamics/horizon_chirality.json",
-      "nodeType": "scene",
-      "id": "dynamics__horizon_chirality",
-      "name": "Horizon Chirality",
-      "path": "content/scenes/dynamics/horizon_chirality.json",
-      "searchTarget": "content/scenes/dynamics/horizon_chirality.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/dynamics/kinetic_and_potential_energy.json",
       "nodeType": "scene",
       "id": "dynamics__kinetic_and_potential_energy",
@@ -3256,48 +3220,12 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/dynamics/mapping_planck_scale.json",
-      "nodeType": "scene",
-      "id": "dynamics__mapping_planck_scale",
-      "name": "Mapping Planck Scale",
-      "path": "content/scenes/dynamics/mapping_planck_scale.json",
-      "searchTarget": "content/scenes/dynamics/mapping_planck_scale.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/dynamics/master_equation_breather.json",
-      "nodeType": "scene",
-      "id": "dynamics__master_equation_breather",
-      "name": "Master Equation Breather",
-      "path": "content/scenes/dynamics/master_equation_breather.json",
-      "searchTarget": "content/scenes/dynamics/master_equation_breather.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/dynamics/master_equation_of_motion.json",
       "nodeType": "scene",
       "id": "dynamics__master_equation_of_motion",
       "name": "Master Equation of Motion",
       "path": "content/scenes/dynamics/master_equation_of_motion.json",
       "searchTarget": "content/scenes/dynamics/master_equation_of_motion.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/dynamics/mode_taxonomy.json",
-      "nodeType": "scene",
-      "id": "dynamics__mode_taxonomy",
-      "name": "Mode Taxonomy",
-      "path": "content/scenes/dynamics/mode_taxonomy.json",
-      "searchTarget": "content/scenes/dynamics/mode_taxonomy.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/dynamics/planar_bridge_closure.json",
-      "nodeType": "scene",
-      "id": "dynamics__planar_bridge_closure",
-      "name": "Planar Bridge Closure",
-      "path": "content/scenes/dynamics/planar_bridge_closure.json",
-      "searchTarget": "content/scenes/dynamics/planar_bridge_closure.json",
       "implicit": false
     },
     {
@@ -4444,6 +4372,33 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/interactions/emergence_of_u_1_su_2.json",
+      "nodeType": "scene",
+      "id": "dynamics__emergence_of_u_1_su_2",
+      "name": "Emergence of U(1)/SU(2)",
+      "path": "content/scenes/interactions/emergence_of_u_1_su_2.json",
+      "searchTarget": "content/scenes/interactions/emergence_of_u_1_su_2.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/interactions/gauge_symmetries.json",
+      "nodeType": "scene",
+      "id": "dynamics__gauge_symmetries",
+      "name": "Gauge Symmetries",
+      "path": "content/scenes/interactions/gauge_symmetries.json",
+      "searchTarget": "content/scenes/interactions/gauge_symmetries.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/interactions/mode_taxonomy.json",
+      "nodeType": "scene",
+      "id": "dynamics__mode_taxonomy",
+      "name": "Mode Taxonomy",
+      "path": "content/scenes/interactions/mode_taxonomy.json",
+      "searchTarget": "content/scenes/interactions/mode_taxonomy.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/nuclear/atom.json",
       "nodeType": "scene",
       "id": "atom",
@@ -4486,15 +4441,6 @@
       "name": "Condensed Matter",
       "path": "content/scenes/nuclear/condensed_matter.json",
       "searchTarget": "content/scenes/nuclear/condensed_matter.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/nuclear/displacement_of_spacetime.json",
-      "nodeType": "scene",
-      "id": "nuclear_atomic__displacement_of_spacetime",
-      "name": "Displacement of Spacetime",
-      "path": "content/scenes/nuclear/displacement_of_spacetime.json",
-      "searchTarget": "content/scenes/nuclear/displacement_of_spacetime.json",
       "implicit": false
     },
     {
@@ -4669,6 +4615,33 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/proof-programs/collinear_breather.json",
+      "nodeType": "scene",
+      "id": "dynamics__collinear_breather",
+      "name": "1D Collinear Binary (Reduced Model)",
+      "path": "content/scenes/proof-programs/collinear_breather.json",
+      "searchTarget": "content/scenes/proof-programs/collinear_breather.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/proof-programs/master_equation_breather.json",
+      "nodeType": "scene",
+      "id": "dynamics__master_equation_breather",
+      "name": "Master Equation Breather",
+      "path": "content/scenes/proof-programs/master_equation_breather.json",
+      "searchTarget": "content/scenes/proof-programs/master_equation_breather.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/proof-programs/planar_bridge_closure.json",
+      "nodeType": "scene",
+      "id": "dynamics__planar_bridge_closure",
+      "name": "Planar Bridge Closure",
+      "path": "content/scenes/proof-programs/planar_bridge_closure.json",
+      "searchTarget": "content/scenes/proof-programs/planar_bridge_closure.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/quantum/bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response.json",
       "nodeType": "scene",
       "id": "quantum__bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response",
@@ -4777,12 +4750,39 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/spacetime/horizon_chirality.json",
+      "nodeType": "scene",
+      "id": "dynamics__horizon_chirality",
+      "name": "Horizon Chirality",
+      "path": "content/scenes/spacetime/horizon_chirality.json",
+      "searchTarget": "content/scenes/spacetime/horizon_chirality.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/spacetime/lorentz_kinematics.json",
       "nodeType": "scene",
       "id": "spacetime__lorentz_kinematics",
       "name": "Lorentz Kinematics",
       "path": "content/scenes/spacetime/lorentz_kinematics.json",
       "searchTarget": "content/scenes/spacetime/lorentz_kinematics.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/spacetime/mapping_planck_scale.json",
+      "nodeType": "scene",
+      "id": "dynamics__mapping_planck_scale",
+      "name": "Mapping Planck Scale",
+      "path": "content/scenes/spacetime/mapping_planck_scale.json",
+      "searchTarget": "content/scenes/spacetime/mapping_planck_scale.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/spacetime/medium_exclusion_volume.json",
+      "nodeType": "scene",
+      "id": "nuclear_atomic__displacement_of_spacetime",
+      "name": "Displacement of Spacetime",
+      "path": "content/scenes/spacetime/medium_exclusion_volume.json",
+      "searchTarget": "content/scenes/spacetime/medium_exclusion_volume.json",
       "implicit": false
     },
     {
@@ -6112,7 +6112,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/spacetime/medium-exclusion-volume.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
-      "name": "Visualizing Volumes and Exclusion in the Universe",
+      "name": "Medium Exclusion Volume",
       "path": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
       "searchTarget": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
       "implicit": false
@@ -6993,13 +6993,6 @@
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
-      "to": "scene:content/scenes/dynamics/collinear_breather.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[2]"
-    },
-    {
-      "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/dyadic_resonance_lock.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
@@ -7014,45 +7007,10 @@
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
-      "to": "scene:content/scenes/dynamics/emergence_of_u_1_su_2.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[7]"
-    },
-    {
-      "from": "scene:content/scenes/dynamics/dynamics.json",
-      "to": "scene:content/scenes/dynamics/gauge_symmetries.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[8]"
-    },
-    {
-      "from": "scene:content/scenes/dynamics/dynamics.json",
-      "to": "scene:content/scenes/dynamics/horizon_chirality.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[11]"
-    },
-    {
-      "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/kinetic_and_potential_energy.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
       "field": "scene.children[6]"
-    },
-    {
-      "from": "scene:content/scenes/dynamics/dynamics.json",
-      "to": "scene:content/scenes/dynamics/mapping_planck_scale.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[9]"
-    },
-    {
-      "from": "scene:content/scenes/dynamics/dynamics.json",
-      "to": "scene:content/scenes/dynamics/master_equation_breather.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[13]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -7063,20 +7021,6 @@
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
-      "to": "scene:content/scenes/dynamics/mode_taxonomy.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[14]"
-    },
-    {
-      "from": "scene:content/scenes/dynamics/dynamics.json",
-      "to": "scene:content/scenes/dynamics/planar_bridge_closure.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[10]"
-    },
-    {
-      "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/tri_binary_dynamics.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
@@ -7084,10 +7028,66 @@
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/interactions/emergence_of_u_1_su_2.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[7]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/interactions/gauge_symmetries.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[8]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/interactions/mode_taxonomy.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[14]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/proof-programs/collinear_breather.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/proof-programs/master_equation_breather.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[13]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/proof-programs/planar_bridge_closure.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[10]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/quantum/quantum.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
       "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/spacetime/horizon_chirality.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[11]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/spacetime/mapping_planck_scale.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/elements/ac.json",
@@ -9723,13 +9723,6 @@
     },
     {
       "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
-      "to": "scene:content/scenes/nuclear/displacement_of_spacetime.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "scene.children[6]"
-    },
-    {
-      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
       "to": "scene:content/scenes/nuclear/molecular_geometry.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/nuclear_atomic.json",
@@ -9748,6 +9741,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/nuclear_atomic.json",
       "field": "scene.children[9]"
+    },
+    {
+      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
+      "to": "scene:content/scenes/spacetime/medium_exclusion_volume.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/nuclear/nuclear_atomic.json",
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/nuclear/nucleus.json",
@@ -10674,13 +10674,6 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/dynamics/collinear_breather.json",
-      "to": "markdown_doc:content/markdown/aaa/proof-programs/collinear-breather.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/dynamics/collinear_breather.json",
-      "field": "scene.source.path"
-    },
-    {
       "from": "scene:content/scenes/dynamics/dyadic_resonance_lock.json",
       "to": "markdown_doc:content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
       "edgeType": "markdown_doc",
@@ -10695,27 +10688,6 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/dynamics/emergence_of_u_1_su_2.json",
-      "to": "markdown_doc:content/markdown/aaa/interactions/gauge-structure-emergence.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/dynamics/emergence_of_u_1_su_2.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/dynamics/gauge_symmetries.json",
-      "to": "markdown_doc:content/markdown/aaa/interactions/gauge-symmetries.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/dynamics/gauge_symmetries.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/dynamics/horizon_chirality.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/horizon-chirality.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/dynamics/horizon_chirality.json",
-      "field": "scene.source.path"
-    },
-    {
       "from": "scene:content/scenes/dynamics/kinetic_and_potential_energy.json",
       "to": "markdown_doc:content/markdown/aaa/dynamics/energy.md",
       "edgeType": "markdown_doc",
@@ -10723,38 +10695,10 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/dynamics/mapping_planck_scale.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/mapping-planck-scale.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/dynamics/mapping_planck_scale.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/dynamics/master_equation_breather.json",
-      "to": "markdown_doc:content/markdown/aaa/proof-programs/master-equation-breather.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/dynamics/master_equation_breather.json",
-      "field": "scene.source.path"
-    },
-    {
       "from": "scene:content/scenes/dynamics/master_equation_of_motion.json",
       "to": "markdown_doc:content/markdown/aaa/dynamics/master-equation.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/dynamics/master_equation_of_motion.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/dynamics/mode_taxonomy.json",
-      "to": "markdown_doc:content/markdown/aaa/interactions/mode-taxonomy.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/dynamics/mode_taxonomy.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/dynamics/planar_bridge_closure.json",
-      "to": "markdown_doc:content/markdown/aaa/proof-programs/planar-bridge-closure.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/dynamics/planar_bridge_closure.json",
       "field": "scene.source.path"
     },
     {
@@ -10807,6 +10751,27 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/interactions/emergence_of_u_1_su_2.json",
+      "to": "markdown_doc:content/markdown/aaa/interactions/gauge-structure-emergence.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/interactions/emergence_of_u_1_su_2.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/interactions/gauge_symmetries.json",
+      "to": "markdown_doc:content/markdown/aaa/interactions/gauge-symmetries.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/interactions/gauge_symmetries.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/interactions/mode_taxonomy.json",
+      "to": "markdown_doc:content/markdown/aaa/interactions/mode-taxonomy.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/interactions/mode_taxonomy.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/nuclear/atomic_spectra.json",
       "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
       "edgeType": "markdown_doc",
@@ -10825,13 +10790,6 @@
       "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/condensed-matter.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/nuclear/condensed_matter.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/nuclear/displacement_of_spacetime.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/medium-exclusion-volume.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/nuclear/displacement_of_spacetime.json",
       "field": "scene.source.path"
     },
     {
@@ -10933,6 +10891,27 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/proof-programs/collinear_breather.json",
+      "to": "markdown_doc:content/markdown/aaa/proof-programs/collinear-breather.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/proof-programs/collinear_breather.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/proof-programs/master_equation_breather.json",
+      "to": "markdown_doc:content/markdown/aaa/proof-programs/master-equation-breather.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/proof-programs/master_equation_breather.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/proof-programs/planar_bridge_closure.json",
+      "to": "markdown_doc:content/markdown/aaa/proof-programs/planar-bridge-closure.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/proof-programs/planar_bridge_closure.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/quantum/bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response.json",
       "to": "markdown_doc:content/markdown/aaa/quantum/bell-theorem.md",
       "edgeType": "markdown_doc",
@@ -11010,10 +10989,31 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/spacetime/horizon_chirality.json",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/horizon-chirality.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/spacetime/horizon_chirality.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/spacetime/lorentz_kinematics.json",
       "to": "markdown_doc:content/markdown/aaa/spacetime/lorentz-kinematics.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/spacetime/lorentz_kinematics.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/mapping_planck_scale.json",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/mapping-planck-scale.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/spacetime/mapping_planck_scale.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/medium_exclusion_volume.json",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/spacetime/medium_exclusion_volume.json",
       "field": "scene.source.path"
     },
     {

@@ -314,7 +314,7 @@ Only after all five rows are verified on the same certified domain does the cond
 ## Related Priorities
 
 - [master-equation-closure](../../master-equation-closure/master-equation-closure.md)
-- [simulations](../../deferred/simulations.md)
+- [simulations](../../simulations/simulations.md)
 - [chapter-authoring](../../../op/chapter-authoring.md)
 
 ## Related AAA Notes

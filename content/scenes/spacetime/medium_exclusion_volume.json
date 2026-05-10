@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "dynamics__mapping_planck_scale",
-    "title": "Mapping Planck Scale",
+    "id": "spacetime__medium_exclusion_volume",
+    "title": "Medium Exclusion Volume",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/spacetime/mapping-planck-scale.md"
+      "path": "content/markdown/aaa/spacetime/medium-exclusion-volume.md"
     },
     "view": {
       "autoOpen": true

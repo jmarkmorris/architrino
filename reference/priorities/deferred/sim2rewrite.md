@@ -47,7 +47,7 @@ This document captures the integration strategy for porting the sim2 physics gen
 
 ## Related Priorities
 
-- [simulations](simulations.md)
+- [simulations](../simulations/simulations.md)
 - [animator-reaction](pdg/pdg.md)
 - [animator](../animator/animator.md)
 

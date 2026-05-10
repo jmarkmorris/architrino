@@ -46,7 +46,7 @@ Populate the missing quantum closure notes only after the work becomes testable.
 ## Related Priorities
 
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
-- [simulations](../deferred/simulations.md)
+- [simulations](../simulations/simulations.md)
 - [mass-map](../mass-map/mass-map.md)
 - [standard-model-closure](../standard-model-closure/standard-model-closure.md)
 

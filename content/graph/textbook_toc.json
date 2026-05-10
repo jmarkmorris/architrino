@@ -805,11 +805,11 @@
             ]
           },
           {
-            "id": "dynamics__collinear_breather",
+            "id": "proof_programs__collinear_breather",
             "title": "1D Collinear Binary (Reduced Model)",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/dynamics/collinear_breather.json",
+            "scenePath": "content/scenes/proof-programs/collinear_breather.json",
             "markdownPath": "content/markdown/aaa/proof-programs/collinear-breather.md",
             "sections": [
               {
@@ -1285,11 +1285,11 @@
             ]
           },
           {
-            "id": "dynamics__emergence_of_u_1_su_2",
+            "id": "interactions__emergence_of_u_1_su_2",
             "title": "Emergence of U(1)/SU(2)",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/dynamics/emergence_of_u_1_su_2.json",
+            "scenePath": "content/scenes/interactions/emergence_of_u_1_su_2.json",
             "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
             "sections": [
               {
@@ -1351,11 +1351,11 @@
             ]
           },
           {
-            "id": "dynamics__gauge_symmetries",
+            "id": "interactions__gauge_symmetries",
             "title": "Gauge Symmetries",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/dynamics/gauge_symmetries.json",
+            "scenePath": "content/scenes/interactions/gauge_symmetries.json",
             "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
             "sections": [
               {
@@ -1417,11 +1417,11 @@
             ]
           },
           {
-            "id": "dynamics__mapping_planck_scale",
+            "id": "spacetime__mapping_planck_scale",
             "title": "Mapping Planck Scale",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/dynamics/mapping_planck_scale.json",
+            "scenePath": "content/scenes/spacetime/mapping_planck_scale.json",
             "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
             "sections": [
               {
@@ -1499,11 +1499,11 @@
             ]
           },
           {
-            "id": "dynamics__planar_bridge_closure",
+            "id": "proof_programs__planar_bridge_closure",
             "title": "Planar Bridge Closure",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/dynamics/planar_bridge_closure.json",
+            "scenePath": "content/scenes/proof-programs/planar_bridge_closure.json",
             "markdownPath": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
             "sections": [
               {
@@ -1613,11 +1613,11 @@
             ]
           },
           {
-            "id": "dynamics__horizon_chirality",
+            "id": "spacetime__horizon_chirality",
             "title": "Horizon Chirality",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/dynamics/horizon_chirality.json",
+            "scenePath": "content/scenes/spacetime/horizon_chirality.json",
             "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
             "sections": [
               {
@@ -1841,11 +1841,11 @@
             ]
           },
           {
-            "id": "dynamics__master_equation_breather",
+            "id": "proof_programs__master_equation_breather",
             "title": "Master Equation Breather",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/dynamics/master_equation_breather.json",
+            "scenePath": "content/scenes/proof-programs/master_equation_breather.json",
             "markdownPath": "content/markdown/aaa/proof-programs/master-equation-breather.md",
             "sections": [
               {
@@ -1995,11 +1995,11 @@
             ]
           },
           {
-            "id": "dynamics__mode_taxonomy",
+            "id": "interactions__mode_taxonomy",
             "title": "Mode Taxonomy",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/dynamics/mode_taxonomy.json",
+            "scenePath": "content/scenes/interactions/mode_taxonomy.json",
             "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
             "sections": [
               {
@@ -3004,11 +3004,11 @@
             ]
           },
           {
-            "id": "nuclear_atomic__displacement_of_spacetime",
-            "title": "Displacement of Spacetime",
+            "id": "spacetime__medium_exclusion_volume",
+            "title": "Medium Exclusion Volume",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/nuclear/displacement_of_spacetime.json",
+            "scenePath": "content/scenes/spacetime/medium_exclusion_volume.json",
             "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
             "sections": [
               {

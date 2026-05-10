@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "dynamics__emergence_of_u_1_su_2",
-    "title": "Emergence of U(1)/SU(2)",
+    "id": "interactions__gauge_symmetries",
+    "title": "Gauge Symmetries",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/interactions/gauge-structure-emergence.md"
+      "path": "content/markdown/aaa/interactions/gauge-symmetries.md"
     },
     "view": {
       "autoOpen": true

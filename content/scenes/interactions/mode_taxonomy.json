@@ -1,7 +1,7 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "dynamics__mode_taxonomy",
+    "id": "interactions__mode_taxonomy",
     "title": "Mode Taxonomy",
     "type": "Scene-Markdown-View",
     "units": "relative",

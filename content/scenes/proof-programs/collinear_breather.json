@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "dynamics__master_equation_breather",
-    "title": "Master Equation Breather",
+    "id": "proof_programs__collinear_breather",
+    "title": "1D Collinear Binary (Reduced Model)",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/proof-programs/master-equation-breather.md"
+      "path": "content/markdown/aaa/proof-programs/collinear-breather.md"
     },
     "view": {
       "autoOpen": true

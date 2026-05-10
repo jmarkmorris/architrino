@@ -953,12 +953,12 @@
     {
       "id": "dynamics__emergence_of_u_1_su_2",
       "name": "Emergence of U(1)/SU(2)",
-      "path": "content/scenes/dynamics/emergence_of_u_1_su_2.json"
+      "path": "content/scenes/interactions/emergence_of_u_1_su_2.json"
     },
     {
       "id": "dynamics__gauge_symmetries",
       "name": "Gauge Symmetries",
-      "path": "content/scenes/dynamics/gauge_symmetries.json"
+      "path": "content/scenes/interactions/gauge_symmetries.json"
     },
     {
       "id": "dynamics__kinetic_and_potential_energy",
@@ -968,7 +968,7 @@
     {
       "id": "dynamics__mapping_planck_scale",
       "name": "Mapping Planck Scale",
-      "path": "content/scenes/dynamics/mapping_planck_scale.json"
+      "path": "content/scenes/spacetime/mapping_planck_scale.json"
     },
     {
       "id": "dynamics__master_equation_of_motion",
@@ -978,12 +978,12 @@
     {
       "id": "dynamics__master_equation_breather",
       "name": "Master Equation Breather",
-      "path": "content/scenes/dynamics/master_equation_breather.json"
+      "path": "content/scenes/proof-programs/master_equation_breather.json"
     },
     {
       "id": "dynamics__mode_taxonomy",
       "name": "Mode Taxonomy",
-      "path": "content/scenes/dynamics/mode_taxonomy.json"
+      "path": "content/scenes/interactions/mode_taxonomy.json"
     },
     {
       "id": "dynamics__tri_binary_dynamics",
@@ -1033,7 +1033,7 @@
     {
       "id": "nuclear_atomic__displacement_of_spacetime",
       "name": "Displacement of Spacetime",
-      "path": "content/scenes/nuclear/displacement_of_spacetime.json"
+      "path": "content/scenes/spacetime/medium_exclusion_volume.json"
     },
     {
       "id": "nuclear_atomic__molecular_geometry",
@@ -1408,17 +1408,17 @@
     {
       "id": "dynamics__collinear_breather",
       "name": "1D Collinear Binary (Reduced Model)",
-      "path": "content/scenes/dynamics/collinear_breather.json"
+      "path": "content/scenes/proof-programs/collinear_breather.json"
     },
     {
       "id": "dynamics__horizon_chirality",
       "name": "Horizon Chirality",
-      "path": "content/scenes/dynamics/horizon_chirality.json"
+      "path": "content/scenes/spacetime/horizon_chirality.json"
     },
     {
       "id": "dynamics__planar_bridge_closure",
       "name": "Planar Bridge Closure",
-      "path": "content/scenes/dynamics/planar_bridge_closure.json"
+      "path": "content/scenes/proof-programs/planar_bridge_closure.json"
     },
     {
       "id": "archie__applications",

@@ -46,7 +46,7 @@ Treat [dyadic-resonance-lock.md](../../../content/markdown/aaa/dynamics/dyadic-r
 ## Related Priorities
 
 - [phenomenological-heuristics](phenomenological-heuristics.md)
-- [simulations](../deferred/simulations.md)
+- [simulations](../simulations/simulations.md)
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
 
 ## Related AAA Notes
