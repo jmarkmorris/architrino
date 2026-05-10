@@ -820,7 +820,7 @@ The enumeration deliverable is the following table, filled with exact formulas o
 | $I_4$ | $I_3$ | target | target | target | target | target | target | target | open |
 | $I_4$ | $I_4$ | target | target | target | target | target | target | target | open |
 
-The parity check is imported from Proposition 3 in [master-equation.md](./master-equation.md): generic folds create or annihilate one root pair, so
+The parity check is imported from Proposition 3 in [master-equation.md](../dynamics/master-equation.md): generic folds create or annihilate one root pair, so
 $$
 \Delta N\in 2\mathbb{Z},
 \qquad
@@ -836,7 +836,7 @@ with every local unsigned jump even. This is a discrete consistency test on the 
 
 ### Causal-Root Ledger and Action Bookkeeping
 
-The enumeration table is also the bridge to the discrete-step language in [energy.md](energy.md). Let
+The enumeration table is also the bridge to the discrete-step language in [energy.md](../dynamics/energy.md). Let
 $$
 N_{\alpha\beta}
 $$

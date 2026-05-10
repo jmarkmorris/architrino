@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `hypothesis-bank`
-- Rank: `11`
+- Rank: `10`
 - Value: `2`
 - Cost: `3`
 - ROI: `0.67`

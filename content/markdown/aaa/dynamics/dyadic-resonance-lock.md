@@ -234,4 +234,4 @@ $$
 
 That identity may help characterize a radiative-stealth phase arrangement of an already-formed lock, but it should not be confused with the frequency-selection assumptions above.
 
-For neighboring closure problems, see [Planar Bridge Closure](planar-bridge-closure.md) and [Horizon Chirality](horizon-chirality.md).
+For neighboring closure problems, see [Planar Bridge Closure](../proof-programs/planar-bridge-closure.md) and [Horizon Chirality](horizon-chirality.md).

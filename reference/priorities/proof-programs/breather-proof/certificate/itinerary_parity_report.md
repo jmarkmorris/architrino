@@ -26,7 +26,7 @@ $$
 \to
 \mathsf{S}_{\mathrm{sub}}.
 $$
-This is the generic transverse option from [closed-form-collinear-breather-ansatz.md](../../../../content/markdown/aaa/dynamics/closed-form-collinear-breather-ansatz.md). The glancing apocenter itinerary remains a fallback if this branch enumeration fails or if the corridor forces a degenerate outer turn.
+This is the generic transverse option from [closed-form-collinear-breather-ansatz.md](../../../../../content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md). The glancing apocenter itinerary remains a fallback if this branch enumeration fails or if the corridor forces a degenerate outer turn.
 
 ## Separator Ledger
 

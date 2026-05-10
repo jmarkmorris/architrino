@@ -2,16 +2,16 @@
 
 ## Purpose
 
-This chapter isolates the first higher-dimensional closure problem that can move the dynamics stack forward in a decisive way. The exact delayed law is already stated in [Master Equation of Motion](./master-equation.md), and the branch-topology machinery is already formalized in [Causal Action Functional](./causal-action-functional.md). What is still missing is a theorem-backed bridge showing that a genuinely planar delayed system admits a controlled section class, local branch regularity, bounded caustic transit, a genuine radial turnaround, and a return map that closes on a controlled envelope.
+This chapter isolates the first higher-dimensional closure problem that can move the dynamics stack forward in a decisive way. The exact delayed law is already stated in [Master Equation of Motion](../dynamics/master-equation.md), and the branch-topology machinery is already formalized in [Causal Action Functional](../dynamics/causal-action-functional.md). What is still missing is a theorem-backed bridge showing that a genuinely planar delayed system admits a controlled section class, local branch regularity, bounded caustic transit, a genuine radial turnaround, and a return map that closes on a controlled envelope.
 
-The planar bridge is the first regime where the proof architecture must leave the line while still retaining enough symmetry to remain mathematically tractable. If this bridge closes, it becomes the substrate basis for planar lock, terminal aligned modes, and the horizon-facing chirality questions developed in [Horizon Chirality and Planar Spin](./horizon-chirality.md). If it fails, the failure should identify the exact geometric obstruction rather than leaving the whole closure program underdetermined.
+The planar bridge is the first regime where the proof architecture must leave the line while still retaining enough symmetry to remain mathematically tractable. If this bridge closes, it becomes the substrate basis for planar lock, terminal aligned modes, and the horizon-facing chirality questions developed in [Horizon Chirality and Planar Spin](../dynamics/horizon-chirality.md). If it fails, the failure should identify the exact geometric obstruction rather than leaving the whole closure program underdetermined.
 
 ## Position in the Dynamics Stack
 
 The present chapter sits between four existing layers:
 
-1. the exact delayed equations in [Master Equation of Motion](./master-equation.md),
-2. the topological branch formalism in [Causal Action Functional](./causal-action-functional.md),
+1. the exact delayed equations in [Master Equation of Motion](../dynamics/master-equation.md),
+2. the topological branch formalism in [Causal Action Functional](../dynamics/causal-action-functional.md),
 3. the reduced return-map success in [1D Collinear Breather](./collinear-breather.md),
 4. the higher-dimensional program statement in [Master-Equation Breather Program](./master-equation-breather.md).
 
@@ -84,7 +84,7 @@ The target statement is of the following form:
 
 > On an admissible planar seed packet, the delayed chords and instantaneous velocities remain inside a finite directional atlas on a short post-section interval, with quantitative angular separation from the Jacobian-null directions.
 
-The right conceptual bridge to [Causal Action Functional](./causal-action-functional.md) is the causal locus picture. In the regular regime, branch labels remain locally constant and can change only when
+The right conceptual bridge to [Causal Action Functional](../dynamics/causal-action-functional.md) is the causal locus picture. In the regular regime, branch labels remain locally constant and can change only when
 $$
 F(t,t')=0,
 \qquad
@@ -122,7 +122,7 @@ The right target is therefore a bounded fold-transit theorem:
 
 > When an admissible history enters a sufficiently small tubular neighborhood of a planar fold where $F=0$ and $\nabla F=0$, the dual-mollified delayed impulse remains finite and the outgoing history stays inside an explicitly controlled post-fold sector.
 
-This is the first place where the topological criterion from [Causal Action Functional](./causal-action-functional.md) must be combined with quantitative delayed dynamics rather than cited abstractly.
+This is the first place where the topological criterion from [Causal Action Functional](../dynamics/causal-action-functional.md) must be combined with quantitative delayed dynamics rather than cited abstractly.
 
 ## Radial Turnaround Versus Centrifugal Leakage
 
@@ -196,17 +196,17 @@ That order matters. Without a transverse seed packet, the return map is not well
 
 This chapter is the top bottleneck because it is upstream of several attractive but softer narratives.
 
-- It is upstream of the terminal aligned-mode story in [Mapping the Planck Scale to the Tri-Binary Geometry](./mapping-Planck-scale.md).
-- It is upstream of the planar-lock and branch-selection story in [Horizon Chirality and Planar Spin](./horizon-chirality.md).
-- It is upstream of any reliable effective reduction in [Effective Lagrangian](./effective-lagrangian.md) and [Gauge Symmetries](./gauge-symmetries.md).
+- It is upstream of the terminal aligned-mode story in [Mapping the Planck Scale to the Tri-Binary Geometry](../dynamics/mapping-Planck-scale.md).
+- It is upstream of the planar-lock and branch-selection story in [Horizon Chirality and Planar Spin](../dynamics/horizon-chirality.md).
+- It is upstream of any reliable effective reduction in [Effective Lagrangian](../dynamics/effective-lagrangian.md) and [Gauge Symmetries](../dynamics/gauge-symmetries.md).
 
 If planar bridge closure fails, those higher-level chapters must become more conditional. If it succeeds, they gain a much firmer substrate basis.
 
 ## Interfaces to Other Chapters
 
-- [Master Equation of Motion](./master-equation.md): exact delayed law, root equations, and Jacobian structure.
-- [Causal Action Functional](./causal-action-functional.md): branch labels, coarea reduction, and the Jacobian-null bifurcation criterion.
+- [Master Equation of Motion](../dynamics/master-equation.md): exact delayed law, root equations, and Jacobian structure.
+- [Causal Action Functional](../dynamics/causal-action-functional.md): branch labels, coarea reduction, and the Jacobian-null bifurcation criterion.
 - [1D Collinear Breather](./collinear-breather.md): reduced return-map architecture and tame-envelope philosophy.
 - [Master-Equation Breather Program](./master-equation-breather.md): global roadmap that this chapter now instantiates in the first planar regime.
-- [Tri-Binary Dynamics](./tri-binary-dynamics.md): higher-dimensional geometric target that eventually inherits the planar bridge machinery.
-- [Horizon Chirality and Planar Spin](./horizon-chirality.md): downstream interpretation of planar branch selection once the planar bridge is mathematically under control.
+- [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md): higher-dimensional geometric target that eventually inherits the planar bridge machinery.
+- [Horizon Chirality and Planar Spin](../dynamics/horizon-chirality.md): downstream interpretation of planar branch selection once the planar bridge is mathematically under control.

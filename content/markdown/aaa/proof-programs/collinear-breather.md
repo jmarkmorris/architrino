@@ -10322,8 +10322,8 @@ Here "closed-form solution" means an elementary formula for the orbit. It does n
 
 ## Related Chapters
 
-- [master-equation.md](./master-equation.md)
-- [binary-dynamics.md](./binary-dynamics.md)
-- [causal-action-functional.md](./causal-action-functional.md)
-- [energy.md](./energy.md)
-- [dyadic-resonance-lock.md](./dyadic-resonance-lock.md)
+- [master-equation.md](../dynamics/master-equation.md)
+- [binary-dynamics.md](../dynamics/binary-dynamics.md)
+- [causal-action-functional.md](../dynamics/causal-action-functional.md)
+- [energy.md](../dynamics/energy.md)
+- [dyadic-resonance-lock.md](../dynamics/dyadic-resonance-lock.md)

@@ -2117,18 +2117,6 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/dynamics/closed-form-collinear-breather-ansatz.md",
-      "name": "Closed-Form Collinear Breather Ansatz",
-      "path": "content/markdown/aaa/dynamics/closed-form-collinear-breather-ansatz.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/dynamics/collinear-breather.md",
-      "name": "1D Collinear Breather",
-      "path": "content/markdown/aaa/dynamics/collinear-breather.md",
-      "nodeType": "markdown_doc"
-    },
-    {
       "id": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
       "name": "Dyadic Resonance Lock",
       "path": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
@@ -2171,12 +2159,6 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/dynamics/master-equation-breather.md",
-      "name": "Master-Equation Breather Program",
-      "path": "content/markdown/aaa/dynamics/master-equation-breather.md",
-      "nodeType": "markdown_doc"
-    },
-    {
       "id": "content/markdown/aaa/dynamics/master-equation.md",
       "name": "Master Equation of Motion",
       "path": "content/markdown/aaa/dynamics/master-equation.md",
@@ -2186,12 +2168,6 @@
       "id": "content/markdown/aaa/dynamics/mode-taxonomy.md",
       "name": "Mode Taxonomy",
       "path": "content/markdown/aaa/dynamics/mode-taxonomy.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
-      "name": "Planar Bridge Closure",
-      "path": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2348,6 +2324,30 @@
       "id": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
       "name": "Unknowns and Paradoxes",
       "path": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
+      "name": "Closed-Form Collinear Breather Ansatz",
+      "path": "content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/proof-programs/collinear-breather.md",
+      "name": "1D Collinear Breather",
+      "path": "content/markdown/aaa/proof-programs/collinear-breather.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/proof-programs/master-equation-breather.md",
+      "name": "Master-Equation Breather Program",
+      "path": "content/markdown/aaa/proof-programs/master-equation-breather.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
+      "name": "Planar Bridge Closure",
+      "path": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5623,24 +5623,6 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/dynamics/closed-form-collinear-breather-ansatz.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/dynamics/closed-form-collinear-breather-ansatz.md",
-      "name": "Closed-Form Collinear Breather Ansatz",
-      "path": "content/markdown/aaa/dynamics/closed-form-collinear-breather-ansatz.md",
-      "searchTarget": "content/markdown/aaa/dynamics/closed-form-collinear-breather-ansatz.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/dynamics/collinear-breather.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/dynamics/collinear-breather.md",
-      "name": "1D Collinear Breather",
-      "path": "content/markdown/aaa/dynamics/collinear-breather.md",
-      "searchTarget": "content/markdown/aaa/dynamics/collinear-breather.md",
-      "implicit": false
-    },
-    {
       "nodeId": "markdown_doc:content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
@@ -5704,15 +5686,6 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/dynamics/master-equation-breather.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/dynamics/master-equation-breather.md",
-      "name": "Master-Equation Breather Program",
-      "path": "content/markdown/aaa/dynamics/master-equation-breather.md",
-      "searchTarget": "content/markdown/aaa/dynamics/master-equation-breather.md",
-      "implicit": false
-    },
-    {
       "nodeId": "markdown_doc:content/markdown/aaa/dynamics/master-equation.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/dynamics/master-equation.md",
@@ -5728,15 +5701,6 @@
       "name": "Mode Taxonomy",
       "path": "content/markdown/aaa/dynamics/mode-taxonomy.md",
       "searchTarget": "content/markdown/aaa/dynamics/mode-taxonomy.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/dynamics/planar-bridge-closure.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
-      "name": "Planar Bridge Closure",
-      "path": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
-      "searchTarget": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
       "implicit": false
     },
     {
@@ -5971,6 +5935,42 @@
       "name": "Unknowns and Paradoxes",
       "path": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
+      "name": "Closed-Form Collinear Breather Ansatz",
+      "path": "content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
+      "searchTarget": "content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/proof-programs/collinear-breather.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/proof-programs/collinear-breather.md",
+      "name": "1D Collinear Breather",
+      "path": "content/markdown/aaa/proof-programs/collinear-breather.md",
+      "searchTarget": "content/markdown/aaa/proof-programs/collinear-breather.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/proof-programs/master-equation-breather.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/proof-programs/master-equation-breather.md",
+      "name": "Master-Equation Breather Program",
+      "path": "content/markdown/aaa/proof-programs/master-equation-breather.md",
+      "searchTarget": "content/markdown/aaa/proof-programs/master-equation-breather.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/proof-programs/planar-bridge-closure.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
+      "name": "Planar Bridge Closure",
+      "path": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
+      "searchTarget": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
       "implicit": false
     },
     {
@@ -10675,7 +10675,7 @@
     },
     {
       "from": "scene:content/scenes/dynamics/collinear_breather.json",
-      "to": "markdown_doc:content/markdown/aaa/dynamics/collinear-breather.md",
+      "to": "markdown_doc:content/markdown/aaa/proof-programs/collinear-breather.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/dynamics/collinear_breather.json",
       "field": "scene.source.path"
@@ -10731,7 +10731,7 @@
     },
     {
       "from": "scene:content/scenes/dynamics/master_equation_breather.json",
-      "to": "markdown_doc:content/markdown/aaa/dynamics/master-equation-breather.md",
+      "to": "markdown_doc:content/markdown/aaa/proof-programs/master-equation-breather.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/dynamics/master_equation_breather.json",
       "field": "scene.source.path"
@@ -10752,7 +10752,7 @@
     },
     {
       "from": "scene:content/scenes/dynamics/planar_bridge_closure.json",
-      "to": "markdown_doc:content/markdown/aaa/dynamics/planar-bridge-closure.md",
+      "to": "markdown_doc:content/markdown/aaa/proof-programs/planar-bridge-closure.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/dynamics/planar_bridge_closure.json",
       "field": "scene.source.path"

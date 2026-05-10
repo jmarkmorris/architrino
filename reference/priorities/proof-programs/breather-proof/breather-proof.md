@@ -2,8 +2,8 @@
 
 ## Workstream Metadata
 
-- Kind: `priority`
-- Rank: `1`
+- Kind: `proof-subprogram`
+- Rank: `1.1`
 - Value: `10`
 - Cost: `4`
 - ROI: `2.50`
@@ -22,7 +22,7 @@
 
 ## Scope
 
-Treat [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md) as the proof core and [master-equation-breather.md](../../../content/markdown/aaa/dynamics/master-equation-breather.md) as the theorem-program atlas. The architecture is complete, but the proof is certificate-pending. This workstream now tracks the active closure package needed to turn the conditional fixed-point theorem into an existence theorem.
+Treat [collinear-breather.md](../../../../content/markdown/aaa/proof-programs/collinear-breather.md) as the proof core and [master-equation-breather.md](../../../../content/markdown/aaa/proof-programs/master-equation-breather.md) as the theorem-program atlas. The architecture is complete, but the proof is certificate-pending. This workstream now tracks the active closure package needed to turn the conditional fixed-point theorem into an existence theorem.
 
 ## Current State
 
@@ -35,7 +35,7 @@ Treat [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-b
 - The bridge chapter already records the portable return-map / tame-envelope / Schauder architecture, the completed reduced-planar binary bridge, and the completed first unreduced-planar binary bridge.
 - The reduced-planar bridge now runs end-to-end through section and gauge fixing, directional sorting, deep-past relocation, cone transversality, bounded caustic transit, vector recapture, tame-envelope closure, Schauder, and precise failure alternatives.
 - The unreduced-planar binary bridge now runs end-to-end through gauge-fixed sectioning, finite active branch-graph control, deep-past provenance or exclusion, multi-channel recapture, tame-envelope closure, Schauder, and precise closure-stage obstruction alternatives.
-- The planar three-body bridge in [master-equation-breather.md](../../../content/markdown/aaa/dynamics/master-equation-breather.md) now carries a full theorem-program ladder through unreduced well-posedness, gauge selection, no-accumulation, bounded caustic transit, finite active delay hypergraph, cluster-valued ancestry and deep-past exclusion, multi-observable recapture, explicit convex-core construction, boundary trapping, invariant-envelope closure, and the final Schauder capstone.
+- The planar three-body bridge in [master-equation-breather.md](../../../../content/markdown/aaa/proof-programs/master-equation-breather.md) now carries a full theorem-program ladder through unreduced well-posedness, gauge selection, no-accumulation, bounded caustic transit, finite active delay hypergraph, cluster-valued ancestry and deep-past exclusion, multi-observable recapture, explicit convex-core construction, boundary trapping, invariant-envelope closure, and the final Schauder capstone.
 - The planar three-body bridge also already includes:
   - an explicit symmetric seed packet;
   - a delayed seed-margin persistence lemma;
@@ -77,24 +77,24 @@ rather than to a mismatched tame-subclass / macro-envelope pair.
 
 - Treat the theorem architecture as frozen unless a proof-breaking defect is discovered.
 - Do not add fresh theorem layers before the finite certificate packet has been attempted.
-- Build the active closure package under `reference/priorities/breather-proof/certificate/`.
+- Build the active closure package under `reference/priorities/proof-programs/breather-proof/certificate/`.
 - The accepted proof artifact is a pass/fail finite audit on one candidate
 $$
 \phi_{\mathrm{cyc}},
 $$
 not a new roadmap.
-- Treat [tri-binary-causal-closure](../tri-binary-causal-closure/tri-binary-causal-closure.md) as a separate active-development synthesis workstream, not as a replacement for the finite certificate packet. Before deployment, unresolved synthesis items must be closed, kept as explicit roadmap targets, routed into the relevant priority workstream, or cut.
+- Treat [tri-binary-causal-closure](../../tri-binary-causal-closure/tri-binary-causal-closure.md) as a separate active-development synthesis workstream, not as a replacement for the finite certificate packet. Before deployment, unresolved synthesis items must be closed, kept as explicit roadmap targets, routed into the relevant priority workstream, or cut.
 
 ## Immediate Cross-Document Action Plan
 
-1. The exact dual-mollified absolute-time equation now belongs in [master-equation.md](../../../content/markdown/aaa/dynamics/master-equation.md) as the canonical evolution law for certification. Branch sums are local simple-root reductions of that law.
+1. The exact dual-mollified absolute-time equation now belongs in [master-equation.md](../../../../content/markdown/aaa/dynamics/master-equation.md) as the canonical evolution law for certification. Branch sums are local simple-root reductions of that law.
 2. Verify the proposed velocity-class itinerary before generating a candidate cycle. For the four-arc skeleton or any replacement itinerary, check the fold-parity constraints
    $$
    \Delta N\in 2\mathbb{Z},
    \qquad
    \Delta D=0,
    $$
-   from Proposition 3 of [master-equation.md](../../../content/markdown/aaa/dynamics/master-equation.md).
+   from Proposition 3 of [master-equation.md](../../../../content/markdown/aaa/dynamics/master-equation.md).
 3. Generate one candidate collinear cycle
    $$
    \phi_{\mathrm{cyc}}
@@ -102,7 +102,7 @@ not a new roadmap.
    by ansatz, collocation, or simulation.
 4. Enumerate active and inactive path-history roots on a finite mesh around that candidate.
 5. Verify the five audit rows below on the same certified domain.
-6. Promote the conditional Schauder theorem in [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md) only after the finite audit passes.
+6. Promote the conditional Schauder theorem in [collinear-breather.md](../../../../content/markdown/aaa/proof-programs/collinear-breather.md) only after the finite audit passes.
 
 The vulnerable assumption is that a finite active branch chart with positive Jacobian floors and positive inactive-root gaps exists around one candidate cycle. The direct test is root enumeration plus interval certification for
 $$
@@ -113,7 +113,7 @@ $$
 
 The remaining collinear-breather work is now kept in two places:
 
-- the manuscript-level theorem ledger in [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md), under `Remaining blockers before Schauder`;
+- the manuscript-level theorem ledger in [collinear-breather.md](../../../../content/markdown/aaa/proof-programs/collinear-breather.md), under `Remaining blockers before Schauder`;
 - this priority handoff, which records why those blockers are still open and what data must be produced next.
 
 The current scaffold is no longer blocked by abstract Schauder theory. It is blocked by the missing finite certificate data for one candidate certified cycle
@@ -211,7 +211,7 @@ The finite audit rows are:
    $$
    (\eta,\epsilon_c,g)
    $$
-   constraints, including the competing lower and upper core-scale bounds from the corridor nonemptiness criterion in [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md). After that, verify the factorized coefficient inequalities
+   constraints, including the competing lower and upper core-scale bounds from the corridor nonemptiness criterion in [collinear-breather.md](../../../../content/markdown/aaa/proof-programs/collinear-breather.md). After that, verify the factorized coefficient inequalities
    $$
    C_{\mathrm{in}}(\epsilon_c)>0,
    \qquad
@@ -299,7 +299,7 @@ The finite audit rows are:
      origin-layer continuity, certified fold-event transitions, and certified branch-chart well-posedness on the stored history and one-cycle continuation.
    - `certificate/pass_fail_ledger.md`: one table summarizing all five rows, artifact hashes or versions, pass/fail status, and the exact obstruction if any row fails.
 
-Only after all five rows are verified on the same certified domain does the conditional Schauder theorem in [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md) become an actual existence theorem. Until then, the project has a precise fixed-point proof architecture, not a completed breather proof and not a closed-form solution.
+Only after all five rows are verified on the same certified domain does the conditional Schauder theorem in [collinear-breather.md](../../../../content/markdown/aaa/proof-programs/collinear-breather.md) become an actual existence theorem. Until then, the project has a precise fixed-point proof architecture, not a completed breather proof and not a closed-form solution.
 
 ## Proof-Writing Order
 
@@ -309,17 +309,17 @@ Only after all five rows are verified on the same certified domain does the cond
 4. Produce the monodromy diagnostic and choose the returned-sample proof route.
 5. Produce returned-sample preservation, preferring boundary trapping if residual sensitivities are too large.
 6. Produce the topology certificate.
-7. Only after the itinerary gate and all five audit rows pass, update [collinear-breather.md](../../../content/markdown/aaa/dynamics/collinear-breather.md) from conditional theorem to completed dual-mollified existence theorem.
+7. Only after the itinerary gate and all five audit rows pass, update [collinear-breather.md](../../../../content/markdown/aaa/proof-programs/collinear-breather.md) from conditional theorem to completed dual-mollified existence theorem.
 
 ## Related Priorities
 
-- [master-equation-closure](../master-equation-closure/master-equation-closure.md)
-- [simulations](../deferred/simulations.md)
-- [chapter-authoring](../../op/chapter-authoring.md)
+- [master-equation-closure](../../master-equation-closure/master-equation-closure.md)
+- [simulations](../../deferred/simulations.md)
+- [chapter-authoring](../../../op/chapter-authoring.md)
 
 ## Related AAA Notes
 
-- [collinear-breather](../../../content/markdown/aaa/dynamics/collinear-breather.md)
-- [master-equation-breather](../../../content/markdown/aaa/dynamics/master-equation-breather.md)
-- [planar-bridge-closure](../../../content/markdown/aaa/dynamics/planar-bridge-closure.md)
-- [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md)
+- [collinear-breather](../../../../content/markdown/aaa/proof-programs/collinear-breather.md)
+- [master-equation-breather](../../../../content/markdown/aaa/proof-programs/master-equation-breather.md)
+- [planar-bridge-closure](../../../../content/markdown/aaa/proof-programs/planar-bridge-closure.md)
+- [master-equation](../../../../content/markdown/aaa/dynamics/master-equation.md)

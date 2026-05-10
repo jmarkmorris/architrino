@@ -44,9 +44,11 @@ This keeps the files readable in plain Markdown, diff-friendly in git, and struc
 
 This single table is the canonical rollup for every direct child of `priorities`. Use it to maintain ranking, notice category mistakes, and decide which directories still deserve to live here as active workstreams.
 
+Nested proof subprograms live under [proof-programs](../proof-programs/proof-programs.md). They keep local metadata for handoff clarity, but the parent `proof-programs` row is the canonical top-level ranking entry.
+
 | Rank | Slug                                                                               | Title                                                                              | Value | Cost |  ROI |
 | ---: | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ----: | ---: | ---: |
-|    1 | [`breather-proof`](../breather-proof/breather-proof.md)                            | Execute the frozen breather proof program                                          |    10 |    4 | 2.50 |
+|    1 | [`proof-programs`](../proof-programs/proof-programs.md)                            | Proof programs: breather certificate and planar bridge closure                     |    10 |    4 | 2.50 |
 |    2 | [`mass-map`](../mass-map/mass-map.md)                                              | Noether-core stability, shielding, parameter ledger, and first mass map            |    10 |    4 | 2.50 |
 |    3 | [`tri-binary-causal-closure`](../tri-binary-causal-closure/tri-binary-causal-closure.md) | Tri-binary causal closure synthesis and dependency map                         |    10 |    4 | 2.50 |
 |    4 | [`animator`](../animator/animator.md)                                              | Scene animator                                                                     |     9 |    4 | 2.25 |
@@ -54,12 +56,11 @@ This single table is the canonical rollup for every direct child of `priorities`
 |    6 | [`dyadic-lock`](../dyadic-lock/dyadic-lock.md)                                     | Dyadic resonance lock reduced-map program                                          |     7 |    4 | 1.75 |
 |    7 | [`standard-model-closure`](../standard-model-closure/standard-model-closure.md)    | Remaining Standard Model assembly gaps, flavor mixing, and confinement             |     8 |    5 | 1.60 |
 |    8 | [`simulations`](../deferred/simulations.md)                                        | Simulations, regularization, and shell numerics                                    |     8 |    5 | 1.60 |
-|    9 | [`planar-bridge-closure`](../planar-bridge-closure/planar-bridge-closure.md)       | First planar delayed-bridge closure and tame return map                            |     6 |    5 | 1.20 |
-|   10 | [`strong-field-closure`](../strong-field-closure/strong-field-closure.md)          | Remaining black-hole / strong-field quantitative closure                           |     4 |    5 | 0.80 |
-|   11 | [`strong-field-hypotheses`](../strong-field-hypotheses/strong-field-hypotheses.md) | Preserve strong-field / tri-binary hypotheses                                      |     2 |    3 | 0.67 |
-|   12 | [`chapter-authoring`](../../op/chapter-authoring.md)                               | Unified chapter authoring queue and legacy-material recovery                       |     3 |    5 | 0.60 |
-|   13 | [`quantum-closure`](../quantum-closure/quantum-closure.md)                         | Born-rule / quantum closure with hard tests                                        |     4 |    8 | 0.50 |
-|   14 | [`cosmology-closure`](../cosmology-closure/cosmology-closure.md)                   | Cosmology transfer-function closure                                                |     2 |    9 | 0.22 |
+|    9 | [`strong-field-closure`](../strong-field-closure/strong-field-closure.md)          | Remaining black-hole / strong-field quantitative closure                           |     4 |    5 | 0.80 |
+|   10 | [`strong-field-hypotheses`](../strong-field-hypotheses/strong-field-hypotheses.md) | Preserve strong-field / tri-binary hypotheses                                      |     2 |    3 | 0.67 |
+|   11 | [`chapter-authoring`](../../op/chapter-authoring.md)                               | Unified chapter authoring queue and legacy-material recovery                       |     3 |    5 | 0.60 |
+|   12 | [`quantum-closure`](../quantum-closure/quantum-closure.md)                         | Born-rule / quantum closure with hard tests                                        |     4 |    8 | 0.50 |
+|   13 | [`cosmology-closure`](../cosmology-closure/cosmology-closure.md)                   | Cosmology transfer-function closure                                                |     2 |    9 | 0.22 |
 |    — | [`animator`](../animator/animator.md)                                              | animator                                                                           |     — |    — |    — |
 |    — | [`3x3`](../3x3/3x3.md)                                                             | 3x3 binary-slot matrix                                                             |     — |    — |    — |
 |    — | [`ellipsoid`](../ellipsoid/ellipsoid.md)                                           | Ellipsoid app idea                                                                 |     — |    — |    — |
@@ -69,12 +70,11 @@ This single table is the canonical rollup for every direct child of `priorities`
 
 ## Current Focus
 
-- Workstream `breather-proof`: architecture complete, certificate pending; the dual-mollified master-equation law is now recorded, the doubled four-arc itinerary has a coarse parity pass, and the next closure task is generating one symmetry-constrained candidate collinear cycle with a null-coordinate causal ledger and certified branch chart.
+- Workstream `proof-programs`: architecture complete, certificate pending; the dual-mollified master-equation law is now recorded, the doubled four-arc itinerary has a coarse parity pass, and the next closure task is generating one symmetry-constrained candidate collinear cycle with a null-coordinate causal ledger and certified branch chart. The planar delayed-bridge closure is kept as the queued higher-dimensional extension under the same directory.
 - Workstream `mass-map`: derive the first reusable mass map from tri-binary geometry rather than bookkeeping the parameter ledger in isolation.
 - Workstream `tri-binary-causal-closure`: run the continuity pass against the dependency map, then route the photon/QED, Lorentz/GR, equivalence, and topological certification burdens to the right proof workstreams before deployment.
 - Workstream `animator-reaction`: finish the forward pdgsolve/pdgedit/animator split and keep the active app path clean and contract-first.
 - Workstream `master-equation-closure`: carry the tractable master-equation stack far enough to support Lorentz / GR closure, quantum closure, and the first-principles mass program.
-- Workstream `planar-bridge-closure`: isolate the first planar delayed bridge strongly enough to support cone control, bounded fold transit, radial turnaround, and a tame return map.
 
 ## Top Cross-Workstream Next Actions
 

@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `deferred-priority`
-- Rank: `13`
+- Rank: `12`
 - Value: `4`
 - Cost: `8`
 - ROI: `0.50`

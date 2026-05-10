@@ -2,8 +2,8 @@
 
 ## Workstream Metadata
 
-- Kind: `priority`
-- Rank: `9`
+- Kind: `proof-subprogram`
+- Rank: `1.2`
 - Value: `6`
 - Cost: `5`
 - ROI: `1.20`
@@ -25,10 +25,10 @@ This workstream isolates the first higher-dimensional closure problem that can m
 
 This chapter sits between:
 
-1. [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md),
-2. [causal-action-functional](../../../content/markdown/aaa/dynamics/causal-action-functional.md),
-3. [collinear-breather](../../../content/markdown/aaa/dynamics/collinear-breather.md),
-4. [master-equation-breather](../../../content/markdown/aaa/dynamics/master-equation-breather.md).
+1. [master-equation](../../../../content/markdown/aaa/dynamics/master-equation.md),
+2. [causal-action-functional](../../../../content/markdown/aaa/dynamics/causal-action-functional.md),
+3. [collinear-breather](../../../../content/markdown/aaa/proof-programs/collinear-breather.md),
+4. [master-equation-breather](../../../../content/markdown/aaa/proof-programs/master-equation-breather.md).
 
 Its role is narrower than the full breather program. It does not attempt immediate many-body closure. It focuses on the first planar binary regime in which line-order arguments fail, tangential escape becomes real, and branch topology must be controlled together with radial recapture.
 
@@ -69,15 +69,15 @@ Each of these outcomes is still informative because it identifies the exact geom
 ## Related Priorities
 
 - [breather-proof](../breather-proof/breather-proof.md)
-- [master-equation-closure](../master-equation-closure/master-equation-closure.md)
-- [dyadic-lock](../dyadic-lock/dyadic-lock.md)
-- [strong-field-hypotheses](../strong-field-hypotheses/strong-field-hypotheses.md)
+- [master-equation-closure](../../master-equation-closure/master-equation-closure.md)
+- [dyadic-lock](../../dyadic-lock/dyadic-lock.md)
+- [strong-field-hypotheses](../../strong-field-hypotheses/strong-field-hypotheses.md)
 
 ## Related AAA Notes
 
-- [planar-bridge-closure](../../../content/markdown/aaa/dynamics/planar-bridge-closure.md)
-- [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md)
-- [causal-action-functional](../../../content/markdown/aaa/dynamics/causal-action-functional.md)
-- [collinear-breather](../../../content/markdown/aaa/dynamics/collinear-breather.md)
-- [master-equation-breather](../../../content/markdown/aaa/dynamics/master-equation-breather.md)
-- [horizon-chirality](../../../content/markdown/aaa/dynamics/horizon-chirality.md)
+- [planar-bridge-closure](../../../../content/markdown/aaa/proof-programs/planar-bridge-closure.md)
+- [master-equation](../../../../content/markdown/aaa/dynamics/master-equation.md)
+- [causal-action-functional](../../../../content/markdown/aaa/dynamics/causal-action-functional.md)
+- [collinear-breather](../../../../content/markdown/aaa/proof-programs/collinear-breather.md)
+- [master-equation-breather](../../../../content/markdown/aaa/proof-programs/master-equation-breather.md)
+- [horizon-chirality](../../../../content/markdown/aaa/dynamics/horizon-chirality.md)
