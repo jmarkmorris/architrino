@@ -11,8 +11,8 @@
 
 ## Task Queue
 
-1. `dependency_map` — Maintain the proof-dependency map and deployment handoff table. Status: `done`. Depends on: none.
-2. `continuity_pass` — Walk the synthesis section by section against the dependency map, especially shielding, momentum skew, and transverse-budget root-finding jumps. Status: `next`. Depends on: `dependency_map`.
+1. `tri_binary_dependency_map` — Maintain the proof-dependency map and deployment handoff table. Status: `done`. Depends on: none.
+2. `continuity_pass` — Walk the synthesis section by section against the dependency map, especially shielding, momentum skew, and transverse-budget root-finding jumps. Status: `next`. Depends on: `tri_binary_dependency_map`.
 3. `photon_qed_gate` — Build the three photon/QED stress-test packets for kinematics and optics, polarization and spin, and vertices and transitions. Status: `pending`. Depends on: `continuity_pass`.
 4. `deployment_handoff` — Route unresolved synthesis claims through inline theorem-roadmap tags and priority-table handoff rows before deployment. Status: `pending`. Depends on: `continuity_pass`.
 
@@ -20,11 +20,13 @@
 
 This workstream owns the synthesis bridge from tri-binary Noether-core closure to rest mass, proper time, effective Lorentz/GR behavior, photon propagation, and measurement. It is a proof-architecture and routing surface: active-development claims can live here while the dependency ladder is being built, but unresolved claims must be closed, retained as explicit roadmap items, routed to another priority workstream, or cut before deployment.
 
+The deployed dynamics baseline is [Tri-Binary Dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md). That chapter owns the Noether-core roles, speed-regime conventions, delay-envelope geometry, gradient response, local clock diagnostics, and stability tests. This priority document should import those mechanisms rather than re-defining them, then test whether they support the mass, time, relativity, photon, and measurement claims below.
+
 ## Synthesis Status and Scope
 
 This document is a synthesis and proof roadmap for the energy argument extending [Kinetic and Potential Energy](../../../content/markdown/aaa/dynamics/energy.md). It is not yet a completed theorem. Its purpose is to organize the current claim in academic order, preserve the conceptual content of the development, remove repetition, and identify the mathematical closures that must eventually be carried into the main dynamics, assembly, and spacetime chapters.
 
-The active development dependency map for this synthesis is [Tri-Binary Causal Closure Dependency Map](dependency-map.md). Before any deployed or textbook-facing promotion, unresolved items in that map must either be closed, retained as explicit roadmap targets, routed into the priority system, or cut.
+The active development dependency map for this synthesis is [Tri-Binary Dependency Map](tri-binary-dependency-map.md). Before any deployed or textbook-facing promotion, unresolved items in that map must either be closed, retained as explicit roadmap targets, routed into the priority system, or cut.
 
 Inline roadmap tags of the form [→ Target N](#theorem-roadmap) are deployment handoff markers. They do not prove the tagged claim; they identify the numbered theorem burden that must close before the claim can leave active-development status.
 

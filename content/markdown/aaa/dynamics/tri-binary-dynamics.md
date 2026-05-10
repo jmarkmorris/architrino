@@ -4,6 +4,12 @@ This chapter develops a working draft of tri-binary dynamics by extending the tw
 
 It should be read together with [Binary Dynamics](binary-dynamics.md), [Dyadic Resonance Lock](dyadic-resonance-lock.md), [Mapping the Planck Scale](mapping-Planck-scale.md), [Noether Core](../assemblies/noether-core.md), and [Emergent Metric](../spacetime/emergent-metric.md), since those notes supply the binary precursor, lock structure, alignment target, assembly carrier, and effective geometric bridge.
 
+## Relation to the Causal Closure Workstream
+
+This chapter owns the dynamics baseline: the Noether-core roles, speed-regime conventions, delay-envelope geometry, gradient response, local clock diagnostics, and stability tests that define the tri-binary mechanism. It does not try to close the full rest-mass, proper-time, photon, or relativistic-limit proof program.
+
+The active-development proof synthesis lives outside the deployed AAA chapter. That workstream uses the mechanism defined here as an input and carries the theorem burdens, deployment handoff tags, and unresolved priority routes.
+
 ## Working Hypotheses
 
 1. The formed Noether core has stable invariants ($R_{\text{core}}$, $\omega_{\text{core}}$, fixed phase offsets).
@@ -211,17 +217,22 @@ If those quantities cannot be matched between the gradient-driven and accelerati
 
 ---
 
-## Speculative Extensions
+## Routed Extensions
 
-### Tri-Binary Emergence and Hypothetical Properties
+The following items are retained here only as dynamics-facing boundary conditions. Their full proof burdens belong to the active-development causal-closure workstream, not to this chapter.
 
-An electrino:positrino binary is the most primitive assembly possible. Architrino assembly architecture posits that three binaries can become coupled into a "Noether core" tri-binary. This tri-binary is then the basis for all standard model particles, with each binary playing a distinct dynamical role.
+### Tri-Binary Role Hypotheses
+
+An electrino:positrino binary is the most primitive assembly considered in the current architecture. Architrino assembly architecture posits that three binaries can become coupled into a Noether core, with each binary playing a distinct dynamical role.
 
 - **Inner binary** (MCB, CFT-exterior role): typically in/near self-hit branch ($v \gtrsim c_f$ by history), and would define fundamental units if MCB attractor is confirmed.
 - **Middle binary** (CFT-exterior role): near the symmetry hinge ($v \approx c_f$) with variable radius/frequency; energy-storage fulcrum and coupling bridge.
 - **Outer binary** (CFT-exterior role): typically $v < c_f$ with expansion/contraction modes; couples strongly to Noether-sea gravitational/cosmological response.
 At the holographic horizon, the three binaries are treated as a different regime where forward-sector components approach $c_f$ together; in interior AdS-like hypotheses, wake-closure can be described with combined $v_{\text{eff}} > c_f$ without requiring every component speed to exceed $c_f$.
-**Working guess (speculative):** in the self-hit regime the effective "quantum jump" scale may be $2\Delta L_c$ rather than $\Delta L_c$, because two accelerating contributions (partner delay and self-hit) act together. If the inward track is well-approximated by a logarithmic spiral (exponential in angle), this would appear as a **kink** in the log-spiral slope at the hinge: $\Delta L_\text{cycle} = \Delta L_c$ below $c_f$, $\Delta L_\text{cycle} = 2\Delta L_c$ above. This is a hypothesis, not a derived result.
+
+The stronger claim that this architecture supplies the basis for rest mass, proper time, photon behavior, and standard-model particle families is routed to the causal-closure synthesis and its dependency map.
+
+### Hinge Equation Sketch
 
 **Equation of motion near the hinge ($v \approx c_f$)** For each architrino $i$ interacting with its partner $j$:
 $$
@@ -242,6 +253,8 @@ $$
 $$
 The symmetry breaking at the hinge is geometric: as $\tilde{\delta}_s\to 0^+$ the self-hit radial factor scales like $1/\sin(\tilde{\delta}_s/2)$, turning on a large outward term while the state remains continuous.
 
+The working guess that the self-hit regime may change the effective action-step scale from $\Delta L_c$ to $2\Delta L_c$ is a theorem burden for the causal-closure workstream. This chapter keeps only the local hinge geometry needed to state the dynamical branch condition.
+
 ### Black-Hole Regime Note
 
 The detailed black-hole treatment now lives in [../spacetime/black-holes.md](../spacetime/black-holes.md). For the purposes of this dynamics chapter, only the regime summary is needed:
@@ -252,6 +265,6 @@ The detailed black-hole treatment now lives in [../spacetime/black-holes.md](../
 
 This chapter therefore keeps only the tri-binary regime map and leaves the ontology, recycling logic, and observer-facing strong-field interpretation to the canonical spacetime chapters.
 
-In the tri-binary picture, each Noether core is a nested stack of three coupled binaries whose internal frequencies and radii are locked by self-hit geometry. The ontological substrate is the Euclidean void plus a dense Noether Sea, and the collective response of these cores defines a preferred propagation speed and local direction field for disturbances; coarse-graining yields an effective refractive index and a local orthonormal frame (tetrad), from which an emergent metric and connection are read. Observers built from the same tri-binary units couple to this medium in the same way, so their rulers and clocks are medium-shaped, leading them to infer a Lorentz-like spacetime with a universal "speed of light" even though the underlying void remains Euclidean with absolute time.
+In the tri-binary picture, each Noether core is a nested stack of three coupled binaries whose internal frequencies and radii are locked by self-hit geometry. This chapter uses that mechanism to define the local dynamics and diagnostics. The coarse-grained metric, observer-clock, and strong-field ontology belong to the spacetime chapters and the causal-closure proof synthesis.
 
 For the strong-field continuation of that story, see [Black Holes](../spacetime/black-holes.md) and [Horizon Chirality](horizon-chirality.md).

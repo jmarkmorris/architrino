@@ -1,8 +1,10 @@
-# Tri-Binary Causal Closure Dependency Map
+# Tri-Binary Dependency Map
 
 ## Purpose
 
 This is the active-development workbench for [tri-binary-causal-closure.md](tri-binary-causal-closure.md). Its job is to make the proof ladder explicit before the synthesis is promoted into deployed or textbook-facing material.
+
+The deployed dynamics baseline is [Tri-Binary Dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md). That chapter owns the mechanism definitions; this map owns the proof burdens that determine whether those mechanisms can carry the causal-closure synthesis.
 
 Each claim is tracked as:
 
@@ -30,6 +32,14 @@ No unresolved claim should remain as a loose sentence in the deployed version. E
 The deployment gate is passed only when every non-closed item in this map has a `roadmap`, `priority`, or `cut` disposition.
 
 ## Logical Spine
+
+### 0. Tri-Binary Dynamics Baseline
+
+- Inputs: [Tri-Binary Dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md), [Noether Core](../../../content/markdown/aaa/assemblies/noether-core.md), and [Binary Dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md).
+- Mechanism: use the AAA dynamics chapter as the canonical source for Noether-core roles, speed-regime conventions, delay-envelope geometry, gradient response, local clock diagnostics, and alignment/stability tests.
+- Output: a stable baseline vocabulary and mechanism set for the causal-closure synthesis.
+- Proof burden: keep the priority synthesis from silently redefining the mechanism; any stronger claim about mass, proper time, photons, measurement, or relativistic limits must be carried as a theorem target, priority route, or cut item here.
+- Current disposition: `roadmap`.
 
 ### 1. Substrate And Speed Conventions
 

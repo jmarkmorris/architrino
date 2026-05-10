@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 125,
-      "sections": 857
+      "sections": 858
     }
   },
   "tocRoot": {
@@ -2078,6 +2078,14 @@
             "sections": [
               {
                 "kind": "markdown-section",
+                "title": "Relation to the Causal Closure Workstream",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Relation to the Causal Closure Workstream",
+                "sectionKey": "relation to the causal closure workstream",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Working Hypotheses",
                 "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
                 "markdownSection": "Working Hypotheses",
@@ -2134,10 +2142,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Speculative Extensions",
+                "title": "Routed Extensions",
                 "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Speculative Extensions",
-                "sectionKey": "speculative extensions",
+                "markdownSection": "Routed Extensions",
+                "sectionKey": "routed extensions",
                 "headingLevel": 2
               }
             ]
