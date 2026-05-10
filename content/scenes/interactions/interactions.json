@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "interactions",
+    "title": "Interactions",
+    "type": "Scene-Index",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "rings"
+    },
+    "children": [
+      {
+        "nodeId": "emergence_of_u_1_su_2",
+        "scenePath": "content/scenes/interactions/emergence_of_u_1_su_2.json"
+      },
+      {
+        "nodeId": "gauge_symmetries",
+        "scenePath": "content/scenes/interactions/gauge_symmetries.json"
+      },
+      {
+        "nodeId": "mode_taxonomy",
+        "scenePath": "content/scenes/interactions/mode_taxonomy.json"
+      }
+    ]
+  },
+  "objects": [
+    {
+      "id": "emergence_of_u_1_su_2",
+      "label": "Emergence of U(1)/SU(2)",
+      "radius": 2.688,
+      "color": "#3a5f9f",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Emergence of U(1)/SU(2)",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "gauge_symmetries",
+      "label": "Gauge Symmetries",
+      "radius": 2.688,
+      "color": "#2f4f7a",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Gauge Symmetries",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "mode_taxonomy",
+      "label": "Mode Taxonomy",
+      "radius": 2.688,
+      "color": "#3c6a7a",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Mode Taxonomy",
+      "labelBadge": "doc"
+    }
+  ]
+}

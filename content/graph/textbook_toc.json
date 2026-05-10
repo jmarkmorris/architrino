@@ -8,7 +8,7 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 130,
+      "entries": 131,
       "sections": 940
     }
   },
@@ -1559,138 +1559,6 @@
             ]
           },
           {
-            "id": "interactions__emergence_of_u_1_su_2",
-            "title": "Emergence of U(1)/SU(2)",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/interactions/emergence_of_u_1_su_2.json",
-            "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "The Physical Substrate: From Vacuum Language to Noether Sea",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
-                "markdownSection": "The Physical Substrate: From Vacuum Language to Noether Sea",
-                "sectionKey": "the physical substrate from vacuum language to noether sea",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "The \"Field\" Illusion",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
-                "markdownSection": "The \"Field\" Illusion",
-                "sectionKey": "the field illusion",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Symmetry Groups as Geometric Deformations",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
-                "markdownSection": "Symmetry Groups as Geometric Deformations",
-                "sectionKey": "symmetry groups as geometric deformations",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "The Higgs Mechanism & VEV Reinterpretation",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
-                "markdownSection": "The Higgs Mechanism & VEV Reinterpretation",
-                "sectionKey": "the higgs mechanism vev reinterpretation",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Resolving the Unruh Ambiguity",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
-                "markdownSection": "Resolving the Unruh Ambiguity",
-                "sectionKey": "resolving the unruh ambiguity",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Quantization from Stability (Selection Rules)",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
-                "markdownSection": "Quantization from Stability (Selection Rules)",
-                "sectionKey": "quantization from stability selection rules",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Observer-Level Electroweak Closure Map (Working)",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
-                "markdownSection": "Observer-Level Electroweak Closure Map (Working)",
-                "sectionKey": "observer level electroweak closure map working",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "interactions__gauge_symmetries",
-            "title": "Gauge Symmetries",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/interactions/gauge_symmetries.json",
-            "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Regularized Setting",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
-                "markdownSection": "Regularized Setting",
-                "sectionKey": "regularized setting",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "U(1) Sector",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
-                "markdownSection": "U(1) Sector",
-                "sectionKey": "u 1 sector",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "SU(2) Weak Sector",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
-                "markdownSection": "SU(2) Weak Sector",
-                "sectionKey": "su 2 weak sector",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "SU(3) Color Sector",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
-                "markdownSection": "SU(3) Color Sector",
-                "sectionKey": "su 3 color sector",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Minimal Effective Gauge Lagrangian",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
-                "markdownSection": "Minimal Effective Gauge Lagrangian",
-                "sectionKey": "minimal effective gauge lagrangian",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Closure Interface: Gauge-Topology Compatibility",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
-                "markdownSection": "Closure Interface: Gauge-Topology Compatibility",
-                "sectionKey": "closure interface gauge topology compatibility",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Failure Conditions",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
-                "markdownSection": "Failure Conditions",
-                "sectionKey": "failure conditions",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
             "id": "spacetime__mapping_planck_scale",
             "title": "Mapping Planck Scale",
             "kind": "markdown-view",
@@ -2001,80 +1869,6 @@
             ]
           },
           {
-            "id": "interactions__mode_taxonomy",
-            "title": "Mode Taxonomy",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/interactions/mode_taxonomy.json",
-            "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Scope",
-                "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
-                "markdownSection": "Scope",
-                "sectionKey": "scope",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Assembly-Level Interpretation",
-                "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
-                "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Assembly-Level Interpretation",
-                "sectionKey": "mathbb a mathbb a mathbb a assembly level interpretation",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Low-Energy SM Assemblies in a Noether-Core Sea",
-                "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
-                "markdownSection": "Low-Energy SM Assemblies in a Noether-Core Sea",
-                "sectionKey": "low energy sm assemblies in a noether core sea",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Core Terms",
-                "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
-                "markdownSection": "Core Terms",
-                "sectionKey": "core terms",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Channel-Specific Terms",
-                "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
-                "markdownSection": "Channel-Specific Terms",
-                "sectionKey": "channel specific terms",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Usage Rules",
-                "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
-                "markdownSection": "Usage Rules",
-                "sectionKey": "usage rules",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Mapping Discipline",
-                "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
-                "markdownSection": "Mapping Discipline",
-                "sectionKey": "mapping discipline",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Related Chapters",
-                "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
-                "markdownSection": "Related Chapters",
-                "sectionKey": "related chapters",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
             "id": "dynamics__tri_binary_dynamics",
             "title": "Tri-Binary Dynamics",
             "kind": "markdown-view",
@@ -2224,6 +2018,221 @@
                 "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
                 "markdownSection": "Routed Extensions",
                 "sectionKey": "routed extensions",
+                "headingLevel": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "interactions",
+        "title": "Interactions",
+        "kind": "scene-index",
+        "sceneType": "Scene-Index",
+        "scenePath": "content/scenes/interactions/interactions.json",
+        "children": [
+          {
+            "id": "interactions__emergence_of_u_1_su_2",
+            "title": "Emergence of U(1)/SU(2)",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/interactions/emergence_of_u_1_su_2.json",
+            "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "The Physical Substrate: From Vacuum Language to Noether Sea",
+                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+                "markdownSection": "The Physical Substrate: From Vacuum Language to Noether Sea",
+                "sectionKey": "the physical substrate from vacuum language to noether sea",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The \"Field\" Illusion",
+                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+                "markdownSection": "The \"Field\" Illusion",
+                "sectionKey": "the field illusion",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Symmetry Groups as Geometric Deformations",
+                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+                "markdownSection": "Symmetry Groups as Geometric Deformations",
+                "sectionKey": "symmetry groups as geometric deformations",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Higgs Mechanism & VEV Reinterpretation",
+                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+                "markdownSection": "The Higgs Mechanism & VEV Reinterpretation",
+                "sectionKey": "the higgs mechanism vev reinterpretation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Resolving the Unruh Ambiguity",
+                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+                "markdownSection": "Resolving the Unruh Ambiguity",
+                "sectionKey": "resolving the unruh ambiguity",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Quantization from Stability (Selection Rules)",
+                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+                "markdownSection": "Quantization from Stability (Selection Rules)",
+                "sectionKey": "quantization from stability selection rules",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Observer-Level Electroweak Closure Map (Working)",
+                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+                "markdownSection": "Observer-Level Electroweak Closure Map (Working)",
+                "sectionKey": "observer level electroweak closure map working",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "interactions__gauge_symmetries",
+            "title": "Gauge Symmetries",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/interactions/gauge_symmetries.json",
+            "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Regularized Setting",
+                "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
+                "markdownSection": "Regularized Setting",
+                "sectionKey": "regularized setting",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "U(1) Sector",
+                "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
+                "markdownSection": "U(1) Sector",
+                "sectionKey": "u 1 sector",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "SU(2) Weak Sector",
+                "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
+                "markdownSection": "SU(2) Weak Sector",
+                "sectionKey": "su 2 weak sector",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "SU(3) Color Sector",
+                "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
+                "markdownSection": "SU(3) Color Sector",
+                "sectionKey": "su 3 color sector",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Minimal Effective Gauge Lagrangian",
+                "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
+                "markdownSection": "Minimal Effective Gauge Lagrangian",
+                "sectionKey": "minimal effective gauge lagrangian",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closure Interface: Gauge-Topology Compatibility",
+                "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
+                "markdownSection": "Closure Interface: Gauge-Topology Compatibility",
+                "sectionKey": "closure interface gauge topology compatibility",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Failure Conditions",
+                "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
+                "markdownSection": "Failure Conditions",
+                "sectionKey": "failure conditions",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "interactions__mode_taxonomy",
+            "title": "Mode Taxonomy",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/interactions/mode_taxonomy.json",
+            "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Scope",
+                "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
+                "markdownSection": "Scope",
+                "sectionKey": "scope",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Assembly-Level Interpretation",
+                "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
+                "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Assembly-Level Interpretation",
+                "sectionKey": "mathbb a mathbb a mathbb a assembly level interpretation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Low-Energy SM Assemblies in a Noether-Core Sea",
+                "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
+                "markdownSection": "Low-Energy SM Assemblies in a Noether-Core Sea",
+                "sectionKey": "low energy sm assemblies in a noether core sea",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Core Terms",
+                "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
+                "markdownSection": "Core Terms",
+                "sectionKey": "core terms",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Channel-Specific Terms",
+                "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
+                "markdownSection": "Channel-Specific Terms",
+                "sectionKey": "channel specific terms",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Usage Rules",
+                "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
+                "markdownSection": "Usage Rules",
+                "sectionKey": "usage rules",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Mapping Discipline",
+                "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
+                "markdownSection": "Mapping Discipline",
+                "sectionKey": "mapping discipline",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Related Chapters",
+                "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
+                "markdownSection": "Related Chapters",
+                "sectionKey": "related chapters",
                 "headingLevel": 2
               }
             ]

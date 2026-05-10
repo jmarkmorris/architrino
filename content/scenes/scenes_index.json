@@ -1464,6 +1464,11 @@
       "id": "proof_programs",
       "name": "Proof Programs",
       "path": "content/scenes/proof-programs/proof_programs.json"
+    },
+    {
+      "id": "interactions",
+      "name": "Interactions",
+      "path": "content/scenes/interactions/interactions.json"
     }
   ]
 }
