@@ -269,7 +269,7 @@ This is the same shielding-based logic developed more directly in [Particle Mass
 
 The tri-binary Noether Sea adds an additional layer:
 
-- Moving assemblies must drag along or re-arrange their local tri-binary environment.
+- Moving assemblies must retune their internal causal ledger and reorganize local Noether-Sea coupling.
 - The effective resistance to high center-of-mass speed (near the internal tri-binary field speed) increases steeply, producing an emergent "speed of light" scale $c_{\text{eff}}$ at which assemblies effectively saturate.
 
 Thus:
@@ -278,7 +278,7 @@ Thus:
 - At high speeds approaching $c_{\text{eff}}$, internal coupling to the tri-binary sea and self-hit effects yield a relativistic-like $E_k \sim m_{\text{inertial}}(\gamma-1)$, with $\gamma = 1/\sqrt{1-v^2/c_{\text{eff}}^2}$, as an **effective law**.
 - Near $c_{\text{eff}}$, axial architrinos would likely be stripped off, and the assembly may undergo other changes as it oblates.
 
-The details of this emergent relativistic law arise from the combined dynamics of the assembly and the tri-binary sea; they are not postulated but must be confirmed by simulation and matching to known particle kinematics.
+The details of this emergent relativistic law arise from the combined dynamics of the assembly and the tri-binary sea; they are not postulated but must be confirmed by simulation and matching to known particle kinematics. The mass-side integration and quantitative derivation path are tracked in [Particle Masses](../assemblies/particle-masses.md) and the active mass-map workstream.
 
 ---
 

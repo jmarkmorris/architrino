@@ -1,8 +1,10 @@
-# Tri-Binary Causal Closure Dependency Map
+# Tri-Binary Dependency Map
 
 ## Purpose
 
 This is the active-development workbench for [tri-binary-causal-closure.md](tri-binary-causal-closure.md). Its job is to make the proof ladder explicit before the synthesis is promoted into deployed or textbook-facing material.
+
+The deployed dynamics baseline is [Tri-Binary Dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md). That chapter owns the mechanism definitions; this map owns the proof burdens that determine whether those mechanisms can carry the causal-closure synthesis.
 
 Each claim is tracked as:
 
@@ -31,6 +33,14 @@ The deployment gate is passed only when every non-closed item in this map has a 
 
 ## Logical Spine
 
+### 0. Tri-Binary Dynamics Baseline
+
+- Inputs: [Tri-Binary Dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md), [Noether Core](../../../content/markdown/aaa/assemblies/noether-core.md), and [Binary Dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md).
+- Mechanism: use the AAA dynamics chapter as the canonical source for Noether-core roles, speed-regime conventions, delay-envelope geometry, gradient response, local clock diagnostics, and alignment/stability tests.
+- Output: a stable baseline vocabulary and mechanism set for the causal-closure synthesis.
+- Proof burden: keep the priority synthesis from silently redefining the mechanism; any stronger claim about mass, proper time, photons, measurement, or relativistic limits must be carried as a theorem target, priority route, or cut item here.
+- Current disposition: `roadmap`.
+
 ### 1. Substrate And Speed Conventions
 
 - Inputs: Euclidean void, absolute substrate time, architrinos, causal wakes, primitive wake speed $c_f$.
@@ -56,12 +66,21 @@ The deployment gate is passed only when every non-closed item in this map has a 
 - Priority route: `breather-proof` certificate branch charts.
 - Current disposition: `priority`.
 
+### 3b. Grazing Bifurcation Classification
+
+- Inputs: separator function $h(\mathbf{x},\dot{\mathbf{x}}) = \|\dot{\mathbf{x}}\|^2 - c_f^2$, smooth pre-separator trajectory, and second-order causal Jacobian.
+- Mechanism: causal-cone tangency at $h=0$ produces a non-smooth grazing bifurcation; post-separator deviation scales as $\sqrt{t-t_*}$ along the eigenvector of the newly active self-hit root.
+- Output: classification of the separator as a square-root grazing event with predicted period-adding cascade signatures and a thin-strip Lyapunov-exponent profile on the self-hit side.
+- Proof burden: derive the normal form; verify square-root scaling and period-adding cascades in simulation; connect $\Delta N\in 2\mathbb{Z}$ to fold-pair adding events in the cascade.
+- Priority route: `breather-proof`, `simulations`.
+- Current disposition: `priority`.
+
 ### 4. Noether Core Architecture
 
 - Inputs: nested binary assemblies, self-hit engine, middle fulcrum, outer shield.
 - Mechanism: three mutually supporting binary layers distribute high-multiplicity internal closure, buffer phase stress, and regulate external coupling.
 - Output: the tri-binary Noether core becomes the proposed stable matter unit.
-- Proof burden: prove tri-binary universality, including why a two-layer construction cannot simultaneously isolate the self-hit engine, buffer phase stress, and present an isotropic far-field shield, or derive an $n$-layer generalization for assemblies that do not fit the three-layer template.
+- Proof burden: prove tri-binary universality via slow-fast decomposition. Show that under simultaneous kinematic stress $\beta>0$ and Noether-Sea gradient stress $G>0$, the stable slow manifold of an $n$-layer nested assembly persists for $n\ge 3$ and loses normal hyperbolicity for $n\le 2$ on a codimension-one set in $(\beta,G)$. Equivalently, derive the corresponding $n$-layer closure law with explicit role-counting in the slow-fast decomposition.
 - Priority route: `mass-map`, `master-equation-closure`.
 - Current disposition: `priority`.
 
@@ -112,7 +131,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
   $$
   c_{\perp}=c_{\text{eff}}\sqrt{1-\beta^2}.
   $$
-- Effective-metric bridge: the same budget should be expressible as an observer-level acoustic-metric-like null condition $g^{\text{eff}}_{\mu\nu}dx^\mu dx^\nu=0$ built from $c_{\text{eff}}$, Noether-Sea drift $\mathbf{u}_{\text{sea}}$, density, compliance, and stress, without promoting that metric to substrate ontology.
+- Effective-metric bridge: the same budget should be expressible through the ADM/Cartan bookkeeping fields $N$, $u^i_{\text{sea}}$, and $\gamma_{ij}$, without promoting that metric to substrate ontology.
 - Output: one resource controls time dilation, length contraction, clock freeze, quantum-step admissibility, photon/rest-frame separation, and the local Lorentz map.
 - Proof burden: promote this from a synthesis subsection into a standalone dynamics lemma, including the metric diagonalization that yields $\gamma_{\text{eff}}$ and the residual preferred-frame null tests.
 - Priority route: `master-equation-closure`.
@@ -125,6 +144,15 @@ The deployment gate is passed only when every non-closed item in this map has a 
 - Output: accepted quantum states are integer-closure and stability-basin solutions.
 - Proof burden: solve the coupled root-finding problem, identify the integer winding numbers as topological data, and add Floquet, Poincare-section, or Lyapunov diagnostics to distinguish stable basins from unstable integer-labeled solutions.
 - Priority route: `master-equation-closure`, `quantum-closure`.
+- Current disposition: `priority`.
+
+### 9b. Floquet Stability Functional
+
+- Inputs: candidate accepted state $\mathcal{S}_{\mathbf{k}}$ from Node 9, closed-cycle period $T_{\mathbf{k}}$, and linearized delay-differential operator around the periodic orbit.
+- Mechanism: monodromy operator $\mathcal{M}_{\mathbf{k}}$ on the tangent bundle of delay state space; spectral radius off the symmetry directions controls basin robustness.
+- Output: spectral gap $\Delta_{\mathbf{k}} = 1 - \max_{i\notin G}\|\mu_i(\mathbf{k})\|$ as the quantitative basin-robustness functional; accepted states are those with $\Delta_{\mathbf{k}}>0$.
+- Proof burden: establish discreteness of the Floquet spectrum off the unit circle for state-dependent self-hit delays; compute leading multipliers for representative tri-binary cycles; verify that the spectral gap closes precisely at the transverse-budget separator $\beta\to 1$ and at gradient-driven structural failure thresholds.
+- Priority route: `master-equation-closure`, `quantum-closure`, `simulations`.
 - Current disposition: `priority`.
 
 ### 10. Effective Lorentz Map
@@ -157,6 +185,25 @@ The deployment gate is passed only when every non-closed item in this map has a 
 - Priority route: `strong-field-closure`, `master-equation-closure`.
 - Current disposition: `priority`.
 
+### 11b. Effective Metric And Cartan Connection
+
+- Inputs: Noether-Sea density, compliance, stress, drift $u^i_{\text{sea}}$, local clock response $N$, spatial frame fields $e^a{}_i$, spatial compliance metric $\gamma_{ij}=\delta_{ab}e^a{}_i e^b{}_j$, and tri-binary orientation fields.
+- Mechanism: reconstruct the observer-level bookkeeping metric
+  $$
+  ds_{\rm eff}^2
+  =
+  -N^2c_0^2dt^2
+  +
+  \gamma_{ij}
+  \left(dx^i-u^i_{\text{sea}}dt\right)
+  \left(dx^j-u^j_{\text{sea}}dt\right),
+  $$
+  and derive the Levi-Civita connection in the GR-matching regime, with torsion and nonmetricity tracked as deviation observables.
+- Output: explicit observer-level fields for lapse, medium drift, spatial compliance, frame orientation, geodesics, redshift, lensing, Shapiro delay, horizon null surfaces, and PPN matching.
+- Proof burden: derive $N$, $u^i_{\text{sea}}$, $e^a{}_i$, and $\gamma_{ij}$ from Noether-Sea state variables and tri-binary response; recover $N=1+\Phi_N/c_0^2+O(c_0^{-4})$, $\gamma_{ij}=(1-2\Phi_N/c_0^2)h_{ij}+O(c_0^{-4})$, $u^i_{\text{sea}}=O(c_0^{-3})$, and PPN coefficients within current bounds while suppressing preferred-frame, torsion, nonmetricity, birefringence, and dispersion residuals.
+- Priority route: `master-equation-closure`, `strong-field-closure`, `standard-model-closure`.
+- Current disposition: `priority`.
+
 ### 12. Photon Planar Pair
 
 - Inputs: massive-clock transverse-budget failure at $c_{\text{eff}}$, pro/anti Noether-core orientations, and primitive wake speed $c_f$.
@@ -183,7 +230,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
   $$
   d(\omega,\delta_\gamma)\sim\Lambda_\gamma\frac{c_f-c_\gamma}{\omega},
   $$
-  so fixed free-space photon speed is compatible with $d\propto\lambda$ and the vacuum limit sends $d\to0$ as $c_\gamma\to c_f$. A strict residual catch-up margin remains a null-test branch.
+  so fixed free-space photon speed is compatible with $d\propto\lambda$ and the weak homogeneous Noether-Sea limit sends $d\to0$ as $c_\gamma\to c_f$. A strict residual catch-up margin remains a null-test branch.
 - Priority route: `planar-bridge-closure`, `standard-model-closure`.
 - Current disposition: `priority`.
 
@@ -210,7 +257,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 - Inputs: $c_{\text{eff}}(\mathbf{x})$, Noether-Sea density, compliance, stress, tidal gradients, and phase-closure variables.
 - Mechanism: observer-level redshift/phase-lock and local assembly failure are distinct; local failure requires a strain or gradient threshold.
 - Output: exterior GR behavior plus a substrate failure condition when transverse closure is locally exhausted.
-- Proof burden: recover smooth local infall for large black holes in weak tidal regions while retaining structural failure in genuine high-strain regimes.
+- Proof burden: define observer-level horizons as null surfaces of $g^{\rm eff}_{\mu\nu}$, for example $\gamma_{ij}u_\perp^i u_\perp^j=N^2c_0^2$ in stationary flow form, while keeping local structural failure as a separate strain/tidal threshold.
 - Priority route: `strong-field-closure`, `cosmology-closure`.
 - Current disposition: `priority`.
 
@@ -225,13 +272,17 @@ The deployment gate is passed only when every non-closed item in this map has a 
 
 ## Critical Path
 
-1. Photon gate A, kinematics and optics: masslessness, $c_\gamma\to c_f$, proportional-collapse finite-phase closure, and nondispersion.
-2. Photon gate B, polarization and spin: transverse projector, helicity $\pm1$, two physical modes, no longitudinal mode, and Malus/Born recovery.
-3. Photon gate C, vertices and transitions: emission, absorption, pair production, transition rates, and $\alpha$.
-4. Transverse causal budget is the reusable dynamics lemma.
-5. Momentum skew is the mass/inertia bridge.
-6. Equivalence and weak-field GR matching are the observer-level consistency gate.
-7. Topological certification is the computable invariant layer.
+1. Floquet stability functional for tri-binary integer-closure states, with basin-robustness gap $\Delta_{\mathbf{k}}$.
+2. Grazing-bifurcation classification of the separator, with square-root scaling and period-adding diagnostics.
+3. Photon gate A, kinematics and optics, with proportional-collapse selection theorem.
+4. Photon gate B, polarization and spin.
+5. Photon gate C, vertices and transitions.
+6. Transverse causal budget lemma with Floquet-gap closure at $\beta\to 1$.
+7. Slow-fast tri-binary universality theorem.
+8. Momentum skew with Noether-Sea dressing tensor.
+9. Effective metric and Cartan connection reconstruction.
+10. Equivalence and weak-field GR matching.
+11. Topological certification.
 
 ## Deployment Handoff Table
 
@@ -240,6 +291,10 @@ The deployment gate is passed only when every non-closed item in this map has a 
 | Photon gate A, kinematics and optics | keep as roadmap and create task | `planar-bridge-closure`, `standard-model-closure` |
 | Photon gate B, polarization and spin | keep as roadmap and create task | `quantum-closure`, `standard-model-closure` |
 | Photon gate C, vertices and transitions | keep as roadmap and create task | `standard-model-closure`, `planar-bridge-closure` |
+| Floquet stability functional | create task | `master-equation-closure`, `quantum-closure`, `simulations` |
+| Grazing-bifurcation separator classification | create task | `breather-proof`, `simulations` |
+| Slow-fast tri-binary minimality theorem | create task | `mass-map`, `master-equation-closure` |
+| Effective metric and Cartan connection | create task | `master-equation-closure`, `strong-field-closure` |
 | Transverse causal budget lemma | extract or create task | `master-equation-closure` |
 | Momentum skew derivation | create task | `mass-map`, `master-equation-closure` |
 | Equivalence-principle residual bound | create task | `master-equation-closure`, `strong-field-closure` |
