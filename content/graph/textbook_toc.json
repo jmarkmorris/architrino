@@ -1422,12 +1422,12 @@
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/dynamics/mapping_planck_scale.json",
-            "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+            "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
             "sections": [
               {
                 "kind": "markdown-section",
                 "title": "Thesis",
-                "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
                 "markdownSection": "Thesis",
                 "sectionKey": "thesis",
                 "headingLevel": 2
@@ -1435,7 +1435,7 @@
               {
                 "kind": "markdown-section",
                 "title": "What Planck Units Imply About the Outer Binary",
-                "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
                 "markdownSection": "What Planck Units Imply About the Outer Binary",
                 "sectionKey": "what planck units imply about the outer binary",
                 "headingLevel": 2
@@ -1443,7 +1443,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Kinematic and Dynamical Alignment Conditions",
-                "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
                 "markdownSection": "Kinematic and Dynamical Alignment Conditions",
                 "sectionKey": "kinematic and dynamical alignment conditions",
                 "headingLevel": 2
@@ -1451,7 +1451,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Experienced-Field Framing (Energy as Interaction History)",
-                "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
                 "markdownSection": "Experienced-Field Framing (Energy as Interaction History)",
                 "sectionKey": "experienced field framing energy as interaction history",
                 "headingLevel": 2
@@ -1459,7 +1459,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Discrete Ladder and Phase-Slip Dynamics (Hypothesis)",
-                "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
                 "markdownSection": "Discrete Ladder and Phase-Slip Dynamics (Hypothesis)",
                 "sectionKey": "discrete ladder and phase slip dynamics hypothesis",
                 "headingLevel": 2
@@ -1467,7 +1467,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Spin Transition and Configuration-Space Topology (Hypothesis)",
-                "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
                 "markdownSection": "Spin Transition and Configuration-Space Topology (Hypothesis)",
                 "sectionKey": "spin transition and configuration space topology hypothesis",
                 "headingLevel": 2
@@ -1475,7 +1475,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Emergent Constants: $\\hbar$, $\\ell_P$, and $G$",
-                "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
                 "markdownSection": "Emergent Constants: $\\hbar$, $\\ell_P$, and $G$",
                 "sectionKey": "emergent constants hbar ell p and g",
                 "headingLevel": 2
@@ -1483,7 +1483,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Horizon Microstructure and “Condensate-Like” Phases (Conjecture)",
-                "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
                 "markdownSection": "Horizon Microstructure and “Condensate-Like” Phases (Conjecture)",
                 "sectionKey": "horizon microstructure and condensate like phases conjecture",
                 "headingLevel": 2
@@ -1491,7 +1491,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Constraints, Assumptions, and Failure Modes",
-                "markdownPath": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
                 "markdownSection": "Constraints, Assumptions, and Failure Modes",
                 "sectionKey": "constraints assumptions and failure modes",
                 "headingLevel": 2
@@ -1618,12 +1618,12 @@
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/dynamics/horizon_chirality.json",
-            "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+            "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
             "sections": [
               {
                 "kind": "markdown-section",
                 "title": "Canonical Horizon Condition",
-                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
                 "markdownSection": "Canonical Horizon Condition",
                 "sectionKey": "canonical horizon condition",
                 "headingLevel": 2
@@ -1631,7 +1631,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Pro/Anti Before Planar Lock",
-                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
                 "markdownSection": "Pro/Anti Before Planar Lock",
                 "sectionKey": "pro anti before planar lock",
                 "headingLevel": 2
@@ -1639,7 +1639,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Broader Pro/Anti Balance in $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
-                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
                 "markdownSection": "Broader Pro/Anti Balance in $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
                 "sectionKey": "broader pro anti balance in mathbb a mathbb a mathbb a",
                 "headingLevel": 2
@@ -1647,7 +1647,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Working Dictionary",
-                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
                 "markdownSection": "Working Dictionary",
                 "sectionKey": "working dictionary",
                 "headingLevel": 2
@@ -1655,7 +1655,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Comparison Across Sectors",
-                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
                 "markdownSection": "Comparison Across Sectors",
                 "sectionKey": "comparison across sectors",
                 "headingLevel": 2
@@ -1663,7 +1663,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Exterior Planar Spin Basis",
-                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
                 "markdownSection": "Exterior Planar Spin Basis",
                 "sectionKey": "exterior planar spin basis",
                 "headingLevel": 2
@@ -1671,7 +1671,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Observer Views",
-                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
                 "markdownSection": "Observer Views",
                 "sectionKey": "observer views",
                 "headingLevel": 2
@@ -1679,7 +1679,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Boundary Helicity Versus Deeper Chirality",
-                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
                 "markdownSection": "Boundary Helicity Versus Deeper Chirality",
                 "sectionKey": "boundary helicity versus deeper chirality",
                 "headingLevel": 2
@@ -1687,7 +1687,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Translation-Axis Alignment at High Velocity",
-                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
                 "markdownSection": "Translation-Axis Alignment at High Velocity",
                 "sectionKey": "translation axis alignment at high velocity",
                 "headingLevel": 2
@@ -1695,7 +1695,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Exact Conservation Versus Dynamical Selection",
-                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
                 "markdownSection": "Exact Conservation Versus Dynamical Selection",
                 "sectionKey": "exact conservation versus dynamical selection",
                 "headingLevel": 2
@@ -1703,7 +1703,7 @@
               {
                 "kind": "markdown-section",
                 "title": "State-Transition Ladder",
-                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
                 "markdownSection": "State-Transition Ladder",
                 "sectionKey": "state transition ladder",
                 "headingLevel": 2
@@ -1711,7 +1711,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Canonical Horizon Branch Hypothesis",
-                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
                 "markdownSection": "Canonical Horizon Branch Hypothesis",
                 "sectionKey": "canonical horizon branch hypothesis",
                 "headingLevel": 2
@@ -1719,7 +1719,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Candidate Theories for Pro and Anti at the Horizon",
-                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
                 "markdownSection": "Candidate Theories for Pro and Anti at the Horizon",
                 "sectionKey": "candidate theories for pro and anti at the horizon",
                 "headingLevel": 2
@@ -1727,7 +1727,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Possible Left/Right Spin Mapping",
-                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
                 "markdownSection": "Possible Left/Right Spin Mapping",
                 "sectionKey": "possible left right spin mapping",
                 "headingLevel": 2
@@ -1735,7 +1735,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Status Table",
-                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
                 "markdownSection": "Status Table",
                 "sectionKey": "status table",
                 "headingLevel": 2
@@ -1743,7 +1743,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Mixed-Sign Planar States",
-                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
                 "markdownSection": "Mixed-Sign Planar States",
                 "sectionKey": "mixed sign planar states",
                 "headingLevel": 2
@@ -1751,7 +1751,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Transition Rules for Pro/Anti Conversion",
-                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
                 "markdownSection": "Transition Rules for Pro/Anti Conversion",
                 "sectionKey": "transition rules for pro anti conversion",
                 "headingLevel": 2
@@ -1759,7 +1759,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Simulation Diagnostics",
-                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
                 "markdownSection": "Simulation Diagnostics",
                 "sectionKey": "simulation diagnostics",
                 "headingLevel": 2
@@ -1767,7 +1767,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Provisional Conclusion",
-                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
                 "markdownSection": "Provisional Conclusion",
                 "sectionKey": "provisional conclusion",
                 "headingLevel": 2
@@ -1775,7 +1775,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Interfaces to Other Chapters",
-                "markdownPath": "content/markdown/aaa/dynamics/horizon-chirality.md",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
                 "markdownSection": "Interfaces to Other Chapters",
                 "sectionKey": "interfaces to other chapters",
                 "headingLevel": 2
@@ -3009,12 +3009,12 @@
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/nuclear/displacement_of_spacetime.json",
-            "markdownPath": "content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
+            "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
             "sections": [
               {
                 "kind": "markdown-section",
                 "title": "Levels of Excluded Volume",
-                "markdownPath": "content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
+                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
                 "markdownSection": "Levels of Excluded Volume",
                 "sectionKey": "levels of excluded volume",
                 "headingLevel": 2
@@ -3022,7 +3022,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Who Can “Slip Between” Excluded Regions?",
-                "markdownPath": "content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
+                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
                 "markdownSection": "Who Can “Slip Between” Excluded Regions?",
                 "sectionKey": "who can slip between excluded regions",
                 "headingLevel": 2
@@ -3030,7 +3030,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Background Timespace vs. Implemented Medium",
-                "markdownPath": "content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
+                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
                 "markdownSection": "Background Timespace vs. Implemented Medium",
                 "sectionKey": "background timespace vs implemented medium",
                 "headingLevel": 2
@@ -3038,7 +3038,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Big Picture",
-                "markdownPath": "content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
+                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
                 "markdownSection": "Big Picture",
                 "sectionKey": "big picture",
                 "headingLevel": 2

@@ -2129,18 +2129,6 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/dynamics/horizon-chirality.md",
-      "name": "Horizon Chirality and Planar Spin",
-      "path": "content/markdown/aaa/dynamics/horizon-chirality.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
-      "name": "Mapping the Planck Scale to the Tri-Binary Geometry",
-      "path": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
-      "nodeType": "markdown_doc"
-    },
-    {
       "id": "content/markdown/aaa/dynamics/master-equation.md",
       "name": "Master Equation of Motion",
       "path": "content/markdown/aaa/dynamics/master-equation.md",
@@ -2222,12 +2210,6 @@
       "id": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
       "name": "Condensed Matter",
       "path": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
-      "name": "Visualizing Volumes and Exclusion in the Universe",
-      "path": "content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2411,12 +2393,6 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/reactions/pdg-api.md",
-      "name": "PDG Python API (pdg package)",
-      "path": "content/markdown/aaa/reactions/pdg-api.md",
-      "nodeType": "markdown_doc"
-    },
-    {
       "id": "content/markdown/aaa/reactions/synchrotron.md",
       "name": "Synchrotron Cascades",
       "path": "content/markdown/aaa/reactions/synchrotron.md",
@@ -2447,9 +2423,27 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/spacetime/horizon-chirality.md",
+      "name": "Horizon Chirality and Planar Spin",
+      "path": "content/markdown/aaa/spacetime/horizon-chirality.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
       "name": "Lorentzian Conspiracy and Emergent Lorentz Kinematics",
       "path": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
+      "name": "Mapping the Planck Scale to the Tri-Binary Geometry",
+      "path": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+      "name": "Visualizing Volumes and Exclusion in the Universe",
+      "path": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2492,6 +2486,12 @@
       "id": "content/markdown/aaa/validation/constraint-ledger.md",
       "name": "Constraint Ledger",
       "path": "content/markdown/aaa/validation/constraint-ledger.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/validation/data-sources/pdg-api.md",
+      "name": "PDG Python API (pdg package)",
+      "path": "content/markdown/aaa/validation/data-sources/pdg-api.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5641,24 +5641,6 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/dynamics/horizon-chirality.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/dynamics/horizon-chirality.md",
-      "name": "Horizon Chirality and Planar Spin",
-      "path": "content/markdown/aaa/dynamics/horizon-chirality.md",
-      "searchTarget": "content/markdown/aaa/dynamics/horizon-chirality.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/dynamics/mapping-Planck-scale.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
-      "name": "Mapping the Planck Scale to the Tri-Binary Geometry",
-      "path": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
-      "searchTarget": "content/markdown/aaa/dynamics/mapping-Planck-scale.md",
-      "implicit": false
-    },
-    {
       "nodeId": "markdown_doc:content/markdown/aaa/dynamics/master-equation.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/dynamics/master-equation.md",
@@ -5782,15 +5764,6 @@
       "name": "Condensed Matter",
       "path": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
       "searchTarget": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
-      "name": "Visualizing Volumes and Exclusion in the Universe",
-      "path": "content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
-      "searchTarget": "content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
       "implicit": false
     },
     {
@@ -6064,15 +6037,6 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/reactions/pdg-api.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/reactions/pdg-api.md",
-      "name": "PDG Python API (pdg package)",
-      "path": "content/markdown/aaa/reactions/pdg-api.md",
-      "searchTarget": "content/markdown/aaa/reactions/pdg-api.md",
-      "implicit": false
-    },
-    {
       "nodeId": "markdown_doc:content/markdown/aaa/reactions/synchrotron.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/reactions/synchrotron.md",
@@ -6118,12 +6082,39 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/spacetime/horizon-chirality.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/spacetime/horizon-chirality.md",
+      "name": "Horizon Chirality and Planar Spin",
+      "path": "content/markdown/aaa/spacetime/horizon-chirality.md",
+      "searchTarget": "content/markdown/aaa/spacetime/horizon-chirality.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/spacetime/lorentz-kinematics.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
       "name": "Lorentzian Conspiracy and Emergent Lorentz Kinematics",
       "path": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
       "searchTarget": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/spacetime/mapping-planck-scale.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
+      "name": "Mapping the Planck Scale to the Tri-Binary Geometry",
+      "path": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
+      "searchTarget": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+      "name": "Visualizing Volumes and Exclusion in the Universe",
+      "path": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+      "searchTarget": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
       "implicit": false
     },
     {
@@ -6187,6 +6178,15 @@
       "name": "Constraint Ledger",
       "path": "content/markdown/aaa/validation/constraint-ledger.md",
       "searchTarget": "content/markdown/aaa/validation/constraint-ledger.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/validation/data-sources/pdg-api.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/validation/data-sources/pdg-api.md",
+      "name": "PDG Python API (pdg package)",
+      "path": "content/markdown/aaa/validation/data-sources/pdg-api.md",
+      "searchTarget": "content/markdown/aaa/validation/data-sources/pdg-api.md",
       "implicit": false
     },
     {
@@ -10710,7 +10710,7 @@
     },
     {
       "from": "scene:content/scenes/dynamics/horizon_chirality.json",
-      "to": "markdown_doc:content/markdown/aaa/dynamics/horizon-chirality.md",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/horizon-chirality.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/dynamics/horizon_chirality.json",
       "field": "scene.source.path"
@@ -10724,7 +10724,7 @@
     },
     {
       "from": "scene:content/scenes/dynamics/mapping_planck_scale.json",
-      "to": "markdown_doc:content/markdown/aaa/dynamics/mapping-Planck-scale.md",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/mapping-planck-scale.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/dynamics/mapping_planck_scale.json",
       "field": "scene.source.path"
@@ -10829,7 +10829,7 @@
     },
     {
       "from": "scene:content/scenes/nuclear/displacement_of_spacetime.json",
-      "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/displacement-of-spacetime.md",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/medium-exclusion-volume.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/nuclear/displacement_of_spacetime.json",
       "field": "scene.source.path"

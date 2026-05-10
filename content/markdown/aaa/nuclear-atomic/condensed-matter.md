@@ -2,7 +2,7 @@
 
 This chapter is the condensed-matter placeholder for medium-level behavior in a Noether-core sea. Its current focus is the superfluid-medium analogy and the question of how inertia, resistance, and threshold behavior should look when matter moves through a densely coupled background of cores.
 
-This note bridges [Atomic Structure](atomic-structure.md), [Particle Masses](../assemblies/particle-masses.md), [Spacetime Assemblies](../spacetime/spacetime-assemblies.md), and [Displacement of Spacetime](displacement-of-spacetime.md), since all four depend on how the background medium stores stress and permits transport.
+This note bridges [Atomic Structure](atomic-structure.md), [Particle Masses](../assemblies/particle-masses.md), [Spacetime Assemblies](../spacetime/spacetime-assemblies.md), and [Medium Exclusion Volume](../spacetime/medium-exclusion-volume.md), since all four depend on how the background medium stores stress and permits transport.
 
 At present this is a framing note rather than a finished derivation. The opening therefore gives the conceptual target before any later detailed closure is attempted.
 

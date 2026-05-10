@@ -2,7 +2,7 @@
 
 This chapter examines how the modern SI system interfaces with the architrino program. Its purpose is to ask which defining constants might be derivable, which remain primitive, and what kinds of constant-relations the theory should eventually explain if its geometric closure program succeeds.
 
-It should be read together with [Parameter Ledger](parameter-ledger.md), [Mapping the Planck Scale](../dynamics/mapping-Planck-scale.md), [Energy](../dynamics/energy.md), [Particle Masses](../assemblies/particle-masses.md), and [Atomic Spectra](../nuclear-atomic/atomic-spectra.md).
+It should be read together with [Parameter Ledger](parameter-ledger.md), [Mapping the Planck Scale](../spacetime/mapping-planck-scale.md), [Energy](../dynamics/energy.md), [Particle Masses](../assemblies/particle-masses.md), and [Atomic Spectra](../nuclear-atomic/atomic-spectra.md).
 
 ## Executive Summary
 

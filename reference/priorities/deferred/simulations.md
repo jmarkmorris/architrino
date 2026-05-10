@@ -42,4 +42,4 @@ Lock the simulation and numerics side tightly enough to support the analytic clo
 - [convergence-tests](../../../content/markdown/aaa/validation/simulations/convergence-tests.md)
 - [synthetic-observables](../../../content/markdown/aaa/validation/simulations/synthetic-observables.md)
 - [well-posedness-and-regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md)
-- [mapping-Planck-scale](../../../content/markdown/aaa/dynamics/mapping-Planck-scale.md)
+- [mapping-Planck-scale](../../../content/markdown/aaa/spacetime/mapping-planck-scale.md)

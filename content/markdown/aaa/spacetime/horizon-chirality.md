@@ -6,7 +6,7 @@ The guiding problem is simple. In ordinary low-stress conditions, the tri-binary
 
 ## Canonical Horizon Condition
 
-The canonical horizon condition is inherited from [../spacetime/singularity-resolution.md](../spacetime/singularity-resolution.md) and [../spacetime/black-holes.md](../spacetime/black-holes.md). Near the horizon interface, the working regime is
+The canonical horizon condition is inherited from [singularity-resolution.md](./singularity-resolution.md) and [black-holes.md](./black-holes.md). Near the horizon interface, the working regime is
 
 $$
 v_M = c_f,
@@ -27,7 +27,7 @@ Away from the horizon, the project already treats `pro/anti` as a handedness or 
 
 That distinction is natural in the ordinary tri-binary because the three binaries occupy non-coplanar planes with an ordered set of normals and a genuine precession structure. In that regime, `pro/anti` is a 3D chirality datum.
 
-The strongest current mathematical candidate beneath that datum comes from [causal-action-functional.md](./causal-action-functional.md): the causal writhe
+The strongest current mathematical candidate beneath that datum comes from [causal-action-functional.md](../dynamics/causal-action-functional.md): the causal writhe
 
 $$
 Wr_c[\gamma] = \iint_{\mathcal{L}_{\text{causal}}}
@@ -137,7 +137,7 @@ The next question is whether a rapidly translating tri-binary should drive the t
 
 The answer is dynamical rather than purely kinematic. Straight-line translation does **not** require that result merely from conservation laws. In the path-history dynamics, total linear momentum and total angular momentum are distinct conserved quantities, so an isolated translating assembly may in principle carry internal angular momentum whose axis is not parallel to the center-of-mass velocity.
 
-The stronger argument comes from the high-velocity delay geometry. Let the translation direction define the $z$-axis and use the oblate envelope from [tri-binary-dynamics.md](./tri-binary-dynamics.md):
+The stronger argument comes from the high-velocity delay geometry. Let the translation direction define the $z$-axis and use the oblate envelope from [tri-binary-dynamics.md](../dynamics/tri-binary-dynamics.md):
 
 $$
 \frac{x^2+y^2}{R_\perp^2} + \frac{z^2}{R_\parallel^2} = 1,
@@ -368,9 +368,9 @@ That yields a disciplined provisional picture:
 
 ## Interfaces to Other Chapters
 
-- [../spacetime/singularity-resolution.md](../spacetime/singularity-resolution.md): canonical horizon alignment condition.
-- [../spacetime/black-holes.md](../spacetime/black-holes.md): horizon interface and strong-field ontology.
-- [./tri-binary-dynamics.md](./tri-binary-dynamics.md): regime map, planarity diagnostics, and alignment observables.
-- [./mapping-Planck-scale.md](./mapping-Planck-scale.md): terminal planar lock and alignment-horizon interpretation.
+- [singularity-resolution.md](./singularity-resolution.md): canonical horizon alignment condition.
+- [black-holes.md](./black-holes.md): horizon interface and strong-field ontology.
+- [tri-binary-dynamics.md](../dynamics/tri-binary-dynamics.md): regime map, planarity diagnostics, and alignment observables.
+- [mapping-planck-scale.md](./mapping-planck-scale.md): terminal planar lock and alignment-horizon interpretation.
 - [../assemblies/fermions/color-charge-su3.md](../assemblies/fermions/color-charge-su3.md): matter/antimatter chirality convention.
 - [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md): ordered-triad and chirality language.

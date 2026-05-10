@@ -2,7 +2,7 @@
 
 This chapter treats the Planck scale as an exploratory alignment-horizon problem for the tri-binary rather than as a finished derivation. Its purpose is to translate familiar Planck-unit relations into concrete geometric and dynamical targets inside the delayed tri-binary framework, then test which parts survive once full closure conditions are imposed.
 
-Its closest companions are [Tri-Binary Dynamics](tri-binary-dynamics.md), [Dyadic Resonance Lock](dyadic-resonance-lock.md), [Horizon Chirality](horizon-chirality.md), [Black Holes](../spacetime/black-holes.md), and [Effective Lagrangian](effective-lagrangian.md).
+Its closest companions are [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md), [Dyadic Resonance Lock](../dynamics/dyadic-resonance-lock.md), [Horizon Chirality](horizon-chirality.md), [Black Holes](black-holes.md), and [Effective Lagrangian](../dynamics/effective-lagrangian.md).
 
 The opening sections state the working thesis and the immediate kinematic map; later sections separate conjectural alignment, effective-field framing, constant-mapping proposals, and failure modes. The reader should treat the whole note as a live mapping program, with explicit hypotheses rather than settled closure.
 
@@ -38,7 +38,7 @@ In plain terms, the Planck scale is a **dynamic alignment horizon**, not a minim
 **Regime clarification (to prevent speed-label conflicts):**
 - In this chapter, "$v_{\text{trans}} \to c_f$" and "$v_{\text{orb}}^{\text{tan}} \to c_f$" are **holographic-horizon transition** statements (terminal alignment regime).
 - The statement "$v_{\text{eff}} > c_f$" refers to a **combined in-plane effective motion** used for Mach-wedge causal geometry, not a claim that each binary component speed is individually $> c_f$.
-- The CFT-exterior role label "outer binary $v < c_f$" remains valid away from the terminal/horizon regime (see the regime map in [tri-binary-dynamics.md](./tri-binary-dynamics.md)).
+- The CFT-exterior role label "outer binary $v < c_f$" remains valid away from the terminal/horizon regime (see the regime map in [tri-binary-dynamics.md](../dynamics/tri-binary-dynamics.md)).
 
 ---
 
