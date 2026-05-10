@@ -19,6 +19,33 @@ $$
 
 That response is shaped by internal energy storage, shielding, and the medium-dressed way the Noether Sea couples to a moving or accelerated assembly.
 
+### Assembly-Level Reduction
+
+At the current level of the theory, the compact mass map is an expression over an assembly $A$:
+
+$$
+m_{\text{inertial}}(A)
+\approx
+\alpha\,\frac{\zeta(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2}.
+$$
+
+This is the clean scalar form of the thesis. It says that the observer-facing inertial mass is controlled by the shielded part of the internal assembly ledger, with $\alpha$ fixed once by a reference assembly in the regime where the effective low-energy closure is being matched.
+
+The scalar form is not the whole derivation. In a resolved Noether-Sea environment, the denominator $c_{\text{eff}}^2$ is the isotropic weak-field limit of a medium-response tensor:
+
+$$
+p_{\text{int}}^a
+\approx
+\alpha\,\zeta(A)E_{\text{internal}}(A)\,
+\mathcal{M}_{\text{sea}}^{ab}V_{\text{cm},b},
+\qquad
+\mathcal{M}_{\text{sea}}^{ab}
+\to
+\frac{h^{ab}}{c_{\text{eff}}^2}
+$$
+
+in a homogeneous isotropic Noether-Sea cell. Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice. The tensor version is the sharper target because it carries direction dependence, gradient response, and the distinction between primitive wake speed and observer-facing effective signal speed. Until the internal ledger, shielding coefficient, and medium-response tensor are derived from stable assembly closure, this remains a roadmap formula rather than a theorem.
+
 ### The Noether Core as a Causal Knot
 
 A Noether core can be read as a causal knot: not a material knot in space, but a stable closure of delayed path-history relations. The inner, middle, and outer binaries continually exchange partner-hit, self-hit, and inter-layer wakes. When those returns close with stable phase and integer ledger structure, the assembly traps geometric history in a localized causal circuit.

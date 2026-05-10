@@ -107,6 +107,7 @@ These symbols control the handoff from the Euclidean substrate plus Noether-core
 | C6 | $\gamma_{\text{eff}}$ | Constitutive closure target with observable meaning | Open | first-order refraction / space-curvature coefficient in the weak-field map | [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
 | C7 | $C_2$ or $\beta_{\text{eff}}$ | Constitutive closure target with observable meaning | Open | second-order clock-channel nonlinearity entering the $g_{00}$ expansion | [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
 | C8 | $\Xi_1,\Xi_2,\Xi_3,\Xi_4$ | Constitutive closure target | Open | preferred-frame leakage coefficients in the weak-field constitutive expansion | [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
+| C9 | $\mathcal{M}_{\text{sea}}^{ab}$ | Constitutive closure target | Open | medium-response tensor that maps shielded internal assembly energy to inertial momentum response, reducing to $h^{ab}/c_{\text{eff}}^2$ in a homogeneous isotropic Noether-Sea cell | [../dynamics/energy.md](../dynamics/energy.md), [../assemblies/particle-masses.md](../assemblies/particle-masses.md) |
 
 ## Layer IV: Observer-Level Benchmarks and Derived Outputs
 
@@ -218,6 +219,20 @@ with $\alpha$ fixed once by a reference assembly rather than re-fit separately f
 
 This relation means that $m_{\text{inertial}}(A)$ is not a primitive parameter. It is an output of shielding, internal energy, and medium response.
 
+In a resolved Noether-Sea environment, this scalar relation is the homogeneous isotropic limit of the tensor response
+$$
+p_{\text{int}}^a
+\approx
+\alpha\,\zeta(A)E_{\text{internal}}(A)\,
+\mathcal{M}_{\text{sea}}^{ab}V_{\text{cm},b},
+\qquad
+\mathcal{M}_{\text{sea}}^{ab}
+\to
+\frac{h^{ab}}{c_{\text{eff}}^2}.
+$$
+
+Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice. The tensor $\mathcal{M}_{\text{sea}}^{ab}$ is not a particle-specific fit parameter. It is a constitutive closure target for the Noether-Sea response map.
+
 ### 6. Planck-alignment map
 
 The current Planck-scale program uses the conjectural relations
@@ -267,6 +282,7 @@ The current corpus supports the following conservative closure assessment.
 - whether $\eta$ should disappear entirely from physical statements after the weak limit is taken,
 - the actual tri-binary radii/frequency ladder,
 - the shielding map $\zeta(A)$ across the fermion spectrum,
+- the medium-response tensor $\mathcal{M}_{\text{sea}}^{ab}$ that turns shielded internal energy into inertial and gradient response,
 - the constitutive functions $(\Omega,\xi)$ and the weak-field coefficient set $(\gamma_{\text{eff}},C_2,\Xi_i)$,
 - the Planck-alignment identification of $(R_{\text{align}},L_{\text{align}},h,G)$,
 - and the reduction of weak-mixing branch labels to a predictive electroweak closure.
@@ -277,7 +293,7 @@ The shortest path to a better closure score is:
 
 1. Fix the status of $\kappa$ once, with an explicit statement of what part is physical coupling and what part is absorbed normalization.
 2. Derive or numerically extract a reusable constitutive parameterization for $(\Omega,\xi)$, then hold it fixed across redshift, Shapiro delay, lensing, and preferred-frame tests.
-3. Replace symbolic shielding language with an operational $\zeta(A)$ extraction protocol that can be reused for electron, quark, and neutrino assemblies without redefinition.
+3. Replace symbolic shielding language with an operational $\zeta(A)$ extraction protocol and a reusable $\mathcal{M}_{\text{sea}}^{ab}$ response map that can be applied to electron, quark, and neutrino assemblies without redefinition.
 4. Decide whether the Planck-alignment map yields $(h,G)$ as true outputs or only as analogy-level scaling relations.
 5. Reduce the weak-mixing angle program from discrete branch suggestion to an actual minimization problem for $E_{\text{eff}}(\alpha,\phi_c)$.
 

@@ -49,6 +49,33 @@ Here $\zeta(A)$ is the shielding or exposure coefficient and $c_{\text{eff}}$ is
 - Stronger mass claims must declare which role is meant: rest mass, inertial response, gravitational response, external mass footprint, effective boson mass scale, neutral-assembly mass, or internal energy ledger.
 - Avoid treating Noether-Sea response as ordinary dissipative drag unless dissipation is actually being modeled. The preferred derivation language is medium-dressed inertial response.
 
+## Assembly-Level Reduction Status
+
+The current mass-side corpus should be read as reducing observer-facing mass to a mathematical expression over an $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly $A$, not to a primitive property of an individual architrino. The compact scalar reduction is
+
+$$
+m_{\text{inertial}}(A)
+\approx
+\alpha\,\frac{\zeta(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2},
+$$
+
+with $\alpha$ fixed once by a reference assembly rather than re-fit particle by particle. In this expression, $E_{\text{internal}}(A)$ is the closed assembly energy ledger, $\zeta(A)$ is the far-field shielding or exposure coefficient, and $c_{\text{eff}}$ is the local observer-facing light-speed scale set by the Noether-Sea state.
+
+For directional or environment-dependent response, the scalar denominator should be treated as the homogeneous isotropic limit of a medium-response tensor:
+
+$$
+p_{\text{int}}^a
+\approx
+\alpha\,\zeta(A)E_{\text{internal}}(A)\,
+\mathcal{M}_{\text{sea}}^{ab}V_{\text{cm},b},
+\qquad
+\mathcal{M}_{\text{sea}}^{ab}
+\to
+\frac{h^{ab}}{c_{\text{eff}}^2}.
+$$
+
+Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice. This tensor form is the stronger derivation target. It keeps the mass map from being read as shielding alone; the finished formula must also encode medium-dressed inertial response, Noether-Sea gradient response, and any residual anisotropy or leakage. Until $E_{\text{internal}}(A)$, $\zeta(A)$, and $\mathcal{M}_{\text{sea}}^{ab}$ are derived from a stable closed tri-binary root ledger, the scalar expression remains a controlled roadmap formula rather than a theorem.
+
 ## Source-of-Truth Map
 
 | Layer | Document | Ownership |
