@@ -191,21 +191,21 @@ However, this is not the dominant practical difficulty. The governing issue is g
 ## Operational noncommutativity and contextuality (emergent)
 
 Measurement procedures are interventions that condition future hit histories:
-- Let F, G be experimental contexts (e.g., corridor analyzers, path blockers, timing gates). Because they modify trajectories and thus the set of future causal roots, their composition generally satisfies F∘G ≠ G∘F at the level of observed statistics.
+- Let F, G be experimental contexts (e.g., planar-mode analyzers, path blockers, timing gates). Because they modify trajectories and thus the set of future causal roots, their composition generally satisfies F∘G ≠ G∘F at the level of observed statistics.
 - Contextuality: the distribution over ledger classes that best explains data depends on which filters were applied and in what order; the outcomes are context-dependent without invoking microscopic cross-product forces.
 
 Plain language: changing what you do now changes which shoves you’ll see later; doing A then B is not the same as B then A.
 
 ---
 
-## Interference and amplitude-squared from corridor overlap
+## Interference and amplitude-squared from planar-mode overlap
 
 Linear superposition at the isochron level plus coherent geometry yields interference-like patterns in aggregates:
-- Corridor fields from multiple sources add linearly; a detector that integrates over a small time window and area effectively accumulates a complex amplitude A_corr from coherent sub-bundles.
-- Intensity emerges as an overlap norm ∝ |A_corr|² under time/ensemble averaging of phase-like structure encoded by path histories.
-- Polarization example (already used): Malus’s law arises as a geometric projection of a corridor’s transverse pattern onto an analyzer axis, giving $\cos^2\theta$ transmission without right-hand-rule magnetism.
+- Photon planar-mode ledgers from multiple sources add linearly at the effective-amplitude level; a detector that integrates over a small time window and area effectively accumulates a complex amplitude $A_{\mathrm{mode}}$ from coherent sub-bundles.
+- Intensity emerges as an overlap norm proportional to $|A_{\mathrm{mode}}|^2$ under time/ensemble averaging of phase-like structure encoded by path histories.
+- Polarization example (already used): Malus’s law arises as a geometric projection of a planar mode's transverse ledger onto an analyzer axis, giving $\cos^2\theta$ transmission without right-hand-rule magnetism.
 
-Plain language: aligned corridors add, misaligned ones cancel; the strength you record scales like the square of how well patterns line up.
+Plain language: aligned planar-mode records add, misaligned ones cancel; the strength you record scales like the square of how well patterns line up.
 
 ---
 
@@ -215,19 +215,19 @@ Instantaneous inversion is ill-posed; reconstruction is temporal, multi-view, an
 - Multi-receiver geometry: use separated receivers to triangulate unoriented lines at the same t; intersecting rays yield two-sided candidate loci.
 - Time-series constraints: track L(t) and timing-derived r(t) proxies; curvature and rotation of L constrain source paths.
 - Active probing: vary receiver motion/filters to sample different roots and break degeneracies.
-- Priors: charge inventories, speed bounds, assembly templates (e.g., binaries, corridor statistics) shrink the hypothesis space.
+- Priors: charge inventories, speed bounds, assembly templates (e.g., binaries, planar-mode statistics) shrink the hypothesis space.
 - Estimation: run Bayesian filters or particle sets over ledger classes; update with each hit; report identifiability and uncertainty, not single-point “sources.”
 
 ---
 
 ## Worked micro-to-effective examples
 
-- Two-corridor interference:
-  - Setup: two coherent axial corridors reach a screen. The observed intensity pattern is the squared norm of their geometric overlap along the screen, set by relative phase encoded in path history.
-  - Which-way intervention: inserting a context that disrupts one corridor’s coherence changes the ledger classes and removes the overlap term, flattening the pattern.
+- Two-planar-mode interference:
+  - Setup: two coherent photon planar modes reach a screen. The observed intensity pattern is the squared norm of their geometric overlap along the screen, set by relative phase encoded in path history.
+  - Which-way intervention: inserting a context that disrupts one planar mode's coherence changes the ledger classes and removes the overlap term, flattening the pattern.
 
 - Polarization analyzer:
-  - The analyzer projects the corridor’s transverse structure onto its axis; transmission $\propto \cos^2\theta$ follows immediately from geometric projection.
+  - The analyzer projects the planar mode's transverse ledger onto its axis; transmission $\propto \cos^2\theta$ follows immediately from geometric projection.
 
 - Sequential filters (order matters):
   - Two non-parallel analyzers F($\theta$₁) and G($\theta$₂) applied in different orders yield different transmitted patterns because they recondition future causal roots differently: F∘G ≠ G∘F.
@@ -237,7 +237,7 @@ Instantaneous inversion is ill-posed; reconstruction is temporal, multi-view, an
 ## Falsifiable edges and tests (observability-focused)
 
 - Context order test: demonstrate order-dependent transmission with sequential analyzers on coherent corridors; quantify the asymmetry F∘G vs G∘F.
-- Corridor interference robustness: map how partial decoherence (deliberate jitter in source paths) suppresses the overlap term; compare to predicted |A|² decay with coherence length.
+- Planar-mode interference robustness: map how partial decoherence (deliberate jitter in source paths) suppresses the overlap term; compare to predicted $|A|^2$ decay with coherence length.
 - Multi-receiver triangulation under ambiguity: show that two-sided localization from unoriented lines plus time series reduces, but does not eliminate, sign/side and distance–speed degeneracies—matching Step 9 limits.
 - Bell-type correlation target (open): assess whether corridor-phase models with absolute time can reproduce observed $\cos(2\theta)$ correlations across separated analyzers without hidden cross-product forces; treat Tsirelson-like bounds as a stringent benchmark.
 

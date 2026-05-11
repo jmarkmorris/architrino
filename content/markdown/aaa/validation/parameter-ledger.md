@@ -190,8 +190,10 @@ and
 $$
 \Phi_{\text{eff}}(\mathbf{x})
 =
--c_f^2\ln\!\big(\Omega(\mathbf{x})\xi(\mathbf{x})\big).
+c_f^2\ln\!\big(\Omega(\mathbf{x})\xi(\mathbf{x})\big).
 $$
+
+Here $\xi$ is the Noether-core envelope shape ratio, while $\Omega\xi$ is the clock-rate factor used by this exponential metric subclass after the geometry-to-clock map is fixed.
 
 This is the cleanest current statement of the medium-to-metric handoff:
 $$
@@ -297,7 +299,7 @@ The current corpus supports the following conservative closure assessment.
 - $c_f$ is treated consistently as the substrate propagation speed, even when chapters temporarily write $v=1$.
 - $\epsilon$ is treated consistently as the unit architrino charge magnitude.
 - $\rho_{\text{core},0}$ is the reference density symbol for the spacetime medium.
-- $\Phi_{\text{eff}}=-c_f^2\ln(\Omega\xi)$ is the canonical clock-channel potential definition.
+- $\Phi_{\text{eff}}=c_f^2\ln(\Omega\xi)$ is the canonical clock-channel potential definition for the exponential metric subclass, with $\xi$ retained as a geometry-first Noether-core shape ratio.
 
 ### Still genuinely open
 

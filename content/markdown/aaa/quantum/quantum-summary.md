@@ -9,6 +9,7 @@ This page is the entry hub for the quantum branch of $\mathbb{A}\mathbb{A}\mathb
 - [collapse-problem.md](../theory-bridges/collapse-problem.md): finite-time separatrix-crossing replacement for collapse.
 - [wavefunction-ontology.md](./wavefunction-ontology.md): wavefunction as effective basin-weight bookkeeping.
 - [superposition-mechanism.md](../theory-bridges/superposition-mechanism.md): metastability, separatrices, and branch selection.
+- [quantum-statistics.md](./quantum-statistics.md): Fermi-Dirac and Bose-Einstein statistics as a Noether-core geometry transition.
 
 ## Correlation and No-Go Interfaces
 

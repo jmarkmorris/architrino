@@ -77,6 +77,8 @@ When the clock moves with velocity $\mathbf{v}$ relative to the Noether Sea:
  - As $v\to c_f$, that exclusion surface contracts along $\hat{\mathbf{v}}$ while maintaining transverse dimensions, yielding an ellipsoid with semi‑axes $(a_\perp, a_\perp, a_\parallel)$ and $a_\parallel < a_\perp$.
  - This geometric dilation changes internal path lengths and curvature, lowering $\omega$.
 
+Geometry terminology follows [Noether Core Geometry](../assemblies/noether-core-geometry.md#canonical-geometry-variables): the envelope shape ratio is $\xi=R_{\parallel}/R_{\perp}$. The proper-time factor is not defined to be $\xi$; it is the extracted clock observable $\omega_{\text{clk}}/\omega_0=d\tau/dt$. In the homogeneous Lorentz-closure target, the theory must derive $\omega_{\text{clk}}/\omega_0\to\xi\to1/\gamma$.
+
 **Kinematic hypothesis:**
 $$
 \omega(v, n=1) \approx \omega_0 \sqrt{1 - \frac{v^2}{c_f^2}}

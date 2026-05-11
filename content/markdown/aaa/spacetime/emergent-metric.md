@@ -163,24 +163,26 @@ For the local medium-rest frame $\hat{u}^\mu=(1,0,0,0)$, use
 $$
 g_{\mu\nu}^{\text{eff}}(x)
 =
-\Omega^{-2}(n,\lambda)\left[
+\Omega^{2}(n,\lambda)\left[
 \eta_{\mu\nu}
 +
-\left(1-\xi^{-2}(x)\right)\hat{u}_\mu\hat{u}_\nu
+\left(1-\xi^{2}(x)\right)\hat{u}_\mu\hat{u}_\nu
 \right].
 $$
 Then
 $$
-g_{00}^{\text{eff}}=-\Omega^{-2}\xi^{-2},
+g_{00}^{\text{eff}}=-\Omega^{2}\xi^{2},
 \qquad
-g_{ij}^{\text{eff}}=\Omega^{-2}\delta_{ij}.
+g_{ij}^{\text{eff}}=\Omega^{2}\delta_{ij}.
 $$
+
+Here $\xi$ is the Noether-core envelope shape ratio $\xi=R_{\parallel}/R_{\perp}$, not a synonym for the clock-rate factor. The stationary ideal clock-rate factor in this metric subclass is extracted as $\sqrt{-g_{00}^{\text{eff}}}=\Omega\xi$ only after the geometry-to-clock map is fixed.
 
 Define the clock-channel potential
 $$
-\Phi_{\text{eff}}(x)\equiv -c_f^2\ln\!\big(\Omega(x)\xi(x)\big),
+\Phi_{\text{eff}}(x)\equiv c_f^2\ln\!\big(\Omega(x)\xi(x)\big),
 \qquad
-\Omega(x)\xi(x)=e^{-\Phi_{\text{eff}}(x)/c_f^2}.
+\Omega(x)\xi(x)=e^{\Phi_{\text{eff}}(x)/c_f^2}.
 $$
 
 For a slowly moving test assembly in a stationary medium, the dominant connection piece is
@@ -189,9 +191,9 @@ $$
 =
 -\frac{1}{2}g_{\text{eff}}^{ij}\partial_j g_{00}^{\text{eff}}
 =
--\xi^{-2}\,\partial^i\ln(\Omega\xi)
+\xi^{2}\,\partial^i\ln(\Omega\xi)
 =
-\xi^{-2}\frac{\partial^i\Phi_{\text{eff}}}{c_f^2}.
+\xi^{2}\frac{\partial^i\Phi_{\text{eff}}}{c_f^2}.
 $$
 Using $dx^0/dt\approx c_f$, the spatial geodesic equation gives
 $$
@@ -199,13 +201,13 @@ $$
 \approx
 -\Gamma^i_{00}\left(\frac{dx^0}{dt}\right)^2
 =
--\xi^{-2}\nabla^i\Phi_{\text{eff}}.
+-\xi^{2}\nabla^i\Phi_{\text{eff}}.
 $$
 Hence, in weak field ($\xi\to 1$),
 $$
 \frac{d^2\mathbf{x}}{dt^2}
 =-\nabla\Phi_{\text{eff}}
-+O\!\left(\left|1-\xi^{-2}\right|\,\left|\nabla\Phi_{\text{eff}}\right|\right),
++O\!\left(\left|1-\xi^{2}\right|\,\left|\nabla\Phi_{\text{eff}}\right|\right),
 $$
 which is the Newtonian limit.
 

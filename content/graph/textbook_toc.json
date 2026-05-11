@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 149,
-      "sections": 1058
+      "entries": 150,
+      "sections": 1068
     }
   },
   "tocRoot": {
@@ -3240,6 +3240,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Canonical Geometry Variables",
+                "markdownPath": "content/markdown/aaa/assemblies/noether-core-geometry.md",
+                "markdownSection": "Canonical Geometry Variables",
+                "sectionKey": "canonical geometry variables",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Deformability of the Envelope",
                 "markdownPath": "content/markdown/aaa/assemblies/noether-core-geometry.md",
                 "markdownSection": "Deformability of the Envelope",
@@ -4335,6 +4343,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Shared Photon Event Record",
+                "markdownPath": "content/markdown/aaa/reactions/bremsstrahlung.md",
+                "markdownSection": "Shared Photon Event Record",
+                "sectionKey": "shared photon event record",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "IR Regularization as a Stability Floor",
                 "markdownPath": "content/markdown/aaa/reactions/bremsstrahlung.md",
                 "markdownSection": "IR Regularization as a Stability Floor",
@@ -4477,6 +4493,14 @@
                 "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
                 "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Assembly Interpretation by Channel",
                 "sectionKey": "mathbb a mathbb a mathbb a assembly interpretation by channel",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Shared Photon Event Record",
+                "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
+                "markdownSection": "Shared Photon Event Record",
+                "sectionKey": "shared photon event record",
                 "headingLevel": 2
               },
               {
@@ -4880,6 +4904,72 @@
                 "markdownPath": "content/markdown/aaa/quantum/algorithmic-resonance.md",
                 "markdownSection": "Falsifiability and Scaling Limits",
                 "sectionKey": "falsifiability and scaling limits",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "quantum__quantum_statistics",
+            "title": "Fermi-Dirac & Bose-Einstein Statistics",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/quantum/quantum_statistics.json",
+            "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Standard Observer-Level Roles",
+                "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
+                "markdownSection": "Standard Observer-Level Roles",
+                "sectionKey": "standard observer level roles",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Noether-Core Geometry Basis",
+                "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
+                "markdownSection": "Noether-Core Geometry Basis",
+                "sectionKey": "noether core geometry basis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Fermi-Dirac Regime: 3D Exclusion",
+                "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
+                "markdownSection": "Fermi-Dirac Regime: 3D Exclusion",
+                "sectionKey": "fermi dirac regime 3d exclusion",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Bose-Einstein Regime: 2D Coherence",
+                "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
+                "markdownSection": "Bose-Einstein Regime: 2D Coherence",
+                "sectionKey": "bose einstein regime 2d coherence",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The 3D-to-2D Transition",
+                "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
+                "markdownSection": "The 3D-to-2D Transition",
+                "sectionKey": "the 3d to 2d transition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Interfaces",
+                "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
+                "markdownSection": "Interfaces",
+                "sectionKey": "interfaces",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closure Targets",
+                "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
+                "markdownSection": "Closure Targets",
+                "sectionKey": "closure targets",
                 "headingLevel": 2
               }
             ]
@@ -7217,10 +7307,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Interference and amplitude-squared from corridor overlap",
+                    "title": "Interference and amplitude-squared from planar-mode overlap",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Interference and amplitude-squared from corridor overlap",
-                    "sectionKey": "interference and amplitude squared from corridor overlap",
+                    "markdownSection": "Interference and amplitude-squared from planar-mode overlap",
+                    "sectionKey": "interference and amplitude squared from planar mode overlap",
                     "headingLevel": 2
                   },
                   {

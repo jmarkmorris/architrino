@@ -91,6 +91,30 @@ const rules = [
     suggestion: "Separate component-speed saturation from the combined-speed Mach-wedge condition.",
   },
   {
+    id: "photon-planar-pair-drift",
+    description: "Photon ontology should use the canonical coaxial contra-rotating pro/anti planar-pair description.",
+    pattern:
+      /\b(photon-like planar[- ]pair|photon-like pair|photon planar[- ]pair|photon planar pair)\b/i,
+    suggestion:
+      "Use the canonical description coaxial contra-rotating pro/anti planar pair, or photon channel when a short label is needed.",
+  },
+  {
+    id: "photon-corridor-language",
+    description: "Corridor wording is reserved for weak-channel contexts, not photon planar-mode or polarization language.",
+    pattern:
+      /\b(corridor analyzers|corridor'?s transverse pattern|Two-corridor interference|Corridor interference robustness)\b/i,
+    suggestion:
+      "Use photon planar-mode, planar-mode ledger, photon-channel, or analyzer language; reserve corridor for weak channels.",
+  },
+  {
+    id: "photon-speed-notation-drift",
+    description: "Photon transport should distinguish photon-channel speed from primitive wake speed.",
+    pattern:
+      /field speed limit \(\$v \\approx 1\$\)|v_\{phase\}\s*<\s*c/i,
+    suggestion:
+      "Use c_gamma for photon-channel speed, c_f for primitive wake speed, and chi_sea for Noether-Sea delay.",
+  },
+  {
     id: "noether-sea-hyphen-standalone",
     description: "Noether-Sea should be hyphenated only before a following noun.",
     pattern: /Noether-Sea(?=\s*($|[.,;:)\]}]))/,

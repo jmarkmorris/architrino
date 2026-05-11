@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 458,
-      "edges": 1213,
-      "scenes": 315,
+      "nodes": 460,
+      "edges": 1215,
+      "scenes": 316,
       "markdownIndexes": 0,
-      "markdownDocs": 143,
+      "markdownDocs": 144,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1931,6 +1931,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "quantum__quantum_statistics",
+      "name": "Fermi-Dirac & Bose-Einstein Statistics",
+      "path": "content/scenes/quantum/quantum_statistics.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "reactions__bremsstrahlung",
       "name": "Bremsstrahlung",
       "path": "content/scenes/reactions/bremsstrahlung.json",
@@ -2516,6 +2522,12 @@
       "id": "content/markdown/aaa/quantum/measurement-ontology.md",
       "name": "Measurement Ontology",
       "path": "content/markdown/aaa/quantum/measurement-ontology.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/quantum/quantum-statistics.md",
+      "name": "Fermi-Dirac and Bose-Einstein Statistics",
+      "path": "content/markdown/aaa/quantum/quantum-statistics.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -4978,6 +4990,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/quantum/quantum_statistics.json",
+      "nodeType": "scene",
+      "id": "quantum__quantum_statistics",
+      "name": "Fermi-Dirac & Bose-Einstein Statistics",
+      "path": "content/scenes/quantum/quantum_statistics.json",
+      "searchTarget": "content/scenes/quantum/quantum_statistics.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/quantum/quantum_summary.json",
       "nodeType": "scene",
       "id": "quantum__quantum_summary",
@@ -6451,6 +6472,15 @@
       "name": "Measurement Ontology",
       "path": "content/markdown/aaa/quantum/measurement-ontology.md",
       "searchTarget": "content/markdown/aaa/quantum/measurement-ontology.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/quantum/quantum-statistics.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/quantum/quantum-statistics.md",
+      "name": "Fermi-Dirac and Bose-Einstein Statistics",
+      "path": "content/markdown/aaa/quantum/quantum-statistics.md",
+      "searchTarget": "content/markdown/aaa/quantum/quantum-statistics.md",
       "implicit": false
     },
     {
@@ -10496,6 +10526,13 @@
     },
     {
       "from": "scene:content/scenes/quantum/quantum.json",
+      "to": "scene:content/scenes/quantum/quantum_statistics.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/quantum/quantum.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/quantum/quantum.json",
       "to": "scene:content/scenes/quantum/quantum_summary.json",
       "edgeType": "subscene",
       "source": "content/scenes/quantum/quantum.json",
@@ -11745,6 +11782,13 @@
       "to": "markdown_doc:content/markdown/aaa/quantum/measurement-ontology.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/quantum/measurement_ontology.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/quantum/quantum_statistics.json",
+      "to": "markdown_doc:content/markdown/aaa/quantum/quantum-statistics.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/quantum/quantum_statistics.json",
       "field": "scene.source.path"
     },
     {

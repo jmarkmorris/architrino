@@ -109,6 +109,18 @@ This 1% threshold is a modeling convention for cascade tractability, not a funda
 - **Pair channel:** two-photon overlap, with each photon treated as a coaxial contra-rotating pro/anti planar pair, associates local substrate content into a charged $e^+e^-$ assembly pair; this association must strictly conserve net architrino count and charge of participating assemblies (photons + neutral Noether-Sea cores $\rightarrow e^+ + e^-$), with provenance and conservation bookkeeping explicit.
 - **Cascade loop:** repeated emission-pair-emission cycles are modeled as repeated mode-lock events under the same observer-level thresholds.
 
+## Shared Photon Event Record
+
+Use the same photon-channel event record here as in [Bremsstrahlung](bremsstrahlung.md) and [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md). A synchrotron planar-mode event should record:
+
+- charged assembly identity, energy, momentum, pitch geometry, and path-history provenance before and after the curved transport segment;
+- effective magnetic-state map $\mathcal{V}_{\mathrm{NS}}$ and local Noether-Sea variables $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy, excitation state, and causal-branch Jacobian data;
+- wake-strain eigenvalue or threshold status that permits or forbids planar-mode nucleation;
+- photon output $E_\gamma$, direction, polarization basis, and local photon-channel speed $c_\gamma$;
+- recoil, medium excitation, and pair-channel handoff terms when the emitted photon enters a cascade loop.
+
+This record is a derivation target. It must recover $\nu_c\propto\gamma^2B$, $P_{\mathrm{syn}}\propto U_B\gamma^2$, standard polarization limits, and Breit-Wheeler behavior in validated regimes before any Noether-Sea-dependent deviation is treated as physical.
+
 ## Observer-Level Closure Checks
 
 - Pair threshold closure: enforce $s = (k_1+k_2)^2 \ge 4m_e^2c^4$ for $\gamma\gamma \rightarrow e^+e^-$, where $k^\mu_i$ are photon 4-momenta. In the head-on collision frame this reduces to $E_1 E_2 \ge (m_e c^2)^2$; for general angle $\theta_{12}$ between photon directions, $E_1 E_2 (1-\cos\theta_{12}) \ge 2(m_e c^2)^2$. Breit-Wheeler cross-section peak occurs at $s \sim 10 m_e^2 c^4$ and must be reproduced in validated cascade limits.

@@ -77,7 +77,7 @@ Charged Generation I leptons and quarks utilize the full **tri-binary Noether co
 *   **Note:** Antimatter is a geometric inversion of *both* the core braiding and the axial polarity.
 
 **The Electron Neutrino ($\nu_e$)**
-*   **Geometry:** Near-planar pro/anti Noether-core pairing, close to the photon planar-pair channel but not fully locked into it.
+*   **Geometry:** Near-planar pro/anti Noether-core pairing, close to the fully locked coaxial contra-rotating pro/anti planar-pair photon channel but not fully locked into it.
 *   **Stable Axial Layer:** None in the charged-fermion sense.
 *   **Weak Bookkeeping:** During charged-current coupling, the exposed neutral ledger can be represented as a balanced $3P,3E$ weak-coupling projection.
 *   **Net Charge:** $0$.

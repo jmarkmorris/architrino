@@ -31,7 +31,7 @@ A photon manifests as a **phase-locked planar-pair mode train** of delayed actio
 *   **Burst vs. Continuous:**
     *   **Packet (Particle-like):** A discrete atomic transition releases a short "burst" train—a finite segment of the planar-mode train.
     *   **Beam (Classical-like):** A continuous drive (antenna) releases a continuous stream of units, creating a long-range coherent beam.
-*   **Group Velocity:** The planar (edge-on) orientation minimizes interaction with the ambient Noether-Sea lattice, allowing propagation at the field speed limit ($v \approx 1$).
+*   **Photon-channel speed:** The planar (edge-on) orientation minimizes interaction with the ambient Noether-Sea lattice. In weak homogeneous Noether-Sea conditions the local photon-channel speed $c_\gamma$ approaches the primitive wake speed $c_f$; in material media or strong Noether-Sea gradients, $c_\gamma<c_f$ is the observer-level transport summary.
 
 ### Interaction Rules: Capture and Release
 *   **Emission (Planar-Mode Release):** Driven by accelerated motion in the source binary. The accepted action ledger enters a stable planar-pair mode along a tangential vector.
@@ -44,12 +44,24 @@ A photon manifests as a **phase-locked planar-pair mode train** of delayed actio
 *   **Ambient Noether Sea:** The ambient Noether Sea is populated by neutral assemblies (Noether Cores).
 *   **Attenuation & Refraction:**
     *   As the photon train passes through regions of varying density (dielectric media or dense Noether Sea), the planar mode **re-couples** transiently with ambient assemblies.
-    *   **Refraction:** This transient recoupling and delay response slows the phase velocity ($v_{phase} < c$).
+*   **Refraction:** This transient recoupling and delay response lowers the effective photon-channel speed $c_\gamma$ relative to its weak homogeneous value.
     *   **Attenuation:** Incoherent scattering can "strip" units off the train, depleting the beam energy over distance (scattering) or absorbing it entirely (opacity).
 
 ### Phenomenology
-*   **Energy-Frequency:** For a periodic source $\omega$, the flux of architrino hits along the planar mode scales as $E_{app} \propto \omega$.
+*   **Energy-Frequency:** For a periodic source $\omega=2\pi\nu$, the closure target is the photon-channel relation $E_\gamma=h\nu$; the cycle being counted is the propagating planar-mode phase cycle, not a rest-state volumetric clock.
 *   **Malus' Law:** Emerges as the geometric projection of the transverse planar-mode profile onto the analyzer's acceptance slot ($I \propto \cos^2 \theta$).
+
+### Photon Closure Interface
+
+The photon description above is the ontology-level target. The theorem-level program should be kept in three closure gates so the chapter does not treat open derivations as already complete.
+
+| Gate | Closure target | Required recovery |
+| :--- | :--- | :--- |
+| **Gate A: kinematics and optics** | Derive the coaxial contra-rotating pro/anti planar-pair branch from Noether-core and Noether-Sea dynamics. The active variables include $c_f$, $c_\gamma$, $\delta_\gamma\equiv1-c_\gamma/c_f$, the pair spacing $d$, the phase frequency $\omega$, and the geometric phase $\phi_{\text{geom}}$. | Recover $E_\gamma=h\nu$, $p=h/\lambda$, $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$, $m_\gamma^2=0$, no residual rest branch, no rest proper-time clock, and no unacceptable free-space dispersion. |
+| **Gate B: polarization and spin** | Derive the transverse ledger, analyzer coupling, helicity, and squared-amplitude rule from planar-pair capture rather than appending them as observer-level facts. | Recover exactly two transverse photon modes, no physical longitudinal mode, Malus' law, helicity $\pm1$, single-photon statistics, and no-signaling behavior in entangled-polarization tests. |
+| **Gate C: vertices and transitions** | Map emission, absorption, pair production, Compton-like scattering, photon-photon limits, blackbody behavior, and effective coupling into allowed ledger transitions between massive assemblies and coaxial contra-rotating pro/anti planar pairs. | Recover validated Maxwell/QED behavior, transition-rate limits, pair-production thresholds, Bose-Einstein occupation behavior, $U(1)$-like phase bookkeeping, Aharonov-Bohm phase behavior, and the effective scale $\alpha$. |
+
+In reaction chapters, Gate C should be expressed through [Mode Taxonomy](../../interactions/mode-taxonomy.md): photon emission uses **planar-mode nucleation**, not corridor-mode language. Event-level provenance for radiative and pair channels is tracked in [Reaction-Cosmology Provenance Ledger](../../validation/reaction-cosmology-provenance-ledger.md).
 
 ---
 
@@ -114,7 +126,7 @@ The Higgs is not a propagating assembly *through* the ambient medium; it is a re
 
 | Boson | Geometry | Payload | Propagation | Mass Origin |
 | :--- | :--- | :--- | :--- | :--- |
-| **Photon** | Coaxial contra-rotating pro/anti planar pair | Neutral (0) | Planar-pair mode train | None (planar / edge-on) |
+| **Photon** | Coaxial contra-rotating pro/anti planar pair | Neutral (0) | Planar-pair mode train at $c_\gamma$ | None (planar / edge-on) |
 | **W Boson** | Inflated Transaction Vortex | Charged ($\pm 6\epsilon$) | Short-lived Corridor (near-$c$, ruptures) | Confinement Energy / Noether-Sea Response |
 | **Z Boson** | Inflated Neutral Vortex | Neutral ($3P, 3E$) | Short-lived Corridor (near-$c$, ruptures) | Confinement Energy / Noether-Sea Response |
 | **Higgs** | Radial Noether-Sea Oscillation | N/A | Local Resonance | Lattice Stiffness |

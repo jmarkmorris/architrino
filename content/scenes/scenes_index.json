@@ -1486,6 +1486,11 @@
       "path": "content/scenes/quantum/quantum_summary.json"
     },
     {
+      "id": "quantum__quantum_statistics",
+      "name": "Fermi-Dirac & Bose-Einstein Statistics",
+      "path": "content/scenes/quantum/quantum_statistics.json"
+    },
+    {
       "id": "reactions__bremsstrahlung",
       "name": "Bremsstrahlung",
       "path": "content/scenes/reactions/bremsstrahlung.json"

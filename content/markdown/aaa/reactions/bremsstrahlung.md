@@ -147,6 +147,19 @@ Associated pair/Compton channels are included when they exceed the same contribu
 - **Positron analog:** same wake-threshold logic with sign-reversed charge trajectory in observer-level kinematics.
 - **Thermal ensemble:** macroscopic free-free emissivity is the aggregate of many local planar-mode nucleation events under screened Coulomb transport.
 
+## Shared Photon Event Record
+
+Use the same photon-channel event record here as in [Synchrotron Cascades](synchrotron.md) and [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md). A bremsstrahlung planar-mode event should record:
+
+- incoming and outgoing charged assembly identity, momentum, and path-history provenance;
+- target assembly identity, recoil term, and coherent or resolved geometry regime;
+- local Noether-Sea state variables $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy, excitation state, and relevant causal-branch Jacobian data;
+- wake-strain or shock-intensity status relative to the planar-mode threshold;
+- photon output $E_\gamma$, direction, polarization basis, and local photon-channel speed $c_\gamma$;
+- residual medium excitation $\Delta E_{\mathrm{med}}$ and any non-radiative channel that receives sub-threshold energy.
+
+This record is a derivation target. It should recover standard $d\sigma/dk$, screening, form-factor, and emissivity limits before any Noether-Sea-dependent deviation is treated as physical.
+
 ## IR Regularization as a Stability Floor
 
 Standard soft-photon emission produces infrared-divergent exclusive rates, handled by inclusive observables and resummation. In $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation, an additional hypothesis is available: stable planar photon assemblies exist only above a minimum nucleation energy $E_{\gamma,\min}$.
@@ -164,6 +177,8 @@ Interpretation split used in this draft:
 - **Ontic prediction (conditional):** if $E_{\gamma,\min}$ is above current soft-photon sensitivity, the model predicts a measurable low-frequency turnover at $\nu_{\min}=E_{\gamma,\min}/h$.
 
 Current status: this chapter treats the claim as epistemic by default and promotes ontic turnover as a conditional extension.
+
+Connection to the photon closure interface: $E_{\gamma,\min}$ should be read as a candidate expression of the planar-pair stability boundary, not as a free cutoff. The first derivation must decide whether that boundary vanishes, lies below current soft-photon sensitivity, or produces a measurable turnover while preserving inclusive QED observables.
 
 ## $Z^2$ Scaling and Finite-Geometry Resolution
 

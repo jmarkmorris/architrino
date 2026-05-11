@@ -30,6 +30,10 @@
       {
         "nodeId": "algorithmic_resonance",
         "scenePath": "content/scenes/quantum/algorithmic_resonance.json"
+      },
+      {
+        "nodeId": "quantum_statistics",
+        "scenePath": "content/scenes/quantum/quantum_statistics.json"
       }
     ]
   },
