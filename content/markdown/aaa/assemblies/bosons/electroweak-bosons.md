@@ -31,7 +31,7 @@ A photon manifests as a **phase-locked planar-pair mode train** of delayed actio
 *   **Burst vs. Continuous:**
     *   **Packet (Particle-like):** A discrete atomic transition releases a short "burst" train—a finite segment of the planar-mode train.
     *   **Beam (Classical-like):** A continuous drive (antenna) releases a continuous stream of units, creating a long-range coherent beam.
-*   **Photon-channel speed:** The planar (edge-on) orientation minimizes interaction with the ambient Noether-Sea lattice. In weak homogeneous Noether-Sea conditions the local photon-channel speed $c_\gamma$ approaches the primitive wake speed $c_f$; in material media or strong Noether-Sea gradients, $c_\gamma<c_f$ is the observer-level transport summary.
+*   **Photon-channel speed:** The planar (edge-on) orientation minimizes interaction with the ambient Noether-Sea lattice. In weak homogeneous Noether-Sea conditions the local photon-channel speed $c_\gamma$ approaches the primitive wake speed $c_f$; in material media or strong Noether-Sea gradients, $c_\gamma < c_f$ is the observer-level transport summary.
 
 ### Interaction Rules: Capture and Release
 *   **Emission (Planar-Mode Release):** Driven by accelerated motion in the source binary. The accepted action ledger enters a stable planar-pair mode along a tangential vector.
@@ -44,7 +44,7 @@ A photon manifests as a **phase-locked planar-pair mode train** of delayed actio
 *   **Ambient Noether Sea:** The ambient Noether Sea is populated by neutral assemblies (Noether Cores).
 *   **Attenuation & Refraction:**
     *   As the photon train passes through regions of varying density (dielectric media or dense Noether Sea), the planar mode **re-couples** transiently with ambient assemblies.
-*   **Refraction:** This transient recoupling and delay response lowers the effective photon-channel speed $c_\gamma$ relative to its weak homogeneous value.
+    *   **Refraction:** This transient recoupling and delay response lowers the effective photon-channel speed $c_\gamma$ relative to its weak homogeneous value.
     *   **Attenuation:** Incoherent scattering can "strip" units off the train, depleting the beam energy over distance (scattering) or absorbing it entirely (opacity).
 
 ### Phenomenology

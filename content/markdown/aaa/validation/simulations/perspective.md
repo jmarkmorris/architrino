@@ -111,7 +111,7 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are di
 - With $\delta\to\delta_\eta$, compute the mean inward attraction from the partner versus the mean outward self-repulsion across one orbit; the fixed point defines $d_0$ and the maximum orbital frequency $2\pi/t_0$.
 - Prediction: the same d0 appears across binaries with the same $\epsilon$ and v, independent of initial conditions after sufficient relaxation.
 
-3) Energy consistency across the |v|=1 transition
+3) Energy consistency across the $\|\mathbf{v}\|=1$ transition
 - Use $\Phi_\eta$ to evaluate $U$ and verify $\Delta E_k = -\,\Delta U$ across events that cross the symmetry point; in the $\eta\to 0$ limit, impulses integrate to the same work.
 
 4) Numerical recipe (robust, minimal assumptions)
@@ -122,11 +122,11 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are di
 ## Comparisons and falsifiable edges
 
 - Classical E&M:
-  - Replace Maxwell + Lorentz force with delayed, radial-only action; predict the same far-field radiation patterns for coherent assemblies but different near-field dynamics when |v|≈1 or self-hits occur.
+  - Replace Maxwell + Lorentz force with delayed, radial-only action; predict the same far-zone radiation patterns for coherent assemblies but different near-zone dynamics when $\|\mathbf{v}\|\approx1$ or self-hits occur.
 - QCD phenomenology:
   - Confinement-like behavior emerges from polar-vortex coupling; falsifiable via constraints on hadron breakup channels and energy distributions if the coupling geometry is perturbed.
 - Inertia/apparent mass:
-  - Predicts context-dependent inertia from shielding; assemblies in different internal phases could exhibit small, measurable variations in response to identical external fields.
+  - Predicts context-dependent inertia from shielding; assemblies in different internal phases could exhibit small, measurable variations in response to identical external effective fields.
 
 ---
 
@@ -236,9 +236,9 @@ Instantaneous inversion is ill-posed; reconstruction is temporal, multi-view, an
 
 ## Falsifiable edges and tests (observability-focused)
 
-- Context order test: demonstrate order-dependent transmission with sequential analyzers on coherent corridors; quantify the asymmetry F∘G vs G∘F.
+- Context order test: demonstrate order-dependent transmission with sequential analyzers on coherent planar modes; quantify the asymmetry F∘G vs G∘F.
 - Planar-mode interference robustness: map how partial decoherence (deliberate jitter in source paths) suppresses the overlap term; compare to predicted $|A|^2$ decay with coherence length.
 - Multi-receiver triangulation under ambiguity: show that two-sided localization from unoriented lines plus time series reduces, but does not eliminate, sign/side and distance–speed degeneracies—matching Step 9 limits.
-- Bell-type correlation target (open): assess whether corridor-phase models with absolute time can reproduce observed $\cos(2\theta)$ correlations across separated analyzers without hidden cross-product forces; treat Tsirelson-like bounds as a stringent benchmark.
+- Bell-type correlation target (open): assess whether planar-mode phase models with absolute time can reproduce observed $\cos(2\theta)$ correlations across separated analyzers without hidden cross-product forces; treat Tsirelson-like bounds as a stringent benchmark.
 
 Plain language: we can test the framework by checking order effects, interference weakening when we scramble coherence, and how much multiple receivers really help; reproducing quantum correlations is the toughest, and we flag it as an explicit target.

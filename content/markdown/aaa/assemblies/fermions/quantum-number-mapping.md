@@ -532,17 +532,17 @@ Across the repo, the working geometric rule is that the spin label tracks the **
 
 This should be read as the common geometric dictionary behind the particle-specific chapters: the Higgs uses the scalar channel, photons/gluons/$W^\pm$/$Z$ use vector channels, fermions use the ordered-core spinor channel, and gravitational waves realize the effective tensor channel.
 
-However, there are two nuances we should be aware of, though we don't necessarily need a new row for them:
+Two qualifications remain useful without adding new rows to the taxonomy:
 
 1.  **Flavor Quantum Numbers ($S, C, B, T$):**
-    *   In physics textbooks, you'll see numbers for **Strangeness**, **Charm**, **Bottomness**, and **Topness**.
-    *   **Our Mapping:** These are redundant. They are fully covered by the **Generation** row combined with the **Charge** row.
+    *   Standard physics textbooks use numbers for **Strangeness**, **Charm**, **Bottomness**, and **Topness**.
+    *   **Mapping:** These are redundant in this taxonomy. They are covered by the **Generation** row combined with the **Charge** row.
         *   *Example:* "Strangeness = -1" is just code for "Generation II, Charge -1/3 (Down-type)".
-        *   Our geometric explanation (Generation = Shielding Level) is actually *better* because it explains *why* Flavor is conserved in Strong interactions (you can't just "shed" a binary ring without a Weak event).
+        *   The geometric explanation (Generation = Shielding Level) is more explanatory because it links strong-channel flavor conservation to the fact that an assembly cannot shed a binary ring without a weak-channel event.
 
 2.  **Intrinsic Parity ($P$):**
     *   By convention, quarks have parity $P = +1$ and antiquarks have $P = -1$.
-    *   **Our Mapping:** This is covered by the **Baryon/Lepton Number (Core Topology)** row.
+    *   **Mapping:** This is covered by the **Baryon/Lepton Number (Core Topology)** row.
         *   Pro-Core (Matter) = $+$.
         *   Anti-Core (Antimatter) = $-$.
     *   So, we have this covered implicitly.
