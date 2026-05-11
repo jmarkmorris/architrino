@@ -52,7 +52,6 @@
         "effective_lagrangian": "Effective Lagrangian",
         "kinetic_and_potential_energy": "Kinetic and Potential Energy",
         "master_equation_of_motion": "Master Equation of Motion",
-        "quantum": "Quantum",
         "tri_binary_dynamics": "Tri-Binary Dynamics"
       }
     },
@@ -142,13 +141,13 @@
       "objects": {
         "effective_metric": "Effective Metric",
         "physical_observers": "Physical Observers",
-        "spacetime_medium": "Spacetime Medium",
+        "spacetime_medium": "Noether Sea",
         "strong_field_regime": "Strong-Field Regime"
       }
     },
     "content/scenes/spacetime/spacetime_medium.json": {
       "sceneId": "spacetime_medium",
-      "sceneName": "Spacetime Medium",
+      "sceneName": "Noether Sea",
       "objects": {
         "medium_exclusion_volume": "Medium Exclusion Volume",
         "noether_sea": "Noether Sea",

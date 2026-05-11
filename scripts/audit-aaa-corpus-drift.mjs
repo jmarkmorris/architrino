@@ -82,6 +82,28 @@ const rules = [
     pattern: /Noether-Sea(?=\s*($|[.,;:)\]}]))/,
     suggestion: "Use Noether Sea as the standalone noun; reserve Noether-Sea for compound modifiers.",
   },
+  {
+    id: "aaa-theory-name-drift",
+    description: "Loose theory-name wording in authored AAA prose.",
+    pattern: /\b(architrino framework|architrino theory|Architrino Assembly Architecture)\b/i,
+    suggestion:
+      "Use the stylized theory name $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ unless referring to a literal title, path, or code identifier.",
+  },
+  {
+    id: "reader-prose-working-note-language",
+    description: "Conversational working-note language in reader-facing prose.",
+    pattern:
+      /\b(Here I|Let(?:'|’)s|Let me|I recommend|we should|we need|smart antenna|fluffy atom|architrino weather|architrino breeze|chaotic mess|rigid rock|Take one large)\b/i,
+    suggestion:
+      "Rewrite as formal, reader-ready prose with scoped claims and explicit closure-target language.",
+  },
+  {
+    id: "reader-prose-placeholder-language",
+    description: "Placeholder or checklist wording left in reader-facing AAA prose.",
+    pattern: /\b(placeholder|stub|previously empty|Suggested Refinements|Immediate Next Steps)\b/i,
+    suggestion:
+      "Promote to a scoped purpose, status, closure-target, or missing-material section rather than leaving implementation-note language.",
+  },
 ];
 
 function normalizePath(value) {

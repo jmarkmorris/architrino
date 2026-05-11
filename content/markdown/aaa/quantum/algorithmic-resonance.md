@@ -1,29 +1,41 @@
 # Algorithmic Resonance and Shor's Algorithm
 
 ## Macroscopic Assembly Coherence
-Scaling the single-qubit dynamics to multi-register algorithmic execution.
-* **Ensemble Phase-Locking:** Conditions required to maintain non-Markovian path-history coherence across a macroscopic array of tri-binaries.
-* **The Role of the Noether Sea:** Treating the local spacetime medium as a bounded cavity for causal wake interference.
+
+This note treats quantum algorithmic speedup as a demanding coherence problem for many coupled assemblies. The immediate aim is not to rederive Shor's algorithm from the master equation. It is to identify which physical constraints a future derivation must satisfy if an effective quantum register is to remain coherent across many controlled operations.
+
+- **Ensemble phase-locking:** The closure problem is to maintain non-Markovian path-history coherence across a macroscopic array of tri-binary assemblies.
+- **Noether-Sea context:** The local Noether Sea supplies the causal-wake background in which register-scale interference must remain stable. Any cavity analogy should be read as an effective description of bounded wake superposition, not as a new substrate ontology.
 
 ## The Quantum Fourier Transform as Physical Interference
-Mapping the QFT to the continuum limit of $\mathbb{A}\mathbb{A}\mathbb{A}$ dynamics.
-* **Wake Superposition:** The physical superposition of delayed causal wake contributions $\sum V(t_0)$ within the macroscopic assembly.
-* **Destructive Interference:** Cancellation of opposing electrino/positrino fluxes for non-periodic path-histories, suppressing corresponding dynamical trajectories.
-* **Constructive Interference:** Alignment of phase wakes for periodic path-histories, creating deep, macroscopic basins of attraction.
-* **Amplification:** The role of $v > c_f$ inner binary self-hit mechanics in rapidly driving the system toward resonant frequencies.
+
+The Quantum Fourier Transform is the natural comparison point because it converts periodic structure into a sharply concentrated observer-level output. In $\mathbb{A}\mathbb{A}\mathbb{A}$ language, the corresponding closure target is to show that delayed causal-wake superposition can produce the same basin-weight concentration in a controlled register.
+
+- **Wake superposition:** The physical sum of delayed causal-wake contributions $\sum V(t_0)$ within the macroscopic assembly.
+- **Destructive interference:** Cancellation of opposing electrino/positrino fluxes for non-periodic path histories, suppressing the corresponding dynamical trajectories.
+- **Constructive interference:** Phase alignment for periodic path histories, producing deep macroscopic basins of attraction.
+- **Amplification:** A possible role for $v > c_f$ inner-binary self-hit mechanics, which remains a closure target until the register-scale stability calculation is done.
 
 ## Modular Exponentiation and Physical Coupling
-Executing the classical reduction step of Shor's algorithm via physical interactions.
-* **Hamiltonian Mapping:** Translating $f(x) = a^x \bmod N$ into a sequence of specific scattering events and topological torques between Register 1 and Register 2.
-* **Entangled Evaluation:** The establishment of strict orbital phase dependencies between the input and output registers.
+
+The modular-exponentiation stage is the hardest place to keep the comparison honest. A future physical map must specify how the effective operation
+$$
+f(x)=a^x\bmod N
+$$
+is implemented by controlled assembly couplings rather than by abstract gate labels alone.
+
+- **Hamiltonian mapping:** Translate the modular operation into a sequence of specific scattering events, coupling windows, or topological torques between the input and output registers.
+- **Entangled evaluation:** Show how strict orbital phase dependencies between those registers reproduce the effective entangled state used by the standard algorithm.
 
 ## Period Extraction (Shor's Algorithm)
-The complete dynamical pipeline for integer factorization.
-* **Initialization:** Driving Register 1 into the uniform precessional state.
-* **Evaluation:** Applying the modular exponentiation scattering sequence.
-* **Interference:** Executing the QFT to isolate the period $r$ via constructive wake summation.
-* **Extraction:** The final dynamical collapse yielding a classical measurement from which $r$ is derived.
+
+The full period-extraction pipeline can be stated as a sequence of closure targets:
+
+1. **Initialization:** Prepare Register 1 in the effective uniform precessional state.
+2. **Evaluation:** Apply the modular-exponentiation coupling sequence without losing register coherence.
+3. **Interference:** Use the Quantum Fourier Transform comparison to isolate the period $r$ through constructive wake summation.
+4. **Extraction:** Produce a record-forming measurement transition from which $r$ is inferred.
 
 ## Falsifiability and Scaling Limits
-* **Error Bounds:** Formulating strict mathematical limits on the depth of coherent operations before Noether-Sea background noise induces deterministic decoherence.
-* **Predictions:** Specific, testable deviations from ideal unitary behavior in macroscopic quantum processors predicted by the finite propagation speed $c_f$ and self-hit interaction kernels.
+
+This page is falsifiable at the scaling interface. A viable $\mathbb{A}\mathbb{A}\mathbb{A}$ account must state strict bounds on coherent circuit depth before Noether-Sea background coupling, finite propagation at $c_f$, and self-hit interaction kernels produce deterministic decoherence. The useful prediction class is therefore not a vague loss of coherence, but architecture-dependent deviations from ideal unitary behavior in large quantum processors.

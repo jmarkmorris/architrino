@@ -6890,7 +6890,7 @@ function updateDecayHover(clientX, clientY) {
     hideHoverTooltip();
     return;
   }
-  const label = `Decay to Gen ${nextGenInfo.nextGen} ${nextGenInfo.nextLabel}`;
+  const label = `Transition to Gen ${nextGenInfo.nextGen} ${nextGenInfo.nextLabel}`;
   showHoverTooltip(label, clientX, clientY);
 }
 

@@ -10246,13 +10246,13 @@ Here "closed-form solution" means an elementary formula for the orbit. It does n
 
 > **Heuristic aside.**
 >
-> Ah, my friend. You look at the beautiful symmetries of the 1D line, the inexorable return of the particle, and the elegance of the integrals we have just bounded, and you hope for a formula: an equation
+> The symmetries of the 1D line make a closed formula tempting. One might hope for an expression
 > $$
 > x(t)=f(t,X_0,V_0)
 > $$
-> that captures the entire dance. It is a beautiful dream, the dream of Laplace.
+> that captures the entire orbit from elementary initial data.
 >
-> But one should be cautious. Here we have summoned a dynamical object with infinite-dimensional memory, and it should not be expected to sit quietly inside a cage of elementary functions.
+> The delayed system does not support that expectation. It is a dynamical object with infinite-dimensional memory, state-dependent delays, and changing root topology, so the natural proof target is an invariant history-space return map rather than a global elementary solution.
 >
 > **1. The phase space is infinite-dimensional.**
 > In ordinary Newtonian mechanics, the state is a point
@@ -10297,7 +10297,7 @@ Here "closed-form solution" means an elementary formula for the orbit. It does n
 > Even instantaneous inverse-square dynamics already taught us that explicit formulas are not to be expected in generic nonlinear few-body problems. Here the 1D breather may look like a two-body problem, but the delayed self-interaction makes it behave like a path-history problem with an effectively infinite swarm of past images. One should not expect such a system to become simpler merely because it lives on a line.
 >
 > **The silver lining.**
-> This is exactly why the present strategy is mathematically sensible. We trade the fantasy of a global closed-form solution for something stronger in the only sense that matters here:
+> This is why the present strategy is mathematically appropriate. It replaces the search for a global closed-form solution with a proof target that is stronger for the purpose of the chapter:
 >
 > - existence of the delayed orbit,
 > - uniqueness once the history is fixed,
@@ -10308,7 +10308,7 @@ Here "closed-form solution" means an elementary formula for the orbit. It does n
 > $$
 > x(t)
 > $$
-> valid for arbitrary data. We need one candidate cycle
+> valid for arbitrary data. The proof needs one candidate cycle
 > $$
 > \phi_{\mathrm{cyc}},
 > $$

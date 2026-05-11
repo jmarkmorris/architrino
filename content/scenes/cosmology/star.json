@@ -108,7 +108,7 @@
       "id": "s_process",
       "label": "s-process",
       "category": "Nucleosynthesis",
-      "reaction": "slow (n,gamma) + beta- decay along stability valley",
+      "reaction": "slow (n,gamma) + beta- reaction along stability valley",
       "radius": 1.2,
       "color": "#6a2f6f",
       "motion": {
@@ -120,7 +120,7 @@
       "id": "r_process",
       "label": "r-process",
       "category": "Nucleosynthesis",
-      "reaction": "rapid (n,gamma) far from stability + beta- decay back",
+      "reaction": "rapid (n,gamma) far from stability + beta- reaction back",
       "radius": 1.2,
       "color": "#6a2f6f",
       "motion": {

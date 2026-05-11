@@ -37,7 +37,7 @@
   "objects": [
     {
       "id": "voids",
-      "label": "voids",
+      "label": "active cosmic voids",
       "scaleExponent": 25,
       "radius": 1.4,
       "color": "#1c2a4f",
@@ -49,7 +49,11 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "voids",
+      "labelTitle": "active cosmic voids",
+      "labelSubtitle": "Noether Sea, photons, neutrinos, sparse hydrogen",
+      "details": {
+        "interpretation": "Cosmological voids are not empty. In this model they remain active Noether-Sea regions with photon and neutrino transport, occasional hydrogen atoms, and possible high-energy photon reaction channels."
+      },
       "fixedPosition": true
     },
     {

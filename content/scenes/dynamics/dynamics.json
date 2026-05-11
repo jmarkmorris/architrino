@@ -35,10 +35,6 @@
       {
         "nodeId": "effective_lagrangian",
         "scenePath": "content/scenes/dynamics/effective_lagrangian.json"
-      },
-      {
-        "nodeId": "quantum",
-        "scenePath": "content/scenes/quantum/quantum.json"
       }
     ]
   },
@@ -83,8 +79,8 @@
       "radius": 2.688,
       "color": "#243d8f",
       "position": [
-        8.21,
-        6.55,
+        9.09,
+        5.25,
         0
       ],
       "motion": {
@@ -100,8 +96,8 @@
       "radius": 2.688,
       "color": "#3f6a5a",
       "position": [
-        10.24,
-        -2.34,
+        9.09,
+        -5.25,
         0
       ],
       "motion": {
@@ -117,8 +113,8 @@
       "radius": 2.688,
       "color": "#6c4f8d",
       "position": [
-        4.56,
-        -9.46,
+        0,
+        -10.5,
         0
       ],
       "motion": {
@@ -134,8 +130,8 @@
       "radius": 2.688,
       "color": "#2f6b6f",
       "position": [
-        -4.56,
-        -9.46,
+        -9.09,
+        -5.25,
         0
       ],
       "motion": {
@@ -151,8 +147,8 @@
       "radius": 2.688,
       "color": "#5a1f2e",
       "position": [
-        -10.24,
-        -2.34,
+        -9.09,
+        5.25,
         0
       ],
       "motion": {
@@ -160,22 +156,6 @@
       },
       "labelTitle": "Effective Lagrangian",
       "labelBadge": "doc",
-      "fixedPosition": true
-    },
-    {
-      "id": "quantum",
-      "title": "Quantum",
-      "radius": 2.688,
-      "color": "#2f4f7a",
-      "position": [
-        -8.21,
-        6.55,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Quantum",
       "fixedPosition": true
     }
   ]

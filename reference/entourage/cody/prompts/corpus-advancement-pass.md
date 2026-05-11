@@ -8,9 +8,9 @@ Use the AAA corpus advancement skill in self-running mode.
 
 Optionally follow it with a specific lane, shard, source document, or edit-batch instruction.
 
-Use this prompt when one AAA document or one recent batch contains a newer theoretical advancement and the rest of the markdown corpus needs to be checked for related updates, stronger formulations, terminology corrections, notation fixes, cross-link opportunities, or newly visible insights.
+Use this prompt when one AAA document or one recent batch contains a newer theoretical advancement and the rest of the markdown corpus needs to be checked for related updates, stronger formulations, proof routes, mathematical closure targets, newly visible insights, notation fixes, cross-link opportunities, or occasional terminology corrections.
 
-The highest-value use of this prompt is not mere phrase cleanup. Use the review to convert scattered improvements into a theorem-target map: each recurring claim should be sorted as ontology, derivation/closure target, effective summary, or speculation. The report should identify what can be edited now, what requires a proof or simulation path, and what should become corpus-maintenance infrastructure.
+The highest-value use of this prompt is not mere phrase cleanup. Use the review to convert scattered improvements into a theorem-target map: each recurring claim should be sorted as ontology, derivation/closure target, effective summary, or speculation. Favor innovative, mathematically serious advancement: identify the definitions, lemmas, closure equations, proof sketches, simulations, and conceptual syntheses that would move the theory forward. The report should identify what can be edited now, what requires a proof or simulation path, what intuition should be discussed with Op, and what should become corpus-maintenance infrastructure.
 
 ```text
 Cody, perform a corpus advancement pass for the AAA markdown corpus.
@@ -161,16 +161,19 @@ Briefly list the files touched, summarize the main cleanup, mention generated ar
 
 ## Self-Running Exploration Variant
 
-Use this version when there is no single source document and Cody should actively look for the next high-value corpus advancement opportunity. This is an autonomous scouting mode, not a license to silently canonize new theory. It should explore, synthesize, and rank opportunities; it may edit only when the operator explicitly asks for an integration pass.
+Use this version when there is no single source document and Cody should actively look for the next high-value corpus advancement opportunity. This is an autonomous scouting mode, not a license to silently canonize new theory. It should explore, synthesize, follow promising intuition, and rank opportunities; it may edit only when the operator explicitly asks for an integration pass.
 
 ```text
 Cody, run a self-directed AAA corpus advancement exploration pass.
 
 Goal:
-Find the next highest-leverage theory advancement opportunity without being given a specific source document. Explore the idea space through recent changes, random deep dives, drift scans, and missing-material scans. Produce a ranked advancement report with any safe edit candidates, serious theory opportunities, infrastructure opportunities, and leaps of intuition to discuss with Op.
+Find the next highest-leverage theory advancement opportunity without being given a specific source document. Explore the idea space through recent changes, random deep dives, proof-target scans, missing-material scans, and occasional drift scans. Produce a ranked advancement report with serious theory opportunities, mathematical proof or derivation targets, leaps of intuition to discuss with Op, safe edit candidates, and infrastructure opportunities.
 
 Operating principle:
-This pass should behave like an active research scout. It should not merely clean phrases. It should look for places where the corpus can become more coherent, more rigorous, more canonical, or more complete.
+This pass should behave like an active research scout. It should not merely clean phrases. Ideas are welcome: surface promising syntheses, analogies, proof routes, and unifying mechanisms even when they are not ready for canon. Label them by evidential status instead of suppressing them. The center of gravity is mathematical advancement in theory and proofs: look for places where definitions can sharpen, lemmas can be named, derivations can be started, closure targets can become explicit, or a speculative mechanism can be turned into a testable theorem program.
+
+Hygiene posture:
+Terminology, notation, cross-linking, and cleanup still matter, but they are secondary in this variant. Let them appear when the randomized pass naturally encounters them, when they block theory clarity, or when they provide a cheap safe edit candidate. Do not let a self-running exploration collapse into a terminology sweep unless Op explicitly asks for that.
 
 Before exploring:
 1. Run `git status --short`.
@@ -205,27 +208,33 @@ Default path shards:
 - Shard 6: reference material, app/scene/user-facing language, and non-AAA surfaces that echo AAA terms.
 
 Default lane distribution:
-- If few or no active claims exist, choose one primary lane from A-F and one secondary lane from a different category.
+- If few or no active claims exist, choose one primary lane from A-G and one secondary lane from a different category.
 - If several claims exist, choose the least-covered lane and least-covered path shard.
 - Avoid doing a broad all-corpus scan unless the active claims show no one else is currently covering the corpus.
 
 Internal exploration palette:
-If Op does not specify a lane, shard, or posture, choose one or two of these postures before choosing lanes. Prefer random selection when practical, but bias away from active claim cards and recently covered territory. State the selected posture in the claim card and final report.
+If Op does not specify a lane, shard, or posture, choose one or two of these postures before choosing lanes. Prefer weighted random selection when practical: bias toward innovative and mathematical postures, bias away from active claim cards and recently covered territory, and keep hygiene postures as occasional secondary passes. State the selected posture in the claim card and final report.
 
-- **Idea factory:** maximize new syntheses, proof routes, unifying mechanisms, and leaps of intuition. Do not edit; return Op-discussion questions.
-- **Issue troll:** hunt for stale terminology, weak formulations, overclaims, TODOs, broken self-containment, missing definitions, thin sections, and corpus drift.
+- **Idea factory:** maximize new syntheses, proof routes, unifying mechanisms, mathematical conjectures, and leaps of intuition. Do not edit; return Op-discussion questions.
 - **Closure lab:** focus on theorem/closure targets such as Lorentz behavior, mass/inertia, photon stability, reaction provenance, emergent metric closure, and cosmology observer variables.
+- **Proof-route forge:** choose one important claim and outline the objects, assumptions, lemmas, equations, invariants, simulations, or counterexamples needed to turn it into a defensible derivation.
 - **Recent-change propagator:** mine recent git changes for theory advancements and sweep related documents for integration opportunities.
 - **Random document advancement:** choose one AAA markdown file and ask what serious improvement it can support now; include sibling/context checks.
 - **Particular document deepener:** if Op names one file, advance that file first, then identify its nearest integration targets.
 - **Missing-material architect:** look for implied but unwritten pages, sections, derivations, ledgers, worked examples, or bridge documents.
-- **Canon/drift sweeper:** compare local prose against Archie canon and identify patterns suitable for automated validation.
+- **Issue troll:** secondary hygiene posture; hunt for stale terminology, weak formulations, overclaims, TODOs, broken self-containment, missing definitions, thin sections, and corpus drift when those issues obstruct advancement or the random choice lands here.
+- **Canon/drift sweeper:** secondary hygiene posture; compare local prose against Archie canon and identify patterns suitable for automated validation when drift materially affects theory clarity.
 - **Reader-completeness pass:** identify places where a reader needs a local explanation, bridge paragraph, link, example, or distinction to make the document self-contained.
 - **Cross-link gardener:** find high-value relative links among AAA documents where accepted ideas already exist but are disconnected.
 - **Reaction-provenance tracer:** follow energy, charge, polarity, architrino, and Noether-core provenance through reactions and identify missing ledgers.
 - **Validation/infrastructure scout:** propose scripts, checks, claim-card improvements, closure-target ledgers, or repeatable search patterns that make future advancement passes cheaper.
 
 Choose 2-4 exploration lanes per run:
+
+Lane selection bias:
+- Include at least one math/theory lane in every ordinary self-running pass, preferably Lane B, Lane C, Lane E, Lane G, or a recent-change pass with explicit proof-route extraction.
+- Use Lane D as a secondary hygiene lane unless Op requests cleanup, active claims leave no better unclaimed territory, or drift is directly blocking a theory advance.
+- Rank mathematical advancement opportunities above wording-only cleanup in the final report.
 
 Lane A: Recent-change theory harvest
 - Inspect recent changes for possible theory advancements using git history and current diffs.
@@ -254,7 +263,7 @@ Lane C: Missing-material and stub scan
 - Recommend the smallest useful fill-in that would move the corpus forward.
 
 Lane D: Drift and canonicalization scan
-- Search for recurring stale phrases and notation drift.
+- Secondary hygiene lane. Search for recurring stale phrases and notation drift when those issues obstruct theory clarity or the randomized pass selects this lane.
 - Start with known drift classes: Noether Sea usage, density/delay notation, photon ontology, mass/inertia language, Lorentz closure language, tri-binary minimality, reaction provenance, and cosmology ontology.
 - Propose new automated audit patterns when a drift class appears in multiple files.
 
@@ -263,8 +272,9 @@ Lane E: Closure-target ledger scan
 - Prioritize Lorentz closure, mass/inertia closure, tri-binary minimality, photon stability, reaction provenance, emergent metric closure, and cosmology observer-variable closure.
 - For each target, identify:
   - claim statement,
+  - mathematical objects and variables that must be defined,
   - current evidence,
-  - missing derivation or simulation,
+  - missing lemma, derivation, closure equation, simulation, or invariance argument,
   - files that should cross-link once the target is clarified,
   - whether the claim is currently overclaimed, underclaimed, or properly scoped.
 
@@ -272,6 +282,17 @@ Lane F: Reader-completeness scan
 - Look for sections where a reader would naturally expect a definition, bridge, comparison, or worked example but the material is absent or too compressed.
 - Check READMEs, overview pages, bridge documents, and documents with many outgoing links but little local explanation.
 - Recommend fill-ins that preserve self-contained AAA prose without linking to reference/priorities.
+
+Lane G: Intuition-to-proof synthesis
+- Choose a promising intuition, analogy, or cross-document pattern and translate it into a disciplined research target.
+- Identify:
+  - trigger passages or documents,
+  - proposed synthesis,
+  - why Op may want to consider it,
+  - the mathematical form the idea would need before canonization,
+  - the first proof step, calculation, model, or simulation that would make it testable,
+  - failure modes or counterexamples that would discipline the idea.
+- Treat the output as an Op-discussion theory card, not as settled doctrine.
 
 Report format:
 1. Claim card path, selected exploration posture(s), selected lane(s), selected path shard, and any active claims avoided.
@@ -285,23 +306,29 @@ Report format:
    - recommended next action,
    - priority: required / high-value / optional,
    - risk: low / medium / high.
-5. Safe edit candidates for a future integration pass.
+5. Mathematical advancement targets:
+   - claim or conjecture,
+   - objects and definitions needed,
+   - candidate lemmas, equations, invariants, simulations, or proof route,
+   - current corpus evidence,
+   - first useful next step.
 6. Leaps of intuition to discuss with Op:
    - trigger passage or cross-document pattern,
    - proposed synthesis,
    - why it could advance the theory,
    - what evidence or derivation is missing,
    - exact question for Op.
-7. Missing-material candidates:
+7. Safe edit candidates for a future integration pass.
+8. Missing-material candidates:
    - missing page, section, derivation, worked example, reaction ledger, or bridge,
    - documents that imply it,
    - minimal first version that would be useful.
-8. Infrastructure recommendations:
+9. Infrastructure recommendations:
    - automated drift checks,
    - closure-target ledger entries,
    - repeatable search patterns,
    - candidate validation rule additions.
-9. Suggested next batch:
+10. Suggested next batch:
    - up to 8 files for an edit-batch pass,
    - exact search commands to begin that batch.
 

@@ -10,11 +10,11 @@ This chapter addresses the quantum branch at the level of ontology and epistemic
 - Connect the **Decider** and **Switch** case studies to those requirements.
 - Tie the chapter to [Foundational Ontology](../foundations/ontology.md), [Observer Framework](../spacetime/observer-framework.md), and [Master Equation](../dynamics/master-equation.md).
 
-**Blanket hypothesis:** All claims in this chapter are asserted within the architrino framework and reflect our current best understanding unless explicitly labeled otherwise.
+**Scope note:** This chapter states current $\mathbb{A}\mathbb{A}\mathbb{A}$ working claims unless a passage is explicitly labeled as a toy model, phenomenological mapping, or closure target.
 
 ## Reality: Absolute vs Operational
 
-Let’s keep a clean separation between:
+The chapter keeps a clean separation between:
 
 - **Absolute level**: Euclidean void + absolute time; architrinos with definite trajectories and wakes at speed $c_f$.
 - **Emergent/operational level**: What assemblies (atoms, detectors, instruments) “see” in terms of quantum statistics, effective light cones, etc.
@@ -42,7 +42,7 @@ At the absolute level, any local neighborhood is crowded:
 
 At the emergent level:
 
-- We talk about “an electron,” “a nucleus,” etc. as if they are isolated, but each is really a **tri-binary assembly** plus its coupling to the surrounding architrino weather.
+- Observer language talks about "an electron," "a nucleus," and similar objects as if they were isolated. In this framework each such object is a **tri-binary assembly** plus its coupling to the surrounding Noether-Sea wake background.
 - Most of the time, the assembly’s internal state is robust against small variations in the net potential.
 - Occasionally, when the assembly’s configuration is **metastable** (near a threshold boundary; see 3.1.1), a particular combination of incoming wakes pushes it across a threshold:
   - Electron “jumps” orbital
@@ -167,7 +167,7 @@ This schematic shows how **$v \approx c_f$ defines a bifurcation surface** in a 
 
 Because:
 
-- The input signal (sum of wakes from the architrino sea) is **high-dimensional** and **history-dependent**,
+- The input signal, namely the sum of causal wakes from the Noether Sea and nearby assemblies, is **high-dimensional** and **history-dependent**,
 - The local assembly is sitting near a **threshold boundary** (e.g., a resonance-band boundary in the outer binary or a self-hit onset in the middle binary; see 3.1.1),
 
 we get classic deterministic chaos:
@@ -189,7 +189,7 @@ Operationally, we still use probabilities (Born rule, half-lives) because that i
 
 ## Agency and Decision
 
-Here I’ll sharpen this in terms of **minimal structural/dynamical conditions** for an assembly (or super‑assembly) to *decide* its response—either leveraging incoming **large‑deviation wake peaks** (≥ 3σ constructive interference above the local noise floor) or effectively ignoring them.
+This section states the **minimal structural and dynamical conditions** under which an assembly or super-assembly can *decide* its response. In this usage, deciding means either leveraging incoming **large-deviation wake peaks** ($\ge 3\sigma$ constructive interference above the local noise floor) or effectively ignoring them.
 
 ### Definition of Decision
 
@@ -197,7 +197,7 @@ Here I’ll sharpen this in terms of **minimal structural/dynamical conditions**
 
 We keep everything strictly dynamical:
 
-- There is no extra “will” substance or separate agency medium.
+- There is no extra agency substance or separate agency medium.
 - “Decision” = **the assembly’s internal state and architecture bias which attractor/transition is realized** for a given class of incoming potential patterns.
 
 So the question becomes: what is the minimal set of features an assembly must have to *non‑trivially* modulate its own threshold behavior, instead of being a passive, fixed-threshold detector?
@@ -215,24 +215,24 @@ These points motivate the working definition of determinism, branching, and agen
 
 ### Position Summary
 
-**No assembly has "free will" in the libertarian sense** (the ability to violate physical law or act without prior cause).
+**No assembly has "free will" in the libertarian sense**: the ability to violate physical law or act without prior cause.
 
-**But yes, complex assemblies can have "agency" in the compatibilist sense** (the capacity to navigate deterministic dynamics in ways that depend on their internal structure and history, making their behavior functionally autonomous and practically unpredictable).
+Complex assemblies can, however, have **agency** in the compatibilist sense: the capacity to navigate deterministic dynamics in ways that depend on their internal structure and history, making their behavior functionally autonomous and practically unpredictable.
 
-The confusion arises because "free will" is a philosophically loaded term with multiple incompatible definitions. Let me clarify what the architrino framework actually allows.
+The distinction matters because "free will" is a philosophically loaded term with multiple incompatible definitions. The present chapter uses agency only in the dynamical sense defined above.
 
 ### Determinism in This Framework
 
-In the architrino framework:
+In $\mathbb{A}\mathbb{A}\mathbb{A}$:
 - Every architrino has a definite position $\mathbf{x}_i(t)$ and velocity $\mathbf{v}_i(t)$ at every absolute time $t$
 - The master equation is **lawful**: given complete initial conditions, the future is fixed, with **deterministic multistability** at threshold regimes
-- **There is no ontological randomness**, no dice-rolling, no violations of causality
+- **There is no ontological randomness**, no stochastic law at the substrate level, and no violation of causality
 
-**So in the strict metaphysical sense:** The universe is a lawful machine. Rewind the tape (with identical microstate and wake phases), replay it, get exactly the same outcome—even though outcomes can be **multistable** at thresholds.
+In the strict metaphysical sense, identical microstate and wake-history data imply the same outcome, even though thresholds can make the outcome **multistable** under tiny changes in those data.
 
 ### Interpretation of Decision
 
-The **Decider** (a bias‑setting complex) is **not** a claim of magical free will. It is a **dynamical capacity** that certain architectures can possess.
+The **Decider** (a bias-setting complex) is not a claim of nonphysical autonomy. It is a **dynamical capacity** that certain architectures can possess.
 
 #### Required Capacities
 
@@ -246,7 +246,7 @@ The **Decider** (a bias‑setting complex) is **not** a claim of magical free wi
 
 5. **Structured Response:** Different input patterns drive different threshold adjustments (not all inputs are equivalent).
 
-**This is deterministic navigation**, not libertarian free will.
+This is deterministic navigation, not libertarian free will.
 
 ### Requirements (Expanded)
 
@@ -324,7 +324,7 @@ Minimal condition:
 
 - **Robustness** of the slow variables to typical input fluctuations:
   - They change only under integrated, structured input over time (e.g., sustained patterns, not single peaks),
-  - This lets the assembly maintain a “stance” toward incoming waves for a while (e.g., “currently ignore small perturbations” vs “currently be highly sensitive”).
+  - This allows the assembly to maintain a configuration of sensitivity toward incoming causal-wake patterns for a while, such as "currently ignore small perturbations" versus "currently be highly sensitive."
 
 Without this partial decoupling, the internal configuration is always yanked around by whatever the last peak happened to be—no stable policy, no self-chosen stance.
 
@@ -358,7 +358,7 @@ With these five pieces:
 
 1. **Multiple attractors** provide actual alternatives.
 2. **Tunable thresholds** control how close the system is to each alternative.
-3. **Feedback/memory** lets past outcomes bias future settings.
+3. **Feedback/memory** allows past outcomes to bias future settings.
 4. **Partial decoupling** ensures the assembly can hold a chosen stance over many input cycles.
 5. **Structured updating** maps environment + past behavior into a changing stance.
 
@@ -369,7 +369,7 @@ Then, for a fixed external architrino “weather”:
 
 From the outside, that difference looks like a **change of policy**: “now respond to this kind of stimulus, now don’t.” From the inside (in foundational terms), it is nothing but a lawful reconfiguration of basin geometry and threshold conditions—implemented by the assembly’s own dynamics.
 
-That is the minimal sense in which an assembly **decides its response** in this deterministic architrino framework.
+That is the minimal sense in which an assembly **decides its response** in deterministic $\mathbb{A}\mathbb{A}\mathbb{A}$ dynamics.
 
 The extended discussion of internal/external causation, functional agency, and compatibilist framing now lives in [Agency and Internal Causation](../philosophy-history/agency-and-internal-causation.md) so this chapter can stay focused on dynamical mechanisms.
 
@@ -377,10 +377,10 @@ The extended discussion of internal/external causation, functional agency, and c
 
 ### Core Reinterpretations of Quantum Language
 
-These are the four points where architrino theory **explains** standard quantum interpretations in terms of explicit dynamical mechanisms. They are foundational to the framework, not commentary.
+These are the four points where $\mathbb{A}\mathbb{A}\mathbb{A}$ maps standard quantum interpretations onto explicit dynamical mechanisms. They are foundational claims of the framework, but the quantitative derivations remain closure targets where noted.
 
 > ### **Wavefunction Collapse = Threshold Resolution**
-> In standard QM, “collapse” is an axiom added to a linear wave equation. In architrino theory the underlying dynamics are continuous, but **bifurcation boundaries are real**. When a metastable system is pushed across a threshold boundary (see 3.1.1) by a record-making interaction, the **effective wave equation changes** because the basin geometry changes. Observers therefore see a different equation *after* the resolution than *before*. “Collapse” is the observer’s forced update to the correct effective equation once the threshold has been crossed.
+> In standard QM, "collapse" is an axiom added to a linear wave equation. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the underlying dynamics are continuous, but **bifurcation boundaries are real**. When a metastable system is pushed across a threshold boundary (see 3.1.1) by a record-making interaction, the **effective wave equation changes** because the basin geometry changes. Observers therefore use a different effective equation *after* the resolution than *before*. "Collapse" is the observer's forced update to the correct effective equation once the threshold has been crossed.
 >
 > Crucially, the transition itself is not an observable steady state. Attempting to probe the in‑between injects action and **forces a resolution to one side**, which is why you cannot continuously sample the bifurcation with photons.
 
@@ -418,7 +418,7 @@ These are the four points where architrino theory **explains** standard quantum 
 > Here $\delta$ is an **uncertainty bandwidth** of order $h$ set by operational limits, not by ontological randomness. This provides the linkage: **the integer step is real in the model**, and **uncertainty brackets it** operationally.
 
 > ### **Branching Trees Are Epistemic, Not Ontic**
-> Many‑worlds diagrams visualize the tree of **possible coarse‑grained histories** near a bifurcation. In the architrino framework there is still **one realized trajectory** in absolute time; the “branching” reflects the observer’s incomplete knowledge of microstate and wake history. The diagram is a map of epistemic alternatives, not a claim that reality splits.
+> Many-worlds diagrams visualize the tree of **possible coarse-grained histories** near a bifurcation. In $\mathbb{A}\mathbb{A}\mathbb{A}$ there is still **one realized trajectory** in absolute time; the "branching" reflects the observer's incomplete knowledge of microstate and wake history. The diagram is a map of epistemic alternatives, not a claim that reality splits.
 
 > ### **Observability Requires a Record**
 > A decision is **detectable** only if it produces a macroscopic record—a bifurcation in the coarse‑grained history. If the internal configuration shifts but stays in the same basin, there is no external divergence and no observable “decision.” This is why **photons (or any probe)** are central to observability: they create the record and, through back‑action, finalize which basin is realized. Decisions that do not produce a record are empirically invisible.
@@ -427,7 +427,7 @@ These are the four points where architrino theory **explains** standard quantum 
 
 ### Operational Mapping (Phenomenological)
 
-Below is an explicit **operational dictionary** linking the QM formal step to architrino micro‑dynamics. This is not a full derivation; it is a **phenomenological mapping** that clarifies what is meant by each claim and where it could, in principle, diverge in experiment.
+The following **operational dictionary** links the QM formal step to architrino micro-dynamics. This is not a full derivation; it is a **phenomenological mapping** that clarifies what is meant by each claim and where it could, in principle, diverge in experiment.
 
 **1) Collapse**
 - **QM formalism:** $\rho \rightarrow |n\rangle\langle n|$ (projection onto an eigenstate).
@@ -457,19 +457,19 @@ Below is an explicit **operational dictionary** linking the QM formal step to ar
 
 ### Historical Note (1875–present): From Operational Success to Ontological Drift
 
-If architrino theory is correct, the last 150 years look like this:
+If $\mathbb{A}\mathbb{A}\mathbb{A}$ is correct, the last 150 years should be read as follows:
 
 - The **empirical facts and predictive formalisms were right** (spectra, scattering, quantized transitions), but the **ontological story drifted** because the underlying mechanism was missing.
 - “Collapse,” “intrinsic randomness,” and “measurement problems” served as **interpretive scaffolds** to make the operational math legible, not as final claims about what reality is doing.
 - Effective descriptions (wavefunctions, operators, probabilistic rules) became **reified into ontic narratives**, and those narratives recursively shaped how new results were framed, sometimes **obscuring the mechanistic question**.
-- The architrino framework **keeps the empirical success intact** but **grounds** it in deterministic threshold dynamics, measurement back‑action, and record‑making bifurcations.
+- $\mathbb{A}\mathbb{A}\mathbb{A}$ **keeps the empirical success intact** but **grounds** it in deterministic threshold dynamics, measurement back-action, and record-making bifurcations.
 - The historical arc remains a triumph of measurement and mathematics; what changes is the **ontology**, not the data.
 
 ---
 
 ## Decider: Minimal Bias-Setting Complex
 
-To build an assembly that can **decide**-meaning it can dynamically alter its own probability of transition in response to external inputs-we need to move beyond a single atom and construct a **Decider** (a minimal bias‑setting complex). This is the smallest assembly complex that can **make a decision and set a bias**.
+An assembly that can **decide** in the limited dynamical sense above must be able to alter its own probability of transition in response to external inputs. That requires more structure than a single atom. The candidate architecture is a **Decider**: a minimal bias-setting complex that can set a sensitivity bias before a later perturbation arrives.
 
 ### Minimality Lens (Fewest-Architrino Candidates)
 
@@ -478,7 +478,7 @@ One way to classify the evolution of mechanism is by **fewest architrinos** requ
 - **Decider (bias‑setting complex):** the smallest *architectural topology* that can implement biasing + threshold placement + feedback. The architrino count is not yet computed; this is a **candidate minimal topology**, not a proven minimum.
 - **Switch (bias‑to‑state mechanism):** the smallest *computed* self‑contained gate we can exhibit (see Section 6). Current estimate: **3912 architrinos** for a neutral He‑Rb‑He assembly.
 
-Here is the engineering architecture for that candidate minimal **Decider** based on the Tri‑Binary physics we have established.
+The engineering architecture below is a candidate minimal **Decider** based on the tri-binary physics already used elsewhere in the corpus. It is a closure target, not a proof that this is the unique or globally minimal agency architecture.
 
 ### Architecture
 
@@ -531,7 +531,7 @@ A Middle Binary is planar (or toroidal). It is most sensitive to potential impac
 *   **Precession Control:** The Decider can induce a Larmor-like precession in the Target assembly using a neighbor-induced, Jacobian-weighted delayed interaction that coarse-grains to a magnetic-like effect.
 *   **Alignment:**
     *   **Ignore:** Orient the Target's sensitive plane *orthogonal* to the direction of incoming peaks. The cross-section is minimized.
-    *   **Leverage:** Precess the Target until its plane is *parallel* to the incoming waves. The cross-section is maximized.
+    *   **Leverage:** Precess the Target until its plane is *parallel* to the incoming causal-wake pattern. The cross-section is maximized.
 
 ---
 
@@ -539,8 +539,8 @@ A Middle Binary is planar (or toroidal). It is most sensitive to potential impac
 
 None of this is free. To move the Bias Unit, shift the frequency, or precess the axis requires **work**.
 *   The system must expend stored energy to change its configuration.
-*   **Agency = Energy dissipation.** You pay energy to change your sensitivity distribution.
-*   You "invest" energy in the Bias Unit to lower the threshold, hoping that the peak you catch will yield a payout (information or energy) greater than the cost of tuning.
+*   Agency requires energy dissipation because changing a sensitivity distribution is a physical transition.
+*   Energy invested in the Bias Unit lowers a threshold only if the later information or energy gain compensates for the tuning cost.
 
 ### Summary
 
@@ -549,9 +549,9 @@ To build a system that decides:
 2.  **Surround it with "Control Binaries"** (Bias Units).
 3.  **Implement Feedback:**
     *   To **Ignore**: Use Control Binaries to dampen the Switch core (pull $v \ll c_f$).
-    *   To **Leverage**: Use Control Binaries to push the Switch core to the edge of chaos ($v \approx c_f$) or tune its frequency to match the incoming wave.
+    *   To **Leverage**: Use Control Binaries to push the Switch core toward the threshold region ($v \approx c_f$) or tune its frequency to match the incoming causal-wake pattern.
 
-This transforms the assembly from a passive rock being battered by waves into a **smart antenna** that actively scans and filters the architrino sea.
+This transforms the assembly from a fixed-threshold responder into an active filter of Noether-Sea wake patterns.
 
 ---
 
@@ -563,20 +563,19 @@ A Switch is a **bias-to-state** transformer: upstream bias positions a metastabl
 
 ### 6B Worked Example: He‑Rb‑He
 
-This is one **applied realization** of the **Switch** mechanism, not the unique way to do it. This is the smallest mechanism we can currently compute that **takes a bias signal and executes a larger‑scale physical state change**. Many physical architectures can implement the same control loop (bias setting -> threshold positioning -> bifurcation). In the **minimality lens**, the He‑Rb‑He assembly is the smallest *computed* Switch so far, where the **bias** is upstream (in the configuration) and the **electron transition** is the downstream execution.
+This is one **applied realization** of the **Switch** mechanism, not the unique way to do it. It is the smallest mechanism currently estimated in this chapter that **takes a bias signal and executes a larger-scale physical state change**. Many physical architectures can implement the same control loop: bias setting -> threshold positioning -> bifurcation. In the **minimality lens**, the He-Rb-He assembly is the smallest *computed* Switch so far, where the **bias** is upstream in the configuration and the **electron transition** is the downstream execution.
 
-To do this, we need a system that isn't a rigid rock (like a Helium atom) but also isn't a chaotic mess. We need a system with **tunable metastability**.
+The target is a system with **tunable metastability**: stable enough to hold a configuration, but soft enough that a controlled bias can move it toward or away from a threshold.
 
-**The Answer: The Minimum Number is 3.**
-We need a **triatomic cluster** (here, He‑Rb‑He).
+The proposed minimum is a **triatomic cluster**, here He-Rb-He.
 
-Here is the specific bill of materials and the rationale based on the architecture we just defined.
+The following bill of materials states the proposed architecture and the rationale behind it.
 
 ---
 
 ### Hardware: Rydberg He‑Rb‑He Assembly
 
-To build the minimal **Switch**, I recommend:
+The candidate minimal **Switch** uses:
 
 **1. The Sensor Atom: One Rubidium-87 ($^{87}\text{Rb}$) Atom**
 **2. The Bias/Clamp Atoms: Two Helium-4 ($^4\text{He}$) Atoms (or Protons)**
@@ -585,10 +584,10 @@ To build the minimal **Switch**, I recommend:
 
 **1. The Sensor (Rubidium): The "Feeler"**
 *   **Architrino Physics:** Rubidium is an Alkali metal. It has one lonely electron in its outer shell (5s orbital). This electron is heavily shielded by the inner core. In architrino terms, this outer tri-binary assembly is loosely coupled to the atomic nucleus.
-*   **The "Edge" State:** Because it is so loosely bound, we can easily excite this electron into a **Rydberg State** (a high principal quantum number, e.g., $n=50$). In this state, the electron's orbital radius is huge, and its velocity slows down, but its sensitivity to external fields skyrockets. It is essentially a giant antenna, flapping in the architrino breeze, barely holding on. It is perpetually **metastable**.
+*   **The edge state:** Because the outer electron is loosely bound, it can be excited into a **Rydberg state** with a high principal quantum number, for example $n=50$. In that state the orbital radius is large, the orbital velocity is lower, and the electron assembly is highly sensitive to weak external perturbations. It is therefore a natural metastable sensor for threshold-control experiments.
 
 **2. The Bias Unit (The Helium Pair): The "Vise"**
-*   **Architrino Physics:** Helium is the hardest, most stable, "closed shell" assembly in nature. It ignores almost everything.
+*   **Architrino Physics:** Helium is a very stable closed-shell assembly. Its role is to supply a comparatively stiff bias environment.
 *   **The Function:** We place the two Helium atoms on either side of the Rubidium. They act as **inertial anchors** or a "potential vise."
 *   **The Tuning Mechanism:** By adjusting the distance or angle of the Helium atoms relative to the Rubidium (using Van der Waals forces or phonon vibrations), we shape the potential well that the Rubidium electron sits in.
 
@@ -608,7 +607,7 @@ We form a **linear or triangular molecule**: $\text{He} - \text{Rb} - \text{He}$
 *   **Configuration:** The He‑Rb‑He assembly excites a vibrational mode (a "breathing mode") where the Helium atoms oscillate slightly outward.
 *   **Effect:** The pressure releases. The Rubidium electron expands further out.
 *   **Architrino Result:** The electron's Middle Binary drifts closer to the instability threshold ($v \approx c_f$). It is now balanced on the razor's edge.
-*   **Outcome:** The Sensor is "live." A faint external fluctuation in the architrino weather is enough to trigger a transition (ionization or state flip).
+*   **Outcome:** The Sensor is sensitive. A weak external fluctuation in the local Noether-Sea wake background can then trigger a transition such as ionization or a state flip.
 
 ---
 
@@ -624,9 +623,7 @@ Geometric heuristic: you need 3 because **2 points form a line, but 3 points for
 
 This Switch executes a bias into a physical state change. It is not a full **Decider**; it is the minimal **bias‑to‑state** mechanism. The Decider that sets the bias sits upstream (Section 5).
 
-**Take one large, fluffy atom (Rubidium) to act as the antenna, and squeeze it between two hard, stable atoms (Helium) to act as the tuner.**
-
-Change the squeeze, and you change whether you are listening to the noise or ignoring it.
+In compressed form, Rubidium supplies the soft metastable sensor, while the two Helium atoms supply the biasing geometry. Changing the biasing geometry changes whether the sensor sits far from or close to a transition threshold.
 
 ---
 
@@ -642,22 +639,22 @@ If the Rb is ionized, subtract **12** per missing electron.
 
 **Caveat:** This is the smallest self‑contained **Switch** we can explicitly calculate at present. There may be architectures with fewer architrinos that still implement a threshold decision, but we have not derived them yet.
 
-## Suggested Refinements
+## Closure Targets
 
-1. **Natural Selection of States**
-   - We should formalize the "filtering" mechanism where highly reactive linear stealth states are eliminated, leaving only the stable circulation-locked/corkscrew states (middle binaries). This provides a physical reason for the stability of observed matter.
+1. **Natural selection of states**
+   - Formalize the filtering mechanism where highly reactive linear stealth states are eliminated, leaving only stable circulation-locked or corkscrew states in middle binaries. This would provide a physical reason for the stability of observed matter.
 
 2. **Middle-binary bifurcation**
-   - We should specify at least one toy dynamical system (even a low-dimensional map) where:
+   - Specify at least one toy dynamical system, even a low-dimensional map, where:
      - A control parameter mimics $v/c_f$,
      - The response shows $h$ vs $2h$-like thresholds,
      - Basins of attraction and Lyapunov exponents can be computed.
 
 3. **Chaos → Born rule**
-   - We need a clear program for investigating whether chaotic threshold dynamics in the architrino sea can reproduce $|\psi|^2$ distributions.
-   - This will likely require Sol’s simulations plus some ergodic/measure-theoretic work.
+   - State a clear program for investigating whether chaotic threshold dynamics in the Noether-Sea wake background can reproduce $|\psi|^2$ distributions.
+   - The derivation likely requires both simulation and ergodic or measure-theoretic analysis.
 
 4. **Causality language**
-   - I’ve tried here to keep “absolute” vs “emergent” causality distinct. We should standardize this split in the foundations chapters to avoid confusion.
+   - Keep absolute causality and emergent operational causality distinct, and align this split with the foundations chapters.
 
 ---

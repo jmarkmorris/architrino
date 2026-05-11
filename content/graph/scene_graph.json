@@ -1962,7 +1962,7 @@
     },
     {
       "id": "spacetime_medium",
-      "name": "Spacetime Medium",
+      "name": "Noether Sea",
       "path": "content/scenes/spacetime/spacetime_medium.json",
       "nodeType": "scene"
     },
@@ -5179,7 +5179,7 @@
       "nodeId": "scene:content/scenes/spacetime/spacetime_medium.json",
       "nodeType": "scene",
       "id": "spacetime_medium",
-      "name": "Spacetime Medium",
+      "name": "Noether Sea",
       "path": "content/scenes/spacetime/spacetime_medium.json",
       "searchTarget": "content/scenes/spacetime/spacetime_medium.json",
       "implicit": false
@@ -7202,21 +7202,21 @@
       "to": "scene:content/scenes/assemblies/assemblies.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/cosmology/cosmology.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/cosmology/universe.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
@@ -7237,56 +7237,63 @@
       "to": "scene:content/scenes/interactions/interactions.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/nuclear/nuclear_atomic.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[12]"
+      "field": "scene.children[13]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/proof-programs/proof_programs.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/architrino_assembly_architecture.json",
+      "to": "scene:content/scenes/quantum/quantum.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/architrino_assembly_architecture.json",
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/reactions/reactions.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/spacetime/spacetime.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/theory-bridges/theory_bridges.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/validation/validation.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
@@ -7426,7 +7433,7 @@
       "to": "scene:content/scenes/cosmology/dark_energy.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/cosmology.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/cosmology/cosmology.json",
@@ -7461,7 +7468,7 @@
       "to": "scene:content/scenes/cosmology/structure_formation.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/cosmology.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/cosmology/disk.json",
@@ -7658,13 +7665,6 @@
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
       "field": "scene.children[3]"
-    },
-    {
-      "from": "scene:content/scenes/dynamics/dynamics.json",
-      "to": "scene:content/scenes/quantum/quantum.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/elements/ac.json",
@@ -10170,7 +10170,7 @@
       "to": "scene:content/scenes/foundations/absolute_time_defense.json",
       "edgeType": "subscene",
       "source": "content/scenes/foundations/foundations.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/foundations/foundations.json",
@@ -10184,7 +10184,7 @@
       "to": "scene:content/scenes/foundations/absolute_timespace.json",
       "edgeType": "subscene",
       "source": "content/scenes/foundations/foundations.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/foundations/foundations.json",
@@ -10219,7 +10219,7 @@
       "to": "scene:content/scenes/foundations/euclidean_void.json",
       "edgeType": "subscene",
       "source": "content/scenes/foundations/foundations.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/foundations/foundations.json",
@@ -10233,21 +10233,21 @@
       "to": "scene:content/scenes/interactions/emergence_of_u_1_su_2.json",
       "edgeType": "subscene",
       "source": "content/scenes/interactions/interactions.json",
-      "field": "scene.children[0]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/interactions/interactions.json",
       "to": "scene:content/scenes/interactions/gauge_symmetries.json",
       "edgeType": "subscene",
       "source": "content/scenes/interactions/interactions.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/interactions/interactions.json",
       "to": "scene:content/scenes/interactions/mode_taxonomy.json",
       "edgeType": "subscene",
       "source": "content/scenes/interactions/interactions.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/nuclear/atom.json",
@@ -10492,7 +10492,7 @@
       "to": "scene:content/scenes/quantum/measurement_ontology.json",
       "edgeType": "subscene",
       "source": "content/scenes/quantum/quantum.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/quantum/quantum.json",
@@ -10506,14 +10506,14 @@
       "to": "scene:content/scenes/quantum/reality_causality_and_navigation.json",
       "edgeType": "subscene",
       "source": "content/scenes/quantum/quantum.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/quantum/quantum.json",
       "to": "scene:content/scenes/quantum/wavefunction_ontology.json",
       "edgeType": "subscene",
       "source": "content/scenes/quantum/quantum.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/reactions/reactions.json",

@@ -122,7 +122,7 @@ This path-history dependence enriches the guidance dynamics beyond the Markovian
 
 ---
 
-## Quantum Phenomena as Wake-Field Guidance Effects
+## Quantum Phenomena as Causal-Wake Guidance Effects
 
 ### Interference and Diffraction
 

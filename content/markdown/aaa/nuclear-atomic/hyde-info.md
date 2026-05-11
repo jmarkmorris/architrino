@@ -183,14 +183,20 @@ The points below are collected as a framework-internal research program, not as 
 - If the model collapses into continuous charge distributions with no discrete angular nodes, the orbital-geometry mapping is falsified.
 - If predicted high-$Z$ ionization-energy deviations are absent beyond uncertainty and known correction terms, the proposed finite-volume mechanism is disfavored.
 
-### 7.6 Immediate Next Steps
+### 7.6 Geometric-Periodicity Closure Program
 
-- Translate Hyde’s 2D spiral ordering into a 3D close-packing algorithm for ellipsoidal tri-binaries.
-- Run a first constrained benchmark at the Neon core ($Z=10$) with explicit boundary conditions.
-- Neon boundary setup: an inner phase-locked pair at maximum curvature plus exactly eight outer tri-binaries.
-- Outer-shell success criterion: the eight outer assemblies converge to a stable cubic-like or antiprismatic phase-locked lattice that minimizes medium drag without exclusion-volume intersection.
-- Test whether this eight-body outer geometry is a dynamical attractor, not merely a manually tuned configuration.
-- Extend to higher-$Z$ shells only after Neon stability and node discreteness criteria are met.
+The Hyde hypothesis becomes useful only if it can be converted into a closure program with explicit geometric tests. The first step is to translate Hyde's 2D spiral ordering into a 3D close-packing algorithm for ellipsoidal electron tri-binary assemblies.
+
+The first constrained benchmark should be the Neon core ($Z=10$), with explicit boundary conditions:
+
+- an inner phase-locked pair at maximum curvature,
+- exactly eight outer electron assemblies,
+- a local Noether-Sea density and delay profile fixed before optimization,
+- and a no-overlap exclusion rule for precessing ellipsoidal volumes.
+
+The outer-shell success criterion is that the eight outer assemblies converge to a stable cubic-like or antiprismatic phase-locked lattice that minimizes transport stress without exclusion-volume intersection. The important test is dynamical: this eight-body outer geometry must appear as an attractor of the modeled constraints, not merely as a manually tuned configuration.
+
+Only after Neon stability and node discreteness are established should the program extend to higher-$Z$ shells. At that point, the predicted high-$Z$ ionization-energy deviations can be compared against known relativistic, QED, and finite-nuclear-size corrections.
 
 ---
 

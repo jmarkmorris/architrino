@@ -9,14 +9,11 @@
     "layout": {
       "type": "rings"
     },
+    "centerOn": "quantum_summary",
     "children": [
       {
         "nodeId": "quantum_summary",
         "scenePath": "content/scenes/quantum/quantum_summary.json"
-      },
-      {
-        "nodeId": "measurement_ontology",
-        "scenePath": "content/scenes/quantum/measurement_ontology.json"
       },
       {
         "nodeId": "reality_causality_and_navigation",
@@ -27,6 +24,10 @@
         "scenePath": "content/scenes/quantum/wavefunction_ontology.json"
       },
       {
+        "nodeId": "measurement_ontology",
+        "scenePath": "content/scenes/quantum/measurement_ontology.json"
+      },
+      {
         "nodeId": "algorithmic_resonance",
         "scenePath": "content/scenes/quantum/algorithmic_resonance.json"
       }
@@ -34,69 +35,105 @@
   },
   "objects": [
     {
-      "id": "quantum_statistics",
-      "title": "Fermi-Dirac & Bose-Einstein Statistics",
-      "radius": 2.688,
-      "color": "#3a5f9f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Fermi-Dirac & Bose-Einstein Statistics"
-    },
-    {
       "id": "quantum_summary",
       "title": "Quantum Summary",
       "radius": 2.688,
       "color": "#2f4f7a",
+      "position": [
+        0,
+        0,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Quantum Summary",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "measurement_ontology",
-      "title": "Measurement Ontology",
-      "radius": 2.688,
-      "color": "#6c4f8d",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Measurement Ontology",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "reality_causality_and_navigation",
       "title": "Reality, Causality, and Navigation",
       "radius": 2.688,
       "color": "#7a4a1f",
+      "position": [
+        0,
+        10.5,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Reality, Causality, and Navigation",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "wavefunction_ontology",
       "title": "Wavefunction Ontology",
       "radius": 2.688,
       "color": "#3c6a7a",
+      "position": [
+        9.99,
+        3.24,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Wavefunction Ontology",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "measurement_ontology",
+      "title": "Measurement Ontology",
+      "radius": 2.688,
+      "color": "#6c4f8d",
+      "position": [
+        6.17,
+        -8.49,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Measurement Ontology",
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "algorithmic_resonance",
       "title": "Algorithmic Resonance and Shor's Algorithm",
       "radius": 2.688,
       "color": "#7a5a2f",
+      "position": [
+        -6.17,
+        -8.49,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Algorithmic Resonance and Shor's Algorithm",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "quantum_statistics",
+      "title": "Fermi-Dirac & Bose-Einstein Statistics",
+      "radius": 2.688,
+      "color": "#3a5f9f",
+      "position": [
+        -9.99,
+        3.24,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Fermi-Dirac & Bose-Einstein Statistics",
+      "fixedPosition": true
     }
   ]
 }

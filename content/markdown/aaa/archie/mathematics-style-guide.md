@@ -74,7 +74,7 @@ Plain language: A push now only happens if a past causal wake surface has had ex
 
 ## Distributions and regularization (causal wake surfaces)
 
-- Point emission at (t₀, s₀):
+- Point emission at $(t_0,s_0)$:
   $$
   \text{source} = q\,\delta(t - t_0)\,\delta^{(3)}(\mathbf{s} - \mathbf{s}_0)
   $$
@@ -95,29 +95,30 @@ Plain language: Each emission is a razor-thin causal wake surface; when needed, 
 
 ---
 
-## master equation of Motion (EOM; line of action with Jacobian weighting)
+## Master Equation of Motion (EOM; line of action with Jacobian weighting)
 
-Given a receiver o′ at time t and a source j at causal emission time t₀ ∈ 𝒞_j(t), let
+Given a receiver $o'$ at time $t$ and a source $j$ at causal emission time $t_0 \in \mathcal{C}_{o'j}(t)$, let
 $$
-r = \|\mathbf{s}_{o'}(t) - \mathbf{s}_j(t_0)\|,\quad
-\hat{\mathbf{r}} = \frac{\mathbf{s}_{o'}(t) - \mathbf{s}_j(t_0)}{r},\quad
-\sigma_{q_j q_{o'}} = \mathrm{sign}(q_j q_{o'}) \in \{+1,-1\}
+r_{o'j}(t;t_0)=\|\mathbf{s}_{o'}(t)-\mathbf{s}_j(t_0)\|,
+\qquad
+\hat{\mathbf{r}}_{o'j}(t;t_0)=\frac{\mathbf{s}_{o'}(t)-\mathbf{s}_j(t_0)}{r_{o'j}(t;t_0)},
 $$
+and $\sigma_{q_j q_{o'}}=\mathrm{sign}(q_j q_{o'}) \in \{+1,-1\}$.
 
 Canonical per-hit acceleration:
 $$
-a_{o′\leftarrow j}(t; t_0)
-= \kappa\,\sigma_{q_j q_{o′}}\,
-\frac{|q_j q_{o′}|}{r^2\,|J_{o′j}(t;t_0)|}\,\hat{\mathbf{r}},
+\mathbf{a}_{o'\leftarrow j}(t; t_0)
+= \kappa\,\sigma_{q_j q_{o'}}\,
+\frac{|q_j q_{o'}|}{r_{o'j}^2(t;t_0)\,|J_{o'j}(t;t_0)|}\,\hat{\mathbf{r}}_{o'j}(t;t_0),
 $$
 where
 $$
-J_{o′j}(t;t_0)\equiv 1-\frac{\mathbf{v}_j(t_0)\cdot\hat{\mathbf{r}}}{v}.
+J_{o'j}(t;t_0)\equiv 1-\frac{\mathbf{v}_j(t_0)\cdot\hat{\mathbf{r}}_{o'j}(t;t_0)}{c_f}.
 $$
 
 Total acceleration:
 $$
-\mathbf{a}_{o′}(t) = \sum_{j}\ \sum_{t_0 \in \mathcal{C}_{o′j}(t)} a_{o′\leftarrow j}(t; t_0).
+\mathbf{a}_{o'}(t) = \sum_{j}\ \sum_{t_0 \in \mathcal{C}_{o'j}(t)} \mathbf{a}_{o'\leftarrow j}(t; t_0).
 $$
 
 DDE view: let state $x = (\mathbf{s}, \mathbf{v})$. With $\eta>0$ regularization, the dynamics admit a causal functional form
@@ -133,13 +134,13 @@ Notes:
 Plain language: For each past emission that can reach you now, push along the line back to where it came from, with inverse-square falloff and Jacobian flux weighting, then add all pushes.
 
 Receiver velocity decomposition (instantaneous):
-- Decompose the receiver velocity relative to $\hat{\mathbf{r}}$:
+- Decompose the receiver velocity relative to $\hat{\mathbf{r}}_{o'j}$:
   $$
-  \mathbf{v} = v_r\,\hat{\mathbf{r}} + \mathbf{v}_\perp,\qquad v_r = \mathbf{v}\cdot \hat{\mathbf{r}}
+  \mathbf{v}_{o'} = v_r\,\hat{\mathbf{r}}_{o'j} + \mathbf{v}_\perp,\qquad v_r = \mathbf{v}_{o'}\cdot \hat{\mathbf{r}}_{o'j}
   $$
-- Because $a_{o′\leftarrow j} \parallel \hat{\mathbf{r}}$, a single hit updates only the radial component:
+- Because $\mathbf{a}_{o'\leftarrow j} \parallel \hat{\mathbf{r}}_{o'j}$, a single hit updates only the radial component:
   $$
-  \frac{d}{dt}\mathbf{v}_\perp = 0,\qquad \frac{d}{dt}v_r = a_{o′\leftarrow j}\cdot \hat{\mathbf{r}}
+  \frac{d}{dt}\mathbf{v}_\perp = 0,\qquad \frac{d}{dt}v_r = \mathbf{a}_{o'\leftarrow j}\cdot \hat{\mathbf{r}}_{o'j}
   $$
 - Local trend: inward motion ($v_r<0$) tends to strengthen subsequent per-hit contributions via the $1/r^2$ factor; outward ($v_r>0$) tends to weaken them, all else equal.
 

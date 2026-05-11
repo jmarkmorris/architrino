@@ -10,7 +10,7 @@ This document establishes the **ontological bedrock** of $\mathbb{A}\mathbb{A}\m
 
 1. **The Substrate** ([absolute time](./absolute-time.md), [Euclidean void](./euclidean-void.md), and [absolute timespace](./absolute-timespace.md))
 2. **The Fundamental Entity** ([architrino](./architrino.md): point transceiver of potential-bearing causal wakes)
-3. **The Physical Medium** ([Noether Sea / spacetime medium](../spacetime/noether-sea.md): emergent assembly medium)
+3. **The Physical Medium** ([Noether Sea](../spacetime/noether-sea.md): emergent assembly medium)
 4. **The Observer Framework** ([complete-state vs Physical Observer access](../spacetime/observer-framework.md))
 5. **Terminology Discipline** ([canonical level-aware terminology](../archie/terminology-usage.md))
 6. **Parameter Ledger** ([fundamental postulates vs derived quantities](../validation/parameter-ledger.md))
@@ -63,7 +63,7 @@ For the full primitive-entity page, see [Architrino](./architrino.md). For the r
 
 ---
 
-## The Physical Medium (Noether Sea / Spacetime Medium)
+## The Physical Medium (Noether Sea)
 
 [Noether Sea](../spacetime/noether-sea.md) is the canonical medium-ontology page. It defines the Noether Sea as the emergent physical medium formed by coupled neutral Noether-core assemblies occupying the Euclidean void.
 

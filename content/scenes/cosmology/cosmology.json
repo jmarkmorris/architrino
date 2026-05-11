@@ -36,12 +36,12 @@
         "scenePath": "content/scenes/cosmology/dark_matter.json"
       },
       {
-        "nodeId": "structure_formation",
-        "scenePath": "content/scenes/cosmology/structure_formation.json"
-      },
-      {
         "nodeId": "dark_energy",
         "scenePath": "content/scenes/cosmology/dark_energy.json"
+      },
+      {
+        "nodeId": "structure_formation",
+        "scenePath": "content/scenes/cosmology/structure_formation.json"
       },
       {
         "nodeId": "hubble_s8_tensions",
@@ -153,10 +153,10 @@
       "fixedPosition": true
     },
     {
-      "id": "structure_formation",
-      "label": "Structure Formation",
+      "id": "dark_energy",
+      "label": "Dark Energy",
       "radius": 2.688,
-      "color": "#3c6a7a",
+      "color": "#4b0082",
       "position": [
         -7.42,
         -7.42,
@@ -165,15 +165,15 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Structure Formation",
+      "labelTitle": "Dark Energy",
       "labelBadge": "doc",
       "fixedPosition": true
     },
     {
-      "id": "dark_energy",
-      "label": "Dark Energy",
+      "id": "structure_formation",
+      "label": "Structure Formation",
       "radius": 2.688,
-      "color": "#4b0082",
+      "color": "#3c6a7a",
       "position": [
         -10.5,
         0,
@@ -182,7 +182,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Dark Energy",
+      "labelTitle": "Structure Formation",
       "labelBadge": "doc",
       "fixedPosition": true
     },

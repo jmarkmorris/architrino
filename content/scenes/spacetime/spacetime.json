@@ -32,7 +32,7 @@
   "objects": [
     {
       "id": "spacetime_medium",
-      "title": "Spacetime Medium",
+      "title": "Noether Sea",
       "radius": 2.688,
       "color": "#2f4f7a",
       "position": [
@@ -43,7 +43,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Spacetime Medium",
+      "labelTitle": "Noether Sea",
       "fixedPosition": true
     },
     {
