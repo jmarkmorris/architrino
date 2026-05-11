@@ -117,7 +117,7 @@ These quantities belong to tri-binary architecture, shielding, branch structure,
 
 ## Layer III: Constitutive Spacetime Parameters
 
-These symbols control the handoff from the Euclidean substrate plus Noether-core sea to effective metric language.
+These symbols control the handoff from the Euclidean substrate plus Noether Sea to effective metric language.
 
 | ID | Symbol | Class | Current status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |

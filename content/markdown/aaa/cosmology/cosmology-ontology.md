@@ -46,7 +46,7 @@ All cosmological observables are computed from absolute-state evolution and then
 
 | Axis | $\mathbb{A}\mathbb{A}\mathbb{A}$ Position |
 |---|---|
-| Gravity driver | Medium-response gravity from Noether-sea state, with GR-like behavior as an effective limit |
+| Gravity driver | Medium-response gravity from Noether-Sea state, with GR-like behavior as an effective limit |
 | Expansion status | Fixed Euclidean container; expansion variables are effective medium-state summaries |
 | Universe age stance | Eternal background with no mandatory one-time global origin event |
 | Redshift mechanism | Medium evolution plus clock-rate comparison and transport contributions |
@@ -102,7 +102,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ may borrow explanatory motifs from QSSC/cyclica
 
 - The Euclidean void and absolute time are treated as eternal background structure, not products of a one-time geometric origin event.
 - Large-scale cosmological history is modeled as long-lived medium-and-assembly evolution with recycling channels, including SMBH-centered processing.
-- "Big Bang timeline" language is retained as an effective observational chronology, while ontology remains fixed-void plus evolving Noether-sea state.
+- "Big Bang timeline" language is retained as an effective observational chronology, while ontology remains fixed-void plus evolving Noether-Sea state.
 
 ## Galaxy-Local Cosmology Paradigm
 

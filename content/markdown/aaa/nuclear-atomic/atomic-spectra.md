@@ -8,7 +8,7 @@ The note is still exploratory, so the opening should be read as a compact progra
 
 ## Atomic Orbitals as Lattice Resonances
 
-1. **Resonance Model**: Electron orbitals are modeled as resonances or "phonon-like" excitations within the Noether Sea lattice.
+1. **Resonance Model**: Electron orbitals are modeled as resonances or "phonon-like" excitations within the Noether-Sea lattice.
 2. **Rydberg Constant**: $R_\infty$ is hypothesized to be a function of the Noether-Sea density $\rho_{nc}$.
 3. **Test**: Changes in Noether-Sea density under strong gravity should shift atomic spectra (gravitational redshift) in a way derivable from lattice stiffness changes.
 

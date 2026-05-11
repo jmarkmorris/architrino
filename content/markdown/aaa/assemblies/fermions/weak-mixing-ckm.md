@@ -380,7 +380,7 @@ _Status: speculative scaffold for a derivation. Fill in with explicit states, ov
 | $W$ corridor budget (generic) | — | — | 2 neutral cores + 6 excess decorations | returns neutral cores to Sea; transfers net $\pm e$ | charged corridor | accounting rule | $W^+$: 2 cores + (9P,3E) → +e; $W^-$: 2 cores + (3P,9E) → –e; cores end neutral |
 
 Notes:
-- “Sea cores tapped” = how many Noether Sea cores are pulled transiently (if any). Default 0 unless we posit corridor assembly needs external cores.
+- “Sea cores tapped” = how many Noether-Sea cores are pulled transiently (if any). Default 0 unless we posit corridor assembly needs external cores.
 - Populate further rows for $c\leftrightarrow s$, $b\to u$, rare loop-induced $b\to s$, and anti-quark channels (same CKM but right-handed anti-doublets).
 
 ### Provenance

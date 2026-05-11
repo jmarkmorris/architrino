@@ -99,7 +99,7 @@ The disagreement is epistemic rather than ontological:
 
 A Physical Observer clock measures **proper time** $\tau$, not the substrate parameter $t$ directly. A ruler is likewise an assembly whose measured length depends on its internal dynamics and medium coupling.
 
-This page does not own the clock law. Once a discussion asks how an internal clock frequency changes with velocity, Noether Sea density, effective potential, or clock geometry, use [Proper Time and Time Dilation](proper-time-and-time-dilation.md).
+This page does not own the clock law. Once a discussion asks how an internal clock frequency changes with velocity, Noether-Sea density, effective potential, or clock geometry, use [Proper Time and Time Dilation](proper-time-and-time-dilation.md).
 
 Likewise, this page does not own the full Lorentz comparison. Once a discussion asks whether moving clocks and rulers reproduce Lorentz transformations, use [Lorentz Kinematics](lorentz-kinematics.md).
 

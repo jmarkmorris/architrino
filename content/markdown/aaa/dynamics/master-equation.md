@@ -517,7 +517,7 @@ where:
 
 **Note on interaction structure:** The per-hit acceleration $\mathbf{a}_{ij}(t; t_0)$ is **radial in direction**: it points along the line of action $\hat{\mathbf{r}}_{ij}$ from the source's past position to the receiver's current position. There are **no velocity-dependent cross-product terms** (no $\mathbf{v}_i \times \mathbf{B}$-like contributions) in the fundamental interaction kernel. However, the force magnitude is not purely $1/r^2$; it is modulated by $\left|J_{ij}\right|^{-1}$. Constant emission per unit absolute time at the source is therefore received as a Jacobian-weighted causal flux at the receiver, with the spatial deposition pattern itself changing as the source moves.
 
-**Implication for emergent forces**: All "magnetic" or velocity-dependent forces (e.g., Lorentz force $\mathbf{v} \times \mathbf{B}$) must arise from **delay geometry**, **Jacobian-modulated flux**, and **superposition of radial hits**, not from intrinsic cross-product terms in the fundamental law. This places the burden of magnetic-field emergence on the assembly structure, Noether Sea dynamics, and the finite-speed causal geometry itself.
+**Implication for emergent forces**: All "magnetic" or velocity-dependent forces (e.g., Lorentz force $\mathbf{v} \times \mathbf{B}$) must arise from **delay geometry**, **Jacobian-modulated flux**, and **superposition of radial hits**, not from intrinsic cross-product terms in the fundamental law. This places the burden of magnetic-field emergence on the assembly structure, Noether-Sea dynamics, and the finite-speed causal geometry itself.
 
 #### Total Acceleration (Sum Over All Causal Hits)
 
@@ -1181,7 +1181,7 @@ $$
 - **Tri-binaries (Noether cores)** emerge as nested binary configurations.
 - **Particles** are tri-binary assemblies with axial layers.
 - **Quantum behavior** arises from non-Markovian memory + informational ambiguity.
-- **Spacetime curvature** emerges from Noether Sea density gradients.
+- **Spacetime curvature** emerges from Noether-Sea density gradients.
 - **Cosmological expansion** is local energy dissipation in the Noether Sea.
 
 ---

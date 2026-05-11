@@ -269,9 +269,9 @@ The distinction is:
 3. **Architrino occupancy:** local presence or absence of point entities and assemblies at a given coordinate location.
 4. **Effective spacetime:** observer-level geometry reconstructed from how clocks, rulers, and signals behave in the Noether Sea.
 
-At any time $t$, a coordinate point may be occupied by an architrino, traversed by a wake, located inside a Noether Sea cell, or empty of local architrino content. None of those occupancy states changes the identity or metric of the underlying void point.
+At any time $t$, a coordinate point may be occupied by an architrino, traversed by a wake, located inside a Noether-Sea cell, or empty of local architrino content. None of those occupancy states changes the identity or metric of the underlying void point.
 
-Noether Sea density and response variables belong to the medium layer, not the spatial substrate. For the medium ontology, see [Noether Sea](../spacetime/noether-sea.md). For medium assembly hypotheses, see [Spacetime Assemblies](../spacetime/spacetime-assemblies.md). For the metric bridge, see [Emergent Metric](../spacetime/emergent-metric.md). For cosmological translation, see [Cosmology Ontology](../cosmology/cosmology-ontology.md).
+Noether-Sea density and response variables belong to the medium layer, not the spatial substrate. For the medium ontology, see [Noether Sea](../spacetime/noether-sea.md). For medium assembly hypotheses, see [Spacetime Assemblies](../spacetime/spacetime-assemblies.md). For the metric bridge, see [Emergent Metric](../spacetime/emergent-metric.md). For cosmological translation, see [Cosmology Ontology](../cosmology/cosmology-ontology.md).
 
 ## Distinction From Curved Space
 
@@ -282,10 +282,10 @@ Noether Sea density and response variables belong to the medium layer, not the s
 | **Spatial points** | Permanent substrate locations | Coordinate identity may be gauge-dependent |
 | **Curvature source** | None; the void does not respond | Stress-energy sources curvature |
 | **Expansion** | No expansion of the void | Metric scale factor may expand |
-| **Gravity** | Emergent from assembly and Noether Sea dynamics | Geometric curvature of spacetime |
+| **Gravity** | Emergent from assembly and Noether-Sea dynamics | Geometric curvature of spacetime |
 
 The phrase `curved space` should not be used for the fundamental ontology. Use `effective metric`, `effective spacetime`, or `refractive gravity` when describing observer-level curvature-like behavior.
 
 ## Summary Postulate
 
-> **Postulate 2 (Euclidean Void):** Three-dimensional space is the Euclidean void: an absolute, static, flat container $\mathbb{R}^3$ equipped with fixed metric $h_{ij}=\delta_{ij}$. It is homogeneous, isotropic, non-dynamical, and does not curve, expand, contract, or respond to matter and energy. All spatial displacements, distances, volumes, and spatial differential operators are defined by the fixed Euclidean metric. Curvature-like observations arise from trajectories, assemblies, wakes, and Noether Sea response within the void, not from curvature of the void itself.
+> **Postulate 2 (Euclidean Void):** Three-dimensional space is the Euclidean void: an absolute, static, flat container $\mathbb{R}^3$ equipped with fixed metric $h_{ij}=\delta_{ij}$. It is homogeneous, isotropic, non-dynamical, and does not curve, expand, contract, or respond to matter and energy. All spatial displacements, distances, volumes, and spatial differential operators are defined by the fixed Euclidean metric. Curvature-like observations arise from trajectories, assemblies, wakes, and Noether-Sea response within the void, not from curvature of the void itself.

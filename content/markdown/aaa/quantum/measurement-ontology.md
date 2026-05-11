@@ -17,7 +17,7 @@ So the ontology is:
 
 - **system:** an assembly or coupled assembly-subsystem with reduced state $X$,
 - **apparatus:** another assembly network engineered so that its wake structure couples strongly to a chosen coordinate of $X$,
-- **environment:** the surrounding Noether-core sea plus uncontrolled apparatus degrees of freedom,
+- **environment:** the surrounding Noether Sea plus uncontrolled apparatus degrees of freedom,
 - **measurement outcome:** the attractor basin into which the coupled system settles,
 - **record:** a durable asymmetry in apparatus/environment variables that can be re-read without reconstructing the original metastable state.
 

@@ -21,38 +21,31 @@
             "id": "major_thinkers_overview",
             "labelTitle": "Overview",
             "labelBadge": "doc",
-            "color": "#243d8f",
             "mode": "doc"
           },
           "classical early modern metaphysics mechanism": {
             "id": "major_thinkers_classical_modern",
-            "labelTitle": "Classical / Early Modern",
-            "color": "#2f6b6f"
+            "labelTitle": "Classical / Early Modern"
           },
           "relativity gravity cosmology spacetime ontology quantum gravity": {
             "id": "major_thinkers_relativity_cosmology",
-            "labelTitle": "Relativity / Cosmology",
-            "color": "#5a1f2e"
+            "labelTitle": "Relativity / Cosmology"
           },
           "quantum foundations hidden variable landscape": {
             "id": "major_thinkers_quantum_foundations",
-            "labelTitle": "Quantum Foundations",
-            "color": "#4b0082"
+            "labelTitle": "Quantum Foundations"
           },
           "qft standard model architecture foundations renormalization gauge structure": {
             "id": "major_thinkers_qft_standard_model",
-            "labelTitle": "Standard Model Architecture",
-            "color": "#3a5f9f"
+            "labelTitle": "Standard Model Architecture"
           },
           "philosophy of science": {
             "id": "major_thinkers_philosophy_of_science",
-            "labelTitle": "Philosophy of Science",
-            "color": "#2f4f7a"
+            "labelTitle": "Philosophy of Science"
           },
           "information computation": {
             "id": "major_thinkers_information_computation",
-            "labelTitle": "Information / Computation",
-            "color": "#3f6a5a"
+            "labelTitle": "Information / Computation"
           }
         }
       }

@@ -22,48 +22,39 @@
             "id": "theory_differentials_overview",
             "labelTitle": "Overview",
             "labelBadge": "doc",
-            "color": "#2f4f7a",
             "mode": "doc"
           },
           "core quantum and particle frameworks": {
             "id": "theory_differentials_core_quantum_particle",
-            "labelTitle": "Core Quantum & Particle",
-            "color": "#2f6b6f"
+            "labelTitle": "Core Quantum & Particle"
           },
           "quantum foundations and interpretations": {
             "id": "theory_differentials_quantum_foundations",
-            "labelTitle": "Quantum Foundations",
-            "color": "#3a5f9f"
+            "labelTitle": "Quantum Foundations"
           },
           "spacetime gravity and quantum gravity": {
             "id": "theory_differentials_spacetime_gravity",
-            "labelTitle": "Spacetime / Gravity",
-            "color": "#4b0082"
+            "labelTitle": "Spacetime / Gravity"
           },
           "cosmology and large scale history": {
             "id": "theory_differentials_cosmology",
-            "labelTitle": "Cosmology",
-            "color": "#5a1f2e"
+            "labelTitle": "Cosmology"
           },
           "statistical thermal and bulk descriptions": {
             "id": "theory_differentials_statistical_bulk",
-            "labelTitle": "Statistical / Bulk",
-            "color": "#6a3c3c"
+            "labelTitle": "Statistical / Bulk"
           },
           "rejected historical theories": {
             "id": "theory_differentials_rejected",
-            "labelTitle": "Rejected Historical",
-            "color": "#243d8f"
+            "labelTitle": "Rejected Historical"
           },
           "fringe or borderline contrast cases": {
             "id": "theory_differentials_fringe",
-            "labelTitle": "Fringe / Borderline",
-            "color": "#7a4a1f"
+            "labelTitle": "Fringe / Borderline"
           },
           "additional major academic programs to consider": {
             "id": "theory_differentials_additional_academic",
-            "labelTitle": "Additional Programs",
-            "color": "#3f6a5a"
+            "labelTitle": "Additional Programs"
           },
           "lambda cold dark matter lambda cdm": {
             "shortName": "Lambda-CDM"
@@ -100,8 +91,7 @@
           },
           "cross cutting concepts to differentially map": {
             "id": "theory_differentials_cross_cutting_concepts",
-            "labelTitle": "Cross-Cutting Concepts",
-            "color": "#355f9a"
+            "labelTitle": "Cross-Cutting Concepts"
           }
         }
       }

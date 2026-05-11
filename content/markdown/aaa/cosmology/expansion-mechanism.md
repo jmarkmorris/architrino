@@ -6,7 +6,7 @@ The sections below move from the core idea to redshift, photon propagation, dark
 
 ## Core Idea
 
-The [Euclidean void](../foundations/euclidean-void.md) does not expand. What evolves is the Noether sea and the state of assemblies moving through it.
+The [Euclidean void](../foundations/euclidean-void.md) does not expand. What evolves is the Noether Sea and the state of assemblies moving through it.
 
 ## Effective Scale Factor in a Fixed Void
 
@@ -102,7 +102,7 @@ Quasar redshift distributions are interpreted in the same transport-and-source f
 
 Conceptually, this layer is adjacent to inhomogeneous/clock-calibration cosmologies, but the implementation here remains one explicit medium-state model:
 
-- clock-rate mapping is computed from shared Noether-sea state variables,
+- clock-rate mapping is computed from shared Noether-Sea state variables,
 - expansion-like inference shifts are environment-conditioned readouts, not ontology splits,
 - local-ladder versus early-time differences are modeled as distinct sampling of one evolving medium.
 

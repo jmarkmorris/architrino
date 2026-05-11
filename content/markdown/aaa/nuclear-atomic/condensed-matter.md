@@ -1,6 +1,6 @@
 # Condensed Matter
 
-This chapter is the condensed-matter placeholder for medium-level behavior in a Noether-core sea. Its current focus is the superfluid-medium analogy and the question of how inertia, resistance, and threshold behavior should look when matter moves through a densely coupled background of cores.
+This chapter is the condensed-matter placeholder for medium-level behavior in the Noether Sea. Its current focus is the superfluid-medium analogy and the question of how inertia, resistance, and threshold behavior should look when matter moves through a densely coupled background of cores.
 
 This note bridges [Atomic Structure](atomic-structure.md), [Particle Masses](../assemblies/particle-masses.md), [Spacetime Assemblies](../spacetime/spacetime-assemblies.md), and [Medium Exclusion Volume](../spacetime/medium-exclusion-volume.md), since all four depend on how the background medium stores stress and permits transport.
 

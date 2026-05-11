@@ -2,7 +2,7 @@
 
 This chapter is the canonical substrate-level specification for **absolute timespace** in $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines the fixed product background $\mathbb{R}\times\mathbb{R}^3$, its global foliation into simultaneous Euclidean slices, the Newton-Cartan data used to keep time and space separate, and the causal wake geometry used by the microscopic dynamics.
 
-Absolute timespace is not relativistic spacetime. It is the formal product of [Absolute Time](absolute-time.md) and the [Euclidean Void](euclidean-void.md). Effective spacetime geometry is reconstructed later from assembly and Noether Sea dynamics; it is not the substrate itself.
+Absolute timespace is not relativistic spacetime. It is the formal product of [Absolute Time](absolute-time.md) and the [Euclidean Void](euclidean-void.md). Effective spacetime geometry is reconstructed later from assembly and Noether-Sea dynamics; it is not the substrate itself.
 
 ## Core Concept
 
@@ -15,7 +15,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$:
 - There is no fundamental 4D Lorentzian metric mixing temporal and spatial dimensions.
 - The background is non-dynamical: it does not respond to matter, energy, assemblies, or the Noether Sea.
 
-All curvature, expansion, clock dilation, and relativistic behavior must be recovered as effective descriptions of assemblies and Noether Sea response within this fixed background.
+All curvature, expansion, clock dilation, and relativistic behavior must be recovered as effective descriptions of assemblies and Noether-Sea response within this fixed background.
 
 ## Product Manifold
 
@@ -327,10 +327,10 @@ These assumptions are not additional ontology. They are the analytic conditions 
 | **Metric** | Separate $(\tau,h)$ data | Non-degenerate $g_{\mu\nu}$ |
 | **Simultaneity** | Absolute global foliation | Observer/frame dependent |
 | **Causality** | Absolute order plus finite wake speed | Metric light cones |
-| **Gravity** | Emergent from assembly and Noether Sea dynamics | Spacetime curvature |
+| **Gravity** | Emergent from assembly and Noether-Sea dynamics | Spacetime curvature |
 | **Expansion** | No expansion of the void | Metric expansion possible |
 
-The effective metric used in GR-style recovery is a downstream constitutive object. It must be derived from clocks, rulers, signal transport, and Noether Sea response. See [Emergent Metric](../spacetime/emergent-metric.md).
+The effective metric used in GR-style recovery is a downstream constitutive object. It must be derived from clocks, rulers, signal transport, and Noether-Sea response. See [Emergent Metric](../spacetime/emergent-metric.md).
 
 ## Role in $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -344,4 +344,4 @@ Absolute timespace is the formal product background in which all architrino dyna
 
 ## Summary Postulate
 
-> **Postulate 3 (Absolute Timespace):** The background arena for all physics is the product manifold $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, equipped with absolute time $\tau=dt$ and Euclidean spatial metric $h_{ij}=\delta_{ij}$. This defines a global foliation into simultaneous Euclidean slices indexed by universal time. The background is non-dynamical and non-curved. Causality is defined by absolute temporal ordering and finite wake speed $c_f$. The product background preserves Galilean kinematic structure, while the interaction law selects a preferred rest frame dynamically. Effective Lorentz behavior, gravity, lensing, clock dilation, and cosmological expansion are emergent descriptions of assemblies and Noether Sea dynamics within absolute timespace, not properties of the background itself.
+> **Postulate 3 (Absolute Timespace):** The background arena for all physics is the product manifold $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, equipped with absolute time $\tau=dt$ and Euclidean spatial metric $h_{ij}=\delta_{ij}$. This defines a global foliation into simultaneous Euclidean slices indexed by universal time. The background is non-dynamical and non-curved. Causality is defined by absolute temporal ordering and finite wake speed $c_f$. The product background preserves Galilean kinematic structure, while the interaction law selects a preferred rest frame dynamically. Effective Lorentz behavior, gravity, lensing, clock dilation, and cosmological expansion are emergent descriptions of assemblies and Noether-Sea dynamics within absolute timespace, not properties of the background itself.

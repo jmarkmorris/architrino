@@ -18,9 +18,9 @@ The purpose of this section is to define the combination of experimental isotrop
 
 ### The Absolute-Frame Drift Check (Lorentz Contraction Enforcement)
 
-This entry frames the requirement that the underlying Noether Core sea affords a dynamical contraction mechanism to assemblies moving through the Void; without such a mechanism, assemblies would reveal their motion relative to the sea and the preferred frame would manifest.
+This entry frames the requirement that the underlying Noether Sea affords a dynamical contraction mechanism to assemblies moving through the Void; without such a mechanism, assemblies would reveal their motion relative to the sea and the preferred frame would manifest.
 
-* **Constraint** – the Noether Core sea must dynamically enforce the Lorentz contraction of assemblies; otherwise the model is equivalent to an untested preferred frame.
+* **Constraint** – the Noether Sea must dynamically enforce the Lorentz contraction of assemblies; otherwise the model is equivalent to an untested preferred frame.
 * **Failure Condition** – without contraction enforced by the Sea, preferred frame effects become measurable and falsify the theory.
 
 ### Noether-Sea Drag

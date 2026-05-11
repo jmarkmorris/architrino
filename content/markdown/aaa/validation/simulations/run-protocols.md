@@ -22,7 +22,7 @@ All simulations integrate dynamics in the absolute Euclidean frame:
 
 ### Void vs medium terminology (simulation-facing)
 - "Void" = the coordinate container / grid indices
-- "Spacetime medium" = Noether-core sea (coupled pro/anti cores) instantiated as objects/fields in the void
+- "Spacetime medium" = Noether Sea (coupled pro/anti cores) instantiated as objects/fields in the void
 
 ### Mandatory $\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$) grid
 Every run must instantiate $\mathbb{U}_{\text{now}}$ sensors:

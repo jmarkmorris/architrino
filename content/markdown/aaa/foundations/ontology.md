@@ -69,7 +69,7 @@ For the full primitive-entity page, see [Architrino](./architrino.md). For the r
 
 In this ontology hub, the key commitment is:
 
-> **Medium Commitment (Noether Sea):** The Noether Sea is physical content inside the Euclidean void, not the void itself. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock dilation, signal refraction, inertia, and cosmological behavior are reconstructed from Noether Sea dynamics and assembly coupling, not from curvature or expansion of the void.
+> **Medium Commitment (Noether Sea):** The Noether Sea is physical content inside the Euclidean void, not the void itself. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock dilation, signal refraction, inertia, and cosmological behavior are reconstructed from Noether-Sea dynamics and assembly coupling, not from curvature or expansion of the void.
 
 The routing boundary is:
 
@@ -77,7 +77,7 @@ The routing boundary is:
 - [Spacetime Assemblies](../spacetime/spacetime-assemblies.md) owns pro/anti coupling hypotheses and medium assembly motifs.
 - [Emergent Metric](../spacetime/emergent-metric.md) owns the map from medium variables to effective metric language.
 - [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md) owns clock and ruler behavior.
-- [Cosmology Ontology](../cosmology/cosmology-ontology.md) owns the cosmology-level interpretation of Noether Sea evolution.
+- [Cosmology Ontology](../cosmology/cosmology-ontology.md) owns the cosmology-level interpretation of Noether-Sea evolution.
 
 ## The Observer Framework (Ontic vs Epistemic)
 
@@ -105,7 +105,7 @@ Terminology discipline is controlled by the Archie canon, not by this hub. The r
 
 This ontology hub keeps only the global rule:
 
-> Use substrate-native terms for substrate ontology, medium terms for Noether Sea contents, and effective/observer terms for emergent descriptions. Do not let `spacetime`, `field`, `charge`, `vacuum`, or `particle` silently cross levels without saying which level is being described.
+> Use substrate-native terms for substrate ontology, medium terms for Noether-Sea contents, and effective/observer terms for emergent descriptions. Do not let `spacetime`, `field`, `charge`, `vacuum`, or `particle` silently cross levels without saying which level is being described.
 
 ## Parameter Ledger (Foundation Level)
 

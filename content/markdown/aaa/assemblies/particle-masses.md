@@ -31,7 +31,7 @@ $$
 
 This is the clean scalar form of the thesis. It says that the observer-facing inertial mass is controlled by the shielded part of the internal assembly ledger, with $\alpha$ fixed once by a reference assembly in the regime where the effective low-energy closure is being matched.
 
-The scalar form is not the whole derivation. In a resolved Noether Sea environment, the denominator $c_{\text{eff}}^2$ is the isotropic weak-field limit of a medium-response tensor:
+The scalar form is not the whole derivation. In a resolved Noether-Sea environment, the denominator $c_{\text{eff}}^2$ is the isotropic weak-field limit of a medium-response tensor:
 
 $$
 p_{\text{int}}^a
@@ -44,7 +44,7 @@ p_{\text{int}}^a
 \frac{h^{ab}}{c_{\text{eff}}^2}
 $$
 
-in a homogeneous isotropic Noether Sea cell. Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice. The tensor version is the sharper target because it carries direction dependence, gradient response, and the distinction between primitive wake speed and observer-facing effective signal speed. Until the internal ledger, shielding coefficient, and medium-response tensor are derived from stable assembly closure, this remains a roadmap formula rather than a theorem.
+in a homogeneous isotropic Noether-Sea cell. Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice. The tensor version is the sharper target because it carries direction dependence, gradient response, and the distinction between primitive wake speed and observer-facing effective signal speed. Until the internal ledger, shielding coefficient, and medium-response tensor are derived from stable assembly closure, this remains a roadmap formula rather than a theorem.
 
 ### The Noether Core as a Causal Knot
 
@@ -52,7 +52,7 @@ A Noether core can be read as a causal knot: not a material knot in space, but a
 
 When the core moves or is placed under a gradient, the knot does not remain a static set of circular binaries. The inner, middle, and outer binary planes are drawn into a coupled spiral-helical pattern: pitch, radius, phase, and inter-layer timing retune together so delayed wakes still return to the correct partners and layers. This spiral-helical relocking is the geometric carrier of inertia in the present thesis.
 
-In this view, rest energy is the energy stored in the closed causal ledger, and mass is the externally exposed response of that ledger when the knot is accelerated, perturbed, or placed in a Noether Sea gradient. Shielding determines how much of the internal knot couples to the far field.
+In this view, rest energy is the energy stored in the closed causal ledger, and mass is the externally exposed response of that ledger when the knot is accelerated, perturbed, or placed in a Noether-Sea gradient. Shielding determines how much of the internal knot couples to the far field.
 
 ### Mechanism Stack
 
@@ -74,7 +74,7 @@ Apparent inertial mass is expected to arise from a connected stack of effects:
   $$
   m_{\text{eff}}(v) \sim \frac{m_0}{\sqrt{1 - v^2/c_{\text{eff}}^2}}.
   $$
-- **Environment Dependence:** Local variations in Noether Sea density, compliance, drift, and effective lapse can modulate the response. In dense or strongly graded regions, the effective inertial and gravitational response must be computed from the same medium-dressed closure map.
+- **Environment Dependence:** Local variations in Noether-Sea density, compliance, drift, and effective lapse can modulate the response. In dense or strongly graded regions, the effective inertial and gravitational response must be computed from the same medium-dressed closure map.
 
 ### Stability Constraint
 A critical requirement: assemblies in **equilibrium** with the Noether Sea (e.g., atoms in stable orbitals) must experience no dissipative drag in the ordinary sense. Otherwise, electron orbitals would lose stability, radiate energy, and collapse into the nucleus (the classical electron catastrophe).
@@ -93,7 +93,7 @@ It is crucial to clarify what is **fundamental** versus what is **emergent**:
 | **Architrino Charge ($\epsilon = e/6$)** | Fundamental |
 | **Noether Sea State** | Emergent density, compliance, drift, and clock-response fields |
 | **Inertial Mass ($m$)** | **Emergent** (shielded internal energy + medium-dressed response) |
-| **Gravitational Mass** | **Emergent** (Noether Sea gradient response) |
+| **Gravitational Mass** | **Emergent** (Noether-Sea gradient response) |
 
 ### Status of Mass Claims
 
@@ -110,7 +110,7 @@ It is crucial to clarify what is **fundamental** versus what is **emergent**:
 ### Comparison to Standard Model
 In the Standard Model, mass arises via the **Higgs Mechanism**: particles acquire mass by coupling to a background Higgs field (a scalar condensate with vacuum expectation value $v \approx 246$ GeV).
 
-In the architrino framework, the Higgs-sector comparison is an effective matching problem, not yet a derived replacement. The working expectation is that Standard Model mass parameters and Yukawa couplings would be reinterpreted as effective summaries of assembly geometry, shielding, and Noether Sea response. The 125 GeV Higgs mode may eventually be modeled as a collective excitation of this medium, but that identification is a theorem target, not an established result.
+In the architrino framework, the Higgs-sector comparison is an effective matching problem, not yet a derived replacement. The working expectation is that Standard Model mass parameters and Yukawa couplings would be reinterpreted as effective summaries of assembly geometry, shielding, and Noether-Sea response. The 125 GeV Higgs mode may eventually be modeled as a collective excitation of this medium, but that identification is a theorem target, not an established result.
 
 For the electroweak medium interpretation behind this replacement, see [Emergence of U(1)/SU(2)](../interactions/gauge-structure-emergence.md).
 
@@ -141,7 +141,7 @@ If a first-principles shielding model naturally lands near the Koide surface for
 
 Even if the charged leptons approximately follow a simple shielding geometry, quarks should not be expected to do so.
 
-The reason is that quark inertial mass is not just bare core exposure. Quarks carry axis-exceptional color structure, induce persistent flux-tube tension, and require continual axis-reconfiguration exchange through the strong sector. In that regime, the measured effective mass is contaminated by confinement energy and Noether Sea response to the color disturbance.
+The reason is that quark inertial mass is not just bare core exposure. Quarks carry axis-exceptional color structure, induce persistent flux-tube tension, and require continual axis-reconfiguration exchange through the strong sector. In that regime, the measured effective mass is contaminated by confinement energy and Noether-Sea response to the color disturbance.
 
 So the working distinction is:
 

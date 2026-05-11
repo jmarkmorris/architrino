@@ -272,7 +272,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
   - [Mode Taxonomy](../../scenes/interactions/mode_taxonomy.json)
     - [Scope](../aaa/interactions/mode-taxonomy.md?section=Scope)
     - [$\mathbb{A}\mathbb{A}\mathbb{A}$ Assembly-Level Interpretation](../aaa/interactions/mode-taxonomy.md?section=%24%5Cmathbb%7BA%7D%5Cmathbb%7BA%7D%5Cmathbb%7BA%7D%24+Assembly-Level+Interpretation)
-    - [Low-Energy SM Assemblies in a Noether-Core Sea](../aaa/interactions/mode-taxonomy.md?section=Low-Energy+SM+Assemblies+in+a+Noether-Core+Sea)
+    - [Low-Energy SM Assemblies in the Noether Sea](../aaa/interactions/mode-taxonomy.md?section=Low-Energy+SM+Assemblies+in+the+Noether+Sea)
     - [Core Terms](../aaa/interactions/mode-taxonomy.md?section=Core+Terms)
     - [Channel-Specific Terms](../aaa/interactions/mode-taxonomy.md?section=Channel-Specific+Terms)
     - [Usage Rules](../aaa/interactions/mode-taxonomy.md?section=Usage+Rules)

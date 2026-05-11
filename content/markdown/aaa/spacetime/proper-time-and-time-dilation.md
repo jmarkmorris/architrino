@@ -43,7 +43,7 @@ A clock is any assembly with a **stable, countable internal cycle**:
 - Minimal model: a tri‑binary Noether core where one binary (typically the middle) serves as the “pendulum.”
 - Base frequency $\omega_0$ (or period $T_0 = 2\pi/\omega_0$) is defined for:
  - Clock **at rest** in the absolute frame,
- - In a region of homogeneous Noether Sea density $n=1$ and negligible external gradients.
+ - In a region of homogeneous Noether-Sea density $n=1$ and negligible external gradients.
 
 Proper time is then defined operationally as:
 $$
@@ -297,7 +297,7 @@ Execution protocols, benchmark catalogs, and numeric pass/fail thresholds are de
 This program fails—and the emergent‑metric project is likely untenable—if any of the following hold:
 
 1. **Incorrect velocity dependence:** 
- - If $T(v)$ cannot be made to fit $\propto \gamma(v)$ without fine‑tuning internal clock geometry or Noether Sea parameters.
+ - If $T(v)$ cannot be made to fit $\propto \gamma(v)$ without fine‑tuning internal clock geometry or Noether-Sea parameters.
 
 2. **Wrong sign or magnitude of gravitational dilation:** 
  - Clocks deeper in a potential must tick slower. Any prediction of faster ticks, or gross magnitude mismatch, is fatal.

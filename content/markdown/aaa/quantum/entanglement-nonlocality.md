@@ -86,7 +86,7 @@ When a measurement apparatus (itself an assembly of architrinos) interacts with 
 
 1. The internal microstate of $A$ (including binary phases, wake history),
 2. The internal microstate of the apparatus,
-3. The local Noether Sea configuration.
+3. The local Noether-Sea configuration.
 
 The outcome is **deterministic** given complete microstate knowledge, but **operationally unpredictable** to the Physical Observer, who lacks access to the relevant hidden variables.
 
@@ -149,7 +149,7 @@ The correlations become visible only when outcomes from both sides are **compare
 | **Measurement collapse** (distant state update) | Local threshold resolution at each detector independently; the $\mathbb{U}_{\text{now}}$ universe-state perspective sees two separate, causally disconnected basin crossings whose outcomes are correlated by shared $\lambda$. |
 | **Bell inequality violation** ($\lvert S\rvert = 2\sqrt{2}$) | The correlated hidden-variable geometry produces outcome statistics that violate Bell locality because $\lambda$ is non-separable; the violation arises from the structure of the shared creation constraints, not from any superluminal influence. |
 | **No-signaling** | Marginal statistics at each detector are independent of the distant setting; correlations are visible only upon classical comparison of results. |
-| **Decoherence of entanglement** | Progressive loss of phase correlation between the two assemblies as each interacts with its local Noether Sea environment, randomizing the internal wake phases that carry the correlated information. |
+| **Decoherence of entanglement** | Progressive loss of phase correlation between the two assemblies as each interacts with its local Noether-Sea environment, randomizing the internal wake phases that carry the correlated information. |
 | **Entanglement monogamy** | Conservation constraints at creation distribute correlated hidden variables among a finite number of daughter assemblies; sharing a tight correlation with one partner limits the available phase-space for correlation with a third. |
 
 ---
@@ -198,7 +198,7 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Boh
 
 **Predictions:**
 - All standard Bell inequality violations are reproduced (the theory is operationally equivalent to QM in the tested regime).
-- Decoherence timescales for entangled assemblies scale with the local Noether Sea density and temperature, providing an environmental dependence absent in bare QM.
+- Decoherence timescales for entangled assemblies scale with the local Noether-Sea density and temperature, providing an environmental dependence absent in bare QM.
 - No signaling: no protocol exploiting entanglement can transmit information faster than $c_f$, even in principle.
 
 **Failure Modes:**

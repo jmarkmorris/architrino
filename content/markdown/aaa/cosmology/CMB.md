@@ -8,7 +8,7 @@ The CMB timeline is presented as an effective observer-level chronology map that
 
 ## Framing Guardrails
 
-- The Euclidean void is fixed; cosmological language describes Noether Sea evolution within that fixed container.
+- The Euclidean void is fixed; cosmological language describes Noether-Sea evolution within that fixed container.
 - Redshift language is consistent with Noether-Sea evolution plus clock-rate comparison across environments.
 - Background and growth claims are kept in one shared Noether-Sea-and-assembly ontology.
 - Epoch times below are an effective observer-level chronology map, not a claim of one literal global launch event in absolute-time ontology.
@@ -117,7 +117,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is concep
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Acoustic oscillations in the photon-baryon fluid generate the familiar harmonic peaks. Peak positions are set by the sound horizon at recombination; relative heights encode baryon loading and radiation driving.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Tri-Binary Energy Ladder):** The tri-binary system supplies three intrinsic energy scales (outer, middle, inner) that act as primary mode seeds. Coupling through the Noether Sea generates a harmonic ladder from those seeds, analogous to standing acoustic modes in a cavity. The effective “sound horizon” scale is set by the Noether Sea's coupling length and the duration of the high-optical-depth phase, while the odd/even peak pattern reflects how baryon-like assemblies load the oscillations relative to photon planar-pair modes.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Tri-Binary Energy Ladder):** The tri-binary system supplies three intrinsic energy scales (outer, middle, inner) that act as primary mode seeds. Coupling through the Noether Sea generates a harmonic ladder from those seeds, analogous to standing acoustic modes in a cavity. The effective “sound horizon” scale is set by the Noether-Sea coupling length and the duration of the high-optical-depth phase, while the odd/even peak pattern reflects how baryon-like assemblies load the oscillations relative to photon planar-pair modes.
 
 ## Recombination ($\sim 3.8\times10^5$ years)
 - Time window: $\sim 3.8\times10^5$ years.
@@ -126,7 +126,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is concep
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Electrons combine with nuclei; photons decouple, producing the CMB. The last-scattering surface is established.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Recombination: Counter-Rotating Coaxial Assemblies Launch):** Electron-like assemblies lock into neutral, counter-rotating coaxial configurations with nuclei, dramatically reducing scattering cross sections. Photon assemblies modeled as coaxial contra-rotating pro/anti planar pairs decouple and free-stream. This defines the $\mathbb{A}\mathbb{A}\mathbb{A}$ analog of last scattering, with the CMB spectrum reflecting the thermalized Noether Sea state at decoupling.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Recombination: Counter-Rotating Coaxial Assemblies Launch):** Electron-like assemblies lock into neutral, counter-rotating coaxial configurations with nuclei, dramatically reducing scattering cross sections. Photon assemblies modeled as coaxial contra-rotating pro/anti planar pairs decouple and free-stream. This defines the $\mathbb{A}\mathbb{A}\mathbb{A}$ analog of last scattering, with the CMB spectrum reflecting the thermalized Noether-Sea state at decoupling.
 
 ## Dark Ages ($\sim 3.8\times10^5$ years to first light)
 - Time window: $\sim 3.8\times10^5$ years to first light.
@@ -159,7 +159,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is concep
 Within the same ontology, CMB sourcing can be represented through:
 
 1. SMBH release from horizon-interface recycling sites, including jet-like, diffuse, and initially dark-sector channels accumulated over long history,
-2. medium-relaxation radiation from Noether Sea state transitions,
+2. medium-relaxation radiation from Noether-Sea state transitions,
 3. conversion or dissociation channels from high-velocity or dark-sector assembly states into photon-like modes.
 
 These channels are treated as parts of one shared thermalization and decoupling story; they are not separate ontologies.

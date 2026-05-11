@@ -16,7 +16,7 @@ A $\mathbb{U}_{\text{now}}$ is defined by:
 - Output channels:
   - Local potential $\Phi(x_k,t)$
   - Local gradient $\nabla\Phi(x_k,t)$ (force proxy)
-  - Optional local medium state variables for Noether-core sea (e.g., $\rho_{\text{core}}$, alignment/orientation metrics)
+  - Optional local medium state variables for the Noether Sea (e.g., $\rho_{\text{core}}$, alignment/orientation metrics)
   - Causal wake surface provenance/event tags: for each received contribution at $(x_k,t)$, record `emitter_id` together with $t_{\text{emit}}$, satisfying $\lVert x_k - x_{\text{emitter}}(t_{\text{emit}})\rVert = c_f (t - t_{\text{emit}})$
 
 ### Minimal synthetic products

@@ -15,14 +15,14 @@ the spacetime constitutive map.
 ### Mapping to PPN Constraints
 
 1. **Shapiro Delay**: Map the GR time-delay (longer path in curved space) to the Architrino time-delay (slower $c_{eff}$ in a dense medium).
-2. **Light Bending**: Calculate the refraction of tri-binary signals through the Noether Sea density gradient around the Sun.
-3. **Geodetic Precession**: Derived from the interaction of the assembly's angular momentum with the gradient of the Noether Sea's potential.
+2. **Light Bending**: Calculate the refraction of tri-binary signals through the Noether-Sea density gradient around the Sun.
+3. **Geodetic Precession**: Derived from the interaction of the assembly's angular momentum with the gradient of the Noether-Sea potential.
 
 
 ### Testing the Euclidean Anchor (Shapiro Delay)
 
 1. **The Test**: Calculate travel time of a signal from Earth to a probe behind the Sun using the $\mathbb{U}_{\text{now}}$ universe-state grid.
-2. **Architrino Model**: Signal follows a straight Euclidean line. Delay is caused by increased Noether Sea response near the Sun, expressed by the Noether-Sea delay factor $\chi_{\text{sea}}$.
+2. **Architrino Model**: Signal follows a straight Euclidean line. Delay is caused by increased Noether-Sea response near the Sun, expressed by the Noether-Sea delay factor $\chi_{\text{sea}}$.
 3. **Comparison**: Contrast $\Delta t_{architrino}$ with the GR weak-field form.
 4. **$\mathbb{U}_{\text{now}}$ Role**: $\mathbb{U}_{\text{now}}$ provides the "straight line" benchmark against which the "curved path" of GR is compared.
 
@@ -85,7 +85,7 @@ In the weak-field solar-system regime, $\gamma_{\text{eff}}$ is the direct refra
 
 #### Parameter $\beta$ (Non-linearity of Gravity)
 * **GR Context:** Measures the non-linearity in the superposition of gravitational fields.
-* **Architrino Interpretation:** Captures second-order (in potential) clock/medium response from self-hit and Noether Sea constitutive nonlinearity.
+* **Architrino Interpretation:** Captures second-order (in potential) clock/medium response from self-hit and Noether-Sea constitutive nonlinearity.
 * **Explicit map from constitutive expansion:** Let $U\equiv-\Phi_N>0$ and expand the static clock law
 $$
 \frac{d\tau}{dt}\bigg|_{v=0}

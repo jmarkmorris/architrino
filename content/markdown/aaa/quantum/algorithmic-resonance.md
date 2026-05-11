@@ -25,5 +25,5 @@ The complete dynamical pipeline for integer factorization.
 * **Extraction:** The final dynamical collapse yielding a classical measurement from which $r$ is derived.
 
 ## Falsifiability and Scaling Limits
-* **Error Bounds:** Formulating strict mathematical limits on the depth of coherent operations before Noether Sea background noise induces deterministic decoherence.
+* **Error Bounds:** Formulating strict mathematical limits on the depth of coherent operations before Noether-Sea background noise induces deterministic decoherence.
 * **Predictions:** Specific, testable deviations from ideal unitary behavior in macroscopic quantum processors predicted by the finite propagation speed $c_f$ and self-hit interaction kernels.

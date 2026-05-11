@@ -72,4 +72,4 @@ In the modular cosmology map, this page contributes:
 
 ## Coherent Reading
 
-Inflation language in $\mathbb{A}\mathbb{A}\mathbb{A}$ is an effective description of high-curvature release-and-relaxation dynamics in the Noether sea, not an added standalone scalar ontology.
+Inflation language in $\mathbb{A}\mathbb{A}\mathbb{A}$ is an effective description of high-curvature release-and-relaxation dynamics in the Noether Sea, not an added standalone scalar ontology.

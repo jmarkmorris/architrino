@@ -22,74 +22,62 @@
             "id": "crisis_in_physics_overview",
             "labelTitle": "Overview",
             "labelBadge": "doc",
-            "color": "#243d8f",
             "mode": "doc"
           },
           "progress vs time": {
             "id": "crisis_in_physics_progress_time",
             "labelTitle": "Progress vs. Time",
-            "labelBadge": "doc",
-            "color": "#2f6b6f"
+            "labelBadge": "doc"
           },
           "prediction vs ontology": {
             "id": "crisis_in_physics_prediction_ontology",
             "labelTitle": "Prediction vs. Ontology",
-            "labelBadge": "doc",
-            "color": "#5a1f2e"
+            "labelBadge": "doc"
           },
           "quantum measurement and outcome selection": {
             "id": "crisis_in_physics_measurement_selection",
             "labelTitle": "Measurement / Outcome",
-            "labelBadge": "doc",
-            "color": "#4b0082"
+            "labelBadge": "doc"
           },
           "nonlocality bell and causal structure": {
             "id": "crisis_in_physics_nonlocality_bell",
             "labelTitle": "Nonlocality / Bell",
-            "labelBadge": "doc",
-            "color": "#3a5f9f"
+            "labelBadge": "doc"
           },
           "general relativity and quantum theory": {
             "id": "crisis_in_physics_gr_qt",
             "labelTitle": "GR and Quantum Theory",
-            "labelBadge": "doc",
-            "color": "#2f4f7a"
+            "labelBadge": "doc"
           },
           "renormalization uv completion and continuum excess": {
             "id": "crisis_in_physics_renormalization_uv",
             "labelTitle": "Renormalization / UV",
-            "labelBadge": "doc",
-            "color": "#6a3c3c"
+            "labelBadge": "doc"
           },
           "vacuum medium and the status of empty space": {
             "id": "crisis_in_physics_vacuum_medium",
             "labelTitle": "Vacuum / Medium",
-            "labelBadge": "doc",
-            "color": "#3f6a5a"
+            "labelBadge": "doc"
           },
           "dark matter dark energy and cosmological over inference": {
             "id": "crisis_in_physics_dark_cosmology",
             "labelTitle": "Dark-Sector Inference",
-            "labelBadge": "doc",
-            "color": "#7a4a1f"
+            "labelBadge": "doc"
           },
           "parameter proliferation and patchwork closure": {
             "id": "crisis_in_physics_parameter_patchwork",
             "labelTitle": "Parameters / Patchwork",
-            "labelBadge": "doc",
-            "color": "#5a3f73"
+            "labelBadge": "doc"
           },
           "mathematical control vs mechanistic explanation": {
             "id": "crisis_in_physics_math_mechanism",
             "labelTitle": "Math vs. Mechanism",
-            "labelBadge": "doc",
-            "color": "#355f9a"
+            "labelBadge": "doc"
           },
           "why this matters for mathbb a mathbb a mathbb a": {
             "id": "crisis_in_physics_why_aaa",
             "labelTitle": "Why AAA",
-            "labelBadge": "doc",
-            "color": "#3f6a5a"
+            "labelBadge": "doc"
           }
         }
       }

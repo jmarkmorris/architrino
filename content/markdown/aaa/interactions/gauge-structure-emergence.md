@@ -40,7 +40,7 @@ We map the abstract gauge groups of the Standard Model to physical deformations 
 
 The oft lamented"God Particle" narrative is replaced by a hydrodynamic analog.
 
-*   **The VEV (Vacuum Expectation Value):** This is simply the **equilibrium density** of the Noether Core sea. It is non-zero because the void is populated.
+*   **The VEV (Vacuum Expectation Value):** This is simply the **equilibrium density** of the Noether Sea. It is non-zero because the void is populated.
 *   **Symmetry Breaking:** The electroweak phase transition is a literal **phase change** (like freezing). As the universe cooled, the high-energy, chaotic plasma of architrinos crystallized into the stable, coupled tri-binary "lattice" we see today.
 *   **Mass as Drag:** A fermion (ellipsoidal assembly) moving through the Noether Sea couples to it.
     *   Massless particles (photons) propagate *as* vibrations of the sea (phonons).

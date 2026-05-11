@@ -18,6 +18,8 @@ It is:
 
 The bridge term **spacetime medium** may be used when translating toward effective spacetime language. The canonical ontology name remains **Noether Sea**.
 
+In prose, use **Noether Sea** as the standalone proper noun. Use **Noether-Sea** only as a compound modifier before another noun, as in **Noether-Sea density** or **Noether-Sea delay factor**.
+
 ## Boundary With the Euclidean Void
 
 The Euclidean void and the Noether Sea must remain distinct.
@@ -28,7 +30,7 @@ The Euclidean void and the Noether Sea must remain distinct.
 | Noether Sea | Emergent physical medium | Density, stress, flow, orientation, energy storage, delay-factor response |
 | Effective spacetime | Observer-level reconstruction | Clock rates, ruler behavior, signal propagation, effective metric |
 
-The void does not curve, expand, contract, or carry energy. The Noether Sea can do all of those things as physical content. Effective curvature is therefore a derived description of Noether Sea response, not curvature of the void itself.
+The void does not curve, expand, contract, or carry energy. The Noether Sea can do all of those things as physical content. Effective curvature is therefore a derived description of Noether-Sea response, not curvature of the void itself.
 
 At a fixed coordinate point $\mathbf{x}$ and absolute time $t$, the medium state may change:
 $$
@@ -75,7 +77,7 @@ It plays the role that refractive index plays in ordinary optical analogies, but
 
 When a calculation needs pro/anti subcomponents, orientation imbalance, or coupling-regime stability thresholds, use [Spacetime Assemblies](spacetime-assemblies.md).
 
-Older parameter-ledger language may denote the baseline ambient Noether Sea density by $\rho_{vac}$. In spacetime chapters, the preferred medium-density notation is $\rho_{\text{core},0}$ for the reference density and $\rho_{\text{core}}(\mathbf{x},t)$ for the local density. When both notations appear, read $\rho_{vac}$ as the baseline ambient density parameter, not as a separate kind of substance.
+Older parameter-ledger language may denote the baseline ambient Noether-Sea density by $\rho_{vac}$. In spacetime chapters, the preferred medium-density notation is $\rho_{\text{core},0}$ for the reference density and $\rho_{\text{core}}(\mathbf{x},t)$ for the local density. When both notations appear, read $\rho_{vac}$ as the baseline ambient density parameter, not as a separate kind of substance.
 
 ## Medium Properties
 
@@ -170,4 +172,4 @@ This page does not own:
 
 ## Summary Commitment
 
-> **Medium Commitment (Noether Sea):** The Noether Sea is the emergent physical medium formed by coupled neutral Noether-core assemblies occupying the Euclidean void. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock dilation, signal delay/refraction, inertia, and cosmological behavior are reconstructed from Noether Sea dynamics and assembly coupling, not from curvature or expansion of the void itself.
+> **Medium Commitment (Noether Sea):** The Noether Sea is the emergent physical medium formed by coupled neutral Noether-core assemblies occupying the Euclidean void. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock dilation, signal delay/refraction, inertia, and cosmological behavior are reconstructed from Noether-Sea dynamics and assembly coupling, not from curvature or expansion of the void itself.
