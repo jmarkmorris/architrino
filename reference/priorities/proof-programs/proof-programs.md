@@ -12,7 +12,7 @@
 ## Task Queue
 
 1. `breather_certificate` — Generate the finite collinear-breather certificate packet and close the conditional Schauder theorem only after the audit passes. Status: `next`. Depends on: none.
-2. `planar_bridge` — Develop the first planar delayed-bridge closure as the higher-dimensional extension of the breather proof architecture. Status: `queued`. Depends on: `breather_certificate`.
+2. `planar_bridge` — Develop the first planar delayed-bridge closure as the higher-dimensional extension of the breather proof architecture. Status: `queued`; do not promote ahead of the collinear certificate unless that certificate fails with an explicit obstruction that the planar bridge is meant to resolve. Depends on: `breather_certificate`.
 3. `proof_program_handoff` — Keep theorem-program chapters, certificate artifacts, and downstream priority links aligned as proof targets are promoted or retired. Status: `active`. Depends on: `breather_certificate`, `planar_bridge`.
 
 ## Scope
@@ -21,7 +21,7 @@ This directory consolidates active proof-program priorities whose main deliverab
 
 ## Nested Workstreams
 
-- [breather-proof](./breather-proof/breather-proof.md): active finite-certificate program for the 1D collinear breather.
+- [breather-proof](./breather-proof/breather-proof.md): active finite-certificate program for the 1D collinear breather. Its next executable gates are the candidate cycle packet, the named null-coordinate pre-ledger target, and the branch-chart certificate.
 - [planar-bridge-closure](./planar-bridge-closure/planar-bridge-closure.md): queued higher-dimensional bridge from the collinear program to the first planar delayed return map.
 
 ## Related AAA Proof-Program Notes

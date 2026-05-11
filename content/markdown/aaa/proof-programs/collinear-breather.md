@@ -4559,7 +4559,27 @@ $$
 P_\eta.
 $$
 
-1. verify the seed-cycle margin ledger
+Before those five audit rows can be meaningful, the candidate must pass the named null-coordinate pre-ledger target from [Closed-Form Collinear Breather Ansatz](./closed-form-collinear-breather-ansatz.md#null-coordinate-causal-pre-ledger). Concretely, the proof must:
+
+1. produce one candidate cycle
+   $$
+   \phi_{\mathrm{cyc}},
+   $$
+   with a certificate mesh and either fold-adapted fractional basis data near field-speed separators or an interval-collocation representation with equivalent residual targets;
+2. verify the `Null-Coordinate Causal Pre-Ledger` target for
+   $$
+   |x(t)-x(s)|=c_f(t-s),
+   \qquad
+   s<t,
+   $$
+   using
+   $$
+   u=c_f t-x,
+   \qquad
+   w=c_f t+x
+   $$
+   to classify every ordered arc-pair block as empty, simple-root, or fold-layer. If this finite pre-ledger cannot be certified with strict gaps, derivative floors, and fold-layer bounds, the candidate or itinerary fails before the seed-cycle margin ledger is attempted;
+3. verify the seed-cycle margin ledger
    $$
    \nu_{\mathrm{seed}}>0,
    \qquad
@@ -4577,7 +4597,7 @@ $$
    $$
    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}};
    $$
-2. verify the factorized coupled-corridor inequalities
+4. verify the factorized coupled-corridor inequalities
    $$
    C_{\mathrm{in}}(\epsilon_c)>0,
    \qquad
@@ -4602,7 +4622,7 @@ $$
    p_0
    $$
    rather than treating local margins and envelope constants as independent;
-3. compute the monodromy diagnostic for
+5. compute the monodromy diagnostic for
    $$
    D P_\eta(\phi_{\mathrm{cyc}})
    $$
@@ -4611,7 +4631,7 @@ $$
    |\lambda|>1+\delta_{\mathrm{mon}},
    $$
    use the result to route the returned-sample proof to boundary trapping rather than residual-plus-sensitivity estimates.
-4. derive returned-sample budgets. If the sample sensitivities
+6. derive returned-sample budgets. If the sample sensitivities
    $$
    L_j^x,
    \qquad
@@ -4636,7 +4656,7 @@ $$
    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
    $$
    on that same domain.
-5. verify the topology row:
+7. verify the topology row:
    $$
    u_{\mathrm{ret}}^{\mathrm{cert}}>0
    $$
@@ -4645,7 +4665,7 @@ $$
    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
    $$
 
-Once these five items are theorem-level, the finite-certificate invariant closure package supplies the self-map domain and the certified topology proposition supplies continuity and precompactness. The remaining Schauder step is then formally routine.
+Once the pre-ledger gate passes and the five audit rows are theorem-level, the finite-certificate invariant closure package supplies the self-map domain and the certified topology proposition supplies continuity and precompactness. The remaining Schauder step is then formally routine.
 
 ### Schauder capstone
 

@@ -23,7 +23,7 @@ Authority used: report-only | claim-card-only | edited files
 Files changed: none | path list
 Validation: not run | passed | failed: short reason
 Op next action: one concrete next step, or "none required"
-Resume prompt: one sentence Op can paste to continue
+New-thread prompt: one sentence Op can paste into a fresh thread
 ```
 
 Use the status words strictly:
@@ -34,6 +34,8 @@ Use the status words strictly:
 - `BLOCKED`: work could not continue because of a missing file, command failure, permission issue, or conflicting workspace state.
 
 For self-running exploration, distinguish claim-card writes from AAA prose edits. If only a claim card was created, use `Authority used: claim-card-only`; if no AAA content changed, say so directly in `Files changed`.
+
+Prefer fresh thread boundaries for follow-on work. Do not ask Op to approve continuation in the current thread unless Op explicitly asks to keep working here. If more work is recommended, package it as `New-thread prompt`.
 
 ```text
 Cody, perform a corpus advancement pass for the AAA markdown corpus.
@@ -82,7 +84,7 @@ Required method:
 4. Build a concise list of the source document's theory advancements.
 5. Convert that list into a claim map using the four buckets: ontology, derivation/closure target, effective summary, speculation.
 6. Search the corpus for related claims, older terminology, weaker formulations, missing implications, inconsistent notation, and documents that would benefit from the advancement.
-7. Search for exact stale phrases first, then broaden to conceptual neighbors. Prefer `rg` searches and include the most useful search patterns in the report when they would help continue the pass.
+7. Search for exact stale phrases first, then broaden to conceptual neighbors. Prefer `rg` searches and include the most useful search patterns in the report when they would help seed a follow-on thread.
 8. Do not edit files yet unless I explicitly ask for edits.
 9. Produce a report organized by document.
 
@@ -130,13 +132,13 @@ End with:
 Use this version when the advancement has already been accepted and the operator wants direct implementation. Keep batches small enough to verify carefully, usually 8 affected AAA markdown documents at a time.
 
 ```text
-Cody, continue the AAA markdown corpus advancement integration pass.
+Cody, start a fresh AAA markdown corpus advancement integration pass.
 
 Context:
 [PASTE ACCEPTED ADVANCEMENT SUMMARY HERE]
 
 Task:
-Do the next batch of up to 8 affected AAA markdown documents. Search first, then edit. Preserve TeX carefully and keep edits scoped.
+Do the selected batch of up to 8 affected AAA markdown documents. Search first, then edit. Preserve TeX carefully and keep edits scoped.
 
 Before editing:
 1. Run `git status --short`.
@@ -353,9 +355,10 @@ Report format:
    - closure-target ledger entries,
    - repeatable search patterns,
    - candidate validation rule additions.
-10. Suggested next batch:
-   - up to 8 files for an edit-batch pass,
-   - exact search commands to begin that batch.
+10. Suggested new thread:
+   - recommended next thread type: audit/report, edit-batch, discussion, or team-agent,
+   - paste-ready `New-thread prompt`,
+   - exact search commands or source paths that should seed that new thread.
 
 Guardrails:
 - Do not introduce new project terminology without asking.
