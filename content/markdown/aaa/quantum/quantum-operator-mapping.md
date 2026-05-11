@@ -55,12 +55,12 @@ Decoherence is the continuous loss of path-history coherence due to uncharacteri
 ## Statistical Measure and the Born Rule Emergence
 While the trajectory of a single tri-binary under measurement is strictly deterministic, macroscopic observables yield robust probabilistic distributions. This effective randomness originates from the microstate-sensitive initial conditions of the background Noether Sea. 
 
-* **Invariant Measure:** The fluctuating background spacetime assemblies define a canonical ensemble with an invariant probability measure $\mu(\Gamma_{\text{eff}})$. 
+* **Invariant Measure:** The fluctuating local Noether-Sea assemblies define a canonical ensemble with an invariant probability measure $\mu(\Gamma_{\text{eff}})$.
 * **Basin Volume Mapping:** The probability $P_k$ of collapsing into a specific eigenstate $|k\rangle$ maps directly to the phase-space volume of its corresponding attractor basin $\mathcal{B}_k$, weighted by the invariant measure: $P_k = \int_{\mathcal{B}_k} d\mu(\Gamma_{\text{eff}})$. 
 * **Born Rule Target:** The $|\psi_k|^2$ statistic should emerge as the coarse-grained thermodynamic limit of these weighted basin volumes. When the tri-binary's meta-stable limit cycle is perturbed by the macroscopic energy gradient of the measurement apparatus, the system's sensitivity to the exact microstate of the path-history intersections must drive ergodic mixing across the available state space before final relaxation.
 
 ## Kinetic Limits and Decoherence
-The continuous loss of path-history coherence must be formalized as a transport phenomenon within the spacetime medium.
+The continuous loss of path-history coherence must be formalized as a transport phenomenon within the Noether Sea, or in bridge prose the spacetime medium.
 
 * **Fokker-Planck Dynamics:** By coarse-graining the deterministic path-history master equation over the fast, small-amplitude interactions of the local Noether Sea, the tri-binary orientation evolves according to an effective Fokker-Planck equation. 
 * **Diffusion and Drift:** The unitary topological torques provide the deterministic drift vector, while the background assembly interactions generate the diffusion tensor. 
