@@ -9,7 +9,7 @@ It adopts the **Noether Core + Axial Layer** model:
 1.  **The Noether Core:** A neutral, rotating tri-binary structure that defines the particle's generation, mass scale, and matter/antimatter chirality.
 2.  **The Axial Layer:** A layer of 6 axial architrinos occupying polar sites on the Noether core, defining the effective electric-charge bookkeeping, weak isospin, and color-sector pattern.
 
-Note: **Mass is derived**, not a quantum number here; it comes from core shielding and drag in the Noether Sea (see spacetime/emergent-metric.md for the drag/shielding mechanism).
+Note: **Mass is derived**, not a quantum number here; it comes from shielded internal causal history and medium-dressed Noether-Sea response. See [Particle Masses](../particle-masses.md) for the mass thesis and [Emergent Metric](../../spacetime/emergent-metric.md) for metric-level translation.
 
 ---
 
@@ -34,7 +34,7 @@ Every fermion contains a central engine composed of nested binary pairs.
 ### The Axial Layer
 *   **Sites:** 6 polar sites available for axial occupancy.
 *   **Occupancy:** All stable fermions have all 6 sites filled.
-*   **Function:** This layer interacts with external fields (EM, Weak).
+*   **Function:** This layer interacts through external effective-field channels (EM, Weak).
 *   **Association picture:** The axial architrinos occupy polar attachment sites defined by the binary axes. These poles are the natural seats where axial potentials associate with the Noether core scaffold.
 
 ### Why Polar Sites Are Plausible Dwell Regions
@@ -52,30 +52,30 @@ This gives a provisional dwelling mechanism for polar sites:
 This remains a geometric hypothesis rather than a finished derivation. Its value is that it ties the six-site axial architecture to the already-existing delayed superposition picture, instead of treating the polar sites as unexplained labels pasted onto the core.
 
 ### Total Constituent Count (Gen I)
-*   **Nucleus (6) + axial layer (6) = 12 architrinos.**
+*   **Noether core (6) + axial layer (6) = 12 architrinos.**
 
 ---
 
 ## The Fermion Mapping (Generation I)
 
-All Generation I particles utilize the full **Tri-Binary Nucleus** (3 Binaries).
+All Generation I particles utilize the full **tri-binary Noether core** (3 binaries).
 
 ### Leptons
 
 **The Electron ($e^-$)**
-*   **Nucleus:** Pro-Tri-Binary (3P, 3E, Neutral, Matter-chirality).
+*   **Core:** Pro-Tri-Binary (3P, 3E, Neutral, Matter-chirality).
 *   **Axial Layer:** 6 Electrinos ($6E$).
 *   **Net Charge:** $0 (\text{core}) - 6\epsilon (\text{axial}) = -6\epsilon = -1e$.
 *   **Total Count:** 12 architrinos.
 
 **The Positron ($e^+$)**
-*   **Nucleus:** Anti-Tri-Binary (3P, 3E, Neutral, Antimatter-chirality).
+*   **Core:** Anti-Tri-Binary (3P, 3E, Neutral, Antimatter-chirality).
 *   **Axial Layer:** 6 Positrinos ($6P$).
 *   **Net Charge:** $0 + 6\epsilon = +1e$.
 *   **Note:** Antimatter is a geometric inversion of *both* the core braiding and the axial polarity.
 
 **The Electron Neutrino ($\nu_e$)**
-*   **Nucleus:** Pro-Tri-Binary.
+*   **Core:** Pro-Tri-Binary.
 *   **Axial Layer:** 3 Positrinos, 3 Electrinos ($3P, 3E$).
 *   **Net Charge:** $0$.
 *   **Note:** The oscillating dipole moments of the axial layer are perfectly balanced, minimizing EM coupling.
@@ -83,18 +83,18 @@ All Generation I particles utilize the full **Tri-Binary Nucleus** (3 Binaries).
 ### Quarks
 
 **The Up Quark ($u$)**
-*   **Nucleus:** Pro-Tri-Binary.
+*   **Core:** Pro-Tri-Binary.
 *   **Axial Layer:** 5 Positrinos, 1 Electrino ($5P, 1E$).
 *   **Net Charge:** $+5\epsilon - 1\epsilon = +4\epsilon = +2/3e$.
 
 **The Down Quark ($d$)**
-*   **Nucleus:** Pro-Tri-Binary.
+*   **Core:** Pro-Tri-Binary.
 *   **Axial Layer:** 2 Positrinos, 4 Electrinos ($2P, 4E$).
 *   **Net Charge:** $+2\epsilon - 4\epsilon = -2\epsilon = -1/3e$.
 
 ### Summary Table (Gen I)
 
-| Particle | Nucleus Type | Axial Layer | Net Charge ($e$) | Total Architrinos |
+| Particle | Core Type | Axial Layer | Net Charge ($e$) | Total Architrinos |
 | :--- | :--- | :--- | :--- | :--- |
 | **Electron** ($e^-$) | Pro-Tri-Binary | 6E | -1 | 12 |
 | **Positron** ($e^+$) | Anti-Tri-Binary | 6P | +1 | 12 |
@@ -419,7 +419,7 @@ while adding $\nu_R$ (equivalently $\nu^c_L$ in left-chiral bookkeeping) restore
 
 ## The Generation Mechanism (Mass Hierarchy)
 
-Generations are defined by the **shedding of shielding binaries** from the Nucleus. The axial layer remains constant.
+Generations are defined by the **shedding of shielding binaries** from the Noether core. The axial layer remains constant.
 
 Equivalently, the generation ladder can be read as a nested shielding hierarchy:
 
@@ -431,24 +431,24 @@ This is stronger than the statement "fewer binaries means more mass." The outer 
 
 ### Generation II (Muon, Charm, Strange)
 *   **Architecture:** Missing the **Outer Binary**.
-*   **Nucleus:** **Bi-Binary** (Inner, Middle).
+*   **Core:** **Bi-Binary** (Inner, Middle).
     *   Composition: 2P, 2E (4 architrinos).
 *   **Axial Layer:** 6 axial architrinos (unchanged).
-*   **Physics:** Without the outer binary tier, the high-energy inner binaries are more exposed to the Noether Sea, creating higher drag/interaction (Mass). In the nested shielding picture, Generation II is the same core hierarchy viewed one level deeper.
+*   **Physics:** Without the outer binary tier, the high-energy inner binaries are more exposed to the Noether Sea, increasing the externally exposed response of the internal causal ledger. In the nested shielding picture, Generation II is the same core hierarchy viewed one level deeper.
 *   **Example: The Muon ($\mu^-$)**
-    *   Nucleus: Pro-Bi-Binary (4 architrinos).
+    *   Core: Pro-Bi-Binary (4 architrinos).
     *   Axial Layer: 6E.
     *   Total Count: 10 architrinos.
 
 ### Generation III (Tau, Top, Bottom)
 *   **Architecture:** Missing **Outer and Middle Binaries**.
-*   **Nucleus:** **Uni-Binary** (Inner only).
+*   **Core:** **Uni-Binary** (Inner only).
     *   Composition: 1P, 1E (2 architrinos).
     *   *Note:* This is the bare high-energy engine, extremely unstable/reactive.
 *   **Axial Layer:** 6 axial architrinos (unchanged).
 *   **Physics:** Maximal exposure of the maximum-curvature regime. Highest Mass. Shortest lifetime. In the nested shielding picture, this is the innermost engine with essentially no outer energy screen remaining.
 *   **Example: The Top Quark ($t$)**
-    *   Nucleus: Pro-Uni-Binary (2 architrinos).
+    *   Core: Pro-Uni-Binary (2 architrinos).
     *   Axial Layer: 5P, 1E.
     *   Total Count: 8 architrinos.
 

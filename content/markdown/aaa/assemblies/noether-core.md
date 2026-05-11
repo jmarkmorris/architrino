@@ -22,9 +22,9 @@ A particularly important and stable configuration is the **triply nested binary*
 
 -   **Energy-Separated Scales:** In low-energy conditions, the three binaries that make up a Noether core have energy-separated orbital radii and frequencies. The innermost binary is the smallest and fastest, while the outermost is the largest and slowest. This separation of scales is crucial for the system's stability.
 
--   **Internal Stabilization:** The system is self-stabilizing. The constant, high-frequency field emissions from the innermost binary create a complex, time-averaged potential well that helps to stabilize the orbits of the two outer binaries. This creates a robust, self-tuning feedback loop.
+-   **Internal Stabilization:** The system is self-stabilizing. The constant, high-frequency causal-wake emissions from the innermost binary create a complex, time-averaged potential well that helps to stabilize the orbits of the two outer binaries. This creates a robust, self-tuning feedback loop.
 
--   **Energy Shielding via Superposition:** From a distance, a Noether core appears to have far less energy and a much smaller potential signature than the raw sum of its six constituent architrinos. The rapid oscillation of the positive and negative point potentials within the nested structure causes their fields to largely cancel out through superposition. This "shielding" effect is a fundamental mechanism, explaining how highly energetic structures can form the basis for the relatively low-mass particles we observe.
+-   **Energy Shielding via Superposition:** From a distance, a Noether core appears to have far less energy and a much smaller potential signature than the raw sum of its six constituent architrinos. The rapid oscillation of the positive and negative point potentials within the nested structure causes their wake contributions to largely cancel out through superposition. This "shielding" effect is a fundamental mechanism, explaining how highly energetic structures can form the basis for the relatively low-mass particles we observe.
 
 ### Geometry and Exclusion Envelope
 
@@ -50,6 +50,6 @@ As a tri-binary approaches an event horizon, the **outer binary frequency increa
 
 ### The Foundation for Fermions
 
-The Noether core is the structural foundation for fermions (such as electrons, quarks, and neutrinos). Different configurations and energy levels of the core and its surrounding fields give rise to the different flavors and generations of particles in the Standard Model.
+The Noether core is the structural foundation for fermions (such as electrons, quarks, and neutrinos). Different configurations and energy levels of the core and its surrounding axial/wake structure give rise to the different flavors and generations of particles in the Standard Model.
 
 The collective motion, or **group velocity**, of a Noether core assembly determines its emergent behavior. The way these assemblies interact and pack together can lead to different statistical properties, providing a physical mechanism for the distinction between **Fermi-Dirac statistics** (which govern fermions and give rise to the Pauli exclusion principle) and **Bose-Einstein statistics** (which govern bosons).

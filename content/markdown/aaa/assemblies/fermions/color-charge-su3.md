@@ -12,19 +12,19 @@ Each fermion is built on a **tri‑binary scaffold**: three nested electrino:pos
 
 We label the three binaries by their dynamical regime:
 
-- **H‑binary (High / inner)**  
-  - Smallest radius  
-  - Velocity $v_H > V_f$  
+- **H‑binary (High / inner)**
+  - Smallest radius
+  - Velocity $v_H > c_f$
   - Self‑hit regime (strong path memory, highest curvature/energy)
 
-- **M‑binary (Medium / middle)**  
-  - Intermediate radius  
-  - Velocity $v_M = V_f$  
+- **M‑binary (Medium / middle)**
+  - Intermediate radius
+  - Velocity $v_M = c_f$
   - Symmetry‑breaking “pivot” scale
 
-- **L‑binary (Low / outer)**  
-  - Largest radius  
-  - Velocity $v_L < V_f$  
+- **L‑binary (Low / outer)**
+  - Largest radius
+  - Velocity $v_L < c_f$
   - Lowest curvature; outer envelope, expansion/contraction behavior
 
 Each binary defines one **axis** with two polar **polar sites**, each occupied by either:
@@ -36,7 +36,7 @@ So each Noether core has 3 axes (H, M, L) × 2 poles = **6 polar sites**.
 
 We distinguish:
 
-- **Scaffold architrinos**: the three e/p pairs in the H, M, L binaries (2 per binary → 6 per quark).  
+- **Scaffold architrinos**: the three e/p pairs in the H, M, L binaries (2 per binary → 6 per quark).
 - **Axial architrinos**: the 6 ±e/6 decorations on the poles.
 
 For a Gen‑I quark:

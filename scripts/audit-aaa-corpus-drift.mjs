@@ -26,6 +26,42 @@ const rules = [
     suggestion: "Use wake, causal wake, wake structure, or effective field after naming the level.",
   },
   {
+    id: "mass-drag-language",
+    description: "Older mass/inertia language that can misstate ordinary drag as the mass mechanism.",
+    pattern:
+      /\b(Mass as Drag|drag coefficient|Spacetime Drag|null-drag|Noether Sea drag|drag on the Sea|frictional interaction|Frictional Heating)\b/i,
+    suggestion:
+      "Use shielded internal causal history, medium-dressed response, or dissipative failure-channel language as appropriate.",
+  },
+  {
+    id: "primitive-mass-bookkeeping",
+    description: "Primitive dynamics should not use particle-specific substrate mass notation.",
+    pattern:
+      /\bm_i\s*(?:\\dot|\\ddot|\\mathbf|is the inertial parameter)|\\frac\{1\}\{2\}\s*m_i|m_i\\dot|m_i\\,\\mathbf/i,
+    pathPattern: /\/(dynamics|interactions)\//,
+    suggestion:
+      "Use the acceleration-first law or the universal bookkeeping constant \\mu_{\\text{arch}}, not particle-specific substrate mass.",
+  },
+  {
+    id: "stale-speed-symbol-vf",
+    description: "Older field-speed notation that should use the canonical speed symbol.",
+    pattern: /\bV_f\b/,
+    suggestion: "Use c_f for primitive wake propagation speed unless a local symbol table explicitly defines another quantity.",
+  },
+  {
+    id: "stale-noether-core-nucleus",
+    description: "Older fermion-dictionary wording that calls the Noether core a nucleus.",
+    pattern: /\b(Tri-Binary Nucleus|Nucleus Type|Nucleus:|from the Nucleus)\b/i,
+    pathPattern: /\/assemblies\/fermions\/quantum-number-mapping\.md$/,
+    suggestion: "Use Noether core, core type, or core as the canonical assembly term.",
+  },
+  {
+    id: "gauge-quantization-overclaim",
+    description: "Gauge/quantization language that overstates an open closure target as complete derivation.",
+    pattern: /The Standard Model asserts this;.*derives it|correspond exactly to the SM particle spectrum/i,
+    suggestion: "State the result as a stability-selection or closure target unless the local derivation is complete.",
+  },
+  {
     id: "quantum-bridge-overclaim",
     description: "Quantum bridge language that often states an open closure target as a finished result.",
     pattern:

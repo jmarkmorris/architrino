@@ -11,7 +11,7 @@ For a finite, isolated set of architrinos parameterized by absolute time $t$ in 
 $$
 S_\eta[\{\mathbf{x}_i\}]
 =
-\int dt \sum_i \frac{1}{2} m_i |\dot{\mathbf{x}}_i(t)|^2
+\int dt \sum_i \frac{1}{2} \mu_{\text{arch}} |\dot{\mathbf{x}}_i(t)|^2
 - \frac{1}{2}\sum_{i,j}\frac{\kappa \, \sigma_{ij} |q_i q_j|}{c_f}
 \int dt \int_{-\infty}^{t} dt_0\,
 \frac{\phi_\eta\!\big(g_{ij}(t,t_0)\big)}{r_{ij}(t;t_0)},
@@ -26,7 +26,7 @@ $$
 
 where:
 *   $\mathbf{x}_i(t)$ is the trajectory of architrino $i$.
-*   $m_i$ is the inertial parameter (effective mass) of the receiver.
+*   $\mu_{\text{arch}}$ is the universal force/energy bookkeeping constant, not a particle-specific inertial mass.
 *   $r_{ij}(t; t_0)$ is the Euclidean separation between reception and emission events.
 *   $\delta_\eta$ is a mollified delta function of width $\eta > 0$, regularizing the causal wake surface to ensure a Lipschitz-continuous vector field.
 *   $\sigma_{ij} = \mathrm{sign}(q_i q_j)$ enforces attraction for opposite polarities and repulsion for like polarities.
@@ -50,9 +50,9 @@ Kinetic term:
 $$
 \delta S_{\eta,\text{kin}}
 =
-\sum_i\int_{t_a}^{t_b} m_i\dot{\mathbf{x}}_i\cdot\dot{\boldsymbol{\xi}}_i\,dt
+\sum_i\int_{t_a}^{t_b} \mu_{\text{arch}}\dot{\mathbf{x}}_i\cdot\dot{\boldsymbol{\xi}}_i\,dt
 =
--\sum_i\int_{t_a}^{t_b} m_i\ddot{\mathbf{x}}_i\cdot\boldsymbol{\xi}_i\,dt.
+-\sum_i\int_{t_a}^{t_b} \mu_{\text{arch}}\ddot{\mathbf{x}}_i\cdot\boldsymbol{\xi}_i\,dt.
 $$
 
 For the interaction kernel
@@ -75,7 +75,7 @@ $$
 
 This receiver-side gradient is one ingredient in the full first variation, but it is not the whole story: in the double-time action each varied worldline appears both as a receiver coordinate $\mathbf{x}_i(t)$ and as a source coordinate inside transposed kernels. The full branch-resolved variation is carried out in [master-equation](./master-equation.md#exact-nonlocal-lagrangian). The result is the exact delayed force law
 $$
-m_i\ddot{\mathbf{x}}_i(t)
+\mu_{\text{arch}}\ddot{\mathbf{x}}_i(t)
 =
 \sum_j \kappa \, \sigma_{ij}|q_i q_j|
 \sum_{\tau\in\mathcal{C}_{ij}(t)}
@@ -86,7 +86,7 @@ including self-hit branches $j=i$ when the trivial coincidence root is excluded.
 
 Equivalently, in the regularized integral form one may write
 $$
-m_i\ddot{\mathbf{x}}_i(t)
+\mu_{\text{arch}}\ddot{\mathbf{x}}_i(t)
 =
 \sum_j \kappa \, \sigma_{ij}|q_i q_j|
 \int_{-\infty}^{t}dt_0\,
@@ -119,7 +119,7 @@ $$
 
 For trajectory reconstruction one may equivalently use the work-integral form
 $$
-U(t)=U_\ast-\int_{t_\ast}^{t}\sum_i m_i\,\mathbf{a}_i(t')\cdot\mathbf{v}_i(t')\,dt',
+U(t)=U_\ast-\int_{t_\ast}^{t}\sum_i \mu_{\text{arch}}\,\mathbf{a}_i(t')\cdot\mathbf{v}_i(t')\,dt',
 $$
 which differs from $E_{\text{wake}}(t)$ at most by a reference constant and boundary convention.
 

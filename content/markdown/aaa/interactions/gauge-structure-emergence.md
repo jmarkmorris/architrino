@@ -38,13 +38,13 @@ We map the abstract gauge groups of the Standard Model to physical deformations 
 
 ## The Higgs Mechanism & VEV Reinterpretation
 
-The oft lamented"God Particle" narrative is replaced by a hydrodynamic analog.
+The common "God Particle" narrative is replaced by a Noether-Sea medium-response comparison.
 
 *   **The VEV (Vacuum Expectation Value):** This is simply the **equilibrium density** of the Noether Sea. It is non-zero because the void is populated.
 *   **Symmetry Breaking:** The electroweak phase transition is a literal **phase change** (like freezing). As the universe cooled, the high-energy, chaotic plasma of architrinos crystallized into the stable, coupled tri-binary "lattice" we see today.
-*   **Mass as Drag:** A fermion (ellipsoidal assembly) moving through the Noether Sea couples to it.
-    *   Massless particles (photons) propagate *as* vibrations of the sea (phonons).
-    *   Massive particles (electrons) physically disrupt the local order, experiencing an inertial "drag." This drag coefficient is what we call "mass"; see [Particle Masses: Emergent Inertia in the Noether Sea](../assemblies/particle-masses.md).
+*   **Mass as medium-dressed response:** A fermion assembly moving or accelerating through the Noether Sea must relock its internal causal ledger against the surrounding medium.
+    *   Photon channels propagate as coherent planar-mode transport through the sea rather than as massive bodies.
+    *   Massive assemblies expose more shielded internal causal history to external probes. The measured inertial response is not ordinary dissipative drag; see [Particle Masses: Emergent Inertia in the Noether Sea](../assemblies/particle-masses.md).
 
 ## Resolving the Unruh Ambiguity
 
@@ -52,15 +52,15 @@ General Relativity predicts that an accelerating observer sees a thermal bath of
 
 **The Architrino Resolution:**
 *   **Objective Existence:** To the $\mathbb{U}_{\text{now}}$ universe-state perspective, particles (assemblies) either exist or they don't. Their existence is not frame-dependent.
-*   **Frictional Heating:** The "warm bath" detected by the accelerating Physical Observer is the result of **frictional interaction** with the Noether Sea.
-*   **Mechanism:** Acceleration through the medium ($\vec{a} \neq 0$) increases the rate of collision/interaction with background binaries (Noether cores). This increased interaction cross-section manifests as thermal energy ("radiation") in the detector. The "particles" seen are excitations of the detector caused by friction against the Sea.
+*   **Acceleration-conditioned detector response:** The "warm bath" detected by the accelerating Physical Observer is an effective response of the detector's assembly state to accelerated coupling with the Noether Sea.
+*   **Mechanism:** Acceleration through the medium ($\vec{a} \neq 0$) changes the rate and geometry of coupling with background binaries (Noether cores). The altered coupling manifests as thermal energy ("radiation") in the detector. The "particles" seen are detector excitations, not frame-dependent ontic creation.
 
 ## Quantization from Stability (Selection Rules)
 
 Why are charges quantized in units of e/3?
-*   The Standard Model asserts this; $\mathbb{A}\mathbb{A}\mathbb{A}$ derives it.
+*   The Standard Model asserts this; $\mathbb{A}\mathbb{A}\mathbb{A}$ treats it as a stability-selection closure target grounded in six-site axial bookkeeping.
 *   **Stability Selection:** The $\mathbb{U}_{\text{now}}$ universe-state perspective sees that arbitrary clusters of $|e/6|$ charges are likely unstable. They either collapse (self-hit singularity) or fly apart.
-*   **The Survivors:** Only specific geometric configurations (the six-pole axial patterns) establish a stable resonance where attractive and repulsive forces balance via the tri-binary structure. These stable islands correspond exactly to the SM particle spectrum.
+*   **The Survivors:** Specific geometric configurations (the six-pole axial patterns) are candidate stable resonances where attractive and repulsive forces balance via the tri-binary structure. The local combinatorics reproduce the observed charge set; dynamical exclusion of non-SM stable assemblies remains part of the closure burden.
 
 **SM Charge Quantization ($\mathbb{A}\mathbb{A}\mathbb{A}$: Six e/6 Axial Architrinos)**
 
@@ -109,12 +109,12 @@ $$
 S_{\text{fund}}
 =
 \int dt\left[
-\sum_i \frac{1}{2}m_i\dot{\mathbf{x}}_i^2
+\sum_i \frac{1}{2}\mu_{\text{arch}}\dot{\mathbf{x}}_i^2
 -\frac{1}{2}\sum_{i\ne j}\int_{\Sigma_{ij}} d^2\sigma\,
 \frac{\kappa \epsilon^2}{\|\mathbf{x}_i(t)-\mathbf{x}_j(t-\tau)\|^2\,|J_{ij}|}\,W_{ij}
 \right].
 $$
-Here $J_{ij}$ is the delay-map Jacobian on the active branch, so the electroweak closure map starts from the same Jacobian-weighted causal geometry as the master equation rather than from a stripped inverse-square surrogate.
+Here $\mu_{\text{arch}}$ is the universal force/energy bookkeeping constant and $J_{ij}$ is the delay-map Jacobian on the active branch, so the electroweak closure map starts from the same Jacobian-weighted causal geometry as the master equation rather than from a stripped inverse-square surrogate.
 After fast-mode averaging of inner and middle binary phases (Lie-Deprit/Hamiltonian averaging) and coarse-graining to $q^2\ll \omega_M^2$, the minimal observer-level action is written as
 $$
 \mathcal{L}_{\text{eff}}
