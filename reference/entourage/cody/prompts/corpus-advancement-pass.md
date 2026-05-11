@@ -209,6 +209,22 @@ Default lane distribution:
 - If several claims exist, choose the least-covered lane and least-covered path shard.
 - Avoid doing a broad all-corpus scan unless the active claims show no one else is currently covering the corpus.
 
+Internal exploration palette:
+If Op does not specify a lane, shard, or posture, choose one or two of these postures before choosing lanes. Prefer random selection when practical, but bias away from active claim cards and recently covered territory. State the selected posture in the claim card and final report.
+
+- **Idea factory:** maximize new syntheses, proof routes, unifying mechanisms, and leaps of intuition. Do not edit; return Op-discussion questions.
+- **Issue troll:** hunt for stale terminology, weak formulations, overclaims, TODOs, broken self-containment, missing definitions, thin sections, and corpus drift.
+- **Closure lab:** focus on theorem/closure targets such as Lorentz behavior, mass/inertia, photon stability, reaction provenance, emergent metric closure, and cosmology observer variables.
+- **Recent-change propagator:** mine recent git changes for theory advancements and sweep related documents for integration opportunities.
+- **Random document advancement:** choose one AAA markdown file and ask what serious improvement it can support now; include sibling/context checks.
+- **Particular document deepener:** if Op names one file, advance that file first, then identify its nearest integration targets.
+- **Missing-material architect:** look for implied but unwritten pages, sections, derivations, ledgers, worked examples, or bridge documents.
+- **Canon/drift sweeper:** compare local prose against Archie canon and identify patterns suitable for automated validation.
+- **Reader-completeness pass:** identify places where a reader needs a local explanation, bridge paragraph, link, example, or distinction to make the document self-contained.
+- **Cross-link gardener:** find high-value relative links among AAA documents where accepted ideas already exist but are disconnected.
+- **Reaction-provenance tracer:** follow energy, charge, polarity, architrino, and Noether-core provenance through reactions and identify missing ledgers.
+- **Validation/infrastructure scout:** propose scripts, checks, claim-card improvements, closure-target ledgers, or repeatable search patterns that make future advancement passes cheaper.
+
 Choose 2-4 exploration lanes per run:
 
 Lane A: Recent-change theory harvest
@@ -258,7 +274,7 @@ Lane F: Reader-completeness scan
 - Recommend fill-ins that preserve self-contained AAA prose without linking to reference/priorities.
 
 Report format:
-1. Claim card path, selected lane(s), selected path shard, and any active claims avoided.
+1. Claim card path, selected exploration posture(s), selected lane(s), selected path shard, and any active claims avoided.
 2. Exploration lanes used and why.
 3. Source signals found, including recent commits/diffs or randomly selected documents.
 4. Ranked opportunities:
