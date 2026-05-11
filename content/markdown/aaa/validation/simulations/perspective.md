@@ -134,7 +134,7 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are di
 
 - Exact analytic forms for d0 and t0 in the symmetric binary with the canonical modulation.
 - Rigorous conditions for uniqueness/multiplicity of causal roots in accelerated motion and their contribution to stability.
-- Statistical mechanics of many-body wake structures: when and how do coherent, Lorentz-like effective cones emerge, and with what characteristic speed relative to v?
+- Statistical mechanics of many-body wake structures: when and how do coherent, Lorentz-consistent effective cones emerge from moving-assembly deformation, clock/ruler retuning, and Noether-Sea response, and with what characteristic speed relative to $v$?
 
 Plain language summary: Keep the hits radial, delay them in time, keep per-wavefront amplitude constant, and let fast movers run into their own wakes. From those four ideas, you get stable orbits, natural rulers and clocks, shielding that looks like inertia, and “magnetic-like” structures—all without any right-hand-rule magnetism.
 

@@ -9,14 +9,19 @@
       "type": "rings"
     },
     "wrapLabels": true,
+    "centerOn": "atomic_structure",
     "children": [
       {
-        "nodeId": "periodic_table",
-        "scenePath": "content/scenes/chemistry/periodic_table_scene.json"
+        "nodeId": "atomic_structure",
+        "scenePath": "content/scenes/nuclear/atomic_structure.json"
       },
       {
-        "nodeId": "hyde_periodic_table",
-        "scenePath": "content/scenes/chemistry/hyde_periodic_table_scene.json"
+        "nodeId": "nucleon_structure",
+        "scenePath": "content/scenes/nuclear/nucleon_structure.json"
+      },
+      {
+        "nodeId": "nuclear_binding",
+        "scenePath": "content/scenes/nuclear/nuclear_binding.json"
       },
       {
         "nodeId": "atom",
@@ -27,112 +32,170 @@
         "scenePath": "content/scenes/nuclear/atomic_spectra.json"
       },
       {
-        "nodeId": "atomic_structure",
-        "scenePath": "content/scenes/nuclear/atomic_structure.json"
+        "nodeId": "periodic_table",
+        "scenePath": "content/scenes/chemistry/periodic_table_scene.json"
       },
       {
-        "nodeId": "condensed_matter",
-        "scenePath": "content/scenes/nuclear/condensed_matter.json"
+        "nodeId": "hyde_periodic_table",
+        "scenePath": "content/scenes/chemistry/hyde_periodic_table_scene.json"
       },
       {
         "nodeId": "molecular_geometry",
         "scenePath": "content/scenes/nuclear/molecular_geometry.json"
       },
       {
-        "nodeId": "nuclear_binding",
-        "scenePath": "content/scenes/nuclear/nuclear_binding.json"
-      },
-      {
-        "nodeId": "nucleon_structure",
-        "scenePath": "content/scenes/nuclear/nucleon_structure.json"
+        "nodeId": "condensed_matter",
+        "scenePath": "content/scenes/nuclear/condensed_matter.json"
       }
     ]
   },
   "objects": [
     {
-      "id": "leptogenesis",
-      "title": "Leptogenesis CP Sources",
-      "radius": 2.688,
-      "color": "#2c567a",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Leptogenesis CP Sources"
-    },
-    {
-      "id": "periodic_table",
-      "title": "Periodic Table",
-      "radius": 2.688,
-      "color": "#3a5f9f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Periodic Table"
-    },
-    {
-      "id": "hyde_periodic_table",
-      "title": "Hyde Periodic Table",
-      "radius": 2.688,
-      "color": "#2f4f7a",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Hyde Periodic Table"
-    },
-    {
-      "id": "atom",
-      "title": "Atom",
-      "radius": 2.688,
-      "color": "#a50041",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Atom"
-    },
-    {
-      "id": "atomic_spectra",
-      "title": "Atomic Spectra",
-      "radius": 2.688,
-      "color": "#3a5f9f",
-      "labelTitle": "Atomic Spectra",
-      "labelBadge": "doc"
-    },
-    {
       "id": "atomic_structure",
       "title": "Atomic Structure",
       "radius": 2.688,
       "color": "#2f6b6f",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
       "labelTitle": "Atomic Structure",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "condensed_matter",
-      "title": "Condensed Matter",
-      "radius": 2.688,
-      "color": "#5a1f2e",
-      "labelTitle": "Condensed Matter",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "molecular_geometry",
-      "title": "Molecular Geometry",
-      "radius": 2.688,
-      "color": "#4b0082",
-      "labelTitle": "Molecular Geometry"
-    },
-    {
-      "id": "nuclear_binding",
-      "title": "Nuclear Binding",
-      "radius": 2.688,
-      "color": "#6a3c3c",
-      "labelTitle": "Nuclear Binding"
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "nucleon_structure",
       "title": "Nucleon Structure",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "labelTitle": "Nucleon Structure"
+      "position": [
+        0,
+        10.5,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Nucleon Structure",
+      "fixedPosition": true
+    },
+    {
+      "id": "nuclear_binding",
+      "title": "Nuclear Binding",
+      "radius": 2.688,
+      "color": "#6a3c3c",
+      "position": [
+        7.42,
+        7.42,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Nuclear Binding",
+      "fixedPosition": true
+    },
+    {
+      "id": "atom",
+      "title": "Atom",
+      "radius": 2.688,
+      "color": "#a50041",
+      "position": [
+        10.5,
+        0,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Atom",
+      "fixedPosition": true
+    },
+    {
+      "id": "atomic_spectra",
+      "title": "Atomic Spectra",
+      "radius": 2.688,
+      "color": "#3a5f9f",
+      "position": [
+        7.42,
+        -7.42,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Atomic Spectra",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "periodic_table",
+      "title": "Periodic Table",
+      "radius": 2.688,
+      "color": "#3a5f9f",
+      "position": [
+        0,
+        -10.5,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Periodic Table",
+      "fixedPosition": true
+    },
+    {
+      "id": "hyde_periodic_table",
+      "title": "Hyde Periodic Table",
+      "radius": 2.688,
+      "color": "#2f4f7a",
+      "position": [
+        -7.42,
+        -7.42,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Hyde Periodic Table",
+      "fixedPosition": true
+    },
+    {
+      "id": "molecular_geometry",
+      "title": "Molecular Geometry",
+      "radius": 2.688,
+      "color": "#4b0082",
+      "position": [
+        -10.5,
+        0,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Molecular Geometry",
+      "fixedPosition": true
+    },
+    {
+      "id": "condensed_matter",
+      "title": "Condensed Matter",
+      "radius": 2.688,
+      "color": "#5a1f2e",
+      "position": [
+        -7.42,
+        7.42,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Condensed Matter",
+      "labelBadge": "doc",
+      "fixedPosition": true
     }
   ]
 }

@@ -3349,54 +3349,6 @@
         "scenePath": "content/scenes/nuclear/nuclear_atomic.json",
         "children": [
           {
-            "id": "periodic_table",
-            "title": "Periodic Table",
-            "kind": "diagram",
-            "sceneType": "Scene-Diagram",
-            "scenePath": "content/scenes/chemistry/periodic_table_scene.json"
-          },
-          {
-            "id": "hyde_periodic_table",
-            "title": "Hyde Periodic Table",
-            "kind": "diagram",
-            "sceneType": "Scene-Diagram",
-            "scenePath": "content/scenes/chemistry/hyde_periodic_table_scene.json",
-            "markdownPath": "content/markdown/aaa/nuclear-atomic/hyde-info.md"
-          },
-          {
-            "id": "atom",
-            "title": "Atom",
-            "kind": "diagram",
-            "sceneType": "Scene-Diagram",
-            "scenePath": "content/scenes/nuclear/atom.json"
-          },
-          {
-            "id": "nuclear_atomic__atomic_spectra",
-            "title": "Atomic Spectra",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/nuclear/atomic_spectra.json",
-            "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Atomic Orbitals as Lattice Resonances",
-                "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
-                "markdownSection": "Atomic Orbitals as Lattice Resonances",
-                "sectionKey": "atomic orbitals as lattice resonances",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Orbitals as Lattice Resonances",
-                "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
-                "markdownSection": "Orbitals as Lattice Resonances",
-                "sectionKey": "orbitals as lattice resonances",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
             "id": "nuclear_atomic__atomic_structure",
             "title": "Atomic Structure",
             "kind": "markdown-view",
@@ -3431,61 +3383,107 @@
             ]
           },
           {
-            "id": "nuclear_atomic__condensed_matter",
-            "title": "Condensed Matter",
+            "id": "nuclear_atomic__nucleon_structure",
+            "title": "Nucleon Structure",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/nuclear/condensed_matter.json",
-            "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Superfluid Noether-Sea Hypothesis",
-                "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
-                "markdownSection": "Superfluid Noether-Sea Hypothesis",
-                "sectionKey": "superfluid noether sea hypothesis",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Superfluid Noether Sea",
-                "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
-                "markdownSection": "Superfluid Noether Sea",
-                "sectionKey": "superfluid noether sea",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "nuclear_atomic__molecular_geometry",
-            "title": "Molecular Geometry",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/nuclear/molecular_geometry.json",
-            "markdownPath": "content/markdown/aaa/nuclear-atomic/molecular-geometry.md",
+            "scenePath": "content/scenes/nuclear/nucleon_structure.json",
+            "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
             "sections": [
               {
                 "kind": "markdown-section",
                 "title": "Purpose",
-                "markdownPath": "content/markdown/aaa/nuclear-atomic/molecular-geometry.md",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
                 "markdownSection": "Purpose",
                 "sectionKey": "purpose",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Current framing",
-                "markdownPath": "content/markdown/aaa/nuclear-atomic/molecular-geometry.md",
-                "markdownSection": "Current framing",
-                "sectionKey": "current framing",
+                "title": "Core Claim",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+                "markdownSection": "Core Claim",
+                "sectionKey": "core claim",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Status",
-                "markdownPath": "content/markdown/aaa/nuclear-atomic/molecular-geometry.md",
-                "markdownSection": "Status",
-                "sectionKey": "status",
+                "title": "Constituents and Counting",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+                "markdownSection": "Constituents and Counting",
+                "sectionKey": "constituents and counting",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Color-Singlet Closure",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+                "markdownSection": "Color-Singlet Closure",
+                "sectionKey": "color singlet closure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Proton and Neutron as Ground-State Tri-Cores",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+                "markdownSection": "Proton and Neutron as Ground-State Tri-Cores",
+                "sectionKey": "proton and neutron as ground state tri cores",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Effective Internal Geometry",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+                "markdownSection": "Effective Internal Geometry",
+                "sectionKey": "effective internal geometry",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Spin and Magnetic-Moment Expectations",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+                "markdownSection": "Spin and Magnetic-Moment Expectations",
+                "sectionKey": "spin and magnetic moment expectations",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Proton-Neutron Mass Difference",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+                "markdownSection": "Proton-Neutron Mass Difference",
+                "sectionKey": "proton neutron mass difference",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Residual Strong Interaction Interface",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+                "markdownSection": "Residual Strong Interaction Interface",
+                "sectionKey": "residual strong interaction interface",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Canonical Nucleon Table",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+                "markdownSection": "Canonical Nucleon Table",
+                "sectionKey": "canonical nucleon table",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closure Targets",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+                "markdownSection": "Closure Targets",
+                "sectionKey": "closure targets",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Related Chapters",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+                "markdownSection": "Related Chapters",
+                "sectionKey": "related chapters",
                 "headingLevel": 2
               }
             ]
@@ -3597,107 +3595,109 @@
             ]
           },
           {
-            "id": "nuclear_atomic__nucleon_structure",
-            "title": "Nucleon Structure",
+            "id": "atom",
+            "title": "Atom",
+            "kind": "diagram",
+            "sceneType": "Scene-Diagram",
+            "scenePath": "content/scenes/nuclear/atom.json"
+          },
+          {
+            "id": "nuclear_atomic__atomic_spectra",
+            "title": "Atomic Spectra",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/nuclear/nucleon_structure.json",
-            "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+            "scenePath": "content/scenes/nuclear/atomic_spectra.json",
+            "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Atomic Orbitals as Lattice Resonances",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
+                "markdownSection": "Atomic Orbitals as Lattice Resonances",
+                "sectionKey": "atomic orbitals as lattice resonances",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Orbitals as Lattice Resonances",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
+                "markdownSection": "Orbitals as Lattice Resonances",
+                "sectionKey": "orbitals as lattice resonances",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "periodic_table",
+            "title": "Periodic Table",
+            "kind": "diagram",
+            "sceneType": "Scene-Diagram",
+            "scenePath": "content/scenes/chemistry/periodic_table_scene.json"
+          },
+          {
+            "id": "hyde_periodic_table",
+            "title": "Hyde Periodic Table",
+            "kind": "diagram",
+            "sceneType": "Scene-Diagram",
+            "scenePath": "content/scenes/chemistry/hyde_periodic_table_scene.json",
+            "markdownPath": "content/markdown/aaa/nuclear-atomic/hyde-info.md"
+          },
+          {
+            "id": "nuclear_atomic__molecular_geometry",
+            "title": "Molecular Geometry",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/nuclear/molecular_geometry.json",
+            "markdownPath": "content/markdown/aaa/nuclear-atomic/molecular-geometry.md",
             "sections": [
               {
                 "kind": "markdown-section",
                 "title": "Purpose",
-                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/molecular-geometry.md",
                 "markdownSection": "Purpose",
                 "sectionKey": "purpose",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Core Claim",
-                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
-                "markdownSection": "Core Claim",
-                "sectionKey": "core claim",
+                "title": "Current framing",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/molecular-geometry.md",
+                "markdownSection": "Current framing",
+                "sectionKey": "current framing",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Constituents and Counting",
-                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
-                "markdownSection": "Constituents and Counting",
-                "sectionKey": "constituents and counting",
+                "title": "Status",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/molecular-geometry.md",
+                "markdownSection": "Status",
+                "sectionKey": "status",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "nuclear_atomic__condensed_matter",
+            "title": "Condensed Matter",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/nuclear/condensed_matter.json",
+            "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Superfluid Noether-Sea Hypothesis",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
+                "markdownSection": "Superfluid Noether-Sea Hypothesis",
+                "sectionKey": "superfluid noether sea hypothesis",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Color-Singlet Closure",
-                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
-                "markdownSection": "Color-Singlet Closure",
-                "sectionKey": "color singlet closure",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Proton and Neutron as Ground-State Tri-Cores",
-                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
-                "markdownSection": "Proton and Neutron as Ground-State Tri-Cores",
-                "sectionKey": "proton and neutron as ground state tri cores",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Effective Internal Geometry",
-                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
-                "markdownSection": "Effective Internal Geometry",
-                "sectionKey": "effective internal geometry",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Spin and Magnetic-Moment Expectations",
-                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
-                "markdownSection": "Spin and Magnetic-Moment Expectations",
-                "sectionKey": "spin and magnetic moment expectations",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Proton-Neutron Mass Difference",
-                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
-                "markdownSection": "Proton-Neutron Mass Difference",
-                "sectionKey": "proton neutron mass difference",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Residual Strong Interaction Interface",
-                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
-                "markdownSection": "Residual Strong Interaction Interface",
-                "sectionKey": "residual strong interaction interface",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Canonical Nucleon Table",
-                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
-                "markdownSection": "Canonical Nucleon Table",
-                "sectionKey": "canonical nucleon table",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Closure Targets",
-                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
-                "markdownSection": "Closure Targets",
-                "sectionKey": "closure targets",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Related Chapters",
-                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
-                "markdownSection": "Related Chapters",
-                "sectionKey": "related chapters",
+                "title": "Superfluid Noether Sea",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
+                "markdownSection": "Superfluid Noether Sea",
+                "sectionKey": "superfluid noether sea",
                 "headingLevel": 2
               }
             ]

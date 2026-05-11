@@ -10109,63 +10109,63 @@
       "to": "scene:content/scenes/chemistry/hyde_periodic_table_scene.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
       "to": "scene:content/scenes/chemistry/periodic_table_scene.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "scene.children[0]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
       "to": "scene:content/scenes/nuclear/atom.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
       "to": "scene:content/scenes/nuclear/atomic_spectra.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
       "to": "scene:content/scenes/nuclear/atomic_structure.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
       "to": "scene:content/scenes/nuclear/condensed_matter.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
       "to": "scene:content/scenes/nuclear/molecular_geometry.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
       "to": "scene:content/scenes/nuclear/nuclear_binding.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
       "to": "scene:content/scenes/nuclear/nucleon_structure.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/nuclear/nucleus.json",

@@ -655,7 +655,7 @@ $$
 
 **Plain language:** A hit only changes the along-the-line velocity component right now; sideways motion continues unaffected (at the instant of the hit). Over time, of course, the changing radial motion alters the trajectory and thus the subsequent orthogonal component.
 
-**Lorentz-suppression closure requirement:** The receiver kinematics described here must mechanically produce Lorentz-like contraction for moving assemblies. If tri-binaries do not contract along the direction of motion when coupled to the Noether Sea, the closure program fails. The intended leakage scale is below current preferred-frame bounds.
+**Lorentz-suppression closure requirement:** The receiver kinematics described here must mechanically produce the moving-assembly deformation, clock/ruler retuning, and two-way signal synchronization needed for Lorentz-consistent behavior. If tri-binaries do not contract along the direction of motion and do not preserve the matching clock law when coupled to the Noether Sea, the closure program fails. The intended leakage scale is below current preferred-frame bounds.
 
 #### Work and Power
 

@@ -18,7 +18,7 @@ The Euclidean void $\mathbb{R}^3$ with metric $h_{ij} = \delta_{ij}$ is static, 
 
 ### The Noether Sea Carries the Dynamics
 
-The Noether Sea is the constitutive medium from which effective spacetime behavior is reconstructed: a dense lattice of coupled neutral pro/anti tri-binary pairs. Each tri-binary has internal energy stored across three nested binaries operating in distinct field-speed regimes. The collective state of this medium—its local density $\rho_{\mathrm{NS}}(\mathbf{x},t)$, its internal energy spectrum, and its anisotropy—defines the effective metric experienced by all embedded assemblies.
+The Noether Sea is the constitutive medium from which effective spacetime behavior is reconstructed: a dense lattice of coupled neutral pro/anti tri-binary pairs. Each tri-binary has internal energy stored across three nested binaries operating in distinct field-speed regimes. The collective state of this medium—its local Noether-core density $\rho_{\text{core}}(\mathbf{x},t)$, normalized density $n(\mathbf{x},t)$, internal energy spectrum, delay response $\chi_{\text{sea}}$, and anisotropy—defines the effective metric experienced by all embedded assemblies.
 
 Late-time cosmological acceleration, in this picture, is a statement about how the aggregate properties of the Noether Sea evolve on Hubble timescales, not about the container expanding.
 
@@ -35,10 +35,10 @@ Every Noether-Sea tri-binary carries internal binding energy distributed across 
 The baseline energy density of the Noether Sea is
 
 $$
-\rho_{\mathrm{sea}} = n_{\mathrm{core}}\,\langle E_{\mathrm{core}} \rangle,
+\rho_{\mathrm{sea}} = \rho_{\text{core}}\,\langle E_{\mathrm{core}} \rangle,
 $$
 
-where $n_{\mathrm{core}}$ is the number density of tri-binary pairs and $\langle E_{\mathrm{core}} \rangle$ is the mean energy per core. This quantity sets the scale of the effective dark-energy density:
+where $\rho_{\text{core}}$ is the canonical Noether-core density field and $\langle E_{\mathrm{core}} \rangle$ is the mean energy per core. This quantity sets the scale of the effective dark-energy density:
 
 $$
 \rho_{\mathrm{DE,eff}} \sim \rho_{\mathrm{sea}}\,f(\text{outer-binary state}),
@@ -73,7 +73,7 @@ The evolution of $\rho_{\mathrm{DE,eff}}(t)$ is governed by the collective relax
 This narrative must be made quantitative through a constitutive relation linking the Noether-Sea state variables to an effective pressure. The minimal parameterization is:
 
 $$
-p_{\mathrm{sea}} = p_{\mathrm{sea}}\bigl(\rho_{\mathrm{NS}},\;\dot{\rho}_{\mathrm{NS}},\;\langle R_{\mathrm{outer}} \rangle,\;T_{\mathrm{eff}}\bigr),
+p_{\mathrm{sea}} = p_{\mathrm{sea}}\bigl(\rho_{\text{core}},\;\dot{\rho}_{\text{core}},\;n,\;\chi_{\text{sea}},\;\langle R_{\mathrm{outer}} \rangle,\;T_{\mathrm{eff}}\bigr),
 $$
 
 where $\langle R_{\mathrm{outer}} \rangle$ is the mean outer-binary radius and $T_{\mathrm{eff}}$ is an effective temperature characterizing internal mode excitation. Deriving this relation from the master equation applied to coupled tri-binary lattices is a primary simulation target.
@@ -280,7 +280,7 @@ In the modular cosmology architecture, this chapter provides:
 - **Cross-link to [../spacetime/black-holes.md](../spacetime/black-holes.md):** strong-field recycling map and the constitutive interpretation of any SMBH population coupling.
 - **Input from [dark-matter.md](./dark-matter.md):** $\Omega_m(z)$ and $G_{\mathrm{eff}}(a,k)$ for consistent Friedmann integration.
 - **Input from [BBN-constraints.md](./BBN-constraints.md):** early-universe constraints ensuring $\rho_{\mathrm{DE,eff}}(z_{\mathrm{BBN}})$ is negligible relative to radiation density.
-- **Ontic variables passed:** $\rho_{\mathrm{NS}}(z)$, $\langle R_{\mathrm{outer}} \rangle(z)$, $\tau_{\mathrm{relax}}^{\mathrm{outer}}$, $\mathcal{S}_{\mathrm{sea}}(z)$, $\mathcal{S}_{\mathrm{BH}}(z)$.
+- **Ontic variables passed:** $\rho_{\text{core}}(z)$, $n(z)$, $\chi_{\text{sea}}(z)$, $\langle R_{\mathrm{outer}} \rangle(z)$, $\tau_{\mathrm{relax}}^{\mathrm{outer}}$, $\mathcal{S}_{\mathrm{sea}}(z)$, $\mathcal{S}_{\mathrm{BH}}(z)$.
 - **Effective outputs returned:** $w_{\mathrm{eff}}(z)$, $\rho_{\mathrm{sea,relax}}(z)$, $\rho_{\mathrm{BH,coup}}(z)$, $\rho_{\mathrm{DE,eff}}(z)$, $H(z)$.
 
 All interfaces use the same absolute-time / Euclidean-void substrate and Noether-Sea state variables, ensuring ontological consistency with other cosmology modules.
