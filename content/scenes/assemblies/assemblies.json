@@ -15,6 +15,10 @@
         "scenePath": "content/scenes/assemblies/noether_core.json"
       },
       {
+        "nodeId": "noether_core_geometry",
+        "scenePath": "content/scenes/assemblies/noether_core_geometry.json"
+      },
+      {
         "nodeId": "particle_masses",
         "scenePath": "content/scenes/assemblies/particle_masses.json"
       },
@@ -50,6 +54,17 @@
         "type": "fixed"
       },
       "labelTitle": "Noether Core",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "noether_core_geometry",
+      "title": "Noether Core Geometry",
+      "radius": 2.688,
+      "color": "#2f4f7a",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Noether Core Geometry",
       "labelBadge": "doc"
     },
     {

@@ -27,6 +27,10 @@
         "scenePath": "content/scenes/assemblies/quantum_number_mapping.json"
       },
       {
+        "nodeId": "quarks",
+        "scenePath": "content/scenes/assemblies/quarks.json"
+      },
+      {
         "nodeId": "down_strange_bottom_quarks",
         "scenePath": "content/scenes/standard-model-particles/down_quark.json"
       },
@@ -86,6 +90,17 @@
         "type": "fixed"
       },
       "labelTitle": "Quantum Number Mapping",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "quarks",
+      "title": "Quarks",
+      "radius": 2.688,
+      "color": "#7a4a1f",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Quarks",
       "labelBadge": "doc"
     },
     {

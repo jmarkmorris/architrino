@@ -11,8 +11,20 @@
     },
     "children": [
       {
+        "nodeId": "quantum_summary",
+        "scenePath": "content/scenes/quantum/quantum_summary.json"
+      },
+      {
+        "nodeId": "quantum_operator_mapping",
+        "scenePath": "content/scenes/quantum/quantum_operator_mapping.json"
+      },
+      {
         "nodeId": "bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response",
         "scenePath": "content/scenes/quantum/bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response.json"
+      },
+      {
+        "nodeId": "measurement_ontology",
+        "scenePath": "content/scenes/quantum/measurement_ontology.json"
       },
       {
         "nodeId": "measurement_problem_and_collapse",
@@ -37,6 +49,10 @@
       {
         "nodeId": "wavefunction_ontology",
         "scenePath": "content/scenes/quantum/wavefunction_ontology.json"
+      },
+      {
+        "nodeId": "algorithmic_resonance",
+        "scenePath": "content/scenes/quantum/algorithmic_resonance.json"
       }
     ]
   },
@@ -52,6 +68,28 @@
       "labelTitle": "Fermi-Dirac & Bose-Einstein Statistics"
     },
     {
+      "id": "quantum_summary",
+      "title": "Quantum Summary",
+      "radius": 2.688,
+      "color": "#2f4f7a",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Quantum Summary",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "quantum_operator_mapping",
+      "title": "Quantum Operator Mapping",
+      "radius": 2.688,
+      "color": "#5a1f2e",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Quantum Operator Mapping",
+      "labelBadge": "doc"
+    },
+    {
       "id": "bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response",
       "title": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
       "radius": 2.688,
@@ -60,6 +98,17 @@
         "type": "fixed"
       },
       "labelTitle": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "measurement_ontology",
+      "title": "Measurement Ontology",
+      "radius": 2.688,
+      "color": "#6c4f8d",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Measurement Ontology",
       "labelBadge": "doc"
     },
     {
@@ -127,6 +176,17 @@
         "type": "fixed"
       },
       "labelTitle": "Wavefunction Ontology",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "algorithmic_resonance",
+      "title": "Algorithmic Resonance and Shor's Algorithm",
+      "radius": 2.688,
+      "color": "#7a5a2f",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Algorithmic Resonance and Shor's Algorithm",
       "labelBadge": "doc"
     }
   ]

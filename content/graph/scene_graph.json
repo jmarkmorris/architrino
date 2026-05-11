@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 432,
-      "edges": 1173,
-      "scenes": 294,
+      "nodes": 443,
+      "edges": 1195,
+      "scenes": 305,
       "markdownIndexes": 0,
       "markdownDocs": 138,
       "runtimeEdges": 476,
@@ -1307,7 +1307,7 @@
       "nodeType": "scene"
     },
     {
-      "id": "dynamics__mapping_planck_scale",
+      "id": "spacetime__mapping_planck_scale",
       "name": "Mapping Planck Scale",
       "path": "content/scenes/spacetime/mapping_planck_scale.json",
       "nodeType": "scene"
@@ -1385,8 +1385,8 @@
       "nodeType": "scene"
     },
     {
-      "id": "nuclear_atomic__displacement_of_spacetime",
-      "name": "Displacement of Spacetime",
+      "id": "spacetime__medium_exclusion_volume",
+      "name": "Medium Exclusion Volume",
       "path": "content/scenes/spacetime/medium_exclusion_volume.json",
       "nodeType": "scene"
     },
@@ -1841,7 +1841,7 @@
       "nodeType": "scene"
     },
     {
-      "id": "dynamics__horizon_chirality",
+      "id": "spacetime__horizon_chirality",
       "name": "Horizon Chirality",
       "path": "content/scenes/spacetime/horizon_chirality.json",
       "nodeType": "scene"
@@ -1910,6 +1910,72 @@
       "id": "interactions",
       "name": "Interactions",
       "path": "content/scenes/interactions/interactions.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "spacetime__noether_sea",
+      "name": "Noether Sea",
+      "path": "content/scenes/spacetime/noether_sea.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "spacetime__observer_framework",
+      "name": "Observer Framework",
+      "path": "content/scenes/spacetime/observer_framework.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "archie__software_architecture_and_maintenance",
+      "name": "Software Architecture and Maintenance",
+      "path": "content/scenes/archie/software_architecture_and_maintenance.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "archie__terminology_usage",
+      "name": "Terminology Usage",
+      "path": "content/scenes/archie/terminology_usage.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "archie__ui_guidelines",
+      "name": "UI Guidelines",
+      "path": "content/scenes/archie/ui_guidelines.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "assemblies__quarks",
+      "name": "Quarks",
+      "path": "content/scenes/assemblies/quarks.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "assemblies__noether_core_geometry",
+      "name": "Noether Core Geometry",
+      "path": "content/scenes/assemblies/noether_core_geometry.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "quantum__algorithmic_resonance",
+      "name": "Algorithmic Resonance and Shor's Algorithm",
+      "path": "content/scenes/quantum/algorithmic_resonance.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "quantum__measurement_ontology",
+      "name": "Measurement Ontology",
+      "path": "content/scenes/quantum/measurement_ontology.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "quantum__quantum_operator_mapping",
+      "name": "Quantum Operator Mapping",
+      "path": "content/scenes/quantum/quantum_operator_mapping.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "quantum__quantum_summary",
+      "name": "Quantum Summary",
+      "path": "content/scenes/quantum/quantum_summary.json",
       "nodeType": "scene"
     },
     {
@@ -2869,12 +2935,30 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/archie/software_architecture_and_maintenance.json",
+      "nodeType": "scene",
+      "id": "archie__software_architecture_and_maintenance",
+      "name": "Software Architecture and Maintenance",
+      "path": "content/scenes/archie/software_architecture_and_maintenance.json",
+      "searchTarget": "content/scenes/archie/software_architecture_and_maintenance.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/archie/support_architrino_research.json",
       "nodeType": "scene",
       "id": "archie__support_architrino_research",
       "name": "Support Architrino Research",
       "path": "content/scenes/archie/support_architrino_research.json",
       "searchTarget": "content/scenes/archie/support_architrino_research.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/terminology_usage.json",
+      "nodeType": "scene",
+      "id": "archie__terminology_usage",
+      "name": "Terminology Usage",
+      "path": "content/scenes/archie/terminology_usage.json",
+      "searchTarget": "content/scenes/archie/terminology_usage.json",
       "implicit": false
     },
     {
@@ -2893,6 +2977,15 @@
       "name": "Textbook TOC",
       "path": "content/scenes/archie/textbook_toc.json",
       "searchTarget": "content/scenes/archie/textbook_toc.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/ui_guidelines.json",
+      "nodeType": "scene",
+      "id": "archie__ui_guidelines",
+      "name": "UI Guidelines",
+      "path": "content/scenes/archie/ui_guidelines.json",
+      "searchTarget": "content/scenes/archie/ui_guidelines.json",
       "implicit": false
     },
     {
@@ -2995,6 +3088,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/assemblies/noether_core_geometry.json",
+      "nodeType": "scene",
+      "id": "assemblies__noether_core_geometry",
+      "name": "Noether Core Geometry",
+      "path": "content/scenes/assemblies/noether_core_geometry.json",
+      "searchTarget": "content/scenes/assemblies/noether_core_geometry.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/assemblies/noether_core.json",
       "nodeType": "scene",
       "id": "assemblies__noether_core",
@@ -3019,6 +3121,15 @@
       "name": "Quantum Number Mapping",
       "path": "content/scenes/assemblies/quantum_number_mapping.json",
       "searchTarget": "content/scenes/assemblies/quantum_number_mapping.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/assemblies/quarks.json",
+      "nodeType": "scene",
+      "id": "assemblies__quarks",
+      "name": "Quarks",
+      "path": "content/scenes/assemblies/quarks.json",
+      "searchTarget": "content/scenes/assemblies/quarks.json",
       "implicit": false
     },
     {
@@ -4768,6 +4879,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/quantum/algorithmic_resonance.json",
+      "nodeType": "scene",
+      "id": "quantum__algorithmic_resonance",
+      "name": "Algorithmic Resonance and Shor's Algorithm",
+      "path": "content/scenes/quantum/algorithmic_resonance.json",
+      "searchTarget": "content/scenes/quantum/algorithmic_resonance.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/quantum/bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response.json",
       "nodeType": "scene",
       "id": "quantum__bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response",
@@ -4786,6 +4906,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/quantum/measurement_ontology.json",
+      "nodeType": "scene",
+      "id": "quantum__measurement_ontology",
+      "name": "Measurement Ontology",
+      "path": "content/scenes/quantum/measurement_ontology.json",
+      "searchTarget": "content/scenes/quantum/measurement_ontology.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/quantum/measurement_problem_and_collapse.json",
       "nodeType": "scene",
       "id": "quantum__measurement_problem_and_collapse",
@@ -4801,6 +4930,24 @@
       "name": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸",
       "path": "content/scenes/quantum/pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture.json",
       "searchTarget": "content/scenes/quantum/pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/quantum/quantum_operator_mapping.json",
+      "nodeType": "scene",
+      "id": "quantum__quantum_operator_mapping",
+      "name": "Quantum Operator Mapping",
+      "path": "content/scenes/quantum/quantum_operator_mapping.json",
+      "searchTarget": "content/scenes/quantum/quantum_operator_mapping.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/quantum/quantum_summary.json",
+      "nodeType": "scene",
+      "id": "quantum__quantum_summary",
+      "name": "Quantum Summary",
+      "path": "content/scenes/quantum/quantum_summary.json",
+      "searchTarget": "content/scenes/quantum/quantum_summary.json",
       "implicit": false
     },
     {
@@ -4878,7 +5025,7 @@
     {
       "nodeId": "scene:content/scenes/spacetime/horizon_chirality.json",
       "nodeType": "scene",
-      "id": "dynamics__horizon_chirality",
+      "id": "spacetime__horizon_chirality",
       "name": "Horizon Chirality",
       "path": "content/scenes/spacetime/horizon_chirality.json",
       "searchTarget": "content/scenes/spacetime/horizon_chirality.json",
@@ -4896,7 +5043,7 @@
     {
       "nodeId": "scene:content/scenes/spacetime/mapping_planck_scale.json",
       "nodeType": "scene",
-      "id": "dynamics__mapping_planck_scale",
+      "id": "spacetime__mapping_planck_scale",
       "name": "Mapping Planck Scale",
       "path": "content/scenes/spacetime/mapping_planck_scale.json",
       "searchTarget": "content/scenes/spacetime/mapping_planck_scale.json",
@@ -4905,10 +5052,28 @@
     {
       "nodeId": "scene:content/scenes/spacetime/medium_exclusion_volume.json",
       "nodeType": "scene",
-      "id": "nuclear_atomic__displacement_of_spacetime",
-      "name": "Displacement of Spacetime",
+      "id": "spacetime__medium_exclusion_volume",
+      "name": "Medium Exclusion Volume",
       "path": "content/scenes/spacetime/medium_exclusion_volume.json",
       "searchTarget": "content/scenes/spacetime/medium_exclusion_volume.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/spacetime/noether_sea.json",
+      "nodeType": "scene",
+      "id": "spacetime__noether_sea",
+      "name": "Noether Sea",
+      "path": "content/scenes/spacetime/noether_sea.json",
+      "searchTarget": "content/scenes/spacetime/noether_sea.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/spacetime/observer_framework.json",
+      "nodeType": "scene",
+      "id": "spacetime__observer_framework",
+      "name": "Observer Framework",
+      "path": "content/scenes/spacetime/observer_framework.json",
+      "searchTarget": "content/scenes/spacetime/observer_framework.json",
       "implicit": false
     },
     {
@@ -6728,21 +6893,28 @@
       "to": "scene:content/scenes/archie/research_notebook.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/documentation.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/archie/documentation.json",
       "to": "scene:content/scenes/archie/scene_taxonomy.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/documentation.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/archie/documentation.json",
+      "to": "scene:content/scenes/archie/terminology_usage.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/documentation.json",
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/archie/documentation.json",
       "to": "scene:content/scenes/archie/textbook_file_structure.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/documentation.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/archie/project.json",
@@ -6757,6 +6929,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
       "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/archie/project.json",
+      "to": "scene:content/scenes/archie/software_architecture_and_maintenance.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/project.json",
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/archie/project.json",
@@ -6785,6 +6964,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/archie/user_interface.json",
       "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/archie/user_interface.json",
+      "to": "scene:content/scenes/archie/ui_guidelines.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/user_interface.json",
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
@@ -6868,28 +7054,35 @@
       "to": "scene:content/scenes/assemblies/electroweak_bosons.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
       "to": "scene:content/scenes/assemblies/fermions.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
       "to": "scene:content/scenes/assemblies/gluons.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
       "to": "scene:content/scenes/assemblies/mesons_doc.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/assemblies.json",
+      "to": "scene:content/scenes/assemblies/noether_core_geometry.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/assemblies/assemblies.json",
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
@@ -6903,14 +7096,14 @@
       "to": "scene:content/scenes/assemblies/particle_masses.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
       "to": "scene:content/scenes/standard-model-particles/standard_model.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
@@ -6935,24 +7128,31 @@
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
-      "to": "scene:content/scenes/assemblies/weak_mixing_angle.json",
+      "to": "scene:content/scenes/assemblies/quarks.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/fermions.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
-      "to": "scene:content/scenes/assemblies/weak_mixing_ckm.json",
+      "to": "scene:content/scenes/assemblies/weak_mixing_angle.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/fermions.json",
       "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
+      "to": "scene:content/scenes/assemblies/weak_mixing_ckm.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/assemblies/fermions.json",
+      "field": "scene.children[8]"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/fermions.json",
       "to": "scene:content/scenes/standard-model-particles/down_quark.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/fermions.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
@@ -6966,7 +7166,7 @@
       "to": "scene:content/scenes/standard-model-particles/up_quark.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/fermions.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/cosmology/cosmology.json",
@@ -7211,14 +7411,14 @@
       "to": "scene:content/scenes/dynamics/master_equation_of_motion.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/tri_binary_dynamics.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -7226,20 +7426,6 @@
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
       "field": "scene.children[0]"
-    },
-    {
-      "from": "scene:content/scenes/dynamics/dynamics.json",
-      "to": "scene:content/scenes/spacetime/horizon_chirality.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[7]"
-    },
-    {
-      "from": "scene:content/scenes/dynamics/dynamics.json",
-      "to": "scene:content/scenes/spacetime/mapping_planck_scale.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/elements/ac.json",
@@ -9913,28 +10099,21 @@
       "to": "scene:content/scenes/nuclear/molecular_geometry.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
       "to": "scene:content/scenes/nuclear/nuclear_binding.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
       "to": "scene:content/scenes/nuclear/nucleon_structure.json",
       "edgeType": "subscene",
       "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "scene.children[9]"
-    },
-    {
-      "from": "scene:content/scenes/nuclear/nuclear_atomic.json",
-      "to": "scene:content/scenes/spacetime/medium_exclusion_volume.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/nuclear/nuclear_atomic.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/nuclear/nucleus.json",
@@ -10064,59 +10243,87 @@
     },
     {
       "from": "scene:content/scenes/quantum/quantum.json",
-      "to": "scene:content/scenes/quantum/bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response.json",
+      "to": "scene:content/scenes/quantum/algorithmic_resonance.json",
       "edgeType": "subscene",
       "source": "content/scenes/quantum/quantum.json",
-      "field": "scene.children[0]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/quantum/quantum.json",
-      "to": "scene:content/scenes/quantum/entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture.json",
+      "to": "scene:content/scenes/quantum/bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response.json",
       "edgeType": "subscene",
       "source": "content/scenes/quantum/quantum.json",
       "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/quantum/quantum.json",
-      "to": "scene:content/scenes/quantum/measurement_problem_and_collapse.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/quantum/quantum.json",
-      "field": "scene.children[1]"
-    },
-    {
-      "from": "scene:content/scenes/quantum/quantum.json",
-      "to": "scene:content/scenes/quantum/pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/quantum/quantum.json",
-      "field": "scene.children[3]"
-    },
-    {
-      "from": "scene:content/scenes/quantum/quantum.json",
-      "to": "scene:content/scenes/quantum/reality_causality_and_navigation.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/quantum/quantum.json",
-      "field": "scene.children[4]"
-    },
-    {
-      "from": "scene:content/scenes/quantum/quantum.json",
-      "to": "scene:content/scenes/quantum/superposition_mechanism_traditional_vs_architrino_assembly_architecture.json",
+      "to": "scene:content/scenes/quantum/entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture.json",
       "edgeType": "subscene",
       "source": "content/scenes/quantum/quantum.json",
       "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/quantum/quantum.json",
-      "to": "scene:content/scenes/quantum/wavefunction_ontology.json",
+      "to": "scene:content/scenes/quantum/measurement_ontology.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/quantum/quantum.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/quantum/quantum.json",
+      "to": "scene:content/scenes/quantum/measurement_problem_and_collapse.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/quantum/quantum.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/quantum/quantum.json",
+      "to": "scene:content/scenes/quantum/pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture.json",
       "edgeType": "subscene",
       "source": "content/scenes/quantum/quantum.json",
       "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/quantum/quantum.json",
+      "to": "scene:content/scenes/quantum/quantum_operator_mapping.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/quantum/quantum.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/quantum/quantum.json",
+      "to": "scene:content/scenes/quantum/quantum_summary.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/quantum/quantum.json",
+      "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/quantum/quantum.json",
+      "to": "scene:content/scenes/quantum/reality_causality_and_navigation.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/quantum/quantum.json",
+      "field": "scene.children[7]"
+    },
+    {
+      "from": "scene:content/scenes/quantum/quantum.json",
+      "to": "scene:content/scenes/quantum/superposition_mechanism_traditional_vs_architrino_assembly_architecture.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/quantum/quantum.json",
+      "field": "scene.children[8]"
+    },
+    {
+      "from": "scene:content/scenes/quantum/quantum.json",
+      "to": "scene:content/scenes/quantum/wavefunction_ontology.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/quantum/quantum.json",
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
       "to": "scene:content/scenes/philosophy_history/cosmic_censorship_holography.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[13]"
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
@@ -10148,10 +10355,45 @@
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/spacetime/horizon_chirality.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[8]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
       "to": "scene:content/scenes/spacetime/lorentz_kinematics.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
       "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/spacetime/mapping_planck_scale.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[9]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/spacetime/medium_exclusion_volume.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[10]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/spacetime/noether_sea.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[11]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/spacetime/observer_framework.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
@@ -10179,7 +10421,7 @@
       "to": "scene:content/scenes/spacetime/spacetime_assemblies.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[14]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/bottom.json",
@@ -10721,10 +10963,24 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/archie/software_architecture_and_maintenance.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/software-architecture-and-maintenance.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/software_architecture_and_maintenance.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/archie/support_architrino_research.json",
       "to": "markdown_doc:content/markdown/aaa/archie/support-architrino-research.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/archie/support_architrino_research.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/terminology_usage.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/terminology-usage.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/terminology_usage.json",
       "field": "scene.source.path"
     },
     {
@@ -10739,6 +10995,13 @@
       "to": "markdown_doc:content/markdown/generated/textbook-toc.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/archie/textbook_toc.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/ui_guidelines.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/ui-guidelines.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/ui_guidelines.json",
       "field": "scene.source.path"
     },
     {
@@ -10777,6 +11040,13 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/assemblies/noether_core_geometry.json",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/noether-core-geometry.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/assemblies/noether_core_geometry.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/assemblies/noether_core.json",
       "to": "markdown_doc:content/markdown/aaa/assemblies/noether-core.md",
       "edgeType": "markdown_doc",
@@ -10795,6 +11065,13 @@
       "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/assemblies/quantum_number_mapping.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/quarks.json",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/quarks.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/assemblies/quarks.json",
       "field": "scene.source.path"
     },
     {
@@ -11162,6 +11439,13 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/quantum/algorithmic_resonance.json",
+      "to": "markdown_doc:content/markdown/aaa/quantum/algorithmic-resonance.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/quantum/algorithmic_resonance.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/quantum/bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response.json",
       "to": "markdown_doc:content/markdown/aaa/quantum/bell-theorem.md",
       "edgeType": "markdown_doc",
@@ -11176,6 +11460,13 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/quantum/measurement_ontology.json",
+      "to": "markdown_doc:content/markdown/aaa/quantum/measurement-ontology.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/quantum/measurement_ontology.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/quantum/measurement_problem_and_collapse.json",
       "to": "markdown_doc:content/markdown/aaa/quantum/collapse-problem.md",
       "edgeType": "markdown_doc",
@@ -11187,6 +11478,20 @@
       "to": "markdown_doc:content/markdown/aaa/quantum/pilot-wave-character.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/quantum/pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/quantum/quantum_operator_mapping.json",
+      "to": "markdown_doc:content/markdown/aaa/quantum/quantum-operator-mapping.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/quantum/quantum_operator_mapping.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/quantum/quantum_summary.json",
+      "to": "markdown_doc:content/markdown/aaa/quantum/quantum-summary.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/quantum/quantum_summary.json",
       "field": "scene.source.path"
     },
     {
@@ -11264,6 +11569,20 @@
       "to": "markdown_doc:content/markdown/aaa/spacetime/medium-exclusion-volume.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/spacetime/medium_exclusion_volume.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/noether_sea.json",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/noether-sea.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/spacetime/noether_sea.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/observer_framework.json",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/observer-framework.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/spacetime/observer_framework.json",
       "field": "scene.source.path"
     },
     {

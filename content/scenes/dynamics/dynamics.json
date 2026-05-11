@@ -32,14 +32,6 @@
         "scenePath": "content/scenes/dynamics/kinetic_and_potential_energy.json"
       },
       {
-        "nodeId": "mapping_planck_scale",
-        "scenePath": "content/scenes/spacetime/mapping_planck_scale.json"
-      },
-      {
-        "nodeId": "horizon_chirality",
-        "scenePath": "content/scenes/spacetime/horizon_chirality.json"
-      },
-      {
         "nodeId": "master_equation_of_motion",
         "scenePath": "content/scenes/dynamics/master_equation_of_motion.json"
       },
@@ -113,28 +105,6 @@
         "type": "fixed"
       },
       "labelTitle": "Kinetic and Potential Energy",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "mapping_planck_scale",
-      "title": "Mapping Planck Scale",
-      "radius": 2.688,
-      "color": "#7a4a1f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Mapping Planck Scale",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "horizon_chirality",
-      "title": "Horizon Chirality",
-      "radius": 2.688,
-      "color": "#8b5e34",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Horizon Chirality",
       "labelBadge": "doc"
     },
     {

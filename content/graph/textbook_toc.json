@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 131,
-      "sections": 940
+      "entries": 139,
+      "sections": 1004
     }
   },
   "tocRoot": {
@@ -811,6 +811,146 @@
             "scenePath": "content/scenes/quantum/quantum.json",
             "children": [
               {
+                "id": "quantum__quantum_summary",
+                "title": "Quantum Summary",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/quantum/quantum_summary.json",
+                "markdownPath": "content/markdown/aaa/quantum/quantum-summary.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Core Quantum Spine",
+                    "markdownPath": "content/markdown/aaa/quantum/quantum-summary.md",
+                    "markdownSection": "Core Quantum Spine",
+                    "sectionKey": "core quantum spine",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Correlation and No-Go Interfaces",
+                    "markdownPath": "content/markdown/aaa/quantum/quantum-summary.md",
+                    "markdownSection": "Correlation and No-Go Interfaces",
+                    "sectionKey": "correlation and no go interfaces",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
+                "id": "quantum__quantum_operator_mapping",
+                "title": "Quantum Operator Mapping",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/quantum/quantum_operator_mapping.json",
+                "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "The Tri-Binary Qubit and Phase Space",
+                    "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
+                    "markdownSection": "The Tri-Binary Qubit and Phase Space",
+                    "sectionKey": "the tri binary qubit and phase space",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Unitary Evolution and Topological Torques",
+                    "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
+                    "markdownSection": "Unitary Evolution and Topological Torques",
+                    "sectionKey": "unitary evolution and topological torques",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Entanglement via Retarded Potentials",
+                    "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
+                    "markdownSection": "Entanglement via Retarded Potentials",
+                    "sectionKey": "entanglement via retarded potentials",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Measurement and Dynamical Collapse",
+                    "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
+                    "markdownSection": "Measurement and Dynamical Collapse",
+                    "sectionKey": "measurement and dynamical collapse",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "The Tri-Binary Qubit and Phase Space",
+                    "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
+                    "markdownSection": "The Tri-Binary Qubit and Phase Space",
+                    "sectionKey": "the tri binary qubit and phase space",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Functional Bounds and Well-Posedness",
+                    "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
+                    "markdownSection": "Functional Bounds and Well-Posedness",
+                    "sectionKey": "functional bounds and well posedness",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Unitary Evolution and Topological Torques",
+                    "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
+                    "markdownSection": "Unitary Evolution and Topological Torques",
+                    "sectionKey": "unitary evolution and topological torques",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Entanglement via Path-History Potentials",
+                    "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
+                    "markdownSection": "Entanglement via Path-History Potentials",
+                    "sectionKey": "entanglement via path history potentials",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Measurement and Dynamical Collapse",
+                    "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
+                    "markdownSection": "Measurement and Dynamical Collapse",
+                    "sectionKey": "measurement and dynamical collapse",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Falsifiability and Observables",
+                    "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
+                    "markdownSection": "Falsifiability and Observables",
+                    "sectionKey": "falsifiability and observables",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Statistical Measure and the Born Rule Emergence",
+                    "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
+                    "markdownSection": "Statistical Measure and the Born Rule Emergence",
+                    "sectionKey": "statistical measure and the born rule emergence",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Kinetic Limits and Decoherence",
+                    "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
+                    "markdownSection": "Kinetic Limits and Decoherence",
+                    "sectionKey": "kinetic limits and decoherence",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Statistical Falsifiability and Observables",
+                    "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
+                    "markdownSection": "Statistical Falsifiability and Observables",
+                    "sectionKey": "statistical falsifiability and observables",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
                 "id": "quantum__bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response",
                 "title": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
                 "kind": "markdown-view",
@@ -864,6 +1004,104 @@
                     "markdownPath": "content/markdown/aaa/quantum/bell-theorem.md",
                     "markdownSection": "Observables, Falsifiability, and Failure Modes",
                     "sectionKey": "observables falsifiability and failure modes",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
+                "id": "quantum__measurement_ontology",
+                "title": "Measurement Ontology",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/quantum/measurement_ontology.json",
+                "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Purpose and Scope",
+                    "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
+                    "markdownSection": "Purpose and Scope",
+                    "sectionKey": "purpose and scope",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Core Claim",
+                    "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
+                    "markdownSection": "Core Claim",
+                    "sectionKey": "core claim",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "No Heisenberg Cut",
+                    "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
+                    "markdownSection": "No Heisenberg Cut",
+                    "sectionKey": "no heisenberg cut",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Minimal Dynamical Model",
+                    "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
+                    "markdownSection": "Minimal Dynamical Model",
+                    "sectionKey": "minimal dynamical model",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "What Makes an Interaction a Record",
+                    "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
+                    "markdownSection": "What Makes an Interaction a Record",
+                    "sectionKey": "what makes an interaction a record",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Relation to the Wavefunction",
+                    "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
+                    "markdownSection": "Relation to the Wavefunction",
+                    "sectionKey": "relation to the wavefunction",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Measurement Channels",
+                    "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
+                    "markdownSection": "Measurement Channels",
+                    "sectionKey": "measurement channels",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Born-Rule Interface",
+                    "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
+                    "markdownSection": "Born-Rule Interface",
+                    "sectionKey": "born rule interface",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Closure Targets",
+                    "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
+                    "markdownSection": "Closure Targets",
+                    "sectionKey": "closure targets",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Falsification Gate",
+                    "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
+                    "markdownSection": "Falsification Gate",
+                    "sectionKey": "falsification gate",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Related Chapters",
+                    "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
+                    "markdownSection": "Related Chapters",
+                    "sectionKey": "related chapters",
                     "headingLevel": 2
                   }
                 ]
@@ -1152,6 +1390,56 @@
                     "markdownPath": "content/markdown/aaa/quantum/wavefunction-ontology.md",
                     "markdownSection": "Closure Interface: Basin-Measure Formalization",
                     "sectionKey": "closure interface basin measure formalization",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
+                "id": "quantum__algorithmic_resonance",
+                "title": "Algorithmic Resonance and Shor's Algorithm",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/quantum/algorithmic_resonance.json",
+                "markdownPath": "content/markdown/aaa/quantum/algorithmic-resonance.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Macroscopic Assembly Coherence",
+                    "markdownPath": "content/markdown/aaa/quantum/algorithmic-resonance.md",
+                    "markdownSection": "Macroscopic Assembly Coherence",
+                    "sectionKey": "macroscopic assembly coherence",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "The Quantum Fourier Transform as Physical Interference",
+                    "markdownPath": "content/markdown/aaa/quantum/algorithmic-resonance.md",
+                    "markdownSection": "The Quantum Fourier Transform as Physical Interference",
+                    "sectionKey": "the quantum fourier transform as physical interference",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Modular Exponentiation and Physical Coupling",
+                    "markdownPath": "content/markdown/aaa/quantum/algorithmic-resonance.md",
+                    "markdownSection": "Modular Exponentiation and Physical Coupling",
+                    "sectionKey": "modular exponentiation and physical coupling",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Period Extraction (Shor's Algorithm)",
+                    "markdownPath": "content/markdown/aaa/quantum/algorithmic-resonance.md",
+                    "markdownSection": "Period Extraction (Shor's Algorithm)",
+                    "sectionKey": "period extraction shor s algorithm",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Falsifiability and Scaling Limits",
+                    "markdownPath": "content/markdown/aaa/quantum/algorithmic-resonance.md",
+                    "markdownSection": "Falsifiability and Scaling Limits",
+                    "sectionKey": "falsifiability and scaling limits",
                     "headingLevel": 2
                   }
                 ]
@@ -1554,258 +1842,6 @@
                 "markdownPath": "content/markdown/aaa/dynamics/energy.md",
                 "markdownSection": "Appendix A: Energy Zero and Bookkeeping",
                 "sectionKey": "appendix a energy zero and bookkeeping",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "spacetime__mapping_planck_scale",
-            "title": "Mapping Planck Scale",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/spacetime/mapping_planck_scale.json",
-            "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Thesis",
-                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
-                "markdownSection": "Thesis",
-                "sectionKey": "thesis",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "What Planck Units Imply About the Outer Binary",
-                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
-                "markdownSection": "What Planck Units Imply About the Outer Binary",
-                "sectionKey": "what planck units imply about the outer binary",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Kinematic and Dynamical Alignment Conditions",
-                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
-                "markdownSection": "Kinematic and Dynamical Alignment Conditions",
-                "sectionKey": "kinematic and dynamical alignment conditions",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Experienced-Field Framing (Energy as Interaction History)",
-                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
-                "markdownSection": "Experienced-Field Framing (Energy as Interaction History)",
-                "sectionKey": "experienced field framing energy as interaction history",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Discrete Ladder and Phase-Slip Dynamics (Hypothesis)",
-                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
-                "markdownSection": "Discrete Ladder and Phase-Slip Dynamics (Hypothesis)",
-                "sectionKey": "discrete ladder and phase slip dynamics hypothesis",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Spin Transition and Configuration-Space Topology (Hypothesis)",
-                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
-                "markdownSection": "Spin Transition and Configuration-Space Topology (Hypothesis)",
-                "sectionKey": "spin transition and configuration space topology hypothesis",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Emergent Constants: $\\hbar$, $\\ell_P$, and $G$",
-                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
-                "markdownSection": "Emergent Constants: $\\hbar$, $\\ell_P$, and $G$",
-                "sectionKey": "emergent constants hbar ell p and g",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Horizon Microstructure and “Condensate-Like” Phases (Conjecture)",
-                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
-                "markdownSection": "Horizon Microstructure and “Condensate-Like” Phases (Conjecture)",
-                "sectionKey": "horizon microstructure and condensate like phases conjecture",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Constraints, Assumptions, and Failure Modes",
-                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
-                "markdownSection": "Constraints, Assumptions, and Failure Modes",
-                "sectionKey": "constraints assumptions and failure modes",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "spacetime__horizon_chirality",
-            "title": "Horizon Chirality",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/spacetime/horizon_chirality.json",
-            "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Canonical Horizon Condition",
-                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
-                "markdownSection": "Canonical Horizon Condition",
-                "sectionKey": "canonical horizon condition",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Pro/Anti Before Planar Lock",
-                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
-                "markdownSection": "Pro/Anti Before Planar Lock",
-                "sectionKey": "pro anti before planar lock",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Broader Pro/Anti Balance in $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
-                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
-                "markdownSection": "Broader Pro/Anti Balance in $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
-                "sectionKey": "broader pro anti balance in mathbb a mathbb a mathbb a",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Working Dictionary",
-                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
-                "markdownSection": "Working Dictionary",
-                "sectionKey": "working dictionary",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Comparison Across Sectors",
-                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
-                "markdownSection": "Comparison Across Sectors",
-                "sectionKey": "comparison across sectors",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Exterior Planar Spin Basis",
-                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
-                "markdownSection": "Exterior Planar Spin Basis",
-                "sectionKey": "exterior planar spin basis",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Observer Views",
-                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
-                "markdownSection": "Observer Views",
-                "sectionKey": "observer views",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Boundary Helicity Versus Deeper Chirality",
-                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
-                "markdownSection": "Boundary Helicity Versus Deeper Chirality",
-                "sectionKey": "boundary helicity versus deeper chirality",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Translation-Axis Alignment at High Velocity",
-                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
-                "markdownSection": "Translation-Axis Alignment at High Velocity",
-                "sectionKey": "translation axis alignment at high velocity",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Exact Conservation Versus Dynamical Selection",
-                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
-                "markdownSection": "Exact Conservation Versus Dynamical Selection",
-                "sectionKey": "exact conservation versus dynamical selection",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "State-Transition Ladder",
-                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
-                "markdownSection": "State-Transition Ladder",
-                "sectionKey": "state transition ladder",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Canonical Horizon Branch Hypothesis",
-                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
-                "markdownSection": "Canonical Horizon Branch Hypothesis",
-                "sectionKey": "canonical horizon branch hypothesis",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Candidate Theories for Pro and Anti at the Horizon",
-                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
-                "markdownSection": "Candidate Theories for Pro and Anti at the Horizon",
-                "sectionKey": "candidate theories for pro and anti at the horizon",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Possible Left/Right Spin Mapping",
-                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
-                "markdownSection": "Possible Left/Right Spin Mapping",
-                "sectionKey": "possible left right spin mapping",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Status Table",
-                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
-                "markdownSection": "Status Table",
-                "sectionKey": "status table",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Mixed-Sign Planar States",
-                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
-                "markdownSection": "Mixed-Sign Planar States",
-                "sectionKey": "mixed sign planar states",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Transition Rules for Pro/Anti Conversion",
-                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
-                "markdownSection": "Transition Rules for Pro/Anti Conversion",
-                "sectionKey": "transition rules for pro anti conversion",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Simulation Diagnostics",
-                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
-                "markdownSection": "Simulation Diagnostics",
-                "sectionKey": "simulation diagnostics",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Provisional Conclusion",
-                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
-                "markdownSection": "Provisional Conclusion",
-                "sectionKey": "provisional conclusion",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Interfaces to Other Chapters",
-                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
-                "markdownSection": "Interfaces to Other Chapters",
-                "sectionKey": "interfaces to other chapters",
                 "headingLevel": 2
               }
             ]
@@ -2800,6 +2836,64 @@
             "markdownPath": "content/markdown/aaa/assemblies/noether-core.md"
           },
           {
+            "id": "assemblies__noether_core_geometry",
+            "title": "Noether Core Geometry",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/assemblies/noether_core_geometry.json",
+            "markdownPath": "content/markdown/aaa/assemblies/noether-core-geometry.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Ownership Boundary",
+                "markdownPath": "content/markdown/aaa/assemblies/noether-core-geometry.md",
+                "markdownSection": "Ownership Boundary",
+                "sectionKey": "ownership boundary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Dynamic Exclusion Zone",
+                "markdownPath": "content/markdown/aaa/assemblies/noether-core-geometry.md",
+                "markdownSection": "Dynamic Exclusion Zone",
+                "sectionKey": "dynamic exclusion zone",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Oblate Spheroidal Form",
+                "markdownPath": "content/markdown/aaa/assemblies/noether-core-geometry.md",
+                "markdownSection": "Oblate Spheroidal Form",
+                "sectionKey": "oblate spheroidal form",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Deformability of the Envelope",
+                "markdownPath": "content/markdown/aaa/assemblies/noether-core-geometry.md",
+                "markdownSection": "Deformability of the Envelope",
+                "sectionKey": "deformability of the envelope",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Geometry Interfaces",
+                "markdownPath": "content/markdown/aaa/assemblies/noether-core-geometry.md",
+                "markdownSection": "Geometry Interfaces",
+                "sectionKey": "geometry interfaces",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary Commitment",
+                "markdownPath": "content/markdown/aaa/assemblies/noether-core-geometry.md",
+                "markdownSection": "Summary Commitment",
+                "sectionKey": "summary commitment",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
             "id": "assemblies__particle_masses",
             "title": "Particle Masses",
             "kind": "markdown-view",
@@ -3056,6 +3150,80 @@
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md",
                     "markdownSection": "Weak-Mixing and Composite-Observable Closure Hooks",
                     "sectionKey": "weak mixing and composite observable closure hooks",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
+                "id": "assemblies__quarks",
+                "title": "Quarks",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/assemblies/quarks.json",
+                "markdownPath": "content/markdown/aaa/assemblies/fermions/quarks.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Overview",
+                    "markdownPath": "content/markdown/aaa/assemblies/fermions/quarks.md",
+                    "markdownSection": "Overview",
+                    "sectionKey": "overview",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Architecture",
+                    "markdownPath": "content/markdown/aaa/assemblies/fermions/quarks.md",
+                    "markdownSection": "Architecture",
+                    "sectionKey": "architecture",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Charge classes and axis-exceptionality",
+                    "markdownPath": "content/markdown/aaa/assemblies/fermions/quarks.md",
+                    "markdownSection": "Charge classes and axis-exceptionality",
+                    "sectionKey": "charge classes and axis exceptionality",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Six-flavor catalog",
+                    "markdownPath": "content/markdown/aaa/assemblies/fermions/quarks.md",
+                    "markdownSection": "Six-flavor catalog",
+                    "sectionKey": "six flavor catalog",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Color assignments",
+                    "markdownPath": "content/markdown/aaa/assemblies/fermions/quarks.md",
+                    "markdownSection": "Color assignments",
+                    "sectionKey": "color assignments",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Coupling rules to gluons",
+                    "markdownPath": "content/markdown/aaa/assemblies/fermions/quarks.md",
+                    "markdownSection": "Coupling rules to gluons",
+                    "sectionKey": "coupling rules to gluons",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "What is fixed and what remains open",
+                    "markdownPath": "content/markdown/aaa/assemblies/fermions/quarks.md",
+                    "markdownSection": "What is fixed and what remains open",
+                    "sectionKey": "what is fixed and what remains open",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Cross-links",
+                    "markdownPath": "content/markdown/aaa/assemblies/fermions/quarks.md",
+                    "markdownSection": "Cross-links",
+                    "sectionKey": "cross links",
                     "headingLevel": 2
                   }
                 ]
@@ -3559,48 +3727,6 @@
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
                 "markdownSection": "Superfluid Noether Sea",
                 "sectionKey": "superfluid noether sea",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "spacetime__medium_exclusion_volume",
-            "title": "Medium Exclusion Volume",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/spacetime/medium_exclusion_volume.json",
-            "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Levels of Excluded Volume",
-                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
-                "markdownSection": "Levels of Excluded Volume",
-                "sectionKey": "levels of excluded volume",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Who Can “Slip Between” Excluded Regions?",
-                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
-                "markdownSection": "Who Can “Slip Between” Excluded Regions?",
-                "sectionKey": "who can slip between excluded regions",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Background Timespace vs. Implemented Medium",
-                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
-                "markdownSection": "Background Timespace vs. Implemented Medium",
-                "sectionKey": "background timespace vs implemented medium",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Big Picture",
-                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
-                "markdownSection": "Big Picture",
-                "sectionKey": "big picture",
                 "headingLevel": 2
               }
             ]
@@ -4374,6 +4500,472 @@
                 "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
                 "markdownSection": "Summary",
                 "sectionKey": "summary",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "spacetime__horizon_chirality",
+            "title": "Horizon Chirality",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/spacetime/horizon_chirality.json",
+            "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Canonical Horizon Condition",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
+                "markdownSection": "Canonical Horizon Condition",
+                "sectionKey": "canonical horizon condition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Pro/Anti Before Planar Lock",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
+                "markdownSection": "Pro/Anti Before Planar Lock",
+                "sectionKey": "pro anti before planar lock",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Broader Pro/Anti Balance in $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
+                "markdownSection": "Broader Pro/Anti Balance in $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
+                "sectionKey": "broader pro anti balance in mathbb a mathbb a mathbb a",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Working Dictionary",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
+                "markdownSection": "Working Dictionary",
+                "sectionKey": "working dictionary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Comparison Across Sectors",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
+                "markdownSection": "Comparison Across Sectors",
+                "sectionKey": "comparison across sectors",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Exterior Planar Spin Basis",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
+                "markdownSection": "Exterior Planar Spin Basis",
+                "sectionKey": "exterior planar spin basis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Observer Views",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
+                "markdownSection": "Observer Views",
+                "sectionKey": "observer views",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Boundary Helicity Versus Deeper Chirality",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
+                "markdownSection": "Boundary Helicity Versus Deeper Chirality",
+                "sectionKey": "boundary helicity versus deeper chirality",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Translation-Axis Alignment at High Velocity",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
+                "markdownSection": "Translation-Axis Alignment at High Velocity",
+                "sectionKey": "translation axis alignment at high velocity",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Exact Conservation Versus Dynamical Selection",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
+                "markdownSection": "Exact Conservation Versus Dynamical Selection",
+                "sectionKey": "exact conservation versus dynamical selection",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "State-Transition Ladder",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
+                "markdownSection": "State-Transition Ladder",
+                "sectionKey": "state transition ladder",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Canonical Horizon Branch Hypothesis",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
+                "markdownSection": "Canonical Horizon Branch Hypothesis",
+                "sectionKey": "canonical horizon branch hypothesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Candidate Theories for Pro and Anti at the Horizon",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
+                "markdownSection": "Candidate Theories for Pro and Anti at the Horizon",
+                "sectionKey": "candidate theories for pro and anti at the horizon",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Possible Left/Right Spin Mapping",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
+                "markdownSection": "Possible Left/Right Spin Mapping",
+                "sectionKey": "possible left right spin mapping",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Status Table",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
+                "markdownSection": "Status Table",
+                "sectionKey": "status table",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Mixed-Sign Planar States",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
+                "markdownSection": "Mixed-Sign Planar States",
+                "sectionKey": "mixed sign planar states",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Transition Rules for Pro/Anti Conversion",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
+                "markdownSection": "Transition Rules for Pro/Anti Conversion",
+                "sectionKey": "transition rules for pro anti conversion",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Simulation Diagnostics",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
+                "markdownSection": "Simulation Diagnostics",
+                "sectionKey": "simulation diagnostics",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Provisional Conclusion",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
+                "markdownSection": "Provisional Conclusion",
+                "sectionKey": "provisional conclusion",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Interfaces to Other Chapters",
+                "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
+                "markdownSection": "Interfaces to Other Chapters",
+                "sectionKey": "interfaces to other chapters",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "spacetime__mapping_planck_scale",
+            "title": "Mapping Planck Scale",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/spacetime/mapping_planck_scale.json",
+            "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Thesis",
+                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
+                "markdownSection": "Thesis",
+                "sectionKey": "thesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What Planck Units Imply About the Outer Binary",
+                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
+                "markdownSection": "What Planck Units Imply About the Outer Binary",
+                "sectionKey": "what planck units imply about the outer binary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Kinematic and Dynamical Alignment Conditions",
+                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
+                "markdownSection": "Kinematic and Dynamical Alignment Conditions",
+                "sectionKey": "kinematic and dynamical alignment conditions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Experienced-Field Framing (Energy as Interaction History)",
+                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
+                "markdownSection": "Experienced-Field Framing (Energy as Interaction History)",
+                "sectionKey": "experienced field framing energy as interaction history",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Discrete Ladder and Phase-Slip Dynamics (Hypothesis)",
+                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
+                "markdownSection": "Discrete Ladder and Phase-Slip Dynamics (Hypothesis)",
+                "sectionKey": "discrete ladder and phase slip dynamics hypothesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Spin Transition and Configuration-Space Topology (Hypothesis)",
+                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
+                "markdownSection": "Spin Transition and Configuration-Space Topology (Hypothesis)",
+                "sectionKey": "spin transition and configuration space topology hypothesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Emergent Constants: $\\hbar$, $\\ell_P$, and $G$",
+                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
+                "markdownSection": "Emergent Constants: $\\hbar$, $\\ell_P$, and $G$",
+                "sectionKey": "emergent constants hbar ell p and g",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Horizon Microstructure and “Condensate-Like” Phases (Conjecture)",
+                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
+                "markdownSection": "Horizon Microstructure and “Condensate-Like” Phases (Conjecture)",
+                "sectionKey": "horizon microstructure and condensate like phases conjecture",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Constraints, Assumptions, and Failure Modes",
+                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
+                "markdownSection": "Constraints, Assumptions, and Failure Modes",
+                "sectionKey": "constraints assumptions and failure modes",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "spacetime__medium_exclusion_volume",
+            "title": "Medium Exclusion Volume",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/spacetime/medium_exclusion_volume.json",
+            "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Levels of Excluded Volume",
+                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+                "markdownSection": "Levels of Excluded Volume",
+                "sectionKey": "levels of excluded volume",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Who Can “Slip Between” Excluded Regions?",
+                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+                "markdownSection": "Who Can “Slip Between” Excluded Regions?",
+                "sectionKey": "who can slip between excluded regions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Background Timespace vs. Implemented Medium",
+                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+                "markdownSection": "Background Timespace vs. Implemented Medium",
+                "sectionKey": "background timespace vs implemented medium",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Big Picture",
+                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+                "markdownSection": "Big Picture",
+                "sectionKey": "big picture",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "spacetime__noether_sea",
+            "title": "Noether Sea",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/spacetime/noether_sea.json",
+            "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Core Definition",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "Core Definition",
+                "sectionKey": "core definition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Boundary With the Euclidean Void",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "Boundary With the Euclidean Void",
+                "sectionKey": "boundary with the euclidean void",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Composition",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "Composition",
+                "sectionKey": "composition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "State Variables",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "State Variables",
+                "sectionKey": "state variables",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Medium Properties",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "Medium Properties",
+                "sectionKey": "medium properties",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Refractive Gravity and Effective Metric",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "Refractive Gravity and Effective Metric",
+                "sectionKey": "refractive gravity and effective metric",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Matter Coupling and Inertia",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "Matter Coupling and Inertia",
+                "sectionKey": "matter coupling and inertia",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Cosmological Role",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "Cosmological Role",
+                "sectionKey": "cosmological role",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Terminology Discipline",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "Terminology Discipline",
+                "sectionKey": "terminology discipline",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Ownership Boundary",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "Ownership Boundary",
+                "sectionKey": "ownership boundary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary Commitment",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "Summary Commitment",
+                "sectionKey": "summary commitment",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "spacetime__observer_framework",
+            "title": "Observer Framework",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/spacetime/observer_framework.json",
+            "markdownPath": "content/markdown/aaa/spacetime/observer-framework.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "The $\\mathbb{U}_{\\text{now}}$ Universe-State Perspective",
+                "markdownPath": "content/markdown/aaa/spacetime/observer-framework.md",
+                "markdownSection": "The $\\mathbb{U}_{\\text{now}}$ Universe-State Perspective",
+                "sectionKey": "the mathbb u text now universe state perspective",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Physical Observers",
+                "markdownPath": "content/markdown/aaa/spacetime/observer-framework.md",
+                "markdownSection": "Physical Observers",
+                "sectionKey": "physical observers",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Ontic and Epistemic Levels",
+                "markdownPath": "content/markdown/aaa/spacetime/observer-framework.md",
+                "markdownSection": "Ontic and Epistemic Levels",
+                "sectionKey": "ontic and epistemic levels",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Absolute and Operational Simultaneity",
+                "markdownPath": "content/markdown/aaa/spacetime/observer-framework.md",
+                "markdownSection": "Absolute and Operational Simultaneity",
+                "sectionKey": "absolute and operational simultaneity",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Physical Observer Clocks and Rulers",
+                "markdownPath": "content/markdown/aaa/spacetime/observer-framework.md",
+                "markdownSection": "Physical Observer Clocks and Rulers",
+                "sectionKey": "physical observer clocks and rulers",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Preferred-Frame Hiding",
+                "markdownPath": "content/markdown/aaa/spacetime/observer-framework.md",
+                "markdownSection": "Preferred-Frame Hiding",
+                "sectionKey": "preferred frame hiding",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Ownership Boundary",
+                "markdownPath": "content/markdown/aaa/spacetime/observer-framework.md",
+                "markdownSection": "Ownership Boundary",
+                "sectionKey": "ownership boundary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary Commitment",
+                "markdownPath": "content/markdown/aaa/spacetime/observer-framework.md",
+                "markdownSection": "Summary Commitment",
+                "sectionKey": "summary commitment",
                 "headingLevel": 2
               }
             ]

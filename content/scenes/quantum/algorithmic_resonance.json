@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "quantum__algorithmic_resonance",
+    "title": "Algorithmic Resonance and Shor's Algorithm",
+    "type": "Scene-Markdown-View",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "static"
+    },
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/quantum/algorithmic-resonance.md"
+    },
+    "view": {
+      "autoOpen": true
+    }
+  },
+  "objects": []
+}
