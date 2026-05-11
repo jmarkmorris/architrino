@@ -28,6 +28,10 @@
         "scenePath": "content/scenes/interactions/interactions.json"
       },
       {
+        "nodeId": "reactions",
+        "scenePath": "content/scenes/reactions/reactions.json"
+      },
+      {
         "nodeId": "proof_programs",
         "scenePath": "content/scenes/proof-programs/proof_programs.json"
       },
@@ -88,7 +92,7 @@
       "color": "#5a1f2e",
       "position": [
         0,
-        11.1,
+        12.3,
         0
       ],
       "motion": {
@@ -103,8 +107,8 @@
       "radius": 2.688,
       "color": "#6c4f8d",
       "position": [
-        -6.52,
-        8.98,
+        -6.65,
+        10.35,
         0
       ],
       "motion": {
@@ -114,13 +118,29 @@
       "fixedPosition": true
     },
     {
+      "id": "reactions",
+      "title": "Reactions",
+      "radius": 2.688,
+      "color": "#8b5e34",
+      "position": [
+        -11.19,
+        5.11,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Reactions",
+      "fixedPosition": true
+    },
+    {
       "id": "proof_programs",
       "title": "Proof Programs",
       "radius": 2.688,
       "color": "#6f5a2f",
       "position": [
-        -10.56,
-        3.43,
+        -12.17,
+        -1.75,
         0
       ],
       "motion": {
@@ -135,8 +155,8 @@
       "radius": 2.688,
       "color": "#2f6b6f",
       "position": [
-        -10.56,
-        -3.43,
+        -9.3,
+        -8.05,
         0
       ],
       "motion": {
@@ -151,8 +171,8 @@
       "radius": 2.688,
       "color": "#7a4a1f",
       "position": [
-        -6.52,
-        -8.98,
+        -3.47,
+        -11.8,
         0
       ],
       "motion": {
@@ -167,8 +187,8 @@
       "radius": 2.688,
       "color": "#1c2a4f",
       "position": [
-        0,
-        -11.1,
+        3.47,
+        -11.8,
         0
       ],
       "motion": {
@@ -183,8 +203,8 @@
       "radius": 2.688,
       "color": "#3c6a7a",
       "position": [
-        6.52,
-        -8.98,
+        9.3,
+        -8.05,
         0
       ],
       "motion": {
@@ -199,8 +219,8 @@
       "radius": 2.688,
       "color": "#3f6a5a",
       "position": [
-        10.56,
-        -3.43,
+        12.17,
+        -1.75,
         0
       ],
       "motion": {
@@ -215,8 +235,8 @@
       "radius": 2.688,
       "color": "#6a3c3c",
       "position": [
-        10.56,
-        3.43,
+        11.19,
+        5.11,
         0
       ],
       "motion": {
@@ -231,8 +251,8 @@
       "radius": 2.688,
       "color": "#243d8f",
       "position": [
-        6.52,
-        8.98,
+        6.65,
+        10.35,
         0
       ],
       "motion": {

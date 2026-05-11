@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 443,
-      "edges": 1195,
-      "scenes": 305,
+      "nodes": 446,
+      "edges": 1200,
+      "scenes": 308,
       "markdownIndexes": 0,
       "markdownDocs": 138,
       "runtimeEdges": 476,
@@ -1976,6 +1976,24 @@
       "id": "quantum__quantum_summary",
       "name": "Quantum Summary",
       "path": "content/scenes/quantum/quantum_summary.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "reactions__bremsstrahlung",
+      "name": "Bremsstrahlung",
+      "path": "content/scenes/reactions/bremsstrahlung.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "reactions",
+      "name": "Reactions",
+      "path": "content/scenes/reactions/reactions.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "reactions__synchrotron_cascades",
+      "name": "Synchrotron Cascades",
+      "path": "content/scenes/reactions/synchrotron_cascades.json",
       "nodeType": "scene"
     },
     {
@@ -4987,6 +5005,33 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/reactions/bremsstrahlung.json",
+      "nodeType": "scene",
+      "id": "reactions__bremsstrahlung",
+      "name": "Bremsstrahlung",
+      "path": "content/scenes/reactions/bremsstrahlung.json",
+      "searchTarget": "content/scenes/reactions/bremsstrahlung.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/reactions/reactions.json",
+      "nodeType": "scene",
+      "id": "reactions",
+      "name": "Reactions",
+      "path": "content/scenes/reactions/reactions.json",
+      "searchTarget": "content/scenes/reactions/reactions.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/reactions/synchrotron_cascades.json",
+      "nodeType": "scene",
+      "id": "reactions__synchrotron_cascades",
+      "name": "Synchrotron Cascades",
+      "path": "content/scenes/reactions/synchrotron_cascades.json",
+      "searchTarget": "content/scenes/reactions/synchrotron_cascades.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/spacetime/black_holes.json",
       "nodeType": "scene",
       "id": "spacetime__black_holes",
@@ -6977,21 +7022,21 @@
       "to": "scene:content/scenes/assemblies/assemblies.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/cosmology/cosmology.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/cosmology/universe.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
@@ -7019,18 +7064,25 @@
       "to": "scene:content/scenes/nuclear/nuclear_atomic.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/proof-programs/proof_programs.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/architrino_assembly_architecture.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/architrino_assembly_architecture.json",
+      "to": "scene:content/scenes/reactions/reactions.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
       "field": "scene.children[3]"
@@ -7040,14 +7092,14 @@
       "to": "scene:content/scenes/spacetime/spacetime.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/validation/validation.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
@@ -10319,6 +10371,20 @@
       "field": "scene.children[9]"
     },
     {
+      "from": "scene:content/scenes/reactions/reactions.json",
+      "to": "scene:content/scenes/reactions/bremsstrahlung.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/reactions/reactions.json",
+      "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/reactions/reactions.json",
+      "to": "scene:content/scenes/reactions/synchrotron_cascades.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/reactions/reactions.json",
+      "field": "scene.children[1]"
+    },
+    {
       "from": "scene:content/scenes/spacetime/spacetime.json",
       "to": "scene:content/scenes/philosophy_history/cosmic_censorship_holography.json",
       "edgeType": "subscene",
@@ -11513,6 +11579,20 @@
       "to": "markdown_doc:content/markdown/aaa/quantum/wavefunction-ontology.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/quantum/wavefunction_ontology.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/reactions/bremsstrahlung.json",
+      "to": "markdown_doc:content/markdown/aaa/reactions/bremsstrahlung.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/reactions/bremsstrahlung.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/reactions/synchrotron_cascades.json",
+      "to": "markdown_doc:content/markdown/aaa/reactions/synchrotron.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/reactions/synchrotron_cascades.json",
       "field": "scene.source.path"
     },
     {

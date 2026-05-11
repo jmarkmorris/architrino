@@ -1524,6 +1524,21 @@
       "id": "quantum__quantum_summary",
       "name": "Quantum Summary",
       "path": "content/scenes/quantum/quantum_summary.json"
+    },
+    {
+      "id": "reactions__bremsstrahlung",
+      "name": "Bremsstrahlung",
+      "path": "content/scenes/reactions/bremsstrahlung.json"
+    },
+    {
+      "id": "reactions",
+      "name": "Reactions",
+      "path": "content/scenes/reactions/reactions.json"
+    },
+    {
+      "id": "reactions__synchrotron_cascades",
+      "name": "Synchrotron Cascades",
+      "path": "content/scenes/reactions/synchrotron_cascades.json"
     }
   ]
 }

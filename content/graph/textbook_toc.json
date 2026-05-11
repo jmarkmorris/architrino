@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 139,
-      "sections": 1004
+      "entries": 142,
+      "sections": 1038
     }
   },
   "tocRoot": {
@@ -2269,6 +2269,307 @@
                 "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
                 "markdownSection": "Related Chapters",
                 "sectionKey": "related chapters",
+                "headingLevel": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "reactions",
+        "title": "Reactions",
+        "kind": "scene-index",
+        "sceneType": "Scene-Index",
+        "scenePath": "content/scenes/reactions/reactions.json",
+        "children": [
+          {
+            "id": "reactions__bremsstrahlung",
+            "title": "Bremsstrahlung",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/reactions/bremsstrahlung.json",
+            "markdownPath": "content/markdown/aaa/reactions/bremsstrahlung.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Teaching Path",
+                "markdownPath": "content/markdown/aaa/reactions/bremsstrahlung.md",
+                "markdownSection": "Teaching Path",
+                "sectionKey": "teaching path",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Notation Snapshot",
+                "markdownPath": "content/markdown/aaa/reactions/bremsstrahlung.md",
+                "markdownSection": "Notation Snapshot",
+                "sectionKey": "notation snapshot",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Physical Mechanism",
+                "markdownPath": "content/markdown/aaa/reactions/bremsstrahlung.md",
+                "markdownSection": "Physical Mechanism",
+                "sectionKey": "physical mechanism",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Prerequisites (Minimal)",
+                "markdownPath": "content/markdown/aaa/reactions/bremsstrahlung.md",
+                "markdownSection": "Prerequisites (Minimal)",
+                "sectionKey": "prerequisites minimal",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Micro-Physical Derivation (Interpretive Map)",
+                "markdownPath": "content/markdown/aaa/reactions/bremsstrahlung.md",
+                "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Micro-Physical Derivation (Interpretive Map)",
+                "sectionKey": "mathbb a mathbb a mathbb a micro physical derivation interpretive map",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Core Equations",
+                "markdownPath": "content/markdown/aaa/reactions/bremsstrahlung.md",
+                "markdownSection": "Core Equations",
+                "sectionKey": "core equations",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Core Channels (Inclusion Rule)",
+                "markdownPath": "content/markdown/aaa/reactions/bremsstrahlung.md",
+                "markdownSection": "Core Channels (Inclusion Rule)",
+                "sectionKey": "core channels inclusion rule",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Assembly Interpretation by Channel",
+                "markdownPath": "content/markdown/aaa/reactions/bremsstrahlung.md",
+                "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Assembly Interpretation by Channel",
+                "sectionKey": "mathbb a mathbb a mathbb a assembly interpretation by channel",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "IR Regularization as a Stability Floor",
+                "markdownPath": "content/markdown/aaa/reactions/bremsstrahlung.md",
+                "markdownSection": "IR Regularization as a Stability Floor",
+                "sectionKey": "ir regularization as a stability floor",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "$Z^2$ Scaling and Finite-Geometry Resolution",
+                "markdownPath": "content/markdown/aaa/reactions/bremsstrahlung.md",
+                "markdownSection": "$Z^2$ Scaling and Finite-Geometry Resolution",
+                "sectionKey": "z 2 scaling and finite geometry resolution",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Momentum-Flux Closure at Emission",
+                "markdownPath": "content/markdown/aaa/reactions/bremsstrahlung.md",
+                "markdownSection": "Momentum-Flux Closure at Emission",
+                "sectionKey": "momentum flux closure at emission",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Time Parameterization (Absolute vs Proper Time)",
+                "markdownPath": "content/markdown/aaa/reactions/bremsstrahlung.md",
+                "markdownSection": "Time Parameterization (Absolute vs Proper Time)",
+                "sectionKey": "time parameterization absolute vs proper time",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Cosmological Propagation and Redshift Map",
+                "markdownPath": "content/markdown/aaa/reactions/bremsstrahlung.md",
+                "markdownSection": "Cosmological Propagation and Redshift Map",
+                "sectionKey": "cosmological propagation and redshift map",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Thermal Equilibrium Assumptions in Evolving Medium",
+                "markdownPath": "content/markdown/aaa/reactions/bremsstrahlung.md",
+                "markdownSection": "Thermal Equilibrium Assumptions in Evolving Medium",
+                "sectionKey": "thermal equilibrium assumptions in evolving medium",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Geodesics and Lensing Consistency",
+                "markdownPath": "content/markdown/aaa/reactions/bremsstrahlung.md",
+                "markdownSection": "Geodesics and Lensing Consistency",
+                "sectionKey": "geodesics and lensing consistency",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Photon Ontology Note",
+                "markdownPath": "content/markdown/aaa/reactions/bremsstrahlung.md",
+                "markdownSection": "Photon Ontology Note",
+                "sectionKey": "photon ontology note",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Regime Map",
+                "markdownPath": "content/markdown/aaa/reactions/bremsstrahlung.md",
+                "markdownSection": "Regime Map",
+                "sectionKey": "regime map",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Observable Consequences",
+                "markdownPath": "content/markdown/aaa/reactions/bremsstrahlung.md",
+                "markdownSection": "Observable Consequences",
+                "sectionKey": "observable consequences",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Standard Interpretation vs $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Interpretation",
+                "markdownPath": "content/markdown/aaa/reactions/bremsstrahlung.md",
+                "markdownSection": "Standard Interpretation vs $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Interpretation",
+                "sectionKey": "standard interpretation vs mathbb a mathbb a mathbb a interpretation",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "reactions__synchrotron_cascades",
+            "title": "Synchrotron Cascades",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/reactions/synchrotron_cascades.json",
+            "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Scope",
+                "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
+                "markdownSection": "Scope",
+                "sectionKey": "scope",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Notation Snapshot",
+                "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
+                "markdownSection": "Notation Snapshot",
+                "sectionKey": "notation snapshot",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Physical Mechanism",
+                "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
+                "markdownSection": "Physical Mechanism",
+                "sectionKey": "physical mechanism",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Core Equations",
+                "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
+                "markdownSection": "Core Equations",
+                "sectionKey": "core equations",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Core Channels (Inclusion Rule)",
+                "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
+                "markdownSection": "Core Channels (Inclusion Rule)",
+                "sectionKey": "core channels inclusion rule",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Assembly Interpretation by Channel",
+                "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
+                "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Assembly Interpretation by Channel",
+                "sectionKey": "mathbb a mathbb a mathbb a assembly interpretation by channel",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Observer-Level Closure Checks",
+                "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
+                "markdownSection": "Observer-Level Closure Checks",
+                "sectionKey": "observer level closure checks",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Regime Map",
+                "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
+                "markdownSection": "Regime Map",
+                "sectionKey": "regime map",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Observable Consequences",
+                "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
+                "markdownSection": "Observable Consequences",
+                "sectionKey": "observable consequences",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Standard Interpretation vs $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Interpretation",
+                "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
+                "markdownSection": "Standard Interpretation vs $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Interpretation",
+                "sectionKey": "standard interpretation vs mathbb a mathbb a mathbb a interpretation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Ontology Mapping (Provisional)",
+                "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
+                "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Ontology Mapping (Provisional)",
+                "sectionKey": "mathbb a mathbb a mathbb a ontology mapping provisional",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Observer-Frame Transport",
+                "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
+                "markdownSection": "Observer-Frame Transport",
+                "sectionKey": "observer frame transport",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Anticipated Mapping Targets",
+                "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
+                "markdownSection": "Anticipated Mapping Targets",
+                "sectionKey": "anticipated mapping targets",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Explanatory Gain (Provisional)",
+                "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
+                "markdownSection": "Explanatory Gain (Provisional)",
+                "sectionKey": "explanatory gain provisional",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Why Reinterpret (Theory Payoff)",
+                "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
+                "markdownSection": "Why Reinterpret (Theory Payoff)",
+                "sectionKey": "why reinterpret theory payoff",
                 "headingLevel": 2
               }
             ]
