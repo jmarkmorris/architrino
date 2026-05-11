@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 142,
-      "sections": 1038
+      "sections": 1034
     }
   },
   "tocRoot": {
@@ -1456,38 +1456,6 @@
                 "scenePath": "content/scenes/quantum/quantum_operator_mapping.json",
                 "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
                 "sections": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "The Tri-Binary Qubit and Phase Space",
-                    "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
-                    "markdownSection": "The Tri-Binary Qubit and Phase Space",
-                    "sectionKey": "the tri binary qubit and phase space",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Unitary Evolution and Topological Torques",
-                    "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
-                    "markdownSection": "Unitary Evolution and Topological Torques",
-                    "sectionKey": "unitary evolution and topological torques",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Entanglement via Retarded Potentials",
-                    "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
-                    "markdownSection": "Entanglement via Retarded Potentials",
-                    "sectionKey": "entanglement via retarded potentials",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Measurement and Dynamical Collapse",
-                    "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
-                    "markdownSection": "Measurement and Dynamical Collapse",
-                    "sectionKey": "measurement and dynamical collapse",
-                    "headingLevel": 2
-                  },
                   {
                     "kind": "markdown-section",
                     "title": "The Tri-Binary Qubit and Phase Space",

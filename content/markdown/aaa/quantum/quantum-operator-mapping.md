@@ -1,33 +1,5 @@
 # Quantum Operator Mapping
 
-## The Tri-Binary Qubit and Phase Space
-Mapping the two-level quantum system to the stable orientational states of the tri-binary assembly.
-* **Computational Basis:** Definition of $|0\rangle$ and $|1\rangle$ as meta-stable alignments of the inner ($v > c_f$) and outer ($v < c_f$) binaries relative to the middle binary fulcrum.
-* **Hilbert Space as Effective Phase Space:** Translation of complex probability amplitudes to continuous causal-wake distributions governed by the delay integro-differential master equation.
-* **Superposition:** Formalization of superposition not as ontological branching, but as a bounded, precessional limit cycle where the continuous emission of polarized potential explores multiple stable path-histories.
-
-## Unitary Evolution and Topological Torques
-Translating unitary operators (quantum gates) into continuous physical perturbations.
-* **Norm Preservation:** Proof that energy-conserving topological torques on the tri-binary orbital planes map exactly to unitary transformations in the effective Hilbert space.
-* **Single-Qubit Gates:** 
-  * Pauli operators as discrete $\pi$-rotations of the tri-binary orientation.
-  * Hadamard operations as the induction of critical bifurcations, driving the assembly into an equiprobable meta-stable precessional state.
-* **Action Functional Bounds:** Constraints on the total action $S = \int (T - V)\,dt$ during gate operations to prevent ionization or irreversible symmetry breaking.
-
-## Entanglement via Retarded Potentials
-The physical mechanism of non-local correlation without instantaneous action.
-* **Phase-Locking:** How $1/r^2$ delayed interactions between adjacent tri-binaries force orbital phases into coupled attractors.
-* **Multi-Qubit Gates (CNOT):** Modeling conditional logic as restricted phase spaces where the orientation of a target assembly is dynamically bounded by the causal wake of a control assembly.
-* **Bell States:** Symmetrical, coupled precessional states maintained by continuous, bidirectional potential flux.
-
-## Measurement and Dynamical Collapse
-Defining wavefunction collapse as a deterministic non-linear relaxation process.
-* **The Measurement Apparatus:** Modeling the detector as a massive, thermodynamically irreversible perturbation in the local Noether Sea.
-* **Attractor Relaxation:** The mathematical process by which external energy gradients overwhelm meta-stable phase-locked resonances, forcing the system into the deepest available basin of attraction (the measured eigenstate).
-* **Decoherence:** The continuous loss of path-history coherence due to uncharacterized background fluctuations in the spacetime medium.
-
-# Quantum Operator Mapping
-
 The standard formulation of quantum mechanics relies on the abstract unitary evolution of state vectors in a complex Hilbert space. Within the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, this linear algebraic structure is an effective, continuum-limit approximation of a fundamentally non-linear, non-Markovian dynamical system. This document establishes the formal mapping between abstract quantum operators and the topological torques acting on tri-binary assemblies, bounded by the causal-delay master equation.
 
 ## The Tri-Binary Qubit and Phase Space
