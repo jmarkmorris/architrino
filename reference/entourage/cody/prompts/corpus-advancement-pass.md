@@ -1,5 +1,13 @@
 # Corpus Advancement Pass
 
+First line to paste into a new thread:
+
+```text
+Use the AAA corpus advancement skill in self-running mode.
+```
+
+Optionally follow it with a specific lane, shard, source document, or edit-batch instruction.
+
 Use this prompt when one AAA document or one recent batch contains a newer theoretical advancement and the rest of the markdown corpus needs to be checked for related updates, stronger formulations, terminology corrections, notation fixes, cross-link opportunities, or newly visible insights.
 
 The highest-value use of this prompt is not mere phrase cleanup. Use the review to convert scattered improvements into a theorem-target map: each recurring claim should be sorted as ontology, derivation/closure target, effective summary, or speculation. The report should identify what can be edited now, what requires a proof or simulation path, and what should become corpus-maintenance infrastructure.
