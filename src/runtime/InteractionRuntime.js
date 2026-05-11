@@ -92,7 +92,7 @@ export function createInteractionRuntime(deps) {
 
     if (event.buttons === 0 && activePointers.size === 0 && !panState.active) {
       deps.updateDetailHover(event.clientX, event.clientY);
-      deps.updateDecayHover(event.clientX, event.clientY);
+      deps.updateGenerationTransitionHover(event.clientX, event.clientY);
     }
   }
 

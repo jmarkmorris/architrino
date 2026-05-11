@@ -4,8 +4,8 @@
 
 Provide the **mathematical backbone** of the architrino theory.
 
-- Turn Marko's core ideas--architrinos, tri-binaries, self-hit, spacetime aether--into **precise dynamical systems** in Euclidean 3-space with absolute time.
-- Identify and classify **stable assemblies** (particles, spacetime/aether, effective fields) as **invariant and/or topological structures** of those dynamics.
+- Turn Marko's core ideas--architrinos, tri-binaries, self-hit, and the Noether Sea--into **precise dynamical systems** in Euclidean 3-space with absolute time.
+- Identify and classify **stable assemblies** (particles, Noether-Sea assemblies, effective fields) as **invariant and/or topological structures** of those dynamics.
 - Derive the **effective continuum descriptions**--fields, symmetries, metrics--needed by:
   - SM/QFT mapping (Part IV),
   - Gravity/cosmology (Part VII-VIII),
@@ -152,9 +152,9 @@ Deliverable: Assembly Atlas for Ch. 14 (with cross-refs to Ch. 18-21 and 31).
   - Analyze whether electron/muon/tau-like families can be modeled as:
     - Distinct vibrational modes of a base topology,
     - Increasing internal complexity (e.g., additional twists/links),
-    - Or different coupling patterns to the aether.
+    - Or different coupling patterns to the Noether Sea.
 - **Mass as geometric/dynamical resistance**:
-  - Define an invariant functional (e.g. average kinetic self-energy, curvature of internal motion, coupling strength to aether) that scales with effective inertial mass.
+  - Define an invariant functional (e.g. average kinetic self-energy, curvature of internal motion, coupling strength to the Noether Sea) that scales with effective inertial mass.
   - Relate mass hierarchy to topological/nodal complexity or frequency content.
 
 Deliverable: Quantitative proposals for **mass functionals** and generational sequences (Ch. 11, 18, 21).
@@ -187,11 +187,11 @@ Deliverable: Stability/bifurcation maps feeding Ch. 14-15 and the phase narrativ
 
 Deliverable: Explicit **coarse-graining map** and resulting field equations (Ch. 17, 31-32).
 
-### Emergent Metric & Curvature from Aether Assemblies
+### Emergent Metric & Curvature from Noether-Sea Assemblies
 
 - Build a **metric functional**:
-  $g_{\mu\nu}(x) = \mathcal{F}\big(\rho_{\text{aether}}(x), u^\alpha_{\text{aether}}(x), \hat n_i(x), \text{tri-binary scales}\big)$
-  where $\rho_{\text{aether}}$ is spacetime-aether couple density, $u^\alpha$ its 4-velocity, and $\hat n_i$ neutral-axis orientations.
+  $g_{\mu\nu}(x) = \mathcal{F}\big(\rho_{\text{core}}(\mathbf{x},t), n(\mathbf{x},t), \chi_{\text{sea}}(\mathbf{x},t), u^\alpha_{\text{sea}}(x), \hat n_i(x), \text{tri-binary scales}\big)$
+  where $\rho_{\text{core}}$ is physical Noether-core density, $n$ is normalized Noether-core density, $\chi_{\text{sea}}$ is the Noether-Sea delay factor, $u^\alpha_{\text{sea}}$ is an effective medium-flow label, and $\hat n_i$ are neutral-axis orientations.
 - Show:
   - Geodesics in this effective metric correspond to coarse-grained architrino/assembly paths.
   - In appropriate limits, recover Newtonian potential, Schwarzschild, FRW, etc.
@@ -202,9 +202,9 @@ Deliverable: Mathematical backbone for Ch. 31-32 and 34 (metric emergence and si
 
 ### Absolute Time and Proper Time Map
 
-- Derive the mapping $d\tau/dt = f(v, \rho_{\text{aether}}, \Phi_{\text{eff}})$ from:
+- Derive the mapping $d\tau/dt = f(v, \rho_{\text{core}}, \chi_{\text{sea}}, \Phi_{\text{eff}})$ from:
   - Delay/interaction structure at the tri-binary level (Noether core oscillation rate vs absolute time).
-  - Aether coupling.
+  - Noether-Sea coupling.
 - Show how:
   - SR-like kinetic time dilation,
   - GR-like gravitational redshift,
@@ -237,9 +237,9 @@ Deliverable: Action-based or geometric mechanics formulation (Ch. 4-5, 29).
 
 Deliverable: Conceptual mathematical link to path-integral QM (Ch. 29, Appendix).
 
-### Statistical Mechanics of Vacuum / Aether
+### Statistical Mechanics of the Noether Sea
 
-- Treat the spacetime-aether as a **statistical ensemble**:
+- Treat the Noether Sea as a **statistical ensemble**:
   - Define temperature-like, chemical-potential-like, and entropy-like quantities if meaningful.
 - Derive:
   - Conditions for homogeneity/isotropy vs structured phases.
@@ -290,7 +290,7 @@ Deliverable: Fluid analogies and hydrodynamic equations for Ch. 28, 31, 39, 42.
 ### With General Relativist & Cosmologist (Cos)
 
 - Jointly derive:
-  - Emergent metric structure from aether assemblies.
+  - Emergent metric structure from Noether-Sea assemblies.
   - Conditions under which GR is recovered (PPN, GW propagation) vs where corrections appear.
 - Provide:
   - Mathematical analysis of horizon structures,  and inflating/deflating phases from self-hit.
@@ -308,7 +308,7 @@ Deliverable: Fluid analogies and hydrodynamic equations for Ch. 28, 31, 39, 42.
 - Supply:
   - Sharp mathematical criteria for observable signatures:
     - E.g. topological transitions <-> decay channels, scattering outcomes,
-    - Aether phase changes <-> cosmological signatures.
+    - Noether-Sea phase changes <-> cosmological signatures.
 - Help:
   - Map assembly-level dynamics to **measurable quantities**: form factors, cross sections, GW signals, lensing patterns.
 
@@ -337,9 +337,9 @@ Use and combine:
 
 - **Master Equation(s)** of architrino dynamics (Ch. 4-5).
 - **Assembly Atlas**:
-  - Catalogue of stable/metastable assemblies with invariants, mapped to candidate SM particles and spacetime/aether configurations (Ch. 14, 18-21, 31).
+  - Catalogue of stable/metastable assemblies with invariants, mapped to candidate SM particles and Noether-Sea configurations (Ch. 14, 18-21, 31).
 - **Emergent Geometry Derivations**:
-  - From architrino/aether distributions to $g_{\mu\nu}$, geodesics, and curvature (Ch. 31-32, 34).
+  - From architrino/Noether-Sea distributions to $g_{\mu\nu}$, geodesics, and curvature (Ch. 31-32, 34).
 - **Self-Hit/Non-Markovian Analysis**:
   - Classification of behaviors, attractors, and phase transitions in the self-hit regime (Ch. 5, 12, 39, 41).
 
@@ -350,7 +350,7 @@ Use and combine:
   - Lyapunov spectrum estimation and other stability indicators.
   - Persistent homology/TDA to identify robust structures amid noise.
 - "Recognition recipes" for:
-  - Electron-like, proton-like, photon-like, and spacetime-aether-like attractors in simulations.
+  - Electron-like, proton-like, photon-like, and Noether-Sea-like attractors in simulations.
 
 ### Pathology & No-Go Report
 
