@@ -267,7 +267,8 @@ Chapter links open scenes. Section links open the corresponding markdown section
       - [Summary and Next Steps](../aaa/assemblies/fermions/color-charge-su3.md?section=Summary+and+Next+Steps)
     - [Electron](../../scenes/standard-model-particles/electron.json) _(diagram)_
     - [Neutrinos](../../scenes/assemblies/neutrinos.json)
-      - [Strongly Shielded, Net-Neutral Noether-Core Excitations](../aaa/assemblies/fermions/neutrinos.md?section=Strongly+Shielded%2C+Net-Neutral+Noether-Core+Excitations)
+      - [Near-Photon Neutral-Core Pairing](../aaa/assemblies/fermions/neutrinos.md?section=Near-Photon+Neutral-Core+Pairing)
+      - [Conversion and Reaction-Provenance Questions](../aaa/assemblies/fermions/neutrinos.md?section=Conversion+and+Reaction-Provenance+Questions)
       - [PMNS closure program (primary lepton integration)](../aaa/assemblies/fermions/neutrinos.md?section=PMNS+closure+program+%28primary+lepton+integration%29)
     - [Quantum Number Mapping](../../scenes/assemblies/quantum_number_mapping.json)
       - [Purpose](../aaa/assemblies/fermions/quantum-number-mapping.md?section=Purpose)

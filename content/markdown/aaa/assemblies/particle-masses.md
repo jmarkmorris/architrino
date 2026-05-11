@@ -171,7 +171,7 @@ The canonical chapter should not carry the detailed simulation protocol. Its rol
 ### Critical Unknowns
 1. **What sets $d_0$?** The minimum binary radius is a fundamental length scale. Can it be derived from $\epsilon$, $c_f$, and $\kappa$, or is it an independent postulate?
 2. **Is $\rho_{\text{vac}}$ uniform?** Or does it vary with cosmological epoch, gravitational field strength, or local matter density?
-3. **Why do neutrinos have mass at all?** If shielding is nearly perfect ($\zeta \sim 10^{-12}$), what breaks the exact cancellation?
+3. **Why do neutrinos have mass at all?** If a neutrino is a near-photon pro/anti core pair with nearly perfect shielding ($\zeta \sim 10^{-12}$), which residual internal-binary exposure breaks exact photon-like cancellation?
 
 ### Potential Falsifications
 - **If $\zeta E_{\text{internal}} \neq m c^2$:** The shielding hypothesis is wrong.

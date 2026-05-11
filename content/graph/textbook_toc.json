@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 149,
-      "sections": 1059
+      "sections": 1060
     }
   },
   "tocRoot": {
@@ -2184,10 +2184,18 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Strongly Shielded, Net-Neutral Noether-Core Excitations",
+                    "title": "Near-Photon Neutral-Core Pairing",
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/neutrinos.md",
-                    "markdownSection": "Strongly Shielded, Net-Neutral Noether-Core Excitations",
-                    "sectionKey": "strongly shielded net neutral noether core excitations",
+                    "markdownSection": "Near-Photon Neutral-Core Pairing",
+                    "sectionKey": "near photon neutral core pairing",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Conversion and Reaction-Provenance Questions",
+                    "markdownPath": "content/markdown/aaa/assemblies/fermions/neutrinos.md",
+                    "markdownSection": "Conversion and Reaction-Provenance Questions",
+                    "sectionKey": "conversion and reaction provenance questions",
                     "headingLevel": 2
                   },
                   {
