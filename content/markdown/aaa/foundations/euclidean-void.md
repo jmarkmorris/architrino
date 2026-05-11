@@ -225,7 +225,7 @@ Homogeneity and isotropy imply:
 - Translation symmetry supplies the kinematic basis for momentum conservation.
 - Rotation symmetry supplies the kinematic basis for angular momentum conservation.
 
-Any preferred-frame effect, anisotropy, or Lorentz-like behavior must arise from dynamics, medium response, or observer construction, not from an anisotropy of the Euclidean void.
+Any preferred-frame effect, anisotropy, or effective Lorentz behavior must arise from dynamics, Noether-Sea response, or observer construction, not from an anisotropy of the Euclidean void.
 
 ## Geodesics and Dynamics
 
@@ -256,7 +256,7 @@ Forbidden as substrate symmetries:
 - Transformations that mix spatial coordinates with absolute time as though the product background were a single relativistic metric.
 - Any operation that introduces a preferred direction at the substrate level.
 
-Galilean or Lorentz-like behavior may appear as an effective observer-level symmetry, but it is not the fundamental symmetry of the Euclidean void itself.
+Galilean behavior may appear as an effective observer-level symmetry, and Lorentz behavior remains a closure target for moving assemblies, clocks, rulers, and signals. Neither is the fundamental symmetry of the Euclidean void itself.
 
 ## Boundary With the Noether Sea
 
