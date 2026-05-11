@@ -30,6 +30,8 @@
     "historyPeriods": 1.25,
     "minDelay": 0.000001,
     "rootTolerance": 0.000001,
+    "stateTolerance": 0.02,
+    "driftTolerance": 0.02,
     "phaseTolerance": 0.02,
     "speedTolerance": 0.02,
     "leakageTolerance": 0.000001
@@ -38,6 +40,9 @@
     "modeMax": 3,
     "gammaAvg": 0.02,
     "jLockThreshold": 0.05,
-    "speedLockThreshold": 0.05
+    "speedLockThreshold": 0.05,
+    "instantaneousSelfDelayFactor": 2,
+    "maxActiveNearSeparatorRoots": 0,
+    "maxExcludedInstantaneousSelfRoots": 0
   }
 }

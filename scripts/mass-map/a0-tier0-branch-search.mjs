@@ -48,9 +48,10 @@ Options:
   --pretty        Pretty-print JSON.
   --help          Show this help.
 
-This is a Tier 0 diagnostic scaffold. It enumerates reduced carrier charts,
+This is a Tier 0 certificate scaffold. It enumerates reduced carrier charts,
 solves sampled causal-root ledgers, classifies averaging/locking/leakage
-placeholders, and emits branch rows. It is not a full delayed-dynamics solver.`);
+diagnostics, and emits branch rows with explicit promotion gates. It is not a
+full delayed-dynamics solver.`);
 }
 
 function readJson(filePath) {
@@ -172,6 +173,22 @@ function sourceRelation(receiver, source) {
   return "inter_layer";
 }
 
+function minimumSelfDelay(config) {
+  const factor = config.classification.instantaneousSelfDelayFactor ?? 2;
+  return config.sampling.minDelay * factor;
+}
+
+function classifyRoot(receiver, source, rootTau, j, config) {
+  const relation = sourceRelation(receiver, source);
+  const isNearZeroSelf = relation === "self" && rootTau <= minimumSelfDelay(config);
+  return {
+    relation,
+    status: isNearZeroSelf ? "excluded_instantaneous_self_kick" : "active",
+    nearSeparator: Math.abs(j) <= config.classification.jLockThreshold,
+    nearZeroSelf: isNearZeroSelf,
+  };
+}
+
 function rootFunction(receiver, source, values, t, tau, cF) {
   const receiverState = bodyState(receiver, values, t);
   const sourceState = bodyState(source, values, t - tau);
@@ -240,6 +257,11 @@ function enumerateRoots(values, config) {
               cF,
               sampling.rootTolerance
             );
+            if (rootTau === null) {
+              priorTau = tau;
+              priorValue = value;
+              continue;
+            }
             const duplicate = roots.some(
               (root) =>
                 root.receiver === receiver.id &&
@@ -247,20 +269,23 @@ function enumerateRoots(values, config) {
                 Math.abs(root.t - t) < 1e-9 &&
                 Math.abs(root.delay - rootTau) < rootStep
             );
-            if (rootTau !== null && !duplicate) {
+            if (!duplicate) {
               const receiverState = bodyState(receiver, values, t);
               const sourceState = bodyState(source, values, t - rootTau);
               const direction = unit(sub(receiverState.position, sourceState.position));
               const j = 1 - dot(sourceState.velocity, direction) / cF;
+              const rootClass = classifyRoot(receiver, source, rootTau, j, config);
               roots.push({
                 receiver: receiver.id,
                 source: source.id,
-                relation: sourceRelation(receiver, source),
+                relation: rootClass.relation,
+                status: rootClass.status,
                 t,
                 delay: rootTau,
                 residual: Math.abs(rootFunction(receiver, source, values, t, rootTau, cF)),
                 J: j,
-                nearSeparator: Math.abs(j) <= config.classification.jLockThreshold,
+                nearSeparator: rootClass.nearSeparator,
+                nearZeroSelf: rootClass.nearZeroSelf,
               });
             }
           }
@@ -274,27 +299,56 @@ function enumerateRoots(values, config) {
 }
 
 function summarizeRoots(roots) {
+  const activeRoots = roots.filter((root) => root.status === "active");
   const summary = {
-    total: roots.length,
+    total: activeRoots.length,
+    rawTotal: roots.length,
     byRelation: {
       partner: 0,
       self: 0,
       inter_layer: 0,
     },
+    rawByRelation: {
+      partner: 0,
+      self: 0,
+      inter_layer: 0,
+    },
+    excluded: {
+      instantaneousSelfKick: 0,
+      nearSeparatorInstantaneousSelfKick: 0,
+    },
     nearSeparator: 0,
+    rawNearSeparator: 0,
     minAbsJ: null,
+    rawMinAbsJ: null,
     maxDelay: 0,
     maxRootResidual: 0,
+    rawMaxRootResidual: 0,
   };
   for (const root of roots) {
+    const absJ = Math.abs(root.J);
+    summary.rawByRelation[root.relation] += 1;
+    summary.rawNearSeparator += root.nearSeparator ? 1 : 0;
+    summary.rawMinAbsJ = summary.rawMinAbsJ === null ? absJ : Math.min(summary.rawMinAbsJ, absJ);
+    summary.rawMaxRootResidual = Math.max(summary.rawMaxRootResidual, root.residual);
+    if (root.status !== "active") {
+      if (root.status === "excluded_instantaneous_self_kick") {
+        summary.excluded.instantaneousSelfKick += 1;
+        summary.excluded.nearSeparatorInstantaneousSelfKick += root.nearSeparator ? 1 : 0;
+      }
+      continue;
+    }
     summary.byRelation[root.relation] += 1;
     summary.nearSeparator += root.nearSeparator ? 1 : 0;
-    const absJ = Math.abs(root.J);
     summary.minAbsJ = summary.minAbsJ === null ? absJ : Math.min(summary.minAbsJ, absJ);
     summary.maxDelay = Math.max(summary.maxDelay, root.delay);
     summary.maxRootResidual = Math.max(summary.maxRootResidual, root.residual);
   }
   return summary;
+}
+
+function activeRoots(roots) {
+  return roots.filter((root) => root.status === "active");
 }
 
 function classifyModes(values, config, roots) {
@@ -321,7 +375,8 @@ function classifyModes(values, config, roots) {
       }
     }
   }
-  const nearSeparatorRoots = roots
+  const active = activeRoots(roots);
+  const nearSeparatorRoots = active
     .filter((root) => root.nearSeparator)
     .slice(0, 20)
     .map((root) => ({
@@ -331,13 +386,28 @@ function classifyModes(values, config, roots) {
       delay: root.delay,
       J: root.J,
     }));
+  const excludedInstantaneousSelfRoots = roots
+    .filter((root) => root.status === "excluded_instantaneous_self_kick")
+    .slice(0, 20)
+    .map((root) => ({
+      receiver: root.receiver,
+      source: root.source,
+      relation: root.relation,
+      delay: root.delay,
+      J: root.J,
+      nearSeparator: root.nearSeparator,
+    }));
   return {
     nonresonantCount,
     nearestMismatch,
     lockModes: lockModes.slice(0, 20),
     lockModeCount: lockModes.length,
     nearSeparatorRoots,
-    nearSeparatorRootCount: roots.filter((root) => root.nearSeparator).length,
+    nearSeparatorRootCount: active.filter((root) => root.nearSeparator).length,
+    excludedInstantaneousSelfRoots,
+    excludedInstantaneousSelfRootCount: roots.filter(
+      (root) => root.status === "excluded_instantaneous_self_kick"
+    ).length,
   };
 }
 
@@ -446,17 +516,169 @@ function phaseResidual(values) {
   return Math.max(...Object.values(values.phaseResiduals));
 }
 
-function candidateFailure(values, rootSummary, residuals, config) {
-  if (residuals.speed > config.sampling.speedTolerance) {
+function stateResidual(values, config) {
+  const bodies = createBodies();
+  const scalePosition = Math.max(...Object.values(values.radii), 1);
+  const scaleVelocity = Math.max(...Object.values(values.speeds), 1);
+  let maxResidual = 0;
+  for (let i = 0; i < config.sampling.sampleCount; i += 1) {
+    const t = (values.commonPeriod * i) / config.sampling.sampleCount;
+    for (const body of bodies) {
+      const now = bodyState(body, values, t);
+      const returned = bodyState(body, values, t + values.commonPeriod);
+      const positionResidual = norm(sub(now.position, returned.position)) / scalePosition;
+      const velocityResidual = norm(sub(now.velocity, returned.velocity)) / scaleVelocity;
+      maxResidual = Math.max(maxResidual, positionResidual, velocityResidual);
+    }
+  }
+  return maxResidual;
+}
+
+function residualComponent(value, tolerance, role, status = null, note = null) {
+  const resolvedStatus =
+    status ?? (typeof value === "number" && typeof tolerance === "number" && value <= tolerance ? "pass" : "fail");
+  return {
+    value,
+    tolerance,
+    status: resolvedStatus,
+    role,
+    note,
+  };
+}
+
+function pendingResidual(role, note) {
+  return {
+    value: null,
+    tolerance: null,
+    status: "not_computed_in_tier0",
+    role,
+    note,
+  };
+}
+
+function gate(status, note) {
+  return { status, note };
+}
+
+function numericResiduals(residuals) {
+  return Object.fromEntries(Object.entries(residuals).map(([key, value]) => [key, value.value]));
+}
+
+function residualSemanticsPass(residuals) {
+  return Object.values(residuals).every(
+    (component) =>
+      component &&
+      Object.hasOwn(component, "value") &&
+      Object.hasOwn(component, "tolerance") &&
+      typeof component.status === "string" &&
+      typeof component.role === "string" &&
+      Object.hasOwn(component, "note")
+  );
+}
+
+function maximumActiveNearSeparatorRoots(config) {
+  return config.classification.maxActiveNearSeparatorRoots ?? 0;
+}
+
+function candidateFailure(rootSummary, residuals, config) {
+  if (residuals.speed.status !== "pass") {
     return "speed-order-collapse";
   }
-  if (residuals.phase > config.sampling.phaseTolerance) {
+  if (residuals.phase.status !== "pass") {
     return "phase-closure-open";
   }
-  if (rootSummary.total === 0 || rootSummary.byRelation.partner === 0 || rootSummary.byRelation.inter_layer === 0) {
+  if (residuals.state.status !== "pass" || residuals.drift.status !== "pass") {
+    return "carrier-residual-open";
+  }
+  if (residuals.root.status !== "pass") {
+    return "root-residual-open";
+  }
+  if (residuals.avg.status === "fail") {
+    return "averaging-residual-open";
+  }
+  if (residuals.lock.status === "fail") {
+    return "locking-residual-open";
+  }
+  if (rootSummary.nearSeparator > maximumActiveNearSeparatorRoots(config)) {
+    return "separator-singularity-unresolved";
+  }
+  if (rootSummary.excluded.instantaneousSelfKick > (config.classification.maxExcludedInstantaneousSelfRoots ?? 0)) {
+    return "near-zero-self-root-excluded";
+  }
+  if (
+    rootSummary.total === 0 ||
+    rootSummary.byRelation.partner === 0 ||
+    rootSummary.byRelation.self === 0 ||
+    rootSummary.byRelation.inter_layer === 0
+  ) {
     return "root-ledger-open";
   }
   return "candidate";
+}
+
+function buildCertificateGates(failureCode, rootSummary, residuals, config) {
+  return {
+    speed_ordering: gate(
+      residuals.speed.status,
+      "Checks sign-aware ordering for s_I > c_f, s_M near c_f, and s_O < c_f."
+    ),
+    phase_closure: gate(residuals.phase.status, "Checks layer winding closure over T_k."),
+    carrier_residuals: gate(
+      residuals.state.status === "pass" && residuals.drift.status === "pass" ? "pass" : "fail",
+      "Checks carrier state return and center drift residuals over T_k."
+    ),
+    root_residual: gate(residuals.root.status, "Checks active causal-root defects on retained branches."),
+    active_root_ledger: gate(
+      rootSummary.total > 0 &&
+        rootSummary.byRelation.partner > 0 &&
+        rootSummary.byRelation.self > 0 &&
+        rootSummary.byRelation.inter_layer > 0
+        ? "pass"
+        : "fail",
+      "Requires active partner, self, and inter-layer causal-root classes."
+    ),
+    active_separator_roots: gate(
+      rootSummary.nearSeparator <= maximumActiveNearSeparatorRoots(config) ? "pass" : "fail",
+      "Active near-separator roots require an explicit locking continuation rule before promotion."
+    ),
+    near_zero_self_roots: gate(
+      rootSummary.excluded.instantaneousSelfKick <=
+        (config.classification.maxExcludedInstantaneousSelfRoots ?? 0)
+        ? "pass"
+        : "fail",
+      "Near-zero self roots are recorded but excluded from the active ledger under H(0)=0."
+    ),
+    residual_vector_semantics: gate(
+      residualSemanticsPass(residuals) ? "pass" : "fail",
+      "Every residual component carries status, tolerance, role, and note fields."
+    ),
+    tier0_continuation: gate(
+      failureCode === "candidate" ? "pass" : "fail",
+      "Only pass rows may seed Tier 1 eta>0 continuation; no row is an accepted attractor."
+    ),
+  };
+}
+
+function buildStateVector(values, config) {
+  const bodies = createBodies();
+  return {
+    labels: bodies.map((body) => ({
+      id: body.id,
+      layer: body.layer,
+      polarity: body.polarity,
+      charge: body.charge,
+    })),
+    centerGauge: "C_A0=0 diagnostic carrier chart",
+    historyWindow: config.sampling.historyPeriods * Math.max(...Object.values(values.periods)),
+    initial: bodies.map((body) => {
+      const state = bodyState(body, values, 0);
+      return {
+        id: body.id,
+        position: state.position,
+        velocity: state.velocity,
+      };
+    }),
+  };
 }
 
 function* paramGrid(config) {
@@ -486,26 +708,86 @@ function rowForParams(params, config, index) {
   const rootSummary = summarizeRoots(roots);
   const classification = classifyModes(values, config, roots);
   const leakage = leakagePlaceholder(values, config);
-  const residuals = {
-    state: null,
-    root: rootSummary.maxRootResidual,
-    phase: phaseResidual(values),
-    energy: null,
-    drift: 0,
-    speed: speedResidual(values, config.seaCell.c_f),
-    avg: params.epsilonIM + params.epsilonMO + Math.max(
+  const avgResidual =
+    params.epsilonIM +
+    params.epsilonMO +
+    Math.max(
       config.sampling.minDelay / values.radii.I,
       config.sampling.minDelay / values.radii.M,
       config.sampling.minDelay / values.radii.O
+    );
+  const leakageResidual = leakage.averageDipole + leakage.averageQuadrupole;
+  const residuals = {
+    state: residualComponent(
+      stateResidual(values, config),
+      config.sampling.stateTolerance ?? config.sampling.phaseTolerance,
+      "tier0_required",
+      null,
+      "Carrier-chart return mismatch over one declared common period."
     ),
-    lock: classification.nearSeparatorRootCount / Math.max(1, rootSummary.total),
-    leak: leakage.averageDipole + leakage.averageQuadrupole,
-    Floquet: null,
+    root: residualComponent(
+      rootSummary.maxRootResidual,
+      config.sampling.rootTolerance,
+      "tier0_required",
+      null,
+      "Maximum active causal-root defect on retained branches."
+    ),
+    phase: residualComponent(
+      phaseResidual(values),
+      config.sampling.phaseTolerance,
+      "tier0_required",
+      null,
+      "Maximum mismatch from integer layer winding closure."
+    ),
+    energy: pendingResidual(
+      "tier1_or_tier2_required",
+      "Tier 0 has no accepted regularized energy/history functional; Tier 1/Tier 2 must compute this."
+    ),
+    drift: residualComponent(
+      0,
+      config.sampling.driftTolerance ?? config.sampling.phaseTolerance,
+      "tier0_required",
+      null,
+      "Diagnostic carrier is centered by construction; Tier 1 must retest under direct delayed dynamics."
+    ),
+    speed: residualComponent(
+      speedResidual(values, config.seaCell.c_f),
+      config.sampling.speedTolerance,
+      "tier0_required",
+      null,
+      "Sign-aware violation of the intended I/M/O speed ordering."
+    ),
+    avg: residualComponent(
+      avgResidual,
+      config.classification.avgTolerance ?? null,
+      "tier0_diagnostic",
+      config.classification.avgTolerance ? null : "diagnostic",
+      "Scale-separation plus regularization proxy for terms claimed to average out."
+    ),
+    lock: residualComponent(
+      classification.nearSeparatorRootCount / Math.max(1, rootSummary.total),
+      config.classification.lockFractionTolerance ?? null,
+      "tier0_diagnostic",
+      config.classification.lockFractionTolerance ? null : "diagnostic",
+      "Fraction of active roots classified as near-separator locking roots."
+    ),
+    leak: residualComponent(
+      leakageResidual,
+      config.sampling.leakageTolerance,
+      "tier2_required",
+      leakage.leadingOrder === "suppressed-through-quadrupole" ? "pass" : "attention",
+      "Leading far-field leakage placeholder; Tier 2 must replace it with radius/angular extraction."
+    ),
+    Floquet: pendingResidual(
+      "tier1_required",
+      "Tier 0 does not construct a monodromy operator; Tier 1 must compute Delta_k after symmetry quotienting."
+    ),
   };
-  const failureCode = candidateFailure(values, rootSummary, residuals, config);
+  const failureCode = candidateFailure(rootSummary, residuals, config);
+  const certificateGates = buildCertificateGates(failureCode, rootSummary, residuals, config);
   return {
     row: index,
-    status: failureCode === "candidate" ? "tier0_candidate" : "tier0_rejected",
+    status: failureCode === "candidate" ? "tier0_continuation_ready" : "tier0_rejected",
     failure_code: failureCode,
     branch_label: {
       k: values.windings,
@@ -517,7 +799,18 @@ function rowForParams(params, config, index) {
       handedness: values.handedness,
       ellipticity: values.ellipticity,
     },
+    closure_labels: {
+      T_k: values.commonPeriod,
+      k: values.windings,
+      q: {
+        IM: values.windings.I - values.windings.M,
+        MO: values.windings.M - values.windings.O,
+        IO: values.windings.I - values.windings.O,
+      },
+      activeRootClasses: rootSummary.byRelation,
+    },
     parameters: params,
+    state_vector: buildStateVector(values, config),
     geometry: {
       radii: values.radii,
       speeds: values.speeds,
@@ -530,6 +823,12 @@ function rowForParams(params, config, index) {
     term_classification: classification,
     leakage_placeholder: leakage,
     residuals,
+    residual_values: numericResiduals(residuals),
+    certificate_gates: certificateGates,
+    promotion_boundary:
+      failureCode === "candidate"
+        ? "May seed Tier 1 eta>0 continuation; not an attractor, mass-map result, or inertial-response result."
+        : "Does not seed Tier 1 until the failing gate is resolved.",
   };
 }
 
@@ -546,18 +845,31 @@ function run(config, limit) {
   return {
     metadata: {
       artifact: "a0-tier0-branch-search",
-      status: "diagnostic-scaffold",
+      status: "tier0-certificate-scaffold",
       generatedAt: new Date().toISOString(),
       config: path.relative(process.cwd(), config.__configPath ?? DEFAULT_CONFIG_PATH),
-      note: "Tier 0 rows are reduced carrier diagnostics, not accepted attractors.",
+      note:
+        "Tier 0 rows are reduced carrier certificate diagnostics. Passing rows may seed Tier 1 only; they are not accepted attractors.",
     },
     sea_cell: config.seaCell,
     tolerances: {
       root: config.sampling.rootTolerance,
+      state: config.sampling.stateTolerance ?? config.sampling.phaseTolerance,
       phase: config.sampling.phaseTolerance,
       speed: config.sampling.speedTolerance,
       gammaAvg: config.classification.gammaAvg,
       jLock: config.classification.jLockThreshold,
+      instantaneousSelfDelay: minimumSelfDelay(config),
+    },
+    audit_policy: {
+      instantaneousSelfKick:
+        "Self roots with delay at or below the near-zero threshold are recorded in raw ledgers but excluded from active branch counts under H(0)=0.",
+      particleBenchmarksExcluded: [
+        "particle masses",
+        "charged-lepton ratios",
+        "electron radius",
+        "measured alpha",
+      ],
     },
     candidates,
   };

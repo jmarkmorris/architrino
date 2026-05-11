@@ -22,13 +22,23 @@ Required outputs:
 | Output | Meaning |
 | --- | --- |
 | `branch_label` | layer windings, inter-layer closure integers, handedness, and active root-branch summary |
+| `closure_labels` | declared $T_{\mathbf{k}}$, winding integers, inter-layer closure integers, and active root classes |
 | `state_vector` | reduced geometry, frequencies, phase offsets, carrier chart, and center gauge |
-| `root_ledger` | partner, self, and inter-layer root counts with delays, branch Jacobians, and separator flags |
+| `root_ledger` | active and raw partner, self, and inter-layer root counts with delays, branch Jacobians, separator flags, and excluded near-zero self roots separated |
 | `term_classification` | terms assigned to averaging, locking, and leakage channels |
-| `residuals` | $\mathcal{R}_{\text{state}}$, $\mathcal{R}_{\text{root}}$, $\mathcal{R}_{\text{phase}}$, $\mathcal{R}_{E}$, $\mathcal{R}_{\text{drift}}$, $\mathcal{R}_{\text{speed}}$, $\mathcal{R}_{\text{avg}}$, $\mathcal{R}_{\text{lock}}$, $\mathcal{R}_{\text{leak}}$, and $\mathcal{R}_{\text{Floquet}}$ when available |
+| `residuals` | $\mathcal{R}_{\text{state}}$, $\mathcal{R}_{\text{root}}$, $\mathcal{R}_{\text{phase}}$, $\mathcal{R}_{E}$, $\mathcal{R}_{\text{drift}}$, $\mathcal{R}_{\text{speed}}$, $\mathcal{R}_{\text{avg}}$, $\mathcal{R}_{\text{lock}}$, $\mathcal{R}_{\text{leak}}$, and $\mathcal{R}_{\text{Floquet}}$, each with value, tolerance, status, role, and note fields |
+| `certificate_gates` | pass/fail promotion gates for speed ordering, phase closure, bounded carrier residuals, active root defects, active root-ledger completeness, active separator-root handling, near-zero self-root handling, residual semantics, and Tier 0 continuation |
 | `failure_code` | reason the row failed, or `candidate` if it survives Tier 0 |
 
 Tier 0 passes only if at least one row has a finite causal-root ledger, correct speed ordering, bounded carrier residuals, no unclassified separator term, and a complete residual vector. Passing Tier 0 only authorizes Tier 1 continuation.
+
+### Near-Zero Self Roots
+
+Tier 0 must distinguish raw self-root sightings from active self-hit branches. A self root at the configured near-zero delay threshold is recorded in the raw ledger but excluded from the active ledger as an instantaneous self-kick artifact under the convention $H(0)=0$.
+
+Such a root may not count as self-hit closure unless a later regularized fold-layer model explicitly accepts it with a named branch condition, tolerance, and promotion rule. Until that model exists, near-zero self roots block Tier 0 promotion rather than satisfying the self-hit branch requirement.
+
+The reader-facing interpretation of these rows is in [$A_0$ Tier 0 Result Interpretation](a0-tier0-result-interpretation.md).
 
 ## Tier 1: $\eta>0$ Continuation
 
@@ -65,6 +75,8 @@ Tier 3 begins only after Tier 2 passes. It applies small acceleration and gradie
 ## Runtime Artifact
 
 The first reduced Tier 0 artifact is `scripts/mass-map/a0-tier0-branch-search.mjs`, with default grid `scripts/mass-map/a0-tier0-default-grid.json`. It is an algebraic branch-search scaffold, not a production simulator. Its required role is to emit candidate rows with parameter choices, carrier diagnostics, root ledgers, term classifications, leakage placeholders, and failure codes matching this protocol.
+
+The companion audit is `scripts/audit-a0-mass-map-promotion.mjs`. It scans AAA and mass-map priority prose for premature statements that treat $\zeta(A_0)$, $E_{\text{internal}}(A_0)$, or $\mathcal{M}_{\text{sea}}^{ab}$ as accepted before the Tier gates pass.
 
 ## Acceptance Boundary
 

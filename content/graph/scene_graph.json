@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 462,
+      "nodes": 463,
       "edges": 1217,
       "scenes": 317,
       "markdownIndexes": 0,
-      "markdownDocs": 145,
+      "markdownDocs": 146,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2774,6 +2774,12 @@
       "id": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
       "name": "$A_0$ Branch Certificate Protocol",
       "path": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
+      "name": "$A_0$ Tier 0 Result Interpretation",
+      "path": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -6862,6 +6868,15 @@
       "name": "$A_0$ Branch Certificate Protocol",
       "path": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
+      "name": "$A_0$ Tier 0 Result Interpretation",
+      "path": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
       "implicit": false
     },
     {

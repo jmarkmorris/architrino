@@ -14,7 +14,7 @@ The opening gives the top-level simulation rule set; the later sections unpack t
 
 ## $A_0$ Branch-Certificate Protocol
 
-The first mass-map target has a specialized protocol in [$A_0$ Branch Certificate Protocol](a0-branch-certificate-protocol.md). That protocol separates four stages:
+The first mass-map target has a specialized protocol in [$A_0$ Branch Certificate Protocol](a0-branch-certificate-protocol.md), with Tier 0 row semantics summarized in [$A_0$ Tier 0 Result Interpretation](a0-tier0-result-interpretation.md). That protocol separates four stages:
 
 1. Tier 0 algebraic branch search for finite root-ledger candidates.
 2. Tier 1 $\eta>0$ delayed-dynamics continuation and Floquet diagnostics.

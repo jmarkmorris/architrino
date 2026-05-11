@@ -2,7 +2,7 @@
 
 This note is the launch overview for the simulation branch. It explains the common simulation frame, the role of the virtual $\mathbb{U}_{\text{now}}$ universe-state perspective, and the separation between raw microstate logging and detector-level synthetic observables.
 
-Use it as the top orientation document before reading the more specialized simulation protocols, convergence checks, action-energy notes, and the [$A_0$ branch certificate protocol](a0-branch-certificate-protocol.md).
+Use it as the top orientation document before reading the more specialized simulation protocols, convergence checks, action-energy notes, the [$A_0$ branch certificate protocol](a0-branch-certificate-protocol.md), and the [$A_0$ Tier 0 result interpretation](a0-tier0-result-interpretation.md).
 
 ## Simulation Frame: Virtual $\mathbb{U}_{\text{now}}$ Perspective
 
@@ -16,6 +16,7 @@ Checklist per tier:
 - How to compute physical observables ($\tau$, redshift, lensing proxies, GW strain proxies)
 - Convergence requirements for each output type
 - For the first mass-map target, how the $A_0$ Tier 0/Tier 1 branch certificate is separated from later energy, shielding, and medium-response interpretation
+- For Tier 0 rows, how active roots, raw roots, excluded near-zero self roots, residual semantics, and promotion gates should be read before any Tier 1 continuation
 
 
 ### Simulation Frame and the $\mathbb{U}_{\text{now}}$ universe-state perspective
