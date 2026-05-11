@@ -14,6 +14,7 @@
       "path": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md"
     },
     "view": {
+      "columns": 1,
       "autoOpen": true
     }
   },

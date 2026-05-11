@@ -14,6 +14,7 @@
       "path": "content/markdown/aaa/spacetime/noether-sea.md"
     },
     "view": {
+      "columns": 1,
       "autoOpen": true
     }
   },

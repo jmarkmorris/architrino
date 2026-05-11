@@ -14,6 +14,7 @@
       "path": "content/markdown/aaa/validation/validation-protocols.md"
     },
     "view": {
+      "columns": 1,
       "autoOpen": true
     }
   },

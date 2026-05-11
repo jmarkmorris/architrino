@@ -9,7 +9,12 @@
     "layout": {
       "type": "rings"
     },
+    "centerOn": "standard_model",
     "children": [
+      {
+        "nodeId": "standard_model",
+        "scenePath": "content/scenes/standard-model-particles/standard_model.json"
+      },
       {
         "nodeId": "noether_core",
         "scenePath": "content/scenes/assemblies/noether_core.json"
@@ -21,10 +26,6 @@
       {
         "nodeId": "particle_masses",
         "scenePath": "content/scenes/assemblies/particle_masses.json"
-      },
-      {
-        "nodeId": "standard_model",
-        "scenePath": "content/scenes/standard-model-particles/standard_model.json"
       },
       {
         "nodeId": "fermions",
@@ -46,100 +47,138 @@
   },
   "objects": [
     {
+      "id": "standard_model",
+      "title": "Standard Model Assemblies",
+      "radius": 2.688,
+      "color": "#2f6b6f",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Standard Model Assemblies",
+      "fixedPosition": true
+    },
+    {
       "id": "noether_core",
       "title": "Noether Core",
       "radius": 2.688,
       "color": "#3a5f9f",
+      "position": [
+        0,
+        10.5,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Noether Core",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "noether_core_geometry",
       "title": "Noether Core Geometry",
       "radius": 2.688,
       "color": "#2f4f7a",
+      "position": [
+        8.21,
+        6.55,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Noether Core Geometry",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "particle_masses",
       "title": "Particle Masses",
       "radius": 2.688,
       "color": "#5a1f2e",
+      "position": [
+        10.24,
+        -2.34,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Particle Masses",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "standard_model",
-      "title": "Standard Model Assemblies",
-      "radius": 2.688,
-      "color": "#2f6b6f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Standard Model Assemblies"
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "fermions",
       "title": "Fermions",
       "radius": 2.688,
       "color": "#5d3a9f",
+      "position": [
+        4.56,
+        -9.46,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Fermions"
+      "labelTitle": "Fermions",
+      "fixedPosition": true
     },
     {
       "id": "electroweak_bosons",
       "title": "Electroweak Bosons",
       "radius": 2.688,
       "color": "#2f6b6f",
+      "position": [
+        -4.56,
+        -9.46,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Electroweak Bosons",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "gluons",
       "title": "Gluons",
       "radius": 2.688,
       "color": "#3a5f9f",
+      "position": [
+        -10.24,
+        -2.34,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Gluons",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "photons",
-      "title": "Photons",
-      "radius": 2.688,
-      "color": "#3f6a5a",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Photons"
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "mesons_doc",
       "title": "Mesons",
       "radius": 2.688,
       "color": "#3a5f9f",
+      "position": [
+        -8.21,
+        6.55,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Mesons",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
     }
   ]
 }

@@ -14,6 +14,7 @@
       "path": "content/markdown/aaa/spacetime/mapping-planck-scale.md"
     },
     "view": {
+      "columns": 1,
       "autoOpen": true
     }
   },

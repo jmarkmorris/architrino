@@ -74,7 +74,7 @@ Within the architrino framework the same integral structure holds, with $H(a)$ a
 
 ### Baryonic Assemblies
 
-Baryons (protons, neutrons, and their composites) are tri-binary assemblies with specific axial patterns. Their clustering behavior is governed by the effective growth equation above, modified by pressure support (thermal motion) and radiative cooling. Before recombination, baryonic assemblies are tightly coupled to the photon field (planar tri-binary wave packets propagating through the medium), producing acoustic oscillations. After decoupling, baryons fall into potential wells already established by the dark sector.
+Baryons (protons, neutrons, and their composites) are tri-binary assemblies with specific axial patterns. Their clustering behavior is governed by the effective growth equation above, modified by pressure support (thermal motion) and radiative cooling. Before recombination, baryonic assemblies are tightly coupled to photon planar-pair wave packets propagating through the medium, producing acoustic oscillations. After decoupling, baryons fall into potential wells already established by the dark sector.
 
 ### Neutral Assemblies (Dark-Matter Candidates)
 

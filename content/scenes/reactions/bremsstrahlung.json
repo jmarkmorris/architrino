@@ -14,6 +14,7 @@
       "path": "content/markdown/aaa/reactions/bremsstrahlung.md"
     },
     "view": {
+      "columns": 1,
       "autoOpen": true
     }
   },

@@ -14,6 +14,7 @@
       "path": "content/markdown/aaa/assemblies/bosons/gluons.md"
     },
     "view": {
+      "columns": 1,
       "autoOpen": true
     }
   },

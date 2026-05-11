@@ -57,6 +57,9 @@
           }
         }
       }
+    },
+    "view": {
+      "columns": 1
     }
   },
   "objects": []

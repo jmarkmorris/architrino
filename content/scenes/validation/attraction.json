@@ -14,6 +14,7 @@
       "path": "content/markdown/aaa/validation/simulations/action-energy/attraction.md"
     },
     "view": {
+      "columns": 1,
       "autoOpen": true
     }
   },

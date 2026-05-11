@@ -15,7 +15,7 @@ At assembly level, these terms refer to substrate dynamics in absolute time:
 - **Mode-lock event:** a discrete stability transition where a driven tri-binary/wake configuration settles into an allowed propagating or bound mode.
 - **Wake-strain threshold:** the local instability boundary in Noether-Sea-coupled transport; below threshold, energy disperses into medium excitations, above threshold, stable mode formation is allowed.
 - **Nucleation:** relocking/reorganization of existing substrate content (with provenance-preserving architrino bookkeeping), not creation ex nihilo.
-- **Planar-mode nucleation (photon channels):** lock-in to a stable planar propagating mode carrying energy-momentum and polarization structure.
+- **Planar-mode nucleation (photon channels):** lock-in to a stable coaxial contra-rotating pro/anti planar-pair mode carrying energy-momentum and polarization structure.
 - **Corridor-mode nucleation (weak channels):** lock-in to corridor-type interaction modes used for $W^\pm/Z$ channel bookkeeping.
 - **Pair nucleation:** local substrate recruitment/reconfiguration into $e^+e^-$ assemblies under threshold-satisfying two-photon forcing, constrained to recover standard kinematic and rate limits in validated regimes.
 
@@ -85,7 +85,7 @@ Observer channel: $e^\pm + Z \rightarrow e^\pm + Z + \gamma$.
 Step map:
 1. Incoming charged assembly follows a deflected trajectory in target potential.
 2. Deflection induces wake-strain concentration in local Noether-core sea coupling, with received forcing sharpened or diluted by the branch Jacobian during the scattering history.
-3. If wake-strain crosses planar-mode threshold, photon planar mode nucleates.
+3. If wake-strain crosses planar-mode threshold, a photon planar-pair mode nucleates.
 4. If not crossed, energy stays in non-radiative channels (heating/collective excitation).
 5. Event closure requires recoil plus emitted-photon momentum balance at vertex level.
 6. Observer-level result must recover standard $d\sigma/dk$ with screening/form-factor corrections in the validated regime.
@@ -152,7 +152,7 @@ $$
 Observer channel: $\gamma + \gamma \rightarrow e^+ + e^-$.
 
 Step map:
-1. Two photon planar modes enter overlap geometry with center-of-momentum invariant $s$.
+1. Two photon planar-pair modes enter overlap geometry with center-of-momentum invariant $s$.
 2. Threshold gate: channel allowed only for $s \ge 4m_e^2$.
 3. Above threshold, local substrate relock recruits Noether-core content into charged pair assemblies.
 4. Provenance ledger records conversion path from incoming photon modes plus recruited substrate pool.
@@ -221,7 +221,7 @@ Each reaction chapter should include three short blocks:
 
 ## Channel-Specific Terms
 
-- **Planar-mode nucleation:** photon-channel lock-in language. Use for electromagnetic radiation channels (for example synchrotron, bremsstrahlung) unless a chapter justifies another term.
+- **Planar-mode nucleation:** photon-channel lock-in language for forming a coaxial contra-rotating pro/anti planar-pair mode. Use for electromagnetic radiation channels (for example synchrotron, bremsstrahlung) unless a chapter justifies another term.
 - **Corridor-mode nucleation:** weak-channel language reserved for $W^\pm/Z$ interaction contexts.
 - **Pair nucleation:** $\gamma\gamma \rightarrow e^+e^-$ language at ontology level; must map to standard threshold/rate constraints in validated limits.
 

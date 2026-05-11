@@ -14,6 +14,7 @@
       "path": "content/markdown/aaa/cosmology/dark-matter.md"
     },
     "view": {
+      "columns": 1,
       "autoOpen": true
     }
   },

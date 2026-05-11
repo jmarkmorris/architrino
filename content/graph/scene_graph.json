@@ -10,7 +10,7 @@
     },
     "counts": {
       "nodes": 446,
-      "edges": 1200,
+      "edges": 1203,
       "scenes": 308,
       "markdownIndexes": 0,
       "markdownDocs": 138,
@@ -7134,28 +7134,28 @@
       "to": "scene:content/scenes/assemblies/noether_core_geometry.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
       "to": "scene:content/scenes/assemblies/noether_core.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
-      "field": "scene.children[0]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
       "to": "scene:content/scenes/assemblies/particle_masses.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
       "to": "scene:content/scenes/standard-model-particles/standard_model.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
@@ -11691,6 +11691,27 @@
       "to": "markdown_doc:content/markdown/aaa/spacetime/spacetime-assemblies.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/spacetime/spacetime_assemblies.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/standard-model-particles/electron.json",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/electron.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/standard-model-particles/electron.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/standard-model-particles/muon.json",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/muon-tau.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/standard-model-particles/muon.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/standard-model-particles/tau.json",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/muon-tau.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/standard-model-particles/tau.json",
       "field": "scene.source.path"
     },
     {

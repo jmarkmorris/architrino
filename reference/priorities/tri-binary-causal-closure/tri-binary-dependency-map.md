@@ -204,10 +204,10 @@ The deployment gate is passed only when every non-closed item in this map has a 
 - Priority route: `master-equation-closure`, `strong-field-closure`, `standard-model-closure`.
 - Current disposition: `priority`.
 
-### 12. Photon Planar Pair
+### 12. Photon Coaxial Pro/Anti Planar Pair
 
 - Inputs: massive-clock transverse-budget failure at $c_{\text{eff}}$, pro/anti Noether-core orientations, and primitive wake speed $c_f$.
-- Mechanism: a photon is a planar pro/anti pair with axial pair communication rather than volumetric transverse clock closure. The transition from a three-dimensional Noether-core invariant to a planar photon invariant must be treated as separator-mediated dimensional reduction, not as a smooth flattening of an orthogonal braid.
+- Mechanism: a photon is a coaxial contra-rotating pro/anti planar pair with axial pair communication rather than volumetric transverse clock closure. The transition from a three-dimensional Noether-core invariant to a planar photon invariant must be treated as separator-mediated dimensional reduction, not as a smooth flattening of an orthogonal braid.
 - Output: a massless measurement channel with energy, momentum, transverse polarization, and no rest proper-time clock.
 - Proof burden: photon gate A must recover masslessness, no rest branch, no static charge leakage, no birefringence, no unacceptable dispersion, no rest proper-time clock, and the topological surgery rule that destroys the volumetric clock invariant before the photon channel is used as an empirical measurement basis.
 - Priority route: `standard-model-closure`, `quantum-closure`, `planar-bridge-closure`.
@@ -245,10 +245,10 @@ The deployment gate is passed only when every non-closed item in this map has a 
 
 ### 15. QED And Optical Phenomenology
 
-- Inputs: photon planar-pair ontology, emission/absorption ledger transitions, and charged assembly overlaps.
+- Inputs: photon coaxial contra-rotating pro/anti planar-pair ontology, emission/absorption ledger transitions, and charged assembly overlaps.
 - Mechanism: effective Maxwell/QED behavior must arise as the validated limit of planar-pair interactions.
 - Output: $E=h\nu$, $p=h/\lambda$, $U(1)$-like phase behavior, Aharonov-Bohm shifts, transition rates, pair production, Compton scattering, blackbody spectra, and $\alpha$.
-- Proof burden: photon gate C must map emission, absorption, pair production, transition rates, and $\alpha$ as allowed topological surgery between massive Noether cores and planar pro/anti pairs, while recovering QED without extra modes, dispersion, birefringence, or wrong statistics.
+- Proof burden: photon gate C must map emission, absorption, pair production, transition rates, and $\alpha$ as allowed topological surgery between massive Noether cores and coaxial contra-rotating pro/anti planar pairs, while recovering QED without extra modes, dispersion, birefringence, or wrong statistics.
 - Priority route: `standard-model-closure`.
 - Current disposition: `priority`.
 

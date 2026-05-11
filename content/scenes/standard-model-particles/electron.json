@@ -12,6 +12,14 @@
     "layout": {
       "type": "manual"
     },
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/assemblies/fermions/electron.md"
+    },
+    "view": {
+      "columns": 1,
+      "autoOpen": false
+    },
     "children": [
       {
         "scenePath": "content/scenes/architrino-theory/electrino.json",

@@ -279,6 +279,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Mapping Discipline](../aaa/interactions/mode-taxonomy.md?section=Mapping+Discipline)
     - [Related Chapters](../aaa/interactions/mode-taxonomy.md?section=Related+Chapters)
 - [Standard Model Assemblies](../../scenes/assemblies/assemblies.json)
+  - [Standard Model](../../scenes/standard-model-particles/standard_model.json) _(diagram)_
   - [Noether Core](../../scenes/assemblies/noether_core.json)
   - [Noether Core Geometry](../../scenes/assemblies/noether_core_geometry.json)
     - [Ownership Boundary](../aaa/assemblies/noether-core-geometry.md?section=Ownership+Boundary)
@@ -292,7 +293,6 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Speculative Charged-Lepton Benchmark: Koide](../aaa/assemblies/particle-masses.md?section=Speculative+Charged-Lepton+Benchmark%3A+Koide)
     - [Quantitative Derivation Path](../aaa/assemblies/particle-masses.md?section=Quantitative+Derivation+Path)
     - [Open Questions & Failure Modes](../aaa/assemblies/particle-masses.md?section=Open+Questions+%26+Failure+Modes)
-  - [Standard Model](../../scenes/standard-model-particles/standard_model.json) _(diagram)_
   - [Fermions](../../scenes/assemblies/fermions.json)
     - [Color Charge SU3](../../scenes/assemblies/color_charge_su3.json)
       - [Ontology, Notation, and Generations](../aaa/assemblies/fermions/color-charge-su3.md?section=Ontology%2C+Notation%2C+and+Generations)
@@ -357,7 +357,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
       - [Speculative Bookkeeping Sketch](../aaa/assemblies/fermions/weak-mixing-ckm.md?section=Speculative+Bookkeeping+Sketch)
       - [Closure Integration: CKM-Holonomy and Lepton Handoff](../aaa/assemblies/fermions/weak-mixing-ckm.md?section=Closure+Integration%3A+CKM-Holonomy+and+Lepton+Handoff)
   - [Electroweak Bosons](../../scenes/assemblies/electroweak_bosons.json)
-    - [The Photon (γ): Coaxial Contra-Rotating Stack](../aaa/assemblies/bosons/electroweak-bosons.md?section=The+Photon+%28%24%5Cgamma%24%29%3A+Coaxial+Contra-Rotating+Stack)
+    - [The Photon (γ): Coaxial Contra-Rotating Pro/Anti Planar Pair](../aaa/assemblies/bosons/electroweak-bosons.md?section=The+Photon+%28%24%5Cgamma%24%29%3A+Coaxial+Contra-Rotating+Pro%2FAnti+Planar+Pair)
     - [The Weak Bosons (W±, Z⁰): Transient Recoupling Bundles](../aaa/assemblies/bosons/electroweak-bosons.md?section=The+Weak+Bosons+%28%24W%5E%5Cpm%2C+Z%5E0%24%29%3A+Transient+Recoupling+Bundles)
     - [The Higgs Boson (H): The Noether-Sea Breathing Mode](../aaa/assemblies/bosons/electroweak-bosons.md?section=The+Higgs+Boson+%28%24H%24%29%3A+The+Noether-Sea+Breathing+Mode)
     - [Summary Table](../aaa/assemblies/bosons/electroweak-bosons.md?section=Summary+Table)

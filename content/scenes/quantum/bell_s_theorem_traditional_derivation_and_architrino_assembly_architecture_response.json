@@ -14,6 +14,7 @@
       "path": "content/markdown/aaa/quantum/bell-theorem.md"
     },
     "view": {
+      "columns": 1,
       "autoOpen": true
     }
   },

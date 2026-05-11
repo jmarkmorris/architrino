@@ -2283,6 +2283,13 @@
         "scenePath": "content/scenes/assemblies/assemblies.json",
         "children": [
           {
+            "id": "standard_model",
+            "title": "Standard Model",
+            "kind": "diagram",
+            "sceneType": "Scene-Diagram",
+            "scenePath": "content/scenes/standard-model-particles/standard_model.json"
+          },
+          {
             "id": "assemblies__noether_core",
             "title": "Noether Core",
             "kind": "markdown-view",
@@ -2391,13 +2398,6 @@
             ]
           },
           {
-            "id": "standard_model",
-            "title": "Standard Model",
-            "kind": "diagram",
-            "sceneType": "Scene-Diagram",
-            "scenePath": "content/scenes/standard-model-particles/standard_model.json"
-          },
-          {
             "id": "fermions",
             "title": "Fermions",
             "kind": "scene-index",
@@ -2483,7 +2483,8 @@
                 "title": "Electron",
                 "kind": "diagram",
                 "sceneType": "Scene-Diagram",
-                "scenePath": "content/scenes/standard-model-particles/electron.json"
+                "scenePath": "content/scenes/standard-model-particles/electron.json",
+                "markdownPath": "content/markdown/aaa/assemblies/fermions/electron.md"
               },
               {
                 "id": "fermions__neutrinos",
@@ -2921,10 +2922,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "The Photon ($\\gamma$): Coaxial Contra-Rotating Stack",
+                "title": "The Photon ($\\gamma$): Coaxial Contra-Rotating Pro/Anti Planar Pair",
                 "markdownPath": "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
-                "markdownSection": "The Photon ($\\gamma$): Coaxial Contra-Rotating Stack",
-                "sectionKey": "the photon gamma coaxial contra rotating stack",
+                "markdownSection": "The Photon ($\\gamma$): Coaxial Contra-Rotating Pro/Anti Planar Pair",
+                "sectionKey": "the photon gamma coaxial contra rotating pro anti planar pair",
                 "headingLevel": 2
               },
               {

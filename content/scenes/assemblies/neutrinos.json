@@ -14,6 +14,7 @@
       "path": "content/markdown/aaa/assemblies/fermions/neutrinos.md"
     },
     "view": {
+      "columns": 1,
       "autoOpen": true
     }
   },

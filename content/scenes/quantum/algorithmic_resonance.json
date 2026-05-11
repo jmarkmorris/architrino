@@ -14,6 +14,7 @@
       "path": "content/markdown/aaa/quantum/algorithmic-resonance.md"
     },
     "view": {
+      "columns": 1,
       "autoOpen": true
     }
   },

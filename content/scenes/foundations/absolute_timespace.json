@@ -14,6 +14,7 @@
       "path": "content/markdown/aaa/foundations/absolute-timespace.md"
     },
     "view": {
+      "columns": 1,
       "autoOpen": true
     }
   },
