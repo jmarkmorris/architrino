@@ -26,22 +26,34 @@
       "title": "Bremsstrahlung",
       "radius": 2.688,
       "color": "#5a1f2e",
+      "position": [
+        0,
+        10.5,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Bremsstrahlung",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "synchrotron_cascades",
       "title": "Synchrotron Cascades",
       "radius": 2.688,
       "color": "#2f4f7a",
+      "position": [
+        0,
+        -10.5,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Synchrotron Cascades",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
     }
   ]
 }

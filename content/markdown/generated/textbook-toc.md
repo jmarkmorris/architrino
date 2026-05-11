@@ -764,7 +764,6 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Reusable Assessment Prompt](../aaa/validation/closure-scorecard.md?section=Reusable+Assessment+Prompt)
     - [Assessment Table](../aaa/validation/closure-scorecard.md?section=Assessment+Table)
   - [Failure Criteria](../../scenes/validation/failure_criteria.json)
-    - [The Lorentzian Conspiracy Stop-Condition](../aaa/validation/failure-criteria.md?section=The+Lorentzian+Conspiracy+Stop-Condition)
   - [Known Tensions](../../scenes/validation/known_tensions.json)
     - [Purpose](../aaa/validation/known-tensions.md?section=Purpose)
     - [Severity Scale](../aaa/validation/known-tensions.md?section=Severity+Scale)

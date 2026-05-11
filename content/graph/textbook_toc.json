@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 142,
-      "sections": 1034
+      "sections": 1033
     }
   },
   "tocRoot": {
@@ -6271,17 +6271,7 @@
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/validation/failure_criteria.json",
-            "markdownPath": "content/markdown/aaa/validation/failure-criteria.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "The Lorentzian Conspiracy Stop-Condition",
-                "markdownPath": "content/markdown/aaa/validation/failure-criteria.md",
-                "markdownSection": "The Lorentzian Conspiracy Stop-Condition",
-                "sectionKey": "the lorentzian conspiracy stop condition",
-                "headingLevel": 2
-              }
-            ]
+            "markdownPath": "content/markdown/aaa/validation/failure-criteria.md"
           },
           {
             "id": "validation__known_tensions",

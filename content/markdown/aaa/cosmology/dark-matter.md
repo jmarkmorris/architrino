@@ -113,7 +113,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology, supermassive black holes (SMBHs) 
 
 ### Mass Scale
 
-The neutral-assembly mass is not a free parameter to be fitted post hoc; it must emerge from the binding energy of the assembly's core and its drag coupling to the Noether Sea. Candidate mass ranges, mapped to observational constraints:
+The neutral-assembly mass is not a free parameter to be fitted post hoc; it must emerge from the assembly's internal energy ledger, shielding factor, and medium-dressed response to the Noether Sea. This is an inertial and gravitational response map, not ordinary dissipative drag. Candidate mass ranges, mapped to observational constraints:
 
 - $m \sim$ eV: warm dark matter; suppresses small-scale structure.
 - $m \sim$ keV–GeV: canonical cold dark matter window.

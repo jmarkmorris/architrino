@@ -57,7 +57,7 @@ When this corpus says that something "emerges," the claim should identify four p
 3. **Regime:** where the emergent description is expected to hold.
 4. **Breakdown:** what changes outside that regime.
 
-For example, Lorentz-like behavior is an emergence claim only when the text names the assembly contraction, clock-law, and Noether-Sea response mechanisms, states the weak-gradient or low-energy regime, and identifies the self-hit or strong-field conditions where the approximation can fail.
+For example, Lorentz-like behavior is an emergence claim only when the text names the moving-assembly deformation law, the clock-period renormalization law, the Noether-Sea response mechanism, and the coefficient or theorem target that would suppress preferred-frame leakage. The claim should also state the weak-gradient or low-energy regime where the effective law is expected to hold, and identify the self-hit, separator, or strong-field conditions where the approximation can fail.
 
 This rule keeps emergence from becoming a placeholder. It is acceptable to use emergence as a programmatic claim, but the surrounding prose must say whether the mechanism is derived, simulated, conjectural, or only a routing target.
 
@@ -75,7 +75,7 @@ The most useful observer-level quantities enter only after assemblies have forme
 
 -   **Angular momentum:** emerges from organized binary circulation of point potentials and from the ordered orientation data of nested binaries.
 -   **Chirality:** emerges from the handed precession order of a stable core.
--   **Apparent mass and reactivity:** depend on shielding, drag against the surrounding medium, and how exposed the deeper binary structure is to external coupling.
+-   **Apparent mass and reactivity:** depend on shielding, medium-dressed response, and how exposed the deeper binary structure is to external coupling. Dissipative drag is a separate failure channel, not the default mass mechanism.
 
 In this sense, emergence is not merely a catalog of larger objects. It is also the stage at which familiar physical descriptors become well-defined coarse variables for persistent assemblies.
 
