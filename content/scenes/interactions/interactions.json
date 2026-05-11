@@ -30,33 +30,51 @@
       "label": "Emergence of U(1)/SU(2)",
       "radius": 2.688,
       "color": "#3a5f9f",
+      "position": [
+        0,
+        10.5,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Emergence of U(1)/SU(2)",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "gauge_symmetries",
       "label": "Gauge Symmetries",
       "radius": 2.688,
       "color": "#2f4f7a",
+      "position": [
+        9.09,
+        -5.25,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Gauge Symmetries",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "mode_taxonomy",
       "label": "Mode Taxonomy",
       "radius": 2.688,
       "color": "#3c6a7a",
+      "position": [
+        -9.09,
+        -5.25,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Mode Taxonomy",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
     }
   ]
 }
