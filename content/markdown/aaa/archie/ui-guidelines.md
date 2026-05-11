@@ -82,6 +82,7 @@ The third column is a comma-separated ledger of known web-facing docs or app sur
 
 | UI Element | Preference | Current Non-Matching Uses |
 | --- | --- | --- |
+| Hub scene reading order | In hub scenes, a center sphere is the reader’s orientation/start node. Peripheral spheres are read from 12 o’clock clockwise. If no center sphere exists, the 12 o’clock sphere is the start. |  |
 | Ring layout scenes | Use when the local scene behaves like a conceptual cluster of peer topics |  |
 | Grid layout scenes | Use when the local scene behaves like an ordered notebook, ledger, dated sequence, or other row-scanned list |  |
 | Split-document navigation nodes | Derive peer nodes from one declared heading level in one markdown document |  |

@@ -7022,21 +7022,21 @@
       "to": "scene:content/scenes/assemblies/assemblies.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/cosmology/cosmology.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/cosmology/universe.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
@@ -7064,35 +7064,35 @@
       "to": "scene:content/scenes/nuclear/nuclear_atomic.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/proof-programs/proof_programs.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/reactions/reactions.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/spacetime/spacetime.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",

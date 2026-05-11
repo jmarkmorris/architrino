@@ -28,16 +28,12 @@
         "scenePath": "content/scenes/interactions/interactions.json"
       },
       {
-        "nodeId": "reactions",
-        "scenePath": "content/scenes/reactions/reactions.json"
-      },
-      {
-        "nodeId": "proof_programs",
-        "scenePath": "content/scenes/proof-programs/proof_programs.json"
-      },
-      {
         "nodeId": "assemblies",
         "scenePath": "content/scenes/assemblies/assemblies.json"
+      },
+      {
+        "nodeId": "reactions",
+        "scenePath": "content/scenes/reactions/reactions.json"
       },
       {
         "nodeId": "nuclear_atomic",
@@ -52,19 +48,23 @@
         "scenePath": "content/scenes/cosmology/cosmology.json"
       },
       {
-        "nodeId": "validation",
-        "scenePath": "content/scenes/validation/validation.json"
-      },
-      {
-        "nodeId": "philosophy_history",
-        "scenePath": "content/scenes/philosophy_history/philosophy_history.json"
-      },
-      {
         "nodeId": "universe",
         "scenePath": "content/scenes/cosmology/universe.json",
         "textbookToc": {
           "hideEntry": true
         }
+      },
+      {
+        "nodeId": "validation",
+        "scenePath": "content/scenes/validation/validation.json"
+      },
+      {
+        "nodeId": "proof_programs",
+        "scenePath": "content/scenes/proof-programs/proof_programs.json"
+      },
+      {
+        "nodeId": "philosophy_history",
+        "scenePath": "content/scenes/philosophy_history/philosophy_history.json"
       }
     ]
   },
@@ -107,7 +107,7 @@
       "radius": 2.688,
       "color": "#6c4f8d",
       "position": [
-        -6.65,
+        6.65,
         10.35,
         0
       ],
@@ -118,45 +118,13 @@
       "fixedPosition": true
     },
     {
-      "id": "reactions",
-      "title": "Reactions",
-      "radius": 2.688,
-      "color": "#8b5e34",
-      "position": [
-        -11.19,
-        5.11,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Reactions",
-      "fixedPosition": true
-    },
-    {
-      "id": "proof_programs",
-      "title": "Proof Programs",
-      "radius": 2.688,
-      "color": "#6f5a2f",
-      "position": [
-        -12.17,
-        -1.75,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Proof Programs",
-      "fixedPosition": true
-    },
-    {
       "id": "assemblies",
       "title": "Standard Model Assemblies",
       "radius": 2.688,
       "color": "#2f6b6f",
       "position": [
-        -9.3,
-        -8.05,
+        11.19,
+        5.11,
         0
       ],
       "motion": {
@@ -166,13 +134,29 @@
       "fixedPosition": true
     },
     {
+      "id": "reactions",
+      "title": "Reactions",
+      "radius": 2.688,
+      "color": "#8b5e34",
+      "position": [
+        12.17,
+        -1.75,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Reactions",
+      "fixedPosition": true
+    },
+    {
       "id": "nuclear_atomic",
       "title": "Atomic and Nuclear Assemblies",
       "radius": 2.688,
       "color": "#7a4a1f",
       "position": [
-        -3.47,
-        -11.8,
+        9.3,
+        -8.05,
         0
       ],
       "motion": {
@@ -203,8 +187,8 @@
       "radius": 2.688,
       "color": "#3c6a7a",
       "position": [
-        9.3,
-        -8.05,
+        -3.47,
+        -11.8,
         0
       ],
       "motion": {
@@ -214,12 +198,29 @@
       "fixedPosition": true
     },
     {
+      "id": "universe",
+      "title": "Reductionist Universe",
+      "radius": 2.688,
+      "color": "#243d8f",
+      "position": [
+        -9.3,
+        -8.05,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "scaleExponent": 26,
+      "labelTitle": "Reductionist Universe",
+      "fixedPosition": true
+    },
+    {
       "id": "validation",
       "title": "Validation",
       "radius": 2.688,
       "color": "#3f6a5a",
       "position": [
-        12.17,
+        -12.17,
         -1.75,
         0
       ],
@@ -230,36 +231,35 @@
       "fixedPosition": true
     },
     {
-      "id": "philosophy_history",
-      "title": "Philosophy-History",
+      "id": "proof_programs",
+      "title": "Proof Programs",
       "radius": 2.688,
-      "color": "#6a3c3c",
+      "color": "#6f5a2f",
       "position": [
-        11.19,
+        -11.19,
         5.11,
         0
       ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Philosophy-History",
+      "labelTitle": "Proof Programs",
       "fixedPosition": true
     },
     {
-      "id": "universe",
-      "title": "Reductionist Universe",
+      "id": "philosophy_history",
+      "title": "Philosophy-History",
       "radius": 2.688,
-      "color": "#243d8f",
+      "color": "#6a3c3c",
       "position": [
-        6.65,
+        -6.65,
         10.35,
         0
       ],
       "motion": {
         "type": "fixed"
       },
-      "scaleExponent": 26,
-      "labelTitle": "Reductionist Universe",
+      "labelTitle": "Philosophy-History",
       "fixedPosition": true
     }
   ]
