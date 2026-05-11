@@ -10,7 +10,7 @@
     },
     "counts": {
       "nodes": 458,
-      "edges": 1212,
+      "edges": 1213,
       "scenes": 315,
       "markdownIndexes": 0,
       "markdownDocs": 143,
@@ -7594,7 +7594,7 @@
       "to": "scene:content/scenes/cosmology/galaxy_cluster.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/universe.json",
-      "field": "scene.children[0]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/cosmology/universe.json",
@@ -7602,6 +7602,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/universe.json",
       "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/cosmology/universe.json",
+      "to": "scene:content/scenes/spacetime/noether_sea.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/cosmology/universe.json",
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -10380,42 +10387,42 @@
       "to": "scene:content/scenes/philosophy_history/agency_and_internal_causation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/historical_context_missed_opportunities.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/information_computation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/philosophy_of_science.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -10429,28 +10436,28 @@
       "to": "scene:content/scenes/philosophy_history/theory_differentials.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/theory_mapping.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/unknowns_paradoxes.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[0]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/proof-programs/proof_programs.json",
       "to": "scene:content/scenes/proof-programs/closed_form_collinear_breather_ansatz.json",
       "edgeType": "subscene",
       "source": "content/scenes/proof-programs/proof_programs.json",
-      "field": "scene.children[0]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/proof-programs/proof_programs.json",
@@ -10464,7 +10471,7 @@
       "to": "scene:content/scenes/proof-programs/master_equation_breather.json",
       "edgeType": "subscene",
       "source": "content/scenes/proof-programs/proof_programs.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/proof-programs/proof_programs.json",
@@ -10891,70 +10898,70 @@
       "to": "scene:content/scenes/theory-bridges/bell_theorem.json",
       "edgeType": "subscene",
       "source": "content/scenes/theory-bridges/theory_bridges.json",
-      "field": "scene.children[0]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/theory-bridges/theory_bridges.json",
       "to": "scene:content/scenes/theory-bridges/collapse_problem.json",
       "edgeType": "subscene",
       "source": "content/scenes/theory-bridges/theory_bridges.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/theory-bridges/theory_bridges.json",
       "to": "scene:content/scenes/theory-bridges/entanglement_nonlocality.json",
       "edgeType": "subscene",
       "source": "content/scenes/theory-bridges/theory_bridges.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/theory-bridges/theory_bridges.json",
       "to": "scene:content/scenes/theory-bridges/klein_gordon_scalar_fields.json",
       "edgeType": "subscene",
       "source": "content/scenes/theory-bridges/theory_bridges.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/theory-bridges/theory_bridges.json",
       "to": "scene:content/scenes/theory-bridges/pilot_wave_character.json",
       "edgeType": "subscene",
       "source": "content/scenes/theory-bridges/theory_bridges.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/theory-bridges/theory_bridges.json",
       "to": "scene:content/scenes/theory-bridges/planck_scale_tri_binary_alignment.json",
       "edgeType": "subscene",
       "source": "content/scenes/theory-bridges/theory_bridges.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/theory-bridges/theory_bridges.json",
       "to": "scene:content/scenes/theory-bridges/quantum_operator_mapping.json",
       "edgeType": "subscene",
       "source": "content/scenes/theory-bridges/theory_bridges.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/theory-bridges/theory_bridges.json",
       "to": "scene:content/scenes/theory-bridges/special_relativity_noether_core.json",
       "edgeType": "subscene",
       "source": "content/scenes/theory-bridges/theory_bridges.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/theory-bridges/theory_bridges.json",
       "to": "scene:content/scenes/theory-bridges/superposition_mechanism.json",
       "edgeType": "subscene",
       "source": "content/scenes/theory-bridges/theory_bridges.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/theory-bridges/theory_bridges.json",
       "to": "scene:content/scenes/theory-bridges/weak_mixing_ckm.json",
       "edgeType": "subscene",
       "source": "content/scenes/theory-bridges/theory_bridges.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/validation/action_energy.json",
@@ -11129,28 +11136,28 @@
       "to": "scene:content/scenes/validation/closure_scorecard.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/validation.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/validation/validation.json",
       "to": "scene:content/scenes/validation/constraint_ledger.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/validation.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/validation/validation.json",
       "to": "scene:content/scenes/validation/failure_criteria.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/validation.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/validation/validation.json",
       "to": "scene:content/scenes/validation/known_tensions.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/validation.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/validation/validation.json",
@@ -11164,28 +11171,28 @@
       "to": "scene:content/scenes/validation/parameter_ledger.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/validation.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/validation/validation.json",
       "to": "scene:content/scenes/validation/reaction_ledger.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/validation.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/validation/validation.json",
       "to": "scene:content/scenes/validation/simulations.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/validation.json",
-      "field": "scene.children[0]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/validation/validation.json",
       "to": "scene:content/scenes/validation/validation_protocols.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/validation.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/archie/about.json",

@@ -9,10 +9,19 @@
     "layout": {
       "type": "rings"
     },
+    "centerOn": "quantum_operator_mapping",
     "children": [
       {
-        "nodeId": "bell_theorem",
-        "scenePath": "content/scenes/theory-bridges/bell_theorem.json"
+        "nodeId": "quantum_operator_mapping",
+        "scenePath": "content/scenes/theory-bridges/quantum_operator_mapping.json"
+      },
+      {
+        "nodeId": "pilot_wave_character",
+        "scenePath": "content/scenes/theory-bridges/pilot_wave_character.json"
+      },
+      {
+        "nodeId": "superposition_mechanism",
+        "scenePath": "content/scenes/theory-bridges/superposition_mechanism.json"
       },
       {
         "nodeId": "collapse_problem",
@@ -23,145 +32,197 @@
         "scenePath": "content/scenes/theory-bridges/entanglement_nonlocality.json"
       },
       {
-        "nodeId": "klein_gordon_scalar_fields",
-        "scenePath": "content/scenes/theory-bridges/klein_gordon_scalar_fields.json"
-      },
-      {
-        "nodeId": "pilot_wave_character",
-        "scenePath": "content/scenes/theory-bridges/pilot_wave_character.json"
-      },
-      {
-        "nodeId": "planck_scale_tri_binary_alignment",
-        "scenePath": "content/scenes/theory-bridges/planck_scale_tri_binary_alignment.json"
-      },
-      {
-        "nodeId": "quantum_operator_mapping",
-        "scenePath": "content/scenes/theory-bridges/quantum_operator_mapping.json"
+        "nodeId": "bell_theorem",
+        "scenePath": "content/scenes/theory-bridges/bell_theorem.json"
       },
       {
         "nodeId": "special_relativity_noether_core",
         "scenePath": "content/scenes/theory-bridges/special_relativity_noether_core.json"
       },
       {
-        "nodeId": "superposition_mechanism",
-        "scenePath": "content/scenes/theory-bridges/superposition_mechanism.json"
+        "nodeId": "klein_gordon_scalar_fields",
+        "scenePath": "content/scenes/theory-bridges/klein_gordon_scalar_fields.json"
       },
       {
         "nodeId": "weak_mixing_ckm",
         "scenePath": "content/scenes/theory-bridges/weak_mixing_ckm.json"
+      },
+      {
+        "nodeId": "planck_scale_tri_binary_alignment",
+        "scenePath": "content/scenes/theory-bridges/planck_scale_tri_binary_alignment.json"
       }
     ]
   },
   "objects": [
     {
-      "id": "bell_theorem",
-      "title": "Bell's Theorem",
+      "id": "quantum_operator_mapping",
+      "title": "Quantum Operator Mapping",
       "radius": 2.688,
-      "color": "#243d8f",
+      "color": "#6c4f8d",
+      "position": [
+        0,
+        0,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Bell's Theorem",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "collapse_problem",
-      "title": "Measurement Problem and Collapse",
-      "radius": 2.688,
-      "color": "#2f6b6f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Measurement Problem and Collapse",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "entanglement_nonlocality",
-      "title": "Entanglement and Nonlocality",
-      "radius": 2.688,
-      "color": "#5a1f2e",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Entanglement and Nonlocality",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "klein_gordon_scalar_fields",
-      "title": "Relativistic Scalar Fields and the Klein-Gordon Equation",
-      "radius": 2.688,
-      "color": "#3c6a7a",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Relativistic Scalar Fields and the Klein-Gordon Equation",
-      "labelBadge": "doc"
+      "labelTitle": "Quantum Operator Mapping",
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "pilot_wave_character",
       "title": "Pilot-Wave Character",
       "radius": 2.688,
       "color": "#3a5f9f",
+      "position": [
+        0,
+        10.5,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Pilot-Wave Character",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "planck_scale_tri_binary_alignment",
-      "title": "Planck Scale Tri-Binary Alignment",
-      "radius": 2.688,
-      "color": "#7a4a1f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Planck Scale Tri-Binary Alignment",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "quantum_operator_mapping",
-      "title": "Quantum Operator Mapping",
-      "radius": 2.688,
-      "color": "#6c4f8d",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Quantum Operator Mapping",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "special_relativity_noether_core",
-      "title": "Special Relativity and Deformable Noether Cores",
-      "radius": 2.688,
-      "color": "#4f5d75",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Special Relativity and Deformable Noether Cores",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "superposition_mechanism",
       "title": "Superposition Mechanism",
       "radius": 2.688,
       "color": "#1c2a4f",
+      "position": [
+        6.75,
+        8.04,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Superposition Mechanism",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "collapse_problem",
+      "title": "Measurement Problem and Collapse",
+      "radius": 2.688,
+      "color": "#2f6b6f",
+      "position": [
+        10.34,
+        1.82,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Measurement Problem and Collapse",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "entanglement_nonlocality",
+      "title": "Entanglement and Nonlocality",
+      "radius": 2.688,
+      "color": "#5a1f2e",
+      "position": [
+        9.09,
+        -5.25,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Entanglement and Nonlocality",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "bell_theorem",
+      "title": "Bell's Theorem",
+      "radius": 2.688,
+      "color": "#243d8f",
+      "position": [
+        3.59,
+        -9.87,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Bell's Theorem",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "special_relativity_noether_core",
+      "title": "Special Relativity and Deformable Noether Cores",
+      "radius": 2.688,
+      "color": "#4f5d75",
+      "position": [
+        -3.59,
+        -9.87,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Special Relativity and Deformable Noether Cores",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "klein_gordon_scalar_fields",
+      "title": "Relativistic Scalar Fields and the Klein-Gordon Equation",
+      "radius": 2.688,
+      "color": "#3c6a7a",
+      "position": [
+        -9.09,
+        -5.25,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Relativistic Scalar Fields and the Klein-Gordon Equation",
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "weak_mixing_ckm",
       "title": "Weak Mixing CKM",
       "radius": 2.688,
       "color": "#3f6a5a",
+      "position": [
+        -10.34,
+        1.82,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Weak Mixing CKM",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "planck_scale_tri_binary_alignment",
+      "title": "Planck Scale Tri-Binary Alignment",
+      "radius": 2.688,
+      "color": "#7a4a1f",
+      "position": [
+        -6.75,
+        8.04,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Planck Scale Tri-Binary Alignment",
+      "labelBadge": "doc",
+      "fixedPosition": true
     }
   ]
 }

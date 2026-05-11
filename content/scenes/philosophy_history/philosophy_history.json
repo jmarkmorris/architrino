@@ -9,18 +9,27 @@
     "layout": {
       "type": "rings"
     },
+    "centerOn": "philosophy_of_science",
     "children": [
+      {
+        "nodeId": "philosophy_of_science",
+        "scenePath": "content/scenes/philosophy_history/philosophy_of_science.json"
+      },
+      {
+        "nodeId": "crisis_in_physics",
+        "scenePath": "content/scenes/philosophy_history/crisis_in_physics.json"
+      },
       {
         "nodeId": "unknowns_paradoxes_scene",
         "scenePath": "content/scenes/philosophy_history/unknowns_paradoxes.json"
       },
       {
-        "nodeId": "agency_and_internal_causation",
-        "scenePath": "content/scenes/philosophy_history/agency_and_internal_causation.json"
+        "nodeId": "theory_mapping",
+        "scenePath": "content/scenes/philosophy_history/theory_mapping.json"
       },
       {
-        "nodeId": "crisis_in_physics",
-        "scenePath": "content/scenes/philosophy_history/crisis_in_physics.json"
+        "nodeId": "theory_differentials",
+        "scenePath": "content/scenes/philosophy_history/theory_differentials.json"
       },
       {
         "nodeId": "historical_context_missed_opportunities",
@@ -31,128 +40,180 @@
         "scenePath": "content/scenes/philosophy_history/major_thinkers.json"
       },
       {
-        "nodeId": "information_computation",
-        "scenePath": "content/scenes/philosophy_history/information_computation.json"
-      },
-      {
-        "nodeId": "philosophy_of_science",
-        "scenePath": "content/scenes/philosophy_history/philosophy_of_science.json"
-      },
-      {
         "nodeId": "religious_ontologies",
         "scenePath": "content/scenes/philosophy_history/religious_ontologies.json"
       },
       {
-        "nodeId": "theory_mapping",
-        "scenePath": "content/scenes/philosophy_history/theory_mapping.json"
+        "nodeId": "information_computation",
+        "scenePath": "content/scenes/philosophy_history/information_computation.json"
       },
       {
-        "nodeId": "theory_differentials",
-        "scenePath": "content/scenes/philosophy_history/theory_differentials.json"
+        "nodeId": "agency_and_internal_causation",
+        "scenePath": "content/scenes/philosophy_history/agency_and_internal_causation.json"
       }
     ]
   },
   "objects": [
     {
-      "id": "unknowns_paradoxes_scene",
-      "title": "Unknowns & Paradoxes",
+      "id": "philosophy_of_science",
+      "title": "Philosophy of Science",
       "radius": 2.688,
-      "color": "#5a3f73",
+      "color": "#7a4a1f",
+      "position": [
+        0,
+        0,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Unknowns & Paradoxes"
-    },
-    {
-      "id": "agency_and_internal_causation",
-      "title": "Agency and Internal Causation",
-      "radius": 2.688,
-      "color": "#6a3c3c",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Agency and Internal Causation",
-      "labelBadge": "doc"
+      "labelTitle": "Philosophy of Science",
+      "fixedPosition": true
     },
     {
       "id": "crisis_in_physics",
       "title": "Crisis in Physics",
       "radius": 2.688,
       "color": "#243d8f",
+      "position": [
+        0,
+        10.5,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Crisis in Physics"
+      "labelTitle": "Crisis in Physics",
+      "fixedPosition": true
     },
     {
-      "id": "historical_context_missed_opportunities",
-      "title": "Historical Context and Missed Opportunities",
+      "id": "unknowns_paradoxes_scene",
+      "title": "Unknowns & Paradoxes",
       "radius": 2.688,
-      "color": "#2f6b6f",
+      "color": "#5a3f73",
+      "position": [
+        6.75,
+        8.04,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Historical Context and Missed Opportunities"
-    },
-    {
-      "id": "major_thinkers",
-      "title": "Major Thinkers",
-      "radius": 2.688,
-      "color": "#4b0082",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Major Thinkers"
-    },
-    {
-      "id": "information_computation",
-      "title": "Information / Computation",
-      "radius": 2.688,
-      "color": "#2f4f7a",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Information / Computation"
-    },
-    {
-      "id": "philosophy_of_science",
-      "title": "Philosophy of Science",
-      "radius": 2.688,
-      "color": "#7a4a1f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Philosophy of Science"
-    },
-    {
-      "id": "religious_ontologies",
-      "title": "Religious Ontologies",
-      "radius": 2.688,
-      "color": "#3a5f9f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Religious Ontologies"
+      "labelTitle": "Unknowns & Paradoxes",
+      "fixedPosition": true
     },
     {
       "id": "theory_mapping",
       "title": "Theory Mapping",
       "radius": 2.688,
       "color": "#2f4f7a",
+      "position": [
+        10.34,
+        1.82,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Theory Mapping"
+      "labelTitle": "Theory Mapping",
+      "fixedPosition": true
     },
     {
       "id": "theory_differentials",
       "title": "Theory Differentials",
       "radius": 2.688,
       "color": "#3f6a5a",
+      "position": [
+        9.09,
+        -5.25,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Theory Differentials"
+      "labelTitle": "Theory Differentials",
+      "fixedPosition": true
+    },
+    {
+      "id": "historical_context_missed_opportunities",
+      "title": "Historical Context and Missed Opportunities",
+      "radius": 2.688,
+      "color": "#2f6b6f",
+      "position": [
+        3.59,
+        -9.87,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Historical Context and Missed Opportunities",
+      "fixedPosition": true
+    },
+    {
+      "id": "major_thinkers",
+      "title": "Major Thinkers",
+      "radius": 2.688,
+      "color": "#4b0082",
+      "position": [
+        -3.59,
+        -9.87,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Major Thinkers",
+      "fixedPosition": true
+    },
+    {
+      "id": "religious_ontologies",
+      "title": "Religious Ontologies",
+      "radius": 2.688,
+      "color": "#3a5f9f",
+      "position": [
+        -9.09,
+        -5.25,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Religious Ontologies",
+      "fixedPosition": true
+    },
+    {
+      "id": "information_computation",
+      "title": "Information / Computation",
+      "radius": 2.688,
+      "color": "#2f4f7a",
+      "position": [
+        -10.34,
+        1.82,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Information / Computation",
+      "fixedPosition": true
+    },
+    {
+      "id": "agency_and_internal_causation",
+      "title": "Agency and Internal Causation",
+      "radius": 2.688,
+      "color": "#6a3c3c",
+      "position": [
+        -6.75,
+        8.04,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Agency and Internal Causation",
+      "labelBadge": "doc",
+      "fixedPosition": true
     }
   ]
 }
