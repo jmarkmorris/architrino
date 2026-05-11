@@ -9983,63 +9983,63 @@
       "to": "scene:content/scenes/foundations/absolute_time_defense.json",
       "edgeType": "subscene",
       "source": "content/scenes/foundations/foundations.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/foundations/foundations.json",
       "to": "scene:content/scenes/foundations/absolute_time.json",
       "edgeType": "subscene",
       "source": "content/scenes/foundations/foundations.json",
-      "field": "scene.children[0]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/foundations/foundations.json",
       "to": "scene:content/scenes/foundations/absolute_timespace.json",
       "edgeType": "subscene",
       "source": "content/scenes/foundations/foundations.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/foundations/foundations.json",
       "to": "scene:content/scenes/foundations/architrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/foundations/foundations.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/foundations/foundations.json",
       "to": "scene:content/scenes/foundations/bootstrapping_the_absolute_frame.json",
       "edgeType": "subscene",
       "source": "content/scenes/foundations/foundations.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/foundations/foundations.json",
       "to": "scene:content/scenes/foundations/detecting_the_absolute_frame.json",
       "edgeType": "subscene",
       "source": "content/scenes/foundations/foundations.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/foundations/foundations.json",
       "to": "scene:content/scenes/foundations/emergence_of_structure.json",
       "edgeType": "subscene",
       "source": "content/scenes/foundations/foundations.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/foundations/foundations.json",
       "to": "scene:content/scenes/foundations/euclidean_void.json",
       "edgeType": "subscene",
       "source": "content/scenes/foundations/foundations.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/foundations/foundations.json",
       "to": "scene:content/scenes/foundations/foundational_ontology.json",
       "edgeType": "subscene",
       "source": "content/scenes/foundations/foundations.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/interactions/interactions.json",

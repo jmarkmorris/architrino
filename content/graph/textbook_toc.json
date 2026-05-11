@@ -27,6 +27,210 @@
         "scenePath": "content/scenes/foundations/foundations.json",
         "children": [
           {
+            "id": "foundations__foundational_ontology",
+            "title": "Foundational Ontology",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/foundations/foundational_ontology.json",
+            "markdownPath": "content/markdown/aaa/foundations/ontology.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Purpose and Scope",
+                "markdownPath": "content/markdown/aaa/foundations/ontology.md",
+                "markdownSection": "Purpose and Scope",
+                "sectionKey": "purpose and scope",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Substrate (What Exists Fundamentally)",
+                "markdownPath": "content/markdown/aaa/foundations/ontology.md",
+                "markdownSection": "The Substrate (What Exists Fundamentally)",
+                "sectionKey": "the substrate what exists fundamentally",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Fundamental Entity (Architrino)",
+                "markdownPath": "content/markdown/aaa/foundations/ontology.md",
+                "markdownSection": "The Fundamental Entity (Architrino)",
+                "sectionKey": "the fundamental entity architrino",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Physical Medium (Noether Sea / Spacetime Medium)",
+                "markdownPath": "content/markdown/aaa/foundations/ontology.md",
+                "markdownSection": "The Physical Medium (Noether Sea / Spacetime Medium)",
+                "sectionKey": "the physical medium noether sea spacetime medium",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Observer Framework (Ontic vs Epistemic)",
+                "markdownPath": "content/markdown/aaa/foundations/ontology.md",
+                "markdownSection": "The Observer Framework (Ontic vs Epistemic)",
+                "sectionKey": "the observer framework ontic vs epistemic",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Terminology Discipline (Locked Definitions)",
+                "markdownPath": "content/markdown/aaa/foundations/ontology.md",
+                "markdownSection": "Terminology Discipline (Locked Definitions)",
+                "sectionKey": "terminology discipline locked definitions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Parameter Ledger (Foundation Level)",
+                "markdownPath": "content/markdown/aaa/foundations/ontology.md",
+                "markdownSection": "Parameter Ledger (Foundation Level)",
+                "sectionKey": "parameter ledger foundation level",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Open Questions and Validation Routing",
+                "markdownPath": "content/markdown/aaa/foundations/ontology.md",
+                "markdownSection": "Open Questions and Validation Routing",
+                "sectionKey": "open questions and validation routing",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary",
+                "markdownPath": "content/markdown/aaa/foundations/ontology.md",
+                "markdownSection": "Summary",
+                "sectionKey": "summary",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "foundations__architrino",
+            "title": "Architrino",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/foundations/architrino.json",
+            "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Core Definition",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Core Definition",
+                "sectionKey": "core definition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Ontological Status",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Ontological Status",
+                "sectionKey": "ontological status",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Polarity and Electric Bookkeeping",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Polarity and Electric Bookkeeping",
+                "sectionKey": "polarity and electric bookkeeping",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Provenance and Persistence",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Provenance and Persistence",
+                "sectionKey": "provenance and persistence",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Non-Creation and Non-Destruction",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Non-Creation and Non-Destruction",
+                "sectionKey": "non creation and non destruction",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Point-Transceiver Status",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Point-Transceiver Status",
+                "sectionKey": "point transceiver status",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Worldlines and Path History",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Worldlines and Path History",
+                "sectionKey": "worldlines and path history",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Wake History Boundary",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Wake History Boundary",
+                "sectionKey": "wake history boundary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Reception Rule Boundary",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Reception Rule Boundary",
+                "sectionKey": "reception rule boundary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Dynamics and Regime Boundary",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Dynamics and Regime Boundary",
+                "sectionKey": "dynamics and regime boundary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Determinism and Multistability",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Determinism and Multistability",
+                "sectionKey": "determinism and multistability",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Absolute Rest Case",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Absolute Rest Case",
+                "sectionKey": "absolute rest case",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Boundary With Assemblies and Effective Particles",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Boundary With Assemblies and Effective Particles",
+                "sectionKey": "boundary with assemblies and effective particles",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary Postulate",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Summary Postulate",
+                "sectionKey": "summary postulate",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
             "id": "foundations__absolute_time",
             "title": "Absolute Time",
             "kind": "markdown-view",
@@ -183,6 +387,120 @@
             ]
           },
           {
+            "id": "foundations__euclidean_void",
+            "title": "Euclidean Void",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/foundations/euclidean_void.json",
+            "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Core Concept",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Core Concept",
+                "sectionKey": "core concept",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Manifold and Metric",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Manifold and Metric",
+                "sectionKey": "manifold and metric",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Flat Geometry and Topology",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Flat Geometry and Topology",
+                "sectionKey": "flat geometry and topology",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Canonical Coordinates and Event Identity",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Canonical Coordinates and Event Identity",
+                "sectionKey": "canonical coordinates and event identity",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Curvilinear Coordinates",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Curvilinear Coordinates",
+                "sectionKey": "curvilinear coordinates",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Index Notation and Tensor Operations",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Index Notation and Tensor Operations",
+                "sectionKey": "index notation and tensor operations",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Spatial Differential Operators",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Spatial Differential Operators",
+                "sectionKey": "spatial differential operators",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Homogeneity, Isotropy, and the Euclidean Group",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Homogeneity, Isotropy, and the Euclidean Group",
+                "sectionKey": "homogeneity isotropy and the euclidean group",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Geodesics and Dynamics",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Geodesics and Dynamics",
+                "sectionKey": "geodesics and dynamics",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Forbidden Transformations",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Forbidden Transformations",
+                "sectionKey": "forbidden transformations",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Boundary With the Noether Sea",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Boundary With the Noether Sea",
+                "sectionKey": "boundary with the noether sea",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Distinction From Curved Space",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Distinction From Curved Space",
+                "sectionKey": "distinction from curved space",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary Postulate",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Summary Postulate",
+                "sectionKey": "summary postulate",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
             "id": "foundations__absolute_timespace",
             "title": "Absolute Timespace",
             "kind": "markdown-view",
@@ -314,128 +632,6 @@
                 "kind": "markdown-section",
                 "title": "Summary Postulate",
                 "markdownPath": "content/markdown/aaa/foundations/absolute-timespace.md",
-                "markdownSection": "Summary Postulate",
-                "sectionKey": "summary postulate",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "foundations__architrino",
-            "title": "Architrino",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/foundations/architrino.json",
-            "markdownPath": "content/markdown/aaa/foundations/architrino.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Core Definition",
-                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
-                "markdownSection": "Core Definition",
-                "sectionKey": "core definition",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Ontological Status",
-                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
-                "markdownSection": "Ontological Status",
-                "sectionKey": "ontological status",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Polarity and Electric Bookkeeping",
-                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
-                "markdownSection": "Polarity and Electric Bookkeeping",
-                "sectionKey": "polarity and electric bookkeeping",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Provenance and Persistence",
-                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
-                "markdownSection": "Provenance and Persistence",
-                "sectionKey": "provenance and persistence",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Non-Creation and Non-Destruction",
-                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
-                "markdownSection": "Non-Creation and Non-Destruction",
-                "sectionKey": "non creation and non destruction",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Point-Transceiver Status",
-                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
-                "markdownSection": "Point-Transceiver Status",
-                "sectionKey": "point transceiver status",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Worldlines and Path History",
-                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
-                "markdownSection": "Worldlines and Path History",
-                "sectionKey": "worldlines and path history",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Wake History Boundary",
-                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
-                "markdownSection": "Wake History Boundary",
-                "sectionKey": "wake history boundary",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Reception Rule Boundary",
-                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
-                "markdownSection": "Reception Rule Boundary",
-                "sectionKey": "reception rule boundary",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Dynamics and Regime Boundary",
-                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
-                "markdownSection": "Dynamics and Regime Boundary",
-                "sectionKey": "dynamics and regime boundary",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Determinism and Multistability",
-                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
-                "markdownSection": "Determinism and Multistability",
-                "sectionKey": "determinism and multistability",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Absolute Rest Case",
-                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
-                "markdownSection": "Absolute Rest Case",
-                "sectionKey": "absolute rest case",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Boundary With Assemblies and Effective Particles",
-                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
-                "markdownSection": "Boundary With Assemblies and Effective Particles",
-                "sectionKey": "boundary with assemblies and effective particles",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Summary Postulate",
-                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
                 "markdownSection": "Summary Postulate",
                 "sectionKey": "summary postulate",
                 "headingLevel": 2
@@ -597,202 +793,6 @@
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/foundations/emergence_of_structure.json",
             "markdownPath": "content/markdown/aaa/foundations/emergence.md"
-          },
-          {
-            "id": "foundations__euclidean_void",
-            "title": "Euclidean Void",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/foundations/euclidean_void.json",
-            "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Core Concept",
-                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
-                "markdownSection": "Core Concept",
-                "sectionKey": "core concept",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Manifold and Metric",
-                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
-                "markdownSection": "Manifold and Metric",
-                "sectionKey": "manifold and metric",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Flat Geometry and Topology",
-                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
-                "markdownSection": "Flat Geometry and Topology",
-                "sectionKey": "flat geometry and topology",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Canonical Coordinates and Event Identity",
-                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
-                "markdownSection": "Canonical Coordinates and Event Identity",
-                "sectionKey": "canonical coordinates and event identity",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Curvilinear Coordinates",
-                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
-                "markdownSection": "Curvilinear Coordinates",
-                "sectionKey": "curvilinear coordinates",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Index Notation and Tensor Operations",
-                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
-                "markdownSection": "Index Notation and Tensor Operations",
-                "sectionKey": "index notation and tensor operations",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Spatial Differential Operators",
-                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
-                "markdownSection": "Spatial Differential Operators",
-                "sectionKey": "spatial differential operators",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Homogeneity, Isotropy, and the Euclidean Group",
-                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
-                "markdownSection": "Homogeneity, Isotropy, and the Euclidean Group",
-                "sectionKey": "homogeneity isotropy and the euclidean group",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Geodesics and Dynamics",
-                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
-                "markdownSection": "Geodesics and Dynamics",
-                "sectionKey": "geodesics and dynamics",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Forbidden Transformations",
-                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
-                "markdownSection": "Forbidden Transformations",
-                "sectionKey": "forbidden transformations",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Boundary With the Noether Sea",
-                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
-                "markdownSection": "Boundary With the Noether Sea",
-                "sectionKey": "boundary with the noether sea",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Distinction From Curved Space",
-                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
-                "markdownSection": "Distinction From Curved Space",
-                "sectionKey": "distinction from curved space",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Summary Postulate",
-                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
-                "markdownSection": "Summary Postulate",
-                "sectionKey": "summary postulate",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "foundations__foundational_ontology",
-            "title": "Foundational Ontology",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/foundations/foundational_ontology.json",
-            "markdownPath": "content/markdown/aaa/foundations/ontology.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Purpose and Scope",
-                "markdownPath": "content/markdown/aaa/foundations/ontology.md",
-                "markdownSection": "Purpose and Scope",
-                "sectionKey": "purpose and scope",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "The Substrate (What Exists Fundamentally)",
-                "markdownPath": "content/markdown/aaa/foundations/ontology.md",
-                "markdownSection": "The Substrate (What Exists Fundamentally)",
-                "sectionKey": "the substrate what exists fundamentally",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "The Fundamental Entity (Architrino)",
-                "markdownPath": "content/markdown/aaa/foundations/ontology.md",
-                "markdownSection": "The Fundamental Entity (Architrino)",
-                "sectionKey": "the fundamental entity architrino",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "The Physical Medium (Noether Sea / Spacetime Medium)",
-                "markdownPath": "content/markdown/aaa/foundations/ontology.md",
-                "markdownSection": "The Physical Medium (Noether Sea / Spacetime Medium)",
-                "sectionKey": "the physical medium noether sea spacetime medium",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "The Observer Framework (Ontic vs Epistemic)",
-                "markdownPath": "content/markdown/aaa/foundations/ontology.md",
-                "markdownSection": "The Observer Framework (Ontic vs Epistemic)",
-                "sectionKey": "the observer framework ontic vs epistemic",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Terminology Discipline (Locked Definitions)",
-                "markdownPath": "content/markdown/aaa/foundations/ontology.md",
-                "markdownSection": "Terminology Discipline (Locked Definitions)",
-                "sectionKey": "terminology discipline locked definitions",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Parameter Ledger (Foundation Level)",
-                "markdownPath": "content/markdown/aaa/foundations/ontology.md",
-                "markdownSection": "Parameter Ledger (Foundation Level)",
-                "sectionKey": "parameter ledger foundation level",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Open Questions and Validation Routing",
-                "markdownPath": "content/markdown/aaa/foundations/ontology.md",
-                "markdownSection": "Open Questions and Validation Routing",
-                "sectionKey": "open questions and validation routing",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Summary",
-                "markdownPath": "content/markdown/aaa/foundations/ontology.md",
-                "markdownSection": "Summary",
-                "sectionKey": "summary",
-                "headingLevel": 2
-              }
-            ]
           }
         ]
       },

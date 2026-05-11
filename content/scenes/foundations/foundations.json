@@ -9,7 +9,16 @@
     "layout": {
       "type": "rings"
     },
+    "centerOn": "foundational_ontology",
     "children": [
+      {
+        "nodeId": "foundational_ontology",
+        "scenePath": "content/scenes/foundations/foundational_ontology.json"
+      },
+      {
+        "nodeId": "architrino",
+        "scenePath": "content/scenes/foundations/architrino.json"
+      },
       {
         "nodeId": "absolute_time",
         "scenePath": "content/scenes/foundations/absolute_time.json"
@@ -19,12 +28,12 @@
         "scenePath": "content/scenes/foundations/absolute_time_defense.json"
       },
       {
-        "nodeId": "absolute_timespace",
-        "scenePath": "content/scenes/foundations/absolute_timespace.json"
+        "nodeId": "euclidean_void",
+        "scenePath": "content/scenes/foundations/euclidean_void.json"
       },
       {
-        "nodeId": "architrino",
-        "scenePath": "content/scenes/foundations/architrino.json"
+        "nodeId": "absolute_timespace",
+        "scenePath": "content/scenes/foundations/absolute_timespace.json"
       },
       {
         "nodeId": "detecting_the_absolute_frame",
@@ -37,116 +46,162 @@
       {
         "nodeId": "emergence_of_structure",
         "scenePath": "content/scenes/foundations/emergence_of_structure.json"
-      },
-      {
-        "nodeId": "euclidean_void",
-        "scenePath": "content/scenes/foundations/euclidean_void.json"
-      },
-      {
-        "nodeId": "foundational_ontology",
-        "scenePath": "content/scenes/foundations/foundational_ontology.json"
       }
     ]
   },
   "objects": [
     {
-      "id": "absolute_time",
-      "title": "Absolute Time",
+      "id": "foundational_ontology",
+      "title": "Foundational Ontology",
       "radius": 2.688,
-      "color": "#7a4a1f",
+      "color": "#3a5f9f",
+      "position": [
+        0,
+        0,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Absolute Time",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "absolute_time_defense",
-      "title": "Absolute Time Defense",
-      "radius": 2.688,
-      "color": "#243d8f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Absolute Time Defense",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "absolute_timespace",
-      "title": "Absolute Timespace",
-      "radius": 2.688,
-      "color": "#3f6a5a",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Absolute Timespace",
-      "labelBadge": "doc"
+      "labelTitle": "Foundational Ontology",
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "architrino",
       "title": "Architrino",
       "radius": 2.688,
       "color": "#6a3c3c",
+      "position": [
+        0,
+        10.5,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Architrino",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
-      "id": "detecting_the_absolute_frame",
-      "title": "Detecting the Absolute Frame",
+      "id": "absolute_time",
+      "title": "Absolute Time",
       "radius": 2.688,
-      "color": "#2f6b6f",
+      "color": "#7a4a1f",
+      "position": [
+        7.42,
+        7.42,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Detecting the Absolute Frame",
-      "labelBadge": "doc"
+      "labelTitle": "Absolute Time",
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
-      "id": "bootstrapping_the_absolute_frame",
-      "title": "Bootstrapping a Coordinate Frame",
+      "id": "absolute_time_defense",
+      "title": "Absolute Time Defense",
       "radius": 2.688,
-      "color": "#3657a6",
+      "color": "#243d8f",
+      "position": [
+        10.5,
+        0,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Bootstrapping a Coordinate Frame",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "emergence_of_structure",
-      "title": "Emergence of Structure",
-      "radius": 2.688,
-      "color": "#5a1f2e",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Emergence of Structure",
-      "labelBadge": "doc"
+      "labelTitle": "Absolute Time Defense",
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "euclidean_void",
       "title": "Euclidean Void",
       "radius": 2.688,
       "color": "#4b0082",
+      "position": [
+        7.42,
+        -7.42,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Euclidean Void",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
-      "id": "foundational_ontology",
-      "title": "Foundational Ontology",
+      "id": "absolute_timespace",
+      "title": "Absolute Timespace",
       "radius": 2.688,
-      "color": "#3a5f9f",
+      "color": "#3f6a5a",
+      "position": [
+        0,
+        -10.5,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Foundational Ontology",
-      "labelBadge": "doc"
+      "labelTitle": "Absolute Timespace",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "detecting_the_absolute_frame",
+      "title": "Detecting the Absolute Frame",
+      "radius": 2.688,
+      "color": "#2f6b6f",
+      "position": [
+        -7.42,
+        -7.42,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Detecting the Absolute Frame",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "bootstrapping_the_absolute_frame",
+      "title": "Bootstrapping a Coordinate Frame",
+      "radius": 2.688,
+      "color": "#3657a6",
+      "position": [
+        -10.5,
+        0,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Bootstrapping a Coordinate Frame",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "emergence_of_structure",
+      "title": "Emergence of Structure",
+      "radius": 2.688,
+      "color": "#5a1f2e",
+      "position": [
+        -7.42,
+        7.42,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Emergence of Structure",
+      "labelBadge": "doc",
+      "fixedPosition": true
     }
   ]
 }
