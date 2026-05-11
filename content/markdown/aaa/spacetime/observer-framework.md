@@ -93,7 +93,7 @@ The disagreement is epistemic rather than ontological:
 
 - The $\mathbb{U}_{\text{now}}$ universe-state perspective has one absolute slice $\Sigma_t$.
 - Physical Observers recover only operational synchronization conventions.
-- In validated regimes, those operational conventions must reproduce Lorentz-like observer phenomenology.
+- In validated regimes, those operational conventions must reproduce Lorentz-consistent clock, ruler, and two-way signal phenomenology while bounding preferred-frame leakage below observational limits.
 
 ## Physical Observer Clocks and Rulers
 

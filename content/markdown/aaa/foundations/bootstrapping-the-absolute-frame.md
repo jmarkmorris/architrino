@@ -219,6 +219,6 @@ We cannot directly measure the concentric wake geometry or identify an absolutel
 - **Effective coordinates** via local rulers
 - **Relative velocities** via Doppler shifts and aberration
 
-The bootstrap described here is a **foundational consistency proof**: it shows the theory has the mathematical structure necessary to define absolute rest and absolute coordinates **in principle**. At accessible energies, emergent Lorentz symmetry ensures we cannot detect the absolute frame operationally, but the frame remains the ontological bedrock beneath the effective geometry.
+The bootstrap described here is a **foundational consistency proof**: it shows the theory has the mathematical structure necessary to define absolute rest and absolute coordinates **in principle**. At accessible energies, the Lorentz-closure target is that moving-assembly deformation, clock/ruler retuning, and two-way signal synchronization bound preferred-frame leakage enough that we cannot detect the absolute frame operationally, while the frame remains the ontological bedrock beneath the effective geometry.
 
 For the effective kinematic layer built on top of this scaffold, see [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) and [Emergent Metric](../spacetime/emergent-metric.md).

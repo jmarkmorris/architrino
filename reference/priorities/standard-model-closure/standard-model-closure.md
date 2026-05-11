@@ -65,5 +65,5 @@ rather than treating transport costs as fit knobs.
 - [quarks](../../../content/markdown/aaa/assemblies/fermions/quarks.md)
 - [quantum-number-mapping](../../../content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md)
 - [color-charge-su3](../../../content/markdown/aaa/assemblies/fermions/color-charge-su3.md)
-- [weak-mixing-ckm](../../../content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md)
+- [weak-mixing-ckm](../../../content/markdown/aaa/theory-bridges/weak-mixing-ckm.md)
 - [electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md)

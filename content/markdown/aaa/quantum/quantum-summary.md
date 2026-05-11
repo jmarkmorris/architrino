@@ -4,14 +4,21 @@ This page is the entry hub for the quantum branch of $\mathbb{A}\mathbb{A}\mathb
 
 ## Core Quantum Spine
 
-- [pilot-wave-character.md](./pilot-wave-character.md): synthesis page for the effective wave picture, metastability, and substrate interpretation.
+- [pilot-wave-character.md](../theory-bridges/pilot-wave-character.md): synthesis page for the effective wave picture, metastability, and substrate interpretation.
 - [measurement-ontology.md](./measurement-ontology.md): what a measurement event is at the ontological level.
-- [collapse-problem.md](./collapse-problem.md): finite-time separatrix-crossing replacement for collapse.
+- [collapse-problem.md](../theory-bridges/collapse-problem.md): finite-time separatrix-crossing replacement for collapse.
 - [wavefunction-ontology.md](./wavefunction-ontology.md): wavefunction as effective basin-weight bookkeeping.
-- [superposition-mechanism.md](./superposition-mechanism.md): metastability, separatrices, and branch selection.
+- [superposition-mechanism.md](../theory-bridges/superposition-mechanism.md): metastability, separatrices, and branch selection.
+- [quantum-statistics.md](./quantum-statistics.md): Fermi-Dirac and Bose-Einstein statistics as a Noether-core geometry transition.
 
 ## Correlation and No-Go Interfaces
 
-- [entanglement-nonlocality.md](./entanglement-nonlocality.md): shared-creation and joint-configuration account of nonlocal correlations.
-- [bell-theorem.md](./bell-theorem.md): Bell constraints and the causal-delay interpretation within the theory.
+- [entanglement-nonlocality.md](../theory-bridges/entanglement-nonlocality.md): shared-creation and joint-configuration account of nonlocal correlations.
+- [bell-theorem.md](../theory-bridges/bell-theorem.md): Bell constraints and the causal-delay interpretation within the theory.
 - [reality-quantum-causality.md](./reality-quantum-causality.md): wider ontology and determinism framing for the quantum branch.
+
+## Closure Ledgers
+
+- **Born-rule basin-measure ledger:** [wavefunction-ontology.md](./wavefunction-ontology.md), [measurement-ontology.md](./measurement-ontology.md), [superposition-mechanism.md](../theory-bridges/superposition-mechanism.md), and [pilot-wave-character.md](../theory-bridges/pilot-wave-character.md) own the transfer-operator, invariant-measure, finite-time separatrix, and effective wave-equation targets.
+- **Spin-statistics / exchange ledger:** [quantum-statistics.md](./quantum-statistics.md), [Noether Core Geometry](../assemblies/noether-core-geometry.md), and [Quantum Operator Mapping](../theory-bridges/quantum-operator-mapping.md) own the route from 3D volumetric exclusion to fermionic antisymmetry and from coherent 2D support to bosonic symmetric occupation.
+- **Photon squared-amplitude bridge:** [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md) owns the photon-channel gate where planar-pair capture must recover Malus' law, the native squared-amplitude rule, and Bose-Einstein occupation behavior without replacing the broader Born-rule basin-measure program.

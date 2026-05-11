@@ -2,7 +2,7 @@
 
 This chapter develops a working draft of tri-binary dynamics by extending the two-body delay system to a coupled three-binary core. The focus is the geometric response at high group velocity and under strong gravitational gradients, along with the diagnostic quantities used to assess stability and alignment.
 
-It should be read together with [Binary Dynamics](binary-dynamics.md), [Dyadic Resonance Lock](dyadic-resonance-lock.md), [Mapping the Planck Scale](../spacetime/mapping-planck-scale.md), [Noether Core](../assemblies/noether-core.md), [Noether Core Geometry](../assemblies/noether-core-geometry.md), and [Emergent Metric](../spacetime/emergent-metric.md), since those notes supply the binary precursor, lock structure, alignment target, assembly carrier, exclusion-envelope geometry, and effective geometric bridge.
+It should be read together with [Binary Dynamics](binary-dynamics.md), [Dyadic Resonance Lock](dyadic-resonance-lock.md), [Mapping the Planck Scale](../theory-bridges/planck-scale-tri-binary-alignment.md), [Noether Core](../assemblies/noether-core.md), [Noether Core Geometry](../assemblies/noether-core-geometry.md), and [Emergent Metric](../spacetime/emergent-metric.md), since those notes supply the binary precursor, lock structure, alignment target, assembly carrier, exclusion-envelope geometry, and effective geometric bridge.
 
 This chapter is the canonical dynamics home for coupled three-binary speed regimes, alignment behavior, and assembly-stability mechanisms. Primitive architrino ontology should not carry those mechanisms; it should route them here and to [Binary Dynamics](binary-dynamics.md).
 

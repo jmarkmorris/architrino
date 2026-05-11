@@ -814,21 +814,21 @@ In a delay system, Newton's Third Law ($\mathbf{F}_{12}(t) = -\mathbf{F}_{21}(t)
 #### Definition 2 (Mechanical Momentum)
 The instantaneous mechanical momentum is:
 $$
-\mathbf{P}_{\text{mech}}(t) = \sum_{i} m_i \mathbf{v}_i(t).
+\mathbf{P}_{\text{mech}}(t) = \sum_{i} \mu_{\text{arch}} \mathbf{v}_i(t).
 $$
 Because of the delay, $\frac{d}{dt}\mathbf{P}_{\text{mech}} \neq 0$ generally.
 
 #### Theorem 2 (Conservation of Total Momentum Functional)
-There exists a functional $\mathbf{P}_{\text{field}}[\mathbf{x}_t]$ representing the momentum flux encoded in the active causal wake surfaces such that the total momentum:
+There exists a functional $\mathbf{P}_{\text{wake}}[\mathbf{x}_t]$ representing the momentum flux encoded in the active causal wake surfaces such that the total momentum:
 $$
-\mathbf{P}_{\text{tot}} = \mathbf{P}_{\text{mech}}(t) + \mathbf{P}_{\text{field}}[\mathbf{x}_t]
+\mathbf{P}_{\text{tot}} = \mathbf{P}_{\text{mech}}(t) + \mathbf{P}_{\text{wake}}[\mathbf{x}_t]
 $$
 is strictly conserved ($\frac{d}{dt}\mathbf{P}_{\text{tot}} = 0$).
 
 **Explicit Form (Weak Coupling Limit):**
-For $\eta \to 0$, the field momentum can be approximated by integrating the force impulse over the delay time:
+For $\eta \to 0$, the wake momentum can be approximated by integrating the force impulse over the delay time:
 $$
-\mathbf{P}_{\text{field}} \approx \sum_{i \neq j} \int_{t - \tau_{ij}(t)}^{t} \mathbf{F}_{ij}^{\text{emit}}(s) \, ds.
+\mathbf{P}_{\text{wake}} \approx \sum_{i \neq j} \int_{t - \tau_{ij}(t)}^{t} \mathbf{F}_{ij}^{\text{emit}}(s) \, ds.
 $$
 *Physical Interpretation:* The "missing" momentum is strictly accounted for by the wake surfaces currently traversing the space between sources and receivers.
 
@@ -847,7 +847,7 @@ $$
 \mathcal{H}(\mathbf{x}_t) = K(\mathbf{v}(t)) + \mathcal{U}_{\text{history}}(\mathbf{x}_t).
 $$
 
-1. **Kinetic Energy:** $K(t) = \sum \frac{1}{2} m_i \|\mathbf{v}_i(t)\|^2$.
+1. **Kinetic Energy:** $K(t) = \sum \frac{1}{2} \mu_{\text{arch}} \|\mathbf{v}_i(t)\|^2$.
 2. **Potential Functional:** $\mathcal{U}_{\text{history}}$ accumulates the work done by the conservative forces. Unlike an instantaneous potential $V(r)$, this depends on the configuration of all active wake surfaces.
 
 #### Theorem 3 (Energy Balance Equation)

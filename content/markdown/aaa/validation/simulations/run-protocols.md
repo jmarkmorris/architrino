@@ -6,10 +6,10 @@ The opening gives the top-level simulation rule set; the later sections unpack t
 
 ## Master Simulation Protocol (Absolute Frame)
 
-1. **Coordinate Anchor**: All simulations run on a fixed Cartesian grid. `Grid[x][y][z]` represents the Euclidean Void.
+1. **Coordinate Anchor**: All simulations run on a fixed Cartesian grid. `Grid[x][y][z]` represents the Euclidean void.
 2. **Clock Rate**: The simulator uses a global `Time` counter (absolute $t$). No relativistic scaling is applied to the integration step itself.
-3. **$\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$) Interface**: Every run must instantiate an array of fixed Virtual Sensors to log $\Phi$ and $\nabla\Phi$ at absolute addresses.
-4. **Noether Sea Initialization**: Standard "Vacuum" runs must pre-populate the grid with a lattice of coupled pro/anti tri-binary assemblies to simulate the medium's influence on test particles.
+3. **$\mathbb{U}_{\text{now}}$ universe-state interface**: Every run must instantiate an array of fixed virtual sensors to log $\Phi$ and $\nabla\Phi$ at absolute addresses.
+4. **Noether Sea Initialization**: Low-excitation Noether-Sea runs must pre-populate the grid with a lattice of coupled pro/anti tri-binary assemblies to simulate the medium's influence on test particles.
 5. **Convergence**: $\Delta t$ refinement must be accompanied by "History Resolution" refinement to ensure self-hit calculations are numerically stable.
 
 ## Run Protocol: Absolute-Frame + $\mathbb{U}_{\text{now}}$ Logging
@@ -21,8 +21,8 @@ All simulations integrate dynamics in the absolute Euclidean frame:
 - No relativistic time dilation applied to the integration clock (proper time is derived only in post-processing)
 
 ### Void vs medium terminology (simulation-facing)
-- "Void" = the coordinate container / grid indices
-- "Spacetime medium" = Noether Sea (coupled pro/anti cores) instantiated as objects/fields in the void
+- "Euclidean void" = the coordinate container / grid indices
+- "Noether Sea" = coupled pro/anti cores instantiated as objects or fields in the void
 
 ### Mandatory $\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$) grid
 Every run must instantiate $\mathbb{U}_{\text{now}}$ sensors:
@@ -53,15 +53,15 @@ No major physical claim is accepted without:
 
 ### $\mathbb{U}_{\text{now}}$ universe-state perspective Implementation & Grid Protocols
 
-1. **Grid Initialization**: All simulations run on a rigid Cartesian grid representing the **Euclidean Void**. The grid is pre-loaded with a lattice of coupled Noether cores to simulate the "Vacuum."
-2. **Fiducial Observer Array**: Instantiate a grid of "Virtual Sensors" at fixed $(x,y,z)$. Each records $\Phi$ and $\nabla\Phi$.
+1. **Grid Initialization**: All simulations run on a rigid Cartesian grid representing the **Euclidean void**. The grid is pre-loaded with a lattice of coupled Noether cores to instantiate the Noether Sea.
+2. **Fiducial Observer Array**: Instantiate a grid of virtual sensors at fixed $(x,y,z)$. Each records $\Phi$ and $\nabla\Phi$.
 3. **Causal Time Lookup**: When a causal isochron intersects a sensor, the simulator uses the grid history to "look back" to the emitter's position at $t_{history}$.
 4. **Logging Standard**: All runs must log $\mathbb{U}_{\text{now}}$ channels ($\Phi$, $\nabla\Phi$, provenance tables) to allow cross-run convergence auditing.
 
 
 ### $\mathbb{U}_{\text{now}}$ universe-state perspective Grid
 
-* **Grid:** Initialize rigid Cartesian `Grid[x][y][z]` for the Void.
-* **Sea Initialization:** Pre-load the grid with coupled Noether cores for "Vacuum" runs.
-* **Logging:** Record $\Phi$ and $\nabla\Phi$ at fixed nodes ($\mathbb{U}_{\text{now}}$ universe-state perspectives).
-* **Time:** Global step $\Delta t$ (Absolute Time).
+* **Grid:** Initialize rigid Cartesian `Grid[x][y][z]` for the Euclidean void.
+* **Sea Initialization:** Pre-load the grid with coupled Noether cores for low-excitation Noether-Sea runs.
+* **Logging:** Record $\Phi$ and $\nabla\Phi$ at fixed nodes ($\mathbb{U}_{\text{now}}$ universe-state sensors).
+* **Time:** Global step $\Delta t$ (absolute time).

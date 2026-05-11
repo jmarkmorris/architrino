@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "effective_metric",
+    "title": "Effective Metric",
+    "type": "Scene-Index",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "rings"
+    },
+    "centerOn": "emergent_metric",
+    "children": [
+      {
+        "nodeId": "emergent_metric",
+        "scenePath": "content/scenes/spacetime/emergent_metric.json"
+      },
+      {
+        "nodeId": "ppn_parameters",
+        "scenePath": "content/scenes/spacetime/ppn_parameters.json"
+      },
+      {
+        "nodeId": "general_relativity_observables",
+        "scenePath": "content/scenes/spacetime/general_relativity_observables.json"
+      },
+      {
+        "nodeId": "gravitational_waves",
+        "scenePath": "content/scenes/spacetime/gravitational_waves.json"
+      }
+    ]
+  },
+  "objects": [
+    {
+      "id": "emergent_metric",
+      "title": "Emergent Metric",
+      "radius": 2.688,
+      "color": "#243d8f",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Emergent Metric",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "ppn_parameters",
+      "title": "PPN Parameters",
+      "radius": 2.688,
+      "color": "#4b0082",
+      "position": [
+        0,
+        10.5,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "PPN Parameters",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "general_relativity_observables",
+      "title": "General Relativity",
+      "radius": 2.688,
+      "color": "#2f6b6f",
+      "position": [
+        9.09,
+        -5.25,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "General Relativity",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "gravitational_waves",
+      "title": "Gravitational Waves",
+      "radius": 2.688,
+      "color": "#5a1f2e",
+      "position": [
+        -9.09,
+        -5.25,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Gravitational Waves",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    }
+  ]
+}

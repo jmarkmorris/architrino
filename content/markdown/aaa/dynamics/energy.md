@@ -338,7 +338,7 @@ Architrinos and their assemblies are where all the energy lives. The tri-binary 
   
   Large internal energies, plus coupling to the tri-binary sea, generate:
   - Effective inertia (mass),
-  - Shielded external fields (tiny apparent energy compared to internal),
+  - Shielded external wake signatures (tiny apparent energy compared to internal),
   - Generation dependence through how many outer screening shells still surround the deepest core,
   - An emergent speed scale $c_{\text{eff}}$ and relativistic-like behavior.
   Macroscopic quietness follows from superposition and shielding: incoherent populations cancel statistically, while phase-locked assemblies such as collinear breathers preserve localized, non-canceling wake structure.

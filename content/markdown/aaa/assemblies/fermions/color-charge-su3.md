@@ -12,19 +12,19 @@ Each fermion is built on a **tri‑binary scaffold**: three nested electrino:pos
 
 We label the three binaries by their dynamical regime:
 
-- **H‑binary (High / inner)**  
-  - Smallest radius  
-  - Velocity $v_H > V_f$  
+- **H‑binary (High / inner)**
+  - Smallest radius
+  - Velocity $v_H > c_f$
   - Self‑hit regime (strong path memory, highest curvature/energy)
 
-- **M‑binary (Medium / middle)**  
-  - Intermediate radius  
-  - Velocity $v_M = V_f$  
+- **M‑binary (Medium / middle)**
+  - Intermediate radius
+  - Velocity $v_M = c_f$
   - Symmetry‑breaking “pivot” scale
 
-- **L‑binary (Low / outer)**  
-  - Largest radius  
-  - Velocity $v_L < V_f$  
+- **L‑binary (Low / outer)**
+  - Largest radius
+  - Velocity $v_L < c_f$
   - Lowest curvature; outer envelope, expansion/contraction behavior
 
 Each binary defines one **axis** with two polar **polar sites**, each occupied by either:
@@ -36,7 +36,7 @@ So each Noether core has 3 axes (H, M, L) × 2 poles = **6 polar sites**.
 
 We distinguish:
 
-- **Scaffold architrinos**: the three e/p pairs in the H, M, L binaries (2 per binary → 6 per quark).  
+- **Scaffold architrinos**: the three e/p pairs in the H, M, L binaries (2 per binary → 6 per quark).
 - **Axial architrinos**: the 6 ±e/6 decorations on the poles.
 
 For a Gen‑I quark:
@@ -119,26 +119,27 @@ This does not derive the full color algebra by itself, but it gives a clean geom
   - Total: +e.  
   - All axes identical → singlet.
 
-### Neutrinos: multiple neutral, colorless cores
+### Neutrinos: near-photon colorless neutral pairs
 
-One canonical neutrino configuration:
-$(-/+,\ -/+,\ -/+)$
-- Each axis: one e and one p → net 0 per axis.  
-- All axes identical → colorless.
+Neutrinos are now treated as near-photon neutral assemblies rather than ordinary six-site axial-layer fermions. The working picture is a near-planar pro/anti Noether-core pairing close to the photon channel, but not fully locked into the photon mode.
 
-Other neutral patterns exist, e.g.:
-$(+/+,\ -/+,\ -/-)$
-and permutations. Charge check:
-- (H: +/+, M: −/+, L: −/−): 3e + 3p → net 0 again.
+This makes the color statement sharper:
 
-These patterns differ by **axis‑level axial contrast** and thus by internal energy/coupling; they are natural candidates for **neutrino mass eigenstates**. All remain colorless because H, M, and L are either identical or do not participate in the quark‑like axis‑exceptionality mechanism.
+- The neutrino has no stable quark-like axial layer on which one H, M, or L axis can become exceptional.
+- Its pro/anti pairing cancels charge-like exposure and leaves no color triplet degree of freedom.
+- The balanced $3P,3E$ notation used in weak bookkeeping is an interaction projection, not a constituent color pattern.
 
-Working picture (to be detailed in the [neutrino section](./neutrinos.md)):
+Older neutral-axis patterns such as
+$$
+(-/+,\ -/+,\ -/+)
+$$
+or
+$$
+(+/+,\ -/+,\ -/-)
+$$
+are therefore best read as effective exposure diagrams for weak-channel coupling, not as the canonical neutrino inventory. Residual internal-binary exposure inside the near-photon pair remains the natural place to seek neutrino mass eigenstates and oscillation structure.
 
-- Different allowed neutral patterns → distinct Noether‑core configurations.  
-- Neutrino oscillation arises from **slow precession / wobble** that cycles which internal neutral pattern is “aligned” with the weak‑interaction channel, without ever introducing axis‑exceptionality.
-
-We do **not** claim a PMNS‑level derivation yet; that is a targeted future calculation.
+We do **not** claim a PMNS-level derivation yet; that is a targeted future calculation in the [neutrino section](./neutrinos.md).
 
 
 
@@ -482,7 +483,7 @@ Primary topology spine: [dynamics/causal-action-functional.md](../../dynamics/ca
 ## Summary and Next Steps
 
 - A **Noether core / tri‑binary** is a three-axis $(H,M,L)$, six-site axial structure: the minimal unit that carries conserved charges via its internal symmetries.
-- **Colorless** fermions (leptons, neutrinos) have identical axial patterns on all three axes → no axis exceptionality → SU(3)$_c$ singlets.
+- **Colorless** charged leptons have identical axial patterns on all three axes, while neutrinos are colorless near-photon pro/anti neutral pairs; neither route supplies quark-like axis exceptionality.
 - **Quarks** have “two‑same + one‑different” axis‑class patterns:
   - Up‑type: two P+ axes, one Pm axis.  
   - Down‑type: either (two P−, one P+) or (two Pm, one P−) families.

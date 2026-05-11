@@ -24,16 +24,16 @@
         "scenePath": "content/scenes/foundations/absolute_time.json"
       },
       {
-        "nodeId": "absolute_time_defense",
-        "scenePath": "content/scenes/foundations/absolute_time_defense.json"
-      },
-      {
         "nodeId": "euclidean_void",
         "scenePath": "content/scenes/foundations/euclidean_void.json"
       },
       {
         "nodeId": "absolute_timespace",
         "scenePath": "content/scenes/foundations/absolute_timespace.json"
+      },
+      {
+        "nodeId": "absolute_time_defense",
+        "scenePath": "content/scenes/foundations/absolute_time_defense.json"
       },
       {
         "nodeId": "detecting_the_absolute_frame",
@@ -102,30 +102,13 @@
       "fixedPosition": true
     },
     {
-      "id": "absolute_time_defense",
-      "title": "Absolute Time Defense",
-      "radius": 2.688,
-      "color": "#243d8f",
-      "position": [
-        10.5,
-        0,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Absolute Time Defense",
-      "labelBadge": "doc",
-      "fixedPosition": true
-    },
-    {
       "id": "euclidean_void",
       "title": "Euclidean Void",
       "radius": 2.688,
       "color": "#4b0082",
       "position": [
-        7.42,
-        -7.42,
+        10.5,
+        0,
         0
       ],
       "motion": {
@@ -141,6 +124,23 @@
       "radius": 2.688,
       "color": "#3f6a5a",
       "position": [
+        7.42,
+        -7.42,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Absolute Timespace",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "absolute_time_defense",
+      "title": "Absolute Time Defense",
+      "radius": 2.688,
+      "color": "#243d8f",
+      "position": [
         0,
         -10.5,
         0
@@ -148,7 +148,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Absolute Timespace",
+      "labelTitle": "Absolute Time Defense",
       "labelBadge": "doc",
       "fixedPosition": true
     },

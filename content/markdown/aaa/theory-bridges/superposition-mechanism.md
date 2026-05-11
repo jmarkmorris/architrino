@@ -2,7 +2,7 @@
 
 This document establishes the ontological and mathematical mapping between the traditional quantum mechanical concept of state superposition and the deterministic, path-history dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$).
 
-It should be read alongside [Wavefunction Ontology](wavefunction-ontology.md), [Measurement Ontology](measurement-ontology.md), [Collapse Problem](collapse-problem.md), and [Pilot-Wave Character](pilot-wave-character.md).
+It should be read alongside [Wavefunction Ontology](../quantum/wavefunction-ontology.md), [Measurement Ontology](../quantum/measurement-ontology.md), [Collapse Problem](./collapse-problem.md), and [Pilot-Wave Character](./pilot-wave-character.md).
 
 ### Traditional Quantum Mechanical View
 
@@ -28,7 +28,7 @@ Because a Physical Observer lacks access to the complete microstate and the exac
 
 The correspondence between the quantum formalism and architrino micro-dynamics is defined as follows:
 
-*   **The Wavefunction ($|\psi\rangle$)**: A coarse-grained, effective representation of the local superposed causal wake field and the corresponding informational ambiguity of the receiver's phase state.
+*   **The Wavefunction ($|\psi\rangle$)**: A coarse-grained, effective representation of the local superposed causal-wake structure and the corresponding informational ambiguity of the receiver's phase state.
 *   **Basis States ($|n\rangle$)**: Distinct, dynamically stable attractor basins of the tri-binary assembly. For example, these correspond to integer-indexed resonance bands or specific locked-phase geometries of the outer binary.
 *   **Linear Combination**: The direct physical consequence of the superposition of expanding causal wake surfaces. Distinct sources contribute additive radial accelerations without mutual interference.
 *   **Probability Amplitudes ($c_n$)**: A measure of the geometric basin of attraction (the fractional phase-space volume) leading to outcome $n$, mapped over the operational uncertainty bracket of the system's microstate.
@@ -58,6 +58,6 @@ Closure requirement:
 - the distribution of $\tau_c$ is consistent with the same coarse-grained model that yields the outcome weights $P_n$,
 - no instantaneous-update limit appears once finite $c_f$ and interaction extent are enforced.
 
-Primary synthesis location: [quantum/pilot-wave-character.md](./pilot-wave-character.md).
+Primary synthesis location: [Pilot-Wave Character](./pilot-wave-character.md).
 
-For the correlated two-system extension of the same closure program, see [Entanglement and Nonlocality](entanglement-nonlocality.md).
+For the correlated two-system extension of the same closure program, see [Entanglement and Nonlocality](./entanglement-nonlocality.md).

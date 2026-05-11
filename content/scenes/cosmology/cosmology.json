@@ -9,6 +9,7 @@
     "layout": {
       "type": "rings"
     },
+    "centerOn": "cosmology_ontology",
     "children": [
       {
         "nodeId": "cosmology_ontology",
@@ -17,14 +18,6 @@
       {
         "nodeId": "expansion_mechanism",
         "scenePath": "content/scenes/cosmology/expansion_mechanism.json"
-      },
-      {
-        "nodeId": "dark_matter",
-        "scenePath": "content/scenes/cosmology/dark_matter.json"
-      },
-      {
-        "nodeId": "dark_energy",
-        "scenePath": "content/scenes/cosmology/dark_energy.json"
       },
       {
         "nodeId": "inflation_model",
@@ -37,6 +30,14 @@
       {
         "nodeId": "cmb",
         "scenePath": "content/scenes/cosmology/cmb.json"
+      },
+      {
+        "nodeId": "dark_matter",
+        "scenePath": "content/scenes/cosmology/dark_matter.json"
+      },
+      {
+        "nodeId": "dark_energy",
+        "scenePath": "content/scenes/cosmology/dark_energy.json"
       },
       {
         "nodeId": "structure_formation",
@@ -54,99 +55,153 @@
       "label": "Cosmology Ontology",
       "radius": 2.688,
       "color": "#5a1f2e",
+      "position": [
+        0,
+        0,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Cosmology Ontology",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "expansion_mechanism",
       "label": "Expansion Mechanism",
       "radius": 2.688,
       "color": "#2f4f7a",
+      "position": [
+        0,
+        10.5,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Expansion Mechanism",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "dark_matter",
-      "label": "Dark Matter",
-      "radius": 2.688,
-      "color": "#3a5f9f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Dark Matter",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "dark_energy",
-      "label": "Dark Energy",
-      "radius": 2.688,
-      "color": "#4b0082",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Dark Energy",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "inflation_model",
       "label": "Inflation Model",
       "radius": 2.688,
       "color": "#1c2a4f",
+      "position": [
+        7.42,
+        7.42,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Inflation Model",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "bbn_constraints",
       "label": "BBN Constraints",
       "radius": 2.688,
       "color": "#243d8f",
+      "position": [
+        10.5,
+        0,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "BBN Constraints",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "cmb",
       "label": "CMB",
       "radius": 2.688,
       "color": "#2f6b6f",
+      "position": [
+        7.42,
+        -7.42,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "CMB",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "dark_matter",
+      "label": "Dark Matter",
+      "radius": 2.688,
+      "color": "#3a5f9f",
+      "position": [
+        0,
+        -10.5,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Dark Matter",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "dark_energy",
+      "label": "Dark Energy",
+      "radius": 2.688,
+      "color": "#4b0082",
+      "position": [
+        -7.42,
+        -7.42,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Dark Energy",
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "structure_formation",
       "label": "Structure Formation",
       "radius": 2.688,
       "color": "#3c6a7a",
+      "position": [
+        -10.5,
+        0,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Structure Formation",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "hubble_s8_tensions",
       "label": "Hubble and S8 Tensions",
       "radius": 2.688,
       "color": "#7a4a1f",
+      "position": [
+        -7.42,
+        7.42,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Hubble and S8 Tensions",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
     }
   ]
 }

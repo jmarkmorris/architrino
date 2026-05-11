@@ -1,29 +1,49 @@
 # Neutrinos
 
-This chapter gives the $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly-level account of neutrinos as strongly shielded, nearly silent [Noether-core](../noether-core.md) excitations. The goal is to explain why they are neutral, weakly coupled, oscillatory, and hard to detect while keeping the discussion tied to internal geometry rather than to elementary point-particle axioms.
+This chapter gives the $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly-level account of neutrinos as near-photon neutral assemblies. A neutrino is modeled as a near-planar pro/anti [Noether-core](../noether-core.md) pairing pushed close to the photon channel without completing the photon lock. The goal is to explain why neutrinos are neutral, weakly coupled, oscillatory, and hard to detect while keeping the discussion tied to internal geometry rather than to elementary point-particle axioms.
 
-The opening section states the geometric picture and the plain-language interpretation. The later closure program then records how PMNS-style mixing is meant to arise from internal phase structure and neutral-core geometry.
+The opening section states the working geometry and the plain-language interpretation. The later closure program records how PMNS-style mixing is meant to arise from residual internal-binary exposure in a pro/anti core pair. The exact locked geometry remains open; "near-photon" is the current controlled descriptor, not a finished derivation.
 
-## Strongly Shielded, Net-Neutral Noether-Core Excitations
+## Near-Photon Neutral-Core Pairing
 
-Definition (geometric): A neutrino is a [Noether Core](../noether-core.md) in a net-neutral configuration (no bound axial layer), with an exterior field that is a tiny, time-averaged residue. Weak interaction strength follows from superposition inside the core that cancels nearly all external projection; only subtle axial mismatches and phase drifts couple to outside structures.
+Definition (geometric, working): A neutrino is a near-planar pro/anti Noether-core pairing adjacent to the photon geometry. The photon is the fully locked **coaxial contra-rotating pro/anti planar pair**. A neutrino is nearly snapped into that state, but keeps a residual internal-binary mismatch that prevents it from becoming the photon transport channel.
 
 - Core structure and shielding:
-  - Triply nested binaries with $q_{\text{net}} = 0$ (no bound axial architrinos). Rapid, orthogonal internal motion cancels far fields (energy shielding), leaving only a faint axial residue—consistent with early-universe neutrino decoupling and vanishing charge.
+  - The pro-core and anti-core contributions cancel charge-like exposure, with $q_{\text{net}} = 0$.
+  - The assembly does not carry a stable charged-fermion-style six-site axial layer. Balanced $3P,3E$ language is weak-coupling bookkeeping for how the neutral channel is read during interaction, not a bound constituent inventory.
+  - Near-planarity hides most of the internal ledger from exterior coupling. The remaining signal is a tiny phase and energy residue from the internal binaries.
+
+- Near-photon boundary:
+  - The photon state is the fully coherent planar-pair transport channel.
+  - The neutrino sits just off that lock: close enough to be neutral, fast, and weakly coupled, but not coherent enough to propagate as a photon train.
+  - This "not quite photon" status gives the neutrino a small observer-facing mass channel and a nontrivial oscillation ledger.
 
 - Propagation:
-  - Trajectories are almost straight at speeds close to v; small deflections occur only through coherent axial corridor couplings to nearby assemblies. Apparent inertia is dictated by the minuscule residual field (“apparent mass” from shielding).
+  - Trajectories are almost straight at speeds close to the effective field speed; small deflections occur only through coherent corridor couplings to nearby assemblies.
+  - Apparent inertia is dictated by the minuscule residual exposure left by the almost planar pro/anti lock.
 
-- Flavor and oscillation (internal phase swapping):
-  - “Flavor” labels which internal binary predominantly hosts the residual phase imbalance. Slow exchange of this imbalance among the three binaries yields flavor oscillations over distance without invoking a fundamental rest mass; the beat pattern arises from internal phase dynamics and path-history geometry.
+- Flavor and oscillation (revealed internal ledger):
+  - "Flavor" labels which residual internal-binary energy and phase mode is exposed to the weak channel.
+  - Oscillation is the distance-dependent revealing of those internal binaries as the near-planar pro/anti pair precesses through its almost-photon geometry.
+  - The beat pattern arises from residual internal phase dynamics and path-history geometry; it is not a stable six-site axial layer flipping among ordinary charged-fermion configurations.
 
 - Chirality (handedness bias):
   - Emission/capture selection rules are chiral: axial phase winding favored in typical sources matches observed handedness of weak processes (alignment with W/Z-like corridor re-couplings).
 
 - Weak interactions as corridor re-coupling:
-  - Charged-current processes correspond to brief, localized corridor connections that reassign axial architrinos between assemblies (W-like), while neutral-current scattering corresponds to energy/momentum exchange with zero net charge transfer (Z-like). Cross sections are tiny because the neutrino’s exterior field is only a faint residue; compare [Electroweak Bosons: Photons, W/Z, and Higgs](../bosons/electroweak-bosons.md).
+  - Charged-current processes correspond to brief, localized corridor connections that reassign the weak-coupling ledger and axial architrinos between the participating assemblies (W-like), while neutral-current scattering corresponds to energy/momentum exchange with zero net charge transfer (Z-like). Cross sections are tiny because the neutrino’s exterior field is only a faint residue; compare [Electroweak Bosons: Photons, W/Z, and Higgs](../bosons/electroweak-bosons.md).
 
-Plain language: A neutrino is a very quiet, neutral core with almost all of its energy hidden; a tiny axial “whisper” shifts among three inner loops as it flies, making its type oscillate, and it interacts only when that whisper lines up just right with another assembly’s axis.
+Plain language: A neutrino is almost a photon-shaped neutral pair, but not quite. Most of its energy is hidden in the near-planar pro/anti lock. As it travels, tiny differences among its internal binaries become visible to weak interactions in different ways; that changing visible part is what the theory uses for oscillation.
+
+## Conversion and Reaction-Provenance Questions
+
+The near-photon picture raises natural photon/neutrino conversion questions. The current corpus should treat these as closure questions, not as settled claims.
+
+- A free photon is not assumed to decay directly into neutrinos. Photon-channel energy can participate in neutrino production only if the full reaction provenance closes: energy, momentum, charge/polarity, spin/angular momentum, and medium participation must all balance.
+- A neutrino is not assumed to relock spontaneously into a photon. A photon-channel outcome would require an interaction that relocks the near-planar pro/anti pair into the fully coherent coaxial contra-rotating pro/anti planar-pair mode.
+- The useful search target is therefore not simple decay, but assisted relocking: which environments, partner assemblies, or weak corridors can move a near-photon neutrino assembly into or out of the photon channel while preserving the ledgers?
+
+This keeps the strong intuition - neutrinos live close to photons in assembly space - without overclaiming an unvalidated free-particle decay path.
 
 ## PMNS closure program (primary lepton integration)
 
@@ -36,7 +56,7 @@ H_{\mathrm{geo}}=
 \Omega_{13}e^{i\phi_{13}} & \Omega_{23}e^{i\phi_{23}} & \epsilon_3
 \end{pmatrix},
 $$
-with $(\epsilon_i,\Omega_{ij},\phi_{ij})$ derived from neutral-core geometry and Noether-Sea coupling.
+with $(\epsilon_i,\Omega_{ij},\phi_{ij})$ derived from near-planar pro/anti core-pair geometry, residual internal-binary exposure, and Noether-Sea coupling.
 
 Diagonalization defines the mixing matrix:
 $$
@@ -60,4 +80,4 @@ $$
 H_{\mathrm{eff}}=H_{\mathrm{geo}}+V_{\mathrm{sea}}(\rho_{\mathrm{sea}}).
 $$
 
-Closure criterion for this chapter: one geometric Hamiltonian family must reproduce PMNS angles/phases and the observed $L/E$ pattern without introducing unconstrained flavor-specific ad hoc terms. For the electroweak-angle side of the same lepton sector, see [Weak Mixing Angle](./weak-mixing-angle.md); for validation targets, see [Constraint Ledger](../../validation/constraint-ledger.md).
+Closure criterion for this chapter: one near-photon geometric Hamiltonian family must reproduce PMNS angles/phases and the observed $L/E$ pattern without introducing unconstrained flavor-specific ad hoc terms. For the electroweak-angle side of the same lepton sector, see [Weak Mixing Angle](./weak-mixing-angle.md); for validation targets, see [Constraint Ledger](../../validation/constraint-ledger.md).

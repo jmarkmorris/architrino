@@ -4,6 +4,8 @@
 
 This chapter is the canonical home for proper time, observer clocks, clock slowing, and the clock map from absolute time $t$ to measured proper time $\tau$. Foundation and ontology pages should point here once the discussion becomes a clock law, frequency extraction, observer-clock comparison, or Lorentz/GR time-dilation recovery.
 
+For the detailed comparison between special-relativistic clock language and the deformable Noether-core implementation story, see [Special Relativity and Deformable Noether Cores](../theory-bridges/special-relativity-noether-core.md).
+
 We seek a map
 $$
 \frac{d\tau}{dt} = F\big(\mathbf{v}, n(\mathbf{x}), \chi_{\text{sea}}(\mathbf{x}), \Phi_{\text{eff}}(\mathbf{x}), \text{clock geometry}\big)
@@ -51,7 +53,7 @@ d\tau = \frac{\omega(\text{state})}{\omega_0}\, dt
 $$
 where $\omega(\text{state})$ is the instantaneous internal oscillation frequency in the actual kinematic and environmental state.
 
-The central problem is to compute $\omega(\mathbf{v},n,\Phi_{\text{eff}})$ from the master dynamics.
+The central problem is to compute $\omega(\mathbf{v},n,\chi_{\text{sea}},\Phi_{\text{eff}})$ from the master dynamics.
 
 ---
 
@@ -74,6 +76,8 @@ When the clock moves with velocity $\mathbf{v}$ relative to the Noether Sea:
  - At low $v$, the outer exclusion surface is nearly spherical.
  - As $v\to c_f$, that exclusion surface contracts along $\hat{\mathbf{v}}$ while maintaining transverse dimensions, yielding an ellipsoid with semi‑axes $(a_\perp, a_\perp, a_\parallel)$ and $a_\parallel < a_\perp$.
  - This geometric dilation changes internal path lengths and curvature, lowering $\omega$.
+
+Geometry terminology follows [Noether Core Geometry](../assemblies/noether-core-geometry.md#canonical-geometry-variables): the envelope shape ratio is $\xi=R_{\parallel}/R_{\perp}$. The proper-time factor is not defined to be $\xi$; it is the extracted clock observable $\omega_{\text{clk}}/\omega_0=d\tau/dt$. In the homogeneous Lorentz-closure target, the theory must derive $\omega_{\text{clk}}/\omega_0\to\xi\to1/\gamma$.
 
 **Kinematic hypothesis:**
 $$
@@ -150,7 +154,7 @@ Use one neutral tri-binary core with six constituent architrinos:
 $$
 \mathcal{A}=\{i_+,i_-,m_+,m_-,o_+,o_-\},
 $$
-with charges $q_a=\pm|e/6|$, effective inertial parameters $m_a$, and trajectories $\mathbf{x}_a(t)$.
+with intrinsic polarities $q_a=\pm\epsilon$, $\epsilon=|e|/6$, effective inertial parameters $m_a$, and trajectories $\mathbf{x}_a(t)$.
 
 Define pair-separation vectors
 $$
@@ -158,7 +162,7 @@ $$
 \mathbf{r}_m=\mathbf{x}_{m+}-\mathbf{x}_{m-},\quad
 \mathbf{r}_o=\mathbf{x}_{o+}-\mathbf{x}_{o-},
 $$
-with radii $R_b=|\mathbf{r}_b|$ for $b\in\{i,m,o\}$ and nested ordering
+with radii $R_b=\|\mathbf{r}_b\|$ for $b\in\{i,m,o\}$ and nested ordering
 $$
 R_i<R_m<R_o.
 $$
@@ -169,7 +173,7 @@ For each $a\in\mathcal{A}$ evolve
 $$
 m_a\ddot{\mathbf{x}}_a(t)=
 \sum_{b\in\mathcal{A}}
-\kappa\,\sigma_{ab}|q_aq_b|
+\kappa\,\sigma_{ab}\lvert q_aq_b\rvert
 \int_{-\infty}^{t}\!dt_0\;
 \frac{\hat{\mathbf{r}}_{ab}(t;t_0)}{r_{ab}(t;t_0)^2}\,
 \delta_\eta\!\big(r_{ab}(t;t_0)-c_f(t-t_0)\big),
@@ -202,9 +206,9 @@ $$
 
 Run the same core under controlled backgrounds:
 
-1. Uniform center-of-mass drift speed $v=|\mathbf{V}_{\text{CM}}|$ through homogeneous medium.
+1. Uniform center-of-mass drift speed $v=\|\mathbf{V}_{\text{CM}}\|$ through homogeneous medium.
 2. Weak static potential background $\Phi_N(\mathbf{x})$ (or $U\equiv-\Phi_N>0$).
-3. Weak-field regime constraints: $v^2/c_f^2\ll1$ and $|U|/c_f^2\ll1$.
+3. Weak-field regime constraints: $v^2/c_f^2\ll1$ and $\lvert U\rvert/c_f^2\ll1$.
 
 For each run $j$, record
 $$
@@ -274,7 +278,7 @@ For the static branch ($v=0$),
 $$
 \frac{\omega}{\omega_0}=1-\frac{U}{c_f^2}+C_2\frac{U^2}{c_f^4}+\cdots,
 $$
-and the PPN map used in [spacetime/ppn-parameters.md](./ppn-parameters.md) is
+and the PPN map used in [PPN Parameters](./ppn-parameters.md) is
 $$
 \beta_{\mathrm{eff}}=\frac{1+2C_2}{2}.
 $$
@@ -285,10 +289,12 @@ $$
 
 The mixed coefficient $C_{Uv}$ is treated as a leakage diagnostic at this order.
 
-Execution protocols, benchmark catalogs, and numeric pass/fail thresholds are defined in:
+Execution protocols, benchmark catalogs, and numeric pass/fail thresholds are routed through:
 
-1. `validation/experiments/*`
-2. [validation/constraint-ledger.md](../validation/constraint-ledger.md)
+1. [Validation Protocols](../validation/validation-protocols.md)
+2. [Simulation Run Protocols](../validation/simulations/run-protocols.md)
+3. [Constraint Ledger](../validation/constraint-ledger.md)
+4. [Closure Scorecard](../validation/closure-scorecard.md)
 
 ---
 
@@ -309,7 +315,7 @@ This program fails—and the emergent‑metric project is likely untenable—if 
  - If different reasonable clock designs (different internal assemblies) yield different $d\tau/dt$ at the same $(v,\Phi_N)$ beyond experimental bounds, the emergent Equivalence Principle fails.
 
 5. **Parameter bloat:** 
- - If matching these effects requires introducing many independent medium parameters ($n$ profiles, ad hoc drag coefficients), the theory’s naturalness score collapses (see).
+ - If matching these effects requires introducing many independent medium parameters ($n$ profiles, ad hoc transport coefficients), the theory's naturalness score collapses; see [Parameter Ledger](../validation/parameter-ledger.md).
 
 ---
 
@@ -319,6 +325,14 @@ A concrete definition of **how** to compute $\omega(v,\Phi_{\text{eff}},n)$ for 
 ### Closure Program Interface (clock-to-PPN bridge)
 
 This chapter supplies the fitted coefficient bridge between microscopic clock dynamics and PPN observables.
+
+The clock-to-PPN closure checklist is:
+
+1. Define a reference clock assembly and extraction window for $\omega_0$.
+2. Run controlled perturbations over $(U_j,v_j)$ in the weak-field, low-velocity regime.
+3. Fit $(A_U,A_v,C_2,C_{Uv},C_{v4})$ from the extracted clock ratios.
+4. Forward $\hat\beta_{\mathrm{eff}}$ and the leakage coefficient $\hat C_{Uv}$ to [PPN Parameters](./ppn-parameters.md).
+5. Record pass/fail status in [Closure Scorecard](../validation/closure-scorecard.md) against [Constraint Ledger](../validation/constraint-ledger.md) bounds.
 
 Given extracted coefficients
 $$

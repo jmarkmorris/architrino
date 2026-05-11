@@ -4559,7 +4559,27 @@ $$
 P_\eta.
 $$
 
-1. verify the seed-cycle margin ledger
+Before those five audit rows can be meaningful, the candidate must pass the named null-coordinate pre-ledger target from [Closed-Form Collinear Breather Ansatz](./closed-form-collinear-breather-ansatz.md#null-coordinate-causal-pre-ledger). Concretely, the proof must:
+
+1. produce one candidate cycle
+   $$
+   \phi_{\mathrm{cyc}},
+   $$
+   with a certificate mesh and either fold-adapted fractional basis data near field-speed separators or an interval-collocation representation with equivalent residual targets;
+2. verify the `Null-Coordinate Causal Pre-Ledger` target for
+   $$
+   |x(t)-x(s)|=c_f(t-s),
+   \qquad
+   s<t,
+   $$
+   using
+   $$
+   u=c_f t-x,
+   \qquad
+   w=c_f t+x
+   $$
+   to classify every ordered arc-pair block as empty, simple-root, or fold-layer. If this finite pre-ledger cannot be certified with strict gaps, derivative floors, and fold-layer bounds, the candidate or itinerary fails before the seed-cycle margin ledger is attempted;
+3. verify the seed-cycle margin ledger
    $$
    \nu_{\mathrm{seed}}>0,
    \qquad
@@ -4577,7 +4597,7 @@ $$
    $$
    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}};
    $$
-2. verify the factorized coupled-corridor inequalities
+4. verify the factorized coupled-corridor inequalities
    $$
    C_{\mathrm{in}}(\epsilon_c)>0,
    \qquad
@@ -4602,7 +4622,7 @@ $$
    p_0
    $$
    rather than treating local margins and envelope constants as independent;
-3. compute the monodromy diagnostic for
+5. compute the monodromy diagnostic for
    $$
    D P_\eta(\phi_{\mathrm{cyc}})
    $$
@@ -4611,7 +4631,7 @@ $$
    |\lambda|>1+\delta_{\mathrm{mon}},
    $$
    use the result to route the returned-sample proof to boundary trapping rather than residual-plus-sensitivity estimates.
-4. derive returned-sample budgets. If the sample sensitivities
+6. derive returned-sample budgets. If the sample sensitivities
    $$
    L_j^x,
    \qquad
@@ -4636,7 +4656,7 @@ $$
    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
    $$
    on that same domain.
-5. verify the topology row:
+7. verify the topology row:
    $$
    u_{\mathrm{ret}}^{\mathrm{cert}}>0
    $$
@@ -4645,7 +4665,7 @@ $$
    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
    $$
 
-Once these five items are theorem-level, the finite-certificate invariant closure package supplies the self-map domain and the certified topology proposition supplies continuity and precompactness. The remaining Schauder step is then formally routine.
+Once the pre-ledger gate passes and the five audit rows are theorem-level, the finite-certificate invariant closure package supplies the self-map domain and the certified topology proposition supplies continuity and precompactness. The remaining Schauder step is then formally routine.
 
 ### Schauder capstone
 
@@ -10246,13 +10266,13 @@ Here "closed-form solution" means an elementary formula for the orbit. It does n
 
 > **Heuristic aside.**
 >
-> Ah, my friend. You look at the beautiful symmetries of the 1D line, the inexorable return of the particle, and the elegance of the integrals we have just bounded, and you hope for a formula: an equation
+> The symmetries of the 1D line make a closed formula tempting. One might hope for an expression
 > $$
 > x(t)=f(t,X_0,V_0)
 > $$
-> that captures the entire dance. It is a beautiful dream, the dream of Laplace.
+> that captures the entire orbit from elementary initial data.
 >
-> But one should be cautious. Here we have summoned a dynamical object with infinite-dimensional memory, and it should not be expected to sit quietly inside a cage of elementary functions.
+> The delayed system does not support that expectation. It is a dynamical object with infinite-dimensional memory, state-dependent delays, and changing root topology, so the natural proof target is an invariant history-space return map rather than a global elementary solution.
 >
 > **1. The phase space is infinite-dimensional.**
 > In ordinary Newtonian mechanics, the state is a point
@@ -10297,7 +10317,7 @@ Here "closed-form solution" means an elementary formula for the orbit. It does n
 > Even instantaneous inverse-square dynamics already taught us that explicit formulas are not to be expected in generic nonlinear few-body problems. Here the 1D breather may look like a two-body problem, but the delayed self-interaction makes it behave like a path-history problem with an effectively infinite swarm of past images. One should not expect such a system to become simpler merely because it lives on a line.
 >
 > **The silver lining.**
-> This is exactly why the present strategy is mathematically sensible. We trade the fantasy of a global closed-form solution for something stronger in the only sense that matters here:
+> This is why the present strategy is mathematically appropriate. It replaces the search for a global closed-form solution with a proof target that is stronger for the purpose of the chapter:
 >
 > - existence of the delayed orbit,
 > - uniqueness once the history is fixed,
@@ -10308,7 +10328,7 @@ Here "closed-form solution" means an elementary formula for the orbit. It does n
 > $$
 > x(t)
 > $$
-> valid for arbitrary data. We need one candidate cycle
+> valid for arbitrary data. The proof needs one candidate cycle
 > $$
 > \phi_{\mathrm{cyc}},
 > $$

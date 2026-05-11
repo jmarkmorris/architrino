@@ -14,7 +14,7 @@ Provide the rigorous geometric-analysis backbone for the master equation with ca
 
 ## Focus Areas
 
-- Formulate the master equation on absolute time × Euclidean space with retarded kernels and self-hit terms; specify function spaces and well-posedness conditions.
+- Formulate the master equation on absolute time × Euclidean space with causal-delay kernels and self-hit terms; specify function spaces and well-posedness conditions.
 - Prove local and global existence/uniqueness where possible; map blow-up and shock-formation criteria; classify attractors relevant to stable assemblies.
 - Derive conservation laws, monotone quantities, and Lyapunov or Morawetz-type energies suited to tri-binary dynamics and causal cones.
 - Develop asymptotic expansions and multiscale reductions (high/medium/low binaries), including geometric singular perturbation and matched asymptotics for wake interactions.
@@ -38,7 +38,7 @@ Provide the rigorous geometric-analysis backbone for the master equation with ca
 - **Free-boundary problems and elasticity**: Analyzed motion of free liquid surfaces and relativistic elastodynamics; emphasizes well-posedness with moving boundaries—relevant to dynamic exclusion surfaces of tri-binaries.
 - **Memory in EM and null asymptotics**: Extended memory-type analyses to electromagnetic fields; offers guidance on asymptotic charge/flux bookkeeping.
 - **Characteristic initial value formulations**: Worked extensively with double-null foliations; natural coordinate choice for causal-cone dynamics and wake propagation problems.
-- **Hierarchy of energies and commutators**: Crafted weighted vector-field methods with delicate commutator control; model for building robust a priori estimates in delayed, retarded systems.
+- **Hierarchy of energies and commutators**: Crafted weighted vector-field methods with delicate commutator control; model for building robust a priori estimates in delayed, causal-history systems.
 - **Singularity classification**: Studied naked singularities and cosmic censorship in scalar fields and fluids; provides a taxonomy approach for classifying breakdown modes (shock vs. trapped surface vs. dispersion).
 
 ## How to apply this style to $\mathbb{A}\mathbb{A}\mathbb{A}$
@@ -48,4 +48,4 @@ Provide the rigorous geometric-analysis backbone for the master equation with ca
 - Translate shock-formation machinery to detect when tri-binary self-hit yields curvature blow-up; identify null structures that could delay or prevent singularity.
 - Use short-pulse scaling to model sudden energy injection events (collisions, corridor nucleation) and bound conditions for trapped-surface analogs within assemblies.
 - Construct monotone flux integrals (memory analogues) to quantify permanent charge/phase shifts after interactions; candidate invariants for provenance tracking.
-- Supply structure-preserving discretization targets: symplectic or variational integrators respecting derived energies and constraints, with retarded-time evaluation.
+- Supply structure-preserving discretization targets: symplectic or variational integrators respecting derived energies and constraints, with causal-emission-time evaluation.

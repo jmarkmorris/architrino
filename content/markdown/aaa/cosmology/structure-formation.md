@@ -6,6 +6,8 @@ This chapter translates standard structure-formation language into medium-and-as
 
 Structure formation describes how the nearly homogeneous early universe developed the web of galaxies, clusters, filaments, and voids observed today. In standard $\Lambda$CDM this story unfolds through gravitational instability of small density perturbations in an expanding Friedmann–Robertson–Walker metric, seeded during inflation and amplified by pressureless cold dark matter that decouples early from the photon–baryon plasma. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ comparison map, the inflation-side predecessor is [Inflation Model](./inflation-model.md).
 
+The standard term **cosmological void** should be read as a low-galaxy-density region, not as ontological emptiness. Such regions still contain the Noether Sea, photon and neutrino transport, sparse hydrogen, and possible rare reaction channels seeded by high-energy photons or other local sources.
+
 In the Architrino Assembly Architecture the same phenomenology is reinterpreted as **medium-and-assembly co-evolution inside a fixed Euclidean void with absolute time**. The Noether Sea, the dense lattice of coupled pro/anti tri-binary assemblies, plays the role of the dynamical medium. Matter assemblies, baryonic composites plus any weakly coupled neutral assemblies serving the dark-matter role, are embedded in and coupled to this medium. Growth of overdensities is governed by how the medium transmits effective gravitational influence, how matter assemblies cluster under that influence, and how the medium's own internal energy budget (playing the role of dark energy) modulates the expansion-equivalent dynamics.
 
 No metric expansion of space occurs. The Euclidean void is static. What changes is the **internal state of the tri-binary medium**: assembly radii, oscillation frequencies, local number density, the Noether-Sea delay factor $\chi_{\text{sea}}$, and the resulting medium-dressed inertial response. All standard cosmological observables—power spectra, correlation functions, lensing maps—are recast as probes of this medium-plus-assembly history at different scales and epochs.
@@ -20,7 +22,7 @@ Define a spatially averaged medium state at absolute time $t$:
 
 - $\rho_{\text{sea}}(t)$: mean energy density of the Noether Sea (tri-binary assemblies),
 - $\rho_m(t)$: mean energy density of matter assemblies (baryonic + neutral/dark),
-- $\bar{n}(t)$: mean tri-binary number density,
+- $\bar{\rho}_{\text{core}}(t)$: mean Noether-core density in physical units,
 - $\bar{R}_{\text{core}}(t)$: mean outer-binary radius of Noether-Sea assemblies.
 
 An effective Hubble-like parameter $H(t)$ is defined operationally through the rate of change of the medium's bulk properties. Specifically, if one defines an effective scale variable $a(t)$ via the photon redshift relation (the ratio of photon assembly frequencies at emission and reception), then $H = \dot{a}/a$ summarizes how inter-assembly separations evolve as the medium relaxes and dissipates energy. This $H$ is not the expansion rate of space but a bookkeeping variable for the medium's thermodynamic and mechanical evolution.
@@ -38,7 +40,7 @@ Each symbol carries a specific medium-level meaning:
 - **$H(t)$**: the effective damping term arising from the medium's bulk evolution. As Noether-Sea assemblies relax energetically (outer binaries expanding, frequencies decreasing), inter-assembly separations grow, diluting the gravitational source density. This acts as a friction-like term on the growth of perturbations, exactly as Hubble drag does in standard cosmology, without identifying ordinary dissipative drag as the mass mechanism.
 
 - **$G_{\text{eff}}(t, k)$**: the effective gravitational coupling, set by how efficiently a local matter overdensity perturbs the surrounding Noether Sea and how that perturbation propagates to attract more matter. In the architrino picture, $G_{\text{eff}}$ depends on:
-  - the local tri-binary density $\bar{n}(t)$, which sets the medium stiffness,
+  - the local Noether-core density $\bar{\rho}_{\text{core}}(t)$, which sets the medium stiffness,
   - the outer-binary radius $\bar{R}_{\text{core}}(t)$, which controls the compliance of Noether-Sea assemblies to deformation,
   - potentially the wavenumber $k$, if the medium response becomes scale-dependent at wavelengths comparable to internal assembly scales or at the transition between linear and self-hit regimes.
   The weak-field constitutive map behind this is the same one organized in [Emergent Metric](../spacetime/emergent-metric.md).
@@ -74,7 +76,7 @@ Within the architrino framework the same integral structure holds, with $H(a)$ a
 
 ### Baryonic Assemblies
 
-Baryons (protons, neutrons, and their composites) are tri-binary assemblies with specific axial patterns. Their clustering behavior is governed by the effective growth equation above, modified by pressure support (thermal motion) and radiative cooling. Before recombination, baryonic assemblies are tightly coupled to photon planar-pair wave packets propagating through the medium, producing acoustic oscillations. After decoupling, baryons fall into potential wells already established by the dark sector.
+Baryons (protons, neutrons, and their composites) are tri-binary assemblies with specific axial patterns. Their clustering behavior is governed by the effective growth equation above, modified by pressure support (thermal motion) and radiative cooling. Before recombination, baryonic assemblies are tightly coupled to coaxial contra-rotating pro/anti planar-pair photon wave packets propagating through the Noether Sea, producing acoustic oscillations. After decoupling, baryons fall into potential wells already established by the dark sector.
 
 ### Neutral Assemblies (Dark-Matter Candidates)
 
@@ -207,11 +209,11 @@ $$
 =
 -\bar{\rho}_{\text{sea}}(a)\,\theta(a,k,\omega)
 =
-\chi_{\text{sea}}(a,k,\omega)\,\delta\rho_m(a,k,\omega),
+\mu_{\text{sea}}(a,k,\omega)\,\delta\rho_m(a,k,\omega),
 $$
 with susceptibility
 $$
-\chi_{\text{sea}}(a,k,\omega)
+\mu_{\text{sea}}(a,k,\omega)
 =
 -\frac{\bar{\rho}_{\text{sea}}(a)\,g_m(a)}
 {M_L(a)k^2+m_L^2(a)-i\omega\,\Gamma_L(a)k^2}.
@@ -221,13 +223,13 @@ Insert this into the linear Poisson source:
 $$
 -k^2\Phi(a,k)=4\pi G_N a^2\bigl[\delta\rho_m+\delta\rho_{\text{sea}}\bigr]
 =
-4\pi G_N a^2\bigl[1+\chi_{\text{sea}}(a,k,\omega)\bigr]\delta\rho_m.
+4\pi G_N a^2\bigl[1+\mu_{\text{sea}}(a,k,\omega)\bigr]\delta\rho_m.
 $$
 Therefore
 $$
-G_{\text{eff}}(a,k,\omega)=G_N\bigl[1+\chi_{\text{sea}}(a,k,\omega)\bigr],
+G_{\text{eff}}(a,k,\omega)=G_N\bigl[1+\mu_{\text{sea}}(a,k,\omega)\bigr],
 \qquad
-\mu(a,k,\omega)=\chi_{\text{sea}}(a,k,\omega).
+\mu(a,k,\omega)=\mu_{\text{sea}}(a,k,\omega).
 $$
 
 For growth calculations use the quasi-static branch $\omega\simeq H(a)f(a)$ and the real part:

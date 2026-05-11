@@ -48,7 +48,7 @@ This chapter should also be read against a broader guardrail from the project fr
 Several standing examples point in that direction.
 
 - **Noether Sea / spacetime medium:** the ambient medium is already framed as a coupled pro/anti population rather than a single-sign sea.
-- **Photon-like planar pair:** a photon-like planar-pair assembly is naturally read as a coaxial contra-rotating pro/anti planar pair, or equivalently one `CW` and one `CCW` planar branch in the flat state as an absolute-frame observer compares the two sides of the propagating pair.
+- **Photon channel:** the photon assembly is naturally read as a coaxial contra-rotating pro/anti planar pair, or equivalently one `CW` and one `CCW` planar branch in the flat state as an absolute-frame observer compares the two sides of the propagating pair.
 - **Higgs-like cluster:** the standing cluster intuition remains a $2+2$ object, with two pro and two anti cores in a three-dimensional coupled state rather than a single-sign configuration.
 
 So when this note isolates `pro/anti`, it is **not** doing so because the larger ontology is expected to drift into a globally pro-dominant or anti-dominant universe. It is doing so because the horizon problem compresses the core strongly enough that the binary branch structure becomes especially visible.
@@ -76,7 +76,7 @@ The horizon question becomes clearer when compared against the main assembly sec
 | Sector | Pro/anti organization | Dimensional character | Why it matters here |
 | --- | --- | --- | --- |
 | Noether Sea | broadly balanced pro/anti medium | mainly 3D distributed medium | background reminder that AAA does not predict a large universal imbalance |
-| Photon-like pair | coaxial contra-rotating pro/anti planar pair | planar / propagating pair | shows that opposite branch pairing is natural in flat planar states |
+| Photon channel | coaxial contra-rotating pro/anti planar pair | planar / propagating pair | shows that opposite branch pairing is natural in flat planar states |
 | Higgs-like cluster | `2+2` pro/anti cluster | 3D coupled cluster | shows balanced multi-core organization without collapsing to one sign |
 | Ordinary matter reaction channels | pro/anti encounters can open rapid reconfiguration channels | mixed 3D and reaction geometry | the place where asymmetry becomes dynamically important rather than globally dominant |
 
@@ -371,6 +371,6 @@ That yields a disciplined provisional picture:
 - [singularity-resolution.md](./singularity-resolution.md): canonical horizon alignment condition.
 - [black-holes.md](./black-holes.md): horizon interface and strong-field ontology.
 - [tri-binary-dynamics.md](../dynamics/tri-binary-dynamics.md): regime map, planarity diagnostics, and alignment observables.
-- [mapping-planck-scale.md](./mapping-planck-scale.md): terminal planar lock and alignment-horizon interpretation.
+- [planck-scale-tri-binary-alignment.md](../theory-bridges/planck-scale-tri-binary-alignment.md): terminal planar lock and alignment-horizon interpretation.
 - [../assemblies/fermions/color-charge-su3.md](../assemblies/fermions/color-charge-su3.md): matter/antimatter chirality convention.
 - [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md): ordered-triad and chirality language.

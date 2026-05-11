@@ -109,6 +109,18 @@ This 1% threshold is a modeling convention for cascade tractability, not a funda
 - **Pair channel:** two-photon overlap, with each photon treated as a coaxial contra-rotating pro/anti planar pair, associates local substrate content into a charged $e^+e^-$ assembly pair; this association must strictly conserve net architrino count and charge of participating assemblies (photons + neutral Noether-Sea cores $\rightarrow e^+ + e^-$), with provenance and conservation bookkeeping explicit.
 - **Cascade loop:** repeated emission-pair-emission cycles are modeled as repeated mode-lock events under the same observer-level thresholds.
 
+## Shared Photon Event Record
+
+Use the same photon-channel event record here as in [Bremsstrahlung](bremsstrahlung.md) and [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md). A synchrotron planar-mode event should record:
+
+- charged assembly identity, energy, momentum, pitch geometry, and path-history provenance before and after the curved transport segment;
+- effective magnetic-state map $\mathcal{V}_{\mathrm{NS}}$ and local Noether-Sea variables $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy, excitation state, and causal-branch Jacobian data;
+- wake-strain eigenvalue or threshold status that permits or forbids planar-mode nucleation;
+- photon output $E_\gamma$, direction, polarization basis, and local photon-channel speed $c_\gamma$;
+- recoil, medium excitation, and pair-channel handoff terms when the emitted photon enters a cascade loop.
+
+This record is a derivation target. It must recover $\nu_c\propto\gamma^2B$, $P_{\mathrm{syn}}\propto U_B\gamma^2$, standard polarization limits, and Breit-Wheeler behavior in validated regimes before any Noether-Sea-dependent deviation is treated as physical.
+
 ## Observer-Level Closure Checks
 
 - Pair threshold closure: enforce $s = (k_1+k_2)^2 \ge 4m_e^2c^4$ for $\gamma\gamma \rightarrow e^+e^-$, where $k^\mu_i$ are photon 4-momenta. In the head-on collision frame this reduces to $E_1 E_2 \ge (m_e c^2)^2$; for general angle $\theta_{12}$ between photon directions, $E_1 E_2 (1-\cos\theta_{12}) \ge 2(m_e c^2)^2$. Breit-Wheeler cross-section peak occurs at $s \sim 10 m_e^2 c^4$ and must be reproduced in validated cascade limits.
@@ -148,7 +160,7 @@ This file adopts the following provisional commitments.
 
 - **Synchrotron emission (provisional):** a charged tri-binary assembly forced onto a curved trajectory by a magnetized Noether-Sea state develops a wake-strain instability; when local strain exceeds the planar-mode threshold, a photon assembly nucleates and carries away energy-momentum. This nucleation threshold must be derivable from wake-strain eigenvalue conditions in simulations; hand-tuning the threshold to match observed $P_{\mathrm{syn}}(\gamma,B)$ constitutes a fit, not a derivation. The mapping succeeds only if the threshold emerges naturally from the architrino master equation applied to curved charged-assembly trajectories in anisotropic substrate states.
 - **Magnetic field ontology (provisional commitment, Option B):** observer-level $B$ is the effective coarse-grained directional (vector/tensor) vorticity-anisotropy state of the Noether Sea, $B \leftrightarrow \mathcal{V}_{\mathrm{NS}}$, rather than a separate fundamental void field (Option A). Charged-assembly curvature is therefore transport through an anisotropic substrate state with explicit directionality. In validated limits, this mapping must: (i) derive the effective Lorentz-force law $\mathbf{F}_{\mathrm{eff}} = q(\mathbf{v}/c) \times \mathbf{B}_{\mathrm{eff}}$ from anisotropic Noether-Sea transport together with the Jacobian-weighted geometry of delayed causal flux, rather than by postulating a primitive cross-product force term; (specifically, show that vorticity-tensor gradients $\partial_i \mathcal{V}^j_{\mathrm{NS}}$ produce perpendicular deflection under boost); (ii) reproduce Maxwell-level electromagnetic-wave propagation (dispersion relation $\omega = ck$ for photon modes in uniform $\mathcal{V}_{\mathrm{NS}}$); (iii) recover synchrotron polarization geometry ($\mathbf{E}_\gamma \perp \mathbf{B}_{\mathrm{eff}}$, $\mathbf{E}_\gamma \perp \mathbf{v}$ in observer frame) from directional emission rules in the Noether-Sea anisotropy basis. **Falsification criterion:** if simulations with anisotropic Noether-Sea states fail to produce the factor-of-$\gamma^2$ frequency scaling in $\nu_c$ (tested via swept $B$-field and $\gamma$ at fixed pitch angle), or if polarization vectors misalign with standard geometry by $>15^\circ$ systematically, Option B is ruled out and the theory must revert to treating $\mathbf{B}$ as a separate substrate field (Option A) or propose a new mapping.
-- **Pair production mapping (provisional):** $\gamma+\gamma\rightarrow e^+ + e^-$ is treated as nucleation of charged assemblies from local Noether-Sea energy-density concentration triggered by two-photon planar-pair overlap above threshold, not ex nihilo creation. The nucleation threshold must map to the standard kinematic condition $s\ge 4m_e^2$, and the effective rate must asymptotically reproduce the Breit-Wheeler cross-section in the relativistic limit used by cascade modeling. Operational constraint: pair-channel cross-section $\sigma_{\gamma\gamma}(s)$ computed from this nucleation picture must reproduce
+- **Pair production mapping (provisional):** $\gamma+\gamma\rightarrow e^+ + e^-$ is treated as nucleation of charged assemblies from local Noether-Sea energy-density concentration triggered by overlap of two coaxial contra-rotating pro/anti planar-pair photon assemblies above threshold, not ex nihilo creation. The nucleation threshold must map to the standard kinematic condition $s\ge 4m_e^2$, and the effective rate must asymptotically reproduce the Breit-Wheeler cross-section in the relativistic limit used by cascade modeling. Operational constraint: pair-channel cross-section $\sigma_{\gamma\gamma}(s)$ computed from this nucleation picture must reproduce
 $$
 \sigma_{\gamma\gamma} = \frac{\pi r_e^2}{2}\left(1-\beta^2\right)\left[\left(3-\beta^4\right)\ln\left(\frac{1+\beta}{1-\beta}\right) - 2\beta(2-\beta^2)\right]
 $$
@@ -161,7 +173,7 @@ These commitments are ontology-level and must reduce to standard synchrotron/pai
 In this chapter, "curved transport" means Euclidean-space trajectory curvature of charged assemblies under effective magnetic forcing at substrate level. Observer-level curved-spacetime language is used only as an effective description of transport and timing, not as a replacement for the substrate trajectory picture.
 
 Operationally: compute emissivity and spectra with standard observer-frame equations; interpret underlying trajectory control through the Noether-Sea anisotropy map when using $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology.
-**Unresolved choice:** whether "curvature" here refers to (Option A) Euclidean-substrate path curvature $d^2\mathbf{x}/dt^2 \ne 0$ with absolute time $t$, or (Option B) geodesic deviation in an emergent effective metric $g_{\mu\nu}(\rho_{\mathrm{NS}}, \mathcal{V}_{\mathrm{NS}})$, is not yet fixed in the theory. Both options must produce identical observer-frame synchrotron emissivity in weak-gravity zones; distinguishing experiments would require near-horizon synchrotron mapping or laboratory strong-field tests.
+**Unresolved choice:** whether "curvature" here refers to (Option A) Euclidean-substrate path curvature $d^2\mathbf{x}/dt^2 \ne 0$ with absolute time $t$, or (Option B) geodesic deviation in an emergent effective metric $g_{\mu\nu}(\rho_{\text{core}}, n, \mathcal{V}_{\mathrm{NS}})$, is not yet fixed in the theory. Both options must produce identical observer-frame synchrotron emissivity in weak-gravity zones; distinguishing experiments would require near-horizon synchrotron mapping or laboratory strong-field tests.
 
 ### Conservation Note for Pair Production
 
@@ -218,7 +230,7 @@ $$
 For ontology-level bookkeeping, use the conversion
 
 $$
-dt = \Gamma_{\mathrm{eff}}(v,\rho_{\mathrm{NS}},\Phi)\,d\tau_{\mathrm{asm}},
+dt = \Gamma_{\mathrm{eff}}(v,\rho_{\text{core}},n,\Phi)\,d\tau_{\mathrm{asm}},
 $$
 
 where $t$ is substrate absolute time and $\tau_{\mathrm{asm}}$ is assembly proper time. Then
@@ -237,7 +249,7 @@ $$
 \tau_{\mathrm{syn}}^{\mathrm{asm}}\approx \frac{\tau_{\mathrm{syn}}^{\mathrm{obs}}}{\Gamma_{\mathrm{eff}}}\approx 7.7\,\mathrm{s}.
 $$
 
-Here $\Gamma_{\mathrm{eff}}\approx\gamma$ is a placeholder SR-limit surrogate for dimensional illustration only, not a derived $\mathbb{A}\mathbb{A}\mathbb{A}$ relation. In all validated astrophysical regimes (AGN jets, pulsar wind nebulae, GRB afterglows), $\Gamma_{\mathrm{eff}}$ must reproduce the standard Lorentz factor $\gamma_{\mathrm{SR}}$ to within observational uncertainties on cooling breaks ($\lesssim 10\%$ for well-sampled SEDs). Any deviation is confined to untested extreme environments (for example, within $r \lesssim 3r_g$ of supermassive black holes, or $\rho_{\mathrm{NS}} \gg \rho_{\mathrm{nuclear}}$) and requires explicit simulation bounds showing no conflict with validated-regime data.
+Here $\Gamma_{\mathrm{eff}}\approx\gamma$ is a placeholder SR-limit surrogate for dimensional illustration only, not a derived $\mathbb{A}\mathbb{A}\mathbb{A}$ relation. In all validated astrophysical regimes (AGN jets, pulsar wind nebulae, GRB afterglows), $\Gamma_{\mathrm{eff}}$ must reproduce the standard Lorentz factor $\gamma_{\mathrm{SR}}$ to within observational uncertainties on cooling breaks ($\lesssim 10\%$ for well-sampled SEDs). Any deviation is confined to untested extreme environments (for example, within $r \lesssim 3r_g$ of supermassive black holes, or $\rho_{\text{core}} \gg \rho_{\mathrm{nuclear}}$) and requires explicit simulation bounds showing no conflict with validated-regime data.
 
 Propagation and timing conventions must remain explicit in cosmology-facing use.
 
@@ -254,7 +266,7 @@ This mapping aims at mechanistic compression across channels:
 
 - One substrate language for synchrotron, pair production, and bremsstrahlung as wake/assembly transport outcomes.
 - A single timing-conversion layer for rate equations (`observer` vs `assembly` clocks) used consistently in simulation bookkeeping.
-- A testable mapping hypothesis that pair-loading boundaries depend on local Noether-Sea state variables ($\rho_{\mathrm{NS}}$, anisotropy) in addition to standard observer-level compactness controls.
+- A testable mapping hypothesis that pair-loading boundaries depend on local Noether-Sea state variables ($\rho_{\text{core}}$, $n$, anisotropy) in addition to standard observer-level compactness controls.
 
 If future derivations show no measurable deviations in tested regimes, the remaining claim is ontological unification rather than new phenomenology.
 
@@ -265,6 +277,8 @@ The reinterpretation is justified only if it improves theory structure, not voca
 - A single substrate mechanism class for radiation channels usually treated separately (synchrotron, pair loading, bremsstrahlung).
 - A common conservation/provenance bookkeeping layer for mapping reaction networks into absolute-time assembly simulations.
 - A constrained bridge from standard observables to substrate variables, so mapping claims can fail under consistency checks rather than being post-hoc fits.
+
+Cosmology-facing provenance across synchrotron, pair production, bremsstrahlung, BBN photon loading, and CMB thermalization is tracked in [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md).
 
 If derivations show (i) no measurable deviations in any tested regime, (ii) no reduction in parameter count relative to standard plasma/QED models, and (iii) no new consistency constraints that eliminate existing fine-tuning, then the $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretation provides only ontological vocabulary change without explanatory gain. In that case, standard transport remains the preferred description for cascade phenomenology, and the $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping is demoted to an optional interpretive layer rather than a foundational claim.
 

@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "physical_observers",
+    "title": "Physical Observers",
+    "type": "Scene-Index",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "rings"
+    },
+    "centerOn": "observer_framework",
+    "children": [
+      {
+        "nodeId": "observer_framework",
+        "scenePath": "content/scenes/spacetime/observer_framework.json"
+      },
+      {
+        "nodeId": "proper_time_and_time_dilation",
+        "scenePath": "content/scenes/spacetime/proper_time_and_time_dilation.json"
+      },
+      {
+        "nodeId": "lorentz_kinematics",
+        "scenePath": "content/scenes/spacetime/lorentz_kinematics.json"
+      }
+    ]
+  },
+  "objects": [
+    {
+      "id": "observer_framework",
+      "title": "Observer Framework",
+      "radius": 2.688,
+      "color": "#2f6b6f",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Observer Framework",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "proper_time_and_time_dilation",
+      "title": "Proper Time and Time Dilation",
+      "radius": 2.688,
+      "color": "#3a5f9f",
+      "position": [
+        0,
+        10.5,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Proper Time and Time Dilation",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "lorentz_kinematics",
+      "title": "Lorentz Kinematics",
+      "radius": 2.688,
+      "color": "#3657a6",
+      "position": [
+        0,
+        -10.5,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Lorentz Kinematics",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    }
+  ]
+}

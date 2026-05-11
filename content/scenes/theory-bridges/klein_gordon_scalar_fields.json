@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "quantum__bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response",
-    "title": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
+    "id": "theory_bridges__klein_gordon_scalar_fields",
+    "title": "Relativistic Scalar Fields and the Klein-Gordon Equation",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/quantum/bell-theorem.md"
+      "path": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md"
     },
     "view": {
       "columns": 1,

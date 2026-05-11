@@ -9,185 +9,135 @@
     "layout": {
       "type": "rings"
     },
+    "centerOn": "quantum_summary",
     "children": [
       {
         "nodeId": "quantum_summary",
         "scenePath": "content/scenes/quantum/quantum_summary.json"
       },
       {
-        "nodeId": "quantum_operator_mapping",
-        "scenePath": "content/scenes/quantum/quantum_operator_mapping.json"
-      },
-      {
-        "nodeId": "bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response",
-        "scenePath": "content/scenes/quantum/bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response.json"
-      },
-      {
-        "nodeId": "measurement_ontology",
-        "scenePath": "content/scenes/quantum/measurement_ontology.json"
-      },
-      {
-        "nodeId": "measurement_problem_and_collapse",
-        "scenePath": "content/scenes/quantum/measurement_problem_and_collapse.json"
-      },
-      {
-        "nodeId": "entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture",
-        "scenePath": "content/scenes/quantum/entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture.json"
-      },
-      {
-        "nodeId": "pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture",
-        "scenePath": "content/scenes/quantum/pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture.json"
-      },
-      {
         "nodeId": "reality_causality_and_navigation",
         "scenePath": "content/scenes/quantum/reality_causality_and_navigation.json"
-      },
-      {
-        "nodeId": "superposition_mechanism_traditional_vs_architrino_assembly_architecture",
-        "scenePath": "content/scenes/quantum/superposition_mechanism_traditional_vs_architrino_assembly_architecture.json"
       },
       {
         "nodeId": "wavefunction_ontology",
         "scenePath": "content/scenes/quantum/wavefunction_ontology.json"
       },
       {
+        "nodeId": "measurement_ontology",
+        "scenePath": "content/scenes/quantum/measurement_ontology.json"
+      },
+      {
         "nodeId": "algorithmic_resonance",
         "scenePath": "content/scenes/quantum/algorithmic_resonance.json"
+      },
+      {
+        "nodeId": "quantum_statistics",
+        "scenePath": "content/scenes/quantum/quantum_statistics.json"
       }
     ]
   },
   "objects": [
     {
-      "id": "quantum_statistics",
-      "title": "Fermi-Dirac & Bose-Einstein Statistics",
-      "radius": 2.688,
-      "color": "#3a5f9f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Fermi-Dirac & Bose-Einstein Statistics"
-    },
-    {
       "id": "quantum_summary",
       "title": "Quantum Summary",
       "radius": 2.688,
       "color": "#2f4f7a",
+      "position": [
+        0,
+        0,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Quantum Summary",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "quantum_operator_mapping",
-      "title": "Quantum Operator Mapping",
-      "radius": 2.688,
-      "color": "#5a1f2e",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Quantum Operator Mapping",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response",
-      "title": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
-      "radius": 2.688,
-      "color": "#243d8f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "measurement_ontology",
-      "title": "Measurement Ontology",
-      "radius": 2.688,
-      "color": "#6c4f8d",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Measurement Ontology",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "measurement_problem_and_collapse",
-      "title": "Measurement Problem and Collapse",
-      "radius": 2.688,
-      "color": "#2f6b6f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Measurement Problem and Collapse",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture",
-      "title": "Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸",
-      "radius": 2.688,
-      "color": "#5a1f2e",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture",
-      "title": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸",
-      "radius": 2.688,
-      "color": "#3a5f9f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸",
-      "labelDates": "(QM)",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "reality_causality_and_navigation",
       "title": "Reality, Causality, and Navigation",
       "radius": 2.688,
       "color": "#7a4a1f",
+      "position": [
+        0,
+        10.5,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Reality, Causality, and Navigation",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "superposition_mechanism_traditional_vs_architrino_assembly_architecture",
-      "title": "Superposition Mechanism: QM vs. 𝔸𝔸𝔸",
-      "radius": 2.688,
-      "color": "#1c2a4f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Superposition Mechanism: QM vs. 𝔸𝔸𝔸",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "wavefunction_ontology",
       "title": "Wavefunction Ontology",
       "radius": 2.688,
       "color": "#3c6a7a",
+      "position": [
+        9.99,
+        3.24,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Wavefunction Ontology",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "measurement_ontology",
+      "title": "Measurement Ontology",
+      "radius": 2.688,
+      "color": "#6c4f8d",
+      "position": [
+        6.17,
+        -8.49,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Measurement Ontology",
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "algorithmic_resonance",
       "title": "Algorithmic Resonance and Shor's Algorithm",
       "radius": 2.688,
       "color": "#7a5a2f",
+      "position": [
+        -6.17,
+        -8.49,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Algorithmic Resonance and Shor's Algorithm",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "quantum_statistics",
+      "title": "Fermi-Dirac & Bose-Einstein Statistics",
+      "radius": 2.688,
+      "color": "#3a5f9f",
+      "position": [
+        -9.99,
+        3.24,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Fermi-Dirac & Bose-Einstein Statistics",
+      "fixedPosition": true
     }
   ]
 }

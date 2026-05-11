@@ -6,6 +6,17 @@ For now, this document is intentionally lightweight. It starts as a grouped inve
 
 The third column is a comma-separated ledger of known web-facing docs or app surfaces that do not yet match the preferred treatment. It can remain blank until those mismatches are audited.
 
+## Document Role
+
+This document is the canonical UI preference reference. It may also carry a short implementation-audit ledger, but the two roles should remain separate.
+
+- The `Preference` column states durable policy.
+- The `Current Non-Matching Uses` column records known implementation drift that should eventually move into issues, priority notes, or code-review tasks when it becomes active work.
+- Blank preference cells mean the policy has not been decided yet; they should not be treated as silent approval of current behavior.
+- Blank implementation cells mean no mismatch is currently recorded in this document, not that the surface has been exhaustively audited.
+
+When an audit item becomes broad or long-lived, promote it out of this guide into a dedicated implementation tracker and leave this document focused on the canonical preference.
+
 ## Global Chrome
 
 | UI Element                  | Preference                                                                                                                                                                                | Current Non-Matching Uses                                                                                        |
@@ -77,7 +88,7 @@ The third column is a comma-separated ledger of known web-facing docs or app sur
 | Detail/info panel | Use a left-docked dark-glass card with scrollable content and an explicit close affordance | Element-info mode hides the title and swaps the text `Close` button for a floating circular `×` button |
 | animator overlay | Use a full-screen fixed dark workspace with a compact header bar, dedicated status line, and tool-specific internal panels/menus |  |
 | Context menus | Prefer custom anchored menus over native browser context menus for animator canvas/timeline editing; use dark-glass menu surfaces with sectioned content | Custom context menus are implemented for animator surfaces, not as a repo-wide pattern across all app areas |
-| Modal dialogs |  |  |
+| Modal dialogs | Use only for blocking decisions; use dark-glass panel surfaces with explicit title, primary/secondary actions, Escape/outside-dismiss rules where safe, and focus trapping while open |  |
 | Dismiss behavior | Search and animator menus dismiss on outside interaction; search also dismisses on focus leaving and `Escape`; detail dismisses through an explicit close control | No shared modal-dialog dismissal pattern is implemented because there is no general dialog system yet |
 
 ## Scene Navigation Surfaces
@@ -113,7 +124,7 @@ The third column is a comma-separated ledger of known web-facing docs or app sur
 | Focus visibility | Use brighter borders and, where needed, explicit outlines to make keyboard focus visible on controls and form fields | Focus treatment is not yet fully uniform across all button families |
 | Hit target sizing | Keep shell icon buttons around `32x32`, element-nav arrows around `28x28`, and primary action buttons around `28px`-`42px` tall | Some tiny timeline and marker labels remain visually denser than the main control targets |
 | Contrast expectations | Maintain light text on dark surfaces for primary shell UI and tool overlays | Hyde periodic stage flips to a white background, creating a different contrast regime from the rest of the shell |
-| Reduced-motion behavior |  |  |
+| Reduced-motion behavior | Respect reduced-motion preferences by disabling decorative animation, shortening transitions, and preserving functional state changes without motion dependence |  |
 | Screen-reader naming | Use `aria-label` on icon buttons and groups, `aria-live` for status text, `aria-hidden`/`inert` for closed panels, and `aria-pressed` for toggles | No single dialog/accessibility wrapper exists yet because panels are managed individually |
 
 ## Open Preference Slots
@@ -123,6 +134,6 @@ The third column is a comma-separated ledger of known web-facing docs or app sur
 | Home scene entry experience | Use the full scene shell with centered focus sphere, top chrome, and dark ambient stage as the default app entry frame |  |
 | Mobile behavior | Below the current breakpoints (`980px`, `960px`, `900px`, `820px`), wrap the top HUD, collapse markdown multi-columns to one column, stack animator/reaction layouts, and scale Hyde periodic content down |  |
 | Desktop behavior | On wider screens, preserve the full top chrome, centered overlays, multi-column markdown, wide animator timeline/header layout, and full element-nav overlay |  |
-| Empty states |  |  |
-| Loading states |  |  |
-| Error states |  |  |
+| Empty states | Use short, plain text inside the relevant panel or surface, paired with one clear recovery action when available |  |
+| Loading states | Use compact inline status text or a restrained spinner/skeleton within the affected surface; avoid full-screen blocking unless the whole app is unavailable |  |
+| Error states | State what failed in plain language, keep technical detail collapsible or secondary, and provide retry/back/home recovery when applicable |  |

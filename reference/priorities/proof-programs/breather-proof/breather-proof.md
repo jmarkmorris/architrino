@@ -13,12 +13,14 @@
 
 1. `master_equation_law` — Record the exact dual-mollified absolute-time evolution law in the master-equation stack. Status: `done`. Depends on: none.
 2. `velocity_itinerary_verification` — Produce `certificate/itinerary.json` and `certificate/itinerary_parity_report.md` proving the proposed velocity-class itinerary satisfies the fold-parity invariants. Status: `done`. Depends on: `master_equation_law`.
-3. `seed_chart_packet` — Produce `certificate/phi_cyc.json`, `certificate/causal_ledger.json`, `certificate/branch_chart.json`, `certificate/mesh.json`, and the seed-chart interval report. Status: `next`. Depends on: `velocity_itinerary_verification`.
-4. `coupled_corridor_certificate` — Produce `certificate/corridor_nonemptiness_report.md`, `certificate/parameters.json`, and the coupled-corridor interval report for one strict parameter tuple. Status: `pending`. Depends on: `seed_chart_packet`.
-5. `monodromy_diagnostic` — Produce the section-anchored monodromy spectrum and route returned-sample preservation to sensitivities or boundary trapping. Status: `pending`. Depends on: `seed_chart_packet`, `coupled_corridor_certificate`.
-6. `returned_sample_certificate` — Produce returned-sample residuals or boundary-trapping budgets on the certified mesh. Status: `pending`. Depends on: `seed_chart_packet`, `coupled_corridor_certificate`, `monodromy_diagnostic`.
-7. `topology_certificate` — Verify return transversality, origin-layer continuity, certified fold-event atlas, and certified branch-chart well-posedness on the same domain. Status: `pending`. Depends on: `returned_sample_certificate`.
-8. `schauder_closeout` — Promote the conditional Schauder theorem to an existence theorem after all certificate rows pass. Status: `pending`. Depends on: `topology_certificate`.
+3. `candidate_cycle_packet` — Produce `certificate/phi_cyc.json` and `certificate/mesh.json` for one candidate center history, preferably using the fold-adapted fractional basis near field-speed separators or an interval-collocation replacement with the same residual targets. Status: `next`. Depends on: `velocity_itinerary_verification`.
+4. `null_coordinate_preledger` — Produce `certificate/causal_ledger.json` and `certificate/causal_preledger_interval_report.md`, proving the named `Null-Coordinate Causal Pre-Ledger` theorem target or rejecting the candidate/itinerary before branch-chart certification. Status: `next`. Depends on: `candidate_cycle_packet`.
+5. `branch_chart_certificate` — Produce `certificate/branch_chart.json` and `certificate/seed_chart_interval_report.md`, including active branches, inactive complements, Jacobian floors, memory-depth ranges, and envelope constants. Status: `pending`. Depends on: `null_coordinate_preledger`.
+6. `coupled_corridor_certificate` — Produce `certificate/corridor_nonemptiness_report.md`, `certificate/parameters.json`, and the coupled-corridor interval report for one strict parameter tuple. Status: `pending`. Depends on: `branch_chart_certificate`.
+7. `monodromy_diagnostic` — Produce the section-anchored monodromy spectrum and route returned-sample preservation to sensitivities or boundary trapping. Status: `pending`. Depends on: `branch_chart_certificate`, `coupled_corridor_certificate`.
+8. `returned_sample_certificate` — Produce returned-sample residuals or boundary-trapping budgets on the certified mesh. Status: `pending`. Depends on: `branch_chart_certificate`, `coupled_corridor_certificate`, `monodromy_diagnostic`.
+9. `topology_certificate` — Verify return transversality, origin-layer continuity, certified fold-event atlas, and certified branch-chart well-posedness on the same domain. Status: `pending`. Depends on: `returned_sample_certificate`.
+10. `schauder_closeout` — Promote the conditional Schauder theorem to an existence theorem after all certificate rows pass. Status: `pending`. Depends on: `topology_certificate`.
 
 ## Scope
 
@@ -100,9 +102,16 @@ not a new roadmap.
    \phi_{\mathrm{cyc}}
    $$
    by ansatz, collocation, or simulation.
-4. Enumerate active and inactive path-history roots on a finite mesh around that candidate.
-5. Verify the five audit rows below on the same certified domain.
-6. Promote the conditional Schauder theorem in [collinear-breather.md](../../../../content/markdown/aaa/proof-programs/collinear-breather.md) only after the finite audit passes.
+4. Run the named `Null-Coordinate Causal Pre-Ledger` target as the first seed-chart gate: use
+   $$
+   u=c_f t-x,
+   \qquad
+   w=c_f t+x
+   $$
+   to classify every ordered arc-pair block as empty, simple-root, or fold-layer before attempting a full branch chart.
+5. Enumerate active and inactive path-history roots on a finite mesh around that candidate only after the pre-ledger has strict finite margins.
+6. Verify the five audit rows below on the same certified domain.
+7. Promote the conditional Schauder theorem in [collinear-breather.md](../../../../content/markdown/aaa/proof-programs/collinear-breather.md) only after the finite audit passes.
 
 The vulnerable assumption is that a finite active branch chart with positive Jacobian floors and positive inactive-root gaps exists around one candidate cycle. The direct test is root enumeration plus interval certification for
 $$
@@ -132,6 +141,14 @@ Its executable artifacts are:
 
 - `certificate/itinerary.json`: velocity-class itinerary, arc labels, separator events, proposed fold events, and expected root-count jumps.
 - `certificate/itinerary_parity_report.md`: algebraic check that every separator event satisfies the even-jump law and signed-degree conservation, and that the closed-cycle branch ledger returns to itself.
+
+The next gate is the null-coordinate pre-ledger. This is now a named theorem target in [closed-form-collinear-breather-ansatz.md](../../../../content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md): before a candidate can claim an active branch chart, the ordered arc-pair blocks must be reduced to certified empty blocks, simple-root blocks, and fold-layer blocks using
+$$
+u=c_f t-x,
+\qquad
+w=c_f t+x.
+$$
+Failure at this gate is useful. It rejects the candidate itinerary before the proof program spends effort on quadrature residuals, corridor arithmetic, monodromy, or returned-sample preservation.
 
 The finite audit rows are:
 
@@ -169,19 +186,26 @@ The finite audit rows are:
    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
    $$
 
+   The row should be executed in three gates:
+
+   1. candidate-cycle data;
+   2. null-coordinate pre-ledger falsification/certification;
+   3. active branch-chart certification.
+
    **Executable artifacts.**
    - `certificate/phi_cyc.json`: candidate center history, period
      $$
      T_{\mathrm{cyc}},
      $$
-     normalization, symmetry chart, and interpolation or basis data.
-   - `certificate/causal_ledger.json`: null-coordinate pre-ledger for the self-image equation, with certified empty blocks, candidate nonempty blocks, monotone subarc splits, and separator/fold rows.
-   - `certificate/branch_chart.json`: active branch list, inactive complements, signed sheet labels, origin-crossing layer labels, memory-depth ranges, and Jacobian formulas.
+     normalization, symmetry chart, and interpolation or basis data, with fold-adapted fractional basis data recorded near field-speed separators when that basis is used.
    - `certificate/mesh.json`: sampled certificate mesh
      $$
      \{\theta_j\}_{j=0}^{N}
      $$
      with sample tolerances.
+   - `certificate/causal_ledger.json`: null-coordinate pre-ledger for the self-image equation, with certified empty blocks, candidate nonempty blocks, monotone subarc splits, and separator/fold rows.
+   - `certificate/causal_preledger_interval_report.md`: interval proof of the `Null-Coordinate Causal Pre-Ledger` target, or the exact failing block if the candidate/itinerary is rejected.
+   - `certificate/branch_chart.json`: active branch list, inactive complements, signed sheet labels, origin-crossing layer labels, memory-depth ranges, and Jacobian formulas.
    - `certificate/seed_chart_interval_report.md`: interval proof of
      $$
      \nu_{\mathrm{seed}}>0,

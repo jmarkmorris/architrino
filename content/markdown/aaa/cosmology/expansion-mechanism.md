@@ -37,10 +37,10 @@ Cosmological redshift is treated as cumulative propagation through a changing me
 Use the proper-time map from [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md):
 
 $$
-\frac{d\tau}{dt}=F\!\left(\mathbf{v},\rho_{\text{sea}},\Phi_{\text{eff}},\text{clock geometry}\right).
+\frac{d\tau}{dt}=F\!\left(\mathbf{v},\rho_{\text{core}}(\mathbf{x},t),n(\mathbf{x},t),\chi_{\text{sea}}(\mathbf{x},t),\Phi_{\text{eff}},\text{clock geometry}\right).
 $$
 
-A photon that traverses regions with different $\rho_{\text{sea}}$ and $\Phi_{\text{eff}}$ is read by clocks with different local rates. The observed $z$ is then an emergent comparison of those rates along the path history.
+A photon that traverses regions with different $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, and $\Phi_{\text{eff}}$ is read by clocks with different local rates. The observed $z$ is then an emergent comparison of those rates along the path history.
 
 Operationally:
 

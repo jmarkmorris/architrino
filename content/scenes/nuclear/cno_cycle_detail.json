@@ -285,8 +285,8 @@
     },
     {
       "id": "r2_n13_decay",
-      "label": "N13 decay",
-      "shortName": "N13 decay",
+      "label": "N13 beta reaction",
+      "shortName": "N13 beta",
       "category": "Reaction",
       "reaction": "N-13 -> C-13 + e+ + nu_e",
       "radius": 0.9,
@@ -299,7 +299,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "N13 decay"
+      "labelTitle": "N13 beta reaction"
     },
     {
       "id": "r3_c13_p_n14",
@@ -339,8 +339,8 @@
     },
     {
       "id": "r5_o15_decay",
-      "label": "O15 decay",
-      "shortName": "O15 decay",
+      "label": "O15 beta reaction",
+      "shortName": "O15 beta",
       "category": "Reaction",
       "reaction": "O-15 -> N-15 + e+ + nu_e",
       "radius": 0.9,
@@ -353,7 +353,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "O15 decay"
+      "labelTitle": "O15 beta reaction"
     },
     {
       "id": "r6_n15_p_c12_he4",

@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "spacetime_medium",
+    "title": "Noether Sea",
+    "type": "Scene-Index",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "rings"
+    },
+    "centerOn": "noether_sea",
+    "children": [
+      {
+        "nodeId": "noether_sea",
+        "scenePath": "content/scenes/spacetime/noether_sea.json"
+      },
+      {
+        "nodeId": "spacetime_assemblies",
+        "scenePath": "content/scenes/spacetime/spacetime_assemblies.json"
+      },
+      {
+        "nodeId": "medium_exclusion_volume",
+        "scenePath": "content/scenes/spacetime/medium_exclusion_volume.json"
+      }
+    ]
+  },
+  "objects": [
+    {
+      "id": "noether_sea",
+      "title": "Noether Sea",
+      "radius": 2.688,
+      "color": "#2f4f7a",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Noether Sea",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "spacetime_assemblies",
+      "title": "Spacetime Assemblies",
+      "radius": 2.688,
+      "color": "#6a3c3c",
+      "position": [
+        0,
+        10.5,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Spacetime Assemblies",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "medium_exclusion_volume",
+      "title": "Medium Exclusion Volume",
+      "radius": 2.688,
+      "color": "#3f6a5a",
+      "position": [
+        0,
+        -10.5,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Medium Exclusion Volume",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    }
+  ]
+}

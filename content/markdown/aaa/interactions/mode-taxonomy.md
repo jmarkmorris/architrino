@@ -50,7 +50,7 @@ Path history is part of identity bookkeeping in absolute time.
 
 4. **Characterize local medium state**
 Specify Noether-Sea state variables used by mapping:
-$(\rho_{\mathrm{NS}}, \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\mathrm{NS}}, \Phi, T_{\mathrm{eff}}, J_{\mathrm{loc}})$.
+$(\rho_{\text{core}}, n, \chi_{\text{sea}}, \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{core}}, \Phi, T_{\mathrm{eff}}, J_{\mathrm{loc}})$.
 These variables are mapping handles, not replacement observables.
 
 5. **Evaluate wake-strain trigger**
@@ -85,7 +85,7 @@ Observer channel: $e^\pm + Z \rightarrow e^\pm + Z + \gamma$.
 Step map:
 1. Incoming charged assembly follows a deflected trajectory in target potential.
 2. Deflection induces wake-strain concentration in local Noether-Sea coupling, with received forcing sharpened or diluted by the branch Jacobian during the scattering history.
-3. If wake-strain crosses planar-mode threshold, a photon planar-pair mode nucleates.
+3. If wake-strain crosses planar-mode threshold, a photon mode nucleates as a coaxial contra-rotating pro/anti planar pair.
 4. If not crossed, energy stays in non-radiative channels (heating/collective excitation).
 5. Event closure requires recoil plus emitted-photon momentum balance at vertex level.
 6. Observer-level result must recover standard $d\sigma/dk$ with screening/form-factor corrections in the validated regime.
@@ -152,7 +152,7 @@ $$
 Observer channel: $\gamma + \gamma \rightarrow e^+ + e^-$.
 
 Step map:
-1. Two photon planar-pair modes enter overlap geometry with center-of-momentum invariant $s$.
+1. Two photon modes, each modeled as a coaxial contra-rotating pro/anti planar pair, enter overlap geometry with center-of-momentum invariant $s$.
 2. Threshold gate: channel allowed only for $s \ge 4m_e^2$.
 3. Above threshold, local substrate relock recruits Noether-core content into charged pair assemblies.
 4. Provenance ledger records conversion path from incoming photon modes plus recruited substrate pool.

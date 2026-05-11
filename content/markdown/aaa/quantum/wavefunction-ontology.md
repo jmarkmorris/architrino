@@ -2,17 +2,17 @@
 
 This chapter states what the wavefunction is and is not within the framework. Its purpose is to relocate $\psi$ from fundamental ontic field status to an effective epistemic description while still explaining why standard quantum formalism remains operationally useful.
 
-Its nearest companion notes are [Superposition Mechanism](superposition-mechanism.md), [Measurement Ontology](measurement-ontology.md), [Collapse Problem](collapse-problem.md), [Entanglement and Nonlocality](entanglement-nonlocality.md), and [Pilot-Wave Character](pilot-wave-character.md).
+Its nearest companion notes are [Superposition Mechanism](../theory-bridges/superposition-mechanism.md), [Measurement Ontology](measurement-ontology.md), [Collapse Problem](../theory-bridges/collapse-problem.md), [Entanglement and Nonlocality](../theory-bridges/entanglement-nonlocality.md), and [Pilot-Wave Character](../theory-bridges/pilot-wave-character.md).
 
 ## Purpose and Scope
 
-This document establishes the ontological status of the quantum wavefunction ($\psi$) and the fundamental operators of quantum mechanics within the Architrino Assembly Architecture. It maps the standard quantum formalism—traditionally treated as axiomatic—to the deterministic, non-Markovian dynamics of the architrino Master Equation. 
+This document establishes the ontological status of the quantum wavefunction ($\psi$) and the fundamental operators of quantum mechanics within $\mathbb{A}\mathbb{A}\mathbb{A}$. It maps the standard quantum formalism, traditionally treated as axiomatic, to deterministic, non-Markovian dynamics governed by the master equation.
 
-The framework explicitly separates the **ontic reality** of architrino trajectories and causal wake surfaces from the **epistemic description** captured by the wavefunction. By reframing measurement as a dynamical threshold resolution, this document eliminates the measurement problem and provides a mechanical basis for uncertainty, superposition, and effective wave-particle duality.
+The framework explicitly separates the **ontic reality** of architrino trajectories and causal wake surfaces from the **epistemic description** captured by the wavefunction. Reframing measurement as dynamical threshold resolution does not by itself complete the quantum closure program, but it relocates the measurement problem onto a mechanical basis involving uncertainty, superposition, and the standard particle-wave duality comparison.
 
 ## Ontological Status of the Wavefunction
 
-In the architrino framework, the wavefunction $\psi(\mathbf{x}, t)$ is not a fundamental physical field propagating in a high-dimensional configuration space. Instead, it is an **effective, coarse-grained epistemic tool** utilized by Physical Observers. 
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the wavefunction $\psi(\mathbf{x}, t)$ is not a fundamental physical field propagating in a high-dimensional configuration space. Instead, it is an **effective, coarse-grained epistemic tool** utilized by Physical Observers.
 
 The universe at the ontic level, as represented by the $\mathbb{U}_{\text{now}}$ universe-state perspective, consists of point-like architrinos executing definite trajectories $\mathbf{x}_i(t)$ in a 3D Euclidean void, interacting via a continuous superposition of causal wake surfaces. Because Physical Observers (assemblies) cannot access the exact microstate or the full path-history of the Noether Sea, they must rely on statistical descriptions.
 
@@ -51,23 +51,23 @@ Once the accumulated path-history forces push the assembly's action across the $
 
 ## Born Rule and Chaotic Attractors
 
-The probability of finding a system in a particular state, given by the Born rule $P \propto |\psi|^2$, maps to the statistical measure of phase-space basins under the Master Equation.
+The probability of finding a system in a particular state, given by the Born rule $P \propto |\psi|^2$, should map to the statistical measure of phase-space basins under the master equation.
 
-Because the local Noether Sea generates a high-dimensional, quasi-stochastic driving force via continuous causal wake intersections, the exact trajectory of an assembly approaching a threshold is highly sensitive to initial conditions (deterministic chaos). The volume of the phase-space basin that leads to a specific transition scales with the local intensity of the coherent potential gradients driving that transition. The Born rule is expected to emerge as the exact statistical equilibrium limit of these chaotic threshold dynamics, reflecting the fraction of microstate paths that successfully resolve into a given attractor.
+Because the local Noether Sea generates a high-dimensional, quasi-stochastic driving force through continuous causal-wake intersections, the exact trajectory of an assembly approaching a threshold is highly sensitive to initial conditions. The closure target is to show that the phase-space basin volume leading to a specific transition scales with the coherent potential gradients that drive that transition, and that the Born rule emerges as the statistical equilibrium limit of those deterministic threshold dynamics.
 
 ## Epistemic Branching (Reinterpreting Many-Worlds)
 
-The Everettian Many-Worlds interpretation visualizes a branching tree of parallel realities corresponding to superposed wavefunction components. In the architrino framework, this branching is entirely **epistemic**.
+The Everettian Many-Worlds interpretation visualizes a branching tree of parallel realities corresponding to superposed wavefunction components. In $\mathbb{A}\mathbb{A}\mathbb{A}$, this branching is entirely **epistemic**.
 
 There is only one realized, strictly continuous trajectory in absolute time. The "branches" merely map the divergent possibilities of coarse-grained histories near a bifurcation point. Because the Physical Observer lacks the full path-history data required to calculate the exact threshold resolution, the mathematics must carry all stable attractors forward as superpositions until a macroscopic record (decoherence) isolates the realized path. No ontic universes are spawned; the system simply settles into one uniquely determined groove in the potential landscape.
 
 ## Falsifiability and Predictions
 
-If the wavefunction is an effective description of threshold dynamics rather than a fundamental field, then deviations from exact unitary evolution and instantaneous collapse must exist.
+If the wavefunction is an effective description of threshold dynamics rather than a fundamental field, then the theory must identify regimes where finite-time branch selection or non-Markovian history effects can in principle depart from ideal instantaneous projection.
 
 **Failure Modes and Experimental Signatures:**
 *   **Ultrafast Decoherence Deviations:** At timescales shorter than the local Lyapunov time of the Noether-Sea interactions, the statistical assumptions yielding the Born rule should weaken. Very high-frequency, weak-measurement probes may reveal non-Markovian hysteresis in the state transition process, violating strictly predicted QM transition rates.
-*   **Macro-Realism:** If experiments demonstrate that collapse occurs instantaneously with absolutely zero dynamical transition time (violating finite $c_f$ delay limits), this ontology is falsified.
+*   **Strict instantaneous projection:** If experiments force strictly zero-duration physical branch selection, rather than an effective instantaneous update at the observer level, this ontology is falsified.
 
 ## Closure Interface: Basin-Measure Formalization
 
@@ -88,6 +88,8 @@ $$
 $$
 in the same regime where the envelope dynamics reduce to effective Schrödinger evolution.
 
-Primary synthesis location: [quantum/pilot-wave-character.md](./pilot-wave-character.md).
+This is the Born-rule basin-measure ledger. It should stay distinct from the spin-statistics / exchange ledger in [Fermi-Dirac and Bose-Einstein Statistics](./quantum-statistics.md), which asks why effective states are antisymmetric or symmetric in the first place. Photon-channel squared-amplitude capture is a special measurement-channel bridge in [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md), not a replacement for the basin-measure derivation.
+
+Primary synthesis location: [Pilot-Wave Character](../theory-bridges/pilot-wave-character.md).
 
 For the broader methodology of not mistaking successful formal control for settled ontology, compare [Crisis in Physics](../philosophy-history/crisis-in-physics.md).

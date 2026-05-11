@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "fermions__weak_mixing_ckm",
-    "title": "Weak Mixing CKM",
+    "id": "theory_bridges__collapse_problem",
+    "title": "Measurement Problem and Collapse",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md"
+      "path": "content/markdown/aaa/theory-bridges/collapse-problem.md"
     },
     "view": {
       "columns": 1,

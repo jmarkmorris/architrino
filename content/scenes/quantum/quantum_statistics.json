@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "quantum__entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture",
-    "title": "Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸",
+    "id": "quantum__quantum_statistics",
+    "title": "Fermi-Dirac & Bose-Einstein Statistics",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/quantum/entanglement-nonlocality.md"
+      "path": "content/markdown/aaa/quantum/quantum-statistics.md"
     },
     "view": {
       "columns": 1,

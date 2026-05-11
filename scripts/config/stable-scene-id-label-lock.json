@@ -25,8 +25,7 @@
         "neutrinos": "Neutrinos",
         "quantum_number_mapping": "Quantum Number Mapping",
         "quarks": "Quarks",
-        "up_charm_top_quarks": "Up, Charm, Top Quarks",
-        "weak_mixing_ckm": "Weak Mixing CKM"
+        "up_charm_top_quarks": "Up, Charm, Top Quarks"
       }
     },
     "content/scenes/cosmology/cosmology.json": {
@@ -53,7 +52,6 @@
         "effective_lagrangian": "Effective Lagrangian",
         "kinetic_and_potential_energy": "Kinetic and Potential Energy",
         "master_equation_of_motion": "Master Equation of Motion",
-        "quantum": "Quantum",
         "tri_binary_dynamics": "Tri-Binary Dynamics"
       }
     },
@@ -90,7 +88,7 @@
         "atomic_spectra": "Atomic Spectra",
         "atomic_structure": "Atomic Structure",
         "condensed_matter": "Condensed Matter",
-        "leptogenesis": "Leptogenesis CP Sources",
+        "hyde_periodic_table": "Hyde Periodic Table",
         "molecular_geometry": "Molecular Geometry",
         "nuclear_binding": "Nuclear Binding",
         "nucleon_structure": "Nucleon Structure",
@@ -114,36 +112,75 @@
       "sceneName": "Quantum",
       "objects": {
         "algorithmic_resonance": "Algorithmic Resonance and Shor's Algorithm",
-        "bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response": "Bell's Theorem: QM Foundations vs. \ud835\udd38\ud835\udd38\ud835\udd38",
-        "entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture": "Entanglement and Nonlocality: QM vs. \ud835\udd38\ud835\udd38\ud835\udd38",
         "measurement_ontology": "Measurement Ontology",
-        "measurement_problem_and_collapse": "Measurement Problem and Collapse",
-        "pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture": "Pilot-Wave Character: de Broglie\u2013Bohm (QM) vs. \ud835\udd38\ud835\udd38\ud835\udd38",
-        "quantum_operator_mapping": "Quantum Operator Mapping",
         "quantum_summary": "Quantum Summary",
         "quantum_statistics": "Fermi-Dirac & Bose-Einstein Statistics",
         "reality_causality_and_navigation": "Reality, Causality, and Navigation",
-        "superposition_mechanism_traditional_vs_architrino_assembly_architecture": "Superposition Mechanism: QM vs. \ud835\udd38\ud835\udd38\ud835\udd38",
         "wavefunction_ontology": "Wavefunction Ontology"
+      }
+    },
+    "content/scenes/theory-bridges/theory_bridges.json": {
+      "sceneId": "theory_bridges",
+      "sceneName": "Theory Bridges",
+      "objects": {
+        "bell_theorem": "Bell's Theorem",
+        "collapse_problem": "Measurement Problem and Collapse",
+        "entanglement_nonlocality": "Entanglement and Nonlocality",
+        "klein_gordon_scalar_fields": "Relativistic Scalar Fields and the Klein-Gordon Equation",
+        "pilot_wave_character": "Pilot-Wave Character",
+        "planck_scale_tri_binary_alignment": "Planck Scale Tri-Binary Alignment",
+        "quantum_operator_mapping": "Quantum Operator Mapping",
+        "special_relativity_noether_core": "Special Relativity and Deformable Noether Cores",
+        "superposition_mechanism": "Superposition Mechanism",
+        "weak_mixing_ckm": "Weak Mixing CKM"
       }
     },
     "content/scenes/spacetime/spacetime.json": {
       "sceneId": "spacetime",
       "sceneName": "Spacetime",
       "objects": {
-        "cosmic_censorship_holography": "Cosmic Censorship and Holography",
+        "effective_metric": "Effective Metric",
+        "physical_observers": "Physical Observers",
+        "spacetime_medium": "Noether Sea",
+        "strong_field_regime": "Strong-Field Regime"
+      }
+    },
+    "content/scenes/spacetime/spacetime_medium.json": {
+      "sceneId": "spacetime_medium",
+      "sceneName": "Noether Sea",
+      "objects": {
+        "medium_exclusion_volume": "Medium Exclusion Volume",
+        "noether_sea": "Noether Sea",
+        "spacetime_assemblies": "Spacetime Assemblies"
+      }
+    },
+    "content/scenes/spacetime/physical_observers.json": {
+      "sceneId": "physical_observers",
+      "sceneName": "Physical Observers",
+      "objects": {
+        "lorentz_kinematics": "Lorentz Kinematics",
+        "observer_framework": "Observer Framework",
+        "proper_time_and_time_dilation": "Proper Time and Time Dilation"
+      }
+    },
+    "content/scenes/spacetime/effective_metric.json": {
+      "sceneId": "effective_metric",
+      "sceneName": "Effective Metric",
+      "objects": {
         "emergent_metric": "Emergent Metric",
         "general_relativity_observables": "General Relativity",
         "gravitational_waves": "Gravitational Waves",
+        "ppn_parameters": "PPN Parameters"
+      }
+    },
+    "content/scenes/spacetime/strong_field_regime.json": {
+      "sceneId": "strong_field_regime",
+      "sceneName": "Strong-Field Regime",
+      "objects": {
+        "black_holes": "Black Holes",
+        "cosmic_censorship_holography": "Cosmic Censorship and Holography",
         "horizon_chirality": "Horizon Chirality",
-        "mapping_planck_scale": "Mapping Planck Scale",
-        "medium_exclusion_volume": "Medium Exclusion Volume",
-        "noether_sea": "Noether Sea",
-        "observer_framework": "Observer Framework",
-        "ppn_parameters": "PPN Parameters",
-        "proper_time_and_time_dilation": "Proper Time and Time Dilation",
-        "singularity_resolution": "Singularity Resolution",
-        "spacetime_assemblies": "Spacetime Assemblies"
+        "singularity_resolution": "Singularity Resolution"
       }
     },
     "content/scenes/philosophy_history/philosophy_history.json": {

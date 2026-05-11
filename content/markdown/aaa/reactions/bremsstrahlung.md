@@ -23,7 +23,7 @@ Terminology in this chapter follows [mode-taxonomy.md](../interactions/mode-taxo
 - $\mathcal{S}_*$: effective nucleation threshold scale.
 - $E_{\gamma,\min}$: hypothesized minimum stable planar-mode energy.
 - $\Gamma_{\mathrm{eff}}$: absolute-time/proper-time conversion factor.
-- $\rho_{\mathrm{vac}}$: local Noether-Sea density.
+- $\rho_{\text{core}}(\mathbf{x},t)$: local physical Noether-core density.
 
 ## Physical Mechanism
 
@@ -52,7 +52,7 @@ In this document, a **wake shock** is defined as a microstate transition of the 
 A minimal trigger condition is written as
 
 $$
-\mathcal{I}_e\!\left(\rho_{\mathrm{aether}},\left\lVert\frac{d\mathbf{v}_e}{dt}\right\rVert,\Xi_e\right) \ge \mathcal{I}_{\mathrm{crit}},
+\mathcal{I}_e\!\left(\rho_{\text{core}}(\mathbf{x},t),\left\lVert\frac{d\mathbf{v}_e}{dt}\right\rVert,\Xi_e\right) \ge \mathcal{I}_{\mathrm{crit}},
 $$
 
 where $\Xi_e$ denotes electron-assembly internal state variables. In Master Equation language, wake shock onset corresponds to entry into the emission-capable region of state space, with transition kernel weight from non-emissive to emissive microstates increased above baseline.
@@ -74,10 +74,10 @@ Interpretive takeaway: this section defines event-level state transition and boo
 To make the wake language calculable, the current $\mathbb{A}\mathbb{A}\mathbb{A}$ program uses a provisional mapping ansatz. This is a working effective form pending derivation from the Master Equation, not a claimed first-principles closure:
 
 $$
-\mathcal{S}_{\mathrm{wake}} \equiv A_{\mathrm{tb}} \, \rho_{\mathrm{aether}}^{\alpha} \left\lVert\frac{d\mathbf{v}_e}{dt}\right\rVert^{\beta},
+\mathcal{S}_{\mathrm{wake}} \equiv A_{\mathrm{tb}} \, \bigl[\rho_{\text{core}}(\mathbf{x},t)\bigr]^{\alpha} \left\lVert\frac{d\mathbf{v}_e}{dt}\right\rVert^{\beta},
 $$
 
-Conceptual nucleation picture for this ansatz: a photon planar-pair mode is treated as a stable attractor that appears only when wake-driven internal concentration exceeds a local stability barrier. The threshold scale $\mathcal{S}_*$ represents that barrier and is interpreted as an effective function of Noether Sea stiffness plus local tri-binary geometry. The coupling through $\Delta E/E_{\gamma,\min}$ represents available shed energy relative to minimum stable planar-mode cost. The exponential response is used as a first-pass survival-style ansatz for threshold crossing with sensitivity to local fluctuations; it is not yet claimed as unique.
+Conceptual nucleation picture for this ansatz: a coaxial contra-rotating pro/anti planar-pair photon mode is treated as a stable attractor that appears only when wake-driven internal concentration exceeds a local stability barrier. The threshold scale $\mathcal{S}_*$ represents that barrier and is interpreted as an effective function of Noether Sea stiffness plus local tri-binary geometry. The coupling through $\Delta E/E_{\gamma,\min}$ represents available shed energy relative to minimum stable planar-mode cost. The exponential response is used as a first-pass survival-style ansatz for threshold crossing with sensitivity to local fluctuations; it is not yet claimed as unique.
 
 $$
 P_{\mathrm{nuc}}(E_\gamma) = 1 - \exp\!\left[-\left(\frac{\mathcal{S}_{\mathrm{wake}}-\mathcal{S}_*}{\mathcal{S}_*}\right)_+ \left(\frac{\Delta E}{E_{\gamma,\min}}\right)\right],
@@ -101,7 +101,7 @@ Status and handling:
 For gravity integration, the same source terms can be expressed through the emergent metric fields that govern local geodesics:
 
 $$
-\mathcal{S}_{\mathrm{wake}} = \mathcal{S}_{\mathrm{wake}}\!\left(g_{\mu\nu},\nabla g_{\mu\nu},u_e^\mu,\rho_{\mathrm{aether}}\right).
+\mathcal{S}_{\mathrm{wake}} = \mathcal{S}_{\mathrm{wake}}\!\left(g_{\mu\nu},\nabla g_{\mu\nu},u_e^\mu,\rho_{\text{core}}(\mathbf{x},t)\right).
 $$
 
 ### Emergence of Radiation from Assembly Dynamics
@@ -147,6 +147,19 @@ Associated pair/Compton channels are included when they exceed the same contribu
 - **Positron analog:** same wake-threshold logic with sign-reversed charge trajectory in observer-level kinematics.
 - **Thermal ensemble:** macroscopic free-free emissivity is the aggregate of many local planar-mode nucleation events under screened Coulomb transport.
 
+## Shared Photon Event Record
+
+Use the same photon-channel event record here as in [Synchrotron Cascades](synchrotron.md) and [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md). A bremsstrahlung planar-mode event should record:
+
+- incoming and outgoing charged assembly identity, momentum, and path-history provenance;
+- target assembly identity, recoil term, and coherent or resolved geometry regime;
+- local Noether-Sea state variables $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy, excitation state, and relevant causal-branch Jacobian data;
+- wake-strain or shock-intensity status relative to the planar-mode threshold;
+- photon output $E_\gamma$, direction, polarization basis, and local photon-channel speed $c_\gamma$;
+- residual medium excitation $\Delta E_{\mathrm{med}}$ and any non-radiative channel that receives sub-threshold energy.
+
+This record is a derivation target. It should recover standard $d\sigma/dk$, screening, form-factor, and emissivity limits before any Noether-Sea-dependent deviation is treated as physical.
+
 ## IR Regularization as a Stability Floor
 
 Standard soft-photon emission produces infrared-divergent exclusive rates, handled by inclusive observables and resummation. In $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation, an additional hypothesis is available: stable planar photon assemblies exist only above a minimum nucleation energy $E_{\gamma,\min}$.
@@ -164,6 +177,8 @@ Interpretation split used in this draft:
 - **Ontic prediction (conditional):** if $E_{\gamma,\min}$ is above current soft-photon sensitivity, the model predicts a measurable low-frequency turnover at $\nu_{\min}=E_{\gamma,\min}/h$.
 
 Current status: this chapter treats the claim as epistemic by default and promotes ontic turnover as a conditional extension.
+
+Connection to the photon closure interface: $E_{\gamma,\min}$ should be read as a candidate expression of the planar-pair stability boundary, not as a free cutoff. The first derivation must decide whether that boundary vanishes, lies below current soft-photon sensitivity, or produces a measurable turnover while preserving inclusive QED observables.
 
 ## $Z^2$ Scaling and Finite-Geometry Resolution
 
@@ -199,13 +214,13 @@ Rate equations in this file are observer-level unless noted. For substrate-level
 $$
 \frac{dE_e}{d\tau_e} = \frac{dE_e}{dt}\,\frac{dt}{d\tau_e},
 \qquad
-\frac{dt}{d\tau_e} = \Gamma_{\mathrm{eff}}(v_e,\rho_{\mathrm{aether}},\Phi).
+\frac{dt}{d\tau_e} = \Gamma_{\mathrm{eff}}(v_e,\rho_{\text{core}}(\mathbf{x},t),\Phi).
 $$
 
 For operational closure in this chapter, use the provisional split
 
 $$
-\Gamma_{\mathrm{eff}} \approx \gamma(v_e)\,\left[1+\delta_{\rho}(\rho_{\mathrm{aether}})+\delta_{\Phi}(\Phi)\right],
+\Gamma_{\mathrm{eff}} \approx \gamma(v_e)\,\left[1+\delta_{\rho}(\rho_{\text{core}}(\mathbf{x},t))+\delta_{\Phi}(\Phi)\right],
 $$
 
 with $\gamma(v_e)=1/\sqrt{1-v_e^2/c^2}$ and $|\delta_{\rho}|,|\delta_{\Phi}|\ll 1$ in laboratory and weak-field astrophysical regimes where standard relativistic timing is already validated. The full derivation and regime-dependent corrections are delegated to the metric/time foundations chapter; this file uses the above form as a controlled working map.
@@ -227,11 +242,11 @@ with $1+z \equiv (1+z_{\mathrm{em}})/(1+z_{\mathrm{obs}})$ and $\mathcal{T}$ the
 The free-free forms above assume local thermodynamic equilibrium (LTE). In evolving medium states, define
 
 $$
-\chi \equiv \frac{\tau_{\mathrm{couple}}}{\tau_{\mathrm{cool}}}.
+\mathcal{R}_{\mathrm{LTE}} \equiv \frac{\tau_{\mathrm{couple}}}{\tau_{\mathrm{cool}}}.
 $$
 
-- **$\chi \ll 1$:** assembly-medium coupling is fast, LTE emissivity is valid with instantaneous state variables.
-- **$\chi \gtrsim 1$:** non-equilibrium corrections are required; emissivity must be computed from evolving distribution functions rather than a single local $T$.
+- **$\mathcal{R}_{\mathrm{LTE}} \ll 1$:** assembly-medium coupling is fast, LTE emissivity is valid with instantaneous state variables.
+- **$\mathcal{R}_{\mathrm{LTE}} \gtrsim 1$:** non-equilibrium corrections are required; emissivity must be computed from evolving distribution functions rather than a single local $T$.
 
 This ratio provides a diagnostic for when LTE-based closure is expected to hold.
 
@@ -248,6 +263,8 @@ This keeps transport treatment aligned with the same geometric sector used acros
 ## Photon Ontology Note
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology, the photon is fundamentally a coaxial contra-rotating pro/anti planar-pair assembly propagating through the Noether Sea. The language of "field quanta" and effectively continuous emission is retained as a coarse-grained description over many discrete planar-mode nucleation events. In this file, $\mathbf{p}_{\gamma}$ denotes momentum of that discrete assembly object at micro level, while standard QED field language is used for observer-level rates and spectra.
+
+Event-level provenance for cosmology-facing use is tracked in [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md).
 
 ## Regime Map
 

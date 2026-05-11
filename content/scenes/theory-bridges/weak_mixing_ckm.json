@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "quantum__superposition_mechanism_traditional_vs_architrino_assembly_architecture",
-    "title": "Superposition Mechanism: QM vs. 𝔸𝔸𝔸",
+    "id": "theory_bridges__weak_mixing_ckm",
+    "title": "Weak Mixing CKM",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/quantum/superposition-mechanism.md"
+      "path": "content/markdown/aaa/theory-bridges/weak-mixing-ckm.md"
     },
     "view": {
       "columns": 1,

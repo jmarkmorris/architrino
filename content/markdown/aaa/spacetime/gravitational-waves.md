@@ -1,6 +1,6 @@
 # Gravitational Waves
 
-This chapter provides a minimal theorem-backed chain from the emergent-metric weak-field map to testable gravitational-wave observables. It is one branch of the observational closure stack summarized in [GR Phenomenology](./gr-phenomenology.md) and constrained by [Constraint Ledger](../validation/constraint-ledger.md).
+This chapter provides a conditional closure chain from the emergent-metric weak-field map to testable gravitational-wave observables. It is one branch of the observational closure stack summarized in [GR Phenomenology](./gr-phenomenology.md) and constrained by [Constraint Ledger](../validation/constraint-ledger.md).
 
 Interface chapters:
 - Effective metric map: [emergent-metric](./emergent-metric.md)
@@ -31,7 +31,7 @@ Assume constitutive closure supplies effective $(G_{\text{eff}},c_{\text{GW}})$ 
 
 ## Linear Wave Equation
 
-**Theorem 1 (Linearized propagation equation).**  
+**Conditional Lemma 1 (linearized propagation equation).**
 Under weak-field, slow-background variation, and linear constitutive response, the transverse-traceless sector obeys
 $$
 \Box_{c_{\text{GW}}}\bar h_{\mu\nu}^{\text{TT}}
@@ -42,9 +42,9 @@ $$
 -\frac{1}{c_{\text{GW}}^2}\partial_t^2+\nabla^2.
 $$
 
-*Proof sketch:* Linearize the effective field equations induced by the metric constitutive map around the homogeneous background, then project onto the TT sector.
+*Derivation sketch:* If the effective field equations induced by the metric constitutive map exist in this regime, linearize them around the homogeneous background, then project onto the TT sector.
 
-**Corollary 1 (Vacuum waves).**  
+**Corollary 1 (source-free effective waves).**
 For $T_{\mu\nu}^{\text{TT}}=0$:
 $$
 \Box_{c_{\text{GW}}}\bar h_{\mu\nu}^{\text{TT}}=0,
@@ -59,17 +59,17 @@ to leading order (higher-order dispersive corrections are constitutive and model
 
 In the repo-wide spin taxonomy, this is the effective **spin-2 / tensor** channel: the wave is not a scalar breathing mode or a single-axis vector mode, but a transverse-traceless deformation carrying quadrupolar shape data.
 
-**Theorem 2 (Two-mode TT closure in isotropic limit).**  
+**Conditional Lemma 2 (two-mode TT closure in isotropic limit).**
 If the low-energy constitutive response is parity-even and isotropic, residual gauge constraints leave exactly two propagating tensor modes:
 $$
 h_+(t,\mathbf{x}),\qquad h_\times(t,\mathbf{x}).
 $$
 
-*Proof sketch:* Standard counting in Lorenz gauge plus TT projection: 10 components $\to$ gauge/constraint reduction $\to$ two physical helicity-2 modes.
+*Derivation sketch:* Standard counting in Lorenz gauge plus TT projection gives 10 components $\to$ gauge/constraint reduction $\to$ two physical helicity-2 modes, provided the effective-metric gauge structure is recovered by the constitutive map.
 
 ## Energy Flux
 
-**Proposition 3 (Leading-order GW flux).**  
+**Closure Target 3 (leading-order GW flux).**
 In the same regime, the cycle-averaged flux is
 $$
 \mathcal{F}_{\text{GW}}

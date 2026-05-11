@@ -9,234 +9,90 @@
     "layout": {
       "type": "rings"
     },
+    "centerOn": "spacetime_medium",
     "children": [
       {
-        "nodeId": "emergent_metric",
-        "scenePath": "content/scenes/spacetime/emergent_metric.json"
+        "nodeId": "spacetime_medium",
+        "scenePath": "content/scenes/spacetime/spacetime_medium.json"
       },
       {
-        "nodeId": "general_relativity_observables",
-        "scenePath": "content/scenes/spacetime/general_relativity_observables.json"
+        "nodeId": "physical_observers",
+        "scenePath": "content/scenes/spacetime/physical_observers.json"
       },
       {
-        "nodeId": "gravitational_waves",
-        "scenePath": "content/scenes/spacetime/gravitational_waves.json"
+        "nodeId": "effective_metric",
+        "scenePath": "content/scenes/spacetime/effective_metric.json"
       },
       {
-        "nodeId": "ppn_parameters",
-        "scenePath": "content/scenes/spacetime/ppn_parameters.json"
-      },
-      {
-        "nodeId": "proper_time_and_time_dilation",
-        "scenePath": "content/scenes/spacetime/proper_time_and_time_dilation.json"
-      },
-      {
-        "nodeId": "lorentz_kinematics",
-        "scenePath": "content/scenes/spacetime/lorentz_kinematics.json"
-      },
-      {
-        "nodeId": "singularity_resolution",
-        "scenePath": "content/scenes/spacetime/singularity_resolution.json"
-      },
-      {
-        "nodeId": "black_holes",
-        "scenePath": "content/scenes/spacetime/black_holes.json"
-      },
-      {
-        "nodeId": "horizon_chirality",
-        "scenePath": "content/scenes/spacetime/horizon_chirality.json"
-      },
-      {
-        "nodeId": "mapping_planck_scale",
-        "scenePath": "content/scenes/spacetime/mapping_planck_scale.json"
-      },
-      {
-        "nodeId": "medium_exclusion_volume",
-        "scenePath": "content/scenes/spacetime/medium_exclusion_volume.json"
-      },
-      {
-        "nodeId": "noether_sea",
-        "scenePath": "content/scenes/spacetime/noether_sea.json"
-      },
-      {
-        "nodeId": "observer_framework",
-        "scenePath": "content/scenes/spacetime/observer_framework.json"
-      },
-      {
-        "nodeId": "cosmic_censorship_holography",
-        "scenePath": "content/scenes/philosophy_history/cosmic_censorship_holography.json"
-      },
-      {
-        "nodeId": "spacetime_assemblies",
-        "scenePath": "content/scenes/spacetime/spacetime_assemblies.json"
+        "nodeId": "strong_field_regime",
+        "scenePath": "content/scenes/spacetime/strong_field_regime.json"
       }
     ]
   },
   "objects": [
     {
-      "id": "emergent_metric",
-      "title": "Emergent Metric",
-      "radius": 2.688,
-      "color": "#243d8f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Emergent Metric",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "general_relativity_observables",
-      "title": "General Relativity",
-      "radius": 2.688,
-      "color": "#2f6b6f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "General Relativity",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "gravitational_waves",
-      "title": "Gravitational Waves",
-      "radius": 2.688,
-      "color": "#5a1f2e",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Gravitational Waves",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "ppn_parameters",
-      "title": "PPN Parameters",
-      "radius": 2.688,
-      "color": "#4b0082",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "PPN Parameters",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "proper_time_and_time_dilation",
-      "title": "Proper Time and Time Dilation",
-      "radius": 2.688,
-      "color": "#3a5f9f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Proper Time and Time Dilation",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "lorentz_kinematics",
-      "title": "Lorentz Kinematics",
-      "radius": 2.688,
-      "color": "#3657a6",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Lorentz Kinematics",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "singularity_resolution",
-      "title": "Singularity Resolution",
-      "radius": 2.688,
-      "color": "#2f4f7a",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Singularity Resolution",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "black_holes",
-      "title": "Black Holes",
-      "radius": 2.688,
-      "color": "#4a3b6f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Black Holes",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "horizon_chirality",
-      "title": "Horizon Chirality",
-      "radius": 2.688,
-      "color": "#8b5e34",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Horizon Chirality",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "mapping_planck_scale",
-      "title": "Mapping Planck Scale",
-      "radius": 2.688,
-      "color": "#7a4a1f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Mapping Planck Scale",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "medium_exclusion_volume",
-      "title": "Medium Exclusion Volume",
-      "radius": 2.688,
-      "color": "#3f6a5a",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Medium Exclusion Volume",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "noether_sea",
+      "id": "spacetime_medium",
       "title": "Noether Sea",
       "radius": 2.688,
       "color": "#2f4f7a",
+      "position": [
+        0,
+        0,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Noether Sea",
-      "labelBadge": "doc"
+      "fixedPosition": true
     },
     {
-      "id": "observer_framework",
-      "title": "Observer Framework",
+      "id": "physical_observers",
+      "title": "Physical Observers",
       "radius": 2.688,
       "color": "#2f6b6f",
+      "position": [
+        0,
+        10.5,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Observer Framework",
-      "labelBadge": "doc"
+      "labelTitle": "Physical Observers",
+      "fixedPosition": true
     },
     {
-      "id": "cosmic_censorship_holography",
-      "title": "Cosmic Censorship and Holography",
+      "id": "effective_metric",
+      "title": "Effective Metric",
       "radius": 2.688,
-      "color": "#355f9a",
+      "color": "#243d8f",
+      "position": [
+        9.09,
+        -5.25,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Cosmic Censorship and Holography",
-      "labelBadge": "doc"
+      "labelTitle": "Effective Metric",
+      "fixedPosition": true
     },
     {
-      "id": "spacetime_assemblies",
-      "title": "Spacetime Assemblies",
+      "id": "strong_field_regime",
+      "title": "Strong-Field Regime",
       "radius": 2.688,
-      "color": "#6a3c3c",
+      "color": "#4a3b6f",
+      "position": [
+        -9.09,
+        -5.25,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Spacetime Assemblies",
-      "labelBadge": "doc"
+      "labelTitle": "Strong-Field Regime",
+      "fixedPosition": true
     }
   ]
 }

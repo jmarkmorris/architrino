@@ -5,38 +5,19 @@
     "title": "Validation",
     "type": "Scene-Index",
     "units": "relative",
+    "wrapLabels": true,
     "layout": {
       "type": "rings"
     },
-    "wrapLabels": true,
+    "centerOn": "validation_protocols",
     "children": [
       {
-        "nodeId": "validation_simulations",
-        "scenePath": "content/scenes/validation/simulations.json"
+        "nodeId": "validation_protocols",
+        "scenePath": "content/scenes/validation/validation_protocols.json"
       },
       {
         "nodeId": "architrino_si_base_units",
         "scenePath": "content/scenes/validation/architrino_si_base_units.json"
-      },
-      {
-        "nodeId": "constraint_ledger",
-        "scenePath": "content/scenes/validation/constraint_ledger.json"
-      },
-      {
-        "nodeId": "closure_scorecard",
-        "scenePath": "content/scenes/validation/closure_scorecard.json"
-      },
-      {
-        "nodeId": "failure_criteria",
-        "scenePath": "content/scenes/validation/failure_criteria.json"
-      },
-      {
-        "nodeId": "known_tensions",
-        "scenePath": "content/scenes/validation/known_tensions.json"
-      },
-      {
-        "nodeId": "no_go_theorems",
-        "scenePath": "content/scenes/validation/no_go_theorems.json"
       },
       {
         "nodeId": "parameter_ledger",
@@ -47,91 +28,198 @@
         "scenePath": "content/scenes/validation/reaction_ledger.json"
       },
       {
-        "nodeId": "validation_protocols",
-        "scenePath": "content/scenes/validation/validation_protocols.json"
+        "nodeId": "constraint_ledger",
+        "scenePath": "content/scenes/validation/constraint_ledger.json"
+      },
+      {
+        "nodeId": "failure_criteria",
+        "scenePath": "content/scenes/validation/failure_criteria.json"
+      },
+      {
+        "nodeId": "no_go_theorems",
+        "scenePath": "content/scenes/validation/no_go_theorems.json"
+      },
+      {
+        "nodeId": "known_tensions",
+        "scenePath": "content/scenes/validation/known_tensions.json"
+      },
+      {
+        "nodeId": "validation_simulations",
+        "scenePath": "content/scenes/validation/simulations.json"
+      },
+      {
+        "nodeId": "closure_scorecard",
+        "scenePath": "content/scenes/validation/closure_scorecard.json"
       }
     ]
   },
   "objects": [
     {
-      "id": "validation_simulations",
-      "title": "Simulations",
+      "id": "validation_protocols",
+      "title": "Validation Protocols",
       "radius": 2.688,
-      "color": "#3f6a5a",
+      "color": "#2c567a",
+      "position": [
+        0,
+        0,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Simulations"
+      "labelTitle": "Validation Protocols",
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "architrino_si_base_units",
       "title": "Architrino SI Base Units",
       "radius": 2.688,
       "color": "#3a5f9f",
+      "position": [
+        0,
+        10.5,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
       "labelTitle": "Architrino SI Base Units",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "constraint_ledger",
-      "title": "Constraint Ledger",
-      "radius": 2.688,
-      "color": "#2f6b6f",
-      "labelTitle": "Constraint Ledger",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "closure_scorecard",
-      "title": "Closure Scorecard",
-      "radius": 2.688,
-      "color": "#4b5e2f",
-      "labelTitle": "Closure Scorecard",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "failure_criteria",
-      "title": "Failure Criteria",
-      "radius": 2.688,
-      "color": "#5a1f2e",
-      "labelTitle": "Failure Criteria",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "known_tensions",
-      "title": "Known Tensions",
-      "radius": 2.688,
-      "color": "#3f6a5a",
-      "labelTitle": "Known Tensions"
-    },
-    {
-      "id": "no_go_theorems",
-      "title": "No Go Theorems",
-      "radius": 2.688,
-      "color": "#4b0082",
-      "labelTitle": "No Go Theorems"
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "parameter_ledger",
       "title": "Parameter Ledger",
       "radius": 2.688,
       "color": "#6a3c3c",
+      "position": [
+        6.75,
+        8.04,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
       "labelTitle": "Parameter Ledger",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "reaction_ledger",
       "title": "Reaction Ledger",
       "radius": 2.688,
       "color": "#2f4f7a",
+      "position": [
+        10.34,
+        1.82,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
       "labelTitle": "Reaction Ledger",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
-      "id": "validation_protocols",
-      "title": "Validation Protocols",
+      "id": "constraint_ledger",
+      "title": "Constraint Ledger",
       "radius": 2.688,
-      "color": "#2c567a",
-      "labelTitle": "Validation Protocols",
-      "labelBadge": "doc"
+      "color": "#2f6b6f",
+      "position": [
+        9.09,
+        -5.25,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Constraint Ledger",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "failure_criteria",
+      "title": "Failure Criteria",
+      "radius": 2.688,
+      "color": "#5a1f2e",
+      "position": [
+        3.59,
+        -9.87,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Failure Criteria",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "no_go_theorems",
+      "title": "No Go Theorems",
+      "radius": 2.688,
+      "color": "#4b0082",
+      "position": [
+        -3.59,
+        -9.87,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "No Go Theorems",
+      "fixedPosition": true
+    },
+    {
+      "id": "known_tensions",
+      "title": "Known Tensions",
+      "radius": 2.688,
+      "color": "#3f6a5a",
+      "position": [
+        -9.09,
+        -5.25,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Known Tensions",
+      "fixedPosition": true
+    },
+    {
+      "id": "validation_simulations",
+      "title": "Simulations",
+      "radius": 2.688,
+      "color": "#3f6a5a",
+      "position": [
+        -10.34,
+        1.82,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Simulations",
+      "fixedPosition": true
+    },
+    {
+      "id": "closure_scorecard",
+      "title": "Closure Scorecard",
+      "radius": 2.688,
+      "color": "#4b5e2f",
+      "position": [
+        -6.75,
+        8.04,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Closure Scorecard",
+      "labelBadge": "doc",
+      "fixedPosition": true
     }
   ]
 }

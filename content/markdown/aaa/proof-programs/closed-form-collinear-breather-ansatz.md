@@ -782,6 +782,60 @@ The interval validator should therefore start from a causal pre-ledger with thre
 2. ranges overlap with monotone source and receiver subarcs, so the root count and sign are bounded before solving;
 3. a separator or turning interval is present, so the block must be split or sent to the fold-layer certificate.
 
+> **Target Theorem (Null-Coordinate Causal Pre-Ledger).**
+> Fix a proposed velocity-class itinerary
+> $$
+> \mathcal{K}
+> $$
+> with ordered arc partition
+> $$
+> I_1(\mathcal{K}),\ldots,I_m(\mathcal{K})
+> $$
+> and a compact certificate tube around a candidate history. Suppose the interval enclosures for
+> $$
+> u=c_f t-x,
+> \qquad
+> w=c_f t+x
+> $$
+> split every ordered receiver-source block
+> $$
+> (I_\alpha,I_\beta)
+> $$
+> into finitely many subblocks, each of which is either range-disjoint, monotone with a positive derivative floor, or contained in a certified separator/fold layer. Then the self-image equation
+> $$
+> |x(t)-x(s)|=c_f(t-s),
+> \qquad
+> s<t,
+> $$
+> admits a finite causal pre-ledger
+> $$
+> \mathcal{L}_{\mathcal{K}}
+> $$
+> assigning each subblock one of three certified statuses:
+> empty, simple-root, or fold-layer. Empty subblocks contain no self-image roots. Simple-root subblocks carry interval enclosures for the root count, root sign, source Jacobian floor, memory-depth range, and contribution sign. Fold-layer subblocks are excluded from branch-sum reduction until the dual-mollified fold certificate supplies a parity-preserving incoming-to-outgoing transition.
+>
+> Completing this theorem target is the first seed-chart gate. If
+> $$
+> \mathcal{L}_{\mathcal{K}}
+> $$
+> cannot be made finite with strict empty-block gaps, monotone-block floors, and fold-layer bounds, the chosen itinerary or candidate history fails before quadrature, collocation residuals, or coupled-corridor arithmetic become relevant.
+
+Proof route. Range-disjoint blocks are empty by direct interval separation of the relevant null coordinate. On monotone subblocks, the one-dimensional inverse function theorem and interval endpoint tests give finite level crossings, root enclosures, and the corresponding
+$$
+J_u
+\quad
+\text{or}
+\quad
+J_w
+$$
+floor. Separator and turning blocks are not forced into simple-root charts; they are routed to the fold normal form and must preserve
+$$
+\Delta N\in 2\mathbb{Z},
+\qquad
+\Delta D=0
+$$
+before the pre-ledger can feed the active branch chart.
+
 For every root branch, record
 $$
 \hat r_s=\operatorname{sgn}(x_\alpha(t)-x_\beta(s)),
@@ -1208,14 +1262,22 @@ $$
    x,
    $$
    and record the paired branch-label rule.
-5. Build the null-coordinate causal pre-ledger in
+5. Build and discharge the theorem target `Null-Coordinate Causal Pre-Ledger` in
    $$
    u=c_f t-x,
    \qquad
    w=c_f t+x,
    $$
-   marking certified empty blocks, candidate nonempty blocks, and separator/fold blocks.
-6. Fill the itinerary-keyed self-image enumeration table for
+   producing the finite ledger
+   $$
+   \mathcal{L}_{\mathcal{K}}
+   $$
+   with certified empty blocks, simple-root blocks, and separator/fold blocks.
+6. Use
+   $$
+   \mathcal{L}_{\mathcal{K}}
+   $$
+   to fill the itinerary-keyed self-image enumeration table for
    $$
    |x(t)-x(s)|=c_f(t-s)
    $$
@@ -1235,12 +1297,13 @@ $$
    (N,M)
    $$
    used for action bookkeeping, distinguishing it from the raw simple-root counts whenever fold pairs are grouped into one active channel.
-9. If the self-image table closes, convert it into
+9. If the pre-ledger or self-image table fails to close with strict finite margins, reject the current itinerary/candidate packet before attempting quadrature or collocation residuals.
+10. If the self-image table closes, convert it into
    $$
    \mathcal{B}_{\mathrm{act}},
    $$
    inactive branch complements, Jacobian floors, separation margins, and memory-depth bounds.
-10. If the self-image table does not close algebraically, build a piecewise fractionally augmented Chebyshev or cubic
+11. If the self-image table closes topologically but does not close algebraically, build a piecewise fractionally augmented Chebyshev or cubic
    $$
    C^1
    $$
@@ -1249,17 +1312,17 @@ $$
    \phi_{\mathrm{cyc}}
    $$
    and certify the finite active branches numerically by interval validation.
-11. Sweep
+12. Sweep
    $$
    (\eta,\epsilon_c,V_{\max})
    $$
    or a justified lower-dimensional slice to locate the itinerary-admissible parameter region before attempting the full corridor certificate.
-12. Build the first certificate packet
+13. Build the first certificate packet
    $$
    \mathfrak{C}_{\mathrm{ans}}
    $$
    and compute its returned section residuals.
-13. If the residuals have strict slack, compute the finite certificate data and test the five audit rows in [collinear-breather.md](./collinear-breather.md).
+14. If the residuals have strict slack, compute the finite certificate data and test the five audit rows in [collinear-breather.md](./collinear-breather.md).
 
 ## Provisional Assessment
 

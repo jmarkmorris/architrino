@@ -1,6 +1,6 @@
 # Theory Mapping: Major Physics Theories (Core Idea, Intuition, Math)
 
-This chapter is a comparative reader for the inherited modern-physics stack viewed from a substrate-first architecture. It is meant to orient readers quickly: what each major theory claims, what it explains well, and whether $\mathbb{A}\mathbb{A}\mathbb{A}$ intends to recover it, reinterpret it, or reject its ontology while preserving some effective structure. For the repo's deeper conceptual framing of where inherited theories break or remain useful, compare [Theory Differentials](./theory-differentials.md), [Crisis in Physics](./crisis-in-physics.md), and [Unknowns and Paradoxes](./unknowns-paradoxes.md).
+This chapter is a comparative reader for the inherited modern-physics stack viewed from a substrate-first architecture. It is meant to orient readers quickly: what each major theory claims, what it explains well, and whether $\mathbb{A}\mathbb{A}\mathbb{A}$ intends to recover it, reinterpret it, or reject its ontology while preserving some effective structure. For the repo's deeper conceptual framing of where inherited theories break or remain useful, compare [Theory Differentials](./theory-differentials.md), [Crisis in Physics](./crisis-in-physics.md), and [Unknowns and Paradoxes](./unknowns-paradoxes.md). For long-form mathematical mappings between inherited frameworks and the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer, see [Theory Bridges](../theory-bridges/README.md).
 
 The document is organized as a matrix rather than a linear history. The first sections explain the comparison method; the later layers then group theories by assembly, spacetime, cosmology, and epistemic-observation roles.
 
@@ -118,29 +118,7 @@ $$
 
 **Summary:** The Klein-Gordon equation is the canonical relativistic wave equation for a spin-0 scalar degree of freedom. It is not a complete particle-physics theory by itself, but it is the simplest bridge between scalar fields in quantum theory, curved-spacetime field theory, and cosmological scalar-field models.
 
-**Conceptual View:** As a pure mathematical object, a scalar field is a map $\phi:M\to K$, usually with $K=\mathbb{R}$ or $\mathbb{C}$. It assigns one scalar value to each point of the domain and carries no intrinsic direction, orientation, or tensor index. Here scalar primarily means Lorentz scalar: the field has no spacetime vector or tensor index. Within spin-0 sectors, an ordinary scalar is parity-even, while a pseudoscalar is parity-odd; axions and pion-like modes are standard pseudoscalar examples. The Standard Model Higgs is Lorentz-scalar in spacetime, but the full Higgs field also carries electroweak gauge structure before symmetry breaking. Singular or distributional sources, such as Dirac deltas, are generalized scalar objects rather than ordinary finite-valued scalar fields; regularized versions recover ordinary scalar profiles. In relativistic quantum theory, a free massive scalar mode obeys a second-order wave equation whose mass term acts like a restoring gap. In curved spacetime, the same field is written with the metric-compatible wave operator, so the scalar mode propagates on, and contributes stress-energy to, the gravitational geometry.
-
-The Klein-Gordon equation can be read as the wave-equation form of the relativistic energy-momentum relation
-$$
-E^2=p^2c^2+m^2c^4.
-$$
-Historically, it failed as a single-particle probability equation because its conserved density is not positive definite. Its stable role appears in field theory: $\phi$ is not a probability amplitude for one particle, but a scalar field whose quantized normal modes give spin-0 particle and antiparticle excitations. A real scalar field describes a neutral scalar sector, while a complex scalar field carries an internal phase and can represent distinct charge-conjugate particle/antiparticle sectors. The Higgs excitation and pion modes are useful comparison examples, with the caveat that the full Higgs sector carries electroweak gauge structure and pions are composite QCD states rather than elementary Klein-Gordon fields.
-
-In second-quantized language, a scalar field is expanded into modes with creation and annihilation operators,
-$$
-\hat{\phi}(x)=\sum_k\left(a_k u_k(x)+a_k^\dagger u_k^*(x)\right).
-$$
-Under $\mathbb{A}\mathbb{A}\mathbb{A}$, this should be read as effective bookkeeping for stable mode contributions from Noether-core clusters, not as literal creation or destruction of substrate entities. The proposed mapping is:
-
-| QFT language | $\mathbb{A}\mathbb{A}\mathbb{A}$ reading |
-| --- | --- |
-| Vacuum state | Reference Noether-Sea background |
-| Scalar field $\phi$ | Coarse-grained scalar amplitude of Noether-Sea density, compression, or radial-breathing response |
-| Mode $u_k$ | Normal-mode pattern supported by a Noether-core cluster or medium region |
-| Creation operator $a_k^\dagger$ | Coherent addition, nucleation, or release of a cluster contribution into mode $k$ |
-| Annihilation operator $a_k$ | Absorption, damping, or reconfiguration of that contribution back into the surrounding Noether Sea |
-| Number operator $N_k=a_k^\dagger a_k$ | Effective occupation count of stable mode contributions |
-| Particle | Observer-facing name for a stable quantized mode contribution |
+**Conceptual View:** A scalar field is a field with one value at each point and no spacetime vector or tensor index. In relativistic field theory, the Klein-Gordon equation supplies the basic spin-0 wave equation, while the scalar mass term acts like a restoring gap or mode threshold. In curved-spacetime language, scalar-field energy density, pressure, gradients, and curvature coupling can contribute to effective stress-energy.
 
 **Key Equation:** Flat-spacetime Klein-Gordon equation:
 $$
@@ -148,40 +126,8 @@ $$
 \qquad
 \Box = -\frac{1}{c^2}\frac{\partial^2}{\partial t^2}+\nabla^2
 $$
-in the mostly-plus metric convention.
 
-Curved-spacetime scalar-field equation with optional curvature coupling:
-$$
-\left(\nabla^\mu\nabla_\mu - \frac{m^2c^2}{\hbar^2} - \xi R\right)\phi = 0.
-$$
-Here $\nabla^\mu\nabla_\mu$ is the metric wave operator, $R$ is scalar curvature, and $\xi$ controls nonminimal coupling between the scalar mode and curvature.
-
-The corresponding curved-spacetime action is commonly written:
-$$
-S_\phi =
-\int d^4x\,\sqrt{-g}\,
-\left[
--\frac{1}{2}g^{\mu\nu}\nabla_\mu\phi\nabla_\nu\phi
--\frac{1}{2}\left(\frac{m^2c^2}{\hbar^2}+\xi R\right)\phi^2
--V(\phi)
-\right].
-$$
-
-When coupled to general relativity, this scalar action contributes an effective stress-energy tensor,
-$$
-G_{\mu\nu}=8\pi G\left(T_{\mu\nu}^{\mathrm{matter}}+T_{\mu\nu}^{(\phi)}\right),
-$$
-so scalar-field energy density, pressure, and gradients can affect curvature. This is the common mathematical route behind subjects such as Higgs-like scalar modes, inflaton fields, quintessence, boson stars, scalar-tensor gravity, and semiclassical matter-on-geometry models.
-
-Operationally, the metric background used in this equation is normally reconstructed through signal-mediated observations: clock synchronization, radar distance, redshift, lensing, null-cone timing, and later multi-messenger channels (often photon-mediated historically, and now also neutrino- and gravitational-wave-mediated where applicable). The Klein-Gordon field need not itself be electromagnetic, but its spacetime stage is usually calibrated through Physical Observer readout. In $\mathbb{A}\mathbb{A}\mathbb{A}$, this places Klein-Gordon-like scalar behavior in the effective continuum layer: the $\mathbb{U}_{\text{now}}$ universe-state perspective would track the underlying architrino positions, velocities, and causal wake intersections directly, while Physical Observers infer scalar propagation on an emergent metric.
-
-With a source term, the same equation can be written schematically as
-$$
-\left(\nabla^\mu\nabla_\mu - \frac{m^2c^2}{\hbar^2} - \xi R\right)\phi = J.
-$$
-Here $J$ may be an ordinary source density, a distributional point or surface source, or a regularized source $J_\eta$ used for calculation. This distinction matters because a Dirac delta is not an infinite-valued ordinary scalar field; it is a distributional source whose mollified version becomes an ordinary finite scalar profile.
-
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\phi$ should be treated as a coarse-grained scalar amplitude of Noether-Sea density, compression, or radial-breathing response, not as a fundamental continuous substance. The Klein-Gordon mass term maps naturally to an effective restoring stiffness or mode gap of the medium; particle rest mass itself remains the externally exposed response of trapped internal causal history, shielding, and Noether-Sea coupling. The metric wave operator $\nabla^\mu\nabla_\mu$ belongs to the emergent metric closure, not to the substrate-level Euclidean void. The curvature-coupling term $\xi R\phi^2$ is therefore read as a bridge term: scalar-mode behavior changes with effective medium curvature, density, or stress. In this reading, $T_{\mu\nu}^{(\phi)}$ is a useful GR-facing stress-energy summary of scalar collective behavior rather than final ontology.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\phi$ should be treated as a coarse-grained scalar amplitude of Noether-Sea density, compression, or radial-breathing response, not as a fundamental continuous substance. The Klein-Gordon mass term maps naturally to an effective restoring stiffness or mode gap of the medium; particle rest mass itself remains the externally exposed response of trapped internal causal history, shielding, and Noether-Sea coupling. For the detailed bridge, including mode operators, curved-spacetime coupling, source terms, and closure targets, see [Relativistic Scalar Fields and the Klein-Gordon Equation](../theory-bridges/klein-gordon-scalar-fields.md).
 
 **What Still Works:** Relativistic scalar-field equations remain indispensable for spin-0 sectors, scalar perturbations, effective field theory, cosmology, and curved-spacetime comparison work. They provide a compact target for any substrate theory that claims to recover continuum field behavior.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the scalar field, mass parameter, potential $V(\phi)$, and curvature coupling $\xi R\phi^2$ are reclassified as effective descriptors of collective assembly response, medium stiffness, nonlinear relaxation, and emergent-metric feedback.
@@ -190,11 +136,9 @@ Here $J$ may be an ordinary source density, a distributional point or surface so
 
 **Geometric proof targets:**
 - Derive a coarse-grained scalar amplitude $\phi$ from Noether-Sea density, compression, or radial breathing modes.
-- Derive normal coordinates $Q_k(t)$ for Noether-core cluster modes so that $\phi(\mathbf{x},t)\approx\sum_k Q_k(t)u_k(\mathbf{x})$ in the continuum limit.
-- Show how stable discrete increments of $Q_k$ produce the effective occupation-count behavior encoded by $a_k^\dagger$, $a_k$, and $N_k$.
 - Show when linearization around a homogeneous Noether-Sea background yields a dispersion relation of the form $\omega^2=c_{\mathrm{eff}}^2k^2+\omega_0^2$, with $\omega_0$ supplying the Klein-Gordon-like mode gap.
 - Relate the effective mass parameter $m$ to assembly stiffness, confinement energy, or radial restoring dynamics rather than treating it as primitive.
-- Determine whether effective curvature coupling $\xi R\phi^2$ emerges from medium-density gradients, strain response, or scalar-tensor leakage in the emergent metric closure.
+- Determine whether effective curvature coupling $\xi R\phi^2$ emerges from medium-density gradients, strain response, or scalar-tensor leakage in emergent metric closure.
 
 ---
 
@@ -251,7 +195,7 @@ Historically, the Liénard-Wiechert moving-source potentials already pointed in 
 
 **Geometric proof targets:**
 - Show global polarity-phase invariance implies a conserved U(1)-like charge.
-- Derive the field potential as a coarse-grained wake field from tri-binary motion.
+- Derive the effective field potential as a coarse-grained summary of causal wakes from tri-binary motion.
 
 ---
 ### Electroweak Theory (EW)
@@ -268,7 +212,7 @@ $$
 \mathrm{SU(2)}_L \times \mathrm{U(1)}_Y \xrightarrow{\langle H\rangle\neq 0}
 \mathrm{U(1)}_{\mathrm{EM}}.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The Higgs field corresponds to an effective account of how a dense, nearly-uniform tri-binary configuration in the Noether Sea contributes to local inertial response. It should not be treated as the sole origin of mass: mass is the externally exposed response of trapped internal causal history, shielding, and Noether-Sea coupling. Electroweak symmetry breaking is the selection of a preferred phase/orientation pattern in this medium, which distinguishes the massless photon planar-pair channel from massive vector assemblies (W, Z). See [Electroweak Bosons: Photons, W/Z, and Higgs](../assemblies/bosons/electroweak-bosons.md), [Weak Mixing Angle](../assemblies/fermions/weak-mixing-angle.md), and [Weak Mixing and CKM](../assemblies/fermions/weak-mixing-ckm.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The Higgs field corresponds to an effective account of how a dense, nearly-uniform tri-binary configuration in the Noether Sea contributes to local inertial response. It should not be treated as the sole origin of mass: mass is the externally exposed response of trapped internal causal history, shielding, and Noether-Sea coupling. Electroweak symmetry breaking is the selection of a preferred phase/orientation pattern in this medium, which distinguishes the massless photon channel, described canonically as a coaxial contra-rotating pro/anti planar pair, from massive vector assemblies (W, Z). See [Electroweak Bosons: Photons, W/Z, and Higgs](../assemblies/bosons/electroweak-bosons.md), [Weak Mixing Angle](../assemblies/fermions/weak-mixing-angle.md), and [Weak Mixing and CKM](../theory-bridges/weak-mixing-ckm.md).
 
 **What Still Works:** Electroweak Theory (EW) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of tri-binary assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
@@ -359,7 +303,7 @@ without a fundamental scalar.
 $$
 \langle \bar\Psi \Psi \rangle \neq 0 \Rightarrow \text{EW breaking}.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** This is very natural in $\mathbb{A}\mathbb{A}\mathbb{A}$: the Higgs is explicitly a composite pattern in the tri-binary spacetime medium, not a fundamental scalar. “New strong sector” corresponds to dense, self-coupled architrino assemblies whose collective behavior generates the effective Higgs condensate and associated symmetry breaking.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** This is natural in $\mathbb{A}\mathbb{A}\mathbb{A}$: the Higgs is interpreted as a composite pattern in the Noether Sea, not a fundamental scalar. “New strong sector” corresponds to dense, self-coupled architrino assemblies whose collective behavior generates the effective Higgs condensate and associated symmetry breaking.
 
 **What Still Works:** Technicolor / Composite Higgs remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of tri-binary assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
@@ -414,8 +358,8 @@ Equivalent invariant relation (mass shell):
 $$
 E^2 = (pc)^2 + (mc^2)^2.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Lorentz symmetry and an invariant “speed of light” are theorem targets for assemblies moving through an approximately homogeneous and isotropic Noether Sea. Proper time corresponds to internal cycle count relative to absolute time, while time dilation and length contraction must be derived from moving-assembly deformation, clock-law retuning, and two-way signal synchronization. The middle-binary $v=c_f$ regime supplies a candidate signal-scale mechanism, not a completed proof by itself.
-For the assembly-level closure used in this program, see [Effective Energy-Momentum Closure](../dynamics/energy.md#effective-energy-momentum-closure).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Lorentz symmetry and an invariant “speed of light” are theorem targets for assemblies moving through an approximately homogeneous and isotropic Noether Sea. Proper time corresponds to internal cycle count relative to absolute time, while time dilation and length contraction must be derived from moving-assembly deformation, clock-law retuning, two-way signal synchronization, and bounded preferred-frame leakage. The middle-binary $v=c_f$ regime supplies a candidate signal-scale mechanism, not a completed proof by itself.
+For the assembly-level closure used in this program, see [Effective Energy-Momentum Closure](../dynamics/energy.md#effective-energy-momentum-closure). For a detailed side-by-side bridge between SR language and the deformable Noether-core implementation story, see [Special Relativity and Deformable Noether Cores](../theory-bridges/special-relativity-noether-core.md).
 
 **What Still Works:** Special Relativity (SR) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether-Sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
@@ -440,7 +384,7 @@ acts instantaneously through a potential.
 $$
 \mathbf{F} = m\mathbf{a}, \quad F = G\frac{m_1 m_2}{r^2}.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Newtonian mechanics is the low-speed, weak-field limit of architrino/assembly dynamics in Euclidean 3D with absolute time. The effective $1/r^2$ gravitational potential arises from long-range patterns in the tri-binary spacetime medium’s density and its influence on the causal wake geometry; “gravitational force” is an emergent shorthand for small deviations from straight-line motion within that medium.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Newtonian mechanics is the low-speed, weak-field limit of architrino/assembly dynamics in Euclidean 3D with absolute time. The effective $1/r^2$ gravitational potential arises from long-range patterns in the Noether Sea’s density and its influence on the causal wake geometry; “gravitational force” is an emergent shorthand for small deviations from straight-line motion within that medium.
 
 **What Still Works:** Newtonian Mechanics and Gravity remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether-Sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
@@ -465,7 +409,7 @@ the force law below a threshold $a_0$.
 $$
 \mu\left(\frac{a}{a_0}\right) a = a_N.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** MOND-like behavior can, in principle, emerge if the tri-binary spacetime medium exhibits new phases or non-linear response below a characteristic acceleration or curvature scale set by its internal self-hit dynamics. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this would be a property of the medium’s constitutive relation (how assembly density responds to stress/curvature), not a modification of fundamental laws in the Euclidean void.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** MOND-like behavior can, in principle, emerge if the Noether Sea exhibits new phases or non-linear response below a characteristic acceleration or curvature scale set by its internal self-hit dynamics. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this would be a property of the medium’s constitutive relation (how assembly density responds to stress/curvature), not a modification of fundamental laws in the Euclidean void.
 
 **What Still Works:** Modified Gravity (MOND / TeVeS) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether-Sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
@@ -547,7 +491,7 @@ For this reason the preferred local term is **Horizon interface**: surface degre
 - Assemblies fixed at $v=c_f$ tangentially (middle and outer loops locked),
 - Planck-frequency hierarchy (inner 4x, middle 2x, outer 1x),
 - Information flow constrained to the interface sheet,
-- Ready to bifurcate into volumetric Noether cores as soon as the outer loop slows below $c_f$ (unfolding into bulk matter or spacetime medium).
+- Ready to bifurcate into volumetric Noether cores as soon as the outer loop slows below $c_f$ (unfolding into bulk matter or Noether-Sea content).
 
 That yields a disciplined shorthand: Horizon interface for the Planck-aligned interface layer, bulk for $v<c_f$ volumetric cores, and AdS-like for the $v>c_f$ self-hit interior, all treated as regimes on one constitutive continuum.
 
@@ -580,7 +524,7 @@ $$
 H^2 = \left(\frac{\dot a}{a}\right)^2 = \frac{8\pi G}{3}\rho + \frac{\Lambda}{3}
  - \frac{k}{a^2}.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The scale factor $a(t)$ summarizes large-scale evolution of the tri-binary spacetime medium’s density and energy content. Dark matter corresponds to additional, weakly-coupled architrino assemblies; $\Lambda$ reflects baseline energy of the Noether Sea. Friedmann dynamics are effective equations for averaged assembly densities and their equation of state, not direct statements about the underlying Euclidean container.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The scale factor $a(t)$ summarizes large-scale evolution of the Noether Sea’s density and energy content. Dark matter corresponds to additional, weakly-coupled architrino assemblies; $\Lambda$ reflects baseline energy of the Noether Sea. Friedmann dynamics are effective equations for averaged assembly densities and their equation of state, not direct statements about the underlying Euclidean container.
 
 **What Still Works:** Lambda-CDM (Big Bang Cosmology) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -625,7 +569,7 @@ the angular power spectrum.
 $$
 C_\ell = \langle |a_{\ell m}|^2 \rangle.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The acoustic peaks record standing-wave patterns of coupled assembly sectors: photon planar-pair modes and baryon-like composite assemblies embedded in the tri-binary spacetime medium. Their spectrum encodes how the Noether Sea and matter assemblies responded collectively to density and pressure perturbations before decoupling.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The acoustic peaks record standing-wave patterns of coupled assembly sectors: photon modes described canonically as coaxial contra-rotating pro/anti planar pairs, plus baryon-like composite assemblies embedded in the Noether Sea. Their spectrum encodes how the Noether Sea and matter assemblies responded collectively to density and pressure perturbations before decoupling.
 
 **What Still Works:** CMB Acoustic Peaks remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -648,7 +592,7 @@ $$
 \frac{dn_i}{dt} = \sum_{j,k} \langle \sigma v \rangle_{jk\to i}\, n_j n_k
  - \sum_{l} \langle \sigma v \rangle_{i l}\, n_i n_l.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** BBN is the period when tri-binary-based nucleon assemblies combine into light nuclear assemblies (e.g., deuteron, helium) at rates set by their architrino-level interaction cross sections and the cooling history of the tri-binary spacetime medium. The standard reaction network remains valid, but each “species” corresponds to a distinct architrino assembly topology.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** BBN is the period when tri-binary-based nucleon assemblies combine into light nuclear assemblies (e.g., deuteron, helium) at rates set by their architrino-level interaction cross sections and the cooling history of the Noether Sea. The standard reaction network remains valid, but each “species” corresponds to a distinct architrino assembly topology.
 
 **What Still Works:** Big Bang Nucleosynthesis (BBN) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -737,7 +681,7 @@ $$
 w = \frac{p}{\rho}, \quad w=-1.
 $$
 For a cosmological constant, $w=-1$.
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Dark-energy-like behavior arises from the residual energy density and stress of the Noether Sea itself, or in bridge prose the spacetime medium. Its effective equation of state $w$ reflects how the Noether Sea responds to expansion—whether it behaves like a quasi-constant tension, quintessence-like behavior, or a more complex assembly phase. In this view, quintessence-like dynamics are an effective large-scale Noether-Sea/spacetime-medium response, not a fundamental scalar ontology.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Dark-energy-like behavior arises from the residual energy density and stress of the Noether Sea itself, or in bridge prose the spacetime medium. Its effective equation of state $w$ reflects how the Noether Sea responds to expansion—whether it behaves like a quasi-constant tension, quintessence-like behavior, or a more complex assembly phase. In this view, quintessence-like dynamics are an effective large-scale Noether-Sea response, described in bridge prose as a spacetime-medium response, not a fundamental scalar ontology.
 
 **What Still Works:** Dark Energy (Beyond $\Lambda$) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -759,7 +703,7 @@ the observable universe.
 $$
 \rho_{\mathrm{DE}} \sim \frac{3 c^2 M_P^2}{L^2}.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** In $\mathbb{A}\mathbb{A}\mathbb{A}$, such a scaling would signal a relationship between large-scale boundary conditions on the tri-binary spacetime medium (set by an effective horizon scale $L$) and the average energy density stored in its assemblies. Holographic bounds capture how much information/structure architrino assemblies can support within a region, not a separate dark-energy microphysics.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** In $\mathbb{A}\mathbb{A}\mathbb{A}$, such a scaling would signal a relationship between large-scale boundary conditions on the Noether Sea (set by an effective horizon scale $L$) and the average energy density stored in its assemblies. Holographic bounds capture how much information/structure architrino assemblies can support within a region, not a separate dark-energy microphysics.
 
 **What Still Works:** Holographic Dark Energy remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -805,7 +749,7 @@ a bounce leads to expansion.
 $$
 w \gg 1 \Rightarrow a(t) \propto (-t)^{2/3(1+w)}.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Cyclic behavior is possible if the tri-binary spacetime medium admits global attractor cycles: contraction into dense, high self-hit regimes followed by deflation/relaxation into expansion. The ekpyrotic $w \gg 1$ phase reflects an effective equation of state for dense assembly configurations approaching their maximal-curvature limits before bouncing.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Cyclic behavior is possible if the Noether Sea admits global attractor cycles: contraction into dense, high self-hit regimes followed by deflation/relaxation into expansion. The ekpyrotic $w \gg 1$ phase reflects an effective equation of state for dense assembly configurations approaching their maximal-curvature limits before bouncing.
 
 **What Still Works:** Ekpyrotic / Cyclic Cosmology (Steinhardt--Turok) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -849,7 +793,7 @@ matches a new early phase.
 $$
 \tilde g_{\mu\nu} = \Omega^2 g_{\mu\nu}.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Conformal matching here is an effective way of gluing together different large-scale phases of the tri-binary spacetime medium when mass scales (set by tri-binary internal dynamics) become negligible. Whether an exact CCC picture arises in $\mathbb{A}\mathbb{A}\mathbb{A}$ depends on long-time evolution of assembly masses and the eventual fate of tri-binary structures, but conformal rescaling is not a fundamental ingredient of the underlying architrino substrate.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Conformal matching here is an effective way of gluing together different large-scale phases of the Noether Sea when mass scales (set by tri-binary internal dynamics) become negligible. Whether an exact CCC picture arises in $\mathbb{A}\mathbb{A}\mathbb{A}$ depends on long-time evolution of assembly masses and the eventual fate of tri-binary structures, but conformal rescaling is not a fundamental ingredient of the underlying architrino substrate.
 
 **What Still Works:** Conformal Cyclic Cosmology (Penrose) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.

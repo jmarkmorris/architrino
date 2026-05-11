@@ -9,13 +9,13 @@ This chapter states how big-bang nucleosynthesis constraints are to be read insi
 - **When:** 10 seconds to 20 minutes after $t=0$ (cosmic singularity).
 - **Where:** Everywhere in the observable universe; a homogeneous, isotropic thermal bath.
 - **Why:** Expansion cooling drives the universe through nuclear-reaction freeze-out.
-- **Background:** Finite age, singular origin, SMBH-environment thermal history.
+- **Background:** Finite age, singular-origin boundary, homogeneous early thermal history.
 
 ### $\mathbb{A}\mathbb{A}\mathbb{A}$ Reinterpretation
 
 - **When:** No universal "beginning"; nucleosynthesis occurs locally and repeatedly in absolute time $t$ within the eternal Euclidean void.
 - **Where:** In high-density, high-temperature zones surrounding supermassive black hole (SMBH) cores and their release channels; see [Black Holes](../spacetime/black-holes.md).
-- **Why:** Tri-binary spacetime assemblies (Noether Sea) near SMBHs reach densities and temperatures sufficient for nuclear reactions; subsequent outward transport and cooling mimics expansion-driven freeze-out, using the same fixed-void expansion interface developed in [Expansion Mechanism](./expansion-mechanism.md).
+- **Why:** Noether-Sea tri-binary assemblies near SMBHs reach densities and temperatures sufficient for nuclear reactions; subsequent outward transport and cooling mimics expansion-driven freeze-out, using the same fixed-void expansion interface developed in [Expansion Mechanism](./expansion-mechanism.md).
 - **Background:** Eternal void; no singularity; "BBN" is a recurring local process, not a singular cosmic event.
 
 ### What Remains Unchanged
@@ -52,7 +52,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, what standard cosmology calls "the first mi
 
 1. **Assembly Compression Zone (SMBH Interior/Near-Horizon):**
 
-Tri-binary spacetime assemblies compress toward maximum-curvature states.
+Noether-Sea tri-binary assemblies compress toward maximum-curvature states.
 Proton/neutron assemblies (nucleon tri-binaries; see [Nucleon Structure](../nuclear-atomic/nucleon-structure.md)) are driven into close proximity by intense Noether-Sea density gradients.
 Local "temperature" (kinetic energy distribution) and density mimic BBN conditions ($T \sim 10^9\,\mathrm{K},\ \rho \sim 10^{-3}\,\mathrm{g/cm^3}$).
 Interpretive saturation claim: compression approaches medium-defined ceilings $T_{\max}$ and $\rho_{\max}$, so nucleosynthesis conditions are set primarily by Noether-Sea saturation rather than scaling linearly with SMBH mass.
@@ -61,17 +61,17 @@ Interpretive saturation claim: compression approaches medium-defined ceilings $T
 
 Material released from near-horizon regions undergoes rapid outward dilution and cooling.
 Effective cooling rate $dT/dt$ matches the freeze-out timing required for standard BBN yields.
-This is not metric expansion of space; it is bulk flow of assemblies through the Euclidean void, with effective "expansion" as density dilution.
+This is not metric expansion of space; it is bulk flow of assemblies through the Euclidean void, with effective expansion represented as density dilution.
 Interpretive timing claim: the effective expansion rate is not free-form outflow kinematics; it is constrained by assembly transport limits tied to field-speed scale $c_f$, release-channel selection, and near-core stability times, so the cooling window can align with weak freeze-out timing.
 
 3. **Observable Output:**
 
 Ejected material, now cooled and stabilized, carries light-element abundances set by the local reaction history.
-These abundances are observationally indistinguishable from "primordial" BBN if the SMBH process dominates early structure formation.
+These abundances must be observationally consistent with "primordial" BBN if the SMBH-local process is to replace a one-time origin interpretation.
 
 ### Key Difference from Standard BBN
 
-- **Standard:** One SMBH-environment thermal history; all light elements formed in the same cosmic epoch.
+- **Standard:** One homogeneous early-universe thermal history; all light elements formed in the same cosmic epoch.
 - **$\mathbb{A}\mathbb{A}\mathbb{A}$:** Many local nucleation sites; observed abundances reflect averaged outputs from SMBH environments plus later stellar processing.
 
 ## Network-Level Description
@@ -106,7 +106,7 @@ This keeps lithium inside one coherent mechanism family rather than adding a sep
 
 ### Why Standard BBN Fits So Well
 
-- If SMBHs dominate early galaxy formation, their nucleosynthetic output would establish a baseline light-element abundance.
+- If the SMBH-local mapping is correct, its nucleosynthetic output must establish a baseline light-element abundance.
 - Subsequent stellar evolution and mixing would homogenize these abundances across cosmic scales.
 - The effective "primordial" abundances reflect equilibrated distributions from SMBH recycling, not a singular cosmic event.
 
@@ -128,6 +128,7 @@ This keeps lithium inside one coherent mechanism family rather than adding a sep
 - Preserve effective photon loading in the reaction window (BBN-compatible $\eta$ behavior).
 - Preserve effective neutrino-sector closure near three-species behavior (observer-level $N_{\text{eff}}$ compatibility).
 - Avoid per-source ad hoc retuning that breaks universality across SMBH populations.
+- Maintain reaction and thermalization provenance consistent with [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md).
 
 ## Observable-Mapping Goals (Interpretation-Scoped)
 

@@ -3,3 +3,6 @@ __pycache__/
 *.pyc
 .obsidian/
 .tmp/
+
+# Local Cody corpus-exploration coordination cards
+reference/entourage/cody/reports/corpus-exploration-claims/

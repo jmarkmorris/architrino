@@ -2,7 +2,7 @@
 
 ## Purpose and Scope
 
-This chapter fixes what a measurement event is in $\mathbb{A}\mathbb{A}\mathbb{A}$ at the ontological level. It is narrower than the full Born-rule program. The aim here is to remove the placeholder and state the minimum physical architecture:
+This chapter fixes what a measurement event is in $\mathbb{A}\mathbb{A}\mathbb{A}$ at the ontological level. It is narrower than the full Born-rule program. The aim is to state the minimum physical architecture:
 
 - what counts as the system,
 - what counts as the apparatus,
@@ -13,7 +13,7 @@ This chapter fixes what a measurement event is in $\mathbb{A}\mathbb{A}\mathbb{A
 
 Measurement is not a primitive axiom and not a special observer intervention. It is a physical interaction between assemblies that drives a metastable target across a separatrix and then locks the resulting branch into a persistent macroscopic record.
 
-So the ontology is:
+The ontology is therefore:
 
 - **system:** an assembly or coupled assembly-subsystem with reduced state $X$,
 - **apparatus:** another assembly network engineered so that its wake structure couples strongly to a chosen coordinate of $X$,
@@ -35,7 +35,7 @@ What standard quantum mechanics calls a "measurement" is therefore just a specia
 
 1. strong targeted perturbation of a metastable degree of freedom,
 2. amplification into many apparatus degrees of freedom,
-3. dissipation into the surrounding sea so that coherent reversal becomes practically inaccessible.
+3. dissipation into the surrounding Noether Sea so that coherent reversal becomes practically inaccessible.
 
 ## Minimal Dynamical Model
 
@@ -90,7 +90,7 @@ The wavefunction remains an effective observer-level object. In a measurement co
 
 Before the threshold crossing, the effective description may remain approximately unitary. After the record-forming crossing, the appropriate effective description changes because the system has entered a different attractor basin and the apparatus/environment has stored that branch information irreversibly for practical purposes.
 
-So "collapse" is not an extra physical law. It is the observer's forced update once the ontology has already selected a branch.
+Thus "collapse" is not an extra physical law. It is the observer's forced update once the ontology has already selected a branch.
 
 ## Measurement Channels
 
@@ -122,7 +122,7 @@ P_k = \mu_*(B_k),
 $$
 with $B_k$ the record-forming attractor basins and $\mu_*$ the relevant invariant or coarse-grained measure.
 
-The measurement ontology therefore connects directly to the basin-measure program in [wavefunction-ontology.md](./wavefunction-ontology.md) and the separatrix-time program in [superposition-mechanism.md](./superposition-mechanism.md).
+The measurement ontology therefore connects directly to the basin-measure program in [wavefunction-ontology.md](./wavefunction-ontology.md) and the separatrix-time program in [superposition-mechanism.md](../theory-bridges/superposition-mechanism.md).
 
 ## Closure Targets
 
@@ -151,7 +151,7 @@ for real record-forming interactions, even if that time becomes extremely short 
 
 ## Related Chapters
 
-- [collapse-problem.md](./collapse-problem.md)
-- [superposition-mechanism.md](./superposition-mechanism.md)
+- [collapse-problem.md](../theory-bridges/collapse-problem.md)
+- [superposition-mechanism.md](../theory-bridges/superposition-mechanism.md)
 - [wavefunction-ontology.md](./wavefunction-ontology.md)
-- [pilot-wave-character.md](./pilot-wave-character.md)
+- [pilot-wave-character.md](../theory-bridges/pilot-wave-character.md)

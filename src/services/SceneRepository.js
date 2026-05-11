@@ -232,6 +232,55 @@ export class SceneRepository {
     return sceneChildDisplay.labelBadge ?? entry?.labelBadge ?? null;
   }
 
+  async resolveSceneChildMarkdownViewBadgeMap(sceneMeta) {
+    const refs = Array.isArray(sceneMeta?.children) ? sceneMeta.children : [];
+    const map = new Map();
+    if (typeof this.fetchImpl !== "function") {
+      return map;
+    }
+
+    await Promise.all(
+      refs.map(async (ref) => {
+        const nodeId = typeof ref?.nodeId === "string" ? ref.nodeId : "";
+        const scenePath = typeof ref?.scenePath === "string" ? ref.scenePath : "";
+        if (!nodeId || !scenePath) {
+          return;
+        }
+
+        try {
+          const requestPath =
+            typeof this.appendCacheBust === "function"
+              ? this.appendCacheBust(scenePath)
+              : scenePath;
+          const response = await this.fetchImpl(requestPath);
+          if (!response?.ok || typeof response.json !== "function") {
+            return;
+          }
+          const childData = await response.json();
+          const childScene = childData?.scene ?? {};
+          const childSource = childScene.source ?? {};
+          if (
+            childScene.type === "Scene-Markdown-View" &&
+            childSource.type === "markdown" &&
+            typeof childSource.path === "string" &&
+            childSource.path.trim().length > 0
+          ) {
+            map.set(nodeId, "doc");
+          }
+        } catch {
+          // Missing child scene metadata should not block the parent scene.
+        }
+      })
+    );
+
+    return map;
+  }
+
+  resolveInferredNodeBadge(entry, context = {}) {
+    const badge = context.sceneChildMarkdownViewBadgeByNodeId?.get(entry?.id);
+    return typeof badge === "string" && badge.trim().length > 0 ? badge : null;
+  }
+
   resolveNodeLayoutSlot(entry, sceneChildRef = null) {
     const sceneChildDisplay = this.resolveSceneChildDisplay(entry, sceneChildRef);
     return sceneChildDisplay.slot ?? null;
@@ -262,7 +311,9 @@ export class SceneRepository {
       labelTitle: obj.labelTitle ?? nodeTitle,
       labelSubtitle: obj.labelSubtitle ?? null,
       labelDates: obj.labelDates ?? null,
-      labelBadge: this.resolveNodeBadge(obj, sceneChildRef),
+      labelBadge:
+        this.resolveNodeBadge(obj, sceneChildRef) ??
+        this.resolveInferredNodeBadge(obj, context),
       labelBadgeImage: obj.labelBadgeImage ?? null,
       labelBadgeAlt: obj.labelBadgeAlt ?? null,
       scale: hasScale ? obj.scaleExponent : null,
@@ -572,6 +623,8 @@ export class SceneRepository {
     const hideScaleLabels = Boolean(sceneMeta.hideScaleLabels);
     const wrapLabels = sceneMeta.wrapLabels ?? true;
     const sceneChildRefByNodeId = this.buildSceneChildRefMap(sceneMeta);
+    const sceneChildMarkdownViewBadgeByNodeId =
+      await this.resolveSceneChildMarkdownViewBadgeMap(sceneMeta);
     const idMap = new Map(
       data.objects.map((obj) => [obj.id, this.resolveDisplayTitle(obj) ?? obj.id])
     );
@@ -581,6 +634,7 @@ export class SceneRepository {
         wrapLabels,
         idMap,
         sceneChildRefByNodeId,
+        sceneChildMarkdownViewBadgeByNodeId,
         sceneType,
       })
     );

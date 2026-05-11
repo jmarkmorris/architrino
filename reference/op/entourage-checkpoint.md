@@ -88,17 +88,17 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 
 **Role:**  
 - This medium **is** the implementation of what GR calls "spacetime fabric."  
-- Has properties: density ($\rho_{\text{vac}}$), stress, flow, refractive index.  
+- Has properties: physical Noether-core density $\rho_{\text{core}}(\mathbf{x},t)$, normalized density $n(\mathbf{x},t)$, stress, flow, and Noether-Sea delay factor $\chi_{\text{sea}}(\mathbf{x},t)$.  
 - Local excitations → particles (fermions, bosons).  
 - Large-scale ripples → gravitational waves.  
 - Density gradients → effective curvature (gravity as refraction).
 
 **Gravity as Refraction:**  
 - Massive bodies (high assembly density) → increased medium density → slowed signal propagation ($c_{\text{eff}} < c_f$).  
-- **Einstein's curved spacetime** is an effective description of this refractive index field.  
+- **Einstein's curved spacetime** is an effective description of this Noether-Sea delay and clock/ruler response.  
 - Analogy: Light bending in glass, sound slowing in denser air.  
 - Mathematical mapping:  
-  - $c_{\text{eff}}(x) = c_f / n(x)$ where $n(x)$ is refractive index (function of $\rho_{\text{vac}}$, $\Phi$).  
+  - $\chi_{\text{sea}}(\mathbf{x},t)\equiv c_f/c_{\text{eff}}(\mathbf{x},t)$, with $n(\mathbf{x},t)$ reserved for normalized Noether-core density.  
   - Emergent metric: $g_{00} \sim -(c_{\text{eff}}/c_f)^2$, spatial components follow from medium anisotropy/flow.
 
 **Why This Matters:**  
@@ -159,7 +159,7 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 
 **Noether Core:**  
 - Coupled pro + anti tri-binaries (2P + 2A) → neutral, stable, low-mass assembly.  
-- Forms the **spacetime medium** (the "Noether Sea").  
+- Forms the **Noether Sea** (with `spacetime medium` reserved as bridge language).  
 - Analogy: Helium-4 atoms in superfluid helium.
 
 ---
@@ -170,8 +170,8 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 
 **USE (Mandatory):**  
 - **"Path History" / "causal wake surface" / "causal isochron"** whenever describing paths, emissions, intersections, or self-hits
-- **"Sea of Cores" / "Noether Sea" / "Spacetime medium"** (for the tri-binary lattice filling space).  
-- **"Effective metric" / "refractive index field"** (for emergent curved geometry).  
+- **"Noether Sea"** for the ambient substrate contents; use **"spacetime medium"** only as bridge language.  
+- **"Effective metric" / "Noether-Sea delay factor" / "clock-ruler response"** for emergent curved geometry.  
 - **"Field speed" ($c_f$)** for fundamental potential propagation speed.  
 - **"Effective light speed" ($c_{\text{eff}}$ or $c$)** for operational speed of light (medium sound speed).  
 - **"$\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$)"** for simulation ground truth.  
@@ -179,8 +179,8 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 
 **AVOID (Prohibited without explicit justification):**  
 - **"Curved space"** → use "effective metric," "refractive slowing," "density gradient," or (in technical contexts) "permittivity/permeability field."  
-- **"Ether" (alone)** → ambiguous (historical luminiferous ether vs architrino medium); always clarify: "Noether Sea" or "spacetime medium."  
-- **"Retard or Retarded"** → **"Path History" / "causal wake surface" / "causal isochron"**
+- **"Ether" (alone)** → ambiguous (historical luminiferous ether vs architrino medium); use "Noether Sea" or clearly marked bridge language.  
+- **Old causal-delay r-word family** → **"Path History" / "causal wake surface" / "causal isochron"**
 - **"Shell"** → When describing emissions, intersections, or self-hits; avoid saying “shell” unless discussing unrelated chemistry (e.g., electron shells). Emphasize continuous wake dynamics and path-history intersections rather than discrete pulses.
 - **"Vacuum"** → carries a lot of baggage—both historical and intuitive—that suggests truly empty space. Many readers (including some physicists) still interpret it that way. Whenever we’re describing the physical medium of tri-binary spacetime, let’s use **“spacetime assemblies,” “Noether Sea,”** or **“tri-binary spacetime”** instead. Reserve “vacuum” only when referring explicitly to the historical semantics of mainstream physics.  
 - **"Virtual particles"** → use "transient assembly configurations" or "effective field description."
@@ -243,7 +243,7 @@ This protocol is active **until Entourage gains direct repo write access**.
 **Category B (Scale Setters):**  
 - Coupling strength: $\lambda$ (dimensionless constant relating potential strength to mass/energy)  
 - Tri-binary radius ratios: $r_{\text{inner}} : r_{\text{middle}} : r_{\text{outer}}$  
-- Spacetime medium density: $\rho_{\text{vac}}$ (Noether cores per unit volume)  
+- Noether-core density: $\rho_{\text{core}}(\mathbf{x},t)$, with normalized density $n(\mathbf{x},t)$ for constitutive maps  
 - Maximal curvature radius: $r_{\text{min}}$ (inner binary self-hit stabilization)
 
 **Category C (Derived from Simulations/Theory):**  
@@ -309,9 +309,9 @@ Assess five dimensions (Green/Yellow/Red):
 - **Michelson-Morley null result**: Velocity-dependent light-speed anisotropy $< 10^{-17}$.  
 - **Kennedy-Thorndike**: Velocity-dependent frequency shifts $< 10^{-9}$.
 
-**Mechanism ("Lorentzian Conspiracy"):**  
+**Mechanism (Preferred-Frame Suppression):**  
 - Assembly dynamics (rulers, clocks, rods made of tri-binaries) must naturally contract/slow by factor $\gamma^{-1} = \sqrt{1 - v^2/c^2}$ due to:  
-  - Interaction with Noether Sea (medium drag/coupling),  
+  - Interaction with Noether Sea (medium-dressed response/coupling),  
   - Self-consistent field-speed dynamics,  
   - Tri-binary deformation under motion (ellipsoidal distortion).
 
@@ -331,12 +331,12 @@ Assess five dimensions (Green/Yellow/Red):
 - PPN parameter $\gamma \approx 1.0$ within $|\gamma - 1| < 10^{-5}$ (Cassini bound).
 
 **Mechanism:**  
-- Increased medium density $\rho_{\text{vac}}$ near massive body → increased refractive index $n$ → reduced effective light speed $c_{\text{eff}} = c_f / n$.  
+- Increased Noether-core density $\rho_{\text{core}}(\mathbf{x},t)$ near massive body → increased Noether-Sea delay factor $\chi_{\text{sea}}$ → reduced effective light speed $c_{\text{eff}} = c_f/\chi_{\text{sea}}$.  
 - Delay: $\Delta t = \int (1/c_{\text{eff}} - 1/c) \, ds$.
 
 **Mapping:**  
 - $g_{00}(x) \sim -(c_{\text{eff}}/c_f)^2 = -(1 + 2\Phi/c^2)$ where $\Phi$ is Newtonian potential (if linear regime).  
-- Full nonlinear: $n(x) = n(\rho_{\text{vac}}(x), \Phi(x))$; must derive functional form.
+- Full nonlinear: $\chi_{\text{sea}} = \chi_{\text{sea}}(\rho_{\text{core}}, n, \Phi_{\text{eff}}, \text{stress/flow})$; must derive functional form.
 
 **Status:**  
 - **Qualitative**: Concept clear.  
@@ -403,7 +403,7 @@ Assess five dimensions (Green/Yellow/Red):
 
 **Mechanism:**  
 - Both arise from coupling to Noether Sea:  
-  - **Inertial mass**: Resistance to acceleration (medium drag; assembly must push through sea).  
+  - **Inertial mass**: Externally exposed response of trapped internal causal history, shielding, and Noether-Sea coupling.  
   - **Gravitational mass**: Response to medium density gradient (refraction; assembly trajectory bends in gradient).  
 - EP holds if coupling is universal (same for all assembly types).
 
@@ -447,12 +447,12 @@ Assess five dimensions (Green/Yellow/Red):
 **Foundational Ontology:**  
 - **$\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$) codified**: Clear distinction between simulation ground truth ($\mathbb{U}_{\text{now}}$) and operational measurements (Physical Observers).  
 - **Noether Sea ontology**: Spacetime is not empty void; it is a dense lattice of coupled tri-binary assemblies (superfluid-like medium).  
-- **Terminology locked**: "Path history" , "Sea/Medium" (not vacuum), "Void" (Euclidean container).
+- **Terminology locked**: "Path history", "Noether Sea" for ambient contents, "spacetime medium" only as bridge language, and "Euclidean void" for the fixed container.
 
 **Gravity as Refraction:**  
-- Moved from "curved space" metaphor to **refractive index model**: $c_{\text{eff}}(x) = c_f / n(x)$ where $n$ depends on medium density and stress.  
-- Conceptual clarity: massive bodies increase $\rho_{\text{vac}}$ locally → light slows → effective curvature.  
-- Path to PPN parameters: derive $g_{\mu\nu}$ from $n(x)$ and medium flow.
+- Moved from "curved space" metaphor to **Noether-Sea delay model**: $\chi_{\text{sea}}(\mathbf{x},t)=c_f/c_{\text{eff}}(\mathbf{x},t)$, with $n(\mathbf{x},t)$ reserved for normalized Noether-core density.  
+- Conceptual clarity: massive bodies change local $\rho_{\text{core}}$ and $\chi_{\text{sea}}$ → light slows → effective curvature.  
+- Path to PPN parameters: derive $g_{\mu\nu}$ from $\chi_{\text{sea}}$, Noether-core density, stress, and medium flow.
 
 **Self-Hit Dynamics:**  
 - Established as **critical innovation**: non-Markovian feedback prevents singularities, stabilizes binaries, generates quantum-like effects.  
@@ -492,7 +492,7 @@ When session resumes, **prioritize these four tasks**:
 - **Leads**: Dyna (analytical form), Sol (discretization for simulation), Cami(conceptual clarity).
 
 **Action 2 (Cos/Dyna): Proper Time Derivation**  
-- **Goal**: Derive explicit function $d\tau = F(\rho_{\text{vac}}, \Phi, v) \, dt$ converting absolute time to assembly-clock proper time.  
+- **Goal**: Derive explicit function $d\tau = F(\rho_{\text{core}}, \chi_{\text{sea}}, \Phi_{\text{eff}}, v) \, dt$ converting absolute time to assembly-clock proper time.
 - **Method**:  
   - Model assembly as tri-binary oscillator,  
   - Frequency depends on internal energy, medium coupling, velocity,  

@@ -46,7 +46,7 @@ Using the ideal gas law, dry air at 1 atm and 298 K contains about $2.46 \times 
 Notes:
 - “Dry air” omits water vapor. At 25°C and 50% RH, H₂O is ~1.6% by volume (about $3.9 \times 10^{17}$ per $\mathrm{cm}^3$), reducing the dry-air constituents by the same fraction. At 100% RH (25°C), H₂O is ~3.1% (about $7.7 \times 10^{17}$ per $\mathrm{cm}^3$).
 - At STP (0°C, 1 atm), total density is about $2.69 \times 10^{19}$ per $\mathrm{cm}^3$; scale species accordingly.
-- Despite these high number densities, the “hard-core” geometric occupancy is only ~0.08–0.1% of the volume (see VdW estimate above): the vast majority of air’s volume is spacetime assemblies compared to molecular gases/liquids/solids.
+- Despite these high number densities, the “hard-core” geometric occupancy is only ~0.08–0.1% of the volume (see VdW estimate above). In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, ordinary molecular exclusion occupies only a small fraction of the available Euclidean volume, while deeper Noether-Sea implementation layers remain available for medium-level propagation.
 
 This gives a **geometric baseline** for how much space a molecule excludes. But in real matter, things are more flexible.
 
@@ -77,9 +77,9 @@ This gives a **geometric baseline** for how much space a molecule excludes. But 
 
 ---
 
-## Who Can “Slip Between” Excluded Regions?
+## Propagation Across Excluded Regions
 
-Think of maximally packed van der Waals volumes as a **molecular fortress**. Ordinary atoms are locked out — but not everything plays by those rules.
+Maximally packed van der Waals volumes define exclusion domains for ordinary atoms and molecules. They do not automatically block every observer-level channel or every deeper medium-level propagation mode.
 
 * **Ordinary matter (atoms, electrons)**: Blocked. They *are* the walls.
 * **Photons**: Sometimes pass, sometimes absorbed.
@@ -90,9 +90,9 @@ Think of maximally packed van der Waals volumes as a **molecular fortress**. Ord
   Compare [Neutrinos](../assemblies/fermions/neutrinos.md) for the assembly-level channel picture.
 * **Dark matter candidates**: If WIMPs or axions exist, they would also pass through matter as though it weren’t there.
   Compare [Dark Matter](../cosmology/dark-matter.md) for the cosmological inference side.
-* **Gravitons (hypothetical)**: like photons, but for gravity — unhindered.
+* **Gravitons (hypothetical)**: in standard language, gravity-channel quanta would be weakly blocked by ordinary molecular exclusion.
   Compare [Gravitational Waves](./gravitational-waves.md) for the effective propagation layer.
-* **Spacetime itself**: Not excluded. Matter curves spacetime, but doesn’t block it. (mathematical, non-physical interpretation)
+* **Effective spacetime description**: in standard GR language, matter changes the metric rather than blocking spacetime as a substance. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Euclidean void remains fixed; the relevant implementation layer is Noether-Sea response and effective metric reconstruction.
 
 ---
 
@@ -109,6 +109,6 @@ This is the same implementation layer developed in [Emergent Metric](./emergent-
 * **At the material level**: boundaries (air–water, skin–air, skin–metal) are just large-scale manifestations of those exclusions.
 * **At the cosmic level**: photons, neutrinos, dark matter, and gravitational waves sail straight through, almost oblivious to the walls that matter erects.
 
-In other words, the van der Waals volume is a “no-go zone” only for **ordinary fermionic matter**. For most of the universe’s particles and fields, those barriers simply don’t exist.
+In other words, the van der Waals volume is a “no-go zone” mainly for **ordinary fermionic matter**. Other observer-level channels and effective fields interact with matter through different coupling mechanisms, so molecular exclusion alone does not determine their propagation.
 
 ---

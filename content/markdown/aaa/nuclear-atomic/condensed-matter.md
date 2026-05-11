@@ -1,10 +1,10 @@
 # Condensed Matter
 
-This chapter is the condensed-matter placeholder for medium-level behavior in the Noether Sea. Its current focus is the superfluid-medium analogy and the question of how reversible inertial response, true resistance, and threshold behavior should be distinguished when matter moves through a densely coupled background of cores.
+This chapter states the condensed-matter closure target for medium-level behavior in the Noether Sea. Its current focus is the superfluid-medium analogy and the distinction between reversible inertial response, true resistance, and threshold behavior when matter moves through a densely coupled background of cores.
 
 This note bridges [Atomic Structure](atomic-structure.md), [Particle Masses](../assemblies/particle-masses.md), [Spacetime Assemblies](../spacetime/spacetime-assemblies.md), and [Medium Exclusion Volume](../spacetime/medium-exclusion-volume.md), since all four depend on how the background medium stores stress and permits transport.
 
-At present this is a framing note rather than a finished derivation. The opening therefore gives the conceptual target before any later detailed closure is attempted.
+At present this is a framing note rather than a finished derivation. The opening therefore gives the conceptual target before later detailed closure is attempted.
 
 ## Superfluid Noether-Sea Hypothesis
 

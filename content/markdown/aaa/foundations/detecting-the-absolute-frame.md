@@ -23,19 +23,19 @@ This is not merely a philosophical puzzle. It is a **practical requirement** for
 
 ### The Key Physical Mechanism
 
-The resolution exploits the theory's **finite field-speed** postulate: architrino-emitted potentials propagate at speed $c_f$ **relative to the Euclidean void**, not relative to the source's subsequent motion. This single postulate creates a **dynamically preferred frame** detectable through purely geometric relationships.
+The resolution exploits the theory's **finite wake-speed** postulate: architrino-emitted causal wakes propagate at speed $c_f$ **relative to the Euclidean void**, not relative to the source's subsequent motion. This single postulate creates a **dynamically preferred frame** detectable through purely geometric relationships.
 
 ### The Nature of Causal Wakes
 
-Each architrino continuously emits potential that propagates outward as a **spherically expanding causal wake**: a continuous field structure expanding at speed $c_f$ from the emission point. This is not a discrete shell or particle; it is a **continuous potential distribution** that grows radially from its origin. At any given absolute time, the wake forms a spherical surface of radius $r = c_f \Delta t$ centered on the point where it was emitted.
+Each architrino continuously emits potential-bearing structure that propagates outward as a **spherically expanding causal wake**: a continuous causal-wake surface expanding at speed $c_f$ from the emission point. This is not a discrete shell or particle; it is a **continuous potential distribution** that grows radially from its origin. At any given absolute time, the wake forms a spherical surface of radius $r = c_f \Delta t$ centered on the point where it was emitted.
 
-The crucial point is that this expanding wake carries information about the **absolute location** where the architrino was when it emitted that portion of the potential field. The wake does not remember where the architrino went afterward. It simply continues expanding from its birth point in the void.
+The crucial point is that this expanding wake carries information about the **absolute location** where the architrino was when it emitted that portion of the potential-bearing wake. The wake does not remember where the architrino went afterward. It simply continues expanding from its birth point in the void.
 
 ### The Concentricity Test
 
 Consider a $\mathbb{U}_{\text{now}}$ universe-state perspective with access to complete microdynamics who can track:
 1. The complete path history of any architrino,
-2. The geometric centers of all emitted and expanding field structures,
+2. The geometric centers of all emitted and expanding wake structures,
 3. All outgoing potential wakes it has emitted.
 
 **The Diagnostic Signature:** An architrino at **absolute rest** ($\mathbf{v} = 0$) exhibits a unique geometric property. It remains at the **exact center** of every spherically expanding causal wake it has ever emitted.
@@ -53,7 +53,7 @@ Consider a $\mathbb{U}_{\text{now}}$ universe-state perspective with access to c
 - The first wake remains centered on $\mathbf{x}_0$ with radius $c_f \Delta t$.
 - Subsequent wakes are centered on displaced positions along the trajectory.
 - The wake centers are **non-coincident**; the pattern is **non-concentric**.
-- The architrino lies closer to the expanding wavefront in its direction of motion, producing a Doppler-like geometry in the absolute frame.
+- The architrino lies closer to the expanding wake front in its direction of motion, producing a Doppler-like geometry in the absolute frame.
 
 ### The Operational Procedure
 
@@ -83,7 +83,7 @@ The concentricity diagnostic connects directly to **self-interaction geometry**:
 
 The master equation demands **explicit positions** $\mathbf{x}_i(t)$ to compute:
 - Separation distance $r_{ij}$ between architrinos $i$ and $j$
-- Path-history positions (where was architrino $j$ when the potential currently reaching $i$ was emitted?)
+- Path-history positions (where was architrino $j$ when the wake contribution currently reaching $i$ was emitted?)
 
 The concentric-wake measurement demonstrates that $\mathbf{x}_i(t)$ is physically meaningful and operationally definable. We can identify stationary without circular reference to pre-existing coordinates.
 
@@ -91,7 +91,7 @@ The concentric-wake measurement demonstrates that $\mathbf{x}_i(t)$ is physicall
 
 This measurement serves as a **consistency test**:
 - Can the theory self-consistently define its own reference frame from intrinsic physics alone?
-- **Yes**: through geometric properties of continuous field dynamics.
+- **Yes**: through geometric properties of continuous wake dynamics.
 
 This prevents the theory from being stranded without empirical content or operational meaning.
 
@@ -102,7 +102,7 @@ This prevents the theory from being stranded without empirical content or operat
 **Ontologically fundamental (physically real):**
 - **Absolute space and time**: The substrate in which all architrino dynamics occur
 - **Absolute velocity**: Physically meaningful and detectable via wake concentricity
-- **Causal wakes**: Continuous potential field structures propagating through the void
+- **Causal wakes**: continuous potential-bearing structures propagating through the void
 - **Geometric relationships**: Concentricity and displacement are objective, observer-independent properties
 
 **Conventional (human-imposed scaffolding):**
@@ -123,7 +123,7 @@ Assembly-based measuring devices are themselves distorted by motion and coupling
 ### The Source-Independence Assumption
 
 The diagnostic relies on a critical physical assumption:
-- **Field independence from source motion**: once emitted, the potential wake propagates at $c_f$ relative to the void, independent of the source's subsequent trajectory.
+- **Wake propagation independence from source motion**: once emitted, the potential-bearing wake propagates at $c_f$ relative to the void, independent of the source's subsequent trajectory.
 
 This is analogous to **acoustic waves** in air: once a speaker emits sound, that wave propagates at the speed of sound in the medium. The wave does not follow the speaker if it moves.
 
@@ -134,7 +134,7 @@ This is analogous to **acoustic waves** in air: once a speaker emits sound, that
 - **Relationalism** (Leibniz, Mach): space is merely relations between objects; absolute space is meaningless
 - **Substantivalism** (Newton, this theory): space is a real container with intrinsic structure, existing independent of matter
 
-The architrino framework is **substantivalist**, but it avoids the idea that the void comes with pre-painted coordinates. Instead, **field dynamics** reveal the structure that matters.
+The architrino framework is **substantivalist**, but it avoids the idea that the void comes with pre-painted coordinates. Instead, **causal-wake dynamics** reveal the structure that matters.
 
 ### Neo-Lorentzian Character
 
@@ -159,7 +159,7 @@ This places the theory in the tradition of **Lorentz Ether Theory**:
 - Absolute motion -> wake centers form a displacement trajectory; velocity $\mathbf{v}_{\text{abs}} = \Delta \mathbf{x} / \Delta t$
 
 **Why this works:**
-- Field speed $c_f$ is isotropic in the void's rest frame
+- Wake speed $c_f$ is isotropic in the void's rest frame
 - Emission centers mark absolute positions in the void
 - Concentricity is a coordinate-free geometric invariant of continuous potential distributions
 

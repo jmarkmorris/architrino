@@ -4,6 +4,8 @@ This chapter is the focused program statement for deriving operational Lorentz b
 
 The opening abstract states the target; the later sections move through the governing delayed dynamics, the anisotropy mechanism, and the conditions under which assembly-built observers could recover standard Lorentz kinematics.
 
+For the theory-bridge version that maps special-relativistic terms directly to the deformable Noether-core story, see [Special Relativity and Deformable Noether Cores](../theory-bridges/special-relativity-noether-core.md).
+
 ## Abstract
 
 This document develops a first-principles program for deriving effective Lorentz kinematics inside $\mathbb{A}\mathbb{A}\mathbb{A}$ from delayed architrino dynamics in a Euclidean void with absolute time. The central claim is not postulated covariance, but dynamical compensation: moving assemblies deform and retune their internal frequencies so that assembly-built observers recover Lorentz-consistent clock and ruler behavior. The objective is an exact or asymptotically controlled derivation of
@@ -449,10 +451,16 @@ $$
 
 For coarse-grained modeling, define local fields
 $$
-\xi(x)=\frac{R_\parallel}{R_\perp}=\frac{1}{\gamma(x)},\qquad
+\xi(x)=\frac{R_\parallel}{R_\perp},\qquad
 \lambda(x)=\frac{R_\perp(x)}{R_{\perp,0}},
 $$
-with $\xi\in(0,1]$ as shape and $\lambda$ as scale.
+with $\xi\in(0,1]$ as shape and $\lambda$ as scale. The Lorentz-closure target is $\xi(x)\to1/\gamma(x)$ in the homogeneous drift regime.
+
+Terminology guardrail: $\xi$ is the Noether-core envelope shape ratio, inherited from [Noether Core Geometry](../assemblies/noether-core-geometry.md#canonical-geometry-variables). It is not defined as the clock-rate factor. In the homogeneous Lorentz-closure regime the proof target is
+$$
+\frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dt}\to\xi\to\frac{1}{\gamma},
+$$
+so clock slowing is a derived readout of the geometry-to-clock map.
 
 Together with local assembly density $n(x)$ (with $\rho_{\text{core}}(x)=\rho_{\text{core},0}n(x)$) and preferred-frame flow/orientation $\hat{u}(x)$, these define a minimal handoff tuple
 $$
@@ -470,30 +478,30 @@ used only as an operational constitutive object (not as substrate ontology). Let
 $$
 \eta_{\mu\nu}\hat{u}^\mu\hat{u}^\nu=-1.
 $$
-Define the disformal inverse metric
-$$
-g_{\text{eff}}^{\mu\nu}(x)=
-\Omega^2(n,\lambda)\left[
-\eta^{\mu\nu}
-+\left(1-\xi^2(x)\right)\hat{u}^\mu\hat{u}^\nu
-\right].
-$$
-Its covariant form is
+Define the disformal covariant metric
 $$
 g_{\mu\nu}^{\text{eff}}(x)=
-\Omega^{-2}(n,\lambda)\left[
+\Omega^2(n,\lambda)\left[
 \eta_{\mu\nu}
-+\left(1-\xi^{-2}(x)\right)\hat{u}_{\mu}\hat{u}_{\nu}
++\left(1-\xi^2(x)\right)\hat{u}_{\mu}\hat{u}_{\nu}
 \right].
 $$
-Hence microscopic shape closure $\xi=1/\gamma$ is injected directly into $g_{\mu\nu}^{\text{eff}}$.
+Its inverse form is
+$$
+g_{\text{eff}}^{\mu\nu}(x)=
+\Omega^{-2}(n,\lambda)\left[
+\eta^{\mu\nu}
++\left(1-\xi^{-2}(x)\right)\hat{u}^{\mu}\hat{u}^{\nu}
+\right].
+$$
+Hence microscopic shape closure, when it yields $\xi\to1/\gamma$, is injected directly into $g_{\mu\nu}^{\text{eff}}$.
 
 In the local medium-rest frame ($\hat{u}^\mu=(1,0,0,0)$), with $x^0=c_f t$:
 $$
 ds_{\text{eff}}^2=g_{\mu\nu}^{\text{eff}}dx^\mu dx^\nu
-=\Omega^{-2}\left[-\xi^{-2}(dx^0)^2+d\mathbf{x}^2\right].
+=\Omega^{2}\left[-\xi^{2}(dx^0)^2+d\mathbf{x}^2\right].
 $$
-Therefore the clock channel is governed by $\Omega^{-1}\xi^{-1}$ and the spatial ruler channel by $\Omega^{-1}$, matching the two-channel deformation interpretation.
+Therefore the stationary ideal clock-rate factor extracted from the metric subclass is $\Omega\xi$, while the spatial ruler scale is governed by $\Omega$. This preserves the geometry-first interpretation: $\xi$ remains the oblate-envelope shape ratio, and the clock rate agrees with $\xi$ only after the geometry-to-clock closure is proved.
 
 ## Observer Construction and Operational Invariance
 
@@ -611,16 +619,16 @@ $$
 
 For weak drift, slowly varying medium flow, and quasi-static fields in a local medium-rest frame, define
 $$
-\Phi_{\text{eff}}(x)\equiv -c_f^2\ln\!\big(\Omega(n,\lambda)\,\xi\big).
+\Phi_{\text{eff}}(x)\equiv c_f^2\ln\!\big(\Omega(n,\lambda)\,\xi\big).
 $$
 Then the nonrelativistic geodesic limit becomes
 $$
 \frac{d^2\mathbf{x}}{dt^2}
-=-\xi^{-2}\nabla \Phi_{\text{eff}}
+=-\xi^{2}\nabla \Phi_{\text{eff}}
 +O\!\left(\frac{|\mathbf{v}|^2}{c_f^2},\epsilon_{\text{LV}}\right)
 =-\nabla \Phi_{\text{eff}}
 +O\!\left(
-\left|1-\xi^{-2}\right|\,\left|\nabla\Phi_{\text{eff}}\right|,
+\left|1-\xi^{2}\right|\,\left|\nabla\Phi_{\text{eff}}\right|,
 \frac{|\mathbf{v}|^2}{c_f^2},
 \epsilon_{\text{LV}}
 \right),
@@ -628,7 +636,7 @@ $$
 with explicit source channels
 $$
 \nabla \Phi_{\text{eff}}
-=-c_f^2\left[
+=c_f^2\left[
 \partial_{\ln n}\ln\Omega\ \nabla\ln n
 +\partial_{\ln \lambda}\ln\Omega\ \nabla\ln \lambda
 +\nabla\ln\xi

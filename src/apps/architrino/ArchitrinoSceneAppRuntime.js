@@ -6853,7 +6853,7 @@ function updateDetailHover(clientX, clientY) {
   setDetailPanel(targetNode);
 }
 
-function updateDecayHover(clientX, clientY) {
+function updateGenerationTransitionHover(clientX, clientY) {
   if (!currentLevel || transitionState.active) {
     return;
   }
@@ -6890,7 +6890,7 @@ function updateDecayHover(clientX, clientY) {
     hideHoverTooltip();
     return;
   }
-  const label = `Decay to Gen ${nextGenInfo.nextGen} ${nextGenInfo.nextLabel}`;
+  const label = `Transition to Gen ${nextGenInfo.nextGen} ${nextGenInfo.nextLabel}`;
   showHoverTooltip(label, clientX, clientY);
 }
 
@@ -6906,7 +6906,7 @@ const interactionRuntime = createInteractionRuntime({
   resetToRootScene,
   focusOnPointer,
   updateDetailHover,
-  updateDecayHover,
+  updateGenerationTransitionHover,
   onSuccessfulSphereClick: dismissZoomToastPermanently,
   isPointerWithinInteractiveViewport,
   setLastZoomGestureTime: (value) => {

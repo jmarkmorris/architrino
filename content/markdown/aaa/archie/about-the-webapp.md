@@ -51,7 +51,7 @@ The webapp also includes non-document surfaces where interaction is primary.
 
 Current examples include:
 
-- image and animation related tools for viewing assemblies and reactions of assemblies with input from the PDG database of known particle reactions.
+- image, reaction-diagram, and animation tools for selected assembly examples, with PDG-derived reaction data used only where provenance is clear enough for curated presentation.
 - periodic-table and element navigation overlays,
 - other domain-specific scene behaviors where the scene is more than a reading panel.
 
@@ -103,7 +103,7 @@ The current webapp stack includes:
 - Three.js for WebGL rendering and CSS2D overlays,
 - KaTeX for TeX and LaTeX rendering,
 - `markdown-it` for markdown parsing and rendering.
-- pdg python package for known standard model particle reactions
+- local PDG-oriented Python tooling for curated reaction-data ingestion and generated review artifacts.
 
 These technologies matter operationally because they shape what kinds of scenes, mathematical notation, and document behaviors the runtime can support directly.
 
