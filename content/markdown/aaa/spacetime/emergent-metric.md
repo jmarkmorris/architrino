@@ -25,6 +25,7 @@ Use the following symbols consistently across spacetime chapters:
 
 - $n(x,t)$: normalized Noether-core density.
 - $\rho_{\text{core}}(x,t)=\rho_{\text{core},0}\,n(x,t)$: physical core density.
+- $\chi_{\text{sea}}(x,t)=c_f/c_{\text{eff}}(x,t)$: Noether-Sea delay factor.
 - $\Phi_{\text{eff}}(x,t)$: constitutive potential inferred from the clock channel.
 - $\Phi_N(x,t)$: Newtonian benchmark potential used for weak-field matching.
 - $U\equiv -\Phi_N>0$: positive weak-field PPN potential variable.
@@ -42,7 +43,7 @@ We define $g^{\text{eff}}_{\mu\nu}$ operationally:
 
 The $\mathbb{U}_{\text{now}}$ universe-state perspective then maps:
 
-$(\delta_{ij}, n(x,t), \Phi_{\text{eff}}(x,t), \nabla\Phi_{\text{eff}}(x,t), \text{medium alignment}) \;\Rightarrow\; g^{\text{eff}}_{\mu\nu}(x)$
+$(\delta_{ij}, n(x,t), \chi_{\text{sea}}(x,t), \Phi_{\text{eff}}(x,t), \nabla\Phi_{\text{eff}}(x,t), \text{medium alignment}) \;\Rightarrow\; g^{\text{eff}}_{\mu\nu}(x)$
 
 ## Noether-Core Deformation and Metric Language
 
@@ -121,29 +122,29 @@ g^{\text{eff}}_{ij}(\mathbf{x})=
 +\mathcal{O}\!\left(\frac{\Phi_N^2}{c_f^4}\right).
 $$
 
-Equivalent refractive form:
+Equivalent Noether-Sea delay-factor form:
 $$
-n(\mathbf{x})\equiv \frac{c_f}{c_{\text{eff}}(\mathbf{x})}
+\chi_{\text{sea}}(\mathbf{x})\equiv \frac{c_f}{c_{\text{eff}}(\mathbf{x})}
 =1-(1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf{x})}{c_f^2}
 +\mathcal{O}\!\left(\frac{\Phi_N^2}{c_f^4}\right),
 $$
 so travel time on a Euclidean anchor path $\Gamma$ is
 $$
-t[\Gamma]=\frac{1}{c_f}\int_\Gamma n(\mathbf{x})\,ds.
+t[\Gamma]=\frac{1}{c_f}\int_\Gamma \chi_{\text{sea}}(\mathbf{x})\,ds.
 $$
 
 This is the concrete first-order realization of
 $$
-(\delta_{ij},n,\text{stress},\Phi_N)\mapsto g^{\text{eff}}_{\mu\nu},
+(\delta_{ij},n,\chi_{\text{sea}},\text{stress},\Phi_N)\mapsto g^{\text{eff}}_{\mu\nu},
 $$
 with $\gamma_{\text{eff}}$ the observable refraction/space-curvature coefficient to be fitted from Shapiro-delay data.  
-Implementation of the corresponding one-way delay integral is given in [ppn-parameters](./ppn-parameters.md#explicit-weak-field-refractive-shapiro-map-ppn-gamma).
+Implementation of the corresponding one-way delay integral is given in [ppn-parameters](./ppn-parameters.md#explicit-weak-field-noether-sea-delay-map-ppn-gamma).
 
 ## Closure Program Interface (metric constitutive map)
 
 This chapter is the constitutive anchor for the gravity-side closure:
 $$
-(\delta_{ij},n,\Phi_{\text{eff}},\text{stress})\mapsto g^{\text{eff}}_{\mu\nu}.
+(\delta_{ij},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{stress})\mapsto g^{\text{eff}}_{\mu\nu}.
 $$
 
 Distribute proof obligations as:

@@ -38,10 +38,10 @@ The propagation speed of the density waves in the Sea must align with the measur
 
 ### Euclidean vs. Metric Pathing (The Refraction Mapping)
 
-This constraint explains how apparent metric deviations (Shapiro delay and light bending) emerge from a Euclidean signalling framework endowed with a varying refractive index, which allows us to compare the emergent delay with the standard GR potential.
+This constraint explains how apparent metric deviations (Shapiro delay and light bending) emerge from a Euclidean signalling framework endowed with a varying Noether-Sea delay factor $\chi_{\text{sea}}$, which allows us to compare the emergent delay with the standard GR potential.
 
 * **Constraint** – Shapiro delay and light bending must match GR to within PPN bounds ($|\gamma - 1| < 10^{-5}$).
-* **Architrino Interpretation** – signals traverse straight Euclidean lines; the perceived delay or curvature arises from a refractive-index effect caused by spatial variations in $\rho_{vac}$.
+* **Architrino Interpretation** – signals traverse straight Euclidean lines; the perceived delay or curvature arises from the Noether-Sea delay factor $\chi_{\text{sea}}$ responding to spatial variations in $\rho_{\text{core}}$ and related medium state variables.
 * **Validation Target** – map $g_{00} \approx 1 + 2\Phi/c^2$ onto the refractive slowing experienced by tri-binary signals moving through the absolute grid.
 
 ### Gravitational Time Dilation

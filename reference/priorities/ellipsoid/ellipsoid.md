@@ -85,10 +85,10 @@ The deformation proceeds from sphere through oblate spheroid to thin disk (or se
 
 ### Optical (Gordon) Metric in a Medium
 
-For a medium with 4-velocity $u^\mu$ and refractive index $n$, an effective optical metric governs signal propagation:
+For a medium with 4-velocity $u^\mu$ and Noether-Sea delay factor $\chi_{\text{sea}}$, an effective optical metric governs signal propagation:
 
 $$
-\tilde{g}^{\mu\nu} = g^{\mu\nu} + \left(1 - \frac{1}{n^2}\right) u^\mu u^\nu.
+\tilde{g}^{\mu\nu} = g^{\mu\nu} + \left(1 - \frac{1}{\chi_{\text{sea}}^2}\right) u^\mu u^\nu.
 $$
 
 If the medium has an oblate density profile - say, an ellipsoidal distribution of Noether cores - the optical metric inherits that oblateness. Light rays follow geodesics of $\tilde{g}_{\mu\nu}$, so the shape of the medium directly encodes the effective geometry experienced by signals. This is the closest standard-physics analogue to the architrino picture of gravity as propagation through a structured medium.
@@ -125,13 +125,13 @@ Recovering the standard weak-field result $d\tau/dt \approx \sqrt{1 + 2\Phi/c^2}
 
 ### Gravitational Lensing
 
-Light bending in a medium arises from spatial gradients of the effective refractive index. With two deformation parameters, the bending angle receives contributions from both:
+Light bending in a medium arises from spatial gradients of the Noether-Sea delay factor. With two deformation parameters, the bending angle receives contributions from both:
 
 $$
-\alpha_{\text{bend}} \propto \int \nabla n_{\text{eff}}\,dl, \quad n_{\text{eff}} = n_{\text{eff}}(\xi, \lambda, n_{\text{cores}}).
+\alpha_{\text{bend}} \propto \int \nabla \chi_{\text{sea}}\,dl, \quad \chi_{\text{sea}} = \chi_{\text{sea}}(\xi, \lambda, n_{\text{cores}}).
 $$
 
-If cores only changed shape (oblateness gradient $\nabla\xi$), the refractive index gradient would come from packing-fraction changes due to flattening. The additional scale channel ($\nabla\lambda$) contributes independently: smaller cores at fixed number density leave more inter-core void, reducing the effective refractive index. The full bending calculation must include both gradient sources.
+If cores only changed shape (oblateness gradient $\nabla\xi$), the delay-factor gradient would come from packing-fraction changes due to flattening. The additional scale channel ($\nabla\lambda$) contributes independently: smaller cores at fixed number density leave more inter-core void, reducing the effective delay factor. The full bending calculation must include both gradient sources.
 
 ### Signal Speed and Anisotropy
 
@@ -162,7 +162,7 @@ As the universe cools and spacetime assemblies lose energy, $R_\perp$ grows (cor
 | Scale change | Set by source mass, not a local medium property | Universal: every core has $\lambda(x)$ |
 | Shape-scale coupling | Independent ($a$ and $M$ are separate parameters) | Locked: both driven by energy through delay-feedback |
 | Proper time | From $g_{00}$ directly | Derived from core oscillation rate depending on $\xi$ and $\lambda$ |
-| Gravitational lensing | From Christoffel symbols / geodesic equation | From refractive index gradients $\nabla\xi$, $\nabla\lambda$, $\nabla n$ |
+| Gravitational lensing | From Christoffel symbols / geodesic equation | From Noether-Sea delay-factor gradients $\nabla\xi$, $\nabla\lambda$, $\nabla n$ |
 | Signal anisotropy | Encoded in off-diagonal metric components | From ellipsoidal packing and axis-dependent transit times |
 | Planck / horizon limit | Singularity or extremal Kerr limit | Co-termination: $\xi \to 0$, $\lambda \to \lambda_{\min}$ simultaneously |
 | Cosmological expansion | Scale factor $a(t)$ of the metric | Core relaxation: $R_\perp(t)$ grows, $\xi(t) \to 1$ |
@@ -178,9 +178,9 @@ Turning this structural mapping into a quantitative effective metric requires fi
 
 **Step 1. Equation of state of a single core.** Derive $R_\perp(E)$ from the outer-binary delay dynamics. This is the constitutive relation of the medium: how the transverse radius of a single tri-binary responds to energy input. The binary dynamics and Planck mapping sections provide the framework; a closed-form or numerical $R_\perp(E)$ curve is needed.
 
-**Step 2. Effective refractive index.** Define $n_{\text{eff}}(\xi, \lambda, n_{\text{cores}})$ for signal propagation through a medium of ellipsoidal cores. This is an effective-medium calculation, requiring averaging over core orientations and packing geometry, likely tractable in a Maxwell-Garnett or Bruggeman-type approximation adapted to the tri-binary medium.
+**Step 2. Noether-Sea delay factor.** Define $\chi_{\text{sea}}(\xi, \lambda, n_{\text{cores}})$ for signal propagation through a medium of ellipsoidal cores. This is an effective-medium calculation, requiring averaging over core orientations and packing geometry, likely tractable in a Maxwell-Garnett or Bruggeman-type approximation adapted to the tri-binary medium.
 
-**Step 3. Extract the effective metric.** Use the Gordon metric template to obtain $g_{\mu\nu}$ from $n_{\text{eff}}$ and the preferred-frame structure $\hat{u}$, specialized to a medium with two deformation parameters. Verify that the metric has Lorentzian signature and reduces to Minkowski in the homogeneous isotropic limit.
+**Step 3. Extract the effective metric.** Use the Gordon metric template to obtain $g_{\mu\nu}$ from $\chi_{\text{sea}}$ and the preferred-frame structure $\hat{u}$, specialized to a medium with two deformation parameters. Verify that the metric has Lorentzian signature and reduces to Minkowski in the homogeneous isotropic limit.
 
 **Step 4. Weak-field expansion and phenomenological tests.** Expand to linear order around the homogeneous background. Verify:
 

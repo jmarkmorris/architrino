@@ -6,7 +6,7 @@ This chapter is the canonical home for proper time, observer clocks, clock slowi
 
 We seek a map
 $$
-\frac{d\tau}{dt} = F\big(\mathbf{v}, n(\mathbf{x}), \Phi_{\text{eff}}(\mathbf{x}), \text{clock geometry}\big)
+\frac{d\tau}{dt} = F\big(\mathbf{v}, n(\mathbf{x}), \chi_{\text{sea}}(\mathbf{x}), \Phi_{\text{eff}}(\mathbf{x}), \text{clock geometry}\big)
 $$
 that reproduces, in the appropriate regime,
 $$
@@ -15,6 +15,7 @@ $$
 and generalizes to strong‑field / high‑velocity conditions.
 
 Notation convention used in this chapter: $n(\mathbf{x})\equiv \rho_{\text{core}}(\mathbf{x})/\rho_{\text{core},0}$ is the canonical medium-density variable.
+The Noether-Sea delay factor is $\chi_{\text{sea}}(\mathbf{x})\equiv c_f/c_{\text{eff}}(\mathbf{x})$; use it for refractive-delay language so $n$ remains reserved for density.
 
 ---
 
@@ -87,7 +88,7 @@ in the regime where the clock’s motion does not significantly disturb the loca
 Massive assemblies polarize and densify the surrounding Noether Sea. A clock deeper in this polarized region experiences:
 
 1. **Higher local Noether density $n(\mathbf{x})$ (equivalently higher $\rho_{\text{core}}$):** 
- Interaction delays with the medium (and between internal architrinos via the medium) increase. This acts like an **index of refraction** for all internal processes.
+ Interaction delays with the medium (and between internal architrinos via the medium) increase. This raises the **Noether-Sea delay factor** $\chi_{\text{sea}}$ for internal processes.
 
 2. **Effective field speed reduction $c_{\text{eff}}(\mathbf{x}) < c_f$:**
  - The propagation of wake influences is slowed in dense regions (more frequent encounters with Noether cores).

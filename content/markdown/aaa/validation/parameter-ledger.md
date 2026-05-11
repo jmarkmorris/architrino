@@ -51,6 +51,7 @@ The following should **not** be treated as free global constants:
 - $\rho_{\text{core}}(\mathbf{x},t)$,
 - $\Phi_{\text{eff}}(\mathbf{x},t)$,
 - $c_{\text{eff}}(\mathbf{x})$,
+- $\chi_{\text{sea}}(\mathbf{x},t)$,
 - $m_{\text{inertial}}(A)$ for a specific assembly $A$.
 
 These are state variables, constitutive fields, or derived outputs. They may be controlled by a smaller parameter set, but they are not themselves independent knobs.
@@ -125,6 +126,7 @@ These symbols control the handoff from the Euclidean substrate plus Noether-core
 | C3 | $\Omega(\mathbf{x}),\xi(\mathbf{x})$ | Constitutive closure target | Open | clock-channel and ruler-channel response functions in the effective metric subclass | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/lorentz-kinematics.md](../spacetime/lorentz-kinematics.md) |
 | C4 | $\Phi_{\text{eff}}(\mathbf{x},t)$ | State variable / field | Derived field | constitutive effective potential defined from the clock channel | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
 | C5 | $c_{\text{eff}}(\mathbf{x})$ | State variable / field | Derived field | effective signal speed in the medium, with $c_{\text{eff}}\to c_f$ in weak homogeneous conditions | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
+| C5a | $\chi_{\text{sea}}(\mathbf{x},t)$ | Derived response field | Derived from $c_{\text{eff}}$ | Noether-Sea delay factor, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$; replaces optical refractive-index notation in Noether-Sea propagation maps | [../spacetime/noether-sea.md](../spacetime/noether-sea.md), [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
 | C6 | $\gamma_{\text{eff}}$ | Constitutive closure target with observable meaning | Open | first-order refraction / space-curvature coefficient in the weak-field map | [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
 | C7 | $C_2$ or $\beta_{\text{eff}}$ | Constitutive closure target with observable meaning | Open | second-order clock-channel nonlinearity entering the $g_{00}$ expansion | [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
 | C8 | $\Xi_1,\Xi_2,\Xi_3,\Xi_4$ | Constitutive closure target | Open | preferred-frame leakage coefficients in the weak-field constitutive expansion | [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
@@ -193,7 +195,7 @@ $$
 
 This is the cleanest current statement of the medium-to-metric handoff:
 $$
-(\delta_{ij},n,\Phi_{\text{eff}},\text{stress})
+(\delta_{ij},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{stress})
 \mapsto
 g_{\mu\nu}^{\text{eff}}.
 $$
@@ -202,7 +204,7 @@ $$
 
 The observable weak-field coefficients are read from the constitutive map through
 $$
-n(\mathbf{x})
+\chi_{\text{sea}}(\mathbf{x})
 \equiv
 \frac{c_f}{c_{\text{eff}}(\mathbf{x})}
 =

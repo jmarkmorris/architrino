@@ -25,7 +25,7 @@ The Euclidean void and the Noether Sea must remain distinct.
 | **Layer** | **Status** | **What It Owns** |
 |:---|:---|:---|
 | Euclidean void | Fundamental substrate | Fixed spatial container $\mathbb{R}^3$, metric $h_{ij}=\delta_{ij}$, coordinate identity |
-| Noether Sea | Emergent physical medium | Density, stress, flow, orientation, energy storage, refractive response |
+| Noether Sea | Emergent physical medium | Density, stress, flow, orientation, energy storage, delay-factor response |
 | Effective spacetime | Observer-level reconstruction | Clock rates, ruler behavior, signal propagation, effective metric |
 
 The void does not curve, expand, contract, or carry energy. The Noether Sea can do all of those things as physical content. Effective curvature is therefore a derived description of Noether Sea response, not curvature of the void itself.
@@ -63,6 +63,16 @@ n(\mathbf{x},t)
 =\frac{\rho_{\text{core}}(\mathbf{x},t)}{\rho_{\text{core},0}}.
 $$
 
+The Noether-Sea delay factor is written
+
+$$
+\chi_{\text{sea}}(\mathbf{x},t)
+=
+\frac{c_f}{c_{\text{eff}}(\mathbf{x},t)}.
+$$
+
+It plays the role that refractive index plays in ordinary optical analogies, but it is a native Noether-Sea response variable. Do not use $n$ for this delay factor; $n$ is reserved for normalized Noether-core density.
+
 When a calculation needs pro/anti subcomponents, orientation imbalance, or coupling-regime stability thresholds, use [Spacetime Assemblies](spacetime-assemblies.md).
 
 Older parameter-ledger language may denote the baseline ambient Noether Sea density by $\rho_{vac}$. In spacetime chapters, the preferred medium-density notation is $\rho_{\text{core},0}$ for the reference density and $\rho_{\text{core}}(\mathbf{x},t)$ for the local density. When both notations appear, read $\rho_{vac}$ as the baseline ambient density parameter, not as a separate kind of substance.
@@ -78,7 +88,7 @@ Important medium properties include:
 - **Orientation and strain:** local ordering of core axes and deformation away from equilibrium.
 - **Flow or drift:** collective motion of the medium relative to the absolute frame.
 - **Compliance:** how strongly the medium responds to compression, shear, polarization, and alignment loading.
-- **Refractive response:** how signal propagation, clock behavior, and effective light speed depend on local medium state.
+- **Delay-factor response:** how $\chi_{\text{sea}}$, signal propagation, clock behavior, and effective light speed depend on local medium state.
 
 These are medium variables. They are not properties of the Euclidean void.
 
@@ -160,4 +170,4 @@ This page does not own:
 
 ## Summary Commitment
 
-> **Medium Commitment (Noether Sea):** The Noether Sea is the emergent physical medium formed by coupled neutral Noether-core assemblies occupying the Euclidean void. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock dilation, signal refraction, inertia, and cosmological behavior are reconstructed from Noether Sea dynamics and assembly coupling, not from curvature or expansion of the void itself.
+> **Medium Commitment (Noether Sea):** The Noether Sea is the emergent physical medium formed by coupled neutral Noether-core assemblies occupying the Euclidean void. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock dilation, signal delay/refraction, inertia, and cosmological behavior are reconstructed from Noether Sea dynamics and assembly coupling, not from curvature or expansion of the void itself.
