@@ -22,7 +22,7 @@ Mode: audit/report | edit-batch | self-running exploration | team-agent
 Authority used: report-only | claim-card-only | edited files
 Files changed: none | path list
 Validation: not run | passed | failed: short reason
-Op next action: one concrete next step, or "none required"
+Op next action: one concrete action needed for this thread, or "none required"
 New-thread prompt: one sentence Op can paste into a fresh thread
 ```
 
@@ -35,7 +35,7 @@ Use the status words strictly:
 
 For self-running exploration, distinguish claim-card writes from AAA prose edits. If only a claim card was created, use `Authority used: claim-card-only`; if no AAA content changed, say so directly in `Files changed`.
 
-Prefer fresh thread boundaries for follow-on work. Do not ask Op to approve continuation in the current thread unless Op explicitly asks to keep working here. If more work is recommended, package it as `New-thread prompt`.
+Use one substantive task per thread. A substantive task is an audit/report, a self-running exploration pass, a theory discussion, a selected edit-batch implementation, or a validation/fix pass. Do not ask Op to approve optional follow-on work inside the current thread; finish the current task, mark `Op next action: none required` when appropriate, and package recommended follow-on work as `New-thread prompt`. Ask for approval in the current thread only when the decision is required to complete the current task.
 
 ```text
 Cody, perform a corpus advancement pass for the AAA markdown corpus.
@@ -358,7 +358,8 @@ Report format:
 10. Suggested new thread:
    - recommended next thread type: audit/report, edit-batch, discussion, or team-agent,
    - paste-ready `New-thread prompt`,
-   - exact search commands or source paths that should seed that new thread.
+   - exact search commands or source paths that should seed that new thread,
+   - no request for Op approval unless approval is required to complete this thread's current task.
 
 Guardrails:
 - Do not introduce new project terminology without asking.
