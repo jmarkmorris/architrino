@@ -12,6 +12,29 @@ Use this prompt when one AAA document or one recent batch contains a newer theor
 
 The highest-value use of this prompt is not mere phrase cleanup. Use the review to convert scattered improvements into a theorem-target map: each recurring claim should be sorted as ontology, derivation/closure target, effective summary, or speculation. Favor innovative, mathematically serious advancement: identify the definitions, lemmas, closure equations, proof sketches, simulations, and conceptual syntheses that would move the theory forward. The report should identify what can be edited now, what requires a proof or simulation path, what intuition should be discussed with Op, and what should become corpus-maintenance infrastructure.
 
+## Thread State Handoff
+
+At every pause, approval request, discussion request, or final response, make the thread state explicit before the report body:
+
+```text
+Thread state: DONE | WAITING_FOR_OP | DISCUSSION | BLOCKED
+Mode: audit/report | edit-batch | self-running exploration | team-agent
+Authority used: report-only | claim-card-only | edited files
+Files changed: none | path list
+Validation: not run | passed | failed: short reason
+Op next action: one concrete next step, or "none required"
+Resume prompt: one sentence Op can paste to continue
+```
+
+Use the status words strictly:
+
+- `DONE`: the requested pass or edit batch is complete; no operator action is required.
+- `WAITING_FOR_OP`: Cody needs a decision before proceeding; ask exactly one clear question next.
+- `DISCUSSION`: a theory leap, canon-policy change, or terminology decision should be discussed before editing.
+- `BLOCKED`: work could not continue because of a missing file, command failure, permission issue, or conflicting workspace state.
+
+For self-running exploration, distinguish claim-card writes from AAA prose edits. If only a claim card was created, use `Authority used: claim-card-only`; if no AAA content changed, say so directly in `Files changed`.
+
 ```text
 Cody, perform a corpus advancement pass for the AAA markdown corpus.
 
@@ -94,6 +117,7 @@ Important constraints:
 - If a canonical project term exists, reuse it exactly. Do not invent alternate wording for convenience.
 
 End with:
+0. The thread state handoff block.
 1. A ranked edit plan.
 2. Any genuinely new insights discovered by comparing documents.
 3. Leaps of intuition to discuss with Op before canonizing or editing into AAA prose.
@@ -156,7 +180,7 @@ If scene graph drift appears, run:
 then rerun the checks.
 
 Final response:
-Briefly list the files touched, summarize the main cleanup, mention generated artifacts if refreshed, and report validation status.
+Start with the thread state handoff block. Then briefly list the files touched, summarize the main cleanup, mention generated artifacts if refreshed, and report validation status.
 ```
 
 ## Self-Running Exploration Variant
@@ -295,6 +319,7 @@ Lane G: Intuition-to-proof synthesis
 - Treat the output as an Op-discussion theory card, not as settled doctrine.
 
 Report format:
+0. Thread state handoff block. In this variant, `Authority used` should usually be `claim-card-only`, and `Files changed` should say whether any AAA prose changed.
 1. Claim card path, selected exploration posture(s), selected lane(s), selected path shard, and any active claims avoided.
 2. Exploration lanes used and why.
 3. Source signals found, including recent commits/diffs or randomly selected documents.
@@ -424,6 +449,7 @@ Important constraints:
 - Do not edit files unless I explicitly request an integration pass after the report.
 
 End with:
+0. The thread state handoff block.
 1. A ranked edit plan.
 2. Any genuinely new insights discovered by comparing documents.
 3. Leaps of intuition to discuss with Op before canonizing or editing into AAA prose.

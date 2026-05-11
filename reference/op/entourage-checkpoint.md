@@ -492,7 +492,7 @@ When session resumes, **prioritize these four tasks**:
 - **Leads**: Dyna (analytical form), Sol (discretization for simulation), Cami(conceptual clarity).
 
 **Action 2 (Cos/Dyna): Proper Time Derivation**  
-- **Goal**: Derive explicit function $d\tau = F(\rho_{\text{vac}}, \Phi, v) \, dt$ converting absolute time to assembly-clock proper time.  
+- **Goal**: Derive explicit function $d\tau = F(\rho_{\text{core}}, \chi_{\text{sea}}, \Phi_{\text{eff}}, v) \, dt$ converting absolute time to assembly-clock proper time.
 - **Method**:  
   - Model assembly as tri-binary oscillator,  
   - Frequency depends on internal energy, medium coupling, velocity,  
