@@ -558,6 +558,16 @@ This chapter is a dictionary layer; the primary derivations live elsewhere. The 
 - **Lepton mixing (PMNS):** near-photon pro/anti core-pair Hamiltonian and oscillation map in [assemblies/fermions/neutrinos.md](./neutrinos.md).
 - **Topological spin/confinement closure:** bundle/topology and causal-locus invariants in [dynamics/causal-action-functional.md](../../dynamics/causal-action-functional.md) and [assemblies/fermions/color-charge-su3.md](./color-charge-su3.md).
 
+The weak-sector handoff now uses one shared exposure problem. The weak-coupling triad is not only the bookkeeping source of $T_3$; it is also the domain on which three later closure tasks must agree:
+
+- the left-channel selection rule must expose the triad for left-handed charged-current coupling and hide it for right-handed charged-current coupling,
+- CKM and PMNS closure must use the same exposed domain when defining weak-basis states,
+- weak-reaction provenance must record how the charged corridor routes the triad payload and whether final-state Noether core provenance is supplied by the corridor or by the local Noether Sea.
+
+The first concrete test case is the $d\to u$ beta-reaction exposure operator in [Weak-Mixing CKM](../../theory-bridges/weak-mixing-ckm.md). It uses the same weak-coupling-triad domain to gate left-handed docking, apply the $3E\to3P$ active-triad change, attach the $V_{ud}$ overlap factor, and hand the opposite $W^-$ transaction to the reaction ledger.
+
+This does not make the weak derivation complete. It fixes the integration boundary: if those three tasks require different definitions of the weak-coupling triad, the weak-sector architecture has not closed.
+
 Minimal symbol map used across those closures:
 $$
 Q=T_3+\frac{Y}{2},\qquad

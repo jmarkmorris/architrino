@@ -34,14 +34,14 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are di
 
 ---
 
-## Self-Interaction Switch at $\lvert \mathbf{v}\rvert = v$
+## Self-Interaction Switch at $\|\mathbf{v}\| = v$
 
 - What we assume:
-- When a worldline outruns its own recently emitted isochrons ($\lvert \mathbf{v}\rvert>1$ in our units), the causal roots include self-hits.
+- When a worldline outruns its own recently emitted isochrons ($\|\mathbf{v}\| > 1$ in our units), the causal roots include self-hits.
   - Self-hits are always repulsive (like-on-like).
 
 - Why it matters:
-  - This nonlinearity is the core stabilizer. Slow motion (|v|<1) is dominated by external attraction/repulsion. Crossing |v|=1 turns on an internal, strong, repulsive channel that can balance or overtake inward trends.
+  - This nonlinearity is the core stabilizer. Slow motion ($\|\mathbf{v}\| < 1$) is dominated by external attraction/repulsion. Crossing $\|\mathbf{v}\| = 1$ turns on an internal, strong, repulsive channel that can balance or overtake inward trends.
   - Scale selection emerges: the balance of delayed attraction with self-repulsion defines a smallest sustainable orbital radius d0 and a fastest natural frequency, yielding a canonical time unit t0.
 
 ---
@@ -49,7 +49,7 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are di
 ## Superposition with isochrons and $\eta$-regularization
 
 - What we assume:
-- All fields superpose linearly at the level of distributions (isochrons add).
+- All wake contributions superpose linearly at the level of distributions (isochrons add).
 - We use a narrow Gaussian isochron $\delta_\eta$ when continuous-time derivatives are needed.
 
 - Why it matters:
@@ -62,7 +62,7 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are di
 
 - What we assume:
   - Binary orbits are the base motif; binaries can nest with wide scale separation; a triply nested configuration (Noether Core) is dynamically robust.
-  - Polar regions of fast binaries host persistent axial structures (vortex-like loci in the delayed field geometry), which couple between assemblies.
+  - Polar regions of fast binaries host persistent axial structures (vortex-like loci in the delayed wake geometry), which couple between assemblies.
 
 - Why it matters:
   - Color-like structure arises naturally from three internal binaries: distributing axial architrinos across three axes creates three distinguishable, yet symmetric, configurations.
@@ -83,11 +83,11 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are di
 ## Consequences that explain the “fit”
 
 - Stability without fine-tuned potentials:
-  - The |v|=1 switch and delay geometry set operating points and prevent singular collapse.
+  - The $\|\mathbf{v}\| = 1$ switch and delay geometry set operating points and prevent singular collapse.
 - Scale emergence:
   - $d_0$ and $t_0$ arise from dynamics; they are not postulated rulers and clocks but attractors of the binary system.
 - Shielding and apparent inertia:
-  - Fast internal motion produces far-field cancellation; the tiny residual field of a coherent assembly behaves like inertial mass in interactions with the outside.
+  - Fast internal motion produces far-zone cancellation; the tiny residual wake signature of a coherent assembly behaves like inertial mass in interactions with the outside.
   - Magnetism without magnetism:
   - Tangential effects and axial structures appear as a corollary of path-history plus Jacobian-weighted line-of-action per-hit action. No cross products required.
 

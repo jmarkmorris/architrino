@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 150,
-      "sections": 1068
+      "sections": 1072
     }
   },
   "tocRoot": {
@@ -4609,6 +4609,14 @@
                 "markdownSection": "Correlation and No-Go Interfaces",
                 "sectionKey": "correlation and no go interfaces",
                 "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closure Ledgers",
+                "markdownPath": "content/markdown/aaa/quantum/quantum-summary.md",
+                "markdownSection": "Closure Ledgers",
+                "sectionKey": "closure ledgers",
+                "headingLevel": 2
               }
             ]
           },
@@ -5485,6 +5493,22 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Unified weak-sector closure route",
+                "markdownPath": "content/markdown/aaa/theory-bridges/weak-mixing-ckm.md",
+                "markdownSection": "Unified weak-sector closure route",
+                "sectionKey": "unified weak sector closure route",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "First beta exposure operator: $d\\to u$",
+                "markdownPath": "content/markdown/aaa/theory-bridges/weak-mixing-ckm.md",
+                "markdownSection": "First beta exposure operator: $d\\to u$",
+                "sectionKey": "first beta exposure operator d to u",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Geometric picture of CKM",
                 "markdownPath": "content/markdown/aaa/theory-bridges/weak-mixing-ckm.md",
                 "markdownSection": "Geometric picture of CKM",
@@ -5525,10 +5549,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Speculative Bookkeeping Sketch",
+                "title": "Weak-Reaction Provenance Sketch",
                 "markdownPath": "content/markdown/aaa/theory-bridges/weak-mixing-ckm.md",
-                "markdownSection": "Speculative Bookkeeping Sketch",
-                "sectionKey": "speculative bookkeeping sketch",
+                "markdownSection": "Weak-Reaction Provenance Sketch",
+                "sectionKey": "weak reaction provenance sketch",
                 "headingLevel": 2
               },
               {
@@ -6731,6 +6755,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Weak-Corridor Provenance Gate",
+                "markdownPath": "content/markdown/aaa/validation/reaction-ledger.md",
+                "markdownSection": "Weak-Corridor Provenance Gate",
+                "sectionKey": "weak corridor provenance gate",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Weak Reaction Case: $t \\to b + W^+$ Channel",
                 "markdownPath": "content/markdown/aaa/validation/reaction-ledger.md",
                 "markdownSection": "Weak Reaction Case: $t \\to b + W^+$ Channel",
@@ -7203,10 +7235,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Self-Interaction Switch at $\\lvert \\mathbf{v}\\rvert = v$",
+                    "title": "Self-Interaction Switch at $\\|\\mathbf{v}\\| = v$",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Self-Interaction Switch at $\\lvert \\mathbf{v}\\rvert = v$",
-                    "sectionKey": "self interaction switch at lvert mathbf v rvert v",
+                    "markdownSection": "Self-Interaction Switch at $\\|\\mathbf{v}\\| = v$",
+                    "sectionKey": "self interaction switch at mathbf v v",
                     "headingLevel": 2
                   },
                   {

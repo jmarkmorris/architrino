@@ -84,6 +84,22 @@ const rules = [
     suggestion: "State as a closure target, candidate signature, or conditional result unless a derivation is local.",
   },
   {
+    id: "quantum-statistics-oblation-notation",
+    description: "Quantum-statistics pages should use canonical Noether-core geometry variables.",
+    pattern: /\\epsilon_\{\\text\{obl\}\}|Let \$R_\{\\parallel\}\$ denote the dominant equatorial orbital scale|Let \$R_\{\\perp\}\$ denote the polar thickness/i,
+    pathPattern: /\/quantum\/quantum-statistics\.md$/,
+    suggestion:
+      "Use the canonical Noether-core shape ratio \\xi=R_{\\parallel}/R_{\\perp}, with R_{\\parallel} contraction/drift-aligned and R_{\\perp} transverse.",
+  },
+  {
+    id: "born-statistics-ledger-conflation",
+    description: "Born-rule probability closure and spin-statistics exchange closure should remain distinct.",
+    pattern: /\b(Born rule.*Fermi-Dirac|Fermi-Dirac.*Born rule|Bose-Einstein.*Born rule|Born rule.*Bose-Einstein)\b/i,
+    pathPattern: /\/quantum\//,
+    suggestion:
+      "Separate the Born-rule basin-measure ledger from the spin-statistics / exchange ledger unless the passage explicitly compares the two closure targets.",
+  },
+  {
     id: "planck-speed-closure",
     description: "Planck-alignment speed wording that may conflate component speed and combined forward speed.",
     pattern:

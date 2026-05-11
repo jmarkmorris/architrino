@@ -234,6 +234,8 @@ Three linked gates:
 2. **Statistics gate (Born):** derive basin-measure probabilities as an invariant measure of the coarse-grained dynamics.
 3. **Threshold gate (collapse/decoherence):** model finite-time separatrix crossing and record-making irreversibility.
 
+Keep this chain separate from the spin-statistics / exchange ledger in [Fermi-Dirac and Bose-Einstein Statistics](../quantum/quantum-statistics.md). The Born ledger asks how branch weights become $|\psi|^2$ probabilities once an effective state space exists; the spin-statistics ledger asks why the effective state space is fermionic or bosonic.
+
 Minimal mathematical spine:
 $$
 \text{master delay dynamics}\ \Longrightarrow\ \text{kinetic closure for }f(t,\mathbf{x},\mathbf{v})

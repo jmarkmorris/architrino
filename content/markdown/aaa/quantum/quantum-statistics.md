@@ -49,13 +49,13 @@ Photon-like channel behavior is the cleanest target for this mechanism. A bosoni
 
 ## The 3D-to-2D Transition
 
-The transition can be summarized by an oblation parameter for the active Noether-core envelope. Let $R_{\parallel}$ denote the dominant equatorial orbital scale and $R_{\perp}$ the polar thickness of the active envelope. Then the qualitative control ratio is
+The transition can be summarized by the canonical Noether-core shape ratio from [Noether Core Geometry](../assemblies/noether-core-geometry.md#canonical-geometry-variables). Let $R_{\parallel}$ denote the semiaxis along the contraction or drift-aligned direction and $R_{\perp}$ the transverse semiaxis. Then
 
 $$
-\epsilon_{\text{obl}}=\frac{R_{\perp}}{R_{\parallel}}.
+\xi\equiv\frac{R_{\parallel}}{R_{\perp}}.
 $$
 
-The Fermi-Dirac regime has $\epsilon_{\text{obl}}$ bounded away from zero. The envelope is oblate but still volumetric. The Bose-Einstein regime is approached as $\epsilon_{\text{obl}}\to 0$, where the active support becomes effectively two-dimensional.
+The Fermi-Dirac regime has $\xi$ bounded away from zero. The envelope is oblate but still volumetric. The Bose-Einstein regime is approached as $\xi\to 0$, where the active support becomes effectively two-dimensional.
 
 This ratio is not yet a final derivation of spin-statistics. It is a geometric control variable for the proof program. A complete closure must show how stable 3D Noether-core configurations produce the fermionic exchange sign, and how the 2D coherent channel limit produces symmetric occupation at the observer level.
 
@@ -66,7 +66,8 @@ This chapter depends on:
 - [Noether Core Geometry](../assemblies/noether-core-geometry.md) for the oblate spheroidal exclusion envelope,
 - [Nested Binaries and the Noether Core](../assemblies/noether-core.md) for the tri-binary scaffold,
 - [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md) for the delayed-dynamics regime map,
-- and [Wavefunction Ontology](./wavefunction-ontology.md) for the effective probability bookkeeping seen by physical observers.
+- [Wavefunction Ontology](./wavefunction-ontology.md) for the effective probability bookkeeping seen by physical observers,
+- and [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md) for the photon-channel case where coherent planar-pair modes must recover Bose-Einstein occupation behavior.
 
 It also sets targets for [Quantum Operator Mapping](../theory-bridges/quantum-operator-mapping.md): antisymmetric and symmetric state spaces should be recoverable as effective summaries of these two assembly-geometric regimes.
 
@@ -74,7 +75,7 @@ It also sets targets for [Quantum Operator Mapping](../theory-bridges/quantum-op
 
 The next proof steps are:
 
-1. Define $\epsilon_{\text{obl}}$ from simulated or analytic Noether-core orbit data.
+1. Extract $\xi$ from simulated or analytic Noether-core orbit data.
 2. Identify the stability threshold separating volumetric exclusion from coherent 2D support.
 3. Derive how exchange of two 3D Noether-core assemblies produces fermionic antisymmetry at the effective level.
 4. Derive how phase-compatible 2D-supported channel excitations produce bosonic symmetric occupation.

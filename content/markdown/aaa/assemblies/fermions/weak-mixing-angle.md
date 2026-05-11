@@ -265,6 +265,19 @@ E_{\text{charge}}(\alpha)=A\sin^2\!\left(\frac{\alpha}{\theta_W^{\text{bare}}}\p
 $$
 where $f_{\text{type}}$ differs for up-type and down-type loading. This is not a derivation; it is just the minimal shape needed to encode discrete minima at multiples of the bare angle.
 
+### Closure handoff
+
+For the weak-sector closure route, this note owns the first gate: selecting the inequivalent axial-frame branches. The output should not be only a list of candidate angles. It should be a quotient of physically distinct $(c,\alpha)$ states after color relabeling, pole reversal, matter/antimatter conjugation, and equivalent frame flips are removed.
+
+The useful theorem target is:
+
+1. define the admissible axial-layer configuration space for a fixed Noether core,
+2. quotient by color-basis relabeling and pole symmetries,
+3. minimize $E_{\text{eff}}(\alpha,\phi_c)$ on the quotient space,
+4. pass the surviving branches to the weak-coupling-triad exposure calculation.
+
+That handoff keeps the claim strong but scoped. The weak-mixing increment $\theta_W^{\text{bare}}=30^\circ$ is a candidate branch increment; the measured electroweak angle and CKM/PMNS matrices still require the exposure, overlap, and provenance gates to close.
+
 ---
 
 ## Weak-Coupling Interpretation

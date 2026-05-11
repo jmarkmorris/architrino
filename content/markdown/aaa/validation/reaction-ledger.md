@@ -40,6 +40,23 @@ Each reaction record should state:
 | Provenance data | Source identity, emission time, causal-root branch, and local medium state |
 | Closure status | What is established, what is assumed, and what remains to derive |
 
+## Weak-Corridor Provenance Gate
+
+Weak reactions now require an explicit corridor-provenance stance. The current corpus supports two live possibilities:
+
+1. **Transaction-payload corridor:** $W^\pm$ carries the charged triad payload and phase relation, while final-state pro/anti Noether core material is supplied by the local Noether Sea or by explicitly identified incoming assemblies.
+2. **Provenance-carrying corridor:** $W^\pm$ carries not only the charged transaction payload but also enough pro/anti Noether core provenance to seed some final-state lepton or antilepton core content.
+
+The ledger should not choose between these silently. For each serious weak record, add a row or note that states which stance is being used, which Noether core material enters and exits, and what would falsify the accounting. This gate is coupled to the weak-coupling-triad exposure problem: the same geometry that permits left-handed charged-current docking must also determine which corridor payload can be transferred and where the outgoing lepton cores come from.
+
+Minimum weak-channel records should therefore include:
+
+- the active weak-coupling-triad swap,
+- the corridor provenance stance,
+- all Noether-Sea or incoming-assembly core material used for charged lepton and neutrino outputs,
+- the CKM/PMNS overlap weight when a flavor or generation branch is selected,
+- and the energy, angular momentum, polarity, and path-history terms needed for deterministic replay.
+
 ## Weak Reaction Case: $t \to b + W^+$ Channel
 
 Observer-level notation:
@@ -96,6 +113,24 @@ $$
 
 So the active quark assembly sheds three $E$-type axial units and receives three $P$-type axial units. The natural provenance hypothesis is that local neutral Noether-Sea material supplies the compensating polarity units while the ejected $E$-type material participates in electron axial-layer formation.
 
+### Exposure-operator record
+
+The controlled beta channel now has a first finite-state exposure operator in [Weak-Mixing CKM](../theory-bridges/weak-mixing-ckm.md). The ledger record for this channel should use that operator as the geometry gate before any rate or provenance claim is made.
+
+| Gate field | Beta-reaction record |
+| --- | --- |
+| Active assembly | One generation-I down-like quark inside the neutron |
+| Spectators | One $u$ and one $d$ assembly pass through by identity |
+| Exposure domain | $\Sigma_{\mathrm{WCT}}^{(L)}$ on the leading, phase-matched weak-coupling triad |
+| Gate condition | Left-handed charged-current docking with $\lvert\Sigma_{\mathrm{WCT}}^{(L)}\rvert=3$ and active inventory $3E$ |
+| Blocked condition | Right-handed $d$ channel has no charged-corridor docking in the finite-state model |
+| Quark-side action | $A_{\Sigma}=3E\to3P$, with shielded inventory $A_{\mathrm{sh}}=(1E,2P)$ unchanged |
+| Corridor payload | $W^-$ carries the opposite transaction $\Delta A_W=3(E-P)$, net charge $-e$ |
+| CKM weight | $V_{ud}$, interpreted as the same-tier weak-basis to shielding-eigenstate overlap |
+| Provenance stance | Transaction-payload corridor unless a later derivation proves provenance-carrying corridor content is required |
+
+This record keeps the beta reaction from becoming two separate stories. The same exposed triad must explain the left-handed selection rule, supply the $V_{ud}$ overlap domain, and identify what the $W^-$ corridor transfers. The remaining open work is to identify the electron and antineutrino core provenance and then attach the energy, angular momentum, recoil, and path-history terms.
+
 The conservative ledger is:
 
 | Component | Required provenance statement | Closure status |
@@ -122,4 +157,3 @@ The reaction ledger needs four tables for each serious channel:
 - Weak-sector geometry and chirality closure remain tied to [Quantum Number Mapping](../assemblies/fermions/quantum-number-mapping.md), [Weak Mixing Angle](../assemblies/fermions/weak-mixing-angle.md), and [Weak-Mixing CKM](../theory-bridges/weak-mixing-ckm.md).
 - Radiative and pair-production provenance should use [Synchrotron Cascades](../reactions/synchrotron.md), [Bremsstrahlung](../reactions/bremsstrahlung.md), and [Reaction-Cosmology Provenance Ledger](reaction-cosmology-provenance-ledger.md).
 - Parameter closure belongs in [Parameter Ledger](parameter-ledger.md).
-
