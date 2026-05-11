@@ -377,7 +377,7 @@ The immediate task is to identify which subset dominates $\partial \tau_{\text{o
 
 Working assumption:
 
-1. The outer precessing binary of a Noether core defines the effective exclusion volume boundary.
+1. The outer precessing binary of a Noether core defines the effective exclusion volume boundary; see [Noether Core Geometry](../assemblies/noether-core-geometry.md).
 2. Each tri-binary layer ($H,M,L$) has its own circulation axis.
 3. Total angular and translational momentum are conserved at assembly level (up to modeled exchange channels with environment).
 

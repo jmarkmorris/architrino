@@ -1,6 +1,6 @@
 # Inflation Model
 
-This chapter records the current $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretation of inflation-like behavior as a high-curvature alignment regime rather than as a separate inflaton ontology. Its purpose is to keep local-process, recycling, and strong-field framing explicit before any full quantitative closure is claimed. It sits between [Cosmology Ontology](./cosmology-ontology.md), [Expansion Mechanism](./expansion-mechanism.md), and the strong-field pages [Black Holes](../spacetime/black-holes.md) and [Mapping the Planck Scale to the Tri-Binary Geometry](../dynamics/mapping-Planck-scale.md).
+This chapter records the current $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretation of inflation-like behavior as a high-curvature alignment regime rather than as a separate inflaton ontology. Its purpose is to keep local-process, recycling, and strong-field framing explicit before any full quantitative closure is claimed. It sits between [Cosmology Ontology](./cosmology-ontology.md), [Expansion Mechanism](./expansion-mechanism.md), and the strong-field pages [Black Holes](../spacetime/black-holes.md) and [Mapping the Planck Scale to the Tri-Binary Geometry](../spacetime/mapping-planck-scale.md).
 
 ## Core Idea
 
@@ -72,4 +72,4 @@ In the modular cosmology map, this page contributes:
 
 ## Coherent Reading
 
-Inflation language in $\mathbb{A}\mathbb{A}\mathbb{A}$ is an effective description of high-curvature release-and-relaxation dynamics in the Noether sea, not an added standalone scalar ontology.
+Inflation language in $\mathbb{A}\mathbb{A}\mathbb{A}$ is an effective description of high-curvature release-and-relaxation dynamics in the Noether Sea, not an added standalone scalar ontology.

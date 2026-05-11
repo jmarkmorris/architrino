@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `priority`
-- Rank: `12`
+- Rank: `11`
 - Value: `3`
 - Cost: `5`
 - ROI: `0.60`
@@ -69,7 +69,7 @@ This is the ranked queue for chapter-writing work and legacy-material recovery. 
 
 ## Related Priorities
 
-- [breather-proof](../priorities/breather-proof/breather-proof.md)
+- [breather-proof](../priorities/proof-programs/breather-proof/breather-proof.md)
 - [mass-map](../priorities/mass-map/mass-map.md)
 - [master-equation-closure](../priorities/master-equation-closure/master-equation-closure.md)
 - [standard-model-closure](../priorities/standard-model-closure/standard-model-closure.md)

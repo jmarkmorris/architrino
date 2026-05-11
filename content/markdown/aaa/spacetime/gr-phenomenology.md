@@ -14,7 +14,7 @@ At the substrate level:
 
 - space remains Euclidean,
 - time remains absolute,
-- and the Noether-core sea is the dynamical medium.
+- and the [Noether Sea](noether-sea.md) is the dynamical medium.
 
 At the observer level, the same medium must generate the effective metric behavior usually attributed to curved spacetime. Therefore the phenomenology requirement is:
 
@@ -49,11 +49,11 @@ Operationally, GPS offsets, Pound-Rebka, and related clock-comparison tests are 
 
 In the refractive-medium picture, one-way path time is
 $$
-t[\Gamma]=\frac{1}{c_f}\int_\Gamma n(\mathbf{x})\,ds,
+t[\Gamma]=\frac{1}{c_f}\int_\Gamma \chi_{\text{sea}}(\mathbf{x})\,ds,
 $$
 with
 $$
-n(\mathbf{x})=1-(1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf{x})}{c_f^2}
+\chi_{\text{sea}}(\mathbf{x})=1-(1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf{x})}{c_f^2}
 +O(c_f^{-4}).
 $$
 
@@ -110,7 +110,7 @@ $$
 \left|\frac{v_{\mathrm{GW}}-c}{c}\right| \ll 1.
 $$
 
-In repo terms, gravitational waves are propagating collective disturbances of the Noether-core sea. Their speed, dispersion, and polarization content must remain consistent with current timing bounds. Any large medium-dispersion signature in already-tested bands is excluded.
+In repo terms, gravitational waves are propagating collective disturbances of the Noether Sea. Their speed, dispersion, and polarization content must remain consistent with current timing bounds. Any large medium-dispersion signature in already-tested bands is excluded.
 
 ## Strong-Field Regime
 

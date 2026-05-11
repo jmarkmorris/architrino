@@ -179,7 +179,7 @@ The resolution within $\mathbb{A}\mathbb{A}\mathbb{A}$ lies in the **non-sharp b
 
 2. **Self-hit memory**: the assembly's path-history wake structure introduces correlations between the orientation-dependent response functions at $A$ and $B$ that are not factorizable into independent local response functions, because the wake geometry at each site reflects the joint creation constraint.
 
-3. **Noether Sea mediation**: the local medium configuration at each detector contributes additional phase structure to the basin boundary, and this structure is correlated across the pair through their shared creation history.
+3. **Noether-Sea mediation**: the local medium configuration at each detector contributes additional phase structure to the basin boundary, and this structure is correlated across the pair through their shared creation history.
 
 The quantitative claim is that these three effects, computed from the Master Equation for a fragmentation event, yield an effective response function:
 
@@ -234,7 +234,7 @@ The existence of a global time parameter $t$ is essential for the internal consi
 
 No step involves faster-than-$c_f$ influence. The correlations are visible only upon comparison. The objective temporal ordering removes the frame-dependence puzzle entirely: there is no ambiguity about "which measurement collapses which particle first," because collapse is local threshold resolution and the correlations are pre-established.
 
-**Emergent Lorentz invariance.** Physical Observers, who lack access to absolute time and use assembly-based clocks and rulers, reconstruct an effective Minkowski geometry in which the temporal ordering of spacelike-separated events is frame-dependent. This does not contradict the underlying absolute ordering; it reflects the epistemic limitations of assembly-based measurement (see [foundations/ontology.md](../foundations/ontology.md), Section 4).
+**Emergent Lorentz invariance.** Physical Observers, who lack access to absolute time and use assembly-based clocks and rulers, reconstruct an effective Minkowski geometry in which the temporal ordering of spacelike-separated events is frame-dependent. This does not contradict the underlying absolute ordering; it reflects the epistemic limitations of assembly-based measurement; see [Observer Framework](../spacetime/observer-framework.md).
 
 ---
 
@@ -253,7 +253,7 @@ No step involves faster-than-$c_f$ influence. The correlations are visible only 
 - All standard Bell-CHSH violations are reproduced: $|S| = 2\sqrt{2}$ for singlet pairs with optimal settings.
 - No violation of the Tsirelson bound: $|S| \leq 2\sqrt{2}$. Observing $|S| > 2\sqrt{2}$ would falsify both QM and any $\mathbb{A}\mathbb{A}\mathbb{A}$ model that reproduces QM.
 - No-signaling is exact: no measurement protocol on $A$ can alter the marginal statistics at $B$.
-- Decoherence rates for entangled pairs depend on local Noether Sea density, providing an environmental sensitivity absent in bare QM (shared prediction with [quantum/entanglement-nonlocality.md](./entanglement-nonlocality.md)).
+- Decoherence rates for entangled pairs depend on local Noether-Sea density, providing an environmental sensitivity absent in bare QM (shared prediction with [quantum/entanglement-nonlocality.md](./entanglement-nonlocality.md)).
 
 **Failure Modes:**
 - If the Master Equation dynamics for a tri-binary measurement interaction yield a response function that is **not** $\cos^2(\alpha/2)$—for instance, a linear or piecewise-linear function—the resulting $E(\theta_{AB})$ will disagree with the quantum prediction and with experiment. This is a falsification of the specific mechanism, requiring revision of the measurement model or the assembly-apparatus coupling.

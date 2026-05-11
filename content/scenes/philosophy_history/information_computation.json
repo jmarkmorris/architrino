@@ -22,41 +22,38 @@
             "id": "information_computation_overview",
             "labelTitle": "Overview",
             "labelBadge": "doc",
-            "color": "#2f4f7a",
             "mode": "doc"
           },
           "information as ontology": {
             "id": "information_computation_information_ontology",
             "labelTitle": "Information / Ontology",
-            "labelBadge": "doc",
-            "color": "#2f6b6f"
+            "labelBadge": "doc"
           },
           "computation as ontology": {
             "id": "information_computation_computation_ontology",
             "labelTitle": "Computation / Ontology",
-            "labelBadge": "doc",
-            "color": "#5a3f73"
+            "labelBadge": "doc"
           },
           "digital physics and discrete substrate programs": {
             "id": "information_computation_digital_physics",
             "labelTitle": "Digital Physics",
-            "labelBadge": "doc",
-            "color": "#243d8f"
+            "labelBadge": "doc"
           },
           "observer encoding and representation": {
             "id": "information_computation_observer_encoding",
             "labelTitle": "Observer / Encoding",
-            "labelBadge": "doc",
-            "color": "#6a3c3c"
+            "labelBadge": "doc"
           },
           "simulation modeling and computability limits": {
             "id": "information_computation_simulation_limits",
             "labelTitle": "Simulation / Computability",
-            "labelBadge": "doc",
-            "color": "#7a4a1f"
+            "labelBadge": "doc"
           }
         }
       }
+    },
+    "view": {
+      "columns": 1
     }
   },
   "objects": []

@@ -128,7 +128,7 @@ The next subsection frames the tri-binary Noether core assembly as a candidate u
 
 Within this framework, the Noether Core is treated as a candidate **fundamental solution** (Green's-function-like generator) for physical structure.
 
-In geometric analysis, when a single structural definition (the tri-binary) appears at the microscopic scale (particles), the macroscopic scale (black holes), and the background scale (the Noether sea), we call this **Conformal Invariance** or **Self-Similarity**.
+In geometric analysis, when a single structural definition (the tri-binary) appears at the microscopic scale (particles), the macroscopic scale (black holes), and the background scale (the Noether Sea), we call this **Conformal Invariance** or **Self-Similarity**.
 
 The following mapping motivates the "universal nucleus" interpretation.
 

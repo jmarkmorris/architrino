@@ -35,8 +35,10 @@ The third column is a comma-separated ledger of known web-facing docs or app sur
 | UI Element | Preference | Current Non-Matching Uses |
 | --- | --- | --- |
 | Notes panel layout toggle | Layout icon button toggles between one column and the scene's preferred multi-column count, updating its `aria-label` accordingly | The control lives in global chrome rather than in a dedicated notes-panel header |
-| One-column reading mode | Use for section views by default; also collapse multi-column markdown to one column below `980px` |  |
-| Two-column reading mode | Default preferred reading mode for full documents when no scene override is set | Runtime supports up to 3 preferred columns even though the docs currently describe 1/2-column behavior |
+| Markdown column canon | Treat `view.columns` as an authored reading-surface override, not a historical default. Keep an explicit value only when the document or section has a clear reading-surface reason for that opening mode; remove unexplained values and let runtime defaults apply. | Existing scene `view.columns` values need audit because not all may be deliberate authored choices |
+| One-column reading mode | Use for all section views and for any markdown document or section containing equations or TeX/KaTeX math. Multi-column markdown still collapses to one column below `980px`. |  |
+| Two-column reading mode | Default preferred reading mode for full documents when no scene override is set and the source has no TeX/KaTeX math. Use explicit `view.columns: 2` only for a deliberate full-document reading-surface choice that should survive alternate entry paths. |  |
+| Three-column reading mode | Reserve for TOC/catalog/index surfaces only. Do not use 3-column mode for ordinary documents, section views, or sources containing TeX/KaTeX math. | Runtime supports up to 3 preferred columns; existing 3-column scenes must be confirmed as TOC/catalog/index surfaces |
 | Full-document button in notes header | Document icon appears only when a section view has a corresponding full document, and opens that full document view | The control lives in global chrome rather than in a dedicated notes-panel header |
 | Close behavior | Search closes on `Escape`, outside pointerdown, or focus leaving the panel; detail closes with an explicit close button; animator menus close on outside pointerdown | The markdown panel currently has no dedicated `Close` button in the shipped HTML despite the Archie doc describing one |
 | Heading hierarchy in rendered markdown | Render markdown body at `16px / 1.8`; size major headings at `22px`, `20px`, and `18px` for `h1`/`h2`/`h3`; hide the first visible `h1` in-panel |  |
@@ -82,6 +84,7 @@ The third column is a comma-separated ledger of known web-facing docs or app sur
 
 | UI Element | Preference | Current Non-Matching Uses |
 | --- | --- | --- |
+| Hub scene reading order | In hub scenes, a center sphere is the reader’s orientation/start node. Peripheral spheres are read from 12 o’clock clockwise. If no center sphere exists, the 12 o’clock sphere is the start. |  |
 | Ring layout scenes | Use when the local scene behaves like a conceptual cluster of peer topics |  |
 | Grid layout scenes | Use when the local scene behaves like an ordered notebook, ledger, dated sequence, or other row-scanned list |  |
 | Split-document navigation nodes | Derive peer nodes from one declared heading level in one markdown document |  |

@@ -22,83 +22,73 @@
             "id": "philosophy_of_science_overview",
             "labelTitle": "Overview",
             "labelBadge": "doc",
-            "color": "#2f4f7a",
             "mode": "doc"
           },
           "scientific realism and anti realism": {
             "id": "philosophy_of_science_realism",
             "labelTitle": "Realism / Anti-Realism",
-            "labelBadge": "doc",
-            "color": "#2f6b6f"
+            "labelBadge": "doc"
           },
           "logic language and meaning in science": {
             "id": "philosophy_of_science_language",
             "labelTitle": "Logic / Language",
-            "labelBadge": "doc",
-            "color": "#5a3f73"
+            "labelBadge": "doc"
           },
           "verificationism and the vienna circle": {
             "id": "philosophy_of_science_verificationism",
             "labelTitle": "Verificationism",
-            "labelBadge": "doc",
-            "color": "#6a3c3c"
+            "labelBadge": "doc"
           },
           "falsificationism": {
             "id": "philosophy_of_science_falsificationism",
             "labelTitle": "Falsificationism",
-            "labelBadge": "doc",
-            "color": "#243d8f"
+            "labelBadge": "doc"
           },
           "paradigms and scientific revolutions": {
             "id": "philosophy_of_science_paradigms",
             "labelTitle": "Paradigms / Revolutions",
-            "labelBadge": "doc",
-            "color": "#4b0082"
+            "labelBadge": "doc"
           },
           "lakatos and research programmes": {
             "id": "philosophy_of_science_research_programmes",
             "labelTitle": "Lakatos / Programmes",
-            "labelBadge": "doc",
-            "color": "#3a5f9f"
+            "labelBadge": "doc"
           },
           "feyerabend and methodological anarchism": {
             "id": "philosophy_of_science_anarchism",
             "labelTitle": "Feyerabend / Anarchism",
-            "labelBadge": "doc",
-            "color": "#7a4a1f"
+            "labelBadge": "doc"
           },
           "explanation causation and mechanism": {
             "id": "philosophy_of_science_explanation",
             "labelTitle": "Explanation / Causation",
-            "labelBadge": "doc",
-            "color": "#6a3c3c"
+            "labelBadge": "doc"
           },
           "reduction emergence and ontological levels": {
             "id": "philosophy_of_science_reduction",
             "labelTitle": "Reduction / Emergence",
-            "labelBadge": "doc",
-            "color": "#2f6b6f"
+            "labelBadge": "doc"
           },
           "measurement observation and theory ladenness": {
             "id": "philosophy_of_science_measurement",
             "labelTitle": "Measurement / Observation",
-            "labelBadge": "doc",
-            "color": "#243d8f"
+            "labelBadge": "doc"
           },
           "symmetry mathematics and representation": {
             "id": "philosophy_of_science_representation",
             "labelTitle": "Symmetry / Representation",
-            "labelBadge": "doc",
-            "color": "#5a3f73"
+            "labelBadge": "doc"
           },
           "inference underdetermination and theory choice": {
             "id": "philosophy_of_science_inference",
             "labelTitle": "Inference / Theory Choice",
-            "labelBadge": "doc",
-            "color": "#5a1f2e"
+            "labelBadge": "doc"
           }
         }
       }
+    },
+    "view": {
+      "columns": 1
     }
   },
   "objects": []

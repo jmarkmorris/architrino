@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `deferred-priority`
-- Rank: `13`
+- Rank: `12`
 - Value: `4`
 - Cost: `8`
 - ROI: `0.50`
@@ -46,7 +46,7 @@ Populate the missing quantum closure notes only after the work becomes testable.
 ## Related Priorities
 
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
-- [simulations](../deferred/simulations.md)
+- [simulations](../simulations/simulations.md)
 - [mass-map](../mass-map/mass-map.md)
 - [standard-model-closure](../standard-model-closure/standard-model-closure.md)
 

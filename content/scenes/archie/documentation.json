@@ -28,6 +28,10 @@
         "scenePath": "content/scenes/archie/mathematical_terminology.json"
       },
       {
+        "nodeId": "terminology_usage",
+        "scenePath": "content/scenes/archie/terminology_usage.json"
+      },
+      {
         "nodeId": "textbook_file_structure",
         "scenePath": "content/scenes/archie/textbook_file_structure.json"
       },
@@ -72,6 +76,14 @@
       "radius": 2.2,
       "color": "#2f4f7a",
       "labelTitle": "Mathematical Terminology Reference",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "terminology_usage",
+      "title": "Terminology Usage",
+      "radius": 2.2,
+      "color": "#5a1f2e",
+      "labelTitle": "Terminology Usage",
       "labelBadge": "doc"
     },
     {

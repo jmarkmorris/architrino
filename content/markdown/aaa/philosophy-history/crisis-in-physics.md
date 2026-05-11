@@ -19,7 +19,7 @@ This document should map the main crisis-axes rather than collapse them into one
 - where patchwork closure displaced substrate derivation,
 - and where unresolved tensions may indicate missing causal structure rather than merely harder calculation.
 
-Several of the crisis-axes treated below also connect directly to [Measurement Ontology](../quantum/measurement-ontology.md), [Bell Theorem](../quantum/bell-theorem.md), [Dark Matter](../cosmology/dark-matter.md), [Parameter Ledger](../validation/parameter-ledger.md), and [Gauge Structure Emergence](../dynamics/gauge-structure-emergence.md).
+Several of the crisis-axes treated below also connect directly to [Measurement Ontology](../quantum/measurement-ontology.md), [Bell Theorem](../quantum/bell-theorem.md), [Dark Matter](../cosmology/dark-matter.md), [Parameter Ledger](../validation/parameter-ledger.md), and [Gauge Structure Emergence](../interactions/gauge-structure-emergence.md).
 
 This document also needs one standard coverage template so each crisis-axis is treated systematically rather than rhetorically.
 
@@ -373,7 +373,7 @@ Standard repairs include treating vacuum properties as field-theoretic state str
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The theory distinguishes the fixed Euclidean void from the physical medium that occupies it. In that vocabulary, the void is the geometric container, the Noether Sea is the spacetime medium, and matter assemblies are higher-order organizations within the same constitutive world. This does not recover an older ether by simple relabeling. It instead proposes a disciplined separation between geometry, occupancy, and effective observer-level metric behavior. Transition relevance is high because this crisis exposes a recurring hesitation in modern physics: admitting effective structure while refusing the corresponding substrate language.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The theory distinguishes the fixed Euclidean void from the physical medium that occupies it. In that vocabulary, the void is the geometric container, the Noether Sea is the constitutive medium whose organized state is summarized as spacetime behavior at the observer level, and matter assemblies are higher-order organizations within the same constitutive world. This does not recover an older ether by simple relabeling. It instead proposes a disciplined separation between geometry, occupancy, dynamical medium response, and effective observer-level metric behavior. Transition relevance is high because this crisis exposes a recurring hesitation in modern physics: admitting effective structure while refusing the corresponding substrate language.
 
 ### What Would Count As Resolution
 

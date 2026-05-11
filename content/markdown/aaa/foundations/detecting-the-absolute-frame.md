@@ -75,7 +75,7 @@ The concentricity diagnostic connects directly to **self-interaction geometry**:
 
 - An architrino at rest ($v = 0$) experiences **symmetric self-hit**: it intercepts its own past potential wake equally from all directions.
 - An architrino in motion ($v > 0$) experiences **asymmetric self-hit**: stronger interaction with wake components emitted ahead of its trajectory.
-- This asymmetry generates **inertia** and regime-dependent **self-interaction forces**.
+- This asymmetry is one input to the medium-dressed inertial response of bound assemblies: acceleration skews the delayed causal ledger, while shielding determines how much of the internal energy is exposed to external probes.
 
 **The upshot:** Absolute velocity is not merely a kinematic label. It has **dynamical consequences** through the self-hit geometry of the continuous causal wakes.
 
@@ -118,7 +118,7 @@ The concentric-wake measurement requires access to full microdynamics: something
 - **Effective coordinates** via local rulers
 - **Relative velocities** via Doppler shifts and aberration
 
-Assembly-based measuring devices are themselves distorted by motion and coupling to the Noether-Sea medium. At accessible energies and weak Noether-Sea density gradients, emergent **Lorentz symmetry** suppresses preferred-frame signatures below experimental detection thresholds. The absolute frame exists as the ontological foundation, but emergent effective geometry shields it from direct operational observation.
+Assembly-based measuring devices are themselves distorted by motion and coupling to the Noether-Sea medium. At accessible energies and weak Noether-Sea density gradients, the Lorentz-recovery target is that moving assemblies contract, retune their internal periods, and synchronize photon channels so that preferred-frame signatures remain below experimental detection thresholds. The absolute frame exists as the ontological foundation, but emergent effective geometry shields it from direct operational observation only if that moving-assembly closure is derived, not merely assumed.
 
 ### The Source-Independence Assumption
 

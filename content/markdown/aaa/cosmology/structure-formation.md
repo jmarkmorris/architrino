@@ -8,7 +8,7 @@ Structure formation describes how the nearly homogeneous early universe develope
 
 In the Architrino Assembly Architecture the same phenomenology is reinterpreted as **medium-and-assembly co-evolution inside a fixed Euclidean void with absolute time**. The Noether Sea, the dense lattice of coupled pro/anti tri-binary assemblies, plays the role of the dynamical medium. Matter assemblies, baryonic composites plus any weakly coupled neutral assemblies serving the dark-matter role, are embedded in and coupled to this medium. Growth of overdensities is governed by how the medium transmits effective gravitational influence, how matter assemblies cluster under that influence, and how the medium's own internal energy budget (playing the role of dark energy) modulates the expansion-equivalent dynamics.
 
-No metric expansion of space occurs. The Euclidean void is static. What changes is the **internal state of the tri-binary medium**: assembly radii, oscillation frequencies, local number density, and the resulting effective refractive and inertial properties. All standard cosmological observables—power spectra, correlation functions, lensing maps—are recast as probes of this medium-plus-assembly history at different scales and epochs.
+No metric expansion of space occurs. The Euclidean void is static. What changes is the **internal state of the tri-binary medium**: assembly radii, oscillation frequencies, local number density, the Noether-Sea delay factor $\chi_{\text{sea}}$, and the resulting medium-dressed inertial response. All standard cosmological observables—power spectra, correlation functions, lensing maps—are recast as probes of this medium-plus-assembly history at different scales and epochs.
 
 ---
 
@@ -35,7 +35,7 @@ $$
 
 Each symbol carries a specific medium-level meaning:
 
-- **$H(t)$**: the effective drag term arising from the medium's bulk evolution. As Noether-Sea assemblies dissipate energy (outer binaries expanding, frequencies decreasing), inter-assembly separations grow, diluting the gravitational source density. This acts as a friction on the growth of perturbations, exactly as Hubble drag does in standard cosmology.
+- **$H(t)$**: the effective damping term arising from the medium's bulk evolution. As Noether-Sea assemblies relax energetically (outer binaries expanding, frequencies decreasing), inter-assembly separations grow, diluting the gravitational source density. This acts as a friction-like term on the growth of perturbations, exactly as Hubble drag does in standard cosmology, without identifying ordinary dissipative drag as the mass mechanism.
 
 - **$G_{\text{eff}}(t, k)$**: the effective gravitational coupling, set by how efficiently a local matter overdensity perturbs the surrounding Noether Sea and how that perturbation propagates to attract more matter. In the architrino picture, $G_{\text{eff}}$ depends on:
   - the local tri-binary density $\bar{n}(t)$, which sets the medium stiffness,
@@ -45,7 +45,7 @@ Each symbol carries a specific medium-level meaning:
 
 - **$\bar{\rho}_m(t)$**: the mean matter density, including baryonic assemblies and any weakly coupled neutral assemblies (the dark-matter sector; see interface with [dark-matter.md](./dark-matter.md)).
 
-**Mechanism for the source term.** A local matter overdensity increases the density of architrino assemblies in that region. The additional delayed causal flux emitted by these assemblies modifies the local effective refractive index of the Noether Sea, slowing signal propagation and deepening the effective potential well. At substrate level this is not set by inverse-square dilution alone: the received flux is also Jacobian-weighted, so local branch geometry and source motion can bunch or dilute the effective gravitational signal. Surrounding matter assemblies, following geodesics of the emergent metric (equivalently, responding to the gradient of the effective potential), drift inward. This positive feedback loop is gravitational instability, recast as medium-response dynamics.
+**Mechanism for the source term.** A local matter overdensity increases the density of architrino assemblies in that region. The additional delayed causal flux emitted by these assemblies modifies the local Noether-Sea delay factor $\chi_{\text{sea}}$, slowing signal propagation and deepening the effective potential well. At substrate level this is not set by inverse-square dilution alone: the received flux is also Jacobian-weighted, so local branch geometry and source motion can bunch or dilute the effective gravitational signal. Surrounding matter assemblies, following geodesics of the emergent metric (equivalently, responding to the gradient of the effective potential), drift inward. This positive feedback loop is gravitational instability, recast as medium-response dynamics.
 
 **Where the equation is valid.** This growth equation holds in the regime where:
 - perturbations are small ($|\delta| \ll 1$),
@@ -74,7 +74,7 @@ Within the architrino framework the same integral structure holds, with $H(a)$ a
 
 ### Baryonic Assemblies
 
-Baryons (protons, neutrons, and their composites) are tri-binary assemblies with specific axial patterns. Their clustering behavior is governed by the effective growth equation above, modified by pressure support (thermal motion) and radiative cooling. Before recombination, baryonic assemblies are tightly coupled to the photon field (planar tri-binary wave packets propagating through the medium), producing acoustic oscillations. After decoupling, baryons fall into potential wells already established by the dark sector.
+Baryons (protons, neutrons, and their composites) are tri-binary assemblies with specific axial patterns. Their clustering behavior is governed by the effective growth equation above, modified by pressure support (thermal motion) and radiative cooling. Before recombination, baryonic assemblies are tightly coupled to photon planar-pair wave packets propagating through the medium, producing acoustic oscillations. After decoupling, baryons fall into potential wells already established by the dark sector.
 
 ### Neutral Assemblies (Dark-Matter Candidates)
 
@@ -182,10 +182,10 @@ $$
 =
 K(a)\,\delta_{ij}\,\theta
 +2S(a)\!\left(u_{ij}-\frac{1}{3}\delta_{ij}\theta\right)
-+\zeta(a)\,\delta_{ij}\,\dot{\theta}
++\zeta_{\text{bulk}}(a)\,\delta_{ij}\,\dot{\theta}
 +2\eta(a)\!\left(\dot{u}_{ij}-\frac{1}{3}\delta_{ij}\dot{\theta}\right),
 $$
-with bulk modulus $K$, shear modulus $S$, and viscosities $(\zeta,\eta)$.
+with bulk modulus $K$, shear modulus $S$, and viscosities $(\zeta_{\text{bulk}},\eta)$. The subscript prevents confusion with the shielding factor $\zeta(A)$ used in assembly-mass closure.
 
 For scalar/longitudinal modes in Fourier space, the linear response equation is
 $$
@@ -197,7 +197,7 @@ where
 $$
 M_L(a)\equiv K(a)+\frac{4}{3}S(a),
 \qquad
-\Gamma_L(a)\equiv \zeta(a)+\frac{4}{3}\eta(a),
+\Gamma_L(a)\equiv \zeta_{\text{bulk}}(a)+\frac{4}{3}\eta(a),
 $$
 and $m_L(a)$ is the finite-range restoring scale (equivalently $k_\ast(a)^2=m_L^2/M_L$).
 
@@ -285,4 +285,4 @@ In the modular cosmology architecture, this document provides:
 
 ## Synthesis
 
-Structure formation is modeled here as medium-response gravitational instability in a fixed Euclidean void, with $H$, $G_{\text{eff}}$, and matter content determined by internal dynamics of architrino assemblies. The practical program is to derive the constitutive coefficients $\{K,S,\zeta,\eta,m_L,g_m\}(a)$, close $\mu(a,k)$ from the medium response equations, and propagate the resulting growth history through the coupled cosmology modules.
+Structure formation is modeled here as medium-response gravitational instability in a fixed Euclidean void, with $H$, $G_{\text{eff}}$, and matter content determined by internal dynamics of architrino assemblies. The practical program is to derive the constitutive coefficients $\{K,S,\zeta_{\text{bulk}},\eta,m_L,g_m\}(a)$, close $\mu(a,k)$ from the medium response equations, and propagate the resulting growth history through the coupled cosmology modules.

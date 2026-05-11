@@ -953,12 +953,12 @@
     {
       "id": "dynamics__emergence_of_u_1_su_2",
       "name": "Emergence of U(1)/SU(2)",
-      "path": "content/scenes/dynamics/emergence_of_u_1_su_2.json"
+      "path": "content/scenes/interactions/emergence_of_u_1_su_2.json"
     },
     {
       "id": "dynamics__gauge_symmetries",
       "name": "Gauge Symmetries",
-      "path": "content/scenes/dynamics/gauge_symmetries.json"
+      "path": "content/scenes/interactions/gauge_symmetries.json"
     },
     {
       "id": "dynamics__kinetic_and_potential_energy",
@@ -966,9 +966,9 @@
       "path": "content/scenes/dynamics/kinetic_and_potential_energy.json"
     },
     {
-      "id": "dynamics__mapping_planck_scale",
+      "id": "spacetime__mapping_planck_scale",
       "name": "Mapping Planck Scale",
-      "path": "content/scenes/dynamics/mapping_planck_scale.json"
+      "path": "content/scenes/spacetime/mapping_planck_scale.json"
     },
     {
       "id": "dynamics__master_equation_of_motion",
@@ -978,12 +978,12 @@
     {
       "id": "dynamics__master_equation_breather",
       "name": "Master Equation Breather",
-      "path": "content/scenes/dynamics/master_equation_breather.json"
+      "path": "content/scenes/proof-programs/master_equation_breather.json"
     },
     {
       "id": "dynamics__mode_taxonomy",
       "name": "Mode Taxonomy",
-      "path": "content/scenes/dynamics/mode_taxonomy.json"
+      "path": "content/scenes/interactions/mode_taxonomy.json"
     },
     {
       "id": "dynamics__tri_binary_dynamics",
@@ -1031,9 +1031,9 @@
       "path": "content/scenes/nuclear/condensed_matter.json"
     },
     {
-      "id": "nuclear_atomic__displacement_of_spacetime",
-      "name": "Displacement of Spacetime",
-      "path": "content/scenes/nuclear/displacement_of_spacetime.json"
+      "id": "spacetime__medium_exclusion_volume",
+      "name": "Medium Exclusion Volume",
+      "path": "content/scenes/spacetime/medium_exclusion_volume.json"
     },
     {
       "id": "nuclear_atomic__molecular_geometry",
@@ -1408,17 +1408,17 @@
     {
       "id": "dynamics__collinear_breather",
       "name": "1D Collinear Binary (Reduced Model)",
-      "path": "content/scenes/dynamics/collinear_breather.json"
+      "path": "content/scenes/proof-programs/collinear_breather.json"
     },
     {
-      "id": "dynamics__horizon_chirality",
+      "id": "spacetime__horizon_chirality",
       "name": "Horizon Chirality",
-      "path": "content/scenes/dynamics/horizon_chirality.json"
+      "path": "content/scenes/spacetime/horizon_chirality.json"
     },
     {
       "id": "dynamics__planar_bridge_closure",
       "name": "Planar Bridge Closure",
-      "path": "content/scenes/dynamics/planar_bridge_closure.json"
+      "path": "content/scenes/proof-programs/planar_bridge_closure.json"
     },
     {
       "id": "archie__applications",
@@ -1439,6 +1439,106 @@
       "id": "archie__user_interface",
       "name": "User Interface",
       "path": "content/scenes/archie/user_interface.json"
+    },
+    {
+      "id": "foundations__absolute_time",
+      "name": "Absolute Time",
+      "path": "content/scenes/foundations/absolute_time.json"
+    },
+    {
+      "id": "foundations__absolute_timespace",
+      "name": "Absolute Timespace",
+      "path": "content/scenes/foundations/absolute_timespace.json"
+    },
+    {
+      "id": "foundations__architrino",
+      "name": "Architrino",
+      "path": "content/scenes/foundations/architrino.json"
+    },
+    {
+      "id": "proof_programs__closed_form_collinear_breather_ansatz",
+      "name": "Closed-Form Collinear Breather Ansatz",
+      "path": "content/scenes/proof-programs/closed_form_collinear_breather_ansatz.json"
+    },
+    {
+      "id": "proof_programs",
+      "name": "Proof Programs",
+      "path": "content/scenes/proof-programs/proof_programs.json"
+    },
+    {
+      "id": "interactions",
+      "name": "Interactions",
+      "path": "content/scenes/interactions/interactions.json"
+    },
+    {
+      "id": "spacetime__noether_sea",
+      "name": "Noether Sea",
+      "path": "content/scenes/spacetime/noether_sea.json"
+    },
+    {
+      "id": "spacetime__observer_framework",
+      "name": "Observer Framework",
+      "path": "content/scenes/spacetime/observer_framework.json"
+    },
+    {
+      "id": "archie__software_architecture_and_maintenance",
+      "name": "Software Architecture and Maintenance",
+      "path": "content/scenes/archie/software_architecture_and_maintenance.json"
+    },
+    {
+      "id": "archie__terminology_usage",
+      "name": "Terminology Usage",
+      "path": "content/scenes/archie/terminology_usage.json"
+    },
+    {
+      "id": "archie__ui_guidelines",
+      "name": "UI Guidelines",
+      "path": "content/scenes/archie/ui_guidelines.json"
+    },
+    {
+      "id": "assemblies__quarks",
+      "name": "Quarks",
+      "path": "content/scenes/assemblies/quarks.json"
+    },
+    {
+      "id": "assemblies__noether_core_geometry",
+      "name": "Noether Core Geometry",
+      "path": "content/scenes/assemblies/noether_core_geometry.json"
+    },
+    {
+      "id": "quantum__algorithmic_resonance",
+      "name": "Algorithmic Resonance and Shor's Algorithm",
+      "path": "content/scenes/quantum/algorithmic_resonance.json"
+    },
+    {
+      "id": "quantum__measurement_ontology",
+      "name": "Measurement Ontology",
+      "path": "content/scenes/quantum/measurement_ontology.json"
+    },
+    {
+      "id": "quantum__quantum_operator_mapping",
+      "name": "Quantum Operator Mapping",
+      "path": "content/scenes/quantum/quantum_operator_mapping.json"
+    },
+    {
+      "id": "quantum__quantum_summary",
+      "name": "Quantum Summary",
+      "path": "content/scenes/quantum/quantum_summary.json"
+    },
+    {
+      "id": "reactions__bremsstrahlung",
+      "name": "Bremsstrahlung",
+      "path": "content/scenes/reactions/bremsstrahlung.json"
+    },
+    {
+      "id": "reactions",
+      "name": "Reactions",
+      "path": "content/scenes/reactions/reactions.json"
+    },
+    {
+      "id": "reactions__synchrotron_cascades",
+      "name": "Synchrotron Cascades",
+      "path": "content/scenes/reactions/synchrotron_cascades.json"
     }
   ]
 }

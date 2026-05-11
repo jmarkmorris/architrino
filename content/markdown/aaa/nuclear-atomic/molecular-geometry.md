@@ -2,7 +2,7 @@
 
 This chapter is the placeholder for molecular-geometry closure within the assembly framework. Its purpose is to state what molecular geometry is expected to depend on in this ontology so the eventual detailed derivation has a stable launch point.
 
-It should be connected to [Atomic Structure](atomic-structure.md), [Atomic Spectra](atomic-spectra.md), [Condensed Matter](condensed-matter.md), and [Displacement of Spacetime](displacement-of-spacetime.md), which together supply the atomic constituents, resonance behavior, medium response, and exclusion geometry that molecular shapes must reconcile.
+It should be connected to [Atomic Structure](atomic-structure.md), [Atomic Spectra](atomic-spectra.md), [Condensed Matter](condensed-matter.md), and [Medium Exclusion Volume](../spacetime/medium-exclusion-volume.md), which together supply the atomic constituents, resonance behavior, medium response, and exclusion geometry that molecular shapes must reconcile.
 
 ## Purpose
 

@@ -310,7 +310,7 @@ So the rule above should currently be read as a strong charged-fermion synthesis
 
 ### Charge quantization cross-check
 
-Because every fermion axial layer fills six polar sites with $\pm e/6$, the only stable net charges from the Active+Shielded split are $0, \pm 1/3, \pm 2/3, \pm 1$, matching the SM spectrum (see the e/6 stability table in [dynamics/gauge-structure-emergence.md](../../dynamics/gauge-structure-emergence.md#quantization-from-stability-selection-rules), section “Quantization from Stability”).
+Because every fermion axial layer fills six polar sites with $\pm e/6$, the only stable net charges from the Active+Shielded split are $0, \pm 1/3, \pm 2/3, \pm 1$, matching the SM spectrum (see the e/6 stability table in [interactions/gauge-structure-emergence.md](../../interactions/gauge-structure-emergence.md#quantization-from-stability-selection-rules), section “Quantization from Stability”).
 
 ### Baryon / lepton bookkeeping and anomaly cancellation
 
@@ -568,7 +568,7 @@ with tri-binary ordered-frame evolution transforming on the double cover so that
 
 ## Weak-Mixing and Composite-Observable Closure Hooks
 
-This chapter fixes the geometry-to-quantum-number dictionary used by the observer-level electroweak closure map in [dynamics/gauge-structure-emergence.md](../../dynamics/gauge-structure-emergence.md).
+This chapter fixes the geometry-to-quantum-number dictionary used by the observer-level electroweak closure map in [interactions/gauge-structure-emergence.md](../../interactions/gauge-structure-emergence.md).
 
 ### Weak mixing from six-pole geometry
 

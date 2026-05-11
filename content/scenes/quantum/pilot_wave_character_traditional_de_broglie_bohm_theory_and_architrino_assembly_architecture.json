@@ -14,6 +14,7 @@
       "path": "content/markdown/aaa/quantum/pilot-wave-character.md"
     },
     "view": {
+      "columns": 1,
       "autoOpen": true
     }
   },

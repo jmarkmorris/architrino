@@ -36,12 +36,13 @@ The primary textbook corpus lives under `content/markdown/aaa`. The current top-
 - `cosmology`
 - `dynamics`
 - `foundations`
+- `interactions`
 - `nuclear-atomic`
 - `philosophy-history`
+- `proof-programs`
 - `quantum`
 - `reactions`
 - `spacetime`
-- `tools`
 - `validation`
 
 These directories are thematic containers, not an ontology in themselves. Their role is to keep authorship, review, and maintenance tractable.
@@ -153,6 +154,7 @@ Current examples of justified second-level subdivision include:
 - `assemblies/bosons`
 - `assemblies/fermions`
 - `assemblies/mesons`
+- `validation/data-sources`
 - `validation/simulations`
 
 Do not create deep trees for the sake of mirroring every conceptual sub-branch. The scene system already supplies navigable hierarchy at the reader level.

@@ -14,6 +14,7 @@
       "path": "content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md"
     },
     "view": {
+      "columns": 1,
       "autoOpen": true
     }
   },

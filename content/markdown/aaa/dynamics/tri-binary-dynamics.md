@@ -2,7 +2,9 @@
 
 This chapter develops a working draft of tri-binary dynamics by extending the two-body delay system to a coupled three-binary core. The focus is the geometric response at high group velocity and under strong gravitational gradients, along with the diagnostic quantities used to assess stability and alignment.
 
-It should be read together with [Binary Dynamics](binary-dynamics.md), [Dyadic Resonance Lock](dyadic-resonance-lock.md), [Mapping the Planck Scale](mapping-Planck-scale.md), [Noether Core](../assemblies/noether-core.md), and [Emergent Metric](../spacetime/emergent-metric.md), since those notes supply the binary precursor, lock structure, alignment target, assembly carrier, and effective geometric bridge.
+It should be read together with [Binary Dynamics](binary-dynamics.md), [Dyadic Resonance Lock](dyadic-resonance-lock.md), [Mapping the Planck Scale](../spacetime/mapping-planck-scale.md), [Noether Core](../assemblies/noether-core.md), [Noether Core Geometry](../assemblies/noether-core-geometry.md), and [Emergent Metric](../spacetime/emergent-metric.md), since those notes supply the binary precursor, lock structure, alignment target, assembly carrier, exclusion-envelope geometry, and effective geometric bridge.
+
+This chapter is the canonical dynamics home for coupled three-binary speed regimes, alignment behavior, and assembly-stability mechanisms. Primitive architrino ontology should not carry those mechanisms; it should route them here and to [Binary Dynamics](binary-dynamics.md).
 
 ## Relation to the Causal Closure Workstream
 
@@ -18,7 +20,7 @@ This chapter is publishable as a canonical dynamics baseline. It is not a comple
 | --- | --- |
 | Dynamics baseline | Noether-core roles, speed-regime conventions, delay-envelope geometry, spiral-helical motion, clock diagnostics, and stability tests. |
 | Reconstruction target | Mass response, proper time, observer-level metric data, photon-channel behavior, and weak-field matching as quantities to be derived from the dynamics. |
-| Open proof burden | Shielding extraction, momentum-skew derivation, Floquet stability, photon closure, equivalence-principle residual bounds, and ADM/Cartan closure. |
+| Open proof burden | Tri-binary minimality, shielding extraction, momentum-skew derivation, Floquet stability, photon closure, equivalence-principle residual bounds, and ADM/Cartan closure. |
 
 The chapter should therefore be read as the stable dynamics layer beneath the causal-closure program. It preserves the mechanism and the diagnostic quantities while leaving the full theorem burden explicit.
 
@@ -441,6 +443,8 @@ The following items are retained here only as dynamics-facing boundary condition
 
 An electrino:positrino binary is the most primitive assembly considered in the current architecture. Architrino assembly architecture posits that three binaries can become coupled into a Noether core, with each binary playing a distinct dynamical role.
 
+Tri-binary minimality is a theorem target: the working claim is that three coupled binary layers are the minimal stable closure architecture capable of preserving inner memory, commensurability buffering, and boundary coupling under combined kinematic and gradient stress.
+
 - **Inner binary** (MCB, CFT-exterior role): typically in/near self-hit branch ($v \gtrsim c_f$ by history), and would define fundamental units if MCB attractor is confirmed.
 - **Middle binary** (CFT-exterior role): near the symmetry hinge ($v \approx c_f$) with variable radius/frequency; energy-storage fulcrum and coupling bridge.
 - **Outer binary** (CFT-exterior role): typically $v < c_f$ with expansion/contraction modes; couples strongly to Noether-Sea gravitational/cosmological response.
@@ -483,4 +487,4 @@ This chapter therefore keeps only the tri-binary regime map and leaves the ontol
 
 In the tri-binary picture, each Noether core is a nested stack of three coupled binaries whose internal frequencies and radii are locked by self-hit geometry. This chapter uses that mechanism to define the local dynamics and diagnostics. The coarse-grained metric, observer-clock, and strong-field ontology belong to the spacetime chapters and the causal-closure proof synthesis.
 
-For the strong-field continuation of that story, see [Black Holes](../spacetime/black-holes.md) and [Horizon Chirality](horizon-chirality.md).
+For the strong-field continuation of that story, see [Black Holes](../spacetime/black-holes.md) and [Horizon Chirality](../spacetime/horizon-chirality.md).

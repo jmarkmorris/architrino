@@ -35,10 +35,6 @@
         "scenePath": "content/scenes/nuclear/condensed_matter.json"
       },
       {
-        "nodeId": "displacement_of_spacetime",
-        "scenePath": "content/scenes/nuclear/displacement_of_spacetime.json"
-      },
-      {
         "nodeId": "molecular_geometry",
         "scenePath": "content/scenes/nuclear/molecular_geometry.json"
       },
@@ -115,14 +111,6 @@
       "radius": 2.688,
       "color": "#5a1f2e",
       "labelTitle": "Condensed Matter",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "displacement_of_spacetime",
-      "title": "Displacement of Spacetime",
-      "radius": 2.688,
-      "color": "#3f6a5a",
-      "labelTitle": "Displacement of Spacetime",
       "labelBadge": "doc"
     },
     {

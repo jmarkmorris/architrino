@@ -23,7 +23,7 @@ Massive composite assemblies (protons, atoms, stars) are tri-binary configuratio
 A dark-matter candidate in $\mathbb{A}\mathbb{A}\mathbb{A}$ is characterized by two conditions:
 
 - **Gravitational coupling:** The candidate must compress the Noether Sea (contribute to effective $\rho_{\mathrm{NS}}$ gradients) and therefore deflect light and accelerate baryonic matter.
-- **Electromagnetic transparency:** The candidate must couple negligibly to photon-mode assemblies so that it neither emits, absorbs, nor scatters electromagnetic radiation at detectable levels.
+- **Electromagnetic transparency:** The candidate must couple negligibly to photon planar-pair assemblies so that it neither emits, absorbs, nor scatters electromagnetic radiation at detectable levels.
 
 Two substrate-level mechanisms can satisfy these conditions, either separately or together.
 
@@ -105,7 +105,7 @@ The boundaries between regimes are set by the ratio $|\nabla\Phi|/a_0$ and the l
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology, supermassive black holes (SMBHs) are recycling furnaces: baryonic and dark-sector assemblies fall in, are processed through the high-energy interior (inner tri-binary regime, $v > c_f$), and may later re-emerge through several release channels in altered assembly configurations. Jets and radiative outflows remain plausible observer-level manifestations, but they are not the only allowed release morphology. This cycle has implications for the dark sector:
 
-- **Neutral-assembly processing:** If neutral assemblies accrete onto SMBHs, they contribute to the energy budget available for outward release. Re-emitted content may include photons (planar-mode tri-binaries), neutrinos, recycled neutral assemblies, or initially dark-sector modes that later convert into visible channels.
+- **Neutral-assembly processing:** If neutral assemblies accrete onto SMBHs, they contribute to the energy budget available for outward release. Re-emitted content may include photons (coaxial contra-rotating pro/anti planar-pair modes), neutrinos, recycled neutral assemblies, or initially dark-sector modes that later convert into visible channels.
 - **Dark-sector mass evolution:** Unlike pure $\Lambda\mathrm{CDM}$ where dark matter is strictly conserved and collisionless, $\mathbb{A}\mathbb{A}\mathbb{A}$ permits slow conversion between dark and visible sectors through SMBH processing. This conversion rate must be small enough to preserve $\Omega_{\mathrm{DM}}$ to within Planck-era constraints over cosmological timescales, which places an upper bound on the SMBH dark-matter accretion efficiency.
 - **Observable signature (speculative):** If SMBH recycling converts neutral assemblies into electromagnetic-channel products at non-negligible rates, this could produce a correlation between SMBH mass and local dark-matter deficit. This is a mapping target for simulation, not an asserted observational deviation.
 
@@ -113,7 +113,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology, supermassive black holes (SMBHs) 
 
 ### Mass Scale
 
-The neutral-assembly mass is not a free parameter to be fitted post hoc; it must emerge from the binding energy of the assembly's core and its drag coupling to the Noether Sea. Candidate mass ranges, mapped to observational constraints:
+The neutral-assembly mass is not a free parameter to be fitted post hoc; it must emerge from the assembly's internal energy ledger, shielding factor, and medium-dressed response to the Noether Sea. This is an inertial and gravitational response map, not ordinary dissipative drag. Candidate mass ranges, mapped to observational constraints:
 
 - $m \sim$ eV: warm dark matter; suppresses small-scale structure.
 - $m \sim$ keV–GeV: canonical cold dark matter window.

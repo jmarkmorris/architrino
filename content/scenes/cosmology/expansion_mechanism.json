@@ -14,6 +14,7 @@
       "path": "content/markdown/aaa/cosmology/expansion-mechanism.md"
     },
     "view": {
+      "columns": 1,
       "autoOpen": true
     }
   },

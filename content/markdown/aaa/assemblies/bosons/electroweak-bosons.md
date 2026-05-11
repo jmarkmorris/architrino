@@ -1,31 +1,32 @@
 # Electroweak Bosons: Photons, W/Z, and Higgs
 
 **Scope:** Defines the geometric assemblies corresponding to the U(1), SU(2), and Scalar sectors.
-**Core Principle:** Bosons are discrete, propagating assemblies of architrinos (Planar Tri-binaries) organized into phase-locked modes.
-This chapter is the bosonic-side companion to [Emergence of U(1)/SU(2)](../../dynamics/gauge-structure-emergence.md), [Weak Mixing Angle](../fermions/weak-mixing-angle.md), and [Particle Masses: Emergent Inertia in the Noether Sea](../particle-masses.md).
+**Core Principle:** Bosons are discrete, propagating assemblies of architrinos organized into phase-locked modes.
+This chapter is the bosonic-side companion to [Emergence of U(1)/SU(2)](../../interactions/gauge-structure-emergence.md), [Weak Mixing Angle](../fermions/weak-mixing-angle.md), and [Particle Masses: Emergent Inertia in the Noether Sea](../particle-masses.md).
 
 Spin follows the geometry of the excitation: the Higgs is scalar because its motion is purely radial, while the photon and weak corridors are vector modes because each carries a distinguished propagation/interaction axis together with transverse phase structure.
 
 ---
 
-## The Photon ($\gamma$): Coaxial Contra-Rotating Stack
+## The Photon ($\gamma$): Coaxial Contra-Rotating Pro/Anti Planar Pair
 
 The Photon is the fundamental carrier of the electromagnetic interaction. Unlike Standard Model QFT, which posits a pre-existing gauge field ($A_\mu$), this framework derives the photon as a **propagating assembly of discrete action history**.
 
 ### Ontological Status: No Separate Gauge Inventory
 *   **The Claim:** There is no abstract "electromagnetic field" separate from the particles.
 *   **The Reality:** The "field" is simply the aggregate path-history of constituent architrinos.
-*   **The Assembly:** A photon is a specific, coherent bundle of these historical influences (per-hit actions) organized into a stable planar mode. Emission is not the excitation of a background field; it is the **release** of internal architrino sub-assemblies from a source.
+*   **The Assembly:** A photon is a specific, coherent bundle of these historical influences (per-hit actions) organized into a stable planar-pair mode. Emission is not the excitation of a background field; it is the release of an accepted action ledger into a photon channel.
 
-### Geometric Unit: The Contra-Rotating Pair
+### Geometric Unit: The Coaxial Contra-Rotating Pro/Anti Planar Pair
 At the finest scale, the photon unit is a composite assembly:
-*   **Planar Tri-Binaries:** Unlike spherical fermions, the constituents are 2D (flattened) tri-binaries.
-*   **The Sandwich:** Two of these planar disks are stacked **Coaxially** (sharing the propagation axis $\hat{\mathbf{e}}$).
-*   **Dynamics:** They are **Contra-Rotating** (Clockwise / Counter-Clockwise).
-*   **Neutrality:** This cancellation ensures zero net static charge, leaving only the transverse oscillating field.
+*   **Planar cores:** Unlike volumetric fermion assemblies, the photon constituents are planarized Noether-core assemblies.
+*   **The pair:** Two planar cores form a pro/anti pair stacked **coaxially** on the propagation axis $\hat{\mathbf{e}}$.
+*   **Dynamics:** The pair is **contra-rotating** (clockwise / counter-clockwise).
+*   **Canonical description:** A photon is a **coaxial contra-rotating pro/anti planar pair**.
+*   **Neutrality:** The paired static charge-like exposures cancel, leaving a transverse oscillatory action signature.
 
 ### Propagation: The "Photon Train"
-A photon manifests as a **Phase-Locked Planar-Mode Train** of delayed actions.
+A photon manifests as a **phase-locked planar-pair mode train** of delayed actions.
 *   **The Mode Train:** A quasi-cylindrical propagation structure aligned with $\hat{\mathbf{e}}$ carrying the superposed $1/r^2$ wake surfaces.
 *   **Burst vs. Continuous:**
     *   **Packet (Particle-like):** A discrete atomic transition releases a short "burst" train—a finite segment of the planar-mode train.
@@ -33,7 +34,7 @@ A photon manifests as a **Phase-Locked Planar-Mode Train** of delayed actions.
 *   **Group Velocity:** The planar (edge-on) orientation minimizes interaction with the ambient Noether-Sea lattice, allowing propagation at the field speed limit ($v \approx 1$).
 
 ### Interaction Rules: Capture and Release
-*   **Emission (Planar-Mode Release):** Driven by accelerated motion in the source binary. The internal binding is overcome, and a "stack" of planar wakes is shed along a tangential vector.
+*   **Emission (Planar-Mode Release):** Driven by accelerated motion in the source binary. The accepted action ledger enters a stable planar-pair mode along a tangential vector.
 *   **Absorption (Planar-Mode Capture):**
     *   Absorption is not the annihilation of a quantum field operator.
     *   It is the **mechanical re-capture** of the planar mode by an internal binary in the target atom.
@@ -113,7 +114,7 @@ The Higgs is not a propagating assembly *through* the ambient medium; it is a re
 
 | Boson | Geometry | Payload | Propagation | Mass Origin |
 | :--- | :--- | :--- | :--- | :--- |
-| **Photon** | Coaxial Contra-Rotating Planar Stack | Neutral (0) | Infinite Planar-Mode Train | None (Planar/Edge-on) |
+| **Photon** | Coaxial contra-rotating pro/anti planar pair | Neutral (0) | Planar-pair mode train | None (planar / edge-on) |
 | **W Boson** | Inflated Transaction Vortex | Charged ($\pm 6\epsilon$) | Short-lived Corridor (near-$c$, ruptures) | Confinement Energy / Spacetime Drag |
 | **Z Boson** | Inflated Neutral Vortex | Neutral ($3P, 3E$) | Short-lived Corridor (near-$c$, ruptures) | Confinement Energy / Spacetime Drag |
 | **Higgs** | Radial Noether-Sea Oscillation | N/A | Local Resonance | Lattice Stiffness |

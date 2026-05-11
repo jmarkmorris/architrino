@@ -9,10 +9,10 @@ The opening fixes the ontological picture and the canonical symbols first. The l
 ## Ontological Picture
 
 - **Substrate**: A fixed Euclidean 3D void with absolute time $t$. Coordinates $(x,y,z)$ never move or curve.
-- **Medium**: A pervasive sea of coupled pro/anti Noether cores (tri-binary assemblies) that we call the *spacetime medium* or *Noether-core sea*.
+- **Medium**: The [Noether Sea](noether-sea.md), a pervasive medium of coupled pro/anti Noether cores (tri-binary assemblies). The bridge term *spacetime medium* is used when translating toward effective spacetime language.
 - **$\mathbb{U}_{\text{now}}$ universe-state perspective**: A conceptual observer in the absolute frame who knows:
   - The full architrino microstate $S(t)$,
-  - The instantaneous state of the Noether-core sea (density $\rho_{\text{core}}(x,t)$, alignment, stress),
+  - The instantaneous state of the Noether Sea (density $\rho_{\text{core}}(x,t)$, alignment, stress),
   - The effective potential field $\Phi_{\text{eff}}(x,t)$ and its gradients.
 
 From this vantage point, there is only:
@@ -25,6 +25,7 @@ Use the following symbols consistently across spacetime chapters:
 
 - $n(x,t)$: normalized Noether-core density.
 - $\rho_{\text{core}}(x,t)=\rho_{\text{core},0}\,n(x,t)$: physical core density.
+- $\chi_{\text{sea}}(x,t)=c_f/c_{\text{eff}}(x,t)$: Noether-Sea delay factor.
 - $\Phi_{\text{eff}}(x,t)$: constitutive potential inferred from the clock channel.
 - $\Phi_N(x,t)$: Newtonian benchmark potential used for weak-field matching.
 - $U\equiv -\Phi_N>0$: positive weak-field PPN potential variable.
@@ -34,7 +35,7 @@ Use the following symbols consistently across spacetime chapters:
 - **Effective metric $g^{\text{eff}}_{\mu\nu}(x)$** is *not* a fundamental property of the void. It is a derived description of:
   - How assembly-based clocks tick,
   - How assembly-based rulers measure distances,
-  - How signals (tri-binary photons, GWs) propagate through the Noether-core sea.
+  - How signals (tri-binary photons, GWs) propagate through the Noether Sea.
 
 We define $g^{\text{eff}}_{\mu\nu}$ operationally:
 
@@ -42,7 +43,37 @@ We define $g^{\text{eff}}_{\mu\nu}$ operationally:
 
 The $\mathbb{U}_{\text{now}}$ universe-state perspective then maps:
 
-$(\delta_{ij}, n(x,t), \Phi_{\text{eff}}(x,t), \nabla\Phi_{\text{eff}}(x,t), \text{medium alignment}) \;\Rightarrow\; g^{\text{eff}}_{\mu\nu}(x)$
+$(\delta_{ij}, n(x,t), \chi_{\text{sea}}(x,t), \Phi_{\text{eff}}(x,t), \nabla\Phi_{\text{eff}}(x,t), \text{medium alignment}) \;\Rightarrow\; g^{\text{eff}}_{\mu\nu}(x)$
+
+## Noether-Core Deformation and Metric Language
+
+At the assembly level, an individual Noether core has an oblate, deformable exclusion envelope; see [Noether Core Geometry](../assemblies/noether-core-geometry.md). This chapter does not identify that single-core envelope with the metric. The metric bridge uses many deforming Noether cores in the Noether Sea as the medium whose coarse variables determine clock, ruler, and signal behavior.
+
+When translating toward General Relativity, Einstein's field equations are treated as the effective continuum relation
+$$
+G_{\mu\nu} = \frac{8\pi G}{c^4}T_{\mu\nu},
+$$
+not as substrate curvature of the Euclidean void. In this framework, the right-hand side is interpreted through matter assemblies and Noether-Sea stress, while the left-hand side is the observer-level metric summary reconstructed from clock, ruler, and signal channels.
+
+For axially symmetric or rotating sources, oblate spheroidal coordinates can be a useful effective chart. A representative line element has the form
+$$
+ds^2
+=
+-f(\xi,\eta)c_f^2dt^2
++g_1(\xi,\eta)d\xi^2
++g_2(\xi,\eta)d\eta^2
++g_3(\xi,\eta)d\phi^2,
+$$
+where $f,g_1,g_2,g_3$ encode the observer-level response of clocks, rulers, and signal paths. These coefficients are not primitive geometry. They are closure targets to be derived from Noether-Sea density, strain, alignment, and deformation.
+
+The useful GR analogy is therefore limited but important:
+
+- oblate coordinates help describe rotating or deformed effective sources,
+- interior and exterior effective solutions around oblate bodies remain useful comparison targets,
+- perturbative methods can capture small departures from spherical symmetry,
+- and standard predictions such as redshift, Shapiro delay, lensing, orbital precession, frame-dragging, and gravitational-wave emission from deformed sources must be recovered from one reusable constitutive map.
+
+The assembly fact that a Noether core is oblate belongs in [Noether Core Geometry](../assemblies/noether-core-geometry.md). The spacetime claim that a population of deformed cores yields an effective metric belongs here and in [PPN Parameters](ppn-parameters.md).
 
 ## Jacobson-Type Support: Metric as Equation of State
 
@@ -51,7 +82,7 @@ This medium-first picture is strengthened by the general Jacobson-style lesson: 
 That comparative point fits $\mathbb{A}\mathbb{A}\mathbb{A}$ cleanly:
 
 - the Euclidean void and absolute time are fundamental background structure,
-- the Noether-core sea is the relevant microstructure,
+- the Noether Sea is the relevant microstructure,
 - and relativistic metric behavior is the long-wavelength thermodynamic closure of that microstructure.
 
 On this reading, quantizing the effective metric directly is not the primary move. The primary move is to understand and simulate the microphysical medium well enough that GR-like geometry emerges as its coarse constitutive summary.
@@ -91,29 +122,29 @@ g^{\text{eff}}_{ij}(\mathbf{x})=
 +\mathcal{O}\!\left(\frac{\Phi_N^2}{c_f^4}\right).
 $$
 
-Equivalent refractive form:
+Equivalent Noether-Sea delay-factor form:
 $$
-n(\mathbf{x})\equiv \frac{c_f}{c_{\text{eff}}(\mathbf{x})}
+\chi_{\text{sea}}(\mathbf{x})\equiv \frac{c_f}{c_{\text{eff}}(\mathbf{x})}
 =1-(1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf{x})}{c_f^2}
 +\mathcal{O}\!\left(\frac{\Phi_N^2}{c_f^4}\right),
 $$
 so travel time on a Euclidean anchor path $\Gamma$ is
 $$
-t[\Gamma]=\frac{1}{c_f}\int_\Gamma n(\mathbf{x})\,ds.
+t[\Gamma]=\frac{1}{c_f}\int_\Gamma \chi_{\text{sea}}(\mathbf{x})\,ds.
 $$
 
 This is the concrete first-order realization of
 $$
-(\delta_{ij},n,\text{stress},\Phi_N)\mapsto g^{\text{eff}}_{\mu\nu},
+(\delta_{ij},n,\chi_{\text{sea}},\text{stress},\Phi_N)\mapsto g^{\text{eff}}_{\mu\nu},
 $$
 with $\gamma_{\text{eff}}$ the observable refraction/space-curvature coefficient to be fitted from Shapiro-delay data.  
-Implementation of the corresponding one-way delay integral is given in [ppn-parameters](./ppn-parameters.md#explicit-weak-field-refractive-shapiro-map-ppn-gamma).
+Implementation of the corresponding one-way delay integral is given in [ppn-parameters](./ppn-parameters.md#explicit-weak-field-noether-sea-delay-map-ppn-gamma).
 
 ## Closure Program Interface (metric constitutive map)
 
 This chapter is the constitutive anchor for the gravity-side closure:
 $$
-(\delta_{ij},n,\Phi_{\text{eff}},\text{stress})\mapsto g^{\text{eff}}_{\mu\nu}.
+(\delta_{ij},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{stress})\mapsto g^{\text{eff}}_{\mu\nu}.
 $$
 
 Distribute proof obligations as:

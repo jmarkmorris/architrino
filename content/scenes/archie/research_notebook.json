@@ -19,25 +19,24 @@
         "headingLevel": 2,
         "maxDepth": 1,
         "overrides": {
-        "overview": {
-          "id": "research_notebook_overview",
-          "labelTitle": "Overview",
-          "labelBadge": "doc",
-          "color": "#8b6f3a",
-          "mode": "doc"
-        },
-        "2026 03 17 planar three body breather bridge frozen": {
-          "labelTitle": "3-Body Breather Frozen",
-          "labelSubtitle": "2026-03-17"
-        },
-        "2026 03 16 1d collinear breather scaffold reaches fixed point closure": {
-          "labelTitle": "1D Collinear Breather Scaffold Closure",
-          "labelSubtitle": "2026-03-16"
-        },
-        "2026 03 14 dyadic resonance lock": {
-          "labelTitle": "Dyadic Resonance Lock",
-          "labelSubtitle": "2026-03-14"
-        },
+          "overview": {
+            "id": "research_notebook_overview",
+            "labelTitle": "Overview",
+            "labelBadge": "doc",
+            "mode": "doc"
+          },
+          "2026 03 17 planar three body breather bridge frozen": {
+            "labelTitle": "3-Body Breather Frozen",
+            "labelSubtitle": "2026-03-17"
+          },
+          "2026 03 16 1d collinear breather scaffold reaches fixed point closure": {
+            "labelTitle": "1D Collinear Breather Scaffold Closure",
+            "labelSubtitle": "2026-03-16"
+          },
+          "2026 03 14 dyadic resonance lock": {
+            "labelTitle": "Dyadic Resonance Lock",
+            "labelSubtitle": "2026-03-14"
+          },
           "2026 03 12 major llm induced error is corrected with bill thurston ai": {
             "labelTitle": "Major LLM Induced Error is Corrected",
             "labelSubtitle": "2026-03-12"

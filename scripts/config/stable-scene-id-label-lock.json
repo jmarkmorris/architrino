@@ -10,8 +10,8 @@
         "gluons": "Gluons",
         "mesons_doc": "Mesons",
         "noether_core": "Noether Core",
+        "noether_core_geometry": "Noether Core Geometry",
         "particle_masses": "Particle Masses",
-        "photons": "Photons",
         "standard_model": "Standard Model Assemblies"
       }
     },
@@ -24,6 +24,7 @@
         "electron_muon_tau": "Electron, Muon, Tau",
         "neutrinos": "Neutrinos",
         "quantum_number_mapping": "Quantum Number Mapping",
+        "quarks": "Quarks",
         "up_charm_top_quarks": "Up, Charm, Top Quarks",
         "weak_mixing_ckm": "Weak Mixing CKM"
       }
@@ -49,16 +50,9 @@
       "objects": {
         "binary_dynamics": "Binary Dynamics",
         "causal_action_functional": "Causal Action Functional",
-        "collinear_breather": "1D Collinear Binary",
         "effective_lagrangian": "Effective Lagrangian",
-        "emergence_of_u_1_su_2": "Emergence of U(1)/SU(2)",
-        "gauge_symmetries": "Gauge Symmetries",
-        "horizon_chirality": "Horizon Chirality",
         "kinetic_and_potential_energy": "Kinetic and Potential Energy",
-        "mapping_planck_scale": "Mapping Planck Scale",
         "master_equation_of_motion": "Master Equation of Motion",
-        "planar_bridge_closure": "Planar Bridge Closure",
-        "mode_taxonomy": "Mode Taxonomy",
         "quantum": "Quantum",
         "tri_binary_dynamics": "Tri-Binary Dynamics"
       }
@@ -67,13 +61,15 @@
       "sceneId": "foundations",
       "sceneName": "Foundations",
       "objects": {
+        "absolute_time": "Absolute Time",
         "absolute_time_defense": "Absolute Time Defense",
+        "absolute_timespace": "Absolute Timespace",
+        "architrino": "Architrino",
         "detecting_the_absolute_frame": "Detecting the Absolute Frame",
         "bootstrapping_the_absolute_frame": "Bootstrapping a Coordinate Frame",
         "emergence_of_structure": "Emergence of Structure",
         "euclidean_void": "Euclidean Void",
-        "foundational_ontology": "Foundational Ontology",
-        "information_computation": "Information / Computation"
+        "foundational_ontology": "Foundational Ontology"
       }
     },
     "content/scenes/archie/archie.json": {
@@ -94,7 +90,6 @@
         "atomic_spectra": "Atomic Spectra",
         "atomic_structure": "Atomic Structure",
         "condensed_matter": "Condensed Matter",
-        "displacement_of_spacetime": "Displacement of Spacetime",
         "leptogenesis": "Leptogenesis CP Sources",
         "molecular_geometry": "Molecular Geometry",
         "nuclear_binding": "Nuclear Binding",
@@ -118,10 +113,14 @@
       "sceneId": "quantum",
       "sceneName": "Quantum",
       "objects": {
+        "algorithmic_resonance": "Algorithmic Resonance and Shor's Algorithm",
         "bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response": "Bell's Theorem: QM Foundations vs. \ud835\udd38\ud835\udd38\ud835\udd38",
         "entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture": "Entanglement and Nonlocality: QM vs. \ud835\udd38\ud835\udd38\ud835\udd38",
+        "measurement_ontology": "Measurement Ontology",
         "measurement_problem_and_collapse": "Measurement Problem and Collapse",
         "pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture": "Pilot-Wave Character: de Broglie\u2013Bohm (QM) vs. \ud835\udd38\ud835\udd38\ud835\udd38",
+        "quantum_operator_mapping": "Quantum Operator Mapping",
+        "quantum_summary": "Quantum Summary",
         "quantum_statistics": "Fermi-Dirac & Bose-Einstein Statistics",
         "reality_causality_and_navigation": "Reality, Causality, and Navigation",
         "superposition_mechanism_traditional_vs_architrino_assembly_architecture": "Superposition Mechanism: QM vs. \ud835\udd38\ud835\udd38\ud835\udd38",
@@ -136,6 +135,11 @@
         "emergent_metric": "Emergent Metric",
         "general_relativity_observables": "General Relativity",
         "gravitational_waves": "Gravitational Waves",
+        "horizon_chirality": "Horizon Chirality",
+        "mapping_planck_scale": "Mapping Planck Scale",
+        "medium_exclusion_volume": "Medium Exclusion Volume",
+        "noether_sea": "Noether Sea",
+        "observer_framework": "Observer Framework",
         "ppn_parameters": "PPN Parameters",
         "proper_time_and_time_dilation": "Proper Time and Time Dilation",
         "singularity_resolution": "Singularity Resolution",
@@ -150,6 +154,7 @@
         "agency_and_internal_causation": "Agency and Internal Causation",
         "crisis_in_physics": "Crisis in Physics",
         "historical_context_missed_opportunities": "Historical Context and Missed Opportunities",
+        "information_computation": "Information / Computation",
         "major_thinkers": "Major Thinkers",
         "philosophy_of_science": "Philosophy of Science",
         "religious_ontologies": "Religious Ontologies",

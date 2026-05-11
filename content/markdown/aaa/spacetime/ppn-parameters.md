@@ -6,6 +6,7 @@ the spacetime constitutive map.
 ### Canonical Symbols
 
 - $n$: normalized Noether-core density, with $\rho_{\text{core}}=\rho_{\text{core},0}n$.
+- $\chi_{\text{sea}}$: Noether-Sea delay factor, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$.
 - $\Phi_N$: Newtonian benchmark potential.
 - $\Phi_{\text{eff}}$: constitutive effective potential from the clock channel.
 - $U\equiv -\Phi_N>0$: positive PPN expansion variable (default).
@@ -14,22 +15,22 @@ the spacetime constitutive map.
 ### Mapping to PPN Constraints
 
 1. **Shapiro Delay**: Map the GR time-delay (longer path in curved space) to the Architrino time-delay (slower $c_{eff}$ in a dense medium).
-2. **Light Bending**: Calculate the refraction of tri-binary signals through the Noether Sea density gradient around the Sun.
-3. **Geodetic Precession**: Derived from the interaction of the assembly's angular momentum with the gradient of the Noether Sea's potential.
+2. **Light Bending**: Calculate the refraction of tri-binary signals through the Noether-Sea density gradient around the Sun.
+3. **Geodetic Precession**: Derived from the interaction of the assembly's angular momentum with the gradient of the Noether-Sea potential.
 
 
 ### Testing the Euclidean Anchor (Shapiro Delay)
 
 1. **The Test**: Calculate travel time of a signal from Earth to a probe behind the Sun using the $\mathbb{U}_{\text{now}}$ universe-state grid.
-2. **Architrino Model**: Signal follows a straight Euclidean line. Delay is caused by **increased density of the Noether core sea** near the Sun (Refractive Index change).
+2. **Architrino Model**: Signal follows a straight Euclidean line. Delay is caused by increased Noether-Sea response near the Sun, expressed by the Noether-Sea delay factor $\chi_{\text{sea}}$.
 3. **Comparison**: Contrast $\Delta t_{architrino}$ with the GR weak-field form.
 4. **$\mathbb{U}_{\text{now}}$ Role**: $\mathbb{U}_{\text{now}}$ provides the "straight line" benchmark against which the "curved path" of GR is compared.
 
-### Explicit Weak-Field Refractive Shapiro Map (PPN $\gamma$)
+### Explicit Weak-Field Noether-Sea Delay Map (PPN $\gamma$)
 
-Adopt a weak-field refractive-index ansatz for signal propagation in the Noether-core medium:
+Adopt a weak-field Noether-Sea delay-factor ansatz for signal propagation in the Noether-core medium:
 $$
-n(\mathbf{x}) \equiv \frac{c_f}{c_{\text{eff}}(\mathbf{x})}
+\chi_{\text{sea}}(\mathbf{x}) \equiv \frac{c_f}{c_{\text{eff}}(\mathbf{x})}
 = 1 - (1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf{x})}{c_f^2}
 + \mathcal{O}\!\left(\frac{\Phi_N^2}{c_f^4}\right),
 $$
@@ -37,19 +38,19 @@ with $\Phi_N<0$ near a mass source. For a point mass $M$,
 $$
 \Phi_N(r)=-\frac{GM}{r}
 \quad\Rightarrow\quad
-n(r)=1+(1+\gamma_{\text{eff}})\frac{GM}{c_f^2 r}
+\chi_{\text{sea}}(r)=1+(1+\gamma_{\text{eff}})\frac{GM}{c_f^2 r}
 +\mathcal{O}\!\left(\frac{G^2M^2}{c_f^4 r^2}\right).
 $$
 
 For a one-way signal along a Euclidean straight path $\Gamma$ (the $\mathbb{U}_{\text{now}}$ anchor),
 $$
-t_{\text{arch}}=\frac{1}{c_f}\int_\Gamma n(\mathbf{x})\,ds
+t_{\text{arch}}=\frac{1}{c_f}\int_\Gamma \chi_{\text{sea}}(\mathbf{x})\,ds
 =\frac{R}{c_f}+\Delta t_{\text{arch}},
 $$
 where $R=\int_\Gamma ds$ is Euclidean path length and
 $$
 \Delta t_{\text{arch}}
-=\frac{1}{c_f}\int_\Gamma (n-1)\,ds
+=\frac{1}{c_f}\int_\Gamma (\chi_{\text{sea}}-1)\,ds
 =\frac{(1+\gamma_{\text{eff}})GM}{c_f^3}\int_\Gamma \frac{ds}{r(s)}
 +\mathcal{O}\!\left(\frac{G^2M^2}{c_f^5}\right).
 $$
@@ -79,7 +80,7 @@ In the weak-field solar-system regime, $\gamma_{\text{eff}}$ is the direct refra
 
 #### Parameter $\gamma$ (Space Curvature / Refraction)
 * **GR Context:** Measures the amount of space curvature produced by unit rest mass.
-* **Architrino Interpretation:** Measures the "Refractive Index" of the Sea of Noether Cores. A massive body increases local assembly density, slowing the effective speed of light $c$ relative to the field speed $c_f$.
+* **Architrino Interpretation:** Measures the refractive response of the [Noether Sea](noether-sea.md). A massive body increases local assembly density, slowing the effective speed of light $c$ relative to the wake speed $c_f$.
 * **Observable:** Shapiro-delay coefficient in the explicit refractive integral above.
 
 #### Parameter $\beta$ (Non-linearity of Gravity)

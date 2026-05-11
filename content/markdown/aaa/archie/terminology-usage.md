@@ -110,7 +110,7 @@ These terms are not interchangeable.
 
 | When you mean... | Prefer | Use with caution | Example |
 | --- | --- | --- | --- |
-| the ontological substrate contents | `Noether Sea` | not applicable | "Clock rates depend on local Noether Sea density." |
+| the ontological substrate contents | `Noether Sea` | not applicable | "Clock rates depend on local Noether-Sea density." |
 | a neutral transitional bridge term | `spacetime medium` | only as a bridge term, not as the primary ontology word | "The spacetime medium reproduces effective metric behavior." |
 | a generic constitutive statement | `medium` | only if the referent is already clear | "The medium response modifies wake transport." |
 | standard-physics historical or comparative language | `vacuum`, `aether` | only when the comparison is explicit | "In QFT terms this would be described as a vacuum effect." |
@@ -118,6 +118,7 @@ These terms are not interchangeable.
 Sentence guidance:
 
 - Prefer: "The Noether Sea is the canonical ontological term."
+- Prefer: Use `Noether Sea` as the standalone proper noun, and use `Noether-Sea` only as a compound modifier before another noun: `Noether-Sea density`, `Noether-Sea delay factor`.
 - Prefer: "Use `spacetime medium` when easing the reader from effective spacetime language to constitutive substrate language."
 - Avoid by default: "vacuum" as the native $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology term.
 

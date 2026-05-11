@@ -14,6 +14,7 @@
       "path": "content/markdown/aaa/archie/mathematics-terminology.md"
     },
     "view": {
+      "columns": 1,
       "section": "Mathematical Terminology (Canonical Dialect)",
       "autoOpen": true
     }

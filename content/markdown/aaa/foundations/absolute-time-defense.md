@@ -35,7 +35,7 @@ $$
 d\tau = F\big(\rho_{\text{sea}}(\mathbf{X},t), \sigma_{ij}(\mathbf{X},t), \mathbf{v}(t)\big)\,dt,
 $$
 
-where $\rho_{\text{sea}}$ and $\sigma_{ij}$ are coarse-grained Noether-sea density and stress fields. Microscopically, $F$ summarizes delayed assembly-medium interactions; $\Phi$ and $\nabla\Phi$ are effective coarse-grained encodings of that same local state.
+where $\rho_{\text{sea}}$ and $\sigma_{ij}$ are coarse-grained Noether-Sea density and stress fields. Microscopically, $F$ summarizes delayed assembly-medium interactions; $\Phi$ and $\nabla\Phi$ are effective coarse-grained encodings of that same local state.
 
 Equivalent phase-functional form:
 

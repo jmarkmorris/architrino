@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "reactions",
+    "title": "Reactions",
+    "type": "Scene-Index",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "rings"
+    },
+    "children": [
+      {
+        "nodeId": "bremsstrahlung",
+        "scenePath": "content/scenes/reactions/bremsstrahlung.json"
+      },
+      {
+        "nodeId": "synchrotron_cascades",
+        "scenePath": "content/scenes/reactions/synchrotron_cascades.json"
+      }
+    ]
+  },
+  "objects": [
+    {
+      "id": "bremsstrahlung",
+      "title": "Bremsstrahlung",
+      "radius": 2.688,
+      "color": "#5a1f2e",
+      "position": [
+        0,
+        10.5,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Bremsstrahlung",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "synchrotron_cascades",
+      "title": "Synchrotron Cascades",
+      "radius": 2.688,
+      "color": "#2f4f7a",
+      "position": [
+        0,
+        -10.5,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Synchrotron Cascades",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    }
+  ]
+}

@@ -10,7 +10,7 @@ The note remains provisional. It should be read as a compact orientation to the 
 
 1. **Nucleons as Defects**: Protons and neutrons are modeled as stable excitations or "defects" within the background Noether Sea.
 2. **Nuclear Force**: The "Strong Force" is the residual interaction between Tri-Binary assemblies at short range (approaching the $v = c_f$ self-hit limit).
-3. **Superfluid Noether-Sea Medium**: Given the Helium-like (2 pro + 2 anti) coupling of the Noether-Sea cores, the ambient medium should be analyzed as a superfluid medium. This explains inertia as motion without resistance until a critical energy threshold is reached.
+3. **Superfluid Noether-Sea Medium**: Given the Helium-like (2 pro + 2 anti) coupling of the Noether-Sea cores, the ambient medium should be analyzed with a superfluid analogy. The analogy does not make inertia a dissipative drag threshold; inertial response must come from medium-dressed causal-ledger skew and shielding, while ordinary resistance remains a separate breakdown channel.
 4. **Atomic Resonance**: Atomic orbitals are standing-wave resonances of architrino decorations within the Noether-Sea lattice.
 
 
@@ -18,7 +18,7 @@ The note remains provisional. It should be read as a compact orientation to the 
 
 1. **Noether-Sea Interaction**: Nucleons are not isolated; they are excitations/defects within the dense medium of coupled pro/anti Noether cores.
 2. **Binding Energy**: Calculation of binding energy must account for the pressure/tension exerted by the surrounding "Sea."
-3. **Noether-Sea Density**: We define the local Noether-Sea density $\rho_{nc}$ as a scalar field on the $\mathbb{U}_{\text{now}}$ universe-state grid.
+3. **Noether-Sea Density**: Use the canonical local density $\rho_{\text{core}}(\mathbf{x},t)$ and normalized density $n(\mathbf{x},t)=\rho_{\text{core}}/\rho_{\text{core},0}$ as scalar fields on the $\mathbb{U}_{\text{now}}$ universe-state grid.
 
 
 ## Nuclear Physics in the Sea of Cores

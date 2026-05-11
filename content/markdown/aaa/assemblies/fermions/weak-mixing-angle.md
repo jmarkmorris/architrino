@@ -1,6 +1,6 @@
 # Weak Mixing Angle
 
-This note records the current geometric interpretation of the weak mixing angle inside the assembly framework. Its purpose is to distinguish what is being used as a constrained geometric hypothesis from what is already measured electroweak phenomenology, and to keep the scaffold-frame versus axial-frame distinction explicit. It bridges the fermion-side geometry to [Electroweak Bosons: Photons, W/Z, and Higgs](../bosons/electroweak-bosons.md) and [Emergence of U(1)/SU(2)](../../dynamics/gauge-structure-emergence.md).
+This note records the current geometric interpretation of the weak mixing angle inside the assembly framework. Its purpose is to distinguish what is being used as a constrained geometric hypothesis from what is already measured electroweak phenomenology, and to keep the scaffold-frame versus axial-frame distinction explicit. It bridges the fermion-side geometry to [Electroweak Bosons: Photons, W/Z, and Higgs](../bosons/electroweak-bosons.md) and [Emergence of U(1)/SU(2)](../../interactions/gauge-structure-emergence.md).
 
 ## Purpose
 

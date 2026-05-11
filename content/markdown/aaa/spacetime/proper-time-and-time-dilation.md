@@ -1,10 +1,12 @@
 # Proper Time and Time Dilation
 
-**Goal:** Derive the relation between **absolute time** $t$ (used to index $\mathbb{U}_{\text{now}}$, the universe-now state, in the Euclidean void) and the **proper time** $\tau$ measured by physical clocks built from tri‑binary assemblies, and show how GR‑like time dilation and gravitational redshift arise as effective behavior.
+**Goal:** Derive the relation between **absolute time** $t$ (used by the $\mathbb{U}_{\text{now}}$ universe-state perspective in the Euclidean void) and the **proper time** $\tau$ measured by physical clocks built from tri‑binary assemblies, and show how GR‑like time dilation and gravitational redshift arise as effective behavior.
+
+This chapter is the canonical home for proper time, observer clocks, clock slowing, and the clock map from absolute time $t$ to measured proper time $\tau$. Foundation and ontology pages should point here once the discussion becomes a clock law, frequency extraction, observer-clock comparison, or Lorentz/GR time-dilation recovery.
 
 We seek a map
 $$
-\frac{d\tau}{dt} = F\big(\mathbf{v}, n(\mathbf{x}), \Phi_{\text{eff}}(\mathbf{x}), \text{clock geometry}\big)
+\frac{d\tau}{dt} = F\big(\mathbf{v}, n(\mathbf{x}), \chi_{\text{sea}}(\mathbf{x}), \Phi_{\text{eff}}(\mathbf{x}), \text{clock geometry}\big)
 $$
 that reproduces, in the appropriate regime,
 $$
@@ -13,6 +15,7 @@ $$
 and generalizes to strong‑field / high‑velocity conditions.
 
 Notation convention used in this chapter: $n(\mathbf{x})\equiv \rho_{\text{core}}(\mathbf{x})/\rho_{\text{core},0}$ is the canonical medium-density variable.
+The Noether-Sea delay factor is $\chi_{\text{sea}}(\mathbf{x})\equiv c_f/c_{\text{eff}}(\mathbf{x})$; use it for refractive-delay language so $n$ remains reserved for density.
 
 ---
 
@@ -40,7 +43,7 @@ A clock is any assembly with a **stable, countable internal cycle**:
 - Minimal model: a tri‑binary Noether core where one binary (typically the middle) serves as the “pendulum.”
 - Base frequency $\omega_0$ (or period $T_0 = 2\pi/\omega_0$) is defined for:
  - Clock **at rest** in the absolute frame,
- - In a region of homogeneous Noether Sea density $n=1$ and negligible external gradients.
+ - In a region of homogeneous Noether-Sea density $n=1$ and negligible external gradients.
 
 Proper time is then defined operationally as:
 $$
@@ -85,7 +88,7 @@ in the regime where the clock’s motion does not significantly disturb the loca
 Massive assemblies polarize and densify the surrounding Noether Sea. A clock deeper in this polarized region experiences:
 
 1. **Higher local Noether density $n(\mathbf{x})$ (equivalently higher $\rho_{\text{core}}$):** 
- Interaction delays with the medium (and between internal architrinos via the medium) increase. This acts like an **index of refraction** for all internal processes.
+ Interaction delays with the medium (and between internal architrinos via the medium) increase. This raises the **Noether-Sea delay factor** $\chi_{\text{sea}}$ for internal processes.
 
 2. **Effective field speed reduction $c_{\text{eff}}(\mathbf{x}) < c_f$:**
  - The propagation of wake influences is slowed in dense regions (more frequent encounters with Noether cores).
@@ -294,7 +297,7 @@ Execution protocols, benchmark catalogs, and numeric pass/fail thresholds are de
 This program fails—and the emergent‑metric project is likely untenable—if any of the following hold:
 
 1. **Incorrect velocity dependence:** 
- - If $T(v)$ cannot be made to fit $\propto \gamma(v)$ without fine‑tuning internal clock geometry or Noether Sea parameters.
+ - If $T(v)$ cannot be made to fit $\propto \gamma(v)$ without fine‑tuning internal clock geometry or Noether-Sea parameters.
 
 2. **Wrong sign or magnitude of gravitational dilation:** 
  - Clocks deeper in a potential must tick slower. Any prediction of faster ticks, or gross magnitude mismatch, is fatal.

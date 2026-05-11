@@ -14,6 +14,7 @@
       "path": "content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md"
     },
     "view": {
+      "columns": 1,
       "autoOpen": true
     }
   },

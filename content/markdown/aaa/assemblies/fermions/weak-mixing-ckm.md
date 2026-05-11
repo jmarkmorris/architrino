@@ -356,7 +356,7 @@ _Status: speculative scaffold for a derivation. Fill in with explicit states, ov
 - **Goal:** build a ledger to track weak transmutation events, ensuring charge, shielding, and architrino counts close. Mark allowed vs. unseen channels and why.
 - **Forward axial sites:** weak-coupling triad = forward three poles (IMO by radius or H/M/L energy ordering), with pro vs anti set by precession order (HML vs HLM → matter/antimatter).
 - **Environmental partners:**
-  - Photon (speculative): Two planar Bose-Einstein state Noether cores, possibly pro/anti, or pro/pro with opposite spins (L/R).
+  - Photon: a coaxial contra-rotating pro/anti planar pair.
   - Noether Sea: hypothesized as paired pro/anti Noether cores; a local interaction could draw 2 pro + 2 anti cores (4 units) to participate - dualistic to Heliums 2P2N.
 - **Architrino budget example:** reacting with a Noether-Sea super-assembly (4 cores) × (6 architrinos/core) = 24 architrinos (12 pro, 12 anti) available transiently. This allows ephemeral W/Z corridors and other products to form while conserving counts.
 - **Next step:** draft a reaction table/ledger listing reactants, participating cores/architrinos, allowed products, and “forbidden” outcomes with reasons (e.g., shielding mismatch, insufficient flux-tube closure, unmet charge quantization).
@@ -380,7 +380,7 @@ _Status: speculative scaffold for a derivation. Fill in with explicit states, ov
 | $W$ corridor budget (generic) | — | — | 2 neutral cores + 6 excess decorations | returns neutral cores to Sea; transfers net $\pm e$ | charged corridor | accounting rule | $W^+$: 2 cores + (9P,3E) → +e; $W^-$: 2 cores + (3P,9E) → –e; cores end neutral |
 
 Notes:
-- “Sea cores tapped” = how many Noether Sea cores are pulled transiently (if any). Default 0 unless we posit corridor assembly needs external cores.
+- “Sea cores tapped” = how many Noether-Sea cores are pulled transiently (if any). Default 0 unless we posit corridor assembly needs external cores.
 - Populate further rows for $c\leftrightarrow s$, $b\to u$, rare loop-induced $b\to s$, and anti-quark channels (same CKM but right-handed anti-doublets).
 
 ### Provenance
@@ -395,7 +395,7 @@ Charge Conservation Enforcement (speculative, to simulate):
 - Any spare axial architrinos must close through one of the following channels:
   - **Product incorporation:** absorbed into a final-state assembly while preserving charge/polarity bookkeeping.
   - **Current carriage:** carried out on charged lepton/neutrino legs as part of the weak-current flow.
-  - **Immediate annihilation:** cancelled by opposite-polarity architrinos drawn from the Sea, releasing short photon-like planar modes.
+  - **Immediate annihilation:** cancelled by opposite-polarity architrinos drawn from the Sea, releasing short photon planar-pair modes.
 - Practical rule for simulations: treat a true long-range "escape" channel as forbidden unless a dedicated high-resolution run demonstrates otherwise.
 
 Decision cues to log in sims: initial separation, relative phase, local Sea density; pick dominant channel based on these and record energy/charge routing.

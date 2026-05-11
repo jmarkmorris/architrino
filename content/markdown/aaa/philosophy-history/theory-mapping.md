@@ -12,7 +12,7 @@ The document is organized as a matrix rather than a linear history. The first se
 
 **Use:** This chapter is not a neutral encyclopedia and it is not a full historical narrative. It is a structured comparison document for readers who need to know what each major theory claims, what domain it governs well, and how it is retained, reduced, or reclassified within a substrate-first architecture.
 
-**Observation Stack:** Many inherited spacetime and field variables are calibrated through Physical Observer readout (often photon-mediated historically, and now also neutrino- and gravitational-wave-mediated where applicable). In $\mathbb{A}\mathbb{A}\mathbb{A}$, this does not invalidate the theories; it locates their coordinate, metric, and field variables in an observer-facing effective layer rather than directly in the substrate ledger available to the Absolute Observer.
+**Observation Stack:** Many inherited spacetime and field variables are calibrated through Physical Observer readout (often photon-mediated historically, and now also neutrino- and gravitational-wave-mediated where applicable). In $\mathbb{A}\mathbb{A}\mathbb{A}$, this does not invalidate the theories; it locates their coordinate, metric, and field variables in an observer-facing effective layer rather than directly in the substrate ledger available to the $\mathbb{U}_{\text{now}}$ universe-state perspective.
 
 **Regime-Capture Warning:** Modern physics has achieved extraordinary precision inside narrow regions of empirical regime space, but it has too often treated that precision as permission to speak for ontology as a whole. Equations such as the Schrödinger equation, perturbative quantum field models, weak-field GR, and cosmological parameter fits are powerful closures over limited conditions, not final access to substrate reality. The institutional failure is that these regime-bound successes became gatekeeping standards for what could count as fundamental explanation. From the $\mathbb{A}\mathbb{A}\mathbb{A}$ standpoint, this has delayed recognition of the deeper substrate solution: inherited theories must be recovered as effective limits, not enthroned as the architecture of reality.
 
@@ -135,7 +135,7 @@ Under $\mathbb{A}\mathbb{A}\mathbb{A}$, this should be read as effective bookkee
 | QFT language | $\mathbb{A}\mathbb{A}\mathbb{A}$ reading |
 | --- | --- |
 | Vacuum state | Reference Noether-Sea background |
-| Scalar field $\phi$ | Coarse-grained scalar amplitude of Noether-Sea distortion |
+| Scalar field $\phi$ | Coarse-grained scalar amplitude of Noether-Sea density, compression, or radial-breathing response |
 | Mode $u_k$ | Normal-mode pattern supported by a Noether-core cluster or medium region |
 | Creation operator $a_k^\dagger$ | Coherent addition, nucleation, or release of a cluster contribution into mode $k$ |
 | Annihilation operator $a_k$ | Absorption, damping, or reconfiguration of that contribution back into the surrounding Noether Sea |
@@ -173,7 +173,7 @@ G_{\mu\nu}=8\pi G\left(T_{\mu\nu}^{\mathrm{matter}}+T_{\mu\nu}^{(\phi)}\right),
 $$
 so scalar-field energy density, pressure, and gradients can affect curvature. This is the common mathematical route behind subjects such as Higgs-like scalar modes, inflaton fields, quintessence, boson stars, scalar-tensor gravity, and semiclassical matter-on-geometry models.
 
-Operationally, the metric background used in this equation is normally reconstructed through signal-mediated observations: clock synchronization, radar distance, redshift, lensing, null-cone timing, and later multi-messenger channels (often photon-mediated historically, and now also neutrino- and gravitational-wave-mediated where applicable). The Klein-Gordon field need not itself be electromagnetic, but its spacetime stage is usually calibrated through Physical Observer readout. In $\mathbb{A}\mathbb{A}\mathbb{A}$, this places Klein-Gordon-like scalar behavior in the effective continuum layer: the Absolute Observer would track the underlying architrino positions, velocities, and causal wake intersections directly, while Physical Observers infer scalar propagation on an emergent metric.
+Operationally, the metric background used in this equation is normally reconstructed through signal-mediated observations: clock synchronization, radar distance, redshift, lensing, null-cone timing, and later multi-messenger channels (often photon-mediated historically, and now also neutrino- and gravitational-wave-mediated where applicable). The Klein-Gordon field need not itself be electromagnetic, but its spacetime stage is usually calibrated through Physical Observer readout. In $\mathbb{A}\mathbb{A}\mathbb{A}$, this places Klein-Gordon-like scalar behavior in the effective continuum layer: the $\mathbb{U}_{\text{now}}$ universe-state perspective would track the underlying architrino positions, velocities, and causal wake intersections directly, while Physical Observers infer scalar propagation on an emergent metric.
 
 With a source term, the same equation can be written schematically as
 $$
@@ -181,7 +181,7 @@ $$
 $$
 Here $J$ may be an ordinary source density, a distributional point or surface source, or a regularized source $J_\eta$ used for calculation. This distinction matters because a Dirac delta is not an infinite-valued ordinary scalar field; it is a distributional source whose mollified version becomes an ordinary finite scalar profile.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\phi$ should be treated as a coarse-grained scalar amplitude of Noether-Sea or tri-binary medium distortion, not as a fundamental continuous substance. The Klein-Gordon mass term maps naturally to an effective restoring stiffness or mode gap of the medium. The metric wave operator $\nabla^\mu\nabla_\mu$ belongs to the emergent metric closure, not to the substrate-level Euclidean void. The curvature-coupling term $\xi R\phi^2$ is therefore read as a bridge term: scalar-mode behavior changes with effective medium curvature, density, or stress. In this reading, $T_{\mu\nu}^{(\phi)}$ is a useful GR-facing stress-energy summary of scalar collective behavior rather than final ontology.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\phi$ should be treated as a coarse-grained scalar amplitude of Noether-Sea density, compression, or radial-breathing response, not as a fundamental continuous substance. The Klein-Gordon mass term maps naturally to an effective restoring stiffness or mode gap of the medium; particle rest mass itself remains the externally exposed response of trapped internal causal history, shielding, and Noether-Sea coupling. The metric wave operator $\nabla^\mu\nabla_\mu$ belongs to the emergent metric closure, not to the substrate-level Euclidean void. The curvature-coupling term $\xi R\phi^2$ is therefore read as a bridge term: scalar-mode behavior changes with effective medium curvature, density, or stress. In this reading, $T_{\mu\nu}^{(\phi)}$ is a useful GR-facing stress-energy summary of scalar collective behavior rather than final ontology.
 
 **What Still Works:** Relativistic scalar-field equations remain indispensable for spin-0 sectors, scalar perturbations, effective field theory, cosmology, and curved-spacetime comparison work. They provide a compact target for any substrate theory that claims to recover continuum field behavior.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the scalar field, mass parameter, potential $V(\phi)$, and curvature coupling $\xi R\phi^2$ are reclassified as effective descriptors of collective assembly response, medium stiffness, nonlinear relaxation, and emergent-metric feedback.
@@ -241,7 +241,7 @@ $$
  - \frac{1}{4}F_{\mu\nu}F^{\mu\nu}, \quad
 \text{where } D_\mu = \partial_\mu + ieA_\mu.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The U(1) gauge symmetry encodes invariance under a global phase associated with architrino polarity and net charge routing. $A_\mu$ is the effective continuum potential generated by architrino wakes; photons are planar, neutral tri-binary “wave packets” of the Noether Sea that mediate interaction between charged tri-binaries (electrons/positrons). The concrete repo-side treatment lives in [Electroweak Bosons: Photons, W/Z, and Higgs](../assemblies/bosons/electroweak-bosons.md) and [Emergence of U(1)/SU(2)](../dynamics/gauge-structure-emergence.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The U(1) gauge symmetry encodes invariance under a global phase associated with architrino polarity and net charge routing. $A_\mu$ is the effective continuum potential generated by architrino wakes; photons are coaxial contra-rotating pro/anti planar pairs whose mode trains mediate interaction between charged tri-binaries (electrons/positrons). The concrete repo-side treatment lives in [Electroweak Bosons: Photons, W/Z, and Higgs](../assemblies/bosons/electroweak-bosons.md) and [Emergence of U(1)/SU(2)](../interactions/gauge-structure-emergence.md).
 Historically, the Liénard-Wiechert moving-source potentials already pointed in this direction by showing that electromagnetic potentials depend on source motion and causal delay. In the present program they matter as an early effective hint that $A_\mu$ should be read as a compressed summary of source-history transport rather than as a primitive object detached from the moving charges that generate it.
 
 **What Still Works:** Quantum Electrodynamics (QED) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
@@ -268,7 +268,7 @@ $$
 \mathrm{SU(2)}_L \times \mathrm{U(1)}_Y \xrightarrow{\langle H\rangle\neq 0}
 \mathrm{U(1)}_{\mathrm{EM}}.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The Higgs field corresponds to a dense, nearly-uniform tri-binary configuration of spacetime assemblies in the Noether Sea whose internal oscillation pattern sets local inertial “mass loading.” Electroweak symmetry breaking is the selection of a preferred phase/orientation pattern in this medium, which distinguishes a massless planar excitation (photon) from massive vector assemblies (W, Z). See [Electroweak Bosons: Photons, W/Z, and Higgs](../assemblies/bosons/electroweak-bosons.md), [Weak Mixing Angle](../assemblies/fermions/weak-mixing-angle.md), and [Weak Mixing and CKM](../assemblies/fermions/weak-mixing-ckm.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The Higgs field corresponds to an effective account of how a dense, nearly-uniform tri-binary configuration in the Noether Sea contributes to local inertial response. It should not be treated as the sole origin of mass: mass is the externally exposed response of trapped internal causal history, shielding, and Noether-Sea coupling. Electroweak symmetry breaking is the selection of a preferred phase/orientation pattern in this medium, which distinguishes the massless photon planar-pair channel from massive vector assemblies (W, Z). See [Electroweak Bosons: Photons, W/Z, and Higgs](../assemblies/bosons/electroweak-bosons.md), [Weak Mixing Angle](../assemblies/fermions/weak-mixing-angle.md), and [Weak Mixing and CKM](../assemblies/fermions/weak-mixing-ckm.md).
 
 **What Still Works:** Electroweak Theory (EW) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of tri-binary assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
@@ -384,10 +384,10 @@ the metric.
 $$
 G_{\mu\nu} + \Lambda g_{\mu\nu} = \frac{8\pi G}{c^4} T_{\mu\nu}.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $g_{\mu\nu}$ is an effective metric functional of the local state of the tri-binary spacetime medium: its density, internal oscillation rate, and anisotropy. Architrino and tri-binary trajectories in Euclidean 3D with absolute time project to geodesics in this emergent metric. $G_{\mu\nu}$ encodes how inhomogeneities in the Noether Sea redirect propagation, while $\Lambda$ represents baseline energy density of the spacetime assemblies.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $g_{\mu\nu}$ is an effective metric functional of the local state of the Noether Sea: its density, internal oscillation rate, delay factor, and anisotropy. Architrino and tri-binary trajectories in Euclidean 3D with absolute time project to geodesics in this emergent metric only after coarse-graining over clock/ruler and signal behavior. $G_{\mu\nu}$ encodes how inhomogeneities in the Noether Sea redirect propagation, while $\Lambda$ represents baseline energy density of the spacetime assemblies.
 
 **What Still Works:** General Relativity (GR) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether Sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether-Sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
 **Transition Relevance:** Transition relevance is high because legacy gravity and relativistic calculations remain indispensable for observation, navigation, and limiting-case recovery.
 **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
 
@@ -414,17 +414,17 @@ Equivalent invariant relation (mass shell):
 $$
 E^2 = (pc)^2 + (mc^2)^2.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Lorentz symmetry and an invariant “speed of light” arise when architrino interactions are probed in the $v=c_f$ regime of the middle binary, where the Noether Sea is approximately homogeneous and isotropic. Proper time corresponds to the internal oscillation phase of local tri-binary assemblies relative to absolute time, yielding SR time dilation and length contraction as effective kinematics.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Lorentz symmetry and an invariant “speed of light” are theorem targets for assemblies moving through an approximately homogeneous and isotropic Noether Sea. Proper time corresponds to internal cycle count relative to absolute time, while time dilation and length contraction must be derived from moving-assembly deformation, clock-law retuning, and two-way signal synchronization. The middle-binary $v=c_f$ regime supplies a candidate signal-scale mechanism, not a completed proof by itself.
 For the assembly-level closure used in this program, see [Effective Energy-Momentum Closure](../dynamics/energy.md#effective-energy-momentum-closure).
 
 **What Still Works:** Special Relativity (SR) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether Sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether-Sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
 **Transition Relevance:** Transition relevance is high because legacy gravity and relativistic calculations remain indispensable for observation, navigation, and limiting-case recovery.
 **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
 
 **Geometric proof targets:**
-- Derive Lorentz-invariant cones from the middle-binary signal limit.
-- Prove time dilation/length contraction from phase-rate comparisons across assemblies.
+- Derive Lorentz-invariant cones from the middle-binary signal limit plus Noether-Sea delay-factor closure.
+- Prove time dilation and length contraction from dual deformation, phase-rate comparisons across assemblies, and bounded preferred-frame leakage.
 
 ---
 ### Newtonian Mechanics and Gravity
@@ -443,7 +443,7 @@ $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Newtonian mechanics is the low-speed, weak-field limit of architrino/assembly dynamics in Euclidean 3D with absolute time. The effective $1/r^2$ gravitational potential arises from long-range patterns in the tri-binary spacetime medium’s density and its influence on the causal wake geometry; “gravitational force” is an emergent shorthand for small deviations from straight-line motion within that medium.
 
 **What Still Works:** Newtonian Mechanics and Gravity remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether Sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether-Sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
 **Transition Relevance:** Transition relevance is high because legacy gravity and relativistic calculations remain indispensable for observation, navigation, and limiting-case recovery.
 **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
 
@@ -468,7 +468,7 @@ $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** MOND-like behavior can, in principle, emerge if the tri-binary spacetime medium exhibits new phases or non-linear response below a characteristic acceleration or curvature scale set by its internal self-hit dynamics. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this would be a property of the medium’s constitutive relation (how assembly density responds to stress/curvature), not a modification of fundamental laws in the Euclidean void.
 
 **What Still Works:** Modified Gravity (MOND / TeVeS) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether Sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether-Sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
 **Transition Relevance:** Transition relevance is high because legacy gravity and relativistic calculations remain indispensable for observation, navigation, and limiting-case recovery.
 **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
 
@@ -491,7 +491,7 @@ $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ does not posit fundamental strings or extra dimensions; these appear, at best, as effective models of certain extended architrino assembly patterns (e.g., long coherent trains or vortex lines in the Noether Sea). String actions then summarize the dynamics of these extended excitations in a particular limit rather than define the underlying substrate.
 
 **What Still Works:** String Theory remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether Sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether-Sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
 **Transition Relevance:** Transition relevance is high because legacy gravity and relativistic calculations remain indispensable for observation, navigation, and limiting-case recovery.
 **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
 
@@ -514,7 +514,7 @@ $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ starts from a continuous Euclidean void and discrete architrinos. Any apparent discreteness of area/volume would be emergent, arising from quantized, stable patterns of tri-binary spacetime assemblies and selection rules on their configurations. Spin networks can be viewed as effective graphs summarizing how these assemblies connect and exchange architrinos, not as a fundamental replacement of the Euclidean container.
 
 **What Still Works:** Loop Quantum Gravity (LQG) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether Sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether-Sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
 **Transition Relevance:** Transition relevance is high because legacy gravity and relativistic calculations remain indispensable for observation, navigation, and limiting-case recovery.
 **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
 
@@ -552,7 +552,7 @@ For this reason the preferred local term is **Horizon interface**: surface degre
 That yields a disciplined shorthand: Horizon interface for the Planck-aligned interface layer, bulk for $v<c_f$ volumetric cores, and AdS-like for the $v>c_f$ self-hit interior, all treated as regimes on one constitutive continuum.
 
 **What Still Works:** Cosmic Censorship / Holographic Principle / AdS-CFT remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether Sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether-Sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
 **Transition Relevance:** Transition relevance is high because legacy gravity and relativistic calculations remain indispensable for observation, navigation, and limiting-case recovery.
 **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
 
@@ -625,7 +625,7 @@ the angular power spectrum.
 $$
 C_\ell = \langle |a_{\ell m}|^2 \rangle.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The acoustic peaks record standing-wave patterns of coupled assembly sectors: photon-like planar tri-binaries and baryon-like composite assemblies embedded in the tri-binary spacetime medium. Their spectrum encodes how the Noether Sea and matter assemblies responded collectively to density and pressure perturbations before decoupling.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The acoustic peaks record standing-wave patterns of coupled assembly sectors: photon planar-pair modes and baryon-like composite assemblies embedded in the tri-binary spacetime medium. Their spectrum encodes how the Noether Sea and matter assemblies responded collectively to density and pressure perturbations before decoupling.
 
 **What Still Works:** CMB Acoustic Peaks remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.

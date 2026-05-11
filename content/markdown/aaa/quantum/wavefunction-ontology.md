@@ -14,7 +14,7 @@ The framework explicitly separates the **ontic reality** of architrino trajector
 
 In the architrino framework, the wavefunction $\psi(\mathbf{x}, t)$ is not a fundamental physical field propagating in a high-dimensional configuration space. Instead, it is an **effective, coarse-grained epistemic tool** utilized by Physical Observers. 
 
-The universe at the ontic level (accessible only to the conceptual Absolute Observer) consists of point-like architrinos executing definite trajectories $\mathbf{x}_i(t)$ in a 3D Euclidean void, interacting via a continuous superposition of causal wake surfaces. Because Physical Observers (assemblies) cannot access the exact microstate or the full path-history of the Noether Sea, they must rely on statistical descriptions.
+The universe at the ontic level, as represented by the $\mathbb{U}_{\text{now}}$ universe-state perspective, consists of point-like architrinos executing definite trajectories $\mathbf{x}_i(t)$ in a 3D Euclidean void, interacting via a continuous superposition of causal wake surfaces. Because Physical Observers (assemblies) cannot access the exact microstate or the full path-history of the Noether Sea, they must rely on statistical descriptions.
 
 The wavefunction encodes:
 *   **The superposed potential landscape:** A coarse-grained representation of the ambient causal wake intersections.
@@ -32,10 +32,10 @@ When an architrino intersects a causal wake surface, it receives an instantaneou
 1.  The unoriented line of action.
 2.  The net force magnitude.
 
-The receiver cannot intrinsically distinguish between the attractive pull of an opposite polarity and the repulsive push of a like polarity located on the diametrically opposite side of the line of action. Furthermore, because the local potential is a dense superposition of hits from countless Noether Sea cores, the exact origin and path-history of any single perturbation is irretrievable. 
+The receiver cannot intrinsically distinguish between the attractive pull of an opposite polarity and the repulsive push of a like polarity located on the diametrically opposite side of the line of action. Furthermore, because the local potential is a dense superposition of hits from countless Noether-Sea cores, the exact origin and path-history of any single perturbation is irretrievable.
 
 ### Measurement Back-Action and the $h$-Bracket
-Any attempt by a Physical Observer to resolve the microstate of an assembly requires an interaction (e.g., scattering a photon-like planar assembly). This interaction injects a discrete, minimum action increment (scaling with $h$) into the target assembly's causal history. This back-action continuously alters the boundary conditions of the state, placing a hard limit on simultaneously resolvable conjugate variables. The uncertainty principle brackets the physical action step associated with assembly transitions.
+Any attempt by a Physical Observer to resolve the microstate of an assembly requires an interaction (e.g., scattering a photon assembly modeled as a coaxial contra-rotating pro/anti planar pair). This interaction injects a discrete, minimum action increment (scaling with $h$) into the target assembly's causal history. This back-action continuously alters the boundary conditions of the state, placing a hard limit on simultaneously resolvable conjugate variables. The uncertainty principle brackets the physical action step associated with assembly transitions.
 
 ## Wavefunction Collapse as Threshold Resolution
 
@@ -66,7 +66,7 @@ There is only one realized, strictly continuous trajectory in absolute time. The
 If the wavefunction is an effective description of threshold dynamics rather than a fundamental field, then deviations from exact unitary evolution and instantaneous collapse must exist.
 
 **Failure Modes and Experimental Signatures:**
-*   **Ultrafast Decoherence Deviations:** At timescales shorter than the local Lyapunov time of the Noether Sea interactions, the statistical assumptions yielding the Born rule should weaken. Very high-frequency, weak-measurement probes may reveal non-Markovian hysteresis in the state transition process, violating strictly predicted QM transition rates.
+*   **Ultrafast Decoherence Deviations:** At timescales shorter than the local Lyapunov time of the Noether-Sea interactions, the statistical assumptions yielding the Born rule should weaken. Very high-frequency, weak-measurement probes may reveal non-Markovian hysteresis in the state transition process, violating strictly predicted QM transition rates.
 *   **Macro-Realism:** If experiments demonstrate that collapse occurs instantaneously with absolutely zero dynamical transition time (violating finite $c_f$ delay limits), this ontology is falsified.
 
 ## Closure Interface: Basin-Measure Formalization

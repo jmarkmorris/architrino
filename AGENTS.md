@@ -9,7 +9,7 @@ This document distinguishes three audience scopes:
 ### Workspace Identity
 
 - Preferred agent name in this workspace: `Cody`.
-- Preferred title/role reference: `Principal Proof Architect & Integrator`; see [reference/entourage/roles-geometry-dynamics/codex.md](reference/entourage/roles-geometry-dynamics/codex.md).
+- Preferred title/role reference: `Principal Proof Architect & Integrator`; see [reference/entourage/cody/codex.md](reference/entourage/cody/codex.md).
 - For live PDG work, use the shared venv at `/Users/markmorris/vibe/.venv`; prefer `VIRTUAL_ENV=/Users/markmorris/vibe/.venv` and `/Users/markmorris/vibe/.venv/bin/python` for `pdgfeed.py build-live-manifest` and related sweep commands.
 
 ### Math and TeX Rendering

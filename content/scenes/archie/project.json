@@ -22,6 +22,10 @@
       {
         "nodeId": "support_architrino_research",
         "scenePath": "content/scenes/archie/support_architrino_research.json"
+      },
+      {
+        "nodeId": "software_architecture_and_maintenance",
+        "scenePath": "content/scenes/archie/software_architecture_and_maintenance.json"
       }
     ]
   },
@@ -48,6 +52,14 @@
       "radius": 2.2,
       "color": "#7a5a2f",
       "labelTitle": "Support Architrino Research",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "software_architecture_and_maintenance",
+      "title": "Software Architecture and Maintenance",
+      "radius": 2.2,
+      "color": "#2f4f7a",
+      "labelTitle": "Software Architecture and Maintenance",
       "labelBadge": "doc"
     }
   ]

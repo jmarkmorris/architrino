@@ -14,6 +14,7 @@
       "path": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md"
     },
     "view": {
+      "columns": 1,
       "autoOpen": true
     }
   },

@@ -22,7 +22,6 @@
             "id": "theory_mapping_overview",
             "labelTitle": "Overview",
             "labelBadge": "doc",
-            "color": "#2f4f7a",
             "mode": "doc"
           },
           "spacetime gravity emergent metric": {
@@ -40,7 +39,9 @@
         }
       }
     },
-    "view": {}
+    "view": {
+      "columns": 1
+    }
   },
   "objects": []
 }

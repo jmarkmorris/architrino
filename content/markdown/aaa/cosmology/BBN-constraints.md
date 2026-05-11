@@ -87,7 +87,7 @@ The reaction bookkeeping is unchanged; the $\mathbb{A}\mathbb{A}\mathbb{A}$ shif
 
 The BBN story is one continuous mechanism:
 
-1. The Noether sea evolves in absolute time $t$ within a fixed Euclidean container.
+1. The Noether Sea evolves in absolute time $t$ within a fixed Euclidean container.
 2. This medium evolution defines an effective expansion/cooling history and therefore an emergent $H(t)$ at observer level, matching the bookkeeping used in [Expansion Mechanism](./expansion-mechanism.md).
 3. The resulting thermal history sets reaction-rate competition and freeze-out ordering in the standard network.
 4. The coupled light-element yields (H, D, He, trace Li) are outputs of this same medium-and-assembly dynamics and must remain compatible with the observer-level chronology in [CMB](./CMB.md).

@@ -11,11 +11,11 @@ It should be read alongside [Philosophy of Science](philosophy-of-science.md), [
 The current $\mathbb{A}\mathbb{A}\mathbb{A}$ position assumed throughout is:
 - **Reductionist**: All complexity derives from one fundamental entity type (architrinos = eternal, equal-and-opposite architrinos) and their interaction rules.
 - **Causal substrate with emergent quantum behavior**: Pilot-wave-like aspects without fundamental randomness in the base interactions, with **deterministic multistability** at self-hit branch points.
-- **Euclidean 3D void + absolute time**: Rejecting spacetime as fundamental; making Lorentz symmetry and GR emergent.
+- **Euclidean 3D void + absolute time**: Rejecting spacetime as fundamental; making Lorentz symmetry, clock slowing, ruler contraction, and GR effective behavior emergent through Noether-Sea response.
 - **No creation, no annihilation**: Architrinos are eternal. All change is reconfiguration.
 - **Self-hit regime**: Entirely novel dynamics when sources exceed field propagation speed.
 - **$\mathbb{U}_{\text{now}}$ universe-state perspective**: A conceptual construct (not a physical device) that can, in principle, track the full microstate—position, velocity, and polarity of every architrino—at any (x,y,z,t) in the fixed Euclidean frame. This perspective knows where and when each causal wake surface was emitted as it passes any point.
-- **Spacetime assembly network**: What GR calls the "vacuum" is not empty void but the **Noether Sea**: a spacetime assembly network of coupled pro/anti Noether cores (tri-binary assemblies forming the spacetime medium). 
+- **Spacetime assembly network**: What GR calls the "vacuum" is not empty void but the **Noether Sea**: a spacetime assembly network of coupled pro/anti Noether cores (tri-binary assemblies whose organized state provides the effective spacetime medium). 
 
 **Terminology note:** In this document, **"branching"** refers to **deterministic multistability** (microstate-sensitive attractor selection), not Many-Worlds splitting or fundamental randomness.
 
@@ -451,7 +451,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **What They Got Wrong or Overstated:** Classical ether microphysics remained underspecified and unable to provide a complete reduction pathway across all domains without deeper substrate dynamics.
 
-**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly vindicated and upgraded, because preferred-frame medium realism is retained and rebuilt with explicit architrino assembly ontology.
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly vindicated and upgraded, because preferred-frame medium realism is retained and rebuilt with explicit architrino assembly ontology. The modern theorem target is stronger than Lorentz's original move: moving assemblies must dynamically deform and retune so longitudinal contraction, clock-period renormalization, and two-way signal-speed isotropy emerge together with bounded preferred-frame leakage.
 
 **Transition Relevance**: Lorentz is exceptionally useful in transition for reframing relativity as emergent effective symmetry over substrate dynamics without sacrificing empirical continuity.
 
@@ -459,7 +459,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Core Belief**: Electromagnetic phenomena are governed by a medium-relative dynamics in which observed Lorentz symmetry can emerge despite a preferred rest structure.
 
-**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Lorentz's dynamical interpretation and identifies the medium as spacetime assembly network behavior over Euclidean void and absolute time, with $\mathbb{U}_{\text{now}}$ playing the preferred-frame ideal.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Lorentz's dynamical interpretation and identifies the medium as Noether-Sea assembly-network behavior over Euclidean void and absolute time, with $\mathbb{U}_{\text{now}}$ playing the preferred-frame ideal.
 
 **Legacy Shift**: Lorentz moves from discarded alternative to core interpretive ancestor, with his ontology formalized by explicit causal delayed substrate mechanics.
 
@@ -486,7 +486,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Core Belief**: Special relativity treats Lorentz symmetry and relativity of simultaneity as foundational kinematics, while general relativity treats gravity as dynamical spacetime curvature with coordinate-gauge structure.
 
-**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains relativistic empirical content but interprets SR effects as emergent from medium dynamics and GR curvature as effective assembly-network behavior on Euclidean space with absolute time, where $\mathbb{U}_{\text{now}}$ provides a global causal map not operationally accessible to physical observers.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains relativistic empirical content but interprets SR effects as emergent from Noether-core deformation, clock-law retuning, and Noether-Sea response, with GR curvature as effective assembly-network behavior on Euclidean space with absolute time. In this reading, $\mathbb{U}_{\text{now}}$ provides a global causal map not operationally accessible to physical observers.
 
 **Legacy Shift**: Relativity remains indispensable as a high-accuracy effective theory stack, while its primitive geometric ontology is replaced by substrate-first mechanistic emergence.
 

@@ -350,6 +350,10 @@ export class SceneRepository {
     return false;
   }
 
+  shouldIncludeFixedPositionInStructuredPalette(sceneData) {
+    return String(sceneData?.scene?.type ?? "").toLowerCase() === "scene-index";
+  }
+
   isPersonalityArchitrinoNode(node) {
     if (!node || typeof node !== "object") {
       return false;
@@ -414,8 +418,12 @@ export class SceneRepository {
       return;
     }
     const usePositionalOrder = options.usePositionalOrder === true;
+    const includeFixedPosition = options.includeFixedPosition === true;
     const eligibleNodes = nodes.filter(
-      (node) => !!node && node.category !== "legend" && node.fixedPosition !== true
+      (node) =>
+        !!node &&
+        node.category !== "legend" &&
+        (includeFixedPosition || node.fixedPosition !== true)
     );
     if (!eligibleNodes.length) {
       return;
@@ -580,6 +588,7 @@ export class SceneRepository {
     if (this.shouldApplyStructuredSpherePalette(scenePath, data)) {
       this.applyStructuredSpherePalette(nodes, structuredPalette, {
         usePositionalOrder: this.shouldUsePositionalPaletteOrder(scenePath),
+        includeFixedPosition: this.shouldIncludeFixedPositionInStructuredPalette(data),
       });
     }
     this.applyPersonalityArchitrinoSizing(nodes);

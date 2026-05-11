@@ -43,6 +43,26 @@
         "scenePath": "content/scenes/spacetime/black_holes.json"
       },
       {
+        "nodeId": "horizon_chirality",
+        "scenePath": "content/scenes/spacetime/horizon_chirality.json"
+      },
+      {
+        "nodeId": "mapping_planck_scale",
+        "scenePath": "content/scenes/spacetime/mapping_planck_scale.json"
+      },
+      {
+        "nodeId": "medium_exclusion_volume",
+        "scenePath": "content/scenes/spacetime/medium_exclusion_volume.json"
+      },
+      {
+        "nodeId": "noether_sea",
+        "scenePath": "content/scenes/spacetime/noether_sea.json"
+      },
+      {
+        "nodeId": "observer_framework",
+        "scenePath": "content/scenes/spacetime/observer_framework.json"
+      },
+      {
         "nodeId": "cosmic_censorship_holography",
         "scenePath": "content/scenes/philosophy_history/cosmic_censorship_holography.json"
       },
@@ -139,6 +159,61 @@
         "type": "fixed"
       },
       "labelTitle": "Black Holes",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "horizon_chirality",
+      "title": "Horizon Chirality",
+      "radius": 2.688,
+      "color": "#8b5e34",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Horizon Chirality",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "mapping_planck_scale",
+      "title": "Mapping Planck Scale",
+      "radius": 2.688,
+      "color": "#7a4a1f",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Mapping Planck Scale",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "medium_exclusion_volume",
+      "title": "Medium Exclusion Volume",
+      "radius": 2.688,
+      "color": "#3f6a5a",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Medium Exclusion Volume",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "noether_sea",
+      "title": "Noether Sea",
+      "radius": 2.688,
+      "color": "#2f4f7a",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Noether Sea",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "observer_framework",
+      "title": "Observer Framework",
+      "radius": 2.688,
+      "color": "#2f6b6f",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Observer Framework",
       "labelBadge": "doc"
     },
     {

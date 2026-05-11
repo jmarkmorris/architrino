@@ -42,11 +42,24 @@ The recursive picture is easiest to read as a bottom-up construction ladder:
 4. **Nested cores:** binaries can capture into larger nested systems, giving isolated-binary, bi-binary, and tri-binary cores with progressively stronger shielding structure.
 5. **Noether core stabilization:** the triply nested binary is the first fully three-dimensional shielded core; see [Nested Binaries and the Noether Core](../assemblies/noether-core.md). Its persistence comes from delayed phase closure, nested energy separation, and reduced external reactivity through superposition.
 6. **Fermions with axial layers:** attaching a six-site axial layer to a Noether core produces the fermion families; changing the core shielding tier changes generation, while pro/anti orientation tracks the handedness of the same core architecture rather than a separate substance type. This is the same ladder later used in [Particle Masses: Emergent Inertia in the Noether Sea](../assemblies/particle-masses.md).
-7. **Collective medium:** larger balanced populations of cores organize into the [spacetime medium](../spacetime/spacetime-assemblies.md), so the Noether Sea is a higher-order collective state of cores rather than a second fundamental substrate.
-8. **Bosonic channels:** propagating coupled disturbances of assemblies appear as effective bosonic channels. Photons, weak corridors, and gluonic links therefore belong to the interaction/excitation branch of the hierarchy, not to a separate ontological species; see [Emergence of U(1)/SU(2)](../dynamics/gauge-structure-emergence.md).
+7. **Collective medium:** larger balanced populations of cores organize into the [Noether Sea](../spacetime/noether-sea.md), so the Noether Sea is a higher-order collective state of cores rather than a second fundamental substrate. Its pro/anti assembly hypotheses are tracked in [Spacetime Assemblies](../spacetime/spacetime-assemblies.md).
+8. **Bosonic channels:** propagating coupled disturbances of assemblies appear as effective bosonic channels. Photons, weak corridors, and gluonic links therefore belong to the interaction/excitation branch of the hierarchy, not to a separate ontological species; see [Emergence of U(1)/SU(2)](../interactions/gauge-structure-emergence.md).
 9. **Composite matter and reactions:** nucleons, atoms, and larger structures arise from the coupling of already-formed assemblies. A reaction is then a reorganization of conserved constituents inside a structured environment, not creation from nothing.
 
 This ladder matters because it prevents category drift. Fermions, bosons, and spacetime are not separate ontological species added by hand; they are different organizational levels of the same underlying architrino dynamics.
+
+### Emergence Claim Discipline
+
+When this corpus says that something "emerges," the claim should identify four pieces:
+
+1. **Mechanism:** how the effect arises from lower-level dynamics.
+2. **Mapping:** which lower-level configurations correspond to the emergent object or quantity.
+3. **Regime:** where the emergent description is expected to hold.
+4. **Breakdown:** what changes outside that regime.
+
+For example, Lorentz-like behavior is an emergence claim only when the text names the moving-assembly deformation law, the clock-period renormalization law, the Noether-Sea response mechanism, and the coefficient or theorem target that would suppress preferred-frame leakage. The claim should also state the weak-gradient or low-energy regime where the effective law is expected to hold, and identify the self-hit, separator, or strong-field conditions where the approximation can fail.
+
+This rule keeps emergence from becoming a placeholder. It is acceptable to use emergence as a programmatic claim, but the surrounding prose must say whether the mechanism is derived, simulated, conjectural, or only a routing target.
 
 Just as important, the ladder should not be read as a single unbranched stack after the Noether core appears. Once stable cores exist, three descriptive branches open at once:
 
@@ -62,7 +75,7 @@ The most useful observer-level quantities enter only after assemblies have forme
 
 -   **Angular momentum:** emerges from organized binary circulation of point potentials and from the ordered orientation data of nested binaries.
 -   **Chirality:** emerges from the handed precession order of a stable core.
--   **Apparent mass and reactivity:** depend on shielding, drag against the surrounding medium, and how exposed the deeper binary structure is to external coupling.
+-   **Apparent mass and reactivity:** depend on shielding, medium-dressed response, and how exposed the deeper binary structure is to external coupling. Dissipative drag is a separate failure channel, not the default mass mechanism.
 
 In this sense, emergence is not merely a catalog of larger objects. It is also the stage at which familiar physical descriptors become well-defined coarse variables for persistent assemblies.
 

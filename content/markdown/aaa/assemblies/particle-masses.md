@@ -7,7 +7,7 @@
 ## The Mass Hypothesis: Inertia as Medium Interaction
 
 ### Core Thesis
-In the architrino framework, **mass is not a fundamental property** of individual architrinos. There is no intrinsic particle-specific "mass parameter" $m$ assigned at the substrate level. Instead, what we observe as mass, especially **inertial resistance to acceleration**, is treated as an emergent response of stable assemblies embedded in the surrounding **Noether Sea** (the [spacetime medium](../spacetime/spacetime-assemblies.md) composed of neutral tri-binary assemblies).
+In the architrino framework, **mass is not a fundamental property** of individual architrinos. There is no intrinsic particle-specific "mass parameter" $m$ assigned at the substrate level. Instead, what we observe as mass, especially **inertial resistance to acceleration**, is treated as an emergent response of stable assemblies embedded in the surrounding [Noether Sea](../spacetime/noether-sea.md), the physical medium composed of neutral tri-binary assemblies.
 
 The conservative thesis is:
 
@@ -93,7 +93,7 @@ It is crucial to clarify what is **fundamental** versus what is **emergent**:
 | **Architrino Charge ($\epsilon = e/6$)** | Fundamental |
 | **Noether Sea State** | Emergent density, compliance, drift, and clock-response fields |
 | **Inertial Mass ($m$)** | **Emergent** (shielded internal energy + medium-dressed response) |
-| **Gravitational Mass** | **Emergent** (Noether Sea gradient response) |
+| **Gravitational Mass** | **Emergent** (Noether-Sea gradient response) |
 
 ### Status of Mass Claims
 
@@ -112,7 +112,7 @@ In the Standard Model, mass arises via the **Higgs Mechanism**: particles acquir
 
 In the architrino framework, the Higgs-sector comparison is an effective matching problem, not yet a derived replacement. The working expectation is that Standard Model mass parameters and Yukawa couplings would be reinterpreted as effective summaries of assembly geometry, shielding, and Noether-Sea response. The 125 GeV Higgs mode may eventually be modeled as a collective excitation of this medium, but that identification is a theorem target, not an established result.
 
-For the electroweak medium interpretation behind this replacement, see [Emergence of U(1)/SU(2)](../dynamics/gauge-structure-emergence.md).
+For the electroweak medium interpretation behind this replacement, see [Emergence of U(1)/SU(2)](../interactions/gauge-structure-emergence.md).
 
 ## Speculative Charged-Lepton Benchmark: Koide
 

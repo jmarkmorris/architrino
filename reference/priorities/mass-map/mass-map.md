@@ -185,7 +185,7 @@ The $A_0$ deliverable is not accepted until all of the following are true:
 
 - [standard-model-closure](../standard-model-closure/standard-model-closure.md)
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
-- [simulations](../deferred/simulations.md)
+- [simulations](../simulations/simulations.md)
 - [3x3](../3x3/3x3.md)
 
 ## Related AAA Notes
