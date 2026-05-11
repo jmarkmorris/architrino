@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 461,
-      "edges": 1215,
-      "scenes": 316,
+      "nodes": 462,
+      "edges": 1217,
+      "scenes": 317,
       "markdownIndexes": 0,
       "markdownDocs": 145,
       "runtimeEdges": 476,
@@ -1628,6 +1628,12 @@
       "id": "validation_simulations__sim_run_protocols",
       "name": "Run Protocols",
       "path": "content/scenes/validation/sim_run_protocols.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation_simulations__sim_a0_branch_certificate_protocol",
+      "name": "A0 Branch Certificate Protocol",
+      "path": "content/scenes/validation/sim_a0_branch_certificate_protocol.json",
       "nodeType": "scene"
     },
     {
@@ -5641,6 +5647,15 @@
       "name": "Self-Interaction Switch",
       "path": "content/scenes/validation/self_interaction_switch.json",
       "searchTarget": "content/scenes/validation/self_interaction_switch.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/sim_a0_branch_certificate_protocol.json",
+      "nodeType": "scene",
+      "id": "validation_simulations__sim_a0_branch_certificate_protocol",
+      "name": "A0 Branch Certificate Protocol",
+      "path": "content/scenes/validation/sim_a0_branch_certificate_protocol.json",
+      "searchTarget": "content/scenes/validation/sim_a0_branch_certificate_protocol.json",
       "implicit": false
     },
     {
@@ -11129,6 +11144,13 @@
     },
     {
       "from": "scene:content/scenes/validation/simulations.json",
+      "to": "scene:content/scenes/validation/sim_a0_branch_certificate_protocol.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/simulations.json",
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/validation/simulations.json",
       "to": "scene:content/scenes/validation/sim_architrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/simulations.json",
@@ -11167,14 +11189,14 @@
       "to": "scene:content/scenes/validation/sim_synthetic_observables.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/simulations.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/validation/simulations.json",
       "to": "scene:content/scenes/validation/sim_unsolved_problems.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/simulations.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/validation/validation.json",
@@ -12161,6 +12183,13 @@
       "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/validation/self_interaction_switch.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/validation/sim_a0_branch_certificate_protocol.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/sim_a0_branch_certificate_protocol.json",
       "field": "scene.source.path"
     },
     {

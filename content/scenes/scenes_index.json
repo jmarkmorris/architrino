@@ -1236,6 +1236,11 @@
       "path": "content/scenes/validation/sim_run_protocols.json"
     },
     {
+      "id": "validation_simulations__sim_a0_branch_certificate_protocol",
+      "name": "A0 Branch Certificate Protocol",
+      "path": "content/scenes/validation/sim_a0_branch_certificate_protocol.json"
+    },
+    {
       "id": "validation_simulations__sim_synthetic_observables",
       "name": "Synthetic Observables",
       "path": "content/scenes/validation/sim_synthetic_observables.json"

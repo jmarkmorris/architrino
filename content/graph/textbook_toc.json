@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 150,
-      "sections": 1074
+      "entries": 151,
+      "sections": 1080
     }
   },
   "tocRoot": {
@@ -7427,6 +7427,64 @@
                     "markdownPath": "content/markdown/aaa/validation/simulations/run-protocols.md",
                     "markdownSection": "Run Protocol: Absolute-Frame + $\\mathbb{U}_{\\text{now}}$ Logging",
                     "sectionKey": "run protocol absolute frame mathbb u text now logging",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
+                "id": "validation_simulations__sim_a0_branch_certificate_protocol",
+                "title": "A0 Branch Certificate Protocol",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/validation/sim_a0_branch_certificate_protocol.json",
+                "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Tier 0: Algebraic Branch Search",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+                    "markdownSection": "Tier 0: Algebraic Branch Search",
+                    "sectionKey": "tier 0 algebraic branch search",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Tier 1: $\\eta>0$ Continuation",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+                    "markdownSection": "Tier 1: $\\eta>0$ Continuation",
+                    "sectionKey": "tier 1 eta 0 continuation",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Tier 2: Energy and Shielding",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+                    "markdownSection": "Tier 2: Energy and Shielding",
+                    "sectionKey": "tier 2 energy and shielding",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Tier 3: Medium-Response Probe",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+                    "markdownSection": "Tier 3: Medium-Response Probe",
+                    "sectionKey": "tier 3 medium response probe",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Runtime Artifact",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+                    "markdownSection": "Runtime Artifact",
+                    "sectionKey": "runtime artifact",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Acceptance Boundary",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+                    "markdownSection": "Acceptance Boundary",
+                    "sectionKey": "acceptance boundary",
                     "headingLevel": 2
                   }
                 ]
