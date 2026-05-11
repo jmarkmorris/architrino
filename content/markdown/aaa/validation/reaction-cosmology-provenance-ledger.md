@@ -15,6 +15,35 @@ This ledger separates four levels:
 - **Transport and thermalization:** opacity, scattering, cascade depth, diffusion, cooling, and path-history redshift.
 - **Effective observables:** emissivity, light-element yield, blackbody spectrum, anisotropy, polarization, and inferred cosmological parameters.
 
+## Leap Opportunity Record
+
+The opportunity tracked here is a possible unification of four previously separate bookkeeping problems: radiative planar-mode nucleation, pair-production provenance, BBN photon loading, and CMB thermalization. The shared claim is not that these channels are already derived from one equation. The disciplined claim is that they may need one common provenance ledger because each asks the same question at a different scale: which assemblies, Noether-core material, energy-momentum terms, and Noether-Sea state variables enter and exit the channel?
+
+### Current Claim Status
+
+| Claim | Bucket | Status | Decision gate |
+| --- | --- | --- | --- |
+| Bremsstrahlung and synchrotron both require planar-mode nucleation from assembly stress or wake concentration | Derivation-closure target | Provisional map | A common threshold condition must recover standard emissivity scalings in validated regimes |
+| Pair production reorganizes local substrate content rather than creating charged assemblies from nothing | Ontology plus derivation-closure target | Accepted as ontology framing, open as quantitative derivation | Event records must balance architrino inventory, energy-momentum, and Breit-Wheeler rate behavior |
+| BBN photon loading can be supplied by the same radiation and pair channels used in high-energy transport | Speculation promoted to closure target | Open | The source-zone photon ledger must preserve D, $^4$He, Li, and $N_{\text{eff}}$ constraints without per-source retuning |
+| CMB blackbody recovery can be treated as source-to-transport-to-decoupling provenance rather than as an isolated source story | Derivation-closure target | Open | Thermalization depth, damping, anisotropy, polarization, and redshift handoff must all survive one shared parameter map |
+
+### Discussion Gate
+
+Before this bridge is promoted from ledger opportunity to mainline cosmology doctrine, the corpus needs a first quantitative record for at least one full path:
+
+$$
+\text{source channel}
+\rightarrow
+\text{photon or pair assembly output}
+\rightarrow
+\text{thermalization path}
+\rightarrow
+\text{observer-level background variable}.
+$$
+
+The minimal useful first path is BBN photon loading: identify a source-zone radiation channel, record its event-level provenance, propagate it through the local thermalization assumptions, and show whether it can support effective $\eta\approx6\times10^{-10}$ during the deuterium bottleneck window.
+
 ## Shared Provenance Fields
 
 | Field | What must be recorded | Why it matters |
@@ -95,4 +124,3 @@ The provenance program fails for a channel if:
 - pair or radiation channels violate validated standard limits in regimes where those limits are already measured,
 - source-zone photon loading cannot preserve BBN light-element constraints,
 - or CMB thermalization cannot recover blackbody precision, damping behavior, and TT/TE/EE coherence.
-
