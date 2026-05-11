@@ -3522,10 +3522,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Who Can “Slip Between” Excluded Regions?",
+                    "title": "Propagation Across Excluded Regions",
                     "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
-                    "markdownSection": "Who Can “Slip Between” Excluded Regions?",
-                    "sectionKey": "who can slip between excluded regions",
+                    "markdownSection": "Propagation Across Excluded Regions",
+                    "sectionKey": "propagation across excluded regions",
                     "headingLevel": 2
                   },
                   {

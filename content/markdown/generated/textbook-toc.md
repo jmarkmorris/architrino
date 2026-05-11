@@ -430,7 +430,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
       - [Status and Next Checks](../aaa/spacetime/spacetime-assemblies.md?section=Status+and+Next+Checks)
     - [Medium Exclusion Volume](../../scenes/spacetime/medium_exclusion_volume.json)
       - [Levels of Excluded Volume](../aaa/spacetime/medium-exclusion-volume.md?section=Levels+of+Excluded+Volume)
-      - [Who Can “Slip Between” Excluded Regions?](../aaa/spacetime/medium-exclusion-volume.md?section=Who+Can+%E2%80%9CSlip+Between%E2%80%9D+Excluded+Regions%3F)
+      - [Propagation Across Excluded Regions](../aaa/spacetime/medium-exclusion-volume.md?section=Propagation+Across+Excluded+Regions)
       - [Background Timespace vs. Implemented Medium](../aaa/spacetime/medium-exclusion-volume.md?section=Background+Timespace+vs.+Implemented+Medium)
       - [Big Picture](../aaa/spacetime/medium-exclusion-volume.md?section=Big+Picture)
   - [Physical Observers](../../scenes/spacetime/physical_observers.json)

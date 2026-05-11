@@ -28,7 +28,7 @@ Because a Physical Observer lacks access to the complete microstate and the exac
 
 The correspondence between the quantum formalism and architrino micro-dynamics is defined as follows:
 
-*   **The Wavefunction ($|\psi\rangle$)**: A coarse-grained, effective representation of the local superposed causal wake field and the corresponding informational ambiguity of the receiver's phase state.
+*   **The Wavefunction ($|\psi\rangle$)**: A coarse-grained, effective representation of the local superposed causal-wake structure and the corresponding informational ambiguity of the receiver's phase state.
 *   **Basis States ($|n\rangle$)**: Distinct, dynamically stable attractor basins of the tri-binary assembly. For example, these correspond to integer-indexed resonance bands or specific locked-phase geometries of the outer binary.
 *   **Linear Combination**: The direct physical consequence of the superposition of expanding causal wake surfaces. Distinct sources contribute additive radial accelerations without mutual interference.
 *   **Probability Amplitudes ($c_n$)**: A measure of the geometric basin of attraction (the fractional phase-space volume) leading to outcome $n$, mapped over the operational uncertainty bracket of the system's microstate.
