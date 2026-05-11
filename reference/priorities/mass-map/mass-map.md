@@ -160,12 +160,169 @@ The $A_0$ deliverable is not accepted until all of the following are true:
 5. No observed particle mass, electron radius, charged-lepton ratio, or measured $\alpha$ value is used as a fitting input.
 6. The output is sufficient to evaluate the roadmap expression $m_0(A)c_{\text{eff}}^2\sim\zeta(A)E_{\text{internal}}(A)$ as a prediction once the dressing constants are supplied.
 
+### State Vector
+
+The $A_0$ calculation should start from a six-worldline state, not from a particle label. Let
+$$
+\ell\in\{I,M,O\},
+\qquad
+\sigma\in\{+,-\},
+\qquad
+a=(\ell,\sigma),
+$$
+where $I$, $M$, and $O$ denote the inner, middle, and outer binary layers, and $\sigma$ denotes the pro/anti polarity member of that layer with
+$$
+q_{\ell,+}=+\epsilon,
+\qquad
+q_{\ell,-}=-\epsilon.
+$$
+
+The minimal state vector is
+$$
+X_{A_0}(t)
+=
+\left(
+\{\mathbf{s}_a(t),\mathbf{v}_a(t),q_a\}_{a\in A_0},
+\mathcal{H}_{A_0}(t),
+\mathcal{S}_{\text{sea}}
+\right),
+$$
+where $\mathcal{H}_{A_0}(t)$ is the path-history segment long enough to resolve every active causal root over one closed cycle, and $\mathcal{S}_{\text{sea}}$ is the homogeneous Noether-Sea cell data:
+$$
+u^i_{\text{sea}}=0,
+\qquad
+G_{\text{grad}}=0,
+\qquad
+n=1,
+\qquad
+\chi_{\text{sea}}=1,
+\qquad
+c_\star=c_f.
+$$
+The scan may keep $\eta>0$ while locating smooth branches, but any accepted output must report how the result behaves as $\eta$ is reduced.
+
+For each layer, define the layer center, relative separation, and relative velocity by
+$$
+\mathbf{C}_\ell(t)
+=
+\frac{\mathbf{s}_{\ell,+}(t)+\mathbf{s}_{\ell,-}(t)}{2},
+\qquad
+\mathbf{r}_\ell(t)
+=
+\mathbf{s}_{\ell,+}(t)-\mathbf{s}_{\ell,-}(t),
+$$
+$$
+\mathbf{V}_\ell(t)
+=
+\frac{\mathbf{v}_{\ell,+}(t)+\mathbf{v}_{\ell,-}(t)}{2},
+\qquad
+\mathbf{u}_\ell(t)
+=
+\mathbf{v}_{\ell,+}(t)-\mathbf{v}_{\ell,-}(t).
+$$
+The reported geometry should extract $R_\ell$, $\omega_\ell$, the binary-plane normal $\mathbf{n}_\ell$, handedness, and phase $\theta_\ell$ from these variables over a symmetry-reduced closed cycle. The assembly center
+$$
+\mathbf{C}_{A_0}(t)
+=
+\frac{1}{6}\sum_{a\in A_0}\mathbf{s}_a(t)
+$$
+is the rest-frame gauge anchor; after symmetry modes are removed, an accepted rest branch must have no secular drift in $\mathbf{C}_{A_0}$.
+
+### Closure Equations
+
+For every source-receiver pair $b\to a$ and every active branch $m$, the causal root condition is
+$$
+F_{ab}^{(m)}(t;t_0)
+\equiv
+\|\mathbf{s}_a(t)-\mathbf{s}_b(t_0)\|
+-c_f(t-t_0)
+=0,
+\qquad
+t_0<t.
+$$
+The corresponding branch Jacobian is
+$$
+J_{ab}^{(m)}(t;t_0)
+=
+1-\frac{\mathbf{v}_b(t_0)\cdot\hat{\mathbf{r}}_{ab}(t;t_0)}{c_f},
+$$
+with
+$$
+\hat{\mathbf{r}}_{ab}(t;t_0)
+=
+\frac{\mathbf{s}_a(t)-\mathbf{s}_b(t_0)}
+{\|\mathbf{s}_a(t)-\mathbf{s}_b(t_0)\|}.
+$$
+
+The branch ledger must classify each active root by source relation:
+
+| Channel | Condition | Required ledger data |
+| --- | --- | --- |
+| Partner hit | $a$ and $b$ are opposite members of the same binary layer | branch count, delay, sign, $J_{ab}^{(m)}$, parity events |
+| Self hit | $a=b$ with $t_0<t$ | self-root count, separator proximity, parity events, local stability effect |
+| Inter-layer hit | $a$ and $b$ belong to different layers | source layer, receiver layer, delay, phase relation, closure integer |
+
+The closed-cycle condition is not merely periodic position matching. The reported branch must close the state, phase, and causal-root ledgers over a common period $T_{\mathbf{k}}$:
+$$
+\mathbf{s}_a(t+T_{\mathbf{k}})\approx\mathbf{s}_a(t),
+\qquad
+\mathbf{v}_a(t+T_{\mathbf{k}})\approx\mathbf{v}_a(t),
+$$
+$$
+\theta_\ell(t+T_{\mathbf{k}})-\theta_\ell(t)=2\pi k_\ell,
+\qquad
+\Theta_{\ell m}(t+T_{\mathbf{k}})-\Theta_{\ell m}(t)=2\pi q_{\ell m},
+$$
+after fixing the center-of-closure frame. Here $k_\ell$ are layer winding integers and $q_{\ell m}$ are inter-layer closure integers. If the branch crosses a separator, the ledger must record whether the raw root jump obeys the expected even fold-pair rule $\Delta N\in2\mathbb{Z}$.
+
+### Residuals And Stability Diagnostics
+
+Every $A_0$ packet should report dimensionless residuals before interpreting the branch physically:
+
+| Residual | Definition target | Acceptance role |
+| --- | --- | --- |
+| $\mathcal{R}_{\text{state}}$ | maximum normalized mismatch in $\mathbf{s}_a$ and $\mathbf{v}_a$ after $T_{\mathbf{k}}$ | verifies closed-cycle return |
+| $\mathcal{R}_{\text{root}}$ | maximum normalized causal-root defect $\lvert F_{ab}^{(m)}\rvert$ on active branches | verifies branch consistency |
+| $\mathcal{R}_{\text{phase}}$ | maximum mismatch from integer winding closure | verifies the layer and inter-layer ledger |
+| $\mathcal{R}_{E}$ | drift in the chosen regularized energy/history functional over one cycle | detects bookkeeping or integration failure |
+| $\mathcal{R}_{\text{drift}}$ | residual center-of-closure translation after symmetry removal | rejects non-rest branches |
+
+Stability must be reported through the linearized return map around the candidate cycle. Let $\mathcal{M}_{\mathbf{k}}$ be the monodromy operator and let $G_{\text{sym}}$ denote the symmetry subspace generated by time shift, translation, and rotation gauges. The mass-map gate uses
+$$
+\Delta_{\mathbf{k}}
+=
+1-\max_{\mu_i\notin G_{\text{sym}}}\lvert\mu_i\rvert.
+$$
+The branch is only an accepted attractor candidate when $\Delta_{\mathbf{k}}>0$ after numerical tolerance and convergence checks.
+
+### Output Schema
+
+The first simulation or derivation report for $A_0$ should use the following top-level output packet. A later machine-readable schema may choose JSON or another format, but the fields below should remain stable enough for audit and comparison.
+
+| Field | Required content |
+| --- | --- |
+| `metadata` | run identifier, code or derivation version, source commit, $\Delta t$, integrator, tolerances, $\eta$, history-window rule |
+| `sea_cell` | $u^i_{\text{sea}}$, $G_{\text{grad}}$, $n$, $\chi_{\text{sea}}$, $c_\star$, boundary conditions |
+| `state_vector` | six architrino labels, polarities, initial $\mathbf{s}_a,\mathbf{v}_a$, history segment, center-of-closure gauge |
+| `closure_labels` | $T_{\mathbf{k}}$, $(k_I,k_M,k_O)$, $q_{\ell m}$, active branch identifiers |
+| `geometry` | $R_I,R_M,R_O$, radius ratios, $\mathbf{n}_I,\mathbf{n}_M,\mathbf{n}_O$, handedness, inter-plane angles |
+| `root_ledger` | partner-hit, self-hit, and inter-layer branch counts with delays, Jacobians, and separator events |
+| `residuals` | $\mathcal{R}_{\text{state}}$, $\mathcal{R}_{\text{root}}$, $\mathcal{R}_{\text{phase}}$, $\mathcal{R}_{E}$, $\mathcal{R}_{\text{drift}}$ |
+| `stability` | monodromy construction, excluded symmetry modes, leading non-symmetry Floquet multipliers, $\Delta_{\mathbf{k}}$ |
+| `energy_ledger` | sign-resolved $E_k$, interaction terms, wake/history terms, layer totals $E_I,E_M,E_O$, total $E_{\text{internal}}(A_0)$ |
+| `shielding` | far-field sampling radii, angular grid, leading wake coefficients, naive constituent sum, $\zeta(A_0)$, anisotropy/leakage summary |
+| `medium_response` | acceleration probes, gradient probes, extracted homogeneous $\mathcal{M}_{\text{sea}}^{ab}$ baseline, residual anisotropy |
+| `mass_summary` | $\zeta(A_0)E_{\text{internal}}(A_0)/E_0$, unresolved constants, explicitly excluded particle benchmarks |
+| `failure_notes` | failed gates, unresolved convergence issues, or reasons the candidate branch cannot be promoted |
+
+This schema deliberately keeps particle labels out of the accepted packet. Electron, proton, charged-lepton, and quark comparisons can only enter after the packet supplies a stable attractor, an energy ledger, a shielding extraction, and a response map.
+
 ### Immediate Work Packet
 
-1. Formalize the $A_0$ state vector: six architrino trajectories, three binary center frames, three binary phase variables, and the shared Noether-Sea cell data.
-2. Write the closure equations for partner hits, self hits, and inter-layer hits with path-history delays and integer winding labels.
-3. Define the numerical output schema for the required output contract above before running simulations.
-4. Run the simplest reduced $A_0$ scan: homogeneous Noether-Sea cell, zero drift, no imposed external gradient, and primitive speed selector $c_\star=c_f$ for wake intersections.
+1. Run the simplest reduced $A_0$ scan using the state vector and output schema above: homogeneous Noether-Sea cell, zero drift, no imposed external gradient, and primitive speed selector $c_\star=c_f$ for wake intersections.
+2. For any candidate branch, report the residuals, root ledger, and Floquet gap before interpreting the branch as an attractor.
+3. Compute the sign-resolved internal-energy ledger and far-field shielding extraction only for branches that pass the closure and stability gates.
+4. Extract the homogeneous $\mathcal{M}_{\text{sea}}^{ab}$ baseline from small acceleration and gradient probes.
 5. Promote only stable, calibration-free outputs into the $\zeta$ and hierarchy steps.
 
 ## Core Work

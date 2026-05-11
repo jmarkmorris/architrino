@@ -43,7 +43,7 @@ $$
 V_{ij} = \int \psi_{j,\text{mass}}^\ast \psi_{i,\text{weak}} \, d\mu
 $$
 rather than treating transport costs as fit knobs.
-- Derive $\kappa_{12}$, $\kappa_{23}$, and analogous transport parameters from radii ratios, field drag, and shielding mismatch.
+- Derive $\kappa_{12}$, $\kappa_{23}$, and analogous transport parameters from radii ratios, medium-dressed transport response, and shielding mismatch.
 - Test whether the CP phase can be recovered as a holonomy or torsion consequence, including the current closure target $\cos\delta = s_{13}/(s_{12}s_{23})$.
 - Derive confinement-scale behavior from topological or strain energetics of flux tubes, braids, or other line defects, aiming for linear tension $V \propto r$ or $\sigma_{\mathrm{eff}} L$ and finite relaxed bounds for closed color-singlet configurations.
 

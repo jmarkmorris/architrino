@@ -12,9 +12,9 @@ This nesting creates a hierarchical structure, like a set of Russian dolls. Each
 
 ### The Noether Core: A Triply Nested Binary
 
-A particularly important and stable configuration is the **triply nested binary**. This structure, consisting of three binaries nested within each other, is called a **Noether Core** and supplies the assembly scaffold later used in [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md).
+A candidate stable configuration is the **triply nested binary**. This structure, consisting of three binaries nested within each other, is called a **Noether Core** and supplies the assembly scaffold later used in [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md).
 
--   **Why Three?** The stability of a triply nested structure is related to the three-dimensional nature of Euclidean space. Each binary defines an orbital plane. A system of three mutually orthogonal orbital planes can form a dynamically stable, symmetric, 3D structure that is resistant to perturbation.
+-   **Why Three?** The stability of a triply nested structure is a theorem target tied to the three-dimensional nature of Euclidean space. Each binary defines an orbital plane. The working claim is that three mutually orthogonal orbital planes can form a dynamically stable, symmetric, 3D structure that is resistant to perturbation; the proof burden is to derive that role count from the delayed causal dynamics rather than assuming it.
 
 -   **Why "Noether Core"?** This assembly is named in honor of Emmy Noether. Noether's theorem links symmetries in physical systems to conserved quantities. The highly symmetric and stable structure of the tri-binary core is the emergent foundation for conserved properties like spin and quantized energy levels that characterize standard model particles.
 
@@ -24,7 +24,7 @@ A particularly important and stable configuration is the **triply nested binary*
 
 -   **Internal Stabilization:** The system is self-stabilizing. The constant, high-frequency causal-wake emissions from the innermost binary create a complex, time-averaged potential well that helps to stabilize the orbits of the two outer binaries. This creates a robust, self-tuning feedback loop.
 
--   **Energy Shielding via Superposition:** From a distance, a Noether core appears to have far less energy and a much smaller potential signature than the raw sum of its six constituent architrinos. The rapid oscillation of the positive and negative point potentials within the nested structure causes their wake contributions to largely cancel out through superposition. This "shielding" effect is a fundamental mechanism, explaining how highly energetic structures can form the basis for the relatively low-mass particles we observe.
+-   **Energy Shielding via Superposition:** From a distance, a Noether core appears to have far less energy and a much smaller potential signature than the raw sum of its six constituent architrinos. The rapid oscillation of the positive and negative point potentials within the nested structure causes their wake contributions to largely cancel out through superposition. This shielding effect is the working mechanism for how highly energetic structures can form the basis for relatively low-mass observed particles; quantitative extraction remains a mass-map closure target.
 
 ### Geometry and Exclusion Envelope
 
