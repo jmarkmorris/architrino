@@ -173,7 +173,7 @@ $$
 
 which is **linear** in $\theta_{AB}$ and does not violate the CHSH bound. This is the well-known failure of all local hidden-variable models with sharp basin boundaries.
 
-The resolution within $\mathbb{A}\mathbb{A}\mathbb{A}$ lies in the **non-sharp basin structure**. The measurement interaction is not an instantaneous projection; it is a finite-time threshold crossing through a metastable region (see [quantum/superposition-mechanism.md](./superposition-mechanism.md)). The effective basin boundary is broadened by:
+The resolution within $\mathbb{A}\mathbb{A}\mathbb{A}$ lies in the **non-sharp basin structure**. The measurement interaction is not an instantaneous projection; it is a finite-time threshold crossing through a metastable region (see [Superposition Mechanism](../theory-bridges/superposition-mechanism.md)). The effective basin boundary is broadened by:
 
 1. **Wake-phase sensitivity**: the exact outcome depends on the phase relationship between the assembly's internal oscillations and the apparatus potential at the moment of interaction, producing a smooth, sinusoidal dependence on the angle between $\hat{m}$ and $\hat{n}$ rather than a step function.
 
@@ -253,7 +253,7 @@ No step involves faster-than-$c_f$ influence. The correlations are visible only 
 - All standard Bell-CHSH violations are reproduced: $|S| = 2\sqrt{2}$ for singlet pairs with optimal settings.
 - No violation of the Tsirelson bound: $|S| \leq 2\sqrt{2}$. Observing $|S| > 2\sqrt{2}$ would falsify both QM and any $\mathbb{A}\mathbb{A}\mathbb{A}$ model that reproduces QM.
 - No-signaling is exact: no measurement protocol on $A$ can alter the marginal statistics at $B$.
-- Decoherence rates for entangled pairs depend on local Noether-Sea density, providing an environmental sensitivity absent in bare QM (shared prediction with [quantum/entanglement-nonlocality.md](./entanglement-nonlocality.md)).
+- Decoherence rates for entangled pairs depend on local Noether-Sea density, providing an environmental sensitivity absent in bare QM (shared prediction with [Entanglement and Nonlocality](../theory-bridges/entanglement-nonlocality.md)).
 
 **Failure Modes:**
 - If the Master Equation dynamics for a tri-binary measurement interaction yield a response function that is **not** $\cos^2(\alpha/2)$—for instance, a linear or piecewise-linear function—the resulting $E(\theta_{AB})$ will disagree with the quantum prediction and with experiment. This is a falsification of the specific mechanism, requiring revision of the measurement model or the assembly-apparatus coupling.

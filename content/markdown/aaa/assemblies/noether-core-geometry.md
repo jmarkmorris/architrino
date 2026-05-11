@@ -62,6 +62,8 @@ This gives the Noether core two distinct geometric roles:
 
 The claim that those coarse-grained changes reconstruct observer-level gravity is not owned here. It belongs to [Emergent Metric](../spacetime/emergent-metric.md), [PPN Parameters](../spacetime/ppn-parameters.md), and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md).
 
+For the special-relativity-facing comparison of this deformation channel, see [Special Relativity and Deformable Noether Cores](../theory-bridges/special-relativity-noether-core.md).
+
 ## Geometry Interfaces
 
 For local assembly modeling, use this page as the geometric source for:

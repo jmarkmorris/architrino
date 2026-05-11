@@ -122,7 +122,7 @@ P_k = \mu_*(B_k),
 $$
 with $B_k$ the record-forming attractor basins and $\mu_*$ the relevant invariant or coarse-grained measure.
 
-The measurement ontology therefore connects directly to the basin-measure program in [wavefunction-ontology.md](./wavefunction-ontology.md) and the separatrix-time program in [superposition-mechanism.md](./superposition-mechanism.md).
+The measurement ontology therefore connects directly to the basin-measure program in [wavefunction-ontology.md](./wavefunction-ontology.md) and the separatrix-time program in [superposition-mechanism.md](../theory-bridges/superposition-mechanism.md).
 
 ## Closure Targets
 
@@ -152,6 +152,6 @@ for real record-forming interactions, even if that time becomes extremely short 
 ## Related Chapters
 
 - [collapse-problem.md](./collapse-problem.md)
-- [superposition-mechanism.md](./superposition-mechanism.md)
+- [superposition-mechanism.md](../theory-bridges/superposition-mechanism.md)
 - [wavefunction-ontology.md](./wavefunction-ontology.md)
-- [pilot-wave-character.md](./pilot-wave-character.md)
+- [pilot-wave-character.md](../theory-bridges/pilot-wave-character.md)

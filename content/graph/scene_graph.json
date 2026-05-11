@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 450,
+      "nodes": 453,
       "edges": 1207,
       "scenes": 312,
       "markdownIndexes": 0,
-      "markdownDocs": 138,
+      "markdownDocs": 141,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2507,27 +2507,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/quantum/entanglement-nonlocality.md",
-      "name": "Entanglement and Nonlocality: Traditional vs. Architrino Assembly Architecture",
-      "path": "content/markdown/aaa/quantum/entanglement-nonlocality.md",
-      "nodeType": "markdown_doc"
-    },
-    {
       "id": "content/markdown/aaa/quantum/measurement-ontology.md",
       "name": "Measurement Ontology",
       "path": "content/markdown/aaa/quantum/measurement-ontology.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/quantum/pilot-wave-character.md",
-      "name": "Pilot-Wave Character: Traditional de Broglie–Bohm Theory and Architrino Assembly Architecture",
-      "path": "content/markdown/aaa/quantum/pilot-wave-character.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
-      "name": "Quantum Operator Mapping",
-      "path": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2540,12 +2522,6 @@
       "id": "content/markdown/aaa/quantum/reality-quantum-causality.md",
       "name": "Reality, Causality, and Navigation",
       "path": "content/markdown/aaa/quantum/reality-quantum-causality.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/quantum/superposition-mechanism.md",
-      "name": "Superposition Mechanism: Traditional vs. Architrino Assembly Architecture",
-      "path": "content/markdown/aaa/quantum/superposition-mechanism.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2648,6 +2624,48 @@
       "id": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
       "name": "Spacetime Assemblies",
       "path": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
+      "name": "Entanglement and Nonlocality: Traditional vs. Architrino Assembly Architecture",
+      "path": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
+      "name": "Relativistic Scalar Fields and the Klein-Gordon Equation",
+      "path": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
+      "name": "Pilot-Wave Character: Traditional de Broglie–Bohm Theory and Architrino Assembly Architecture",
+      "path": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+      "name": "Quantum Operator Mapping",
+      "path": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/theory-bridges/README.md",
+      "name": "Theory Bridges",
+      "path": "content/markdown/aaa/theory-bridges/README.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
+      "name": "Special Relativity and Deformable Noether Cores",
+      "path": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/theory-bridges/superposition-mechanism.md",
+      "name": "Superposition Mechanism: Traditional vs. Architrino Assembly Architecture",
+      "path": "content/markdown/aaa/theory-bridges/superposition-mechanism.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -6388,39 +6406,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/quantum/entanglement-nonlocality.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/quantum/entanglement-nonlocality.md",
-      "name": "Entanglement and Nonlocality: Traditional vs. Architrino Assembly Architecture",
-      "path": "content/markdown/aaa/quantum/entanglement-nonlocality.md",
-      "searchTarget": "content/markdown/aaa/quantum/entanglement-nonlocality.md",
-      "implicit": false
-    },
-    {
       "nodeId": "markdown_doc:content/markdown/aaa/quantum/measurement-ontology.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/quantum/measurement-ontology.md",
       "name": "Measurement Ontology",
       "path": "content/markdown/aaa/quantum/measurement-ontology.md",
       "searchTarget": "content/markdown/aaa/quantum/measurement-ontology.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/quantum/pilot-wave-character.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/quantum/pilot-wave-character.md",
-      "name": "Pilot-Wave Character: Traditional de Broglie–Bohm Theory and Architrino Assembly Architecture",
-      "path": "content/markdown/aaa/quantum/pilot-wave-character.md",
-      "searchTarget": "content/markdown/aaa/quantum/pilot-wave-character.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/quantum/quantum-operator-mapping.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
-      "name": "Quantum Operator Mapping",
-      "path": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
-      "searchTarget": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
       "implicit": false
     },
     {
@@ -6439,15 +6430,6 @@
       "name": "Reality, Causality, and Navigation",
       "path": "content/markdown/aaa/quantum/reality-quantum-causality.md",
       "searchTarget": "content/markdown/aaa/quantum/reality-quantum-causality.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/quantum/superposition-mechanism.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/quantum/superposition-mechanism.md",
-      "name": "Superposition Mechanism: Traditional vs. Architrino Assembly Architecture",
-      "path": "content/markdown/aaa/quantum/superposition-mechanism.md",
-      "searchTarget": "content/markdown/aaa/quantum/superposition-mechanism.md",
       "implicit": false
     },
     {
@@ -6601,6 +6583,69 @@
       "name": "Spacetime Assemblies",
       "path": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
       "searchTarget": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
+      "name": "Entanglement and Nonlocality: Traditional vs. Architrino Assembly Architecture",
+      "path": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
+      "searchTarget": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
+      "name": "Relativistic Scalar Fields and the Klein-Gordon Equation",
+      "path": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
+      "searchTarget": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/theory-bridges/pilot-wave-character.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
+      "name": "Pilot-Wave Character: Traditional de Broglie–Bohm Theory and Architrino Assembly Architecture",
+      "path": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
+      "searchTarget": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+      "name": "Quantum Operator Mapping",
+      "path": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+      "searchTarget": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/theory-bridges/README.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/theory-bridges/README.md",
+      "name": "Theory Bridges",
+      "path": "content/markdown/aaa/theory-bridges/README.md",
+      "searchTarget": "content/markdown/aaa/theory-bridges/README.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
+      "name": "Special Relativity and Deformable Noether Cores",
+      "path": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
+      "searchTarget": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/theory-bridges/superposition-mechanism.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/theory-bridges/superposition-mechanism.md",
+      "name": "Superposition Mechanism: Traditional vs. Architrino Assembly Architecture",
+      "path": "content/markdown/aaa/theory-bridges/superposition-mechanism.md",
+      "searchTarget": "content/markdown/aaa/theory-bridges/superposition-mechanism.md",
       "implicit": false
     },
     {
@@ -11608,7 +11653,7 @@
     },
     {
       "from": "scene:content/scenes/quantum/entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture.json",
-      "to": "markdown_doc:content/markdown/aaa/quantum/entanglement-nonlocality.md",
+      "to": "markdown_doc:content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/quantum/entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture.json",
       "field": "scene.source.path"
@@ -11629,14 +11674,14 @@
     },
     {
       "from": "scene:content/scenes/quantum/pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture.json",
-      "to": "markdown_doc:content/markdown/aaa/quantum/pilot-wave-character.md",
+      "to": "markdown_doc:content/markdown/aaa/theory-bridges/pilot-wave-character.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/quantum/pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture.json",
       "field": "scene.source.path"
     },
     {
       "from": "scene:content/scenes/quantum/quantum_operator_mapping.json",
-      "to": "markdown_doc:content/markdown/aaa/quantum/quantum-operator-mapping.md",
+      "to": "markdown_doc:content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/quantum/quantum_operator_mapping.json",
       "field": "scene.source.path"
@@ -11657,7 +11702,7 @@
     },
     {
       "from": "scene:content/scenes/quantum/superposition_mechanism_traditional_vs_architrino_assembly_architecture.json",
-      "to": "markdown_doc:content/markdown/aaa/quantum/superposition-mechanism.md",
+      "to": "markdown_doc:content/markdown/aaa/theory-bridges/superposition-mechanism.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/quantum/superposition_mechanism_traditional_vs_architrino_assembly_architecture.json",
       "field": "scene.source.path"

@@ -379,6 +379,11 @@ export function createMarkdownRuntime(deps) {
     );
   }
 
+  function resolveAuthoredMarkdownColumns(level) {
+    const columns = level?.markdownColumns;
+    return columns === 1 || columns === 2 || columns === 3 ? columns : null;
+  }
+
   function toggleMarkdownLayout() {
     markdownColumnCount = markdownColumnCount > 1 ? 1 : markdownPreferredColumnCount;
     applyMarkdownLayout();
@@ -397,11 +402,11 @@ export function createMarkdownRuntime(deps) {
       hideMarkdownPanel();
       return;
     }
+    const authoredColumnCount = resolveAuthoredMarkdownColumns(level);
     markdownPreferredColumnCount =
-      level.markdownColumns === 1 || level.markdownColumns === 2 || level.markdownColumns === 3
-        ? level.markdownColumns
-        : 2;
-    markdownColumnCount = sectionKey ? 1 : markdownPreferredColumnCount;
+      authoredColumnCount && authoredColumnCount > 1 ? authoredColumnCount : 2;
+    markdownColumnCount =
+      sectionKey || authoredColumnCount === 1 ? 1 : markdownPreferredColumnCount;
     const sectionCache = sectionKey ? markdownSectionCache : markdownCache;
     let html = sectionCache.get(cacheKey);
     if (!html) {

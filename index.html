@@ -54,6 +54,40 @@
             </div>
             <div id="scene-hud-right">
               <div id="scene-hud-tools">
+                <button
+                  id="markdown-doc-button"
+                  type="button"
+                  aria-label="Open full document"
+                  class="is-hidden"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M7 4h7l4 4v12H7V4zm7 0v4h4"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      fill="none"
+                      stroke-linejoin="round"
+                      stroke-linecap="round"
+                    ></path>
+                  </svg>
+                </button>
+                <button
+                  id="markdown-layout-toggle"
+                  type="button"
+                  aria-label="Switch to single column"
+                  class="is-hidden"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="5" y="5" width="14" height="14" rx="2"></rect>
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="7.5" y1="8.5" x2="9.5" y2="8.5"></line>
+                    <line x1="14.5" y1="8.5" x2="16.5" y2="8.5"></line>
+                    <line x1="7.5" y1="12" x2="9.5" y2="12"></line>
+                    <line x1="14.5" y1="12" x2="16.5" y2="12"></line>
+                    <line x1="7.5" y1="15.5" x2="9.5" y2="15.5"></line>
+                    <line x1="14.5" y1="15.5" x2="16.5" y2="15.5"></line>
+                  </svg>
+                </button>
                 <div id="scene-nav-history" role="group" aria-label="Scene history">
                   <button id="nav-up" type="button" aria-label="Go back">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -111,41 +145,6 @@
                     <div id="scene-search-results"></div>
                   </div>
                 </div>
-                <button
-                  id="markdown-doc-button"
-                  type="button"
-                  aria-label="Open full document"
-                  class="is-hidden"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M7 4h7l4 4v12H7V4zm7 0v4h4"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      fill="none"
-                      stroke-linejoin="round"
-                      stroke-linecap="round"
-                    ></path>
-                  </svg>
-                </button>
-                <button
-                  id="markdown-layout-toggle"
-                  type="button"
-                  aria-label="Switch to single column"
-                  class="is-hidden"
-                >
-                  <svg class="layout-icon-stack" viewBox="0 0 24 24" aria-hidden="true">
-                    <rect x="4" y="2.5" width="16" height="1.7" rx="0.85"></rect>
-                    <rect x="4" y="5.2" width="16" height="1.7" rx="0.85"></rect>
-                    <rect x="4" y="7.9" width="16" height="1.7" rx="0.85"></rect>
-                    <rect x="4" y="14.8" width="6" height="1.7" rx="0.85"></rect>
-                    <rect x="4" y="17.5" width="6" height="1.7" rx="0.85"></rect>
-                    <rect x="4" y="20.2" width="6" height="1.7" rx="0.85"></rect>
-                    <rect x="14" y="14.8" width="6" height="1.7" rx="0.85"></rect>
-                    <rect x="14" y="17.5" width="6" height="1.7" rx="0.85"></rect>
-                    <rect x="14" y="20.2" width="6" height="1.7" rx="0.85"></rect>
-                  </svg>
-                </button>
                 <button id="detail-info-button" type="button" aria-label="Reopen info panel">
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <circle cx="12" cy="12" r="8"></circle>
@@ -161,10 +160,10 @@
                   onclick="window.openArchieRing ? window.openArchieRing() : document.getElementById('home-button')?.click()"
                 >
                   <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <circle cx="12" cy="12" r="7.5"></circle>
-                  <circle cx="12" cy="12" r="3.5"></circle>
-                  <circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"></circle>
-                </svg>
+                    <circle cx="12" cy="12" r="7.5"></circle>
+                    <circle cx="12" cy="12" r="3.5"></circle>
+                    <circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"></circle>
+                  </svg>
                 </button>
               </div>
             </div>

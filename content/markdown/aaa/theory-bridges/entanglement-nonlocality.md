@@ -2,7 +2,7 @@
 
 This document establishes the ontological and mathematical mapping between quantum entanglement and nonlocality as understood in standard quantum mechanics and as grounded in the deterministic, path-history dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$). The central thesis is that entanglement is not a mysterious connection between distant systems but a deterministic correlation inherited from shared causal origin, maintained through correlated path-history structure, and rendered operationally irreducible by the epistemic limitations of Physical Observers.
 
-It forms a tight cluster with [Bell Theorem](bell-theorem.md), [Measurement Ontology](measurement-ontology.md), [Wavefunction Ontology](wavefunction-ontology.md), [Superposition Mechanism](superposition-mechanism.md), and [Pilot-Wave Character](pilot-wave-character.md).
+It forms a tight cluster with [Bell Theorem](../quantum/bell-theorem.md), [Measurement Ontology](../quantum/measurement-ontology.md), [Wavefunction Ontology](../quantum/wavefunction-ontology.md), [Superposition Mechanism](./superposition-mechanism.md), and [Pilot-Wave Character](./pilot-wave-character.md).
 
 ---
 
@@ -82,7 +82,7 @@ The correlations established at $t_0$ are carried forward in the **internal conf
 
 ### Measurement as Threshold Resolution
 
-When a measurement apparatus (itself an assembly of architrinos) interacts with particle $A$, the measurement is a complex assembly interaction governed by the Master Equation. The apparatus drives $A$ across a phase-space separatrix into a definite attractor basin (see [quantum/superposition-mechanism.md](./superposition-mechanism.md)). The outcome depends on:
+When a measurement apparatus (itself an assembly of architrinos) interacts with particle $A$, the measurement is a complex assembly interaction governed by the Master Equation. The apparatus drives $A$ across a phase-space separatrix into a definite attractor basin (see [Superposition Mechanism](./superposition-mechanism.md)). The outcome depends on:
 
 1. The internal microstate of $A$ (including binary phases, wake history),
 2. The internal microstate of the apparatus,

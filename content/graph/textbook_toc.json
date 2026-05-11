@@ -1454,12 +1454,12 @@
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/quantum/quantum_operator_mapping.json",
-                "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
                 "sections": [
                   {
                     "kind": "markdown-section",
                     "title": "The Tri-Binary Qubit and Phase Space",
-                    "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
+                    "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
                     "markdownSection": "The Tri-Binary Qubit and Phase Space",
                     "sectionKey": "the tri binary qubit and phase space",
                     "headingLevel": 2
@@ -1467,7 +1467,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Functional Bounds and Well-Posedness",
-                    "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
+                    "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
                     "markdownSection": "Functional Bounds and Well-Posedness",
                     "sectionKey": "functional bounds and well posedness",
                     "headingLevel": 2
@@ -1475,7 +1475,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Unitary Evolution and Topological Torques",
-                    "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
+                    "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
                     "markdownSection": "Unitary Evolution and Topological Torques",
                     "sectionKey": "unitary evolution and topological torques",
                     "headingLevel": 2
@@ -1483,7 +1483,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Entanglement via Path-History Potentials",
-                    "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
+                    "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
                     "markdownSection": "Entanglement via Path-History Potentials",
                     "sectionKey": "entanglement via path history potentials",
                     "headingLevel": 2
@@ -1491,7 +1491,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Measurement and Dynamical Collapse",
-                    "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
+                    "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
                     "markdownSection": "Measurement and Dynamical Collapse",
                     "sectionKey": "measurement and dynamical collapse",
                     "headingLevel": 2
@@ -1499,7 +1499,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Falsifiability and Observables",
-                    "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
+                    "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
                     "markdownSection": "Falsifiability and Observables",
                     "sectionKey": "falsifiability and observables",
                     "headingLevel": 2
@@ -1507,7 +1507,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Statistical Measure and the Born Rule Emergence",
-                    "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
+                    "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
                     "markdownSection": "Statistical Measure and the Born Rule Emergence",
                     "sectionKey": "statistical measure and the born rule emergence",
                     "headingLevel": 2
@@ -1515,7 +1515,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Kinetic Limits and Decoherence",
-                    "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
+                    "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
                     "markdownSection": "Kinetic Limits and Decoherence",
                     "sectionKey": "kinetic limits and decoherence",
                     "headingLevel": 2
@@ -1523,7 +1523,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Statistical Falsifiability and Observables",
-                    "markdownPath": "content/markdown/aaa/quantum/quantum-operator-mapping.md",
+                    "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
                     "markdownSection": "Statistical Falsifiability and Observables",
                     "sectionKey": "statistical falsifiability and observables",
                     "headingLevel": 2
@@ -1700,12 +1700,12 @@
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/quantum/entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture.json",
-                "markdownPath": "content/markdown/aaa/quantum/entanglement-nonlocality.md",
+                "markdownPath": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
                 "sections": [
                   {
                     "kind": "markdown-section",
                     "title": "Traditional Quantum Mechanical View",
-                    "markdownPath": "content/markdown/aaa/quantum/entanglement-nonlocality.md",
+                    "markdownPath": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
                     "markdownSection": "Traditional Quantum Mechanical View",
                     "sectionKey": "traditional quantum mechanical view",
                     "headingLevel": 2
@@ -1713,7 +1713,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Mechanism",
-                    "markdownPath": "content/markdown/aaa/quantum/entanglement-nonlocality.md",
+                    "markdownPath": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
                     "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Mechanism",
                     "sectionKey": "mathbb a mathbb a mathbb a mechanism",
                     "headingLevel": 2
@@ -1721,7 +1721,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "The Phenomenological Mapping",
-                    "markdownPath": "content/markdown/aaa/quantum/entanglement-nonlocality.md",
+                    "markdownPath": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
                     "markdownSection": "The Phenomenological Mapping",
                     "sectionKey": "the phenomenological mapping",
                     "headingLevel": 2
@@ -1729,7 +1729,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Ontic vs. Epistemic: The Two-Level Reading",
-                    "markdownPath": "content/markdown/aaa/quantum/entanglement-nonlocality.md",
+                    "markdownPath": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
                     "markdownSection": "Ontic vs. Epistemic: The Two-Level Reading",
                     "sectionKey": "ontic vs epistemic the two level reading",
                     "headingLevel": 2
@@ -1737,7 +1737,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Comparison with Competing Interpretations",
-                    "markdownPath": "content/markdown/aaa/quantum/entanglement-nonlocality.md",
+                    "markdownPath": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
                     "markdownSection": "Comparison with Competing Interpretations",
                     "sectionKey": "comparison with competing interpretations",
                     "headingLevel": 2
@@ -1745,7 +1745,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Observables and Falsifiability",
-                    "markdownPath": "content/markdown/aaa/quantum/entanglement-nonlocality.md",
+                    "markdownPath": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
                     "markdownSection": "Observables and Falsifiability",
                     "sectionKey": "observables and falsifiability",
                     "headingLevel": 2
@@ -1758,12 +1758,12 @@
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/quantum/pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture.json",
-                "markdownPath": "content/markdown/aaa/quantum/pilot-wave-character.md",
+                "markdownPath": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
                 "sections": [
                   {
                     "kind": "markdown-section",
                     "title": "Traditional de Broglie–Bohm Pilot-Wave Theory",
-                    "markdownPath": "content/markdown/aaa/quantum/pilot-wave-character.md",
+                    "markdownPath": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
                     "markdownSection": "Traditional de Broglie–Bohm Pilot-Wave Theory",
                     "sectionKey": "traditional de broglie bohm pilot wave theory",
                     "headingLevel": 2
@@ -1771,7 +1771,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$: Single-Ontology Guidance",
-                    "markdownPath": "content/markdown/aaa/quantum/pilot-wave-character.md",
+                    "markdownPath": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
                     "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$: Single-Ontology Guidance",
                     "sectionKey": "mathbb a mathbb a mathbb a single ontology guidance",
                     "headingLevel": 2
@@ -1779,7 +1779,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Quantum Phenomena as Wake-Field Guidance Effects",
-                    "markdownPath": "content/markdown/aaa/quantum/pilot-wave-character.md",
+                    "markdownPath": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
                     "markdownSection": "Quantum Phenomena as Wake-Field Guidance Effects",
                     "sectionKey": "quantum phenomena as wake field guidance effects",
                     "headingLevel": 2
@@ -1787,7 +1787,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "The Phenomenological Mapping",
-                    "markdownPath": "content/markdown/aaa/quantum/pilot-wave-character.md",
+                    "markdownPath": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
                     "markdownSection": "The Phenomenological Mapping",
                     "sectionKey": "the phenomenological mapping",
                     "headingLevel": 2
@@ -1795,7 +1795,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Comparison: Structural Advantages and Open Costs",
-                    "markdownPath": "content/markdown/aaa/quantum/pilot-wave-character.md",
+                    "markdownPath": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
                     "markdownSection": "Comparison: Structural Advantages and Open Costs",
                     "sectionKey": "comparison structural advantages and open costs",
                     "headingLevel": 2
@@ -1803,7 +1803,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Observables, Falsifiability, and Failure Modes",
-                    "markdownPath": "content/markdown/aaa/quantum/pilot-wave-character.md",
+                    "markdownPath": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
                     "markdownSection": "Observables, Falsifiability, and Failure Modes",
                     "sectionKey": "observables falsifiability and failure modes",
                     "headingLevel": 2
@@ -1811,7 +1811,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Closure Program Integration (quantum chain)",
-                    "markdownPath": "content/markdown/aaa/quantum/pilot-wave-character.md",
+                    "markdownPath": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
                     "markdownSection": "Closure Program Integration (quantum chain)",
                     "sectionKey": "closure program integration quantum chain",
                     "headingLevel": 2
@@ -1898,7 +1898,7 @@
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/quantum/superposition_mechanism_traditional_vs_architrino_assembly_architecture.json",
-                "markdownPath": "content/markdown/aaa/quantum/superposition-mechanism.md"
+                "markdownPath": "content/markdown/aaa/theory-bridges/superposition-mechanism.md"
               },
               {
                 "id": "quantum__wavefunction_ontology",

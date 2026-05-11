@@ -2,7 +2,7 @@
 
 This note collects the interpretive discussion moved out of [reality-quantum-causality.md](../quantum/reality-quantum-causality.md) so that the quantum chapter can stay focused on dynamical mechanisms while the agency framing lives in `Philosophy-History`.
 
-It also belongs with [Measurement Ontology](../quantum/measurement-ontology.md), [Superposition Mechanism](../quantum/superposition-mechanism.md), [Philosophy of Science](philosophy-of-science.md), and [Information / Computation](information-computation.md).
+It also belongs with [Measurement Ontology](../quantum/measurement-ontology.md), [Superposition Mechanism](../theory-bridges/superposition-mechanism.md), [Philosophy of Science](philosophy-of-science.md), and [Information / Computation](information-computation.md).
 
 ## Internal vs External Causation
 
