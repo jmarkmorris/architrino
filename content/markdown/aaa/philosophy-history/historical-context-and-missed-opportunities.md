@@ -22,7 +22,7 @@ This chapter also treats missed opportunities dynamically rather than as one-tim
 
 The minimal lens used in this chapter is:
 
-- Substrate kinematics: $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$ with exact global time form $dt$.
+- Substrate kinematics: $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$ with exact absolute-time form $dt$.
 - Matter and "vacuum" share constituents (assemblies in the Noether Sea), not two disjoint ontologies.
 - Relativistic observables are emergent summaries of assembly dynamics.
 - Deterministic microdynamics can yield multistability and attractor-basin outcome sensitivity.
@@ -142,7 +142,7 @@ In other words, the ingredients for a layered interpretation were already presen
 
 | Aspect | Lorentz Ether (1904) | Einstein SR (1905) | $\mathbb{A}\mathbb{A}\mathbb{A}$ |
 |:---|:---|:---|:---|
-| Preferred frame | Yes, physically real ether rest frame | No preferred inertial frame | Yes, Euclidean void with exact global time |
+| Preferred frame | Yes, physically real ether rest frame | No preferred inertial frame | Yes, Euclidean void with absolute time |
 | Status of Lorentz transformations | Dynamical compensation from motion through a medium | Fundamental kinematics of spacetime itself | Emergent observable symmetry from assembly dynamics |
 | Medium composition | Unspecified ether substance | No constitutive medium required | Noether Sea of architrino assemblies |
 | Relation between matter and medium | Matter moves through a distinct ether | Matter and spacetime are treated kinematically | Matter and medium share one ontology |

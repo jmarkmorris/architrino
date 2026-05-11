@@ -15,7 +15,7 @@ The current $\mathbb{A}\mathbb{A}\mathbb{A}$ position assumed throughout is:
 - **No creation, no annihilation**: Architrinos are eternal. All change is reconfiguration.
 - **Self-hit regime**: Entirely novel dynamics when sources exceed field propagation speed.
 - **$\mathbb{U}_{\text{now}}$ universe-state perspective**: A conceptual construct (not a physical device) that can, in principle, track the full microstate—position, velocity, and polarity of every architrino—at any (x,y,z,t) in the fixed Euclidean frame. This perspective knows where and when each causal wake surface was emitted as it passes any point.
-- **Spacetime assembly network**: What GR calls the "vacuum" is not empty void but the **Noether Sea**: a spacetime assembly network of coupled pro/anti Noether cores (tri-binary assemblies whose organized state provides the effective spacetime medium). 
+- **Noether Sea / spacetime-medium bridge**: What GR calls the "vacuum" is not empty void but the **Noether Sea**: ambient substrate contents made from coupled pro/anti Noether cores, with `spacetime medium` reserved as bridge language for the effective metric context.
 
 **Terminology note:** In this document, **"branching"** refers to **deterministic multistability** (microstate-sensitive attractor selection), not Many-Worlds splitting or fundamental randomness.
 

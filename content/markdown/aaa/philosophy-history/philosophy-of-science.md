@@ -6,7 +6,7 @@
 
 This document maps the methodological and epistemic schools that govern how science interprets theory, evidence, explanation, realism, and theory change.
 
-The closest companion maps are [Crisis in Physics](crisis-in-physics.md), [Theory Mapping](theory-mapping.md), [Theory Differentials](theory-differentials.md), [Information / Computation](information-computation.md), and [No-Go Theorems](../validation/no-go-theorems.md).
+The closest companion maps are [Crisis in Physics](crisis-in-physics.md), [Theory Mapping](theory-mapping.md), [Theory Differentials](theory-differentials.md), [Information / Computation](information-computation.md), [Agency and Internal Causation](agency-and-internal-causation.md), and [No-Go Theorems](../validation/no-go-theorems.md).
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is not side commentary. It bears directly on core questions:
 

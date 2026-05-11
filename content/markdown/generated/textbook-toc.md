@@ -932,7 +932,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Functional Agency](../aaa/philosophy-history/agency-and-internal-causation.md?section=Functional+Agency)
     - [Determinism and Predictability](../aaa/philosophy-history/agency-and-internal-causation.md?section=Determinism+and+Predictability)
     - [Will as Threshold Setting](../aaa/philosophy-history/agency-and-internal-causation.md?section=Will+as+Threshold+Setting)
-    - [Free Will: Compatibilist vs Libertarian](../aaa/philosophy-history/agency-and-internal-causation.md?section=Free+Will%3A+Compatibilist+vs+Libertarian)
+    - [Compatibilist Agency](../aaa/philosophy-history/agency-and-internal-causation.md?section=Compatibilist+Agency)
     - [Summary](../aaa/philosophy-history/agency-and-internal-causation.md?section=Summary)
     - [Closing Statement](../aaa/philosophy-history/agency-and-internal-causation.md?section=Closing+Statement)
   - [Crisis in Physics](../../scenes/philosophy_history/crisis_in_physics.json)

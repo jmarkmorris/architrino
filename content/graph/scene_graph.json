@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 457,
+      "nodes": 458,
       "edges": 1212,
       "scenes": 315,
       "markdownIndexes": 0,
-      "markdownDocs": 142,
+      "markdownDocs": 143,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2450,6 +2450,12 @@
       "id": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
       "name": "Philosophy of Science",
       "path": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/README.md",
+      "name": "Philosophy and History",
+      "path": "content/markdown/aaa/philosophy-history/README.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -6346,6 +6352,15 @@
       "name": "Philosophy of Science",
       "path": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/README.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/README.md",
+      "name": "Philosophy and History",
+      "path": "content/markdown/aaa/philosophy-history/README.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/README.md",
       "implicit": false
     },
     {

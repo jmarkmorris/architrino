@@ -195,7 +195,7 @@ Historically, the Liénard-Wiechert moving-source potentials already pointed in 
 
 **Geometric proof targets:**
 - Show global polarity-phase invariance implies a conserved U(1)-like charge.
-- Derive the field potential as a coarse-grained wake field from tri-binary motion.
+- Derive the effective field potential as a coarse-grained summary of causal wakes from tri-binary motion.
 
 ---
 ### Electroweak Theory (EW)
@@ -212,7 +212,7 @@ $$
 \mathrm{SU(2)}_L \times \mathrm{U(1)}_Y \xrightarrow{\langle H\rangle\neq 0}
 \mathrm{U(1)}_{\mathrm{EM}}.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The Higgs field corresponds to an effective account of how a dense, nearly-uniform tri-binary configuration in the Noether Sea contributes to local inertial response. It should not be treated as the sole origin of mass: mass is the externally exposed response of trapped internal causal history, shielding, and Noether-Sea coupling. Electroweak symmetry breaking is the selection of a preferred phase/orientation pattern in this medium, which distinguishes the massless coaxial contra-rotating pro/anti planar-pair photon channel from massive vector assemblies (W, Z). See [Electroweak Bosons: Photons, W/Z, and Higgs](../assemblies/bosons/electroweak-bosons.md), [Weak Mixing Angle](../assemblies/fermions/weak-mixing-angle.md), and [Weak Mixing and CKM](../theory-bridges/weak-mixing-ckm.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The Higgs field corresponds to an effective account of how a dense, nearly-uniform tri-binary configuration in the Noether Sea contributes to local inertial response. It should not be treated as the sole origin of mass: mass is the externally exposed response of trapped internal causal history, shielding, and Noether-Sea coupling. Electroweak symmetry breaking is the selection of a preferred phase/orientation pattern in this medium, which distinguishes the massless photon channel, described canonically as a coaxial contra-rotating pro/anti planar pair, from massive vector assemblies (W, Z). See [Electroweak Bosons: Photons, W/Z, and Higgs](../assemblies/bosons/electroweak-bosons.md), [Weak Mixing Angle](../assemblies/fermions/weak-mixing-angle.md), and [Weak Mixing and CKM](../theory-bridges/weak-mixing-ckm.md).
 
 **What Still Works:** Electroweak Theory (EW) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of tri-binary assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
@@ -569,7 +569,7 @@ the angular power spectrum.
 $$
 C_\ell = \langle |a_{\ell m}|^2 \rangle.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The acoustic peaks record standing-wave patterns of coupled assembly sectors: coaxial contra-rotating pro/anti planar-pair photon modes and baryon-like composite assemblies embedded in the Noether Sea. Their spectrum encodes how the Noether Sea and matter assemblies responded collectively to density and pressure perturbations before decoupling.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The acoustic peaks record standing-wave patterns of coupled assembly sectors: photon modes described canonically as coaxial contra-rotating pro/anti planar pairs, plus baryon-like composite assemblies embedded in the Noether Sea. Their spectrum encodes how the Noether Sea and matter assemblies responded collectively to density and pressure perturbations before decoupling.
 
 **What Still Works:** CMB Acoustic Peaks remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.

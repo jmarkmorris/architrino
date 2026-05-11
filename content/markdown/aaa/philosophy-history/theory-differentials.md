@@ -51,6 +51,8 @@ Template conformance test protocol for each concept entry:
 4. Confirm `What This Concept Gets Right` preserves real strengths, not strawman failures.
 5. Confirm `Failure Mode` and `Mapping Target` are concrete and falsifiable.
 
+Boilerplate quality rule: repeated template language is acceptable only as scaffolding. Each mature entry should name the specific regularity, observable, equation family, or inference pattern that survives, and its `Mapping Target` should identify the concrete derivation, recovery, or rejection needed under $\mathbb{A}\mathbb{A}\mathbb{A}$. Generic claims such as "captures a stable regularity" should be treated as placeholders until the entry states what regularity is actually meant.
+
 ### Dual-Stack Mapping Frame
 
 This chapter intentionally uses two different layer systems and they must not be conflated.
