@@ -6,128 +6,177 @@
     "layout": {
       "type": "rings"
     },
+    "centerOn": "master_equation_of_motion",
     "children": [
       {
-        "nodeId": "quantum",
-        "scenePath": "content/scenes/quantum/quantum.json"
-      },
-      {
-        "nodeId": "binary_dynamics",
-        "scenePath": "content/scenes/dynamics/binary_dynamics.json"
-      },
-      {
-        "nodeId": "causal_action_functional",
-        "scenePath": "content/scenes/dynamics/causal_action_functional.json"
-      },
-      {
-        "nodeId": "dyadic_resonance_lock",
-        "scenePath": "content/scenes/dynamics/dyadic_resonance_lock.json"
-      },
-      {
-        "nodeId": "effective_lagrangian",
-        "scenePath": "content/scenes/dynamics/effective_lagrangian.json"
+        "nodeId": "master_equation_of_motion",
+        "scenePath": "content/scenes/dynamics/master_equation_of_motion.json"
       },
       {
         "nodeId": "kinetic_and_potential_energy",
         "scenePath": "content/scenes/dynamics/kinetic_and_potential_energy.json"
       },
       {
-        "nodeId": "master_equation_of_motion",
-        "scenePath": "content/scenes/dynamics/master_equation_of_motion.json"
+        "nodeId": "binary_dynamics",
+        "scenePath": "content/scenes/dynamics/binary_dynamics.json"
       },
       {
         "nodeId": "tri_binary_dynamics",
         "scenePath": "content/scenes/dynamics/tri_binary_dynamics.json"
+      },
+      {
+        "nodeId": "dyadic_resonance_lock",
+        "scenePath": "content/scenes/dynamics/dyadic_resonance_lock.json"
+      },
+      {
+        "nodeId": "causal_action_functional",
+        "scenePath": "content/scenes/dynamics/causal_action_functional.json"
+      },
+      {
+        "nodeId": "effective_lagrangian",
+        "scenePath": "content/scenes/dynamics/effective_lagrangian.json"
+      },
+      {
+        "nodeId": "quantum",
+        "scenePath": "content/scenes/quantum/quantum.json"
       }
     ]
   },
   "objects": [
     {
-      "id": "quantum",
-      "title": "Quantum",
+      "id": "master_equation_of_motion",
+      "title": "Master Equation of Motion",
       "radius": 2.688,
-      "color": "#2f4f7a",
+      "color": "#1c2a4f",
+      "position": [
+        0,
+        0,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Quantum"
-    },
-    {
-      "id": "binary_dynamics",
-      "title": "Binary Dynamics",
-      "radius": 2.688,
-      "color": "#243d8f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Binary Dynamics",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "causal_action_functional",
-      "title": "Causal Action Functional",
-      "radius": 2.688,
-      "color": "#2f6b6f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Causal Action Functional",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "dyadic_resonance_lock",
-      "title": "Dyadic Resonance Lock",
-      "radius": 2.688,
-      "color": "#6c4f8d",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Dyadic Resonance Lock",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "effective_lagrangian",
-      "title": "Effective Lagrangian",
-      "radius": 2.688,
-      "color": "#5a1f2e",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Effective Lagrangian",
-      "labelBadge": "doc"
+      "labelTitle": "Master Equation of Motion",
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "kinetic_and_potential_energy",
       "title": "Kinetic and Potential Energy",
       "radius": 2.688,
       "color": "#4b0082",
+      "position": [
+        0,
+        10.5,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Kinetic and Potential Energy",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
-      "id": "master_equation_of_motion",
-      "title": "Master Equation of Motion",
+      "id": "binary_dynamics",
+      "title": "Binary Dynamics",
       "radius": 2.688,
-      "color": "#1c2a4f",
+      "color": "#243d8f",
+      "position": [
+        8.21,
+        6.55,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Master Equation of Motion",
-      "labelBadge": "doc"
+      "labelTitle": "Binary Dynamics",
+      "labelBadge": "doc",
+      "fixedPosition": true
     },
     {
       "id": "tri_binary_dynamics",
       "title": "Tri-Binary Dynamics",
       "radius": 2.688,
       "color": "#3f6a5a",
+      "position": [
+        10.24,
+        -2.34,
+        0
+      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "Tri-Binary Dynamics",
-      "labelBadge": "doc"
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "dyadic_resonance_lock",
+      "title": "Dyadic Resonance Lock",
+      "radius": 2.688,
+      "color": "#6c4f8d",
+      "position": [
+        4.56,
+        -9.46,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Dyadic Resonance Lock",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "causal_action_functional",
+      "title": "Causal Action Functional",
+      "radius": 2.688,
+      "color": "#2f6b6f",
+      "position": [
+        -4.56,
+        -9.46,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Causal Action Functional",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "effective_lagrangian",
+      "title": "Effective Lagrangian",
+      "radius": 2.688,
+      "color": "#5a1f2e",
+      "position": [
+        -10.24,
+        -2.34,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Effective Lagrangian",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "quantum",
+      "title": "Quantum",
+      "radius": 2.688,
+      "color": "#2f4f7a",
+      "position": [
+        -8.21,
+        6.55,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Quantum",
+      "fixedPosition": true
     }
   ]
 }

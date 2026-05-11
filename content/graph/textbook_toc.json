@@ -804,6 +804,618 @@
         "scenePath": "content/scenes/dynamics/dynamics.json",
         "children": [
           {
+            "id": "dynamics__master_equation_of_motion",
+            "title": "Master Equation of Motion",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/dynamics/master_equation_of_motion.json",
+            "markdownPath": "content/markdown/aaa/dynamics/master-equation.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Foundations and Causal Geometry",
+                "markdownPath": "content/markdown/aaa/dynamics/master-equation.md",
+                "markdownSection": "Foundations and Causal Geometry",
+                "sectionKey": "foundations and causal geometry",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Master Equation and DDE Formulation",
+                "markdownPath": "content/markdown/aaa/dynamics/master-equation.md",
+                "markdownSection": "Master Equation and DDE Formulation",
+                "sectionKey": "master equation and dde formulation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Operational Principles, Self-Interaction, and Examples",
+                "markdownPath": "content/markdown/aaa/dynamics/master-equation.md",
+                "markdownSection": "Operational Principles, Self-Interaction, and Examples",
+                "sectionKey": "operational principles self interaction and examples",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Parameters and Numerical Implementation",
+                "markdownPath": "content/markdown/aaa/dynamics/master-equation.md",
+                "markdownSection": "Parameters and Numerical Implementation",
+                "sectionKey": "parameters and numerical implementation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Analytic Regimes and Research Roadmap",
+                "markdownPath": "content/markdown/aaa/dynamics/master-equation.md",
+                "markdownSection": "Analytic Regimes and Research Roadmap",
+                "sectionKey": "analytic regimes and research roadmap",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Energy, Symmetry, and Conservation",
+                "markdownPath": "content/markdown/aaa/dynamics/master-equation.md",
+                "markdownSection": "Energy, Symmetry, and Conservation",
+                "sectionKey": "energy symmetry and conservation",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "dynamics__kinetic_and_potential_energy",
+            "title": "Kinetic and Potential Energy",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/dynamics/kinetic_and_potential_energy.json",
+            "markdownPath": "content/markdown/aaa/dynamics/energy.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Kinetic Energy and Momentum of a Single Architrino",
+                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
+                "markdownSection": "Kinetic Energy and Momentum of a Single Architrino",
+                "sectionKey": "kinetic energy and momentum of a single architrino",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Work–Energy Relation and Per-Hit Power",
+                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
+                "markdownSection": "Work–Energy Relation and Per-Hit Power",
+                "sectionKey": "work energy relation and per hit power",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Potential Energy and Net Potential",
+                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
+                "markdownSection": "Potential Energy and Net Potential",
+                "sectionKey": "potential energy and net potential",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Energy Conservation and Exchange",
+                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
+                "markdownSection": "Energy Conservation and Exchange",
+                "sectionKey": "energy conservation and exchange",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Noether Sea, Effective Spacetime, and Energy Storage",
+                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
+                "markdownSection": "Noether Sea, Effective Spacetime, and Energy Storage",
+                "sectionKey": "noether sea effective spacetime and energy storage",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Assemblies: Internal vs Apparent Energy",
+                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
+                "markdownSection": "Assemblies: Internal vs Apparent Energy",
+                "sectionKey": "assemblies internal vs apparent energy",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Emergent Inertia (Mass) from Shielded Energy",
+                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
+                "markdownSection": "Emergent Inertia (Mass) from Shielded Energy",
+                "sectionKey": "emergent inertia mass from shielded energy",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Effective Energy-Momentum Closure",
+                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
+                "markdownSection": "Effective Energy-Momentum Closure",
+                "sectionKey": "effective energy momentum closure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Energy and Self-Hit in the Tri-Binary Sea",
+                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
+                "markdownSection": "Energy and Self-Hit in the Tri-Binary Sea",
+                "sectionKey": "energy and self hit in the tri binary sea",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Intuition (Plain Language)",
+                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
+                "markdownSection": "Intuition (Plain Language)",
+                "sectionKey": "intuition plain language",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary and Role in the Larger Theory",
+                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
+                "markdownSection": "Summary and Role in the Larger Theory",
+                "sectionKey": "summary and role in the larger theory",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Appendix A: Energy Zero and Bookkeeping",
+                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
+                "markdownSection": "Appendix A: Energy Zero and Bookkeeping",
+                "sectionKey": "appendix a energy zero and bookkeeping",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "dynamics__binary_dynamics",
+            "title": "Binary Dynamics",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/dynamics/binary_dynamics.json",
+            "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "The Spiral Orbiting Binary and the Contraction Phase",
+                "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
+                "markdownSection": "The Spiral Orbiting Binary and the Contraction Phase",
+                "sectionKey": "the spiral orbiting binary and the contraction phase",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Spiral Momentum Budget Across the Hinge (Speculative)",
+                "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
+                "markdownSection": "Spiral Momentum Budget Across the Hinge (Speculative)",
+                "sectionKey": "spiral momentum budget across the hinge speculative",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Spiral Binary Symmetry-Breaking Point ($v = c_f$)",
+                "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
+                "markdownSection": "Spiral Binary Symmetry-Breaking Point ($v = c_f$)",
+                "sectionKey": "spiral binary symmetry breaking point v c f",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Self-Hit: Definition and Diagnostics",
+                "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
+                "markdownSection": "Self-Hit: Definition and Diagnostics",
+                "sectionKey": "self hit definition and diagnostics",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Spiral Binary Deflationary Phase",
+                "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
+                "markdownSection": "Spiral Binary Deflationary Phase",
+                "sectionKey": "spiral binary deflationary phase",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Maximum-Curvature Binary — Circular",
+                "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
+                "markdownSection": "Maximum-Curvature Binary — Circular",
+                "sectionKey": "maximum curvature binary circular",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "State Space and Well-Posedness of the Two-Body Delay System",
+                "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
+                "markdownSection": "State Space and Well-Posedness of the Two-Body Delay System",
+                "sectionKey": "state space and well posedness of the two body delay system",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Symmetry, Conservation, and Lyapunov Functionals",
+                "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
+                "markdownSection": "Symmetry, Conservation, and Lyapunov Functionals",
+                "sectionKey": "symmetry conservation and lyapunov functionals",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "dynamics__tri_binary_dynamics",
+            "title": "Tri-Binary Dynamics",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/dynamics/tri_binary_dynamics.json",
+            "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Relation to the Causal Closure Workstream",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Relation to the Causal Closure Workstream",
+                "sectionKey": "relation to the causal closure workstream",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Publication Status and Claim Scope",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Publication Status and Claim Scope",
+                "sectionKey": "publication status and claim scope",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Substrate and Effective Levels",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Substrate and Effective Levels",
+                "sectionKey": "substrate and effective levels",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Speed Hierarchy",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Speed Hierarchy",
+                "sectionKey": "speed hierarchy",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Mass Thesis as a Dynamics Target",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Mass Thesis as a Dynamics Target",
+                "sectionKey": "mass thesis as a dynamics target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Spiral-Helical Motion Picture",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Spiral-Helical Motion Picture",
+                "sectionKey": "spiral helical motion picture",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Proper Time as Internal Cycle Count",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Proper Time as Internal Cycle Count",
+                "sectionKey": "proper time as internal cycle count",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "ADM/Cartan Reconstruction Target",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "ADM/Cartan Reconstruction Target",
+                "sectionKey": "adm cartan reconstruction target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Dynamics-Side Roadmap",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Dynamics-Side Roadmap",
+                "sectionKey": "dynamics side roadmap",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Working Hypotheses",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Working Hypotheses",
+                "sectionKey": "working hypotheses",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Regime Map for Speed Statements (CFT / Horizon / AdS)",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Regime Map for Speed Statements (CFT / Horizon / AdS)",
+                "sectionKey": "regime map for speed statements cft horizon ads",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Geometry Focus",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Geometry Focus",
+                "sectionKey": "geometry focus",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Minimal Models",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Minimal Models",
+                "sectionKey": "minimal models",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Metric and Connection Reconstruction Diagnostics",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Metric and Connection Reconstruction Diagnostics",
+                "sectionKey": "metric and connection reconstruction diagnostics",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Observables and Diagnostics (Summary)",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Observables and Diagnostics (Summary)",
+                "sectionKey": "observables and diagnostics summary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Revision Triggers (Failure Modes)",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Revision Triggers (Failure Modes)",
+                "sectionKey": "revision triggers failure modes",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Equivalence Principle (Working Constraint)",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Equivalence Principle (Working Constraint)",
+                "sectionKey": "equivalence principle working constraint",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Routed Extensions",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Routed Extensions",
+                "sectionKey": "routed extensions",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "dynamics__dyadic_resonance_lock",
+            "title": "Dyadic Resonance Lock",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/dynamics/dyadic_resonance_lock.json",
+            "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Status and Assumptions",
+                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+                "markdownSection": "Status and Assumptions",
+                "sectionKey": "status and assumptions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Immediate Consequences",
+                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+                "markdownSection": "Immediate Consequences",
+                "sectionKey": "immediate consequences",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Proposition 1 (Exterior Integer Lock Formulas)",
+                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+                "markdownSection": "Proposition 1 (Exterior Integer Lock Formulas)",
+                "sectionKey": "proposition 1 exterior integer lock formulas",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Could $1{:}2{:}4$ Be a Solution?",
+                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+                "markdownSection": "Could $1{:}2{:}4$ Be a Solution?",
+                "sectionKey": "could 1 2 4 be a solution",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What Exact Periodicity Gives, and What It Does Not",
+                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+                "markdownSection": "What Exact Periodicity Gives, and What It Does Not",
+                "sectionKey": "what exact periodicity gives and what it does not",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Interpreting the Cancellation Principle",
+                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+                "markdownSection": "Interpreting the Cancellation Principle",
+                "sectionKey": "interpreting the cancellation principle",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Reduced-Theorem Target",
+                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+                "markdownSection": "Reduced-Theorem Target",
+                "sectionKey": "reduced theorem target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Ancillary Symmetry Check",
+                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+                "markdownSection": "Ancillary Symmetry Check",
+                "sectionKey": "ancillary symmetry check",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "dynamics__causal_action_functional",
+            "title": "Causal Action Functional",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/dynamics/causal_action_functional.json",
+            "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Problem Statement and Goal",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Problem Statement and Goal",
+                "sectionKey": "problem statement and goal",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Core Functional Definitions",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Core Functional Definitions",
+                "sectionKey": "core functional definitions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Regularized Mathematical Setting (Explicit Regime)",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Regularized Mathematical Setting (Explicit Regime)",
+                "sectionKey": "regularized mathematical setting explicit regime",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Axioms and Admissibility Assumptions",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Axioms and Admissibility Assumptions",
+                "sectionKey": "axioms and admissibility assumptions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Rationale for the Functional",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Rationale for the Functional",
+                "sectionKey": "rationale for the functional",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Geometric/Topological Framework",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Geometric/Topological Framework",
+                "sectionKey": "geometric topological framework",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Theorem Spine (Provable Core under A1-A5)",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Theorem Spine (Provable Core under A1-A5)",
+                "sectionKey": "theorem spine provable core under a1 a5",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Analytic Benchmarks (Circular Orbit)",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Analytic Benchmarks (Circular Orbit)",
+                "sectionKey": "analytic benchmarks circular orbit",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Circular Benchmark as a Branch-Count Theorem",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Circular Benchmark as a Branch-Count Theorem",
+                "sectionKey": "circular benchmark as a branch count theorem",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Dynamical Interpretation",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Dynamical Interpretation",
+                "sectionKey": "dynamical interpretation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Emergent Geometry Constraints",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Emergent Geometry Constraints",
+                "sectionKey": "emergent geometry constraints",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Implementation Notes (Appendix)",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Implementation Notes (Appendix)",
+                "sectionKey": "implementation notes appendix",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Simulation Protocol (Minimal Theorem-Backed Checks)",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Simulation Protocol (Minimal Theorem-Backed Checks)",
+                "sectionKey": "simulation protocol minimal theorem backed checks",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Limitations and Caveats",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Limitations and Caveats",
+                "sectionKey": "limitations and caveats",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closure Extension: Spin Bundle and Confinement Energy Law",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Closure Extension: Spin Bundle and Confinement Energy Law",
+                "sectionKey": "closure extension spin bundle and confinement energy law",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary and Status",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Summary and Status",
+                "sectionKey": "summary and status",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "dynamics__effective_lagrangian",
+            "title": "Effective Lagrangian",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/dynamics/effective_lagrangian.json",
+            "markdownPath": "content/markdown/aaa/dynamics/effective-lagrangian.md"
+          },
+          {
             "id": "quantum",
             "title": "Quantum",
             "kind": "scene-index",
@@ -1443,618 +2055,6 @@
                     "headingLevel": 2
                   }
                 ]
-              }
-            ]
-          },
-          {
-            "id": "dynamics__binary_dynamics",
-            "title": "Binary Dynamics",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/dynamics/binary_dynamics.json",
-            "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "The Spiral Orbiting Binary and the Contraction Phase",
-                "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
-                "markdownSection": "The Spiral Orbiting Binary and the Contraction Phase",
-                "sectionKey": "the spiral orbiting binary and the contraction phase",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Spiral Momentum Budget Across the Hinge (Speculative)",
-                "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
-                "markdownSection": "Spiral Momentum Budget Across the Hinge (Speculative)",
-                "sectionKey": "spiral momentum budget across the hinge speculative",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Spiral Binary Symmetry-Breaking Point ($v = c_f$)",
-                "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
-                "markdownSection": "Spiral Binary Symmetry-Breaking Point ($v = c_f$)",
-                "sectionKey": "spiral binary symmetry breaking point v c f",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Self-Hit: Definition and Diagnostics",
-                "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
-                "markdownSection": "Self-Hit: Definition and Diagnostics",
-                "sectionKey": "self hit definition and diagnostics",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Spiral Binary Deflationary Phase",
-                "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
-                "markdownSection": "Spiral Binary Deflationary Phase",
-                "sectionKey": "spiral binary deflationary phase",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Maximum-Curvature Binary — Circular",
-                "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
-                "markdownSection": "Maximum-Curvature Binary — Circular",
-                "sectionKey": "maximum curvature binary circular",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "State Space and Well-Posedness of the Two-Body Delay System",
-                "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
-                "markdownSection": "State Space and Well-Posedness of the Two-Body Delay System",
-                "sectionKey": "state space and well posedness of the two body delay system",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Symmetry, Conservation, and Lyapunov Functionals",
-                "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
-                "markdownSection": "Symmetry, Conservation, and Lyapunov Functionals",
-                "sectionKey": "symmetry conservation and lyapunov functionals",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "dynamics__causal_action_functional",
-            "title": "Causal Action Functional",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/dynamics/causal_action_functional.json",
-            "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Problem Statement and Goal",
-                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Problem Statement and Goal",
-                "sectionKey": "problem statement and goal",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Core Functional Definitions",
-                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Core Functional Definitions",
-                "sectionKey": "core functional definitions",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Regularized Mathematical Setting (Explicit Regime)",
-                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Regularized Mathematical Setting (Explicit Regime)",
-                "sectionKey": "regularized mathematical setting explicit regime",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Axioms and Admissibility Assumptions",
-                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Axioms and Admissibility Assumptions",
-                "sectionKey": "axioms and admissibility assumptions",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Rationale for the Functional",
-                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Rationale for the Functional",
-                "sectionKey": "rationale for the functional",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Geometric/Topological Framework",
-                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Geometric/Topological Framework",
-                "sectionKey": "geometric topological framework",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Theorem Spine (Provable Core under A1-A5)",
-                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Theorem Spine (Provable Core under A1-A5)",
-                "sectionKey": "theorem spine provable core under a1 a5",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Analytic Benchmarks (Circular Orbit)",
-                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Analytic Benchmarks (Circular Orbit)",
-                "sectionKey": "analytic benchmarks circular orbit",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Circular Benchmark as a Branch-Count Theorem",
-                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Circular Benchmark as a Branch-Count Theorem",
-                "sectionKey": "circular benchmark as a branch count theorem",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Dynamical Interpretation",
-                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Dynamical Interpretation",
-                "sectionKey": "dynamical interpretation",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Emergent Geometry Constraints",
-                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Emergent Geometry Constraints",
-                "sectionKey": "emergent geometry constraints",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Implementation Notes (Appendix)",
-                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Implementation Notes (Appendix)",
-                "sectionKey": "implementation notes appendix",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Simulation Protocol (Minimal Theorem-Backed Checks)",
-                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Simulation Protocol (Minimal Theorem-Backed Checks)",
-                "sectionKey": "simulation protocol minimal theorem backed checks",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Limitations and Caveats",
-                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Limitations and Caveats",
-                "sectionKey": "limitations and caveats",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Closure Extension: Spin Bundle and Confinement Energy Law",
-                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Closure Extension: Spin Bundle and Confinement Energy Law",
-                "sectionKey": "closure extension spin bundle and confinement energy law",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Summary and Status",
-                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Summary and Status",
-                "sectionKey": "summary and status",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "dynamics__dyadic_resonance_lock",
-            "title": "Dyadic Resonance Lock",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/dynamics/dyadic_resonance_lock.json",
-            "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Status and Assumptions",
-                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
-                "markdownSection": "Status and Assumptions",
-                "sectionKey": "status and assumptions",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Immediate Consequences",
-                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
-                "markdownSection": "Immediate Consequences",
-                "sectionKey": "immediate consequences",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Proposition 1 (Exterior Integer Lock Formulas)",
-                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
-                "markdownSection": "Proposition 1 (Exterior Integer Lock Formulas)",
-                "sectionKey": "proposition 1 exterior integer lock formulas",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Could $1{:}2{:}4$ Be a Solution?",
-                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
-                "markdownSection": "Could $1{:}2{:}4$ Be a Solution?",
-                "sectionKey": "could 1 2 4 be a solution",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "What Exact Periodicity Gives, and What It Does Not",
-                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
-                "markdownSection": "What Exact Periodicity Gives, and What It Does Not",
-                "sectionKey": "what exact periodicity gives and what it does not",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Interpreting the Cancellation Principle",
-                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
-                "markdownSection": "Interpreting the Cancellation Principle",
-                "sectionKey": "interpreting the cancellation principle",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Reduced-Theorem Target",
-                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
-                "markdownSection": "Reduced-Theorem Target",
-                "sectionKey": "reduced theorem target",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Ancillary Symmetry Check",
-                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
-                "markdownSection": "Ancillary Symmetry Check",
-                "sectionKey": "ancillary symmetry check",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "dynamics__effective_lagrangian",
-            "title": "Effective Lagrangian",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/dynamics/effective_lagrangian.json",
-            "markdownPath": "content/markdown/aaa/dynamics/effective-lagrangian.md"
-          },
-          {
-            "id": "dynamics__kinetic_and_potential_energy",
-            "title": "Kinetic and Potential Energy",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/dynamics/kinetic_and_potential_energy.json",
-            "markdownPath": "content/markdown/aaa/dynamics/energy.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Kinetic Energy and Momentum of a Single Architrino",
-                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
-                "markdownSection": "Kinetic Energy and Momentum of a Single Architrino",
-                "sectionKey": "kinetic energy and momentum of a single architrino",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Work–Energy Relation and Per-Hit Power",
-                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
-                "markdownSection": "Work–Energy Relation and Per-Hit Power",
-                "sectionKey": "work energy relation and per hit power",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Potential Energy and Net Potential",
-                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
-                "markdownSection": "Potential Energy and Net Potential",
-                "sectionKey": "potential energy and net potential",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Energy Conservation and Exchange",
-                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
-                "markdownSection": "Energy Conservation and Exchange",
-                "sectionKey": "energy conservation and exchange",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Noether Sea, Effective Spacetime, and Energy Storage",
-                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
-                "markdownSection": "Noether Sea, Effective Spacetime, and Energy Storage",
-                "sectionKey": "noether sea effective spacetime and energy storage",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Assemblies: Internal vs Apparent Energy",
-                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
-                "markdownSection": "Assemblies: Internal vs Apparent Energy",
-                "sectionKey": "assemblies internal vs apparent energy",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Emergent Inertia (Mass) from Shielded Energy",
-                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
-                "markdownSection": "Emergent Inertia (Mass) from Shielded Energy",
-                "sectionKey": "emergent inertia mass from shielded energy",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Effective Energy-Momentum Closure",
-                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
-                "markdownSection": "Effective Energy-Momentum Closure",
-                "sectionKey": "effective energy momentum closure",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Energy and Self-Hit in the Tri-Binary Sea",
-                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
-                "markdownSection": "Energy and Self-Hit in the Tri-Binary Sea",
-                "sectionKey": "energy and self hit in the tri binary sea",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Intuition (Plain Language)",
-                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
-                "markdownSection": "Intuition (Plain Language)",
-                "sectionKey": "intuition plain language",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Summary and Role in the Larger Theory",
-                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
-                "markdownSection": "Summary and Role in the Larger Theory",
-                "sectionKey": "summary and role in the larger theory",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Appendix A: Energy Zero and Bookkeeping",
-                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
-                "markdownSection": "Appendix A: Energy Zero and Bookkeeping",
-                "sectionKey": "appendix a energy zero and bookkeeping",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "dynamics__master_equation_of_motion",
-            "title": "Master Equation of Motion",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/dynamics/master_equation_of_motion.json",
-            "markdownPath": "content/markdown/aaa/dynamics/master-equation.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Foundations and Causal Geometry",
-                "markdownPath": "content/markdown/aaa/dynamics/master-equation.md",
-                "markdownSection": "Foundations and Causal Geometry",
-                "sectionKey": "foundations and causal geometry",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Master Equation and DDE Formulation",
-                "markdownPath": "content/markdown/aaa/dynamics/master-equation.md",
-                "markdownSection": "Master Equation and DDE Formulation",
-                "sectionKey": "master equation and dde formulation",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Operational Principles, Self-Interaction, and Examples",
-                "markdownPath": "content/markdown/aaa/dynamics/master-equation.md",
-                "markdownSection": "Operational Principles, Self-Interaction, and Examples",
-                "sectionKey": "operational principles self interaction and examples",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Parameters and Numerical Implementation",
-                "markdownPath": "content/markdown/aaa/dynamics/master-equation.md",
-                "markdownSection": "Parameters and Numerical Implementation",
-                "sectionKey": "parameters and numerical implementation",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Analytic Regimes and Research Roadmap",
-                "markdownPath": "content/markdown/aaa/dynamics/master-equation.md",
-                "markdownSection": "Analytic Regimes and Research Roadmap",
-                "sectionKey": "analytic regimes and research roadmap",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Energy, Symmetry, and Conservation",
-                "markdownPath": "content/markdown/aaa/dynamics/master-equation.md",
-                "markdownSection": "Energy, Symmetry, and Conservation",
-                "sectionKey": "energy symmetry and conservation",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "dynamics__tri_binary_dynamics",
-            "title": "Tri-Binary Dynamics",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/dynamics/tri_binary_dynamics.json",
-            "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Relation to the Causal Closure Workstream",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Relation to the Causal Closure Workstream",
-                "sectionKey": "relation to the causal closure workstream",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Publication Status and Claim Scope",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Publication Status and Claim Scope",
-                "sectionKey": "publication status and claim scope",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Substrate and Effective Levels",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Substrate and Effective Levels",
-                "sectionKey": "substrate and effective levels",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Speed Hierarchy",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Speed Hierarchy",
-                "sectionKey": "speed hierarchy",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Mass Thesis as a Dynamics Target",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Mass Thesis as a Dynamics Target",
-                "sectionKey": "mass thesis as a dynamics target",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Spiral-Helical Motion Picture",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Spiral-Helical Motion Picture",
-                "sectionKey": "spiral helical motion picture",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Proper Time as Internal Cycle Count",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Proper Time as Internal Cycle Count",
-                "sectionKey": "proper time as internal cycle count",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "ADM/Cartan Reconstruction Target",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "ADM/Cartan Reconstruction Target",
-                "sectionKey": "adm cartan reconstruction target",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Dynamics-Side Roadmap",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Dynamics-Side Roadmap",
-                "sectionKey": "dynamics side roadmap",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Working Hypotheses",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Working Hypotheses",
-                "sectionKey": "working hypotheses",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Regime Map for Speed Statements (CFT / Horizon / AdS)",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Regime Map for Speed Statements (CFT / Horizon / AdS)",
-                "sectionKey": "regime map for speed statements cft horizon ads",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Geometry Focus",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Geometry Focus",
-                "sectionKey": "geometry focus",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Minimal Models",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Minimal Models",
-                "sectionKey": "minimal models",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Metric and Connection Reconstruction Diagnostics",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Metric and Connection Reconstruction Diagnostics",
-                "sectionKey": "metric and connection reconstruction diagnostics",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Observables and Diagnostics (Summary)",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Observables and Diagnostics (Summary)",
-                "sectionKey": "observables and diagnostics summary",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Revision Triggers (Failure Modes)",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Revision Triggers (Failure Modes)",
-                "sectionKey": "revision triggers failure modes",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Equivalence Principle (Working Constraint)",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Equivalence Principle (Working Constraint)",
-                "sectionKey": "equivalence principle working constraint",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Routed Extensions",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Routed Extensions",
-                "sectionKey": "routed extensions",
-                "headingLevel": 2
               }
             ]
           }
