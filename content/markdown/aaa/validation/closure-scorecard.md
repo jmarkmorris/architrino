@@ -12,9 +12,9 @@ Use this prompt for each new assessment cycle:
 Perform a full closure assessment of theory, mathematics, and geometry of modern physics vs. architrino theory.
 Requirements:
 1) Do a full read of all markdown documents in content/markdown/aaa (including subdirectories).
-2) Evaluate each existing scorecard category in closure.md on a 0-100 scale.
+2) Evaluate each existing scorecard category in closure-scorecard.md on a 0-100 scale.
 3) Use the same closure lens each time: derivation depth, equation closure, geometry/dynamics consistency, unresolved placeholders, and falsification-readiness.
-4) Populate the next empty assessment column in closure.md with raw numeric scores.
+4) Populate the next empty assessment column in closure-scorecard.md with raw numeric scores.
 5) Recompute the TOTAL row as the equal-weight arithmetic mean across categories.
 6) Keep all TeX intact and preserve category definitions unless explicitly asked to revise them.
 ```
