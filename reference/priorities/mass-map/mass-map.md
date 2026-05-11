@@ -228,6 +228,30 @@ $$
 $$
 is the rest-frame gauge anchor; after symmetry modes are removed, an accepted rest branch must have no secular drift in $\mathbf{C}_{A_0}$.
 
+### Multi-Scale Branch Search
+
+The reduced $A_0$ scan should not treat the attractor as three independent copies of the same circular two-body solution. Circular or elliptic carriers can be useful coordinate charts for extracting $R_\ell$, $\omega_\ell$, $\mathbf{n}_\ell$, handedness, and phase, but the accepted object is a coupled multi-scale tri-binary lock.
+
+Let $s_\ell$ denote the characteristic member speed of layer $\ell$ relative to $\mathbf{C}_\ell$; for a symmetric binary $s_\ell = \|\mathbf{u}_\ell\|/2$. The speed ordering to test is:
+
+| Layer | Speed ordering | Closure consequence |
+| --- | --- | --- |
+| Inner binary $I$ | $s_I > c_f$ on active portions of the branch | Self-hit roots and path-history feedback are leading closure data, not small corrections to discard. |
+| Middle binary $M$ | $s_M \approx c_f$ | Separator proximity, root Jacobians, and even-pair branch events make this layer the phase-matching hinge. |
+| Outer binary $O$ | $s_O < c_f$ | Partner-hit and inter-layer channels set the shielding interface and the observer-facing leakage pattern. |
+
+The first branch search should therefore allow $R_I:R_M:R_O$ and $T_I:T_M:T_O$ to differ by orders of magnitude. A solver failure caused by insufficient scale separation, time resolution, or history-window depth is not by itself a branch rejection.
+
+Higher-order internal structure should be classified before it is averaged away:
+
+| Class | Treatment in the $A_0$ scan | Mass-map relevance |
+| --- | --- | --- |
+| Averaging terms | Nonresonant fast oscillations whose signed contribution cancels over the closed cycle $T_{\mathbf{k}}$ | May be summarized in the far-field fit after closure, but should not decide branch existence. |
+| Locking terms | Corrections that change root multiplicity, separator proximity, inter-layer closure integers, or Floquet multipliers | Must remain in the closure equations and stability diagnostics. |
+| Leakage terms | Small internal asymmetries whose leading far-field multipole or anisotropy survives averaging | Must enter the shielding extraction and $\zeta(A_0)$ report. |
+
+A separable circular or elliptic layer ansatz is therefore a diagnostic ansatz. If it produces tangential residuals, record those residuals as evidence for a needed inter-layer phase correction, non-circular carrier, or multi-scale averaging term. Do not treat that diagnostic failure alone as proof that $A_0$ does not exist.
+
 ### Closure Equations
 
 For every source-receiver pair $b\to a$ and every active branch $m$, the causal root condition is
@@ -319,11 +343,14 @@ This schema deliberately keeps particle labels out of the accepted packet. Elect
 
 ### Immediate Work Packet
 
-1. Run the simplest reduced $A_0$ scan using the state vector and output schema above: homogeneous Noether-Sea cell, zero drift, no imposed external gradient, and primitive speed selector $c_\star=c_f$ for wake intersections.
-2. For any candidate branch, report the residuals, root ledger, and Floquet gap before interpreting the branch as an attractor.
-3. Compute the sign-resolved internal-energy ledger and far-field shielding extraction only for branches that pass the closure and stability gates.
-4. Extract the homogeneous $\mathcal{M}_{\text{sea}}^{ab}$ baseline from small acceleration and gradient probes.
-5. Promote only stable, calibration-free outputs into the $\zeta$ and hierarchy steps.
+1. Construct the simplest reduced multi-scale $A_0$ scan using the state vector and output schema above: homogeneous Noether-Sea cell, zero drift, no imposed external gradient, and primitive speed selector $c_\star=c_f$ for wake intersections.
+2. Enforce the speed ordering $s_I > c_f$, $s_M \approx c_f$, and $s_O < c_f$ while allowing separated radii, separated periods, and non-circular carriers.
+3. Use separable circular or elliptic layer models only as diagnostic carriers; if they leave tangential residuals, convert those residuals into required inter-layer phase, branch, or carrier corrections.
+4. Split internal corrections into averaging, locking, and leakage classes before any far-field simplification.
+5. For any candidate branch, report the residuals, root ledger, and Floquet gap before interpreting the branch as an attractor.
+6. Compute the sign-resolved internal-energy ledger and far-field shielding extraction only for branches that pass the closure and stability gates.
+7. Extract the homogeneous $\mathcal{M}_{\text{sea}}^{ab}$ baseline from small acceleration and gradient probes.
+8. Promote only stable, calibration-free outputs into the $\zeta$ and hierarchy steps.
 
 ## Core Work
 

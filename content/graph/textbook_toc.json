@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 150,
-      "sections": 1072
+      "sections": 1073
     }
   },
   "tocRoot": {
@@ -1079,6 +1079,14 @@
                 "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
                 "markdownSection": "Speed Hierarchy",
                 "sectionKey": "speed hierarchy",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Multi-Scale Layer Locking",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Multi-Scale Layer Locking",
+                "sectionKey": "multi scale layer locking",
                 "headingLevel": 2
               },
               {

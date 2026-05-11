@@ -133,6 +133,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Publication Status and Claim Scope](../aaa/dynamics/tri-binary-dynamics.md?section=Publication+Status+and+Claim+Scope)
     - [Substrate and Effective Levels](../aaa/dynamics/tri-binary-dynamics.md?section=Substrate+and+Effective+Levels)
     - [Speed Hierarchy](../aaa/dynamics/tri-binary-dynamics.md?section=Speed+Hierarchy)
+    - [Multi-Scale Layer Locking](../aaa/dynamics/tri-binary-dynamics.md?section=Multi-Scale+Layer+Locking)
     - [Mass Thesis as a Dynamics Target](../aaa/dynamics/tri-binary-dynamics.md?section=Mass+Thesis+as+a+Dynamics+Target)
     - [Spiral-Helical Motion Picture](../aaa/dynamics/tri-binary-dynamics.md?section=Spiral-Helical+Motion+Picture)
     - [Proper Time as Internal Cycle Count](../aaa/dynamics/tri-binary-dynamics.md?section=Proper+Time+as+Internal+Cycle+Count)

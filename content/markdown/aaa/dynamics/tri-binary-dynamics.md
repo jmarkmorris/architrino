@@ -50,6 +50,30 @@ Several speed symbols must remain separated:
 
 The primitive speed $c_f$ is used for wake-intersection and self-hit geometry. The effective speed $c_{\text{eff}}$ is used for Noether-Sea dressed closure and observer-level comparisons. These are not interchangeable. Any diagnostic that moves from primitive wake geometry to observer-level clocks, rulers, or photons must declare its dressing map.
 
+## Multi-Scale Layer Locking
+
+The baseline Noether core is not a stack of three identical circular binaries. It is a nested causal lock whose layers operate in different speed regimes. Let $s_\ell$ denote the characteristic speed of one member of layer $\ell$ around that layer's center. In the ordinary weak-stress regime, the target ordering is
+
+$$
+s_I > c_f,
+\qquad
+s_M \approx c_f,
+\qquad
+s_O < c_f.
+$$
+
+The inner binary is therefore self-hit and history-supported, the middle binary is the $v = c_f$ hinge where root branches are most sensitive, and the outer binary is the sub-field-speed interface that controls shielding and boundary coupling. Their radii, cycle times, and history-window depths may differ by orders of magnitude. A reduced derivation can start with a separated-scale hypothesis such as $R_I \ll R_M \ll R_O$ and $T_I \ll T_M \ll T_O$, but the branch must report the actual hierarchy rather than hiding it in the notation.
+
+This is why ordinary circular or elliptic orbit language is limited. A circular carrier can expose useful geometry and a separable layer ansatz can diagnose missing forces, but a tangential residual in that ansatz does not by itself settle the tri-binary problem. In a coupled lock, inter-layer wakes, self-hit roots, and near-separator branch changes can supply phase corrections that are absent from a single isolated two-body chart.
+
+The perturbation status should therefore be sorted before simplification:
+
+| Perturbation class | Dynamics role |
+| --- | --- |
+| Nonresonant fast terms | Average over the closed tri-binary cycle and mostly affect convergence or small far-field corrections. |
+| Resonant and near-separator terms | Change phase closure, causal-root counts, Jacobians, or Floquet multipliers, so they remain part of the branch definition. |
+| Leakage terms | May be small internally while surviving as far-field multipoles or anisotropy, so they control the shielding extraction. |
+
 ## Mass Thesis as a Dynamics Target
 
 The conservative mass thesis is that rest mass is not primitive architrino substance. It is the externally measurable response of shielded, phase-locked internal causal history.
