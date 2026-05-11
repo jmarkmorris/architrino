@@ -204,6 +204,25 @@ $$
 
 ## Lemma Targets
 
+### Lemma 0: Finite Root-Ledger Reduction
+
+For fixed $\eta>0$, fixed carrier chart, bounded history window, and declared scale ratios, the active delayed roots over one candidate period $T_{\mathbf{k}}$ must be representable by a finite causal-root ledger:
+$$
+\mathcal{G}_{A_0}
+=
+\left(
+V_A,
+E_{\text{partner}},
+E_{\text{self}},
+E_{\text{inter}},
+\mathcal{B},
+\mathcal{P}
+\right).
+$$
+Here $V_A$ is the six-architrino vertex set, the three edge sets record partner, self, and inter-layer root channels, $\mathcal{B}$ records branch labels, and $\mathcal{P}$ records phase and separator events.
+
+Certificate burden: a Tier 0 row must emit this finite ledger, or emit a failure code explaining why no finite ledger was obtained. A scan that only reports carrier radii and frequencies has not reduced the branch problem.
+
 ### Lemma 1: Nonresonant Averaging
 
 Let $Q(t)$ be a signed contribution from a fast layer to a slower layer's carrier equations over a closed candidate period $T_{\mathbf{k}}$. If its phase contains no stationary or integer-resonant component on the branch label $\Lambda$, then
@@ -332,6 +351,19 @@ $$
 $$
 
 Every component must include units or normalization, tolerance, refinement status, and the branch label $\Lambda$ that produced it. A scan that reports only a best geometry without this residual vector is not a certificate.
+
+## Reduced Certificate Proposition
+
+For fixed $\eta>0$, a branch label $\Lambda$ is a reduced $A_0$ branch certificate when all of the following are reported in one auditable packet:
+
+1. a finite causal-root ledger $\mathcal{G}_{A_0}$ over $T_{\mathbf{k}}$;
+2. nonresonant terms assigned to $\mathcal{R}_{\text{avg}}$ with declared order and tolerance;
+3. near-separator and resonance terms retained in $\mathcal{R}_{\text{lock}}$;
+4. leakage terms assigned to $\mathcal{R}_{\text{leak}}$ with the leading far-field channel named;
+5. reduced closure equations for state, phase, center, speed ordering, and energy ledger;
+6. a reduced monodromy or finite-difference return-map diagnostic with $\Delta_{\mathbf{k}}>0$ after symmetry modes are removed.
+
+If these gates pass below declared tolerances, the packet certifies a reduced branch candidate. It does not certify the full six-worldline theorem, does not authorize particle-mass fitting, and does not remove the later $\eta\to0^+$ proof burden.
 
 ## Reduced Branch Equations
 

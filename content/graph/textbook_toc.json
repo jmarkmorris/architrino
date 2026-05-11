@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 150,
-      "sections": 1073
+      "sections": 1074
     }
   },
   "tocRoot": {
@@ -7411,6 +7411,14 @@
                     "markdownPath": "content/markdown/aaa/validation/simulations/run-protocols.md",
                     "markdownSection": "Master Simulation Protocol (Absolute Frame)",
                     "sectionKey": "master simulation protocol absolute frame",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "$A_0$ Branch-Certificate Protocol",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/run-protocols.md",
+                    "markdownSection": "$A_0$ Branch-Certificate Protocol",
+                    "sectionKey": "a 0 branch certificate protocol",
                     "headingLevel": 2
                   },
                   {

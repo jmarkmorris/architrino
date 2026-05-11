@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 460,
+      "nodes": 461,
       "edges": 1215,
       "scenes": 316,
       "markdownIndexes": 0,
-      "markdownDocs": 144,
+      "markdownDocs": 145,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2762,6 +2762,12 @@
       "id": "content/markdown/aaa/validation/reaction-ledger.md",
       "name": "Reaction Ledger: Architrino Provenance",
       "path": "content/markdown/aaa/validation/reaction-ledger.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+      "name": "$A_0$ Branch Certificate Protocol",
+      "path": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -6832,6 +6838,15 @@
       "name": "Reaction Ledger: Architrino Provenance",
       "path": "content/markdown/aaa/validation/reaction-ledger.md",
       "searchTarget": "content/markdown/aaa/validation/reaction-ledger.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+      "name": "$A_0$ Branch Certificate Protocol",
+      "path": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
       "implicit": false
     },
     {

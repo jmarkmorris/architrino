@@ -904,6 +904,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
       - [Simulation Frame: Virtual $\mathbb{U}_{\text{now}}$ Perspective](../aaa/validation/simulations/README.md?section=Simulation+Frame%3A+Virtual+%24%5Cmathbb%7BU%7D_%7B%5Ctext%7Bnow%7D%7D%24+Perspective)
     - [Run Protocols](../../scenes/validation/sim_run_protocols.json)
       - [Master Simulation Protocol (Absolute Frame)](../aaa/validation/simulations/run-protocols.md?section=Master+Simulation+Protocol+%28Absolute+Frame%29)
+      - [A₀ Branch-Certificate Protocol](../aaa/validation/simulations/run-protocols.md?section=%24A_0%24+Branch-Certificate+Protocol)
       - [Run Protocol: Absolute-Frame + $\mathbb{U}_{\text{now}}$ Logging](../aaa/validation/simulations/run-protocols.md?section=Run+Protocol%3A+Absolute-Frame+%2B+%24%5Cmathbb%7BU%7D_%7B%5Ctext%7Bnow%7D%7D%24+Logging)
     - [Synthetic Observables](../../scenes/validation/sim_synthetic_observables.json)
       - [$\mathbb{U}_{\text{now}}$ Logging Standard](../aaa/validation/simulations/synthetic-observables.md?section=%24%5Cmathbb%7BU%7D_%7B%5Ctext%7Bnow%7D%7D%24+Logging+Standard)
