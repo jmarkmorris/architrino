@@ -184,7 +184,7 @@ At the fundamental level, the Euclidean void is an empty container. **Effective 
 
 - These tri-binaries are extremely small compared to ordinary particles (electrons, protons, etc.).
 - Each tri-binary is itself a tightly bound architrino assembly with very high internal kinetic and potential energy.
-- As a sea, they form a **dense manifold of coupled assemblies** that fills the Euclidean void. This ambient Noether-Sea content carries non-zero assembly density and internal stress. It provides the constitutive relations (permittivity, permeability, inertial drag) that deform the primitive architrino dynamics into effective relativistic kinematics, providing the bridge-level spacetime medium for:
+- As a sea, they form a **dense manifold of coupled assemblies** that fills the Euclidean void. This ambient Noether-Sea content carries non-zero assembly density and internal stress. It provides the constitutive relations (permittivity, permeability, and medium-dressed inertial response) that deform the primitive architrino dynamics into effective relativistic kinematics, providing the bridge-level spacetime medium for:
   - Emergent inertia and mass,
   - Emergent light cones and Lorentz-like behavior,
   - Effective gravitational coupling (emergent geometry at large scales).
@@ -243,7 +243,7 @@ up to proportionality constants fixed by matching to effective low-energy theory
 
 ## Emergent Inertia (Mass) from Shielded Energy
 
-**Inertia** is not fundamental; it is an emergent resistance of an assembly's internal energy configuration—plus its coupling to the tri-binary sea—to changes in bulk motion.
+**Inertia** is not fundamental; it is the externally exposed response of an assembly's trapped internal causal history, shielding factor, and Noether-Sea coupling to changes in bulk motion.
 
 ### Operational Definition of Inertial Mass
 
@@ -278,7 +278,7 @@ Thus:
 - At high speeds approaching $c_{\text{eff}}$, internal coupling to the tri-binary sea and self-hit effects yield a relativistic-like $E_k \sim m_{\text{inertial}}(\gamma-1)$, with $\gamma = 1/\sqrt{1-v^2/c_{\text{eff}}^2}$, as an **effective law**.
 - Near $c_{\text{eff}}$, axial architrinos would likely be stripped off, and the assembly may undergo other changes as it oblates.
 
-The details of this emergent relativistic law arise from the combined dynamics of the assembly and the tri-binary sea; they are not postulated but must be confirmed by simulation and matching to known particle kinematics. The mass-side integration and quantitative derivation path are tracked in [Particle Masses](../assemblies/particle-masses.md) and the active mass-map workstream.
+The details of this emergent relativistic law arise from the combined dynamics of the assembly and the tri-binary sea; they are not postulated but must be confirmed by coefficient extraction, simulation, and matching to known particle kinematics. Ordinary dissipative drag is a failure channel for this program, not the mass mechanism. The mass-side integration and quantitative derivation path are tracked in [Particle Masses](../assemblies/particle-masses.md).
 
 ---
 

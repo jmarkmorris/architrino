@@ -45,27 +45,27 @@ Wavefunction collapse is formalized as a deterministic, non-linear relaxation pr
 
 The measurement apparatus acts as a massive, thermodynamically irreversible perturbation introduced into the local Noether Sea. This external energy gradient overwhelms the meta-stable precessional states (superpositions). Unable to maintain the delicate limit cycle against the massive influx of external causal wakes, the tri-binary assembly undergoes attractor relaxation, deterministically spiraling into the deepest available basin of attraction (the measured eigenstate).
 
-Decoherence is the continuous loss of path-history coherence due to uncharacterized background fluctuations in the spacetime medium. It is an artifact of treating the Noether Sea as an idealized vacuum rather than a dense medium of fluctuating assemblies.
+Decoherence is the continuous loss of path-history coherence due to uncharacterized background fluctuations in the local Noether-Sea state. It is an artifact of treating the observer-level vacuum as empty or structureless rather than as the effective quiet limit of a dense medium of fluctuating assemblies.
 
 ## Falsifiability and Observables
 
 * **Gate Latency Scaling:** Because entanglement relies on the finite propagation speed $c_f$ of the causal wake, the fidelity and correlation establishment time of a two-qubit gate (e.g., CNOT) must scale strictly with the physical separation distance $d$. Standard quantum mechanics assumes instantaneous unitary updates; the $\mathbb{A}\mathbb{A}\mathbb{A}$ model predicts a measurable correlation delay $\Delta t \ge d/c_f$.
-* **Coherence Limits:** The model predicts an absolute upper bound on coherence time, scaling inversely with the local density $\rho_{\text{arch}}$ of the Noether Sea, independent of standard thermal or electromagnetic shielding.
+* **Coherence Limits:** The model predicts an absolute upper bound on coherence time, scaling inversely with local Noether-core density, represented by $\rho_{\text{core}}(\mathbf{x},t)$ or normalized density $n(\mathbf{x},t)$, independent of standard thermal or electromagnetic shielding.
 
 ## Statistical Measure and the Born Rule Emergence
 While the trajectory of a single tri-binary under measurement is strictly deterministic, macroscopic observables yield robust probabilistic distributions. This effective randomness originates from the microstate-sensitive initial conditions of the background Noether Sea. 
 
 * **Invariant Measure:** The fluctuating background spacetime assemblies define a canonical ensemble with an invariant probability measure $\mu(\Gamma_{\text{eff}})$. 
 * **Basin Volume Mapping:** The probability $P_k$ of collapsing into a specific eigenstate $|k\rangle$ maps directly to the phase-space volume of its corresponding attractor basin $\mathcal{B}_k$, weighted by the invariant measure: $P_k = \int_{\mathcal{B}_k} d\mu(\Gamma_{\text{eff}})$. 
-* **Born Rule Derivation:** The $|\psi_k|^2$ statistic emerges as the coarse-grained thermodynamic limit of these weighted basin volumes. When the tri-binary's meta-stable limit cycle is perturbed by the macroscopic energy gradient of the measurement apparatus, the system's sensitivity to the exact microstate of the path-history intersections drives ergodic mixing across the available state space before final relaxation.
+* **Born Rule Target:** The $|\psi_k|^2$ statistic should emerge as the coarse-grained thermodynamic limit of these weighted basin volumes. When the tri-binary's meta-stable limit cycle is perturbed by the macroscopic energy gradient of the measurement apparatus, the system's sensitivity to the exact microstate of the path-history intersections must drive ergodic mixing across the available state space before final relaxation.
 
 ## Kinetic Limits and Decoherence
 The continuous loss of path-history coherence must be formalized as a transport phenomenon within the spacetime medium.
 
 * **Fokker-Planck Dynamics:** By coarse-graining the deterministic path-history master equation over the fast, small-amplitude interactions of the local Noether Sea, the tri-binary orientation evolves according to an effective Fokker-Planck equation. 
 * **Diffusion and Drift:** The unitary topological torques provide the deterministic drift vector, while the background assembly interactions generate the diffusion tensor. 
-* **Decoherence Timescales:** The decoherence time $\tau_d$ is explicitly calculable from the Lyapunov spectrum of the local spacetime medium and the spatial density $\rho_{\text{arch}}$. It is not an intrinsic property of the tri-binary, but a measure of the local medium's entropy production rate during the operation.
+* **Decoherence Timescales:** The decoherence time $\tau_d$ is a derivation target from the Lyapunov spectrum of the local Noether-Sea state and the spatial density variables $\rho_{\text{core}}(\mathbf{x},t)$ or $n(\mathbf{x},t)$. It is not an intrinsic property of the tri-binary, but a measure of the local medium's entropy production rate during the operation.
 
 ## Statistical Falsifiability and Observables
-* **Pre-Mixing Born Rule Deviations:** Because the Born rule in the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework requires sufficient time for ergodic mixing across the local Noether Sea during the measurement perturbation, ultra-fast sequential measurements (approaching the local path-history delay timescale $d/c_f$) will predictably deviate from standard $|\psi|^2$ statistics.
+* **Pre-Mixing Born Rule Deviations:** If the Born rule in the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework requires sufficient time for ergodic mixing across the local Noether Sea during the measurement perturbation, ultra-fast sequential measurements approaching the local path-history delay timescale $d/c_f$ become the natural place to search for deviations from standard $|\psi|^2$ statistics.
 * **Non-Markovian Memory Tails:** Autocorrelation functions of sequential measurements on a single qubit will exhibit heavy-tailed decay rather than exponential decay, revealing the persistent self-hit memory of the inner binary overriding the Markovian approximation of standard quantum mechanics.
