@@ -1539,6 +1539,26 @@
       "id": "reactions__synchrotron_cascades",
       "name": "Synchrotron Cascades",
       "path": "content/scenes/reactions/synchrotron_cascades.json"
+    },
+    {
+      "id": "effective_metric",
+      "name": "Effective Metric",
+      "path": "content/scenes/spacetime/effective_metric.json"
+    },
+    {
+      "id": "physical_observers",
+      "name": "Physical Observers",
+      "path": "content/scenes/spacetime/physical_observers.json"
+    },
+    {
+      "id": "spacetime_medium",
+      "name": "Spacetime Medium",
+      "path": "content/scenes/spacetime/spacetime_medium.json"
+    },
+    {
+      "id": "strong_field_regime",
+      "name": "Strong-Field Regime",
+      "path": "content/scenes/spacetime/strong_field_regime.json"
     }
   ]
 }

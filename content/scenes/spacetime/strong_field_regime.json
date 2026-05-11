@@ -1,0 +1,123 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "strong_field_regime",
+    "title": "Strong-Field Regime",
+    "type": "Scene-Index",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "rings"
+    },
+    "centerOn": "black_holes",
+    "children": [
+      {
+        "nodeId": "black_holes",
+        "scenePath": "content/scenes/spacetime/black_holes.json"
+      },
+      {
+        "nodeId": "singularity_resolution",
+        "scenePath": "content/scenes/spacetime/singularity_resolution.json"
+      },
+      {
+        "nodeId": "mapping_planck_scale",
+        "scenePath": "content/scenes/spacetime/mapping_planck_scale.json"
+      },
+      {
+        "nodeId": "horizon_chirality",
+        "scenePath": "content/scenes/spacetime/horizon_chirality.json"
+      },
+      {
+        "nodeId": "cosmic_censorship_holography",
+        "scenePath": "content/scenes/philosophy_history/cosmic_censorship_holography.json"
+      }
+    ]
+  },
+  "objects": [
+    {
+      "id": "black_holes",
+      "title": "Black Holes",
+      "radius": 2.688,
+      "color": "#4a3b6f",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Black Holes",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "singularity_resolution",
+      "title": "Singularity Resolution",
+      "radius": 2.688,
+      "color": "#2f4f7a",
+      "position": [
+        0,
+        10.5,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Singularity Resolution",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "mapping_planck_scale",
+      "title": "Mapping Planck Scale",
+      "radius": 2.688,
+      "color": "#7a4a1f",
+      "position": [
+        10.5,
+        0,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Mapping Planck Scale",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "horizon_chirality",
+      "title": "Horizon Chirality",
+      "radius": 2.688,
+      "color": "#8b5e34",
+      "position": [
+        0,
+        -10.5,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Horizon Chirality",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "cosmic_censorship_holography",
+      "title": "Cosmic Censorship and Holography",
+      "radius": 2.688,
+      "color": "#355f9a",
+      "position": [
+        -10.5,
+        0,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Cosmic Censorship and Holography",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    }
+  ]
+}

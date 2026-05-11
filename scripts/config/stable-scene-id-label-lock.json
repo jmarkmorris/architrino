@@ -131,19 +131,49 @@
       "sceneId": "spacetime",
       "sceneName": "Spacetime",
       "objects": {
-        "cosmic_censorship_holography": "Cosmic Censorship and Holography",
+        "effective_metric": "Effective Metric",
+        "physical_observers": "Physical Observers",
+        "spacetime_medium": "Spacetime Medium",
+        "strong_field_regime": "Strong-Field Regime"
+      }
+    },
+    "content/scenes/spacetime/spacetime_medium.json": {
+      "sceneId": "spacetime_medium",
+      "sceneName": "Spacetime Medium",
+      "objects": {
+        "medium_exclusion_volume": "Medium Exclusion Volume",
+        "noether_sea": "Noether Sea",
+        "spacetime_assemblies": "Spacetime Assemblies"
+      }
+    },
+    "content/scenes/spacetime/physical_observers.json": {
+      "sceneId": "physical_observers",
+      "sceneName": "Physical Observers",
+      "objects": {
+        "lorentz_kinematics": "Lorentz Kinematics",
+        "observer_framework": "Observer Framework",
+        "proper_time_and_time_dilation": "Proper Time and Time Dilation"
+      }
+    },
+    "content/scenes/spacetime/effective_metric.json": {
+      "sceneId": "effective_metric",
+      "sceneName": "Effective Metric",
+      "objects": {
         "emergent_metric": "Emergent Metric",
         "general_relativity_observables": "General Relativity",
         "gravitational_waves": "Gravitational Waves",
+        "ppn_parameters": "PPN Parameters"
+      }
+    },
+    "content/scenes/spacetime/strong_field_regime.json": {
+      "sceneId": "strong_field_regime",
+      "sceneName": "Strong-Field Regime",
+      "objects": {
+        "black_holes": "Black Holes",
+        "cosmic_censorship_holography": "Cosmic Censorship and Holography",
         "horizon_chirality": "Horizon Chirality",
         "mapping_planck_scale": "Mapping Planck Scale",
-        "medium_exclusion_volume": "Medium Exclusion Volume",
-        "noether_sea": "Noether Sea",
-        "observer_framework": "Observer Framework",
-        "ppn_parameters": "PPN Parameters",
-        "proper_time_and_time_dilation": "Proper Time and Time Dilation",
-        "singularity_resolution": "Singularity Resolution",
-        "spacetime_assemblies": "Spacetime Assemblies"
+        "singularity_resolution": "Singularity Resolution"
       }
     },
     "content/scenes/philosophy_history/philosophy_history.json": {
