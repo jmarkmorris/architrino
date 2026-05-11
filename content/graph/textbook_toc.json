@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 151,
-      "sections": 1080
+      "sections": 1081
     }
   },
   "tocRoot": {
@@ -1107,10 +1107,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Proper Time as Internal Cycle Count",
+                "title": "Transverse Causal Budget Lemma",
                 "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Proper Time as Internal Cycle Count",
-                "sectionKey": "proper time as internal cycle count",
+                "markdownSection": "Transverse Causal Budget Lemma",
+                "sectionKey": "transverse causal budget lemma",
                 "headingLevel": 2
               },
               {
@@ -2456,6 +2456,14 @@
                   },
                   {
                     "kind": "markdown-section",
+                    "title": "ADM/Cartan Reconstruction Surface",
+                    "markdownPath": "content/markdown/aaa/spacetime/emergent-metric.md",
+                    "markdownSection": "ADM/Cartan Reconstruction Surface",
+                    "sectionKey": "adm cartan reconstruction surface",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Noether-Core Deformation and Metric Language",
                     "markdownPath": "content/markdown/aaa/spacetime/emergent-metric.md",
                     "markdownSection": "Noether-Core Deformation and Metric Language",
@@ -2496,10 +2504,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Weak-Field Geodesic Handoff (Constitutive Subclass)",
+                    "title": "Weak-Field Geodesic Handoff (ADM Constitutive Subclass)",
                     "markdownPath": "content/markdown/aaa/spacetime/emergent-metric.md",
-                    "markdownSection": "Weak-Field Geodesic Handoff (Constitutive Subclass)",
-                    "sectionKey": "weak field geodesic handoff constitutive subclass",
+                    "markdownSection": "Weak-Field Geodesic Handoff (ADM Constitutive Subclass)",
+                    "sectionKey": "weak field geodesic handoff adm constitutive subclass",
                     "headingLevel": 2
                   }
                 ]

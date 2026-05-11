@@ -53,7 +53,7 @@ We require that the proposed mechanical slowing induced by Noether Core density 
 
 ### Closure Program Tracking Hooks
 
-Use this ledger as the acceptance layer for the five integrated closure programs:
+Use this ledger as the acceptance layer for the six integrated closure programs:
 
 | Program | Primary chapters | Ledger gate |
 | --- | --- | --- |
@@ -61,6 +61,7 @@ Use this ledger as the acceptance layer for the five integrated closure programs
 | PMNS neutral-core closure | [assemblies/fermions/neutrinos.md](../assemblies/fermions/neutrinos.md) | Oscillation pattern consistency across $L/E$ and medium regimes |
 | Emergent metric / PPN closure | [spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md), [spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) | Lorentz leakage, PPN, redshift, Shapiro, GW-speed bounds |
 | Non-relativistic Schrödinger + Born closure | [theory-bridges/pilot-wave-character.md](../theory-bridges/pilot-wave-character.md), [quantum/wavefunction-ontology.md](../quantum/wavefunction-ontology.md), [theory-bridges/superposition-mechanism.md](../theory-bridges/superposition-mechanism.md) | Effective fixed-particle-number wave equation + statistical outcome consistency |
+| Photon Gate A/B/C closure | [assemblies/bosons/electroweak-bosons.md](../assemblies/bosons/electroweak-bosons.md), [validation/reaction-cosmology-provenance-ledger.md](reaction-cosmology-provenance-ledger.md), [spacetime/lorentz-kinematics.md](../spacetime/lorentz-kinematics.md) | Gate A massless nondispersive photon kinematics, Gate B polarization and squared-amplitude capture, and Gate C Maxwell/QED vertices, pair/radiation provenance, and $\alpha$ recovery |
 | Topological spin/confinement closure | [dynamics/causal-action-functional.md](../dynamics/causal-action-functional.md), [assemblies/fermions/color-charge-su3.md](../assemblies/fermions/color-charge-su3.md) | 4$\pi$ spin structure and open-vs-closed color-energy scaling |
 
 Cross-program acceptance principle:
@@ -72,6 +73,8 @@ $$
 \mathcal{C}_{\mathrm{PPN/GR}}
 \cap
 \mathcal{C}_{\mathrm{QM}}
+\cap
+\mathcal{C}_{\mathrm{Photon}}
 \cap
 \mathcal{C}_{\mathrm{Topo}}
 \neq \varnothing.
