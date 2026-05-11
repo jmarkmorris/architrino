@@ -4,16 +4,30 @@ import fs from "node:fs";
 import path from "node:path";
 
 const DEFAULT_ROOTS = ["content/markdown/aaa"];
+const DEFAULT_SURFACE_ROOTS = [
+  "reference/op",
+  "reference/entourage/roles-og-entourage",
+  "reference/entourage/roles-geometry-dynamics",
+  "content/scenes",
+  "src",
+];
+const MARKDOWN_EXTENSIONS = new Set([".md"]);
+const SURFACE_EXTENSIONS = new Set([".md", ".json", ".js", ".mjs", ".html", ".css"]);
 const args = process.argv.slice(2);
 const strict = args.includes("--strict");
 const includeArchie = args.includes("--include-archie");
+const surfaceMode = args.includes("--surface");
 const wantsHelp = args.includes("--help") || args.includes("-h");
 const targetArgs = args.filter((arg) => !arg.startsWith("-"));
 const rootDir = process.cwd();
 
 if (wantsHelp) {
-  console.log("Usage: node scripts/audit-aaa-corpus-drift.mjs [--strict] [--include-archie] [path ...]");
-  console.log("Scans AAA markdown for recurring terminology drift and closure-overclaim patterns.");
+  console.log(
+    "Usage: node scripts/audit-aaa-corpus-drift.mjs [--strict] [--include-archie] [--surface] [path ...]"
+  );
+  console.log(
+    "Scans AAA markdown, or with --surface scans reference/app/scene surfaces, for recurring terminology drift and closure-overclaim patterns."
+  );
   process.exit(0);
 }
 
@@ -106,6 +120,62 @@ const rules = [
   },
 ];
 
+const surfaceRules = [
+  {
+    id: "surface-causal-delay-rword",
+    description: "Legacy causal-delay wording in active reference or app surfaces.",
+    pattern: /\b(retarded|retardation|retard)\b/i,
+    suggestion: "Use path history, causal wake surface, causal isochron, delayed, or causal-delay wording.",
+  },
+  {
+    id: "surface-aether-bridge-drift",
+    description: "Aether wording in active guidance can blur the Noether Sea with historical ether concepts.",
+    pattern:
+      /\b(spacetime[- ]aether|aether[- ]assembly|aether assemblies|aether density|aether response|aether coupling|aether gradients|aether dynamics|aether parameters|aether simulations|aether language|aether sea|background aether)\b/i,
+    suggestion:
+      "Use Noether Sea, Noether-Sea response, Noether-Sea state, or Noether-core density unless the passage is explicitly historical.",
+  },
+  {
+    id: "surface-density-delay-notation",
+    description: "Older density or refractive-index notation on reference/app surfaces.",
+    pattern:
+      /\\rho_\{\\text\{vac\}\}|\\rho_\{\\rm\s+aether\}|\\rho_\{vac\}|rho_vac|\bn\(x\)|refractive index (?:field|model)|Spacetime medium density/i,
+    suggestion:
+      "Use \\rho_{\\text{core}}(\\mathbf{x},t) for physical Noether-core density, n(\\mathbf{x},t) for normalized density, and \\chi_{\\text{sea}} for delay.",
+  },
+  {
+    id: "surface-mass-drag-language",
+    description: "Mass or Lorentz language that can misstate ordinary drag as the mechanism.",
+    pattern: /\b(Lorentzian Conspiracy|medium drag|push through sea|Noether Sea drag|drag on the Sea)\b/i,
+    suggestion:
+      "Use preferred-frame suppression, medium-dressed response, shielding, and trapped internal causal history as appropriate.",
+  },
+  {
+    id: "surface-spacetime-medium-standalone",
+    description: "Scene or app labels should keep Noether Sea primary and spacetime medium bridge-only.",
+    pattern: /"(?:(?:label)?title|sceneName)"\s*:\s*"Spacetime Medium"/,
+    suggestion: "Use Noether Sea as the visible ontology label; reserve spacetime medium for bridge explanations.",
+  },
+  {
+    id: "surface-generation-transition-decay",
+    description: "Generation navigation should not be labeled as a physical decay.",
+    pattern: /\b(Decay to Gen|updateDecayHover|decayHover|DecayHover)\b/,
+    suggestion: "Use generation-transition wording for navigation and reserve decay for fixed Standard Model labels.",
+  },
+  {
+    id: "surface-beta-reaction-label",
+    description: "AAA-native scene labels should translate generic beta-decay wording to beta reaction.",
+    pattern: /\b(beta[- ]?decay|[A-Z][a-z]?\d+\s+decay)\b/i,
+    suggestion: "Use beta reaction for native AAA scene language; keep beta decay only as an explicit Standard Model label.",
+  },
+];
+
+const surfaceSharedRuleIds = new Set([
+  "substrate-field-wake-drift",
+  "mass-drag-language",
+  "noether-sea-hyphen-standalone",
+]);
+
 function normalizePath(value) {
   return String(value).replace(/\\/g, "/").replace(/\/+/g, "/").replace(/\/$/, "");
 }
@@ -117,14 +187,20 @@ function shouldSkip(relativePath) {
   return relativePath.startsWith("content/markdown/aaa/archie/");
 }
 
-function walkMarkdown(relativePath) {
+function shouldIncludeFile(relativePath) {
+  const extension = path.extname(relativePath);
+  const allowedExtensions = surfaceMode ? SURFACE_EXTENSIONS : MARKDOWN_EXTENSIONS;
+  return allowedExtensions.has(extension) && !shouldSkip(relativePath);
+}
+
+function walkFiles(relativePath) {
   const absolutePath = path.join(rootDir, relativePath);
   if (!fs.existsSync(absolutePath)) {
     return [];
   }
   const stat = fs.statSync(absolutePath);
   if (stat.isFile()) {
-    return relativePath.endsWith(".md") && !shouldSkip(relativePath) ? [relativePath] : [];
+    return shouldIncludeFile(relativePath) ? [relativePath] : [];
   }
   if (!stat.isDirectory()) {
     return [];
@@ -138,25 +214,32 @@ function walkMarkdown(relativePath) {
     }
     const child = normalizePath(path.join(relativePath, entry.name));
     if (entry.isDirectory()) {
-      result.push(...walkMarkdown(child));
+      result.push(...walkFiles(child));
       continue;
     }
-    if (entry.isFile() && entry.name.endsWith(".md") && !shouldSkip(child)) {
+    if (entry.isFile() && shouldIncludeFile(child)) {
       result.push(child);
     }
   }
   return result;
 }
 
-const roots = targetArgs.length ? targetArgs.map(normalizePath) : DEFAULT_ROOTS;
-const files = [...new Set(roots.flatMap(walkMarkdown))].sort((a, b) => a.localeCompare(b));
+const roots = targetArgs.length
+  ? targetArgs.map(normalizePath)
+  : surfaceMode
+    ? DEFAULT_SURFACE_ROOTS
+    : DEFAULT_ROOTS;
+const activeRules = surfaceMode
+  ? [...rules.filter((rule) => surfaceSharedRuleIds.has(rule.id)), ...surfaceRules]
+  : rules;
+const files = [...new Set(roots.flatMap(walkFiles))].sort((a, b) => a.localeCompare(b));
 const findings = [];
 
 for (const file of files) {
   const text = fs.readFileSync(path.join(rootDir, file), "utf8");
   const lines = text.split(/\r?\n/);
   for (const [index, line] of lines.entries()) {
-    for (const rule of rules) {
+    for (const rule of activeRules) {
       if (rule.pathPattern && !rule.pathPattern.test(`/${file}`)) {
         continue;
       }
@@ -176,11 +259,11 @@ for (const file of files) {
 }
 
 if (!findings.length) {
-  console.log(`AAA corpus drift audit: no findings across ${files.length} markdown files.`);
+  console.log(`AAA corpus drift audit: no findings across ${files.length} files.`);
   process.exit(0);
 }
 
-console.log(`AAA corpus drift audit: ${findings.length} finding(s) across ${files.length} markdown files.`);
+console.log(`AAA corpus drift audit: ${findings.length} finding(s) across ${files.length} files.`);
 for (const finding of findings) {
   console.log("");
   console.log(`${finding.file}:${finding.line} [${finding.rule}]`);
