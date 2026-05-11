@@ -83,6 +83,7 @@ Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate sli
 | Canonical mass chapter | [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md) | Reader-facing statement of the current mass thesis, definitions, and conservative explanatory path. |
 | Energy ledger source | [Energy](../../../content/markdown/aaa/dynamics/energy.md) | Energy-zero convention, assembly energy bookkeeping, and the operational definition of inertial mass. |
 | Dynamics baseline | [Tri-Binary Dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md) | Noether-core roles, speed-regime conventions, delay geometry, stability diagnostics, and metric/connection reconstruction diagnostics. |
+| Reduced branch certificate | [$A_0$ Reduced Branch Certificate Packet](a0-reduced-branch-certificate.md) | First finite proof/simulation packet for the reduced $A_0$ branch search: carrier ansatz, root-ledger enumeration, averaging/locking/leakage lemmas, continuation gates, and promotion rules. |
 | Proof synthesis | [Tri-Binary Causal Closure](../tri-binary-causal-closure/tri-binary-causal-closure.md) | Active-development bridge from tri-binary closure to rest mass, inertia, proper time, photon behavior, and effective geometry. |
 | Proof-control ledger | [Tri-Binary Dependency Map](../tri-binary-causal-closure/tri-binary-dependency-map.md) | Open theorem burdens and deployment handoff routes, especially shielding, momentum skew, slow-fast tri-binary minimality, and metric closure. |
 | Quantitative mass workstream | This document | First derived mass map, shielding extraction, baseline electron-mass target, and hierarchy checks. |
@@ -343,7 +344,7 @@ This schema deliberately keeps particle labels out of the accepted packet. Elect
 
 ### Immediate Work Packet
 
-1. Construct the simplest reduced multi-scale $A_0$ scan using the state vector and output schema above: homogeneous Noether-Sea cell, zero drift, no imposed external gradient, and primitive speed selector $c_\star=c_f$ for wake intersections.
+1. Construct the simplest reduced multi-scale $A_0$ scan using the state vector and output schema above, following the [$A_0$ Reduced Branch Certificate Packet](a0-reduced-branch-certificate.md): homogeneous Noether-Sea cell, zero drift, no imposed external gradient, and primitive speed selector $c_\star=c_f$ for wake intersections.
 2. Enforce the speed ordering $s_I > c_f$, $s_M \approx c_f$, and $s_O < c_f$ while allowing separated radii, separated periods, and non-circular carriers.
 3. Use separable circular or elliptic layer models only as diagnostic carriers; if they leave tangential residuals, convert those residuals into required inter-layer phase, branch, or carrier corrections.
 4. Split internal corrections into averaging, locking, and leakage classes before any far-field simplification.
@@ -351,6 +352,8 @@ This schema deliberately keeps particle labels out of the accepted packet. Elect
 6. Compute the sign-resolved internal-energy ledger and far-field shielding extraction only for branches that pass the closure and stability gates.
 7. Extract the homogeneous $\mathcal{M}_{\text{sea}}^{ab}$ baseline from small acceleration and gradient probes.
 8. Promote only stable, calibration-free outputs into the $\zeta$ and hierarchy steps.
+
+The reduced branch certificate is the executable handoff between this workstream and the simulations workstream. It is the place to record Tier 0 root-ledger enumeration, Tier 1 $\eta>0$ continuation, Tier 2 energy/shielding extraction, and the promotion rule from `derive_first_attractor_family` to `derive_zeta`.
 
 ## Core Work
 
