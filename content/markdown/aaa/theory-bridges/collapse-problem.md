@@ -1,6 +1,6 @@
 # Measurement Problem and Collapse
 
-This document maps the traditional "Measurement Problem" and the phenomenon of wavefunction collapse to the deterministic, non-Markovian micro-dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$). In this framework, "collapse" is not a fundamental discontinuous axiom but an emergent, finite-time dynamical process: the deterministic resolution of a metastable state across a phase-space separatrix. It should be read alongside [Measurement Ontology](./measurement-ontology.md), [Superposition Mechanism](../theory-bridges/superposition-mechanism.md), [Wavefunction Ontology](./wavefunction-ontology.md), and [Pilot-Wave Character](../theory-bridges/pilot-wave-character.md).
+This document maps the traditional "Measurement Problem" and the phenomenon of wavefunction collapse to the deterministic, non-Markovian micro-dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$). In this framework, "collapse" is not a fundamental discontinuous axiom but an emergent, finite-time dynamical process: the deterministic resolution of a metastable state across a phase-space separatrix. It should be read alongside [Measurement Ontology](../quantum/measurement-ontology.md), [Superposition Mechanism](./superposition-mechanism.md), [Wavefunction Ontology](../quantum/wavefunction-ontology.md), and [Pilot-Wave Character](./pilot-wave-character.md).
 
 ### The Traditional Measurement Problem
 

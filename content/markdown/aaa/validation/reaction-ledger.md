@@ -1,217 +1,125 @@
-# Reaction Ledger: Point Potential Provenance
+# Reaction Ledger: Architrino Provenance
 
-**Method:** Conservation of Architrinos
-**Principle:** The ambient Noether Sea can act as a reactant and product reservoir.
+This ledger records how reaction channels should account for constituent architrinos, Noether cores, axial layers, energy, momentum, charge, polarity, and path-history provenance. Its purpose is not to replace Standard Model reaction notation. Its purpose is to state what an $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation must conserve before a reaction map can be treated as more than a provisional diagram.
 
-## The Provenance Protocol
-Standard Feynman diagrams track particle paths. Architrino Provenance diagrams track **constituent inventory**.
+For cosmology-facing radiation and thermalization channels, use this ledger together with [Reaction-Cosmology Provenance Ledger](reaction-cosmology-provenance-ledger.md).
 
-### Rules:
-1.  **Total Architrino Conservation:** $\sum (P, E)_{in} = \sum (P, E)_{out}$.
-2.  **Noether-Sea Interaction:** The ambient Noether Sea can donate or accept:
-    *   **Neutral Binaries:** (1P, 1E).
-    *   **Full Cores:** (3P, 3E).
-    *   **Anti-Cores:** (3P, 3E, anti-spin).
-3.  **The "Boson" is the Delta:** W and Z bosons are not fundamental objects; they are the transient state of the exchanged payload.
+## Scope and Status
 
----
+Reaction provenance is a closure target. A channel may use standard observer notation such as $d \to u + W^-$ or $\gamma+\gamma\to e^+ + e^-$, but the $\mathbb{A}\mathbb{A}\mathbb{A}$ map is not closed until the underlying constituent ledger is explicit.
 
-## Case Study: Top-Quark Weak Reaction ($t \to b + W^+$)
-*Observed Channel:* $t \to b + e^+ + \nu_e$ (via $W^+ \to e^+ + \nu_e$ leptonic reaction).
+The conservative status is:
 
-### Reactant Inventory
+- Architrino count and polarity conservation are required constraints.
+- Noether Sea participation is allowed, but it must be recorded as a reactant, product reservoir, or medium-excitation channel rather than left implicit.
+- W, Z, photon, and pair-production language may be retained at observer level, while the substrate map must identify the transient assembly, exchanged payload, or planar-mode nucleation event being invoked.
+- Any weak-channel ledger that depends on chirality, axial-frame orientation, CKM/PMNS mixing, or antineutrino routing remains provisional until the corresponding geometry is derived.
 
-**1. Top Quark ($t$)**
-*   **Core (Gen III):** High energy, depleted shielding.
-    *   *Assumption:* Uni-binary or Bi-binary (User Diagram uses Bi-binary structure). Let's use **Uni-binary (1P, 1E)** for Gen III standard.
-*   **Axial Layer ($Q = +2/3$):** 1 Electrino, 5 Positrinos ($1E, 5P$).
-*   **Total $t$:** $2E, 6P$.
+## Provenance Protocol
 
-**2. Reactant Noether-Sea Inputs**
-*   To build the products (Positron + Neutrino + Bottom), we need raw material.
-*   *Input:* 1 Full Anti-Noether Core (Antimatter seed for the positron).
-    *   Composition: 3 Binaries ($3E, 3P$).
+Each reaction record should state:
 
-### Product Inventory
+1. **Observer channel:** the standard reaction label, including historical labels such as `beta decay` only when immediately translated into native reaction language.
+2. **Active assemblies:** which incoming assemblies actually reconfigure, and which are spectators.
+3. **Noether-Sea participation:** whether local Noether cores, neutral binaries, axial layers, or medium excitations are consumed, split, reconfigured, or returned.
+4. **Constituent inventory:** total $E$ and $P$ counts before and after, separated into core and axial-layer contributions where the distinction matters.
+5. **Polarity and charge accounting:** how observer-level charge bookkeeping emerges from the $E/P$ routing.
+6. **Energy-momentum accounting:** where kinetic energy, internal binding energy, photon assemblies, recoil, and medium excitation enter and exit.
+7. **Path-history provenance:** which emitted causal wakes, source identities, and delayed interactions are needed to make the reaction deterministic in absolute time.
+8. **Closure status:** baseline, provisional map, derivation target, or failed map.
 
-**1. Bottom Quark ($b$)**
-*   **Core (Gen III):** Uni-binary (1P, 1E).
-*   **Axial Layer ($Q = -1/3$):** 4 Electrinos, 2 Positrinos ($4E, 2P$).
-*   **Total $b$:** $5E, 3P$.
+## Record Template
 
-**2. Positron ($e^+$)**
-*   **Core:** Anti-Tri-binary ($3E, 3P$).
-*   **Axial Layer ($Q = +1$):** 0 Electrinos, 6 Positrinos ($0E, 6P$).
-*   **Total $e^+$:** $3E, 9P$.
+| Field | Required content |
+| --- | --- |
+| Observer channel | Standard reaction notation and native reaction label |
+| Active assembly change | Core and axial-layer changes for the transformed assembly |
+| Noether-Sea input/output | Neutral cores, axial material, or medium excitations recruited or returned |
+| Conserved inventory | $E/P$ totals and charge/polarity balance |
+| Energy-momentum ledger | Internal energy, recoil, emitted assemblies, and medium excitation |
+| Provenance data | Source identity, emission time, causal-root branch, and local medium state |
+| Closure status | What is established, what is assumed, and what remains to derive |
 
-**3. Electron Neutrino ($\nu_e$)**
-*   **Core:** Pro-Tri-binary ($3E, 3P$).
-*   **Axial Layer:** 3 Electrinos, 3 Positrinos ($3E, 3P$).
-*   **Total $\nu_e$:** $6E, 6P$.
+## Weak Reaction Case: $t \to b + W^+$ Channel
 
-### The Ledger Balance (The "W" Event)
+Observer-level notation:
 
-Let's look at the **Axial-Layer Swap** (The Weak Interaction).
+$$
+t \to b + W^+,\qquad W^+ \to e^+ + \nu_e.
+$$
 
-**The Transformation:** $t \to b$
-*   Start ($t$ Axial Layer): $1E, 5P$
-*   End ($b$ Axial Layer): $4E, 2P$
-*   **Delta:** $+3E, -3P$.
-*   *Interpretation:* The Top quark ejected 3 Positrinos and absorbed 3 Electrinos (or ejected a "$3P$ packet" and a hole that was filled?).
-*   **This Delta ($3P \to 3E$ swap) IS the $W^+$ boson event.**
+Native status: provisional weak-reaction provenance map.
 
-**The Ledger Check:**
+The active quark change is an axial-layer reconfiguration. In the current assembly catalog, the top-to-bottom transition is represented as a shift from the top axial pattern to the bottom axial pattern:
 
-| Species | Input (Top + Noether Sea) | Output (Bottom + Positron + Neutrino) | Balance |
-| :--- | :--- | :--- | :--- |
-| **Top Quark** | $2E, 6P$ (Total) | - | - |
-| **Noether Sea** | $x(E, P)$ | - | - |
-| **Bottom** | - | $5E, 3P$ | - |
-| **Positron** | - | $3E, 9P$ | - |
-| **Neutrino** | - | $6E, 6P$ | - |
-| **TOTALS** | **Need to Match** | **$14E, 18P$** | **Net +4P (-4E)?** |
+$$
+(1E,5P)_{\text{axial}} \to (4E,2P)_{\text{axial}}.
+$$
 
-*Analysis:*
-The output has 14 Electrinos and 18 Positrinos.
-The Top Quark provided 2 Electrinos and 6 Positrinos.
-**Deficit:** We need to find $12E$ and $12P$.
-**Source:** This requires exactly **2 Full Noether Cores** (each $6E, 6P$) or **4 Tri-binaries** worth of material recruited from the surrounding Noether Sea to construct the Lepton and Neutrino bodies.
+Equivalently, the active quark sector requires a $+3E,-3P$ axial exchange. In observer language this is the $W^+$ channel. In substrate language it is a transient payload and coupling event whose geometry, chirality selection, and energy routing still need closure.
 
-### Conclusion on Mechanism
-The weak reaction of a high-energy Top quark disrupts the local Noether-Sea structure, recruiting **24 architrinos** (two full cores' worth) from the sea.
-1.  The Top sheds its specific "flavor" delta ($3P/3E$ swap).
-2.  This disturbance polarizes the local Noether Sea.
-3.  The local Noether Sea clumps into a Lepton-Antilepton pair ($e^+ + \nu_e$) to balance the energy and charge equations.
+The lepton products cannot be asserted as creation from nothing. Their core and axial-layer material must be drawn from a local Noether-Sea reservoir or from explicitly identified incoming assemblies. The provisional ledger target is:
 
----
+| Component | Ledger requirement | Status |
+| --- | --- | --- |
+| Top-to-bottom axial exchange | Route the $+3E,-3P$ change through a weak-channel coupling event | Provisional |
+| Positron assembly | Identify the Noether-core and axial material used to form the charged lepton output | Provisional |
+| Electron-neutrino assembly | Identify neutral core and axial-layer routing, including chirality/orientation | Provisional |
+| Energy-momentum | Account for quark mass difference, lepton energies, recoil, and medium excitation | Derivation target |
+| Weak geometry | Derive the left-handed selection rule and allowed coupling operator | Derivation target |
+
+This channel should not be presented as a completed architrino derivation until the inventory table balances $E/P$ counts, core orientation, axial-layer routing, and energy-momentum in one consistent record.
 
 ## Free Neutron Beta Reaction
 
-*Observed Process:* A free neutron undergoes `beta reaction` (SM label: `free neutron decay`) into a proton, electron, and electron-antineutrino.
-*Standard Model:* $d \to u + W^- (\to e^- + \bar{\nu}_e)$.
+Observer-level notation:
 
-### The Spectators
-The Neutron contains three quarks: $u, d, d$.
-The Proton contains three quarks: $u, u, d$.
-*   **Invariant:** One $u$ and one $d$ are spectators. They pass through the reaction structure unchanged.
-*   **Active Agent:** The second $d$ transforms into a $u$.
+$$
+n \to p + e^- + \bar{\nu}_e,
+$$
 
-### Reactant Inventory (Inputs)
+with the active quark-level comparison
 
-**1. Active Down Quark ($d$)**
-*   **Core:** Gen I Pro-Tri-binary ($3E, 3P$).
-*   **Axial Layer ($Q=-1/3$):** 4 Electrinos, 2 Positrinos ($4E, 2P$).
-*   **Total $d$:** $7E, 5P$.
+$$
+d \to u + W^-,\qquad W^- \to e^- + \bar{\nu}_e.
+$$
 
-**2. Noether-Sea Reagents**
-*   **1 Pro-Noether Core (NC):** $3E, 3P$ (Seed for the Electron).
-*   **1 Anti-Noether Core (!NC):** $3E, 3P$ (Seed for the Antineutrino).
-*   *Note:* The Anti-Core has reversed chirality but identical constituent counts.
-*   **Total Noether-Sea input:** $6E, 6P$.
+Native label: free-neutron beta reaction.
 
-**GRAND TOTAL INPUTS:** $13E, 11P$.
+The spectator structure is straightforward: one $u$ and one $d$ in the neutron pass through the reaction unchanged. The active channel is the second down-like assembly reconfiguring into an up-like assembly.
 
-### Product Inventory (Outputs)
+The axial-layer comparison is:
 
-**1. Active Up Quark ($u$)**
-*   **Core:** Gen I Pro-Tri-binary ($3E, 3P$).
-*   **Axial Layer ($Q=+2/3$):** 1 Electrino, 5 Positrinos ($1E, 5P$).
-*   **Total $u$:** $4E, 8P$.
+$$
+(4E,2P)_{\text{axial}} \to (1E,5P)_{\text{axial}}.
+$$
 
-**2. Electron ($e^-$)**
-*   **Core:** Consumes the Noether-Sea NC ($3E, 3P$).
-*   **Axial Layer ($Q=-1$):** 6 Electrinos, 0 Positrinos ($6E, 0P$).
-*   **Total $e^-$:** $9E, 3P$.
+So the active quark assembly sheds three $E$-type axial units and receives three $P$-type axial units. The natural provenance hypothesis is that local neutral Noether-Sea material supplies the compensating polarity units while the ejected $E$-type material participates in electron axial-layer formation.
 
-**3. Electron Antineutrino ($\bar{\nu}_e$)**
-*   **Core:** Consumes the Noether-Sea !NC ($3E, 3P$).
-*   **Axial Layer ($Q=0$):** 3 Electrinos, 3 Positrinos ($3E, 3P$).
-*   **Total $\bar{\nu}_e$:** $6E, 6P$ (Wait? No, let's trace the flow carefully).
-    *   *Correction from Diagram:* The Antineutrino ends up neutral. If it takes the Anti-Core ($3E, 3P$) and a neutral axial layer ($3E, 3P$), total is $6E, 6P$.
-    *   *Let's check the flow arrows below to confirm.*
+The conservative ledger is:
 
-### The Transaction Flow (The "W-" Event)
+| Component | Required provenance statement | Closure status |
+| --- | --- | --- |
+| Active $d \to u$ assembly | Route $3E$ out of the active axial layer and route $3P$ into it | Provisional map |
+| Electron assembly | Combine the ejected $3E$ contribution with additional local Noether-Sea material and a suitable core | Provisional map |
+| Antineutrino assembly | Identify neutral core orientation, axial-layer routing, and weak-channel phase relation | Open derivation target |
+| Noether Sea | Record every neutral core, axial layer, or medium excitation consumed or returned | Required |
+| Energy and angular momentum | Track mass difference, recoil, electron kinetic energy, antineutrino energy, and medium response | Required |
 
-The diagram specifies the exact routing of architrinos:
+This map supports a strong but bounded claim: beta reaction charge bookkeeping can be interpreted as local separation and rerouting of neutral Noether-Sea material plus active quark axial reconfiguration. It does not yet establish a full weak-interaction derivation, because chirality selection, antineutrino routing, and quantitative rate closure still belong to the weak-sector closure program.
 
-**A. The Electrino Flow (Blue Arrows - Total Available: 7 from $d$ + 6 from the Noether Sea = 13)**
-1.  **Down Quark ($d$)** has 4E in the axial layer. It keeps 1E (to become $u$). It ejects **3E**.
-2.  **Noether-Sea NC** has 3E.
-3.  **Noether-Sea !NC** has 3E.
-    *   *Destination Electron:* Needs 6E for the axial layer + 3E for Core. Total 9E.
-        *   Takes 3E ejected from $d$.
-        *   Takes 3E from the Noether-Sea NC (its own core).
-        *   Takes 3E from... wait.
-    *   *Refined Ledger from Diagram Lines:*
-        *   **Electron Axial Layer (6E):**
-            *   3E come from the Down Quark ($d \to u$ ejection).
-            *   3E come from the Noether-Sea NC axial layer.
-        *   **Electron Core:** Inherits the Noether-Sea NC structure.
-        *   **Antineutrino Axial Layer (3E):**
-            *   Takes 3E from the Noether-Sea !NC.
+## Closure Targets
 
-**B. The Positrino Flow (Red Arrows - Total Available: 5 from $d$ + 6 from the Noether Sea = 11)**
-1.  **Down Quark ($d$)** has 2P. It needs to reach 5P (to become $u$). **Deficit: 3P**.
-2.  **Noether-Sea NC** has 3P.
-3.  **Noether-Sea !NC** has 3P.
-    *   *Source for Up Quark:*
-        *   Takes 3P from the Noether-Sea NC (which is donating its P to the quark while giving its E to the electron?).
-    *   *Source for Antineutrino:*
-        *   Takes 3P from the Noether-Sea !NC.
+The reaction ledger needs four tables for each serious channel:
 
-### Final Balance Check
+1. **Constituent inventory table:** core and axial-layer $E/P$ counts for every input, output, Noether-Sea contribution, and returned medium product.
+2. **Energy-momentum table:** internal energy changes, kinetic output, recoil, photon assemblies, neutrino channel, and medium excitation.
+3. **Geometry table:** axial frame, core orientation, chirality, polarity routing, and allowed coupling/docking geometry.
+4. **Path-history table:** causal-root branches, source identities, emission times, and local Noether-Sea state variables needed for deterministic replay.
 
-| Component | Electrinos ($E$) | Positrinos ($P$) | Source/Dest |
-| :--- | :--- | :--- | :--- |
-| **INPUTS** | | | |
-| Down Quark ($d$) | 7 | 5 | Reactant |
-| Noether-Sea NC | 3 | 3 | Reactant |
-| Noether-Sea !NC | 3 | 3 | Reactant |
-| **Total In** | **13** | **11** | |
-| | | | |
-| **OUTPUTS** | | | |
-| Up Quark ($u$) | 4 | 8 | Product (Needs +3P, -3E) |
-| Electron ($e^-$) | 9 | 3 | Product (Needs +6E to fill shell, +3E/3P core) |
-| Antineutrino ($\bar{\nu}_e$) | ? | ? | Product |
+## Validation Links
 
-**Let's Trace the Diagram Logic Exactly:**
-1.  **$d \to u$:**
-    *   Sheds 3 Blue ($E$).
-    *   Absorbs 3 Red ($P$) from the Noether Sea.
-    *   *Result:* $d(4E, 2P) \to u(1E, 5P)$. **Balanced.**
-2.  **Electron Formation:**
-    *   Receives 3 Blue ($E$) from $d$.
-    *   Receives 3 Blue ($E$) from the Noether-Sea NC.
-    *   Total Axial Layer: 6 Blue ($E$).
-    *   *Core:* Uses the NC frame.
-    *   *Result:* $e^-$ (6E Axial Layer + Core). **Balanced.**
-3.  **The Cross-over (The "W" Mechanism):**
-    *   The Noether-Sea NC splits!
-    *   Its 3 Blue ($E$) go to the Electron.
-    *   Its 3 Red ($P$) go to the Up Quark.
-    *   *This explains the Noether-Sea involvement perfectly.* The Noether-Sea NC is torn apart; its positive half feeds the quark flavor change, its negative half feeds the electron charge.
-4.  **The Antineutrino:**
-    *   The diagram implies the !NC passes through largely self-contained?
-    *   Or does it balance the remaining books?
-    *   If the NC was split, the electron has a core but... wait. The Electron needs a core (3E, 3P).
-    *   *Re-reading Diagram:* The diagram shows "ae NC" $\to$ "e- NC". This implies the core stays intact?
-    *   *Correction:* If "ae NC" $\to$ "e- NC" (Proton Core?), then where did the 3P for the Up quark come from?
-    *   *Look at the Crossed Lines:*
-        *   Blue line: $d \to e^-$ (3E).
-        *   Red line: $ae \to u$ (3P).
-        *   Blue line: $ae \to e^-$ (3E).
-    *   This implies the "ae" (Noether Sea) block in the diagram is supplying 3P to the quark and 3E to the electron.
-    *   This leaves the "ae" block with... -3P and -3E?
-    *   **Ah!** The "ae" block represents the **axial layer** of the Noether-Sea particles, not just the cores.
+- Weak-sector geometry and chirality closure remain tied to [Quantum Number Mapping](../assemblies/fermions/quantum-number-mapping.md), [Weak Mixing Angle](../assemblies/fermions/weak-mixing-angle.md), and [Weak-Mixing CKM](../theory-bridges/weak-mixing-ckm.md).
+- Radiative and pair-production provenance should use [Synchrotron Cascades](../reactions/synchrotron.md), [Bremsstrahlung](../reactions/bremsstrahlung.md), and [Reaction-Cosmology Provenance Ledger](reaction-cosmology-provenance-ledger.md).
+- Parameter closure belongs in [Parameter Ledger](parameter-ledger.md).
 
-**Revised Conclusion:**
-The neutron beta reaction is the **harvesting of a neutral Noether-Sea binary (3P, 3E)**.
-1.  The neutron disrupts the local Noether Sea.
-2.  A neutral $(3P, 3E)$ assembly is ripped from the sea.
-3.  The **3P** are welded onto the Down Quark ($2P \to 5P$) making it Up.
-4.  The **3E** are welded onto the ejected Electrino packet ($3E$) from the Down Quark, creating a cluster of **6E** (Electron Axial Layer).
-5.  This 6E cluster wraps around a Pro-Noether Core (harvested nearby) to form the Electron.
-6.  To balance angular momentum/energy, an Antineutrino (Anti-Core + neutral axial layer) is emitted.
-
-### Significance
-This derivation shows that **charge conservation is locally maintained by Noether-Sea harvesting**. The "creation" of charge in $n \to p + e^-$ is actually the **separation** of a neutral Noether-Sea element into its positive component (added to the quark) and negative component (added to the lepton).

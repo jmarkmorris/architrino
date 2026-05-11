@@ -2,7 +2,7 @@
 
 This chapter states what the wavefunction is and is not within the framework. Its purpose is to relocate $\psi$ from fundamental ontic field status to an effective epistemic description while still explaining why standard quantum formalism remains operationally useful.
 
-Its nearest companion notes are [Superposition Mechanism](../theory-bridges/superposition-mechanism.md), [Measurement Ontology](measurement-ontology.md), [Collapse Problem](collapse-problem.md), [Entanglement and Nonlocality](../theory-bridges/entanglement-nonlocality.md), and [Pilot-Wave Character](../theory-bridges/pilot-wave-character.md).
+Its nearest companion notes are [Superposition Mechanism](../theory-bridges/superposition-mechanism.md), [Measurement Ontology](measurement-ontology.md), [Collapse Problem](../theory-bridges/collapse-problem.md), [Entanglement and Nonlocality](../theory-bridges/entanglement-nonlocality.md), and [Pilot-Wave Character](../theory-bridges/pilot-wave-character.md).
 
 ## Purpose and Scope
 

@@ -549,7 +549,7 @@ The table is sufficient. It connects the geometry to every parameter needed to c
 
 This chapter is a dictionary layer; the primary derivations live elsewhere. The closure interfaces are:
 
-- **Quark mixing (CKM):** weak-basis vs mass-basis overlap and holonomy closure in [assemblies/fermions/weak-mixing-ckm.md](./weak-mixing-ckm.md).
+- **Quark mixing (CKM):** weak-basis vs mass-basis overlap and holonomy closure in [theory-bridges/weak-mixing-ckm.md](../../theory-bridges/weak-mixing-ckm.md).
 - **Lepton mixing (PMNS):** neutral-core phase Hamiltonian and oscillation map in [assemblies/fermions/neutrinos.md](./neutrinos.md).
 - **Topological spin/confinement closure:** bundle/topology and causal-locus invariants in [dynamics/causal-action-functional.md](../../dynamics/causal-action-functional.md) and [assemblies/fermions/color-charge-su3.md](./color-charge-su3.md).
 

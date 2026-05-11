@@ -25,8 +25,7 @@
         "neutrinos": "Neutrinos",
         "quantum_number_mapping": "Quantum Number Mapping",
         "quarks": "Quarks",
-        "up_charm_top_quarks": "Up, Charm, Top Quarks",
-        "weak_mixing_ckm": "Weak Mixing CKM"
+        "up_charm_top_quarks": "Up, Charm, Top Quarks"
       }
     },
     "content/scenes/cosmology/cosmology.json": {
@@ -114,17 +113,27 @@
       "sceneName": "Quantum",
       "objects": {
         "algorithmic_resonance": "Algorithmic Resonance and Shor's Algorithm",
-        "bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response": "Bell's Theorem: QM Foundations vs. \ud835\udd38\ud835\udd38\ud835\udd38",
-        "entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture": "Entanglement and Nonlocality: QM vs. \ud835\udd38\ud835\udd38\ud835\udd38",
         "measurement_ontology": "Measurement Ontology",
-        "measurement_problem_and_collapse": "Measurement Problem and Collapse",
-        "pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture": "Pilot-Wave Character: de Broglie\u2013Bohm (QM) vs. \ud835\udd38\ud835\udd38\ud835\udd38",
-        "quantum_operator_mapping": "Quantum Operator Mapping",
         "quantum_summary": "Quantum Summary",
         "quantum_statistics": "Fermi-Dirac & Bose-Einstein Statistics",
         "reality_causality_and_navigation": "Reality, Causality, and Navigation",
-        "superposition_mechanism_traditional_vs_architrino_assembly_architecture": "Superposition Mechanism: QM vs. \ud835\udd38\ud835\udd38\ud835\udd38",
         "wavefunction_ontology": "Wavefunction Ontology"
+      }
+    },
+    "content/scenes/theory-bridges/theory_bridges.json": {
+      "sceneId": "theory_bridges",
+      "sceneName": "Theory Bridges",
+      "objects": {
+        "bell_theorem": "Bell's Theorem",
+        "collapse_problem": "Measurement Problem and Collapse",
+        "entanglement_nonlocality": "Entanglement and Nonlocality",
+        "klein_gordon_scalar_fields": "Relativistic Scalar Fields and the Klein-Gordon Equation",
+        "pilot_wave_character": "Pilot-Wave Character",
+        "planck_scale_tri_binary_alignment": "Planck Scale Tri-Binary Alignment",
+        "quantum_operator_mapping": "Quantum Operator Mapping",
+        "special_relativity_noether_core": "Special Relativity and Deformable Noether Cores",
+        "superposition_mechanism": "Superposition Mechanism",
+        "weak_mixing_ckm": "Weak Mixing CKM"
       }
     },
     "content/scenes/spacetime/spacetime.json": {
@@ -172,7 +181,6 @@
         "black_holes": "Black Holes",
         "cosmic_censorship_holography": "Cosmic Censorship and Holography",
         "horizon_chirality": "Horizon Chirality",
-        "mapping_planck_scale": "Mapping Planck Scale",
         "singularity_resolution": "Singularity Resolution"
       }
     },

@@ -41,10 +41,6 @@
       {
         "nodeId": "weak_mixing_angle",
         "scenePath": "content/scenes/assemblies/weak_mixing_angle.json"
-      },
-      {
-        "nodeId": "weak_mixing_ckm",
-        "scenePath": "content/scenes/assemblies/weak_mixing_ckm.json"
       }
     ]
   },
@@ -132,17 +128,6 @@
         "type": "fixed"
       },
       "labelTitle": "Weak Mixing Angle",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "weak_mixing_ckm",
-      "title": "Weak Mixing CKM",
-      "radius": 2.688,
-      "color": "#3f6a5a",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Weak Mixing CKM",
       "labelBadge": "doc"
     }
   ]

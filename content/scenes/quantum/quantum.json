@@ -15,36 +15,12 @@
         "scenePath": "content/scenes/quantum/quantum_summary.json"
       },
       {
-        "nodeId": "quantum_operator_mapping",
-        "scenePath": "content/scenes/quantum/quantum_operator_mapping.json"
-      },
-      {
-        "nodeId": "bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response",
-        "scenePath": "content/scenes/quantum/bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response.json"
-      },
-      {
         "nodeId": "measurement_ontology",
         "scenePath": "content/scenes/quantum/measurement_ontology.json"
       },
       {
-        "nodeId": "measurement_problem_and_collapse",
-        "scenePath": "content/scenes/quantum/measurement_problem_and_collapse.json"
-      },
-      {
-        "nodeId": "entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture",
-        "scenePath": "content/scenes/quantum/entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture.json"
-      },
-      {
-        "nodeId": "pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture",
-        "scenePath": "content/scenes/quantum/pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture.json"
-      },
-      {
         "nodeId": "reality_causality_and_navigation",
         "scenePath": "content/scenes/quantum/reality_causality_and_navigation.json"
-      },
-      {
-        "nodeId": "superposition_mechanism_traditional_vs_architrino_assembly_architecture",
-        "scenePath": "content/scenes/quantum/superposition_mechanism_traditional_vs_architrino_assembly_architecture.json"
       },
       {
         "nodeId": "wavefunction_ontology",
@@ -79,28 +55,6 @@
       "labelBadge": "doc"
     },
     {
-      "id": "quantum_operator_mapping",
-      "title": "Quantum Operator Mapping",
-      "radius": 2.688,
-      "color": "#5a1f2e",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Quantum Operator Mapping",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response",
-      "title": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
-      "radius": 2.688,
-      "color": "#243d8f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
-      "labelBadge": "doc"
-    },
-    {
       "id": "measurement_ontology",
       "title": "Measurement Ontology",
       "radius": 2.688,
@@ -112,40 +66,6 @@
       "labelBadge": "doc"
     },
     {
-      "id": "measurement_problem_and_collapse",
-      "title": "Measurement Problem and Collapse",
-      "radius": 2.688,
-      "color": "#2f6b6f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Measurement Problem and Collapse",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture",
-      "title": "Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸",
-      "radius": 2.688,
-      "color": "#5a1f2e",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture",
-      "title": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸",
-      "radius": 2.688,
-      "color": "#3a5f9f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸",
-      "labelDates": "(QM)",
-      "labelBadge": "doc"
-    },
-    {
       "id": "reality_causality_and_navigation",
       "title": "Reality, Causality, and Navigation",
       "radius": 2.688,
@@ -154,17 +74,6 @@
         "type": "fixed"
       },
       "labelTitle": "Reality, Causality, and Navigation",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "superposition_mechanism_traditional_vs_architrino_assembly_architecture",
-      "title": "Superposition Mechanism: QM vs. 𝔸𝔸𝔸",
-      "radius": 2.688,
-      "color": "#1c2a4f",
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Superposition Mechanism: QM vs. 𝔸𝔸𝔸",
       "labelBadge": "doc"
     },
     {

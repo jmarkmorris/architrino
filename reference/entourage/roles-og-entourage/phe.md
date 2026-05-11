@@ -8,7 +8,7 @@ Demonstrate that **architrino assembly architecture reproduces the Standard Mode
 
 ## Current Theory Alignment
 
-- Particle/gauge mappings must track `assemblies/fermions/quantum-number-mapping.md`, `assemblies/fermions/weak-mixing-ckm.md`, and `interactions/gauge-structure-emergence.md`.
+- Particle/gauge mappings must track `assemblies/fermions/quantum-number-mapping.md`, `theory-bridges/weak-mixing-ckm.md`, and `interactions/gauge-structure-emergence.md`.
 - Microdynamics assumptions should cite `dynamics/master-equation.md`; parameter claims should cite `validation/parameter-ledger.md`.
 - Phenomenology milestones and failure gates should remain synchronized with `validation/constraint-ledger.md`, `validation/no-go-theorems.md`, and `validation/failure-criteria.md`.
 
@@ -316,7 +316,7 @@ Maintain living "Challenges & Failures" document:
 ## Outputs
 
 - Particle and quantum-number tables synced with `assemblies/fermions/quantum-number-mapping.md` and `validation/parameter-ledger.md`.
-- Gauge and mixing notes tied to `interactions/gauge-structure-emergence.md` and `assemblies/fermions/weak-mixing-ckm.md`, PDG date-stamped.
+- Gauge and mixing notes tied to `interactions/gauge-structure-emergence.md` and `theory-bridges/weak-mixing-ckm.md`, PDG date-stamped.
 - Benchmark observables list for Sig and Sol (masses, $g-2$, form factors, CKM/PMNS entries, rare decays) with target precision.
 # Foundational Reference
 - architrino ontology (`foundations/ontology.md`) anchors particle mappings: absolute time, Euclidean space, unique architrino worldlines, and polarity $q=\pm\epsilon$ set the base for assembly construction.

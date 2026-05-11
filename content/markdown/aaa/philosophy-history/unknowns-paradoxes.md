@@ -6,7 +6,7 @@
 
 This chapter maps unresolved problems in contemporary physics where predictive success coexists with mechanistic non-closure, ontological ambiguity, or cross-domain inconsistency.
 
-Its closest companion chapters are [Crisis in Physics](crisis-in-physics.md), [Theory Differentials](theory-differentials.md), [Hubble and $S_8$ Tensions](../cosmology/hubble-s8-tensions.md), [Dark Matter](../cosmology/dark-matter.md), [Dark Energy](../cosmology/dark-energy.md), [Measurement Ontology](../quantum/measurement-ontology.md), and [Bell Theorem](../quantum/bell-theorem.md).
+Its closest companion chapters are [Crisis in Physics](crisis-in-physics.md), [Theory Differentials](theory-differentials.md), [Hubble and $S_8$ Tensions](../cosmology/hubble-s8-tensions.md), [Dark Matter](../cosmology/dark-matter.md), [Dark Energy](../cosmology/dark-energy.md), [Measurement Ontology](../quantum/measurement-ontology.md), and [Bell Theorem](../theory-bridges/bell-theorem.md).
 
 The unit of analysis is the unresolved issue itself, whether it takes the form of an unknown, a paradox, a standing anomaly, or a deeper tension between otherwise successful frameworks. The purpose of the chapter is not to gather puzzles for their own sake. It is to separate three questions that are often run together:
 

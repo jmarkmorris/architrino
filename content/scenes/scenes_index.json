@@ -881,11 +881,6 @@
       "path": "content/scenes/assemblies/weak_mixing_angle.json"
     },
     {
-      "id": "fermions__weak_mixing_ckm",
-      "name": "Weak Mixing CKM",
-      "path": "content/scenes/assemblies/weak_mixing_ckm.json"
-    },
-    {
       "id": "cosmology__bbn_constraints",
       "name": "BBN Constraints",
       "path": "content/scenes/cosmology/bbn_constraints.json"
@@ -964,11 +959,6 @@
       "id": "dynamics__kinetic_and_potential_energy",
       "name": "Kinetic and Potential Energy",
       "path": "content/scenes/dynamics/kinetic_and_potential_energy.json"
-    },
-    {
-      "id": "spacetime__mapping_planck_scale",
-      "name": "Mapping Planck Scale",
-      "path": "content/scenes/spacetime/mapping_planck_scale.json"
     },
     {
       "id": "dynamics__master_equation_of_motion",
@@ -1071,34 +1061,9 @@
       "path": "content/scenes/philosophy_history/theory_mapping.json"
     },
     {
-      "id": "quantum__bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response",
-      "name": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
-      "path": "content/scenes/quantum/bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response.json"
-    },
-    {
-      "id": "quantum__entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture",
-      "name": "Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸",
-      "path": "content/scenes/quantum/entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture.json"
-    },
-    {
-      "id": "quantum__measurement_problem_and_collapse",
-      "name": "Measurement Problem and Collapse",
-      "path": "content/scenes/quantum/measurement_problem_and_collapse.json"
-    },
-    {
-      "id": "quantum__pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture",
-      "name": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸",
-      "path": "content/scenes/quantum/pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture.json"
-    },
-    {
       "id": "quantum__reality_causality_and_navigation",
       "name": "Reality, Causality, and Navigation",
       "path": "content/scenes/quantum/reality_causality_and_navigation.json"
-    },
-    {
-      "id": "quantum__superposition_mechanism_traditional_vs_architrino_assembly_architecture",
-      "name": "Superposition Mechanism: QM vs. 𝔸𝔸𝔸",
-      "path": "content/scenes/quantum/superposition_mechanism_traditional_vs_architrino_assembly_architecture.json"
     },
     {
       "id": "quantum__wavefunction_ontology",
@@ -1516,11 +1481,6 @@
       "path": "content/scenes/quantum/measurement_ontology.json"
     },
     {
-      "id": "quantum__quantum_operator_mapping",
-      "name": "Quantum Operator Mapping",
-      "path": "content/scenes/quantum/quantum_operator_mapping.json"
-    },
-    {
       "id": "quantum__quantum_summary",
       "name": "Quantum Summary",
       "path": "content/scenes/quantum/quantum_summary.json"
@@ -1559,6 +1519,61 @@
       "id": "strong_field_regime",
       "name": "Strong-Field Regime",
       "path": "content/scenes/spacetime/strong_field_regime.json"
+    },
+    {
+      "id": "theory_bridges__bell_theorem",
+      "name": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
+      "path": "content/scenes/theory-bridges/bell_theorem.json"
+    },
+    {
+      "id": "theory_bridges__collapse_problem",
+      "name": "Measurement Problem and Collapse",
+      "path": "content/scenes/theory-bridges/collapse_problem.json"
+    },
+    {
+      "id": "theory_bridges__entanglement_nonlocality",
+      "name": "Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸",
+      "path": "content/scenes/theory-bridges/entanglement_nonlocality.json"
+    },
+    {
+      "id": "theory_bridges__klein_gordon_scalar_fields",
+      "name": "Relativistic Scalar Fields and the Klein-Gordon Equation",
+      "path": "content/scenes/theory-bridges/klein_gordon_scalar_fields.json"
+    },
+    {
+      "id": "theory_bridges__pilot_wave_character",
+      "name": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸",
+      "path": "content/scenes/theory-bridges/pilot_wave_character.json"
+    },
+    {
+      "id": "theory_bridges__planck_scale_tri_binary_alignment",
+      "name": "Planck Scale Tri-Binary Alignment",
+      "path": "content/scenes/theory-bridges/planck_scale_tri_binary_alignment.json"
+    },
+    {
+      "id": "theory_bridges__quantum_operator_mapping",
+      "name": "Quantum Operator Mapping",
+      "path": "content/scenes/theory-bridges/quantum_operator_mapping.json"
+    },
+    {
+      "id": "theory_bridges__special_relativity_noether_core",
+      "name": "Special Relativity and Deformable Noether Cores",
+      "path": "content/scenes/theory-bridges/special_relativity_noether_core.json"
+    },
+    {
+      "id": "theory_bridges__superposition_mechanism",
+      "name": "Superposition Mechanism: QM vs. 𝔸𝔸𝔸",
+      "path": "content/scenes/theory-bridges/superposition_mechanism.json"
+    },
+    {
+      "id": "theory_bridges",
+      "name": "Theory Bridges",
+      "path": "content/scenes/theory-bridges/theory_bridges.json"
+    },
+    {
+      "id": "theory_bridges__weak_mixing_ckm",
+      "name": "Weak Mixing CKM",
+      "path": "content/scenes/theory-bridges/weak_mixing_ckm.json"
     }
   ]
 }

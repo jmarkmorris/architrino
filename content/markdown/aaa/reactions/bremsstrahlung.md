@@ -227,11 +227,11 @@ with $1+z \equiv (1+z_{\mathrm{em}})/(1+z_{\mathrm{obs}})$ and $\mathcal{T}$ the
 The free-free forms above assume local thermodynamic equilibrium (LTE). In evolving medium states, define
 
 $$
-\chi \equiv \frac{\tau_{\mathrm{couple}}}{\tau_{\mathrm{cool}}}.
+\mathcal{R}_{\mathrm{LTE}} \equiv \frac{\tau_{\mathrm{couple}}}{\tau_{\mathrm{cool}}}.
 $$
 
-- **$\chi \ll 1$:** assembly-medium coupling is fast, LTE emissivity is valid with instantaneous state variables.
-- **$\chi \gtrsim 1$:** non-equilibrium corrections are required; emissivity must be computed from evolving distribution functions rather than a single local $T$.
+- **$\mathcal{R}_{\mathrm{LTE}} \ll 1$:** assembly-medium coupling is fast, LTE emissivity is valid with instantaneous state variables.
+- **$\mathcal{R}_{\mathrm{LTE}} \gtrsim 1$:** non-equilibrium corrections are required; emissivity must be computed from evolving distribution functions rather than a single local $T$.
 
 This ratio provides a diagnostic for when LTE-based closure is expected to hold.
 
@@ -248,6 +248,8 @@ This keeps transport treatment aligned with the same geometric sector used acros
 ## Photon Ontology Note
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology, the photon is fundamentally a coaxial contra-rotating pro/anti planar-pair assembly propagating through the Noether Sea. The language of "field quanta" and effectively continuous emission is retained as a coarse-grained description over many discrete planar-mode nucleation events. In this file, $\mathbf{p}_{\gamma}$ denotes momentum of that discrete assembly object at micro level, while standard QED field language is used for observer-level rates and spectra.
+
+Event-level provenance for cosmology-facing use is tracked in [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md).
 
 ## Regime Map
 

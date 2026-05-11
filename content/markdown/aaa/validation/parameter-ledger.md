@@ -109,8 +109,8 @@ These quantities belong to tri-binary architecture, shielding, branch structure,
 | --- | --- | --- | --- | --- | --- |
 | G1 | $R_{\text{inner}},R_{\text{middle}},R_{\text{outer}}$ | Geometric closure target | Open | characteristic radii of the nested binaries in the Noether core | [../assemblies/noether-core.md](../assemblies/noether-core.md), [../assemblies/noether-core-geometry.md](../assemblies/noether-core-geometry.md), [../dynamics/tri-binary-dynamics.md](../dynamics/tri-binary-dynamics.md) |
 | G2 | $\omega_{\text{inner}},\omega_{\text{middle}},\omega_{\text{outer}}$ | Geometric closure target | Open | characteristic binary frequencies associated with the nested radii | [../dynamics/tri-binary-dynamics.md](../dynamics/tri-binary-dynamics.md), [../assemblies/particle-masses.md](../assemblies/particle-masses.md) |
-| G3 | $R_{\text{align}}$ | Geometric closure target | Open, conjectural | outer-binary alignment radius in the terminal Planck-alignment map | [../spacetime/mapping-planck-scale.md](../spacetime/mapping-planck-scale.md) |
-| G4 | $L_{\text{align}}$ | Geometric closure target | Open, conjectural | action / angular-momentum increment of the aligned terminal mode | [../spacetime/mapping-planck-scale.md](../spacetime/mapping-planck-scale.md) |
+| G3 | $R_{\text{align}}$ | Geometric closure target | Open, conjectural | outer-binary alignment radius in the terminal Planck-alignment map | [../theory-bridges/planck-scale-tri-binary-alignment.md](../theory-bridges/planck-scale-tri-binary-alignment.md) |
+| G4 | $L_{\text{align}}$ | Geometric closure target | Open, conjectural | action / angular-momentum increment of the aligned terminal mode | [../theory-bridges/planck-scale-tri-binary-alignment.md](../theory-bridges/planck-scale-tri-binary-alignment.md) |
 | G5 | $\zeta(A)$ | Geometric closure target | Open | shielding or leakage factor of assembly $A$, defined by far-field suppression relative to naive constituent exposure | [../dynamics/energy.md](../dynamics/energy.md), [../assemblies/particle-masses.md](../assemblies/particle-masses.md) |
 | G6 | $\alpha$ | Geometric closure target | Open | axial-frame misalignment angle used in the weak-mixing / quark-geometry program | [../assemblies/fermions/weak-mixing-angle.md](../assemblies/fermions/weak-mixing-angle.md) |
 | G7 | $\phi_c$ | Geometric closure target | Open | color-sector azimuth selecting the exceptional axial-frame orientation | [../assemblies/fermions/weak-mixing-angle.md](../assemblies/fermions/weak-mixing-angle.md) |
@@ -139,8 +139,8 @@ These quantities are where closure is tested. They are not substrate inputs.
 | ID | Symbol | Class | Current status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
 | O1 | $e$ | Observable benchmark | Derived target | elementary charge reconstructed from substrate charge and normalization map | [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md), [../interactions/gauge-structure-emergence.md](../interactions/gauge-structure-emergence.md) |
-| O2 | $h,\hbar$ | Observable benchmark / geometric target | Open | action quantum to be related to tri-binary alignment or orbital closure | [../spacetime/mapping-planck-scale.md](../spacetime/mapping-planck-scale.md), [architrino-si-base-units.md](./architrino-si-base-units.md) |
-| O3 | $G$ or $G_{\text{eff}}$ | Observable benchmark / constitutive target | Open | effective gravitational coupling emerging from medium compliance and alignment geometry | [../spacetime/mapping-planck-scale.md](../spacetime/mapping-planck-scale.md), [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md) |
+| O2 | $h,\hbar$ | Observable benchmark / geometric target | Open | action quantum to be related to tri-binary alignment or orbital closure | [../theory-bridges/planck-scale-tri-binary-alignment.md](../theory-bridges/planck-scale-tri-binary-alignment.md), [architrino-si-base-units.md](./architrino-si-base-units.md) |
+| O3 | $G$ or $G_{\text{eff}}$ | Observable benchmark / constitutive target | Open | effective gravitational coupling emerging from medium compliance and alignment geometry | [../theory-bridges/planck-scale-tri-binary-alignment.md](../theory-bridges/planck-scale-tri-binary-alignment.md), [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md) |
 | O4 | $m_{\text{inertial}}(A)$ | Derived output | Open | inertial mass of assembly $A$, extracted operationally from shielding and medium response | [../dynamics/energy.md](../dynamics/energy.md), [../assemblies/particle-masses.md](../assemblies/particle-masses.md) |
 | O5 | $\theta_W^{\text{bare}}$ and $\theta_W$ | Geometric target / observable benchmark | Open | bare geometric weak-mixing increment and the measured electroweak mixing angle it must eventually inform | [../assemblies/fermions/weak-mixing-angle.md](../assemblies/fermions/weak-mixing-angle.md), [../interactions/gauge-structure-emergence.md](../interactions/gauge-structure-emergence.md) |
 | O6 | $(\alpha_1,\alpha_2,\alpha_3)$ | Observable benchmark | Open | standard PPN preferred-frame coefficients derived from $(\Xi_1,\Xi_2,\Xi_3)$ | [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
@@ -341,7 +341,7 @@ where $\mathcal{P}_{\text{shared}}$ is the common substrate-plus-constitutive se
 - [architrino-si-base-units.md](./architrino-si-base-units.md)
 - [../dynamics/master-equation.md](../dynamics/master-equation.md)
 - [../dynamics/energy.md](../dynamics/energy.md)
-- [../spacetime/mapping-planck-scale.md](../spacetime/mapping-planck-scale.md)
+- [../theory-bridges/planck-scale-tri-binary-alignment.md](../theory-bridges/planck-scale-tri-binary-alignment.md)
 - [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md)
 - [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md)
 - [../assemblies/fermions/weak-mixing-angle.md](../assemblies/fermions/weak-mixing-angle.md)

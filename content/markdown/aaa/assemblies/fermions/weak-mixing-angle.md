@@ -110,7 +110,7 @@ $$
 $$
 in the core basis, so the axial frame rotates to a nearby but distinct orientation.
 
-The proposal is not that quarks can take arbitrary rotations. The proposal is that the admissible minima are **discrete**. In that sense this note is also an interface to [Weak Mixing and CKM](./weak-mixing-ckm.md), where the quark-sector overlap structure is pushed further.
+The proposal is not that quarks can take arbitrary rotations. The proposal is that the admissible minima are **discrete**. In that sense this note is also an interface to [Weak Mixing and CKM](../../theory-bridges/weak-mixing-ckm.md), where the quark-sector overlap structure is pushed further.
 
 ---
 

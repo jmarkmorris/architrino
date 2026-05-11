@@ -63,6 +63,10 @@
         "scenePath": "content/scenes/proof-programs/proof_programs.json"
       },
       {
+        "nodeId": "theory_bridges",
+        "scenePath": "content/scenes/theory-bridges/theory_bridges.json"
+      },
+      {
         "nodeId": "philosophy_history",
         "scenePath": "content/scenes/philosophy_history/philosophy_history.json"
       }
@@ -244,6 +248,22 @@
         "type": "fixed"
       },
       "labelTitle": "Proof Programs",
+      "fixedPosition": true
+    },
+    {
+      "id": "theory_bridges",
+      "title": "Theory Bridges",
+      "radius": 2.688,
+      "color": "#4f5d75",
+      "position": [
+        -6.15,
+        16,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Theory Bridges",
       "fixedPosition": true
     },
     {

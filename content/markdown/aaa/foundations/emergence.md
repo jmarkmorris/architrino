@@ -1,6 +1,6 @@
 # Emergence of Structure
 
-The universe can be understood as an unbounded collection of interacting point objects. To understand nature, we model the emergent behavior that arises from these interactions. The fundamental elements of this model—the architrinos and their interaction rules—are simple. However, their collective behavior can give rise to complex, organized structures. This phenomenon, where intricate patterns and systems arise from the repeated application of simple rules, is known as emergence.
+The universe can be understood as an unbounded collection of interacting architrinos. To understand nature, we model the emergent behavior that arises from these interactions. The fundamental elements of this model--the architrinos and their interaction rules--are simple. However, their collective behavior can give rise to complex, organized structures. This phenomenon, where intricate patterns and systems arise from the repeated application of simple rules, is known as emergence.
 
 ### Conway's Game of Life: A Discrete Archetype
 
@@ -17,11 +17,11 @@ The Game of Life demonstrates how complexity can arise from simplicity in a disc
 
 The architrino universe operates on a similar principle of emergence, but within a continuous framework rather than a discrete one.
 
--   **Continuous System:** Unlike the Game of Life's grid and time steps, architrinos exist in continuous space and time. Their interactions are not clocked but occur whenever a particle intersects a causal isochron.
--   **Simple Rules:** The "rules" of this universe are the fundamental interaction dynamics: attraction and repulsion based on the charge of the interacting particles.
+-   **Continuous System:** Unlike the Game of Life's grid and time steps, architrinos exist in continuous space and time. Their interactions are not clocked but occur whenever an architrino intersects a causal isochron.
+-   **Simple Rules:** The "rules" of this universe are the fundamental interaction dynamics: attraction and repulsion based on the polarity of the interacting architrinos.
 -   **Emergent Assemblies:** Through these continuous interactions, architrinos can self-organize into complex, stable, or quasi-stable configurations called **assemblies**. These assemblies are the continuous-physics analog to the patterns in the Game of Life.
 
-- The stability of an assembly is not static but dynamic. It depends on a delicate, ongoing balance of forces from the superposition of all intersecting wakes. An assembly might persist for a very long time if it finds a stable equilibrium, or it might be a transient structure that quickly dissolves, all depending on its internal configuration and the external fields it encounters.
+- The stability of an assembly is not static but dynamic. It depends on a delicate, ongoing balance of forces from the superposition of all intersecting wakes. An assembly might persist for a very long time if it finds a stable equilibrium, or it might be a transient structure that quickly dissolves, all depending on its internal configuration and the external wake environment it encounters.
 
 ### Assembly Theory and Recursion
 
@@ -37,7 +37,7 @@ This recursive structure implies that all emergent forms, no matter how complex,
 The recursive picture is easiest to read as a bottom-up construction ladder:
 
 1. **Substrate:** absolute time and absolute Euclidean space provide the fixed arena.
-2. **Point potentials:** individual architrinos are the irreducible emitters/receivers of causal wake structure.
+2. **Architrinos:** individual architrinos are the irreducible emitters/receivers of causal wake structure.
 3. **Primal assembly:** a stable orbiting electrino-positrino binary is the first bound assembly.
 4. **Nested cores:** binaries can capture into larger nested systems, giving isolated-binary, bi-binary, and tri-binary cores with progressively stronger shielding structure.
 5. **Noether core stabilization:** the triply nested binary is the first fully three-dimensional shielded core; see [Nested Binaries and the Noether Core](../assemblies/noether-core.md). Its persistence comes from delayed phase closure, nested energy separation, and reduced external reactivity through superposition.
@@ -73,7 +73,7 @@ This separation of branches helps keep levels distinct. The theory does not plac
 
 The most useful observer-level quantities enter only after assemblies have formed. They are not primitive objects sitting underneath the dynamics.
 
--   **Angular momentum:** emerges from organized binary circulation of point potentials and from the ordered orientation data of nested binaries.
+-   **Angular momentum:** emerges from organized binary circulation of architrinos and from the ordered orientation data of nested binaries.
 -   **Chirality:** emerges from the handed precession order of a stable core.
 -   **Apparent mass and reactivity:** depend on shielding, medium-dressed response, and how exposed the deeper binary structure is to external coupling. Dissipative drag is a separate failure channel, not the default mass mechanism.
 
@@ -86,10 +86,10 @@ All structure in this universe is based on a **dynamical geometry**. Every archi
 However, because the potential density on each causal wake surface falls off as $1/r^2$, the influence of distant particles is far weaker than that of local ones. This locality principle is what allows for the formation of **meta-stable assemblies** that can maintain their general form for long periods.
 
 A crucial factor in the evolution of these assemblies is the **velocity symmetry point** ($|\mathbf{v}_a| = v$). The behavior of an architrino changes drastically depending on whether its speed is above or below the field speed.
--   When $|\mathbf{v}_a| < v$, it is only influenced by external fields.
--   When $|\mathbf{v}_a| > v$, it begins to interact with its own recently emitted field, which is always repulsive (an Electrino repels itself, a Positrino repels itself).
+-   When $|\mathbf{v}_a| < v$, it is influenced only by external causal wakes.
+-   When $|\mathbf{v}_a| > v$, it begins to interact with its own recently emitted wake, which is repulsive for a like-polarity self-hit.
 
-This introduces a profound asymmetry into the system. A small acceleration caused by intersecting a wake (even one with a distant origin) could push a particle's speed across the symmetry point, activating a new, strong, internal repulsive force that fundamentally alters its trajectory and the stability of the assembly. This is analogous to a **transistor**, where a small signal to the gate can switch the device from a non-conducting to a conducting state, enabling amplification and complex logic. This inherent, non-linear asymmetry is essential for the formation and evolution of complex structures.
+This introduces a profound asymmetry into the system. A small acceleration caused by intersecting a wake (even one with a distant origin) could push an architrino's speed across the symmetry point, activating a new, strong, internal self-hit channel that fundamentally alters its trajectory and the stability of the assembly. This is analogous to a **transistor**, where a small signal to the gate can switch the device from a non-conducting to a conducting state, enabling amplification and complex logic. This inherent, non-linear asymmetry is essential for the formation and evolution of complex structures.
 
 ### Provenance within Emergence
 

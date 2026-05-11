@@ -20,10 +20,6 @@
         "scenePath": "content/scenes/spacetime/singularity_resolution.json"
       },
       {
-        "nodeId": "mapping_planck_scale",
-        "scenePath": "content/scenes/spacetime/mapping_planck_scale.json"
-      },
-      {
         "nodeId": "horizon_chirality",
         "scenePath": "content/scenes/spacetime/horizon_chirality.json"
       },
@@ -65,23 +61,6 @@
         "type": "fixed"
       },
       "labelTitle": "Singularity Resolution",
-      "labelBadge": "doc",
-      "fixedPosition": true
-    },
-    {
-      "id": "mapping_planck_scale",
-      "title": "Mapping Planck Scale",
-      "radius": 2.688,
-      "color": "#7a4a1f",
-      "position": [
-        10.5,
-        0,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Mapping Planck Scale",
       "labelBadge": "doc",
       "fixedPosition": true
     },

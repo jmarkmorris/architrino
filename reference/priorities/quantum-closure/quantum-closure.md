@@ -55,5 +55,5 @@ Populate the missing quantum closure notes only after the work becomes testable.
 - [quantum-summary](../../../content/markdown/aaa/quantum/quantum-summary.md)
 - [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md)
 - [superposition-mechanism](../../../content/markdown/aaa/theory-bridges/superposition-mechanism.md)
-- [bell-theorem](../../../content/markdown/aaa/quantum/bell-theorem.md)
+- [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md)
 - [entanglement-nonlocality](../../../content/markdown/aaa/theory-bridges/entanglement-nonlocality.md)

@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 146,
-      "sections": 1033
+      "entries": 149,
+      "sections": 1059
     }
   },
   "tocRoot": {
@@ -1449,146 +1449,6 @@
                 ]
               },
               {
-                "id": "quantum__quantum_operator_mapping",
-                "title": "Quantum Operator Mapping",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/quantum/quantum_operator_mapping.json",
-                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
-                "sections": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "The Tri-Binary Qubit and Phase Space",
-                    "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
-                    "markdownSection": "The Tri-Binary Qubit and Phase Space",
-                    "sectionKey": "the tri binary qubit and phase space",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Functional Bounds and Well-Posedness",
-                    "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
-                    "markdownSection": "Functional Bounds and Well-Posedness",
-                    "sectionKey": "functional bounds and well posedness",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Unitary Evolution and Topological Torques",
-                    "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
-                    "markdownSection": "Unitary Evolution and Topological Torques",
-                    "sectionKey": "unitary evolution and topological torques",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Entanglement via Path-History Potentials",
-                    "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
-                    "markdownSection": "Entanglement via Path-History Potentials",
-                    "sectionKey": "entanglement via path history potentials",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Measurement and Dynamical Collapse",
-                    "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
-                    "markdownSection": "Measurement and Dynamical Collapse",
-                    "sectionKey": "measurement and dynamical collapse",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Falsifiability and Observables",
-                    "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
-                    "markdownSection": "Falsifiability and Observables",
-                    "sectionKey": "falsifiability and observables",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Statistical Measure and the Born Rule Emergence",
-                    "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
-                    "markdownSection": "Statistical Measure and the Born Rule Emergence",
-                    "sectionKey": "statistical measure and the born rule emergence",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Kinetic Limits and Decoherence",
-                    "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
-                    "markdownSection": "Kinetic Limits and Decoherence",
-                    "sectionKey": "kinetic limits and decoherence",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Statistical Falsifiability and Observables",
-                    "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
-                    "markdownSection": "Statistical Falsifiability and Observables",
-                    "sectionKey": "statistical falsifiability and observables",
-                    "headingLevel": 2
-                  }
-                ]
-              },
-              {
-                "id": "quantum__bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response",
-                "title": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/quantum/bell_s_theorem_traditional_derivation_and_architrino_assembly_architecture_response.json",
-                "markdownPath": "content/markdown/aaa/quantum/bell-theorem.md",
-                "sections": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Traditional Statement of Bell's Theorem",
-                    "markdownPath": "content/markdown/aaa/quantum/bell-theorem.md",
-                    "markdownSection": "Traditional Statement of Bell's Theorem",
-                    "sectionKey": "traditional statement of bell s theorem",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "The Logical Structure of the Theorem",
-                    "markdownPath": "content/markdown/aaa/quantum/bell-theorem.md",
-                    "markdownSection": "The Logical Structure of the Theorem",
-                    "sectionKey": "the logical structure of the theorem",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Architrino Assembly Architecture Response",
-                    "markdownPath": "content/markdown/aaa/quantum/bell-theorem.md",
-                    "markdownSection": "Architrino Assembly Architecture Response",
-                    "sectionKey": "architrino assembly architecture response",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Comparison with Other Hidden-Variable Frameworks",
-                    "markdownPath": "content/markdown/aaa/quantum/bell-theorem.md",
-                    "markdownSection": "Comparison with Other Hidden-Variable Frameworks",
-                    "sectionKey": "comparison with other hidden variable frameworks",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "The Role of Absolute Time",
-                    "markdownPath": "content/markdown/aaa/quantum/bell-theorem.md",
-                    "markdownSection": "The Role of Absolute Time",
-                    "sectionKey": "the role of absolute time",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Observables, Falsifiability, and Failure Modes",
-                    "markdownPath": "content/markdown/aaa/quantum/bell-theorem.md",
-                    "markdownSection": "Observables, Falsifiability, and Failure Modes",
-                    "sectionKey": "observables falsifiability and failure modes",
-                    "headingLevel": 2
-                  }
-                ]
-              },
-              {
                 "id": "quantum__measurement_ontology",
                 "title": "Measurement Ontology",
                 "kind": "markdown-view",
@@ -1687,138 +1547,6 @@
                 ]
               },
               {
-                "id": "quantum__measurement_problem_and_collapse",
-                "title": "Measurement Problem and Collapse",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/quantum/measurement_problem_and_collapse.json",
-                "markdownPath": "content/markdown/aaa/quantum/collapse-problem.md"
-              },
-              {
-                "id": "quantum__entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture",
-                "title": "Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/quantum/entanglement_and_nonlocality_traditional_vs_architrino_assembly_architecture.json",
-                "markdownPath": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
-                "sections": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Traditional Quantum Mechanical View",
-                    "markdownPath": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
-                    "markdownSection": "Traditional Quantum Mechanical View",
-                    "sectionKey": "traditional quantum mechanical view",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Mechanism",
-                    "markdownPath": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
-                    "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Mechanism",
-                    "sectionKey": "mathbb a mathbb a mathbb a mechanism",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "The Phenomenological Mapping",
-                    "markdownPath": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
-                    "markdownSection": "The Phenomenological Mapping",
-                    "sectionKey": "the phenomenological mapping",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Ontic vs. Epistemic: The Two-Level Reading",
-                    "markdownPath": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
-                    "markdownSection": "Ontic vs. Epistemic: The Two-Level Reading",
-                    "sectionKey": "ontic vs epistemic the two level reading",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Comparison with Competing Interpretations",
-                    "markdownPath": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
-                    "markdownSection": "Comparison with Competing Interpretations",
-                    "sectionKey": "comparison with competing interpretations",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Observables and Falsifiability",
-                    "markdownPath": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
-                    "markdownSection": "Observables and Falsifiability",
-                    "sectionKey": "observables and falsifiability",
-                    "headingLevel": 2
-                  }
-                ]
-              },
-              {
-                "id": "quantum__pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture",
-                "title": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/quantum/pilot_wave_character_traditional_de_broglie_bohm_theory_and_architrino_assembly_architecture.json",
-                "markdownPath": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
-                "sections": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Traditional de Broglie–Bohm Pilot-Wave Theory",
-                    "markdownPath": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
-                    "markdownSection": "Traditional de Broglie–Bohm Pilot-Wave Theory",
-                    "sectionKey": "traditional de broglie bohm pilot wave theory",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$: Single-Ontology Guidance",
-                    "markdownPath": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
-                    "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$: Single-Ontology Guidance",
-                    "sectionKey": "mathbb a mathbb a mathbb a single ontology guidance",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Quantum Phenomena as Wake-Field Guidance Effects",
-                    "markdownPath": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
-                    "markdownSection": "Quantum Phenomena as Wake-Field Guidance Effects",
-                    "sectionKey": "quantum phenomena as wake field guidance effects",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "The Phenomenological Mapping",
-                    "markdownPath": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
-                    "markdownSection": "The Phenomenological Mapping",
-                    "sectionKey": "the phenomenological mapping",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Comparison: Structural Advantages and Open Costs",
-                    "markdownPath": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
-                    "markdownSection": "Comparison: Structural Advantages and Open Costs",
-                    "sectionKey": "comparison structural advantages and open costs",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Observables, Falsifiability, and Failure Modes",
-                    "markdownPath": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
-                    "markdownSection": "Observables, Falsifiability, and Failure Modes",
-                    "sectionKey": "observables falsifiability and failure modes",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Closure Program Integration (quantum chain)",
-                    "markdownPath": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
-                    "markdownSection": "Closure Program Integration (quantum chain)",
-                    "sectionKey": "closure program integration quantum chain",
-                    "headingLevel": 2
-                  }
-                ]
-              },
-              {
                 "id": "quantum__reality_causality_and_navigation",
                 "title": "Reality, Causality, and Navigation",
                 "kind": "markdown-view",
@@ -1891,14 +1619,6 @@
                     "headingLevel": 2
                   }
                 ]
-              },
-              {
-                "id": "quantum__superposition_mechanism_traditional_vs_architrino_assembly_architecture",
-                "title": "Superposition Mechanism: QM vs. 𝔸𝔸𝔸",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/quantum/superposition_mechanism_traditional_vs_architrino_assembly_architecture.json",
-                "markdownPath": "content/markdown/aaa/theory-bridges/superposition-mechanism.md"
               },
               {
                 "id": "quantum__wavefunction_ontology",
@@ -2792,88 +2512,6 @@
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
                     "markdownSection": "Working Summary",
                     "sectionKey": "working summary",
-                    "headingLevel": 2
-                  }
-                ]
-              },
-              {
-                "id": "fermions__weak_mixing_ckm",
-                "title": "Weak Mixing CKM",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/assemblies/weak_mixing_ckm.json",
-                "markdownPath": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
-                "sections": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Weak Mixing: $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ to SM",
-                    "markdownPath": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
-                    "markdownSection": "Weak Mixing: $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ to SM",
-                    "sectionKey": "weak mixing mathbb a mathbb a mathbb a to sm",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Minimal premises",
-                    "markdownPath": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
-                    "markdownSection": "Minimal premises",
-                    "sectionKey": "minimal premises",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Geometric picture of CKM",
-                    "markdownPath": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
-                    "markdownSection": "Geometric picture of CKM",
-                    "sectionKey": "geometric picture of ckm",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "CKM geometric-overlap minimal model",
-                    "markdownPath": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
-                    "markdownSection": "CKM geometric-overlap minimal model",
-                    "sectionKey": "ckm geometric overlap minimal model",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Working hypotheses",
-                    "markdownPath": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
-                    "markdownSection": "Working hypotheses",
-                    "sectionKey": "working hypotheses",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "What to compute next",
-                    "markdownPath": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
-                    "markdownSection": "What to compute next",
-                    "sectionKey": "what to compute next",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Pointers",
-                    "markdownPath": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
-                    "markdownSection": "Pointers",
-                    "sectionKey": "pointers",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Speculative Bookkeeping Sketch",
-                    "markdownPath": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
-                    "markdownSection": "Speculative Bookkeeping Sketch",
-                    "sectionKey": "speculative bookkeeping sketch",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Closure Integration: CKM-Holonomy and Lepton Handoff",
-                    "markdownPath": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md",
-                    "markdownSection": "Closure Integration: CKM-Holonomy and Lepton Handoff",
-                    "sectionKey": "closure integration ckm holonomy and lepton handoff",
                     "headingLevel": 2
                   }
                 ]
@@ -4528,88 +4166,6 @@
                 ]
               },
               {
-                "id": "spacetime__mapping_planck_scale",
-                "title": "Mapping Planck Scale",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/spacetime/mapping_planck_scale.json",
-                "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
-                "sections": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Thesis",
-                    "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
-                    "markdownSection": "Thesis",
-                    "sectionKey": "thesis",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "What Planck Units Imply About the Outer Binary",
-                    "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
-                    "markdownSection": "What Planck Units Imply About the Outer Binary",
-                    "sectionKey": "what planck units imply about the outer binary",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Kinematic and Dynamical Alignment Conditions",
-                    "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
-                    "markdownSection": "Kinematic and Dynamical Alignment Conditions",
-                    "sectionKey": "kinematic and dynamical alignment conditions",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Experienced-Field Framing (Energy as Interaction History)",
-                    "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
-                    "markdownSection": "Experienced-Field Framing (Energy as Interaction History)",
-                    "sectionKey": "experienced field framing energy as interaction history",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Discrete Ladder and Phase-Slip Dynamics (Hypothesis)",
-                    "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
-                    "markdownSection": "Discrete Ladder and Phase-Slip Dynamics (Hypothesis)",
-                    "sectionKey": "discrete ladder and phase slip dynamics hypothesis",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Spin Transition and Configuration-Space Topology (Hypothesis)",
-                    "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
-                    "markdownSection": "Spin Transition and Configuration-Space Topology (Hypothesis)",
-                    "sectionKey": "spin transition and configuration space topology hypothesis",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Emergent Constants: $\\hbar$, $\\ell_P$, and $G$",
-                    "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
-                    "markdownSection": "Emergent Constants: $\\hbar$, $\\ell_P$, and $G$",
-                    "sectionKey": "emergent constants hbar ell p and g",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Horizon Microstructure and “Condensate-Like” Phases (Conjecture)",
-                    "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
-                    "markdownSection": "Horizon Microstructure and “Condensate-Like” Phases (Conjecture)",
-                    "sectionKey": "horizon microstructure and condensate like phases conjecture",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Constraints, Assumptions, and Failure Modes",
-                    "markdownPath": "content/markdown/aaa/spacetime/mapping-planck-scale.md",
-                    "markdownSection": "Constraints, Assumptions, and Failure Modes",
-                    "sectionKey": "constraints assumptions and failure modes",
-                    "headingLevel": 2
-                  }
-                ]
-              },
-              {
                 "id": "spacetime__horizon_chirality",
                 "title": "Horizon Chirality",
                 "kind": "markdown-view",
@@ -4997,186 +4553,6 @@
             ]
           },
           {
-            "id": "cosmology__dark_matter",
-            "title": "Dark Matter",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/cosmology/dark_matter.json",
-            "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Scope and Purpose",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
-                "markdownSection": "Scope and Purpose",
-                "sectionKey": "scope and purpose",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Ontology Foundations",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
-                "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Ontology Foundations",
-                "sectionKey": "mathbb a mathbb a mathbb a ontology foundations",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Candidate Substrates",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
-                "markdownSection": "Candidate Substrates",
-                "sectionKey": "candidate substrates",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Regime Map",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
-                "markdownSection": "Regime Map",
-                "sectionKey": "regime map",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "SMBH Recycling and Dark-Sector Flow",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
-                "markdownSection": "SMBH Recycling and Dark-Sector Flow",
-                "sectionKey": "smbh recycling and dark sector flow",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Candidate Assembly Properties",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
-                "markdownSection": "Candidate Assembly Properties",
-                "sectionKey": "candidate assembly properties",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Cosmology Integration",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
-                "markdownSection": "Cosmology Integration",
-                "sectionKey": "cosmology integration",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Growth-Module Interface",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
-                "markdownSection": "Growth-Module Interface",
-                "sectionKey": "growth module interface",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Summary",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
-                "markdownSection": "Summary",
-                "sectionKey": "summary",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "cosmology__dark_energy",
-            "title": "Dark Energy",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/cosmology/dark_energy.json",
-            "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Scope and Purpose",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
-                "markdownSection": "Scope and Purpose",
-                "sectionKey": "scope and purpose",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Ontology Foundations",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
-                "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Ontology Foundations",
-                "sectionKey": "mathbb a mathbb a mathbb a ontology foundations",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Medium-State Interpretation of Accelerated Expansion",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
-                "markdownSection": "Medium-State Interpretation of Accelerated Expansion",
-                "sectionKey": "medium state interpretation of accelerated expansion",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Effective Friedmann Framework",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
-                "markdownSection": "Effective Friedmann Framework",
-                "sectionKey": "effective friedmann framework",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "The Cosmological-Constant Problem",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
-                "markdownSection": "The Cosmological-Constant Problem",
-                "sectionKey": "the cosmological constant problem",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Redshift as Clock Comparison",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
-                "markdownSection": "Redshift as Clock Comparison",
-                "sectionKey": "redshift as clock comparison",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "SMBH Recycling and Energy Flow",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
-                "markdownSection": "SMBH Recycling and Energy Flow",
-                "sectionKey": "smbh recycling and energy flow",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Cosmological Coupling as a Candidate Dark-Energy Channel",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
-                "markdownSection": "Cosmological Coupling as a Candidate Dark-Energy Channel",
-                "sectionKey": "cosmological coupling as a candidate dark energy channel",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Regime Map",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
-                "markdownSection": "Regime Map",
-                "sectionKey": "regime map",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Expansion-Module Interface",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
-                "markdownSection": "Expansion-Module Interface",
-                "sectionKey": "expansion module interface",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Summary",
-                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
-                "markdownSection": "Summary",
-                "sectionKey": "summary",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
             "id": "cosmology__inflation_model",
             "title": "Inflation Model",
             "kind": "markdown-view",
@@ -5535,6 +4911,88 @@
             ]
           },
           {
+            "id": "cosmology__dark_matter",
+            "title": "Dark Matter",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/cosmology/dark_matter.json",
+            "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Scope and Purpose",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
+                "markdownSection": "Scope and Purpose",
+                "sectionKey": "scope and purpose",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Ontology Foundations",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
+                "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Ontology Foundations",
+                "sectionKey": "mathbb a mathbb a mathbb a ontology foundations",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Candidate Substrates",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
+                "markdownSection": "Candidate Substrates",
+                "sectionKey": "candidate substrates",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Regime Map",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
+                "markdownSection": "Regime Map",
+                "sectionKey": "regime map",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "SMBH Recycling and Dark-Sector Flow",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
+                "markdownSection": "SMBH Recycling and Dark-Sector Flow",
+                "sectionKey": "smbh recycling and dark sector flow",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Candidate Assembly Properties",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
+                "markdownSection": "Candidate Assembly Properties",
+                "sectionKey": "candidate assembly properties",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Cosmology Integration",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
+                "markdownSection": "Cosmology Integration",
+                "sectionKey": "cosmology integration",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Growth-Module Interface",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
+                "markdownSection": "Growth-Module Interface",
+                "sectionKey": "growth module interface",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-matter.md",
+                "markdownSection": "Summary",
+                "sectionKey": "summary",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
             "id": "cosmology__structure_formation",
             "title": "Structure Formation",
             "kind": "markdown-view",
@@ -5596,6 +5054,104 @@
                 "markdownPath": "content/markdown/aaa/cosmology/structure-formation.md",
                 "markdownSection": "Synthesis",
                 "sectionKey": "synthesis",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "cosmology__dark_energy",
+            "title": "Dark Energy",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/cosmology/dark_energy.json",
+            "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Scope and Purpose",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+                "markdownSection": "Scope and Purpose",
+                "sectionKey": "scope and purpose",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Ontology Foundations",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+                "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Ontology Foundations",
+                "sectionKey": "mathbb a mathbb a mathbb a ontology foundations",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Medium-State Interpretation of Accelerated Expansion",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+                "markdownSection": "Medium-State Interpretation of Accelerated Expansion",
+                "sectionKey": "medium state interpretation of accelerated expansion",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Effective Friedmann Framework",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+                "markdownSection": "Effective Friedmann Framework",
+                "sectionKey": "effective friedmann framework",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Cosmological-Constant Problem",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+                "markdownSection": "The Cosmological-Constant Problem",
+                "sectionKey": "the cosmological constant problem",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Redshift as Clock Comparison",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+                "markdownSection": "Redshift as Clock Comparison",
+                "sectionKey": "redshift as clock comparison",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "SMBH Recycling and Energy Flow",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+                "markdownSection": "SMBH Recycling and Energy Flow",
+                "sectionKey": "smbh recycling and energy flow",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Cosmological Coupling as a Candidate Dark-Energy Channel",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+                "markdownSection": "Cosmological Coupling as a Candidate Dark-Energy Channel",
+                "sectionKey": "cosmological coupling as a candidate dark energy channel",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Regime Map",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+                "markdownSection": "Regime Map",
+                "sectionKey": "regime map",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Expansion-Module Interface",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+                "markdownSection": "Expansion-Module Interface",
+                "sectionKey": "expansion module interface",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+                "markdownSection": "Summary",
+                "sectionKey": "summary",
                 "headingLevel": 2
               }
             ]
@@ -6541,18 +6097,34 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "The Provenance Protocol",
+                "title": "Scope and Status",
                 "markdownPath": "content/markdown/aaa/validation/reaction-ledger.md",
-                "markdownSection": "The Provenance Protocol",
-                "sectionKey": "the provenance protocol",
+                "markdownSection": "Scope and Status",
+                "sectionKey": "scope and status",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Case Study: Top-Quark Weak Reaction ($t \\to b + W^+$)",
+                "title": "Provenance Protocol",
                 "markdownPath": "content/markdown/aaa/validation/reaction-ledger.md",
-                "markdownSection": "Case Study: Top-Quark Weak Reaction ($t \\to b + W^+$)",
-                "sectionKey": "case study top quark weak reaction t to b w",
+                "markdownSection": "Provenance Protocol",
+                "sectionKey": "provenance protocol",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Record Template",
+                "markdownPath": "content/markdown/aaa/validation/reaction-ledger.md",
+                "markdownSection": "Record Template",
+                "sectionKey": "record template",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Weak Reaction Case: $t \\to b + W^+$ Channel",
+                "markdownPath": "content/markdown/aaa/validation/reaction-ledger.md",
+                "markdownSection": "Weak Reaction Case: $t \\to b + W^+$ Channel",
+                "sectionKey": "weak reaction case t to b w channel",
                 "headingLevel": 2
               },
               {
@@ -6561,6 +6133,22 @@
                 "markdownPath": "content/markdown/aaa/validation/reaction-ledger.md",
                 "markdownSection": "Free Neutron Beta Reaction",
                 "sectionKey": "free neutron beta reaction",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closure Targets",
+                "markdownPath": "content/markdown/aaa/validation/reaction-ledger.md",
+                "markdownSection": "Closure Targets",
+                "sectionKey": "closure targets",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Validation Links",
+                "markdownPath": "content/markdown/aaa/validation/reaction-ledger.md",
+                "markdownSection": "Validation Links",
+                "sectionKey": "validation links",
                 "headingLevel": 2
               }
             ]
@@ -7124,6 +6712,655 @@
                 "markdownPath": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
                 "markdownSection": "Interfaces to Other Chapters",
                 "sectionKey": "interfaces to other chapters",
+                "headingLevel": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "theory_bridges",
+        "title": "Theory Bridges",
+        "kind": "scene-index",
+        "sceneType": "Scene-Index",
+        "scenePath": "content/scenes/theory-bridges/theory_bridges.json",
+        "children": [
+          {
+            "id": "theory_bridges__bell_theorem",
+            "title": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/theory-bridges/bell_theorem.json",
+            "markdownPath": "content/markdown/aaa/theory-bridges/bell-theorem.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Traditional Statement of Bell's Theorem",
+                "markdownPath": "content/markdown/aaa/theory-bridges/bell-theorem.md",
+                "markdownSection": "Traditional Statement of Bell's Theorem",
+                "sectionKey": "traditional statement of bell s theorem",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Logical Structure of the Theorem",
+                "markdownPath": "content/markdown/aaa/theory-bridges/bell-theorem.md",
+                "markdownSection": "The Logical Structure of the Theorem",
+                "sectionKey": "the logical structure of the theorem",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Architrino Assembly Architecture Response",
+                "markdownPath": "content/markdown/aaa/theory-bridges/bell-theorem.md",
+                "markdownSection": "Architrino Assembly Architecture Response",
+                "sectionKey": "architrino assembly architecture response",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Comparison with Other Hidden-Variable Frameworks",
+                "markdownPath": "content/markdown/aaa/theory-bridges/bell-theorem.md",
+                "markdownSection": "Comparison with Other Hidden-Variable Frameworks",
+                "sectionKey": "comparison with other hidden variable frameworks",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Role of Absolute Time",
+                "markdownPath": "content/markdown/aaa/theory-bridges/bell-theorem.md",
+                "markdownSection": "The Role of Absolute Time",
+                "sectionKey": "the role of absolute time",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Observables, Falsifiability, and Failure Modes",
+                "markdownPath": "content/markdown/aaa/theory-bridges/bell-theorem.md",
+                "markdownSection": "Observables, Falsifiability, and Failure Modes",
+                "sectionKey": "observables falsifiability and failure modes",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "theory_bridges__collapse_problem",
+            "title": "Measurement Problem and Collapse",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/theory-bridges/collapse_problem.json",
+            "markdownPath": "content/markdown/aaa/theory-bridges/collapse-problem.md"
+          },
+          {
+            "id": "theory_bridges__entanglement_nonlocality",
+            "title": "Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/theory-bridges/entanglement_nonlocality.json",
+            "markdownPath": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Traditional Quantum Mechanical View",
+                "markdownPath": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
+                "markdownSection": "Traditional Quantum Mechanical View",
+                "sectionKey": "traditional quantum mechanical view",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Mechanism",
+                "markdownPath": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
+                "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Mechanism",
+                "sectionKey": "mathbb a mathbb a mathbb a mechanism",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Phenomenological Mapping",
+                "markdownPath": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
+                "markdownSection": "The Phenomenological Mapping",
+                "sectionKey": "the phenomenological mapping",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Ontic vs. Epistemic: The Two-Level Reading",
+                "markdownPath": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
+                "markdownSection": "Ontic vs. Epistemic: The Two-Level Reading",
+                "sectionKey": "ontic vs epistemic the two level reading",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Comparison with Competing Interpretations",
+                "markdownPath": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
+                "markdownSection": "Comparison with Competing Interpretations",
+                "sectionKey": "comparison with competing interpretations",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Observables and Falsifiability",
+                "markdownPath": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
+                "markdownSection": "Observables and Falsifiability",
+                "sectionKey": "observables and falsifiability",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "theory_bridges__klein_gordon_scalar_fields",
+            "title": "Relativistic Scalar Fields and the Klein-Gordon Equation",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/theory-bridges/klein_gordon_scalar_fields.json",
+            "markdownPath": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Bridge Thesis",
+                "markdownPath": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
+                "markdownSection": "Bridge Thesis",
+                "sectionKey": "bridge thesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Scalar Field Meaning",
+                "markdownPath": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
+                "markdownSection": "Scalar Field Meaning",
+                "sectionKey": "scalar field meaning",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Klein-Gordon Role",
+                "markdownPath": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
+                "markdownSection": "Klein-Gordon Role",
+                "sectionKey": "klein gordon role",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Mode Dictionary",
+                "markdownPath": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
+                "markdownSection": "Mode Dictionary",
+                "sectionKey": "mode dictionary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Flat-Spacetime Equation",
+                "markdownPath": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
+                "markdownSection": "Flat-Spacetime Equation",
+                "sectionKey": "flat spacetime equation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Curved-Spacetime Equation",
+                "markdownPath": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
+                "markdownSection": "Curved-Spacetime Equation",
+                "sectionKey": "curved spacetime equation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Source Terms",
+                "markdownPath": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
+                "markdownSection": "Source Terms",
+                "sectionKey": "source terms",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Reading",
+                "markdownPath": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
+                "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Reading",
+                "sectionKey": "mathbb a mathbb a mathbb a reading",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What Still Works",
+                "markdownPath": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
+                "markdownSection": "What Still Works",
+                "sectionKey": "what still works",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closure Targets",
+                "markdownPath": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
+                "markdownSection": "Closure Targets",
+                "sectionKey": "closure targets",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary Commitment",
+                "markdownPath": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
+                "markdownSection": "Summary Commitment",
+                "sectionKey": "summary commitment",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "theory_bridges__pilot_wave_character",
+            "title": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/theory-bridges/pilot_wave_character.json",
+            "markdownPath": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Traditional de Broglie–Bohm Pilot-Wave Theory",
+                "markdownPath": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
+                "markdownSection": "Traditional de Broglie–Bohm Pilot-Wave Theory",
+                "sectionKey": "traditional de broglie bohm pilot wave theory",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$: Single-Ontology Guidance",
+                "markdownPath": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
+                "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$: Single-Ontology Guidance",
+                "sectionKey": "mathbb a mathbb a mathbb a single ontology guidance",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Quantum Phenomena as Wake-Field Guidance Effects",
+                "markdownPath": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
+                "markdownSection": "Quantum Phenomena as Wake-Field Guidance Effects",
+                "sectionKey": "quantum phenomena as wake field guidance effects",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Phenomenological Mapping",
+                "markdownPath": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
+                "markdownSection": "The Phenomenological Mapping",
+                "sectionKey": "the phenomenological mapping",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Comparison: Structural Advantages and Open Costs",
+                "markdownPath": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
+                "markdownSection": "Comparison: Structural Advantages and Open Costs",
+                "sectionKey": "comparison structural advantages and open costs",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Observables, Falsifiability, and Failure Modes",
+                "markdownPath": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
+                "markdownSection": "Observables, Falsifiability, and Failure Modes",
+                "sectionKey": "observables falsifiability and failure modes",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closure Program Integration (quantum chain)",
+                "markdownPath": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
+                "markdownSection": "Closure Program Integration (quantum chain)",
+                "sectionKey": "closure program integration quantum chain",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "theory_bridges__planck_scale_tri_binary_alignment",
+            "title": "Planck Scale Tri-Binary Alignment",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/theory-bridges/planck_scale_tri_binary_alignment.json",
+            "markdownPath": "content/markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Thesis",
+                "markdownPath": "content/markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md",
+                "markdownSection": "Thesis",
+                "sectionKey": "thesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What Planck Units Imply About the Outer Binary",
+                "markdownPath": "content/markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md",
+                "markdownSection": "What Planck Units Imply About the Outer Binary",
+                "sectionKey": "what planck units imply about the outer binary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Kinematic and Dynamical Alignment Conditions",
+                "markdownPath": "content/markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md",
+                "markdownSection": "Kinematic and Dynamical Alignment Conditions",
+                "sectionKey": "kinematic and dynamical alignment conditions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Energy as Causal-Wake Interaction History",
+                "markdownPath": "content/markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md",
+                "markdownSection": "Energy as Causal-Wake Interaction History",
+                "sectionKey": "energy as causal wake interaction history",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Discrete Ladder and Phase-Slip Dynamics (Hypothesis)",
+                "markdownPath": "content/markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md",
+                "markdownSection": "Discrete Ladder and Phase-Slip Dynamics (Hypothesis)",
+                "sectionKey": "discrete ladder and phase slip dynamics hypothesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Spin Transition and Configuration-Space Topology (Hypothesis)",
+                "markdownPath": "content/markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md",
+                "markdownSection": "Spin Transition and Configuration-Space Topology (Hypothesis)",
+                "sectionKey": "spin transition and configuration space topology hypothesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Emergent Constants: $\\hbar$, $\\ell_P$, and $G$",
+                "markdownPath": "content/markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md",
+                "markdownSection": "Emergent Constants: $\\hbar$, $\\ell_P$, and $G$",
+                "sectionKey": "emergent constants hbar ell p and g",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Horizon Microstructure and “Condensate-Like” Phases (Conjecture)",
+                "markdownPath": "content/markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md",
+                "markdownSection": "Horizon Microstructure and “Condensate-Like” Phases (Conjecture)",
+                "sectionKey": "horizon microstructure and condensate like phases conjecture",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Constraints, Assumptions, and Failure Modes",
+                "markdownPath": "content/markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md",
+                "markdownSection": "Constraints, Assumptions, and Failure Modes",
+                "sectionKey": "constraints assumptions and failure modes",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "theory_bridges__quantum_operator_mapping",
+            "title": "Quantum Operator Mapping",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/theory-bridges/quantum_operator_mapping.json",
+            "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "The Tri-Binary Qubit and Phase Space",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+                "markdownSection": "The Tri-Binary Qubit and Phase Space",
+                "sectionKey": "the tri binary qubit and phase space",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Functional Bounds and Well-Posedness",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+                "markdownSection": "Functional Bounds and Well-Posedness",
+                "sectionKey": "functional bounds and well posedness",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Unitary Evolution and Topological Torques",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+                "markdownSection": "Unitary Evolution and Topological Torques",
+                "sectionKey": "unitary evolution and topological torques",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Entanglement via Path-History Potentials",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+                "markdownSection": "Entanglement via Path-History Potentials",
+                "sectionKey": "entanglement via path history potentials",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Measurement and Dynamical Collapse",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+                "markdownSection": "Measurement and Dynamical Collapse",
+                "sectionKey": "measurement and dynamical collapse",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Falsifiability and Observables",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+                "markdownSection": "Falsifiability and Observables",
+                "sectionKey": "falsifiability and observables",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Statistical Measure and the Born Rule Emergence",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+                "markdownSection": "Statistical Measure and the Born Rule Emergence",
+                "sectionKey": "statistical measure and the born rule emergence",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Kinetic Limits and Decoherence",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+                "markdownSection": "Kinetic Limits and Decoherence",
+                "sectionKey": "kinetic limits and decoherence",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Statistical Falsifiability and Observables",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+                "markdownSection": "Statistical Falsifiability and Observables",
+                "sectionKey": "statistical falsifiability and observables",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "theory_bridges__special_relativity_noether_core",
+            "title": "Special Relativity and Deformable Noether Cores",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/theory-bridges/special_relativity_noether_core.json",
+            "markdownPath": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Bridge Thesis",
+                "markdownPath": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
+                "markdownSection": "Bridge Thesis",
+                "sectionKey": "bridge thesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Ownership Boundary",
+                "markdownPath": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
+                "markdownSection": "Ownership Boundary",
+                "sectionKey": "ownership boundary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Two Stories",
+                "markdownPath": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
+                "markdownSection": "The Two Stories",
+                "sectionKey": "the two stories",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Clock Channel",
+                "markdownPath": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
+                "markdownSection": "Clock Channel",
+                "sectionKey": "clock channel",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Ruler Channel",
+                "markdownPath": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
+                "markdownSection": "Ruler Channel",
+                "sectionKey": "ruler channel",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Mass-Energy Channel",
+                "markdownPath": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
+                "markdownSection": "Mass-Energy Channel",
+                "sectionKey": "mass energy channel",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Energy-Momentum Channel",
+                "markdownPath": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
+                "markdownSection": "Energy-Momentum Channel",
+                "sectionKey": "energy momentum channel",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Why The Same Factor Appears",
+                "markdownPath": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
+                "markdownSection": "Why The Same Factor Appears",
+                "sectionKey": "why the same factor appears",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Domain Of Validity",
+                "markdownPath": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
+                "markdownSection": "Domain Of Validity",
+                "sectionKey": "domain of validity",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closure Targets",
+                "markdownPath": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
+                "markdownSection": "Closure Targets",
+                "sectionKey": "closure targets",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary Commitment",
+                "markdownPath": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
+                "markdownSection": "Summary Commitment",
+                "sectionKey": "summary commitment",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "theory_bridges__superposition_mechanism",
+            "title": "Superposition Mechanism: QM vs. 𝔸𝔸𝔸",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/theory-bridges/superposition_mechanism.json",
+            "markdownPath": "content/markdown/aaa/theory-bridges/superposition-mechanism.md"
+          },
+          {
+            "id": "theory_bridges__weak_mixing_ckm",
+            "title": "Weak Mixing CKM",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/theory-bridges/weak_mixing_ckm.json",
+            "markdownPath": "content/markdown/aaa/theory-bridges/weak-mixing-ckm.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Weak Mixing: $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ to SM",
+                "markdownPath": "content/markdown/aaa/theory-bridges/weak-mixing-ckm.md",
+                "markdownSection": "Weak Mixing: $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ to SM",
+                "sectionKey": "weak mixing mathbb a mathbb a mathbb a to sm",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Minimal premises",
+                "markdownPath": "content/markdown/aaa/theory-bridges/weak-mixing-ckm.md",
+                "markdownSection": "Minimal premises",
+                "sectionKey": "minimal premises",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Geometric picture of CKM",
+                "markdownPath": "content/markdown/aaa/theory-bridges/weak-mixing-ckm.md",
+                "markdownSection": "Geometric picture of CKM",
+                "sectionKey": "geometric picture of ckm",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "CKM geometric-overlap minimal model",
+                "markdownPath": "content/markdown/aaa/theory-bridges/weak-mixing-ckm.md",
+                "markdownSection": "CKM geometric-overlap minimal model",
+                "sectionKey": "ckm geometric overlap minimal model",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Working hypotheses",
+                "markdownPath": "content/markdown/aaa/theory-bridges/weak-mixing-ckm.md",
+                "markdownSection": "Working hypotheses",
+                "sectionKey": "working hypotheses",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What to compute next",
+                "markdownPath": "content/markdown/aaa/theory-bridges/weak-mixing-ckm.md",
+                "markdownSection": "What to compute next",
+                "sectionKey": "what to compute next",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Pointers",
+                "markdownPath": "content/markdown/aaa/theory-bridges/weak-mixing-ckm.md",
+                "markdownSection": "Pointers",
+                "sectionKey": "pointers",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Speculative Bookkeeping Sketch",
+                "markdownPath": "content/markdown/aaa/theory-bridges/weak-mixing-ckm.md",
+                "markdownSection": "Speculative Bookkeeping Sketch",
+                "sectionKey": "speculative bookkeeping sketch",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closure Integration: CKM-Holonomy and Lepton Handoff",
+                "markdownPath": "content/markdown/aaa/theory-bridges/weak-mixing-ckm.md",
+                "markdownSection": "Closure Integration: CKM-Holonomy and Lepton Handoff",
+                "sectionKey": "closure integration ckm holonomy and lepton handoff",
                 "headingLevel": 2
               }
             ]

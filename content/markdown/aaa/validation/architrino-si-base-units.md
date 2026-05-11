@@ -2,11 +2,11 @@
 
 This chapter examines how the modern SI system interfaces with the architrino program. Its purpose is to ask which defining constants might be derivable, which remain primitive, and what kinds of constant-relations the theory should eventually explain if its geometric closure program succeeds.
 
-It should be read together with [Parameter Ledger](parameter-ledger.md), [Mapping the Planck Scale](../spacetime/mapping-planck-scale.md), [Energy](../dynamics/energy.md), [Particle Masses](../assemblies/particle-masses.md), and [Atomic Spectra](../nuclear-atomic/atomic-spectra.md).
+It should be read together with [Parameter Ledger](parameter-ledger.md), [Mapping the Planck Scale](../theory-bridges/planck-scale-tri-binary-alignment.md), [Energy](../dynamics/energy.md), [Particle Masses](../assemblies/particle-masses.md), and [Atomic Spectra](../nuclear-atomic/atomic-spectra.md).
 
 ## Executive Summary
 
-The **2019 revision of the SI** redefined all seven base units in terms of **fixed fundamental constants**, eliminating physical artifacts. This is **profoundly aligned** with the architrino framework's goal: deriving all observable physics from a minimal set of fundamental postulates (Euclidean void, absolute time, architrino charge $|e/6|$, field speed $c_f$).
+The **2019 revision of the SI** redefined all seven base units in terms of **fixed fundamental constants**, eliminating physical artifacts. This is structurally aligned with the architrino framework's goal: deriving observable physics from a minimal set of substrate postulates (Euclidean void, absolute time, architrino charge $|e/6|$, field speed $c_f$).
 
 The architrino program can potentially:
 1. **Derive** the numerical values of SI-defining constants from architrino geometry
@@ -36,12 +36,12 @@ The **new SI** defines all units via **exact values** of seven constants:
 
 ## Architrino Framework: Fundamental Parameters
 
-In our theory, the **truly fundamental** quantities are:
+In this framework, the candidate substrate-level quantities are:
 
 ### Category A: Ontological Substrate
-- **Euclidean 3D void** (no intrinsic structure)
+- **Euclidean void** (no intrinsic structure)
 - **Absolute time** $t$ (linear, forward-only parameter)
-- **Field propagation speed** $c_f$ (the "void speed limit" for potential wakes)
+- **Field propagation speed** $c_f$ (primitive propagation speed for causal wakes)
 
 ### Category B: Fundamental Entity
 - **Architrino charge magnitude** $|q_{\text{arch}}| = |e/6|$
@@ -50,7 +50,7 @@ In our theory, the **truly fundamental** quantities are:
 ### Category C: Assembly Geometry (Emergent but Calculable)
 - **Tri-binary radius ratios** (inner/middle/outer scales)
 - **Maximum curvature binary radius** $r_{\text{max-curv}}$ (where $v \gg c_f$)
-- **Noether-Sea assembly density** $\rho_{\text{vac}}$ (neutral 2:2 or 4:4 cores per unit volume)
+- **Reference Noether-core density** $\rho_{\text{core},0}$ (the normalization scale for $n(\mathbf{x},t)$)
 
 **Everything else** (masses, coupling constants, cosmological parameters) should be **derivable** from these via:
 - Self-hit dynamics (non-Markovian evolution)
@@ -91,7 +91,7 @@ $$
 
 **Challenge:** The frequency is determined by:
 - The Middle Binary's orbital frequency (sets the magnetic moment)
-- The coupling strength between electron and atomic nucleus (mediated by spacetime-medium response and photon exchange)
+- The coupling strength between electron and atomic nucleus (mediated by Noether-Sea response, with photon exchange as the observer-level channel)
 - The nuclear configuration (133 nucleons = complex assembly)
 
 **Pathway:**
@@ -113,11 +113,13 @@ where $c$ is the speed of light.
 
 **Architrino Interpretation:**
 
-The speed of light $c$ is **not fundamental**. It is the **effective propagation speed** of photon-like assemblies (planar Middle Binaries at $v \approx c_f$) through the Noether Sea, or in bridge language, the spacetime medium.
+The speed of light $c$ is **not fundamental**. It is the low-gradient operational speed of photon assemblies, modeled as coaxial contra-rotating pro/anti planar pairs, propagating through the Noether Sea.
 
 **Key relation:**
 $$
-c = c_f \cdot f(\rho_{\text{vac}}, \text{spacetime-medium coupling strength})
+c_{\text{eff}}(\mathbf{x},t)=\frac{c_f}{\chi_{\text{sea}}(\mathbf{x},t)},
+\qquad
+\chi_{\text{sea}}(\mathbf{x},t)=f\!\left(\rho_{\text{core}}(\mathbf{x},t),n(\mathbf{x},t),\text{Noether-Sea state}\right)
 $$
 
 In the low-energy limit (flat spacetime, weak Noether-Sea gradients):
@@ -282,7 +284,7 @@ The frequency 540 THz corresponds to green light ($\lambda \approx 555$ nm), whe
 | SI Constant | Status in Architrino Framework | Derivation Pathway |
 |-------------|-------------------------------|-------------------|
 | $\Delta \nu_{\text{Cs}}$ | **Derivable** | Hyperfine splitting from Middle Binary magnetic moments |
-| $c$ | **Fundamental ≈ $c_f$** | Signal speed in the void; small corrections from the Noether Sea |
+| $c$ | **Operational limit near $c_f$** | Low-gradient photon-channel speed; deviations are encoded by $\chi_{\text{sea}}$ |
 | $h$ | **Derivable** | Outer Binary angular momentum quantization |
 | $e$ | **Fundamental** | $e = 6 \times |e/6|$ (architrino charge) |
 | $k_B$ | **Derivable** | Noether-Sea thermal equilibrium + assembly mass |
@@ -303,7 +305,7 @@ If the architrino program succeeds, we can **replace** the seven SI-defining con
 
 **Everything else is derived:**
 - $e = 6 |e/6|$
-- $c = c_f$ (up to small Noether-Sea corrections)
+- $c_{\text{eff}}\to c_f$ in the low-gradient Noether-Sea limit
 - $h = 2\pi |e/6| \cdot c_f \cdot r_{\text{outer}}$
 - $k_B = f(m_{\text{NS}}, c_f)$
 - $N_A = f(m_p / m_{\text{NS}})$
@@ -370,4 +372,4 @@ The **architrino revision** completes the journey:
 
 No kilograms, no kelvins, no moles—just **geometry, time, and charge**.
 
-That would be a true **Theory of Everything** measurement framework.
+That would be a substrate-level measurement framework, with observer units recovered as derived conventions.

@@ -518,15 +518,15 @@ The glossary works as a controlled translation layer. It pairs familiar modern t
 
 ## 2026-03-03: CKM Closure Reaches Three-Digit Predictive Accuracy
 
-Progress in the CKM realm crossed an important threshold. In the [weak-mixing and CKM note](../assemblies/fermions/weak-mixing-ckm.md), the current $\mathbb{A}\mathbb{A}\mathbb{A}$ closure uses only three calibrated CKM magnitudes,
+Progress in the CKM realm crossed an important threshold. In the [weak-mixing and CKM note](../theory-bridges/weak-mixing-ckm.md), the current $\mathbb{A}\mathbb{A}\mathbb{A}$ closure uses only three calibrated CKM magnitudes,
 $\lvert V_{us}\rvert = 0.225$, $\lvert V_{cb}\rvert = 0.041$, and $\lvert V_{ub}\rvert = 0.0037$,
 and then predicts the remaining magnitude entries to approximately three-digit accuracy.
 
 Relevant files:
 
-- [CKM geometric-overlap minimal model](../assemblies/fermions/weak-mixing-ckm.md#ckm-geometric-overlap-minimal-model)
-- [CKM confidence-interval closure test](../assemblies/fermions/weak-mixing-ckm.md#confidence-interval-closure-test)
-- [CKM closure target](../assemblies/fermions/weak-mixing-ckm.md#ckm-closure-target-quark-sector)
+- [CKM geometric-overlap minimal model](../theory-bridges/weak-mixing-ckm.md#ckm-geometric-overlap-minimal-model)
+- [CKM confidence-interval closure test](../theory-bridges/weak-mixing-ckm.md#confidence-interval-closure-test)
+- [CKM closure target](../theory-bridges/weak-mixing-ckm.md#ckm-closure-target-quark-sector)
 
 The resulting post-fit matrix is
 $$

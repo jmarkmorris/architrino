@@ -1,7 +1,7 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "fermions__weak_mixing_ckm",
+    "id": "theory_bridges__weak_mixing_ckm",
     "title": "Weak Mixing CKM",
     "type": "Scene-Markdown-View",
     "units": "relative",
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md"
+      "path": "content/markdown/aaa/theory-bridges/weak-mixing-ckm.md"
     },
     "view": {
       "columns": 1,

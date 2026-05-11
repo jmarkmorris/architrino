@@ -2,7 +2,7 @@
 
 This document establishes the ontological and mathematical mapping between quantum entanglement and nonlocality as understood in standard quantum mechanics and as grounded in the deterministic, path-history dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$). The central thesis is that entanglement is not a mysterious connection between distant systems but a deterministic correlation inherited from shared causal origin, maintained through correlated path-history structure, and rendered operationally irreducible by the epistemic limitations of Physical Observers.
 
-It forms a tight cluster with [Bell Theorem](../quantum/bell-theorem.md), [Measurement Ontology](../quantum/measurement-ontology.md), [Wavefunction Ontology](../quantum/wavefunction-ontology.md), [Superposition Mechanism](./superposition-mechanism.md), and [Pilot-Wave Character](./pilot-wave-character.md).
+It forms a tight cluster with [Bell Theorem](./bell-theorem.md), [Measurement Ontology](../quantum/measurement-ontology.md), [Wavefunction Ontology](../quantum/wavefunction-ontology.md), [Superposition Mechanism](./superposition-mechanism.md), and [Pilot-Wave Character](./pilot-wave-character.md).
 
 ---
 

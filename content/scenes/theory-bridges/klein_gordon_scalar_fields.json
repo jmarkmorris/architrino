@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "theory_bridges__collapse_problem",
-    "title": "Measurement Problem and Collapse",
+    "id": "theory_bridges__klein_gordon_scalar_fields",
+    "title": "Relativistic Scalar Fields and the Klein-Gordon Equation",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/theory-bridges/collapse-problem.md"
+      "path": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md"
     },
     "view": {
       "columns": 1,

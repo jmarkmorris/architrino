@@ -2,21 +2,21 @@
 
 This chapter treats the Planck scale as an exploratory alignment-horizon problem for the tri-binary rather than as a finished derivation. Its purpose is to translate familiar Planck-unit relations into concrete geometric and dynamical targets inside the delayed tri-binary framework, then test which parts survive once full closure conditions are imposed.
 
-Its closest companions are [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md), [Dyadic Resonance Lock](../dynamics/dyadic-resonance-lock.md), [Horizon Chirality](horizon-chirality.md), [Black Holes](black-holes.md), and [Effective Lagrangian](../dynamics/effective-lagrangian.md).
+Its closest companions are [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md), [Dyadic Resonance Lock](../dynamics/dyadic-resonance-lock.md), [Horizon Chirality](../spacetime/horizon-chirality.md), [Black Holes](../spacetime/black-holes.md), and [Effective Lagrangian](../dynamics/effective-lagrangian.md).
 
-The opening sections state the working thesis and the immediate kinematic map; later sections separate conjectural alignment, effective-field framing, constant-mapping proposals, and failure modes. The reader should treat the whole note as a live mapping program, with explicit hypotheses rather than settled closure.
+The opening sections state the working thesis and the immediate kinematic map; later sections separate conjectural alignment, causal-wake framing, constant-mapping proposals, and failure modes. The reader should treat the whole note as a live mapping program, with explicit hypotheses rather than settled closure.
 
 ## Thesis
 
-Our goal is to map the Planck scale with the tri-binary geometry and dynamics. We have many moving parts yet we also have vast knowledge and framing about the Planck scale. This exercise will help us refine both framing of the Planck scale and operational detail about the tri-binary.  It is important that we use all of our information at hand, including effective formulas from the fields of physics and its siblings. The end state is a complete understanding of the behaviour of the tri-binary in the energy neighborhood below and above the Planck scale.
+This chapter maps the Planck scale into tri-binary geometry and dynamics. The inherited Planck formulas are used as constraints and comparison targets, not as settled ontology. The immediate aim is to identify which geometric quantities, delay-feedback conditions, and alignment variables would have to be derived before the Planck scale can be claimed as a tri-binary closure result.
 
 We propose that the Planck scale corresponds, in the architrino architecture, to a specific **alignment-lock state** of tri-binary assemblies in the Noether Sea:
 
 > 
 > **Working Thesis (Planck Alignment Horizon).**
 > 
-> A tri-binary reaches the Planck state when, in the forward sector, both the translational speed and the tangential orbital speed approach the field speed $c_f$ and the **full delay-feedback loop** admits a final, marginally stable, phase-locked configuration. In this state:
-> 1. The kinematic transition to flattening occurs as $v_{\text{trans}} \to c_f$ and $v_{\text{orb}}^{\text{tan}} \to c_f$ in the forward sector, starving one-way causal updates (local horizon behavior).
+> A tri-binary reaches the Planck state when, in the forward sector, both component speeds approach the field speed $c_f$ and the **full delay-feedback loop** admits a final, marginally stable, phase-locked configuration. The component-speed statement and the combined-speed statement are distinct: $v_{\text{trans}}\to c_f$ and $v_{\text{orb}}^{\text{tan}}\to c_f$ name the terminal component limits, while $v_{\text{eff}}=\|\mathbf{v}_{\text{trans}}+\mathbf{v}_{\text{orb}}^{\text{tan}}\|$ names the forward-sector vector sum used for wedge geometry. In this state:
+> 1. The kinematic transition to flattening occurs as $v_{\text{trans}} \to c_f$ and $v_{\text{orb}}^{\text{tan}} \to c_f$ in the forward sector, starving new one-way causal updates ahead of the forward edge (local horizon behavior).
 > 2. The geometry collapses from a 3D precessing ellipsoid (fermion-like) to a 2D, co-planar disk (boson-like).
 > 3. In the planar limit, the combined in-plane motion outruns $c_f$, so the emission history forms a Mach-wedge causal wake with half-angle
 >    $$
@@ -36,8 +36,9 @@ These identifications are **conjectured mappings**, not definitions. They must e
 In plain terms, the Planck scale is a **dynamic alignment horizon**, not a minimal length by fiat: under extreme stress the assembly’s internal geometry snaps into a universal, planar lock, forward-sector updates are starved, and no smaller stable mode remains.
 
 **Regime clarification (to prevent speed-label conflicts):**
-- In this chapter, "$v_{\text{trans}} \to c_f$" and "$v_{\text{orb}}^{\text{tan}} \to c_f$" are **holographic-horizon transition** statements (terminal alignment regime).
-- The statement "$v_{\text{eff}} > c_f$" refers to a **combined in-plane effective motion** used for Mach-wedge causal geometry, not a claim that each binary component speed is individually $> c_f$.
+- In this chapter, "$v_{\text{trans}} \to c_f$" and "$v_{\text{orb}}^{\text{tan}} \to c_f$" are component-speed saturation statements in the terminal alignment regime.
+- The statement "$v_{\text{eff}} > c_f$" refers to a **combined in-plane effective motion** used for Mach-wedge causal geometry, not a claim that either component speed is individually $> c_f$.
+- The local one-way starvation condition begins when a forward component approaches $c_f$; the Mach-wedge condition is the stronger combined-speed condition $v_{\text{eff}}>c_f$.
 - The CFT-exterior role label "outer binary $v < c_f$" remains valid away from the terminal/horizon regime (see the regime map in [tri-binary-dynamics.md](../dynamics/tri-binary-dynamics.md)).
 
 ---
@@ -102,7 +103,11 @@ We define the **kinematic alignment horizon** as the locus where the forward-sec
 $$
 v_{\text{trans}} \to c_f \quad \text{and} \quad v_{\text{orb}}^{\text{tan}}(\theta) \to c_f,
 $$
-so the combined forward-sector effective speed approaches the field speed at the onset of flattening.
+so the component speeds approach the wake-speed limit at the onset of flattening. The combined forward-sector speed is a separate diagnostic:
+$$
+v_{\text{eff}}(\theta)=\|\mathbf{v}_{\text{trans}}+\mathbf{v}_{\text{orb}}^{\text{tan}}(\theta)\|.
+$$
+When $v_{\text{eff}}>c_f$, the same geometry supports the Mach-wedge analysis used above; when $v_{\text{eff}}\lesssim c_f$, the claim is only one-way update starvation along the saturated forward component.
 
 At this point, **one-way** forward-sector updates (new field information emitted ahead) cannot overtake the architrino. This is a necessary condition for horizon-like behavior, but not sufficient for a stable aligned state. The sufficiency comes from the **round-trip response**: the one-way delay distorts phase closure until the final aligned mode becomes the only stable lock.
 
@@ -126,7 +131,7 @@ for integer $k_n$, where $\Delta t_{\text{rt}}$ is the effective round-trip dela
 
 > **Working hypothesis (Terminal Mode):**  
 > There exists a final mode $n_{\text{max}}$ in which:
-> - The kinematic condition $v_{\text{eff}}\to c_f$ is met in the forward sector, **and**
+> - The component-saturation condition $v_{\text{trans}}\to c_f$ and $v_{\text{orb}}^{\text{tan}}\to c_f$ is met in the forward sector, with any $v_{\text{eff}}>c_f$ Mach-wedge behavior treated as the stronger combined-speed branch, **and**
 > - The round-trip phase condition admits a marginally stable, fully aligned solution.
 >
 > Attempts to push beyond this state destabilize the delay loop (e.g., runaway self-hit, dissociation) rather than producing further stable modes.
@@ -135,9 +140,9 @@ Demonstrating this terminal aligned mode is an **open dynamical problem** for th
 
 ---
 
-## Experienced-Field Framing (Energy as Interaction History)
+## Energy as Causal-Wake Interaction History
 
-This framing keeps emitters implicit and treats the architrino as a minimal mover responding to the **experienced field** $\phi(\mathbf{x}, t)$ and its gradient $\nabla \phi$.
+This framing keeps emitters implicit and treats the architrino as a minimal mover responding to the local superposed causal-wake potential $\phi(\mathbf{x}, t)$ and its gradient $\nabla \phi$.
 
 1. An architrino moves through a sea of potential gradients from many emitters.  
 2. Each emitter’s influence arrives after a delay.  
@@ -147,18 +152,18 @@ This framing keeps emitters implicit and treats the architrino as a minimal move
 6. So it is not stored inside the architrino; it is the record of many delayed interactions.  
 7. Change the delay geometry (translation, gravity well), and the push timing changes.  
 8. Change the timing, and the speed changes.  
-9. Therefore the kinetic term is an interaction history with the emitter field, not a private reservoir.
+9. Therefore the kinetic term is an interaction history with emitter wake history, not a private reservoir.
 
-In this experienced-field framing:
+In this causal-wake framing:
 
-- The architrino’s identity is the consistent causal loop: experience the field -> respond -> move into a new field -> respond again.  
-- Stability or structure emerges only when this response loop becomes periodic (locks) within the field.
-- Momentum is the conserved motion state produced by past interactions; if the field vanishes, the architrino coasts unchanged.
+- The architrino's identity is the consistent causal loop: receive wake gradients, respond, move into a new wake environment, and respond again.  
+- Stability or structure emerges only when this response loop becomes periodic.
+- Momentum is the conserved motion state produced by past interactions; if received wake gradients vanish, the architrino coasts unchanged.
 
-### Field-Speed Regimes in the Experienced-Field View
+### Field-Speed Regimes in the Causal-Wake View
 
 - **At $v = c_f$:** The architrino rides the edge of its causal cone. Forward-sector updates cannot arrive faster than it moves, so the experienced gradient becomes anisotropic (ahead starves, behind dominates). Phase-locking becomes delicate; alignment effects intensify.  
-- **At $v > c_f$:** It outruns field propagation. The only gradients it can experience are from delayed emissions and the medium behind/sideways, which leads to self-hit dynamics. This creates a strong inward/centripetal feedback that stabilizes maximal-curvature orbits and drives the self-hit regime behavior.
+- **At $v > c_f$:** It outruns newly emitted causal-wake propagation. The only gradients it can receive are from delayed emissions and the medium behind or sideways, which leads to self-hit dynamics. This creates a strong inward or centripetal feedback candidate that stabilizes maximal-curvature orbits and drives the self-hit regime behavior.
 
 ---
 
@@ -169,7 +174,7 @@ In this experienced-field framing:
 
 Under increasing translational stress or deepening gravitational potential:
 
-1. External drag shifts the effective delay geometry, inducing a **phase lag** $\delta\phi$.
+1. External stress or medium loading shifts the effective delay geometry, inducing a **phase lag** $\delta\phi$.
 2. When $\delta\phi > \delta\phi_{\text{crit}}(n)$, mode $n$ loses stability.
 3. The Outer binary **falls inward**; by angular-momentum conservation, $\omega$ rises.
 4. The assembly **re-locks** onto a new mode $n+1$ with smaller $r_{n+1}$, higher $\omega_{n+1}$.

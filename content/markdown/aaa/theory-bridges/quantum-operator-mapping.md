@@ -10,24 +10,30 @@ The computational basis states $|0\rangle$ and $|1\rangle$ are defined as the tw
 
 The abstract Hilbert space $\mathcal{H}$ serves as an effective description of the continuous non-Markovian phase space $\Gamma$. The dynamics of the constituent architrinos are governed by the causal-action master equation:
 
-$$ \mathbf{a}_i(t) = \kappa \sum_{j} \frac{\sigma_{ij} \epsilon^2}{|\mathbf{r}_i(t) - \mathbf{r}_j(t_{\text{hist}})|^2} \hat{\mathbf{u}}_{ij} $$
+$$
+\mathbf{a}_i(t) = \kappa \sum_{j} \frac{\sigma_{ij} \epsilon^2}{\|\mathbf{r}_i(t) - \mathbf{r}_j(t_{\text{hist}})\|^2} \hat{\mathbf{u}}_{ij}
+$$
 
-where $t_{\text{hist}} = t - |\mathbf{r}_i(t) - \mathbf{r}_j(t_{\text{hist}})| / c_f$ defines the path-history intersection time. 
+where $t_{\text{hist}} = t - \|\mathbf{r}_i(t) - \mathbf{r}_j(t_{\text{hist}})\| / c_f$ defines the path-history intersection time. 
 
 Superposition is not a linear combination of independent ontological branches. It is a bounded, precessional limit cycle in $\Gamma$. During superposition, the assembly continuously emits polarized potential along its causal wake, exploring multiple stable path-histories simultaneously without settling into a singular orientational attractor.
 
 ## Functional Bounds and Well-Posedness
 
-To legitimately map to unitary evolution, the delay integro-differential system must exhibit global existence and uniqueness without finite-time blow-up. 
+To legitimately map to unitary evolution, the delay integro-differential system must exhibit global existence and uniqueness without finite-time blow-up.
 
-Unitary evolution in $\mathcal{H}$ corresponds to a measure-preserving flow in the effective phase space $\Gamma_{\text{eff}}$. This requires the interaction kernel to satisfy a uniform Lipschitz bound over the path-history interval. The $1/r^2$ singularity is naturally regularized by the maximal-curvature radius $R_{\text{min}}$, which imposes a strict lower bound on the denominator $|\mathbf{r}_i(t) - \mathbf{r}_j(t_{\text{hist}})|^2 \ge 4R_{\text{min}}^2$ for any stable binary. Consequently, the acceleration $\mathbf{a}_i(t)$ remains bounded, guaranteeing the well-posedness of the continuous orientational transformations.
+Unitary evolution in $\mathcal{H}$ can be recovered only if the effective phase space $\Gamma_{\text{eff}}$ carries an approximately measure-preserving flow. A plausible closure route is to prove that the interaction kernel satisfies a uniform Lipschitz bound over the relevant path-history interval. The $1/r^2$ singularity may be regularized by the maximal-curvature radius $R_{\text{min}}$ if stable binaries impose the lower bound
+$$
+\|\mathbf{r}_i(t) - \mathbf{r}_j(t_{\text{hist}})\|^2 \ge 4R_{\text{min}}^2.
+$$
+Under that bounded-geometry condition, $\mathbf{a}_i(t)$ remains bounded on the modeled interval. This supports, but does not by itself prove, the well-posedness needed for continuous orientational transformations.
 
 ## Unitary Evolution and Topological Torques
 
 Quantum gates correspond to continuous, energy-conserving topological torques applied to the tri-binary orbital planes. 
 
 * **Pauli Operators ($X, Y, Z$):** These map to discrete $\pi$-rotations of the tri-binary orientation axes. The torque $\boldsymbol{\tau} = \int \mathbf{r} \times \mathbf{F}_{\text{hist}} d^3x$ is applied via external causal wakes, smoothly rotating $\hat{\mathbf{n}}_{\text{in}}$ and $\hat{\mathbf{n}}_{\text{out}}$ while the middle binary maintains the $v = c_f$ stability threshold.
-* **Hadamard Operator ($H$):** This operation induces a critical bifurcation. The applied torque drives the assembly exactly to the unstable saddle point between the $|0\rangle$ and $|1\rangle$ attractors, resulting in an equiprobable meta-stable precessional state.
+* **Hadamard Operator ($H$):** This operation is modeled as a critical bifurcation. The applied torque should drive the assembly into a controlled neighborhood of the saddle separating the $|0\rangle$ and $|1\rangle$ attractors, with an equiprobable meta-stable precessional state as the closure target rather than an assumed result.
 
 To prevent ionization or irreversible symmetry breaking during these operations, the total action $S = \int (T - V) dt$ must remain bounded. We define an ionization threshold $\Delta S_{\text{ionize}}$; any gate operation must satisfy $\Delta S \ll \Delta S_{\text{ionize}}$ to maintain the factorization of the tri-binary structure.
 
@@ -49,15 +55,15 @@ Decoherence is the continuous loss of path-history coherence due to uncharacteri
 
 ## Falsifiability and Observables
 
-* **Gate Latency Scaling:** Because entanglement relies on the finite propagation speed $c_f$ of the causal wake, the fidelity and correlation establishment time of a two-qubit gate (e.g., CNOT) must scale strictly with the physical separation distance $d$. Standard quantum mechanics assumes instantaneous unitary updates; the $\mathbb{A}\mathbb{A}\mathbb{A}$ model predicts a measurable correlation delay $\Delta t \ge d/c_f$.
-* **Coherence Limits:** The model predicts an absolute upper bound on coherence time, scaling inversely with local Noether-core density, represented by $\rho_{\text{core}}(\mathbf{x},t)$ or normalized density $n(\mathbf{x},t)$, independent of standard thermal or electromagnetic shielding.
+* **Gate Latency Scaling:** Because any newly established causal-wake coupling is limited by $c_f$, a two-qubit gate such as CNOT should acquire a distance-dependent setup or fidelity timescale with a lower bound of order $\Delta t \ge d/c_f$. Existing correlations inherited from a shared preparation event are a separate case and should not be described as newly transmitted during the gate.
+* **Coherence Limits:** The model predicts a medium-dependent contribution to coherence loss, scaling with local Noether-core density, represented by $\rho_{\text{core}}(\mathbf{x},t)$ or normalized density $n(\mathbf{x},t)$. This is a closure target alongside standard thermal, electromagnetic, and apparatus-noise channels, not an already-derived absolute bound.
 
 ## Statistical Measure and the Born Rule Emergence
 While the trajectory of a single tri-binary under measurement is strictly deterministic, macroscopic observables yield robust probabilistic distributions. This effective randomness originates from the microstate-sensitive initial conditions of the background Noether Sea. 
 
-* **Invariant Measure:** The fluctuating local Noether-Sea assemblies define a canonical ensemble with an invariant probability measure $\mu(\Gamma_{\text{eff}})$.
-* **Basin Volume Mapping:** The probability $P_k$ of collapsing into a specific eigenstate $|k\rangle$ maps directly to the phase-space volume of its corresponding attractor basin $\mathcal{B}_k$, weighted by the invariant measure: $P_k = \int_{\mathcal{B}_k} d\mu(\Gamma_{\text{eff}})$. 
-* **Born Rule Target:** The $|\psi_k|^2$ statistic should emerge as the coarse-grained thermodynamic limit of these weighted basin volumes. When the tri-binary's meta-stable limit cycle is perturbed by the macroscopic energy gradient of the measurement apparatus, the system's sensitivity to the exact microstate of the path-history intersections must drive ergodic mixing across the available state space before final relaxation.
+* **Invariant Measure Target:** The fluctuating local Noether-Sea assemblies should define, or approximate, an invariant probability measure $\mu(\Gamma_{\text{eff}})$ on the effective phase space.
+* **Basin Volume Mapping Target:** The probability $P_k$ of relaxing into a specific eigenstate $|k\rangle$ should be derived from the phase-space volume of its corresponding attractor basin $\mathcal{B}_k$, weighted by the inferred measure: $P_k = \int_{\mathcal{B}_k} d\mu(\Gamma_{\text{eff}})$.
+* **Born Rule Target:** The $|\psi_k|^2$ statistic should emerge as the coarse-grained thermodynamic limit of these weighted basin volumes. When the tri-binary's meta-stable limit cycle is perturbed by the macroscopic energy gradient of the measurement apparatus, the theory must show that sensitivity to the exact microstate of the path-history intersections drives sufficient mixing across the available state space before final relaxation.
 
 ## Kinetic Limits and Decoherence
 The continuous loss of path-history coherence must be formalized as a transport phenomenon within the Noether Sea, or in bridge prose the spacetime medium.
@@ -68,4 +74,4 @@ The continuous loss of path-history coherence must be formalized as a transport 
 
 ## Statistical Falsifiability and Observables
 * **Pre-Mixing Born Rule Deviations:** If the Born rule in the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework requires sufficient time for ergodic mixing across the local Noether Sea during the measurement perturbation, ultra-fast sequential measurements approaching the local path-history delay timescale $d/c_f$ become the natural place to search for deviations from standard $|\psi|^2$ statistics.
-* **Non-Markovian Memory Tails:** Autocorrelation functions of sequential measurements on a single qubit will exhibit heavy-tailed decay rather than exponential decay, revealing the persistent self-hit memory of the inner binary overriding the Markovian approximation of standard quantum mechanics.
+* **Non-Markovian Memory Tails:** Autocorrelation functions of sequential measurements on a single qubit are a candidate place to search for heavy-tailed decay rather than simple exponential decay. The proposed source is persistent self-hit memory in the inner binary, but this remains a simulation and experimental-signature target.

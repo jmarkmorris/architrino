@@ -371,6 +371,6 @@ That yields a disciplined provisional picture:
 - [singularity-resolution.md](./singularity-resolution.md): canonical horizon alignment condition.
 - [black-holes.md](./black-holes.md): horizon interface and strong-field ontology.
 - [tri-binary-dynamics.md](../dynamics/tri-binary-dynamics.md): regime map, planarity diagnostics, and alignment observables.
-- [mapping-planck-scale.md](./mapping-planck-scale.md): terminal planar lock and alignment-horizon interpretation.
+- [planck-scale-tri-binary-alignment.md](../theory-bridges/planck-scale-tri-binary-alignment.md): terminal planar lock and alignment-horizon interpretation.
 - [../assemblies/fermions/color-charge-su3.md](../assemblies/fermions/color-charge-su3.md): matter/antimatter chirality convention.
 - [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md): ordered-triad and chirality language.

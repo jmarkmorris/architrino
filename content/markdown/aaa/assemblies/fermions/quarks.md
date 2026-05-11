@@ -482,4 +482,4 @@ That boundary matters. The current chapter is a canonical catalog, not a claim t
 - Charge, weak-isospin, and hypercharge bookkeeping: [quantum-number-mapping.md](./quantum-number-mapping.md)
 - Color-space construction and SU(3) closure: [color-charge-su3.md](./color-charge-su3.md)
 - Strong-sector carrier geometry: [gluons.md](../bosons/gluons.md)
-- Weak-sector flavor mixing target: [weak-mixing-ckm.md](./weak-mixing-ckm.md)
+- Weak-sector flavor mixing target: [weak-mixing-ckm.md](../../theory-bridges/weak-mixing-ckm.md)

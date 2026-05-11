@@ -36,9 +36,13 @@ Each mature bridge should include:
 
 ## Current Bridges
 
+- [Bell's Theorem: Traditional Derivation and Architrino Assembly Architecture Response](./bell-theorem.md)
+- [Measurement Problem and Collapse](./collapse-problem.md)
 - [Entanglement and Nonlocality](./entanglement-nonlocality.md)
 - [Relativistic Scalar Fields and the Klein-Gordon Equation](./klein-gordon-scalar-fields.md)
 - [Pilot-Wave Character](./pilot-wave-character.md)
+- [Mapping the Planck Scale to the Tri-Binary Geometry](./planck-scale-tri-binary-alignment.md)
 - [Quantum Operator Mapping](./quantum-operator-mapping.md)
 - [Special Relativity and Deformable Noether Cores](./special-relativity-noether-core.md)
 - [Superposition Mechanism](./superposition-mechanism.md)
+- [Weak Mixing and CKM](./weak-mixing-ckm.md)

@@ -1,6 +1,6 @@
 # Constraint Ledger
 
-Notes collected here document the falsification criteria, ordering priorities, and supporting mechanisms for the adversarial architrino model. Keep this page focused on observable constraints so we can quickly verify whether a given version of the theory survives experimental scrutiny.
+Notes collected here document the falsification criteria, ordering priorities, and supporting mechanisms for the architrino framework. Keep this page focused on observable constraints so each model version can be checked against experimental scrutiny.
 
 ## Experimental Constraint Ledger and Falsification Criteria
 
@@ -10,15 +10,15 @@ This ledger crystallizes the measurable thresholds and theoretical guardrails th
 
 The purpose of this section is to define the combination of experimental isotropy and observational invariance that must hold if a putative absolute frame is to remain hidden. We identify the observables, derive the emergent timing/ruler behavior implied by the Noether Sea, and explicitly state the tolerance beyond which the preferred frame would become perceivable.
 
-* **Constraint** – isotropy from Michelson–Morley and resonator experiments constrains $|\Delta c/c| < 10^{-17}$ while atomic clock sidereal drift stays below $10^{-16}$, keeping Lorentz Invariance leakage under the $10^{-17}$ falsification threshold.
-* **Consolidated Requirement** – prove a Lorentzian conspiracy: architrino assemblies must contract and slow in the Absolute Frame so that no observer can detect the Sea’s rest frame.
+* **Constraint** – isotropy from Michelson–Morley and resonator experiments constrains $|\Delta c/c| < 10^{-17}$ while atomic clock sidereal drift stays below $10^{-16}$, keeping Lorentz-invariance leakage under the $10^{-17}$ falsification threshold.
+* **Consolidated Requirement** – prove preferred-frame hiding: architrino assemblies must acquire Lorentz-compatible deformation and clock behavior in the Euclidean-void rest frame so no local observer can detect the Noether Sea's rest frame.
 * **Observable** – local Lorentz invariance is preserved.
 * **Mechanism** – assembly-based clocks/rulers must emerge with proper time $\tau$ rather than absolute time $t$.
 * **Failure Condition** – any detectable preferred-frame orientation above $10^{-17}$ or residual $\delta$ in $L_{moving} = L_{rest} (\gamma^{-1} + \delta)$ that exceeds $10^{-17}$ invalidates the theory.
 
 ### The Absolute-Frame Drift Check (Lorentz Contraction Enforcement)
 
-This entry frames the requirement that the underlying Noether Sea affords a dynamical contraction mechanism to assemblies moving through the Void; without such a mechanism, assemblies would reveal their motion relative to the sea and the preferred frame would manifest.
+This entry frames the requirement that the underlying Noether Sea affords a dynamical contraction mechanism to assemblies moving through the Euclidean void; without such a mechanism, assemblies would reveal their motion relative to the sea and the preferred frame would manifest.
 
 * **Constraint** – the Noether Sea must dynamically enforce the Lorentz contraction of assemblies; otherwise the model is equivalent to an untested preferred frame.
 * **Failure Condition** – without contraction enforced by the Sea, preferred frame effects become measurable and falsify the theory.
@@ -28,7 +28,7 @@ This entry frames the requirement that the underlying Noether Sea affords a dyna
 Here we catalogue how coupling between macroscopic bodies and the Noether Sea can influence orbital dynamics. The constraint ensures any additional dissipation or effective drag remains below the levels already constrained by gravitational-wave-based orbital decay measurements in general relativity.
 
 * **Constraint** – interactions with the Noether Sea must not induce orbital decay that outpaces GR’s gravitational-wave emission bounds.
-* **Validation Target** – match observed orbital stability and perihelion advance within GR limits while modeling drag as density-mediated coupling forces.
+* **Validation Target** – match observed orbital stability and perihelion advance within GR limits while modeling any extra coupling as a conserving medium-dressed response rather than ordinary dissipative drag.
 
 ### GW Speed
 
@@ -57,7 +57,7 @@ Use this ledger as the acceptance layer for the five integrated closure programs
 
 | Program | Primary chapters | Ledger gate |
 | --- | --- | --- |
-| CKM holonomy closure | [assemblies/fermions/weak-mixing-ckm.md](../assemblies/fermions/weak-mixing-ckm.md) | CKM hierarchy and CP-phase consistency with propagated uncertainty |
+| CKM holonomy closure | [theory-bridges/weak-mixing-ckm.md](../theory-bridges/weak-mixing-ckm.md) | CKM hierarchy and CP-phase consistency with propagated uncertainty |
 | PMNS neutral-core closure | [assemblies/fermions/neutrinos.md](../assemblies/fermions/neutrinos.md) | Oscillation pattern consistency across $L/E$ and medium regimes |
 | Emergent metric / PPN closure | [spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md), [spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) | Lorentz leakage, PPN, redshift, Shapiro, GW-speed bounds |
 | Non-relativistic Schrödinger + Born closure | [theory-bridges/pilot-wave-character.md](../theory-bridges/pilot-wave-character.md), [quantum/wavefunction-ontology.md](../quantum/wavefunction-ontology.md), [theory-bridges/superposition-mechanism.md](../theory-bridges/superposition-mechanism.md) | Effective fixed-particle-number wave equation + statistical outcome consistency |

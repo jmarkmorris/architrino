@@ -266,6 +266,8 @@ The reinterpretation is justified only if it improves theory structure, not voca
 - A common conservation/provenance bookkeeping layer for mapping reaction networks into absolute-time assembly simulations.
 - A constrained bridge from standard observables to substrate variables, so mapping claims can fail under consistency checks rather than being post-hoc fits.
 
+Cosmology-facing provenance across synchrotron, pair production, bremsstrahlung, BBN photon loading, and CMB thermalization is tracked in [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md).
+
 If derivations show (i) no measurable deviations in any tested regime, (ii) no reduction in parameter count relative to standard plasma/QED models, and (iii) no new consistency constraints that eliminate existing fine-tuning, then the $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretation provides only ontological vocabulary change without explanatory gain. In that case, standard transport remains the preferred description for cascade phenomenology, and the $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping is demoted to an optional interpretive layer rather than a foundational claim.
 
 [^architrino-count]: Architrino-count conservation: each recruited Noether-Sea core contributes $(N_{\mathrm{arch}})_{\mathrm{core}}$ architrinos; net photon + core content must exactly balance final $e^+ + e^-$ architrino count. Explicit provenance tracking through pair events is a simulation deliverable, not an assertion in this chapter.

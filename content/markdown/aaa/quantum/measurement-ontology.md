@@ -151,7 +151,7 @@ for real record-forming interactions, even if that time becomes extremely short 
 
 ## Related Chapters
 
-- [collapse-problem.md](./collapse-problem.md)
+- [collapse-problem.md](../theory-bridges/collapse-problem.md)
 - [superposition-mechanism.md](../theory-bridges/superposition-mechanism.md)
 - [wavefunction-ontology.md](./wavefunction-ontology.md)
 - [pilot-wave-character.md](../theory-bridges/pilot-wave-character.md)

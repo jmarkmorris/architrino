@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "spacetime__mapping_planck_scale",
-    "title": "Mapping Planck Scale",
+    "id": "theory_bridges__planck_scale_tri_binary_alignment",
+    "title": "Planck Scale Tri-Binary Alignment",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/spacetime/mapping-planck-scale.md"
+      "path": "content/markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md"
     },
     "view": {
       "columns": 1,

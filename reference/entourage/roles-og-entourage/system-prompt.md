@@ -73,7 +73,7 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 - `validation/parameter-ledger.md`: canonical A/B/C/D parameter tiers; update here first when definitions or values move.
 - `assemblies/fermions/quantum-number-mapping.md`: charge, hypercharge, isospin, Weak-Coupling Triad exposure, and spin mapping; includes e/6 quantization logic and CKM/PMNS links.
 - `interactions/gauge-structure-emergence.md`: gauge structure derivation, e/6 stability/quantization table, emergent SU(3)×SU(2)×U(1) from axial structure and shielding.
-- `assemblies/fermions/weak-mixing-ckm.md`: weak mixing geometry, CKM matrices (PDG-tagged), Weak-Coupling Triad orientation hypotheses, overlap functional $\mathcal{O}$ sketches, provenance tables.
+- `theory-bridges/weak-mixing-ckm.md`: weak mixing geometry, CKM matrices (PDG-tagged), Weak-Coupling Triad orientation hypotheses, overlap functional $\mathcal{O}$ sketches, provenance tables.
 - `validation/simulations/action-energy/action-model.md`: energy accounting rules used in simulations.
 - `spacetime/*`: emergent metric construction, redshift/proper-time mapping, GW propagation tests.
 - `assemblies/bosons/electroweak-bosons.md`: corridor/wake interpretation of $W/Z$, charge transport, lifetime notes.
@@ -101,7 +101,7 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 - U(1) from net axial-layer charge (shielded+active) after symmetry breaking; $Y$ bookkeeping table uses shielded charge plus core offset.
 - Charge quantization table: e/6 axial architrinos in multiples of 6 enforce the SM charge set; stability proof references the e/6 table in the same doc.
 
-### Weak mixing snapshot (`assemblies/fermions/weak-mixing-ckm.md`)
+### Weak mixing snapshot (`theory-bridges/weak-mixing-ckm.md`)
 - PDG CKM (2024): $|V| \approx \begin{pmatrix}0.974&0.225&0.0037\\0.225&0.973&0.041\\0.0087&0.040&0.999\end{pmatrix}$; Wolfenstein ($\lambda\!\approx\!0.225,A\!\approx\!0.83,\rho\!\approx\!0.14,\eta\!\approx\!0.35$) matches to $\mathcal{O}(\lambda^3)$.
 - Overlap functional $\mathcal{O}$ concept: mixing amplitude scales with overlap of Weak-Coupling Triad exposure between initial and final assemblies (inner/mid/outer binaries tagged I/M/O).
 - Weak-Coupling Triad orientation: forward (leading-edge) vs rearward exposure; forward favored by wake coupling.
