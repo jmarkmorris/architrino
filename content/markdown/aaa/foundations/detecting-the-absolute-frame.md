@@ -1,12 +1,12 @@
 # Detecting the Absolute Frame
 
-This chapter isolates the operational problem of identifying absolute rest inside a theory with Euclidean void and absolute time. Its purpose is to show that the preferred frame is not a purely metaphysical declaration but something that, at least in principle, is encoded in the geometry of causal wakes.
+This chapter isolates the complete-state diagnostic problem of identifying absolute rest inside a theory with Euclidean void and absolute time. Its purpose is to show that the preferred frame is not a purely metaphysical declaration but something that, at least in principle, is encoded in the geometry of causal wakes.
 
 ## Overview
 
 This chapter isolates the conceptual question that has to be answered before any coordinate construction can begin: can the architrino framework identify **absolute rest** from its own physics, without assuming a pre-labeled grid? The answer in this framework is yes. The detection criterion is the **concentricity of causal wakes** emitted by a stationary architrino.
 
-This argument sits between [Euclidean Void](euclidean-void.md), which states the underlying substrate, and [Bootstrapping a Coordinate Frame](bootstrapping-the-absolute-frame.md), which turns the preferred-rest diagnostic into a usable coordinate scaffold. Its operational shielding claims also connect directly to [Absolute Time Defense](absolute-time-defense.md) and [Lorentz Kinematics](../spacetime/lorentz-kinematics.md).
+This argument sits between [Euclidean Void](euclidean-void.md), which states the underlying substrate, and [Reconstructing a Coordinate Frame from Wake Geometry](bootstrapping-the-absolute-frame.md), which turns the preferred-rest diagnostic into a usable coordinate scaffold. Its operational shielding claims also connect directly to [Absolute Time Defense](absolute-time-defense.md) and [Lorentz Kinematics](../spacetime/lorentz-kinematics.md).
 
 ## The Fundamental Challenge
 
@@ -15,15 +15,15 @@ The architrino theory posits an **Euclidean 3D void** and **absolute time** as t
 This presents an apparent paradox:
 - We claim architrinos have **definite positions** $\mathbf{x}(t)$ and **definite velocities** $\mathbf{v}(t)$ in absolute space and time.
 - Yet absolute space is **translationally and rotationally invariant**: the physics is identical at any location, any orientation, and any moment.
-- How can we operationally distinguish absolute rest ($v = 0$) from absolute motion ($v \neq 0$) without reference coordinates?
+- How can the theory internally distinguish absolute rest ($v = 0$) from absolute motion ($v \neq 0$) without reference coordinates?
 
-This is not merely a philosophical puzzle. It is a **practical requirement** for the theory's internal consistency. If we cannot, even in principle, extract a preferred rest condition from the intrinsic physics, then claims about absolute velocity are empirically empty.
+This is not merely a philosophical puzzle. It is a **practical requirement** for the theory's internal consistency. If the theory cannot, even in principle, extract a preferred rest condition from intrinsic physics, then claims about absolute velocity are empirically empty.
 
 ## Detecting Absolute Rest: The Causal Wake Diagnostic
 
 ### The Key Physical Mechanism
 
-The resolution exploits the theory's **finite wake-speed** postulate: architrino-emitted causal wakes propagate at speed $c_f$ **relative to the Euclidean void**, not relative to the source's subsequent motion. This single postulate creates a **dynamically preferred frame** detectable through purely geometric relationships.
+The resolution exploits the theory's **finite wake-speed** postulate: architrino-emitted causal wakes propagate at speed $c_f$ **relative to the Euclidean void**, not relative to the source's subsequent motion. This single postulate creates a **dynamically preferred frame** available to complete-state reconstruction through purely geometric relationships.
 
 ### The Nature of Causal Wakes
 
@@ -33,7 +33,7 @@ The crucial point is that this expanding wake carries information about the **ab
 
 ### The Concentricity Test
 
-Consider a $\mathbb{U}_{\text{now}}$ universe-state perspective with access to complete microdynamics who can track:
+Consider a $\mathbb{U}_{\text{now}}$ universe-state perspective with access to complete microdynamics that can track:
 1. The complete path history of any architrino,
 2. The geometric centers of all emitted and expanding wake structures,
 3. All outgoing potential wakes it has emitted.
@@ -55,7 +55,7 @@ Consider a $\mathbb{U}_{\text{now}}$ universe-state perspective with access to c
 - The wake centers are **non-coincident**; the pattern is **non-concentric**.
 - The architrino lies closer to the expanding wake front in its direction of motion, producing a Doppler-like geometry in the absolute frame.
 
-### The Operational Procedure
+### The Complete-State Diagnostic Procedure
 
 **Step 1:** Track the geometric centers of all spherically expanding causal wakes emitted by a target architrino over a measurement interval.
 
@@ -65,7 +65,7 @@ Consider a $\mathbb{U}_{\text{now}}$ universe-state perspective with access to c
 - **All centers coincident** -> $\mathbf{v}_{\text{abs}} = 0$ (absolute rest)
 - **Centers form a trajectory** -> $\mathbf{v}_{\text{abs}} \neq 0$; the displacement vector $\Delta \mathbf{x}$ per unit time $\Delta t$ yields the absolute velocity: $\mathbf{v}_{\text{abs}} = \Delta \mathbf{x} / \Delta t$
 
-**The Power of This Test:** This is a **coordinate-free** geometric measurement. We are not comparing position to some external grid. We are checking an **intrinsic relational property**: whether the centers of continuous spherical wakes occupy the same point in the Euclidean void.
+**The Power of This Test:** This is a **coordinate-free** geometric diagnostic. It does not compare position to some external grid. It checks an **intrinsic relational property**: whether the centers of continuous spherical wakes occupy the same point in the Euclidean void.
 
 ## Connections to Core Dynamics
 
@@ -85,7 +85,7 @@ The master equation demands **explicit positions** $\mathbf{x}_i(t)$ to compute:
 - Separation distance $r_{ij}$ between architrinos $i$ and $j$
 - Path-history positions (where was architrino $j$ when the wake contribution currently reaching $i$ was emitted?)
 
-The concentric-wake measurement demonstrates that $\mathbf{x}_i(t)$ is physically meaningful and operationally definable. We can identify stationary without circular reference to pre-existing coordinates.
+The concentric-wake diagnostic demonstrates that $\mathbf{x}_i(t)$ is physically meaningful and definable within complete-state reconstruction. Stationarity can be identified without circular reference to pre-existing coordinates.
 
 ### Foundational Validation (Ch. 7)
 
@@ -105,14 +105,14 @@ This prevents the theory from being stranded without empirical content or operat
 - **Causal wakes**: continuous potential-bearing structures propagating through the void
 - **Geometric relationships**: Concentricity and displacement are objective, observer-independent properties
 
-**Conventional (human-imposed scaffolding):**
+**Conventional (mathematical scaffolding):**
 - **Coordinate labels**: Tools for calculation and communication
 - **Choice of origin**: Any stationary architrino works equally well
 - **Axis orientation**: The void is isotropic; no direction is physically privileged
 
-### Why Operational Observers Don't Detect the Preferred Frame
+### Why Physical Observers Don't Detect the Preferred Frame
 
-The concentric-wake measurement requires access to full microdynamics: something only a $\mathbb{U}_{\text{now}}$ universe-state perspective can achieve. **Operational observers** composed of assemblies measure through assembly-based apparatus:
+The concentric-wake measurement requires access to full microdynamics: something only a $\mathbb{U}_{\text{now}}$ universe-state perspective can achieve. **Physical Observers** composed of assemblies measure through assembly-based apparatus:
 
 - **Proper time** $\tau$ via internal clocks, not absolute time $t$
 - **Effective coordinates** via local rulers
@@ -168,4 +168,4 @@ This places the theory in the tradition of **Lorentz Ether Theory**:
 - The theory can identify a preferred rest condition from intrinsic physics alone
 - Operational Lorentz invariance is compatible with fundamental absolute structure
 
-The next chapter, [Bootstrapping a Coordinate Frame](bootstrapping-the-absolute-frame.md), uses this preferred-rest diagnostic as the starting point for constructing a complete coordinate frame.
+The next chapter, [Reconstructing a Coordinate Frame from Wake Geometry](bootstrapping-the-absolute-frame.md), uses this preferred-rest diagnostic as the starting point for constructing a complete coordinate frame.

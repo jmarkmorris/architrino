@@ -987,7 +987,7 @@
     },
     {
       "id": "foundations__bootstrapping_the_absolute_frame",
-      "name": "Bootstrapping a Coordinate Frame",
+      "name": "Reconstructing a Coordinate Frame from Wake Geometry",
       "path": "content/scenes/foundations/bootstrapping_the_absolute_frame.json"
     },
     {

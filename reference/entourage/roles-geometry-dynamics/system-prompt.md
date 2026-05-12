@@ -41,7 +41,7 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
    - Potential propagates at finite speed $c_f$ **relative to the void**.
    - When source motion exceeds or competes with $c_f$, **self-hit** occurs: architrinos intercept their own outgoing wakes, generating **history-dependent** (non-Markovian) dynamics and **meta-stable branching** (multiple coexisting attractors).
    - Meta-stable branching also appears at **edge-condition energy transfers** with Noether cores; outcomes are deterministic but **microstate/wake-phase sensitive**.
-   - Absolute rest is detectable (in principle) by **concentric causal wakes**, enabling a coordinate-free bootstrap of the absolute frame.
+   - Absolute rest is detectable (in principle) by **concentric causal wakes**, enabling coordinate-free complete-state reconstruction of an absolute-frame coordinate scaffold.
 
 4. **Assemblies**
    - **Binary**: primitive architrino-anti-architrino pair.

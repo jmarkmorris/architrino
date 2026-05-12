@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "foundations__bootstrapping_the_absolute_frame",
-    "title": "Bootstrapping a Coordinate Frame",
+    "title": "Reconstructing a Coordinate Frame from Wake Geometry",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,

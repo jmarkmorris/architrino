@@ -1332,7 +1332,7 @@
     },
     {
       "id": "foundations__bootstrapping_the_absolute_frame",
-      "name": "Bootstrapping a Coordinate Frame",
+      "name": "Reconstructing a Coordinate Frame from Wake Geometry",
       "path": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
       "nodeType": "scene"
     },
@@ -2346,7 +2346,7 @@
     },
     {
       "id": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-      "name": "Bootstrapping a Coordinate Frame",
+      "name": "Reconstructing a Coordinate Frame from Wake Geometry",
       "path": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
       "nodeType": "markdown_doc"
     },
@@ -4654,7 +4654,7 @@
       "nodeId": "scene:content/scenes/foundations/bootstrapping_the_absolute_frame.json",
       "nodeType": "scene",
       "id": "foundations__bootstrapping_the_absolute_frame",
-      "name": "Bootstrapping a Coordinate Frame",
+      "name": "Reconstructing a Coordinate Frame from Wake Geometry",
       "path": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
       "searchTarget": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
       "implicit": false
@@ -6238,7 +6238,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-      "name": "Bootstrapping a Coordinate Frame",
+      "name": "Reconstructing a Coordinate Frame from Wake Geometry",
       "path": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
       "searchTarget": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
       "implicit": false

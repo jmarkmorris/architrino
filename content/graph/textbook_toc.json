@@ -706,7 +706,7 @@
           },
           {
             "id": "foundations__bootstrapping_the_absolute_frame",
-            "title": "Bootstrapping a Coordinate Frame",
+            "title": "Reconstructing a Coordinate Frame from Wake Geometry",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
@@ -762,18 +762,18 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Summary Table: Bootstrapping Steps",
+                "title": "Summary Table: Reconstruction Steps",
                 "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-                "markdownSection": "Summary Table: Bootstrapping Steps",
-                "sectionKey": "summary table bootstrapping steps",
+                "markdownSection": "Summary Table: Reconstruction Steps",
+                "sectionKey": "summary table reconstruction steps",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Categories of Cognition Served by Each Step",
+                "title": "Categories of Calculation Served by Each Step",
                 "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-                "markdownSection": "Categories of Cognition Served by Each Step",
-                "sectionKey": "categories of cognition served by each step",
+                "markdownSection": "Categories of Calculation Served by Each Step",
+                "sectionKey": "categories of calculation served by each step",
                 "headingLevel": 2
               },
               {
