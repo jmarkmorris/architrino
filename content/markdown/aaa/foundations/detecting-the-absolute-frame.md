@@ -74,10 +74,11 @@ Consider a $\mathbb{U}_{\text{now}}$ universe-state perspective with access to c
 The concentricity diagnostic connects directly to **self-interaction geometry**:
 
 - An architrino at rest ($v = 0$) experiences **symmetric self-hit**: it intercepts its own past potential wake equally from all directions.
-- An architrino in motion ($v > 0$) experiences **asymmetric self-hit**: stronger interaction with wake components emitted ahead of its trajectory.
+- An architrino in motion ($v > 0$) experiences **asymmetric self-hit**: stronger interaction with wake components emitted ahead of its trajectory. As the absolute velocity increases, this becomes a sonic-boom-like or Cherenkov-like threshold geometry in which the source increasingly plows into its own newly emitted wakes instead of receiving them as a nearly symmetric delayed background.
+- For bound assemblies, that asymmetric self-interaction produces an extreme drag and deformation profile on the internal orbits. Long before an assembly could cross $v=c_f$ as an intact standard-matter object, the wake asymmetry would disrupt the delicate phase closure required for Noether-core stability.
 - This asymmetry is one input to the medium-dressed inertial response of bound assemblies: acceleration skews the delayed causal ledger, while shielding determines how much of the internal energy is exposed to external probes.
 
-**The upshot:** Absolute velocity is not merely a kinematic label. It has **dynamical consequences** through the self-hit geometry of the continuous causal wakes.
+**The upshot:** Absolute velocity is not merely a kinematic label. It has **dynamical consequences** through the self-hit geometry of the continuous causal wakes. The inability to accelerate standard-matter assemblies past the effective speed of light is therefore mechanical rather than substrate-geometric: near the $c_f$ threshold, an assembly would shear apart or dissolve under its own asymmetric wake forces before crossing as a stable bound system.
 
 ### Master Equation Requirements (Ch. 9)
 
