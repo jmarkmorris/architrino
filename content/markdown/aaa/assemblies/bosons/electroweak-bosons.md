@@ -61,6 +61,43 @@ The photon description above is the ontology-level target. The theorem-level pro
 | **Gate B: polarization and spin** | Derive the transverse ledger, analyzer coupling, helicity, and squared-amplitude rule from planar-pair capture rather than appending them as observer-level facts. | Recover exactly two transverse photon modes, no physical longitudinal mode, Malus' law, helicity $\pm1$, single-photon statistics, and no-signaling behavior in entangled-polarization tests. |
 | **Gate C: vertices and transitions** | Map emission, absorption, pair production, Compton-like scattering, photon-photon limits, blackbody behavior, and effective coupling into allowed ledger transitions between massive assemblies and coaxial contra-rotating pro/anti planar pairs. | Recover validated Maxwell/QED behavior, transition-rate limits, pair-production thresholds, Bose-Einstein occupation behavior, $U(1)$-like phase bookkeeping, Aharonov-Bohm phase behavior, and the effective scale $\alpha$. |
 
+#### Gate A Theorem Scaffold: Kinematics and Optics
+
+Gate A is the theorem-level bridge from the photon ontology above to the empirical light channel used by clocks, rulers, and scattering measurements. Its first hypothesis is a leading planar core $L$ and trailing planar core $T$, separated by $d$ along the propagation axis $\hat{\mathbf{e}}$, translating together at the local photon-channel speed $c_\gamma(\mathbf{x})$. The primitive wake speed remains $c_f$; $c_\gamma$ is the declared photon synchronization speed in the [transverse causal budget lemma](../../dynamics/tri-binary-dynamics.md#transverse-causal-budget-lemma) and the photon entry in [Lorentz Kinematics](../../spacetime/lorentz-kinematics.md#42-two-way-signal-speed-criterion).
+
+The axial communication budget is asymmetric:
+$$
+\tau_{L\to T}\simeq \frac{d}{c_f+c_\gamma},
+\qquad
+\tau_{T\to L}\simeq \frac{d}{c_f-c_\gamma}.
+$$
+
+The forward catch-up delay $\tau_{T\to L}$ is the dangerous term because it diverges at fixed $d$ as $c_\gamma\to c_f$. Gate A must therefore prove a finite phase-locking branch, not merely assume one:
+$$
+\omega\frac{d}{c_f-c_\gamma}
++
+\phi_{\text{geom}}(d,\omega,c_\gamma)
+=2\pi k,
+\qquad
+k\in\mathbb{Z}.
+$$
+
+The non-dispersive candidate is the proportional-collapse branch
+$$
+d(\omega,\delta_\gamma)
+\sim
+\Lambda_\gamma\frac{c_f-c_\gamma}{\omega},
+\qquad
+\delta_\gamma\equiv1-\frac{c_\gamma}{c_f},
+$$
+with finite branch constant $\Lambda_\gamma$. This branch keeps $\omega d/(c_f-c_\gamma)=O(1)$ while forcing $d\to0$ as $c_\gamma\to c_f$. A fixed-$d$ branch would generally make the photon channel frequency-dependent and is therefore a failure mode unless a separate cancellation is derived.
+
+Gate A is closed only when this branch proves the following recoveries in the same speed convention:
+- The planar-pair mode has no rest-state volumetric clock and therefore imports no rest proper-time branch from massive Noether-core assemblies.
+- The kinematic mass shell is null in the photon channel: $E_\gamma^2-\|\mathbf{p}_\gamma\|^2c_\gamma^2=0$, with $E_\gamma=h\nu$ and $p=h/\lambda$ recovered from the phase-cycle ledger.
+- The weak homogeneous branch identifies the measured photon speed with the same low-gradient limit used by clock-and-ruler synchronization, while keeping $c_f$ as the primitive wake speed rather than the directly measured observer speed.
+- The residual leakage terms for dispersion, birefringence, static charge exposure, and preferred-frame anisotropy fall below the empirical bounds before Gate B and Gate C add polarization and interaction vertices.
+
 In reaction chapters, Gate C should be expressed through [Mode Taxonomy](../../interactions/mode-taxonomy.md): photon emission uses **planar-mode nucleation**, not corridor-mode language. Event-level provenance for radiative and pair channels is tracked in [Reaction-Cosmology Provenance Ledger](../../validation/reaction-cosmology-provenance-ledger.md).
 
 ---

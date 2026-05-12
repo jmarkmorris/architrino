@@ -7,6 +7,7 @@ the spacetime constitutive map.
 
 - $n$: normalized Noether-core density, with $\rho_{\text{core}}=\rho_{\text{core},0}n$.
 - $\chi_{\text{sea}}$: Noether-Sea delay factor, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$.
+- $c_0\equiv c_{\text{eff}}(\infty)$: asymptotic homogeneous observer-channel speed used in weak-field PPN comparisons.
 - $\Phi_N$: Newtonian benchmark potential.
 - $\Phi_{\text{eff}}$: constitutive effective potential from the clock channel.
 - $U\equiv -\Phi_N>0$: positive PPN expansion variable (default).
@@ -14,7 +15,7 @@ the spacetime constitutive map.
 
 ### Mapping to PPN Constraints
 
-1. **Shapiro Delay**: Map the GR time-delay (longer path in curved space) to the Architrino time-delay (slower $c_{eff}$ in a dense medium).
+1. **Shapiro Delay**: Map the GR time-delay (longer path in curved space) to the Architrino time-delay (slower $c_{\text{eff}}$ in a dense medium).
 2. **Light Bending**: Calculate the refraction of tri-binary signals through the Noether-Sea density gradient around the Sun.
 3. **Geodetic Precession**: Derived from the interaction of the assembly's angular momentum with the gradient of the Noether-Sea potential.
 
@@ -28,51 +29,55 @@ the spacetime constitutive map.
 
 ### Explicit Weak-Field Noether-Sea Delay Map (PPN $\gamma$)
 
-Adopt a weak-field Noether-Sea delay-factor ansatz for signal propagation in the Noether-core medium:
+Adopt a weak-field PPN-normalized Noether-Sea delay-factor ansatz for signal propagation in the Noether-core medium:
 $$
-\chi_{\text{sea}}(\mathbf{x}) \equiv \frac{c_f}{c_{\text{eff}}(\mathbf{x})}
-= 1 - (1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf{x})}{c_f^2}
-+ \mathcal{O}\!\left(\frac{\Phi_N^2}{c_f^4}\right),
+\bar{\chi}_{\text{sea}}(\mathbf{x})
+\equiv
+\frac{c_0}{c_{\text{eff}}(\mathbf{x})}
+=
+\frac{c_0}{c_f}\chi_{\text{sea}}(\mathbf{x})
+= 1 - (1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf{x})}{c_0^2}
++ \mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right),
 $$
 with $\Phi_N<0$ near a mass source. For a point mass $M$,
 $$
 \Phi_N(r)=-\frac{GM}{r}
 \quad\Rightarrow\quad
-\chi_{\text{sea}}(r)=1+(1+\gamma_{\text{eff}})\frac{GM}{c_f^2 r}
-+\mathcal{O}\!\left(\frac{G^2M^2}{c_f^4 r^2}\right).
+\bar{\chi}_{\text{sea}}(r)=1+(1+\gamma_{\text{eff}})\frac{GM}{c_0^2 r}
++\mathcal{O}\!\left(\frac{G^2M^2}{c_0^4 r^2}\right).
 $$
 
 For a one-way signal along a Euclidean straight path $\Gamma$ (the $\mathbb{U}_{\text{now}}$ anchor),
 $$
-t_{\text{arch}}=\frac{1}{c_f}\int_\Gamma \chi_{\text{sea}}(\mathbf{x})\,ds
-=\frac{R}{c_f}+\Delta t_{\text{arch}},
+t_{\text{arch}}=\frac{1}{c_0}\int_\Gamma \bar{\chi}_{\text{sea}}(\mathbf{x})\,ds
+=\frac{R}{c_0}+\Delta t_{\text{arch}},
 $$
 where $R=\int_\Gamma ds$ is Euclidean path length and
 $$
 \Delta t_{\text{arch}}
-=\frac{1}{c_f}\int_\Gamma (\chi_{\text{sea}}-1)\,ds
-=\frac{(1+\gamma_{\text{eff}})GM}{c_f^3}\int_\Gamma \frac{ds}{r(s)}
-+\mathcal{O}\!\left(\frac{G^2M^2}{c_f^5}\right).
+=\frac{1}{c_0}\int_\Gamma (\bar{\chi}_{\text{sea}}-1)\,ds
+=\frac{(1+\gamma_{\text{eff}})GM}{c_0^3}\int_\Gamma \frac{ds}{r(s)}
++\mathcal{O}\!\left(\frac{G^2M^2}{c_0^5}\right).
 $$
 
 Evaluating the line integral for endpoint radii $r_1,r_2$ and Euclidean endpoint separation $R$ gives
 $$
 \Delta t_{\text{arch}}
-=\frac{(1+\gamma_{\text{eff}})GM}{c_f^3}
+=\frac{(1+\gamma_{\text{eff}})GM}{c_0^3}
 \ln\!\left(\frac{r_1+r_2+R}{r_1+r_2-R}\right)
-+\mathcal{O}\!\left(\frac{G^2M^2}{c_f^5}\right),
++\mathcal{O}\!\left(\frac{G^2M^2}{c_0^5}\right),
 $$
-which is the standard 1PN Shapiro form with $\gamma\to\gamma_{\text{eff}}$ and $c\to c_f$.
+which is the standard 1PN Shapiro form with $\gamma\to\gamma_{\text{eff}}$ and $c\to c_0$. The primitive wake speed $c_f$ remains in the unnormalized delay factor $\chi_{\text{sea}}=c_f/c_{\text{eff}}$; observer-facing PPN timing uses the asymptotic dressed speed $c_0$.
 
 So the operational estimator is
 $$
 \gamma_{\text{eff}}
 =
-\frac{c_f^3\,\Delta t_{\text{obs}}}
+\frac{c_0^3\,\Delta t_{\text{obs}}}
 {GM\ln\!\left(\frac{r_1+r_2+R}{r_1+r_2-R}\right)}
 -1,
 $$
-with $\Delta t_{\text{obs}}=t_{\text{obs}}-R/c_f$.
+with $\Delta t_{\text{obs}}=t_{\text{obs}}-R/c_0$.
 
 In the weak-field solar-system regime, $\gamma_{\text{eff}}$ is the direct refractive-space-curvature map parameter.
 
@@ -80,7 +85,7 @@ In the weak-field solar-system regime, $\gamma_{\text{eff}}$ is the direct refra
 
 #### Parameter $\gamma$ (Space Curvature / Refraction)
 * **GR Context:** Measures the amount of space curvature produced by unit rest mass.
-* **Architrino Interpretation:** Measures the refractive response of the [Noether Sea](noether-sea.md). A massive body increases local assembly density, slowing the effective speed of light $c$ relative to the wake speed $c_f$.
+* **Architrino Interpretation:** Measures the refractive response of the [Noether Sea](noether-sea.md). A massive body increases local assembly density, slowing the effective signal speed $c_{\text{eff}}(\mathbf{x})$ relative to the asymptotic observer speed $c_0$, while $c_f$ remains the primitive wake speed.
 * **Observable:** Shapiro-delay coefficient in the explicit refractive integral above.
 
 #### Parameter $\beta$ (Non-linearity of Gravity)
@@ -90,31 +95,31 @@ In the weak-field solar-system regime, $\gamma_{\text{eff}}$ is the direct refra
 $$
 \frac{d\tau}{dt}\bigg|_{v=0}
 =
-1-\frac{U}{c_f^2}
-+C_2(a,k)\frac{U^2}{c_f^4}
-+\mathcal{O}\!\left(\frac{U^3}{c_f^6}\right).
+1-\frac{U}{c_0^2}
++C_2(a,k)\frac{U^2}{c_0^4}
++\mathcal{O}\!\left(\frac{U^3}{c_0^6}\right).
 $$
 Since $-g_{00}=(d\tau/dt)^2$ for a static observer,
 $$
 g_{00}
 =
 -1
-+2\frac{U}{c_f^2}
--\bigl[1+2C_2(a,k)\bigr]\frac{U^2}{c_f^4}
-+\mathcal{O}\!\left(\frac{U^3}{c_f^6}\right).
++2\frac{U}{c_0^2}
+-\bigl[1+2C_2(a,k)\bigr]\frac{U^2}{c_0^4}
++\mathcal{O}\!\left(\frac{U^3}{c_0^6}\right).
 $$
 Match to the PPN form
 $$
 g_{00}^{\mathrm{PPN}}
 =
--1+2\frac{U}{c_f^2}-2\beta_{\mathrm{eff}}\frac{U^2}{c_f^4}+\cdots
+-1+2\frac{U}{c_0^2}-2\beta_{\mathrm{eff}}\frac{U^2}{c_0^4}+\cdots
 $$
 to obtain
 $$
 \boxed{\beta_{\mathrm{eff}}(a,k)=\frac{1+2C_2(a,k)}{2}}.
 $$
 Equivalently, if $\alpha(\mathcal{I})=1+\lambda_t\mathcal{I}+\frac{1}{2}\lambda_{tt}\mathcal{I}^2$ and
-$\mathcal{I}=\chi_1(a,k)\,U/c_f^2+\chi_2(a,k)\,U^2/c_f^4+\cdots$, then
+$\mathcal{I}=\chi_1(a,k)\,U/c_0^2+\chi_2(a,k)\,U^2/c_0^4+\cdots$, then
 $$
 \beta_{\mathrm{eff}}(a,k)
 =
@@ -128,7 +133,7 @@ $$
 
 If the constitutive clock channel is exactly
 $$
-\Omega\xi=e^{-\Phi_{\text{eff}}/c_f^2},
+\Omega\xi=e^{-\Phi_{\text{eff}}/c_0^2},
 \qquad
 g_{00}=-(\Omega\xi)^{-2},
 $$
@@ -136,9 +141,9 @@ then with $U_{\Phi}\equiv -\Phi_{\text{eff}}$:
 $$
 g_{00}
 =
--e^{2\Phi_{\text{eff}}/c_f^2}
+-e^{2\Phi_{\text{eff}}/c_0^2}
 =
--1+2\frac{U_{\Phi}}{c_f^2}-2\frac{U_{\Phi}^2}{c_f^4}+O(c_f^{-6}),
+-1+2\frac{U_{\Phi}}{c_0^2}-2\frac{U_{\Phi}^2}{c_0^4}+O(c_0^{-6}),
 $$
 so this subclass yields
 $$
@@ -147,7 +152,7 @@ $$
 without additional fit freedom.
 
 The general $C_2(a,k)$ map above remains the umbrella constitutive form; the exponential channel is the closure-special case where it collapses to GR's $\beta=1$ exactly.
-When $\Phi_{\text{eff}}=\Phi_N+O(\Phi_N^2/c_f^2)$, one has $U_{\Phi}=U+O(U^2/c_f^2)$ at weak field.
+When $\Phi_{\text{eff}}=\Phi_N+O(\Phi_N^2/c_0^2)$, one has $U_{\Phi}=U+O(U^2/c_0^2)$ at weak field.
 
 #### Preferred Frame Parameters ($\alpha_1, \alpha_2, \alpha_3$)
 * **Crucial test:** In the effective relativistic limit these must vanish (no measurable preferred-frame leakage).
@@ -155,15 +160,15 @@ When $\Phi_{\text{eff}}=\Phi_N+O(\Phi_N^2/c_f^2)$, one has $U_{\Phi}=U+O(U^2/c_f
 $$
 g_{0i}^{\text{leak}}
 =
--\frac{1}{2}\Xi_1(a,k)\frac{w_i U}{c_f^3}
--\Xi_2(a,k)\frac{w^j U_{ij}}{c_f^3},
+-\frac{1}{2}\Xi_1(a,k)\frac{w_i U}{c_0^3}
+-\Xi_2(a,k)\frac{w^j U_{ij}}{c_0^3},
 $$
 $$
 g_{00}^{\text{leak}}
 =
--\Xi_3(a,k)\frac{w^2 U}{c_f^4}
--\Xi_2(a,k)\frac{w^i w^j U_{ij}}{c_f^4}
-+\Xi_4(a,k)\frac{w^i V_i}{c_f^3}.
+-\Xi_3(a,k)\frac{w^2 U}{c_0^4}
+-\Xi_2(a,k)\frac{w^i w^j U_{ij}}{c_0^4}
++\Xi_4(a,k)\frac{w^i V_i}{c_0^3}.
 $$
 Matching to standard PPN preferred-frame structure gives
 $$
@@ -336,7 +341,7 @@ $$
 O_1(\mathbf{\theta})=K_{\text{Shap}}(1+\gamma_{\text{eff}}),
 \qquad
 K_{\text{Shap}}=
-\frac{GM}{c_f^3}
+\frac{GM}{c_0^3}
 \ln\!\left(\frac{r_1+r_2+R}{r_1+r_2-R}\right).
 $$
 For two-way radar-style Shapiro measurements, apply the same kernel on each leg and sum the two one-way contributions.
@@ -344,7 +349,7 @@ For two-way radar-style Shapiro measurements, apply the same kernel on each leg 
 $$
 O_2(\mathbf{\theta})=K_{\text{Def}}(1+\gamma_{\text{eff}}),
 \qquad
-K_{\text{Def}}=\frac{2GM}{b\,c_f^2}.
+K_{\text{Def}}=\frac{2GM}{b\,c_0^2}.
 $$
 3. Perihelion precession per orbit:
 $$
@@ -355,7 +360,7 @@ K_{\text{Prec}}\left(2+2\gamma_{\text{PPN}}-\beta_{\text{PPN}}\right)
 K_{\text{Prec}}\left(1.5+2\gamma_{\text{eff}}-C_2\right),
 $$
 $$
-K_{\text{Prec}}=\frac{2\pi GM}{a(1-e^2)c_f^2}.
+K_{\text{Prec}}=\frac{2\pi GM}{a(1-e^2)c_0^2}.
 $$
 4. Gravitational redshift (to retained order):
 $$
@@ -363,9 +368,9 @@ O_4(\mathbf{\theta})
 =
 K_{\text{Red1}}-K_{\text{Red2}}C_2,
 \qquad
-K_{\text{Red1}}=\frac{\Delta U}{c_f^2},
+K_{\text{Red1}}=\frac{\Delta U}{c_0^2},
 \quad
-K_{\text{Red2}}=\frac{\Delta(U^2)}{c_f^4}.
+K_{\text{Red2}}=\frac{\Delta(U^2)}{c_0^4}.
 $$
 
 First-order observable sensitivities are
@@ -391,9 +396,9 @@ For this spherically symmetric classical set, preferred-frame channels $(\Xi_1,\
 
 Use
 $$
-\frac{GM_\odot}{c_f^2}=1.4766\times 10^3\ \mathrm{m},
+\frac{GM_\odot}{c_0^2}=1.4766\times 10^3\ \mathrm{m},
 \qquad
-\frac{GM_\odot}{c_f^3}=4.925\times 10^{-6}\ \mathrm{s},
+\frac{GM_\odot}{c_0^3}=4.925\times 10^{-6}\ \mathrm{s},
 $$
 with reference kernels
 $$

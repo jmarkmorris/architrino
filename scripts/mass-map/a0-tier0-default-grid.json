@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "artifact": "a0-tier0-branch-search",
+    "status": "diagnostic-scaffold",
+    "description": "Default reduced grid for the $A_0$ Tier 0 algebraic branch-search scaffold."
+  },
+  "seaCell": {
+    "c_f": 1,
+    "u_sea": [0, 0, 0],
+    "G_grad": 0,
+    "n": 1,
+    "chi_sea": 1
+  },
+  "grid": {
+    "outerRadius": [1],
+    "epsilonIM": [0.1, 0.125],
+    "epsilonMO": [0.25],
+    "deltaI": [0.2],
+    "deltaM": [0],
+    "deltaO": [0.2],
+    "ellipticity": [1],
+    "handedness": [
+      [1, 1, 1],
+      [1, 1, -1]
+    ]
+  },
+  "sampling": {
+    "sampleCount": 16,
+    "rootSamples": 128,
+    "historyPeriods": 1.25,
+    "minDelay": 0.000001,
+    "rootTolerance": 0.000001,
+    "stateTolerance": 0.02,
+    "driftTolerance": 0.02,
+    "phaseTolerance": 0.02,
+    "speedTolerance": 0.02,
+    "leakageTolerance": 0.000001
+  },
+  "classification": {
+    "modeMax": 3,
+    "gammaAvg": 0.02,
+    "jLockThreshold": 0.05,
+    "speedLockThreshold": 0.05,
+    "instantaneousSelfDelayFactor": 2,
+    "maxActiveNearSeparatorRoots": 0,
+    "maxExcludedInstantaneousSelfRoots": 0
+  }
+}

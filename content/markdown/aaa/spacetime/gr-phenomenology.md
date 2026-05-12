@@ -34,13 +34,13 @@ The clock channel must reproduce
 $$
 \frac{d\tau}{dt}
 \approx
-\sqrt{1+\frac{2\Phi_N}{c_f^2}-\frac{v^2}{c_f^2}}
+\sqrt{1+\frac{2\Phi_N}{c_0^2}-\frac{v^2}{c_0^2}}
 $$
-in the weak-field, low-velocity regime. For static clocks this reduces to
+in the weak-field, low-velocity observer regime, where $c_0\equiv c_{\text{eff}}(\infty)$ is the dressed asymptotic clock/signal speed. The primitive wake speed $c_f$ still belongs inside delayed-root and self-hit equations; it is not the default denominator for observer clock dilation unless a closure result identifies the relevant dressed branch with $c_f$. For static clocks this reduces to
 $$
 \frac{\Delta \nu}{\nu}
 \approx
-\frac{\Delta \Phi_N}{c_f^2}.
+\frac{\Delta \Phi_N}{c_0^2}.
 $$
 
 Operationally, GPS offsets, Pound-Rebka, and related clock-comparison tests are the direct acceptance layer.
@@ -49,21 +49,27 @@ Operationally, GPS offsets, Pound-Rebka, and related clock-comparison tests are 
 
 In the refractive-medium picture, one-way path time is
 $$
-t[\Gamma]=\frac{1}{c_f}\int_\Gamma \chi_{\text{sea}}(\mathbf{x})\,ds,
+t[\Gamma]=\frac{1}{c_0}\int_\Gamma \bar{\chi}_{\text{sea}}(\mathbf{x})\,ds,
 $$
 with
 $$
-\chi_{\text{sea}}(\mathbf{x})=1-(1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf{x})}{c_f^2}
-+O(c_f^{-4}).
+\bar{\chi}_{\text{sea}}(\mathbf{x})
+\equiv
+\frac{c_0}{c_{\text{eff}}(\mathbf{x})}
+=
+\frac{c_0}{c_f}\chi_{\text{sea}}(\mathbf{x})
+=
+1-(1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf{x})}{c_0^2}
++O(c_0^{-4}).
 $$
 
 For a point mass, the resulting delay is
 $$
 \Delta t
 =
-\frac{(1+\gamma_{\text{eff}})GM}{c_f^3}
+\frac{(1+\gamma_{\text{eff}})GM}{c_0^3}
 \ln\!\left(\frac{r_1+r_2+R}{r_1+r_2-R}\right)
-+O(c_f^{-5}),
++O(c_0^{-5}),
 $$
 which must match the GR coefficient at current solar-system precision.
 
@@ -74,11 +80,11 @@ $$
 \Delta\theta
 \approx
 2(1+\gamma_{\text{eff}})
-\frac{GM}{b\,c_f^2},
+\frac{GM}{b\,c_0^2},
 $$
 with impact parameter $b$. In the GR-matching limit $\gamma_{\text{eff}}=1$, this reduces to the standard
 $$
-\Delta\theta \approx \frac{4GM}{b\,c_f^2}.
+\Delta\theta \approx \frac{4GM}{b\,c_0^2}.
 $$
 
 So Shapiro delay and lensing are not separate fit channels. They are two readouts of the same constitutive coefficient.

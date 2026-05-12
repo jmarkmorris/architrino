@@ -12,6 +12,17 @@ The opening gives the top-level simulation rule set; the later sections unpack t
 4. **Noether Sea Initialization**: Low-excitation Noether-Sea runs must pre-populate the grid with a lattice of coupled pro/anti tri-binary assemblies to simulate the medium's influence on test particles.
 5. **Convergence**: $\Delta t$ refinement must be accompanied by "History Resolution" refinement to ensure self-hit calculations are numerically stable.
 
+## $A_0$ Branch-Certificate Protocol
+
+The first mass-map target has a specialized protocol in [$A_0$ Branch Certificate Protocol](a0-branch-certificate-protocol.md), with Tier 0 row semantics summarized in [$A_0$ Tier 0 Result Interpretation](a0-tier0-result-interpretation.md). That protocol separates four stages:
+
+1. Tier 0 algebraic branch search for finite root-ledger candidates.
+2. Tier 1 $\eta>0$ delayed-dynamics continuation and Floquet diagnostics.
+3. Tier 2 internal-energy and shielding extraction.
+4. Tier 3 medium-response tensor probes.
+
+No simulation run should report $\zeta(A_0)$, $E_{\text{internal}}(A_0)$, or $\mathcal{M}_{\text{sea}}^{ab}$ as accepted outputs unless the preceding branch-certificate gates have passed.
+
 ## Run Protocol: Absolute-Frame + $\mathbb{U}_{\text{now}}$ Logging
 
 ### Absolute frame rule

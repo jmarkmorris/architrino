@@ -1,14 +1,14 @@
-# Architrino Framework and SI Base Units: Deep Intersection Analysis
+# $\mathbb{A}\mathbb{A}\mathbb{A}$ and SI Base Units: Deep Intersection Analysis
 
-This chapter examines how the modern SI system interfaces with the architrino program. Its purpose is to ask which defining constants might be derivable, which remain primitive, and what kinds of constant-relations the theory should eventually explain if its geometric closure program succeeds.
+This chapter examines how the modern SI system interfaces with $\mathbb{A}\mathbb{A}\mathbb{A}$. Its purpose is to ask which defining constants might be derivable, which remain primitive, and what kinds of constant-relations the theory should eventually explain if its geometric closure program succeeds.
 
 It should be read together with [Parameter Ledger](parameter-ledger.md), [Mapping the Planck Scale](../theory-bridges/planck-scale-tri-binary-alignment.md), [Energy](../dynamics/energy.md), [Particle Masses](../assemblies/particle-masses.md), and [Atomic Spectra](../nuclear-atomic/atomic-spectra.md).
 
 ## Executive Summary
 
-The **2019 revision of the SI** redefined all seven base units in terms of **fixed fundamental constants**, eliminating physical artifacts. This is structurally aligned with the architrino framework's goal: deriving observable physics from a minimal set of substrate postulates (Euclidean void, absolute time, architrino charge $|e/6|$, field speed $c_f$).
+The **2019 revision of the SI** redefined all seven base units in terms of **fixed fundamental constants**, eliminating physical artifacts. This is structurally aligned with the goal of $\mathbb{A}\mathbb{A}\mathbb{A}$: deriving observable physics from a minimal set of substrate postulates (Euclidean void, absolute time, architrino charge $|e/6|$, field speed $c_f$).
 
-The architrino program can potentially:
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ program can potentially:
 1. **Derive** the numerical values of SI-defining constants from architrino geometry
 2. **Explain** why certain constants are fundamental while others are emergent
 3. **Predict** relationships between constants that appear independent in the Standard Model
@@ -34,7 +34,7 @@ The **new SI** defines all units via **exact values** of seven constants:
 
 ---
 
-## Architrino Framework: Fundamental Parameters
+## $\mathbb{A}\mathbb{A}\mathbb{A}$: Fundamental Parameters
 
 In this framework, the candidate substrate-level quantities are:
 
@@ -204,7 +204,7 @@ $$
 
 **Architrino Interpretation:**
 
-Boltzmann's constant $k_B$ is the conversion factor between **energy** and **temperature**. But what **is** temperature in the architrino framework?
+Boltzmann's constant $k_B$ is the conversion factor between **energy** and **temperature**. But what **is** temperature in $\mathbb{A}\mathbb{A}\mathbb{A}$?
 
 **Hypothesis:**
 Temperature is the **mean kinetic energy per degree of freedom** in the Noether-Sea bath:
@@ -279,9 +279,9 @@ The frequency 540 THz corresponds to green light ($\lambda \approx 555$ nm), whe
 
 ---
 
-## Summary Table: SI Constants vs Architrino Parameters
+## Summary Table: SI Constants vs $\mathbb{A}\mathbb{A}\mathbb{A}$ Parameters
 
-| SI Constant | Status in Architrino Framework | Derivation Pathway |
+| SI Constant | Status in $\mathbb{A}\mathbb{A}\mathbb{A}$ | Derivation Pathway |
 |-------------|-------------------------------|-------------------|
 | $\Delta \nu_{\text{Cs}}$ | **Derivable** | Hyperfine splitting from Middle Binary magnetic moments |
 | $c$ | **Operational limit near $c_f$** | Low-gradient photon-channel speed; deviations are encoded by $\chi_{\text{sea}}$ |
@@ -295,7 +295,7 @@ The frequency 540 THz corresponds to green light ($\lambda \approx 555$ nm), whe
 
 ## Implications: Reducing the SI to Architrino Postulates
 
-If the architrino program succeeds, we can **replace** the seven SI-defining constants with:
+If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the seven SI-defining constants with:
 
 ### New Fundamental Constants (Architrino SI)
 1. **Architrino charge** $|e/6|$ (replaces $e$)
@@ -327,9 +327,9 @@ If the architrino program succeeds, we can **replace** the seven SI-defining con
    - Identify where/how deviations appear (Planck scale, strong gravity)
 
 3. **Derive particle masses**
-   - Proton: $m_p = f(\text{3 quark tri-binaries + Noether-Sea coupling})$
-   - Electron: $m_e = f(\text{single tri-binary geometry})$
-   - Predict mass ratios: $m_p/m_e \approx 1836$
+   - First derive the calibration-free $A_0$ reference-attractor packet described in [Particle Masses](../assemblies/particle-masses.md#reference-attractor-gate).
+   - Use that packet to extract $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, and the baseline $\mathcal{M}_{\text{sea}}^{ab}$ response map before using electron, proton, or charged-lepton data as benchmarks.
+   - Only after the mass-map gate is fixed, test downstream predictions such as $m_e$, $m_p$, and $m_p/m_e \approx 1836$.
 
 ### Tier 2 (High Priority)
 4. **Calculate $\Delta \nu_{\text{Cs}}$ from first principles**

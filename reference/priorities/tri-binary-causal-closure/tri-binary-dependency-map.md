@@ -152,6 +152,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 - Mechanism: monodromy operator $\mathcal{M}_{\mathbf{k}}$ on the tangent bundle of delay state space; spectral radius off the symmetry directions controls basin robustness.
 - Output: spectral gap $\Delta_{\mathbf{k}} = 1 - \max_{i\notin G}\|\mu_i(\mathbf{k})\|$ as the quantitative basin-robustness functional; accepted states are those with $\Delta_{\mathbf{k}}>0$.
 - Proof burden: establish discreteness of the Floquet spectrum off the unit circle for state-dependent self-hit delays; compute leading multipliers for representative tri-binary cycles; verify that the spectral gap closes precisely at the transverse-budget separator $\beta\to 1$ and at gradient-driven structural failure thresholds.
+- $A_0$ handoff: the first reduced mass-map branch certificate supplies the concrete test case: finite root ledger, branch label $\Lambda$, residual vector $\mathcal{R}_{A_0}$, and quotient stability gap $\Delta_{\mathbf{k}}$ for a neutral rest-branch tri-binary.
 - Priority route: `master-equation-closure`, `quantum-closure`, `simulations`.
 - Current disposition: `priority`.
 
@@ -267,6 +268,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 - Mechanism: define closure graphs $G_A$, braid/framing data, root-ledger intersection counts, and allowed causal surgery moves.
 - Output: computable invariants for branch preservation, emission, absorption, annihilation, decay, and transverse-rank collapse.
 - Proof burden: construct a certification language compatible with the finite certificate packet and later simulations.
+- $A_0$ handoff: use the reduced branch graph $\mathcal{G}_{A_0}$ as the first finite closure graph, with partner, self, and inter-layer edges, separator parity events, phase windings, and leakage channels recorded before any shielding or mass interpretation.
 - Priority route: `breather-proof`, `simulations`.
 - Current disposition: `priority`.
 
@@ -292,6 +294,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 | Photon gate B, polarization and spin | keep as roadmap and create task | `quantum-closure`, `standard-model-closure` |
 | Photon gate C, vertices and transitions | keep as roadmap and create task | `standard-model-closure`, `planar-bridge-closure` |
 | Floquet stability functional | create task | `master-equation-closure`, `quantum-closure`, `simulations` |
+| $A_0$ reduced branch certificate | route as the first finite tri-binary test case for Floquet and closure-graph diagnostics | `mass-map`, `simulations`, `master-equation-closure` |
 | Grazing-bifurcation separator classification | create task | `breather-proof`, `simulations` |
 | Slow-fast tri-binary minimality theorem | create task | `mass-map`, `master-equation-closure` |
 | Effective metric and Cartan connection | create task | `master-equation-closure`, `strong-field-closure` |

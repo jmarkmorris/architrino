@@ -115,6 +115,8 @@ $$
 $$
 This keeps the force of $E_0=m_0c^2$ while relocating its ontology. The equation remains the observer-level conversion law; the deeper task is to derive the internal ledger, shielding coefficient, and response tensor from Noether-core dynamics.
 
+The first mass-side gate is the $A_0$ reference attractor defined in [Particle Masses](../assemblies/particle-masses.md#reference-attractor-gate). That gate must produce a calibration-free internal-energy ledger, shielding coefficient, and medium-response baseline before $m_0$ is treated as a particle-specific prediction rather than a roadmap output.
+
 ## Energy-Momentum Channel
 
 Special relativity unifies energy and momentum through the mass shell
@@ -135,7 +137,7 @@ E_{\text{CM}}^2
 p_{\text{CM}}^2 c_{\text{eff}}^2
 +M_0^2c_{\text{eff}}^4.
 $$
-The terms are not substrate primitives. They are center-of-mass summaries of a dressed assembly state. The more resolved expression should include the internal energy ledger, shielding coefficient, deformation state, and Noether-Sea response tensor:
+The terms are not substrate primitives. They are center-of-mass summaries of a dressed assembly state. The more resolved theorem target should include the internal energy ledger, shielding coefficient, deformation state, and Noether-Sea response tensor:
 $$
 p_{\text{int}}^a
 \approx

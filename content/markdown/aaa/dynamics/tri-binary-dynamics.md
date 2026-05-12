@@ -44,11 +44,35 @@ Several speed symbols must remain separated:
 | Symbol or phrase | Meaning |
 | --- | --- |
 | $c_f$ | Primitive wake propagation speed in the substrate. |
-| $c_{\text{eff}}(\mathbf{x})$ | Local effective signal speed through the Noether Sea for assembly-level closure. |
+| $c_{\text{eff}}(\mathbf{x},t)$ | Noether-Sea dressed assembly-channel propagation speed used for clock/ruler closure and observer-sector metric comparisons. |
 | $c_\gamma(\mathbf{x})$ | Local photon-channel speed; in the working observer-level photon branch, $c_\gamma(\mathbf{x})\equiv c_{\text{eff}}(\mathbf{x})$. |
 | Locally measured light speed | The operational speed reconstructed by assembly clocks, rulers, and photon synchronization. |
 
 The primitive speed $c_f$ is used for wake-intersection and self-hit geometry. The effective speed $c_{\text{eff}}$ is used for Noether-Sea dressed closure and observer-level comparisons. These are not interchangeable. Any diagnostic that moves from primitive wake geometry to observer-level clocks, rulers, or photons must declare its dressing map.
+
+## Multi-Scale Layer Locking
+
+The baseline Noether core is not a stack of three identical circular binaries. It is a nested causal lock whose layers operate in different speed regimes. Let $s_\ell$ denote the characteristic speed of one member of layer $\ell$ around that layer's center. In the ordinary weak-stress regime, the target ordering is
+
+$$
+s_I > c_f,
+\qquad
+s_M \approx c_f,
+\qquad
+s_O < c_f.
+$$
+
+The inner binary is therefore self-hit and history-supported, the middle binary is the $v = c_f$ hinge where root branches are most sensitive, and the outer binary is the sub-field-speed interface that controls shielding and boundary coupling. Their radii, cycle times, and history-window depths may differ by orders of magnitude. A reduced derivation can start with a separated-scale hypothesis such as $R_I \ll R_M \ll R_O$ and $T_I \ll T_M \ll T_O$, but the branch must report the actual hierarchy rather than hiding it in the notation.
+
+This is why ordinary circular or elliptic orbit language is limited. A circular carrier can expose useful geometry and a separable layer ansatz can diagnose missing forces, but a tangential residual in that ansatz does not by itself settle the tri-binary problem. In a coupled lock, inter-layer wakes, self-hit roots, and near-separator branch changes can supply phase corrections that are absent from a single isolated two-body chart.
+
+The perturbation status should therefore be sorted before simplification:
+
+| Perturbation class | Dynamics role |
+| --- | --- |
+| Nonresonant fast terms | Average over the closed tri-binary cycle and mostly affect convergence or small far-field corrections. |
+| Resonant and near-separator terms | Change phase closure, causal-root counts, Jacobians, or Floquet multipliers, so they remain part of the branch definition. |
+| Leakage terms | May be small internally while surviving as far-field multipoles or anisotropy, so they control the shielding extraction. |
 
 ## Mass Thesis as a Dynamics Target
 
@@ -76,28 +100,51 @@ This is the common mechanical basis for three later effective readouts:
 - longitudinal ruler contraction, because inter-assembly spacing must retune for forward and backward exchange;
 - inertial response, because acceleration forces the internal causal ledger to re-close under a changing kinematic bias.
 
-## Proper Time as Internal Cycle Count
+## Transverse Causal Budget Lemma
 
-Proper time $\tau$ is the cycle count of a stable Noether-core clock, not the absolute substrate time $t$ itself. In a homogeneous Noether-Sea cell, the transverse causal budget for a moving assembly is
+Proper time $\tau$ is the cycle count of a stable Noether-core clock, not the absolute substrate time $t$ itself. The reusable dynamics target behind that clock law is the transverse causal budget lemma.
+
+Work in the local rest frame of the relevant medium or branch chart, and declare one causal speed $c_\star$ before forming the budget:
+
+| Use case | Declared speed |
+| --- | --- |
+| Primitive wake-intersection or self-hit branch chart | $c_\star=c_f$ |
+| Noether-Sea dressed assembly clock or ruler comparison | $c_\star=c_{\text{eff}}(\mathbf{x})$ |
+| Photon-channel synchronization or Gate A tests | $c_\star=c_\gamma(\mathbf{x})$ |
+
+These choices are not interchangeable. The primitive equation of motion uses $c_f$; observer-level clock, ruler, and photon comparisons must use the dressed speed appropriate to the channel being tested. The photon-channel identification $c_\gamma(\mathbf{x})\equiv c_{\text{eff}}(\mathbf{x})$ is therefore a closure target, not a notation shortcut.
+
+For a moving assembly with center-of-mass velocity $\mathbf{V}_{\text{cm}}$ relative to the declared local frame, define
 
 $$
+\beta_\star
+=\frac{\|\mathbf{V}_{\text{cm}}\|}{c_\star}.
+$$
+
+The causal budget decomposes into an axial part used to keep pace with the translated receiver and a transverse part available for internal closure:
+
+$$
+c_{\parallel}=\|\mathbf{V}_{\text{cm}}\|,
+\qquad
 c_{\perp}
 =
-c_{\text{eff}}
-\sqrt{1-\frac{\|\mathbf{V}_{\text{cm}}\|^2}{c_{\text{eff}}^2}}.
+c_\star
+\sqrt{1-\frac{\|\mathbf{V}_{\text{cm}}\|^2}{c_\star^2}}.
 $$
 
-The clock-rate diagnostic is therefore
+The lemma target is that a stable tri-binary clock preserving the same integer root-ledger branch extracts its clock-rate diagnostic from the remaining transverse budget:
 
 $$
 \frac{\Delta\tau}{\Delta t}
 =
-\frac{c_{\perp}}{c_{\text{eff}}}
+\frac{c_{\perp}}{c_\star}
 =
-\sqrt{1-\frac{\|\mathbf{V}_{\text{cm}}\|^2}{c_{\text{eff}}^2}}.
+\sqrt{1-\frac{\|\mathbf{V}_{\text{cm}}\|^2}{c_\star^2}},
 $$
 
-This is the causal-budget route to the standard effective dilation law. The chapter treats it as a working mechanism: moving assembly clocks tick more slowly because less transverse causal capacity remains for closing their internal tri-binary cycles.
+up to branch-change, leakage, anisotropy, gradient, and finite-stability residuals that must be measured by the Floquet and Cartan diagnostics below. In a homogeneous Noether-Sea clock/ruler cell this specializes to $c_\star=c_{\text{eff}}$, giving the usual effective dilation target. In a primitive branch scan the same algebra may be tested with $c_\star=c_f$, but that does not by itself prove the observer-level clock law.
+
+This is the causal-budget route to the standard effective dilation law. It is a derivation/closure target: moving assembly clocks tick more slowly because less transverse causal capacity remains for closing their internal tri-binary cycles. The same lemma is the local source for [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md), the operational compensation program in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md), photon Gate A in [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md#photon-closure-interface), and the ADM/Cartan reconstruction target below.
 
 ## ADM/Cartan Reconstruction Target
 
@@ -132,7 +179,7 @@ The dynamics chapter contributes the stable pieces needed by the larger theorem 
 1. Define the speed hierarchy and the causal-speed guardrails.
 2. Model the tri-binary Noether core as inner engine, middle fulcrum, and outer shielding/interface layer.
 3. Track how motion deforms the rest-state lock into braided spiral-helical geometry.
-4. Derive local clock diagnostics from transverse causal budget.
+4. Derive local clock diagnostics from the transverse causal budget lemma.
 5. Output alignment, closure, Floquet, grazing, and Cartan reconstruction diagnostics.
 6. Keep mass, photon, equivalence-principle, and full GR matching claims at the level of reconstruction targets until their proof burdens close.
 

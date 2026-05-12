@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "substance_structure_potential",
+    "title": "Substance, Structure, and the Plenum of Potential",
+    "type": "Scene-Markdown-Split",
+    "units": "relative",
+    "wrapLabels": true,
+    "centerOn": "substance_structure_potential_overview",
+    "layout": {
+      "type": "rings"
+    },
+    "labelDocIconOwnLine": true,
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+      "split": {
+        "headingLevel": 2,
+        "maxDepth": 1,
+        "overrides": {
+          "overview": {
+            "id": "substance_structure_potential_overview",
+            "labelTitle": "Overview",
+            "labelBadge": "doc",
+            "mode": "doc"
+          },
+          "ontological discipline": {
+            "id": "substance_structure_potential_ontology",
+            "labelTitle": "Ontological Discipline",
+            "labelBadge": "doc"
+          },
+          "matter and material": {
+            "id": "substance_structure_potential_matter_material",
+            "labelTitle": "Matter / Material",
+            "labelBadge": "doc"
+          },
+          "wake as structure": {
+            "id": "substance_structure_potential_wake_structure",
+            "labelTitle": "Wake as Structure",
+            "labelBadge": "doc"
+          },
+          "the euclidean void": {
+            "id": "substance_structure_potential_void",
+            "labelTitle": "Euclidean Void",
+            "labelBadge": "doc"
+          },
+          "the plenum of potential": {
+            "id": "substance_structure_potential_plenum",
+            "labelTitle": "Plenum of Potential",
+            "labelBadge": "doc"
+          },
+          "relation to modern vacuum language": {
+            "id": "substance_structure_potential_vacuum",
+            "labelTitle": "Vacuum Language",
+            "labelBadge": "doc"
+          },
+          "methodological use": {
+            "id": "substance_structure_potential_method",
+            "labelTitle": "Methodological Use",
+            "labelBadge": "doc"
+          }
+        }
+      }
+    },
+    "view": {
+      "columns": 1
+    }
+  },
+  "objects": []
+}

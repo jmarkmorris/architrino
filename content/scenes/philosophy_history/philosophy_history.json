@@ -32,6 +32,10 @@
         "scenePath": "content/scenes/philosophy_history/theory_differentials.json"
       },
       {
+        "nodeId": "substance_structure_potential",
+        "scenePath": "content/scenes/philosophy_history/substance_structure_potential.json"
+      },
+      {
         "nodeId": "historical_context_missed_opportunities",
         "scenePath": "content/scenes/philosophy_history/historical_context_missed_opportunities.json"
       },
@@ -77,7 +81,7 @@
       "color": "#243d8f",
       "position": [
         0,
-        10.5,
+        11,
         0
       ],
       "motion": {
@@ -92,8 +96,8 @@
       "radius": 2.688,
       "color": "#5a3f73",
       "position": [
-        6.75,
-        8.04,
+        6.47,
+        8.9,
         0
       ],
       "motion": {
@@ -108,8 +112,8 @@
       "radius": 2.688,
       "color": "#2f4f7a",
       "position": [
-        10.34,
-        1.82,
+        10.46,
+        3.4,
         0
       ],
       "motion": {
@@ -124,8 +128,8 @@
       "radius": 2.688,
       "color": "#3f6a5a",
       "position": [
-        9.09,
-        -5.25,
+        6.47,
+        -8.9,
         0
       ],
       "motion": {
@@ -135,13 +139,30 @@
       "fixedPosition": true
     },
     {
+      "id": "substance_structure_potential",
+      "title": "Substance, Structure, and the Plenum of Potential",
+      "radius": 2.688,
+      "color": "#7a5430",
+      "position": [
+        10.46,
+        -3.4,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Substance / Structure",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
       "id": "historical_context_missed_opportunities",
       "title": "Historical Context and Missed Opportunities",
       "radius": 2.688,
       "color": "#2f6b6f",
       "position": [
-        3.59,
-        -9.87,
+        0,
+        -11,
         0
       ],
       "motion": {
@@ -156,8 +177,8 @@
       "radius": 2.688,
       "color": "#4b0082",
       "position": [
-        -3.59,
-        -9.87,
+        -6.47,
+        -8.9,
         0
       ],
       "motion": {
@@ -172,8 +193,8 @@
       "radius": 2.688,
       "color": "#3a5f9f",
       "position": [
-        -9.09,
-        -5.25,
+        -10.46,
+        -3.4,
         0
       ],
       "motion": {
@@ -188,8 +209,8 @@
       "radius": 2.688,
       "color": "#2f4f7a",
       "position": [
-        -10.34,
-        1.82,
+        -10.46,
+        3.4,
         0
       ],
       "motion": {
@@ -204,8 +225,8 @@
       "radius": 2.688,
       "color": "#6a3c3c",
       "position": [
-        -6.75,
-        8.04,
+        -6.47,
+        8.9,
         0
       ],
       "motion": {

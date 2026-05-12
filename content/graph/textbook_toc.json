@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 150,
-      "sections": 1072
+      "entries": 152,
+      "sections": 1089
     }
   },
   "tocRoot": {
@@ -706,7 +706,7 @@
           },
           {
             "id": "foundations__bootstrapping_the_absolute_frame",
-            "title": "Bootstrapping a Coordinate Frame",
+            "title": "Reconstructing a Coordinate Frame from Wake Geometry",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
@@ -746,10 +746,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Step 4: Resolving Handedness (Chirality Convention)",
+                "title": "Step 4: Resolving Handedness (Parity Convention)",
                 "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-                "markdownSection": "Step 4: Resolving Handedness (Chirality Convention)",
-                "sectionKey": "step 4 resolving handedness chirality convention",
+                "markdownSection": "Step 4: Resolving Handedness (Parity Convention)",
+                "sectionKey": "step 4 resolving handedness parity convention",
                 "headingLevel": 2
               },
               {
@@ -762,18 +762,18 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Summary Table: Bootstrapping Steps",
+                "title": "Summary Table: Reconstruction Steps",
                 "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-                "markdownSection": "Summary Table: Bootstrapping Steps",
-                "sectionKey": "summary table bootstrapping steps",
+                "markdownSection": "Summary Table: Reconstruction Steps",
+                "sectionKey": "summary table reconstruction steps",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Categories of Cognition Served by Each Step",
+                "title": "Categories of Calculation Served by Each Step",
                 "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-                "markdownSection": "Categories of Cognition Served by Each Step",
-                "sectionKey": "categories of cognition served by each step",
+                "markdownSection": "Categories of Calculation Served by Each Step",
+                "sectionKey": "categories of calculation served by each step",
                 "headingLevel": 2
               },
               {
@@ -1083,6 +1083,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Multi-Scale Layer Locking",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Multi-Scale Layer Locking",
+                "sectionKey": "multi scale layer locking",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Mass Thesis as a Dynamics Target",
                 "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
                 "markdownSection": "Mass Thesis as a Dynamics Target",
@@ -1099,10 +1107,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Proper Time as Internal Cycle Count",
+                "title": "Transverse Causal Budget Lemma",
                 "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Proper Time as Internal Cycle Count",
-                "sectionKey": "proper time as internal cycle count",
+                "markdownSection": "Transverse Causal Budget Lemma",
+                "sectionKey": "transverse causal budget lemma",
                 "headingLevel": 2
               },
               {
@@ -2448,6 +2456,14 @@
                   },
                   {
                     "kind": "markdown-section",
+                    "title": "ADM/Cartan Reconstruction Surface",
+                    "markdownPath": "content/markdown/aaa/spacetime/emergent-metric.md",
+                    "markdownSection": "ADM/Cartan Reconstruction Surface",
+                    "sectionKey": "adm cartan reconstruction surface",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Noether-Core Deformation and Metric Language",
                     "markdownPath": "content/markdown/aaa/spacetime/emergent-metric.md",
                     "markdownSection": "Noether-Core Deformation and Metric Language",
@@ -2488,10 +2504,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Weak-Field Geodesic Handoff (Constitutive Subclass)",
+                    "title": "Weak-Field Geodesic Handoff (ADM Constitutive Subclass)",
                     "markdownPath": "content/markdown/aaa/spacetime/emergent-metric.md",
-                    "markdownSection": "Weak-Field Geodesic Handoff (Constitutive Subclass)",
-                    "sectionKey": "weak field geodesic handoff constitutive subclass",
+                    "markdownSection": "Weak-Field Geodesic Handoff (ADM Constitutive Subclass)",
+                    "sectionKey": "weak field geodesic handoff adm constitutive subclass",
                     "headingLevel": 2
                   }
                 ]
@@ -6575,10 +6591,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Architrino Framework: Fundamental Parameters",
+                "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$: Fundamental Parameters",
                 "markdownPath": "content/markdown/aaa/validation/architrino-si-base-units.md",
-                "markdownSection": "Architrino Framework: Fundamental Parameters",
-                "sectionKey": "architrino framework fundamental parameters",
+                "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$: Fundamental Parameters",
+                "sectionKey": "mathbb a mathbb a mathbb a fundamental parameters",
                 "headingLevel": 2
               },
               {
@@ -6591,10 +6607,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Summary Table: SI Constants vs Architrino Parameters",
+                "title": "Summary Table: SI Constants vs $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Parameters",
                 "markdownPath": "content/markdown/aaa/validation/architrino-si-base-units.md",
-                "markdownSection": "Summary Table: SI Constants vs Architrino Parameters",
-                "sectionKey": "summary table si constants vs architrino parameters",
+                "markdownSection": "Summary Table: SI Constants vs $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Parameters",
+                "sectionKey": "summary table si constants vs mathbb a mathbb a mathbb a parameters",
                 "headingLevel": 2
               },
               {
@@ -7407,10 +7423,76 @@
                   },
                   {
                     "kind": "markdown-section",
+                    "title": "$A_0$ Branch-Certificate Protocol",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/run-protocols.md",
+                    "markdownSection": "$A_0$ Branch-Certificate Protocol",
+                    "sectionKey": "a 0 branch certificate protocol",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Run Protocol: Absolute-Frame + $\\mathbb{U}_{\\text{now}}$ Logging",
                     "markdownPath": "content/markdown/aaa/validation/simulations/run-protocols.md",
                     "markdownSection": "Run Protocol: Absolute-Frame + $\\mathbb{U}_{\\text{now}}$ Logging",
                     "sectionKey": "run protocol absolute frame mathbb u text now logging",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
+                "id": "validation_simulations__sim_a0_branch_certificate_protocol",
+                "title": "A0 Branch Certificate Protocol",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/validation/sim_a0_branch_certificate_protocol.json",
+                "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Tier 0: Algebraic Branch Search",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+                    "markdownSection": "Tier 0: Algebraic Branch Search",
+                    "sectionKey": "tier 0 algebraic branch search",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Tier 1: $\\eta>0$ Continuation",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+                    "markdownSection": "Tier 1: $\\eta>0$ Continuation",
+                    "sectionKey": "tier 1 eta 0 continuation",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Tier 2: Energy and Shielding",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+                    "markdownSection": "Tier 2: Energy and Shielding",
+                    "sectionKey": "tier 2 energy and shielding",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Tier 3: Medium-Response Probe",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+                    "markdownSection": "Tier 3: Medium-Response Probe",
+                    "sectionKey": "tier 3 medium response probe",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Runtime Artifact",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+                    "markdownSection": "Runtime Artifact",
+                    "sectionKey": "runtime artifact",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Acceptance Boundary",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+                    "markdownSection": "Acceptance Boundary",
+                    "sectionKey": "acceptance boundary",
                     "headingLevel": 2
                   }
                 ]
@@ -9233,6 +9315,80 @@
                     "headingLevel": 3
                   }
                 ]
+              }
+            ]
+          },
+          {
+            "id": "substance_structure_potential",
+            "title": "Substance, Structure, and the Plenum of Potential",
+            "kind": "markdown-split",
+            "sceneType": "Scene-Markdown-Split",
+            "scenePath": "content/scenes/philosophy_history/substance_structure_potential.json",
+            "markdownPath": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Overview",
+                "markdownPath": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+                "markdownSection": "Overview",
+                "sectionKey": "overview",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Ontological Discipline",
+                "markdownPath": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+                "markdownSection": "Ontological Discipline",
+                "sectionKey": "ontological discipline",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Matter / Material",
+                "markdownPath": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+                "markdownSection": "Matter and Material",
+                "sectionKey": "matter and material",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Wake as Structure",
+                "markdownPath": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+                "markdownSection": "Wake as Structure",
+                "sectionKey": "wake as structure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Euclidean Void",
+                "markdownPath": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+                "markdownSection": "The Euclidean Void",
+                "sectionKey": "the euclidean void",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Plenum of Potential",
+                "markdownPath": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+                "markdownSection": "The Plenum of Potential",
+                "sectionKey": "the plenum of potential",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Vacuum Language",
+                "markdownPath": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+                "markdownSection": "Relation to Modern Vacuum Language",
+                "sectionKey": "relation to modern vacuum language",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Methodological Use",
+                "markdownPath": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+                "markdownSection": "Methodological Use",
+                "sectionKey": "methodological use",
+                "headingLevel": 2
               }
             ]
           },

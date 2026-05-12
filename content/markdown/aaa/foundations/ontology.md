@@ -17,6 +17,8 @@ This document establishes the **ontological bedrock** of $\mathbb{A}\mathbb{A}\m
 
 All subsequent dynamical laws, assembly mappings, and emergent phenomena are **built upon** these foundations. Any contradiction or ambiguity here propagates through the entire $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus; therefore, this document is maintained with maximal rigor and clarity.
 
+Two category distinctions govern the rest of this hub. First, fundamental material is not the same as emergent matter: the architrino is primitive substance, while matter begins only as assembly-level behavior with mass, exclusion, and persistent organization. Second, substantive existence is not the same as relational structure: causal wakes are physically real dynamical geometry, but they are computable from architrino path history rather than an additional material ingredient in the void.
+
 ## The Substrate (What Exists Fundamentally)
 
 ### Absolute Time
@@ -54,6 +56,8 @@ For the factor-level specifications, see [Absolute Time](./absolute-time.md) and
 ## The Fundamental Entity (Architrino)
 
 [Architrino](./architrino.md) is the canonical primitive-entity specification for $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines the architrino as a point transceiver in absolute timespace with definite polarity, persistent identity, continuous causal-wake emission, universal wake reception, and non-creation/non-destruction at the ontological level.
+
+The architrino is the sole primitive material substance of the theory. This does not make an isolated architrino a matter particle: rest mass, spatial exclusion, fermionic behavior, and particle species are downstream assembly properties. Its emitted causal wake is likewise not another substance. The wake is the relational dynamical geometry by which path history becomes delayed interaction.
 
 In this ontology hub, the key commitment is:
 

@@ -35,6 +35,10 @@
         "scenePath": "content/scenes/validation/sim_run_protocols.json"
       },
       {
+        "nodeId": "sim_a0_branch_certificate_protocol",
+        "scenePath": "content/scenes/validation/sim_a0_branch_certificate_protocol.json"
+      },
+      {
         "nodeId": "sim_synthetic_observables",
         "scenePath": "content/scenes/validation/sim_synthetic_observables.json"
       },
@@ -90,6 +94,14 @@
       "radius": 2.688,
       "color": "#6a3c3c",
       "labelTitle": "Run Protocols",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "sim_a0_branch_certificate_protocol",
+      "title": "A0 Branch Certificate Protocol",
+      "radius": 2.688,
+      "color": "#5b4a2f",
+      "labelTitle": "A0 Branch Certificate Protocol",
       "labelBadge": "doc"
     },
     {

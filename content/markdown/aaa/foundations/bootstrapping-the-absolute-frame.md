@@ -1,16 +1,18 @@
-# Bootstrapping a Coordinate Frame
+# Reconstructing a Coordinate Frame from Wake Geometry
 
-This chapter explains how a usable coordinate frame is constructed from intrinsic physics rather than assumed from pre-labeled space. Its purpose is to show how a preferred operational frame can be bootstrapped from wake geometry while keeping clear that the coordinate system itself is a cognitive and computational scaffold, not an extra ontological ingredient.
+This chapter explains how a usable coordinate scaffold can be reconstructed from complete-state wake geometry rather than assumed from pre-labeled space. Its purpose is to show that the ontology contains enough invariant structure to define an absolute-frame coordinate scaffold from the $\mathbb{U}_{\text{now}}$ universe-state perspective, while keeping clear that the coordinate system itself is a mathematical and computational scaffold, not an extra ontological ingredient.
 
 ## Overview
 
-Having established in the previous chapter that a stationary architrino can be identified through the concentric geometry of its spherically expanding causal wakes, we now face the practical challenge of constructing a complete coordinate system. The Euclidean void provides no intrinsic markers: no origin point labeled "here," no arrows painted "this way," and no universal clock displaying "now = 0."
+Having established in the previous chapter that a stationary architrino can be identified through the concentric geometry of its spherically expanding causal wakes, the next task is to reconstruct a complete coordinate system. The Euclidean void provides no intrinsic markers: no origin point labeled "here," no arrows painted "this way," and no universal clock displaying "now = 0."
 
 The conceptual sequence is: [Detecting the Absolute Frame](detecting-the-absolute-frame.md) identifies absolute rest, [Absolute Time Defense](absolute-time-defense.md) defends the global temporal ledger, and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md) explains how observer-level clocks arise once the coordinate scaffold is in place.
 
-The coordinate system we construct is a **human cognitive tool**: a scaffolding we impose to perform calculations, run simulations, and make predictions. **The universe itself requires none of this.** Architrinos interact through their potential wakes according to invariant laws that can exhibit **meta-stable branching** at self-hit thresholds. The physics continues whether or not any observer bothers to label the axes.
+The coordinate system reconstructed here is a **mathematical and computational tool**: a scaffold used to state equations in components, run simulations, and compare descriptions. **The universe itself requires none of this.** Architrinos interact through their potential wakes according to invariant laws that can exhibit **meta-stable branching** at self-hit thresholds. The physics continues whether or not any Physical Observer labels the axes.
 
-What follows is the systematic procedure by which a $\mathbb{U}_{\text{now}}$ universe-state perspective can bootstrap a complete, unambiguous coordinate frame from the raw geometric data of architrino positions and their causal wake patterns.
+**This complete-state reconstruction is a mathematical existence proof demonstrating that a unique basis can be defined from the $\mathbb{U}_{\text{now}}$ universe-state perspective. It is not an operational laboratory protocol for Physical Observers made of assemblies.**
+
+What follows is the systematic procedure by which the $\mathbb{U}_{\text{now}}$ universe-state perspective can reconstruct a complete, unambiguous coordinate frame from the raw geometric data of architrino positions and their causal wake patterns.
 
 ## Step 1: Establishing the Origin (The Anchor Point)
 
@@ -34,7 +36,7 @@ $$
 - The **absolute time zero**
 
 **Why This Step Is Necessary:**
-Without an origin, we cannot define position vectors. Every subsequent measurement of "where" must be relative to some reference point. The concentric-wake criterion gives us an **objective, observer-independent** method to select this point.
+Without an origin, position vectors cannot be represented in components. Every subsequent statement of "where" must be relative to some reference point. The concentric-wake criterion gives the complete-state reconstruction an **objective, observer-independent** method to select this point.
 
 ## Step 2: Defining the Primary Axis (First Direction)
 
@@ -66,7 +68,7 @@ We have now fixed a **direction** in the void. This establishes the first spatia
 To compute derivatives, projections, and vector components, we need at least one defined direction. The displacement vector between two architrinos provides this in a coordinate-free, objective manner.
 
 **Physical Note:**
-The choice of *which* architrino becomes #2 is arbitrary. Any non-coincident architrino will work. The physics is rotationally symmetric; we are simply choosing a convenient north pole for our coordinate grid.
+The choice of *which* architrino becomes #2 is arbitrary. Any non-coincident architrino will work. The physics is rotationally symmetric; the reconstruction is simply choosing a convenient north pole for the coordinate grid.
 
 ## Step 3: Defining the Plane (Second Independent Direction)
 
@@ -108,9 +110,11 @@ We have now defined a **plane** (the $xy$-plane) within the 3D void. Two orthogo
 **Why This Step Is Necessary:**
 To perform full 3D vector calculus, we need a second independent direction. The plane spanned by $\hat{x}$ and $\hat{y}$ is now unambiguously defined by the positions of three architrinos.
 
-## Step 4: Resolving Handedness (Chirality Convention)
+## Step 4: Resolving Handedness (Parity Convention)
 
 **Architrino Required:** 0 additional (if conventional) **or** 1 additional (if empirical)
+
+Here **handedness** or **parity convention** is the geometric issue: choosing which side of the already-defined plane is positive $\hat{z}$. This is only a coordinate-basis choice. It should not be identified with fermionic chirality, which is reserved for the dynamical handed precession order of emergent Noether cores.
 
 ### Option A: Conventional Handedness (Mathematical Convention)
 
@@ -161,13 +165,13 @@ The handedness is now determined by the **physical configuration** of the archit
 It must be **non-coplanar** with the first three, so that it has a component perpendicular to the $xy$-plane.
 
 **Why This Might Be Preferred:**
-If the architrino theory predicts intrinsic chirality, we may want the coordinate handedness to align with the physical handedness of the assemblies. This ensures that labels like "left-handed neutrino" are consistently assigned.
+If an assembly-level model predicts a persistent parity bias or handed precession order, the coordinate handedness can be aligned with that physical ordering. This keeps later fermion labels consistently assigned while preserving the distinction between a coordinate-basis parity convention and dynamical chirality in the Noether core.
 
 ## Why None of This Is Required by the Universe
 
 The Euclidean void has no preferred origin, no painted axes, and no intrinsic notion of clockwise versus counterclockwise. The physics proceeds **without any coordinate labels whatsoever**.
 
-The bootstrapping process we have outlined is purely for **our benefit**:
+The reconstruction procedure outlined here serves theory-building and simulation:
 - To write down the master equation in component form
 - To run numerical simulations
 - To communicate results
@@ -175,9 +179,9 @@ The bootstrapping process we have outlined is purely for **our benefit**:
 
 The laws of physics are **coordinate-invariant**. A left-handed coordinate system and a right-handed one produce identical predictions for measurable quantities, differing only in the signs of pseudovectors.
 
-The universe does not care. **We do**, because a theory needs a language in which the relevant relationships can be expressed.
+The universe does not require the scaffold; the theory does, because the relevant relationships need a language in which they can be expressed.
 
-## Summary Table: Bootstrapping Steps
+## Summary Table: Reconstruction Steps
 
 | **Step** | **Architrinos Required** | **Purpose** | **DOFs Fixed** | **What Remains Undefined** | **Notes** |
 |----------|-------------------------|-------------|----------------|---------------------------|-----------|
@@ -191,7 +195,7 @@ The universe does not care. **We do**, because a theory needs a language in whic
 - **Conventional approach**: 3
 - **Empirical approach**: 4
 
-## Categories of Cognition Served by Each Step
+## Categories of Calculation Served by Each Step
 
 | **Category** | **Step 1 (Origin)** | **Step 2 (Axis 1)** | **Step 3 (Plane)** | **Step 4 (Handedness)** |
 |--------------|---------------------|---------------------|-------------------|------------------------|
@@ -206,19 +210,19 @@ The universe does not care. **We do**, because a theory needs a language in whic
 
 **Key Insight:**
 - Most calculations only require **orientation** (Steps 1-3).
-- **Handedness** matters only when computing cross-product or chiral quantities.
+- **Handedness** matters only when computing cross-product, pseudovector, or parity-sensitive quantities.
 
 ## Operational vs. Fundamental Distinction
 
 **For the $\mathbb{U}_{\text{now}}$ universe-state perspective:**
-The bootstrapping procedure is straightforward. The simulation has access to all architrino positions and can compute wake geometries exactly. The coordinate system is simply a data structure: an origin offset plus three orthonormal vectors.
+The complete-state reconstruction is straightforward. The simulation state has access to all architrino positions and can compute wake geometries exactly. The coordinate system is simply a data structure: an origin offset plus three orthonormal vectors.
 
-**For Operational Observers (Made of Assemblies):**
-We cannot directly measure the concentric wake geometry or identify an absolutely stationary architrino. Our rulers and clocks are themselves assemblies, distorted by motion and coupling to the Noether Sea. We measure:
+**For Physical Observers (assemblies):**
+Physical Observers cannot directly measure the complete concentric wake geometry or identify an absolutely stationary architrino by this procedure. Their rulers and clocks are themselves assemblies, distorted by motion and coupling to the Noether Sea. They measure:
 - **Proper time** $\tau$, not absolute time $t$
 - **Effective coordinates** via local rulers
 - **Relative velocities** via Doppler shifts and aberration
 
-The bootstrap described here is a **foundational consistency proof**: it shows the theory has the mathematical structure necessary to define absolute rest and absolute coordinates **in principle**. At accessible energies, the Lorentz-closure target is that moving-assembly deformation, clock/ruler retuning, and two-way signal synchronization bound preferred-frame leakage enough that we cannot detect the absolute frame operationally, while the frame remains the ontological bedrock beneath the effective geometry.
+The reconstruction described here is a **foundational consistency proof**: it shows the theory has the mathematical structure necessary to define absolute rest and absolute coordinates **in principle** from complete ontic data. At accessible energies, the Lorentz-closure target is that moving-assembly deformation, clock/ruler retuning, and two-way signal synchronization bound preferred-frame leakage enough that Physical Observers cannot detect the absolute frame operationally, while the frame remains the ontological bedrock beneath the effective geometry.
 
 For the effective kinematic layer built on top of this scaffold, see [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) and [Emergent Metric](../spacetime/emergent-metric.md).

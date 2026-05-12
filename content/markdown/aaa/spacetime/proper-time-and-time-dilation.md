@@ -18,6 +18,7 @@ and generalizes to strong‑field / high‑velocity conditions.
 
 Notation convention used in this chapter: $n(\mathbf{x})\equiv \rho_{\text{core}}(\mathbf{x})/\rho_{\text{core},0}$ is the canonical medium-density variable.
 The Noether-Sea delay factor is $\chi_{\text{sea}}(\mathbf{x})\equiv c_f/c_{\text{eff}}(\mathbf{x})$; use it for refractive-delay language so $n$ remains reserved for density.
+The clock-law derivation imports the [transverse causal budget lemma](../dynamics/tri-binary-dynamics.md#transverse-causal-budget-lemma): primitive branch tests may use $c_f$, but observer-level clock comparison uses the declared dressed speed $c_\star$, usually $c_\star=c_{\text{eff}}(\mathbf{x})$ in a local Noether-Sea cell.
 
 ---
 
@@ -68,24 +69,29 @@ When the clock moves with velocity $\mathbf{v}$ relative to the Noether Sea:
 1. **Path‑length elongation:** 
  Internal architrinos must traverse longer spatial paths per cycle because the clock’s center of mass is in motion. Even in the clock’s own rest frame, the underlying wake interactions are evaluated in the absolute frame where the worldline is slanted in spacetime.
 
-2. **Finite field speed ($c_f$):** 
- All internal forces are mediated by delayed, radial path‑history interactions at speed $c_f$. Relative motion modifies the set of causal intersection times for self‑hits and partner hits between constituents, stretching the effective interaction delays.
+2. **Finite causal speed:**
+ Primitive self-hit and partner-hit roots are mediated by delayed, radial path-history interactions at speed $c_f$. When those roots are dressed into an observer-level clock law, the transverse budget must be formed with the declared channel speed $c_\star$: $c_\star=c_f$ for a primitive branch test and $c_\star=c_{\text{eff}}(\mathbf{x})$ for a Noether-Sea dressed clock comparison.
 
 3. **Shape deformation (Lorentz‑link hypothesis):** 
  To remain dynamically stable under increased $|\mathbf{v}|$, the tri‑binary’s outer exclusion surface becomes **oblate**, flattened along the direction of motion:
  - At low $v$, the outer exclusion surface is nearly spherical.
- - As $v\to c_f$, that exclusion surface contracts along $\hat{\mathbf{v}}$ while maintaining transverse dimensions, yielding an ellipsoid with semi‑axes $(a_\perp, a_\perp, a_\parallel)$ and $a_\parallel < a_\perp$.
+ - As $v\to c_\star$, that exclusion surface contracts along $\hat{\mathbf{v}}$ while maintaining transverse dimensions, yielding an ellipsoid with semi‑axes $(a_\perp, a_\perp, a_\parallel)$ and $a_\parallel < a_\perp$.
  - This geometric dilation changes internal path lengths and curvature, lowering $\omega$.
 
 Geometry terminology follows [Noether Core Geometry](../assemblies/noether-core-geometry.md#canonical-geometry-variables): the envelope shape ratio is $\xi=R_{\parallel}/R_{\perp}$. The proper-time factor is not defined to be $\xi$; it is the extracted clock observable $\omega_{\text{clk}}/\omega_0=d\tau/dt$. In the homogeneous Lorentz-closure target, the theory must derive $\omega_{\text{clk}}/\omega_0\to\xi\to1/\gamma$.
 
 **Kinematic hypothesis:**
 $$
-\omega(v, n=1) \approx \omega_0 \sqrt{1 - \frac{v^2}{c_f^2}}
+c_{\perp}
+=
+c_\star
+\sqrt{1 - \frac{v^2}{c_\star^2}},
+\qquad
+\omega(v, n=1) \approx \omega_0 \frac{c_{\perp}}{c_\star}
 \quad \Rightarrow\quad
-\frac{d\tau}{dt}\bigg|_{\text{kin}} \approx \sqrt{1 - \frac{v^2}{c_f^2}}
+\frac{d\tau}{dt}\bigg|_{\text{kin}} \approx \sqrt{1 - \frac{v^2}{c_\star^2}}
 $$
-in the regime where the clock’s motion does not significantly disturb the local Noether Sea. We take $c_f = c$ in SI units when comparing to experiments.
+in the regime where the clock's motion does not significantly disturb the local Noether Sea. For SI comparison in the weak homogeneous observer branch, $c_\star$ is the measured low-gradient clock/signal speed $c_0=c_{\text{eff}}(\infty)$, not an independent replacement for the primitive wake speed $c_f$.
 
 ### Gravitational Effect (Medium Dependence)
 
@@ -116,9 +122,9 @@ In a region with potential $\Phi_N(\mathbf{x})$ and clock velocity $v$ relative 
 $$
 \frac{d\tau}{dt} 
 = \frac{\omega(v,\Phi_N,n)}{\omega_0}
-\approx \sqrt{1 + \frac{2\Phi_N}{c_f^2} - \frac{v^2}{c_f^2}}
+\approx \sqrt{1 + \frac{2\Phi_N}{c_0^2} - \frac{v^2}{c_0^2}}
 $$
-in the weak‑field, low‑velocity limit, with higher‑order corrections ($v^4/c_f^4$, $\Phi_N^2/c_f^4$, cross‑terms) determined by the detailed tri‑binary response. We set $c_f = c$ (SI) when matching to GR benchmarks.
+in the weak-field, low-velocity observer limit, with higher-order corrections ($v^4/c_0^4$, $\Phi_N^2/c_0^4$, cross-terms) determined by the detailed tri-binary response. Primitive simulations may still use $c_f$ inside the root equation; the PPN comparison uses the dressed asymptotic speed $c_0$.
 
 Outside that limit, $F$ will in general deviate from the GR expression and define the theory’s distinctive strong‑field / high‑velocity predictions.
 
@@ -208,7 +214,9 @@ Run the same core under controlled backgrounds:
 
 1. Uniform center-of-mass drift speed $v=\|\mathbf{V}_{\text{CM}}\|$ through homogeneous medium.
 2. Weak static potential background $\Phi_N(\mathbf{x})$ (or $U\equiv-\Phi_N>0$).
-3. Weak-field regime constraints: $v^2/c_f^2\ll1$ and $\lvert U\rvert/c_f^2\ll1$.
+3. Weak-field regime constraints: $v^2/c_\star^2\ll1$ and $\lvert U\rvert/c_0^2\ll1$.
+
+Use $c_\star=c_f$ for primitive kernel-only scans and $c_\star=c_0$ for observer-level PPN coefficient fits. This keeps the root-solver speed and the clock-comparison speed explicit instead of silently identifying them.
 
 For each run $j$, record
 $$
@@ -227,7 +235,7 @@ This chapter keeps only the symbolic/numeric coefficient interface needed to bri
 
 Linearize each trajectory as $\mathbf{x}_a(t)=\mathbf{x}_a^{(0)}(t)+\delta\mathbf{x}_a(t)$ around the periodic rest solution and expand the extracted clock ratio in
 $$
-\epsilon_U\equiv U/c_f^2,\qquad \epsilon_v\equiv v^2/c_f^2.
+\epsilon_U\equiv U/c_0^2,\qquad \epsilon_v\equiv v^2/c_\star^2.
 $$
 
 Use the regression model
@@ -269,14 +277,14 @@ $$
 
 ### Coefficient Targets and PPN Map
 
-In the GR-matching weak-field limit ($c_f=c$), first-order targets are
+In the GR-matching weak-field observer limit, first-order targets are
 $$
 A_U^\star=1,\qquad A_v^\star=\frac{1}{2}.
 $$
 
 For the static branch ($v=0$),
 $$
-\frac{\omega}{\omega_0}=1-\frac{U}{c_f^2}+C_2\frac{U^2}{c_f^4}+\cdots,
+\frac{\omega}{\omega_0}=1-\frac{U}{c_0^2}+C_2\frac{U^2}{c_0^4}+\cdots,
 $$
 and the PPN map used in [PPN Parameters](./ppn-parameters.md) is
 $$

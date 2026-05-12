@@ -60,6 +60,8 @@ The minimal useful first path is BBN photon loading: identify a source-zone radi
 
 Photon-channel records should be sorted into three gates before they are used in cosmology-facing arguments.
 
+The chapter-level source for the photon ontology and Gate A theorem scaffold is [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md#photon-closure-interface). This ledger records what a reaction or cosmology channel must carry forward from that scaffold before it uses photon propagation, polarization, pair production, or thermal radiation as settled input.
+
 | Gate | Claim bucket | What the ledger must track | Closure test |
 | --- | --- | --- | --- |
 | Gate A: kinematics and optics | Derivation-closure target | $c_f$, $c_\gamma$, $\delta_\gamma\equiv1-c_\gamma/c_f$, planar-pair spacing $d$, phase frequency $\omega$, geometric phase, and medium delay state | Recover $E_\gamma=h\nu$, $p=h/\lambda$, masslessness, no rest proper-time branch, nondispersion, and no unacceptable preferred-frame leakage |

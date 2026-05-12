@@ -117,7 +117,7 @@ Their observed inertia and mass are expected to depend on:
 - internal energy storage,
 - shielding depth,
 - exposure of inner binary structure,
-- medium drag or compliance,
+- medium-dressed compliance and inertial response,
 - and how the assembly closes its causal ledger relative to the surrounding medium.
 
 The canonical mass-side treatment is [Particle Masses: Emergent Inertia in the Noether Sea](../assemblies/particle-masses.md). This page only states that the Noether Sea is the ambient medium against which those assembly responses are defined.

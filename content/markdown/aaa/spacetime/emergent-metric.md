@@ -16,7 +16,7 @@ The opening fixes the ontological picture and the canonical symbols first. The l
   - The effective potential field $\Phi_{\text{eff}}(x,t)$ and its gradients.
 
 From this vantage point, there is only:
-- Flat Euclidean geometry $\delta_{ij}$,
+- Flat Euclidean geometry $h_{ij}=\delta_{ij}$,
 - A dynamic medium (Noether cores) moving and rearranging in that geometry.
 
 ## Canonical Symbols (Spacetime)
@@ -26,9 +26,14 @@ Use the following symbols consistently across spacetime chapters:
 - $n(x,t)$: normalized Noether-core density.
 - $\rho_{\text{core}}(x,t)=\rho_{\text{core},0}\,n(x,t)$: physical core density.
 - $\chi_{\text{sea}}(x,t)=c_f/c_{\text{eff}}(x,t)$: Noether-Sea delay factor.
+- $c_0\equiv c_{\text{eff}}(\infty)$: asymptotic homogeneous observer-channel speed used in weak-field metric comparisons.
 - $\Phi_{\text{eff}}(x,t)$: constitutive potential inferred from the clock channel.
 - $\Phi_N(x,t)$: Newtonian benchmark potential used for weak-field matching.
 - $U\equiv -\Phi_N>0$: positive weak-field PPN potential variable.
+- $N(x,t)$: observer-level lapse or clock-rate field reconstructed from Noether-Sea state.
+- $u^i_{\text{sea}}(x,t)$: Noether-Sea drift field in the observer-level bookkeeping map.
+- $e^a{}_i(x,t)$: spatial frame field carrying Noether-Sea compliance and orientation response.
+- $\gamma_{ij}(x,t)=\delta_{ab}e^a{}_i e^b{}_j$: observer-level spatial compliance metric.
 
 ## What “Metric” Means Here
 
@@ -41,9 +46,35 @@ We define $g^{\text{eff}}_{\mu\nu}$ operationally:
 
 > At each point $x$, choose an idealized physical observer (tri-binary clock + ruler), and infer a local metric from their measured time intervals and spatial separations.
 
-The $\mathbb{U}_{\text{now}}$ universe-state perspective then maps:
+The $\mathbb{U}_{\text{now}}$ universe-state perspective then maps substrate and medium data into observer-level ADM/Cartan fields:
 
-$(\delta_{ij}, n(x,t), \chi_{\text{sea}}(x,t), \Phi_{\text{eff}}(x,t), \nabla\Phi_{\text{eff}}(x,t), \text{medium alignment}) \;\Rightarrow\; g^{\text{eff}}_{\mu\nu}(x)$
+$$
+\big(h_{ij}, n, \chi_{\text{sea}}, \Phi_{\text{eff}}, \nabla\Phi_{\text{eff}}, \text{stress}, \text{alignment}\big)
+\;\Rightarrow\;
+\big(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij}\big)
+\;\Rightarrow\;
+g^{\text{eff}}_{\mu\nu}.
+$$
+
+The first arrow is the open constitutive problem. The second arrow is the observer-level metric assembly; it does not curve the Euclidean void.
+
+## ADM/Cartan Reconstruction Surface
+
+The metric bridge should now be expressed through the same ADM/Cartan variables used by [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md#admcartan-reconstruction-target). The observer-level line element target is
+
+$$
+ds_{\rm eff}^2
+=
+-N^2c_0^2dt^2
++
+\gamma_{ij}
+\left(dx^i-u^i_{\text{sea}}dt\right)
+\left(dx^j-u^j_{\text{sea}}dt\right).
+$$
+
+Here $N$ is the clock-rate or lapse channel, $u^i_{\text{sea}}$ is medium drift, and $\gamma_{ij}$ is the spatial compliance channel built from the frame field $e^a{}_i$. In the GR-matching regime the effective connection is the Levi-Civita connection of $g^{\text{eff}}_{\mu\nu}$; torsion, nonmetricity, birefringence, dispersion, and preferred-frame leakage are deviation observables rather than substrate ontology.
+
+This form is the common handoff surface for clock redshift, Shapiro delay, lensing, geodesic motion, photon synchronization, and preferred-frame tests. A scalar speed map alone is therefore not enough for closure: it can support a first Shapiro-delay intuition, but the full PPN burden requires the lapse, drift, and spatial-compliance channels together.
 
 ## Noether-Core Deformation and Metric Language
 
@@ -59,7 +90,7 @@ For axially symmetric or rotating sources, oblate spheroidal coordinates can be 
 $$
 ds^2
 =
--f(\xi,\eta)c_f^2dt^2
+-f(\xi,\eta)c_0^2dt^2
 +g_1(\xi,\eta)d\xi^2
 +g_2(\xi,\eta)d\eta^2
 +g_3(\xi,\eta)d\phi^2,
@@ -106,45 +137,83 @@ The core task of this document will be to:
    - Stress/strain of the medium,
    - Potential $\Phi_{\text{eff}}(x)$ from matter assemblies.
 2. Show that in the weak-field regime this reproduces the standard GR metric (e.g. Schwarzschild) to PPN accuracy:
-   $g^{\text{eff}}_{00} \approx -\left(1 + \frac{2\Phi_N}{c^2}\right), \quad g^{\text{eff}}_{ij} \approx \delta_{ij}\left(1 - \frac{2\Phi_N}{c^2}\right).$
+   $g^{\text{eff}}_{00} \approx -\left(1 + \frac{2\Phi_N}{c_0^2}\right), \quad g^{\text{eff}}_{ij} \approx h_{ij}\left(1 - \frac{2\Phi_N}{c_0^2}\right).$
 
 ## Minimal Weak-Field Constitutive Map (for PPN Matching)
 
-To make the mapping functional explicit at first post-Newtonian order, use:
+To make the mapping functional explicit at first post-Newtonian order, start in the local medium-rest gauge
 $$
-g^{\text{eff}}_{00}(\mathbf{x})=
--\left(1+\frac{2\Phi_N(\mathbf{x})}{c_f^2}\right)
-+\mathcal{O}\!\left(\frac{\Phi_N^2}{c_f^4}\right),
+u^i_{\text{sea}}=0,
+$$
+with observer-channel speed $c_0=c_{\text{eff}}(\infty)$. The weak-field target is
+$$
+N(\mathbf{x})
+=
+1+\frac{\Phi_N(\mathbf{x})}{c_0^2}
++\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right),
 $$
 $$
-g^{\text{eff}}_{ij}(\mathbf{x})=
-\delta_{ij}\left(1-2\gamma_{\text{eff}}\frac{\Phi_N(\mathbf{x})}{c_f^2}\right)
-+\mathcal{O}\!\left(\frac{\Phi_N^2}{c_f^4}\right).
+\gamma_{ij}(\mathbf{x})
+=
+\left(
+1-2\gamma_{\text{eff}}\frac{\Phi_N(\mathbf{x})}{c_0^2}
+\right)h_{ij}
++\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right).
 $$
 
-Equivalent Noether-Sea delay-factor form:
+Equivalently, using $x^0=c_0t$ in the observer-sector metric,
 $$
-\chi_{\text{sea}}(\mathbf{x})\equiv \frac{c_f}{c_{\text{eff}}(\mathbf{x})}
-=1-(1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf{x})}{c_f^2}
-+\mathcal{O}\!\left(\frac{\Phi_N^2}{c_f^4}\right),
+g^{\text{eff}}_{00}(\mathbf{x})
+=
+-\left(1+\frac{2\Phi_N(\mathbf{x})}{c_0^2}\right)
++\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right),
+$$
+$$
+g^{\text{eff}}_{ij}(\mathbf{x})
+=
+\left(
+1-2\gamma_{\text{eff}}\frac{\Phi_N(\mathbf{x})}{c_0^2}
+\right)h_{ij}
++\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right).
+$$
+
+The canonical Noether-Sea delay factor remains
+$$
+\chi_{\text{sea}}(\mathbf{x})\equiv \frac{c_f}{c_{\text{eff}}(\mathbf{x})}.
+$$
+For PPN time-of-flight comparisons, normalize by the homogeneous observer speed:
+$$
+\frac{c_0}{c_{\text{eff}}(\mathbf{x})}
+=
+\frac{\chi_{\text{sea}}(\mathbf{x})}{\chi_{\text{sea}}(\infty)}
+=
+1-(1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf{x})}{c_0^2}
++\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right),
 $$
 so travel time on a Euclidean anchor path $\Gamma$ is
 $$
-t[\Gamma]=\frac{1}{c_f}\int_\Gamma \chi_{\text{sea}}(\mathbf{x})\,ds.
+t[\Gamma]=\frac{1}{c_0}\int_\Gamma \frac{c_0}{c_{\text{eff}}(\mathbf{x})}\,ds.
 $$
 
 This is the concrete first-order realization of
 $$
-(\delta_{ij},n,\chi_{\text{sea}},\text{stress},\Phi_N)\mapsto g^{\text{eff}}_{\mu\nu},
+(h_{ij},n,\chi_{\text{sea}},\text{stress},\Phi_N)
+\mapsto
+(N,u^i_{\text{sea}},\gamma_{ij})
+\mapsto
+g^{\text{eff}}_{\mu\nu},
 $$
-with $\gamma_{\text{eff}}$ the observable refraction/space-curvature coefficient to be fitted from Shapiro-delay data.  
-Implementation of the corresponding one-way delay integral is given in [ppn-parameters](./ppn-parameters.md#explicit-weak-field-noether-sea-delay-map-ppn-gamma).
+with $\gamma_{\text{eff}}$ the observable refraction/space-curvature coefficient to be fitted from Shapiro-delay data. Implementation of the corresponding one-way delay integral is given in [ppn-parameters](./ppn-parameters.md#explicit-weak-field-noether-sea-delay-map-ppn-gamma).
 
 ## Closure Program Interface (metric constitutive map)
 
 This chapter is the constitutive anchor for the gravity-side closure:
 $$
-(\delta_{ij},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{stress})\mapsto g^{\text{eff}}_{\mu\nu}.
+(h_{ij},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{stress})
+\mapsto
+(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij})
+\mapsto
+g^{\text{eff}}_{\mu\nu}.
 $$
 
 Distribute proof obligations as:
@@ -155,36 +224,36 @@ Distribute proof obligations as:
 
 Minimal closure condition:
 1. Eikonal path-time extremals in the refractive picture match null geodesics of $g^{\text{eff}}_{\mu\nu}$ in weak field.
-2. The same constitutive coefficients predict Shapiro delay, lensing, and redshift without re-fitting per observable.
+2. The same $N$, $u^i_{\text{sea}}$, and $\gamma_{ij}$ coefficients predict Shapiro delay, lensing, redshift, and preferred-frame residuals without re-fitting per observable.
 
-## Weak-Field Geodesic Handoff (Constitutive Subclass)
+## Weak-Field Geodesic Handoff (ADM Constitutive Subclass)
 
-For the local medium-rest frame $\hat{u}^\mu=(1,0,0,0)$, use
+The older scalar/disformal bridge is now a subclass of the ADM/Cartan surface. In the local medium-rest gauge, set
 $$
-g_{\mu\nu}^{\text{eff}}(x)
+u^i_{\text{sea}}=0,
+\qquad
+\gamma_{ij}=\Omega^2(n,\lambda)h_{ij},
+\qquad
+N=\Omega(n,\lambda)\xi.
+$$
+
+Here $\xi$ is the Noether-core envelope shape ratio $\xi=R_{\parallel}/R_{\perp}$, not a synonym for the clock-rate factor. The stationary ideal clock-rate factor in this metric subclass is $N=\Omega\xi$ only after the geometry-to-clock map is fixed.
+
+Define the clock-channel potential by the observer-side lapse:
+$$
+\Phi_{\text{eff}}(x)\equiv c_0^2\ln N(x)
 =
-\Omega^{2}(n,\lambda)\left[
-\eta_{\mu\nu}
-+
-\left(1-\xi^{2}(x)\right)\hat{u}_\mu\hat{u}_\nu
-\right].
-$$
-Then
-$$
-g_{00}^{\text{eff}}=-\Omega^{2}\xi^{2},
+c_0^2\ln\!\big(\Omega(x)\xi(x)\big),
 \qquad
-g_{ij}^{\text{eff}}=\Omega^{2}\delta_{ij}.
+N(x)=e^{\Phi_{\text{eff}}(x)/c_0^2}.
 $$
 
-Here $\xi$ is the Noether-core envelope shape ratio $\xi=R_{\parallel}/R_{\perp}$, not a synonym for the clock-rate factor. The stationary ideal clock-rate factor in this metric subclass is extracted as $\sqrt{-g_{00}^{\text{eff}}}=\Omega\xi$ only after the geometry-to-clock map is fixed.
-
-Define the clock-channel potential
+With $x^0=c_0t$, the medium-rest metric components are
 $$
-\Phi_{\text{eff}}(x)\equiv c_f^2\ln\!\big(\Omega(x)\xi(x)\big),
+g^{\text{eff}}_{00}=-N^2,
 \qquad
-\Omega(x)\xi(x)=e^{\Phi_{\text{eff}}(x)/c_f^2}.
+g^{\text{eff}}_{ij}=\Omega^2h_{ij}.
 $$
-
 For a slowly moving test assembly in a stationary medium, the dominant connection piece is
 $$
 \Gamma^i_{00}
@@ -193,9 +262,9 @@ $$
 =
 \xi^{2}\,\partial^i\ln(\Omega\xi)
 =
-\xi^{2}\frac{\partial^i\Phi_{\text{eff}}}{c_f^2}.
+\xi^{2}\frac{\partial^i\Phi_{\text{eff}}}{c_0^2}.
 $$
-Using $dx^0/dt\approx c_f$, the spatial geodesic equation gives
+Using $dx^0/dt\approx c_0$, the spatial geodesic equation gives
 $$
 \frac{d^2x^i}{dt^2}
 \approx

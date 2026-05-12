@@ -10,11 +10,13 @@ For the theory-bridge version that maps special-relativistic terms directly to t
 
 This document develops a first-principles program for deriving effective Lorentz kinematics inside $\mathbb{A}\mathbb{A}\mathbb{A}$ from delayed architrino dynamics in a Euclidean void with absolute time. The central claim is not postulated covariance, but dynamical compensation: moving assemblies deform and retune their internal frequencies so that assembly-built observers recover Lorentz-consistent clock and ruler behavior. The objective is an exact or asymptotically controlled derivation of
 $$
-L_{\parallel}(v)=\frac{L_0}{\gamma(v)},\qquad
-T(v)=\gamma(v)\,T_0,\qquad
-\gamma(v)=\frac{1}{\sqrt{1-v^2/c_f^2}},
+L_{\parallel}(v)=\frac{L_0}{\gamma_\star(v)},\qquad
+T(v)=\gamma_\star(v)\,T_0,\qquad
+\gamma_\star(v)=\frac{1}{\sqrt{1-v^2/c_\star^2}},
 $$
 with bounded preferred-frame leakage in measurable observables.
+
+Speed convention: this chapter uses $c_f$ in primitive delayed-root benchmarks and uses the declared speed $c_\star$ in observer-level closure statements. The [transverse causal budget lemma](../dynamics/tri-binary-dynamics.md#transverse-causal-budget-lemma) fixes the convention: set $c_\star=c_f$ for a primitive wake branch chart, $c_\star=c_{\text{eff}}(\mathbf{x})$ for Noether-Sea dressed clocks and rulers, and $c_\star=c_\gamma(\mathbf{x})$ for photon synchronization. The low-gradient Lorentz limit may identify the measured channel speed with $c_0=c_{\text{eff}}(\infty)$ only after the dressing map is declared.
 
 ## Problem Statement
 
@@ -116,11 +118,11 @@ Therefore an isolated translating assembly admits a co-moving reduction to a bou
 
 ### 3.1 Directional delay asymmetry
 
-For a benchmark drifting binary with instantaneous separation vector $\mathbf{r}=r\,\hat{\mathbf{n}}$ and center drift $\mathbf{v}=v\,\hat{\mathbf{e}}_{\parallel}$, causal-delay closure satisfies
+For a primitive benchmark drifting binary with instantaneous separation vector $\mathbf{r}=r\,\hat{\mathbf{n}}$ and center drift $\mathbf{v}=v\,\hat{\mathbf{e}}_{\parallel}$, causal-delay closure satisfies
 $$
 \tau=\frac{\|\mathbf{r}+\mathbf{v}\tau\|}{c_f}.
 $$
-With $\mu\equiv \hat{\mathbf{n}}\cdot\hat{\mathbf{e}}_{\parallel}$ and $\beta=v/c_f$, the two directional roots are
+This subsection is deliberately a $c_f$ branch-chart calculation. For operational clock, ruler, or photon tests, repeat the same budget with the declared $c_\star$ after Noether-Sea dressing. With $\mu\equiv \hat{\mathbf{n}}\cdot\hat{\mathbf{e}}_{\parallel}$ and $\beta=v/c_f$, the two directional roots are
 $$
 \tau_{\pm}(r,\mu;\beta)
 =\frac{r}{c_f}\,
@@ -516,6 +518,8 @@ $$
 c_{2w}(\theta,v)=c_{\text{iso}}+O(\epsilon_{\text{LV}}),
 $$
 uniformly in orientation $\theta$. This is the operational statement that maps substrate anisotropy into effective Lorentz symmetry at observer scale.
+
+For clock-and-ruler synchronization, $c_{\text{iso}}$ is the dressed local assembly signal speed. For photon synchronization, it is the local photon-channel speed $c_\gamma$; photon Gate A must show when the photon branch shares the same homogeneous-cell limit as $c_{\text{eff}}$.
 
 ### 4.3 Round-trip anisotropy cancellation through $O(\beta^4)$
 

@@ -43,9 +43,20 @@ const rules = [
     id: "mass-drag-language",
     description: "Older mass/inertia language that can misstate ordinary drag as the mass mechanism.",
     pattern:
-      /\b(Mass as Drag|drag coefficient|Spacetime Drag|null-drag|Noether Sea drag|drag on the Sea|frictional interaction|Frictional Heating)\b/i,
+      /\b(Mass as Drag|drag coefficient|Spacetime Drag|null-drag|Noether Sea drag|drag on the Sea|medium drag|field drag|refractive drag|frictional interaction|Frictional Heating)\b/i,
     suggestion:
       "Use shielded internal causal history, medium-dressed response, or dissipative failure-channel language as appropriate.",
+  },
+  {
+    id: "unscoped-mass-map-formula",
+    description: "Mass-map formulas should be scoped as roadmap formulas or closure targets near the formula.",
+    pattern:
+      /m_\{\\text\{inertial\}\}\(A\)|m_0\(A\)c_\{\\text\{eff\}\}\^2|\\zeta\(A\)E_\{\\text\{internal\}\}\(A\)/i,
+    requiredContextPattern:
+      /\b(roadmap formulas?|roadmap outputs?|closure targets?|theorem targets?|not fundamental|not .* primitive|derived outputs?|output of|operational|not yet a theorem|not yet a derived|not a derived|open|still requiring quantitative derivation|until .* derived|must .* derive|priority targets?|priority workstream)\b/i,
+    contextRadius: 8,
+    suggestion:
+      "Keep the mass-map relation explicitly scoped as a roadmap formula or closure target unless the local derivation is complete.",
   },
   {
     id: "primitive-mass-bookkeeping",
@@ -186,7 +197,7 @@ const surfaceRules = [
   {
     id: "surface-mass-drag-language",
     description: "Mass or Lorentz language that can misstate ordinary drag as the mechanism.",
-    pattern: /\b(Lorentzian Conspiracy|medium drag|push through sea|Noether Sea drag|drag on the Sea)\b/i,
+    pattern: /\b(Lorentzian Conspiracy|medium drag|field drag|refractive drag|push through sea|Noether Sea drag|drag on the Sea)\b/i,
     suggestion:
       "Use preferred-frame suppression, medium-dressed response, shielding, and trapped internal causal history as appropriate.",
   },
@@ -285,6 +296,15 @@ for (const file of files) {
       }
       if (!rule.pattern.test(line)) {
         continue;
+      }
+      if (rule.requiredContextPattern) {
+        const contextRadius = rule.contextRadius ?? 5;
+        const start = Math.max(0, index - contextRadius);
+        const end = Math.min(lines.length, index + contextRadius + 1);
+        const context = lines.slice(start, end).join("\n");
+        if (rule.requiredContextPattern.test(context)) {
+          continue;
+        }
       }
       findings.push({
         file,

@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 460,
-      "edges": 1215,
-      "scenes": 316,
+      "nodes": 465,
+      "edges": 1219,
+      "scenes": 318,
       "markdownIndexes": 0,
-      "markdownDocs": 144,
+      "markdownDocs": 147,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1332,7 +1332,7 @@
     },
     {
       "id": "foundations__bootstrapping_the_absolute_frame",
-      "name": "Bootstrapping a Coordinate Frame",
+      "name": "Reconstructing a Coordinate Frame from Wake Geometry",
       "path": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
       "nodeType": "scene"
     },
@@ -1628,6 +1628,12 @@
       "id": "validation_simulations__sim_run_protocols",
       "name": "Run Protocols",
       "path": "content/scenes/validation/sim_run_protocols.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation_simulations__sim_a0_branch_certificate_protocol",
+      "name": "A0 Branch Certificate Protocol",
+      "path": "content/scenes/validation/sim_a0_branch_certificate_protocol.json",
       "nodeType": "scene"
     },
     {
@@ -2045,6 +2051,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "substance_structure_potential",
+      "name": "Substance, Structure, and the Plenum of Potential",
+      "path": "content/scenes/philosophy_history/substance_structure_potential.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/markdown/aaa/archie/about-the-webapp.md",
       "name": "About the Webapp",
       "path": "content/markdown/aaa/archie/about-the-webapp.md",
@@ -2334,7 +2346,7 @@
     },
     {
       "id": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-      "name": "Bootstrapping a Coordinate Frame",
+      "name": "Reconstructing a Coordinate Frame from Wake Geometry",
       "path": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
       "nodeType": "markdown_doc"
     },
@@ -2468,6 +2480,12 @@
       "id": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
       "name": "Major Religious Cosmologies and Foundational Ontologies",
       "path": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+      "name": "Substance, Structure, and the Plenum of Potential",
+      "path": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2706,7 +2724,7 @@
     },
     {
       "id": "content/markdown/aaa/validation/architrino-si-base-units.md",
-      "name": "Architrino Framework and SI Base Units: Deep Intersection Analysis",
+      "name": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ and SI Base Units: Deep Intersection Analysis",
       "path": "content/markdown/aaa/validation/architrino-si-base-units.md",
       "nodeType": "markdown_doc"
     },
@@ -2762,6 +2780,18 @@
       "id": "content/markdown/aaa/validation/reaction-ledger.md",
       "name": "Reaction Ledger: Architrino Provenance",
       "path": "content/markdown/aaa/validation/reaction-ledger.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+      "name": "$A_0$ Branch Certificate Protocol",
+      "path": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
+      "name": "$A_0$ Tier 0 Result Interpretation",
+      "path": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -4624,7 +4654,7 @@
       "nodeId": "scene:content/scenes/foundations/bootstrapping_the_absolute_frame.json",
       "nodeType": "scene",
       "id": "foundations__bootstrapping_the_absolute_frame",
-      "name": "Bootstrapping a Coordinate Frame",
+      "name": "Reconstructing a Coordinate Frame from Wake Geometry",
       "path": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
       "searchTarget": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
       "implicit": false
@@ -4897,6 +4927,15 @@
       "name": "Religious Ontologies",
       "path": "content/scenes/philosophy_history/religious_ontologies.json",
       "searchTarget": "content/scenes/philosophy_history/religious_ontologies.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/substance_structure_potential.json",
+      "nodeType": "scene",
+      "id": "substance_structure_potential",
+      "name": "Substance, Structure, and the Plenum of Potential",
+      "path": "content/scenes/philosophy_history/substance_structure_potential.json",
+      "searchTarget": "content/scenes/philosophy_history/substance_structure_potential.json",
       "implicit": false
     },
     {
@@ -5638,6 +5677,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/validation/sim_a0_branch_certificate_protocol.json",
+      "nodeType": "scene",
+      "id": "validation_simulations__sim_a0_branch_certificate_protocol",
+      "name": "A0 Branch Certificate Protocol",
+      "path": "content/scenes/validation/sim_a0_branch_certificate_protocol.json",
+      "searchTarget": "content/scenes/validation/sim_a0_branch_certificate_protocol.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/validation/sim_architrino.json",
       "nodeType": "scene",
       "id": "validation_simulations__sim_architrino",
@@ -6190,7 +6238,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-      "name": "Bootstrapping a Coordinate Frame",
+      "name": "Reconstructing a Coordinate Frame from Wake Geometry",
       "path": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
       "searchTarget": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
       "implicit": false
@@ -6391,6 +6439,15 @@
       "name": "Major Religious Cosmologies and Foundational Ontologies",
       "path": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+      "name": "Substance, Structure, and the Plenum of Potential",
+      "path": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
       "implicit": false
     },
     {
@@ -6748,7 +6805,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/architrino-si-base-units.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/architrino-si-base-units.md",
-      "name": "Architrino Framework and SI Base Units: Deep Intersection Analysis",
+      "name": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ and SI Base Units: Deep Intersection Analysis",
       "path": "content/markdown/aaa/validation/architrino-si-base-units.md",
       "searchTarget": "content/markdown/aaa/validation/architrino-si-base-units.md",
       "implicit": false
@@ -6832,6 +6889,24 @@
       "name": "Reaction Ledger: Architrino Provenance",
       "path": "content/markdown/aaa/validation/reaction-ledger.md",
       "searchTarget": "content/markdown/aaa/validation/reaction-ledger.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+      "name": "$A_0$ Branch Certificate Protocol",
+      "path": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
+      "name": "$A_0$ Tier 0 Result Interpretation",
+      "path": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
       "implicit": false
     },
     {
@@ -10417,7 +10492,7 @@
       "to": "scene:content/scenes/philosophy_history/agency_and_internal_causation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -10431,21 +10506,21 @@
       "to": "scene:content/scenes/philosophy_history/historical_context_missed_opportunities.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/information_computation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -10459,7 +10534,14 @@
       "to": "scene:content/scenes/philosophy_history/religious_ontologies.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/substance_structure_potential.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -11114,6 +11196,13 @@
     },
     {
       "from": "scene:content/scenes/validation/simulations.json",
+      "to": "scene:content/scenes/validation/sim_a0_branch_certificate_protocol.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/simulations.json",
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/validation/simulations.json",
       "to": "scene:content/scenes/validation/sim_architrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/simulations.json",
@@ -11152,14 +11241,14 @@
       "to": "scene:content/scenes/validation/sim_synthetic_observables.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/simulations.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/validation/simulations.json",
       "to": "scene:content/scenes/validation/sim_unsolved_problems.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/simulations.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/validation/validation.json",
@@ -11722,6 +11811,13 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/philosophy_history/substance_structure_potential.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/substance_structure_potential.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/philosophy_history/theory_differentials.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-differentials.md",
       "edgeType": "markdown_doc",
@@ -12146,6 +12242,13 @@
       "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/validation/self_interaction_switch.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/validation/sim_a0_branch_certificate_protocol.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/sim_a0_branch_certificate_protocol.json",
       "field": "scene.source.path"
     },
     {

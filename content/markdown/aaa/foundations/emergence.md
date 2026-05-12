@@ -2,26 +2,29 @@
 
 The universe can be understood as an unbounded collection of interacting architrinos. To understand nature, we model the emergent behavior that arises from these interactions. The fundamental elements of this model--the architrinos and their interaction rules--are simple. However, their collective behavior can give rise to complex, organized structures. This phenomenon, where intricate patterns and systems arise from the repeated application of simple rules, is known as emergence.
 
-### Conway's Game of Life: A Discrete Archetype
+### Conway's Game of Life: A Discrete Touchstone
 
-A classic example of emergence is found in Conway's Game of Life. This is a zero-player game, a cellular automaton that evolves in discrete time steps on a 2D grid. The state of each cell (alive or dead) in the next time step is determined by a few simple rules based on the number of its living neighbors.
+Conway's Game of Life is useful only as an introductory picture of emergence. It is a zero-player cellular automaton: cells live on a 2D grid, all cells update together at discrete time steps, and each next state depends only on the current states of nearby cells.
 
 From these basic rules, a rich and unpredictable world of patterns emerges:
 -   **Still Lifes:** Stable configurations that do not change over time.
 -   **Oscillators:** Patterns that repeat themselves over a fixed period.
 -   **Spaceships (like the Glider):** Patterns that move across the grid.
 
-The Game of Life demonstrates how complexity can arise from simplicity in a discrete, deterministic system.
+The lesson that carries over is narrow: simple deterministic rules can generate stable forms, periodic behavior, and moving patterns. The dynamical picture should not be carried over. The Game of Life is grid-based, memoryless, nearest-neighbor, and globally clocked.
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, architrinos move in continuous space and absolute time. A receiver responds when causal wake surfaces emitted in the past intersect its worldline, so active causal roots are not synchronized by a shared update tick. Each contribution has inverse-square falloff and depends on source and receiver path history, making the effective evolution a nonlinear delay-differential system with formally infinite-range coupling rather than a cellular rule table.
 
 ### Emergence in the Architrino Universe: A Continuous Analogy
 
-The architrino universe operates on a similar principle of emergence, but within a continuous framework rather than a discrete one.
+The closer pedagogical analogy is a population of coupled delayed-feedback oscillators, such as delayed Kuramoto-type phase systems, or nonlinear fluid-like flows where phase-lagged feedback can produce synchronization, attractor basins, and persistent coherent structures. These analogies are not substitutes for the master equation; they are guides for the correct mental model. Structure forms through continuous delayed feedback and basin selection, not through grid-based cellular updates.
 
--   **Continuous System:** Unlike the Game of Life's grid and time steps, architrinos exist in continuous space and time. Their interactions are not clocked but occur whenever an architrino intersects a causal isochron.
--   **Simple Rules:** The "rules" of this universe are the fundamental interaction dynamics: attraction and repulsion based on the polarity of the interacting architrinos.
--   **Emergent Assemblies:** Through these continuous interactions, architrinos can self-organize into complex, stable, or quasi-stable configurations called **assemblies**. These assemblies are the continuous-physics analog to the patterns in the Game of Life.
+-   **Continuous timespace:** Unlike the Game of Life's grid and time steps, architrinos occupy continuous space and absolute time. Their interactions are not clocked but occur whenever an architrino intersects a causal isochron.
+-   **Delayed causal roots:** The active interaction terms depend on past source positions and, in self-hit regimes, on an architrino's own earlier path. The state needed to evaluate the next motion is therefore path-history dependent rather than Markovian.
+-   **Infinite-range but diluted coupling:** Causal wake surfaces are not nearest-neighbor links. Their density falls as $1/r^2$, so distant structure can contribute in principle while inverse-square dilution, phase cancellation, and shielding determine which roots remain dynamically important.
+-   **Emergent assemblies:** Through these continuous delayed interactions, architrinos can self-organize into complex, stable, or quasi-stable configurations called **assemblies**. These assemblies are better understood as attractor-basin structures of the delay-differential dynamics, comparable in pedagogy to synchronized oscillator clusters, vortices, or soliton-like coherent structures.
 
-- The stability of an assembly is not static but dynamic. It depends on a delicate, ongoing balance of forces from the superposition of all intersecting wakes. An assembly might persist for a very long time if it finds a stable equilibrium, or it might be a transient structure that quickly dissolves, all depending on its internal configuration and the external wake environment it encounters.
+The stability of an assembly is therefore dynamic rather than static. It depends on an ongoing balance of forces from the superposition of all dynamically active wakes. An assembly can persist when its trajectory remains inside a stable or metastable attractor basin; it can dissolve, branch, or reconfigure when perturbations or self-hit thresholds push it across a basin boundary.
 
 ### Assembly Theory and Recursion
 
@@ -83,7 +86,9 @@ In this sense, emergence is not merely a catalog of larger objects. It is also t
 
 All structure in this universe is based on a **dynamical geometry**. Every architrino is, at all times, interacting with the wakes of every other architrino in the universe, and potentially with its own past isochrons. This creates an N-body problem of infinite scale, meaning there is no closed-form analytical solution for the evolution of a structure in the general case.
 
-However, because the potential density on each causal wake surface falls off as $1/r^2$, the influence of distant particles is far weaker than that of local ones. This locality principle is what allows for the formation of **meta-stable assemblies** that can maintain their general form for long periods.
+However, because the potential density on each causal wake surface falls off as $1/r^2$, the influence of distant architrinos is far weaker than that of local ones. This locality principle is what allows for the formation of **meta-stable assemblies** that can maintain their general form for long periods.
+
+The infinite-history statement is therefore not a claim that every past wake carries equal computational weight. In principle, an architrino receives the delayed wake history that intersects it; in practical assembly dynamics, the active burden is bounded by inverse-square wake dilution, phase cancellation across remote populations, and the shielding or screening supplied by nested Noether cores. The mathematical task is to identify which causal-root branches remain dynamically active in a regime, not to treat the entire past universe as an undifferentiated force of equal importance.
 
 A crucial factor in the evolution of these assemblies is the **velocity symmetry point** ($|\mathbf{v}_a| = v$). The behavior of an architrino changes drastically depending on whether its speed is above or below the field speed.
 -   When $|\mathbf{v}_a| < v$, it is influenced only by external causal wakes.

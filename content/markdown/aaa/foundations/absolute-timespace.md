@@ -91,7 +91,14 @@ $$
 \nabla h=0.
 $$
 
-In global Cartesian coordinates the connection coefficients vanish. Covariant derivatives reduce to ordinary partial derivatives, and spatial geodesics within each slice are straight lines.
+These compatibility equations do not determine $\nabla$ by themselves in ordinary Newton-Cartan geometry. The same $(\tau,h)$ admits torsion-free compatible connections whose coefficients represent rotating-frame or accelerating-frame inertial terms.
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, $\nabla$ is specified as part of the absolute-timespace substrate. The finite causal-wake speed $c_f$ is isotropic in the Euclidean-void rest frame, and in the corresponding global Cartesian rest coordinates the selected connection has
+$$
+\Gamma^\lambda_{\mu\nu}=0.
+$$
+
+Covariant derivatives then reduce to ordinary partial derivatives, and spatial geodesics within each slice are straight lines. Nonzero coefficients introduced by rotating or accelerating coordinates are non-inertial descriptions of the same fixed substrate, not background curvature.
 
 ## No Fundamental 4D Metric
 
@@ -104,7 +111,7 @@ This means:
 - Proper time is not a substrate interval.
 - Effective metric language belongs to observer-level spacetime reconstruction.
 
-The pair $(\tau,h)$ is sufficient to encode the substrate kinematics: absolute temporal ordering plus Euclidean spatial geometry.
+The specified Newton-Cartan substrate data $(\tau,h,\nabla)$ encode the substrate kinematics: absolute temporal ordering, Euclidean spatial geometry, and the selected Euclidean-void rest-frame connection.
 
 ## Measurement and Geometry
 
@@ -243,7 +250,9 @@ $$
 
 This is an expanding spatial sphere through the absolute-time stack, not a fundamental light cone of a Lorentzian metric. The boundary surface is the locus of points receiving the wake contribution emitted at $t_0$.
 
-The causal wake geometry does not forbid an architrino from having $v>c_f$. It forbids backward-time influence. Super-field-speed motion is therefore a dynamical regime in which a source can outrun and later re-enter its own wake history, enabling self-hit behavior.
+The causal wake geometry does not forbid an architrino from having $v>c_f$. It forbids backward-time influence. This separates kinematic freedom from dynamical stability: the Euclidean substrate places no kinematic speed limit on a point architrino, but that freedom does not imply that an assembly can be carried through the same regime intact.
+
+For standard-matter assemblies, the effective relativistic speed limit is a dynamical consequence of assembly structure. As an assembly's drift speed approaches $c_f$, its constituents increasingly outrun the potential interactions that normally maintain internal closure, so the leading side of the assembly encounters a strongly asymmetric wake ledger while trailing structure remains tied to older path-history contributions. The result is severe mechanical deformation rather than a substrate-level prohibition. The "speed of light" limit for macroscopic assemblies is therefore a structural integrity barrier: an assembly-level failure mode under extreme asymmetric self-interaction, not a curvature boundary or geometric wall in absolute timespace.
 
 ## Coordinates and Forbidden Transformations
 

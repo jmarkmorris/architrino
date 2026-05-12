@@ -124,7 +124,7 @@ Major thinkers and schools include Bertrand Russell, early and later Wittgenstei
 
 The core commitment is that scientific language must be answerable to logical discipline and use-context alike. Formal reconstruction clarifies what follows from what. Attention to language-games and practice clarifies how terms actually function in inquiry. What the subject gets right is that conceptual precision is not cosmetic. If one uses "vacuum" to mean both absence of matter and an actively structured sector, or "information" to mean both physical distinguishability and epistemic content, one has already loaded ontology into language before argument begins.
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$ this means that every central term must be role-stabilized. "Assembly" must not collapse into mere aggregate. "Causal delayed interaction" must not be confused with signaling folklore. "Emergent metric" must not be equated with merely approximate geometry unless the derivation really warrants that step. Analytic hygiene is therefore a real part of theory construction.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$ this means that every central term must be role-stabilized. "Assembly" must not collapse into mere aggregate. "Causal delayed interaction" must not be confused with signaling folklore. "Emergent metric" must not be equated with merely approximate geometry unless the derivation really warrants that step. The substance-and-structure distinction developed in [Substance, Structure, and the Plenum of Potential](substance-structure-and-potential.md) is one example of this discipline: architrinos, wakes, void, medium, and effective fields must not be treated as interchangeable names for the same object. Analytic hygiene is therefore a real part of theory construction.
 
 ### Internal Tensions
 
@@ -402,7 +402,7 @@ Major thinkers and schools include mechanistic philosophies of science, causal e
 
 ### Core Commitments
 
-What this subject gets right is the distinction between summary and generator. An equation can compress behavior without naming the mechanism that produces it. A statistical law can organize outcomes without exposing the causal pathway that yields each case. For $\mathbb{A}\mathbb{A}\mathbb{A}$, explanation therefore requires identification of substrate entities, their delayed interactions, their path-history-sensitive couplings, and the assembly conditions under which effective laws emerge.
+What this subject gets right is the distinction between summary and generator. An equation can compress behavior without naming the mechanism that produces it. A statistical law can organize outcomes without exposing the causal pathway that yields each case. For $\mathbb{A}\mathbb{A}\mathbb{A}$, explanation therefore requires identification of substrate entities, their delayed interactions, their path-history-sensitive couplings, and the assembly conditions under which effective laws emerge. It also requires distinguishing primitive substance from causal structure: a wake can be physically real in its effect without being a second material substance.
 
 This does not imply that only bottom-level accounts count. Effective theories can explain within their own layer when their domain is explicit. But a final architecture must still show how those layer-specific explanations are situated within a deeper causal stack.
 
@@ -438,7 +438,7 @@ Major schools include reductionism, emergentism, nonreductive physicalism, and c
 
 ### Core Commitments
 
-What this subject gets right is that dependence does not erase usefulness. A theory can be nonfundamental and still indispensable, because assemblies generate stable regularities. It also gets right that level distinctions matter: substrate law, constitutive medium response, effective closure, and measurement-level reconstruction are not interchangeable categories. For $\mathbb{A}\mathbb{A}\mathbb{A}$, reduction means deriving how higher-level variables arise, not verbally eliminating them.
+What this subject gets right is that dependence does not erase usefulness. A theory can be nonfundamental and still indispensable, because assemblies generate stable regularities. It also gets right that level distinctions matter: substrate law, causal wake structure, constitutive medium response, effective closure, and measurement-level reconstruction are not interchangeable categories. For $\mathbb{A}\mathbb{A}\mathbb{A}$, reduction means deriving how higher-level variables arise, not verbally eliminating them.
 
 Emergence, on this view, is lawful novelty in organized systems, not metaphysical exemption from lower-level causation. A metric field, thermal law, or quantum effective description can be emergent and real without being primitive.
 

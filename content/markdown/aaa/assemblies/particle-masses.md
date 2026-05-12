@@ -1,13 +1,13 @@
 # Particle Masses: Emergent Inertia in the Noether Sea
 
-**Purpose:** Articulate the current canonical mass thesis in the architrino framework and outline the path toward quantitative mass predictions. This chapter gives the reader-facing statement. The active derivation of a numerical mass map remains a priority workstream until the shielding, stability, and medium-response terms are computed.
+**Purpose:** Articulate the current canonical mass thesis in $\mathbb{A}\mathbb{A}\mathbb{A}$ and outline the path toward quantitative mass predictions. This chapter gives the reader-facing statement. The active derivation of a numerical mass map remains a priority workstream until the shielding, stability, and medium-response terms are computed.
 
 ---
 
 ## The Mass Hypothesis: Inertia as Medium Interaction
 
 ### Core Thesis
-In the architrino framework, **mass is not a fundamental property** of individual architrinos. There is no intrinsic particle-specific "mass parameter" $m$ assigned at the substrate level. Instead, what we observe as mass, especially **inertial resistance to acceleration**, is treated as an emergent response of stable assemblies embedded in the surrounding [Noether Sea](../spacetime/noether-sea.md), the physical medium composed of neutral tri-binary assemblies.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, **mass is not a fundamental property** of individual architrinos. There is no intrinsic particle-specific "mass parameter" $m$ assigned at the substrate level. Instead, what we observe as mass, especially **inertial resistance to acceleration**, is treated as an emergent response of stable assemblies embedded in the surrounding [Noether Sea](../spacetime/noether-sea.md), the physical medium composed of neutral tri-binary assemblies.
 
 The conservative thesis is:
 
@@ -21,7 +21,7 @@ That response is shaped by internal energy storage, shielding, and the medium-dr
 
 ### Assembly-Level Reduction
 
-At the current level of the theory, the compact mass map is an expression over an assembly $A$:
+At the current level of the theory, the compact mass-map roadmap formula is an expression over an assembly $A$:
 
 $$
 m_{\text{inertial}}(A)
@@ -87,7 +87,7 @@ A critical requirement: assemblies in **equilibrium** with the Noether Sea (e.g.
 ### Ontological Distinctions
 It is crucial to clarify what is **fundamental** versus what is **emergent**:
 
-| Concept | Status in Architrino Framework |
+| Concept | Status in $\mathbb{A}\mathbb{A}\mathbb{A}$ |
 |:--------|:-------------------------------|
 | **Architrino Position/Velocity** | Fundamental (substrate level) |
 | **Architrino Charge ($\epsilon = e/6$)** | Fundamental |
@@ -110,7 +110,7 @@ It is crucial to clarify what is **fundamental** versus what is **emergent**:
 ### Comparison to Standard Model
 In the Standard Model, mass arises via the **Higgs Mechanism**: particles acquire mass by coupling to a background Higgs field (a scalar condensate with vacuum expectation value $v \approx 246$ GeV).
 
-In the architrino framework, the Higgs-sector comparison is an effective matching problem, not yet a derived replacement. The working expectation is that Standard Model mass parameters and Yukawa couplings would be reinterpreted as effective summaries of assembly geometry, shielding, and Noether-Sea response. The 125 GeV Higgs mode may eventually be modeled as a collective excitation of this medium, but that identification is a theorem target, not an established result.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Higgs-sector comparison is an effective matching problem, not yet a derived replacement. The working expectation is that Standard Model mass parameters and Yukawa couplings would be reinterpreted as effective summaries of assembly geometry, shielding, and Noether-Sea response. The 125 GeV Higgs mode may eventually be modeled as a collective excitation of this medium, but that identification is a theorem target, not an established result.
 
 For the electroweak medium interpretation behind this replacement, see [Emergence of U(1)/SU(2)](../interactions/gauge-structure-emergence.md).
 
@@ -162,7 +162,27 @@ To advance from qualitative thesis to quantitative mass prediction, the active m
 4. **Medium-dressed response:** derive the response tensor that turns shielded internal energy into inertial and gravitational response in the weak-field regime.
 5. **Benchmark prediction:** use the derived quantities to target a baseline electron mass and at least one hierarchy check, such as $m_\mu/m_e$.
 
-The canonical chapter should not carry the detailed simulation protocol. Its role is to state the mass thesis, define the terms, and make clear which derivations remain open.
+### Reference Attractor Gate
+
+The first mass-side calculation should not begin by fitting the electron mass. It should begin with a calibration-free reference attractor, denoted $A_0$: a neutral, rest-branch tri-binary Noether core in a weak homogeneous Noether-Sea cell. This gate turns the mass thesis from a symbolic relation into a concrete closure target that can be checked before particle labels, charged-lepton ratios, or measured constants enter the calculation.
+
+This attractor should not be pictured as three independent circular binaries. The inner, middle, and outer binaries occupy different causal-speed regimes: the inner binary is self-hit and super-field-speed on the active branch, the middle binary sits near the $v = c_f$ separator, and the outer binary remains sub-field-speed as the shielding and boundary-coupling interface. Circular or elliptic pictures can still be useful as carrier charts, but only after the coupled root ledger, phase lock, and stability diagnostics are respected.
+
+For the mass program, this distinction controls which internal corrections matter. Nonresonant fast structure in the inner layer may average out of the leading far-field shielding estimate, especially when the layer scales differ strongly. Resonant corrections, near-separator corrections, and small leakage asymmetries cannot be discarded in the same way, because they can change the accepted branch, the Floquet gap, or the extracted $\zeta(A_0)$ itself.
+
+The minimal $A_0$ output contract is:
+
+| Output class | Required content | Why it matters |
+| --- | --- | --- |
+| Geometry and winding | $R_I,R_M,R_O$, binary-plane normals, handedness, phase offsets, layer windings, and inter-layer closure integers | fixes the attractor as an integer-labeled Noether-core state rather than a loose configuration sketch |
+| Root ledger and stability | partner-hit counts, self-hit counts, inter-layer hit channels, closure residuals, return-map residuals, and the non-symmetry Floquet gap $\Delta_{\mathbf{k}}$ | separates stable closed cycles from integer-looking but dynamically unstable candidates |
+| Internal energy ledger | $E_I,E_M,E_O$, interaction and wake terms, total $E_{\text{internal}}(A_0)$, and action per closed cycle | supplies the unshielded reservoir in the mass-map roadmap formula |
+| Shielding extraction | far-field wake coefficients, the naive constituent sum, preliminary $\zeta(A_0)$, and angular anisotropy or leakage tensor | turns shielding from a symbolic term into an extracted geometric response |
+| Medium response | the homogeneous baseline for $\mathcal{M}_{\text{sea}}^{ab}$, plus acceleration and gradient probes | connects inertial response, gravitational response, and equivalence-principle tests |
+
+The accepted $A_0$ branch must have small closure residuals over at least one closed cycle, a positive non-symmetry Floquet gap, no secular drift after symmetry modes are removed, and a shielding estimate stable under increasing far-field extraction radius and angular resolution. No observed particle mass, charged-lepton ratio, electron radius, or measured $\alpha$ value should be used as an input to this gate.
+
+The canonical chapter should carry this interface but not the detailed simulation protocol. Its role is to state the mass thesis, define the terms, and make clear which derivations remain open; implementation details belong with the simulation and proof-program material once the $A_0$ state vector and output schema are formalized.
 
 ---
 
@@ -170,11 +190,11 @@ The canonical chapter should not carry the detailed simulation protocol. Its rol
 
 ### Critical Unknowns
 1. **What sets $d_0$?** The minimum binary radius is a fundamental length scale. Can it be derived from $\epsilon$, $c_f$, and $\kappa$, or is it an independent postulate?
-2. **Is $\rho_{\text{vac}}$ uniform?** Or does it vary with cosmological epoch, gravitational field strength, or local matter density?
+2. **Is the reference Noether-core density fixed?** Is $\rho_{\text{core},0}$ universal, or does $\rho_{\text{core}}(\mathbf{x},t)$ vary with cosmological epoch, gravitational field strength, or local matter density?
 3. **Why do neutrinos have mass at all?** If a neutrino is a near-photon pro/anti core pair with nearly perfect shielding ($\zeta \sim 10^{-12}$), which residual internal-binary exposure breaks exact photon-like cancellation?
 
 ### Potential Falsifications
-- **If $\zeta E_{\text{internal}} \neq m c^2$:** The shielding hypothesis is wrong.
+- **If $\zeta(A)E_{\text{internal}}(A)$ cannot reproduce $m(A)c_{\text{eff}}^2$ after the response tensor is fixed:** The shielding-based mass map is wrong.
 - **If the medium response behaves like dissipative drag in stable atoms:** The stability condition fails; the model is incompatible with chemistry.
 - **If generational masses don't scale with shielding:** The "missing binary" explanation for the hierarchy is wrong.
 

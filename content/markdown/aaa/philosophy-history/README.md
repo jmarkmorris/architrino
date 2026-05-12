@@ -6,6 +6,7 @@ Use this lane when a reader needs:
 
 - historical context for why a substrate-first program looks unfamiliar,
 - disciplined comparison between inherited theories and $\mathbb{A}\mathbb{A}\mathbb{A}$,
+- philosophical orientation for substance, structure, void, wake, medium, and effective description,
 - philosophy-of-science standards for realism, falsifiability, inference, and reduction,
 - a map of unresolved problems that may become closure targets,
 - or conceptual contrasts with religious and metaphysical cosmologies.
@@ -20,7 +21,7 @@ Do not use this lane as the primary home for:
 
 ## Reading Order
 
-Start with [Theory Mapping](theory-mapping.md) for a compact comparison of inherited frameworks. Use [Theory Differentials](theory-differentials.md) when a concept needs explicit stack placement and relation-type classification. Use [Crisis in Physics](crisis-in-physics.md), [Unknowns and Paradoxes](unknowns-paradoxes.md), and [Historical Context and Missed Opportunities](historical-context-and-missed-opportunities.md) to understand why closure targets matter. Use [Philosophy of Science](philosophy-of-science.md), [Information / Computation](information-computation.md), and [Agency and Internal Causation](agency-and-internal-causation.md) for methodological and interpretive discipline.
+Start with [Theory Mapping](theory-mapping.md) for a compact comparison of inherited frameworks. Use [Theory Differentials](theory-differentials.md) when a concept needs explicit stack placement and relation-type classification. Use [Substance, Structure, and the Plenum of Potential](substance-structure-and-potential.md) when a reader needs the philosophical distinction between primitive substance, causal wake structure, Euclidean void, Noether Sea, and effective description. Use [Crisis in Physics](crisis-in-physics.md), [Unknowns and Paradoxes](unknowns-paradoxes.md), and [Historical Context and Missed Opportunities](historical-context-and-missed-opportunities.md) to understand why closure targets matter. Use [Philosophy of Science](philosophy-of-science.md), [Information / Computation](information-computation.md), and [Agency and Internal Causation](agency-and-internal-causation.md) for methodological and interpretive discipline.
 
 ## Local Discipline
 

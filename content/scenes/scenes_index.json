@@ -987,7 +987,7 @@
     },
     {
       "id": "foundations__bootstrapping_the_absolute_frame",
-      "name": "Bootstrapping a Coordinate Frame",
+      "name": "Reconstructing a Coordinate Frame from Wake Geometry",
       "path": "content/scenes/foundations/bootstrapping_the_absolute_frame.json"
     },
     {
@@ -1234,6 +1234,11 @@
       "id": "validation_simulations__sim_run_protocols",
       "name": "Run Protocols",
       "path": "content/scenes/validation/sim_run_protocols.json"
+    },
+    {
+      "id": "validation_simulations__sim_a0_branch_certificate_protocol",
+      "name": "A0 Branch Certificate Protocol",
+      "path": "content/scenes/validation/sim_a0_branch_certificate_protocol.json"
     },
     {
       "id": "validation_simulations__sim_synthetic_observables",
@@ -1579,6 +1584,11 @@
       "id": "theory_bridges__weak_mixing_ckm",
       "name": "Weak Mixing CKM",
       "path": "content/scenes/theory-bridges/weak_mixing_ckm.json"
+    },
+    {
+      "id": "substance_structure_potential",
+      "name": "Substance, Structure, and the Plenum of Potential",
+      "path": "content/scenes/philosophy_history/substance_structure_potential.json"
     }
   ]
 }
