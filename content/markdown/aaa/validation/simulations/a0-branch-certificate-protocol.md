@@ -4,6 +4,54 @@ This protocol defines the simulation-facing handoff for the $A_0$ reference attr
 
 The protocol does not treat $A_0$ as a particle label. It treats $A_0$ as a calibration-free branch certificate problem: find a finite, stable, multi-scale causal-root ledger before energy, shielding, medium response, or mass comparisons enter.
 
+## Certificate Packet Schema
+
+An auditable $A_0$ branch certificate should preserve one top-level packet shape across all tiers. Fields that are not computed at a given tier must remain present with an explicit status, role, and note rather than disappearing from the packet.
+
+| Field | Required content | Promotion role |
+| --- | --- | --- |
+| `metadata` | run identifier, code or derivation version, source commit, integrator, tolerances, $\eta$, sampling schedule, and history-window rule | makes the packet reproducible |
+| `sea_cell` | $u^i_{\text{sea}}$, $G_{\text{grad}}$, $n$, $\chi_{\text{sea}}$, declared $c_\star$, and boundary conditions | fixes the homogeneous Noether-Sea cell and prevents mixing $c_f$ with $c_{\text{eff}}$ |
+| `branch_label` | layer windings, inter-layer closure integers, handedness, carrier ellipticity, and active root-branch summary | identifies the branch being certified |
+| `state_vector` | six architrino labels, polarities, reduced geometry, frequencies, phase offsets, carrier chart, history segment, and center gauge | gives the reduced Noether-core state vector |
+| `closure_system` | active variables, causal-root equations, layer phase closure, inter-layer closure, center-gauge closure, speed-ordering inequalities, and tolerances | ties closure labels to equations rather than only to names |
+| `root_ledger` | active and raw partner, self, and inter-layer root classes with delays, branch Jacobians, separator flags, parity events, and excluded near-zero self roots separated | verifies finite causal-root bookkeeping |
+| `term_classification` | terms assigned to averaging, locking, and leakage channels, with measured or derived residual size | prevents internal corrections from being hidden before promotion |
+| `residuals` | $\mathcal{R}_{\text{state}}$, $\mathcal{R}_{\text{root}}$, $\mathcal{R}_{\text{phase}}$, $\mathcal{R}_{E}$, $\mathcal{R}_{\text{drift}}$, $\mathcal{R}_{\text{speed}}$, $\mathcal{R}_{\text{avg}}$, $\mathcal{R}_{\text{lock}}$, $\mathcal{R}_{\text{leak}}$, and $\mathcal{R}_{\text{Floquet}}$, each with value, tolerance, status, role, and note fields | gives a machine-checkable promotion surface |
+| `stability` | monodromy or finite-difference return map, excluded symmetry modes, non-symmetry Floquet multipliers, and $\Delta_{\mathbf{k}}$ | separates integer closure from attractor stability |
+| `group_velocity_anisotropy` | $\mathbf{V}_{\text{cm}}$, declared $c_\star$, $\beta_\star$, envelope ratio, forward/backward delay ratio, tensor $\mathcal{A}_{\mathrm{gv}}^{ij}$, refinement status, and whether the entry is rest residue, small-velocity response, or probe-induced drift | keeps motion-induced deformation separate from shielding leakage |
+| `energy_ledger` | sign-resolved kinetic content, interaction terms, wake/history terms, layer totals $E_I,E_M,E_O$, $E_{\text{internal}}(A_0)$, and action per closed cycle | supplies the unshielded energy reservoir after Tier 1 passes |
+| `far_field_shielding` | extraction radii, angular grid, selected wake channel, $\mathcal{L}(\hat{\mathbf{R}})$, naive constituent sum, leading isotropic projection, $\zeta(A_0)$, $\mathcal{L}_{\text{aniso}}$, and convergence status | turns shielding into an extracted far-field quantity after Tier 1 passes |
+| `medium_response` | acceleration probes, gradient probes, extracted $\mathcal{M}_{\text{sea}}^{ab}$ baseline, symmetric tensor part, antisymmetric residue, and response anisotropy | tests inertial and gravitational response after shielding passes |
+| `mass_summary` | $\zeta(A_0)E_{\text{internal}}(A_0)/E_0$, unresolved constants, response-map assumptions, and explicitly excluded particle benchmarks | records only calibration-free mass-facing output |
+| `certificate_gates` | pass/fail promotion gates for each tier | controls promotion between branch search, attractor, shielding, and response claims |
+| `failure_code` | reason the row or packet failed, or the next allowed promotion status | prevents failed packets from being read as mass-map results |
+
+The group-velocity anisotropy entry uses the reduced centered covariance of the six-worldline state. With
+$$
+\mathbf{C}_{A_0}(t)=\frac{1}{6}\sum_{a\in A_0}\mathbf{s}_a(t),
+$$
+define
+$$
+D^{ij}_{A_0}(\mathbf{V}_{\text{cm}})
+=
+\left\langle
+\sum_{a\in A_0}
+\left(s_a^i-C_{A_0}^i\right)
+\left(s_a^j-C_{A_0}^j\right)
+\right\rangle_{T_{\mathbf{k}}},
+$$
+$$
+Q^{ij}_{A_0}
+=
+\frac{D^{ij}_{A_0}}{h_{mn}D^{mn}_{A_0}},
+\qquad
+\mathcal{A}_{\mathrm{gv}}^{ij}
+=
+Q^{ij}_{A_0}-\frac{1}{3}h^{ij}.
+$$
+This tensor measures motion-induced or probe-induced Noether-core deformation. It is not the same object as the far-field leakage residue $\mathcal{L}_{\text{aniso}}$, which is extracted from cycle-averaged wake coefficients in Tier 2.
+
 ## Tier 0: Algebraic Branch Search
 
 Tier 0 is a reduced branch-search pass. It samples diagnostic carrier charts, solves delayed root equations on those charts, classifies internal terms, and emits candidate rows. It does not claim a physical attractor.
@@ -24,9 +72,11 @@ Required outputs:
 | `branch_label` | layer windings, inter-layer closure integers, handedness, and active root-branch summary |
 | `closure_labels` | declared $T_{\mathbf{k}}$, winding integers, inter-layer closure integers, and active root classes |
 | `state_vector` | reduced geometry, frequencies, phase offsets, carrier chart, and center gauge |
+| `closure_system` | active causal-root, phase-closure, inter-layer-closure, center-gauge, and speed-ordering equations used by the row |
 | `root_ledger` | active and raw partner, self, and inter-layer root counts with delays, branch Jacobians, separator flags, and excluded near-zero self roots separated |
 | `term_classification` | terms assigned to averaging, locking, and leakage channels |
 | `residuals` | $\mathcal{R}_{\text{state}}$, $\mathcal{R}_{\text{root}}$, $\mathcal{R}_{\text{phase}}$, $\mathcal{R}_{E}$, $\mathcal{R}_{\text{drift}}$, $\mathcal{R}_{\text{speed}}$, $\mathcal{R}_{\text{avg}}$, $\mathcal{R}_{\text{lock}}$, $\mathcal{R}_{\text{leak}}$, and $\mathcal{R}_{\text{Floquet}}$, each with value, tolerance, status, role, and note fields |
+| `group_velocity_anisotropy` | rest-branch residue if computed, or an explicit not-computed Tier 0 status; no Tier 0 row may use this as shielding evidence |
 | `certificate_gates` | pass/fail promotion gates for speed ordering, phase closure, bounded carrier residuals, active root defects, active root-ledger completeness, active separator-root handling, near-zero self-root handling, residual semantics, and Tier 0 continuation |
 | `failure_code` | reason the row failed, or `candidate` if it survives Tier 0 |
 
@@ -62,15 +112,17 @@ Tier 2 begins only after Tier 1 passes. It computes the internal-energy ledger a
 
 - $E_I$, $E_M$, $E_O$, and $E_{\text{internal}}(A_0)$;
 - interaction and wake/history bookkeeping with no double counting;
-- far-field wake coefficients over extraction radii and angular grids;
+- far-field wake coefficients $\mathcal{L}(\hat{\mathbf{R}})$ over extraction radii and angular grids;
+- the naive constituent sum $\mathcal{L}_{\text{naive}}$ and the leading isotropic projection $\Pi_0\mathcal{L}$;
 - $\zeta(A_0)$ from the leading isotropic projection;
-- anisotropic leakage retained as a separate tensor or channel list.
+- anisotropic leakage $\mathcal{L}_{\text{aniso}}=(1-\Pi_0)\mathcal{L}$ retained as a separate tensor or channel list;
+- convergence status under extraction radius, angular resolution, $\Delta t$, history-window, and $\eta$ refinement.
 
 Tier 2 fails if particle masses, charged-lepton ratios, electron radius, or measured $\alpha$ enter as inputs.
 
 ## Tier 3: Medium-Response Probe
 
-Tier 3 begins only after Tier 2 passes. It applies small acceleration and gradient probes to the accepted branch and extracts the homogeneous baseline for $\mathcal{M}_{\text{sea}}^{ab}$. The probe must report whether the acceleration and gradient channels share the same shielded-energy coefficient to first order.
+Tier 3 begins only after Tier 2 passes. It applies small acceleration and gradient probes to the accepted branch and extracts the homogeneous baseline for $\mathcal{M}_{\text{sea}}^{ab}$. The probe must report whether the acceleration and gradient channels share the same shielded-energy coefficient to first order, and it must report response anisotropy separately from both $\mathcal{A}_{\mathrm{gv}}^{ij}$ and $\mathcal{L}_{\text{aniso}}$.
 
 ## Runtime Artifact
 
@@ -80,4 +132,4 @@ The companion audit is `scripts/audit-a0-mass-map-promotion.mjs`. It scans AAA a
 
 ## Acceptance Boundary
 
-The $A_0$ branch is not an attractor until Tier 1 passes. It is not a mass-map result until Tier 2 passes. It is not an inertial-response result until Tier 3 passes.
+The $A_0$ branch is not an attractor until Tier 1 passes. It is not a mass-map result until Tier 2 passes. It is not an inertial-response result until Tier 3 passes. A reported group-velocity anisotropy tensor is a deformation diagnostic, not a shielding extraction and not a substitute for the medium-response probe.

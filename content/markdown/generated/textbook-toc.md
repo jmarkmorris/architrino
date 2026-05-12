@@ -910,6 +910,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
       - [A₀ Branch-Certificate Protocol](../aaa/validation/simulations/run-protocols.md?section=%24A_0%24+Branch-Certificate+Protocol)
       - [Run Protocol: Absolute-Frame + $\mathbb{U}_{\text{now}}$ Logging](../aaa/validation/simulations/run-protocols.md?section=Run+Protocol%3A+Absolute-Frame+%2B+%24%5Cmathbb%7BU%7D_%7B%5Ctext%7Bnow%7D%7D%24+Logging)
     - [A0 Branch Certificate Protocol](../../scenes/validation/sim_a0_branch_certificate_protocol.json)
+      - [Certificate Packet Schema](../aaa/validation/simulations/a0-branch-certificate-protocol.md?section=Certificate+Packet+Schema)
       - [Tier 0: Algebraic Branch Search](../aaa/validation/simulations/a0-branch-certificate-protocol.md?section=Tier+0%3A+Algebraic+Branch+Search)
       - [Tier 1: η>0 Continuation](../aaa/validation/simulations/a0-branch-certificate-protocol.md?section=Tier+1%3A+%24%5Ceta%3E0%24+Continuation)
       - [Tier 2: Energy and Shielding](../aaa/validation/simulations/a0-branch-certificate-protocol.md?section=Tier+2%3A+Energy+and+Shielding)

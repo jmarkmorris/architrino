@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 152,
-      "sections": 1091
+      "sections": 1092
     }
   },
   "tocRoot": {
@@ -7463,6 +7463,14 @@
                 "scenePath": "content/scenes/validation/sim_a0_branch_certificate_protocol.json",
                 "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
                 "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Certificate Packet Schema",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+                    "markdownSection": "Certificate Packet Schema",
+                    "sectionKey": "certificate packet schema",
+                    "headingLevel": 2
+                  },
                   {
                     "kind": "markdown-section",
                     "title": "Tier 0: Algebraic Branch Search",
