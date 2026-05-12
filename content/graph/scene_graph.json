@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 465,
-      "edges": 1219,
-      "scenes": 318,
+      "nodes": 468,
+      "edges": 1221,
+      "scenes": 319,
       "markdownIndexes": 0,
-      "markdownDocs": 147,
+      "markdownDocs": 149,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2057,6 +2057,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "archie__textbook_pdf_snapshots",
+      "name": "Textbook PDF Snapshots",
+      "path": "content/scenes/archie/textbook_pdf_snapshots.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/markdown/aaa/archie/about-the-webapp.md",
       "name": "About the Webapp",
       "path": "content/markdown/aaa/archie/about-the-webapp.md",
@@ -2138,6 +2144,12 @@
       "id": "content/markdown/aaa/archie/textbook-file-structure.md",
       "name": "Textbook File Structure",
       "path": "content/markdown/aaa/archie/textbook-file-structure.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
+      "name": "Textbook PDF Snapshots",
+      "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2657,6 +2669,12 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md",
+      "name": "Angular Momentum and Spin",
+      "path": "content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/theory-bridges/bell-theorem.md",
       "name": "Bell's Theorem: Traditional Derivation and Architrino Assembly Architecture Response",
       "path": "content/markdown/aaa/theory-bridges/bell-theorem.md",
@@ -3100,6 +3118,15 @@
       "name": "Textbook File Structure",
       "path": "content/scenes/archie/textbook_file_structure.json",
       "searchTarget": "content/scenes/archie/textbook_file_structure.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
+      "nodeType": "scene",
+      "id": "archie__textbook_pdf_snapshots",
+      "name": "Textbook PDF Snapshots",
+      "path": "content/scenes/archie/textbook_pdf_snapshots.json",
+      "searchTarget": "content/scenes/archie/textbook_pdf_snapshots.json",
       "implicit": false
     },
     {
@@ -5929,6 +5956,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/textbook-pdf-snapshots.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
+      "name": "Textbook PDF Snapshots",
+      "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
+      "searchTarget": "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/archie/ui-guidelines.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/ui-guidelines.md",
@@ -6703,6 +6739,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md",
+      "name": "Angular Momentum and Spin",
+      "path": "content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md",
+      "searchTarget": "content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/theory-bridges/bell-theorem.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/theory-bridges/bell-theorem.md",
@@ -7223,14 +7268,14 @@
       "to": "scene:content/scenes/archie/research_notebook.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/documentation.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/archie/documentation.json",
       "to": "scene:content/scenes/archie/scene_taxonomy.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/documentation.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/archie/documentation.json",
@@ -7245,6 +7290,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/archie/documentation.json",
       "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/archie/documentation.json",
+      "to": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/documentation.json",
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/archie/project.json",
@@ -11416,6 +11468,13 @@
       "to": "markdown_doc:content/markdown/aaa/archie/textbook-file-structure.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/archie/textbook_file_structure.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/textbook-pdf-snapshots.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/textbook_pdf_snapshots.json",
       "field": "scene.source.path"
     },
     {

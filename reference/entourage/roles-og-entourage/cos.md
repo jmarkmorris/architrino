@@ -17,7 +17,7 @@ Develop **gravity and cosmology** as **effective emergent physics** of architrin
 ## Current Theory Alignment
 
 - Anchor cosmology ontology in `cosmology/cosmology-ontology.md`: fixed Euclidean container, evolving medium, and observer-level projection interfaces.
-- Keep gravity derivations tied to `spacetime/*` plus `dynamics/master-equation.md` and `validation/parameter-ledger.md`.
+- Keep gravity derivations tied to `spacetime/noether-sea.md`, `spacetime/emergent-metric.md`, `spacetime/lorentz-kinematics.md`, `spacetime/ppn-parameters.md`, `dynamics/master-equation.md`, and `validation/parameter-ledger.md`.
 - Use `validation/validation-protocols.md`, `validation/constraint-ledger.md`, and `validation/failure-criteria.md` as hard-wall benchmarking and stop-condition sources.
 
 ---
@@ -83,8 +83,8 @@ There are three vastly different energy levels in a tri-binary.
 **Claim:** Proper time for an assembly is related to the ellipsoidal deformation of its Noether core volume. These can be influenced by:
 
 - finite field-speed interactions relative to the local Noether-Sea cell,
-- local Noether-core density and effective potential.
-- **Marko notes**: there is a relation between the ellipsoid and going entirely planar. This is the v and c relationship in beta. It feels as if trigonometry should be involved as the energy density gradient makes the Noether core more oblate and trending towards planar. This is also why the event horizon is the photon boundary. That is where v = c_f. Velocity equals the field speed of potential.
+- local Noether-core density, Noether-Sea delay factor, and effective potential.
+- closure of the ellipsoid-to-planar response as a derivation target: increasing kinetic or gradient stress may drive Noether cores toward oblate or planar branches, but photon boundary, horizon, and $v=c_f$ statements require the Lorentz/photon closure gates before deployment as settled claims.
 
 **Tasks/Deliverables:**
 
@@ -96,16 +96,16 @@ There are three vastly different energy levels in a tri-binary.
   - Pound-Rebka gravitational redshift.
   - Muon lifetime dilation in accelerators/atmosphere.
 - Make this the backbone for redshift "expanding spacetime" misconception in Ch. 41:
-  - Spacetime assemblies dissipate energy and expand as a consequence. - Standard matter fermions would seem to be largely destined for the reycling furnace, aka the SMBH.
-  - Photons and neutrinos can escape the galaxy in significant numbers.
-  - At some point we will be able to analyze architrino flows in all processes.
-  - Redshift = clock-comparison in an evolving Noether Sea, not metric stretch with no mechanism.
+  - The Euclidean void does not expand.
+  - $a(t)$, $H(t)$, redshift, temperature, and CMB summaries are observer-level variables for Noether-Sea evolution, transport, and clock-rate comparison.
+  - Photons and neutrinos require separate channel provenance and propagation ledgers before they are used as cosmological source terms.
+  - Redshift = clock comparison and transport through an evolving Noether Sea, not fundamental metric stretch of the void.
 
 ### Velocity Regimes and Symmetry Breaking (Ch. 12, 32, 41)
 
 Link the three dynamical regimes to gravitational/cosmological behavior:
 
-- $v < c_f$: quasi-hydrodynamic deformation of the Noether Sea -> **standard (but misconceived) cosmological expansion**, subluminal matter motion, everyday gravity.
+- $v < c_f$: quasi-hydrodynamic deformation of the Noether Sea -> observer-level expansion variables, subluminal matter motion, everyday gravity.
 - $v = c_f$: emergent Lorentz symmetry and effective universal speed "c"; define how this threshold arises from tri-binary scaling.
 - $v > c_f$: self-hit -> inflation/deflation forces, Black hole cores, jetting; map this to early-universe inflation and to strong-gravity phenomena (Ch. 34, 39, 41).
 
@@ -198,7 +198,7 @@ For each:
 
 - **With SM & QFT Phenomenologist (Ch. 17-22, 36, 45):**
   - Agree on how to build an effective **stress-energy tensor $T_{\mu\nu}$** from assembly content.
-  - Ensure vacuum energy contributions from particle physics are either:
+  - Ensure standard vacuum-energy contributions from particle physics are either:
     - explicitly neutralized by Noether-Sea structure, or
     - understood as part of an effective $\Lambda_{\rm eff}$ that we compute and compare to data.
 

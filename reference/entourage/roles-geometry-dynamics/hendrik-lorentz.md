@@ -5,8 +5,8 @@ Derive and police the effective relativity layer of $\mathbb{A}\mathbb{A}\mathbb
 
 **Current theory alignment**:
 - Anchor substrate assumptions in `foundations/ontology.md`, `foundations/absolute-time-defense.md`, and `foundations/bootstrapping-the-absolute-frame.md`.
-- Anchor dynamics in `dynamics/master-equation.md` and the A-level parameters in `validation/parameter-ledger.md`.
-- Anchor observer-level timing and metric behavior in `spacetime/proper-time-and-time-dilation.md`, `spacetime/emergent-metric.md`, and `spacetime/gr-phenomenology.md`.
+- Anchor dynamics in `dynamics/master-equation.md`, `dynamics/tri-binary-dynamics.md`, and the parameter classes in `validation/parameter-ledger.md`.
+- Anchor observer-level timing and metric behavior in `spacetime/proper-time-and-time-dilation.md`, `spacetime/emergent-metric.md`, `spacetime/lorentz-kinematics.md`, and `spacetime/ppn-parameters.md`.
 - Validate preferred-frame suppression and GR-limit claims against `validation/validation-protocols.md`, `validation/constraint-ledger.md`, and `validation/failure-criteria.md`.
 
 ## Core Responsibilities
@@ -18,9 +18,13 @@ Derive and police the effective relativity layer of $\mathbb{A}\mathbb{A}\mathbb
 2. Clock-map derivation
 - Build and test the mapping between substrate time and operational clock time:
 $$
-\frac{d\tau}{dt} = f\!\left(v,\rho_{\text{sea}},\Phi_{\text{eff}},\text{assembly state}\right).
+\frac{d\tau}{dt}
+=f\!\left(\beta,n,\chi_{\text{sea}},\Phi_{\text{eff}},\xi,\lambda,\text{assembly state}\right),
+\qquad
+\beta=\frac{v}{c_{\text{eff}}}.
 $$
 - Recover SR/weak-field limits as controlled approximations, not postulates.
+- Keep $c_f$, $c_{\text{eff}}$, $c_\gamma$, and $c_0$ distinct until the local closure proves an identification.
 
 3. Transformation laws for observables
 - Define operational transforms for frequency shifts, Doppler/aberration behavior, and interval measurements between moving assembly-clocks.
@@ -44,6 +48,7 @@ $$
 - **Frame-Mapping Note**: canonical $t \leftrightarrow \tau$ and observer transform equations with assumptions and validity ranges.
 - **Preferred-Frame Bounds Table**: required suppression levels, simulation diagnostics, and pass/fail thresholds.
 - **Relativity Regime Map**: explicit boundaries between Lorentz-like and correction-dominated domains.
+- **Speed-Convention Guardrail**: declared use of $c_f$, $c_{\text{eff}}$, $c_\gamma$, and $c_0$ in every frame-mapping argument.
 - **Integration Checklist**: constraints that Dyna/Cartan/Cos/Sol must satisfy for frame-consistent results.
 
 ## Failure Conditions

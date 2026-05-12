@@ -2,7 +2,7 @@
 
 This chapter treats the Planck scale as an exploratory alignment-horizon problem for the tri-binary rather than as a finished derivation. Its purpose is to translate familiar Planck-unit relations into concrete geometric and dynamical targets inside the delayed tri-binary framework, then test which parts survive once full closure conditions are imposed.
 
-Its closest companions are [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md), [Dyadic Resonance Lock](../dynamics/dyadic-resonance-lock.md), [Horizon Chirality](../spacetime/horizon-chirality.md), [Black Holes](../spacetime/black-holes.md), and [Effective Lagrangian](../dynamics/effective-lagrangian.md).
+Its closest companions are [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md), [Dyadic Resonance Lock](../dynamics/dyadic-resonance-lock.md), [Angular Momentum and Spin](./angular-momentum-and-spin.md), [Horizon Chirality](../spacetime/horizon-chirality.md), [Black Holes](../spacetime/black-holes.md), and [Effective Lagrangian](../dynamics/effective-lagrangian.md).
 
 The opening sections state the working thesis and the immediate kinematic map; later sections separate conjectural alignment, causal-wake framing, constant-mapping proposals, and failure modes. The reader should treat the whole note as a live mapping program, with explicit hypotheses rather than settled closure.
 
@@ -24,9 +24,12 @@ We propose that the Planck scale corresponds, in the architrino architecture, to
 >    $$
 >    so for orthogonal components near $c_f$ ($v_{\text{eff}} \approx \sqrt{2}\,c_f$), $\theta \approx 45^\circ$.
 > 4. The wedge modifies the delay-feedback geometry, constraining which loops can close; the terminal aligned mode is the last wedge-compatible, phase-locked configuration.
-> 5. The assembly acquires the **minimum action/rotation increment** $L_{\text{align}}$, identified with the universal quantum $h$ (not a system-specific lower bound), and an **alignment radius** $R_{\text{align}}$, defined by the Planck-alignment circumference $2\pi R_{\text{align}} = \ell_P$:
+> 5. The assembly acquires the **minimum closed-cycle action** $\mathcal{A}_{\text{align}}^{\text{cycle}}$, identified with the universal quantum $h$ (not a system-specific lower bound), together with the radian-normalized rotational-action variable $I_{\text{align}}=\mathcal{A}_{\text{align}}^{\text{cycle}}/(2\pi)$, and an **alignment radius** $R_{\text{align}}$, defined by the Planck-alignment circumference $2\pi R_{\text{align}} = \ell_P$:
 >    $$
->      L_{\text{align}} \;\stackrel{\text{hyp.}}{\approx}\; h, \qquad
+>      \mathcal{A}_{\text{align}}^{\text{cycle}} \;\stackrel{\text{hyp.}}{\approx}\; h,
+>      \qquad
+>      I_{\text{align}} \;\stackrel{\text{hyp.}}{\approx}\; \hbar,
+>      \qquad
 >      R_{\text{align}} \;\stackrel{\text{hyp.}}{\approx}\; \ell_P/(2\pi).
 >    $$
 > 
@@ -238,28 +241,30 @@ We adopt:
 
 Whenever we identify $c$ with $c_f$ in Planck formulas, we explicitly appeal to A-cf-match.
 
-### Minimal Action: $L_{\text{align}}$ and $h$
+### Minimal Cycle Action: $\mathcal{A}_{\text{align}}^{\text{cycle}}$, $I_{\text{align}}$, and $h$
 
-Let $L$ denote the total orbital angular momentum of a tri-binary assembly.
+Let $I$ denote the radian-normalized total rotational action of a tri-binary assembly: the action-angle variable that has the same units and role as angular momentum. Let $\mathcal{A}_{\text{cycle}}=2\pi I$ denote the corresponding closed-cycle action.
 
-- For generic modes $n$, $L(n)$ depends on axial structure and environment.
+- For generic modes $n$, $I(n)$ and $\mathcal{A}_{\text{cycle}}(n)$ depend on axial structure and environment.
 - For the Planck alignment state $n_{\text{max}}$, we expect a **universal attractor** dominated by:
   - the fundamental charge unit $\epsilon = e/6$ (A2),
   - the coupling $\kappa$ (A6),
   - and the causal speed $c_f$ (A1).
 
-> **Conjectured Mapping (Angular Momentum):**  
-> The angular momentum associated with this aligned state,
+> **Conjectured Mapping (Cycle Action and Angular Momentum):**
+> The closed-cycle action associated with this aligned state,
 > $$
->   L_{\text{align}} \equiv L(n_{\text{max}}),
+>   \mathcal{A}_{\text{align}}^{\text{cycle}} \equiv 2\pi I(n_{\text{max}}),
 > $$
 > is proposed to **coincide with** the Planck action quantum $h$:
 > $$
->   L_{\text{align}} \stackrel{\text{hyp.}}{\approx} h.
+>   \mathcal{A}_{\text{align}}^{\text{cycle}} \stackrel{\text{hyp.}}{\approx} h,
+>   \qquad
+>   I_{\text{align}}\equiv I(n_{\text{max}}) \stackrel{\text{hyp.}}{\approx} \hbar.
 > $$
 > This must ultimately be derived from the architrino master equation and checked numerically.
 
-If the dynamics admit multiple distinct aligned states with significantly different $L$, this identification fails.
+If the dynamics admit multiple distinct aligned states with significantly different $\mathcal{A}_{\text{align}}^{\text{cycle}}$ or $I_{\text{align}}$, this identification fails.
 
 ### Alignment Radius: $R_{\text{align}}$ and $\ell_P$
 
@@ -285,10 +290,10 @@ $$
 Equivalently, within the architrino theory we can invert the relation to define an **effective gravitational constant**:
 
 $$
-G_{\text{eff}} \equiv \frac{R_{\text{align}}^2 c_f^3}{L_{\text{align}}}.
+G_{\text{eff}} \equiv \frac{R_{\text{align}}^2 c_f^3}{\mathcal{A}_{\text{align}}^{\text{cycle}}}.
 $$
 
-Our program is to compute $L_{\text{align}},R_{\text{align}}$ from first principles, then compare $G_{\text{eff}}$ to the measured $G$.
+Our program is to compute $\mathcal{A}_{\text{align}}^{\text{cycle}}$, $I_{\text{align}}$, and $R_{\text{align}}$ from first principles, then compare $G_{\text{eff}}$ to the measured $G$.
 
 ### $G$ as Noether Sea Compliance
 
@@ -337,7 +342,7 @@ Those steps remain open.
 
 3. **Uniqueness of Aligned Mode.**  
    Simulations must show:
-   - A **terminal** aligned attractor, not a family of inequivalent aligned states with very different $L,R$.
+   - A **terminal** aligned attractor, not a family of inequivalent aligned states with very different cycle action or radius.
    - Clear loss of stability when trying to force $v_{\text{eff}} > c_f$.
 
 4. **Angular Momentum Conservation at Spin Flip.**  

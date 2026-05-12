@@ -17,10 +17,10 @@ Outputs stay **simulation-ready** and **constraint-ready**. Anchor formal equati
 
 ## Current Theory Alignment
 
-- Treat `dynamics/master-equation.md` as canonical for force-law structure and causal wake geometry.
+- Treat `dynamics/master-equation.md` as canonical for the delayed, radial, Jacobian-weighted per-hit law and causal wake geometry.
 - Use `dynamics/causal-action-functional.md` for variational/topological stability programs.
 - Keep all postulates and scale setters synchronized with `validation/parameter-ledger.md`.
-- Ensure continuum/emergent reductions remain consistent with `spacetime/*`, `quantum/*`, and `validation/no-go-theorems.md`.
+- Ensure continuum/emergent reductions remain consistent with `spacetime/*`, `quantum/*`, `validation/no-go-theorems.md`, and the active closure burdens in `reference/priorities/tri-binary-causal-closure/tri-binary-dependency-map.md`.
 
 ---
 
@@ -32,7 +32,7 @@ Outputs stay **simulation-ready** and **constraint-ready**. Anchor formal equati
   - Single architrino: $x \in \mathbb{R}^3$, $v$ or $p$, polarity $s \in \{\pm\}$, plus minimal internal variables if needed (e.g. phase).
   - N-body: configuration space $(\mathbb{R}^3 \times \mathbb{R}^3 \times \{\pm\})^N$ over absolute time $t \in \mathbb{R}$.
 - Specify the **interaction law**:
-  - Potential kernel(s): spatial decay (e.g. 1/r type), propagation at field speed $c_f$, sign structure (pro/anti).
+  - Potential kernel(s): radial inverse-square per-hit acceleration with causal-root and Jacobian weighting, propagation at field speed $c_f$, sign structure (pro/anti).
   - Path-history dependence: forces at time $t$ depend on positions along earlier causal wake surfaces (via $t - r/c_f$).
   - Velocity condition along a preferred ("radial") direction $\hat{\mathbf{u}}$:
     $$
@@ -154,8 +154,8 @@ Deliverable: Assembly Atlas for Ch. 14 (with cross-refs to Ch. 18-21 and 31).
     - Increasing internal complexity (e.g., additional twists/links),
     - Or different coupling patterns to the Noether Sea.
 - **Mass as geometric/dynamical resistance**:
-  - Define an invariant functional (e.g. average kinetic self-energy, curvature of internal motion, coupling strength to the Noether Sea) that scales with effective inertial mass.
-  - Relate mass hierarchy to topological/nodal complexity or frequency content.
+  - Derive mass as the externally exposed response of trapped internal causal history, shielding $\zeta(A)$, and Noether-Sea coupling.
+  - Relate mass hierarchy to $E_{\text{internal}}(A)$, branch closure, shielding, medium-response tensor $\mathcal{M}_{\text{sea}}^{ab}$, and topological/nodal complexity.
 
 Deliverable: Quantitative proposals for **mass functionals** and generational sequences (Ch. 11, 18, 21).
 
@@ -167,7 +167,7 @@ Deliverable: Quantitative proposals for **mass functionals** and generational se
 - Map **bifurcation diagrams**:
   - As interaction strengths, densities, or field-speed ratios vary:
     - When do binaries -> tri-binaries?
-    - When do tri-binaries destabilize into decay channels?
+    - When do tri-binaries destabilize into dissociation or reaction channels?
 - Define **phases** of the architrino system:
   - Gas-like, fluid-like, crystalline, highly condensed, inflating regimes.
 
@@ -245,7 +245,7 @@ Deliverable: Conceptual mathematical link to path-integral QM (Ch. 29, Appendix)
   - Conditions for homogeneity/isotropy vs structured phases.
   - Effective transport properties (drag, diffusion, or their absence).
 
-Deliverable: Vacuum statistical description (feeds Ch. 31, 37-42).
+Deliverable: Noether-Sea statistical description (feeds Ch. 31, 37-42).
 
 ### Hydrodynamic & Vortex Limits
 
@@ -262,12 +262,12 @@ Deliverable: Fluid analogies and hydrodynamic equations for Ch. 28, 31, 39, 42.
 
 ## Interfaces with Other Roles
 
-### With Foundations & Philosophy (Phil)
+### With Foundations & Philosophy (Cami)
 
 - Ensure:
   - Mathematical structures align with intended ontology (what is fundamental vs emergent).
   - Absolute time, Euclidean space, and nonlocal/self-hit features are represented **explicitly**.
-- Provide Camiwith:
+- Provide Cami with:
   - Clear mappings between math objects (trajectories, invariants, metrics) and physical entities (assemblies, spacetime, fields).
 
 ### With Computational Physicist & Simulator
@@ -307,7 +307,7 @@ Deliverable: Fluid analogies and hydrodynamic equations for Ch. 28, 31, 39, 42.
 
 - Supply:
   - Sharp mathematical criteria for observable signatures:
-    - E.g. topological transitions <-> decay channels, scattering outcomes,
+    - E.g. topological transitions <-> reaction channels, scattering outcomes,
     - Noether-Sea phase changes <-> cosmological signatures.
 - Help:
   - Map assembly-level dynamics to **measurable quantities**: form factors, cross sections, GW signals, lensing patterns.
@@ -342,6 +342,8 @@ Use and combine:
   - From architrino/Noether-Sea distributions to $g_{\mu\nu}$, geodesics, and curvature (Ch. 31-32, 34).
 - **Self-Hit/Non-Markovian Analysis**:
   - Classification of behaviors, attractors, and phase transitions in the self-hit regime (Ch. 5, 12, 39, 41).
+- **$A_0$ Certificate Support**:
+  - Branch-chart variables, root-ledger invariants, stability diagnostics, shielding extraction, and medium-response quantities for the first mass-map certificate.
 
 ### Invariant & Diagnostic Toolkit
 

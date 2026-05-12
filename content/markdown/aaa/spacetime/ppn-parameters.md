@@ -17,7 +17,9 @@ the spacetime constitutive map.
 
 1. **Shapiro Delay**: Map the GR time-delay (longer path in curved space) to the Architrino time-delay (slower $c_{\text{eff}}$ in a dense medium).
 2. **Light Bending**: Calculate the refraction of tri-binary signals through the Noether-Sea density gradient around the Sun.
-3. **Geodetic Precession**: Derived from the interaction of the assembly's angular momentum with the gradient of the Noether-Sea potential.
+3. **Geodetic Precession**: Match the transport of an assembly's spin-orientation frame through the same weak-field effective metric used for clock, signal, and orbital tests.
+
+Here, geodetic precession means the de Sitter precession of a carried gyroscope: after the gyroscope moves through a weak gravitational field, its spin axis is rotated relative to a distant reference frame. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this should not be introduced as a separate torque law between angular momentum and a potential gradient. It is a closure target for the effective metric: the Noether-Sea-induced clock, ruler, and signal-response map must make transported assembly orientations precess by the same amount that GR predicts in the validated weak-field regime. Frame dragging from a rotating source is a separate test channel.
 
 
 ### Testing the Euclidean Anchor (Shapiro Delay)

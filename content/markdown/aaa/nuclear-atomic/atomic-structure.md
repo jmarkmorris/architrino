@@ -6,6 +6,8 @@ Its natural companion notes are [Nucleon Structure](nucleon-structure.md), [Nucl
 
 The note remains provisional. It should be read as a compact orientation to the intended architecture of atomic structure rather than as a theorem-backed final chapter.
 
+Angular momentum and spin enter this chapter only through downstream closure targets. Atomic orbital labels, spin-orbit coupling, hyperfine structure, Pauli filling, and exclusion-volume packing should inherit the single-core angular-momentum ledger and ordered-frame spinor proof from [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md), together with the exchange-statistics program in [Fermi-Dirac and Bose-Einstein Statistics](../quantum/quantum-statistics.md). They should not be used here as independent explanations of angular momentum, spin, or Pauli behavior.
+
 ## Multi-Body Assembly Structure
 
 Atomic structure sits on three coupled layers:
@@ -19,3 +21,7 @@ The Noether Sea enters this picture as ambient substrate contents, not as the fi
 The superfluid analogy remains useful for transport and coherence, but it does not make inertia a dissipative drag threshold. Inertial response must come from medium-dressed causal-ledger skew and shielding; ordinary resistance remains a separate breakdown channel involving excitation, action shedding, or branch transition.
 
 For the underlying assembly carrier of this medium, see [Noether Core](../assemblies/noether-core.md).
+
+## Angular-Momentum Handoff
+
+The immediate atomic target is to recover observer-level orbital quantum numbers from electron assemblies moving in an external nuclear and Noether-Sea environment. That target is separate from the internal rotational action of the electron's Noether-core assembly. A later atomic-spin pass must show how spin-orbit and hyperfine structure arise when the external resonance envelope couples to the completed internal spin ledger and to the measurement-response model. Until then, this chapter should treat shell filling and exclusion language as effective atomic bookkeeping inherited from the spin-statistics proof program.

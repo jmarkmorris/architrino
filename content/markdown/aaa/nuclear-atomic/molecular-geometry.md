@@ -4,6 +4,8 @@ This chapter states the molecular-geometry closure target within the assembly fr
 
 It should be connected to [Atomic Structure](atomic-structure.md), [Atomic Spectra](atomic-spectra.md), [Condensed Matter](condensed-matter.md), and [Medium Exclusion Volume](../spacetime/medium-exclusion-volume.md), which together supply the atomic constituents, resonance behavior, medium response, and exclusion geometry that molecular shapes must reconcile.
 
+Spin and Pauli language in this chapter is downstream of [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md) and [Fermi-Dirac and Bose-Einstein Statistics](../quantum/quantum-statistics.md). Molecular singlet/triplet labels, bonding selection rules, electron-pair exclusion, and orbital-hybridization language should be treated as validation targets for those lower proofs, not as separate explanations.
+
 ## Purpose
 
 This chapter states the first working closure target for molecular geometry in $\mathbb{A}\mathbb{A}\mathbb{A}$. It does not yet derive molecular shape from the master equation. It fixes the ingredients that a later derivation must combine.
@@ -25,8 +27,12 @@ A first useful decomposition is:
 - **phase compatibility:** the condition that coupled electron resonances remain stable over repeated cycles,
 - **medium response:** the local Noether-Sea density and delay contribution to stiffness and shielding.
 
+This decomposition can organize molecular shape before the spin proof is complete, but it cannot close molecular occupancy by itself. The exclusion-cost term must eventually inherit Pauli/statistics closure, while phase compatibility must eventually be connected to the completed atomic spin and orbital ledger.
+
 ## Closure Targets
 
 A completed molecular-geometry derivation should recover, at minimum, the familiar qualitative sequence of linear, trigonal, tetrahedral, and bent arrangements from assembly geometry rather than imposing them as orbital templates. The first practical benchmark should be a small set of molecules whose standard geometries are sharply constrained: $\mathrm{H}_2$, $\mathrm{H}_2\mathrm{O}$, $\mathrm{CO}_2$, $\mathrm{NH}_3$, and $\mathrm{CH}_4$.
 
 The immediate derivation target is therefore a corridor-plus-exclusion functional that predicts equilibrium bond length and angle for those cases while remaining compatible with [Atomic Spectra](atomic-spectra.md), [Condensed Matter](condensed-matter.md), and [Medium Exclusion Volume](../spacetime/medium-exclusion-volume.md).
+
+For spin-sensitive chemistry, the later derivation should recover singlet/triplet distinctions and bonding selection rules only after the atomic angular-momentum ledger and spin-statistics proof are available. Until then, this chapter should keep molecular geometry as a corridor-plus-exclusion closure target, not a foundation for spin or Pauli behavior.

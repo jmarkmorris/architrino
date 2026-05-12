@@ -6,6 +6,8 @@ It should be read alongside [Atomic Structure](atomic-structure.md), [Electron](
 
 The note is still exploratory, so the opening should be read as a compact program statement rather than as a closed derivation.
 
+Spin-sensitive spectral structure is downstream of the angular-momentum proof program. This chapter may use observer-level labels such as fine structure, spin-orbit structure, Zeeman splitting, and hyperfine splitting as recovery targets, but those labels must inherit the single-core angular-momentum ledger, ordered-frame spinor closure, and measurement-response model in [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md). They are not independent derivations of spin.
+
 ## Atomic Orbitals as Lattice Resonances
 
 Electron orbitals are treated here as stable resonance patterns of electron assemblies coupled to the local Noether Sea. This is an effective atomic model, not yet a derivation from the constituent master equation.
@@ -15,3 +17,7 @@ The first closure target is the Rydberg constant. In the present notation, a com
 The second closure target is gravitational spectral shift. A viable account should derive redshift-sensitive atomic spectra from both local assembly resonance and the effective clock/rate layer, rather than treating the shift as a density-only lattice effect.
 
 For the medium-level gravitational side of that program, see [Emergent Metric](../spacetime/emergent-metric.md) and [Black Holes](../spacetime/black-holes.md).
+
+## Spin-Sensitive Spectral Targets
+
+After the base resonance and clock/rate program is stable, the spin-sensitive spectrum should be revisited as a validation surface for the completed angular-momentum ledger. Fine-structure and spin-orbit terms must distinguish observer-level orbital angular momentum from internal Noether-core spinor behavior. Hyperfine terms must add the nuclear spin ledger without treating proton or neutron spin decomposition as already closed. Zeeman and related analyzer-response cases must use the finite-time measurement-response model rather than inserting preassigned spin arrows.

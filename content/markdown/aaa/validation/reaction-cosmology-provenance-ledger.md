@@ -50,7 +50,7 @@ The minimal useful first path is BBN photon loading: identify a source-zone radi
 | --- | --- | --- |
 | Architrino inventory | $E/P$ counts and core/axial-layer separation | Prevents creation-from-nothing wording in pair and weak channels |
 | Noether-Sea state | $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy, and excitation state | Keeps density, delay, and transport variables distinct |
-| Photon assembly channel | Planar-mode nucleation threshold, emitted energy, direction, and polarization basis | Links bremsstrahlung, synchrotron, and CMB photon-bath claims |
+| Photon assembly channel | Planar-mode nucleation threshold, emitted energy, direction, polarization basis, and transverse angular-momentum ledger | Links bremsstrahlung, synchrotron, and CMB photon-bath claims |
 | Pair channel | Incoming photon assemblies, recruited Noether-core content, final $e^+e^-$ assemblies, and recoil/medium excitation | Keeps pair production as association from local substrate content, not ex nihilo creation |
 | Energy-momentum ledger | Internal energy, kinetic energy, recoil, emitted assemblies, and medium excitation | Required for observer-rate and spectrum recovery |
 | Thermalization path | scattering depth, coupling time, cooling time, and escape time | Determines when local reactions can feed BBN or CMB background claims |
@@ -60,7 +60,7 @@ The minimal useful first path is BBN photon loading: identify a source-zone radi
 
 Photon-channel records should be sorted into three gates before they are used in cosmology-facing arguments.
 
-The chapter-level source for the photon ontology and Gate A theorem scaffold is [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md#photon-closure-interface). This ledger records what a reaction or cosmology channel must carry forward from that scaffold before it uses photon propagation, polarization, pair production, or thermal radiation as settled input.
+The chapter-level source for the photon ontology and Gate A theorem scaffold is [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md#photon-closure-interface). This ledger records what a reaction or cosmology channel must carry forward from that scaffold before it uses photon propagation, polarization, pair production, or thermal radiation as settled input. Gate B is downstream of [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md); the fields below are acceptance records, not an independent derivation of photon spin or polarization statistics. Photon-pair Bell/CHSH claims and CMB polarization-transfer claims must therefore inherit Gate B and the pair-provenance measure rather than being closed by cosmology bookkeeping alone.
 
 | Gate | Claim bucket | What the ledger must track | Closure test |
 | --- | --- | --- | --- |

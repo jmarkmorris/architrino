@@ -80,6 +80,8 @@ Left/right coupling note (SM statement): charged-current SU(2), and therefore CK
 Left/right coupling note ($\mathbb{A}\mathbb{A}\mathbb{A}$ geometric test): for LH helicity the weak-coupling triad should face forward (exposed), while for RH it should rotate into the wake/shield.
 Chiral Selection Mechanism ($\mathbb{A}\mathbb{A}\mathbb{A}$ hypothesis): for right-handed helicity, the weak-coupling triad is rotated into the particle’s own wake/slipstream. A charged $W$ corridor cannot dock onto a weak-coupling triad in that hidden coupling posture, so right-handed fermions are sterile to charged-current interactions.
 
+This left/right exposure criterion is a downstream consumer of [Angular Momentum and Spin](angular-momentum-and-spin.md). Until the spinor and helicity ledger is derived, the weak-sector model should treat helicity exposure as a validation target rather than as an independent explanation of handedness.
+
 Validation task: simulate exposure vs helicity to confirm or falsify this geometric criterion.
 
 ## Unified weak-sector closure route
@@ -118,6 +120,8 @@ where $R_{\mathrm{rel}}$ records axial-frame orientation relative to the fixed N
 ## First beta exposure operator: $d\to u$
 
 This first model is deliberately local. It defines the operator-level exposure gate for one generation-I down-type quark in free-neutron beta reaction. It is not yet a decay-rate derivation, a nuclear form-factor model, or a completed lepton-provenance account.
+
+The handedness label in this operator is an inherited observer-level weak-channel label, not a newly derived substrate spin variable. The exposure gate below is a test object that must be supplied by the ordered-core spinor/helicity ledger in [Angular Momentum and Spin](angular-momentum-and-spin.md) before it can count as a proof of weak handedness.
 
 Let the six polar sites of the active quark be
 $$

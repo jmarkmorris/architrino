@@ -134,23 +134,25 @@ At nuclear scales, the nucleon is seen as one composite hadronic assembly with:
 
 ## Spin and Magnetic-Moment Expectations
 
-The current repo does not yet contain a full proton spin decomposition, but the nucleon chapter can still state the minimal closure picture.
+The current repo does not yet contain a full proton spin decomposition, but the nucleon chapter can still state the minimal closure picture. This section is downstream of the core ledger in [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md): it uses observer-level spin labels and hadron-level bookkeeping targets, not an independent derivation of spin.
 
 ### Spin
 
-The nucleon ground state is taken to be a total
+The nucleon ground state is taken to have observer-level total spin quantum number
 $$
 J=\frac{1}{2}
 $$
-tri-core configuration. This should be read as the low-energy closure class of the coupled three-core assembly, not as the trivial sum of three isolated constituent spins.
+for the coupled tri-core configuration. Here $J$ names the total hadronic angular-momentum channel, not the spin of one isolated constituent. A useful standard-physics comparison is the proton-spin decomposition: the measured spin-$\tfrac{1}{2}$ nucleon is not explained by simply adding three valence-quark spin arrows.
 
-In other words, the nucleon spin is expected to include:
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the same bookkeeping pressure appears as three coupled contributions:
 
-- quark-core spinor structure,
-- strong-sector orbital circulation,
-- and flux-network angular momentum.
+- **quark-core spinor structure**, the analogue of constituent intrinsic spin;
+- **strong-sector orbital circulation**, the analogue of quark and core orbital angular momentum inside the bound state;
+- **flux-network angular momentum**, the analogue of gluon or strong-field angular momentum in the standard QCD spin budget.
 
-That is the natural $\mathbb{A}\mathbb{A}\mathbb{A}$ analogue of the standard statement that proton spin is not carried by naive valence-spin addition alone.
+The closure target is therefore not to assign $1/2$ to one piece of the nucleon. The target is to show how the coupled tri-core assembly, its orbital circulation, and its strong-sector flux network combine into one stable spin-$\tfrac{1}{2}$ hadronic channel.
+
+Until the single-core angular-momentum ledger, ordered-frame spinor closure, and color-corridor vector ledger are derived, the three contributions above should be read as required accounting channels. They should not be treated as a closed proton-spin decomposition.
 
 ### Magnetic moments
 
@@ -203,7 +205,7 @@ That is why this chapter feeds directly into [nuclear-binding.md](./nuclear-bind
 This chapter is in good enough shape to serve as the canonical nucleon reference, but several derivations remain open:
 
 1. quantitative proton and neutron magnetic moments,
-2. proton spin decomposition,
+2. proton spin decomposition from the completed single-core angular-momentum ledger and hadron-level color-corridor ledger,
 3. explicit Y-junction or equivalent flux-energy functional,
 4. quantitative proton-neutron mass splitting.
 

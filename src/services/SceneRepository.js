@@ -619,6 +619,7 @@ export class SceneRepository {
             markdownAutoOpen: null,
           }
         : rawSceneMarkdown;
+    const rawLayoutType = this.resolveLayoutType(sceneMeta);
     const splitScene = this.resolveSplitSceneConfig(sceneMeta);
     const hideScaleLabels = Boolean(sceneMeta.hideScaleLabels);
     const wrapLabels = sceneMeta.wrapLabels ?? true;
@@ -646,7 +647,7 @@ export class SceneRepository {
       });
     }
     this.applyPersonalityArchitrinoSizing(nodes);
-    const splitRuntimeScene = { ...data.scene, ...splitScene };
+    const splitRuntimeScene = { ...data.scene, ...splitScene, layoutType: rawLayoutType };
     const autoNodes = await this.buildAutoMarkdownNodes(splitRuntimeScene, nodes);
     if (autoNodes.length) {
       nodes = nodes.concat(autoNodes);
@@ -655,7 +656,6 @@ export class SceneRepository {
 
     const sceneName = this.resolveDisplayTitle(sceneMeta) ?? scenePath;
     const sceneId = sceneMeta.id ?? null;
-    const rawLayoutType = this.resolveLayoutType(sceneMeta);
     const config = {
       layout: nodes.some((node) => node.orbit) ? "orbit" : "static",
       layoutType: rawLayoutType,

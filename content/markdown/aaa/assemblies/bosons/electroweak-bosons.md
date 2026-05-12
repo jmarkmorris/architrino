@@ -4,7 +4,7 @@
 **Core Principle:** Bosons are discrete, propagating assemblies of architrinos organized into phase-locked modes.
 This chapter is the bosonic-side companion to [Emergence of U(1)/SU(2)](../../interactions/gauge-structure-emergence.md), [Weak Mixing Angle](../fermions/weak-mixing-angle.md), and [Particle Masses: Emergent Inertia in the Noether Sea](../particle-masses.md).
 
-Spin follows the geometry of the excitation: the Higgs is scalar because its motion is purely radial, while the photon and weak corridors are vector modes because each carries a distinguished propagation/interaction axis together with transverse phase structure.
+Spin labels in this chapter are downstream mapping targets, not completed derivations. The Higgs is treated as a scalar target because its candidate motion is radial, while the photon and weak corridors are treated as vector-mode targets because each carries a distinguished propagation or interaction axis together with transverse phase structure. The proof obligations for these labels sit in [Angular Momentum and Spin](../../theory-bridges/angular-momentum-and-spin.md).
 
 ---
 
@@ -25,12 +25,12 @@ At the finest scale, the photon unit is a composite assembly:
 *   **Canonical description:** A photon is a **coaxial contra-rotating pro/anti planar pair**.
 *   **Neutrality:** The paired static charge-like exposures cancel, leaving a transverse oscillatory action signature.
 
-### Propagation: The "Photon Train"
+### Propagation: The Planar-Pair Mode Train
 A photon manifests as a **phase-locked planar-pair mode train** of delayed actions.
-*   **The Mode Train:** A quasi-cylindrical propagation structure aligned with $\hat{\mathbf{e}}$ carrying the superposed $1/r^2$ wake surfaces.
-*   **Burst vs. Continuous:**
-    *   **Packet (Particle-like):** A discrete atomic transition releases a short "burst" train—a finite segment of the planar-mode train.
-    *   **Beam (Classical-like):** A continuous drive (antenna) releases a continuous stream of units, creating a long-range coherent beam.
+*   **Mode train:** A quasi-cylindrical propagation structure aligned with $\hat{\mathbf{e}}$ carrying the superposed $1/r^2$ wake surfaces.
+*   **Burst vs. continuous:**
+    *   **Packet (particle-like):** A discrete atomic transition releases a short burst train—a finite segment of the planar-mode train.
+    *   **Beam (classical-like):** A continuous drive (antenna) releases a continuous stream of units, creating a long-range coherent beam.
 *   **Photon-channel speed:** The planar (edge-on) orientation minimizes interaction with the ambient Noether-Sea lattice. In weak homogeneous Noether-Sea conditions the local photon-channel speed $c_\gamma$ approaches the primitive wake speed $c_f$; in material media or strong Noether-Sea gradients, $c_\gamma < c_f$ is the observer-level transport summary.
 
 ### Interaction Rules: Capture and Release
@@ -38,7 +38,7 @@ A photon manifests as a **phase-locked planar-pair mode train** of delayed actio
 *   **Absorption (Planar-Mode Capture):**
     *   Absorption is not the annihilation of a quantum field operator.
     *   It is the **mechanical re-capture** of the planar mode by an internal binary in the target atom.
-    *   The "Train" docks with the binary, transferring its angular momentum and re-binding the architrinos into the target's mass/energy inventory.
+    *   The mode train docks with the binary, transferring its angular momentum and re-binding the architrinos into the target's mass/energy inventory.
 
 ### Environmental Coupling (Ambient Noether Sea)
 *   **Ambient Noether Sea:** The ambient Noether Sea is populated by neutral assemblies (Noether Cores).
@@ -49,7 +49,7 @@ A photon manifests as a **phase-locked planar-pair mode train** of delayed actio
 
 ### Phenomenology
 *   **Energy-Frequency:** For a periodic source $\omega=2\pi\nu$, the closure target is the photon-channel relation $E_\gamma=h\nu$; the cycle being counted is the propagating planar-mode phase cycle, not a rest-state volumetric clock.
-*   **Malus' Law:** Emerges as the geometric projection of the transverse planar-mode profile onto the analyzer's acceptance slot ($I \propto \cos^2 \theta$).
+*   **Malus' Law:** Gate B must derive this as the geometric projection of the transverse planar-mode profile onto the analyzer's acceptance slot ($I \propto \cos^2 \theta$).
 
 ### Photon Closure Interface
 
@@ -58,7 +58,7 @@ The photon description above is the ontology-level target. The theorem-level pro
 | Gate | Closure target | Required recovery |
 | :--- | :--- | :--- |
 | **Gate A: kinematics and optics** | Derive the coaxial contra-rotating pro/anti planar-pair branch from Noether-core and Noether-Sea dynamics. The active variables include $c_f$, $c_\gamma$, $\delta_\gamma\equiv1-c_\gamma/c_f$, the pair spacing $d$, the phase frequency $\omega$, and the geometric phase $\phi_{\text{geom}}$. | Recover $E_\gamma=h\nu$, $p=h/\lambda$, $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$, $m_\gamma^2=0$, no residual rest branch, no rest proper-time clock, and no unacceptable free-space dispersion. |
-| **Gate B: polarization and spin** | Derive the transverse ledger, analyzer coupling, helicity, and squared-amplitude rule from planar-pair capture rather than appending them as observer-level facts. | Recover exactly two transverse photon modes, no physical longitudinal mode, Malus' law, helicity $\pm1$, single-photon statistics, and no-signaling behavior in entangled-polarization tests. |
+| **Gate B: polarization and spin** | Derive the transverse ledger, material analyzer projector, invariant unresolved-material measure, analyzer coupling, helicity, and squared-amplitude rule from planar-pair capture rather than appending them as observer-level facts. | Recover exactly two transverse photon modes, no physical longitudinal mode, Malus' law, helicity $\pm1$, single-photon statistics, and no-signaling behavior in entangled-polarization tests. |
 | **Gate C: vertices and transitions** | Map emission, absorption, pair production, Compton-like scattering, photon-photon limits, blackbody behavior, and effective coupling into allowed ledger transitions between massive assemblies and coaxial contra-rotating pro/anti planar pairs. | Recover validated Maxwell/QED behavior, transition-rate limits, pair-production thresholds, Bose-Einstein occupation behavior, $U(1)$-like phase bookkeeping, Aharonov-Bohm phase behavior, and the effective scale $\alpha$. |
 
 #### Gate A Theorem Scaffold: Kinematics and Optics
@@ -98,6 +98,159 @@ Gate A is closed only when this branch proves the following recoveries in the sa
 - The weak homogeneous branch identifies the measured photon speed with the same low-gradient limit used by clock-and-ruler synchronization, while keeping $c_f$ as the primitive wake speed rather than the directly measured observer speed.
 - The residual leakage terms for dispersion, birefringence, static charge exposure, and preferred-frame anisotropy fall below the empirical bounds before Gate B and Gate C add polarization and interaction vertices.
 
+#### Gate B Theorem Scaffold: Polarization and Spin
+
+Gate B begins only after Gate A has supplied the propagation axis $\hat{\mathbf{e}}$, photon-channel speed $c_\gamma$, phase frequency $\omega$, and null planar-pair branch. Gate B must not repair a failed kinematic branch. Its job is narrower: derive the transverse angular-momentum ledger, material analyzer projector, invariant unresolved-material measure, analyzer coupling, helicity, and probability rule for that already-admissible coaxial contra-rotating pro/anti planar pair.
+
+This is the photon-specific consumer of the shared angular-momentum proof. It must inherit the conserved motion-plus-wake ledger rather than creating a photon-only spin rule.
+
+The natural object is the rank-two transverse projector
+
+$$
+P_{\perp}^{ab}
+=
+h^{ab}-\hat{e}^a\hat{e}^b.
+$$
+
+Gate B must show that the planar-pair ledger lives in the image of $P_{\perp}$ and has no accepted free longitudinal component. A longitudinal or mixed-axis vector channel belongs to a massive corridor, a medium-bound recoupling, or a Gate A failure mode; it is not an additional free photon polarization.
+
+Choose transverse axes $(\hat{\mathbf{u}},\hat{\mathbf{v}})$ and write the effective polarization ledger as
+
+$$
+\mathbf{a}_{\perp}
+=
+a_u\hat{\mathbf{u}}+a_v\hat{\mathbf{v}},
+\qquad
+|a_u|^2+|a_v|^2=1.
+$$
+
+Linear polarization is the real-axis case. Circular polarization is the quarter-cycle relation represented by
+
+$$
+\boldsymbol{\epsilon}_{\pm}
+=
+\frac{1}{\sqrt{2}}
+\left(\hat{\mathbf{u}}\pm i\hat{\mathbf{v}}\right),
+\qquad
+J_{\gamma,\parallel}
+=
+\lambda_{\text{hel}}\hbar,
+\quad
+\lambda_{\text{hel}}\in\{+1,-1\}.
+$$
+
+The pro/anti planar pair must therefore explain both cancellation of static charge-like exposure and survival of a transverse oscillatory action signature. The surviving signature is the photon-side spin-$1$ ledger; it is not a scalar breathing mode, not an ordered-core spinor, and not a massive-vector longitudinal mode.
+
+An analyzer is an assembly whose capture geometry selects an allowed transverse ledger direction $\hat{\mathbf{a}}=P_{\perp}\hat{\mathbf{a}}$. For a linearly polarized incoming axis $\hat{\mathbf{e}}_\gamma$, the closure target is
+
+$$
+\mathcal{A}_{\text{pass}}
+\propto
+\hat{\mathbf{e}}_\gamma\cdot\hat{\mathbf{a}}
+=
+\cos\theta,
+\qquad
+P_{\text{pass}}
+=
+|\mathcal{A}_{\text{pass}}|^2
+=
+\cos^2\theta.
+$$
+
+Gate B is not closed by writing this standard projection formula, but the native measure has a precise form. Let $a_\perp^a$ be the incoming transverse planar-pair ledger and define its positive action norm by
+
+$$
+\mathcal{I}_{\perp}
+=
+h_{ab}\,\overline{a_\perp^a}a_\perp^b.
+$$
+
+The analyzer's accepted material channel is the rank-one transverse projector
+
+$$
+A^a{}_{b}=\hat a^a\hat a_b,
+\qquad
+A^a{}_{b}P_{\perp}^{b}{}_{c}=A^a{}_{c}.
+$$
+
+The signed overlap $\hat a_a a_\perp^a$ is only the coherent capture amplitude. The material capture measure is the positive accepted action fraction:
+
+$$
+\mu_{\text{pass}}(\hat{\mathbf a}\mid a_\perp)
+=
+\frac{\overline{a_\perp^a}\,\hat a_a\hat a_b\,a_\perp^b}
+{h_{ab}\,\overline{a_\perp^a}a_\perp^b}
+=
+\frac{\left|\hat a_a a_\perp^a\right|^2}
+{\mathcal{I}_{\perp}}.
+$$
+
+The rejected channel is
+
+$$
+R^a{}_{b}=P_{\perp}^{a}{}_{b}-A^a{}_{b},
+\qquad
+\mu_{\text{rej}}
+=
+\frac{\overline{a_\perp^a}R_{ab}a_\perp^b}{\mathcal{I}_{\perp}},
+\qquad
+\mu_{\text{pass}}+\mu_{\text{rej}}=1.
+$$
+
+For linear polarization this reduces to $\mu_{\text{pass}}=\cos^2\theta$ and $\mu_{\text{rej}}=\sin^2\theta$. For circular helicity states $\boldsymbol{\epsilon}_{\pm}$ it gives $\mu_{\text{pass}}=1/2$ for any linear analyzer axis.
+
+The next Gate B step is the material analyzer projector. The analyzer assembly supplies $\hat{\mathbf a}$ through its oriented capture geometry, not through a free observer label. In the ideal linear-analyzer limit its accepted channel is the one-dimensional transverse family
+
+$$
+\mathcal{C}_{\text{pass}}(\hat{\mathbf a})
+=
+\{\xi\,\hat a^a:\xi\in\mathbb{C}\}
+\subset\operatorname{im}P_{\perp},
+$$
+
+so the accepted projector is rank one inside $P_{\perp}$. If the accepted channel had rank two it would pass the full transverse ledger; if it had rank zero it would not pass a photon channel. The rejected component
+
+$$
+a_{\text{rej}}^a=R^a{}_{b}a_\perp^b
+$$
+
+must route into reflection, absorption, scattering, heat, or another allowed material ledger update. It is not a hidden longitudinal photon channel, and each event must close local energy, momentum, angular momentum, material-record, wake, and Noether-Sea recoil ledgers.
+
+Single-photon counts require an invariant unresolved-material measure, not a Malus-law axiom. Let $\zeta\in\Theta_{\hat{\mathbf a}}$ denote the analyzer microstate variables during the record window and let $d\nu_{\hat{\mathbf a}}$ be invariant under the local material flow. The required reduced scaffold is a channel coordinate $\eta_{\hat{\mathbf a}}:\Theta_{\hat{\mathbf a}}\to[0,1]$ with uniform pushforward $(\eta_{\hat{\mathbf a}})_*d\nu_{\hat{\mathbf a}}=d\eta$. Then, for a successful material record,
+
+$$
+K_{\text{pass}}
+=
+H\!\left(\mu_{\text{pass}}-\eta_{\hat{\mathbf a}}(\zeta)\right),
+\qquad
+\int_{\Theta_{\hat{\mathbf a}}}K_{\text{pass}}\,d\nu_{\hat{\mathbf a}}
+=
+\mu_{\text{pass}}.
+$$
+
+The reduced substrate origin is the analyzer's record-window return dynamics. $\Theta_{\hat{\mathbf a}}$ is the quotient of calibrated analyzer microstates during a local capture attempt, $d\nu_{\hat{\mathbf a}}$ is the invariant occupation measure of the material return map $T_s$, and $\eta_{\hat{\mathbf a}}$ is the pass-basin threshold coordinate
+
+$$
+\eta_{\hat{\mathbf a}}(\zeta)
+=
+\inf\left\{
+\rho\in[0,1]:
+\zeta\in\mathcal{B}_{\text{pass}}(\rho;\hat{\mathbf a})
+\right\}.
+$$
+
+The ideal-analyzer closure target is $(\eta_{\hat{\mathbf a}})_*d\nu_{\hat{\mathbf a}}=d\eta$. If this pushforward is biased, the deviation $P_{\text{pass}}(\rho)-\rho$ is a material calibration diagnostic rather than a new photon law. The concrete substrate proof still has to compute the return map and basin filtration from an analyzer assembly simulation.
+
+The polarization-pair no-signaling test is part of the same gate. For entangled photon preparations with analyzer settings $\alpha,\beta$, the completed ledger must recover setting-independent local marginals:
+
+$$
+\sum_{b=\pm}P(a,b\mid\alpha,\beta)=P(a\mid\alpha),
+\qquad
+\sum_{a=\pm}P(a,b\mid\alpha,\beta)=P(b\mid\beta).
+$$
+
+The correlation target depends on the prepared photon-pair state, but the usual polarization tests require a $\cos 2(\alpha-\beta)$ angle dependence up to the sign and phase convention of that state. A model may use pair provenance and contextual local analyzer coupling, but it must not permit the remote analyzer setting to send a usable signal through the photon ledger.
+
 In reaction chapters, Gate C should be expressed through [Mode Taxonomy](../../interactions/mode-taxonomy.md): photon emission uses **planar-mode nucleation**, not corridor-mode language. Event-level provenance for radiative and pair channels is tracked in [Reaction-Cosmology Provenance Ledger](../../validation/reaction-cosmology-provenance-ledger.md).
 
 ---
@@ -117,13 +270,21 @@ W and Z bosons are not fundamental particles in the sense of eternal objects; th
     *   **Free Bundle:** In high-energy events, the bundle is launched into the ambient Noether Sea, propagating near the field speed ($v \approx 1$) along its axis before dissociating (rupturing) due to internal instability.
 
 ### Quantum Numbers and Channels
-*   **Spin-1 (Vector):** The corridor possesses a defined axis and transverse phase structure, giving it an effective angular momentum of $1\hbar$.
+*   **Spin-1 (Vector):** The weak corridor is a spin-$1$ vector-channel target: it has an overall interaction axis and transports angular momentum through directed phase structure. The photon is the clean massless spin-$1$ target, with only transverse helicities $\pm1$ and no physical longitudinal mode after Gate B is derived. A massive $W/Z$ corridor can also carry a longitudinal or mixed-axis component, so its internal signs and axes need not collapse into the same fully coaxial contra-rotating pro/anti planar-pair geometry as the photon. What survives at the observer level is the vector directionality of the transaction.
 *   **W Boson ($W^\pm$):**
     *   **Function:** Transports net charge $\pm 6\epsilon$ ($3P \leftrightarrow 3E$ swap).
     *   **Bookkeeping:** The corridor physically moves the "weak-coupling-triad" components.
 *   **Z Boson ($Z^0$):**
     *   **Function:** Transports energy, momentum, and phase *without* net charge flux.
     *   **Bookkeeping:** A neutral corridor enabling re-phasing and mode exchange.
+
+### Massless Photon Versus Massive Weak Corridor
+
+The photon and the weak corridors are both spin-$1$ channels at the observer level, but they solve different closure problems. A photon is the clean massless branch: its coaxial contra-rotating pro/anti planar-pair closure carries phase, momentum, and transverse helicity, but it does not form a stable volumetric assembly with a proper-time cycle. In the effective relativistic limit this appears as the null relation $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$. In special-relativity language, the null channel has zero proper-time accumulation; a photon is not assigned a comoving clock because no photon rest frame exists.
+
+A $W/Z$ corridor is a localized massive vector channel. Its longitudinal or mixed-axis structure carries a rest-like internal energy cost because the corridor is a thickened recoupling of local Noether-Sea structure, not a free planar-pair branch. It can therefore mediate a directed spin-$1$ transaction while appearing as a massive, short-lived channel rather than a massless photon. The derivation burden is to compute this cost from corridor closure and medium-dressed response, not to insert the Standard Model mass as a primitive parameter.
+
+The distinction between photon helicity and massive-vector spin should remain explicit. The photon has a transverse Gate B burden; the $W/Z$ corridor has a separate massive-vector burden. Neither one should be used as a shortcut proof for the other.
 
 ### Dynamics: Emission and Absorption
 *   **The Trigger (Emission):**

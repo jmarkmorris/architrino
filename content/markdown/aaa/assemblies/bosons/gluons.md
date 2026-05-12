@@ -77,11 +77,11 @@ Why are there 8 gluons?
 
 ### Gluon Spin (Vector Nature)
 
-Standard Model gluons are spin-1 bosons. In the architrino framework, this emerges from the axial geometry of the connection.
+At the Standard Model level, gluons are spin-1 gauge bosons. Because color is confined, an isolated gluon is not an observed asymptotic particle in ordinary hadron measurements; the mapping target is the perturbative gluon channel and the angular-momentum ledger carried by the color corridor. This section is downstream of [Angular Momentum and Spin](../../theory-bridges/angular-momentum-and-spin.md): the color-corridor geometry is a vector-channel target that must inherit the single-core ledger and vector-mode proof rather than deriving spin-1 by itself.
 
-- **Vector geometry:** a flux tube or vortex filament is inherently a vector object. It defines a direction in space rather than a scalar point or rank-2 stress.
-- **Helicity:** the vortex bundle can twist in a left-handed or right-handed way, corresponding to the two transverse polarization states of the massless gluon.
-- **Momentum transfer:** when a gluon is exchanged, it transfers the angular momentum stored in the rotating vortex link between quark cores.
+- **Vector channel:** the open color corridor selects a spatial axis and transverse twist data. In $\mathbb{A}\mathbb{A}\mathbb{A}$, that geometry is the candidate substrate for the observer-level spin-1 representation; it is not a derivation merely from the fact that a flux tube has a direction.
+- **Helicity limit:** in the massless short-distance gauge-boson limit, the physical gluon polarizations are transverse helicity states. The vortex-bundle twist must reproduce those helicity degrees of freedom where QCD treats gluons as propagating internal degrees of freedom.
+- **Angular-momentum ledger:** during exchange, the rotating vortex link is the candidate carrier of spin and orbital angular momentum between quark cores. The full hadron accounting must still include quark-core spinor structure, color-corridor circulation, and flux-network response, but that accounting remains open until the reusable angular-momentum ledger has been derived.
 
 ---
 

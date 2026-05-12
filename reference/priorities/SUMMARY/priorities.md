@@ -53,14 +53,15 @@ Nested proof subprograms live under [proof-programs](../proof-programs/proof-pro
 |    3 | [`tri-binary-causal-closure`](../tri-binary-causal-closure/tri-binary-causal-closure.md) | Tri-binary causal closure synthesis and dependency map                         |    10 |    4 | 2.50 |
 |    4 | [`animator`](../animator/animator.md)                                              | Scene animator                                                                     |     9 |    4 | 2.25 |
 |    5 | [`master-equation-closure`](../master-equation-closure/master-equation-closure.md) | Tractable master-equation stack for Lorentz / GR bridge, quantum, and core closure |    10 |    5 | 2.00 |
-|    6 | [`dyadic-lock`](../dyadic-lock/dyadic-lock.md)                                     | Dyadic resonance lock reduced-map program                                          |     7 |    4 | 1.75 |
-|    7 | [`standard-model-closure`](../standard-model-closure/standard-model-closure.md)    | Remaining Standard Model assembly gaps, flavor mixing, and confinement             |     8 |    5 | 1.60 |
-|    8 | [`simulations`](../simulations/simulations.md)                                        | Simulations, regularization, and shell numerics                                    |     8 |    5 | 1.60 |
-|    9 | [`strong-field-closure`](../strong-field-closure/strong-field-closure.md)          | Remaining black-hole / strong-field quantitative closure                           |     4 |    5 | 0.80 |
-|   10 | [`strong-field-hypotheses`](../strong-field-hypotheses/strong-field-hypotheses.md) | Preserve strong-field / tri-binary hypotheses                                      |     2 |    3 | 0.67 |
-|   11 | [`chapter-authoring`](../../op/chapter-authoring.md)                               | Unified chapter authoring queue and legacy-material recovery                       |     3 |    5 | 0.60 |
-|   12 | [`quantum-closure`](../quantum-closure/quantum-closure.md)                         | Born-rule / quantum closure with hard tests                                        |     4 |    8 | 0.50 |
-|   13 | [`cosmology-closure`](../cosmology-closure/cosmology-closure.md)                   | Cosmology transfer-function closure                                                |     2 |    9 | 0.22 |
+|    6 | [`angular-momentum-spin`](../angular-momentum-spin/angular-momentum-spin.md)       | Fundamental angular-momentum and spin closure                                      |     9 |    5 | 1.80 |
+|    7 | [`dyadic-lock`](../dyadic-lock/dyadic-lock.md)                                     | Dyadic resonance lock reduced-map program                                          |     7 |    4 | 1.75 |
+|    8 | [`standard-model-closure`](../standard-model-closure/standard-model-closure.md)    | Remaining Standard Model assembly gaps, flavor mixing, and confinement             |     8 |    5 | 1.60 |
+|    9 | [`simulations`](../simulations/simulations.md)                                        | Simulations, regularization, and shell numerics                                    |     8 |    5 | 1.60 |
+|   10 | [`strong-field-closure`](../strong-field-closure/strong-field-closure.md)          | Remaining black-hole / strong-field quantitative closure                           |     4 |    5 | 0.80 |
+|   11 | [`strong-field-hypotheses`](../strong-field-hypotheses/strong-field-hypotheses.md) | Preserve strong-field / tri-binary hypotheses                                      |     2 |    3 | 0.67 |
+|   12 | [`chapter-authoring`](../../op/chapter-authoring.md)                               | Unified chapter authoring queue and legacy-material recovery                       |     3 |    5 | 0.60 |
+|   13 | [`quantum-closure`](../quantum-closure/quantum-closure.md)                         | Born-rule / quantum closure with hard tests                                        |     4 |    8 | 0.50 |
+|   14 | [`cosmology-closure`](../cosmology-closure/cosmology-closure.md)                   | Cosmology transfer-function closure                                                |     2 |    9 | 0.22 |
 |    — | [`animator`](../animator/animator.md)                                              | animator                                                                           |     — |    — |    — |
 |    — | [`3x3`](../3x3/3x3.md)                                                             | 3x3 binary-slot matrix                                                             |     — |    — |    — |
 |    — | [`ellipsoid`](../ellipsoid/ellipsoid.md)                                           | Ellipsoid app idea                                                                 |     — |    — |    — |
@@ -75,13 +76,15 @@ Nested proof subprograms live under [proof-programs](../proof-programs/proof-pro
 - Workstream `tri-binary-causal-closure`: run the continuity pass against the dependency map, then route the photon/QED, Lorentz/GR, equivalence, and topological certification burdens to the right proof workstreams before deployment.
 - Workstream `animator-reaction`: finish the forward pdgsolve/pdgedit/animator split and keep the active app path clean and contract-first.
 - Workstream `master-equation-closure`: carry the tractable master-equation stack far enough to support Lorentz / GR closure, quantum closure, and the first-principles mass program.
+- Workstream `angular-momentum-spin`: derive angular-momentum conservation and spin from the architrino / Noether-core ledger before treating Bell closure as an abstract quantum-theory problem.
 
 ## Top Cross-Workstream Next Actions
 
 1. Generate the breather candidate cycle and build its finite certificate packet: causal ledger, branch chart, mesh, corridor nonemptiness proof, coupled corridor, monodromy diagnostic, returned-sample report, and topology ledger.
 2. Run the tri-binary causal closure continuity pass against its dependency map and route unresolved deployment items into priority workstreams.
-3. Turn the mass-side placeholders into a first derived map with one attractor family, shielding extraction, and a baseline electron-mass prediction target.
-4. Freeze the pdgsolve-to-pdgedit publication seam and land the first clean downstream handoff into animator.
+3. Derive the first architrino-level angular-momentum ledger for a changing-frequency Noether core with self-action and causal-wake terms.
+4. Turn the mass-side placeholders into a first derived map with one attractor family, shielding extraction, and a baseline electron-mass prediction target.
+5. Freeze the pdgsolve-to-pdgedit publication seam and land the first clean downstream handoff into animator.
 
 ## Info
 

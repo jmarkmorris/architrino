@@ -8,11 +8,25 @@ Use the AAA corpus advancement skill in self-running mode.
 
 Optionally follow it with a specific lane, shard, priority area, or edit-batch instruction.
 
-Use this prompt when the AAA corpus needs active advancement: a recent batch may contain a newer theoretical signal, the priority ledgers may identify open issues that should be moved forward, or the corpus itself may contain underdeveloped proof routes, mathematical closure targets, newly visible insights, notation fixes, cross-link opportunities, or occasional terminology corrections.
+Use this prompt when the AAA corpus needs active advancement: a recent batch may contain a newer theoretical signal, the priority ledgers may identify open issues that should be turned into mathematics, or the corpus itself may contain underdeveloped proof routes, mathematical closure targets, newly visible insights, notation fixes, or occasional terminology corrections. Cross-linking and general cleanup are secondary unless they directly support a concrete mathematical advance.
 
-The highest-value use of this prompt is not mere phrase cleanup. Use the review to convert scattered improvements into a theorem-target map: each recurring claim should be sorted as ontology, derivation/closure target, effective summary, or speculation. Favor innovative, mathematically serious advancement: identify the definitions, lemmas, closure equations, proof sketches, simulations, and conceptual syntheses that would move the theory forward. The report should identify what can be edited now, what requires a proof or simulation path, what intuition should be discussed with Op, and what should become corpus-maintenance infrastructure.
+The highest-value use of this prompt is not mere phrase cleanup or another paragraph saying work remains. Use the review to make concrete mathematical progress: propose definitions, equations, lemmas, invariants, estimates, closure conditions, proof sketches, toy models, counterexamples, or simulation hooks. Each recurring claim should be sorted as ontology, derivation/closure target, effective summary, or speculation, but that sorting is a launch point for work, not the final product. The report should identify what can be edited now, what mathematical object can be attempted now, what intuition deserves disciplined discussion with Op, and what should become a concrete priority action item.
 
 High-priority autonomous method: when no more specific lane is supplied, inspect `reference/priorities/SUMMARY/priorities.md` and the relevant files under `reference/priorities/` early in the pass. Treat those files as an operator-maintained issue ledger, not as authored AAA content. Use them to identify concrete corpus-advancement opportunities, proof routes, missing derivations, validation ledgers, and safe edit batches. Do not link from authored `content/markdown/aaa` files to priority files; if priority material belongs in the AAA corpus, restate or promote the needed substance inside the relevant AAA document.
+
+## Mathematics-First Discipline
+
+The default posture is aggressive mathematical advancement. Do not stop at "this should be developed later" when a local definition, equation, lemma, proof scaffold, calculation, or falsifiable simulation target can be written now.
+
+Rules:
+
+- In every audit/report or self-running exploration pass, attempt at least one concrete mathematical advance unless the user gave a narrow non-mathematical task.
+- A concrete mathematical advance may be a candidate definition, named lemma, conjecture with assumptions, closure equation, invariant, variational principle, scale estimate, reaction provenance equation, validation criterion, or minimal simulation experiment.
+- Each major report paragraph must do one of four jobs: state a specific claim, give a calculation/proof route, identify an exact edit, or create a concrete priority/prompt item. Avoid filler paragraphs that only say a topic is important or may matter later.
+- Leaps of intuition are welcome. For each leap, give the trigger, the candidate claim, the mathematical form it would take, the first calculation or proof step, and a failure mode that could disprove or discipline it.
+- Future-only work belongs in the Priority Action Menu or in `reference/priorities` as a concrete action item. Do not leave vague future-work prose in authored AAA content or final reports.
+- Cross-links are not advancement by themselves. Add or recommend links only when they make an accepted mathematical claim easier to verify, compare, or read.
+- Infrastructure recommendations are secondary. Include them only when a specific recurring failure pattern has a concrete check, script, ledger, or priority item.
 
 ## Thread State Handoff
 
@@ -25,7 +39,7 @@ Authority used: report-only | claim-card-only | edited files
 Files changed: none | path list
 Validation: not run | passed | failed: short reason
 Op next action: one concrete action needed for this thread, or "none required"
-New-thread prompt: one sentence Op can paste into a fresh thread
+New-thread prompt: none | included below as a detailed prompt
 ```
 
 Use the status words strictly:
@@ -37,13 +51,54 @@ Use the status words strictly:
 
 For self-running exploration, distinguish claim-card writes from AAA prose edits. If only a claim card was created, use `Authority used: claim-card-only`; if no AAA content changed, say so directly in `Files changed`.
 
-Use one substantive task per thread. A substantive task is an audit/report, a self-running exploration pass, a theory discussion, a selected edit-batch implementation, or a validation/fix pass. Do not ask Op to approve optional follow-on work inside the current thread; finish the current task, mark `Op next action: none required` when appropriate, and package recommended follow-on work as `New-thread prompt`. Ask for approval in the current thread only when the decision is required to complete the current task.
+Use one substantive task per thread. A substantive task is an audit/report, a self-running exploration pass, a theory discussion, a selected edit-batch implementation, or a validation/fix pass. Do not ask Op to approve optional follow-on work inside the current thread; finish the current task, mark `Op next action: none required` when appropriate, and package recommended follow-on work as detailed prompt options. Ask for approval in the current thread only when the decision is required to complete the current task.
+
+## Approval And Continuation Prompt Format
+
+When a corpus pass offers numbered options for Op approval, each numbered option must be written as a detailed, paste-ready prompt. Do not use terse approval labels such as `Action: fix X` as the decision surface. The option should be detailed enough that Op can reply with the number or paste the prompt into a new thread without reconstructing context.
+
+Use this format for numbered approval options:
+
+````text
+1. [High] Prompt: short title
+   Use this prompt:
+   ```text
+   Cody, use the AAA corpus advancement skill in <mode>.
+
+   Context:
+   - Relevant source signal, finding, or accepted decision.
+   - Why this follow-up exists.
+
+   Task:
+   - Concrete work to perform.
+
+   Scope:
+   - Files, directories, proof target, simulation artifact, or workstream to inspect/edit.
+   - Explicit exclusions or authority limits.
+
+   Constraints:
+   - Preserve TeX exactly.
+   - Use canonical AAA terminology.
+   - Do not introduce new project terminology without asking.
+   - Do not edit AAA prose unless this prompt grants edit authority.
+
+   Expected output:
+   - Report, discussion card, edit batch, validation result, or other deliverable.
+   ```
+   Value: ...
+   Risk: ...
+   Recommendation: implement | defer | discuss first | block until ... - reason.
+````
+
+For continuation prompts in the thread state handoff, put `New-thread prompt: included below as a detailed prompt` in the handoff block and include a `New-thread prompt` section after the report using the same detailed prompt structure. If no continuation is useful, write `New-thread prompt: none`.
+
+When Op replies with selected numbers, treat each selected detailed prompt as the approved task brief. Implement selected items in order. If two selected prompt options conflict or need different authority, ask one clear question before editing.
 
 ```text
 Cody, perform a corpus advancement pass for the AAA markdown corpus.
 
 Goal:
-Autonomously identify the strongest current theory signals and advancement opportunities. Start with recent AAA changes, the priority ledgers under `reference/priorities/`, and then targeted searches through `content/markdown/aaa`. Extract major advancements or open issues, including new definitions, stronger claims, refined distinctions, notation changes, derivations, terminology, missing proof routes, and implications. Then compare those signals against the rest of the relevant markdown corpus, especially `content/markdown/aaa`, to find places where the corpus should be elevated or corrected.
+Autonomously identify the strongest current theory signals and turn at least one of them into concrete mathematics. Start with recent AAA changes, the priority ledgers under `reference/priorities/`, and then targeted searches through `content/markdown/aaa`. Extract major advancements or open issues, including new definitions, stronger claims, refined distinctions, notation changes, derivations, terminology, missing proof routes, and implications. Then compare those signals against the rest of the relevant markdown corpus, especially `content/markdown/aaa`, to find places where the corpus should be mathematically elevated or corrected.
 
 Maximum-advancement lens:
 Do not treat this as a simple search-and-replace pass. Classify each recurring claim into one of four buckets:
@@ -60,8 +115,8 @@ High-leverage review targets:
 - Priority-ledger advancement: operator-maintained priorities that point to missing AAA proofs, derivations, examples, ledgers, simulations, or bridge sections.
 - Missing implications: nearby documents that should inherit a source advancement but currently do not.
 - Leaps of intuition: new synthesis, analogy, proof route, mechanism, or unifying idea that emerges from comparing documents but is not yet established in canon. Surface these for discussion with Op (the operator/developer) before treating them as settled content.
-- Cross-link opportunities: reader-useful links among AAA documents only, with relative paths from the current document.
-- Infrastructure opportunities: recurring drift patterns that should become an automated corpus-audit script, validation rule, or standing checklist.
+- Cross-link opportunities: secondary reader-useful links among AAA documents only, with relative paths from the current document, when the link supports a concrete mathematical claim or proof path.
+- Infrastructure opportunities: recurring drift patterns that should become a specific automated corpus-audit script, validation rule, closure ledger entry, or priority action item.
 
 Standing advancement programs to watch for when relevant:
 - Noether Sea / Noether-Sea usage: use `Noether Sea` as the standalone noun and `Noether-Sea` only as a compound modifier.
@@ -87,10 +142,11 @@ Required method:
    - content/markdown/aaa/archie/comparative-glossary.md
 4. Build a concise list of the selected source signals' theory advancements or priority-ledger issues.
 5. Convert that list into a claim map using the four buckets: ontology, derivation/closure target, effective summary, speculation.
-6. Search the corpus for related claims, older terminology, weaker formulations, missing implications, inconsistent notation, and documents that would benefit from the advancement.
-7. Search for exact stale phrases first, then broaden to conceptual neighbors. Prefer `rg` searches and include the most useful search patterns in the report when they would help seed a follow-on thread.
-8. Do not edit files yet unless I explicitly ask for edits.
-9. Produce a report organized by document.
+6. Choose the strongest one or two signals and attempt a concrete mathematical advance: candidate definition, lemma, closure equation, invariant, proof scaffold, scale estimate, provenance equation, validation criterion, or minimal simulation target.
+7. Search the corpus for related claims, older terminology, weaker formulations, missing implications, inconsistent notation, and documents that would benefit from the advancement.
+8. Search for exact stale phrases first, then broaden to conceptual neighbors. Prefer `rg` searches and include search patterns only when they seed a concrete follow-on prompt.
+9. Do not edit files yet unless I explicitly ask for edits.
+10. Produce a report organized by mathematical advance first, then by affected document.
 
 For each affected document, report:
 - Path
@@ -105,9 +161,9 @@ For each affected document, report:
 - Suggested replacement direction, preserving TeX and local style
 
 Infrastructure findings:
-- List recurring drift patterns that should be added to an automated corpus-audit script.
-- List recurring theorem targets that should be added to a closure-target ledger.
-- List repeated cross-document concepts that deserve a canonical explainer or bridge document.
+- List only recurring drift patterns that can become a concrete automated corpus-audit script, validation rule, or priority item.
+- List only theorem targets with enough structure to become a closure-target ledger entry.
+- List repeated cross-document concepts only when they deserve a concrete explainer, proof packet, or bridge document.
 - List leaps of intuition separately from edit recommendations. Each leap should say what prompted it, what it might advance, what evidence is missing, and the exact question to discuss with Op before editing it into AAA prose or canon.
 
 Important constraints:
@@ -124,10 +180,10 @@ Important constraints:
 
 End with:
 0. The thread state handoff block.
-1. A ranked edit plan.
-2. Any genuinely new insights discovered by comparing documents.
+1. Concrete mathematical advances attempted, including candidate definitions, equations, lemmas, proof routes, or validation targets.
+2. A ranked edit plan; any numbered approval options in that plan must use the detailed prompt format above.
 3. Leaps of intuition to discuss with Op before canonizing or editing into AAA prose.
-4. Infrastructure recommendations that would convert this pass into repeatable corpus maintenance.
+4. Concrete priority or infrastructure action items, only where they have enough detail to execute.
 5. Any questions that must be answered before editing.
 ```
 
@@ -161,11 +217,12 @@ Search strategy:
 
 Advancement priorities:
 - Normalize terminology and notation only where the local context supports it.
-- Convert theorem-target claims into theorem-target language rather than overclaiming completed derivations.
+- Convert theorem-target claims into concrete theorem-target language with the strongest available definitions, equations, assumptions, and first proof steps rather than overclaiming completed derivations.
 - Preserve strong source insights, but name their scope.
 - Mark speculative mechanisms as provisional, conditional, or mapping targets.
 - If a comparison suggests a leap of intuition, do not bury it in an edit. Record it as an Op-discussion item with the trigger passage, proposed synthesis, missing evidence, and decision question.
-- Prefer local, reader-useful cross-links within content/markdown/aaa when a link materially helps.
+- Remove or replace empty future-work prose. If the work cannot be done in this edit batch, convert it into a concrete priority action item or detailed prompt option.
+- Prefer local, reader-useful cross-links within content/markdown/aaa only when a link materially helps a mathematical claim, proof path, or reader-critical comparison.
 - Keep bridge terms such as `spacetime medium` subordinate to the canonical ontology term `Noether Sea`.
 
 Constraints:
@@ -191,19 +248,22 @@ Start with the thread state handoff block. Then briefly list the files touched, 
 
 ## Self-Running Exploration Variant
 
-Use this version when there is no single source document and Cody should actively look for the next high-value corpus advancement opportunity. This is an autonomous scouting mode, not a license to silently canonize new theory. It should explore priority ledgers, recent changes, corpus gaps, synthesize, follow promising intuition, and rank opportunities; it may edit only when the operator explicitly asks for an integration pass.
+Use this version when there is no single source document and Cody should actively look for the next high-value corpus advancement opportunity. This is an autonomous mathematical exploration mode, not a license to silently canonize new theory. It should explore priority ledgers, recent changes, corpus gaps, synthesize, follow promising intuition, and return concrete mathematical advances or detailed prompt options; it may edit only when the operator explicitly asks for an integration pass.
 
 ```text
 Cody, run a self-directed AAA corpus advancement exploration pass.
 
 Goal:
-Find the next highest-leverage theory advancement opportunity without being given a specific source document. Start with the priority ledgers unless Op supplied a different lane, then explore the idea space through recent changes, random deep dives, proof-target scans, missing-material scans, and occasional drift scans. Produce a ranked advancement report with serious theory opportunities, mathematical proof or derivation targets, leaps of intuition to discuss with Op, safe edit candidates, and infrastructure opportunities.
+Find the next highest-leverage theory advancement opportunity without being given a specific source document, then push it as far as a report-only pass can responsibly push it. Start with the priority ledgers unless Op supplied a different lane, then explore the idea space through recent changes, random deep dives, proof-target scans, missing-material scans, and occasional drift scans. Produce a ranked advancement report with concrete candidate definitions, equations, lemmas, proof or derivation targets, disciplined leaps of intuition, safe edit candidates, and priority action items.
 
 Operating principle:
-This pass should behave like an active research scout. It should not merely clean phrases. Ideas are welcome: surface promising syntheses, analogies, proof routes, and unifying mechanisms even when they are not ready for canon. Label them by evidential status instead of suppressing them. The center of gravity is mathematical advancement in theory and proofs: look for places where definitions can sharpen, lemmas can be named, derivations can be started, closure targets can become explicit, or a speculative mechanism can be turned into a testable theorem program.
+This pass should behave like an active research scout doing real mathematical work. It should not merely clean phrases, collect links, or narrate that something should happen later. Ideas are welcome: surface promising syntheses, analogies, proof routes, and unifying mechanisms even when they are not ready for canon. Label them by evidential status instead of suppressing them. The center of gravity is mathematical advancement in theory and proofs: sharpen definitions, name lemmas, start derivations, write closure targets explicitly, and turn speculative mechanisms into testable theorem or simulation programs.
 
 Hygiene posture:
-Terminology, notation, cross-linking, and cleanup still matter, but they are secondary in this variant. Let them appear when the randomized pass naturally encounters them, when they block theory clarity, or when they provide a cheap safe edit candidate. Do not let a self-running exploration collapse into a terminology sweep unless Op explicitly asks for that.
+Terminology, notation, cross-linking, and cleanup still matter, but they are secondary in this variant. Let them appear when they block mathematical clarity or provide a cheap safe edit candidate. Do not let a self-running exploration collapse into a terminology sweep, link-gardening pass, or vague future-work inventory unless Op explicitly asks for that.
+
+No empty future-work prose:
+Do not write paragraphs whose only content is that a topic deserves future attention. Either do the smallest useful mathematical step now, draft the exact AAA edit that should be made in an authorized edit pass, or turn the work into a detailed Priority Action Menu prompt. If the item belongs in `reference/priorities`, name the owning priority file and the concrete action that should be added or updated.
 
 Before exploring:
 1. Run `git status --short`.
@@ -244,30 +304,30 @@ Default lane distribution:
 - Avoid doing a broad all-corpus scan unless the active claims show no one else is currently covering the corpus.
 
 Internal exploration palette:
-If Op does not specify a lane, shard, or posture, choose one or two of these postures before choosing lanes. Give high priority to the priority-ledger advancement posture, then prefer weighted random selection among innovative and mathematical postures, bias away from active claim cards and recently covered territory, and keep hygiene postures as occasional secondary passes. State the selected posture in the claim card and final report.
+If Op does not specify a lane, shard, or posture, choose one or two of these postures before choosing lanes. Give high priority to postures that can produce a concrete mathematical artifact now, bias away from active claim cards and recently covered territory, and keep hygiene postures as occasional secondary passes. State the selected posture in the claim card and final report.
 
-- **Priority-ledger advancement:** go through `reference/priorities/SUMMARY/priorities.md` and the relevant files under `reference/priorities/` to find operator-maintained issues that can be advanced in the AAA corpus. Convert priority items into corpus work: proof routes, definitions, equations, missing derivations, worked examples, validation ledgers, cross-document integration, or safe edit batches. Do not link from authored AAA prose to priority files; promote the substance into `content/markdown/aaa` when it belongs there.
-- **Idea factory:** maximize new syntheses, proof routes, unifying mechanisms, mathematical conjectures, and leaps of intuition. Do not edit; return Op-discussion questions.
+- **Priority-ledger advancement:** go through `reference/priorities/SUMMARY/priorities.md` and the relevant files under `reference/priorities/` to find operator-maintained issues that can be advanced in the AAA corpus. Convert priority items into present mathematical work: proof routes, definitions, equations, missing derivations, worked examples, validation ledgers, cross-document integration, or safe edit batches. Do not link from authored AAA prose to priority files; promote the substance into `content/markdown/aaa` when it belongs there.
+- **Idea factory:** maximize new syntheses, proof routes, unifying mechanisms, mathematical conjectures, and leaps of intuition. Do not edit; return disciplined theory cards with a candidate mathematical statement, assumptions, first calculation, and failure mode.
 - **Closure lab:** focus on theorem/closure targets such as Lorentz behavior, mass/inertia, photon stability, reaction provenance, emergent metric closure, and cosmology observer variables.
 - **Proof-route forge:** choose one important claim and outline the objects, assumptions, lemmas, equations, invariants, simulations, or counterexamples needed to turn it into a defensible derivation.
 - **Recent-change propagator:** mine recent git changes for theory advancements and sweep related documents for integration opportunities.
 - **Random document advancement:** choose one AAA markdown file and ask what serious improvement it can support now; include sibling/context checks.
 - **Particular document deepener:** if Op names one file, advance that file first, then identify its nearest integration targets.
-- **Missing-material architect:** look for implied but unwritten pages, sections, derivations, ledgers, worked examples, or bridge documents.
+- **Missing-material architect:** look for implied but unwritten pages, sections, derivations, ledgers, worked examples, or bridge documents, then draft the smallest useful mathematical nucleus rather than only naming the absence.
 - **Issue troll:** secondary hygiene posture; hunt for stale terminology, weak formulations, overclaims, TODOs, broken self-containment, missing definitions, thin sections, and corpus drift when those issues obstruct advancement or the random choice lands here.
 - **Canon/drift sweeper:** secondary hygiene posture; compare local prose against Archie canon and identify patterns suitable for automated validation when drift materially affects theory clarity.
-- **Reader-completeness pass:** identify places where a reader needs a local explanation, bridge paragraph, link, example, or distinction to make the document self-contained.
-- **Cross-link gardener:** find high-value relative links among AAA documents where accepted ideas already exist but are disconnected.
+- **Reader-completeness pass:** identify places where a reader needs a local definition, example, derivation step, or distinction to make the document self-contained.
+- **Cross-link gardener:** low-priority support posture; use only when Op asks for linking or when a link directly supports a concrete mathematical claim, proof path, or reader-critical comparison.
 - **Reaction-provenance tracer:** follow energy, charge, polarity, architrino, and Noether-core provenance through reactions and identify missing ledgers.
-- **Validation/infrastructure scout:** propose scripts, checks, claim-card improvements, closure-target ledgers, or repeatable search patterns that make future advancement passes cheaper.
+- **Validation/infrastructure scout:** secondary support posture; propose scripts, checks, claim-card improvements, closure-target ledgers, or repeatable search patterns only when they address a specific recurring failure.
 
 Choose 2-4 exploration lanes per run:
 
 Lane selection bias:
 - Include at least one math/theory lane in every ordinary self-running pass, preferably Lane H, Lane B, Lane C, Lane E, Lane G, or a recent-change pass with explicit proof-route extraction.
-- Prefer Lane H when the goal is simply to find ways to advance the corpus, because the priority files already encode operator-maintained problems.
+- Prefer the lane most likely to produce a concrete mathematical artifact in the current pass. Lane H is useful when priority files point to a live proof or derivation target, but do not let it become a future-work catalog.
 - Use Lane D as a secondary hygiene lane unless Op requests cleanup, active claims leave no better unclaimed territory, or drift is directly blocking a theory advance.
-- Rank mathematical advancement opportunities above wording-only cleanup in the final report.
+- Rank mathematical advances above wording-only cleanup, linking, and infrastructure in the final report.
 
 Lane A: Recent-change theory harvest
 - Inspect recent changes for possible theory advancements using git history and current diffs.
@@ -277,15 +337,15 @@ Lane A: Recent-change theory harvest
   - `git log --oneline --name-only -n 10 -- content/markdown/aaa`
   - `git show --stat --oneline HEAD`
 - Extract any new definitions, stronger claims, notation changes, theorem targets, or canonical phrases introduced recently.
-- Sweep nearby corpus locations for integration opportunities.
+- Attempt one concrete mathematical propagation: a candidate definition, equation, lemma, proof-route paragraph, or exact edit that carries the new signal into a nearby document.
 
 Lane B: Random serious-document deep dive
 - Choose one AAA markdown document at random and attempt a serious advancement audit.
 - Useful command: `rg --files content/markdown/aaa | sort | shuf -n 1`
 - If `shuf` is unavailable, choose a document by another reproducible method and state how it was chosen.
 - Read the chosen document, then inspect sibling documents, incoming/outgoing links where practical, and relevant canon.
-- Ask: What is the strongest defensible improvement this document could support today?
-- Output safe edits, theory-elevation opportunities, missing derivation targets, and Op-discussion leaps separately.
+- Ask: What is the strongest defensible mathematical improvement this document can support today?
+- Output the candidate mathematical improvement first, then safe edits, missing derivation targets, and Op-discussion leaps.
 
 Lane C: Missing-material and stub scan
 - Search for unwritten, thin, placeholder, or future-work material.
@@ -293,7 +353,7 @@ Lane C: Missing-material and stub scan
   - `rg -n -i "TODO|TBD|placeholder|stub|not yet|needs derivation|future work|to compute|mapping goal|pending derivation|unresolved|open question" content/markdown/aaa`
   - `rg -n -i "should be developed|requires|must derive|must show|not yet fixed|not yet established" content/markdown/aaa`
 - Distinguish a simple missing paragraph from a missing canonical bridge, missing theorem proof, missing reaction ledger, or missing derivation program.
-- Recommend the smallest useful fill-in that would move the corpus forward.
+- Draft or outline the smallest useful fill-in: one definition, equation, lemma, worked example, ledger row, or validation criterion. Do not return only a list of absences.
 
 Lane D: Drift and canonicalization scan
 - Secondary hygiene lane. Search for recurring stale phrases and notation drift when those issues obstruct theory clarity or the randomized pass selects this lane.
@@ -301,20 +361,20 @@ Lane D: Drift and canonicalization scan
 - Propose new automated audit patterns when a drift class appears in multiple files.
 
 Lane E: Closure-target ledger scan
-- Search for repeated claims that need to be converted into theorem targets or linked to a proof path.
+- Search for repeated claims that need to be converted into theorem targets or proof paths.
 - Prioritize Lorentz closure, mass/inertia closure, tri-binary minimality, photon stability, reaction provenance, emergent metric closure, and cosmology observer-variable closure.
 - For each target, identify:
   - claim statement,
   - mathematical objects and variables that must be defined,
   - current evidence,
-  - missing lemma, derivation, closure equation, simulation, or invariance argument,
-  - files that should cross-link once the target is clarified,
+  - candidate lemma, derivation, closure equation, simulation, or invariance argument,
+  - files that should receive the mathematical clarification once the target is clarified,
   - whether the claim is currently overclaimed, underclaimed, or properly scoped.
 
 Lane F: Reader-completeness scan
-- Look for sections where a reader would naturally expect a definition, bridge, comparison, or worked example but the material is absent or too compressed.
+- Look for sections where a reader would naturally expect a definition, derivation step, bridge comparison, or worked example but the material is absent or too compressed.
 - Check READMEs, overview pages, bridge documents, and documents with many outgoing links but little local explanation.
-- Recommend fill-ins that preserve self-contained AAA prose without linking to reference/priorities.
+- Recommend or draft fill-ins that preserve self-contained AAA prose without linking to reference/priorities.
 
 Lane G: Intuition-to-proof synthesis
 - Choose a promising intuition, analogy, or cross-document pattern and translate it into a disciplined research target.
@@ -322,7 +382,7 @@ Lane G: Intuition-to-proof synthesis
   - trigger passages or documents,
   - proposed synthesis,
   - why Op may want to consider it,
-  - the mathematical form the idea would need before canonization,
+  - the candidate mathematical form of the idea,
   - the first proof step, calculation, model, or simulation that would make it testable,
   - failure modes or counterexamples that would discipline the idea.
 - Treat the output as an Op-discussion theory card, not as settled doctrine.
@@ -333,7 +393,7 @@ Lane H: Priority-ledger advancement
 - For each promising item, identify:
   - the priority issue and its target closure,
   - the AAA documents that should carry the advancement,
-  - the smallest mathematical object, definition, lemma, equation, worked example, validation ledger, or simulation hook that would move the issue forward,
+  - the smallest mathematical object, definition, lemma, equation, worked example, validation ledger, or simulation hook that can be attempted now,
   - whether the work can be done as a safe edit batch or requires Op discussion,
   - and the first concrete corpus change that would reduce the priority rather than merely restate it.
 - Prefer issues where one focused edit can turn a vague priority into a theorem target, provenance equation, derivation scaffold, or validation criterion.
@@ -344,7 +404,13 @@ Report format:
 1. Claim card path, selected exploration posture(s), selected lane(s), selected path shard, and any active claims avoided.
 2. Exploration lanes used and why.
 3. Source signals found, including priority files, recent commits/diffs, or randomly selected documents.
-4. Ranked opportunities:
+4. Concrete advances attempted:
+   - candidate definition, equation, lemma, invariant, proof route, simulation hook, or validation criterion,
+   - assumptions and scope,
+   - current evidence,
+   - first calculation or proof step,
+   - failure mode, ambiguity, or reason it needs Op discussion.
+5. Ranked opportunities:
    - path,
    - opportunity,
    - why it matters,
@@ -352,31 +418,34 @@ Report format:
    - recommended next action,
    - priority: required / high-value / optional,
    - risk: low / medium / high.
-5. Mathematical advancement targets:
+6. Mathematical advancement targets:
    - claim or conjecture,
    - objects and definitions needed,
    - candidate lemmas, equations, invariants, simulations, or proof route,
    - current corpus evidence,
-   - first useful next step.
-6. Leaps of intuition to discuss with Op:
+   - first useful next step that can be executed, not a vague future-work note.
+7. Leaps of intuition to discuss with Op:
    - trigger passage or cross-document pattern,
    - proposed synthesis,
    - why it could advance the theory,
+   - candidate mathematical form,
+   - first calculation or proof step,
    - what evidence or derivation is missing,
    - exact question for Op.
-7. Safe edit candidates for a future integration pass.
-8. Missing-material candidates:
+8. Safe edit candidates for an integration pass, phrased as exact changes or detailed prompt options.
+9. Missing-material action items:
    - missing page, section, derivation, worked example, reaction ledger, or bridge,
    - documents that imply it,
-   - minimal first version that would be useful.
-9. Infrastructure recommendations:
+   - minimal first version that would be useful,
+   - owning priority file if it belongs in `reference/priorities`.
+10. Infrastructure or priority recommendations:
    - automated drift checks,
    - closure-target ledger entries,
    - repeatable search patterns,
    - candidate validation rule additions.
-10. Suggested new thread:
+11. Detailed continuation prompt options:
    - recommended next thread type: audit/report, edit-batch, discussion, or team-agent,
-   - paste-ready `New-thread prompt`,
+   - each numbered approval option written as a detailed, paste-ready prompt using the format above,
    - exact search commands or source paths that should seed that new thread,
    - no request for Op approval unless approval is required to complete this thread's current task.
 
@@ -414,12 +483,17 @@ Coordinator Cody:
    - derivations
    - terminology implications
    - cross-document consequences
-5. Convert the advancements into a claim map:
+5. Convert the strongest advancements into at least one concrete mathematical artifact before broad cataloging:
+   - candidate definition
+   - candidate lemma or conjecture
+   - equation, closure condition, invariant, or estimate
+   - proof scaffold, validation criterion, or simulation hook
+6. Convert the advancements into a claim map:
    - ontology
    - derivation/closure target
    - effective summary
    - speculation
-6. Assign disjoint corpus shards to agents. Do not let shard agents edit files.
+7. Assign disjoint corpus shards to agents. Do not let shard agents edit files.
 
 Shard A:
 Inspect content/markdown/aaa/archie.
@@ -438,6 +512,7 @@ Each shard agent must return only:
 - specific stale or improvable passages
 - source signal or priority issue that affects each passage
 - recommended update
+- concrete mathematical candidate when the shard exposes one
 - priority: required / high-value / optional
 - risk: low / medium / high
 - evidence from the selected source signal
@@ -450,8 +525,8 @@ Coordinator Cody must then:
 2. Resolve terminology against the Archie canon.
 3. Separate required fixes from optional improvements.
 4. Flag any canon-policy conflict before recommending edits.
-5. Identify recurring drift patterns for automation.
-6. Identify theorem targets that should enter a closure-target ledger.
+5. Identify recurring drift patterns for automation only when a concrete rule can be stated.
+6. Identify theorem targets that should enter a closure-target ledger, with candidate statement, objects, and first proof step.
 7. Produce one ranked corpus advancement report.
 
 Important constraints:
@@ -470,9 +545,9 @@ Important constraints:
 
 End with:
 0. The thread state handoff block.
-1. A ranked edit plan.
-2. Any genuinely new insights discovered by comparing documents.
+1. Concrete mathematical advances attempted, including candidate definitions, equations, lemmas, proof routes, or validation targets.
+2. A ranked edit plan; any numbered approval options in that plan must use the detailed prompt format above.
 3. Leaps of intuition to discuss with Op before canonizing or editing into AAA prose.
-4. Infrastructure recommendations for automated drift audit and closure-target tracking.
+4. Concrete priority or infrastructure action items, only where they have enough detail to execute.
 5. Any questions that must be answered before editing.
 ```

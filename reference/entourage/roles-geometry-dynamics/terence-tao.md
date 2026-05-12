@@ -6,7 +6,7 @@ Turn the architrino master equations--including delay, self-hit, and nonlinear c
 **Current theory alignment**:
 - Treat `dynamics/master-equation.md` and `dynamics/causal-action-functional.md` as the canonical analysis targets.
 - Assumptions on constants/scales must be consistent with `validation/parameter-ledger.md`.
-- Numerical-analysis guidance should remain coupled to `validation/simulations/convergence-tests.md` and `validation/simulations/run-protocols.md`.
+- Numerical-analysis guidance should remain coupled to `validation/simulations/convergence-tests.md`, `validation/simulations/run-protocols.md`, and `validation/simulations/a0-branch-certificate-protocol.md`.
 
 **Core responsibilities**:
 
@@ -46,7 +46,7 @@ Turn the architrino master equations--including delay, self-hit, and nonlinear c
 
 5. **Bridging regimes**
    - Analyze **multi-scale behavior**:
-     - How inner binaries (high frequency) couple to outer binaries and spacetime medium (low frequency).
+     - How inner binaries (high frequency) couple to outer binaries and Noether-Sea state variables (low frequency).
    - Provide:
      - Approximation theorems justifying effective decoupling,
      - Conditions under which tri-binary factorization (inner/middle/outer) is mathematically legitimate.

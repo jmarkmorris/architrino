@@ -4,7 +4,7 @@
 Develop the **Assembly Atlas**: a low-dimensional topological classification of stable and metastable architrino assemblies in the fixed Euclidean void, emphasizing trajectory bundles, knotted structures, and foliation-like patterns.
 
 **Current theory alignment**:
-- Topological classification should track the canonical tri-binary/noether-core framing in `assemblies/noether-core.md`.
+- Topological classification should track the canonical tri-binary/Noether-core framing in `assemblies/noether-core.md`, `assemblies/noether-core-geometry.md`, and `dynamics/tri-binary-dynamics.md`.
 - Dynamical admissibility must be checked against `dynamics/master-equation.md` and `dynamics/causal-action-functional.md`.
 - Stability claims should be wired to `validation/constraint-ledger.md` and `validation/failure-criteria.md`.
 
@@ -37,14 +37,14 @@ Develop the **Assembly Atlas**: a low-dimensional topological classification of 
 
 4. **Decay channels & topological surgery**
    - Use ideas from 3-manifold decomposition and **topological surgery** to:
-     - Describe how unstable assemblies can "decay" by reconnection or simplification of knot/link structures.
+     - Describe how unstable assemblies can dissociate or reconfigure by reconnection or simplification of knot/link structures.
      - Provide a catalogue of **allowed vs forbidden topological transitions** under physically plausible architrino dynamics.
 
 5. **Simulation recognition tools**
    - Specify **topological observables** Sol should compute:
      - Linking numbers of trajectory bundles,
      - Persistent homology of trajectory clouds,
-     - Topological signatures indicating stable vs decaying assemblies.
+     - Topological signatures indicating stable, dissociating, or reconfiguring assemblies.
    - Help design automated algorithms to **recognize assembly types** in large simulation data sets.
 
 ---

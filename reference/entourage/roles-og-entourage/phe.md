@@ -9,8 +9,9 @@ Demonstrate that **architrino assembly architecture reproduces the Standard Mode
 ## Current Theory Alignment
 
 - Particle/gauge mappings must track `assemblies/fermions/quantum-number-mapping.md`, `theory-bridges/weak-mixing-ckm.md`, and `interactions/gauge-structure-emergence.md`.
-- Microdynamics assumptions should cite `dynamics/master-equation.md`; parameter claims should cite `validation/parameter-ledger.md`.
+- Microdynamics assumptions should cite `dynamics/master-equation.md`; mass and shielding claims should cite `assemblies/particle-masses.md`, `dynamics/energy.md`, and `validation/parameter-ledger.md`.
 - Phenomenology milestones and failure gates should remain synchronized with `validation/constraint-ledger.md`, `validation/no-go-theorems.md`, and `validation/failure-criteria.md`.
+- Reaction channels must expose provenance: participating architrinos, Noether cores, energy, charge, polarity, and the assembly corridor or wake mechanism that carries the transition.
 
 ---
 
@@ -31,7 +32,7 @@ Work is anchored in the specific architecture already defined in this repo:
 - **Scalable and deformable**:
   - Ellipsoidal/spheroidal -> Fermions (Fermi-Dirac statistics).
   - Planar (flattened) -> Bosons (Bose-Einstein statistics).
-- **Spacetime assemblies**: Background medium of tri-binaries (Higgs-like role).
+- **Noether Sea**: Ambient substrate contents built from neutral Noether-core assemblies; Higgs-like and vacuum-language claims are effective comparison statements until derived.
 
 ---
 
@@ -57,8 +58,9 @@ Map tri-binary axial patterns to all SM fermions:
 
 **A.2 Bosons (Gauge Bosons and Higgs)**
 
-- **Photon, $W^\pm$, $Z$, gluons**: Identify as:
-  - Planar tri-binary configurations (Bose statistics from geometry).
+- **Photon, $W^\pm$, $Z$, gluons**: Identify as closure targets:
+  - Photon ontology uses the canonical coaxial contra-rotating pro/anti planar pair, with masslessness, no rest branch, no birefringence, and no unacceptable dispersion still gated by photon closure.
+  - Other bosons require planar or corridor-like assembly mechanisms with Bose statistics derived from geometry.
   - Collective excitations in the tri-binary medium.
   - Emergent degrees of freedom from assembly interactions.
 - **Higgs boson**: Relate to spacetime tri-binary assemblies.
@@ -83,9 +85,10 @@ Map tri-binary axial patterns to all SM fermions:
 **B.1 Mass Origin**
 
 - Mass from:
-  - Total energy in three nested binaries (kinetic + potential).
-  - Maximum curvature at the inner binary (inertial resistance).
-  - Coupling to background spacetime tri-binary assemblies.
+  - Trapped internal causal-history energy $E_{\text{internal}}(A)$.
+  - Far-field shielding or exposure $\zeta(A)$.
+  - Medium-dressed inertial response through $\mathcal{M}_{\text{sea}}^{ab}$ or its homogeneous limit $h^{ab}/c_{\text{eff}}^2$.
+  - Maximum-curvature and branch-closure structure only where the local derivation supports that role.
 
 **B.2 Generational Masses**
 
@@ -168,7 +171,8 @@ Show SM Lagrangian emerges in low-energy limit:
 - Electron/muon $g-2$ (address muon anomaly).
 - Electroweak precision observables.
 - Exact CKM matrix elements.
-- Higgs couplings and decay channels.
+- Higgs couplings and reaction channels.
+- Reaction-provenance ledgers for weak reactions, pair production, bremsstrahlung, synchrotron, and CKM/PMNS mappings.
 
 ---
 
@@ -317,7 +321,7 @@ Maintain living "Challenges & Failures" document:
 
 - Particle and quantum-number tables synced with `assemblies/fermions/quantum-number-mapping.md` and `validation/parameter-ledger.md`.
 - Gauge and mixing notes tied to `interactions/gauge-structure-emergence.md` and `theory-bridges/weak-mixing-ckm.md`, PDG date-stamped.
-- Benchmark observables list for Sig and Sol (masses, $g-2$, form factors, CKM/PMNS entries, rare decays) with target precision.
+- Benchmark observables list for Sig and Sol (masses, $g-2$, form factors, CKM/PMNS entries, rare reactions) with target precision.
 # Foundational Reference
 - architrino ontology (`foundations/ontology.md`) anchors particle mappings: absolute time, Euclidean space, unique architrino worldlines, and polarity $q=\pm\epsilon$ set the base for assembly construction.
 - Reference the master equation (`dynamics/master-equation.md`) whenever discussing emission/absorption: every interaction is a sum over causal wake surfaces (path history) with radial $1/r^2$ contributions; self-hits appear when worldlines outrun their own wakes.

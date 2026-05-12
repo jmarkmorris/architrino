@@ -1,8 +1,10 @@
 # Fermi-Dirac and Bose-Einstein Statistics
 
-This chapter states the $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation of Fermi-Dirac and Bose-Einstein statistics. Its purpose is not to replace the standard counting rules at the observer level. Its purpose is to identify the assembly-level geometry that determines which counting rule an effective excitation obeys.
+This chapter states the $\mathbb{A}\mathbb{A}\mathbb{A}$ proof target for Fermi-Dirac and Bose-Einstein statistics. Its purpose is not to replace the standard counting rules at the observer level. Its purpose is to identify the assembly-level geometry that should determine which counting rule an effective excitation obeys once spin-statistics closure is derived.
 
-The working claim is direct: the transition between Fermi-Dirac and Bose-Einstein behavior is controlled by the oblation of Noether-core orbits. A fully three-dimensional Noether-core envelope enforces exclusion-like packing. A strongly oblated, effectively two-dimensional orbital support opens the coherent shared-state regime associated with Bose-Einstein behavior.
+The working hypothesis is direct: the transition between Fermi-Dirac and Bose-Einstein behavior is controlled by the oblation of Noether-core orbits. A fully three-dimensional Noether-core envelope supplies the candidate basis for exclusion-like packing. A strongly oblated, effectively two-dimensional orbital support opens the candidate coherent shared-state regime associated with Bose-Einstein behavior.
+
+This hypothesis is downstream of the ordered-frame spinor program in [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md). Volume exclusion can explain why same-state packing becomes costly, but it does not by itself derive the fermionic exchange sign or the spin-statistics connection.
 
 ## Standard Observer-Level Roles
 
@@ -18,7 +20,7 @@ The relevant object is the Noether core, the triply nested binary assembly descr
 
 In the low-apparent-energy matter regime, the three nested binaries maintain separated orbital scales and a three-dimensional orientation structure. The outer binary sets the leading equatorial boundary of an oblate spheroidal exclusion envelope, while the inner and middle binaries provide high-frequency stabilizing wake structure.
 
-This is already a flattened object, but it remains genuinely three-dimensional. The orbital support still occupies a volume. Its exclusion envelope has thickness, principal axes, and a dynamically maintained interior. That 3D envelope is the substrate basis for fermionic exclusion.
+This is already a flattened object, but it remains genuinely three-dimensional. The orbital support still occupies a volume. Its exclusion envelope has thickness, principal axes, and a dynamically maintained interior. That 3D envelope is the candidate substrate basis for fermionic exclusion.
 
 ## Fermi-Dirac Regime: 3D Exclusion
 
@@ -31,7 +33,7 @@ The exclusion is not a hard material wall. It is a path-history and wake-geometr
 - the inner and middle binaries maintain internal stabilizing density,
 - and nearby cores cannot share the same local state without disrupting those orbit closures.
 
-At the effective quantum level, that obstruction appears as antisymmetric exchange bookkeeping and Pauli exclusion. At the assembly level, it is the inability of two volumetric Noether-core envelopes to occupy the same state without losing stable nested-binary identity.
+At the effective quantum level, that obstruction must appear as antisymmetric exchange bookkeeping and Pauli exclusion. At the assembly level, it is the candidate inability of two volumetric Noether-core envelopes to occupy the same state without losing stable nested-binary identity. The exchange sign still has to come from the ordered-frame spinor proof, not from volume exclusion alone.
 
 ## Bose-Einstein Regime: 2D Coherence
 
@@ -57,7 +59,7 @@ $$
 
 The Fermi-Dirac regime has $\xi$ bounded away from zero. The envelope is oblate but still volumetric. The Bose-Einstein regime is approached as $\xi\to 0$, where the active support becomes effectively two-dimensional.
 
-This ratio is not yet a final derivation of spin-statistics. It is a geometric control variable for the proof program. A complete closure must show how stable 3D Noether-core configurations produce the fermionic exchange sign, and how the 2D coherent channel limit produces symmetric occupation at the observer level.
+This ratio is not yet a final derivation of spin-statistics. It is a geometric control variable for the proof program. A complete closure must show how stable 3D Noether-core configurations inherit the ordered-frame spinor proof and produce the fermionic exchange sign, and how the 2D coherent channel limit produces symmetric occupation at the observer level.
 
 ## Interfaces
 
@@ -81,4 +83,4 @@ The next proof steps are:
 4. Derive how phase-compatible 2D-supported channel excitations produce bosonic symmetric occupation.
 5. Check that mixed regimes do not create forbidden intermediate statistics for ordinary low-energy matter.
 
-Until those steps are complete, the claim should be treated as a precise geometry hypothesis: Fermi-Dirac statistics arise from 3D Noether-core exclusion; Bose-Einstein statistics arise when Noether-core orbital support is oblated into an effectively 2D coherent channel.
+Until those steps are complete, the claim should be treated as a precise geometry hypothesis: Fermi-Dirac statistics are expected to arise from 3D Noether-core exclusion plus the ordered-frame spinor exchange phase; Bose-Einstein statistics are expected to arise when Noether-core orbital support is oblated into an effectively 2D coherent channel.

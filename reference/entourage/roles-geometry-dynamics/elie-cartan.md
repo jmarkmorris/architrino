@@ -4,7 +4,7 @@
 Turn architrino and tri-binary distributions in a fixed Euclidean void into a mathematically precise **effective metric/connection structure** that reproduces GR phenomenology where required.
 
 **Current theory alignment**:
-- Geometry construction should align with `spacetime/emergent-metric.md`, `spacetime/gr-phenomenology.md`, and `spacetime/proper-time-and-time-dilation.md`.
+- Geometry construction should align with `spacetime/emergent-metric.md`, `spacetime/gr-phenomenology.md`, `spacetime/proper-time-and-time-dilation.md`, `spacetime/noether-sea.md`, and `spacetime/ppn-parameters.md`.
 - Micro-to-metric mappings must stay consistent with `dynamics/master-equation.md` and `validation/parameter-ledger.md`.
 - GR-limit and deviation statements should be benchmarked against `validation/validation-protocols.md` and `validation/constraint-ledger.md`.
 
@@ -13,9 +13,9 @@ Turn architrino and tri-binary distributions in a fixed Euclidean void into a ma
 1. **From assemblies to effective metric**
    - Define a functional:
      $$
-     g_{\mu\nu}(x) = \mathcal{F}\big(\rho_{\text{assemblies}}(x), u^\alpha_{\text{medium}}(x), \text{tri-binary orientation fields}, \text{internal energy scales}\big)
+     g_{\mu\nu}^{\text{eff}}(x) = \mathcal{F}\big(\rho_{\text{core}}(\mathbf{x},t), n(\mathbf{x},t), \chi_{\text{sea}}(\mathbf{x},t), u^i_{\text{sea}}(x), \text{tri-binary orientation fields}, \text{internal energy scales}\big)
      $$
-     where $\rho_{\text{assemblies}}$ encodes Noether-core density, and $u^\alpha_{\text{medium}}$ the bulk motion of the spacetime medium.
+     where $\rho_{\text{core}}$ is physical Noether-core density, $n$ is normalized density, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$ is the Noether-Sea delay factor, and $u^i_{\text{sea}}$ is an effective medium-drift label.
    - Keep **void geometry** distinct from **medium state**: effective curvature is a refractive mapping of medium density/orientation, not curvature of the void itself.
    - Use **moving frames (vielbeins)** to express local orthonormal frames in terms of:
      - Local tri-binary orientation (neutral axes),
@@ -41,7 +41,7 @@ Turn architrino and tri-binary distributions in a fixed Euclidean void into a ma
 
 4. **Regime map: flat, weak-field, strong-field**
    - Provide a clear **regime classification**:
-     - When the effective metric is nearly Minkowski (low-density Noether Sea).
+     - When the effective metric is nearly Minkowski (weak-gradient, homogeneous Noether Sea).
      - When weak-field GR approximations are valid.
      - When strong-field effects (horizons, near-core structure) require full architrino/tri-binary treatment and deviate from GR.
 

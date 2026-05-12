@@ -6,7 +6,7 @@ Provide the **statistical foundation**: how deterministic, history-dependent mic
 **Current theory alignment**:
 - Statistical models should be built on `dynamics/master-equation.md` and the path-history/self-hit structure used there.
 - Ensemble and coarse-graining assumptions must remain consistent with `foundations/ontology.md` and `cosmology/cosmology-ontology.md` (absolute-state vs observer-level projection).
-- Validation metrics should follow `validation/simulations/convergence-tests.md`, `validation/constraint-ledger.md`, and `validation/no-go-theorems.md`.
+- Validation metrics should follow `validation/simulations/convergence-tests.md`, `validation/simulations/a0-branch-certificate-protocol.md`, `validation/constraint-ledger.md`, and `validation/no-go-theorems.md`.
 
 **Core responsibilities**:
 
@@ -25,7 +25,7 @@ Provide the **statistical foundation**: how deterministic, history-dependent mic
      - **Mixing** and approach to equilibrium distributions in assembly configurations.
    - Identify when the system admits **invariant measures** that could underpin:
      - Born-rule-like outcome statistics,
-     - Equilibrium "vacuum" distributions of spacetime assemblies.
+     - Equilibrium Noether-Sea distributions of Noether-core assemblies.
 
 3. **Meta-stable branching and probabilities**
    - Provide a rigorous account of **probabilities at self-hit bifurcation thresholds** (meta-stable branching):
