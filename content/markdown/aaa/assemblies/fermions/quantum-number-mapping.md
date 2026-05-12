@@ -521,6 +521,12 @@ For the **Elementary Fermions** (Quarks and Leptons), this table is complete at 
 - A 2π spatial rotation permutes the braid ordering once, flipping the sign of the internal phase (like rotating a framed triad or belt). Only after 4π does the ordered triad and its vortex phase return to the same configuration.
 - This ordered-triad + fixed-$\mathbf{J}$ constraint is proposed as the geometric origin of the SU(2) double cover → spin-1/2 behavior; a formal bundle map is still to be derived.
 
+### Angular momentum notation bridge
+
+Standard quantum notation separates three closely related quantities. Orbital angular momentum $\mathbf{L}$ belongs to motion around a center or to an orbital degree of freedom. Spin angular momentum $\mathbf{S}$ belongs to the internal representation carried by a particle or excitation. Total angular momentum is the conserved combination $\mathbf{J}=\mathbf{L}+\mathbf{S}$ after the relevant observer-level coarse-graining. Helicity is the projection of spin, or of the relevant angular-momentum generator for a field mode, along the momentum or propagation direction.
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, these symbols are not separate primitive objects. Internal binary-plane circulation, ordered-core phase, and transverse or helical mode structure are proposed substrate mechanisms that must recover the observer-level labels $\mathbf{L}$, $\mathbf{S}$, $\mathbf{J}$, and helicity. Until that closure map is derived, prose should state whether it is discussing the substrate mechanism or the effective quantum label measured by an apparatus.
+
 ### Spin taxonomy across assemblies
 
 Across the repo, the working geometric rule is that the spin label tracks the **kind of orientation data** the excitation carries:

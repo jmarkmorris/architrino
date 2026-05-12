@@ -138,19 +138,19 @@ The current repo does not yet contain a full proton spin decomposition, but the 
 
 ### Spin
 
-The nucleon ground state is taken to be a total
+The nucleon ground state is taken to have observer-level total spin quantum number
 $$
 J=\frac{1}{2}
 $$
-tri-core configuration. This should be read as the low-energy closure class of the coupled three-core assembly, not as the trivial sum of three isolated constituent spins.
+for the coupled tri-core configuration. Here $J$ names the total hadronic angular-momentum channel, not the spin of one isolated constituent. A useful standard-physics comparison is the proton-spin decomposition: the measured spin-$\tfrac{1}{2}$ nucleon is not explained by simply adding three valence-quark spin arrows.
 
-In other words, the nucleon spin is expected to include:
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the same bookkeeping pressure appears as three coupled contributions:
 
-- quark-core spinor structure,
-- strong-sector orbital circulation,
-- and flux-network angular momentum.
+- **quark-core spinor structure**, the analogue of constituent intrinsic spin;
+- **strong-sector orbital circulation**, the analogue of quark and core orbital angular momentum inside the bound state;
+- **flux-network angular momentum**, the analogue of gluon or strong-field angular momentum in the standard QCD spin budget.
 
-That is the natural $\mathbb{A}\mathbb{A}\mathbb{A}$ analogue of the standard statement that proton spin is not carried by naive valence-spin addition alone.
+The closure target is therefore not to assign $1/2$ to one piece of the nucleon. The target is to show how the coupled tri-core assembly, its orbital circulation, and its strong-sector flux network combine into one stable spin-$\tfrac{1}{2}$ hadronic channel.
 
 ### Magnetic moments
 

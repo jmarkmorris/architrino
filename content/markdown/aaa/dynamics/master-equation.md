@@ -2212,6 +2212,8 @@ where $E(3)=\mathbb{R}^3 \rtimes O(3)$ acts by spatial translations and rotation
 
 #### Generalized Momentum and Angular Momentum
 
+The delayed theory separates ordinary mechanical motion from the causal-wake history that is still in flight. For an action-derived delayed model with translation and rotation symmetry, the full Noether charges are history functionals: the particle-only quantities need not be conserved by themselves, but the particle-plus-wake totals are. In regularized or numerical variants, the same expressions should be treated as conserved diagnostics only when the chosen regularization preserves those symmetries.
+
 **Definition (Mechanical momentum).**
 $$
 \mathbf{P}_{\text{mech}}(t) = \sum_i \mu_{\text{arch}} \mathbf{v}_i(t).
@@ -2240,13 +2242,13 @@ $$
 \mathbf{L}_{\text{wake}}(t) = \mathbf{L}_{\text{wake}}(t_\ast) - \int_{t_\ast}^{t} \sum_i \mathbf{x}_i(s)\times \mathbf{F}_i(s)\,ds.
 $$
 
-**Conservation law (total angular momentum).**
+**Conservation target (total angular momentum).**
 $$
 \mathbf{L}_{\text{tot}}(t) \equiv \mathbf{L}_{\text{mech}}(t) + \mathbf{L}_{\text{wake}}(t)
 $$
-is constant in time for isolated solutions. It is the angular-momentum decomposition associated with rotational invariance of the nonlocal causal action.
+is the angular-momentum decomposition associated with rotational invariance of the nonlocal causal action. For isolated solutions of the symmetry-preserving action model it is conserved. For working regularized models, conservation of $\mathbf{L}_{\text{tot}}$ is a validation condition rather than an automatic consequence.
 
-**Remark.** These definitions mirror the energy decomposition used earlier: the "missing" momentum and angular momentum are attributed to in-flight wake geometry, so the total quantities are functionals of the path history.
+**Remark.** These definitions mirror the energy decomposition used earlier: the apparent "missing" momentum and angular momentum are assigned to in-flight causal-wake geometry. The total quantities are therefore functionals of the path history, not functions of the instantaneous particle state alone.
 
 #### Energy Functional and No-Runaway Criterion
 
