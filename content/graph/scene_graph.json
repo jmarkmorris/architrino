@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 468,
+      "nodes": 469,
       "edges": 1221,
       "scenes": 319,
       "markdownIndexes": 0,
-      "markdownDocs": 149,
+      "markdownDocs": 150,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2582,6 +2582,12 @@
       "id": "content/markdown/aaa/reactions/bremsstrahlung.md",
       "name": "Bremsstrahlung",
       "path": "content/markdown/aaa/reactions/bremsstrahlung.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/reactions/radiation.md",
+      "name": "Radiation",
+      "path": "content/markdown/aaa/reactions/radiation.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -6610,6 +6616,15 @@
       "name": "Bremsstrahlung",
       "path": "content/markdown/aaa/reactions/bremsstrahlung.md",
       "searchTarget": "content/markdown/aaa/reactions/bremsstrahlung.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/reactions/radiation.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/reactions/radiation.md",
+      "name": "Radiation",
+      "path": "content/markdown/aaa/reactions/radiation.md",
+      "searchTarget": "content/markdown/aaa/reactions/radiation.md",
       "implicit": false
     },
     {
