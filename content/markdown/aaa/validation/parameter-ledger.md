@@ -112,7 +112,7 @@ These quantities belong to tri-binary architecture, shielding, branch structure,
 | G1 | $R_{\text{inner}},R_{\text{middle}},R_{\text{outer}}$ | Geometric closure target | Open | characteristic radii of the nested binaries in the Noether core | [../assemblies/noether-core.md](../assemblies/noether-core.md), [../assemblies/noether-core-geometry.md](../assemblies/noether-core-geometry.md), [../dynamics/tri-binary-dynamics.md](../dynamics/tri-binary-dynamics.md) |
 | G2 | $\omega_{\text{inner}},\omega_{\text{middle}},\omega_{\text{outer}}$ | Geometric closure target | Open | characteristic binary frequencies associated with the nested radii | [../dynamics/tri-binary-dynamics.md](../dynamics/tri-binary-dynamics.md), [../assemblies/particle-masses.md](../assemblies/particle-masses.md) |
 | G3 | $R_{\text{align}}$ | Geometric closure target | Open, conjectural | outer-binary alignment radius in the terminal Planck-alignment map | [../theory-bridges/planck-scale-tri-binary-alignment.md](../theory-bridges/planck-scale-tri-binary-alignment.md) |
-| G4 | $L_{\text{align}}$ | Geometric closure target | Open, conjectural | action / angular-momentum increment of the aligned terminal mode | [../theory-bridges/planck-scale-tri-binary-alignment.md](../theory-bridges/planck-scale-tri-binary-alignment.md) |
+| G4 | $\mathcal{A}_{\text{align}}^{\text{cycle}}, I_{\text{align}}$ | Geometric closure target | Open, conjectural | closed-cycle action and radian-normalized rotational-action increment of the aligned terminal mode | [../theory-bridges/planck-scale-tri-binary-alignment.md](../theory-bridges/planck-scale-tri-binary-alignment.md) |
 | G5 | $\zeta(A)$ | Geometric closure target | Open | shielding or leakage factor of assembly $A$, defined by far-field suppression relative to naive constituent exposure | [../dynamics/energy.md](../dynamics/energy.md), [../assemblies/particle-masses.md](../assemblies/particle-masses.md) |
 | G6 | $\alpha$ | Geometric closure target | Open | axial-frame misalignment angle used in the weak-mixing / quark-geometry program | [../assemblies/fermions/weak-mixing-angle.md](../assemblies/fermions/weak-mixing-angle.md) |
 | G7 | $\phi_c$ | Geometric closure target | Open | color-sector azimuth selecting the exceptional axial-frame orientation | [../assemblies/fermions/weak-mixing-angle.md](../assemblies/fermions/weak-mixing-angle.md) |
@@ -141,7 +141,7 @@ These quantities are where closure is tested. They are not substrate inputs.
 | ID | Symbol | Class | Current status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
 | O1 | $e$ | Observable benchmark | Derived target | elementary charge reconstructed from substrate charge and normalization map | [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md), [../interactions/gauge-structure-emergence.md](../interactions/gauge-structure-emergence.md) |
-| O2 | $h,\hbar$ | Observable benchmark / geometric target | Open | action quantum to be related to tri-binary alignment or orbital closure | [../theory-bridges/planck-scale-tri-binary-alignment.md](../theory-bridges/planck-scale-tri-binary-alignment.md), [architrino-si-base-units.md](./architrino-si-base-units.md) |
+| O2 | $h,\hbar$ | Observable benchmark / geometric target | Open | full-cycle action quantum and radian-normalized angular-momentum quantum to be related to tri-binary alignment or orbital closure | [../theory-bridges/angular-momentum-and-spin.md](../theory-bridges/angular-momentum-and-spin.md), [../theory-bridges/planck-scale-tri-binary-alignment.md](../theory-bridges/planck-scale-tri-binary-alignment.md), [architrino-si-base-units.md](./architrino-si-base-units.md) |
 | O3 | $G$ or $G_{\text{eff}}$ | Observable benchmark / constitutive target | Open | effective gravitational coupling emerging from medium compliance and alignment geometry | [../theory-bridges/planck-scale-tri-binary-alignment.md](../theory-bridges/planck-scale-tri-binary-alignment.md), [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md) |
 | O4 | $m_{\text{inertial}}(A)$ | Derived output | Open | inertial mass of assembly $A$, extracted operationally from shielding and medium response | [../dynamics/energy.md](../dynamics/energy.md), [../assemblies/particle-masses.md](../assemblies/particle-masses.md) |
 | O5 | $\theta_W^{\text{bare}}$ and $\theta_W$ | Geometric target / observable benchmark | Open | bare geometric weak-mixing increment and the measured electroweak mixing angle it must eventually inform | [../assemblies/fermions/weak-mixing-angle.md](../assemblies/fermions/weak-mixing-angle.md), [../interactions/gauge-structure-emergence.md](../interactions/gauge-structure-emergence.md) |
@@ -270,7 +270,9 @@ together with the unresolved constants and response-map assumptions needed to tu
 
 The current Planck-scale program uses the conjectural relations
 $$
-L_{\text{align}} \stackrel{\text{hyp.}}{\approx} h,
+\mathcal{A}_{\text{align}}^{\text{cycle}} \stackrel{\text{hyp.}}{\approx} h,
+\qquad
+I_{\text{align}} \stackrel{\text{hyp.}}{\approx} \hbar,
 \qquad
 2\pi R_{\text{align}} = \ell_P,
 $$
@@ -278,7 +280,7 @@ and the effective gravity-side alignment estimate
 $$
 G_{\text{eff}}
 \equiv
-\frac{R_{\text{align}}^2 c_f^3}{L_{\text{align}}}.
+\frac{R_{\text{align}}^2 c_f^3}{\mathcal{A}_{\text{align}}^{\text{cycle}}}.
 $$
 
 These are not yet closed derivations. They are the current alignment-side targets connecting geometric closure to $(h,G)$.
@@ -318,7 +320,7 @@ The current corpus supports the following conservative closure assessment.
 - the shielding map $\zeta(A)$ across the fermion spectrum,
 - the medium-response tensor $\mathcal{M}_{\text{sea}}^{ab}$ that turns shielded internal energy into inertial and gradient response,
 - the constitutive functions $(\Omega,\xi)$ and the weak-field coefficient set $(\gamma_{\text{eff}},C_2,\Xi_i)$,
-- the Planck-alignment identification of $(R_{\text{align}},L_{\text{align}},h,G)$,
+- the Planck-alignment identification of $(R_{\text{align}},\mathcal{A}_{\text{align}}^{\text{cycle}},I_{\text{align}},h,\hbar,G)$,
 - and the reduction of weak-mixing branch labels to a predictive electroweak closure.
 
 ## Immediate Parameter-Closure Priorities
@@ -352,6 +354,7 @@ where $\mathcal{P}_{\text{shared}}$ is the common substrate-plus-constitutive se
 - [architrino-si-base-units.md](./architrino-si-base-units.md)
 - [../dynamics/master-equation.md](../dynamics/master-equation.md)
 - [../dynamics/energy.md](../dynamics/energy.md)
+- [../theory-bridges/angular-momentum-and-spin.md](../theory-bridges/angular-momentum-and-spin.md)
 - [../theory-bridges/planck-scale-tri-binary-alignment.md](../theory-bridges/planck-scale-tri-binary-alignment.md)
 - [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md)
 - [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md)

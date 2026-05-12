@@ -2,7 +2,7 @@
 
 This chapter examines how the modern SI system interfaces with $\mathbb{A}\mathbb{A}\mathbb{A}$. Its purpose is to ask which defining constants might be derivable, which remain primitive, and what kinds of constant-relations the theory should eventually explain if its geometric closure program succeeds.
 
-It should be read together with [Parameter Ledger](parameter-ledger.md), [Mapping the Planck Scale](../theory-bridges/planck-scale-tri-binary-alignment.md), [Energy](../dynamics/energy.md), [Particle Masses](../assemblies/particle-masses.md), and [Atomic Spectra](../nuclear-atomic/atomic-spectra.md).
+It should be read together with [Parameter Ledger](parameter-ledger.md), [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md), [Mapping the Planck Scale](../theory-bridges/planck-scale-tri-binary-alignment.md), [Energy](../dynamics/energy.md), [Particle Masses](../assemblies/particle-masses.md), and [Atomic Spectra](../nuclear-atomic/atomic-spectra.md).
 
 ## Executive Summary
 
@@ -149,21 +149,23 @@ via the Kibble balance (relating mechanical power to electromagnetic power).
 
 **Architrino Interpretation:**
 
-The Planck constant $h$ is the **quantum of action**, related to the **outer binary angular momentum**:
+The Planck constant $h$ is the quantum of **closed-cycle action**. It is related to the radian-normalized **outer-binary rotational action** by $\hbar=h/(2\pi)$:
 $$
 L_{\text{outer}} = n \hbar = n \frac{h}{2\pi}
 $$
 
 **Hypothesis:**
 $$
-h = 2\pi \cdot |e/6| \cdot c_f \cdot r_{\text{outer}}
+\hbar \stackrel{\text{hyp.}}{\approx} |e/6| \cdot c_f \cdot r_{\text{outer}},
+\qquad
+h = 2\pi\hbar
 $$
-where $r_{\text{outer}}$ is the characteristic radius of the Outer Binary in the hydrogen ground state.
+where $r_{\text{outer}}$ is the characteristic radius of the outer binary in the hydrogen ground-state assembly. This is an internal tri-binary action variable, not the observer-level electron orbital angular momentum quantum number $\ell$ of the hydrogen $1s$ state.
 
 **Derivation pathway:**
-1. Calculate the Outer Binary radius for hydrogen 1s (energy minimization + self-hit constraints)
-2. Show that angular momentum quantization ($L = n\hbar$) arises from **geometric quantization** of the binary orbit (analogous to Bohr-Sommerfeld)
-3. Relate $h$ to $|e/6|$, $c_f$, and tri-binary geometry
+1. Calculate the outer-binary radius for the hydrogen ground-state assembly (energy minimization + self-hit constraints).
+2. Show that closed-cycle action quantization ($\oint p\,dq = n h$) and the equivalent radian-normalized relation ($I=n\hbar$) arise from geometric quantization of the internal binary orbit.
+3. Relate $h$ and $\hbar$ to $|e/6|$, $c_f$, and tri-binary geometry.
 
 **Prediction:**
 $$
@@ -285,7 +287,7 @@ The frequency 540 THz corresponds to green light ($\lambda \approx 555$ nm), whe
 |-------------|-------------------------------|-------------------|
 | $\Delta \nu_{\text{Cs}}$ | **Derivable** | Hyperfine splitting from Middle Binary magnetic moments |
 | $c$ | **Operational limit near $c_f$** | Low-gradient photon-channel speed; deviations are encoded by $\chi_{\text{sea}}$ |
-| $h$ | **Derivable** | Outer Binary angular momentum quantization |
+| $h$ | **Derivable** | Closed-cycle action quantization; equivalent outer-binary rotational-action increments in units of $\hbar$ |
 | $e$ | **Fundamental** | $e = 6 \times |e/6|$ (architrino charge) |
 | $k_B$ | **Derivable** | Noether-Sea thermal equilibrium + assembly mass |
 | $N_A$ | **Emergent** | Follows from proton mass derivation |

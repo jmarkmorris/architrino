@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `deferred-priority`
-- Rank: `12`
+- Rank: `13`
 - Value: `4`
 - Cost: `8`
 - ROI: `0.50`
@@ -13,7 +13,7 @@
 
 1. `transfer_operator` — Construct the transfer-operator closure for metastable assemblies. Status: `deferred`. Depends on: none.
 2. `invariant_measure` — Identify the invariant measure and recover squared-amplitude weights. Status: `deferred`. Depends on: `transfer_operator`.
-3. `bell_gate` — Test Bell, CHSH, and Tsirelson closure as a hard gate. Status: `deferred`. Depends on: `invariant_measure`.
+3. `bell_gate` — Test Bell, CHSH, and Tsirelson closure as a hard gate after the angular-momentum and spin ledger is explicit. Status: `deferred`. Depends on: `invariant_measure`, [angular-momentum-spin](../angular-momentum-spin/angular-momentum-spin.md).
 
 ## Scope
 
@@ -46,6 +46,7 @@ Populate the missing quantum closure notes only after the work becomes testable.
 ## Related Priorities
 
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
+- [angular-momentum-spin](../angular-momentum-spin/angular-momentum-spin.md)
 - [simulations](../simulations/simulations.md)
 - [mass-map](../mass-map/mass-map.md)
 - [standard-model-closure](../standard-model-closure/standard-model-closure.md)

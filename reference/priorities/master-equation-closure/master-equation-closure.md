@@ -99,6 +99,7 @@ Keep the maximum-curvature-wall question tied to both tracks. The Jacobian-null 
 ## Related Priorities
 
 - [breather-proof](../proof-programs/breather-proof/breather-proof.md)
+- [angular-momentum-spin](../angular-momentum-spin/angular-momentum-spin.md)
 - [mass-map](../mass-map/mass-map.md)
 - [dyadic-lock](../dyadic-lock/dyadic-lock.md)
 - [quantum-closure](../quantum-closure/quantum-closure.md)

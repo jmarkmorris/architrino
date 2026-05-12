@@ -641,7 +641,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
   - [Bell's Theorem: QM Foundations vs. $\mathbb{A}\mathbb{A}\mathbb{A}$](../../scenes/theory-bridges/bell_theorem.json)
     - [Traditional Statement of Bell's Theorem](../aaa/theory-bridges/bell-theorem.md?section=Traditional+Statement+of+Bell%27s+Theorem)
     - [The Logical Structure of the Theorem](../aaa/theory-bridges/bell-theorem.md?section=The+Logical+Structure+of+the+Theorem)
-    - [Architrino Assembly Architecture Response](../aaa/theory-bridges/bell-theorem.md?section=Architrino+Assembly+Architecture+Response)
+    - [Architrino Assembly Architecture Placement](../aaa/theory-bridges/bell-theorem.md?section=Architrino+Assembly+Architecture+Placement)
     - [Comparison with Other Hidden-Variable Frameworks](../aaa/theory-bridges/bell-theorem.md?section=Comparison+with+Other+Hidden-Variable+Frameworks)
     - [The Role of Absolute Time](../aaa/theory-bridges/bell-theorem.md?section=The+Role+of+Absolute+Time)
     - [Observables, Falsifiability, and Failure Modes](../aaa/theory-bridges/bell-theorem.md?section=Observables%2C+Falsifiability%2C+and+Failure+Modes)

@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 465,
+      "nodes": 466,
       "edges": 1219,
       "scenes": 318,
       "markdownIndexes": 0,
-      "markdownDocs": 147,
+      "markdownDocs": 148,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2654,6 +2654,12 @@
       "id": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
       "name": "Spacetime Assemblies",
       "path": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md",
+      "name": "Angular Momentum and Spin",
+      "path": "content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -6700,6 +6706,15 @@
       "name": "Spacetime Assemblies",
       "path": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
       "searchTarget": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md",
+      "name": "Angular Momentum and Spin",
+      "path": "content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md",
+      "searchTarget": "content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md",
       "implicit": false
     },
     {

@@ -37,6 +37,7 @@ Each mature bridge should include:
 ## Current Bridges
 
 - [Bell's Theorem: Traditional Derivation and Architrino Assembly Architecture Response](./bell-theorem.md)
+- [Angular Momentum and Spin](./angular-momentum-and-spin.md)
 - [Measurement Problem and Collapse](./collapse-problem.md)
 - [Entanglement and Nonlocality](./entanglement-nonlocality.md)
 - [Relativistic Scalar Fields and the Klein-Gordon Equation](./klein-gordon-scalar-fields.md)

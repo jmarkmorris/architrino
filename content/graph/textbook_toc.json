@@ -5255,10 +5255,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Architrino Assembly Architecture Response",
+                "title": "Architrino Assembly Architecture Placement",
                 "markdownPath": "content/markdown/aaa/theory-bridges/bell-theorem.md",
-                "markdownSection": "Architrino Assembly Architecture Response",
-                "sectionKey": "architrino assembly architecture response",
+                "markdownSection": "Architrino Assembly Architecture Placement",
+                "sectionKey": "architrino assembly architecture placement",
                 "headingLevel": 2
               },
               {
