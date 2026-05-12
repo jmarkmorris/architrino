@@ -58,7 +58,7 @@ The photon description above is the ontology-level target. The theorem-level pro
 | Gate | Closure target | Required recovery |
 | :--- | :--- | :--- |
 | **Gate A: kinematics and optics** | Derive the coaxial contra-rotating pro/anti planar-pair branch from Noether-core and Noether-Sea dynamics. The active variables include $c_f$, $c_\gamma$, $\delta_\gamma\equiv1-c_\gamma/c_f$, the pair spacing $d$, the phase frequency $\omega$, and the geometric phase $\phi_{\text{geom}}$. | Recover $E_\gamma=h\nu$, $p=h/\lambda$, $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$, $m_\gamma^2=0$, no residual rest branch, no rest proper-time clock, and no unacceptable free-space dispersion. |
-| **Gate B: polarization and spin** | Derive the transverse ledger, analyzer coupling, helicity, and squared-amplitude rule from planar-pair capture rather than appending them as observer-level facts. | Recover exactly two transverse photon modes, no physical longitudinal mode, Malus' law, helicity $\pm1$, single-photon statistics, and no-signaling behavior in entangled-polarization tests. |
+| **Gate B: polarization and spin** | Derive the transverse ledger, material analyzer projector, invariant unresolved-material measure, analyzer coupling, helicity, and squared-amplitude rule from planar-pair capture rather than appending them as observer-level facts. | Recover exactly two transverse photon modes, no physical longitudinal mode, Malus' law, helicity $\pm1$, single-photon statistics, and no-signaling behavior in entangled-polarization tests. |
 | **Gate C: vertices and transitions** | Map emission, absorption, pair production, Compton-like scattering, photon-photon limits, blackbody behavior, and effective coupling into allowed ledger transitions between massive assemblies and coaxial contra-rotating pro/anti planar pairs. | Recover validated Maxwell/QED behavior, transition-rate limits, pair-production thresholds, Bose-Einstein occupation behavior, $U(1)$-like phase bookkeeping, Aharonov-Bohm phase behavior, and the effective scale $\alpha$. |
 
 #### Gate A Theorem Scaffold: Kinematics and Optics
@@ -100,7 +100,7 @@ Gate A is closed only when this branch proves the following recoveries in the sa
 
 #### Gate B Theorem Scaffold: Polarization and Spin
 
-Gate B begins only after Gate A has supplied the propagation axis $\hat{\mathbf{e}}$, photon-channel speed $c_\gamma$, phase frequency $\omega$, and null planar-pair branch. Gate B must not repair a failed kinematic branch. Its job is narrower: derive the transverse angular-momentum ledger, analyzer coupling, helicity, and probability rule for that already-admissible coaxial contra-rotating pro/anti planar pair.
+Gate B begins only after Gate A has supplied the propagation axis $\hat{\mathbf{e}}$, photon-channel speed $c_\gamma$, phase frequency $\omega$, and null planar-pair branch. Gate B must not repair a failed kinematic branch. Its job is narrower: derive the transverse angular-momentum ledger, material analyzer projector, invariant unresolved-material measure, analyzer coupling, helicity, and probability rule for that already-admissible coaxial contra-rotating pro/anti planar pair.
 
 This is the photon-specific consumer of the shared angular-momentum proof. It must inherit the conserved motion-plus-wake ledger rather than creating a photon-only spin rule.
 
@@ -197,7 +197,49 @@ R^a{}_{b}=P_{\perp}^{a}{}_{b}-A^a{}_{b},
 \mu_{\text{pass}}+\mu_{\text{rej}}=1.
 $$
 
-For linear polarization this reduces to $\mu_{\text{pass}}=\cos^2\theta$ and $\mu_{\text{rej}}=\sin^2\theta$. For circular helicity states $\boldsymbol{\epsilon}_{\pm}$ it gives $\mu_{\text{pass}}=1/2$ for any linear analyzer axis. The rejected component must route into reflection, absorption, scattering, or another allowed material ledger update; it is not a hidden longitudinal photon channel. Single-photon counts must converge to this measure across unresolved analyzer microstates, while each event still closes its local energy, momentum, angular momentum, and material-record ledger.
+For linear polarization this reduces to $\mu_{\text{pass}}=\cos^2\theta$ and $\mu_{\text{rej}}=\sin^2\theta$. For circular helicity states $\boldsymbol{\epsilon}_{\pm}$ it gives $\mu_{\text{pass}}=1/2$ for any linear analyzer axis.
+
+The next Gate B step is the material analyzer projector. The analyzer assembly supplies $\hat{\mathbf a}$ through its oriented capture geometry, not through a free observer label. In the ideal linear-analyzer limit its accepted channel is the one-dimensional transverse family
+
+$$
+\mathcal{C}_{\text{pass}}(\hat{\mathbf a})
+=
+\{\xi\,\hat a^a:\xi\in\mathbb{C}\}
+\subset\operatorname{im}P_{\perp},
+$$
+
+so the accepted projector is rank one inside $P_{\perp}$. If the accepted channel had rank two it would pass the full transverse ledger; if it had rank zero it would not pass a photon channel. The rejected component
+
+$$
+a_{\text{rej}}^a=R^a{}_{b}a_\perp^b
+$$
+
+must route into reflection, absorption, scattering, heat, or another allowed material ledger update. It is not a hidden longitudinal photon channel, and each event must close local energy, momentum, angular momentum, material-record, wake, and Noether-Sea recoil ledgers.
+
+Single-photon counts require an invariant unresolved-material measure, not a Malus-law axiom. Let $\zeta\in\Theta_{\hat{\mathbf a}}$ denote the analyzer microstate variables during the record window and let $d\nu_{\hat{\mathbf a}}$ be invariant under the local material flow. The required reduced scaffold is a channel coordinate $\eta_{\hat{\mathbf a}}:\Theta_{\hat{\mathbf a}}\to[0,1]$ with uniform pushforward $(\eta_{\hat{\mathbf a}})_*d\nu_{\hat{\mathbf a}}=d\eta$. Then, for a successful material record,
+
+$$
+K_{\text{pass}}
+=
+H\!\left(\mu_{\text{pass}}-\eta_{\hat{\mathbf a}}(\zeta)\right),
+\qquad
+\int_{\Theta_{\hat{\mathbf a}}}K_{\text{pass}}\,d\nu_{\hat{\mathbf a}}
+=
+\mu_{\text{pass}}.
+$$
+
+The reduced substrate origin is the analyzer's record-window return dynamics. $\Theta_{\hat{\mathbf a}}$ is the quotient of calibrated analyzer microstates during a local capture attempt, $d\nu_{\hat{\mathbf a}}$ is the invariant occupation measure of the material return map $T_s$, and $\eta_{\hat{\mathbf a}}$ is the pass-basin threshold coordinate
+
+$$
+\eta_{\hat{\mathbf a}}(\zeta)
+=
+\inf\left\{
+\rho\in[0,1]:
+\zeta\in\mathcal{B}_{\text{pass}}(\rho;\hat{\mathbf a})
+\right\}.
+$$
+
+The ideal-analyzer closure target is $(\eta_{\hat{\mathbf a}})_*d\nu_{\hat{\mathbf a}}=d\eta$. If this pushforward is biased, the deviation $P_{\text{pass}}(\rho)-\rho$ is a material calibration diagnostic rather than a new photon law. The concrete substrate proof still has to compute the return map and basin filtration from an analyzer assembly simulation.
 
 The polarization-pair no-signaling test is part of the same gate. For entangled photon preparations with analyzer settings $\alpha,\beta$, the completed ledger must recover setting-independent local marginals:
 

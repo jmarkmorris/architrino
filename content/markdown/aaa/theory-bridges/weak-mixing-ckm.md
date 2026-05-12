@@ -121,6 +121,8 @@ where $R_{\mathrm{rel}}$ records axial-frame orientation relative to the fixed N
 
 This first model is deliberately local. It defines the operator-level exposure gate for one generation-I down-type quark in free-neutron beta reaction. It is not yet a decay-rate derivation, a nuclear form-factor model, or a completed lepton-provenance account.
 
+The handedness label in this operator is an inherited observer-level weak-channel label, not a newly derived substrate spin variable. The exposure gate below is a test object that must be supplied by the ordered-core spinor/helicity ledger in [Angular Momentum and Spin](angular-momentum-and-spin.md) before it can count as a proof of weak handedness.
+
 Let the six polar sites of the active quark be
 $$
 S=\{H_+,H_-,M_+,M_-,L_+,L_-\},

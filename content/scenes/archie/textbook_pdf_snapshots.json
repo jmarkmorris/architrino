@@ -3,7 +3,7 @@
   "scene": {
     "id": "archie__textbook_pdf_snapshots",
     "title": "Textbook PDF Snapshots",
-    "type": "Scene-Markdown-Split",
+    "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
     "centerOn": "pdf_snapshot_overview",
@@ -12,59 +12,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
-      "split": {
-        "headingLevel": 2,
-        "maxDepth": 1,
-        "overrides": {
-          "overview": {
-            "hidden": true
-          },
-          "full textbook": {
-            "labelBadge": "pdf",
-            "color": "#6a5a8f"
-          },
-          "foundations": {
-            "labelBadge": "pdf"
-          },
-          "dynamics": {
-            "labelBadge": "pdf"
-          },
-          "proof programs": {
-            "labelBadge": "pdf"
-          },
-          "spacetime": {
-            "labelBadge": "pdf"
-          },
-          "interactions": {
-            "labelBadge": "pdf"
-          },
-          "standard model assemblies": {
-            "labelBadge": "pdf"
-          },
-          "atomic and nuclear assemblies": {
-            "labelBadge": "pdf"
-          },
-          "reactions": {
-            "labelBadge": "pdf"
-          },
-          "quantum": {
-            "labelBadge": "pdf"
-          },
-          "theory bridges": {
-            "labelBadge": "pdf"
-          },
-          "cosmology": {
-            "labelBadge": "pdf"
-          },
-          "validation": {
-            "labelBadge": "pdf"
-          },
-          "philosophy history": {
-            "labelBadge": "pdf"
-          }
-        }
-      }
+      "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
     },
     "view": {
       "columns": 1,
@@ -77,14 +25,8 @@
       "title": "Overview",
       "radius": 2.4,
       "color": "#7a5a2f",
-      "position": [
-        0,
-        0,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
+      "position": [0, 0, 0],
+      "motion": { "type": "fixed" },
       "fixedPosition": true,
       "labelTitle": "Overview",
       "labelBadge": "doc",
@@ -94,6 +36,286 @@
       },
       "view": {
         "section": "Overview",
+        "columns": 1,
+        "autoOpen": true
+      }
+    },
+    {
+      "id": "pdf_snapshot_full_textbook",
+      "title": "Full Textbook",
+      "radius": 1.55,
+      "color": "#6a5a8f",
+      "position": [0, 9.4, 0],
+      "motion": { "type": "fixed" },
+      "fixedPosition": true,
+      "labelTitle": "Full Textbook",
+      "labelBadge": "pdf",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
+      },
+      "view": {
+        "section": "Full Textbook",
+        "columns": 1,
+        "autoOpen": true
+      }
+    },
+    {
+      "id": "pdf_snapshot_foundations",
+      "title": "Foundations",
+      "radius": 1.55,
+      "color": "#3a5f9f",
+      "position": [-4.08, 8.47, 0],
+      "motion": { "type": "fixed" },
+      "fixedPosition": true,
+      "labelTitle": "Foundations",
+      "labelBadge": "pdf",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
+      },
+      "view": {
+        "section": "Foundations",
+        "columns": 1,
+        "autoOpen": true
+      }
+    },
+    {
+      "id": "pdf_snapshot_dynamics",
+      "title": "Dynamics",
+      "radius": 1.55,
+      "color": "#355c9a",
+      "position": [-7.35, 5.86, 0],
+      "motion": { "type": "fixed" },
+      "fixedPosition": true,
+      "labelTitle": "Dynamics",
+      "labelBadge": "pdf",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
+      },
+      "view": {
+        "section": "Dynamics",
+        "columns": 1,
+        "autoOpen": true
+      }
+    },
+    {
+      "id": "pdf_snapshot_spacetime",
+      "title": "Spacetime",
+      "radius": 1.55,
+      "color": "#2f6b6f",
+      "position": [-9.16, 2.09, 0],
+      "motion": { "type": "fixed" },
+      "fixedPosition": true,
+      "labelTitle": "Spacetime",
+      "labelBadge": "pdf",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
+      },
+      "view": {
+        "section": "Spacetime",
+        "columns": 1,
+        "autoOpen": true
+      }
+    },
+    {
+      "id": "pdf_snapshot_interactions",
+      "title": "Interactions",
+      "radius": 1.55,
+      "color": "#465f3a",
+      "position": [-9.16, -2.09, 0],
+      "motion": { "type": "fixed" },
+      "fixedPosition": true,
+      "labelTitle": "Interactions",
+      "labelBadge": "pdf",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
+      },
+      "view": {
+        "section": "Interactions",
+        "columns": 1,
+        "autoOpen": true
+      }
+    },
+    {
+      "id": "pdf_snapshot_standard_model_assemblies",
+      "title": "Standard Model Assemblies",
+      "radius": 1.55,
+      "color": "#6a3c3c",
+      "position": [-7.35, -5.86, 0],
+      "motion": { "type": "fixed" },
+      "fixedPosition": true,
+      "labelTitle": "Standard Model Assemblies",
+      "labelBadge": "pdf",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
+      },
+      "view": {
+        "section": "Standard Model Assemblies",
+        "columns": 1,
+        "autoOpen": true
+      }
+    },
+    {
+      "id": "pdf_snapshot_atomic_nuclear_assemblies",
+      "title": "Atomic and Nuclear Assemblies",
+      "radius": 1.55,
+      "color": "#2f4f7a",
+      "position": [-4.08, -8.47, 0],
+      "motion": { "type": "fixed" },
+      "fixedPosition": true,
+      "labelTitle": "Atomic and Nuclear Assemblies",
+      "labelBadge": "pdf",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
+      },
+      "view": {
+        "section": "Atomic and Nuclear Assemblies",
+        "columns": 1,
+        "autoOpen": true
+      }
+    },
+    {
+      "id": "pdf_snapshot_reactions",
+      "title": "Reactions",
+      "radius": 1.55,
+      "color": "#7a4a1f",
+      "position": [0, -9.4, 0],
+      "motion": { "type": "fixed" },
+      "fixedPosition": true,
+      "labelTitle": "Reactions",
+      "labelBadge": "pdf",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
+      },
+      "view": {
+        "section": "Reactions",
+        "columns": 1,
+        "autoOpen": true
+      }
+    },
+    {
+      "id": "pdf_snapshot_quantum",
+      "title": "Quantum",
+      "radius": 1.55,
+      "color": "#5a1f2e",
+      "position": [4.08, -8.47, 0],
+      "motion": { "type": "fixed" },
+      "fixedPosition": true,
+      "labelTitle": "Quantum",
+      "labelBadge": "pdf",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
+      },
+      "view": {
+        "section": "Quantum",
+        "columns": 1,
+        "autoOpen": true
+      }
+    },
+    {
+      "id": "pdf_snapshot_theory_bridges",
+      "title": "Theory Bridges",
+      "radius": 1.55,
+      "color": "#2f6b6f",
+      "position": [7.35, -5.86, 0],
+      "motion": { "type": "fixed" },
+      "fixedPosition": true,
+      "labelTitle": "Theory Bridges",
+      "labelBadge": "pdf",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
+      },
+      "view": {
+        "section": "Theory Bridges",
+        "columns": 1,
+        "autoOpen": true
+      }
+    },
+    {
+      "id": "pdf_snapshot_cosmology",
+      "title": "Cosmology",
+      "radius": 1.55,
+      "color": "#4b0082",
+      "position": [9.16, -2.09, 0],
+      "motion": { "type": "fixed" },
+      "fixedPosition": true,
+      "labelTitle": "Cosmology",
+      "labelBadge": "pdf",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
+      },
+      "view": {
+        "section": "Cosmology",
+        "columns": 1,
+        "autoOpen": true
+      }
+    },
+    {
+      "id": "pdf_snapshot_validation",
+      "title": "Validation",
+      "radius": 1.55,
+      "color": "#2246a3",
+      "position": [9.16, 2.09, 0],
+      "motion": { "type": "fixed" },
+      "fixedPosition": true,
+      "labelTitle": "Validation",
+      "labelBadge": "pdf",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
+      },
+      "view": {
+        "section": "Validation",
+        "columns": 1,
+        "autoOpen": true
+      }
+    },
+    {
+      "id": "pdf_snapshot_proof_programs",
+      "title": "Proof Programs",
+      "radius": 1.55,
+      "color": "#6a2f8f",
+      "position": [7.35, 5.86, 0],
+      "motion": { "type": "fixed" },
+      "fixedPosition": true,
+      "labelTitle": "Proof Programs",
+      "labelBadge": "pdf",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
+      },
+      "view": {
+        "section": "Proof Programs",
+        "columns": 1,
+        "autoOpen": true
+      }
+    },
+    {
+      "id": "pdf_snapshot_philosophy_history",
+      "title": "Philosophy-History",
+      "radius": 1.55,
+      "color": "#8b6f3a",
+      "position": [4.08, 8.47, 0],
+      "motion": { "type": "fixed" },
+      "fixedPosition": true,
+      "labelTitle": "Philosophy-History",
+      "labelBadge": "pdf",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
+      },
+      "view": {
+        "section": "Philosophy-History",
         "columns": 1,
         "autoOpen": true
       }

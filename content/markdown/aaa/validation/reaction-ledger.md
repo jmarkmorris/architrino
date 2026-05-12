@@ -14,6 +14,7 @@ The conservative status is:
 - Noether Sea participation is allowed, but it must be recorded as a reactant, product reservoir, or medium-excitation channel rather than left implicit.
 - W, Z, photon, and pair-production language may be retained at observer level, while the substrate map must identify the transient assembly, exchanged payload, or planar-mode nucleation event being invoked.
 - Any weak-channel ledger that depends on chirality, axial-frame orientation, CKM/PMNS mixing, or antineutrino routing remains provisional until the corresponding geometry is derived.
+- Any reaction-level spin, helicity, polarization, or vector-channel angular-momentum entry is a downstream consumer of the angular-momentum and spin workstream. It should record what must close, not function as a local proof of that closure.
 
 ## Provenance Protocol
 
@@ -24,7 +25,7 @@ Each reaction record should state:
 3. **Noether-Sea participation:** whether local Noether cores, neutral binaries, axial layers, or medium excitations are consumed, split, reconfigured, or returned.
 4. **Constituent inventory:** total $E$ and $P$ counts before and after, separated into core and axial-layer contributions where the distinction matters.
 5. **Polarity and charge accounting:** how observer-level charge bookkeeping emerges from the $E/P$ routing.
-6. **Energy-momentum accounting:** where kinetic energy, internal binding energy, photon assemblies, recoil, and medium excitation enter and exit.
+6. **Energy-momentum and angular-momentum accounting:** where kinetic energy, internal binding energy, photon assemblies, recoil, medium excitation, spin/vector ledger terms, and wake-carried angular momentum enter and exit.
 7. **Path-history provenance:** which emitted causal wakes, source identities, and delayed interactions are needed to make the reaction deterministic in absolute time.
 8. **Closure status:** baseline, provisional map, derivation target, or failed map.
 
@@ -36,7 +37,7 @@ Each reaction record should state:
 | Active assembly change | Core and axial-layer changes for the transformed assembly |
 | Noether-Sea input/output | Neutral cores, axial material, or medium excitations recruited or returned |
 | Conserved inventory | $E/P$ totals and charge/polarity balance |
-| Energy-momentum ledger | Internal energy, recoil, emitted assemblies, and medium excitation |
+| Energy-momentum and angular-momentum ledger | Internal energy, recoil, emitted assemblies, spin/vector ledger terms, wake-carried angular momentum, and medium excitation |
 | Provenance data | Source identity, emission time, causal-root branch, and local medium state |
 | Closure status | What is established, what is assumed, and what remains to derive |
 
@@ -116,6 +117,8 @@ So the active quark assembly sheds three $E$-type axial units and receives three
 ### Exposure-operator record
 
 The controlled beta channel now has a first finite-state exposure operator in [Weak-Mixing CKM](../theory-bridges/weak-mixing-ckm.md). The ledger record for this channel should use that operator as the geometry gate before any rate or provenance claim is made.
+
+This gate inherits the unresolved spinor/helicity proof in [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md). The blocked right-handed branch, antineutrino orientation, and weak-channel angular-momentum balance remain provisional until the weak-coupling-triad exposure geometry and the reaction-level angular-momentum ledger are derived from the same substrate proof.
 
 | Gate field | Beta-reaction record |
 | --- | --- |

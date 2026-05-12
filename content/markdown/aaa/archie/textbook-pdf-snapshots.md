@@ -60,7 +60,7 @@ Each PDF snapshot should include only material reached through the Textbook TOC.
 
 Each hub PDF should deduplicate markdown files during flattening. If a file appears more than once under a hub through section views, the PDF should include the file once in its first reading-order position unless a later export policy explicitly chooses section-only extraction.
 
-The full textbook PDF should be built from the same hub order as the Textbook TOC. It should not maintain a separate manual chapter list.
+The full textbook PDF should use the publication order below. That order follows the Textbook TOC sequence except that Proof Programs is placed after Validation so the main physical, phenomenological, and validation layers come before the densest proof material.
 
 ## Full Textbook
 
@@ -91,16 +91,6 @@ content/generated/pdf/textbook/dynamics.pdf
 ```
 
 This snapshot contains the Dynamics hub in Textbook TOC order.
-
-## Proof Programs
-
-Planned output:
-
-```text
-content/generated/pdf/textbook/proof-programs.pdf
-```
-
-This snapshot contains the Proof Programs hub in Textbook TOC order.
 
 ## Spacetime
 
@@ -191,6 +181,16 @@ content/generated/pdf/textbook/validation.pdf
 ```
 
 This snapshot contains the Validation hub in Textbook TOC order.
+
+## Proof Programs
+
+Planned output:
+
+```text
+content/generated/pdf/textbook/proof-programs.pdf
+```
+
+This snapshot contains the Proof Programs hub in Textbook TOC order.
 
 ## Philosophy-History
 

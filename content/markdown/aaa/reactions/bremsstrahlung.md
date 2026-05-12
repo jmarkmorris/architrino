@@ -155,10 +155,10 @@ Use the same photon-channel event record here as in [Synchrotron Cascades](synch
 - target assembly identity, recoil term, and coherent or resolved geometry regime;
 - local Noether-Sea state variables $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy, excitation state, and relevant causal-branch Jacobian data;
 - wake-strain or shock-intensity status relative to the planar-mode threshold;
-- photon output $E_\gamma$, direction, polarization basis, and local photon-channel speed $c_\gamma$;
+- photon output $E_\gamma$, direction, polarization basis, transverse angular-momentum ledger, and local photon-channel speed $c_\gamma$;
 - residual medium excitation $\Delta E_{\mathrm{med}}$ and any non-radiative channel that receives sub-threshold energy.
 
-This record is a derivation target. It should recover standard $d\sigma/dk$, screening, form-factor, and emissivity limits before any Noether-Sea-dependent deviation is treated as physical. The polarization basis is a photon Gate B handoff from [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md) and [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md); this chapter records emission provenance, not photon spin closure.
+This record is a derivation target. It should recover standard $d\sigma/dk$, screening, form-factor, and emissivity limits before any Noether-Sea-dependent deviation is treated as physical. The polarization basis and transverse angular-momentum ledger are photon Gate B handoffs from [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md) and [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md); this chapter records emission provenance, not photon spin closure.
 
 ## IR Regularization as a Stability Floor
 

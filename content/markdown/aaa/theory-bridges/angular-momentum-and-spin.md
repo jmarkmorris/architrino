@@ -322,7 +322,7 @@ $$
 \mathcal C_{\ell\alpha,m\beta}(t)
 =
 \left\{
-t_0<t:
+t_0 < t:
 \left\|\mathbf x_{\ell,\alpha}(t)-\mathbf x_{m,\beta}(t_0)\right\|
 =
 c_f(t-t_0)
@@ -378,7 +378,7 @@ $$
 =
 \left\{
 t_0\in\mathcal C_{\ell\alpha,\ell\alpha}(t):
-t_0<t,\ H(t-t_0)=1
+t_0 < t,\ H(t-t_0)=1
 \right\},
 $$
 
@@ -499,6 +499,238 @@ $$
 
 For a positive one-cycle accepted transaction, $\Delta I_{\text{accepted}}=+\hbar$. The partition among inner, middle, outer, and wake channels must therefore be solved from causal-root admissibility, phase lock, branch stability, and coupling geometry.
 
+## Partition Equations from the Master Ledger
+
+The partition equation is not an extra postulate. It is the layer-resolved projection of the master-equation angular-momentum ledger. For each receiver layer $\ell$, define the branch torque collected by that layer over a transition window $[t_i,t_f]$:
+
+$$
+\mathbf T_\ell(t)
+=
+\sum_{\alpha}
+\sum_{(m,\beta;b):(\ell,\alpha;m,\beta;b)\in\mathcal R(t)}
+\mathbf x_{\ell,\alpha}(t)\times
+\mathbf F_{\ell\alpha\leftarrow m\beta}^{(b)}(t).
+$$
+
+Since $\frac{d}{dt}\big(\mathbf x\times\mu_{\text{arch}}\dot{\mathbf x}\big)=\mathbf x\times\mathbf F$ for each architrino worldline, the exact layer mechanical increment is
+
+$$
+\Delta\mathbf L_{\text{mech},\ell}
+=
+\int_{t_i}^{t_f}\mathbf T_\ell(s)\,ds.
+$$
+
+The master-equation scaffold therefore gives the core mechanical change
+
+$$
+\Delta\mathbf L_{\text{mech}}^{\text{core}}
+=
+\sum_{\ell\in\{I,M,O\}}
+\Delta\mathbf L_{\text{mech},\ell}
+=
+\int_{t_i}^{t_f}
+\sum_{\ell\in\{I,M,O\}}\mathbf T_\ell(s)\,ds.
+$$
+
+The wake functional supplies the complementary in-flight ledger:
+
+$$
+\Delta\mathbf L_{\text{wake}}^{\text{core}}
+=
+-
+\int_{t_i}^{t_f}
+\sum_{\ell\in\{I,M,O\}}\mathbf T_\ell(s)\,ds
++
+\Delta\mathbf L_{\text{wake},\partial}.
+$$
+
+Here $\Delta\mathbf L_{\text{wake},\partial}$ denotes angular momentum still carried across the boundary of the chosen core subsystem at the end of the transition window. For a completely isolated core-plus-source system this boundary term is balanced by source-channel recoil. For a reduced core-only ledger it is the retained wake channel that appears as $\Delta\mathbf L_{\text{wake}}$ in the bridge equations.
+
+Let the incoming source channel lose angular momentum
+
+$$
+\Delta\mathbf J_{\text{tx}}
+=
+-\Delta I_{\text{accepted}}\hat{\mathbf a}.
+$$
+
+Then conservation over the combined source, core, and wake ledger gives the vector partition equation
+
+$$
+\boxed{
+\Delta\mathbf J_{\text{tx}}
++
+\sum_{\ell\in\{I,M,O\}}\Delta\mathbf L_{\text{mech},\ell}
++
+\Delta\mathbf L_{\text{wake},\partial}
+=
+\mathbf 0.
+}
+$$
+
+This is the direct descendant of
+
+$$
+\mathbf L_{\text{tot}}
+=
+\mathbf L_{\text{mech}}
++
+\mathbf L_{\text{wake}}.
+$$
+
+It is stronger than the scalar $\hbar$ bookkeeping equation because it keeps the transaction axis, layer normals, wake recoil, and source recoil in the same vector ledger.
+
+The scalar partition used in the tri-binary bookkeeping is obtained only after projecting onto the accepted transaction axis $\hat{\mathbf a}$. Define
+
+$$
+\Delta I_\ell
+\equiv
+\hat{\mathbf a}\cdot\Delta\mathbf L_{\text{mech},\ell},
+\qquad
+\Delta I_{\text{wake}}
+\equiv
+\hat{\mathbf a}\cdot\Delta\mathbf L_{\text{wake},\partial}.
+$$
+
+Then the projected accepted transaction satisfies
+
+$$
+\boxed{
+\Delta I_I+\Delta I_M+\Delta I_O+\Delta I_{\text{wake}}
+=
+\Delta I_{\text{accepted}}.
+}
+$$
+
+For one positive closed-cycle action transaction,
+
+$$
+\Delta A_{\text{cycle}}=h,
+\qquad
+\Delta I_{\text{accepted}}=\hbar.
+$$
+
+The dimensionless partition fractions are therefore
+
+$$
+\eta_\ell
+=
+\frac{\Delta I_\ell}{\hbar},
+\qquad
+\eta_{\text{wake}}
+=
+\frac{\Delta I_{\text{wake}}}{\hbar},
+$$
+
+with
+
+$$
+\boxed{
+\eta_I+\eta_M+\eta_O+\eta_{\text{wake}}=1.
+}
+$$
+
+These fractions are not free interpretive weights. They must be computed from the same branch data that appears in $\mathbf T_\ell$: causal roots, Jacobians, phase windows, layer normals, branch multiplicities, and the source-channel coupling geometry.
+
+The reduced nonnegative branch family used below is one convenient parameterization of this equation:
+
+$$
+\eta_O=a,
+\qquad
+\eta_I=n_I b,
+\qquad
+\eta_{\text{wake}}=w,
+\qquad
+\eta_M=1-a-n_Ib-w,
+$$
+
+where $n_I$ is the number of inner self-hit substeps retained by the branch. The four-substep certificate sets $n_I=2$ and then imposes the additional symmetry choice $a=b=\eta_M$ with $w=0$. More general branches must solve for $a$, $b$, $w$, and any transverse recoil terms from the torque integrals rather than assigning them by symmetry.
+
+The geometry of the partition is visible in the normal decomposition
+
+$$
+\Delta\mathbf L_{\text{mech},\ell}
+=
+\Delta I_\ell\hat{\mathbf n}_\ell
++
+\Delta\mathbf L_{\ell,\perp},
+\qquad
+\hat{\mathbf a}\cdot\Delta\mathbf L_{\ell,\perp}=0.
+$$
+
+The scalar equation controls only the components along $\hat{\mathbf a}$. The transverse balance condition is
+
+$$
+\sum_{\ell\in\{I,M,O\}}\Delta\mathbf L_{\ell,\perp}
++
+\left(
+\Delta\mathbf L_{\text{wake},\partial}
+-
+\Delta I_{\text{wake}}\hat{\mathbf a}
+\right)
++
+\Delta\mathbf L_{\text{source},\perp}
+=
+\mathbf 0.
+$$
+
+Thus a spin-like response cannot be reduced to "which layer received the $\hbar$." The core must also transport or cancel the transverse normal changes caused by plane precession, wake recoil, and apparatus coupling. This is where the angular-momentum partition becomes a spin-transport problem rather than a scalar energy table.
+
+The first-order radius-frequency closure comes from the circular layer approximation:
+
+$$
+\Delta I_\ell
+\simeq
+2\mu_{\text{arch}}
+\left(
+2R_\ell\omega_\ell\Delta R_\ell
++
+R_\ell^2\Delta\omega_\ell
+\right)
+$$
+
+when $\hat{\mathbf n}_\ell$ is fixed during the projected step. Each layer then contributes one mechanical retune equation. The dynamics-specific side conditions are:
+
+$$
+R_O^+\omega_O^+ < c_f,
+\qquad
+R_M^+\omega_M^+\approx c_f,
+\qquad
+R_I^+\omega_I^+ > c_f,
+$$
+
+with the inner self-hit branch additionally constrained by
+
+$$
+\delta_{\text{self}}^+
+=
+2s_I^+\sin\!\left(\frac{\delta_{\text{self}}^+}{2}\right),
+\qquad
+s_I^+ = \frac{R_I^+\omega_I^+}{c_f}.
+$$
+
+Finally, the same branch must close energy:
+
+$$
+\Delta E_O+\Delta E_M+\Delta E_I+\Delta E_{\text{wake}}
+=
+\omega_{\text{tx}}\hbar,
+$$
+
+with
+
+$$
+\Delta E_\ell
+\approx
+\bar\omega_\ell\Delta I_\ell
++
+\bar I_\ell\Delta\omega_\ell
++
+\Delta E_{\ell,\text{root}}.
+$$
+
+Together, these equations are the Noether-core total-angular-momentum partition system. The four-substep branch below is a solved certificate inside this system, not the general solution of the branch-selection problem.
+
 ## Worked Outer-Coupled Transition
 
 This worked transition has two levels. The first level gives the general separated-scale ledger for one positive closed-cycle action transaction coupled first to the outer binary. The second level solves one minimal branch certificate: one outer substep, one middle hinge substep, two inner self-hit substeps, and no retained wake angular momentum after the transition. General branch coefficients remain closure targets, but the minimal branch shows how the scaffold can produce an explicit partition and frequency retune.
@@ -514,11 +746,11 @@ $$
 and speed regimes
 
 $$
-R_I\omega_I>c_f,
+R_I\omega_I > c_f,
 \qquad
 R_M\omega_M\approx c_f,
 \qquad
-R_O\omega_O<c_f.
+R_O\omega_O < c_f.
 $$
 
 Let $-$ and $+$ denote the pre-transaction and post-transaction states. If the source channel carries one accepted positive cycle into the core, then the source side loses
@@ -537,7 +769,7 @@ $$
 \Delta I_{\text{accepted}}=+\hbar.
 $$
 
-For a general positive branch, introduce nonnegative coefficients
+For a general positive branch with $n_I=2$, introduce nonnegative coefficients
 
 $$
 a\ge0,\qquad b\ge0,\qquad w\ge0,\qquad a+2b+w\le1.
@@ -613,7 +845,7 @@ $$
 For the outer layer, the branch must remain sub-field-speed:
 
 $$
-R_O^+\omega_O^+<c_f.
+R_O^+\omega_O^+ < c_f.
 $$
 
 The outer phase-lock and coupling geometry determine $a$ and the allowed pair $(\Delta R_O,\Delta\omega_O)$. In the general ledger, those are open branch equations rather than assigned values.
@@ -663,7 +895,7 @@ $$
 =
 2s_I^+\sin\!\left(\frac{\delta_{\text{self}}^+}{2}\right),
 \qquad
-s_I^+=\frac{R_I^+\omega_I^+}{c_f}.
+s_I^+ = \frac{R_I^+\omega_I^+}{c_f}.
 $$
 
 On raw simple-root charts, a separator crossing must also respect
@@ -804,7 +1036,7 @@ R_O^-\left(
 +
 \frac{\hbar}{8\mu_{\text{arch}}\left(R_O^-\right)^2}
 \right)
-<c_f.
+< c_f.
 $$
 
 For the middle layer, preserve the hinge condition $R_M\omega_M=c_f$ through the linearized retune. Since $\Delta I_M=\hbar/4$,
@@ -907,7 +1139,7 @@ $$
 \mathbf 0
 $$
 
-in the fixed-normal source-core-wake domain, and
+in the fixed-normal source, core, and wake ledger, and
 
 $$
 \Delta E_{\text{tx}}
@@ -1091,7 +1323,7 @@ This taxonomy is a bridge, not a proof. It tells the corpus where to look for th
 
 Downstream chapters should use this bridge as a dictionary, not as a completed proof. The nucleon spin budget in [Nucleon Structure](../nuclear-atomic/nucleon-structure.md), the gluon vector-channel account in [Gluons and the Strong Force: Geometric Origins](../assemblies/bosons/gluons.md), the rho/Delta spin and Pauli discussions in [Transient Hadrons: Mesons and Δ Resonances](../assemblies/mesons/mesons.md), the exchange-statistics program in [Fermi-Dirac and Bose-Einstein Statistics](../quantum/quantum-statistics.md), atomic and molecular spin/exclusion language in [Atomic Structure](../nuclear-atomic/atomic-structure.md), [Atomic Spectra](../nuclear-atomic/atomic-spectra.md), and [Molecular Geometry](../nuclear-atomic/molecular-geometry.md), and photon/vector-mode language in [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md), [Mode Taxonomy](../interactions/mode-taxonomy.md), and [Particle Masses](../assemblies/particle-masses.md) all inherit the open single-core angular-momentum ledger and ordered-frame spinor closure target.
 
-Second-ring consumers inherit the same limitation. Photon records in [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md), [Bremsstrahlung](../reactions/bremsstrahlung.md), and [Synchrotron Cascades](../reactions/synchrotron.md), weak helicity selection in [Weak Mixing and CKM](./weak-mixing-ckm.md), Cesium hyperfine clock claims in [Architrino and SI Base Units](../validation/architrino-si-base-units.md), and boundary-helicity proxy language in [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md) may state observer-level labels and validation targets. They should not use those labels as independent derivations of spin, Pauli exclusion, spin-statistics closure, photon polarization, vector-mode spin, weak handedness, or hyperfine spin coupling.
+Second-ring consumers inherit the same limitation. Photon records in [Reaction Ledger](../validation/reaction-ledger.md), [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md), [Bremsstrahlung](../reactions/bremsstrahlung.md), and [Synchrotron Cascades](../reactions/synchrotron.md), weak helicity selection in [Weak Mixing and CKM](./weak-mixing-ckm.md), Bell/CHSH response claims in [Bell's Theorem](./bell-theorem.md), Cesium hyperfine clock claims in [Architrino and SI Base Units](../validation/architrino-si-base-units.md), and boundary-helicity proxy language in [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md) may state observer-level labels and validation targets. They should not use those labels as independent derivations of spin, Pauli exclusion, spin-statistics closure, photon polarization, vector-mode spin, weak handedness, spin-measurement response, Bell correlations, or hyperfine spin coupling.
 
 ## Helicity and Vector Modes
 
@@ -1223,6 +1455,67 @@ R^a{}_{b}=P_{\perp}^{a}{}_{b}-A^a{}_{b},
 \mu_{\text{pass}}+\mu_{\text{rej}}=1.
 $$
 
+At the material level, $\hat{\mathbf a}$ is not a free observer label. It is supplied by an analyzer assembly $M_{\hat{\mathbf a}}$ whose oriented lattice, stress state, and phase-locked capture geometry leave exactly one stable transverse relocking family for the incoming planar-pair ledger:
+
+$$
+\mathcal{C}_{\text{pass}}(\hat{\mathbf a})
+=
+\{\xi\,\hat a^a:\xi\in\mathbb{C}\}
+\subset\operatorname{im}P_{\perp}.
+$$
+
+The corresponding material analyzer projector is the orthogonal projector onto that accepted family:
+
+$$
+A^2=A,
+\qquad
+A^{\dagger}=A,
+\qquad
+\operatorname{tr}_{\perp}A=1,
+\qquad
+A^a{}_{b}=\hat a^a\hat a_b.
+$$
+
+This is why the accepted channel is rank one inside $P_{\perp}$. A rank-two accepted channel would pass the whole transverse ledger and would not be a linear analyzer; a rank-zero channel would be an opaque absorber. The nontrivial ideal linear analyzer has one accepted transverse material relocking direction and one rejected transverse complement.
+
+The rejected component remains transverse:
+
+$$
+a_{\text{rej}}^a
+=
+R^a{}_{b}a_\perp^b,
+\qquad
+\hat e_a a_{\text{rej}}^a=0.
+$$
+
+It therefore cannot be reclassified as a longitudinal free photon mode. In a rejected event, its action routes locally into reflection, absorption, scattering, heat, or another allowed material update, with the local ledger closing as
+
+$$
+\Delta E_{\gamma}
++\Delta E_{M}
++\Delta E_{\text{wake}}
++\Delta E_{\text{sea}}
+=0,
+$$
+
+$$
+\Delta\mathbf{p}_{\gamma}
++\Delta\mathbf{p}_{M}
++\Delta\mathbf{p}_{\text{wake}}
++\Delta\mathbf{p}_{\text{sea}}
+=\mathbf{0},
+$$
+
+and
+
+$$
+\Delta\mathbf{J}_{\gamma}
++\Delta\mathbf{J}_{M}
++\Delta\mathbf{L}_{\text{wake}}
++\Delta\mathbf{J}_{\text{sea}}
+=\mathbf{0}.
+$$
+
 For a linearly polarized photon with $a_\perp^a=\hat e_\gamma^a$ and $\|\hat{\mathbf e}_\gamma\|=1$, this gives
 
 $$
@@ -1245,7 +1538,150 @@ $$
 
 for every linear analyzer axis $\hat{\mathbf a}$. This is the expected equal split for circular polarization through a linear analyzer.
 
-The interpretation is local and ledger-based. In a single event, the analyzer-plus-photon microstate still resolves into one material record channel. Across an ensemble whose unresolved material phases sample the invariant capture measure, the pass frequency is $\mu_{\text{pass}}$. After a successful pass, the outgoing planar-pair ledger is relocked into the analyzer channel, so the next analyzer uses $a_\perp^a=\hat a^a$ as its incoming transverse ledger. Sequential analyzer probabilities therefore multiply by the same projector rule rather than by a separate collapse postulate.
+The missing measure-theoretic step can now be stated without importing Malus' law as an axiom. Let $\zeta\in\Theta_{\hat{\mathbf a}}$ denote the unresolved local analyzer variables during the record window: impact phase, internal capture phase, relevant lattice phase, wake background, and other material degrees of freedom not controlled by the photon preparation. The Gate B invariant-measure target is a normalized material measure $d\nu_{\hat{\mathbf a}}$ and a normalized channel coordinate $\eta_{\hat{\mathbf a}}:\Theta_{\hat{\mathbf a}}\to[0,1]$ such that
+
+$$
+\nu_{\hat{\mathbf a}}(\Theta_{\hat{\mathbf a}})=1,
+\qquad
+T_{s*}d\nu_{\hat{\mathbf a}}=d\nu_{\hat{\mathbf a}},
+\qquad
+(\eta_{\hat{\mathbf a}})_*d\nu_{\hat{\mathbf a}}=d\eta,
+$$
+
+where $T_s$ is the analyzer's local material flow through the successful record window. The deterministic single-event kernels are then
+
+$$
+K_{\text{pass}}(\hat{\mathbf a};a_\perp,\zeta)
+=
+G_{\text{mat}}
+H\!\left(
+\mu_{\text{pass}}(\hat{\mathbf a}\mid a_\perp)
+-\eta_{\hat{\mathbf a}}(\zeta)
+\right),
+$$
+
+and
+
+$$
+K_{\text{rej}}(\hat{\mathbf a};a_\perp,\zeta)
+=
+G_{\text{mat}}
+H\!\left(
+\eta_{\hat{\mathbf a}}(\zeta)
+-\mu_{\text{pass}}(\hat{\mathbf a}\mid a_\perp)
+\right),
+$$
+
+with $H(0)=0$. Conditioned on a successful material record, $G_{\text{mat}}=1$, the unresolved analyzer variables give
+
+$$
+\int_{\Theta_{\hat{\mathbf a}}}
+K_{\text{pass}}(\hat{\mathbf a};a_\perp,\zeta)
+d\nu_{\hat{\mathbf a}}(\zeta)
+=
+\int_{0}^{1}
+H\!\left(\mu_{\text{pass}}-\eta\right)d\eta
+=
+\mu_{\text{pass}}(\hat{\mathbf a}\mid a_\perp).
+$$
+
+The substrate origin of these reduced objects is the analyzer's own finite-time material dynamics. Let $\mathcal{P}_{\hat{\mathbf a}}$ denote the record-window section of fully specified analyzer states: a state lies in $\mathcal{P}_{\hat{\mathbf a}}$ when an incoming Gate A-admissible photon branch has reached the analyzer entrance with propagation axis $\hat{\mathbf e}$, the analyzer's macroscopic accepted axis is $\hat{\mathbf a}$, and the local Noether-Sea environment is within the calibrated operating band. Let $\sim_{\hat{\mathbf a}}$ identify material states that differ only by translations among equivalent capture sites or by record-cycle phase choices that preserve the same local pass/reject geometry. The unresolved analyzer microstate space is then the quotient
+
+$$
+\Theta_{\hat{\mathbf a}}
+=
+\mathcal{P}_{\hat{\mathbf a}}/\!\sim_{\hat{\mathbf a}}.
+$$
+
+The map $T_s:\Theta_{\hat{\mathbf a}}\to\Theta_{\hat{\mathbf a}}$ is the return map induced by the architrino-level Master Equation through one record-window step, after projecting the fully resolved analyzer state back to the quotient. The invariant analyzer measure is the long-run occupation measure of this return map:
+
+$$
+\int_{\Theta_{\hat{\mathbf a}}} f(\zeta)\,d\nu_{\hat{\mathbf a}}(\zeta)
+=
+\int_{\Theta_{\hat{\mathbf a}}}
+f(T_s\zeta)\,d\nu_{\hat{\mathbf a}}(\zeta),
+$$
+
+or, equivalently for typical calibrated analyzer histories,
+
+$$
+\int_{\Theta_{\hat{\mathbf a}}} f\,d\nu_{\hat{\mathbf a}}
+=
+\lim_{N\to\infty}
+\frac{1}{N}
+\sum_{n=0}^{N-1}
+f(T_s^n\zeta_0).
+$$
+
+Thus $d\nu_{\hat{\mathbf a}}$ is not a quantum postulate. It is the reduced invariant measure of a stable material assembly under repeated local capture attempts.
+
+The channel coordinate $\eta_{\hat{\mathbf a}}$ is derived from the pass-basin filtration of that same material dynamics. For each accepted positive-action fraction $\rho\in[0,1]$, let
+
+$$
+\mathcal{B}_{\text{pass}}(\rho;\hat{\mathbf a})
+\subseteq
+\Theta_{\hat{\mathbf a}}
+$$
+
+be the set of analyzer microstates that route to the accepted material record when the incoming planar-pair ledger supplies $\mu_{\text{pass}}=\rho$. The ideal linear analyzer requires the monotonicity condition
+
+$$
+\rho_1\le\rho_2
+\quad\Longrightarrow\quad
+\mathcal{B}_{\text{pass}}(\rho_1;\hat{\mathbf a})
+\subseteq
+\mathcal{B}_{\text{pass}}(\rho_2;\hat{\mathbf a}),
+$$
+
+with $\mathcal{B}_{\text{pass}}(0;\hat{\mathbf a})$ measure zero and $\mathcal{B}_{\text{pass}}(1;\hat{\mathbf a})$ full measure after conditioning on a successful material record. The threshold coordinate is
+
+$$
+\eta_{\hat{\mathbf a}}(\zeta)
+=
+\inf\left\{
+\rho\in[0,1]:
+\zeta\in\mathcal{B}_{\text{pass}}(\rho;\hat{\mathbf a})
+\right\}.
+$$
+
+This gives the deterministic rule
+
+$$
+\zeta\in\mathcal{B}_{\text{pass}}(\rho;\hat{\mathbf a})
+\quad\Longleftrightarrow\quad
+\eta_{\hat{\mathbf a}}(\zeta)<\rho
+$$
+
+outside measure-zero separatrix cases. The uniform pushforward
+
+$$
+(\eta_{\hat{\mathbf a}})_*d\nu_{\hat{\mathbf a}}=d\eta
+$$
+
+is the unbiased-ideal-analyzer theorem target. In physical terms, it says that ordinary calibrated polarizer preparation samples the material capture threshold evenly in the invariant-measure coordinate. If the pushforward is not uniform, the measured pass curve becomes
+
+$$
+P_{\text{pass}}(\rho)
+=
+\nu_{\hat{\mathbf a}}
+\left(
+\{\zeta:\eta_{\hat{\mathbf a}}(\zeta)<\rho\}
+\right),
+$$
+
+and the deviation
+
+$$
+\Delta_{\text{pol}}(\rho)
+=
+P_{\text{pass}}(\rho)-\rho
+$$
+
+is a detector-bias or failed-calibration diagnostic, not a new photon law.
+
+This is the reduced substrate-origin scaffold. The quantity being measured is still the native accepted positive action fraction, so the $\cos^2\theta$ result appears only after the material projector $A^a{}_{b}$ and the linear-polarization ledger $a_\perp^a=\hat e_\gamma^a$ have been derived. The remaining substrate burden is to compute $\mathcal{P}_{\hat{\mathbf a}}$, the equivalence relation $\sim_{\hat{\mathbf a}}$, the return map $T_s$, and the basin filtration $\mathcal{B}_{\text{pass}}(\rho;\hat{\mathbf a})$ from a concrete analyzer assembly simulation and then prove or bound $\Delta_{\text{pol}}(\rho)$.
+
+The interpretation is local and ledger-based. In a single event, the analyzer-plus-photon microstate still resolves into one material record channel. Across an ensemble whose unresolved material variables sample $d\nu_{\hat{\mathbf a}}$, the pass frequency is $\mu_{\text{pass}}$. After a successful pass, the outgoing planar-pair ledger is relocked into the analyzer channel, so the next analyzer uses $a_\perp^a=\hat a^a$ as its incoming transverse ledger. Sequential analyzer probabilities therefore multiply by the same projector rule rather than by a separate collapse postulate.
 
 The same ledger supplies the no-signaling test for polarization correlations. For a two-photon provenance ledger and analyzer settings $\alpha,\beta$, the validated limit must obey
 
@@ -1421,7 +1857,105 @@ $$
 -\nabla_{\mathbf{x}_i}U_{\text{app}}(\mathbf{x}_i,t;\hat{\mathbf{m}})
 $$
 
-in the mollified apparatus-potential chart. The missing recoil is not discarded; it is fixed by
+in the mollified apparatus-potential chart.
+
+The Master-Equation origin of this impulse is the constituent causal-hit sum. Let $\mathscr A_{\hat{\mathbf{m}}}$ be the set of apparatus source architrinos whose organized wake envelope defines the Stern-Gerlach gradient. For target constituent $i\in C$ and apparatus constituent $a\in\mathscr A_{\hat{\mathbf{m}}}$, define the apparatus cross-root set
+
+$$
+\mathcal C_{ia}^{A}(t)
+=
+\left\{
+s<t:
+\left\|\mathbf{x}_i(t)-\mathbf{x}_a(s)\right\|
+=
+c_f(t-s)
+\right\}.
+$$
+
+For each root $s\in\mathcal C_{ia}^{A}(t)$, write
+
+$$
+\mathbf r_{ia}(t;s)
+=
+\mathbf{x}_i(t)-\mathbf{x}_a(s),
+\qquad
+r_{ia}(t;s)=\|\mathbf r_{ia}(t;s)\|,
+\qquad
+\hat{\mathbf r}_{ia}(t;s)
+=
+\frac{\mathbf r_{ia}(t;s)}{r_{ia}(t;s)},
+$$
+
+and
+
+$$
+J_{ia}(t;s)
+=
+1-\frac{\mathbf v_a(s)\cdot\hat{\mathbf r}_{ia}(t;s)}{c_f}.
+$$
+
+The apparatus contribution to the target constituent's acceleration is therefore
+
+$$
+\mathbf a_i^{\text{app}}(t;\hat{\mathbf{m}})
+=
+\kappa
+\sum_{a\in\mathscr A_{\hat{\mathbf{m}}}}
+\sum_{s\in\mathcal C_{ia}^{A}(t)}
+\sigma_{ia}
+\frac{|q_iq_a|}
+{r_{ia}^2(t;s)|J_{ia}(t;s)|}
+\hat{\mathbf r}_{ia}(t;s),
+$$
+
+and the force-like bookkeeping variable is
+
+$$
+\mathbf F_i^{\text{app}}(t;\hat{\mathbf{m}})
+=
+\mu_{\text{arch}}\mathbf a_i^{\text{app}}(t;\hat{\mathbf{m}}).
+$$
+
+Equivalently, in the finite-memory dual-mollified chart,
+
+$$
+\mathbf a_{i,\eta}^{\text{app}}(t;\hat{\mathbf{m}})
+=
+\kappa
+\sum_{a\in\mathscr A_{\hat{\mathbf{m}}}}
+\sigma_{ia}|q_iq_a|
+\int_{t-h}^{t}
+\frac{\widehat{\mathbf r}_{ia}(t,s)}
+{r_{ia}^2(t,s)+\epsilon_c^2}
+\delta_{\eta}\!\left(r_{ia}(t,s)-c_f(t-s)\right)\,ds.
+$$
+
+The apparatus angular impulse entering the reduced response is therefore not an imported spin torque. It is the core-centered torque of these delayed radial hits, plus the wake part required by the delayed Noether ledger:
+
+$$
+\boxed{
+\dot{\mathbf{J}}_{C}^{\text{app}}(t;\hat{\mathbf{m}})
+=
+\mu_{\text{arch}}
+\sum_{i\in C}
+\left(\mathbf{x}_i(t)-\mathbf{X}_{C}(t)\right)
+\times
+\mathbf a_i^{\text{app}}(t;\hat{\mathbf{m}})
++
+\dot{\mathbf L}_{\text{wake},C\leftrightarrow A}(t)
+}
+$$
+
+and over the interaction window,
+
+$$
+\Delta\mathbf{J}_{C}^{\text{app}}
+=
+\int_{t_{\text{in}}}^{t_{\text{out}}}
+\dot{\mathbf{J}}_{C}^{\text{app}}(t;\hat{\mathbf{m}})\,dt.
+$$
+
+The missing recoil is not discarded; it is fixed by
 
 $$
 \Delta \mathbf{J}_{C}
@@ -1506,7 +2040,7 @@ P_{\pm}(\hat{\mathbf{m}})
 \int K_{\pm}^{\text{SG}}(\hat{\mathbf{m}};Z)\,d\mu_*(Z).
 $$
 
-This derivation does not reduce the measurement to a preassigned local axis. $\mathcal{Q}_{\hat{\mathbf{m}}}$ depends on the full trajectory through the interaction window: layer phases and frequencies, causal-root history, self-hit memory, apparatus microstate, local causal-wake background, and the separatrix geometry. The remaining quantitative closure target is the basin measure. For a spin-$\tfrac{1}{2}$ preparation with effective angle $\alpha$ relative to $\hat{\mathbf{m}}$, the required recovery is
+This derivation does not reduce the measurement to a preassigned local axis. $\mathcal{Q}_{\hat{\mathbf{m}}}$ depends on the full trajectory through the interaction window: layer phases and frequencies, causal-root history, self-hit memory, apparatus microstate, local causal-wake background, and the separatrix geometry. At the reduced statistical level, the quantitative target is the basin measure. For a spin-$\tfrac{1}{2}$ preparation with effective angle $\alpha$ relative to $\hat{\mathbf{m}}$, the required recovery is
 
 $$
 P_{+}(\alpha)
@@ -1522,7 +2056,228 @@ P_{-}(\alpha)
 \sin^2\!\left(\frac{\alpha}{2}\right).
 $$
 
-The kernels are therefore derived as deterministic basin indicators; the half-angle law is not derived until the preparation measure $\mu_{\alpha}$, separatrix normal $\mathcal{N}_{\hat{\mathbf{m}}}$, and apparatus-induced angular impulse are computed from the Master Equation and shown to yield those basin volumes.
+A concrete reduced basin calculation can be given once the ordered-core spinor target has supplied an effective two-channel coordinate for the measurement-axis chart. Write the coordinate in the $\hat{\mathbf{m}}$ channel basis as
+
+$$
+\psi^{(\hat{\mathbf{m}})}(Z)
+=
+\begin{pmatrix}
+c_{+}(Z;\hat{\mathbf{m}})\\
+c_{-}(Z;\hat{\mathbf{m}})
+\end{pmatrix},
+\qquad
+|c_{+}|^2+|c_{-}|^2=1.
+$$
+
+Then
+
+$$
+p_{+}(Z;\hat{\mathbf{m}})
+=
+|c_{+}(Z;\hat{\mathbf{m}})|^2,
+\qquad
+p_{-}=1-p_{+},
+$$
+
+or, equivalently, for the same normalized state in a fixed effective spinor chart,
+
+$$
+p_{+}(Z;\hat{\mathbf{m}})
+=
+\psi^{\dagger}(Z)
+\Pi_{+}(\hat{\mathbf{m}})
+\psi(Z),
+$$
+
+with
+
+$$
+\Pi_{\pm}(\hat{\mathbf{m}})
+=
+\frac{1}{2}
+\left(
+\mathbf{1}\pm\hat{\mathbf{m}}\cdot\boldsymbol{\sigma}
+\right).
+$$
+
+The unresolved material degrees of freedom in the record amplifier reduce to a fast apparatus-record phase
+
+$$
+\theta_{\text{rec}}\in[0,2\pi).
+$$
+
+In the ideal reduced chart, the successful record gate samples this phase with
+
+$$
+d\nu_{\text{rec}}=\frac{d\theta_{\text{rec}}}{2\pi}.
+$$
+
+This phase is not an additional spin value. It is the unresolved position of the coupled target-apparatus trajectory along the record-forming cycle.
+
+This measure also descends from the Master Equation. After record formation, each successful channel contains a stable apparatus record cycle $\Gamma_{\text{rec}}^{\pm}$ inside the full apparatus phase space. Let
+
+$$
+\Theta_{\text{rec}}:\Gamma_{\text{rec}}^{\pm}\to S^1
+$$
+
+be a phase coordinate on that cycle, and let $F_{\text{ME}}^{A}$ denote the apparatus part of the Master-Equation vector field, including the same delayed cross-root terms used in the impulse calculation. Along the locked record cycle,
+
+$$
+\dot{\theta}_{\text{rec}}
+=
+\Omega_{\text{rec}}(\theta_{\text{rec}})
+=
+d\Theta_{\text{rec}}\!\left(F_{\text{ME}}^{A}\right).
+$$
+
+The invariant density $\rho_{\text{rec}}$ for this one-dimensional phase flow satisfies the stationary continuity equation
+
+$$
+\frac{d}{d\theta_{\text{rec}}}
+\left(
+\Omega_{\text{rec}}(\theta_{\text{rec}})
+\rho_{\text{rec}}(\theta_{\text{rec}})
+\right)
+=
+0,
+\qquad
+\int_{0}^{2\pi}\rho_{\text{rec}}(\theta_{\text{rec}})\,d\theta_{\text{rec}}=1.
+$$
+
+Hence
+
+$$
+d\nu_{\text{rec}}
+=
+\rho_{\text{rec}}(\theta_{\text{rec}})\,d\theta_{\text{rec}}
+=
+\frac{1}{T_{\text{rec}}\Omega_{\text{rec}}(\theta_{\text{rec}})}
+d\theta_{\text{rec}},
+\qquad
+T_{\text{rec}}
+=
+\int_{0}^{2\pi}
+\frac{d\theta_{\text{rec}}}
+{\Omega_{\text{rec}}(\theta_{\text{rec}})}.
+$$
+
+The uniform measure $d\theta_{\text{rec}}/(2\pi)$ is the calibrated limit in which the successful record cycle has constant phase speed, or in which $\theta_{\text{rec}}$ is chosen as the normalized time-of-flight phase on the cycle. If the Master-Equation record cycle has nonconstant phase speed or channel-dependent efficiency, the basin integral must use $d\nu_{\text{rec}}$ above rather than the uniform idealization.
+
+In this reduced chart, the concrete Stern-Gerlach separatrix is
+
+$$
+\boxed{
+\Sigma_{\hat{\mathbf{m}}}^{\text{SG,red}}(Z,\theta_{\text{rec}})
+=
+p_{+}(Z;\hat{\mathbf{m}})
+-
+\frac{\theta_{\text{rec}}}{2\pi}
+}
+$$
+
+with separatrix normal
+
+$$
+\mathcal{N}_{\hat{\mathbf{m}}}^{\text{SG,red}}
+=
+d p_{+}
+-
+\frac{1}{2\pi}d\theta_{\text{rec}}.
+$$
+
+The reduced record basins are therefore
+
+$$
+B_{+}^{\text{red}}(\hat{\mathbf{m}})
+=
+\left\{
+(Z,\theta_{\text{rec}}):
+0\le\theta_{\text{rec}}<2\pi p_{+}(Z;\hat{\mathbf{m}})
+\right\},
+$$
+
+and
+
+$$
+B_{-}^{\text{red}}(\hat{\mathbf{m}})
+=
+\left\{
+(Z,\theta_{\text{rec}}):
+2\pi p_{+}(Z;\hat{\mathbf{m}})<\theta_{\text{rec}}<2\pi
+\right\},
+$$
+
+with the boundary assigned measure zero by $H(0)=0$. The corresponding ideal reduced kernels are
+
+$$
+K_{+}^{\text{SG,red}}
+=
+G_{\text{rec}}
+H\!\left(
+p_{+}(Z;\hat{\mathbf{m}})
+-
+\frac{\theta_{\text{rec}}}{2\pi}
+\right),
+$$
+
+and
+
+$$
+K_{-}^{\text{SG,red}}
+=
+G_{\text{rec}}
+H\!\left(
+\frac{\theta_{\text{rec}}}{2\pi}
+-
+p_{+}(Z;\hat{\mathbf{m}})
+\right).
+$$
+
+For a prepared spin-$\tfrac{1}{2}$ core whose effective preparation axis is $\hat{\mathbf{a}}$, let
+
+$$
+\hat{\mathbf{a}}\cdot\hat{\mathbf{m}}=\cos\alpha.
+$$
+
+The spinor projection gives
+
+$$
+p_{+}(\hat{\mathbf{a}},\hat{\mathbf{m}})
+=
+\frac{1+\hat{\mathbf{a}}\cdot\hat{\mathbf{m}}}{2}
+=
+\cos^2\!\left(\frac{\alpha}{2}\right),
+\qquad
+p_{-}
+=
+\sin^2\!\left(\frac{\alpha}{2}\right).
+$$
+
+Conditioned on a successful, unbiased record gate,
+
+$$
+P_{+}(\alpha\,|\,\text{rec})
+=
+\int_{0}^{2\pi}
+H\!\left(
+\cos^2\!\left(\frac{\alpha}{2}\right)
+-
+\frac{\theta_{\text{rec}}}{2\pi}
+\right)
+\frac{d\theta_{\text{rec}}}{2\pi}
+=
+\cos^2\!\left(\frac{\alpha}{2}\right),
+$$
+
+and
+
+$$
+P_{-}(\alpha\,|\,\text{rec})
+=
+\sin^2\!\left(\frac{\alpha}{2}\right).
+$$
+
+This closes the single-core basin-volume arithmetic in the reduced spinor-record chart and identifies the Master-Equation origin of both ingredients external to the spinor coordinate: $d\nu_{\text{rec}}$ is the invariant measure of the locked record-cycle phase, and $\dot{\mathbf{J}}_{C}^{\text{app}}$ is the angular impulse generated by the apparatus cross-root branch sum. The remaining substrate burden is to derive the effective spinor coordinate itself, prove when the record-cycle phase can be flattened to the uniform measure, and evaluate the branch-sum impulse for a concrete Noether-core apparatus model. If the record gate efficiency depends on $\theta_{\text{rec}}$ or on the unresolved core phases, the conditional measure must include that dependence instead of using the ideal unbiased form above.
 
 Bell-pair tests require one more layer: the pair-provenance ledger and both local apparatus couplings must be included before comparing to the singlet correlation. A response that reduces to a sharp classical basin boundary over a preassigned local axis remains the known linear-correlation failure mode, not a successful spin-measurement model.
 
@@ -1603,7 +2358,7 @@ The correct development order is:
 
 1. derive the delayed total angular-momentum functional for architrino dynamics;
 2. evaluate the functional for changing-frequency Noether cores;
-3. derive the tri-binary partition rule for accepted action transactions;
+3. validate the projected tri-binary partition equations and derive the branch-selection rule for accepted action transactions;
 4. prove or falsify ordered-core spinor closure;
 5. derive a Stern-Gerlach-like measurement response from apparatus coupling;
 6. construct the pair-provenance ledger for singlet-like creation;
@@ -1626,17 +2381,17 @@ The following usage should be preferred across the corpus:
 
 ## Closure Targets
 
-This bridge leaves several derivations open.
+This bridge leaves several derivations open beyond the partition scaffold above.
 
 1. Promote the delayed three-layer scaffold above into a conserved functional derived directly from the regularized nonlocal action.
 2. Validate that functional on a Noether core with inner, middle, and outer binary radii, frequencies, plane normals, phases, active root branches, and self-hit history.
-3. Derive the tri-binary partition rule for an accepted $\Delta A_{\text{cycle}}=h$ transaction.
+3. Derive the exact branch-selection law that computes $\eta_I$, $\eta_M$, $\eta_O$, and $\eta_{\text{wake}}$ from causal-root data for an accepted $\Delta A_{\text{cycle}}=h$ transaction.
 4. Generalize the solved four-substep branch by deriving or fitting $a$, $b$, $w$, $\Delta R_\ell$, $\Delta\omega_\ell$, and $\Delta E_{\ell,\text{root}}$ from the master equation for non-minimal branches.
 5. Determine whether the partition is unique or branch-dependent for inner, middle, and outer binary layers.
 6. Prove or falsify the $SU(2)\to SO(3)$ spinor lift for ordered non-coplanar Noether cores.
-7. Compute the concrete Stern-Gerlach ingredients $\Sigma_{\hat{\mathbf{m}}}$, $\mathcal{N}_{\hat{\mathbf{m}}}$, $\lambda_{\hat{\mathbf{m}}}$, and $\dot{\mathbf{J}}_{C}^{\text{app}}$ for a minimal Noether-core apparatus simulation.
-8. Derive the preparation measures $\mu_{\alpha}$ that turn the deterministic kernels $K_{\pm}^{\text{SG}}$ into the spin-$\tfrac{1}{2}$ half-angle law.
-9. Recover photon helicity $\pm1$, exactly two physical transverse photon modes, Malus' law, and no-signaling polarization statistics from the coaxial contra-rotating pro/anti planar pair.
+7. Evaluate the Master-Equation apparatus branch-sum impulse $\dot{\mathbf{J}}_{C}^{\text{app}}$ and record-cycle phase density $d\nu_{\text{rec}}$ for a minimal Noether-core apparatus simulation, and test when they reduce to the ideal $\Sigma_{\hat{\mathbf{m}}}^{\text{SG,red}}$ chart with uniform record phase.
+8. Derive the effective spinor coordinate and substrate preparation measures $\mu_{\alpha}$ whose pushforward into the reduced spinor-record chart gives the computed spin-$\tfrac{1}{2}$ half-angle law.
+9. Recover photon helicity $\pm1$, exactly two physical transverse photon modes, the material analyzer projector, the analyzer return-map measure $d\nu_{\hat{\mathbf a}}$, the uniform pass-threshold pushforward for $\eta_{\hat{\mathbf a}}$, Malus' law, and no-signaling polarization statistics from the coaxial contra-rotating pro/anti planar pair.
 10. Separate photon helicity closure from massive vector-boson spin closure.
 11. Map observer-level orbital angular momentum, such as atomic $\ell$, to assembly-level internal rotational action without conflating the two.
 12. Rebuild the Bell account from the completed angular-momentum ledger, measurement-response kernel, and basin-measure law.

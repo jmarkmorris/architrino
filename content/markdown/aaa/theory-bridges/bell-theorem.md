@@ -201,7 +201,7 @@ $$
 
 with marginal probabilities independent of the distant setting. The local Stern-Gerlach kernels are deterministic basin indicators derived from the architrino-level angular-momentum and measurement-response dynamics, not ready-made spin-projection rules. The remaining Bell-level task is to derive the preparation and pair-provenance measures that make those local kernels reproduce the observed correlation.
 
-**Status:** This derivation is a **target**, not a completed result. The immediate prerequisite is the angular-momentum and spin program: derive how total angular momentum is conserved and redistributed in a changing-frequency Noether core, compute the concrete Stern-Gerlach separatrix and apparatus impulse entering $K_{\pm}^{\text{SG}}$, and then derive the basin measures for prepared single cores and pair-provenance ledgers.
+**Status:** This derivation is a **target**, not a completed result. The immediate prerequisite is the angular-momentum and spin program: derive how total angular momentum is conserved and redistributed in a changing-frequency Noether core, use the Master-Equation apparatus impulse and record-cycle invariant measure to realize $K_{\pm}^{\text{SG}}$, and then derive the pair-provenance measure for correlated cores. The single-core half-angle basin arithmetic and the external apparatus-term origins are now available in the reduced Stern-Gerlach chart, but this is not yet a Bell-pair correlation proof.
 
 ---
 
@@ -259,7 +259,7 @@ No step may involve faster-than-$c_f$ signal transfer. The correlations are visi
 - Conservation constraints at creation establish a joint pair ledger, but the detailed angular-momentum distribution must be derived.
 - Measurement is local threshold resolution (no distant causal input at measurement time).
 - Measurement independence holds (no superdeterminism, no retrocausation).
-- The measurement-response kernel of a Noether-core assembly interacting with an apparatus is a deterministic basin indicator, not an assumed $\cos^2(\alpha/2)$ rule. The half-angle law is a basin-measure target.
+- The measurement-response kernel of a Noether-core assembly interacting with an apparatus is a deterministic basin indicator, not a primitive $\cos^2(\alpha/2)$ rule. The single-core half-angle law is now computed in the reduced Stern-Gerlach chart; the Master-Equation burden is to derive the effective spinor coordinate and verify that the branch-sum apparatus impulse and record-cycle invariant measure realize that chart.
 
 **Required recoveries:**
 - All standard Bell-CHSH violations are reproduced: $|S| = 2\sqrt{2}$ for singlet pairs with optimal settings.
@@ -275,7 +275,7 @@ No step may involve faster-than-$c_f$ signal transfer. The correlations are visi
 
 **Next Steps:**
 - Derive the total angular-momentum functional for a Noether core with changing inner, middle, and outer binary frequencies, including self-action and causal-wake terms.
-- Compute the concrete Stern-Gerlach separatrix, separatrix normal, apparatus angular impulse, and basin measure for a tri-binary assembly driven by a Stern-Gerlach-like apparatus potential gradient.
+- Evaluate the Master-Equation branch-sum apparatus impulse, separatrix normal, and record-cycle invariant measure for a tri-binary assembly driven by a Stern-Gerlach-like apparatus potential gradient.
 - Simulate a minimal fragmentation event (parent tri-binary $\to$ two daughters) and extract the joint pair ledger, not merely a pair of opposite classical axes.
 - Compute $E(\theta_{AB})$ from the derived response kernel and hidden-variable distribution; compare against $-\cos\theta_{AB}$ and evaluate $|S|$.
 - If $|S| < 2\sqrt{2}$, identify the source of the deficit (response-function shape, distribution non-uniformity, or residual separability) and determine whether refinement of the measurement model or the creation dynamics can close the gap.
