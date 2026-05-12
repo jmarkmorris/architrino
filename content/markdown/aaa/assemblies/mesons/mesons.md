@@ -32,7 +32,9 @@ The strong interaction in $\mathbb{A}\mathbb{A}\mathbb{A}$ is the **elastic resp
 ## The Pions ($\pi^+, \pi^-, \pi^0$): The Nuclear Exchange Packet
 
 **Standard Model Role:**
-Pions are the lightest hadrons ($\sim 140$ MeV). They act as the carriers of the **residual strong force** (nuclear force) that binds protons and neutrons into atomic nuclei. Because they are bosons with Spin-0 (pseudo-scalars), they can be created and absorbed in great numbers without satisfying the Pauli exclusion principle.
+Pions are the lightest hadrons ($\sim 140$ MeV). They act as the carriers of the **residual strong force** (nuclear force) that binds protons and neutrons into atomic nuclei. At the Standard Model level, their spin-0 bosonic role means they can be created and absorbed in great numbers without satisfying the fermionic Pauli occupancy restriction.
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, that bosonic-statistics statement is a downstream target of [Fermi-Dirac and Bose-Einstein Statistics](../../quantum/quantum-statistics.md) and [Angular Momentum and Spin](../../theory-bridges/angular-momentum-and-spin.md). The pion section may use the observer-level boson label, but it does not independently derive Pauli exclusion or spin-statistics closure.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
 A pion is a **two‑core (quark + antiquark) assembly**: one Generation‑I quark core (matter chirality) and one Generation‑I antiquark core (antimatter chirality) linked by a shared flux tube.
@@ -80,15 +82,21 @@ Kaons are the primary laboratory for observing how Generation I stability breaks
 
 ---
 
+### Spin and Pauli Status
+
+The spin/parity assignments in this chapter are observer-level labels and hadron-level geometry hypotheses. The local shorthands "aligned," "anti-aligned," "parallel spin alignment," and "Pauli exclusion" inherit the single-core angular-momentum ledger, ordered-frame spinor proof, and spin-statistics proof rather than replacing them. Until those closures exist, the rho, Delta, and dense-matter packing statements below should be read as validation targets for the later proof.
+
+---
+
 ## The Rho Mesons ($\rho$): The Spin-1 Counterparts
 
 **Standard Model Role:**
-The $\rho$ meson has the same quark content as the pion ($u\bar{d}$, etc.) but is a **Vector Meson** (Spin-1). It is much heavier ($\sim 770$ MeV) and, in Standard Model language, decays almost instantly into two pions.
+The $\rho$ meson has the same quark content as the pion ($u\bar{d}$, etc.) but is a **vector meson** (spin-1). It is much heavier ($\sim 770$ MeV) and, in Standard Model language, decays almost instantly into two pions.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
-If the Pion is the ground state of the $q\bar{q}$ system (spins anti-aligned or geometry relaxed), the Rho is the **first excited geometric state**.
+In the current hadron-level shorthand, if the Pion is the ground state of the $q\bar{q}$ system (spins anti-aligned or geometry relaxed), the Rho is the **first excited geometric state**.
 
-*   **Configuration:** The two cores in the Rho assembly are aligned (Spin-1) rather than anti-aligned (Spin-0), or the flux tube possesses a higher vibrational mode.
+*   **Configuration:** The two cores in the Rho assembly are treated as aligned (Spin-1) rather than anti-aligned (Spin-0), or the flux tube possesses a higher vibrational mode. This is a spin-channel mapping target until the vector-mode angular-momentum proof is complete.
 *   **Instability (Morse lens):** In the energy landscape the Rho is a saddle of Morse index 1 (or higher): forces balance, but there is at least one unstable direction (flux-unwinding mode). Dissociation is the deterministic slide down that unstable manifold into the stable pion basin (stability criterion in action).
 
 ---
@@ -96,22 +104,24 @@ If the Pion is the ground state of the $q\bar{q}$ system (spins anti-aligned or 
 ## Delta Baryons ($\Delta^{++}, \Delta^+, \Delta^0, \Delta^-$)
 
 **Standard Model Role:**
-These are excited states of the nucleon. The $\Delta^{++}$ ($uuu$) is particularly famous because it consists of three identical fermions in the same state, which necessitated the introduction of the **Color** quantum number to satisfy Pauli Exclusion. They are Spin-3/2.
+These are excited states of the nucleon. At the observer-level Standard Model description, the $\Delta^{++}$ ($uuu$) is particularly famous because it consists of three identical fermions in the same state, which required the **color** quantum number so the total baryon state can satisfy Pauli exclusion. They are spin-$\tfrac{3}{2}$.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
-A Delta baryon is a standard Tri-Core assembly (like a proton) but with the three cores rotating in a **parallel spin alignment** (Spin-3/2) rather than the Proton's mixed alignment (Spin-1/2); compare the ground-state nucleon picture in [Nucleon Structure](../../nuclear-atomic/nucleon-structure.md).
+A Delta baryon is a standard Tri-Core assembly (like a proton) but with the three cores treated in a **parallel spin alignment** (Spin-3/2) rather than the Proton's mixed alignment (Spin-1/2); compare the ground-state nucleon picture in [Nucleon Structure](../../nuclear-atomic/nucleon-structure.md). This is a downstream hadron-spin shorthand, not a substitute for the ordered-core spinor proof.
 
-*   **Decorations / Pauli:** In the $\Delta^{++}$, three identical $u$-cores occupy the same location. To prevent geometric collapse (Pauli exclusion), they must occupy the three distinct color sectors, so the exceptional-axis labels H, M, and L each appear once across the tri-core. This is the geometric definition of the RGB color singlet state.
+*   **Decorations / Pauli:** In the $\Delta^{++}$, three identical $u$-cores occupy the same location. To satisfy the observer-level Pauli constraint without geometric collapse, the hadron-level target is that they occupy the three distinct color sectors, so the exceptional-axis labels H, M, and L each appear once across the tri-core. This is a color-singlet mapping target until the spin-statistics proof supplies the exclusion rule.
 *   **Dissociation:** The Delta dissociates rapidly ($\sim 10^{-24}$ s) via the strong force into a nucleon ($\pi N$). This corresponds to the spin alignment being mechanically unstable; once compression/spin lifts it off its local minimum, the assembly follows the gradient to the nucleon basin and sheds a pion.
 
 **Deltas in Dense Matter (EoS)**
 *   **Geometric compression:** In neutron-star cores, the nucleon Fermi energy can exceed the $N\!-\!\Delta$ gap ($\sim 300$ MeV). Tri-binary assemblies are forced so close that mixed-spin nucleons become less favorable than parallel-spin Deltas or superpositions.
-*   **Packing topology phase transition:** Overlapping exclusion volumes of spin-mixed nucleons create jamming. Parallel-spin Deltas, though higher in internal energy, admit a crystalline packing symmetry inaccessible to nucleons. The $N\!\to\!\Delta$ conversion at high density is a first-order topological packing transition: gravitational work is diverted into internal rotational energy instead of degeneracy pressure, effectively softening the EoS and lowering the maximum neutron-star mass by enthalpy minimization (energy + pressure × volume).
+*   **Packing topology phase transition:** Overlapping exclusion volumes of spin-mixed nucleons create the candidate jamming pressure. Parallel-spin Deltas, though higher in internal energy, may admit a crystalline packing symmetry inaccessible to nucleons. The $N\!\to\!\Delta$ conversion at high density is therefore a dense-matter validation target for the later spin and Pauli proof: gravitational work would be diverted into internal rotational energy instead of degeneracy pressure, effectively softening the EoS and lowering the maximum neutron-star mass by enthalpy minimization (energy + pressure × volume).
 
 ---
 
 ### Excitation ladder (ground → first excited)
 This is a quick $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry recap of the lowest excitations discussed above, connecting the geometric change to the observed SM mass gap.
+
+Rows that mention spin alignment are shorthand targets for the downstream angular-momentum proof.
 
 | SM family | Ground $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry | First excited $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry | Geometric change vs. SM mass gap |
 | --- | --- | --- | --- |
@@ -136,14 +146,14 @@ They are "ephemeral" because they are not topological attractors in the ambient 
 - **Pions:** Charged $\pi^\pm$ associate as geometrically *non-inverse* cores ($u$ vs. $\bar d$ or $d$ vs. $\bar u$); their axis matrices cannot cancel pairwise, so annihilation is forbidden and dissociation must open a weak $W^\pm$ corridor → longer lifetime. Neutral $\pi^0$ pairs exact inverse matrices ($u\otimes\bar u$ or $d\otimes\bar d$); axis-wise cancellation lets the cores annihilate electromagnetically → very short lifetime. Anti-aligned spins and relaxed flux also make the $\rho\to\pi\pi$ drop steep, keeping ground-state pions light.
 - **Kaons:** Gen-I/Gen-II shielding mismatch introduces a flux twist/phase that couples weakly to flavor; the partial mismatch aligns with their longer weak-scale lifetime and CP-violating oscillations.
 - **Delta baryons:** Parallel spins on all three cores raise rotational energy and flux tension; the configuration sheds a pion almost immediately ($\sim10^{-24}$ s) to fall back to the mixed-spin nucleon.
-- **Rho mesons:** Spin-1 alignment/tight flux stores energy; rapid strong dissociation to two pions releases that flux tension.
+- **Rho mesons:** Candidate spin-1 alignment/tight flux stores energy; rapid strong dissociation to two pions releases that flux tension.
 
 **Reading SM quantum numbers inside $\mathbb{A}\mathbb{A}\mathbb{A}$**
 - **Charge $Q$:** Sum axis decorations; each axis with `+` contributes +1/3 e, `-` contributes −1/3 e, `0` contributes 0. Anti-core flips signs. Meson pairs cancel most axes; tri-core permutations give $p=+1$, $n=0$.
 - **Baryon number $B$:** +1/3 per matter core, −1/3 per anti-core. Mesons sum to 0; baryons sum to 1.
 - **Strangeness $S$ (and heavier flavors):** Tag from shielding generation: a Gen‑II core gives $S=-1$; an anti‑Gen‑II core $S=+1$ (analogous tags for charm, etc.).
 - **Isospin $I_3$:** Swap $u\leftrightarrow d$ within the shared axis ordering; each swap flips $I_3$ by 1/2. The $\pi/\rho$ triplets and $K$ doublet follow directly.
-- **Spin/parity $J^P$:** Core spin alignment + flux mode. Spin‑0 mesons = anti‑aligned cores (pseudoscalar, $0^-$); spin‑1 $\rho$ = aligned cores or tighter flux ($1^-$); $\Delta$ = all three spins parallel ($3/2^+$). Parity tracks whether the flux/axis pattern inverts (odd for these mesons, even for ground-state tri-cores).
+- **Spin/parity $J^P$:** Provisional bridge from core spin alignment + flux mode. Spin‑0 mesons = anti‑aligned cores (pseudoscalar, $0^-$); spin‑1 $\rho$ = aligned cores or tighter flux ($1^-$); $\Delta$ = all three spins parallel ($3/2^+$). Parity tracks whether the flux/axis pattern inverts (odd for these mesons, even for ground-state tri-cores).
 - **Lifetime / width:** Depth of the stability basin or steepness of the unstable manifold. Inverse axis pairs (π^0) or over‑twist (ρ, Δ, kaon torsion) dissociate fast; non-inverse pairs that require a weak corridor (π±, $K$) live longer.
 
 ### SM quantum numbers (cheat sheet for particles discussed)
@@ -203,10 +213,10 @@ $u:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\;\otimes\;\bar u:\le
 | Kaon 0 | $K^{0}$ | meson | $d\bar s$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar s\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Neutral kaon oscillations set by torsion energy. |
 | Kaon - | $K^{-}$ | meson | $\bar u s$ | $\bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]\otimes s\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Charge −1 kaon; roles swapped vs $K^+$. |
 | $\bar{K}^0$ | $\bar K^{0}$ | meson | $\bar d s$ | $\bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]\otimes s\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Anti-neutral kaon; flips core/anti-core. |
-| Rho + | $\rho^{+}$ | meson | $u\bar d$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Spin-1 excited pion mode. |
-| Rho 0 | $\rho^{0}$ | meson | $(u\bar u - d\bar d)/\sqrt{2}$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ (or $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$) | Spin-1 excited neutral pion superposition; same axes, tighter flux. |
-| Rho - | $\rho^{-}$ | meson | $d\bar u$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ | Spin-1 excited pion mode. |
-| Delta ++ | $\Delta^{++}$ | baryon | $uuu$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]$ | Spin-3/2 uuu; phase-separated axes (color) set exclusion volume/enthalpy. |
-| Delta + | $\Delta^{+}$ | baryon | $uud$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Spin-3/2 with one d core; packing/enthalpy relevance in dense matter. |
-| Delta 0 | $\Delta^{0}$ | baryon | $udd$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Spin-3/2 neutron partner; packing-driven stability shift at high pressure. |
-| Delta - | $\Delta^{-}$ | baryon | $ddd$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Spin-3/2 ddd; large exclusion volume drives rapid dissociation unless compressed. |
+| Rho + | $\rho^{+}$ | meson | $u\bar d$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Spin-1 mapping target for an excited pion mode. |
+| Rho 0 | $\rho^{0}$ | meson | $(u\bar u - d\bar d)/\sqrt{2}$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ (or $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$) | Spin-1 mapping target for an excited neutral pion superposition; same axes, tighter flux. |
+| Rho - | $\rho^{-}$ | meson | $d\bar u$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ | Spin-1 mapping target for an excited pion mode. |
+| Delta ++ | $\Delta^{++}$ | baryon | $uuu$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]$ | Spin-3/2 mapping target for uuu; phase-separated axes (color) are the candidate exclusion volume/enthalpy channel. |
+| Delta + | $\Delta^{+}$ | baryon | $uud$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Spin-3/2 mapping target with one d core; packing/enthalpy relevance in dense matter. |
+| Delta 0 | $\Delta^{0}$ | baryon | $udd$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Spin-3/2 neutron-partner mapping target; packing-driven stability shift at high pressure remains a validation target. |
+| Delta - | $\Delta^{-}$ | baryon | $ddd$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Spin-3/2 ddd mapping target; large candidate exclusion volume drives rapid dissociation unless compressed. |

@@ -49,7 +49,7 @@ A photon manifests as a **phase-locked planar-pair mode train** of delayed actio
 
 ### Phenomenology
 *   **Energy-Frequency:** For a periodic source $\omega=2\pi\nu$, the closure target is the photon-channel relation $E_\gamma=h\nu$; the cycle being counted is the propagating planar-mode phase cycle, not a rest-state volumetric clock.
-*   **Malus' Law:** Emerges as the geometric projection of the transverse planar-mode profile onto the analyzer's acceptance slot ($I \propto \cos^2 \theta$).
+*   **Malus' Law:** Gate B must derive this as the geometric projection of the transverse planar-mode profile onto the analyzer's acceptance slot ($I \propto \cos^2 \theta$).
 
 ### Photon Closure Interface
 
@@ -97,6 +97,75 @@ Gate A is closed only when this branch proves the following recoveries in the sa
 - The kinematic mass shell is null in the photon channel: $E_\gamma^2-\|\mathbf{p}_\gamma\|^2c_\gamma^2=0$, with $E_\gamma=h\nu$ and $p=h/\lambda$ recovered from the phase-cycle ledger.
 - The weak homogeneous branch identifies the measured photon speed with the same low-gradient limit used by clock-and-ruler synchronization, while keeping $c_f$ as the primitive wake speed rather than the directly measured observer speed.
 - The residual leakage terms for dispersion, birefringence, static charge exposure, and preferred-frame anisotropy fall below the empirical bounds before Gate B and Gate C add polarization and interaction vertices.
+
+#### Gate B Theorem Scaffold: Polarization and Spin
+
+Gate B begins only after Gate A has supplied the propagation axis $\hat{\mathbf{e}}$, photon-channel speed $c_\gamma$, phase frequency $\omega$, and null planar-pair branch. Gate B must not repair a failed kinematic branch. Its job is narrower: derive the transverse angular-momentum ledger, analyzer coupling, helicity, and probability rule for that already-admissible coaxial contra-rotating pro/anti planar pair.
+
+The natural object is the rank-two transverse projector
+
+$$
+P_{\perp}^{ab}
+=
+h^{ab}-\hat{e}^a\hat{e}^b.
+$$
+
+Gate B must show that the planar-pair ledger lives in the image of $P_{\perp}$ and has no accepted free longitudinal component. A longitudinal or mixed-axis vector channel belongs to a massive corridor, a medium-bound recoupling, or a Gate A failure mode; it is not an additional free photon polarization.
+
+Choose transverse axes $(\hat{\mathbf{u}},\hat{\mathbf{v}})$ and write the effective polarization ledger as
+
+$$
+\mathbf{a}_{\perp}
+=
+a_u\hat{\mathbf{u}}+a_v\hat{\mathbf{v}},
+\qquad
+|a_u|^2+|a_v|^2=1.
+$$
+
+Linear polarization is the real-axis case. Circular polarization is the quarter-cycle relation represented by
+
+$$
+\boldsymbol{\epsilon}_{\pm}
+=
+\frac{1}{\sqrt{2}}
+\left(\hat{\mathbf{u}}\pm i\hat{\mathbf{v}}\right),
+\qquad
+J_{\gamma,\parallel}
+=
+\lambda_{\text{hel}}\hbar,
+\quad
+\lambda_{\text{hel}}\in\{+1,-1\}.
+$$
+
+The pro/anti planar pair must therefore explain both cancellation of static charge-like exposure and survival of a transverse oscillatory action signature. The surviving signature is the photon-side spin-$1$ ledger; it is not a scalar breathing mode, not an ordered-core spinor, and not a massive-vector longitudinal mode.
+
+An analyzer is an assembly whose capture geometry selects an allowed transverse ledger direction $\hat{\mathbf{a}}=P_{\perp}\hat{\mathbf{a}}$. For a linearly polarized incoming axis $\hat{\mathbf{e}}_\gamma$, the closure target is
+
+$$
+\mathcal{A}_{\text{pass}}
+\propto
+\hat{\mathbf{e}}_\gamma\cdot\hat{\mathbf{a}}
+=
+\cos\theta,
+\qquad
+P_{\text{pass}}
+=
+|\mathcal{A}_{\text{pass}}|^2
+=
+\cos^2\theta.
+$$
+
+Gate B is not closed by writing this standard projection formula. The native derivation must show why the accepted planar-pair capture measure scales with the squared transverse overlap, how the rejected component routes into reflection, absorption, scattering, or another allowed material ledger update, and why single-photon counts reproduce the same probability rule.
+
+The polarization-pair no-signaling test is part of the same gate. For entangled photon preparations with analyzer settings $\alpha,\beta$, the completed ledger must recover setting-independent local marginals:
+
+$$
+\sum_{b=\pm}P(a,b\mid\alpha,\beta)=P(a\mid\alpha),
+\qquad
+\sum_{a=\pm}P(a,b\mid\alpha,\beta)=P(b\mid\beta).
+$$
+
+The correlation target depends on the prepared photon-pair state, but the usual polarization tests require a $\cos 2(\alpha-\beta)$ angle dependence up to the sign and phase convention of that state. A model may use pair provenance and contextual local analyzer coupling, but it must not permit the remote analyzer setting to send a usable signal through the photon ledger.
 
 In reaction chapters, Gate C should be expressed through [Mode Taxonomy](../../interactions/mode-taxonomy.md): photon emission uses **planar-mode nucleation**, not corridor-mode language. Event-level provenance for radiative and pair channels is tracked in [Reaction-Cosmology Provenance Ledger](../../validation/reaction-cosmology-provenance-ledger.md).
 

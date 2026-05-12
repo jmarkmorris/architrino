@@ -157,7 +157,7 @@ $$
 
 That summary is necessary, but it is not the mechanism. The substrate question is how the total angular-momentum functional is conserved while the daughter Noether cores redistribute action across inner, middle, and outer binaries, including self-action and causal-wake terms. The statement $\mathbf{J}_A=-\mathbf{J}_B$ is only the coarse ledger result of that deeper process.
 
-**Measurement geometry.** When detector $A$ measures along axis $\hat{m}_A$, the apparatus does not read a tiny arrow. It drives the local assembly through a finite-time coupling process whose outcome depends on the full spin ledger: ordered binary-plane geometry, phase, active causal wakes, local Noether-Sea state, and the apparatus potential. A correct theory must derive how that coupling produces the two observed outcomes called spin-up and spin-down along $\hat{m}_A$.
+**Measurement geometry.** When detector $A$ measures along axis $\hat{m}_A$, the apparatus does not read a tiny arrow. It drives the local assembly through a finite-time coupling process whose outcome depends on the full spin ledger: ordered binary-plane geometry, phase, active causal wakes, local Noether-Sea state, and the apparatus potential. The Stern-Gerlach-like scaffold in [Angular Momentum and Spin](./angular-momentum-and-spin.md#stern-gerlach-like-measurement-response) formulates this as apparatus potential-gradient coupling, basin-boundary crossing, angular-momentum exchange, and wake / Noether-Sea recoil. A correct theory must derive how that coupling produces the two observed outcomes called spin-up and spin-down along $\hat{m}_A$.
 
 **Why this is not action at a distance.** No usable signal, energy, or causal wake is allowed to pass from one detector to the other during spacelike-separated measurement. The Bell-level difficulty is therefore not solved by adding a signal. It must be solved by showing that the full pair provenance and each local measurement interaction do not compress into the factorizable local-response model that Bell excludes.
 
@@ -199,9 +199,9 @@ E(\hat{m}_A,\hat{m}_B)
 =-\cos\theta_{AB},
 $$
 
-with marginal probabilities independent of the distant setting. The probability kernel in this equation must be derived from the architrino-level angular-momentum and measurement-response dynamics.
+with marginal probabilities independent of the distant setting. The probability kernel in this equation must be derived from the architrino-level angular-momentum and measurement-response dynamics, not assigned as a ready-made spin-projection rule.
 
-**Status:** This derivation is a **target**, not a completed result. The immediate prerequisite is the angular-momentum and spin program: derive how total angular momentum is conserved and redistributed in a changing-frequency Noether core, then derive how a detector couples to that ledger.
+**Status:** This derivation is a **target**, not a completed result. The immediate prerequisite is the angular-momentum and spin program: derive how total angular momentum is conserved and redistributed in a changing-frequency Noether core, then derive the response kernels $K_{\pm}$ for a detector coupled to that ledger.
 
 ---
 

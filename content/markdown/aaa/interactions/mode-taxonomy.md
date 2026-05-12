@@ -15,7 +15,7 @@ At assembly level, these terms refer to substrate dynamics in absolute time:
 - **Mode-lock event:** a discrete stability transition where a driven tri-binary/wake configuration settles into an allowed propagating or bound mode.
 - **Wake-strain threshold:** the local instability boundary in Noether-Sea-coupled transport; below threshold, energy disperses into medium excitations, above threshold, stable mode formation is allowed.
 - **Nucleation:** relocking/reorganization of existing substrate content (with provenance-preserving architrino bookkeeping), not creation ex nihilo.
-- **Planar-mode nucleation (photon channels):** lock-in to a stable coaxial contra-rotating pro/anti planar-pair mode carrying energy-momentum and polarization structure.
+- **Planar-mode nucleation (photon channels):** lock-in to a stable coaxial contra-rotating pro/anti planar-pair mode carrying Gate A energy-momentum data and Gate B transverse-ledger data.
 - **Corridor-mode nucleation (weak channels):** lock-in to corridor-type interaction modes used for $W^\pm/Z$ channel bookkeeping.
 - **Pair nucleation:** local substrate recruitment/reconfiguration into $e^+e^-$ assemblies under threshold-satisfying two-photon forcing, constrained to recover standard kinematic and rate limits in validated regimes.
 
@@ -64,6 +64,8 @@ Select the mode family:
 - pair nucleation for $\gamma\gamma$ conversion channels,
 - corridor-mode for weak channels.
 
+For photon channels, keep the two photon ledgers separate. Gate A records propagation and kinematics: $\hat{\mathbf{e}}$, $c_\gamma$, $E_\gamma$, $\mathbf{p}_\gamma$, phase frequency, and null-branch status. Gate B records polarization and spin closure: transverse basis, analyzer axis, helicity target, accepted/rejected capture channel, and no-longitudinal-mode status.
+
 7. **Execute provenance-conserving relock**
 Update assembly graph by relocking existing substrate content.
 No ex nihilo creation is permitted in ontology bookkeeping; recruitment comes from local Noether-core availability.
@@ -72,6 +74,7 @@ No ex nihilo creation is permitted in ontology bookkeeping; recruitment comes fr
 Close event-level budgets:
 - $\sum Q_{\mathrm{in}}=\sum Q_{\mathrm{out}}$,
 - $\sum p^\mu_{\mathrm{in}}=\sum p^\mu_{\mathrm{out}}$,
+- spin/angular-momentum ledger balance for emitted, absorbed, or converted vector modes,
 - provenance ledger balance across reactants, products, and recruited substrate content.
 
 9. **Project back to observer-level outputs**
@@ -221,7 +224,7 @@ Each reaction chapter should include three short blocks:
 
 ## Channel-Specific Terms
 
-- **Planar-mode nucleation:** photon-channel lock-in language for forming a coaxial contra-rotating pro/anti planar-pair mode. Use for electromagnetic radiation channels (for example synchrotron, bremsstrahlung) unless a chapter justifies another term.
+- **Planar-mode nucleation:** photon-channel lock-in language for forming a coaxial contra-rotating pro/anti planar-pair mode. Use for electromagnetic radiation channels (for example synchrotron, bremsstrahlung) unless a chapter justifies another term. The term carries Gate A kinematic closure and Gate B transverse-ledger closure, but those closures should be tested separately.
 - **Corridor-mode nucleation:** weak-channel language reserved for $W^\pm/Z$ interaction contexts.
 - **Pair nucleation:** $\gamma\gamma \rightarrow e^+e^-$ language at ontology level; must map to standard threshold/rate constraints in validated limits.
 
