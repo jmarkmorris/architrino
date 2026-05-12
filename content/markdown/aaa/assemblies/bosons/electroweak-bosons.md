@@ -117,7 +117,7 @@ W and Z bosons are not fundamental particles in the sense of eternal objects; th
     *   **Free Bundle:** In high-energy events, the bundle is launched into the ambient Noether Sea, propagating near the field speed ($v \approx 1$) along its axis before dissociating (rupturing) due to internal instability.
 
 ### Quantum Numbers and Channels
-*   **Spin-1 (Vector):** The corridor possesses a defined axis and transverse phase structure, giving it an effective angular momentum of $1\hbar$.
+*   **Spin-1 (Vector):** The weak corridor remains a spin-$1$ vector channel: it has an overall interaction axis and transports angular momentum through directed phase structure. The photon is the clean massless spin-$1$ case, with only transverse helicities $\pm1$ and no physical longitudinal mode. A massive $W/Z$ corridor can also carry a longitudinal or mixed-axis component, so its internal signs and axes need not collapse into the same fully coaxial contra-rotating pro/anti planar-pair geometry as the photon. What survives at the observer level is the vector directionality of the transaction.
 *   **W Boson ($W^\pm$):**
     *   **Function:** Transports net charge $\pm 6\epsilon$ ($3P \leftrightarrow 3E$ swap).
     *   **Bookkeeping:** The corridor physically moves the "weak-coupling-triad" components.
