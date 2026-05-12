@@ -12,7 +12,19 @@ Spin-sensitive spectral structure is downstream of the angular-momentum proof pr
 
 Electron orbitals are treated here as stable resonance patterns of electron assemblies coupled to the local Noether Sea. This is an effective atomic model, not yet a derivation from the constituent master equation.
 
-The foundation-up route treats those resonance patterns as responses to structured causal-wake boundary data. In a completed derivation, the nuclear core closure ledger should determine an effective causal-wake envelope $\mathcal W_{\text{nuc}}$, and the electron assembly should occupy stable envelope basins labeled by the recovered quantum numbers $(n,\ell,m)$.
+The foundation-up route treats those resonance patterns as responses to structured causal-wake boundary data. In a completed derivation, the integer-closed Noether-core ledgers of the nuclear constituents should determine an effective causal-wake envelope $\mathcal W_{\text{nuc}}$, and the electron assembly should occupy stable envelope basins labeled by the recovered quantum numbers $(n,\ell,m)$. The route is one-way:
+
+$$
+\text{integer-closed Noether-core ledgers}
+\longrightarrow
+\text{effective causal-wake envelope}
+\longrightarrow
+\text{electron-assembly envelope basin}
+\longrightarrow
+\text{observer-level labels }(n,\ell,m).
+$$
+
+The labels $(n,\ell,m)$ are therefore spectral and orbital recovery labels for the effective envelope. They should not be used backward as evidence that the internal nuclear or electron Noether-core ledgers have already been derived.
 
 The first closure target is the Rydberg constant. In the present notation, a completed model should express $R_\infty$ as a function of the effective nuclear causal-wake envelope $\mathcal W_{\text{nuc}}$, the physical Noether-core density $\rho_{\text{core}}(\mathbf{x},t)$, the normalized density $n(\mathbf{x},t)$, and the local clock/rate response encoded by $\chi_{\text{sea}}(\mathbf{x},t)$. The important discipline is to keep $n$ as normalized density and $\chi_{\text{sea}}$ as the delay factor.
 
