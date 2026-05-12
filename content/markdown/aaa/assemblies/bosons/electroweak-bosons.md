@@ -4,7 +4,7 @@
 **Core Principle:** Bosons are discrete, propagating assemblies of architrinos organized into phase-locked modes.
 This chapter is the bosonic-side companion to [Emergence of U(1)/SU(2)](../../interactions/gauge-structure-emergence.md), [Weak Mixing Angle](../fermions/weak-mixing-angle.md), and [Particle Masses: Emergent Inertia in the Noether Sea](../particle-masses.md).
 
-Spin follows the geometry of the excitation: the Higgs is scalar because its motion is purely radial, while the photon and weak corridors are vector modes because each carries a distinguished propagation/interaction axis together with transverse phase structure.
+Spin labels in this chapter are downstream mapping targets, not completed derivations. The Higgs is treated as a scalar target because its candidate motion is radial, while the photon and weak corridors are treated as vector-mode targets because each carries a distinguished propagation or interaction axis together with transverse phase structure. The proof obligations for these labels sit in [Angular Momentum and Spin](../../theory-bridges/angular-momentum-and-spin.md).
 
 ---
 
@@ -102,6 +102,8 @@ Gate A is closed only when this branch proves the following recoveries in the sa
 
 Gate B begins only after Gate A has supplied the propagation axis $\hat{\mathbf{e}}$, photon-channel speed $c_\gamma$, phase frequency $\omega$, and null planar-pair branch. Gate B must not repair a failed kinematic branch. Its job is narrower: derive the transverse angular-momentum ledger, analyzer coupling, helicity, and probability rule for that already-admissible coaxial contra-rotating pro/anti planar pair.
 
+This is the photon-specific consumer of the shared angular-momentum proof. It must inherit the conserved motion-plus-wake ledger rather than creating a photon-only spin rule.
+
 The natural object is the rank-two transverse projector
 
 $$
@@ -155,7 +157,47 @@ P_{\text{pass}}
 \cos^2\theta.
 $$
 
-Gate B is not closed by writing this standard projection formula. The native derivation must show why the accepted planar-pair capture measure scales with the squared transverse overlap, how the rejected component routes into reflection, absorption, scattering, or another allowed material ledger update, and why single-photon counts reproduce the same probability rule.
+Gate B is not closed by writing this standard projection formula, but the native measure has a precise form. Let $a_\perp^a$ be the incoming transverse planar-pair ledger and define its positive action norm by
+
+$$
+\mathcal{I}_{\perp}
+=
+h_{ab}\,\overline{a_\perp^a}a_\perp^b.
+$$
+
+The analyzer's accepted material channel is the rank-one transverse projector
+
+$$
+A^a{}_{b}=\hat a^a\hat a_b,
+\qquad
+A^a{}_{b}P_{\perp}^{b}{}_{c}=A^a{}_{c}.
+$$
+
+The signed overlap $\hat a_a a_\perp^a$ is only the coherent capture amplitude. The material capture measure is the positive accepted action fraction:
+
+$$
+\mu_{\text{pass}}(\hat{\mathbf a}\mid a_\perp)
+=
+\frac{\overline{a_\perp^a}\,\hat a_a\hat a_b\,a_\perp^b}
+{h_{ab}\,\overline{a_\perp^a}a_\perp^b}
+=
+\frac{\left|\hat a_a a_\perp^a\right|^2}
+{\mathcal{I}_{\perp}}.
+$$
+
+The rejected channel is
+
+$$
+R^a{}_{b}=P_{\perp}^{a}{}_{b}-A^a{}_{b},
+\qquad
+\mu_{\text{rej}}
+=
+\frac{\overline{a_\perp^a}R_{ab}a_\perp^b}{\mathcal{I}_{\perp}},
+\qquad
+\mu_{\text{pass}}+\mu_{\text{rej}}=1.
+$$
+
+For linear polarization this reduces to $\mu_{\text{pass}}=\cos^2\theta$ and $\mu_{\text{rej}}=\sin^2\theta$. For circular helicity states $\boldsymbol{\epsilon}_{\pm}$ it gives $\mu_{\text{pass}}=1/2$ for any linear analyzer axis. The rejected component must route into reflection, absorption, scattering, or another allowed material ledger update; it is not a hidden longitudinal photon channel. Single-photon counts must converge to this measure across unresolved analyzer microstates, while each event still closes its local energy, momentum, angular momentum, and material-record ledger.
 
 The polarization-pair no-signaling test is part of the same gate. For entangled photon preparations with analyzer settings $\alpha,\beta$, the completed ledger must recover setting-independent local marginals:
 
@@ -186,7 +228,7 @@ W and Z bosons are not fundamental particles in the sense of eternal objects; th
     *   **Free Bundle:** In high-energy events, the bundle is launched into the ambient Noether Sea, propagating near the field speed ($v \approx 1$) along its axis before dissociating (rupturing) due to internal instability.
 
 ### Quantum Numbers and Channels
-*   **Spin-1 (Vector):** The weak corridor remains a spin-$1$ vector channel: it has an overall interaction axis and transports angular momentum through directed phase structure. The photon is the clean massless spin-$1$ case, with only transverse helicities $\pm1$ and no physical longitudinal mode. A massive $W/Z$ corridor can also carry a longitudinal or mixed-axis component, so its internal signs and axes need not collapse into the same fully coaxial contra-rotating pro/anti planar-pair geometry as the photon. What survives at the observer level is the vector directionality of the transaction.
+*   **Spin-1 (Vector):** The weak corridor is a spin-$1$ vector-channel target: it has an overall interaction axis and transports angular momentum through directed phase structure. The photon is the clean massless spin-$1$ target, with only transverse helicities $\pm1$ and no physical longitudinal mode after Gate B is derived. A massive $W/Z$ corridor can also carry a longitudinal or mixed-axis component, so its internal signs and axes need not collapse into the same fully coaxial contra-rotating pro/anti planar-pair geometry as the photon. What survives at the observer level is the vector directionality of the transaction.
 *   **W Boson ($W^\pm$):**
     *   **Function:** Transports net charge $\pm 6\epsilon$ ($3P \leftrightarrow 3E$ swap).
     *   **Bookkeeping:** The corridor physically moves the "weak-coupling-triad" components.
@@ -199,6 +241,8 @@ W and Z bosons are not fundamental particles in the sense of eternal objects; th
 The photon and the weak corridors are both spin-$1$ channels at the observer level, but they solve different closure problems. A photon is the clean massless branch: its coaxial contra-rotating pro/anti planar-pair closure carries phase, momentum, and transverse helicity, but it does not form a stable volumetric assembly with a proper-time cycle. In the effective relativistic limit this appears as the null relation $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$. In special-relativity language, the null channel has zero proper-time accumulation; a photon is not assigned a comoving clock because no photon rest frame exists.
 
 A $W/Z$ corridor is a localized massive vector channel. Its longitudinal or mixed-axis structure carries a rest-like internal energy cost because the corridor is a thickened recoupling of local Noether-Sea structure, not a free planar-pair branch. It can therefore mediate a directed spin-$1$ transaction while appearing as a massive, short-lived channel rather than a massless photon. The derivation burden is to compute this cost from corridor closure and medium-dressed response, not to insert the Standard Model mass as a primitive parameter.
+
+The distinction between photon helicity and massive-vector spin should remain explicit. The photon has a transverse Gate B burden; the $W/Z$ corridor has a separate massive-vector burden. Neither one should be used as a shortcut proof for the other.
 
 ### Dynamics: Emission and Absorption
 *   **The Trigger (Emission):**

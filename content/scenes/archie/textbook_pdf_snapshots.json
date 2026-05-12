@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "archie__textbook_pdf_snapshots",
+    "title": "Textbook PDF Snapshots",
+    "type": "Scene-Markdown-Split",
+    "units": "relative",
+    "wrapLabels": true,
+    "centerOn": "pdf_snapshot_overview",
+    "layout": {
+      "type": "rings"
+    },
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
+      "split": {
+        "headingLevel": 2,
+        "maxDepth": 1,
+        "overrides": {
+          "overview": {
+            "hidden": true
+          },
+          "full textbook": {
+            "labelBadge": "pdf",
+            "color": "#6a5a8f"
+          },
+          "foundations": {
+            "labelBadge": "pdf"
+          },
+          "dynamics": {
+            "labelBadge": "pdf"
+          },
+          "proof programs": {
+            "labelBadge": "pdf"
+          },
+          "spacetime": {
+            "labelBadge": "pdf"
+          },
+          "interactions": {
+            "labelBadge": "pdf"
+          },
+          "standard model assemblies": {
+            "labelBadge": "pdf"
+          },
+          "atomic and nuclear assemblies": {
+            "labelBadge": "pdf"
+          },
+          "reactions": {
+            "labelBadge": "pdf"
+          },
+          "quantum": {
+            "labelBadge": "pdf"
+          },
+          "theory bridges": {
+            "labelBadge": "pdf"
+          },
+          "cosmology": {
+            "labelBadge": "pdf"
+          },
+          "validation": {
+            "labelBadge": "pdf"
+          },
+          "philosophy history": {
+            "labelBadge": "pdf"
+          }
+        }
+      }
+    },
+    "view": {
+      "columns": 1,
+      "autoOpen": false
+    }
+  },
+  "objects": [
+    {
+      "id": "pdf_snapshot_overview",
+      "title": "Overview",
+      "radius": 2.4,
+      "color": "#7a5a2f",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "fixedPosition": true,
+      "labelTitle": "Overview",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
+      },
+      "view": {
+        "section": "Overview",
+        "columns": 1,
+        "autoOpen": true
+      }
+    }
+  ]
+}

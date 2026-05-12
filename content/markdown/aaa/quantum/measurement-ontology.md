@@ -110,7 +110,7 @@ The apparatus couples to a discrete assembly orientation or topological branch. 
 
 In this language, "spin up" and "spin down" are not tiny literal arrows hidden inside the particle. They are the two stable branch labels selected by the apparatus relative to its chosen measurement axis.
 
-The Stern-Gerlach-like specialization is developed in [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response). In that channel, the apparatus potential-gradient geometry couples to the full Noether-core spin ledger, including layer phases, frequencies, active causal-root branches, self-hit history, and causal-wake angular momentum. The two recorded outcomes are basin resolutions after a finite interaction time, while the quantitative response kernels remain derivation targets.
+The Stern-Gerlach-like specialization is developed in [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response). In that channel, the apparatus potential-gradient geometry couples to the full Noether-core spin ledger, including layer phases, frequencies, active causal-root branches, self-hit history, and causal-wake angular momentum. The two recorded outcomes are basin resolutions after a finite interaction time. The derived kernels are deterministic pullbacks of the record-forming basins; the remaining statistical closure target is the basin measure that recovers the spin-$\tfrac{1}{2}$ half-angle probabilities.
 
 The important point is that the ontology never changes: different observables correspond to different coarse coordinates and different apparatus couplings, not different laws of collapse.
 

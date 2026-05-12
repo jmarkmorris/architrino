@@ -119,7 +119,7 @@ Use the same photon-channel event record here as in [Bremsstrahlung](bremsstrahl
 - photon output $E_\gamma$, direction, polarization basis, and local photon-channel speed $c_\gamma$;
 - recoil, medium excitation, and pair-channel handoff terms when the emitted photon enters a cascade loop.
 
-This record is a derivation target. It must recover $\nu_c\propto\gamma^2B$, $P_{\mathrm{syn}}\propto U_B\gamma^2$, standard polarization limits, and Breit-Wheeler behavior in validated regimes before any Noether-Sea-dependent deviation is treated as physical.
+This record is a derivation target. It must recover $\nu_c\propto\gamma^2B$, $P_{\mathrm{syn}}\propto U_B\gamma^2$, standard polarization limits, and Breit-Wheeler behavior in validated regimes before any Noether-Sea-dependent deviation is treated as physical. The polarization basis and linear-polarization limits are photon Gate B consumers from [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md) and [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md), not a local derivation of photon helicity.
 
 ## Observer-Level Closure Checks
 

@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 152,
-      "sections": 1089
+      "sections": 1091
     }
   },
   "tocRoot": {
@@ -3953,6 +3953,14 @@
                 "markdownSection": "Multi-Body Assembly Structure",
                 "sectionKey": "multi body assembly structure",
                 "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Angular-Momentum Handoff",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-structure.md",
+                "markdownSection": "Angular-Momentum Handoff",
+                "sectionKey": "angular momentum handoff",
+                "headingLevel": 2
               }
             ]
           },
@@ -4189,6 +4197,14 @@
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
                 "markdownSection": "Atomic Orbitals as Lattice Resonances",
                 "sectionKey": "atomic orbitals as lattice resonances",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Spin-Sensitive Spectral Targets",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
+                "markdownSection": "Spin-Sensitive Spectral Targets",
+                "sectionKey": "spin sensitive spectral targets",
                 "headingLevel": 2
               }
             ]

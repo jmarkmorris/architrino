@@ -8,6 +8,8 @@ For concrete channel applications of this vocabulary, see [Bremsstrahlung](../re
 
 The goal is consistency, not new phenomenology. Standard observer-level reaction equations remain unchanged unless a chapter explicitly derives a deviation.
 
+This taxonomy records which channel family a reaction uses; it does not derive the angular-momentum or spin rule for that family. Photon Gate B, weak-corridor vector spin, Pauli/statistics closure, and spin-sensitive measurement outcomes inherit [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md) and should remain marked as closure targets in reaction prose.
+
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ Assembly-Level Interpretation
 
 At assembly level, these terms refer to substrate dynamics in absolute time:
@@ -64,7 +66,9 @@ Select the mode family:
 - pair nucleation for $\gamma\gamma$ conversion channels,
 - corridor-mode for weak channels.
 
-For photon channels, keep the two photon ledgers separate. Gate A records propagation and kinematics: $\hat{\mathbf{e}}$, $c_\gamma$, $E_\gamma$, $\mathbf{p}_\gamma$, phase frequency, and null-branch status. Gate B records polarization and spin closure: transverse basis, analyzer axis, helicity target, accepted/rejected capture channel, and no-longitudinal-mode status.
+For photon channels, keep the two photon ledgers separate. Gate A records propagation and kinematics: $\hat{\mathbf{e}}$, $c_\gamma$, $E_\gamma$, $\mathbf{p}_\gamma$, phase frequency, and null-branch status. Gate B records polarization and spin closure: transverse basis, analyzer axis, helicity target, accepted/rejected capture channel, native capture measure, and no-longitudinal-mode status.
+
+Gate B entries are bookkeeping requirements until the transverse planar-pair ledger is derived. A reaction chapter may require helicity, polarization, or no-longitudinal-mode closure, but it should not treat the mode taxonomy itself as the proof.
 
 7. **Execute provenance-conserving relock**
 Update assembly graph by relocking existing substrate content.
@@ -76,6 +80,8 @@ Close event-level budgets:
 - $\sum p^\mu_{\mathrm{in}}=\sum p^\mu_{\mathrm{out}}$,
 - spin/angular-momentum ledger balance for emitted, absorbed, or converted vector modes,
 - provenance ledger balance across reactants, products, and recruited substrate content.
+
+The spin/angular-momentum line is a conservation requirement. Its channel-specific content must be supplied by the angular-momentum ledger, photon Gate B, the massive-vector corridor model, or the spin-statistics proof as appropriate.
 
 9. **Project back to observer-level outputs**
 Compute spectra, cross-sections, rates, and timing in standard variables.

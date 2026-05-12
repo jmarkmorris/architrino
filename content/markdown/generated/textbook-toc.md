@@ -483,6 +483,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
 - [Atomic and Nuclear Assemblies](../../scenes/nuclear/nuclear_atomic.json)
   - [Atomic Structure](../../scenes/nuclear/atomic_structure.json)
     - [Multi-Body Assembly Structure](../aaa/nuclear-atomic/atomic-structure.md?section=Multi-Body+Assembly+Structure)
+    - [Angular-Momentum Handoff](../aaa/nuclear-atomic/atomic-structure.md?section=Angular-Momentum+Handoff)
   - [Nucleon Structure](../../scenes/nuclear/nucleon_structure.json)
     - [Purpose](../aaa/nuclear-atomic/nucleon-structure.md?section=Purpose)
     - [Core Claim](../aaa/nuclear-atomic/nucleon-structure.md?section=Core+Claim)
@@ -512,6 +513,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
   - [Atom](../../scenes/nuclear/atom.json) _(diagram)_
   - [Atomic Spectra](../../scenes/nuclear/atomic_spectra.json)
     - [Atomic Orbitals as Lattice Resonances](../aaa/nuclear-atomic/atomic-spectra.md?section=Atomic+Orbitals+as+Lattice+Resonances)
+    - [Spin-Sensitive Spectral Targets](../aaa/nuclear-atomic/atomic-spectra.md?section=Spin-Sensitive+Spectral+Targets)
   - [Periodic Table](../../scenes/chemistry/periodic_table_scene.json) _(diagram)_
   - [Hyde Periodic Table](../../scenes/chemistry/hyde_periodic_table_scene.json) _(diagram)_
   - [Molecular Geometry](../../scenes/nuclear/molecular_geometry.json)

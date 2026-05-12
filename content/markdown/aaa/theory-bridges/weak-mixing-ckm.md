@@ -80,6 +80,8 @@ Left/right coupling note (SM statement): charged-current SU(2), and therefore CK
 Left/right coupling note ($\mathbb{A}\mathbb{A}\mathbb{A}$ geometric test): for LH helicity the weak-coupling triad should face forward (exposed), while for RH it should rotate into the wake/shield.
 Chiral Selection Mechanism ($\mathbb{A}\mathbb{A}\mathbb{A}$ hypothesis): for right-handed helicity, the weak-coupling triad is rotated into the particle’s own wake/slipstream. A charged $W$ corridor cannot dock onto a weak-coupling triad in that hidden coupling posture, so right-handed fermions are sterile to charged-current interactions.
 
+This left/right exposure criterion is a downstream consumer of [Angular Momentum and Spin](angular-momentum-and-spin.md). Until the spinor and helicity ledger is derived, the weak-sector model should treat helicity exposure as a validation target rather than as an independent explanation of handedness.
+
 Validation task: simulate exposure vs helicity to confirm or falsify this geometric criterion.
 
 ## Unified weak-sector closure route

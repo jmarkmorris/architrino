@@ -158,7 +158,7 @@ Use the same photon-channel event record here as in [Synchrotron Cascades](synch
 - photon output $E_\gamma$, direction, polarization basis, and local photon-channel speed $c_\gamma$;
 - residual medium excitation $\Delta E_{\mathrm{med}}$ and any non-radiative channel that receives sub-threshold energy.
 
-This record is a derivation target. It should recover standard $d\sigma/dk$, screening, form-factor, and emissivity limits before any Noether-Sea-dependent deviation is treated as physical.
+This record is a derivation target. It should recover standard $d\sigma/dk$, screening, form-factor, and emissivity limits before any Noether-Sea-dependent deviation is treated as physical. The polarization basis is a photon Gate B handoff from [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md) and [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md); this chapter records emission provenance, not photon spin closure.
 
 ## IR Regularization as a Stability Floor
 

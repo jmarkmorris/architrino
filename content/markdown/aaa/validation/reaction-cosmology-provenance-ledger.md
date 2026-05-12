@@ -60,7 +60,7 @@ The minimal useful first path is BBN photon loading: identify a source-zone radi
 
 Photon-channel records should be sorted into three gates before they are used in cosmology-facing arguments.
 
-The chapter-level source for the photon ontology and Gate A theorem scaffold is [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md#photon-closure-interface). This ledger records what a reaction or cosmology channel must carry forward from that scaffold before it uses photon propagation, polarization, pair production, or thermal radiation as settled input.
+The chapter-level source for the photon ontology and Gate A theorem scaffold is [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md#photon-closure-interface). This ledger records what a reaction or cosmology channel must carry forward from that scaffold before it uses photon propagation, polarization, pair production, or thermal radiation as settled input. Gate B is downstream of [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md); the fields below are acceptance records, not an independent derivation of photon spin or polarization statistics.
 
 | Gate | Claim bucket | What the ledger must track | Closure test |
 | --- | --- | --- | --- |

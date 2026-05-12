@@ -13,10 +13,10 @@
 
 1. `fundamental_angular_momentum_ledger` — Derive total angular-momentum conservation at the architrino / causal-wake level for a Noether core whose binary frequencies change under momentum transfer, including self-hit branches and action-functional self terms. Status: `next`. Depends on: none.
 2. `tri_binary_partition_rule` — Build the theorem-target equations that determine $\Delta I_{\text{inner}}$, $\Delta I_{\text{middle}}$, $\Delta I_{\text{outer}}$, and $\Delta I_{\text{wake}}$ for an accepted closed-cycle action transaction, including causal-wake angular momentum, root-ledger admissibility, phase-lock constraints, branch stability, and coupling geometry. Status: `pending`; theorem target scoped below. Depends on: `fundamental_angular_momentum_ledger`.
-3. `worked_three_layer_noether_transition` — Build an explicit symbolic ledger for an outer-coupled positive closed-cycle action transaction in a separated-scale Noether core, including middle $v=c_f$ hinge retuning, inner self-hit branch retuning, causal-wake terms, and the equations still needed for exact coefficients. Status: `drafted-symbolic`. Depends on: `fundamental_angular_momentum_ledger`, `tri_binary_partition_rule`.
-4. `photon_planar_pair_transverse_ledger` — Derive photon Gate B for the coaxial contra-rotating pro/anti planar pair: transverse projector, helicity $\pm1$, analyzer coupling, Malus' law, no physical longitudinal free mode, and no-signaling polarization statistics. Status: `pending`; Gate B closure tests scoped below. Depends on: `fundamental_angular_momentum_ledger`; external prerequisite: photon Gate A kinematics in [electroweak-bosons.md](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md).
+3. `worked_three_layer_noether_transition` — Build and generalize explicit outer-coupled positive closed-cycle action transactions in a separated-scale Noether core. The minimal four-substep branch is now solved; non-minimal branch coefficients still need derivation or simulation fits. Status: `solved-minimal`. Depends on: `fundamental_angular_momentum_ledger`, `tri_binary_partition_rule`.
+4. `photon_planar_pair_transverse_ledger` — Derive photon Gate B for the coaxial contra-rotating pro/anti planar pair: transverse projector, helicity $\pm1$, analyzer coupling, Malus' law, no physical longitudinal free mode, and no-signaling polarization statistics. Status: `capture-measure-scaffolded`; Gate B closure tests scoped below. Depends on: `fundamental_angular_momentum_ledger`; external prerequisite: photon Gate A kinematics in [electroweak-bosons.md](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md).
 5. `spinor_closure` — Connect the Noether-core angular-momentum ledger to the ordered-frame spinor closure target in [angular-momentum-and-spin.md](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md). Status: `pending`. Depends on: `tri_binary_partition_rule`, `worked_three_layer_noether_transition`.
-6. `measurement_response` — Derive how a spin-measurement apparatus couples to the full Noether-core angular-momentum ledger rather than to an abstract preassigned spin label. Status: `pending`. Depends on: `spinor_closure`.
+6. `measurement_response` — Derive how a spin-measurement apparatus couples to the full Noether-core angular-momentum ledger rather than to an abstract preassigned spin label. Status: `kernels-derived-reduced`; basin-measure and concrete simulation ingredients pending. Depends on: `spinor_closure`.
 7. `atomic_molecular_spin_revisit` — Revisit atomic and molecular spin once the quantum-level angular-momentum ledger is mature enough to distinguish internal rotational action, observer-level orbital quantum numbers, spin coupling, spin-orbit structure, hyperfine structure, molecular singlet/triplet states, and bonding/exclusion rules without importing them as unexplained quantum labels. Status: `pending`. Depends on: `spinor_closure`, `measurement_response`.
 8. `bell_rebuild` — Rebuild [bell-theorem.md](../../../content/markdown/aaa/theory-bridges/bell-theorem.md) from the completed angular-momentum, measurement-response, pair-provenance, and photon-polarization derivations. Status: `pending`. Depends on: `measurement_response`, `photon_planar_pair_transverse_ledger`, [quantum-closure bell gate](../quantum-closure/quantum-closure.md).
 
@@ -66,10 +66,10 @@ The corpus now has enough scaffolding to move this workstream from a broad "spin
 
 ### Thin Or Missing Coverage
 
-1. **The total angular-momentum functional has a bridge-level symbolic evaluation but not a solved Noether-core coefficient extraction.** The corpus has $\mathbf{L}_{\text{mech}}+\mathbf{L}_{\text{wake}}$ and a first worked symbolic transition in [angular-momentum-and-spin.md](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md), but the exact coefficients for changing $\omega_{\text{inner}},\omega_{\text{middle}},\omega_{\text{outer}}$ under an accepted action transaction remain open.
+1. **The total angular-momentum functional has a solved minimal branch but not a general coefficient law.** The corpus has $\mathbf{L}_{\text{mech}}+\mathbf{L}_{\text{wake}}$, a branch-resolved Noether-core scaffold, and a solved minimal four-substep transition in [angular-momentum-and-spin.md](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md). The exact coefficient law for arbitrary changes of $\omega_{\text{inner}},\omega_{\text{middle}},\omega_{\text{outer}}$ under an accepted action transaction remains open.
 2. **The partition rule is still bookkeeping, not mechanics.** The energy chapter's table and the angular-momentum bridge identify short aliases $\Delta I_{\text{out}}$, $\Delta I_{\text{mid}}$, $\Delta I_{\text{in}}$, and $\Delta I_{\text{wake}}$. These should now be normalized to the bridge variables $\Delta I_{\text{outer}}$, $\Delta I_{\text{middle}}$, $\Delta I_{\text{inner}}$, and $\Delta I_{\text{wake}}$, but the closure conditions that determine those quantities are not yet derived from conservation, root-ledger admissibility, phase-lock constraints, branch stability, or coupling geometry.
 3. **Spinor closure now has a target frame but lacks the lift proof.** The ordered Noether-core frame is defined below as a history-lifted triad of binary-plane normals and causal-root labels. The open burden is to prove or falsify the nontrivial $2\pi$ holonomy and $4\pi$ restoration.
-4. **Measurement response has a scaffold but not a derived kernel.** [angular-momentum-and-spin.md](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md) now contains a Stern-Gerlach-like apparatus model: apparatus potential-gradient geometry, finite interaction time, basin boundary, angular-momentum exchange, and wake / Noether-Sea recoil ledger. The quantitative response kernels $K_{\pm}$ and basin measures remain open derivation targets.
+4. **Measurement response now has derived reduced kernels but not a computed basin measure.** [angular-momentum-and-spin.md](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md) now contains a Stern-Gerlach-like apparatus model and the deterministic kernels $K_{\pm}^{\text{SG}}$ as pullbacks of the two record-forming basins. The open work is to compute the concrete separatrix, separatrix normal, apparatus angular impulse, preparation measure, and Bell pair-provenance measure from the Master Equation.
 5. **Weak chirality depends on unresolved spin/helicity geometry.** [weak-mixing-ckm.md](../../../content/markdown/aaa/theory-bridges/weak-mixing-ckm.md) proposes that left-handed helicity exposes the weak-coupling triad while right-handed helicity hides it. That is now a high-value test case for the angular-momentum ledger, not an independent weak-sector assumption.
 6. **Pauli / spin-statistics remains a geometry hypothesis.** [quantum-statistics.md](../../../content/markdown/aaa/quantum/quantum-statistics.md) gives a promising 3D-to-2D support distinction, but the exchange sign and exclusion rule still need the spinor and ordered-frame proof before they can become established closure.
 7. **Hadron spin budgets are downstream consumers.** [nucleon-structure.md](../../../content/markdown/aaa/nuclear-atomic/nucleon-structure.md), [gluons.md](../../../content/markdown/aaa/assemblies/bosons/gluons.md), and [mesons.md](../../../content/markdown/aaa/assemblies/mesons/mesons.md) already ask for quark-core, orbital, color-corridor, flux-network, rho/Delta spin-channel, and Pauli/color-sector accounting. These should remain downstream until the single-core ledger, partition rule, and ordered-frame spinor proof exist.
@@ -78,7 +78,7 @@ The corpus now has enough scaffolding to move this workstream from a broad "spin
 ### Claim Map
 
 - **Ontology:** angular momentum is not an added substance; it is organized motion plus active causal-wake history in the architrino / Noether-core substrate.
-- **Derivation / closure targets:** conserved $\mathbf{L}_{\text{tot}}$ for delayed dynamics, the tri-binary partition theorem for one-$h$ closed-cycle action transactions, ordered-frame $4\pi$ spinor closure, the photon planar-pair transverse ledger, measurement-response kernels, and Bell correlations.
+- **Derivation / closure targets:** conserved $\mathbf{L}_{\text{tot}}$ for delayed dynamics, the tri-binary partition theorem for one-$h$ closed-cycle action transactions, ordered-frame $4\pi$ spinor closure, the photon planar-pair transverse ledger, Stern-Gerlach basin-measure closure, and Bell correlations.
 - **Effective summaries:** standard $\mathbf{L}$, $\mathbf{S}$, $\mathbf{J}$, $h$, $\hbar$, helicity, spin labels, and Bell variables remain useful observer-level or bridge-layer notation.
 - **Speculative extensions:** weak-coupling-triad exposure by helicity, spin-statistics from 3D / 2D support transition, and Bell non-factorization from pair provenance plus contextual measurement coupling must stay marked as targets until the lower ledger is derived.
 
@@ -445,6 +445,150 @@ For a pre-transaction stable branch $B$, a candidate post-transaction branch $B'
 
 The theorem target is: solve these constraints over admissible post-branches $B'$. If one stable branch satisfies them, the partition is unique for the supplied coupling geometry. If several stable branches satisfy them, the partition is branch-dependent and the later measurement-response model must carry the branch-selection rule. If no stable branch satisfies them, the transaction is forbidden, reflected, or routed into wake exchange.
 
+## Result 2026-05-12: Solved Minimal Four-Substep Transition
+
+The bridge now contains one solved separated-scale transition rather than only a symbolic ledger. The solved branch is deliberately narrow: fixed projected normals, no transport remainder, no retained wake angular momentum after closure, one outer substep, one middle hinge substep, and two equal inner self-hit substeps. It is a branch certificate, not the general partition theorem.
+
+Let the common substep be $\iota$. The branch rule is
+
+$$
+\Delta I_{\text{outer}}=\iota,
+\qquad
+\Delta I_{\text{middle}}=\iota,
+\qquad
+\Delta I_{\text{inner}}=2\iota,
+\qquad
+\Delta I_{\text{wake}}=0.
+$$
+
+The accepted positive transaction fixes the scalar ledger:
+
+$$
+\iota+\iota+2\iota=\hbar,
+\qquad
+\iota=\frac{\hbar}{4}.
+$$
+
+The solved partition is therefore
+
+$$
+\boxed{
+\Delta I_{\text{outer}}=\frac{\hbar}{4},
+\qquad
+\Delta I_{\text{middle}}=\frac{\hbar}{4},
+\qquad
+\Delta I_{\text{inner}}=\frac{\hbar}{2},
+\qquad
+\Delta I_{\text{wake}}=0.
+}
+$$
+
+Using the linearized mechanical scaffold, the fixed-radius outer retune is
+
+$$
+\Delta R_O=0,
+\qquad
+\Delta\omega_O
+=
+\frac{\hbar}{8\mu_{\text{arch}}\left(R_O^-\right)^2},
+$$
+
+with admissibility condition
+
+$$
+R_O^-\left(
+\omega_O^-
++
+\frac{\hbar}{8\mu_{\text{arch}}\left(R_O^-\right)^2}
+\right)<c_f.
+$$
+
+The middle hinge remains on $R_M\omega_M=c_f$ to first order:
+
+$$
+\Delta R_M
+=
+\frac{\hbar}
+{8\mu_{\text{arch}}R_M^-\omega_M^-},
+\qquad
+\Delta\omega_M
+=
+-
+\frac{\hbar}
+{8\mu_{\text{arch}}\left(R_M^-\right)^2},
+$$
+
+so
+
+$$
+R_M^-\Delta\omega_M+\omega_M^-\Delta R_M=0.
+$$
+
+The fixed-radius inner two-substep retune is
+
+$$
+\Delta R_I=0,
+\qquad
+\Delta\omega_I
+=
+\frac{\hbar}
+{4\mu_{\text{arch}}\left(R_I^-\right)^2},
+$$
+
+with self-hit admissibility condition
+
+$$
+s_I^+
+=
+\frac{R_I^-\left(
+\omega_I^-
++
+\frac{\hbar}{4\mu_{\text{arch}}\left(R_I^-\right)^2}
+\right)}
+{c_f}
+>1,
+$$
+
+and self-delay condition
+
+$$
+\delta_{\text{self}}^+
+=
+2s_I^+\sin\!\left(\frac{\delta_{\text{self}}^+}{2}\right).
+$$
+
+On a raw simple-root separator chart, the two inner substeps correspond to the minimal even self-root jump
+
+$$
+\Delta N_{\text{self}}=+2,
+\qquad
+\Delta D=0,
+$$
+
+provided the active roots remain simple through the regularized transition.
+
+The energy condition is also explicit. In the first action-angle approximation with no retained wake energy and no residual root-energy term, the accepted source channel must have branch-local frequency
+
+$$
+\omega_{\text{tx}}
+=
+\omega_{\ast}
+\equiv
+\frac{\omega_O^{\ast}+\omega_M^{\ast}+2\omega_I^{\ast}}{4}.
+$$
+
+If
+
+$$
+\Delta E_{\text{mismatch}}
+=
+\left(\omega_{\text{tx}}-\omega_{\ast}\right)\hbar
+$$
+
+does not vanish, the clean four-substep branch is not energy-closed. For $\omega_{\text{tx}}<\omega_{\ast}$, a low-frequency outer hit cannot produce this positive inner self-hit retune without drawing energy from a root reconfiguration or the wake/internal ledger. For $\omega_{\text{tx}}>\omega_{\ast}$, the surplus must be routed into wake recoil, transport, or another admissible branch.
+
+This result is useful because it gives the first explicit failure gate as well as the first explicit success branch. The transition is allowed in the clean minimal chart only when the angular ledger, speed-regime inequalities, self-root parity, self-delay equation, and energy-frequency condition all hold.
+
 ## Result 2026-05-12: Ordered Noether-Core Frame For Spinor Closure
 
 This section defines the ordered-frame target only. It does not prove spin-$\tfrac{1}{2}$ behavior. Use it as the spinor closure target until the holonomy calculation is derived from the delayed dynamics.
@@ -524,6 +668,18 @@ These documents should inherit the single-core angular-momentum ledger and order
 3. **[mesons.md](../../../content/markdown/aaa/assemblies/mesons/mesons.md).** The pion boson/Pauli statement, rho spin-1 alignment shorthand, Delta spin-$\tfrac{3}{2}$ and parallel-spin shorthand, Delta Pauli/color-sector explanation, dense-matter packing argument, excitation ladder, lifetime notes, and $J^P$ summary are all hadron-level validation surfaces. They should not be used as independent support for spin-statistics or single-core spinor closure.
 4. **[quantum-statistics.md](../../../content/markdown/aaa/quantum/quantum-statistics.md).** The 3D exclusion-envelope account, the 2D coherent-channel account, the fermionic exchange sign, Pauli exclusion, and bosonic symmetric occupation remain a spin-statistics proof program. Volume exclusion alone is not enough until the ordered-frame spinor proof supplies the exchange phase.
 5. **[angular-momentum-and-spin.md](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md).** The bridge is the notation and mapping layer. It should keep downstream spin labels, helicity labels, and orbital labels classified as effective summaries or closure targets until this priority supplies the proof.
+6. **[atomic-structure.md](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md).** Atomic orbitals, exclusion-volume packing, Pauli filling, spin-orbit coupling, and hyperfine structure should be treated as atomic validation targets. They inherit observer-level orbital quantum number recovery, ordered-core spinor closure, and measurement-response closure rather than defining the angular-momentum ledger.
+7. **[atomic-spectra.md](../../../content/markdown/aaa/nuclear-atomic/atomic-spectra.md).** Rydberg-scale spectra can remain a medium-sensitive resonance target, but fine structure, spin-orbit splitting, Zeeman/Stark spin response, and hyperfine splitting depend on the unresolved angular-momentum and measurement-response proofs.
+8. **[molecular-geometry.md](../../../content/markdown/aaa/nuclear-atomic/molecular-geometry.md).** Bond angles, exclusion costs, phase compatibility, singlet/triplet chemistry labels, and bonding selection rules should inherit atomic spin/statistics closure. A corridor-plus-exclusion functional is not by itself a spin-statistics proof.
+9. **[electroweak-bosons.md](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md).** Photon Gate B, W/Z spin-1 vector-channel language, longitudinal/mixed-axis separation, and Higgs scalar comparison are vector-mode consumers of this workstream. Gate B supplies the photon-specific transverse ledger only after Gate A kinematics and the fundamental angular-momentum ledger are available.
+10. **[mode-taxonomy.md](../../../content/markdown/aaa/interactions/mode-taxonomy.md).** Reaction-level planar-mode and corridor-mode language may record which ledger must close, but it should not make reaction taxonomy appear to derive photon polarization, vector spin, or Pauli/statistics by itself.
+11. **[particle-masses.md](../../../content/markdown/aaa/assemblies/particle-masses.md).** The mass-channel split between massless photon, massive W/Z corridor, and Higgs scalar mode depends on Gate A/B and vector-mode closure. It should stay a category discipline, not a completed spin/helicity derivation.
+12. **[reaction-cosmology-provenance-ledger.md](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).** Photon-output, polarization, CMB, and cascade records consume Gate B as an acceptance filter. They should record the transverse-ledger fields needed by radiation and cosmology arguments without treating that record as a derivation of photon spin or polarization statistics.
+13. **[bremsstrahlung.md](../../../content/markdown/aaa/reactions/bremsstrahlung.md)** and **[synchrotron.md](../../../content/markdown/aaa/reactions/synchrotron.md).** Emitted photon energy, direction, polarization basis, synchrotron polarization limits, and pair-production handoffs are photon-channel validation surfaces. The emission chapters own source and provenance bookkeeping; photon polarization and helicity closure still belongs to Gate B and the shared angular-momentum ledger.
+14. **[weak-mixing-ckm.md](../../../content/markdown/aaa/theory-bridges/weak-mixing-ckm.md).** The left/right helicity exposure criterion for weak-coupling-triad docking depends on the unresolved spin/helicity geometry. It is a high-value vector/fermion test case, not an independent weak-sector proof of handedness.
+15. **[architrino-si-base-units.md](../../../content/markdown/aaa/validation/architrino-si-base-units.md).** The Cesium hyperfine clock target depends on atomic spin-orbit and nuclear-spin coupling. It can remain an SI validation target, but it inherits atomic angular-momentum, nuclear spin, and measurement-response closure.
+16. **[quantum-summary.md](../../../content/markdown/aaa/quantum/quantum-summary.md)** and **[constraint-ledger.md](../../../content/markdown/aaa/validation/constraint-ledger.md).** These are summary ledgers. Their Gate B and spin-statistics rows should point to the active proof programs and avoid implying closure by summarization.
+17. **[horizon-chirality.md](../../../content/markdown/aaa/spacetime/horizon-chirality.md).** Boundary-helicity and axial left/right language is already marked as proxy language. It should remain a geometric hypothesis until the single-core angular-momentum and spinor proof shows how observer-level helicity descends from the delayed ledger.
 
 ### Op-Discussion Hypothesis: Component-Resolved Causal Writhe Bridge
 
@@ -570,10 +726,10 @@ Decision question for Op: Should the next proof pass define the bridge object as
 
 1. **Promote the delayed total-angular-momentum scaffold into a validated functional.** The 2026-05-12 scaffold above evaluates $\mathbf{L}_{\text{tot}}=\mathbf{L}_{\text{mech}}+\mathbf{L}_{\text{wake}}$ in three-layer Noether-core variables. The remaining work is to derive the wake term from the regularized nonlocal action, verify the branch sums numerically, and decide when the separated-scale reduction may drop $\mathbf L_{\text{tr}}$.
 2. **Turn the one-$h$ bookkeeping table into a partition theorem target.** Use the constrained solve above to determine $\Delta I_{\text{inner}}$, $\Delta I_{\text{middle}}$, $\Delta I_{\text{outer}}$, and $\Delta I_{\text{wake}}$ from conservation, root-ledger admissibility, phase-lock constraints, branch stability, and coupling geometry, instead of assigning the split by narrative role.
-3. **Complete the explicit worked transition.** Use the symbolic separated-scale transition now drafted in [angular-momentum-and-spin.md](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md) as the target branch, then solve or simulate the coefficient equations that determine the middle-hinge retune, inner self-hit branch update, wake exchange, and final partition.
+3. **Generalize the solved worked transition.** Use the solved minimal four-substep branch in [angular-momentum-and-spin.md](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md) as the first branch certificate, then derive or simulate the coefficient equations for non-minimal middle-hinge retunes, inner self-hit branch updates, wake exchange, and final partitions.
 4. **Prove or falsify the ordered-frame spinor lift.** Use the ordered-frame definition above to test whether causal-root history supplies a nontrivial $2\pi$ holonomy and $4\pi$ restoration, or whether the Noether-core frame closes as an ordinary $SO(3)$ object.
 5. **Use causal writhe as the chirality bridge candidate.** Test whether $Wr_c$ or a multi-component extension can distinguish pro/anti ordered cores, horizon planar signs, and weak left/right exposure without collapsing those labels prematurely.
-6. **Derive the Stern-Gerlach-like measurement-response kernels.** Starting from the scaffold in [angular-momentum-and-spin.md](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md), derive $K_{\pm}$ from the apparatus potential-gradient geometry, finite interaction time, basin boundary, angular-momentum exchange, and wake / Noether-Sea recoil ledger.
+6. **Compute the Stern-Gerlach-like basin-measure law.** Starting from the kernels $K_{\pm}^{\text{SG}}$ in [angular-momentum-and-spin.md](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md), compute the concrete separatrix $\Sigma_{\hat{\mathbf m}}$, separatrix normal $\mathcal{N}_{\hat{\mathbf m}}$, apparatus angular impulse $\dot{\mathbf J}_{C}^{\text{app}}$, preparation measure $\mu_\alpha$, and pair-provenance measure needed for the half-angle law and Bell test.
 7. **Route photon helicity through the same ledger.** Derive the planar-pair transverse ledger and analyzer coupling needed for helicity $\pm1$, Malus' law, no longitudinal free photon mode, and no-signaling in polarization tests.
 8. **Keep Bell as the final hard gate.** After the response kernel exists, revisit Bell with the explicit pair-provenance ledger and test whether the resulting kernel reaches $E(\hat{m}_A,\hat{m}_B)=-\cos\theta_{AB}$ while preserving no-signaling and measurement independence.
 9. **Delay hadron and Pauli claims until the core proof is reusable.** Nucleon spin decomposition, gluon spin accounting, meson and Delta spin/parity assignments, Delta Pauli/color-sector explanations, dense-hadron packing claims, and spin-statistics should inherit the single-core and vector-channel results instead of inventing separate explanations.
@@ -609,11 +765,18 @@ This workstream owns photon Gate B only. Gate A remains the kinematics and optic
    $$
    \mathcal A_{\text{pass}}\propto\hat{\mathbf e}_\gamma\cdot\hat{\mathbf a}=\cos\theta.
    $$
-4. **Malus / squared-amplitude rule.** Derive, rather than assume,
+4. **Malus / squared-amplitude rule.** The native capture-measure scaffold is now:
    $$
-   P_{\text{pass}}=|\mathcal A_{\text{pass}}|^2=\cos^2\theta,
+   \mathcal{I}_{\perp}=h_{ab}\,\overline{a_\perp^a}a_\perp^b,
+   \qquad
+   A^a{}_{b}=\hat a^a\hat a_b,
+   \qquad
+   \mu_{\text{pass}}
+   =
+   \frac{\overline{a_\perp^a}\,\hat a_a\hat a_b\,a_\perp^b}
+   {\mathcal{I}_{\perp}}.
    $$
-   with the orthogonal component routed into a local reflected, absorbed, scattered, or converted ledger update.
+   For linear input $a_\perp^a=\hat e_\gamma^a$, this gives $\mu_{\text{pass}}=\cos^2\theta$ and $\mu_{\text{rej}}=\sin^2\theta$. The remaining proof obligation is to derive the projector $A^a{}_{b}$ and the invariant analyzer microstate measure from material ledger dynamics, not to import them as an observer-level postulate.
 5. **No longitudinal free photon mode.** A longitudinal or mixed-axis response must be classified as a massive $W/Z$-like corridor, material recoupling, gauge redundancy, or Gate A failure mode. It must not appear as a third free photon polarization.
 6. **Single-photon statistics.** Repeated single-photon analyzer tests must converge to the same $\cos^2\theta$ pass frequency while each event closes energy, momentum, angular momentum, and local apparatus ledger balance.
 7. **No-signaling in polarization tests.** For entangled photon preparations and analyzer settings $\alpha,\beta$, recover
@@ -655,13 +818,11 @@ Once angular momentum and spin are understood at the Noether-core level, [bell-t
 
 - Validate the derivation scaffold for the total angular-momentum functional in delayed dynamics.
 - Promote the one-$h$ action table into the tri-binary partition theorem target by carrying the normalized variables $\Delta I_{\text{inner}}$, $\Delta I_{\text{middle}}$, $\Delta I_{\text{outer}}$, and $\Delta I_{\text{wake}}$ through conservation, root-ledger, phase-lock, stability, and coupling-geometry constraints.
-- Extend the symbolic Noether-core worked example into a solved branch: angular-momentum conservation during a three-layer frequency shift with explicit coefficient values or simulation-extracted fits.
+- Generalize the solved minimal four-substep branch into a family of admissible branches with coefficient values derived from the master equation or extracted from simulations.
 - Add a self-hit subsection explaining how inner-binary feedback changes partitioning while preserving the total ledger.
-- Add a photon Gate B subsection connecting the planar-pair transverse ledger to helicity $\pm1$, analyzer coupling, Malus' law, no longitudinal free photon mode, and no-signaling polarization tests.
-- Derive the measurement-response kernels $K_{\pm}$ from the Stern-Gerlach-like apparatus scaffold, keeping the basin measure and Bell response function as closure targets until calculated.
-- Add a Bell handoff subsection that states exactly what must be derived before making claims about CHSH / Tsirelson closure.
-- Add a hadron and statistics downstream handoff note covering nucleon spin decomposition, gluon spin accounting, meson rho/Delta spin assignments, Delta Pauli/color-sector arguments, dense-hadron packing, and spin-statistics.
-- Add a downstream handoff note for atomic and molecular spin, making clear that hydrogen, spin-orbit, hyperfine, singlet/triplet, and bonding/exclusion cases are later validation targets rather than foundations for the angular-momentum ledger.
+- Complete photon Gate B by deriving the analyzer projector, material microstate measure, and no-signaling polarization statistics from the planar-pair ledger.
+- Compute the Stern-Gerlach basin-measure law from the derived kernels $K_{\pm}^{\text{SG}}$, keeping the Bell response function as a closure target until the pair-provenance measure is calculated.
+- Rebuild the Bell account from the completed angular-momentum ledger, measurement-response kernel, pair-provenance measure, and no-signaling proof.
 
 ## Related Priorities
 
@@ -689,6 +850,15 @@ Once angular momentum and spin are understood at the Noether-core level, [bell-t
 - [gluons](../../../content/markdown/aaa/assemblies/bosons/gluons.md)
 - [mesons](../../../content/markdown/aaa/assemblies/mesons/mesons.md)
 - [quantum-statistics](../../../content/markdown/aaa/quantum/quantum-statistics.md)
+- [electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md)
+- [mode-taxonomy](../../../content/markdown/aaa/interactions/mode-taxonomy.md)
+- [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md)
+- [reaction-cosmology-provenance-ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md)
+- [bremsstrahlung](../../../content/markdown/aaa/reactions/bremsstrahlung.md)
+- [synchrotron](../../../content/markdown/aaa/reactions/synchrotron.md)
+- [architrino-si-base-units](../../../content/markdown/aaa/validation/architrino-si-base-units.md)
+- [quantum-summary](../../../content/markdown/aaa/quantum/quantum-summary.md)
+- [constraint-ledger](../../../content/markdown/aaa/validation/constraint-ledger.md)
 - [atomic-structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md)
 - [atomic-spectra](../../../content/markdown/aaa/nuclear-atomic/atomic-spectra.md)
 - [molecular-geometry](../../../content/markdown/aaa/nuclear-atomic/molecular-geometry.md)

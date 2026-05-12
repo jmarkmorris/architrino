@@ -1589,6 +1589,11 @@
       "id": "substance_structure_potential",
       "name": "Substance, Structure, and the Plenum of Potential",
       "path": "content/scenes/philosophy_history/substance_structure_potential.json"
+    },
+    {
+      "id": "archie__textbook_pdf_snapshots",
+      "name": "Textbook PDF Snapshots",
+      "path": "content/scenes/archie/textbook_pdf_snapshots.json"
     }
   ]
 }
