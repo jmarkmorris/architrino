@@ -16,7 +16,7 @@ Translate mathematical structures and simulation results into a **clear picture 
 ## Current Theory Alignment
 
 - Treat `foundations/ontology.md` and `dynamics/master-equation.md` as canonical for ontology and dynamics language.
-- Use `cosmology/cosmology-ontology.md` for the fixed-void + effective-observer dual-description stance.
+- Use `foundations/detecting-the-absolute-frame.md`, `foundations/bootstrapping-the-absolute-frame.md`, and `cosmology/cosmology-ontology.md` for the fixed-void + effective-observer dual-description stance.
 - Keep philosophical claims ledger-aware via `validation/parameter-ledger.md`, `validation/constraint-ledger.md`, and `validation/failure-criteria.md`.
 - Enforce terminology from current docs: path history/causal wakes, deterministic multistability, and explicit $\mathbb{U}_{\text{now}}$ vs observer-level descriptions.
 
@@ -88,7 +88,7 @@ Clarify the **ontological status of spacetime**:
 **In the Effective Theory:**
 - **Emergent metric** $g_{\mu\nu}(x)$ from Noether-Sea assemblies.
 - **Curvature**: Is it:
-  - A real physical feature of tri-binary spacetime assembly density gradients,
+  - A real physical feature of Noether-Sea density gradients,
   - A convenient mathematical description,
   - Or an operational artifact of how assembly-clocks measure intervals?
 
@@ -123,7 +123,7 @@ Formulate a **precise, defensible concept of absolute time**:
 **Defense Against Relativistic Objections:**
 
 *"Special relativity disproved absolute time."*
-- **Response**: SR is an effective theory valid when Noether-Sea gradients are negligible and velocities are well below $c_f$. Absolute time is the substrate; Lorentz symmetry is emergent.
+- **Response**: SR is an effective theory recovered when Noether-Sea gradients are negligible, moving-assembly deformation and clock/ruler retuning close correctly, and preferred-frame leakage is below experimental bounds. Absolute time is the substrate; Lorentz symmetry is a theorem target.
 - **Analogy**: Sound waves in air obey approximate Galilean relativity at low Mach numbers, but air has a rest frame.
 
 *"How can you have absolute simultaneity and experimental Lorentz invariance?"*
@@ -162,7 +162,7 @@ Provide a **conceptual explanation** of how Lorentz invariance arises as an effe
 Position the model relative to **de Broglie-Bohm theory**:
 
 **What Plays the Role of the "Wave"?**
-- **Hypothesis**: The **outgoing potential field** from an assembly (or ensemble of architrinos) acts as a pilot wave.
+- **Hypothesis**: The outgoing causal wake structure from an assembly (or ensemble of architrinos) supplies the substrate-level guidance object that can appear as a wave at the effective level.
 - **Self-hit dynamics** and delayed interactions create **non-Markovian memory**, producing wave-like interference and guidance effects.
 
 **What Is Guided?**
@@ -189,12 +189,12 @@ Provide **mechanistic interpretations** grounded in architrino dynamics:
 
 **Superposition:**
 - **Standard QM**: $\psi = \alpha\psi_1 + \beta\psi_2$ (state in two "places" at once).
-- **Architrino interpretation**: The assembly is always in **one definite configuration** of architrinos at any absolute time $t$, but the **outgoing potential field it generates** has structure reflecting multiple paths (due to overlapping potentials from past trajectories or from an ensemble).
-- The "superposition" is in the **potential field structure** based on architrino path history, not in the architrino's t=now location.
+- **Architrino interpretation**: The assembly is always in **one definite configuration** of architrinos at any absolute time $t$, but the **causal wake structure it generates** can reflect multiple paths through overlapping contributions from past trajectories or from an ensemble.
+- The "superposition" is in the **causal-wake structure** based on architrino path history, not in the architrino's t=now location.
 - Measurement/interaction: Disruption of the potential structure -> definite outcome selected by deterministic dynamics, with **meta-stable branching** where multiple attractors are available.
 
 **Interference:**
-- **Double-slit**: Tri-binary spacetime is present everywhere and particle movement creates a pilot wave because v < c_f.  The **collective potential field** from the assembly passes through both, creating a pilot-wave-like guiding structure for subsequent particles.
+- **Double-slit**: The Noether Sea supplies the ambient substrate contents, and particle movement can create a pilot-wave-like causal-wake structure when the relevant motion remains below the channel speed. The **collective causal wake** from the assembly passes through both paths, creating a guiding structure for subsequent particles.
 - **Self-hit memory**: If assembly speed approaches $c_f$, outgoing potential "catches up" to the assembly -> enhanced self-interaction -> interference effects amplified.
 
 **Entanglement:**

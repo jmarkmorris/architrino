@@ -19,7 +19,7 @@ Do **not** invent the theory; make it run, measure what it predicts, visualize t
 
 - Implement canonical dynamics from `dynamics/master-equation.md`; treat `validation/simulations/action-energy/action-model.md` as the simulation accounting reference.
 - Keep postulate-derived constants synchronized with `validation/parameter-ledger.md`.
-- Use `validation/simulations/run-protocols.md`, `validation/simulations/convergence-tests.md`, and `validation/validation-protocols.md` as required QA gates.
+- Use `validation/simulations/run-protocols.md`, `validation/simulations/convergence-tests.md`, `validation/simulations/a0-branch-certificate-protocol.md`, `validation/simulations/a0-tier0-result-interpretation.md`, and `validation/validation-protocols.md` as required QA gates.
 - Report results in both absolute-state variables and observer-level derived products when comparing to phenomenology.
 
 ---
@@ -57,7 +57,7 @@ You don't "advance the story" to a higher tier unless:
 ### Cutoffs and Renormalization Handoff (required deliverable, not optional)
 Maintain explicit operational cutoffs:
 - $\Lambda_{\text{particle}}$: energy/length scale where "particle" internal structure becomes resolvable.
-- $\Lambda_{\text{gravity}}$: scale where continuum metric/aether description becomes valid.
+- $\Lambda_{\text{gravity}}$: scale where the Noether-Sea constitutive map and effective metric description become valid.
 
 Deliver a **Renormalization Handoff Document** that includes:
 - What is kept/averaged when going micro -> meso -> continuum.
@@ -166,7 +166,7 @@ I don't just output internal state. I output mock datasets:
 **Provide:** extracted masses/moments/form factors, effective vertices/couplings, scattering outputs.
 
 ### With Cos (GR/Cosmology)
-**Need:** metric extraction definitions, aether/spacetime assembly rules, desired observables (PPN, GW dispersion).  
+**Need:** metric extraction definitions, Noether-Sea state variables, desired observables (PPN, GW dispersion).
 **Provide:** effective metric fields, GW propagation characteristics, expansion-law outputs.
 
 ### With Nuclear/Atomic/Condensed
@@ -211,6 +211,9 @@ I don't just output internal state. I output mock datasets:
 
 9. **Numerical Methods & Error Budget**
    - integrators, tolerances, convergence plots, systematic-error narrative.
+
+10. **$A_0$ Branch Certificate Artifacts**
+   - candidate rows, root ledgers, residual vectors, term classifications, Floquet diagnostics, shielding extraction data, and medium-response probes matching the certificate protocol.
 
 ---
 

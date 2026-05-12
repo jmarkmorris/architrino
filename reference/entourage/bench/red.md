@@ -27,7 +27,7 @@ Maintain an **active, living matrix** (not a passive list) tracking the applicab
 | **Spin-Statistics** | Relativistic QFT in flat spacetime | Emergent from ellipsoidal/planar geometry | **Must Derive** | Geometric proof: ellipsoidal -> Fermi-Dirac, planar -> Bose-Einstein | 6 months |
 | **Haag's Theorem** | QFT interaction picture well-defined | Emergent QFT | **May Not Apply** | Identify effective theory regime; show interaction picture is approximate | 12 months |
 | **Goldstone's Theorem** | Continuous symmetry breaking | Higgs mechanism (SU(2)xU(1) -> $U(1)_{EM}$) | **Must Apply** | Show three Goldstone modes eaten by W+/-, Z or identify them as physical states | 6 months |
-| **Positive Energy Conditions** | GR weak/null/dominant energy | Emergent metric from aether | **Must Check** | Verify stress-energy tensor satisfies WEC/NEC/DEC in all regimes | 9 months |
+| **Positive Energy Conditions** | GR weak/null/dominant energy | Emergent metric from Noether-Sea constitutive response | **Must Check** | Verify stress-energy tensor satisfies WEC/NEC/DEC in all regimes | 9 months |
 
 **Protocol:**
 - **Do not invoke** theorems whose hypotheses are violated by the substrate (absolute time, Euclidean void, discrete architrinos).
@@ -65,7 +65,7 @@ If a critical loophole proof is not completed within the deadline, **escalate to
 
 Maintain **strict categorization and counting** of all parameters:
 
-Use `foundations/parameter-ledger.md` as the canonical list; flag any new parameter until it is placed there with category and provenance.
+Use `validation/parameter-ledger.md` as the canonical list; flag any new parameter until it is placed there with category and provenance.
 
 **Category A (Fundamental Postulates):**
 - Architrino charge magnitude $|e/6|$ (definition, not derived)
@@ -77,7 +77,7 @@ Use `foundations/parameter-ledger.md` as the canonical list; flag any new parame
 **Category B (Scale Setters / Emergent Structures):**
 - Overall coupling strength $\lambda$ (sets energy/distance scales)
 - Tri-binary radius ratios ($r_{inner} : r_{mid} : r_{outer}$)
-- Vacuum/spacetime-aether assembly density $\rho_{\text{vac}}$
+- Noether-core density normalization $\rho_{\text{core},0}$ and state variables such as $n(\mathbf{x},t)$ and $\chi_{\text{sea}}(\mathbf{x},t)$
 - Self-hit memory depth or decay timescale (if computational approximation)
 
 **Category C (Derived from Micro-Dynamics / Simulations):**
@@ -445,12 +445,12 @@ Maintain **ranked list** of 5-10 **most decisive tests** (updated quarterly):
 **G.3 To General Relativist & Cosmologist**
 
 - **"Absolute time + observed Lorentz: show the suppression."**
-  - Calculate **expected ether wind** at Earth's velocity (~370 km/s in CMB frame)
-  - Show **suppression mechanism** (aether density, shielding, etc.) reduces it **below $10^{-17}$** bounds
+  - Calculate expected preferred-frame leakage at Earth's velocity (~370 km/s in the CMB frame)
+  - Show the moving-assembly deformation, clock/ruler retuning, Noether-Sea dressing, and shielding mechanism that reduces it **below $10^{-17}$** bounds
   - Identify **energy/density scale** where suppression breaks down
 
 - **"Vacuum energy catastrophe: solve it."**
-  - Calculate **energy density** of spacetime assemblies ($\rho_{\text{vac}}$)
+  - Calculate the Noether-Sea energy-density ledger and the observer-level contribution to $\Lambda_{\rm eff}$
   - Show why it **doesn't gravitate** as $\rho_\Lambda \sim (100 \text{ GeV})^4$
   - **Quantify:** If fine-tuned, how much? If structural mechanism, what is it?
 
@@ -465,5 +465,5 @@ Maintain **ranked list** of 5-10 **most decisive tests** (updated quarterly):
   - Not just "assemblies can't overlap"--show this produces **correct Fermi pressure $P \propto n^{5/3}$**
 # Foundational Reference
 - Use `foundations/ontology.md` to ground red-team critiques: absolute timespace + architrino ontology define what deviations (e.g., metric choices, emergent fields) are unacceptable.
-- The `foundations/master-equation.md` Master Equation enforces the delayed path-history interaction law; red-team checks must respect wake-based superposition and causal wake surfaces rather than ad hoc instantaneous forces.
-- Consult `foundations/parameter-ledger.md` for parameter limits (A/B categories) before flagging fine-tuning or tuning claims--the ledger is the canonical list against which naturalness critiques are measured.
+- The `dynamics/master-equation.md` Master Equation enforces the delayed path-history interaction law; red-team checks must respect wake-based superposition and causal wake surfaces rather than ad hoc instantaneous forces.
+- Consult `validation/parameter-ledger.md` for parameter classes before flagging fine-tuning or tuning claims--the ledger is the canonical list against which naturalness critiques are measured.

@@ -20,7 +20,7 @@ Mission: rebuild the **Periodic Table**, derive **nuclear binding**, and establi
 - Frame macroscopic observables as emergent readouts from absolute-time evolution, projected to effective observer variables where needed.
 
 **Matter vs. Noether-Sea Distinction**
-- **Noether Sea**: The ambient substrate contents composed of neutral tri-binary assemblies (hypothesized **2 pro + 2 anti** Helium-like coupling).
+- **Noether Sea**: The ambient substrate contents composed of neutral Noether-core assemblies; the hypothesized **2 pro + 2 anti** Helium-like coupling remains a mechanism target until derived.
 - **Matter**: Localized, energetic excitations (quarks, leptons) composed of single or coupled tri-binary assemblies with specific axial-architrino structure.
 
 **Nucleon and Nuclear Coupling**
@@ -52,9 +52,9 @@ Mission: rebuild the **Periodic Table**, derive **nuclear binding**, and establi
 
 Given **everything** is architrino assemblies, consider dynamics of tri-binaries, axial architrinos, photons, neutrinos, spacetime assemblies, and incoming causal wakes as a single coupled system—this framework explains Atomic, Nuclear & Condensed Matter Physics. For the "**Valley of Stability**" in strong gradients: as spacetime assembly energy increases, low/medium orbit radii shrink and the exclusion surface becomes more oblate; equatorial orbit stays near-circular while meridional planes become elliptical and the axis precesses toward the gravitating center (idealized, relative frame).
 
-**Nuclear Synthesis and Decay**
+**Nuclear Synthesis and Reactions**
 - Provide cross-sections for fusion/fission as topological assembly reconfigurations.
-- Model radioactive decay as stability failures in complex multi-assembly systems.
+- Model radioactive reaction channels as stability failures, dissociations, or reconfigurations in complex multi-assembly systems.
 
 ---
 
@@ -108,7 +108,7 @@ Given **everything** is architrino assemblies, consider dynamics of tri-binaries
 - **Hydrogen Spectrum**: Reproduce 1s energy and Lyman series from assembly dynamics.
 - **Water Geometry**: Derive the $104.5^\circ$ bond angle from neutral-axis geometry.
 
-**Tier 3: Precision and Predicition**
+**Tier 3: Precision and Prediction**
 - **Neutron Star Mass**: Match observed maximum masses ($\sim 2.0 M_{\odot}$) using the curvature-limit EoS.
 - **Anomaly Resolution**: Explain the proton radius puzzle or $g-2$ as a consequence of Noether-Sea assembly coupling.
 
