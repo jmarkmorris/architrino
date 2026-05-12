@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 463,
-      "edges": 1217,
-      "scenes": 317,
+      "nodes": 465,
+      "edges": 1219,
+      "scenes": 318,
       "markdownIndexes": 0,
-      "markdownDocs": 146,
+      "markdownDocs": 147,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2051,6 +2051,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "substance_structure_potential",
+      "name": "Substance, Structure, and the Plenum of Potential",
+      "path": "content/scenes/philosophy_history/substance_structure_potential.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/markdown/aaa/archie/about-the-webapp.md",
       "name": "About the Webapp",
       "path": "content/markdown/aaa/archie/about-the-webapp.md",
@@ -2474,6 +2480,12 @@
       "id": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
       "name": "Major Religious Cosmologies and Foundational Ontologies",
       "path": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+      "name": "Substance, Structure, and the Plenum of Potential",
+      "path": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -4918,6 +4930,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/philosophy_history/substance_structure_potential.json",
+      "nodeType": "scene",
+      "id": "substance_structure_potential",
+      "name": "Substance, Structure, and the Plenum of Potential",
+      "path": "content/scenes/philosophy_history/substance_structure_potential.json",
+      "searchTarget": "content/scenes/philosophy_history/substance_structure_potential.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/philosophy_history/theory_differentials.json",
       "nodeType": "scene",
       "id": "theory_differentials",
@@ -6418,6 +6439,15 @@
       "name": "Major Religious Cosmologies and Foundational Ontologies",
       "path": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+      "name": "Substance, Structure, and the Plenum of Potential",
+      "path": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
       "implicit": false
     },
     {
@@ -10462,7 +10492,7 @@
       "to": "scene:content/scenes/philosophy_history/agency_and_internal_causation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -10476,21 +10506,21 @@
       "to": "scene:content/scenes/philosophy_history/historical_context_missed_opportunities.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/information_computation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -10504,7 +10534,14 @@
       "to": "scene:content/scenes/philosophy_history/religious_ontologies.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/substance_structure_potential.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -11771,6 +11808,13 @@
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/religious-ontologies.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/religious_ontologies.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/substance_structure_potential.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/substance_structure_potential.json",
       "field": "scene.source.path"
     },
     {

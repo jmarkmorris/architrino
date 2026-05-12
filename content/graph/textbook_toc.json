@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 151,
-      "sections": 1081
+      "entries": 152,
+      "sections": 1089
     }
   },
   "tocRoot": {
@@ -746,10 +746,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Step 4: Resolving Handedness (Chirality Convention)",
+                "title": "Step 4: Resolving Handedness (Parity/Chirality Convention)",
                 "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-                "markdownSection": "Step 4: Resolving Handedness (Chirality Convention)",
-                "sectionKey": "step 4 resolving handedness chirality convention",
+                "markdownSection": "Step 4: Resolving Handedness (Parity/Chirality Convention)",
+                "sectionKey": "step 4 resolving handedness parity chirality convention",
                 "headingLevel": 2
               },
               {
@@ -9315,6 +9315,80 @@
                     "headingLevel": 3
                   }
                 ]
+              }
+            ]
+          },
+          {
+            "id": "substance_structure_potential",
+            "title": "Substance, Structure, and the Plenum of Potential",
+            "kind": "markdown-split",
+            "sceneType": "Scene-Markdown-Split",
+            "scenePath": "content/scenes/philosophy_history/substance_structure_potential.json",
+            "markdownPath": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Overview",
+                "markdownPath": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+                "markdownSection": "Overview",
+                "sectionKey": "overview",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Ontological Discipline",
+                "markdownPath": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+                "markdownSection": "Ontological Discipline",
+                "sectionKey": "ontological discipline",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Matter / Material",
+                "markdownPath": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+                "markdownSection": "Matter and Material",
+                "sectionKey": "matter and material",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Wake as Structure",
+                "markdownPath": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+                "markdownSection": "Wake as Structure",
+                "sectionKey": "wake as structure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Euclidean Void",
+                "markdownPath": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+                "markdownSection": "The Euclidean Void",
+                "sectionKey": "the euclidean void",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Plenum of Potential",
+                "markdownPath": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+                "markdownSection": "The Plenum of Potential",
+                "sectionKey": "the plenum of potential",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Vacuum Language",
+                "markdownPath": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+                "markdownSection": "Relation to Modern Vacuum Language",
+                "sectionKey": "relation to modern vacuum language",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Methodological Use",
+                "markdownPath": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+                "markdownSection": "Methodological Use",
+                "sectionKey": "methodological use",
+                "headingLevel": 2
               }
             ]
           },

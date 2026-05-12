@@ -404,7 +404,7 @@ Quantum Field Theory gets a great deal right operationally: it is part of the in
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
-In the neutral comparative stack, Quantum Field Theory sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recovered as Effective Limit; Good Mathematics, Wrong Primitives**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
+In the neutral comparative stack, Quantum Field Theory sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recovered as Effective Limit; Good Mathematics, Wrong Primitives**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse. The key relocation is that fields are effective summaries of causal wake and assembly behavior, while architrinos remain the primitive material inventory.
 
 #### 5. Transition-Period Relevance
 
@@ -1578,7 +1578,7 @@ General Relativity gets a great deal right operationally: it is part of the inhe
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
-In the neutral comparative stack, General Relativity sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recovered as Effective Limit; Mislocated Ontology**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
+In the neutral comparative stack, General Relativity sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recovered as Effective Limit; Mislocated Ontology**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse. The relocation separates fixed Euclidean void, Noether-Sea medium response, and effective metric behavior instead of treating spacetime geometry as the primitive substance.
 
 #### 5. Transition-Period Relevance
 
@@ -4470,7 +4470,7 @@ Mass gets something durable right: it captures a stable regularity that any seri
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
-In the neutral comparative stack, Mass sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Medium and Constitutive Regimes**. The relation type is **Mislocated Ontology**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
+In the neutral comparative stack, Mass sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Medium and Constitutive Regimes**. The relation type is **Mislocated Ontology**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse. Mass is therefore treated as an externally exposed assembly response, not as a primitive property of the architrino substance.
 
 #### 5. Transition-Period Relevance
 
@@ -4695,7 +4695,7 @@ Spacetime Curvature gets something durable right: it captures a stable regularit
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
-In the neutral comparative stack, Spacetime Curvature sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Mislocated Ontology**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
+In the neutral comparative stack, Spacetime Curvature sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Mislocated Ontology**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse. The Euclidean void keeps fixed metric identity; curvature language survives as an observer-level reconstruction of Noether-Sea and assembly behavior.
 
 #### 5. Transition-Period Relevance
 
@@ -4740,7 +4740,7 @@ Vacuum Energy gets something durable right: it captures a stable regularity that
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
-In the neutral comparative stack, Vacuum Energy sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Medium and Constitutive Regimes**. The relation type is **Mislocated Ontology; Observationally Over-Inferred**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
+In the neutral comparative stack, Vacuum Energy sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Medium and Constitutive Regimes**. The relation type is **Mislocated Ontology; Observationally Over-Inferred**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse. Energy should be assigned to architrinos, wakes as interaction history, assemblies, and Noether-Sea state, not to the Euclidean void as a substance.
 
 #### 5. Transition-Period Relevance
 

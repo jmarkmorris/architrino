@@ -271,6 +271,14 @@ The distinction is:
 
 At any time $t$, a coordinate point may be occupied by an architrino, traversed by a wake, located inside a Noether-Sea cell, or empty of local architrino content. None of those occupancy states changes the identity or metric of the underlying void point.
 
+### Plenum of Potential
+
+The Euclidean void is strictly empty of material substance. It is not a material ether, not a quantum foam, and not a hidden continuum with internal state variables. Its points do not store energy, density, curvature, stress, or memory.
+
+Nevertheless, a coordinate location in the full universe should not be treated as relationally empty. Because architrinos continuously emit expanding causal isochrons, the void is saturated by overlapping geometrical wakes from unbounded historical architrino motion. These wakes do not fill the void as material contents; they form the delayed relational ledger through which later architrino intersections can be computed.
+
+In this precise sense, the void is a **Plenum of Potential**: materially empty, but relationally and computationally dense. The phrase does not add a new substance between the Euclidean void and the Noether Sea. It names the fact that an empty coordinate location can still lie within the superposed causal-wake history of the architrino population.
+
 Noether-Sea density and response variables belong to the medium layer, not the spatial substrate. For the medium ontology, see [Noether Sea](../spacetime/noether-sea.md). For medium assembly hypotheses, see [Spacetime Assemblies](../spacetime/spacetime-assemblies.md). For the metric bridge, see [Emergent Metric](../spacetime/emergent-metric.md). For cosmological translation, see [Cosmology Ontology](../cosmology/cosmology-ontology.md).
 
 ## Distinction From Curved Space

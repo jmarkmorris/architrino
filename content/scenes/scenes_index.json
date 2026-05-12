@@ -1584,6 +1584,11 @@
       "id": "theory_bridges__weak_mixing_ckm",
       "name": "Weak Mixing CKM",
       "path": "content/scenes/theory-bridges/weak_mixing_ckm.json"
+    },
+    {
+      "id": "substance_structure_potential",
+      "name": "Substance, Structure, and the Plenum of Potential",
+      "path": "content/scenes/philosophy_history/substance_structure_potential.json"
     }
   ]
 }

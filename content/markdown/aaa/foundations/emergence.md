@@ -13,6 +13,8 @@ From these basic rules, a rich and unpredictable world of patterns emerges:
 
 The Game of Life demonstrates how complexity can arise from simplicity in a discrete, deterministic system.
 
+The analogy is intentionally limited. Conway's Game of Life is discrete, synchronous, and local: every update occurs on a grid, at a shared tick, using nearest-neighbor rules. $\mathbb{A}\mathbb{A}\mathbb{A}$ is continuous, asynchronously delayed, and path-history dependent. The closer continuous analogue is a population of coupled delay-feedback oscillators, or more generally a non-Markovian dynamical system, in which delayed signals can create spontaneous synchronization and stable attractors without a central clock.
+
 ### Emergence in the Architrino Universe: A Continuous Analogy
 
 The architrino universe operates on a similar principle of emergence, but within a continuous framework rather than a discrete one.
@@ -83,7 +85,9 @@ In this sense, emergence is not merely a catalog of larger objects. It is also t
 
 All structure in this universe is based on a **dynamical geometry**. Every architrino is, at all times, interacting with the wakes of every other architrino in the universe, and potentially with its own past isochrons. This creates an N-body problem of infinite scale, meaning there is no closed-form analytical solution for the evolution of a structure in the general case.
 
-However, because the potential density on each causal wake surface falls off as $1/r^2$, the influence of distant particles is far weaker than that of local ones. This locality principle is what allows for the formation of **meta-stable assemblies** that can maintain their general form for long periods.
+However, because the potential density on each causal wake surface falls off as $1/r^2$, the influence of distant architrinos is far weaker than that of local ones. This locality principle is what allows for the formation of **meta-stable assemblies** that can maintain their general form for long periods.
+
+The infinite-history statement is therefore not a claim that every past wake carries equal computational weight. In principle, an architrino receives the delayed wake history that intersects it; in practical assembly dynamics, the active burden is bounded by inverse-square wake dilution, phase cancellation across remote populations, and the shielding or screening supplied by nested Noether cores. The mathematical task is to identify which causal-root branches remain dynamically active in a regime, not to treat the entire past universe as an undifferentiated force of equal importance.
 
 A crucial factor in the evolution of these assemblies is the **velocity symmetry point** ($|\mathbf{v}_a| = v$). The behavior of an architrino changes drastically depending on whether its speed is above or below the field speed.
 -   When $|\mathbf{v}_a| < v$, it is influenced only by external causal wakes.

@@ -10,6 +10,8 @@ The conceptual sequence is: [Detecting the Absolute Frame](detecting-the-absolut
 
 The coordinate system we construct is a **human cognitive tool**: a scaffolding we impose to perform calculations, run simulations, and make predictions. **The universe itself requires none of this.** Architrinos interact through their potential wakes according to invariant laws that can exhibit **meta-stable branching** at self-hit thresholds. The physics continues whether or not any observer bothers to label the axes.
 
+**This bootstrapping process is a mathematical existence proof demonstrating that a unique basis can be defined from the $\mathbb{U}_{\text{now}}$ universe-state perspective. It is not an operational laboratory protocol for observers made of assemblies.**
+
 What follows is the systematic procedure by which a $\mathbb{U}_{\text{now}}$ universe-state perspective can bootstrap a complete, unambiguous coordinate frame from the raw geometric data of architrino positions and their causal wake patterns.
 
 ## Step 1: Establishing the Origin (The Anchor Point)
@@ -108,9 +110,11 @@ We have now defined a **plane** (the $xy$-plane) within the 3D void. Two orthogo
 **Why This Step Is Necessary:**
 To perform full 3D vector calculus, we need a second independent direction. The plane spanned by $\hat{x}$ and $\hat{y}$ is now unambiguously defined by the positions of three architrinos.
 
-## Step 4: Resolving Handedness (Chirality Convention)
+## Step 4: Resolving Handedness (Parity/Chirality Convention)
 
 **Architrino Required:** 0 additional (if conventional) **or** 1 additional (if empirical)
+
+Here **handedness** or **parity** is the geometric issue: choosing which side of the already-defined plane is positive $\hat{z}$. The word `chirality` is used only in this coordinate-frame sense. It does not assert emergent Standard Model fermionic chirality, which belongs to assembly structure and interaction phenomenology rather than to the construction of a basis.
 
 ### Option A: Conventional Handedness (Mathematical Convention)
 
@@ -161,7 +165,7 @@ The handedness is now determined by the **physical configuration** of the archit
 It must be **non-coplanar** with the first three, so that it has a component perpendicular to the $xy$-plane.
 
 **Why This Might Be Preferred:**
-If the architrino theory predicts intrinsic chirality, we may want the coordinate handedness to align with the physical handedness of the assemblies. This ensures that labels like "left-handed neutrino" are consistently assigned.
+If an assembly-level model predicts a persistent parity bias or handed precession order, we may want the coordinate handedness to align with that physical convention. This keeps later labels involving fermionic chirality consistently assigned without confusing the coordinate-basis convention with the emergent fermion property itself.
 
 ## Why None of This Is Required by the Universe
 
@@ -206,7 +210,7 @@ The universe does not care. **We do**, because a theory needs a language in whic
 
 **Key Insight:**
 - Most calculations only require **orientation** (Steps 1-3).
-- **Handedness** matters only when computing cross-product or chiral quantities.
+- **Handedness** matters only when computing cross-product, pseudovector, or parity-sensitive quantities.
 
 ## Operational vs. Fundamental Distinction
 
