@@ -107,6 +107,10 @@ It is crucial to clarify what is **fundamental** versus what is **emergent**:
 | Inertial and gravitational mass share one shielded-energy response map. | Priority target constrained by equivalence-principle tests. |
 | The Higgs sector is recovered as an effective matching layer. | Open comparison target. |
 
+### Mass-Channel Categories
+
+The mass thesis must keep the particle categories separate. The photon channel is treated as a massless planar-pair transport mode: it carries phase, momentum, and transverse helicity, but it does not have a rest-frame clock or a stable volumetric internal-energy ledger. The $W/Z$ channels are different massive vector corridors whose apparent masses come from localized recoupling, longitudinal or mixed-axis structure, and medium-dressed Noether-Sea response. The Higgs comparison is different again: it concerns a scalar medium mode rather than a directed vector corridor. For the electroweak version of this split, see [Electroweak Bosons](./bosons/electroweak-bosons.md).
+
 ### Comparison to Standard Model
 In the Standard Model, mass arises via the **Higgs Mechanism**: particles acquire mass by coupling to a background Higgs field (a scalar condensate with vacuum expectation value $v \approx 246$ GeV).
 

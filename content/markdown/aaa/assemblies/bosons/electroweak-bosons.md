@@ -25,12 +25,12 @@ At the finest scale, the photon unit is a composite assembly:
 *   **Canonical description:** A photon is a **coaxial contra-rotating pro/anti planar pair**.
 *   **Neutrality:** The paired static charge-like exposures cancel, leaving a transverse oscillatory action signature.
 
-### Propagation: The "Photon Train"
+### Propagation: The Planar-Pair Mode Train
 A photon manifests as a **phase-locked planar-pair mode train** of delayed actions.
-*   **The Mode Train:** A quasi-cylindrical propagation structure aligned with $\hat{\mathbf{e}}$ carrying the superposed $1/r^2$ wake surfaces.
-*   **Burst vs. Continuous:**
-    *   **Packet (Particle-like):** A discrete atomic transition releases a short "burst" train—a finite segment of the planar-mode train.
-    *   **Beam (Classical-like):** A continuous drive (antenna) releases a continuous stream of units, creating a long-range coherent beam.
+*   **Mode train:** A quasi-cylindrical propagation structure aligned with $\hat{\mathbf{e}}$ carrying the superposed $1/r^2$ wake surfaces.
+*   **Burst vs. continuous:**
+    *   **Packet (particle-like):** A discrete atomic transition releases a short burst train—a finite segment of the planar-mode train.
+    *   **Beam (classical-like):** A continuous drive (antenna) releases a continuous stream of units, creating a long-range coherent beam.
 *   **Photon-channel speed:** The planar (edge-on) orientation minimizes interaction with the ambient Noether-Sea lattice. In weak homogeneous Noether-Sea conditions the local photon-channel speed $c_\gamma$ approaches the primitive wake speed $c_f$; in material media or strong Noether-Sea gradients, $c_\gamma < c_f$ is the observer-level transport summary.
 
 ### Interaction Rules: Capture and Release
@@ -38,7 +38,7 @@ A photon manifests as a **phase-locked planar-pair mode train** of delayed actio
 *   **Absorption (Planar-Mode Capture):**
     *   Absorption is not the annihilation of a quantum field operator.
     *   It is the **mechanical re-capture** of the planar mode by an internal binary in the target atom.
-    *   The "Train" docks with the binary, transferring its angular momentum and re-binding the architrinos into the target's mass/energy inventory.
+    *   The mode train docks with the binary, transferring its angular momentum and re-binding the architrinos into the target's mass/energy inventory.
 
 ### Environmental Coupling (Ambient Noether Sea)
 *   **Ambient Noether Sea:** The ambient Noether Sea is populated by neutral assemblies (Noether Cores).
@@ -118,13 +118,18 @@ W and Z bosons are not fundamental particles in the sense of eternal objects; th
 
 ### Quantum Numbers and Channels
 *   **Spin-1 (Vector):** The weak corridor remains a spin-$1$ vector channel: it has an overall interaction axis and transports angular momentum through directed phase structure. The photon is the clean massless spin-$1$ case, with only transverse helicities $\pm1$ and no physical longitudinal mode. A massive $W/Z$ corridor can also carry a longitudinal or mixed-axis component, so its internal signs and axes need not collapse into the same fully coaxial contra-rotating pro/anti planar-pair geometry as the photon. What survives at the observer level is the vector directionality of the transaction.
-*   **Mass and proper-time distinction:** The photon channel has no rest-frame clock. Its planar-pair closure carries phase, momentum, and transverse helicity, but it does not form a stable volumetric assembly with a proper-time cycle; in the effective relativistic limit this is the massless relation $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$. A $W/Z$ corridor is different: it is a localized massive vector channel whose longitudinal or mixed-axis structure carries a rest-like internal energy cost. In $\mathbb{A}\mathbb{A}\mathbb{A}$ language, that cost comes from the thickened recoupling geometry and its Noether-Sea burden, so the corridor can mediate a directed spin-$1$ transaction without becoming a massless photon channel.
 *   **W Boson ($W^\pm$):**
     *   **Function:** Transports net charge $\pm 6\epsilon$ ($3P \leftrightarrow 3E$ swap).
     *   **Bookkeeping:** The corridor physically moves the "weak-coupling-triad" components.
 *   **Z Boson ($Z^0$):**
     *   **Function:** Transports energy, momentum, and phase *without* net charge flux.
     *   **Bookkeeping:** A neutral corridor enabling re-phasing and mode exchange.
+
+### Massless Photon Versus Massive Weak Corridor
+
+The photon and the weak corridors are both spin-$1$ channels at the observer level, but they solve different closure problems. A photon is the clean massless branch: its coaxial contra-rotating pro/anti planar-pair closure carries phase, momentum, and transverse helicity, but it does not form a stable volumetric assembly with a proper-time cycle. In the effective relativistic limit this appears as the null relation $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$. In special-relativity language, the null channel has zero proper-time accumulation; a photon is not assigned a comoving clock because no photon rest frame exists.
+
+A $W/Z$ corridor is a localized massive vector channel. Its longitudinal or mixed-axis structure carries a rest-like internal energy cost because the corridor is a thickened recoupling of local Noether-Sea structure, not a free planar-pair branch. It can therefore mediate a directed spin-$1$ transaction while appearing as a massive, short-lived channel rather than a massless photon. The derivation burden is to compute this cost from corridor closure and medium-dressed response, not to insert the Standard Model mass as a primitive parameter.
 
 ### Dynamics: Emission and Absorption
 *   **The Trigger (Emission):**

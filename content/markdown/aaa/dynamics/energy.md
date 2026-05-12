@@ -444,7 +444,7 @@ Assumptions for this bookkeeping pass:
 - The transaction is a single angular-momentum unit, $\Delta L_{\text{out}} = +h$, delivered to the **outer** binary while $v_{\text{out}} < c_f$.
 - The symbol $h$ labels the action unit associated with one accepted causal-root ledger update, not a primitive energy grain.
 - Energy bookkeeping uses action-angle language: for a small discrete step, $\Delta E \approx \omega\,\Delta L$. This is a **notation choice**, not a claim about the exact micro-law.
-- The **inner binary** responds with a two-step reconfiguration ($2h$-like). The **middle binary** adjusts to satisfy conservation of total energy and angular momentum (including any wake/field exchange).
+- The **inner binary** responds with a two-step reconfiguration ($2h$-like). The **middle binary** adjusts to satisfy conservation of total energy and angular momentum (including any causal-wake exchange).
 
 Notation in the table:
 
@@ -461,7 +461,7 @@ Per-step increments (explicit, no deltas):
 - Inner step energy: $\varepsilon_i \equiv \omega_i h$ with
   $$k_i \equiv \chi_i\,\varepsilon_i,\quad u_i \equiv (1-\chi_i)\,\varepsilon_i,$$
   so $k_i + u_i = \varepsilon_i$. Because the inner binary takes **two steps**, it adds $2k_i$ and $2u_i$.
-- Middle adjustment energy: $\varepsilon_m$ is whatever is needed to close the ledger. Here $\varepsilon_w$ denotes the **wake/field exchange energy** during the step:
+- Middle adjustment energy: $\varepsilon_m$ is whatever is needed to close the ledger. Here $\varepsilon_w$ denotes the **causal-wake exchange energy** during the step:
   $$\varepsilon_m \equiv \varepsilon_w - 2\varepsilon_i,$$
   and we split it as
   $$k_m \equiv \chi_m\,\varepsilon_m,\quad u_m \equiv (1-\chi_m)\,\varepsilon_m.$$

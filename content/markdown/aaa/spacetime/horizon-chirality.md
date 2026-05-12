@@ -64,7 +64,7 @@ To keep terms from sliding into one another, use the following provisional dicti
 | Label | Meaning in this note | Typical regime |
 | --- | --- | --- |
 | `pro/anti` | the deeper 3D Noether-core chirality, currently tracked by ordered tri-binary structure such as `HML` versus `HLM` | pre-planar 3D core |
-| `CW/CCW` | the exterior planar spin sign seen from one chosen viewing side of a planarized core | horizon / planar lock |
+| `CW/CCW` | the exterior planar angular-momentum sign seen from one chosen viewing side of a planarized core | horizon / planar lock |
 | `left/right` | a possible axial sign relative to translation, for example $\hat J_{\text{net}} \parallel \pm \hat{\mathbf V}$, if that later proves to control forward exposure of the weak-active structure | high-velocity aligned regime |
 
 This chapter treats these as related but not yet identical labels. One of its main goals is to understand how they may collapse onto one another in the terminal high-velocity regime.
@@ -82,9 +82,9 @@ The horizon question becomes clearer when compared against the main assembly sec
 
 This comparison helps keep the horizon problem honest. The goal is not to prove that the universe is mostly pro or mostly anti. The goal is to understand how one compressed tri-binary advertises its branch structure when driven into the strongest alignment regime.
 
-## Exterior Planar Spin Basis
+## Exterior Planar Angular-Momentum Basis
 
-Fix one exterior viewing direction normal to the horizon disk. From that viewpoint, each planar binary appears to rotate either clockwise (`CW`) or counterclockwise (`CCW`). If the three binaries remain distinguishable by role as `H`, `M`, and `L`, then the full planar spin-sign space contains exactly $2^3 = 8$ possibilities.
+Fix one exterior viewing direction normal to the horizon disk. From that viewpoint, each planar binary appears to rotate either clockwise (`CW`) or counterclockwise (`CCW`). If the three binaries remain distinguishable by role as `H`, `M`, and `L`, then the full planar angular-momentum sign space contains exactly $2^3 = 8$ possibilities.
 
 | Row | H | M | L | Class | Comment |
 | --- | --- | --- | --- | --- | --- |
@@ -101,15 +101,15 @@ This is the complete planar-sign table as viewed from one fixed exterior side of
 
 ## Observer Views
 
-The planar spin table is viewpoint dependent in a controlled way.
+The planar angular-momentum table is viewpoint dependent in a controlled way.
 
 - **Absolute-frame exterior observer:** fixes one normal to the planar disk and reads the visible planar circulation as `CW` or `CCW`.
 - **Observer on the opposite side of the same disk:** reverses the normal and therefore swaps `CW` with `CCW`.
 - **Co-moving or assembly-built observer:** may not have direct access to the absolute normal choice and instead infer only relative handedness, exposure, or wake asymmetry.
 
-So the physically stronger datum is not the literal word `CW` or `CCW` by itself. It is the sign of the planar angular momentum relative to a chosen normal. This is why the chapter treats boundary helicity as a sign-bearing branch quantity rather than as a naive visual label.
+So the physically stronger datum is not the literal word `CW` or `CCW` by itself. It is the sign of the planar angular momentum relative to a chosen normal. In standard quantum language, helicity is an angular-momentum projection onto the momentum or propagation axis, usually the projection of spin for an elementary particle. The horizon quantity here is therefore a **boundary helicity proxy**: it becomes helicity-like only when the chosen exterior normal is dynamically tied to a propagation or translation axis.
 
-This is also the right place to keep the substrate/effective split explicit: the substrate dynamics know about absolute path histories, delayed branch intersections, and topological branch labels. Observer-level helicity is a **dimensional reduction** of that deeper structure, not a primitive substrate variable.
+This is also the right place to keep the substrate/effective split explicit: the substrate dynamics know about absolute path histories, delayed branch intersections, and topological branch labels. Observer-level helicity is a **dimensional reduction** of that deeper structure, not a primitive substrate variable, and boundary helicity should not be silently identified with weak-interaction chirality.
 
 ## Boundary Helicity Versus Deeper Chirality
 
@@ -120,13 +120,13 @@ The simplest exterior quantity is the sign of the common planar angular momentum
 - all-`CW`;
 - all-`CCW`.
 
-This chapter will call that reduced exterior quantity **boundary helicity**.
+This chapter will call that reduced exterior quantity **boundary helicity**: the horizon-local sign of common planar angular momentum relative to a chosen normal. The term is deliberately narrower than standard helicity until the normal is identified with the relevant propagation or translation direction.
 
 The deeper `pro/anti` distinction is plausibly stronger than boundary helicity alone. In the 3D scaffold, `pro/anti` tracks ordered tri-binary chirality, not merely the sign of one visible planar swirl. Once the horizon suppresses precession and forces coplanarity, two different 3D histories may collapse to the same exterior planar sign.
 
 That motivates the following working distinction:
 
-- **Boundary helicity:** the visible sign of the common planar rotation at the horizon.
+- **Boundary helicity:** the visible sign of the common planar angular momentum at the horizon, measured relative to a chosen normal.
 - **Core chirality:** the deeper `pro/anti` distinction inherited from the ordered 3D tri-binary before flattening.
 
 If this distinction is correct, then the horizon does not necessarily erase `pro/anti`, but it may compress it so strongly that the exterior observer sees only a reduced proxy.

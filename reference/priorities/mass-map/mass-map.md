@@ -47,6 +47,7 @@ $$
 Here $\zeta(A)$ is the shielding or exposure coefficient and $c_{\text{eff}}$ is the local observer-facing light-speed scale set by the Noether-Sea state.
 
 - Stronger mass claims must declare which role is meant: rest mass, inertial response, gravitational response, external mass footprint, effective boson mass scale, neutral-assembly mass, or internal energy ledger.
+- Effective boson mass scale must split photon-like and weak-corridor cases. Photon-like planar channels lose stable volumetric rest-clock closure and therefore occupy the massless null branch; $W/Z$ corridors retain a localized recoupling burden whose longitudinal or mixed-axis structure appears as a short-lived massive vector channel.
 - Avoid treating Noether-Sea response as ordinary dissipative drag unless dissipation is actually being modeled. The preferred derivation language is medium-dressed inertial response.
 
 ## Assembly-Level Reduction Status
@@ -81,6 +82,7 @@ Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate sli
 | Layer | Document | Ownership |
 | --- | --- | --- |
 | Canonical mass chapter | [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md) | Reader-facing statement of the current mass thesis, definitions, and conservative explanatory path. |
+| Electroweak boson channel split | [Electroweak Bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md) | Reader-facing distinction between massless photon planar-pair transport, massive $W/Z$ recoupling corridors, and the Higgs medium-mode comparison. |
 | Energy ledger source | [Energy](../../../content/markdown/aaa/dynamics/energy.md) | Energy-zero convention, assembly energy bookkeeping, and the operational definition of inertial mass. |
 | Dynamics baseline | [Tri-Binary Dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md) | Noether-core roles, speed-regime conventions, delay geometry, stability diagnostics, and metric/connection reconstruction diagnostics. |
 | Reduced branch certificate | [$A_0$ Reduced Branch Certificate Packet](a0-reduced-branch-certificate.md) | First finite proof/simulation packet for the reduced $A_0$ branch search: carrier ansatz, root-ledger enumeration, averaging/locking/leakage lemmas, continuation gates, and promotion rules. |
@@ -105,6 +107,7 @@ Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate sli
 - Derive the first-order momentum skew that makes trapped internal energy behave as inertial mass under acceleration.
 - Show that inertial and gravitational response share the same shielded-energy coefficient within equivalence-principle bounds.
 - Derive the slow-fast tri-binary minimality theorem needed before claiming that three nested binaries are the universal stable matter unit.
+- Derive the $W/Z$ corridor mass scale as a localized recoupling and medium-response cost, distinct from both stable matter rest mass and photon masslessness.
 
 ### Priority
 
@@ -112,6 +115,7 @@ Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate sli
 - Extract $\zeta(A)$ from far-field wake cancellation and shielding geometry.
 - Produce a baseline electron-mass prediction and at least one hierarchy check, such as $m_\mu/m_e$.
 - Decide whether Noether-Sea response remains a separate additive mass contribution, or whether it should be absorbed into the same medium-dressed response tensor used by the causal-closure synthesis.
+- Route the weak-corridor mass calculation through the electroweak channel split: identify the corridor closure variables, the longitudinal or mixed-axis contribution, and the local Noether-Sea response coefficient before promoting any $M_W$ or $M_Z$ estimate.
 
 ## Program Notes
 

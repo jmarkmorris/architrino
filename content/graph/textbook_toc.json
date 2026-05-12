@@ -2851,10 +2851,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Exterior Planar Spin Basis",
+                    "title": "Exterior Planar Angular-Momentum Basis",
                     "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
-                    "markdownSection": "Exterior Planar Spin Basis",
-                    "sectionKey": "exterior planar spin basis",
+                    "markdownSection": "Exterior Planar Angular-Momentum Basis",
+                    "sectionKey": "exterior planar angular momentum basis",
                     "headingLevel": 2
                   },
                   {

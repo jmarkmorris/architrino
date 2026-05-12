@@ -349,7 +349,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
       - [Broader Pro/Anti Balance in $\mathbb{A}\mathbb{A}\mathbb{A}$](../aaa/spacetime/horizon-chirality.md?section=Broader+Pro%2FAnti+Balance+in+%24%5Cmathbb%7BA%7D%5Cmathbb%7BA%7D%5Cmathbb%7BA%7D%24)
       - [Working Dictionary](../aaa/spacetime/horizon-chirality.md?section=Working+Dictionary)
       - [Comparison Across Sectors](../aaa/spacetime/horizon-chirality.md?section=Comparison+Across+Sectors)
-      - [Exterior Planar Spin Basis](../aaa/spacetime/horizon-chirality.md?section=Exterior+Planar+Spin+Basis)
+      - [Exterior Planar Angular-Momentum Basis](../aaa/spacetime/horizon-chirality.md?section=Exterior+Planar+Angular-Momentum+Basis)
       - [Observer Views](../aaa/spacetime/horizon-chirality.md?section=Observer+Views)
       - [Boundary Helicity Versus Deeper Chirality](../aaa/spacetime/horizon-chirality.md?section=Boundary+Helicity+Versus+Deeper+Chirality)
       - [Translation-Axis Alignment at High Velocity](../aaa/spacetime/horizon-chirality.md?section=Translation-Axis+Alignment+at+High+Velocity)
