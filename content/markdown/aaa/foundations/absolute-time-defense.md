@@ -46,13 +46,15 @@ $$
 with $\Omega_{\mathrm{clk}}$ the instantaneous internal oscillation rate determined by the local delayed interaction history $\Gamma_{\mathrm{loc}}$.
 
 Required emergent limits:
+- Speed convention: $c_f$ is the primitive wake speed used inside delayed-root equations. Observer-level clock limits use the declared channel speed $c_\star$ from the [transverse causal budget lemma](../dynamics/tri-binary-dynamics.md#transverse-causal-budget-lemma): $c_\star=c_{\text{eff}}(\mathbf{X},t)$ for Noether-Sea dressed clocks and rulers, with $c_0\equiv c_{\text{eff}}(\infty)$ in the weak homogeneous comparison. Set $c_\star=c_f$ only for a primitive branch chart, or after deriving that a specific internal limit-cycle branch is governed directly by the undressed wake speed.
 - Homogeneous medium, low velocities:
   $$
-  \frac{d\tau}{dt} \approx \sqrt{1 - v^2/c_f^2}.
+  \frac{d\tau}{dt} \approx \sqrt{1 - v^2/c_\star^2},
+  \qquad c_\star=c_0 \text{ in the weak homogeneous observer branch}.
   $$
 - Weak field, low velocities:
   $$
-  \frac{d\tau}{dt} \approx \sqrt{1 + 2\Phi_{\text{eff}}/c_f^2 - v^2/c_f^2}.
+  \frac{d\tau}{dt} \approx \sqrt{1 + 2\Phi_{\text{eff}}/c_0^2 - v^2/c_0^2}.
   $$
 
 **Key point**

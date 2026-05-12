@@ -92,7 +92,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Step 1: Establishing the Origin (The Anchor Point)](../aaa/foundations/bootstrapping-the-absolute-frame.md?section=Step+1%3A+Establishing+the+Origin+%28The+Anchor+Point%29)
     - [Step 2: Defining the Primary Axis (First Direction)](../aaa/foundations/bootstrapping-the-absolute-frame.md?section=Step+2%3A+Defining+the+Primary+Axis+%28First+Direction%29)
     - [Step 3: Defining the Plane (Second Independent Direction)](../aaa/foundations/bootstrapping-the-absolute-frame.md?section=Step+3%3A+Defining+the+Plane+%28Second+Independent+Direction%29)
-    - [Step 4: Resolving Handedness (Parity/Chirality Convention)](../aaa/foundations/bootstrapping-the-absolute-frame.md?section=Step+4%3A+Resolving+Handedness+%28Parity%2FChirality+Convention%29)
+    - [Step 4: Resolving Handedness (Parity Convention)](../aaa/foundations/bootstrapping-the-absolute-frame.md?section=Step+4%3A+Resolving+Handedness+%28Parity+Convention%29)
     - [Why None of This Is Required by the Universe](../aaa/foundations/bootstrapping-the-absolute-frame.md?section=Why+None+of+This+Is+Required+by+the+Universe)
     - [Summary Table: Reconstruction Steps](../aaa/foundations/bootstrapping-the-absolute-frame.md?section=Summary+Table%3A+Reconstruction+Steps)
     - [Categories of Calculation Served by Each Step](../aaa/foundations/bootstrapping-the-absolute-frame.md?section=Categories+of+Calculation+Served+by+Each+Step)

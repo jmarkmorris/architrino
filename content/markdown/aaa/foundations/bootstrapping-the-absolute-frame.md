@@ -110,11 +110,11 @@ We have now defined a **plane** (the $xy$-plane) within the 3D void. Two orthogo
 **Why This Step Is Necessary:**
 To perform full 3D vector calculus, we need a second independent direction. The plane spanned by $\hat{x}$ and $\hat{y}$ is now unambiguously defined by the positions of three architrinos.
 
-## Step 4: Resolving Handedness (Parity/Chirality Convention)
+## Step 4: Resolving Handedness (Parity Convention)
 
 **Architrino Required:** 0 additional (if conventional) **or** 1 additional (if empirical)
 
-Here **handedness** or **parity** is the geometric issue: choosing which side of the already-defined plane is positive $\hat{z}$. The word `chirality` is used only in this coordinate-frame sense. It does not assert emergent Standard Model fermionic chirality, which belongs to assembly structure and interaction phenomenology rather than to the construction of a basis.
+Here **handedness** or **parity convention** is the geometric issue: choosing which side of the already-defined plane is positive $\hat{z}$. This is only a coordinate-basis choice. It should not be identified with fermionic chirality, which is reserved for the dynamical handed precession order of emergent Noether cores.
 
 ### Option A: Conventional Handedness (Mathematical Convention)
 
@@ -165,7 +165,7 @@ The handedness is now determined by the **physical configuration** of the archit
 It must be **non-coplanar** with the first three, so that it has a component perpendicular to the $xy$-plane.
 
 **Why This Might Be Preferred:**
-If an assembly-level model predicts a persistent parity bias or handed precession order, we may want the coordinate handedness to align with that physical convention. This keeps later labels involving fermionic chirality consistently assigned without confusing the coordinate-basis convention with the emergent fermion property itself.
+If an assembly-level model predicts a persistent parity bias or handed precession order, the coordinate handedness can be aligned with that physical ordering. This keeps later fermion labels consistently assigned while preserving the distinction between a coordinate-basis parity convention and dynamical chirality in the Noether core.
 
 ## Why None of This Is Required by the Universe
 

@@ -746,10 +746,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Step 4: Resolving Handedness (Parity/Chirality Convention)",
+                "title": "Step 4: Resolving Handedness (Parity Convention)",
                 "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-                "markdownSection": "Step 4: Resolving Handedness (Parity/Chirality Convention)",
-                "sectionKey": "step 4 resolving handedness parity chirality convention",
+                "markdownSection": "Step 4: Resolving Handedness (Parity Convention)",
+                "sectionKey": "step 4 resolving handedness parity convention",
                 "headingLevel": 2
               },
               {
