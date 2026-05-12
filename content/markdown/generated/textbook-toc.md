@@ -476,7 +476,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
   - [Mesons](../../scenes/assemblies/mesons_doc.json)
     - [The Pions (π⁺, π⁻, π⁰): The Nuclear Exchange Packet](../aaa/assemblies/mesons/mesons.md?section=The+Pions+%28%24%5Cpi%5E%2B%2C+%5Cpi%5E-%2C+%5Cpi%5E0%24%29%3A+The+Nuclear+Exchange+Packet)
     - [The Kaons (K⁺, K⁻, K⁰, K̄⁰): The Generation Mixer](../aaa/assemblies/mesons/mesons.md?section=The+Kaons+%28%24K%5E%2B%2C+K%5E-%2C+K%5E0%2C+%5Cbar%7BK%7D%5E0%24%29%3A+The+Generation+Mixer)
-    - [The Rho Mesons (ρ): The Spin-1 Counterparts](../aaa/assemblies/mesons/mesons.md?section=The+Rho+Mesons+%28%24%5Crho%24%29%3A+The+Spin-1+Counterparts)
+    - [The Rho Mesons (ρ): The Spin-1 Counterparts](../aaa/assemblies/mesons/mesons.md?section=The+Rho+Mesons+%28%24%5Crho%24%29%3A+The+Spin-%241%24+Counterparts)
     - [Delta Baryons (Δ⁺⁺, Δ⁺, Δ⁰, Δ⁻)](../aaa/assemblies/mesons/mesons.md?section=Delta+Baryons+%28%24%5CDelta%5E%7B%2B%2B%7D%2C+%5CDelta%5E%2B%2C+%5CDelta%5E0%2C+%5CDelta%5E-%24%29)
     - [Summary of Role](../aaa/assemblies/mesons/mesons.md?section=Summary+of+Role)
     - [Hadron Table — Mapping SM → $\mathbb{A}\mathbb{A}\mathbb{A}$](../aaa/assemblies/mesons/mesons.md?section=Hadron+Table+%E2%80%94+Mapping+SM+%E2%86%92+%24%5Cmathbb%7BA%7D%5Cmathbb%7BA%7D%5Cmathbb%7BA%7D%24)

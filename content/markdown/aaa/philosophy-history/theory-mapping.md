@@ -176,8 +176,8 @@ $$
 
 **Summary:** The quantum field theory of electrons, positrons, and photons.
 
-**Conceptual View:** A U(1) gauge theory where the electromagnetic field couples to
-charged spin-1/2 fields. Extremely precise predictions.
+**Conceptual View:** A $U(1)$ gauge theory where the electromagnetic field couples to
+charged spin-$\tfrac{1}{2}$ fields. Extremely precise predictions.
 
 **Key Equation:** QED Lagrangian:
 $$

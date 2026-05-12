@@ -1190,6 +1190,18 @@ with the physical requirement:
 - a $2\pi$ spatial rotation returns the coarse orientation but changes the internal phase/sign branch;
 - a $4\pi$ rotation restores the full ordered-core configuration.
 
+Standard orbital quantization supplies the contrast case. For an effective orbital azimuthal mode,
+
+$$
+\psi_{\text{orb}}(\phi)=e^{im\phi},
+\qquad
+\psi_{\text{orb}}(\phi+2\pi)=\psi_{\text{orb}}(\phi)
+\quad\Rightarrow\quad
+m\in\mathbb{Z}.
+$$
+
+That is a $2\pi$ single-valuedness rule on an observer-level orbital envelope. A fermion spinor target cannot reuse that ordinary closure rule. It must explain why the visible $SO(3)$ orientation closes after $2\pi$ while the history-lifted Noether-core state changes sheet and only restores after $4\pi$.
+
 This is a theorem target, not a completed proof. The causal-action functional adds a promising topological handle through causal writhe,
 
 $$
@@ -1290,6 +1302,44 @@ m\hbar|j,m\rangle.
 $$
 
 From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, these are not primitive postulates about point entities. They are the observer-level representation algebra that must emerge when stable assemblies are probed by rotation-sensitive apparatuses. The algebra becomes credible only after the internal ordered-frame dynamics and measurement coupling recover the same projection statistics.
+
+## Standard Recovery Gates
+
+The standard quantum formulas are recovery gates, not mechanisms to import unchanged. For an effective central-potential orbital envelope, the observer-level angular solutions must recover
+
+$$
+\hat{\mathbf L}^2Y_\ell^m
+=
+\ell(\ell+1)\hbar^2Y_\ell^m,
+\qquad
+\hat L_zY_\ell^m
+=
+m\hbar Y_\ell^m,
+$$
+
+with
+
+$$
+\ell\in\mathbb N_0,
+\qquad
+m\in\{-\ell,-\ell+1,\ldots,\ell\}.
+$$
+
+The $m$ quantization is the same $2\pi$ azimuthal closure rule written above, while the allowed $\ell$ spectrum is the regularity / finite-solution condition for the angular envelope. Both belong to observer-level orbital quantum numbers.
+
+For a fermion assembly, the separate internal-spin recovery gate is
+
+$$
+\hat{\mathbf S}^2|s,m_s\rangle
+=
+s(s+1)\hbar^2|s,m_s\rangle,
+\qquad
+s=\frac{1}{2},
+\qquad
+m_s=\pm\frac{1}{2}.
+$$
+
+The Noether-core burden is to supply the effective spinor coordinate whose apparatus projection gives the two Stern-Gerlach records $+\hbar/2$ and $-\hbar/2$. Those records should be basin outcomes of the full angular-momentum ledger, not evidence for a tiny pre-existing arrow inside the target.
 
 ## Orbital Angular Momentum
 
@@ -2378,6 +2428,8 @@ The following usage should be preferred across the corpus:
 - Write "helicity" only for projection onto a propagation or momentum axis; otherwise use "planar angular-momentum sign," "boundary helicity proxy," or the local term already defined in the document.
 - Keep $\mathbf{L}$, $\mathbf{S}$, and $\mathbf{J}$ for the standard observer-level angular-momentum decomposition unless the document explicitly defines an assembly-side ledger variable.
 - Write "spin-measurement outcome" for the apparatus-indexed basin record, not for a pre-existing spin arrow hidden inside the target.
+- Write "observer-level orbital quantum number" for atomic $\ell$ and $m$ labels until their effective-envelope recovery is derived.
+- Treat "intrinsic spin" as standard quantum language meaning "not observer-level orbital motion"; do not use it to imply primitive spin on an architrino.
 
 ## Closure Targets
 
@@ -2393,7 +2445,8 @@ This bridge leaves several derivations open beyond the partition scaffold above.
 8. Derive the effective spinor coordinate and substrate preparation measures $\mu_{\alpha}$ whose pushforward into the reduced spinor-record chart gives the computed spin-$\tfrac{1}{2}$ half-angle law.
 9. Recover photon helicity $\pm1$, exactly two physical transverse photon modes, the material analyzer projector, the analyzer return-map measure $d\nu_{\hat{\mathbf a}}$, the uniform pass-threshold pushforward for $\eta_{\hat{\mathbf a}}$, Malus' law, and no-signaling polarization statistics from the coaxial contra-rotating pro/anti planar pair.
 10. Separate photon helicity closure from massive vector-boson spin closure.
-11. Map observer-level orbital angular momentum, such as atomic $\ell$, to assembly-level internal rotational action without conflating the two.
-12. Rebuild the Bell account from the completed angular-momentum ledger, measurement-response kernel, and basin-measure law.
+11. Recover observer-level orbital angular-momentum quantization, including $2\pi$ azimuthal single-valuedness, the finite angular spectrum $\ell\in\mathbb N_0$, and $m\in\{-\ell,\ldots,\ell\}$, from the effective envelope of an assembly in an external potential.
+12. Map observer-level orbital angular momentum, such as atomic $\ell$, to assembly-level internal rotational action without conflating the two.
+13. Rebuild the Bell account from the completed angular-momentum ledger, measurement-response kernel, and basin-measure law.
 
 Until those targets are closed, this document should be read as a disciplined bridge. It is strong enough to say that angular momentum and spin are not primitive architrino properties, strong enough to prevent $h/\hbar$ drift, and strong enough to route Bell's theorem to the correct prerequisite. It is not yet a proof that standard spin and all Bell correlations have been derived from the master equation.

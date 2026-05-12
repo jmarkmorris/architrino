@@ -146,7 +146,7 @@ for the coupled tri-core configuration. Here $J$ names the total hadronic angula
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the same bookkeeping pressure appears as three coupled contributions:
 
-- **quark-core spinor structure**, the analogue of constituent intrinsic spin;
+- **quark-core spinor structure**, the analogue of observer-level constituent spin;
 - **strong-sector orbital circulation**, the analogue of quark and core orbital angular momentum inside the bound state;
 - **flux-network angular momentum**, the analogue of gluon or strong-field angular momentum in the standard QCD spin budget.
 
