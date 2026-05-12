@@ -26,6 +26,20 @@ For the underlying assembly carrier of this medium, see [Noether Core](../assemb
 
 The immediate atomic target is to recover observer-level orbital quantum numbers from electron assemblies moving in an external nuclear and Noether-Sea environment. That target is separate from the internal rotational action of the electron's Noether-core assembly. A later atomic-spin pass must show how spin-orbit and hyperfine structure arise when the external resonance envelope couples to the completed internal spin ledger and to the measurement-response model. Until then, this chapter should treat shell filling and exclusion language as effective atomic bookkeeping inherited from the spin-statistics proof program.
 
+The foundation-up version begins with the nucleus and its constituent Noether-core ledgers. A proton-electron hydrogen comparison is the cleanest first case, but the same level distinction applies to all atoms: the electron assembly responds to the combined causal-wake envelope of the nucleus, the local Noether Sea, and other electron assemblies. The orbital labels should therefore be recovered as resonance labels of the external electron envelope, not as labels of the electron's internal Noether-core spinor state.
+
+A schematic handoff is
+
+$$
+\mathcal W_{\text{nuc}}(r,\hat{\mathbf r},t)
+\longrightarrow
+\Psi_{\text{e-env}}(r,\theta,\phi)
+\sim
+R_{n\ell}(r)Y_\ell^m(\theta,\phi).
+$$
+
+Here $\mathcal W_{\text{nuc}}$ denotes the effective nuclear causal-wake envelope after coarse-graining the constituent core ledgers. The right-hand side is the standard observer-level recovery form that the electron assembly must reproduce in central-potential limits.
+
 For central-potential comparisons, the specific orbital recovery gate is ordinary $2\pi$ azimuthal closure and angular regularity:
 
 $$

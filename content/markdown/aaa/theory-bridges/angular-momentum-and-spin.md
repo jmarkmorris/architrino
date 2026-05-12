@@ -1268,6 +1268,69 @@ $$
 
 only after choosing the relevant projected action-angle channel. That scalar statement should not be mistaken for the full vector conservation law.
 
+## Foundation-Up Closure Route
+
+The orbital lesson should be used as a method, not merely as a dictionary. In ordinary atomic-orbital theory, one chooses the angular configuration space, imposes single-valuedness and finite angular behavior, and then reads the surviving labels as quantum numbers. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the same style of reasoning should begin one layer lower: first classify the stable Noether-core closures, then ask which causal-wake envelopes and observer-level orbital labels they support.
+
+For a Noether core, the first closure object is the three-layer phase and root ledger over a stable return period $T$. A useful theorem-target form is
+
+$$
+\Theta_a(T)
+=
+\int_0^T\omega_a(t)\,dt
++
+\Phi_a^{\text{root}}(T),
+\qquad
+\Theta_a(T)=2\pi k_a,
+\qquad
+k_a\in\mathbb{Z},
+\qquad
+a\in\{I,M,O\}.
+$$
+
+Here $a$ labels the inner, middle, and outer binary layers, and $\Phi_a^{\text{root}}(T)$ records the phase contribution of the active self-hit, partner-hit, and inter-layer causal-root branches during the closure period. The important claim is integer phase winding over a stable closed cycle, not that each instantaneous frequency must be an integer by itself.
+
+An accepted energy/action change should therefore move the core between admissible integer-and-root ledgers:
+
+$$
+\Delta A_{\text{cycle}}=h
+\quad\Longrightarrow\quad
+\bigl(k_I,k_M,k_O,\mathcal R\bigr)
+\mapsto
+\bigl(k_I,k_M,k_O,\mathcal R\bigr)
++
+\bigl(\Delta k_I,\Delta k_M,\Delta k_O,\Delta\mathcal R\bigr),
+$$
+
+subject to the energy, angular-momentum, phase-closure, and root-admissibility equations above. This is the foundation-up version of the quantization question: energy levels are not added as external quantum labels; they are the stable return classes of the delayed Noether-core geometry.
+
+At larger scale, the emitted causal-wake pattern of such a closed core should have an effective far-zone angular decomposition. A schematic recovery target is
+
+$$
+\mathcal W_{\mathbf k}(r,\hat{\mathbf r},t)
+\sim
+\sum_{L,M,p}
+A_{LMp}^{(\mathbf k)}(r)\,
+Y_L^M(\hat{\mathbf r})\,
+e^{-i\Omega_p(t-r/c_f)},
+$$
+
+where $\mathbf k=(k_I,k_M,k_O,\mathcal R)$ abbreviates the core closure ledger. This is not a new substrate field; it is an effective description of the superposed causal wakes after coarse-graining. The atomic-orbital program is then to show that an electron assembly in the nuclear and Noether-Sea environment locks to stable resonance basins whose angular part recovers $Y_\ell^m$.
+
+The resulting proof route is:
+
+$$
+\text{Noether-core integer closure}
+\longrightarrow
+\text{structured causal-wake envelope}
+\longrightarrow
+\text{electron-assembly resonance basin}
+\longrightarrow
+\text{observer-level labels }(n,\ell,m).
+$$
+
+This route strengthens the distinction rather than weakening it. The internal Noether-core spinor closure still targets $4\pi$ fermion behavior, while the atomic orbital envelope still targets $2\pi$ observer-level angular closure. The possible unification is that both are selected by geometry, phase closure, and causal-root admissibility at different levels of description.
+
 ## Bridge to Standard Quantum Mechanics
 
 The transition to standard quantum mechanics proceeds through successive coarse-grainings.
@@ -2445,8 +2508,10 @@ This bridge leaves several derivations open beyond the partition scaffold above.
 8. Derive the effective spinor coordinate and substrate preparation measures $\mu_{\alpha}$ whose pushforward into the reduced spinor-record chart gives the computed spin-$\tfrac{1}{2}$ half-angle law.
 9. Recover photon helicity $\pm1$, exactly two physical transverse photon modes, the material analyzer projector, the analyzer return-map measure $d\nu_{\hat{\mathbf a}}$, the uniform pass-threshold pushforward for $\eta_{\hat{\mathbf a}}$, Malus' law, and no-signaling polarization statistics from the coaxial contra-rotating pro/anti planar pair.
 10. Separate photon helicity closure from massive vector-boson spin closure.
-11. Recover observer-level orbital angular-momentum quantization, including $2\pi$ azimuthal single-valuedness, the finite angular spectrum $\ell\in\mathbb N_0$, and $m\in\{-\ell,\ldots,\ell\}$, from the effective envelope of an assembly in an external potential.
-12. Map observer-level orbital angular momentum, such as atomic $\ell$, to assembly-level internal rotational action without conflating the two.
-13. Rebuild the Bell account from the completed angular-momentum ledger, measurement-response kernel, and basin-measure law.
+11. Derive integer phase-winding closure for Noether-core energy levels by computing the admissible ledgers $(k_I,k_M,k_O,\mathcal R)$ and their allowed changes under $\Delta A_{\text{cycle}}=h$ transactions.
+12. Derive the effective far-zone causal-wake envelope of an integer-closed Noether core and decompose its angular content into recovery coefficients that can be compared with spherical-harmonic orbital modes.
+13. Recover observer-level orbital angular-momentum quantization, including $2\pi$ azimuthal single-valuedness, the finite angular spectrum $\ell\in\mathbb N_0$, and $m\in\{-\ell,\ldots,\ell\}$, from the effective envelope of an assembly in an external potential.
+14. Map observer-level orbital angular momentum, such as atomic $\ell$, to assembly-level internal rotational action without conflating the two.
+15. Rebuild the Bell account from the completed angular-momentum ledger, measurement-response kernel, and basin-measure law.
 
 Until those targets are closed, this document should be read as a disciplined bridge. It is strong enough to say that angular momentum and spin are not primitive architrino properties, strong enough to prevent $h/\hbar$ drift, and strong enough to route Bell's theorem to the correct prerequisite. It is not yet a proof that standard spin and all Bell correlations have been derived from the master equation.

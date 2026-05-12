@@ -12,7 +12,21 @@ Spin-sensitive spectral structure is downstream of the angular-momentum proof pr
 
 Electron orbitals are treated here as stable resonance patterns of electron assemblies coupled to the local Noether Sea. This is an effective atomic model, not yet a derivation from the constituent master equation.
 
-The first closure target is the Rydberg constant. In the present notation, a completed model should express $R_\infty$ as a function of the physical Noether-core density $\rho_{\text{core}}(\mathbf{x},t)$, the normalized density $n(\mathbf{x},t)$, and the local clock/rate response encoded by $\chi_{\text{sea}}(\mathbf{x},t)$. The important discipline is to keep $n$ as normalized density and $\chi_{\text{sea}}$ as the delay factor.
+The foundation-up route treats those resonance patterns as responses to structured causal-wake boundary data. In a completed derivation, the nuclear core closure ledger should determine an effective causal-wake envelope $\mathcal W_{\text{nuc}}$, and the electron assembly should occupy stable envelope basins labeled by the recovered quantum numbers $(n,\ell,m)$.
+
+The first closure target is the Rydberg constant. In the present notation, a completed model should express $R_\infty$ as a function of the effective nuclear causal-wake envelope $\mathcal W_{\text{nuc}}$, the physical Noether-core density $\rho_{\text{core}}(\mathbf{x},t)$, the normalized density $n(\mathbf{x},t)$, and the local clock/rate response encoded by $\chi_{\text{sea}}(\mathbf{x},t)$. The important discipline is to keep $n$ as normalized density and $\chi_{\text{sea}}$ as the delay factor.
+
+Spectral lines should then be recovered as transitions between effective envelope basins:
+
+$$
+h\nu_{a\to b}
+=
+E_{\text{env}}(a;\mathcal W_{\text{nuc}},\rho_{\text{core}},\chi_{\text{sea}})
+-
+E_{\text{env}}(b;\mathcal W_{\text{nuc}},\rho_{\text{core}},\chi_{\text{sea}}),
+$$
+
+with the local clock/rate conversion applied before comparing to observer frequencies. This keeps the atomic spectrum tied to geometry and causal-wake closure without claiming that the standard orbital postulate has already been derived.
 
 The second closure target is gravitational spectral shift. A viable account should derive redshift-sensitive atomic spectra from both local assembly resonance and the effective clock/rate layer, rather than treating the shift as a density-only lattice effect.
 
