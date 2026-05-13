@@ -100,11 +100,11 @@
     },
     {
       "id": "textbook_pdf_snapshots",
-      "title": "Textbook PDF Snapshots",
+      "title": "Textbook Markdown to PDF",
       "radius": 2.2,
       "color": "#7a5a2f",
-      "labelTitle": "Textbook PDF Snapshots",
-      "labelBadge": "pdf"
+      "labelTitle": "Textbook Markdown to PDF",
+      "labelBadge": "doc"
     },
     {
       "id": "scene_taxonomy",

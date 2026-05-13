@@ -12,12 +12,19 @@ const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(SCRIPT_DIR, "../..");
 const PORT = Number.parseInt(process.env.PORT ?? "5173", 10);
 const HOST = process.env.HOST ?? "127.0.0.1";
-const pdgLiveArtifactRuntime = createPdgLiveArtifactRuntime({
-  repoRootPath: REPO_ROOT,
-  log(message) {
-    process.stdout.write(`${String(message).trim()}\n`);
-  },
-});
+
+function isEnabledEnvironmentFlag(value = "") {
+  return /^(1|true|yes|on)$/iu.test(String(value || "").trim());
+}
+
+const pdgLiveArtifactRuntime = isEnabledEnvironmentFlag(process.env.PDG_LIVE_ARTIFACTS)
+  ? createPdgLiveArtifactRuntime({
+      repoRootPath: REPO_ROOT,
+      log(message) {
+        process.stdout.write(`${String(message).trim()}\n`);
+      },
+    })
+  : null;
 
 const MIME_TYPES = new Map([
   [".css", "text/css; charset=utf-8"],
@@ -86,7 +93,7 @@ function serveFile(request, response) {
 
 const server = createServer(async (request, response) => {
   try {
-    await pdgLiveArtifactRuntime.ensureFreshForRequest(request.url);
+    await pdgLiveArtifactRuntime?.ensureFreshForRequest(request.url);
     serveFile(request, response);
   } catch (error) {
     response.writeHead(500, {
@@ -99,11 +106,14 @@ const server = createServer(async (request, response) => {
 
 server.listen(PORT, HOST, () => {
   process.stdout.write(`local dev server: http://${HOST}:${PORT}/\n`);
+  if (!pdgLiveArtifactRuntime) {
+    process.stdout.write("[pdg] live artifact refresh disabled; set PDG_LIVE_ARTIFACTS=1 to enable.\n");
+  }
 });
-pdgLiveArtifactRuntime.start();
+pdgLiveArtifactRuntime?.start();
 
 function shutdown(exitCode = 0) {
-  pdgLiveArtifactRuntime.close();
+  pdgLiveArtifactRuntime?.close();
   server.close(() => {
     process.exit(exitCode);
   });

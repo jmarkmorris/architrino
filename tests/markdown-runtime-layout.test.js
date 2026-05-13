@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { createMarkdownRuntime } from "../src/runtime/MarkdownRuntime.js";
+import { createScenePanelUiRuntime } from "../src/runtime/ScenePanelUiRuntime.js";
 
 function createClassList() {
   const classes = new Set();
@@ -52,6 +53,20 @@ function createFakeElement() {
     },
     setAttribute(key, value) {
       attributes.set(key, String(value));
+    },
+  };
+}
+
+function createFakeButton() {
+  let clickHandler = null;
+  return {
+    addEventListener(type, handler) {
+      if (type === "click") {
+        clickHandler = handler;
+      }
+    },
+    click() {
+      return clickHandler?.();
     },
   };
 }
@@ -150,4 +165,47 @@ test("open markdown panels can invoke the browser PDF save flow", async (t) => {
 
   assert.equal(runtime.printMarkdownPanel(), true);
   assert.equal(printCount, 1);
+});
+
+test("PDF toolbar button opens markdown before invoking browser print", async (t) => {
+  const originalWindow = globalThis.window;
+  const printCalls = [];
+  const shownLevels = [];
+  const markdownPdfButton = createFakeButton();
+  const currentLevel = {
+    name: "Textbook Markdown to PDF",
+    markdownPath: "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
+  };
+
+  globalThis.window = {
+    setTimeout(callback) {
+      callback();
+      return 1;
+    },
+  };
+
+  t.after(() => {
+    globalThis.window = originalWindow;
+  });
+
+  const runtime = createScenePanelUiRuntime({
+    markdownPdfButton,
+    markdownRuntime: {
+      printMarkdownPanel() {
+        printCalls.push(shownLevels.length);
+        return shownLevels.length > 0;
+      },
+      async showMarkdownPanel(level) {
+        shownLevels.push(level);
+      },
+    },
+    getCurrentLevel: () => currentLevel,
+    isTransitionActive: () => false,
+  });
+
+  runtime.wireListeners();
+  await markdownPdfButton.click();
+
+  assert.deepEqual(shownLevels, [currentLevel]);
+  assert.deepEqual(printCalls, [0, 1]);
 });

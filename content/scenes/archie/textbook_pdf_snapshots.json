@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "archie__textbook_pdf_snapshots",
-    "title": "Textbook PDF Snapshots",
+    "title": "Textbook Markdown to PDF",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -49,7 +49,7 @@
       "motion": { "type": "fixed" },
       "fixedPosition": true,
       "labelTitle": "Full Textbook",
-      "labelBadge": "pdf",
+      "labelBadge": "doc",
       "source": {
         "type": "markdown",
         "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
@@ -69,7 +69,7 @@
       "motion": { "type": "fixed" },
       "fixedPosition": true,
       "labelTitle": "Foundations",
-      "labelBadge": "pdf",
+      "labelBadge": "doc",
       "source": {
         "type": "markdown",
         "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
@@ -89,7 +89,7 @@
       "motion": { "type": "fixed" },
       "fixedPosition": true,
       "labelTitle": "Dynamics",
-      "labelBadge": "pdf",
+      "labelBadge": "doc",
       "source": {
         "type": "markdown",
         "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
@@ -109,7 +109,7 @@
       "motion": { "type": "fixed" },
       "fixedPosition": true,
       "labelTitle": "Spacetime",
-      "labelBadge": "pdf",
+      "labelBadge": "doc",
       "source": {
         "type": "markdown",
         "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
@@ -129,7 +129,7 @@
       "motion": { "type": "fixed" },
       "fixedPosition": true,
       "labelTitle": "Interactions",
-      "labelBadge": "pdf",
+      "labelBadge": "doc",
       "source": {
         "type": "markdown",
         "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
@@ -149,7 +149,7 @@
       "motion": { "type": "fixed" },
       "fixedPosition": true,
       "labelTitle": "Standard Model Assemblies",
-      "labelBadge": "pdf",
+      "labelBadge": "doc",
       "source": {
         "type": "markdown",
         "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
@@ -169,7 +169,7 @@
       "motion": { "type": "fixed" },
       "fixedPosition": true,
       "labelTitle": "Atomic and Nuclear Assemblies",
-      "labelBadge": "pdf",
+      "labelBadge": "doc",
       "source": {
         "type": "markdown",
         "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
@@ -189,7 +189,7 @@
       "motion": { "type": "fixed" },
       "fixedPosition": true,
       "labelTitle": "Reactions",
-      "labelBadge": "pdf",
+      "labelBadge": "doc",
       "source": {
         "type": "markdown",
         "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
@@ -209,7 +209,7 @@
       "motion": { "type": "fixed" },
       "fixedPosition": true,
       "labelTitle": "Quantum",
-      "labelBadge": "pdf",
+      "labelBadge": "doc",
       "source": {
         "type": "markdown",
         "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
@@ -229,7 +229,7 @@
       "motion": { "type": "fixed" },
       "fixedPosition": true,
       "labelTitle": "Theory Bridges",
-      "labelBadge": "pdf",
+      "labelBadge": "doc",
       "source": {
         "type": "markdown",
         "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
@@ -249,7 +249,7 @@
       "motion": { "type": "fixed" },
       "fixedPosition": true,
       "labelTitle": "Cosmology",
-      "labelBadge": "pdf",
+      "labelBadge": "doc",
       "source": {
         "type": "markdown",
         "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
@@ -269,7 +269,7 @@
       "motion": { "type": "fixed" },
       "fixedPosition": true,
       "labelTitle": "Validation",
-      "labelBadge": "pdf",
+      "labelBadge": "doc",
       "source": {
         "type": "markdown",
         "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
@@ -289,7 +289,7 @@
       "motion": { "type": "fixed" },
       "fixedPosition": true,
       "labelTitle": "Proof Programs",
-      "labelBadge": "pdf",
+      "labelBadge": "doc",
       "source": {
         "type": "markdown",
         "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
@@ -309,7 +309,7 @@
       "motion": { "type": "fixed" },
       "fixedPosition": true,
       "labelTitle": "Philosophy-History",
-      "labelBadge": "pdf",
+      "labelBadge": "doc",
       "source": {
         "type": "markdown",
         "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"

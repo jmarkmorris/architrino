@@ -2058,7 +2058,7 @@
     },
     {
       "id": "archie__textbook_pdf_snapshots",
-      "name": "Textbook PDF Snapshots",
+      "name": "Textbook Markdown to PDF",
       "path": "content/scenes/archie/textbook_pdf_snapshots.json",
       "nodeType": "scene"
     },
@@ -2148,7 +2148,7 @@
     },
     {
       "id": "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
-      "name": "Textbook PDF Snapshots",
+      "name": "Textbook Markdown to PDF",
       "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
       "nodeType": "markdown_doc"
     },
@@ -3130,7 +3130,7 @@
       "nodeId": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
       "nodeType": "scene",
       "id": "archie__textbook_pdf_snapshots",
-      "name": "Textbook PDF Snapshots",
+      "name": "Textbook Markdown to PDF",
       "path": "content/scenes/archie/textbook_pdf_snapshots.json",
       "searchTarget": "content/scenes/archie/textbook_pdf_snapshots.json",
       "implicit": false
@@ -5965,7 +5965,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/archie/textbook-pdf-snapshots.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
-      "name": "Textbook PDF Snapshots",
+      "name": "Textbook Markdown to PDF",
       "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
       "searchTarget": "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
       "implicit": false
