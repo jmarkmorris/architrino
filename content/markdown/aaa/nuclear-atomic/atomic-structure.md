@@ -20,7 +20,7 @@ The Noether Sea enters this picture as ambient substrate contents, not as the fi
 
 The superfluid analogy remains useful for transport and coherence, but it does not make inertia a dissipative drag threshold. Inertial response must come from medium-dressed causal-ledger skew and shielding; ordinary resistance remains a separate breakdown channel involving excitation, action shedding, or branch transition.
 
-For the underlying assembly carrier of this medium, see [Noether Core](../assemblies/noether-core.md).
+For the underlying assembly carrier of this medium, see [Noether Core](../spacetime/noether-core.md).
 
 ## Angular-Momentum Handoff
 

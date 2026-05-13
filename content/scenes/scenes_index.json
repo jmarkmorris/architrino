@@ -732,7 +732,7 @@
     },
     {
       "id": "spacetime",
-      "name": "Spacetime",
+      "name": "Noether Sea and Effective Spacetime",
       "path": "content/scenes/spacetime/spacetime.json"
     },
     {
@@ -861,9 +861,9 @@
       "path": "content/scenes/assemblies/neutrinos.json"
     },
     {
-      "id": "assemblies__noether_core",
+      "id": "spacetime__noether_core",
       "name": "Noether Core",
-      "path": "content/scenes/assemblies/noether_core.json"
+      "path": "content/scenes/spacetime/noether_core.json"
     },
     {
       "id": "assemblies__particle_masses",
@@ -1471,9 +1471,9 @@
       "path": "content/scenes/assemblies/quarks.json"
     },
     {
-      "id": "assemblies__noether_core_geometry",
+      "id": "spacetime__noether_core_geometry",
       "name": "Noether Core Geometry",
-      "path": "content/scenes/assemblies/noether_core_geometry.json"
+      "path": "content/scenes/spacetime/noether_core_geometry.json"
     },
     {
       "id": "quantum__algorithmic_resonance",
@@ -1519,11 +1519,6 @@
       "id": "physical_observers",
       "name": "Physical Observers",
       "path": "content/scenes/spacetime/physical_observers.json"
-    },
-    {
-      "id": "spacetime_medium",
-      "name": "Noether Sea",
-      "path": "content/scenes/spacetime/spacetime_medium.json"
     },
     {
       "id": "strong_field_regime",

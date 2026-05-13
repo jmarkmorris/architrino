@@ -35,7 +35,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 
 ### 0. Tri-Binary Dynamics Baseline
 
-- Inputs: [Tri-Binary Dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md), [Noether Core](../../../content/markdown/aaa/assemblies/noether-core.md), and [Binary Dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md).
+- Inputs: [Tri-Binary Dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md), [Noether Core](../../../content/markdown/aaa/spacetime/noether-core.md), and [Binary Dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md).
 - Mechanism: use the AAA dynamics chapter as the canonical source for Noether-core roles, speed-regime conventions, delay-envelope geometry, gradient response, local clock diagnostics, and alignment/stability tests.
 - Output: a stable baseline vocabulary and mechanism set for the causal-closure synthesis.
 - Proof burden: keep the priority synthesis from silently redefining the mechanism; any stronger claim about mass, proper time, photons, measurement, or relativistic limits must be carried as a theorem target, priority route, or cut item here.

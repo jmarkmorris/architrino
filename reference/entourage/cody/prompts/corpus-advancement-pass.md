@@ -28,6 +28,19 @@ Rules:
 - Cross-links are not advancement by themselves. Add or recommend links only when they make an accepted mathematical claim easier to verify, compare, or read.
 - Infrastructure recommendations are secondary. Include them only when a specific recurring failure pattern has a concrete check, script, ledger, or priority item.
 
+## Closure-Target Triage
+
+Closure targets are controlled obligations, not a dumping ground for every external theory that points in a plausible direction. A closure target is required only when it protects contact with tested physics or an already-accepted mathematical or empirical constraint. If an external framework is useful but not required by such a constraint, classify it as a comparison tool, heuristic, or speculation.
+
+Use this priority order:
+
+- **Required recovery targets:** GR, QM/QFT, Standard Model phenomenology, thermodynamics, conservation laws, precision benchmarks, Lambda-CDM-era observational constraints, and direct observations.
+- **High-value consistency targets:** semi-classical or information-theoretic pressures that test coherence, such as black-hole entropy, Page-curve behavior, horizon regularity, or unitarity recovery, when they are treated as downstream requirements rather than AAA mechanisms.
+- **Comparison frameworks:** AdS/CFT, Ryu-Takayanagi, islands, replica wormholes, inflation models, MOND-like fits, string-theoretic programs, loop-quantum-gravity programs, and similar frameworks. Use these as measuring sticks or bridge language, not as AAA ontology, unless the local source material shows that a specific result has become a hard consistency condition.
+- **Defer or ignore:** weak alternate theories, fashionable conjectures, vague analogies, or models that add obligations without controlled derivation or empirical pressure.
+
+Do not call a requirement card a theory advance by itself. It becomes advancement only if the pass supplies an AAA-native derivation, equation, invariant, mechanism, simulation target with concrete variables, or proof route tied to existing ontology.
+
 ## Thread State Handoff
 
 At every pause, approval request, discussion request, or final response, make the thread state explicit before the report body:

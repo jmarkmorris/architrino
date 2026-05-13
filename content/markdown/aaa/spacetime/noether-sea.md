@@ -4,6 +4,14 @@ This chapter is the canonical medium-ontology page for the **Noether Sea** in $\
 
 The Noether Sea is not the substrate. The substrate is [absolute timespace](../foundations/absolute-timespace.md): absolute time together with the [Euclidean void](../foundations/euclidean-void.md). The Noether Sea is physical content inside that background: an emergent, coupled population of neutral Noether-core assemblies whose collective response appears to physical observers as spacetime behavior.
 
+This is why the reader path introduces Noether-core scaffold and geometry before observer-level spacetime. At the roadmap level, the physical Noether-core density can be read as a coarse-grained population field,
+$$
+\rho_{\text{core}}(\mathbf{x},t)
+\sim
+\sum_c W_\ell(\mathbf{x}-\mathbf{X}_c(t)),
+$$
+where $W_\ell$ is a smoothing window over core centers $\mathbf{X}_c(t)$. The medium stress, delay factor, and orientation variables then depend on each core's closure label, orientation, and envelope deformation. The Noether Sea is therefore introduced before effective metric language because its state variables are coarse-grained functions of Noether-core geometry, not primitive geometric postulates.
+
 ## Core Definition
 
 The **Noether Sea** is the ambient physical medium formed by dense, balanced populations of coupled neutral Noether cores in the Euclidean void.
@@ -162,8 +170,8 @@ This page owns:
 
 This page does not own:
 
-- Noether-core internal architecture; see [Nested Binaries and the Noether Core](../assemblies/noether-core.md).
-- Noether-core exclusion-envelope geometry; see [Noether Core Geometry](../assemblies/noether-core-geometry.md).
+- Noether-core internal architecture; see [Nested Binaries and the Noether Core](noether-core.md).
+- Noether-core exclusion-envelope geometry; see [Noether Core Geometry](noether-core-geometry.md).
 - Pro/anti coupling hypotheses and cluster motifs; see [Spacetime Assemblies](spacetime-assemblies.md).
 - Effective metric derivation; see [Emergent Metric](emergent-metric.md).
 - Clock and ruler behavior; see [Proper Time and Time Dilation](proper-time-and-time-dilation.md).

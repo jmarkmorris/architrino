@@ -11,14 +11,17 @@
 
 ## Task Queue
 
-1. `fundamental_angular_momentum_ledger` — Derive total angular-momentum conservation at the architrino / causal-wake level for a Noether core whose binary frequencies change under momentum transfer, including self-hit branches and action-functional self terms. Status: `next`. Depends on: none.
-2. `tri_binary_partition_rule` — Build the theorem-target equations that determine $\Delta I_{\text{inner}}$, $\Delta I_{\text{middle}}$, $\Delta I_{\text{outer}}$, and $\Delta I_{\text{wake}}$ for an accepted closed-cycle action transaction, including causal-wake angular momentum, root-ledger admissibility, phase-lock constraints, branch stability, and coupling geometry. Status: `pending`; theorem target scoped below. Depends on: `fundamental_angular_momentum_ledger`.
-3. `worked_three_layer_noether_transition` — Build and generalize explicit outer-coupled positive closed-cycle action transactions in a separated-scale Noether core. The minimal four-substep branch is now solved; non-minimal branch coefficients still need derivation or simulation fits. Status: `solved-minimal`. Depends on: `fundamental_angular_momentum_ledger`, `tri_binary_partition_rule`.
-4. `photon_planar_pair_transverse_ledger` — Derive photon Gate B for the coaxial contra-rotating pro/anti planar pair: transverse projector, helicity $\pm1$, analyzer coupling, Malus' law, no physical longitudinal free mode, and no-signaling polarization statistics. Status: `analyzer-measure-origin-scaffolded`; Gate B closure tests scoped below. Depends on: `fundamental_angular_momentum_ledger`; external prerequisite: photon Gate A kinematics in [electroweak-bosons.md](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md).
-5. `spinor_closure` — Connect the Noether-core angular-momentum ledger to the ordered-frame spinor closure target in [angular-momentum-and-spin.md](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md). Status: `pending`. Depends on: `tri_binary_partition_rule`, `worked_three_layer_noether_transition`.
-6. `measurement_response` — Derive how a spin-measurement apparatus couples to the full Noether-core angular-momentum ledger rather than to an abstract preassigned spin label. Status: `record-phase-impulse-origin-scaffolded`; effective spinor coordinate, concrete apparatus simulation, and Bell pair-provenance measure pending. Depends on: `spinor_closure`.
-7. `atomic_molecular_spin_revisit` — Revisit atomic and molecular spin once the quantum-level angular-momentum ledger is mature enough to distinguish internal rotational action, observer-level orbital quantum numbers, spin coupling, spin-orbit structure, hyperfine structure, molecular singlet/triplet states, and bonding/exclusion rules without importing them as unexplained quantum labels. Status: `pending`. Depends on: `spinor_closure`, `measurement_response`.
-8. `bell_rebuild` — Rebuild [bell-theorem.md](../../../content/markdown/aaa/theory-bridges/bell-theorem.md) from the completed angular-momentum, measurement-response, pair-provenance, and photon-polarization derivations. Status: `pending`. Depends on: `measurement_response`, `photon_planar_pair_transverse_ledger`, [quantum-closure bell gate](../quantum-closure/quantum-closure.md).
+1. `fundamental_angular_momentum_ledger` — Promote the branch-resolved total-angular-momentum scaffold into a validated conserved functional for a Noether core whose binary frequencies change under momentum transfer, including self-hit branches, wake history, and action-functional self terms. Status: `scaffolded`; action derivation and validation pending. Depends on: none.
+2. `tri_binary_partition_rule` — Derive the theorem-target equations that determine $\Delta I_{\text{inner}}$, $\Delta I_{\text{middle}}$, $\Delta I_{\text{outer}}$, and $\Delta I_{\text{wake}}$ for an accepted closed-cycle action transaction, including causal-wake angular momentum, root-ledger admissibility, phase-lock constraints, branch stability, and coupling geometry. Status: `theorem-target-scoped`; branch-selection law pending. Depends on: `fundamental_angular_momentum_ledger`.
+3. `worked_three_layer_noether_transition` — Generalize explicit outer-coupled positive closed-cycle action transactions in a separated-scale Noether core. The minimal four-substep branch is solved; non-minimal branch coefficients still need derivation or simulation fits. Status: `minimal-branch-solved`; non-minimal family pending. Depends on: `fundamental_angular_momentum_ledger`, `tri_binary_partition_rule`.
+4. `photon_planar_pair_transverse_ledger` — Derive photon Gate B for the coaxial contra-rotating pro/anti planar pair: transverse projector, helicity $\pm1$, analyzer coupling, Malus' law, no physical longitudinal free mode, and no-signaling polarization statistics. Status: `projector-and-measure-scaffolded`; substrate analyzer simulation pending. Depends on: `fundamental_angular_momentum_ledger`; external prerequisite: photon Gate A kinematics in [electroweak-bosons.md](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md).
+5. `spinor_closure` — Connect the Noether-core angular-momentum ledger to the ordered-frame spinor closure target in [angular-momentum-and-spin.md](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md). Status: `ordered-frame-target-scoped`; holonomy proof pending. Depends on: `tri_binary_partition_rule`, `worked_three_layer_noether_transition`.
+6. `measurement_response` — Derive how a spin-measurement apparatus couples to the full Noether-core angular-momentum ledger rather than to an abstract preassigned spin label. Status: `reduced-basin-arithmetic-scaffolded`; effective spinor coordinate and concrete apparatus simulation pending. Depends on: `spinor_closure`.
+7. `pair_provenance_measure` — Construct the singlet-like pair-provenance ledger and two local apparatus-response maps needed to test Bell correlations without reducing the model to preassigned opposite classical axes. Status: `pending`. Depends on: `measurement_response`, `spinor_closure`.
+8. `orbital_quantization_recovery` — Recover observer-level orbital angular-momentum quantization, including $2\pi$ azimuthal single-valuedness, $\ell\in\mathbb N_0$, and $m\in\{-\ell,\ldots,\ell\}$, from the effective envelope of an assembly in an external potential without conflating orbital labels with internal Noether-core spin. Status: `pending`. Depends on: `fundamental_angular_momentum_ledger`, `tri_binary_partition_rule`.
+9. `atomic_molecular_spin_revisit` — Revisit atomic and molecular spin once the quantum-level angular-momentum ledger is mature enough to distinguish internal rotational action, observer-level orbital quantum numbers, spin coupling, spin-orbit structure, hyperfine structure, molecular singlet/triplet states, and bonding/exclusion rules without importing them as unexplained quantum labels. Status: `pending`. Depends on: `spinor_closure`, `measurement_response`, `orbital_quantization_recovery`.
+10. `component_resolved_causal_writhe_bridge` — Test whether component-resolved causal-writhe data can distinguish pro/anti ordered cores, horizon planar signs, and weak left/right exposure without collapsing those labels prematurely. Status: `discussion-scoped`; proof/simulation pass pending. Depends on: `fundamental_angular_momentum_ledger`, `spinor_closure`, [weak-mixing-ckm.md](../../../content/markdown/aaa/theory-bridges/weak-mixing-ckm.md).
+11. `bell_rebuild` — Rebuild [bell-theorem.md](../../../content/markdown/aaa/theory-bridges/bell-theorem.md) from the completed angular-momentum, measurement-response, pair-provenance, and photon-polarization derivations. Status: `handoff-scaffolded`; correlation proof pending. Depends on: `measurement_response`, `pair_provenance_measure`, `photon_planar_pair_transverse_ledger`, [quantum-closure bell gate](../quantum-closure/quantum-closure.md).
 
 ## Scope
 
@@ -36,14 +39,19 @@ Until that ledger is understood at the fundamental level, Bell's theorem should 
 
 ## Current State
 
-The bridge [angular-momentum-and-spin.md](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md) has started the dictionary work:
+The bridge [angular-momentum-and-spin.md](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md) now does more than dictionary work:
 
 - $h$ is reserved for closed-cycle action;
 - $\hbar$ is reserved for radian-normalized angular momentum, spin, helicity, and rotation generators;
 - $\mathbf{L}$, $\mathbf{S}$, and $\mathbf{J}$ are separated at the standard quantum layer;
-- and Noether-core spinor behavior is framed as an open $SU(2)\to SO(3)$ lift target.
+- the branch-resolved $\mathbf{L}_{\text{mech}}+\mathbf{L}_{\text{wake}}$ Noether-core scaffold is explicit;
+- the tri-binary partition theorem target is stated as a constrained solve;
+- one minimal four-substep transaction is solved in a reduced chart;
+- the ordered Noether-core frame is defined as the spinor closure target;
+- photon Gate B has a projector / analyzer-measure scaffold; and
+- Stern-Gerlach-like measurement response has reduced basin arithmetic plus Master-Equation origins for the apparatus impulse and record-cycle measure.
 
-That bridge is necessary but not sufficient. It gives the naming discipline. This workstream must supply the derivation path beneath the naming discipline.
+Those results upgrade several old `pending` items to scaffolded or minimal-solved status. They do not close the workstream. The remaining burden is to derive or simulate the conserved functional, prove branch selection, prove or falsify the ordered-frame lift, compute concrete apparatus/analyzer dynamics, construct pair provenance, and then test Bell.
 
 ## Corpus Coverage Audit 2026-05-12
 
@@ -58,7 +66,7 @@ The corpus now has enough scaffolding to move this workstream from a broad "spin
    \mathbf{L}_{\text{mech}}(t)+\mathbf{L}_{\text{wake}}(t),
    $$
    with $\mathbf{L}_{\text{wake}}$ treated as the in-flight causal-wake contribution. [causal-action-functional.md](../../../content/markdown/aaa/dynamics/causal-action-functional.md) independently states that rotational symmetry in the delayed action gives conserved angular momentum as a history functional. This is the primary source signal for the first derivation.
-2. **Tri-binary layer roles.** [tri-binary-dynamics.md](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md), [noether-core.md](../../../content/markdown/aaa/assemblies/noether-core.md), and [noether-core-geometry.md](../../../content/markdown/aaa/assemblies/noether-core-geometry.md) already separate the inner self-hit engine, middle $v=c_f$ hinge, and outer shielding / interface layer. That makes the partition problem concrete: each layer has a role, speed regime, phase window, and exposure channel.
+2. **Tri-binary layer roles.** [tri-binary-dynamics.md](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md), [noether-core.md](../../../content/markdown/aaa/spacetime/noether-core.md), and [noether-core-geometry.md](../../../content/markdown/aaa/spacetime/noether-core-geometry.md) already separate the inner self-hit engine, middle $v=c_f$ hinge, and outer shielding / interface layer. That makes the partition problem concrete: each layer has a role, speed regime, phase window, and exposure channel.
 3. **One-$h$ bookkeeping seed.** [energy.md](../../../content/markdown/aaa/dynamics/energy.md) contains a first explicit one-$h$ closed-cycle action table with $\Delta I$ bookkeeping across outer, middle, inner, and wake channels. It is not yet a derivation, but it gives the variables needed for the tri-binary partition equations: $\Delta I_{\text{inner}}$, $\Delta I_{\text{middle}}$, $\Delta I_{\text{outer}}$, and $\Delta I_{\text{wake}}$.
 4. **Spinor and topology candidates.** [planck-scale-tri-binary-alignment.md](../../../content/markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md), [quantum-statistics.md](../../../content/markdown/aaa/quantum/quantum-statistics.md), and [horizon-chirality.md](../../../content/markdown/aaa/spacetime/horizon-chirality.md) all point toward the same distinction: a 3D ordered Noether-core frame should be tested for $SU(2)$-type $4\pi$ closure, while planarized branches reduce toward $SO(2)$ / $U(1)$-like phase behavior. [causal-action-functional.md](../../../content/markdown/aaa/dynamics/causal-action-functional.md) adds causal writhe $Wr_c$ as the strongest current chirality / handedness invariant candidate.
 5. **Standard quantum recovery contrast.** The integrated recovery checklist separates orbital angular momentum from electron spin, emphasizes $2\pi$ single-valued azimuthal closure for orbital $m$, regular finite angular solutions for $\ell$, the smeared chosen-axis projection picture, and the Stern-Gerlach two-channel result for electron spin. The Noether-core program should use that contrast to keep ordinary orbital closure separate from the fermion $4\pi$ spinor-lift target.
@@ -887,9 +895,12 @@ Once angular momentum and spin are understood at the Noether-core level, [bell-t
 - Validate the derivation scaffold for the total angular-momentum functional in delayed dynamics.
 - Promote the one-$h$ action table into the tri-binary partition theorem target by carrying the normalized variables $\Delta I_{\text{inner}}$, $\Delta I_{\text{middle}}$, $\Delta I_{\text{outer}}$, and $\Delta I_{\text{wake}}$ through conservation, root-ledger, phase-lock, stability, and coupling-geometry constraints.
 - Generalize the solved minimal four-substep branch into a family of admissible branches with coefficient values derived from the master equation or extracted from simulations.
-- Add a self-hit subsection explaining how inner-binary feedback changes partitioning while preserving the total ledger.
+- Prove or falsify the ordered-frame spinor lift by extracting one stable branch certificate, proving the branch-preserving quotient lemma, and computing the $2\pi$ / $4\pi$ delayed-root holonomy.
+- Separate observer-level orbital quantization from internal Noether-core spin by deriving the effective far-zone envelope and its $(\ell,m)$ angular content before revisiting atomic and molecular spin labels.
+- Test the component-resolved causal-writhe bridge before promoting scalar $Wr_c$ into any direct `pro/anti`, planar-sign, or weak left/right identifier.
 - Lift the photon Gate B analyzer-measure origin scaffold into a substrate proof by computing the analyzer projector, record-window quotient $\Theta_{\hat{\mathbf a}}$, material return map $T_s$, invariant measure $d\nu_{\hat{\mathbf a}}$, pass-threshold coordinate $\eta_{\hat{\mathbf a}}$, detector-bias diagnostic $\Delta_{\text{pol}}(\rho)$, and no-signaling polarization statistics from the planar-pair ledger and material analyzer dynamics.
 - Evaluate the Master-Equation branch-sum and record-cycle realization of the reduced Stern-Gerlach basin-measure law for $K_{\pm}^{\text{SG}}$, keeping the Bell response function as a closure target until the pair-provenance measure is calculated.
+- Construct the singlet-like pair-provenance ledger and two local apparatus-response maps before attempting the Bell correlation proof.
 - Rebuild the Bell account from the completed angular-momentum ledger, measurement-response kernel, pair-provenance measure, and no-signaling proof.
 
 ## Related Priorities
@@ -906,8 +917,8 @@ Once angular momentum and spin are understood at the Noether-core level, [bell-t
 - [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md)
 - [wavefunction-ontology](../../../content/markdown/aaa/quantum/wavefunction-ontology.md)
 - [planck-scale-tri-binary-alignment](../../../content/markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md)
-- [noether-core](../../../content/markdown/aaa/assemblies/noether-core.md)
-- [noether-core-geometry](../../../content/markdown/aaa/assemblies/noether-core-geometry.md)
+- [noether-core](../../../content/markdown/aaa/spacetime/noether-core.md)
+- [noether-core-geometry](../../../content/markdown/aaa/spacetime/noether-core-geometry.md)
 - [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md)
 - [causal-action-functional](../../../content/markdown/aaa/dynamics/causal-action-functional.md)
 - [energy](../../../content/markdown/aaa/dynamics/energy.md)

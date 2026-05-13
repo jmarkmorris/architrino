@@ -2,7 +2,7 @@
 
 The principle of emergence in this model is recursive. The stable orbiting binary is the foundational assembly, but it is not the end of the story. These binaries can themselves be treated as composite objects that can form larger, more complex systems. This leads to the concept of nested binaries.
 
-This chapter owns the Noether core as an assembly scaffold: nested binary hierarchy, shielding, generation-tier role, and fermion foundation. The core's dynamic exclusion-zone geometry is developed separately in [Noether Core Geometry](./noether-core-geometry.md), while metric-level translation belongs to [Emergent Metric](../spacetime/emergent-metric.md).
+This chapter owns the Noether core as the assembly scaffold that later supports both the Noether Sea and Standard Model particle architecture: nested binary hierarchy, shielding, generation-tier role, and fermion foundation. It appears in the Noether Sea and effective-spacetime branch because the medium is built from populations of neutral Noether cores, not from a primitive spacetime substance. The core's dynamic exclusion-zone geometry is developed separately in [Noether Core Geometry](./noether-core-geometry.md), while metric-level translation belongs to [Emergent Metric](emergent-metric.md).
 
 ### The Hierarchy of Orbits
 
@@ -81,7 +81,7 @@ The broader assembly program suggests reading the nested-binary family as a natu
 -   **Bi-binary:** one shielding tier restored, corresponding to the Generation-II core tier.
 -   **Tri-binary / Noether core:** the fully shielded three-tier core, corresponding to the Generation-I core tier.
 
-On this reading, the generation ladder is not an arbitrary label attached after the fact. It is the visible signature of how many nested shielding tiers still surround the deepest binary engine; this same shielding ladder is the starting point for [Particle Masses: Emergent Inertia in the Noether Sea](./particle-masses.md) and the charged-lepton story beginning with [Electron](./fermions/electron.md).
+On this reading, the generation ladder is not an arbitrary label attached after the fact. It is the visible signature of how many nested shielding tiers still surround the deepest binary engine; this same shielding ladder is the starting point for [Particle Masses: Emergent Inertia in the Noether Sea](../assemblies/particle-masses.md) and the charged-lepton story beginning with [Electron](../assemblies/fermions/electron.md).
 
 ### Tri-Binary Alignment and Planck-Scale Framing
 
@@ -89,7 +89,7 @@ The **inner binary** (maximal curvature, self-hit regime) is a stabilization out
 
 As a tri-binary approaches an event horizon, the **outer binary frequency increases** and its **velocity approaches field speed**, while the **middle binary** remains at $v=c_f$ as its radius/frequency shift. At the horizon, the **middle and outer binaries reach $v=c_f$ and become coplanar and co-linear with the inner binary**, with **precession ceasing** at alignment.
 
-**Rule of thumb:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (tri-binary coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale; compare [Singularity Resolution](../spacetime/singularity-resolution.md) and [Mapping the Planck Scale to the Tri-Binary Geometry](../theory-bridges/planck-scale-tri-binary-alignment.md).
+**Rule of thumb:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (tri-binary coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale; compare [Singularity Resolution](singularity-resolution.md) and [Mapping the Planck Scale to the Tri-Binary Geometry](../theory-bridges/planck-scale-tri-binary-alignment.md).
 
 ### The Foundation for Fermions
 

@@ -76,13 +76,13 @@ Nested proof subprograms live under [proof-programs](../proof-programs/proof-pro
 - Workstream `tri-binary-causal-closure`: run the continuity pass against the dependency map, then route the photon/QED, Lorentz/GR, equivalence, and topological certification burdens to the right proof workstreams before deployment.
 - Workstream `animator-reaction`: finish the forward pdgsolve/pdgedit/animator split and keep the active app path clean and contract-first.
 - Workstream `master-equation-closure`: carry the tractable master-equation stack far enough to support Lorentz / GR closure, quantum closure, and the first-principles mass program.
-- Workstream `angular-momentum-spin`: derive angular-momentum conservation and spin from the architrino / Noether-core ledger before treating Bell closure as an abstract quantum-theory problem.
+- Workstream `angular-momentum-spin`: promote the scaffolded Noether-core angular-momentum ledger into a validated functional, generalize the solved minimal partition branch, prove or falsify ordered-frame spinor closure, and keep Bell as a downstream pair-provenance and measurement-response test.
 
 ## Top Cross-Workstream Next Actions
 
 1. Generate the breather candidate cycle and build its finite certificate packet: causal ledger, branch chart, mesh, corridor nonemptiness proof, coupled corridor, monodromy diagnostic, returned-sample report, and topology ledger.
 2. Run the tri-binary causal closure continuity pass against its dependency map and route unresolved deployment items into priority workstreams.
-3. Derive the first architrino-level angular-momentum ledger for a changing-frequency Noether core with self-action and causal-wake terms.
+3. Validate and generalize the scaffolded architrino-level angular-momentum ledger for changing-frequency Noether cores, including wake terms, branch selection, spinor holonomy, and apparatus-response measures.
 4. Turn the mass-side placeholders into a first derived map with one attractor family, shielding extraction, and a baseline electron-mass prediction target.
 5. Freeze the pdgsolve-to-pdgedit publication seam and land the first clean downstream handoff into animator.
 

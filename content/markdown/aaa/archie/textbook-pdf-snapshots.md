@@ -40,9 +40,9 @@ Open the Foundations markdown view, then use **Save markdown as PDF** in the too
 
 Open the Dynamics markdown view, then use **Save markdown as PDF** in the toolbar to create a local PDF from the current reader view.
 
-## Spacetime
+## Noether Sea and Effective Spacetime
 
-Open the Spacetime markdown view, then use **Save markdown as PDF** in the toolbar to create a local PDF from the current reader view.
+Open the Noether Sea and Effective Spacetime markdown view, then use **Save markdown as PDF** in the toolbar to create a local PDF from the current reader view.
 
 ## Interactions
 

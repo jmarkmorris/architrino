@@ -22,7 +22,7 @@ This page is the entry hub for the quantum branch of $\mathbb{A}\mathbb{A}\mathb
 ### Closure Ledgers
 
 - **Born-rule basin-measure ledger:** [wavefunction-ontology.md](../../../../markdown/aaa/quantum/wavefunction-ontology.md), [measurement-ontology.md](../../../../markdown/aaa/quantum/measurement-ontology.md), [superposition-mechanism.md](../../../../markdown/aaa/theory-bridges/superposition-mechanism.md), and [pilot-wave-character.md](../../../../markdown/aaa/theory-bridges/pilot-wave-character.md) own the transfer-operator, invariant-measure, finite-time separatrix, and effective wave-equation targets.
-- **Spin-statistics / exchange ledger:** [quantum-statistics.md](../../../../markdown/aaa/quantum/quantum-statistics.md), [Noether Core Geometry](../../../../markdown/aaa/assemblies/noether-core-geometry.md), and [Quantum Operator Mapping](../../../../markdown/aaa/theory-bridges/quantum-operator-mapping.md) own the route from 3D volumetric exclusion to fermionic antisymmetry and from coherent 2D support to bosonic symmetric occupation.
+- **Spin-statistics / exchange ledger:** [quantum-statistics.md](../../../../markdown/aaa/quantum/quantum-statistics.md), [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md), and [Quantum Operator Mapping](../../../../markdown/aaa/theory-bridges/quantum-operator-mapping.md) own the route from 3D volumetric exclusion to fermionic antisymmetry and from coherent 2D support to bosonic symmetric occupation.
 - **Photon Gate A/B/C ledger:** [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md#photon-closure-interface) owns the photon-channel theorem scaffold, while [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md#photon-closure-gates) records the Gate A/B/C acceptance filters. Gate B is the quantum-facing bridge where planar-pair capture must recover Malus' law and the native squared-amplitude rule without replacing the broader Born-rule basin-measure program; it inherits the spin and helicity ledger from [Angular Momentum and Spin](../../../../markdown/aaa/theory-bridges/angular-momentum-and-spin.md). Gate A and Gate C constrain the same photon branch through kinematics, optics, transition vertices, Bose-Einstein occupation behavior, and validated QED limits.
 
 ## Reality, Causality, and Navigation
@@ -1008,7 +1008,7 @@ The substrate question is: what assembly geometry makes those two statistical pa
 
 ### Noether-Core Geometry Basis
 
-The relevant object is the Noether core, the triply nested binary assembly described in [Nested Binaries and the Noether Core](../../../../markdown/aaa/assemblies/noether-core.md). Its geometric footprint is the dynamic exclusion envelope described in [Noether Core Geometry](../../../../markdown/aaa/assemblies/noether-core-geometry.md).
+The relevant object is the Noether core, the triply nested binary assembly described in [Nested Binaries and the Noether Core](../../../../markdown/aaa/spacetime/noether-core.md). Its geometric footprint is the dynamic exclusion envelope described in [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md).
 
 In the low-apparent-energy matter regime, the three nested binaries maintain separated orbital scales and a three-dimensional orientation structure. The outer binary sets the leading equatorial boundary of an oblate spheroidal exclusion envelope, while the inner and middle binaries provide high-frequency stabilizing wake structure.
 
@@ -1043,7 +1043,7 @@ Photon-like channel behavior is the cleanest target for this mechanism. A bosoni
 
 ### The 3D-to-2D Transition
 
-The transition can be summarized by the canonical Noether-core shape ratio from [Noether Core Geometry](../../../../markdown/aaa/assemblies/noether-core-geometry.md#canonical-geometry-variables). Let $R_{\parallel}$ denote the semiaxis along the contraction or drift-aligned direction and $R_{\perp}$ the transverse semiaxis. Then
+The transition can be summarized by the canonical Noether-core shape ratio from [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md#canonical-geometry-variables). Let $R_{\parallel}$ denote the semiaxis along the contraction or drift-aligned direction and $R_{\perp}$ the transverse semiaxis. Then
 
 $$
 \xi\equiv\frac{R_{\parallel}}{R_{\perp}}.
@@ -1057,8 +1057,8 @@ This ratio is not yet a final derivation of spin-statistics. It is a geometric c
 
 This chapter depends on:
 
-- [Noether Core Geometry](../../../../markdown/aaa/assemblies/noether-core-geometry.md) for the oblate spheroidal exclusion envelope,
-- [Nested Binaries and the Noether Core](../../../../markdown/aaa/assemblies/noether-core.md) for the tri-binary scaffold,
+- [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md) for the oblate spheroidal exclusion envelope,
+- [Nested Binaries and the Noether Core](../../../../markdown/aaa/spacetime/noether-core.md) for the tri-binary scaffold,
 - [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md) for the delayed-dynamics regime map,
 - [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md) for the effective probability bookkeeping seen by physical observers,
 - and [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) for the photon-channel case where coherent planar-pair modes must recover Bose-Einstein occupation behavior.

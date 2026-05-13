@@ -1,6 +1,6 @@
 # Spacetime Assemblies
 
-This note summarizes a working hypothesis used across the spacetime branch of the model: the Noether Sea is not treated as a passive geometric background, but as an active medium built from persistent assemblies with internal structure and coupling rules. It is the assembly-hypothesis continuation of [Noether Sea](noether-sea.md), [Euclidean Void](../foundations/euclidean-void.md), and [Nested Binaries and the Noether Core](../assemblies/noether-core.md).
+This note summarizes a working hypothesis used across the spacetime branch of the model: the Noether Sea is not treated as a passive geometric background, but as an active medium built from persistent assemblies with internal structure and coupling rules. It is the assembly-hypothesis continuation of [Noether Sea](noether-sea.md), [Euclidean Void](../foundations/euclidean-void.md), and [Nested Binaries and the Noether Core](noether-core.md).
 
 For the canonical medium ontology, total-density boundary, and terminology discipline, see [Noether Sea](noether-sea.md). This chapter is the canonical home for the more specific pro/anti Noether-core coupling details: orientation basis, density decomposition, imbalance stability, local coupling hypotheses, and cluster-organization motifs.
 
@@ -76,7 +76,7 @@ This chapter owns:
 This chapter does not own:
 
 - the Noether Sea as medium ontology; see [Noether Sea](noether-sea.md),
-- the internal Noether-core architecture; see [Nested Binaries and the Noether Core](../assemblies/noether-core.md),
+- the internal Noether-core architecture; see [Nested Binaries and the Noether Core](noether-core.md),
 - the effective metric map; see [Emergent Metric](emergent-metric.md),
 - clock and ruler extraction; see [Proper Time and Time Dilation](proper-time-and-time-dilation.md),
 - or cosmological scale-factor translation; see [Expansion Mechanism](../cosmology/expansion-mechanism.md).

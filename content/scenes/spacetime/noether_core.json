@@ -1,7 +1,7 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "assemblies__noether_core",
+    "id": "spacetime__noether_core",
     "title": "Noether Core",
     "type": "Scene-Markdown-View",
     "units": "relative",
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/assemblies/noether-core.md"
+      "path": "content/markdown/aaa/spacetime/noether-core.md"
     },
     "view": {
       "columns": 1,

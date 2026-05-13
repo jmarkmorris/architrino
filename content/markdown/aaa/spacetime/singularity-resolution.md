@@ -1,6 +1,6 @@
 # Singularity Resolution
 
-This section frames how architrino assemblies avoid singularities and how strong-field behavior should be interpreted in the tri-binary architecture. It is the canonical strong-field bridge for [Nested Binaries and the Noether Core](../assemblies/noether-core.md), [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md), and [Black Holes](./black-holes.md).
+This section frames how architrino assemblies avoid singularities and how strong-field behavior should be interpreted in the tri-binary architecture. It is the canonical strong-field bridge for [Nested Binaries and the Noether Core](noether-core.md), [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md), and [Black Holes](./black-holes.md).
 
 ## Canonical Strong-Field Alignment Condition
 
@@ -11,6 +11,21 @@ $$
 v_M=c_f,\qquad v_O\to c_f,
 $$
 with middle/outer binaries becoming coplanar and co-linear with the inner binary at alignment and precession ceasing in that limit.
+
+This condition is a constitutive boundary condition on Noether-Sea state, not an isolated metric ansatz imported from an asymptotically flat solution. In schematic form, the horizon-interface closure problem is
+$$
+F_H\!\left[
+\rho_{\text{core}}(\mathbf{x},t),
+\Sigma_{\text{medium}}(\mathbf{x},t),
+\mathbf{u}_{\text{medium}}(\mathbf{x},t),
+\{\Lambda_{\text{NC}}\};
+\partial\Omega
+\right]
+=0,
+\qquad
+v_M=c_f,\quad v_O\to c_f.
+$$
+The boundary data $\partial\Omega$ record the surrounding Noether-Sea and effective exterior state. A viable singularity replacement must solve the alignment condition with finite boundary data in embedded, non-isolated settings, rather than relying on asymptotic flatness as an implicit support.
 
 ## Maximal Curvature vs Planck Scale
 
