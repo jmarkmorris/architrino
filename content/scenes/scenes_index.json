@@ -1521,11 +1521,6 @@
       "path": "content/scenes/spacetime/physical_observers.json"
     },
     {
-      "id": "spacetime_medium",
-      "name": "Noether Sea",
-      "path": "content/scenes/spacetime/spacetime_medium.json"
-    },
-    {
       "id": "strong_field_regime",
       "name": "Strong-Field Regime",
       "path": "content/scenes/spacetime/strong_field_regime.json"

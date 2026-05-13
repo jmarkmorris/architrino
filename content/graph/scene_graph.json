@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 484,
-      "edges": 1236,
-      "scenes": 319,
+      "nodes": 483,
+      "edges": 1235,
+      "scenes": 318,
       "markdownIndexes": 0,
       "markdownDocs": 165,
       "runtimeEdges": 476,
@@ -1970,12 +1970,6 @@
       "id": "physical_observers",
       "name": "Physical Observers",
       "path": "content/scenes/spacetime/physical_observers.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "spacetime_medium",
-      "name": "Noether Sea",
-      "path": "content/scenes/spacetime/spacetime_medium.json",
       "nodeType": "scene"
     },
     {
@@ -5356,15 +5350,6 @@
       "name": "Spacetime Assemblies",
       "path": "content/scenes/spacetime/spacetime_assemblies.json",
       "searchTarget": "content/scenes/spacetime/spacetime_assemblies.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/spacetime/spacetime_medium.json",
-      "nodeType": "scene",
-      "id": "spacetime_medium",
-      "name": "Noether Sea",
-      "path": "content/scenes/spacetime/spacetime_medium.json",
-      "searchTarget": "content/scenes/spacetime/spacetime_medium.json",
       "implicit": false
     },
     {
@@ -10976,29 +10961,15 @@
       "field": "scene.children[1]"
     },
     {
-      "from": "scene:content/scenes/spacetime/spacetime_medium.json",
-      "to": "scene:content/scenes/spacetime/medium_exclusion_volume.json",
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/spacetime/effective_metric.json",
       "edgeType": "subscene",
-      "source": "content/scenes/spacetime/spacetime_medium.json",
-      "field": "scene.children[2]"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/spacetime_medium.json",
-      "to": "scene:content/scenes/spacetime/noether_sea.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/spacetime/spacetime_medium.json",
-      "field": "scene.children[0]"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/spacetime_medium.json",
-      "to": "scene:content/scenes/spacetime/spacetime_assemblies.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/spacetime/spacetime_medium.json",
-      "field": "scene.children[1]"
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
-      "to": "scene:content/scenes/spacetime/effective_metric.json",
+      "to": "scene:content/scenes/spacetime/medium_exclusion_volume.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
       "field": "scene.children[4]"
@@ -11019,24 +10990,31 @@
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
-      "to": "scene:content/scenes/spacetime/physical_observers.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/spacetime/spacetime.json",
-      "field": "scene.children[3]"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/spacetime.json",
-      "to": "scene:content/scenes/spacetime/spacetime_medium.json",
+      "to": "scene:content/scenes/spacetime/noether_sea.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
       "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
-      "to": "scene:content/scenes/spacetime/strong_field_regime.json",
+      "to": "scene:content/scenes/spacetime/physical_observers.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
       "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/spacetime/spacetime_assemblies.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/spacetime/strong_field_regime.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/spacetime/strong_field_regime.json",

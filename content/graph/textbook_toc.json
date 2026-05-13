@@ -8,7 +8,7 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 152,
+      "entries": 151,
       "sections": 1094
     }
   },
@@ -1433,201 +1433,100 @@
         "scenePath": "content/scenes/spacetime/spacetime.json",
         "children": [
           {
-            "id": "spacetime_medium",
+            "id": "spacetime__noether_sea",
             "title": "Noether Sea",
-            "kind": "scene-index",
-            "sceneType": "Scene-Index",
-            "scenePath": "content/scenes/spacetime/spacetime_medium.json",
-            "children": [
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/spacetime/noether_sea.json",
+            "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+            "sections": [
               {
-                "id": "spacetime__noether_sea",
-                "title": "Noether Sea",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/spacetime/noether_sea.json",
+                "kind": "markdown-section",
+                "title": "Core Definition",
                 "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
-                "sections": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Core Definition",
-                    "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
-                    "markdownSection": "Core Definition",
-                    "sectionKey": "core definition",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Boundary With the Euclidean Void",
-                    "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
-                    "markdownSection": "Boundary With the Euclidean Void",
-                    "sectionKey": "boundary with the euclidean void",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Composition",
-                    "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
-                    "markdownSection": "Composition",
-                    "sectionKey": "composition",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "State Variables",
-                    "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
-                    "markdownSection": "State Variables",
-                    "sectionKey": "state variables",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Medium Properties",
-                    "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
-                    "markdownSection": "Medium Properties",
-                    "sectionKey": "medium properties",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Refractive Gravity and Effective Metric",
-                    "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
-                    "markdownSection": "Refractive Gravity and Effective Metric",
-                    "sectionKey": "refractive gravity and effective metric",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Matter Coupling and Inertia",
-                    "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
-                    "markdownSection": "Matter Coupling and Inertia",
-                    "sectionKey": "matter coupling and inertia",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Cosmological Role",
-                    "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
-                    "markdownSection": "Cosmological Role",
-                    "sectionKey": "cosmological role",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Terminology Discipline",
-                    "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
-                    "markdownSection": "Terminology Discipline",
-                    "sectionKey": "terminology discipline",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Ownership Boundary",
-                    "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
-                    "markdownSection": "Ownership Boundary",
-                    "sectionKey": "ownership boundary",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Summary Commitment",
-                    "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
-                    "markdownSection": "Summary Commitment",
-                    "sectionKey": "summary commitment",
-                    "headingLevel": 2
-                  }
-                ]
+                "markdownSection": "Core Definition",
+                "sectionKey": "core definition",
+                "headingLevel": 2
               },
               {
-                "id": "spacetime__spacetime_assemblies",
-                "title": "Spacetime Assemblies",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/spacetime/spacetime_assemblies.json",
-                "markdownPath": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
-                "sections": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Pro/Anti Noether Core Basis",
-                    "markdownPath": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
-                    "markdownSection": "Pro/Anti Noether Core Basis",
-                    "sectionKey": "pro anti noether core basis",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "2 Pro + 2 Anti Coupling Hypothesis",
-                    "markdownPath": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
-                    "markdownSection": "2 Pro + 2 Anti Coupling Hypothesis",
-                    "sectionKey": "2 pro 2 anti coupling hypothesis",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Why This Matters for Spacetime Phenomenology",
-                    "markdownPath": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
-                    "markdownSection": "Why This Matters for Spacetime Phenomenology",
-                    "sectionKey": "why this matters for spacetime phenomenology",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Ownership Boundary",
-                    "markdownPath": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
-                    "markdownSection": "Ownership Boundary",
-                    "sectionKey": "ownership boundary",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Status and Next Checks",
-                    "markdownPath": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
-                    "markdownSection": "Status and Next Checks",
-                    "sectionKey": "status and next checks",
-                    "headingLevel": 2
-                  }
-                ]
+                "kind": "markdown-section",
+                "title": "Boundary With the Euclidean Void",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "Boundary With the Euclidean Void",
+                "sectionKey": "boundary with the euclidean void",
+                "headingLevel": 2
               },
               {
-                "id": "spacetime__medium_exclusion_volume",
-                "title": "Medium Exclusion Volume",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/spacetime/medium_exclusion_volume.json",
-                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
-                "sections": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Levels of Excluded Volume",
-                    "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
-                    "markdownSection": "Levels of Excluded Volume",
-                    "sectionKey": "levels of excluded volume",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Propagation Across Excluded Regions",
-                    "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
-                    "markdownSection": "Propagation Across Excluded Regions",
-                    "sectionKey": "propagation across excluded regions",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Background Timespace vs. Implemented Medium",
-                    "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
-                    "markdownSection": "Background Timespace vs. Implemented Medium",
-                    "sectionKey": "background timespace vs implemented medium",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Big Picture",
-                    "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
-                    "markdownSection": "Big Picture",
-                    "sectionKey": "big picture",
-                    "headingLevel": 2
-                  }
-                ]
+                "kind": "markdown-section",
+                "title": "Composition",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "Composition",
+                "sectionKey": "composition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "State Variables",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "State Variables",
+                "sectionKey": "state variables",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Medium Properties",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "Medium Properties",
+                "sectionKey": "medium properties",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Refractive Gravity and Effective Metric",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "Refractive Gravity and Effective Metric",
+                "sectionKey": "refractive gravity and effective metric",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Matter Coupling and Inertia",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "Matter Coupling and Inertia",
+                "sectionKey": "matter coupling and inertia",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Cosmological Role",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "Cosmological Role",
+                "sectionKey": "cosmological role",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Terminology Discipline",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "Terminology Discipline",
+                "sectionKey": "terminology discipline",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Ownership Boundary",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "Ownership Boundary",
+                "sectionKey": "ownership boundary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary Commitment",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "Summary Commitment",
+                "sectionKey": "summary commitment",
+                "headingLevel": 2
               }
             ]
           },
@@ -1701,6 +1600,98 @@
                 "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
                 "markdownSection": "Summary Commitment",
                 "sectionKey": "summary commitment",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "spacetime__spacetime_assemblies",
+            "title": "Spacetime Assemblies",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/spacetime/spacetime_assemblies.json",
+            "markdownPath": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Pro/Anti Noether Core Basis",
+                "markdownPath": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
+                "markdownSection": "Pro/Anti Noether Core Basis",
+                "sectionKey": "pro anti noether core basis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "2 Pro + 2 Anti Coupling Hypothesis",
+                "markdownPath": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
+                "markdownSection": "2 Pro + 2 Anti Coupling Hypothesis",
+                "sectionKey": "2 pro 2 anti coupling hypothesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Why This Matters for Spacetime Phenomenology",
+                "markdownPath": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
+                "markdownSection": "Why This Matters for Spacetime Phenomenology",
+                "sectionKey": "why this matters for spacetime phenomenology",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Ownership Boundary",
+                "markdownPath": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
+                "markdownSection": "Ownership Boundary",
+                "sectionKey": "ownership boundary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Status and Next Checks",
+                "markdownPath": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
+                "markdownSection": "Status and Next Checks",
+                "sectionKey": "status and next checks",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "spacetime__medium_exclusion_volume",
+            "title": "Medium Exclusion Volume",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/spacetime/medium_exclusion_volume.json",
+            "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Levels of Excluded Volume",
+                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+                "markdownSection": "Levels of Excluded Volume",
+                "sectionKey": "levels of excluded volume",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Propagation Across Excluded Regions",
+                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+                "markdownSection": "Propagation Across Excluded Regions",
+                "sectionKey": "propagation across excluded regions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Background Timespace vs. Implemented Medium",
+                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+                "markdownSection": "Background Timespace vs. Implemented Medium",
+                "sectionKey": "background timespace vs implemented medium",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Big Picture",
+                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+                "markdownSection": "Big Picture",
+                "sectionKey": "big picture",
                 "headingLevel": 2
               }
             ]

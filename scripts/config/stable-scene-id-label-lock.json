@@ -138,20 +138,13 @@
       "sceneName": "Noether Sea and Effective Spacetime",
       "objects": {
         "effective_metric": "Effective Metric",
+        "medium_exclusion_volume": "Medium Exclusion Volume",
         "noether_core": "Noether Core",
         "noether_core_geometry": "Noether Core Geometry",
-        "physical_observers": "Physical Observers",
-        "spacetime_medium": "Noether Sea",
-        "strong_field_regime": "Strong-Field Regime"
-      }
-    },
-    "content/scenes/spacetime/spacetime_medium.json": {
-      "sceneId": "spacetime_medium",
-      "sceneName": "Noether Sea",
-      "objects": {
-        "medium_exclusion_volume": "Medium Exclusion Volume",
         "noether_sea": "Noether Sea",
-        "spacetime_assemblies": "Spacetime Assemblies"
+        "physical_observers": "Physical Observers",
+        "spacetime_assemblies": "Spacetime Assemblies",
+        "strong_field_regime": "Strong-Field Regime"
       }
     },
     "content/scenes/spacetime/physical_observers.json": {

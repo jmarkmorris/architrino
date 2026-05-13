@@ -9,11 +9,11 @@
     "layout": {
       "type": "rings"
     },
-    "centerOn": "spacetime_medium",
+    "centerOn": "noether_sea",
     "children": [
       {
-        "nodeId": "spacetime_medium",
-        "scenePath": "content/scenes/spacetime/spacetime_medium.json"
+        "nodeId": "noether_sea",
+        "scenePath": "content/scenes/spacetime/noether_sea.json"
       },
       {
         "nodeId": "noether_core",
@@ -22,6 +22,14 @@
       {
         "nodeId": "noether_core_geometry",
         "scenePath": "content/scenes/spacetime/noether_core_geometry.json"
+      },
+      {
+        "nodeId": "spacetime_assemblies",
+        "scenePath": "content/scenes/spacetime/spacetime_assemblies.json"
+      },
+      {
+        "nodeId": "medium_exclusion_volume",
+        "scenePath": "content/scenes/spacetime/medium_exclusion_volume.json"
       },
       {
         "nodeId": "physical_observers",
@@ -39,9 +47,9 @@
   },
   "objects": [
     {
-      "id": "spacetime_medium",
+      "id": "noether_sea",
       "title": "Noether Sea",
-      "radius": 2.35,
+      "radius": 2.05,
       "color": "#2f4f7a",
       "position": [
         0,
@@ -52,12 +60,13 @@
         "type": "fixed"
       },
       "labelTitle": "Noether Sea",
+      "labelBadge": "doc",
       "fixedPosition": true
     },
     {
       "id": "noether_core",
       "title": "Noether Core",
-      "radius": 2.35,
+      "radius": 2.05,
       "color": "#3a5f9f",
       "position": [
         0,
@@ -74,11 +83,11 @@
     {
       "id": "noether_core_geometry",
       "title": "Noether Core Geometry",
-      "radius": 2.35,
+      "radius": 2.05,
       "color": "#2f4f7a",
       "position": [
-        7.8,
-        2.53,
+        6.41,
+        5.11,
         0
       ],
       "motion": {
@@ -89,13 +98,47 @@
       "fixedPosition": true
     },
     {
+      "id": "spacetime_assemblies",
+      "title": "Spacetime Assemblies",
+      "radius": 2.05,
+      "color": "#6a3c3c",
+      "position": [
+        7.99,
+        -1.82,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Spacetime Assemblies",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "medium_exclusion_volume",
+      "title": "Medium Exclusion Volume",
+      "radius": 2.05,
+      "color": "#3f6a5a",
+      "position": [
+        3.56,
+        -7.39,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Medium Exclusion Volume",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
       "id": "physical_observers",
       "title": "Physical Observers",
-      "radius": 2.35,
+      "radius": 2.05,
       "color": "#2f6b6f",
       "position": [
-        4.82,
-        -6.63,
+        -3.56,
+        -7.39,
         0
       ],
       "motion": {
@@ -107,11 +150,11 @@
     {
       "id": "effective_metric",
       "title": "Effective Metric",
-      "radius": 2.35,
+      "radius": 2.05,
       "color": "#243d8f",
       "position": [
-        -4.82,
-        -6.63,
+        -7.99,
+        -1.82,
         0
       ],
       "motion": {
@@ -123,11 +166,11 @@
     {
       "id": "strong_field_regime",
       "title": "Strong-Field Regime",
-      "radius": 2.35,
+      "radius": 2.05,
       "color": "#4a3b6f",
       "position": [
-        -7.8,
-        2.53,
+        -6.41,
+        5.11,
         0
       ],
       "motion": {
