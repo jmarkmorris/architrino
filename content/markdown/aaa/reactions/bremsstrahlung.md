@@ -7,9 +7,10 @@ Bremsstrahlung ("braking radiation") is electromagnetic emission generated when 
 This chapter is organized in three layers:
 
 1. **Standard baseline:** what is already established (mechanism, emissivity, scaling laws).
-2. **$\mathbb{A}\mathbb{A}\mathbb{A}$ mapping layer:** how the same observables are re-expressed in assembly-language terms.
+2. **Radiation inheritance:** how the channel specializes the shared closure-residual routing in [Radiation](radiation.md).
+3. **$\mathbb{A}\mathbb{A}\mathbb{A}$ mapping layer:** how the same observables are re-expressed in assembly-language terms.
 
-Read left-to-right as: baseline physics $\rightarrow$ ontology mapping.
+Read left-to-right as: baseline physics $\rightarrow$ shared radiation routing $\rightarrow$ channel-specific ontology mapping.
 
 Terminology in this chapter follows [mode-taxonomy.md](../interactions/mode-taxonomy.md): photon emission is described as **planar-mode nucleation**; `corridor` terms are reserved for weak-channel contexts.
 
@@ -19,8 +20,11 @@ Terminology in this chapter follows [mode-taxonomy.md](../interactions/mode-taxo
 - $E_\gamma$: emitted photon energy.
 - $\Delta E_{\mathrm{recoil}}$: target recoil energy channel.
 - $\Delta E_{\mathrm{med}}$: medium-excitation energy channel.
+- $E_{\text{exc}}^{\mathrm{br}}$: bremsstrahlung excitation energy inherited from the radiation closure-residual ledger.
+- $\mathcal{R}_{\Theta}^{\mathrm{br}}$: bremsstrahlung closure-mismatch residual.
 - $\mathcal{S}_{\mathrm{wake}}$: effective wake intensity variable.
-- $\mathcal{S}_*$: effective nucleation threshold scale.
+- $\mathcal{S}_{\gamma}^{\mathrm{br}}$: bremsstrahlung photon-channel drive inherited from the radiation planar-mode gate.
+- $\mathcal{S}_*$: effective bremsstrahlung proxy for the inherited planar-mode threshold scale.
 - $E_{\gamma,\min}$: hypothesized minimum stable planar-mode energy.
 - $\Gamma_{\mathrm{eff}}$: absolute-time/proper-time conversion factor.
 - $\rho_{\text{core}}(\mathbf{x},t)$: local physical Noether-core density.
@@ -34,6 +38,7 @@ At low photon energies, multiple small-angle encounters contribute strongly and 
 ## Prerequisites (Minimal)
 
 - Photon assembly ontology (planar-mode tri-binary language at micro level).
+- Shared radiation routing in [Radiation](radiation.md).
 - Master Equation state-transition framework (emissive vs non-emissive microstates).
 - Emergent metric/geodesic transport framework (observer-level propagation and lensing).
 - Absolute-time to proper-time conversion rules used for rate equations.
@@ -45,9 +50,64 @@ Status convention used below:
 - **Baseline:** established standard-physics relation retained unchanged.
 - **Provisional map:** working $\mathbb{A}\mathbb{A}\mathbb{A}$ parameterization pending derivation.
 
-### Wake Shock Definition (Ontology-Level)
+### Radiation Inheritance
 
-In this document, a **wake shock** is defined as a microstate transition of the electron tri-binary assembly during strong deceleration, not merely a descriptive label for radiation. Operationally, it is the threshold crossing where the electron assembly's internal curvature mode is driven across the field-speed symmetry point in the middle binary (near $v \approx c_f$), creating a transient high-curvature state that can shed energy into the surrounding Noether Sea.
+Bremsstrahlung is the charged-assembly deceleration specialization of the shared radiation program in [Radiation](radiation.md). The standard phrase "acceleration drives radiation" remains the observer-level baseline. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ map, the channel-specific claim is narrower: the target encounter changes the electron assembly's transport state quickly enough to create a closure mismatch, and only the portion of that mismatch routed through the photon basin becomes planar-mode output.
+
+The inherited skeleton is
+
+$$
+\text{charged-assembly deceleration near a target}
+\longrightarrow
+\text{closure mismatch}
+\longrightarrow
+\text{bremsstrahlung excitation basin}
+\longrightarrow
+\text{planar-mode photon, recoil, medium excitation, or residual core energy}.
+$$
+
+For this channel, the radiation residual can be specialized as the derivation target
+
+$$
+\mathcal{R}_{\Theta}^{\mathrm{br}}
+=
+\mathcal{R}_{\Theta}\!\left(
+\Gamma_e(t),
+\mathcal{C}_{o'j}(t),
+J_{o'j},
+\rho_{\text{core}}(\mathbf{x},t),
+\chi_{\text{sea}}(\mathbf{x},t);
+Z,b,\left\lVert\frac{d\mathbf{v}_e}{dt}\right\rVert
+\right).
+$$
+
+Here $\Gamma_e(t)$ is the electron-assembly microstate, $\mathcal{C}_{o'j}(t)$ and $J_{o'j}$ are the active causal-root and Jacobian data during the target encounter, $Z$ and $b$ summarize the observer-level target charge and impact-parameter geometry, and $\left\lVert d\mathbf{v}_e/dt\right\rVert$ is the deceleration magnitude. This equation does not derive the QED bremsstrahlung cross-section. It names the closure functional that must later recover the validated cross-section and emissivity limits.
+
+The corresponding excitation energy is inherited from the radiation basin definition:
+
+$$
+E_{\text{exc}}^{\mathrm{br}}
+=
+E_C(\Gamma_{e,\text{post shock}})
+-
+E_C(\Gamma_{e,\text{nearest stable rung}}).
+$$
+
+The planar-mode gate is likewise inherited:
+
+$$
+\mathcal{S}_{\gamma}^{\mathrm{br}}
+\ge
+\mathcal{S}_{\gamma,*},
+\qquad
+E_{\text{exc}}^{\mathrm{br}}\ge E_{\gamma,\min}.
+$$
+
+Only when both conditions are met is photon output allowed. If the closure residual remains below the planar-mode basin, or if $E_{\text{exc}}^{\mathrm{br}}$ is sub-threshold, the event must route energy into medium excitation, recoil, or residual core energy instead of treating the missing photon as a silent loss.
+
+### Wake Shock Definition (Channel Specialization)
+
+In this document, a **wake shock** is the bremsstrahlung name for the inherited radiation closure residual when it is produced by strong target-induced deceleration of the electron tri-binary assembly. It is not merely a descriptive label for radiation. Operationally, it is the threshold crossing where the electron assembly's internal curvature mode is driven across the field-speed symmetry point in the middle binary (near $v \approx c_f$), creating a transient high-curvature state that can shed energy into the surrounding Noether Sea.
 
 A minimal trigger condition is written as
 
@@ -57,30 +117,38 @@ $$
 
 where $\Xi_e$ denotes electron-assembly internal state variables. In Master Equation language, wake shock onset corresponds to entry into the emission-capable region of state space, with transition kernel weight from non-emissive to emissive microstates increased above baseline.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the projectile electron assembly enters the dense wake potential of a target with charge decorations $Z$. Path curvature and deceleration generate a wake shock in the electron assembly. In the corrected master-law picture, the received interaction is shaped not only by inverse-square proximity but also by Jacobian-weighted bunching of delayed causal flux along the active branches during the deflection. When the local shock intensity exceeds a planar-mode stability threshold, shed energy nucleates a photon mode modeled as a coaxial contra-rotating pro/anti planar pair in the Noether Sea. This reframes "acceleration drives radiation" as an assembly transition channel rather than a purely classical wave statement.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the projectile electron assembly enters the dense wake potential of a target with charge decorations $Z$. Path curvature and deceleration generate a wake shock in the electron assembly by increasing $\mathcal{R}_{\Theta}^{\mathrm{br}}$. In the corrected master-law picture, the received interaction is shaped not only by inverse-square proximity but also by Jacobian-weighted bunching of delayed causal flux along the active branches during the deflection. When the local shock intensity exceeds the inherited planar-mode stability threshold, shed energy nucleates a photon mode modeled as a coaxial contra-rotating pro/anti planar pair in the Noether Sea. This reframes "acceleration drives radiation" as an assembly transition channel rather than a purely classical wave statement.
 
-A minimal bookkeeping condition for each emission event is
+A minimal radiation-inherited energy ledger for each resolved event is
 
 $$
-\Delta E_{e} = E_{\gamma} + \Delta E_{\mathrm{recoil}} + \Delta E_{\mathrm{med}},
+E_{\text{exc}}^{\mathrm{br}}
+=
+E_{\gamma}
++
+\Delta E_{\mathrm{recoil}}
++
+\Delta E_{\mathrm{med}}
++
+\Delta E_{\text{core remnant}},
 $$
 
-where $\Delta E_{e}$ is electron assembly energy loss, $E_{\gamma}$ is emitted photon energy, $\Delta E_{\mathrm{recoil}}$ is target recoil energy, and $\Delta E_{\mathrm{med}}$ is genuine medium excitation (for example plasmons/phonons in dense environments). In the lone heavy-target limit, $\Delta E_{\mathrm{recoil}} \approx 0$ energetically but still carries momentum closure. Mapping work focuses on identifying when wake-shock energy crosses the photon-composite stability threshold so discrete photon output is recovered from continuous transport.
+where $E_{\gamma}$ is emitted photon energy, $\Delta E_{\mathrm{recoil}}$ is target recoil energy, $\Delta E_{\mathrm{med}}$ is genuine medium excitation (for example plasmons/phonons in dense environments), and $\Delta E_{\text{core remnant}}$ is residual internal excitation left in the source assembly. The projectile energy loss $\Delta E_e$ supplies this ledger at event level, with the common approximation $\Delta E_e\approx E_{\text{exc}}^{\mathrm{br}}$ used only when untracked stopping, recoil preparation, and remnant channels are negligible. In the lone heavy-target limit, $\Delta E_{\mathrm{recoil}} \approx 0$ energetically but still carries momentum closure. Mapping work focuses on identifying when wake-shock energy crosses the photon-composite stability threshold so discrete photon output is recovered from continuous transport.
 
 Interpretive takeaway: this section defines event-level state transition and bookkeeping, not a replacement of validated QED cross-sections.
 
 ### Provisional Effective Parameterization (Pending Derivation)
 
-To make the wake language calculable, the current $\mathbb{A}\mathbb{A}\mathbb{A}$ program uses a provisional mapping ansatz. This is a working effective form pending derivation from the Master Equation, not a claimed first-principles closure:
+To make the wake language calculable, the current $\mathbb{A}\mathbb{A}\mathbb{A}$ program uses a provisional mapping ansatz. The variable $\mathcal{S}_{\mathrm{wake}}$ is an effective proxy for the inherited photon-channel drive $\mathcal{S}_{\gamma}^{\mathrm{br}}$, not a separate radiation ontology. This is a working effective form pending derivation from the Master Equation, not a claimed first-principles closure:
 
 $$
 \mathcal{S}_{\mathrm{wake}} \equiv A_{\mathrm{tb}} \, \bigl[\rho_{\text{core}}(\mathbf{x},t)\bigr]^{\alpha} \left\lVert\frac{d\mathbf{v}_e}{dt}\right\rVert^{\beta},
 $$
 
-Conceptual nucleation picture for this ansatz: a coaxial contra-rotating pro/anti planar-pair photon mode is treated as a stable attractor that appears only when wake-driven internal concentration exceeds a local stability barrier. The threshold scale $\mathcal{S}_*$ represents that barrier and is interpreted as an effective function of Noether Sea stiffness plus local tri-binary geometry. The coupling through $\Delta E/E_{\gamma,\min}$ represents available shed energy relative to minimum stable planar-mode cost. The exponential response is used as a first-pass survival-style ansatz for threshold crossing with sensitivity to local fluctuations; it is not yet claimed as unique.
+Conceptual nucleation picture for this ansatz: a coaxial contra-rotating pro/anti planar-pair photon mode is treated as a stable attractor that appears only when wake-driven internal concentration exceeds a local stability barrier. The threshold scale $\mathcal{S}_*$ represents the effective bremsstrahlung proxy for $\mathcal{S}_{\gamma,*}$ and is interpreted as an effective function of Noether Sea stiffness plus local tri-binary geometry. The coupling through $E_{\text{exc}}^{\mathrm{br}}/E_{\gamma,\min}$ represents available shed energy relative to minimum stable planar-mode cost. The exponential response is used as a first-pass survival-style ansatz for threshold crossing with sensitivity to local fluctuations; it is not yet claimed as unique.
 
 $$
-P_{\mathrm{nuc}}(E_\gamma) = 1 - \exp\!\left[-\left(\frac{\mathcal{S}_{\mathrm{wake}}-\mathcal{S}_*}{\mathcal{S}_*}\right)_+ \left(\frac{\Delta E}{E_{\gamma,\min}}\right)\right],
+P_{\mathrm{nuc}}(E_\gamma) = 1 - \exp\!\left[-\left(\frac{\mathcal{S}_{\mathrm{wake}}-\mathcal{S}_*}{\mathcal{S}_*}\right)_+ \left(\frac{E_{\text{exc}}^{\mathrm{br}}}{E_{\gamma,\min}}\right)\right],
 $$
 
 with $(x)_+ \equiv \max(x,0)$. Here $A_{\mathrm{tb}},\alpha,\beta,\mathcal{S}_*$ are effective tri-binary medium parameters. This is explicitly a mapping goal, not yet a closed derivation.
@@ -90,7 +158,7 @@ Interpretation of coefficients in the current draft:
 - $A_{\mathrm{tb}}$: normalization for assembly-to-medium coupling strength.
 - $\alpha$: sensitivity exponent to local Noether-Sea density.
 - $\beta$: sensitivity exponent to deceleration magnitude.
-- $\mathcal{S}_*$: effective onset scale for emission-capable wake states.
+- $\mathcal{S}_*$: effective bremsstrahlung proxy for the inherited planar-mode onset scale $\mathcal{S}_{\gamma,*}$.
 
 Status and handling:
 
@@ -108,12 +176,12 @@ $$
 
 This section states the mechanism-level emergence claim explicitly:
 
-1. **Mechanism:** deceleration-driven internal reconfiguration in the electron assembly concentrates energy into an emission-capable mode; if threshold is crossed, a planar mode is nucleated and propagates as a photon assembly.
+1. **Mechanism:** deceleration-driven internal reconfiguration in the electron assembly produces a closure mismatch $\mathcal{R}_{\Theta}^{\mathrm{br}}$ and excitation energy $E_{\text{exc}}^{\mathrm{br}}$; if the inherited planar-mode threshold is crossed, a planar mode is nucleated and propagates as a photon assembly.
 2. **Microstate mapping:** non-emissive states satisfy $\mathcal{I}_e < \mathcal{I}_{\mathrm{crit}}$; emissive states satisfy $\mathcal{I}_e \ge \mathcal{I}_{\mathrm{crit}}$ and admit planar-mode nucleation probability $P_{\mathrm{nuc}}>0$.
 3. **Classical-limit recovery:** for many emissions over smooth trajectories, coarse-grained power recovers the standard acceleration-radiation scaling (Larmor/Lienard class) in weak-coupling validated regimes.
 4. **Declared breakdown regime:** near unresolved ultra-strong-field or ultra-high-energy domains, this effective mapping is not assumed complete and requires direct Master Equation treatment.
 
-## Core Equations
+## Core Equations (Observer-Level Baselines)
 
 A compact emissivity form for thermal free-free emission is
 
@@ -129,7 +197,7 @@ $$
 
 For high-energy scattering language, the differential yield is tracked with $d\sigma/dk$ (photon energy $k$), including screening and Coulomb corrections in the target.
 
-Baseline takeaway: these equations are the standard observer-level scaffold that $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping is built to recover in its low-energy continuum limit.
+Baseline takeaway: these equations are the standard observer-level scaffold that $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping is built to recover in its low-energy continuum limit. The wake-shock model does not replace the validated formulas; it supplies the proposed closure-residual provenance that must reduce to them before any Noether-Sea-dependent deviation is treated as physical.
 
 ## Core Channels (Inclusion Rule)
 
@@ -143,7 +211,7 @@ Associated pair/Compton channels are included when they exceed the same contribu
 
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ Assembly Interpretation by Channel
 
-- **Bremsstrahlung channel:** target-induced deceleration drives wake-strain concentration; above planar-mode threshold, photon mode nucleation carries emitted energy-momentum.
+- **Bremsstrahlung channel:** target-induced deceleration drives the inherited closure residual $\mathcal{R}_{\Theta}^{\mathrm{br}}$; above the planar-mode threshold, photon mode nucleation carries emitted energy-momentum.
 - **Positron analog:** same wake-threshold logic with sign-reversed charge trajectory in observer-level kinematics.
 - **Thermal ensemble:** macroscopic free-free emissivity is the aggregate of many local planar-mode nucleation events under screened Coulomb transport.
 
@@ -154,7 +222,7 @@ Use the same photon-channel event record here as in [Synchrotron Cascades](synch
 - incoming and outgoing charged assembly identity, momentum, and path-history provenance;
 - target assembly identity, recoil term, and coherent or resolved geometry regime;
 - local Noether-Sea state variables $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy, excitation state, and relevant causal-branch Jacobian data;
-- wake-strain or shock-intensity status relative to the planar-mode threshold;
+- closure residual $\mathcal{R}_{\Theta}^{\mathrm{br}}$, excitation energy $E_{\text{exc}}^{\mathrm{br}}$, and wake-strain or shock-intensity status relative to the planar-mode threshold;
 - photon output $E_\gamma$, direction, polarization basis, transverse angular-momentum ledger, and local photon-channel speed $c_\gamma$;
 - residual medium excitation $\Delta E_{\mathrm{med}}$ and any non-radiative channel that receives sub-threshold energy.
 
@@ -166,8 +234,8 @@ Standard soft-photon emission produces infrared-divergent exclusive rates, handl
 
 This implies a channel bifurcation:
 
-- **If $\Delta E > E_{\gamma,\min}$:** wake shock locks into a planar mode and emits a photon.
-- **If $\Delta E < E_{\gamma,\min}$:** no stable planar mode forms, and energy dissipates as non-radiative heating/turbulence in the local medium.
+- **If $E_{\text{exc}}^{\mathrm{br}} > E_{\gamma,\min}$ with the planar-mode drive above threshold:** wake shock locks into a planar mode and emits a photon.
+- **If $E_{\text{exc}}^{\mathrm{br}} < E_{\gamma,\min}$ or the planar-mode drive remains below threshold:** no stable planar mode forms, and energy dissipates as non-radiative heating/turbulence in the local medium.
 
 This gives a physical low-energy floor for discrete photon output while preserving the inclusive-observable interpretation.
 

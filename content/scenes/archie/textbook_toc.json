@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/generated/textbook-toc.md"
+      "path": "content/generated/markdown/textbook/toc.md"
     },
     "view": {
       "autoOpen": true,

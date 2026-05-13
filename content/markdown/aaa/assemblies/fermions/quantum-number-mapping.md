@@ -244,7 +244,7 @@ The full SM gauge group is captured geometrically as:
 ### Gauge boson summary
 
 - **Gluons (8):** axis-reconfiguration ribbons on flux tubes; adjoint of SU(3), no net electric bookkeeping charge.
-- **$W^\pm$, $Z$:** transient recoupling corridors moving weak-coupling-triad charge/phase between assemblies (spin-1, weak SU(2) triplet).
+- **$W^\pm$, $Z$:** transient recoupling corridors moving weak-coupling-triad charge/phase between assemblies (spin-$1$, weak $SU(2)$ triplet).
 - **$B_\mu$ (hypercharge):** corridor tracking Shielded-Triad charge; mixes with $W^3$ to yield photon and $Z$.
 - **Photon:** mixed planar mode aligned to leave Shielded + weak-coupling-triad combination invariant ($Q$-coupling only).
 
@@ -515,11 +515,11 @@ This table consolidates the mapping between Abstract Standard Model Quantum Numb
 
 For the **Elementary Fermions** (Quarks and Leptons), this table is complete at the quantum-number bookkeeping layer. The neutrino's internal geometry remains delegated to the near-photon closure program.
 
-### Spin and the 4π rule (geometric reason; hypothesis)
+### Spin and the $4\pi$ Rule
 
-- The tri-binary core has three non-coplanar binary planes with ordered normals; keeping total $\mathbf{J}$ fixed, that ordered triad lives on $SO(3)$ but carries an **ordering/phase sign** from the vortex scaffold.
-- A 2π spatial rotation permutes the braid ordering once, flipping the sign of the internal phase (like rotating a framed triad or belt). Only after 4π does the ordered triad and its vortex phase return to the same configuration.
-- This ordered-triad + fixed-$\mathbf{J}$ constraint is proposed as the geometric origin of the SU(2) double cover → spin-1/2 behavior; a formal bundle map is still to be derived.
+This is a closure target, not a completed proof. The tri-binary Noether core has three non-coplanar binary planes with ordered normals. Keeping the conserved angular-momentum ledger fixed, the visible ordered frame projects to $SO(3)$, while the causal-root and phase history may carry an additional sheet label.
+
+The target is that a $2\pi$ spatial rotation returns the visible ordered frame but transports the history-lifted state to the opposite sheet, while a $4\pi$ rotation restores the full state. If this lift exists, it supplies the geometric route to spin-$\tfrac{1}{2}$ behavior through the $SU(2)\to SO(3)$ double cover. If the history lift closes after $2\pi$, the ordered-core route does not derive fermion spinor behavior.
 
 ### Angular momentum notation bridge
 
@@ -531,10 +531,10 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, these symbols are not separate primitive ob
 
 Across the repo, the working geometric rule is that the spin label tracks the **kind of orientation data** the excitation carries:
 
-- **Spin-0 (scalar):** purely radial or isotropic breathing, with no preferred direction attached to the mode itself.
-- **Spin-1/2 (fermionic spinor):** an ordered tri-binary core whose internal phase changes sign under a $2\pi$ turn and closes only after $4\pi$.
-- **Spin-1 (vector):** an excitation with one distinguished axis plus transverse/helical structure around that axis.
-- **Spin-2 (tensor):** a transverse-traceless shape disturbance carrying quadrupolar deformation data rather than a single axis alone.
+- **Spin-$0$ (scalar):** purely radial or isotropic breathing, with no preferred direction attached to the mode itself.
+- **Spin-$\tfrac{1}{2}$ (fermionic spinor):** an ordered tri-binary core whose history-lifted state changes sheet under a $2\pi$ turn and closes only after $4\pi$.
+- **Spin-$1$ (vector):** an excitation with one distinguished axis plus transverse/helical structure around that axis.
+- **Spin-$2$ (tensor):** a transverse-traceless shape disturbance carrying quadrupolar deformation data rather than a single axis alone.
 
 This should be read as the common geometric dictionary behind the particle-specific chapters: the Higgs uses the scalar channel, photons/gluons/$W^\pm$/$Z$ use vector channels, fermions use the ordered-core spinor channel, and gravitational waves realize the effective tensor channel.
 
@@ -585,7 +585,7 @@ Spin closure target (formal, not yet proven):
 $$
 \widetilde{R}:SU(2)\simeq \mathrm{Spin}(3)\to SO(3),
 $$
-with tri-binary ordered-frame evolution transforming on the double cover so that 2$\pi$ and 4$\pi$ rotations are distinguished at the internal phase level.
+with tri-binary ordered-frame evolution transforming on the double cover so that $2\pi$ and $4\pi$ rotations are distinguished at the internal phase level.
 
 ## Weak-Mixing and Composite-Observable Closure Hooks
 

@@ -2,7 +2,7 @@
 
 This ledger connects local reaction provenance to cosmology-facing radiation, thermalization, and source-history claims. It is the bridge record for channels where synchrotron cascades, bremsstrahlung, pair production, BBN photon loading, and CMB thermalization all depend on the same underlying bookkeeping.
 
-Use it with [Reaction Ledger](reaction-ledger.md), [Synchrotron Cascades](../reactions/synchrotron.md), [Bremsstrahlung](../reactions/bremsstrahlung.md), [BBN Constraints](../cosmology/BBN-constraints.md), and [CMB](../cosmology/CMB.md).
+Use it with [Reaction Ledger](reaction-ledger.md), [Radiation](../reactions/radiation.md#radiation-event-record-schema), [Synchrotron Cascades](../reactions/synchrotron.md), [Bremsstrahlung](../reactions/bremsstrahlung.md), [BBN Constraints](../cosmology/BBN-constraints.md), and [CMB](../cosmology/CMB.md).
 
 ## Purpose
 
@@ -50,6 +50,7 @@ The minimal useful first path is BBN photon loading: identify a source-zone radi
 | --- | --- | --- |
 | Architrino inventory | $E/P$ counts and core/axial-layer separation | Prevents creation-from-nothing wording in pair and weak channels |
 | Noether-Sea state | $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy, and excitation state | Keeps density, delay, and transport variables distinct |
+| Radiation event record | Source assembly, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, causal-wake ledger, and closure status | Provides the local event schema that can be propagated into source-zone, transport, and observer-level cosmology claims |
 | Photon assembly channel | Planar-mode nucleation threshold, emitted energy, direction, polarization basis, and transverse angular-momentum ledger | Links bremsstrahlung, synchrotron, and CMB photon-bath claims |
 | Pair channel | Incoming photon assemblies, recruited Noether-core content, final $e^+e^-$ assemblies, and recoil/medium excitation | Keeps pair production as association from local substrate content, not ex nihilo creation |
 | Energy-momentum ledger | Internal energy, kinetic energy, recoil, emitted assemblies, and medium excitation | Required for observer-rate and spectrum recovery |
@@ -68,7 +69,7 @@ The chapter-level source for the photon ontology and Gate A theorem scaffold is 
 | Gate B: polarization and spin | Derivation-closure target | transverse ledger orientation, analyzer basis, helicity, projection/capture geometry, and accepted/rejected channel outcomes | Recover exactly two transverse modes, no longitudinal mode, Malus' law, helicity $\pm1$, single-photon statistics, and no-signaling constraints |
 | Gate C: vertices and transitions | Derivation-closure target | emission, absorption, pair production, recoil, medium excitation, transition rates, and overlap/capture probabilities | Recover QED/Maxwell limits, Breit-Wheeler thresholds and rates, blackbody behavior, Compton-like scattering, photon-photon limits, and the effective coupling scale $\alpha$ |
 
-These gates are not separate ontologies. They are bookkeeping filters that prevent a local photon-source story from being used as cosmology doctrine before the same event record also closes photon transport, polarization, pair conversion, and observer-level comparison variables.
+These gates are not separate ontologies. They are bookkeeping filters that prevent a local photon-source story from being used as cosmology doctrine before the same event record also closes photon transport, polarization, pair conversion, and observer-level comparison variables. The shared radiation event record is the carrier for those gate handoffs; Gate B remains inherited and is not re-derived by this cosmology ledger.
 
 ## Channel Map
 
@@ -83,28 +84,40 @@ These gates are not separate ontologies. They are bookkeeping filters that preve
 
 ## Minimum Records by Channel
 
+Each minimum record below specializes the shared event schema in [Radiation](../reactions/radiation.md#radiation-event-record-schema). Additional cosmology variables may be added, but the source assembly, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, causal-wake ledger, and closure status fields remain required.
+
 ### Bremsstrahlung
 
 The minimum event record is:
 
 $$
-\Delta E_e = E_\gamma + \Delta E_{\mathrm{recoil}} + \Delta E_{\mathrm{med}}.
+E_{\text{exc}}^{\mathrm{br}}
+=
+E_\gamma
++
+\Delta E_{\text{recoil}}
++
+\Delta E_{\text{med}}
++
+\Delta E_{\text{core remnant}}.
 $$
 
-The provenance record must also include the target assembly, local $\rho_{\text{core}}(\mathbf{x},t)$, the planar-mode threshold status, emitted photon assembly direction, and whether the event occurs in a regime where standard free-free emissivity remains the observer-level scaffold.
+The provenance record must also include the source electron assembly, target assembly, trigger geometry, $\delta\Theta_a$, local $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, planar-mode threshold status, emitted photon assembly direction, recoil, medium excitation, causal-wake ledger, closure status, and whether the event occurs in a regime where standard free-free emissivity remains the observer-level scaffold. Its polarization handoff inherits photon Gate B rather than deriving photon spin locally.
 
 ### Synchrotron Emission
 
-The event record must connect charged-assembly curvature, the effective magnetic-field map, and photon assembly output. The closure target is to derive the standard $\nu_c \propto \gamma^2 B$ and $P_{\mathrm{syn}}\propto U_B\gamma^2$ scalings from Noether-Sea anisotropy and wake-strain threshold conditions rather than fitting a separate emission rule.
+The event record must connect charged-assembly curvature, the effective magnetic-field map, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, photon assembly output $E_\gamma$, recoil, medium excitation, and causal-wake ledger. The closure target is to derive the standard $\nu_c \propto \gamma^2 B$ and $P_{\mathrm{syn}}\propto U_B\gamma^2$ scalings from Noether-Sea anisotropy and wake-strain threshold conditions rather than fitting a separate emission rule. Synchrotron polarization records inherit Gate B, so this ledger carries the transverse handoff without proving photon helicity locally.
 
 ### Pair Production
 
-The event record must avoid creation-from-nothing wording. Incoming photon assemblies trigger association of local substrate content into $e^+e^-$ assemblies when the observer-level threshold is satisfied. The record must include:
+The event record must avoid creation-from-nothing wording. Incoming photon assemblies trigger association of local substrate content into $e^+e^-$ assemblies when the observer-level threshold is satisfied. The incoming photons should preserve their radiation event records through the pair vertex. The pair-channel record must include:
 
 - incoming photon assembly energies and directions,
+- incoming photon polarization handoffs as inherited Gate B records,
 - local Noether-core material recruited or reconfigured,
 - final charged assembly inventories,
 - recoil and medium-excitation terms,
+- causal-wake ledger and closure status,
 - and the standard-limit cross-section target.
 
 ### BBN Photon Loading
@@ -117,24 +130,39 @@ The CMB module needs a source-to-transport-to-decoupling ledger. It must track:
 
 - source-channel selection from SMBH-local release, medium relaxation, and conversion/dissociation pathways,
 - thermalization depth and blackbody recovery,
-- anisotropy and polarization transfer,
+- anisotropy and polarization transfer, with the polarization handoff inherited from Gate B,
 - redshift and clock-rate handoff,
 - and separation between source interpretation and the shared prediction target $C_\ell$.
+
+The thermalization-depth record is a diagnostic field, not a new substrate entity. For each modeled source-to-decoupling path, the ledger should record
+
+$$
+\mathcal{D}_{\mathrm{th}}(\nu;t_a,t_b)
+=
+\int_{t_a}^{t_b}\tau_{\mathrm{th}}^{-1}(\nu,t)\,dt,
+$$
+
+with $\tau_{\mathrm{th}}^{-1}$ decomposed into the specific event-recorded channels being used: planar-mode capture/release, Compton-like redistribution, pair channels, and non-radiative medium exchange. A CMB blackbody claim requires $\mathcal{D}_{\mathrm{th}}\gg1$ before decoupling, effective photon chemical potential driven to zero, and a post-decoupling transport map that preserves the already-generated spectrum while carrying anisotropy, polarization, damping, and redshift information.
 
 ## Closure Targets
 
 1. **Planar-mode threshold closure:** derive a shared threshold condition for bremsstrahlung and synchrotron photon assembly output.
 2. **Pair-production provenance closure:** prove that local Noether-Sea recruitment can satisfy architrino inventory, energy-momentum, and Breit-Wheeler rate constraints in the same event record.
 3. **Photon-bath closure:** show that the relevant radiation channels can maintain BBN-compatible photon loading during the deuterium bottleneck window.
-4. **Blackbody closure:** show that distributed source channels plus Noether-Sea transport can generate and preserve the CMB blackbody spectrum within observational limits.
-5. **Clock/redshift closure:** use one medium-state map for photon propagation, endpoint clock comparison, and redshift-distance inference.
+4. **Detailed-balance closure:** derive the rate symmetry and ensemble weight relation that make emission, absorption, and stimulated terms recover Planck occupation with zero effective photon chemical potential.
+5. **Blackbody closure:** show that distributed source channels plus Noether-Sea transport can generate and preserve the CMB blackbody spectrum within observational limits.
+6. **Clock/redshift closure:** use one medium-state map for photon propagation, endpoint clock comparison, and redshift-distance inference.
 
 ## Failure Modes
 
-The provenance program fails for a channel if:
+The provenance program fails for a channel if a source story cannot survive the same ledger used for reaction, transport, thermalization, and observer handoff.
 
-- the architrino inventory cannot be balanced without unrecorded substrate creation,
-- the same Noether-Sea state variables must be re-fit independently for each observable,
-- pair or radiation channels violate validated standard limits in regimes where those limits are already measured,
-- source-zone photon loading cannot preserve BBN light-element constraints,
-- or CMB thermalization cannot recover blackbody precision, damping behavior, and TT/TE/EE coherence.
+| Failure mode | What fails | Diagnostic consequence |
+| --- | --- | --- |
+| Single-core temperature mistake | A single excited Noether core is treated as thermodynamically hot rather than internally excited, closure-mismatched, or metastable | Temperature is being used before an ensemble distribution or entropy-energy relation has been established |
+| Inventory gap | Architrino inventory, Noether-core recruitment, recoil, or returned medium content cannot be balanced without unrecorded substrate creation | Pair and radiation channels cannot be promoted beyond provisional maps |
+| Per-observable refit | The same Noether-Sea state variables must be re-fit independently for photon loading, blackbody recovery, damping, redshift, or growth observables | The cosmology interpretation loses its shared medium-state map |
+| Standard-limit violation | Pair, Compton-like, bremsstrahlung, synchrotron, or photon propagation channels violate validated limits in regimes where those limits are already measured | The proposed substrate route fails before it can claim new deviations |
+| Insufficient thermalization depth | $\mathcal{D}_{\mathrm{th}}$ is too small, or its channel decomposition is not tied to event records | Source photons need not relax to a Planck bath, and a nonzero effective photon chemical potential or spectral distortion remains |
+| BBN photon-loading failure | Source-zone photon production cannot preserve deuterium survival, helium clustering, lithium constraints, and $N_{\text{eff}}$ compatibility | The BBN local-reactor mapping cannot replace the standard photon-to-baryon environment |
+| CMB handoff failure | Blackbody precision, damping behavior, anisotropy, polarization, or TT/TE/EE coherence cannot be carried through the same transport and redshift map | CMB thermalization cannot be treated as a successful source-to-observer provenance path |

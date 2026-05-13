@@ -16,7 +16,7 @@ export function createMarkdownRuntime(deps) {
   let activeMarkdownSourcePath = null;
   let markdownColumnCount = 2;
   let markdownPreferredColumnCount = 2;
-  const textbookTocMarkdownPath = "content/markdown/generated/textbook-toc.md";
+  const textbookTocMarkdownPath = "content/generated/markdown/textbook/toc.md";
   const supportResearchMarkdownPath = "content/markdown/aaa/archie/support-architrino-research.md";
   const liberapayWidgetScriptSrc = "https://liberapay.com/Architrino/widgets/button.js";
   // These IDs are runtime-only helper scene identities, not authored scene IDs.
@@ -43,15 +43,11 @@ export function createMarkdownRuntime(deps) {
     return `${runtimeMarkdownReaderPrefix}${markdownPath}::${encodeURIComponent(markdownSection)}`;
   }
 
-  function resolveMarkdownLinkTarget(rawHref) {
+  function resolveLocalMarkdownHref(rawHref) {
     if (typeof rawHref !== "string" || !rawHref.trim()) {
       return null;
     }
     const href = rawHref.trim();
-    if (href.startsWith(runtimeMarkdownPrefix)) {
-      return href;
-    }
-
     const basePath = activeMarkdownSourcePath
       ? `https://architrino.local/${normalizeRepoPath(activeMarkdownSourcePath)}`
       : "https://architrino.local/";
@@ -70,11 +66,35 @@ export function createMarkdownRuntime(deps) {
     if (!resolvedPath) {
       return null;
     }
+    return {
+      path: resolvedPath,
+      searchParams: parsed.searchParams,
+    };
+  }
+
+  function resolveMarkdownLinkTarget(rawHref) {
+    if (typeof rawHref !== "string" || !rawHref.trim()) {
+      return null;
+    }
+    const href = rawHref.trim();
+    if (href.startsWith(runtimeMarkdownPrefix)) {
+      return href;
+    }
+
+    const resolved = resolveLocalMarkdownHref(href);
+    if (!resolved) {
+      return null;
+    }
+    const resolvedPath = resolved.path;
     if (resolvedPath.endsWith(".json") && resolvedPath.startsWith("content/scenes/")) {
       return resolvedPath;
     }
-    if (resolvedPath.endsWith(".md") && resolvedPath.startsWith("content/markdown/")) {
-      const section = parsed.searchParams.get("section");
+    const isMarkdownDocument =
+      resolvedPath.endsWith(".md") &&
+      (resolvedPath.startsWith("content/markdown/") ||
+        resolvedPath.startsWith("content/generated/markdown/"));
+    if (isMarkdownDocument) {
+      const section = resolved.searchParams.get("section");
       if (typeof section === "string" && section.trim()) {
         return buildMarkdownReaderTarget(resolvedPath, section.trim());
       }
@@ -389,6 +409,18 @@ export function createMarkdownRuntime(deps) {
     applyMarkdownLayout();
   }
 
+  function printMarkdownPanel() {
+    if (
+      !isMarkdownPanelOpen() ||
+      typeof window === "undefined" ||
+      typeof window.print !== "function"
+    ) {
+      return false;
+    }
+    window.print();
+    return true;
+  }
+
   async function showMarkdownPanel(level) {
     const target = resolveMarkdownTarget(level);
     if (!markdownPanel || !target.markdownPath) {
@@ -518,6 +550,7 @@ export function createMarkdownRuntime(deps) {
     isActiveLevelMarkdown,
     applyMarkdownLayout,
     toggleMarkdownLayout,
+    printMarkdownPanel,
     showMarkdownPanel,
   };
 }

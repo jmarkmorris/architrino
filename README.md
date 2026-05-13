@@ -28,7 +28,8 @@ serving those paths again.
 - Periodic element routing is manifest-only via `runtimeRoutes.periodicGrid` in `content/graph/scene_graph.json`.
 - Element legend routing is generated from `content/graph/runtime_routes.json` into `runtimeRoutes.elementLegendTargets`.
 - Textbook TOC data is generated into `content/graph/textbook_toc.json`.
-- Textbook TOC scene markdown is generated into `content/markdown/generated/textbook-toc.md`.
+- Textbook TOC scene markdown is generated into `content/generated/markdown/textbook/toc.md`.
+- Textbook reading-copy markdown moved from the old generated markdown tree is generated into `content/generated/markdown/textbook/reading-copies/`.
 - Keep the manifest up to date after content changes.
 
 ## Authoring Contract (Explicit Scene Network)
@@ -43,10 +44,12 @@ serving those paths again.
   - `content/markdown/markdown_index.json`
   - `content/graph/scene_graph.json`
   - `content/graph/textbook_toc.json`
-  - `content/markdown/generated/textbook-toc.md`
+  - `content/generated/markdown/textbook/toc.md`
+  - moved textbook reading copies under `content/generated/markdown/textbook/reading-copies/`
 - After scene/markdown edits, regenerate artifacts before commit:
   - `node scripts/validate-content.mjs --write`
   - `node scripts/build-scene-graph.mjs --write`
+  - `node scripts/build-textbook-md-pdf.mjs --write`
 
 ## Content Validation
 Run these from the repo root:
@@ -56,6 +59,8 @@ node scripts/validate-content.mjs --check
 node scripts/validate-content.mjs --write
 node scripts/build-scene-graph.mjs --check
 node scripts/build-scene-graph.mjs --write
+node scripts/build-textbook-md-pdf.mjs --check
+node scripts/build-textbook-md-pdf.mjs --write
 node scripts/smoke-option3.mjs
 ```
 

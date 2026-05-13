@@ -5,12 +5,13 @@ import path from "node:path";
 
 const SCENES_INDEX_PATH = "content/scenes/scenes_index.json";
 const MARKDOWN_INDEX_PATH = "content/markdown/markdown_index.json";
+const GENERATED_MARKDOWN_DIR = "content/generated/markdown";
 const PERIODIC_TABLE_PATH = "content/scenes/chemistry/periodic_table.json";
 const LEGEND_ROUTES_PATH = "content/graph/runtime_routes.json";
 const ROOT_SCENE_PATH = "content/scenes/architrino_assembly_architecture.json";
 const OUTPUT_PATH = "content/graph/scene_graph.json";
 const TEXTBOOK_TOC_PATH = "content/graph/textbook_toc.json";
-const TEXTBOOK_TOC_MARKDOWN_PATH = "content/markdown/generated/textbook-toc.md";
+const TEXTBOOK_TOC_MARKDOWN_PATH = "content/generated/markdown/textbook/toc.md";
 
 const args = new Set(process.argv.slice(2));
 const wantsWrite = args.has("--write");
@@ -41,10 +42,10 @@ const errors = [];
 function printUsage(exitCode) {
   console.log("Usage: node scripts/build-scene-graph.mjs [--check|--write] [--strict]");
   console.log(
-    "  --check   Validate generated graph/TOC artifacts against content/graph/scene_graph.json, content/graph/textbook_toc.json, and content/markdown/generated/textbook-toc.md (default)"
+    "  --check   Validate generated graph/TOC artifacts against content/graph/scene_graph.json, content/graph/textbook_toc.json, and content/generated/markdown/textbook/toc.md (default)"
   );
   console.log(
-    "  --write   Regenerate content/graph/scene_graph.json, content/graph/textbook_toc.json, and content/markdown/generated/textbook-toc.md"
+    "  --write   Regenerate content/graph/scene_graph.json, content/graph/textbook_toc.json, and content/generated/markdown/textbook/toc.md"
   );
   console.log("  --strict  Treat warnings as failures");
   process.exit(exitCode);
@@ -199,6 +200,31 @@ function readText(relativePath) {
   } catch (error) {
     return { ok: false, error };
   }
+}
+
+function walkFiles(relativeDir, predicate) {
+  const dirPath = path.join(rootDir, relativeDir);
+  if (!fs.existsSync(dirPath)) {
+    return [];
+  }
+  const files = [];
+  const stack = [relativeDir];
+  while (stack.length) {
+    const currentRelativeDir = stack.pop();
+    const currentAbsoluteDir = path.join(rootDir, currentRelativeDir);
+    const entries = fs.readdirSync(currentAbsoluteDir, { withFileTypes: true });
+    entries.forEach((entry) => {
+      const childRelativePath = normalizePath(path.join(currentRelativeDir, entry.name));
+      if (entry.isDirectory()) {
+        stack.push(childRelativePath);
+        return;
+      }
+      if (entry.isFile() && predicate(entry.name, childRelativePath)) {
+        files.push(childRelativePath);
+      }
+    });
+  }
+  return files.sort((a, b) => a.localeCompare(b));
 }
 
 function sceneNodeId(scenePath) {
@@ -490,7 +516,7 @@ sceneEntriesRaw.forEach((entry, index) => {
 });
 
 const markdownFiles = [];
-const markdownFileSet = new Set();
+const indexedMarkdownFileSet = new Set();
 markdownFilesRaw.forEach((entry, index) => {
   if (typeof entry !== "string") {
     errors.push(`${MARKDOWN_INDEX_PATH}: files[${index}] must be a string`);
@@ -501,12 +527,20 @@ markdownFilesRaw.forEach((entry, index) => {
     errors.push(`${MARKDOWN_INDEX_PATH}: files[${index}] must not be empty`);
     return;
   }
-  if (markdownFileSet.has(markdownPath)) {
+  if (indexedMarkdownFileSet.has(markdownPath)) {
     return;
   }
-  markdownFileSet.add(markdownPath);
+  indexedMarkdownFileSet.add(markdownPath);
   markdownFiles.push(markdownPath);
 });
+
+const generatedMarkdownFiles = walkFiles(
+  GENERATED_MARKDOWN_DIR,
+  (name) => name.toLowerCase().endsWith(".md")
+);
+const servedMarkdownFiles = [...markdownFiles, ...generatedMarkdownFiles];
+const servedMarkdownFileSet = new Set(servedMarkdownFiles);
+servedMarkdownFileSet.add(TEXTBOOK_TOC_MARKDOWN_PATH);
 
 for (const sceneEntry of sceneEntries) {
   const parsed = readJson(sceneEntry.path);
@@ -530,6 +564,22 @@ for (const markdownPath of markdownFiles) {
   const markdownRaw = readText(markdownPath);
   if (!markdownRaw.ok) {
     warnings.push(`${markdownPath}: failed to read markdown file (${markdownRaw.error.message})`);
+    continue;
+  }
+  markdownTextByPath.set(markdownPath, markdownRaw.data);
+  const title = extractMarkdownDocumentTitle(markdownRaw.data);
+  if (title) {
+    markdownTitleByPath.set(markdownPath, title);
+  }
+}
+
+for (const markdownPath of generatedMarkdownFiles) {
+  if (markdownTextByPath.has(markdownPath)) {
+    continue;
+  }
+  const markdownRaw = readText(markdownPath);
+  if (!markdownRaw.ok) {
+    warnings.push(`${markdownPath}: failed to read generated markdown file (${markdownRaw.error.message})`);
     continue;
   }
   markdownTextByPath.set(markdownPath, markdownRaw.data);
@@ -606,7 +656,7 @@ function ensureMarkdownDocNode(markdownPath) {
       name: inferMarkdownName(normalizedPath, resolvedTitle),
       path: normalizedPath,
       searchTarget: normalizedPath,
-      implicit: !markdownFileSet.has(normalizedPath),
+      implicit: !servedMarkdownFileSet.has(normalizedPath),
     });
   }
   return nodeId;
@@ -634,9 +684,9 @@ function addMarkdownDocEdge(scenePath, markdownPath, field) {
   if (!normalizedMarkdownPath) {
     return;
   }
-  if (!markdownFileSet.has(normalizedMarkdownPath)) {
+  if (!servedMarkdownFileSet.has(normalizedMarkdownPath)) {
     warnings.push(
-      `${scenePath} -> ${field}: markdown file is not indexed (${normalizedMarkdownPath})`
+      `${scenePath} -> ${field}: markdown file is not indexed or generated (${normalizedMarkdownPath})`
     );
   }
   const from = ensureSceneNode(scenePath);
@@ -1095,7 +1145,6 @@ function renderTextbookTocMarkdown(rootEntry) {
 
   const rootChildren = Array.isArray(rootEntry?.children) ? rootEntry.children : [];
   rootChildren.forEach((entry) => renderEntry(entry, 0));
-  lines.push("");
   return `${lines.join("\n")}\n`;
 }
 

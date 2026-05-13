@@ -3,6 +3,7 @@ export function createAppSceneChromeRuntime({
   docButton,
   archieButton,
   markdownDocButton,
+  markdownPdfButton,
   markdownLayoutToggle,
   detailInfoButton,
 }) {
@@ -53,6 +54,15 @@ export function createAppSceneChromeRuntime({
     markdownLayoutToggle.disabled = !hasDoc;
   }
 
+  function updateMarkdownPdfButton(currentLevel) {
+    if (!markdownPdfButton) {
+      return;
+    }
+    const hasDoc = !!currentLevel?.markdownPath;
+    markdownPdfButton.classList.toggle("is-hidden", !hasDoc);
+    markdownPdfButton.disabled = !hasDoc;
+  }
+
   function updateSceneInfoTrigger(canReopenInfo) {
     if (!sceneLabel) {
       return;
@@ -88,6 +98,7 @@ export function createAppSceneChromeRuntime({
     updateArchieButton,
     updateMarkdownDocButton,
     updateMarkdownLayoutToggleButton,
+    updateMarkdownPdfButton,
     updateSceneInfoTrigger,
     updateDetailInfoButton,
     updateSceneLabel,

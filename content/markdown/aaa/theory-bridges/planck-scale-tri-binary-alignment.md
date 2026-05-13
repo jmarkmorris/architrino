@@ -206,11 +206,11 @@ In the low-energy / weak-alignment regime:
 - Total angular momentum **J** is fixed (no external torque), but the normals of the three binary planes wobble: their composite orientation precesses around **J**, often following small-circle, Lissajous, or figure-8 paths in orientation space (not a rigid cone).
 - The full causal configuration (including self-hit history and relative plane orientations) is not restored by a simple $2\pi$ spatial rotation.
 
-> **Hypothesis:** The effective orientation space of such a tri-binary behaves like an **SU(2)-type double cover** of spatial rotations:  
+> **Hypothesis:** The effective orientation space of such a tri-binary behaves like an $SU(2)$-type double cover of spatial rotations:
 > a $2\pi$ rotation changes the internal causal phase; a $4\pi$ rotation restores it.  
-> This underlies Spin-1/2-like behavior and Pauli-style exclusion from overlapping 3D precession volumes.
+> This is the candidate route to spin-$\tfrac{1}{2}$-like behavior and Pauli-style exclusion from overlapping 3D precession volumes.
 
-A rigorous mapping from the detailed tri-binary phase space to an SU(2) bundle is **not yet derived**; it is a target for future work.
+A rigorous mapping from the detailed tri-binary phase space to an $SU(2)$ bundle is not yet derived; it is a closure target.
 
 ### Bosonic Regime: Fully Aligned Planar Disk
 
@@ -220,11 +220,11 @@ In the Planck alignment state:
 - Precession cone angle collapses to zero.
 - Orientation reduces effectively to an angle within the plane.
 
-> **Hypothesis:** The effective configuration space of this aligned assembly behaves like a simple **SO(2) ≅ U(1)** phase:
+> **Hypothesis:** The effective configuration space of this aligned assembly behaves like a simple $SO(2)\simeq U(1)$ phase:
 > - A $2\pi$ rotation returns the full causal configuration.
-> - Multiple such disks can stack/occupy similar states without the 3D exclusion volume of wobbling gyroscopes, yielding Spin-1-like, boson-like stacking behavior.
+> - Multiple such disks can stack or occupy similar states without the 3D exclusion volume of the non-coplanar regime, yielding spin-$1$-like, boson-like stacking behavior.
 
-Again, this SU(2) -> U(1) reduction is a **geometric hypothesis**, not yet a fully proven group-theoretic derivation.
+Again, this $SU(2)\to U(1)$ reduction is a geometric hypothesis, not yet a fully proven group-theoretic derivation.
 
 For the particle-level interpretation of aligned versus precessing assembly behavior, compare [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md) and [Weak Mixing Angle](../assemblies/fermions/weak-mixing-angle.md).
 

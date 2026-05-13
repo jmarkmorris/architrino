@@ -25,3 +25,31 @@ For the underlying assembly carrier of this medium, see [Noether Core](../assemb
 ## Angular-Momentum Handoff
 
 The immediate atomic target is to recover observer-level orbital quantum numbers from electron assemblies moving in an external nuclear and Noether-Sea environment. That target is separate from the internal rotational action of the electron's Noether-core assembly. A later atomic-spin pass must show how spin-orbit and hyperfine structure arise when the external resonance envelope couples to the completed internal spin ledger and to the measurement-response model. Until then, this chapter should treat shell filling and exclusion language as effective atomic bookkeeping inherited from the spin-statistics proof program.
+
+The foundation-up version begins with the nucleus and its constituent Noether-core ledgers. A proton-electron hydrogen comparison is the cleanest first case, but the same level distinction applies to all atoms: the electron assembly responds to the combined causal-wake envelope of the nucleus, the local Noether Sea, and other electron assemblies. The proof direction is therefore downstream. First derive the integer-closed Noether-core ledgers of the nuclear constituents, then coarse-grain their emitted causal wakes into an effective envelope, and only then recover the observer-level orbital labels $(n,\ell,m)$ as resonance labels of the external electron envelope. Those labels should not be used backward as proof of the electron's internal Noether-core spinor state or of the nuclear core ledger.
+
+A schematic handoff is
+
+$$
+\bigl(k_I,k_M,k_O,\mathcal R\bigr)_{\text{nuc}}
+\longrightarrow
+\mathcal W_{\text{nuc}}(r,\hat{\mathbf r},t)
+\longrightarrow
+\Psi_{\text{e-env}}(r,\theta,\phi)
+\sim
+R_{n\ell}(r)Y_\ell^m(\theta,\phi).
+$$
+
+Here $\bigl(k_I,k_M,k_O,\mathcal R\bigr)_{\text{nuc}}$ abbreviates the integer winding and causal-root bookkeeping of the relevant nuclear Noether-core ledgers, while $\mathcal W_{\text{nuc}}$ denotes the effective nuclear causal-wake envelope after coarse-graining those ledgers. The right-hand side is the standard observer-level recovery form that the electron assembly must reproduce in central-potential limits.
+
+For central-potential comparisons, the specific orbital recovery gate is ordinary $2\pi$ azimuthal closure and angular regularity:
+
+$$
+\psi_{\text{orb}}(\phi+2\pi)=\psi_{\text{orb}}(\phi),
+\qquad
+\ell\in\mathbb N_0,
+\qquad
+m\in\{-\ell,\ldots,\ell\}.
+$$
+
+Those labels describe the effective electron-assembly envelope around the nucleus. They should not be read as the internal Noether-core spinor ledger of the electron itself.

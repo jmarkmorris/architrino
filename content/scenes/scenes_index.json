@@ -1592,7 +1592,7 @@
     },
     {
       "id": "archie__textbook_pdf_snapshots",
-      "name": "Textbook PDF Snapshots",
+      "name": "Textbook Markdown to PDF",
       "path": "content/scenes/archie/textbook_pdf_snapshots.json"
     }
   ]

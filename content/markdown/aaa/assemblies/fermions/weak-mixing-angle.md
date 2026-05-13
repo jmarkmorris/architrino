@@ -159,7 +159,7 @@ The following are **not** rotating in this note:
 - the H/M/L Noether-core scaffold itself,
 - the binary nesting order that defines generation,
 - the matter/antimatter braid orientation,
-- the topological structure used to motivate spin-1/2 behavior.
+- the topological structure used to motivate spin-$\tfrac{1}{2}$ behavior.
 
 This separation is important because otherwise one mixes together three different jobs:
 

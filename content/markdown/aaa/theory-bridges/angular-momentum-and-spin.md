@@ -1179,6 +1179,85 @@ $$
 
 where $\phi_\ell$ are layer phases and $\mathcal{R}$ records the active causal-root and self-hit branch data. A spatial rotation acts on the normals, but it need not return the full ordered phase-and-root history to itself after the same rotation that returns an ordinary rigid body.
 
+The corresponding reduced Noether-core state vector is
+
+$$
+\Gamma_C(t)
+=
+\{R_a,\omega_a,\phi_a,\hat{\mathbf n}_a,I_a,\mathcal R_a,\mathcal R_{ab},\mathbf V_{\text{cm}}\}_{a\in\{I,M,O\}}.
+$$
+
+This is a branch-chart reduction of the full six-architrino history. It keeps layer radii, frequencies, phases, binary-plane normals, radian-normalized rotational actions, layer and inter-layer causal-root ledgers, and the center/group velocity through the Noether Sea. A theorem-target configuration space for this reduction is
+
+$$
+\mathcal Q_C^{\text{red}}
+=
+\left(
+\mathbb R_+^3\times\mathbb R_+^3\times\mathbb T^3
+\times
+\mathcal N_{\text{ord}}
+\times
+\mathfrak R
+\times
+B_{c_\star}
+\right)/G_{\text{gauge}},
+$$
+
+where
+
+$$
+\mathcal N_{\text{ord}}
+=
+\left\{
+(\hat{\mathbf n}_I,\hat{\mathbf n}_M,\hat{\mathbf n}_O)\in(S^2)^3:
+\det[\hat{\mathbf n}_I,\hat{\mathbf n}_M,\hat{\mathbf n}_O]\ne0
+\right\}.
+$$
+
+Here $\mathfrak R$ is the causal-root ledger class and $B_{c_\star}$ records admissible $\mathbf V_{\text{cm}}$ values for the declared branch speed $c_\star$. The quotient $G_{\text{gauge}}$ removes only genuine gauge redundancy such as center translation and time-origin choice. It does not remove ordered layer identity, oriented-normal reversal, causal-root bifurcation, or chirality-branch change.
+
+In the circular carrier chart,
+
+$$
+\mathbf x_{a,\alpha}(t)
+=
+\mathbf X(t)+\mathbf c_a(t)+\alpha R_a(t)
+\bigl(\cos\phi_a(t)\mathbf u_a(t)+\sin\phi_a(t)\mathbf v_a(t)\bigr),
+\qquad
+\mathbf u_a(t)\times\mathbf v_a(t)=\hat{\mathbf n}_a(t).
+$$
+
+The reduced closure-label version of the same target keeps only the data needed to compare closed Noether-core branches. The dynamics sections use $\ell\in\{I,M,O\}$ for inner, middle, and outer. The ordered-frame and chirality literature also uses $\{H,M,L\}$, where $H$ is high / inner, $M$ is middle, and $L$ is low / outer. These are aliases for the same three binary roles, not two different triads.
+
+For a closed ordered core, use the reduced branch label
+
+$$
+\Lambda_{\text{NC}}
+=
+\left(
+k_H,k_M,k_L;\
+\mathcal{G}_H,\mathcal{G}_M,\mathcal{G}_L;\
+\mathcal{G}_{HM},\mathcal{G}_{HL},\mathcal{G}_{ML};\
+\chi_c
+\right).
+$$
+
+The integers $k_H,k_M,k_L$ are layer winding counts over the chosen return period. The layer ledgers $\mathcal{G}_a$ record active self-hit and partner-hit branches, root multiplicities, winding or phase branch, emission-order data, and separator history. The inter-layer ledgers $\mathcal{G}_{ab}$ record delayed exchange roots and phase-lock constraints. The branch label $\chi_c$ records ordered core chirality, currently the `HML/HLM` datum, with $Wr_c$ or a multi-component causal-writhe parity as the leading formal candidate.
+
+The corresponding ordered-frame object is the history-lifted frame
+
+$$
+F_{\text{NC}}(t)=
+\big(
+\hat{\mathbf n}_H,\hat{\mathbf n}_M,\hat{\mathbf n}_L;\
+\mathcal{G}_H,\mathcal{G}_M,\mathcal{G}_L,\
+\mathcal{G}_{HM},\mathcal{G}_{HL},\mathcal{G}_{ML};\
+\chi_c
+\big).
+$$
+
+This is a theorem target, not a completed derivation. The quotient is allowed to remove center-of-mass translation, time-origin choice, smooth phase reparameterization inside one closed root-ledger cell, and small deformations that preserve the ordered layer labels, root ledgers, and chirality branch. It must not quotient away permutations of $H,M,L$, reversal of the oriented normals, or branch-changing causal-root relabelings.
+
 The spinor closure target is therefore
 
 $$
@@ -1189,6 +1268,18 @@ with the physical requirement:
 
 - a $2\pi$ spatial rotation returns the coarse orientation but changes the internal phase/sign branch;
 - a $4\pi$ rotation restores the full ordered-core configuration.
+
+Standard orbital quantization supplies the contrast case. For an effective orbital azimuthal mode,
+
+$$
+\psi_{\text{orb}}(\phi)=e^{im\phi},
+\qquad
+\psi_{\text{orb}}(\phi+2\pi)=\psi_{\text{orb}}(\phi)
+\quad\Rightarrow\quad
+m\in\mathbb{Z}.
+$$
+
+That is a $2\pi$ single-valuedness rule on an observer-level orbital envelope. A fermion spinor target cannot reuse that ordinary closure rule. It must explain why the visible $SO(3)$ orientation closes after $2\pi$ while the history-lifted Noether-core state changes sheet and only restores after $4\pi$.
 
 This is a theorem target, not a completed proof. The causal-action functional adds a promising topological handle through causal writhe,
 
@@ -1256,6 +1347,138 @@ $$
 
 only after choosing the relevant projected action-angle channel. That scalar statement should not be mistaken for the full vector conservation law.
 
+## Foundation-Up Closure Route
+
+The orbital lesson should be used as a method, not merely as a dictionary. In ordinary atomic-orbital theory, one chooses the angular configuration space, imposes single-valuedness and finite angular behavior, and then reads the surviving labels as quantum numbers. The clean generalization is that ordinary orbital labels come from closure and regularity on an effective angular envelope, while Noether-core labels should come from closure, root-ledger admissibility, normal-triad holonomy, and stability of the three binary layers. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this style of reasoning begins one layer lower: first classify the stable Noether-core closures, then ask which causal-wake envelopes and observer-level orbital labels they support.
+
+For a Noether core, the first closure object is the three-layer phase and root ledger over a stable return period $T$. A useful theorem-target form is
+
+$$
+\Theta_a(T)
+=
+\int_0^T\omega_a(t)\,dt
++
+\Phi_a^{\text{root}}(T)
++
+\Phi_a^{\text{frame}}(T)
+=
+2\pi k_a,
+\qquad
+k_a\in\mathbb{Z},
+\qquad
+a\in\{I,M,O\}.
+$$
+
+Here $a$ labels the inner, middle, and outer binary layers, $\Phi_a^{\text{root}}(T)$ records the phase contribution of the active self-hit, partner-hit, and inter-layer causal-root branches during the closure period, and $\Phi_a^{\text{frame}}(T)$ records phase accumulated by transport of the binary-plane frame. The important claim is integer phase winding over a stable closed cycle, not that each instantaneous frequency must be an integer by itself.
+
+Inter-layer phase locks add relative closure equations. For a branch with integer weights $p_a,p_b$,
+
+$$
+\Theta_{ab}(T)
+=
+p_b\Theta_a(T)-p_a\Theta_b(T)+\Phi_{ab}^{\text{root}}(T)
+=
+2\pi k_{ab}.
+$$
+
+The special dyadic candidate is therefore a possible selected lock, not an axiom: $k_O:k_M:k_I=1:m:n$, with $1:2:4$ only after the cancellation functional selects it.
+
+An accepted energy/action change should therefore move the core between admissible integer-and-root ledgers:
+
+$$
+\Delta A_{\text{cycle}}=h
+\quad\Longrightarrow\quad
+\bigl(k_I,k_M,k_O,\mathcal R\bigr)
+\mapsto
+\bigl(k_I,k_M,k_O,\mathcal R\bigr)
++
+\bigl(\Delta k_I,\Delta k_M,\Delta k_O,\Delta\mathcal R\bigr),
+$$
+
+subject to the energy, angular-momentum, phase-closure, and root-admissibility equations above. This is the foundation-up version of the quantization question: energy levels are not added as external quantum labels; they are the stable return classes of the delayed Noether-core geometry.
+
+When the only question is energy-level closure, the schematic integer-and-root ledger above is enough. When the question is spin, ordered core chirality, weak chirality, or any broader quantum-number recovery, the branch must instead be tracked by the reduced Noether-core label $\Lambda_{\text{NC}}$. That label keeps the integer windings, causal-root ledgers, inter-layer phase-lock data, and candidate chirality branch in one proof object. It does not prove the holonomy or chirality claim by definition; it prevents later quantum-number language from floating free of the core closure data that would have to derive it.
+
+The candidate Noether-core closure labels are therefore:
+
+- Layer winding vector $(k_I,k_M,k_O)$, generated by phase closure.
+- Inter-layer lock integers $k_{IM},k_{MO},k_{IO}$, generated by relative closure.
+- Causal-root ledger class $\mathfrak R=\{\mathcal R_a,\mathcal R_{ab}\}$, including self-hit and partner-hit branch counts, causal-locus winding classes, and fold-parity constraints.
+- Normal-triad holonomy class, generated by ordered-frame transport:
+
+$$
+H_{\text{core}}(T)
+=
+\mathcal P\exp\!\int_0^T\widehat{\boldsymbol\Omega}_{\text{prec}}(t)\,dt.
+$$
+
+This return is $SO(3)$-like if the full lifted state returns after $2\pi$, and spinor-like only if the visible normal triad returns after $2\pi$ while the history-lifted ledger restores after $4\pi$.
+
+- Chirality or causal-writhe parity, not merely $\operatorname{sgn}\det[\hat{\mathbf n}_I,\hat{\mathbf n}_M,\hat{\mathbf n}_O]$, but a component-resolved causal-writhe candidate tied to $\mathfrak R$.
+- Group-velocity exposure data: signs and projection classes of $\hat{\mathbf n}_a$ and layer angular-momentum channels relative to $\mathbf V_{\text{cm}}$.
+
+Group velocity alters closure through the causal-root equation. For an internal source-receiver displacement $\mathbf d$ in a moving core,
+
+$$
+\|\mathbf d+\mathbf V_{\text{cm}}\Delta\|=c_\star\Delta
+$$
+
+gives the positive branch
+
+$$
+\Delta_{\mathbf V}
+=
+\frac{
+\mathbf V_{\text{cm}}\cdot\mathbf d
++
+\sqrt{
+(\mathbf V_{\text{cm}}\cdot\mathbf d)^2
++
+(c_\star^2-\|\mathbf V_{\text{cm}}\|^2)\|\mathbf d\|^2
+}
+}
+{c_\star^2-\|\mathbf V_{\text{cm}}\|^2}.
+$$
+
+Forward and rear sectors therefore accumulate different phase delays and Jacobian weights. Combined with the transverse causal budget
+
+$$
+c_{\perp}
+=
+c_\star\sqrt{1-\frac{\|\mathbf V_{\text{cm}}\|^2}{c_\star^2}},
+$$
+
+this makes some rest-branch closures inadmissible at high velocity, drives oblate causal-wake envelopes, changes shielding exposure, and can force precession or planar alignment. The primitive wake speed remains $c_f$ in the branch equation; $c_\star$ must be declared before using the result, because primitive wake-intersection, Noether-Sea dressed clock/ruler comparison, and photon-channel synchronization are different closure tests.
+
+At larger scale, the emitted causal-wake pattern of such a closed core should have an effective far-zone angular decomposition. A schematic recovery target is
+
+$$
+\mathcal W_{\lambda_C}(r,\hat{\mathbf r},t)
+\sim
+\sum_{L,M,p}
+A_{LMp}^{(\lambda_C)}(r)\,
+Y_L^M(\hat{\mathbf r})\,
+e^{-i\Omega_p(t-r/c_f)},
+$$
+
+where $\lambda_C$ abbreviates the selected Noether-core closure label, and $\mathbf k=(k_I,k_M,k_O,\mathcal R)$ is its energy-level reduction. This is not a new substrate field; it is an effective description of the superposed causal wakes after coarse-graining. The atomic-orbital program is then to show that an electron assembly in the nuclear and Noether-Sea environment locks to stable resonance basins whose angular part recovers $Y_\ell^m$.
+
+The resulting proof route is:
+
+$$
+\text{Noether-core integer closure}
+\longrightarrow
+\text{structured causal-wake envelope}
+\longrightarrow
+\text{electron-assembly resonance basin}
+\longrightarrow
+\text{observer-level labels }(n,\ell,m).
+$$
+
+This route strengthens the distinction rather than weakening it. The internal Noether-core spinor closure still targets $4\pi$ fermion behavior, while the atomic orbital envelope still targets $2\pi$ observer-level angular closure. The possible unification is that both are selected by geometry, phase closure, and causal-root admissibility at different levels of description.
+
+The failure modes are part of the proof program. The route is disciplined or falsified if no candidate closure class has a positive non-symmetry Floquet gap, if root ledgers change continuously rather than through branch or fold events, if the ordered frame has trivial $2\pi$ holonomy where spinor closure is required, if the proposed lift fails to restore after $4\pi$, if group-velocity anisotropy behaves like dissipative drag in stable atoms, if far-zone coefficients fail to converge or fail to recover the spherical-harmonic central limit, or if a derivation conflates internal tri-binary rotational action with observer-level atomic orbital angular momentum.
+
 ## Bridge to Standard Quantum Mechanics
 
 The transition to standard quantum mechanics proceeds through successive coarse-grainings.
@@ -1290,6 +1513,44 @@ m\hbar|j,m\rangle.
 $$
 
 From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, these are not primitive postulates about point entities. They are the observer-level representation algebra that must emerge when stable assemblies are probed by rotation-sensitive apparatuses. The algebra becomes credible only after the internal ordered-frame dynamics and measurement coupling recover the same projection statistics.
+
+## Standard Recovery Gates
+
+The standard quantum formulas are recovery gates, not mechanisms to import unchanged. For an effective central-potential orbital envelope, the observer-level angular solutions must recover
+
+$$
+\hat{\mathbf L}^2Y_\ell^m
+=
+\ell(\ell+1)\hbar^2Y_\ell^m,
+\qquad
+\hat L_zY_\ell^m
+=
+m\hbar Y_\ell^m,
+$$
+
+with
+
+$$
+\ell\in\mathbb N_0,
+\qquad
+m\in\{-\ell,-\ell+1,\ldots,\ell\}.
+$$
+
+The $m$ quantization is the same $2\pi$ azimuthal closure rule written above, while the allowed $\ell$ spectrum is the regularity / finite-solution condition for the angular envelope. Both belong to observer-level orbital quantum numbers.
+
+For a fermion assembly, the separate internal-spin recovery gate is
+
+$$
+\hat{\mathbf S}^2|s,m_s\rangle
+=
+s(s+1)\hbar^2|s,m_s\rangle,
+\qquad
+s=\frac{1}{2},
+\qquad
+m_s=\pm\frac{1}{2}.
+$$
+
+The Noether-core burden is to supply the effective spinor coordinate whose apparatus projection gives the two Stern-Gerlach records $+\hbar/2$ and $-\hbar/2$. Those records should be basin outcomes of the full angular-momentum ledger, not evidence for a tiny pre-existing arrow inside the target.
 
 ## Orbital Angular Momentum
 
@@ -2378,6 +2639,8 @@ The following usage should be preferred across the corpus:
 - Write "helicity" only for projection onto a propagation or momentum axis; otherwise use "planar angular-momentum sign," "boundary helicity proxy," or the local term already defined in the document.
 - Keep $\mathbf{L}$, $\mathbf{S}$, and $\mathbf{J}$ for the standard observer-level angular-momentum decomposition unless the document explicitly defines an assembly-side ledger variable.
 - Write "spin-measurement outcome" for the apparatus-indexed basin record, not for a pre-existing spin arrow hidden inside the target.
+- Write "observer-level orbital quantum number" for atomic $\ell$ and $m$ labels until their effective-envelope recovery is derived.
+- Treat "intrinsic spin" as standard quantum language meaning "not observer-level orbital motion"; do not use it to imply primitive spin on an architrino.
 
 ## Closure Targets
 
@@ -2393,7 +2656,10 @@ This bridge leaves several derivations open beyond the partition scaffold above.
 8. Derive the effective spinor coordinate and substrate preparation measures $\mu_{\alpha}$ whose pushforward into the reduced spinor-record chart gives the computed spin-$\tfrac{1}{2}$ half-angle law.
 9. Recover photon helicity $\pm1$, exactly two physical transverse photon modes, the material analyzer projector, the analyzer return-map measure $d\nu_{\hat{\mathbf a}}$, the uniform pass-threshold pushforward for $\eta_{\hat{\mathbf a}}$, Malus' law, and no-signaling polarization statistics from the coaxial contra-rotating pro/anti planar pair.
 10. Separate photon helicity closure from massive vector-boson spin closure.
-11. Map observer-level orbital angular momentum, such as atomic $\ell$, to assembly-level internal rotational action without conflating the two.
-12. Rebuild the Bell account from the completed angular-momentum ledger, measurement-response kernel, and basin-measure law.
+11. Derive integer phase-winding closure for Noether-core energy levels by computing the admissible ledgers $(k_I,k_M,k_O,\mathcal R)$ and their allowed changes under $\Delta A_{\text{cycle}}=h$ transactions.
+12. Derive the effective far-zone causal-wake envelope of an integer-closed Noether core and decompose its angular content into recovery coefficients that can be compared with spherical-harmonic orbital modes.
+13. Recover observer-level orbital angular-momentum quantization, including $2\pi$ azimuthal single-valuedness, the finite angular spectrum $\ell\in\mathbb N_0$, and $m\in\{-\ell,\ldots,\ell\}$, from the effective envelope of an assembly in an external potential.
+14. Map observer-level orbital angular momentum, such as atomic $\ell$, to assembly-level internal rotational action without conflating the two.
+15. Rebuild the Bell account from the completed angular-momentum ledger, measurement-response kernel, and basin-measure law.
 
 Until those targets are closed, this document should be read as a disciplined bridge. It is strong enough to say that angular momentum and spin are not primitive architrino properties, strong enough to prevent $h/\hbar$ drift, and strong enough to route Bell's theorem to the correct prerequisite. It is not yet a proof that standard spin and all Bell correlations have been derived from the master equation.

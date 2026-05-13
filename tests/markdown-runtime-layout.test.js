@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { createMarkdownRuntime } from "../src/runtime/MarkdownRuntime.js";
+import { createScenePanelUiRuntime } from "../src/runtime/ScenePanelUiRuntime.js";
 
 function createClassList() {
   const classes = new Set();
@@ -56,6 +57,20 @@ function createFakeElement() {
   };
 }
 
+function createFakeButton() {
+  let clickHandler = null;
+  return {
+    addEventListener(type, handler) {
+      if (type === "click") {
+        clickHandler = handler;
+      }
+    },
+    click() {
+      return clickHandler?.();
+    },
+  };
+}
+
 test("one-column markdown documents can toggle to a two-column layout", async (t) => {
   const originalFetch = globalThis.fetch;
   const originalWindow = globalThis.window;
@@ -102,4 +117,95 @@ test("one-column markdown documents can toggle to a two-column layout", async (t
   assert.equal(markdownPanel.classList.contains("multi-columns"), true);
   assert.equal(markdownPanel.style.props.get("--markdown-column-count"), "2");
   assert.equal(markdownLayoutToggle.attributes.get("aria-label"), "Switch to single column");
+});
+
+test("open markdown panels can invoke the browser PDF save flow", async (t) => {
+  const originalFetch = globalThis.fetch;
+  const originalWindow = globalThis.window;
+  let printCount = 0;
+
+  globalThis.fetch = async () => ({
+    ok: true,
+    async text() {
+      return "# Test\n\nBody";
+    },
+  });
+  globalThis.window = {
+    print() {
+      printCount += 1;
+    },
+  };
+
+  t.after(() => {
+    globalThis.fetch = originalFetch;
+    globalThis.window = originalWindow;
+  });
+
+  const markdownPanel = createFakeElement();
+  const markdownBody = createFakeElement();
+  const markdownLayoutToggle = createFakeElement();
+  const runtime = createMarkdownRuntime({
+    markdownPanel,
+    markdownBody,
+    markdownLayoutToggle,
+    markdownRenderer: null,
+    markdownCache: new Map(),
+    markdownSectionCache: new Map(),
+    extractMarkdownSection: () => null,
+    appendCacheBust: (path) => path,
+  });
+
+  assert.equal(runtime.printMarkdownPanel(), false);
+
+  await runtime.showMarkdownPanel({
+    name: "Test",
+    markdownPath: "content/markdown/test.md",
+    markdownColumns: 1,
+  });
+
+  assert.equal(runtime.printMarkdownPanel(), true);
+  assert.equal(printCount, 1);
+});
+
+test("PDF toolbar button opens markdown before invoking browser print", async (t) => {
+  const originalWindow = globalThis.window;
+  const printCalls = [];
+  const shownLevels = [];
+  const markdownPdfButton = createFakeButton();
+  const currentLevel = {
+    name: "Textbook Markdown to PDF",
+    markdownPath: "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
+  };
+
+  globalThis.window = {
+    setTimeout(callback) {
+      callback();
+      return 1;
+    },
+  };
+
+  t.after(() => {
+    globalThis.window = originalWindow;
+  });
+
+  const runtime = createScenePanelUiRuntime({
+    markdownPdfButton,
+    markdownRuntime: {
+      printMarkdownPanel() {
+        printCalls.push(shownLevels.length);
+        return shownLevels.length > 0;
+      },
+      async showMarkdownPanel(level) {
+        shownLevels.push(level);
+      },
+    },
+    getCurrentLevel: () => currentLevel,
+    isTransitionActive: () => false,
+  });
+
+  runtime.wireListeners();
+  await markdownPdfButton.click();
+
+  assert.deepEqual(shownLevels, [currentLevel]);
+  assert.deepEqual(printCalls, [0, 1]);
 });

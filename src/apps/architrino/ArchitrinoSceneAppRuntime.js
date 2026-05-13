@@ -55,6 +55,7 @@ import { createSceneSearchUiRuntime } from "../../runtime/SceneSearchUiRuntime.j
 import { createScenePanelUiRuntime } from "../../runtime/ScenePanelUiRuntime.js";
 import { createAppShellUiRuntime } from "../../runtime/AppShellUiRuntime.js";
 import { createAppSceneChromeRuntime } from "../../runtime/AppSceneChromeRuntime.js";
+import { createSceneHudTooltipRuntime } from "../../runtime/SceneHudTooltipRuntime.js";
 import { wireAnimatorCanvasUiListeners } from "../../runtime/AnimatorCanvasUiRuntime.js";
 import {
   computeAnimatorViewportAutoscaleCameraState,
@@ -168,6 +169,7 @@ const navUpButton = document.getElementById("nav-up");
 const navForwardButton = document.getElementById("nav-forward");
 const detailInfoButton = document.getElementById("detail-info-button");
 const sceneLabel = document.getElementById("scene-label");
+const sceneHudTools = document.getElementById("scene-hud-tools");
 const sceneFocusSphere = document.getElementById("scene-focus-sphere");
 const sceneSearch = document.getElementById("scene-search");
 const sceneSearchToggle = document.getElementById("scene-search-toggle");
@@ -194,6 +196,7 @@ const markdownBody = document.getElementById("markdown-body");
 const markdownClose = document.getElementById("markdown-close");
 const markdownLayoutToggle = document.getElementById("markdown-layout-toggle");
 const markdownDocButton = document.getElementById("markdown-doc-button");
+const markdownPdfButton = document.getElementById("markdown-pdf-button");
 const periodicOverlay = document.getElementById("periodic-overlay");
 const periodicGrid = document.getElementById("periodic-grid");
 const periodicLegend = document.getElementById("periodic-legend");
@@ -4848,6 +4851,7 @@ function showHoverTooltip(content, x, y, options = {}) {
     return;
   }
   hoverTooltip.classList.toggle("is-element-preview", options.variant === "element-preview");
+  hoverTooltip.classList.toggle("is-hud-tooltip", options.variant === "hud");
   hoverTooltip.replaceChildren();
   if (content instanceof Node) {
     hoverTooltip.appendChild(content);
@@ -4886,6 +4890,7 @@ function hideHoverTooltip() {
   }
   hoverTooltip.classList.remove("is-visible");
   hoverTooltip.classList.remove("is-element-preview");
+  hoverTooltip.classList.remove("is-hud-tooltip");
   hoverTooltip.setAttribute("aria-hidden", "true");
   hoverTooltip.replaceChildren();
   hoverTooltipVisible = false;
@@ -6566,6 +6571,7 @@ const appSceneChromeRuntime = createAppSceneChromeRuntime({
   docButton,
   archieButton,
   markdownDocButton,
+  markdownPdfButton,
   markdownLayoutToggle,
   detailInfoButton,
 });
@@ -6604,6 +6610,7 @@ function updateSceneLabel() {
   });
   appSceneChromeRuntime.updateMarkdownLayoutToggleButton(currentLevel);
   appSceneChromeRuntime.updateMarkdownDocButton(currentLevel);
+  appSceneChromeRuntime.updateMarkdownPdfButton(currentLevel);
   animatorUiRuntime.updateAnimatorOverlay(currentLevel);
   periodicOverlayRuntime.updatePeriodicOverlay();
   periodicOverlayRuntime.updateElementLegend();
@@ -6692,6 +6699,7 @@ const scenePanelUiRuntime = createScenePanelUiRuntime({
   detailClose,
   markdownClose,
   markdownDocButton,
+  markdownPdfButton,
   markdownLayoutToggle,
   markdownRuntime,
   closeDetailPanel,
@@ -7094,9 +7102,15 @@ const appShellUiRuntime = createAppShellUiRuntime({
   periodicOverlayRuntime,
   appDirector,
 });
+const sceneHudTooltipRuntime = createSceneHudTooltipRuntime({
+  sceneHudTools,
+  showHoverTooltip,
+  hideHoverTooltip,
+});
 
 appDirector.init();
 appShellUiRuntime.wireListeners();
+sceneHudTooltipRuntime.wireListeners();
 scenePanelUiRuntime.wireListeners();
 animatorAppRuntime.wireListeners();
 sceneSearchUiRuntime.wireListeners();

@@ -86,7 +86,9 @@
     "content/markdown/aaa/quantum/quantum-summary.md",
     "content/markdown/aaa/quantum/reality-quantum-causality.md",
     "content/markdown/aaa/quantum/wavefunction-ontology.md",
+    "content/markdown/aaa/reactions/atomic-transition-radiation.md",
     "content/markdown/aaa/reactions/bremsstrahlung.md",
+    "content/markdown/aaa/reactions/radiation.md",
     "content/markdown/aaa/reactions/synchrotron.md",
     "content/markdown/aaa/spacetime/black-holes.md",
     "content/markdown/aaa/spacetime/emergent-metric.md",
@@ -147,7 +149,6 @@
     "content/markdown/aaa/validation/simulations/run-protocols.md",
     "content/markdown/aaa/validation/simulations/synthetic-observables.md",
     "content/markdown/aaa/validation/simulations/unsolved-problems.md",
-    "content/markdown/aaa/validation/validation-protocols.md",
-    "content/markdown/generated/textbook-toc.md"
+    "content/markdown/aaa/validation/validation-protocols.md"
   ]
 }

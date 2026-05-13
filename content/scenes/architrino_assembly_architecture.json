@@ -24,10 +24,6 @@
         "scenePath": "content/scenes/dynamics/dynamics.json"
       },
       {
-        "nodeId": "proof_programs",
-        "scenePath": "content/scenes/proof-programs/proof_programs.json"
-      },
-      {
         "nodeId": "spacetime",
         "scenePath": "content/scenes/spacetime/spacetime.json"
       },
@@ -71,6 +67,10 @@
         "scenePath": "content/scenes/validation/validation.json"
       },
       {
+        "nodeId": "proof_programs",
+        "scenePath": "content/scenes/proof-programs/proof_programs.json"
+      },
+      {
         "nodeId": "philosophy_history",
         "scenePath": "content/scenes/philosophy_history/philosophy_history.json"
       }
@@ -110,29 +110,13 @@
       "fixedPosition": true
     },
     {
-      "id": "proof_programs",
-      "title": "Proof Programs",
-      "radius": 2.688,
-      "color": "#6f5a2f",
-      "position": [
-        6.6,
-        12.57,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Proof Programs",
-      "fixedPosition": true
-    },
-    {
       "id": "spacetime",
       "title": "Spacetime",
       "radius": 2.688,
       "color": "#1c2a4f",
       "position": [
-        11.69,
-        8.07,
+        6.6,
+        12.57,
         0
       ],
       "motion": {
@@ -147,8 +131,8 @@
       "radius": 2.688,
       "color": "#6c4f8d",
       "position": [
-        14.1,
-        1.71,
+        11.69,
+        8.07,
         0
       ],
       "motion": {
@@ -163,8 +147,8 @@
       "radius": 2.688,
       "color": "#2f6b6f",
       "position": [
-        13.28,
-        -5.04,
+        14.1,
+        1.71,
         0
       ],
       "motion": {
@@ -179,8 +163,8 @@
       "radius": 2.688,
       "color": "#7a4a1f",
       "position": [
-        9.42,
-        -10.63,
+        13.28,
+        -5.04,
         0
       ],
       "motion": {
@@ -195,8 +179,8 @@
       "radius": 2.688,
       "color": "#8b5e34",
       "position": [
-        3.4,
-        -13.79,
+        9.42,
+        -10.63,
         0
       ],
       "motion": {
@@ -211,7 +195,7 @@
       "radius": 2.688,
       "color": "#2f4f7a",
       "position": [
-        -3.4,
+        3.4,
         -13.79,
         0
       ],
@@ -227,8 +211,8 @@
       "radius": 2.688,
       "color": "#4f5d75",
       "position": [
-        -9.42,
-        -10.63,
+        -3.4,
+        -13.79,
         0
       ],
       "motion": {
@@ -243,8 +227,8 @@
       "radius": 2.688,
       "color": "#3c6a7a",
       "position": [
-        -13.28,
-        -5.04,
+        -9.42,
+        -10.63,
         0
       ],
       "motion": {
@@ -260,8 +244,8 @@
       "radius": 2.688,
       "color": "#243d8f",
       "position": [
-        -14.1,
-        1.71,
+        -13.28,
+        -5.04,
         0
       ],
       "motion": {
@@ -276,6 +260,22 @@
       "radius": 2.688,
       "color": "#3f6a5a",
       "position": [
+        -14.1,
+        1.71,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Validation",
+      "fixedPosition": true
+    },
+    {
+      "id": "proof_programs",
+      "title": "Proof Programs",
+      "radius": 2.688,
+      "color": "#6f5a2f",
+      "position": [
         -11.69,
         8.07,
         0
@@ -283,7 +283,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Validation",
+      "labelTitle": "Proof Programs",
       "fixedPosition": true
     },
     {

@@ -172,6 +172,30 @@ Isotropy in this branch is attributed to long-time averaging over many source po
 
 The framework does not yet identify an ontological root definition of temperature, so it should not simply equate the enormous internal energy of individual Noether cores with an ordinary thermodynamic temperature. A more disciplined distinction is required between three quantities: the internal energy scale of the cores, the local effective emissive temperature of the Noether Sea if it behaves as a blackbody source, and the observer-side temperature inferred from the photon bath after emission, transport, thermalization, and redshift. On that reading, the observed $2.7255\,\mathrm{K}$ background is the temperature of the ambient microwave radiation field measured by present observers, not automatically the intrinsic temperature of the Noether Sea as an emitter. The stronger claim to test is that sufficiently homogeneous regions of the Sea can generate and maintain a near-blackbody photon population whose measured spectrum tracks that emissive state after medium transport. Departures from the baseline blackbody should then encode local medium state: increasing core density, anisotropy, or internal excitation near dense matter would tend to distort the spectrum away from the homogeneous limit, while the strongest deviations should arise near black-hole recycling zones, where alignment, compression, and release-channel mixing can harden, bias, or only partially re-thermalize the emitted radiation before subsequent relaxation in the surrounding Noether Sea.
 
+### Thermalization-Depth and Planck-Recovery Target
+
+The blackbody claim should be carried as a theorem target, not as a source-story assertion. A distributed-emission interpretation must show that source channels, transport, and decoupling collectively supply enough mode exchange before free streaming. A compact diagnostic is the path-integrated thermalization depth
+
+$$
+\mathcal{D}_{\mathrm{th}}^{\mathrm{CMB}}(\nu)
+=
+\int_{t_{\text{src}}}^{t_{\text{dec}}}
+\tau_{\mathrm{th}}^{-1}(\nu,t)\,dt,
+$$
+
+where $\tau_{\mathrm{th}}^{-1}$ is the effective rate for the already-recorded capture/release, Compton-like redistribution, pair-channel, and medium-exchange processes. The target is $\mathcal{D}_{\mathrm{th}}^{\mathrm{CMB}}\gg1$ before decoupling for spectral relaxation, followed by sufficiently weak post-decoupling coupling to preserve anisotropy, polarization, and damping information rather than erase it.
+
+In the weak homogeneous photon-channel limit, the observer-level recovery target is the Planck spectral form
+
+$$
+u_\nu^{\mathrm{eff}}(T_{\text{ens}})
+=
+\frac{8\pi h\nu^3}{c_\gamma^3}
+\frac{1}{\exp(h\nu/(k_B T_{\text{ens}}))-1}.
+$$
+
+This formula is an effective comparison object. It becomes available only after Gate A supplies the photon energy-frequency and mode-counting interface, Gate B supplies the two transverse photon modes and polarization handoff, and Gate C drives the photon chemical potential to zero through detailed balance. The redshift handoff must then preserve spectral shape by mapping photon frequencies and inferred temperature through the same Noether-Sea and clock-rate comparison variables used elsewhere in this document.
+
 ## Consistency Anchors
 
 - Expansion wording here should remain consistent with [expansion-mechanism.md](./expansion-mechanism.md).

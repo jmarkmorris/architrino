@@ -5,6 +5,7 @@ const ATOM_SCENE_PATH_SUFFIX = "/nuclear/atom.json";
 const STANDARD_MODEL_SCENE_PATH_SUFFIX = "/standard_model.json";
 
 const STRUCTURED_PALETTE_EXCLUDED_SCENE_PATHS = new Set([
+  "content/scenes/archie/archie.json",
   "content/scenes/architrino-theory/electrino.json",
   "content/scenes/architrino-theory/positrino.json",
   "content/scenes/standard-model-particles/higgs_boson.json",
