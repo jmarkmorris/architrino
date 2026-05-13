@@ -59,9 +59,19 @@ export function createScenePanelUiRuntime(deps) {
     }
 
     if (markdownPdfButton) {
-      markdownPdfButton.addEventListener("click", () => {
-        if (!isTransitionActive()) {
-          markdownRuntime.printMarkdownPanel();
+      markdownPdfButton.addEventListener("click", async () => {
+        if (isTransitionActive()) {
+          return;
+        }
+        if (markdownRuntime.printMarkdownPanel()) {
+          return;
+        }
+        const currentLevel = getCurrentLevel();
+        if (currentLevel?.markdownPath) {
+          await markdownRuntime.showMarkdownPanel(currentLevel);
+          window.setTimeout(() => {
+            markdownRuntime.printMarkdownPanel();
+          }, 0);
         }
       });
     }
