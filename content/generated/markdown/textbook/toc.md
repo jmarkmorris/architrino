@@ -858,6 +858,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
   - [Closure Scorecard](../../../scenes/validation/closure_scorecard.json)
     - [Reusable Assessment Prompt](../../../markdown/aaa/validation/closure-scorecard.md?section=Reusable+Assessment+Prompt)
     - [Assessment Table](../../../markdown/aaa/validation/closure-scorecard.md?section=Assessment+Table)
+    - [2026-05-13 Assessment Notes](../../../markdown/aaa/validation/closure-scorecard.md?section=2026-05-13+Assessment+Notes)
 - [Proof Programs](../../../scenes/proof-programs/proof_programs.json)
   - [Master Equation Breather](../../../scenes/proof-programs/master_equation_breather.json)
     - [Purpose](../../../markdown/aaa/proof-programs/master-equation-breather.md?section=Purpose)
