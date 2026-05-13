@@ -86,6 +86,7 @@
     "content/markdown/aaa/quantum/quantum-summary.md",
     "content/markdown/aaa/quantum/reality-quantum-causality.md",
     "content/markdown/aaa/quantum/wavefunction-ontology.md",
+    "content/markdown/aaa/reactions/atomic-transition-radiation.md",
     "content/markdown/aaa/reactions/bremsstrahlung.md",
     "content/markdown/aaa/reactions/radiation.md",
     "content/markdown/aaa/reactions/synchrotron.md",
@@ -149,6 +150,20 @@
     "content/markdown/aaa/validation/simulations/synthetic-observables.md",
     "content/markdown/aaa/validation/simulations/unsolved-problems.md",
     "content/markdown/aaa/validation/validation-protocols.md",
+    "content/markdown/generated/textbook-md-pdf/architrino-textbook.md",
+    "content/markdown/generated/textbook-md-pdf/atomic-and-nuclear-assemblies.md",
+    "content/markdown/generated/textbook-md-pdf/cosmology.md",
+    "content/markdown/generated/textbook-md-pdf/dynamics.md",
+    "content/markdown/generated/textbook-md-pdf/foundations.md",
+    "content/markdown/generated/textbook-md-pdf/interactions.md",
+    "content/markdown/generated/textbook-md-pdf/philosophy-history.md",
+    "content/markdown/generated/textbook-md-pdf/proof-programs.md",
+    "content/markdown/generated/textbook-md-pdf/quantum.md",
+    "content/markdown/generated/textbook-md-pdf/reactions.md",
+    "content/markdown/generated/textbook-md-pdf/spacetime.md",
+    "content/markdown/generated/textbook-md-pdf/standard-model-assemblies.md",
+    "content/markdown/generated/textbook-md-pdf/theory-bridges.md",
+    "content/markdown/generated/textbook-md-pdf/validation.md",
     "content/markdown/generated/textbook-toc.md"
   ]
 }

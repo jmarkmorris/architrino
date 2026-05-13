@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 469,
-      "edges": 1221,
+      "nodes": 484,
+      "edges": 1235,
       "scenes": 319,
       "markdownIndexes": 0,
-      "markdownDocs": 150,
+      "markdownDocs": 165,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2579,6 +2579,12 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/reactions/atomic-transition-radiation.md",
+      "name": "Atomic Transition Radiation",
+      "path": "content/markdown/aaa/reactions/atomic-transition-radiation.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/reactions/bremsstrahlung.md",
       "name": "Bremsstrahlung",
       "path": "content/markdown/aaa/reactions/bremsstrahlung.md",
@@ -2954,6 +2960,90 @@
       "id": "content/markdown/aaa/validation/validation-protocols.md",
       "name": "Validation Protocols",
       "path": "content/markdown/aaa/validation/validation-protocols.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/generated/textbook-md-pdf/architrino-textbook.md",
+      "name": "Architrino Textbook",
+      "path": "content/markdown/generated/textbook-md-pdf/architrino-textbook.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/generated/textbook-md-pdf/atomic-and-nuclear-assemblies.md",
+      "name": "Atomic and Nuclear Assemblies",
+      "path": "content/markdown/generated/textbook-md-pdf/atomic-and-nuclear-assemblies.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/generated/textbook-md-pdf/cosmology.md",
+      "name": "Cosmology",
+      "path": "content/markdown/generated/textbook-md-pdf/cosmology.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/generated/textbook-md-pdf/dynamics.md",
+      "name": "Dynamics",
+      "path": "content/markdown/generated/textbook-md-pdf/dynamics.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/generated/textbook-md-pdf/foundations.md",
+      "name": "Foundations",
+      "path": "content/markdown/generated/textbook-md-pdf/foundations.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/generated/textbook-md-pdf/interactions.md",
+      "name": "Interactions",
+      "path": "content/markdown/generated/textbook-md-pdf/interactions.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/generated/textbook-md-pdf/philosophy-history.md",
+      "name": "Philosophy-History",
+      "path": "content/markdown/generated/textbook-md-pdf/philosophy-history.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/generated/textbook-md-pdf/proof-programs.md",
+      "name": "Proof Programs",
+      "path": "content/markdown/generated/textbook-md-pdf/proof-programs.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/generated/textbook-md-pdf/quantum.md",
+      "name": "Quantum",
+      "path": "content/markdown/generated/textbook-md-pdf/quantum.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/generated/textbook-md-pdf/reactions.md",
+      "name": "Reactions",
+      "path": "content/markdown/generated/textbook-md-pdf/reactions.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/generated/textbook-md-pdf/spacetime.md",
+      "name": "Spacetime",
+      "path": "content/markdown/generated/textbook-md-pdf/spacetime.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/generated/textbook-md-pdf/standard-model-assemblies.md",
+      "name": "Standard Model Assemblies",
+      "path": "content/markdown/generated/textbook-md-pdf/standard-model-assemblies.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/generated/textbook-md-pdf/theory-bridges.md",
+      "name": "Theory Bridges",
+      "path": "content/markdown/generated/textbook-md-pdf/theory-bridges.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/generated/textbook-md-pdf/validation.md",
+      "name": "Validation",
+      "path": "content/markdown/generated/textbook-md-pdf/validation.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -6610,6 +6700,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/reactions/atomic-transition-radiation.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/reactions/atomic-transition-radiation.md",
+      "name": "Atomic Transition Radiation",
+      "path": "content/markdown/aaa/reactions/atomic-transition-radiation.md",
+      "searchTarget": "content/markdown/aaa/reactions/atomic-transition-radiation.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/reactions/bremsstrahlung.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/reactions/bremsstrahlung.md",
@@ -7177,6 +7276,132 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/generated/textbook-md-pdf/architrino-textbook.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/generated/textbook-md-pdf/architrino-textbook.md",
+      "name": "Architrino Textbook",
+      "path": "content/markdown/generated/textbook-md-pdf/architrino-textbook.md",
+      "searchTarget": "content/markdown/generated/textbook-md-pdf/architrino-textbook.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/generated/textbook-md-pdf/atomic-and-nuclear-assemblies.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/generated/textbook-md-pdf/atomic-and-nuclear-assemblies.md",
+      "name": "Atomic and Nuclear Assemblies",
+      "path": "content/markdown/generated/textbook-md-pdf/atomic-and-nuclear-assemblies.md",
+      "searchTarget": "content/markdown/generated/textbook-md-pdf/atomic-and-nuclear-assemblies.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/generated/textbook-md-pdf/cosmology.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/generated/textbook-md-pdf/cosmology.md",
+      "name": "Cosmology",
+      "path": "content/markdown/generated/textbook-md-pdf/cosmology.md",
+      "searchTarget": "content/markdown/generated/textbook-md-pdf/cosmology.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/generated/textbook-md-pdf/dynamics.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/generated/textbook-md-pdf/dynamics.md",
+      "name": "Dynamics",
+      "path": "content/markdown/generated/textbook-md-pdf/dynamics.md",
+      "searchTarget": "content/markdown/generated/textbook-md-pdf/dynamics.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/generated/textbook-md-pdf/foundations.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/generated/textbook-md-pdf/foundations.md",
+      "name": "Foundations",
+      "path": "content/markdown/generated/textbook-md-pdf/foundations.md",
+      "searchTarget": "content/markdown/generated/textbook-md-pdf/foundations.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/generated/textbook-md-pdf/interactions.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/generated/textbook-md-pdf/interactions.md",
+      "name": "Interactions",
+      "path": "content/markdown/generated/textbook-md-pdf/interactions.md",
+      "searchTarget": "content/markdown/generated/textbook-md-pdf/interactions.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/generated/textbook-md-pdf/philosophy-history.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/generated/textbook-md-pdf/philosophy-history.md",
+      "name": "Philosophy-History",
+      "path": "content/markdown/generated/textbook-md-pdf/philosophy-history.md",
+      "searchTarget": "content/markdown/generated/textbook-md-pdf/philosophy-history.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/generated/textbook-md-pdf/proof-programs.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/generated/textbook-md-pdf/proof-programs.md",
+      "name": "Proof Programs",
+      "path": "content/markdown/generated/textbook-md-pdf/proof-programs.md",
+      "searchTarget": "content/markdown/generated/textbook-md-pdf/proof-programs.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/generated/textbook-md-pdf/quantum.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/generated/textbook-md-pdf/quantum.md",
+      "name": "Quantum",
+      "path": "content/markdown/generated/textbook-md-pdf/quantum.md",
+      "searchTarget": "content/markdown/generated/textbook-md-pdf/quantum.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/generated/textbook-md-pdf/reactions.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/generated/textbook-md-pdf/reactions.md",
+      "name": "Reactions",
+      "path": "content/markdown/generated/textbook-md-pdf/reactions.md",
+      "searchTarget": "content/markdown/generated/textbook-md-pdf/reactions.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/generated/textbook-md-pdf/spacetime.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/generated/textbook-md-pdf/spacetime.md",
+      "name": "Spacetime",
+      "path": "content/markdown/generated/textbook-md-pdf/spacetime.md",
+      "searchTarget": "content/markdown/generated/textbook-md-pdf/spacetime.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/generated/textbook-md-pdf/standard-model-assemblies.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/generated/textbook-md-pdf/standard-model-assemblies.md",
+      "name": "Standard Model Assemblies",
+      "path": "content/markdown/generated/textbook-md-pdf/standard-model-assemblies.md",
+      "searchTarget": "content/markdown/generated/textbook-md-pdf/standard-model-assemblies.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/generated/textbook-md-pdf/theory-bridges.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/generated/textbook-md-pdf/theory-bridges.md",
+      "name": "Theory Bridges",
+      "path": "content/markdown/generated/textbook-md-pdf/theory-bridges.md",
+      "searchTarget": "content/markdown/generated/textbook-md-pdf/theory-bridges.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/generated/textbook-md-pdf/validation.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/generated/textbook-md-pdf/validation.md",
+      "name": "Validation",
+      "path": "content/markdown/generated/textbook-md-pdf/validation.md",
+      "searchTarget": "content/markdown/generated/textbook-md-pdf/validation.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/generated/textbook-toc.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/generated/textbook-toc.md",
@@ -7374,21 +7599,21 @@
       "to": "scene:content/scenes/assemblies/assemblies.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/cosmology/cosmology.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/cosmology/universe.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
@@ -7409,14 +7634,14 @@
       "to": "scene:content/scenes/interactions/interactions.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/nuclear/nuclear_atomic.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
@@ -7430,42 +7655,42 @@
       "to": "scene:content/scenes/proof-programs/proof_programs.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/quantum/quantum.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/reactions/reactions.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/spacetime/spacetime.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/theory-bridges/theory_bridges.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/validation/validation.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[12]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
@@ -11487,10 +11712,108 @@
     },
     {
       "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/textbook-pdf-snapshots.md",
+      "to": "markdown_doc:content/markdown/generated/textbook-md-pdf/architrino-textbook.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/archie/textbook_pdf_snapshots.json",
       "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
+      "to": "markdown_doc:content/markdown/generated/textbook-md-pdf/atomic-and-nuclear-assemblies.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/textbook_pdf_snapshots.json",
+      "field": "pdf_snapshot_atomic_nuclear_assemblies.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
+      "to": "markdown_doc:content/markdown/generated/textbook-md-pdf/cosmology.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/textbook_pdf_snapshots.json",
+      "field": "pdf_snapshot_cosmology.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
+      "to": "markdown_doc:content/markdown/generated/textbook-md-pdf/dynamics.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/textbook_pdf_snapshots.json",
+      "field": "pdf_snapshot_dynamics.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
+      "to": "markdown_doc:content/markdown/generated/textbook-md-pdf/foundations.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/textbook_pdf_snapshots.json",
+      "field": "pdf_snapshot_foundations.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
+      "to": "markdown_doc:content/markdown/generated/textbook-md-pdf/interactions.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/textbook_pdf_snapshots.json",
+      "field": "pdf_snapshot_interactions.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
+      "to": "markdown_doc:content/markdown/generated/textbook-md-pdf/philosophy-history.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/textbook_pdf_snapshots.json",
+      "field": "pdf_snapshot_philosophy_history.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
+      "to": "markdown_doc:content/markdown/generated/textbook-md-pdf/proof-programs.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/textbook_pdf_snapshots.json",
+      "field": "pdf_snapshot_proof_programs.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
+      "to": "markdown_doc:content/markdown/generated/textbook-md-pdf/quantum.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/textbook_pdf_snapshots.json",
+      "field": "pdf_snapshot_quantum.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
+      "to": "markdown_doc:content/markdown/generated/textbook-md-pdf/reactions.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/textbook_pdf_snapshots.json",
+      "field": "pdf_snapshot_reactions.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
+      "to": "markdown_doc:content/markdown/generated/textbook-md-pdf/spacetime.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/textbook_pdf_snapshots.json",
+      "field": "pdf_snapshot_spacetime.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
+      "to": "markdown_doc:content/markdown/generated/textbook-md-pdf/standard-model-assemblies.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/textbook_pdf_snapshots.json",
+      "field": "pdf_snapshot_standard_model_assemblies.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
+      "to": "markdown_doc:content/markdown/generated/textbook-md-pdf/theory-bridges.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/textbook_pdf_snapshots.json",
+      "field": "pdf_snapshot_theory_bridges.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
+      "to": "markdown_doc:content/markdown/generated/textbook-md-pdf/validation.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/textbook_pdf_snapshots.json",
+      "field": "pdf_snapshot_validation.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
+      "to": "markdown_doc:content/markdown/generated/textbook-toc.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/textbook_pdf_snapshots.json",
+      "field": "pdf_snapshot_overview.source.path"
     },
     {
       "from": "scene:content/scenes/archie/textbook_toc.json",

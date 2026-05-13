@@ -2,7 +2,7 @@
 
 Radiation is the $\mathbb{A}\mathbb{A}\mathbb{A}$ workstream for energy shedding by assemblies. A radiative event is not defined merely by acceleration or by the presence of excess energy. It is the routed relaxation of a driven assembly or local Noether-Sea state into one or more allowed channels: photon output, medium excitation, recoil, residual internal energy, or reaction products. Photon output is described through planar-mode nucleation, while non-radiative channels remain explicit when the available energy does not lock into a stable photon assembly.
 
-The detailed channel pages remain [Bremsstrahlung](bremsstrahlung.md) and [Synchrotron Cascades](synchrotron.md). Photon assembly ontology belongs in [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md), while channel vocabulary follows [Mode Taxonomy](../interactions/mode-taxonomy.md). Event-level conservation uses [Reaction Ledger](../validation/reaction-ledger.md), and cosmology-facing radiation provenance is tracked in [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md).
+The detailed channel pages remain [Bremsstrahlung](bremsstrahlung.md), [Synchrotron Cascades](synchrotron.md), and [Atomic Transition Radiation](atomic-transition-radiation.md). Photon assembly ontology belongs in [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md), while channel vocabulary follows [Mode Taxonomy](../interactions/mode-taxonomy.md). Event-level conservation uses [Reaction Ledger](../validation/reaction-ledger.md), and cosmology-facing radiation provenance is tracked in [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md).
 
 This page is a foundation-up overview. It states the shared mechanism and the closure targets that individual channel pages must specialize. It does not by itself prove blackbody radiation, photon spin, atomic spectra, or QED cross sections.
 
@@ -225,6 +225,51 @@ $$
 
 Here $f_i$ and $f_j$ are ensemble occupation weights for material or assembly states, while $\Gamma$ denotes the effective transition rate after the underlying assembly dynamics have been coarse-grained. This equation is not a proof of blackbody behavior. It states the rate symmetry that the completed Gate C radiation derivation must recover.
 
+The detailed-balance theorem target is more specific than the schematic equation. For a transition with $E_i-E_j=h\nu$, Gate C must derive an ensemble weight ratio
+
+$$
+\frac{f_i}{f_j}
+=
+\frac{g_i}{g_j}\exp\!\left(-\frac{h\nu}{k_B T_{\text{ens}}}\right)
+$$
+
+from the thermalized assembly ensemble, together with a rate-degeneracy relation
+
+$$
+\Gamma_{i\to j+\gamma}\,g_i
+=
+\Gamma_{j+\gamma\to i}\,g_j.
+$$
+
+Those two conditions make the detailed-balance equation imply
+
+$$
+\frac{\bar n_\gamma}{1+\bar n_\gamma}
+=
+\exp\!\left(-\frac{h\nu}{k_B T_{\text{ens}}}\right),
+$$
+
+and therefore recover the Planck occupation. The point is not to postulate these relations at the substrate level; the point is to identify exactly what the assembly return map, planar-mode capture/release rates, and coarse-grained ensemble measure must prove before blackbody language becomes available.
+
+For cosmology-facing claims, thermalization depth is a diagnostic rather than a new ontology term. A useful provisional target is
+
+$$
+\mathcal{D}_{\mathrm{th}}(\nu;t_a,t_b)
+=
+\int_{t_a}^{t_b}
+\left[
+\tau_{\mathrm{cap}}^{-1}
++
+\tau_{\mathrm{scat}}^{-1}
++
+\tau_{\mathrm{pair}}^{-1}
++
+\tau_{\mathrm{med}}^{-1}
+\right](\nu,t)\,dt,
+$$
+
+where the terms respectively summarize planar-mode capture/release, Compton-like redistribution, pair channels, and non-radiative medium exchange after those channels have been tied to event records. The condition $\mathcal{D}_{\mathrm{th}}\gg1$ is necessary for a source population to approach a blackbody photon bath, but it is not sufficient unless the same provenance record also closes Gate A kinematics, Gate B transverse handoff, Gate C transition rates, and the Noether-Sea state map used for redshift and damping.
+
 For cosmology-facing use, the blackbody limit also requires thermalization depth, damping, anisotropy, polarization, and redshift handoff to remain consistent with the same provenance record. The CMB claim is therefore not "many photons exist." The claim to prove is that source channels plus Noether-Sea transport can generate and preserve a near-blackbody photon bath within observational limits.
 
 ## Channel Routing
@@ -235,7 +280,7 @@ Channel routing is the event-level decision tree that sends the closure residual
 | --- | --- | --- | --- |
 | Bremsstrahlung | charged-assembly deceleration near a target assembly | planar-mode photon, recoil, medium excitation | recover $d\sigma/dk$, screening, form-factor, and free-free emissivity limits |
 | Synchrotron | curved charged-assembly transport in an anisotropic Noether-Sea state | repeated planar-mode photon output | recover $\nu_c\propto\gamma^2B$, $P_{\mathrm{syn}}\propto U_B\gamma^2$, cooling breaks, and polarization limits |
-| Atomic transition | electron-assembly envelope moves between effective resonance basins | line photon plus recoil and residual atomic state | recover spectral line frequencies after local clock/rate conversion |
+| [Atomic transition](atomic-transition-radiation.md) | electron-assembly envelope moves between effective resonance basins | line photon plus recoil and residual atomic state | recover spectral line frequencies after local clock/rate conversion |
 | Pair and annihilation radiation | photon overlap, charged pair association, or charged pair relock | photons, $e^+e^-$ assemblies, recoil, and recruited or returned Noether-core content | recover threshold, cross-section, and inventory conservation in validated regimes |
 | Thermal free-free | ensemble of screened charged encounters | continuum photon bath plus medium heating | recover LTE emissivity when $\mathcal{R}_{\mathrm{LTE}}\ll 1$ and non-equilibrium corrections otherwise |
 | Compton-like scattering | photon assembly captured and re-released by a charged assembly | shifted photon, recoil, and possible heat channel | recover energy-momentum transfer and standard scattering limits |

@@ -134,20 +134,35 @@ The CMB module needs a source-to-transport-to-decoupling ledger. It must track:
 - redshift and clock-rate handoff,
 - and separation between source interpretation and the shared prediction target $C_\ell$.
 
+The thermalization-depth record is a diagnostic field, not a new substrate entity. For each modeled source-to-decoupling path, the ledger should record
+
+$$
+\mathcal{D}_{\mathrm{th}}(\nu;t_a,t_b)
+=
+\int_{t_a}^{t_b}\tau_{\mathrm{th}}^{-1}(\nu,t)\,dt,
+$$
+
+with $\tau_{\mathrm{th}}^{-1}$ decomposed into the specific event-recorded channels being used: planar-mode capture/release, Compton-like redistribution, pair channels, and non-radiative medium exchange. A CMB blackbody claim requires $\mathcal{D}_{\mathrm{th}}\gg1$ before decoupling, effective photon chemical potential driven to zero, and a post-decoupling transport map that preserves the already-generated spectrum while carrying anisotropy, polarization, damping, and redshift information.
+
 ## Closure Targets
 
 1. **Planar-mode threshold closure:** derive a shared threshold condition for bremsstrahlung and synchrotron photon assembly output.
 2. **Pair-production provenance closure:** prove that local Noether-Sea recruitment can satisfy architrino inventory, energy-momentum, and Breit-Wheeler rate constraints in the same event record.
 3. **Photon-bath closure:** show that the relevant radiation channels can maintain BBN-compatible photon loading during the deuterium bottleneck window.
-4. **Blackbody closure:** show that distributed source channels plus Noether-Sea transport can generate and preserve the CMB blackbody spectrum within observational limits.
-5. **Clock/redshift closure:** use one medium-state map for photon propagation, endpoint clock comparison, and redshift-distance inference.
+4. **Detailed-balance closure:** derive the rate symmetry and ensemble weight relation that make emission, absorption, and stimulated terms recover Planck occupation with zero effective photon chemical potential.
+5. **Blackbody closure:** show that distributed source channels plus Noether-Sea transport can generate and preserve the CMB blackbody spectrum within observational limits.
+6. **Clock/redshift closure:** use one medium-state map for photon propagation, endpoint clock comparison, and redshift-distance inference.
 
 ## Failure Modes
 
-The provenance program fails for a channel if:
+The provenance program fails for a channel if a source story cannot survive the same ledger used for reaction, transport, thermalization, and observer handoff.
 
-- the architrino inventory cannot be balanced without unrecorded substrate creation,
-- the same Noether-Sea state variables must be re-fit independently for each observable,
-- pair or radiation channels violate validated standard limits in regimes where those limits are already measured,
-- source-zone photon loading cannot preserve BBN light-element constraints,
-- or CMB thermalization cannot recover blackbody precision, damping behavior, and TT/TE/EE coherence.
+| Failure mode | What fails | Diagnostic consequence |
+| --- | --- | --- |
+| Single-core temperature mistake | A single excited Noether core is treated as thermodynamically hot rather than internally excited, closure-mismatched, or metastable | Temperature is being used before an ensemble distribution or entropy-energy relation has been established |
+| Inventory gap | Architrino inventory, Noether-core recruitment, recoil, or returned medium content cannot be balanced without unrecorded substrate creation | Pair and radiation channels cannot be promoted beyond provisional maps |
+| Per-observable refit | The same Noether-Sea state variables must be re-fit independently for photon loading, blackbody recovery, damping, redshift, or growth observables | The cosmology interpretation loses its shared medium-state map |
+| Standard-limit violation | Pair, Compton-like, bremsstrahlung, synchrotron, or photon propagation channels violate validated limits in regimes where those limits are already measured | The proposed substrate route fails before it can claim new deviations |
+| Insufficient thermalization depth | $\mathcal{D}_{\mathrm{th}}$ is too small, or its channel decomposition is not tied to event records | Source photons need not relax to a Planck bath, and a nonzero effective photon chemical potential or spectral distortion remains |
+| BBN photon-loading failure | Source-zone photon production cannot preserve deuterium survival, helium clustering, lithium constraints, and $N_{\text{eff}}$ compatibility | The BBN local-reactor mapping cannot replace the standard photon-to-baryon environment |
+| CMB handoff failure | Blackbody precision, damping behavior, anisotropy, polarization, or TT/TE/EE coherence cannot be carried through the same transport and redshift map | CMB thermalization cannot be treated as a successful source-to-observer provenance path |

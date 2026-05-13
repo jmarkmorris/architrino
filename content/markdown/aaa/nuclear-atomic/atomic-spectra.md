@@ -2,7 +2,7 @@
 
 This chapter records the working $\mathbb{A}\mathbb{A}\mathbb{A}$ picture of atomic spectra as resonance structure in the Noether Sea rather than as a purely abstract orbital postulate. The immediate goal is to identify which spectral constants and redshift effects should be read as medium-sensitive resonance data.
 
-It should be read alongside [Atomic Structure](atomic-structure.md), [Electron](../assemblies/fermions/electron.md), [Condensed Matter](condensed-matter.md), and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md), since the spectral shifts proposed here depend on both local assembly structure and the effective clock/rate layer.
+It should be read alongside [Atomic Structure](atomic-structure.md), [Electron](../assemblies/fermions/electron.md), [Condensed Matter](condensed-matter.md), [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md), and [Atomic Transition Radiation](../reactions/atomic-transition-radiation.md), since the spectral shifts proposed here depend on local assembly structure, the effective clock/rate layer, and the photon-channel event record.
 
 The note is still exploratory, so the opening should be read as a compact program statement rather than as a closed derivation.
 
@@ -39,6 +39,8 @@ E_{\text{env}}(b;\mathcal W_{\text{nuc}},\rho_{\text{core}},\chi_{\text{sea}}),
 $$
 
 with the local clock/rate conversion applied before comparing to observer frequencies. This keeps the atomic spectrum tied to geometry and causal-wake closure without claiming that the standard orbital postulate has already been derived.
+
+This chapter owns the envelope gap and observer-level spectral comparison. The emission, absorption, recoil, non-radiative alternatives, and Gate C transition-rate record belong to [Atomic Transition Radiation](../reactions/atomic-transition-radiation.md).
 
 The second closure target is gravitational spectral shift. A viable account should derive redshift-sensitive atomic spectra from both local assembly resonance and the effective clock/rate layer, rather than treating the shift as a density-only lattice effect.
 
