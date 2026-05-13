@@ -55,6 +55,7 @@ import { createSceneSearchUiRuntime } from "../../runtime/SceneSearchUiRuntime.j
 import { createScenePanelUiRuntime } from "../../runtime/ScenePanelUiRuntime.js";
 import { createAppShellUiRuntime } from "../../runtime/AppShellUiRuntime.js";
 import { createAppSceneChromeRuntime } from "../../runtime/AppSceneChromeRuntime.js";
+import { createSceneHudTooltipRuntime } from "../../runtime/SceneHudTooltipRuntime.js";
 import { wireAnimatorCanvasUiListeners } from "../../runtime/AnimatorCanvasUiRuntime.js";
 import {
   computeAnimatorViewportAutoscaleCameraState,
@@ -168,6 +169,7 @@ const navUpButton = document.getElementById("nav-up");
 const navForwardButton = document.getElementById("nav-forward");
 const detailInfoButton = document.getElementById("detail-info-button");
 const sceneLabel = document.getElementById("scene-label");
+const sceneHudTools = document.getElementById("scene-hud-tools");
 const sceneFocusSphere = document.getElementById("scene-focus-sphere");
 const sceneSearch = document.getElementById("scene-search");
 const sceneSearchToggle = document.getElementById("scene-search-toggle");
@@ -4849,6 +4851,7 @@ function showHoverTooltip(content, x, y, options = {}) {
     return;
   }
   hoverTooltip.classList.toggle("is-element-preview", options.variant === "element-preview");
+  hoverTooltip.classList.toggle("is-hud-tooltip", options.variant === "hud");
   hoverTooltip.replaceChildren();
   if (content instanceof Node) {
     hoverTooltip.appendChild(content);
@@ -4887,6 +4890,7 @@ function hideHoverTooltip() {
   }
   hoverTooltip.classList.remove("is-visible");
   hoverTooltip.classList.remove("is-element-preview");
+  hoverTooltip.classList.remove("is-hud-tooltip");
   hoverTooltip.setAttribute("aria-hidden", "true");
   hoverTooltip.replaceChildren();
   hoverTooltipVisible = false;
@@ -7098,9 +7102,15 @@ const appShellUiRuntime = createAppShellUiRuntime({
   periodicOverlayRuntime,
   appDirector,
 });
+const sceneHudTooltipRuntime = createSceneHudTooltipRuntime({
+  sceneHudTools,
+  showHoverTooltip,
+  hideHoverTooltip,
+});
 
 appDirector.init();
 appShellUiRuntime.wireListeners();
+sceneHudTooltipRuntime.wireListeners();
 scenePanelUiRuntime.wireListeners();
 animatorAppRuntime.wireListeners();
 sceneSearchUiRuntime.wireListeners();

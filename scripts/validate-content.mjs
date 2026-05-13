@@ -6,6 +6,7 @@ import path from "node:path";
 
 const SCENES_DIR = "content/scenes";
 const MARKDOWN_DIR = "content/markdown";
+const GENERATED_MARKDOWN_DIR = "content/generated/markdown";
 const SCENES_INDEX_PATH = "content/scenes/scenes_index.json";
 const MARKDOWN_INDEX_PATH = "content/markdown/markdown_index.json";
 const ROOT_SCENE_PATH = "content/scenes/architrino_assembly_architecture.json";
@@ -109,6 +110,9 @@ function walkFiles(relativeDir, predicate, options = {}) {
   const ignoreDirNames = options.ignoreDirNames ?? new Set();
   const shouldIgnorePath = options.shouldIgnorePath ?? (() => false);
   const absoluteDir = path.join(rootDir, relativeDir);
+  if (!fs.existsSync(absoluteDir)) {
+    return [];
+  }
   const result = [];
   const stack = [absoluteDir];
   while (stack.length) {
@@ -876,7 +880,12 @@ function validateSceneTypeSpecificRules(scenePath, data) {
 
 const allSceneJson = walkFiles(SCENES_DIR, (name) => name.toLowerCase().endsWith(".json"));
 const allMarkdownFiles = walkFiles(MARKDOWN_DIR, (name) => name.toLowerCase().endsWith(".md"));
+const generatedMarkdownFiles = walkFiles(
+  GENERATED_MARKDOWN_DIR,
+  (name) => name.toLowerCase().endsWith(".md")
+);
 const indexableMarkdownFiles = allMarkdownFiles;
+const referencableMarkdownFiles = [...allMarkdownFiles, ...generatedMarkdownFiles];
 const repoMarkdownAuditFiles = walkFiles(".", (name) => name.toLowerCase().endsWith(".md"), {
   ignoreDirNames: REPO_MARKDOWN_AUDIT_IGNORED_DIRS,
   shouldIgnorePath: (relativePath) => isGitIgnored(relativePath),
@@ -1084,8 +1093,8 @@ if (
 
 const sceneConfigSet = new Set(sceneConfigs);
 const sceneConfigLower = createLowerMap(sceneConfigs);
-const markdownFileSet = new Set(allMarkdownFiles);
-const markdownFileLower = createLowerMap(allMarkdownFiles);
+const markdownFileSet = new Set(referencableMarkdownFiles);
+const markdownFileLower = createLowerMap(referencableMarkdownFiles);
 const markdownContext = {
   markdownFiles: allMarkdownFiles,
   markdownTextByPath,

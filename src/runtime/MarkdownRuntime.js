@@ -16,7 +16,7 @@ export function createMarkdownRuntime(deps) {
   let activeMarkdownSourcePath = null;
   let markdownColumnCount = 2;
   let markdownPreferredColumnCount = 2;
-  const textbookTocMarkdownPath = "content/markdown/generated/textbook-toc.md";
+  const textbookTocMarkdownPath = "content/generated/markdown/textbook/toc.md";
   const supportResearchMarkdownPath = "content/markdown/aaa/archie/support-architrino-research.md";
   const liberapayWidgetScriptSrc = "https://liberapay.com/Architrino/widgets/button.js";
   // These IDs are runtime-only helper scene identities, not authored scene IDs.
@@ -89,7 +89,11 @@ export function createMarkdownRuntime(deps) {
     if (resolvedPath.endsWith(".json") && resolvedPath.startsWith("content/scenes/")) {
       return resolvedPath;
     }
-    if (resolvedPath.endsWith(".md") && resolvedPath.startsWith("content/markdown/")) {
+    const isMarkdownDocument =
+      resolvedPath.endsWith(".md") &&
+      (resolvedPath.startsWith("content/markdown/") ||
+        resolvedPath.startsWith("content/generated/markdown/"));
+    if (isMarkdownDocument) {
       const section = resolved.searchParams.get("section");
       if (typeof section === "string" && section.trim()) {
         return buildMarkdownReaderTarget(resolvedPath, section.trim());
