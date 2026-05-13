@@ -6,7 +6,6 @@ import path from "node:path";
 const TEXTBOOK_TOC_PATH = "content/graph/textbook_toc.json";
 const OUTPUT_DIR = "content/generated/markdown/textbook/reading-copies";
 const FULL_TEXTBOOK_PATH = `${OUTPUT_DIR}/architrino-textbook.md`;
-const TRACKED_SECTION_COPY_SLUGS = new Set(["atomic-and-nuclear-assemblies"]);
 
 const args = new Set(process.argv.slice(2));
 const wantsWrite = args.has("--write");
@@ -339,10 +338,6 @@ function buildReadingCopies(tocRoot) {
   );
   rootChildren.forEach((entry) => {
     const outputPath = readingCopyPathForEntry(entry);
-    const slug = path.posix.basename(outputPath, ".md");
-    if (!TRACKED_SECTION_COPY_SLUGS.has(slug)) {
-      return;
-    }
     const children = Array.isArray(entry.children) ? entry.children : [];
     copies.set(
       outputPath,
