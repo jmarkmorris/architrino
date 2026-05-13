@@ -19,6 +19,10 @@
 
 The main black-hole and strong-field chapter architecture is already in place. The remaining work is narrow and quantitative rather than exploratory.
 
+## Scope Boundary
+
+Black-hole entropy and Page-curve recovery are high-value downstream consistency targets, not the current driver of this workstream. Holographic, island, and replica-wormhole results should be used as comparison mathematics after the native strong-field mechanism is specified. The immediate priority remains the $\mathbb{A}\mathbb{A}\mathbb{A}$ strong-field program: observer-level predictions, release-channel selection, and at least one discriminating observable.
+
 ## Current Architecture
 
 - The core chapter architecture is already in place across:

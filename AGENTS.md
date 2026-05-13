@@ -70,6 +70,9 @@ This document distinguishes three audience scopes:
   - dynamical or symmetry-based derivations,
   - effective/coarse-grained summaries,
   - and speculative extensions.
+- Treat closure targets as controlled obligations, not as an invitation to collect every plausible external theory. A closure target is required only when it protects contact with tested physics or an already-accepted mathematical or empirical constraint; otherwise treat the external framework as a comparison tool, heuristic, or speculation.
+- Do not turn every directionally suggestive theory into a downstream closure target. Prioritize widely accepted GR, QM/QFT, Standard Model, thermodynamic, Lambda-CDM-era, conservation-law, and direct-observation constraints. Treat newer frameworks such as holographic, island, replica-wormhole, inflationary, MOND-like, string-theoretic, or loop-quantum-gravity proposals as comparison frameworks unless the local context shows they encode a hard consistency condition.
+- Adding a requirement card is not theory advancement by itself. Theory advancement requires an AAA-native derivation, equation, invariant, mechanism, simulation target with concrete variables, or proof route tied to existing ontology.
 - When an insight feels foundational, prefer wording such as "deeper basis," "ontological basis," "fundamental ledger," or "stronger claim than" before escalating to universal statements like "root of all" or "explains everything."
 - Do not flatten a real insight into timid prose; keep the force of the insight, but name its scope, what it directly establishes, and what still requires separate argument.
 
