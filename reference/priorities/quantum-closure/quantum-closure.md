@@ -18,6 +18,7 @@
 5. `pair_provenance_measure` — Derive the singlet-like spin-pair provenance measure and photon-polarization pair ledger needed for Bell tests. Status: `deferred`. Depends on: `detector_response_kernel_acceptance`.
 6. `bell_gate` — Test Bell, CHSH, and Tsirelson closure as a hard gate after the angular-momentum ledger, detector-response kernels, photon Gate B ledger, and pair provenance measures are explicit. Status: `deferred`. Depends on: `pair_provenance_measure`.
 7. `bell_rewrite_handoff` — Rewrite [bell-theorem.md](../../../content/markdown/aaa/theory-bridges/bell-theorem.md) only after the Bell gate has passed or failed with explicit diagnostics. Status: `blocked`. Depends on: `bell_gate`.
+8. `provenance_compliance_bridge` — Preserve the discussion-scoped question of whether the pair-provenance distribution used for Bell closure has a second local coarse-graining into Noether-Sea compliance or smoothness variables. Status: `discussion-scoped`. Depends on: `pair_provenance_measure`; cross-checks: [strong-field-closure](../strong-field-closure/strong-field-closure.md), [mass-map medium-response probe](../mass-map/a0-medium-response-tensor-probe.md).
 
 ## Scope
 
@@ -63,8 +64,8 @@ This map controls when [bell-theorem.md](../../../content/markdown/aaa/theory-br
    $$
    or equivalent objects, with $Z_{\hat{\mathbf{m}}}$, basin boundaries, angular-momentum exchange, apparatus recoil, wake / Noether-Sea recoil, and invariant-measure weighting $d\mu_*$ defined. These kernels must be derived from the ledger and detector coupling; they must not be imported as a preassigned spin-arrow readout or an assumed $\cos^2(\alpha/2)$ law.
 6. **Photon Gate B kernel.** The photon route must derive the transverse analyzer kernel from the coaxial contra-rotating pro/anti planar pair, including $P_{\perp}^{ab}=h^{ab}-\hat e^a\hat e^b$, helicity $\pm1$, the accepted-channel projector $A^a{}_{b}=\hat a^a\hat a_b$, the native capture measure $\mu_{\text{pass}}=\overline{a_\perp^a}\hat a_a\hat a_b a_\perp^b/\mathcal I_{\perp}$, the analyzer record-window quotient $\Theta_{\hat{\mathbf a}}$, material return map $T_s$, invariant unresolved-material measure $d\nu_{\hat{\mathbf a}}$, pass-threshold coordinate $\eta_{\hat{\mathbf a}}$, local material ledger updates for accepted and rejected action, and no longitudinal free photon mode. In the ideal calibrated limit, $(\eta_{\hat{\mathbf a}})_*d\nu_{\hat{\mathbf a}}=d\eta$ so the pass kernel integrates to $\mu_{\text{pass}}$; deviations belong in a detector-bias diagnostic $\Delta_{\text{pol}}(\rho)$.
-7. **Pair provenance measures.** The source processes must produce joint ledgers $\rho_{\text{pair}}(\lambda)$ for spin-singlet-like and photon-polarization preparations, including the full provenance of $\mathbf{J}_A+\mathbf{J}_B=\mathbf{0}$ where applicable, binary-plane orientations, phase data, wake history, and relational constraints that survive separation.
-8. **Bell compression audit.** Before claiming Bell closure, the derived objects must show exactly which Bell-abstraction condition fails when the substrate mechanism is compressed into $\lambda$, while retaining measurement independence and prohibiting superluminal signal, energy, or causal-wake transfer. If the derived response reduces to local factorizable response functions with measurement-independent variables, the Bell gate fails.
+7. **Pair provenance measures.** The source processes must produce joint ledgers $\rho_{\text{pair}}(\Pi_{AB})$ for spin-singlet-like and photon-polarization preparations, where $\Pi_{AB}$ denotes the pair-provenance data rather than the existing Noether-core scale symbol $\lambda$. The ledger must include the full provenance of $\mathbf{J}_A+\mathbf{J}_B=\mathbf{0}$ where applicable, binary-plane orientations, phase data, wake history, and relational constraints that survive separation.
+8. **Bell compression audit.** Before claiming Bell closure, the derived objects must show exactly which Bell-abstraction condition fails when the substrate mechanism is compressed into pair-provenance data $\Pi_{AB}$, while retaining measurement independence and prohibiting superluminal signal, energy, or causal-wake transfer. If the derived response reduces to local factorizable response functions with measurement-independent variables, the Bell gate fails.
 9. **Correlation calculations.** Compute $P(a,b\mid \hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)$, $E(\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)$, and the CHSH expression from the derived spin kernel and pair measure. The spin-$\tfrac{1}{2}$ target is $E(\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)=-\cos\theta_{AB}$ and $|S|=2\sqrt{2}$ for optimal settings. Photon-polarization tests must separately recover the standard $\cos 2(\alpha-\beta)$ dependence up to state sign and phase convention.
 10. **No-signaling and Tsirelson checks.** The same calculations must show setting-independent marginals at each detector and no violation of the Tsirelson bound $|S|\leq2\sqrt{2}$. A superquantum result is not a success state; it is a failure diagnostic.
 
@@ -92,6 +93,24 @@ Do not rewrite [bell-theorem.md](../../../content/markdown/aaa/theory-bridges/be
 ## Side Question To Preserve
 
 - Keep alive the question of whether the missing neutrino chirality is tied to converting a pro-Noether core.
+- Keep alive, but do not canonize, the ER=EPR-adjacent provenance-compliance question. The safe version is not that entanglement makes spacetime or that wormholes are substrate bridges. The safe version asks whether dense pair-provenance statistics can have a second local coarse-graining into Noether-Sea compliance, smoothness, or isotropy variables. Use $\Pi_{AB}$ for pair provenance, not bare $\lambda$, and test a local statistic of the form
+  $$
+  C_{\Pi}^{ab}(\mathbf{x},t)
+  =
+  \int
+  \Pi^{ab}(\Pi_{AB};\mathbf{x},t)\,
+  \rho_{\text{pair}}(\Pi_{AB})\,d\Pi_{AB}.
+  $$
+  This may only enter a medium-response or effective-metric map if it is built from locally available common-cause provenance and satisfies the no-signaling guardrail
+  $$
+  \frac{\delta C_{\Pi}^{ab}(\mathbf{x}_B,t)}
+  {\delta \hat{\mathbf{m}}_A(t_A)}
+  =
+  0
+  \quad
+  \text{for } t-t_A < \frac{\|\mathbf{x}_B-\mathbf{x}_A\|}{c_f}.
+  $$
+  If the construction requires distant setting dependence, superluminal causal-wake transfer, or treating information as ontology, reject it or leave it as a failed analogy. If it survives, route the quantum side through `pair_provenance_measure`, the black-hole / entropy side through [strong-field-closure](../strong-field-closure/strong-field-closure.md), and the compliance side through [mass-map medium-response probe](../mass-map/a0-medium-response-tensor-probe.md).
 
 ## Related Priorities
 

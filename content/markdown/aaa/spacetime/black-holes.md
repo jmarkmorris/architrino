@@ -65,6 +65,36 @@ This is why the project treats holographic language as suggestive but not primit
 
 Modern holographic entropy work, including Ryu-Takayanagi, island, and replica-wormhole calculations, should be treated in this chapter as a comparison framework rather than as imported ontology. Its value is that it sharpens a high-value consistency target: a mature horizon-interface model should explain how compressed interface bookkeeping can remain compatible with Page-curve recovery and smooth effective horizons. It does not, by itself, supply the $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism. The native task is still to derive entropy and information accounting from terminal tri-binary alignment, path-history bookkeeping, Noether-Sea storage, and release-channel selection.
 
+A useful way to state that native task is through a horizon-interface label ensemble. Let $\Lambda_{\text{NC}}$ denote the reduced Noether-core closure label from [Nested Binaries and the Noether Core](./noether-core.md). For an effective exterior black-hole label $(M,\mathbf{J},Q)$, define the schematic ensemble
+$$
+\mathcal{B}_{H}(M,\mathbf{J},Q)
+=
+\left\{
+\{\Lambda_{\text{NC},i}\}_{i=1}^{N}
+:
+\sum_i E_i = M c_{\text{eff}}^2,\quad
+\sum_i \mathbf{J}_i = \mathbf{J},\quad
+\sum_i q_i = Q,\quad
+v_M=c_f,\quad
+v_O\to c_f,\quad
+\text{horizon-interface compatibility}
+\right\}.
+$$
+
+In plain language, $\mathcal{B}_{H}$ is the set of strong-field Noether-core ledger arrangements that look identical to exterior probes once the probe can resolve only effective mass, angular momentum, charge, and allowed interface channels. This gives a precise no-hair reading: exterior no-hair is a coarse-graining over many compatible closure labels, not evidence that the interior has no microstate.
+
+The corresponding thermodynamic closure target is
+$$
+S_H
+=
+k_B\log\left|\mathcal{B}_{H}(M,\mathbf{J},Q)\right|,
+\qquad
+S_H
+\stackrel{\text{target}}{\sim}
+\frac{k_B A_H}{4A_{\text{align}}},
+$$
+where $A_H$ is the observer-level horizon area and $A_{\text{align}}$ is the alignment-area scale from the Planck-alignment program, with the numerical and $2\pi$ conventions fixed by that derivation rather than by definition here. Page-curve recovery then becomes a release-channel theorem: outward channels must preserve enough phase, axial-pattern, and path-history information from $\mathcal{B}_{H}$ to make evaporation or recycling unitary at the effective quantum level, while still appearing thermal to coarse exterior measurements.
+
 As a heuristic geometric picture, the horizon can also be described as a **dimensional pinch** in the tri-binary shape trajectory. On this reading, ordinary 3D assemblies are flattened toward a near-planar disk at the alignment interface, while the interior self-hit regime permits re-opening of the suppressed axial degree of freedom. In shorthand, the proposed shape path is
 $$
 \text{3D sphere} \to \text{2D horizon disk} \to \text{3D interior reopening}.
@@ -78,6 +108,22 @@ A viable black-hole account in $\mathbb{A}\mathbb{A}\mathbb{A}$ must work at two
 For that reason, the framework treats horizon regularity under cosmological embedding as a non-negotiable structural requirement. If a proposed strong-field description becomes pathological precisely when one asks how the local object couples to the surrounding medium, then it is not yet a closed black-hole model. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the regularity requirement is met not by postulating a passive background but by letting the local strong-field geometry and the ambient Noether-Sea state backreact on one another through the same constitutive variables.
 
 This point sharpens the role of the horizon interface. The interface is not just the place where local assembly geometry reaches terminal alignment. It is also the layer through which the compact object remains connected to the surrounding medium without forcing a curvature blowup at the very location where the constitutive transition is most intense. In that sense, horizon regularity is not cosmetic. It is a closure test for whether the black-hole regime can genuinely communicate with cosmology.
+
+The strong-field closure should therefore be posed as a Noether-Sea boundary-condition problem, not as the direct importation of an isolated Schwarzschild or Kerr metric. A schematic horizon-interface condition has the form
+$$
+F_H\!\left[
+\rho_{\text{core}}(\mathbf{x},t),
+\Sigma_{\text{medium}}(\mathbf{x},t),
+\mathbf{u}_{\text{medium}}(\mathbf{x},t),
+\{\Lambda_{\text{NC}}\};
+\partial\Omega
+\right]
+=0,
+\qquad
+v_M=c_f,\quad v_O\to c_f.
+$$
+
+Here $\partial\Omega$ denotes the boundary data supplied by the surrounding Noether Sea and the effective exterior comparison region. The equation is a closure target, not a completed model: the task is to show that the same medium variables that recover weak-field gravity can also admit a regular terminal-alignment interface under non-isolated embedding conditions. Compact, topologically identified, or otherwise non-asymptotically-flat comparison settings are useful stress tests for this requirement, but they do not add extra dimensions to the substrate ontology.
 
 ## Interior Dynamics and Recycling
 

@@ -107,10 +107,46 @@ Bell's theorem excludes theories that are simultaneously **local** (in the Bell 
 Formally, let $\lambda$ denote the complete hidden-variable specification (the full microstate at creation plus all subsequent path-history data). Bell locality requires:
 
 $$
-P(a, b \,|\, \hat{m}_A, \hat{m}_B, \lambda) = P(a \,|\, \hat{m}_A, \lambda)\; P(b \,|\, \hat{m}_B, \lambda),
+P(a, b \,|\, \hat{\mathbf{m}}_A, \hat{\mathbf{m}}_B, \lambda) = P(a \,|\, \hat{\mathbf{m}}_A, \lambda)\; P(b \,|\, \hat{\mathbf{m}}_B, \lambda),
 $$
 
-where $a, b$ are outcomes and $\hat{m}_A, \hat{m}_B$ are measurement settings. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ closure program, this factorization is the gate to fail—not because of any superluminal influence at the time of measurement, but because $\lambda$ may encode **joint geometric constraints** (correlated binary-phase orientations, conserved angular-momentum projections, and path-history relations) that are lost when the pair is partitioned into independent local packages. The pair-provenance ledger by itself is not yet the proof. The proof must derive the two local apparatus-response maps and show that their observer-level compression fails Bell's factorized form while preserving no-signaling.
+where $a, b$ are outcomes and $\hat{\mathbf{m}}_A, \hat{\mathbf{m}}_B$ are measurement settings. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ closure program, this factorization is the gate to fail—not because of any superluminal influence at the time of measurement, but because $\lambda$ may encode **joint geometric constraints** (correlated binary-phase orientations, conserved angular-momentum projections, and path-history relations) that are lost when the pair is partitioned into independent local packages. The pair-provenance ledger by itself is not yet the proof. The proof must derive the two local apparatus-response maps and show that their observer-level compression fails Bell's factorized form while preserving no-signaling.
+
+**Pair-provenance response kernel.** The Bell gate can be written as an attempted compression of the full provenance into a measurable joint response. Define the pair-provenance hidden-variable object as
+
+$$
+\lambda_{AB}^{\text{prov}}
+=
+\big(
+\Gamma_{\text{parent}}(t_0^-),
+\Gamma_A(t_0^+),
+\Gamma_B(t_0^+),
+\mathcal{H}_A[t_0,t_A],
+\mathcal{H}_B[t_0,t_B],
+\Delta\Theta_{AB}^{\text{bin/wake}},
+\mathsf{Cons}_{AB}
+\big),
+$$
+
+where $\mathcal{H}_A$ and $\mathcal{H}_B$ are the path-history data carried by the two daughter assemblies, $\Delta\Theta_{AB}^{\text{bin/wake}}$ records their correlated binary-orientation and wake-phase relations, and $\mathsf{Cons}_{AB}$ records the conservation constraints inherited from the creation event. This is not an additional force or influence. It is the candidate hidden-variable domain over which the Bell closure must integrate.
+
+Let $K_A$ and $K_B$ be the two local apparatus-response kernels. For spin tests, their one-wing limits must agree with the Stern-Gerlach kernels derived in [Angular Momentum and Spin](./angular-momentum-and-spin.md). The observer-level joint response target is
+
+$$
+\begin{aligned}
+P_{AB}^{\text{test}}(a,b \,|\, \hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
+=
+\int
+&K_A(a \,|\, \hat{\mathbf{m}}_A;Z_A,\zeta_A,\lambda_{AB}^{\text{prov}})
+K_B(b \,|\, \hat{\mathbf{m}}_B;Z_B,\zeta_B,\lambda_{AB}^{\text{prov}})
+\\
+&d\nu_A(Z_A,\zeta_A \,|\, \hat{\mathbf{m}}_A,\lambda_{AB}^{\text{prov}})
+d\nu_B(Z_B,\zeta_B \,|\, \hat{\mathbf{m}}_B,\lambda_{AB}^{\text{prov}})
+d\rho_{AB}^{\text{prov}}(\lambda_{AB}^{\text{prov}}).
+\end{aligned}
+$$
+
+Here $Z_A$ and $Z_B$ are the local incoming ledger coordinates at the two detectors, while $\zeta_A$ and $\zeta_B$ collect the unresolved apparatus and local Noether-Sea microstates. Writing this integral does not pass the Bell gate. It names the diagnostic object: the derived kernels and provenance measure must reproduce the tested Bell correlations while preserving no-signaling and measurement independence, and they must identify exactly which provenance or response compression prevents reduction to Bell's factorized form. If the expression reduces to an ordinary measurement-independent Bell-local hidden-variable integral, the Bell gate fails.
 
 **Which Bell assumption must fail?** The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is closest in structure to de Broglie–Bohm theory: deterministic, definite trajectories, with correlations maintained through a shared dynamical structure (in Bohm's case, the pilot wave on configuration space; in $\mathbb{A}\mathbb{A}\mathbb{A}$, the correlated path-history wake geometry in absolute time). The comparison is useful, but it is a proof route rather than a completed Bell derivation. If the Bell gate passes, the nonlocality is ontological (the hidden-variable space is non-separable) but not operational (no usable signal).
 
@@ -133,12 +169,12 @@ This structure avoids the conceptual difficulties of standard nonlocality:
 Any accepted Bell closure in the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework must preserve no-signaling for a precise structural reason. The marginal probability of obtaining outcome $a$ at detector $A$ is:
 
 $$
-P(a \,|\, \hat{m}_A) = \int P(a \,|\, \hat{m}_A, \lambda)\, \rho(\lambda)\, d\lambda,
+P(a \,|\, \hat{\mathbf{m}}_A) = \int P(a \,|\, \hat{\mathbf{m}}_A, \lambda)\, \rho(\lambda)\, d\lambda,
 $$
 
-where $\rho(\lambda)$ is the distribution over hidden variables as accessible to the Physical Observer. This marginal is independent of $\hat{m}_B$ because:
+where $\rho(\lambda)$ is the distribution over hidden variables as accessible to the Physical Observer. This marginal is independent of $\hat{\mathbf{m}}_B$ because:
 
-1. The hidden-variable distribution $\rho(\lambda)$ is set at creation and does not depend on the distant setting $\hat{m}_B$,
+1. The hidden-variable distribution $\rho(\lambda)$ is set at creation and does not depend on the distant setting $\hat{\mathbf{m}}_B$,
 2. No causal wake from the $B$-measurement apparatus reaches $A$ before $A$'s measurement (assuming spacelike separation in the emergent metric),
 3. The local dynamics at $A$ are fully determined by $A$'s microstate plus the local Noether Sea—no input from the distant setting.
 
@@ -216,7 +252,7 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Boh
 
 **Bell Closure Gate:**
 - Simulate a minimal correlated-pair creation event (e.g., a parent assembly fragmenting into two daughter tri-binaries) under the Master Equation and extract the joint outcome statistics as a function of relative measurement angle.
-- Derive the hidden-variable distribution $\rho(\lambda)$ for a spin-singlet-like creation event from the conservation constraints and verify that it reproduces $P(a, b | \hat{m}_A, \hat{m}_B) = \frac{1}{2}\sin^2\!\bigl(\tfrac{\theta_{AB}}{2}\bigr)$.
+- Derive the hidden-variable distribution $\rho(\lambda)$ for a spin-singlet-like creation event from the conservation constraints and verify that it reproduces $P(a, b | \hat{\mathbf{m}}_A, \hat{\mathbf{m}}_B) = \frac{1}{2}\sin^2\!\bigl(\tfrac{\theta_{AB}}{2}\bigr)$.
 - Investigate whether the non-separability of $\lambda$ can be given a precise geometric characterization in terms of correlated binary-plane orientations and wake-phase offsets.
 
 The philosophy-facing framing of this problem lives in [Crisis in Physics](../philosophy-history/crisis-in-physics.md), especially its Bell and measurement sections.
