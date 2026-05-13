@@ -949,7 +949,7 @@ No step may involve faster-than-$c_f$ signal transfer. The correlations are visi
 
 ## Special Relativity and Deformable Noether Cores
 
-This bridge compares the observer-level story of special relativity with the proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation story in deformable Noether-core assemblies. It is a mapping document: the canonical Noether-core geometry remains in [Noether Core Geometry](../../../../markdown/aaa/assemblies/noether-core-geometry.md), the canonical mass thesis remains in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), and the formal Lorentz-closure program remains in [Lorentzian Conspiracy and Emergent Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md).
+This bridge compares the observer-level story of special relativity with the proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation story in deformable Noether-core assemblies. It is a mapping document: the canonical Noether-core geometry remains in [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md), the canonical mass thesis remains in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), and the formal Lorentz-closure program remains in [Lorentzian Conspiracy and Emergent Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md).
 
 ### Bridge Thesis
 
@@ -968,8 +968,8 @@ This chapter owns:
 
 This chapter does not own:
 
-- the definition of a Noether core; see [Nested Binaries and the Noether Core](../../../../markdown/aaa/assemblies/noether-core.md),
-- the geometry of the dynamic exclusion envelope; see [Noether Core Geometry](../../../../markdown/aaa/assemblies/noether-core-geometry.md),
+- the definition of a Noether core; see [Nested Binaries and the Noether Core](../../../../markdown/aaa/spacetime/noether-core.md),
+- the geometry of the dynamic exclusion envelope; see [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md),
 - the proper-time map; see [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md),
 - the energy ledger; see [Energy](../../../../markdown/aaa/dynamics/energy.md),
 - or the exact delayed law; see [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md).

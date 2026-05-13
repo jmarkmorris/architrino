@@ -1,6 +1,6 @@
 # Singularity Resolution
 
-This section frames how architrino assemblies avoid singularities and how strong-field behavior should be interpreted in the tri-binary architecture. It is the canonical strong-field bridge for [Nested Binaries and the Noether Core](../assemblies/noether-core.md), [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md), and [Black Holes](./black-holes.md).
+This section frames how architrino assemblies avoid singularities and how strong-field behavior should be interpreted in the tri-binary architecture. It is the canonical strong-field bridge for [Nested Binaries and the Noether Core](noether-core.md), [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md), and [Black Holes](./black-holes.md).
 
 ## Canonical Strong-Field Alignment Condition
 

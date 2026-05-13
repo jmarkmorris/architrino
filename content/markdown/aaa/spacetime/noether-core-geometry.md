@@ -1,6 +1,6 @@
 # Noether Core Geometry
 
-This chapter is the canonical home for the geometric footprint of the Noether core: its dynamic exclusion zone, oblate spheroidal envelope, and assembly-level deformation channels. The nested-binary scaffold itself belongs in [Nested Binaries and the Noether Core](./noether-core.md). The delayed dynamics that stabilize and deform the tri-binary belong in [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md).
+This chapter is the canonical home for the geometric footprint of the Noether core: its dynamic exclusion zone, oblate spheroidal envelope, and assembly-level deformation channels. It sits in the Noether Sea and effective-spacetime branch because the geometry of many such envelopes is the local material out of which Noether-Sea density, strain, and delay variables are coarse-grained. The nested-binary scaffold itself belongs in [Nested Binaries and the Noether Core](./noether-core.md). The delayed dynamics that stabilize and deform the tri-binary belong in [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md).
 
 The core is not a static object. It is a dynamic system of six architrinos in a triply nested binary configuration. The high-frequency paths of those constituents sweep out a persistent volume of intense wake activity. That swept volume is the Noether core's effective exclusion envelope.
 
@@ -18,8 +18,8 @@ This chapter does not own:
 - primitive architrino ontology; see [Architrino](../foundations/architrino.md),
 - the nested-binary scaffold; see [Nested Binaries and the Noether Core](./noether-core.md),
 - exact delay-root dynamics; see [Master Equation](../dynamics/master-equation.md) and [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md),
-- observer clocks and rulers; see [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md),
-- or metric reconstruction; see [Emergent Metric](../spacetime/emergent-metric.md).
+- observer clocks and rulers; see [Proper Time and Time Dilation](proper-time-and-time-dilation.md),
+- or metric reconstruction; see [Emergent Metric](emergent-metric.md).
 
 ## Dynamic Exclusion Zone
 
@@ -80,7 +80,7 @@ This gives the Noether core two distinct geometric roles:
 1. As an assembly, it can deform while preserving nested-binary identity across a stable regime.
 2. As a medium constituent, many deforming cores can contribute to coarse-grained Noether-Sea density, strain, and signal-propagation changes.
 
-The claim that those coarse-grained changes reconstruct observer-level gravity is not owned here. It belongs to [Emergent Metric](../spacetime/emergent-metric.md), [PPN Parameters](../spacetime/ppn-parameters.md), and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md).
+The claim that those coarse-grained changes reconstruct observer-level gravity is not owned here. It belongs to [Emergent Metric](emergent-metric.md), [PPN Parameters](ppn-parameters.md), and [Proper Time and Time Dilation](proper-time-and-time-dilation.md).
 
 For the special-relativity-facing comparison of this deformation channel, see [Special Relativity and Deformable Noether Cores](../theory-bridges/special-relativity-noether-core.md).
 
@@ -95,7 +95,7 @@ For local assembly modeling, use this page as the geometric source for:
 
 For dynamics modeling, use [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md), where the oblate causal envelope is treated as a delay-geometry input and a simulation target.
 
-For medium modeling, use [Noether Sea](../spacetime/noether-sea.md) and [Spacetime Assemblies](../spacetime/spacetime-assemblies.md), where many Noether cores become a coupled medium rather than isolated assembly envelopes.
+For medium modeling, use [Noether Sea](noether-sea.md) and [Spacetime Assemblies](spacetime-assemblies.md), where many Noether cores become a coupled medium rather than isolated assembly envelopes.
 
 ## Summary Commitment
 

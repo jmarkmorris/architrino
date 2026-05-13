@@ -1,7 +1,7 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "assemblies__noether_core_geometry",
+    "id": "spacetime__noether_core_geometry",
     "title": "Noether Core Geometry",
     "type": "Scene-Markdown-View",
     "units": "relative",
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/assemblies/noether-core-geometry.md"
+      "path": "content/markdown/aaa/spacetime/noether-core-geometry.md"
     },
     "view": {
       "autoOpen": true

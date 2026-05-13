@@ -2,208 +2,6 @@
 
 ## Standard Model
 
-## Noether Core
-
-The principle of emergence in this model is recursive. The stable orbiting binary is the foundational assembly, but it is not the end of the story. These binaries can themselves be treated as composite objects that can form larger, more complex systems. This leads to the concept of nested binaries.
-
-This chapter owns the Noether core as an assembly scaffold: nested binary hierarchy, shielding, generation-tier role, and fermion foundation. The core's dynamic exclusion-zone geometry is developed separately in [Noether Core Geometry](../../../../markdown/aaa/assemblies/noether-core-geometry.md), while metric-level translation belongs to [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
-
-#### The Hierarchy of Orbits
-
-Just as an Electrino and a Positrino can form a stable binary, two binaries can orbit a common center to form a larger, second-order binary. This process can, in principle, repeat. The key to stability is a significant separation in scale: for a nested system to be stable, each new surrounding orbit must have a much larger radius and a much lower frequency than the inner orbit(s).
-
-This nesting creates a hierarchical structure, like a set of Russian dolls. Each level of the hierarchy operates at a distinct energy scale.
-
-#### The Noether Core: A Triply Nested Binary
-
-A candidate stable configuration is the **triply nested binary**. This structure, consisting of three binaries nested within each other, is called a **Noether Core** and supplies the assembly scaffold later used in [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md).
-
--   **Why Three?** The stability of a triply nested structure is a theorem target tied to the three-dimensional nature of Euclidean space. Each binary defines an orbital plane. The working claim is that three mutually orthogonal orbital planes can form a dynamically stable, symmetric, 3D structure that is resistant to perturbation; the proof burden is to derive that role count from the delayed causal dynamics rather than assuming it.
-
--   **Why "Noether Core"?** This assembly is named in honor of Emmy Noether. Noether's theorem links symmetries in physical systems to conserved quantities. The highly symmetric and stable structure of the tri-binary core is the emergent foundation for conserved properties like spin and quantized energy levels that characterize standard model particles.
-
-#### Properties of the Noether Core
-
--   **Energy-Separated Scales:** In low-energy conditions, the three binaries that make up a Noether core have energy-separated orbital radii and frequencies. The innermost binary is the smallest and fastest, while the outermost is the largest and slowest. This separation of scales is crucial for the system's stability.
-
--   **Internal Stabilization:** The system is self-stabilizing. The constant, high-frequency causal-wake emissions from the innermost binary create a complex, time-averaged potential well that helps to stabilize the orbits of the two outer binaries. This creates a robust, self-tuning feedback loop.
-
--   **Energy Shielding via Superposition:** From a distance, a Noether core appears to have far less energy and a much smaller potential signature than the raw sum of its six constituent architrinos. The rapid oscillation of the positive and negative point potentials within the nested structure causes their wake contributions to largely cancel out through superposition. This shielding effect is the working mechanism for how highly energetic structures can form the basis for relatively low-mass observed particles; quantitative extraction remains a mass-map closure target.
-
-#### Integer Phase-Closure States
-
-A Noether core should be treated as a closed-cycle geometry before it is treated as a particle label. Over a stable return period $T$, each binary layer must return its phase together with the relevant causal-root ledger:
-
-$$
-\Theta_a(T)
-=
-\int_0^T\omega_a(t)\,dt
-+
-\Phi_a^{\text{root}}(T)
-=
-2\pi k_a,
-\qquad
-k_a\in\mathbb{Z},
-\qquad
-a\in\{I,M,O\}.
-$$
-
-The integers $k_a$ are winding counts over the closure period. They are not a claim that the layer frequencies are integer-valued at every instant. The surrounding root ledger records which self-hit, partner-hit, and inter-layer branches made the closure admissible.
-
-On this reading, an accepted energy-level change is a one-$h$ closed-cycle action transaction that moves the core from one admissible integer-and-root ledger to another. The causal wake emitted by the retuned core should therefore carry information about the core's closure state. Higher-level atomic orbital configurations, when they are recovered, should appear as electron-assembly resonance envelopes in that structured nuclear and Noether-Sea wake environment, not as primitive labels pasted onto the core.
-
-#### Reduced Noether-Core Closure Label
-
-For proof work, the integer phase-closure state should be packaged with the branch data that made the closure admissible. The reduced Noether-core closure label is a branch label, not a new ontological ingredient:
-
-$$
-\Lambda_{\text{NC}}
-=
-\left(
-k_I,k_M,k_O;\
-\mathcal{G}_I,\mathcal{G}_M,\mathcal{G}_O;\
-\mathcal{G}_{IM},\mathcal{G}_{IO},\mathcal{G}_{MO};\
-\chi_c
-\right).
-$$
-
-Here $k_I,k_M,k_O$ are the layer winding counts over the chosen return period. The layer ledgers $\mathcal{G}_I,\mathcal{G}_M,\mathcal{G}_O$ record active self-hit and partner-hit branches, root multiplicities, winding or phase branch, emission-order data, and separator history. The inter-layer ledgers $\mathcal{G}_{IM},\mathcal{G}_{IO},\mathcal{G}_{MO}$ record delayed exchange roots and phase-lock constraints between binary layers. The branch label $\chi_c$ records ordered core chirality; the current candidate data are the `HML/HLM` ordered-core distinction together with $Wr_c$ or a multi-component causal-writhe parity.
-
-This label is reduced because it omits the full architrino trajectories and retains only the closure data needed for branch comparison. It is useful only under a theorem-target burden: smooth branch-preserving deformations should keep $\Lambda_{\text{NC}}$ fixed, while a change of label should be tied to a causal-root bifurcation, separator crossing, or causal-locus reconnection. The chirality entry $\chi_c$ is not yet proved by this definition; it names the slot that the later causal-writhe or ordered-frame proof must fill.
-
-The quantum-number generalization begins at this level. Generation, spin, chirality, and later observer-level orbital labels should be read as downstream coarse-grainings or measurement labels derived from admissible Noether-core closure labels and their emitted causal-wake envelopes. They should not be imposed as primitive particle labels before the closure, wake-envelope, and apparatus-coupling maps have been derived.
-
-#### Geometry and Exclusion Envelope
-
-The same tri-binary motion that supplies shielding also sweeps out a persistent dynamic exclusion envelope. That envelope is not the core definition itself; it is the geometric footprint of the nested assembly. For the oblate spheroidal form, exclusion-zone interpretation, and deformation channels, see [Noether Core Geometry](../../../../markdown/aaa/assemblies/noether-core-geometry.md).
-
-#### The Core Hierarchy and Fermion Generations
-
-The broader assembly program suggests reading the nested-binary family as a natural hierarchy of fermion core tiers:
-
--   **Isolated binary:** the most exposed core tier, corresponding to Generation III.
--   **Bi-binary:** one shielding tier restored, corresponding to the Generation-II core tier.
--   **Tri-binary / Noether core:** the fully shielded three-tier core, corresponding to the Generation-I core tier.
-
-On this reading, the generation ladder is not an arbitrary label attached after the fact. It is the visible signature of how many nested shielding tiers still surround the deepest binary engine; this same shielding ladder is the starting point for [Particle Masses: Emergent Inertia in the Noether Sea](../../../../markdown/aaa/assemblies/particle-masses.md) and the charged-lepton story beginning with [Electron](../../../../markdown/aaa/assemblies/fermions/electron.md).
-
-#### Tri-Binary Alignment and Planck-Scale Framing
-
-The **inner binary** (maximal curvature, self-hit regime) is a stabilization outcome of wake dynamics. The **middle binary always rides field speed** ($v=c_f$), but its **radius and frequency vary**; it acts as the **energy-storage fulcrum** for transfers across the tri-binary.
-
-As a tri-binary approaches an event horizon, the **outer binary frequency increases** and its **velocity approaches field speed**, while the **middle binary** remains at $v=c_f$ as its radius/frequency shift. At the horizon, the **middle and outer binaries reach $v=c_f$ and become coplanar and co-linear with the inner binary**, with **precession ceasing** at alignment.
-
-**Rule of thumb:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (tri-binary coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale; compare [Singularity Resolution](../../../../markdown/aaa/spacetime/singularity-resolution.md) and [Mapping the Planck Scale to the Tri-Binary Geometry](../../../../markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md).
-
-#### The Foundation for Fermions
-
-The Noether core is the structural foundation for fermions (such as electrons, quarks, and neutrinos). Different configurations and energy levels of the core and its surrounding axial/wake structure give rise to the different flavors and generations of particles in the Standard Model.
-
-The collective motion, or **group velocity**, of a Noether core assembly determines its emergent behavior. The way these assemblies interact and pack together can lead to different statistical properties. The geometry-facing version of that claim is developed in [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/quantum-statistics.md): volumetric Noether-core envelopes are the substrate candidate for fermionic exclusion, while strongly oblated coherent support is the candidate route to bosonic shared occupation.
-
-## Noether Core Geometry
-
-This chapter is the canonical home for the geometric footprint of the Noether core: its dynamic exclusion zone, oblate spheroidal envelope, and assembly-level deformation channels. The nested-binary scaffold itself belongs in [Nested Binaries and the Noether Core](../../../../markdown/aaa/assemblies/noether-core.md). The delayed dynamics that stabilize and deform the tri-binary belong in [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md).
-
-The core is not a static object. It is a dynamic system of six architrinos in a triply nested binary configuration. The high-frequency paths of those constituents sweep out a persistent volume of intense wake activity. That swept volume is the Noether core's effective exclusion envelope.
-
-### Ownership Boundary
-
-This chapter owns:
-
-- the dynamic exclusion-zone interpretation of a Noether core,
-- the oblate spheroidal form of the low-energy core envelope,
-- the role of the outer binary in setting the leading boundary,
-- and assembly-level deformation of the envelope under external effective fields, nearby wakes, and Noether-Sea conditions.
-
-This chapter does not own:
-
-- primitive architrino ontology; see [Architrino](../../../../markdown/aaa/foundations/architrino.md),
-- the nested-binary scaffold; see [Nested Binaries and the Noether Core](../../../../markdown/aaa/assemblies/noether-core.md),
-- exact delay-root dynamics; see [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) and [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md),
-- observer clocks and rulers; see [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md),
-- or metric reconstruction; see [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
-
-### Dynamic Exclusion Zone
-
-The six architrinos within a Noether core are in rapid orbital motion. The superposition of their fluctuating potential wakes creates a region that is difficult for other architrinos or assemblies to penetrate without being strongly accelerated, deflected, or phase-disrupted.
-
-This region acts as a dynamic **exclusion zone**. It is not a solid object with a hard material surface. It is a coherent region of intense wake activity defined by the collective path history of the constituent architrinos.
-
-Another Noether core approaching this region does not encounter a classical wall. It encounters a rapidly varying causal-wake environment whose accelerations and phase constraints can prevent stable transit through the core volume.
-
-### Oblate Spheroidal Form
-
-The tri-binary structure of the Noether core is anisotropic. The three nested binaries orbit and precess, with their orbital planes tending toward mutual orthogonality in stable low-apparent-energy conditions. The time-averaged envelope is therefore not perfectly spherical.
-
-The leading boundary of the exclusion zone is set primarily by the **outer binary**:
-
-- it has the largest orbital radius,
-- it has the slowest frequency,
-- and its orbital plane defines the dominant equatorial plane of the assembly.
-
-The inner and middle binaries supply the high-frequency internal wake structure and stabilizing density of the envelope. The outer binary supplies the main geometric boundary. Together, outer orbit sweep plus system precession naturally produce a flattened-pole, equatorial-bulge form: an **oblate spheroidal exclusion envelope**.
-
-In low-energy prose, "Noether core shape" should usually mean this effective envelope, not a literal material surface.
-
-### Canonical Geometry Variables
-
-For the oblate spheroidal exclusion envelope, use $R_{\parallel}$ for the semiaxis along the contraction or drift-aligned direction and $R_{\perp}$ for the transverse semiaxis. The canonical shape ratio is
-$$
-\xi\equiv\frac{R_{\parallel}}{R_{\perp}},
-$$
-so $\xi=1$ denotes a spherical envelope and $\xi<1$ denotes an oblate envelope compressed along the parallel axis.
-
-Use
-$$
-\lambda\equiv\frac{R_{\perp}}{R_{\perp,0}}
-$$
-for the transverse scale ratio relative to a stated reference envelope. The pair $(\xi,\lambda)$ belongs first to Noether-core geometry: $\xi$ records shape and $\lambda$ records scale.
-
-Observer clock behavior is a downstream readout, not the definition of either geometry variable. In a successful homogeneous Lorentz-closure regime, the theory should derive
-$$
-\frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dt}\to\xi\to\frac{1}{\gamma},
-$$
-but this is a closure target linking the clock channel to the oblate envelope. It should not be used to define $\xi$.
-
-### Deformability of the Envelope
-
-The oblate spheroidal envelope is deformable because it is generated by orbit paths, not by a rigid shell. Those paths depend on the superposition of:
-
-- internal binary wakes,
-- self-hit and partner-hit closure,
-- nearby assembly wakes,
-- Noether-Sea density and stress,
-- and the core's translational state through the medium.
-
-External effective fields, nearby assembly wakes, and dense local assemblies can perturb the binary paths. The outer binary is the most exposed channel because it is the largest and most weakly shielded layer. A distortion of that outer path changes the exclusion envelope.
-
-This gives the Noether core two distinct geometric roles:
-
-1. As an assembly, it can deform while preserving nested-binary identity across a stable regime.
-2. As a medium constituent, many deforming cores can contribute to coarse-grained Noether-Sea density, strain, and signal-propagation changes.
-
-The claim that those coarse-grained changes reconstruct observer-level gravity is not owned here. It belongs to [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md), and [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
-
-For the special-relativity-facing comparison of this deformation channel, see [Special Relativity and Deformable Noether Cores](../../../../markdown/aaa/theory-bridges/special-relativity-noether-core.md).
-
-### Geometry Interfaces
-
-For local assembly modeling, use this page as the geometric source for:
-
-- an oblate envelope boundary,
-- principal axes set by tri-binary orientation,
-- deformation of the outer-binary envelope under local gradients,
-- and exclusion-volume changes relevant to packing, shielding, and collision channels.
-
-For dynamics modeling, use [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md), where the oblate causal envelope is treated as a delay-geometry input and a simulation target.
-
-For medium modeling, use [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md) and [Spacetime Assemblies](../../../../markdown/aaa/spacetime/spacetime-assemblies.md), where many Noether cores become a coupled medium rather than isolated assembly envelopes.
-
-### Summary Commitment
-
-> **Noether Core Geometry Commitment:** A Noether core has an oblate spheroidal exclusion envelope generated by the path history of its nested binaries. The envelope is dynamic and deformable, not a rigid surface. Its deformation is an assembly-level input to Noether-Sea state variables, while metric and gravity-language reconstruction belongs to the spacetime branch.
-
 ## Particle Masses
 
 **Purpose:** Articulate the current canonical mass thesis in $\mathbb{A}\mathbb{A}\mathbb{A}$ and outline the path toward quantitative mass predictions. This chapter gives the reader-facing statement. The active derivation of a numerical mass map remains a priority workstream until the shielding, stability, and medium-response terms are computed.
@@ -266,7 +64,7 @@ Apparent inertial mass is expected to arise from a connected stack of effects:
 
 ##### Internal Energy Shielding ($\zeta$-Factor)
 - **Energy Storage:** Assemblies contain enormous internal energy in the form of high-speed, nested binary rotations. For a tri-binary, the total internal energy $E_{\text{internal}}$ can be orders of magnitude larger than the observed rest mass $m c^2$.
-- **Shielding:** The pro/anti structure of the [Noether core](../../../../markdown/aaa/assemblies/noether-core.md) creates destructive interference in the far field. The external "handle" (the field observable at large distances) represents only a small fraction $\zeta \ll 1$ of the total internal energy.
+- **Shielding:** The pro/anti structure of the [Noether core](../../../../markdown/aaa/spacetime/noether-core.md) creates destructive interference in the far field. The external "handle" (the field observable at large distances) represents only a small fraction $\zeta \ll 1$ of the total internal energy.
 - **Result:** When an external force attempts to accelerate the assembly, the effective far-field response couples only to the exposed, shielded part of the internal ledger:
   $$
   m_{\text{apparent}}c_{\text{eff}}^2 \sim \zeta(A)\,E_{\text{internal}}(A).
@@ -425,7 +223,7 @@ This chapter gives the current assembly-level interpretation of color charge and
 
 ##### Tri‑binary scaffold (the “Noether core”)
 
-Each fermion is built on a **tri‑binary scaffold**: three nested electrino:positrino binaries sharing a center. We sometimes call this scaffold a **Noether core** to emphasize that all conserved quantities (electric charge, color, baryon number, etc.) are encoded in its internal symmetries, in the spirit of Noether’s theorem; see [Nested Binaries and the Noether Core](../../../../markdown/aaa/assemblies/noether-core.md).
+Each fermion is built on a **tri‑binary scaffold**: three nested electrino:positrino binaries sharing a center. We sometimes call this scaffold a **Noether core** to emphasize that all conserved quantities (electric charge, color, baryon number, etc.) are encoded in its internal symmetries, in the spirit of Noether’s theorem; see [Nested Binaries and the Noether Core](../../../../markdown/aaa/spacetime/noether-core.md).
 
 We label the three binaries by their dynamical regime:
 
@@ -905,11 +703,11 @@ This chapter is a placeholder for the electron assembly in $\mathbb{A}\mathbb{A}
 
 #### Current framing
 
-The electron is treated as a stable charged fermion assembly with net charge $-e$, persistent identity, and a fully assembled lower-energy configuration relative to the heavier charged lepton excitations. In the current corpus it is the Generation-I charged-lepton reference case for [Nested Binaries and the Noether Core](../../../../markdown/aaa/assemblies/noether-core.md), [Particle Masses: Emergent Inertia in the Noether Sea](../../../../markdown/aaa/assemblies/particle-masses.md), and [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md).
+The electron is treated as a stable charged fermion assembly with net charge $-e$, persistent identity, and a fully assembled lower-energy configuration relative to the heavier charged lepton excitations. In the current corpus it is the Generation-I charged-lepton reference case for [Nested Binaries and the Noether Core](../../../../markdown/aaa/spacetime/noether-core.md), [Particle Masses: Emergent Inertia in the Noether Sea](../../../../markdown/aaa/assemblies/particle-masses.md), and [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md).
 
 #### Related Chapters
 
-- [noether-core.md](../../../../markdown/aaa/assemblies/noether-core.md)
+- [noether-core.md](../../../../markdown/aaa/spacetime/noether-core.md)
 - [particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md)
 - [quantum-number-mapping.md](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md)
 - [muon-tau.md](../../../../markdown/aaa/assemblies/fermions/muon-tau.md)
@@ -920,7 +718,7 @@ This page was previously empty. It now exists as a non-blank stub so the scene r
 
 ### Neutrinos
 
-This chapter gives the $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly-level account of neutrinos as near-photon neutral assemblies. A neutrino is modeled as a near-planar pro/anti [Noether-core](../../../../markdown/aaa/assemblies/noether-core.md) pairing pushed close to the photon channel without completing the photon lock. The goal is to explain why neutrinos are neutral, weakly coupled, oscillatory, and hard to detect while keeping the discussion tied to internal geometry rather than to elementary point-particle axioms.
+This chapter gives the $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly-level account of neutrinos as near-photon neutral assemblies. A neutrino is modeled as a near-planar pro/anti [Noether-core](../../../../markdown/aaa/spacetime/noether-core.md) pairing pushed close to the photon channel without completing the photon lock. The goal is to explain why neutrinos are neutral, weakly coupled, oscillatory, and hard to detect while keeping the discussion tied to internal geometry rather than to elementary point-particle axioms.
 
 The opening section states the working geometry and the plain-language interpretation. The later closure program records how PMNS-style mixing is meant to arise from residual internal-binary exposure in a pro/anti core pair. The exact locked geometry remains open; "near-photon" is the current controlled descriptor, not a finished derivation.
 
@@ -2175,7 +1973,7 @@ We separate two structures that are often spoken about together but should not b
 
 ##### 1. Core frame
 
-The [Noether core](../../../../markdown/aaa/assemblies/noether-core.md) is the neutral tri-binary scaffold. It defines:
+The [Noether core](../../../../markdown/aaa/spacetime/noether-core.md) is the neutral tri-binary scaffold. It defines:
 
 - generation via shielding level,
 - matter/antimatter braid orientation,
@@ -3053,7 +2851,7 @@ Key properties of hadrons:
 
 Protons and neutrons are the most familiar hadrons; they make up atomic nuclei. Mesons are typically unstable and mediate strong-force effects in nuclear processes.
 
-While the standard model chart displays the fundamental fermions (quarks, leptons) and gauge bosons, the "ephemeral" particles—primarily **mesons** (quark-antiquark pairs) and **baryon resonances** (excited states of protons/neutrons)—are the functional machinery of the strong interaction. In the architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$), these are not fundamental building blocks but **transient composite assemblies**. They represent temporary stable configurations of [Noether cores](../../../../markdown/aaa/assemblies/noether-core.md) connected by color flux tubes.
+While the standard model chart displays the fundamental fermions (quarks, leptons) and gauge bosons, the "ephemeral" particles—primarily **mesons** (quark-antiquark pairs) and **baryon resonances** (excited states of protons/neutrons)—are the functional machinery of the strong interaction. In the architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$), these are not fundamental building blocks but **transient composite assemblies**. They represent temporary stable configurations of [Noether cores](../../../../markdown/aaa/spacetime/noether-core.md) connected by color flux tubes.
 
 Their role is to mediate forces, conserve quantum numbers during high-energy transitions, and execute the mixing between mass generations.
 

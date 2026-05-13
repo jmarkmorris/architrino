@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "spacetime",
-    "title": "Spacetime",
+    "title": "Noether Sea and Effective Spacetime",
     "type": "Scene-Index",
     "units": "relative",
     "wrapLabels": true,
@@ -14,6 +14,14 @@
       {
         "nodeId": "spacetime_medium",
         "scenePath": "content/scenes/spacetime/spacetime_medium.json"
+      },
+      {
+        "nodeId": "noether_core",
+        "scenePath": "content/scenes/spacetime/noether_core.json"
+      },
+      {
+        "nodeId": "noether_core_geometry",
+        "scenePath": "content/scenes/spacetime/noether_core_geometry.json"
       },
       {
         "nodeId": "physical_observers",
@@ -47,13 +55,47 @@
       "fixedPosition": true
     },
     {
+      "id": "noether_core",
+      "title": "Noether Core",
+      "radius": 2.688,
+      "color": "#3a5f9f",
+      "position": [
+        0,
+        10.5,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Noether Core",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "noether_core_geometry",
+      "title": "Noether Core Geometry",
+      "radius": 2.688,
+      "color": "#2f4f7a",
+      "position": [
+        9.09,
+        5.25,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Noether Core Geometry",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
       "id": "physical_observers",
       "title": "Physical Observers",
       "radius": 2.688,
       "color": "#2f6b6f",
       "position": [
-        0,
-        10.5,
+        9.09,
+        -5.25,
         0
       ],
       "motion": {
@@ -68,7 +110,7 @@
       "radius": 2.688,
       "color": "#243d8f",
       "position": [
-        9.09,
+        -9.09,
         -5.25,
         0
       ],
@@ -85,7 +127,7 @@
       "color": "#4a3b6f",
       "position": [
         -9.09,
-        -5.25,
+        5.25,
         0
       ],
       "motion": {

@@ -9,8 +9,6 @@
         "fermions": "Fermions",
         "gluons": "Gluons",
         "mesons_doc": "Mesons",
-        "noether_core": "Noether Core",
-        "noether_core_geometry": "Noether Core Geometry",
         "particle_masses": "Particle Masses",
         "standard_model": "Standard Model Assemblies"
       }
@@ -137,9 +135,11 @@
     },
     "content/scenes/spacetime/spacetime.json": {
       "sceneId": "spacetime",
-      "sceneName": "Spacetime",
+      "sceneName": "Noether Sea and Effective Spacetime",
       "objects": {
         "effective_metric": "Effective Metric",
+        "noether_core": "Noether Core",
+        "noether_core_geometry": "Noether Core Geometry",
         "physical_observers": "Physical Observers",
         "spacetime_medium": "Noether Sea",
         "strong_field_regime": "Strong-Field Regime"

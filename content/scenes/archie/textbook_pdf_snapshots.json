@@ -98,17 +98,17 @@
     },
     {
       "id": "pdf_snapshot_spacetime",
-      "title": "Spacetime",
+      "title": "Noether Sea and Effective Spacetime",
       "radius": 1.55,
       "color": "#2f6b6f",
       "position": [-9.16, 2.09, 0],
       "motion": { "type": "fixed" },
       "fixedPosition": true,
-      "labelTitle": "Spacetime",
+      "labelTitle": "Noether Sea and Effective Spacetime",
       "labelBadge": "doc",
       "source": {
         "type": "markdown",
-        "path": "content/generated/markdown/textbook/reading-copies/spacetime.md"
+        "path": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md"
       },
       "view": {
         "columns": 1,

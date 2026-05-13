@@ -1,4 +1,4 @@
-# Spacetime
+# Noether Sea and Effective Spacetime
 
 ## Noether Sea
 
@@ -7,6 +7,14 @@
 This chapter is the canonical medium-ontology page for the **Noether Sea** in $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines what the physical medium is, how it differs from the Euclidean void, which state variables describe it, and where detailed assembly, metric, clock, and cosmology work belongs.
 
 The Noether Sea is not the substrate. The substrate is [absolute timespace](../../../../markdown/aaa/foundations/absolute-timespace.md): absolute time together with the [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md). The Noether Sea is physical content inside that background: an emergent, coupled population of neutral Noether-core assemblies whose collective response appears to physical observers as spacetime behavior.
+
+This is why the reader path introduces Noether-core scaffold and geometry before observer-level spacetime. At the roadmap level, the physical Noether-core density can be read as a coarse-grained population field,
+$$
+\rho_{\text{core}}(\mathbf{x},t)
+\sim
+\sum_c W_\ell(\mathbf{x}-\mathbf{X}_c(t)),
+$$
+where $W_\ell$ is a smoothing window over core centers $\mathbf{X}_c(t)$. The medium stress, delay factor, and orientation variables then depend on each core's closure label, orientation, and envelope deformation. The Noether Sea is therefore introduced before effective metric language because its state variables are coarse-grained functions of Noether-core geometry, not primitive geometric postulates.
 
 #### Core Definition
 
@@ -166,8 +174,8 @@ This page owns:
 
 This page does not own:
 
-- Noether-core internal architecture; see [Nested Binaries and the Noether Core](../../../../markdown/aaa/assemblies/noether-core.md).
-- Noether-core exclusion-envelope geometry; see [Noether Core Geometry](../../../../markdown/aaa/assemblies/noether-core-geometry.md).
+- Noether-core internal architecture; see [Nested Binaries and the Noether Core](../../../../markdown/aaa/spacetime/noether-core.md).
+- Noether-core exclusion-envelope geometry; see [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md).
 - Pro/anti coupling hypotheses and cluster motifs; see [Spacetime Assemblies](../../../../markdown/aaa/spacetime/spacetime-assemblies.md).
 - Effective metric derivation; see [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
 - Clock and ruler behavior; see [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
@@ -180,7 +188,7 @@ This page does not own:
 
 ### Spacetime Assemblies
 
-This note summarizes a working hypothesis used across the spacetime branch of the model: the Noether Sea is not treated as a passive geometric background, but as an active medium built from persistent assemblies with internal structure and coupling rules. It is the assembly-hypothesis continuation of [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), and [Nested Binaries and the Noether Core](../../../../markdown/aaa/assemblies/noether-core.md).
+This note summarizes a working hypothesis used across the spacetime branch of the model: the Noether Sea is not treated as a passive geometric background, but as an active medium built from persistent assemblies with internal structure and coupling rules. It is the assembly-hypothesis continuation of [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), and [Nested Binaries and the Noether Core](../../../../markdown/aaa/spacetime/noether-core.md).
 
 For the canonical medium ontology, total-density boundary, and terminology discipline, see [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md). This chapter is the canonical home for the more specific pro/anti Noether-core coupling details: orientation basis, density decomposition, imbalance stability, local coupling hypotheses, and cluster-organization motifs.
 
@@ -256,7 +264,7 @@ This chapter owns:
 This chapter does not own:
 
 - the Noether Sea as medium ontology; see [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md),
-- the internal Noether-core architecture; see [Nested Binaries and the Noether Core](../../../../markdown/aaa/assemblies/noether-core.md),
+- the internal Noether-core architecture; see [Nested Binaries and the Noether Core](../../../../markdown/aaa/spacetime/noether-core.md),
 - the effective metric map; see [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md),
 - clock and ruler extraction; see [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md),
 - or cosmological scale-factor translation; see [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md).
@@ -385,6 +393,208 @@ This is the same implementation layer developed in [Emergent Metric](../../../..
 In other words, the van der Waals volume is a “no-go zone” mainly for **ordinary fermionic matter**. Other observer-level channels and effective fields interact with matter through different coupling mechanisms, so molecular exclusion alone does not determine their propagation.
 
 ---
+
+## Noether Core
+
+The principle of emergence in this model is recursive. The stable orbiting binary is the foundational assembly, but it is not the end of the story. These binaries can themselves be treated as composite objects that can form larger, more complex systems. This leads to the concept of nested binaries.
+
+This chapter owns the Noether core as the assembly scaffold that later supports both the Noether Sea and Standard Model particle architecture: nested binary hierarchy, shielding, generation-tier role, and fermion foundation. It appears in the Noether Sea and effective-spacetime branch because the medium is built from populations of neutral Noether cores, not from a primitive spacetime substance. The core's dynamic exclusion-zone geometry is developed separately in [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md), while metric-level translation belongs to [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
+
+#### The Hierarchy of Orbits
+
+Just as an Electrino and a Positrino can form a stable binary, two binaries can orbit a common center to form a larger, second-order binary. This process can, in principle, repeat. The key to stability is a significant separation in scale: for a nested system to be stable, each new surrounding orbit must have a much larger radius and a much lower frequency than the inner orbit(s).
+
+This nesting creates a hierarchical structure, like a set of Russian dolls. Each level of the hierarchy operates at a distinct energy scale.
+
+#### The Noether Core: A Triply Nested Binary
+
+A candidate stable configuration is the **triply nested binary**. This structure, consisting of three binaries nested within each other, is called a **Noether Core** and supplies the assembly scaffold later used in [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md).
+
+-   **Why Three?** The stability of a triply nested structure is a theorem target tied to the three-dimensional nature of Euclidean space. Each binary defines an orbital plane. The working claim is that three mutually orthogonal orbital planes can form a dynamically stable, symmetric, 3D structure that is resistant to perturbation; the proof burden is to derive that role count from the delayed causal dynamics rather than assuming it.
+
+-   **Why "Noether Core"?** This assembly is named in honor of Emmy Noether. Noether's theorem links symmetries in physical systems to conserved quantities. The highly symmetric and stable structure of the tri-binary core is the emergent foundation for conserved properties like spin and quantized energy levels that characterize standard model particles.
+
+#### Properties of the Noether Core
+
+-   **Energy-Separated Scales:** In low-energy conditions, the three binaries that make up a Noether core have energy-separated orbital radii and frequencies. The innermost binary is the smallest and fastest, while the outermost is the largest and slowest. This separation of scales is crucial for the system's stability.
+
+-   **Internal Stabilization:** The system is self-stabilizing. The constant, high-frequency causal-wake emissions from the innermost binary create a complex, time-averaged potential well that helps to stabilize the orbits of the two outer binaries. This creates a robust, self-tuning feedback loop.
+
+-   **Energy Shielding via Superposition:** From a distance, a Noether core appears to have far less energy and a much smaller potential signature than the raw sum of its six constituent architrinos. The rapid oscillation of the positive and negative point potentials within the nested structure causes their wake contributions to largely cancel out through superposition. This shielding effect is the working mechanism for how highly energetic structures can form the basis for relatively low-mass observed particles; quantitative extraction remains a mass-map closure target.
+
+#### Integer Phase-Closure States
+
+A Noether core should be treated as a closed-cycle geometry before it is treated as a particle label. Over a stable return period $T$, each binary layer must return its phase together with the relevant causal-root ledger:
+
+$$
+\Theta_a(T)
+=
+\int_0^T\omega_a(t)\,dt
++
+\Phi_a^{\text{root}}(T)
+=
+2\pi k_a,
+\qquad
+k_a\in\mathbb{Z},
+\qquad
+a\in\{I,M,O\}.
+$$
+
+The integers $k_a$ are winding counts over the closure period. They are not a claim that the layer frequencies are integer-valued at every instant. The surrounding root ledger records which self-hit, partner-hit, and inter-layer branches made the closure admissible.
+
+On this reading, an accepted energy-level change is a one-$h$ closed-cycle action transaction that moves the core from one admissible integer-and-root ledger to another. The causal wake emitted by the retuned core should therefore carry information about the core's closure state. Higher-level atomic orbital configurations, when they are recovered, should appear as electron-assembly resonance envelopes in that structured nuclear and Noether-Sea wake environment, not as primitive labels pasted onto the core.
+
+#### Reduced Noether-Core Closure Label
+
+For proof work, the integer phase-closure state should be packaged with the branch data that made the closure admissible. The reduced Noether-core closure label is a branch label, not a new ontological ingredient:
+
+$$
+\Lambda_{\text{NC}}
+=
+\left(
+k_I,k_M,k_O;\
+\mathcal{G}_I,\mathcal{G}_M,\mathcal{G}_O;\
+\mathcal{G}_{IM},\mathcal{G}_{IO},\mathcal{G}_{MO};\
+\chi_c
+\right).
+$$
+
+Here $k_I,k_M,k_O$ are the layer winding counts over the chosen return period. The layer ledgers $\mathcal{G}_I,\mathcal{G}_M,\mathcal{G}_O$ record active self-hit and partner-hit branches, root multiplicities, winding or phase branch, emission-order data, and separator history. The inter-layer ledgers $\mathcal{G}_{IM},\mathcal{G}_{IO},\mathcal{G}_{MO}$ record delayed exchange roots and phase-lock constraints between binary layers. The branch label $\chi_c$ records ordered core chirality; the current candidate data are the `HML/HLM` ordered-core distinction together with $Wr_c$ or a multi-component causal-writhe parity.
+
+This label is reduced because it omits the full architrino trajectories and retains only the closure data needed for branch comparison. It is useful only under a theorem-target burden: smooth branch-preserving deformations should keep $\Lambda_{\text{NC}}$ fixed, while a change of label should be tied to a causal-root bifurcation, separator crossing, or causal-locus reconnection. The chirality entry $\chi_c$ is not yet proved by this definition; it names the slot that the later causal-writhe or ordered-frame proof must fill.
+
+The quantum-number generalization begins at this level. Generation, spin, chirality, and later observer-level orbital labels should be read as downstream coarse-grainings or measurement labels derived from admissible Noether-core closure labels and their emitted causal-wake envelopes. They should not be imposed as primitive particle labels before the closure, wake-envelope, and apparatus-coupling maps have been derived.
+
+#### Geometry and Exclusion Envelope
+
+The same tri-binary motion that supplies shielding also sweeps out a persistent dynamic exclusion envelope. That envelope is not the core definition itself; it is the geometric footprint of the nested assembly. For the oblate spheroidal form, exclusion-zone interpretation, and deformation channels, see [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md).
+
+#### The Core Hierarchy and Fermion Generations
+
+The broader assembly program suggests reading the nested-binary family as a natural hierarchy of fermion core tiers:
+
+-   **Isolated binary:** the most exposed core tier, corresponding to Generation III.
+-   **Bi-binary:** one shielding tier restored, corresponding to the Generation-II core tier.
+-   **Tri-binary / Noether core:** the fully shielded three-tier core, corresponding to the Generation-I core tier.
+
+On this reading, the generation ladder is not an arbitrary label attached after the fact. It is the visible signature of how many nested shielding tiers still surround the deepest binary engine; this same shielding ladder is the starting point for [Particle Masses: Emergent Inertia in the Noether Sea](../../../../markdown/aaa/assemblies/particle-masses.md) and the charged-lepton story beginning with [Electron](../../../../markdown/aaa/assemblies/fermions/electron.md).
+
+#### Tri-Binary Alignment and Planck-Scale Framing
+
+The **inner binary** (maximal curvature, self-hit regime) is a stabilization outcome of wake dynamics. The **middle binary always rides field speed** ($v=c_f$), but its **radius and frequency vary**; it acts as the **energy-storage fulcrum** for transfers across the tri-binary.
+
+As a tri-binary approaches an event horizon, the **outer binary frequency increases** and its **velocity approaches field speed**, while the **middle binary** remains at $v=c_f$ as its radius/frequency shift. At the horizon, the **middle and outer binaries reach $v=c_f$ and become coplanar and co-linear with the inner binary**, with **precession ceasing** at alignment.
+
+**Rule of thumb:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (tri-binary coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale; compare [Singularity Resolution](../../../../markdown/aaa/spacetime/singularity-resolution.md) and [Mapping the Planck Scale to the Tri-Binary Geometry](../../../../markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md).
+
+#### The Foundation for Fermions
+
+The Noether core is the structural foundation for fermions (such as electrons, quarks, and neutrinos). Different configurations and energy levels of the core and its surrounding axial/wake structure give rise to the different flavors and generations of particles in the Standard Model.
+
+The collective motion, or **group velocity**, of a Noether core assembly determines its emergent behavior. The way these assemblies interact and pack together can lead to different statistical properties. The geometry-facing version of that claim is developed in [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/quantum-statistics.md): volumetric Noether-core envelopes are the substrate candidate for fermionic exclusion, while strongly oblated coherent support is the candidate route to bosonic shared occupation.
+
+## Noether Core Geometry
+
+This chapter is the canonical home for the geometric footprint of the Noether core: its dynamic exclusion zone, oblate spheroidal envelope, and assembly-level deformation channels. It sits in the Noether Sea and effective-spacetime branch because the geometry of many such envelopes is the local material out of which Noether-Sea density, strain, and delay variables are coarse-grained. The nested-binary scaffold itself belongs in [Nested Binaries and the Noether Core](../../../../markdown/aaa/spacetime/noether-core.md). The delayed dynamics that stabilize and deform the tri-binary belong in [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md).
+
+The core is not a static object. It is a dynamic system of six architrinos in a triply nested binary configuration. The high-frequency paths of those constituents sweep out a persistent volume of intense wake activity. That swept volume is the Noether core's effective exclusion envelope.
+
+### Ownership Boundary
+
+This chapter owns:
+
+- the dynamic exclusion-zone interpretation of a Noether core,
+- the oblate spheroidal form of the low-energy core envelope,
+- the role of the outer binary in setting the leading boundary,
+- and assembly-level deformation of the envelope under external effective fields, nearby wakes, and Noether-Sea conditions.
+
+This chapter does not own:
+
+- primitive architrino ontology; see [Architrino](../../../../markdown/aaa/foundations/architrino.md),
+- the nested-binary scaffold; see [Nested Binaries and the Noether Core](../../../../markdown/aaa/spacetime/noether-core.md),
+- exact delay-root dynamics; see [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) and [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md),
+- observer clocks and rulers; see [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md),
+- or metric reconstruction; see [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
+
+### Dynamic Exclusion Zone
+
+The six architrinos within a Noether core are in rapid orbital motion. The superposition of their fluctuating potential wakes creates a region that is difficult for other architrinos or assemblies to penetrate without being strongly accelerated, deflected, or phase-disrupted.
+
+This region acts as a dynamic **exclusion zone**. It is not a solid object with a hard material surface. It is a coherent region of intense wake activity defined by the collective path history of the constituent architrinos.
+
+Another Noether core approaching this region does not encounter a classical wall. It encounters a rapidly varying causal-wake environment whose accelerations and phase constraints can prevent stable transit through the core volume.
+
+### Oblate Spheroidal Form
+
+The tri-binary structure of the Noether core is anisotropic. The three nested binaries orbit and precess, with their orbital planes tending toward mutual orthogonality in stable low-apparent-energy conditions. The time-averaged envelope is therefore not perfectly spherical.
+
+The leading boundary of the exclusion zone is set primarily by the **outer binary**:
+
+- it has the largest orbital radius,
+- it has the slowest frequency,
+- and its orbital plane defines the dominant equatorial plane of the assembly.
+
+The inner and middle binaries supply the high-frequency internal wake structure and stabilizing density of the envelope. The outer binary supplies the main geometric boundary. Together, outer orbit sweep plus system precession naturally produce a flattened-pole, equatorial-bulge form: an **oblate spheroidal exclusion envelope**.
+
+In low-energy prose, "Noether core shape" should usually mean this effective envelope, not a literal material surface.
+
+### Canonical Geometry Variables
+
+For the oblate spheroidal exclusion envelope, use $R_{\parallel}$ for the semiaxis along the contraction or drift-aligned direction and $R_{\perp}$ for the transverse semiaxis. The canonical shape ratio is
+$$
+\xi\equiv\frac{R_{\parallel}}{R_{\perp}},
+$$
+so $\xi=1$ denotes a spherical envelope and $\xi<1$ denotes an oblate envelope compressed along the parallel axis.
+
+Use
+$$
+\lambda\equiv\frac{R_{\perp}}{R_{\perp,0}}
+$$
+for the transverse scale ratio relative to a stated reference envelope. The pair $(\xi,\lambda)$ belongs first to Noether-core geometry: $\xi$ records shape and $\lambda$ records scale.
+
+Observer clock behavior is a downstream readout, not the definition of either geometry variable. In a successful homogeneous Lorentz-closure regime, the theory should derive
+$$
+\frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dt}\to\xi\to\frac{1}{\gamma},
+$$
+but this is a closure target linking the clock channel to the oblate envelope. It should not be used to define $\xi$.
+
+### Deformability of the Envelope
+
+The oblate spheroidal envelope is deformable because it is generated by orbit paths, not by a rigid shell. Those paths depend on the superposition of:
+
+- internal binary wakes,
+- self-hit and partner-hit closure,
+- nearby assembly wakes,
+- Noether-Sea density and stress,
+- and the core's translational state through the medium.
+
+External effective fields, nearby assembly wakes, and dense local assemblies can perturb the binary paths. The outer binary is the most exposed channel because it is the largest and most weakly shielded layer. A distortion of that outer path changes the exclusion envelope.
+
+This gives the Noether core two distinct geometric roles:
+
+1. As an assembly, it can deform while preserving nested-binary identity across a stable regime.
+2. As a medium constituent, many deforming cores can contribute to coarse-grained Noether-Sea density, strain, and signal-propagation changes.
+
+The claim that those coarse-grained changes reconstruct observer-level gravity is not owned here. It belongs to [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md), and [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
+
+For the special-relativity-facing comparison of this deformation channel, see [Special Relativity and Deformable Noether Cores](../../../../markdown/aaa/theory-bridges/special-relativity-noether-core.md).
+
+### Geometry Interfaces
+
+For local assembly modeling, use this page as the geometric source for:
+
+- an oblate envelope boundary,
+- principal axes set by tri-binary orientation,
+- deformation of the outer-binary envelope under local gradients,
+- and exclusion-volume changes relevant to packing, shielding, and collision channels.
+
+For dynamics modeling, use [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md), where the oblate causal envelope is treated as a delay-geometry input and a simulation target.
+
+For medium modeling, use [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md) and [Spacetime Assemblies](../../../../markdown/aaa/spacetime/spacetime-assemblies.md), where many Noether cores become a coupled medium rather than isolated assembly envelopes.
+
+### Summary Commitment
+
+> **Noether Core Geometry Commitment:** A Noether core has an oblate spheroidal exclusion envelope generated by the path history of its nested binaries. The envelope is dynamic and deformable, not a rigid surface. Its deformation is an assembly-level input to Noether-Sea state variables, while metric and gravity-language reconstruction belongs to the spacetime branch.
 
 ## Physical Observers
 
@@ -611,7 +821,7 @@ When the clock moves with velocity $\mathbf{v}$ relative to the Noether Sea:
  - As $v\to c_\star$, that exclusion surface contracts along $\hat{\mathbf{v}}$ while maintaining transverse dimensions, yielding an ellipsoid with semi‑axes $(a_\perp, a_\perp, a_\parallel)$ and $a_\parallel < a_\perp$.
  - This geometric dilation changes internal path lengths and curvature, lowering $\omega$.
 
-Geometry terminology follows [Noether Core Geometry](../../../../markdown/aaa/assemblies/noether-core-geometry.md#canonical-geometry-variables): the envelope shape ratio is $\xi=R_{\parallel}/R_{\perp}$. The proper-time factor is not defined to be $\xi$; it is the extracted clock observable $\omega_{\text{clk}}/\omega_0=d\tau/dt$. In the homogeneous Lorentz-closure target, the theory must derive $\omega_{\text{clk}}/\omega_0\to\xi\to1/\gamma$.
+Geometry terminology follows [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md#canonical-geometry-variables): the envelope shape ratio is $\xi=R_{\parallel}/R_{\perp}$. The proper-time factor is not defined to be $\xi$; it is the extracted clock observable $\omega_{\text{clk}}/\omega_0=d\tau/dt$. In the homogeneous Lorentz-closure target, the theory must derive $\omega_{\text{clk}}/\omega_0\to\xi\to1/\gamma$.
 
 **Kinematic hypothesis:**
 $$
@@ -1282,7 +1492,7 @@ The immediate task is to identify which subset dominates $\partial \tau_{\text{o
 
 Working assumption:
 
-1. The outer precessing binary of a Noether core defines the effective exclusion volume boundary; see [Noether Core Geometry](../../../../markdown/aaa/assemblies/noether-core-geometry.md).
+1. The outer precessing binary of a Noether core defines the effective exclusion volume boundary; see [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md).
 2. Each tri-binary layer ($H,M,L$) has its own circulation axis.
 3. Total angular and translational momentum are conserved at assembly level (up to modeled exchange channels with environment).
 
@@ -1359,7 +1569,7 @@ $$
 $$
 with $\xi\in(0,1]$ as shape and $\lambda$ as scale. The Lorentz-closure target is $\xi(x)\to1/\gamma(x)$ in the homogeneous drift regime.
 
-Terminology guardrail: $\xi$ is the Noether-core envelope shape ratio, inherited from [Noether Core Geometry](../../../../markdown/aaa/assemblies/noether-core-geometry.md#canonical-geometry-variables). It is not defined as the clock-rate factor. In the homogeneous Lorentz-closure regime the proof target is
+Terminology guardrail: $\xi$ is the Noether-core envelope shape ratio, inherited from [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md#canonical-geometry-variables). It is not defined as the clock-rate factor. In the homogeneous Lorentz-closure regime the proof target is
 $$
 \frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dt}\to\xi\to\frac{1}{\gamma},
 $$
@@ -1938,7 +2148,7 @@ This form is the common handoff surface for clock redshift, Shapiro delay, lensi
 
 #### Noether-Core Deformation and Metric Language
 
-At the assembly level, an individual Noether core has an oblate, deformable exclusion envelope; see [Noether Core Geometry](../../../../markdown/aaa/assemblies/noether-core-geometry.md). This chapter does not identify that single-core envelope with the metric. The metric bridge uses many deforming Noether cores in the Noether Sea as the medium whose coarse variables determine clock, ruler, and signal behavior.
+At the assembly level, an individual Noether core has an oblate, deformable exclusion envelope; see [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md). This chapter does not identify that single-core envelope with the metric. The metric bridge uses many deforming Noether cores in the Noether Sea as the medium whose coarse variables determine clock, ruler, and signal behavior.
 
 When translating toward General Relativity, Einstein's field equations are treated as the effective continuum relation
 $$
@@ -1964,7 +2174,7 @@ The useful GR analogy is therefore limited but important:
 - perturbative methods can capture small departures from spherical symmetry,
 - and standard predictions such as redshift, Shapiro delay, lensing, orbital precession, frame-dragging, and gravitational-wave emission from deformed sources must be recovered from one reusable constitutive map.
 
-The assembly fact that a Noether core is oblate belongs in [Noether Core Geometry](../../../../markdown/aaa/assemblies/noether-core-geometry.md). The spacetime claim that a population of deformed cores yields an effective metric belongs here and in [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md).
+The assembly fact that a Noether core is oblate belongs in [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md). The spacetime claim that a population of deformed cores yields an effective metric belongs here and in [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md).
 
 #### Jacobson-Type Support: Metric as Equation of State
 
@@ -3229,7 +3439,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, black holes are strong-field Noether-Sea re
 
 ### Singularity Resolution
 
-This section frames how architrino assemblies avoid singularities and how strong-field behavior should be interpreted in the tri-binary architecture. It is the canonical strong-field bridge for [Nested Binaries and the Noether Core](../../../../markdown/aaa/assemblies/noether-core.md), [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md), and [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md).
+This section frames how architrino assemblies avoid singularities and how strong-field behavior should be interpreted in the tri-binary architecture. It is the canonical strong-field bridge for [Nested Binaries and the Noether Core](../../../../markdown/aaa/spacetime/noether-core.md), [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md), and [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md).
 
 #### Canonical Strong-Field Alignment Condition
 
@@ -3390,7 +3600,7 @@ The next question is whether a rapidly translating tri-binary should drive the t
 
 The answer is dynamical rather than purely kinematic. Straight-line translation does **not** require that result merely from conservation laws. In the path-history dynamics, total linear momentum and total angular momentum are distinct conserved quantities, so an isolated translating assembly may in principle carry internal angular momentum whose axis is not parallel to the center-of-mass velocity.
 
-The stronger argument comes from the high-velocity delay geometry. Let the translation direction define the $z$-axis and use the oblate envelope from [Noether Core Geometry](../../../../markdown/aaa/assemblies/noether-core-geometry.md) and its dynamics treatment in [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md):
+The stronger argument comes from the high-velocity delay geometry. Let the translation direction define the $z$-axis and use the oblate envelope from [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md) and its dynamics treatment in [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md):
 
 $$
 \frac{x^2+y^2}{R_\perp^2} + \frac{z^2}{R_\parallel^2} = 1,

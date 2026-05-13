@@ -1026,7 +1026,7 @@
     },
     {
       "id": "spacetime",
-      "name": "Spacetime",
+      "name": "Noether Sea and Effective Spacetime",
       "path": "content/scenes/spacetime/spacetime.json",
       "nodeType": "scene"
     },
@@ -1181,9 +1181,9 @@
       "nodeType": "scene"
     },
     {
-      "id": "assemblies__noether_core",
+      "id": "spacetime__noether_core",
       "name": "Noether Core",
-      "path": "content/scenes/assemblies/noether_core.json",
+      "path": "content/scenes/spacetime/noether_core.json",
       "nodeType": "scene"
     },
     {
@@ -1913,9 +1913,9 @@
       "nodeType": "scene"
     },
     {
-      "id": "assemblies__noether_core_geometry",
+      "id": "spacetime__noether_core_geometry",
       "name": "Noether Core Geometry",
-      "path": "content/scenes/assemblies/noether_core_geometry.json",
+      "path": "content/scenes/spacetime/noether_core_geometry.json",
       "nodeType": "scene"
     },
     {
@@ -2099,6 +2099,12 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "name": "Noether Sea and Effective Spacetime",
+      "path": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "name": "Philosophy-History",
       "path": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
@@ -2120,12 +2126,6 @@
       "id": "content/generated/markdown/textbook/reading-copies/reactions.md",
       "name": "Reactions",
       "path": "content/generated/markdown/textbook/reading-copies/reactions.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/generated/markdown/textbook/reading-copies/spacetime.md",
-      "name": "Spacetime",
-      "path": "content/generated/markdown/textbook/reading-copies/spacetime.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2306,18 +2306,6 @@
       "id": "content/markdown/aaa/assemblies/mesons/mesons.md",
       "name": "Transient Hadrons: Mesons and Δ Resonances",
       "path": "content/markdown/aaa/assemblies/mesons/mesons.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/assemblies/noether-core-geometry.md",
-      "name": "Noether Core Geometry",
-      "path": "content/markdown/aaa/assemblies/noether-core-geometry.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/assemblies/noether-core.md",
-      "name": "Nested Binaries and the Noether Core",
-      "path": "content/markdown/aaa/assemblies/noether-core.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2732,6 +2720,18 @@
       "id": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
       "name": "Medium Exclusion Volume",
       "path": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+      "name": "Noether Core Geometry",
+      "path": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/spacetime/noether-core.md",
+      "name": "Nested Binaries and the Noether Core",
+      "path": "content/markdown/aaa/spacetime/noether-core.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3340,24 +3340,6 @@
       "name": "Neutrinos",
       "path": "content/scenes/assemblies/neutrinos.json",
       "searchTarget": "content/scenes/assemblies/neutrinos.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/assemblies/noether_core_geometry.json",
-      "nodeType": "scene",
-      "id": "assemblies__noether_core_geometry",
-      "name": "Noether Core Geometry",
-      "path": "content/scenes/assemblies/noether_core_geometry.json",
-      "searchTarget": "content/scenes/assemblies/noether_core_geometry.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/assemblies/noether_core.json",
-      "nodeType": "scene",
-      "id": "assemblies__noether_core",
-      "name": "Noether Core",
-      "path": "content/scenes/assemblies/noether_core.json",
-      "searchTarget": "content/scenes/assemblies/noether_core.json",
       "implicit": false
     },
     {
@@ -5296,6 +5278,24 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/spacetime/noether_core_geometry.json",
+      "nodeType": "scene",
+      "id": "spacetime__noether_core_geometry",
+      "name": "Noether Core Geometry",
+      "path": "content/scenes/spacetime/noether_core_geometry.json",
+      "searchTarget": "content/scenes/spacetime/noether_core_geometry.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/spacetime/noether_core.json",
+      "nodeType": "scene",
+      "id": "spacetime__noether_core",
+      "name": "Noether Core",
+      "path": "content/scenes/spacetime/noether_core.json",
+      "searchTarget": "content/scenes/spacetime/noether_core.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/spacetime/noether_sea.json",
       "nodeType": "scene",
       "id": "spacetime__noether_sea",
@@ -5371,7 +5371,7 @@
       "nodeId": "scene:content/scenes/spacetime/spacetime.json",
       "nodeType": "scene",
       "id": "spacetime",
-      "name": "Spacetime",
+      "name": "Noether Sea and Effective Spacetime",
       "path": "content/scenes/spacetime/spacetime.json",
       "searchTarget": "content/scenes/spacetime/spacetime.json",
       "implicit": false
@@ -5980,6 +5980,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "nodeType": "markdown_doc",
+      "id": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "name": "Noether Sea and Effective Spacetime",
+      "path": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "searchTarget": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "nodeType": "markdown_doc",
       "id": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
@@ -6013,15 +6022,6 @@
       "name": "Reactions",
       "path": "content/generated/markdown/textbook/reading-copies/reactions.md",
       "searchTarget": "content/generated/markdown/textbook/reading-copies/reactions.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/generated/markdown/textbook/reading-copies/spacetime.md",
-      "nodeType": "markdown_doc",
-      "id": "content/generated/markdown/textbook/reading-copies/spacetime.md",
-      "name": "Spacetime",
-      "path": "content/generated/markdown/textbook/reading-copies/spacetime.md",
-      "searchTarget": "content/generated/markdown/textbook/reading-copies/spacetime.md",
       "implicit": false
     },
     {
@@ -6292,24 +6292,6 @@
       "name": "Transient Hadrons: Mesons and Δ Resonances",
       "path": "content/markdown/aaa/assemblies/mesons/mesons.md",
       "searchTarget": "content/markdown/aaa/assemblies/mesons/mesons.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/assemblies/noether-core-geometry.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/assemblies/noether-core-geometry.md",
-      "name": "Noether Core Geometry",
-      "path": "content/markdown/aaa/assemblies/noether-core-geometry.md",
-      "searchTarget": "content/markdown/aaa/assemblies/noether-core-geometry.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/assemblies/noether-core.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/assemblies/noether-core.md",
-      "name": "Nested Binaries and the Noether Core",
-      "path": "content/markdown/aaa/assemblies/noether-core.md",
-      "searchTarget": "content/markdown/aaa/assemblies/noether-core.md",
       "implicit": false
     },
     {
@@ -6931,6 +6913,24 @@
       "name": "Medium Exclusion Volume",
       "path": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
       "searchTarget": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/spacetime/noether-core-geometry.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+      "name": "Noether Core Geometry",
+      "path": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+      "searchTarget": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/spacetime/noether-core.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/spacetime/noether-core.md",
+      "name": "Nested Binaries and the Noether Core",
+      "path": "content/markdown/aaa/spacetime/noether-core.md",
+      "searchTarget": "content/markdown/aaa/spacetime/noether-core.md",
       "implicit": false
     },
     {
@@ -7697,49 +7697,35 @@
       "to": "scene:content/scenes/assemblies/electroweak_bosons.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
       "to": "scene:content/scenes/assemblies/fermions.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
       "to": "scene:content/scenes/assemblies/gluons.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
       "to": "scene:content/scenes/assemblies/mesons_doc.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
-      "field": "scene.children[7]"
-    },
-    {
-      "from": "scene:content/scenes/assemblies/assemblies.json",
-      "to": "scene:content/scenes/assemblies/noether_core_geometry.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/assemblies/assemblies.json",
-      "field": "scene.children[2]"
-    },
-    {
-      "from": "scene:content/scenes/assemblies/assemblies.json",
-      "to": "scene:content/scenes/assemblies/noether_core.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/assemblies/assemblies.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
       "to": "scene:content/scenes/assemblies/particle_masses.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
@@ -11015,14 +11001,28 @@
       "to": "scene:content/scenes/spacetime/effective_metric.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/spacetime/noether_core_geometry.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/spacetime.json",
       "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/spacetime/noether_core.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
       "to": "scene:content/scenes/spacetime/physical_observers.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
@@ -11036,7 +11036,7 @@
       "to": "scene:content/scenes/spacetime/strong_field_regime.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/spacetime/strong_field_regime.json",
@@ -11754,6 +11754,13 @@
     },
     {
       "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
+      "to": "markdown_doc:content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/textbook_pdf_snapshots.json",
+      "field": "pdf_snapshot_spacetime.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
       "to": "markdown_doc:content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/archie/textbook_pdf_snapshots.json",
@@ -11779,13 +11786,6 @@
       "edgeType": "markdown_doc",
       "source": "content/scenes/archie/textbook_pdf_snapshots.json",
       "field": "pdf_snapshot_reactions.source.path"
-    },
-    {
-      "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
-      "to": "markdown_doc:content/generated/markdown/textbook/reading-copies/spacetime.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/archie/textbook_pdf_snapshots.json",
-      "field": "pdf_snapshot_spacetime.source.path"
     },
     {
       "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
@@ -11869,20 +11869,6 @@
       "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/neutrinos.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/assemblies/neutrinos.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/assemblies/noether_core_geometry.json",
-      "to": "markdown_doc:content/markdown/aaa/assemblies/noether-core-geometry.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/assemblies/noether_core_geometry.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/assemblies/noether_core.json",
-      "to": "markdown_doc:content/markdown/aaa/assemblies/noether-core.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/assemblies/noether_core.json",
       "field": "scene.source.path"
     },
     {
@@ -12373,6 +12359,20 @@
       "to": "markdown_doc:content/markdown/aaa/spacetime/medium-exclusion-volume.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/spacetime/medium_exclusion_volume.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/noether_core_geometry.json",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/noether-core-geometry.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/spacetime/noether_core_geometry.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/noether_core.json",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/noether-core.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/spacetime/noether_core.json",
       "field": "scene.source.path"
     },
     {

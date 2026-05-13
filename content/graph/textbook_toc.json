@@ -1427,7 +1427,7 @@
       },
       {
         "id": "spacetime",
-        "title": "Spacetime",
+        "title": "Noether Sea and Effective Spacetime",
         "kind": "scene-index",
         "sceneType": "Scene-Index",
         "scenePath": "content/scenes/spacetime/spacetime.json",
@@ -1628,6 +1628,80 @@
                     "headingLevel": 2
                   }
                 ]
+              }
+            ]
+          },
+          {
+            "id": "spacetime__noether_core",
+            "title": "Noether Core",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/spacetime/noether_core.json",
+            "markdownPath": "content/markdown/aaa/spacetime/noether-core.md"
+          },
+          {
+            "id": "spacetime__noether_core_geometry",
+            "title": "Noether Core Geometry",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/spacetime/noether_core_geometry.json",
+            "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Ownership Boundary",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownSection": "Ownership Boundary",
+                "sectionKey": "ownership boundary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Dynamic Exclusion Zone",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownSection": "Dynamic Exclusion Zone",
+                "sectionKey": "dynamic exclusion zone",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Oblate Spheroidal Form",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownSection": "Oblate Spheroidal Form",
+                "sectionKey": "oblate spheroidal form",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Canonical Geometry Variables",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownSection": "Canonical Geometry Variables",
+                "sectionKey": "canonical geometry variables",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Deformability of the Envelope",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownSection": "Deformability of the Envelope",
+                "sectionKey": "deformability of the envelope",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Geometry Interfaces",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownSection": "Geometry Interfaces",
+                "sectionKey": "geometry interfaces",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary Commitment",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownSection": "Summary Commitment",
+                "sectionKey": "summary commitment",
+                "headingLevel": 2
               }
             ]
           },
@@ -2668,80 +2742,6 @@
             "kind": "diagram",
             "sceneType": "Scene-Diagram",
             "scenePath": "content/scenes/standard-model-particles/standard_model.json"
-          },
-          {
-            "id": "assemblies__noether_core",
-            "title": "Noether Core",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/assemblies/noether_core.json",
-            "markdownPath": "content/markdown/aaa/assemblies/noether-core.md"
-          },
-          {
-            "id": "assemblies__noether_core_geometry",
-            "title": "Noether Core Geometry",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/assemblies/noether_core_geometry.json",
-            "markdownPath": "content/markdown/aaa/assemblies/noether-core-geometry.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Ownership Boundary",
-                "markdownPath": "content/markdown/aaa/assemblies/noether-core-geometry.md",
-                "markdownSection": "Ownership Boundary",
-                "sectionKey": "ownership boundary",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Dynamic Exclusion Zone",
-                "markdownPath": "content/markdown/aaa/assemblies/noether-core-geometry.md",
-                "markdownSection": "Dynamic Exclusion Zone",
-                "sectionKey": "dynamic exclusion zone",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Oblate Spheroidal Form",
-                "markdownPath": "content/markdown/aaa/assemblies/noether-core-geometry.md",
-                "markdownSection": "Oblate Spheroidal Form",
-                "sectionKey": "oblate spheroidal form",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Canonical Geometry Variables",
-                "markdownPath": "content/markdown/aaa/assemblies/noether-core-geometry.md",
-                "markdownSection": "Canonical Geometry Variables",
-                "sectionKey": "canonical geometry variables",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Deformability of the Envelope",
-                "markdownPath": "content/markdown/aaa/assemblies/noether-core-geometry.md",
-                "markdownSection": "Deformability of the Envelope",
-                "sectionKey": "deformability of the envelope",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Geometry Interfaces",
-                "markdownPath": "content/markdown/aaa/assemblies/noether-core-geometry.md",
-                "markdownSection": "Geometry Interfaces",
-                "sectionKey": "geometry interfaces",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Summary Commitment",
-                "markdownPath": "content/markdown/aaa/assemblies/noether-core-geometry.md",
-                "markdownSection": "Summary Commitment",
-                "sectionKey": "summary commitment",
-                "headingLevel": 2
-              }
-            ]
           },
           {
             "id": "assemblies__particle_masses",
