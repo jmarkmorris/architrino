@@ -928,6 +928,33 @@ body {
   text-decoration: underline;
 }
 
+#markdown-content a.markdown-download-link {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  margin: 2px 0 12px;
+  padding: 8px 11px;
+  border: 1px solid rgba(213, 220, 255, 0.32);
+  border-radius: 8px;
+  background: rgba(8, 10, 18, 0.55);
+  color: #f5f7ff;
+  font-weight: 700;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+#markdown-content a.markdown-download-link:hover,
+#markdown-content a.markdown-download-link:focus-visible {
+  border-color: rgba(213, 220, 255, 0.62);
+  text-decoration: none;
+}
+
+#markdown-content a.markdown-download-link.is-unavailable {
+  border-style: dashed;
+  color: rgba(245, 247, 255, 0.72);
+  cursor: default;
+}
+
 #markdown-content .liberapay-donation-widget {
   margin: 14px 0 10px;
   break-inside: avoid;

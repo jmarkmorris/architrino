@@ -43,15 +43,11 @@ export function createMarkdownRuntime(deps) {
     return `${runtimeMarkdownReaderPrefix}${markdownPath}::${encodeURIComponent(markdownSection)}`;
   }
 
-  function resolveMarkdownLinkTarget(rawHref) {
+  function resolveLocalMarkdownHref(rawHref) {
     if (typeof rawHref !== "string" || !rawHref.trim()) {
       return null;
     }
     const href = rawHref.trim();
-    if (href.startsWith(runtimeMarkdownPrefix)) {
-      return href;
-    }
-
     const basePath = activeMarkdownSourcePath
       ? `https://architrino.local/${normalizeRepoPath(activeMarkdownSourcePath)}`
       : "https://architrino.local/";
@@ -70,17 +66,101 @@ export function createMarkdownRuntime(deps) {
     if (!resolvedPath) {
       return null;
     }
+    return {
+      path: resolvedPath,
+      searchParams: parsed.searchParams,
+    };
+  }
+
+  function resolveMarkdownLinkTarget(rawHref) {
+    if (typeof rawHref !== "string" || !rawHref.trim()) {
+      return null;
+    }
+    const href = rawHref.trim();
+    if (href.startsWith(runtimeMarkdownPrefix)) {
+      return href;
+    }
+
+    const resolved = resolveLocalMarkdownHref(href);
+    if (!resolved) {
+      return null;
+    }
+    const resolvedPath = resolved.path;
     if (resolvedPath.endsWith(".json") && resolvedPath.startsWith("content/scenes/")) {
       return resolvedPath;
     }
     if (resolvedPath.endsWith(".md") && resolvedPath.startsWith("content/markdown/")) {
-      const section = parsed.searchParams.get("section");
+      const section = resolved.searchParams.get("section");
       if (typeof section === "string" && section.trim()) {
         return buildMarkdownReaderTarget(resolvedPath, section.trim());
       }
       return resolvedPath;
     }
     return null;
+  }
+
+  function resolveMarkdownDownloadHref(rawHref) {
+    const resolved = resolveLocalMarkdownHref(rawHref);
+    if (!resolved?.path || !resolved.path.endsWith(".pdf")) {
+      return null;
+    }
+    if (!resolved.path.startsWith("content/")) {
+      return null;
+    }
+    return resolved.path;
+  }
+
+  function isGeneratedTextbookPdfPath(value) {
+    const normalized = normalizeRepoPath(String(value ?? "").trim());
+    return (
+      normalized.startsWith("content/generated/pdf/textbook/") &&
+      normalized.endsWith(".pdf") &&
+      !normalized.includes("?") &&
+      !normalized.includes("#")
+    );
+  }
+
+  function getDownloadFilename(resolvedPath) {
+    const pathParts = resolvedPath.split("/").filter(Boolean);
+    const filename = pathParts[pathParts.length - 1];
+    return filename || "download.pdf";
+  }
+
+  function decorateDownloadLink(link, resolvedPath) {
+    link.setAttribute("href", resolvedPath);
+    link.setAttribute("download", getDownloadFilename(resolvedPath));
+    link.removeAttribute?.("aria-disabled");
+    link.classList.add("markdown-download-link");
+    link.classList.remove?.("is-unavailable");
+    if (link.dataset) {
+      link.dataset.downloadStatus = "available";
+    }
+  }
+
+  function markDownloadLinkUnavailable(link, resolvedPath) {
+    link.removeAttribute?.("href");
+    link.removeAttribute?.("download");
+    link.setAttribute("aria-disabled", "true");
+    link.classList.add("markdown-download-link", "is-unavailable");
+    if (link.dataset) {
+      link.dataset.downloadStatus = "unavailable";
+    }
+    link.textContent = `${getDownloadFilename(resolvedPath)} not generated yet`;
+  }
+
+  async function verifyDownloadAvailability(link, resolvedPath) {
+    if (typeof fetch !== "function") {
+      return;
+    }
+    try {
+      const response = await fetch(resolvedPath, { method: "HEAD" });
+      if (response.ok || response.status === 405 || response.status === 501) {
+        return;
+      }
+    } catch (error) {
+      return;
+    }
+    markDownloadLinkUnavailable(link, resolvedPath);
   }
 
   function protectMathSegments(markdown) {
@@ -252,6 +332,42 @@ export function createMarkdownRuntime(deps) {
     widget.appendChild(script);
 
     insertionTarget.insertAdjacentElement("afterend", widget);
+  }
+
+  function decorateDownloadLinks() {
+    if (!markdownBody) {
+      return;
+    }
+    markdownBody.querySelectorAll("a[href]").forEach((link) => {
+      const resolvedPath = resolveMarkdownDownloadHref(link.getAttribute("href"));
+      if (!resolvedPath) {
+        return;
+      }
+      decorateDownloadLink(link, resolvedPath);
+      void verifyDownloadAvailability(link, resolvedPath);
+    });
+  }
+
+  function decorateTextbookPdfPathBlocks() {
+    if (!markdownBody || typeof document === "undefined") {
+      return;
+    }
+    markdownBody.querySelectorAll("pre > code").forEach((codeBlock) => {
+      const pdfPath = normalizeRepoPath(String(codeBlock.textContent ?? "").trim());
+      if (!isGeneratedTextbookPdfPath(pdfPath)) {
+        return;
+      }
+      const container = codeBlock.closest?.("pre") ?? codeBlock.parentElement;
+      if (!container || container.dataset.pdfDownloadDecorated === "true") {
+        return;
+      }
+      const link = document.createElement("a");
+      decorateDownloadLink(link, pdfPath);
+      link.textContent = `Download ${getDownloadFilename(pdfPath)}`;
+      container.dataset.pdfDownloadDecorated = "true";
+      container.insertAdjacentElement("afterend", link);
+      void verifyDownloadAvailability(link, pdfPath);
+    });
   }
 
   function typesetMarkdown() {
@@ -453,6 +569,8 @@ export function createMarkdownRuntime(deps) {
     setMarkdownKind(markdownPath);
     applyMarkdownLayout();
     typesetMarkdown();
+    decorateDownloadLinks();
+    decorateTextbookPdfPathBlocks();
     decorateTextbookToc();
     decorateSupportResearch();
   }
