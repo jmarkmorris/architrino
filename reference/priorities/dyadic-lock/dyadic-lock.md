@@ -35,6 +35,10 @@ Treat [dyadic-resonance-lock.md](../../../content/markdown/aaa/dynamics/dyadic-r
 - Whether the $\mathbb{Z}_3$ organization is only radiative-stealth bookkeeping or a genuine adiabatic stabilizer.
 - Whether any old `1:1:2` branch ledger emerges only on an attractor rather than belonging in the foundation.
 
+## Breather Certificate Discipline
+
+The dyadic program should copy the breather distinction between integer closure and stable return-map closure. A candidate `1:2` or `1:2:4` ledger is only a branch label until the regularized phase-amplitude return map reports finite active branches, positive Jacobian floors, a closed returned section, and a non-symmetry stability gap. If the collinear breather fails at branch-chart or monodromy rows, the dyadic map must treat the same failure class as blocking rather than as evidence for or against dyadic selection itself.
+
 ## Immediate Next Move
 
 1. Use [dyadic-resonance-lock.md](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md) as the live dynamics note and keep [phenomenological-heuristics](phenomenological-heuristics.md) as the scratch/archive notebook.

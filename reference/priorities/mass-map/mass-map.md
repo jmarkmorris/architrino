@@ -331,6 +331,26 @@ $$
 $$
 The branch is only an accepted attractor candidate when $\Delta_{\mathbf{k}}>0$ after numerical tolerance and convergence checks.
 
+### Breather Certificate Inheritance
+
+The $A_0$ branch search should inherit the collinear-breather certificate order without inheriting any particle-stability claim from it. The breather can validate the finite-certificate discipline: candidate history, null-coordinate pre-ledger, active branch chart, coupled corridor, monodromy diagnostic, returned-history preservation, and topology row. It does not by itself prove Noether-core stability, shielding, or mass.
+
+For $A_0$, the inherited promotion rule is:
+
+$$
+\text{finite root ledger}
+\to
+\text{closed branch chart}
+\to
+\eta>0\ \text{continuation}
+\to
+\Delta_{\mathbf{k}}>0
+\to
+\text{energy and shielding extraction}.
+$$
+
+If the breather seed chart fails because no finite active branch chart with positive Jacobian floors and inactive-root gaps exists, the $A_0$ Tier 0 scanner must strengthen its no-proliferation and branch-gap gates before any mass-side promotion. If the breather closes an integer ledger but fails monodromy, the mass-map lesson is direct: integer closure is not an attractor certificate unless the non-symmetry Floquet gap is positive. If the breather fails only at returned-sample or topology rows, the $A_0$ packet should keep root-ledger data as diagnostic but should not promote energy, shielding, or $\zeta(A_0)$ until the corresponding continuation and topology checks pass.
+
 ### Output Schema
 
 The first simulation or derivation report for $A_0$ should use the following top-level output packet. A later machine-readable schema may choose JSON or another format, but the fields below should remain stable enough for audit and comparison.

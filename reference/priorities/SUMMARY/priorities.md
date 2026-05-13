@@ -71,7 +71,7 @@ Nested proof subprograms live under [proof-programs](../proof-programs/proof-pro
 
 ## Current Focus
 
-- Workstream `proof-programs`: architecture complete, certificate pending; the dual-mollified master-equation law is now recorded, the doubled four-arc itinerary has a coarse parity pass, and the next closure task is generating one symmetry-constrained candidate collinear cycle with a null-coordinate causal ledger and certified branch chart. The planar delayed-bridge closure is kept as the queued higher-dimensional extension under the same directory.
+- Workstream `proof-programs`: architecture complete, certificate pending; the dual-mollified master-equation law is now recorded, the doubled four-arc itinerary has a coarse parity pass, and the seed-chart packet contract now fixes the next executable gate: generate one symmetry-constrained candidate collinear cycle, mesh, null-coordinate causal ledger, and certified branch chart. The planar delayed-bridge closure is kept as the queued higher-dimensional extension under the same directory.
 - Workstream `mass-map`: derive the first reusable mass map from tri-binary geometry rather than bookkeeping the parameter ledger in isolation.
 - Workstream `tri-binary-causal-closure`: run the continuity pass against the dependency map, then route the photon/QED, Lorentz/GR, equivalence, and topological certification burdens to the right proof workstreams before deployment.
 - Workstream `animator-reaction`: finish the forward pdgsolve/pdgedit/animator split and keep the active app path clean and contract-first.
@@ -80,7 +80,7 @@ Nested proof subprograms live under [proof-programs](../proof-programs/proof-pro
 
 ## Top Cross-Workstream Next Actions
 
-1. Generate the breather candidate cycle and build its finite certificate packet: causal ledger, branch chart, mesh, corridor nonemptiness proof, coupled corridor, monodromy diagnostic, returned-sample report, and topology ledger.
+1. Generate the breather candidate cycle and seed-chart packet first: `phi_cyc.json`, `mesh.json`, null-coordinate causal ledger, branch chart, and seed-chart interval report; then continue into corridor nonemptiness, coupled corridor, monodromy diagnostic, returned-sample report, and topology ledger on the same certified domain.
 2. Run the tri-binary causal closure continuity pass against its dependency map and route unresolved deployment items into priority workstreams.
 3. Validate and generalize the scaffolded architrino-level angular-momentum ledger for changing-frequency Noether cores, including wake terms, branch selection, spinor holonomy, and apparatus-response measures.
 4. Turn the mass-side placeholders into a first derived map with one attractor family, shielding extraction, and a baseline electron-mass prediction target.

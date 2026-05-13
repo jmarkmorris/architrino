@@ -21,6 +21,7 @@ Lock the simulation and numerics side tightly enough to support the analytic clo
 
 ## Main Work
 
+- Use the collinear-breather finite certificate as the smallest solver benchmark for candidate-cycle input, root enumeration, $\eta>0$ continuation, monodromy, returned-history residuals, and topology reporting. A failed row should emit the exact obstruction rather than being summarized as generic instability.
 - Implement tier-0 and tier-1 simulations per [run-protocols](../../../content/markdown/aaa/validation/simulations/run-protocols.md) and the `validation/simulations/action-energy/*` material.
 - Lock the maximum-curvature orbit, history resolution, and binary / tri-binary stability numerically.
 - Publish convergence plots and $\mathbb{U}_{\text{now}}$ provenance logs.

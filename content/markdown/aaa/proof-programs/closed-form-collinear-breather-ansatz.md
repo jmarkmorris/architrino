@@ -1131,6 +1131,44 @@ $$
 the factorized corridor coefficients,
 and the returned-sample residuals or boundary budgets.
 
+### Seed-chart pre-ledger acceptance rule
+
+The first machine-checkable gate is the null-coordinate pre-ledger, not the returned residual. For every ordered receiver-source block
+$$
+(I_\alpha,I_\beta),
+$$
+define the range gaps
+$$
+\Delta^u_{\alpha\beta}
+=
+\operatorname{dist}\!\big(u(I_\alpha),u(I_\beta)\big),
+\qquad
+\Delta^w_{\alpha\beta}
+=
+\operatorname{dist}\!\big(w(I_\alpha),w(I_\beta)\big).
+$$
+The row is empty when the relevant gap is strictly positive. It is a simple-root row only when the corresponding source-side derivative floor is positive:
+$$
+\inf_{s\in I_\beta}
+\left|1-\frac{\dot x(s)}{c_f}\right|>0
+\qquad
+\text{for the }u\text{ ledger},
+$$
+or
+$$
+\inf_{s\in I_\beta}
+\left|1+\frac{\dot x(s)}{c_f}\right|>0
+\qquad
+\text{for the }w\text{ ledger}.
+$$
+Rows that satisfy neither test must be split or routed to a fold-layer certificate. A candidate
+$$
+\phi_{\mathrm{cyc}}
+$$
+does not advance to branch-chart certification while any ordered block remains unresolved.
+
+This rule makes the pre-ledger a genuine falsification gate. A failed row rejects the candidate history, the chosen split, or the itinerary before corridor arithmetic, monodromy, or returned-sample preservation is attempted. A passed pre-ledger still does not prove the breather; it only permits construction of the active branch chart with inactive complements, Jacobian floors, memory-depth ranges, and contribution signs on the same sampled domain.
+
 ## First Working Guess
 
 Closed-by-quadrature is only one possible certificate generator. A two-parameter family is generally too small unless the cycle symmetry is built into the parametrization: the compressed skeleton has arc-junction conditions, separator impulse conditions, branch-list updates, and a returned-history residual.

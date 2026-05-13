@@ -32,6 +32,10 @@ Keep dynamics, geometry, and mapping centered on [master-equation.md](../../../c
 - Circular self-branch count grows only linearly.
 - The symmetric isolated circular two-body ansatz has a tangential obstruction.
 
+## Breather Certificate Routing Gate
+
+Use the collinear-breather certificate as the smallest finite-root-ledger test for the master-equation stack. A full pass validates the certificate pattern, not particle stability. A seed/pre-ledger failure rejects only the chosen candidate or itinerary. A branch-chart failure is a stronger obstruction: higher-dimensional closure claims must then add no-proliferation, Jacobian-floor, inactive-gap, and memory-depth controls before leaning on finite root ledgers. A monodromy failure means the branch may close as an integer ledger but cannot be used as an attractor. A topology failure blocks global branch-sum reasoning across folds until the dual-mollified $\eta>0$ well-posedness and continuity package is tightened.
+
 ## Chapter State To Preserve
 
 - The null separatrix and Jacobian-null surface now function as an amplitude wall for the self branch, not by themselves as a proof of circular closure.
