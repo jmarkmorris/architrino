@@ -41,7 +41,7 @@
     {
       "id": "spacetime_medium",
       "title": "Noether Sea",
-      "radius": 2.688,
+      "radius": 2.35,
       "color": "#2f4f7a",
       "position": [
         0,
@@ -57,11 +57,11 @@
     {
       "id": "noether_core",
       "title": "Noether Core",
-      "radius": 2.688,
+      "radius": 2.35,
       "color": "#3a5f9f",
       "position": [
         0,
-        10.5,
+        8.2,
         0
       ],
       "motion": {
@@ -74,11 +74,11 @@
     {
       "id": "noether_core_geometry",
       "title": "Noether Core Geometry",
-      "radius": 2.688,
+      "radius": 2.35,
       "color": "#2f4f7a",
       "position": [
-        9.09,
-        5.25,
+        7.8,
+        2.53,
         0
       ],
       "motion": {
@@ -91,11 +91,11 @@
     {
       "id": "physical_observers",
       "title": "Physical Observers",
-      "radius": 2.688,
+      "radius": 2.35,
       "color": "#2f6b6f",
       "position": [
-        9.09,
-        -5.25,
+        4.82,
+        -6.63,
         0
       ],
       "motion": {
@@ -107,11 +107,11 @@
     {
       "id": "effective_metric",
       "title": "Effective Metric",
-      "radius": 2.688,
+      "radius": 2.35,
       "color": "#243d8f",
       "position": [
-        -9.09,
-        -5.25,
+        -4.82,
+        -6.63,
         0
       ],
       "motion": {
@@ -123,11 +123,11 @@
     {
       "id": "strong_field_regime",
       "title": "Strong-Field Regime",
-      "radius": 2.688,
+      "radius": 2.35,
       "color": "#4a3b6f",
       "position": [
-        -9.09,
-        5.25,
+        -7.8,
+        2.53,
         0
       ],
       "motion": {
