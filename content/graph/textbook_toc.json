@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 152,
-      "sections": 1092
+      "sections": 1093
     }
   },
   "tocRoot": {
@@ -4351,10 +4351,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Core Equations",
+                "title": "Core Equations (Observer-Level Baselines)",
                 "markdownPath": "content/markdown/aaa/reactions/bremsstrahlung.md",
-                "markdownSection": "Core Equations",
-                "sectionKey": "core equations",
+                "markdownSection": "Core Equations (Observer-Level Baselines)",
+                "sectionKey": "core equations observer level baselines",
                 "headingLevel": 2
               },
               {
@@ -4517,6 +4517,14 @@
                 "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
                 "markdownSection": "Core Channels (Inclusion Rule)",
                 "sectionKey": "core channels inclusion rule",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Radiation Inheritance",
+                "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
+                "markdownSection": "Radiation Inheritance",
+                "sectionKey": "radiation inheritance",
                 "headingLevel": 2
               },
               {
