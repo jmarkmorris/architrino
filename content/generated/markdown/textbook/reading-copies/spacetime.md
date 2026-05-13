@@ -559,13 +559,13 @@ The clock-law derivation imports the [transverse causal budget lemma](../../../.
 
 ##### Absolute Time vs Proper Time
 
-- **Absolute time $t$** 
- - Fundamental evolution parameter of the architrino universe. 
- - Global, universal, non‑dynamical; used by the $\mathbb{U}_{\text{now}}$ universe-state perspective (simulation clock). 
+- **Absolute time $t$**
+ - Fundamental evolution parameter of the architrino universe.
+ - Global, universal, non‑dynamical; used by the $\mathbb{U}_{\text{now}}$ universe-state perspective (simulation clock).
  - All worldlines are parametrized directly by $t$.
 
-- **Proper time $\tau$** 
- - Time read by a **physical clock**: a bound tri‑binary assembly (e.g., atomic transition, binary oscillation) interacting with the Noether Sea. 
+- **Proper time $\tau$**
+ - Time read by a **physical clock**: a bound tri‑binary assembly (e.g., atomic transition, binary oscillation) interacting with the Noether Sea.
  - Encodes how many internal oscillation cycles occur per unit $dt$.
 
 The fundamental claim is:
@@ -599,13 +599,13 @@ Two coupled mechanisms change the internal frequency of a tri‑binary clock:
 
 When the clock moves with velocity $\mathbf{v}$ relative to the Noether Sea:
 
-1. **Path‑length elongation:** 
+1. **Path‑length elongation:**
  Internal architrinos must traverse longer spatial paths per cycle because the clock’s center of mass is in motion. Even in the clock’s own rest frame, the underlying wake interactions are evaluated in the absolute frame where the worldline is slanted in spacetime.
 
 2. **Finite causal speed:**
  Primitive self-hit and partner-hit roots are mediated by delayed, radial path-history interactions at speed $c_f$. When those roots are dressed into an observer-level clock law, the transverse budget must be formed with the declared channel speed $c_\star$: $c_\star=c_f$ for a primitive branch test and $c_\star=c_{\text{eff}}(\mathbf{x})$ for a Noether-Sea dressed clock comparison.
 
-3. **Shape deformation (Lorentz‑link hypothesis):** 
+3. **Shape deformation (Lorentz‑link hypothesis):**
  To remain dynamically stable under increased $|\mathbf{v}|$, the tri‑binary’s outer exclusion surface becomes **oblate**, flattened along the direction of motion:
  - At low $v$, the outer exclusion surface is nearly spherical.
  - As $v\to c_\star$, that exclusion surface contracts along $\hat{\mathbf{v}}$ while maintaining transverse dimensions, yielding an ellipsoid with semi‑axes $(a_\perp, a_\perp, a_\parallel)$ and $a_\parallel < a_\perp$.
@@ -630,14 +630,14 @@ in the regime where the clock's motion does not significantly disturb the local 
 
 Massive assemblies polarize and densify the surrounding Noether Sea. A clock deeper in this polarized region experiences:
 
-1. **Higher local Noether density $n(\mathbf{x})$ (equivalently higher $\rho_{\text{core}}$):** 
+1. **Higher local Noether density $n(\mathbf{x})$ (equivalently higher $\rho_{\text{core}}$):**
  Interaction delays with the medium (and between internal architrinos via the medium) increase. This raises the **Noether-Sea delay factor** $\chi_{\text{sea}}$ for internal processes.
 
 2. **Effective field speed reduction $c_{\text{eff}}(\mathbf{x}) < c_f$:**
  - The propagation of wake influences is slowed in dense regions (more frequent encounters with Noether cores).
  - From the clock’s perspective, every internal force arrives “later” in $t$.
 
-3. **Tidal distortion of tri‑binary geometry:** 
+3. **Tidal distortion of tri‑binary geometry:**
  Gradients in $n$ and the effective potential $\Phi_{\text{eff}}$ compress the tri‑binary differently along radial vs tangential directions. This modifies binary radii and thus frequencies.
 
 **Gravitational hypothesis:**
@@ -653,7 +653,7 @@ with the sign convention chosen so that $\Phi_N < 0$ (deeper potential) yields *
 
 In a region with potential $\Phi_N(\mathbf{x})$ and clock velocity $v$ relative to the Noether Sea, we conjecture:
 $$
-\frac{d\tau}{dt} 
+\frac{d\tau}{dt}
 = \frac{\omega(v,\Phi_N,n)}{\omega_0}
 \approx \sqrt{1 + \frac{2\Phi_N}{c_0^2} - \frac{v^2}{c_0^2}}
 $$
@@ -843,24 +843,24 @@ Execution protocols, benchmark catalogs, and numeric pass/fail thresholds are ro
 
 This program fails—and the emergent‑metric project is likely untenable—if any of the following hold:
 
-1. **Incorrect velocity dependence:** 
+1. **Incorrect velocity dependence:**
  - If $T(v)$ cannot be made to fit $\propto \gamma(v)$ without fine‑tuning internal clock geometry or Noether-Sea parameters.
 
-2. **Wrong sign or magnitude of gravitational dilation:** 
+2. **Wrong sign or magnitude of gravitational dilation:**
  - Clocks deeper in a potential must tick slower. Any prediction of faster ticks, or gross magnitude mismatch, is fatal.
 
-3. **Directional anisotropy:** 
+3. **Directional anisotropy:**
  - If $T(v)$ depends measurably on direction in the absolute frame, violating isotropy bounds ($<10^{-16}$ sidereal modulation), the theory contradicts precision Lorentz tests.
 
-4. **Clock‑dependence:** 
+4. **Clock‑dependence:**
  - If different reasonable clock designs (different internal assemblies) yield different $d\tau/dt$ at the same $(v,\Phi_N)$ beyond experimental bounds, the emergent Equivalence Principle fails.
 
-5. **Parameter bloat:** 
+5. **Parameter bloat:**
  - If matching these effects requires introducing many independent medium parameters ($n$ profiles, ad hoc transport coefficients), the theory's naturalness score collapses; see [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md).
 
 ---
 
-**Deliverable of this document:** 
+**Deliverable of this document:**
 A concrete definition of **how** to compute $\omega(v,\Phi_{\text{eff}},n)$ for a tri‑binary clock, and a clear expression for $d\tau/dt$ in terms of those quantities.
 
 ##### Closure Program Interface (clock-to-PPN bridge)

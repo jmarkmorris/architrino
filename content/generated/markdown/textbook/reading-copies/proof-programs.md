@@ -8411,20 +8411,20 @@ $$
 on the seed-side windows, and one should center the corresponding cones on:
 $$
 \mathfrak{C}^{a}_W
-\ \text{around}\ 
+\ \text{around}\
 \mathbf{e}_1,
 \qquad
 \mathfrak{C}^{b}_W
-\ \text{around}\ 
+\ \text{around}\
 \mathbf{e}_2,
 $$
 $$
 \mathfrak{C}^{\mathrm{role}}_W
-\ \text{around}\ 
+\ \text{around}\
 \mathbf{r}^{\mathrm{role}}_{\mathrm{seed}},
 \qquad
 \mathfrak{V}^{i}_W
-\ \text{around}\ 
+\ \text{around}\
 \dot{\mathbf{x}}_{i,\mathrm{seed}}.
 $$
 The support floors should be chosen from the seed values with explicit slack:

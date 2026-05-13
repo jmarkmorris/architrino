@@ -1247,4 +1247,3 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Compatibilist Agency](../../../markdown/aaa/philosophy-history/agency-and-internal-causation.md?section=Compatibilist+Agency)
     - [Summary](../../../markdown/aaa/philosophy-history/agency-and-internal-causation.md?section=Summary)
     - [Closing Statement](../../../markdown/aaa/philosophy-history/agency-and-internal-causation.md?section=Closing+Statement)
-

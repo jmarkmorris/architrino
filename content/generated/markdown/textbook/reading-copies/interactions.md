@@ -484,7 +484,7 @@ Assume:
 
 ### U(1) Sector
 
-**Theorem 1 (Global phase invariance implies charge continuity).**  
+**Theorem 1 (Global phase invariance implies charge continuity).**
 If the effective action is invariant under
 $$
 \Psi \mapsto e^{i\alpha}\Psi,\qquad \alpha\in\mathbb{R},
@@ -496,7 +496,7 @@ $$
 
 *Proof sketch:* Apply Noether's theorem in the regularized variational setting; invariance under constant phase shifts yields the continuity equation.
 
-**Corollary (Local phase covariance requires a connection).**  
+**Corollary (Local phase covariance requires a connection).**
 For local $\alpha(x)$, invariance requires a compensating field $A_\mu$ and covariant derivative
 $$
 D_\mu=\partial_\mu-i g_1 A_\mu,
@@ -511,7 +511,7 @@ $$
 
 Let $\chi$ denote the local weak doublet (effective exposed-triad channel).
 
-**Proposition 2 (Local weak-basis rotations define an SU(2) connection).**  
+**Proposition 2 (Local weak-basis rotations define an SU(2) connection).**
 If physics is invariant under
 $$
 \chi(x)\mapsto U_2(x)\chi(x),\qquad U_2(x)\in SU(2),
@@ -533,7 +533,7 @@ $$
 
 ### SU(3) Color Sector
 
-**Theorem 3 (Color algebra closure in axis-exceptionality basis).**  
+**Theorem 3 (Color algebra closure in axis-exceptionality basis).**
 In the ordered basis $(H,M,L)$, the eight generators built from axis mixers and two diagonal traceless operators close a Lie algebra isomorphic to $\mathfrak{su}(3)$.
 
 This is the rigorous closure result already proven in [color-charge-su3](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md#algebra-closure-rigorous-statement). Therefore effective color transport acts through

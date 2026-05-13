@@ -1700,7 +1700,7 @@ $$
 **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 
 **Geometric proof targets:**
-- Classify tri-binary axial-pattern permutations and show the resulting symmetry factors 
+- Classify tri-binary axial-pattern permutations and show the resulting symmetry factors
 match $\mathrm{SU(3)}\times\mathrm{SU(2)}\times\mathrm{U(1)}$.
 - Prove three stable assembly families arise from distinct phase-winding classes.
 
@@ -3057,14 +3057,14 @@ Use this exact skeleton when starting a new concept section:
 ```md
 \## Long Concept Name - SHORT
 
-**Concept Type:** 
-**Ontological Area:** 
-**Sub-Ontological Area:** 
-**Short Name:** 
-**Concept Status:** 
-**Comparative Stack Placement:** 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** 
+**Concept Type:**
+**Ontological Area:**
+**Sub-Ontological Area:**
+**Short Name:**
+**Concept Status:**
+**Comparative Stack Placement:**
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:**
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:**
 
 #### 1. Concept Summary
 

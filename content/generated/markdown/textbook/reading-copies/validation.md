@@ -1903,7 +1903,7 @@ Existing text excerpt:
 > ### Receiver velocity: radial vs orthogonal components (instantaneous effect)
 > Because $\mathbf{a}_{o'\leftarrow o}(t;t_0) \parallel \hat{\mathbf{r}}$, its instantaneous effect satisfies
 > $$
-> \frac{d}{dt}\mathbf{v}_\perp \;=\; \mathbf{0}\quad\text{from this hit}, 
+> \frac{d}{dt}\mathbf{v}_\perp \;=\; \mathbf{0}\quad\text{from this hit},
 > \qquad
 > \frac{d}{dt}v_r \;=\; \mathbf{a}_{o'\leftarrow o}(t;t_0)\cdot \hat{\mathbf{r}}
 > \;=\;
@@ -2257,7 +2257,7 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are di
 
 ---
 
-#### Constant per-wavefront emission 
+#### Constant per-wavefront emission
 
 - What we assume:
   - Emission cadence and per-wavefront amplitude are constant at the source.
@@ -2858,7 +2858,7 @@ Requirements:
 6) Keep all TeX intact and preserve category definitions unless explicitly asked to revise them.
 ```
 
-Scale: `0-100` (standard numeric grading scale).  
+Scale: `0-100` (standard numeric grading scale).
 Total score rule: equal-weight arithmetic mean of category scores.
 
 ### Assessment Table

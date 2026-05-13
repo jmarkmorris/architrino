@@ -6,9 +6,9 @@ The standard formulation of quantum mechanics relies on the abstract unitary evo
 
 ### The Tri-Binary Qubit and Phase Space
 
-A physical qubit corresponds to the stable orientational states of a tri-binary assembly. Let $\hat{\mathbf{n}}_{\text{in}}$, $\hat{\mathbf{n}}_{\text{mid}}$, and $\hat{\mathbf{n}}_{\text{out}}$ denote the normal vectors of the inner ($v > c_f$), middle ($v = c_f$), and outer ($v < c_f$) binary orbital planes, respectively. 
+A physical qubit corresponds to the stable orientational states of a tri-binary assembly. Let $\hat{\mathbf{n}}_{\text{in}}$, $\hat{\mathbf{n}}_{\text{mid}}$, and $\hat{\mathbf{n}}_{\text{out}}$ denote the normal vectors of the inner ($v > c_f$), middle ($v = c_f$), and outer ($v < c_f$) binary orbital planes, respectively.
 
-The computational basis states $|0\rangle$ and $|1\rangle$ are defined as the two meta-stable, minimal-energy topological alignments of $\hat{\mathbf{n}}_{\text{in}}$ and $\hat{\mathbf{n}}_{\text{out}}$ relative to the middle binary fulcrum $\hat{\mathbf{n}}_{\text{mid}}$. 
+The computational basis states $|0\rangle$ and $|1\rangle$ are defined as the two meta-stable, minimal-energy topological alignments of $\hat{\mathbf{n}}_{\text{in}}$ and $\hat{\mathbf{n}}_{\text{out}}$ relative to the middle binary fulcrum $\hat{\mathbf{n}}_{\text{mid}}$.
 
 The abstract Hilbert space $\mathcal{H}$ serves as an effective description of the continuous non-Markovian phase space $\Gamma$. The dynamics of the constituent architrinos are governed by the causal-action master equation:
 
@@ -16,7 +16,7 @@ $$
 \mathbf{a}_i(t) = \kappa \sum_{j} \frac{\sigma_{ij} \epsilon^2}{\|\mathbf{r}_i(t) - \mathbf{r}_j(t_{\text{hist}})\|^2} \hat{\mathbf{u}}_{ij}
 $$
 
-where $t_{\text{hist}} = t - \|\mathbf{r}_i(t) - \mathbf{r}_j(t_{\text{hist}})\| / c_f$ defines the path-history intersection time. 
+where $t_{\text{hist}} = t - \|\mathbf{r}_i(t) - \mathbf{r}_j(t_{\text{hist}})\| / c_f$ defines the path-history intersection time.
 
 Superposition is not a linear combination of independent ontological branches. It is a bounded, precessional limit cycle in $\Gamma$. During superposition, the assembly continuously emits polarized potential along its causal wake, exploring multiple stable path-histories simultaneously without settling into a singular orientational attractor.
 
@@ -32,7 +32,7 @@ Under that bounded-geometry condition, $\mathbf{a}_i(t)$ remains bounded on the 
 
 ### Unitary Evolution and Topological Torques
 
-Quantum gates correspond to continuous, energy-conserving topological torques applied to the tri-binary orbital planes. 
+Quantum gates correspond to continuous, energy-conserving topological torques applied to the tri-binary orbital planes.
 
 * **Pauli Operators ($X, Y, Z$):** These map to discrete $\pi$-rotations of the tri-binary orientation axes. The torque $\boldsymbol{\tau} = \int \mathbf{r} \times \mathbf{F}_{\text{hist}} d^3x$ is applied via external causal wakes, smoothly rotating $\hat{\mathbf{n}}_{\text{in}}$ and $\hat{\mathbf{n}}_{\text{out}}$ while the middle binary maintains the $v = c_f$ stability threshold.
 * **Hadamard Operator ($H$):** This operation is modeled as a critical bifurcation. The applied torque should drive the assembly into a controlled neighborhood of the saddle separating the $|0\rangle$ and $|1\rangle$ attractors, with an equiprobable meta-stable precessional state as the closure target rather than an assumed result.
@@ -43,7 +43,7 @@ To prevent ionization or irreversible symmetry breaking during these operations,
 
 Non-local correlation in the $\mathbb{A}\mathbb{A}\mathbb{A}$ model arises physically from phase-locking via delayed interactions along the causal wake surface. There is no instantaneous action at a distance.
 
-* **Phase-Locking:** As the causal wakes of two assemblies intersect, the continuous $1/r^2$ path-history potentials force their orbital phases into coupled attractors. 
+* **Phase-Locking:** As the causal wakes of two assemblies intersect, the continuous $1/r^2$ path-history potentials force their orbital phases into coupled attractors.
 * **Controlled-NOT (CNOT) Gate:** This represents conditional logic where the target assembly's allowable phase space is dynamically bounded by the causal wake of the control assembly. The $v=c_f$ middle binary of the target assembly acts as a resonant receiver, only permitting a bit-flip torque if the control assembly's wake possesses the specific polarization geometry of the $|1\rangle$ state.
 * **Bell States:** These are symmetrical, coupled precessional states maintained by continuous, bidirectional potential flux between assemblies. The correlation is sustained by the shared path-history of the two structures.
 
@@ -61,7 +61,7 @@ Decoherence is the continuous loss of path-history coherence due to uncharacteri
 * **Coherence Limits:** The model predicts a medium-dependent contribution to coherence loss, scaling with local Noether-core density, represented by $\rho_{\text{core}}(\mathbf{x},t)$ or normalized density $n(\mathbf{x},t)$. This is a closure target alongside standard thermal, electromagnetic, and apparatus-noise channels, not an already-derived absolute bound.
 
 ### Statistical Measure and the Born Rule Emergence
-While the trajectory of a single tri-binary under measurement is strictly deterministic, macroscopic observables yield robust probabilistic distributions. This effective randomness originates from the microstate-sensitive initial conditions of the background Noether Sea. 
+While the trajectory of a single tri-binary under measurement is strictly deterministic, macroscopic observables yield robust probabilistic distributions. This effective randomness originates from the microstate-sensitive initial conditions of the background Noether Sea.
 
 * **Invariant Measure Target:** The fluctuating local Noether-Sea assemblies should define, or approximate, an invariant probability measure $\mu(\Gamma_{\text{eff}})$ on the effective phase space.
 * **Basin Volume Mapping Target:** The probability $P_k$ of relaxing into a specific eigenstate $|k\rangle$ should be derived from the phase-space volume of its corresponding attractor basin $\mathcal{B}_k$, weighted by the inferred measure: $P_k = \int_{\mathcal{B}_k} d\mu(\Gamma_{\text{eff}})$.
@@ -70,8 +70,8 @@ While the trajectory of a single tri-binary under measurement is strictly determ
 ### Kinetic Limits and Decoherence
 The continuous loss of path-history coherence must be formalized as a transport phenomenon within the Noether Sea, or in bridge prose the spacetime medium.
 
-* **Fokker-Planck Dynamics:** By coarse-graining the deterministic path-history master equation over the fast, small-amplitude interactions of the local Noether Sea, the tri-binary orientation evolves according to an effective Fokker-Planck equation. 
-* **Diffusion and Drift:** The unitary topological torques provide the deterministic drift vector, while the background assembly interactions generate the diffusion tensor. 
+* **Fokker-Planck Dynamics:** By coarse-graining the deterministic path-history master equation over the fast, small-amplitude interactions of the local Noether Sea, the tri-binary orientation evolves according to an effective Fokker-Planck equation.
+* **Diffusion and Drift:** The unitary topological torques provide the deterministic drift vector, while the background assembly interactions generate the diffusion tensor.
 * **Decoherence Timescales:** The decoherence time $\tau_d$ is a derivation target from the Lyapunov spectrum of the local Noether-Sea state and the spatial density variables $\rho_{\text{core}}(\mathbf{x},t)$ or $n(\mathbf{x},t)$. It is not an intrinsic property of the tri-binary, but a measure of the local medium's entropy production rate during the operation.
 
 ### Statistical Falsifiability and Observables
@@ -347,13 +347,13 @@ In standard quantum mechanics, a physical system can exist simultaneously in mul
 $$
 |\psi\rangle = \sum_n c_n |n\rangle
 $$
-The coefficients $c_n$ are complex probability amplitudes. In ordinary non-relativistic, fixed-particle-number quantum mechanics, the system evolves deterministically according to the linear Schrödinger equation until a measurement occurs. Upon measurement, the orthodox (Copenhagen) interpretation posits a discontinuous "collapse" of the wavefunction, where the system instantaneously projects into a single basis state $|k\rangle$ with probability $P_k = |c_k|^2$ (the Born rule). 
+The coefficients $c_n$ are complex probability amplitudes. In ordinary non-relativistic, fixed-particle-number quantum mechanics, the system evolves deterministically according to the linear Schrödinger equation until a measurement occurs. Upon measurement, the orthodox (Copenhagen) interpretation posits a discontinuous "collapse" of the wavefunction, where the system instantaneously projects into a single basis state $|k\rangle$ with probability $P_k = |c_k|^2$ (the Born rule).
 
 Traditional superposition treats the indeterminacy as fundamental and ontological: prior to measurement, the particle possesses no definite state or trajectory.
 
 #### Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$) Mechanism
 
-In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, superposition is an epistemic (operational) description of an underlying deterministic, multistable dynamical system. At the fundamental level, every architrino possesses a definite position and velocity in the Euclidean void at all absolute times. There is no ontological smearing. 
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, superposition is an epistemic (operational) description of an underlying deterministic, multistable dynamical system. At the fundamental level, every architrino possesses a definite position and velocity in the Euclidean void at all absolute times. There is no ontological smearing.
 
 The linearity of quantum superposition arises strictly from the linearity of the Master Equation: the total potential experienced by any receiver is the exact, unmediated linear sum of all Jacobian-weighted inverse-square causal wake-surface intersections at its current location.
 
@@ -377,7 +377,7 @@ The correspondence between the quantum formalism and architrino micro-dynamics i
 Treating superposition as a dynamically maintained metastability rather than a fundamental ontological blur imposes strict, testable constraints on the system.
 
 *   **Claim**: Superposition represents a metastable dynamical state subject to local causal wake interactions, and "collapse" is a continuous, finite-time threshold crossing.
-*   **Prediction**: The state transition (collapse) time is finite and bounded by the local field speed $c_f$, the physical extent of the interacting assemblies, and the local density of the Noether Sea. 
+*   **Prediction**: The state transition (collapse) time is finite and bounded by the local field speed $c_f$, the physical extent of the interacting assemblies, and the local density of the Noether Sea.
 *   **Failure Mode**: Observation of strictly instantaneous state updates across space-like separated macroscopic distances—without mediation by previously correlated local hidden variables in the shared path history—falsifies the mechanism.
 *   **Next Steps**: Simulation of the Master Equation for a metastable outer binary subjected to modeled Noether-Sea noise is required to derive the Born rule ($P_n = |c_n|^2$) analytically from the fractional phase-space volumes of the competing attractors.
 
@@ -405,9 +405,9 @@ This document maps the traditional "Measurement Problem" and the phenomenon of w
 
 #### The Traditional Measurement Problem
 
-In the textbook non-relativistic, fixed-particle-number framing of quantum mechanics, the evolution of a closed system is strictly linear and unitary, governed by the Schrödinger equation. However, upon "measurement," the system is postulated to undergo a discontinuous, non-unitary projection (collapse) into an eigenstate of the measured observable. 
+In the textbook non-relativistic, fixed-particle-number framing of quantum mechanics, the evolution of a closed system is strictly linear and unitary, governed by the Schrödinger equation. However, upon "measurement," the system is postulated to undergo a discontinuous, non-unitary projection (collapse) into an eigenstate of the measured observable.
 
-This dualistic evolution introduces the Measurement Problem: 
+This dualistic evolution introduces the Measurement Problem:
 1. The formalism provides no physical definition of what constitutes a "measurement" or an "observer."
 2. It fails to explain how a linear dynamic generates a nonlinear, irreversible outcome.
 3. It forces an artificial epistemic boundary (the Heisenberg cut) between the quantum system and the classical measurement apparatus.
@@ -418,7 +418,7 @@ Traditional interpretations typically resolve this by either treating the wavefu
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework rejects the projection postulate as a fundamental physical process. Instead, the universe evolves continuously in absolute time within a Euclidean void, governed strictly by the deterministic Master Equation. There is no ontological distinction between a "measured system" and a "measurement apparatus"—both are interacting tri-binary assemblies immersed in the Noether Sea.
 
-What standard quantum mechanics describes as "wavefunction collapse" maps directly to **threshold resolution** in a multistable dynamical system. 
+What standard quantum mechanics describes as "wavefunction collapse" maps directly to **threshold resolution** in a multistable dynamical system.
 
 When an assembly is in a quantum superposition, it occupies a metastable boundary zone between distinct attractor basins (e.g., hovering near the symmetry-breaking field speed threshold $v = c_f$, or at an edge-condition between outer-binary resonance bands). The "measurement" is a physical interaction where the macroscopic apparatus subjects the target assembly to a targeted, high-intensity potential gradient (a structured sum of causal wake surfaces).
 
@@ -430,14 +430,14 @@ The correspondence between the quantum mechanical measurement formalism and arch
 
 *   **The Measured System**: A tri-binary assembly in a metastable configuration, delicately balanced between multiple stable geometric phases or orbital resonance bands.
 *   **The Apparatus**: A massive complex of tri-binary assemblies that injects a structured potential perturbation (action) sufficient to overwhelm the target's metastability.
-*   **The Measurement Interaction**: The deterministic exchange of causal wake surfaces between the apparatus and the target assembly. 
-*   **Wavefunction Collapse**: The continuous, finite-time physical transit of the target assembly across a phase-space separatrix, settling into a new stable attractor. 
+*   **The Measurement Interaction**: The deterministic exchange of causal wake surfaces between the apparatus and the target assembly.
+*   **Wavefunction Collapse**: The continuous, finite-time physical transit of the target assembly across a phase-space separatrix, settling into a new stable attractor.
 *   **Irreversibility / Record Creation**: The excess energy and phase information from the transition are dissipated into the surrounding Noether Sea and the macroscopic apparatus. This thermalization makes the transition operationally irreversible, cementing the macroscopic record.
 *   **The Born Rule ($P_k = |c_k|^2$)**: The emergent statistical distribution reflecting the relative fractional volumes of the competing attractor basins in the target's phase space, mapped over the standard background noise of the Noether Sea.
 
 #### Overcoming the Heisenberg Cut
 
-Because both the target and the detector are governed by the same underlying Master Equation, the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework eliminates the Heisenberg cut. A "measurement" requires no conscious observer; it is merely an interaction involving sufficient action transfer (on the scale of $h$) and sufficient environmental dissipation to lock an assembly into a new limit cycle and prevent coherent revival. 
+Because both the target and the detector are governed by the same underlying Master Equation, the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework eliminates the Heisenberg cut. A "measurement" requires no conscious observer; it is merely an interaction involving sufficient action transfer (on the scale of $h$) and sufficient environmental dissipation to lock an assembly into a new limit cycle and prevent coherent revival.
 
 The threshold for a "record" is determined entirely by the stiffness of the local Noether Sea and the decoherence timescale of the surrounding assembly lattice.
 
@@ -1853,9 +1853,9 @@ This chapter maps the Planck scale into tri-binary geometry and dynamics. The in
 
 We propose that the Planck scale corresponds, in the architrino architecture, to a specific **alignment-lock state** of tri-binary assemblies in the Noether Sea:
 
-> 
+>
 > **Working Thesis (Planck Alignment Horizon).**
-> 
+>
 > A tri-binary reaches the Planck state when, in the forward sector, both component speeds approach the field speed $c_f$ and the **full delay-feedback loop** admits a final, marginally stable, phase-locked configuration. The component-speed statement and the combined-speed statement are distinct: $v_{\text{trans}}\to c_f$ and $v_{\text{orb}}^{\text{tan}}\to c_f$ name the terminal component limits, while $v_{\text{eff}}=\|\mathbf{v}_{\text{trans}}+\mathbf{v}_{\text{orb}}^{\text{tan}}\|$ names the forward-sector vector sum used for wedge geometry. In this state:
 > 1. The kinematic transition to flattening occurs as $v_{\text{trans}} \to c_f$ and $v_{\text{orb}}^{\text{tan}} \to c_f$ in the forward sector, starving new one-way causal updates ahead of the forward edge (local horizon behavior).
 > 2. The geometry collapses from a 3D precessing ellipsoid (fermion-like) to a 2D, co-planar disk (boson-like).
@@ -1873,7 +1873,7 @@ We propose that the Planck scale corresponds, in the architrino architecture, to
 >      \qquad
 >      R_{\text{align}} \;\stackrel{\text{hyp.}}{\approx}\; \ell_P/(2\pi).
 >    $$
-> 
+>
 
 These identifications are **conjectured mappings**, not definitions. They must eventually be derived from the master equations and compared to empirical values.
 
@@ -1971,7 +1971,7 @@ $$
 
 for integer $k_n$, where $\Delta t_{\text{rt}}$ is the effective round-trip delay and $\phi_{\text{geom}}$ encodes geometric phase due to tri-binary structure.
 
-> **Working hypothesis (Terminal Mode):**  
+> **Working hypothesis (Terminal Mode):**
 > There exists a final mode $n_{\text{max}}$ in which:
 > - The component-saturation condition $v_{\text{trans}}\to c_f$ and $v_{\text{orb}}^{\text{tan}}\to c_f$ is met in the forward sector, with any $v_{\text{eff}}>c_f$ Mach-wedge behavior treated as the stronger combined-speed branch, **and**
 > - The round-trip phase condition admits a marginally stable, fully aligned solution.
@@ -1986,32 +1986,32 @@ Demonstrating this terminal aligned mode is an **open dynamical problem** for th
 
 This framing keeps emitters implicit and treats the architrino as a minimal mover responding to the local superposed causal-wake potential $\phi(\mathbf{x}, t)$ and its gradient $\nabla \phi$.
 
-1. An architrino moves through a sea of potential gradients from many emitters.  
-2. Each emitter’s influence arrives after a delay.  
-3. Those delayed gradients are the only things that can push or pull it.  
-4. Its speed at any moment is the sum of those time-lagged pushes.  
-5. “Kinetic energy” is just a name for that accumulated motion.  
-6. So it is not stored inside the architrino; it is the record of many delayed interactions.  
-7. Change the delay geometry (translation, gravity well), and the push timing changes.  
-8. Change the timing, and the speed changes.  
+1. An architrino moves through a sea of potential gradients from many emitters.
+2. Each emitter’s influence arrives after a delay.
+3. Those delayed gradients are the only things that can push or pull it.
+4. Its speed at any moment is the sum of those time-lagged pushes.
+5. “Kinetic energy” is just a name for that accumulated motion.
+6. So it is not stored inside the architrino; it is the record of many delayed interactions.
+7. Change the delay geometry (translation, gravity well), and the push timing changes.
+8. Change the timing, and the speed changes.
 9. Therefore the kinetic term is an interaction history with emitter wake history, not a private reservoir.
 
 In this causal-wake framing:
 
-- The architrino's identity is the consistent causal loop: receive wake gradients, respond, move into a new wake environment, and respond again.  
+- The architrino's identity is the consistent causal loop: receive wake gradients, respond, move into a new wake environment, and respond again.
 - Stability or structure emerges only when this response loop becomes periodic.
 - Momentum is the conserved motion state produced by past interactions; if received wake gradients vanish, the architrino coasts unchanged.
 
 #### Field-Speed Regimes in the Causal-Wake View
 
-- **At $v = c_f$:** The architrino rides the edge of its causal cone. Forward-sector updates cannot arrive faster than it moves, so the experienced gradient becomes anisotropic (ahead starves, behind dominates). Phase-locking becomes delicate; alignment effects intensify.  
+- **At $v = c_f$:** The architrino rides the edge of its causal cone. Forward-sector updates cannot arrive faster than it moves, so the experienced gradient becomes anisotropic (ahead starves, behind dominates). Phase-locking becomes delicate; alignment effects intensify.
 - **At $v > c_f$:** It outruns newly emitted causal-wake propagation. The only gradients it can receive are from delayed emissions and the medium behind or sideways, which leads to self-hit dynamics. This creates a strong inward or centripetal feedback candidate that stabilizes maximal-curvature orbits and drives the self-hit regime behavior.
 
 ---
 
 ### Discrete Ladder and Phase-Slip Dynamics (Hypothesis)
 
-> **Working Hypothesis (Discrete Ladder).**  
+> **Working Hypothesis (Discrete Ladder).**
 > The tri-binary supports a discrete set of delay-locked modes indexed by $n$, each with characteristic radius $r_n$, frequency $\omega_n$, and delay $\Delta t_n = r_n/c_f$. Stability requires a phase-closure condition between orbital motion and causal wake.
 
 Under increasing translational stress or deepening gravitational potential:
@@ -2023,7 +2023,7 @@ Under increasing translational stress or deepening gravitational potential:
 
 This “ratchet” yields a **staircase** of quasi-stable plateaus in radius/frequency space.
 
-> **Working Hypothesis (Top Rung = Planck Alignment).**  
+> **Working Hypothesis (Top Rung = Planck Alignment).**
 > Working hypothesis: the ladder terminates at a unique top rung $n_{\text{max}}$ where full planar alignment is achieved and the forward-sector components satisfy $v_{\text{trans}} \to c_f$ and $v_{\text{orb}}^{\text{tan}} \to c_f$ at the onset of flattening. This is the proposed Planck alignment state.
 
 **Failure mode:** If simulations or analytic work reveal:
@@ -2046,7 +2046,7 @@ In the low-energy / weak-alignment regime:
 - The full causal configuration (including self-hit history and relative plane orientations) is not restored by a simple $2\pi$ spatial rotation.
 
 > **Hypothesis:** The effective orientation space of such a tri-binary behaves like an $SU(2)$-type double cover of spatial rotations:
-> a $2\pi$ rotation changes the internal causal phase; a $4\pi$ rotation restores it.  
+> a $2\pi$ rotation changes the internal causal phase; a $4\pi$ rotation restores it.
 > This is the candidate route to spin-$\tfrac{1}{2}$-like behavior and Pauli-style exclusion from overlapping 3D precession volumes.
 
 A rigorous mapping from the detailed tri-binary phase space to an $SU(2)$ bundle is not yet derived; it is a closure target.
@@ -2075,7 +2075,7 @@ For the particle-level interpretation of aligned versus precessing assembly beha
 
 We adopt:
 
-> **Assumption (A-cf-match).**  
+> **Assumption (A-cf-match).**
 > In low-energy, weak-field regimes relevant to standard lab physics, the effective propagation speed of electromagnetic disturbances, $c$, coincides with the fundamental field speed $c_f$ to within current experimental bounds. Deviations, if any, are confined to Planck-adjacent or extreme-curvature regimes.
 
 Whenever we identify $c$ with $c_f$ in Planck formulas, we explicitly appeal to A-cf-match.
@@ -2119,7 +2119,7 @@ $$
 \ell_P^{\text{(emp)}} = \sqrt{\frac{h\,G}{2\pi c^3}}.
 $$
 
-> **Empirical Check (Length):**  
+> **Empirical Check (Length):**
 > We compare the dynamically derived alignment radius $R_{\text{align}}$ to the empirical Planck length divided by $2\pi$:
 > $$
 >  R_{\text{align}} \stackrel{\text{hyp.}}{\approx} \ell_P^{\text{(emp)}}/(2\pi),
@@ -2138,7 +2138,7 @@ Our program is to compute $\mathcal{A}_{\text{align}}^{\text{cycle}}$, $I_{\text
 
 Qualitatively, gravitational coupling strength reflects the **elastic response of the spacetime medium**:
 
-> **Heuristic View:**  
+> **Heuristic View:**
 > $G$ is inversely related to the **stiffness** of tri-binary spacetime assemblies against being driven toward the alignment phase. High energy density in aligned cores deforms the surrounding tri-binary medium, inducing an effective metric (refractive gradient) that reproduces GR-like behavior.
 
 A full derivation of $G$ from medium compliance is still to be done; the formula above gives a target relationship.
@@ -2152,7 +2152,7 @@ With Planck alignment as an endpoint rather than a point singularity:
 - Black-hole-like objects are interpreted as regions where large numbers of tri-binaries are **driven close to or into** the alignment state.
 - The inner core is then made of “tiles” of characteristic size $R_{\text{align}}$.
 
-> **Conjecture (Condensate-Like Aligned Phase).**  
+> **Conjecture (Condensate-Like Aligned Phase).**
 > We conjecture that black-hole cores correspond to a **condensate-like phase** dominated by planar-aligned, effectively bosonic tri-binaries. This analogy is structural:
 > - Many nearly identical aligned assemblies occupy a low-dimensional configuration manifold (planar disk orientation).
 > - Entropy and area scaling may emerge from counting these aligned “tiles” on horizon-adjacent surfaces.
@@ -2169,22 +2169,22 @@ Those steps remain open.
 
 ### Constraints, Assumptions, and Failure Modes
 
-1. **Lorentz Invariance at Low Speeds.**  
+1. **Lorentz Invariance at Low Speeds.**
    The translational lever (v-dependent alignment) must be strongly nonlinear:
    - For $v_{\text{trans}} \ll c_f$, corrections to phase-lock must be negligible; no detectable sidereal modulation of spectra (< $10^{-17}$).
    - Observable deviations only near Planck-adjacent or extreme-curvature regimes.
 
-2. **Universality of $R_{\text{align}}$.**  
+2. **Universality of $R_{\text{align}}$.**
    The alignment radius must be a property of the **medium**:
    - Different tri-binary decorations (electron-like, muon-like, quark-like) driven to alignment should converge to the same $R_{\text{align}}$ within small tolerances.
    - Large species-dependence would undermine the identification with a universal $\ell_P$.
 
-3. **Uniqueness of Aligned Mode.**  
+3. **Uniqueness of Aligned Mode.**
    Simulations must show:
    - A **terminal** aligned attractor, not a family of inequivalent aligned states with very different cycle action or radius.
    - Clear loss of stability when trying to force $v_{\text{eff}} > c_f$.
 
-4. **Angular Momentum Conservation at Spin Flip.**  
+4. **Angular Momentum Conservation at Spin Flip.**
    Transition from fermion-like ellipsoid to boson-like disk must:
    - Conserve total angular momentum via emission of spin-1 radiation (circularly polarized bosons).
    - Produce potentially observable signatures (e.g. polarization patterns near strong-gravity regions).

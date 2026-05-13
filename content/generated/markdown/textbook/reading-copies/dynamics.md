@@ -30,7 +30,7 @@ The Master EOM is:
 
 > *Potential at all other points in time and space is irrelevant.*
 
-At time $t$, the acceleration of architrino $i$ at position $\mathbf{x}_i(t)$ depends **only** on causal wake surfaces that **intersect its current location**. 
+At time $t$, the acceleration of architrino $i$ at position $\mathbf{x}_i(t)$ depends **only** on causal wake surfaces that **intersect its current location**.
 
 - **Not relevant**: Potential at other spatial locations $\mathbf{x} \neq \mathbf{x}_i(t)$
 - **Not relevant**: Potential at other times $t' \neq t$ (except as encoded in the causal history that arrives "now")
@@ -265,13 +265,13 @@ Fix a bounded history interval $I_t=[a,b]\subset(-\infty,t)$ and define regulari
 - **(R1) Boundary regularity:** $0\notin F_t^{(ij)}(\partial I_t)$ (no root crossing at $a$ or $b$).
 - **(R2) Simple roots:** if $F_t^{(ij)}(t_0)=0$, then $\frac{dF_t^{(ij)}}{dt_0}(t_0)\neq 0$.
 
-**Theorem 1 (Degree invariance on regular families).**  
+**Theorem 1 (Degree invariance on regular families).**
 For any continuous deformation of worldlines/parameters that preserves (R1)-(R2), the signed degree
 $D_{ij}(t)=\deg(F_t^{(ij)},I_t,0)$ is invariant.
 
 *Proof sketch:* In 1D, $D_{ij}$ is the oriented count of simple roots. Under a regular homotopy, roots move continuously and cannot appear/disappear in the interior without becoming critical, and cannot enter/leave through the boundary by (R1). Hence the oriented count is constant.
 
-**Proposition 2 (Sub-$c_f$ monotonic single-hit regime).**  
+**Proposition 2 (Sub-$c_f$ monotonic single-hit regime).**
 If there exists $v_*<c_f$ such that $|\mathbf{v}_j(t_0)|\le v_*$ for all $t_0\in I_t$, then
 $$
 \frac{dF_t^{(ij)}}{dt_0}
@@ -286,7 +286,7 @@ $$
 
 *Proof sketch:* Strict positivity of the Jacobian gives monotonicity, hence injectivity. Existence under endpoint sign change follows by the intermediate value theorem.
 
-**Proposition 3 (Fold criterion and even-jump law).**  
+**Proposition 3 (Fold criterion and even-jump law).**
 In a one-parameter family $F^{(ij)}(t_0;\lambda)$ (with $\lambda$ a control parameter, e.g. receiver time or orbit parameter), interior root-count changes occur only at fold points:
 $$
 F^{(ij)}(t_0;\lambda)=0,\qquad \partial_{t_0}F^{(ij)}(t_0;\lambda)=0.
@@ -754,7 +754,7 @@ while preserving total emission $q$.
 
 **In the super-field-speed regime** ($|\mathbf{v}_a| > c_f$), multiple self-roots can occur; summing over all causal times with an integrable regularization ensures finite total impulse.
 
-**Convergence requirement:** As $\eta \to 0$, numerical solutions must converge to a well-defined limit. 
+**Convergence requirement:** As $\eta \to 0$, numerical solutions must converge to a well-defined limit.
 
 ##### Conditional Well-Posedness for the Regularized Exact Model
 
@@ -787,7 +787,7 @@ or an absolutely continuous history class. The exact choice is a regularity burd
 - **(W4) Distance floor on the branch support:** $\|\phi_i(0)-\phi_j(-\tau_{ij,\ell}(\phi))\|\ge d_{\min}>0$.
 - **(W5) Bounded charges/couplings:** $\kappa$, $|q_i|$ finite.
 
-**Conditional theorem (local well-posedness and continuation).**  
+**Conditional theorem (local well-posedness and continuation).**
 Under (W1)-(W5), for any initial history $\phi^0\in\mathcal{H}$ there exists $T>0$ and a unique solution
 $$
 \mathbf{Y}\in C^1([t_0-h,t_0+T),\mathbb{R}^{6N}),\qquad \mathbf{Y}_{t_0}=\phi^0.
@@ -1106,7 +1106,7 @@ $$
 
 ###### Spatial Hashing for History Buffers
 
-**Efficiency requirement:** Naïve all-pairs history search scales as $O(N^2 T_{\text{history}})$, intractable for $N > 100$ particles. 
+**Efficiency requirement:** Naïve all-pairs history search scales as $O(N^2 T_{\text{history}})$, intractable for $N > 100$ particles.
 
 **Required optimization:** Implement spatial hash grid with cell size $\sim c_f \Delta t_{\max}$; only search cells within causal range of receiver. Expected scaling: $O(N \log N)$.
 
@@ -1190,7 +1190,7 @@ $$
 The master EOM is a coupled system of **state‑dependent delay differential equations** with:
 
 - non-linear dependence on all worldlines,
-- implicit causal roots defined by  
+- implicit causal roots defined by
   $\|\mathbf{x}_i(t)-\mathbf{x}_j(t_0)\| = c_f (t-t_0)$,
 - potentially **multiple roots** per pair (multi‑hit, self‑hit),
 - non-smooth behavior in the $\eta \to 0$ limit.
@@ -1418,7 +1418,7 @@ Take:
 Then causal condition:
 
 $$
-\big\|\mathbf{x}(t) - \mathbf{x}(t_0)\big\| 
+\big\|\mathbf{x}(t) - \mathbf{x}(t_0)\big\|
 = 2R\left|\sin\frac{\omega (t-t_0)}{2}\right|
 = c_f (t-t_0).
 $$
@@ -1539,7 +1539,7 @@ That already:
 - Gives us analytic control of the causal roots (as solutions of a simple scalar transcendental),
 - Lets us write the self‑force as
   $$
-  \mathbf{a}_\text{self}(t) = 
+  \mathbf{a}_\text{self}(t) =
   \sum_n \kappa \frac{q^2}{r_n^2\,|J_n|} \hat{\mathbf{r}}_n,
   $$
   with $r_n = c_f \Delta_n$, $J_n = 1-\mathbf{v}(t-\Delta_n)\cdot\hat{\mathbf{r}}_n/c_f$, and directions that can be written explicitly in terms of the phase difference.
@@ -1783,21 +1783,21 @@ That’s analytically tractable and important for:
 
 The most natural targets for further analytic closure are:
 
-1. **Uniform circular self‑hit (single particle, v>c_f)**  
-   - Solve the transcendental equation  
-     $2R|\sin(\omega\Delta/2)| = c_f\Delta$  
+1. **Uniform circular self‑hit (single particle, v>c_f)**
+   - Solve the transcendental equation
+     $2R|\sin(\omega\Delta/2)| = c_f\Delta$
      asymptotically, analyze the self‑force series.
    - Deliver: explicit formulas + asymptotics for self‑force vs $v/c_f$.
 
-2. **Partner‑only circular orbit with causal delay (v<c_f)**  
+2. **Partner‑only circular orbit with causal delay (v<c_f)**
    - Derive exact expressions for radial and tangential forces.
    - Prove tangential component >0 → analytic demonstration of spiral‑in instability.
 
-3. **Algebraic equilibrium conditions for the maximum‑curvature binary**  
+3. **Algebraic equilibrium conditions for the maximum‑curvature binary**
    - Combine 1 & 2 to write down the two averaged balance equations (radial, tangential).
    - Even if they’re solved numerically, they give a **precise definition** of $R_\text{min}$ and equilibrium speed.
 
-4. **Continuum limit around homogeneous Noether Sea**  
+4. **Continuum limit around homogeneous Noether Sea**
    - Coarse‑grain master equation,
    - Derive linearized wave equation for small perturbations,
    - Extract dispersion relation $\omega(k)$.
@@ -1897,7 +1897,7 @@ $$
 
 The instantaneous power delivered to architrino $i$ by this hit is:
 
-$$ 
+$$
 P_{ij}(t;t_0)
 = \mu_{\text{arch}}\,\mathbf{a}_{ij}\cdot \mathbf{v}_i
 = \mu_{\text{arch}}\,\kappa\,\sigma_{ij}\,\frac{|q_i q_j|}{r_{ij}^2\,\left|J_{ij}(t;t_0)\right|}\, v_{r,ij},
@@ -2327,19 +2327,19 @@ Crucially, `spacetime` in this framework belongs to the effective level, not the
 An architrino in motion possesses kinetic energy and momentum.
 
 - **Kinetic Energy $E_k$**
-  
+
   A scalar quantity representing the energy of motion. For a single architrino $a$ with velocity $\mathbf{v}_a(t)$, we write
-  
+
   $$E_{k,a}(t) = K\big(|\mathbf{v}_a(t)|\big),$$
-  
+
   where $K$ is a strictly convex, monotonically increasing function with $K(0)=0$ and $K'(v)\to\infty$ as effective saturation is reached (if applicable), or growing unboundedly in the primitive limit. $K$ is left unspecified because mass is emergent from interactions between assemblies, especially the Noether-Sea tri-binaries. Strict convexity ensures a one-to-one mapping between kinetic energy and speed magnitude. Because a free Architrino has no intrinsic speed limit in the micro-model, $E_k$ is, in principle, unbounded as $|\mathbf{v}_a|\to\infty$.
 
 - **Momentum $\mathbf{p}_a$**
-  
+
   The vector counterpart of kinetic energy:
-  
+
   $$\mathbf{p}_a(t) = P\big(|\mathbf{v}_a(t)|\big)\,\hat{\mathbf{v}}_a(t), \quad \hat{\mathbf{v}}_a = \frac{\mathbf{v}_a}{|\mathbf{v}_a|},$$
-  
+
   where $P$ is a speed-dependent magnitude. Its detailed form is not postulated at the architrino level; it emerges from matching to assembly behavior.
 
 **No fundamental mass:**
@@ -2385,7 +2385,7 @@ $$\mathbf{v}_{o'} = v_r \hat{\mathbf{r}} + \mathbf{v}_\perp, \quad v_r=\mathbf{v
 Because $\mathbf{a}_{o'\leftarrow o}\parallel\hat{\mathbf{r}}$:
 
 - The **instantaneous work rate** from this hit is
-  
+
   $$
   \frac{dE_k}{dt}\bigg|_{\text{hit}}
   =
@@ -2393,7 +2393,7 @@ Because $\mathbf{a}_{o'\leftarrow o}\parallel\hat{\mathbf{r}}$:
   =
   \frac{\kappa\,\sigma_{q_o q_{o'}}\,|q_o q_{o'}|}{r^2\,|J_{o'\leftarrow o}(t;t_0)|}\,v_r.
   $$
-  
+
   Only $v_r$ contributes to instantaneous power.
 
 - A hit only changes the **along-the-line** component of velocity; sideways motion $\mathbf{v}_\perp$ is unchanged instantaneously.
@@ -2646,12 +2646,12 @@ Architrinos and their assemblies are where all the energy lives. The tri-binary 
 ### Summary and Role in the Larger Theory
 
 - **At the architrino level:**
-  
+
   Kinetic energy and potential energy are defined via the Master EOM. Exact global conservation belongs to the exact causal-action theory; in mollified working models it is the target bookkeeping structure and is exact only when the regularization preserves the underlying time-translation symmetry. The substrate law is acceleration-first; no particle-specific fundamental mass is assigned to architrinos, and speeds are unbounded in principle.
   Potential availability is geometric rather than fuel-like: causal wakes are emitted as path-history structure, while work appears only when a receiver intersects active wake branches with nonzero radial power.
 
 - **At the assembly level:**
-  
+
   Large internal energies, plus coupling to the tri-binary sea, generate:
   - Effective inertia (mass),
   - Shielded external wake signatures (tiny apparent energy compared to internal),
@@ -2660,12 +2660,12 @@ Architrinos and their assemblies are where all the energy lives. The tri-binary 
   Macroscopic quietness follows from superposition and shielding: incoherent populations cancel statistically, while phase-locked assemblies such as collinear breathers preserve localized, non-canceling wake structure.
 
 - **For spacetime and gravity:**
-  
+
   The sea of small, high-energy tri-binaries forms the Noether Sea and, at coarse-grained level, the effective spacetime medium whose energy density and stress give rise to an emergent metric. The shielding factors and internal energies of both Noether-Sea tri-binaries and "matter" assemblies will determine:
   - The effective Newton constant $G$,
   - The cosmological Noether-Sea energy density,
   - How strongly spacetime curvature responds to different kinds of energy.
-  
+
   Density-driven oblation: as the tri-binary sea encounters denser matter, local tri-binaries scale down and oblate, creating a compliance gradient that contributes directly to the effective gravitational coupling $G$.
 
 ---
@@ -2876,7 +2876,7 @@ By contrast, the maximum-curvature binary section studies a **uniform circular b
 
 We want a single story that links the spiral path, the per-hit force law, and the angular-momentum budget across the full velocity range. Below the wake speed, the binary feels only partner hits, yet the tangential component remains positive, so the spiral keeps tightening and the total orbital angular momentum of the **binary** grows each turn. We introduce a per-cycle gain parameter $\Delta L_c$ to track that growth (a **constant** increment per full revolution in this hypothesis).
 
-**Speculative continuity assumption:** as $v \to c_f$, the per-cycle gain transitions smoothly from $\Delta L_\text{cycle} = \Delta L_c$ (sub-field-speed) to $\Delta L_\text{cycle} = 2\Delta L_c$ (self-hit active). 
+**Speculative continuity assumption:** as $v \to c_f$, the per-cycle gain transitions smoothly from $\Delta L_\text{cycle} = \Delta L_c$ (sub-field-speed) to $\Delta L_\text{cycle} = 2\Delta L_c$ (self-hit active).
 
 This section treats an exponential-in-angle spiral (logarithmic spiral) as a **modeling assumption** rather than a derived law. It simply sets the bookkeeping target: a path-history force sum that yields a smooth, finite increase in $\Delta L_\text{cycle}$ at the hinge. The detailed link between the summed per-hit forces and the spiral shape remains to be derived.
 
@@ -2972,7 +2972,7 @@ Let $\delta_s$ and $\delta_p$ denote the angular phase separations (measured alo
 - **Self** (same particle): Current position -> its own past emission position that hits "now."
   - Delay time: $\tau_s$; angular separation: $\delta_s = \omega \tau_s$.
   - Chord length: $r_s = 2R \sin(\delta_s / 2)$.
- 
+
 - **Partner** (other particle): Current position -> partner's past emission position that hits "now."
   - Delay time: $\tau_p$; angular separation: $\delta_p = \omega \tau_p$.
   - Chord length: $r_p = 2R \cos(\delta_p / 2)$.
@@ -3012,12 +3012,12 @@ Let $\tilde{\delta}_s \in (0, \pi]$ and $\tilde{\delta}_p \in (0, \pi]$ denote t
 
 The full families of causal delays are:
 
-- **Self**: 
+- **Self**:
  $$
  \delta_s(m) = \tilde{\delta}_s + 2\pi m = 2s \sin(\tilde{\delta}_s / 2), \quad m = 0, 1, 2, \dots
  $$
- 
-- **Partner**: 
+
+- **Partner**:
  $$
  \delta_p(m) = \tilde{\delta}_p + 2\pi m = 2s \cos(\tilde{\delta}_p / 2), \quad m = 0, 1, 2, \dots
  $$
@@ -3179,7 +3179,7 @@ For uniform circular motion at fixed radius $R$ and constant speed $s$:
 
 ##### Apparent Obstruction: Non-Negativity of Tangential Components
 
-**Theorem (No-go for constant-speed circular orbit in the bare two-body kernel).**  
+**Theorem (No-go for constant-speed circular orbit in the bare two-body kernel).**
 In the symmetric, non-translating circular binary with canonical delayed radial forces only, the net tangential acceleration is strictly positive whenever at least one causal root contributes.
 
 $$
@@ -3192,7 +3192,7 @@ T_{\mathrm{net}}
 $$
 where $w_{p,m},w_{s,m}\ge 0$ are branch weights induced by regularization/time averaging, and $\mathcal{M}_p,\mathcal{M}_s$ are active partner/self root sets.
 
-*Proof.*  
+*Proof.*
 For any active partner branch, the tangential contribution is
 $$
 T_{p,m}
@@ -3213,7 +3213,7 @@ T_{s,m}
 $$
 The sign is branch-invariant because winding changes timing, not chord orientation in this symmetric geometry. Therefore each summand in $T_{\mathrm{net}}$ is nonnegative, and at least one is strictly positive whenever any hit exists. Hence $T_{\mathrm{net}}>0$. $\square$
 
-**Corollary.**  
+**Corollary.**
 Within the bare isolated two-body kernel, an exact constant-speed circular orbit
 ($\langle T\rangle=0$) is impossible. Any MCB-like steady state must therefore come from terms outside this kernel, e.g. medium coupling/dissipation, radiation-reaction-like closure, or genuinely multi-body tri-binary effects.
 
@@ -3238,10 +3238,10 @@ $$
 
 Two distinct balance mechanisms are now mathematically visible:
 
-1. **Near-threshold Jacobian wall.**  
+1. **Near-threshold Jacobian wall.**
    On the principal self branch, $|J_s|^{-1}$ turns on singularly as $s\downarrow 1^+$, with radial magnitude scaling like $(s-1)^{-3/2}$. This is the earliest possible obstruction to continued contraction.
 
-2. **Higher-speed multi-branch redistribution.**  
+2. **Higher-speed multi-branch redistribution.**
    At larger $s$, additional self branches turn on and redistribute the outward response across several winding sectors. In that regime the detailed balance depends on the full weighted sum over all active branches rather than on the principal branch alone.
 
 **However**: Due to the per-hit $T > 0$ result, this "maximum curvature" state remains unverified for the isolated two-body system. Its stability must be tested by the full, multi-root time-averaged dynamics.
@@ -3466,7 +3466,7 @@ $$
 
 *Statement:* If $\phi \in \mathcal{H}$ and $\tau^*$ is a simple root of $g_{ij}(\tau, \phi) = 0$ (i.e., $\partial_\tau g_{ij} \neq 0$), then there exists a neighborhood $U \subset \mathcal{H}$ of $\phi$ and a continuously differentiable functional $\tau: U \to \mathbb{R}^+$ such that $\tau(\phi) = \tau^*$.
 
-*Proof.*  
+*Proof.*
 Define
 $$
 g_{ij}(\tau,\phi)=\|\phi_i(0)-\phi_j(-\tau)\|-c_f\tau.
@@ -3517,14 +3517,14 @@ $$
 \dot{\mathbf{Y}}(t)=\mathcal{G}(\mathbf{Y}_t),\qquad
 \mathbf{Y}_{t_0}=\phi^0.
 $$
-Then there exists $T>0$ and a unique $C^1$ solution on $[t_0-h,t_0+T)$.  
+Then there exists $T>0$ and a unique $C^1$ solution on $[t_0-h,t_0+T)$.
 Equivalently, there is a unique maximal solution interval
 $$
 [t_0-h,t_{\max}),\qquad t_{\max}>t_0.
 $$
 If the optional gluing condition holds, the solution is $C^2$ at $t_0$.
 
-*Proof.*  
+*Proof.*
 Define
 $$
 \mathcal{G}(\phi)=(\phi_v(0),F(\phi)),
@@ -3536,7 +3536,7 @@ with $F$ from Definition 3.
    (\mathbf{u},\mathbf{w})\mapsto \frac{\mathbf{u}-\mathbf{w}}{\|\mathbf{u}-\mathbf{w}\|^3}
    $$
    is $C^1$ there with bounded derivative.
-2. By Assumption 1, composition with $\rho_\eta$ preserves $C^1$ regularity and bounded derivatives.  
+2. By Assumption 1, composition with $\rho_\eta$ preserves $C^1$ regularity and bounded derivatives.
 3. By Lemma 1 and Assumption 3, delay branches (where used) depend $C^1$ on history; thus branch-evaluation maps are locally Lipschitz in $\phi$.
 4. Finite sums over channels and integration over finite interval $[-h,0]$ preserve local Lipschitz continuity; hence $\mathcal{G}$ is locally Lipschitz on an open subset of $\mathcal{H}$ containing $\phi^0$.
 5. Apply the standard Banach-space existence/uniqueness theorem for state-dependent DDEs: a unique local $C^1$ solution exists and extends uniquely to a maximal interval.
@@ -3592,7 +3592,7 @@ Let $\mathbf{x}(t)$ be a solution to the master equation.
 1. **Time Translation:** For any $\tau \in \mathbb{R}$, $\mathbf{y}(t) = \mathbf{x}(t + \tau)$ is also a solution.
 2. **Spatial Isometry:** For any $R \in O(3)$ and $\mathbf{b} \in \mathbb{R}^3$, $\mathbf{y}(t) = R\mathbf{x}(t) + \mathbf{b}$ is also a solution.
 
-*Proof.*  
+*Proof.*
 For time translation, set $\mathbf{y}_i(t)=\mathbf{x}_i(t+\tau)$. If
 $t_0\in\mathcal{C}_{ij}^x(t+\tau)$ for the original solution, then
 $t_0-\tau\in\mathcal{C}_{ij}^y(t)$ because

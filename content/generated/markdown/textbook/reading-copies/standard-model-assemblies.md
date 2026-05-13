@@ -446,7 +446,7 @@ We label the three binaries by their dynamical regime:
 
 Each binary defines one **axis** with two polar **polar sites**, each occupied by either:
 
-- Electrino (−e/6), or  
+- Electrino (−e/6), or
 - Positrino (+e/6).
 
 So each Noether core has 3 axes (H, M, L) × 2 poles = **6 polar sites**.
@@ -458,14 +458,14 @@ We distinguish:
 
 For a Gen‑I quark:
 
-- 6 scaffold architrinos (3 binaries × 2)  
-- 6 axial architrinos  
+- 6 scaffold architrinos (3 binaries × 2)
+- 6 axial architrinos
 - Total per quark: 12.
 
 For a Gen‑I baryon (3 quarks):
 
-- 18 scaffold architrinos  
-- 18 axial architrinos  
+- 18 scaffold architrinos
+- 18 axial architrinos
 - **36 architrinos** total.
 
 We will use “tri‑binary” for the structure; “Noether core” when we are emphasizing its role as the seat of conserved charges.
@@ -474,16 +474,16 @@ We will use “tri‑binary” for the structure; “Noether core” when we are
 
 Standard Model “generations” are interpreted as **excitation states** of the same tri‑binary topology:
 
-- **Gen‑I (ground‑state assembly)**  
-  - All three binaries assembled: [H, M, L].  
+- **Gen‑I (ground‑state assembly)**
+  - All three binaries assembled: [H, M, L].
   - Fully shielded H core.
 
-- **Gen‑II (first excitation)**  
-  - Only [H, M] assembled coherently.  
+- **Gen‑II (first excitation)**
+  - Only [H, M] assembled coherently.
   - L‑binary is **unassembled** (or transient): the outer shield is absent, exposing more of the H/M structure.
 
-- **Gen‑III (second excitation)**  
-  - Only [H] assembled.  
+- **Gen‑III (second excitation)**
+  - Only [H] assembled.
   - M and L cannot maintain coherent orbits at that energy; the H self‑hit core is effectively naked.
 
 We treat these as **different assembly states**, not dissociation products in time. Heavier generations require energy input to form and relax back via W/Z/$\gamma$/$\nu$ emission.
@@ -494,14 +494,14 @@ In this section, color is defined on **Gen‑I** Noether cores; higher generatio
 
 Beyond which binaries are present, their **precession order** defines a braid orientation:
 
-- **Matter** tri‑binaries: precession order $H \to M \to L$ in time (one chirality).  
+- **Matter** tri‑binaries: precession order $H \to M \to L$ in time (one chirality).
 - **Antimatter** tri‑binaries: precession order $H \to L \to M$ (opposite chirality).
 
 This **braid chirality** will underpin our distinction between particles and antiparticles across all sectors and will later feed into CP‑related questions. Here, we keep **color** as a vector‑like degree of freedom: it does **not** depend on braid chirality.
 
 #### Colorless Fermions: Axis Uniformity
 
-**Core rule:**  
+**Core rule:**
 Color charge appears only when the tri‑binary axes are **not equivalent**. If all three axes carry the same axial pattern, there is no “which axis is special?” degree of freedom → **no color**.
 
 ##### Stealth and color neutrality
@@ -520,14 +520,14 @@ This does not derive the full color algebra by itself, but it gives a clean geom
 
 - **Electron**:
   $(\text{H},\text{M},\text{L}) = (-/-,\ -/- ,\ -/-)$
-  - Each axis: net −2e/6.  
-  - Total: −6e/6 = −e.  
+  - Each axis: net −2e/6.
+  - Total: −6e/6 = −e.
   - All axes identical → SU(3)$_c$ singlet.
 
 - **Positron**:
   $(+/+,\ +/+,\ +/+)$
-  - Each axis: net +2e/6.  
-  - Total: +e.  
+  - Each axis: net +2e/6.
+  - Total: +e.
   - All axes identical → singlet.
 
 ##### Neutrinos: near-photon colorless neutral pairs
@@ -560,24 +560,24 @@ Quarks are color‑charged because **one axis is in a different axial class than
 
 Let each axis pattern be coarse‑classified as:
 
-- **P−**: pure electrino $(-\!/-)$  
-- **P+**: pure positrino $(+\!/+)$  
+- **P−**: pure electrino $(-\!/-)$
+- **P+**: pure positrino $(+\!/+)$
 - **Pm**: mixed $(-\!/+)$ (net neutral, dipolar)
 
 The key structural rule for **admissible, stable quark‑like Noether cores** is:
 
-> Exactly **two axes share the same axial class**, and the third is **different in kind** (P− vs P+ vs Pm).  
+> Exactly **two axes share the same axial class**, and the third is **different in kind** (P− vs P+ vs Pm).
 
 We **forbid** stable states with all three axes in different classes (e.g. H: P+, M: P−, L: Pm). Those “three-different” configurations have no clear background/exceptional split; in our picture they are dynamically unstable in the Noether-Sea medium and quickly relax or disintegrate.
 
 Therefore:
 
-- **Colorless**: H,M,L all same class (e.g., all P− or all Pm).  
+- **Colorless**: H,M,L all same class (e.g., all P− or all Pm).
 - **Colored quark**: H,M,L pattern is one of:
-  - $P_{\text{bkg}}, P_{\text{bkg}}, P_{\text{exc}}$  
+  - $P_{\text{bkg}}, P_{\text{bkg}}, P_{\text{exc}}$
   where $P_{\text{exc}} \ne P_{\text{bkg}}$.
 
-Color degree of freedom is then:  
+Color degree of freedom is then:
 **which axis carries $P_{\text{exc}}$?**
 
 ##### Up‑type quarks (5p, 1e)
@@ -588,18 +588,18 @@ Up‑type (u,c,t) Gen‑I quarks have:
 
 At axis‑class level:
 
-- **Two axes**: P+ ($+/+)$  
+- **Two axes**: P+ ($+/+)$
 - **One axis**: Pm (contains the single electrino; local pattern e.g. $-/+$)
 
 Thus:
 
-- Background class: P+  
+- Background class: P+
 - Exceptional class: Pm
 
 Define color basis:
 
-- $|u_H\rangle$: H axis is Pm (exceptional), M and L = P+.  
-- $|u_M\rangle$: M exceptional.  
+- $|u_H\rangle$: H axis is Pm (exceptional), M and L = P+.
+- $|u_M\rangle$: M exceptional.
 - $|u_L\rangle$: L exceptional.
 
 These span the color space:
@@ -621,24 +621,24 @@ All admissible axis‑class patterns consistent with 4e,2p and the “two‑same
 
 Written as (H,M,L):
 
-- (A) $(P-, P-, P+)$ → $(-\!/-,-/- ,+\!/+)$  
-- (B) $(P-, P+, P-)$  
+- (A) $(P-, P-, P+)$ → $(-\!/-,-/- ,+\!/+)$
+- (B) $(P-, P+, P-)$
 - (C) $(P+, P-, P-)$
 
 Here:
 
-- Background: P− on two axes.  
+- Background: P− on two axes.
 - Exceptional: P+ on one axis.
 
 ###### Family II — “one P− axis, two Pm axes”
 
-- (D) $(Pm, Pm, P-)$ → $(-\!/+,-/+,-/-)$  
-- (E) $(Pm, P-, Pm)$  
+- (D) $(Pm, Pm, P-)$ → $(-\!/+,-/+,-/-)$
+- (E) $(Pm, P-, Pm)$
 - (F) $(P-, Pm, Pm)$
 
 Here:
 
-- Background: Pm on two axes.  
+- Background: Pm on two axes.
 - Exceptional: P− on one axis.
 
 In both families, the same structural pattern appears:
@@ -647,8 +647,8 @@ In both families, the same structural pattern appears:
 
 Thus for down‑type $d$ we again define:
 
-- $|d_H\rangle$: H axis is exceptional (either P+ among P−, or P− among Pm).  
-- $|d_M\rangle$: M exceptional.  
+- $|d_H\rangle$: H axis is exceptional (either P+ among P−, or P− among Pm).
+- $|d_M\rangle$: M exceptional.
 - $|d_L\rangle$: L exceptional.
 
 and:
@@ -661,8 +661,8 @@ We must not over‑predict.
 - If **both** families were independently stable and long‑lived for the same down‑flavor, we’d have extra down‑like quarks beyond d/s/b. That is not observed.
 - Therefore, the dynamics must:
 
-  1. Select one family per flavor (e.g. d uses Family II, s uses Family I), or  
-  2. Make one family metastable/short‑lived only at high energies, or  
+  1. Select one family per flavor (e.g. d uses Family II, s uses Family I), or
+  2. Make one family metastable/short‑lived only at high energies, or
   3. Contextually select families inside hadrons (baryon environment determines which pattern survives).
 
 ##### Rigorous low-energy selection criterion
@@ -691,7 +691,7 @@ $$
 $$
 be the Floquet spectral radius of nontrivial multipliers.
 
-**Theorem (Single-family low-energy survival).**  
+**Theorem (Single-family low-energy survival).**
 Assume there exists $F_\star\in\{I,II\}$ such that:
 
 1. **Local dynamical stability:** $\rho_{F_\star}<1$.
@@ -711,7 +711,7 @@ so $\pi_{\bar F}\to 0$ as $T_{\mathrm{eff}}\to 0$. Hence exactly one down-family
 
 *Proof sketch:* stable branches are metastable wells of the same delay flow; occupation ratio follows from large-deviation/Kramers scaling with free-energy gap, and unstable branches have zero asymptotic weight.
 
-**Concrete screening corollary (Family II preference test).**  
+**Concrete screening corollary (Family II preference test).**
 If the reduced minimum can be decomposed as
 $$
 E_F^\star = E_{\text{core},F}+E_{\text{self-hit},F}+E_{\text{strain},F}-s\,N_{Pm}^{(F)},
@@ -725,13 +725,13 @@ $$
 $$
 and the stability condition $\rho_{II}<1$ holds.
 
-**Failure condition (theory-level, explicit).**  
+**Failure condition (theory-level, explicit).**
 The model fails this selection requirement if, over the low-energy ambient window relevant to nucleons,
 $$
 \rho_I<1,\qquad \rho_{II}<1,\qquad
 |\mathcal{F}_{II}-\mathcal{F}_I|\le \varepsilon_F
 $$
-for tolerance $\varepsilon_F$ set by simulation uncertainty and environmental broadening.  
+for tolerance $\varepsilon_F$ set by simulation uncertainty and environmental broadening.
 In that case both families are generically long-lived and comparably populated, which over-predicts down-type species and requires revision of the assembly-selection mechanism.
 
 #### Color Hilbert Space and SU(3) Structure
@@ -813,9 +813,9 @@ It continuously rotates exceptionality between H and M while leaving L unchanged
 
 A Gen‑I baryon (e.g., proton or neutron) consists of:
 
-- 3 quarks → 3 Noether cores  
-- Each with H, M, L axes  
-- Total of **9 axes**: H₁,M₁,L₁; H₂,M₂,L₂; H₃,M₃,L₃.  
+- 3 quarks → 3 Noether cores
+- Each with H, M, L axes
+- Total of **9 axes**: H₁,M₁,L₁; H₂,M₂,L₂; H₃,M₃,L₃.
 - 18 scaffold architrinos + 18 axial architrinos → **36 architrinos**.
 
 ##### Color singlet condition as closed braid
@@ -829,13 +829,13 @@ In tri‑binary geometry:
 - A color singlet baryon is a configuration where each of H, M, L is exceptional **once** across the three quarks, and the 9 axes form a **closed coupling network** (a closed braid).
 - Example proton (uud, schematic):
 
-  - Quark 1 (u): exceptional on H → $|u_H\rangle$  
-  - Quark 2 (u): exceptional on M → $|u_M\rangle$  
+  - Quark 1 (u): exceptional on H → $|u_H\rangle$
+  - Quark 2 (u): exceptional on M → $|u_M\rangle$
   - Quark 3 (d): exceptional on L → $|d_L\rangle$
 
 At large distances, axis‑dependent multipoles from each regime cancel:
 
-- H‑exceptionality from one quark is compensated by M and L exceptionality from others in the composite singlet combination.  
+- H‑exceptionality from one quark is compensated by M and L exceptionality from others in the composite singlet combination.
 - Net color flux into the surrounding Noether Sea is zero; only isotropic monopole fields (charge, baryon number, mass) remain.
 
 This closed 3‑strand braid (in color space) is **topologically distinct** from 2‑strand configurations (mesons). Breaking a baryon into pure leptons/mesons would require nonlocal rupture of the Noether cores: that is the topological underpinning for **baryon number conservation** in this model (proton stability).
@@ -848,13 +848,13 @@ Even for color‑singlet nucleons:
 
 Heuristic:
 
-- At inter‑nucleon separations ~ a few fm, outer L‑axes (and to some degree M‑axes) from neighboring nucleons begin to overlap and couple via the Noether-Sea tri‑binary medium.  
+- At inter‑nucleon separations ~ a few fm, outer L‑axes (and to some degree M‑axes) from neighboring nucleons begin to overlap and couple via the Noether-Sea tri‑binary medium.
 - These residual couplings act like **meson exchange** in standard nuclear physics, producing an attractive Yukawa‑like force with a hard‑core repulsion scale tied to H/M structure.
 
 We will exploit:
 
-- Down‑quark Family I vs II patterns,  
-- Axis‑overlap geometry (L‑L, L‑M interactions),  
+- Down‑quark Family I vs II patterns,
+- Axis‑overlap geometry (L‑L, L‑M interactions),
 
 to derive nucleon–nucleon potentials and binding energies in the nuclear section. Here we just note:
 
@@ -885,14 +885,14 @@ Primary topology spine: [dynamics/causal-action-functional.md](../../../../markd
 - A **Noether core / tri‑binary** is a three-axis $(H,M,L)$, six-site axial structure: the minimal unit that carries conserved charges via its internal symmetries.
 - **Colorless** charged leptons have identical axial patterns on all three axes, while neutrinos are colorless near-photon pro/anti neutral pairs; neither route supplies quark-like axis exceptionality.
 - **Quarks** have “two‑same + one‑different” axis‑class patterns:
-  - Up‑type: two P+ axes, one Pm axis.  
+  - Up‑type: two P+ axes, one Pm axis.
   - Down‑type: either (two P−, one P+) or (two Pm, one P−) families.
 - Color = which axis (H,M,L) is exceptional. This yields a natural triplet color space $\mathbb{C}^3$ on which SU(3) acts via charge‑preserving, det‑1 reconfigurations of axis exceptionality and phase.
 - **Baryon color singlets** = closed 9‑axis braids; **flux tubes** = open braids in the Noether Sea with linear energy cost per unit length → confinement.
 - Down‑quark pattern families, H/M/L regime differences, and braid orientation will feed into:
-  - Neutrino oscillation modeling,  
-  - Proton–neutron mass/moment differences,  
-  - Nuclear forces,  
+  - Neutrino oscillation modeling,
+  - Proton–neutron mass/moment differences,
+  - Nuclear forces,
   - QCD phase transition and early‑universe thermodynamics.
 
 This draft keeps the full mechanism set explicit and marks where future derivations and simulations will test and potentially falsify the construction.
@@ -1252,7 +1252,7 @@ The full SM gauge group is captured geometrically as:
 - **$B_\mu$ (hypercharge):** corridor tracking Shielded-Triad charge; mixes with $W^3$ to yield photon and $Z$.
 - **Photon:** mixed planar mode aligned to leave Shielded + weak-coupling-triad combination invariant ($Q$-coupling only).
 
-*Boson details:* see [assemblies/bosons/gluons.md](../../../../markdown/aaa/assemblies/bosons/gluons.md) (color sector) and [assemblies/bosons/electroweak-bosons.md](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) (electroweak sector) for geometry and quantum numbers of the gauge fields; they use the same $Q, T_3, Y$ conventions. (Color decoherence suppression remains a hypothesis pending simulation.) 
+*Boson details:* see [assemblies/bosons/gluons.md](../../../../markdown/aaa/assemblies/bosons/gluons.md) (color sector) and [assemblies/bosons/electroweak-bosons.md](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) (electroweak sector) for geometry and quantum numbers of the gauge fields; they use the same $Q, T_3, Y$ conventions. (Color decoherence suppression remains a hypothesis pending simulation.)
 ##### Hypercharge bookkeeping (Shielded triad → $Y$)
 
 Hypercharge is set by the net charge on the **Shielded Triad** (three hidden polar sites) plus any core offset; with $Y = 2(Q - T_3)$ this reduces to $Y = 2\,Q_{\text{shielded}}/e$ for doublets, and for singlets $T_3=0$ so $Y=2Q$.
@@ -3232,10 +3232,10 @@ The table packs both the Standard Model quark makeup and the Architrino Assembly
 
 **Color/flux neutrality schematics**
 
-*Baryon tri-core (proton-like permutations)*  
+*Baryon tri-core (proton-like permutations)*
 $u_1:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right],\quad u_2:\left[\begin{smallmatrix}+\\0\\+\end{smallmatrix}\right],\quad d:\left[\begin{smallmatrix}0\\+\\+\end{smallmatrix}\right]\;\;\Rightarrow\;$ axes permuted across cores $\Rightarrow$ net color 0.
 
-*Meson quark–antiquark pairing*  
+*Meson quark–antiquark pairing*
 $u:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\;\otimes\;\bar u:\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]\;\;\Rightarrow\;$ axis-by-axis cancellation of flux (color neutral).
 
 **Matrix key:** Each bracketed column is a core’s three binary axes (order shared within the row). `+` = positrino pair, `-` = electrino pair, `0` = mixed pair. An overbar on the quark letter denotes an anti-core.

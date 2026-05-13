@@ -1800,7 +1800,7 @@ The Master EOM is:
 
 > *Potential at all other points in time and space is irrelevant.*
 
-At time $t$, the acceleration of architrino $i$ at position $\mathbf{x}_i(t)$ depends **only** on causal wake surfaces that **intersect its current location**. 
+At time $t$, the acceleration of architrino $i$ at position $\mathbf{x}_i(t)$ depends **only** on causal wake surfaces that **intersect its current location**.
 
 - **Not relevant**: Potential at other spatial locations $\mathbf{x} \neq \mathbf{x}_i(t)$
 - **Not relevant**: Potential at other times $t' \neq t$ (except as encoded in the causal history that arrives "now")
@@ -2035,13 +2035,13 @@ Fix a bounded history interval $I_t=[a,b]\subset(-\infty,t)$ and define regulari
 - **(R1) Boundary regularity:** $0\notin F_t^{(ij)}(\partial I_t)$ (no root crossing at $a$ or $b$).
 - **(R2) Simple roots:** if $F_t^{(ij)}(t_0)=0$, then $\frac{dF_t^{(ij)}}{dt_0}(t_0)\neq 0$.
 
-**Theorem 1 (Degree invariance on regular families).**  
+**Theorem 1 (Degree invariance on regular families).**
 For any continuous deformation of worldlines/parameters that preserves (R1)-(R2), the signed degree
 $D_{ij}(t)=\deg(F_t^{(ij)},I_t,0)$ is invariant.
 
 *Proof sketch:* In 1D, $D_{ij}$ is the oriented count of simple roots. Under a regular homotopy, roots move continuously and cannot appear/disappear in the interior without becoming critical, and cannot enter/leave through the boundary by (R1). Hence the oriented count is constant.
 
-**Proposition 2 (Sub-$c_f$ monotonic single-hit regime).**  
+**Proposition 2 (Sub-$c_f$ monotonic single-hit regime).**
 If there exists $v_*<c_f$ such that $|\mathbf{v}_j(t_0)|\le v_*$ for all $t_0\in I_t$, then
 $$
 \frac{dF_t^{(ij)}}{dt_0}
@@ -2056,7 +2056,7 @@ $$
 
 *Proof sketch:* Strict positivity of the Jacobian gives monotonicity, hence injectivity. Existence under endpoint sign change follows by the intermediate value theorem.
 
-**Proposition 3 (Fold criterion and even-jump law).**  
+**Proposition 3 (Fold criterion and even-jump law).**
 In a one-parameter family $F^{(ij)}(t_0;\lambda)$ (with $\lambda$ a control parameter, e.g. receiver time or orbit parameter), interior root-count changes occur only at fold points:
 $$
 F^{(ij)}(t_0;\lambda)=0,\qquad \partial_{t_0}F^{(ij)}(t_0;\lambda)=0.
@@ -2524,7 +2524,7 @@ while preserving total emission $q$.
 
 **In the super-field-speed regime** ($|\mathbf{v}_a| > c_f$), multiple self-roots can occur; summing over all causal times with an integrable regularization ensures finite total impulse.
 
-**Convergence requirement:** As $\eta \to 0$, numerical solutions must converge to a well-defined limit. 
+**Convergence requirement:** As $\eta \to 0$, numerical solutions must converge to a well-defined limit.
 
 ###### Conditional Well-Posedness for the Regularized Exact Model
 
@@ -2557,7 +2557,7 @@ or an absolutely continuous history class. The exact choice is a regularity burd
 - **(W4) Distance floor on the branch support:** $\|\phi_i(0)-\phi_j(-\tau_{ij,\ell}(\phi))\|\ge d_{\min}>0$.
 - **(W5) Bounded charges/couplings:** $\kappa$, $|q_i|$ finite.
 
-**Conditional theorem (local well-posedness and continuation).**  
+**Conditional theorem (local well-posedness and continuation).**
 Under (W1)-(W5), for any initial history $\phi^0\in\mathcal{H}$ there exists $T>0$ and a unique solution
 $$
 \mathbf{Y}\in C^1([t_0-h,t_0+T),\mathbb{R}^{6N}),\qquad \mathbf{Y}_{t_0}=\phi^0.
@@ -2876,7 +2876,7 @@ $$
 
 ###### Spatial Hashing for History Buffers
 
-**Efficiency requirement:** Naïve all-pairs history search scales as $O(N^2 T_{\text{history}})$, intractable for $N > 100$ particles. 
+**Efficiency requirement:** Naïve all-pairs history search scales as $O(N^2 T_{\text{history}})$, intractable for $N > 100$ particles.
 
 **Required optimization:** Implement spatial hash grid with cell size $\sim c_f \Delta t_{\max}$; only search cells within causal range of receiver. Expected scaling: $O(N \log N)$.
 
@@ -2960,7 +2960,7 @@ $$
 The master EOM is a coupled system of **state‑dependent delay differential equations** with:
 
 - non-linear dependence on all worldlines,
-- implicit causal roots defined by  
+- implicit causal roots defined by
   $\|\mathbf{x}_i(t)-\mathbf{x}_j(t_0)\| = c_f (t-t_0)$,
 - potentially **multiple roots** per pair (multi‑hit, self‑hit),
 - non-smooth behavior in the $\eta \to 0$ limit.
@@ -3188,7 +3188,7 @@ Take:
 Then causal condition:
 
 $$
-\big\|\mathbf{x}(t) - \mathbf{x}(t_0)\big\| 
+\big\|\mathbf{x}(t) - \mathbf{x}(t_0)\big\|
 = 2R\left|\sin\frac{\omega (t-t_0)}{2}\right|
 = c_f (t-t_0).
 $$
@@ -3309,7 +3309,7 @@ That already:
 - Gives us analytic control of the causal roots (as solutions of a simple scalar transcendental),
 - Lets us write the self‑force as
   $$
-  \mathbf{a}_\text{self}(t) = 
+  \mathbf{a}_\text{self}(t) =
   \sum_n \kappa \frac{q^2}{r_n^2\,|J_n|} \hat{\mathbf{r}}_n,
   $$
   with $r_n = c_f \Delta_n$, $J_n = 1-\mathbf{v}(t-\Delta_n)\cdot\hat{\mathbf{r}}_n/c_f$, and directions that can be written explicitly in terms of the phase difference.
@@ -3553,21 +3553,21 @@ That’s analytically tractable and important for:
 
 The most natural targets for further analytic closure are:
 
-1. **Uniform circular self‑hit (single particle, v>c_f)**  
-   - Solve the transcendental equation  
-     $2R|\sin(\omega\Delta/2)| = c_f\Delta$  
+1. **Uniform circular self‑hit (single particle, v>c_f)**
+   - Solve the transcendental equation
+     $2R|\sin(\omega\Delta/2)| = c_f\Delta$
      asymptotically, analyze the self‑force series.
    - Deliver: explicit formulas + asymptotics for self‑force vs $v/c_f$.
 
-2. **Partner‑only circular orbit with causal delay (v<c_f)**  
+2. **Partner‑only circular orbit with causal delay (v<c_f)**
    - Derive exact expressions for radial and tangential forces.
    - Prove tangential component >0 → analytic demonstration of spiral‑in instability.
 
-3. **Algebraic equilibrium conditions for the maximum‑curvature binary**  
+3. **Algebraic equilibrium conditions for the maximum‑curvature binary**
    - Combine 1 & 2 to write down the two averaged balance equations (radial, tangential).
    - Even if they’re solved numerically, they give a **precise definition** of $R_\text{min}$ and equilibrium speed.
 
-4. **Continuum limit around homogeneous Noether Sea**  
+4. **Continuum limit around homogeneous Noether Sea**
    - Coarse‑grain master equation,
    - Derive linearized wave equation for small perturbations,
    - Extract dispersion relation $\omega(k)$.
@@ -3667,7 +3667,7 @@ $$
 
 The instantaneous power delivered to architrino $i$ by this hit is:
 
-$$ 
+$$
 P_{ij}(t;t_0)
 = \mu_{\text{arch}}\,\mathbf{a}_{ij}\cdot \mathbf{v}_i
 = \mu_{\text{arch}}\,\kappa\,\sigma_{ij}\,\frac{|q_i q_j|}{r_{ij}^2\,\left|J_{ij}(t;t_0)\right|}\, v_{r,ij},
@@ -4097,19 +4097,19 @@ Crucially, `spacetime` in this framework belongs to the effective level, not the
 An architrino in motion possesses kinetic energy and momentum.
 
 - **Kinetic Energy $E_k$**
-  
+
   A scalar quantity representing the energy of motion. For a single architrino $a$ with velocity $\mathbf{v}_a(t)$, we write
-  
+
   $$E_{k,a}(t) = K\big(|\mathbf{v}_a(t)|\big),$$
-  
+
   where $K$ is a strictly convex, monotonically increasing function with $K(0)=0$ and $K'(v)\to\infty$ as effective saturation is reached (if applicable), or growing unboundedly in the primitive limit. $K$ is left unspecified because mass is emergent from interactions between assemblies, especially the Noether-Sea tri-binaries. Strict convexity ensures a one-to-one mapping between kinetic energy and speed magnitude. Because a free Architrino has no intrinsic speed limit in the micro-model, $E_k$ is, in principle, unbounded as $|\mathbf{v}_a|\to\infty$.
 
 - **Momentum $\mathbf{p}_a$**
-  
+
   The vector counterpart of kinetic energy:
-  
+
   $$\mathbf{p}_a(t) = P\big(|\mathbf{v}_a(t)|\big)\,\hat{\mathbf{v}}_a(t), \quad \hat{\mathbf{v}}_a = \frac{\mathbf{v}_a}{|\mathbf{v}_a|},$$
-  
+
   where $P$ is a speed-dependent magnitude. Its detailed form is not postulated at the architrino level; it emerges from matching to assembly behavior.
 
 **No fundamental mass:**
@@ -4155,7 +4155,7 @@ $$\mathbf{v}_{o'} = v_r \hat{\mathbf{r}} + \mathbf{v}_\perp, \quad v_r=\mathbf{v
 Because $\mathbf{a}_{o'\leftarrow o}\parallel\hat{\mathbf{r}}$:
 
 - The **instantaneous work rate** from this hit is
-  
+
   $$
   \frac{dE_k}{dt}\bigg|_{\text{hit}}
   =
@@ -4163,7 +4163,7 @@ Because $\mathbf{a}_{o'\leftarrow o}\parallel\hat{\mathbf{r}}$:
   =
   \frac{\kappa\,\sigma_{q_o q_{o'}}\,|q_o q_{o'}|}{r^2\,|J_{o'\leftarrow o}(t;t_0)|}\,v_r.
   $$
-  
+
   Only $v_r$ contributes to instantaneous power.
 
 - A hit only changes the **along-the-line** component of velocity; sideways motion $\mathbf{v}_\perp$ is unchanged instantaneously.
@@ -4416,12 +4416,12 @@ Architrinos and their assemblies are where all the energy lives. The tri-binary 
 #### Summary and Role in the Larger Theory
 
 - **At the architrino level:**
-  
+
   Kinetic energy and potential energy are defined via the Master EOM. Exact global conservation belongs to the exact causal-action theory; in mollified working models it is the target bookkeeping structure and is exact only when the regularization preserves the underlying time-translation symmetry. The substrate law is acceleration-first; no particle-specific fundamental mass is assigned to architrinos, and speeds are unbounded in principle.
   Potential availability is geometric rather than fuel-like: causal wakes are emitted as path-history structure, while work appears only when a receiver intersects active wake branches with nonzero radial power.
 
 - **At the assembly level:**
-  
+
   Large internal energies, plus coupling to the tri-binary sea, generate:
   - Effective inertia (mass),
   - Shielded external wake signatures (tiny apparent energy compared to internal),
@@ -4430,12 +4430,12 @@ Architrinos and their assemblies are where all the energy lives. The tri-binary 
   Macroscopic quietness follows from superposition and shielding: incoherent populations cancel statistically, while phase-locked assemblies such as collinear breathers preserve localized, non-canceling wake structure.
 
 - **For spacetime and gravity:**
-  
+
   The sea of small, high-energy tri-binaries forms the Noether Sea and, at coarse-grained level, the effective spacetime medium whose energy density and stress give rise to an emergent metric. The shielding factors and internal energies of both Noether-Sea tri-binaries and "matter" assemblies will determine:
   - The effective Newton constant $G$,
   - The cosmological Noether-Sea energy density,
   - How strongly spacetime curvature responds to different kinds of energy.
-  
+
   Density-driven oblation: as the tri-binary sea encounters denser matter, local tri-binaries scale down and oblate, creating a compliance gradient that contributes directly to the effective gravitational coupling $G$.
 
 ---
@@ -4646,7 +4646,7 @@ By contrast, the maximum-curvature binary section studies a **uniform circular b
 
 We want a single story that links the spiral path, the per-hit force law, and the angular-momentum budget across the full velocity range. Below the wake speed, the binary feels only partner hits, yet the tangential component remains positive, so the spiral keeps tightening and the total orbital angular momentum of the **binary** grows each turn. We introduce a per-cycle gain parameter $\Delta L_c$ to track that growth (a **constant** increment per full revolution in this hypothesis).
 
-**Speculative continuity assumption:** as $v \to c_f$, the per-cycle gain transitions smoothly from $\Delta L_\text{cycle} = \Delta L_c$ (sub-field-speed) to $\Delta L_\text{cycle} = 2\Delta L_c$ (self-hit active). 
+**Speculative continuity assumption:** as $v \to c_f$, the per-cycle gain transitions smoothly from $\Delta L_\text{cycle} = \Delta L_c$ (sub-field-speed) to $\Delta L_\text{cycle} = 2\Delta L_c$ (self-hit active).
 
 This section treats an exponential-in-angle spiral (logarithmic spiral) as a **modeling assumption** rather than a derived law. It simply sets the bookkeeping target: a path-history force sum that yields a smooth, finite increase in $\Delta L_\text{cycle}$ at the hinge. The detailed link between the summed per-hit forces and the spiral shape remains to be derived.
 
@@ -4742,7 +4742,7 @@ Let $\delta_s$ and $\delta_p$ denote the angular phase separations (measured alo
 - **Self** (same particle): Current position -> its own past emission position that hits "now."
   - Delay time: $\tau_s$; angular separation: $\delta_s = \omega \tau_s$.
   - Chord length: $r_s = 2R \sin(\delta_s / 2)$.
- 
+
 - **Partner** (other particle): Current position -> partner's past emission position that hits "now."
   - Delay time: $\tau_p$; angular separation: $\delta_p = \omega \tau_p$.
   - Chord length: $r_p = 2R \cos(\delta_p / 2)$.
@@ -4782,12 +4782,12 @@ Let $\tilde{\delta}_s \in (0, \pi]$ and $\tilde{\delta}_p \in (0, \pi]$ denote t
 
 The full families of causal delays are:
 
-- **Self**: 
+- **Self**:
  $$
  \delta_s(m) = \tilde{\delta}_s + 2\pi m = 2s \sin(\tilde{\delta}_s / 2), \quad m = 0, 1, 2, \dots
  $$
- 
-- **Partner**: 
+
+- **Partner**:
  $$
  \delta_p(m) = \tilde{\delta}_p + 2\pi m = 2s \cos(\tilde{\delta}_p / 2), \quad m = 0, 1, 2, \dots
  $$
@@ -4949,7 +4949,7 @@ For uniform circular motion at fixed radius $R$ and constant speed $s$:
 
 ###### Apparent Obstruction: Non-Negativity of Tangential Components
 
-**Theorem (No-go for constant-speed circular orbit in the bare two-body kernel).**  
+**Theorem (No-go for constant-speed circular orbit in the bare two-body kernel).**
 In the symmetric, non-translating circular binary with canonical delayed radial forces only, the net tangential acceleration is strictly positive whenever at least one causal root contributes.
 
 $$
@@ -4962,7 +4962,7 @@ T_{\mathrm{net}}
 $$
 where $w_{p,m},w_{s,m}\ge 0$ are branch weights induced by regularization/time averaging, and $\mathcal{M}_p,\mathcal{M}_s$ are active partner/self root sets.
 
-*Proof.*  
+*Proof.*
 For any active partner branch, the tangential contribution is
 $$
 T_{p,m}
@@ -4983,7 +4983,7 @@ T_{s,m}
 $$
 The sign is branch-invariant because winding changes timing, not chord orientation in this symmetric geometry. Therefore each summand in $T_{\mathrm{net}}$ is nonnegative, and at least one is strictly positive whenever any hit exists. Hence $T_{\mathrm{net}}>0$. $\square$
 
-**Corollary.**  
+**Corollary.**
 Within the bare isolated two-body kernel, an exact constant-speed circular orbit
 ($\langle T\rangle=0$) is impossible. Any MCB-like steady state must therefore come from terms outside this kernel, e.g. medium coupling/dissipation, radiation-reaction-like closure, or genuinely multi-body tri-binary effects.
 
@@ -5008,10 +5008,10 @@ $$
 
 Two distinct balance mechanisms are now mathematically visible:
 
-1. **Near-threshold Jacobian wall.**  
+1. **Near-threshold Jacobian wall.**
    On the principal self branch, $|J_s|^{-1}$ turns on singularly as $s\downarrow 1^+$, with radial magnitude scaling like $(s-1)^{-3/2}$. This is the earliest possible obstruction to continued contraction.
 
-2. **Higher-speed multi-branch redistribution.**  
+2. **Higher-speed multi-branch redistribution.**
    At larger $s$, additional self branches turn on and redistribute the outward response across several winding sectors. In that regime the detailed balance depends on the full weighted sum over all active branches rather than on the principal branch alone.
 
 **However**: Due to the per-hit $T > 0$ result, this "maximum curvature" state remains unverified for the isolated two-body system. Its stability must be tested by the full, multi-root time-averaged dynamics.
@@ -5236,7 +5236,7 @@ $$
 
 *Statement:* If $\phi \in \mathcal{H}$ and $\tau^*$ is a simple root of $g_{ij}(\tau, \phi) = 0$ (i.e., $\partial_\tau g_{ij} \neq 0$), then there exists a neighborhood $U \subset \mathcal{H}$ of $\phi$ and a continuously differentiable functional $\tau: U \to \mathbb{R}^+$ such that $\tau(\phi) = \tau^*$.
 
-*Proof.*  
+*Proof.*
 Define
 $$
 g_{ij}(\tau,\phi)=\|\phi_i(0)-\phi_j(-\tau)\|-c_f\tau.
@@ -5287,14 +5287,14 @@ $$
 \dot{\mathbf{Y}}(t)=\mathcal{G}(\mathbf{Y}_t),\qquad
 \mathbf{Y}_{t_0}=\phi^0.
 $$
-Then there exists $T>0$ and a unique $C^1$ solution on $[t_0-h,t_0+T)$.  
+Then there exists $T>0$ and a unique $C^1$ solution on $[t_0-h,t_0+T)$.
 Equivalently, there is a unique maximal solution interval
 $$
 [t_0-h,t_{\max}),\qquad t_{\max}>t_0.
 $$
 If the optional gluing condition holds, the solution is $C^2$ at $t_0$.
 
-*Proof.*  
+*Proof.*
 Define
 $$
 \mathcal{G}(\phi)=(\phi_v(0),F(\phi)),
@@ -5306,7 +5306,7 @@ with $F$ from Definition 3.
    (\mathbf{u},\mathbf{w})\mapsto \frac{\mathbf{u}-\mathbf{w}}{\|\mathbf{u}-\mathbf{w}\|^3}
    $$
    is $C^1$ there with bounded derivative.
-2. By Assumption 1, composition with $\rho_\eta$ preserves $C^1$ regularity and bounded derivatives.  
+2. By Assumption 1, composition with $\rho_\eta$ preserves $C^1$ regularity and bounded derivatives.
 3. By Lemma 1 and Assumption 3, delay branches (where used) depend $C^1$ on history; thus branch-evaluation maps are locally Lipschitz in $\phi$.
 4. Finite sums over channels and integration over finite interval $[-h,0]$ preserve local Lipschitz continuity; hence $\mathcal{G}$ is locally Lipschitz on an open subset of $\mathcal{H}$ containing $\phi^0$.
 5. Apply the standard Banach-space existence/uniqueness theorem for state-dependent DDEs: a unique local $C^1$ solution exists and extends uniquely to a maximal interval.
@@ -5362,7 +5362,7 @@ Let $\mathbf{x}(t)$ be a solution to the master equation.
 1. **Time Translation:** For any $\tau \in \mathbb{R}$, $\mathbf{y}(t) = \mathbf{x}(t + \tau)$ is also a solution.
 2. **Spatial Isometry:** For any $R \in O(3)$ and $\mathbf{b} \in \mathbb{R}^3$, $\mathbf{y}(t) = R\mathbf{x}(t) + \mathbf{b}$ is also a solution.
 
-*Proof.*  
+*Proof.*
 For time translation, set $\mathbf{y}_i(t)=\mathbf{x}_i(t+\tau)$. If
 $t_0\in\mathcal{C}_{ij}^x(t+\tau)$ for the original solution, then
 $t_0-\tau\in\mathcal{C}_{ij}^y(t)$ because
@@ -7413,13 +7413,13 @@ The clock-law derivation imports the [transverse causal budget lemma](../../../.
 
 ###### Absolute Time vs Proper Time
 
-- **Absolute time $t$** 
- - Fundamental evolution parameter of the architrino universe. 
- - Global, universal, non‑dynamical; used by the $\mathbb{U}_{\text{now}}$ universe-state perspective (simulation clock). 
+- **Absolute time $t$**
+ - Fundamental evolution parameter of the architrino universe.
+ - Global, universal, non‑dynamical; used by the $\mathbb{U}_{\text{now}}$ universe-state perspective (simulation clock).
  - All worldlines are parametrized directly by $t$.
 
-- **Proper time $\tau$** 
- - Time read by a **physical clock**: a bound tri‑binary assembly (e.g., atomic transition, binary oscillation) interacting with the Noether Sea. 
+- **Proper time $\tau$**
+ - Time read by a **physical clock**: a bound tri‑binary assembly (e.g., atomic transition, binary oscillation) interacting with the Noether Sea.
  - Encodes how many internal oscillation cycles occur per unit $dt$.
 
 The fundamental claim is:
@@ -7453,13 +7453,13 @@ Two coupled mechanisms change the internal frequency of a tri‑binary clock:
 
 When the clock moves with velocity $\mathbf{v}$ relative to the Noether Sea:
 
-1. **Path‑length elongation:** 
+1. **Path‑length elongation:**
  Internal architrinos must traverse longer spatial paths per cycle because the clock’s center of mass is in motion. Even in the clock’s own rest frame, the underlying wake interactions are evaluated in the absolute frame where the worldline is slanted in spacetime.
 
 2. **Finite causal speed:**
  Primitive self-hit and partner-hit roots are mediated by delayed, radial path-history interactions at speed $c_f$. When those roots are dressed into an observer-level clock law, the transverse budget must be formed with the declared channel speed $c_\star$: $c_\star=c_f$ for a primitive branch test and $c_\star=c_{\text{eff}}(\mathbf{x})$ for a Noether-Sea dressed clock comparison.
 
-3. **Shape deformation (Lorentz‑link hypothesis):** 
+3. **Shape deformation (Lorentz‑link hypothesis):**
  To remain dynamically stable under increased $|\mathbf{v}|$, the tri‑binary’s outer exclusion surface becomes **oblate**, flattened along the direction of motion:
  - At low $v$, the outer exclusion surface is nearly spherical.
  - As $v\to c_\star$, that exclusion surface contracts along $\hat{\mathbf{v}}$ while maintaining transverse dimensions, yielding an ellipsoid with semi‑axes $(a_\perp, a_\perp, a_\parallel)$ and $a_\parallel < a_\perp$.
@@ -7484,14 +7484,14 @@ in the regime where the clock's motion does not significantly disturb the local 
 
 Massive assemblies polarize and densify the surrounding Noether Sea. A clock deeper in this polarized region experiences:
 
-1. **Higher local Noether density $n(\mathbf{x})$ (equivalently higher $\rho_{\text{core}}$):** 
+1. **Higher local Noether density $n(\mathbf{x})$ (equivalently higher $\rho_{\text{core}}$):**
  Interaction delays with the medium (and between internal architrinos via the medium) increase. This raises the **Noether-Sea delay factor** $\chi_{\text{sea}}$ for internal processes.
 
 2. **Effective field speed reduction $c_{\text{eff}}(\mathbf{x}) < c_f$:**
  - The propagation of wake influences is slowed in dense regions (more frequent encounters with Noether cores).
  - From the clock’s perspective, every internal force arrives “later” in $t$.
 
-3. **Tidal distortion of tri‑binary geometry:** 
+3. **Tidal distortion of tri‑binary geometry:**
  Gradients in $n$ and the effective potential $\Phi_{\text{eff}}$ compress the tri‑binary differently along radial vs tangential directions. This modifies binary radii and thus frequencies.
 
 **Gravitational hypothesis:**
@@ -7507,7 +7507,7 @@ with the sign convention chosen so that $\Phi_N < 0$ (deeper potential) yields *
 
 In a region with potential $\Phi_N(\mathbf{x})$ and clock velocity $v$ relative to the Noether Sea, we conjecture:
 $$
-\frac{d\tau}{dt} 
+\frac{d\tau}{dt}
 = \frac{\omega(v,\Phi_N,n)}{\omega_0}
 \approx \sqrt{1 + \frac{2\Phi_N}{c_0^2} - \frac{v^2}{c_0^2}}
 $$
@@ -7697,24 +7697,24 @@ Execution protocols, benchmark catalogs, and numeric pass/fail thresholds are ro
 
 This program fails—and the emergent‑metric project is likely untenable—if any of the following hold:
 
-1. **Incorrect velocity dependence:** 
+1. **Incorrect velocity dependence:**
  - If $T(v)$ cannot be made to fit $\propto \gamma(v)$ without fine‑tuning internal clock geometry or Noether-Sea parameters.
 
-2. **Wrong sign or magnitude of gravitational dilation:** 
+2. **Wrong sign or magnitude of gravitational dilation:**
  - Clocks deeper in a potential must tick slower. Any prediction of faster ticks, or gross magnitude mismatch, is fatal.
 
-3. **Directional anisotropy:** 
+3. **Directional anisotropy:**
  - If $T(v)$ depends measurably on direction in the absolute frame, violating isotropy bounds ($<10^{-16}$ sidereal modulation), the theory contradicts precision Lorentz tests.
 
-4. **Clock‑dependence:** 
+4. **Clock‑dependence:**
  - If different reasonable clock designs (different internal assemblies) yield different $d\tau/dt$ at the same $(v,\Phi_N)$ beyond experimental bounds, the emergent Equivalence Principle fails.
 
-5. **Parameter bloat:** 
+5. **Parameter bloat:**
  - If matching these effects requires introducing many independent medium parameters ($n$ profiles, ad hoc transport coefficients), the theory's naturalness score collapses; see [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md).
 
 ---
 
-**Deliverable of this document:** 
+**Deliverable of this document:**
 A concrete definition of **how** to compute $\omega(v,\Phi_{\text{eff}},n)$ for a tri‑binary clock, and a clear expression for $d\tau/dt$ in terms of those quantities.
 
 ###### Closure Program Interface (clock-to-PPN bridge)
@@ -11011,7 +11011,7 @@ Assume:
 
 #### U(1) Sector
 
-**Theorem 1 (Global phase invariance implies charge continuity).**  
+**Theorem 1 (Global phase invariance implies charge continuity).**
 If the effective action is invariant under
 $$
 \Psi \mapsto e^{i\alpha}\Psi,\qquad \alpha\in\mathbb{R},
@@ -11023,7 +11023,7 @@ $$
 
 *Proof sketch:* Apply Noether's theorem in the regularized variational setting; invariance under constant phase shifts yields the continuity equation.
 
-**Corollary (Local phase covariance requires a connection).**  
+**Corollary (Local phase covariance requires a connection).**
 For local $\alpha(x)$, invariance requires a compensating field $A_\mu$ and covariant derivative
 $$
 D_\mu=\partial_\mu-i g_1 A_\mu,
@@ -11038,7 +11038,7 @@ $$
 
 Let $\chi$ denote the local weak doublet (effective exposed-triad channel).
 
-**Proposition 2 (Local weak-basis rotations define an SU(2) connection).**  
+**Proposition 2 (Local weak-basis rotations define an SU(2) connection).**
 If physics is invariant under
 $$
 \chi(x)\mapsto U_2(x)\chi(x),\qquad U_2(x)\in SU(2),
@@ -11060,7 +11060,7 @@ $$
 
 #### SU(3) Color Sector
 
-**Theorem 3 (Color algebra closure in axis-exceptionality basis).**  
+**Theorem 3 (Color algebra closure in axis-exceptionality basis).**
 In the ordered basis $(H,M,L)$, the eight generators built from axis mixers and two diagonal traceless operators close a Lie algebra isomorphic to $\mathfrak{su}(3)$.
 
 This is the rigorous closure result already proven in [color-charge-su3](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md#algebra-closure-rigorous-statement). Therefore effective color transport acts through
@@ -11557,7 +11557,7 @@ We label the three binaries by their dynamical regime:
 
 Each binary defines one **axis** with two polar **polar sites**, each occupied by either:
 
-- Electrino (−e/6), or  
+- Electrino (−e/6), or
 - Positrino (+e/6).
 
 So each Noether core has 3 axes (H, M, L) × 2 poles = **6 polar sites**.
@@ -11569,14 +11569,14 @@ We distinguish:
 
 For a Gen‑I quark:
 
-- 6 scaffold architrinos (3 binaries × 2)  
-- 6 axial architrinos  
+- 6 scaffold architrinos (3 binaries × 2)
+- 6 axial architrinos
 - Total per quark: 12.
 
 For a Gen‑I baryon (3 quarks):
 
-- 18 scaffold architrinos  
-- 18 axial architrinos  
+- 18 scaffold architrinos
+- 18 axial architrinos
 - **36 architrinos** total.
 
 We will use “tri‑binary” for the structure; “Noether core” when we are emphasizing its role as the seat of conserved charges.
@@ -11585,16 +11585,16 @@ We will use “tri‑binary” for the structure; “Noether core” when we are
 
 Standard Model “generations” are interpreted as **excitation states** of the same tri‑binary topology:
 
-- **Gen‑I (ground‑state assembly)**  
-  - All three binaries assembled: [H, M, L].  
+- **Gen‑I (ground‑state assembly)**
+  - All three binaries assembled: [H, M, L].
   - Fully shielded H core.
 
-- **Gen‑II (first excitation)**  
-  - Only [H, M] assembled coherently.  
+- **Gen‑II (first excitation)**
+  - Only [H, M] assembled coherently.
   - L‑binary is **unassembled** (or transient): the outer shield is absent, exposing more of the H/M structure.
 
-- **Gen‑III (second excitation)**  
-  - Only [H] assembled.  
+- **Gen‑III (second excitation)**
+  - Only [H] assembled.
   - M and L cannot maintain coherent orbits at that energy; the H self‑hit core is effectively naked.
 
 We treat these as **different assembly states**, not dissociation products in time. Heavier generations require energy input to form and relax back via W/Z/$\gamma$/$\nu$ emission.
@@ -11605,14 +11605,14 @@ In this section, color is defined on **Gen‑I** Noether cores; higher generatio
 
 Beyond which binaries are present, their **precession order** defines a braid orientation:
 
-- **Matter** tri‑binaries: precession order $H \to M \to L$ in time (one chirality).  
+- **Matter** tri‑binaries: precession order $H \to M \to L$ in time (one chirality).
 - **Antimatter** tri‑binaries: precession order $H \to L \to M$ (opposite chirality).
 
 This **braid chirality** will underpin our distinction between particles and antiparticles across all sectors and will later feed into CP‑related questions. Here, we keep **color** as a vector‑like degree of freedom: it does **not** depend on braid chirality.
 
 ##### Colorless Fermions: Axis Uniformity
 
-**Core rule:**  
+**Core rule:**
 Color charge appears only when the tri‑binary axes are **not equivalent**. If all three axes carry the same axial pattern, there is no “which axis is special?” degree of freedom → **no color**.
 
 ###### Stealth and color neutrality
@@ -11631,14 +11631,14 @@ This does not derive the full color algebra by itself, but it gives a clean geom
 
 - **Electron**:
   $(\text{H},\text{M},\text{L}) = (-/-,\ -/- ,\ -/-)$
-  - Each axis: net −2e/6.  
-  - Total: −6e/6 = −e.  
+  - Each axis: net −2e/6.
+  - Total: −6e/6 = −e.
   - All axes identical → SU(3)$_c$ singlet.
 
 - **Positron**:
   $(+/+,\ +/+,\ +/+)$
-  - Each axis: net +2e/6.  
-  - Total: +e.  
+  - Each axis: net +2e/6.
+  - Total: +e.
   - All axes identical → singlet.
 
 ###### Neutrinos: near-photon colorless neutral pairs
@@ -11671,24 +11671,24 @@ Quarks are color‑charged because **one axis is in a different axial class than
 
 Let each axis pattern be coarse‑classified as:
 
-- **P−**: pure electrino $(-\!/-)$  
-- **P+**: pure positrino $(+\!/+)$  
+- **P−**: pure electrino $(-\!/-)$
+- **P+**: pure positrino $(+\!/+)$
 - **Pm**: mixed $(-\!/+)$ (net neutral, dipolar)
 
 The key structural rule for **admissible, stable quark‑like Noether cores** is:
 
-> Exactly **two axes share the same axial class**, and the third is **different in kind** (P− vs P+ vs Pm).  
+> Exactly **two axes share the same axial class**, and the third is **different in kind** (P− vs P+ vs Pm).
 
 We **forbid** stable states with all three axes in different classes (e.g. H: P+, M: P−, L: Pm). Those “three-different” configurations have no clear background/exceptional split; in our picture they are dynamically unstable in the Noether-Sea medium and quickly relax or disintegrate.
 
 Therefore:
 
-- **Colorless**: H,M,L all same class (e.g., all P− or all Pm).  
+- **Colorless**: H,M,L all same class (e.g., all P− or all Pm).
 - **Colored quark**: H,M,L pattern is one of:
-  - $P_{\text{bkg}}, P_{\text{bkg}}, P_{\text{exc}}$  
+  - $P_{\text{bkg}}, P_{\text{bkg}}, P_{\text{exc}}$
   where $P_{\text{exc}} \ne P_{\text{bkg}}$.
 
-Color degree of freedom is then:  
+Color degree of freedom is then:
 **which axis carries $P_{\text{exc}}$?**
 
 ###### Up‑type quarks (5p, 1e)
@@ -11699,18 +11699,18 @@ Up‑type (u,c,t) Gen‑I quarks have:
 
 At axis‑class level:
 
-- **Two axes**: P+ ($+/+)$  
+- **Two axes**: P+ ($+/+)$
 - **One axis**: Pm (contains the single electrino; local pattern e.g. $-/+$)
 
 Thus:
 
-- Background class: P+  
+- Background class: P+
 - Exceptional class: Pm
 
 Define color basis:
 
-- $|u_H\rangle$: H axis is Pm (exceptional), M and L = P+.  
-- $|u_M\rangle$: M exceptional.  
+- $|u_H\rangle$: H axis is Pm (exceptional), M and L = P+.
+- $|u_M\rangle$: M exceptional.
 - $|u_L\rangle$: L exceptional.
 
 These span the color space:
@@ -11732,24 +11732,24 @@ All admissible axis‑class patterns consistent with 4e,2p and the “two‑same
 
 Written as (H,M,L):
 
-- (A) $(P-, P-, P+)$ → $(-\!/-,-/- ,+\!/+)$  
-- (B) $(P-, P+, P-)$  
+- (A) $(P-, P-, P+)$ → $(-\!/-,-/- ,+\!/+)$
+- (B) $(P-, P+, P-)$
 - (C) $(P+, P-, P-)$
 
 Here:
 
-- Background: P− on two axes.  
+- Background: P− on two axes.
 - Exceptional: P+ on one axis.
 
 ###### Family II — “one P− axis, two Pm axes”
 
-- (D) $(Pm, Pm, P-)$ → $(-\!/+,-/+,-/-)$  
-- (E) $(Pm, P-, Pm)$  
+- (D) $(Pm, Pm, P-)$ → $(-\!/+,-/+,-/-)$
+- (E) $(Pm, P-, Pm)$
 - (F) $(P-, Pm, Pm)$
 
 Here:
 
-- Background: Pm on two axes.  
+- Background: Pm on two axes.
 - Exceptional: P− on one axis.
 
 In both families, the same structural pattern appears:
@@ -11758,8 +11758,8 @@ In both families, the same structural pattern appears:
 
 Thus for down‑type $d$ we again define:
 
-- $|d_H\rangle$: H axis is exceptional (either P+ among P−, or P− among Pm).  
-- $|d_M\rangle$: M exceptional.  
+- $|d_H\rangle$: H axis is exceptional (either P+ among P−, or P− among Pm).
+- $|d_M\rangle$: M exceptional.
 - $|d_L\rangle$: L exceptional.
 
 and:
@@ -11772,8 +11772,8 @@ We must not over‑predict.
 - If **both** families were independently stable and long‑lived for the same down‑flavor, we’d have extra down‑like quarks beyond d/s/b. That is not observed.
 - Therefore, the dynamics must:
 
-  1. Select one family per flavor (e.g. d uses Family II, s uses Family I), or  
-  2. Make one family metastable/short‑lived only at high energies, or  
+  1. Select one family per flavor (e.g. d uses Family II, s uses Family I), or
+  2. Make one family metastable/short‑lived only at high energies, or
   3. Contextually select families inside hadrons (baryon environment determines which pattern survives).
 
 ###### Rigorous low-energy selection criterion
@@ -11802,7 +11802,7 @@ $$
 $$
 be the Floquet spectral radius of nontrivial multipliers.
 
-**Theorem (Single-family low-energy survival).**  
+**Theorem (Single-family low-energy survival).**
 Assume there exists $F_\star\in\{I,II\}$ such that:
 
 1. **Local dynamical stability:** $\rho_{F_\star}<1$.
@@ -11822,7 +11822,7 @@ so $\pi_{\bar F}\to 0$ as $T_{\mathrm{eff}}\to 0$. Hence exactly one down-family
 
 *Proof sketch:* stable branches are metastable wells of the same delay flow; occupation ratio follows from large-deviation/Kramers scaling with free-energy gap, and unstable branches have zero asymptotic weight.
 
-**Concrete screening corollary (Family II preference test).**  
+**Concrete screening corollary (Family II preference test).**
 If the reduced minimum can be decomposed as
 $$
 E_F^\star = E_{\text{core},F}+E_{\text{self-hit},F}+E_{\text{strain},F}-s\,N_{Pm}^{(F)},
@@ -11836,13 +11836,13 @@ $$
 $$
 and the stability condition $\rho_{II}<1$ holds.
 
-**Failure condition (theory-level, explicit).**  
+**Failure condition (theory-level, explicit).**
 The model fails this selection requirement if, over the low-energy ambient window relevant to nucleons,
 $$
 \rho_I<1,\qquad \rho_{II}<1,\qquad
 |\mathcal{F}_{II}-\mathcal{F}_I|\le \varepsilon_F
 $$
-for tolerance $\varepsilon_F$ set by simulation uncertainty and environmental broadening.  
+for tolerance $\varepsilon_F$ set by simulation uncertainty and environmental broadening.
 In that case both families are generically long-lived and comparably populated, which over-predicts down-type species and requires revision of the assembly-selection mechanism.
 
 ##### Color Hilbert Space and SU(3) Structure
@@ -11924,9 +11924,9 @@ It continuously rotates exceptionality between H and M while leaving L unchanged
 
 A Gen‑I baryon (e.g., proton or neutron) consists of:
 
-- 3 quarks → 3 Noether cores  
-- Each with H, M, L axes  
-- Total of **9 axes**: H₁,M₁,L₁; H₂,M₂,L₂; H₃,M₃,L₃.  
+- 3 quarks → 3 Noether cores
+- Each with H, M, L axes
+- Total of **9 axes**: H₁,M₁,L₁; H₂,M₂,L₂; H₃,M₃,L₃.
 - 18 scaffold architrinos + 18 axial architrinos → **36 architrinos**.
 
 ###### Color singlet condition as closed braid
@@ -11940,13 +11940,13 @@ In tri‑binary geometry:
 - A color singlet baryon is a configuration where each of H, M, L is exceptional **once** across the three quarks, and the 9 axes form a **closed coupling network** (a closed braid).
 - Example proton (uud, schematic):
 
-  - Quark 1 (u): exceptional on H → $|u_H\rangle$  
-  - Quark 2 (u): exceptional on M → $|u_M\rangle$  
+  - Quark 1 (u): exceptional on H → $|u_H\rangle$
+  - Quark 2 (u): exceptional on M → $|u_M\rangle$
   - Quark 3 (d): exceptional on L → $|d_L\rangle$
 
 At large distances, axis‑dependent multipoles from each regime cancel:
 
-- H‑exceptionality from one quark is compensated by M and L exceptionality from others in the composite singlet combination.  
+- H‑exceptionality from one quark is compensated by M and L exceptionality from others in the composite singlet combination.
 - Net color flux into the surrounding Noether Sea is zero; only isotropic monopole fields (charge, baryon number, mass) remain.
 
 This closed 3‑strand braid (in color space) is **topologically distinct** from 2‑strand configurations (mesons). Breaking a baryon into pure leptons/mesons would require nonlocal rupture of the Noether cores: that is the topological underpinning for **baryon number conservation** in this model (proton stability).
@@ -11959,13 +11959,13 @@ Even for color‑singlet nucleons:
 
 Heuristic:
 
-- At inter‑nucleon separations ~ a few fm, outer L‑axes (and to some degree M‑axes) from neighboring nucleons begin to overlap and couple via the Noether-Sea tri‑binary medium.  
+- At inter‑nucleon separations ~ a few fm, outer L‑axes (and to some degree M‑axes) from neighboring nucleons begin to overlap and couple via the Noether-Sea tri‑binary medium.
 - These residual couplings act like **meson exchange** in standard nuclear physics, producing an attractive Yukawa‑like force with a hard‑core repulsion scale tied to H/M structure.
 
 We will exploit:
 
-- Down‑quark Family I vs II patterns,  
-- Axis‑overlap geometry (L‑L, L‑M interactions),  
+- Down‑quark Family I vs II patterns,
+- Axis‑overlap geometry (L‑L, L‑M interactions),
 
 to derive nucleon–nucleon potentials and binding energies in the nuclear section. Here we just note:
 
@@ -11996,14 +11996,14 @@ Primary topology spine: [dynamics/causal-action-functional.md](../../../../markd
 - A **Noether core / tri‑binary** is a three-axis $(H,M,L)$, six-site axial structure: the minimal unit that carries conserved charges via its internal symmetries.
 - **Colorless** charged leptons have identical axial patterns on all three axes, while neutrinos are colorless near-photon pro/anti neutral pairs; neither route supplies quark-like axis exceptionality.
 - **Quarks** have “two‑same + one‑different” axis‑class patterns:
-  - Up‑type: two P+ axes, one Pm axis.  
+  - Up‑type: two P+ axes, one Pm axis.
   - Down‑type: either (two P−, one P+) or (two Pm, one P−) families.
 - Color = which axis (H,M,L) is exceptional. This yields a natural triplet color space $\mathbb{C}^3$ on which SU(3) acts via charge‑preserving, det‑1 reconfigurations of axis exceptionality and phase.
 - **Baryon color singlets** = closed 9‑axis braids; **flux tubes** = open braids in the Noether Sea with linear energy cost per unit length → confinement.
 - Down‑quark pattern families, H/M/L regime differences, and braid orientation will feed into:
-  - Neutrino oscillation modeling,  
-  - Proton–neutron mass/moment differences,  
-  - Nuclear forces,  
+  - Neutrino oscillation modeling,
+  - Proton–neutron mass/moment differences,
+  - Nuclear forces,
   - QCD phase transition and early‑universe thermodynamics.
 
 This draft keeps the full mechanism set explicit and marks where future derivations and simulations will test and potentially falsify the construction.
@@ -12363,7 +12363,7 @@ The full SM gauge group is captured geometrically as:
 - **$B_\mu$ (hypercharge):** corridor tracking Shielded-Triad charge; mixes with $W^3$ to yield photon and $Z$.
 - **Photon:** mixed planar mode aligned to leave Shielded + weak-coupling-triad combination invariant ($Q$-coupling only).
 
-*Boson details:* see [assemblies/bosons/gluons.md](../../../../markdown/aaa/assemblies/bosons/gluons.md) (color sector) and [assemblies/bosons/electroweak-bosons.md](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) (electroweak sector) for geometry and quantum numbers of the gauge fields; they use the same $Q, T_3, Y$ conventions. (Color decoherence suppression remains a hypothesis pending simulation.) 
+*Boson details:* see [assemblies/bosons/gluons.md](../../../../markdown/aaa/assemblies/bosons/gluons.md) (color sector) and [assemblies/bosons/electroweak-bosons.md](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) (electroweak sector) for geometry and quantum numbers of the gauge fields; they use the same $Q, T_3, Y$ conventions. (Color decoherence suppression remains a hypothesis pending simulation.)
 ###### Hypercharge bookkeeping (Shielded triad → $Y$)
 
 Hypercharge is set by the net charge on the **Shielded Triad** (three hidden polar sites) plus any core offset; with $Y = 2(Q - T_3)$ this reduces to $Y = 2\,Q_{\text{shielded}}/e$ for doublets, and for singlets $T_3=0$ so $Y=2Q$.
@@ -14343,10 +14343,10 @@ The table packs both the Standard Model quark makeup and the Architrino Assembly
 
 **Color/flux neutrality schematics**
 
-*Baryon tri-core (proton-like permutations)*  
+*Baryon tri-core (proton-like permutations)*
 $u_1:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right],\quad u_2:\left[\begin{smallmatrix}+\\0\\+\end{smallmatrix}\right],\quad d:\left[\begin{smallmatrix}0\\+\\+\end{smallmatrix}\right]\;\;\Rightarrow\;$ axes permuted across cores $\Rightarrow$ net color 0.
 
-*Meson quark–antiquark pairing*  
+*Meson quark–antiquark pairing*
 $u:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\;\otimes\;\bar u:\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]\;\;\Rightarrow\;$ axis-by-axis cancellation of flux (color neutral).
 
 **Matrix key:** Each bracketed column is a core’s three binary axes (order shared within the row). `+` = positrino pair, `-` = electrino pair, `0` = mixed pair. An overbar on the quark letter denotes an anti-core.
@@ -16353,8 +16353,8 @@ These are the four points where $\mathbb{A}\mathbb{A}\mathbb{A}$ maps standard q
 > **Status:** The rule below is a phenomenological summary of micro-dynamics, not a derivation.
 >
 > **Toy dynamics (one plausible micro-model):** Let $S$ be an action-like variable and $E$ an energy-like slow variable.
-> $\dot S = E - E_{\mathrm{ref}}$  
-> $\dot E = -\gamma (E - E_{\mathrm{ref}}) + F_{\mathrm{ext}}(t) + \kappa M(t-\tau)$  
+> $\dot S = E - E_{\mathrm{ref}}$
+> $\dot E = -\gamma (E - E_{\mathrm{ref}}) + F_{\mathrm{ext}}(t) + \kappa M(t-\tau)$
 > A basin flip occurs when $S$ crosses $S = n h$. A finite Lyapunov time $\tau_L$ and typical forcing scale $|F_{\mathrm{ext}}|$ yield a bracket $\delta \sim |F_{\mathrm{ext}}| \tau_L$ (order-of-magnitude), with measurement back-action contributing at the same scale.
 >
 > #### **Outer Binary as a Quasi-Harmonic Oscillator (Attractor Bands)**
@@ -16665,7 +16665,7 @@ The "collapse" of the wavefunction is not a spontaneous, non-physical violation 
 
 Assemblies such as tri-binaries possess internal slow variables that dictate their resonant states. When an assembly interacts with a measurement apparatus (a macroscopic complex of assemblies), the combined system enters a metastable configuration. The incoming potential sum drives the system toward a bifurcation threshold.
 
-Once the accumulated path-history forces push the assembly's action across the $h$-scale separatrix, the system falls into a new, distinct basin of attraction (e.g., transitioning from an excited orbital resonance to a ground state, or locking into a specific spatial trajectory). 
+Once the accumulated path-history forces push the assembly's action across the $h$-scale separatrix, the system falls into a new, distinct basin of attraction (e.g., transitioning from an excited orbital resonance to a ground state, or locking into a specific spatial trajectory).
 
 For spin measurements, the corresponding basin program is the Stern-Gerlach-like response model in [Angular Momentum and Spin](../../../../markdown/aaa/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response), where the apparatus couples to the full Noether-core spin ledger rather than to a preassigned spin label.
 
@@ -17019,9 +17019,9 @@ The standard formulation of quantum mechanics relies on the abstract unitary evo
 
 #### The Tri-Binary Qubit and Phase Space
 
-A physical qubit corresponds to the stable orientational states of a tri-binary assembly. Let $\hat{\mathbf{n}}_{\text{in}}$, $\hat{\mathbf{n}}_{\text{mid}}$, and $\hat{\mathbf{n}}_{\text{out}}$ denote the normal vectors of the inner ($v > c_f$), middle ($v = c_f$), and outer ($v < c_f$) binary orbital planes, respectively. 
+A physical qubit corresponds to the stable orientational states of a tri-binary assembly. Let $\hat{\mathbf{n}}_{\text{in}}$, $\hat{\mathbf{n}}_{\text{mid}}$, and $\hat{\mathbf{n}}_{\text{out}}$ denote the normal vectors of the inner ($v > c_f$), middle ($v = c_f$), and outer ($v < c_f$) binary orbital planes, respectively.
 
-The computational basis states $|0\rangle$ and $|1\rangle$ are defined as the two meta-stable, minimal-energy topological alignments of $\hat{\mathbf{n}}_{\text{in}}$ and $\hat{\mathbf{n}}_{\text{out}}$ relative to the middle binary fulcrum $\hat{\mathbf{n}}_{\text{mid}}$. 
+The computational basis states $|0\rangle$ and $|1\rangle$ are defined as the two meta-stable, minimal-energy topological alignments of $\hat{\mathbf{n}}_{\text{in}}$ and $\hat{\mathbf{n}}_{\text{out}}$ relative to the middle binary fulcrum $\hat{\mathbf{n}}_{\text{mid}}$.
 
 The abstract Hilbert space $\mathcal{H}$ serves as an effective description of the continuous non-Markovian phase space $\Gamma$. The dynamics of the constituent architrinos are governed by the causal-action master equation:
 
@@ -17029,7 +17029,7 @@ $$
 \mathbf{a}_i(t) = \kappa \sum_{j} \frac{\sigma_{ij} \epsilon^2}{\|\mathbf{r}_i(t) - \mathbf{r}_j(t_{\text{hist}})\|^2} \hat{\mathbf{u}}_{ij}
 $$
 
-where $t_{\text{hist}} = t - \|\mathbf{r}_i(t) - \mathbf{r}_j(t_{\text{hist}})\| / c_f$ defines the path-history intersection time. 
+where $t_{\text{hist}} = t - \|\mathbf{r}_i(t) - \mathbf{r}_j(t_{\text{hist}})\| / c_f$ defines the path-history intersection time.
 
 Superposition is not a linear combination of independent ontological branches. It is a bounded, precessional limit cycle in $\Gamma$. During superposition, the assembly continuously emits polarized potential along its causal wake, exploring multiple stable path-histories simultaneously without settling into a singular orientational attractor.
 
@@ -17045,7 +17045,7 @@ Under that bounded-geometry condition, $\mathbf{a}_i(t)$ remains bounded on the 
 
 #### Unitary Evolution and Topological Torques
 
-Quantum gates correspond to continuous, energy-conserving topological torques applied to the tri-binary orbital planes. 
+Quantum gates correspond to continuous, energy-conserving topological torques applied to the tri-binary orbital planes.
 
 * **Pauli Operators ($X, Y, Z$):** These map to discrete $\pi$-rotations of the tri-binary orientation axes. The torque $\boldsymbol{\tau} = \int \mathbf{r} \times \mathbf{F}_{\text{hist}} d^3x$ is applied via external causal wakes, smoothly rotating $\hat{\mathbf{n}}_{\text{in}}$ and $\hat{\mathbf{n}}_{\text{out}}$ while the middle binary maintains the $v = c_f$ stability threshold.
 * **Hadamard Operator ($H$):** This operation is modeled as a critical bifurcation. The applied torque should drive the assembly into a controlled neighborhood of the saddle separating the $|0\rangle$ and $|1\rangle$ attractors, with an equiprobable meta-stable precessional state as the closure target rather than an assumed result.
@@ -17056,7 +17056,7 @@ To prevent ionization or irreversible symmetry breaking during these operations,
 
 Non-local correlation in the $\mathbb{A}\mathbb{A}\mathbb{A}$ model arises physically from phase-locking via delayed interactions along the causal wake surface. There is no instantaneous action at a distance.
 
-* **Phase-Locking:** As the causal wakes of two assemblies intersect, the continuous $1/r^2$ path-history potentials force their orbital phases into coupled attractors. 
+* **Phase-Locking:** As the causal wakes of two assemblies intersect, the continuous $1/r^2$ path-history potentials force their orbital phases into coupled attractors.
 * **Controlled-NOT (CNOT) Gate:** This represents conditional logic where the target assembly's allowable phase space is dynamically bounded by the causal wake of the control assembly. The $v=c_f$ middle binary of the target assembly acts as a resonant receiver, only permitting a bit-flip torque if the control assembly's wake possesses the specific polarization geometry of the $|1\rangle$ state.
 * **Bell States:** These are symmetrical, coupled precessional states maintained by continuous, bidirectional potential flux between assemblies. The correlation is sustained by the shared path-history of the two structures.
 
@@ -17074,7 +17074,7 @@ Decoherence is the continuous loss of path-history coherence due to uncharacteri
 * **Coherence Limits:** The model predicts a medium-dependent contribution to coherence loss, scaling with local Noether-core density, represented by $\rho_{\text{core}}(\mathbf{x},t)$ or normalized density $n(\mathbf{x},t)$. This is a closure target alongside standard thermal, electromagnetic, and apparatus-noise channels, not an already-derived absolute bound.
 
 #### Statistical Measure and the Born Rule Emergence
-While the trajectory of a single tri-binary under measurement is strictly deterministic, macroscopic observables yield robust probabilistic distributions. This effective randomness originates from the microstate-sensitive initial conditions of the background Noether Sea. 
+While the trajectory of a single tri-binary under measurement is strictly deterministic, macroscopic observables yield robust probabilistic distributions. This effective randomness originates from the microstate-sensitive initial conditions of the background Noether Sea.
 
 * **Invariant Measure Target:** The fluctuating local Noether-Sea assemblies should define, or approximate, an invariant probability measure $\mu(\Gamma_{\text{eff}})$ on the effective phase space.
 * **Basin Volume Mapping Target:** The probability $P_k$ of relaxing into a specific eigenstate $|k\rangle$ should be derived from the phase-space volume of its corresponding attractor basin $\mathcal{B}_k$, weighted by the inferred measure: $P_k = \int_{\mathcal{B}_k} d\mu(\Gamma_{\text{eff}})$.
@@ -17083,8 +17083,8 @@ While the trajectory of a single tri-binary under measurement is strictly determ
 #### Kinetic Limits and Decoherence
 The continuous loss of path-history coherence must be formalized as a transport phenomenon within the Noether Sea, or in bridge prose the spacetime medium.
 
-* **Fokker-Planck Dynamics:** By coarse-graining the deterministic path-history master equation over the fast, small-amplitude interactions of the local Noether Sea, the tri-binary orientation evolves according to an effective Fokker-Planck equation. 
-* **Diffusion and Drift:** The unitary topological torques provide the deterministic drift vector, while the background assembly interactions generate the diffusion tensor. 
+* **Fokker-Planck Dynamics:** By coarse-graining the deterministic path-history master equation over the fast, small-amplitude interactions of the local Noether Sea, the tri-binary orientation evolves according to an effective Fokker-Planck equation.
+* **Diffusion and Drift:** The unitary topological torques provide the deterministic drift vector, while the background assembly interactions generate the diffusion tensor.
 * **Decoherence Timescales:** The decoherence time $\tau_d$ is a derivation target from the Lyapunov spectrum of the local Noether-Sea state and the spatial density variables $\rho_{\text{core}}(\mathbf{x},t)$ or $n(\mathbf{x},t)$. It is not an intrinsic property of the tri-binary, but a measure of the local medium's entropy production rate during the operation.
 
 #### Statistical Falsifiability and Observables
@@ -17360,13 +17360,13 @@ In standard quantum mechanics, a physical system can exist simultaneously in mul
 $$
 |\psi\rangle = \sum_n c_n |n\rangle
 $$
-The coefficients $c_n$ are complex probability amplitudes. In ordinary non-relativistic, fixed-particle-number quantum mechanics, the system evolves deterministically according to the linear Schrödinger equation until a measurement occurs. Upon measurement, the orthodox (Copenhagen) interpretation posits a discontinuous "collapse" of the wavefunction, where the system instantaneously projects into a single basis state $|k\rangle$ with probability $P_k = |c_k|^2$ (the Born rule). 
+The coefficients $c_n$ are complex probability amplitudes. In ordinary non-relativistic, fixed-particle-number quantum mechanics, the system evolves deterministically according to the linear Schrödinger equation until a measurement occurs. Upon measurement, the orthodox (Copenhagen) interpretation posits a discontinuous "collapse" of the wavefunction, where the system instantaneously projects into a single basis state $|k\rangle$ with probability $P_k = |c_k|^2$ (the Born rule).
 
 Traditional superposition treats the indeterminacy as fundamental and ontological: prior to measurement, the particle possesses no definite state or trajectory.
 
 ##### Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$) Mechanism
 
-In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, superposition is an epistemic (operational) description of an underlying deterministic, multistable dynamical system. At the fundamental level, every architrino possesses a definite position and velocity in the Euclidean void at all absolute times. There is no ontological smearing. 
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, superposition is an epistemic (operational) description of an underlying deterministic, multistable dynamical system. At the fundamental level, every architrino possesses a definite position and velocity in the Euclidean void at all absolute times. There is no ontological smearing.
 
 The linearity of quantum superposition arises strictly from the linearity of the Master Equation: the total potential experienced by any receiver is the exact, unmediated linear sum of all Jacobian-weighted inverse-square causal wake-surface intersections at its current location.
 
@@ -17390,7 +17390,7 @@ The correspondence between the quantum formalism and architrino micro-dynamics i
 Treating superposition as a dynamically maintained metastability rather than a fundamental ontological blur imposes strict, testable constraints on the system.
 
 *   **Claim**: Superposition represents a metastable dynamical state subject to local causal wake interactions, and "collapse" is a continuous, finite-time threshold crossing.
-*   **Prediction**: The state transition (collapse) time is finite and bounded by the local field speed $c_f$, the physical extent of the interacting assemblies, and the local density of the Noether Sea. 
+*   **Prediction**: The state transition (collapse) time is finite and bounded by the local field speed $c_f$, the physical extent of the interacting assemblies, and the local density of the Noether Sea.
 *   **Failure Mode**: Observation of strictly instantaneous state updates across space-like separated macroscopic distances—without mediation by previously correlated local hidden variables in the shared path history—falsifies the mechanism.
 *   **Next Steps**: Simulation of the Master Equation for a metastable outer binary subjected to modeled Noether-Sea noise is required to derive the Born rule ($P_n = |c_n|^2$) analytically from the fractional phase-space volumes of the competing attractors.
 
@@ -17418,9 +17418,9 @@ This document maps the traditional "Measurement Problem" and the phenomenon of w
 
 ##### The Traditional Measurement Problem
 
-In the textbook non-relativistic, fixed-particle-number framing of quantum mechanics, the evolution of a closed system is strictly linear and unitary, governed by the Schrödinger equation. However, upon "measurement," the system is postulated to undergo a discontinuous, non-unitary projection (collapse) into an eigenstate of the measured observable. 
+In the textbook non-relativistic, fixed-particle-number framing of quantum mechanics, the evolution of a closed system is strictly linear and unitary, governed by the Schrödinger equation. However, upon "measurement," the system is postulated to undergo a discontinuous, non-unitary projection (collapse) into an eigenstate of the measured observable.
 
-This dualistic evolution introduces the Measurement Problem: 
+This dualistic evolution introduces the Measurement Problem:
 1. The formalism provides no physical definition of what constitutes a "measurement" or an "observer."
 2. It fails to explain how a linear dynamic generates a nonlinear, irreversible outcome.
 3. It forces an artificial epistemic boundary (the Heisenberg cut) between the quantum system and the classical measurement apparatus.
@@ -17431,7 +17431,7 @@ Traditional interpretations typically resolve this by either treating the wavefu
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework rejects the projection postulate as a fundamental physical process. Instead, the universe evolves continuously in absolute time within a Euclidean void, governed strictly by the deterministic Master Equation. There is no ontological distinction between a "measured system" and a "measurement apparatus"—both are interacting tri-binary assemblies immersed in the Noether Sea.
 
-What standard quantum mechanics describes as "wavefunction collapse" maps directly to **threshold resolution** in a multistable dynamical system. 
+What standard quantum mechanics describes as "wavefunction collapse" maps directly to **threshold resolution** in a multistable dynamical system.
 
 When an assembly is in a quantum superposition, it occupies a metastable boundary zone between distinct attractor basins (e.g., hovering near the symmetry-breaking field speed threshold $v = c_f$, or at an edge-condition between outer-binary resonance bands). The "measurement" is a physical interaction where the macroscopic apparatus subjects the target assembly to a targeted, high-intensity potential gradient (a structured sum of causal wake surfaces).
 
@@ -17443,14 +17443,14 @@ The correspondence between the quantum mechanical measurement formalism and arch
 
 *   **The Measured System**: A tri-binary assembly in a metastable configuration, delicately balanced between multiple stable geometric phases or orbital resonance bands.
 *   **The Apparatus**: A massive complex of tri-binary assemblies that injects a structured potential perturbation (action) sufficient to overwhelm the target's metastability.
-*   **The Measurement Interaction**: The deterministic exchange of causal wake surfaces between the apparatus and the target assembly. 
-*   **Wavefunction Collapse**: The continuous, finite-time physical transit of the target assembly across a phase-space separatrix, settling into a new stable attractor. 
+*   **The Measurement Interaction**: The deterministic exchange of causal wake surfaces between the apparatus and the target assembly.
+*   **Wavefunction Collapse**: The continuous, finite-time physical transit of the target assembly across a phase-space separatrix, settling into a new stable attractor.
 *   **Irreversibility / Record Creation**: The excess energy and phase information from the transition are dissipated into the surrounding Noether Sea and the macroscopic apparatus. This thermalization makes the transition operationally irreversible, cementing the macroscopic record.
 *   **The Born Rule ($P_k = |c_k|^2$)**: The emergent statistical distribution reflecting the relative fractional volumes of the competing attractor basins in the target's phase space, mapped over the standard background noise of the Noether Sea.
 
 ##### Overcoming the Heisenberg Cut
 
-Because both the target and the detector are governed by the same underlying Master Equation, the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework eliminates the Heisenberg cut. A "measurement" requires no conscious observer; it is merely an interaction involving sufficient action transfer (on the scale of $h$) and sufficient environmental dissipation to lock an assembly into a new limit cycle and prevent coherent revival. 
+Because both the target and the detector are governed by the same underlying Master Equation, the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework eliminates the Heisenberg cut. A "measurement" requires no conscious observer; it is merely an interaction involving sufficient action transfer (on the scale of $h$) and sufficient environmental dissipation to lock an assembly into a new limit cycle and prevent coherent revival.
 
 The threshold for a "record" is determined entirely by the stiffness of the local Noether Sea and the decoherence timescale of the surrounding assembly lattice.
 
@@ -18866,9 +18866,9 @@ This chapter maps the Planck scale into tri-binary geometry and dynamics. The in
 
 We propose that the Planck scale corresponds, in the architrino architecture, to a specific **alignment-lock state** of tri-binary assemblies in the Noether Sea:
 
-> 
+>
 > **Working Thesis (Planck Alignment Horizon).**
-> 
+>
 > A tri-binary reaches the Planck state when, in the forward sector, both component speeds approach the field speed $c_f$ and the **full delay-feedback loop** admits a final, marginally stable, phase-locked configuration. The component-speed statement and the combined-speed statement are distinct: $v_{\text{trans}}\to c_f$ and $v_{\text{orb}}^{\text{tan}}\to c_f$ name the terminal component limits, while $v_{\text{eff}}=\|\mathbf{v}_{\text{trans}}+\mathbf{v}_{\text{orb}}^{\text{tan}}\|$ names the forward-sector vector sum used for wedge geometry. In this state:
 > 1. The kinematic transition to flattening occurs as $v_{\text{trans}} \to c_f$ and $v_{\text{orb}}^{\text{tan}} \to c_f$ in the forward sector, starving new one-way causal updates ahead of the forward edge (local horizon behavior).
 > 2. The geometry collapses from a 3D precessing ellipsoid (fermion-like) to a 2D, co-planar disk (boson-like).
@@ -18886,7 +18886,7 @@ We propose that the Planck scale corresponds, in the architrino architecture, to
 >      \qquad
 >      R_{\text{align}} \;\stackrel{\text{hyp.}}{\approx}\; \ell_P/(2\pi).
 >    $$
-> 
+>
 
 These identifications are **conjectured mappings**, not definitions. They must eventually be derived from the master equations and compared to empirical values.
 
@@ -18984,7 +18984,7 @@ $$
 
 for integer $k_n$, where $\Delta t_{\text{rt}}$ is the effective round-trip delay and $\phi_{\text{geom}}$ encodes geometric phase due to tri-binary structure.
 
-> **Working hypothesis (Terminal Mode):**  
+> **Working hypothesis (Terminal Mode):**
 > There exists a final mode $n_{\text{max}}$ in which:
 > - The component-saturation condition $v_{\text{trans}}\to c_f$ and $v_{\text{orb}}^{\text{tan}}\to c_f$ is met in the forward sector, with any $v_{\text{eff}}>c_f$ Mach-wedge behavior treated as the stronger combined-speed branch, **and**
 > - The round-trip phase condition admits a marginally stable, fully aligned solution.
@@ -18999,32 +18999,32 @@ Demonstrating this terminal aligned mode is an **open dynamical problem** for th
 
 This framing keeps emitters implicit and treats the architrino as a minimal mover responding to the local superposed causal-wake potential $\phi(\mathbf{x}, t)$ and its gradient $\nabla \phi$.
 
-1. An architrino moves through a sea of potential gradients from many emitters.  
-2. Each emitter’s influence arrives after a delay.  
-3. Those delayed gradients are the only things that can push or pull it.  
-4. Its speed at any moment is the sum of those time-lagged pushes.  
-5. “Kinetic energy” is just a name for that accumulated motion.  
-6. So it is not stored inside the architrino; it is the record of many delayed interactions.  
-7. Change the delay geometry (translation, gravity well), and the push timing changes.  
-8. Change the timing, and the speed changes.  
+1. An architrino moves through a sea of potential gradients from many emitters.
+2. Each emitter’s influence arrives after a delay.
+3. Those delayed gradients are the only things that can push or pull it.
+4. Its speed at any moment is the sum of those time-lagged pushes.
+5. “Kinetic energy” is just a name for that accumulated motion.
+6. So it is not stored inside the architrino; it is the record of many delayed interactions.
+7. Change the delay geometry (translation, gravity well), and the push timing changes.
+8. Change the timing, and the speed changes.
 9. Therefore the kinetic term is an interaction history with emitter wake history, not a private reservoir.
 
 In this causal-wake framing:
 
-- The architrino's identity is the consistent causal loop: receive wake gradients, respond, move into a new wake environment, and respond again.  
+- The architrino's identity is the consistent causal loop: receive wake gradients, respond, move into a new wake environment, and respond again.
 - Stability or structure emerges only when this response loop becomes periodic.
 - Momentum is the conserved motion state produced by past interactions; if received wake gradients vanish, the architrino coasts unchanged.
 
 ##### Field-Speed Regimes in the Causal-Wake View
 
-- **At $v = c_f$:** The architrino rides the edge of its causal cone. Forward-sector updates cannot arrive faster than it moves, so the experienced gradient becomes anisotropic (ahead starves, behind dominates). Phase-locking becomes delicate; alignment effects intensify.  
+- **At $v = c_f$:** The architrino rides the edge of its causal cone. Forward-sector updates cannot arrive faster than it moves, so the experienced gradient becomes anisotropic (ahead starves, behind dominates). Phase-locking becomes delicate; alignment effects intensify.
 - **At $v > c_f$:** It outruns newly emitted causal-wake propagation. The only gradients it can receive are from delayed emissions and the medium behind or sideways, which leads to self-hit dynamics. This creates a strong inward or centripetal feedback candidate that stabilizes maximal-curvature orbits and drives the self-hit regime behavior.
 
 ---
 
 #### Discrete Ladder and Phase-Slip Dynamics (Hypothesis)
 
-> **Working Hypothesis (Discrete Ladder).**  
+> **Working Hypothesis (Discrete Ladder).**
 > The tri-binary supports a discrete set of delay-locked modes indexed by $n$, each with characteristic radius $r_n$, frequency $\omega_n$, and delay $\Delta t_n = r_n/c_f$. Stability requires a phase-closure condition between orbital motion and causal wake.
 
 Under increasing translational stress or deepening gravitational potential:
@@ -19036,7 +19036,7 @@ Under increasing translational stress or deepening gravitational potential:
 
 This “ratchet” yields a **staircase** of quasi-stable plateaus in radius/frequency space.
 
-> **Working Hypothesis (Top Rung = Planck Alignment).**  
+> **Working Hypothesis (Top Rung = Planck Alignment).**
 > Working hypothesis: the ladder terminates at a unique top rung $n_{\text{max}}$ where full planar alignment is achieved and the forward-sector components satisfy $v_{\text{trans}} \to c_f$ and $v_{\text{orb}}^{\text{tan}} \to c_f$ at the onset of flattening. This is the proposed Planck alignment state.
 
 **Failure mode:** If simulations or analytic work reveal:
@@ -19059,7 +19059,7 @@ In the low-energy / weak-alignment regime:
 - The full causal configuration (including self-hit history and relative plane orientations) is not restored by a simple $2\pi$ spatial rotation.
 
 > **Hypothesis:** The effective orientation space of such a tri-binary behaves like an $SU(2)$-type double cover of spatial rotations:
-> a $2\pi$ rotation changes the internal causal phase; a $4\pi$ rotation restores it.  
+> a $2\pi$ rotation changes the internal causal phase; a $4\pi$ rotation restores it.
 > This is the candidate route to spin-$\tfrac{1}{2}$-like behavior and Pauli-style exclusion from overlapping 3D precession volumes.
 
 A rigorous mapping from the detailed tri-binary phase space to an $SU(2)$ bundle is not yet derived; it is a closure target.
@@ -19088,7 +19088,7 @@ For the particle-level interpretation of aligned versus precessing assembly beha
 
 We adopt:
 
-> **Assumption (A-cf-match).**  
+> **Assumption (A-cf-match).**
 > In low-energy, weak-field regimes relevant to standard lab physics, the effective propagation speed of electromagnetic disturbances, $c$, coincides with the fundamental field speed $c_f$ to within current experimental bounds. Deviations, if any, are confined to Planck-adjacent or extreme-curvature regimes.
 
 Whenever we identify $c$ with $c_f$ in Planck formulas, we explicitly appeal to A-cf-match.
@@ -19132,7 +19132,7 @@ $$
 \ell_P^{\text{(emp)}} = \sqrt{\frac{h\,G}{2\pi c^3}}.
 $$
 
-> **Empirical Check (Length):**  
+> **Empirical Check (Length):**
 > We compare the dynamically derived alignment radius $R_{\text{align}}$ to the empirical Planck length divided by $2\pi$:
 > $$
 >  R_{\text{align}} \stackrel{\text{hyp.}}{\approx} \ell_P^{\text{(emp)}}/(2\pi),
@@ -19151,7 +19151,7 @@ Our program is to compute $\mathcal{A}_{\text{align}}^{\text{cycle}}$, $I_{\text
 
 Qualitatively, gravitational coupling strength reflects the **elastic response of the spacetime medium**:
 
-> **Heuristic View:**  
+> **Heuristic View:**
 > $G$ is inversely related to the **stiffness** of tri-binary spacetime assemblies against being driven toward the alignment phase. High energy density in aligned cores deforms the surrounding tri-binary medium, inducing an effective metric (refractive gradient) that reproduces GR-like behavior.
 
 A full derivation of $G$ from medium compliance is still to be done; the formula above gives a target relationship.
@@ -19165,7 +19165,7 @@ With Planck alignment as an endpoint rather than a point singularity:
 - Black-hole-like objects are interpreted as regions where large numbers of tri-binaries are **driven close to or into** the alignment state.
 - The inner core is then made of “tiles” of characteristic size $R_{\text{align}}$.
 
-> **Conjecture (Condensate-Like Aligned Phase).**  
+> **Conjecture (Condensate-Like Aligned Phase).**
 > We conjecture that black-hole cores correspond to a **condensate-like phase** dominated by planar-aligned, effectively bosonic tri-binaries. This analogy is structural:
 > - Many nearly identical aligned assemblies occupy a low-dimensional configuration manifold (planar disk orientation).
 > - Entropy and area scaling may emerge from counting these aligned “tiles” on horizon-adjacent surfaces.
@@ -19182,22 +19182,22 @@ Those steps remain open.
 
 #### Constraints, Assumptions, and Failure Modes
 
-1. **Lorentz Invariance at Low Speeds.**  
+1. **Lorentz Invariance at Low Speeds.**
    The translational lever (v-dependent alignment) must be strongly nonlinear:
    - For $v_{\text{trans}} \ll c_f$, corrections to phase-lock must be negligible; no detectable sidereal modulation of spectra (< $10^{-17}$).
    - Observable deviations only near Planck-adjacent or extreme-curvature regimes.
 
-2. **Universality of $R_{\text{align}}$.**  
+2. **Universality of $R_{\text{align}}$.**
    The alignment radius must be a property of the **medium**:
    - Different tri-binary decorations (electron-like, muon-like, quark-like) driven to alignment should converge to the same $R_{\text{align}}$ within small tolerances.
    - Large species-dependence would undermine the identification with a universal $\ell_P$.
 
-3. **Uniqueness of Aligned Mode.**  
+3. **Uniqueness of Aligned Mode.**
    Simulations must show:
    - A **terminal** aligned attractor, not a family of inequivalent aligned states with very different cycle action or radius.
    - Clear loss of stability when trying to force $v_{\text{eff}} > c_f$.
 
-4. **Angular Momentum Conservation at Spin Flip.**  
+4. **Angular Momentum Conservation at Spin Flip.**
    Transition from fermion-like ellipsoid to boson-like disk must:
    - Conserve total angular momentum via emission of spin-1 radiation (circularly polarized bosons).
    - Produce potentially observable signatures (e.g. polarization patterns near strong-gravity regions).
@@ -22766,7 +22766,7 @@ Existing text excerpt:
 > ### Receiver velocity: radial vs orthogonal components (instantaneous effect)
 > Because $\mathbf{a}_{o'\leftarrow o}(t;t_0) \parallel \hat{\mathbf{r}}$, its instantaneous effect satisfies
 > $$
-> \frac{d}{dt}\mathbf{v}_\perp \;=\; \mathbf{0}\quad\text{from this hit}, 
+> \frac{d}{dt}\mathbf{v}_\perp \;=\; \mathbf{0}\quad\text{from this hit},
 > \qquad
 > \frac{d}{dt}v_r \;=\; \mathbf{a}_{o'\leftarrow o}(t;t_0)\cdot \hat{\mathbf{r}}
 > \;=\;
@@ -23120,7 +23120,7 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are di
 
 ---
 
-##### Constant per-wavefront emission 
+##### Constant per-wavefront emission
 
 - What we assume:
   - Emission cadence and per-wavefront amplitude are constant at the source.
@@ -23721,7 +23721,7 @@ Requirements:
 6) Keep all TeX intact and preserve category definitions unless explicitly asked to revise them.
 ```
 
-Scale: `0-100` (standard numeric grading scale).  
+Scale: `0-100` (standard numeric grading scale).
 Total score rule: equal-weight arithmetic mean of category scores.
 
 #### Assessment Table
@@ -32163,20 +32163,20 @@ $$
 on the seed-side windows, and one should center the corresponding cones on:
 $$
 \mathfrak{C}^{a}_W
-\ \text{around}\ 
+\ \text{around}\
 \mathbf{e}_1,
 \qquad
 \mathfrak{C}^{b}_W
-\ \text{around}\ 
+\ \text{around}\
 \mathbf{e}_2,
 $$
 $$
 \mathfrak{C}^{\mathrm{role}}_W
-\ \text{around}\ 
+\ \text{around}\
 \mathbf{r}^{\mathrm{role}}_{\mathrm{seed}},
 \qquad
 \mathfrak{V}^{i}_W
-\ \text{around}\ 
+\ \text{around}\
 \dot{\mathbf{x}}_{i,\mathrm{seed}}.
 $$
 The support floors should be chosen from the seed values with explicit slack:
@@ -46999,7 +46999,7 @@ $$
 **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 
 **Geometric proof targets:**
-- Classify tri-binary axial-pattern permutations and show the resulting symmetry factors 
+- Classify tri-binary axial-pattern permutations and show the resulting symmetry factors
 match $\mathrm{SU(3)}\times\mathrm{SU(2)}\times\mathrm{U(1)}$.
 - Prove three stable assembly families arise from distinct phase-winding classes.
 
@@ -48356,14 +48356,14 @@ Use this exact skeleton when starting a new concept section:
 ```md
 \## Long Concept Name - SHORT
 
-**Concept Type:** 
-**Ontological Area:** 
-**Sub-Ontological Area:** 
-**Short Name:** 
-**Concept Status:** 
-**Comparative Stack Placement:** 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** 
+**Concept Type:**
+**Ontological Area:**
+**Sub-Ontological Area:**
+**Short Name:**
+**Concept Status:**
+**Comparative Stack Placement:**
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:**
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:**
 
 #### 1. Concept Summary
 

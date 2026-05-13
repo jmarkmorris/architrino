@@ -1145,7 +1145,6 @@ function renderTextbookTocMarkdown(rootEntry) {
 
   const rootChildren = Array.isArray(rootEntry?.children) ? rootEntry.children : [];
   rootChildren.forEach((entry) => renderEntry(entry, 0));
-  lines.push("");
   return `${lines.join("\n")}\n`;
 }
 

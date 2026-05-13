@@ -419,8 +419,8 @@ These are the four points where $\mathbb{A}\mathbb{A}\mathbb{A}$ maps standard q
 > **Status:** The rule below is a phenomenological summary of micro-dynamics, not a derivation.
 >
 > **Toy dynamics (one plausible micro-model):** Let $S$ be an action-like variable and $E$ an energy-like slow variable.
-> $\dot S = E - E_{\mathrm{ref}}$  
-> $\dot E = -\gamma (E - E_{\mathrm{ref}}) + F_{\mathrm{ext}}(t) + \kappa M(t-\tau)$  
+> $\dot S = E - E_{\mathrm{ref}}$
+> $\dot E = -\gamma (E - E_{\mathrm{ref}}) + F_{\mathrm{ext}}(t) + \kappa M(t-\tau)$
 > A basin flip occurs when $S$ crosses $S = n h$. A finite Lyapunov time $\tau_L$ and typical forcing scale $|F_{\mathrm{ext}}|$ yield a bracket $\delta \sim |F_{\mathrm{ext}}| \tau_L$ (order-of-magnitude), with measurement back-action contributing at the same scale.
 >
 > #### **Outer Binary as a Quasi-Harmonic Oscillator (Attractor Bands)**
@@ -731,7 +731,7 @@ The "collapse" of the wavefunction is not a spontaneous, non-physical violation 
 
 Assemblies such as tri-binaries possess internal slow variables that dictate their resonant states. When an assembly interacts with a measurement apparatus (a macroscopic complex of assemblies), the combined system enters a metastable configuration. The incoming potential sum drives the system toward a bifurcation threshold.
 
-Once the accumulated path-history forces push the assembly's action across the $h$-scale separatrix, the system falls into a new, distinct basin of attraction (e.g., transitioning from an excited orbital resonance to a ground state, or locking into a specific spatial trajectory). 
+Once the accumulated path-history forces push the assembly's action across the $h$-scale separatrix, the system falls into a new, distinct basin of attraction (e.g., transitioning from an excited orbital resonance to a ground state, or locking into a specific spatial trajectory).
 
 For spin measurements, the corresponding basin program is the Stern-Gerlach-like response model in [Angular Momentum and Spin](../../../../markdown/aaa/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response), where the apparatus couples to the full Noether-core spin ledger rather than to a preassigned spin label.
 

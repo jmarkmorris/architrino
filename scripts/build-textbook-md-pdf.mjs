@@ -239,6 +239,10 @@ function shiftHeadings(markdown, shift) {
     .join("\n");
 }
 
+function stripTrailingLineWhitespace(text) {
+  return String(text ?? "").replace(/[ \t]+$/gm, "");
+}
+
 function normalizeFragment({ markdown, sourcePath, outputPath, headingShift, stripTitle }) {
   let fragment = stripFrontmatter(markdown);
   if (stripTitle) {
@@ -322,7 +326,7 @@ function renderReadingCopy({ title, entries, outputPath }) {
   }
 
   entries.forEach((entry) => renderEntry(entry, 2));
-  return `${lines.join("\n").replace(/\n{3,}/g, "\n\n").trim()}\n`;
+  return `${stripTrailingLineWhitespace(lines.join("\n").replace(/\n{3,}/g, "\n\n").trim())}\n`;
 }
 
 function buildReadingCopies(tocRoot) {
