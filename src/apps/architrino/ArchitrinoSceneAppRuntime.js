@@ -194,6 +194,7 @@ const markdownBody = document.getElementById("markdown-body");
 const markdownClose = document.getElementById("markdown-close");
 const markdownLayoutToggle = document.getElementById("markdown-layout-toggle");
 const markdownDocButton = document.getElementById("markdown-doc-button");
+const markdownPdfButton = document.getElementById("markdown-pdf-button");
 const periodicOverlay = document.getElementById("periodic-overlay");
 const periodicGrid = document.getElementById("periodic-grid");
 const periodicLegend = document.getElementById("periodic-legend");
@@ -6566,6 +6567,7 @@ const appSceneChromeRuntime = createAppSceneChromeRuntime({
   docButton,
   archieButton,
   markdownDocButton,
+  markdownPdfButton,
   markdownLayoutToggle,
   detailInfoButton,
 });
@@ -6604,6 +6606,7 @@ function updateSceneLabel() {
   });
   appSceneChromeRuntime.updateMarkdownLayoutToggleButton(currentLevel);
   appSceneChromeRuntime.updateMarkdownDocButton(currentLevel);
+  appSceneChromeRuntime.updateMarkdownPdfButton(currentLevel);
   animatorUiRuntime.updateAnimatorOverlay(currentLevel);
   periodicOverlayRuntime.updatePeriodicOverlay();
   periodicOverlayRuntime.updateElementLegend();
@@ -6692,6 +6695,7 @@ const scenePanelUiRuntime = createScenePanelUiRuntime({
   detailClose,
   markdownClose,
   markdownDocButton,
+  markdownPdfButton,
   markdownLayoutToggle,
   markdownRuntime,
   closeDetailPanel,

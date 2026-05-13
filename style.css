@@ -703,7 +703,8 @@ body {
   flex-direction: column;
 }
 
-#markdown-doc-button {
+#markdown-doc-button,
+#markdown-pdf-button {
   width: 32px;
   height: 32px;
   border-radius: 999px;
@@ -716,21 +717,31 @@ body {
   cursor: pointer;
 }
 
-#markdown-doc-button svg {
+#markdown-doc-button svg,
+#markdown-pdf-button svg {
   width: 18px;
   height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 #markdown-doc-button:hover,
-#markdown-doc-button:focus-visible {
+#markdown-doc-button:focus-visible,
+#markdown-pdf-button:hover,
+#markdown-pdf-button:focus-visible {
   border-color: rgba(213, 220, 255, 0.6);
 }
 
-#markdown-doc-button.is-hidden {
+#markdown-doc-button.is-hidden,
+#markdown-pdf-button.is-hidden {
   display: none;
 }
 
-#markdown-doc-button:disabled {
+#markdown-doc-button:disabled,
+#markdown-pdf-button:disabled {
   opacity: 0.5;
   cursor: default;
 }
@@ -928,33 +939,6 @@ body {
   text-decoration: underline;
 }
 
-#markdown-content a.markdown-download-link {
-  display: inline-flex;
-  align-items: center;
-  max-width: 100%;
-  margin: 2px 0 12px;
-  padding: 8px 11px;
-  border: 1px solid rgba(213, 220, 255, 0.32);
-  border-radius: 8px;
-  background: rgba(8, 10, 18, 0.55);
-  color: #f5f7ff;
-  font-weight: 700;
-  line-height: 1.25;
-  overflow-wrap: anywhere;
-}
-
-#markdown-content a.markdown-download-link:hover,
-#markdown-content a.markdown-download-link:focus-visible {
-  border-color: rgba(213, 220, 255, 0.62);
-  text-decoration: none;
-}
-
-#markdown-content a.markdown-download-link.is-unavailable {
-  border-style: dashed;
-  color: rgba(245, 247, 255, 0.72);
-  cursor: default;
-}
-
 #markdown-content .liberapay-donation-widget {
   margin: 14px 0 10px;
   break-inside: avoid;
@@ -963,6 +947,105 @@ body {
 #markdown-content .liberapay-donation-widget iframe,
 #markdown-content .liberapay-donation-widget img {
   max-width: 100%;
+}
+
+@media print {
+  @page {
+    margin: 0.65in;
+  }
+
+  html,
+  body,
+  #app,
+  #scene-layout,
+  #scene-layer-hud {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+
+  #scene-layer-ambient,
+  #scene-layer-focus,
+  #scene-hud-top,
+  #detail-panel,
+  #hover-tooltip,
+  #zoom-toast,
+  #animator-overlay {
+    display: none !important;
+  }
+
+  #markdown-panel.is-open {
+    position: static !important;
+    display: block !important;
+    transform: none !important;
+    width: auto !important;
+    height: auto !important;
+    max-height: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background: #ffffff !important;
+    color: #111111 !important;
+    overflow: visible !important;
+  }
+
+  #markdown-content {
+    overflow: visible !important;
+    padding: 0 !important;
+    color: #111111 !important;
+    font-family: Georgia, "Times New Roman", serif !important;
+    font-size: 11pt !important;
+    line-height: 1.5 !important;
+  }
+
+  #markdown-content h1,
+  #markdown-content h2,
+  #markdown-content h3,
+  #markdown-content h4,
+  #markdown-content h5,
+  #markdown-content h6 {
+    color: #111111 !important;
+    break-after: avoid;
+  }
+
+  #markdown-content h1 {
+    font-size: 24pt !important;
+  }
+
+  #markdown-content h2 {
+    font-size: 17pt !important;
+  }
+
+  #markdown-content h3 {
+    font-size: 13pt !important;
+  }
+
+  #markdown-content a {
+    color: #111111 !important;
+    text-decoration: underline !important;
+  }
+
+  #markdown-content pre {
+    background: #f4f4f4 !important;
+    border: 1px solid #d0d0d0 !important;
+    color: #111111 !important;
+    white-space: pre-wrap !important;
+    break-inside: avoid;
+  }
+
+  #markdown-content code {
+    background: #f4f4f4 !important;
+    color: #111111 !important;
+  }
+
+  #markdown-content blockquote,
+  #markdown-content table,
+  #markdown-content .math-block,
+  #markdown-content mjx-container {
+    break-inside: avoid;
+  }
 }
 
 .math-block {

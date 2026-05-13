@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 
 import { SceneRepository } from "../src/services/SceneRepository.js";
 
@@ -10,7 +11,7 @@ function createRepository() {
   });
 }
 
-function createRepositoryWithScenes(scenesByPath) {
+function createRepositoryWithScenes(scenesByPath, overrides = {}) {
   return new SceneRepository({
     colorTokens: {},
     autoMarkdownPalettes: {},
@@ -25,6 +26,7 @@ function createRepositoryWithScenes(scenesByPath) {
         json: async () => scene,
       };
     },
+    ...overrides,
   });
 }
 
@@ -89,6 +91,34 @@ test("fixed-position non-hub diagram nodes keep authored semantic colors", () =>
   assert.deepEqual(
     nodes.map((node) => node.color),
     ["#111111", "#aaaaaa"]
+  );
+});
+
+test("Archie hub keeps authored colors from the standard sphere palette", async () => {
+  const archieSceneData = JSON.parse(
+    await readFile(
+      new URL("../content/scenes/archie/archie.json", import.meta.url),
+      "utf8"
+    )
+  );
+  const repository = createRepositoryWithScenes(
+    {},
+    {
+      autoMarkdownPalettes: {
+        jewel: ["#aaaaaa"],
+      },
+      defaultSphereColorSchemeName: "jewel",
+    }
+  );
+
+  const config = await repository.createConfigFromSceneData(
+    "content/scenes/archie/archie.json",
+    archieSceneData
+  );
+
+  assert.deepEqual(
+    config.nodes.map((node) => node.color),
+    ["#9d174d", "#1d4ed8", "#a21caf", "#166534"]
   );
 });
 

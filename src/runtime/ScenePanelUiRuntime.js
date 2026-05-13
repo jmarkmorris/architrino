@@ -4,6 +4,7 @@ export function createScenePanelUiRuntime(deps) {
     detailClose,
     markdownClose,
     markdownDocButton,
+    markdownPdfButton,
     markdownLayoutToggle,
     markdownRuntime,
     closeDetailPanel,
@@ -54,6 +55,14 @@ export function createScenePanelUiRuntime(deps) {
     if (markdownDocButton) {
       markdownDocButton.addEventListener("click", () => {
         openCurrentLevelDoc();
+      });
+    }
+
+    if (markdownPdfButton) {
+      markdownPdfButton.addEventListener("click", () => {
+        if (!isTransitionActive()) {
+          markdownRuntime.printMarkdownPanel();
+        }
       });
     }
 

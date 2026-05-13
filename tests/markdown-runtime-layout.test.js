@@ -360,3 +360,51 @@ test("missing textbook pdf files are marked unavailable", async (t) => {
   assert.equal(downloadLink.textContent, "philosophy-history.pdf not generated yet");
   assert.equal(downloadLink.classList.contains("is-unavailable"), true);
 });
+
+test("open markdown panels can invoke the browser PDF save flow", async (t) => {
+  const originalFetch = globalThis.fetch;
+  const originalWindow = globalThis.window;
+  let printCount = 0;
+
+  globalThis.fetch = async () => ({
+    ok: true,
+    async text() {
+      return "# Test\n\nBody";
+    },
+  });
+  globalThis.window = {
+    print() {
+      printCount += 1;
+    },
+  };
+
+  t.after(() => {
+    globalThis.fetch = originalFetch;
+    globalThis.window = originalWindow;
+  });
+
+  const markdownPanel = createFakeElement();
+  const markdownBody = createFakeElement();
+  const markdownLayoutToggle = createFakeElement();
+  const runtime = createMarkdownRuntime({
+    markdownPanel,
+    markdownBody,
+    markdownLayoutToggle,
+    markdownRenderer: null,
+    markdownCache: new Map(),
+    markdownSectionCache: new Map(),
+    extractMarkdownSection: () => null,
+    appendCacheBust: (path) => path,
+  });
+
+  assert.equal(runtime.printMarkdownPanel(), false);
+
+  await runtime.showMarkdownPanel({
+    name: "Test",
+    markdownPath: "content/markdown/test.md",
+    markdownColumns: 1,
+  });
+
+  assert.equal(runtime.printMarkdownPanel(), true);
+  assert.equal(printCount, 1);
+});
