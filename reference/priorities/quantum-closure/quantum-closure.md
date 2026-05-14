@@ -19,12 +19,21 @@
 6. `bell_gate` — Test Bell, CHSH, and Tsirelson closure as a hard gate after the angular-momentum ledger, detector-response kernels, photon Gate B ledger, and pair provenance measures are explicit. Status: `deferred`. Depends on: `pair_provenance_measure`.
 7. `bell_rewrite_handoff` — Rewrite [bell-theorem.md](../../../content/markdown/aaa/theory-bridges/bell-theorem.md) only after the Bell gate has passed or failed with explicit diagnostics. Status: `blocked`. Depends on: `bell_gate`.
 8. `provenance_compliance_bridge` — Preserve the discussion-scoped question of whether the pair-provenance distribution used for Bell closure has a second local coarse-graining into Noether-Sea compliance or smoothness variables. Status: `discussion-scoped`. Depends on: `pair_provenance_measure`; cross-checks: [strong-field-closure](../strong-field-closure/strong-field-closure.md), [mass-map medium-response probe](../mass-map/a0-medium-response-tensor-probe.md).
+9. `agency_decider_minimality` — Convert the Decider idea into a minimal bias-setting basin-control theorem target with topology, energetics, and effect-size gates. Status: `review`. Depends on: `transfer_operator`.
+10. `algorithmic_resonance_pilot_wave_bounds` — Treat pilot-wave character and algorithmic resonance as downstream transfer-operator stress tests with guidance, amplitude, feedback, and coherence-depth bounds. Status: `review`. Depends on: `transfer_operator`, `invariant_measure`.
 
 ## Scope
 
 Populate the missing quantum closure notes only after the work becomes testable. The Born-rule target should be measure-theoretic and predictive rather than interpretive.
 
-This file remains the deferred control surface for quantum closure. No sibling detailed priority file is needed yet; the Bell gate and measure-theoretic requirements below already name the dependencies that must mature before promotion.
+This file remains the deferred control surface for quantum closure. Two sibling detailed priority files now preserve high-upside but downstream material: one for the Decider as a bias-setting basin-control problem, and one for pilot-wave / algorithmic-resonance stress tests. They do not move ahead of Born-rule, measurement-response, photon Gate B, or Bell closure; they keep those opportunities from disappearing while the upstream gates mature.
+
+## Detailed Priority Files
+
+| File | Role | Primary promotion targets |
+| --- | --- | --- |
+| [agency-decision-and-decider.md](agency-decision-and-decider.md) | Detailed packet for the minimal bias-setting complex: basin-control topology, work ledger, hold time, and measurable basin-weight shift. | [reality-quantum-causality](../../../content/markdown/aaa/quantum/reality-quantum-causality.md), [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md), [wavefunction-ontology](../../../content/markdown/aaa/quantum/wavefunction-ontology.md) |
+| [algorithmic-resonance-and-pilot-wave.md](algorithmic-resonance-and-pilot-wave.md) | Downstream transfer-operator packet for single-ontology pilot-wave guidance and quantum-register coherence-depth bounds. | [pilot-wave-character](../../../content/markdown/aaa/theory-bridges/pilot-wave-character.md), [algorithmic-resonance](../../../content/markdown/aaa/quantum/algorithmic-resonance.md), [quantum-summary](../../../content/markdown/aaa/quantum/quantum-summary.md) |
 
 ## Promotion Map
 
@@ -38,6 +47,8 @@ This file remains the deferred control surface for quantum closure. No sibling d
 | `bell_gate` | This file | [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md) | Bell, CHSH, no-signaling, and Tsirelson checks pass or fail with explicit diagnostics. |
 | `bell_rewrite_handoff` | This file | [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md) | The Bell chapter is rewritten only after the Bell gate has passed or failed with named source packets. |
 | `provenance_compliance_bridge` | This file | [strong-field-closure](../strong-field-closure/strong-field-closure.md) and [mass-map medium-response probe](../mass-map/a0-medium-response-tensor-probe.md) | Any provenance-compliance coarse-graining remains local, no-signaling, and routed through medium-response or strong-field work rather than asserted as ontology. |
+| `agency_decider_minimality` | [agency-decision-and-decider.md](agency-decision-and-decider.md) | [reality-quantum-causality](../../../content/markdown/aaa/quantum/reality-quantum-causality.md), [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md), and [wavefunction-ontology](../../../content/markdown/aaa/quantum/wavefunction-ontology.md) | A Decider is represented as a physical bias-setting complex that changes later basin weights with an explicit topology, work/entropy ledger, and hold-time condition. |
+| `algorithmic_resonance_pilot_wave_bounds` | [algorithmic-resonance-and-pilot-wave.md](algorithmic-resonance-and-pilot-wave.md) | [pilot-wave-character](../../../content/markdown/aaa/theory-bridges/pilot-wave-character.md), [algorithmic-resonance](../../../content/markdown/aaa/quantum/algorithmic-resonance.md), and [quantum-summary](../../../content/markdown/aaa/quantum/quantum-summary.md) | The transfer-operator program is strong enough to state effective guidance, basin amplitude, feedback terms, and a register coherence-depth bound without importing a second pilot-wave ontology. |
 
 ## Preparation Scope
 
@@ -134,11 +145,16 @@ Do not rewrite [bell-theorem.md](../../../content/markdown/aaa/theory-bridges/be
 - [simulations](../simulations/simulations.md)
 - [mass-map](../mass-map/mass-map.md)
 - [standard-model-closure](../standard-model-closure/standard-model-closure.md)
+- [validation-gates](../validation-gates/validation-gates.md)
 
 ## Related AAA Notes
 
 - [quantum-summary](../../../content/markdown/aaa/quantum/quantum-summary.md)
 - [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md)
 - [superposition-mechanism](../../../content/markdown/aaa/theory-bridges/superposition-mechanism.md)
+- [reality-quantum-causality](../../../content/markdown/aaa/quantum/reality-quantum-causality.md)
+- [wavefunction-ontology](../../../content/markdown/aaa/quantum/wavefunction-ontology.md)
+- [algorithmic-resonance](../../../content/markdown/aaa/quantum/algorithmic-resonance.md)
+- [pilot-wave-character](../../../content/markdown/aaa/theory-bridges/pilot-wave-character.md)
 - [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md)
 - [entanglement-nonlocality](../../../content/markdown/aaa/theory-bridges/entanglement-nonlocality.md)

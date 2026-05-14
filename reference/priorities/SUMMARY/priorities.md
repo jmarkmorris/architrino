@@ -72,6 +72,7 @@ These are tracked for visibility, but they are not ranked active workstreams in 
 | Slug or packet | Location | Role | Current disposition |
 | --- | --- | --- | --- |
 | `ellipsoid` | [ellipsoid.md](../ellipsoid/ellipsoid.md) | Effective-metric review workstream plus Ideal Core app idea. | Priority candidate under review. |
+| `validation-gates` | [validation-gates.md](../validation-gates/validation-gates.md) | Cross-sector acceptance intersections, no-go applicability, and failure-condition routing. | Priority candidate under review; now has a sibling closure-intersection ledger. |
 | `deferred` | [legacy-insights.md](../deferred/legacy-insights.md) | Archive and parking lot for non-current material. | Needs a deferred index later. |
 | `3x3` | [3x3.md](../deferred/3x3/3x3.md) | Deferred binary-slot matrix note. | Keep deferred unless a target AAA document is selected. |
 | `phenomenological-heuristics` | [phenomenological-heuristics.md](../dyadic-lock/phenomenological-heuristics.md) | Dyadic resonance lock archive source. | Keep as sibling archive unless a shared archive convention is adopted. |
@@ -79,25 +80,30 @@ These are tracked for visibility, but they are not ranked active workstreams in 
 ## Current Focus
 
 - Workstream `proof-programs`: architecture complete, certificate pending; the dual-mollified master-equation law is now recorded, the doubled four-arc itinerary has a coarse parity pass, and the seed-chart packet contract now fixes the next executable gate: generate one symmetry-constrained candidate collinear cycle, mesh, null-coordinate causal ledger, and certified branch chart. The planar delayed-bridge closure is kept as the queued higher-dimensional extension under the same directory.
-- Workstream `mass-map`: derive the first reusable mass map from tri-binary geometry, using the sibling $A_0$ branch, energy/shielding, and medium-response packets rather than treating the parameter ledger in isolation.
-- Workstream `tri-binary-causal-closure`: compact control file and sibling synthesis structure are in place; next active theory burden is the photon/QED gate, with kinematics/optics, polarization/spin, and vertices/transitions kept as explicit review packets before deployment.
+- Workstream `mass-map`: derive the first reusable mass map from tri-binary geometry, using the sibling $A_0$ branch, energy/shielding, medium-response, and critical-transport packets rather than treating the parameter ledger in isolation.
+- Workstream `tri-binary-causal-closure`: compact control file and sibling synthesis structure are in place; next active theory burden is the photon/QED gate, with radiation Gate C now captured as a separate benchmark packet for atomic, bremsstrahlung, synchrotron, Compton-like, pair, and blackbody recovery.
 - Workstream `animator`: compact control file and sibling design/interface file are in place; choose the next concrete observer/framing, structure-editing, or timeline-object implementation pass before touching runtime code.
 - Workstream `master-equation-closure`: carry the tractable master-equation stack far enough to support Lorentz / GR closure, quantum closure, and the first-principles mass program.
 - Workstream `angular-momentum-spin`: use the sibling core-ledger, partition/spinor, and photon/measurement/Bell files to promote the scaffolded Noether-core angular-momentum ledger into a validated functional, generalize the solved minimal partition branch, prove or falsify ordered-frame spinor closure, and keep Bell as a downstream pair-provenance and measurement-response test.
+- Workstream `standard-model-closure`: keep geometry-first work intact while the new weak-sector/gauge and nuclear-binding packets isolate two different risks: weak exposure/gauge covariance and hadronic-to-nuclear coarse-graining.
+- Workstream `quantum-closure`: remain deferred, but preserve Decider minimality and pilot-wave / algorithmic-resonance opportunities as downstream transfer-operator stress tests.
+- Candidate `validation-gates`: use the closure-intersection ledger to test whether weak, quantum, gravity, hadronic, radiation, and cosmology gates can survive together rather than as disconnected local wins.
 
 ## Organization Status
 
-- First-pass flat cleanup is complete for `standard-model-closure`, `dyadic-lock`, `mass-map`, `master-equation-closure`, `simulations`, `strong-field-closure`, `strong-field-hypotheses`, `cosmology-closure`, `quantum-closure`, `proof-programs`, `angular-momentum-spin`, `animator`, `ellipsoid`, and `tri-binary-causal-closure`.
+- First-pass flat cleanup is complete for `standard-model-closure`, `dyadic-lock`, `mass-map`, `master-equation-closure`, `simulations`, `strong-field-closure`, `strong-field-hypotheses`, `cosmology-closure`, `quantum-closure`, `proof-programs`, `angular-momentum-spin`, `animator`, `ellipsoid`, `tri-binary-causal-closure`, and `validation-gates`.
+- The latest coverage pass added seven high-upside $\mathbb{A}\mathbb{A}\mathbb{A}$ gap packets without adding extra requirements subdirectories: validation gates, radiation Gate C, Decider minimality, weak-sector/gauge closure, nuclear binding, condensed-matter medium transport, and algorithmic-resonance / pilot-wave closure.
 - [inventory.md](../inventory.md) is the detailed map for which files are compact control surfaces, which are detailed priority files, and which deployed AAA documents should eventually absorb promoted material.
 - Remaining organization work is review-level: decide whether any priority candidate or deferred packet deserves promotion, demotion, or merger after the current theory and app priorities stabilize.
 
 ## Top Cross-Workstream Next Actions
 
 1. Generate the breather candidate cycle and seed-chart packet first: `phi_cyc.json`, `mesh.json`, null-coordinate causal ledger, branch chart, and seed-chart interval report; then continue into corridor nonemptiness, coupled corridor, monodromy diagnostic, returned-sample report, and topology ledger on the same certified domain.
-2. Advance the tri-binary photon/QED gate into explicit kinematics/optics, polarization/spin, and vertices/transitions packets before treating photon-based measurement as closed.
+2. Advance the tri-binary photon/QED and radiation Gate C path into explicit kinematics/optics, polarization/spin, vertex, event-ledger, and benchmark-recovery packets before treating photon-based measurement or radiation as closed.
 3. Validate and generalize the scaffolded architrino-level angular-momentum ledger for changing-frequency Noether cores, including wake terms, branch selection, spinor holonomy, and apparatus-response measures.
-4. Turn the mass-side placeholders into a first derived map with one attractor family, shielding extraction, and a baseline electron-mass prediction target.
-5. Select one concrete animator implementation pass from observer/framing, structure editing, or timeline objects, and keep deferred PDG material out of the active app path unless PDG work resumes.
+4. Turn the mass-side placeholders into a first derived map with one attractor family, shielding extraction, medium-response tensor, critical-transport threshold, and a baseline electron-mass prediction target.
+5. Use the validation-gates candidate as a cross-sector pressure test: local wins must survive weak, quantum, gravity, hadronic, radiation, and cosmology acceptance gates together.
+6. Select one concrete animator implementation pass from observer/framing, structure editing, or timeline objects, and keep deferred PDG material out of the active app path unless PDG work resumes.
 
 ## Info
 
@@ -111,8 +117,7 @@ These are tracked for visibility, but they are not ranked active workstreams in 
 
 ### Raw Research Prompts
 
-- What is the smallest assembly that can make a decision?
-- Think more about multi-determinism and how it maps to quantum theory, many worlds, and free will.
+- Think more about multi-determinism and how it maps to quantum theory, many worlds, and free will; route concrete claims through [agency-decision-and-decider](../quantum-closure/agency-decision-and-decider.md) or [algorithmic-resonance-and-pilot-wave](../quantum-closure/algorithmic-resonance-and-pilot-wave.md) instead of leaving them as loose prompts.
 
 ## Related AAA Notes
 
