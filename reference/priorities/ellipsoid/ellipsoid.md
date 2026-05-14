@@ -7,17 +7,17 @@
 - Value: `—`
 - Cost: `—`
 - ROI: `—`
-- Status: `review`
+- Status: `routing-review`
 
 ## Task Queue
 
-1. `effective_metric_deformation` — Decide whether the shape-plus-scale deformation draft should be promoted into the effective-metric, proper-time, Noether-core-geometry, or strong-field closure paths. Status: `review`. Depends on: none.
-2. `raw_note_triage` — Preserve and classify the raw notes on closed-form energy, $h$ transfer, black-hole interior behavior, frequency mismatch, radiation, and temperature. Status: `parked`. Depends on: none.
-3. `ideal_core_app_direction` — Decide whether the Ideal Core app design brief remains part of this workstream, moves to animator/simulations, or stays deferred. Status: `review`. Depends on: `effective_metric_deformation`.
+1. `effective_metric_route_decision` — Decide whether the shape-plus-scale deformation draft should be promoted into effective-metric, proper-time, Noether-core-geometry, strong-field, or cosmology closure paths. Status: `review`. Depends on: none.
+2. `raw_note_route_decision` — Preserve and classify the raw notes on closed-form energy, $h$ transfer, black-hole interior behavior, frequency mismatch, radiation, and temperature. Status: `parked`. Depends on: none.
+3. `ideal_core_route_decision` — Decide whether the Ideal Core app design brief moves to animator, simulations, deferred, or a concrete inspection-instrument packet. Status: `review`. Depends on: `effective_metric_route_decision`.
 
 ## Scope
 
-This workstream is a review surface for ellipsoidal Noether-core deformation, effective-metric extraction, and the related Ideal Core app idea. It is not yet a ranked active closure workstream.
+This workstream is a routing surface for ellipsoidal Noether-core deformation, effective-metric extraction, raw notes, and the related Ideal Core app idea. It is not yet a ranked active closure workstream, and it should not become a permanent separate theory lane unless the routed material acquires a distinct equation, simulation target, or observable that cannot live in an existing workstream.
 
 The immediate organization goal is to keep three materials distinct:
 
@@ -37,9 +37,19 @@ The immediate organization goal is to keep three materials distinct:
 
 | Task | Detailed file | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
-| `effective_metric_deformation` | [effective-metric-deformation.md](effective-metric-deformation.md) | [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [noether-core-geometry](../../../content/markdown/aaa/spacetime/noether-core-geometry.md) | The draft states a quantitative route from Noether-core shape/scale variables to effective metric, clock, lensing, and anisotropy predictions without overclaiming GR closure. |
-| `raw_note_triage` | [raw-notes.md](raw-notes.md) | [energy](../../../content/markdown/aaa/dynamics/energy.md), [tri-binary-dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md), and [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) | Each raw note is either promoted into a named theorem target, routed to another workstream, or left parked as exploratory intuition. |
-| `ideal_core_app_direction` | [ideal-core.md](ideal-core.md) | [animator](../animator/animator.md) and [simulations](../simulations/simulations.md) | The app brief is tied to a concrete simulation or visualization use case before implementation work is promoted. |
+| `effective_metric_route_decision` | [effective-metric-deformation.md](effective-metric-deformation.md) | [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [noether-core-geometry](../../../content/markdown/aaa/spacetime/noether-core-geometry.md) | The draft states a quantitative route from Noether-core shape/scale variables to effective metric, clock, lensing, and anisotropy predictions without overclaiming GR closure. |
+| `raw_note_route_decision` | [raw-notes.md](raw-notes.md) | [energy](../../../content/markdown/aaa/dynamics/energy.md), [tri-binary-dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md), and [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) | Each raw note is either promoted into a named theorem target, routed to another workstream, or left parked as exploratory intuition. |
+| `ideal_core_route_decision` | [ideal-core.md](ideal-core.md) | [animator](../animator/animator.md) and [simulations](../simulations/simulations.md) | The app brief is tied to a concrete simulation or visualization use case before implementation work is promoted. |
+
+## Retirement Conditions
+
+This directory can be retired after all three sibling files have explicit outcomes:
+
+| File | Retirement outcome |
+| --- | --- |
+| [effective-metric-deformation.md](effective-metric-deformation.md) | Promoted into effective-metric / proper-time / Noether-core-geometry work, routed to strong-field or cosmology, or rejected as unsupported. |
+| [raw-notes.md](raw-notes.md) | Each note is promoted, moved to deferred, or marked as parked intuition with no active priority claim. |
+| [ideal-core.md](ideal-core.md) | Moved into animator, simulations, deferred, or a concrete app packet with an implementation owner. |
 
 ## Related Priorities
 
@@ -48,7 +58,7 @@ The immediate organization goal is to keep three materials distinct:
 - [strong-field-closure](../strong-field-closure/strong-field-closure.md)
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
 
-## Related AAA Notes
+## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 
 - [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md)
 - [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md)

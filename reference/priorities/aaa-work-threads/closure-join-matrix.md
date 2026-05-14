@@ -53,6 +53,47 @@ $$
 | Basin measure and transfer operator | Treat probabilities, decisions, measurement outcomes, algorithmic coherence, and dyadic locks as basin-measure or transfer-operator problems. | [quantum-closure](../quantum-closure/quantum-closure.md), [agency-decision-and-decider](../quantum-closure/agency-decision-and-decider.md), [algorithmic-resonance-and-pilot-wave](../quantum-closure/algorithmic-resonance-and-pilot-wave.md), [dyadic-lock](../dyadic-lock/dyadic-lock.md), [simulations](../simulations/simulations.md) | The invariant or metastable measure is explicit enough to compute outcome weights, detector kernels, or coherence-depth bounds. |
 | Cross-sector acceptance | Check whether local sector wins survive together. | [validation-gates](../validation-gates/validation-gates.md), [closure-intersection-ledger](../validation-gates/closure-intersection-ledger.md), all ranked theory workstreams | The accepted-closure intersection remains nonempty after weak, quantum, gravity, hadronic, radiation, and cosmology gates are applied. |
 
+## Shared Closure Contracts
+
+These contracts are the preferred reduction mechanism. If a workstream repeats one of these structures, keep the sector-specific packet but point its proof burden at the shared contract instead of restating the whole grammar.
+
+### Residual-Routing Contract
+
+Use this contract when a work item describes radiation, transport excitation, reaction channels, measurement records, strong-field release, or branch transition.
+
+| Field | Required content |
+| --- | --- |
+| Residual | Name the residual $\mathcal{R}$ and the state variables it depends on. |
+| Threshold or separatrix | State the channel boundary, critical surface, basin boundary, or return-map condition. |
+| Candidate channels | List the admissible routes: retuning, bound excitation, radiation, recoil, medium heating, reaction, record formation, release channel, or branch transition. |
+| Event ledger | Close the event through $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ and any charge/provenance fields. |
+| Benchmark recovery | Name the observer-level benchmark recovered by the route. |
+| Failure condition | State what fails if the residual requires an untracked loss term or sector-specific retuning. |
+
+### Event-Ledger Contract
+
+Use this contract when a work item describes transitions, scattering, radiation, weak reactions, nuclear binding, measurement, or strong-field release.
+
+| Ledger field | Required content |
+| --- | --- |
+| Energy | Initial energy, outgoing energy, internal remnant, recoil, medium update, and unresolved residual. |
+| Momentum | Vector momentum balance, recoil target, medium-carried momentum, and observer-frame conversion. |
+| Angular momentum | Mechanical, wake, core, radiation/polarization, apparatus, and medium angular-momentum entries where applicable. |
+| Charge and provenance | Electric/color/weak labels, pro/anti Noether-core provenance, pair provenance, and allowed corridor sources. |
+| Basin or channel label | The selected basin, separatrix crossing, transition channel, or release route. |
+| Failure code | The explicit reason the event cannot be promoted if any ledger field is missing. |
+
+## Deduplication Candidates
+
+| Candidate | Reduction action | Information-preservation rule |
+| --- | --- | --- |
+| Standard Model weak sector | Keep one top-level `weak_sector_gauge_closure` task; preserve weak `V-A`, weak-corridor provenance, and CKM/PMNS compatibility as subgates in [weak-sector-gauge-closure](../standard-model-closure/weak-sector-gauge-closure.md). | Do not cut any weak burden unless the subgate is explicitly closed, routed, or rejected. |
+| Quantum downstream stress tests | Keep one top-level `transfer_operator_stress_tests` task; preserve Decider and algorithmic/pilot-wave packets as sibling detailed files. | Do not activate the stress tests ahead of transfer-operator and invariant-measure closure. |
+| Residual-routing prose | Use the residual-routing contract instead of repeating the same five-step grammar in every packet. | Sector packets still own their benchmarks and failure modes. |
+| Event-ledger prose | Use the event-ledger contract instead of repeating generic conservation language. | Sector packets still own their required fields and provenance special cases. |
+| Strong-field hypotheses | Keep [hypothesis-bank](../strong-field-closure/hypothesis-bank.md) as a sibling packet under [strong-field-closure](../strong-field-closure/strong-field-closure.md), not a ranked top-level workstream. | Watchlist content remains preserved until each hypothesis is promoted, routed, or explicitly rejected. |
+| Ellipsoid | Treat [ellipsoid](../ellipsoid/ellipsoid.md) as a routing candidate for effective-metric, strong-field, animator, or simulations work rather than a permanent separate theory lane. | Retire only after every sibling file has a destination, parked status, or explicit rejection. |
+
 ## Workstream Product Matrix
 
 | Workstream or packet | Main local object | Shared join key | Strongest related rows | Product-query use |
@@ -70,7 +111,7 @@ $$
 | [quantum-closure](../quantum-closure/quantum-closure.md) | Transfer operator, invariant measure, detector kernels, pair provenance, and Bell gate. | $\{B_i\},\mathcal{H},\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ | Basin measure; causal-wake ledger; conservation event ledger. | Ask whether probabilities are derived from basin measures and detector response, not assigned as interpretive overlays. |
 | [agency-decision-and-decider](../quantum-closure/agency-decision-and-decider.md) | Minimal bias-setting complex. | $\Gamma,\{B_i\}$ | Basin measure and transfer operator. | Ask whether agency claims are reducible to controlled basin-weight shifts with work and hold-time ledgers. |
 | [algorithmic resonance and pilot-wave closure](../quantum-closure/algorithmic-resonance-and-pilot-wave.md) | Causal-wake guidance and coherence-depth bounds. | $\mathcal{H},\{B_i\}$ | Causal-wake ledger; basin measure. | Ask whether pilot-wave-like guidance and register interference are consequences of the same transfer operator. |
-| [strong-field-closure](../strong-field-closure/strong-field-closure.md) | Strong-field boundary conditions, entropy, release channels, and observables. | $\mathcal{M}_{\mathrm{sea}}^{ab},\mathcal{R},\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ | Medium response; residual-to-channel routing; cross-sector acceptance. | Ask whether strong-field mechanisms preserve weak-field GR, thermodynamic accounting, and no-signaling constraints. |
+| [strong-field-closure](../strong-field-closure/strong-field-closure.md) | Strong-field boundary conditions, entropy, release channels, observables, and a sibling [hypothesis bank](../strong-field-closure/hypothesis-bank.md). | $\mathcal{M}_{\mathrm{sea}}^{ab},\mathcal{R},\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ | Medium response; residual-to-channel routing; cross-sector acceptance. | Ask whether strong-field mechanisms preserve weak-field GR, thermodynamic accounting, no-signaling constraints, and hypothesis-bank routing discipline. |
 | [cosmology-closure](../cosmology-closure/cosmology-closure.md) | Cosmology source, transport, thermalization, and transfer-function closure. | $\mathcal{M}_{\mathrm{sea}}^{ab},\mathcal{L}_{E\mathbf{p}\mathbf{J}},\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ | Medium response; conservation event ledger; cross-sector acceptance. | Ask whether local reaction/radiation ledgers remain compatible with BBN, CMB, structure, and expansion observables. |
 | [dyadic-lock](../dyadic-lock/dyadic-lock.md) | Reduced-map dyadic resonance lock and preserved heuristics. | $\{B_i\},\mathcal{H}$ | Basin measure; causal-wake ledger. | Ask whether dyadic locking is a special case of the same transfer-operator and stability grammar used by quantum closure. |
 | [simulations](../simulations/simulations.md) | Run protocols, convergence tests, and finite-regularization packages. | All numeric join keys. | All rows. | Ask which mathematical objects have executable diagnostics and which are still untested symbolic obligations. |

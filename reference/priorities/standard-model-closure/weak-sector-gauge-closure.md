@@ -29,6 +29,16 @@ $$
 
 The proposed closure target is not just to list candidate angles. It is to quotient the admissible axial-layer configuration space by color relabeling, pole symmetries, matter/antimatter conjugation, and frame flips, then compute which branches expose the weak-coupling triad.
 
+## Preserved Subgates
+
+This packet absorbs two former top-level queue items without discarding them:
+
+| Subgate | Preserved burden | Failure condition |
+| --- | --- | --- |
+| Weak `V-A` chirality | Test whether the spiral-handedness / axial-exposure story produces charged-current left-channel selection while suppressing right-channel coupling in the validated regime. | `V-A` selection requires a separate rule from the weak-exposure domain. |
+| Weak-corridor provenance | Determine whether $W^\pm$ corridors carry pro/anti Noether-core provenance or only charged transaction delta, and close how outgoing lepton / antilepton cores are sourced in weak reactions. | Outgoing weak-reaction cores appear without a source ledger or require a different coupling domain from `V-A`. |
+| Flavor overlap compatibility | Keep CKM/PMNS overlap integrals in the same weak-exposure domain as chirality and weak-corridor provenance. | Mixing angles, chirality, and provenance each require independent tuning. |
+
 ## Weak Exposure Operator
 
 Define a provisional weak-exposure functional

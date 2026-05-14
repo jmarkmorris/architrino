@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `deferred-priority`
-- Rank: `14`
+- Rank: `13`
 - Value: `2`
 - Cost: `9`
 - ROI: `0.22`
@@ -48,10 +48,10 @@ The goal is to expose exactly where $\mathbb{A}\mathbb{A}\mathbb{A}$ matches, re
 
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
 - [strong-field-closure](../strong-field-closure/strong-field-closure.md)
-- [strong-field-hypotheses](../strong-field-hypotheses/strong-field-hypotheses.md)
+- [strong-field hypothesis bank](../strong-field-closure/hypothesis-bank.md)
 - [simulations](../simulations/simulations.md)
 
-## Related AAA Notes
+## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 
 - [cosmology-ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md)
 - [CMB](../../../content/markdown/aaa/cosmology/CMB.md)

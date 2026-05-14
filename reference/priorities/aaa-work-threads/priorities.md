@@ -62,10 +62,9 @@ Nested proof subprograms live under [proof-programs](../proof-programs/proof-pro
 |    8 | [`standard-model-closure`](../standard-model-closure/standard-model-closure.md)    | Remaining Standard Model assembly gaps, flavor mixing, and confinement             |     8 |    5 | 1.60 |
 |    9 | [`simulations`](../simulations/simulations.md)                                        | Simulations, regularization, and shell numerics                                    |     8 |    5 | 1.60 |
 |   10 | [`strong-field-closure`](../strong-field-closure/strong-field-closure.md)          | Remaining black-hole / strong-field quantitative closure                           |     4 |    5 | 0.80 |
-|   11 | [`strong-field-hypotheses`](../strong-field-hypotheses/strong-field-hypotheses.md) | Preserve strong-field / tri-binary hypotheses                                      |     2 |    3 | 0.67 |
-|   12 | [`chapter-authoring`](../../op/chapter-authoring.md)                               | Unified chapter authoring queue and legacy-material recovery                       |     3 |    5 | 0.60 |
-|   13 | [`quantum-closure`](../quantum-closure/quantum-closure.md)                         | Born-rule / quantum closure with hard tests                                        |     4 |    8 | 0.50 |
-|   14 | [`cosmology-closure`](../cosmology-closure/cosmology-closure.md)                   | Cosmology transfer-function closure                                                |     2 |    9 | 0.22 |
+|   11 | [`chapter-authoring`](../../op/chapter-authoring.md)                               | Unified chapter authoring queue and legacy-material recovery                       |     3 |    5 | 0.60 |
+|   12 | [`quantum-closure`](../quantum-closure/quantum-closure.md)                         | Born-rule / quantum closure with hard tests                                        |     4 |    8 | 0.50 |
+|   13 | [`cosmology-closure`](../cosmology-closure/cosmology-closure.md)                   | Cosmology transfer-function closure                                                |     2 |    9 | 0.22 |
 
 ## Unranked Candidate And Archive References
 
@@ -73,8 +72,9 @@ These are tracked for visibility, but they are not ranked active workstreams in 
 
 | Slug or packet | Location | Role | Current disposition |
 | --- | --- | --- | --- |
-| `ellipsoid` | [ellipsoid.md](../ellipsoid/ellipsoid.md) | Effective-metric review workstream plus Ideal Core app idea. | Priority candidate under review. |
+| `ellipsoid` | [ellipsoid.md](../ellipsoid/ellipsoid.md) | Effective-metric routing surface plus Ideal Core app idea. | Priority candidate under routing review; retire only after sibling files have destinations. |
 | `validation-gates` | [validation-gates.md](../validation-gates/validation-gates.md) | Cross-sector acceptance intersections, no-go applicability, and failure-condition routing. | Priority candidate under review; now has a sibling closure-intersection ledger. |
+| `strong-field hypothesis bank` | [hypothesis-bank.md](../strong-field-closure/hypothesis-bank.md) | Strong-field and tri-binary hypothesis watchlist. | Merged under `strong-field-closure`; not a ranked top-level workstream. |
 | `deferred` | [legacy-insights.md](../deferred/legacy-insights.md) | Archive and parking lot for non-current material. | Needs a deferred index later. |
 | `3x3` | [3x3.md](../deferred/3x3/3x3.md) | Deferred binary-slot matrix note. | Keep deferred unless a target $\mathbb{A}\mathbb{A}\mathbb{A}$ document is selected. |
 | `phenomenological-heuristics` | [phenomenological-heuristics.md](../dyadic-lock/phenomenological-heuristics.md) | Dyadic resonance lock archive source. | Keep as sibling archive unless a shared archive convention is adopted. |
@@ -87,13 +87,15 @@ These are tracked for visibility, but they are not ranked active workstreams in 
 - Workstream `animator`: compact control file and sibling design/interface file are in place; choose the next concrete observer/framing, structure-editing, or timeline-object implementation pass before touching runtime code.
 - Workstream `master-equation-closure`: carry the tractable master-equation stack far enough to support Lorentz / GR closure, quantum closure, and the first-principles mass program.
 - Workstream `angular-momentum-spin`: use the sibling core-ledger, partition/spinor, and photon/measurement/Bell files to promote the scaffolded Noether-core angular-momentum ledger into a validated functional, generalize the solved minimal partition branch, prove or falsify ordered-frame spinor closure, and keep Bell as a downstream pair-provenance and measurement-response test.
-- Workstream `standard-model-closure`: keep geometry-first work intact while the new weak-sector/gauge and nuclear-binding packets isolate two different risks: weak exposure/gauge covariance and hadronic-to-nuclear coarse-graining.
-- Workstream `quantum-closure`: remain deferred, but preserve Decider minimality and pilot-wave / algorithmic-resonance opportunities as downstream transfer-operator stress tests.
+- Workstream `standard-model-closure`: keep geometry-first work intact while the weak-sector/gauge packet absorbs weak `V-A`, weak-corridor provenance, CKM/PMNS compatibility, and gauge covariance as one umbrella task; nuclear binding remains a separate hadronic-to-nuclear coarse-graining risk.
+- Workstream `quantum-closure`: remain deferred, but preserve Decider minimality and pilot-wave / algorithmic-resonance opportunities as downstream transfer-operator stress tests under one top-level queue item.
+- Workstream `strong-field-closure`: owns the former strong-field hypothesis watchlist as [hypothesis-bank](../strong-field-closure/hypothesis-bank.md), so hypotheses stay preserved without a separate ranked workstream.
 - Candidate `validation-gates`: use the closure-intersection ledger to test whether weak, quantum, gravity, hadronic, radiation, and cosmology gates can survive together rather than as disconnected local wins.
 
 ## Organization Status
 
-- First-pass flat cleanup is complete for `standard-model-closure`, `dyadic-lock`, `mass-map`, `master-equation-closure`, `simulations`, `strong-field-closure`, `strong-field-hypotheses`, `cosmology-closure`, `quantum-closure`, `proof-programs`, `angular-momentum-spin`, `animator`, `ellipsoid`, `tri-binary-causal-closure`, and `validation-gates`.
+- First-pass flat cleanup is complete for `standard-model-closure`, `dyadic-lock`, `mass-map`, `master-equation-closure`, `simulations`, `strong-field-closure`, `cosmology-closure`, `quantum-closure`, `proof-programs`, `angular-momentum-spin`, `animator`, `ellipsoid`, `tri-binary-causal-closure`, and `validation-gates`.
+- The latest deduplication pass compressed weak-sector subgates, quantum stress tests, residual-routing prose, event-ledger prose, strong-field hypotheses, and ellipsoid routing without deleting source material.
 - The latest coverage pass added seven high-upside $\mathbb{A}\mathbb{A}\mathbb{A}$ gap packets without adding extra requirements subdirectories: validation gates, radiation Gate C, Decider minimality, weak-sector/gauge closure, nuclear binding, condensed-matter medium transport, and algorithmic-resonance / pilot-wave closure.
 - [closure-join-matrix.md](closure-join-matrix.md) is the product-join view over repeated queue structure: branch state, causal-wake ledger, residual routing, event ledger, exposure, medium response, basin measure, and cross-sector acceptance.
 - [inventory.md](inventory.md) is the detailed map for which files are compact control surfaces, which are detailed priority files, and which deployed $\mathbb{A}\mathbb{A}\mathbb{A}$ documents should eventually absorb promoted material.

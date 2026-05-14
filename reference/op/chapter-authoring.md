@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `priority`
-- Rank: `12`
+- Rank: `11`
 - Value: `3`
 - Cost: `5`
 - ROI: `0.60`
@@ -74,7 +74,7 @@ This is the ranked queue for chapter-writing work and legacy-material recovery. 
 - [master-equation-closure](../priorities/master-equation-closure/master-equation-closure.md)
 - [standard-model-closure](../priorities/standard-model-closure/standard-model-closure.md)
 
-## Related AAA Notes
+## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 
 - [textbook-file-structure](../../content/markdown/aaa/archie/textbook-file-structure.md)
 - [academic-style-guide](../../content/markdown/aaa/archie/academic-style-guide.md)
