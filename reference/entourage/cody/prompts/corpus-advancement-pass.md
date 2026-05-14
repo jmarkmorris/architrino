@@ -10,7 +10,7 @@ Optionally follow it with a specific lane, shard, priority area, or edit-batch i
 
 Use this prompt when the AAA corpus needs active advancement: a recent batch may contain a newer theoretical signal, the priority ledgers may identify open issues that should be turned into mathematics, or the corpus itself may contain underdeveloped proof routes, mathematical closure targets, newly visible insights, notation fixes, or occasional terminology corrections. Cross-linking and general cleanup are secondary unless they directly support a concrete mathematical advance.
 
-The highest-value use of this prompt is not mere phrase cleanup or another paragraph saying work remains. Use the review to make concrete mathematical progress: propose definitions, equations, lemmas, invariants, estimates, closure conditions, proof sketches, toy models, counterexamples, or simulation hooks. Each recurring claim should be sorted as ontology, derivation/closure target, effective summary, or speculation, but that sorting is a launch point for work, not the final product. The report should identify what can be edited now, what mathematical object can be attempted now, what intuition deserves disciplined discussion with Op, and what should become a concrete priority action item.
+The highest-value use of this prompt is not mere phrase cleanup or another paragraph saying work remains. Use the review to make concrete mathematical progress: propose definitions, equations, lemmas, invariants, estimates, closure conditions, proof sketches, toy models, counterexamples, or simulation hooks. Each recurring claim should be sorted as ontology, derivation/closure target, effective summary, or speculation, but that sorting is a launch point for work, not the final product. When the current user request grants advancement, integration, cleanup, or self-running authority, perform safe, low-risk, canon-conforming edits instead of withholding them for approval. Reserve approval or discussion for new theory leaps, terminology policy, Archie canon changes, broad scope expansion, or ambiguous operator intent. The final response should identify what was edited now, what mathematical object was attempted now, what intuition deserves disciplined discussion with Op, and what should become a concrete priority action item.
 
 High-priority autonomous method: when no more specific lane is supplied, inspect `reference/priorities/SUMMARY/priorities.md` and the relevant files under `reference/priorities/` early in the pass. Treat those files as an operator-maintained issue ledger, not as authored AAA content. Use them to identify concrete corpus-advancement opportunities, proof routes, missing derivations, validation ledgers, and safe edit batches. Do not link from authored `content/markdown/aaa` files to priority files; if priority material belongs in the AAA corpus, restate or promote the needed substance inside the relevant AAA document.
 
@@ -24,6 +24,7 @@ Rules:
 - A concrete mathematical advance may be a candidate definition, named lemma, conjecture with assumptions, closure equation, invariant, variational principle, scale estimate, reaction provenance equation, validation criterion, or minimal simulation experiment.
 - Each major report paragraph must do one of four jobs: state a specific claim, give a calculation/proof route, identify an exact edit, or create a concrete priority/prompt item. Avoid filler paragraphs that only say a topic is important or may matter later.
 - Leaps of intuition are welcome. For each leap, give the trigger, the candidate claim, the mathematical form it would take, the first calculation or proof step, and a failure mode that could disprove or discipline it.
+- Every actionable leap of intuition must also appear as a detailed, paste-ready prompt in the end-of-response Priority Action Menu unless it was already discussed and authorized in the current task. Use `Recommendation: discuss first` when canonization is not yet safe.
 - Future-only work belongs in the Priority Action Menu or in `reference/priorities` as a concrete action item. Do not leave vague future-work prose in authored AAA content or final reports.
 - Cross-links are not advancement by themselves. Add or recommend links only when they make an accepted mathematical claim easier to verify, compare, or read.
 - Infrastructure recommendations are secondary. Include them only when a specific recurring failure pattern has a concrete check, script, ledger, or priority item.
@@ -43,7 +44,7 @@ Do not call a requirement card a theory advance by itself. It becomes advancemen
 
 ## Thread State Handoff
 
-At every pause, approval request, discussion request, or final response, make the thread state explicit before the report body:
+At every pause, approval request, discussion request, or final response, make the thread state explicit at the end of the response after the report and any Priority Action Menu. The last thing Op sees should be the current status and exact next action:
 
 ```text
 Thread state: DONE | WAITING_FOR_OP | DISCUSSION | BLOCKED
@@ -51,26 +52,30 @@ Mode: audit/report | edit-batch | self-running exploration | team-agent
 Authority used: report-only | claim-card-only | edited files
 Files changed: none | path list
 Validation: not run | passed | failed: short reason
-Op next action: one concrete action needed for this thread, or "none required"
+Op next action: none required | reply with prompt option numbers | answer the question below
 New-thread prompt: none | included below as a detailed prompt
 ```
 
 Use the status words strictly:
 
 - `DONE`: the requested pass or edit batch is complete; no operator action is required.
-- `WAITING_FOR_OP`: Cody needs a decision before proceeding; ask exactly one clear question next.
+- `WAITING_FOR_OP`: Cody needs a decision before proceeding; ask exactly one clear question after the handoff block.
 - `DISCUSSION`: a theory leap, canon-policy change, or terminology decision should be discussed before editing.
 - `BLOCKED`: work could not continue because of a missing file, command failure, permission issue, or conflicting workspace state.
 
 For self-running exploration, distinguish claim-card writes from AAA prose edits. If only a claim card was created, use `Authority used: claim-card-only`; if no AAA content changed, say so directly in `Files changed`.
 
-Use one substantive task per thread. A substantive task is an audit/report, a self-running exploration pass, a theory discussion, a selected edit-batch implementation, or a validation/fix pass. Do not ask Op to approve optional follow-on work inside the current thread; finish the current task, mark `Op next action: none required` when appropriate, and package recommended follow-on work as detailed prompt options. Ask for approval in the current thread only when the decision is required to complete the current task.
+Use one substantive task per thread. A substantive task is an audit/report, a self-running exploration pass, a theory discussion, a selected edit-batch implementation, or a validation/fix pass. If the current prompt grants broad advancement or integration authority, finish the current task and make safe edits that fall inside that authority. Do not ask Op to approve safe edits that Cody is already confident are low-risk and canon-conforming. Package follow-on work, risky edits, major scope expansions, new theory leaps, or canon/terminology decisions as detailed prompt options. Ask for approval in the current thread only when the decision is required to complete the current task.
 
-## Approval And Continuation Prompt Format
+## Priority Action And Continuation Prompt Format
 
-When a corpus pass offers numbered options for Op approval, each numbered option must be written as a detailed, paste-ready prompt. Do not use terse approval labels such as `Action: fix X` as the decision surface. The option should be detailed enough that Op can reply with the number or paste the prompt into a new thread without reconstructing context.
+When a corpus pass offers numbered next actions for Op, each numbered option must be written as a detailed, paste-ready prompt. Put these options at the end of the response, immediately before the thread state handoff. Do not use terse approval labels such as `Action: fix X` as the decision surface. The option should be detailed enough that Op can reply with the number or paste the prompt into a new thread without reconstructing context.
 
-Use this format for numbered approval options:
+Include every high- or medium-priority action that Op could reasonably take next, including safe edit batches outside the completed scope, proof packets, simulation packets, infrastructure work, discussion cards, and new potential leaps of intuition. Each prompt must state its edit authority explicitly.
+
+Do not present any Op-facing action statement outside prompt form. If it asks Op to do, choose, approve, discuss, or start something, make it a detailed prompt option.
+
+Use this format for numbered next-action options:
 
 ````text
 1. [High] Prompt: short title
@@ -93,7 +98,8 @@ Use this format for numbered approval options:
    - Preserve TeX exactly.
    - Use canonical AAA terminology.
    - Do not introduce new project terminology without asking.
-   - Do not edit AAA prose unless this prompt grants edit authority.
+   - Edit authority: none | safe scoped edits allowed | direct edit batch authorized.
+   - Do not edit AAA prose unless Edit authority allows it.
 
    Expected output:
    - Report, discussion card, edit batch, validation result, or other deliverable.
@@ -103,7 +109,7 @@ Use this format for numbered approval options:
    Recommendation: implement | defer | discuss first | block until ... - reason.
 ````
 
-For continuation prompts in the thread state handoff, put `New-thread prompt: included below as a detailed prompt` in the handoff block and include a `New-thread prompt` section after the report using the same detailed prompt structure. If no continuation is useful, write `New-thread prompt: none`.
+For continuation prompts, put `New-thread prompt: included below as a detailed prompt` in the handoff block and include the detailed prompt in the end-of-response Priority Action Menu or a `New-thread prompt` section immediately before the handoff. If no continuation is useful, write `New-thread prompt: none`.
 
 When Op replies with selected numbers, treat each selected detailed prompt as the approved task brief. Implement selected items in order. If two selected prompt options conflict or need different authority, ask one clear question before editing.
 
@@ -158,7 +164,7 @@ Required method:
 6. Choose the strongest one or two signals and attempt a concrete mathematical advance: candidate definition, lemma, closure equation, invariant, proof scaffold, scale estimate, provenance equation, validation criterion, or minimal simulation target.
 7. Search the corpus for related claims, older terminology, weaker formulations, missing implications, inconsistent notation, and documents that would benefit from the advancement.
 8. Search for exact stale phrases first, then broaden to conceptual neighbors. Prefer `rg` searches and include search patterns only when they seed a concrete follow-on prompt.
-9. Do not edit files yet unless I explicitly ask for edits.
+9. If this request is report-only, do not edit. Otherwise, apply safe, low-risk, canon-conforming edits discovered inside the current pass. Do not edit to canonize a new theory leap, change terminology policy, update Archie canon, or make a broad scope expansion without Op discussion or an explicit prompt granting that authority.
 10. Produce a report organized by mathematical advance first, then by affected document.
 
 For each affected document, report:
@@ -166,6 +172,7 @@ For each affected document, report:
 - Current issue or opportunity
 - Source advancement that affects it
 - Recommended update
+- Whether the safe update was made now, deferred as a prompt, or requires Op discussion
 - Priority: required / high-value / optional
 - Risk: low / medium / high
 - Whether this is a terminology correction, theory elevation, notation fix, cross-link opportunity, or possible new insight
@@ -192,12 +199,13 @@ Important constraints:
 - If a canonical project term exists, reuse it exactly. Do not invent alternate wording for convenience.
 
 End with:
-0. The thread state handoff block.
 1. Concrete mathematical advances attempted, including candidate definitions, equations, lemmas, proof routes, or validation targets.
-2. A ranked edit plan; any numbered approval options in that plan must use the detailed prompt format above.
-3. Leaps of intuition to discuss with Op before canonizing or editing into AAA prose.
-4. Concrete priority or infrastructure action items, only where they have enough detail to execute.
-5. Any questions that must be answered before editing.
+2. Edits made now, if any, with changed files and validation status.
+3. A ranked edit plan for work outside the completed scope; every numbered option must use the detailed prompt format above.
+4. Leaps of intuition to discuss with Op before canonizing or editing into AAA prose; every actionable leap must also appear as a detailed prompt option.
+5. Concrete priority or infrastructure action items, only where they have enough detail to execute.
+6. Any questions that must be answered before editing.
+7. The Priority Action Menu, if any, followed by the thread state handoff block as the final item.
 ```
 
 ## Edit-Batch Variant
@@ -256,18 +264,18 @@ If scene graph drift appears, run:
 then rerun the checks.
 
 Final response:
-Start with the thread state handoff block. Then briefly list the files touched, summarize the main cleanup, mention generated artifacts if refreshed, and report validation status.
+Briefly list the files touched, summarize the main cleanup, mention generated artifacts if refreshed, report validation status, then end with any Priority Action Menu and the thread state handoff block.
 ```
 
 ## Self-Running Exploration Variant
 
-Use this version when there is no single source document and Cody should actively look for the next high-value corpus advancement opportunity. This is an autonomous mathematical exploration mode, not a license to silently canonize new theory. It should explore priority ledgers, recent changes, corpus gaps, synthesize, follow promising intuition, and return concrete mathematical advances or detailed prompt options; it may edit only when the operator explicitly asks for an integration pass.
+Use this version when there is no single source document and Cody should actively look for the next high-value corpus advancement opportunity. This is an autonomous mathematical exploration mode, not a license to silently canonize new theory. It should explore priority ledgers, recent changes, corpus gaps, synthesize, follow promising intuition, make safe low-risk canon-conforming edits when the current request grants advancement authority, and return concrete mathematical advances or detailed prompt options for work outside that authority.
 
 ```text
 Cody, run a self-directed AAA corpus advancement exploration pass.
 
 Goal:
-Find the next highest-leverage theory advancement opportunity without being given a specific source document, then push it as far as a report-only pass can responsibly push it. Start with the priority ledgers unless Op supplied a different lane, then explore the idea space through recent changes, random deep dives, proof-target scans, missing-material scans, and occasional drift scans. Produce a ranked advancement report with concrete candidate definitions, equations, lemmas, proof or derivation targets, disciplined leaps of intuition, safe edit candidates, and priority action items.
+Find the next highest-leverage theory advancement opportunity without being given a specific source document, then push it as far as the current authority responsibly allows. Start with the priority ledgers unless Op supplied a different lane, then explore the idea space through recent changes, random deep dives, proof-target scans, missing-material scans, and occasional drift scans. Produce a ranked advancement report with concrete candidate definitions, equations, lemmas, proof or derivation targets, disciplined leaps of intuition, safe edits made now when authorized, safe edit candidates outside scope, and priority action items.
 
 Operating principle:
 This pass should behave like an active research scout doing real mathematical work. It should not merely clean phrases, collect links, or narrate that something should happen later. Ideas are welcome: surface promising syntheses, analogies, proof routes, and unifying mechanisms even when they are not ready for canon. Label them by evidential status instead of suppressing them. The center of gravity is mathematical advancement in theory and proofs: sharpen definitions, name lemmas, start derivations, write closure targets explicitly, and turn speculative mechanisms into testable theorem or simulation programs.
@@ -276,7 +284,7 @@ Hygiene posture:
 Terminology, notation, cross-linking, and cleanup still matter, but they are secondary in this variant. Let them appear when they block mathematical clarity or provide a cheap safe edit candidate. Do not let a self-running exploration collapse into a terminology sweep, link-gardening pass, or vague future-work inventory unless Op explicitly asks for that.
 
 No empty future-work prose:
-Do not write paragraphs whose only content is that a topic deserves future attention. Either do the smallest useful mathematical step now, draft the exact AAA edit that should be made in an authorized edit pass, or turn the work into a detailed Priority Action Menu prompt. If the item belongs in `reference/priorities`, name the owning priority file and the concrete action that should be added or updated.
+Do not write paragraphs whose only content is that a topic deserves future attention. Either do the smallest useful mathematical step now, make the safe AAA edit when the current request authorizes it, draft the exact AAA edit for a later bounded pass, or turn the work into a detailed Priority Action Menu prompt. If the item belongs in `reference/priorities`, name the owning priority file and the concrete action that should be added or updated.
 
 Before exploring:
 1. Run `git status --short`.
@@ -293,7 +301,7 @@ Use this protocol when Op starts multiple threads with this same prompt and want
 1. Check for existing claim cards:
    - `rg --files reference/entourage/cody/reports/corpus-exploration-claims 2>/dev/null`
    - If claim cards exist, read the recent active ones before choosing lanes or path shards.
-2. Create a short claim card before deep work. This metadata write is allowed for coordination in this exploration variant; do not edit AAA content unless Op later requests an integration pass.
+2. Create a short claim card before deep work. This metadata write is allowed for coordination in this exploration variant. In a multi-thread or team-agent run, do not edit AAA content unless Op assigned explicit non-overlapping edit authority; return detailed prompt options instead.
    - Claim directory: `reference/entourage/cody/reports/corpus-exploration-claims/`
    - Filename pattern: `YYYYMMDD-HHMMSS-short-focus.md`
    - Include: thread label, timestamp, selected lanes, selected path shard, excluded claims read, search patterns planned, and expected output.
@@ -320,7 +328,7 @@ Internal exploration palette:
 If Op does not specify a lane, shard, or posture, choose one or two of these postures before choosing lanes. Give high priority to postures that can produce a concrete mathematical artifact now, bias away from active claim cards and recently covered territory, and keep hygiene postures as occasional secondary passes. State the selected posture in the claim card and final report.
 
 - **Priority-ledger advancement:** go through `reference/priorities/SUMMARY/priorities.md` and the relevant files under `reference/priorities/` to find operator-maintained issues that can be advanced in the AAA corpus. Convert priority items into present mathematical work: proof routes, definitions, equations, missing derivations, worked examples, validation ledgers, cross-document integration, or safe edit batches. Do not link from authored AAA prose to priority files; promote the substance into `content/markdown/aaa` when it belongs there.
-- **Idea factory:** maximize new syntheses, proof routes, unifying mechanisms, mathematical conjectures, and leaps of intuition. Do not edit; return disciplined theory cards with a candidate mathematical statement, assumptions, first calculation, and failure mode.
+- **Idea factory:** maximize new syntheses, proof routes, unifying mechanisms, mathematical conjectures, and leaps of intuition. Do not edit speculative ideas into AAA prose; return disciplined theory cards with a candidate mathematical statement, assumptions, first calculation, failure mode, and detailed discussion or implementation prompt.
 - **Closure lab:** focus on theorem/closure targets such as Lorentz behavior, mass/inertia, photon stability, reaction provenance, emergent metric closure, and cosmology observer variables.
 - **Proof-route forge:** choose one important claim and outline the objects, assumptions, lemmas, equations, invariants, simulations, or counterexamples needed to turn it into a defensible derivation.
 - **Recent-change propagator:** mine recent git changes for theory advancements and sweep related documents for integration opportunities.
@@ -413,8 +421,7 @@ Lane H: Priority-ledger advancement
 - If a priority item is completed during an edit-batch thread, remove or update it in the priority list and renumber following items as required by `AGENTS.md`.
 
 Report format:
-0. Thread state handoff block. In this variant, `Authority used` should usually be `claim-card-only`, and `Files changed` should say whether any AAA prose changed.
-1. Claim card path, selected exploration posture(s), selected lane(s), selected path shard, and any active claims avoided.
+1. Claim card path if used, selected exploration posture(s), selected lane(s), selected path shard, and any active claims avoided.
 2. Exploration lanes used and why.
 3. Source signals found, including priority files, recent commits/diffs, or randomly selected documents.
 4. Concrete advances attempted:
@@ -445,7 +452,7 @@ Report format:
    - first calculation or proof step,
    - what evidence or derivation is missing,
    - exact question for Op.
-8. Safe edit candidates for an integration pass, phrased as exact changes or detailed prompt options.
+8. Safe edits made now, plus safe edit candidates outside the completed scope phrased as exact changes or detailed prompt options.
 9. Missing-material action items:
    - missing page, section, derivation, worked example, reaction ledger, or bridge,
    - documents that imply it,
@@ -456,11 +463,13 @@ Report format:
    - closure-target ledger entries,
    - repeatable search patterns,
    - candidate validation rule additions.
-11. Detailed continuation prompt options:
+11. Detailed continuation prompt options and Priority Action Menu:
    - recommended next thread type: audit/report, edit-batch, discussion, or team-agent,
-   - each numbered approval option written as a detailed, paste-ready prompt using the format above,
+   - each numbered next-action option written as a detailed, paste-ready prompt using the format above,
+   - every actionable leap of intuition represented as a discussion or implementation prompt,
    - exact search commands or source paths that should seed that new thread,
    - no request for Op approval unless approval is required to complete this thread's current task.
+12. Thread state handoff block as the final item. In this variant, `Authority used` should distinguish `claim-card-only`, `report-only`, and `edited files`, and `Files changed` should say whether any AAA prose changed.
 
 Guardrails:
 - Do not introduce new project terminology without asking.
@@ -541,6 +550,7 @@ Coordinator Cody must then:
 5. Identify recurring drift patterns for automation only when a concrete rule can be stated.
 6. Identify theorem targets that should enter a closure-target ledger, with candidate statement, objects, and first proof step.
 7. Produce one ranked corpus advancement report.
+8. Make safe, non-overlapping edits only when Op explicitly granted team-agent edit authority; otherwise return detailed prompt options for coordinator-led edit batches.
 
 Important constraints:
 - Preserve TeX exactly.
@@ -554,13 +564,14 @@ Important constraints:
 - Treat Lorentz behavior, tri-binary minimality, and similar closure claims as theorem targets unless the local derivation is present.
 - Treat mass/inertia as externally exposed response of trapped internal causal history, shielding, and Noether-Sea coupling; do not recast it as ordinary dissipative drag.
 - Keep Noether Sea as the ontology term and spacetime medium as a bridge term.
-- Do not edit files unless I explicitly request an integration pass after the report.
+- Shard agents must not edit files. Coordinator Cody may edit only when Op explicitly grants team-agent edit authority or selects a follow-up edit-batch prompt.
 
 End with:
-0. The thread state handoff block.
 1. Concrete mathematical advances attempted, including candidate definitions, equations, lemmas, proof routes, or validation targets.
-2. A ranked edit plan; any numbered approval options in that plan must use the detailed prompt format above.
-3. Leaps of intuition to discuss with Op before canonizing or editing into AAA prose.
-4. Concrete priority or infrastructure action items, only where they have enough detail to execute.
-5. Any questions that must be answered before editing.
+2. Edits made now, if team-agent edit authority was granted.
+3. A ranked edit plan; every numbered option must use the detailed prompt format above.
+4. Leaps of intuition to discuss with Op before canonizing or editing into AAA prose; every actionable leap must also appear as a detailed prompt option.
+5. Concrete priority or infrastructure action items, only where they have enough detail to execute.
+6. Any questions that must be answered before editing.
+7. The Priority Action Menu, if any, followed by the thread state handoff block as the final item.
 ```
