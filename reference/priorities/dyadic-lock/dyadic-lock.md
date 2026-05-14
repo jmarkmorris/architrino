@@ -19,6 +19,14 @@
 
 Treat [dyadic-resonance-lock.md](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md) as the live note for a candidate dyadic lock, not as proof that the full dynamics uniquely select `1:2:4`.
 
+This workstream owns the reduced-map proof path for dyadic resonance selection. It should keep archive heuristics subordinate to finite-$\eta$ phase-amplitude stability tests and to the breather-certificate discipline described below.
+
+## Detailed Priority Files
+
+| File | Role | Target AAA notes |
+| --- | --- | --- |
+| [phenomenological-heuristics.md](phenomenological-heuristics.md) | Preserved archive for conjectural geometry, scaling, and cosmology intuitions that should not drive the active derivation unless rederived from the reduced dynamics. | [dyadic-resonance-lock](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md), [binary-dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md), [mode-taxonomy](../../../content/markdown/aaa/interactions/mode-taxonomy.md) |
+
 ## What Is Solid
 
 - Exact periodic closure gives a rational resonance lattice.
@@ -34,6 +42,14 @@ Treat [dyadic-resonance-lock.md](../../../content/markdown/aaa/dynamics/dyadic-r
 - Whether a reduced phase-amplitude or causal-work functional contracts toward the dyadic fixed point.
 - Whether the $\mathbb{Z}_3$ organization is only radiative-stealth bookkeeping or a genuine adiabatic stabilizer.
 - Whether any old `1:1:2` branch ledger emerges only on an attractor rather than belonging in the foundation.
+
+## Promotion Map
+
+| Task | Detailed file | Primary promotion target | Promotion gate |
+| --- | --- | --- | --- |
+| `reduced_phase_amplitude_map` | [phenomenological-heuristics.md](phenomenological-heuristics.md) as archive source only | [dyadic-resonance-lock](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md) | A finite-$\eta$ two-layer return map with phase and amplitude/speed variables, active branch counts, and a stated regularization. |
+| `stable_12_fixed_point` | [phenomenological-heuristics.md](phenomenological-heuristics.md) as archive source only | [dyadic-resonance-lock](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md) | A stable `1:2` fixed point proved or numerically demonstrated with Jacobian/eigenvalue diagnostics. |
+| `chain_to_124` | [phenomenological-heuristics.md](phenomenological-heuristics.md) as archive source only | [dyadic-resonance-lock](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md) and [mode-taxonomy](../../../content/markdown/aaa/interactions/mode-taxonomy.md) | Chaining the second layer yields a stable `1:2:4` state, or the failure mode is recorded without promoting the old heuristic branch ledger. |
 
 ## Breather Certificate Discipline
 
