@@ -2,7 +2,7 @@
 
 This file is the canonical control surface for `priorities`. Directory names are stable identities. Rank, status, classification, and task queues live here and in each workstream slug file, not in the filesystem names.
 
-The full pre-split monolith is preserved at [archive/priorities-legacy.md](../deferred/priorities-legacy.md).
+The full pre-split monolith is preserved at [deferred/priorities-legacy.md](../deferred/priorities-legacy.md).
 
 ## Scoring System
 
@@ -42,7 +42,9 @@ This keeps the files readable in plain Markdown, diff-friendly in git, and struc
 
 ## Unified Priority Table
 
-This single table is the canonical rollup for every direct child of `priorities`. Use it to maintain ranking, notice category mistakes, and decide which directories still deserve to live here as active workstreams.
+This single table is the canonical rollup for ranked priority workstreams and linked ranked queues. Use it to maintain ranking, notice category mistakes, and decide which directories still deserve to live here as active workstreams.
+
+This table does not list detailed sibling files. The structural inventory for compact control files, detailed priority files, deployed targets, and deferred packets lives in [inventory.md](../inventory.md).
 
 Nested proof subprograms live under [proof-programs](../proof-programs/proof-programs.md). They keep local metadata for handoff clarity, but the parent `proof-programs` row is the canonical top-level ranking entry.
 
@@ -62,29 +64,40 @@ Nested proof subprograms live under [proof-programs](../proof-programs/proof-pro
 |   12 | [`chapter-authoring`](../../op/chapter-authoring.md)                               | Unified chapter authoring queue and legacy-material recovery                       |     3 |    5 | 0.60 |
 |   13 | [`quantum-closure`](../quantum-closure/quantum-closure.md)                         | Born-rule / quantum closure with hard tests                                        |     4 |    8 | 0.50 |
 |   14 | [`cosmology-closure`](../cosmology-closure/cosmology-closure.md)                   | Cosmology transfer-function closure                                                |     2 |    9 | 0.22 |
-|    — | [`animator`](../animator/animator.md)                                              | animator                                                                           |     — |    — |    — |
-|    — | [`3x3`](../deferred/3x3/3x3.md)                                                             | 3x3 binary-slot matrix                                                             |     — |    — |    — |
-|    — | [`ellipsoid`](../ellipsoid/ellipsoid.md)                                           | Ellipsoid app idea                                                                 |     — |    — |    — |
-|    — | [`phenomenological-heuristics`](../dyadic-lock/phenomenological-heuristics.md)     | Dyadic resonance lock archive                                                      |     — |    — |    — |
 
+## Unranked Candidate And Archive References
 
+These are tracked for visibility, but they are not ranked active workstreams in the scoring table.
+
+| Slug or packet | Location | Role | Current disposition |
+| --- | --- | --- | --- |
+| `ellipsoid` | [ellipsoid.md](../ellipsoid/ellipsoid.md) | Effective-metric review workstream plus Ideal Core app idea. | Priority candidate under review. |
+| `deferred` | [legacy-insights.md](../deferred/legacy-insights.md) | Archive and parking lot for non-current material. | Needs a deferred index later. |
+| `3x3` | [3x3.md](../deferred/3x3/3x3.md) | Deferred binary-slot matrix note. | Keep deferred unless a target AAA document is selected. |
+| `phenomenological-heuristics` | [phenomenological-heuristics.md](../dyadic-lock/phenomenological-heuristics.md) | Dyadic resonance lock archive source. | Keep as sibling archive unless a shared archive convention is adopted. |
 
 ## Current Focus
 
 - Workstream `proof-programs`: architecture complete, certificate pending; the dual-mollified master-equation law is now recorded, the doubled four-arc itinerary has a coarse parity pass, and the seed-chart packet contract now fixes the next executable gate: generate one symmetry-constrained candidate collinear cycle, mesh, null-coordinate causal ledger, and certified branch chart. The planar delayed-bridge closure is kept as the queued higher-dimensional extension under the same directory.
-- Workstream `mass-map`: derive the first reusable mass map from tri-binary geometry rather than bookkeeping the parameter ledger in isolation.
-- Workstream `tri-binary-causal-closure`: run the continuity pass against the dependency map, then route the photon/QED, Lorentz/GR, equivalence, and topological certification burdens to the right proof workstreams before deployment.
-- Workstream `animator-reaction`: finish the forward pdgsolve/pdgedit/animator split and keep the active app path clean and contract-first.
+- Workstream `mass-map`: derive the first reusable mass map from tri-binary geometry, using the sibling $A_0$ branch, energy/shielding, and medium-response packets rather than treating the parameter ledger in isolation.
+- Workstream `tri-binary-causal-closure`: compact control file and sibling synthesis structure are in place; next active theory burden is the photon/QED gate, with kinematics/optics, polarization/spin, and vertices/transitions kept as explicit review packets before deployment.
+- Workstream `animator`: compact control file and sibling design/interface file are in place; choose the next concrete observer/framing, structure-editing, or timeline-object implementation pass before touching runtime code.
 - Workstream `master-equation-closure`: carry the tractable master-equation stack far enough to support Lorentz / GR closure, quantum closure, and the first-principles mass program.
-- Workstream `angular-momentum-spin`: promote the scaffolded Noether-core angular-momentum ledger into a validated functional, generalize the solved minimal partition branch, prove or falsify ordered-frame spinor closure, and keep Bell as a downstream pair-provenance and measurement-response test.
+- Workstream `angular-momentum-spin`: use the sibling core-ledger, partition/spinor, and photon/measurement/Bell files to promote the scaffolded Noether-core angular-momentum ledger into a validated functional, generalize the solved minimal partition branch, prove or falsify ordered-frame spinor closure, and keep Bell as a downstream pair-provenance and measurement-response test.
+
+## Organization Status
+
+- First-pass flat cleanup is complete for `standard-model-closure`, `dyadic-lock`, `mass-map`, `master-equation-closure`, `simulations`, `strong-field-closure`, `strong-field-hypotheses`, `cosmology-closure`, `quantum-closure`, `proof-programs`, `angular-momentum-spin`, `animator`, `ellipsoid`, and `tri-binary-causal-closure`.
+- [inventory.md](../inventory.md) is the detailed map for which files are compact control surfaces, which are detailed priority files, and which deployed AAA documents should eventually absorb promoted material.
+- Remaining organization work is review-level: decide whether any priority candidate or deferred packet deserves promotion, demotion, or merger after the current theory and app priorities stabilize.
 
 ## Top Cross-Workstream Next Actions
 
 1. Generate the breather candidate cycle and seed-chart packet first: `phi_cyc.json`, `mesh.json`, null-coordinate causal ledger, branch chart, and seed-chart interval report; then continue into corridor nonemptiness, coupled corridor, monodromy diagnostic, returned-sample report, and topology ledger on the same certified domain.
-2. Run the tri-binary causal closure continuity pass against its dependency map and route unresolved deployment items into priority workstreams.
+2. Advance the tri-binary photon/QED gate into explicit kinematics/optics, polarization/spin, and vertices/transitions packets before treating photon-based measurement as closed.
 3. Validate and generalize the scaffolded architrino-level angular-momentum ledger for changing-frequency Noether cores, including wake terms, branch selection, spinor holonomy, and apparatus-response measures.
 4. Turn the mass-side placeholders into a first derived map with one attractor family, shielding extraction, and a baseline electron-mass prediction target.
-5. Freeze the pdgsolve-to-pdgedit publication seam and land the first clean downstream handoff into animator.
+5. Select one concrete animator implementation pass from observer/framing, structure editing, or timeline objects, and keep deferred PDG material out of the active app path unless PDG work resumes.
 
 ## Info
 
