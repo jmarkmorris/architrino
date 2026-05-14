@@ -1,8 +1,68 @@
 # Transfer-Operator and Basin-Measure Theorem Packet
 
-This detailed priority file supports [Quantum Closure](quantum-closure.md). It owns the shared measure-theoretic proof grammar for deterministic basin evolution, invariant or metastable measures, Born-rule weights, detector-response kernels, Decider bias shifts, dyadic locks, pilot-wave-like guidance, and algorithmic-resonance coherence depth.
+This packet defines the shared measure-theoretic grammar consumed by [Quantum Closure](quantum-closure.md), [Agency, Decision, and Decider Closure](agency-decision-and-decider.md), [Algorithmic Resonance and Pilot-Wave Closure](algorithmic-resonance-and-pilot-wave.md), [dyadic-lock](../dyadic-lock/dyadic-lock.md), and [Photon, Measurement, and Bell Gates](../angular-momentum-spin/photon-measurement-bell-gates.md).
 
-## Core Theorem Target
+## State Space And Coarse-Graining
+
+Fix a finite causal-wake regularization width $\eta > 0$, a history horizon $h>0$, and a record or return time window $0<\tau_{\text{rec}}\le T_{\text{meta}}$. The history object retained before coarse-graining is
+$$
+\mathcal{H}_{\eta,h}(t)
+=
+\left\{
+S_\eta(t+\theta),
+\mathcal{L}_{\mathrm{root}}(t+\theta),
+\Pi_{\mathbb{U}_{\text{now}}}(t+\theta)
+:
+-h\le \theta\le0
+\right\},
+$$
+where $S_\eta$ is the regularized assembly state history, $\mathcal{L}_{\mathrm{root}}$ is the causal-root ledger, and $\Pi_{\mathbb{U}_{\text{now}}}$ is the provenance log.
+
+The coarse state space is the measurable product
+$$
+\Gamma
+=
+\Gamma_{\mathrm{asm}}
+\times
+\Gamma_{\mathrm{wake}}
+\times
+\Gamma_{\mathrm{sea}}
+\times
+\Gamma_{\mathrm{reg}}
+\times
+U,
+\qquad
+\gamma=(x,\ell,w,z,u)\in\Gamma.
+$$
+
+The factor $\Gamma_{\mathrm{asm}}$ retains assembly variables such as reduced positions, velocities, phase coordinates, resonance-band labels, and action or angular-momentum ledger coordinates. The factor $\Gamma_{\mathrm{wake}}$ retains causal-wake history through active root branches, self-hit status, Jacobian floors, and path-history summaries. The factor $\Gamma_{\mathrm{sea}}$ retains Noether-Sea context, including $\rho_{\text{core}}(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, local stress or compliance summaries, and unresolved causal-wake background variables. The factor $\Gamma_{\mathrm{reg}}$ retains apparatus, detector, register, pointer, record-window, and readout variables. The factor $U$ retains controlled bias variables such as Decider settings, analyzer settings, gate-control settings, or dyadic tuning parameters.
+
+The coarse-graining map is
+$$
+C_{\eta,h}
+:
+\left(\mathbb{U}_{\text{now}}(t),\mathcal{H}_{\eta,h}(t)\right)
+\longrightarrow
+\Gamma,
+\qquad
+\gamma(t)=C_{\eta,h}\!\left(\mathbb{U}_{\text{now}}(t),\mathcal{H}_{\eta,h}(t)\right).
+$$
+
+The admissibility condition for a consumer statistic $O$ is that two full histories with the same coarse state remain indistinguishable at the requested tolerance until the record or return window closes:
+$$
+C_{\eta,h}(\omega_1)=C_{\eta,h}(\omega_2)
+\Longrightarrow
+\sup_{0\le s\le\tau_{\text{rec}}}
+d_O\!\left(
+O(\Phi_s\omega_1),
+O(\Phi_s\omega_2)
+\right)
+\le
+\varepsilon_C.
+$$
+If this condition fails, the consumer must refine $\Gamma$ before computing outcome weights.
+
+## Transfer Operator Interpretation
 
 The common transfer-operator form is:
 
@@ -14,63 +74,305 @@ K_{\Delta t}(\Gamma\mid \Gamma',\mathcal{H},\mathcal{W}_{\text{sea}})
 \rho(\Gamma')\,d\Gamma'.
 $$
 
-The basin partition is:
-
+This packet uses deterministic pushforward as the base interpretation. For fixed $\eta>0$, fixed external protocol $u(t)$, and fixed retained context $(\mathcal{H},\mathcal{W}_{\text{sea}})$, let
 $$
-\mathcal{P}=\{B_i\},
+\Phi_{\Delta t}^{u,\mathcal{H},\mathcal{W}_{\text{sea}}}:\Gamma\to\Gamma
+$$
+be the finite-time coarse evolution induced by the regularized delayed dynamics and the coarse-graining map. Then
+$$
+K_{\Delta t}(\gamma\mid\gamma',\mathcal{H},\mathcal{W}_{\text{sea}})
+=
+\delta_{\Phi_{\Delta t}^{u,\mathcal{H},\mathcal{W}_{\text{sea}}}(\gamma')}(\gamma),
+\qquad
+\mathcal{T}_{\Delta t}\rho
+=
+\Phi_{\Delta t*}^{u,\mathcal{H},\mathcal{W}_{\text{sea}}}\rho.
+$$
+
+A finite-time Markov kernel is allowed only as a reduced representation after unresolved apparatus or Noether-Sea variables $\zeta$ have been assigned an explicit occupation measure $d\nu(\zeta)$. For every measurable set $A\subseteq\bar\Gamma$, the reduced kernel is
+$$
+K_{\Delta t}^{\mathrm{red}}(A\mid\bar\gamma')
+=
+\int
+\mathbf{1}_{A}\!\left(\bar C(\Phi_{\Delta t}(\gamma',\zeta))\right)
+\,d\nu(\zeta).
+$$
+The kernel is invalid if $d\nu$ is chosen to reproduce the target observer-level law rather than derived from the material return map, record cycle, or Noether-Sea context.
+
+A reduced return-map operator is the section version of the same deterministic pushforward. If $\Sigma_{\mathrm{return}}\subset\Gamma$ is a measurable return section and $\tau_\Sigma(\gamma)$ is the first return time, then
+$$
+R(\gamma)=\Phi_{\tau_\Sigma(\gamma)}(\gamma),
+\qquad
+\mathcal{R}\rho=R_*\rho.
+$$
+Dyadic locks, analyzer material cycles, Stern-Gerlach-like record cycles, and register gate cycles may use $\mathcal{R}$ only after the section, return time, and excluded failure boundary are explicit.
+
+## Measures And Basin Partitions
+
+The measure space is $(\Gamma,\mathcal{B}_\Gamma,\mu_*)$, where $\mathcal{B}_\Gamma$ is the sigma algebra generated by the retained coarse variables and $\mu_*$ is the relevant preparation, return-section, or unresolved-material occupation measure.
+
+An invariant measure satisfies
+$$
+\mathcal{T}_{\Delta t}^*\mu_*=\mu_*
+$$
+for the time step or return map used by the consumer. A metastable measure on $[0,T_{\text{meta}}]$ satisfies
+$$
+\left\|\mathcal{T}_t^*\mu_*-\mu_*\right\|_{\mathcal{A}}
+\le
+\varepsilon_{\text{meta}},
+\qquad
+0\le t\le T_{\text{meta}},
+$$
+for a declared test algebra $\mathcal{A}\subset\mathcal{B}_\Gamma$ that contains the outcome basins.
+
+Outcome windows are measurable register sets $W_i\subset\Gamma_{\mathrm{reg}}$. The basin associated with outcome $i$ is the pullback
+$$
+B_i
+=
+\left\{
+\gamma\in\Gamma:
+\pi_{\mathrm{reg}}\!\left(\Phi_{\tau_{\text{rec}}}(\gamma)\right)\in W_i
+\ \text{and}\
+\Phi_s(\gamma)\in\Gamma_{\mathrm{adm}}\ \text{for}\ 0\le s\le\tau_{\text{rec}}
+\right\}.
+$$
+
+The basin partition is
+$$
+\mathcal{P}=\{B_i\}_{i\in I},
 \qquad
 p_i=\mu_*(B_i).
 $$
 
-A probability or decision claim is promotable only when the operator, basin partition, and invariant or metastable measure are explicit enough to compute outcome weights, detector kernels, or coherence-depth bounds.
+The separatrix between two outcomes is
+$$
+\Sigma_{ij}
+=
+\partial B_i\cap\partial B_j,
+\qquad
+\Sigma_{\mathcal{P}}
+=
+\bigcup_{i\ne j}\Sigma_{ij}.
+$$
+The measurable-partition condition is
+$$
+B_i\in\mathcal{B}_\Gamma,
+\qquad
+\mu_*(\Sigma_{\mathcal{P}})=0,
+\qquad
+\mu_*\!\left(\Gamma\setminus\bigcup_i B_i\right)\le\varepsilon_{\text{esc}}.
+$$
+
+The basin-stability condition for a return map is
+$$
+\mu_*\!\left(R^{-1}B_i\triangle B_i\right)
+\le
+\varepsilon_{\text{leak},i},
+$$
+where $\triangle$ denotes symmetric difference. A true invariant basin has $\varepsilon_{\text{leak},i}=0$; a metastable basin must declare the finite window and leakage tolerance.
+
+The Born-rule recovery target is the special case in which the effective observer envelope $\psi_{\mathrm{eff}}$ exists and the basin measure agrees with the squared effective amplitude:
+$$
+\mu_*(B_i)
+=
+\int_{O_i}
+|\psi_{\mathrm{eff}}|^2\,d\Gamma_{\mathrm{eff}}.
+$$
+This equation is a closure condition on $\mu_*$ and $C_{\eta,h}$, not an axiom used to define either object.
+
+## Sector Adapters
+
+A detector-response kernel for setting $d$ is the basin indicator averaged over unresolved detector variables:
+$$
+K_i^{(d)}(\gamma_{\mathrm{prep}})
+=
+\int_{\Theta_d}
+\mathbf{1}_{B_i^{(d)}}\!\left(
+C_d(\gamma_{\mathrm{prep}},\zeta)
+\right)
+\,d\nu_d(\zeta).
+$$
+The detector packet owns $\Theta_d$, $d\nu_d$, and $B_i^{(d)}$; this packet requires that $K_i^{(d)}$ be a derived basin pullback rather than an assumed $\cos^2(\alpha/2)$, $\cos^2\theta$, or target Born-law kernel.
+
+A Decider bias state $u$ is a controlled parameter in the operator, partition, or both:
+$$
+\mathcal{T}_{\Delta t}^u,\qquad
+\mathcal{P}_u=\{B_i(u)\},
+\qquad
+\mu_*^u.
+$$
+The measurable Decider effect is
+$$
+\Delta p_i(u_0\to u_1)
+=
+\mu_*^{u_1}\!\left(B_i(u_1)\right)
+-
+\mu_*^{u_0}\!\left(B_i(u_0)\right).
+$$
+If $\Delta p_i=0$ for every $i$, the update $u_0\to u_1$ has shifted labels, coordinates, or narratives but has not changed outcome weights.
+
+A pilot-wave-like guidance reduction is a conditional mean of the same coarse dynamics:
+$$
+a^2(\bar x)
+=
+\frac{d(\pi_{\bar X*}\mu_*)}{d\bar x},
+\qquad
+\mathbf{V}_{\mathrm{eff}}(\bar x)
+=
+\int
+\dot{\bar X}(\gamma)
+\,d\mu_*(\gamma\mid \bar X=\bar x).
+$$
+The density $a^2$ is the projected basin or occupation density, and $\mathbf{V}_{\mathrm{eff}}$ is the effective guidance field induced by assembly and causal-wake dynamics. The reduction fails if it requires an independent configuration-space pilot field not obtained from $C_{\eta,h}$ and $\mu_*$.
+
+An algorithmic-resonance coherence-depth bound is a survival measure on a register-coherent set $B_{\mathrm{coh}}\subset\Gamma$ under a sequence of controlled return maps $R_{g_1},\dots,R_{g_D}$:
+$$
+C_D
+=
+\mu_*\!\left(
+\bigcap_{n=0}^{D}
+(R_{g_n}\circ\cdots\circ R_{g_1})^{-1}
+B_{\mathrm{coh}}
+\right),
+$$
+with $R_{g_0}$ the identity. The maximum controlled depth at tolerance $\varepsilon$ is
+$$
+D_{\max}(\varepsilon)
+=
+\sup
+\left\{
+D:
+C_D\ge1-\varepsilon
+\ \text{and}\
+\sum_{n=1}^{D}\varepsilon_{\text{leak},n}
++\varepsilon_{\text{meta}}(D)
+\le\varepsilon
+\right\}.
+$$
+Period-extraction claims must report $D_{\max}$ or an equivalent coherence-depth bound before they are treated as quantitative.
+
+## Basin-Measure Necessity Lemma
+
+**Lemma (basin-measure necessity).** Let $\mathcal{T}_{\Delta t}$ be the deterministic pushforward or its declared return-map reduction on $(\Gamma,\mathcal{B}_\Gamma)$. Let $\mu_*$ be invariant or metastable on the record window, and let $\mathcal{P}=\{B_i\}$ be a measurable basin partition with $\mu_*(\Sigma_{\mathcal{P}})=0$ and declared leakage bounds. Then every observer-level outcome weight induced by the coarse dynamics is
+$$
+p_i=\int_\Gamma \mathbf{1}_{B_i}(\gamma)\,d\mu_*(\gamma)=\mu_*(B_i),
+$$
+up to the declared metastability, leakage, escape, and coarse-graining errors.
+
+The metastable error bound is
+$$
+\left|
+\mathcal{T}_{\tau_{\text{rec}}}^*\mu_*(B_i)-\mu_*(B_i)
+\right|
+\le
+\varepsilon_{\text{meta}}
++\varepsilon_{\text{leak},i}
++\varepsilon_{\text{esc}}
++\varepsilon_C.
+$$
+
+Proof route: the record map sends each initial coarse state outside the separatrix-null set into exactly one basin; therefore the outcome indicator is $\mathbf{1}_{B_i}$. Invariance makes the integral of this indicator independent of the chosen return slice, and metastability bounds the finite-window drift. Any assigned weight $w_i\ne\mu_*(B_i)$ introduces a different measure, an untracked kernel, a nonmeasurable partition, or an external interpretive rule.
+
+## Worked Abstract Case: Dyadic Reduced-Map Normal Form
+
+Let $s=\sigma(\gamma)\in[0,1]$ be a scalar coordinate on a dyadic phase-amplitude return section, with $s=0$ denoting the candidate dyadic-lock attractor and $s=1$ denoting an alternate returned branch. Let $u\in U$ be a controlled bias or tuning parameter that moves the separatrix through a smooth function $b(u)\in(0,1)$.
+
+The abstract reduced return map is
+$$
+s_{n+1}
+=
+f_u(s_n)
+=
+s_n+\lambda s_n(1-s_n)(s_n-b(u)),
+\qquad
+0<\lambda\le1.
+$$
+
+The fixed points are
+$$
+s_0=0,
+\qquad
+s_\Sigma=b(u),
+\qquad
+s_1=1,
+$$
+with derivatives
+$$
+f_u'(0)=1-\lambda b(u),
+\qquad
+f_u'(1)=1-\lambda(1-b(u)),
+\qquad
+f_u'(b(u))=1+\lambda b(u)(1-b(u)).
+$$
+Thus $s_0$ and $s_1$ are attracting when $0<\lambda b(u)<2$ and $0<\lambda(1-b(u))<2$, while $s_\Sigma$ is an unstable basin boundary.
+
+The basin partition is
+$$
+B_{\mathrm{lock}}(u)=[0,b(u)),
+\qquad
+B_{\mathrm{alt}}(u)=(b(u),1],
+\qquad
+\Sigma_u=\{b(u)\}.
+$$
+
+Let $q_u(s)\,ds$ be the metastable record-input measure on the return section before final basin resolution. The post-resolution invariant measure is the basin pushforward
+$$
+\lim_{n\to\infty} f_{u*}^{\,n}\!\left(q_u(s)\,ds\right)
+=
+p_{\mathrm{lock}}(u)\,\delta_0
++p_{\mathrm{alt}}(u)\,\delta_1,
+$$
+where
+$$
+p_{\mathrm{lock}}(u)
+=
+\int_0^{b(u)}q_u(s)\,ds,
+\qquad
+p_{\mathrm{alt}}(u)
+=
+\int_{b(u)}^1q_u(s)\,ds.
+$$
+
+The weight shift under a controlled bias update is
+$$
+\Delta p_{\mathrm{lock}}(u_0\to u_1)
+=
+\int_0^{b(u_1)}q_{u_1}(s)\,ds
+-
+\int_0^{b(u_0)}q_{u_0}(s)\,ds.
+$$
+If $q_u=q$ is unchanged and only the basin boundary moves, then
+$$
+\frac{d p_{\mathrm{lock}}}{du}
+=
+q(b(u))\,b'(u).
+$$
+If $b'(u)=0$ and $q_u=q$ for the tested update, the bias has no basin-measure effect.
+
+This normal form does not prove the dyadic lock; it states the minimum basin-measure structure that the dyadic reduced phase-amplitude packet must instantiate with its actual finite-$\eta$ return map, Jacobian eigenvalues, branch ledger, and stability gap.
 
 ## Required Contract
 
 | Field | Required content |
 | --- | --- |
-| State space | Name the assembly state space, coarse-graining, and variables retained in $\Gamma$. |
-| Transfer operator | Define $\mathcal{T}_{\Delta t}$ or an equivalent return map, including the causal-wake and Noether-Sea context. |
-| Kernel | State the transition kernel $K_{\Delta t}$, deterministic map, or finite-time pushforward used. |
-| Basin partition | Define $\mathcal{P}=\{B_i\}$ and the separatrices or thresholds between basins. |
-| Measure | Identify $\mu_*$ as invariant, metastable, or controlled finite-time, and state the domain where that status is valid. |
-| Observable weights | Compute $p_i=\mu_*(B_i)$ or the detector / register / decision statistic consumed by the sector. |
-| Failure condition | State what fails if weights are assigned interpretively, if the measure is non-invariant, or if the operator hides an external ontology. |
+| State space | Declare $\Gamma=\Gamma_{\mathrm{asm}}\times\Gamma_{\mathrm{wake}}\times\Gamma_{\mathrm{sea}}\times\Gamma_{\mathrm{reg}}\times U$ or a justified refinement. |
+| Coarse-graining | Declare $C_{\eta,h}$, the retained history variables, and the consumer statistic $O$ whose error is bounded by $\varepsilon_C$. |
+| Transfer operator | Declare deterministic pushforward, reduced Markov kernel, or return-map operator; this packet uses deterministic pushforward as the base interpretation. |
+| Kernel | If a kernel is reduced, derive the unresolved-variable measure $d\nu$ from material, apparatus, or Noether-Sea dynamics. |
+| Basin partition | Define $\mathcal{P}=\{B_i\}$ as pullbacks of outcome windows, and define separatrices $\Sigma_{ij}$. |
+| Measure | Identify $\mu_*$ as invariant, metastable, or finite-window controlled, with its domain and tolerance. |
+| Observable weights | Compute $p_i=\mu_*(B_i)$ or the derived detector, register, decision, or coherence-depth statistic. |
+| Failure condition | State which hypothesis fails when weights are assigned interpretively, when the measure drifts, or when the operator hides an external ontology. |
 
 ## Consumer Map
 
 | Consumer packet | Local responsibility | Shared theorem burden consumed here |
 | --- | --- | --- |
 | [quantum-closure.md](quantum-closure.md) | Born-rule closure, detector kernels, pair provenance, Bell gate, and quantum rewrite handoff. | Owns the parent queue; consumes this packet for `transfer_operator` and `invariant_measure`. |
-| [agency-decision-and-decider.md](agency-decision-and-decider.md) | Minimal bias-setting complex, work ledger, hold time, and measurable basin-weight shifts. | Uses this packet to treat agency as controlled movement of basin boundaries or weights under a shared $\mu_*$. |
+| [agency-decision-and-decider.md](agency-decision-and-decider.md) | Minimal bias-setting complex, work ledger, hold time, and measurable basin-weight shifts. | Uses this packet to treat agency as controlled movement of basin boundaries or measures under a shared $\mu_*$. |
 | [algorithmic-resonance-and-pilot-wave.md](algorithmic-resonance-and-pilot-wave.md) | Pilot-wave-like guidance, basin amplitude, feedback terms, and register coherence-depth bounds. | Uses this packet to avoid a second pilot-wave ontology and to make algorithmic resonance a quantitative stress test. |
-| [dyadic-lock](../dyadic-lock/dyadic-lock.md) | Finite-$\eta$ reduced phase-amplitude map and stable `1:2` / `1:2:4` fixed-point diagnostics. | Provides a concrete reduced-map laboratory for transfer-operator stability, invariant measures, and basin gaps. |
-| [photon-measurement-bell-gates.md](../angular-momentum-spin/photon-measurement-bell-gates.md) | Stern-Gerlach-like response, photon analyzer kernels, record-window quotients, and Bell placement. | Uses this packet for the invariant analyzer measure, detector kernels, and basin-weight calculations after angular-momentum prerequisites exist. |
-
-## First Worked Cases
-
-The first useful cases should be small and computable:
-
-1. **Dyadic reduced map.** A finite-$\eta$ two-layer phase-amplitude return map reports fixed points, Jacobian eigenvalues, basin boundaries, and a candidate invariant or metastable measure.
-2. **Photon analyzer return map.** The material analyzer map $T_s$ on $\Theta_{\hat{\mathbf a}}$ reports whether the pass-threshold coordinate $\eta_{\hat{\mathbf a}}$ has uniform pushforward.
-3. **Decider basin shift.** A minimal bias state $u_0\to u_1$ reports the work/hold ledger and a measurable change $\mu_*(B_i(u_1))-\mu_*(B_i(u_0))$.
-
-The parent quantum queue still owns the Born-rule and Bell gates. This packet supplies the reusable operator/measure grammar those gates must consume.
-
-## Sector Ownership Rule
-
-Consumer packets own:
-
-1. the local state variables and coarse-graining;
-2. the benchmark or observer-facing statistic;
-3. the concrete basin partition and apparatus / register / decision variables;
-4. the sector-specific failure modes.
-
-This packet owns:
-
-1. the shared transfer-operator theorem schema;
-2. the invariant or metastable measure contract;
-3. the rule that probabilities cannot be assigned before basin weights are computed;
-4. the comparison table showing which consumer packet has consumed the theorem.
+| [dyadic-lock](../dyadic-lock/dyadic-lock.md) | Finite-$\eta$ reduced phase-amplitude map and stable `1:2` / `1:2:4` fixed-point diagnostics. | Provides a concrete reduced-map laboratory for transfer-operator stability, invariant or metastable measures, and basin gaps. |
+| [photon-measurement-bell-gates.md](../angular-momentum-spin/photon-measurement-bell-gates.md) | Stern-Gerlach-like response, photon analyzer kernels, record-window quotients, and Bell placement. | Uses this packet for invariant analyzer measures, detector kernels, and basin-weight calculations after angular-momentum prerequisites exist. |
 
 ## Promotion Gate
 
@@ -83,15 +385,24 @@ The theorem can promote into [quantum-summary](../../../content/markdown/aaa/qua
 5. computed outcome weights or a computable bound;
 6. a failure diagnostic.
 
-## Failure Modes
+## Concrete Falsifiers
 
-- Born weights are imported as axioms rather than derived from $\mu_*(B_i)$.
-- The operator requires a second ontic pilot field instead of a coarse-grained assembly / causal-wake description.
-- A detector kernel assumes the observer-level law it is meant to derive.
-- A Decider shifts labels but not measurable basin weights.
-- Dyadic fixed points are promoted without basin stability or invariant-measure diagnostics.
-- Algorithmic resonance claims period extraction without a coherence-depth bound.
-- The measure depends on distant detector settings, violates no-signaling, or hides an untracked causal-wake transfer.
+- No invariant or metastable measure: no $\mu_*$ satisfies $\mathcal{T}_{\Delta t}^*\mu_*=\mu_*$ or the declared metastability bound on the record window.
+- Nonmeasurable basin partition: some $B_i\notin\mathcal{B}_\Gamma$, or $\mu_*(\Sigma_{\mathcal{P}})>0$ without a separate boundary-resolution rule.
+- Assumed detector law: a detector kernel contains $\cos^2(\alpha/2)$, $\cos^2\theta$, or $|\psi|^2$ as an input law rather than as the value of a basin integral.
+- Interpretive Born weights: $p_i$ is assigned without computing $\mu_*(B_i)$ or an explicitly equivalent pushforward integral.
+- Decider label shift without weight shift: $u_0\to u_1$ changes names, registers, or thresholds while $\Delta p_i=0$ for every outcome.
+- Dyadic instability: the candidate dyadic return map has $\mu_*(R^{-1}B_{\mathrm{lock}}\triangle B_{\mathrm{lock}})$ above tolerance, lacks a non-symmetry stability gap, or has an attracting claim with spectral radius $\ge1$ after quotienting neutral symmetries.
+- Second pilot ontology: the guidance law requires an independent $\Psi_{\mathrm{pilot}}$ not constructed from assembly variables, causal-wake history, Noether-Sea context, and $\mu_*$.
+- Algorithmic-resonance overclaim: period extraction is asserted while $D_{\max}(\varepsilon)$ or an equivalent coherence-depth bound is absent or below the claimed operation depth.
+- No-signaling failure: for spacelike-separated detector settings $\alpha,\beta$ before causal-wake contact,
+  $$
+  \sum_b P(a,b\mid\alpha,\beta)
+  \ne
+  P(a\mid\alpha)
+  $$
+  or the analogous marginal depends on the distant setting.
+- Hidden causal transfer: the operator depends on a distant setting, energy transfer, or causal-wake update not present in $\mathcal{H}$ or $\mathcal{W}_{\text{sea}}$ inside the allowed causal window.
 
 ## Related Priorities
 
