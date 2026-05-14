@@ -40,7 +40,7 @@ This document distinguishes three audience scopes:
 ### Workspace Workflow
 
 - For software architecture, cleanup discipline, canonical-path decisions, and anti-cruft maintenance guidance, follow [content/markdown/aaa/archie/software-architecture-and-maintenance.md](content/markdown/aaa/archie/software-architecture-and-maintenance.md).
-- For the live backlog of known cruft and sprawl reduction work, see [reference/priorities/SUMMARY/priorities.md](reference/priorities/SUMMARY/priorities.md).
+
 - If you are working on a task in a priority list and you complete that task, remove it from the priority list and renumber any items that follow.
 
 ### Authoring and Editorial Policy

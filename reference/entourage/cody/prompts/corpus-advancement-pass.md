@@ -12,7 +12,7 @@ Use this prompt when the AAA corpus needs active advancement: a recent batch may
 
 The highest-value use of this prompt is not mere phrase cleanup or another paragraph saying work remains. Use the review to make concrete mathematical progress: propose definitions, equations, lemmas, invariants, estimates, closure conditions, proof sketches, toy models, counterexamples, or simulation hooks. Each recurring claim should be sorted as ontology, derivation/closure target, effective summary, or speculation, but that sorting is a launch point for work, not the final product. When the current user request grants advancement, integration, cleanup, or self-running authority, perform safe, low-risk, canon-conforming edits instead of withholding them for approval. Reserve approval or discussion for new theory leaps, terminology policy, Archie canon changes, broad scope expansion, or ambiguous operator intent. The final response should identify what was edited now, what mathematical object was attempted now, what intuition deserves disciplined discussion with Op, and what should become a concrete priority action item.
 
-High-priority autonomous method: when no more specific lane is supplied, inspect `reference/priorities/SUMMARY/priorities.md` and the relevant files under `reference/priorities/` early in the pass. Treat those files as an operator-maintained issue ledger, not as authored AAA content. Use them to identify concrete corpus-advancement opportunities, proof routes, missing derivations, validation ledgers, and safe edit batches. Do not link from authored `content/markdown/aaa` files to priority files; if priority material belongs in the AAA corpus, restate or promote the needed substance inside the relevant AAA document.
+High-priority autonomous method: when no more specific lane is supplied, inspect `reference/priorities/aaa-work-threads/priorities.md` and the relevant files under `reference/priorities/` early in the pass. Treat those files as an operator-maintained issue ledger, not as authored AAA content. Use them to identify concrete corpus-advancement opportunities, proof routes, missing derivations, validation ledgers, and safe edit batches. Do not link from authored `content/markdown/aaa` files to priority files; if priority material belongs in the AAA corpus, restate or promote the needed substance inside the relevant AAA document.
 
 ## Mathematics-First Discipline
 
@@ -151,7 +151,7 @@ Required method:
 1. Run `git status --short` before any edit-oriented work. Do not revert existing changes.
 2. Identify source signals without requiring Op to paste paths:
    - recent changed AAA files from `git diff --name-only` and recent history,
-   - `reference/priorities/SUMMARY/priorities.md`,
+   - `reference/priorities/aaa-work-threads/priorities.md`,
    - relevant files under `reference/priorities/`,
    - and high-signal AAA documents discovered by targeted `rg` searches.
 3. Read the relevant Archie canon guides and glossaries before judging terminology:
@@ -327,7 +327,7 @@ Default lane distribution:
 Internal exploration palette:
 If Op does not specify a lane, shard, or posture, choose one or two of these postures before choosing lanes. Give high priority to postures that can produce a concrete mathematical artifact now, bias away from active claim cards and recently covered territory, and keep hygiene postures as occasional secondary passes. State the selected posture in the claim card and final report.
 
-- **Priority-ledger advancement:** go through `reference/priorities/SUMMARY/priorities.md` and the relevant files under `reference/priorities/` to find operator-maintained issues that can be advanced in the AAA corpus. Convert priority items into present mathematical work: proof routes, definitions, equations, missing derivations, worked examples, validation ledgers, cross-document integration, or safe edit batches. Do not link from authored AAA prose to priority files; promote the substance into `content/markdown/aaa` when it belongs there.
+- **Priority-ledger advancement:** go through `reference/priorities/aaa-work-threads/priorities.md` and the relevant files under `reference/priorities/` to find operator-maintained issues that can be advanced in the AAA corpus. Convert priority items into present mathematical work: proof routes, definitions, equations, missing derivations, worked examples, validation ledgers, cross-document integration, or safe edit batches. Do not link from authored AAA prose to priority files; promote the substance into `content/markdown/aaa` when it belongs there.
 - **Idea factory:** maximize new syntheses, proof routes, unifying mechanisms, mathematical conjectures, and leaps of intuition. Do not edit speculative ideas into AAA prose; return disciplined theory cards with a candidate mathematical statement, assumptions, first calculation, failure mode, and detailed discussion or implementation prompt.
 - **Closure lab:** focus on theorem/closure targets such as Lorentz behavior, mass/inertia, photon stability, reaction provenance, emergent metric closure, and cosmology observer variables.
 - **Proof-route forge:** choose one important claim and outline the objects, assumptions, lemmas, equations, invariants, simulations, or counterexamples needed to turn it into a defensible derivation.
@@ -409,7 +409,7 @@ Lane G: Intuition-to-proof synthesis
 - Treat the output as an Op-discussion theory card, not as settled doctrine.
 
 Lane H: Priority-ledger advancement
-- Read `reference/priorities/SUMMARY/priorities.md` first, then inspect the specific priority files that look most actionable.
+- Read `reference/priorities/aaa-work-threads/priorities.md` first, then inspect the specific priority files that look most actionable.
 - Treat priority files as a backlog of operator-maintained problems, not as source text to quote into authored AAA prose.
 - For each promising item, identify:
   - the priority issue and its target closure,
@@ -491,7 +491,7 @@ Cody, perform a team-agent corpus advancement pass for the AAA markdown corpus.
 
 Coordinator Cody:
 1. Run `git status --short` before any edit-oriented work. Do not revert existing changes.
-2. Identify source signals autonomously: recent AAA changes, `reference/priorities/SUMMARY/priorities.md`, relevant files under `reference/priorities/`, and high-signal AAA documents discovered by targeted searches.
+2. Identify source signals autonomously: recent AAA changes, `reference/priorities/aaa-work-threads/priorities.md`, relevant files under `reference/priorities/`, and high-signal AAA documents discovered by targeted searches.
 3. Read the relevant Archie canon guides and glossaries:
    - content/markdown/aaa/archie/academic-style-guide.md
    - content/markdown/aaa/archie/mathematics-style-guide.md

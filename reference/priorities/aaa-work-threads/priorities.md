@@ -44,7 +44,9 @@ This keeps the files readable in plain Markdown, diff-friendly in git, and struc
 
 This single table is the canonical rollup for ranked priority workstreams and linked ranked queues. Use it to maintain ranking, notice category mistakes, and decide which directories still deserve to live here as active workstreams.
 
-This table does not list detailed sibling files. The structural inventory for compact control files, detailed priority files, deployed targets, and deferred packets lives in [inventory.md](../inventory.md).
+This table does not list detailed sibling files. The structural inventory for compact control files, detailed priority files, deployed targets, and deferred packets lives in [inventory.md](inventory.md).
+
+The cross-workstream product join for shared closure objects, repeated proof grammar, and sector projections lives in [closure-join-matrix.md](closure-join-matrix.md).
 
 Nested proof subprograms live under [proof-programs](../proof-programs/proof-programs.md). They keep local metadata for handoff clarity, but the parent `proof-programs` row is the canonical top-level ranking entry.
 
@@ -74,7 +76,7 @@ These are tracked for visibility, but they are not ranked active workstreams in 
 | `ellipsoid` | [ellipsoid.md](../ellipsoid/ellipsoid.md) | Effective-metric review workstream plus Ideal Core app idea. | Priority candidate under review. |
 | `validation-gates` | [validation-gates.md](../validation-gates/validation-gates.md) | Cross-sector acceptance intersections, no-go applicability, and failure-condition routing. | Priority candidate under review; now has a sibling closure-intersection ledger. |
 | `deferred` | [legacy-insights.md](../deferred/legacy-insights.md) | Archive and parking lot for non-current material. | Needs a deferred index later. |
-| `3x3` | [3x3.md](../deferred/3x3/3x3.md) | Deferred binary-slot matrix note. | Keep deferred unless a target AAA document is selected. |
+| `3x3` | [3x3.md](../deferred/3x3/3x3.md) | Deferred binary-slot matrix note. | Keep deferred unless a target $\mathbb{A}\mathbb{A}\mathbb{A}$ document is selected. |
 | `phenomenological-heuristics` | [phenomenological-heuristics.md](../dyadic-lock/phenomenological-heuristics.md) | Dyadic resonance lock archive source. | Keep as sibling archive unless a shared archive convention is adopted. |
 
 ## Current Focus
@@ -93,7 +95,8 @@ These are tracked for visibility, but they are not ranked active workstreams in 
 
 - First-pass flat cleanup is complete for `standard-model-closure`, `dyadic-lock`, `mass-map`, `master-equation-closure`, `simulations`, `strong-field-closure`, `strong-field-hypotheses`, `cosmology-closure`, `quantum-closure`, `proof-programs`, `angular-momentum-spin`, `animator`, `ellipsoid`, `tri-binary-causal-closure`, and `validation-gates`.
 - The latest coverage pass added seven high-upside $\mathbb{A}\mathbb{A}\mathbb{A}$ gap packets without adding extra requirements subdirectories: validation gates, radiation Gate C, Decider minimality, weak-sector/gauge closure, nuclear binding, condensed-matter medium transport, and algorithmic-resonance / pilot-wave closure.
-- [inventory.md](../inventory.md) is the detailed map for which files are compact control surfaces, which are detailed priority files, and which deployed AAA documents should eventually absorb promoted material.
+- [closure-join-matrix.md](closure-join-matrix.md) is the product-join view over repeated queue structure: branch state, causal-wake ledger, residual routing, event ledger, exposure, medium response, basin measure, and cross-sector acceptance.
+- [inventory.md](inventory.md) is the detailed map for which files are compact control surfaces, which are detailed priority files, and which deployed $\mathbb{A}\mathbb{A}\mathbb{A}$ documents should eventually absorb promoted material.
 - Remaining organization work is review-level: decide whether any priority candidate or deferred packet deserves promotion, demotion, or merger after the current theory and app priorities stabilize.
 
 ## Top Cross-Workstream Next Actions
@@ -119,7 +122,7 @@ These are tracked for visibility, but they are not ranked active workstreams in 
 
 - Think more about multi-determinism and how it maps to quantum theory, many worlds, and free will; route concrete claims through [agency-decision-and-decider](../quantum-closure/agency-decision-and-decider.md) or [algorithmic-resonance-and-pilot-wave](../quantum-closure/algorithmic-resonance-and-pilot-wave.md) instead of leaving them as loose prompts.
 
-## Related AAA Notes
+## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 
 - [closure-scorecard](../../../content/markdown/aaa/validation/closure-scorecard.md)
 - [failure-criteria](../../../content/markdown/aaa/validation/failure-criteria.md)
