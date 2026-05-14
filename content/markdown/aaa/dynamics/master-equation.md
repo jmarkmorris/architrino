@@ -240,6 +240,8 @@ $$
 t_0\in \mathcal{C}_{ij}(t)\quad \Longleftrightarrow\quad F_t^{(ij)}(t_0)=0.
 $$
 
+Operationally, this is the branchwise source-to-receiver reading of the dynamics. The source worldline supplies a path-history map $t_0\mapsto(\mathbf{x}_j(t_0),\mathbf{v}_j(t_0))$, while the receiver supplies the event data $(\mathbf{x}_i(t),\mathbf{v}_i(t),t)$. Solving $F_t^{(ij)}(t_0)=0$ selects exactly those source-history points whose causal isochrons are received at that event. Each selected root therefore maps one source-history branch into one receiver-local line of action; the delay-map Jacobian below records how constant source emission cadence is compressed or dilated when read at the receiver. When multiple roots exist, the causal-root ledger is the bookkeeping of these simultaneous source-to-receiver branch matches.
+
 The one-dimensional delay-map Jacobian is
 
 $$

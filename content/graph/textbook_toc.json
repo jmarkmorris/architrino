@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 152,
-      "sections": 1106
+      "sections": 1109
     }
   },
   "tocRoot": {
@@ -4865,10 +4865,26 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Historical Ladder",
+                "markdownPath": "content/markdown/aaa/theory-bridges/spacetime-models-and-noether-sea.md",
+                "markdownSection": "Historical Ladder",
+                "sectionKey": "historical ladder",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Comparison Matrix",
                 "markdownPath": "content/markdown/aaa/theory-bridges/spacetime-models-and-noether-sea.md",
                 "markdownSection": "Comparison Matrix",
                 "sectionKey": "comparison matrix",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Superfluid Comparison Discipline",
+                "markdownPath": "content/markdown/aaa/theory-bridges/spacetime-models-and-noether-sea.md",
+                "markdownSection": "Superfluid Comparison Discipline",
+                "sectionKey": "superfluid comparison discipline",
                 "headingLevel": 2
               },
               {
@@ -4893,6 +4909,14 @@
                 "markdownPath": "content/markdown/aaa/theory-bridges/spacetime-models-and-noether-sea.md",
                 "markdownSection": "Closure Tests",
                 "sectionKey": "closure tests",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "External Anchor Points",
+                "markdownPath": "content/markdown/aaa/theory-bridges/spacetime-models-and-noether-sea.md",
+                "markdownSection": "External Anchor Points",
+                "sectionKey": "external anchor points",
                 "headingLevel": 2
               },
               {
