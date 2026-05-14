@@ -24,6 +24,21 @@
 
 Populate the missing quantum closure notes only after the work becomes testable. The Born-rule target should be measure-theoretic and predictive rather than interpretive.
 
+This file remains the deferred control surface for quantum closure. No sibling detailed priority file is needed yet; the Bell gate and measure-theoretic requirements below already name the dependencies that must mature before promotion.
+
+## Promotion Map
+
+| Task | Detailed source | Primary promotion target | Promotion gate |
+| --- | --- | --- | --- |
+| `transfer_operator` | This file | [quantum-summary](../../../content/markdown/aaa/quantum/quantum-summary.md) and [superposition-mechanism](../../../content/markdown/aaa/theory-bridges/superposition-mechanism.md) | A transfer operator for metastable assemblies under causal driving is stated with enough variables to compute basin evolution. |
+| `invariant_measure` | This file | [quantum-summary](../../../content/markdown/aaa/quantum/quantum-summary.md), [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md), and [superposition-mechanism](../../../content/markdown/aaa/theory-bridges/superposition-mechanism.md) | The invariant measure on competing attractor basins recovers squared-amplitude weights without importing Born's rule as an axiom. |
+| `foundation_up_prerequisites` | This file and [angular-momentum-spin](../angular-momentum-spin/angular-momentum-spin.md) | [angular-momentum-and-spin](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md), [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md), and [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md) | Angular-momentum ledger, spinor lift, Stern-Gerlach response, photon Gate B, and pair-provenance prerequisites have named proof packets or explicit failure diagnostics. |
+| `detector_response_kernel_acceptance` | This file | [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) and [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md) | Spin-measurement and photon-analyzer kernels are accepted as derived objects with apparatus, basin, and material-measure variables. |
+| `pair_provenance_measure` | This file | [entanglement-nonlocality](../../../content/markdown/aaa/theory-bridges/entanglement-nonlocality.md) and [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md) | Singlet-like spin-pair and photon-polarization pair ledgers are explicit enough to compute joint probabilities. |
+| `bell_gate` | This file | [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md) | Bell, CHSH, no-signaling, and Tsirelson checks pass or fail with explicit diagnostics. |
+| `bell_rewrite_handoff` | This file | [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md) | The Bell chapter is rewritten only after the Bell gate has passed or failed with named source packets. |
+| `provenance_compliance_bridge` | This file | [strong-field-closure](../strong-field-closure/strong-field-closure.md) and [mass-map medium-response probe](../mass-map/a0-medium-response-tensor-probe.md) | Any provenance-compliance coarse-graining remains local, no-signaling, and routed through medium-response or strong-field work rather than asserted as ontology. |
+
 ## Preparation Scope
 
 - Populate the thin or missing quantum notes under `content/markdown/aaa/quantum/` with pilot-wave and self-hit mechanics, superposition, entanglement, measurement pathways, and explicit predictions.
