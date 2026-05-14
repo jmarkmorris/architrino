@@ -73,6 +73,109 @@ Use the collinear-breather certificate as the smallest finite-root-ledger test f
 - The live question remains: does the symmetric delayed spiral admit a self-consistent limit cycle or radial turning point that the circular ansatz misses?
 - The next concrete spiral target is the branch-chart certification test: enumerate admissible partner and self roots for one variable-pitch candidate, certify positive Jacobian floors and finite memory depth, test the radial turn inequality, and decide whether the weighted tangential sum can become negative without extra medium, tri-binary, or multi-body structure.
 
+## Branch-Chart Closure Object
+
+Definition. For a candidate history $\Gamma=\{\mathbf{x}_i(t)\}_{i=1}^N$ on a returned section $\mathcal{S}$ with memory horizon $h$, shell width $\eta$, and core scale $\epsilon_c$, the master-equation branch-chart closure object is
+$$
+\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)
+=
+\left(
+\mathcal{R}^{\mathrm{act}},
+\mathcal{G}^{\mathrm{inact}},
+\nu_J,
+h_{\mathrm{mem}},
+\mathcal{R}_{\mathrm{ret}},
+\lambda_{\mathrm{sec}}
+\right).
+$$
+Here $\mathcal{R}^{\mathrm{act}}$ is the finite list of active causal-root tuples $(i,j,\ell,t,t_{0,\ell})$ satisfying $F_t^{(ij)}(t_{0,\ell})=0$ and $0<t-t_{0,\ell}\le h$; $\mathcal{G}^{\mathrm{inact}}$ is the list of inactive complement intervals with certified gaps $g_a^{(ij)}=\inf_{I_a}|F_t^{(ij)}|$; $\nu_J=\inf_{\mathcal{R}^{\mathrm{act}}}|J_{ij}(t;t_{0,\ell})|$ is the active Jacobian floor; $h_{\mathrm{mem}}=\sup_{\mathcal{R}^{\mathrm{act}}}(t-t_{0,\ell})$ is the certified memory depth; $\mathcal{R}_{\mathrm{ret}}=P_{\mathcal{S}}(\Gamma)-\Gamma$ is the returned-section residual; and $\lambda_{\mathrm{sec}}$ is the non-symmetry stability margin of the returned section.
+
+Condition. A branch chart is admissible for a local master-equation claim only when
+$$
+\nu_J>0,\qquad
+\inf_{\mathcal{G}^{\mathrm{inact}}}g_a^{(ij)}>0,\qquad
+h_{\mathrm{mem}}<h<\infty,\qquad
+\|\mathcal{R}_{\mathrm{ret}}\|\le \varepsilon_{\mathrm{ret}},
+$$
+and either the section-anchored monodromy satisfies
+$$
+\rho(M_{\mathcal{S}}|_{E_\perp})\le 1-\lambda_{\mathrm{sec}}
+\quad\text{with}\quad
+\lambda_{\mathrm{sec}}>0,
+$$
+or a certified boundary-trapping budget replaces the spectral margin.
+
+Proof route. The positive Jacobian floor gives simple-root persistence by the implicit-function theorem; the positive inactive gaps exclude unlisted causal roots on the chosen complements; the finite memory depth keeps the dual-mollified absolute-time law on a compact history window; and the returned-section residual plus section stability converts a root ledger into a controlled candidate cycle rather than only an integer branch count.
+
+## Spiral Branch-Chart Test
+
+Definition. For the symmetric variable-pitch spiral with $p(\theta)=-r'(\theta)/r(\theta)$, partner roots at receiver angle $\theta$ are the certified finite set
+$$
+\mathcal{P}(\theta)
+=
+\left\{
+\Delta>0:
+r(\theta)\Lambda_p(\theta,\Delta)=c_f(t(\theta)-t(\theta-\Delta)),
+\ |J_{12}(\theta,\Delta)|\ge\nu_J
+\right\},
+$$
+and self roots are the certified finite set
+$$
+\mathcal{S}(\theta)
+=
+\left\{
+\Delta>0:
+r(\theta)\Lambda_s(\theta,\Delta)=c_f(t(\theta)-t(\theta-\Delta)),
+\ |J_{11}(\theta,\Delta)|\ge\nu_J
+\right\}.
+$$
+The inactive complement is the remaining $\Delta$-domain in the finite memory interval $0 < t(\theta)-t(\theta-\Delta)\le h_{\mathrm{mem}}$, partitioned into intervals with positive causal-root gaps.
+
+Condition. A radial turn corridor $I_\ast$ is admissible only if it contains a point $\theta_\ast$ with
+$$
+p(\theta_\ast)=0,\qquad p'(\theta_\ast)\le0,
+$$
+and the certified active roots satisfy the radial-turn inequality
+$$
+\mathcal{T}_r(\theta_\ast)
+\equiv
+r_\ast\dot\theta_\ast^2
+-
+\sum_{\Delta_p\in\mathcal{P}(\theta_\ast)}
+\frac{\kappa |q_1q_2|\,(1+\rho_p\cos\Delta_p)}
+{r_\ast^2\Lambda_{p}^3 |J_{12,p}|}
++
+\sum_{\Delta_s\in\mathcal{S}(\theta_\ast)}
+\frac{\kappa q_1^2\,(1-\rho_s\cos\Delta_s)}
+{r_\ast^2\Lambda_{s}^3 |J_{11,s}|}
+>0.
+$$
+
+Definition. The weighted tangential-drive diagnostic on a corridor $I_\ast$ is
+$$
+\mathcal{D}_T(I_\ast)
+\equiv
+\int_{I_\ast}w(\theta)
+\left[
+\sum_{\Delta_p\in\mathcal{P}(\theta)}
+\frac{|q_1q_2|\,S_T^p(\theta,\Delta_p)}
+{\Lambda_p^3 |J_{12,p}|}
++
+\sum_{\Delta_s\in\mathcal{S}(\theta)}
+\frac{q_1^2\,S_T^s(\theta,\Delta_s)}
+{\Lambda_s^3 |J_{11,s}|}
+\right]d\theta,
+$$
+where $w(\theta)\ge0$ is a declared quadrature weight on the returned section and the tangential numerators are the variable-pitch partner/self numerators recorded in the master-equation chapter.
+
+Verdict. The bare isolated spiral passes the tangential obstruction test only if at least one admissible radial turn corridor has $\mathcal{D}_T(I_\ast)\le-\varepsilon_T$ for a declared margin $\varepsilon_T>0$; it fails the bare-kernel spiral route if every admissible radial turn corridor has $\mathcal{D}_T(I_\ast)\ge0$ or if the negative contribution occurs only after losing a Jacobian floor, an inactive-root gap, or finite memory depth.
+
+## Promotion Lemma
+
+Lemma. If a candidate history $\Gamma$ has a branch-chart closure object $\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)$ with positive active Jacobian floor, positive inactive-root gaps, finite memory depth, bounded returned-section residuals, and a stable returned section, then the candidate may support a master-equation closure claim on that chart.
+
+Proof sketch. Positive floors make the branch list locally complete and differentiable; finite memory reduces the causal functional to the certified history window; bounded returned residuals put the candidate within the declared section tolerance; and section stability prevents the result from being only a transient root enumeration. The lemma does not prove global closure across folds, $\eta\to0$ limits, or other histories; it licenses promotion from a candidate ledger to a local theorem target.
+
 ## Maximum-Curvature Wall
 
 Keep the maximum-curvature-wall question tied to both tracks. The Jacobian-null boundary amplifies the full self branch, so the tangential contribution also blows up. That is an obstruction, not yet a resolution.
@@ -90,6 +193,111 @@ Keep the maximum-curvature-wall question tied to both tracks. The Jacobian-null 
   - derive the PPN numbers $\gamma$, $\beta$, and $\alpha_i$ to Cassini / LLR precision;
   - recover the weak-field targets $\gamma_{\mathrm{eff}} = 1$, $\beta_{\mathrm{eff}} = 1$, and vanishing preferred-frame coefficients $\alpha_1$, $\alpha_2$, $\alpha_3$;
   - and show Shapiro delay and light-bending equivalence to GR at the advertised $10^{-5}$ level.
+
+## Lorentz/GR Bridge Contract
+
+Definition. The Lorentz/GR bridge theorem target is the packet
+$$
+\mathfrak{L}_{\mathrm{GR}}
+=
+\left(
+\mathcal{C}_{\mathrm{mov}},
+\mathcal{T}_{\mathrm{clk}},
+\mathcal{K}_{\mathrm{med}},
+\mathcal{G}_{\mathrm{eff}},
+\mathcal{L}_{\mathrm{PF}}
+\right),
+$$
+where $\mathcal{C}_{\mathrm{mov}}$ is the moving-assembly contraction law, $\mathcal{T}_{\mathrm{clk}}$ is the clock retuning law, $\mathcal{K}_{\mathrm{med}}$ is the coarse-grained medium constitutive response, $\mathcal{G}_{\mathrm{eff}}$ is the effective metric functional, and $\mathcal{L}_{\mathrm{PF}}$ is the preferred-frame leakage bound.
+
+Condition. The moving-assembly contraction law is accepted on a drift band $0\le\beta\le\beta_\star$ only when the translated attractor family has extracted semiaxes satisfying
+$$
+\mathcal{C}_{\mathrm{mov}}:\qquad
+\frac{a_\parallel(v)}{a_\perp(v)}
+=
+\frac{1}{\gamma_\star(v)}+R_\parallel(v),
+\qquad
+|R_\parallel(v)|\le C_\parallel\epsilon_{\mathrm{LV}}\beta^2.
+$$
+
+Condition. The clock retuning law is accepted on the same drift band only when the reference clock channel satisfies
+$$
+\mathcal{T}_{\mathrm{clk}}:\qquad
+\frac{T(v)}{T_0}
+=
+\gamma_\star(v)+R_T(v),
+\qquad
+|R_T(v)|\le C_T\epsilon_{\mathrm{LV}}\beta^2,
+$$
+with $c_\star=c_f$ for primitive branch charts and $c_\star=c_{\text{eff}}(\mathbf{x})$ for Noether-Sea dressed clock/ruler comparisons.
+
+Definition. The coarse-grained medium constitutive response is the map
+$$
+\mathcal{K}_{\mathrm{med}}:
+(h_{ij},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{stress})
+\mapsto
+(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij}),
+$$
+and it is admissible only if the same coefficients predict clock redshift, Shapiro delay, lensing, weak-field acceleration, and preferred-frame residuals without re-fitting per observable.
+
+Definition. The effective metric functional is
+$$
+\mathcal{G}_{\mathrm{eff}}[\mathcal{K}_{\mathrm{med}}]
+:\qquad
+ds_{\mathrm{eff}}^2
+=
+-N^2c_0^2dt^2
++
+\gamma_{ij}\big(dx^i-u^i_{\text{sea}}dt\big)\big(dx^j-u^j_{\text{sea}}dt\big),
+$$
+with weak-field acceptance condition
+$$
+(\gamma_{\mathrm{PPN}},\beta_{\mathrm{PPN}},\alpha_1,\alpha_2,\alpha_3)
+=
+(1,1,0,0,0)+O(\epsilon_{\mathrm{LV}}).
+$$
+
+Condition. The preferred-frame leakage bound is
+$$
+\mathcal{L}_{\mathrm{PF}}
+\equiv
+\max\left(
+\mathcal{E}_{\text{shape}},
+\mathcal{E}_{\text{clock}},
+\sup_{\beta,\theta}|\Delta_{\text{tw}}(\beta,\theta)|,
+|\alpha_1|,
+|\alpha_2|,
+|\alpha_3|,
+|C_{Uv}|
+\right)
+\le
+\epsilon_{\mathrm{LV}},
+$$
+with the empirical target below current Lorentz-violation bounds and with no special retuning of $\kappa$, $\eta$, or axial details between observables.
+
+## Falsifier Ledger
+
+Falsifier. A Jacobian-null wall falsifies a branch-chart promotion when $\nu_J=0$ on an active chart and no dual-mollified finite-crossing control supplies a bounded replacement for the branch-sum formula.
+
+Falsifier. Infinite memory depth falsifies a finite closure packet when $h_{\mathrm{mem}}$ cannot be bounded inside the declared memory horizon or when returned-section residuals depend on untracked deep-past history.
+
+Falsifier. Branch proliferation falsifies local closure when $\sup_{t,i,j}B^{\mathrm{active}}_{ij}(t)=\infty$ on the candidate chart or when unlisted active roots appear inside an inactive complement.
+
+Falsifier. Tangential-drive sign obstruction falsifies the bare isolated spiral route when every admissible radial turn corridor has $\mathcal{D}_T(I_\ast)\ge0$ or when the negative verdict requires roots outside the certified branch chart.
+
+Falsifier. Regulator dependence falsifies promotion when the radial-turn verdict, tangential-drive verdict, contraction coefficients, or clock coefficients change under controlled $\eta\to0$ or $\epsilon_c\to0$ refinement rather than converging in the declared weak/integrated sense.
+
+Falsifier. Preferred-frame leakage above bound falsifies the Lorentz/GR bridge when $\mathcal{L}_{\mathrm{PF}}>\epsilon_{\mathrm{LV}}$ on the calibration band or when the PPN vector fails $(\gamma_{\mathrm{PPN}},\beta_{\mathrm{PPN}},\alpha_1,\alpha_2,\alpha_3)=(1,1,0,0,0)+O(\epsilon_{\mathrm{LV}})$.
+
+Falsifier. Ad hoc tuning falsifies the bridge when closure holds only for an isolated value of $\kappa$, a chosen regulator width $\eta$, or axial-structure-specific details rather than on an open admissible parameter family with fixed observable-extraction rules.
+
+## Dependency Interface
+
+Interface. The proof-program lane owns candidate histories, branch-chart certificates, monodromy diagnostics, returned-sample residuals, topology certificates, and pass/fail artifact files; this master-equation closure file consumes those rows only through $\mathfrak{B}$ and does not edit or redefine the proof-program artifacts.
+
+Interface. The simulations lane owns run protocols, root ledgers, convergence plots, regularization sweeps, branch residuals, drift-response coefficients, and leakage estimates; this file consumes those outputs as numeric or interval inputs to $\mathfrak{B}$ and $\mathfrak{L}_{\mathrm{GR}}$ and does not own the simulation artifacts.
+
+Interface. The dyadic-lock and angular-momentum lanes may consume the promotion lemma as a shared admissibility gate for phase-amplitude maps, root-ledger transactions, and conserved-functional claims, but this file does not certify dyadic selection, spin closure, or angular-momentum partition rules.
 
 ## Empirical Stakes
 

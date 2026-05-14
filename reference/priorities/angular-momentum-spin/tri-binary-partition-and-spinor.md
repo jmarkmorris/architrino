@@ -137,6 +137,215 @@ For a pre-transaction stable branch $B$, a candidate post-transaction branch $B'
 
 The theorem target is: solve these constraints over admissible post-branches $B'$. If one stable branch satisfies them, the partition is unique for the supplied coupling geometry. If several stable branches satisfy them, the partition is branch-dependent and the later measurement-response model must carry the branch-selection rule. If no stable branch satisfies them, the transaction is forbidden, reflected, or routed into wake exchange.
 
+### Sharpened Partition Candidate Set
+
+For a pre-transaction branch $B$ and coupling datum
+$$
+\Gamma_{\text{coupl}}
+=
+\left(
+\sigma,
+\Delta E_{\text{coupl}},
+\Delta\mathbf J_{\text{coupl}},
+\hat{\mathbf a},
+\mathrm{Geom}_{\text{coupl}}
+\right),
+$$
+define the stable partition candidate set
+$$
+\mathscr P(B,\Gamma_{\text{coupl}})
+=
+\left\{
+\left(B',\boldsymbol{\Delta I}\right):
+C_{\mathbf J}\wedge C_A\wedge C_E\wedge C_R\wedge C_\Phi\wedge C_G\wedge C_S
+\right\},
+$$
+where
+$$
+\boldsymbol{\Delta I}
+=
+\left(
+\Delta I_{\text{inner}},
+\Delta I_{\text{middle}},
+\Delta I_{\text{outer}},
+\Delta I_{\text{wake}}
+\right).
+$$
+
+The vector-ledger condition is
+$$
+C_{\mathbf J}:\quad
+\sum_{\ell\in\{I,M,O\}}
+\Delta\mathbf I_\ell^{\text{mech}}
++
+\Delta\mathbf L_{\text{tr}}
++
+\Delta\mathbf L_{\text{wake}}^{\text{core}}
+=
+\Delta\mathbf J_{\text{coupl}},
+$$
+with the scalar components defined only by projection onto the supplied transaction axis:
+$$
+\Delta I_{\text{inner}}
+=
+\hat{\mathbf a}\cdot\Delta\mathbf I_I^{\text{mech}},
+\quad
+\Delta I_{\text{middle}}
+=
+\hat{\mathbf a}\cdot\Delta\mathbf I_M^{\text{mech}},
+\quad
+\Delta I_{\text{outer}}
+=
+\hat{\mathbf a}\cdot\Delta\mathbf I_O^{\text{mech}},
+\quad
+\Delta I_{\text{wake}}
+=
+\hat{\mathbf a}\cdot\Delta\mathbf L_{\text{wake}}^{\text{core}}.
+$$
+
+The scalar action-closure condition is
+$$
+C_A:\quad
+\Delta A_{\text{cycle}}=\sigma h,
+\qquad
+\Delta I_{\text{inner}}
++
+\Delta I_{\text{middle}}
++
+\Delta I_{\text{outer}}
++
+\Delta I_{\text{wake}}
+=
+\sigma\hbar.
+$$
+
+The energy-closure condition is
+$$
+C_E:\quad
+\omega_I^{\ast}\Delta I_{\text{inner}}
++
+\omega_M^{\ast}\Delta I_{\text{middle}}
++
+\omega_O^{\ast}\Delta I_{\text{outer}}
++
+\Delta E_{\text{wake}}
+=
+\Delta E_{\text{coupl}},
+$$
+or, outside the first action-angle approximation,
+$$
+C_E:\quad
+\sum_{\ell\in\{I,M,O\}}
+\int_{B\to B'}\omega_\ell\,dI_\ell
++
+\Delta E_{\text{root}}
++
+\Delta E_{\text{wake}}
+=
+\Delta E_{\text{coupl}}.
+$$
+
+The root-ledger admissibility condition is
+$$
+C_R:\quad
+\left(
+\mathcal R_B,\{\mathcal H_{\ell,\alpha}^{B}\}_{\ell,\alpha}
+\right)
+\longrightarrow
+\left(
+\mathcal R_{B'},\{\mathcal H_{\ell,\alpha}^{B'}\}_{\ell,\alpha}
+\right)
+$$
+through declared fold, separator, grouped-channel, or branch-continuation rules, with raw self-root jumps obeying $\Delta N\in2\mathbb Z$ and $\Delta D=0$ on charts where that parity guardrail applies.
+
+The phase-lock condition is
+$$
+C_\Phi:\quad
+\Psi_{\ell\alpha\leftarrow m\beta}^{(b)}(t_f;B')
+\equiv0\pmod{2\pi},
+\qquad
+\Phi_\ell(B')-\Phi_m(B')=2\pi k_{\ell m},
+$$
+including geometric phase, wake-return delay, and causal-root ledger phase for every active branch used by $B'$.
+
+The coupling-geometry condition is
+$$
+C_G:\quad
+\left(
+\Delta E_{\text{coupl}},
+\Delta\mathbf J_{\text{coupl}},
+\hat{\mathbf a}
+\right)
+=
+\mathrm{Geom}_{\text{coupl}}
+(\text{exposed layer},\text{incidence direction},\text{impact parameter},\text{orientation data},\text{wake recoil channel}),
+$$
+so $\hat{\mathbf a}$ and the source recoil are boundary data, not adjustable fit parameters inside the partition solve.
+
+The branch-stability condition is
+$$
+C_S:\quad
+\rho(D\mathcal P_{B'})<1,
+\qquad
+g_{\text{root}}(B')>0,
+\qquad
+g_{\text{phase}}(B')>0,
+$$
+where $g_{\text{root}}$ is the minimum active-root / inactive-root separation margin and $g_{\text{phase}}$ is the minimum phase-lock margin on the regularized chart.
+
+### Branch-Selection Condition
+
+The transaction is **unique** when
+$$
+\left|\mathscr P(B,\Gamma_{\text{coupl}})\right|=1.
+$$
+In that case the single element $\left(B',\boldsymbol{\Delta I}\right)$ is the branch-selected partition for the supplied coupling geometry.
+
+The transaction is **branch-dependent** when
+$$
+\left|\mathscr P(B,\Gamma_{\text{coupl}})\right|>1.
+$$
+In that case the theorem is incomplete until a deterministic selection map
+$$
+\operatorname{Sel}_B:
+\Gamma_{\text{coupl}}\times\mathfrak m_B
+\longrightarrow
+\mathscr P(B,\Gamma_{\text{coupl}})
+$$
+is supplied, where $\mathfrak m_B$ denotes the unresolved microstate data retained by the declared branch chart.
+
+The transaction is **forbidden** when
+$$
+\mathscr P(B,\Gamma_{\text{coupl}})=\varnothing
+$$
+and no reflected or wake-exchange branch satisfies vector, energy, root-ledger, phase-lock, and stability closure.
+
+The transaction is **reflected** when no accepted post-branch changes the core partition, but there exists a stable recoil branch $B_{\text{refl}}$ satisfying
+$$
+\Delta\mathbf L_{\text{mech}}^{\text{core}}
++
+\Delta\mathbf L_{\text{tr}}
+=
+\mathbf 0,
+\qquad
+\Delta\mathbf J_{\text{coupl}}
++
+\Delta\mathbf J_{\text{refl}}
++
+\Delta\mathbf L_{\text{wake}}^{\text{core}}
+=
+\mathbf 0,
+$$
+with the outgoing source or apparatus channel carrying $\Delta\mathbf J_{\text{refl}}$.
+
+The transaction is **routed into wake exchange** when no stable mechanical redistribution satisfies $C_{\mathbf J}$ and $C_E$, but a stable branch satisfies
+$$
+\Delta I_{\text{wake}}\ne0
+\quad\text{or}\quad
+\Delta E_{\text{wake}}\ne0
+$$
+and the full vector and energy ledgers close after the wake term is retained.
+
 ## Result 2026-05-12: Solved Minimal Four-Substep Transition
 
 The bridge now contains one solved separated-scale transition rather than only a symbolic ledger. The solved branch is deliberately narrow: fixed projected normals, no transport remainder, no retained wake angular momentum after closure, one outer substep, one middle hinge substep, and two equal inner self-hit substeps. It is a branch certificate, not the general partition theorem.
@@ -333,7 +542,31 @@ $$
 \mathrm{Aut}(\mathcal{G},\chi_c)
 $$
 
-from delayed causal-root transport. If $\mu$ is trivial, the ordered-frame route does not supply fermion spinor closure. In the planar alignment limit,
+from delayed causal-root transport. If $\mu$ is trivial, the ordered-frame route does not supply fermion spinor closure.
+
+**Theorem target (ordered-frame spinor lift).** Let $\tilde q\in\widetilde{\mathcal Q}_{\text{NC}}^{\text{ord}}$ be a stable ordered-core branch with conserved $\mathcal J_B(\mathfrak H_B)$, and let $\gamma_{2\pi}$ be a physical rotation path whose base-frame projection returns the visible ordered normal triad after $2\pi$. The lift is spinor-like only if there is an involution $\iota$ with $\iota^2=\mathrm{id}$ and $\iota\notin G_{\text{gauge}}$ such that
+$$
+\pi\!\left(\mathcal T_{\gamma_{2\pi}}\tilde q\right)
+=
+\pi(\tilde q),
+\qquad
+\mathcal T_{\gamma_{2\pi}}\tilde q
+=
+\iota(\tilde q)
+\ne
+\tilde q,
+$$
+while the doubled path restores the full lifted state:
+$$
+\mathcal T_{\gamma_{4\pi}}\tilde q
+=
+\tilde q.
+$$
+The nontrivial $2\pi$ lift must act on causal-root ledgers, phase branches, causal-writhe parity, or $\chi_c$ in a way that is not removable by the branch-preserving quotient, and the $4\pi$ restoration must preserve the total angular-momentum functional along the entire path.
+
+If $\mathcal T_{\gamma_{2\pi}}\tilde q=\tilde q$, the ordered frame closes as an ordinary $SO(3)$ object. If $\mathcal T_{\gamma_{4\pi}}\tilde q\ne\tilde q$, the proposed two-sheet lift fails as a fermion spinor closure target.
+
+In the planar alignment limit,
 
 $$
 \det\!\big[\hat{\mathbf n}_H,\hat{\mathbf n}_M,\hat{\mathbf n}_L\big]\to0,
@@ -350,6 +583,32 @@ the ordered 3D frame leaves the spinor-test domain and should reduce to the $SO(
 5. **Angular-momentum compatibility:** show that the history lift preserves the conserved $\mathbf{L}_{\text{tot}}=\mathbf{L}_{\text{mech}}+\mathbf{L}_{\text{wake}}$ ledger and does not hide unbalanced torque in the quotient.
 6. **Planar degeneration check:** drive the same branch toward $\det[\hat{\mathbf n}_H,\hat{\mathbf n}_M,\hat{\mathbf n}_L]\to0$ and verify whether the rotation test transitions from $4\pi$ to $2\pi$ return as the configuration reduces toward the planar $SO(2)$ / $U(1)$ branch.
 7. **Measurement handoff:** only after the lift is proved, define how an apparatus axis couples to this full ordered-frame ledger to produce the two observed spin outcomes.
+
+### Partition And Spinor Falsifiers
+
+1. **Missing wake term.** A proposed partition is falsified if $C_{\mathbf J}$ or $C_E$ closes only after setting $\Delta I_{\text{wake}}=0$ or $\Delta E_{\text{wake}}=0$ by assumption while the branch torque integral gives a nonzero wake contribution.
+2. **Broken vector ledger.** A scalar solution of $C_A$ is rejected if
+   $$
+   \sum_{\ell\in\{I,M,O\}}
+   \Delta\mathbf I_\ell^{\text{mech}}
+   +
+   \Delta\mathbf L_{\text{tr}}
+   +
+   \Delta\mathbf L_{\text{wake}}^{\text{core}}
+   -
+   \Delta\mathbf J_{\text{coupl}}
+   \ne
+   \mathbf 0.
+   $$
+3. **Incompatible phase lock.** A candidate $B'$ is rejected if any active branch has
+   $$
+   \Psi_{\ell\alpha\leftarrow m\beta}^{(b)}(t_f;B')
+   \not\equiv0\pmod{2\pi}
+   $$
+   after geometric phase, wake-return delay, and causal-root ledger phase are included.
+4. **Unstable post-branch.** A candidate $B'$ is rejected if $\rho(D\mathcal P_{B'})\ge1$, $g_{\text{root}}(B')\le0$, or $g_{\text{phase}}(B')\le0$.
+5. **Nonunique branch without selection rule.** A branch-dependent partition is rejected as a theorem if $\left|\mathscr P(B,\Gamma_{\text{coupl}})\right|>1$ and no deterministic $\operatorname{Sel}_B$ is supplied.
+6. **Failed $4\pi$ restoration.** An ordered-frame spinor candidate is falsified if the visible frame closes after $2\pi$ but $\mathcal T_{\gamma_{4\pi}}\tilde q\ne\tilde q$, or if $\mathcal T_{\gamma_{2\pi}}\tilde q=\tilde q$ in a branch where spinor closure is required.
 
 ### Op-Discussion Hypothesis: Component-Resolved Causal Writhe Bridge
 

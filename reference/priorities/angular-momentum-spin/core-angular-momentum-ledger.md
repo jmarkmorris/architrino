@@ -236,6 +236,135 @@ $$
 $$
 only for isolated solutions of a symmetry-preserving delayed action. In working regularized models, this is a validation diagnostic and a closure target.
 
+### Branch-History Functional Upgrade
+
+Fix a regularized branch chart $B$ over a memory interval $[t_\ast,t]$. The branch-history object for the core is
+$$
+\mathfrak H_B(t;t_\ast)
+=
+\left(
+\{\mathbf x_{\ell,\alpha}(s),\dot{\mathbf x}_{\ell,\alpha}(s)\}_{s\in[t_\ast,t]},
+\{\mathcal R_B(s)\}_{s\in[t_\ast,t]},
+\{\mathcal H_{\ell,\alpha}^{B}(s)\}_{s\in[t_\ast,t]},
+\{\Psi_{\ell\alpha\leftarrow m\beta}^{(b)}(s)\},
+\mathcal A_{\text{self},B}^{\text{core}}
+\right).
+$$
+Here $B$ fixes the continuation of active roots through folds, the phase-window cell, the self-hit branch ordering, and the regularization convention used to compare action and force terms.
+
+The action-functional self term carried by this history is the diagonal part of the causal action on nontrivial self-hit branches:
+$$
+\mathcal A_{\text{self},B}^{\text{core}}
+=
+\sum_{\ell,\alpha}
+\iint_{\mathcal D_{\ell,\alpha}^{B}(t_\ast,t)}
+\kappa q_{\ell,\alpha}^{2}
+\frac{
+\delta_\eta\!\left(
+r_{\ell\alpha,\ell\alpha}(s,t_0)-c_f(s-t_0)
+\right)}
+r_{\ell\alpha,\ell\alpha}^{2}(s,t_0)
+\left|J_{\ell\alpha,\ell\alpha}(s,t_0)\right|}
+\,ds\,dt_0,
+$$
+where
+$$
+\mathcal D_{\ell,\alpha}^{B}(t_\ast,t)
+=
+\{(s,t_0):s\in[t_\ast,t],\ t_0\in\mathcal H_{\ell,\alpha}^{B}(s)\},
+\qquad
+r_{\ell\alpha,\ell\alpha}(s,t_0)
+=
+\left\|\mathbf x_{\ell,\alpha}(s)-\mathbf x_{\ell,\alpha}(t_0)\right\|.
+$$
+This term is not an additional force law; it is the self-hit sector of the same delayed action whose rotational variation contributes to the angular-momentum boundary charge.
+
+Split the active root ledger into off-diagonal and self-action sectors:
+$$
+\mathcal R_B^{\text{self}}(s)
+=
+\{(\ell,\alpha;\ell,\alpha;b)\in\mathcal R_B(s):t_0^{(b)}\in\mathcal H_{\ell,\alpha}^{B}(s)\},
+\qquad
+\mathcal R_B^{\text{off}}(s)
+=
+\mathcal R_B(s)\setminus\mathcal R_B^{\text{self}}(s).
+$$
+The wake ledger can then be written as
+$$
+\mathbf L_{\text{wake}}^{B}(t)
+=
+\mathbf L_{\text{wake,off}}^{B}(t)
++
+\mathbf L_{\text{self-act}}^{B}(t),
+$$
+with
+$$
+\mathbf L_{\text{wake,off}}^{B}(t)
+=
+\mathbf L_{\text{wake,off}}^{B}(t_\ast)
+-
+\int_{t_\ast}^{t}
+\sum_{\mathcal R_B^{\text{off}}(s)}
+\boldsymbol{\tau}^{(b)}(s)\,ds,
+$$
+and
+$$
+\mathbf L_{\text{self-act}}^{B}(t)
+=
+\mathbf L_{\text{self-act}}^{B}(t_\ast)
+-
+\int_{t_\ast}^{t}
+\sum_{\mathcal R_B^{\text{self}}(s)}
+\boldsymbol{\tau}^{(b)}(s)\,ds.
+$$
+If $\mathbf L_{\text{wake}}^{\text{core}}$ is computed by summing all of $\mathcal R_B(s)$, then $\mathbf L_{\text{self-act}}^{B}$ is already included; if the computation separates partner, inter-layer, and self-hit roots, the diagonal self-action term must be retained explicitly.
+
+The branch-resolved total angular-momentum functional is therefore the history functional
+$$
+\boxed{
+\mathcal J_B(\mathfrak H_B)(t)
+=
+\mathbf L_{\text{mech}}^{\text{core}}(t)
++
+\mathbf L_{\text{wake,off}}^{B}(t)
++
+\mathbf L_{\text{self-act}}^{B}(t)
+}
+$$
+with $\mathbf L_{\text{mech}}^{\text{core}}$ evaluated from the current layer positions and velocities, and the two wake terms evaluated from the active causal-root history on $B$.
+
+### Delayed-Noether Conservation Lemma
+
+**Lemma (delayed rotational Noether charge).** On a fixed regularized branch chart $B$, suppose the delayed action
+$$
+S_B
+=
+\int K_{\mu}(\dot{\mathbf x}(s))\,ds
++
+S_{\text{off},B}
++
+\mathcal A_{\text{self},B}^{\text{core}}
+$$
+is invariant under every spatial rotation $\mathbf x\mapsto R\mathbf x$, the branch chart has no unbalanced boundary wake flux, and the worldlines solve the corresponding delayed Euler-Lagrange equations. Then
+$$
+\frac{d}{dt}\mathcal J_B(\mathfrak H_B)(t)=\mathbf 0.
+$$
+
+*Proof sketch.* For an infinitesimal rotation $\delta\mathbf x_i=\boldsymbol\Omega\times\mathbf x_i$, rotational invariance gives
+$$
+0
+=
+\delta S_B
+=
+\boldsymbol\Omega\cdot
+\left(
+\mathcal J_B(\mathfrak H_B)(t_f)
+-
+\mathcal J_B(\mathfrak H_B)(t_i)
+\right)
+$$
+after the delayed Euler-Lagrange residuals vanish. The delayed interaction boundary term contains pairs whose emission side and reception side lie on opposite sides of the time boundary, so the conserved charge cannot be only $\mathbf L_{\text{mech}}^{\text{core}}(t)$. The missing boundary contribution is exactly the causal-wake history term, including the diagonal self-action sector when $\mathcal H_{\ell,\alpha}^{B}$ is nonempty.
+
 ### Linearized Transaction Ledger
 
 For a small accepted transition, the layer contribution changes as
@@ -284,3 +413,28 @@ This scaffold leaves the following items as proof or simulation closure targets:
 3. Derive the phase-window equation for $\Psi_{\ell\alpha\leftarrow m\beta}^{(b)}$ from the delay dynamics rather than imposing it as a lock condition.
 4. Prove which solutions have a positive Floquet basin-robustness gap and therefore count as stable post-transaction branches.
 5. Show how the vector ledger above descends to observer-level spin, helicity, or orbital labels without conflating those labels with the internal tri-binary rotational action.
+
+### Core-Ledger Falsifiers
+
+1. **Missing wake term.** A candidate conserved quantity that uses only $\mathbf L_{\text{mech}}^{\text{core}}$ is falsified whenever
+   $$
+   \frac{d}{dt}\mathbf L_{\text{mech}}^{\text{core}}(t)
+   =
+   \sum_{\mathcal R_B(t)}\boldsymbol{\tau}^{(b)}(t)
+   \ne
+   \mathbf 0
+   $$
+   while the omitted $\mathbf L_{\text{wake}}^{B}$ would cancel the torque.
+2. **Omitted self-action sector.** A branch chart with $\mathcal R_B^{\text{self}}(t)\ne\varnothing$ is falsified if $\mathcal A_{\text{self},B}^{\text{core}}$ is absent from the action or if $\mathbf L_{\text{self-act}}^{B}$ is omitted from $\mathcal J_B$.
+3. **Broken vector ledger.** A transaction window fails the conserved-functional target if
+   $$
+   \Delta\mathbf L_{\text{mech}}^{\text{core}}
+   +
+   \Delta\mathbf L_{\text{wake}}^{B}
+   +
+   \Delta\mathbf J_{\text{coupl}}
+   \ne
+   \mathbf 0
+   $$
+   after all source-channel and boundary-wake terms belonging to the declared isolated system have been included.
+4. **Branch-history discontinuity.** A claimed conserved branch is invalid if $\mathcal R_B(t)$, $\mathcal H_{\ell,\alpha}^{B}(t)$, or $\Psi_{\ell\alpha\leftarrow m\beta}^{(b)}(t)$ changes chart without an explicit fold, separator, or grouped-channel rule.

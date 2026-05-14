@@ -19,25 +19,69 @@
 
 This workstream is the validation-side gate ledger for the theory. It does not own the local derivations themselves. Its job is to state what has to survive at the same time before a stronger replacement claim is credible.
 
-The core object is the accepted-closure intersection
+Let the sector index set be
+
+$$
+\mathfrak{S}
+=
+\{
+\mathrm{weak},
+\mathrm{quantum},
+\mathrm{gravity},
+\mathrm{hadronic},
+\mathrm{radiation},
+\mathrm{cosmology}
+\}.
+$$
+
+A candidate promoted closure is a record
+
+$$
+\theta
+\in
+\mathfrak{X}
+$$
+
+whose shared fields include the active closure-join objects
+
+$$
+\left(
+A,
+\Gamma,
+\mathcal{H},
+\mathcal{R},
+\mathcal{L}_{E\mathbf{p}\mathbf{J}},
+\zeta,
+\mathcal{M}_{\mathrm{sea}}^{ab},
+\{B_i\}
+\right),
+$$
+
+together with the sector-local benchmark and provenance data required by the relevant gate. Each sector acceptance set $\mathcal{C}_S\subseteq\mathfrak{X}$ is the subset of records whose sector predicate, benchmark recovery, no-go applicability record, and failure-condition ledger all pass.
+
+The core validation object is the accepted-closure intersection
 
 $$
 \mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}
 =
-\mathcal{C}_{\mathrm{weak}}
-\cap
-\mathcal{C}_{\mathrm{quantum}}
-\cap
-\mathcal{C}_{\mathrm{gravity}}
-\cap
-\mathcal{C}_{\mathrm{hadronic}}
-\cap
-\mathcal{C}_{\mathrm{radiation}}
-\cap
-\mathcal{C}_{\mathrm{cosmology}}.
+\bigcap_{S\in\mathfrak{S}}\mathcal{C}_S.
 $$
 
 If a local program succeeds only by making another validated sector impossible, the accepted intersection is empty and the current implementation must be revised.
+
+For a local sector result $c$ in sector $S$, let $\pi_S:\mathfrak{X}\to\mathfrak{X}_S$ be the projection that keeps only the sector-$S$ fields. The validation gate accepts $c$ only when the extension fiber
+
+$$
+\operatorname{Ext}_S(c)
+=
+\{
+\theta\in\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}
+:
+\pi_S(\theta)=c
+\}
+$$
+
+is nonempty. Local sector success is therefore not mature until at least one shared closure record preserves the local result while also passing the weak, quantum, gravity, hadronic, radiation, and cosmology acceptance sets.
 
 ## Detailed Priority Files
 
