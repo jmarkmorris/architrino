@@ -156,6 +156,98 @@ R_\ell
 $$
 where $\mathbf{e}_{\ell,1},\mathbf{e}_{\ell,2}$ span the layer plane, $\mathbf{n}_\ell=\mathbf{e}_{\ell,1}\times\mathbf{e}_{\ell,2}$, $\lambda_\ell$ is an ellipticity parameter, and $\mathbf{d}_\ell(t)$ is the unresolved non-circular correction.
 
+## Geometry-First Reduction: Provisional Moduli Object
+
+The reduced search should treat the certificate variables as coordinates on a geometric state space before it treats them as bookkeeping fields. The provisional object for a fixed finite branch label $\Lambda$ and fixed $\eta>0$ is
+$$
+\mathfrak{M}_{A_0}^{\eta}(\Lambda)
+=
+\left\{
+Y_{\text{geom}}
+\;:\;
+\mathcal{R}_\Lambda(Y_{\text{geom}})=0,
+s_I>c_f,
+s_M\approx c_f,
+s_O<c_f
+\right\}
+\Big/
+\left(
+SO(3)\times S^1_{\mathbf{k}}\times\Gamma_\Lambda
+\right),
+$$
+where the provisional reduced geometric coordinate is
+$$
+Y_{\text{geom}}
+=
+\left(
+R_\ell,\omega_\ell,\lambda_\ell,
+\theta_\ell,\mathbf{n}_\ell,H_\ell,\Lambda
+\right).
+$$
+The quotient removes global rotations, the common closed-cycle phase gauge, and only those finite chart relabelings that preserve the polarity assignment, layer roles, speed ordering, and causal-root branch class. Here
+$$
+S^1_{\mathbf{k}}:
+\left(\theta_I,\theta_M,\theta_O\right)
+\mapsto
+\left(
+\theta_I+2\pi k_I\alpha,\,
+\theta_M+2\pi k_M\alpha,\,
+\theta_O+2\pi k_O\alpha
+\right),
+\qquad
+\alpha\in\mathbb{R}/\mathbb{Z},
+$$
+and $\Gamma_\Lambda$ is a provisional notation for the allowed discrete chart relabelings. The root-ledger branch class $[\Lambda]$ is the image of $\Lambda$ under this discrete quotient; it is not an additional dynamical assumption.
+
+A useful reduced chart on this quotient is
+$$
+z_\Lambda
+=
+\left(
+\varepsilon_{IM},\varepsilon_{MO},\delta_M,
+T_I/T_M,T_M/T_O,
+\lambda_I,\lambda_M,\lambda_O,
+G_{\ell m},\chi_N,
+H_I,H_M,H_O,
+\Phi_{\text{rel}},
+[\Lambda]
+\right),
+$$
+with
+$$
+G_{\ell m}\equiv\mathbf{n}_\ell\cdot\mathbf{n}_m,
+\qquad
+\chi_N
+\equiv
+\operatorname{sign}
+\left(
+\mathbf{n}_I\cdot
+\left(\mathbf{n}_M\times\mathbf{n}_O\right)
+\right),
+\qquad
+\Phi_{\text{rel}}
+\equiv
+\left(\theta_I,\theta_M,\theta_O\right)/S^1_{\mathbf{k}}.
+$$
+The two period ratios record time-scale separation alongside the radius ratios. The Gram data $G_{\ell m}$ records the inter-plane angles after global rotations are removed, $\chi_N$ records the orientation class of the ordered plane-normal frame, the three $H_\ell$ record layer handedness, and $\Phi_{\text{rel}}$ records phase offsets after the common time-origin gauge is removed. For nonzero winding vector $\mathbf{k}=(k_I,k_M,k_O)$, $\Phi_{\text{rel}}$ is a two-dimensional phase torus; an implementation may choose any two integer phase combinations orthogonal to $\mathbf{k}$.
+
+The stability object on the quotient is the residual-gap functional
+$$
+\mathscr{Q}_\eta([Y])
+=
+\|\mathcal{R}_\Lambda(Y)\|_{W}^{2}
++
+\sum_{\mu_i\notin G_{\text{sym}}}
+\max(0,|\mu_i|-1)^2,
+$$
+where $W$ is the declared residual-weight matrix and $[Y]$ denotes the quotient class of a representative branch coordinate. A stable rest branch should appear as an isolated zero of $\mathscr{Q}_\eta$ with
+$$
+\Delta_{\mathbf{k}}>0.
+$$
+This gives a provisional normal-hyperbolicity reading of the existing positive-gap gate: time shift, center translation, and global rotation do not count as physical instability, but every remaining Floquet direction must be separated from the unit circle. Integer closure without this positive gap is a point in the closure locus, not a stable rest-branch moduli point.
+
+**Provisional reduced-moduli lemma.** For fixed $\eta>0$, fixed finite causal-root branch class $[\Lambda]$, and nonzero winding vector $\mathbf{k}$, any Tier 1 branch with $\mathcal{R}_\Lambda=0$, no center drift, retained speed ordering, and $\Delta_{\mathbf{k}}>0$ determines an isolated point of $\mathfrak{M}_{A_0}^{\eta}(\Lambda)$. If the same data give $\mathcal{R}_\Lambda=0$ but $\Delta_{\mathbf{k}}\le0$, the branch is a closed reduced configuration but not a stable $A_0$ rest branch.
+
 Tier 0 may set $\mathbf{d}_\ell=0$ only to enumerate roots and residuals. If this carrier leaves tangential residuals, the result is not a no-go theorem. It is a demand for one of three next moves:
 
 - an inter-layer phase correction,
@@ -307,6 +399,8 @@ $$
 $$
 is interpreted with sign-aware inequalities for the intended branch regime.
 
+This is the closure residual vector before the monodromy gate. The full branch-row residual surface is $\mathcal{R}_{A_0}$ below, which also includes $\mathcal{R}_{\text{Floquet}}$ with a Tier 0 status of not computed until Tier 1 builds the return-map diagnostic.
+
 The classification residuals record what happened to higher-order internal terms:
 
 - $\mathcal{R}_{\text{avg}}$ measures the terms claimed to average out under Lemma 1.
@@ -438,13 +532,41 @@ Required outputs:
 
 - active root counts by class,
 - $J_{ab}^{(m)}$ distributions and near-null events,
+- the reduced moduli row $z_\Lambda$ before any energy or shielding interpretation,
+- the complete branch-row residual surface $\mathcal{R}_{A_0}$, with Tier 0 omissions recorded explicitly,
+- $\Delta_{\mathbf{k}}$ status, reported as not computed at Tier 0 unless a monodromy diagnostic is supplied,
 - phase-closure residuals,
 - tangential and radial carrier residuals,
 - averaging / locking / leakage classification,
 - candidate branch labels worth continuing,
-- explicit no-go notes when no labels survive.
+- one `failure_code` per rejected row and explicit no-go notes when no labels survive.
 
 Tier 0 passes only if at least one branch label has finite root ledger, controlled residuals, and no immediate contradiction with the speed ordering. Passing Tier 0 does not authorize $\zeta(A_0)$, energy-ledger, or mass interpretation.
+
+### Minimum Branch-Row Schema
+
+Each Tier 0 row should expose the quotient coordinate, residual surface, and stability handoff explicitly:
+
+| Field | Required content |
+| --- | --- |
+| `branch_label` | $(k_I,k_M,k_O)$, $(q_{IM},q_{MO},q_{IO})$, handedness labels, ellipticity status, and active branch identifiers available at Tier 0 |
+| `z_lambda` | the reduced moduli row $z_\Lambda$: radius ratios, period ratios, $\delta_M$, layer ellipticities, plane Gram data $G_{\ell m}$, $\chi_N$, $H_I,H_M,H_O$, $\Phi_{\text{rel}}$ status, removed gauges, and root-ledger branch class $[\Lambda]$ |
+| `root_ledger` | active and raw partner, self, and inter-layer root counts; excluded near-zero self roots; near-separator counts; minimum $|J|$; maximum root residual |
+| `residuals` | structured entries for every component of $\mathcal{R}_{A_0}$, each with value, tolerance, status, role, and note |
+| `residual_values` | numeric audit surface for $\mathcal{R}_{A_0}$, with Tier 0 omissions recorded as null rather than hidden |
+| `Delta_k` | Tier 0 status for $\Delta_{\mathbf{k}}$; value is null until Tier 1 constructs the monodromy or finite-difference return map |
+| `certificate_gates` | pass/fail/not-computed gates for quotient coordinates, scale separation, speed ordering, phase closure, carrier residuals, active root ledger, separator handling, near-zero self roots, residual semantics, $\Delta_{\mathbf{k}}$, and Tier 0 continuation |
+| `failure_code` | one machine-readable reason the row fails, or `candidate` when it may seed Tier 1 |
+| `promotion_boundary` | explicit statement that a passing Tier 0 row may seed Tier 1 only and is not an accepted attractor |
+
+The first Tier 0 failure table should reserve these codes:
+
+| Failure code | Trigger | Consequence |
+| --- | --- | --- |
+| `quotient-degenerate` | $G_{\ell m}$ and $\chi_N$ do not define a nondegenerate quotient row after global rotations are removed | do not treat $z_\Lambda$ as a moduli coordinate |
+| `scale-separation-collapse` | $R_I:R_M:R_O$ or $T_I:T_M:T_O$ violates the declared separated-scale regime | reject the row or widen the scan only as a controlled scale-separation test |
+| `root-ledger-instability` | the active causal-root ledger is empty or misses partner, self, or inter-layer root classes | do not seed Tier 1 until the ledger closes with all required source relations |
+| `nonpositive-floquet-gap` | Tier 1 computes $\Delta_{\mathbf{k}}\le0$ | reject the branch as a non-attractor even if integer closure holds |
 
 ## Tier 1: $\eta>0$ Continuation Scan
 
@@ -549,9 +671,10 @@ The first implementation pass should produce:
 1. a small parameter-grid definition for $\varepsilon_{IM}$, $\varepsilon_{MO}$, $\delta_M$, $(R_I:R_M:R_O)$, $(T_I:T_M:T_O)$, and $(H_I,H_M,H_O)$;
 2. a carrier evaluator for circular and elliptic diagnostic charts;
 3. a root-ledger enumerator that emits partner, self, and inter-layer root classes with $J_{ab}^{(m)}$ values;
-4. a resonance classifier that separates $\mathcal{R}_{\text{avg}}$ from $\mathcal{R}_{\text{lock}}$;
-5. a leakage placeholder that reports the leading nonzero far-field channel rather than hiding it;
-6. one output row per branch label $\Lambda$, including $\mathcal{R}_{A_0}$ and a failure code.
+4. a quotient-coordinate emitter for $z_\Lambda$ with the removed rotation, phase, and chart relabeling gauges declared;
+5. a resonance classifier that separates $\mathcal{R}_{\text{avg}}$ from $\mathcal{R}_{\text{lock}}$;
+6. a leakage placeholder that reports the leading nonzero far-field channel rather than hiding it;
+7. one output row per branch label $\Lambda$, including $z_\Lambda$, $\mathcal{R}_{A_0}$, $\Delta_{\mathbf{k}}$, and a failure code.
 
 Only after Tier 0 emits at least one nontrivial candidate should the workstream spend effort on Tier 1 direct delayed dynamics.
 

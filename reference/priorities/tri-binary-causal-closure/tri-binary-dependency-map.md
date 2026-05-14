@@ -137,6 +137,86 @@ The deployment gate is passed only when every non-closed item in this map has a 
 - Priority route: `master-equation-closure`.
 - Current disposition: `priority`.
 
+### 8b. Moving Noether-Core Deformation Map (Provisional)
+
+- Inputs: rest tri-binary layer planes $\Pi_i^{(0)}$, rest layer paths $C_i^{(0)}$, inter-layer paths $C_{ij}^{(0)}$, branch label $q$, local medium drift $\mathbf{u}_{\text{sea}}$, and effective drift $\mathbf{w}=\mathbf{V}_{\text{cm}}-\mathbf{u}_{\text{sea}}$.
+- Mechanism: construct a branch-indexed deformation map
+  $$
+  \mathcal{D}_{\beta,q}^{\mathrm{mov}}
+  =
+  \lambda_q(\beta)
+  \left(
+  P_{\perp}
+  +
+  \xi_q(\beta)P_{\parallel}
+  \right)
+  +
+  \mathcal{E}_q(\beta),
+  $$
+  with $\xi_q=R_{\parallel,q}/R_{\perp,q}$, $\lambda_q=R_{\perp,q}/R_{\perp,q}(0)$, and $\mathcal{E}_q$ restricted to branch-sourced residuals. The map sends rest layer planes to moving spiral-helical layer geometry and must make the deformed path lengths $\ell_i(\beta,q)$ and $\ell_{ij}(\beta,q)$ close under the same transverse causal budget $c_{\perp}=c_{\text{eff}}\sqrt{1-\beta^2}$.
+- Output: a single geometry object whose projections give layer-plane deformation, clock-rate reduction, longitudinal ruler contraction, and the preferred-frame leakage residual.
+- Closure equation:
+  $$
+  \Omega_i(\beta,q)
+  \frac{\ell_i(\beta,q)}{c_{\perp}(\beta)}
+  =
+  2\pi k_i,
+  \qquad
+  \Delta\Phi_{ij}\!\left(
+  \frac{\ell_{ij}(\beta,q)}{c_{\perp}(\beta)}
+  \right)
+  =
+  2\pi q_{ij},
+  $$
+  on the same inner, middle, outer, and inter-layer causal-root ledger.
+- Proof burden: derive $\mathcal{D}_{\beta,q}^{\mathrm{mov}}$ from a completed moving branch chart rather than fitting $\xi_q$, $T_q$, and $\Delta_{\text{tw}}^{(q)}$ independently; verify positive Floquet gap and
+  $$
+  \mathcal{R}_{\mathrm{PF}}^{(q)}(\beta)
+  =
+  \max\left(
+  \left|
+  \frac{d\tau_q}{dt}
+  -
+  \sqrt{1-\beta^2}
+  \right|,
+  \left|
+  \xi_q(\beta)
+  -
+  \sqrt{1-\beta^2}
+  \right|,
+  \sup_{\theta}|\Delta_{\text{tw}}^{(q)}(\beta,\theta)|
+  \right)
+  \le
+  \epsilon_{\text{LV}}.
+  $$
+- First coefficient test: on a reduced neutral branch, expand
+  $$
+  \mathcal{D}_{\beta,q}^{\mathrm{mov}}
+  =
+  I+d_2\beta^2P_{\parallel}
+  +
+  O(\beta^4),
+  \qquad
+  \Omega_M(\beta,q)
+  =
+  \Omega_M^{(0)}
+  \left(
+  1+s_2\beta^2
+  \right)
+  +
+  O(\beta^4),
+  $$
+  and require the same returned-section residual to give
+  $$
+  d_2=-\frac{1}{2},
+  \qquad
+  s_2=-\frac{1}{2},
+  $$
+  while keeping inter-layer phase residuals and $\Delta_{\text{tw}}^{(q)}$ inside the declared leakage scale.
+- Failure mode: if layer deformation, clock-rate reduction, ruler contraction, and preferred-frame leakage cannot be traced to one branch ledger without separate tuning, then the effective Lorentz map fails at the moving-core stage.
+- Priority route: `master-equation-closure`, `simulations`.
+- Current disposition: `priority`.
+
 ### 9. Quantum Step Selection
 
 - Inputs: inner, middle, and outer binary radii, frequencies, phase lags, inter-layer paths, and $c_{\perp}$.
@@ -279,12 +359,13 @@ The deployment gate is passed only when every non-closed item in this map has a 
 3. Photon gate A, kinematics and optics, with proportional-collapse selection theorem.
 4. Photon gate B, polarization and spin.
 5. Photon gate C, vertices and transitions.
-6. Transverse causal budget lemma with Floquet-gap closure at $\beta\to 1$.
-7. Slow-fast tri-binary universality theorem.
-8. Momentum skew with Noether-Sea dressing tensor.
-9. Effective metric and Cartan connection reconstruction.
-10. Equivalence and weak-field GR matching.
-11. Topological certification.
+6. Moving Noether-core deformation map with the $d_2=s_2=-1/2$ first coefficient test.
+7. Transverse causal budget lemma with Floquet-gap closure at $\beta\to 1$.
+8. Slow-fast tri-binary universality theorem.
+9. Momentum skew with Noether-Sea dressing tensor.
+10. Effective metric and Cartan connection reconstruction.
+11. Equivalence and weak-field GR matching.
+12. Topological certification.
 
 ## Deployment Handoff Table
 
@@ -298,6 +379,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 | Grazing-bifurcation separator classification | create task | `breather-proof`, `simulations` |
 | Slow-fast tri-binary minimality theorem | create task | `mass-map`, `master-equation-closure` |
 | Effective metric and Cartan connection | create task | `master-equation-closure`, `strong-field-closure` |
+| Moving Noether-core deformation map | create task | `master-equation-closure`, `simulations` |
 | Transverse causal budget lemma | extract or create task | `master-equation-closure` |
 | Momentum skew derivation | create task | `mass-map`, `master-equation-closure` |
 | Equivalence-principle residual bound | create task | `master-equation-closure`, `strong-field-closure` |

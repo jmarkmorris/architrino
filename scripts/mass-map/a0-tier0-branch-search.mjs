@@ -78,6 +78,14 @@ function dot(a, b) {
   return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
 }
 
+function cross(a, b) {
+  return [
+    a[1] * b[2] - a[2] * b[1],
+    a[2] * b[0] - a[0] * b[2],
+    a[0] * b[1] - a[1] * b[0],
+  ];
+}
+
 function norm(a) {
   return Math.sqrt(dot(a, a));
 }
@@ -121,6 +129,11 @@ function planeFor(layer) {
     return { e1: [0, 1, 0], e2: [0, 0, 1] };
   }
   return { e1: [1, 0, 0], e2: [0, 0, 1] };
+}
+
+function planeNormal(layer) {
+  const { e1, e2 } = planeFor(layer);
+  return unit(cross(e1, e2));
 }
 
 function layerState(layer, values, t) {
@@ -560,6 +573,10 @@ function gate(status, note) {
   return { status, note };
 }
 
+function gateWithCode(status, note, failureCode = null) {
+  return { status, note, failure_code: failureCode };
+}
+
 function numericResiduals(residuals) {
   return Object.fromEntries(Object.entries(residuals).map(([key, value]) => [key, value.value]));
 }
@@ -580,7 +597,128 @@ function maximumActiveNearSeparatorRoots(config) {
   return config.classification.maxActiveNearSeparatorRoots ?? 0;
 }
 
-function candidateFailure(rootSummary, residuals, config) {
+function interLayerClosure(values) {
+  return {
+    IM: values.windings.I - values.windings.M,
+    MO: values.windings.M - values.windings.O,
+    IO: values.windings.I - values.windings.O,
+  };
+}
+
+function layerEllipticity(values) {
+  return Object.fromEntries(LAYER_ORDER.map((layer) => [layer, values.ellipticity]));
+}
+
+function buildZLambda(values, rootSummary, config) {
+  const normals = Object.fromEntries(LAYER_ORDER.map((layer) => [layer, planeNormal(layer)]));
+  const gram = {
+    IM: dot(normals.I, normals.M),
+    MO: dot(normals.M, normals.O),
+    OI: dot(normals.O, normals.I),
+  };
+  const tripleProduct = dot(normals.I, cross(normals.M, normals.O));
+  const degeneracyTolerance = config.classification.quotientDegeneracyTolerance ?? 1e-9;
+  const quotientDegenerate = Math.abs(tripleProduct) <= degeneracyTolerance;
+  const periodRatios = {
+    T_I_over_T_M: values.periods.I / values.periods.M,
+    T_M_over_T_O: values.periods.M / values.periods.O,
+  };
+  const radiusRatios = {
+    epsilon_IM: values.radii.I / values.radii.M,
+    epsilon_MO: values.radii.M / values.radii.O,
+  };
+  const branchClass = {
+    windings: values.windings,
+    interLayerClosure: interLayerClosure(values),
+    activeRootClasses: rootSummary.byRelation,
+    rawRootClasses: rootSummary.rawByRelation,
+    excluded: rootSummary.excluded,
+  };
+  return {
+    schema: "a0-tier0-z-lambda/v1",
+    radius_ratios: radiusRatios,
+    period_ratios: periodRatios,
+    delta_M: (values.speeds.M - config.seaCell.c_f) / config.seaCell.c_f,
+    ellipticity: layerEllipticity(values),
+    ellipticity_status: "shared_scalar_applied_to_all_layers",
+    plane_gram: gram,
+    orientation_class: {
+      chi_N: Math.sign(tripleProduct),
+      triple_product: tripleProduct,
+      status: quotientDegenerate ? "degenerate" : "nondegenerate",
+    },
+    handedness: values.handedness,
+    phase_offset_quotient: {
+      gauge: "S^1_k",
+      representative: { I: 0, M: 0, O: 0 },
+      status: "gauge_fixed_zero_offsets_tier0",
+      quotient_basis: "not_computed_in_tier0",
+      independent_phase_dimension: 2,
+      representative_not_quotiented: true,
+      note:
+        "Tier 0 carrier phases are initialized at zero; nonzero phase-offset representatives require a later phase grid or Tier 1 continuation.",
+    },
+    branch_class: branchClass,
+    branch_class_status: "representative_not_canonical_discrete_quotient",
+    removed_gauges: ["SO(3)", "S^1_k", "Gamma_Lambda"],
+    quotient_degenerate: quotientDegenerate,
+  };
+}
+
+function scaleSeparationGate(values, config) {
+  const maxScaleRatio = config.classification.maxScaleRatio ?? 0.5;
+  const radiusRatios = [values.radii.I / values.radii.M, values.radii.M / values.radii.O];
+  const periodRatios = [values.periods.I / values.periods.M, values.periods.M / values.periods.O];
+  const maxObservedRatio = Math.max(...radiusRatios, ...periodRatios);
+  return gateWithCode(
+    maxObservedRatio <= maxScaleRatio ? "pass" : "fail",
+    `Requires reduced radius and period ratios to stay below ${maxScaleRatio}; observed maximum is ${maxObservedRatio}.`,
+    maxObservedRatio <= maxScaleRatio ? null : "scale-separation-collapse"
+  );
+}
+
+function quotientGate(zLambda) {
+  return gateWithCode(
+    zLambda.quotient_degenerate ? "fail" : "pass",
+    "Requires nondegenerate oriented plane-normal Gram data after removing global rotations.",
+    zLambda.quotient_degenerate ? "quotient-degenerate" : null
+  );
+}
+
+function deltaKStatus() {
+  return {
+    value: null,
+    status: "not_computed_in_tier0",
+    role: "tier1_required",
+    failure_code_if_nonpositive: "nonpositive-floquet-gap",
+    note:
+      "Tier 0 does not construct the monodromy operator; Tier 1 must compute Delta_k after symmetry quotienting.",
+  };
+}
+
+function failureCatalog() {
+  return {
+    "quotient-degenerate":
+      "Reduced plane-normal Gram data are degenerate after quotienting, so z_lambda does not define a reliable moduli row.",
+    "nonpositive-floquet-gap":
+      "Tier 1 computed Delta_k <= 0; integer closure is not a stable rest-branch moduli point.",
+    "scale-separation-collapse":
+      "Radius or period ratios violate the declared separated-scale Tier 0 regime.",
+    "root-ledger-instability":
+      "The active causal-root ledger is empty or misses partner, self, or inter-layer root classes.",
+  };
+}
+
+function candidateFailure(rootSummary, residuals, config, zLambda, scaleGate) {
+  if (zLambda.quotient_degenerate) {
+    return "quotient-degenerate";
+  }
+  if (scaleGate.status === "fail") {
+    return "scale-separation-collapse";
+  }
+  if (typeof residuals.Floquet.value === "number" && residuals.Floquet.value <= 0) {
+    return "nonpositive-floquet-gap";
+  }
   if (residuals.speed.status !== "pass") {
     return "speed-order-collapse";
   }
@@ -611,13 +749,15 @@ function candidateFailure(rootSummary, residuals, config) {
     rootSummary.byRelation.self === 0 ||
     rootSummary.byRelation.inter_layer === 0
   ) {
-    return "root-ledger-open";
+    return "root-ledger-instability";
   }
   return "candidate";
 }
 
-function buildCertificateGates(failureCode, rootSummary, residuals, config) {
+function buildCertificateGates(failureCode, rootSummary, residuals, config, zLambda, scaleGate) {
   return {
+    quotient_coordinates: quotientGate(zLambda),
+    scale_separation: scaleGate,
     speed_ordering: gate(
       residuals.speed.status,
       "Checks sign-aware ordering for s_I > c_f, s_M near c_f, and s_O < c_f."
@@ -651,6 +791,11 @@ function buildCertificateGates(failureCode, rootSummary, residuals, config) {
     residual_vector_semantics: gate(
       residualSemanticsPass(residuals) ? "pass" : "fail",
       "Every residual component carries status, tolerance, role, and note fields."
+    ),
+    floquet_gap: gateWithCode(
+      "not_computed_in_tier0",
+      "Tier 1 must compute Delta_k; Delta_k <= 0 maps to nonpositive-floquet-gap.",
+      "nonpositive-floquet-gap"
     ),
     tier0_continuation: gate(
       failureCode === "candidate" ? "pass" : "fail",
@@ -783,8 +928,11 @@ function rowForParams(params, config, index) {
       "Tier 0 does not construct a monodromy operator; Tier 1 must compute Delta_k after symmetry quotienting."
     ),
   };
-  const failureCode = candidateFailure(rootSummary, residuals, config);
-  const certificateGates = buildCertificateGates(failureCode, rootSummary, residuals, config);
+  const zLambda = buildZLambda(values, rootSummary, config);
+  const scaleGate = scaleSeparationGate(values, config);
+  const Delta_k = deltaKStatus();
+  const failureCode = candidateFailure(rootSummary, residuals, config, zLambda, scaleGate);
+  const certificateGates = buildCertificateGates(failureCode, rootSummary, residuals, config, zLambda, scaleGate);
   return {
     row: index,
     status: failureCode === "candidate" ? "tier0_continuation_ready" : "tier0_rejected",
@@ -792,9 +940,7 @@ function rowForParams(params, config, index) {
     branch_label: {
       k: values.windings,
       q: {
-        IM: values.windings.I - values.windings.M,
-        MO: values.windings.M - values.windings.O,
-        IO: values.windings.I - values.windings.O,
+        ...interLayerClosure(values),
       },
       handedness: values.handedness,
       ellipticity: values.ellipticity,
@@ -803,9 +949,7 @@ function rowForParams(params, config, index) {
       T_k: values.commonPeriod,
       k: values.windings,
       q: {
-        IM: values.windings.I - values.windings.M,
-        MO: values.windings.M - values.windings.O,
-        IO: values.windings.I - values.windings.O,
+        ...interLayerClosure(values),
       },
       activeRootClasses: rootSummary.byRelation,
     },
@@ -819,9 +963,11 @@ function rowForParams(params, config, index) {
       commonPeriod: values.commonPeriod,
       phaseResiduals: values.phaseResiduals,
     },
+    z_lambda: zLambda,
     root_ledger: rootSummary,
     term_classification: classification,
     leakage_placeholder: leakage,
+    Delta_k,
     residuals,
     residual_values: numericResiduals(residuals),
     certificate_gates: certificateGates,
@@ -860,7 +1006,10 @@ function run(config, limit) {
       gammaAvg: config.classification.gammaAvg,
       jLock: config.classification.jLockThreshold,
       instantaneousSelfDelay: minimumSelfDelay(config),
+      maxScaleRatio: config.classification.maxScaleRatio ?? 0.5,
+      quotientDegeneracy: config.classification.quotientDegeneracyTolerance ?? 1e-9,
     },
+    failure_catalog: failureCatalog(),
     audit_policy: {
       instantaneousSelfKick:
         "Self roots with delay at or below the near-zero threshold are recorded in raw ledgers but excluded from active branch counts under H(0)=0.",

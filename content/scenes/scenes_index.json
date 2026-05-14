@@ -1594,6 +1594,11 @@
       "id": "theory_bridges__spacetime_models_and_noether_sea",
       "name": "Spacetime Models and the Noether Sea",
       "path": "content/scenes/theory-bridges/spacetime_models_and_noether_sea.json"
+    },
+    {
+      "id": "theory_bridges__return_cycle_lorentz_quantization",
+      "name": "Return-Cycle Lorentz Quantization",
+      "path": "content/scenes/theory-bridges/return_cycle_lorentz_quantization.json"
     }
   ]
 }

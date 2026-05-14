@@ -574,6 +574,94 @@ $$
 
 the ordered 3D frame leaves the spinor-test domain and should reduce to the $SO(2)$ / $U(1)$ phase branch described in the Planck-alignment and horizon-chirality notes.
 
+## Result 2026-05-14: Provisional Ordered-History Holonomy Model
+
+This pass adds a geometry-first candidate for the spinor closure mechanism. It is not a completed spin proof and does not import spin-$\tfrac{1}{2}$ behavior from quantum mechanics. The candidate claim is narrower: a non-coplanar ordered Noether-core frame can require $4\pi$ restoration only if the delayed causal-wake history detects the noncontractible $2\pi$ loop of the visible orientation frame and records that detection as a branch-preserving two-sheet history lift.
+
+The geometric reason is the same kind of obstruction as a tethered-frame or belt-holonomy obstruction, but here the tether is not an external analogy. It is the active causal-root and causal-wake history of the Noether core. The present ordered normal triad may return after a $2\pi$ rotation, while the delayed roots still remember how the three oriented binary planes, pro/anti branch data, transaction axis, and component-resolved causal-writhe data were transported through the loop.
+
+**Definition (provisional ordered-history sheet).** Fix a stable branch chart $B$ with non-coplanar ordered normals and conserved $\mathcal J_B(\mathfrak H_B)$. Let $\mathcal Q_B^{\text{ord}}$ be the branch-preserving configuration cell whose gauge quotient removes center-of-mass translation, time-origin choice, and smooth phase reparameterization inside the same root-ledger cell, but does not remove ordered layer identity, oriented-normal reversal, causal-root relabeling, or chirality-branch change.
+
+For $q\in\mathcal Q_B^{\text{ord}}$, the ordered normal triad determines a visible orientation
+
+$$
+\rho_B(q)\in SO(3)
+$$
+
+by applying a fixed ordered-frame extraction to $(\hat{\mathbf n}_H,\hat{\mathbf n}_M,\hat{\mathbf n}_L)$. The lifted history state is provisionally
+
+$$
+\tilde q_B
+=
+\left(
+q,\epsilon_{\text{wake}}
+\right),
+\qquad
+\epsilon_{\text{wake}}\in\mathbb Z_2,
+$$
+
+where $\epsilon_{\text{wake}}$ is a provisional wake-history parity, not a new canon term. It is the parity class of the transported causal-wake / causal-root history relative to the transaction axis $\hat{\mathbf a}$ and the ordered component-resolved causal-writhe data
+
+$$
+\mathcal{W}_{c}^{\text{core}}
+=
+\left(
+\{Wr_c^a\}_{a\in\{H,M,L\}},
+\{Wr_c^{ab}\}_{a<b},
+\chi_{HML}^{(c)},
+\{s_a^{\text{plane}}\}_{a\in\{H,M,L\}},
+s_{\text{axial}},
+\Sigma_{\mathrm{WCT}}
+\right).
+$$
+
+For this provisional parity to be admissible, it must be invariant under every allowed branch-preserving gauge homotopy and change only through a declared branch-changing event: causal-root relabeling, root fold, separator crossing, chirality-branch change, or causal-locus reconnection.
+
+Equivalently, the candidate two-sheet cover is the branch-history cover whose loop holonomy is
+
+$$
+\eta_B:
+\pi_1(\mathcal Q_B^{\text{ord}},q_0)
+\longrightarrow
+\mathbb Z_2,
+\qquad
+\mathcal T_\gamma(q_0,\epsilon)
+=
+\left(q_0,\epsilon+\eta_B([\gamma])\right).
+$$
+
+The spinor-like condition is the equality
+
+$$
+\eta_B([\gamma])
+=
+\left[\rho_{B\ast}([\gamma])\right]_{\mathbb Z_2},
+$$
+
+where the right-hand side identifies $\pi_1(SO(3))$ with $\mathbb Z_2$. Thus a physical path $\gamma_{2\pi}$ whose visible orientation projection is the generator of $\pi_1(SO(3))$ must satisfy
+
+$$
+\eta_B([\gamma_{2\pi}])=1,
+\qquad
+\eta_B([\gamma_{2\pi}\ast\gamma_{2\pi}])=0.
+$$
+
+The second equation is the $4\pi$ restoration condition.
+
+**Lemma (provisional belt-holonomy obstruction).** Suppose a stable ordered-core branch $B$ admits the map $\eta_B$ above, and suppose $\epsilon_{\text{wake}}$ is not removed by $G_{\text{gauge}}$. Then a $2\pi$ physical rotation of the visible ordered frame transports $\tilde q_B$ to the opposite history sheet, while the doubled $4\pi$ path restores the full lifted state.
+
+*Proof route.* The ordered normal triad gives an $SO(3)$ orientation projection. A $2\pi$ physical rotation is the nontrivial element of $\pi_1(SO(3))\cong\mathbb Z_2$, so the spinor-like condition gives $\eta_B=1$ on that loop. The lifted transport therefore changes $\epsilon_{\text{wake}}$. Because $\epsilon_{\text{wake}}\notin G_{\text{gauge}}$, this changed sheet is a physical branch-history difference, not a removable coordinate choice. Concatenating the same loop with itself gives the trivial element of $\mathbb Z_2$, so the second transport has $\eta_B=0$ and restores the lifted history. The proof becomes an actual Noether-core proof only after $\epsilon_{\text{wake}}$ is computed from causal-root continuation and component-resolved causal writhe on a stable branch certificate.
+
+**Counterexample / falsifier.** If the causal-root ledgers and $\mathcal{W}_{c}^{\text{core}}$ are invariant under the generator loop, or if the quotient treats $\epsilon_{\text{wake}}$ as gauge, then $\eta_B([\gamma_{2\pi}])=0$ and the ordered core closes as an ordinary $SO(3)$ object after $2\pi$. Likewise, if the ordered normals become coplanar so that
+
+$$
+\det\!\big[\hat{\mathbf n}_H,\hat{\mathbf n}_M,\hat{\mathbf n}_L\big]=0,
+$$
+
+the branch leaves the non-coplanar spinor-test domain and the candidate two-sheet ordered-frame lift is not available.
+
+**Exact first proof step.** Extract one stable separated-scale branch certificate and build a $2\pi$ return table. For each active root in $\mathcal{G}_a$ and $\mathcal{G}_{ab}$, continue the root along $\gamma_{2\pi}$, record whether the source / receiver ordering, winding or phase branch, separator history, and component-resolved causal-writhe entry return identically or with odd parity, and verify that $\mathcal J_B(\mathfrak H_B)$ remains conserved along the path. If the table gives a nonzero $\epsilon_{\text{wake}}$ change without branch loss, the first holonomy gate passes; if it returns identically, this geometry route fails for that branch.
+
 ### Next Proof Obligations For Spinor Closure
 
 1. **Branch-certificate extraction:** for one stable separated-scale Noether-core branch, extract $P_a$, $\hat{\mathbf n}_a$, $\mathcal{G}_a$, $\mathcal{G}_{ab}$, $\chi_c$, phase offsets, and the total angular-momentum ledger over a common closure period.
