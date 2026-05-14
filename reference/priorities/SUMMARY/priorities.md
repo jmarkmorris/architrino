@@ -63,7 +63,7 @@ Nested proof subprograms live under [proof-programs](../proof-programs/proof-pro
 |   13 | [`quantum-closure`](../quantum-closure/quantum-closure.md)                         | Born-rule / quantum closure with hard tests                                        |     4 |    8 | 0.50 |
 |   14 | [`cosmology-closure`](../cosmology-closure/cosmology-closure.md)                   | Cosmology transfer-function closure                                                |     2 |    9 | 0.22 |
 |    — | [`animator`](../animator/animator.md)                                              | animator                                                                           |     — |    — |    — |
-|    — | [`3x3`](../3x3/3x3.md)                                                             | 3x3 binary-slot matrix                                                             |     — |    — |    — |
+|    — | [`3x3`](../deferred/3x3/3x3.md)                                                             | 3x3 binary-slot matrix                                                             |     — |    — |    — |
 |    — | [`ellipsoid`](../ellipsoid/ellipsoid.md)                                           | Ellipsoid app idea                                                                 |     — |    — |    — |
 |    — | [`phenomenological-heuristics`](../dyadic-lock/phenomenological-heuristics.md)     | Dyadic resonance lock archive                                                      |     — |    — |    — |
 

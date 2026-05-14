@@ -57,7 +57,7 @@ rather than treating transport costs as fit knobs.
 ## Related Priorities
 
 - [mass-map](../mass-map/mass-map.md)
-- [3x3](../3x3/3x3.md)
+- [3x3](../deferred/3x3/3x3.md)
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
 
 ## Related AAA Notes

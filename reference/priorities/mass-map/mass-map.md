@@ -404,7 +404,7 @@ The reduced branch certificate is the executable handoff between this workstream
 - [standard-model-closure](../standard-model-closure/standard-model-closure.md)
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
 - [simulations](../simulations/simulations.md)
-- [3x3](../3x3/3x3.md)
+- [3x3](../deferred/3x3/3x3.md)
 
 ## Related AAA Notes
 
