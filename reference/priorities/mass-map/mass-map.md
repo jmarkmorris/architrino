@@ -3,23 +3,45 @@
 ## Workstream Metadata
 
 - Kind: `priority`
-- Rank: `2`
-- Value: `10`
-- Cost: `4`
-- ROI: `2.50`
+- Rank: `5`
+- Value: `15.50`
+- Cost: `5.2`
+- ROI: `2.98`
 - Status: `active`
 
 ## Task Queue
 
 1. `derive_first_attractor_family` — Derive the first tri-binary attractor family with shielding extraction. Status: `next`. Depends on: none.
-2. `derive_zeta` — Derive zeta(A) and target a baseline electron-mass prediction. Status: `pending`. Depends on: `derive_first_attractor_family`.
-3. `mass_hierarchy_check` — Test the first mass map against hierarchy ratios and hadron constraints. Status: `pending`. Depends on: `derive_zeta`.
+2. `derive_zeta` — Derive $\zeta(A)$ and target a baseline electron-mass prediction. Status: `pending`. Depends on: `derive_first_attractor_family`.
+3. `exposure_quotient_theorem` — Generalize shielding extraction into a sector exposure/quotient theorem for mass, weak chirality, color exceptionality, photon transverse support, and vector-corridor visibility. Status: `pending`. Depends on: `derive_zeta`.
+4. `mass_hierarchy_check` — Test the first mass map against hierarchy ratios and hadron constraints. Status: `pending`. Depends on: `exposure_quotient_theorem`.
+5. `medium_transport_thresholds` — Separate reversible medium-dressed inertial response from dissipative transport, action shedding, radiation, or branch transition. Status: `review`. Depends on: `derive_first_attractor_family`.
 
 ## Scope
 
 This is the parameter-closure and first mass-formula bucket. Treat [parameter-ledger.md](../../../content/markdown/aaa/validation/parameter-ledger.md) as bookkeeping only. The live target is one reusable derived mass map.
 
-This workstream is the organizer for mass-side integration. It should decide what belongs in canonical $\mathbb{A}\mathbb{A}\mathbb{A}$ prose, what remains an active theorem target, and what must be routed to other priority workstreams before any stronger mass claim is deployed.
+This file is the workstream control surface for mass-side integration. It should decide what belongs in canonical $\mathbb{A}\mathbb{A}\mathbb{A}$ prose, what remains an active theorem target, and what must be routed to other priority workstreams before any stronger mass claim is deployed.
+
+## Detailed Priority Files
+
+| File | Role | Target AAA notes |
+| --- | --- | --- |
+| [$A_0$ Reduced Branch Certificate Packet](a0-reduced-branch-certificate.md) | Tier 0 / Tier 1 finite branch-search certificate for the first neutral rest-branch Noether-core attractor family. | [tri-binary-dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md), [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [convergence-tests](../../../content/markdown/aaa/validation/simulations/convergence-tests.md) |
+| [$A_0$ Energy and Shielding Extraction Packet](a0-energy-shielding-extraction.md) | Tier 2 handoff from an accepted branch into $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, anisotropic leakage, and extraction failure codes. | [energy](../../../content/markdown/aaa/dynamics/energy.md), [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [parameter-ledger](../../../content/markdown/aaa/validation/parameter-ledger.md) |
+| [Exposure-Quotient Theorem](exposure-quotient-theorem.md) | Shared theorem packet for turning internal/far-field ledgers into sector-visible response through projection and quotient maps. | [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [weak-mixing-angle](../../../content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md), [gauge-structure-emergence](../../../content/markdown/aaa/interactions/gauge-structure-emergence.md), [radiation](../../../content/markdown/aaa/reactions/radiation.md), [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) |
+| [$A_0$ Medium-Response Tensor Probe](a0-medium-response-tensor-probe.md) | Tier 3 acceleration and gradient probe for $\mathcal{M}_{\text{sea}}^{ab}$ after branch closure, stability, energy, and shielding pass. | [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), [gr-phenomenology](../../../content/markdown/aaa/spacetime/gr-phenomenology.md) |
+| [Condensed Matter and Medium Transport](condensed-matter-medium-transport.md) | Critical-transport packet that keeps reversible medium-dressed inertia separate from dissipative resistance and radiation/action-shedding thresholds. | [condensed-matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md), [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [energy](../../../content/markdown/aaa/dynamics/energy.md), [radiation](../../../content/markdown/aaa/reactions/radiation.md) |
+
+## Promotion Map
+
+| Task | Detailed file | Primary promotion target | Promotion gate |
+| --- | --- | --- | --- |
+| `derive_first_attractor_family` | [$A_0$ Reduced Branch Certificate Packet](a0-reduced-branch-certificate.md) | [tri-binary-dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md) and [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md) | A stable branch packet reports finite active roots, closure residuals below tolerance, no rest-frame secular drift, and positive non-symmetry Floquet gap. |
+| `derive_zeta` | [$A_0$ Energy and Shielding Extraction Packet](a0-energy-shielding-extraction.md) | [energy](../../../content/markdown/aaa/dynamics/energy.md), [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), and [parameter-ledger](../../../content/markdown/aaa/validation/parameter-ledger.md) | $E_{\text{internal}}(A_0)$ and $\zeta(A_0)$ are extracted from the accepted branch without observed particle masses, charged-lepton ratios, electron radius, or measured $\alpha$ as inputs. |
+| `exposure_quotient_theorem` | [Exposure-Quotient Theorem](exposure-quotient-theorem.md) | [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [weak-mixing-angle](../../../content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md), [gauge-structure-emergence](../../../content/markdown/aaa/interactions/gauge-structure-emergence.md), [radiation](../../../content/markdown/aaa/reactions/radiation.md), and [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) | Each sector-visible response states its source ledger $\mathcal{L}_A$, projection $\Pi_S$, quotient $Q_S$, visible response $\mathcal{E}_S(A)$, leakage, and failure condition instead of inventing a separate visibility rule. |
+| `mass_hierarchy_check` | [$A_0$ Medium-Response Tensor Probe](a0-medium-response-tensor-probe.md) | [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md) and [standard-model-closure](../standard-model-closure/standard-model-closure.md) | The homogeneous response tensor, shielding coefficient, and unresolved constants are explicit enough to test a baseline electron-mass prediction and at least one hierarchy ratio. |
+| `medium_transport_thresholds` | [Condensed Matter and Medium Transport](condensed-matter-medium-transport.md) | [condensed-matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md), [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [energy](../../../content/markdown/aaa/dynamics/energy.md), and [radiation](../../../content/markdown/aaa/reactions/radiation.md) | A critical transport residual separates reversible inertial response from dissipative transport, radiation, medium heating, or branch transition without treating inertia as ordinary drag. |
 
 ## Mass Translation Doctrine
 
@@ -87,10 +109,12 @@ Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate sli
 | Dynamics baseline | [Tri-Binary Dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md) | Noether-core roles, speed-regime conventions, delay geometry, stability diagnostics, and metric/connection reconstruction diagnostics. |
 | Reduced branch certificate | [$A_0$ Reduced Branch Certificate Packet](a0-reduced-branch-certificate.md) | First finite proof/simulation packet for the reduced $A_0$ branch search: carrier ansatz, root-ledger enumeration, averaging/locking/leakage lemmas, continuation gates, and promotion rules. |
 | Energy/shielding extraction | [$A_0$ Energy and Shielding Extraction Packet](a0-energy-shielding-extraction.md) | Tier 2 handoff from a stable branch into $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, anisotropic leakage, and failure codes. |
+| Exposure/quotient theorem | [Exposure-Quotient Theorem](exposure-quotient-theorem.md) | Shared projection/quotient theorem for mass shielding, weak chirality, color exceptionality, photon transverse support, and vector-corridor visibility. |
 | Medium-response probe | [$A_0$ Medium-Response Tensor Probe](a0-medium-response-tensor-probe.md) | Tier 3 acceleration/gradient probe for $\mathcal{M}_{\text{sea}}^{ab}$ after closure, stability, energy, and shielding pass. |
+| Critical transport packet | [Condensed Matter and Medium Transport](condensed-matter-medium-transport.md) | Threshold gate separating reversible medium-dressed inertial response from dissipative transport, action shedding, radiation, or branch transition. |
 | Proof synthesis | [Tri-Binary Causal Closure](../tri-binary-causal-closure/tri-binary-causal-closure.md) | Active-development bridge from tri-binary closure to rest mass, inertia, proper time, photon behavior, and effective geometry. |
 | Proof-control ledger | [Tri-Binary Dependency Map](../tri-binary-causal-closure/tri-binary-dependency-map.md) | Open theorem burdens and deployment handoff routes, especially shielding, momentum skew, slow-fast tri-binary minimality, and metric closure. |
-| Quantitative mass workstream | This document | First derived mass map, shielding extraction, baseline electron-mass target, and hierarchy checks. |
+| Quantitative mass workstream | This document | Control surface for the first derived mass map, shielding extraction, baseline electron-mass target, and hierarchy checks. |
 
 ## Mass Claim Maturity Buckets
 
@@ -104,6 +128,7 @@ Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate sli
 ### Roadmap
 
 - Derive $m_0(A)c_{\text{eff}}^2\sim \zeta(A)E_{\text{internal}}(A)$ from a closed tri-binary root ledger rather than using it as a heuristic.
+- Generalize $\zeta(A)$ into a sector exposure/quotient theorem that states $\mathcal{E}_S(A)=Q_S[\Pi_S\mathcal{L}_A]$ before weak, color, photon, or vector-corridor visibility is promoted.
 - Derive the first-order momentum skew that makes trapped internal energy behave as inertial mass under acceleration.
 - Show that inertial and gravitational response share the same shielded-energy coefficient within equivalence-principle bounds.
 - Derive the slow-fast tri-binary minimality theorem needed before claiming that three nested binaries are the universal stable matter unit.
@@ -113,6 +138,7 @@ Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate sli
 
 - Compute one robust tri-binary attractor family with radii, frequencies, branch data, and Floquet stability gap.
 - Extract $\zeta(A)$ from far-field wake cancellation and shielding geometry.
+- State which projection and quotient turn the accepted branch ledger into each sector-visible response, and report leakage or residue instead of hiding it.
 - Produce a baseline electron-mass prediction and at least one hierarchy check, such as $m_\mu/m_e$.
 - Decide whether Noether-Sea response remains a separate additive mass contribution, or whether it should be absorbed into the same medium-dressed response tensor used by the causal-closure synthesis.
 - Route the weak-corridor mass calculation through the electroweak channel split: identify the corridor closure variables, the longitudinal or mixed-axis contribution, and the local Noether-Sea response coefficient before promoting any $M_W$ or $M_Z$ estimate.
@@ -331,6 +357,26 @@ $$
 $$
 The branch is only an accepted attractor candidate when $\Delta_{\mathbf{k}}>0$ after numerical tolerance and convergence checks.
 
+### Breather Certificate Inheritance
+
+The $A_0$ branch search should inherit the collinear-breather certificate order without inheriting any particle-stability claim from it. The breather can validate the finite-certificate discipline: candidate history, null-coordinate pre-ledger, active branch chart, coupled corridor, monodromy diagnostic, returned-history preservation, and topology row. It does not by itself prove Noether-core stability, shielding, or mass.
+
+For $A_0$, the inherited promotion rule is:
+
+$$
+\text{finite root ledger}
+\to
+\text{closed branch chart}
+\to
+\eta>0\ \text{continuation}
+\to
+\Delta_{\mathbf{k}}>0
+\to
+\text{energy and shielding extraction}.
+$$
+
+If the breather seed chart fails because no finite active branch chart with positive Jacobian floors and inactive-root gaps exists, the $A_0$ Tier 0 scanner must strengthen its no-proliferation and branch-gap gates before any mass-side promotion. If the breather closes an integer ledger but fails monodromy, the mass-map lesson is direct: integer closure is not an attractor certificate unless the non-symmetry Floquet gap is positive. If the breather fails only at returned-sample or topology rows, the $A_0$ packet should keep root-ledger data as diagnostic but should not promote energy, shielding, or $\zeta(A_0)$ until the corresponding continuation and topology checks pass.
+
 ### Output Schema
 
 The first simulation or derivation report for $A_0$ should use the following top-level output packet. A later machine-readable schema may choose JSON or another format, but the fields below should remain stable enough for audit and comparison.
@@ -384,7 +430,7 @@ The reduced branch certificate is the executable handoff between this workstream
 - [standard-model-closure](../standard-model-closure/standard-model-closure.md)
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
 - [simulations](../simulations/simulations.md)
-- [3x3](../3x3/3x3.md)
+- [3x3](../deferred/3x3/3x3.md)
 
 ## Related AAA Notes
 

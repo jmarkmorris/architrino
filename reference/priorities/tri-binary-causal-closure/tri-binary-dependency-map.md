@@ -62,7 +62,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 - Inputs: primitive wake speed $c_f$ and component velocity relative to causal wakes.
 - Mechanism: crossing $\|\mathbf{v}\|=c_f$ changes the active delayed-root count by separator events.
 - Output: active partner-hit and self-hit ledgers become integer-valued branch data.
-- Proof burden: certify allowed root-count jumps, especially parity and signed-degree conservation.
+- Proof burden: certify allowed root-count jumps, especially parity and signed-degree conservation. Use the collinear-breather certificate as the first finite routing test: a pre-ledger failure rejects the chosen candidate or itinerary; a branch-chart failure means finite-root-ledger claims in higher-dimensional synthesis need stronger no-proliferation, Jacobian-floor, and inactive-gap gates; a topology failure blocks promotion of branch sums through separator layers until the $\eta>0$ well-posedness package is tightened.
 - Priority route: `breather-proof` certificate branch charts.
 - Current disposition: `priority`.
 
@@ -151,7 +151,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 - Inputs: candidate accepted state $\mathcal{S}_{\mathbf{k}}$ from Node 9, closed-cycle period $T_{\mathbf{k}}$, and linearized delay-differential operator around the periodic orbit.
 - Mechanism: monodromy operator $\mathcal{M}_{\mathbf{k}}$ on the tangent bundle of delay state space; spectral radius off the symmetry directions controls basin robustness.
 - Output: spectral gap $\Delta_{\mathbf{k}} = 1 - \max_{i\notin G}\|\mu_i(\mathbf{k})\|$ as the quantitative basin-robustness functional; accepted states are those with $\Delta_{\mathbf{k}}>0$.
-- Proof burden: establish discreteness of the Floquet spectrum off the unit circle for state-dependent self-hit delays; compute leading multipliers for representative tri-binary cycles; verify that the spectral gap closes precisely at the transverse-budget separator $\beta\to 1$ and at gradient-driven structural failure thresholds.
+- Proof burden: establish discreteness of the Floquet spectrum off the unit circle for state-dependent self-hit delays; compute leading multipliers for representative tri-binary cycles; verify that the spectral gap closes precisely at the transverse-budget separator $\beta\to 1$ and at gradient-driven structural failure thresholds. A breather monodromy failure is the minimal warning case: a closed integer ledger with $\Delta_{\mathrm{mon}}\le0$ remains a diagnostic orbit, not a stable basin, and the same distinction must be enforced for tri-binary quantum-step and mass-map claims.
 - $A_0$ handoff: the first reduced mass-map branch certificate supplies the concrete test case: finite root ledger, branch label $\Lambda$, residual vector $\mathcal{R}_{A_0}$, and quotient stability gap $\Delta_{\mathbf{k}}$ for a neutral rest-branch tri-binary.
 - Priority route: `master-equation-closure`, `quantum-closure`, `simulations`.
 - Current disposition: `priority`.
@@ -267,7 +267,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 - Inputs: architrino strands, binary layers, active partner/self/inter-layer channels, and separator events.
 - Mechanism: define closure graphs $G_A$, braid/framing data, root-ledger intersection counts, and allowed causal surgery moves.
 - Output: computable invariants for branch preservation, emission, absorption, annihilation, decay, and transverse-rank collapse.
-- Proof burden: construct a certification language compatible with the finite certificate packet and later simulations.
+- Proof burden: construct a certification language compatible with the finite certificate packet and later simulations. The collinear-breather pass/fail ledger should be treated as the prototype: each failure row must preserve the exact obstruction rather than being converted into a vague roadmap sentence.
 - $A_0$ handoff: use the reduced branch graph $\mathcal{G}_{A_0}$ as the first finite closure graph, with partner, self, and inter-layer edges, separator parity events, phase windings, and leakage channels recorded before any shielding or mass interpretation.
 - Priority route: `breather-proof`, `simulations`.
 - Current disposition: `priority`.

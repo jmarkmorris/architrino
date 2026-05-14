@@ -3,10 +3,10 @@
 ## Workstream Metadata
 
 - Kind: `deferred-priority`
-- Rank: `13`
-- Value: `4`
-- Cost: `8`
-- ROI: `0.50`
+- Rank: `16`
+- Value: `7.43`
+- Cost: `7.3`
+- ROI: `1.02`
 - Status: `deferred`
 
 ## Task Queue
@@ -19,10 +19,37 @@
 6. `bell_gate` — Test Bell, CHSH, and Tsirelson closure as a hard gate after the angular-momentum ledger, detector-response kernels, photon Gate B ledger, and pair provenance measures are explicit. Status: `deferred`. Depends on: `pair_provenance_measure`.
 7. `bell_rewrite_handoff` — Rewrite [bell-theorem.md](../../../content/markdown/aaa/theory-bridges/bell-theorem.md) only after the Bell gate has passed or failed with explicit diagnostics. Status: `blocked`. Depends on: `bell_gate`.
 8. `provenance_compliance_bridge` — Preserve the discussion-scoped question of whether the pair-provenance distribution used for Bell closure has a second local coarse-graining into Noether-Sea compliance or smoothness variables. Status: `discussion-scoped`. Depends on: `pair_provenance_measure`; cross-checks: [strong-field-closure](../strong-field-closure/strong-field-closure.md), [mass-map medium-response probe](../mass-map/a0-medium-response-tensor-probe.md).
+9. `transfer_operator_stress_tests` — Preserve Decider minimality, pilot-wave character, and algorithmic resonance as downstream transfer-operator stress tests with topology, energetics, guidance, amplitude, feedback, and coherence-depth gates. Status: `review`. Depends on: `transfer_operator`, `invariant_measure`.
 
 ## Scope
 
 Populate the missing quantum closure notes only after the work becomes testable. The Born-rule target should be measure-theoretic and predictive rather than interpretive.
+
+This file remains the deferred control surface for quantum closure. The sibling [transfer-operator-basin-measure](transfer-operator-basin-measure.md) packet owns the shared theorem grammar for `transfer_operator` and `invariant_measure`. Two additional sibling detailed priority files preserve high-upside but downstream material under `transfer_operator_stress_tests`: one for the Decider as a bias-setting basin-control problem, and one for pilot-wave / algorithmic-resonance stress tests. They do not move ahead of Born-rule, measurement-response, photon Gate B, or Bell closure; they keep those opportunities from disappearing while the upstream gates mature.
+
+Measurement-record formation consumes the shared [residual-routing event-ledger theorem](../tri-binary-causal-closure/residual-routing-event-ledger.md) only after the transfer-operator and invariant-measure objects are explicit enough to say which basin outcome becomes a physical apparatus record.
+
+## Detailed Priority Files
+
+| File | Role | Primary promotion targets |
+| --- | --- | --- |
+| [transfer-operator-basin-measure.md](transfer-operator-basin-measure.md) | Shared theorem packet for deterministic basin evolution, invariant or metastable measures, Born-rule weights, detector-response kernels, Decider bias shifts, dyadic locks, pilot-wave-like guidance, and algorithmic-resonance coherence depth. | [quantum-summary](../../../content/markdown/aaa/quantum/quantum-summary.md), [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md), [superposition-mechanism](../../../content/markdown/aaa/theory-bridges/superposition-mechanism.md), [pilot-wave-character](../../../content/markdown/aaa/theory-bridges/pilot-wave-character.md), [algorithmic-resonance](../../../content/markdown/aaa/quantum/algorithmic-resonance.md) |
+| [agency-decision-and-decider.md](agency-decision-and-decider.md) | Detailed packet for the minimal bias-setting complex: basin-control topology, work ledger, hold time, and measurable basin-weight shift. | [reality-quantum-causality](../../../content/markdown/aaa/quantum/reality-quantum-causality.md), [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md), [wavefunction-ontology](../../../content/markdown/aaa/quantum/wavefunction-ontology.md) |
+| [algorithmic-resonance-and-pilot-wave.md](algorithmic-resonance-and-pilot-wave.md) | Downstream transfer-operator packet for single-ontology pilot-wave guidance and quantum-register coherence-depth bounds. | [pilot-wave-character](../../../content/markdown/aaa/theory-bridges/pilot-wave-character.md), [algorithmic-resonance](../../../content/markdown/aaa/quantum/algorithmic-resonance.md), [quantum-summary](../../../content/markdown/aaa/quantum/quantum-summary.md) |
+
+## Promotion Map
+
+| Task | Detailed source | Primary promotion target | Promotion gate |
+| --- | --- | --- | --- |
+| `transfer_operator` | [transfer-operator-basin-measure.md](transfer-operator-basin-measure.md) | [quantum-summary](../../../content/markdown/aaa/quantum/quantum-summary.md) and [superposition-mechanism](../../../content/markdown/aaa/theory-bridges/superposition-mechanism.md) | A transfer operator for metastable assemblies under causal driving is stated with enough variables to compute basin evolution. |
+| `invariant_measure` | [transfer-operator-basin-measure.md](transfer-operator-basin-measure.md) | [quantum-summary](../../../content/markdown/aaa/quantum/quantum-summary.md), [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md), and [superposition-mechanism](../../../content/markdown/aaa/theory-bridges/superposition-mechanism.md) | The invariant measure on competing attractor basins recovers squared-amplitude weights without importing Born's rule as an axiom. |
+| `foundation_up_prerequisites` | This file and [angular-momentum-spin](../angular-momentum-spin/angular-momentum-spin.md) | [angular-momentum-and-spin](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md), [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md), and [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md) | Angular-momentum ledger, spinor lift, Stern-Gerlach response, photon Gate B, and pair-provenance prerequisites have named proof packets or explicit failure diagnostics. |
+| `detector_response_kernel_acceptance` | This file, [transfer-operator-basin-measure](transfer-operator-basin-measure.md), and [residual-routing-event-ledger](../tri-binary-causal-closure/residual-routing-event-ledger.md) | [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) and [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md) | Spin-measurement and photon-analyzer kernels are accepted as derived objects with apparatus, basin, material-measure variables, and event-ledger closure for record formation. |
+| `pair_provenance_measure` | This file | [entanglement-nonlocality](../../../content/markdown/aaa/theory-bridges/entanglement-nonlocality.md) and [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md) | Singlet-like spin-pair and photon-polarization pair ledgers are explicit enough to compute joint probabilities. |
+| `bell_gate` | This file | [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md) | Bell, CHSH, no-signaling, and Tsirelson checks pass or fail with explicit diagnostics. |
+| `bell_rewrite_handoff` | This file | [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md) | The Bell chapter is rewritten only after the Bell gate has passed or failed with named source packets. |
+| `provenance_compliance_bridge` | This file | [strong-field-closure](../strong-field-closure/strong-field-closure.md) and [mass-map medium-response probe](../mass-map/a0-medium-response-tensor-probe.md) | Any provenance-compliance coarse-graining remains local, no-signaling, and routed through medium-response or strong-field work rather than asserted as ontology. |
+| `transfer_operator_stress_tests` | [transfer-operator-basin-measure.md](transfer-operator-basin-measure.md), [agency-decision-and-decider.md](agency-decision-and-decider.md), and [algorithmic-resonance-and-pilot-wave.md](algorithmic-resonance-and-pilot-wave.md) | [reality-quantum-causality](../../../content/markdown/aaa/quantum/reality-quantum-causality.md), [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md), [wavefunction-ontology](../../../content/markdown/aaa/quantum/wavefunction-ontology.md), [pilot-wave-character](../../../content/markdown/aaa/theory-bridges/pilot-wave-character.md), [algorithmic-resonance](../../../content/markdown/aaa/quantum/algorithmic-resonance.md), and [quantum-summary](../../../content/markdown/aaa/quantum/quantum-summary.md) | The transfer-operator program is strong enough to state controlled basin-weight shifts, effective guidance, basin amplitude, feedback terms, and a register coherence-depth bound without importing agency language or a second pilot-wave ontology. |
 
 ## Preparation Scope
 
@@ -119,11 +146,16 @@ Do not rewrite [bell-theorem.md](../../../content/markdown/aaa/theory-bridges/be
 - [simulations](../simulations/simulations.md)
 - [mass-map](../mass-map/mass-map.md)
 - [standard-model-closure](../standard-model-closure/standard-model-closure.md)
+- [validation-gates](../validation-gates/validation-gates.md)
 
-## Related AAA Notes
+## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 
 - [quantum-summary](../../../content/markdown/aaa/quantum/quantum-summary.md)
 - [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md)
 - [superposition-mechanism](../../../content/markdown/aaa/theory-bridges/superposition-mechanism.md)
+- [reality-quantum-causality](../../../content/markdown/aaa/quantum/reality-quantum-causality.md)
+- [wavefunction-ontology](../../../content/markdown/aaa/quantum/wavefunction-ontology.md)
+- [algorithmic-resonance](../../../content/markdown/aaa/quantum/algorithmic-resonance.md)
+- [pilot-wave-character](../../../content/markdown/aaa/theory-bridges/pilot-wave-character.md)
 - [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md)
 - [entanglement-nonlocality](../../../content/markdown/aaa/theory-bridges/entanglement-nonlocality.md)

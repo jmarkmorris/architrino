@@ -4371,6 +4371,27 @@ The finite self-map ledger has four rows. The first, second, and fourth rows pro
    r_{\mathrm{cert}}
    $$
    and produces the closed convex tame certificate.
+   The row begins with a candidate
+   $$
+   \phi_{\mathrm{cyc}},
+   $$
+   a common mesh, and a null-coordinate causal pre-ledger. For each ordered receiver-source block
+   $$
+   (I_\alpha,I_\beta),
+   $$
+   the pre-ledger must classify the row as empty, simple-root, or fold-layer using
+   $$
+   u=c_f t-x,
+   \qquad
+   w=c_f t+x.
+   $$
+   Empty rows require strict range separation; simple-root rows require a positive source-side derivative floor; fold-layer rows remain outside branch-sum reduction until the dual-mollified fold certificate supplies the parity-preserving transition
+   $$
+   \Delta N\in 2\mathbb{Z},
+   \qquad
+   \Delta D=0.
+   $$
+   Any unresolved row blocks the seed chart before corridor, monodromy, or returned-sample work begins.
 2. **Coupled-corridor row.**
    Verify
    $$

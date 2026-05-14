@@ -150,6 +150,13 @@ w=c_f t+x.
 $$
 Failure at this gate is useful. It rejects the candidate itinerary before the proof program spends effort on quadrature residuals, corridor arithmetic, monodromy, or returned-sample preservation.
 
+The executable seed-chart contract is now isolated in [seed_chart_packet.md](certificate/seed_chart_packet.md). That packet is not a proof artifact by itself; it fixes the artifact schemas, range-gap tests, simple-root floors, branch-chart rows, and pass/fail routing for the next certificate attempt. Treat it as the control surface for producing
+`certificate/phi_cyc.json`,
+`certificate/mesh.json`,
+`certificate/causal_ledger.json`,
+`certificate/branch_chart.json`,
+and `certificate/seed_chart_interval_report.md`.
+
 The finite audit rows are:
 
 1. **Seed-chart row.**

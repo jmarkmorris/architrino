@@ -3,21 +3,33 @@
 ## Workstream Metadata
 
 - Kind: `priority`
-- Rank: `5`
-- Value: `10`
-- Cost: `5`
-- ROI: `2.00`
+- Rank: `8`
+- Value: `15.00`
+- Cost: `5.5`
+- ROI: `2.75`
 - Status: `active`
 
 ## Task Queue
 
 1. `circular_asymptotics` — Extend higher-winding and large-beta circular self-force asymptotics. Status: `next`. Depends on: none.
-2. `spiral_turning_conditions` — Derive a non-circular turning condition that can test the circular obstruction. Status: `pending`. Depends on: `circular_asymptotics`.
-3. `lorentz_gr_bridge` — Close the Lorentz and weak-field GR bridge from the coarse-grained delayed medium. Status: `pending`. Depends on: `spiral_turning_conditions`.
+2. `spiral_turning_conditions` — Record the variable-pitch partner/self branch formulas, radial turn inequality, and weighted tangential obstruction test. Status: `advanced-theorem-target`. Depends on: none.
+3. `spiral_branch_chart_test` — Certify whether any admissible variable-pitch spiral roots realize negative weighted tangential drive with positive Jacobian floors and finite memory depth. Status: `next`. Depends on: `spiral_turning_conditions`, `circular_asymptotics`.
+4. `lorentz_gr_bridge` — Close the Lorentz and weak-field GR bridge from the coarse-grained delayed medium. Status: `pending`. Depends on: `spiral_branch_chart_test`.
 
 ## Scope
 
 Keep dynamics, geometry, and mapping centered on [master-equation.md](../../../content/markdown/aaa/dynamics/master-equation.md). This workstream now also carries the Lorentz / metric / clock / ruler bridge to GR and the deep closure burden for quantum and core dynamics.
+
+This file remains the control surface for the workstream. No sibling detailed priority file is needed yet; if the program grows, the natural split is one circular/spiral closure packet and one Lorentz/GR bridge packet.
+
+## Promotion Map
+
+| Task | Detailed source | Primary promotion target | Promotion gate |
+| --- | --- | --- | --- |
+| `circular_asymptotics` | This file | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) | Higher-winding and large-$\beta$ circular self-force asymptotics are extended beyond the current leading-order footholds. |
+| `spiral_turning_conditions` | This file | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) | Variable-pitch partner/self branch formulas, radial turn inequality, and weighted tangential obstruction test are stated with enough detail to drive a branch-chart test. |
+| `spiral_branch_chart_test` | This file | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) and [dyadic-lock](../dyadic-lock/dyadic-lock.md) | One admissible variable-pitch candidate reports partner and self roots, positive Jacobian floors, finite memory depth, radial-turn status, and weighted tangential-drive verdict. |
+| `lorentz_gr_bridge` | This file | [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) | Moving tri-binary contraction, clock retuning, and coarse-grained medium response recover weak-field GR targets without ad hoc tuning. |
 
 ## Live Targets
 
@@ -32,11 +44,15 @@ Keep dynamics, geometry, and mapping centered on [master-equation.md](../../../c
 - Circular self-branch count grows only linearly.
 - The symmetric isolated circular two-body ansatz has a tangential obstruction.
 
+## Breather Certificate Routing Gate
+
+Use the collinear-breather certificate as the smallest finite-root-ledger test for the master-equation stack. A full pass validates the certificate pattern, not particle stability. A seed/pre-ledger failure rejects only the chosen candidate or itinerary. A branch-chart failure is a stronger obstruction: higher-dimensional closure claims must then add no-proliferation, Jacobian-floor, inactive-gap, and memory-depth controls before leaning on finite root ledgers. A monodromy failure means the branch may close as an integer ledger but cannot be used as an attractor. A topology failure blocks global branch-sum reasoning across folds until the dual-mollified $\eta>0$ well-posedness and continuity package is tightened.
+
 ## Chapter State To Preserve
 
 - The null separatrix and Jacobian-null surface now function as an amplitude wall for the self branch, not by themselves as a proof of circular closure.
 - The exact partner-only circular formulas are already recorded at theorem level, including the strict tangential-positivity corollary for the isolated sub-$c_f$ circular binary.
-- A first non-circular logarithmic-spiral benchmark is already in place, with the delayed-root equation and Frenet-frame force projections.
+- The non-circular spiral benchmark now includes the variable-pitch extension, corrected partner Jacobian, self-branch Frenet analogue, radial turn inequality, and weighted tangential obstruction test.
 
 ## Parallel Tracks
 
@@ -55,12 +71,7 @@ Keep dynamics, geometry, and mapping centered on [master-equation.md](../../../c
 - The circular ansatz hard-codes constant radius, constant speed, constant curvature, rigid branch geometry, and sign-definite tangential contributions.
 - A true spiral introduces radial velocity, varying curvature, intersections between later tighter turns and earlier wider-turn wakes, changing Jacobian amplification, and the possibility of a turning point before singular continuation.
 - The live question remains: does the symmetric delayed spiral admit a self-consistent limit cycle or radial turning point that the circular ansatz misses?
-- The next concrete spiral targets are:
-  - upgrade the constant-$\Omega$ logarithmic-spiral benchmark into a variable-pitch or otherwise non-circular ansatz that can realize $\dot r = 0$;
-  - determine whether admissible delayed roots actually realize a negative tangential numerator in the Frenet projection rather than merely allowing it algebraically;
-  - add the self-branch analogue of the spiral Frenet decomposition and compare it to the partner branch on the same orbit;
-  - derive a genuine minimum-radius turning condition with $\dot r = 0$ and $\ddot r \ge 0$;
-  - and test whether any such non-circular closure can beat the circular tangential obstruction without extra medium coupling.
+- The next concrete spiral target is the branch-chart certification test: enumerate admissible partner and self roots for one variable-pitch candidate, certify positive Jacobian floors and finite memory depth, test the radial turn inequality, and decide whether the weighted tangential sum can become negative without extra medium, tri-binary, or multi-body structure.
 
 ## Maximum-Curvature Wall
 

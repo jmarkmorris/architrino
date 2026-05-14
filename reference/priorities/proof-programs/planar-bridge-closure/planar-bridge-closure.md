@@ -71,9 +71,9 @@ Each of these outcomes is still informative because it identifies the exact geom
 - [breather-proof](../breather-proof/breather-proof.md)
 - [master-equation-closure](../../master-equation-closure/master-equation-closure.md)
 - [dyadic-lock](../../dyadic-lock/dyadic-lock.md)
-- [strong-field-hypotheses](../../strong-field-hypotheses/strong-field-hypotheses.md)
+- [strong-field hypothesis bank](../../strong-field-closure/hypothesis-bank.md)
 
-## Related AAA Notes
+## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 
 - [planar-bridge-closure](../../../../content/markdown/aaa/proof-programs/planar-bridge-closure.md)
 - [master-equation](../../../../content/markdown/aaa/dynamics/master-equation.md)

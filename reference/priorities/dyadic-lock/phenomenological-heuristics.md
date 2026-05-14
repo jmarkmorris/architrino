@@ -183,10 +183,10 @@ The remaining table is kept only as raw kinematic scratch work for the 1:2:4 clo
 ## Related Priorities
 
 - [dyadic-lock](../dyadic-lock/dyadic-lock.md)
-- [strong-field-hypotheses](../strong-field-hypotheses/strong-field-hypotheses.md)
+- [strong-field hypothesis bank](../strong-field-closure/hypothesis-bank.md)
 - [cosmology-closure](../cosmology-closure/cosmology-closure.md)
 
-## Related AAA Notes
+## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 
 - [dyadic-resonance-lock](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md)
 - [tri-binary-dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md)
