@@ -10,6 +10,7 @@ const DEFAULT_DRIFT_TOLERANCE = 0.05;
 const DEFAULT_APERTURE_WIDTH = 0.35;
 const ACCEPTED_HISTORY_STATUS = "accepted_history_segment";
 const ROOT_J_FLOOR = 1e-6;
+const BODY_IDS = ["I+", "I-", "M+", "M-", "O+", "O-"];
 const TIER_LAYERS = {
   IMO: ["I", "M", "O"],
   "IM-": ["I", "M"],
@@ -371,6 +372,47 @@ function sortedHistorySamples(segment) {
     .sort((a, b) => a.t - b.t);
 }
 
+function rawHistorySamples(segment) {
+  return [...(segment.samples ?? segment.history ?? [])].map((sample) => ({
+    ...sample,
+    t: Number.isFinite(sample.t) ? sample.t : sample.time,
+  }));
+}
+
+function historySampleTimeDiagnostics(segment) {
+  const samples = rawHistorySamples(segment);
+  let finiteSampleCount = 0;
+  let invalidTimeCount = 0;
+  let ordered = true;
+  let priorTime = null;
+  const invalidExamples = [];
+  for (const sample of samples) {
+    if (!Number.isFinite(sample.t)) {
+      invalidTimeCount += 1;
+      invalidExamples.push({
+        t: sample.t ?? null,
+        time: sample.time ?? null,
+        reason: "nonfinite-time",
+      });
+      continue;
+    }
+    finiteSampleCount += 1;
+    if (priorTime !== null && sample.t < priorTime) {
+      ordered = false;
+    }
+    priorTime = sample.t;
+  }
+  return {
+    raw_sample_count: samples.length,
+    finite_sample_count: finiteSampleCount,
+    invalid_time_count: invalidTimeCount,
+    invalid_examples: invalidExamples.slice(0, 20),
+    sample_count_at_least_two: finiteSampleCount >= 2,
+    samples_ordered_by_t: ordered,
+    sample_times_finite: invalidTimeCount === 0,
+  };
+}
+
 function interpolateBodyState(samples, bodyId, queryTime) {
   if (samples.length === 0) {
     return null;
@@ -433,6 +475,123 @@ function rootLedgerDiagnostics(segment) {
   };
 }
 
+function activeRootSourceCoverageDiagnostics(segment, activeLayers) {
+  const roots = segmentRootLedger(segment);
+  const sourceLabels = new Set(roots.map((root) => root.source).filter(Boolean));
+  const requiredSources = activeLayers.flatMap((layer) => POLARITIES.map((polarity) => `${layer}${polarity}`));
+  const missingSources = requiredSources.filter((source) => !sourceLabels.has(source));
+  const byLayer = Object.fromEntries(
+    activeLayers.map((layer) => [
+      layer,
+      Object.fromEntries(POLARITIES.map((polarity) => [polarity, sourceLabels.has(`${layer}${polarity}`)])),
+    ])
+  );
+  return {
+    required_sources: requiredSources,
+    missing_sources: missingSources,
+    by_layer: byLayer,
+    active_root_sources_cover_selected_layers: missingSources.length === 0,
+  };
+}
+
+function finiteVector3(value) {
+  return Array.isArray(value) && value.length === 3 && value.every((entry) => Number.isFinite(entry));
+}
+
+function bodyStateVectorDiagnostics(segment) {
+  const samples = sortedHistorySamples(segment);
+  let missing_state_count = 0;
+  let invalid_vector_count = 0;
+  const invalid_examples = [];
+  for (const sample of samples) {
+    for (const bodyId of BODY_IDS) {
+      const state = sampleBodyState(sample, bodyId);
+      if (!state) {
+        missing_state_count += 1;
+        invalid_examples.push({ t: sample.t, body: bodyId, reason: "missing" });
+        continue;
+      }
+      if (!finiteVector3(state.position) || !finiteVector3(state.velocity)) {
+        invalid_vector_count += 1;
+        invalid_examples.push({ t: sample.t, body: bodyId, reason: "nonfinite-vector" });
+      }
+    }
+  }
+  return {
+    missing_state_count,
+    invalid_vector_count,
+    invalid_examples: invalid_examples.slice(0, 20),
+    all_required_body_states_present: missing_state_count === 0,
+    body_state_vectors_finite: invalid_vector_count === 0,
+  };
+}
+
+function activeRootFieldDiagnostics(segment) {
+  const roots = segmentRootLedger(segment);
+  const invalidRoots = [];
+  let maxDelay = 0;
+  for (const root of roots) {
+    const delay = Number(root.delay ?? root.tau ?? root.root_delay);
+    const valid =
+      BODY_IDS.includes(root.source) &&
+      BODY_IDS.includes(root.receiver) &&
+      ["partner", "self", "inter_layer"].includes(root.relation) &&
+      root.status === "active" &&
+      Number.isFinite(delay) &&
+      delay >= 0 &&
+      Number.isFinite(root.J);
+    if (Number.isFinite(delay) && delay >= 0) {
+      maxDelay = Math.max(maxDelay, delay);
+    }
+    if (!valid) {
+      invalidRoots.push({
+        source: root.source ?? null,
+        receiver: root.receiver ?? null,
+        relation: root.relation ?? null,
+        status: root.status ?? null,
+        delay: root.delay ?? root.tau ?? root.root_delay ?? null,
+        J: root.J ?? null,
+      });
+    }
+  }
+  return {
+    root_count: roots.length,
+    invalid_root_count: invalidRoots.length,
+    invalid_roots: invalidRoots.slice(0, 20),
+    max_delay: maxDelay,
+  };
+}
+
+function historyCoverageDiagnostics(segment, row) {
+  const samples = sortedHistorySamples(segment);
+  const fieldDiagnostics = activeRootFieldDiagnostics(segment);
+  const period = segment.period ?? row.closure_labels?.T_k ?? row.geometry?.commonPeriod ?? null;
+  const minSampleTime = samples.length > 0 ? samples[0].t : null;
+  const maxSampleTime = samples.length > 0 ? samples[samples.length - 1].t : null;
+  const maxRequiredDelay = Math.max(fieldDiagnostics.max_delay, row.root_ledger?.maxDelay ?? 0);
+  const requiredStart = -maxRequiredDelay;
+  const requiredEnd = period;
+  return {
+    min_sample_time: minSampleTime,
+    max_sample_time: maxSampleTime,
+    required_start: requiredStart,
+    required_end: requiredEnd,
+    max_active_root_delay: maxRequiredDelay,
+    covers_cycle:
+      Number.isFinite(minSampleTime) &&
+      Number.isFinite(maxSampleTime) &&
+      Number.isFinite(period) &&
+      minSampleTime <= 0 &&
+      maxSampleTime >= period,
+    covers_delayed_source_interval:
+      Number.isFinite(minSampleTime) &&
+      Number.isFinite(maxSampleTime) &&
+      Number.isFinite(requiredEnd) &&
+      minSampleTime <= requiredStart &&
+      maxSampleTime >= requiredEnd,
+  };
+}
+
 function rootsBySourceForLayer(segment, layer) {
   const roots = segmentRootLedger(segment).filter(
     (root) => typeof root.source === "string" && root.source.startsWith(layer)
@@ -445,7 +604,7 @@ function rootsBySourceForLayer(segment, layer) {
   );
 }
 
-function historySegmentReadiness(segment) {
+function historySegmentReadiness(segment, row, activeLayers) {
   if (!segment) {
     return {
       ready: false,
@@ -460,11 +619,41 @@ function historySegmentReadiness(segment) {
       failure_code: "weak-emitter-not-computed",
     };
   }
-  const samples = sortedHistorySamples(segment);
-  if (samples.length < 2) {
+  const sampleTimeDiagnostics = historySampleTimeDiagnostics(segment);
+  if (!sampleTimeDiagnostics.sample_count_at_least_two) {
     return {
       ready: false,
       reason: "history-samples-insufficient",
+      failure_code: "weak-emitter-not-computed",
+    };
+  }
+  if (!sampleTimeDiagnostics.sample_times_finite) {
+    return {
+      ready: false,
+      reason: "history-sample-time-invalid",
+      failure_code: "weak-emitter-not-computed",
+    };
+  }
+  if (!sampleTimeDiagnostics.samples_ordered_by_t) {
+    return {
+      ready: false,
+      reason: "history-samples-not-ordered",
+      failure_code: "weak-emitter-not-computed",
+    };
+  }
+  const bodyDiagnostics = bodyStateVectorDiagnostics(segment);
+  if (!bodyDiagnostics.all_required_body_states_present || !bodyDiagnostics.body_state_vectors_finite) {
+    return {
+      ready: false,
+      reason: "history-body-state-invalid",
+      failure_code: "weak-emitter-not-computed",
+    };
+  }
+  const fieldDiagnostics = activeRootFieldDiagnostics(segment);
+  if (fieldDiagnostics.invalid_root_count > 0) {
+    return {
+      ready: false,
+      reason: "active-root-ledger-field-invalid",
       failure_code: "weak-emitter-not-computed",
     };
   }
@@ -473,6 +662,22 @@ function historySegmentReadiness(segment) {
     return {
       ready: false,
       reason: "active-root-ledger-incomplete",
+      failure_code: "weak-emitter-not-computed",
+    };
+  }
+  const sourceCoverageDiagnostics = activeRootSourceCoverageDiagnostics(segment, activeLayers);
+  if (!sourceCoverageDiagnostics.active_root_sources_cover_selected_layers) {
+    return {
+      ready: false,
+      reason: "active-root-sources-incomplete",
+      failure_code: "weak-emitter-not-computed",
+    };
+  }
+  const coverageDiagnostics = historyCoverageDiagnostics(segment, row);
+  if (!coverageDiagnostics.covers_delayed_source_interval) {
+    return {
+      ready: false,
+      reason: "history-source-time-coverage-insufficient",
       failure_code: "weak-emitter-not-computed",
     };
   }
@@ -671,6 +876,44 @@ function rowDefaults(tier0, row, args) {
   };
 }
 
+function prototypeFailureCode(row, sourceReady, historyReadiness, incompleteKernel, nonzeroNorm, driftPass) {
+  if (!sourceReady) {
+    return row.failure_code;
+  }
+  if (!historyReadiness.ready) {
+    return historyReadiness.failure_code;
+  }
+  if (incompleteKernel) {
+    return "weak-emitter-not-computed";
+  }
+  if (!nonzeroNorm) {
+    return "weak-emitter-zero-norm";
+  }
+  if (!driftPass) {
+    return "weak-emitter-refinement-drift";
+  }
+  return "weak-emitter-not-computed";
+}
+
+function prototypeStatus(sourceReady, historyReadiness, incompleteKernel, nonzeroNorm, driftPass) {
+  if (!sourceReady) {
+    return "source-row-not-ready";
+  }
+  if (!historyReadiness.ready) {
+    return historyReadiness.reason;
+  }
+  if (incompleteKernel) {
+    return "history-kernel-incomplete";
+  }
+  if (!nonzeroNorm) {
+    return "prototype-zero-norm";
+  }
+  if (!driftPass) {
+    return "prototype-refinement-drift";
+  }
+  return "prototype-converged-not-ready";
+}
+
 function rowPacket(tier0, row, args) {
   const sourceReady = row.status === "tier0_continuation_ready";
   const tierSelector = tierSelectorFor(row, args.tierSelector);
@@ -681,8 +924,15 @@ function rowPacket(tier0, row, args) {
   const layerChannels = {};
   const period = row.closure_labels?.T_k ?? row.geometry?.commonPeriod ?? null;
   const historySegment = args.historySegmentsByRow?.get(row.row) ?? null;
-  const historyReadiness = historySegmentReadiness(historySegment);
+  const historyReadiness = historySegmentReadiness(historySegment, row, tierSelector.active_layers);
   const rootDiagnostics = historySegment ? rootLedgerDiagnostics(historySegment) : null;
+  const rootFieldDiagnostics = historySegment ? activeRootFieldDiagnostics(historySegment) : null;
+  const rootSourceCoverageDiagnostics = historySegment
+    ? activeRootSourceCoverageDiagnostics(historySegment, tierSelector.active_layers)
+    : null;
+  const coverageDiagnostics = historySegment ? historyCoverageDiagnostics(historySegment, row) : null;
+  const bodyStateDiagnostics = historySegment ? bodyStateVectorDiagnostics(historySegment) : null;
+  const sampleTimeDiagnostics = historySegment ? historySampleTimeDiagnostics(historySegment) : null;
   const canCompute = sourceReady && historyReadiness.ready;
 
   for (const layer of tierSelector.active_layers) {
@@ -715,7 +965,7 @@ function rowPacket(tier0, row, args) {
         polarities: POLARITIES,
         root_weight_rule: `relation_weight / max(abs(J), ${ROOT_J_FLOOR})`,
         note:
-          "Per-polarity W_layer,sigma^(nu) contributions are reconstructed at retarded source states selected by active causal-root records, then emitted after the charge-weighted layer sum.",
+          "Per-polarity W_layer,sigma^(nu) contributions are reconstructed at delayed source states selected by active causal-root records, then emitted after the charge-weighted layer sum.",
       },
       final_stage: last,
       refinement_stages: stageValues,
@@ -744,28 +994,21 @@ function rowPacket(tier0, row, args) {
     maxNormDrift <= args.driftTolerance &&
     maxAmplitudeDrift <= args.driftTolerance;
   const nonzeroNorm = typeof activeTierNorm === "number" && activeTierNorm > Number.EPSILON;
-  const prototypeFailureCode = !sourceReady
-    ? row.failure_code
-    : !historyReadiness.ready
-      ? historyReadiness.failure_code
-      : incompleteKernel
-        ? "weak-emitter-not-computed"
-    : !nonzeroNorm
-      ? "weak-emitter-zero-norm"
-      : !driftPass
-        ? "weak-emitter-refinement-drift"
-        : "weak-emitter-not-computed";
-  const prototypeStatus = !sourceReady
-    ? "source-row-not-ready"
-    : !historyReadiness.ready
-      ? historyReadiness.reason
-      : incompleteKernel
-        ? "history-kernel-incomplete"
-    : !nonzeroNorm
-      ? "prototype-zero-norm"
-      : !driftPass
-        ? "prototype-refinement-drift"
-        : "prototype-converged-not-ready";
+  const failureCode = prototypeFailureCode(
+    row,
+    sourceReady,
+    historyReadiness,
+    incompleteKernel,
+    nonzeroNorm,
+    driftPass
+  );
+  const rowPrototypeStatus = prototypeStatus(
+    sourceReady,
+    historyReadiness,
+    incompleteKernel,
+    nonzeroNorm,
+    driftPass
+  );
   const status = sourceReady && historyReadiness.ready && !incompleteKernel && nonzeroNorm && driftPass ? "candidate" : "failed";
 
   return {
@@ -773,8 +1016,8 @@ function rowPacket(tier0, row, args) {
     schema: "provisional-a0-tier1-weak-retained-emitter-prototype/v1",
     schema_status: "provisional",
     status,
-    prototype_status: prototypeStatus,
-    failure_code: prototypeFailureCode,
+    prototype_status: rowPrototypeStatus,
+    failure_code: failureCode,
     source_row_status: row.status,
     source_row_failure_code: row.failure_code,
     source_weak_handoff_status: row.weak_retained_amplitude_handoff?.status ?? null,
@@ -784,7 +1027,12 @@ function rowPacket(tier0, row, args) {
       sample_count: historySegment ? sortedHistorySamples(historySegment).length : 0,
       period: historySegment?.period ?? null,
       history_window: historySegment?.history_window ?? historySegment?.historyWindow ?? null,
+      sample_times: sampleTimeDiagnostics,
       active_root_ledger: rootDiagnostics,
+      active_root_fields: rootFieldDiagnostics,
+      active_root_source_coverage: rootSourceCoverageDiagnostics,
+      coverage: coverageDiagnostics,
+      body_state_vectors: bodyStateDiagnostics,
     },
     source_row: {
       branch_label: row.branch_label ?? null,

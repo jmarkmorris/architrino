@@ -5,6 +5,8 @@ import path from "node:path";
 
 const DEFAULT_ROWS = "ready";
 const DEFAULT_ETA_STEPS = 4;
+const BODY_IDS = ["I+", "I-", "M+", "M-", "O+", "O-"];
+const ROOT_RELATIONS = ["partner", "self", "inter_layer"];
 
 function parseArgs(argv) {
   const args = {
@@ -309,10 +311,103 @@ function acceptancePredicate(row) {
   };
 }
 
+function acceptedHistorySegmentContract(row, etaLadder) {
+  const period = row.closure_labels?.T_k ?? row.geometry?.commonPeriod ?? null;
+  const maxDelay = row.root_ledger?.maxDelay ?? null;
+  const activeTierLayers =
+    row.weak_retained_amplitude_handoff?.tier_selector?.active_layers ?? ["I", "M", "O"];
+  return {
+    artifact_schema: "a0-tier1-accepted-history-segments/v1",
+    schema: "a0-tier1-accepted-history-segment/v1",
+    source_row: row.row,
+    emitted_status_required: "accepted_history_segment",
+    period,
+    source_row_required_fields: ["branch_label", "z_lambda"],
+    minimum_history_window: {
+      active_root_max_delay: maxDelay,
+      source_time_start_required: maxDelay === null ? null : -maxDelay,
+      source_time_end_required: period,
+      rule:
+        "Samples must cover every cycle time in [0,T_k] and every delayed source time t-delay required by the active causal-root ledger.",
+    },
+    selected_weak_tier_layers: activeTierLayers,
+    sample_schema: {
+      required_fields: ["t", "bodies"],
+      body_ids: BODY_IDS,
+      body_state_required_fields: ["position", "velocity"],
+      position_rule: "three finite numbers in the same centered carrier chart as the source Tier 0 row",
+      velocity_rule: "three finite numbers in the same time units as the source Tier 0 row",
+      interpolation_rule:
+        "Consumers may linearly interpolate between adjacent samples only inside the declared sample time range.",
+    },
+    active_causal_root_ledger_schema: {
+      required_collection_field: "active_causal_root_ledger",
+      required_relations: ROOT_RELATIONS,
+      root_required_fields: ["source", "receiver", "relation", "delay", "J", "status"],
+      source_receiver_rule: "source and receiver must be one of I+, I-, M+, M-, O+, O-",
+      delay_rule: "delay is a finite nonnegative causal-delay time in the same units as sample t",
+      J_rule: "J is the branch Jacobian used for root-weighted wake reconstruction",
+      status_rule: "active roots use status active; excluded or inactive roots must not appear in this collection",
+    },
+    validation_schema: {
+      required_booleans: [
+        "status_is_accepted_history_segment",
+        "sample_count_at_least_two",
+        "samples_ordered_by_t",
+        "samples_cover_cycle",
+        "samples_cover_all_delayed_source_times",
+        "all_required_body_states_present",
+        "body_state_vectors_finite",
+        "active_root_labels_valid",
+        "active_root_delays_finite_nonnegative",
+        "active_root_J_finite",
+        "root_ledger_stable_under_refinement",
+        "residuals_below_tolerance",
+        "speed_ordering_retained",
+        "no_secular_center_drift",
+        "Delta_k_positive",
+        "same_branch_persists_across_eta_ladder",
+        "benchmark_inputs_excluded",
+      ],
+      required_objects: [
+        "active_root_relations_present",
+        "active_root_sources_cover_selected_layers",
+      ],
+      active_root_relations_present_shape: {
+        partner: true,
+        self: true,
+        inter_layer: true,
+      },
+      active_root_sources_cover_selected_layers_rule:
+        "Both polarities must have at least one active source root for every selected weak tier layer before a weak-retained causal-wake amplitude is considered complete.",
+    },
+    acceptance_checks: [
+      "status equals accepted_history_segment",
+      "at least two ordered samples are present",
+      "samples cover the full cycle and delayed source-time interval required by active roots",
+      "all body states required by the selected branch row are present at every sample",
+      "all body position and velocity vectors are finite three-vectors",
+      "active causal-root ledger includes partner, self, and inter-layer relation classes",
+      "active root source labels cover both polarities for every selected weak tier layer",
+      "active root source and receiver labels are valid body ids",
+      "active root delay and J fields are finite",
+      "the branch label and z_lambda are inherited from the same source row without benchmark input selection",
+    ],
+    failure_mapping: {
+      missing_or_unaccepted_history: "weak-emitter-not-computed",
+      incomplete_root_ledger: "weak-emitter-not-computed",
+      missing_source_time_coverage: "weak-emitter-not-computed",
+      zero_active_tier_norm_after_reconstruction: "weak-emitter-zero-norm",
+      refinement_drift_after_reconstruction: "weak-emitter-refinement-drift",
+    },
+  };
+}
+
 function requiredArtifacts(row) {
   const stem = `a0-row-${row.row}-tier1`;
   return [
     `${stem}-continuation.json`,
+    `${stem}-accepted-history.json`,
     `${stem}-root-ledger.json`,
     `${stem}-residuals.json`,
     `${stem}-monodromy.json`,
@@ -342,6 +437,7 @@ function rowPacket(row, etaLadder) {
     continuation_contract: continuationContract(row, etaLadder),
     monodromy_plan: monodromyPlan(row, etaLadder),
     acceptance_predicate: acceptancePredicate(row),
+    accepted_history_segment_contract: acceptedHistorySegmentContract(row, etaLadder),
     inherited_Delta_k_status: row.Delta_k ?? null,
     required_artifacts: requiredArtifacts(row),
   };
