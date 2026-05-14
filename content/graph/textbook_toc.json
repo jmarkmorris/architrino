@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 151,
-      "sections": 1100
+      "entries": 152,
+      "sections": 1106
     }
   },
   "tocRoot": {
@@ -4841,6 +4841,64 @@
                 "kind": "markdown-section",
                 "title": "Summary Commitment",
                 "markdownPath": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
+                "markdownSection": "Summary Commitment",
+                "sectionKey": "summary commitment",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "theory_bridges__spacetime_models_and_noether_sea",
+            "title": "Spacetime Models and the Noether Sea",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/theory-bridges/spacetime_models_and_noether_sea.json",
+            "markdownPath": "content/markdown/aaa/theory-bridges/spacetime-models-and-noether-sea.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Bridge Rule",
+                "markdownPath": "content/markdown/aaa/theory-bridges/spacetime-models-and-noether-sea.md",
+                "markdownSection": "Bridge Rule",
+                "sectionKey": "bridge rule",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Comparison Matrix",
+                "markdownPath": "content/markdown/aaa/theory-bridges/spacetime-models-and-noether-sea.md",
+                "markdownSection": "Comparison Matrix",
+                "sectionKey": "comparison matrix",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Mathematical Handoff",
+                "markdownPath": "content/markdown/aaa/theory-bridges/spacetime-models-and-noether-sea.md",
+                "markdownSection": "Mathematical Handoff",
+                "sectionKey": "mathematical handoff",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Analogy Discipline",
+                "markdownPath": "content/markdown/aaa/theory-bridges/spacetime-models-and-noether-sea.md",
+                "markdownSection": "Analogy Discipline",
+                "sectionKey": "analogy discipline",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closure Tests",
+                "markdownPath": "content/markdown/aaa/theory-bridges/spacetime-models-and-noether-sea.md",
+                "markdownSection": "Closure Tests",
+                "sectionKey": "closure tests",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary Commitment",
+                "markdownPath": "content/markdown/aaa/theory-bridges/spacetime-models-and-noether-sea.md",
                 "markdownSection": "Summary Commitment",
                 "sectionKey": "summary commitment",
                 "headingLevel": 2

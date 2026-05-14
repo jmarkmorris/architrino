@@ -40,6 +40,10 @@
         "scenePath": "content/scenes/theory-bridges/special_relativity_noether_core.json"
       },
       {
+        "nodeId": "spacetime_models_and_noether_sea",
+        "scenePath": "content/scenes/theory-bridges/spacetime_models_and_noether_sea.json"
+      },
+      {
         "nodeId": "klein_gordon_scalar_fields",
         "scenePath": "content/scenes/theory-bridges/klein_gordon_scalar_fields.json"
       },
@@ -170,6 +174,23 @@
         "type": "fixed"
       },
       "labelTitle": "Special Relativity and Deformable Noether Cores",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "spacetime_models_and_noether_sea",
+      "title": "Spacetime Models and the Noether Sea",
+      "radius": 2.688,
+      "color": "#5b6f5a",
+      "position": [
+        -6.75,
+        -8.04,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Spacetime Models and the Noether Sea",
       "labelBadge": "doc",
       "fixedPosition": true
     },
