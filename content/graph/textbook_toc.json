@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 152,
-      "sections": 1110
+      "sections": 1113
     }
   },
   "tocRoot": {
@@ -1107,6 +1107,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "All-Layer Lorentz Branch Response",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "All-Layer Lorentz Branch Response",
+                "sectionKey": "all layer lorentz branch response",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Transverse Causal Budget Lemma",
                 "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
                 "markdownSection": "Transverse Causal Budget Lemma",
@@ -1576,6 +1584,14 @@
                 "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
                 "markdownSection": "Canonical Geometry Variables",
                 "sectionKey": "canonical geometry variables",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Lorentz Projection Role",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownSection": "Lorentz Projection Role",
+                "sectionKey": "lorentz projection role",
                 "headingLevel": 2
               },
               {
@@ -4795,6 +4811,14 @@
                 "markdownPath": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
                 "markdownSection": "Ruler Channel",
                 "sectionKey": "ruler channel",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Branch-Quantized Lorentz Response",
+                "markdownPath": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
+                "markdownSection": "Branch-Quantized Lorentz Response",
+                "sectionKey": "branch quantized lorentz response",
                 "headingLevel": 2
               },
               {

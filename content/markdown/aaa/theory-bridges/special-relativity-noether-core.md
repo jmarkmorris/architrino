@@ -8,6 +8,8 @@ Special relativity gives the observer-level invariant bookkeeping for clocks, ru
 
 The bridge claim is not that special relativity is discarded. The claim is that the Lorentz formulas are the effective limit seen by Physical Observers when stable assemblies and photon-like signal channels are built from the same finite-speed Noether-Sea dynamics.
 
+The sharper milestone is branch-quantized Lorentz response. The continuous Lorentz factor remains the observer-level envelope, but a Noether core realizes that envelope only through admissible causal-root ledger classes. Each ledger class retunes all three binary layers and then projects its observable ruler behavior through the outer-binary exclusion envelope.
+
 ## Ownership Boundary
 
 This chapter owns:
@@ -91,6 +93,92 @@ The important point is that the contraction is not a primitive command imposed o
 
 In the geometry canon, this contraction is recorded first as the Noether-core envelope shape ratio $\xi=R_{\parallel}/R_{\perp}$. The special-relativistic limit requires a derived map $\xi\to1/\gamma_{\text{eff}}$ together with a matching clock readout $\omega_{\text{clk}}/\omega_0\to1/\gamma_{\text{eff}}$; neither equality is the definition of $\xi$.
 
+## Branch-Quantized Lorentz Response
+
+The Lorentz factor is usually written as a smooth function,
+$$
+\gamma_{\text{eff}}(v)=\frac{1}{\sqrt{1-v^2/c_{\text{eff}}^2}}.
+$$
+In the observer-level theory this is the correct continuous kinematic envelope. The Noether-core implementation adds a deeper condition: the core can realize this envelope only by moving through admissible branch classes of the tri-binary causal-root ledger.
+
+For a stable Noether-core branch $q$, define the layer state
+$$
+B_q(v)
+=
+\left(
+R_I,R_M,R_O;\,
+\omega_I,\omega_M,\omega_O;\,
+s_I,s_M,s_O;\,
+\mathcal{L}_{\mathrm{root}};\,
+\mathbf{A}_I,\mathbf{A}_M,\mathbf{A}_O;\,
+\mathcal{L}_{\mathrm{wake}}
+\right)_q.
+$$
+Here $R_\ell$ are layer radii, $\omega_\ell$ are layer angular frequencies, $s_\ell$ are characteristic layer speeds, $\mathbf{A}_\ell$ are layer axes, $\mathcal{L}_{\mathrm{root}}$ is the active causal-root ledger, and $\mathcal{L}_{\mathrm{wake}}$ records the causal-wake exchange needed for conservation. The branch index $q$ is not an added particle label. It names a stable admissible closure class.
+
+A one-$h$ full-cycle action transaction should therefore be treated as a branch update,
+$$
+B_q(v)
+\longrightarrow
+B_{q'}(v+\Delta v),
+$$
+not as an outer-binary-only energy deposit. The scalar action condition is
+$$
+\Delta A_{\text{cycle}}=\sigma h,
+\qquad
+\Delta I_I+\Delta I_M+\Delta I_O+\Delta I_{\text{wake}}=\sigma\hbar,
+$$
+and the energy condition is the all-layer action-angle ledger
+$$
+\sum_{\ell\in\{I,M,O\}}
+\int_{B_q\to B_{q'}}\omega_\ell\,dI_\ell
++
+\Delta E_{\text{wake}}
+=
+\Delta E_{\text{coupl}}.
+$$
+Thus all three radii, all three frequencies, and all three characteristic speeds are allowed to change. The outer binary is special because it sets the leading exclusion-envelope boundary, not because the other layers are spectators.
+
+The bridge to Lorentz behavior is then:
+$$
+\text{one-}h\text{ action transaction}
+\longrightarrow
+\text{tri-binary branch update}
+\longrightarrow
+\text{outer-envelope oblation}
+\longrightarrow
+\text{effective }\gamma_{\text{eff}}(v).
+$$
+For the branch $q$, define the realized clock and ruler factors
+$$
+\gamma_{\mathrm{clk}}^{(q)}(v)
+\equiv
+\frac{T_q(v)}{T_0},
+\qquad
+\gamma_{\mathrm{rul}}^{(q)}(v)
+\equiv
+\frac{R_{\perp,q}(v)}{R_{\parallel,q}(v)}.
+$$
+The Lorentz bridge closes only if, in a homogeneous weak-field Noether-Sea cell,
+$$
+\gamma_{\mathrm{clk}}^{(q)}(v)
+=
+\gamma_{\mathrm{rul}}^{(q)}(v)
+=
+\gamma_{\text{eff}}(v)+O(\epsilon_{\mathrm{LV}})
+$$
+for every branch class admitted as a stable clock/ruler material. This is the sense in which the Lorentz response is branch-quantized: the substrate realizes a continuous observer law through discrete admissible ledger classes, and any residual deviation should carry the signature of a branch transition, separator approach, inter-layer resonance, or incomplete wake ledger.
+
+This target also clarifies which part of the Noether core should be modeled. The full branch solve must include inner, middle, and outer binaries because clock rate, action storage, separator sensitivity, and conservation all live in the coupled tri-binary ledger. The outer binary then supplies the leading geometric projection:
+$$
+\xi_q(v)
+\equiv
+\frac{R_{\parallel,q}(v)}{R_{\perp,q}(v)}
+\to
+\frac{1}{\gamma_{\text{eff}}(v)}.
+$$
+An outer-only model can be useful as a first observable projection or reduced diagnostic, but it cannot prove Lorentz closure unless the inner and middle ledgers have already been shown to retune consistently and stay hidden below the preferred-frame leakage bound.
+
 ## Mass-Energy Channel
 
 Special relativity compresses rest energy into
@@ -166,6 +254,8 @@ The proposed common source is:
 
 If these are solved separately, the theory risks producing unrelated correction factors. If they are solved as one closure problem, then the repeated appearance of $\gamma$ becomes a success signal rather than a coincidence.
 
+The branch-quantized version of this statement is stricter. The same branch update $B_q\to B_{q'}$ must account for the clock factor, the ruler factor, the momentum response, and the exposed energy response. If the outer envelope gives the right contraction while the middle-binary clock channel gives a different factor, the bridge has failed rather than found a new Lorentz law.
+
 ## Domain Of Validity
 
 This bridge is expected to match special relativity only in the regime where:
@@ -190,7 +280,9 @@ To promote this bridge from mapping to derivation, the following targets must cl
 6. Derive the Noether-Sea response tensor $\mathcal{M}_{\text{sea}}^{ab}$ and show its isotropic limit is $h^{ab}/c_{\text{eff}}^2$.
 7. Show that clock, ruler, momentum, and energy channels share the same $\gamma_{\text{eff}}$ to the required order.
 8. Bound preferred-frame leakage and identify the leading measurable correction terms.
+9. Derive the branch-quantized Lorentz response: for each stable admissible causal-root ledger class $q$, compute $B_q(v)$, extract $\gamma_{\mathrm{clk}}^{(q)}$ and $\gamma_{\mathrm{rul}}^{(q)}$, and show that all accepted clock/ruler branches collapse to the same effective $\gamma_{\text{eff}}$ within $O(\epsilon_{\mathrm{LV}})$.
+10. Prove that the outer-envelope oblation is the observable projection of an all-three-binary branch update, not an independently assigned deformation law.
 
 ## Summary Commitment
 
-> **Special Relativity Bridge Commitment:** Special relativity is retained as the effective observer-level bookkeeping of clocks, rulers, energy, and momentum in homogeneous weak-field conditions. The proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation is that deformable Noether cores preserve finite-speed causal wake closure by retuning internal phase, envelope geometry, and medium-dressed response. The mature theory must derive the Lorentz factor as a shared closure consequence, not assign it separately to clocks, rods, mass, and momentum.
+> **Special Relativity Bridge Commitment:** Special relativity is retained as the effective observer-level bookkeeping of clocks, rulers, energy, and momentum in homogeneous weak-field conditions. The proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation is that deformable Noether cores preserve finite-speed causal wake closure by retuning internal phase, all three binary layers, outer-envelope geometry, and medium-dressed response. The mature theory must derive the Lorentz factor as a shared branch-quantized closure consequence, not assign it separately to clocks, rods, mass, and momentum.

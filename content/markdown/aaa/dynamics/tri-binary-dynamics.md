@@ -100,6 +100,58 @@ This is the common mechanical basis for three later effective readouts:
 - longitudinal ruler contraction, because inter-assembly spacing must retune for forward and backward exchange;
 - inertial response, because acceleration forces the internal causal ledger to re-close under a changing kinematic bias.
 
+## All-Layer Lorentz Branch Response
+
+The branch-quantized Lorentz response should be modeled at the tri-binary level before it is projected into clock or ruler language. A moving Noether core is not described by one outer radius alone. The hidden state includes all three layer radii, frequencies, characteristic speeds, axes, active causal roots, and wake exchange:
+$$
+B_q(v)
+=
+\left(
+R_I,R_M,R_O;\,
+\omega_I,\omega_M,\omega_O;\,
+s_I,s_M,s_O;\,
+\mathbf{A}_I,\mathbf{A}_M,\mathbf{A}_O;\,
+\mathcal{L}_{\mathrm{root}};\,
+\mathcal{L}_{\mathrm{wake}}
+\right)_q.
+$$
+
+A one-$h$ closed-cycle action transaction is a candidate map between stable branch states,
+$$
+B_q(v)\longrightarrow B_{q'}(v+\Delta v),
+$$
+subject to the all-layer action and energy ledgers
+$$
+\Delta A_{\text{cycle}}=\sigma h,
+\qquad
+\Delta I_I+\Delta I_M+\Delta I_O+\Delta I_{\text{wake}}=\sigma\hbar,
+$$
+$$
+\sum_{\ell\in\{I,M,O\}}
+\int_{B_q\to B_{q'}}\omega_\ell\,dI_\ell
++
+\Delta E_{\text{wake}}
+=
+\Delta E_{\text{coupl}}.
+$$
+Thus acceleration, absorption, or any accepted transaction can change all three $\omega_\ell$, all three $R_\ell$, and all three $s_\ell$. The outer binary is the leading envelope projector because it is the exposed boundary layer. The middle binary remains the separator-sensitive hinge, and the inner binary remains the self-hit/history-supported engine. Dropping the middle or inner layer is therefore a reduced observable model, not a proof of Lorentz closure.
+
+The dynamics-side extraction targets are:
+$$
+\gamma_{\mathrm{clk}}^{(q)}(v)=\frac{T_q(v)}{T_0},
+\qquad
+\gamma_{\mathrm{rul}}^{(q)}(v)=\frac{R_{\perp,q}(v)}{R_{\parallel,q}(v)},
+$$
+with Lorentz closure requiring
+$$
+\gamma_{\mathrm{clk}}^{(q)}(v)
+=
+\gamma_{\mathrm{rul}}^{(q)}(v)
+=
+\gamma_\star(v)+O(\epsilon_{\mathrm{LV}})
+$$
+after Noether-Sea dressing and hierarchy averaging on admitted stable branches. Any residual mismatch must be reported with its branch source: separator proximity, inter-layer resonance, Jacobian-floor loss, finite-memory cutoff, wake-ledger residue, or envelope-projection error.
+
 ## Transverse Causal Budget Lemma
 
 Proper time $\tau$ is the cycle count of a stable Noether-core clock, not the absolute substrate time $t$ itself. The reusable dynamics target behind that clock law is the transverse causal budget lemma.
@@ -180,8 +232,9 @@ The dynamics chapter contributes the stable pieces needed by the larger theorem 
 2. Model the tri-binary Noether core as inner engine, middle fulcrum, and outer shielding/interface layer.
 3. Track how motion deforms the rest-state lock into braided spiral-helical geometry.
 4. Derive local clock diagnostics from the transverse causal budget lemma.
-5. Output alignment, closure, Floquet, grazing, and Cartan reconstruction diagnostics.
-6. Keep mass, photon, equivalence-principle, and full GR matching claims at the level of reconstruction targets until their proof burdens close.
+5. Solve all-layer branch updates for one-$h$ transactions and extract the branch-indexed clock and ruler Lorentz factors.
+6. Output alignment, closure, Floquet, grazing, branch-residual, and Cartan reconstruction diagnostics.
+7. Keep mass, photon, equivalence-principle, and full GR matching claims at the level of reconstruction targets until their proof burdens close.
 
 ## Working Hypotheses
 
