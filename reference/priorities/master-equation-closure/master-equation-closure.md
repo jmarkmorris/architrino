@@ -5,8 +5,8 @@
 - Kind: `priority`
 - Rank: `8`
 - Value: `15.00`
-- Cost: `6`
-- ROI: `2.50`
+- Cost: `5.5`
+- ROI: `2.75`
 - Status: `active`
 
 ## Task Queue
