@@ -21,6 +21,18 @@
 
 The main black-hole and strong-field chapter architecture is already in place. The remaining work is narrow and quantitative rather than exploratory.
 
+This file remains the control surface for strong-field quantitative closure. No sibling detailed priority file is needed yet; if the work expands, the natural split is an embedded-boundary packet and a horizon-interface label-ensemble packet.
+
+## Promotion Map
+
+| Task | Detailed source | Primary promotion target | Promotion gate |
+| --- | --- | --- | --- |
+| `embedded_boundary_conditions` | This file | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) and [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md) | Horizon-interface solutions are formulated as Noether-Sea boundary-condition problems with named $\rho_{\text{core}}$, $\Sigma_{\text{medium}}$, $\mathbf{u}_{\text{medium}}$, $\Lambda_{\text{NC}}$, and $\partial\Omega$ data. |
+| `observer_predictions` | This file | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [gr-phenomenology](../../../content/markdown/aaa/spacetime/gr-phenomenology.md), and [gravitational-waves](../../../content/markdown/aaa/spacetime/gravitational-waves.md) | The embedded boundary formulation produces observer-level predictions rather than only interpretive prose. |
+| `horizon_entropy_packet` | This file | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) and [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md) | The horizon-interface label ensemble is defined from admissible $\Lambda_{\text{NC}}$ states and states entropy-area and Page-curve recovery targets without importing them as ontology. |
+| `release_channel_selection` | This file | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) | Jets, diffuse outflow, and dark-sector escape are separated as release channels with information-accounting consequences. |
+| `discriminating_observable` | This file | [gr-phenomenology](../../../content/markdown/aaa/spacetime/gr-phenomenology.md), [gravitational-waves](../../../content/markdown/aaa/spacetime/gravitational-waves.md), and [ppn-parameters](../../../content/markdown/aaa/spacetime/ppn-parameters.md) | At least one strong-field observable is stated in a way that can differ from GR-like behavior. |
+
 ## Scope Boundary
 
 Black-hole entropy and Page-curve recovery are high-value downstream consistency targets, not imported ontology. Holographic, island, and replica-wormhole results should be used as comparison mathematics after the native strong-field mechanism is specified. Compact or topologically identified comparison settings are boundary-condition stress tests, not extra-dimensional ontology. This workstream now starts by posing the horizon as an embedded Noether-Sea boundary-condition problem; it then tracks a native horizon-interface label ensemble as the bridge between observer-level predictions and release-channel selection. The entropy target is a count over admissible $\Lambda_{\text{NC}}$ states, and Page-curve recovery is a release-channel information-accounting target.

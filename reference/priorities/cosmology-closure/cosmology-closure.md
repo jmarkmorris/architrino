@@ -18,6 +18,15 @@
 
 Convert the current cosmology story from narrative strength to equation-level closure by building a predictive transfer-function pipeline.
 
+This file remains the control surface for deferred cosmology closure. No sibling detailed priority file is needed until component-interface work resumes.
+
+## Promotion Map
+
+| Task | Detailed source | Primary promotion target | Promotion gate |
+| --- | --- | --- | --- |
+| `component_interfaces` | This file | [cosmology-ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md), [BBN-constraints](../../../content/markdown/aaa/cosmology/BBN-constraints.md), [structure-formation](../../../content/markdown/aaa/cosmology/structure-formation.md), and [hubble-s8-tensions](../../../content/markdown/aaa/cosmology/hubble-s8-tensions.md) | Each observable component states exactly where $\mathbb{A}\mathbb{A}\mathbb{A}$ matches, replaces, or diverges from LambdaCDM. |
+| `predictive_pipeline` | This file | [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [structure-formation](../../../content/markdown/aaa/cosmology/structure-formation.md), and [hubble-s8-tensions](../../../content/markdown/aaa/cosmology/hubble-s8-tensions.md) | The transfer-function pipeline produces direct CMB, $H_0$, and $S_8$ comparison handles rather than narrative analogy. |
+
 ## Closure Goal
 
 - Turn the current CMB and tri-binary cosmology story into a predictive transfer-function pipeline.
