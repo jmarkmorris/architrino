@@ -65,6 +65,45 @@ $$
 $$
 The origin-layer continuity and signed-kernel handling still belong to the topology row of the finite audit.
 
+## Downstream Packet Contract
+
+The parity pass now hands off to one fixed seed packet, not to independent artifacts. The candidate-cycle packet must carry a single identity tuple
+$$
+\mathfrak{I}_{\mathrm{seed}}
+=
+\left(
+\mathcal{K},
+T_{\mathrm{cyc}},
+\mathcal{S},
+\mathcal{P},
+\mathcal{B}_{\mathrm{rep}},
+\Theta
+\right),
+$$
+where
+$$
+\mathcal{K}
+$$
+is the doubled four-arc generic itinerary checked above. The files `phi_cyc.json`, `mesh.json`, `causal_ledger.json`, `branch_chart.json`, and `seed_chart_interval_report.md` must all report the same packet identity before any seed margin is accepted.
+
+The mesh must include all five itinerary intervals
+$$
+I_0,\ldots,I_4,
+$$
+all four separator layers
+$$
+\Sigma_1,\ldots,\Sigma_4,
+$$
+and the two origin-layer labels
+$$
+C_1,
+\qquad
+C_2.
+$$
+Its subblocks feed the null-coordinate causal ledger. Every subblock is accepted only as `empty`, `simple_root`, or `fold_layer`; `split_required` is a packet failure until the split is actually performed.
+
+The branch chart is accepted only as an authorized refinement of the pre-ledger. Each simple branch must point to exactly one `simple_root` row of `causal_ledger.json`; empty rows remain inactive complements with positive range gaps; fold-layer rows remain outside branch-sum evaluation until the certified fold-event atlas supplies incoming and outgoing chart labels. This turns the coarse parity ledger into an executable pass/fail target for the seed-chart interval report.
+
 ## Conclusion
 
 The doubled four-arc generic itinerary passes the necessary velocity-class parity gate. The next ansatz step is not another itinerary choice; it is the null-coordinate causal ledger and then the actual self-image enumeration for

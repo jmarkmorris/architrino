@@ -105,6 +105,40 @@
     "all_separator_jumps_even": true,
     "passes_coarse_parity_gate": true
   },
+  "next_executable_packet": {
+    "packet_identity_tuple": [
+      "selected_itinerary.id",
+      "period.T_cyc",
+      "symmetry_and_section_normalization",
+      "parameters",
+      "basis_or_interpolation_version",
+      "mesh.nodes"
+    ],
+    "same_certified_domain_check": "phi_cyc.json, mesh.json, causal_ledger.json, branch_chart.json, causal_preledger_interval_report.md, and seed_chart_interval_report.md must all use the same packet_id and the same packet identity tuple.",
+    "mesh_contract": {
+      "must_include_all_intervals": [
+        "I0",
+        "I1",
+        "I2",
+        "I3",
+        "I4"
+      ],
+      "must_include_all_separator_layers": [
+        "Sigma_1",
+        "Sigma_2",
+        "Sigma_3",
+        "Sigma_4"
+      ],
+      "must_include_origin_layers": [
+        "C_1",
+        "C_2"
+      ],
+      "subblocks_feed": "causal_ledger.json"
+    },
+    "preledger_acceptance": "Each mesh subblock must be certified as empty, simple_root, or fold_layer. split_required is a packet failure until the split is performed.",
+    "branch_chart_acceptance": "Each simple branch must be authorized by exactly one simple_root preledger row; empty rows stay inactive with positive gaps; fold_layer rows are routed to the fold-event atlas and not to branch-sum formulas.",
+    "seed_report_acceptance": "The seed-chart interval report first checks packet identity, preledger consumption, and branch-chart authorization, then reports strict seed margins and finite sensitivity constants."
+  },
   "limitations": [
     "Does not enumerate roots of |x(t)-x(s)| = c_f(t-s) on ordered arc pairs.",
     "Does not prove positive Jacobian floors, inactive-root gaps, memory-depth bounds, or returned-history residuals.",
@@ -112,9 +146,10 @@
   ],
   "next_required_artifacts": [
     "certificate/phi_cyc.json",
-    "certificate/causal_ledger.json",
-    "certificate/branch_chart.json",
     "certificate/mesh.json",
+    "certificate/causal_ledger.json",
+    "certificate/causal_preledger_interval_report.md",
+    "certificate/branch_chart.json",
     "certificate/seed_chart_interval_report.md"
   ]
 }

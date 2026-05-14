@@ -85,6 +85,21 @@ $$
 \phi_{\mathrm{cyc}},
 $$
 not a new roadmap.
+- The next executable packet must keep one packet identity tuple
+$$
+\mathfrak{I}_{\mathrm{seed}}
+=
+\left(
+\mathcal{K},
+T_{\mathrm{cyc}},
+\mathcal{S},
+\mathcal{P},
+\mathcal{B}_{\mathrm{rep}},
+\Theta
+\right)
+$$
+fixed across `phi_cyc.json`, `mesh.json`, `causal_ledger.json`, `branch_chart.json`, and `seed_chart_interval_report.md`.
+- The branch chart is accepted only as an authorized refinement of the null-coordinate pre-ledger: every simple branch must point to one `simple_root` pre-ledger row, empty rows must stay inactive with positive gaps, and fold-layer rows must not be reduced to branch-sum formulas.
 - Treat [tri-binary-causal-closure](../../tri-binary-causal-closure/tri-binary-causal-closure.md) as a separate active-development synthesis workstream, not as a replacement for the finite certificate packet. Before deployment, unresolved synthesis items must be closed, kept as explicit roadmap targets, routed into the relevant priority workstream, or cut.
 
 ## Immediate Cross-Document Action Plan

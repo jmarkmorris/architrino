@@ -23,6 +23,37 @@ The seed-chart gate must produce the following files in this directory:
 | `branch_chart.json` | Active branches, inactive complements, signed sheet labels, memory-depth ranges, Jacobian formulas, and origin-layer labels | Supplies the finite branch chart for the seed row |
 | `seed_chart_interval_report.md` | Interval proof of seed margins and sensitivity constants | Passes only with strict positive margins |
 
+## Packet Identity And Same Certified Domain
+
+The next executable packet must be certified on one fixed domain. Define the packet identity tuple
+$$
+\mathfrak{I}_{\mathrm{seed}}
+=
+\left(
+\mathcal{K},
+T_{\mathrm{cyc}},
+\mathcal{S},
+\mathcal{P},
+\mathcal{B}_{\mathrm{rep}},
+\Theta
+\right).
+$$
+Every artifact in the seed-chart gate must record this same tuple, either directly or by exact artifact references. The seed-chart interval report fails before margin arithmetic unless
+$$
+\mathfrak{I}_{\mathrm{seed}}^{\phi}
+=
+\mathfrak{I}_{\mathrm{seed}}^{\Theta}
+=
+\mathfrak{I}_{\mathrm{seed}}^{\mathcal{L}}
+=
+\mathfrak{I}_{\mathrm{seed}}^{\mathcal{B}},
+$$
+where the superscripts refer respectively to `phi_cyc.json`, `mesh.json`, `causal_ledger.json`, and `branch_chart.json`.
+
+The report must also verify the row references
+`mesh.subblocks -> causal_ledger.rows -> branch_chart.branches`.
+Thus every branch-chart row is authorized by exactly one accepted pre-ledger row, every simple-root pre-ledger row required by the itinerary is consumed by the branch chart, every empty row remains an inactive complement with a positive range gap, and every fold-layer row is routed to the fold-event atlas rather than to a branch-sum formula.
+
 The seed margin vector is
 $$
 \mathcal{M}_{\mathrm{seed}}
@@ -218,6 +249,7 @@ supplies the pre-ledger inputs, branch-chart inputs, and residual targets withou
 | Field | Required content |
 | --- | --- |
 | `schema` | `breather-phi-cyc-v1` |
+| `packet_id` | Stable identifier for the shared packet identity tuple $\mathfrak{I}_{\mathrm{seed}}$ |
 | `status` | `candidate`, `preledger_rejected`, `branch_chart_rejected`, or `seed_chart_ready` |
 | `itinerary_id` | Must match `doubled_four_arc_generic` unless a replacement itinerary is explicitly reported |
 | `parameters` | $c_f$, $\eta$, $\epsilon_c$, $g=\kappa\epsilon^2$, memory horizon $h$, normalization choices |
@@ -244,6 +276,8 @@ and by its active itinerary interval. Separator neighborhoods must be refined mo
 | Field | Required content |
 | --- | --- |
 | `schema` | `breather-mesh-v1` |
+| `packet_id` | Must equal the `packet_id` in `phi_cyc.json` |
+| `itinerary_ref` | The selected itinerary id and separator-event list used to build the subblocks |
 | `period_ref` | The exact `period` entry from `phi_cyc.json` |
 | `nodes` | Ordered phase nodes $\theta_j$ with $t_j=T_{\mathrm{cyc}}\theta_j$ |
 | `arc_membership` | The itinerary arc or fold layer containing each node |
@@ -293,6 +327,8 @@ $$
 
 | Field | Required content |
 | --- | --- |
+| `row_id` | Stable row key matching one `mesh.json` subblock and one ledger coordinate |
+| `packet_id` | Must equal the `packet_id` in `phi_cyc.json` and `mesh.json` |
 | `receiver_interval` | $I_\alpha$ |
 | `source_interval` | $I_\beta$ |
 | `ledger` | `u` or `w` |
@@ -306,6 +342,7 @@ $$
 | `jacobian_floor` | Floor for $J_u=du/ds/c_f$ or $J_w=dw/ds/c_f$ |
 | `memory_depth_range` | Certified range of $t-s$ |
 | `separator_event` | Fold or origin-layer event when applicable |
+| `itinerary_required` | Whether the selected itinerary requires an active row, an inactive complement, or a fold-layer row here |
 | `failure_code` | Empty unless the row blocks promotion |
 
 The pre-ledger passes only if every block is certified empty, certified simple-root, or routed to a bounded fold-layer certificate. A `split_required` row is a failed pre-ledger until the split is performed.
@@ -630,8 +667,10 @@ After the pre-ledger passes, `branch_chart.json` should list active roots with i
 
 | Field | Required content |
 | --- | --- |
+| `packet_id` | Must equal the `packet_id` in `phi_cyc.json`, `mesh.json`, and `causal_ledger.json` |
 | `branch_id` | Stable identifier keyed by receiver interval, source interval, ledger, and sheet |
 | `preledger_row_id` | Identifier of the `causal_ledger.json` row authorizing the branch |
+| `preledger_status_ref` | Must be `simple_root` for a simple branch; fold rows must not appear here as simple branches |
 | `source_relation` | `partner`, `self`, or `origin_layer_self` |
 | `root_enclosure` | Interval enclosure for $s(t)$ or sampled root values |
 | `line_of_action_sign` | $\hat r$ or signed 1D equivalent |
@@ -644,6 +683,25 @@ After the pre-ledger passes, `branch_chart.json` should list active roots with i
 | `topology_flag` | Whether the branch requires topology-row confirmation |
 
 The active branch chart is not accepted if any inactive complement has zero gap, any active simple branch loses its Jacobian floor, or any fold-layer row is silently reduced to a branch-sum formula.
+
+> **Lemma (Authorized branch-chart refinement).**
+> Suppose the `Null-Coordinate Causal Pre-Ledger` has passed on
+> $$
+> \Pi_{\mathrm{cyc}}
+> $$
+> and suppose `branch_chart.json` satisfies the packet identity check and the row references above. Suppose further that:
+>
+> 1. each simple branch has `preledger_status_ref` equal to `simple_root`;
+> 2. its source-time enclosure lies inside the inverse branch
+>    $$
+>    s_B^y(t)=(y|_{I_\beta^s})^{-1}(y(t));
+>    $$
+> 3. its Jacobian floor, memory-depth range, line-of-action sign, and amplitude bound refine the corresponding pre-ledger row without weakening any lower bound; and
+> 4. no branch-chart row is attached to a pre-ledger row whose status is `empty`, `fold_layer`, or `split_required`.
+>
+> Then the branch chart is a refinement of the finite pre-ledger rather than a new root search. Every active simple row has one authorized root branch, every inactive complement keeps its pre-ledger range gap, and every fold-layer row remains outside branch-sum evaluation until the certified fold-event atlas supplies the incoming and outgoing chart labels.
+
+This lemma supplies the branch-chart acceptance condition for the seed-chart interval report. A failure is certificate-useful: if a branch has no authorizing pre-ledger row, the pre-ledger was incomplete; if a required simple-root row is unconsumed, the branch chart is incomplete; if a fold row appears as a simple branch, the packet has leaked a separator layer into the wrong analytic regime.
 
 `causal_preledger_interval_report.md` must list the minima
 $$
@@ -695,6 +753,28 @@ L_h,
 \qquad
 L_{\mathrm{env}}.
 $$
+
+The seed-chart interval report must end with a finite pass/fail table whose first row is the packet identity check, whose second row is pre-ledger consumption, whose third row is branch-chart authorization, and whose remaining rows are the strict margins
+$$
+\nu_{\mathrm{seed}},
+\qquad
+\gamma_{\mathrm{gap}},
+\qquad
+\gamma_h,
+\qquad
+\gamma_{\mathrm{env}},
+$$
+and finite sensitivities
+$$
+L_J,
+\qquad
+L_F,
+\qquad
+L_h,
+\qquad
+L_{\mathrm{env}}.
+$$
+The report fails if any row is absent, computed from a different packet identity tuple, non-strict where strictness is required, or infinite where a finite constant is required.
 
 ## First Candidate Construction Route
 
