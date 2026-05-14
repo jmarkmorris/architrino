@@ -47,7 +47,7 @@ It separates three regimes:
 
 ### Reversible Response Below Threshold
 
-Below the critical surface, the response belongs to the mass and inertia program rather than to a friction law. The assembly's shielded internal ledger contributes an internal momentum response of the form
+Below the critical surface, the response belongs to the mass and inertia program rather than to a friction law. The closure target is that the assembly's shielded internal ledger contributes an internal momentum response of the form
 
 $$
 p_{\text{int}}^a

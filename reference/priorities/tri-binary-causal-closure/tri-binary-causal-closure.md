@@ -14,7 +14,7 @@
 1. `tri_binary_dependency_map` — Maintain the proof-dependency map and deployment handoff table. Status: `done`. Depends on: none.
 2. `continuity_pass` — Walk the synthesis section by section against the dependency map, especially shielding, momentum skew, and transverse-budget root-finding jumps. Status: `done`. Depends on: `tri_binary_dependency_map`.
 3. `photon_qed_gate` — Build the three photon/QED stress-test packets for kinematics and optics, polarization and spin, and vertices and transitions. Status: `pending`. Depends on: `continuity_pass`.
-4. `residual_routing_event_ledger` — Derive the shared residual-to-channel routing theorem and event-ledger contract for radiation, transport, weak reactions, nuclear binding, measurement records, and strong-field release. Status: `pending`. Depends on: `continuity_pass`.
+4. `residual_routing_event_ledger` — Advance the promoted residual-to-channel contract into worked sector cases for radiation, transport, weak reactions, nuclear binding, measurement records, and strong-field release. Status: `contract-promoted`; worked theorem cases pending. Depends on: `continuity_pass`.
 5. `radiation_gate_c_benchmarks` — Build the radiation Gate C benchmark ledger for atomic transitions, bremsstrahlung, synchrotron, Compton-like scattering, pair channels, and blackbody recovery. Status: `pending`. Depends on: `photon_qed_gate`, `residual_routing_event_ledger`.
 6. `deployment_handoff` — Route unresolved synthesis claims through inline theorem-roadmap tags and priority-table handoff rows before deployment. Status: `done`. Depends on: `continuity_pass`.
 

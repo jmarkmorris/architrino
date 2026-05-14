@@ -283,9 +283,9 @@ This packet owns:
 3. the rule that untracked loss, unbalanced provenance, or sector-specific retuning blocks promotion;
 4. the comparison table showing which sector packet has consumed the contract.
 
-## Promotion Gate
+## Promotion Boundary
 
-The shared packet can promote into [reaction-ledger](../../../content/markdown/aaa/validation/reaction-ledger.md) and [reaction-cosmology-provenance-ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) only after at least one worked case closes:
+The shared packet may appear in [reaction-ledger](../../../content/markdown/aaa/validation/reaction-ledger.md) and [reaction-cosmology-provenance-ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) as a theorem-target contract before any channel is closed. It promotes beyond that contract only after at least one worked case closes:
 
 1. a named residual;
 2. a named threshold or separatrix;

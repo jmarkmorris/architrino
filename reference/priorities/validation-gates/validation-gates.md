@@ -7,13 +7,13 @@
 - Value: `14.03`
 - Cost: `4.6`
 - ROI: `3.05`
-- Status: `review`
+- Status: `active`
 
 ## Task Queue
 
-1. `closure_intersection_ledger` — Turn the validation pressure ledger into an explicit intersection of acceptance sets across weak, quantum, gravity, hadronic, radiation, and cosmology closure. Status: `review`. Depends on: none.
-2. `no_go_applicability_map` — Classify which no-go theorems apply directly, which fail because their assumptions are not adopted, and which still impose replacement constraints. Status: `review`. Depends on: `closure_intersection_ledger`.
-3. `failure_condition_routing` — Route each Tier 1 and Tier 2 failure condition to the active workstream that can actually close or reject it. Status: `review`. Depends on: `closure_intersection_ledger`.
+1. `worked_shared_closure_record` — Apply the promoted acceptance-set, no-go, and failure-routing scaffold to the first sector case that claims promotion, producing either a nonempty extension fiber or an incompatibility witness. Status: `next`. Depends on: none.
+
+Post-promotion cleanup note: `closure_intersection_ledger`, `no_go_applicability_map`, and `failure_condition_routing` were promoted into the AAA validation chapters in the May 2026 promotion batch.
 
 ## Scope
 

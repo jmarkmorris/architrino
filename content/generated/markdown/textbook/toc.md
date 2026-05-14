@@ -779,7 +779,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
   - [No Go Theorems](../../../scenes/validation/no_go_theorems.json)
     - [Applicability Record](../../../markdown/aaa/validation/no-go-theorems.md?section=Applicability+Record)
     - [Applicability Map](../../../markdown/aaa/validation/no-go-theorems.md?section=Applicability+Map)
-    - [Gate Use](../../../markdown/aaa/validation/no-go-theorems.md?section=Gate+Use)
+    - [Use in Validation](../../../markdown/aaa/validation/no-go-theorems.md?section=Use+in+Validation)
   - [Known Tensions](../../../scenes/validation/known_tensions.json)
     - [Purpose](../../../markdown/aaa/validation/known-tensions.md?section=Purpose)
     - [Severity Scale](../../../markdown/aaa/validation/known-tensions.md?section=Severity+Scale)

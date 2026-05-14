@@ -18,7 +18,7 @@ Atomic structure sits on three coupled layers:
 
 The Noether Sea enters this picture as ambient substrate contents, not as the fixed spatial container. Binding and spectral calculations should therefore use the canonical local density $\rho_{\text{core}}(\mathbf{x},t)$ and normalized density $n(\mathbf{x},t)=\rho_{\text{core}}(\mathbf{x},t)/\rho_{\text{core},0}$ on the $\mathbb{U}_{\text{now}}$ universe-state grid.
 
-The superfluid analogy remains useful for transport and coherence, but it does not make inertia a dissipative drag threshold. Inertial response must come from medium-dressed causal-ledger skew and shielding; ordinary resistance remains a separate breakdown channel involving excitation, action shedding, or branch transition.
+The Noether-Sea transport picture is useful for separating reversible medium response from dissipative resistance. Inertial response must come from medium-dressed causal-ledger skew and shielding; ordinary resistance remains a separate breakdown channel involving excitation, action shedding, or branch transition.
 
 For the underlying assembly carrier of this medium, see [Noether Core](../spacetime/noether-core.md).
 

@@ -34,7 +34,7 @@ Above threshold, some transported energy must enter excitation, radiation, mediu
 
 When the threshold is crossed, this packet consumes the shared [residual-routing event-ledger theorem](../tri-binary-causal-closure/residual-routing-event-ledger.md). It owns $\mathcal{R}_{\text{tr}}$, the transport thresholds, and condensed-matter benchmark failures; the shared packet owns the general channel-routing and ledger contract.
 
-## Critical Transport Gate
+## Critical Transport Surface
 
 Define a critical surface
 
@@ -56,7 +56,7 @@ The gate separates:
 
 | Target $\mathbb{A}\mathbb{A}\mathbb{A}$ file | Promotion condition |
 | --- | --- |
-| [condensed-matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md) | The superfluid Noether-Sea analogy is recast as a critical-transport gate with variables and failure modes. |
+| [condensed-matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md) | The unsupported medium analogy is recast as a transport residual with variables, a critical surface, and failure modes. |
 | [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md) | Inertia remains a medium-dressed response of shielded internal energy, not dissipative drag. |
 | [energy](../../../content/markdown/aaa/dynamics/energy.md) | Transport work, excitation, and radiation channels share one ledger rather than separate vocabularies. |
 | [radiation](../../../content/markdown/aaa/reactions/radiation.md) | Radiation begins only after a closure residual routes through a shedding channel. |

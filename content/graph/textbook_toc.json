@@ -6391,10 +6391,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Gate Use",
+                "title": "Use in Validation",
                 "markdownPath": "content/markdown/aaa/validation/no-go-theorems.md",
-                "markdownSection": "Gate Use",
-                "sectionKey": "gate use",
+                "markdownSection": "Use in Validation",
+                "sectionKey": "use in validation",
                 "headingLevel": 2
               }
             ]

@@ -160,7 +160,7 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 **Noether Core:**  
 - Coupled pro + anti tri-binaries (2P + 2A) → neutral, stable, low-mass assembly.  
 - Forms the **Noether Sea** (with `spacetime medium` reserved as bridge language).  
-- Analogy: Helium-4 atoms in superfluid helium.
+- Structural comparison: neutral constituents in a coherent medium.
 
 ---
 
@@ -446,7 +446,7 @@ Assess five dimensions (Green/Yellow/Red):
 
 **Foundational Ontology:**  
 - **$\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$) codified**: Clear distinction between simulation ground truth ($\mathbb{U}_{\text{now}}$) and operational measurements (Physical Observers).  
-- **Noether Sea ontology**: Spacetime is not empty void; it is a dense lattice of coupled tri-binary assemblies (superfluid-like medium).  
+- **Noether Sea ontology**: Spacetime is not empty void; it is a dense lattice of coupled tri-binary assemblies whose transport and coherence laws still require derivation.
 - **Terminology locked**: "Path history", "Noether Sea" for ambient contents, "spacetime medium" only as bridge language, and "Euclidean void" for the fixed container.
 
 **Gravity as Refraction:**  
