@@ -6,14 +6,18 @@ The full pre-split monolith is preserved at [deferred/priorities-legacy.md](../d
 
 ## Scoring System
 
-- Score `Value` and `Cost` on the same `1-10` scale.
-- For `Value`, prioritize:
-  1. work that drives more solid mathematical closure, especially the EOM, assembly energy, shielding, mass, and adjacent derivations;
-  2. work that improves visualization and animation enough to generate new understanding or insight.
-- For `Cost`, assume math-heavy derivation cost is lower than before because the implementation/derivation burden is now mostly on Codex, while visualization and animation work is relatively cheap.
+- Score `Base` on a `1-10` scale for the direct local value of closing the work.
+- Score `Cascade` as a multiplier for how much a solved item unlocks, constrains, or simplifies other workstreams:
+  - `1.00-1.15`: mostly local payoff;
+  - `1.20-1.35`: useful cross-links or documentation/reader payoff;
+  - `1.40-1.55`: unlocks several theory queues or removes repeated proof grammar;
+  - `1.60-1.75`: multiplier node whose solution cascades across many sectors.
+- Compute adjusted `Value = Base * Cascade`.
+- Adjusted `Value` is intentionally allowed to exceed `10`; `Base` remains the direct-value score and `Cascade` records the multiplier effect.
+- Score `Cost` on a `1-10` scale for proof, implementation, dependency, and validation effort. Cost should include upstream blockers, not only writing effort.
 - Compute `ROI = Value / Cost`.
-- Use the scoring table as the canonical ranking.
-- Break ties by higher `Value`, then lower `Cost`.
+- Use the scoring table as the canonical ranking. Break ties by higher adjusted `Value`, then lower `Cost`, then higher `Cascade`.
+- Workstream metadata stores the adjusted `Value`, `Cost`, and `ROI` from this table for ranked workstream rows. Ranked shared theorem packets do not need workstream metadata unless they become parent workstreams.
 
 ## Workstream Overview Structure
 
@@ -25,7 +29,7 @@ Each active workstream `<slug>.md` file should use the same front-matter order b
 
 After that fixed front matter, each workstream may add its own domain-specific sections such as `Current State`, `Main Directions`, `Quantitative Targets`, or `Hypotheses To Preserve`.
 
-Keep the metadata field order fixed:
+Keep the metadata field order fixed for workstream control files:
 
 - `Kind`
 - `Rank`
@@ -42,29 +46,33 @@ This keeps the files readable in plain Markdown, diff-friendly in git, and struc
 
 ## Unified Priority Table
 
-This single table is the canonical rollup for ranked priority workstreams and linked ranked queues. Use it to maintain ranking, notice category mistakes, and decide which directories still deserve to live here as active workstreams.
+This single table is the canonical rollup for ranked priority workstreams and high-leverage shared theorem packets. Use it to maintain ranking, notice category mistakes, and decide which directories or packet-level queues deserve active attention.
 
-This table does not list detailed sibling files. The structural inventory for compact control files, detailed priority files, deployed targets, and deferred packets lives in [inventory.md](inventory.md).
+This table lists detailed sibling files only when they act as multiplier packets across several workstreams. Ordinary detailed files remain in [inventory.md](inventory.md).
 
 The cross-workstream product join for shared closure objects, repeated proof grammar, and sector projections lives in [closure-join-matrix.md](closure-join-matrix.md).
 
 Nested proof subprograms live under [proof-programs](../proof-programs/proof-programs.md). They keep local metadata for handoff clarity, but the parent `proof-programs` row is the canonical top-level ranking entry.
 
-| Rank | Slug                                                                               | Title                                                                              | Value | Cost |  ROI |
-| ---: | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ----: | ---: | ---: |
-|    1 | [`proof-programs`](../proof-programs/proof-programs.md)                            | Proof programs: breather certificate and planar bridge closure                     |    10 |    4 | 2.50 |
-|    2 | [`mass-map`](../mass-map/mass-map.md)                                              | Noether-core stability, shielding, parameter ledger, and first mass map            |    10 |    4 | 2.50 |
-|    3 | [`tri-binary-causal-closure`](../tri-binary-causal-closure/tri-binary-causal-closure.md) | Tri-binary causal closure synthesis and dependency map                         |    10 |    4 | 2.50 |
-|    4 | [`animator`](../animator/animator.md)                                              | Scene animator                                                                     |     9 |    4 | 2.25 |
-|    5 | [`master-equation-closure`](../master-equation-closure/master-equation-closure.md) | Tractable master-equation stack for Lorentz / GR bridge, quantum, and core closure |    10 |    5 | 2.00 |
-|    6 | [`angular-momentum-spin`](../angular-momentum-spin/angular-momentum-spin.md)       | Fundamental angular-momentum and spin closure                                      |     9 |    5 | 1.80 |
-|    7 | [`dyadic-lock`](../dyadic-lock/dyadic-lock.md)                                     | Dyadic resonance lock reduced-map program                                          |     7 |    4 | 1.75 |
-|    8 | [`standard-model-closure`](../standard-model-closure/standard-model-closure.md)    | Remaining Standard Model assembly gaps, flavor mixing, and confinement             |     8 |    5 | 1.60 |
-|    9 | [`simulations`](../simulations/simulations.md)                                        | Simulations, regularization, and shell numerics                                    |     8 |    5 | 1.60 |
-|   10 | [`strong-field-closure`](../strong-field-closure/strong-field-closure.md)          | Remaining black-hole / strong-field quantitative closure                           |     4 |    5 | 0.80 |
-|   11 | [`chapter-authoring`](../../op/chapter-authoring.md)                               | Unified chapter authoring queue and legacy-material recovery                       |     3 |    5 | 0.60 |
-|   12 | [`quantum-closure`](../quantum-closure/quantum-closure.md)                         | Born-rule / quantum closure with hard tests                                        |     4 |    8 | 0.50 |
-|   13 | [`cosmology-closure`](../cosmology-closure/cosmology-closure.md)                   | Cosmology transfer-function closure                                                |     2 |    9 | 0.22 |
+| Rank | Kind | Slug or packet | Title | Base | Cascade | Value | Cost | ROI |
+| ---: | --- | --- | --- | ---: | ---: | ---: | ---: | ---: |
+| 1 | Shared packet | [`residual-routing-event-ledger`](../tri-binary-causal-closure/residual-routing-event-ledger.md) | Shared residual-to-channel routing and event-ledger theorem | 9.5 | 1.70 | 16.15 | 4 | 4.04 |
+| 2 | Shared packet | [`exposure-quotient-theorem`](../mass-map/exposure-quotient-theorem.md) | Shared sector exposure / quotient theorem | 9.5 | 1.65 | 15.68 | 4 | 3.92 |
+| 3 | Workstream | [`proof-programs`](../proof-programs/proof-programs.md) | Proof programs: breather certificate and planar bridge closure | 10.0 | 1.55 | 15.50 | 4 | 3.88 |
+| 4 | Workstream | [`validation-gates`](../validation-gates/validation-gates.md) | Cross-sector acceptance intersections and no-go routing | 8.5 | 1.65 | 14.03 | 4 | 3.51 |
+| 5 | Workstream | [`tri-binary-causal-closure`](../tri-binary-causal-closure/tri-binary-causal-closure.md) | Tri-binary causal closure synthesis, photon/QED gate, and transition routing | 10.0 | 1.60 | 16.00 | 5 | 3.20 |
+| 6 | Workstream | [`mass-map`](../mass-map/mass-map.md) | Noether-core stability, shielding, exposure, medium response, and first mass map | 10.0 | 1.55 | 15.50 | 5 | 3.10 |
+| 7 | Shared packet | [`transfer-operator-basin-measure`](../quantum-closure/transfer-operator-basin-measure.md) | Shared transfer-operator and basin-measure theorem | 9.0 | 1.70 | 15.30 | 6 | 2.55 |
+| 8 | Workstream | [`master-equation-closure`](../master-equation-closure/master-equation-closure.md) | Tractable master-equation stack for Lorentz / GR bridge, quantum, and core closure | 10.0 | 1.50 | 15.00 | 6 | 2.50 |
+| 9 | Workstream | [`simulations`](../simulations/simulations.md) | Simulations, regularization, convergence, and shell numerics | 8.5 | 1.40 | 11.90 | 5 | 2.38 |
+| 10 | Workstream | [`angular-momentum-spin`](../angular-momentum-spin/angular-momentum-spin.md) | Fundamental angular-momentum, spin, photon Gate B, measurement, and Bell prerequisites | 9.5 | 1.45 | 13.78 | 6 | 2.30 |
+| 11 | Workstream | [`standard-model-closure`](../standard-model-closure/standard-model-closure.md) | Remaining Standard Model assembly gaps, flavor mixing, confinement, weak, and nuclear closure | 8.5 | 1.30 | 11.05 | 6 | 1.84 |
+| 12 | Workstream | [`dyadic-lock`](../dyadic-lock/dyadic-lock.md) | Dyadic resonance lock reduced-map program | 7.0 | 1.25 | 8.75 | 5 | 1.75 |
+| 13 | Workstream | [`animator`](../animator/animator.md) | Scene animator and visual reasoning surface | 7.0 | 1.20 | 8.40 | 5 | 1.68 |
+| 14 | Workstream | [`strong-field-closure`](../strong-field-closure/strong-field-closure.md) | Black-hole / strong-field quantitative closure | 5.5 | 1.20 | 6.60 | 6 | 1.10 |
+| 15 | Workstream | [`quantum-closure`](../quantum-closure/quantum-closure.md) | Deferred Born-rule / quantum closure with Bell hard tests | 5.5 | 1.35 | 7.43 | 8 | 0.93 |
+| 16 | Op queue | [`chapter-authoring`](../../op/chapter-authoring.md) | Unified chapter authoring queue and legacy-material recovery | 4.0 | 1.10 | 4.40 | 5 | 0.88 |
+| 17 | Workstream | [`cosmology-closure`](../cosmology-closure/cosmology-closure.md) | Cosmology transfer-function closure | 3.0 | 1.15 | 3.45 | 9 | 0.38 |
 
 ## Unranked Candidate And Archive References
 
@@ -73,7 +81,6 @@ These are tracked for visibility, but they are not ranked active workstreams in 
 | Slug or packet | Location | Role | Current disposition |
 | --- | --- | --- | --- |
 | `ellipsoid` | [ellipsoid.md](../ellipsoid/ellipsoid.md) | Effective-metric routing surface plus Ideal Core app idea. | Priority candidate under routing review; retire only after sibling files have destinations. |
-| `validation-gates` | [validation-gates.md](../validation-gates/validation-gates.md) | Cross-sector acceptance intersections, no-go applicability, and failure-condition routing. | Priority candidate under review; now has a sibling closure-intersection ledger. |
 | `strong-field hypothesis bank` | [hypothesis-bank.md](../strong-field-closure/hypothesis-bank.md) | Strong-field and tri-binary hypothesis watchlist. | Merged under `strong-field-closure`; not a ranked top-level workstream. |
 | `deferred` | [legacy-insights.md](../deferred/legacy-insights.md) | Archive and parking lot for non-current material. | Needs a deferred index later. |
 | `3x3` | [3x3.md](../deferred/3x3/3x3.md) | Deferred binary-slot matrix note. | Keep deferred unless a target $\mathbb{A}\mathbb{A}\mathbb{A}$ document is selected. |
@@ -90,26 +97,27 @@ These are tracked for visibility, but they are not ranked active workstreams in 
 - Workstream `standard-model-closure`: keep geometry-first work intact while the weak-sector/gauge packet absorbs weak `V-A`, weak-corridor provenance, CKM/PMNS compatibility, and gauge covariance as one umbrella task; nuclear binding remains a separate hadronic-to-nuclear coarse-graining risk.
 - Workstream `quantum-closure`: remain deferred, but preserve the transfer-operator / basin-measure theorem packet as the shared measure-theoretic spine, with Decider minimality and pilot-wave / algorithmic-resonance opportunities downstream as stress tests under one top-level queue item.
 - Workstream `strong-field-closure`: owns the former strong-field hypothesis watchlist as [hypothesis-bank](../strong-field-closure/hypothesis-bank.md), so hypotheses stay preserved without a separate ranked workstream.
-- Candidate `validation-gates`: use the closure-intersection ledger to test whether weak, quantum, gravity, hadronic, radiation, and cosmology gates can survive together rather than as disconnected local wins.
+- Workstream `validation-gates`: use the closure-intersection ledger as the cross-sector pressure test for whether weak, quantum, gravity, hadronic, radiation, and cosmology gates can survive together rather than as disconnected local wins.
 
 ## Organization Status
 
 - First-pass flat cleanup is complete for `standard-model-closure`, `dyadic-lock`, `mass-map`, `master-equation-closure`, `simulations`, `strong-field-closure`, `cosmology-closure`, `quantum-closure`, `proof-programs`, `angular-momentum-spin`, `animator`, `ellipsoid`, `tri-binary-causal-closure`, and `validation-gates`.
 - The latest deduplication pass compressed weak-sector subgates, quantum stress tests, residual-routing prose, event-ledger prose, strong-field hypotheses, and ellipsoid routing without deleting source material.
-- The latest coverage pass added ten high-upside $\mathbb{A}\mathbb{A}\mathbb{A}$ gap packets without adding extra requirements subdirectories: validation gates, residual-routing event-ledger theorem, exposure-quotient theorem, transfer-operator / basin-measure theorem, radiation Gate C, Decider minimality, weak-sector/gauge closure, nuclear binding, condensed-matter medium transport, and algorithmic-resonance / pilot-wave closure.
+- The latest coverage pass added ten high-upside $\mathbb{A}\mathbb{A}\mathbb{A}$ gap packets without adding extra requirements subdirectories: validation gates, residual-routing event-ledger theorem, exposure-quotient theorem, transfer-operator / basin-measure theorem, radiation Gate C, Decider minimality, weak-sector/gauge closure, nuclear binding, condensed-matter medium transport, and algorithmic-resonance / pilot-wave closure. The multiplier scoring pass promoted `validation-gates` into the ranked table because cross-sector acceptance can falsify or strengthen several local wins at once.
 - [closure-join-matrix.md](closure-join-matrix.md) is the product-join view over repeated queue structure: branch state, causal-wake ledger, residual routing, event ledger, exposure, medium response, basin measure, and cross-sector acceptance.
 - [inventory.md](inventory.md) is the detailed map for which files are compact control surfaces, which are detailed priority files, and which deployed $\mathbb{A}\mathbb{A}\mathbb{A}$ documents should eventually absorb promoted material.
 - Remaining organization work is review-level: decide whether any priority candidate or deferred packet deserves promotion, demotion, or merger after the current theory and app priorities stabilize.
 
 ## Top Cross-Workstream Next Actions
 
-1. Generate the breather candidate cycle and seed-chart packet first: `phi_cyc.json`, `mesh.json`, null-coordinate causal ledger, branch chart, and seed-chart interval report; then continue into corridor nonemptiness, coupled corridor, monodromy diagnostic, returned-sample report, and topology ledger on the same certified domain.
-2. Advance the tri-binary photon/QED path and the residual-routing event-ledger theorem together: Gate A/B supply photon kinematics and polarization, the shared routing theorem supplies the channel/ledger contract, and radiation Gate C remains the first benchmark-recovery case before photon-based measurement or radiation is treated as closed.
-3. Validate and generalize the scaffolded architrino-level angular-momentum ledger for changing-frequency Noether cores, including wake terms, branch selection, spinor holonomy, and apparatus-response measures.
-4. Turn the mass-side placeholders into a first derived map with one attractor family, shielding extraction, exposure-quotient theorem, medium-response tensor, critical-transport threshold, and a baseline electron-mass prediction target.
-5. Keep quantum closure deferred but sharpen the transfer-operator / basin-measure packet so Born weights, detector kernels, Decider shifts, dyadic locks, pilot-wave guidance, and algorithmic-resonance coherence depth all consume one measure-theoretic grammar.
-6. Use the validation-gates candidate as a cross-sector pressure test: local wins must survive weak, quantum, gravity, hadronic, radiation, and cosmology acceptance gates together.
-7. Select one concrete animator implementation pass from observer/framing, structure editing, or timeline objects, and keep deferred PDG material out of the active app path unless PDG work resumes.
+1. Advance the residual-routing event-ledger theorem and exposure-quotient theorem as the two highest-ROI multiplier packets; each should remove repeated proof grammar from several sector queues without collapsing those sector queues.
+2. Generate the breather candidate cycle and seed-chart packet: `phi_cyc.json`, `mesh.json`, null-coordinate causal ledger, branch chart, and seed-chart interval report; then continue into corridor nonemptiness, coupled corridor, monodromy diagnostic, returned-sample report, and topology ledger on the same certified domain.
+3. Use `validation-gates` as the cross-sector pressure test: local wins must survive weak, quantum, gravity, hadronic, radiation, and cosmology acceptance gates together.
+4. Advance the tri-binary photon/QED path and radiation Gate C against the shared residual-routing contract before photon-based measurement or radiation is treated as closed.
+5. Turn the mass-side placeholders into a first derived map with one attractor family, shielding extraction, exposure-quotient theorem, medium-response tensor, critical-transport threshold, and a baseline electron-mass prediction target.
+6. Keep quantum closure deferred but sharpen the transfer-operator / basin-measure packet so Born weights, detector kernels, Decider shifts, dyadic locks, pilot-wave guidance, and algorithmic-resonance coherence depth all consume one measure-theoretic grammar.
+7. Validate and generalize the scaffolded architrino-level angular-momentum ledger for changing-frequency Noether cores, including wake terms, branch selection, spinor holonomy, and apparatus-response measures.
+8. Select one concrete animator implementation pass from observer/framing, structure editing, or timeline objects, and keep deferred PDG material out of the active app path unless PDG work resumes.
 
 ## Info
 
