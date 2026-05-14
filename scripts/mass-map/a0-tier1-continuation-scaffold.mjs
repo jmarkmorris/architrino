@@ -331,6 +331,14 @@ function acceptedHistorySegmentContract(row, etaLadder) {
         "Samples must cover every cycle time in [0,T_k] and every delayed source time t-delay required by the active causal-root ledger.",
     },
     selected_weak_tier_layers: activeTierLayers,
+    writer: {
+      script: "scripts/mass-map/a0-tier1-accepted-history-writer.mjs",
+      source_required:
+        "accepted Tier 1 continuation source with samples, active causal-root ledger, residual convergence, stable root ledger, positive Delta_k, and declared benchmark-input exclusion",
+      fail_closed_status: "blocked_missing_tier1_continuation_source",
+      note:
+        "The continuation scaffold alone is not an accepted history source; the writer must canonicalize an accepted continuation artifact or emit blocked rows.",
+    },
     sample_schema: {
       required_fields: ["t", "bodies"],
       body_ids: BODY_IDS,
@@ -352,6 +360,7 @@ function acceptedHistorySegmentContract(row, etaLadder) {
     validation_schema: {
       required_booleans: [
         "status_is_accepted_history_segment",
+        "source_row_identity_matches",
         "sample_count_at_least_two",
         "samples_ordered_by_t",
         "samples_cover_cycle",
