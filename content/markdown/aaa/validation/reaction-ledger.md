@@ -44,6 +44,102 @@ Each reaction record should state:
 | Provenance data | Source identity, emission time, causal-root branch, and local medium state |
 | Closure status | What is established, what is assumed, and what remains to derive |
 
+## Residual-Routing Event-Ledger Contract
+
+Residual-routing material enters this ledger only as a theorem-target contract. It does not by itself prove that any weak, radiative, pair-production, nuclear, or cosmology-facing reaction channel has closed. The common target is:
+
+$$
+\mathcal{R}(\Gamma,\mathcal{H},\rho_{\text{core}},\chi_{\text{sea}},\dots)
+\longrightarrow
+\{B_i\}
+\longrightarrow
+\mathcal{L}_{E\mathbf{p}\mathbf{J}}.
+$$
+
+Here $\mathcal{R}$ is the replayable residual computed from the local assembly state, path-history ledger, Noether-core density, Noether-Sea delay factor, and any named sector variables. The set $\{B_i\}$ is the finite list of admissible output channels, such as retuning, bound excitation, radiation, recoil, medium heating, weak or nuclear reaction, record formation, release channel, or branch transition. The event ledger $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the balance object that must close after all selected outputs are named.
+
+For a reaction attempt, the input state should be recorded as:
+
+$$
+X
+=
+\left(
+\Gamma,
+\mathcal{H},
+\rho_{\text{core}}(\mathbf{x},t),
+\chi_{\text{sea}}(\mathbf{x},t),
+Z_S
+\right),
+$$
+
+where $Z_S$ denotes sector-local variables such as nuclear configuration, weak-corridor data, apparatus state, or horizon-interface boundary data when those variables control the route. A routed reaction event is a triple
+
+$$
+\mathsf e=(X,I_{\mathsf e},Y_{\mathsf e}),
+$$
+
+where $I_{\mathsf e}$ is the selected finite channel set and $Y_{\mathsf e}$ lists outgoing assemblies, recoil targets, medium updates, remnant states, and provenance records. A single reaction vertex may select more than one output channel when photon output, recoil, medium update, and reaction products are simultaneous terms in one closed event.
+
+The shared ledger object is:
+
+$$
+\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)
+=
+\left(
+\Delta_E,
+\Delta_{\mathbf{p}},
+\Delta_{\mathbf{J}},
+\Delta_{\mathrm{pol}},
+\Delta_{\mathrm{arch}},
+\Delta_{\mathrm{path}},
+\Delta_{\mathrm{med}},
+\Delta_{\mathrm{rem}}
+\right)(\mathsf e).
+$$
+
+Ledger closure means:
+
+$$
+\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)=\mathbf{0}
+$$
+
+componentwise across the tuple. Nonzero physical recoil, medium heating, remnant excitation, outgoing product energy, or photon output is allowed only as a named term inside $Y_{\mathsf e}$; it is not allowed as an implicit loss.
+
+The contract for each serious channel is:
+
+| Contract field | Required content |
+| --- | --- |
+| Residual | Define $\mathcal{R}$ from the local state, causal-wake ledger, density field, Noether-Sea delay factor, and sector variables. |
+| Threshold or separatrix | State the critical surface, basin boundary, channel boundary, or return-map condition that selects an admissible route. |
+| Candidate channels | List the allowed routes, including radiative, recoil, medium, reaction, remnant, or record-forming terms when applicable. |
+| Event ledger | Close $E$, $\mathbf{p}$, $\mathbf{J}$, charge/provenance, recoil, medium update, remnant state, and architrino inventory where applicable. |
+| Benchmark recovery | Name the observer-level reaction, cross-section, threshold, rate, or conservation benchmark recovered by the route. |
+| Closure status | Mark the record as baseline, provisional map, derivation target, failed map, or inherited gate. |
+
+### Promotion Criterion
+
+A reaction record may be promoted beyond a provisional map only when all of the following conditions have been met in the same sector case:
+
+1. **Replayable residual:** $\mathcal{R}(X)$ is computed from $\Gamma$, $\mathcal{H}$, $\rho_{\text{core}}(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, and explicitly named sector variables, with no hidden sector-specific residual term.
+2. **Boundary selection:** each selected channel has a stated boundary test $g_i(X,\mathcal{R})\ge0$, and every excluded channel required by the sector either fails its boundary test or is ruled out by a compatibility condition.
+3. **Admissible output:** $Y_{\mathsf e}$ names all outgoing assemblies, recoil targets, medium updates, remnant states, and provenance records required by the selected channel set.
+4. **Ledger closure:** $\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)=\mathbf{0}$ after adding the sector-required charge, polarity, architrino-inventory, path-history, Noether-Sea, and remnant rows.
+5. **Benchmark compatibility:** the promoted event recovers the sector benchmark without breaking any required weak, quantum, gravity, hadronic, radiation, cosmology, conservation-law, or direct-observation acceptance gate.
+
+This is a promotion criterion, not a completed theorem. Worked sector cases remain open until at least one channel supplies a named residual, a named threshold or separatrix, a channel decision, a complete $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ ledger, a benchmark recovery, and a failure diagnostic in one record. The free-neutron beta reaction, the $t\to b+W^+$ channel, radiation-coupled pair channels, and nuclear reaction examples therefore remain provisional where their sector records still lack closed residual routing, outgoing core provenance, angular-momentum balance, rate recovery, or quantitative benchmark closure.
+
+### Failure Modes
+
+| Failure mode | What blocks promotion |
+| --- | --- |
+| Residual replay failure | Two records with the same $(\Gamma,\mathcal{H},\rho_{\text{core}},\chi_{\text{sea}},Z_S)$ produce different $\mathcal{R}$ values or different selected channel sets without an additional recorded state variable. |
+| Boundary failure | A resolved event occurs while every required $g_i(X,\mathcal{R})<0$, or two mutually exclusive selected channels demand incompatible output assignments. |
+| Ledger residual failure | After all sector-required rows are included, $\Delta_E\ne0$, $\Delta_{\mathbf{p}}\ne\mathbf{0}$, or $\Delta_{\mathbf{J}}\ne\mathbf{0}$. |
+| Inventory or provenance failure | $\Delta_{\mathrm{pol}}\ne0$, $\Delta_{\mathrm{arch}}\ne0$, or $\Delta_{\mathrm{path}}\ne0$ after the claimed Noether-Sea, corridor, source-identity, emission-time, causal-root, and branch-Jacobian records are included. |
+| Medium or remnant failure | $\Delta_{\mathrm{med}}\ne0$ or $\Delta_{\mathrm{rem}}\ne0$, meaning the route used medium heating, recoil, retained excitation, or remnant deformation as an implicit loss term. |
+| Retuning failure | The same benchmark family can be recovered only by changing the residual definition, the channel boundary, or the Noether-Sea state variables between sector cases. |
+| Cross-sector failure | The local route succeeds only by violating another required sector acceptance gate. |
+
 ## Weak-Corridor Provenance Gate
 
 Weak reactions now require an explicit corridor-provenance stance. The current corpus supports two live possibilities:

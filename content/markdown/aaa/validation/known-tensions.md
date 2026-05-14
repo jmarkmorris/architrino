@@ -115,10 +115,14 @@ $$
 \mathcal{C}_{\mathrm{gravity}}
 \cap
 \mathcal{C}_{\mathrm{hadronic}}
+\cap
+\mathcal{C}_{\mathrm{radiation}}
+\cap
+\mathcal{C}_{\mathrm{cosmology}}
 \neq \varnothing.
 $$
 
-If that intersection becomes empty after quantitative work is done, the present implementation is rejected even if many individual chapters remain suggestive.
+If that intersection becomes empty after quantitative work is done, the present implementation is rejected even if many individual chapters remain suggestive. The detailed sector predicates, benchmark tolerances, and promotion-fiber test are recorded in [Failure Criteria](failure-criteria.md).
 
 ## Related Chapters
 

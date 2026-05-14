@@ -14,17 +14,59 @@ Q_S\!\left[
 \right].
 $$
 
-Here:
+For an accepted Noether-core assembly or branch family $A$, choose a declared ledger space
 
-| Symbol | Meaning |
-| --- | --- |
-| $A$ | Accepted Noether-core assembly or branch family. |
-| $\mathcal{L}_A$ | Internal/far-field ledger emitted by the assembly, including energy, wake, multipole, phase, charge, and angular-momentum entries as needed. |
-| $\Pi_S$ | Sector-visible projection selecting the channel available to sector $S$. |
-| $Q_S$ | Quotient that removes relabelings, gauge redundancy, hidden internal rotations, canceled pro/anti structure, or unobservable frame choices. |
-| $\mathcal{E}_S(A)$ | The externally visible sector response. |
+$$
+\mathfrak{L}_A
+=
+\mathfrak{L}_{A,\mathrm{cont}}
+\times
+\mathfrak{L}_{A,\mathrm{disc}},
+$$
 
-The mass-map scalar $\zeta(A)$ is the first isotropic case of this program, not the whole theorem. The broader target is to prevent mass shielding, weak chirality, color exceptionality, photon transverse support, and vector-corridor visibility from each inventing a separate exposure rule.
+where $\mathfrak{L}_{A,\mathrm{cont}}$ is a finite product of normed continuous ledger channels and $\mathfrak{L}_{A,\mathrm{disc}}$ is a finite product of exact discrete labels. The emitted ledger is an element $\mathcal{L}_A\in\mathfrak{L}_A$ derived from the accepted branch ledger, causal-wake history, cycle averages, energy entries, multipole entries, charge/provenance labels, phase labels, and angular-momentum entries required by the sector under test.
+
+For a sector $S$, define a sector-retained ledger subset $\mathfrak{V}_S\subseteq\mathfrak{L}_A$ and a projection
+
+$$
+\Pi_S:\mathfrak{L}_A\to\mathfrak{V}_S,
+\qquad
+\Pi_S^2=\Pi_S.
+$$
+
+The continuous part of $\Pi_S$ is linear on declared continuous channels; the discrete part is an idempotent selector on declared labels. The exposure residue is
+
+$$
+\mathcal{R}^{\mathrm{exp}}_S(A)
+=
+(1-\Pi_S)\mathcal{L}_A
+$$
+
+on continuous channels, together with any discarded discrete labels that the sector packet declares as hidden rather than visible.
+
+Define a sector equivalence relation $\sim_S$ on $\mathfrak{V}_S$ generated only by declared relabelings, gauge redundancy, hidden internal rotations, canceled pro/anti structure, or unobservable frame choices. The quotient map is
+
+$$
+Q_S:\mathfrak{V}_S\to\mathfrak{V}_S/\!\sim_S,
+\qquad
+Q_S(v)=[v]_S.
+$$
+
+The externally visible sector response is the quotient class
+
+$$
+\mathcal{E}_S(A)
+=
+Q_S\!\left[
+\Pi_S\mathcal{L}_A
+\right]
+\in
+\mathfrak{V}_S/\!\sim_S.
+$$
+
+The mass-map scalar $\zeta(A)$ is the isotropic scalar specialization of $\mathcal{E}_S(A)$, not the whole theorem. Mass shielding, weak chirality, color exceptionality, photon transverse support, and vector-corridor visibility must each instantiate the same projection/quotient grammar before their internal Noether-core geometry is treated as externally visible.
+
+Exposure is distinct from residual routing: exposure decides which part of an already emitted or retained ledger is visible to a sector, while residual routing decides where unresolved action goes and how the event ledger closes.
 
 ## Required Contract
 
@@ -38,6 +80,102 @@ The mass-map scalar $\zeta(A)$ is the first isotropic case of this program, not 
 | Leakage or residue | Report anisotropic leakage, longitudinal residue, gauge-breaking term, or hidden-sector remainder instead of hiding it. |
 | Failure condition | State what fails if the sector requires a different projection, a different quotient, or benchmark fitting before exposure is derived. |
 
+## Admissible Sector Exposure Map
+
+An exposure map for sector $S$ is admissible only if the emitted ledger satisfies branch-ledger provenance:
+
+$$
+\mathcal{L}_A
+=
+\lim_{\nu\to\infty}\mathcal{L}^{(\nu)}_A,
+\qquad
+d_{\mathfrak{L}_A}\!\left(
+\mathcal{L}^{(\nu+1)}_A,
+\mathcal{L}^{(\nu)}_A
+\right)
+\to 0,
+$$
+
+where $\nu$ is the declared refinement index for time step, history depth, angular grid, extraction radius, mollifier width, or branch-search resolution. The construction of $\mathcal{L}_A$ may use the accepted branch label, finite causal-root ledger, state/history segment, and declared sector channel; it may not use the target observer benchmark as an input.
+
+The projection condition is
+
+$$
+\Pi_S^2=\Pi_S,
+\qquad
+\Pi_S\mathcal{L}_A\in\mathfrak{V}_S,
+\qquad
+\lambda_S(A)
+\equiv
+\left\|
+\mathcal{R}^{\mathrm{exp}}_S(A)
+\right\|_{S,\mathrm{leak}}
+\le
+\epsilon_{S,\mathrm{leak}},
+$$
+
+with $\|\cdot\|_{S,\mathrm{leak}}$ declared by the sector packet. The leakage norm must include every discarded channel that can change the sector benchmark: anisotropic scalar residue for mass-facing exposure, longitudinal residue for vector exposure, gauge-breaking residue for gauge-facing exposure, and hidden-sector remainder for quotient-sensitive sectors.
+
+The quotient condition is that the sector benchmark-recovery map $\mathcal{B}_S:\mathfrak{V}_S\to\mathfrak{B}_S$ factors through $Q_S$ up to declared tolerance:
+
+$$
+Q_S(v_1)=Q_S(v_2)
+\quad\Longrightarrow\quad
+d_{\mathfrak{B}_S}\!\left(
+\mathcal{B}_S(v_1),
+\mathcal{B}_S(v_2)
+\right)
+\le
+\epsilon_{S,Q}.
+$$
+
+For every declared gauge or relabeling action $g\in G_S$, the quotient must be invariant on the exposed ledger:
+
+$$
+d_{\mathfrak{V}_S/\!\sim_S}\!\left(
+Q_S\Pi_S(g\cdot\mathcal{L}_A),
+Q_S\Pi_S\mathcal{L}_A
+\right)
+\le
+\epsilon_{S,\mathrm{gauge}}.
+$$
+
+The sector response is promotable only when the observer-level recovery map $\overline{\mathcal{B}}_S:\mathfrak{V}_S/\!\sim_S\to\mathfrak{B}_S$ exists with
+
+$$
+d_{\mathfrak{B}_S}\!\left(
+\mathcal{B}_S(\Pi_S\mathcal{L}_A),
+\overline{\mathcal{B}}_S(\mathcal{E}_S(A))
+\right)
+\le
+\epsilon_{S,\mathrm{rec}}.
+$$
+
+## Exposure Promotion Lemma
+
+Let $A$ be an accepted Noether-core assembly or branch family, let $\mathcal{L}_A\in\mathfrak{L}_A$ satisfy branch-ledger provenance, and let $(\Pi_S,Q_S,\mathcal{B}_S)$ satisfy projection idempotence, quotient compatibility, gauge/relabeling invariance, and leakage bounds with tolerances $\epsilon_{S,\mathrm{leak}}$, $\epsilon_{S,Q}$, $\epsilon_{S,\mathrm{gauge}}$, and $\epsilon_{S,\mathrm{rec}}$. Then
+
+$$
+\mathcal{E}_S(A)
+=
+Q_S\!\left[
+\Pi_S\mathcal{L}_A
+\right]
+$$
+
+is a promotable sector-visible response, and the sector benchmark recovered from the raw projected ledger is determined by the quotient class up to
+
+$$
+\epsilon_S
+=
+\epsilon_{S,\mathrm{leak}}
++\epsilon_{S,Q}
++\epsilon_{S,\mathrm{gauge}}
++\epsilon_{S,\mathrm{rec}}.
+$$
+
+Proof route: branch-ledger provenance makes $\mathcal{L}_A$ a derived assembly output rather than a fitted benchmark parameter; idempotence makes $\Pi_S\mathcal{L}_A$ stable under repeated sector selection; quotient compatibility prevents $Q_S$ from identifying benchmark-distinct exposed ledgers; gauge/relabeling invariance removes only declared unobservable structure; the leakage bound limits the discarded residue below the sector tolerance. Therefore any two representatives of $\mathcal{E}_S(A)$ recover the same sector-visible quantity up to $\epsilon_S$, and any discarded term that exceeds tolerance blocks promotion rather than being hidden.
+
 ## Consumer Map
 
 | Consumer packet | Local responsibility | Shared theorem burden consumed here |
@@ -48,9 +186,9 @@ The mass-map scalar $\zeta(A)$ is the first isotropic case of this program, not 
 | [photon-measurement-bell-gates.md](../angular-momentum-spin/photon-measurement-bell-gates.md) | Photon transverse projector, no longitudinal free mode, analyzer visibility, and polarization ledger. | Uses the exposure quotient to derive rank-two transverse photon visibility from a hidden planar-pair ledger. |
 | [radiation-gate-c-benchmarks.md](../tri-binary-causal-closure/radiation-gate-c-benchmarks.md) | Radiation channel visibility, emission/absorption handoff, and benchmark recovery. | Uses the exposure quotient to decide which residual channel becomes a visible photon, material update, or non-radiative route. |
 
-## First Worked Case
+## Worked $A_0$ Scalar Shielding Case
 
-[$A_0$ Energy and Shielding Extraction](a0-energy-shielding-extraction.md) remains the first worked case. It already defines a far-field ledger
+For the isotropic mass-facing scalar sector, take $S=0$ and take the continuous ledger space to be the selected far-field wake channel $\mathfrak{L}_{A_0}=L^2(S^2,d\Omega)$ after the $A_0$ branch label, causal-root ledger, and cycle window have been fixed. [$A_0$ Energy and Shielding Extraction](a0-energy-shielding-extraction.md) defines the emitted ledger
 
 $$
 \mathcal{L}(\hat{\mathbf{R}})
@@ -61,7 +199,39 @@ q_a W_a(t,\hat{\mathbf{R}})
 \right\rangle_{T_{\mathbf{k}}},
 $$
 
-and the scalar projection
+where $W_a$ is the normalized leading far-field contribution on the selected wake channel.
+
+The isotropic projector is the $\ell=0$ angular projection
+
+$$
+(\Pi_0 f)(\hat{\mathbf{R}})
+=
+\frac{1}{4\pi}
+\int_{S^2}
+f(\hat{\mathbf{n}})\,d\Omega(\hat{\mathbf{n}}),
+$$
+
+so $\Pi_0^2=\Pi_0$ and the discarded exposure residue is the anisotropic component
+
+$$
+\mathcal{L}_{\text{aniso}}
+=
+(1-\Pi_0)\mathcal{L}.
+$$
+
+The scalar quotient $Q_0$ removes branch phase origin, constituent relabelings that preserve the accepted $A_0$ branch, global spatial rotations, and hidden pro/anti cancellation labels that do not change the isotropic coefficient. Since $\Pi_0\mathcal{L}$ is constant on $S^2$, $Q_0[\Pi_0\mathcal{L}]$ is represented by the single scalar coefficient retained by the $\ell=0$ projection.
+
+The $A_0$ exposure response is therefore
+
+$$
+\mathcal{E}_0(A_0)
+=
+Q_0\!\left[
+\Pi_0\mathcal{L}
+\right],
+$$
+
+and the shielding coefficient is the normalized magnitude of that scalar response:
 
 $$
 \zeta(A_0)
@@ -70,7 +240,23 @@ $$
 {\|\mathcal{L}_{\text{naive}}\|}.
 $$
 
-The exposure-quotient theorem generalizes this scalar projection. The mass packet still owns the extraction protocol and convergence failures; this packet owns the rule that every sector-visible response must state its projection, quotient, visible response, leakage, and failure condition.
+The scalar case is admissible only if
+
+$$
+\frac{
+\left\|
+\mathcal{L}_{\text{aniso}}
+\right\|
+}{
+\left\|
+\mathcal{L}_{\text{naive}}
+\right\|
+}
+\le
+\epsilon_{\text{aniso}},
+$$
+
+and if $\zeta(A_0)$ is stable under extraction radius, angular resolution, $\Delta t$, history depth, and $\eta$ refinement. If the anisotropic ratio exceeds tolerance, the scalar shielding coefficient is not promotable; the sector must either report an anisotropic/tensor response or fail the scalar mass-facing exposure gate.
 
 ## Sector Ownership Rule
 
@@ -90,24 +276,26 @@ This packet owns:
 
 ## Promotion Gate
 
-The theorem can promote into [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [weak-mixing-angle](../../../content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md), [gauge-structure-emergence](../../../content/markdown/aaa/interactions/gauge-structure-emergence.md), [radiation](../../../content/markdown/aaa/reactions/radiation.md), or [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) only after at least one worked case reports:
+The theorem can promote into [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [weak-mixing-angle](../../../content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md), [gauge-structure-emergence](../../../content/markdown/aaa/interactions/gauge-structure-emergence.md), [radiation](../../../content/markdown/aaa/reactions/radiation.md), or [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) only after at least one worked case instantiates the Exposure Promotion Lemma with:
 
 1. an accepted source assembly or branch family;
-2. a concrete emitted ledger $\mathcal{L}_A$;
-3. a sector projection $\Pi_S$;
-4. a quotient $Q_S$;
-5. a visible response $\mathcal{E}_S(A)$;
-6. a leakage or residue diagnostic;
-7. a benchmark recovery or failure mode.
+2. a concrete emitted ledger $\mathcal{L}_A\in\mathfrak{L}_A$;
+3. an idempotent sector projection $\Pi_S$;
+4. a quotient $Q_S:\mathfrak{V}_S\to\mathfrak{V}_S/\!\sim_S$ with declared equivalences;
+5. a visible response $\mathcal{E}_S(A)=Q_S[\Pi_S\mathcal{L}_A]$;
+6. a leakage or residue diagnostic $\lambda_S(A)\le\epsilon_{S,\mathrm{leak}}$ or an explicit failure;
+7. a benchmark-recovery map that factors through the quotient or a declared incompatible-quotient failure.
 
 ## Failure Modes
 
-- A sector treats hidden internal motion, canceled pro/anti content, or gauge-redundant variables as directly visible.
-- $\zeta(A)$ is fitted from a mass benchmark before the branch ledger and projection are derived.
-- Weak chirality, CKM/PMNS overlap, or weak-corridor provenance require incompatible exposure domains.
-- Photon polarization or helicity requires a longitudinal free mode or a projector not derived from planar-pair visibility.
-- Color exceptionality or confinement-facing geometry is promoted as observer-visible without stating the quotient that hides or exposes it.
-- Anisotropic leakage, gauge-breaking residue, or preferred-frame exposure is present but omitted.
+| Failure code | Mathematical criterion | Consequence |
+| --- | --- | --- |
+| `quotient-incompatible` | There exist $v_1,v_2\in\mathfrak{V}_S$ with $Q_S(v_1)=Q_S(v_2)$ but $d_{\mathfrak{B}_S}(\mathcal{B}_S(v_1),\mathcal{B}_S(v_2))>\epsilon_{S,Q}$. | The quotient has hidden a sector-visible distinction, so $\mathcal{E}_S(A)$ is not well defined for the benchmark. |
+| `hidden-longitudinal-residue` | For a vector or photon-facing sector with declared propagation axis, $\|P_{\parallel}\Pi_S\mathcal{L}_A\|_S>\epsilon_{S,\parallel}$. | A longitudinal or mixed-axis component remains; photon transverse support or vector-channel visibility cannot be promoted as stated. |
+| `gauge-breaking-leakage` | $\sup_{g\in G_S}d_{\mathfrak{V}_S/\!\sim_S}(Q_S\Pi_S(g\cdot\mathcal{L}_A),Q_S\Pi_S\mathcal{L}_A)>\epsilon_{S,\mathrm{gauge}}$. | The exposed response depends on gauge, relabeling, or frame choices that should have been unobservable. |
+| `anisotropic-exposure` | $\|(1-\Pi_0)\mathcal{L}\|/\|\mathcal{L}_{\text{naive}}\|>\epsilon_{\text{aniso}}$ in the scalar shielding case. | $\zeta(A_0)$ is not a scalar isotropic response; the packet must report anisotropic/tensor exposure or fail the scalar gate. |
+| `benchmark-fitted-exposure` | The construction of $\mathcal{L}_A$, $\Pi_S$, or $Q_S$ uses the target observer benchmark before the branch ledger and projection are derived. | The response is a fit, not a sector exposure theorem instance. |
+| `split-exposure-domain` | Weak chirality, CKM/PMNS overlap, weak-corridor provenance, color exceptionality, photon support, or mass-facing response requires a separate projection/quotient grammar for the same declared sector. | The sector has not consumed the shared exposure theorem; promotion must remain local to the failing packet. |
 
 ## Related Priorities
 

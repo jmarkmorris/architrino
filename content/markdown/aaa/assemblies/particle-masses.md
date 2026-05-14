@@ -84,6 +84,8 @@ A critical requirement: assemblies in **equilibrium** with the Noether Sea (e.g.
 - The relevant diagnostic is not a phenomenological friction coefficient but a stability test: nearby phase errors should decay under the return map or Floquet analysis of the closed assembly cycle.
 - The medium can still shape inertia, but a stable bound state must not leak energy through a dissipative drag channel.
 
+The condensed-matter cross-check is the Noether-Sea transport residual in [Condensed Matter](../nuclear-atomic/condensed-matter.md). Stable inertial response belongs to $\mathcal{R}_{\text{tr}} < \mathcal{R}_{\text{tr},*}$, where the response is reversible retuning rather than ordinary drag. Crossing $\mathcal{R}_{\text{tr},*}$ is a transition or failure condition that must route into excitation, radiation-like transport, medium heating, action shedding, or branch transition; it is not the origin of mass itself.
+
 ### Ontological Distinctions
 It is crucial to clarify what is **fundamental** versus what is **emergent**:
 

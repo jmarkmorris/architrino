@@ -15,7 +15,7 @@ This page is the entry hub for the quantum branch of $\mathbb{A}\mathbb{A}\mathb
 
 ### Correlation and No-Go Interfaces
 
-- [entanglement-nonlocality.md](../../../../markdown/aaa/theory-bridges/entanglement-nonlocality.md): shared-creation and joint-configuration account of nonlocal correlations.
+- [entanglement-nonlocality.md](../../../../markdown/aaa/theory-bridges/entanglement-nonlocality.md): pair-provenance account of nonlocal correlations, with Bell-level operational equivalence kept as a closure gate and black-hole connected geometry treated as a special horizon-interface case.
 - [bell-theorem.md](../../../../markdown/aaa/theory-bridges/bell-theorem.md): Bell constraints and the causal-delay interpretation within the theory.
 - [reality-quantum-causality.md](../../../../markdown/aaa/quantum/reality-quantum-causality.md): wider ontology and determinism framing for the quantum branch.
 

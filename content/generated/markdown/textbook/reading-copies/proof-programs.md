@@ -14013,6 +14013,27 @@ The finite self-map ledger has four rows. The first, second, and fourth rows pro
    r_{\mathrm{cert}}
    $$
    and produces the closed convex tame certificate.
+   The row begins with a candidate
+   $$
+   \phi_{\mathrm{cyc}},
+   $$
+   a common mesh, and a null-coordinate causal pre-ledger. For each ordered receiver-source block
+   $$
+   (I_\alpha,I_\beta),
+   $$
+   the pre-ledger must classify the row as empty, simple-root, or fold-layer using
+   $$
+   u=c_f t-x,
+   \qquad
+   w=c_f t+x.
+   $$
+   Empty rows require strict range separation; simple-root rows require a positive source-side derivative floor; fold-layer rows remain outside branch-sum reduction until the dual-mollified fold certificate supplies the parity-preserving transition
+   $$
+   \Delta N\in 2\mathbb{Z},
+   \qquad
+   \Delta D=0.
+   $$
+   Any unresolved row blocks the seed chart before corridor, monodromy, or returned-sample work begins.
 2. **Coupled-corridor row.**
    Verify
    $$
@@ -20845,6 +20866,111 @@ D_{\alpha\beta}
 $$
 with the sum taken over certified root branches on that interval pair. On a simple-root chart with a positive Jacobian floor, this degree equals the unsigned root count. Near separators it is the invariant that survives the fold.
 
+##### Separator fold rows and the excluded diagonal
+
+The first local repair to the affine self-image table is to keep the diagonal exclusion and the fold layer in the same calculation. Let
+$$
+y\in\{u,w\}
+$$
+be the active null coordinate near a separator source time
+$$
+s_\Sigma,
+$$
+and assume a nondegenerate local maximum
+$$
+y'(s_\Sigma)=0,
+\qquad
+y''(s_\Sigma)=-\alpha,
+\qquad
+\alpha>0.
+$$
+For a receiver level
+$$
+y(t)=y(s_\Sigma)-\lambda,
+\qquad
+\lambda>0,
+$$
+the source-side fold equation has the normal form
+$$
+y(s)-y(t)
+=
+\lambda-\frac{\alpha}{2}(s-s_\Sigma)^2
++O(|s-s_\Sigma|^3).
+$$
+Hence the two local source branches are
+$$
+s_\pm(t)
+=
+s_\Sigma\pm\sqrt{\frac{2\lambda}{\alpha}}
++O(\lambda).
+$$
+Their null-coordinate Jacobians are
+$$
+J_y(s_\pm)
+=
+\frac{y'(s_\pm)}{c_f}
+=
+\mp\frac{\sqrt{2\alpha\lambda}}{c_f}
++O(\lambda),
+$$
+so the two branches carry opposite signed degree and the fold preserves
+$$
+\Delta D=0.
+$$
+The memory-depth tests are
+$$
+0<t-s_\Sigma+\sqrt{\frac{2\lambda}{\alpha}}+O(\lambda)\le h
+$$
+for
+$$
+s_-,
+$$
+and
+$$
+0<t-s_\Sigma-\sqrt{\frac{2\lambda}{\alpha}}+O(\lambda)\le h
+$$
+for
+$$
+s_+.
+$$
+When the receiver is still on the same outgoing source arc, the
+$$
+s_+
+$$
+branch may coincide with the excluded diagonal
+$$
+s=t
+$$
+to leading order. That branch is not an accepted simple-root contribution, but it is still part of the separator fold layer. It becomes a nontrivial branch only after the receiver leaves the outgoing source arc and the memory-depth inequality becomes strict.
+
+Applied to the simplified doubled four-arc affine check, this repairs the apparent odd branch birth at the first and third separators. At
+$$
+\Sigma_1,
+$$
+the active fold is the
+$$
+w
+$$
+ledger. The pre-fold branch has positive degree and matches the nontrivial
+$$
+w
+$$
+roots that continue through the adjacent source copies; the post-fold branch has negative degree and is initially diagonal-carried before becoming the second nontrivial
+$$
+w
+$$
+root on the later receiver block. At
+$$
+\Sigma_3,
+$$
+the same calculation holds in the
+$$
+u
+$$
+ledger. Thus a one-root affine row immediately after a separator is not by itself a parity violation. It is a separator fold row whose missing opposite-degree partner is carried by the excluded diagonal until it emerges into a later ordered block.
+
+This calculation gives a concrete obstruction to using a piecewise-affine table as a complete certificate: the affine row can identify the visible simple-root branch, but it cannot certify the separator unless the fold-layer chart records the hidden diagonal-carried partner, its opposite Jacobian sign, and its memory-depth exit into a nontrivial source interval.
+
 The enumeration deliverable is the following table, filled with exact formulas or interval-validated enclosures:
 
 | Receiver arc $I_\alpha$ | Source arc $I_\beta$ | Root count $N$ | Signed degree $D$ | Root formula or enclosure | $\hat r_s$ | $J_s$ floor | Contribution sign | Separator jumps | Certificate status |
@@ -21123,6 +21249,50 @@ $$
 the factorized corridor coefficients,
 and the returned-sample residuals or boundary budgets.
 
+#### Seed-chart pre-ledger acceptance rule
+
+The first machine-checkable gate is the null-coordinate pre-ledger, not the returned residual. For every ordered receiver-source block
+$$
+(I_\alpha,I_\beta),
+$$
+define the range gaps
+$$
+\Delta^u_{\alpha\beta}
+=
+\operatorname{dist}\!\big(u(I_\alpha),u(I_\beta)\big),
+\qquad
+\Delta^w_{\alpha\beta}
+=
+\operatorname{dist}\!\big(w(I_\alpha),w(I_\beta)\big).
+$$
+The row is empty when the relevant gap is strictly positive. It is a simple-root row only when the corresponding source-side derivative floor is positive:
+$$
+\inf_{s\in I_\beta}
+\left|1-\frac{\dot x(s)}{c_f}\right|>0
+\qquad
+\text{for the }u\text{ ledger},
+$$
+or
+$$
+\inf_{s\in I_\beta}
+\left|1+\frac{\dot x(s)}{c_f}\right|>0
+\qquad
+\text{for the }w\text{ ledger}.
+$$
+Rows that satisfy neither test must be split or routed to a fold-layer certificate. A candidate
+$$
+\phi_{\mathrm{cyc}}
+$$
+does not advance to branch-chart certification while any ordered block remains unresolved.
+
+At a separator row, a single visible simple root adjacent to the fold is not enough to pass the pre-ledger. The fold-layer certificate must also account for any opposite-degree branch that is temporarily carried by the excluded diagonal
+$$
+s=t
+$$
+and prove either its continued diagonal exclusion or its later strict memory-depth entry as a nontrivial source branch.
+
+This rule makes the pre-ledger a genuine falsification gate. A failed row rejects the candidate history, the chosen split, or the itinerary before corridor arithmetic, monodromy, or returned-sample preservation is attempted. A passed pre-ledger still does not prove the breather; it only permits construction of the active branch chart with inactive complements, Jacobian floors, memory-depth ranges, and contribution signs on the same sampled domain.
+
 ### First Working Guess
 
 Closed-by-quadrature is only one possible certificate generator. A two-parameter family is generally too small unless the cycle symmetry is built into the parametrization: the compressed skeleton has arc-junction conditions, separator impulse conditions, branch-list updates, and a returned-history residual.
@@ -21330,7 +21500,7 @@ $$
 $$
 and certify the finite active branches numerically.
 
-The next concrete task is therefore algebraic and topological: compute the doubled-itinerary self-image structure, test finite branch closure, and refine the parity ledger from the coarse separator count to the actual branch table. The accepted output is the finite audit packet, not an elegant formula.
+The first doubled-itinerary affine check has a sharper conclusion: the apparent odd simple-root births at the first and third separators are separator fold rows with one opposite-degree branch carried by the excluded diagonal, not completed branch-chart rows. The next concrete calculation is therefore to certify the death-side separators with the same fold normal form while tracking the excluded diagonal, then fill the ordered self-image table with strict range gaps, Jacobian floors, memory-depth ranges, and inactive complements. The accepted output is the finite audit packet, not an elegant formula.
 
 ## Planar Bridge Closure
 

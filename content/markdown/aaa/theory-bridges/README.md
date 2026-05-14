@@ -45,5 +45,6 @@ Each mature bridge should include:
 - [Mapping the Planck Scale to the Tri-Binary Geometry](./planck-scale-tri-binary-alignment.md)
 - [Quantum Operator Mapping](./quantum-operator-mapping.md)
 - [Special Relativity and Deformable Noether Cores](./special-relativity-noether-core.md)
+- [Spacetime Models and the Noether Sea](./spacetime-models-and-noether-sea.md)
 - [Superposition Mechanism](./superposition-mechanism.md)
 - [Weak Mixing and CKM](./weak-mixing-ckm.md)

@@ -1589,6 +1589,11 @@
       "id": "archie__textbook_pdf_snapshots",
       "name": "Textbook Markdown to PDF",
       "path": "content/scenes/archie/textbook_pdf_snapshots.json"
+    },
+    {
+      "id": "theory_bridges__spacetime_models_and_noether_sea",
+      "name": "Spacetime Models and the Noether Sea",
+      "path": "content/scenes/theory-bridges/spacetime_models_and_noether_sea.json"
     }
   ]
 }

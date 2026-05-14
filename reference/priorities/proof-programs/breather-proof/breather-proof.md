@@ -150,10 +150,143 @@ w=c_f t+x.
 $$
 Failure at this gate is useful. It rejects the candidate itinerary before the proof program spends effort on quadrature residuals, corridor arithmetic, monodromy, or returned-sample preservation.
 
+The candidate-cycle packet is accepted as data only when it is finite. It must specify
+$$
+\Pi_{\mathrm{cyc}}
+=
+\left(
+T_{\mathrm{cyc}},
+\mathcal{K},
+\mathcal{S},
+\mathcal{P},
+\mathcal{B}_{\mathrm{rep}},
+\Theta,
+\mathcal{T}_{\mathrm{tol}},
+\mathcal{R}_{\mathrm{target}}
+\right),
+$$
+where
+$$
+T_{\mathrm{cyc}}>0
+$$
+is the period,
+$$
+\mathcal{K}
+$$
+is the ordered itinerary,
+$$
+\mathcal{S}
+$$
+is the section and symmetry normalization,
+$$
+\mathcal{P}=(c_f,\eta,\epsilon_c,g,h)
+$$
+is the parameter tuple,
+$$
+\mathcal{B}_{\mathrm{rep}}
+$$
+is the finite interpolation, collocation, quadrature, or fold-adapted basis representation,
+$$
+\Theta=\{\theta_j\}_{j=0}^{N}
+$$
+is the mesh, and
+$$
+\mathcal{T}_{\mathrm{tol}},
+\qquad
+\mathcal{R}_{\mathrm{target}}
+$$
+record the sample tolerances and residual targets. The representation must give interval evaluation rules for
+$$
+x,
+\qquad
+\dot x,
+\qquad
+\ddot x
+$$
+where classical differentiation is used, and must replace branch-sum residuals by dual-mollified fold integrals on separator layers.
+
+The pre-ledger theorem target is now the following finite acceptance test. For each receiver-source subblock
+$$
+B=(I_\alpha^r,I_\beta^s)
+$$
+and each null coordinate
+$$
+y\in\{u,w\},
+$$
+write
+$$
+Y_{\alpha}^{y}=y(I_\alpha^r),
+\qquad
+Y_{\beta}^{y}=y(I_\beta^s),
+\qquad
+\Delta^y_B=\operatorname{dist}\!\big(Y_{\alpha}^{y},Y_{\beta}^{y}\big),
+$$
+and
+$$
+\mu_{\beta}^{y}
+=
+\inf_{s\in I_\beta^s}\frac{|y'(s)|}{c_f}.
+$$
+An ordered subblock is certified empty when
+$$
+\Delta^y_B>0.
+$$
+It is certified simple-root only when the source monotonicity floor, source-range coverage, nontrivial memory-depth gap, inactive-root gap, line-of-action sign separation, and Jacobian floor are all strict:
+$$
+\mu_{\beta}^{y}>0,
+\qquad
+\operatorname{dist}\!\big(Y_{\alpha}^{y},\partial Y_{\beta}^{y}\big)>0,
+$$
+$$
+0<t-s_B^y(t)<h,
+\qquad
+\chi_y\bigl(x(t)-x(s_B^y(t))\bigr)>0,
+\qquad
+|J_y|\ge\nu_B>0,
+$$
+with
+$$
+s_B^y(t)=(y|_{I_\beta^s})^{-1}(y(t)),
+\qquad
+\chi_u=+1,
+\qquad
+\chi_w=-1.
+$$
+It is a fold-layer block only when the separator layer records a curvature floor, exit Jacobian floor, finite dual-mollified impulse ceiling, and parity preservation:
+$$
+|y''|\ge\alpha_\Sigma>0,
+\qquad
+\nu_{\mathrm{exit},\Sigma}>0,
+\qquad
+I^{\mathrm{fold}}_{\eta,\epsilon_c,\Sigma}<\infty,
+$$
+$$
+\Delta N_\Sigma\in2\mathbb{Z},
+\qquad
+\Delta D_\Sigma=0.
+$$
+
+The proof route is a reduction before root certification. Empty rows become inactive complements with range gaps; simple-root rows become named inverse branches
+$$
+s_B^y(t)
+$$
+with stored Jacobian and memory-depth floors; fold-layer rows are withheld from branch-sum formulas and routed to the certified fold-event atlas. Thus `branch_chart.json` refines only rows already authorized by `causal_ledger.json` instead of searching every ordered arc pair from scratch.
+
+The pre-ledger has immediate falsifiers. If a required active block has
+$$
+\Delta^u_B>0
+\qquad
+\text{and}
+\qquad
+\Delta^w_B>0,
+$$
+the candidate itinerary has no self-image root on that block and fails. If an inactive block satisfies the simple-root inequalities with strict memory-depth and sign separation, the candidate has an unlisted active root and fails. If a separator has zero curvature floor, zero exit floor, infinite fold ceiling, odd root-count jump, or nonzero signed-degree jump, the candidate fails before branch-chart certification.
+
 The executable seed-chart contract is now isolated in [seed_chart_packet.md](certificate/seed_chart_packet.md). That packet is not a proof artifact by itself; it fixes the artifact schemas, range-gap tests, simple-root floors, branch-chart rows, and pass/fail routing for the next certificate attempt. Treat it as the control surface for producing
 `certificate/phi_cyc.json`,
 `certificate/mesh.json`,
 `certificate/causal_ledger.json`,
+`certificate/causal_preledger_interval_report.md`,
 `certificate/branch_chart.json`,
 and `certificate/seed_chart_interval_report.md`.
 
@@ -204,15 +337,15 @@ The finite audit rows are:
      $$
      T_{\mathrm{cyc}},
      $$
-     normalization, symmetry chart, and interpolation or basis data, with fold-adapted fractional basis data recorded near field-speed separators when that basis is used.
+     normalization, symmetry chart, finite representation, interval evaluation enclosures, residual targets, and interpolation or basis data, with fold-adapted fractional basis data recorded near field-speed separators when that basis is used.
    - `certificate/mesh.json`: sampled certificate mesh
      $$
      \{\theta_j\}_{j=0}^{N}
      $$
-     with sample tolerances.
-   - `certificate/causal_ledger.json`: null-coordinate pre-ledger for the self-image equation, with certified empty blocks, candidate nonempty blocks, monotone subarc splits, and separator/fold rows.
-   - `certificate/causal_preledger_interval_report.md`: interval proof of the `Null-Coordinate Causal Pre-Ledger` target, or the exact failing block if the candidate/itinerary is rejected.
-   - `certificate/branch_chart.json`: active branch list, inactive complements, signed sheet labels, origin-crossing layer labels, memory-depth ranges, and Jacobian formulas.
+     with subblock partition, separator refinement, endpoint policy, and sample tolerances.
+   - `certificate/causal_ledger.json`: null-coordinate pre-ledger for the self-image equation, with certified empty blocks, simple-root blocks, fold-layer rows, monotone subarc splits, inactive-root gaps, and row-level failure codes.
+   - `certificate/causal_preledger_interval_report.md`: interval proof of the `Null-Coordinate Causal Pre-Ledger` target, listing strict range gaps, monotonicity floors, source-coverage gaps, memory-depth gaps, sign-separation floors, inactive-root gaps, fold-layer bounds, or the exact failing block if the candidate/itinerary is rejected.
+   - `certificate/branch_chart.json`: active branch list keyed back to pre-ledger row identifiers, inactive complements, signed sheet labels, origin-crossing layer labels, memory-depth ranges, fold-transition labels, and Jacobian formulas.
    - `certificate/seed_chart_interval_report.md`: interval proof of
      $$
      \nu_{\mathrm{seed}}>0,

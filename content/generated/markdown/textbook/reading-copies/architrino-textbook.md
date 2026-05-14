@@ -3403,7 +3403,7 @@ This would be an “analytic scaffold + numerical check” situation, not full c
 
 ---
 
-###### Symmetric delayed logarithmic spiral (advanced non-circular benchmark)
+###### Symmetric delayed spiral (advanced non-circular benchmark)
 
 The circular obstruction makes a non-circular benchmark worthwhile. A workable first ansatz is the symmetric logarithmic spiral
 $$
@@ -3417,11 +3417,35 @@ t(\theta)=\frac{\theta}{\Omega},
 $$
 with fixed pitch $a>0$ and constant angular rate $\Omega>0$.
 
+The variable-pitch extension replaces the constant pitch by
+$$
+p(\theta)\equiv-\frac{r'(\theta)}{r(\theta)}.
+$$
+At a source angle $\theta_0=\theta-\Delta$, write
+$$
+p_0\equiv p(\theta-\Delta),
+\qquad
+\omega_0\equiv \dot\theta(\theta-\Delta),
+\qquad
+\rho\equiv \frac{r(\theta-\Delta)}{r(\theta)}.
+$$
+The logarithmic benchmark is the special case $p(\theta)=a$, $\omega_0=\Omega$, and $\rho=e^{a\Delta}$. This extension is useful because a true minimum-radius event requires
+$$
+\dot r=0,
+\qquad
+\ddot r\ge 0,
+$$
+which in the pitch variable means
+$$
+p(\theta_\ast)=0,
+\qquad
+p'(\theta_\ast)\le 0
+$$
+when $\dot\theta(\theta_\ast)\ne0$.
+
 For a receiver event at angle $\theta$ and a partner emission at $\theta_0=\theta-\Delta$ with $\Delta>0$, define
 $$
-\rho\equiv e^{a\Delta},
-\qquad
-\Lambda(\Delta;a)\equiv \sqrt{1+\rho^2+2\rho\cos\Delta}.
+\Lambda_p(\theta,\Delta)\equiv \sqrt{1+\rho^2+2\rho\cos\Delta}.
 $$
 Then
 $$
@@ -3429,90 +3453,164 @@ $$
 =
 r(\theta)\Big[(1+\rho\cos\Delta)\mathbf{e}_r(\theta)-\rho\sin\Delta\,\mathbf{e}_\theta(\theta)\Big],
 $$
-so the exact delayed-hit condition becomes
+so the exact delayed-hit condition is
 $$
-r(\theta)\,\Lambda(\Delta;a)=c_f\,\frac{\Delta}{\Omega}.
+r(\theta)\,\Lambda_p(\theta,\Delta)=c_f\,(t(\theta)-t(\theta-\Delta)).
 $$
-Equivalently, with the local circular-speed ratio
+For constant angular rate this reduces to
 $$
+\Lambda_p(\theta,\Delta)=\frac{\Delta}{b(\theta)},
+\qquad
 b(\theta)\equiv \frac{\Omega r(\theta)}{c_f},
 $$
-the admissible delay angles solve
-$$
-\Lambda(\Delta;a)=\frac{\Delta}{b(\theta)}.
-$$
-This is the non-circular analogue of the circular partner equation $\cos\xi=\xi/\beta$.
+which is the non-circular analogue of the circular partner equation $\cos\xi=\xi/\beta$.
 
-The spiral Frenet frame is
+The receiver Frenet frame for the variable-pitch spiral is
 $$
 \hat{\mathbf{T}}
 =
-\frac{-a\,\mathbf{e}_r(\theta)+\mathbf{e}_\theta(\theta)}{\sqrt{1+a^2}},
+\frac{-p\,\mathbf{e}_r(\theta)+\mathbf{e}_\theta(\theta)}{\sqrt{1+p^2}},
 \qquad
 \hat{\mathbf{N}}
 =
-\frac{-\mathbf{e}_r(\theta)-a\,\mathbf{e}_\theta(\theta)}{\sqrt{1+a^2}},
+\frac{-\mathbf{e}_r(\theta)-p\,\mathbf{e}_\theta(\theta)}{\sqrt{1+p^2}},
 $$
-with speed
-$$
-\|\dot{\mathbf{x}}_1\|=\Omega r(\theta)\sqrt{1+a^2}.
-$$
+where $p=p(\theta)$ and $\hat{\mathbf{N}}$ points inward in the circular limit.
 Using the branch unit vector
 $$
 \hat{\mathbf{r}}_{12}
 =
 \frac{(1+\rho\cos\Delta)\mathbf{e}_r(\theta)-\rho\sin\Delta\,\mathbf{e}_\theta(\theta)}
-{\Lambda(\Delta;a)},
+{\Lambda_p},
 $$
-the source-velocity projection entering the Jacobian is
+the partner source-velocity projection entering the Jacobian is
 $$
-\mathbf{v}_2(\theta_0)\cdot\hat{\mathbf{r}}_{12}
+\mathbf{v}_2(\theta-\Delta)\cdot\hat{\mathbf{r}}_{12}
 =
-\frac{\Omega r(\theta)\rho}{\Lambda(\Delta;a)}
-\Big[\sin\Delta-a(\cos\Delta+\rho)\Big].
+\frac{r(\theta)\rho\,\omega_0}{\Lambda_p}
+\Big[p_0(\cos\Delta+\rho)-\sin\Delta\Big].
 $$
 Hence
 $$
 J_{12}
 =
-1-\frac{\Omega r(\theta)\rho}{c_f\,\Lambda(\Delta;a)}
-\Big[\sin\Delta-a(\cos\Delta+\rho)\Big].
+1+
+\frac{r(\theta)\rho\,\omega_0}{c_f\,\Lambda_p}
+\Big[\sin\Delta-p_0(\cos\Delta+\rho)\Big].
 $$
+The sign is fixed by the circular limit: when $p_0=0$ and $\rho=1$, this gives $J_{12}=1+\beta\sin(\Delta/2)$.
 
 For opposite polarities, the branch acceleration is
 $$
 \mathbf{a}_{12}
 =
--\frac{\kappa |q_1q_2|}{r(\theta)^2\Lambda^2 |J_{12}|}\,
+\frac{-\kappa |q_1q_2|}{r(\theta)^2\Lambda_p^2 |J_{12}|}\,
 \hat{\mathbf{r}}_{12}.
 $$
-Projecting onto the spiral Frenet frame gives
+Projecting onto the variable-pitch Frenet frame gives
 $$
-a_T
+a_T^{p}
 =
-\frac{\kappa |q_1q_2|}{r(\theta)^2\Lambda^3 |J_{12}|\,\sqrt{1+a^2}}
-\Big[a(1+\rho\cos\Delta)+\rho\sin\Delta\Big],
+\frac{\kappa |q_1q_2|}{r(\theta)^2\Lambda_p^3 |J_{12}|\,\sqrt{1+p^2}}
+\Big[p(1+\rho\cos\Delta)+\rho\sin\Delta\Big],
 $$
 $$
-a_N
+a_N^{p}
 =
-\frac{\kappa |q_1q_2|}{r(\theta)^2\Lambda^3 |J_{12}|\,\sqrt{1+a^2}}
-\Big[1+\rho\cos\Delta-a\rho\sin\Delta\Big].
+\frac{\kappa |q_1q_2|}{r(\theta)^2\Lambda_p^3 |J_{12}|\,\sqrt{1+p^2}}
+\Big[1+\rho\cos\Delta-p\rho\sin\Delta\Big].
+$$
+The partner tangential numerator is therefore
+$$
+S_T^{p}(\theta,\Delta)
+\equiv
+p(1+\rho\cos\Delta)+\rho\sin\Delta.
 $$
 
-The power sign is controlled by $a_T$, since the velocity is tangent to the spiral. In the circular limit $a\to0$, one recovers the sign-definite numerator $\rho\sin\Delta>0$ and therefore the circular instability result above. For $a>0$, however, the tangential numerator
+The missing self-branch analogue uses
 $$
-S_T(\Delta,a)\equiv a(1+\rho\cos\Delta)+\rho\sin\Delta
+\Lambda_s(\theta,\Delta)\equiv \sqrt{1+\rho^2-2\rho\cos\Delta},
 $$
-is no longer sign-definite from geometry alone. The spiral benchmark therefore reopens the braking question: admissible delayed roots could, in principle, yield $S_T<0$ on some branches even though the circular ansatz cannot.
+$$
+\hat{\mathbf{r}}_{11}
+=
+\frac{(1-\rho\cos\Delta)\mathbf{e}_r(\theta)+\rho\sin\Delta\,\mathbf{e}_\theta(\theta)}
+{\Lambda_s}.
+$$
+The self-hit delay equation is
+$$
+r(\theta)\,\Lambda_s(\theta,\Delta)=c_f\,(t(\theta)-t(\theta-\Delta)),
+$$
+and the self-branch Jacobian is
+$$
+J_{11}
+=
+1-
+\frac{r(\theta)\rho\,\omega_0}{c_f\,\Lambda_s}
+\Big[\sin\Delta+p_0(\rho-\cos\Delta)\Big].
+$$
+Again the circular limit agrees with the uniform circular self-hit formula, $J_{11}=1-\beta\cos(\Delta/2)$.
 
-At the same time, the fixed-pitch logarithmic spiral cannot itself realize a true turning point, because
+For self-hit, $\sigma_{11}=+1$, so
 $$
-\dot r=-a\Omega r<0,
-\qquad
-\ddot r=a^2\Omega^2 r>0
+\mathbf{a}_{11}
+=
+\frac{\kappa q_1^2}{r(\theta)^2\Lambda_s^2 |J_{11}|}\,
+\hat{\mathbf{r}}_{11}.
 $$
-for all finite $\theta$. A genuine minimum-radius event with $\dot r=0$ therefore requires at least a variable-pitch spiral $a=a(\theta)$ or another non-circular periodic ansatz. The present calculation advances the spiral track by giving the exact delayed-root equation and branchwise Frenet projections, but it does not yet solve the turning-point problem.
+The self-branch tangential projection is
+$$
+a_T^{s}
+=
+\frac{\kappa q_1^2}{r(\theta)^2\Lambda_s^3 |J_{11}|\,\sqrt{1+p^2}}
+\Big[-p(1-\rho\cos\Delta)+\rho\sin\Delta\Big],
+$$
+so
+$$
+S_T^{s}(\theta,\Delta)
+\equiv
+-p(1-\rho\cos\Delta)+\rho\sin\Delta.
+$$
+
+The circular obstruction is now converted into a branch-chart test. A non-circular spiral can beat the isolated circular tangential obstruction only if the certified active roots satisfy a negative weighted tangential sum on enough of the controlled cycle:
+$$
+\sum_{\mathrm{part}}
+\frac{|q_1q_2|\,S_T^p}{\Lambda_p^3 |J_{12}|}
++
+\sum_{\mathrm{self}}
+\frac{q_1^2\,S_T^s}{\Lambda_s^3 |J_{11}|}
+<0
+$$
+after the common positive factors are removed. Algebraic sign allowance is not enough; the delayed-root equations must actually admit those roots with positive Jacobian floors and finite memory depth.
+
+At a minimum-radius event $\theta_\ast$, the pitch condition gives $p(\theta_\ast)=0$. Therefore both tangential numerators reduce locally to
+$$
+S_T^p(\theta_\ast,\Delta)=S_T^s(\theta_\ast,\Delta)=\rho\sin\Delta.
+$$
+Principal roots with $0<\Delta<\pi$ still carry the same positive tangential sign as the circular benchmark. The only bare-kernel escape routes are therefore:
+
+1. admissible older or wrapped roots with $\sin\Delta<0$ and enough Jacobian weight;
+2. off-turn variable-pitch intervals where the $p$-terms dominate the positive principal branches;
+3. additional medium, tri-binary, or multi-body structure outside the isolated two-body spiral ansatz.
+
+The radial turn condition is equally explicit. Since
+$$
+\ddot r=a_r+r\dot\theta^2
+$$
+at a point with $\dot r=0$, a minimum-radius turn requires
+$$
+r_\ast\dot\theta_\ast^2
+-
+\sum_{\mathrm{part}}
+\frac{\kappa |q_1q_2|\,(1+\rho_p\cos\Delta_p)}
+{r_\ast^2\Lambda_{p}^3 |J_{12,p}|}
++
+\sum_{\mathrm{self}}
+\frac{\kappa q_1^2\,(1-\rho_s\cos\Delta_s)}
+{r_\ast^2\Lambda_{s}^3 |J_{11,s}|}
+>0.
+$$
+This is a theorem target, not a closure proof. It supplies the concrete falsification gate: enumerate the admissible partner and self roots on a variable-pitch candidate, certify their Jacobian floors, and test both the radial turn inequality and the weighted tangential sum. If all admissible roots keep the weighted tangential sum nonnegative on every candidate turn corridor, the bare isolated spiral does not beat the circular obstruction.
 
 ---
 
@@ -5986,6 +6084,8 @@ $$
 \|\mathbf{x}_j(t_{p,k})-\mathbf{x}_i(t)\|=c_f\,(t-t_{p,k}), \quad
 \|\mathbf{x}_i(t_{s,m})-\mathbf{x}_i(t)\|=c_f\,(t-t_{s,m}),
 $$
+The second constraint is the native small-scale bridge-like causal structure in this sketch: the receiver at $\mathbf{x}_i(t)$ is linked to an earlier point on the same worldline by its own causal wake. The connectedness is path-history closure in the causal-root ledger, not a tunnel in the Euclidean void. Any connected-geometry translation belongs only after coarse-graining into an effective horizon-interface or metric description.
+
 and $s=|\mathbf{v}|/c_f$. For symmetric, non-translating circular geometry, the delay angles satisfy
 $$
 \delta_p=2s\cos(\delta_p/2), \qquad \delta_s=2s\sin(\delta_s/2),
@@ -10147,6 +10247,38 @@ At this interface:
 
 This is why the project treats holographic language as suggestive but not primitive. The horizon behaves like an information-compression interface because the constitutive degrees of freedom have been forced into a constrained alignment state. That motivates the analogy to holography and AdS/CFT without requiring a literal boundary-field ontology.
 
+Modern holographic entropy work, including Ryu-Takayanagi, island, and replica-wormhole calculations, should be treated in this chapter as a comparison framework rather than as imported ontology. Its value is that it sharpens a high-value consistency target: a mature horizon-interface model should explain how compressed interface bookkeeping can remain compatible with Page-curve recovery and smooth effective horizons. It does not, by itself, supply the $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism. The native task is still to derive entropy and information accounting from terminal tri-binary alignment, path-history bookkeeping, Noether-Sea storage, and release-channel selection.
+
+A useful way to state that native task is through a horizon-interface label ensemble. Let $\Lambda_{\text{NC}}$ denote the reduced Noether-core closure label from [Nested Binaries and the Noether Core](../../../../markdown/aaa/spacetime/noether-core.md). For an effective exterior black-hole label $(M,\mathbf{J},Q)$, define the schematic ensemble
+$$
+\mathcal{B}_{H}(M,\mathbf{J},Q)
+=
+\left\{
+\{\Lambda_{\text{NC},i}\}_{i=1}^{N}
+:
+\sum_i E_i = M c_{\text{eff}}^2,\quad
+\sum_i \mathbf{J}_i = \mathbf{J},\quad
+\sum_i q_i = Q,\quad
+v_M=c_f,\quad
+v_O\to c_f,\quad
+\text{horizon-interface compatibility}
+\right\}.
+$$
+
+In plain language, $\mathcal{B}_{H}$ is the set of strong-field Noether-core ledger arrangements that look identical to exterior probes once the probe can resolve only effective mass, angular momentum, charge, and allowed interface channels. This gives a precise no-hair reading: exterior no-hair is a coarse-graining over many compatible closure labels, not evidence that the interior has no microstate.
+
+The corresponding thermodynamic closure target is
+$$
+S_H
+=
+k_B\log\left|\mathcal{B}_{H}(M,\mathbf{J},Q)\right|,
+\qquad
+S_H
+\stackrel{\text{target}}{\sim}
+\frac{k_B A_H}{4A_{\text{align}}},
+$$
+where $A_H$ is the observer-level horizon area and $A_{\text{align}}$ is the alignment-area scale from the Planck-alignment program, with the numerical and $2\pi$ conventions fixed by that derivation rather than by definition here. Page-curve recovery then becomes a release-channel theorem: outward channels must preserve enough phase, axial-pattern, and path-history information from $\mathcal{B}_{H}$ to make evaporation or recycling unitary at the effective quantum level, while still appearing thermal to coarse exterior measurements.
+
 As a heuristic geometric picture, the horizon can also be described as a **dimensional pinch** in the tri-binary shape trajectory. On this reading, ordinary 3D assemblies are flattened toward a near-planar disk at the alignment interface, while the interior self-hit regime permits re-opening of the suppressed axial degree of freedom. In shorthand, the proposed shape path is
 $$
 \text{3D sphere} \to \text{2D horizon disk} \to \text{3D interior reopening}.
@@ -10160,6 +10292,22 @@ A viable black-hole account in $\mathbb{A}\mathbb{A}\mathbb{A}$ must work at two
 For that reason, the framework treats horizon regularity under cosmological embedding as a non-negotiable structural requirement. If a proposed strong-field description becomes pathological precisely when one asks how the local object couples to the surrounding medium, then it is not yet a closed black-hole model. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the regularity requirement is met not by postulating a passive background but by letting the local strong-field geometry and the ambient Noether-Sea state backreact on one another through the same constitutive variables.
 
 This point sharpens the role of the horizon interface. The interface is not just the place where local assembly geometry reaches terminal alignment. It is also the layer through which the compact object remains connected to the surrounding medium without forcing a curvature blowup at the very location where the constitutive transition is most intense. In that sense, horizon regularity is not cosmetic. It is a closure test for whether the black-hole regime can genuinely communicate with cosmology.
+
+The strong-field closure should therefore be posed as a Noether-Sea boundary-condition problem, not as the direct importation of an isolated Schwarzschild or Kerr metric. A schematic horizon-interface condition has the form
+$$
+F_H\!\left[
+\rho_{\text{core}}(\mathbf{x},t),
+\Sigma_{\text{medium}}(\mathbf{x},t),
+\mathbf{u}_{\text{medium}}(\mathbf{x},t),
+\{\Lambda_{\text{NC}}\};
+\partial\Omega
+\right]
+=0,
+\qquad
+v_M=c_f,\quad v_O\to c_f.
+$$
+
+Here $\partial\Omega$ denotes the boundary data supplied by the surrounding Noether Sea and the effective exterior comparison region. The equation is a closure target, not a completed model: the task is to show that the same medium variables that recover weak-field gravity can also admit a regular terminal-alignment interface under non-isolated embedding conditions. Compact, topologically identified, or otherwise non-asymptotically-flat comparison settings are useful stress tests for this requirement, but they do not add extra dimensions to the substrate ontology.
 
 ##### Interior Dynamics and Recycling
 
@@ -10265,6 +10413,7 @@ The black-hole program in $\mathbb{A}\mathbb{A}\mathbb{A}$ earns credibility onl
 - **Exterior recovery:** outside the alignment regime, the effective geometry must remain consistent with already-tested GR phenomenology, including lensing, timing, orbital dynamics, and gravitational-wave propagation.
 - **Horizon-scale consistency:** horizon imaging and near-horizon emission structure must be reproducible without introducing conflicts with the canonical alignment condition.
 - **Embedding regularity:** the same strong-field description must remain regular when the compact object is treated as embedded in an evolving large-scale medium rather than an artificially isolated background.
+- **Information-theoretic recovery:** after the native horizon-interface dynamics are derived, the entropy accounting must remain compatible with unitarity and Page-curve behavior without treating islands, replica wormholes, or a boundary CFT as $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology.
 - **Population coupling test:** any claimed cosmological black-hole coupling must survive hidden-accretion and merger-systematics analysis and fit consistently with the late-time expansion history.
 - **History accounting:** any black-hole source term must be compatible with plausible compact-object formation and feeding histories; one cannot simply posit a present-day population effect while ignoring the route by which the population was produced.
 - **Release-channel discrimination:** if jets, diffuse outflows, and dark-sector release are all allowed in principle, the framework must eventually state which environments prefer which channels and what observer-level signatures distinguish them.
@@ -10302,6 +10451,21 @@ $$
 v_M=c_f,\qquad v_O\to c_f,
 $$
 with middle/outer binaries becoming coplanar and co-linear with the inner binary at alignment and precession ceasing in that limit.
+
+This condition is a constitutive boundary condition on Noether-Sea state, not an isolated metric ansatz imported from an asymptotically flat solution. In schematic form, the horizon-interface closure problem is
+$$
+F_H\!\left[
+\rho_{\text{core}}(\mathbf{x},t),
+\Sigma_{\text{medium}}(\mathbf{x},t),
+\mathbf{u}_{\text{medium}}(\mathbf{x},t),
+\{\Lambda_{\text{NC}}\};
+\partial\Omega
+\right]
+=0,
+\qquad
+v_M=c_f,\quad v_O\to c_f.
+$$
+The boundary data $\partial\Omega$ record the surrounding Noether-Sea and effective exterior state. A viable singularity replacement must solve the alignment condition with finite boundary data in embedded, non-isolated settings, rather than relying on asymptotic flatness as an implicit support.
 
 ##### Maximal Curvature vs Planck Scale
 
@@ -10705,6 +10869,8 @@ Z_{\mathrm{grav}}[\phi_0] = Z_{\mathrm{CFT}}[\phi_0].
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Within $\mathbb{A}\mathbb{A}\mathbb{A}$, these concepts are treated as high-level clues rather than as final ontology. The project does not start from a fundamental AdS bulk or a literal boundary CFT. Instead, it interprets horizon structure as a constitutive interface between different tri-binary regimes. In that setting, cosmic censorship becomes a statement about access to maximal-curvature regimes, holography becomes a statement about compressed interface encoding, and AdS/CFT becomes a suggestive dual-language analogue rather than the primitive architecture itself.
 
+The same restraint applies to Ryu-Takayanagi, island, and replica-wormhole entropy results. They are strongest here as comparison mathematics showing how Page-curve recovery can be organized in controlled holographic settings. They should not be imported as horizon ontology. The $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping target is narrower: determine which boundary-encoding features survive as effective compression laws after the horizon-interface regime is derived from tri-binary alignment and Noether-Sea dynamics.
+
 | Tri-Binary Region | $f$ | Speed Regime | Black Hole Region | Volume | AdS/CFT Side |
 | :--- | :--: | :---: | :--- | :--- | :--- |
 | Inner (self-hit) | 4 | $v > c_f$ | Inside the black hole | Inflation/deflation | AdS interior (gravity side) |
@@ -10730,6 +10896,7 @@ That yields a disciplined shorthand: Horizon interface for the Planck-aligned in
 **Geometric proof targets:**
 - Derive the horizon-interface regime as a constitutive transition between volumetric and self-hit tri-binary states.
 - Show which elements of boundary encoding survive as effective compression laws without requiring fundamental boundary ontology.
+- Treat black-hole entropy and Page-curve recovery as downstream consistency targets after the native horizon-interface mechanism is specified, not as source derivations for the ontology.
 
 ---
 
@@ -11406,6 +11573,8 @@ A critical requirement: assemblies in **equilibrium** with the Noether Sea (e.g.
 - Stable configurations are phase-locked causal ledgers whose perturbations remain in an attracting basin.
 - The relevant diagnostic is not a phenomenological friction coefficient but a stability test: nearby phase errors should decay under the return map or Floquet analysis of the closed assembly cycle.
 - The medium can still shape inertia, but a stable bound state must not leak energy through a dissipative drag channel.
+
+The condensed-matter cross-check is the Noether-Sea transport residual in [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md). Stable inertial response belongs to $\mathcal{R}_{\text{tr}} < \mathcal{R}_{\text{tr},*}$, where the response is reversible retuning rather than ordinary drag. Crossing $\mathcal{R}_{\text{tr},*}$ is a transition or failure condition that must route into excitation, radiation-like transport, medium heating, action shedding, or branch transition; it is not the origin of mass itself.
 
 ##### Ontological Distinctions
 It is crucial to clarify what is **fundamental** versus what is **emergent**:
@@ -14398,7 +14567,7 @@ Atomic structure sits on three coupled layers:
 
 The Noether Sea enters this picture as ambient substrate contents, not as the fixed spatial container. Binding and spectral calculations should therefore use the canonical local density $\rho_{\text{core}}(\mathbf{x},t)$ and normalized density $n(\mathbf{x},t)=\rho_{\text{core}}(\mathbf{x},t)/\rho_{\text{core},0}$ on the $\mathbb{U}_{\text{now}}$ universe-state grid.
 
-The superfluid analogy remains useful for transport and coherence, but it does not make inertia a dissipative drag threshold. Inertial response must come from medium-dressed causal-ledger skew and shielding; ordinary resistance remains a separate breakdown channel involving excitation, action shedding, or branch transition.
+The Noether-Sea transport picture is useful for separating reversible medium response from dissipative resistance. Inertial response must come from medium-dressed causal-ledger skew and shielding; ordinary resistance remains a separate breakdown channel involving excitation, action shedding, or branch transition.
 
 For the underlying assembly carrier of this medium, see [Noether Core](../../../../markdown/aaa/spacetime/noether-core.md).
 
@@ -15190,23 +15359,69 @@ For spin-sensitive chemistry, the later derivation should recover singlet/triple
 
 ### Condensed Matter
 
-This chapter states the condensed-matter closure target for medium-level behavior in the Noether Sea. Its current focus is the superfluid-medium analogy and the distinction between reversible inertial response, true resistance, and threshold behavior when matter moves through a densely coupled background of cores.
+This chapter states the condensed-matter closure target for medium-level behavior in the Noether Sea. Its current focus is Noether-Sea transport: the distinction between reversible inertial response, true resistance, and threshold behavior when matter moves through a densely coupled background of cores.
 
 This note bridges [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Spacetime Assemblies](../../../../markdown/aaa/spacetime/spacetime-assemblies.md), and [Medium Exclusion Volume](../../../../markdown/aaa/spacetime/medium-exclusion-volume.md), since all four depend on how the background medium stores stress and permits transport.
 
-At present this is a framing note rather than a finished derivation. The opening therefore gives the conceptual target before later detailed closure is attempted.
+At present this is a closure target rather than a finished derivation. The residual and its critical value must still be extracted from stable assembly dynamics, Noether-Sea constitutive response, and the relevant stability diagnostics.
 
-#### Superfluid Noether-Sea Hypothesis
+#### Noether-Sea Transport
 
-1. **Helium Analogy**: If the Noether Sea is composed of Helium-like (2 pro + 2 anti) Noether cores, the medium itself behaves as a superfluid.
-2. **Inertia**: Matter moving through the Noether Sea should not experience ordinary dissipative resistance in the validated weak regime. Its inertial response is instead the medium-dressed retuning of a shielded causal ledger; true resistance begins only when transport excites additional medium modes, sheds action, or crosses a stability threshold.
+The condensed-matter claim is not that ordinary matter feels a continuous dissipative drag from the Noether Sea. In the validated weak regime, a stable assembly should move by reversible retuning: its internal causal ledger and local Noether-Sea coupling deform, store stress, and return that stress without opening a net loss channel.
 
-#### Superfluid Noether Sea
+##### Transport Residual and Critical Surface
 
-* **Analogy:** The Noether Sea (composed of He-like coupled binaries) behaves as a superfluid.
-* **Inertia:** Matter can move without ordinary resistance while still carrying inertial response; the response is encoded in how the assembly's internal lock deforms and retunes relative to the medium. A critical velocity or acceleration marks breakdown into excitation, action shedding, or branch transition, not the origin of mass itself.
+The useful diagnostic is a transport residual:
 
-For the dynamical side of the transport threshold picture, see [Energy](../../../../markdown/aaa/dynamics/energy.md) and [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md).
+$$
+\mathcal{R}_{\text{tr}}
+=
+\mathcal{R}_{\text{tr}}\!\left(
+\mathbf{V}_{\text{cm}},
+\mathbf{a}_{\text{cm}},
+\rho_{\text{core}},
+\chi_{\text{sea}},
+\mathcal{M}_{\text{sea}}^{ab},
+\Delta_{\mathbf{k}}
+\right).
+$$
+
+Here $\mathbf{V}_{\text{cm}}$ and $\mathbf{a}_{\text{cm}}$ record center-of-mass transport, $\rho_{\text{core}}$ and $\chi_{\text{sea}}$ record the local Noether-Sea state, $\mathcal{M}_{\text{sea}}^{ab}$ records the medium-response tensor, and $\Delta_{\mathbf{k}}$ records the relevant non-symmetry stability gap. The equation defines the diagnostic target; it does not yet prove the constitutive form of $\mathcal{R}_{\text{tr}}$.
+
+The critical surface is
+
+$$
+\mathcal{R}_{\text{tr}}
+=
+\mathcal{R}_{\text{tr},*}.
+$$
+
+It separates three regimes:
+
+| Regime | Meaning |
+| --- | --- |
+| $\mathcal{R}_{\text{tr}} < \mathcal{R}_{\text{tr},*}$ | Reversible medium-dressed inertial response; no ordinary drag term is allowed. |
+| $\mathcal{R}_{\text{tr}}\approx\mathcal{R}_{\text{tr},*}$ | Onset of medium excitation, action shedding, or branch instability. |
+| $\mathcal{R}_{\text{tr}} > \mathcal{R}_{\text{tr},*}$ | Dissipative transport, radiation-like shedding, medium heating, or structural transition must be logged. |
+
+##### Reversible Response Below Threshold
+
+Below the critical surface, the response belongs to the mass and inertia program rather than to a friction law. The closure target is that the assembly's shielded internal ledger contributes an internal momentum response of the form
+
+$$
+p_{\text{int}}^a
+\approx
+\alpha\,\zeta(A)E_{\text{internal}}(A)\,
+\mathcal{M}_{\text{sea}}^{ab}V_{\text{cm},b}.
+$$
+
+This is the condensed-matter version of medium-dressed inertial response. The Noether Sea may shape the response tensor, the local delay factor, and the stability margin, but it must not drain energy from a stable bound state merely because that state is moving through the medium.
+
+##### Threshold Crossing and Failure Modes
+
+Crossing $\mathcal{R}_{\text{tr},*}$ is the point at which reversible transport stops being the adequate description. Above threshold, some transported energy or action must route into an explicit channel: medium excitation, radiation-like transport, local heating, action shedding, or branch transition. For the dynamical bookkeeping of those channels, see [Energy](../../../../markdown/aaa/dynamics/energy.md) and [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md).
+
+The main failure modes are therefore sharp. If $\mathcal{R}_{\text{tr}} < \mathcal{R}_{\text{tr},*}$ still produces ordinary dissipative drag in stable atoms, the framework loses chemical stability. If $\mathcal{R}_{\text{tr}} > \mathcal{R}_{\text{tr},*}$ occurs without a logged excitation, radiation, heating, or branch-transition channel, the energy ledger is incomplete. If the threshold cannot be expressed in terms of assembly motion, local Noether-Sea state, medium response, and stability gap data, the medium-transport picture has not matured into a usable transport closure.
 
 ## Reactions
 
@@ -15955,7 +16170,7 @@ This page is the entry hub for the quantum branch of $\mathbb{A}\mathbb{A}\mathb
 
 #### Correlation and No-Go Interfaces
 
-- [entanglement-nonlocality.md](../../../../markdown/aaa/theory-bridges/entanglement-nonlocality.md): shared-creation and joint-configuration account of nonlocal correlations.
+- [entanglement-nonlocality.md](../../../../markdown/aaa/theory-bridges/entanglement-nonlocality.md): pair-provenance account of nonlocal correlations, with Bell-level operational equivalence kept as a closure gate and black-hole connected geometry treated as a special horizon-interface case.
 - [bell-theorem.md](../../../../markdown/aaa/theory-bridges/bell-theorem.md): Bell constraints and the causal-delay interpretation within the theory.
 - [reality-quantum-causality.md](../../../../markdown/aaa/quantum/reality-quantum-causality.md): wider ontology and determinism framing for the quantum branch.
 
@@ -17471,7 +17686,7 @@ Treating collapse as a deterministic, finite-time threshold resolution imposes s
 
 ### Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸
 
-This document establishes the ontological and mathematical mapping between quantum entanglement and nonlocality as understood in standard quantum mechanics and as grounded in the deterministic, path-history dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$). The central thesis is that entanglement is not a mysterious connection between distant systems but a deterministic correlation inherited from shared causal origin, maintained through correlated path-history structure, and rendered operationally irreducible by the epistemic limitations of Physical Observers.
+This document establishes the ontological and mathematical mapping between quantum entanglement and nonlocality as understood in standard quantum mechanics and as grounded in the deterministic, path-history dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$). The central thesis is that ordinary pair entanglement is not a mysterious connection between distant systems but a deterministic correlation inherited from shared causal origin, maintained through correlated path-history structure, and rendered operationally irreducible by the epistemic limitations of Physical Observers. Bell-level operational equivalence remains a closure target until the pair-provenance ledger and local apparatus-response maps have passed the Bell gate.
 
 It forms a tight cluster with [Bell Theorem](../../../../markdown/aaa/theory-bridges/bell-theorem.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md), [Superposition Mechanism](../../../../markdown/aaa/theory-bridges/superposition-mechanism.md), and [Pilot-Wave Character](../../../../markdown/aaa/theory-bridges/pilot-wave-character.md).
 
@@ -17509,6 +17724,12 @@ Quantum mechanics predicts $|S| = 2\sqrt{2}$, and experiments confirm this viola
 
 Despite the correlations, entanglement cannot transmit information faster than light. The marginal statistics at either detector, averaged over the distant partner's outcomes, are independent of the distant measurement choice. This is the **no-signaling theorem**, which holds in all standard formulations and in all experimentally tested scenarios.
 
+##### Pair Provenance vs. Horizon-Interface Geometry
+
+This note concerns ordinary pair-provenance entanglement: two assemblies are created, filtered, or jointly selected by a shared event, and their later records remain correlated because the daughter ledgers inherit a common causal past. That is not the same claim as a literal connected geometry between every entangled pair.
+
+The useful black-hole signal is narrower. The thermofield-double construction for two black-hole exteriors gives a convincing case where entanglement is accompanied by an effective connected geometry. In $\mathbb{A}\mathbb{A}\mathbb{A}$ language, that belongs to the strong-field black-hole regime and the horizon-interface layer, where effective geometry summarizes extreme Noether-Sea alignment and compression. It should not be exported to arbitrary Bell pairs as a settled ER=EPR theorem. For ordinary pairs, connected-geometry language is at most an aspirational closure target unless a separate derivation shows how the pair-provenance ledger induces that effective geometry.
+
 ---
 
 #### $\mathbb{A}\mathbb{A}\mathbb{A}$ Mechanism
@@ -17523,7 +17744,7 @@ $$
 
 and the Master Equation determines its future evolution given path-history data, with deterministic multistability at threshold regimes.
 
-Entanglement in this framework is not a primitive relation between distant systems. It is a **derived consequence** of three features of the underlying dynamics:
+Ordinary entanglement in this framework is not a primitive relation between distant systems. It is a **derived consequence** of three features of the underlying dynamics:
 
 1. **Shared causal origin** (correlated initial conditions from a common creation event),
 2. **Conservation constraints** enforced at the creation event and preserved by the dynamics,
@@ -17531,7 +17752,7 @@ Entanglement in this framework is not a primitive relation between distant syste
 
 ##### Correlated Creation: The Shared Causal Past
 
-Consider the production of an entangled pair, for example a neutral pion dissociating into an electron-positron pair, or parametric down-conversion producing correlated photon-like assemblies.
+Consider the production of an entangled pair, for example a neutral pion dissociating into an electron-positron pair, or parametric down-conversion producing correlated photon branches in the observer-level description.
 
 At the absolute time $t_0$ of the creation event, the parent assembly fragments into two daughter assemblies $A$ and $B$. The fragmentation is governed by the Master Equation and conserves total charge, momentum, angular momentum, and energy. The daughter microstates $\Gamma_A(t_0)$ and $\Gamma_B(t_0)$ are therefore **jointly constrained** by the parent's microstate and the conservation laws:
 
@@ -17539,7 +17760,7 @@ $$
 \Gamma_{\text{parent}}(t_0^-) \;\longrightarrow\; \Gamma_A(t_0^+),\; \Gamma_B(t_0^+) \quad \text{subject to conservation constraints.}
 $$
 
-The crucial point: the architrino trajectories, wake phases, and internal binary orientations of $A$ and $B$ are **deterministically correlated** from this moment forward. These correlations are not imposed by any nonlocal influence; they are inherited from the shared causal past, exactly as two halves of a broken coin carry complementary jagged edges.
+The crucial point is that the architrino trajectories, wake phases, and internal binary orientations of $A$ and $B$ are **deterministically correlated** from this moment forward. These correlations are not imposed by any nonlocal influence. They are recorded in the pair-provenance ledger inherited from the shared causal past.
 
 ##### Correlation Maintenance: Path-History Memory
 
@@ -17561,23 +17782,59 @@ When a measurement apparatus (itself an assembly of architrinos) interacts with 
 
 The outcome is **deterministic** given complete microstate knowledge, but **operationally unpredictable** to the Physical Observer, who lacks access to the relevant hidden variables.
 
-Because the hidden variables of $A$ and $B$ are correlated from creation, the measurement outcome at $A$ constrains—statistically, from the Physical Observer's perspective—the outcome at $B$. This is not because $A$'s measurement causally influenced $B$, but because the correlated initial conditions guarantee that the hidden variables at $A$ and $B$ are jointly distributed in a way that produces the observed correlations.
+Because the hidden variables of $A$ and $B$ are correlated from creation, the measurement outcome at $A$ constrains—statistically, from the Physical Observer's perspective—the outcome at $B$. This is not because $A$'s measurement causally influenced $B$, but because the correlated initial conditions supply the candidate joint distribution that the Bell closure must test against observed correlations.
 
 ##### Addressing Bell's Theorem
 
-Bell's theorem excludes theories that are simultaneously **local** (in the Bell sense) and assign pre-existing values to all observables. The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is a **nonlocal hidden-variable theory** in the following precise sense:
+Bell's theorem excludes theories that are simultaneously **local** (in the Bell sense) and assign pre-existing values to all observables. Any completed $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell account must therefore be a **nonlocal hidden-variable theory** in the following precise sense:
 
-**What "nonlocal" means here.** The framework does not violate causality. No signal, influence, or energy propagates faster than $c_f$. The nonlocality resides in the **ontological structure**: the existence of absolute time provides a global simultaneity surface, and the creation event imprints **joint constraints** on the hidden variables of both particles that are not factorizable into independent local assignments.
+**What "nonlocal" means here.** The framework does not violate causality. No signal, influence, or energy propagates faster than $c_f$. If the Bell gate passes, the required nonlocality resides in the **ontological structure**: the existence of absolute time provides a global simultaneity surface, and the creation event imprints **joint constraints** on the hidden variables of both particles that are not factorizable into independent local assignments.
 
 Formally, let $\lambda$ denote the complete hidden-variable specification (the full microstate at creation plus all subsequent path-history data). Bell locality requires:
 
 $$
-P(a, b \,|\, \hat{m}_A, \hat{m}_B, \lambda) = P(a \,|\, \hat{m}_A, \lambda)\; P(b \,|\, \hat{m}_B, \lambda),
+P(a, b \,|\, \hat{\mathbf{m}}_A, \hat{\mathbf{m}}_B, \lambda) = P(a \,|\, \hat{\mathbf{m}}_A, \lambda)\; P(b \,|\, \hat{\mathbf{m}}_B, \lambda),
 $$
 
-where $a, b$ are outcomes and $\hat{m}_A, \hat{m}_B$ are measurement settings. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, this factorization can fail—not because of any superluminal influence at the time of measurement, but because $\lambda$ encodes **joint geometric constraints** (correlated binary-phase orientations, conserved angular-momentum projections) that make the outcomes at $A$ and $B$ statistically dependent even when conditioned on $\lambda$ as partitioned by Bell's formalism. The correlations are built into the structure of $\lambda$ itself, in a way that resists decomposition into independent local parts.
+where $a, b$ are outcomes and $\hat{\mathbf{m}}_A, \hat{\mathbf{m}}_B$ are measurement settings. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ closure program, this factorization is the gate to fail—not because of any superluminal influence at the time of measurement, but because $\lambda$ may encode **joint geometric constraints** (correlated binary-phase orientations, conserved angular-momentum projections, and path-history relations) that are lost when the pair is partitioned into independent local packages. The pair-provenance ledger by itself is not yet the proof. The proof must derive the two local apparatus-response maps and show that their observer-level compression fails Bell's factorized form while preserving no-signaling.
 
-**Which loophole is exploited?** The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is closest in structure to de Broglie–Bohm theory: deterministic, definite trajectories, with correlations maintained through a shared dynamical structure (in Bohm's case, the pilot wave on configuration space; in $\mathbb{A}\mathbb{A}\mathbb{A}$, the correlated path-history wake geometry in absolute time). Like Bohmian mechanics, it is explicitly nonlocal in the Bell sense while strictly prohibiting superluminal signaling. The nonlocality is ontological (the hidden-variable space is non-separable) but not operational (no usable signal).
+**Pair-provenance response kernel.** The Bell gate can be written as an attempted compression of the full provenance into a measurable joint response. Define the pair-provenance hidden-variable object as
+
+$$
+\lambda_{AB}^{\text{prov}}
+=
+\big(
+\Gamma_{\text{parent}}(t_0^-),
+\Gamma_A(t_0^+),
+\Gamma_B(t_0^+),
+\mathcal{H}_A[t_0,t_A],
+\mathcal{H}_B[t_0,t_B],
+\Delta\Theta_{AB}^{\text{bin/wake}},
+\mathsf{Cons}_{AB}
+\big),
+$$
+
+where $\mathcal{H}_A$ and $\mathcal{H}_B$ are the path-history data carried by the two daughter assemblies, $\Delta\Theta_{AB}^{\text{bin/wake}}$ records their correlated binary-orientation and wake-phase relations, and $\mathsf{Cons}_{AB}$ records the conservation constraints inherited from the creation event. This is not an additional force or influence. It is the candidate hidden-variable domain over which the Bell closure must integrate.
+
+Let $K_A$ and $K_B$ be the two local apparatus-response kernels. For spin tests, their one-wing limits must agree with the Stern-Gerlach kernels derived in [Angular Momentum and Spin](../../../../markdown/aaa/theory-bridges/angular-momentum-and-spin.md). The observer-level joint response target is
+
+$$
+\begin{aligned}
+P_{AB}^{\text{test}}(a,b \,|\, \hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
+=
+\int
+&K_A(a \,|\, \hat{\mathbf{m}}_A;Z_A,\zeta_A,\lambda_{AB}^{\text{prov}})
+K_B(b \,|\, \hat{\mathbf{m}}_B;Z_B,\zeta_B,\lambda_{AB}^{\text{prov}})
+\\
+&d\nu_A(Z_A,\zeta_A \,|\, \hat{\mathbf{m}}_A,\lambda_{AB}^{\text{prov}})
+d\nu_B(Z_B,\zeta_B \,|\, \hat{\mathbf{m}}_B,\lambda_{AB}^{\text{prov}})
+d\rho_{AB}^{\text{prov}}(\lambda_{AB}^{\text{prov}}).
+\end{aligned}
+$$
+
+Here $Z_A$ and $Z_B$ are the local incoming ledger coordinates at the two detectors, while $\zeta_A$ and $\zeta_B$ collect the unresolved apparatus and local Noether-Sea microstates. Writing this integral does not pass the Bell gate. It names the diagnostic object: the derived kernels and provenance measure must reproduce the tested Bell correlations while preserving no-signaling and measurement independence, and they must identify exactly which provenance or response compression prevents reduction to Bell's factorized form. If the expression reduces to an ordinary measurement-independent Bell-local hidden-variable integral, the Bell gate fails.
+
+**Which Bell assumption must fail?** The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is closest in structure to de Broglie–Bohm theory: deterministic, definite trajectories, with correlations maintained through a shared dynamical structure (in Bohm's case, the pilot wave on configuration space; in $\mathbb{A}\mathbb{A}\mathbb{A}$, the correlated path-history wake geometry in absolute time). The comparison is useful, but it is a proof route rather than a completed Bell derivation. If the Bell gate passes, the nonlocality is ontological (the hidden-variable space is non-separable) but not operational (no usable signal).
 
 **Measurement independence** is preserved: the choice of measurement settings at $A$ and $B$ can be freely varied without correlation with the hidden variables $\lambda$ established at creation. The theory does not invoke superdeterminism.
 
@@ -17595,15 +17852,15 @@ This structure avoids the conceptual difficulties of standard nonlocality:
 
 ##### No-Signaling: Why Correlations Cannot Transmit Information
 
-Entanglement correlations in the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework cannot be used for faster-than-light communication for a precise structural reason. The marginal probability of obtaining outcome $a$ at detector $A$ is:
+Any accepted Bell closure in the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework must preserve no-signaling for a precise structural reason. The marginal probability of obtaining outcome $a$ at detector $A$ is:
 
 $$
-P(a \,|\, \hat{m}_A) = \int P(a \,|\, \hat{m}_A, \lambda)\, \rho(\lambda)\, d\lambda,
+P(a \,|\, \hat{\mathbf{m}}_A) = \int P(a \,|\, \hat{\mathbf{m}}_A, \lambda)\, \rho(\lambda)\, d\lambda,
 $$
 
-where $\rho(\lambda)$ is the distribution over hidden variables as accessible to the Physical Observer. This marginal is independent of $\hat{m}_B$ because:
+where $\rho(\lambda)$ is the distribution over hidden variables as accessible to the Physical Observer. This marginal is independent of $\hat{\mathbf{m}}_B$ because:
 
-1. The hidden-variable distribution $\rho(\lambda)$ is set at creation and does not depend on the distant setting $\hat{m}_B$,
+1. The hidden-variable distribution $\rho(\lambda)$ is set at creation and does not depend on the distant setting $\hat{\mathbf{m}}_B$,
 2. No causal wake from the $B$-measurement apparatus reaches $A$ before $A$'s measurement (assuming spacelike separation in the emergent metric),
 3. The local dynamics at $A$ are fully determined by $A$'s microstate plus the local Noether Sea—no input from the distant setting.
 
@@ -17618,8 +17875,9 @@ The correlations become visible only when outcomes from both sides are **compare
 | **Entangled state** $\lvert\Psi\rangle_{AB}$ | Joint constraint on the hidden variables $(\Gamma_A, \Gamma_B)$ inherited from a shared creation event; the microstate is non-factorizable because conservation laws at fragmentation enforce correlated binary phases and orientations. |
 | **Non-separability** (no product-state decomposition) | The hidden-variable space $\lambda$ encodes geometric correlations (relative binary-plane angles, wake-phase offsets) that cannot be decomposed into independent local assignments without losing information. |
 | **Measurement collapse** (distant state update) | Local threshold resolution at each detector independently; the $\mathbb{U}_{\text{now}}$ universe-state perspective sees two separate, causally disconnected basin crossings whose outcomes are correlated by shared $\lambda$. |
-| **Bell inequality violation** ($\lvert S\rvert = 2\sqrt{2}$) | The correlated hidden-variable geometry produces outcome statistics that violate Bell locality because $\lambda$ is non-separable; the violation arises from the structure of the shared creation constraints, not from any superluminal influence. |
+| **Bell inequality violation** ($\lvert S\rvert = 2\sqrt{2}$) | Closure target: the pair-provenance ledger plus both local apparatus-response maps must reproduce the observed Bell correlations while failing Bell locality because $\lambda$ is non-separable; the violation may not be asserted from shared creation alone. |
 | **No-signaling** | Marginal statistics at each detector are independent of the distant setting; correlations are visible only upon classical comparison of results. |
+| **Black-hole thermofield-double connected geometry** | Special strong-field/horizon-interface effective geometry, not the default ontology of ordinary Bell-pair entanglement. The black-hole case motivates the comparison but does not settle ER=EPR for arbitrary entanglement. |
 | **Decoherence of entanglement** | Progressive loss of phase correlation between the two assemblies as each interacts with its local Noether-Sea environment, randomizing the internal wake phases that carry the correlated information. |
 | **Entanglement monogamy** | Conservation constraints at creation distribute correlated hidden variables among a finite number of daughter assemblies; sharing a tight correlation with one partner limits the available phase-space for correlation with a third. |
 
@@ -17629,7 +17887,7 @@ The correlations become visible only when outcomes from both sides are **compare
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework supports a clean two-level interpretation of entanglement:
 
-**Ontic level ($\mathbb{U}_{\text{now}}$ universe-state perspective).** The microstate $\Gamma(t)$ is always definite and global. After a creation event at $t_0$, the daughter microstates $\Gamma_A(t)$ and $\Gamma_B$ are each fully determined for all $t > t_0$. The "entanglement" is simply the fact that $\Gamma_A$ and $\Gamma_B$ are jointly constrained: a bookkeeping statement about the initial conditions, not a dynamical link.
+**Ontic level ($\mathbb{U}_{\text{now}}$ universe-state perspective).** The microstate $\Gamma(t)$ is always definite and global. After a creation event at $t_0$, the daughter microstates $\Gamma_A(t)$ and $\Gamma_B$ are each fully determined for all $t > t_0$. For ordinary pair-provenance cases, the "entanglement" is the fact that $\Gamma_A$ and $\Gamma_B$ are jointly constrained: a bookkeeping statement about the initial conditions, not a dynamical link. Special black-hole and horizon-interface cases may additionally admit effective connected-geometry descriptions, but those belong to the strong-field geometry program rather than to ordinary pair provenance by default.
 
 **Epistemic level (Physical Observer).** The PO has access only to coarse-grained observables (effective fields, detector clicks). Unable to track the full microstate, the PO describes the system with a density matrix $\rho_{AB}$ that is non-separable. The PO interprets correlations as "entanglement" and the resolution of metastability as "collapse." These are accurate operational descriptions but do not reflect ontological indeterminacy or nonlocal influence.
 
@@ -17646,9 +17904,9 @@ The persistent philosophical puzzles of entanglement—how can a measurement "he
 | **de Broglie–Bohm** | Yes (positions) | Yes (pilot wave) | Effective | Closest structural analogue; $\mathbb{A}\mathbb{A}\mathbb{A}$ replaces pilot wave with causal wake geometry. |
 | **QBism** | No (probabilities are personal) | No | No (belief update) | Shares epistemic reading of $\lvert\psi\rangle$ but rejects subjectivism; $\Gamma(t)$ is objective. |
 | **Superdeterminism** | Yes | No | No | Rejects; measurement independence preserved. |
-| **$\mathbb{A}\mathbb{A}\mathbb{A}$** | Yes (full microstate $\Gamma$) | Yes (non-separable $\lambda$, no signaling) | Effective (threshold crossing) | — |
+| **$\mathbb{A}\mathbb{A}\mathbb{A}$** | Yes (full microstate $\Gamma$) | Required for Bell closure (non-separable $\lambda$, no signaling) | Effective (threshold crossing) | — |
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Bohmian mechanics. Both are deterministic hidden-variable theories that are explicitly nonlocal in the Bell sense. The structural differences are:
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Bohmian mechanics because a completed Bell account would be deterministic and nonlocal in Bell's technical sense. The structural differences are:
 
 - **Guidance mechanism**: Bohm uses a pilot wave $\psi$ on configuration space; $\mathbb{A}\mathbb{A}\mathbb{A}$ uses superposed causal-wake geometry in 3D Euclidean space plus absolute time.
 - **Ontological economy**: $\mathbb{A}\mathbb{A}\mathbb{A}$ does not require a separate ontological category for the wave; the wake structure is generated by the architrinos themselves.
@@ -17659,7 +17917,7 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Boh
 
 #### Observables and Falsifiability
 
-**Claim:** Entanglement correlations arise from deterministic, correlated hidden variables established at a shared creation event, maintained through path-history structure, and read out locally at each detector without superluminal influence.
+**Claim:** Ordinary entanglement correlations are modeled as deterministic, correlated hidden variables established at a shared creation event, maintained through path-history structure, and read out locally at each detector without superluminal influence. Special black-hole entanglement can carry effective connected-geometry meaning at the horizon-interface level, but that is a separate strong-field case rather than a general rule for arbitrary entanglement.
 
 **Assumptions:**
 - Complete microstate $\Gamma(t)$ is definite at all $t$.
@@ -17667,19 +17925,20 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Boh
 - Measurement is a local threshold crossing (no distant causal input).
 - Measurement independence holds (no superdeterminism).
 
-**Predictions:**
-- All standard Bell inequality violations are reproduced (the theory is operationally equivalent to QM in the tested regime).
-- Decoherence timescales for entangled assemblies scale with the local Noether-Sea density and temperature, providing an environmental dependence absent in bare QM.
+**Closure Targets and Constraints:**
+- Bell gate: derive the pair-provenance ledger, the two local apparatus-response maps, and the observer-level compression that reproduce the tested Bell correlations without invoking superluminal influence.
+- Photon-polarization gate: for entangled photon tests, Gate B must recover the transverse analyzer statistics and no-signaling behavior before the note may claim operational equivalence with quantum mechanics.
+- Decoherence timescales for entangled assemblies are expected to scale with the local Noether-Sea density and temperature, but the quantitative law remains a validation target.
 - No signaling: no protocol exploiting entanglement can transmit information faster than $c_f$, even in principle.
 
 **Failure Modes:**
 - If an experiment demonstrates **signaling** via entanglement (information transfer without a sub-$c_f$ channel), the mechanism fails.
 - If a Bell test with verified measurement independence and closed loopholes produces correlations **exceeding** the Tsirelson bound ($|S| = 2\sqrt{2}$), the quantum formalism itself would be violated, requiring revision at both levels.
-- If simulations of the Master Equation for correlated pair creation fail to reproduce the $\cos^2(\theta/2)$ correlation function for spin-singlet pairs from the hidden-variable geometry, the specific mechanism (correlated binary phases at creation) is falsified, though the general ontological framework may admit repair.
+- If the pair-provenance ledger plus local apparatus-response maps fail to reproduce the $\cos^2(\theta/2)$ correlation function for spin-singlet pairs from the hidden-variable geometry, the specific Bell-closure mechanism is falsified, though the general ontological framework may admit repair.
 
-**Next Steps:**
+**Bell Closure Gate:**
 - Simulate a minimal correlated-pair creation event (e.g., a parent assembly fragmenting into two daughter tri-binaries) under the Master Equation and extract the joint outcome statistics as a function of relative measurement angle.
-- Derive the hidden-variable distribution $\rho(\lambda)$ for a spin-singlet-like creation event from the conservation constraints and verify that it reproduces $P(a, b | \hat{m}_A, \hat{m}_B) = \frac{1}{2}\sin^2\!\bigl(\tfrac{\theta_{AB}}{2}\bigr)$.
+- Derive the hidden-variable distribution $\rho(\lambda)$ for a spin-singlet-like creation event from the conservation constraints and verify that it reproduces $P(a, b | \hat{\mathbf{m}}_A, \hat{\mathbf{m}}_B) = \frac{1}{2}\sin^2\!\bigl(\tfrac{\theta_{AB}}{2}\bigr)$.
 - Investigate whether the non-separability of $\lambda$ can be given a precise geometric characterization in terms of correlated binary-plane orientations and wake-phase offsets.
 
 The philosophy-facing framing of this problem lives in [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), especially its Bell and measurement sections.
@@ -18162,6 +18421,225 @@ To promote this bridge from mapping to derivation, the following targets must cl
 #### Summary Commitment
 
 > **Special Relativity Bridge Commitment:** Special relativity is retained as the effective observer-level bookkeeping of clocks, rulers, energy, and momentum in homogeneous weak-field conditions. The proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation is that deformable Noether cores preserve finite-speed causal wake closure by retuning internal phase, envelope geometry, and medium-dressed response. The mature theory must derive the Lorentz factor as a shared closure consequence, not assign it separately to clocks, rods, mass, and momentum.
+
+### Spacetime Models and the Noether Sea
+
+This bridge compares inherited mathematical models of space, time, vacuum, aether, and emergent spacetime with the Noether-Sea implementation layer in $\mathbb{A}\mathbb{A}\mathbb{A}$. It is not the canonical home of the spacetime mechanism. The mechanism remains in [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md), [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md), and [GR Phenomenology](../../../../markdown/aaa/spacetime/gr-phenomenology.md).
+
+The purpose is narrower: keep historically important models available as disciplined comparisons without letting their vocabulary become native ontology. Terms such as absolute space, vacuum, aether, elastic medium, analog metric, condensate, and superfluid can help locate a mathematical burden, but none of them replaces `Noether Sea`.
+
+#### Bridge Rule
+
+Use inherited spacetime models as comparison projections, not as identity claims.
+
+The native stack is:
+
+| Level | Native term | Role |
+| --- | --- | --- |
+| fixed spatial container | Euclidean void | The 3D spatial arena does not curve or expand. |
+| global temporal parameter | absolute time | The primitive ordering parameter for substrate dynamics. |
+| formal background | absolute timespace | The product $\mathbb{R}\times\mathbb{R}^3$. |
+| substrate contents | Noether Sea | The ambient population of coupled Noether cores. |
+| bridge language | spacetime medium | Reader-facing translation toward effective spacetime language. |
+| observer-level geometry | effective spacetime or effective metric | The metric reconstructed by Physical Observers from clocks, rulers, and signal behavior. |
+
+Any outside model must therefore answer five questions before it can influence authored $\mathbb{A}\mathbb{A}\mathbb{A}$ prose:
+
+1. Which observer-level successes does the model preserve?
+2. Which part maps to Noether-Sea state rather than to the Euclidean void?
+3. Which inference is forbidden because it would import the outside model's ontology?
+4. Which equation, invariant, or constitutive law would have to be derived?
+5. Which failure mode would falsify the comparison?
+
+#### Historical Ladder
+
+The bridge should cover the major mathematical families rather than only modern GR-adjacent language. The point is not to endorse every family. The point is to know what each one contributed and which AAA object receives the useful part.
+
+| Historical model family | Mathematical core | What survives as a comparison | $\mathbb{A}\mathbb{A}\mathbb{A}$ placement |
+| --- | --- | --- | --- |
+| Euclidean 3D space plus universal time | A flat spatial metric $h_{ij}$ on $\mathbb{R}^3$ with a universal parameter $t$. | The earliest clean 3D + T background picture. | This is closest to absolute timespace: $\mathbb{R}\times\mathbb{R}^3$ with absolute time and Euclidean void. |
+| Newtonian absolute space and action-at-a-distance gravity | Euclidean geometry, inertial frames, absolute time, and an inverse-square potential. | Weak-field potential language and low-speed limiting behavior. | Keep the background, but replace instantaneous action with delayed causal wakes plus Noether-Sea response. |
+| Plenum and vortex-mechanical programs | Continuum motion, pressure, circulation, and vortex organization. | The intuition that geometry and matter behavior may arise from structured motion in a pervasive substrate. | Useful only as a warning and comparison: the Noether Sea is not a featureless plenum, and circulation claims need explicit Noether-core dynamics. |
+| Wave and elastic-aether theories | Wave equations, elastic moduli, transverse waves, boundary conditions, and medium stress. | Stress, stiffness, wave-speed, and polarization burdens. | Translate only into explicit Noether-Sea compliance, delay, alignment, and response variables. |
+| Maxwellian electromagnetic aether | Field equations plus mechanical medium imagery for electromagnetic propagation. | The success belongs to field equations and wave propagation, not to the mechanical imagery. | Effective electromagnetic fields must be recovered from assembly and wake behavior; the aether analogy cannot become ontology. |
+| Lorentz aether theory | A preferred rest frame hidden by Lorentz contraction, clock slowing, and electromagnetic dynamics. | A preferred substrate frame can be operationally hidden if clocks, rulers, and signals co-transform. | This is a close bridge for absolute time plus Euclidean void, but the closure burden is emergent Lorentz behavior with bounded preferred-frame leakage. |
+| Minkowski spacetime | A 4D pseudo-Riemannian metric with invariant interval and Lorentz symmetry. | Observer-level kinematic bookkeeping. | Treated as the homogeneous effective geometry reconstructed by Physical Observers, not as substrate ontology. |
+| General-relativistic metric spacetime | Dynamic metric geometry, curvature, geodesics, Einstein equation, and PPN observables. | The strongest tested observer-level gravitational target. | Detailed mapping belongs in the spacetime lane; this bridge records only the comparison interface. |
+| Kaluza-Klein and higher-dimensional geometry | Gauge fields from higher-dimensional metric components or compact dimensions. | A useful reminder that geometry can encode force bookkeeping. | Comparison only unless an AAA-native hidden coordinate or fiber variable is derived from assembly state. |
+| Metric-affine, torsion, and Einstein-Cartan programs | Independent connection, torsion, spin coupling, and generalized geometric variables. | A structured way to ask whether spin, torsion, or nonmetricity survive as effective observer-level residues. | Possible deviation channels in the ADM/Cartan handoff, not primitive geometry of the Euclidean void. |
+| ADM and canonical spacetime decompositions | Lapse, shift, spatial metric, constraints, and foliation-based dynamics. | A practical 3+1 language for mapping observer geometry. | Directly useful as the reconstruction surface $(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij})$. |
+| Sakharov induced gravity | Gravity as an induced or elastic response of quantum vacuum degrees of freedom. | The idea that GR-like dynamics can be effective rather than fundamental. | Recast as a Noether-Sea microstructure-to-metric response problem, not as proof from QFT vacuum ontology. |
+| Jacobson thermodynamic spacetime | Einstein equation as an equation of state from horizon thermodynamics. | Thermodynamic and equation-of-state pressure on any emergent metric theory. | A high-value comparison for deriving GR-like limits from Noether-Sea entropy, stress, and energy exchange. |
+| Analog gravity and acoustic metrics | Effective Lorentzian metrics for perturbations in fluids or condensates. | Concrete examples where signal propagation in a medium carries metric form. | Useful if it sharpens the signal-channel map; insufficient if it only supplies scalar speed. |
+| Superfluid vacuum and condensed-matter vacuum models | Order parameters, phonons, vortices, critical velocities, collective excitations, and phase transitions. | Strong mathematics for coherent media, low dissipation, and emergent quasiparticles. | Comparison only until the Noether-Sea side has a defined order parameter, excitation spectrum, and threshold law. |
+| Khoury-style superfluid dark matter | A dark-sector condensate phase whose phonons mediate MOND-like galactic behavior while other regimes resemble cold dark matter. | A worked example of one substance with phase-dependent phenomenology, collective excitations, and environment-dependent transition behavior. | Useful for the question "when does a Noether-Sea sector behave as a coherent phase?", not evidence that the Noether Sea is literally a superfluid. |
+| Bose-Einstein-condensate and fuzzy-dark-matter models | Macroscopic wavefunction, coherence length, de Broglie scale, and Gross-Pitaevskii-like dynamics. | Coherence-scale and phase-locking diagnostics. | Comparison for collective Noether-Sea phase behavior only if a native wavefunction/order parameter is derived. |
+| Einstein-aether and vector-tensor preferred-frame theories | Metric plus unit timelike vector field and preferred-frame coefficients. | A modern mathematical way to parameterize Lorentz violation and preferred-frame observables. | Useful for bounding leakage, but the preferred frame is absolute time plus Euclidean void, not an added vector field ontology. |
+| Horava-Lifshitz-type anisotropic scaling | Preferred foliation and different UV scaling for time and space. | The idea that a preferred foliation can coexist with effective relativistic behavior. | Comparison only; AAA already has absolute time, so the question is empirical leakage and low-energy recovery. |
+| Causal-set and discrete-spacetime programs | Partial order, discreteness, and causal reconstruction. | Useful contrast for causal ordering and continuum emergence. | AAA keeps continuous Euclidean void and absolute time; discreteness, if any, belongs to assemblies or ledgers, not the void. |
+| Loop, spin-network, and other quantum-geometry programs | Quantized geometric operators and graph-like states. | A comparison for area, volume, horizon, and spin-network claims. | Comparison framework unless a Noether-core graph or horizon ledger imports a specific validated constraint. |
+| String, brane, holographic, and AdS/CFT programs | Extended objects, extra dimensions, dual boundary descriptions, and holographic entropy relations. | High-value consistency checks when entropy, unitarity, or horizon accounting becomes unavoidable. | Comparison framework; do not promote to closure target unless a specific tested benchmark is imported. |
+
+#### Comparison Matrix
+
+| Inherited model | What it preserves | $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer | Forbidden inference | Closure target |
+| --- | --- | --- | --- | --- |
+| Euclidean 3D + T absolute background | Flat 3D geometry, universal time order, inertial baseline, and ordinary vector calculus. | Absolute timespace $\mathbb{R}\times\mathbb{R}^3$, with dynamics on simultaneity slices $\Sigma_t$. | Empty space by itself explains matter, inertia, or gravity. | Show how delayed wakes and Noether-Sea state add all observed fields, clocks, rulers, and gravitational behavior on top of the fixed container. |
+| Newtonian gravity | Low-speed potential mechanics and inverse-square weak-field limits. | $\Phi_N$ remains a benchmark potential; the substrate mechanism is delayed causal-wake summation plus medium response. | Instantaneous action-at-a-distance is fundamental. | Recover Newtonian acceleration as the leading observer-level limit of the delayed ledger and effective metric map. |
+| Lorentz aether | Hidden preferred frame plus Lorentz-contracted matter and slowed clocks. | Absolute time and Euclidean void supply the preferred substrate frame; assemblies and signal channels must hide it operationally. | The Noether Sea is a mechanical luminiferous aether. | Derive shared clock/ruler/signal retuning with $\epsilon_{\text{LV}}$ and PPN preferred-frame coefficients below bounds. |
+| Special-relativistic Minkowski spacetime | Lorentz kinematics, invariant signal speed, mass-shell bookkeeping, and relativity of simultaneity for Physical Observers. | Homogeneous weak-field limit of deformable assemblies, synchronized signal channels, and Noether-Sea-dressed clocks and rulers. | Lorentz symmetry is primitive substrate geometry. | Show that stable assembly closure drives the same $\gamma_{\text{eff}}$ factor in clock, ruler, signal, energy, and momentum channels while preferred-frame leakage remains below bounds. |
+| General-relativistic metric spacetime | Proper time, geodesic motion, redshift, Shapiro delay, lensing, frame dragging, gravitational waves, and PPN observables. | Effective metric $g^{\text{eff}}_{\mu\nu}$ reconstructed from Noether-Sea clock, ruler, signal, drift, and compliance channels. | The Euclidean void itself curves. | Derive one constitutive map from Noether-Sea state to ADM/Cartan fields that recovers GR in tested regimes. |
+| Elastic or continuum-medium spacetime | Stress, strain, compliance, wave propagation, and equation-of-state language. | Coarse Noether-Sea variables such as density, delay factor, stress, drift, alignment, and spatial compliance. | The medium is a featureless continuum with no assembly microstructure. | Derive continuum stress and compliance tensors from Noether-core population dynamics and identify their valid averaging scale. |
+| Analog-gravity or acoustic-metric models | Effective metrics can emerge from signal propagation through a medium. | Signal cones and clock/ruler maps emerge from Noether-Sea delay and assembly response. | The analogy proves gravity or fixes the metric by signal speed alone. | Extend scalar speed maps to the full ADM/Cartan handoff $(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij})$. |
+| Superfluid and condensate vacuum models | Coherence, order parameters, critical thresholds, quantized circulation, collective excitations, and low-dissipation transport. | Possible comparison class for coherent Noether-Sea phases only when the local document supplies a defined order parameter, excitation spectrum, critical threshold, or circulation analogue. | The Noether Sea is superfluid merely because it is coherent or low-dissipation. | Derive a concrete constitutive model: order parameter, transport equation, critical-velocity criterion, two-fluid analogue, quantized-vorticity analogue, or explicit reason the analogy fails. |
+| Khoury-style superfluid dark matter | Phase-dependent behavior: cold-dark-matter-like cosmology and cluster behavior, plus phonon-mediated MOND-like galactic behavior in a superfluid phase. | Comparison for environment-dependent Noether-Sea phase behavior, excitation channels, and galactic-scale effective-force recovery. | Noether-Sea ontology is dark matter superfluidity, or MOND behavior follows without a native phonon/order-parameter derivation. | Define the Noether-Sea analogue of condensate fraction, phonon mode, critical temperature/velocity, and baryon-coupling channel, then test whether it recovers or rejects MOND-like scaling. |
+| Sakharov or Jacobson-style emergent gravity | Metric dynamics may be thermodynamic, induced, or equation-of-state behavior rather than fundamental geometry. | Einstein-like behavior is a long-wavelength response of Noether-Sea microstructure. | The thermodynamic analogy derives $\mathbb{A}\mathbb{A}\mathbb{A}$ by itself. | Show how Noether-Sea entropy, stress, and energy exchange recover the Einstein equation or its validated weak-field approximation. |
+| Quantum-vacuum or QFT-field ontology | Vacuum polarization, zero-point behavior, field excitations, and Standard Model effective predictions. | Observer-level fields are effective summaries of assembly and wake behavior in the Noether Sea. | The QFT vacuum is the substrate ontology. | Recover validated QFT limits while assigning substrate-level causation to assemblies, wakes, and Noether-Sea response. |
+| Preferred-foliation and vector-aether models | Controlled parameterization of Lorentz violation, foliation effects, and preferred-frame bounds. | Absolute time is already the foliation; leakage appears through observer-level anisotropy and PPN channels. | A new vector field is the substrate. | Map leakage into $\Xi_i$, $(\alpha_1,\alpha_2,\alpha_3)$, and two-way signal-speed diagnostics. |
+| Quantum-geometry and holographic programs | Horizon entropy, unitarity pressure, boundary/bulk mappings, and discrete geometric observables. | Comparison targets for strong-field and horizon ledgers. | The Noether Sea is a spin network, string background, or holographic boundary theory. | Import only specific tested or mathematical constraints, such as entropy scaling or unitarity accounting, and route them through strong-field closure. |
+
+#### Superfluid Comparison Discipline
+
+The superfluid family is valuable precisely because it is mathematically demanding. A superfluid claim is not licensed by the words `coherent`, `low-dissipation`, or `medium`. It requires a local technical object.
+
+For a Noether-Sea comparison to become superfluid-like rather than merely medium-like, the local document must supply at least one of the following:
+
+| Required object | Mathematical form to look for | What it would buy |
+| --- | --- | --- |
+| Order parameter | A native $\Psi_{\text{sea}}=\sqrt{\rho_s}e^{i\theta}$ analogue or a replacement with the same phase/stiffness role. | Coherence is no longer just prose; it has phase and amplitude data. |
+| Excitation spectrum | A phonon-like branch $\omega(k)$, roton-like gap, or other collective-mode dispersion. | Transport and radiation comparisons become testable. |
+| Critical threshold | A Landau-like bound $v_c=\min_k \omega(k)/k$ or a native residual threshold. | "No drag below threshold" becomes a derivable condition rather than an analogy. |
+| Two-component split | A superfluid/normal fraction analogue or phase-mixture model. | Environment-dependent behavior can differ between galaxies, clusters, and cosmology without changing ontology. |
+| Vorticity quantization | A circulation condition such as $\oint \nabla\theta\cdot d\ell=2\pi n$ or a native ledger equivalent. | Vortex language becomes mathematical rather than decorative. |
+| Baryon or matter coupling | An explicit coupling channel between ordinary assemblies and the collective mode. | MOND-like or fifth-force comparisons become falsifiable. |
+
+Khoury-style superfluid dark matter is a useful comparison because it makes this discipline visible. In that model, the same dark-sector substance is intended to behave like ordinary cold dark matter in cosmological regimes while forming a galactic superfluid phase whose phonons mediate a MOND-like force. The Noether-Sea bridge should borrow only the structure of that question: can one substrate have phase-dependent effective behavior with distinct collective modes and observational regimes? It should not borrow the conclusion unless $\mathbb{A}\mathbb{A}\mathbb{A}$ derives the corresponding Noether-Sea phase variables.
+
+#### Mathematical Handoff
+
+The common handoff is not a metaphor. It is a map from substrate and medium variables to the observer-level geometry:
+
+$$
+\mathcal{X}_{\text{sea}}
+=
+\left(
+h_{ij},
+\rho_{\text{core}},
+n,
+\chi_{\text{sea}},
+\sigma^{ab}_{\text{sea}},
+u^i_{\text{sea}},
+e^a{}_i,
+\mathcal{M}_{\text{sea}}^{ab}
+\right),
+$$
+
+followed by the ADM/Cartan reconstruction target
+
+$$
+\mathcal{X}_{\text{sea}}
+\longrightarrow
+\left(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij}\right)
+\longrightarrow
+g^{\text{eff}}_{\mu\nu}.
+$$
+
+The resulting observer-level line element has the shared target form
+
+$$
+ds_{\rm eff}^2
+=
+-N^2c_0^2dt^2
++
+\gamma_{ij}
+\left(dx^i-u^i_{\text{sea}}dt\right)
+\left(dx^j-u^j_{\text{sea}}dt\right).
+$$
+
+This equation is the filter for comparison language. A spacetime model is useful only insofar as it clarifies one of the channels in $\mathcal{X}_{\text{sea}}$, sharpens the map to $(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij})$, or names an observational recovery target for $g^{\text{eff}}_{\mu\nu}$.
+
+For superfluid comparisons, a second optional handoff is required before the analogy can become technical:
+
+$$
+\mathcal{Y}_{\text{coh}}
+=
+\left(
+\Psi_{\text{sea}}\ \text{or its native replacement},
+\rho_s,
+\rho_n,
+\omega(k),
+v_c,
+\Gamma_{\text{matter}\leftrightarrow\text{mode}}
+\right).
+$$
+
+Without such a coherent-phase data object, `superfluid` should remain a comparison label in this bridge, not a term used in canonical Noether-Sea mechanism prose.
+
+#### Analogy Discipline
+
+The bridge also fixes a prose rule for active theory chapters:
+
+| If the prose wants to say... | Use this instead unless the model is derived |
+| --- | --- |
+| "The Noether Sea is a superfluid." | "The Noether Sea has a low-dissipation or coherent-response comparison target." |
+| "Spacetime is an elastic medium." | "Effective spacetime behavior is reconstructed from Noether-Sea stress and compliance." |
+| "The metric is the medium." | "The metric is the observer-level summary of clock, ruler, and signal behavior in the medium." |
+| "Transport through the Sea explains the effect." | Name the actual variable: delay factor, response tensor, drift field, compliance metric, residual, or event ledger. |
+| "Vacuum energy causes the behavior." | State the Noether-Sea inventory, excitation, or reaction channel that carries the energy. |
+| "The theory is aether-like." | State whether the comparison is to hidden preferred-frame kinematics, wave propagation, elastic stress, or medium ontology. |
+| "The model is MOND-like." | Name the scaling law, acceleration regime, coupling channel, and recovery target. |
+
+This discipline keeps strong comparisons available without promoting them prematurely. In a bridge document, analogy can be explicit. In canonical mechanism chapters, analogy should give way to the native object and the relevant closure target.
+
+#### Closure Tests
+
+A spacetime comparison becomes more than a guide only when it passes the following tests:
+
+1. **Variable test:** it identifies which Noether-Sea variables enter the calculation.
+2. **Map test:** it contributes to the same ADM/Cartan handoff used by [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
+3. **Recovery test:** it recovers the relevant observer-level limits: Lorentz kinematics, weak-field GR, PPN bounds, photon propagation, clock redshift, lensing, or thermodynamic consistency.
+4. **No-import test:** it does not import the outside model's ontology as a substitute for Noether-Sea ontology.
+5. **Failure test:** it states what result would demote the comparison to a failed analogy.
+
+For superfluid and condensate comparisons, add three stricter tests:
+
+1. **Order-parameter test:** the comparison names a native coherent variable or explicitly says no such variable has been derived.
+2. **Mode test:** the comparison states the collective excitation or admits that no phonon-like branch is available.
+3. **Threshold test:** the comparison provides a critical threshold or keeps low-dissipation language out of mechanism prose.
+
+The most important failure mode is hidden synonym drift. If a comparison term starts replacing `Noether Sea`, `effective metric`, `medium response`, `causal wake`, or `closure target`, the bridge has stopped clarifying and has started importing ontology.
+
+#### External Anchor Points
+
+This document is an internal bridge, not a bibliography, but several external mathematical anchors fix the comparison classes:
+
+| Anchor | Use in this bridge |
+| --- | --- |
+| Newtonian and Galilean mechanics | Source of the 3D + T absolute-background comparison and weak-field potential limit. |
+| Lorentz aether theory | Preferred-frame comparison with hidden operational symmetry. |
+| Minkowski spacetime | Observer-level flat relativistic geometry. |
+| Einstein GR | Tested metric target, with detailed mapping delegated to the spacetime mechanism chapters. |
+| Sakharov induced gravity | Induced/effective gravity as a quantum-vacuum elasticity comparison. |
+| Jacobson thermodynamic spacetime | Einstein equation as equation-of-state comparison. |
+| Visser acoustic metrics | Explicit analog-gravity example where perturbations see an effective Lorentzian geometry. |
+| Volovik-style superfluid vacuum programs | Condensed-matter vacuum comparison using quasiparticles and collective modes. |
+| Berezhiani-Khoury superfluid dark matter | Phase-dependent dark-sector model with phonon-mediated MOND-like galactic behavior. |
+
+#### Summary Commitment
+
+The Noether Sea is not renamed by its comparisons. Absolute space, Newtonian mechanics, aether theory, Minkowski spacetime, GR, elastic media, analog gravity, induced gravity, thermodynamic spacetime, condensate models, superfluid models, and quantum-vacuum language each preserve useful mathematics or intuition. Their role in $\mathbb{A}\mathbb{A}\mathbb{A}$ is to expose closure burdens for the native substrate stack:
+
+$$
+\text{absolute time}
++
+\text{Euclidean void}
++
+\text{Noether Sea}
+\longrightarrow
+\text{effective spacetime}.
+$$
+
+That is why analogy belongs here. Mechanism chapters should inherit the disciplined result: use the native Noether-Sea variables first, and use outside spacetime models only when they name a concrete equation, test, or failure mode.
 
 ### Relativistic Scalar Fields and the Klein-Gordon Equation
 
@@ -21672,6 +22150,102 @@ Each reaction record should state:
 | Provenance data | Source identity, emission time, causal-root branch, and local medium state |
 | Closure status | What is established, what is assumed, and what remains to derive |
 
+#### Residual-Routing Event-Ledger Contract
+
+Residual-routing material enters this ledger only as a theorem-target contract. It does not by itself prove that any weak, radiative, pair-production, nuclear, or cosmology-facing reaction channel has closed. The common target is:
+
+$$
+\mathcal{R}(\Gamma,\mathcal{H},\rho_{\text{core}},\chi_{\text{sea}},\dots)
+\longrightarrow
+\{B_i\}
+\longrightarrow
+\mathcal{L}_{E\mathbf{p}\mathbf{J}}.
+$$
+
+Here $\mathcal{R}$ is the replayable residual computed from the local assembly state, path-history ledger, Noether-core density, Noether-Sea delay factor, and any named sector variables. The set $\{B_i\}$ is the finite list of admissible output channels, such as retuning, bound excitation, radiation, recoil, medium heating, weak or nuclear reaction, record formation, release channel, or branch transition. The event ledger $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the balance object that must close after all selected outputs are named.
+
+For a reaction attempt, the input state should be recorded as:
+
+$$
+X
+=
+\left(
+\Gamma,
+\mathcal{H},
+\rho_{\text{core}}(\mathbf{x},t),
+\chi_{\text{sea}}(\mathbf{x},t),
+Z_S
+\right),
+$$
+
+where $Z_S$ denotes sector-local variables such as nuclear configuration, weak-corridor data, apparatus state, or horizon-interface boundary data when those variables control the route. A routed reaction event is a triple
+
+$$
+\mathsf e=(X,I_{\mathsf e},Y_{\mathsf e}),
+$$
+
+where $I_{\mathsf e}$ is the selected finite channel set and $Y_{\mathsf e}$ lists outgoing assemblies, recoil targets, medium updates, remnant states, and provenance records. A single reaction vertex may select more than one output channel when photon output, recoil, medium update, and reaction products are simultaneous terms in one closed event.
+
+The shared ledger object is:
+
+$$
+\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)
+=
+\left(
+\Delta_E,
+\Delta_{\mathbf{p}},
+\Delta_{\mathbf{J}},
+\Delta_{\mathrm{pol}},
+\Delta_{\mathrm{arch}},
+\Delta_{\mathrm{path}},
+\Delta_{\mathrm{med}},
+\Delta_{\mathrm{rem}}
+\right)(\mathsf e).
+$$
+
+Ledger closure means:
+
+$$
+\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)=\mathbf{0}
+$$
+
+componentwise across the tuple. Nonzero physical recoil, medium heating, remnant excitation, outgoing product energy, or photon output is allowed only as a named term inside $Y_{\mathsf e}$; it is not allowed as an implicit loss.
+
+The contract for each serious channel is:
+
+| Contract field | Required content |
+| --- | --- |
+| Residual | Define $\mathcal{R}$ from the local state, causal-wake ledger, density field, Noether-Sea delay factor, and sector variables. |
+| Threshold or separatrix | State the critical surface, basin boundary, channel boundary, or return-map condition that selects an admissible route. |
+| Candidate channels | List the allowed routes, including radiative, recoil, medium, reaction, remnant, or record-forming terms when applicable. |
+| Event ledger | Close $E$, $\mathbf{p}$, $\mathbf{J}$, charge/provenance, recoil, medium update, remnant state, and architrino inventory where applicable. |
+| Benchmark recovery | Name the observer-level reaction, cross-section, threshold, rate, or conservation benchmark recovered by the route. |
+| Closure status | Mark the record as baseline, provisional map, derivation target, failed map, or inherited gate. |
+
+##### Promotion Criterion
+
+A reaction record may be promoted beyond a provisional map only when all of the following conditions have been met in the same sector case:
+
+1. **Replayable residual:** $\mathcal{R}(X)$ is computed from $\Gamma$, $\mathcal{H}$, $\rho_{\text{core}}(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, and explicitly named sector variables, with no hidden sector-specific residual term.
+2. **Boundary selection:** each selected channel has a stated boundary test $g_i(X,\mathcal{R})\ge0$, and every excluded channel required by the sector either fails its boundary test or is ruled out by a compatibility condition.
+3. **Admissible output:** $Y_{\mathsf e}$ names all outgoing assemblies, recoil targets, medium updates, remnant states, and provenance records required by the selected channel set.
+4. **Ledger closure:** $\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)=\mathbf{0}$ after adding the sector-required charge, polarity, architrino-inventory, path-history, Noether-Sea, and remnant rows.
+5. **Benchmark compatibility:** the promoted event recovers the sector benchmark without breaking any required weak, quantum, gravity, hadronic, radiation, cosmology, conservation-law, or direct-observation acceptance gate.
+
+This is a promotion criterion, not a completed theorem. Worked sector cases remain open until at least one channel supplies a named residual, a named threshold or separatrix, a channel decision, a complete $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ ledger, a benchmark recovery, and a failure diagnostic in one record. The free-neutron beta reaction, the $t\to b+W^+$ channel, radiation-coupled pair channels, and nuclear reaction examples therefore remain provisional where their sector records still lack closed residual routing, outgoing core provenance, angular-momentum balance, rate recovery, or quantitative benchmark closure.
+
+##### Failure Modes
+
+| Failure mode | What blocks promotion |
+| --- | --- |
+| Residual replay failure | Two records with the same $(\Gamma,\mathcal{H},\rho_{\text{core}},\chi_{\text{sea}},Z_S)$ produce different $\mathcal{R}$ values or different selected channel sets without an additional recorded state variable. |
+| Boundary failure | A resolved event occurs while every required $g_i(X,\mathcal{R})<0$, or two mutually exclusive selected channels demand incompatible output assignments. |
+| Ledger residual failure | After all sector-required rows are included, $\Delta_E\ne0$, $\Delta_{\mathbf{p}}\ne\mathbf{0}$, or $\Delta_{\mathbf{J}}\ne\mathbf{0}$. |
+| Inventory or provenance failure | $\Delta_{\mathrm{pol}}\ne0$, $\Delta_{\mathrm{arch}}\ne0$, or $\Delta_{\mathrm{path}}\ne0$ after the claimed Noether-Sea, corridor, source-identity, emission-time, causal-root, and branch-Jacobian records are included. |
+| Medium or remnant failure | $\Delta_{\mathrm{med}}\ne0$ or $\Delta_{\mathrm{rem}}\ne0$, meaning the route used medium heating, recoil, retained excitation, or remnant deformation as an implicit loss term. |
+| Retuning failure | The same benchmark family can be recovered only by changing the residual definition, the channel boundary, or the Noether-Sea state variables between sector cases. |
+| Cross-sector failure | The local route succeeds only by violating another required sector acceptance gate. |
+
 #### Weak-Corridor Provenance Gate
 
 Weak reactions now require an explicit corridor-provenance stance. The current corpus supports two live possibilities:
@@ -21879,46 +22453,239 @@ If the intersection is empty after uncertainty propagation, the integrated model
 
 ### Failure Criteria
 
-This chapter states the hard-stop conditions for the framework. Its purpose is to distinguish ordinary incompleteness from genuine failure modes, especially where Lorentz recovery, drag behavior, or substrate-level consistency would be lost rather than merely deferred.
+This chapter states the hard-stop conditions for $\mathbb{A}\mathbb{A}\mathbb{A}$. Its purpose is to distinguish ordinary incompleteness from genuine failure modes, especially where a local success in one sector cannot survive the shared closure intersection.
 
-Its operational companions are [Validation Protocols](../../../../markdown/aaa/validation/validation-protocols.md), [No-Go Theorems](../../../../markdown/aaa/validation/no-go-theorems.md), [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md), [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [Absolute Time Defense](../../../../markdown/aaa/foundations/absolute-time-defense.md).
+Its operational companions are [Validation Protocols](../../../../markdown/aaa/validation/validation-protocols.md), [No-Go Theorems](../../../../markdown/aaa/validation/no-go-theorems.md), [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md), [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md), [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [Absolute Time Defense](../../../../markdown/aaa/foundations/absolute-time-defense.md).
 
-##### Preferred-Frame Hiding Stop Condition
+#### Shared Closure Record
 
-1. **The Hard Wall**: If the Euclidean-void rest frame is detectable by any physical experiment (e.g., Michelson-Morley) at $\Delta c/c > 10^{-17}$, the theory fails.
-2. **Required Compensation**: We must derive that moving assemblies acquire the Lorentz-compatible deformation and clock laws, $L_{\parallel}=L_0/\gamma$ and $T=\gamma T_0$, from delayed causal closure and Noether-Sea response rather than imposing them as kinematic postulates.
-3. **Coefficient Closure**: The shape and clock response coefficients must suppress two-way anisotropy and other preferred-frame leakage to the validated bounds. A qualitative contraction story is not sufficient.
-4. **Dissipative Drag**: If the Noether Sea induces ordinary drag that slows cosmological bodies without a conserving medium-dressed response mechanism, the theory is falsified.
+Let
 
-##### Critical Stop Conditions
+$$
+\mathfrak{S}
+=
+\{
+\mathrm{weak},
+\mathrm{quantum},
+\mathrm{gravity},
+\mathrm{hadronic},
+\mathrm{radiation},
+\mathrm{cosmology}
+\}
+$$
 
-* **$c_f$ Variance:** If field speed varies in the true void, theory fails.
-* **Noether-Sea Drag:** If the Noether Sea causes orbital decay or secular kinetic-energy loss through ordinary dissipative drag, rather than a reversible medium-dressed inertial response, theory fails.
-* **Lorentz Leakage:** If absolute motion affects atomic spectra > $10^{-17}$, theory fails.
+be the sector set. A candidate promoted closure is a record $\theta\in\mathfrak{X}$ whose shared coordinates include
+
+$$
+\theta_{\mathrm{join}}
+=
+\left(
+A,
+\Gamma,
+\mathcal{H},
+\mathcal{R},
+\mathcal{L}_{E\mathbf{p}\mathbf{J}},
+\zeta,
+\mathcal{M}_{\mathrm{sea}}^{ab},
+\{B_i\}
+\right),
+$$
+
+where $A$ is the assembly or branch family, $\Gamma$ is the assembly microstate, $\mathcal{H}$ is the path-history and causal-wake ledger, $\mathcal{R}$ is the active residual family, $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the event ledger, $\zeta$ is shielding or exposure data, $\mathcal{M}_{\mathrm{sea}}^{ab}$ is the Noether-Sea response object, and $\{B_i\}$ is the basin or channel partition. Sector-local coordinates $Z_S(\theta)$ record the benchmark variables, theorem assumptions, provenance rows, and tolerances used by sector $S$.
+
+For each sector $S$, fix a gate predicate $P_S:\mathfrak{X}\to\{0,1\}$, a benchmark map $\mathcal{B}_S:\mathfrak{X}\to\mathfrak{B}_S$, a validated benchmark region $\mathfrak{B}^{\mathrm{obs}}_S\subseteq\mathfrak{B}_S$, a benchmark metric $d_S$, a tolerance $\epsilon_S$, and a no-go pass predicate $\mathcal{G}_S:\mathfrak{X}\to\{0,1\}$. Define the distance from a benchmark point to the validated region by
+
+$$
+\operatorname{dist}_{d_S}(b,\mathfrak{B}^{\mathrm{obs}}_S)
+=
+\inf_{b'\in\mathfrak{B}^{\mathrm{obs}}_S}d_S(b,b').
+$$
+
+The sector acceptance set is the mathematical subset
+
+$$
+\mathcal{C}_S
+=
+\left\{
+\theta\in\mathfrak{X}
+:
+P_S(\theta)=1,\quad
+\operatorname{dist}_{d_S}\!\left(\mathcal{B}_S(\theta),\mathfrak{B}^{\mathrm{obs}}_S\right)
+\le
+\epsilon_S,\quad
+\mathcal{G}_S(\theta)=1
+\right\}.
+$$
+
+The shared acceptance intersection is
+
+$$
+\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}
+=
+\bigcap_{S\in\mathfrak{S}}\mathcal{C}_S.
+$$
+
+A closure attempt survives the validation gate only as an element of $\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}$. A sector result that lies in one $\mathcal{C}_S$ but in no element of the full intersection remains a local result rather than a promoted $\mathbb{A}\mathbb{A}\mathbb{A}$ closure.
+
+#### Sector Acceptance Sets
+
+| Sector | Predicate $P_S(\theta)=1$ | Benchmark condition | Falsifier |
+| --- | --- | --- | --- |
+| $\mathcal{C}_{\mathrm{weak}}$ | One weak-coupling-triad exposure record $\mathcal{E}_{\mathrm{weak}}(A)=Q_{\mathrm{weak}}[\Pi_{\mathrm{weak}}\mathcal{L}_A]$ supplies `V-A`, CKM/PMNS overlap, and weak-corridor provenance without redefining $\Pi_{\mathrm{weak}}$, $Q_{\mathrm{weak}}$, or the exposed domain. | $\mathcal{B}_{\mathrm{weak}}(\theta)$ lies in the observed charged-current handedness, mixing, and provenance region within $\epsilon_{\mathrm{weak}}$. | Right-handed charged-current coupling is not strongly suppressed in the validated regime, or the weak exposure domain changes between chirality, mixing, and provenance. |
+| $\mathcal{C}_{\mathrm{quantum}}$ | A transfer operator or return map $\mathcal{T}_{\Delta t}$, basin partition $\{B_i\}$, invariant or metastable measure $\mu_*$, and detector kernel produce $p_i=\mu_*(B_i)$ from $\Gamma$ and $\mathcal{H}$ without assigning probabilities as an external rule. | $\mathcal{B}_{\mathrm{quantum}}(\theta)$ lies in the Born-rule, Bell/CHSH/Tsirelson, detector-record, and no-signaling benchmark region within $\epsilon_{\mathrm{quantum}}$. | The validated regime gives non-Born weights, a classical-axis linear-correlation failure, superluminal signal transfer, or a detector kernel not derived from the recorded causal state. |
+| $\mathcal{C}_{\mathrm{gravity}}$ | One Noether-Sea response map $\mathcal{M}_{\mathrm{sea}}^{ab}$ supplies clock, ruler, effective signal-speed, weak-field metric, and PPN channels without changing coefficients per observable. | $\mathcal{B}_{\mathrm{gravity}}(\theta)$ lies in the redshift, Shapiro-delay, lensing, orbital, gravitational-wave-speed, PPN, and preferred-frame bound region within $\epsilon_{\mathrm{gravity}}$. | Clock, ruler, signal, or metric coefficients must be tuned independently, ordinary dissipative drag appears in stable motion, or preferred-frame leakage exceeds the recorded bounds. |
+| $\mathcal{C}_{\mathrm{hadronic}}$ | An accepted branch family $A$, exposure quotient, color/topology ledger, residual strong channel set, and $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ close confinement, quark mass, baryon-stability, and nuclear-binding rows. | $\mathcal{B}_{\mathrm{hadronic}}(\theta)$ lies in the confinement, quark-hierarchy, proton-stability, deuteron, saturation, and alpha-like benchmark region within $\epsilon_{\mathrm{hadronic}}$. | The sector predicts generic fast proton decay, unphysical nuclear binding signs, missing color/topology closure, or an unbalanced architrino / Noether-core inventory. |
+| $\mathcal{C}_{\mathrm{radiation}}$ | A radiation residual $\mathcal{R}_{\Theta}$ selects admissible channels from $\{B_i\}$ and closes $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ with photon output, recoil, medium update, non-radiative remnant, or reaction rows explicitly recorded. | $\mathcal{B}_{\mathrm{radiation}}(\theta)$ lies in the Larmor/Lienard, bremsstrahlung, synchrotron, pair-threshold, Compton-like, and blackbody benchmark region within $\epsilon_{\mathrm{radiation}}$. | Any benchmark requires per-observable retuning, untracked energy loss, a missing recoil/provenance row, a free longitudinal photon mode, or a blackbody fit not tied to the event ledger. |
+| $\mathcal{C}_{\mathrm{cosmology}}$ | One source, transport, thermalization, and clock-rate record uses the same $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, $\mathcal{M}_{\mathrm{sea}}^{ab}$, and reaction provenance ledger across local source channels and observer-level cosmology. | $\mathcal{B}_{\mathrm{cosmology}}(\theta)$ lies in the BBN, CMB blackbody, damping, anisotropy, polarization handoff, redshift, $H(z)$, BAO, and growth benchmark region within $\epsilon_{\mathrm{cosmology}}$. | BBN photon loading, CMB thermalization, redshift handoff, or structure growth requires unbalanced substrate creation, per-source retuning, or Noether-Sea variables incompatible with local reaction / radiation ledgers. |
+
+#### Promotion Lemma
+
+For sector $S$, let $\pi_S:\mathfrak{X}\to\mathfrak{X}_S$ be the projection that keeps the sector-$S$ coordinates and shared coordinates consumed by that sector. For a local sector result $c\in\mathfrak{X}_S$, define the extension fiber
+
+$$
+\operatorname{Ext}_S(c)
+=
+\left\{
+\theta\in\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}
+:
+\pi_S(\theta)=c
+\right\}.
+$$
+
+**Lemma.** A local sector result $c$ is promotable through the validation gate if and only if $c\in\pi_S(\mathcal{C}_S)$ and
+
+$$
+\operatorname{Ext}_S(c)\ne\varnothing.
+$$
+
+Proof route: if $c$ is promoted, the promoted record must retain the sector-$S$ result and pass every sector gate, so it is an element of $\operatorname{Ext}_S(c)$. Conversely, any $\theta\in\operatorname{Ext}_S(c)$ is a shared closure record whose sector-$S$ projection equals $c$ and whose weak, quantum, gravity, hadronic, radiation, and cosmology predicates all pass; therefore the local result has survived the validation gate. If the fiber is empty, the result is blocked by at least one sector predicate, benchmark region, no-go record, or failure condition.
+
+#### Incompatibility Witnesses
+
+A local claim $c$ imposes a constraint subset $I(c)\subseteq\mathfrak{X}$ consisting of all closure records that preserve the claim's definitions, coefficients, ledger rows, and effective-limit assumptions. For a target sector $T$, define the constrained target set
+
+$$
+\mathcal{C}_T\!\mid c
+=
+\mathcal{C}_T\cap I(c).
+$$
+
+An incompatibility witness from sector $S$ to sector $T$ is the object
+
+$$
+W_{S\to T}(c)
+=
+\left(
+c,
+T,
+I(c),
+P_T,
+\mathcal{B}_T,
+\mathfrak{B}^{\mathrm{obs}}_T,
+d_T,
+\epsilon_T,
+\mathcal{G}_T,
+\delta_T(c)
+\right),
+$$
+
+where
+
+$$
+\delta_T(c)
+=
+\epsilon_T
+-
+\inf_{\theta\in I(c),\,P_T(\theta)=1,\,\mathcal{G}_T(\theta)=1}
+\operatorname{dist}_{d_T}\!\left(\mathcal{B}_T(\theta),\mathfrak{B}^{\mathrm{obs}}_T\right).
+$$
+
+The witness empties the target gate when $\mathcal{C}_T\!\mid c=\varnothing$. It damages the target gate when $\mathcal{C}_T\!\mid c\ne\varnothing$ but $\delta_T(c)$ removes a required tolerance margin, forces a hidden sector-specific parameter split, or leaves a required ledger row undefined.
+
+| Witness class | Imposed local claim $c$ | Target effect | Failure code |
+| --- | --- | --- | --- |
+| Weak-domain split | $I(c)$ requires distinct weak exposure domains for `V-A`, CKM/PMNS, and weak-corridor provenance. | $\mathcal{C}_{\mathrm{weak}}\!\mid c=\varnothing$ because $P_{\mathrm{weak}}$ requires one weak-coupling-triad exposure record. | `weak.hidden_domain_split` |
+| Gravity coefficient split | $I(c)$ requires separate clock, ruler, signal, and PPN coefficients not derived from one $\mathcal{M}_{\mathrm{sea}}^{ab}$. | $\mathcal{C}_{\mathrm{gravity}}\!\mid c=\varnothing$ if the split is needed for benchmark recovery. | `gravity.hidden_tuning` |
+| Radiation-cosmology split | $I(c)$ fits blackbody recovery with $\chi_{\text{sea}}^{\mathrm{CMB}}(\mathbf{x},t)$ incompatible with the BBN or local radiation event ledger. | $\mathcal{C}_{\mathrm{cosmology}}\!\mid c=\varnothing$ or $\delta_{\mathrm{cosmology}}(c)<0$. | `cosmology.incompatible_transport_limit` |
+| Quantum signal leak | $I(c)$ recovers Bell correlations through a detector kernel that transfers controllable signals outside the causal-wake ledger. | $\mathcal{C}_{\mathrm{quantum}}\!\mid c=\varnothing$ and the same record damages $\mathcal{C}_{\mathrm{gravity}}$ through preferred-frame leakage. | `quantum.signal_transfer` |
+| Event-ledger omission | $I(c)$ routes radiation, reaction, measurement, or strong-field release without a required $E$, $\mathbf{p}$, $\mathbf{J}$, polarity, provenance, medium, or remnant row. | The target sector using that event has no admissible $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ completion. | `event.missing_ledger_row` |
+
+#### Testable Failure Modes
+
+| Failure mode | Mathematical test | Routed workstream |
+| --- | --- | --- |
+| Empty intersection | $\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}=\varnothing$ or $\operatorname{Ext}_S(c)=\varnothing$ for a proposed local promotion. | [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md), [Closure Scorecard](../../../../markdown/aaa/validation/closure-scorecard.md) |
+| Hidden tuning | A shared variable or map has sector-specific values $p_S\ne p_T$ with no recorded state variable, or the same benchmark family is recovered only by changing $\Pi_S$, $Q_S$, $\mathcal{R}$, $\{B_i\}$, $\mathcal{M}_{\mathrm{sea}}^{ab}$, $\rho_{\text{core}}(\mathbf{x},t)$, or $\chi_{\text{sea}}(\mathbf{x},t)$ between cases. | [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md), [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md) |
+| Missing conservation/provenance field | $\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)$ has an undefined or nonzero required row after all claimed outputs, recoil, medium updates, remnants, polarity / charge, architrino inventory, source identity, emission time, causal-root branch, and branch-Jacobian records are included. | [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md), [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) |
+| Benchmark-only fitting | A target benchmark in $\mathfrak{B}^{\mathrm{obs}}_S$ is used as an input to $\mathcal{L}_A$, $\Pi_S$, $Q_S$, $\mathcal{R}$, $\{B_i\}$, or $\mathcal{M}_{\mathrm{sea}}^{ab}$ rather than as an output of a replayable closure record. | [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Radiation](../../../../markdown/aaa/reactions/radiation.md) |
+| Incompatible effective limits | Two sectors require asymptotic maps whose overlap is empty, for example incompatible weak-field metric limits, photon / radiation limits, blackbody / BBN transport limits, or quantum no-signaling / gravity causal limits. | [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md), [GR Phenomenology](../../../../markdown/aaa/spacetime/gr-phenomenology.md), [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md) |
+
+#### Preferred-Frame Hiding Stop Condition
+
+1. **Hard wall:** If the Euclidean-void rest frame is detectable by any physical experiment, for example a Michelson-Morley-type null test, at $\Delta c/c > 10^{-17}$, the theory fails.
+2. **Required compensation:** Moving assemblies must acquire the Lorentz-compatible deformation and clock laws, $L_{\parallel}=L_0/\gamma$ and $T=\gamma T_0$, from delayed causal closure and Noether-Sea response rather than from kinematic postulates.
+3. **Coefficient closure:** Clock, ruler, signal, and metric response coefficients must suppress two-way anisotropy and other preferred-frame leakage to the validated bounds. A qualitative contraction story is not sufficient.
+4. **Dissipative drag:** If the Noether Sea induces ordinary drag that slows cosmological bodies without a conserving medium-dressed response mechanism, the theory is falsified.
+
+#### Critical Stop Conditions
+
+- **$c_f$ variance:** If field speed varies in the true void, the theory fails.
+- **Noether-Sea drag:** If the Noether Sea causes orbital decay or secular kinetic-energy loss through ordinary dissipative drag, rather than a reversible medium-dressed inertial response, the theory fails.
+- **Lorentz leakage:** If absolute motion affects atomic spectra above $10^{-17}$, the theory fails.
+- **Empty shared intersection:** If quantitative development makes $\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}=\varnothing$, the present implementation is rejected even if individual sector chapters remain locally suggestive.
 
 ### No Go Theorems
 
-This chapter is the placeholder for formal impossibility and obstruction results relevant to the framework. Its purpose is to mark out the role these theorems should play: not as decorative citations, but as serious filters on what the theory can and cannot consistently claim. It should eventually tie together the sharpest formal constraints from the quantum, Lorentz, and cosmology branches.
+This chapter classifies the formal obstruction results that act as validation filters for $\mathbb{A}\mathbb{A}\mathbb{A}$. A no-go theorem is not useful here as a decorative citation. It is useful only when its assumptions, conclusion, and replacement burden can be recorded against a candidate closure.
 
-#### Purpose
+The operational companion is [Failure Criteria](../../../../markdown/aaa/validation/failure-criteria.md). That page defines the shared closure intersection. This page defines how a theorem enters one sector gate: directly as a rejection condition, as an assumption mismatch, as a replacement constraint, or as an irrelevant comparison.
 
-This chapter is a placeholder for no-go theorems relevant to $\mathbb{A}\mathbb{A}\mathbb{A}$.
+#### Applicability Record
 
-#### Current framing
+For a no-go family $G$, let $\mathcal{A}_G$ be its assumption set and let
 
-This page should examine which formal impossibility results actually apply, which rely on assumptions that $\mathbb{A}\mathbb{A}\mathbb{A}$ rejects, and what conditions the framework must satisfy to remain mathematically coherent. In practice this means linking formal obstructions back to [Bell Theorem](../../../../markdown/aaa/theory-bridges/bell-theorem.md), [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md), [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md), [Failure Criteria](../../../../markdown/aaa/validation/failure-criteria.md), and [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md).
+$$
+\sigma_{\theta,G}:\mathcal{A}_G\to
+\{
+\mathrm{accepted},
+\mathrm{rejected},
+\mathrm{replaced},
+\mathrm{effective},
+\mathrm{absent}
+\}
+$$
 
-#### Related Chapters
+record the $\mathbb{A}\mathbb{A}\mathbb{A}$ stance toward each assumption in the candidate record $\theta$. The applicability class is
 
-- [../theory-bridges/bell-theorem.md](../../../../markdown/aaa/theory-bridges/bell-theorem.md)
-- [../spacetime/lorentz-kinematics.md](../../../../markdown/aaa/spacetime/lorentz-kinematics.md)
-- [known-tensions.md](../../../../markdown/aaa/validation/known-tensions.md)
-- [failure-criteria.md](../../../../markdown/aaa/validation/failure-criteria.md)
-- [constraint-ledger.md](../../../../markdown/aaa/validation/constraint-ledger.md)
+$$
+\operatorname{app}(G,\theta)
+\in
+\{
+\mathrm{direct},
+\mathrm{assumption\ mismatch},
+\mathrm{replacement\ constraint},
+\mathrm{irrelevant\ comparison}
+\}.
+$$
 
-#### Status
+The class is `direct` when the theorem's assumptions are accepted or effective in the tested regime and its conclusion applies as a rejection condition. The class is `assumption mismatch` when a required assumption is rejected or absent and the theorem does not by itself supply a validated replacement burden. The class is `replacement constraint` when an assumption is rejected or replaced but the theorem protects a validated behavior that the candidate record must recover by $\mathbb{A}\mathbb{A}\mathbb{A}$ objects. The class is `irrelevant comparison` when $G$ shares no benchmark variable, conservation condition, or effective limit with the local claim under test.
 
-This page was previously empty. It now exists as a non-blank stub so the scene renders while the full analysis is authored.
+#### Applicability Map
+
+| No-go family | Applicability class | Assumption status | Replacement constraint or falsifier |
+| --- | --- | --- | --- |
+| Bell/CHSH/Tsirelson | `replacement constraint` | Bell local-causality or Markov screening assumptions are not substrate assumptions when $\mathcal{H}$ and detector response are retained; no-signaling and validated correlation bounds remain benchmark constraints. | Derive pair provenance, detector kernels, Born weights, no-signaling, and Tsirelson-compatible correlations from $\mathcal{T}_{\Delta t}$, $\{B_i\}$, and $\mu_*$. Failure occurs if the model reduces to the classical-axis linear-correlation mode or uses controllable superluminal transfer. |
+| Lorentz invariance and preferred-frame tests | `direct` | Observer-level clock, ruler, two-way signal, PPN, and spectral bounds apply directly to any candidate effective metric or transport map. | Bound $\epsilon_{\mathrm{LV}}$, $\Delta_{\mathrm{tw}}(\beta)$, PPN parameters, spectra, and gravitational-wave-speed differences within recorded limits. Failure occurs when absolute motion is detectable above the accepted thresholds. |
+| Spin-statistics / exchange | `replacement constraint` | Local Lorentz-QFT axioms are not fundamental substrate assumptions, but matter stability and exchange classes are validated effective constraints. | Derive the ordered-frame lift, $4\pi$ spinor behavior, and bosonic/fermionic exchange classes from Noether-core topology and angular-momentum ledger. Failure occurs if the lift cannot separate fermionic and bosonic closure classes. |
+| Coleman-Mandula / gauge unification constraints | `assumption mismatch` with replacement constraint when effective scattering is claimed | Exact Lorentz-invariant analytic S-matrix assumptions are not substrate assumptions for delayed absolute-time dynamics. Effective gauge-sector factorization remains a benchmark when Standard-Model-facing scattering or mixing is claimed. | State which assumptions are effective and derive gauge-like symmetries without contradicting observed factorization. Failure occurs if a claimed unification predicts forbidden effective-sector mixing or uses gauge covariance as an unexplained fit. |
+| Weinberg-Witten-like obstructions | `assumption mismatch` with replacement constraint when emergent photon or gravity language is claimed | Lorentz-covariant conserved stress-tensor assumptions of the theorem are not fundamental substrate assumptions for Noether-Sea and assembly closures. Photon and gravity claims must still recover the validated effective channels. | Keep photon and metric objects as medium/assembly closures with explicit domain limits. Failure occurs if the record claims a fundamental Lorentz-covariant composite photon/graviton while also denying the theorem's assumptions, or if effective limits cannot be recovered. |
+| AdS/CFT, island, replica-wormhole, string, or loop-quantum-gravity comparison constraints | `irrelevant comparison` unless a specific tested benchmark is imported | These frameworks are comparison tools unless the local packet imports a precise entropy, unitarity, horizon, or observational condition as a gate. | No acceptance burden is created by analogy alone. A burden is created only by a named benchmark such as area-scaling entropy, Page-curve-compatible accounting, horizon regularity, or direct compact-object data. |
+
+#### Use in Validation
+
+A candidate closure record must name the no-go family it touches and fill the applicability record before the result can be promoted. If $\operatorname{app}(G,\theta)=\mathrm{direct}$, the theorem's conclusion is a hard rejection condition. If $\operatorname{app}(G,\theta)=\mathrm{replacement\ constraint}$, the rejected assumption does not remove the burden; it only changes the object that must carry the validated behavior.
+
+The no-go record therefore becomes one component of the sector predicate $\mathcal{G}_S(\theta)$ used in [Failure Criteria](../../../../markdown/aaa/validation/failure-criteria.md). A result that passes a local benchmark but evades the relevant theorem by changing assumptions without supplying the replacement constraint is not a closure result.
 
 ### Known Tensions
 
@@ -21951,7 +22718,7 @@ This page is not a dumping ground for vague uncertainty. Each tension should ide
 | 1 | Born-rule derivation | Quantum replacement claims are not credible without a basin-measure or equivalent statistical closure. | [wavefunction-ontology.md](../../../../markdown/aaa/quantum/wavefunction-ontology.md) and [measurement-ontology.md](../../../../markdown/aaa/quantum/measurement-ontology.md) fix the ontology, but not the derivation. | Derive outcome weights from deterministic basin measures in the same regime that yields the effective wave equation. | If the deterministic closure produces a non-Born weighting in validated regimes, the current quantum story fails. |
 | 1 | Weak-field GR recovery | Redshift, Shapiro delay, lensing, and orbital tests must come from one constitutive map. | The interface now exists in [gr-phenomenology.md](../../../../markdown/aaa/spacetime/gr-phenomenology.md) and [ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md), but the shared fit is incomplete. | Produce one reusable parameter set for the weak-field metric map. | If different observables require incompatible constitutive coefficients, the emergent-metric program fails. |
 | 2 | Parameter non-closure | Too many symbols remain geometric promises rather than fixed quantities. | [parameter-ledger.md](../../../../markdown/aaa/validation/parameter-ledger.md) now organizes them, but most are still open. | Close $\kappa$, the mass prefactor, the metric constitutive coefficients, and the weak-mixing datum without per-observable retuning. | If the same symbol has to be re-fit independently across chapters, the closure claim weakens sharply. |
-| 2 | Thermodynamic-gravity closure | If the metric is an emergent equation of state, the repo needs more than constitutive rhetoric. | [emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md) now states the medium-first picture, but no quantitative entropy-area or Unruh derivation is in place. | Show that the Noether Sea admits an area-scaling entropy channel, a local Rindler/Unruh recovery in the appropriate limit, and a controlled nonequilibrium regime where distinctive departures are predicted. | If GR-like recovery requires the thermodynamic language but the medium cannot supply area scaling, local horizon temperature, or a coherent nonequilibrium boundary, the present gravity interpretation loses depth and may be mislocated. |
+| 2 | Thermodynamic-gravity closure | If the metric is an emergent equation of state, the repo needs more than constitutive rhetoric. | [emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md) now states the medium-first picture, and [black-holes.md](../../../../markdown/aaa/spacetime/black-holes.md) now frames horizon entropy as a count over horizon-compatible reduced Noether-core closure labels, but no quantitative entropy-area, Page-curve, or Unruh derivation is in place. | Show that the Noether Sea admits an area-scaling entropy channel $S_H=k_B\log\lvert\mathcal{B}_H\rvert$, a local Rindler/Unruh recovery in the appropriate limit, Page-curve-compatible information release through horizon-interface channels, and a controlled nonequilibrium regime where distinctive departures are predicted. | If GR-like recovery requires the thermodynamic language but the medium cannot supply area scaling, local horizon temperature, Page-curve-compatible information accounting, or a coherent nonequilibrium boundary, the present gravity interpretation loses depth and may be mislocated. |
 | 2 | Reaction-cosmology provenance closure | The local-reaction story and the cosmology-source story now meet at photon loading, pair production, and thermalization. | [reaction-cosmology-provenance-ledger.md](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) defines the shared ledger, but no full source-to-background path has been closed. | Produce one conserved provenance path from a radiation or pair channel through thermalization to a BBN or CMB observable, using the same Noether-Sea state variables throughout. | If BBN photon loading or CMB blackbody recovery requires unbalanced substrate creation, per-source retuning, or incompatible thermalization assumptions, the local-recycling cosmology branch fails. |
 | 2 | Radiation Gate C benchmark closure | Radiation must recover standard electromagnetic and QED-like benchmarks before Noether-Sea-dependent deviations or cosmology source claims are credible. | [radiation.md](../../../../markdown/aaa/reactions/radiation.md) now carries a classified closure-target ledger, with channel scaffolds in [bremsstrahlung.md](../../../../markdown/aaa/reactions/bremsstrahlung.md), [synchrotron.md](../../../../markdown/aaa/reactions/synchrotron.md), and [reaction-cosmology-provenance-ledger.md](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md), but no unified Gate C derivation is complete. | Close Larmor/Lienard recovery, free-free emissivity, synchrotron $\gamma^2B$ and power scaling, pair thresholds, Compton-like scattering, and blackbody detailed balance through one event record, while treating free photon polarization as a Gate B handoff only. | If any benchmark requires per-observable retuning, violates validated limits, or derives free photon polarization outside Gate B, radiation Gate C does not close. |
 | 2 | CKM / PMNS quantitative closure | Flavor mixing cannot remain only qualitative if the framework claims Standard-Model replacement. | PMNS oscillation formulas exist; CKM geometry has an overlap/holonomy scaffold and is now tied to the same weak-coupling-triad exposure route as `V-A` and reaction provenance. | Derive one geometric overlap map for quark and lepton mixing from the exposed weak-coupling-triad domain, shielding eigenstates, and near-photon neutral-sector Hamiltonian, then test it against CKM and PMNS data. | If no stable geometry reproduces the observed hierarchy and phases, or if the CKM/PMNS definitions require a different weak-basis domain from the `V-A` operator, the present mixing architecture is incomplete at best. |
@@ -22037,10 +22804,14 @@ $$
 \mathcal{C}_{\mathrm{gravity}}
 \cap
 \mathcal{C}_{\mathrm{hadronic}}
+\cap
+\mathcal{C}_{\mathrm{radiation}}
+\cap
+\mathcal{C}_{\mathrm{cosmology}}
 \neq \varnothing.
 $$
 
-If that intersection becomes empty after quantitative work is done, the present implementation is rejected even if many individual chapters remain suggestive.
+If that intersection becomes empty after quantitative work is done, the present implementation is rejected even if many individual chapters remain suggestive. The detailed sector predicates, benchmark tolerances, and promotion-fiber test are recorded in [Failure Criteria](../../../../markdown/aaa/validation/failure-criteria.md).
 
 #### Related Chapters
 
@@ -37775,6 +38546,27 @@ The finite self-map ledger has four rows. The first, second, and fourth rows pro
    r_{\mathrm{cert}}
    $$
    and produces the closed convex tame certificate.
+   The row begins with a candidate
+   $$
+   \phi_{\mathrm{cyc}},
+   $$
+   a common mesh, and a null-coordinate causal pre-ledger. For each ordered receiver-source block
+   $$
+   (I_\alpha,I_\beta),
+   $$
+   the pre-ledger must classify the row as empty, simple-root, or fold-layer using
+   $$
+   u=c_f t-x,
+   \qquad
+   w=c_f t+x.
+   $$
+   Empty rows require strict range separation; simple-root rows require a positive source-side derivative floor; fold-layer rows remain outside branch-sum reduction until the dual-mollified fold certificate supplies the parity-preserving transition
+   $$
+   \Delta N\in 2\mathbb{Z},
+   \qquad
+   \Delta D=0.
+   $$
+   Any unresolved row blocks the seed chart before corridor, monodromy, or returned-sample work begins.
 2. **Coupled-corridor row.**
    Verify
    $$
@@ -44607,6 +45399,111 @@ D_{\alpha\beta}
 $$
 with the sum taken over certified root branches on that interval pair. On a simple-root chart with a positive Jacobian floor, this degree equals the unsigned root count. Near separators it is the invariant that survives the fold.
 
+###### Separator fold rows and the excluded diagonal
+
+The first local repair to the affine self-image table is to keep the diagonal exclusion and the fold layer in the same calculation. Let
+$$
+y\in\{u,w\}
+$$
+be the active null coordinate near a separator source time
+$$
+s_\Sigma,
+$$
+and assume a nondegenerate local maximum
+$$
+y'(s_\Sigma)=0,
+\qquad
+y''(s_\Sigma)=-\alpha,
+\qquad
+\alpha>0.
+$$
+For a receiver level
+$$
+y(t)=y(s_\Sigma)-\lambda,
+\qquad
+\lambda>0,
+$$
+the source-side fold equation has the normal form
+$$
+y(s)-y(t)
+=
+\lambda-\frac{\alpha}{2}(s-s_\Sigma)^2
++O(|s-s_\Sigma|^3).
+$$
+Hence the two local source branches are
+$$
+s_\pm(t)
+=
+s_\Sigma\pm\sqrt{\frac{2\lambda}{\alpha}}
++O(\lambda).
+$$
+Their null-coordinate Jacobians are
+$$
+J_y(s_\pm)
+=
+\frac{y'(s_\pm)}{c_f}
+=
+\mp\frac{\sqrt{2\alpha\lambda}}{c_f}
++O(\lambda),
+$$
+so the two branches carry opposite signed degree and the fold preserves
+$$
+\Delta D=0.
+$$
+The memory-depth tests are
+$$
+0<t-s_\Sigma+\sqrt{\frac{2\lambda}{\alpha}}+O(\lambda)\le h
+$$
+for
+$$
+s_-,
+$$
+and
+$$
+0<t-s_\Sigma-\sqrt{\frac{2\lambda}{\alpha}}+O(\lambda)\le h
+$$
+for
+$$
+s_+.
+$$
+When the receiver is still on the same outgoing source arc, the
+$$
+s_+
+$$
+branch may coincide with the excluded diagonal
+$$
+s=t
+$$
+to leading order. That branch is not an accepted simple-root contribution, but it is still part of the separator fold layer. It becomes a nontrivial branch only after the receiver leaves the outgoing source arc and the memory-depth inequality becomes strict.
+
+Applied to the simplified doubled four-arc affine check, this repairs the apparent odd branch birth at the first and third separators. At
+$$
+\Sigma_1,
+$$
+the active fold is the
+$$
+w
+$$
+ledger. The pre-fold branch has positive degree and matches the nontrivial
+$$
+w
+$$
+roots that continue through the adjacent source copies; the post-fold branch has negative degree and is initially diagonal-carried before becoming the second nontrivial
+$$
+w
+$$
+root on the later receiver block. At
+$$
+\Sigma_3,
+$$
+the same calculation holds in the
+$$
+u
+$$
+ledger. Thus a one-root affine row immediately after a separator is not by itself a parity violation. It is a separator fold row whose missing opposite-degree partner is carried by the excluded diagonal until it emerges into a later ordered block.
+
+This calculation gives a concrete obstruction to using a piecewise-affine table as a complete certificate: the affine row can identify the visible simple-root branch, but it cannot certify the separator unless the fold-layer chart records the hidden diagonal-carried partner, its opposite Jacobian sign, and its memory-depth exit into a nontrivial source interval.
+
 The enumeration deliverable is the following table, filled with exact formulas or interval-validated enclosures:
 
 | Receiver arc $I_\alpha$ | Source arc $I_\beta$ | Root count $N$ | Signed degree $D$ | Root formula or enclosure | $\hat r_s$ | $J_s$ floor | Contribution sign | Separator jumps | Certificate status |
@@ -44885,6 +45782,50 @@ $$
 the factorized corridor coefficients,
 and the returned-sample residuals or boundary budgets.
 
+##### Seed-chart pre-ledger acceptance rule
+
+The first machine-checkable gate is the null-coordinate pre-ledger, not the returned residual. For every ordered receiver-source block
+$$
+(I_\alpha,I_\beta),
+$$
+define the range gaps
+$$
+\Delta^u_{\alpha\beta}
+=
+\operatorname{dist}\!\big(u(I_\alpha),u(I_\beta)\big),
+\qquad
+\Delta^w_{\alpha\beta}
+=
+\operatorname{dist}\!\big(w(I_\alpha),w(I_\beta)\big).
+$$
+The row is empty when the relevant gap is strictly positive. It is a simple-root row only when the corresponding source-side derivative floor is positive:
+$$
+\inf_{s\in I_\beta}
+\left|1-\frac{\dot x(s)}{c_f}\right|>0
+\qquad
+\text{for the }u\text{ ledger},
+$$
+or
+$$
+\inf_{s\in I_\beta}
+\left|1+\frac{\dot x(s)}{c_f}\right|>0
+\qquad
+\text{for the }w\text{ ledger}.
+$$
+Rows that satisfy neither test must be split or routed to a fold-layer certificate. A candidate
+$$
+\phi_{\mathrm{cyc}}
+$$
+does not advance to branch-chart certification while any ordered block remains unresolved.
+
+At a separator row, a single visible simple root adjacent to the fold is not enough to pass the pre-ledger. The fold-layer certificate must also account for any opposite-degree branch that is temporarily carried by the excluded diagonal
+$$
+s=t
+$$
+and prove either its continued diagonal exclusion or its later strict memory-depth entry as a nontrivial source branch.
+
+This rule makes the pre-ledger a genuine falsification gate. A failed row rejects the candidate history, the chosen split, or the itinerary before corridor arithmetic, monodromy, or returned-sample preservation is attempted. A passed pre-ledger still does not prove the breather; it only permits construction of the active branch chart with inactive complements, Jacobian floors, memory-depth ranges, and contribution signs on the same sampled domain.
+
 #### First Working Guess
 
 Closed-by-quadrature is only one possible certificate generator. A two-parameter family is generally too small unless the cycle symmetry is built into the parametrization: the compressed skeleton has arc-junction conditions, separator impulse conditions, branch-list updates, and a returned-history residual.
@@ -45092,7 +46033,7 @@ $$
 $$
 and certify the finite active branches numerically.
 
-The next concrete task is therefore algebraic and topological: compute the doubled-itinerary self-image structure, test finite branch closure, and refine the parity ledger from the coarse separator count to the actual branch table. The accepted output is the finite audit packet, not an elegant formula.
+The first doubled-itinerary affine check has a sharper conclusion: the apparent odd simple-root births at the first and third separators are separator fold rows with one opposite-degree branch carried by the excluded diagonal, not completed branch-chart rows. The next concrete calculation is therefore to certify the death-side separators with the same fold normal form while tracking the excluded diagonal, then fill the ordered self-image table with strict range gaps, Jacobian floors, memory-depth ranges, and inactive complements. The accepted output is the finite audit packet, not an elegant formula.
 
 ### Planar Bridge Closure
 
@@ -46839,7 +47780,7 @@ This chapter is a multi-level split: `##` thematic buckets and `###` issue entri
 
 **Standard Repairs:** Standard repairs include black-hole complementarity, soft hair, holographic duality, islands, replica-wormhole arguments, and firewall-style revisions. These strongly suggest information recovery, but the microscopic mechanism is still debated.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** The candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ closure is that black-hole information is stored and released through structured tri-binary flows rather than erased. The event-horizon region would correspond to middle-binary behavior near $v=c_f$, while core microstate storage would involve maximal-curvature self-hit structures. Possible dark-photon or deformation-wave cascades should be treated as a mechanism proposal until their provenance, energy budget, and visible-sector handoff are derived. The Page curve would have to be recovered by showing how emitted assemblies preserve enough phase and axial-pattern information without invoking firewalls or hiding the mechanism in formal duality. The proposed zero-entropy limiting state is a separate high-risk closure target, not an established result. Transition relevance is very high because these are the cleanest tests of whether a substrate-first replacement actually provides closure rather than merely relabeling the old paradox. Long-term relevance is as a foundational compliance test: a successful theory should turn these from paradoxes into explicit closure demonstrations.
+**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** The candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ closure is that black-hole information is stored and released through structured tri-binary flows rather than erased. The event-horizon region would correspond to middle-binary behavior near $v=c_f$, while core microstate storage would involve maximal-curvature self-hit structures. Possible dark-photon or deformation-wave cascades should be treated as a mechanism proposal until their provenance, energy budget, and visible-sector handoff are derived. Under the closure-target discipline, island and replica-wormhole results are comparison mathematics and high-value consistency pressure, not $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology. They show the kind of Page-curve recovery a mature black-hole account must match, but they do not decide the native mechanism. The Page curve would have to be recovered by showing how emitted assemblies preserve enough phase and axial-pattern information without invoking firewalls or hiding the mechanism in formal duality. The proposed zero-entropy limiting state is a separate high-risk closure target, not an established result. Transition relevance is very high because these are the cleanest tests of whether a substrate-first replacement actually provides closure rather than merely relabeling the old paradox. Long-term relevance is as a foundational compliance test: a successful theory should turn these from paradoxes into explicit closure demonstrations.
 
 **What Would Count As Resolution:** Resolution would require a transparent account of where the information is stored and how it is released, in a form that recovers the Page curve without hiding the mechanism behind purely formal duality language.
 
@@ -47405,6 +48346,8 @@ Z_{\mathrm{grav}}[\phi_0] = Z_{\mathrm{CFT}}[\phi_0].
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Within $\mathbb{A}\mathbb{A}\mathbb{A}$, these concepts are treated as high-level clues rather than as final ontology. The project does not start from a fundamental AdS bulk or a literal boundary CFT. Instead, it interprets horizon structure as a constitutive interface between different tri-binary regimes. In that setting, cosmic censorship becomes a statement about access to maximal-curvature regimes, holography becomes a statement about compressed interface encoding, and AdS/CFT becomes a suggestive dual-language analogue rather than the primitive architecture itself.
 
+The same restraint applies to Ryu-Takayanagi, island, and replica-wormhole entropy results. They are strongest here as comparison mathematics showing how Page-curve recovery can be organized in controlled holographic settings. They should not be imported as horizon ontology. The $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping target is narrower: determine which boundary-encoding features survive as effective compression laws after the horizon-interface regime is derived from tri-binary alignment and Noether-Sea dynamics.
+
 | Tri-Binary Region | $f$ | Speed Regime | Black Hole Region | Volume | AdS/CFT Side |
 | :--- | :--: | :---: | :--- | :--- | :--- |
 | Inner (self-hit) | 4 | $v > c_f$ | Inside the black hole | Inflation/deflation | AdS interior (gravity side) |
@@ -47430,6 +48373,7 @@ That yields a disciplined shorthand: Horizon interface for the Planck-aligned in
 **Geometric proof targets:**
 - Derive the horizon-interface regime as a constitutive transition between volumetric and self-hit tri-binary states.
 - Show which elements of boundary encoding survive as effective compression laws without requiring fundamental boundary ontology.
+- Treat black-hole entropy and Page-curve recovery as downstream consistency targets after the native horizon-interface mechanism is specified, not as source derivations for the ontology.
 
 ---
 #### Cosmology / Large-Scale Assembly
