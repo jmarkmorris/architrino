@@ -8,18 +8,20 @@ const DEFAULT_SAMPLE_COUNTS = [32, 64, 128];
 const DEFAULT_ETA_STEPS = 3;
 const DEFAULT_DRIFT_TOLERANCE = 0.05;
 const DEFAULT_APERTURE_WIDTH = 0.35;
+const ACCEPTED_HISTORY_STATUS = "accepted_history_segment";
+const ROOT_J_FLOOR = 1e-6;
 const TIER_LAYERS = {
   IMO: ["I", "M", "O"],
   "IM-": ["I", "M"],
   "I--": ["I"],
 };
 const POLARITIES = ["+", "-"];
-const POLARITY_SIGN = { "+": 1, "-": -1 };
 const POLARITY_CHARGE = { "+": 1, "-": -1 };
 
 function parseArgs(argv) {
   const args = {
     tier0: null,
+    history: null,
     rows: DEFAULT_ROWS,
     tierSelector: null,
     sampleCounts: DEFAULT_SAMPLE_COUNTS,
@@ -39,6 +41,8 @@ function parseArgs(argv) {
       args.help = true;
     } else if (arg === "--tier0") {
       args.tier0 = argv[++i];
+    } else if (arg === "--history") {
+      args.history = argv[++i];
     } else if (arg === "--rows") {
       args.rows = argv[++i];
     } else if (arg === "--tier-selector") {
@@ -73,6 +77,7 @@ function printHelp() {
 
 Options:
   --tier0 PATH            Tier 0 JSON output from a0-tier0-branch-search.mjs.
+  --history PATH          Accepted Tier 1 state/history segment and active causal-root ledger JSON.
   --rows VALUE            "ready", "all", or a comma-separated row list. Defaults to "ready".
   --tier-selector VALUE   IMO, IM-, or I--. Defaults to the row handoff selector or IMO.
   --sample-counts LIST    Comma-separated positive integer refinement counts. Defaults to 32,64,128.
@@ -87,7 +92,8 @@ Options:
   --help                  Show this help.
 
 This is a Tier 1 weak-retained emitter prototype. It reconstructs a provisional
-diagnostic wake from Tier 0 carrier data and reports active-tier norm and
+weak-retained causal-wake amplitude from an explicit accepted state/history
+segment and active causal-root ledger, then reports active-tier norm and
 refinement drift. It does not emit weak-emitter-ready and it must not be used as
 a Standard Model shielding-envelope input.`);
 }
@@ -96,11 +102,42 @@ function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
 }
 
+function optionalResolvedPath(filePath) {
+  return filePath ? path.resolve(filePath) : null;
+}
+
 function requireTier0Path(args) {
   if (!args.tier0) {
     throw new Error("Missing required --tier0 PATH argument.");
   }
   return path.resolve(args.tier0);
+}
+
+function historySegments(history) {
+  if (!history) {
+    return [];
+  }
+  if (Array.isArray(history.rows)) {
+    return history.rows;
+  }
+  if (Array.isArray(history.segments)) {
+    return history.segments;
+  }
+  if (Array.isArray(history.history_segments)) {
+    return history.history_segments;
+  }
+  if (Object.hasOwn(history, "row")) {
+    return [history];
+  }
+  return [];
+}
+
+function historySegmentMap(history) {
+  return new Map(
+    historySegments(history)
+      .filter((segment) => Number.isInteger(segment.row))
+      .map((segment) => [segment.row, segment])
+  );
 }
 
 function parseNumberList(value) {
@@ -253,6 +290,14 @@ function unit(a) {
   return value === 0 ? [0, 0, 0] : scale(a, 1 / value);
 }
 
+function interpolateVector(a, b, alpha) {
+  return [
+    a[0] + (b[0] - a[0]) * alpha,
+    a[1] + (b[1] - a[1]) * alpha,
+    a[2] + (b[2] - a[2]) * alpha,
+  ];
+}
+
 function cAdd(a, b) {
   return { re: a.re + b.re, im: a.im + b.im };
 }
@@ -305,6 +350,139 @@ function stateEntries(row) {
   return Object.fromEntries(entries.map((entry) => [entry.id, entry]));
 }
 
+function sampleBodyState(sample, bodyId) {
+  const bodies = sample.bodies ?? sample.state ?? sample.states ?? null;
+  if (!bodies) {
+    return null;
+  }
+  if (Array.isArray(bodies)) {
+    return bodies.find((body) => body.id === bodyId) ?? null;
+  }
+  return bodies[bodyId] ?? null;
+}
+
+function sortedHistorySamples(segment) {
+  return [...(segment.samples ?? segment.history ?? [])]
+    .filter((sample) => Number.isFinite(sample.t) || Number.isFinite(sample.time))
+    .map((sample) => ({
+      ...sample,
+      t: Number.isFinite(sample.t) ? sample.t : sample.time,
+    }))
+    .sort((a, b) => a.t - b.t);
+}
+
+function interpolateBodyState(samples, bodyId, queryTime) {
+  if (samples.length === 0) {
+    return null;
+  }
+  if (queryTime < samples[0].t || queryTime > samples[samples.length - 1].t) {
+    return null;
+  }
+  for (let i = 0; i < samples.length; i += 1) {
+    if (Math.abs(samples[i].t - queryTime) <= 1e-12) {
+      return sampleBodyState(samples[i], bodyId);
+    }
+  }
+  for (let i = 1; i < samples.length; i += 1) {
+    const prior = samples[i - 1];
+    const next = samples[i];
+    if (prior.t <= queryTime && queryTime <= next.t) {
+      const priorState = sampleBodyState(prior, bodyId);
+      const nextState = sampleBodyState(next, bodyId);
+      if (!priorState || !nextState) {
+        return null;
+      }
+      const alpha = (queryTime - prior.t) / Math.max(next.t - prior.t, Number.EPSILON);
+      return {
+        position: interpolateVector(priorState.position, nextState.position, alpha),
+        velocity: interpolateVector(priorState.velocity, nextState.velocity, alpha),
+      };
+    }
+  }
+  return null;
+}
+
+function segmentRootLedger(segment) {
+  const roots =
+    segment.active_causal_root_ledger ??
+    segment.active_roots ??
+    segment.root_ledger?.active_roots ??
+    segment.root_ledger?.roots ??
+    [];
+  return Array.isArray(roots)
+    ? roots.filter((root) => root && root.status !== "excluded" && root.status !== "inactive")
+    : [];
+}
+
+function rootRelationsPresent(roots) {
+  const relations = new Set(roots.map((root) => root.relation).filter(Boolean));
+  return {
+    partner: relations.has("partner"),
+    self: relations.has("self"),
+    inter_layer: relations.has("inter_layer"),
+  };
+}
+
+function rootLedgerDiagnostics(segment) {
+  const roots = segmentRootLedger(segment);
+  const relations = rootRelationsPresent(roots);
+  return {
+    count: roots.length,
+    relations,
+    complete_relation_classes: relations.partner && relations.self && relations.inter_layer,
+  };
+}
+
+function rootsBySourceForLayer(segment, layer) {
+  const roots = segmentRootLedger(segment).filter(
+    (root) => typeof root.source === "string" && root.source.startsWith(layer)
+  );
+  return Object.fromEntries(
+    POLARITIES.map((polarity) => [
+      `${layer}${polarity}`,
+      roots.filter((root) => root.source === `${layer}${polarity}`),
+    ])
+  );
+}
+
+function historySegmentReadiness(segment) {
+  if (!segment) {
+    return {
+      ready: false,
+      reason: "accepted-history-segment-missing",
+      failure_code: "weak-emitter-not-computed",
+    };
+  }
+  if (segment.status !== ACCEPTED_HISTORY_STATUS) {
+    return {
+      ready: false,
+      reason: "history-segment-not-accepted",
+      failure_code: "weak-emitter-not-computed",
+    };
+  }
+  const samples = sortedHistorySamples(segment);
+  if (samples.length < 2) {
+    return {
+      ready: false,
+      reason: "history-samples-insufficient",
+      failure_code: "weak-emitter-not-computed",
+    };
+  }
+  const rootDiagnostics = rootLedgerDiagnostics(segment);
+  if (!rootDiagnostics.complete_relation_classes) {
+    return {
+      ready: false,
+      reason: "active-root-ledger-incomplete",
+      failure_code: "weak-emitter-not-computed",
+    };
+  }
+  return {
+    ready: true,
+    reason: "accepted-history-and-root-ledger-present",
+    failure_code: null,
+  };
+}
+
 function reconstructLayers(row) {
   const entries = stateEntries(row);
   const layers = {};
@@ -336,24 +514,6 @@ function reconstructLayers(row) {
   return layers;
 }
 
-function carrierState(layerData, polarity, t) {
-  const sign = POLARITY_SIGN[polarity];
-  const phase = layerData.omega * t;
-  const relative = add(
-    scale(layerData.e1, layerData.radius * Math.cos(phase)),
-    scale(layerData.e2, layerData.radius * layerData.ellipticity * Math.sin(phase))
-  );
-  const relativeVelocity = add(
-    scale(layerData.e1, -layerData.radius * layerData.omega * Math.sin(phase)),
-    scale(layerData.e2, layerData.radius * layerData.omega * layerData.ellipticity * Math.cos(phase))
-  );
-  return {
-    position: scale(relative, sign * 0.5),
-    velocity: scale(relativeVelocity, sign * 0.5),
-    charge: POLARITY_CHARGE[polarity],
-  };
-}
-
 function exposureWeight(layerData, direction, sigmaAx, apertureWidth) {
   const plusAperture = Math.exp((dot(direction, layerData.normal) - 1) / apertureWidth);
   const minusAperture = Math.exp((dot(direction, scale(layerData.normal, -1)) - 1) / apertureWidth);
@@ -361,31 +521,73 @@ function exposureWeight(layerData, direction, sigmaAx, apertureWidth) {
   return chirality * (plusAperture + minusAperture);
 }
 
-function wakeKernel(layerData, polarity, direction, t, params) {
-  const state = carrierState(layerData, polarity, t);
+function rootWeight(root) {
+  const relationWeight = {
+    self: 1,
+    partner: 0.75,
+    inter_layer: 0.5,
+  }[root.relation] ?? 0.5;
+  const absJ = Math.abs(Number.isFinite(root.J) ? root.J : 1);
+  return relationWeight / Math.max(absJ, ROOT_J_FLOOR);
+}
+
+function wakeKernelFromHistory(layerData, sourceState, direction, historyTime, params) {
   const observation = scale(direction, params.RRel);
-  const sourceToObservation = sub(observation, state.position);
+  const sourceToObservation = sub(observation, sourceState.position);
   const distance = Math.sqrt(dot(sourceToObservation, sourceToObservation) + params.eta * params.eta);
   const directionToObservation = unit(sourceToObservation);
-  const radialVelocity = scale(directionToObservation, dot(state.velocity, directionToObservation));
-  const transverseVelocity = sub(state.velocity, radialVelocity);
+  const radialVelocity = scale(directionToObservation, dot(sourceState.velocity, directionToObservation));
+  const transverseVelocity = sub(sourceState.velocity, radialVelocity);
   const realComponent = dot(transverseVelocity, layerData.e1);
   const imaginaryComponent = params.sigmaAx * dot(transverseVelocity, layerData.e2);
-  const historyPhase = layerData.omega * (t - distance / params.c);
+  const historyPhase = layerData.omega * (historyTime - distance / params.c);
   const carrier = { re: realComponent / distance, im: imaginaryComponent / distance };
   return cMul(carrier, cExp(historyPhase));
 }
 
-function computeLayerStage(row, layerData, stage, params) {
-  const period = row.closure_labels?.T_k ?? row.geometry?.commonPeriod;
+function computeRootedPolarityWake(samples, layerData, polarity, direction, t, roots, params) {
+  let weightedWake = { re: 0, im: 0 };
+  let totalWeight = 0;
+  let missingHistoryLookups = 0;
+  for (const root of roots) {
+    const delay = Number(root.delay ?? root.tau ?? root.root_delay);
+    if (!Number.isFinite(delay) || delay < 0) {
+      missingHistoryLookups += 1;
+      continue;
+    }
+    const historyTime = t - delay;
+    const sourceState = interpolateBodyState(samples, `${layerData.layer}${polarity}`, historyTime);
+    if (!sourceState) {
+      missingHistoryLookups += 1;
+      continue;
+    }
+    const weight = rootWeight(root);
+    const wake = wakeKernelFromHistory(layerData, sourceState, direction, historyTime, params);
+    weightedWake = cAdd(weightedWake, cScale(wake, weight));
+    totalWeight += weight;
+  }
+  return {
+    wake: totalWeight > 0 ? cScale(weightedWake, 1 / totalWeight) : null,
+    root_weight_total: totalWeight,
+    missing_history_lookups: missingHistoryLookups,
+  };
+}
+
+function computeLayerStage(row, layerData, segment, stage, params) {
+  const period = segment.period ?? row.closure_labels?.T_k ?? row.geometry?.commonPeriod;
   if (!Number.isFinite(period) || period <= 0) {
     throw new Error(`Row ${row.row} does not expose a positive cycle period.`);
   }
+  const samples = sortedHistorySamples(segment);
+  const rootsBySource = rootsBySourceForLayer(segment, layerData.layer);
   const directions = fibonacciDirections(stage.sample_count);
   const directionWeight = 1 / directions.length;
   let weightedAmplitude = { re: 0, im: 0 };
   let weightedNormSquared = 0;
   let measureNormalizer = 0;
+  let missingHistoryLookups = 0;
+  const missingRootChannels = new Set();
+  const rootChannelCounts = {};
 
   for (const direction of directions) {
     const exposure = exposureWeight(layerData, direction, params.sigmaAx, params.apertureWidth);
@@ -395,11 +597,22 @@ function computeLayerStage(row, layerData, stage, params) {
       const t = (period * timeIndex) / stage.sample_count;
       let polaritySum = { re: 0, im: 0 };
       for (const polarity of POLARITIES) {
-        const wake = wakeKernel(layerData, polarity, direction, t, {
+        const bodyId = `${layerData.layer}${polarity}`;
+        const roots = rootsBySource[bodyId] ?? [];
+        rootChannelCounts[bodyId] = roots.length;
+        if (roots.length === 0) {
+          missingRootChannels.add(bodyId);
+          continue;
+        }
+        const rootedWake = computeRootedPolarityWake(samples, layerData, polarity, direction, t, roots, {
           ...params,
           eta: stage.eta,
         });
-        polaritySum = cAdd(polaritySum, cScale(wake, POLARITY_CHARGE[polarity]));
+        missingHistoryLookups += rootedWake.missing_history_lookups;
+        if (!rootedWake.wake) {
+          continue;
+        }
+        polaritySum = cAdd(polaritySum, cScale(rootedWake.wake, POLARITY_CHARGE[polarity]));
       }
       cycleAverage = cAdd(cycleAverage, cScale(polaritySum, 1 / stage.sample_count));
     }
@@ -418,6 +631,13 @@ function computeLayerStage(row, layerData, stage, params) {
     measure_normalizer: measureNormalizer,
     amplitude: complexRecord(amplitude),
     norm_mu_W_L: normValue,
+    active_root_channels: rootChannelCounts,
+    missing_root_channels: [...missingRootChannels],
+    missing_history_lookups: missingHistoryLookups,
+    kernel_status:
+      missingRootChannels.size === 0 && missingHistoryLookups === 0
+        ? "history-kernel-computed"
+        : "history-kernel-incomplete",
   };
 }
 
@@ -460,20 +680,42 @@ function rowPacket(tier0, row, args) {
   const layers = reconstructLayers(row);
   const layerChannels = {};
   const period = row.closure_labels?.T_k ?? row.geometry?.commonPeriod ?? null;
+  const historySegment = args.historySegmentsByRow?.get(row.row) ?? null;
+  const historyReadiness = historySegmentReadiness(historySegment);
+  const rootDiagnostics = historySegment ? rootLedgerDiagnostics(historySegment) : null;
+  const canCompute = sourceReady && historyReadiness.ready;
 
   for (const layer of tierSelector.active_layers) {
-    const stageValues = stages.map((stage) => computeLayerStage(row, layers[layer], stage, params));
+    if (!canCompute) {
+      layerChannels[layer] = {
+        status: "not-computed",
+        schema_status: "provisional",
+        formula:
+          "L_layer^(W,Lambda_tier,nu) = Pi_weak <sum_sigma q_layer,sigma W_layer,sigma^(nu)> over T_k, using an accepted state/history segment and active causal-root ledger.",
+        reason: sourceReady ? historyReadiness.reason : "source-row-not-ready",
+        final_stage: null,
+        refinement_stages: [],
+        refinement_drift: {
+          amplitude_relative_drift: null,
+          norm_relative_drift: null,
+        },
+      };
+      continue;
+    }
+    const stageValues = stages.map((stage) => computeLayerStage(row, layers[layer], historySegment, stage, params));
     const last = stageValues[stageValues.length - 1];
+    const incompleteStage = stageValues.find((stage) => stage.kernel_status !== "history-kernel-computed");
     layerChannels[layer] = {
-      status: sourceReady ? "prototype-computed" : "source-row-not-ready",
+      status: incompleteStage ? "history-kernel-incomplete" : "prototype-computed",
       schema_status: "provisional",
       formula:
-        "L_layer^(W,Lambda_tier,nu) = Pi_weak <sum_sigma q_layer,sigma W_layer,sigma^(nu)> over T_k, using a diagnostic carrier wake.",
+        "L_layer^(W,Lambda_tier,nu) = Pi_weak <sum_sigma q_layer,sigma W_layer,sigma^(nu)> over T_k, using an accepted state/history segment and active causal-root ledger.",
       per_polarity_wake_diagnostics: {
-        status: "charge-weighted-cycle-sum",
+        status: "root-weighted-charge-cycle-sum",
         polarities: POLARITIES,
+        root_weight_rule: `relation_weight / max(abs(J), ${ROOT_J_FLOOR})`,
         note:
-          "Per-polarity W_layer,sigma^(nu) contributions are sampled internally and emitted after the charge-weighted layer sum.",
+          "Per-polarity W_layer,sigma^(nu) contributions are reconstructed at retarded source states selected by active causal-root records, then emitted after the charge-weighted layer sum.",
       },
       final_stage: last,
       refinement_stages: stageValues,
@@ -481,18 +723,33 @@ function rowPacket(tier0, row, args) {
     };
   }
 
-  const finalNorms = Object.values(layerChannels).map((channel) => channel.final_stage.norm_mu_W_L);
-  const activeTierNorm = finalNorms.reduce((sum, value) => sum + value, 0);
-  const maxNormDrift = Math.max(
-    ...Object.values(layerChannels).map((channel) => channel.refinement_drift.norm_relative_drift ?? 0)
-  );
-  const maxAmplitudeDrift = Math.max(
-    ...Object.values(layerChannels).map((channel) => channel.refinement_drift.amplitude_relative_drift ?? 0)
-  );
-  const driftPass = maxNormDrift <= args.driftTolerance && maxAmplitudeDrift <= args.driftTolerance;
-  const nonzeroNorm = activeTierNorm > Number.EPSILON;
+  const computedChannels = Object.values(layerChannels).filter((channel) => channel.final_stage);
+  const incompleteKernel = computedChannels.some((channel) => channel.status === "history-kernel-incomplete");
+  const finalNorms = computedChannels.map((channel) => channel.final_stage.norm_mu_W_L);
+  const activeTierNorm =
+    computedChannels.length === tierSelector.active_layers.length
+      ? finalNorms.reduce((sum, value) => sum + value, 0)
+      : null;
+  const maxNormDrift =
+    computedChannels.length > 0
+      ? Math.max(...computedChannels.map((channel) => channel.refinement_drift.norm_relative_drift ?? 0))
+      : null;
+  const maxAmplitudeDrift =
+    computedChannels.length > 0
+      ? Math.max(...computedChannels.map((channel) => channel.refinement_drift.amplitude_relative_drift ?? 0))
+      : null;
+  const driftPass =
+    maxNormDrift !== null &&
+    maxAmplitudeDrift !== null &&
+    maxNormDrift <= args.driftTolerance &&
+    maxAmplitudeDrift <= args.driftTolerance;
+  const nonzeroNorm = typeof activeTierNorm === "number" && activeTierNorm > Number.EPSILON;
   const prototypeFailureCode = !sourceReady
     ? row.failure_code
+    : !historyReadiness.ready
+      ? historyReadiness.failure_code
+      : incompleteKernel
+        ? "weak-emitter-not-computed"
     : !nonzeroNorm
       ? "weak-emitter-zero-norm"
       : !driftPass
@@ -500,12 +757,16 @@ function rowPacket(tier0, row, args) {
         : "weak-emitter-not-computed";
   const prototypeStatus = !sourceReady
     ? "source-row-not-ready"
+    : !historyReadiness.ready
+      ? historyReadiness.reason
+      : incompleteKernel
+        ? "history-kernel-incomplete"
     : !nonzeroNorm
       ? "prototype-zero-norm"
       : !driftPass
         ? "prototype-refinement-drift"
         : "prototype-converged-not-ready";
-  const status = sourceReady && nonzeroNorm && driftPass ? "candidate" : "failed";
+  const status = sourceReady && historyReadiness.ready && !incompleteKernel && nonzeroNorm && driftPass ? "candidate" : "failed";
 
   return {
     row: row.row,
@@ -517,6 +778,14 @@ function rowPacket(tier0, row, args) {
     source_row_status: row.status,
     source_row_failure_code: row.failure_code,
     source_weak_handoff_status: row.weak_retained_amplitude_handoff?.status ?? null,
+    history_segment: {
+      status: historySegment?.status ?? "missing",
+      readiness: historyReadiness,
+      sample_count: historySegment ? sortedHistorySamples(historySegment).length : 0,
+      period: historySegment?.period ?? null,
+      history_window: historySegment?.history_window ?? historySegment?.historyWindow ?? null,
+      active_root_ledger: rootDiagnostics,
+    },
     source_row: {
       branch_label: row.branch_label ?? null,
       z_lambda: row.z_lambda ?? null,
@@ -599,7 +868,10 @@ function rowPacket(tier0, row, args) {
     reconstruction_kernel: {
       schema_status: "provisional",
       W_layer_sigma_nu:
-        "diagnostic transverse carrier wake with phase omega_layer * (t - |x-s_layer,sigma(t)|/c) and eta-mollified distance",
+        "history-interpolated transverse causal wake with phase omega_layer * (t_root - |x-s_layer,sigma(t_root)|/c) and eta-mollified distance",
+      source_state_rule:
+        "For each active causal-root record, interpolate source state at t_root = t - delay from the accepted history segment.",
+      root_weight_rule: `relation_weight / max(abs(J), ${ROOT_J_FLOOR})`,
       cycle_average: "uniform average over the row's T_k using sample_count points",
       direction_rule: "Fibonacci-sphere angular samples at radius R_rel",
       benchmark_inputs_excluded: [
@@ -615,11 +887,11 @@ function rowPacket(tier0, row, args) {
       formula:
         "N_active = sum_{layer in I_Lambda_tier} ||L_layer^(W,Lambda_tier)||_{mu_W^(L)}",
       value: activeTierNorm,
-      status: nonzeroNorm ? "nonzero" : "zero",
+      status: activeTierNorm === null ? "not-computed" : nonzeroNorm ? "nonzero" : "zero",
       failure_code_if_zero: "weak-emitter-zero-norm",
     },
     refinement: {
-      status: driftPass ? "pass" : "fail",
+      status: computedChannels.length === 0 ? "not-computed" : driftPass ? "pass" : "fail",
       extraction_radius: params.RRel,
       angular_resolution: stages.map((stage) => stage.sample_count),
       cycle_window: period,
@@ -632,48 +904,55 @@ function rowPacket(tier0, row, args) {
       norm_deltas: Object.fromEntries(
         Object.entries(layerChannels).map(([layer, channel]) => [
           layer,
-          channel.refinement_drift.norm_relative_drift,
+          channel.refinement_drift?.norm_relative_drift ?? null,
         ])
       ),
       amplitude_deltas: Object.fromEntries(
         Object.entries(layerChannels).map(([layer, channel]) => [
           layer,
-          channel.refinement_drift.amplitude_relative_drift,
+          channel.refinement_drift?.amplitude_relative_drift ?? null,
         ])
       ),
-      convergence_status: driftPass ? "prototype_drift_within_tolerance" : "prototype_drift_above_tolerance",
+      convergence_status:
+        computedChannels.length === 0
+          ? "not-computed"
+          : driftPass
+            ? "prototype_drift_within_tolerance"
+            : "prototype_drift_above_tolerance",
       failure_code_if_drift: "weak-emitter-refinement-drift",
     },
     refinement_drift: {
       max_norm_relative_drift: maxNormDrift,
       max_amplitude_relative_drift: maxAmplitudeDrift,
       tolerance: args.driftTolerance,
-      status: driftPass ? "pass" : "fail",
+      status: computedChannels.length === 0 ? "not-computed" : driftPass ? "pass" : "fail",
       failure_code_if_fail: "weak-emitter-refinement-drift",
     },
     standard_model_handoff: {
       status: "blocked",
       failure_code: prototypeFailureCode === "weak-emitter-not-computed" ? "weak-emitter-not-computed" : prototypeFailureCode,
       reason:
-        "The packet is a provisional diagnostic reconstruction. It is not weak-emitter-ready until direct Tier 1 continuation, accepted Pi_weak/Q_weak, phase quotient closure, and convergence under declared refinement all pass.",
+        "The packet is a provisional direct-history reconstruction. It is not weak-emitter-ready until accepted Pi_weak/Q_weak, phase quotient closure, and convergence under declared refinement all pass.",
     },
     nonfit_statement:
       "No CKM magnitude, CKM angle, charged-lepton mass ratio, particle mass, or CKM-derived transport action was used to construct this prototype.",
   };
 }
 
-function run(tier0, tier0Path, args) {
+function run(tier0, tier0Path, history, historyPath, args) {
+  args.historySegmentsByRow = historySegmentMap(history);
   const rows = selectRows(tier0, args.rows);
   return {
     metadata: {
       artifact: "a0-tier1-weak-retained-emitter-prototype",
       schema_status: "provisional",
-      status: "diagnostic-prototype",
+      status: "direct-history-kernel-prototype",
       generatedAt: new Date().toISOString(),
       sourceTier0: path.relative(process.cwd(), tier0Path),
+      sourceHistory: historyPath ? path.relative(process.cwd(), historyPath) : null,
       rowSelector: args.rows,
       note:
-        "This packet computes a provisional weak-retained diagnostic reconstruction from Tier 0 carrier data. It does not emit weak-emitter-ready.",
+        "This packet computes a provisional weak-retained causal-wake reconstruction only when an accepted state/history segment and active causal-root ledger are supplied. It does not emit weak-emitter-ready.",
     },
     source_tier0_metadata: tier0.metadata ?? null,
     selected_row_count: rows.length,
@@ -681,7 +960,7 @@ function run(tier0, tier0Path, args) {
       pass_statement:
         "A row can feed a Standard Model shielding envelope only after weak-emitter-ready, finite nonzero active-tier norm, accepted Pi_weak/Q_weak, phase quotient closure, and refinement convergence.",
       current_packet_boundary:
-        "This prototype can report nonzero norm and refinement drift, but keeps Standard Model handoff blocked.",
+        "This prototype can report nonzero norm and refinement drift from accepted history input, but keeps Standard Model handoff blocked.",
       failure_modes: [
         "weak-emitter-zero-norm",
         "weak-emitter-phase-underdetermined",
@@ -703,7 +982,9 @@ try {
   }
   const tier0Path = requireTier0Path(args);
   const tier0 = readJson(tier0Path);
-  const output = run(tier0, tier0Path, args);
+  const historyPath = optionalResolvedPath(args.history);
+  const history = historyPath ? readJson(historyPath) : null;
+  const output = run(tier0, tier0Path, history, historyPath, args);
   const serialized = JSON.stringify(output, null, args.pretty ? 2 : 0);
   if (args.out) {
     fs.writeFileSync(args.out, `${serialized}\n`);
