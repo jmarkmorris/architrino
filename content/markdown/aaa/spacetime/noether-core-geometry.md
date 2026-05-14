@@ -77,6 +77,39 @@ $$
 $$
 but the branch $q$ is accepted only when the inner and middle ledgers also retune consistently with clock closure, conservation, and preferred-frame leakage bounds.
 
+The direct Lorentz-to-geometry map comes from a closed return cycle. In a homogeneous cell, define
+$$
+\gamma_{\text{eff}}(v)
+\equiv
+\frac{1}{\sqrt{1-v^2/c_{\text{eff}}^2}}.
+$$
+The longitudinal return time for an envelope semiaxis $R_{\parallel}$ is
+$$
+T_{\parallel}
+=
+\frac{R_{\parallel}}{c_{\text{eff}}-v}
++
+\frac{R_{\parallel}}{c_{\text{eff}}+v}
+=
+\frac{2R_{\parallel}}{c_{\text{eff}}}\gamma_{\text{eff}}^2,
+$$
+while the transverse causal-budget return time is
+$$
+T_{\perp}
+=
+\frac{2R_{\perp}}{c_{\text{eff}}}\gamma_{\text{eff}}.
+$$
+Requiring $T_{\parallel}=T_{\perp}+O(\epsilon_{\mathrm{LV}}T_0)$ gives
+$$
+\xi_q(v)
+=
+\frac{R_{\parallel,q}(v)}{R_{\perp,q}(v)}
+=
+\frac{1}{\gamma_{\text{eff}}(v)}
++O(\epsilon_{\mathrm{LV}}).
+$$
+The role of the geometry chapter is to record this as an envelope projection, not as a primitive definition. The derivation and closure coefficients belong to [Lorentz Kinematics](lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio).
+
 This distinction prevents an outer-only shortcut. An outer-binary oblation model can estimate the visible deformation channel, while a mature Lorentz closure must show that the same branch update also determines the clock factor
 $$
 \gamma_{\mathrm{clk}}^{(q)}(v)=\frac{T_q(v)}{T_0}
@@ -109,7 +142,7 @@ This gives the Noether core two distinct geometric roles:
 
 The claim that those coarse-grained changes reconstruct observer-level gravity is not owned here. It belongs to [Emergent Metric](emergent-metric.md), [PPN Parameters](ppn-parameters.md), and [Proper Time and Time Dilation](proper-time-and-time-dilation.md).
 
-For the special-relativity-facing comparison of this deformation channel, see [Special Relativity and Deformable Noether Cores](../theory-bridges/special-relativity-noether-core.md).
+For the special-relativity-facing comparison of this deformation channel, see [Special Relativity and Deformable Noether Cores](../theory-bridges/special-relativity-noether-core.md). For the focused synthesis of the closed-return quantization claim, see [Return-Cycle Lorentz Quantization](../theory-bridges/return-cycle-lorentz-quantization.md).
 
 ## Geometry Interfaces
 

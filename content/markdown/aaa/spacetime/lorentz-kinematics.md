@@ -4,7 +4,7 @@ This chapter is the focused program statement for deriving operational Lorentz b
 
 The opening abstract states the target; the later sections move through the governing delayed dynamics, the anisotropy mechanism, and the conditions under which assembly-built observers could recover standard Lorentz kinematics.
 
-For the theory-bridge version that maps special-relativistic terms directly to the deformable Noether-core story, see [Special Relativity and Deformable Noether Cores](../theory-bridges/special-relativity-noether-core.md).
+For the theory-bridge version that maps special-relativistic terms directly to the deformable Noether-core story, see [Special Relativity and Deformable Noether Cores](../theory-bridges/special-relativity-noether-core.md). For the reader-facing synthesis of the branch-quantized Lorentz milestone, see [Return-Cycle Lorentz Quantization](../theory-bridges/return-cycle-lorentz-quantization.md).
 
 ## Abstract
 
@@ -178,6 +178,105 @@ $$
 \qquad
 \mu=0:\ \bar{\tau}=\frac{r}{c_f}\gamma,\ \nu=\frac{c_f}{r}\frac{1}{\gamma}.
 $$
+
+### 3.1.2 Closed-return derivation of the Lorentz axis ratio
+
+The one-way roots above expose the preferred branch chart. They are not yet an observer-facing Lorentz law, because a physical clock or ruler is not made from a single one-way leg. A stable material branch is admitted only when the relevant causal wake returns to a compatible phase. The primitive Lorentz-geometry object is therefore a closed return cycle.
+
+Use the declared channel speed $c_\star$ for the closure problem under consideration, with
+$$
+\beta_\star\equiv\frac{v}{c_\star},
+\qquad
+\gamma_\star\equiv\frac{1}{\sqrt{1-\beta_\star^2}}.
+$$
+In a homogeneous Noether-Sea cell, take $R_{\parallel}$ to be the semiaxis along drift and $R_{\perp}$ to be a transverse semiaxis. A longitudinal return cycle has unequal forward and rear legs,
+$$
+t_{+}=\frac{R_{\parallel}}{c_\star-v},
+\qquad
+t_{-}=\frac{R_{\parallel}}{c_\star+v},
+$$
+so its closed return time is
+$$
+T_{\parallel}
+=t_{+}+t_{-}
+=
+\frac{R_{\parallel}}{c_\star-v}
++
+\frac{R_{\parallel}}{c_\star+v}
+=
+\frac{2R_{\parallel}c_\star}{c_\star^2-v^2}
+=
+\frac{2R_{\parallel}}{c_\star}\gamma_\star^2.
+$$
+A transverse return cycle uses part of the causal budget to keep pace with the translated receiver. The remaining transverse closure speed is
+$$
+c_{\perp}=c_\star\sqrt{1-\frac{v^2}{c_\star^2}}
+=\frac{c_\star}{\gamma_\star},
+$$
+and therefore
+$$
+T_{\perp}
+=
+\frac{2R_{\perp}}{c_{\perp}}
+=
+\frac{2R_{\perp}}{c_\star}\gamma_\star.
+$$
+
+The closure condition for a Lorentz-admissible branch is that the same material return cycle closes with one period in the longitudinal and transverse channels:
+$$
+T_{\parallel}=T_{\perp}+O(\epsilon_{\mathrm{LV}}T_0).
+$$
+In the zero-leakage homogeneous limit this gives
+$$
+\frac{2R_{\parallel}}{c_\star}\gamma_\star^2
+=
+\frac{2R_{\perp}}{c_\star}\gamma_\star,
+$$
+hence
+$$
+\xi(v)
+\equiv
+\frac{R_{\parallel}(v)}{R_{\perp}(v)}
+=
+\frac{1}{\gamma_\star(v)}.
+$$
+This is the direct map from Lorentz kinematics to Noether-core geometry. The oblate spheroidal envelope for an admitted branch $q$ can be written
+$$
+\frac{x_{\perp,1}^2+x_{\perp,2}^2}{R_{\perp,q}^2}
++
+\frac{x_{\parallel}^2}{R_{\parallel,q}^2}
+=1,
+\qquad
+R_{\parallel,q}
+=
+\frac{R_{\perp,q}}{\gamma_\star}
++O(\epsilon_{\mathrm{LV}}R_{\perp,q}).
+$$
+Equivalently, the realized ruler factor is the inverse shape ratio:
+$$
+\gamma_{\mathrm{rul}}^{(q)}(v)
+\equiv
+\frac{R_{\perp,q}(v)}{R_{\parallel,q}(v)}
+=
+\frac{1}{\xi_q(v)}
+=
+\gamma_\star(v)+O(\epsilon_{\mathrm{LV}}).
+$$
+
+In this precise sense, the Lorentz equation is quantized in the framework. The smooth function $\gamma_\star(v)$ remains the observer-level envelope, but a physical material branch realizes that envelope only through a discrete admissible closure class $q$. The quantized object is not the algebraic curve by itself; it is the branch-indexed realization
+$$
+q
+\longmapsto
+\left(
+\xi_q(v),
+\gamma_{\mathrm{rul}}^{(q)}(v),
+\gamma_{\mathrm{clk}}^{(q)}(v),
+\mathcal{L}_{\mathrm{root}}^{(q)}(v)
+\right),
+$$
+with admissibility requiring the same causal-root ledger to close the spheroid geometry, clock period, and preferred-frame leakage bounds. Thus a continuous Lorentz formula can be recovered as the common envelope of discrete Noether-core return-cycle classes.
+
+This derivation is stronger than assigning an ellipsoid after the fact. The one-way longitudinal legs remain asymmetric; the Lorentz geometry appears only when the closed return cycle is allowed to choose the semiaxes that make longitudinal and transverse closure periods agree. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the spheroid is the visible projection of a branch that has solved its return-cycle ledger.
 
 ### 3.2 Effective shape law
 

@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 485,
+      "nodes": 486,
       "edges": 1237,
       "scenes": 319,
       "markdownIndexes": 0,
-      "markdownDocs": 166,
+      "markdownDocs": 167,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2822,6 +2822,12 @@
       "id": "content/markdown/aaa/theory-bridges/README.md",
       "name": "Theory Bridges",
       "path": "content/markdown/aaa/theory-bridges/README.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
+      "name": "Return-Cycle Lorentz Quantization",
+      "path": "content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -7072,6 +7078,15 @@
       "name": "Theory Bridges",
       "path": "content/markdown/aaa/theory-bridges/README.md",
       "searchTarget": "content/markdown/aaa/theory-bridges/README.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
+      "name": "Return-Cycle Lorentz Quantization",
+      "path": "content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
+      "searchTarget": "content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
       "implicit": false
     },
     {

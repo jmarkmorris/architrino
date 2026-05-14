@@ -1,6 +1,6 @@
 # Special Relativity and Deformable Noether Cores
 
-This bridge compares the observer-level story of special relativity with the proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation story in deformable Noether-core assemblies. It is a mapping document: the canonical Noether-core geometry remains in [Noether Core Geometry](../spacetime/noether-core-geometry.md), the canonical mass thesis remains in [Particle Masses](../assemblies/particle-masses.md), and the formal Lorentz-closure program remains in [Lorentzian Conspiracy and Emergent Lorentz Kinematics](../spacetime/lorentz-kinematics.md).
+This bridge compares the observer-level story of special relativity with the proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation story in deformable Noether-core assemblies. It is a mapping document: the canonical Noether-core geometry remains in [Noether Core Geometry](../spacetime/noether-core-geometry.md), the canonical mass thesis remains in [Particle Masses](../assemblies/particle-masses.md), and the formal Lorentz-closure program remains in [Lorentzian Conspiracy and Emergent Lorentz Kinematics](../spacetime/lorentz-kinematics.md). For the dedicated milestone synthesis of the branch-quantized Lorentz insight, see [Return-Cycle Lorentz Quantization](./return-cycle-lorentz-quantization.md).
 
 ## Bridge Thesis
 
@@ -8,7 +8,7 @@ Special relativity gives the observer-level invariant bookkeeping for clocks, ru
 
 The bridge claim is not that special relativity is discarded. The claim is that the Lorentz formulas are the effective limit seen by Physical Observers when stable assemblies and photon-like signal channels are built from the same finite-speed Noether-Sea dynamics.
 
-The sharper milestone is branch-quantized Lorentz response. The continuous Lorentz factor remains the observer-level envelope, but a Noether core realizes that envelope only through admissible causal-root ledger classes. Each ledger class retunes all three binary layers and then projects its observable ruler behavior through the outer-binary exclusion envelope.
+The sharper milestone is Return-Cycle Lorentz Quantization, the branch-quantized Lorentz response of a Noether-core assembly. The continuous Lorentz factor remains the observer-level envelope, but a Noether core realizes that envelope only through admissible causal-root ledger classes. Each ledger class retunes all three binary layers and then projects its observable ruler behavior through the outer-binary exclusion envelope.
 
 ## Ownership Boundary
 
@@ -92,6 +92,84 @@ $$
 The important point is that the contraction is not a primitive command imposed on matter. It is a closure condition on matter. If delayed wake exchange sets stable separations, and if those wake exchanges propagate through a medium with effective speed $c_{\text{eff}}$, then the equilibrium geometry of a moving bound system must change in the direction that preserves return timing and phase lock.
 
 In the geometry canon, this contraction is recorded first as the Noether-core envelope shape ratio $\xi=R_{\parallel}/R_{\perp}$. The special-relativistic limit requires a derived map $\xi\to1/\gamma_{\text{eff}}$ together with a matching clock readout $\omega_{\text{clk}}/\omega_0\to1/\gamma_{\text{eff}}$; neither equality is the definition of $\xi$.
+
+### Closed Return Cycle And Spheroid Map
+
+The shortest derivation of the spheroid map uses the difference between a one-way leg and a closed return cycle. A one-way causal leg in the drift direction exposes the preferred Noether-Sea frame:
+$$
+t_{+}=\frac{R_{\parallel}}{c_{\text{eff}}-v},
+\qquad
+t_{-}=\frac{R_{\parallel}}{c_{\text{eff}}+v}.
+$$
+Those legs are unequal. A physical clock or ruler branch is not built from either leg alone, however. It is built from a return cycle that must close with a stable phase and root ledger. The longitudinal return time is
+$$
+T_{\parallel}
+=
+\frac{R_{\parallel}}{c_{\text{eff}}-v}
++
+\frac{R_{\parallel}}{c_{\text{eff}}+v}
+=
+\frac{2R_{\parallel}}{c_{\text{eff}}}\gamma_{\text{eff}}^2.
+$$
+The transverse cycle uses the remaining transverse causal budget,
+$$
+c_{\perp}
+=
+c_{\text{eff}}
+\sqrt{1-\frac{v^2}{c_{\text{eff}}^2}}
+=
+\frac{c_{\text{eff}}}{\gamma_{\text{eff}}},
+$$
+so
+$$
+T_{\perp}
+=
+\frac{2R_{\perp}}{c_{\perp}}
+=
+\frac{2R_{\perp}}{c_{\text{eff}}}\gamma_{\text{eff}}.
+$$
+
+If the same branch is to act as Lorentz-admissible clock and ruler material, the longitudinal and transverse return cycles must close with the same period:
+$$
+T_{\parallel}=T_{\perp}+O(\epsilon_{\mathrm{LV}}T_0).
+$$
+In the homogeneous zero-leakage limit this gives
+$$
+\frac{2R_{\parallel}}{c_{\text{eff}}}\gamma_{\text{eff}}^2
+=
+\frac{2R_{\perp}}{c_{\text{eff}}}\gamma_{\text{eff}},
+$$
+and therefore
+$$
+\xi(v)
+\equiv
+\frac{R_{\parallel}(v)}{R_{\perp}(v)}
+=
+\frac{1}{\gamma_{\text{eff}}(v)}.
+$$
+
+The moving Noether-core envelope is then the oblate spheroid
+$$
+\frac{x_{\perp,1}^2+x_{\perp,2}^2}{R_{\perp}^2}
++
+\frac{x_{\parallel}^2}{R_{\parallel}^2}
+=1,
+\qquad
+R_{\parallel}=\frac{R_{\perp}}{\gamma_{\text{eff}}},
+$$
+up to leakage and branch-resolution corrections. If a separate energy or medium response changes the transverse scale, write
+$$
+R_{\perp}(v,E,n)=\lambda(v,E,n)R_0,
+\qquad
+R_{\parallel}(v,E,n)
+=
+\frac{\lambda(v,E,n)R_0}{\gamma_{\text{eff}}(v)}.
+$$
+Thus $\gamma_{\text{eff}}$ maps to the shape channel $\xi$, while $\lambda$ remains the separate scale channel.
+
+This is the bridge insight. The one-way legs reveal the substrate anisotropy; the closed return cycle determines the geometry that hides it from Physical Observers. The Lorentz factor is therefore not painted onto the ellipsoid. It is the return-cycle closure condition expressed as an axis ratio.
+
+This is also the precise meaning of quantizing the Lorentz response. The smooth equation for $\gamma_{\text{eff}}(v)$ remains the effective observer law, but a Noether-core assembly realizes any admitted value only through a discrete stable branch class $q$ with a definite causal-root ledger, return-cycle period, and envelope projection. The continuous Lorentz curve is therefore treated as the common observer envelope of branch-indexed Noether-core closure states, not as an independent kinematic rule imposed on matter.
 
 ## Branch-Quantized Lorentz Response
 
