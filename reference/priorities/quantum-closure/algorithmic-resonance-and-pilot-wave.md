@@ -21,6 +21,8 @@ $$
 
 Here $\mathcal{W}_{\text{sea}}$ denotes the relevant Noether-Sea and apparatus causal-wake context. Pilot-wave behavior requires this operator to produce effective guidance and basin weights. Algorithmic resonance requires the same kind of operator to preserve coherent phase structure across many controlled operations.
 
+This packet consumes the shared [transfer-operator and basin-measure theorem](transfer-operator-basin-measure.md). It owns the pilot-wave guidance, feedback, and register-depth stress tests; the shared packet owns the operator, basin partition, invariant or metastable measure, and failure rule that blocks a second pilot-wave ontology.
+
 ## Pilot-Wave Gate
 
 The single-ontology pilot-wave claim should be sharpened into a three-part reduction:

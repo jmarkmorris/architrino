@@ -29,6 +29,8 @@ $$
 
 The proposed closure target is not just to list candidate angles. It is to quotient the admissible axial-layer configuration space by color relabeling, pole symmetries, matter/antimatter conjugation, and frame flips, then compute which branches expose the weak-coupling triad.
 
+For sector visibility, this packet consumes the shared [exposure-quotient theorem](../mass-map/exposure-quotient-theorem.md). It owns the weak projection and quotient; the shared packet owns the general rule that weak chirality, CKM/PMNS overlap, and vector-corridor visibility must be sector-visible outputs of one exposure grammar rather than separately tuned rules.
+
 ## Preserved Subgates
 
 This packet absorbs two former top-level queue items without discarding them:
@@ -38,6 +40,8 @@ This packet absorbs two former top-level queue items without discarding them:
 | Weak `V-A` chirality | Test whether the spiral-handedness / axial-exposure story produces charged-current left-channel selection while suppressing right-channel coupling in the validated regime. | `V-A` selection requires a separate rule from the weak-exposure domain. |
 | Weak-corridor provenance | Determine whether $W^\pm$ corridors carry pro/anti Noether-core provenance or only charged transaction delta, and close how outgoing lepton / antilepton cores are sourced in weak reactions. | Outgoing weak-reaction cores appear without a source ledger or require a different coupling domain from `V-A`. |
 | Flavor overlap compatibility | Keep CKM/PMNS overlap integrals in the same weak-exposure domain as chirality and weak-corridor provenance. | Mixing angles, chirality, and provenance each require independent tuning. |
+
+For weak-reaction event accounting, this packet consumes the shared [residual-routing event-ledger theorem](../tri-binary-causal-closure/residual-routing-event-ledger.md). It owns the weak exposure domain and provenance burden; the shared packet owns the general rule that a charged-current route must close $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ without unbalanced source inventory.
 
 ## Weak Exposure Operator
 

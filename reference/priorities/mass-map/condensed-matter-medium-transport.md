@@ -32,6 +32,8 @@ $$
 
 Above threshold, some transported energy must enter excitation, radiation, medium heating, or branch transition channels.
 
+When the threshold is crossed, this packet consumes the shared [residual-routing event-ledger theorem](../tri-binary-causal-closure/residual-routing-event-ledger.md). It owns $\mathcal{R}_{\text{tr}}$, the transport thresholds, and condensed-matter benchmark failures; the shared packet owns the general channel-routing and ledger contract.
+
 ## Critical Transport Gate
 
 Define a critical surface

@@ -4,6 +4,8 @@ This detailed priority file supports [Standard Model Closure](standard-model-clo
 
 The file gathers the geometry-first closure program for quark masses, CKM / PMNS mixing, confinement energetics, weak `V-A` chirality, and weak-corridor provenance. The main workstream file keeps rank, status, and queue control.
 
+For sector visibility, this packet consumes the shared [exposure-quotient theorem](../mass-map/exposure-quotient-theorem.md). It owns the Standard Model geometry, color exceptionality, and confinement-facing exposure questions; the shared packet owns the projection/quotient grammar that decides which internal geometry becomes visible to mass, weak, color, photon, or vector-corridor sectors.
+
 ## Target AAA Notes
 
 | Target | Promotion role |
@@ -27,6 +29,7 @@ The file gathers the geometry-first closure program for quark masses, CKM / PMNS
 - Derive confinement behavior from topological or strain energetics.
 - Work the chirality crisis hard enough to test weak `V-A` closure.
 - Close the provenance question for weak corridors: whether $W^\pm$ should be modeled as carrying final-state pro/anti Noether-core identity, or only as transient charge-routing bundles while the local pro/anti core reservoir supplies outgoing lepton cores.
+- State which projection and quotient make color exceptionality, weak exposure, and mass-facing response visible rather than treating internal geometry as directly observable.
 
 ## Geometry Program
 

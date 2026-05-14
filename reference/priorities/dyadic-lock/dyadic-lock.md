@@ -21,6 +21,8 @@ Treat [dyadic-resonance-lock.md](../../../content/markdown/aaa/dynamics/dyadic-r
 
 This workstream owns the reduced-map proof path for dyadic resonance selection. It should keep archive heuristics subordinate to finite-$\eta$ phase-amplitude stability tests and to the breather-certificate discipline described below.
 
+When the reduced map is used as a probability or stability laboratory, this workstream consumes the shared [transfer-operator and basin-measure theorem](../quantum-closure/transfer-operator-basin-measure.md). Dyadic lock owns the finite-$\eta$ phase-amplitude map and fixed-point diagnostics; the shared quantum packet owns the invariant or metastable measure grammar that decides whether dyadic basins can support downstream probability claims.
+
 ## Detailed Priority Files
 
 | File | Role | Target AAA notes |
@@ -68,6 +70,7 @@ The dyadic program should copy the breather distinction between integer closure 
 - [phenomenological-heuristics](phenomenological-heuristics.md)
 - [simulations](../simulations/simulations.md)
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
+- [quantum-closure](../quantum-closure/quantum-closure.md)
 
 ## Related AAA Notes
 

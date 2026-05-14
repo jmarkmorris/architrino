@@ -56,6 +56,8 @@ $$
 {\|\mathcal{L}_{\text{naive}}\|}.
 $$
 
+This packet is the first worked scalar case for the shared [exposure-quotient theorem](exposure-quotient-theorem.md). It owns the $A_0$ extraction protocol, convergence checks, and leakage diagnostics; the shared packet owns the general projection/quotient grammar for sector-visible response.
+
 The anisotropic residue is retained as
 
 $$

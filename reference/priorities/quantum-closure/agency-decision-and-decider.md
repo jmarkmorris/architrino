@@ -26,6 +26,8 @@ $$
 
 where $\mu_*$ is the invariant or metastable basin measure used by the Born-rule program. This makes agency a constrained special case of the same transfer-operator problem, with an added work and memory ledger.
 
+This packet consumes the shared [transfer-operator and basin-measure theorem](transfer-operator-basin-measure.md). It owns the Decider topology, work ledger, hold time, and measurable basin shift; the shared packet owns the operator/measure grammar that decides whether the shift is a real change in $\mu_*(B_i)$.
+
 ## Required Variables
 
 | Variable | Meaning |

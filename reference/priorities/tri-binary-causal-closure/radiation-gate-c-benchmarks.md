@@ -36,6 +36,10 @@ $$
 
 The high-value theorem target is to derive the routing functional that decides when the residual retunes, when it becomes a coaxial contra-rotating pro/anti planar pair, and when it routes into non-radiative medium or reaction channels.
 
+This packet is the first worked case for the shared [residual-routing event-ledger theorem](residual-routing-event-ledger.md). It owns the radiation-specific residual, channel list, benchmark recoveries, and failure modes; the shared packet owns the common routing and event-ledger contract.
+
+Radiation channel visibility also consumes the shared [exposure-quotient theorem](../mass-map/exposure-quotient-theorem.md). This packet owns the radiation-specific emission/absorption handoff; the shared exposure packet owns the projection/quotient rule that decides which internal residual route becomes a visible photon channel, material update, or non-radiative response.
+
 ## Benchmark Gate Table
 
 | Benchmark | Required recovery | Failure mode |
@@ -72,5 +76,7 @@ The proof burden is not to fit $\mathcal{S}_{\gamma,*}$. It is to derive the loc
 
 ## Related Priority Routes
 
+- Residual-routing and event-ledger closure are owned by [residual-routing-event-ledger](residual-routing-event-ledger.md).
+- Sector visibility and exposure/quotient closure are owned by [exposure-quotient-theorem](../mass-map/exposure-quotient-theorem.md).
 - Photon Gate A and Gate B remain upstream gates in [Tri-Binary Causal Closure Synthesis](rest-mass-proper-time-relativity-synthesis.md) and [Angular Momentum and Spin Closure](../angular-momentum-spin/angular-momentum-spin.md).
 - Reaction and cosmology provenance should be checked against [cosmology-closure](../cosmology-closure/cosmology-closure.md) and [strong-field-closure](../strong-field-closure/strong-field-closure.md).
