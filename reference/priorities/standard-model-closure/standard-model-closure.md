@@ -19,40 +19,25 @@
 
 ## Scope
 
-The quark catalog and basic $SU(3)\times SU(2)\times U(1)$ bookkeeping are in place. The remaining leverage is mass prediction, explicit overlap-integral flavor mixing, confinement energetics, and the chirality crisis.
+This workstream owns the remaining Standard Model-facing closure tasks that are not already carried by [mass-map](../mass-map/mass-map.md), [angular-momentum-spin](../angular-momentum-spin/angular-momentum-spin.md), or [quantum-closure](../quantum-closure/quantum-closure.md).
 
-## Remaining Leverage
+The quark catalog and basic $SU(3)\times SU(2)\times U(1)$ bookkeeping are in place. The remaining leverage is mass prediction, explicit overlap-integral flavor mixing, confinement energetics, weak `V-A` chirality, and weak-reaction provenance.
 
-- Extend [quarks.md](../../../content/markdown/aaa/assemblies/fermions/quarks.md) from catalog closure to first-pass mass predictions for `u,d,c,s,t,b`.
-- Finish the remaining quantum-number dictionary pieces from the tri-binary geometry.
-- Move from mixing-angle checks against Standard Model pulls to explicit overlap-integral derivations for CKM and PMNS data.
+## Detailed Priority Files
 
-## Main Directions
+| File | Role | Target AAA notes |
+| --- | --- | --- |
+| [geometry-first-program.md](geometry-first-program.md) | Preserves the geometry-first closure program, promotion gates, and hard failure tests for quark masses, flavor mixing, confinement, weak chirality, and weak corridor provenance. | [quarks](../../../content/markdown/aaa/assemblies/fermions/quarks.md), [weak-mixing-ckm](../../../content/markdown/aaa/theory-bridges/weak-mixing-ckm.md), [color-charge-su3](../../../content/markdown/aaa/assemblies/fermions/color-charge-su3.md), [electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md) |
 
-- Extend [quarks.md](../../../content/markdown/aaa/assemblies/fermions/quarks.md) from catalog closure to first-pass mass predictions.
-- Derive CKM / PMNS data from explicit overlap integrals rather than fit knobs.
-- Derive confinement behavior from topological or strain energetics.
-- Work the chirality crisis hard enough to test weak `V-A` closure.
-- Close the provenance question for weak corridors: whether $W^\pm$ should be modeled as carrying final-state pro/anti Noether-core identity, or only as transient charge-routing bundles while the local pro/anti core reservoir supplies outgoing lepton cores.
+## Promotion Map
 
-## Geometry-First Program
-
-- Compute the exact 3D charge distributions or effective wavefunctions of the Gen I, II, and III core geometries and use them as the mass-basis and weak-basis objects.
-- Derive the overlap integrals
-$$
-V_{ij} = \int \psi_{j,\text{mass}}^\ast \psi_{i,\text{weak}} \, d\mu
-$$
-rather than treating transport costs as fit knobs.
-- Derive $\kappa_{12}$, $\kappa_{23}$, and analogous transport parameters from radii ratios, medium-dressed transport response, and shielding mismatch.
-- Test whether the CP phase can be recovered as a holonomy or torsion consequence, including the current closure target $\cos\delta = s_{13}/(s_{12}s_{23})$.
-- Derive confinement-scale behavior from topological or strain energetics of flux tubes, braids, or other line defects, aiming for linear tension $V \propto r$ or $\sigma_{\mathrm{eff}} L$ and finite relaxed bounds for closed color-singlet configurations.
-
-## Hard Failure Tests
-
-- Work the chirality crisis explicitly: if spiral handedness cannot generate the weak `V-A` selection rule, the model fails on this front.
-- If right-handed neutrinos couple to `W` with the same strength as left-handed ones, the model fails.
-- Keep trying to derive $\alpha$ and the other coupling constants from geometry rather than treating them as arbitrary inputs.
-- If the model cannot say where outgoing weak-reaction lepton and antilepton cores actually come from, then electroweak provenance closure remains incomplete even if coarse CKM-style bookkeeping is reproduced.
+| Task | Detailed file | Primary promotion target | Promotion gate |
+| --- | --- | --- | --- |
+| `quark_mass_predictions` | [geometry-first-program.md](geometry-first-program.md) | [quarks](../../../content/markdown/aaa/assemblies/fermions/quarks.md) | First-pass mass-basis geometry for `u,d,c,s,t,b`, with mass-map dependencies named explicitly. |
+| `overlap_integrals` | [geometry-first-program.md](geometry-first-program.md) | [weak-mixing-ckm](../../../content/markdown/aaa/theory-bridges/weak-mixing-ckm.md) | CKM and PMNS entries stated as geometry-derived overlap integrals rather than fit knobs. |
+| `confinement_energetics` | [geometry-first-program.md](geometry-first-program.md) | [color-charge-su3](../../../content/markdown/aaa/assemblies/fermions/color-charge-su3.md) | Confinement-scale behavior derived from topological or strain energetics with a color-singlet bound-state check. |
+| `chirality_crisis` | [geometry-first-program.md](geometry-first-program.md) | [weak-mixing-ckm](../../../content/markdown/aaa/theory-bridges/weak-mixing-ckm.md) and [electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md) | Weak `V-A` selection follows from geometry or remains an explicit failure point. |
+| `weak_corridor_provenance` | [geometry-first-program.md](geometry-first-program.md) | [electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md) | Outgoing weak-reaction lepton and antilepton core provenance is resolved without hiding the source of pro/anti Noether cores. |
 
 ## Related Priorities
 
