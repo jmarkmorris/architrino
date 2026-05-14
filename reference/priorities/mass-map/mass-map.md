@@ -19,7 +19,23 @@
 
 This is the parameter-closure and first mass-formula bucket. Treat [parameter-ledger.md](../../../content/markdown/aaa/validation/parameter-ledger.md) as bookkeeping only. The live target is one reusable derived mass map.
 
-This workstream is the organizer for mass-side integration. It should decide what belongs in canonical $\mathbb{A}\mathbb{A}\mathbb{A}$ prose, what remains an active theorem target, and what must be routed to other priority workstreams before any stronger mass claim is deployed.
+This file is the workstream control surface for mass-side integration. It should decide what belongs in canonical $\mathbb{A}\mathbb{A}\mathbb{A}$ prose, what remains an active theorem target, and what must be routed to other priority workstreams before any stronger mass claim is deployed.
+
+## Detailed Priority Files
+
+| File | Role | Target AAA notes |
+| --- | --- | --- |
+| [$A_0$ Reduced Branch Certificate Packet](a0-reduced-branch-certificate.md) | Tier 0 / Tier 1 finite branch-search certificate for the first neutral rest-branch Noether-core attractor family. | [tri-binary-dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md), [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [convergence-tests](../../../content/markdown/aaa/validation/simulations/convergence-tests.md) |
+| [$A_0$ Energy and Shielding Extraction Packet](a0-energy-shielding-extraction.md) | Tier 2 handoff from an accepted branch into $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, anisotropic leakage, and extraction failure codes. | [energy](../../../content/markdown/aaa/dynamics/energy.md), [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [parameter-ledger](../../../content/markdown/aaa/validation/parameter-ledger.md) |
+| [$A_0$ Medium-Response Tensor Probe](a0-medium-response-tensor-probe.md) | Tier 3 acceleration and gradient probe for $\mathcal{M}_{\text{sea}}^{ab}$ after branch closure, stability, energy, and shielding pass. | [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), [gr-phenomenology](../../../content/markdown/aaa/spacetime/gr-phenomenology.md) |
+
+## Promotion Map
+
+| Task | Detailed file | Primary promotion target | Promotion gate |
+| --- | --- | --- | --- |
+| `derive_first_attractor_family` | [$A_0$ Reduced Branch Certificate Packet](a0-reduced-branch-certificate.md) | [tri-binary-dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md) and [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md) | A stable branch packet reports finite active roots, closure residuals below tolerance, no rest-frame secular drift, and positive non-symmetry Floquet gap. |
+| `derive_zeta` | [$A_0$ Energy and Shielding Extraction Packet](a0-energy-shielding-extraction.md) | [energy](../../../content/markdown/aaa/dynamics/energy.md), [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), and [parameter-ledger](../../../content/markdown/aaa/validation/parameter-ledger.md) | $E_{\text{internal}}(A_0)$ and $\zeta(A_0)$ are extracted from the accepted branch without observed particle masses, charged-lepton ratios, electron radius, or measured $\alpha$ as inputs. |
+| `mass_hierarchy_check` | [$A_0$ Medium-Response Tensor Probe](a0-medium-response-tensor-probe.md) | [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md) and [standard-model-closure](../standard-model-closure/standard-model-closure.md) | The homogeneous response tensor, shielding coefficient, and unresolved constants are explicit enough to test a baseline electron-mass prediction and at least one hierarchy ratio. |
 
 ## Mass Translation Doctrine
 
@@ -90,7 +106,7 @@ Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate sli
 | Medium-response probe | [$A_0$ Medium-Response Tensor Probe](a0-medium-response-tensor-probe.md) | Tier 3 acceleration/gradient probe for $\mathcal{M}_{\text{sea}}^{ab}$ after closure, stability, energy, and shielding pass. |
 | Proof synthesis | [Tri-Binary Causal Closure](../tri-binary-causal-closure/tri-binary-causal-closure.md) | Active-development bridge from tri-binary closure to rest mass, inertia, proper time, photon behavior, and effective geometry. |
 | Proof-control ledger | [Tri-Binary Dependency Map](../tri-binary-causal-closure/tri-binary-dependency-map.md) | Open theorem burdens and deployment handoff routes, especially shielding, momentum skew, slow-fast tri-binary minimality, and metric closure. |
-| Quantitative mass workstream | This document | First derived mass map, shielding extraction, baseline electron-mass target, and hierarchy checks. |
+| Quantitative mass workstream | This document | Control surface for the first derived mass map, shielding extraction, baseline electron-mass target, and hierarchy checks. |
 
 ## Mass Claim Maturity Buckets
 
