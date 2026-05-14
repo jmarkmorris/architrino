@@ -920,6 +920,228 @@ function deltaKStatus() {
   };
 }
 
+const WEAK_TIER_SELECTOR = {
+  schema_status: "provisional",
+  label: "IMO",
+  active_layers: ["I", "M", "O"],
+  note:
+    "The Tier 0 A0 branch-search row carries the full tri-binary layer set; reduced shielding selectors IM- and I-- require later branch-family projection rows.",
+};
+
+const WEAK_REQUIRED_RETAINED_LABELS = [
+  "weak-coupling-triad exposure",
+  "axial-frame branch data",
+  "chirality channel",
+  "flavor-overlap data",
+  "weak-corridor provenance",
+];
+
+const WEAK_EXCLUDED_BENCHMARK_INPUTS = [
+  "CKM magnitude",
+  "CKM angle",
+  "charged-lepton mass ratio",
+  "particle mass",
+  "CKM-derived transport action",
+];
+
+function missingWeakInput(input, requiredStage, note) {
+  return {
+    input,
+    value: null,
+    status: "missing_tier1_tier2_input",
+    required_stage: requiredStage,
+    note,
+  };
+}
+
+function buildWeakInputs(config) {
+  return {
+    R_rel: missingWeakInput(
+      "R_rel",
+      "Tier 2 shielding extraction",
+      "Relative extraction radius is not part of the Tier 0 carrier root-ledger scan."
+    ),
+    c: missingWeakInput(
+      "c",
+      "weak-sector handoff",
+      "Weak-sector input c is not selected by the Tier 0 A0 branch-search artifact."
+    ),
+    sigma_ax: missingWeakInput(
+      "sigma_ax",
+      "weak-sector handoff",
+      "Axial-frame branch sign is not fixed until the weak exposure quotient is constructed."
+    ),
+    eta_a_h: missingWeakInput(
+      "eta_a_h",
+      "Tier 1 eta>0 continuation",
+      "Mollified constituent history data are not reconstructed in Tier 0."
+    ),
+    polar_site_aperture: missingWeakInput(
+      "A_a(x;R_rel)",
+      "Tier 2 shielding extraction",
+      "The polar-site aperture is part of the weak-visible extraction geometry, not the Tier 0 carrier chart."
+    ),
+    rho_core: missingWeakInput(
+      "rho_core(x,t)",
+      "Tier 1/Tier 2 local Noether-Sea state",
+      "Tier 0 uses a homogeneous rest-cell scaffold and does not reconstruct local core density."
+    ),
+    chi_sea: {
+      value: config.seaCell.chi_sea ?? null,
+      status: Object.hasOwn(config.seaCell, "chi_sea")
+        ? "tier0_fixed_homogeneous_rest_cell_input"
+        : "missing_tier1_tier2_input",
+      required_stage: "Tier 1/Tier 2 local Noether-Sea state",
+      note:
+        "The homogeneous rest-cell value is recorded for audit only; weak-measure reconstruction must retest the local chi_sea field.",
+    },
+    local_noether_sea_state: {
+      status: "tier0_fixed_homogeneous_rest_cell_input",
+      u_sea: config.seaCell.u_sea ?? null,
+      G_grad: config.seaCell.G_grad ?? null,
+      n: config.seaCell.n ?? null,
+      chi_sea: config.seaCell.chi_sea ?? null,
+      c_f: config.seaCell.c_f ?? null,
+    },
+  };
+}
+
+function weakMissingInputNames(weakInputs) {
+  return Object.entries(weakInputs)
+    .filter(([, value]) => value && value.status === "missing_tier1_tier2_input")
+    .map(([key]) => key);
+}
+
+function buildLayerChannels(activeLayers, missingInputs) {
+  return Object.fromEntries(
+    activeLayers.map((layer) => [
+      layer,
+      {
+        status: "not-computed",
+        value: null,
+        amplitude_kind: "provisional_weak_retained_causal_wake_amplitude",
+        active_polarities: POLARITIES,
+        missing_inputs: missingInputs,
+        reason:
+          "Tier 0 does not reconstruct mollified wake histories or apply the weak-sector projection.",
+      },
+    ])
+  );
+}
+
+function buildWeakRetainedAmplitudeHandoff({
+  failureCode,
+  branchLabel,
+  zLambda,
+  rootSummary,
+  residualValues,
+  Delta_k,
+  certificateGates,
+  promotionBoundary,
+  values,
+  config,
+}) {
+  const weakInputs = buildWeakInputs(config);
+  const missingInputs = [
+    ...new Set([
+      ...weakMissingInputNames(weakInputs),
+      "Pi_weak",
+      "Q_weak",
+      "mollified_wake_rule",
+      "extraction_radius",
+      "angular_resolution",
+      "Delta_t_refinement",
+      "eta_schedule",
+      "weak_measure_norm",
+    ]),
+  ];
+  const handoffStatus = failureCode === "candidate" ? "candidate" : "not-computed";
+  return {
+    schema: "provisional-a0-tier0-weak-retained-amplitude-handoff/v1",
+    schema_status: "provisional",
+    status: handoffStatus,
+    tier_selector: WEAK_TIER_SELECTOR,
+    source_row: {
+      branch_label: branchLabel,
+      z_lambda: zLambda,
+      root_ledger: rootSummary,
+      residual_values: residualValues,
+      Delta_k,
+      certificate_gates: certificateGates,
+      promotion_boundary: promotionBoundary,
+    },
+    weak_inputs: weakInputs,
+    weak_exposure_map: {
+      status: "not-computed",
+      Pi_weak: null,
+      Q_weak: null,
+      required_retained_labels: WEAK_REQUIRED_RETAINED_LABELS,
+      retained_labels: [],
+      discarded_labels: [],
+      leakage_diagnostics: {
+        status: "not-computed",
+        failure_code_if_split_domain: "weak-emitter-split-domain",
+        note:
+          "Tier 0 has not built the weak exposure quotient or checked whether weak-visible labels stay in one domain.",
+      },
+    },
+    layer_channels: buildLayerChannels(WEAK_TIER_SELECTOR.active_layers, missingInputs),
+    phase_handoff: {
+      status: "candidate_phase_data_only",
+      phase_offset_quotient: zLambda.phase_offset_quotient,
+      handedness: zLambda.handedness,
+      orientation_class: zLambda.orientation_class,
+      branch_class: zLambda.branch_class,
+      failure_code_if_ambiguous: "weak-emitter-phase-underdetermined",
+      note:
+        "Tier 0 records branch-fixed quotient data but does not determine the weak-retained amplitude phase.",
+    },
+    refinement: {
+      status: "not-computed",
+      extraction_radius: missingWeakInput(
+        "extraction_radius",
+        "Tier 2 shielding extraction",
+        "No far-field weak extraction radius is sampled in Tier 0."
+      ),
+      angular_resolution: missingWeakInput(
+        "angular_resolution",
+        "Tier 2 shielding extraction",
+        "No weak-channel angular grid is sampled in Tier 0."
+      ),
+      cycle_window: {
+        value: values.commonPeriod,
+        status: "tier0_carrier_period_only",
+        note:
+          "The carrier period T_k is available, but the weak-retained cycle average has not been refined.",
+      },
+      Delta_t: {
+        value: values.commonPeriod / config.sampling.sampleCount,
+        status: "tier0_sample_spacing_only",
+        note:
+          "This is the Tier 0 carrier sample spacing, not a converged weak-emitter Delta_t refinement.",
+      },
+      history_depth: {
+        value: config.sampling.historyPeriods,
+        status: "tier0_root_history_window_only",
+        note:
+          "The causal-root history window is recorded, but weak wake history convergence is not tested.",
+      },
+      eta: missingWeakInput(
+        "eta",
+        "Tier 1 eta>0 continuation",
+        "Tier 0 has no eta schedule or eta refinement limit."
+      ),
+      convergence_status: "not-computed",
+      failure_code_if_drift: "weak-emitter-refinement-drift",
+    },
+    nonfit_statement:
+      "No CKM magnitude, CKM angle, charged-lepton mass ratio, particle mass, or CKM-derived transport action was used to construct this Tier 0 weak handoff placeholder.",
+    excluded_benchmark_inputs: WEAK_EXCLUDED_BENCHMARK_INPUTS,
+    missing_inputs: missingInputs,
+    failure_code: "weak-emitter-not-computed",
+  };
+}
+
 function failureCatalog() {
   return {
     "quotient-degenerate":
@@ -934,6 +1156,18 @@ function failureCatalog() {
       "Self roots occur only in the near-zero fold layer, so an eta>0 regularized fold-layer condition is required before promotion.",
     "root-ledger-instability":
       "The active causal-root ledger is empty or misses partner, self, or inter-layer root classes.",
+    "weak-emitter-not-computed":
+      "The row does not carry a computed weak-retained causal-wake amplitude and must not feed the Standard Model shielding-envelope packet.",
+    "weak-emitter-zero-norm":
+      "The computed weak-retained active-tier norm is zero, so no normalized branch-derived envelope can be formed.",
+    "weak-emitter-phase-underdetermined":
+      "The row does not determine the weak-retained amplitude phase after quotienting the common phase origin.",
+    "weak-emitter-refinement-drift":
+      "The weak-retained amplitude fails convergence under extraction radius, angular resolution, cycle window, Delta_t, history depth, or eta refinement.",
+    "weak-emitter-split-domain":
+      "The row does not keep chirality, flavor overlap, and weak-corridor provenance in one weak-visible projection domain.",
+    "weak-emitter-benchmark-fit":
+      "CKM data, charged-lepton mass ratios, particle masses, or CKM-derived transport actions were used to select or normalize the weak handoff.",
   };
 }
 
@@ -1191,18 +1425,36 @@ function rowForParams(params, config, index) {
     zLambda,
     scaleGate
   );
+  const branchLabel = {
+    k: values.windings,
+    q: {
+      ...interLayerClosure(values),
+    },
+    handedness: values.handedness,
+    ellipticity: values.ellipticity,
+  };
+  const residualValues = numericResiduals(residuals);
+  const promotionBoundary =
+    failureCode === "candidate"
+      ? "May seed Tier 1 eta>0 continuation; not an attractor, mass-map result, or inertial-response result."
+      : "Does not seed Tier 1 until the failing gate is resolved.";
+  const weakRetainedAmplitudeHandoff = buildWeakRetainedAmplitudeHandoff({
+    failureCode,
+    branchLabel,
+    zLambda,
+    rootSummary,
+    residualValues,
+    Delta_k,
+    certificateGates,
+    promotionBoundary,
+    values,
+    config,
+  });
   return {
     row: index,
     status: failureCode === "candidate" ? "tier0_continuation_ready" : "tier0_rejected",
     failure_code: failureCode,
-    branch_label: {
-      k: values.windings,
-      q: {
-        ...interLayerClosure(values),
-      },
-      handedness: values.handedness,
-      ellipticity: values.ellipticity,
-    },
+    branch_label: branchLabel,
     closure_labels: {
       T_k: values.commonPeriod,
       k: values.windings,
@@ -1229,12 +1481,10 @@ function rowForParams(params, config, index) {
     leakage_placeholder: leakage,
     Delta_k,
     residuals,
-    residual_values: numericResiduals(residuals),
+    residual_values: residualValues,
     certificate_gates: certificateGates,
-    promotion_boundary:
-      failureCode === "candidate"
-        ? "May seed Tier 1 eta>0 continuation; not an attractor, mass-map result, or inertial-response result."
-        : "Does not seed Tier 1 until the failing gate is resolved.",
+    promotion_boundary: promotionBoundary,
+    weak_retained_amplitude_handoff: weakRetainedAmplitudeHandoff,
   };
 }
 
