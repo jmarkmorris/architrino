@@ -1634,7 +1634,7 @@ This would be an “analytic scaffold + numerical check” situation, not full c
 
 ---
 
-#### Symmetric delayed logarithmic spiral (advanced non-circular benchmark)
+#### Symmetric delayed spiral (advanced non-circular benchmark)
 
 The circular obstruction makes a non-circular benchmark worthwhile. A workable first ansatz is the symmetric logarithmic spiral
 $$
@@ -1648,11 +1648,35 @@ t(\theta)=\frac{\theta}{\Omega},
 $$
 with fixed pitch $a>0$ and constant angular rate $\Omega>0$.
 
+The variable-pitch extension replaces the constant pitch by
+$$
+p(\theta)\equiv-\frac{r'(\theta)}{r(\theta)}.
+$$
+At a source angle $\theta_0=\theta-\Delta$, write
+$$
+p_0\equiv p(\theta-\Delta),
+\qquad
+\omega_0\equiv \dot\theta(\theta-\Delta),
+\qquad
+\rho\equiv \frac{r(\theta-\Delta)}{r(\theta)}.
+$$
+The logarithmic benchmark is the special case $p(\theta)=a$, $\omega_0=\Omega$, and $\rho=e^{a\Delta}$. This extension is useful because a true minimum-radius event requires
+$$
+\dot r=0,
+\qquad
+\ddot r\ge 0,
+$$
+which in the pitch variable means
+$$
+p(\theta_\ast)=0,
+\qquad
+p'(\theta_\ast)\le 0
+$$
+when $\dot\theta(\theta_\ast)\ne0$.
+
 For a receiver event at angle $\theta$ and a partner emission at $\theta_0=\theta-\Delta$ with $\Delta>0$, define
 $$
-\rho\equiv e^{a\Delta},
-\qquad
-\Lambda(\Delta;a)\equiv \sqrt{1+\rho^2+2\rho\cos\Delta}.
+\Lambda_p(\theta,\Delta)\equiv \sqrt{1+\rho^2+2\rho\cos\Delta}.
 $$
 Then
 $$
@@ -1660,90 +1684,164 @@ $$
 =
 r(\theta)\Big[(1+\rho\cos\Delta)\mathbf{e}_r(\theta)-\rho\sin\Delta\,\mathbf{e}_\theta(\theta)\Big],
 $$
-so the exact delayed-hit condition becomes
+so the exact delayed-hit condition is
 $$
-r(\theta)\,\Lambda(\Delta;a)=c_f\,\frac{\Delta}{\Omega}.
+r(\theta)\,\Lambda_p(\theta,\Delta)=c_f\,(t(\theta)-t(\theta-\Delta)).
 $$
-Equivalently, with the local circular-speed ratio
+For constant angular rate this reduces to
 $$
+\Lambda_p(\theta,\Delta)=\frac{\Delta}{b(\theta)},
+\qquad
 b(\theta)\equiv \frac{\Omega r(\theta)}{c_f},
 $$
-the admissible delay angles solve
-$$
-\Lambda(\Delta;a)=\frac{\Delta}{b(\theta)}.
-$$
-This is the non-circular analogue of the circular partner equation $\cos\xi=\xi/\beta$.
+which is the non-circular analogue of the circular partner equation $\cos\xi=\xi/\beta$.
 
-The spiral Frenet frame is
+The receiver Frenet frame for the variable-pitch spiral is
 $$
 \hat{\mathbf{T}}
 =
-\frac{-a\,\mathbf{e}_r(\theta)+\mathbf{e}_\theta(\theta)}{\sqrt{1+a^2}},
+\frac{-p\,\mathbf{e}_r(\theta)+\mathbf{e}_\theta(\theta)}{\sqrt{1+p^2}},
 \qquad
 \hat{\mathbf{N}}
 =
-\frac{-\mathbf{e}_r(\theta)-a\,\mathbf{e}_\theta(\theta)}{\sqrt{1+a^2}},
+\frac{-\mathbf{e}_r(\theta)-p\,\mathbf{e}_\theta(\theta)}{\sqrt{1+p^2}},
 $$
-with speed
-$$
-\|\dot{\mathbf{x}}_1\|=\Omega r(\theta)\sqrt{1+a^2}.
-$$
+where $p=p(\theta)$ and $\hat{\mathbf{N}}$ points inward in the circular limit.
 Using the branch unit vector
 $$
 \hat{\mathbf{r}}_{12}
 =
 \frac{(1+\rho\cos\Delta)\mathbf{e}_r(\theta)-\rho\sin\Delta\,\mathbf{e}_\theta(\theta)}
-{\Lambda(\Delta;a)},
+{\Lambda_p},
 $$
-the source-velocity projection entering the Jacobian is
+the partner source-velocity projection entering the Jacobian is
 $$
-\mathbf{v}_2(\theta_0)\cdot\hat{\mathbf{r}}_{12}
+\mathbf{v}_2(\theta-\Delta)\cdot\hat{\mathbf{r}}_{12}
 =
-\frac{\Omega r(\theta)\rho}{\Lambda(\Delta;a)}
-\Big[\sin\Delta-a(\cos\Delta+\rho)\Big].
+\frac{r(\theta)\rho\,\omega_0}{\Lambda_p}
+\Big[p_0(\cos\Delta+\rho)-\sin\Delta\Big].
 $$
 Hence
 $$
 J_{12}
 =
-1-\frac{\Omega r(\theta)\rho}{c_f\,\Lambda(\Delta;a)}
-\Big[\sin\Delta-a(\cos\Delta+\rho)\Big].
+1+
+\frac{r(\theta)\rho\,\omega_0}{c_f\,\Lambda_p}
+\Big[\sin\Delta-p_0(\cos\Delta+\rho)\Big].
 $$
+The sign is fixed by the circular limit: when $p_0=0$ and $\rho=1$, this gives $J_{12}=1+\beta\sin(\Delta/2)$.
 
 For opposite polarities, the branch acceleration is
 $$
 \mathbf{a}_{12}
 =
--\frac{\kappa |q_1q_2|}{r(\theta)^2\Lambda^2 |J_{12}|}\,
+\frac{-\kappa |q_1q_2|}{r(\theta)^2\Lambda_p^2 |J_{12}|}\,
 \hat{\mathbf{r}}_{12}.
 $$
-Projecting onto the spiral Frenet frame gives
+Projecting onto the variable-pitch Frenet frame gives
 $$
-a_T
+a_T^{p}
 =
-\frac{\kappa |q_1q_2|}{r(\theta)^2\Lambda^3 |J_{12}|\,\sqrt{1+a^2}}
-\Big[a(1+\rho\cos\Delta)+\rho\sin\Delta\Big],
+\frac{\kappa |q_1q_2|}{r(\theta)^2\Lambda_p^3 |J_{12}|\,\sqrt{1+p^2}}
+\Big[p(1+\rho\cos\Delta)+\rho\sin\Delta\Big],
 $$
 $$
-a_N
+a_N^{p}
 =
-\frac{\kappa |q_1q_2|}{r(\theta)^2\Lambda^3 |J_{12}|\,\sqrt{1+a^2}}
-\Big[1+\rho\cos\Delta-a\rho\sin\Delta\Big].
+\frac{\kappa |q_1q_2|}{r(\theta)^2\Lambda_p^3 |J_{12}|\,\sqrt{1+p^2}}
+\Big[1+\rho\cos\Delta-p\rho\sin\Delta\Big].
+$$
+The partner tangential numerator is therefore
+$$
+S_T^{p}(\theta,\Delta)
+\equiv
+p(1+\rho\cos\Delta)+\rho\sin\Delta.
 $$
 
-The power sign is controlled by $a_T$, since the velocity is tangent to the spiral. In the circular limit $a\to0$, one recovers the sign-definite numerator $\rho\sin\Delta>0$ and therefore the circular instability result above. For $a>0$, however, the tangential numerator
+The missing self-branch analogue uses
 $$
-S_T(\Delta,a)\equiv a(1+\rho\cos\Delta)+\rho\sin\Delta
+\Lambda_s(\theta,\Delta)\equiv \sqrt{1+\rho^2-2\rho\cos\Delta},
 $$
-is no longer sign-definite from geometry alone. The spiral benchmark therefore reopens the braking question: admissible delayed roots could, in principle, yield $S_T<0$ on some branches even though the circular ansatz cannot.
+$$
+\hat{\mathbf{r}}_{11}
+=
+\frac{(1-\rho\cos\Delta)\mathbf{e}_r(\theta)+\rho\sin\Delta\,\mathbf{e}_\theta(\theta)}
+{\Lambda_s}.
+$$
+The self-hit delay equation is
+$$
+r(\theta)\,\Lambda_s(\theta,\Delta)=c_f\,(t(\theta)-t(\theta-\Delta)),
+$$
+and the self-branch Jacobian is
+$$
+J_{11}
+=
+1-
+\frac{r(\theta)\rho\,\omega_0}{c_f\,\Lambda_s}
+\Big[\sin\Delta+p_0(\rho-\cos\Delta)\Big].
+$$
+Again the circular limit agrees with the uniform circular self-hit formula, $J_{11}=1-\beta\cos(\Delta/2)$.
 
-At the same time, the fixed-pitch logarithmic spiral cannot itself realize a true turning point, because
+For self-hit, $\sigma_{11}=+1$, so
 $$
-\dot r=-a\Omega r<0,
-\qquad
-\ddot r=a^2\Omega^2 r>0
+\mathbf{a}_{11}
+=
+\frac{\kappa q_1^2}{r(\theta)^2\Lambda_s^2 |J_{11}|}\,
+\hat{\mathbf{r}}_{11}.
 $$
-for all finite $\theta$. A genuine minimum-radius event with $\dot r=0$ therefore requires at least a variable-pitch spiral $a=a(\theta)$ or another non-circular periodic ansatz. The present calculation advances the spiral track by giving the exact delayed-root equation and branchwise Frenet projections, but it does not yet solve the turning-point problem.
+The self-branch tangential projection is
+$$
+a_T^{s}
+=
+\frac{\kappa q_1^2}{r(\theta)^2\Lambda_s^3 |J_{11}|\,\sqrt{1+p^2}}
+\Big[-p(1-\rho\cos\Delta)+\rho\sin\Delta\Big],
+$$
+so
+$$
+S_T^{s}(\theta,\Delta)
+\equiv
+-p(1-\rho\cos\Delta)+\rho\sin\Delta.
+$$
+
+The circular obstruction is now converted into a branch-chart test. A non-circular spiral can beat the isolated circular tangential obstruction only if the certified active roots satisfy a negative weighted tangential sum on enough of the controlled cycle:
+$$
+\sum_{\mathrm{part}}
+\frac{|q_1q_2|\,S_T^p}{\Lambda_p^3 |J_{12}|}
++
+\sum_{\mathrm{self}}
+\frac{q_1^2\,S_T^s}{\Lambda_s^3 |J_{11}|}
+<0
+$$
+after the common positive factors are removed. Algebraic sign allowance is not enough; the delayed-root equations must actually admit those roots with positive Jacobian floors and finite memory depth.
+
+At a minimum-radius event $\theta_\ast$, the pitch condition gives $p(\theta_\ast)=0$. Therefore both tangential numerators reduce locally to
+$$
+S_T^p(\theta_\ast,\Delta)=S_T^s(\theta_\ast,\Delta)=\rho\sin\Delta.
+$$
+Principal roots with $0<\Delta<\pi$ still carry the same positive tangential sign as the circular benchmark. The only bare-kernel escape routes are therefore:
+
+1. admissible older or wrapped roots with $\sin\Delta<0$ and enough Jacobian weight;
+2. off-turn variable-pitch intervals where the $p$-terms dominate the positive principal branches;
+3. additional medium, tri-binary, or multi-body structure outside the isolated two-body spiral ansatz.
+
+The radial turn condition is equally explicit. Since
+$$
+\ddot r=a_r+r\dot\theta^2
+$$
+at a point with $\dot r=0$, a minimum-radius turn requires
+$$
+r_\ast\dot\theta_\ast^2
+-
+\sum_{\mathrm{part}}
+\frac{\kappa |q_1q_2|\,(1+\rho_p\cos\Delta_p)}
+{r_\ast^2\Lambda_{p}^3 |J_{12,p}|}
++
+\sum_{\mathrm{self}}
+\frac{\kappa q_1^2\,(1-\rho_s\cos\Delta_s)}
+{r_\ast^2\Lambda_{s}^3 |J_{11,s}|}
+>0.
+$$
+This is a theorem target, not a closure proof. It supplies the concrete falsification gate: enumerate the admissible partner and self roots on a variable-pitch candidate, certify their Jacobian floors, and test both the radial turn inequality and the weighted tangential sum. If all admissible roots keep the weighted tangential sum nonnegative on every candidate turn corridor, the bare isolated spiral does not beat the circular obstruction.
 
 ---
 
