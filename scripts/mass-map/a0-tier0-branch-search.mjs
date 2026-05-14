@@ -191,14 +191,51 @@ function minimumSelfDelay(config) {
   return config.sampling.minDelay * factor;
 }
 
+function selfRootDelayWindow(config) {
+  const exclusionDelay = minimumSelfDelay(config);
+  const foldLayerFactor = config.classification.selfFoldLayerFactor ?? 8;
+  const tolerance = config.sampling.rootTolerance ?? 0;
+  const foldLayerDelay =
+    config.classification.selfFoldLayerDelay ??
+    Math.max(exclusionDelay * foldLayerFactor, exclusionDelay + tolerance * foldLayerFactor);
+  return {
+    exclusionDelay,
+    foldLayerDelay: Math.max(exclusionDelay, foldLayerDelay),
+  };
+}
+
+function classifySelfRootDelay(rootTau, config) {
+  const window = selfRootDelayWindow(config);
+  if (rootTau <= window.exclusionDelay) {
+    return "instantaneous_exclusion";
+  }
+  if (rootTau <= window.foldLayerDelay) {
+    return "regularized_fold_layer";
+  }
+  return "admissible_delay";
+}
+
 function classifyRoot(receiver, source, rootTau, j, config) {
   const relation = sourceRelation(receiver, source);
-  const isNearZeroSelf = relation === "self" && rootTau <= minimumSelfDelay(config);
+  const selfDelayClass = relation === "self" ? classifySelfRootDelay(rootTau, config) : null;
+  const isNearZeroSelf = selfDelayClass === "instantaneous_exclusion";
+  const isSelfFoldLayer = selfDelayClass === "regularized_fold_layer";
+  const isAdmissibleDelayedSelfHit = selfDelayClass === "admissible_delay";
+  let status = "active";
+  if (isNearZeroSelf) {
+    status = "excluded_instantaneous_self_kick";
+  } else if (isSelfFoldLayer) {
+    status = "excluded_regularized_self_fold_layer";
+  }
   return {
     relation,
-    status: isNearZeroSelf ? "excluded_instantaneous_self_kick" : "active",
+    status,
     nearSeparator: Math.abs(j) <= config.classification.jLockThreshold,
     nearZeroSelf: isNearZeroSelf,
+    selfDelayClass,
+    selfFoldLayer: isSelfFoldLayer,
+    delayedSelfHit: relation === "self" && rootTau > selfRootDelayWindow(config).exclusionDelay,
+    admissibleDelayedSelfHit: isAdmissibleDelayedSelfHit,
   };
 }
 
@@ -208,15 +245,15 @@ function rootFunction(receiver, source, values, t, tau, cF) {
   return norm(sub(receiverState.position, sourceState.position)) - cF * tau;
 }
 
-function solveRoot(receiver, source, values, t, lo, hi, cF, tolerance) {
+function solveRoot(receiver, source, values, t, lo, hi, cF, tolerance, options = {}) {
   let a = lo;
   let b = hi;
   let fa = rootFunction(receiver, source, values, t, a, cF);
   let fb = rootFunction(receiver, source, values, t, b, cF);
-  if (Math.abs(fa) <= tolerance) {
+  if (!options.ignoreLoEndpoint && Math.abs(fa) <= tolerance) {
     return a;
   }
-  if (Math.abs(fb) <= tolerance) {
+  if (!options.ignoreHiEndpoint && Math.abs(fb) <= tolerance) {
     return b;
   }
   if (fa * fb > 0) {
@@ -239,12 +276,55 @@ function solveRoot(receiver, source, values, t, lo, hi, cF, tolerance) {
   return 0.5 * (a + b);
 }
 
+function rootDuplicateTolerance(sampling, rootStep) {
+  return sampling.rootDuplicateTolerance ?? Math.max(sampling.rootTolerance * 4, rootStep * 1e-9, Number.EPSILON);
+}
+
+function buildRootRecord(receiver, source, values, t, rootTau, cF, config) {
+  const receiverState = bodyState(receiver, values, t);
+  const sourceState = bodyState(source, values, t - rootTau);
+  const direction = unit(sub(receiverState.position, sourceState.position));
+  const j = 1 - dot(sourceState.velocity, direction) / cF;
+  const rootClass = classifyRoot(receiver, source, rootTau, j, config);
+  return {
+    receiver: receiver.id,
+    source: source.id,
+    relation: rootClass.relation,
+    status: rootClass.status,
+    t,
+    delay: rootTau,
+    residual: Math.abs(rootFunction(receiver, source, values, t, rootTau, cF)),
+    J: j,
+    nearSeparator: rootClass.nearSeparator,
+    nearZeroSelf: rootClass.nearZeroSelf,
+    selfDelayClass: rootClass.selfDelayClass,
+    selfFoldLayer: rootClass.selfFoldLayer,
+    delayedSelfHit: rootClass.delayedSelfHit,
+    admissibleDelayedSelfHit: rootClass.admissibleDelayedSelfHit,
+  };
+}
+
+function pushDistinctRoot(roots, root, duplicateTolerance) {
+  const duplicate = roots.some(
+    (existing) =>
+      existing.receiver === root.receiver &&
+      existing.source === root.source &&
+      Math.abs(existing.t - root.t) < 1e-9 &&
+      Math.abs(existing.delay - root.delay) <= duplicateTolerance
+  );
+  if (!duplicate) {
+    roots.push(root);
+  }
+}
+
 function enumerateRoots(values, config) {
   const cF = config.seaCell.c_f;
   const bodies = createBodies();
   const sampling = config.sampling;
   const historyWindow = sampling.historyPeriods * Math.max(...Object.values(values.periods));
   const rootStep = historyWindow / sampling.rootSamples;
+  const duplicateTolerance = rootDuplicateTolerance(sampling, rootStep);
+  const selfWindow = selfRootDelayWindow(config);
   const roots = [];
   const sampleTimes = Array.from({ length: sampling.sampleCount }, (_, i) =>
     (values.commonPeriod * i) / sampling.sampleCount
@@ -253,6 +333,7 @@ function enumerateRoots(values, config) {
   for (const t of sampleTimes) {
     for (const receiver of bodies) {
       for (const source of bodies) {
+        const relation = sourceRelation(receiver, source);
         let priorTau = sampling.minDelay;
         let priorValue = rootFunction(receiver, source, values, t, priorTau, cF);
         for (let index = 1; index <= sampling.rootSamples; index += 1) {
@@ -275,31 +356,30 @@ function enumerateRoots(values, config) {
               priorValue = value;
               continue;
             }
-            const duplicate = roots.some(
-              (root) =>
-                root.receiver === receiver.id &&
-                root.source === source.id &&
-                Math.abs(root.t - t) < 1e-9 &&
-                Math.abs(root.delay - rootTau) < rootStep
+            pushDistinctRoot(
+              roots,
+              buildRootRecord(receiver, source, values, t, rootTau, cF, config),
+              duplicateTolerance
             );
-            if (!duplicate) {
-              const receiverState = bodyState(receiver, values, t);
-              const sourceState = bodyState(source, values, t - rootTau);
-              const direction = unit(sub(receiverState.position, sourceState.position));
-              const j = 1 - dot(sourceState.velocity, direction) / cF;
-              const rootClass = classifyRoot(receiver, source, rootTau, j, config);
-              roots.push({
-                receiver: receiver.id,
-                source: source.id,
-                relation: rootClass.relation,
-                status: rootClass.status,
+            if (relation === "self" && rootTau <= selfWindow.foldLayerDelay && tau > selfWindow.foldLayerDelay) {
+              const delayedRootTau = solveRoot(
+                receiver,
+                source,
+                values,
                 t,
-                delay: rootTau,
-                residual: Math.abs(rootFunction(receiver, source, values, t, rootTau, cF)),
-                J: j,
-                nearSeparator: rootClass.nearSeparator,
-                nearZeroSelf: rootClass.nearZeroSelf,
-              });
+                selfWindow.foldLayerDelay,
+                tau,
+                cF,
+                sampling.rootTolerance,
+                { ignoreLoEndpoint: true }
+              );
+              if (delayedRootTau !== null) {
+                pushDistinctRoot(
+                  roots,
+                  buildRootRecord(receiver, source, values, t, delayedRootTau, cF, config),
+                  duplicateTolerance
+                );
+              }
             }
           }
           priorTau = tau;
@@ -329,6 +409,13 @@ function summarizeRoots(roots) {
     excluded: {
       instantaneousSelfKick: 0,
       nearSeparatorInstantaneousSelfKick: 0,
+      regularizedSelfFoldLayer: 0,
+      nearSeparatorRegularizedSelfFoldLayer: 0,
+    },
+    selfDelayClasses: {
+      instantaneous_exclusion: 0,
+      regularized_fold_layer: 0,
+      admissible_delay: 0,
     },
     nearSeparator: 0,
     rawNearSeparator: 0,
@@ -348,16 +435,122 @@ function summarizeRoots(roots) {
       if (root.status === "excluded_instantaneous_self_kick") {
         summary.excluded.instantaneousSelfKick += 1;
         summary.excluded.nearSeparatorInstantaneousSelfKick += root.nearSeparator ? 1 : 0;
+      } else if (root.status === "excluded_regularized_self_fold_layer") {
+        summary.excluded.regularizedSelfFoldLayer += 1;
+        summary.excluded.nearSeparatorRegularizedSelfFoldLayer += root.nearSeparator ? 1 : 0;
+      }
+      if (root.relation === "self" && root.selfDelayClass) {
+        summary.selfDelayClasses[root.selfDelayClass] += 1;
       }
       continue;
     }
     summary.byRelation[root.relation] += 1;
+    if (root.relation === "self" && root.selfDelayClass) {
+      summary.selfDelayClasses[root.selfDelayClass] += 1;
+    }
     summary.nearSeparator += root.nearSeparator ? 1 : 0;
     summary.minAbsJ = summary.minAbsJ === null ? absJ : Math.min(summary.minAbsJ, absJ);
     summary.maxDelay = Math.max(summary.maxDelay, root.delay);
     summary.maxRootResidual = Math.max(summary.maxRootResidual, root.residual);
   }
   return summary;
+}
+
+function updateRange(range, value) {
+  range.min = range.min === null ? value : Math.min(range.min, value);
+  range.max = range.max === null ? value : Math.max(range.max, value);
+}
+
+function updateAbsJRange(range, value) {
+  const absJ = Math.abs(value);
+  range.minAbsJ = range.minAbsJ === null ? absJ : Math.min(range.minAbsJ, absJ);
+}
+
+function buildSelfRootDiagnostic(roots, values, config) {
+  const window = selfRootDelayWindow(config);
+  const byLayer = Object.fromEntries(
+    LAYER_ORDER.map((layer) => [
+      layer,
+      {
+        speed: values.speeds[layer],
+        speedRatio: values.speeds[layer] / config.seaCell.c_f,
+        instantaneousSelfKick: 0,
+        regularizedSelfFoldLayer: 0,
+        admissibleDelayedSelfHit: 0,
+        admissibleDelayRange: { min: null, max: null },
+        foldLayerDelayRange: { min: null, max: null },
+        instantaneousDelayRange: { min: null, max: null },
+        minAbsJ: null,
+      },
+    ])
+  );
+  const totals = {
+    instantaneousSelfKick: 0,
+    regularizedSelfFoldLayer: 0,
+    admissibleDelayedSelfHit: 0,
+  };
+  const delayRanges = {
+    admissible: { min: null, max: null },
+    foldLayer: { min: null, max: null },
+    instantaneous: { min: null, max: null },
+  };
+
+  for (const root of roots) {
+    if (root.relation !== "self") {
+      continue;
+    }
+    const layer = root.receiver.slice(0, 1);
+    const layerStats = byLayer[layer];
+    updateAbsJRange(layerStats, root.J);
+    if (root.selfDelayClass === "admissible_delay") {
+      totals.admissibleDelayedSelfHit += 1;
+      layerStats.admissibleDelayedSelfHit += 1;
+      updateRange(delayRanges.admissible, root.delay);
+      updateRange(layerStats.admissibleDelayRange, root.delay);
+    } else if (root.selfDelayClass === "regularized_fold_layer") {
+      totals.regularizedSelfFoldLayer += 1;
+      layerStats.regularizedSelfFoldLayer += 1;
+      updateRange(delayRanges.foldLayer, root.delay);
+      updateRange(layerStats.foldLayerDelayRange, root.delay);
+    } else if (root.selfDelayClass === "instantaneous_exclusion") {
+      totals.instantaneousSelfKick += 1;
+      layerStats.instantaneousSelfKick += 1;
+      updateRange(delayRanges.instantaneous, root.delay);
+      updateRange(layerStats.instantaneousDelayRange, root.delay);
+    }
+  }
+
+  let status = "fail";
+  let diagnosis = "delayed_self_hit_roots_absent";
+  let failureCode = "delayed-self-root-absent";
+  let note =
+    "No admissible delayed self-hit root was found beyond the self-root exclusion and fold-layer windows.";
+  if (totals.admissibleDelayedSelfHit > 0) {
+    status = "pass";
+    diagnosis =
+      totals.instantaneousSelfKick > 0
+        ? "near_zero_sampling_artifact_resolved"
+        : "admissible_delayed_self_hit_roots_present";
+    failureCode = null;
+    note =
+      "Near-zero self roots remain excluded under H(0)=0, but admissible delayed self-hit roots exist beyond the fold layer.";
+  } else if (totals.regularizedSelfFoldLayer > 0) {
+    diagnosis = "regularized_fold_layer_required";
+    failureCode = "self-root-fold-layer-required";
+    note =
+      "Self roots were found only inside the fold layer above the instantaneous exclusion window; Tier 1 needs an eta>0 regularized fold-layer condition before promotion.";
+  }
+
+  return {
+    status,
+    diagnosis,
+    failure_code: failureCode,
+    window,
+    totals,
+    delayRanges,
+    byLayer,
+    note,
+  };
 }
 
 function activeRoots(roots) {
@@ -410,6 +603,28 @@ function classifyModes(values, config, roots) {
       J: root.J,
       nearSeparator: root.nearSeparator,
     }));
+  const excludedRegularizedSelfFoldLayerRoots = roots
+    .filter((root) => root.status === "excluded_regularized_self_fold_layer")
+    .slice(0, 20)
+    .map((root) => ({
+      receiver: root.receiver,
+      source: root.source,
+      relation: root.relation,
+      delay: root.delay,
+      J: root.J,
+      nearSeparator: root.nearSeparator,
+    }));
+  const admissibleDelayedSelfRoots = active
+    .filter((root) => root.relation === "self" && root.admissibleDelayedSelfHit)
+    .slice(0, 20)
+    .map((root) => ({
+      receiver: root.receiver,
+      source: root.source,
+      relation: root.relation,
+      delay: root.delay,
+      J: root.J,
+      nearSeparator: root.nearSeparator,
+    }));
   return {
     nonresonantCount,
     nearestMismatch,
@@ -420,6 +635,14 @@ function classifyModes(values, config, roots) {
     excludedInstantaneousSelfRoots,
     excludedInstantaneousSelfRootCount: roots.filter(
       (root) => root.status === "excluded_instantaneous_self_kick"
+    ).length,
+    excludedRegularizedSelfFoldLayerRoots,
+    excludedRegularizedSelfFoldLayerRootCount: roots.filter(
+      (root) => root.status === "excluded_regularized_self_fold_layer"
+    ).length,
+    admissibleDelayedSelfRoots,
+    admissibleDelayedSelfRootCount: active.filter(
+      (root) => root.relation === "self" && root.admissibleDelayedSelfHit
     ).length,
   };
 }
@@ -632,6 +855,7 @@ function buildZLambda(values, rootSummary, config) {
     interLayerClosure: interLayerClosure(values),
     activeRootClasses: rootSummary.byRelation,
     rawRootClasses: rootSummary.rawByRelation,
+    selfDelayClasses: rootSummary.selfDelayClasses,
     excluded: rootSummary.excluded,
   };
   return {
@@ -704,12 +928,16 @@ function failureCatalog() {
       "Tier 1 computed Delta_k <= 0; integer closure is not a stable rest-branch moduli point.",
     "scale-separation-collapse":
       "Radius or period ratios violate the declared separated-scale Tier 0 regime.",
+    "delayed-self-root-absent":
+      "The self channel contains no admissible delayed self-hit roots beyond the instantaneous exclusion and fold-layer windows.",
+    "self-root-fold-layer-required":
+      "Self roots occur only in the near-zero fold layer, so an eta>0 regularized fold-layer condition is required before promotion.",
     "root-ledger-instability":
       "The active causal-root ledger is empty or misses partner, self, or inter-layer root classes.",
   };
 }
 
-function candidateFailure(rootSummary, residuals, config, zLambda, scaleGate) {
+function candidateFailure(rootSummary, selfRootDiagnostic, residuals, config, zLambda, scaleGate) {
   if (zLambda.quotient_degenerate) {
     return "quotient-degenerate";
   }
@@ -740,8 +968,8 @@ function candidateFailure(rootSummary, residuals, config, zLambda, scaleGate) {
   if (rootSummary.nearSeparator > maximumActiveNearSeparatorRoots(config)) {
     return "separator-singularity-unresolved";
   }
-  if (rootSummary.excluded.instantaneousSelfKick > (config.classification.maxExcludedInstantaneousSelfRoots ?? 0)) {
-    return "near-zero-self-root-excluded";
+  if (selfRootDiagnostic.status !== "pass") {
+    return selfRootDiagnostic.failure_code;
   }
   if (
     rootSummary.total === 0 ||
@@ -754,7 +982,15 @@ function candidateFailure(rootSummary, residuals, config, zLambda, scaleGate) {
   return "candidate";
 }
 
-function buildCertificateGates(failureCode, rootSummary, residuals, config, zLambda, scaleGate) {
+function buildCertificateGates(
+  failureCode,
+  rootSummary,
+  selfRootDiagnostic,
+  residuals,
+  config,
+  zLambda,
+  scaleGate
+) {
   return {
     quotient_coordinates: quotientGate(zLambda),
     scale_separation: scaleGate,
@@ -781,12 +1017,25 @@ function buildCertificateGates(failureCode, rootSummary, residuals, config, zLam
       rootSummary.nearSeparator <= maximumActiveNearSeparatorRoots(config) ? "pass" : "fail",
       "Active near-separator roots require an explicit locking continuation rule before promotion."
     ),
+    self_root_delay_window: gateWithCode(
+      selfRootDiagnostic.status,
+      selfRootDiagnostic.note,
+      selfRootDiagnostic.failure_code
+    ),
     near_zero_self_roots: gate(
-      rootSummary.excluded.instantaneousSelfKick <=
-        (config.classification.maxExcludedInstantaneousSelfRoots ?? 0)
+      rootSummary.excluded.instantaneousSelfKick === 0 ||
+        selfRootDiagnostic.totals.admissibleDelayedSelfHit > 0
         ? "pass"
         : "fail",
-      "Near-zero self roots are recorded but excluded from the active ledger under H(0)=0."
+      "Near-zero self roots are recorded but excluded from the active ledger under H(0)=0; this gate passes only when the self channel also has an admissible delayed hit."
+    ),
+    regularized_self_fold_layer: gateWithCode(
+      rootSummary.excluded.regularizedSelfFoldLayer === 0 ? "pass" : "attention",
+      "Self roots inside the fold layer are not promoted to active roots; if they are the only self roots, Tier 1 must regularize the fold layer.",
+      rootSummary.excluded.regularizedSelfFoldLayer > 0 &&
+        selfRootDiagnostic.totals.admissibleDelayedSelfHit === 0
+        ? "self-root-fold-layer-required"
+        : null
     ),
     residual_vector_semantics: gate(
       residualSemanticsPass(residuals) ? "pass" : "fail",
@@ -851,6 +1100,7 @@ function rowForParams(params, config, index) {
   const values = buildValues(params, config);
   const roots = enumerateRoots(values, config);
   const rootSummary = summarizeRoots(roots);
+  const selfRootDiagnostic = buildSelfRootDiagnostic(roots, values, config);
   const classification = classifyModes(values, config, roots);
   const leakage = leakagePlaceholder(values, config);
   const avgResidual =
@@ -931,8 +1181,16 @@ function rowForParams(params, config, index) {
   const zLambda = buildZLambda(values, rootSummary, config);
   const scaleGate = scaleSeparationGate(values, config);
   const Delta_k = deltaKStatus();
-  const failureCode = candidateFailure(rootSummary, residuals, config, zLambda, scaleGate);
-  const certificateGates = buildCertificateGates(failureCode, rootSummary, residuals, config, zLambda, scaleGate);
+  const failureCode = candidateFailure(rootSummary, selfRootDiagnostic, residuals, config, zLambda, scaleGate);
+  const certificateGates = buildCertificateGates(
+    failureCode,
+    rootSummary,
+    selfRootDiagnostic,
+    residuals,
+    config,
+    zLambda,
+    scaleGate
+  );
   return {
     row: index,
     status: failureCode === "candidate" ? "tier0_continuation_ready" : "tier0_rejected",
@@ -952,6 +1210,7 @@ function rowForParams(params, config, index) {
         ...interLayerClosure(values),
       },
       activeRootClasses: rootSummary.byRelation,
+      selfRootDiagnosis: selfRootDiagnostic.diagnosis,
     },
     parameters: params,
     state_vector: buildStateVector(values, config),
@@ -965,6 +1224,7 @@ function rowForParams(params, config, index) {
     },
     z_lambda: zLambda,
     root_ledger: rootSummary,
+    self_root_delay_window: selfRootDiagnostic,
     term_classification: classification,
     leakage_placeholder: leakage,
     Delta_k,
@@ -1006,6 +1266,7 @@ function run(config, limit) {
       gammaAvg: config.classification.gammaAvg,
       jLock: config.classification.jLockThreshold,
       instantaneousSelfDelay: minimumSelfDelay(config),
+      selfRootFoldLayerDelay: selfRootDelayWindow(config).foldLayerDelay,
       maxScaleRatio: config.classification.maxScaleRatio ?? 0.5,
       quotientDegeneracy: config.classification.quotientDegeneracyTolerance ?? 1e-9,
     },
@@ -1013,6 +1274,8 @@ function run(config, limit) {
     audit_policy: {
       instantaneousSelfKick:
         "Self roots with delay at or below the near-zero threshold are recorded in raw ledgers but excluded from active branch counts under H(0)=0.",
+      selfRootDelayWindow:
+        "A self root seeds the active ledger only when it lies beyond the instantaneous exclusion window and the regularized fold-layer window.",
       particleBenchmarksExcluded: [
         "particle masses",
         "charged-lepton ratios",

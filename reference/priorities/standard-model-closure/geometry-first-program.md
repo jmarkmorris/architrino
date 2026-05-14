@@ -388,6 +388,8 @@ W_{\ell,\sigma}(t;a,\mathbf{x})
 \qquad
 a\in S,\quad \mathbf{x}\in\Sigma_t.
 $$
+In the mass-map branch-row schema, this is the provisional `weak_retained_amplitude_handoff` object. Because the reduced branch certificate already uses $\Lambda$ for the branch label, that row field must record both the exact `branch_label` and the shielding `tier_selector`; the superscript in $\mathcal{L}_{\ell}^{W,\Lambda}$ denotes the combined branch-family handoff consumed by this packet, not a CKM-calibrated parameter. The consumer accepts only rows with `weak-emitter-ready`; rows marked `weak-emitter-not-computed`, `weak-emitter-zero-norm`, `weak-emitter-phase-underdetermined`, `weak-emitter-refinement-drift`, `weak-emitter-split-domain`, or `weak-emitter-benchmark-fit` cannot supply $B_\Lambda$.
+
 Here $W_{\ell,\sigma}(t;a,\mathbf{x})$ is the normalized local causal-wake contribution of the constituent $(\ell,\sigma)$ on the selected weak channel, evaluated against polar site $a$ and spatial point $\mathbf{x}$. This is the weak-sector analogue of the scalar shielding ledger
 $$
 \mathcal{L}(\hat{\mathbf{R}})

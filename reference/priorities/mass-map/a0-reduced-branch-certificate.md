@@ -538,6 +538,7 @@ Required outputs:
 - phase-closure residuals,
 - tangential and radial carrier residuals,
 - averaging / locking / leakage classification,
+- provisional `weak_retained_amplitude_handoff` status, with `not-computed` allowed at Tier 0,
 - candidate branch labels worth continuing,
 - one `failure_code` per rejected row and explicit no-go notes when no labels survive.
 
@@ -559,6 +560,78 @@ Each Tier 0 row should expose the quotient coordinate, residual surface, and sta
 | `failure_code` | one machine-readable reason the row fails, or `candidate` when it may seed Tier 1 |
 | `promotion_boundary` | explicit statement that a passing Tier 0 row may seed Tier 1 only and is not an accepted attractor |
 
+### Provisional Weak-Retained Amplitude Handoff
+
+The branch row that later feeds the Standard Model shielding-envelope calculation needs one additional optional handoff object. This is not a CKM result and not a new particle benchmark. It is the branch-derived weak-retained causal-wake amplitude that the weak-sector overlap packet consumes as $\mathcal{L}_{\ell}^{W,\Lambda}(a,\mathbf{x})$.
+
+The reduced certificate already uses $\Lambda$ for the finite causal-root branch label. In this handoff, the row must therefore record both the exact `branch_label` and the shielding `tier_selector`; the superscript in $\mathcal{L}_{\ell}^{W,\Lambda}$ denotes the combined branch-family handoff consumed by the Standard Model packet. The provisional internal disambiguators below are $\Lambda_{\mathrm{br}}$ for the reduced branch label and $\Lambda_{\mathrm{tier}}$ for the shielding tier.
+
+Use the provisional tier selector
+$$
+\mathcal{I}_{\mathrm{IMO}}=\{I,M,O\},
+\qquad
+\mathcal{I}_{\mathrm{IM-}}=\{I,M\},
+\qquad
+\mathcal{I}_{\mathrm{I--}}=\{I\}.
+$$
+For refinement index $\nu$, fixed branch label $\Lambda_{\mathrm{br}}$, fixed shielding tier $\Lambda_{\mathrm{tier}}\in\{\mathrm{IMO},\mathrm{IM-},\mathrm{I--}\}$, fixed weak-sector input tuple $(R_{\text{rel}},c,\sigma_{\text{ax}})$, and fixed local Noether-Sea state, define the row-level weak-retained amplitude candidate by
+$$
+\mathcal{L}_{\ell}^{W,\Lambda_{\mathrm{tier}},\nu}(a,\mathbf{x};\Lambda_{\mathrm{br}})
+=
+\Pi_{\mathrm{weak}}
+\left[
+\left\langle
+\sum_{\sigma\in\{+,-\}}
+q_{\ell,\sigma}
+W_{\ell,\sigma}^{(\nu)}(t;a,\mathbf{x};R_{\text{rel}},c,\sigma_{\text{ax}})
+\right\rangle_{T_{\mathbf{k}}}
+\right]_{\Lambda_{\mathrm{br}}},
+\qquad
+\ell\in\mathcal{I}_{\Lambda_{\mathrm{tier}}}.
+$$
+Here $W_{\ell,\sigma}^{(\nu)}$ is reconstructed from the row's accepted state/history segment, active causal-root ledger, and mollified wake rule at refinement level $\nu$. The projection $\Pi_{\mathrm{weak}}$ is the weak-sector projection from the exposure-quotient theorem; it must retain weak-coupling-triad exposure, axial-frame branch data, chirality channel, flavor-overlap data, and weak-corridor provenance in one weak-visible domain. The same row data must supply the phase origin through $z_\Lambda$, especially $\Phi_{\text{rel}}$, $H_I,H_M,H_O$, and the root-ledger branch class $[\Lambda]$.
+
+The emitted amplitude exists only if the refinement limit
+$$
+\mathcal{L}_{\ell}^{W,\Lambda_{\mathrm{tier}}}(a,\mathbf{x};\Lambda_{\mathrm{br}})
+=
+\lim_{\nu\to\infty}
+\mathcal{L}_{\ell}^{W,\Lambda_{\mathrm{tier}},\nu}(a,\mathbf{x};\Lambda_{\mathrm{br}})
+$$
+converges in the weak-measure norm used by the Standard Model packet:
+$$
+\left\|
+\mathcal{L}_{\ell}^{W,\Lambda_{\mathrm{tier}},\nu+1}
+-
+\mathcal{L}_{\ell}^{W,\Lambda_{\mathrm{tier}},\nu}
+\right\|_{\mu_W^{(L)}}
+\to0,
+$$
+under the declared extraction radius, angular resolution, cycle window, $\Delta t$, history depth, and $\eta$ schedule. The tier can seed a shielding envelope only when
+$$
+\sum_{\ell\in\mathcal{I}_{\Lambda_{\mathrm{tier}}}}
+\left\|
+\mathcal{L}_{\ell}^{W,\Lambda_{\mathrm{tier}}}
+\right\|_{\mu_W^{(L)}}>0.
+$$
+
+The provisional branch-row field is `weak_retained_amplitude_handoff`:
+
+| Field | Required content |
+| --- | --- |
+| `status` | `not-computed`, `candidate`, `weak-emitter-ready`, or `failed`; Tier 0 may emit `not-computed` or `candidate`, while `weak-emitter-ready` requires the refinement limit above |
+| `tier_selector` | one of $\mathrm{IMO}$, $\mathrm{IM-}$, or $\mathrm{I--}$ with the corresponding active layer set $\mathcal{I}_{\Lambda_{\mathrm{tier}}}$ |
+| `source_row` | the row's `branch_label`, `z_lambda`, `root_ledger`, `residual_values`, `Delta_k`, `certificate_gates`, and `promotion_boundary` |
+| `weak_inputs` | $R_{\text{rel}}$, $c$, $\sigma_{\text{ax}}$, $\eta_a^{(h)}$, $A_a(\mathbf{x};R_{\text{rel}})$, and the local $\rho_{\text{core}}(\mathbf{x},t),\chi_{\text{sea}}(\mathbf{x},t)$ state used by the weak measure |
+| `weak_exposure_map` | the explicit $\Pi_{\mathrm{weak}}$, $Q_{\mathrm{weak}}$, retained labels, discarded labels, and weak-exposure leakage diagnostics used for this row |
+| `layer_channels` | one entry per $\ell\in\mathcal{I}_{\Lambda_{\mathrm{tier}}}$ giving $\mathcal{L}_{\ell}^{W,\Lambda_{\mathrm{tier}},\nu}(a,\mathbf{x};\Lambda_{\mathrm{br}})$ or a `not-computed` marker with the reason |
+| `phase_handoff` | branch-fixed phase data sufficient to determine $\arg\mathcal{L}_{\ell}^{W,\Lambda}(a,\mathbf{x})$ after quotienting the common phase origin |
+| `refinement` | extraction radius, angular resolution, cycle window, $\Delta t$, history depth, $\eta$, and convergence status |
+| `nonfit_statement` | explicit statement that no CKM magnitude, charged-lepton mass ratio, particle mass, or CKM-derived transport action was used to construct the amplitude |
+| `failure_code` | one weak-emitter failure code, or `weak-emitter-ready` when the handoff may feed the shielding-envelope packet |
+
+The exact pass condition for supplying $B_{\mathrm{IMO}}$, $B_{\mathrm{IM-}}$, and $B_{\mathrm{I--}}$ is that the corresponding branch-family rows all reach `weak-emitter-ready`, have finite nonzero active-tier norm, preserve the same $\Pi_{\mathrm{weak}}$ and quotient choices, and keep all refinement drift below declared tolerance before any Standard Model comparison. The exact failure condition is `weak-emitter-benchmark-fit` if any observed CKM magnitude, CKM angle, or particle mass is used to select the branch row, projection, quotient, amplitude normalization, or phase.
+
 The first Tier 0 failure table should reserve these codes:
 
 | Failure code | Trigger | Consequence |
@@ -567,6 +640,12 @@ The first Tier 0 failure table should reserve these codes:
 | `scale-separation-collapse` | $R_I:R_M:R_O$ or $T_I:T_M:T_O$ violates the declared separated-scale regime | reject the row or widen the scan only as a controlled scale-separation test |
 | `root-ledger-instability` | the active causal-root ledger is empty or misses partner, self, or inter-layer root classes | do not seed Tier 1 until the ledger closes with all required source relations |
 | `nonpositive-floquet-gap` | Tier 1 computes $\Delta_{\mathbf{k}}\le0$ | reject the branch as a non-attractor even if integer closure holds |
+| `weak-emitter-not-computed` | the row does not carry a weak-retained amplitude handoff or marks the handoff outside its computed tier | do not feed the Standard Model shielding-envelope packet |
+| `weak-emitter-zero-norm` | $\sum_{\ell\in\mathcal{I}_{\Lambda_{\mathrm{tier}}}}\|\mathcal{L}_{\ell}^{W,\Lambda_{\mathrm{tier}}}\|_{\mu_W^{(L)}}=0$ | no normalized branch-derived envelope can be formed for that tier |
+| `weak-emitter-phase-underdetermined` | quotienting leaves $\arg\mathcal{L}_{\ell}^{W,\Lambda}(a,\mathbf{x})$ ambiguous on support contributing to the overlap kernel | do not compute $\Delta\phi_{u\Lambda}$ from this row |
+| `weak-emitter-refinement-drift` | $\mathcal{L}_{\ell}^{W,\Lambda_{\mathrm{tier}},\nu}$ fails convergence under extraction radius, angular resolution, cycle window, $\Delta t$, history depth, or $\eta$ refinement | keep the row as a numerical artifact, not a shielding-envelope input |
+| `weak-emitter-split-domain` | the row needs a different weak projection or quotient for chirality, flavor overlap, or weak-corridor provenance | the weak exposure theorem has not closed for this row |
+| `weak-emitter-benchmark-fit` | CKM data, charged-lepton mass ratios, particle masses, or CKM-derived transport actions are used to select or normalize the handoff | reject the row as fitted rather than branch-derived |
 
 ## Tier 1: $\eta>0$ Continuation Scan
 
@@ -674,7 +753,8 @@ The first implementation pass should produce:
 4. a quotient-coordinate emitter for $z_\Lambda$ with the removed rotation, phase, and chart relabeling gauges declared;
 5. a resonance classifier that separates $\mathcal{R}_{\text{avg}}$ from $\mathcal{R}_{\text{lock}}$;
 6. a leakage placeholder that reports the leading nonzero far-field channel rather than hiding it;
-7. one output row per branch label $\Lambda$, including $z_\Lambda$, $\mathcal{R}_{A_0}$, $\Delta_{\mathbf{k}}$, and a failure code.
+7. a provisional `weak_retained_amplitude_handoff` field that reports `not-computed` or `candidate` with the missing Tier 1/Tier 2 inputs named;
+8. one output row per branch label $\Lambda$, including $z_\Lambda$, $\mathcal{R}_{A_0}$, $\Delta_{\mathbf{k}}$, and a failure code.
 
 Only after Tier 0 emits at least one nontrivial candidate should the workstream spend effort on Tier 1 direct delayed dynamics.
 
