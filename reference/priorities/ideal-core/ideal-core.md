@@ -135,6 +135,151 @@ The primary core view should map Lorentz variables to geometry as follows:
 
 The default geometry should be a Lorentz-flattened oblate spheroid with its shortened symmetry axis aligned to the velocity vector. If the velocity vector is drawn horizontally, the core should visibly flatten horizontally while the transverse radii remain fixed.
 
+### Teaching View Requirements
+
+The teaching view should orient the reader around three linked objects:
+
+1. the return cycle;
+2. the tri-binary closure burden;
+3. the outer-binary Lorentz envelope.
+
+#### Return Cycle
+
+The app should define a return cycle as one complete closed causal exchange, not as a one-way signal leg. The lesson should contrast:
+
+```text
+one-way leg: A influences B
+return cycle: A influences B, the influence returns, and A re-closes in phase with itself
+```
+
+The longitudinal lesson should show the two unequal one-way legs:
+
+$$
+t_+=\frac{R_\parallel}{c-v},
+\qquad
+t_-=\frac{R_\parallel}{c+v}
+$$
+
+and then group them into the closed return cycle:
+
+$$
+T_\parallel=t_++t_-.
+$$
+
+The visual point is that a clock or ruler is not made from one isolated one-way leg. It is made from a branch that returns with a stable timing, phase, and action ledger.
+
+#### Binary-Layer Ledger
+
+The lesson should make clear that the Lorentz spheroid is the visible outer projection of a deeper coupled core closure.
+
+For each binary layer $\ell\in\{I,M,O\}$, display or reserve a row for:
+
+$$
+\Delta\phi_\ell=2\pi n_\ell
+$$
+
+and:
+
+$$
+\Delta A_\ell=n_\ell h
+$$
+
+up to leakage and branch-resolution terms. The full Noether-core branch should be shown as a coupled closure requirement:
+
+$$
+(\Delta\phi_I,\Delta\phi_M,\Delta\phi_O)
+=
+2\pi(n_I,n_M,n_O)
+$$
+
+with an all-layer action ledger:
+
+$$
+\Delta I_I+\Delta I_M+\Delta I_O+\Delta I_{\mathrm{wake}}
+=
+\sigma\hbar.
+$$
+
+The app should avoid implying that the outer binary alone solves Lorentz closure. The intended teaching hierarchy is:
+
+```text
+inner binary return cycle
+middle binary return cycle
+outer binary return cycle
+        ↓
+coupled Noether-core branch closure
+        ↓
+outer-binary Lorentz envelope
+        ↓
+observer reads clock dilation and ruler contraction
+```
+
+#### Outer-Binary Lorentz Envelope
+
+Use **Outer-Binary Lorentz Envelope** as the teaching label for the spheroid. The phrase should mean the visible exclusion envelope exposed by the outer binary, not a solid volume physically filled by the outer binary.
+
+The teaching view should show:
+
+```text
+outer binary path system
+        ↓
+outer-binary exclusion envelope
+        ↓
+Lorentz spheroid
+        ↓
+observer reads length contraction and time dilation
+```
+
+The default no-extra-scale lesson state should keep:
+
+$$
+R_\perp=R_0,
+\qquad
+R_\parallel=\frac{R_0}{\gamma}.
+$$
+
+The relative envelope volume should be displayed as:
+
+$$
+V_{\mathrm{env}}(v)
+=
+\frac{4\pi}{3}R_\perp^2R_\parallel
+$$
+
+and, relative to the rest sphere,
+
+$$
+\frac{V_{\mathrm{env}}(v)}{V_{\mathrm{env}}(0)}
+=
+\frac{1}{\gamma}.
+$$
+
+If the lesson exposes a separate transverse scale channel, use:
+
+$$
+R_\perp=\lambda R_0,
+\qquad
+R_\parallel=\frac{\lambda R_0}{\gamma}
+$$
+
+and:
+
+$$
+\frac{V_{\mathrm{env}}(v)}{V_{\mathrm{env}}(0)}
+=
+\frac{\lambda^3}{\gamma}.
+$$
+
+The default chart label should therefore include:
+
+```text
+Outer-Binary Lorentz Envelope
+shape ratio: xi = R_parallel / R_perp = 1 / gamma
+relative envelope volume: V_env(v) / V_env(0) = 1 / gamma
+```
+
+The visual grammar should show outer-binary paths and the translucent envelope together, so the reader sees the spheroid as the relative envelope traced or exposed by the outer binary while still understanding that the hidden inner and middle binary ledgers remain active.
+
 ### Lesson Stages
 
 The lesson mode should have a compact staged flow:
@@ -142,7 +287,9 @@ The lesson mode should have a compact staged flow:
 1. `rest_core` — show $\beta=0$, $\gamma=1$, $R_\parallel=R_\perp$, $\Delta t=\Delta\tau$, and $L_\parallel=L_0$.
 2. `moving_core` — increase $\beta$ and show $\gamma>1$, $R_\parallel<R_\perp$, $\Delta t>\Delta\tau$, and $L_\parallel<L_0$.
 3. `return_cycle` — draw longitudinal and transverse return paths and show how equal closure time requires $\xi=1/\gamma$.
-4. `aaa_candidate` — mark the open theory claim: realized Noether-core branches may admit only closure-compatible Lorentz states rather than an arbitrary continuous deformation.
+4. `binary_ledgers` — show that inner, middle, and outer binary return cycles must close together for a stable Noether-core branch.
+5. `outer_envelope` — label the visible spheroid as the Outer-Binary Lorentz Envelope and show $V_{\mathrm{env}}(v)/V_{\mathrm{env}}(0)$.
+6. `aaa_candidate` — mark the open theory claim: realized Noether-core branches may admit only closure-compatible Lorentz states rather than an arbitrary continuous deformation.
 
 ### Chart Requirements
 
@@ -167,6 +314,10 @@ This priority is done when:
 - changing $v$ or $\beta$ updates the spheroid geometry, time-dilation readout, length-contraction readout, and chart cursor together;
 - the chart displays $\gamma(\beta)$ and $\xi(\beta)$ with active symbolic labels;
 - the central core visibly contracts along the velocity direction according to $R_\parallel=R_\perp/\gamma$;
+- the central view labels the spheroid as the Outer-Binary Lorentz Envelope and does not present it as a solid body filled by the outer binary;
+- the app displays $V_{\mathrm{env}}(v)/V_{\mathrm{env}}(0)=1/\gamma$ in the no-extra-scale lesson state, with the $\lambda^3/\gamma$ extension reserved for scale-channel mode;
+- the teaching view distinguishes one-way legs from return cycles and groups $t_+$ and $t_-$ into $T_\parallel$;
+- the teaching view reserves or displays inner, middle, and outer binary ledger rows so the outer envelope is not mistaken for the whole closure burden;
 - the lower-left equation zone explains $\beta$, $\gamma$, $\xi$, $\Delta t$, $\Delta\tau$, $L_0$, and $L_\parallel$ in a lesson sequence;
 - and the app clearly distinguishes established Lorentz kinematics from the $\mathbb{A}\mathbb{A}\mathbb{A}$ candidate claim about Noether-core branch realization.
 
