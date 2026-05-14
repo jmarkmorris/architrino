@@ -50,6 +50,11 @@ This document distinguishes three audience scopes:
 - In markdown documents, use relative link targets relative to the current document. Do not use absolute filesystem paths and do not use root-absolute deployment-sensitive targets like `/content/...` or `/Users/...`.
 - Keep documents in `content/markdown/aaa` self-contained with respect to priority material. Do not refer or link from those documents to [reference/priorities](reference/priorities/README.md); if priority material matters, restate or promote the needed content within `content/markdown/aaa` instead.
 
+#### Promotion From Priority Material
+
+- When promoting material from `reference/priorities` into `content/markdown/aaa`, preserve or choose reader-facing conceptual headings. Do not import internal workstream, task, packet, gate, queue, or status labels as top-level headings unless the term is already the best textbook-facing concept; demote such labels to theorem-target, closure-target, or local subsection labels when useful.
+- Use analogy-heavy physics terms such as `superfluid` only when the local document supplies technical support: a defined order parameter, transport equation, quantized-vorticity analogue, critical-velocity criterion, two-fluid model, or another concrete mathematical mechanism. Without that support, use neutral medium-response or transport language.
+
 #### Canon and Editorial References
 
 - For textbook-facing prose, notation, terminology, and usage canon, rely on Archie guides, glossaries, and references in `content/markdown/aaa/archie/`.

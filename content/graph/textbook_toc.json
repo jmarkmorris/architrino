@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 151,
-      "sections": 1094
+      "sections": 1100
     }
   },
   "tocRoot": {
@@ -3722,18 +3722,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Superfluid Noether-Sea Hypothesis",
+                "title": "Noether-Sea Transport",
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
-                "markdownSection": "Superfluid Noether-Sea Hypothesis",
-                "sectionKey": "superfluid noether sea hypothesis",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Superfluid Noether Sea",
-                "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
-                "markdownSection": "Superfluid Noether Sea",
-                "sectionKey": "superfluid noether sea",
+                "markdownSection": "Noether-Sea Transport",
+                "sectionKey": "noether sea transport",
                 "headingLevel": 2
               }
             ]
@@ -6241,6 +6233,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Residual-Routing Event-Ledger Contract",
+                "markdownPath": "content/markdown/aaa/validation/reaction-ledger.md",
+                "markdownSection": "Residual-Routing Event-Ledger Contract",
+                "sectionKey": "residual routing event ledger contract",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Weak-Corridor Provenance Gate",
                 "markdownPath": "content/markdown/aaa/validation/reaction-ledger.md",
                 "markdownSection": "Weak-Corridor Provenance Gate",
@@ -6305,7 +6305,65 @@
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/validation/failure_criteria.json",
-            "markdownPath": "content/markdown/aaa/validation/failure-criteria.md"
+            "markdownPath": "content/markdown/aaa/validation/failure-criteria.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Shared Closure Record",
+                "markdownPath": "content/markdown/aaa/validation/failure-criteria.md",
+                "markdownSection": "Shared Closure Record",
+                "sectionKey": "shared closure record",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Sector Acceptance Sets",
+                "markdownPath": "content/markdown/aaa/validation/failure-criteria.md",
+                "markdownSection": "Sector Acceptance Sets",
+                "sectionKey": "sector acceptance sets",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Promotion Lemma",
+                "markdownPath": "content/markdown/aaa/validation/failure-criteria.md",
+                "markdownSection": "Promotion Lemma",
+                "sectionKey": "promotion lemma",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Incompatibility Witnesses",
+                "markdownPath": "content/markdown/aaa/validation/failure-criteria.md",
+                "markdownSection": "Incompatibility Witnesses",
+                "sectionKey": "incompatibility witnesses",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Testable Failure Modes",
+                "markdownPath": "content/markdown/aaa/validation/failure-criteria.md",
+                "markdownSection": "Testable Failure Modes",
+                "sectionKey": "testable failure modes",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Preferred-Frame Hiding Stop Condition",
+                "markdownPath": "content/markdown/aaa/validation/failure-criteria.md",
+                "markdownSection": "Preferred-Frame Hiding Stop Condition",
+                "sectionKey": "preferred frame hiding stop condition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Critical Stop Conditions",
+                "markdownPath": "content/markdown/aaa/validation/failure-criteria.md",
+                "markdownSection": "Critical Stop Conditions",
+                "sectionKey": "critical stop conditions",
+                "headingLevel": 2
+              }
+            ]
           },
           {
             "id": "validation__no_go_theorems",
@@ -6317,34 +6375,26 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Purpose",
+                "title": "Applicability Record",
                 "markdownPath": "content/markdown/aaa/validation/no-go-theorems.md",
-                "markdownSection": "Purpose",
-                "sectionKey": "purpose",
+                "markdownSection": "Applicability Record",
+                "sectionKey": "applicability record",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Current framing",
+                "title": "Applicability Map",
                 "markdownPath": "content/markdown/aaa/validation/no-go-theorems.md",
-                "markdownSection": "Current framing",
-                "sectionKey": "current framing",
+                "markdownSection": "Applicability Map",
+                "sectionKey": "applicability map",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Related Chapters",
+                "title": "Gate Use",
                 "markdownPath": "content/markdown/aaa/validation/no-go-theorems.md",
-                "markdownSection": "Related Chapters",
-                "sectionKey": "related chapters",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Status",
-                "markdownPath": "content/markdown/aaa/validation/no-go-theorems.md",
-                "markdownSection": "Status",
-                "sectionKey": "status",
+                "markdownSection": "Gate Use",
+                "sectionKey": "gate use",
                 "headingLevel": 2
               }
             ]
