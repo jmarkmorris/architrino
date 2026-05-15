@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 489,
+      "nodes": 490,
       "edges": 1239,
       "scenes": 320,
       "markdownIndexes": 0,
-      "markdownDocs": 169,
+      "markdownDocs": 170,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -3068,6 +3068,12 @@
       "id": "content/markdown/aaa/validation/simulations/synthetic-observables.md",
       "name": "Synthetic Observables and $\\mathbb{U}_{\\text{now}}$ Logging",
       "path": "content/markdown/aaa/validation/simulations/synthetic-observables.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/validation/simulations/tri-binary-action-increment-protocol.md",
+      "name": "Tri-Binary Action-Increment Protocol",
+      "path": "content/markdown/aaa/validation/simulations/tri-binary-action-increment-protocol.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -7465,6 +7471,15 @@
       "name": "Synthetic Observables and $\\mathbb{U}_{\\text{now}}$ Logging",
       "path": "content/markdown/aaa/validation/simulations/synthetic-observables.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/synthetic-observables.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/tri-binary-action-increment-protocol.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/validation/simulations/tri-binary-action-increment-protocol.md",
+      "name": "Tri-Binary Action-Increment Protocol",
+      "path": "content/markdown/aaa/validation/simulations/tri-binary-action-increment-protocol.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/tri-binary-action-increment-protocol.md",
       "implicit": false
     },
     {
