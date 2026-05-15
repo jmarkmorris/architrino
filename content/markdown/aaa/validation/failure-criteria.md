@@ -147,6 +147,12 @@ The following matrix assigns each recurring null-result family to the corpus hom
 | Sterile / neutral partner branches | $(\theta_{\mathrm{mix}},\Delta N_{\mathrm{eff}},\Omega_{\nu_R},\lambda_{\mathrm{fs}})$ | $O_{\mathrm{sterile}}^{\max}$ | [Neutrinos](../assemblies/fermions/neutrinos.md) | [Dark Matter](../cosmology/dark-matter.md), [CMB](../cosmology/CMB.md) |
 | Preferred-frame leakage | $(\Delta_{\mathrm{tw}},\delta\nu/\nu,\alpha_1,\alpha_2,\alpha_3)$ | $O_{\mathrm{LV}}^{\max}$ | [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) | [PPN Parameters](../spacetime/ppn-parameters.md), [Constraint Ledger](constraint-ledger.md) |
 
+For proton-instability corridors, convert every current partial-mean-life lower limit $\tau_c^{\min}$ into a channel-rate ceiling
+$$
+\Gamma_{p,c}^{\max}=\frac{1}{\tau_c^{\min}}.
+$$
+The current benchmark scale is already severe: PDG 2024 summaries give $\tau/B(p\to e^+\pi^0)>2.4\times10^{34}\,\mathrm{yr}$ and proton neutrino/kaon modes near $5.9\times10^{33}\,\mathrm{yr}$ at 90% confidence. These numbers are comparison anchors, not permanent constants; a closure packet should cite the current experimental source when the hadronic gate is evaluated.
+
 ## Sector Acceptance Sets
 
 | Sector | Predicate $P_S(\theta)=1$ | Benchmark condition | Falsifier |

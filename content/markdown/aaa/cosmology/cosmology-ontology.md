@@ -81,6 +81,30 @@ The practical rule is to separate measurement from interpretation. Supernova mag
 
 Directional tests are part of this ledger. If a data reduction assumes a cosmic rest frame, a kinematic CMB dipole correction, or an all-sky isotropic background, the same reduction must expose the residual dipole, quadrupole, and environment dependence left after the correction. Those residuals are not automatically evidence against the model; they are diagnostic handles for the Noether-Sea flow, density, delay, and clock-rate fields.
 
+A scale-neutral homogeneity check should also be part of the shared ledger. For a large comparison window $W\subset\Sigma_t$ with resolved tracer index set $I_W(t)$ and $N_W=\lvert I_W(t)\rvert$, define the root-mean-square separation scale
+$$
+L_W^2(t)=\frac{2}{N_W(N_W-1)}
+\sum_{i<j\in I_W(t)}
+\|\mathbf{x}_i(t)-\mathbf{x}_j(t)\|^2.
+$$
+The corresponding dimensionless pair-separation distribution is
+$$
+\widehat{\mu}_{W,t}(u)=
+\frac{2}{N_W(N_W-1)}
+\sum_{i<j\in I_W(t)}
+\delta\!\left(
+u-\frac{\|\mathbf{x}_i(t)-\mathbf{x}_j(t)\|}{L_W(t)}
+\right).
+$$
+For a declared family of same-scale windows $\mathcal{W}_L(t)$ and a declared distribution distance $d$, a candidate medium-state record should expose
+$$
+\mathcal{R}_{\mathrm{hom}}(\theta_{\mathrm{sea}};L,t)
+=
+\sup_{W_a,W_b\in\mathcal{W}_L(t)}
+d\!\left(\widehat{\mu}_{W_a,t},\widehat{\mu}_{W_b,t}\right).
+$$
+Large-scale homogeneity is accepted only when this residual remains within the declared tolerance while the same $\theta_{\mathrm{sea}}$ also passes the expansion, CMB, BBN, growth, lensing, and calibration gates. This is a scale-neutral diagnostic over observer-facing data products, not an import of a shape-first cosmology or a replacement for the fixed Euclidean void.
+
 The same rule applies across modules. A promoted cosmology claim must preserve one shared medium-state record $\theta_{\mathrm{sea}}$ through expansion, CMB transfer, BBN, growth, lensing, and local calibration. If those modules can be fit only by replacing the state record or projection map per observable family, the result is benchmark fitting rather than cosmology closure. The current dark-energy branch states this as a shared residual gate in [dark-energy.md](./dark-energy.md#inference-dependency-and-calibration-gates).
 
 ## Interface Variables (Predicted API Surface)

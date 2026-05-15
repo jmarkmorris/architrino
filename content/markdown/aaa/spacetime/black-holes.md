@@ -210,6 +210,29 @@ S_{\mathrm{out}}^{(O)}(t),
 $$
 where $S_{\mathrm{out}}^{(O)}(t)$ summarizes the entropy of accessible outgoing channels. This equation is not a new ontology. It is a bookkeeping target: the native horizon-interface model should explain how the area-like ledger term and the outgoing-channel entropy combine into a finite observer-level entropy, and how that combined quantity can reproduce Page-curve behavior without importing islands, replica wormholes, or a boundary CFT as primitive structure.
 
+#### Complexity-Growth Comparison Target
+
+Black-hole complexity proposals add a narrower comparison target. Their useful content is not the claim that interior volume is primitive ontology. It is the observation that some black-hole interior comparisons continue to change long after ordinary thermal entropy has effectively saturated. The native translation is a horizon-interface ledger complexity, not a new spacetime substance.
+
+For two compatible horizon-interface label states $\Lambda_a,\Lambda_b\in\mathcal{B}_{H}(M,\mathbf{J},Q)$, define
+$$
+\mathcal{C}_{H}(\Lambda_a,\Lambda_b)
+=
+\min\left\{
+N:
+G_N\circ\cdots\circ G_1(\Lambda_a)=\Lambda_b,\
+G_i\in\mathcal{G}_{\mathrm{loc}}
+\right\},
+$$
+where $\mathcal{G}_{\mathrm{loc}}$ is the permitted set of local Noether-core, path-history, and release-ledger updates inside the horizon-interface model. For a horizon history, write $\mathcal{C}_{H}^{(O)}(t)$ for the minimum such update count between the observer-accessible initial ledger and the compatible ledger class at time $t$.
+
+The comparison burden is then:
+$$
+S_H^{(O)}(t)\ \text{approximately saturates while}\
+\mathcal{C}_{H}^{(O)}(t)\ \text{can continue to grow},
+$$
+without breaking exterior no-hair behavior, Page-compatible release accounting, or finite-boundary-data regularity. If this growth can be matched only by importing a literal boundary CFT, an AdS interior ontology, or an independent hidden state not present in $\mathcal{B}_{H}^{(O)}(t)$, then the complexity comparison has not been translated into the native black-hole closure.
+
 ### Finite-Boundary Endpoint Closure
 
 The endpoint and information questions should be posed on a compact strong-field region rather than by assuming an observer at asymptotic infinity. For a region $\Omega$ bounded by finite observer-accessible data between times $t_i$ and $t_f$, the native closure target is a single continuation map
