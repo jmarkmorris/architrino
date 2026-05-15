@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1143
+      "sections": 1144
     }
   },
   "tocRoot": {
@@ -4587,6 +4587,14 @@
                 "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
                 "markdownSection": "QFT Locality Residual",
                 "sectionKey": "qft locality residual",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Apparatus-Context Guardrail",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+                "markdownSection": "Apparatus-Context Guardrail",
+                "sectionKey": "apparatus context guardrail",
                 "headingLevel": 2
               },
               {

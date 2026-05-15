@@ -191,6 +191,29 @@ $$
 $$
 This conditional measure can sharpen which weak-probe displacements are averaged, but all substrate evolution still runs forward in absolute time. The closure target is to derive the weak-probe response and its post-selected statistics from the same deterministic flow, separatrix geometry, and record criterion used for ordinary measurements.
 
+The signed-response benchmark for post-selected weak probes should therefore be stated at the ensemble level. For a declared weak-probe pointer coordinate $Y$ and accepted later record class $\mathcal{R}_f$, define the normalized conditional response
+$$
+\bar{Y}_{\epsilon\mid\mathcal{R}_f}
+=
+\frac{1}{\epsilon}
+\int
+\left(
+Y(A_\epsilon(t_1))-Y(A_{\text{pre}})
+\right)
+d\mu_{\mathrm{post}}.
+$$
+If standard weak-value analysis predicts a signed displacement, $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover that sign and magnitude as a conditional average over below-threshold probe trajectories:
+$$
+\left|
+\bar{Y}_{\epsilon\mid\mathcal{R}_f}^{\mathbb{A}\mathbb{A}\mathbb{A}}
+-
+\bar{Y}_{\epsilon\mid\mathcal{R}_f}^{\mathrm{QM}}
+\right|
+\le
+\varepsilon_Y,
+$$
+while still satisfying the no-record condition for each retained weak-probe trial. A negative or otherwise anomalous signed average is therefore a constraint on the conditional response kernel, not evidence for negative-mass ontology, backward substrate causation, or a completed measurement record inside the weak-probe window.
+
 ## Relation to the Wavefunction
 
 The wavefunction remains an effective observer-level object. In a measurement context it tracks:

@@ -52,6 +52,43 @@ for calibrated record regions whose recovered observer-sector separation is spac
 
 The bound must be evaluated while preserving shared preparation provenance. An entangled pair may carry correlations inherited from a common preparation event, but those correlations must not become a controllable signal between separated detector settings. A large $\Delta_{\mathrm{loc}}$ in a validated low-energy QFT regime is therefore a failure of effective QFT recovery. A small $\Delta_{\mathrm{loc}}$ shows only that the operator reconstruction has recovered the tested commuting algebra in that regime; it does not promote the continuum field description to final ontology. If the residual is made small only by discarding path-history, detector-kernel, Born-rule, Bell, no-signaling, or gate-latency constraints, the locality recovery is a fitted abstraction rather than a closure result.
 
+## Apparatus-Context Guardrail
+
+A self-adjoint operator is an effective observer-level record map, not a guarantee that the substrate carries a preassigned value for that operator in every possible measurement context. The same target assembly can be coupled to different apparatus kernels, and those kernels define different record channels. The closure problem is therefore contextual in the operational sense: each claimed observable must name the preparation, apparatus kernel, coarse-graining, and persistence window that make the record physically meaningful.
+
+For a commuting measurement context $C$ with apparatus kernel $\mathcal{K}_C$, let
+$$
+r_{O,C}
+=
+R_{O,C}\!\left(
+\Phi_{\tau_C}^{\mathrm{tot}}(\Gamma_0;\mathcal{K}_C)
+\right)
+$$
+be the record assigned to effective observable $O$ after the coupled apparatus-target flow reaches its declared record time. If the standard benchmark fixes a context product $\chi_C$, the recovery residual may be written
+$$
+\Delta_{\mathrm{KS}}(C)
+=
+\Pr\!\left[
+\prod_{O\in C} r_{O,C}\ne \chi_C
+\right].
+$$
+For an observable $O$ appearing in two calibrated contexts $C$ and $C'$, the shared-record compatibility residual is
+$$
+\Delta_{\mathrm{ctx}}(O;C,C')
+=
+D_{\mathrm{TV}}\!\left(
+P(r_{O,C}),
+P(r_{O,C'})
+\right).
+$$
+The operator map passes this guardrail only when the context products and shared marginals are recovered within tolerance,
+$$
+\sup_C\Delta_{\mathrm{KS}}(C)\le\epsilon_{\mathrm{KS}},
+\qquad
+\sup_{O,C,C'}\Delta_{\mathrm{ctx}}(O;C,C')\le\epsilon_{\mathrm{ctx}},
+$$
+while the model does not introduce a global context-independent value map for all effective operators. This is the Kochen-Specker side of the operator-closure burden recorded in [No-Go Theorems](../validation/no-go-theorems.md); it is a constraint on apparatus-resolved records, not a new substrate ontology.
+
 ## Unitary Evolution and Topological Torques
 
 Quantum gates correspond to continuous, energy-conserving topological torques applied to the tri-binary orbital planes. 
