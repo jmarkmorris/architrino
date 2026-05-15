@@ -529,6 +529,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Relation to the Wavefunction](../../../markdown/aaa/quantum/measurement-ontology.md?section=Relation+to+the+Wavefunction)
     - [Measurement Channels](../../../markdown/aaa/quantum/measurement-ontology.md?section=Measurement+Channels)
     - [Born-Rule Interface](../../../markdown/aaa/quantum/measurement-ontology.md?section=Born-Rule+Interface)
+    - [External Penrose-Diosi Benchmark](../../../markdown/aaa/quantum/measurement-ontology.md?section=External+Penrose-Diosi+Benchmark)
     - [Closure Targets](../../../markdown/aaa/quantum/measurement-ontology.md?section=Closure+Targets)
     - [Falsification Gate](../../../markdown/aaa/quantum/measurement-ontology.md?section=Falsification+Gate)
     - [Related Chapters](../../../markdown/aaa/quantum/measurement-ontology.md?section=Related+Chapters)

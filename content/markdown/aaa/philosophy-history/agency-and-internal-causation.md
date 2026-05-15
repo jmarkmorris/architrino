@@ -31,7 +31,20 @@ Determinism does not imply simplicity or practical predictability. A determinist
 
 The relevant contrast with a simple mechanical body is therefore structural. A networked Decider can contain tunable thresholds, feedback loops, memory-bearing state, and mechanisms that place sub-assemblies nearer to or farther from bifurcation points. A simple impact model lacks that internal control layer in the context being analyzed.
 
-This distinction also keeps ontological and epistemic claims separate. Ontologically, the system evolves through physical dynamics. Epistemically, a physical observer may not have enough access to the microstate, wake-phase history, and threshold geometry to predict which attractor will be selected.
+This distinction also keeps ontological and epistemic claims separate. Ontologically, the system evolves through physical dynamics. Epistemically, a Physical Observer may not have enough access to the microstate, wake-phase history, and threshold geometry to predict which attractor will be selected.
+
+The same point can be stated as a local non-closure condition. For a candidate Decider or Switch complex occupying $\Omega\subset\Sigma_t$, write its resolved internal state as $X_\Omega(t)$, its relevant path-history as $\mathcal{H}_{\Omega}^{<t}$, and the causal wakes entering through its boundary as $\mathcal{B}_{\partial\Omega}(t)$. Its effective subsystem evolution has the form
+$$
+\frac{dX_\Omega}{dt}
+=
+F_\Omega\!\left(
+X_\Omega(t),
+\mathcal{H}_{\Omega}^{<t},
+\mathcal{B}_{\partial\Omega}(t),
+N_{\text{sea}}|_{\Omega}(t)
+\right).
+$$
+The basin geometry and threshold control of the subsystem are therefore functions of internal state plus omitted boundary wakes and Noether-Sea conditions, not of the locally inspected state alone. Local prediction can fail for an open subsystem even when the $\mathbb{U}_{\text{now}}$ universe-state perspective remains globally deterministic, because the global state retains the finite-speed signals and path-history data that the Physical Observer has not resolved.
 
 ## Will as Threshold Setting
 

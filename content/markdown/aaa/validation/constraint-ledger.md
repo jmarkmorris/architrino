@@ -46,10 +46,10 @@ This constraint explains how apparent metric deviations (Shapiro delay and light
 
 ### Gravitational Time Dilation
 
-We require that the proposed mechanical slowing induced by Noether Core density aligns quantitatively with geodetic and redshift observations such as GPS offsets and the Pound–Rebka experiment, offering a concrete mapping between the new microphysics and the classical time-dilation effects.
+We require that the proposed mechanical slowing induced by Noether-core density aligns quantitatively with geodetic and redshift observations such as GPS offsets and the Pound–Rebka experiment, offering a concrete mapping between the new microphysics and the classical time-dilation effects.
 
-* **Constraint** – reproduce GPS clock offsets (38 μs/day) and the Pound–Rebka redshift.
-* **Mechanism** – mechanical slowing of tri-binary orbital frequencies couples to the local Noether Core density, generating the observed dilation.
+* **Constraint** – reproduce GPS clock offsets (38 μs/day), the Pound–Rebka redshift, and height-resolved optical-clock redshift with $\Delta\nu/\nu\approx gL/c_0^2$; this includes the approximate scales $1.1\times10^{-19}$ across $1\,\mathrm{mm}$ and $3.6\times10^{-17}$ across $33\,\mathrm{cm}$ near Earth's surface.
+* **Mechanism** – mechanical slowing of tri-binary orbital frequencies couples to the local Noether-core density and Noether-Sea delay factor, generating the observed dilation without changing the constitutive map used for other weak-field observables.
 
 ### Closure Program Tracking Hooks
 

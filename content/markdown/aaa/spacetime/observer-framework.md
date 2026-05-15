@@ -69,6 +69,32 @@ This distinction protects several recurring claims:
 
 For the quantum side of this distinction, see [Wavefunction Ontology](../quantum/wavefunction-ontology.md) and [Measurement Ontology](../quantum/measurement-ontology.md).
 
+Formal note: a local subsystem is not generally closed under the primitive dynamics. Let $\Omega\subset\Sigma_t$ be the spatial region resolved by a Physical Observer, let $X_\Omega(t)$ be the internal assembly state represented inside that region, and let $\mathcal{H}_{\Omega}^{<t}$ be the path-history data for the relevant architrino trajectories and causal wakes before $t$. The missing exterior influence can be represented as boundary wake data
+$$
+\mathcal{B}_{\partial\Omega}(t)
+=
+\left\{
+(j,t_0,\mathbf{s}_j(t_0),q_j)
+\;:\;
+t_0<t,\quad
+\|\mathbf{x}-\mathbf{s}_j(t_0)\|=c_f(t-t_0),\quad
+\mathbf{x}\in\partial\Omega
+\right\}.
+$$
+
+The subsystem evolution therefore has the schematic form
+$$
+\frac{dX_\Omega}{dt}
+=
+F_\Omega\!\left(
+X_\Omega(t),
+\mathcal{H}_{\Omega}^{<t},
+\mathcal{B}_{\partial\Omega}(t),
+N_{\text{sea}}|_{\Omega}(t)
+\right),
+$$
+where $N_{\text{sea}}|_{\Omega}(t)$ denotes the locally resolved Noether-Sea state. A Physical Observer who models only $X_\Omega(t)$ has omitted finite-speed signals, incoming causal wakes, and path-history branches crossing the boundary. That omission can make local prediction fail without implying indeterminism in the $\mathbb{U}_{\text{now}}$ universe-state perspective, because the complete state includes the boundary wake data and the path-history ledger needed for deterministic continuation.
+
 ## Absolute and Operational Simultaneity
 
 At the ontic level, simultaneity is absolute. Two events

@@ -442,6 +442,30 @@ What this subject gets right is that dependence does not erase usefulness. A the
 
 Emergence, on this view, is lawful novelty in organized systems, not metaphysical exemption from lower-level causation. A metric field, thermal law, or quantum effective description can be emergent and real without being primitive.
 
+### Context as Constraint
+
+The same point can be stated mathematically. A higher-level context is not a second causal substance layered on top of the lower-level system. It is a constraint or boundary condition on the admissible lower-level histories. Let $\mathcal{S}_L$ be the lower-level state space, including the path-history data required by delayed causal dynamics. For a lower-level state $X(t)\in\mathcal{S}_L$, a projection $\Pi_L X$ of the lower-level variables, and a surrounding context $c$, define
+
+$$
+K_c=\{\,X\in\mathcal{S}_L\mid G_\alpha(\Pi_L X,c)=0\ \text{for all}\ \alpha\,\}.
+$$
+
+The reduced flow then remains a lower-level flow constrained to $K_c$:
+
+$$
+\frac{dX}{dt}=F_L(X_t),\qquad X(t)\in K_c.
+$$
+
+Here $F_L$ represents the lower-level causal-wake dynamics, and $X_t$ denotes the path-history segment needed by the delayed equation. The context $c$ changes the admissible region of state space, not the ontological inventory.
+
+For basin-level emergence, let $B_k$ be the basin of attraction for a higher-level assembly branch $k$, and let $\mu_c$ be a normalized measure on $K_c$. Then
+
+$$
+P_c(k)=\mu_c(B_k\cap K_c)
+$$
+
+records how the context shifts the branch weight. Higher-level causal language is therefore acceptable only when it means constraint, boundary condition, basin reshaping, or effective closure on lower-level dynamics. It is not acceptable if it implies that the higher-level description has become a new primitive outside the reduction stack.
+
 ### Internal Tensions
 
 What reduction can overstate is the ease of derivation. Not every stable higher-level structure is practically reducible in a tractable way, and some require new concepts to describe their organization. What emergence can overstate is the autonomy of those structures. If every successful level is granted ontological independence, the hierarchy becomes a pile of disconnected primitives.

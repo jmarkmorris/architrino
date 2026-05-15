@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1127
+      "sections": 1128
     }
   },
   "tocRoot": {
@@ -4332,6 +4332,14 @@
                 "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
                 "markdownSection": "Born-Rule Interface",
                 "sectionKey": "born rule interface",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "External Penrose-Diosi Benchmark",
+                "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
+                "markdownSection": "External Penrose-Diosi Benchmark",
+                "sectionKey": "external penrose diosi benchmark",
                 "headingLevel": 2
               },
               {

@@ -130,13 +130,28 @@ with $B_k$ the record-forming attractor basins and $\mu_*$ the relevant invarian
 
 The measurement ontology therefore connects directly to the basin-measure program in [wavefunction-ontology.md](./wavefunction-ontology.md) and the separatrix-time program in [superposition-mechanism.md](../theory-bridges/superposition-mechanism.md).
 
+## External Penrose-Diosi Benchmark
+
+Penrose-Diosi gravitational-collapse proposals provide an external comparison target for massive-superposition measurement claims. In that comparison, two alternative mass distributions $\rho_1$ and $\rho_2$ are assigned a gravitational self-energy scale
+$$
+\Delta E_G \sim \frac{G}{2}\int\!\!\int
+\frac{(\rho_1-\rho_2)(\mathbf{x})(\rho_1-\rho_2)(\mathbf{y})}
+{\|\mathbf{x}-\mathbf{y}\|}\,d^3x\,d^3y,
+$$
+and a corresponding lifetime estimate
+$$
+\tau_G\sim \frac{\hbar}{\Delta E_G}.
+$$
+
+$\mathbb{A}\mathbb{A}\mathbb{A}$ does not adopt fundamental gravitational collapse. The benchmark is useful because large-mass interferometry and Bose-Einstein-condensate proposals ask whether spatial superpositions involving roughly $10^9$ to $10^{10}$ atoms remain coherent long enough to distinguish ordinary environmental decoherence, finite-time threshold resolution, and any gravity-driven collapse model. For this chapter, the comparison target is therefore not to derive $\tau_G$ as an ontological law, but to show that the $\mathbb{A}\mathbb{A}\mathbb{A}$ separatrix-time estimate for massive-superposition records remains quantitatively distinguishable from, or explicitly bounded against, the Penrose-Diosi scale.
+
 ## Closure Targets
 
 For this chapter to count as closed, the repo still needs:
 
 1. one explicit Master-Equation apparatus-target toy model that evaluates the branch-sum impulse and record-cycle phase density,
 2. one explicit record variable $R(A)$ and persistence criterion,
-3. one derived estimate of finite collapse time $\tau_{\text{meas}}$,
+3. one derived estimate of finite collapse time $\tau_{\text{meas}}$, including a massive-superposition comparison against the external Penrose-Diosi scale $\tau_G$,
 4. one bridge from basin weights to observed frequencies.
 
 This chapter now fixes the ontology and interface. The remaining work is derivational, not definitional.

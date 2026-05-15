@@ -69,6 +69,18 @@ The weak-selection problem, right-handed neutrino stance, CKM/PMNS closure, weak
 
 Superposition, measurement, Born-rule emergence, and Bell/nonlocality closure are one package. A good ontology chapter without a basin-measure derivation is progress, but not endpoint closure.
 
+Penrose-Diosi gravitational-collapse tests are an external benchmark for the same finite-time threshold-resolution burden, not an adopted ontology. The comparison uses the gravitational self-energy of the difference between two mass distributions,
+$$
+\Delta E_G \sim \frac{G}{2}\int\!\!\int
+\frac{(\rho_1-\rho_2)(\mathbf{x})(\rho_1-\rho_2)(\mathbf{y})}
+{\|\mathbf{x}-\mathbf{y}\|}\,d^3x\,d^3y,
+$$
+with the collapse-time estimate
+$$
+\tau_G\sim \frac{\hbar}{\Delta E_G}.
+$$
+The validation burden is to compare $\tau_{\text{meas}}$ for massive-superposition records, including BEC-scale spatial superpositions of roughly $10^9$ to $10^{10}$ atoms, against $\tau_G$ and against ordinary environmental decoherence, while preserving the $\mathbb{A}\mathbb{A}\mathbb{A}$ claim that branch selection is finite-time threshold resolution rather than fundamental gravitational collapse.
+
 ### Spacetime cluster
 
 Preferred-frame hiding, redshift, Shapiro delay, lensing, and gravitational-wave speed are all readouts of the same observer-level constitutive map. Thermodynamic-gravity closure belongs in the same cluster because area scaling, local horizon temperature, and nonequilibrium breakdown define whether the constitutive picture is merely suggestive or genuinely explanatory. These issues rise or fall together.

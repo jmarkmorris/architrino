@@ -26,6 +26,30 @@ The closer pedagogical analogy is a population of coupled delayed-feedback oscil
 
 The stability of an assembly is therefore dynamic rather than static. It depends on an ongoing balance of forces from the superposition of all dynamically active wakes. An assembly can persist when its trajectory remains inside a stable or metastable attractor basin; it can dissolve, branch, or reconfigure when perturbations or self-hit thresholds push it across a basin boundary.
 
+### Context as Constraint on Basin Selection
+
+Higher-level context does not add a rival ontology to the lower-level dynamics. It selects boundary conditions, admissible branch charts, and effective constraints for the same architrino-level flow. If $\mathcal{S}_L$ is a lower-level state space containing the required path-history data, $X(t)\in\mathcal{S}_L$ is a regularized lower-level state, $\Pi_L X$ is the lower-level data exposed to a higher-level description, and $c$ denotes the surrounding assembly or Noether-Sea context, then the context-restricted state set can be written as
+
+$$
+K_c=\{\,X\in\mathcal{S}_L\mid G_\alpha(\Pi_L X,c)=0\ \text{for all}\ \alpha\,\}.
+$$
+
+The constrained flow is still the lower-level causal-wake dynamics,
+
+$$
+\frac{dX}{dt}=F_L(X_t),\qquad X(t)\in K_c,
+$$
+
+where $X_t$ indicates the path-history segment needed by the delayed equation of motion. The equations $G_\alpha=0$ encode the surrounding context as constraints on which lower-level histories are available, not as independent causes outside the architrino dynamics.
+
+This also gives a compact basin-selection measure. Let $B_k\subset\mathcal{S}_L$ be the attractor basin for an assembly branch $k$, and let $\mu_c$ be the normalized measure on the context-restricted set $K_c$. Then
+
+$$
+P_c(k)=\mu_c(B_k\cap K_c)
+$$
+
+is the context-conditioned weight of that branch. Changing $c$ can shift $P_c(k)$ by moving basin boundaries, suppressing some causal-root branches, or opening self-hit channels, while the underlying ontology remains the same collection of architrino worldlines and causal wakes.
+
 ### Assembly Theory and Recursion
 
 The concept of assemblies can be formalized through a recursive definition.
