@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1142
+      "sections": 1143
     }
   },
   "tocRoot": {
@@ -5325,6 +5325,14 @@
                 "markdownPath": "content/markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md",
                 "markdownSection": "Thesis",
                 "sectionKey": "thesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Operational Probing Limit",
+                "markdownPath": "content/markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md",
+                "markdownSection": "Operational Probing Limit",
+                "sectionKey": "operational probing limit",
                 "headingLevel": 2
               },
               {

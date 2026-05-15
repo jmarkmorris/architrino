@@ -650,6 +650,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Closure Integration: CKM-Holonomy and Lepton Handoff](../../../markdown/aaa/theory-bridges/weak-mixing-ckm.md?section=Closure+Integration%3A+CKM-Holonomy+and+Lepton+Handoff)
   - [Planck Scale Tri-Binary Alignment](../../../scenes/theory-bridges/planck_scale_tri_binary_alignment.json)
     - [Thesis](../../../markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md?section=Thesis)
+    - [Operational Probing Limit](../../../markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md?section=Operational+Probing+Limit)
     - [What Planck Units Imply About the Outer Binary](../../../markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md?section=What+Planck+Units+Imply+About+the+Outer+Binary)
     - [Kinematic and Dynamical Alignment Conditions](../../../markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md?section=Kinematic+and+Dynamical+Alignment+Conditions)
     - [Energy as Causal-Wake Interaction History](../../../markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md?section=Energy+as+Causal-Wake+Interaction+History)
