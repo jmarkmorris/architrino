@@ -559,6 +559,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
   - [Quantum Operator Mapping](../../../scenes/theory-bridges/quantum_operator_mapping.json)
     - [The Tri-Binary Qubit and Phase Space](../../../markdown/aaa/theory-bridges/quantum-operator-mapping.md?section=The+Tri-Binary+Qubit+and+Phase+Space)
     - [Functional Bounds and Well-Posedness](../../../markdown/aaa/theory-bridges/quantum-operator-mapping.md?section=Functional+Bounds+and+Well-Posedness)
+    - [QFT Locality Residual](../../../markdown/aaa/theory-bridges/quantum-operator-mapping.md?section=QFT+Locality+Residual)
     - [Unitary Evolution and Topological Torques](../../../markdown/aaa/theory-bridges/quantum-operator-mapping.md?section=Unitary+Evolution+and+Topological+Torques)
     - [Entanglement via Path-History Potentials](../../../markdown/aaa/theory-bridges/quantum-operator-mapping.md?section=Entanglement+via+Path-History+Potentials)
     - [Measurement and Dynamical Collapse](../../../markdown/aaa/theory-bridges/quantum-operator-mapping.md?section=Measurement+and+Dynamical+Collapse)

@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1140
+      "sections": 1141
     }
   },
   "tocRoot": {
@@ -4579,6 +4579,14 @@
                 "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
                 "markdownSection": "Functional Bounds and Well-Posedness",
                 "sectionKey": "functional bounds and well posedness",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "QFT Locality Residual",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+                "markdownSection": "QFT Locality Residual",
+                "sectionKey": "qft locality residual",
                 "headingLevel": 2
               },
               {
