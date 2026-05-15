@@ -697,6 +697,37 @@ Tier 1 passes only if a branch has:
 - no secular center drift,
 - stable root ledger under refinement.
 
+### Current Tier 1 Diagnostic State: Adaptive Direct-Root Horizon Ladder
+
+The executable continuation-source prototype currently lives at `scripts/mass-map/a0-tier1-continuation-source-prototype.mjs`. It is still a blocked diagnostic source, not an accepted Tier 1 continuation. The accepted-history writer must continue to block its rows until residual closure, center-drift closure, $\Delta_{\mathbf{k}}>0$, and branch persistence across the declared $\eta$ ladder are all present.
+
+The useful diagnostic object now tracked by the prototype is the direct-root branch multiset
+$$
+B_n(k)=\#\{r\in R_n:\kappa(r)=k\},
+$$
+where $R_n$ is the active direct-root set at step $n$ and $\kappa(r)$ records receiver, source, source relation, and root status. The retained initial branch count is
+$$
+\mathcal{B}_{\mathrm{ret}}(n)
+=
+\sum_k \min(B_0(k),B_n(k)),
+$$
+and the surplus count is
+$$
+\mathcal{B}_{\mathrm{extra}}(n)
+=
+\sum_k \max(0,B_n(k)-B_0(k)).
+$$
+
+The first adaptive stress result is:
+
+- the short/default ladder retains all $32$ initial direct-root branches;
+- at the $1024$-step rung, the coarse grid first under-resolves the two self branches `I+|I+|self|active` and `I-|I-|self|active` at step `1014`;
+- adaptive root-grid refinement from `rootSamples=128` to `rootSamples=256` restores all $32$ retained branches before the state update;
+- at the $4096$-step rung, the initial branches remain retained, but the same two self branches become surplus branches at steps `1103` and `1102` for the two ready rows;
+- the surplus bracket shows that the retained long-delay self root at delay `0.021361944626227355` persists with $J\approx0.377185$, while a new short-delay self root appears at delay `0.00003471070297711964` with $J\approx-0.060$ and root residual near $7.3\times10^{-7}$.
+
+The exact next calculation is to promote the surplus event into a fold/splitting diagnostic rather than treating it as either success or failure. Use the recorded adjacent root ledgers to compute the local $F_{aa}(t;t_0)$ normal form around the new short-delay self root, and test whether the event obeys the expected even fold-pair rule $\Delta N\in2\mathbb{Z}$. If the surplus pair persists under root-grid, $\Delta t$, history-depth, and $\eta$ refinement without a fold-layer classification, route it as branch proliferation. If it is a bounded fold-layer event with positive exits and no retained-branch loss, it becomes a locking/fold-layer row in the Tier 1 branch chart rather than a ledger failure.
+
 ## Tier 2: Energy and Shielding Extraction
 
 Tier 2 begins only after Tier 1 passes.
