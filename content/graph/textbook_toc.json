@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1123
+      "sections": 1127
     }
   },
   "tocRoot": {
@@ -5388,6 +5388,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Inference-Dependency Ledger",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
+                "markdownSection": "Inference-Dependency Ledger",
+                "sectionKey": "inference dependency ledger",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Interface Variables (Predicted API Surface)",
                 "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
                 "markdownSection": "Interface Variables (Predicted API Surface)",
@@ -5458,6 +5466,14 @@
                 "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
                 "markdownSection": "Clock-Rate Redshift Interpretation",
                 "sectionKey": "clock rate redshift interpretation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Directional Residuals in the Redshift Map",
+                "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
+                "markdownSection": "Directional Residuals in the Redshift Map",
+                "sectionKey": "directional residuals in the redshift map",
                 "headingLevel": 2
               },
               {
@@ -5564,6 +5580,14 @@
                 "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
                 "markdownSection": "Effective Inflaton Reinterpretation",
                 "sectionKey": "effective inflaton reinterpretation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Vacuum-Energy Caution",
+                "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
+                "markdownSection": "Vacuum-Energy Caution",
+                "sectionKey": "vacuum energy caution",
                 "headingLevel": 2
               },
               {
@@ -5728,6 +5752,14 @@
                 "markdownPath": "content/markdown/aaa/cosmology/CMB.md",
                 "markdownSection": "Chronology Mapping Note",
                 "sectionKey": "chronology mapping note",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "CMB Dipole and Matter-Dipole Gate",
+                "markdownPath": "content/markdown/aaa/cosmology/CMB.md",
+                "markdownSection": "CMB Dipole and Matter-Dipole Gate",
+                "sectionKey": "cmb dipole and matter dipole gate",
                 "headingLevel": 2
               },
               {
@@ -5992,6 +6024,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Inference Dependency and Calibration Gates",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+                "markdownSection": "Inference Dependency and Calibration Gates",
+                "sectionKey": "inference dependency and calibration gates",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Effective Friedmann Framework",
                 "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
                 "markdownSection": "Effective Friedmann Framework",
@@ -6168,6 +6208,14 @@
                 "markdownPath": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
                 "markdownSection": "Coupled Interpretation Channels",
                 "sectionKey": "coupled interpretation channels",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Dipole and Bulk-Flow Diagnostic",
+                "markdownPath": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
+                "markdownSection": "Dipole and Bulk-Flow Diagnostic",
+                "sectionKey": "dipole and bulk flow diagnostic",
                 "headingLevel": 2
               },
               {
@@ -7281,22 +7329,6 @@
                 "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
                 "markdownSection": "Assessment Table",
                 "sectionKey": "assessment table",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "2026-05-13 Assessment Notes",
-                "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
-                "markdownSection": "2026-05-13 Assessment Notes",
-                "sectionKey": "2026 05 13 assessment notes",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "2026-05-14 Assessment Notes",
-                "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
-                "markdownSection": "2026-05-14 Assessment Notes",
-                "sectionKey": "2026 05 14 assessment notes",
                 "headingLevel": 2
               }
             ]

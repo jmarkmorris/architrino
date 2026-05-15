@@ -27,6 +27,46 @@ A dark-matter candidate in $\mathbb{A}\mathbb{A}\mathbb{A}$ is characterized by 
 
 Two substrate-level mechanisms can satisfy these conditions, either separately or together.
 
+### Strong-Lensing Inference Guardrail
+
+Strong gravitational lensing is a high-value dark-sector constraint, but it is an inverse problem rather than a direct image of dark matter. In the standard thin-lens comparison language, source-plane and image-plane positions satisfy
+
+$$
+\mathbf{y}
+=
+\mathbf{x}
+-
+\nabla\psi(\mathbf{x}),
+\qquad
+\Delta\psi(\mathbf{x})=2\kappa(\mathbf{x}),
+$$
+
+where $\psi$ is the observer-level lensing potential and $\kappa$ is the convergence, i.e. the surface mass density in critical-density units. The local image distortion is encoded by the Jacobian
+
+$$
+A(\mathbf{x})
+\equiv
+\frac{\partial\mathbf{y}}{\partial\mathbf{x}}
+=
+(1-\kappa)
+\begin{pmatrix}
+1-g_1 & -g_2\\
+-g_2 & 1+g_1
+\end{pmatrix},
+$$
+
+where $g_1$ and $g_2$ are reduced-shear components. For two resolved images $i$ and $j$ of the same background source, the image-to-image transformation has the local form
+
+$$
+T_{ij}
+=
+A(\mathbf{x}_j)^{-1}A(\mathbf{x}_i).
+$$
+
+This transformation constrains local reduced shear and relative convergence near the observed images. It does not by itself determine a unique global mass map in regions not sampled by the light bundles. Cluster-scale dark-matter maps therefore require an explicit inference ledger: which features are forced by local image transformations, which depend on feature matching, and which enter through lens-model priors such as light-traces-mass assumptions, thin-lens geometry, profile smoothness, line-of-sight compression, or interpolation across data-poor regions.
+
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, this does not weaken lensing as a recovery target. It sharpens the target. A neutral-assembly or medium-response explanation must recover the local lensing data first, then survive the global model comparison without hiding mass in unconstrained regions or changing assumptions per cluster. If a dark-sector claim survives only through model freedom away from the multiple-image constraints, it remains an inference artifact candidate rather than a closed substrate claim.
+
 ## Candidate Substrates
 
 ### Candidate A — Neutral Assembly Populations
