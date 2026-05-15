@@ -2310,6 +2310,14 @@ where $E(3)=\mathbb{R}^3 \rtimes O(3)$ acts by spatial translations and rotation
 
 *Proof sketch.* The causal constraint depends only on Euclidean distances and time differences. Both are invariant under $G_{\text{fund}}$. The line-of-action vector $\hat{\mathbf{r}}_{ij}$ transforms covariantly under rotations, so the per-hit acceleration retains the same form.
 
+This symmetry statement applies to the background, the interaction kernel, and the transformed full histories. It does not license arbitrary architrino flips or permutations after provenance has been assigned. Let $H_i^t$ denote the path-history/provenance record of architrino $i$ up to time $t$. A label permutation $P$ is an exact symmetry only on the restricted histories for which
+$$
+H_{P(i)}^t
+=
+P(H_i^t)
+$$
+for every $i$, with the same transformation also preserving all causal-root relations $\mathcal{C}_{ij}(t)$. For generic states this condition fails, so effective indistinguishability must be treated as coarse-grained observer bookkeeping rather than substrate identity.
+
 #### Generalized Momentum and Angular Momentum
 
 The delayed theory separates ordinary mechanical motion from the causal-wake history that is still in flight. For an action-derived delayed model with translation and rotation symmetry, the full Noether charges are history functionals: the particle-only quantities need not be conserved by themselves, but the particle-plus-wake totals are. In regularized or numerical variants, the same expressions should be treated as conserved diagnostics only when the chosen regularization preserves those symmetries.

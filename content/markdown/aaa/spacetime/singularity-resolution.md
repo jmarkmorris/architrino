@@ -63,6 +63,25 @@ $$
 $$
 together with the horizon-interface condition $F_H=0$ and a finite Noether-core closure-label ensemble. This is a theorem target, not a definition of success: the strong-field model must show that finite boundary data determine a finite maximum-curvature replacement rather than a zero-volume endpoint or an arbitrary branch choice.
 
+A sharper endpoint criterion is that those same finite data admit a continuation map
+$$
+\mathcal{T}_{\Omega}:
+\left(
+X_\Omega(t_i),
+\mathcal{B}_{\partial\Omega}|_{[t_i,t_f]},
+N_{\text{sea}}|_{\Omega\times[t_i,t_f]}
+\right)
+\longmapsto
+X_\Omega(t_f),
+$$
+with
+$$
+F_H=0,\qquad
+\mathcal{R}_H(\Omega)<\infty,\qquad
+0<\left|\mathcal{B}_{H}\right|<\infty.
+$$
+This is the singularity-resolution form of the black-hole endpoint gate: the replacement must be finite, ledger-preserving, and non-arbitrary using compact boundary data, without importing a remnant, bounce, or asymptotic boundary condition as doctrine.
+
 ## Maximal Curvature vs Planck Scale
 
 The **inner binary** (maximal curvature, self-hit regime) is a stabilization outcome of wake dynamics. The **middle binary always rides field speed** ($v=c_f$), with **variable radius and frequency**; it serves as the **energy-storage fulcrum** for transfers across the tri-binary.

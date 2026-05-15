@@ -50,6 +50,91 @@ The constitutive claim is modest but important: singularity language remains a w
 
 One preserved strong-field intuition is that sufficiently old or sufficiently compressed interiors may approach an ordered collapse limit rather than a thermalized point. In that heuristic picture, maximal-curvature tri-binaries pack into a near-crystalline "Noether crystal" core, while most entropy remains associated with the active shear and shredding layers nearer the horizon interface. This is not yet a constitutive derivation, but it is a useful candidate for how collapse can saturate without an ontic singularity.
 
+### High-Energy Probe Closure Target
+
+Standard quantum-gravity comparisons preserve a useful benchmark: increasing the energy of a scattering experiment does not grant unlimited access to shorter distances once the compact-object threshold is crossed. At that point the observer-level description must route the record through black-hole formation, horizon behavior, and release-channel accounting. The $\mathbb{A}\mathbb{A}\mathbb{A}$ translation is that high-energy compression must enter the horizon-interface and maximum-curvature regimes rather than an arbitrary ultraviolet point description.
+
+Let $\ell_{\mathrm{probe}}(E)$ denote the observer-level resolution scale associated with a probe energy $E$, and let $R_H(E;\theta)$ denote the horizon-interface scale predicted by the same constitutive record $\theta$. The local closure target is the implication
+
+$$
+\ell_{\mathrm{probe}}(E)
+\lesssim
+R_H(E;\theta)
+\quad\Longrightarrow\quad
+v_M=c_f,\quad
+v_O\to c_f,\quad
+S_H\sim k_B\log\left|\mathcal{B}_{H}\right|.
+$$
+
+This is not a claim that the Euclidean void becomes quantized geometry. It is a benchmark on the native strong-field branch: when the effective comparison says that a probe has become a black hole, the same Noether-Sea state must activate the alignment condition, finite maximum-curvature bookkeeping, and entropy/release-channel ledger used below. If short-distance recovery requires an independent ultraviolet story that bypasses those variables, the black-hole closure has split from the rest of the spacetime program.
+
+#### Probe-to-Horizon Residual
+
+For a high-energy scattering comparison, take the observer-level probe scale to be $\ell_{\mathrm{probe}}(E)\sim\hbar c_0/E$ unless the apparatus defines a sharper channel-specific scale. The compact-object gate is active when $\ell_{\mathrm{probe}}(E)\le R_H(E;\theta)$. A concrete residual for that regime is
+$$
+\mathcal{R}_{E\to H}(\theta)
+=
+\int dE\,w(E)\,
+\mathbf{1}_{\ell_{\mathrm{probe}}(E)\le R_H(E;\theta)}
+\left[
+\left(1-\frac{v_M}{c_f}\right)^2
++
+\left(1-\frac{v_O}{c_f}\right)^2
++
+d_{\mathrm{curv}}\!\left(\{\Lambda_{\text{NC}}\},\mathcal{B}_H\right)
++
+d_{\mathrm{ent}}\!\left(
+S_H,
+k_B\log|\mathcal{B}_H|
+\right)
++
+\mathcal{R}_{\mathrm{release}}(E;\theta)
+\right].
+$$
+Here $w(E)$ is the comparison weighting for the probe family, $d_{\mathrm{curv}}$ checks that the admitted Noether-core labels are finite maximum-curvature labels, $d_{\mathrm{ent}}$ checks horizon-interface entropy bookkeeping, and $\mathcal{R}_{\mathrm{release}}$ checks the outgoing $E$, $\mathbf{p}$, $\mathbf{J}$, polarity, provenance, medium-update, and remnant rows through the event ledger.
+
+The closure condition is $\mathcal{R}_{E\to H}(\theta)\le\epsilon_{E\to H}$ using the same strong-field branch record that recovers exterior compact-object observables. A model fails this gate if it claims arbitrarily short-distance resolution in the active compact-object regime, or if it activates the horizon scale while leaving maximum-curvature labels, entropy capacity, or release-channel accounting undefined.
+
+#### First Worked Probe Gate
+
+In the weak exterior comparison limit, a single-energy scattering estimate can use
+$$
+\ell_{\mathrm{probe}}(E)
+\simeq
+\frac{\hbar c_0}{E},
+\qquad
+R_H(E;\theta)
+\simeq
+\frac{2G_{\mathrm{eff}}(\theta)E}{c_0^4}.
+$$
+The horizon-interface handoff begins when
+$$
+\frac{\hbar c_0}{E}
+\le
+\frac{2G_{\mathrm{eff}}(\theta)E}{c_0^4},
+$$
+or equivalently
+$$
+E
+\ge
+E_H(\theta)
+\equiv
+\left(
+\frac{\hbar c_0^5}{2G_{\mathrm{eff}}(\theta)}
+\right)^{1/2}.
+$$
+This is an observer-level comparison estimate, not a proof that the Euclidean void has Planck-scale cells. Its purpose is to decide when the record should stop being interpreted as a shorter-distance particle probe and start being routed through horizon-interface bookkeeping.
+
+The worked classification is:
+
+| Probe regime | Condition | Required native record |
+| --- | --- | --- |
+| particle-probe | $E < E_H(\theta)$ | ordinary scattering or effective-field comparison may remain valid if sector gates pass |
+| handoff | $E\approx E_H(\theta)$ | the same $\theta$ must activate $v_M=c_f$, $v_O\to c_f$, and finite maximum-curvature labels |
+| horizon-interface | $E > E_H(\theta)$ | the record must report $\mathcal{B}_H$, $S_H$, release-channel rows, and exterior compact-object observables |
+
+The falsifier is not merely failure to choose a numerical Planck scale. The falsifier is a split record: if the short-distance probe uses one $\theta$ while the induced horizon-interface, entropy, and release-channel ledgers require another, then the high-energy closure has not survived promotion.
+
 ## Horizon Interface
 
 The horizon interface is the most important black-hole concept in the local dialect. It names the layer in which tri-binary assemblies are flattened into an alignment-locked sheet.
@@ -124,6 +209,34 @@ k_B\log\left|\mathcal{B}_{H}^{(O)}(t)\right|
 S_{\mathrm{out}}^{(O)}(t),
 $$
 where $S_{\mathrm{out}}^{(O)}(t)$ summarizes the entropy of accessible outgoing channels. This equation is not a new ontology. It is a bookkeeping target: the native horizon-interface model should explain how the area-like ledger term and the outgoing-channel entropy combine into a finite observer-level entropy, and how that combined quantity can reproduce Page-curve behavior without importing islands, replica wormholes, or a boundary CFT as primitive structure.
+
+### Finite-Boundary Endpoint Closure
+
+The endpoint and information questions should be posed on a compact strong-field region rather than by assuming an observer at asymptotic infinity. For a region $\Omega$ bounded by finite observer-accessible data between times $t_i$ and $t_f$, the native closure target is a single continuation map
+$$
+\mathcal{T}_{\Omega}:
+\left(
+X_\Omega(t_i),
+\mathcal{H}_{\Omega}^{<t_i},
+\mathcal{B}_{\partial\Omega}|_{[t_i,t_f]},
+N_{\text{sea}}|_{\Omega\times[t_i,t_f]}
+\right)
+\longrightarrow
+\left(
+X_\Omega(t_f),
+\mathcal{B}_{H}^{(O)}(t_f),
+S_{\mathrm{out}}^{(O)}(t_f)
+\right).
+$$
+Here $X_\Omega$, $\mathcal{H}_{\Omega}^{<t}$, and $\mathcal{B}_{\partial\Omega}$ are the finite-region variables from [Observer Framework](observer-framework.md#ontic-and-epistemic-levels). The closure requirement is not that a particular remnant, bounce, or asymptotic boundary story be adopted. It is that the same finite boundary data determine a finite strong-field continuation:
+$$
+F_H=0,\qquad
+\mathcal{R}_H(\Omega)<\infty,\qquad
+0<\left|\mathcal{B}_{H}^{(O)}(t_f)\right|<\infty,
+$$
+with outgoing energy, momentum, angular momentum, charge, polarity, provenance, and medium-update rows accounted for through the release-channel ledger.
+
+This gives a compact comparison rule for evaporation and endpoint proposals. A proposal can be used as a comparison framework if it sharpens one of those finite-ledger checks. It should not be promoted into the ontology unless the same native horizon-interface variables produce the continuation without an arbitrary endpoint branch or a separate asymptotic bookkeeping rule.
 
 As a heuristic geometric picture, the horizon can also be described as a **dimensional pinch** in the tri-binary shape trajectory. On this reading, ordinary 3D assemblies are flattened toward a near-planar disk at the alignment interface, while the interior self-hit regime permits re-opening of the suppressed axial degree of freedom. In shorthand, the proposed shape path is
 $$

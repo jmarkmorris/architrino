@@ -24,7 +24,7 @@ Here, geodetic precession means the de Sitter precession of a carried gyroscope:
 
 ### Testing the Euclidean Anchor (Shapiro Delay)
 
-1. **The Test**: Calculate travel time of a signal from Earth to a probe behind the Sun using the $\mathbb{U}_{\text{now}}$ universe-state grid.
+1. **The Test**: Calculate travel time of a signal from Earth to a probe behind the Sun using the Euclidean straight-line anchor supplied by the $\mathbb{U}_{\text{now}}$ state record.
 2. **Architrino Model**: Signal follows a straight Euclidean line. Delay is caused by increased Noether-Sea response near the Sun, expressed by the Noether-Sea delay factor $\chi_{\text{sea}}$.
 3. **Comparison**: Contrast $\Delta t_{architrino}$ with the GR weak-field form.
 4. **$\mathbb{U}_{\text{now}}$ Role**: $\mathbb{U}_{\text{now}}$ provides the "straight line" benchmark against which the "curved path" of GR is compared.

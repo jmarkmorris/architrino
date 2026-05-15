@@ -622,6 +622,19 @@ uniformly in orientation $\theta$. This is the operational statement that maps s
 
 For clock-and-ruler synchronization, $c_{\text{iso}}$ is the dressed local assembly signal speed. For photon synchronization, it is the local photon-channel speed $c_\gamma$; photon Gate A must show when the photon branch shares the same homogeneous-cell limit as $c_{\text{eff}}$.
 
+The same criterion has a long-baseline photon consequence. If the photon branch uses a frequency-dependent delay factor, then a distant transient comparison accumulates
+$$
+\Delta t_{\gamma}^{\mathrm{model}}(\omega_a,\omega_b;z)
+=
+\int_{\Gamma_z}
+\frac{
+\chi_\gamma(\omega_a,\mathbf{x},t)
+-
+\chi_\gamma(\omega_b,\mathbf{x},t)
+}{c_0}\,d\ell .
+$$
+Operational Lorentz closure therefore requires this residual to vanish, or remain below the declared timing bound, in the same weak homogeneous branch that supplies $c_{2w}(\theta,v)=c_{\text{iso}}+O(\epsilon_{\text{LV}})$. It is not enough to recover local two-way isotropy while leaving cosmological photon timing to a separately tuned channel record.
+
 ### 4.3 Round-trip anisotropy cancellation through $O(\beta^4)$
 
 Let arm lengths in the preferred frame be

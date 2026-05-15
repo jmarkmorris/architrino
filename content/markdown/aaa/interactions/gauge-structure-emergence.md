@@ -22,7 +22,7 @@ Standard Model fields are often treated as fundamental entities. Here, we posit 
 *   **$\mathbb{U}_{\text{now}}$ View:** Sees only point-like architrinos ($\pm |e/6|$) and their discrete potential emissions $\Phi$. There are no continuous "gauge fields," only the summation of causal potential wakes.
 *   **PO View (Emergent):** Lacking the resolution to see individual architrinos, the Physical Observer measures the **collective potential gradient** $\nabla \Phi$ at a point.
     *   **$\vec{E}$ and $\vec{B}$ fields** are statistical averages of Jacobian-weighted causal-flux density and circulation/vorticity in the Noether Sea.
-    *   **Gauge Potentials ($A_\mu$):** These correspond to local **twists, strains, or density gradients** in the lattice of the Noether Sea.
+    *   **Gauge Potentials ($A_\mu$):** These correspond to local **twists, strains, or density gradients** in the Noether-Sea assembly network.
 
 ## Symmetry Groups as Geometric Deformations
 
@@ -54,7 +54,7 @@ The local closure discipline is therefore:
 The common "God Particle" narrative is replaced by a Noether-Sea medium-response comparison.
 
 *   **The VEV (Vacuum Expectation Value):** This is simply the **equilibrium density** of the Noether Sea. It is non-zero because the void is populated.
-*   **Symmetry Breaking:** The electroweak phase transition is a literal **phase change** (like freezing). As the universe cooled, the high-energy, chaotic plasma of architrinos crystallized into the stable, coupled tri-binary "lattice" we see today.
+*   **Symmetry Breaking:** The electroweak phase transition is modeled as a **phase-change closure target**. As the universe cooled, the high-energy, chaotic plasma of architrinos must relax into the stable, coupled tri-binary medium inferred today, but the order parameter and transition dynamics still have to be derived.
 *   **Mass as medium-dressed response:** A fermion assembly moving or accelerating through the Noether Sea must relock its internal causal ledger against the surrounding medium.
     *   Photon channels propagate as coherent planar-mode transport through the sea rather than as massive bodies.
     *   Massive assemblies expose more shielded internal causal history to external probes. The measured inertial response is not ordinary dissipative drag; see [Particle Masses: Emergent Inertia in the Noether Sea](../assemblies/particle-masses.md).

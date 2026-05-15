@@ -75,6 +75,20 @@ $$
 \tau_{\text{persist}} > T_{\text{rec}}.
 $$
 
+Environmental locking can be sharpened as an entropy diagnostic rather than left as a prose condition. For a declared coarse-graining $\mathcal{Q}$ and retained access region $W$, let
+$$
+\Delta S_{\mathcal{Q},W}^{\mathrm{app+env}}
+=
+S_{\mathcal{Q},W}^{\mathrm{app+env}}(t_0+T_{\text{rec}})
+-
+S_{\mathcal{Q},W}^{\mathrm{app+env}}(t_0)
+$$
+measure the apparatus/environment entropy change associated with the candidate record channel. A strong record candidate should satisfy
+$$
+\Delta S_{\mathcal{Q},W}^{\mathrm{app+env}}\ge S_{\mathrm{lock}}>0,
+$$
+with $S_{\mathrm{lock}}$ fixed by the apparatus class and readout channel. This is not a new collapse law. It is a closure check that the branch has exported enough unresolved apparatus/environment history that coherent reversal is no longer part of the retained measurement window.
+
 In plain terms, a record needs both:
 
 - a macroscopically legible state change,
@@ -199,7 +213,9 @@ The source of $\mu_*$ is therefore part of the measurement closure, not an optio
 
 ## External Penrose-Diosi Benchmark
 
-Penrose-Diosi gravitational-collapse proposals provide an external comparison target for massive-superposition measurement claims. In that comparison, two alternative mass distributions $\rho_1$ and $\rho_2$ are assigned a gravitational self-energy scale
+Penrose-Diosi gravitational-collapse proposals provide an external comparison target for massive-superposition measurement claims. Their useful pressure is the tension between two inherited principles: local free-fall equivalence in gravity and linear superposition in quantum state descriptions. If one branch of a massive superposition can be locally transformed away only by a different free-fall frame than the other branch, the comparison asks whether the mismatch has an energy scale that should limit the lifetime of the unresolved branch description.
+
+In that comparison, two alternative mass distributions $\rho_1$ and $\rho_2$ are assigned a gravitational self-energy scale
 $$
 \Delta E_G \sim \frac{G}{2}\int\!\!\int
 \frac{(\rho_1-\rho_2)(\mathbf{x})(\rho_1-\rho_2)(\mathbf{y})}
@@ -210,7 +226,7 @@ $$
 \tau_G\sim \frac{\hbar}{\Delta E_G}.
 $$
 
-$\mathbb{A}\mathbb{A}\mathbb{A}$ does not adopt fundamental gravitational collapse. The benchmark is useful because large-mass interferometry and Bose-Einstein-condensate proposals ask whether spatial superpositions involving roughly $10^9$ to $10^{10}$ atoms remain coherent long enough to distinguish ordinary environmental decoherence, finite-time threshold resolution, and any gravity-driven collapse model. For this chapter, the comparison target is therefore not to derive $\tau_G$ as an ontological law, but to show that the $\mathbb{A}\mathbb{A}\mathbb{A}$ separatrix-time estimate for massive-superposition records remains quantitatively distinguishable from, or explicitly bounded against, the Penrose-Diosi scale.
+$\mathbb{A}\mathbb{A}\mathbb{A}$ does not adopt fundamental gravitational collapse or a stochastic metric. The benchmark is useful because large-mass interferometry and Bose-Einstein-condensate proposals ask whether spatial superpositions involving roughly $10^9$ to $10^{10}$ atoms remain coherent long enough to distinguish ordinary environmental decoherence, finite-time threshold resolution, and any gravity-driven collapse model. For this chapter, the comparison target is therefore not to derive $\tau_G$ as an ontological law, but to show that the $\mathbb{A}\mathbb{A}\mathbb{A}$ separatrix-time estimate for massive-superposition records remains quantitatively distinguishable from, or explicitly bounded against, the Penrose-Diosi scale.
 
 The useful variable is mass displacement, not system size by itself. A many-degree system that leaves nearly the same mass density in each branch is a weaker test than a smaller system whose alternative branches separate appreciable mass density. For a proposed apparatus-target model, record the comparison ratio
 $$
@@ -222,6 +238,95 @@ $$
 $$
 This ratio is not an ontology selector. It is a validation diagnostic: $\tau_{\text{meas}}$ must be derived from the Master-Equation separatrix and record-locking dynamics, while $\tau_G$ supplies an external mass-displacement benchmark. Collapse-model variants that imply persistent spontaneous heating add a separate empirical pressure, because neutron-star and low-background heating bounds can exclude that heating channel without deciding the $\mathbb{A}\mathbb{A}\mathbb{A}$ threshold-resolution mechanism.
 
+## External Gravitational Which-Path Benchmark
+
+Massive-superposition tests also create a second external benchmark: whether the gravitational or effective-metric readout of two branches can carry which-path information. This comparison preserves the observable pressure without adopting a stochastic-metric ontology. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the effective metric is an observer-level reconstruction, so a gravitational readout becomes measurement-relevant only when a Physical Observer apparatus can turn the branch-dependent response into an autonomous record.
+
+Let $\rho_1(\mathbf{x},t)$ and $\rho_2(\mathbf{x},t)$ be two alternative branch-level mass-density histories, and let $h_A(t;\rho_k,\theta)$ denote the detector response channel $A$ predicted by the same effective-metric constitutive record $\theta$ for branch $k$. Define
+$$
+\Delta h_A(t)
+=
+h_A(t;\rho_1,\theta)-h_A(t;\rho_2,\theta).
+$$
+If $N_{AB}(t,t')$ is the covariance of unresolved detector, environmental, and boundary-wake contributions over the coherence window $T$, the gravitational distinguishability diagnostic is
+$$
+\mathcal{D}_{\mathrm{grav}}(T;\theta)
+=
+\int_0^T\!\!\int_0^T
+\Delta h_A(t)\,
+N^{-1}_{AB}(t,t')\,
+\Delta h_B(t')\,dt\,dt'.
+$$
+
+The comparison criterion is:
+$$
+\mathcal{D}_{\mathrm{grav}}(T;\theta)\le\varepsilon_{\mathrm{wp}}
+$$
+for an interference-preserving branch pair, unless the apparatus-target dynamics explicitly show a record-forming separatrix crossing with finite $\tau_{\text{meas}}$ and a persistent record variable. If $\mathcal{D}_{\mathrm{grav}}\gg1$ while the interference pattern remains intact and no record-autonomy condition is satisfied, the proposed effective-metric response has overproduced observable which-path information.
+
+The covariance $N_{AB}$ is not an ontological randomness postulate in this chapter. It must be derived, or bounded, from unresolved deterministic boundary data, local Noether-Sea state, detector calibration residuals, and ordinary environmental channels. This keeps the useful lesson from classical-quantum gravity comparisons while preserving the native claim that branch selection is finite-time assembly dynamics rather than fundamental metric collapse.
+
+### Minimal Massive-Branch Toy Model
+
+A first calculation can be posed without choosing a full collapse interpretation. Let a target mass $M$ have two branch-level center histories
+$$
+\mathbf{X}_{\pm}(t)
+=
+\mathbf{X}_0(t)\pm\frac{1}{2}\mathbf{d}(t),
+$$
+with branch densities
+$$
+\rho_{\pm}(\mathbf{x},t)
+=
+M\,\delta_{\eta}\!\left(\mathbf{x}-\mathbf{X}_{\pm}(t)\right)
++
+\rho_{\mathrm{app}}(\mathbf{x},t),
+$$
+where $\rho_{\mathrm{app}}$ is the shared apparatus and environmental mass density. For a differential gravity readout channel $A$, define
+$$
+h_A(t;\rho_{\pm},\theta)
+=
+e_A^i
+\left[
+a_i^{\mathrm{eff}}(\mathbf{y}_A,t;\rho_{\pm},\theta)
+-
+a_i^{\mathrm{eff}}(\mathbf{y}_0,t;\rho_{\pm},\theta)
+\right],
+$$
+where $\mathbf{y}_A$ and $\mathbf{y}_0$ are detector reference points, $e_A^i$ is the channel projection, and $a_i^{\mathrm{eff}}$ is the effective metric or weak-field acceleration readout derived from the same constitutive record $\theta$ used in the spacetime chapters.
+
+In the weak, slowly varying limit, the branch difference has the schematic tidal form
+$$
+\Delta h_A(t)
+\simeq
+G_{\mathrm{eff}}(\theta)M\,e_A^i
+\left[
+D_{ij}(\mathbf{y}_A-\mathbf{X}_0)
+-
+D_{ij}(\mathbf{y}_0-\mathbf{X}_0)
+\right]
+d^j(t),
+$$
+with
+$$
+D_{ij}(\mathbf{R})
+=
+\frac{3R_iR_j-\|\mathbf{R}\|^2 h_{ij}}{\|\mathbf{R}\|^5}.
+$$
+If the unresolved readout noise is approximately stationary over the coherence window, $N_{AB}(t,t')=S_{AB}\delta(t-t')$, then
+$$
+\mathcal{D}_{\mathrm{grav}}(T;\theta)
+\simeq
+\int_0^T
+\Delta h_A(t)\,
+S^{-1}_{AB}\,
+\Delta h_B(t)\,dt.
+$$
+
+This toy model turns the benchmark into a simulation target. The required inputs are $M$, $\mathbf{d}(t)$, $\mathbf{X}_0(t)$, detector geometry $(\mathbf{y}_A,\mathbf{y}_0,e_A)$, noise matrix $S_{AB}$, coherence time $T$, and the constitutive weak-field map in $\theta$. An interference-preserving run passes the gravitational which-path gate only if $\mathcal{D}_{\mathrm{grav}}(T;\theta)\le\varepsilon_{\mathrm{wp}}$ or if the same apparatus model derives a record-forming separatrix crossing with a persistent record variable.
+
+The observer-level covariance decomposition is owned by [Observer Framework](../spacetime/observer-framework.md#boundary-wake-covariance-scaffold). The concrete validation scaffold is [Massive-Superposition Gravity Validation Packet](../validation/massive-superposition-gravity.md).
+
 ## Closure Targets
 
 For this chapter to count as closed, the repo still needs:
@@ -229,7 +334,8 @@ For this chapter to count as closed, the repo still needs:
 1. one explicit Master-Equation apparatus-target toy model that evaluates the branch-sum impulse and record-cycle phase density,
 2. one explicit record variable $R(A)$ and persistence criterion,
 3. one derived estimate of finite collapse time $\tau_{\text{meas}}$, including a massive-superposition comparison against the external Penrose-Diosi scale $\tau_G$,
-4. one bridge from basin weights to observed frequencies.
+4. one gravitational which-path distinguishability calculation $\mathcal{D}_{\mathrm{grav}}$ for a massive-superposition apparatus, following the [Massive-Superposition Gravity Validation Packet](../validation/massive-superposition-gravity.md),
+5. one bridge from basin weights to observed frequencies.
 
 This chapter now fixes the ontology and interface. The remaining work is derivational, not definitional.
 

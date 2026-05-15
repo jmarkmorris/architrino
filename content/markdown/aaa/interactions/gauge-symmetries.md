@@ -60,6 +60,8 @@ $$
 
 with $\mathcal{R}_{\mathrm{null}}$ defined in [Failure Criteria](../validation/failure-criteria.md#null-result-residual-for-added-channels). Thus larger group unification, supersymmetry, Kaluza-Klein-style geometry, and similar constructions remain comparison frameworks unless an $\mathbb{A}\mathbb{A}\mathbb{A}$ branch record recovers the observed gauge sector while also suppressing every added observable channel from the same shared state variables.
 
+The same filter applies to especially elegant symmetry containers, including grand-unified and exceptional-group embeddings. It is not enough for a larger algebra to contain $U(1)_Y\times SU(2)_L\times SU(3)_c$ or to organize one generation of fermions. The promoted record must also explain why mirror matter, superpartners, proton-instability channels, extra gauge bosons, hidden transport modes, and other non-baseline outputs are absent in the tested regime. If those absences require separate masses, thresholds, compactification choices, or sector-specific suppressions, the construction remains a comparison framework rather than an $\mathbb{A}\mathbb{A}\mathbb{A}$ gauge closure.
+
 ## U(1) Sector
 
 **Theorem 1 (Global phase invariance implies charge continuity).**  

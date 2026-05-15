@@ -31,7 +31,7 @@ A photon manifests as a **phase-locked planar-pair mode train** of delayed actio
 *   **Burst vs. continuous:**
     *   **Packet (particle-like):** A discrete atomic transition releases a short burst train—a finite segment of the planar-mode train.
     *   **Beam (classical-like):** A continuous drive (antenna) releases a continuous stream of units, creating a long-range coherent beam.
-*   **Photon-channel speed:** The planar (edge-on) orientation minimizes interaction with the ambient Noether-Sea lattice. In weak homogeneous Noether-Sea conditions the local photon-channel speed $c_\gamma$ approaches the primitive wake speed $c_f$; in material media or strong Noether-Sea gradients, $c_\gamma < c_f$ is the observer-level transport summary.
+*   **Photon-channel speed:** The planar (edge-on) orientation minimizes interaction with the ambient Noether-Sea assembly network. In weak homogeneous Noether-Sea conditions the local photon-channel speed $c_\gamma$ approaches the primitive wake speed $c_f$; in material media or strong Noether-Sea gradients, $c_\gamma < c_f$ is the observer-level transport summary.
 
 ### Interaction Rules: Capture and Release
 *   **Emission (Planar-Mode Release):** Driven by accelerated motion in the source binary. The accepted action ledger enters a stable planar-pair mode along a tangential vector.
@@ -101,6 +101,19 @@ Gate A is closed only when this branch proves the following recoveries in the sa
 - The kinematic mass shell is null in the photon channel: $E_\gamma^2-\|\mathbf{p}_\gamma\|^2c_\gamma^2=0$, with $E_\gamma=h\nu$ and $p=h/\lambda$ recovered from the phase-cycle ledger.
 - The weak homogeneous branch identifies the measured photon speed with the same low-gradient limit used by clock-and-ruler synchronization, while keeping $c_f$ as the primitive wake speed rather than the directly measured observer speed.
 - The residual leakage terms for dispersion, birefringence, static charge exposure, and preferred-frame anisotropy fall below the empirical bounds before Gate B and Gate C add polarization and interaction vertices.
+
+Gate A also owns the long-baseline photon time-of-flight check in [Constraint Ledger](../../validation/constraint-ledger.md#photon-time-of-flight-dispersion-gate). If a candidate branch permits frequency-dependent photon-channel delay, its accumulated prediction for two photon phase frequencies must be
+$$
+\Delta t_{\gamma}^{\mathrm{model}}(\omega_a,\omega_b;z)
+=
+\int_{\Gamma_z}
+\frac{
+\chi_\gamma(\omega_a,\mathbf{x},t)
+-
+\chi_\gamma(\omega_b,\mathbf{x},t)
+}{c_0}\,d\ell .
+$$
+The closure target is $\Delta t_{\gamma}^{\mathrm{model}}\to0$ in the weak homogeneous branch after the same $c_\gamma$ and $\chi_\gamma$ record has recovered local synchronization. A branch that requires a different photon speed for time-of-flight events than for clock, ruler, or scattering comparisons has not closed Gate A.
 
 #### Gate B Theorem Scaffold: Polarization and Spin
 
@@ -312,12 +325,12 @@ The distinction between photon helicity and massive-vector spin should remain ex
 The Higgs is not a propagating assembly *through* the ambient medium; it is a resonance *of* the Noether-Sea structure.
 
 ### Geometric Structure
-*   **The Substrate:** The Noether Sea is a lattice of neutral Tri-Binaries ($1P, 1E$).
+*   **The Substrate:** The Noether Sea is a coupled population of neutral tri-binary units ($1P, 1E$).
 *   **Scalar Excitation:** The Higgs is a **Radial Breathing Mode** ($r \to r + \delta r$) of these Noether-Sea units.
 *   **Spin-$0$:** The oscillation is purely radial (scalar), possessing no vector orientation.
 
 ### Mass-Channel Matching
-*   **The Cause:** Massive particles (Quarks, W/Z) have complex 3D geometries that do not fit neatly in the lattice interstices.
+*   **The Cause:** Massive particles (Quarks, W/Z) have complex 3D geometries that distort the local Noether-Sea arrangement.
 *   **The Effect:** They physically displace or distort the surrounding Noether-Sea nodes.
 *   **The Response:** This distortion changes the medium-dressed response of shielded internal causal history. The observer-facing inertial mass channel is the effective response, not ordinary dissipative drag.
 *   **The Boson:** If the Noether Sea is driven hard enough (e.g., at LHC), this radial ringing mode can be excited independently. Identifying that resonance with the Higgs Boson ($125$ GeV) remains an effective matching target.
@@ -331,7 +344,7 @@ The Higgs is not a propagating assembly *through* the ambient medium; it is a re
 | **Photon** | Coaxial contra-rotating pro/anti planar pair | Neutral (0) | Planar-pair mode train at $c_\gamma$ | None (planar / edge-on) |
 | **W Boson** | Inflated Transaction Vortex | Charged ($\pm 6\epsilon$) | Short-lived Corridor (near-$c$, ruptures) | Confinement Energy / Noether-Sea Response |
 | **Z Boson** | Inflated Neutral Vortex | Neutral ($3P, 3E$) | Short-lived Corridor (near-$c$, ruptures) | Confinement Energy / Noether-Sea Response |
-| **Higgs** | Radial Noether-Sea Oscillation | N/A | Local Resonance | Lattice Stiffness |
+| **Higgs** | Radial Noether-Sea Oscillation | N/A | Local Resonance | Medium stiffness |
 
 ## Pair production (note)
 

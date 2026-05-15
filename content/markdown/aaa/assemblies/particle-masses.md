@@ -134,6 +134,69 @@ $$
 
 but a derivation in which $\zeta(A)$ is fixed by the same root ledger, shielding geometry, and Noether-Sea response that also preserves stability and equivalence-principle behavior. If $\zeta(A)$ has to be tuned independently for each particle family, the analogy to QCD naturalness fails and the hierarchy has only been renamed.
 
+### Generation-Mass Fitting Packet
+
+The immediate quantitative packet is a shared fit across charged leptons, up-type quarks, and down-type quarks. Let
+$$
+f\in\{\ell,u,d\},
+\qquad
+a\in\{0,1,2\},
+$$
+where $a=0,1,2$ label Generations I, II, and III through the shielding quotient in [Quantum Number Mapping](./fermions/quantum-number-mapping.md#candidate-generation-operator). For one family representative $A_{f,0}$, define
+$$
+A_{f,a}
+=
+T_{\mathrm{gen}}^a A_{f,0}.
+$$
+
+The fit target is one shielding response map, not nine particle-specific masses:
+$$
+M_{\mathrm{sh}}(A_{f,a};\theta)
+=
+\frac{\alpha_{\mathrm{m}}}{c_{\mathrm{eff}}^2}
+\left[
+\zeta_{\mathrm{sh}}\!\left(\mathsf{s}_{\mathrm{sh}}(A_{f,a});\theta\right)
+E_{\mathrm{internal}}(A_{f,a};\theta)
++
+E_{\mathrm{sector}}(A_{f,a};\theta)
+\right].
+$$
+Here $\zeta_{\mathrm{sh}}$ depends on the shielding class, $\alpha_{\mathrm{m}}$ is a single mass normalization for the declared weak homogeneous regime, and $E_{\mathrm{sector}}$ is zero for charged leptons while quark contributions must be derived from the same color/topology and strong-sector ledger used in the hadronic chapters. The allowed family dependence is therefore carried by axial inventory, color/topology, and internal-energy bookkeeping, not by changing the shielding law.
+
+The fitting residual is
+$$
+\mathcal{R}_{\mathrm{gen\,mass}}(\theta)
+=
+\sum_{f\in\{\ell,u,d\}}
+\sum_{a=0}^{2}
+\frac{
+\left[
+\log M_{\mathrm{sh}}(A_{f,a};\theta)
+-
+\log m^{\mathrm{obs}}_{f,a}
+\right]^2
+}{\sigma_{f,a}^{2}}
++
+\lambda_{\mathrm{split}}
+\sum_{f}
+\operatorname{dist}_{\mathrm{map}}\!\left(
+\theta_f,\theta_{\mathrm{shared}}
+\right)^2
++
+\mathcal{R}_{\mathrm{null}}^{\mathrm{op}}(\theta).
+$$
+Here $\theta_f$ denotes the record that would be used if family $f$ were fit separately, while $\theta_{\mathrm{shared}}$ is the one promoted record. The second term is the no-retuning guard: it penalizes any attempt to fit charged leptons, up-type quarks, and down-type quarks with different shielding maps or different medium-response coefficients. The null-result term prevents the fit from improving the observed masses by adding partner branches, extra gauge modes, or proton-instability channels that are not independently suppressed.
+
+The first benchmark is not exact mass prediction. It is monotone hierarchy and shared-map survival:
+$$
+M_{\mathrm{sh}}(A_{f,0};\theta)
+<
+M_{\mathrm{sh}}(A_{f,1};\theta)
+<
+M_{\mathrm{sh}}(A_{f,2};\theta)
+$$
+for $f=\ell,u,d$, while the same $\zeta_{\mathrm{sh}}$, $\alpha_{\mathrm{m}}$, and $\mathcal{M}_{\text{sea}}^{ab}$ remain in force. If the charged-lepton hierarchy can be fit only by changing the map that fits quarks, or if quarks require independent per-generation shielding factors after color/topology terms are included, generation-by-shielding has not closed.
+
 ## Speculative Charged-Lepton Benchmark: Koide
 
 The charged-lepton mass triplet is unusual enough that it is worth recording one explicit benchmark, while keeping the status clear: this is **speculative** and should not be presented as a derivation.

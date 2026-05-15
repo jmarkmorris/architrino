@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 487,
+      "nodes": 488,
       "edges": 1239,
       "scenes": 320,
       "markdownIndexes": 0,
-      "markdownDocs": 167,
+      "markdownDocs": 168,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2894,6 +2894,12 @@
       "id": "content/markdown/aaa/validation/known-tensions.md",
       "name": "Known Tensions",
       "path": "content/markdown/aaa/validation/known-tensions.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/validation/massive-superposition-gravity.md",
+      "name": "Massive-Superposition Gravity Validation Packet",
+      "path": "content/markdown/aaa/validation/massive-superposition-gravity.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -7192,6 +7198,15 @@
       "name": "Known Tensions",
       "path": "content/markdown/aaa/validation/known-tensions.md",
       "searchTarget": "content/markdown/aaa/validation/known-tensions.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/validation/massive-superposition-gravity.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/validation/massive-superposition-gravity.md",
+      "name": "Massive-Superposition Gravity Validation Packet",
+      "path": "content/markdown/aaa/validation/massive-superposition-gravity.md",
+      "searchTarget": "content/markdown/aaa/validation/massive-superposition-gravity.md",
       "implicit": false
     },
     {

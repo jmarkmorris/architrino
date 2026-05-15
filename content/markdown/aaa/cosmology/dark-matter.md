@@ -14,7 +14,7 @@ Throughout, "dark matter" refers to the set of phenomena conventionally attribut
 
 ### The Noether Sea as Gravitational Medium
 
-In the architrino framework, the Euclidean void is populated by a dense lattice of coupled neutral tri-binary assemblies—the Noether Sea. Each tri-binary consists of three nested electrino–positrino binaries (inner, middle, outer), with net charge zero and internal dynamics spanning the three field-speed regimes ($v > c_f$, $v = c_f$, $v < c_f$). Gravity is not a fundamental force but an emergent medium-response effect: local variations in Noether-core density $\rho_{\text{core}}(\mathbf{x},t)$ and normalized density $n(\mathbf{x},t)$ alter the Noether-Sea delay factor $\chi_{\text{sea}}$ and the transmission of delayed causal flux, producing geodesic deviation and an effective metric $g_{\mu\nu}$ experienced by all assemblies.
+In the architrino framework, the Euclidean void is populated by the Noether Sea, a dense coupled population of neutral tri-binary assemblies. Each tri-binary consists of three nested electrino–positrino binaries (inner, middle, outer), with net charge zero and internal dynamics spanning the three field-speed regimes ($v > c_f$, $v = c_f$, $v < c_f$). Gravity is not a fundamental force but an emergent medium-response effect: local variations in Noether-core density $\rho_{\text{core}}(\mathbf{x},t)$ and normalized density $n(\mathbf{x},t)$ alter the Noether-Sea delay factor $\chi_{\text{sea}}$ and the transmission of delayed causal flux, producing geodesic deviation and an effective metric $g_{\mu\nu}$ experienced by all assemblies.
 
 Massive composite assemblies (protons, atoms, stars) are tri-binary configurations with axial layers; they locally compress the Noether Sea, increasing $\rho_{\text{core}}$ and changing $\chi_{\text{sea}}$ for effective signal propagation. This compression is the substrate-level origin of the Newtonian potential $\Phi_N$ in the weak-field limit. The effective gravitational constant $G$ is related to the medium compliance—how readily the Sea density responds to stress from embedded matter (see [spacetime/emergent-metric.md](../spacetime/emergent-metric.md)).
 
@@ -77,6 +77,26 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the conservative requirement is therefore 
 2. project that lensing record into the same neutral-assembly density $\rho_A$, Noether-core density $\rho_{\text{core}}(\mathbf{x},t)$, and medium-response variables used by the structure-formation module.
 
 A dark-matter interpretation fails if it treats CMB lensing as direct proof of one substrate while using a different medium state to fit galaxy clustering, weak lensing, or cluster offsets.
+
+### Shared Dark-Sector Scale Gate
+
+Some quantum-gravity comparison programs try to relate the dark-matter and dark-energy problems through one scale. In this chapter that signal is useful only as a closure discipline. The $\mathbb{A}\mathbb{A}\mathbb{A}$ claim is not that dark matter and dark energy are one imported object; it is that any proposed relation between them must be carried by the same Noether-Sea state record used by the dark-energy, growth, lensing, and CMB modules.
+
+Let $\theta_{\mathrm{sea}}$ be the shared medium-state record, let $\Pi_{\mathrm{DE}}\theta_{\mathrm{sea}}$ be its dark-energy projection, and let $\Pi_{\mathrm{DM}}\theta_{\mathrm{sea}}$ be its dark-matter projection. If a candidate relation $F_{\mathrm{DM}}$ maps the dark-energy-side projection into the dark-matter-side variables, a minimal shared-scale residual is
+
+$$
+\mathcal{R}_{\mathrm{dark\ scale}}(\theta_{\mathrm{sea}})
+=
+\left\lVert
+\Pi_{\mathrm{DM}}\theta_{\mathrm{sea}}
+-
+F_{\mathrm{DM}}\!\left(\Pi_{\mathrm{DE}}\theta_{\mathrm{sea}}\right)
+\right\rVert_{C_{\mathrm{DM/DE}}^{-1}}^2
++
+\mathcal{R}_{\mathrm{shared}}(\theta_{\mathrm{sea}}).
+$$
+
+Here $C_{\mathrm{DM/DE}}$ is the covariance or weighting model for the joint dark-sector comparison, and $\mathcal{R}_{\mathrm{shared}}$ is the shared calibration residual from [Dark Energy](./dark-energy.md#inference-dependency-and-calibration-gates). A dark-sector scale relation is promotable only if this residual stays small without assigning one Noether-Sea state to dark-energy data and another to dark-matter data. If the relation fits one observable family by changing $\theta_{\mathrm{sea}}$ for another, it remains an interpretation artifact rather than a substrate claim.
 
 ## Candidate Substrates
 

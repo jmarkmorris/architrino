@@ -1281,6 +1281,78 @@ $$
 
 That is a $2\pi$ single-valuedness rule on an observer-level orbital envelope. A fermion spinor target cannot reuse that ordinary closure rule. It must explain why the visible $SO(3)$ orientation closes after $2\pi$ while the history-lifted Noether-core state changes sheet and only restores after $4\pi$.
 
+### Effective C/P/T Recovery Interface
+
+The ordered-core spinor target also carries the C/P/T burden inherited from standard fermion physics. The substrate proof does not need to import a particular representation of Dirac spinors, but it must recover the effective actions that those representations summarize. In the observer-level fermion chart:
+
+- $C_{\mathrm{eff}}$ must map a fermion record to the corresponding charge-conjugate record by reversing the effective polarity bookkeeping and pro/anti orientation while preserving the appropriate spin-state comparison data.
+- $P_{\mathrm{eff}}$ must reverse the effective spatial orientation used by the observer chart, including helicity sign when a momentum or propagation axis is part of the record.
+- $T_{\mathrm{eff}}$ must reverse the effective motion and phase-flow record without turning the positive-energy comparison branch into an unphysical negative-energy sector.
+- $(CPT)_{\mathrm{eff}}$ must return an admissible fermion-sector record in every validated regime, even though $C$, $P$, $T$, and their pairwise combinations may be violated by weak-sector and flavor-sector data.
+
+A useful proof scaffold is to define these maps on an effective fermion record
+$$
+\mathfrak{f}_A
+=
+\left(
+\Lambda_{\text{NC}},
+\mathcal{A}_{\mathrm{ax}},
+q_{\mathrm{eff}},
+\mathbf{p}_{\mathrm{eff}},
+\mathbf{S}_{\mathrm{eff}},
+h_{\mathrm{eff}},
+\Pi_{\mathrm{weak}},
+\mathcal{P}
+\right),
+$$
+where $\Lambda_{\text{NC}}$ is the Noether-core closure label, $\mathcal{A}_{\mathrm{ax}}$ is the axial inventory and axial-frame record, $h_{\mathrm{eff}}$ is the observer-level helicity when a propagation direction is present, and $\mathcal{P}$ is the provenance ledger needed to compare branches. The effective maps must first close as comparison operations:
+$$
+C_{\mathrm{eff}}^2
+=
+P_{\mathrm{eff}}^2
+=
+T_{\mathrm{eff}}^2
+=
+\mathrm{id}_{\mathrm{eff}},
+\qquad
+(CPT)_{\mathrm{eff}}\mathfrak{f}_A
+\in
+\mathfrak{F}_{\mathrm{fermion}}.
+$$
+They must then satisfy the observer-record residual
+$$
+\mathcal{R}_{\mathrm{CPT}}(A;\theta)
+=
+d_{\mathrm{obs}}\!\left(
+\Pi_{\mathrm{obs}}(CPT)_{\mathrm{eff}}\mathfrak{f}_A,
+\Pi_{\mathrm{obs}}\mathfrak{f}_{\bar A}
+\right)
++
+d_{\mathrm{inv}}\!\left(
+(CPT)_{\mathrm{eff}}^2\mathfrak{f}_A,
+\mathfrak{f}_A
+\right)
++
+\mathcal{R}_{\mathrm{weak/flavor}}(A;\theta),
+$$
+with $\mathfrak{f}_{\bar A}$ the effective antiparticle record and $\mathcal{R}_{\mathrm{weak/flavor}}$ carrying the observed C, P, T, CP, and flavor-sector violations that are allowed before the combined benchmark is tested. The residual passes only if the combined operation is admissible without erasing the weak chirality and generation/mixing ledgers.
+
+The component action table makes the proof obligation explicit:
+
+| Record component | $C_{\mathrm{eff}}$ | $P_{\mathrm{eff}}$ | $T_{\mathrm{eff}}$ | Combined benchmark |
+| --- | --- | --- | --- | --- |
+| $\Lambda_{\text{NC}}$ | map to the pro/anti-conjugate closure label | reverse the observer-facing orientation chart | reverse phase-flow order in the comparison chart | return an admissible Noether-core label |
+| $\mathcal{A}_{\mathrm{ax}}$ | swap effective polarity inventory while preserving axial-site admissibility | reflect the axial frame relative to the observer chart | reverse cycle orientation and phase ordering | preserve the allowed axial inventory class |
+| $q_{\mathrm{eff}}$ | $q_{\mathrm{eff}}\mapsto-q_{\mathrm{eff}}$ | unchanged | unchanged | match the antiparticle charge record |
+| $\mathbf{p}_{\mathrm{eff}}$ | unchanged as a charge-conjugation datum | $\mathbf{p}_{\mathrm{eff}}\mapsto-\mathbf{p}_{\mathrm{eff}}$ | $\mathbf{p}_{\mathrm{eff}}\mapsto-\mathbf{p}_{\mathrm{eff}}$ | recover the same mass-shell comparison branch |
+| $\mathbf{S}_{\mathrm{eff}}$ | preserve spin comparison data while conjugating the carrier record | treat spin as axial under spatial reflection | reverse the motion-coupled comparison orientation | preserve spin magnitude and $4\pi$ closure class |
+| $h_{\mathrm{eff}}$ | map to the antiparticle helicity comparison | flip helicity when momentum is reflected | flip helicity when motion is reversed | restore the allowed helicity comparison after the combined operation |
+| $\Pi_{\mathrm{weak}}$ | map particles to antiparticles without inventing right-handed charged-current coupling | expose the parity-violating weak-sector mismatch as an effective violation | expose allowed T or CP violations as flavor-sector residuals | leave $(CPT)_{\mathrm{eff}}$ compatible with validated weak data |
+| $\mathsf{s}_{\mathrm{sh}}$ | preserve generation shielding class unless the reaction ledger changes it | preserve generation shielding class | preserve generation shielding class | commute with $T_{\mathrm{gen}}$ up to the generation residual |
+| $\mathcal{P}$ | conjugate source and product provenance rows | reverse the observer chart, not the substrate history | compare the reversed effective process with the admissible history record | keep energy, $\mathbf{p}$, $\mathbf{J}$, polarity, and remnant rows balanced |
+
+The local proof target is therefore not just a $4\pi$ lift. It is a lifted Noether-core state whose coarse spinor chart admits effective $C_{\mathrm{eff}}$, $P_{\mathrm{eff}}$, and $T_{\mathrm{eff}}$ operations compatible with weak chirality, charge conjugation, and the generation/mixing ledgers. If no such effective operations can be derived from $\Lambda_{\text{NC}}$, then the ordered-core route may reproduce a rotation double cover while still failing the fermion symmetry benchmark.
+
 This is a theorem target, not a completed proof. The causal-action functional adds a promising topological handle through causal writhe,
 
 $$

@@ -132,6 +132,8 @@ In this chapter, any unification proposal must be tested against at least three 
 
 This matters because many ambitious frameworks succeed first as containers. They show that several sectors can be written inside one algebra, bundle, or symmetry group. That can be mathematically illuminating and historically useful. But container success is weaker than mechanism success. If chirality, flavor, and quantitative fit remain external inputs, then the framework has organized known content without yet explaining why that content has the form it does.
 
+Exceptional-group and grand-unified programs sharpen this rule. Embeddings based on groups such as $SO(10)$, $E_7$, or $E_8$ can reveal real mathematical regularities, including compact representation packaging, spinor structure, and possible threefold family organization. Their durable value for this corpus is as comparison pressure: can a deeper account recover the same gauge representations, chirality asymmetry, generation structure, and CPT-compatible fermion bookkeeping while also explaining the absence of mirror matter, proton-instability channels, superpartners, and extra low-energy gauge modes? If those absences are supplied by disconnected suppressions, the proposal remains a symmetry container rather than a closure mechanism.
+
 The same rule applies when assessing whether $\mathbb{A}\mathbb{A}\mathbb{A}$ has actually improved on a prior unification attempt. Replacing a Lie-algebra container with an assembly-and-medium ontology only counts as progress if the new ontology closes the same hard gates rather than merely moving them.
 
 Naturalness and unification are inference pressures, not independent laws. They gain weight when they compress tested constraints or predict new recovered structure; they lose weight when expected stabilizing sectors fail to appear in tested regimes. $\mathbb{A}\mathbb{A}\mathbb{A}$ should preserve the pressure without turning elegance, simplicity, or high-energy symmetry into ontology.
@@ -2903,7 +2905,7 @@ In a mature stack only the empirically successful large-scale summaries survive,
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Conformal Cyclic Cosmology is that its native variables are too easily promoted from successful descriptors into final ontology. A second tension is evidential: proposed pre-eon signals or conformal boundary traces remain underdetermined unless they are cleanly separated from standard CMB statistics, foregrounds, and source-model freedom. Until those tensions are resolved, the concept cannot function as ultimate explanation even if it remains useful as a comparison framework.
+The clearest limiting tension for Conformal Cyclic Cosmology is that its native variables are too easily promoted from successful descriptors into final ontology. A second tension is evidential: proposed pre-eon signals or conformal boundary traces remain underdetermined unless they are cleanly separated from standard CMB statistics, foregrounds, and source-model freedom. Localized CMB-spot claims, including proposed Hawking-point interpretations, therefore remain cross-instrument anomaly tests until their WMAP/Planck consistency, foreground residuals, and look-elsewhere statistics are fixed independently of the cyclic-history interpretation. Until those tensions are resolved, the concept cannot function as ultimate explanation even if it remains useful as a comparison framework.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 

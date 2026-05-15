@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1137
+      "sections": 1140
     }
   },
   "tocRoot": {
@@ -1749,6 +1749,14 @@
                     "markdownPath": "content/markdown/aaa/spacetime/observer-framework.md",
                     "markdownSection": "Ontic and Epistemic Levels",
                     "sectionKey": "ontic and epistemic levels",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Boundary-Wake Covariance Scaffold",
+                    "markdownPath": "content/markdown/aaa/spacetime/observer-framework.md",
+                    "markdownSection": "Boundary-Wake Covariance Scaffold",
+                    "sectionKey": "boundary wake covariance scaffold",
                     "headingLevel": 2
                   },
                   {
@@ -4392,6 +4400,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "External Gravitational Which-Path Benchmark",
+                "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
+                "markdownSection": "External Gravitational Which-Path Benchmark",
+                "sectionKey": "external gravitational which path benchmark",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Closure Targets",
                 "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
                 "markdownSection": "Closure Targets",
@@ -5824,6 +5840,14 @@
                 "markdownPath": "content/markdown/aaa/cosmology/CMB.md",
                 "markdownSection": "CMB Dipole and Matter-Dipole Gate",
                 "sectionKey": "cmb dipole and matter dipole gate",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Localized CMB Feature Validation",
+                "markdownPath": "content/markdown/aaa/cosmology/CMB.md",
+                "markdownSection": "Localized CMB Feature Validation",
+                "sectionKey": "localized cmb feature validation",
                 "headingLevel": 2
               },
               {

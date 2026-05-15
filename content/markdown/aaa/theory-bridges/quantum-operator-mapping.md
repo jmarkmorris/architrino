@@ -51,7 +51,7 @@ Wavefunction collapse is formalized as a deterministic, non-linear relaxation pr
 
 The measurement apparatus acts as a massive, thermodynamically irreversible perturbation introduced into the local Noether Sea. This external energy gradient overwhelms the meta-stable precessional states (superpositions). Unable to maintain the delicate limit cycle against the massive influx of external causal wakes, the tri-binary assembly undergoes attractor relaxation, deterministically spiraling into the deepest available basin of attraction (the measured eigenstate).
 
-Decoherence is the continuous loss of path-history coherence due to uncharacterized background fluctuations in the local Noether-Sea state. It is an artifact of treating the observer-level vacuum as empty or structureless rather than as the effective quiet limit of a dense medium of fluctuating assemblies.
+Decoherence is the continuous loss of path-history coherence due to unresolved fluctuations in the local Noether-Sea state. It is an artifact of treating the observer-level vacuum as empty or structureless rather than as the effective quiet limit of a dense medium whose assemblies are still dynamically active.
 
 ## Falsifiability and Observables
 
@@ -59,7 +59,7 @@ Decoherence is the continuous loss of path-history coherence due to uncharacteri
 * **Coherence Limits:** The model predicts a medium-dependent contribution to coherence loss, scaling with local Noether-core density, represented by $\rho_{\text{core}}(\mathbf{x},t)$ or normalized density $n(\mathbf{x},t)$. This is a closure target alongside standard thermal, electromagnetic, and apparatus-noise channels, not an already-derived absolute bound.
 
 ## Statistical Measure and the Born Rule Emergence
-While the trajectory of a single tri-binary under measurement is strictly deterministic, macroscopic observables yield robust probabilistic distributions. This effective randomness originates from the microstate-sensitive initial conditions of the background Noether Sea. 
+While the trajectory of a single tri-binary under measurement is strictly deterministic, macroscopic observables yield robust probabilistic distributions. This effective randomness is the observer-level summary of microstate-sensitive initial conditions in the local Noether Sea.
 
 * **Invariant Measure Target:** The fluctuating local Noether-Sea assemblies should define, or approximate, an invariant probability measure $\mu(\Gamma_{\text{eff}})$ on the effective phase space.
 * **Basin Volume Mapping Target:** The probability $P_k$ of relaxing into a specific eigenstate $|k\rangle$ should be derived from the phase-space volume of its corresponding attractor basin $\mathcal{B}_k$, weighted by the inferred measure: $P_k = \int_{\mathcal{B}_k} d\mu(\Gamma_{\text{eff}})$.

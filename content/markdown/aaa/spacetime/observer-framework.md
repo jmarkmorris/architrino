@@ -95,6 +95,63 @@ N_{\text{sea}}|_{\Omega}(t)
 $$
 where $N_{\text{sea}}|_{\Omega}(t)$ denotes the locally resolved Noether-Sea state. A Physical Observer who models only $X_\Omega(t)$ has omitted finite-speed signals, incoming causal wakes, and path-history branches crossing the boundary. That omission can make local prediction fail without implying indeterminism in the $\mathbb{U}_{\text{now}}$ universe-state perspective, because the complete state includes the boundary wake data and the path-history ledger needed for deterministic continuation.
 
+The same finite-boundary form is the local substitute for placing a hypothetical observer at infinity in compact strong-field comparisons. For black-hole and cosmology problems, $\mathcal{B}_{\partial\Omega}$ is the controlled interface between what a Physical Observer can access and what the complete state must carry for deterministic continuation.
+
+## Boundary-Wake Covariance Scaffold
+
+The boundary term above also supplies the native home for covariance matrices used by observer-level measurement diagnostics. A covariance is not fundamental randomness. It is a finite-access summary of boundary wake histories, detector states, and Noether-Sea variables not resolved by a Physical Observer.
+
+Let $\widehat{\mathcal{B}}_{\partial\Omega}(t;\theta)$ be the boundary wake history retained by an observer model record $\theta$. The unresolved boundary residual is
+$$
+\delta\mathcal{B}_{\partial\Omega}(t;\theta)
+=
+\mathcal{B}_{\partial\Omega}(t)
+-
+\widehat{\mathcal{B}}_{\partial\Omega}(t;\theta).
+$$
+For a readout channel $Y_A(t)$, define the residual induced by unresolved boundary histories as
+$$
+\delta Y_A(t;\mathcal{B},\theta)
+=
+Y_A(t;\mathcal{B},\theta)
+-
+\left\langle
+Y_A(t;\mathcal{B},\theta)
+\right\rangle_{\mu_{\Omega,\theta}}.
+$$
+Here $\mu_{\Omega,\theta}$ is a coarse-grained conditional measure over complete states whose resolved projection agrees with the Physical Observer's record $\theta$. It is an epistemic measure over unresolved deterministic histories, not a new substrate law.
+
+The boundary-wake covariance is then
+$$
+N^{\mathrm{bw}}_{AB}(t,t';\theta)
+=
+\int
+\delta Y_A(t;\mathcal{B},\theta)\,
+\delta Y_B(t';\mathcal{B},\theta)\,
+d\mu_{\Omega,\theta}(\mathcal{B}).
+$$
+It must be positive semidefinite as a channel covariance:
+$$
+\int\!\!\int
+f_A(t)\,
+N^{\mathrm{bw}}_{AB}(t,t';\theta)\,
+f_B(t')\,dt\,dt'
+\ge 0
+$$
+for every resolved test channel $f_A(t)$ on the observation window.
+
+A detector model may add separately calibrated residuals,
+$$
+N_{AB}(t,t';\theta)
+=
+N^{\mathrm{bw}}_{AB}(t,t';\theta)
++
+N^{\mathrm{det}}_{AB}(t,t')
++
+N^{\mathrm{env}}_{AB}(t,t').
+$$
+The same decomposition should be reused across weak-probe, interferometric, and precision-gravity comparisons. If a proposed measurement model must retune the unresolved boundary covariance separately for each branch or observable, the observer-level closure has failed rather than discovered a new ontology.
+
 ## Absolute and Operational Simultaneity
 
 At the ontic level, simultaneity is absolute. Two events

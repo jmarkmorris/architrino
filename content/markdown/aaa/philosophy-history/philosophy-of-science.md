@@ -335,6 +335,8 @@ $$
 
 where $D$ is the data product, $A_{\mathrm{inst}}$ records apparatus and selection assumptions, $K_{\mathrm{cal}}$ records calibration and nuisance modeling, $M_{\mathrm{eff}}$ is the effective formal model, $O_{\mathrm{ont}}$ is the ontological reading under review, and $R_{\mathrm{fail}}$ is the residual pattern that would reject the proposed reinterpretation. This keeps crisis governance from sliding into either uncritical consensus defense or unconstrained heterodoxy.
 
+The data product in this record is always a finite observation record. In practice $D$ should be read as $D_{W,\epsilon}$: measurements gathered over a declared observation window $W$ with an uncertainty or tolerance vector $\epsilon$. Densities, exact symmetries, zero-mass claims, continuum fields, and limiting parameters enter the review only after the finite record has been passed through $A_{\mathrm{inst}}$, $K_{\mathrm{cal}}$, and $M_{\mathrm{eff}}$. This prevents an exact effective variable from being mistaken for the raw observable that originally constrained it.
+
 A staged discovery review can use the same record before an interpretation is treated as settled. Let $\theta$ denote the candidate claim and let $R_i(\theta)$ be the retained residual tests extracted from $R_{\mathrm{fail}}$, with tolerances $\epsilon_i$ fixed before the announcement standard is applied. The claim is mature only when
 
 $$

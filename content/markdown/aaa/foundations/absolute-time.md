@@ -182,6 +182,16 @@ Because $t$ is universal and absolute, we can unambiguously define the past (all
 
 Each architrino carries a unique **provenance** label tied to its worldline history. That provenance is strictly monotone in $t$: exchanging labels is not a mere relabeling but an operation that changes the physical history of the participating entities. Any bookkeeping, conservation statement, or coarse-graining must explicitly state when provenance has been suppressed or when identical-looking exchanges are being treated at the effective level.
 
+Consequently, an exact global flip or permutation of architrinos is not a substrate symmetry unless it preserves the full path-history and causal-wake record. Schematically, if a universe state is written as
+
+$$
+\mathbb{U}_{\text{now}}\equiv S(t)
+=
+\{(\mathbf{x}_i(t),\mathbf{v}_i(t),q_i,H_i(t))\}_i,
+$$
+
+where $H_i(t)$ denotes the path-history and provenance record carried by architrino $i$, then a proposed exchange is exact only when it preserves the instantaneous data and the corresponding $H_i(t)$ records. Generic architrinos are therefore not interchangeable at the ontic level even when finite observers can treat their exposed properties as effectively identical.
+
 The architrino-specific identity claim is developed further in [Architrino](architrino.md).
 
 ## Geodesics and the Absence of Temporal Dynamics
