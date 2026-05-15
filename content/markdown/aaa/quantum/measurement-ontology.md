@@ -80,6 +80,63 @@ In plain terms, a record needs both:
 
 This is why a microscopic interaction is not automatically a measurement, while a detector avalanche, pointer shift, bubble track, or durable bit-flip is.
 
+The same distinction can be made quantitative by comparing the full apparatus-target flow with a diagnostic flow in which the candidate record channel is allowed to continue while still-unresolved cross-basin coherent influence is suppressed. Let $\Phi_t$ denote the full reduced flow on the apparatus-target state, let $\Phi_t^{(k)}$ denote that diagnostic flow for a candidate basin $B_k$, and let $\|\cdot\|_R$ be the readout norm on the record variable. Define
+$$
+\Delta_{\mathrm{rec}}(t;k)
+=
+\sup_{\Gamma_0\in B_k}
+\frac{
+\left\|
+R(A(\Phi_t(\Gamma_0)))-
+R(A(\Phi_t^{(k)}(\Gamma_0)))
+\right\|_R
+}{R_*}.
+$$
+The candidate record is autonomous on the persistence window only if
+$$
+\sup_{t\in[\tau_{\text{meas}},\,\tau_{\text{meas}}+T_{\text{rec}}]}
+\Delta_{\mathrm{rec}}(t;k)
+\le
+\varepsilon_{\mathrm{rec}},
+\qquad
+\varepsilon_{\mathrm{rec}}\ll 1.
+$$
+If $\Delta_{\mathrm{rec}}=O(1)$ on that window, the apparatus has not yet produced an independent record in the ontology of this chapter. The correct description is still an unresolved interference or weak-probe regime, not a completed branch selection.
+
+## Weak-Probe Limit
+
+A weak measurement is not a different ontology. It is the small-coupling regime of the same apparatus-target dynamics in which a probe samples the target without creating a record-forming separatrix crossing on the retained trial window. Let $\epsilon$ denote the probe-coupling strength and let $(X_\epsilon,A_\epsilon)$ be the coupled trajectory under that probe. The no-record condition is
+$$
+|R(A_\epsilon(t_1))-R(A_{\text{pre}})|\le R_*,
+\qquad
+\tau_{\text{meas}}^{(\epsilon)}>t_1-t_0,
+$$
+where
+$$
+\tau_{\text{meas}}^{(\epsilon)}
+=
+\inf\{t>t_0:\Sigma(X_\epsilon(t),A_\epsilon(t))=0\}.
+$$
+Thus the individual retained interaction remains below the same record threshold used above. It may still produce a small pointer displacement $Y(A)$ whose ensemble mean is visible:
+$$
+\left\langle
+Y(A_\epsilon(t_1))-Y(A_{\text{pre}})
+\right\rangle_{\mathcal{E}}
+=
+O(\epsilon),
+\qquad
+\mathrm{Var}_{\mathcal{E}}\!\left(Y(A_\epsilon(t_1))\right)=O(1).
+$$
+The signal is therefore statistical: many similarly prepared trials can expose the weak channel even though no single trial has generated a durable record of the target variable.
+
+Post-selection does not add future causation. It is ordinary conditioning on a later record-forming event. If $\mathcal{R}_f$ is the accepted later record class, the post-selected ensemble measure is
+$$
+\mu_{\mathrm{post}}(B)
+=
+\mu\!\left(B\mid R_{\mathrm{post}}\in\mathcal{R}_f\right).
+$$
+This conditional measure can sharpen which weak-probe displacements are averaged, but all substrate evolution still runs forward in absolute time. The closure target is to derive the weak-probe response and its post-selected statistics from the same deterministic flow, separatrix geometry, and record criterion used for ordinary measurements.
+
 ## Relation to the Wavefunction
 
 The wavefunction remains an effective observer-level object. In a measurement context it tracks:
@@ -89,6 +146,8 @@ The wavefunction remains an effective observer-level object. In a measurement co
 - and the observer's epistemic uncertainty about which branch the deterministic microdynamics will realize.
 
 Before the threshold crossing, the effective description may remain approximately unitary. After the record-forming crossing, the appropriate effective description changes because the system has entered a different attractor basin and the apparatus/environment has stored that branch information irreversibly for practical purposes.
+
+Decoherence remains indispensable at the effective level because it estimates how off-branch interference becomes inaccessible to the apparatus and surrounding environment. It does not, by itself, select the record. A nearly diagonal reduced description can still leave the ontology owing the first crossing time, the realized basin, and the persistence condition defined above. Interpretations that treat decoherence alone as outcome selection are therefore retained only as inference shorthand unless they are backed by a separatrix-crossing and record-locking model.
 
 Thus "collapse" is not an extra physical law. It is the observer's forced update once the ontology has already selected a branch.
 
@@ -129,6 +188,12 @@ $$
 with $B_k$ the record-forming attractor basins and $\mu_*$ the relevant invariant or coarse-grained measure.
 
 The measurement ontology therefore connects directly to the basin-measure program in [wavefunction-ontology.md](./wavefunction-ontology.md) and the separatrix-time program in [superposition-mechanism.md](../theory-bridges/superposition-mechanism.md).
+
+This also fixes how external probability geometries should be used. A comparison framework may assign a natural measure to a space of possible configurations or records, but that measure is not automatically the Born rule. In this chapter, a candidate record map $\pi:\mathcal{M}\to\mathcal{R}$ is admissible only if the probabilities are pulled forward from the same deterministic flow that creates the apparatus record:
+$$
+P(R_k)=\mu_*\!\left(\pi^{-1}(R_k)\right).
+$$
+The source of $\mu_*$ is therefore part of the measurement closure, not an optional interpretive add-on.
 
 ## External Penrose-Diosi Benchmark
 

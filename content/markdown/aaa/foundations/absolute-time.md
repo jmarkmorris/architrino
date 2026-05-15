@@ -65,6 +65,22 @@ $$
 
 **Remark on the Thermodynamic Arrow of Time:** Any observed arrow of time in thermodynamic, biological, or cosmological systems, such as entropy increase, aging, or expansion, is an **emergent property** arising from the dynamics of assemblies and fields, not a kinematic postulate. The background time manifold $\mathbb{R}$ is symmetric under time reversal $t \mapsto -t$; the asymmetry emerges at macroscopic scales from initial conditions and dynamics.
 
+The entropy arrow is therefore a finite-window statement, not a definition of time itself. For a chosen coarse-graining $\mathcal{Q}$ and observer-accessible window $W(t)$, an entropy summary has the schematic form
+$$
+S_{\mathcal{Q},W}(t)=k_B\log \mu\!\left(\Gamma_{\mathcal{Q},W(t)}\right),
+$$
+where $\Gamma_{\mathcal{Q},W(t)}$ is the set of microstates compatible with the retained macroscopic records in that window. This expression is meaningful only after the measure, coarse-graining, and access window are specified. In cosmology or other unbounded settings, the relevant bookkeeping must also expose boundary flux:
+$$
+\frac{dS_{\mathcal{Q},W}}{dt}
+=
+\sigma_W(t)
+-
+\int_{\partial W(t)}\mathbf{J}_S\cdot\hat{\mathbf{n}}\,dA
++
+\mathcal{R}_{\mathcal{Q}}(t),
+$$
+with $\sigma_W$ the local production term, $\mathbf{J}_S$ the entropy flux through the boundary, and $\mathcal{R}_{\mathcal{Q}}$ the residual created by changing the coarse-graining or record set. Plain language: entropy can diagnose an emergent arrow inside a stated physical and inferential window, but it does not supply the absolute ordering parameter $t$.
+
 ## Absolute and Universal Nature
 
 The time coordinate $t$ is **absolute and universal**:

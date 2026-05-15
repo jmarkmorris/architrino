@@ -104,6 +104,35 @@ For BAO and CMB distance anchors, the corresponding requirement is frame consist
 
 As of April 2026, DESI has completed the observations for its originally planned five-year survey, but the first dark-energy results from the full five-year dataset are expected in 2027. The current public pressure comes from the 2025 first-three-year BAO analysis: combined with CMB, supernova, and weak-lensing data, it strengthens comparison fits with time-varying $w(a)$ relative to a pure constant-$\Lambda$ description. The safe $\mathbb{A}\mathbb{A}\mathbb{A}$ use is therefore a calibration gate: preserve the BAO distance ladder, supernova residual model, CMB anchor, lensing/growth consistency, and parameter-covariance record before promoting any Noether-Sea relaxation interpretation.
 
+The shared calibration gate can be written as a residual criterion. Let
+
+$$
+\mathcal{X}_{\mathrm{cos}}
+=
+\{\mathrm{SN},\mathrm{BAO},\mathrm{CMB},\mathrm{WL},\mathrm{RSD},\mathrm{BBN}\}.
+$$
+
+For a candidate medium-state parameter record $\theta_{\mathrm{sea}}$, define
+
+$$
+\mathcal{R}_{\mathrm{shared}}(\theta_{\mathrm{sea}})
+=
+\sum_{X\in\mathcal{X}_{\mathrm{cos}}}
+r_X(\theta_{\mathrm{sea}},\nu_X)^{T}
+C_X^{-1}
+r_X(\theta_{\mathrm{sea}},\nu_X)
+\;+\;
+\lambda
+\sum_{X<Y}
+\left\lVert
+\Pi_X\theta_{\mathrm{sea}}
+-
+\Pi_Y\theta_{\mathrm{sea}}
+\right\rVert^2.
+$$
+
+Here $r_X$ is the residual vector for observable family $X$, $\nu_X$ records nuisance and calibration variables, $C_X$ is the covariance model, and $\Pi_X$ projects the shared medium-state record into the variables consumed by that observable family. A dark-energy interpretation is promotable only if both the ordinary residuals and the cross-projection penalty can be controlled without replacing $\theta_{\mathrm{sea}}$ separately for each pipeline.
+
 ## Effective Friedmann Framework
 
 ### Background Equations

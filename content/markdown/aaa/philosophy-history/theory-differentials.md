@@ -134,6 +134,8 @@ This matters because many ambitious frameworks succeed first as containers. They
 
 The same rule applies when assessing whether $\mathbb{A}\mathbb{A}\mathbb{A}$ has actually improved on a prior unification attempt. Replacing a Lie-algebra container with an assembly-and-medium ontology only counts as progress if the new ontology closes the same hard gates rather than merely moving them.
 
+Naturalness and unification are inference pressures, not independent laws. They gain weight when they compress tested constraints or predict new recovered structure; they lose weight when expected stabilizing sectors fail to appear in tested regimes. $\mathbb{A}\mathbb{A}\mathbb{A}$ should preserve the pressure without turning elegance, simplicity, or high-energy symmetry into ontology.
+
 ### Ontological Area
 
 Use one primary area:
@@ -778,6 +780,8 @@ In a mature stack this survives as an effective closure law or modeling language
 
 The clearest limiting tension for Grand Unified Theories is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
+A second tension is methodological: high-energy symmetry can be treated as the default ontology before proton stability, chirality, flavor, and precision non-observation constraints have been closed. Under the unification filter, a GUT-style symmetry passes only when it reduces arbitrariness in the recovered record rather than relocating it.
+
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
@@ -822,6 +826,8 @@ In a mature stack this survives as an effective closure law or modeling language
 #### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Supersymmetry is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+
+Its naturalness role should therefore be treated as a conditional repair, not as a guaranteed low-energy sector. Null searches in the expected stabilizer regime convert SUSY from a closure target into a constrained comparison framework unless a $\mathbb{A}\mathbb{A}\mathbb{A}$-native derivation independently requires the same spectrum.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -4517,6 +4523,12 @@ Entropy gets a great deal right operationally: it is part of the inherited predi
 
 In the neutral comparative stack, Entropy sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Recovered as Effective Limit**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
+The retained object is explicitly windowed. For a coarse-graining $\mathcal{Q}$ and access region $W(t)$, entropy should be read as a measure over compatible microstates,
+$$
+S_{\mathcal{Q},W}(t)=k_B\log \mu\!\left(\Gamma_{\mathcal{Q},W(t)}\right).
+$$
+The expression does useful work only after the finite measure, coarse-graining, and boundary conditions are declared. In an unbounded cosmology or a source-and-sink medium history, the relevant arrow is not "entropy of the universe" as a bare phrase; it is the balance between production, boundary flux, and record/coarse-graining residuals in the retained window.
+
 #### 5. Transition-Period Relevance
 
 These remain central during migration because they travel across many theories and often carry hidden ontological assumptions that have to be unpacked before replacement work can stay disciplined. For Entropy specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
@@ -4606,6 +4618,18 @@ The Laws of Thermodynamics gets a great deal right operationally: it is part of 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, The Laws of Thermodynamics sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Recovered as Effective Limit**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
+
+The second-law comparison is therefore strongest for finite, thermally mixed, or otherwise well-specified effective systems. It becomes weaker when extrapolated to the whole cosmological medium unless the candidate model supplies the flux and access terms:
+$$
+\frac{dS_{\mathcal{Q},W}}{dt}
+=
+\sigma_W(t)
+-
+\int_{\partial W(t)}\mathbf{J}_S\cdot\hat{\mathbf{n}}\,dA
++
+\mathcal{R}_{\mathcal{Q}}(t).
+$$
+This is not a rejection of thermodynamics. It is the domain-of-validity condition that lets thermodynamic success remain intact without converting a bounded-system law into final cosmological ontology.
 
 #### 5. Transition-Period Relevance
 

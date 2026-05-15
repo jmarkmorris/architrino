@@ -318,6 +318,23 @@ Another methodological error appears when the failure of one concrete model is t
 
 Scientific consensus also requires more careful treatment than either naive trust or blanket dismissal allows. Consensus is not simply identical to arbitrary belief, because it is often grounded in real evidential convergence. Yet under crisis conditions, especially in fields with expensive experiments, long training pipelines, strong hierarchy, and high career risk for dissent, consensus may also reflect institutional stabilization of a dominant interpretation. The method should therefore ask not only what the consensus is, but how it was formed, which alternatives received serious technical scrutiny, and whether social cost has narrowed the visible theory space.
 
+Theory-guided experiment must also be handled explicitly. In data-starved foundational regimes, instruments, reduction variables, and auxiliary hypotheses are usually shaped by the dominant theory. The absence of a single decisive anomaly is therefore not identical to ontological closure. It also does not make every alternative equally live. It raises the burden on a replacement architecture: it must name the preserved data product, the accepted calibration assumptions, the effective model being rederived, the ontological inference being challenged, and the residual that would count against the replacement.
+
+For a crisis review, the minimum inference record is:
+
+$$
+\left(
+D,\;
+A_{\mathrm{inst}},\;
+K_{\mathrm{cal}},\;
+M_{\mathrm{eff}},\;
+O_{\mathrm{ont}},\;
+R_{\mathrm{fail}}
+\right),
+$$
+
+where $D$ is the data product, $A_{\mathrm{inst}}$ records apparatus and selection assumptions, $K_{\mathrm{cal}}$ records calibration and nuisance modeling, $M_{\mathrm{eff}}$ is the effective formal model, $O_{\mathrm{ont}}$ is the ontological reading under review, and $R_{\mathrm{fail}}$ is the residual pattern that would reject the proposed reinterpretation. This keeps crisis governance from sliding into either uncritical consensus defense or unconstrained heterodoxy.
+
 ### Internal Tensions
 
 What this subject gets right is that science needs more than sharp falsifiers. Some fields fail not by one decisive contradiction but by long accumulation of unresolved tensions under a still-productive shell. A method that cannot register that pattern is incomplete. Crisis governance also gets right that detection without procedure is not enough. Once warning signs are identified, there must be a disciplined response rather than vague dissatisfaction.

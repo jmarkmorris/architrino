@@ -42,6 +42,45 @@ $$
 A_\mu\mapsto A_\mu+\frac{1}{g_1}\partial_\mu\alpha.
 $$
 
+### Aharonov-Bohm Holonomy Benchmark
+
+The Aharonov-Bohm effect is the sharp U(1) benchmark because it separates local force from phase transport. The validated observable is not merely that an effective connection can be written, but that two force-free arms can accumulate a relative phase fixed by enclosed flux. In this chapter the benchmark is therefore a closure target for the emergent connection, not evidence that $A_\mu$ is substrate ontology.
+
+For two interferometer arms $\gamma_1$ and $\gamma_2$ whose local force channel vanishes along the arms,
+$$
+\mathbf{F}_{\mathrm{eff}}\big|_{\gamma_1}
+=
+\mathbf{F}_{\mathrm{eff}}\big|_{\gamma_2}
+=
+\mathbf{0},
+$$
+the coarse-grained wake/action ledger must still produce the observer-level phase shift
+$$
+\Delta\phi_{\mathrm{AB}}^{\mathbb{A}\mathbb{A}\mathbb{A}}
+=
+\frac{1}{\hbar_{\mathrm{eff}}}
+\left(
+\mathcal{S}_{\mathrm{wake}}[\gamma_1]
+-
+\mathcal{S}_{\mathrm{wake}}[\gamma_2]
+\right)
+\stackrel{!}{=}
+\frac{q_{\mathrm{eff}}}{\hbar}\Phi_B
+\pmod{2\pi}.
+$$
+Here $\mathcal{S}_{\mathrm{wake}}[\gamma_a]$ is the effective action accumulated by the coarse-grained causal-wake history assigned to arm $\gamma_a$, and $\Phi_B$ is the standard enclosed magnetic-flux observable. A useful residual is
+$$
+\Delta_{\mathrm{AB}}
+=
+\sup_{\Phi_B}
+\left|
+\Delta\phi_{\mathrm{AB}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\Phi_B)
+-
+\frac{q_{\mathrm{eff}}}{\hbar}\Phi_B
+\right|.
+$$
+The U(1) closure passes this benchmark only if $\Delta_{\mathrm{AB}}$ remains below the declared interferometric tolerance while the same effective connection also preserves charge continuity and ordinary electromagnetic force recovery. If the phase recovery requires a local force on the arms, a separate phase fit, or a literal promotion of $A_\mu$ to substrate ontology, this gauge bridge has failed at the AB gate.
+
 ## SU(2) Weak Sector
 
 Let $\chi$ denote the local weak doublet (effective exposed-triad channel).

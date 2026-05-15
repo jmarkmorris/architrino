@@ -527,6 +527,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [No Heisenberg Cut](../../../markdown/aaa/quantum/measurement-ontology.md?section=No+Heisenberg+Cut)
     - [Minimal Dynamical Model](../../../markdown/aaa/quantum/measurement-ontology.md?section=Minimal+Dynamical+Model)
     - [What Makes an Interaction a Record](../../../markdown/aaa/quantum/measurement-ontology.md?section=What+Makes+an+Interaction+a+Record)
+    - [Weak-Probe Limit](../../../markdown/aaa/quantum/measurement-ontology.md?section=Weak-Probe+Limit)
     - [Relation to the Wavefunction](../../../markdown/aaa/quantum/measurement-ontology.md?section=Relation+to+the+Wavefunction)
     - [Measurement Channels](../../../markdown/aaa/quantum/measurement-ontology.md?section=Measurement+Channels)
     - [Born-Rule Interface](../../../markdown/aaa/quantum/measurement-ontology.md?section=Born-Rule+Interface)

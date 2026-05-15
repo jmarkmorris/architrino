@@ -99,6 +99,41 @@ The effective metric subclass must also reproduce the standard 1PN orbital corre
 
 must all be reproduced by the same $(\gamma_{\text{eff}},\beta_{\text{eff}},\alpha_i)$ package already used for light and clock observables.
 
+### Low-Energy Quantum-Gravity EFT Benchmark
+
+The classical weak-field observables above do not exhaust the recovery gate. Standard low-energy effective-field-theory calculations treat GR as a valid long-distance theory and separate unknown high-energy local terms from calculable infrared behavior. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not take the quantized metric as microscopic ontology, but it must recover the same long-distance observer-level data product where the expansion is controlled.
+
+For two slowly moving masses, use the schematic benchmark
+
+$$
+V_{\mathrm{GR\text{-}EFT}}(r)
+=
+-\frac{G_N m_1 m_2}{r}
+\left[
+1
++\alpha_{\mathrm{1PN}}\frac{G_N(m_1+m_2)}{c_0^2 r}
++\alpha_{\hbar}\frac{G_N\hbar}{c_0^3 r^2}
++\cdots
+\right],
+$$
+
+where $\alpha_{\mathrm{1PN}}$ and $\alpha_{\hbar}$ are fixed by the standard low-energy calculation rather than fitted as new $\mathbb{A}\mathbb{A}\mathbb{A}$ parameters. A useful closure residual is
+
+$$
+\mathcal{R}_{\mathrm{qG}}(r;\theta)
+=
+\left|
+\frac{
+V_{\mathbb{A}\mathbb{A}\mathbb{A}}(r;\theta)
+-V_{\mathrm{GR\text{-}EFT}}(r)
+}{
+G_N m_1 m_2/r
+}
+\right|.
+$$
+
+This residual is not a demand that the Noether Sea be rewritten as a graviton field. It is a demand that the same weak-field constitutive record that yields redshift, lensing, and wave propagation also recover the long-distance quantum correction in the regime where the effective theory is predictive.
+
 ## Preferred-Frame Leakage
 
 Because the ontology contains an absolute frame, the observer-level phenomenology must still suppress preferred-frame signatures.
@@ -139,16 +174,18 @@ This chapter is closed only if the spacetime branch can demonstrate all of the f
 2. Shapiro delay,
 3. light bending,
 4. 1PN orbital corrections,
-5. negligible preferred-frame leakage in tested regimes,
-6. gravitational-wave speed, dispersion, and two-mode polarization compatibility.
+5. the standard long-distance quantum-gravity EFT correction as an observer-level weak-field benchmark,
+6. negligible preferred-frame leakage in tested regimes,
+7. gravitational-wave speed, dispersion, and two-mode polarization compatibility.
 
-The same coefficient set must survive all six.
+The same coefficient set must survive all seven.
 
 ## Falsification Gate
 
 The GR-observables interface fails if any of the following occur:
 
 - redshift, lensing, and Shapiro delay require different constitutive parameter choices,
+- the long-distance quantum correction to the Newtonian potential requires an independent weak-field coefficient set,
 - preferred-frame leakage exceeds the bounds recorded in [constraint-ledger.md](../validation/constraint-ledger.md),
 - gravitational-wave propagation departs from observational timing, dispersion, or polarization bounds in validated regimes,
 - or the weak-field map cannot recover the GR coefficients to the required precision while remaining consistent with the rest of the substrate story.
@@ -162,6 +199,8 @@ $$
 \mathcal{C}_{\text{lensing}}
 \cap
 \mathcal{C}_{\text{1PN}}
+\cap
+\mathcal{C}_{\text{qG-EFT}}
 \cap
 \mathcal{C}_{\text{PF}}
 \cap

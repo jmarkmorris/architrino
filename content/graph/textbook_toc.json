@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1132
+      "sections": 1133
     }
   },
   "tocRoot": {
@@ -4316,6 +4316,14 @@
                 "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
                 "markdownSection": "What Makes an Interaction a Record",
                 "sectionKey": "what makes an interaction a record",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Weak-Probe Limit",
+                "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
+                "markdownSection": "Weak-Probe Limit",
+                "sectionKey": "weak probe limit",
                 "headingLevel": 2
               },
               {

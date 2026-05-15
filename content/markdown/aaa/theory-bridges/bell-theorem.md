@@ -190,6 +190,32 @@ $$
 
 The target is therefore not simply "$|S|>2$." The target is simultaneous recovery of the tested Bell correlations, preservation of no-signaling, and preservation of measurement independence while the observer-level compression still fails Bell's factorized local-response form.
 
+### Record-Reconstruction Guardrail
+
+Bell experiments end in ordinary records: detector clicks, settings logs, coincidence windows, and later statistical summaries. That observation is important because it keeps the evidence at the observer-accessible level. It is not, by itself, an explanation of the correlations. A completed $\mathbb{A}\mathbb{A}\mathbb{A}$ account must explain why the joint record distribution has the tested quantum form, not merely why final records exist.
+
+For a record map
+$$
+\pi_{AB}:\mathcal{M}_{AB}\to\mathcal{R}_A\times\mathcal{R}_B,
+$$
+the required joint distribution is
+$$
+P(a,b\mid\hat{m}_A,\hat{m}_B)
+=
+\mu_*^{AB}\!\left(
+\pi_{AB}^{-1}(a,b;\hat{m}_A,\hat{m}_B)
+\right).
+$$
+The guardrail is that this measure must simultaneously produce the singlet correlation, preserve the one-wing marginals, and avoid measurement-independence leakage:
+$$
+\Delta_{\mathrm{Bell}}\le\epsilon_{\mathrm{Bell}},
+\qquad
+\Delta_{\mathrm{NS}}^{A},\Delta_{\mathrm{NS}}^{B}\le\epsilon_{\mathrm{NS}},
+\qquad
+\Delta_{\mathrm{MI}}\le\epsilon_{\mathrm{MI}}.
+$$
+Thus record reconstruction is the output surface of the Bell program, not a substitute for the pair-provenance and apparatus-response derivation.
+
 ### Why Angular Momentum Must Come First
 
 The non-separability of $\lambda$ requires a precise physical account. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the first object is not an abstract spin label. It is the full angular-momentum ledger of a pair-creation event: architrino positions and velocities, binary frequencies, Noether-core orientations, active causal-root branches, self-action terms, and causal-wake history.

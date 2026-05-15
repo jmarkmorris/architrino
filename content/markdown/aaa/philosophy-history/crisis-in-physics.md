@@ -263,6 +263,8 @@ That empirical success matters methodologically. The crisis is not that the obse
 
 Any deeper account must therefore explain two things at once: why geometric methods work so well for gravitation and why quantum formalisms work so well for microscopic prediction. A replacement that cannot recover both achievements would not solve the crisis. It would simply trade one incompleteness for another.
 
+The evidence problem is also structural. Direct experiments at the overlap of quantum theory, gravity, and extreme cosmology are sparse, so the frontier is often guided by theory-shaped observables rather than by a single decisive falsifier. That does not weaken the recovery burden. It sharpens it: a proposed deeper account must state which data products survive, which auxiliary hypotheses are only effective, and which shared residual would count against the new layer assignment.
+
 ### What Remains Unresolved
 
 What is unsettled is how, or whether, both frameworks can be fundamental in their current form. Attempts to quantize geometry or geometrize quantum theory often reveal that one side is being forced to accommodate the other without a shared ontological base. The unresolved residue is the suspicion that at least one framework is already effective rather than primitive.
