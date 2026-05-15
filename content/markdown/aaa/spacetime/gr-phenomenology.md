@@ -26,6 +26,26 @@ $$
 
 The closure demand is not merely qualitative resemblance. The same constitutive map must jointly recover redshift, Shapiro delay, light bending, perihelion precession, and gravitational-wave propagation in the regimes where GR is already tested.
 
+### Causal-order and scale recovery
+
+Before the individual observables are checked, the effective metric map has to pass a structural check: Physical Observers must infer the same causal ordering, local clock scale, and negligible preferred-frame leakage that the GR comparison metric would provide in the validated regime. This is the phenomenology-side version of the causal-order diagnostic in [observer-framework.md](./observer-framework.md#effective-causal-order-recovery):
+$$
+\mathcal{R}_{\mathrm{causal}}(\theta)
+=
+d_{\mathrm{ord}}\!\left(\prec_{\mathrm{eff}}(\theta),\prec_{\mathrm{GR}}\right)
++
+\lambda_{\tau}
+\left\|
+\frac{d\tau_{\mathrm{eff}}}{dt}(\theta)
+-
+\frac{d\tau_{\mathrm{GR}}}{dt}
+\right\|_{W}
++
+\lambda_{\mathrm{PF}}
+\sum_{i=1}^{3}\alpha_i(\theta)^2.
+$$
+The causal-order term tests the effective light-cone structure, the clock term supplies local scale, and the preferred-frame term keeps the absolute substrate frame hidden below observational bounds. Passing this check does not replace the redshift, Shapiro, lensing, 1PN, quantum-gravity EFT, or gravitational-wave tests below; it prevents them from being fit by mutually incompatible causal and clock conventions.
+
 ## Weak-Field Observables That Must Match GR
 
 ### Gravitational redshift and clock rates
@@ -43,7 +63,7 @@ $$
 \frac{\Delta \Phi_N}{c_0^2}.
 $$
 
-Operationally, GPS offsets, Pound-Rebka, and related clock-comparison tests are the direct acceptance layer.
+Operationally, GPS offsets, Pound-Rebka, and related clock-comparison tests are the direct acceptance layer. Height-resolved optical-clock comparisons sharpen this layer: near Earth's surface, $\Delta\nu/\nu\approx gL/c_0^2$, so a $1\,\mathrm{mm}$ clock-sample separation corresponds to about $1.1\times10^{-19}$ and a $33\,\mathrm{cm}$ separation to about $3.6\times10^{-17}$. The same clock law must handle both separated clocks and extended collective clock samples without replacing the constitutive coefficients used for Shapiro delay and lensing.
 
 ### Shapiro delay
 
@@ -99,6 +119,41 @@ The effective metric subclass must also reproduce the standard 1PN orbital corre
 
 must all be reproduced by the same $(\gamma_{\text{eff}},\beta_{\text{eff}},\alpha_i)$ package already used for light and clock observables.
 
+### Low-Energy Quantum-Gravity EFT Benchmark
+
+The classical weak-field observables above do not exhaust the recovery gate. Standard low-energy effective-field-theory calculations treat GR as a valid long-distance theory and separate unknown high-energy local terms from calculable infrared behavior. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not take the quantized metric as microscopic ontology, but it must recover the same long-distance observer-level data product where the expansion is controlled.
+
+For two slowly moving masses, use the schematic benchmark
+
+$$
+V_{\mathrm{GR\text{-}EFT}}(r)
+=
+-\frac{G_N m_1 m_2}{r}
+\left[
+1
++\alpha_{\mathrm{1PN}}\frac{G_N(m_1+m_2)}{c_0^2 r}
++\alpha_{\hbar}\frac{G_N\hbar}{c_0^3 r^2}
++\cdots
+\right],
+$$
+
+where $\alpha_{\mathrm{1PN}}$ and $\alpha_{\hbar}$ are fixed by the standard low-energy calculation rather than fitted as new $\mathbb{A}\mathbb{A}\mathbb{A}$ parameters. A useful closure residual is
+
+$$
+\mathcal{R}_{\mathrm{qG}}(r;\theta)
+=
+\left|
+\frac{
+V_{\mathbb{A}\mathbb{A}\mathbb{A}}(r;\theta)
+-V_{\mathrm{GR\text{-}EFT}}(r)
+}{
+G_N m_1 m_2/r
+}
+\right|.
+$$
+
+This residual is not a demand that the Noether Sea be rewritten as a graviton field. It is a demand that the same weak-field constitutive record that yields redshift, lensing, and wave propagation also recover the long-distance quantum correction in the regime where the effective theory is predictive.
+
 ## Preferred-Frame Leakage
 
 Because the ontology contains an absolute frame, the observer-level phenomenology must still suppress preferred-frame signatures.
@@ -113,10 +168,10 @@ must be observationally negligible in validated regimes. This is not optional. I
 
 The medium picture must recover the observed near-luminal propagation of gravitational disturbances:
 $$
-\left|\frac{v_{\mathrm{GW}}-c}{c}\right| \ll 1.
+\left|\frac{v_{\mathrm{GW}}-c_0}{c_0}\right| \ll 1.
 $$
 
-In repo terms, gravitational waves are propagating collective disturbances of the Noether Sea. Their speed, dispersion, and polarization content must remain consistent with current timing bounds. Any large medium-dispersion signature in already-tested bands is excluded.
+In repo terms, gravitational waves are propagating collective disturbances of the Noether Sea. Their speed, dispersion, and polarization content must remain consistent with current timing bounds and detector-mode constraints. Any large medium-dispersion signature or unsuppressed scalar/vector/longitudinal response in already-tested bands is excluded. A cosmological-scale finite-range response must therefore decouple from the weak-field gravitational-wave channel through the same constitutive coefficient record, not through an observational-channel-specific patch.
 
 ## Strong-Field Regime
 
@@ -139,18 +194,20 @@ This chapter is closed only if the spacetime branch can demonstrate all of the f
 2. Shapiro delay,
 3. light bending,
 4. 1PN orbital corrections,
-5. negligible preferred-frame leakage in tested regimes,
-6. gravitational-wave speed compatibility.
+5. the standard long-distance quantum-gravity EFT correction as an observer-level weak-field benchmark,
+6. negligible preferred-frame leakage in tested regimes,
+7. gravitational-wave speed, dispersion, and two-mode polarization compatibility.
 
-The same coefficient set must survive all six.
+The same coefficient set must survive all seven.
 
 ## Falsification Gate
 
 The GR-observables interface fails if any of the following occur:
 
 - redshift, lensing, and Shapiro delay require different constitutive parameter choices,
+- the long-distance quantum correction to the Newtonian potential requires an independent weak-field coefficient set,
 - preferred-frame leakage exceeds the bounds recorded in [constraint-ledger.md](../validation/constraint-ledger.md),
-- gravitational-wave propagation departs from observational timing bounds in validated regimes,
+- gravitational-wave propagation departs from observational timing, dispersion, or polarization bounds in validated regimes,
 - or the weak-field map cannot recover the GR coefficients to the required precision while remaining consistent with the rest of the substrate story.
 
 In compact form, the required acceptance set is
@@ -162,6 +219,8 @@ $$
 \mathcal{C}_{\text{lensing}}
 \cap
 \mathcal{C}_{\text{1PN}}
+\cap
+\mathcal{C}_{\text{qG-EFT}}
 \cap
 \mathcal{C}_{\text{PF}}
 \cap

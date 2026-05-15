@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1123
+      "sections": 1142
     }
   },
   "tocRoot": {
@@ -1753,10 +1753,26 @@
                   },
                   {
                     "kind": "markdown-section",
+                    "title": "Boundary-Wake Covariance Scaffold",
+                    "markdownPath": "content/markdown/aaa/spacetime/observer-framework.md",
+                    "markdownSection": "Boundary-Wake Covariance Scaffold",
+                    "sectionKey": "boundary wake covariance scaffold",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Absolute and Operational Simultaneity",
                     "markdownPath": "content/markdown/aaa/spacetime/observer-framework.md",
                     "markdownSection": "Absolute and Operational Simultaneity",
                     "sectionKey": "absolute and operational simultaneity",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Effective Causal-Order Recovery",
+                    "markdownPath": "content/markdown/aaa/spacetime/observer-framework.md",
+                    "markdownSection": "Effective Causal-Order Recovery",
+                    "sectionKey": "effective causal order recovery",
                     "headingLevel": 2
                   },
                   {
@@ -2168,6 +2184,14 @@
                     "markdownPath": "content/markdown/aaa/spacetime/gravitational-waves.md",
                     "markdownSection": "Polarization Content",
                     "sectionKey": "polarization content",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Detector-Side Inference Gate",
+                    "markdownPath": "content/markdown/aaa/spacetime/gravitational-waves.md",
+                    "markdownSection": "Detector-Side Inference Gate",
+                    "sectionKey": "detector side inference gate",
                     "headingLevel": 2
                   },
                   {
@@ -2636,6 +2660,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Standard Model Recovery Discipline",
+                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+                "markdownSection": "Standard Model Recovery Discipline",
+                "sectionKey": "standard model recovery discipline",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "The Higgs Mechanism & VEV Reinterpretation",
                 "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
                 "markdownSection": "The Higgs Mechanism & VEV Reinterpretation",
@@ -2682,6 +2714,14 @@
                 "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
                 "markdownSection": "Regularized Setting",
                 "sectionKey": "regularized setting",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Standard Model Recovery Gate",
+                "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
+                "markdownSection": "Standard Model Recovery Gate",
+                "sectionKey": "standard model recovery gate",
                 "headingLevel": 2
               },
               {
@@ -2911,6 +2951,14 @@
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/neutrinos.md",
                     "markdownSection": "PMNS closure program (primary lepton integration)",
                     "sectionKey": "pmns closure program primary lepton integration",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Empirical Decision Gates",
+                    "markdownPath": "content/markdown/aaa/assemblies/fermions/neutrinos.md",
+                    "markdownSection": "Empirical Decision Gates",
+                    "sectionKey": "empirical decision gates",
                     "headingLevel": 2
                   }
                 ]
@@ -4312,6 +4360,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Weak-Probe Limit",
+                "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
+                "markdownSection": "Weak-Probe Limit",
+                "sectionKey": "weak probe limit",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Relation to the Wavefunction",
                 "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
                 "markdownSection": "Relation to the Wavefunction",
@@ -4332,6 +4388,22 @@
                 "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
                 "markdownSection": "Born-Rule Interface",
                 "sectionKey": "born rule interface",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "External Penrose-Diosi Benchmark",
+                "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
+                "markdownSection": "External Penrose-Diosi Benchmark",
+                "sectionKey": "external penrose diosi benchmark",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "External Gravitational Which-Path Benchmark",
+                "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
+                "markdownSection": "External Gravitational Which-Path Benchmark",
+                "sectionKey": "external gravitational which path benchmark",
                 "headingLevel": 2
               },
               {
@@ -4507,6 +4579,14 @@
                 "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
                 "markdownSection": "Functional Bounds and Well-Posedness",
                 "sectionKey": "functional bounds and well posedness",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "QFT Locality Residual",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+                "markdownSection": "QFT Locality Residual",
+                "sectionKey": "qft locality residual",
                 "headingLevel": 2
               },
               {
@@ -5388,6 +5468,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Inference-Dependency Ledger",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
+                "markdownSection": "Inference-Dependency Ledger",
+                "sectionKey": "inference dependency ledger",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Interface Variables (Predicted API Surface)",
                 "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
                 "markdownSection": "Interface Variables (Predicted API Surface)",
@@ -5458,6 +5546,14 @@
                 "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
                 "markdownSection": "Clock-Rate Redshift Interpretation",
                 "sectionKey": "clock rate redshift interpretation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Directional Residuals in the Redshift Map",
+                "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
+                "markdownSection": "Directional Residuals in the Redshift Map",
+                "sectionKey": "directional residuals in the redshift map",
                 "headingLevel": 2
               },
               {
@@ -5564,6 +5660,22 @@
                 "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
                 "markdownSection": "Effective Inflaton Reinterpretation",
                 "sectionKey": "effective inflaton reinterpretation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Vacuum-Energy Caution",
+                "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
+                "markdownSection": "Vacuum-Energy Caution",
+                "sectionKey": "vacuum energy caution",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Scalar and Tensor Benchmark",
+                "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
+                "markdownSection": "Scalar and Tensor Benchmark",
+                "sectionKey": "scalar and tensor benchmark",
                 "headingLevel": 2
               },
               {
@@ -5728,6 +5840,22 @@
                 "markdownPath": "content/markdown/aaa/cosmology/CMB.md",
                 "markdownSection": "Chronology Mapping Note",
                 "sectionKey": "chronology mapping note",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "CMB Dipole and Matter-Dipole Gate",
+                "markdownPath": "content/markdown/aaa/cosmology/CMB.md",
+                "markdownSection": "CMB Dipole and Matter-Dipole Gate",
+                "sectionKey": "cmb dipole and matter dipole gate",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Localized CMB Feature Validation",
+                "markdownPath": "content/markdown/aaa/cosmology/CMB.md",
+                "markdownSection": "Localized CMB Feature Validation",
+                "sectionKey": "localized cmb feature validation",
                 "headingLevel": 2
               },
               {
@@ -5992,6 +6120,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Inference Dependency and Calibration Gates",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+                "markdownSection": "Inference Dependency and Calibration Gates",
+                "sectionKey": "inference dependency and calibration gates",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Effective Friedmann Framework",
                 "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
                 "markdownSection": "Effective Friedmann Framework",
@@ -6168,6 +6304,22 @@
                 "markdownPath": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
                 "markdownSection": "Coupled Interpretation Channels",
                 "sectionKey": "coupled interpretation channels",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "DESI-Era Data-Product Gate",
+                "markdownPath": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
+                "markdownSection": "DESI-Era Data-Product Gate",
+                "sectionKey": "desi era data product gate",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Dipole and Bulk-Flow Diagnostic",
+                "markdownPath": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
+                "markdownSection": "Dipole and Bulk-Flow Diagnostic",
+                "sectionKey": "dipole and bulk flow diagnostic",
                 "headingLevel": 2
               },
               {
@@ -7139,6 +7291,14 @@
                   },
                   {
                     "kind": "markdown-section",
+                    "title": "Cosmology Shared-Residual Protocol",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/run-protocols.md",
+                    "markdownSection": "Cosmology Shared-Residual Protocol",
+                    "sectionKey": "cosmology shared residual protocol",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Tier 0 / Tier 1 Campaign Packet",
                     "markdownPath": "content/markdown/aaa/validation/simulations/run-protocols.md",
                     "markdownSection": "Tier 0 / Tier 1 Campaign Packet",
@@ -7281,22 +7441,6 @@
                 "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
                 "markdownSection": "Assessment Table",
                 "sectionKey": "assessment table",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "2026-05-13 Assessment Notes",
-                "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
-                "markdownSection": "2026-05-13 Assessment Notes",
-                "sectionKey": "2026 05 13 assessment notes",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "2026-05-14 Assessment Notes",
-                "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
-                "markdownSection": "2026-05-14 Assessment Notes",
-                "sectionKey": "2026 05 14 assessment notes",
                 "headingLevel": 2
               }
             ]
@@ -8031,6 +8175,14 @@
                 "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
                 "markdownSection": "General Relativity and Quantum Theory",
                 "sectionKey": "general relativity and quantum theory",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "AdS Control and de Sitter Reality",
+                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+                "markdownSection": "AdS Control and de Sitter Reality",
+                "sectionKey": "ads control and de sitter reality",
                 "headingLevel": 2
               },
               {
@@ -9963,10 +10115,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Ed Witten (1951–) - String Theory",
+                    "title": "Ed Witten (1951–), Leonard Susskind (1940–), and String Theory",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Ed Witten (1951–) - String Theory",
-                    "sectionKey": "ed witten 1951 string theory",
+                    "markdownSection": "Ed Witten (1951–), Leonard Susskind (1940–), and String Theory",
+                    "sectionKey": "ed witten 1951 leonard susskind 1940 and string theory",
                     "headingLevel": 3
                   },
                   {

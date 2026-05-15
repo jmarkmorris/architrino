@@ -2,7 +2,7 @@
 
 This note is the launch overview for the simulation branch. It explains the common simulation frame, the role of the virtual $\mathbb{U}_{\text{now}}$ universe-state perspective, and the separation between raw microstate logging and detector-level synthetic observables.
 
-Use it as the top orientation document before reading the more specialized simulation protocols, convergence checks, action-energy notes, the [$A_0$ branch certificate protocol](a0-branch-certificate-protocol.md), and the [$A_0$ Tier 0 result interpretation](a0-tier0-result-interpretation.md).
+Use it as the top orientation document before reading the more specialized simulation protocols, convergence checks, action-energy notes, the [$A_0$ branch certificate protocol](a0-branch-certificate-protocol.md), the [$A_0$ Tier 0 result interpretation](a0-tier0-result-interpretation.md), the [Tri-Binary Action-Increment Protocol](tri-binary-action-increment-protocol.md), and the [Cosmology Shared Residual Fit Protocol](cosmology-shared-residual-fit.md).
 
 ## Simulation Frame: Virtual $\mathbb{U}_{\text{now}}$ Perspective
 

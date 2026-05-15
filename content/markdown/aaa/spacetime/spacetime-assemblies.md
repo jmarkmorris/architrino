@@ -58,7 +58,7 @@ If the local medium is assembled from balanced pro/anti core populations, then c
 
 - weak-field behavior tracks smooth perturbations in normalized density $n$ as used in [Emergent Metric](./emergent-metric.md),
 - strong-field behavior tracks approach to alignment and saturation limits,
-- wave channels track propagating phase disturbances through the coupled lattice.
+- wave channels track propagating phase disturbances through the coupled Noether-Sea assembly network.
 
 This is consistent with the repository’s broader “assemblies-first” stance: equations are read as effective descriptors of deeper assembly dynamics.
 

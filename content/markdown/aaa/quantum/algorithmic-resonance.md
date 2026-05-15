@@ -39,3 +39,19 @@ The full period-extraction pipeline can be stated as a sequence of closure targe
 ## Falsifiability and Scaling Limits
 
 This page is falsifiable at the scaling interface. A viable $\mathbb{A}\mathbb{A}\mathbb{A}$ account must state strict bounds on coherent circuit depth before Noether-Sea background coupling, finite propagation at $c_f$, and self-hit interaction kernels produce deterministic decoherence. The useful prediction class is therefore not a vague loss of coherence, but architecture-dependent deviations from ideal unitary behavior in large quantum processors.
+
+Quantum error correction is the sharpest benchmark for that scaling claim. The comparison is not whether error correction is conceptually possible in the standard circuit model; it is whether a physical register can keep the encoded logical basin stable while each correction cycle remains below the record-forming and dissociation thresholds of the underlying assemblies. A candidate implementation should therefore track at least three timescales:
+$$
+\tau_{\mathrm{gate}},
+\qquad
+\tau_{\mathrm{corr}},
+\qquad
+\tau_{\mathrm{decoh}}(\rho_{\text{core}},\chi_{\text{sea}},\mathcal{H}),
+$$
+where $\tau_{\mathrm{gate}}$ is the controlled operation time, $\tau_{\mathrm{corr}}$ is the full syndrome-extraction and recovery cycle, and $\tau_{\mathrm{decoh}}$ is the medium- and path-history-dependent coherence time of the encoded assembly network. The necessary validation inequality is
+$$
+\tau_{\mathrm{gate}}+\tau_{\mathrm{corr}}
+<
+\tau_{\mathrm{decoh}},
+$$
+with the additional requirement that the correction operation closes its energy, momentum, angular-momentum, and record ledgers. Failure of this inequality in a hardware-dependent but reproducible way would be a useful departure from ideal unitary scaling; success over increasing code distance would constrain how weak the Noether-Sea decoherence channel must be in calibrated laboratory conditions.

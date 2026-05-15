@@ -163,6 +163,19 @@ This is the continuum inheritance of the discrete delayed causal $1/r$ action ke
 
 By defining an effective scalar potential $\Phi(\mathbf{x}, t)$ and a vector flow potential $\mathbf{A}(\mathbf{x}, t)$ that track the integrated causal wakes of the continuous medium, the system maps locally onto an effective field theory. These potentials are bookkeeping fields for delayed transport, not additional ontological primitives. The resulting local Lagrangian density $\mathcal{L}_{\text{eff}}$ therefore belongs to a further closure step beyond the exact delayed causal action.
 
+### Effective Hamiltonian Domain Gate
+
+A local Hamiltonian or local Lagrangian description is admissible only after the path-history law has been reduced to a finite set of coarse variables that preserve the relevant state-counting measure over the comparison window. Let $\mathcal{Q}$ be the coarse-graining from exact histories $\Gamma(t)$ to effective coordinates $z=(\rho,\mathbf{j},\ldots)$, and let $\Phi_{\Delta t}^{\mathrm{eff}}$ be the induced effective flow. The local canonical approximation must supply a measure $\mu_{\mathcal{Q}}$ such that
+$$
+(\Phi_{\Delta t}^{\mathrm{eff}})_*\mu_{\mathcal{Q}}
+=
+\mu_{\mathcal{Q}}
++O(\epsilon_{\mathcal{Q}})
+$$
+on the retained regime. If the residual $\epsilon_{\mathcal{Q}}$ is not controlled, the local Hamiltonian is only a fitting chart, not a derived mechanics.
+
+This gate keeps the exact and effective levels separate. The Master Equation owns the delayed causal dynamics; the effective Hamiltonian owns only those regimes where internal wake memory, branch changes, and unresolved Noether-Sea exchange have been compressed without losing the observer-level invariants being compared.
+
 ### Topological Constraints and Assembly Stability
 
 The effective Lagrangian restricts the allowed topological configurations of the architrino medium. Stable assemblies—such as the nested maximal-curvature orbits of tri-binaries—manifest as localized, phase-locked topological defects (vortices or knots) within the continuous flow fields.

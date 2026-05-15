@@ -34,7 +34,7 @@ At the absolute level, any local neighborhood is crowded:
   - Wakes from distant assemblies whose emission fronts are just arriving,
   - Self-hit structures from $v>c_f$ inner-binary motion.
 
-- **Global Neutrality (The Screening Effect):** While the void is filled with infinite sources, the population is a strict 50/50 mix of electrinos ($q=-$) and positrinos ($q=+$). Consequently, the potential contributions from distant regions statistically cancel out (effective screening). More precisely: in a statistically homogeneous 50/50 mixture the mean far‑field cancels, while fluctuations and local charge imbalances remain and dominate the dynamics on finite scales. Screening is therefore statistical and scale‑dependent, not an exact cancellation theorem. The "weather" is, with high probability, a local fluctuating noise floor, not an infinite static wake background.
+- **Global Neutrality (The Screening Effect):** While the void is filled with infinite sources, the population is a strict 50/50 mix of electrinos ($q=-$) and positrinos ($q=+$). Consequently, the potential contributions from distant regions statistically cancel out (effective screening). More precisely: in a statistically homogeneous 50/50 mixture the mean far‑field cancels, while potential fluctuations and local charge imbalances remain and dominate the dynamics on finite scales. Screening is therefore statistical and scale‑dependent, not an exact cancellation theorem. The observer-level summary is a local unresolved fluctuation floor, not an infinite static wake background.
 
 “Stable” particles and assemblies are **dynamical equilibria**: they maintain their structure by continuously adjusting to this time-dependent potential landscape. They are not static beads; they are attractors in a driven, high-dimensional dynamical system.
 
@@ -189,7 +189,7 @@ Operationally, we still use probabilities (Born rule, half-lives) because that i
 
 ## Agency and Decision
 
-This section states the **minimal structural and dynamical conditions** under which an assembly or super-assembly can *decide* its response. In this usage, deciding means either leveraging incoming **large-deviation wake peaks** ($\ge 3\sigma$ constructive interference above the local noise floor) or effectively ignoring them.
+This section states the **minimal structural and dynamical conditions** under which an assembly or super-assembly can *decide* its response. In this usage, deciding means either leveraging incoming **large-deviation wake peaks** ($\ge 3\sigma$ constructive interference above the local unresolved fluctuation floor) or effectively ignoring them.
 
 ### Definition of Decision
 
@@ -242,7 +242,7 @@ The **Decider** (a bias-setting complex) is not a claim of nonphysical autonomy.
 
 3. **Memory/Feedback:** The assembly's current threshold settings depend on its **past history** of transitions (path dependence).
 
-4. **Partial Decoupling:** The threshold settings are robust against instant noise; they change only under sustained, structured inputs.
+4. **Partial Decoupling:** The threshold settings are robust against brief unresolved fluctuations; they change only under sustained, structured inputs.
 
 5. **Structured Response:** Different input patterns drive different threshold adjustments (not all inputs are equivalent).
 
@@ -482,7 +482,7 @@ The engineering architecture below is a candidate minimal **Decider** based on t
 
 ### Architecture
 
-To achieve the ability to leverage or ignore **large‑deviation wake peaks** (≥ 3σ constructive interference above the local noise floor), the system needs three distinct functional components:
+To achieve the ability to leverage or ignore **large‑deviation wake peaks** (≥ 3σ constructive interference above the local unresolved fluctuation floor), the system needs three distinct functional components:
 
 1.  **The Resonator (The Sensor)**: An assembly exposed to the environment.
 2.  **The Switch (The Amplifier)**: A Middle Binary sitting near $v \approx c_f$.

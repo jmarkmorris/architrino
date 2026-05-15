@@ -123,6 +123,7 @@
     "content/markdown/aaa/validation/data-sources/pdg-api.md",
     "content/markdown/aaa/validation/failure-criteria.md",
     "content/markdown/aaa/validation/known-tensions.md",
+    "content/markdown/aaa/validation/massive-superposition-gravity.md",
     "content/markdown/aaa/validation/no-go-theorems.md",
     "content/markdown/aaa/validation/parameter-ledger.md",
     "content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md",
@@ -146,10 +147,12 @@
     "content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
     "content/markdown/aaa/validation/simulations/architrino.md",
     "content/markdown/aaa/validation/simulations/convergence-tests.md",
+    "content/markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md",
     "content/markdown/aaa/validation/simulations/perspective.md",
     "content/markdown/aaa/validation/simulations/README.md",
     "content/markdown/aaa/validation/simulations/run-protocols.md",
     "content/markdown/aaa/validation/simulations/synthetic-observables.md",
+    "content/markdown/aaa/validation/simulations/tri-binary-action-increment-protocol.md",
     "content/markdown/aaa/validation/simulations/unsolved-problems.md",
     "content/markdown/aaa/validation/validation-protocols.md"
   ]

@@ -12,10 +12,67 @@ The CMB timeline is presented as an effective observer-level chronology map that
 - Redshift language is consistent with Noether-Sea evolution plus clock-rate comparison across environments.
 - Background and growth claims are kept in one shared Noether-Sea-and-assembly ontology.
 - Epoch times below are an effective observer-level chronology map, not a claim of one literal global launch event in absolute-time ontology.
+- The CMB rest-frame correction is an observational procedure, not an ontological axiom. It must be checked against matter catalogues, supernova residuals, and BAO directionality before it is allowed to fix the whole cosmology stack.
 
 ## Chronology Mapping Note
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is conceptually adjacent to cyclical/recycling cosmology families, but its mechanism is explicitly SMBH-local source architecture in a fixed-void ontology.
+
+## CMB Dipole and Matter-Dipole Gate
+
+The CMB dipole remains a central calibration object because the standard interpretation treats it mainly as a kinematic signal from local motion. If that interpretation is complete, then distant source catalogues should show the corresponding aberration and Doppler dipole after allowing for each catalogue's number-count slope and spectral response. For a catalogue $X$, use the residual
+
+$$
+\Delta_{\mathrm{dip}}^{X}
+=
+\mathbf{D}_{X}
+-
+K_X(\alpha_X,x_X)\,\mathbf{D}_{\mathrm{CMB}},
+$$
+
+where $\mathbf{D}_{X}$ is the measured source-count dipole, $\mathbf{D}_{\mathrm{CMB}}$ is the CMB dipole vector, and $K_X(\alpha_X,x_X)$ is the catalogue-dependent kinematic amplification factor built from spectral index $\alpha_X$ and number-count slope $x_X$.
+
+In the standard homogeneous and isotropic limit, $\Delta_{\mathrm{dip}}^{X}$ should be consistent with survey masks, source evolution, and statistical noise. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology map, a persistent residual is not immediately promoted to a new ontology. It becomes a validation target:
+
+$$
+\mathbf{D}_{X}
+=
+\mathbf{D}_{\mathrm{kin}}
++
+\mathbf{D}_{\mathrm{sea}}
++
+\mathbf{D}_{\mathrm{mask/source}},
+$$
+
+where $\mathbf{D}_{\mathrm{kin}}$ is ordinary observer motion, $\mathbf{D}_{\mathrm{sea}}$ is the contribution from Noether-Sea flow, density, delay, and clock-rate gradients, and $\mathbf{D}_{\mathrm{mask/source}}$ records survey selection and source-population effects. Closure requires the same Noether-Sea term to remain compatible with CMB anisotropy, quasar and radio-source dipoles, supernova directionality, BAO measurements, and local $H$ scatter.
+
+This gate does not replace the TT/TE/EE or blackbody requirements. It adds a frame-consistency test: the effective CMB frame used for background inference must be the same frame, or a derived projection of the same medium state, used by the matter and distance-ladder modules.
+
+## Localized CMB Feature Validation
+
+Claims about localized CMB features, including claims sometimes interpreted as pre-Big-Bang or cyclic-history signals, must first be handled as cross-instrument data products. The retained observable is not the external interpretation. It is the question of whether a common localized residual survives masking, foreground modeling, beam handling, and comparison between independent maps such as WMAP and Planck.
+
+Let $M_P(\hat{\mathbf{n}})$ and $M_W(\hat{\mathbf{n}})$ denote foreground-cleaned Planck and WMAP residual maps after a common mask and baseline $\Lambda\mathrm{CDM}$ subtraction. For an angular template $T_{\theta,\hat{\mathbf{n}}}$ centered at sky direction $\hat{\mathbf{n}}$ with scale $\theta$, define the cross-map support statistic
+$$
+S_{PW}(\hat{\mathbf{n}},\theta)
+=
+\frac{\langle M_P,T_{\theta,\hat{\mathbf{n}}}\rangle_{C_P^{-1}}}{\sigma_P(\theta)}
+\frac{\langle M_W,T_{\theta,\hat{\mathbf{n}}}\rangle_{C_W^{-1}}}{\sigma_W(\theta)}.
+$$
+For a proposed set of $N$ localized features, the comparison pressure is the null probability
+$$
+p_N
+=
+\Pr_{\Lambda\mathrm{CDM}+\mathrm{foregrounds}}
+\left[
+\max_{\{\hat{\mathbf{n}}_i,\theta_i\}_{i=1}^{N}}
+\sum_{i=1}^{N}S_{PW}(\hat{\mathbf{n}}_i,\theta_i)
+\ge
+S_{\mathrm{obs}}
+\right].
+$$
+
+This statistic is a validation target, not a permission to import an external cosmology. If such a residual remains significant after foreground, mask, and look-elsewhere accounting, a viable $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology must either reproduce it from the same Noether-Sea state used for TT/TE/EE, blackbody behavior, lensing, BAO, and structure growth, or show why it is a foreground, systematic, or null-fluctuation artifact. A fit that explains localized features by changing the cosmology state independently from the acoustic peaks or lensing record fails the shared-state requirement.
 
 ## Pre-Cosmological Steady State ($\mathbb{A}\mathbb{A}\mathbb{A}$-Only)
 - Scope: $\mathbb{A}\mathbb{A}\mathbb{A}$-only steady-state background; $\Lambda\mathrm{CDM}$ does not define a pre-Big-Bang era.
@@ -221,6 +278,119 @@ C_\ell = \langle |a_{\ell m}|^2 \rangle.
 $$
 
 The formal observables remain standard; in practice this includes TT/TE/EE spectra (with damping-tail and lensing behavior), with $C_\ell$ as compact notation.
+
+### Scalar and Tensor Closure Target
+
+The scalar/tensor layer is an observable gate, not an origin-story selector. Whether the source story is primordial, distributed, or recycling-based, a candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ CMB record $\theta$ must reproduce the scalar perturbation spectrum and avoid an excessive tensor contribution using the same Noether-Sea history that later supplies TT/TE/EE, damping, lensing, and redshift handoff.
+
+Use the comparison parameterization
+$$
+\mathcal{P}_{\mathcal{R}}^{\theta}(k)
+=
+A_s^{\theta}
+\left(\frac{k}{k_*}\right)^{
+n_s^{\theta}-1+\frac12\alpha_s^{\theta}\ln(k/k_*)
+},
+\qquad
+r^{\theta}(k_*)
+=
+\frac{\mathcal{P}_{T}^{\theta}(k_*)}{\mathcal{P}_{\mathcal{R}}^{\theta}(k_*)}.
+$$
+
+Here $A_s^{\theta}$ is the scalar amplitude, $n_s^{\theta}$ the scalar tilt, $\alpha_s^{\theta}$ an optional running term, and $r^{\theta}$ the tensor-to-scalar comparison ratio. The tensor condition is a bound,
+$$
+r^{\theta}(k_*)\le r_{\max},
+$$
+with $r_{\max}$ supplied by the current observational analysis being used for the comparison. This keeps tensor non-detection as a pressure on source models without turning any particular inflationary or anti-inflationary interpretation into corpus doctrine.
+
+A compact residual for CMB closure is
+$$
+\mathcal{R}_{\mathrm{CMB}}(\theta)
+=
+\sum_{X\in\{TT,TE,EE\}}\sum_{\ell}
+\frac{(C_{\ell,X}^{\theta}-C_{\ell,X}^{\mathrm{obs}})^2}{\sigma_{\ell,X}^2}
++
+\frac{(A_s^{\theta}-A_s^{\mathrm{obs}})^2}{\sigma_{A_s}^2}
++
+\frac{(n_s^{\theta}-n_s^{\mathrm{obs}})^2}{\sigma_{n_s}^2}
++
+\lambda_T\max(0,r^{\theta}-r_{\max})^2.
+$$
+
+The closure target is one medium-and-assembly model with bounded $\mathcal{R}_{\mathrm{CMB}}$, not a separate fit for each observable family.
+
+The same scalar sector must also recover the acoustic phase record rather than only the broadband amplitude and tilt. A compact phase residual can be written as
+$$
+\mathcal{R}_{\mathrm{phase}}(\theta)
+=
+\sum_{X\in\{TT,TE,EE\}}\sum_{p}
+\frac{
+\left(\ell_{p,X}^{\theta}-\ell_{p,X}^{\mathrm{obs}}\right)^2
+}{
+\sigma_{\ell,p,X}^2
+},
+$$
+where $\ell_{p,X}$ denotes the location of the $p$th acoustic feature in spectrum $X$. This residual keeps acoustic ringing as an observational phase-coherence requirement. It does not select a particular origin story for why those phases are coherent.
+
+The vector sector supplies a separate absence gate. For an effective pre-decoupling velocity field $\mathbf{u}_{\theta}^{\mathrm{eff}}$ and vorticity $\boldsymbol{\omega}_{\theta}^{\mathrm{eff}}\equiv\nabla\times\mathbf{u}_{\theta}^{\mathrm{eff}}$, use
+$$
+\mathcal{R}_{V}(\theta)
+=
+\frac{
+\int_{\Sigma_{\mathrm{dec}}}
+\left\|\boldsymbol{\omega}_{\theta}^{\mathrm{eff}}\right\|^2\,dV_{\mathrm{eff}}
+}{
+\int_{\Sigma_{\mathrm{dec}}}
+\left\|\nabla\delta_{\gamma}^{\theta}\right\|^2\,dV_{\mathrm{eff}}
++\epsilon_V
+}.
+$$
+Here $\delta_{\gamma}^{\theta}$ is the photon-channel density contrast in the observer-level reconstruction. The numerator tests effective vector/vorticity content; the denominator normalizes it against the scalar contrast being recovered. A successful CMB history must keep this residual small in the same state record that fits TT/TE/EE.
+
+The CMB-lensing sector adds a late-time integrated-mass reconstruction gate. In standard comparison language, lensing remaps the primary CMB by an effective lensing potential $\phi$ and yields a lensing-potential spectrum $C_L^{\phi\phi}$. For a candidate history $\theta$, use
+$$
+\mathcal{R}_{\mathrm{lens}}(\theta)
+=
+\sum_L
+\frac{
+\left(C_L^{\phi\phi,\theta}-C_L^{\phi\phi,\mathrm{obs}}\right)^2
+}{
+\sigma_{L,\phi}^2
+}.
+$$
+This is a data-product constraint, not a dark-sector ontology by itself. The same Noether-Sea-and-assembly history that fits the primary TT/TE/EE spectra must also project to the lensing potential consumed by the growth and dark-matter modules.
+
+The same gate should include the smoothness pressure usually hidden inside origin-story language. Conformal-cosmology comparisons are useful here only because they isolate a real burden: the effective early record must have a very small free gravitational-mode contribution compared with the complicated strong-field behavior expected near generic collapse. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not import conformal continuation as ontology. It preserves the observable requirement by asking the CMB-producing Noether-Sea history to suppress effective Weyl-like curvature in the decoupling comparison layer.
+
+For an effective metric reconstruction $g_{\theta}^{\text{eff}}$ associated with a candidate history $\theta$, one useful comparison residual is
+$$
+\mathcal{R}_{\mathrm{smooth}}(\theta)
+=
+\frac{
+\int_{\Sigma_{\mathrm{dec}}}
+\left\|C_{\alpha\beta\gamma\delta}(g_{\theta}^{\text{eff}})\right\|^2\,dV_{\mathrm{eff}}
+}{
+\int_{\Sigma_{\mathrm{dec}}}
+\left\|R_{\alpha\beta}(g_{\theta}^{\text{eff}})\right\|^2\,dV_{\mathrm{eff}}
++\epsilon_R
+}.
+$$
+
+This is not a statement that the Euclidean void is curved. It is an observer-level diagnostic on the effective reconstruction used to compare with CMB data. A stronger closure criterion is therefore
+$$
+\mathcal{R}_{\mathrm{CMB}}(\theta)
++
+\lambda_{\mathrm{phase}}\mathcal{R}_{\mathrm{phase}}(\theta)
++
+\lambda_V\mathcal{R}_{V}(\theta)
++
+\lambda_{\mathrm{lens}}\mathcal{R}_{\mathrm{lens}}(\theta)
++
+\lambda_{\mathrm{smooth}}\mathcal{R}_{\mathrm{smooth}}(\theta)
+\le
+\varepsilon_{\mathrm{CMB}},
+$$
+with $\lambda_{\mathrm{phase}}$, $\lambda_V$, $\lambda_{\mathrm{lens}}$, $\lambda_{\mathrm{smooth}}$, and $\varepsilon_{\mathrm{CMB}}$ declared by the data release or simulation protocol. Passing this test would mean that the same medium-and-assembly history recovers TT/TE/EE, blackbody behavior, scalar/tensor bounds, acoustic phase coherence, vector-mode suppression, CMB-lensing reconstruction, and the low effective gravitational free-mode budget without changing ontology between modules.
 
 ### Forward Prediction Map
 

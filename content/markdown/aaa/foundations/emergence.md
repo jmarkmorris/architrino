@@ -26,6 +26,57 @@ The closer pedagogical analogy is a population of coupled delayed-feedback oscil
 
 The stability of an assembly is therefore dynamic rather than static. It depends on an ongoing balance of forces from the superposition of all dynamically active wakes. An assembly can persist when its trajectory remains inside a stable or metastable attractor basin; it can dissolve, branch, or reconfigure when perturbations or self-hit thresholds push it across a basin boundary.
 
+### Context as Constraint on Basin Selection
+
+Higher-level context does not add a rival ontology to the lower-level dynamics. It selects boundary conditions, admissible branch charts, and effective constraints for the same architrino-level flow. If $\mathcal{S}_L$ is a lower-level state space containing the required path-history data, $X(t)\in\mathcal{S}_L$ is a regularized lower-level state, $\Pi_L X$ is the lower-level data exposed to a higher-level description, and $c$ denotes the surrounding assembly or Noether-Sea context, then the context-restricted state set can be written as
+
+$$
+K_c=\{\,X\in\mathcal{S}_L\mid G_\alpha(\Pi_L X,c)=0\ \text{for all}\ \alpha\,\}.
+$$
+
+The constrained flow is still the lower-level causal-wake dynamics,
+
+$$
+\frac{dX}{dt}=F_L(X_t),\qquad X(t)\in K_c,
+$$
+
+where $X_t$ indicates the path-history segment needed by the delayed equation of motion. The equations $G_\alpha=0$ encode the surrounding context as constraints on which lower-level histories are available, not as independent causes outside the architrino dynamics.
+
+This also gives a compact basin-selection measure. Let $B_k\subset\mathcal{S}_L$ be the attractor basin for an assembly branch $k$, and let $\mu_c$ be the normalized measure on the context-restricted set $K_c$. Then
+
+$$
+P_c(k)=\mu_c(B_k\cap K_c)
+$$
+
+is the context-conditioned weight of that branch. Changing $c$ can shift $P_c(k)$ by moving basin boundaries, suppressing some causal-root branches, or opening self-hit channels, while the underlying ontology remains the same collection of architrino worldlines and causal wakes.
+
+### Context Changes and Energy Ledger
+
+A change in context is not a free semantic relabeling. If a surrounding assembly or Noether-Sea state changes from $c$ to $c'$, the emergence claim is admissible only when the changed constraints alter the accessible basin support and the change can be accounted for by the same energy and provenance bookkeeping used elsewhere in the theory.
+
+For a candidate assembly branch $B_k$, a clean opening criterion is
+
+$$
+\mu_c(B_k\cap K_c)=0,
+\qquad
+\mu_{c'}(B_k\cap K_{c'})>0.
+$$
+
+The reverse inequality pattern records branch closure, and partial changes in $\mu_c(B_k\cap K_c)$ record ordinary reshaping of basin weights. In each case, the context change must be tied to a physical transition rather than to a new ontology outside the architrino dynamics.
+
+The corresponding ledger can be written schematically as
+
+$$
+W_{c\to c'}
+=
+\Delta K_\mu
++\Delta E_{\text{wake}}
++\Delta U_{\text{pot}}
++\Delta E_{\text{diss}}.
+$$
+
+Here $W_{c\to c'}$ is the work routed into the context change over the retained degrees of freedom. The terms track kinetic bookkeeping, nonlocal causal-wake interaction content, local potential-energy reconstruction, and dissipative or medium-relaxation loss. If radiation, recoil, reaction products, or unresolved medium excitation are present, they must be routed through the relevant channel ledger rather than hidden inside the phrase "emergence." In plain language, a new higher-level branch becomes available because the physical constraints changed, not because a second law or substance was added on top of the lower-level dynamics.
+
 ### Assembly Theory and Recursion
 
 The concept of assemblies can be formalized through a recursive definition.

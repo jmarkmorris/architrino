@@ -151,7 +151,7 @@ via the Kibble balance (relating mechanical power to electromagnetic power).
 
 **Architrino Interpretation:**
 
-The Planck constant $h$ is the quantum of **closed-cycle action**. It is related to the radian-normalized **outer-binary rotational action** by $\hbar=h/(2\pi)$:
+The Planck constant $h$ is the observer-level benchmark for a quantum of **closed-cycle action**. The $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation target is to recover this scale from tri-binary geometry and the lower recordable basin-measure scale, not to assume it as a primitive input. In the target reduction, $h$ is related to the radian-normalized **outer-binary rotational action** by $\hbar=h/(2\pi)$:
 $$
 L_{\text{outer}} = n \hbar = n \frac{h}{2\pi}
 $$
@@ -169,7 +169,7 @@ where $r_{\text{outer}}$ is the characteristic radius of the outer binary in the
 2. Show that closed-cycle action quantization ($\oint p\,dq = n h$) and the equivalent radian-normalized relation ($I=n\hbar$) arise from geometric quantization of the internal binary orbit.
 3. Relate $h$ and $\hbar$ to $|e/6|$, $c_f$, and tri-binary geometry.
 
-**Prediction:**
+**Target relation:**
 $$
 h \propto |e/6| \cdot c_f \cdot (\text{geometric factor from tri-binary})
 $$
@@ -289,7 +289,7 @@ The frequency 540 THz corresponds to green light ($\lambda \approx 555$ nm), whe
 |-------------|-------------------------------|-------------------|
 | $\Delta \nu_{\text{Cs}}$ | **Derivable** | Hyperfine splitting from Middle Binary magnetic moments |
 | $c$ | **Operational limit near $c_f$** | Low-gradient photon-channel speed; deviations are encoded by $\chi_{\text{sea}}$ |
-| $h$ | **Derivable** | Closed-cycle action quantization; equivalent outer-binary rotational-action increments in units of $\hbar$ |
+| $h$ | **Derivation target (open)** | Closed-cycle action quantization; equivalent outer-binary rotational-action increments in units of $\hbar$; lower recordable basin-measure scale after quantum closure |
 | $e$ | **Fundamental** | $e = 6 \times |e/6|$ (architrino charge) |
 | $k_B$ | **Derivable** | Noether-Sea thermal equilibrium + assembly mass |
 | $N_A$ | **Emergent** | Follows from proton mass derivation |
@@ -307,15 +307,15 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
 3. **Tri-binary geometry parameter** (e.g., outer radius $r_{\text{outer}}$ or max-curvature radius) (replaces $h$)
 4. **Noether-Sea assembly mass** $m_{\text{NS}}$ (replaces $k_B$ when combined with $c_f$)
 
-**Everything else is derived:**
+**Everything else is intended to be derived after closure:**
 - $e = 6 |e/6|$
 - $c_{\text{eff}}\to c_f$ in the low-gradient Noether-Sea limit
-- $h = 2\pi |e/6| \cdot c_f \cdot r_{\text{outer}}$
+- $h \stackrel{\text{target}}{=} 2\pi |e/6| \cdot c_f \cdot r_{\text{outer}}$ after the action-closure derivation, not by definition
 - $k_B = f(m_{\text{NS}}, c_f)$
 - $N_A = f(m_p / m_{\text{NS}})$
 - $\Delta \nu_{\text{Cs}} = f(\text{Cs tri-binary geometry})$
 
-**Result:** We've reduced 7 constants to **3-4 fundamental parameters**, with the rest emergent.
+**Result target:** If the closure program succeeds, the seven SI constants reduce to **3-4 fundamental parameters**, with the rest emergent.
 
 ---
 

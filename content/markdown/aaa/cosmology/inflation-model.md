@@ -38,6 +38,43 @@ In the broader recycling picture, SMBH-core dynamics provide the persistent sour
 
 When comparison language requires an "inflaton-like" variable, use a coarse-grained descriptor of self-hit state occupancy and transition rates near the $v\approx c_f$ boundary, rather than a new fundamental scalar field.
 
+## Vacuum-Energy Caution
+
+Standard slow-roll inflation is valuable as a phenomenological comparison because it explains why nearly Gaussian, nearly scale-invariant perturbations are such a natural target. Its stress-energy source, however, is usually written as vacuum-like scalar-field energy that gravitates during inflation and then disappears into reheating. That move inherits the cosmological-constant problem unless a separate coupling rule explains why vacuum-like energy can dominate one epoch and fail to dominate every later epoch.
+
+In this framework, inflation-like behavior must therefore be expressed as an exposed high-curvature transfer channel rather than as unconstrained vacuum energy. The accepted variable is not a fundamental scalar-field substance; it is a record of self-hit occupancy, alignment-boundary release, medium loading, and subsequent thermalization. A valid closure must conserve the energy and provenance ledger across the release:
+
+$$
+\Delta \rho_{\mathrm{exposed}}
+=
+\Delta \rho_{\mathrm{medium}}
++
+\Delta \rho_{\mathrm{radiation}}
++
+\Delta \rho_{\mathrm{locked}},
+$$
+
+with each term tied to the same Noether-Sea response variables used by the CMB, BBN, and expansion modules. This preserves the perturbation-success target of inflationary models while rejecting a free "use it, then lose it" vacuum-energy channel.
+
+## Scalar and Tensor Benchmark
+
+Inflationary comparison remains useful only where it supplies disciplined observables. The relevant targets are not an inflaton field or a global expansion of the Euclidean void, but the scalar amplitude, scalar tilt, optional running, Gaussianity, and tensor upper bound consumed by the CMB module.
+
+For a candidate high-curvature release record $\theta$, require
+$$
+\left(A_s^{\theta},n_s^{\theta},\alpha_s^{\theta},r^{\theta}\right)
+\to
+\left(A_s^{\mathrm{obs}},n_s^{\mathrm{obs}},\alpha_s^{\mathrm{obs}},r_{\max}\right)
+$$
+within the declared observational tolerances, with
+$$
+r^{\theta}(k_*)\le r_{\max}.
+$$
+
+The scalar/tensor gate should be read as a closure burden on the high-curvature transfer channel. If $\mathbb{A}\mathbb{A}\mathbb{A}$ uses SMBH-core or horizon-interface dynamics to explain inflation-like behavior, those dynamics must supply the same near-Gaussian scalar spectrum and allowed tensor sector without retuning the CMB, BBN, and expansion interfaces separately.
+
+Smoothness is a separate benchmark from scalar amplitude and tensor suppression. Inflationary language is often credited with explaining why the early effective record has low gravitational free-mode content, while generic strong-field collapse is expected to develop complicated anisotropic curvature. In this framework that pressure becomes a medium-history constraint, not an inflaton ontology. The high-curvature release channel must therefore deliver the CMB-facing smoothness residual defined in [CMB](./CMB.md) using the same Noether-Sea variables that supply $\left(A_s^{\theta},n_s^{\theta},\alpha_s^{\theta},r^{\theta}\right)$.
+
 ## Planck-Alignment Boundary
 
 Planck scale is treated as an alignment-horizon state of assemblies, not a minimal-length axiom.

@@ -57,6 +57,29 @@ For modeling and diagnostics, separate at least three effective channels:
 - source/observer relative-motion (Doppler-like) contribution,
 - propagation contribution from traversed medium state and gradients.
 
+## Directional Residuals in the Redshift Map
+
+An effective redshift-distance relation cannot be accepted only as an all-sky average. The same data must also be decomposed by direction and environment:
+
+$$
+\Delta O_X(z,\hat{\mathbf{n}})
+=
+O_X^{\mathrm{obs}}(z,\hat{\mathbf{n}})
+-
+O_X^{\mathrm{iso}}(z)
+=
+O_{X,0}(z)
++
+\mathbf{O}_{X,1}(z)\cdot\hat{\mathbf{n}}
++
+O_{X,2}(z,\hat{\mathbf{n}})
++\cdots,
+$$
+
+where $X$ may denote supernova distance modulus, BAO scale, CMB-frame correction, or another expansion observable. The monopole $O_{X,0}$ records the isotropic fit offset, $\mathbf{O}_{X,1}$ records the dipole, and higher terms record quadrupole and mask-dependent structure.
+
+The Friedmann-like bridge below is usable only after these directional residuals are either within survey tolerance or derived from the same Noether-Sea variables that determine the clock-rate and transport maps. A residual dipole should not be absorbed silently into $H(z)$, $w(z)$, or calibration constants.
+
 ## Photon-Propagation Contribution
 
 Beyond endpoint clock comparison, the same transport picture can include path-dependent photon energy evolution in medium transit ("redshift toll").
@@ -115,6 +138,8 @@ H^2 = \frac{8\pi G_{\text{eff}}}{3}\left(\rho_m+\rho_r+\rho_{\text{sea}}\right)-
 $$
 
 with $a(t)$ interpreted as a medium-state parameter and $G_{\text{eff}},k_{\text{eff}}$ as effective summaries of assembly-medium response.
+
+This equation is a comparison layer for the homogeneous and isotropic limit. It does not by itself justify the assumption that supernovae, BAO, CMB distances, and local-ladder calibrations all share one isotropic background. That shared background must be recovered as a limit of the medium-state model or replaced by an explicitly directional effective map.
 
 ## Expansion-Module Interface
 

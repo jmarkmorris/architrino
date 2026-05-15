@@ -46,6 +46,8 @@ A Physical Observer has access only to:
 - finite records,
 - and statistical summaries of unresolved microstate structure.
 
+This limitation becomes especially important in strong-gravity and cosmology comparisons. Standard quantum-gravity discussions also run into the fact that an observer cannot be placed outside the entire universe as a massless, energy-free measuring device. A real observer supplies a clock, a location, finite records, and an access region. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this does not make reality observer-created; it means that black-hole entropy, de Sitter thermodynamics, horizon access, and quantum state descriptions must be stated relative to what an embedded Physical Observer can actually clock, probe, and record.
+
 ## Ontic and Epistemic Levels
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ uses a two-level distinction:
@@ -66,6 +68,89 @@ This distinction protects several recurring claims:
 - Relativity of simultaneity is not a failure of absolute simultaneity; it is an operational constraint on Physical Observers.
 
 For the quantum side of this distinction, see [Wavefunction Ontology](../quantum/wavefunction-ontology.md) and [Measurement Ontology](../quantum/measurement-ontology.md).
+
+Formal note: a local subsystem is not generally closed under the primitive dynamics. Let $\Omega\subset\Sigma_t$ be the spatial region resolved by a Physical Observer, let $X_\Omega(t)$ be the internal assembly state represented inside that region, and let $\mathcal{H}_{\Omega}^{<t}$ be the path-history data for the relevant architrino trajectories and causal wakes before $t$. The missing exterior influence can be represented as boundary wake data
+$$
+\mathcal{B}_{\partial\Omega}(t)
+=
+\left\{
+(j,t_0,\mathbf{s}_j(t_0),q_j)
+\;:\;
+t_0<t,\quad
+\|\mathbf{x}-\mathbf{s}_j(t_0)\|=c_f(t-t_0),\quad
+\mathbf{x}\in\partial\Omega
+\right\}.
+$$
+
+The subsystem evolution therefore has the schematic form
+$$
+\frac{dX_\Omega}{dt}
+=
+F_\Omega\!\left(
+X_\Omega(t),
+\mathcal{H}_{\Omega}^{<t},
+\mathcal{B}_{\partial\Omega}(t),
+N_{\text{sea}}|_{\Omega}(t)
+\right),
+$$
+where $N_{\text{sea}}|_{\Omega}(t)$ denotes the locally resolved Noether-Sea state. A Physical Observer who models only $X_\Omega(t)$ has omitted finite-speed signals, incoming causal wakes, and path-history branches crossing the boundary. That omission can make local prediction fail without implying indeterminism in the $\mathbb{U}_{\text{now}}$ universe-state perspective, because the complete state includes the boundary wake data and the path-history ledger needed for deterministic continuation.
+
+The same finite-boundary form is the local substitute for placing a hypothetical observer at infinity in compact strong-field comparisons. For black-hole and cosmology problems, $\mathcal{B}_{\partial\Omega}$ is the controlled interface between what a Physical Observer can access and what the complete state must carry for deterministic continuation.
+
+## Boundary-Wake Covariance Scaffold
+
+The boundary term above also supplies the native home for covariance matrices used by observer-level measurement diagnostics. A covariance is not fundamental randomness. It is a finite-access summary of boundary wake histories, detector states, and Noether-Sea variables not resolved by a Physical Observer.
+
+Let $\widehat{\mathcal{B}}_{\partial\Omega}(t;\theta)$ be the boundary wake history retained by an observer model record $\theta$. The unresolved boundary residual is
+$$
+\delta\mathcal{B}_{\partial\Omega}(t;\theta)
+=
+\mathcal{B}_{\partial\Omega}(t)
+-
+\widehat{\mathcal{B}}_{\partial\Omega}(t;\theta).
+$$
+For a readout channel $Y_A(t)$, define the residual induced by unresolved boundary histories as
+$$
+\delta Y_A(t;\mathcal{B},\theta)
+=
+Y_A(t;\mathcal{B},\theta)
+-
+\left\langle
+Y_A(t;\mathcal{B},\theta)
+\right\rangle_{\mu_{\Omega,\theta}}.
+$$
+Here $\mu_{\Omega,\theta}$ is a coarse-grained conditional measure over complete states whose resolved projection agrees with the Physical Observer's record $\theta$. It is an epistemic measure over unresolved deterministic histories, not a new substrate law.
+
+The boundary-wake covariance is then
+$$
+N^{\mathrm{bw}}_{AB}(t,t';\theta)
+=
+\int
+\delta Y_A(t;\mathcal{B},\theta)\,
+\delta Y_B(t';\mathcal{B},\theta)\,
+d\mu_{\Omega,\theta}(\mathcal{B}).
+$$
+It must be positive semidefinite as a channel covariance:
+$$
+\int\!\!\int
+f_A(t)\,
+N^{\mathrm{bw}}_{AB}(t,t';\theta)\,
+f_B(t')\,dt\,dt'
+\ge 0
+$$
+for every resolved test channel $f_A(t)$ on the observation window.
+
+A detector model may add separately calibrated residuals,
+$$
+N_{AB}(t,t';\theta)
+=
+N^{\mathrm{bw}}_{AB}(t,t';\theta)
++
+N^{\mathrm{det}}_{AB}(t,t')
++
+N^{\mathrm{env}}_{AB}(t,t').
+$$
+The same decomposition should be reused across weak-probe, interferometric, and precision-gravity comparisons. If a proposed measurement model must retune the unresolved boundary covariance separately for each branch or observable, the observer-level closure has failed rather than discovered a new ontology.
 
 ## Absolute and Operational Simultaneity
 
@@ -94,6 +179,28 @@ The disagreement is epistemic rather than ontological:
 - The $\mathbb{U}_{\text{now}}$ universe-state perspective has one absolute slice $\Sigma_t$.
 - Physical Observers recover only operational synchronization conventions.
 - In validated regimes, those operational conventions must reproduce Lorentz-consistent clock, ruler, and two-way signal phenomenology while bounding preferred-frame leakage below observational limits.
+
+## Effective Causal-Order Recovery
+
+External causal-order reconstruction theorems provide a useful comparison discipline: effective causal relations can determine much of an observer-level geometry, but not the local scale by themselves. In this framework, that scale is supplied by Physical Observer clocks, rulers, and signal channels, all of which are assembly and Noether-Sea outputs rather than substrate intervals.
+
+For a declared GR comparison metric and a candidate Noether-Sea and observer-state parameter record $\theta$, let $\prec_{\mathrm{eff}}(\theta)$ be the causal order inferred by Physical Observers from photon-channel records and clock synchronization, and let $\prec_{\mathrm{GR}}$ be the causal order of the target effective metric. A compact recovery diagnostic is
+$$
+\mathcal{R}_{\mathrm{causal}}(\theta)
+=
+d_{\mathrm{ord}}\!\left(\prec_{\mathrm{eff}}(\theta),\prec_{\mathrm{GR}}\right)
++
+\lambda_{\tau}
+\left\|
+\frac{d\tau_{\mathrm{eff}}}{dt}(\theta)
+-
+\frac{d\tau_{\mathrm{GR}}}{dt}
+\right\|_{W}
++
+\lambda_{\mathrm{PF}}
+\sum_{i=1}^{3}\alpha_i(\theta)^2.
+$$
+Here $d_{\mathrm{ord}}$ measures mismatch of inferred causal order on the comparison domain, the clock term supplies the missing local scale, and the preferred-frame term penalizes residual PPN drift coefficients. This is a closure target for the observer layer, not a claim that substrate spacetime is Lorentzian.
 
 ## Physical Observer Clocks and Rulers
 

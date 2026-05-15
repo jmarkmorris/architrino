@@ -318,6 +318,52 @@ Another methodological error appears when the failure of one concrete model is t
 
 Scientific consensus also requires more careful treatment than either naive trust or blanket dismissal allows. Consensus is not simply identical to arbitrary belief, because it is often grounded in real evidential convergence. Yet under crisis conditions, especially in fields with expensive experiments, long training pipelines, strong hierarchy, and high career risk for dissent, consensus may also reflect institutional stabilization of a dominant interpretation. The method should therefore ask not only what the consensus is, but how it was formed, which alternatives received serious technical scrutiny, and whether social cost has narrowed the visible theory space.
 
+Theory-guided experiment must also be handled explicitly. In data-starved foundational regimes, instruments, reduction variables, and auxiliary hypotheses are usually shaped by the dominant theory. The absence of a single decisive anomaly is therefore not identical to ontological closure. It also does not make every alternative equally live. It raises the burden on a replacement architecture: it must name the preserved data product, the accepted calibration assumptions, the effective model being rederived, the ontological inference being challenged, and the residual that would count against the replacement.
+
+For a crisis review, the minimum inference record is:
+
+$$
+\left(
+D,\;
+A_{\mathrm{inst}},\;
+K_{\mathrm{cal}},\;
+M_{\mathrm{eff}},\;
+O_{\mathrm{ont}},\;
+R_{\mathrm{fail}}
+\right),
+$$
+
+where $D$ is the data product, $A_{\mathrm{inst}}$ records apparatus and selection assumptions, $K_{\mathrm{cal}}$ records calibration and nuisance modeling, $M_{\mathrm{eff}}$ is the effective formal model, $O_{\mathrm{ont}}$ is the ontological reading under review, and $R_{\mathrm{fail}}$ is the residual pattern that would reject the proposed reinterpretation. This keeps crisis governance from sliding into either uncritical consensus defense or unconstrained heterodoxy.
+
+The data product in this record is always a finite observation record. In practice $D$ should be read as $D_{W,\epsilon}$: measurements gathered over a declared observation window $W$ with an uncertainty or tolerance vector $\epsilon$. Densities, exact symmetries, zero-mass claims, continuum fields, and limiting parameters enter the review only after the finite record has been passed through $A_{\mathrm{inst}}$, $K_{\mathrm{cal}}$, and $M_{\mathrm{eff}}$. This prevents an exact effective variable from being mistaken for the raw observable that originally constrained it.
+
+A staged discovery review can use the same record before an interpretation is treated as settled. Let $\theta$ denote the candidate claim and let $R_i(\theta)$ be the retained residual tests extracted from $R_{\mathrm{fail}}$, with tolerances $\epsilon_i$ fixed before the announcement standard is applied. The claim is mature only when
+
+$$
+\operatorname{mature}(\theta)=1
+\quad\Longleftrightarrow\quad
+\max_i
+\frac{\left|R_i(D,A_{\mathrm{inst}},K_{\mathrm{cal}},M_{\mathrm{eff}},O_{\mathrm{ont}};\theta)\right|}
+{\epsilon_i}
+\le 1.
+$$
+
+Intermediate stages may therefore be reported as live analysis, failed alarms, revised calibrations, or submitted-but-unaccepted claims without pretending that the final interpretation followed immediately from a single reading. The important discipline is that each stage states which part of the inference record has changed and which residuals still block promotion.
+
+Large heterogeneous correlation systems sharpen this rule rather than replacing it. A predictor may map the preserved data, apparatus assumptions, and calibration record to a useful forecast,
+
+$$
+P:\left(D,A_{\mathrm{inst}},K_{\mathrm{cal}}\right)\mapsto \widehat{D},
+$$
+
+while still failing to state why the forecast works. Under crisis governance, such a system remains an effective predictor until it supplies both a mechanism-facing interpretation map
+
+$$
+\pi_{\mathrm{ont}}:\left(D,A_{\mathrm{inst}},K_{\mathrm{cal}},M_{\mathrm{eff}}\right)\mapsto O_{\mathrm{ont}}
+$$
+
+and a nonempty residual pattern $R_{\mathrm{fail}}$ that could reject that interpretation. High predictive accuracy therefore improves the status of $M_{\mathrm{eff}}$ but does not, by itself, promote $O_{\mathrm{ont}}$ into settled ontology.
+
 ### Internal Tensions
 
 What this subject gets right is that science needs more than sharp falsifiers. Some fields fail not by one decisive contradiction but by long accumulation of unresolved tensions under a still-productive shell. A method that cannot register that pattern is incomplete. Crisis governance also gets right that detection without procedure is not enough. Once warning signs are identified, there must be a disciplined response rather than vague dissatisfaction.
@@ -441,6 +487,30 @@ Major schools include reductionism, emergentism, nonreductive physicalism, and c
 What this subject gets right is that dependence does not erase usefulness. A theory can be nonfundamental and still indispensable, because assemblies generate stable regularities. It also gets right that level distinctions matter: substrate law, causal wake structure, constitutive medium response, effective closure, and measurement-level reconstruction are not interchangeable categories. For $\mathbb{A}\mathbb{A}\mathbb{A}$, reduction means deriving how higher-level variables arise, not verbally eliminating them.
 
 Emergence, on this view, is lawful novelty in organized systems, not metaphysical exemption from lower-level causation. A metric field, thermal law, or quantum effective description can be emergent and real without being primitive.
+
+### Context as Constraint
+
+The same point can be stated mathematically. A higher-level context is not a second causal substance layered on top of the lower-level system. It is a constraint or boundary condition on the admissible lower-level histories. Let $\mathcal{S}_L$ be the lower-level state space, including the path-history data required by delayed causal dynamics. For a lower-level state $X(t)\in\mathcal{S}_L$, a projection $\Pi_L X$ of the lower-level variables, and a surrounding context $c$, define
+
+$$
+K_c=\{\,X\in\mathcal{S}_L\mid G_\alpha(\Pi_L X,c)=0\ \text{for all}\ \alpha\,\}.
+$$
+
+The reduced flow then remains a lower-level flow constrained to $K_c$:
+
+$$
+\frac{dX}{dt}=F_L(X_t),\qquad X(t)\in K_c.
+$$
+
+Here $F_L$ represents the lower-level causal-wake dynamics, and $X_t$ denotes the path-history segment needed by the delayed equation. The context $c$ changes the admissible region of state space, not the ontological inventory.
+
+For basin-level emergence, let $B_k$ be the basin of attraction for a higher-level assembly branch $k$, and let $\mu_c$ be a normalized measure on $K_c$. Then
+
+$$
+P_c(k)=\mu_c(B_k\cap K_c)
+$$
+
+records how the context shifts the branch weight. Higher-level causal language is therefore acceptable only when it means constraint, boundary condition, basin reshaping, or effective closure on lower-level dynamics. It is not acceptable if it implies that the higher-level description has become a new primitive outside the reduction stack.
 
 ### Internal Tensions
 

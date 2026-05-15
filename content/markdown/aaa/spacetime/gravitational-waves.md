@@ -55,6 +55,18 @@ $$
 $$
 to leading order (higher-order dispersive corrections are constitutive and model-dependent).
 
+Finite-range comparison models may introduce gravitational-wave dispersion, but here that is only a deviation diagnostic. Define the group speed
+$$
+v_{\mathrm{g,GW}}\equiv\frac{\partial\omega}{\partial k}.
+$$
+In validated frequency bands the constitutive map must satisfy
+$$
+\left|\frac{v_{\mathrm{g,GW}}-c_0}{c_0}\right|<\epsilon_{\mathrm{GW}},
+\qquad
+\left|\frac{\partial^2\omega}{\partial k^2}\right|_{\mathrm{band}}\leq\epsilon_{\mathrm{disp}},
+$$
+with the integrated phase drift across the source distance below the detector residual bound. A finite-range cosmological response is not acceptable if it leaks into already-tested gravitational-wave timing as measurable dispersion.
+
 ## Polarization Content
 
 In the repo-wide spin taxonomy, this is the effective **spin-2 / tensor** channel: the wave is not a scalar breathing mode or a single-axis vector mode, but a transverse-traceless deformation carrying quadrupolar shape data.
@@ -66,6 +78,36 @@ h_+(t,\mathbf{x}),\qquad h_\times(t,\mathbf{x}).
 $$
 
 *Derivation sketch:* Standard counting in Lorenz gauge plus TT projection gives 10 components $\to$ gauge/constraint reduction $\to$ two physical helicity-2 modes, provided the effective-metric gauge structure is recovered by the constitutive map.
+
+Any scalar, vector, or longitudinal gravitational-wave response is therefore an effective deviation to be bounded, not a new default channel:
+$$
+\frac{\mathcal{P}_{\mathrm{extra}}}{\mathcal{P}_{\mathrm{TT}}}<\epsilon_{\mathrm{pol}}.
+$$
+The numerator collects non-TT detector power after known instrumental and astrophysical residuals are removed.
+
+## Detector-Side Inference Gate
+
+The detector does not observe the effective tensor mode as a bare ontological object. It records a processed strain channel whose interpretation depends on calibration, background rejection, waveform matching, and coincidence checks across instruments. For a candidate gravitational-wave record $\theta_{\mathrm{GW}}$, keep the residual vector explicit:
+
+$$
+\mathbf{R}_{\mathrm{GW}}(\theta_{\mathrm{GW}})
+=
+\left(
+\frac{v_{\mathrm{g,GW}}-c_0}{c_0},\;
+\left.\frac{\partial^2\omega}{\partial k^2}\right|_{\mathrm{band}},\;
+\frac{\mathcal{P}_{\mathrm{extra}}}{\mathcal{P}_{\mathrm{TT}}},\;
+\mathrm{FAR},\;
+R_{\mathrm{cal}}
+\right),
+$$
+
+where $\mathrm{FAR}$ is the false-alarm-rate estimate and $R_{\mathrm{cal}}$ is the retained calibration residual for the strain channel and timing model. Promotion from a candidate disturbance to an accepted gravitational-wave data product requires
+
+$$
+\max_i \frac{|R_{\mathrm{GW},i}|}{\epsilon_{\mathrm{GW},i}}\le 1
+$$
+
+with the tolerances fixed by the validation band. This gate protects the separation between the observable data product and the ontology: the data product is a calibrated, coincident, low-residual strain record, while the $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation must still earn the claim that the record is the tensor-sector response of the effective metric induced by Noether-Sea constitutive dynamics.
 
 ## Energy Flux
 

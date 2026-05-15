@@ -263,6 +263,8 @@ That empirical success matters methodologically. The crisis is not that the obse
 
 Any deeper account must therefore explain two things at once: why geometric methods work so well for gravitation and why quantum formalisms work so well for microscopic prediction. A replacement that cannot recover both achievements would not solve the crisis. It would simply trade one incompleteness for another.
 
+The evidence problem is also structural. Direct experiments at the overlap of quantum theory, gravity, and extreme cosmology are sparse, so the frontier is often guided by theory-shaped observables rather than by a single decisive falsifier. That does not weaken the recovery burden. It sharpens it: a proposed deeper account must state which data products survive, which auxiliary hypotheses are only effective, and which shared residual would count against the new layer assignment.
+
 ### What Remains Unresolved
 
 What is unsettled is how, or whether, both frameworks can be fundamental in their current form. Attempts to quantize geometry or geometrize quantum theory often reveal that one side is being forced to accommodate the other without a shared ontological base. The unresolved residue is the suspicion that at least one framework is already effective rather than primitive.
@@ -294,6 +296,74 @@ Transition relevance is maximal because this crisis is one of the clearest motiv
 Resolution would require a substrate theory that derives both relativistic gravitational behavior and quantum-effective statistics from one causal architecture. It would need to recover weak-field and strong-field gravitational phenomenology, preserve successful quantum statistics and measurement structure, and explain why geometric and quantum formalisms were both so successful in their own domains despite not being fundamental in the same way.
 
 The long-term relevance of this crisis is likely as a signpost rather than a permanent problem: once the correct layer assignment is found, the apparent contradiction should be reinterpreted as a mismatch between two effective descriptions that were each accurate, but accurate at different explanatory levels.
+
+---
+
+## AdS Control and de Sitter Reality
+
+### Overview
+
+**Crisis Axis:** AdS Control and de Sitter Reality. **Short Name:** de Sitter Gap. The core tension is that much of the most precise modern quantum-gravity control comes from anti-de Sitter settings, especially AdS/CFT, while the observed late-time universe is more naturally compared with de Sitter behavior because of its positive dark-energy-like acceleration. The issue is not that AdS mathematics is useless. It is that mathematical control in the wrong asymptotic setting can be mistaken for real-world implementation.
+
+### Where The Tension Comes From
+
+Anti-de Sitter space has a spatial boundary that makes boundary/bulk duality mathematically sharp. That is why AdS/CFT became such a powerful laboratory for quantum gravity, black-hole entropy, unitarity, and strongly coupled field theory. De Sitter comparison is different. A de Sitter-like universe has observer horizons and future-asymptotic structure, but not the same spatial boundary on which the standard AdS/CFT machinery naturally lives.
+
+The tension becomes sharper in string-theoretic language. The best-controlled versions of string theory depend on special mathematical features, especially supersymmetry and boundary structures, that do not look like the observed low-energy world. Leonard Susskind's recent public distinction is useful here: string theory with a precise capital-S mathematical meaning is a major consistency achievement, but known precise versions do not yet describe the de Sitter-like, non-supersymmetric world in which observations are made. That is a source signal for this crisis axis, not a license to discard every result of the program.
+
+### What Current Physics Gets Right
+
+What current physics gets right is substantial. AdS/CFT and related holographic tools provide an existence proof that quantum mechanics and gravity can coexist in a mathematically controlled setting. They also sharpen black-hole information accounting, entropy scaling, Page-curve constraints, and the expectation that horizon physics carries finite-access bookkeeping. These achievements should remain comparison resources for any replacement architecture.
+
+String theory also supplies an important methodological lesson: a candidate final theory must be constrained enough to recover both quantum mechanics and gravity together. A weaker program that merely criticizes string theory without supplying comparable closure pressure would not solve the problem. The positive achievement is therefore real even if the real-world mapping is incomplete.
+
+### What Remains Unresolved
+
+What remains unresolved is the quantum description of a de Sitter-like universe. The missing object is not simply a new slogan such as dS/CFT. The missing object is a precise rule that tells how finite observer horizons, late-time acceleration, horizon entropy, matter/radiation records, and global consistency are represented without importing an AdS spatial boundary or a literal boundary CFT as ontology.
+
+There is also a landscape version of the same pressure. If a theory permits enormous numbers of vacuum-like solutions with different constants, spectra, and cosmological constants, then selection becomes a central explanatory burden. Environmental or eternal-inflation arguments may be useful comparison tools, but by themselves they risk moving from mathematical possibility to ontological population without a controlled rule for which possibilities are physically realized.
+
+### Standard Repairs
+
+Standard repairs include dS/CFT proposals, metastable de Sitter constructions, swampland constraints, eternal-inflation landscape pictures, and pragmatic use of AdS models as controlled laboratories. These repairs are productive, but they remain incomplete because none has become a broadly accepted real-world quantum-gravity implementation with de Sitter-like late-time behavior, Standard Model phenomenology, and empirical closure.
+
+The repair space also reveals a methodological danger. A theory can be mathematically precise in an auxiliary setting and still fail to identify the substrate or effective state of the observed universe. Conversely, a theory can use de Sitter language effectively without treating de Sitter geometry as fundamental ontology. The crisis is exactly the gap between useful comparison geometry and the world-model being claimed.
+
+### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
+
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted as a comparison problem**, not as an imported ontology. The Euclidean void does not expand, and there is no native boundary CFT living at spatial infinity. What observers summarize as de Sitter-like behavior must instead be recovered from Noether-Sea evolution, clock-rate comparison, redshift transport, horizon-limited access, and finite observer records.
+
+A compact closure target is an observer-accessible de Sitter comparison ledger. For a Physical Observer $O$, let the relevant coarse state be written schematically as
+
+$$
+\mathcal{Q}_{\mathrm{dS}}^{(O)}(t)
+=
+\left(
+\mathcal{D}_{O}(t),
+\rho_{\text{core}}(\mathbf{x},t),
+\chi_{\text{sea}}(\mathbf{x},t),
+\mathcal{M}_{\mathrm{sea}}^{ab}(\mathbf{x},t),
+S_{\mathrm{out}}^{(O)}(t)
+\right),
+$$
+
+where $\mathcal{D}_{O}(t)$ is the observer-accessible effective horizon domain, $\rho_{\text{core}}(\mathbf{x},t)$ is physical Noether-core density, $\chi_{\text{sea}}(\mathbf{x},t)$ is the Noether-Sea delay factor, $\mathcal{M}_{\mathrm{sea}}^{ab}$ summarizes the medium response channel, and $S_{\mathrm{out}}^{(O)}(t)$ records accessible outgoing entropy. The de Sitter recovery problem is then not "find a boundary CFT"; it is to derive a medium-state map
+
+$$
+\mathcal{F}_{\mathrm{sea}}\!\left[\mathcal{Q}_{\mathrm{dS}}^{(O)}(t)\right]
+\longmapsto
+\left(
+H_{\mathrm{eff}}(t),
+w_{\mathrm{eff}}(t),
+S_{\mathrm{hor}}^{(O)}(t)
+\right)
+$$
+
+that matches late-time expansion, horizon entropy, CMB/BAO/SN/growth benchmarks, and observer clock-rate constraints without promoting the comparison geometry to substrate ontology. Transition relevance is high because this gives $\mathbb{A}\mathbb{A}\mathbb{A}$ a sharper way to absorb holographic and de Sitter pressure without inheriting their boundary assumptions.
+
+### What Would Count As Resolution
+
+Resolution would require a quantum-gravity account of late-time cosmological horizons that preserves the consistency lessons of AdS/CFT while working in the observed de Sitter-like regime. For $\mathbb{A}\mathbb{A}\mathbb{A}$, that means deriving the observer-level $H_{\mathrm{eff}}(t)$, $w_{\mathrm{eff}}(t)$, horizon-access entropy, and structure-growth behavior from the same Noether-Sea variables used in local gravity, radiation, and reaction ledgers. The long-term relevance of this crisis is as a gate against false confidence: mathematical control in a comparison spacetime is not yet ontological closure of the observed universe.
 
 ---
 

@@ -419,6 +419,7 @@ while adding $\nu_R$ (equivalently $\nu^c_L$ in left-chiral bookkeeping) restore
 
 - **Current stance:** We do **not** include a $\nu_R$ in the minimal architecture. Left-handed neutrinos are the only active SU(2) doublet partners; omitting $\nu_R$ preserves the usual anomaly cancellation pattern.
 - **If added:** A $\nu_R$ would be a colorless, SU(2)-singlet, $Y=0$ sterile branch of the near-photon neutral-pair sector; it would couple only via mixing terms (Dirac/Majorana choice left open).
+- **Empirical gate:** Precision bounds on $\sum_i m_i$, the lightest-neutrino mass, direct kinematic mass, and neutrinoless double-beta searches are allowed to revise the neutral sector, not the charged-fermion axial-layer rule. A positive $0\nu\beta\beta$ result would force a lepton-number-violating neutral-pair provenance channel; null results tighten the allowed Majorana-like or sterile mixing channel without canonizing a separate interpretation.
 - **Mass eigenstates (hypothesis):** The neutrino assembly is taken to be a near-photon pro/anti core pair whose residual internal-binary exposure defines three nearby mass modes. Oscillation is the changing weak projection of those modes over propagation. Other fermions have much stiffer charged axial-layer architectures, so their mass eigenstates are effectively fixed; observed mixing (CKM) is then a basis rotation, not time-domain oscillation of a single assembly.
 - **CKM view (to be derived):** Each quark flavor sits in one of three geometric mass eigenstates (set by core shielding/exposure and axial pattern). The CKM matrix is the rotation between these mass eigenstates and the weak-interaction (weak-coupling-triad) eigenbasis. In weak transitions (e.g., $d \to u$ via $W$), the corridor couples to the weak basis; amplitudes for landing in each mass eigenstate of the outgoing/product quark are weighted by the CKM elements (reactants -> products, chemistry style). A geometric derivation of the CKM angles/phases from assembly parameters remains an open derivation problem.
 
@@ -433,6 +434,109 @@ Equivalently, the generation ladder can be read as a nested shielding hierarchy:
 - **Generation III:** only the innermost engine remains exposed.
 
 This is stronger than the statement "fewer binaries means more mass." The outer binaries act as real shielding tiers for deeper core energy, so moving from Generation I to II to III is a progressive loss of energy screening.
+
+### Three-Generation Closure Benchmark
+
+The generation mechanism must do more than count three levels. It must preserve the observed gauge representation across the three tiers, commute with the effective CPT benchmark, recover the charged-fermion and quark mass hierarchy, and avoid every non-baseline partner channel excluded by null results. For a candidate branch record $\theta$, let $T_{\mathrm{gen}}$ denote the generation-tier map on an assembly $A$ within one charged-fermion or quark family. A useful residual is
+
+$$
+\mathcal R_{3\mathrm{gen}}(\theta)
+=
+d_{\mathrm{ord}}\!\left(T_{\mathrm{gen}}^3,\mathrm{id}\right)
++
+\sum_{a=0}^{2}
+d_{\mathrm{rep}}\!\left(
+\Pi_{\mathrm{gauge}}T_{\mathrm{gen}}^a A,
+\Pi_{\mathrm{gauge}}A
+\right)
++
+d_{\mathrm{CPT}}\!\left([T_{\mathrm{gen}},\mathrm{CPT}]_{\mathrm{eff}},0\right)
++
+d_{\mathrm{mass}}\!\left(
+\{m_{T_{\mathrm{gen}}^a A}\}_{a=0}^{2},
+\{m_I,m_{II},m_{III}\}_{\mathrm{obs}}
+\right)
++
+\mathcal R_{\mathrm{null}}(\theta).
+$$
+
+The generation program passes this benchmark only when $\mathcal R_{3\mathrm{gen}}(\theta)$ is below the declared tolerance using the same branch record. The first term checks that the family ladder really has a closed three-step structure; the representation term checks that electric charge, weak isospin, hypercharge, and color bookkeeping are preserved across generations; the CPT term keeps generation structure compatible with the effective fermion symmetry record; the mass term tests the shielding hierarchy against measured masses; and $\mathcal R_{\mathrm{null}}$ blocks mirror matter, superpartners, added gauge modes, or other unobserved channels. This does not identify generation with an external triality or exceptional-group action. It gives the current shielding thesis the same hard tests that make those comparison frameworks interesting.
+
+#### Candidate Generation Operator
+
+The least risky way to make $T_{\mathrm{gen}}$ concrete is to define it first on the shielding quotient, not as a physical reaction. Let
+$$
+\mathsf{s}_{\mathrm{sh}}(A)
+=
+(s_{\mathrm{in}},s_{\mathrm{mid}},s_{\mathrm{out}})
+\in\{0,1\}^3
+$$
+record which inner, middle, and outer shielding tiers remain active for the charged-fermion or quark branch $A$. The present generation thesis admits only the three quotient classes
+$$
+\mathfrak{G}_{\mathrm{sh}}
+=
+\{(1,1,1),(1,1,0),(1,0,0)\},
+$$
+corresponding to Generations I, II, and III. The candidate comparison operator is
+$$
+T_{\mathrm{gen}}:
+(1,1,1)\mapsto(1,1,0)\mapsto(1,0,0)\mapsto(1,1,1),
+$$
+where the last arrow is a quotient-closure check, not a claim that an exposed Generation III assembly dynamically rebuilds the missing shielding tiers.
+
+One explicit order residual is
+$$
+d_{\mathrm{ord}}\!\left(T_{\mathrm{gen}}^3,\mathrm{id}\right)
+=
+\frac{1}{|\mathfrak{G}_{\mathrm{sh}}|}
+\sum_{g\in\mathfrak{G}_{\mathrm{sh}}}
+\left(
+1-
+\mathbf{1}_{T_{\mathrm{gen}}^3 g=g}
+\right).
+$$
+This term fails if the shielding quotient admits a fourth stable class, collapses two observed generations into one class, or cannot define the third iterate on every admitted class.
+
+For a family representative $A_f$, the representation residual should use the same observer-level gauge projection across all three classes:
+$$
+\Pi_{\mathrm{gauge}}A
+=
+\left(Q(A),T_3(A),Y(A),\mathrm{col}(A),\mathcal{E}_{\mathrm{weak}}(A)\right),
+$$
+where $\mathrm{col}(A)$ is the color singlet/triplet bookkeeping and $\mathcal{E}_{\mathrm{weak}}(A)$ records the weak-coupling-triad exposure class. A concrete first pass is
+$$
+d_{\mathrm{rep}}(A,B)
+=
+\left\lVert
+\Pi_{\mathrm{gauge}}A-\Pi_{\mathrm{gauge}}B
+\right\rVert_{W_{\mathrm{rep}}}^{2},
+$$
+with discrete penalties for mismatched color or weak-exposure classes. This enforces that generation changes exposed mass response while leaving the Standard-Model-facing representation table fixed.
+
+The mass term becomes testable once one shielding-energy map is selected:
+$$
+m^{\mathbb{A}\mathbb{A}\mathbb{A}}_{f,a}(\theta)
+=
+M_{\mathrm{sh}}\!\left(A_f,T_{\mathrm{gen}}^a,\theta\right),
+\qquad a\in\{0,1,2\}.
+$$
+The corresponding log-residual is
+$$
+d_{\mathrm{mass}}
+=
+\sum_{f}
+\sum_{a=0}^{2}
+\frac{
+\left[
+\log m^{\mathbb{A}\mathbb{A}\mathbb{A}}_{f,a}(\theta)
+-
+\log m^{\mathrm{obs}}_{f,a}
+\right]^2
+}{\sigma_{f,a}^2},
+$$
+with one shared $\theta$ and one shared $M_{\mathrm{sh}}$ across leptons, up-type quarks, and down-type quarks. A fit that changes the shielding map by family is therefore not generation closure; it is a hidden parameter split.
+
+The explicit shared fitting packet lives in [Particle Masses](../particle-masses.md#generation-mass-fitting-packet), where $M_{\mathrm{sh}}$ is treated as a mass-response map rather than a new generation ontology.
 
 ### Generation II (Muon, Charm, Strange)
 *   **Architecture:** Missing the **Outer Binary**.

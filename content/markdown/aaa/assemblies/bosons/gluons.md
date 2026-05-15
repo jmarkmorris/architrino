@@ -57,7 +57,7 @@ This can also be read as the strong-force version of the pole problem. Rotationa
 
 ### The Gluon as an Axis-Reconfiguration Braid
 
-A gluon is a propagating disturbance in the tri-binary lattice that reconfigures axis exceptionality within the quark color basis.
+A gluon is a propagating disturbance in the Noether-Sea assembly network that reconfigures axis exceptionality within the quark color basis.
 
 - **The operator:** when a Red quark $|q_H\rangle$ interacts with a Green quark $|q_M\rangle$, the gluon acts as a bridge that mixes or swaps the exceptional-axis state between $H$ and $M$.
 - **The braid:** geometrically, this is realized as a twisting of the Noether-Sea flux tube: a braid segment that propagates between the cores and carries the topology required to move exceptionality from one axis sector to another.
@@ -87,11 +87,11 @@ At the Standard Model level, gluons are spin-1 gauge bosons. Because color is co
 
 ## Confinement and Energetics
 
-Quarks are confined because an open color corridor stores energy in the surrounding Noether-Sea lattice.
+Quarks are confined because an open color corridor stores energy in the surrounding Noether-Sea assembly network.
 
 ### Energy Density Calculation
 
-- **Noether-Sea lattice:** the Noether Sea has a characteristic spacing $L_{vac}$ of order $1\;\mathrm{fm}$.
+- **Noether-Sea alignment scale:** the confinement scaffold uses a candidate coherence length $L_{vac}$, provisionally of order $1\;\mathrm{fm}$, rather than a discretization scale of the Euclidean void.
 - **Cost of ordering:** forcing a line of ambient Noether-Sea cores to align with an open color corridor costs an energy $E_{vac}$ per coherence length.
 - **String tension ($\sigma$):**
   $$
@@ -125,7 +125,7 @@ Unlike photons, gluons carry color structure themselves because they represent r
 
 ### The 3-Gluon Vertex
 
-- **Mechanism:** since a gluon is a polarized distortion of the Noether-Sea lattice, two gluon braids can interact when they cross or share corridor structure.
+- **Mechanism:** since a gluon is a polarized distortion of the Noether-Sea assembly network, two gluon braids can interact when they cross or share corridor structure.
 - **Topology:** flux tubes can merge or split. Geometrically, this is the tangling of Noether-Sea vortices, the strong-sector origin of non-Abelian self-interaction.
 
 ### Glueballs
