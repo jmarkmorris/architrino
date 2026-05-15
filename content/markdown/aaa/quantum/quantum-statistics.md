@@ -14,6 +14,8 @@ At the observer level, $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover those rules
 
 The substrate question is: what assembly geometry makes those two statistical packages appear?
 
+The answer must not erase substrate identity. Individual architrinos remain provenance-bearing entities, as stated in [Absolute Time](../foundations/absolute-time.md#provenance-and-identity-through-time), and the exact symmetries of the master equation preserve full histories rather than arbitrary label swaps (see [Master Equation of Motion](../dynamics/master-equation.md#fundamental-symmetry-group)). The statistics problem is therefore an effective-state recovery problem: determine when finite observers may quotient inaccessible provenance into antisymmetric or symmetric bookkeeping without treating that quotient as ontic interchangeability.
+
 ## Noether-Core Geometry Basis
 
 The relevant object is the Noether core, the triply nested binary assembly described in [Nested Binaries and the Noether Core](../spacetime/noether-core.md). Its geometric footprint is the dynamic exclusion envelope described in [Noether Core Geometry](../spacetime/noether-core-geometry.md).

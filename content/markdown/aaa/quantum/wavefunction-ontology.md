@@ -124,6 +124,49 @@ in the same regime where the envelope dynamics reduce to effective Schrödinger 
 
 This is the Born-rule basin-measure ledger. It should stay distinct from the spin-statistics / exchange ledger in [Fermi-Dirac and Bose-Einstein Statistics](./quantum-statistics.md), which asks why effective states are antisymmetric or symmetric in the first place. Photon-channel squared-amplitude capture is a special measurement-channel bridge in [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md), not a replacement for the basin-measure derivation.
 
+### Lower Bound on Recordable Basin Measure
+
+The probability measure $\mu_*$ is enough to state outcome weights, but it does not by itself say when a subset of $\mathcal{M}$ is an independently recordable alternative. The closure program also needs the finite, pre-normalized basin measure associated with the same coarse-graining and apparatus channel. Let $\mu_{\mathcal{Q}}$ denote that finite basin measure for a declared coarse-graining $\mathcal{Q}$ and access region $W$.
+
+For that declared setup, define the candidate recordable basin family by importing only the measurement criteria already fixed in [Measurement Ontology](measurement-ontology.md). A basin is eligible only when its apparatus-target trajectories have finite measurement crossing, satisfy entropy locking, and satisfy record autonomy on the persistence window:
+$$
+\mathcal{B}_{\mathcal{Q},W}^{\mathrm{rec}}
+=
+\left\{
+B\subset\mathcal{M}:
+\tau_{\text{meas}}(B)<\infty,\quad
+\Delta S_{\mathcal{Q},W}^{\mathrm{app+env}}\ge S_{\mathrm{lock}}>0,\quad
+\sup_{t\in[\tau_{\text{meas}},\,\tau_{\text{meas}}+T_{\text{rec}}]}
+\Delta_{\mathrm{rec}}(t;k)
+\le
+\varepsilon_{\mathrm{rec}}
+\right\}.
+$$
+The candidate lower measure unit is then
+$$
+\mu_0(\mathcal{Q},W)
+=
+\inf_{B\in\mathcal{B}_{\mathcal{Q},W}^{\mathrm{rec}}}
+\mu_{\mathcal{Q}}(B),
+$$
+with the required closure condition
+$$
+0<\mu_0(\mathcal{Q},W)<\infty.
+$$
+When this condition holds, the resolved-state count of a basin is
+$$
+N_{\mathcal{Q},W}(B)
+=
+\frac{\mu_{\mathcal{Q}}(B)}{\mu_0(\mathcal{Q},W)}.
+$$
+Basins with $N_{\mathcal{Q},W}(B)<1$ are not independent record states in the declared window; they remain unresolved substructure of a larger recordable alternative. Plain language: the state count is not an information-theory primitive; it is a derived claim about which basins the actual apparatus dynamics can separate, lock, and preserve as records.
+
+This is a closure target, not a completed derivation of the action quantum. In an effective canonical chart with $n$ conjugate pairs, the stronger result would be a derivation that relates the lower basin measure to the standard action cell,
+$$
+\mu_0(\mathcal{Q},W)\longrightarrow C_{\mathcal{Q},W}h^n,
+$$
+with the normalization factor $C_{\mathcal{Q},W}$ fixed by the same assembly and apparatus reduction rather than chosen after the fact. If the infimum is zero, if $\mu_0$ changes arbitrarily with readout convention, or if the resulting cell fails to match the observer-level $h,\hbar$ benchmarks in the parameter ledger, this route does not close the quantum state-counting problem.
+
 Primary synthesis location: [Pilot-Wave Character](../theory-bridges/pilot-wave-character.md).
 
 For the broader methodology of not mistaking successful formal control for settled ontology, compare [Crisis in Physics](../philosophy-history/crisis-in-physics.md).
