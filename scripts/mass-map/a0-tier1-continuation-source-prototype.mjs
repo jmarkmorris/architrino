@@ -7,6 +7,8 @@ const DEFAULT_ROWS = "ready";
 const DEFAULT_SAMPLE_COUNT = 320;
 const DEFAULT_DYNAMICS_STEP_FRACTION = 1 / 4096;
 const DEFAULT_ROOT_REFINEMENT_FACTOR = 2;
+const DEFAULT_J_ATTRIBUTION_FRACTION = 0.75;
+const DEFAULT_BRANCH_GAP_DELAY_FACTOR = 4;
 const LAYER_ORDER = ["I", "M", "O"];
 const POLARITIES = ["+", "-"];
 const BODY_IDS = ["I+", "I-", "M+", "M-", "O+", "O-"];
@@ -593,6 +595,237 @@ function rootJTolerance(baseConfig, refinedConfig) {
   );
 }
 
+function rootJDriftClassifications() {
+  return {
+    within_fixed_J_tolerance: 0,
+    root_solve_tolerance_dominated: 0,
+    velocity_direction_sensitivity_dominated: 0,
+    unresolved_branch_chart_instability: 0,
+  };
+}
+
+function rootJDriftExamples() {
+  return Object.fromEntries(Object.keys(rootJDriftClassifications()).map((classification) => [classification, []]));
+}
+
+function bodyById(bodyId) {
+  return bodyCatalog().find((body) => body.id === bodyId) ?? null;
+}
+
+function rootJAtDelay(row, config, root, delay) {
+  const receiver = bodyById(root.receiver);
+  const source = bodyById(root.source);
+  if (!receiver || !source || !Number.isFinite(delay)) {
+    return null;
+  }
+  const values = rowValues(row);
+  const cF = config.seaCell.c_f;
+  const receiverState = bodyState(receiver, values, root.t);
+  const sourceState = bodyState(source, values, root.t - delay);
+  const direction = unit(sub(receiverState.position, sourceState.position));
+  return 1 - dot(sourceState.velocity, direction) / cF;
+}
+
+function rootJFiniteDifferenceStep(row, root, baseConfig, refinedConfig, delayTolerance) {
+  const rawStep = Math.max(
+    (baseConfig.sampling.rootTolerance ?? 0) * 2,
+    (refinedConfig.sampling.rootTolerance ?? 0) * 2,
+    Math.abs(root.delay) * 1e-6,
+    Number.EPSILON
+  );
+  return Math.min(rawStep, rootStepFor(row, refinedConfig) / 4, delayTolerance / 2);
+}
+
+function rootJDelaySensitivity(row, config, root, delay, step) {
+  const minDelay = config.sampling.minDelay ?? 0;
+  const lo = Math.max(minDelay, delay - step);
+  const hi = delay + step;
+  if (!(hi > lo)) {
+    return null;
+  }
+  const jLo = rootJAtDelay(row, config, root, lo);
+  const jHi = rootJAtDelay(row, config, root, hi);
+  if (jLo === null || jHi === null) {
+    return null;
+  }
+  return Math.abs(jHi - jLo) / (hi - lo);
+}
+
+function rootResidualDelayBound(config, root) {
+  if (!Number.isFinite(root.residual) || !Number.isFinite(root.J)) {
+    return null;
+  }
+  const cF = config.seaCell.c_f;
+  return Math.abs(root.residual) / Math.max(cF * Math.abs(root.J), Number.EPSILON);
+}
+
+function nearestSameIdentityDelayGap(roots, root, timeTolerance) {
+  const gaps = roots
+    .filter(
+      (candidate) =>
+        candidate !== root &&
+        rootIdentityMatches(root, candidate, timeTolerance) &&
+        Math.abs(candidate.delay - root.delay) > Number.EPSILON
+    )
+    .map((candidate) => Math.abs(candidate.delay - root.delay));
+  return gaps.length === 0 ? null : Math.min(...gaps);
+}
+
+function classifyRootJDrift(row, baseRoot, refinedRoot, baseConfig, refinedConfig, delayDrift, jDrift, options) {
+  const { tolerances, nearestDelayGap } = options;
+  const baseReplayJ = rootJAtDelay(row, baseConfig, baseRoot, baseRoot.delay);
+  const refinedReplayJ = rootJAtDelay(row, baseConfig, baseRoot, refinedRoot.delay);
+  const finiteStep = rootJFiniteDifferenceStep(row, baseRoot, baseConfig, refinedConfig, tolerances.delay);
+  const localSensitivity = rootJDelaySensitivity(row, baseConfig, baseRoot, baseRoot.delay, finiteStep);
+  const baseResidualDelayBound = rootResidualDelayBound(baseConfig, baseRoot);
+  const refinedResidualDelayBound = rootResidualDelayBound(refinedConfig, refinedRoot);
+  const residualDelayBound = Math.max(baseResidualDelayBound ?? 0, refinedResidualDelayBound ?? 0);
+  const finiteDelayReplayJDrift =
+    baseReplayJ === null || refinedReplayJ === null ? null : Math.abs(refinedReplayJ - baseReplayJ);
+  const recordReplayError =
+    baseReplayJ === null || refinedReplayJ === null
+      ? null
+      : Math.max(Math.abs(baseReplayJ - baseRoot.J), Math.abs(refinedReplayJ - refinedRoot.J));
+  const delayReplayResidual =
+    finiteDelayReplayJDrift === null ? null : Math.abs(jDrift - finiteDelayReplayJDrift);
+  const sensitivityThreshold =
+    tolerances.delay > 0 ? tolerances.J / tolerances.delay : Number.POSITIVE_INFINITY;
+  const sensitivityBoundAtMatch =
+    localSensitivity === null ? null : localSensitivity * delayDrift + tolerances.J;
+  const delayToleranceBound =
+    localSensitivity === null ? null : localSensitivity * tolerances.delay + tolerances.J;
+  const attributionFraction = DEFAULT_J_ATTRIBUTION_FRACTION;
+  const branchGapRatio = nearestDelayGap === null ? null : nearestDelayGap / tolerances.delay;
+  const branchGapCrowded =
+    nearestDelayGap !== null && nearestDelayGap <= DEFAULT_BRANCH_GAP_DELAY_FACTOR * tolerances.delay;
+  const minAbsJ = Math.min(Math.abs(baseRoot.J), Math.abs(refinedRoot.J));
+
+  let classification = "within_fixed_J_tolerance";
+  if (jDrift > tolerances.J) {
+    const replayConsistent =
+      recordReplayError !== null &&
+      delayReplayResidual !== null &&
+      recordReplayError <= tolerances.J &&
+      delayReplayResidual <= tolerances.J;
+    const driftExplainedByDelay =
+      finiteDelayReplayJDrift !== null && finiteDelayReplayJDrift >= attributionFraction * jDrift;
+    const toleranceBoundExplains =
+      delayToleranceBound !== null && delayToleranceBound >= attributionFraction * jDrift;
+    if (!replayConsistent || delayDrift > tolerances.delay || localSensitivity === null || branchGapCrowded) {
+      classification = "unresolved_branch_chart_instability";
+    } else if (localSensitivity > sensitivityThreshold && (driftExplainedByDelay || toleranceBoundExplains)) {
+      classification = "velocity_direction_sensitivity_dominated";
+    } else if (driftExplainedByDelay || residualDelayBound >= attributionFraction * delayDrift) {
+      classification = "root_solve_tolerance_dominated";
+    } else {
+      classification = "unresolved_branch_chart_instability";
+    }
+  }
+
+  return {
+    classification,
+    receiver: baseRoot.receiver,
+    source: baseRoot.source,
+    relation: baseRoot.relation,
+    t: baseRoot.t,
+    base_delay: baseRoot.delay,
+    refined_delay: refinedRoot.delay,
+    delay_drift: delayDrift,
+    base_J: baseRoot.J,
+    refined_J: refinedRoot.J,
+    J_drift: jDrift,
+    min_abs_J: minAbsJ,
+    fixed_J_tolerance: tolerances.J,
+    delay_match_tolerance: tolerances.delay,
+    finite_delay_replay_J_drift: finiteDelayReplayJDrift,
+    delay_replay_residual: delayReplayResidual,
+    residual_delay_bound: residualDelayBound,
+    nearest_same_identity_delay_gap: nearestDelayGap,
+    branch_gap_ratio: branchGapRatio,
+    local_J_delay_sensitivity: localSensitivity,
+    J_sensitivity_threshold: sensitivityThreshold,
+    J_sensitivity_bound_at_match: sensitivityBoundAtMatch,
+    J_sensitivity_bound_at_delay_tolerance: delayToleranceBound,
+    record_replay_error: recordReplayError,
+    finite_difference_step: finiteStep,
+  };
+}
+
+function pushJDriftExample(examples, attribution) {
+  const bucket = attribution.classification;
+  if (!Object.hasOwn(examples, bucket)) {
+    return;
+  }
+  if (examples[bucket].length < 10) {
+    examples[bucket].push(attribution);
+  }
+}
+
+function rootJDriftAttributionStatus(counts, jDriftCount) {
+  if (jDriftCount === 0) {
+    return {
+      status: "carrier-root-J-drift-attribution-passed",
+      attribution_code: "carrier-root-J-drift-none",
+    };
+  }
+  if (counts.unresolved_branch_chart_instability > 0) {
+    return {
+      status: "carrier-root-J-drift-attribution-failed",
+      attribution_code: "carrier-root-J-drift-unresolved-branch-chart-instability",
+    };
+  }
+  if (counts.velocity_direction_sensitivity_dominated > 0) {
+    return {
+      status: "carrier-root-J-drift-attribution-warning",
+      attribution_code: "carrier-root-J-drift-velocity-direction-sensitivity-dominated",
+    };
+  }
+  return {
+    status: "carrier-root-J-drift-attribution-warning",
+    attribution_code: "carrier-root-J-drift-root-solve-tolerance-dominated",
+  };
+}
+
+function updateJDriftAttributionMaxima(maxima, attribution) {
+  maxima.max_observed_J_drift = Math.max(maxima.max_observed_J_drift, attribution.J_drift);
+  maxima.max_observed_delay_drift = Math.max(maxima.max_observed_delay_drift, attribution.delay_drift);
+  maxima.max_residual_delay_bound = Math.max(maxima.max_residual_delay_bound, attribution.residual_delay_bound ?? 0);
+  maxima.max_abs_dJ_dDelay = Math.max(maxima.max_abs_dJ_dDelay, attribution.local_J_delay_sensitivity ?? 0);
+  maxima.max_delay_amplified_J_bound = Math.max(
+    maxima.max_delay_amplified_J_bound,
+    attribution.J_sensitivity_bound_at_delay_tolerance ?? 0
+  );
+  maxima.min_abs_J = Math.min(maxima.min_abs_J, attribution.min_abs_J);
+  if (attribution.nearest_same_identity_delay_gap !== null) {
+    maxima.min_branch_delay_gap = Math.min(maxima.min_branch_delay_gap, attribution.nearest_same_identity_delay_gap);
+  }
+}
+
+function rootJDriftAttributionDiagnostic(counts, examples, maxima, matchedRootCount, jDriftCount, tolerances) {
+  const status = rootJDriftAttributionStatus(counts, jDriftCount);
+  return {
+    schema: "carrier-root-J-drift-attribution/v1",
+    ...status,
+    acceptance_scope:
+      "Diagnostic-only attribution of carrier-root J drift; does not change accepted-history status or root_ledger_stable_under_refinement.",
+    evaluated_match_count: matchedRootCount,
+    J_drift_count: jDriftCount,
+    classification_counts: counts,
+    thresholds: {
+      J_match_tolerance: tolerances.J,
+      delay_match_tolerance: tolerances.delay,
+      attribution_fraction_threshold: DEFAULT_J_ATTRIBUTION_FRACTION,
+      branch_gap_delay_factor: DEFAULT_BRANCH_GAP_DELAY_FACTOR,
+    },
+    maxima: {
+      ...maxima,
+      min_branch_delay_gap: Number.isFinite(maxima.min_branch_delay_gap) ? maxima.min_branch_delay_gap : null,
+      min_abs_J: Number.isFinite(maxima.min_abs_J) ? maxima.min_abs_J : null,
+    },
+    examples,
+  };
+}
+
 function rootIdentityMatches(a, b, timeTolerance) {
   return (
     a.receiver === b.receiver &&
@@ -636,11 +869,23 @@ function compareActiveCarrierRootLedgers(row, baseRoots, refinedRoots, baseConfi
   const timeTolerance = rootTimeTolerance(row);
   const delayTolerance = rootDelayTolerance(row, baseConfig, refinedConfig);
   const jTolerance = rootJTolerance(baseConfig, refinedConfig);
+  const tolerances = { delay: delayTolerance, J: jTolerance };
   const baseTimes = uniqueRootTimes(baseRoots, timeTolerance);
   const refinedRootsAtSharedTimes = rootsAtAnyTime(refinedRoots, baseTimes, timeTolerance);
   const usedRefined = new Set();
   const missingInRefined = [];
   const ambiguousMatches = [];
+  const jDriftAttributionCounts = rootJDriftClassifications();
+  const jDriftAttributionExamples = rootJDriftExamples();
+  const jDriftAttributionMaxima = {
+    max_observed_J_drift: 0,
+    max_observed_delay_drift: 0,
+    max_residual_delay_bound: 0,
+    max_abs_dJ_dDelay: 0,
+    max_delay_amplified_J_bound: 0,
+    min_branch_delay_gap: Number.POSITIVE_INFINITY,
+    min_abs_J: Number.POSITIVE_INFINITY,
+  };
   let maxDelayDrift = 0;
   let maxJDrift = 0;
   let delayDriftCount = 0;
@@ -671,6 +916,24 @@ function compareActiveCarrierRootLedgers(row, baseRoots, refinedRoots, baseConfi
     usedRefined.add(match.index);
     maxDelayDrift = Math.max(maxDelayDrift, match.delayDrift);
     maxJDrift = Math.max(maxJDrift, match.jDrift);
+    const jDriftAttribution = classifyRootJDrift(
+      row,
+      baseRoot,
+      match.root,
+      baseConfig,
+      refinedConfig,
+      match.delayDrift,
+      match.jDrift,
+      {
+        tolerances,
+        nearestDelayGap: nearestSameIdentityDelayGap(baseRoots, baseRoot, timeTolerance),
+      }
+    );
+    jDriftAttributionCounts[jDriftAttribution.classification] += 1;
+    updateJDriftAttributionMaxima(jDriftAttributionMaxima, jDriftAttribution);
+    if (match.jDrift > jTolerance) {
+      pushJDriftExample(jDriftAttributionExamples, jDriftAttribution);
+    }
     if (match.delayDrift > delayTolerance) {
       delayDriftCount += 1;
     }
@@ -698,6 +961,14 @@ function compareActiveCarrierRootLedgers(row, baseRoots, refinedRoots, baseConfi
     J_match_tolerance: jTolerance,
     delay_drift_count: delayDriftCount,
     J_drift_count: jDriftCount,
+    J_drift_attribution: rootJDriftAttributionDiagnostic(
+      jDriftAttributionCounts,
+      jDriftAttributionExamples,
+      jDriftAttributionMaxima,
+      usedRefined.size,
+      jDriftCount,
+      tolerances
+    ),
     intermediate_refined_active_root_count: refinedRoots.length - refinedRootsAtSharedTimes.length,
     examples: {
       missing_in_refined: missingInRefined.slice(0, 10),
