@@ -1,5 +1,102 @@
 # $A_0$ Reduced Branch Certificate Packet
 
+## Background
+
+We are exploring an **assembly**, specifically a candidate neutral rest-branch Noether-core assembly called `$A_0$`.
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, an assembly is not a point particle. It is a structured bundle of architrinos with internal motion, internal causal history, and sector-visible projections.
+
+For this $A_0$ case, the reduced assembly has six constituents:
+
+`I+`, `I-`, `M+`, `M-`, `O+`, `O-`
+
+Think of them as three nested pro/anti binary layers:
+
+- `I`: inner binary
+- `M`: middle binary
+- `O`: outer binary
+
+Each layer has a radius, frequency, handedness, phase, and plane orientation. So the “geometry” is not just where the six things are right now. It includes:
+
+1. Their spatial arrangement.
+2. Their velocities.
+3. Their layer phases.
+4. Their orientation frames.
+5. Their path-history.
+6. The delayed causal connections among them.
+
+The key geometric object is the **causal-root ledger**.
+
+A causal root answers:
+
+“At current time `$t$`, which past point `$t_0$` on some source constituent can causally reach this receiver constituent?”
+
+The root equation is roughly:
+
+$$
+F_{ab}(t;t_0)
+=
+\|\mathbf{s}_a(t)-\mathbf{s}_b(t_0)\|
+-
+c_f(t-t_0)
+=0.
+$$
+
+Here:
+
+- `$a$` is the receiver.
+- `$b$` is the source.
+- `$\mathbf{s}_a(t)$` is the receiver position now.
+- `$\mathbf{s}_b(t_0)$` is the source position in the past.
+- `$c_f$` is the field-speed scale.
+
+So the assembly is a moving geometry plus a delayed connection graph.
+
+The roots come in classes:
+
+- **partner roots**: between `+` and `-` members of the same layer;
+- **self roots**: a constituent intersecting its own path-history;
+- **inter-layer roots**: connections between different layers.
+
+What we were testing is whether this internal geometry is stable enough to be meaningful. A pretty algebraic carrier is not enough. We need to know whether the assembly can evolve while preserving a coherent causal-root ledger.
+
+The recent work added a branch-retention diagnostic:
+
+$$
+B_n(k)=\#\{r\in R_n:\kappa(r)=k\},
+$$
+
+where `$B_n(k)$` counts how many roots of branch type `$k$` exist at step `$n$`.
+
+Then we compare against the initial root ledger:
+
+$$
+\mathcal{B}_{\mathrm{ret}}(n)
+=
+\sum_k \min(B_0(k),B_n(k)).
+$$
+
+Plainly: “Are the same kinds of internal causal connections still present after the assembly evolves?”
+
+What we found is geometrically interesting:
+
+- The initial direct-root ledger has 32 active branches.
+- At longer evolution, two inner self-root branches looked like they disappeared on a coarse grid.
+- Adaptive refinement showed they did not really disappear.
+- Pushing farther, the same inner self-root branches gained an extra short-delay root.
+
+That means the inner binary’s self-history geometry is near a **root multiplicity event**: not simple collapse, but possible fold/splitting behavior in the delayed self-connection chart.
+
+Why this matters for Standard Model-facing geometry:
+
+Before we can derive mass-basis shape functions, weak-basis shape functions, CKM/PMNS overlaps, weak chirality, or confinement geometry, we need an internal assembly whose own causal geometry is stable enough to project from.
+
+So the chain is:
+
+`architrinos` → `Noether-core assembly` → `stable causal-root ledger` → `sector exposure / quotient` → `mass, weak, color, photon-facing geometry`
+
+The current $A_0$ work is at the “stable causal-root ledger” level. It is not yet a particle prediction. It is checking whether an internal assembly can become a reliable geometric source object for later mass and weak-sector calculations.
+
 ## Purpose
 
 This packet turns the $A_0$ reference-attractor posture into a concrete reduced proof and simulation target. It does not replace the full six-worldline $A_0$ output schema in [mass-map.md](mass-map.md). Its job is narrower: define the first finite branch-search certificate that can decide whether a coupled multi-scale tri-binary lock is worth promoting into shielding extraction, energy-ledger work, and mass-map comparison.
@@ -793,20 +890,21 @@ Every failed certificate should classify the failure:
 
 ## Next Implementation Packet
 
-Build the Tier 0 algebraic branch-search artifact first. The minimum useful artifact is a reproducible table of finite reduced candidates, not a full simulator.
+The first Tier 0 implementation packet is complete enough for the next handoff. The current scripts emit the reduced grid, carrier evaluator, active root ledger by relation class, $J_{ab}^{(m)}$ values, quotient row $z_\Lambda$, residual surface, $\Delta_{\mathbf{k}}$ placeholder, weak-retained handoff placeholder, blocked accepted-history writer output, and weak-emitter fail-closed behavior. Those items should no longer be carried as next tasks here.
 
-The first implementation pass should produce:
+The active next implementation packet is the self-root fold/splitting diagnostic for the adaptive direct-root horizon ladder. It should consume `first_branch_surplus_bracket` from the continuation-source prototype and classify the new short-delay inner self roots.
 
-1. a small parameter-grid definition for $\varepsilon_{IM}$, $\varepsilon_{MO}$, $\delta_M$, $(R_I:R_M:R_O)$, $(T_I:T_M:T_O)$, and $(H_I,H_M,H_O)$;
-2. a carrier evaluator for circular and elliptic diagnostic charts;
-3. a root-ledger enumerator that emits partner, self, and inter-layer root classes with $J_{ab}^{(m)}$ values;
-4. a quotient-coordinate emitter for $z_\Lambda$ with the removed rotation, phase, and chart relabeling gauges declared;
-5. a resonance classifier that separates $\mathcal{R}_{\text{avg}}$ from $\mathcal{R}_{\text{lock}}$;
-6. a leakage placeholder that reports the leading nonzero far-field channel rather than hiding it;
-7. a provisional `weak_retained_amplitude_handoff` field that reports `not-computed` or `candidate` with the missing Tier 1/Tier 2 inputs named;
-8. one output row per branch label $\Lambda$, including $z_\Lambda$, $\mathcal{R}_{A_0}$, $\Delta_{\mathbf{k}}$, and a failure code.
+The next pass should produce:
 
-Only after Tier 0 emits at least one nontrivial candidate should the workstream spend effort on Tier 1 direct delayed dynamics.
+1. a local bracket packet for the two surplus branch keys `I+|I+|self|active` and `I-|I-|self|active`, including the previous and current self-root delays, $J$ values, residuals, and step times;
+2. a local normal-form fit or interval sign chart for $F_{aa}(t;t_0)$ around the new short-delay self root;
+3. a parity verdict for whether the event obeys the fold-pair rule $\Delta N\in2\mathbb{Z}$;
+4. a classification field with one of `fold-layer`, `branch-proliferation`, or `resolution-artifact`;
+5. refinement checks under root-grid, $\Delta t$, history-depth, and $\eta$ changes;
+6. an updated Tier 1 branch-chart row that routes a bounded fold-layer event to $\mathcal{R}_{\text{lock}}$ but routes unresolved proliferation to `root-ledger-instability`;
+7. confirmation that accepted-history output remains blocked until one-period residual closure, no secular center drift, positive $\Delta_{\mathbf{k}}$, and branch persistence across the declared $\eta$ ladder are all present.
+
+After this fold/splitting packet is classified, the following Tier 1 implementation packet is a one-period adaptive direct-root continuation with residual budgets and monodromy setup. It should not begin until the self-root surplus event is no longer ambiguous.
 
 ## Promotion Rule
 
