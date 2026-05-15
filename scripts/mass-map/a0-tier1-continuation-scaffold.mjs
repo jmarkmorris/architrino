@@ -225,6 +225,13 @@ function continuationContract(row, etaLadder) {
       "remove symmetry modes and compute Delta_k",
       "repeat across dt, history-window, and eta refinement",
     ],
+    source_prototype: {
+      script: "scripts/mass-map/a0-tier1-continuation-source-prototype.mjs",
+      status: "blocked_carrier_replay_only",
+      failure_code: "tier1-integrator-not-run",
+      note:
+        "The prototype replays Tier 0 carrier samples and provisional carrier roots for validation plumbing only; it is not an accepted Tier 1 continuation.",
+    },
     residuals_to_recompute: [
       "state",
       "root",

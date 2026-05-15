@@ -22,6 +22,20 @@ const REQUIRED_DECLARED_VALIDATION_FLAGS = [
   "same_branch_persists_across_eta_ladder",
   "benchmark_inputs_excluded",
 ];
+const REQUIRED_VALIDATION_BOOLEAN_FIELDS = [
+  "status_is_accepted_history_segment",
+  "source_row_identity_matches",
+  "sample_count_at_least_two",
+  "samples_ordered_by_t",
+  "samples_cover_cycle",
+  "samples_cover_all_delayed_source_times",
+  "all_required_body_states_present",
+  "body_state_vectors_finite",
+  "active_root_labels_valid",
+  "active_root_delays_finite_nonnegative",
+  "active_root_J_finite",
+  ...REQUIRED_DECLARED_VALIDATION_FLAGS,
+];
 
 function parseArgs(argv) {
   const args = {
@@ -411,21 +425,7 @@ function validationFlags(segment, row) {
 }
 
 function validationPasses(validation) {
-  const booleanFields = [
-    "status_is_accepted_history_segment",
-    "source_row_identity_matches",
-    "sample_count_at_least_two",
-    "samples_ordered_by_t",
-    "samples_cover_cycle",
-    "samples_cover_all_delayed_source_times",
-    "all_required_body_states_present",
-    "body_state_vectors_finite",
-    "active_root_labels_valid",
-    "active_root_delays_finite_nonnegative",
-    "active_root_J_finite",
-    ...REQUIRED_DECLARED_VALIDATION_FLAGS,
-  ];
-  const booleansPass = booleanFields.every((field) => validation[field] === true);
+  const booleansPass = REQUIRED_VALIDATION_BOOLEAN_FIELDS.every((field) => validation[field] === true);
   const relationsPass = ROOT_RELATIONS.every((relation) => validation.active_root_relations_present?.[relation] === true);
   const sourceCoveragePass =
     validation.active_root_sources_cover_selected_layers?.active_root_sources_cover_selected_layers === true;
@@ -434,13 +434,10 @@ function validationPasses(validation) {
 
 function missingValidationFields(validation) {
   const missing = [];
-  for (const field of REQUIRED_DECLARED_VALIDATION_FLAGS) {
+  for (const field of REQUIRED_VALIDATION_BOOLEAN_FIELDS) {
     if (validation[field] !== true) {
       missing.push(field);
     }
-  }
-  if (validation.source_row_identity_matches !== true) {
-    missing.push("source_row_identity_matches");
   }
   for (const relation of ROOT_RELATIONS) {
     if (validation.active_root_relations_present?.[relation] !== true) {
@@ -496,12 +493,13 @@ function acceptedHistoryRow(row, segment) {
   const accepted = validationPasses(validation);
   const samples = canonicalSamples(segment);
   const coverage = validation.diagnostics.coverage;
+  const blockedFailureCode = segment.failure_code ?? "accepted-history-validation-incomplete";
   return {
     row: row.row,
     schema: "a0-tier1-accepted-history-segment/v1",
     schema_status: "provisional",
     status: accepted ? ACCEPTED_HISTORY_STATUS : "blocked_tier1_acceptance_incomplete",
-    failure_code: accepted ? null : "accepted-history-validation-incomplete",
+    failure_code: accepted ? null : blockedFailureCode,
     period: segment.period ?? row.closure_labels?.T_k ?? row.geometry?.commonPeriod ?? null,
     history_window: {
       start: coverage.min_sample_time,
@@ -525,7 +523,7 @@ function acceptedHistoryRow(row, segment) {
     acceptance: {
       status: accepted ? "accepted" : "blocked",
       reason: accepted ? "accepted-history-segment-emitted" : "tier1-acceptance-incomplete",
-      failure_code: accepted ? null : "accepted-history-validation-incomplete",
+      failure_code: accepted ? null : blockedFailureCode,
     },
     nonfit_statement:
       "No CKM magnitude, CKM angle, charged-lepton mass ratio, particle mass, or CKM-derived transport action was used to emit this accepted-history row.",
