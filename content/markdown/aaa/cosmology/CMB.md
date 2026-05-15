@@ -48,6 +48,8 @@ where $\mathbf{D}_{\mathrm{kin}}$ is ordinary observer motion, $\mathbf{D}_{\mat
 
 This gate does not replace the TT/TE/EE or blackbody requirements. It adds a frame-consistency test: the effective CMB frame used for background inference must be the same frame, or a derived projection of the same medium state, used by the matter and distance-ladder modules.
 
+The concrete packet shape for this subgate is defined in [Cosmology Shared Residual Fit Protocol](../validation/simulations/cosmology-shared-residual-fit.md#frame-split-measurement-recipe).
+
 ## Localized CMB Feature Validation
 
 Claims about localized CMB features, including claims sometimes interpreted as pre-Big-Bang or cyclic-history signals, must first be handled as cross-instrument data products. The retained observable is not the external interpretation. It is the question of whether a common localized residual survives masking, foreground modeling, beam handling, and comparison between independent maps such as WMAP and Planck.
@@ -201,7 +203,7 @@ This statistic is a validation target, not a permission to import an external co
 
 **$\Lambda\mathrm{CDM}$ interpretation:** The Big Bang is a global origin of spacetime, setting the initial conditions for all subsequent evolution.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation:** The Big Bang timeline is reinterpreted as the effective history of a large-scale recycling event sourced by SMBH environments. Dark-sector photon-channel modes, recycled dark-sector assemblies, and other outbound excitations from SMBH horizon interfaces can propagate through the Noether Sea, thermalize, and redshift into the observed CMB directly or after further conversion into visible channels. Jets and surface outflows remain plausible observer-level manifestations of this release, but they are not the only allowed morphology. The three intrinsic tri-binary energy scales (outer/middle/inner) provide natural mode seeds for acoustic peaks, with coupling in the medium generating the harmonic ladder observed today. The CMB source interpretation is therefore a closure target for steady-state recycling dynamics in a fixed Euclidean void, not a singular origin event nor literal metric stretching of the container.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation:** The Big Bang timeline is reinterpreted as the effective history of a large-scale recycling event sourced by SMBH environments. Dark-sector photon-like modes, recycled dark-sector assemblies, and other outbound excitations from SMBH horizon interfaces can propagate through the Noether Sea, thermalize, and redshift into the observed CMB directly or after further conversion into visible channels. Jets and surface outflows remain plausible observer-level manifestations of this release, but they are not the only allowed morphology. The three intrinsic tri-binary energy scales (outer/middle/inner) provide natural mode seeds for acoustic peaks, with coupling in the medium generating the harmonic ladder observed today. The CMB source interpretation is therefore a closure target for steady-state recycling dynamics in a fixed Euclidean void, not a singular origin event nor literal metric stretching of the container.
 
 ### QSSC Contrast (Conceptual)
 

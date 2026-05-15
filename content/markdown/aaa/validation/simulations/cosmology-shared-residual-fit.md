@@ -71,6 +71,99 @@ The runtime packet should preserve this shape even when a later empirical packet
 
 The current mock packet uses normalized comparison coordinates such as `H_norm`, `w_eff`, `n`, `chi_sea`, `G_growth`, and `Y_BBN`. These are not new ontology. They are dimensionless placeholders for observer-level expansion, equation-of-state, normalized Noether-core density, Noether-Sea delay, growth-response, and BBN-yield comparison channels.
 
+## Frame-Split Measurement Recipe
+
+The `cosmology.frame_split` witness is the directional subgate for the same shared-state problem. It asks whether the rest-frame correction used for CMB inference can coexist with matter dipoles, supernova residual directionality, BAO anisotropy, and local $H_0$ scatter without giving each family its own hidden frame.
+
+The required frame families are
+
+$$
+\mathcal{F}_{\mathrm{frame}}
+=
+\{\mathrm{CMB},\mathrm{MD},\mathrm{SN},\mathrm{BAO},H_0\},
+$$
+
+where $\mathrm{MD}$ denotes matter-dipole catalogues such as radio, infrared, quasar, or galaxy-count samples. Each row must report a measured three-vector $\mathbf{y}_i$, an expected three-vector $\mathbf{m}_i(\theta_{\mathrm{frame}})$ from the declared common frame model, a covariance object $C_i$, calibration or mask context $\nu_i$, and a projection $\Pi_i\theta_{\mathrm{frame}}$ onto shared frame coordinates.
+
+The preprocessing rules are:
+
+- CMB: $\mathbf{y}_{\mathrm{CMB}}=\mathbf{D}_{\mathrm{CMB}}$ and $\mathbf{m}_{\mathrm{CMB}}$ is the same dipole vector in the declared coordinate convention.
+- Matter dipoles: for catalogue $X$, $\mathbf{y}_{\mathrm{MD},X}=\mathbf{D}_X$ and
+  $$
+  \mathbf{m}_{\mathrm{MD},X}
+  =
+  K_X(\alpha_X,x_X)\,\mathbf{D}_{\mathrm{CMB}}
+  +
+  \mathbf{F}_{X}(\theta_{\mathrm{frame}},\nu_X),
+  $$
+  where $K_X$ is the catalogue kinematic amplification factor and $\mathbf{F}_X$ is the allowed non-kinematic directional residual from the shared frame state and survey context.
+- Supernovae: $\mathbf{y}_{\mathrm{SN}}(z_b)$ is the fitted distance-modulus dipole in redshift bin $z_b$, after standardization and host-environment bookkeeping; $\mathbf{m}_{\mathrm{SN}}(z_b)$ is the corresponding shared-frame prediction.
+- BAO: $\mathbf{y}_{\mathrm{BAO}}(z_b)$ is the anisotropic BAO-scale dipole or lowest retained directional harmonic in bin $z_b$; $\mathbf{m}_{\mathrm{BAO}}(z_b)$ is the shared-frame prediction in the same basis.
+- Local $H_0$: $\mathbf{y}_{H_0}(z_b)$ is the directional local-ladder or low-redshift inferred-$H$ scatter vector; $\mathbf{m}_{H_0}(z_b)$ is the shared-frame prediction after the same peculiar-velocity and environment cuts.
+
+For a packet of rows $i\in I_{\mathrm{frame}}$, the directional residual is
+
+$$
+\mathcal{Q}_{\mathrm{frame}}
+=
+\sum_{i\in I_{\mathrm{frame}}}
+\left(\mathbf{y}_i-\mathbf{m}_i\right)^T
+C_i^{-1}
+\left(\mathbf{y}_i-\mathbf{m}_i\right).
+$$
+
+The frame-projection penalty is
+
+$$
+\mathcal{P}_{\mathrm{frame}}
+=
+\sum_{i<j}
+\sum_{a\in K_i\cap K_j}
+w_a
+\left[
+(\Pi_i\theta_{\mathrm{frame}})_a
+-
+(\Pi_j\theta_{\mathrm{frame}})_a
+\right]^2,
+$$
+
+and the combined frame score is
+
+$$
+\mathcal{R}_{\mathrm{frame}}
+=
+\mathcal{Q}_{\mathrm{frame}}
++
+\lambda_{\mathrm{frame}}\mathcal{P}_{\mathrm{frame}}.
+$$
+
+The packet also records a direction check for every nonzero row,
+
+$$
+\alpha_i
+=
+\cos^{-1}
+\left(
+\frac{\mathbf{y}_i\cdot\mathbf{m}_i}
+{\|\mathbf{y}_i\|\|\mathbf{m}_i\|}
+\right).
+$$
+
+Tolerances must be declared before fitting: maximum $\mathcal{Q}_{\mathrm{frame}}$, maximum $\mathcal{P}_{\mathrm{frame}}$, maximum $\mathcal{R}_{\mathrm{frame}}$, minimum shared projection-key overlap, and maximum allowed $\alpha_i$ for nonzero vectors. These tolerances are not universal constants; they belong to the survey packet, covariance construction, redshift binning, and systematics budget.
+
+The falsifiers are concrete:
+
+| Failure code | Meaning |
+| --- | --- |
+| `frame-split-coverage-open` | At least one required family from $\mathcal{F}_{\mathrm{frame}}$ is absent. |
+| `frame-split-residual-open` | The directional residual total exceeds the declared tolerance. |
+| `frame-split-projection-open` | Families can fit their own vectors only by using incompatible frame-state projections. |
+| `frame-split-projection-overlap-open` | The packet does not share enough projection coordinates to test a common frame. |
+| `frame-split-angle-open` | A measured vector points too far away from its expected shared-frame vector. |
+| `frame-split-shared-open` | The combined residual-plus-projection score exceeds tolerance. |
+
+Any of these failures activates the witness code `cosmology.frame_split`. Passing the mock gate means only that the packet shape is coherent; a real packet must replace the mock vectors with survey-derived dipoles, covariance matrices, redshift-bin definitions, and nuisance records.
+
 ## Runtime Artifact
 
 The first scaffold is:
@@ -97,6 +190,7 @@ and emits a JSON result with this shape:
 | `totals.shared_residual` | full $\mathcal{R}_{\mathrm{shared}}$ |
 | `gates` | coverage, residual, projection, overlap, and total shared-residual pass/fail records |
 | `failure_code` | `observable-coverage-open`, `residual-total-open`, `projection-penalty-open`, `projection-overlap-open`, `shared-residual-open`, or null |
+| `frame_split` | optional directional frame-consistency result with vector rows, projection penalties, gates, and `cosmology.frame_split` witness status |
 
 The mock packet is deliberately small enough to inspect by hand. A real packet should replace the dimensionless residual entries with survey-derived residual vectors and covariance matrices, but it should keep the same gate shape unless this protocol is explicitly revised.
 
@@ -111,6 +205,7 @@ A real shared-state packet becomes promotable only if:
 3. $\Pi_X\theta_{\mathrm{sea}}$ projections share enough coordinates to test compatibility;
 4. ordinary residuals stay inside declared tolerance;
 5. the projection penalty stays inside declared tolerance;
-6. the same $\theta_{\mathrm{sea}}$ also remains compatible with the cosmology sector predicate in [Failure Criteria](../failure-criteria.md#sector-acceptance-sets).
+6. any included `frame_split` packet passes coverage, residual, projection, angle, and shared-score gates;
+7. the same $\theta_{\mathrm{sea}}$ also remains compatible with the cosmology sector predicate in [Failure Criteria](../failure-criteria.md#sector-acceptance-sets).
 
 Failure is informative. If the ordinary residual passes but the projection penalty fails, the candidate has fit the data products while splitting the medium-state record. If the projection penalty passes but an observable residual fails, the shared state is coherent but not yet accurate. If coverage fails, the packet is not a cosmology closure artifact.

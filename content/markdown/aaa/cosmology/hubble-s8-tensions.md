@@ -86,6 +86,8 @@ $$
 
 Here $\delta H(z,\hat{\mathbf{n}})$ is the directional departure from an isotropic inferred expansion rate, and $\Delta_{\mathrm{dip}}^{X}$ is the source-catalogue dipole residual defined in [CMB](CMB.md). The expected sign and scale of $\mathcal{R}_{H,D}$ must come from the same Noether-Sea density, delay, and flow variables used by the expansion and growth modules. If the correlation is absent after known survey systematics are controlled, the local-environment explanation for $H_0$ loses support. If the correlation exists but requires a different medium state from the one used for CMB, BAO, or growth, the cosmology branch has split its ontology and fails the shared-closure requirement.
 
+The operational version of this diagnostic is the frame-split packet in [Cosmology Shared Residual Fit Protocol](../validation/simulations/cosmology-shared-residual-fit.md#frame-split-measurement-recipe), where local $H_0$ scatter is tested beside CMB, matter-dipole, supernova, and BAO directional rows.
+
 ## Cross-Module Interface
 
 In the modular cosmology map, this document is the coupling layer between:

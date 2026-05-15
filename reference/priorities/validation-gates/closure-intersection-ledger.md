@@ -156,6 +156,8 @@ The witness empties the target gate when $\mathcal{C}_T\!\mid c=\varnothing$. It
 | Quantum signal leak | $I(c)$ recovers Bell correlations through a detector kernel that transfers controllable signals outside the causal-wake ledger. | $\mathcal{C}_{\mathrm{quantum}}\!\mid c=\varnothing$ and the same record damages $\mathcal{C}_{\mathrm{gravity}}$ through preferred-frame leakage. | `quantum.signal_transfer` |
 | Event-ledger omission | $I(c)$ routes radiation, reaction, measurement, or strong-field release without a required $E$, $\mathbf{p}$, $\mathbf{J}$, polarity, provenance, medium, or remnant row. | The target sector using that event has no admissible $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ completion. | `event.missing_ledger_row` |
 
+The `cosmology.frame_split` witness is operationalized by the frame-split measurement recipe in [Cosmology Shared Residual Fit Protocol](../../../content/markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md#frame-split-measurement-recipe). Its required rows are CMB, matter dipoles, supernova directionality, BAO anisotropy, and local $H_0$ scatter. Its gate fails when coverage, directional residuals, frame-projection overlap, vector-angle consistency, or the combined frame score exceeds the predeclared packet tolerance.
+
 ## No-Go Applicability Map
 
 For a no-go family $G$, let $\mathcal{A}_G$ be its assumption set and let
