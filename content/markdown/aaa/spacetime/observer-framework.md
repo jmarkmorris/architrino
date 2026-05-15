@@ -123,6 +123,28 @@ The disagreement is epistemic rather than ontological:
 - Physical Observers recover only operational synchronization conventions.
 - In validated regimes, those operational conventions must reproduce Lorentz-consistent clock, ruler, and two-way signal phenomenology while bounding preferred-frame leakage below observational limits.
 
+## Effective Causal-Order Recovery
+
+External causal-order reconstruction theorems provide a useful comparison discipline: effective causal relations can determine much of an observer-level geometry, but not the local scale by themselves. In this framework, that scale is supplied by Physical Observer clocks, rulers, and signal channels, all of which are assembly and Noether-Sea outputs rather than substrate intervals.
+
+For a declared GR comparison metric and a candidate Noether-Sea and observer-state parameter record $\theta$, let $\prec_{\mathrm{eff}}(\theta)$ be the causal order inferred by Physical Observers from photon-channel records and clock synchronization, and let $\prec_{\mathrm{GR}}$ be the causal order of the target effective metric. A compact recovery diagnostic is
+$$
+\mathcal{R}_{\mathrm{causal}}(\theta)
+=
+d_{\mathrm{ord}}\!\left(\prec_{\mathrm{eff}}(\theta),\prec_{\mathrm{GR}}\right)
++
+\lambda_{\tau}
+\left\|
+\frac{d\tau_{\mathrm{eff}}}{dt}(\theta)
+-
+\frac{d\tau_{\mathrm{GR}}}{dt}
+\right\|_{W}
++
+\lambda_{\mathrm{PF}}
+\sum_{i=1}^{3}\alpha_i(\theta)^2.
+$$
+Here $d_{\mathrm{ord}}$ measures mismatch of inferred causal order on the comparison domain, the clock term supplies the missing local scale, and the preferred-frame term penalizes residual PPN drift coefficients. This is a closure target for the observer layer, not a claim that substrate spacetime is Lorentzian.
+
 ## Physical Observer Clocks and Rulers
 
 A Physical Observer clock measures **proper time** $\tau$, not the substrate parameter $t$ directly. A ruler is likewise an assembly whose measured length depends on its internal dynamics and medium coupling.

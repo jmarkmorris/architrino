@@ -26,6 +26,26 @@ $$
 
 The closure demand is not merely qualitative resemblance. The same constitutive map must jointly recover redshift, Shapiro delay, light bending, perihelion precession, and gravitational-wave propagation in the regimes where GR is already tested.
 
+### Causal-order and scale recovery
+
+Before the individual observables are checked, the effective metric map has to pass a structural check: Physical Observers must infer the same causal ordering, local clock scale, and negligible preferred-frame leakage that the GR comparison metric would provide in the validated regime. This is the phenomenology-side version of the causal-order diagnostic in [observer-framework.md](./observer-framework.md#effective-causal-order-recovery):
+$$
+\mathcal{R}_{\mathrm{causal}}(\theta)
+=
+d_{\mathrm{ord}}\!\left(\prec_{\mathrm{eff}}(\theta),\prec_{\mathrm{GR}}\right)
++
+\lambda_{\tau}
+\left\|
+\frac{d\tau_{\mathrm{eff}}}{dt}(\theta)
+-
+\frac{d\tau_{\mathrm{GR}}}{dt}
+\right\|_{W}
++
+\lambda_{\mathrm{PF}}
+\sum_{i=1}^{3}\alpha_i(\theta)^2.
+$$
+The causal-order term tests the effective light-cone structure, the clock term supplies local scale, and the preferred-frame term keeps the absolute substrate frame hidden below observational bounds. Passing this check does not replace the redshift, Shapiro, lensing, 1PN, quantum-gravity EFT, or gravitational-wave tests below; it prevents them from being fit by mutually incompatible causal and clock conventions.
+
 ## Weak-Field Observables That Must Match GR
 
 ### Gravitational redshift and clock rates

@@ -67,6 +67,17 @@ This transformation constrains local reduced shear and relative convergence near
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, this does not weaken lensing as a recovery target. It sharpens the target. A neutral-assembly or medium-response explanation must recover the local lensing data first, then survive the global model comparison without hiding mass in unconstrained regions or changing assumptions per cluster. If a dark-sector claim survives only through model freedom away from the multiple-image constraints, it remains an inference artifact candidate rather than a closed substrate claim.
 
+### CMB-Lensing Inference Guardrail
+
+CMB lensing supplies a different but equally important dark-sector constraint. It does not image a local cluster mass distribution. It reconstructs the integrated lensing potential between the last-scattering surface and the observer from distortions of the microwave background. In standard comparison language the data product is the lensing-potential spectrum $C_L^{\phi\phi}$, and the dark-sector interpretation enters only after a model maps that spectrum to a matter distribution and growth history.
+
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the conservative requirement is therefore two-stage:
+
+1. recover the CMB-lensing observable $C_L^{\phi\phi}$ from the same CMB history used for TT/TE/EE, damping, and blackbody preservation;
+2. project that lensing record into the same neutral-assembly density $\rho_A$, Noether-core density $\rho_{\text{core}}(\mathbf{x},t)$, and medium-response variables used by the structure-formation module.
+
+A dark-matter interpretation fails if it treats CMB lensing as direct proof of one substrate while using a different medium state to fit galaxy clustering, weak lensing, or cluster offsets.
+
 ## Candidate Substrates
 
 ### Candidate A — Neutral Assembly Populations
@@ -161,6 +172,33 @@ The neutral-assembly mass is not a free parameter to be fitted post hoc; it must
 - $m \gg$ TeV: superheavy; must be produced non-thermally (e.g., gravitational production or SMBH-related formation in early epochs).
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework does not currently predict a unique mass; deriving the mass spectrum from first-principles tri-binary binding energies and formation rates is a high-priority simulation target.
+
+A superheavy neutral-lepton comparison branch is useful only as a benchmark, not as imported ontology. In that comparison, a sterile or right-handed singlet near $m_{\nu_R}\sim4.8\times10^8\;\mathrm{GeV}$ behaves as cold, collisionless dark matter if it is stable, decoupled from visible channels, and produced with the observed abundance. The corresponding $\mathbb{A}\mathbb{A}\mathbb{A}$ acceptance record would have to close
+$$
+\mathcal{B}_{\nu_R\mathrm{DM}}
+=
+\left(
+m_{\nu_R},
+\tau_{\nu_R},
+\Omega_{\nu_R}h^2,
+\lambda_{\mathrm{fs}},
+\sigma_{\mathrm{vis}},
+\Delta N_{\mathrm{eff}}
+\right),
+$$
+with
+$$
+\tau_{\nu_R}\gg t_0,
+\qquad
+\Omega_{\nu_R}h^2\to\Omega_{\mathrm{DM}}h^2,
+\qquad
+\lambda_{\mathrm{fs}}\ll \lambda_{\mathrm{LSS}},
+\qquad
+\sigma_{\mathrm{vis}}\le\sigma_{\max},
+\qquad
+\Delta N_{\mathrm{eff}}\in\mathcal{B}_{\mathrm{BBN/CMB}}.
+$$
+Failure of any row keeps the branch external to the working dark-matter ontology. Passing these rows would still not identify the branch with the current neutral-assembly baseline unless the same internal-energy, shielding, and Noether-Sea response map derives its mass and coupling suppression.
 
 ### Interaction Cross-Sections
 

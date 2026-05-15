@@ -37,6 +37,8 @@ What standard quantum mechanics calls a "measurement" is therefore just a specia
 2. amplification into many apparatus degrees of freedom,
 3. dissipation into the surrounding Noether Sea so that coherent reversal becomes practically inaccessible.
 
+This also sets the comparison boundary for path-integral and generalized-quantum-mechanics language. A history-sum formalism can reproduce ordinary pointer-record probabilities and may assign measures to microscopic event statements, but those measures are not automatically $\mathbb{A}\mathbb{A}\mathbb{A}$ records. The native question remains whether the apparatus-target dynamics below produce a separatrix crossing, a durable record variable, and a persistence window without invoking an external classical observer.
+
 ## Minimal Dynamical Model
 
 Let $X(t)$ denote reduced coordinates for the measured subsystem and $A(t)$ the relevant apparatus coordinates. The coupled deterministic coarse-grained dynamics may be written schematically as

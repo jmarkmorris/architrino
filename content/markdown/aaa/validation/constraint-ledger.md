@@ -32,10 +32,18 @@ Here we catalogue how coupling between macroscopic bodies and the Noether Sea ca
 
 ### GW Speed
 
-The propagation speed of the density waves in the Sea must align with the measured gravitational-wave velocity, so this section records the tolerance within which new physics can coexist with GW timing data without contradicting the LIGO/Virgo baseline.
+The propagation speed of gravitational-wave disturbances in the Noether Sea must align with the measured gravitational-wave velocity, so this section records the tolerance within which new physics can coexist with GW timing data without contradicting the LIGO/Virgo baseline. The relevant benchmark is now multi-messenger rather than merely assumed: GW170817/GRB 170817A constrained the gravity-channel and light-channel speed difference at roughly the $10^{-15}$ level.
 
-* **Constraint** – gravitational waves, modeled as density ripples in the Sea, must travel within $|v_{\mathrm{GW}}-c_0|/c_0 < 10^{-15}$ of the local light-channel speed to preserve consistency with LIGO/Virgo timing.
-* **Mode and Dispersion Gate** – finite-range or medium-compliance corrections must keep accumulated dispersion and any scalar, vector, or longitudinal gravitational-wave detector response below the residual bounds for the validated band.
+* **Constraint** – gravitational waves, modeled as collective Noether-Sea disturbances, must satisfy the multi-messenger speed gate, with GW170817/GRB 170817A giving the reference scale
+  $$
+  -3\times10^{-15}
+  \lesssim
+  \frac{v_{\mathrm{GW}}-c_0}{c_0}
+  \lesssim
+  7\times10^{-16}.
+  $$
+  Any tighter ledger tolerance adopted for a specific validation band should be stated explicitly rather than inferred from ontology.
+* **Mode and Dispersion Gate** – finite-range or medium-compliance corrections must keep accumulated dispersion, false-alarm residuals, calibration residuals, and any scalar, vector, or longitudinal gravitational-wave detector response below the residual bounds for the validated band.
 * **Failure Condition** – a cosmological-scale weakening channel fails if it predicts measurable gravitational-wave dispersion, an unsuppressed non-TT mode, or a speed offset in the same regime where the weak-field metric map is supposed to recover GR.
 
 ### Euclidean vs. Metric Pathing (The Refraction Mapping)
@@ -57,10 +65,10 @@ We require that the proposed mechanical slowing induced by Noether-core density 
 
 The cosmology branch must recover the CMB scalar and tensor observables as data products before any source interpretation is promoted.
 
-* **Constraint** – one medium-and-assembly record must recover TT/TE/EE spectra, damping, lensing, blackbody preservation, scalar amplitude $A_s$, scalar tilt $n_s$, and the tensor bound $r\le r_{\max}$ without changing Noether-Sea state variables between the CMB, BBN, expansion, and growth modules.
-* **Observable** – the CMB comparison residual $\mathcal{R}_{\mathrm{CMB}}(\theta)$ defined in [CMB](../cosmology/CMB.md) must remain within the declared tolerance for the data release being used.
+* **Constraint** – one medium-and-assembly record must recover TT/TE/EE spectra, damping, CMB-lensing reconstruction, blackbody preservation, scalar amplitude $A_s$, scalar tilt $n_s$, acoustic phase coherence, vector-mode suppression, and the tensor bound $r\le r_{\max}$ without changing Noether-Sea state variables between the CMB, BBN, expansion, and growth modules.
+* **Observable** – the CMB comparison residual $\mathcal{R}_{\mathrm{CMB}}(\theta)$ defined in [CMB](../cosmology/CMB.md) must remain within the declared tolerance for the data release being used, and the added $\mathcal{R}_{\mathrm{phase}}(\theta)$, $\mathcal{R}_{V}(\theta)$, and $\mathcal{R}_{\mathrm{lens}}(\theta)$ gates must not require a separate medium history.
 * **Smoothness Check** – the same record must also bound the effective smoothness residual $\mathcal{R}_{\mathrm{smooth}}(\theta)$, so early-universe smoothness is tested as low observer-level gravitational free-mode content rather than assumed from an imported origin story.
-* **Failure Condition** – if the framework can fit the source story only by retuning scalar power, tensor contribution, blackbody recovery, or TT/TE/EE transfer independently, the cosmology closure fails at the observational layer.
+* **Failure Condition** – if the framework can fit the source story only by retuning scalar power, acoustic phase, vector-mode content, CMB-lensing reconstruction, tensor contribution, blackbody recovery, or TT/TE/EE transfer independently, the cosmology closure fails at the observational layer.
 
 ### Closure Program Tracking Hooks
 

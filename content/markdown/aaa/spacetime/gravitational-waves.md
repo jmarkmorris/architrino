@@ -85,6 +85,30 @@ $$
 $$
 The numerator collects non-TT detector power after known instrumental and astrophysical residuals are removed.
 
+## Detector-Side Inference Gate
+
+The detector does not observe the effective tensor mode as a bare ontological object. It records a processed strain channel whose interpretation depends on calibration, background rejection, waveform matching, and coincidence checks across instruments. For a candidate gravitational-wave record $\theta_{\mathrm{GW}}$, keep the residual vector explicit:
+
+$$
+\mathbf{R}_{\mathrm{GW}}(\theta_{\mathrm{GW}})
+=
+\left(
+\frac{v_{\mathrm{g,GW}}-c_0}{c_0},\;
+\left.\frac{\partial^2\omega}{\partial k^2}\right|_{\mathrm{band}},\;
+\frac{\mathcal{P}_{\mathrm{extra}}}{\mathcal{P}_{\mathrm{TT}}},\;
+\mathrm{FAR},\;
+R_{\mathrm{cal}}
+\right),
+$$
+
+where $\mathrm{FAR}$ is the false-alarm-rate estimate and $R_{\mathrm{cal}}$ is the retained calibration residual for the strain channel and timing model. Promotion from a candidate disturbance to an accepted gravitational-wave data product requires
+
+$$
+\max_i \frac{|R_{\mathrm{GW},i}|}{\epsilon_{\mathrm{GW},i}}\le 1
+$$
+
+with the tolerances fixed by the validation band. This gate protects the separation between the observable data product and the ontology: the data product is a calibrated, coincident, low-residual strain record, while the $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation must still earn the claim that the record is the tensor-sector response of the effective metric induced by Noether-Sea constitutive dynamics.
+
 ## Energy Flux
 
 **Closure Target 3 (leading-order GW flux).**

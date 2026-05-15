@@ -79,6 +79,26 @@ The main overstatement enters when the descriptive necessity of information is t
 
 A second tension is explanatory thinness. Informational ontology can classify regularities but often does not by itself explain how a concrete outcome is produced. If one asks what physically propagates a delayed influence, what stabilizes an assembly, or what makes a measurement interaction terminate in one basin rather than another, the informational answer is often schematic. It specifies constraints on description rather than the mechanism that generates the observed event. In that sense, what it gets wrong or overstates is the leap from an indispensable representational layer to a sufficient account of being.
 
+This becomes more acute when large correlation systems are treated as if predictive success were already explanation. A high-performing predictor may act on data products and calibration records,
+
+$$
+P:\left(D,A_{\mathrm{inst}},K_{\mathrm{cal}}\right)\mapsto \widehat{D},
+$$
+
+without identifying the effective model $M_{\mathrm{eff}}$ or the ontological reading $O_{\mathrm{ont}}$ that would explain the forecast. A correlation result should therefore remain at the effective-description level unless it is paired with a mechanism map
+
+$$
+\pi_{\mathrm{ont}}:\left(D,A_{\mathrm{inst}},K_{\mathrm{cal}},M_{\mathrm{eff}}\right)\mapsto O_{\mathrm{ont}}
+$$
+
+and a stated residual $R_{\mathrm{fail}}$ that could reject that map. In observational-equivalence language, if distinct candidate substrate states $S$ and $S'$ remain indistinguishable under the encoding chain,
+
+$$
+\|E(S)-E(S')\|\le\varepsilon,
+$$
+
+then the available information has not selected one ontology. The prediction may be useful, but it has not become the substance of the world.
+
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is best classified as **useful but mislocated**. Informational language is highly useful for tracking state discrimination, path-history dependence, entropy-like summaries, and measurement-limited access to the world. It is not, however, the right primitive layer. $\mathbb{A}\mathbb{A}\mathbb{A}$ begins from substrate entities, causal delayed interactions, and assembly organization. Information then appears as a derivative description of how those organized states differ, persist, and can be interrogated. The distinction is sharpened in [Substance, Structure, and the Plenum of Potential](substance-structure-and-potential.md): path history may be reconstructible in a calculation without becoming a stored informational substance spread through the void.

@@ -36,6 +36,19 @@ We map the abstract gauge groups of the Standard Model to physical deformations 
     *   *SM View:* Non-Abelian rotation in isospin space.
     *   *Architrino View:* A **chiral twist** or structural strain in the tri-binary assemblies. Because the assemblies have internal handedness (spiral structure), deformations obey non-commutative geometry (order of operations matters), mirroring the non-Abelian nature of SU(2).
 
+## Standard Model Recovery Discipline
+
+This working map starts from the measured low-energy pattern, not from a larger symmetry that must later be hidden. The durable observer-level target is the Standard Model gauge record: $U(1)_Y\times SU(2)_L\times SU(3)_c$, the charge relation $Q=T_3+Y/2$, the observed chiral weak couplings, the charge and generation tables, the running of $g_1,g_2,g_3$, and the absence of additional low-energy partners or transport modes above current bounds.
+
+From the $\mathbb{A}\mathbb{A}\mathbb{A}$ side, that means the Noether-Sea and assembly variables must first reproduce the known gauge bookkeeping. Larger group unification, supersymmetric partner bookkeeping, or extra-dimensional geometry may be useful comparison languages, but none of them is native ontology here. They become relevant only if a branch record derives the Standard Model pattern and also explains why every added observable channel is absent without using a separate suppression parameter for each failed prediction.
+
+The local closure discipline is therefore:
+
+1. recover the effective gauge group and representation table from assembly and axial-layer bookkeeping;
+2. derive $g_1,g_2,g_3$ and $\theta_W$ as shared effective outputs rather than per-observable fit constants;
+3. keep weak chirality, CKM/PMNS overlap, and weak-reaction provenance tied to the same exposed weak-coupling-triad domain;
+4. pass the null-result residual in [Failure Criteria](../validation/failure-criteria.md#null-result-residual-for-added-channels) for any predicted non-baseline channel.
+
 ## The Higgs Mechanism & VEV Reinterpretation
 
 The common "God Particle" narrative is replaced by a Noether-Sea medium-response comparison.
@@ -199,3 +212,4 @@ For $R_L\sim 10^{-19}\,\text{m}$, this predicts negligible deviations at both $\
 1. If the $R_L$ needed to fit $\Delta a_\mu$ implies $|\Delta\sigma/\sigma|>10^{-3}$ near the LEP $Z$ pole, the composite correction map is ruled out.
 2. If the required hierarchy violates nonresonance and destabilizes closure in the kinematic sector, the electroweak map is not self-consistent with Lorentz closure.
 3. If charge reconstruction from six-pole averaging acquires drift-dependent leakage (non-integer multiples of $e/3$), the quantization map fails.
+4. If the map predicts additional stable charged fermions, unsuppressed partner channels, proton-instability corridors, extra gauge modes, or other non-baseline observables above null-result bounds, the added structure is not a closed unification result.

@@ -293,6 +293,47 @@ $$
 
 The closure target is one medium-and-assembly model with bounded $\mathcal{R}_{\mathrm{CMB}}$, not a separate fit for each observable family.
 
+The same scalar sector must also recover the acoustic phase record rather than only the broadband amplitude and tilt. A compact phase residual can be written as
+$$
+\mathcal{R}_{\mathrm{phase}}(\theta)
+=
+\sum_{X\in\{TT,TE,EE\}}\sum_{p}
+\frac{
+\left(\ell_{p,X}^{\theta}-\ell_{p,X}^{\mathrm{obs}}\right)^2
+}{
+\sigma_{\ell,p,X}^2
+},
+$$
+where $\ell_{p,X}$ denotes the location of the $p$th acoustic feature in spectrum $X$. This residual keeps acoustic ringing as an observational phase-coherence requirement. It does not select a particular origin story for why those phases are coherent.
+
+The vector sector supplies a separate absence gate. For an effective pre-decoupling velocity field $\mathbf{u}_{\theta}^{\mathrm{eff}}$ and vorticity $\boldsymbol{\omega}_{\theta}^{\mathrm{eff}}\equiv\nabla\times\mathbf{u}_{\theta}^{\mathrm{eff}}$, use
+$$
+\mathcal{R}_{V}(\theta)
+=
+\frac{
+\int_{\Sigma_{\mathrm{dec}}}
+\left\|\boldsymbol{\omega}_{\theta}^{\mathrm{eff}}\right\|^2\,dV_{\mathrm{eff}}
+}{
+\int_{\Sigma_{\mathrm{dec}}}
+\left\|\nabla\delta_{\gamma}^{\theta}\right\|^2\,dV_{\mathrm{eff}}
++\epsilon_V
+}.
+$$
+Here $\delta_{\gamma}^{\theta}$ is the photon-channel density contrast in the observer-level reconstruction. The numerator tests effective vector/vorticity content; the denominator normalizes it against the scalar contrast being recovered. A successful CMB history must keep this residual small in the same state record that fits TT/TE/EE.
+
+The CMB-lensing sector adds a late-time integrated-mass reconstruction gate. In standard comparison language, lensing remaps the primary CMB by an effective lensing potential $\phi$ and yields a lensing-potential spectrum $C_L^{\phi\phi}$. For a candidate history $\theta$, use
+$$
+\mathcal{R}_{\mathrm{lens}}(\theta)
+=
+\sum_L
+\frac{
+\left(C_L^{\phi\phi,\theta}-C_L^{\phi\phi,\mathrm{obs}}\right)^2
+}{
+\sigma_{L,\phi}^2
+}.
+$$
+This is a data-product constraint, not a dark-sector ontology by itself. The same Noether-Sea-and-assembly history that fits the primary TT/TE/EE spectra must also project to the lensing potential consumed by the growth and dark-matter modules.
+
 The same gate should include the smoothness pressure usually hidden inside origin-story language. Conformal-cosmology comparisons are useful here only because they isolate a real burden: the effective early record must have a very small free gravitational-mode contribution compared with the complicated strong-field behavior expected near generic collapse. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not import conformal continuation as ontology. It preserves the observable requirement by asking the CMB-producing Noether-Sea history to suppress effective Weyl-like curvature in the decoupling comparison layer.
 
 For an effective metric reconstruction $g_{\theta}^{\text{eff}}$ associated with a candidate history $\theta$, one useful comparison residual is
@@ -313,11 +354,17 @@ This is not a statement that the Euclidean void is curved. It is an observer-lev
 $$
 \mathcal{R}_{\mathrm{CMB}}(\theta)
 +
+\lambda_{\mathrm{phase}}\mathcal{R}_{\mathrm{phase}}(\theta)
++
+\lambda_V\mathcal{R}_{V}(\theta)
++
+\lambda_{\mathrm{lens}}\mathcal{R}_{\mathrm{lens}}(\theta)
++
 \lambda_{\mathrm{smooth}}\mathcal{R}_{\mathrm{smooth}}(\theta)
 \le
 \varepsilon_{\mathrm{CMB}},
 $$
-with $\lambda_{\mathrm{smooth}}$ and $\varepsilon_{\mathrm{CMB}}$ declared by the data release or simulation protocol. Passing this test would mean that the same medium-and-assembly history recovers TT/TE/EE, blackbody behavior, scalar/tensor bounds, and the low effective gravitational free-mode budget without changing ontology between modules.
+with $\lambda_{\mathrm{phase}}$, $\lambda_V$, $\lambda_{\mathrm{lens}}$, $\lambda_{\mathrm{smooth}}$, and $\varepsilon_{\mathrm{CMB}}$ declared by the data release or simulation protocol. Passing this test would mean that the same medium-and-assembly history recovers TT/TE/EE, blackbody behavior, scalar/tensor bounds, acoustic phase coherence, vector-mode suppression, CMB-lensing reconstruction, and the low effective gravitational free-mode budget without changing ontology between modules.
 
 ### Forward Prediction Map
 

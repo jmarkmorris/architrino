@@ -335,6 +335,33 @@ $$
 
 where $D$ is the data product, $A_{\mathrm{inst}}$ records apparatus and selection assumptions, $K_{\mathrm{cal}}$ records calibration and nuisance modeling, $M_{\mathrm{eff}}$ is the effective formal model, $O_{\mathrm{ont}}$ is the ontological reading under review, and $R_{\mathrm{fail}}$ is the residual pattern that would reject the proposed reinterpretation. This keeps crisis governance from sliding into either uncritical consensus defense or unconstrained heterodoxy.
 
+A staged discovery review can use the same record before an interpretation is treated as settled. Let $\theta$ denote the candidate claim and let $R_i(\theta)$ be the retained residual tests extracted from $R_{\mathrm{fail}}$, with tolerances $\epsilon_i$ fixed before the announcement standard is applied. The claim is mature only when
+
+$$
+\operatorname{mature}(\theta)=1
+\quad\Longleftrightarrow\quad
+\max_i
+\frac{\left|R_i(D,A_{\mathrm{inst}},K_{\mathrm{cal}},M_{\mathrm{eff}},O_{\mathrm{ont}};\theta)\right|}
+{\epsilon_i}
+\le 1.
+$$
+
+Intermediate stages may therefore be reported as live analysis, failed alarms, revised calibrations, or submitted-but-unaccepted claims without pretending that the final interpretation followed immediately from a single reading. The important discipline is that each stage states which part of the inference record has changed and which residuals still block promotion.
+
+Large heterogeneous correlation systems sharpen this rule rather than replacing it. A predictor may map the preserved data, apparatus assumptions, and calibration record to a useful forecast,
+
+$$
+P:\left(D,A_{\mathrm{inst}},K_{\mathrm{cal}}\right)\mapsto \widehat{D},
+$$
+
+while still failing to state why the forecast works. Under crisis governance, such a system remains an effective predictor until it supplies both a mechanism-facing interpretation map
+
+$$
+\pi_{\mathrm{ont}}:\left(D,A_{\mathrm{inst}},K_{\mathrm{cal}},M_{\mathrm{eff}}\right)\mapsto O_{\mathrm{ont}}
+$$
+
+and a nonempty residual pattern $R_{\mathrm{fail}}$ that could reject that interpretation. High predictive accuracy therefore improves the status of $M_{\mathrm{eff}}$ but does not, by itself, promote $O_{\mathrm{ont}}$ into settled ontology.
+
 ### Internal Tensions
 
 What this subject gets right is that science needs more than sharp falsifiers. Some fields fail not by one decisive contradiction but by long accumulation of unresolved tensions under a still-productive shell. A method that cannot register that pattern is incomplete. Crisis governance also gets right that detection without procedure is not enough. Once warning signs are identified, there must be a disciplined response rather than vague dissatisfaction.

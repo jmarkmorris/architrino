@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1133
+      "sections": 1137
     }
   },
   "tocRoot": {
@@ -1761,6 +1761,14 @@
                   },
                   {
                     "kind": "markdown-section",
+                    "title": "Effective Causal-Order Recovery",
+                    "markdownPath": "content/markdown/aaa/spacetime/observer-framework.md",
+                    "markdownSection": "Effective Causal-Order Recovery",
+                    "sectionKey": "effective causal order recovery",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Physical Observer Clocks and Rulers",
                     "markdownPath": "content/markdown/aaa/spacetime/observer-framework.md",
                     "markdownSection": "Physical Observer Clocks and Rulers",
@@ -2168,6 +2176,14 @@
                     "markdownPath": "content/markdown/aaa/spacetime/gravitational-waves.md",
                     "markdownSection": "Polarization Content",
                     "sectionKey": "polarization content",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Detector-Side Inference Gate",
+                    "markdownPath": "content/markdown/aaa/spacetime/gravitational-waves.md",
+                    "markdownSection": "Detector-Side Inference Gate",
+                    "sectionKey": "detector side inference gate",
                     "headingLevel": 2
                   },
                   {
@@ -2636,6 +2652,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Standard Model Recovery Discipline",
+                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+                "markdownSection": "Standard Model Recovery Discipline",
+                "sectionKey": "standard model recovery discipline",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "The Higgs Mechanism & VEV Reinterpretation",
                 "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
                 "markdownSection": "The Higgs Mechanism & VEV Reinterpretation",
@@ -2682,6 +2706,14 @@
                 "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
                 "markdownSection": "Regularized Setting",
                 "sectionKey": "regularized setting",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Standard Model Recovery Gate",
+                "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
+                "markdownSection": "Standard Model Recovery Gate",
+                "sectionKey": "standard model recovery gate",
                 "headingLevel": 2
               },
               {
