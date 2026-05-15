@@ -6,9 +6,11 @@ import path from "node:path";
 const DEFAULT_ROWS = "ready";
 const DEFAULT_SAMPLE_COUNT = 320;
 const DEFAULT_DYNAMICS_STEP_FRACTION = 1 / 4096;
+const DEFAULT_ROOT_REFINEMENT_FACTOR = 2;
 const LAYER_ORDER = ["I", "M", "O"];
 const POLARITIES = ["+", "-"];
 const BODY_IDS = ["I+", "I-", "M+", "M-", "O+", "O-"];
+const ROOT_RELATIONS = ["partner", "self", "inter_layer"];
 const CHARGE = { "+": 1, "-": -1 };
 const SIGN = { "+": 1, "-": -1 };
 const BLOCKED_STATUS = "blocked_carrier_replay_only";
@@ -21,6 +23,7 @@ function parseArgs(argv) {
     rows: DEFAULT_ROWS,
     sampleCount: DEFAULT_SAMPLE_COUNT,
     dynamicsStepFraction: DEFAULT_DYNAMICS_STEP_FRACTION,
+    rootRefinementFactor: DEFAULT_ROOT_REFINEMENT_FACTOR,
     pretty: false,
     out: null,
     help: false,
@@ -39,6 +42,8 @@ function parseArgs(argv) {
       args.sampleCount = parsePositiveInteger(argv[++i], "--sample-count");
     } else if (arg === "--dynamics-step-fraction") {
       args.dynamicsStepFraction = parsePositiveNumber(argv[++i], "--dynamics-step-fraction");
+    } else if (arg === "--root-refinement-factor") {
+      args.rootRefinementFactor = parsePositiveInteger(argv[++i], "--root-refinement-factor");
     } else if (arg === "--pretty") {
       args.pretty = true;
     } else if (arg === "--out") {
@@ -60,6 +65,8 @@ Options:
   --sample-count N      Carrier replay samples across the required source-time interval. Defaults to ${DEFAULT_SAMPLE_COUNT}.
   --dynamics-step-fraction VALUE
                        Bounded one-step diagnostic fraction of T_k. Defaults to ${DEFAULT_DYNAMICS_STEP_FRACTION}.
+  --root-refinement-factor N
+                       Multiplier for carrier-root replay refinement. Defaults to ${DEFAULT_ROOT_REFINEMENT_FACTOR}.
   --out PATH            Write JSON output to a file instead of stdout.
   --pretty              Pretty-print JSON.
   --help                Show this help.
@@ -541,6 +548,246 @@ function rootReplayDiagnostics(roots, configResult) {
   };
 }
 
+function refinedConfigResult(tier0, configResult, factor) {
+  const baseConfig = carrierReplayConfig(tier0, configResult.config);
+  return {
+    ...configResult,
+    config: {
+      ...baseConfig,
+      seaCell: { ...baseConfig.seaCell },
+      classification: { ...baseConfig.classification },
+      sampling: {
+        ...baseConfig.sampling,
+        sampleCount: Math.max(2, Math.round(baseConfig.sampling.sampleCount * factor)),
+        rootSamples: Math.max(2, Math.round(baseConfig.sampling.rootSamples * factor)),
+      },
+    },
+  };
+}
+
+function rootStepFor(row, config) {
+  const values = rowValues(row);
+  const historyWindow = config.sampling.historyPeriods * Math.max(...Object.values(values.periods));
+  return historyWindow / config.sampling.rootSamples;
+}
+
+function rootTimeTolerance(row) {
+  const period = row.closure_labels?.T_k ?? row.geometry?.commonPeriod ?? 1;
+  return Math.max(Math.abs(period) * 1e-10, Number.EPSILON);
+}
+
+function rootDelayTolerance(row, baseConfig, refinedConfig) {
+  return Math.max(
+    (baseConfig.sampling.rootTolerance ?? 0) * 8,
+    (refinedConfig.sampling.rootTolerance ?? 0) * 8,
+    rootStepFor(row, baseConfig) * 1e-6,
+    Number.EPSILON
+  );
+}
+
+function rootJTolerance(baseConfig, refinedConfig) {
+  return Math.max(
+    (baseConfig.sampling.rootTolerance ?? 0) * 8,
+    (refinedConfig.sampling.rootTolerance ?? 0) * 8,
+    1e-8
+  );
+}
+
+function rootIdentityMatches(a, b, timeTolerance) {
+  return (
+    a.receiver === b.receiver &&
+    a.source === b.source &&
+    a.relation === b.relation &&
+    a.status === b.status &&
+    Math.abs(a.t - b.t) <= timeTolerance
+  );
+}
+
+function uniqueRootTimes(roots, timeTolerance) {
+  const times = [];
+  for (const root of roots) {
+    if (!times.some((time) => Math.abs(root.t - time) <= timeTolerance)) {
+      times.push(root.t);
+    }
+  }
+  return times.sort((a, b) => a - b);
+}
+
+function rootsAtAnyTime(roots, times, timeTolerance) {
+  return roots.filter((root) => times.some((time) => Math.abs(root.t - time) <= timeTolerance));
+}
+
+function rootLedgerCoverageStable(baseDiagnostics, refinedDiagnostics) {
+  const relationCoverageStable = ROOT_RELATIONS.every(
+    (relation) =>
+      baseDiagnostics.relation_classes_present[relation] === true &&
+      refinedDiagnostics.relation_classes_present[relation] === true
+  );
+  const sourceCoverageStable = BODY_IDS.every(
+    (bodyId) => baseDiagnostics.by_source[bodyId] > 0 && refinedDiagnostics.by_source[bodyId] > 0
+  );
+  return {
+    relation_coverage_stable: relationCoverageStable,
+    source_coverage_stable: sourceCoverageStable,
+  };
+}
+
+function compareActiveCarrierRootLedgers(row, baseRoots, refinedRoots, baseConfig, refinedConfig) {
+  const timeTolerance = rootTimeTolerance(row);
+  const delayTolerance = rootDelayTolerance(row, baseConfig, refinedConfig);
+  const jTolerance = rootJTolerance(baseConfig, refinedConfig);
+  const baseTimes = uniqueRootTimes(baseRoots, timeTolerance);
+  const refinedRootsAtSharedTimes = rootsAtAnyTime(refinedRoots, baseTimes, timeTolerance);
+  const usedRefined = new Set();
+  const missingInRefined = [];
+  const ambiguousMatches = [];
+  let maxDelayDrift = 0;
+  let maxJDrift = 0;
+  let delayDriftCount = 0;
+  let jDriftCount = 0;
+  let nearSeparatorMatchedCount = 0;
+
+  for (const baseRoot of baseRoots) {
+    const candidates = refinedRootsAtSharedTimes
+      .map((root, index) => ({ root, index }))
+      .filter(({ root, index }) => !usedRefined.has(index) && rootIdentityMatches(baseRoot, root, timeTolerance))
+      .map(({ root, index }) => ({
+        root,
+        index,
+        delayDrift: Math.abs(baseRoot.delay - root.delay),
+        jDrift: Math.abs(baseRoot.J - root.J),
+      }))
+      .sort((a, b) => a.delayDrift - b.delayDrift || a.jDrift - b.jDrift);
+
+    if (candidates.length === 0) {
+      missingInRefined.push(baseRoot);
+      continue;
+    }
+    if (candidates.length > 1 && Math.abs(candidates[1].delayDrift - candidates[0].delayDrift) <= delayTolerance) {
+      ambiguousMatches.push(baseRoot);
+      continue;
+    }
+    const match = candidates[0];
+    usedRefined.add(match.index);
+    maxDelayDrift = Math.max(maxDelayDrift, match.delayDrift);
+    maxJDrift = Math.max(maxJDrift, match.jDrift);
+    if (match.delayDrift > delayTolerance) {
+      delayDriftCount += 1;
+    }
+    if (match.jDrift > jTolerance) {
+      jDriftCount += 1;
+    }
+    if (baseRoot.nearSeparator || match.root.nearSeparator) {
+      nearSeparatorMatchedCount += 1;
+    }
+  }
+
+  const extraInRefinedAtSharedTimes = refinedRootsAtSharedTimes.filter((root, index) => !usedRefined.has(index));
+  return {
+    shared_observation_time_count: baseTimes.length,
+    shared_time_base_active_root_count: baseRoots.length,
+    shared_time_refined_active_root_count: refinedRootsAtSharedTimes.length,
+    matched_root_count: usedRefined.size,
+    missing_in_refined_count: missingInRefined.length,
+    extra_in_refined_at_shared_times_count: extraInRefinedAtSharedTimes.length,
+    ambiguous_match_count: ambiguousMatches.length,
+    near_separator_matched_count: nearSeparatorMatchedCount,
+    max_delay_drift: maxDelayDrift,
+    max_J_drift: maxJDrift,
+    delay_match_tolerance: delayTolerance,
+    J_match_tolerance: jTolerance,
+    delay_drift_count: delayDriftCount,
+    J_drift_count: jDriftCount,
+    intermediate_refined_active_root_count: refinedRoots.length - refinedRootsAtSharedTimes.length,
+    examples: {
+      missing_in_refined: missingInRefined.slice(0, 10),
+      extra_in_refined_at_shared_times: extraInRefinedAtSharedTimes.slice(0, 10),
+      ambiguous_matches: ambiguousMatches.slice(0, 10),
+    },
+  };
+}
+
+function carrierRootLedgerRefinementDiagnostic(row, tier0, configResult, baseRoots, args) {
+  if (configResult.error) {
+    return {
+      status: "carrier-root-ledger-refinement-blocked",
+      scope: "carrier_root_replay_only",
+      failure_code: "carrier-root-refinement-config-unavailable",
+      root_ledger_stable_under_refinement: false,
+      config_error: configResult.error,
+    };
+  }
+  if (baseRoots.length === 0) {
+    return {
+      status: "carrier-root-ledger-refinement-blocked",
+      scope: "carrier_root_replay_only",
+      failure_code: "carrier-root-refinement-base-ledger-empty",
+      root_ledger_stable_under_refinement: false,
+    };
+  }
+  const baseConfig = carrierReplayConfig(tier0, configResult.config);
+  const refinedResult = refinedConfigResult(tier0, configResult, args.rootRefinementFactor);
+  const refinedConfig = carrierReplayConfig(tier0, refinedResult.config);
+  const refinedRoots = enumerateCarrierRoots(row, tier0, refinedResult);
+  if (refinedRoots.length === 0) {
+    return {
+      status: "carrier-root-ledger-refinement-blocked",
+      scope: "carrier_root_replay_only",
+      failure_code: "carrier-root-refinement-refined-ledger-empty",
+      root_ledger_stable_under_refinement: false,
+      base_active_root_count: baseRoots.length,
+      refined_active_root_count: 0,
+    };
+  }
+  const baseDiagnostics = rootReplayDiagnostics(baseRoots, configResult);
+  const refinedDiagnostics = rootReplayDiagnostics(refinedRoots, refinedResult);
+  const coverage = rootLedgerCoverageStable(baseDiagnostics, refinedDiagnostics);
+  const comparison = compareActiveCarrierRootLedgers(row, baseRoots, refinedRoots, baseConfig, refinedConfig);
+  const pass =
+    coverage.relation_coverage_stable &&
+    coverage.source_coverage_stable &&
+    comparison.shared_observation_time_count > 0 &&
+    comparison.missing_in_refined_count === 0 &&
+    comparison.extra_in_refined_at_shared_times_count === 0 &&
+    comparison.ambiguous_match_count === 0 &&
+    comparison.delay_drift_count === 0;
+  let failureCode = null;
+  if (!pass) {
+    if (comparison.shared_observation_time_count === 0) {
+      failureCode = "carrier-root-refinement-shared-times-missing";
+    } else if (comparison.missing_in_refined_count > 0) {
+      failureCode = "carrier-root-refinement-missing-root";
+    } else if (comparison.extra_in_refined_at_shared_times_count > 0) {
+      failureCode = "carrier-root-refinement-extra-root-at-shared-time";
+    } else if (comparison.ambiguous_match_count > 0) {
+      failureCode = "carrier-root-refinement-ambiguous-match";
+    } else if (comparison.delay_drift_count > 0) {
+      failureCode = "carrier-root-refinement-delay-drift";
+    } else {
+      failureCode = "carrier-root-refinement-coverage-drift";
+    }
+  }
+  return {
+    status: pass ? "carrier-root-ledger-refinement-passed" : "carrier-root-ledger-refinement-failed",
+    scope: "carrier_root_replay_only",
+    acceptance_scope:
+      "Sets only validation.root_ledger_stable_under_refinement for provisional carrier-root identity and delay stability; it does not establish Tier 1 continuation acceptance.",
+    failure_code: failureCode,
+    warning_code: comparison.J_drift_count > 0 ? "carrier-root-refinement-J-drift-reported" : null,
+    root_ledger_stable_under_refinement: pass,
+    refinement_factor: args.rootRefinementFactor,
+    base_sample_count: baseConfig.sampling.sampleCount,
+    refined_sample_count: refinedConfig.sampling.sampleCount,
+    base_root_samples: baseConfig.sampling.rootSamples,
+    refined_root_samples: refinedConfig.sampling.rootSamples,
+    base_active_root_count: baseRoots.length,
+    refined_active_root_count: refinedRoots.length,
+    relation_coverage_stable: coverage.relation_coverage_stable,
+    source_coverage_stable: coverage.source_coverage_stable,
+    comparison,
+  };
+}
+
 function bodyLayer(bodyId) {
   return bodyId.slice(0, 1);
 }
@@ -715,6 +962,7 @@ function continuationSourceRow(row, tier0, configResult, args) {
   const roots = configResult.error ? [] : enumerateCarrierRoots(row, tier0, configResult);
   const rootReplay = rootReplayDiagnostics(roots, configResult);
   const dynamicsDiagnostic = oneStepDynamicsDiagnostic(row, tier0, configResult, roots, args);
+  const rootRefinementDiagnostic = carrierRootLedgerRefinementDiagnostic(row, tier0, configResult, roots, args);
   const coverageComplete = sourceCoverageComplete(row, samples);
   return {
     row: row.row,
@@ -747,12 +995,13 @@ function continuationSourceRow(row, tier0, configResult, args) {
     },
     diagnostics: {
       speed_ordering: dynamicsDiagnostic,
+      root_ledger_refinement: rootRefinementDiagnostic,
     },
     samples,
     active_causal_root_ledger: roots,
     validation: {
       status_is_accepted_history_segment: false,
-      root_ledger_stable_under_refinement: false,
+      root_ledger_stable_under_refinement: rootRefinementDiagnostic.root_ledger_stable_under_refinement,
       residuals_below_tolerance: false,
       speed_ordering_retained: dynamicsDiagnostic.speed_ordering_retained,
       no_secular_center_drift: false,
@@ -767,7 +1016,7 @@ function continuationSourceRow(row, tier0, configResult, args) {
       "roots are provisional carrier roots, not continuation roots",
       "no eta ladder was integrated",
       "no monodromy operator or Delta_k was computed",
-      "no dt, history-window, or eta refinement was tested",
+      "no direct dynamics dt, history-window, or eta refinement was tested",
     ],
     nonfit_statement:
       "No CKM magnitude, CKM angle, charged-lepton mass ratio, particle mass, or CKM-derived transport action was used to emit this carrier-replay source.",
