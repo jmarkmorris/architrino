@@ -1,5 +1,102 @@
 # $A_0$ Reduced Branch Certificate Packet
 
+## Background
+
+We are exploring an **assembly**, specifically a candidate neutral rest-branch Noether-core assembly called `$A_0$`.
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, an assembly is not a point particle. It is a structured bundle of architrinos with internal motion, internal causal history, and sector-visible projections.
+
+For this $A_0$ case, the reduced assembly has six constituents:
+
+`I+`, `I-`, `M+`, `M-`, `O+`, `O-`
+
+Think of them as three nested pro/anti binary layers:
+
+- `I`: inner binary
+- `M`: middle binary
+- `O`: outer binary
+
+Each layer has a radius, frequency, handedness, phase, and plane orientation. So the “geometry” is not just where the six things are right now. It includes:
+
+1. Their spatial arrangement.
+2. Their velocities.
+3. Their layer phases.
+4. Their orientation frames.
+5. Their path-history.
+6. The delayed causal connections among them.
+
+The key geometric object is the **causal-root ledger**.
+
+A causal root answers:
+
+“At current time `$t$`, which past point `$t_0$` on some source constituent can causally reach this receiver constituent?”
+
+The root equation is roughly:
+
+$$
+F_{ab}(t;t_0)
+=
+\|\mathbf{s}_a(t)-\mathbf{s}_b(t_0)\|
+-
+c_f(t-t_0)
+=0.
+$$
+
+Here:
+
+- `$a$` is the receiver.
+- `$b$` is the source.
+- `$\mathbf{s}_a(t)$` is the receiver position now.
+- `$\mathbf{s}_b(t_0)$` is the source position in the past.
+- `$c_f$` is the field-speed scale.
+
+So the assembly is a moving geometry plus a delayed connection graph.
+
+The roots come in classes:
+
+- **partner roots**: between `+` and `-` members of the same layer;
+- **self roots**: a constituent intersecting its own path-history;
+- **inter-layer roots**: connections between different layers.
+
+What we were testing is whether this internal geometry is stable enough to be meaningful. A pretty algebraic carrier is not enough. We need to know whether the assembly can evolve while preserving a coherent causal-root ledger.
+
+The recent work added a branch-retention diagnostic:
+
+$$
+B_n(k)=\#\{r\in R_n:\kappa(r)=k\},
+$$
+
+where `$B_n(k)$` counts how many roots of branch type `$k$` exist at step `$n$`.
+
+Then we compare against the initial root ledger:
+
+$$
+\mathcal{B}_{\mathrm{ret}}(n)
+=
+\sum_k \min(B_0(k),B_n(k)).
+$$
+
+Plainly: “Are the same kinds of internal causal connections still present after the assembly evolves?”
+
+What we found is geometrically interesting:
+
+- The initial direct-root ledger has 32 active branches.
+- At longer evolution, two inner self-root branches looked like they disappeared on a coarse grid.
+- Adaptive refinement showed they did not really disappear.
+- Pushing farther, the same inner self-root branches gained an extra short-delay root.
+
+That means the inner binary’s self-history geometry is near a **root multiplicity event**: not simple collapse, but possible fold/splitting behavior in the delayed self-connection chart.
+
+Why this matters for Standard Model-facing geometry:
+
+Before we can derive mass-basis shape functions, weak-basis shape functions, CKM/PMNS overlaps, weak chirality, or confinement geometry, we need an internal assembly whose own causal geometry is stable enough to project from.
+
+So the chain is:
+
+`architrinos` → `Noether-core assembly` → `stable causal-root ledger` → `sector exposure / quotient` → `mass, weak, color, photon-facing geometry`
+
+The current $A_0$ work is at the “stable causal-root ledger” level. It is not yet a particle prediction. It is checking whether an internal assembly can become a reliable geometric source object for later mass and weak-sector calculations.
+
 ## Purpose
 
 This packet turns the $A_0$ reference-attractor posture into a concrete reduced proof and simulation target. It does not replace the full six-worldline $A_0$ output schema in [mass-map.md](mass-map.md). Its job is narrower: define the first finite branch-search certificate that can decide whether a coupled multi-scale tri-binary lock is worth promoting into shielding extraction, energy-ledger work, and mass-map comparison.
@@ -156,6 +253,98 @@ R_\ell
 $$
 where $\mathbf{e}_{\ell,1},\mathbf{e}_{\ell,2}$ span the layer plane, $\mathbf{n}_\ell=\mathbf{e}_{\ell,1}\times\mathbf{e}_{\ell,2}$, $\lambda_\ell$ is an ellipticity parameter, and $\mathbf{d}_\ell(t)$ is the unresolved non-circular correction.
 
+## Geometry-First Reduction: Provisional Moduli Object
+
+The reduced search should treat the certificate variables as coordinates on a geometric state space before it treats them as bookkeeping fields. The provisional object for a fixed finite branch label $\Lambda$ and fixed $\eta>0$ is
+$$
+\mathfrak{M}_{A_0}^{\eta}(\Lambda)
+=
+\left\{
+Y_{\text{geom}}
+\;:\;
+\mathcal{R}_\Lambda(Y_{\text{geom}})=0,
+s_I>c_f,
+s_M\approx c_f,
+s_O<c_f
+\right\}
+\Big/
+\left(
+SO(3)\times S^1_{\mathbf{k}}\times\Gamma_\Lambda
+\right),
+$$
+where the provisional reduced geometric coordinate is
+$$
+Y_{\text{geom}}
+=
+\left(
+R_\ell,\omega_\ell,\lambda_\ell,
+\theta_\ell,\mathbf{n}_\ell,H_\ell,\Lambda
+\right).
+$$
+The quotient removes global rotations, the common closed-cycle phase gauge, and only those finite chart relabelings that preserve the polarity assignment, layer roles, speed ordering, and causal-root branch class. Here
+$$
+S^1_{\mathbf{k}}:
+\left(\theta_I,\theta_M,\theta_O\right)
+\mapsto
+\left(
+\theta_I+2\pi k_I\alpha,\,
+\theta_M+2\pi k_M\alpha,\,
+\theta_O+2\pi k_O\alpha
+\right),
+\qquad
+\alpha\in\mathbb{R}/\mathbb{Z},
+$$
+and $\Gamma_\Lambda$ is a provisional notation for the allowed discrete chart relabelings. The root-ledger branch class $[\Lambda]$ is the image of $\Lambda$ under this discrete quotient; it is not an additional dynamical assumption.
+
+A useful reduced chart on this quotient is
+$$
+z_\Lambda
+=
+\left(
+\varepsilon_{IM},\varepsilon_{MO},\delta_M,
+T_I/T_M,T_M/T_O,
+\lambda_I,\lambda_M,\lambda_O,
+G_{\ell m},\chi_N,
+H_I,H_M,H_O,
+\Phi_{\text{rel}},
+[\Lambda]
+\right),
+$$
+with
+$$
+G_{\ell m}\equiv\mathbf{n}_\ell\cdot\mathbf{n}_m,
+\qquad
+\chi_N
+\equiv
+\operatorname{sign}
+\left(
+\mathbf{n}_I\cdot
+\left(\mathbf{n}_M\times\mathbf{n}_O\right)
+\right),
+\qquad
+\Phi_{\text{rel}}
+\equiv
+\left(\theta_I,\theta_M,\theta_O\right)/S^1_{\mathbf{k}}.
+$$
+The two period ratios record time-scale separation alongside the radius ratios. The Gram data $G_{\ell m}$ records the inter-plane angles after global rotations are removed, $\chi_N$ records the orientation class of the ordered plane-normal frame, the three $H_\ell$ record layer handedness, and $\Phi_{\text{rel}}$ records phase offsets after the common time-origin gauge is removed. For nonzero winding vector $\mathbf{k}=(k_I,k_M,k_O)$, $\Phi_{\text{rel}}$ is a two-dimensional phase torus; an implementation may choose any two integer phase combinations orthogonal to $\mathbf{k}$.
+
+The stability object on the quotient is the residual-gap functional
+$$
+\mathscr{Q}_\eta([Y])
+=
+\|\mathcal{R}_\Lambda(Y)\|_{W}^{2}
++
+\sum_{\mu_i\notin G_{\text{sym}}}
+\max(0,|\mu_i|-1)^2,
+$$
+where $W$ is the declared residual-weight matrix and $[Y]$ denotes the quotient class of a representative branch coordinate. A stable rest branch should appear as an isolated zero of $\mathscr{Q}_\eta$ with
+$$
+\Delta_{\mathbf{k}}>0.
+$$
+This gives a provisional normal-hyperbolicity reading of the existing positive-gap gate: time shift, center translation, and global rotation do not count as physical instability, but every remaining Floquet direction must be separated from the unit circle. Integer closure without this positive gap is a point in the closure locus, not a stable rest-branch moduli point.
+
+**Provisional reduced-moduli lemma.** For fixed $\eta>0$, fixed finite causal-root branch class $[\Lambda]$, and nonzero winding vector $\mathbf{k}$, any Tier 1 branch with $\mathcal{R}_\Lambda=0$, no center drift, retained speed ordering, and $\Delta_{\mathbf{k}}>0$ determines an isolated point of $\mathfrak{M}_{A_0}^{\eta}(\Lambda)$. If the same data give $\mathcal{R}_\Lambda=0$ but $\Delta_{\mathbf{k}}\le0$, the branch is a closed reduced configuration but not a stable $A_0$ rest branch.
+
 Tier 0 may set $\mathbf{d}_\ell=0$ only to enumerate roots and residuals. If this carrier leaves tangential residuals, the result is not a no-go theorem. It is a demand for one of three next moves:
 
 - an inter-layer phase correction,
@@ -307,6 +496,8 @@ $$
 $$
 is interpreted with sign-aware inequalities for the intended branch regime.
 
+This is the closure residual vector before the monodromy gate. The full branch-row residual surface is $\mathcal{R}_{A_0}$ below, which also includes $\mathcal{R}_{\text{Floquet}}$ with a Tier 0 status of not computed until Tier 1 builds the return-map diagnostic.
+
 The classification residuals record what happened to higher-order internal terms:
 
 - $\mathcal{R}_{\text{avg}}$ measures the terms claimed to average out under Lemma 1.
@@ -438,13 +629,120 @@ Required outputs:
 
 - active root counts by class,
 - $J_{ab}^{(m)}$ distributions and near-null events,
+- the reduced moduli row $z_\Lambda$ before any energy or shielding interpretation,
+- the complete branch-row residual surface $\mathcal{R}_{A_0}$, with Tier 0 omissions recorded explicitly,
+- $\Delta_{\mathbf{k}}$ status, reported as not computed at Tier 0 unless a monodromy diagnostic is supplied,
 - phase-closure residuals,
 - tangential and radial carrier residuals,
 - averaging / locking / leakage classification,
+- provisional `weak_retained_amplitude_handoff` status, with `not-computed` allowed at Tier 0,
 - candidate branch labels worth continuing,
-- explicit no-go notes when no labels survive.
+- one `failure_code` per rejected row and explicit no-go notes when no labels survive.
 
 Tier 0 passes only if at least one branch label has finite root ledger, controlled residuals, and no immediate contradiction with the speed ordering. Passing Tier 0 does not authorize $\zeta(A_0)$, energy-ledger, or mass interpretation.
+
+### Minimum Branch-Row Schema
+
+Each Tier 0 row should expose the quotient coordinate, residual surface, and stability handoff explicitly:
+
+| Field | Required content |
+| --- | --- |
+| `branch_label` | $(k_I,k_M,k_O)$, $(q_{IM},q_{MO},q_{IO})$, handedness labels, ellipticity status, and active branch identifiers available at Tier 0 |
+| `z_lambda` | the reduced moduli row $z_\Lambda$: radius ratios, period ratios, $\delta_M$, layer ellipticities, plane Gram data $G_{\ell m}$, $\chi_N$, $H_I,H_M,H_O$, $\Phi_{\text{rel}}$ status, removed gauges, and root-ledger branch class $[\Lambda]$ |
+| `root_ledger` | active and raw partner, self, and inter-layer root counts; excluded near-zero self roots; near-separator counts; minimum $|J|$; maximum root residual |
+| `residuals` | structured entries for every component of $\mathcal{R}_{A_0}$, each with value, tolerance, status, role, and note |
+| `residual_values` | numeric audit surface for $\mathcal{R}_{A_0}$, with Tier 0 omissions recorded as null rather than hidden |
+| `Delta_k` | Tier 0 status for $\Delta_{\mathbf{k}}$; value is null until Tier 1 constructs the monodromy or finite-difference return map |
+| `certificate_gates` | pass/fail/not-computed gates for quotient coordinates, scale separation, speed ordering, phase closure, carrier residuals, active root ledger, separator handling, near-zero self roots, residual semantics, $\Delta_{\mathbf{k}}$, and Tier 0 continuation |
+| `failure_code` | one machine-readable reason the row fails, or `candidate` when it may seed Tier 1 |
+| `promotion_boundary` | explicit statement that a passing Tier 0 row may seed Tier 1 only and is not an accepted attractor |
+
+### Provisional Weak-Retained Amplitude Handoff
+
+The branch row that later feeds the Standard Model shielding-envelope calculation needs one additional optional handoff object. This is not a CKM result and not a new particle benchmark. It is the branch-derived weak-retained causal-wake amplitude that the weak-sector overlap packet consumes as $\mathcal{L}_{\ell}^{W,\Lambda}(a,\mathbf{x})$.
+
+The reduced certificate already uses $\Lambda$ for the finite causal-root branch label. In this handoff, the row must therefore record both the exact `branch_label` and the shielding `tier_selector`; the superscript in $\mathcal{L}_{\ell}^{W,\Lambda}$ denotes the combined branch-family handoff consumed by the Standard Model packet. The provisional internal disambiguators below are $\Lambda_{\mathrm{br}}$ for the reduced branch label and $\Lambda_{\mathrm{tier}}$ for the shielding tier.
+
+Use the provisional tier selector
+$$
+\mathcal{I}_{\mathrm{IMO}}=\{I,M,O\},
+\qquad
+\mathcal{I}_{\mathrm{IM-}}=\{I,M\},
+\qquad
+\mathcal{I}_{\mathrm{I--}}=\{I\}.
+$$
+For refinement index $\nu$, fixed branch label $\Lambda_{\mathrm{br}}$, fixed shielding tier $\Lambda_{\mathrm{tier}}\in\{\mathrm{IMO},\mathrm{IM-},\mathrm{I--}\}$, fixed weak-sector input tuple $(R_{\text{rel}},c,\sigma_{\text{ax}})$, and fixed local Noether-Sea state, define the row-level weak-retained amplitude candidate by
+$$
+\mathcal{L}_{\ell}^{W,\Lambda_{\mathrm{tier}},\nu}(a,\mathbf{x};\Lambda_{\mathrm{br}})
+=
+\Pi_{\mathrm{weak}}
+\left[
+\left\langle
+\sum_{\sigma\in\{+,-\}}
+q_{\ell,\sigma}
+W_{\ell,\sigma}^{(\nu)}(t;a,\mathbf{x};R_{\text{rel}},c,\sigma_{\text{ax}})
+\right\rangle_{T_{\mathbf{k}}}
+\right]_{\Lambda_{\mathrm{br}}},
+\qquad
+\ell\in\mathcal{I}_{\Lambda_{\mathrm{tier}}}.
+$$
+Here $W_{\ell,\sigma}^{(\nu)}$ is reconstructed from the row's accepted state/history segment, active causal-root ledger, and mollified wake rule at refinement level $\nu$. The projection $\Pi_{\mathrm{weak}}$ is the weak-sector projection from the exposure-quotient theorem; it must retain weak-coupling-triad exposure, axial-frame branch data, chirality channel, flavor-overlap data, and weak-corridor provenance in one weak-visible domain. The same row data must supply the phase origin through $z_\Lambda$, especially $\Phi_{\text{rel}}$, $H_I,H_M,H_O$, and the root-ledger branch class $[\Lambda]$.
+
+The emitted amplitude exists only if the refinement limit
+$$
+\mathcal{L}_{\ell}^{W,\Lambda_{\mathrm{tier}}}(a,\mathbf{x};\Lambda_{\mathrm{br}})
+=
+\lim_{\nu\to\infty}
+\mathcal{L}_{\ell}^{W,\Lambda_{\mathrm{tier}},\nu}(a,\mathbf{x};\Lambda_{\mathrm{br}})
+$$
+converges in the weak-measure norm used by the Standard Model packet:
+$$
+\left\|
+\mathcal{L}_{\ell}^{W,\Lambda_{\mathrm{tier}},\nu+1}
+-
+\mathcal{L}_{\ell}^{W,\Lambda_{\mathrm{tier}},\nu}
+\right\|_{\mu_W^{(L)}}
+\to0,
+$$
+under the declared extraction radius, angular resolution, cycle window, $\Delta t$, history depth, and $\eta$ schedule. The tier can seed a shielding envelope only when
+$$
+\sum_{\ell\in\mathcal{I}_{\Lambda_{\mathrm{tier}}}}
+\left\|
+\mathcal{L}_{\ell}^{W,\Lambda_{\mathrm{tier}}}
+\right\|_{\mu_W^{(L)}}>0.
+$$
+
+The provisional branch-row field is `weak_retained_amplitude_handoff`:
+
+| Field | Required content |
+| --- | --- |
+| `status` | `not-computed`, `candidate`, `weak-emitter-ready`, or `failed`; Tier 0 may emit `not-computed` or `candidate`, while `weak-emitter-ready` requires the refinement limit above |
+| `tier_selector` | one of $\mathrm{IMO}$, $\mathrm{IM-}$, or $\mathrm{I--}$ with the corresponding active layer set $\mathcal{I}_{\Lambda_{\mathrm{tier}}}$ |
+| `source_row` | the row's `branch_label`, `z_lambda`, `root_ledger`, `residual_values`, `Delta_k`, `certificate_gates`, and `promotion_boundary` |
+| `weak_inputs` | $R_{\text{rel}}$, $c$, $\sigma_{\text{ax}}$, $\eta_a^{(h)}$, $A_a(\mathbf{x};R_{\text{rel}})$, and the local $\rho_{\text{core}}(\mathbf{x},t),\chi_{\text{sea}}(\mathbf{x},t)$ state used by the weak measure |
+| `weak_exposure_map` | the explicit $\Pi_{\mathrm{weak}}$, $Q_{\mathrm{weak}}$, retained labels, discarded labels, and weak-exposure leakage diagnostics used for this row |
+| `layer_channels` | one entry per $\ell\in\mathcal{I}_{\Lambda_{\mathrm{tier}}}$ giving $\mathcal{L}_{\ell}^{W,\Lambda_{\mathrm{tier}},\nu}(a,\mathbf{x};\Lambda_{\mathrm{br}})$ or a `not-computed` marker with the reason |
+| `phase_handoff` | branch-fixed phase data sufficient to determine $\arg\mathcal{L}_{\ell}^{W,\Lambda}(a,\mathbf{x})$ after quotienting the common phase origin |
+| `refinement` | extraction radius, angular resolution, cycle window, $\Delta t$, history depth, $\eta$, and convergence status |
+| `nonfit_statement` | explicit statement that no CKM magnitude, charged-lepton mass ratio, particle mass, or CKM-derived transport action was used to construct the amplitude |
+| `failure_code` | one weak-emitter failure code, or `weak-emitter-ready` when the handoff may feed the shielding-envelope packet |
+
+The exact pass condition for supplying $B_{\mathrm{IMO}}$, $B_{\mathrm{IM-}}$, and $B_{\mathrm{I--}}$ is that the corresponding branch-family rows all reach `weak-emitter-ready`, have finite nonzero active-tier norm, preserve the same $\Pi_{\mathrm{weak}}$ and quotient choices, and keep all refinement drift below declared tolerance before any Standard Model comparison. The exact failure condition is `weak-emitter-benchmark-fit` if any observed CKM magnitude, CKM angle, or particle mass is used to select the branch row, projection, quotient, amplitude normalization, or phase.
+
+The first Tier 0 failure table should reserve these codes:
+
+| Failure code | Trigger | Consequence |
+| --- | --- | --- |
+| `quotient-degenerate` | $G_{\ell m}$ and $\chi_N$ do not define a nondegenerate quotient row after global rotations are removed | do not treat $z_\Lambda$ as a moduli coordinate |
+| `scale-separation-collapse` | $R_I:R_M:R_O$ or $T_I:T_M:T_O$ violates the declared separated-scale regime | reject the row or widen the scan only as a controlled scale-separation test |
+| `root-ledger-instability` | the active causal-root ledger is empty or misses partner, self, or inter-layer root classes | do not seed Tier 1 until the ledger closes with all required source relations |
+| `nonpositive-floquet-gap` | Tier 1 computes $\Delta_{\mathbf{k}}\le0$ | reject the branch as a non-attractor even if integer closure holds |
+| `weak-emitter-not-computed` | the row does not carry a weak-retained amplitude handoff or marks the handoff outside its computed tier | do not feed the Standard Model shielding-envelope packet |
+| `weak-emitter-zero-norm` | $\sum_{\ell\in\mathcal{I}_{\Lambda_{\mathrm{tier}}}}\|\mathcal{L}_{\ell}^{W,\Lambda_{\mathrm{tier}}}\|_{\mu_W^{(L)}}=0$ | no normalized branch-derived envelope can be formed for that tier |
+| `weak-emitter-phase-underdetermined` | quotienting leaves $\arg\mathcal{L}_{\ell}^{W,\Lambda}(a,\mathbf{x})$ ambiguous on support contributing to the overlap kernel | do not compute $\Delta\phi_{u\Lambda}$ from this row |
+| `weak-emitter-refinement-drift` | $\mathcal{L}_{\ell}^{W,\Lambda_{\mathrm{tier}},\nu}$ fails convergence under extraction radius, angular resolution, cycle window, $\Delta t$, history depth, or $\eta$ refinement | keep the row as a numerical artifact, not a shielding-envelope input |
+| `weak-emitter-split-domain` | the row needs a different weak projection or quotient for chirality, flavor overlap, or weak-corridor provenance | the weak exposure theorem has not closed for this row |
+| `weak-emitter-benchmark-fit` | CKM data, charged-lepton mass ratios, particle masses, or CKM-derived transport actions are used to select or normalize the handoff | reject the row as fitted rather than branch-derived |
 
 ## Tier 1: $\eta>0$ Continuation Scan
 
@@ -469,6 +767,25 @@ Required operations:
 6. Remove symmetry modes and compute $\Delta_{\mathbf{k}}$.
 7. Reject branches with negative Floquet gap, secular drift, root-ledger inconsistency, or non-convergent energy residuals.
 
+Provisional reduced Tier 1 monodromy packet:
+
+Given a Tier 0 row $\Lambda$ with reduced representative $[Y_\Lambda]$ in the chart $z_\Lambda$, the Tier 1 continuation should define a regularized return map
+$$
+\mathcal{P}_{\eta,\Lambda}:N_{[Y_\Lambda]}\longrightarrow N_{[Y_\Lambda]},
+$$
+where $N_{[Y_\Lambda]}$ is the quotient normal chart obtained after removing global rotations, translations, the cycle phase gauge, and the trivial branch relabelings already recorded by $\Gamma_\Lambda$. The active causal-root ledger is part of the chart data, not an external certificate note: if the partner, delayed self-hit, or inter-layer root classes cannot be matched under $\Delta t$, history-window, and $\eta$ refinement, then $\mathcal{P}_{\eta,\Lambda}$ is not defined on the same branch.
+
+The stability functional for this packet is
+$$
+\Delta_{\mathbf{k}}(\eta,\Lambda)
+=1-\rho\!\left(
+\Pi_{\perp G_{\text{sym}}}
+D\mathcal{P}_{\eta,\Lambda}
+\Pi_{\perp G_{\text{sym}}}
+\right),
+$$
+where $G_{\text{sym}}$ is generated by time shift, translations, and rotations. A stable rest-branch candidate requires positive gap on the quotient, convergence of the residual ledger, and persistence of the same root-ledger branch class across the $\eta>0$ ladder before any $\eta\to0^+$ extrapolation.
+
 Tier 1 passes only if a branch has:
 
 - declared residuals below tolerance,
@@ -476,6 +793,37 @@ Tier 1 passes only if a branch has:
 - $\Delta_{\mathbf{k}}>0$,
 - no secular center drift,
 - stable root ledger under refinement.
+
+### Current Tier 1 Diagnostic State: Adaptive Direct-Root Horizon Ladder
+
+The executable continuation-source prototype currently lives at `scripts/mass-map/a0-tier1-continuation-source-prototype.mjs`. It is still a blocked diagnostic source, not an accepted Tier 1 continuation. The accepted-history writer must continue to block its rows until residual closure, center-drift closure, $\Delta_{\mathbf{k}}>0$, and branch persistence across the declared $\eta$ ladder are all present.
+
+The useful diagnostic object now tracked by the prototype is the direct-root branch multiset
+$$
+B_n(k)=\#\{r\in R_n:\kappa(r)=k\},
+$$
+where $R_n$ is the active direct-root set at step $n$ and $\kappa(r)$ records receiver, source, source relation, and root status. The retained initial branch count is
+$$
+\mathcal{B}_{\mathrm{ret}}(n)
+=
+\sum_k \min(B_0(k),B_n(k)),
+$$
+and the surplus count is
+$$
+\mathcal{B}_{\mathrm{extra}}(n)
+=
+\sum_k \max(0,B_n(k)-B_0(k)).
+$$
+
+The first adaptive stress result is:
+
+- the short/default ladder retains all $32$ initial direct-root branches;
+- at the $1024$-step rung, the coarse grid first under-resolves the two self branches `I+|I+|self|active` and `I-|I-|self|active` at step `1014`;
+- adaptive root-grid refinement from `rootSamples=128` to `rootSamples=256` restores all $32$ retained branches before the state update;
+- at the $4096$-step rung, the initial branches remain retained, but the same two self branches become surplus branches at steps `1103` and `1102` for the two ready rows;
+- the surplus bracket shows that the retained long-delay self root at delay `0.021361944626227355` persists with $J\approx0.377185$, while a new short-delay self root appears at delay `0.00003471070297711964` with $J\approx-0.060$ and root residual near $7.3\times10^{-7}$.
+
+The exact next calculation is to promote the surplus event into a fold/splitting diagnostic rather than treating it as either success or failure. Use the recorded adjacent root ledgers to compute the local $F_{aa}(t;t_0)$ normal form around the new short-delay self root, and test whether the event obeys the expected even fold-pair rule $\Delta N\in2\mathbb{Z}$. If the surplus pair persists under root-grid, $\Delta t$, history-depth, and $\eta$ refinement without a fold-layer classification, route it as branch proliferation. If it is a bounded fold-layer event with positive exits and no retained-branch loss, it becomes a locking/fold-layer row in the Tier 1 branch chart rather than a ledger failure.
 
 ## Tier 2: Energy and Shielding Extraction
 
@@ -542,18 +890,21 @@ Every failed certificate should classify the failure:
 
 ## Next Implementation Packet
 
-Build the Tier 0 algebraic branch-search artifact first. The minimum useful artifact is a reproducible table of finite reduced candidates, not a full simulator.
+The first Tier 0 implementation packet is complete enough for the next handoff. The current scripts emit the reduced grid, carrier evaluator, active root ledger by relation class, $J_{ab}^{(m)}$ values, quotient row $z_\Lambda$, residual surface, $\Delta_{\mathbf{k}}$ placeholder, weak-retained handoff placeholder, blocked accepted-history writer output, and weak-emitter fail-closed behavior. Those items should no longer be carried as next tasks here.
 
-The first implementation pass should produce:
+The active next implementation packet is the self-root fold/splitting diagnostic for the adaptive direct-root horizon ladder. It should consume `first_branch_surplus_bracket` from the continuation-source prototype and classify the new short-delay inner self roots.
 
-1. a small parameter-grid definition for $\varepsilon_{IM}$, $\varepsilon_{MO}$, $\delta_M$, $(R_I:R_M:R_O)$, $(T_I:T_M:T_O)$, and $(H_I,H_M,H_O)$;
-2. a carrier evaluator for circular and elliptic diagnostic charts;
-3. a root-ledger enumerator that emits partner, self, and inter-layer root classes with $J_{ab}^{(m)}$ values;
-4. a resonance classifier that separates $\mathcal{R}_{\text{avg}}$ from $\mathcal{R}_{\text{lock}}$;
-5. a leakage placeholder that reports the leading nonzero far-field channel rather than hiding it;
-6. one output row per branch label $\Lambda$, including $\mathcal{R}_{A_0}$ and a failure code.
+The next pass should produce:
 
-Only after Tier 0 emits at least one nontrivial candidate should the workstream spend effort on Tier 1 direct delayed dynamics.
+1. a local bracket packet for the two surplus branch keys `I+|I+|self|active` and `I-|I-|self|active`, including the previous and current self-root delays, $J$ values, residuals, and step times;
+2. a local normal-form fit or interval sign chart for $F_{aa}(t;t_0)$ around the new short-delay self root;
+3. a parity verdict for whether the event obeys the fold-pair rule $\Delta N\in2\mathbb{Z}$;
+4. a classification field with one of `fold-layer`, `branch-proliferation`, or `resolution-artifact`;
+5. refinement checks under root-grid, $\Delta t$, history-depth, and $\eta$ changes;
+6. an updated Tier 1 branch-chart row that routes a bounded fold-layer event to $\mathcal{R}_{\text{lock}}$ but routes unresolved proliferation to `root-ledger-instability`;
+7. confirmation that accepted-history output remains blocked until one-period residual closure, no secular center drift, positive $\Delta_{\mathbf{k}}$, and branch persistence across the declared $\eta$ ladder are all present.
+
+After this fold/splitting packet is classified, the following Tier 1 implementation packet is a one-period adaptive direct-root continuation with residual budgets and monodromy setup. It should not begin until the self-root surplus event is no longer ambiguous.
 
 ## Promotion Rule
 

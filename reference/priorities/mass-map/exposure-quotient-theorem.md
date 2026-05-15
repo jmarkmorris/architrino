@@ -80,6 +80,98 @@ Exposure is distinct from residual routing: exposure decides which part of an al
 | Leakage or residue | Report anisotropic leakage, longitudinal residue, gauge-breaking term, or hidden-sector remainder instead of hiding it. |
 | Failure condition | State what fails if the sector requires a different projection, a different quotient, or benchmark fitting before exposure is derived. |
 
+## Sector Acceptance Conditions
+
+Because $\mathfrak{L}_{A,\mathrm{cont}}$ and $\mathfrak{L}_{A,\mathrm{disc}}$ have different mathematical status, a sector exposure is accepted only when the continuous residue and the discarded discrete labels are both harmless for the sector benchmark. If $D_{S,\mathrm{hid}}$ is the set of discrete labels discarded by $\Pi_S$, let $\mathcal{B}^{\mathrm{full}}_S:\mathfrak{L}_A\to\mathfrak{B}_S$ be the sector packet's validation probe on the pre-projection ledger. Define the discrete-label leakage diagnostic by
+
+$$
+\lambda_{S,\mathrm{disc}}(A)
+=
+\sup_{d_1,d_2\in D_{S,\mathrm{hid}}}
+d_{\mathfrak{B}_S}\!\left(
+\mathcal{B}^{\mathrm{full}}_S(\mathcal{L}_A[d_1]),
+\mathcal{B}^{\mathrm{full}}_S(\mathcal{L}_A[d_2])
+\right),
+$$
+
+where $\mathcal{L}_A[d]$ means the same retained continuous ledger with the discarded label $d$ restored for the benchmark test. This probe is a validation diagnostic, not an input to constructing $\mathcal{L}_A$, $\Pi_S$, or $Q_S$. If $D_{S,\mathrm{hid}}$ is empty, set $\lambda_{S,\mathrm{disc}}(A)=0$.
+
+For vector-valued or polarization-facing channels with declared propagation direction $\hat{\mathbf{k}}$, use the local Euclidean metric to split retained vector content into transverse and longitudinal parts:
+
+$$
+(P_{\parallel,\hat{\mathbf{k}}}u)^a
+=
+\hat{k}^a\hat{k}_b u^b,
+\qquad
+P_{\perp,\hat{\mathbf{k}}}
+=
+I-P_{\parallel,\hat{\mathbf{k}}}.
+$$
+
+The photon sector must keep only the rank-two transverse support,
+
+$$
+\Pi_\gamma\mathcal{L}_A
+=
+P_{\perp,\hat{\mathbf{k}}}\Pi_\gamma\mathcal{L}_A,
+\qquad
+\left\|
+P_{\parallel,\hat{\mathbf{k}}}\Pi_\gamma\mathcal{L}_A
+\right\|_\gamma
+\le
+\epsilon_{\gamma,\parallel}.
+$$
+
+A massive or short-lived vector corridor is different: its sector projection may retain longitudinal or mixed-axis content, but that content must be visible inside $\Pi_V\mathcal{L}_A$ rather than hidden in $(1-\Pi_V)\mathcal{L}_A$.
+
+When a sector declares longitudinal content hidden, set
+
+$$
+\lambda_{S,\parallel}(A)
+=
+\left\|
+P_{\parallel,\hat{\mathbf{k}}}\Pi_S\mathcal{L}_A
+\right\|_S.
+$$
+
+When the sector declares longitudinal or mixed-axis content visible, as in a vector corridor, set $\lambda_{S,\parallel}(A)=0$ only after the retained projection and benchmark-recovery map explicitly include that content. The gauge/relabeling leakage diagnostic is
+
+$$
+\lambda_{S,\mathrm{gauge}}(A)
+=
+\sup_{g\in G_S}
+d_{\mathfrak{V}_S/\!\sim_S}\!\left(
+Q_S\Pi_S(g\cdot\mathcal{L}_A),
+Q_S\Pi_S\mathcal{L}_A
+\right).
+$$
+
+The sector-visible response is accepted only when
+
+$$
+A\in\operatorname{Dom}(\mathcal{E}_S)
+\quad\Longleftrightarrow\quad
+\begin{aligned}
+&\mathcal{L}_A\text{ satisfies branch-ledger provenance},\\
+&\Pi_S^2=\Pi_S,\\
+&Q_S\text{ preserves the sector benchmark through }\mathcal{B}_S,\\
+&\lambda_S(A)+\lambda_{S,\mathrm{disc}}(A)
++\lambda_{S,\parallel}(A)+\lambda_{S,\mathrm{gauge}}(A)
+\le
+\epsilon_{S,\mathrm{tot}}.
+\end{aligned}
+$$
+
+Terms that do not apply to a sector are set to zero only when the sector packet declares that they cannot change the benchmark. Otherwise the missing term is a failed exposure proof, not a harmless omission.
+
+| Sector burden | Projection acceptance | Quotient acceptance | Leakage or failure test |
+| --- | --- | --- | --- |
+| Mass shielding | $\Pi_0$ keeps the isotropic far-field scalar response or a declared tensor mass-facing channel. | $Q_0$ may remove phase origin, branch-preserving constituent relabelings, global rotations, and hidden pro/anti cancellation labels only when $\zeta(A)$ or the declared tensor response is unchanged. | Anisotropic leakage must satisfy the scalar gate or the packet must report tensor exposure instead of promoting scalar $\zeta(A)$. |
+| Weak chirality | $\Pi_{\mathrm{weak}}$ keeps the weak-coupling triad, axial-frame branch data, chirality channel, flavor-overlap data, and weak-corridor provenance in one weak-visible domain. | $Q_{\mathrm{weak}}$ may remove color-basis relabeling, pole symmetries, matter/antimatter conjugation, and equivalent frame flips only when `V-A`, CKM/PMNS overlap, provenance, and gauge-covariance benchmarks factor through the same quotient. | A right-channel charged-current residue, benchmark-changing discarded axial label, or split weak domain blocks promotion. |
+| Color exceptionality | $\Pi_{\mathrm{color}}$ keeps color/topological exception labels for hadronic and confinement-facing benchmarks. For non-color sectors, discarding those labels is allowed only if $\lambda_{S,\mathrm{disc}}(A)$ is below tolerance. | The quotient may identify color-basis relabelings, but not color/topology distinctions that change confinement, quark mass, weak provenance, or mass-facing response. | Benchmark-changing discarded color labels trigger `discrete-label-leakage`; the sector must retain the color label or route the claim to the hadronic packet. |
+| Photon transverse support | $\Pi_\gamma$ keeps the transverse polarization/helicity ledger of the coaxial contra-rotating pro/anti planar pair and rejects free longitudinal support. | $Q_\gamma$ may remove hidden planar-pair cancellation labels, phase origin, and analyzer-equivalent choices only after helicity and analyzer-visible response remain invariant. | $\|P_{\parallel,\hat{\mathbf{k}}}\Pi_\gamma\mathcal{L}_A\|_\gamma>\epsilon_{\gamma,\parallel}$ blocks photon transverse support. |
+| Vector-corridor visibility | $\Pi_V$ keeps localized recoupling burden, longitudinal or mixed-axis corridor content, weak provenance, and the medium-dressed response needed for a short-lived massive vector channel. | $Q_V$ may remove corridor-basis or gauge choices only when the recovered vector mass scale, reaction provenance, and event-ledger handoff are unchanged. | Reusing the photon transverse quotient, or hiding the longitudinal/mixed-axis burden in the exposure residue, fails vector-corridor visibility. |
+
 ## Admissible Sector Exposure Map
 
 An exposure map for sector $S$ is admissible only if the emitted ledger satisfies branch-ledger provenance:
@@ -291,11 +383,13 @@ The theorem can promote into [particle-masses](../../../content/markdown/aaa/ass
 | Failure code | Mathematical criterion | Consequence |
 | --- | --- | --- |
 | `quotient-incompatible` | There exist $v_1,v_2\in\mathfrak{V}_S$ with $Q_S(v_1)=Q_S(v_2)$ but $d_{\mathfrak{B}_S}(\mathcal{B}_S(v_1),\mathcal{B}_S(v_2))>\epsilon_{S,Q}$. | The quotient has hidden a sector-visible distinction, so $\mathcal{E}_S(A)$ is not well defined for the benchmark. |
-| `hidden-longitudinal-residue` | For a vector or photon-facing sector with declared propagation axis, $\|P_{\parallel}\Pi_S\mathcal{L}_A\|_S>\epsilon_{S,\parallel}$. | A longitudinal or mixed-axis component remains; photon transverse support or vector-channel visibility cannot be promoted as stated. |
+| `hidden-longitudinal-residue` | For a photon-facing sector, or for a vector sector that declares longitudinal content hidden, $\|P_{\parallel,\hat{\mathbf{k}}}\Pi_S\mathcal{L}_A\|_S>\epsilon_{S,\parallel}$. | A longitudinal or mixed-axis component remains outside the declared visible vector content; photon transverse support or the stated vector-corridor exposure cannot be promoted. |
 | `gauge-breaking-leakage` | $\sup_{g\in G_S}d_{\mathfrak{V}_S/\!\sim_S}(Q_S\Pi_S(g\cdot\mathcal{L}_A),Q_S\Pi_S\mathcal{L}_A)>\epsilon_{S,\mathrm{gauge}}$. | The exposed response depends on gauge, relabeling, or frame choices that should have been unobservable. |
 | `anisotropic-exposure` | $\|(1-\Pi_0)\mathcal{L}\|/\|\mathcal{L}_{\text{naive}}\|>\epsilon_{\text{aniso}}$ in the scalar shielding case. | $\zeta(A_0)$ is not a scalar isotropic response; the packet must report anisotropic/tensor exposure or fail the scalar gate. |
+| `discrete-label-leakage` | $\lambda_{S,\mathrm{disc}}(A)>\epsilon_{S,\mathrm{disc}}$ for a discrete label discarded by $\Pi_S$. | A hidden label changes the observer-level sector benchmark; the label must be retained, quotiented differently, or routed to its owning sector. |
 | `benchmark-fitted-exposure` | The construction of $\mathcal{L}_A$, $\Pi_S$, or $Q_S$ uses the target observer benchmark before the branch ledger and projection are derived. | The response is a fit, not a sector exposure theorem instance. |
 | `split-exposure-domain` | Weak chirality, CKM/PMNS overlap, weak-corridor provenance, color exceptionality, photon support, or mass-facing response requires a separate projection/quotient grammar for the same declared sector. | The sector has not consumed the shared exposure theorem; promotion must remain local to the failing packet. |
+| `vector-corridor-misprojection` | A massive or short-lived vector corridor applies the photon transverse quotient while its recovered mass scale or weak provenance depends on retained longitudinal or mixed-axis content. | The vector-corridor response has been misclassified as photon-like transverse support; the corridor projection must be redefined or the claim fails. |
 
 ## Related Priorities
 

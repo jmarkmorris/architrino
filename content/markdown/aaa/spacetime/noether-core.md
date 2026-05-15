@@ -48,6 +48,8 @@ The integers $k_a$ are winding counts over the closure period. They are not a cl
 
 On this reading, an accepted energy-level change is a one-$h$ closed-cycle action transaction that moves the core from one admissible integer-and-root ledger to another. The causal wake emitted by the retuned core should therefore carry information about the core's closure state. Higher-level atomic orbital configurations, when they are recovered, should appear as electron-assembly resonance envelopes in that structured nuclear and Noether-Sea wake environment, not as primitive labels pasted onto the core.
 
+The same closure-label machinery is the native carrier for branch-quantized Lorentz response. A moving Noether core should not be assigned a Lorentz factor independently of its internal ledger. Instead, a stable closure label should determine the all-layer retuning of radii, frequencies, characteristic speeds, and wake exchange; the outer envelope then projects the ruler factor seen by Physical Observers. In the homogeneous weak-field limit, the admitted labels must collapse to the usual effective $\gamma(v)$ within the preferred-frame leakage bound.
+
 ### Reduced Noether-Core Closure Label
 
 For proof work, the integer phase-closure state should be packaged with the branch data that made the closure admissible. The reduced Noether-core closure label is a branch label, not a new ontological ingredient:

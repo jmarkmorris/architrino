@@ -43,6 +43,523 @@ For sector visibility, this packet consumes the shared [exposure-quotient theore
 - Test whether the CP phase can be recovered as a holonomy or torsion consequence, including the current closure target $\cos\delta = s_{13}/(s_{12}s_{23})$.
 - Derive confinement-scale behavior from topological or strain energetics of flux tubes, braids, or other line defects, aiming for linear tension $V \propto r$ or $\sigma_{\mathrm{eff}} L$ and finite relaxed bounds for closed color-singlet configurations.
 
+## Geometry-First Internal Objects (Provisional)
+
+The labels in this section are provisional calculation scaffolds, not canon terminology. The purpose is to force one internal geometry to carry four readouts at once: weak `V-A` exposure, CKM/PMNS overlap, CP phase, and confinement-facing color closure.
+
+### Exposure-weighted weak measure
+
+Use the finite polar-site set
+$$
+S=\{H_+,H_-,M_+,M_-,L_+,L_-\}.
+$$
+For handedness $h\in\{L,R\}$, define the provisional exposure-weighted weak measure by
+$$
+\int f\,d\mu_W^{(h)}
+=
+\frac{1}{Z_h}
+\sum_{a\in S}
+\int_{\Sigma_t}
+f(a,\mathbf{x})\,
+\eta_a^{(h)}
+\rho_{\text{core}}(\mathbf{x},t)
+\chi_{\text{sea}}(\mathbf{x},t)
+A_a(\mathbf{x};R_{\text{rel}})
+\,dV.
+$$
+Here $\eta_a^{(h)}$ is the finite-state weak-exposure score already used by the weak-sector packet, $\rho_{\text{core}}$ weights available Noether-core density, $\chi_{\text{sea}}$ weights Noether-Sea delay, and $A_a$ is a provisional polar-site aperture profile localized around the polar-site direction $\hat{\mathbf n}_a(R_{\text{rel}})$. The normalizer $Z_h$ is fixed by $\int 1\,d\mu_W^{(h)}=1$ on the selected branch.
+
+This measure is the first chirality selector. The weak `V-A` gate is not a separate rule if
+$$
+\epsilon_R^{(i)}
+\equiv
+\frac{\sum_j |A_{ij}^{(R)}|^2}
+{\sum_j |A_{ij}^{(L)}|^2}
+\ll 1
+$$
+for charged-current channels, using the same overlap amplitudes defined below. The failure condition is sharp: if right-handed suppression requires a different measure from the CKM/PMNS overlap measure, the unified weak-exposure route has not closed.
+
+### Mass-basis and weak-basis shape functions
+
+For down-type quarks, let the provisional mass-basis shape functions be
+$$
+\psi_{j,\text{mass}}^d(a,\mathbf{x})
+=
+N_j^{-1/2}
+B_{\Lambda_j}(\mathbf{x})
+A_j^d(a;c,\sigma_{\text{ax}})
+e^{i\phi_{j,m}(a,\mathbf{x})},
+\qquad
+j\in\{d,s,b\},
+$$
+with $\Lambda_j\in\{\mathrm{IMO},\mathrm{IM-},\mathrm{I--}\}$ recording the generation shielding tier. Here $B_{\Lambda_j}$ is the provisional shielding envelope and $A_j^d$ is the axial-pattern factor on the selected color-sector branch.
+
+Let the down-type weak-basis shape associated with up-channel $i\in\{u,c,t\}$ be
+$$
+\psi_{i,\text{weak}}^d(a,\mathbf{x})
+=
+M_i^{-1/2}
+B_i^W(\mathbf{x})
+A_i^W(a;R_{\text{rel}},c,\sigma_{\text{ax}})
+e^{i\phi_{i,w}(a,\mathbf{x})}.
+$$
+The raw handedness-dependent overlap is then
+$$
+A_{ij}^{(h)}
+=
+\int
+\psi_{j,\text{mass}}^{d*}(a,\mathbf{x})
+\psi_{i,\text{weak}}^d(a,\mathbf{x})
+\,d\mu_W^{(h)}.
+$$
+If both bases are orthonormal under $d\mu_W^{(L)}$, then
+$$
+V_{ij}=A_{ij}^{(L)}.
+$$
+If the computed shape functions are not exactly orthonormal, use the Gram-corrected overlap
+$$
+V
+=
+G_{\text{weak}}^{-1/2}
+A^{(L)}
+G_{\text{mass}}^{-1/2},
+$$
+where
+$$
+(G_{\text{weak}})_{ik}
+=
+\langle\psi_{i,\text{weak}}^d,\psi_{k,\text{weak}}^d\rangle_{\mu_W^{(L)}},
+\qquad
+(G_{\text{mass}})_{jk}
+=
+\langle\psi_{j,\text{mass}}^d,\psi_{k,\text{mass}}^d\rangle_{\mu_W^{(L)}}.
+$$
+For PMNS, use the same overlap form but replace quark shielding envelopes by mass-basis eigenmodes of the near-photon pro/anti Noether-core pair:
+$$
+U_{\alpha k}
+=
+\int
+\psi_{k,\text{mass}}^{\nu*}
+\psi_{\alpha,\text{weak}}^\nu
+\,d\mu_W^{(L,\nu)}.
+$$
+The PMNS difference should come from the neutral-sector internal Hamiltonian and residual internal-binary exposure, not from a separate mixing principle.
+
+### CP holonomy and direct-transport defect
+
+For an admissible generation-transport path $\Gamma_{ab}$, define the provisional complex transport amplitude
+$$
+T_{ab}
+=
+\exp\!\left[
+-\int_{\Gamma_{ab}}\mathcal{L}_{\mathrm{trans}}\,ds
++i\int_{\Gamma_{ab}}\omega_{\mathrm{CP}}
+\right],
+$$
+where $\mathcal{L}_{\mathrm{trans}}$ is the shielding/wake transport cost and $\omega_{\mathrm{CP}}$ is a provisional connection measuring phase picked up by weak-basis to mass-basis transport on the same weak-exposure domain.
+
+The direct-vs-broken generation triangle is
+$$
+R_{123}
+\equiv
+\frac{T_{13}}{T_{23}T_{12}}
+=
+e^{-\sigma+i\delta_{\text{geom}}}.
+$$
+The current CKM closure target becomes a theorem candidate only if
+$$
+|R_{123}|
+=
+e^{-\sigma}
+=
+\frac{s_{13}}{s_{12}s_{23}},
+\qquad
+\cos\delta_{\text{geom}}
+=
+|R_{123}|.
+$$
+This identifies $\sigma$ as the real attenuation of the same loop defect whose phase is $\delta_{\text{geom}}$. The exact next calculation is to compute $T_{12}$, $T_{23}$, and $T_{13}$ from the same admissible path set $\mathcal{P}_{ij}$ used in the overlap sum, then test whether $\cos\delta_{\text{geom}}=|R_{123}|$ survives without an independent CP parameter.
+
+### Confinement as color line-defect strain
+
+Let $E_{cc}$ be the matrix unit for $c\in\{H,M,L\}$ in the axis-exceptionality basis and let $I_3$ be the $3\times3$ identity. Define provisional traceless color-exceptionality tensors
+$$
+Q_H=E_{HH}-\frac{1}{3}I_3,\qquad
+Q_M=E_{MM}-\frac{1}{3}I_3,\qquad
+Q_L=E_{LL}-\frac{1}{3}I_3.
+$$
+Then
+$$
+Q_H+Q_M+Q_L=0.
+$$
+This identity is the geometric seed for finite color-singlet relaxation: a baryon with one $H$, one $M$, and one $L$ exceptionality can cancel line-defect charge locally, while an isolated quark cannot.
+
+Use a provisional color-line-defect graph $\Gamma\subset\Sigma_t$ with edge labels $Q_e\in\{Q_H,Q_M,Q_L,-Q_H,-Q_M,-Q_L\}$ and strain variable $\Theta$ valued in the traceless axis-exceptionality algebra. The confinement functional target is
+$$
+\mathcal{E}_{\mathrm{conf}}[\Gamma,\Theta]
+=
+\sum_{e\subset\Gamma}\int_e
+\left[
+\sigma_{\mathrm{eff}}(Q_e;\rho_{\text{core}},\chi_{\text{sea}})
++\frac{B}{2}\|\nabla_s\hat{\mathbf t}\|^2
++\frac{K_s}{2}\|D_s\Theta\|_F^2
+\right]ds
++\lambda\sum_v
+\left\|
+\sum_{e\ni v}\operatorname{sgn}(e,v)Q_e
+\right\|_F^2.
+$$
+Extract $\sigma_{\mathrm{eff}}$ rather than inserting it as a fit parameter:
+$$
+\sigma_{\mathrm{eff}}(Q)
+=
+\min_{\Theta_Q}
+\int_{D_a}
+\left[
+\frac{K_\perp}{2}\|\nabla_\perp\Theta_Q\|_F^2
++V_{\mathrm{exc}}(\Theta_Q;Q,\rho_{\text{core}},\chi_{\text{sea}})
+\right]d^2y.
+$$
+The first calculation is the one-tube ansatz
+$$
+\Theta_H(r)=f(r)Q_H,
+$$
+with $f(0)=1$ and $f(a)=0$. The resulting Euler-Lagrange problem should produce a positive $\sigma_{\mathrm{eff}}(Q_H)$ for an open color sector. The same functional must relax to finite energy for $Q_c+(-Q_c)=0$ meson closure and $Q_H+Q_M+Q_L=0$ baryon closure. It fails if the transverse minimization gives $\sigma_{\mathrm{eff}}=0$, spreads with sublinear energy growth, or leaves far-field strain after the color-singlet quotient.
+
+## Exact Next Calculation
+
+Compute one row before attempting the full CKM/PMNS system. Fix one color-sector branch $c$, one down-type family candidate, one axial-frame offset $R_{\text{rel}}$, and one local Noether-Sea state. Build the three shielding envelopes
+$$
+B_{\mathrm{IMO}},\qquad B_{\mathrm{IM-}},\qquad B_{\mathrm{I--}},
+$$
+then calculate
+$$
+A_{ud}^{(L)},\qquad A_{us}^{(L)},\qquad A_{ub}^{(L)}
+$$
+and normalize
+$$
+V_{uj}^{(0)}
+=
+\frac{A_{uj}^{(L)}}
+{\sqrt{|A_{ud}^{(L)}|^2+|A_{us}^{(L)}|^2+|A_{ub}^{(L)}|^2}}.
+$$
+The first geometry number is
+$$
+\kappa_{12}^{\text{geom}}
+=
+-\log |V_{us}^{(0)}|.
+$$
+The pass condition is that this lands near the Cabibbo scale without CKM input calibration and that the same $d\mu_W$ gives $A_{uj}^{(R)}$ strongly suppressed. The failure mode is equally useful: if Cabibbo-scale overlap, right-handed suppression, and weak-reaction provenance cannot share this one measure and weak-coupling-triad domain, the geometry-first weak-sector program must be split or revised.
+
+### First $u$-row reduction
+
+For the controlled $u$-row calculation, hold fixed one color-sector branch $c$, one down-type family candidate, one axial-frame offset $R_{\text{rel}}$, and one local Noether-Sea state. The down-type axial inventory is the same across $d,s,b$; the generation label changes only the shielding tier
+$$
+\Lambda_d=\mathrm{IMO},\qquad
+\Lambda_s=\mathrm{IM-},\qquad
+\Lambda_b=\mathrm{I--}.
+$$
+Substituting the provisional shape functions into the weak-measure overlap gives
+$$
+A_{uj}^{(h)}
+=
+\frac{1}{Z_h\sqrt{M_uN_j}}
+\sum_{a\in S}
+\int_{\Sigma_t}
+\eta_a^{(h)}
+\rho_{\text{core}}(\mathbf{x},t)
+\chi_{\text{sea}}(\mathbf{x},t)
+A_a(\mathbf{x};R_{\text{rel}})
+B_{\Lambda_j}^*(\mathbf{x})B_u^W(\mathbf{x})
+\mathcal{A}_{uj}(a;c,\sigma_{\text{ax}})
+e^{i\Delta\phi_{uj}(a,\mathbf{x})}
+\,dV,
+$$
+where
+$$
+\mathcal{A}_{uj}(a;c,\sigma_{\text{ax}})
+\equiv
+A_j^{d*}(a;c,\sigma_{\text{ax}})
+A_u^W(a;R_{\text{rel}},c,\sigma_{\text{ax}}),
+$$
+and
+$$
+\Delta\phi_{uj}(a,\mathbf{x})
+\equiv
+\phi_{u,w}(a,\mathbf{x})-\phi_{j,m}(a,\mathbf{x}).
+$$
+Equivalently, define the provisional site-resolved shielding kernel
+$$
+K_{u\Lambda}^{(h)}(a)
+\equiv
+\int_{\Sigma_t}
+\eta_a^{(h)}
+\rho_{\text{core}}(\mathbf{x},t)
+\chi_{\text{sea}}(\mathbf{x},t)
+A_a(\mathbf{x};R_{\text{rel}})
+B_{\Lambda}^*(\mathbf{x})B_u^W(\mathbf{x})
+e^{i\Delta\phi_{u\Lambda}(a,\mathbf{x})}
+\,dV.
+$$
+Then
+$$
+A_{uj}^{(h)}
+=
+\frac{1}{Z_h\sqrt{M_uN_j}}
+\sum_{a\in S}
+\mathcal{A}_{uj}(a;c,\sigma_{\text{ax}})
+K_{u\Lambda_j}^{(h)}(a).
+$$
+
+For first-row normalization, the common factors $Z_L^{-1}$ and $M_u^{-1/2}$ cancel. Define the unnormalized left-handed row entries
+$$
+I_{uj}^{(L)}
+\equiv
+\sum_{a\in S}
+\mathcal{A}_{uj}(a;c,\sigma_{\text{ax}})
+K_{u\Lambda_j}^{(L)}(a).
+$$
+Then
+$$
+V_{uj}^{(0)}
+=
+\frac{I_{uj}^{(L)}/\sqrt{N_j}}
+{\sqrt{
+|I_{ud}^{(L)}|^2/N_d+
+|I_{us}^{(L)}|^2/N_s+
+|I_{ub}^{(L)}|^2/N_b
+}}.
+$$
+Equivalently, after removing the irrelevant common phase of $I_{ud}^{(L)}$, define
+$$
+r_s
+\equiv
+\sqrt{\frac{N_d}{N_s}}
+\frac{I_{us}^{(L)}}{I_{ud}^{(L)}},
+\qquad
+r_b
+\equiv
+\sqrt{\frac{N_d}{N_b}}
+\frac{I_{ub}^{(L)}}{I_{ud}^{(L)}}.
+$$
+The reduced first-row prediction is
+$$
+\bigl(V_{ud}^{(0)},V_{us}^{(0)},V_{ub}^{(0)}\bigr)
+=
+\frac{(1,r_s,r_b)}
+{\sqrt{1+|r_s|^2+|r_b|^2}}.
+$$
+Therefore the exact first reduced condition for Cabibbo-scale recovery is
+$$
+\kappa_{12}^{\text{geom}}
+=
+-\log |V_{us}^{(0)}|
+=
+-\log |r_s|
++\frac{1}{2}\log\!\left(1+|r_s|^2+|r_b|^2\right)
+\approx 1.492,
+$$
+with the numerical comparison shown only as the Standard Model-facing target from the existing CKM bridge, not as an input to the kernel calculation.
+
+### Provisional branch-derived shielding-envelope input contract
+
+The mass-map and exposure-quotient packets already define the needed grammar: an accepted branch emits a causal-wake ledger $\mathcal{L}_A$, the weak sector keeps the weak-visible part by $\Pi_{\mathrm{weak}}$, and the weak quotient removes only relabelings that do not change `V-A`, flavor overlap, or weak-corridor provenance. For the first $u$-row calculation, the missing object is therefore not a fitted Cabibbo angle. It is the branch-derived weak-retained envelope for each shielding tier.
+
+Introduce the following provisional local labels. Let
+$$
+\mathcal{I}_{\mathrm{IMO}}=\{I,M,O\},
+\qquad
+\mathcal{I}_{\mathrm{IM-}}=\{I,M\},
+\qquad
+\mathcal{I}_{\mathrm{I--}}=\{I\}
+$$
+be the active binary-layer sets for the three generation tiers. For each accepted branch row $z_\Lambda$ and each layer $\ell\in\mathcal{I}_\Lambda$, the branch ledger must supply a complex weak-retained causal-wake amplitude
+$$
+\mathcal{L}_{\ell}^{W,\Lambda}(a,\mathbf{x})
+=
+\Pi_{\mathrm{weak}}
+\left[
+\left\langle
+\sum_{\sigma\in\{+,-\}}
+q_{\ell,\sigma}
+W_{\ell,\sigma}(t;a,\mathbf{x})
+\right\rangle_{T_{\mathbf{k}}}
+\right]_{\Lambda},
+\qquad
+a\in S,\quad \mathbf{x}\in\Sigma_t.
+$$
+In the mass-map branch-row schema, this is the provisional `weak_retained_amplitude_handoff` object. Because the reduced branch certificate already uses $\Lambda$ for the branch label, that row field must record both the exact `branch_label` and the shielding `tier_selector`; the superscript in $\mathcal{L}_{\ell}^{W,\Lambda}$ denotes the combined branch-family handoff consumed by this packet, not a CKM-calibrated parameter. The consumer accepts only rows with `weak-emitter-ready`; rows marked `weak-emitter-not-computed`, `weak-emitter-zero-norm`, `weak-emitter-phase-underdetermined`, `weak-emitter-refinement-drift`, `weak-emitter-split-domain`, or `weak-emitter-benchmark-fit` cannot supply $B_\Lambda$.
+
+Here $W_{\ell,\sigma}(t;a,\mathbf{x})$ is the normalized local causal-wake contribution of the constituent $(\ell,\sigma)$ on the selected weak channel, evaluated against polar site $a$ and spatial point $\mathbf{x}$. This is the weak-sector analogue of the scalar shielding ledger
+$$
+\mathcal{L}(\hat{\mathbf{R}})
+=
+\left\langle
+\sum_{a\in A_0}
+q_a W_a(t,\hat{\mathbf{R}})
+\right\rangle_{T_{\mathbf{k}}},
+$$
+but it is not projected to the isotropic scalar sector. It remains a weak-retained amplitude on the same domain used by the overlap kernels.
+
+Let the spatial marginal of the left-handed weak measure be the provisional measure
+$$
+d\nu_W^{(L)}(\mathbf{x})
+\equiv
+\frac{1}{Z_L}
+\sum_{a\in S}
+\eta_a^{(L)}
+\rho_{\text{core}}(\mathbf{x},t)
+\chi_{\text{sea}}(\mathbf{x},t)
+A_a(\mathbf{x};R_{\text{rel}})
+\,dV.
+$$
+Use $\|f\|_{\nu_W^{(L)}}^2\equiv\int_{\Sigma_t}|f(\mathbf{x})|^2\,d\nu_W^{(L)}(\mathbf{x})$ for spatial envelope convergence, and keep $\|\cdot\|_{\mu_W^{(L)}}$ for functions that retain the polar-site label $a$.
+
+Define branch-derived nonnegative layer weights by
+$$
+w_{\ell}^{(\Lambda)}
+=
+\frac{
+\left\|\mathcal{L}_{\ell}^{W,\Lambda}\right\|_{\mu_W^{(L)}}
+}{
+\sum_{m\in\mathcal{I}_{\Lambda}}
+\left\|\mathcal{L}_{m}^{W,\Lambda}\right\|_{\mu_W^{(L)}}
+},
+\qquad
+\ell\in\mathcal{I}_{\Lambda},
+$$
+with immediate failure if the denominator vanishes. The weak-retained tier amplitude is
+$$
+\mathcal{U}_{\Lambda}(a,\mathbf{x})
+=
+\sum_{\ell\in\mathcal{I}_{\Lambda}}
+w_{\ell}^{(\Lambda)}
+\mathcal{L}_{\ell}^{W,\Lambda}(a,\mathbf{x}).
+$$
+The shielding envelope used in the mass-basis shape function is the weak-site marginal magnitude
+$$
+\widetilde B_{\Lambda}(\mathbf{x})
+=
+\left[
+\frac{
+\sum_{a\in S}
+\eta_a^{(L)}
+A_a(\mathbf{x};R_{\text{rel}})
+\left|\mathcal{U}_{\Lambda}(a,\mathbf{x})\right|^2
+}{
+\sum_{a\in S}
+\eta_a^{(L)}
+A_a(\mathbf{x};R_{\text{rel}})
+}
+\right]^{1/2},
+$$
+on the weak-aperture support. Where the denominator vanishes, set $\widetilde B_{\Lambda}(\mathbf{x})=0$; such points do not contribute to $d\nu_W^{(L)}$.
+
+The normalized envelope is
+$$
+B_{\Lambda}(\mathbf{x})
+=
+\frac{\widetilde B_{\Lambda}(\mathbf{x})}
+{
+\left(
+\int_{\Sigma_t}
+\left|\widetilde B_{\Lambda}(\mathbf{x})\right|^2
+d\nu_W^{(L)}(\mathbf{x})
+\right)^{1/2}
+},
+\qquad
+\Lambda\in\{\mathrm{IMO},\mathrm{IM-},\mathrm{I--}\}.
+$$
+The mass-basis phase in the overlap is fixed by the same weak-retained amplitude:
+$$
+e^{i\phi_{\Lambda,m}(a,\mathbf{x})}
+=
+\frac{
+\mathcal{U}_{\Lambda}(a,\mathbf{x})
+}{
+\left|\mathcal{U}_{\Lambda}(a,\mathbf{x})\right|
+}
+$$
+where $\mathcal{U}_{\Lambda}\ne0$; zeros are admissible only if the phase extends continuously on the support contributing to $K_{u\Lambda}^{(L)}(a)$. Otherwise the branch row does not supply a usable shielding envelope.
+
+The refinement gate is branch-ledger convergence, not CKM agreement. For refinement index $\nu$ covering extraction radius, angular resolution, cycle window, history depth, and $\eta$, require
+$$
+\left\|
+B_{\Lambda}^{(\nu+1)}-B_{\Lambda}^{(\nu)}
+\right\|_{\nu_W^{(L)}}
+\le
+\epsilon_B,
+\qquad
+\left\|
+e^{i\phi_{\Lambda,m}^{(\nu+1)}}-
+e^{i\phi_{\Lambda,m}^{(\nu)}}
+\right\|_{\mu_W^{(L)}}
+\le
+\epsilon_{\phi},
+$$
+for every $\Lambda\in\{\mathrm{IMO},\mathrm{IM-},\mathrm{I--}\}$. The construction may use $z_\Lambda$, $\mathcal{R}_{A_0}$-style residual entries, $\Delta_{\mathbf{k}}$, the weak-exposure scores, and the local Noether-Sea state. It may not use $\lvert V_{ud}\rvert$, $\lvert V_{us}\rvert$, $\lvert V_{ub}\rvert$, or any CKM-derived transport action as input.
+
+With these envelopes, the first $u$-row kernel becomes a calculation rather than an ansatz. The exact CKM-blind pass condition for the Cabibbo entry is:
+$$
+r_s^{\mathrm{geom}}
+=
+\sqrt{\frac{N_d}{N_s}}
+\frac{I_{us}^{(L)}[B_{\mathrm{IM-}},\phi_{\mathrm{IM-},m}]}
+{I_{ud}^{(L)}[B_{\mathrm{IMO}},\phi_{\mathrm{IMO},m}]}
+$$
+exists, is stable under the refinement gate above, and is computed before any comparison with the Standard Model-facing target. The same branch-row extraction gives
+$$
+r_b^{\mathrm{geom}}
+=
+\sqrt{\frac{N_d}{N_b}}
+\frac{I_{ub}^{(L)}[B_{\mathrm{I--}},\phi_{\mathrm{I--},m}]}
+{I_{ud}^{(L)}[B_{\mathrm{IMO}},\phi_{\mathrm{IMO},m}]}.
+$$
+The comparison target is then
+$$
+\kappa_{12}^{\text{geom}}
+=
+-\log |r_s^{\mathrm{geom}}|
++\frac{1}{2}\log\!\left(1+|r_s^{\mathrm{geom}}|^2+|r_b^{\mathrm{geom}}|^2\right)
+\approx 1.492.
+$$
+The failure modes are precise: $I_{ud}^{(L)}=0$, a zero or nonconvergent envelope normalizer, refinement drift above tolerance, quotient-identical envelopes
+$$
+\inf_{\theta\in\mathbb{R}}
+\left\|
+B_{\mathrm{IMO}}e^{i\phi_{\mathrm{IMO},m}}
+-e^{i\theta}B_{\mathrm{IM-}}e^{i\phi_{\mathrm{IM-},m}}
+\right\|_{\mu_W^{(L)}}
+\le
+\epsilon_{\mathrm{ident}}
+$$
+with no compensating axial-pattern or phase distinction, or any use of CKM magnitudes to choose $B_\Lambda$, $w_{\ell}^{(\Lambda)}$, or $\phi_{\Lambda,m}$.
+
+The right-handed test is the same calculation with $h=R$:
+$$
+\epsilon_R^{(u)}
+=
+\frac{
+|A_{ud}^{(R)}|^2+|A_{us}^{(R)}|^2+|A_{ub}^{(R)}|^2
+}{
+|A_{ud}^{(L)}|^2+|A_{us}^{(L)}|^2+|A_{ub}^{(L)}|^2
+}
+\ll 1.
+$$
+This is the immediate `V-A` cross-check: the same site-resolved kernels that produce the $u$-row hierarchy must also collapse when $\eta_a^{(R)}$ hides the weak-coupling triad. Because $d\mu_W^{(h)}$ is normalized by $Z_h$, right-handed suppression cannot come from a uniform scale reduction alone. If
+$$
+\eta_a^{(R)}=\zeta\,\eta_a^{(L)}
+$$
+with the same support and profile, then $Z_R=\zeta Z_L$, so $d\mu_W^{(R)}=d\mu_W^{(L)}$ and no charged-current suppression follows. The geometry must instead provide empty right-handed weak-coupling-triad support, support that is orthogonal or phase-destructive against the overlap kernels, or an explicitly unnormalized charged-current gate before measure normalization.
+
+The remaining numerical input is now narrowed to branch rows that emit the weak-retained amplitudes $\mathcal{L}_{\ell}^{W,\Lambda}$ strongly enough to produce a calibration-free value. The exact missing input is a branch-derived set of normalized shielding envelopes and phase functions satisfying
+$$
+\langle B_{\Lambda},B_{\Lambda}\rangle_{\mu_W^{(L)}}=1,
+\qquad
+\Delta\phi_{u\Lambda}(a,\mathbf{x})\ \text{fixed by the accepted branch ledger},
+$$
+with stability under extraction radius, angular resolution, cycle window, and $\eta$ refinement. Until those envelopes are supplied by the mass-map and exposure-quotient workstreams, this pass yields a reduced kernel formula and a falsifiable input contract, not a numerical CKM derivation.
+
 ## Hard Failure Tests
 
 - Work the chirality crisis explicitly: if spiral handedness cannot generate the weak `V-A` selection rule, the model fails on this front.

@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 152,
-      "sections": 1110
+      "entries": 153,
+      "sections": 1123
     }
   },
   "tocRoot": {
@@ -1107,6 +1107,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "All-Layer Lorentz Branch Response",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "All-Layer Lorentz Branch Response",
+                "sectionKey": "all layer lorentz branch response",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Transverse Causal Budget Lemma",
                 "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
                 "markdownSection": "Transverse Causal Budget Lemma",
@@ -1576,6 +1584,14 @@
                 "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
                 "markdownSection": "Canonical Geometry Variables",
                 "sectionKey": "canonical geometry variables",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Lorentz Projection Role",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownSection": "Lorentz Projection Role",
+                "sectionKey": "lorentz projection role",
                 "headingLevel": 2
               },
               {
@@ -4799,6 +4815,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Branch-Quantized Lorentz Response",
+                "markdownPath": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
+                "markdownSection": "Branch-Quantized Lorentz Response",
+                "sectionKey": "branch quantized lorentz response",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Mass-Energy Channel",
                 "markdownPath": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
                 "markdownSection": "Mass-Energy Channel",
@@ -4843,6 +4867,88 @@
                 "markdownPath": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
                 "markdownSection": "Summary Commitment",
                 "sectionKey": "summary commitment",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "theory_bridges__return_cycle_lorentz_quantization",
+            "title": "Return-Cycle Lorentz Quantization",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/theory-bridges/return_cycle_lorentz_quantization.json",
+            "markdownPath": "content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Naming And Scope",
+                "markdownPath": "content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
+                "markdownSection": "Naming And Scope",
+                "sectionKey": "naming and scope",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Level Separation",
+                "markdownPath": "content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
+                "markdownSection": "Level Separation",
+                "sectionKey": "level separation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "One-Way Roots Are Not Yet Lorentz Geometry",
+                "markdownPath": "content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
+                "markdownSection": "One-Way Roots Are Not Yet Lorentz Geometry",
+                "sectionKey": "one way roots are not yet lorentz geometry",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closed Return Derivation",
+                "markdownPath": "content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
+                "markdownSection": "Closed Return Derivation",
+                "sectionKey": "closed return derivation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Spheroid Projection",
+                "markdownPath": "content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
+                "markdownSection": "Spheroid Projection",
+                "sectionKey": "spheroid projection",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Quantized Realization",
+                "markdownPath": "content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
+                "markdownSection": "Quantized Realization",
+                "sectionKey": "quantized realization",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "All-Layer Closure Burden",
+                "markdownPath": "content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
+                "markdownSection": "All-Layer Closure Burden",
+                "sectionKey": "all layer closure burden",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Prediction And Failure Mode",
+                "markdownPath": "content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
+                "markdownSection": "Prediction And Failure Mode",
+                "sectionKey": "prediction and failure mode",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Status",
+                "markdownPath": "content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
+                "markdownSection": "Status",
+                "sectionKey": "status",
                 "headingLevel": 2
               }
             ]
@@ -7029,6 +7135,14 @@
                     "markdownPath": "content/markdown/aaa/validation/simulations/run-protocols.md",
                     "markdownSection": "$A_0$ Branch-Certificate Protocol",
                     "sectionKey": "a 0 branch certificate protocol",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Tier 0 / Tier 1 Campaign Packet",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/run-protocols.md",
+                    "markdownSection": "Tier 0 / Tier 1 Campaign Packet",
+                    "sectionKey": "tier 0 tier 1 campaign packet",
                     "headingLevel": 2
                   },
                   {

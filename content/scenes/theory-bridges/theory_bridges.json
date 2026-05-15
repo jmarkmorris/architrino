@@ -40,6 +40,10 @@
         "scenePath": "content/scenes/theory-bridges/special_relativity_noether_core.json"
       },
       {
+        "nodeId": "return_cycle_lorentz_quantization",
+        "scenePath": "content/scenes/theory-bridges/return_cycle_lorentz_quantization.json"
+      },
+      {
         "nodeId": "spacetime_models_and_noether_sea",
         "scenePath": "content/scenes/theory-bridges/spacetime_models_and_noether_sea.json"
       },
@@ -98,8 +102,8 @@
       "radius": 2.688,
       "color": "#1c2a4f",
       "position": [
-        6.75,
-        8.04,
+        5.68,
+        8.83,
         0
       ],
       "motion": {
@@ -115,8 +119,8 @@
       "radius": 2.688,
       "color": "#2f6b6f",
       "position": [
-        10.34,
-        1.82,
+        9.51,
+        4.36,
         0
       ],
       "motion": {
@@ -132,8 +136,8 @@
       "radius": 2.688,
       "color": "#5a1f2e",
       "position": [
-        9.09,
-        -5.25,
+        10.39,
+        -1.49,
         0
       ],
       "motion": {
@@ -149,8 +153,8 @@
       "radius": 2.688,
       "color": "#243d8f",
       "position": [
-        3.59,
-        -9.87,
+        7.94,
+        -6.87,
         0
       ],
       "motion": {
@@ -166,8 +170,8 @@
       "radius": 2.688,
       "color": "#4f5d75",
       "position": [
-        -3.59,
-        -9.87,
+        2.96,
+        -10.07,
         0
       ],
       "motion": {
@@ -178,13 +182,30 @@
       "fixedPosition": true
     },
     {
+      "id": "return_cycle_lorentz_quantization",
+      "title": "Return-Cycle Lorentz Quantization",
+      "radius": 2.688,
+      "color": "#6f5a3f",
+      "position": [
+        -2.96,
+        -10.07,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Return-Cycle Lorentz Quantization",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
       "id": "spacetime_models_and_noether_sea",
       "title": "Spacetime Models and the Noether Sea",
       "radius": 2.688,
       "color": "#5b6f5a",
       "position": [
-        -6.75,
-        -8.04,
+        -7.94,
+        -6.87,
         0
       ],
       "motion": {
@@ -200,8 +221,8 @@
       "radius": 2.688,
       "color": "#3c6a7a",
       "position": [
-        -9.09,
-        -5.25,
+        -10.39,
+        -1.49,
         0
       ],
       "motion": {
@@ -217,8 +238,8 @@
       "radius": 2.688,
       "color": "#3f6a5a",
       "position": [
-        -10.34,
-        1.82,
+        -9.51,
+        4.36,
         0
       ],
       "motion": {
@@ -234,8 +255,8 @@
       "radius": 2.688,
       "color": "#7a4a1f",
       "position": [
-        -6.75,
-        8.04,
+        -5.68,
+        8.83,
         0
       ],
       "motion": {

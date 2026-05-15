@@ -3,15 +3,15 @@
 ## Workstream Metadata
 
 - Kind: `priority`
-- Rank: `7`
-- Value: `11.90`
+- Rank: `5`
+- Value: `13.45`
 - Cost: `4.1`
-- ROI: `2.90`
+- ROI: `3.28`
 - Status: `queued`
 
 ## Task Queue
 
-1. `tier0_tier1_runs` — Implement tier-0 and tier-1 simulation protocols. Status: `next`. Depends on: none.
+1. `tier0_tier1_runs` — Implement the $A_0$ self-root fold/splitting diagnostic, then run the one-period adaptive direct-root Tier 1 continuation only after the surplus event is classified. Status: `next`. Depends on: none.
 2. `convergence_and_provenance` — Publish convergence plots and $\mathbb{U}_{\text{now}}$ provenance logs. Status: `pending`. Depends on: `tier0_tier1_runs`.
 3. `eta_positive_package` — Consolidate the formal $\eta > 0$ existence and continuation package. Status: `pending`. Depends on: `tier0_tier1_runs`.
 
@@ -25,9 +25,9 @@ This file remains the control surface for the simulations workstream. No sibling
 
 | Task | Detailed source | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
-| `tier0_tier1_runs` | This file | [run-protocols](../../../content/markdown/aaa/validation/simulations/run-protocols.md) and [well-posedness-and-regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md) | Tier-0 and tier-1 runs emit root ledgers, branch residuals, regularization data, and explicit failure codes rather than generic instability summaries. |
+| `tier0_tier1_runs` | This file | [run-protocols](../../../content/markdown/aaa/validation/simulations/run-protocols.md) and [well-posedness-and-regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md) | Tier 1 runs classify self-root surplus events, emit root ledgers, branch residuals, regularization data, and explicit failure codes rather than generic instability summaries. |
 | `convergence_and_provenance` | This file | [convergence-tests](../../../content/markdown/aaa/validation/simulations/convergence-tests.md) and [synthetic-observables](../../../content/markdown/aaa/validation/simulations/synthetic-observables.md) | Convergence plots and $\mathbb{U}_{\text{now}}$ provenance logs are reproducible enough to audit a promoted result. |
-| `eta_positive_package` | This file | [well-posedness-and-regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md) | The formal $\eta > 0$ package states existence, uniqueness, continuation criteria, and no-runaway bounds for the relevant shell model. |
+| `eta_positive_package` | This file | [well-posedness-and-regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md) | The formal $\eta > 0$ package states existence, uniqueness, continuation criteria, and no-runaway bounds for the relevant causal-wake model. |
 
 ## Simulation Campaign Object
 
@@ -185,6 +185,132 @@ $$
 \mathsf{artifact\_incomplete}\}.
 $$
 
+## Executable Diagnostic Contract
+
+A campaign that is intended to discipline a proof certificate must reduce its numerical status to predeclared scalar diagnostics. Define
+$$
+\mathcal{D}_{\mathrm{exec}}
+=
+\big(
+D_{\mathrm{branch}},
+D_{\mathrm{ref}},
+D_{\mathrm{ord}},
+D_{\mathrm{hist}},
+D_{\mathrm{space}},
+D_{\mathrm{cross}},
+D_{\mathrm{prov}},
+D_{\mathrm{cons}},
+D_{\eta}
+\big),
+$$
+where every component is a ratio whose passing threshold is $1$:
+$$
+D_{\mathrm{branch}}
+=
+\max_a\frac{\mathcal{R}_{\mathrm{branch},a}}{\tau_{\mathrm{branch},a}},
+$$
+$$
+D_{\mathrm{ref}}
+=
+\max\left(
+\frac{E_{\mathrm{rel}}(\Phi;\Delta t,\Delta t/2)}{0.02},
+\frac{E_{\mathrm{rel}}(\|\nabla\Phi\|;\Delta t,\Delta t/2)}{0.03},
+\frac{|\Delta\lambda_{\text{self}}|}{0.05(\lambda_{\text{self}}+\varepsilon_0)}
+\right),
+$$
+$$
+D_{\mathrm{ord}}
+=
+\frac{0.8}{\max(p_{\mathrm{obs}}(\Phi),p_{\mathrm{obs}}(\|\nabla\Phi\|),\varepsilon_0)},
+$$
+$$
+D_{\mathrm{hist}}
+=
+\max\left(
+\frac{E_{\mathrm{rel}}(\Phi)}{0.02},
+\frac{E_{\mathrm{rel}}(\|\nabla\Phi\|)}{0.03},
+\frac{D_W}{0.05},
+\frac{D_{JS}}{0.02}
+\right),
+$$
+$$
+D_{\mathrm{space}}
+=
+\max\left(
+\frac{E_{\mathrm{rel}}(\Phi\text{-map})}{0.03},
+\frac{E_{\mathrm{rel}}(\nabla\Phi\text{-map})}{0.05},
+\frac{\Delta_{\mathrm{self}}}{0.05}
+\right),
+$$
+$$
+D_{\mathrm{cross}}
+=
+\max\left(
+\frac{E_{\mathrm{rel}}(\Phi)}{0.03},
+\frac{E_{\mathrm{rel}}(\|\nabla\Phi\|)}{0.05},
+\frac{D_W}{0.08},
+\frac{D_{JS}}{0.03}
+\right),
+$$
+$$
+D_{\mathrm{prov}}
+=
+\max\left(
+\frac{\#\{m:\rho_m>10^{-2}\}}{10^{-3}M},
+\frac{\max_m\rho_m}{5\times10^{-2}},
+\frac{\#\{m:\theta_m>10^{-9}\}}{10^{-6}M}
+\right),
+$$
+$$
+D_{\mathrm{cons}}
+=
+\max\left(
+\frac{\epsilon_H}{\tau_H},
+\frac{\epsilon_P}{\tau_P},
+\frac{\epsilon_L}{\tau_L}
+\right),
+\qquad
+D_{\eta}
+=
+\max_Y\frac{E_\eta(Y)}{\tau_{\eta,Y}}.
+$$
+
+The executable Tier 1 acceptance predicate is
+$$
+\mathsf{Accept}_1(\mathcal{C}_{\mathrm{sim}})
+\Longleftrightarrow
+R_0\in\mathsf{Candidate}_{1},
+\quad
+\max_a\mathcal{D}_{\mathrm{exec},a}\le 1,
+\quad
+\Delta_{\mathrm{root}}(\Delta t,\Delta t/2)=0,
+$$
+$$
+\Delta_{\mathrm{root}}(\Delta h,\Delta h/2)=0,
+\quad
+\Delta_{\eta,\mathrm{root}}=0,
+\quad
+\mathsf{NullFail}=1,
+\quad
+\mathsf{Artifacts}=1.
+$$
+Here $\Delta_{\mathrm{self}}$ is the larger relative shift of self-hit counts and stability-window boundaries under spatial refinement. $\mathsf{NullFail}=1$ means the negative control violates at least one required null-test margin, and $\mathsf{Artifacts}=1$ means every required artifact in the output contract exists with a content hash and source commit.
+
+Failure routing is deterministic. The first violated row in the following order supplies the campaign failure code:
+
+| Route condition | Failure code |
+| --- | --- |
+| required artifact, source commit, pre-run tolerance, or hash is missing | $\mathsf{artifact\_incomplete}$ |
+| a promoted observable, tolerance, branch label, or regulator ladder is changed after output inspection | $\mathsf{hidden\_tuning}$ |
+| $R_0\notin\mathsf{Candidate}_{1}$ or active roots are unstable under root-ledger refinement | $\mathsf{branch\_root\_instability}$ |
+| $D_{\mathrm{ref}}>1$, $D_{\mathrm{ord}}>1$, $D_{\mathrm{hist}}>1$, $D_{\mathrm{space}}>1$, or $D_{\mathrm{cross}}>1$ | $\mathsf{mesh\_nonconvergence}$ |
+| $D_{\mathrm{prov}}>1$ | $\mathsf{provenance\_discontinuity}$ |
+| $D_{\mathrm{cons}}>1$ | $\mathsf{conservation\_drift}$ |
+| $D_{\eta}>1$ or $\Delta_{\eta,\mathrm{root}}>0$ | $\mathsf{regulator\_dependence}$ |
+| the continuation exits $\mathcal{A}_\eta$ or crosses $\partial\mathcal{A}_\eta$ without a stricter replacement bound | $\mathsf{eta\_continuation\_failure}$ |
+| the negative control also passes all convergence gates | $\mathsf{null\_control\_passed}$ |
+| every row above passes | $\mathsf{pass}$ |
+
 ## Tier-0 Acceptance Criteria
 
 A tier-0 row is an algebraic branch-certificate row
@@ -331,6 +457,43 @@ $$
 unless the run is explicitly labeled as a finite-$\eta$ result and barred from $\eta\to0^+$ claims.
 
 Tier 1 rejects a pipeline if the negative control also passes the convergence gates, because the null run must violate at least one expected invariant, provenance stability condition, or stability-window boundary by the margins named in [convergence-tests](../../../content/markdown/aaa/validation/simulations/convergence-tests.md).
+
+## Proof-Certificate Handoff Contract
+
+The proof-to-simulation handoff for a finite certificate is
+$$
+\mathsf{H}_{\mathrm{proof}\to\mathrm{sim}}
+=
+\big(
+\mathsf{certificate\_id},
+S_{\eta,0},
+W,
+\Lambda,
+\mathcal{L}_{\mathrm{root}}^{\mathrm{expected}},
+\tau_{\mathrm{branch}},
+\tau_{\mathrm{conv}},
+\tau_{\eta},
+\mathsf{Null},
+\mathsf{Outputs}
+\big).
+$$
+It must name the source certificate, initial history, analysis window, branch label, expected active-root classes, branch tolerances, convergence tolerances, regulator ladder, negative-control mutation, and required output channels before the run starts.
+
+The simulation-to-proof handoff is
+$$
+\mathsf{H}_{\mathrm{sim}\to\mathrm{proof}}
+=
+\big(
+\mathsf{artifact\_hashes},
+\mathcal{L}_{\mathrm{root}}^{\mathrm{matched}},
+\mathcal{R}_{\mathrm{branch}},
+\mathcal{E}_{\mathrm{conv}},
+\mathcal{D}_{\mathrm{exec}},
+\mathsf{failure\_code},
+\mathsf{promotion\_status}
+\big).
+$$
+It must state whether every expected active root was matched under $\Delta t$, $\Delta h$, and $\eta$ refinement, which residual component controls the verdict, and which artifact contains each value. A proof-program packet may cite a Tier 1 run only through this handoff; a plot, best-fit branch, or un-hashed table is not simulation support for a theorem target.
 
 ## Numerical Promotion Lemma
 

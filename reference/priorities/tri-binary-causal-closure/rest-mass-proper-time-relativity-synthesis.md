@@ -392,6 +392,242 @@ Thus external work applied as linear acceleration is stored as changed internal 
 
 Because the stable states depend on integer causal-root closure, the deformation is not an arbitrary smooth rubber deformation at the effective level. Smooth microscopic motion can still produce discrete accepted state updates when the assembly crosses a separator between basins of attraction. [→ Target 4](#theorem-roadmap)
 
+### Provisional Moving-Core Deformation Map
+
+The geometry-first object needed here is a map from the rest tri-binary layer geometry to the moving clock/ruler geometry. The following definition is provisional; it is a theorem target, not canon terminology.
+
+Let $q$ label a stable rest branch of a Noether core, and let $i\in\{I,M,O\}$ label the inner, middle, and outer binary layers. In the rest branch, write the instantaneous layer plane as
+
+$$
+\Pi_i^{(0)}
+=
+\operatorname{span}\{\mathbf{e}_{i1}^{(0)},\mathbf{e}_{i2}^{(0)}\}
+\subset\Sigma_t,
+$$
+
+with closed rest path $C_i^{(0)}$ and inter-layer paths $C_{ij}^{(0)}$. In a local Noether-Sea cell, define the drift relative to the medium by
+
+$$
+\mathbf{w}
+=
+\mathbf{V}_{\text{cm}}-\mathbf{u}_{\text{sea}},
+\qquad
+\beta
+=
+\frac{\|\mathbf{w}\|}{c_{\text{eff}}},
+\qquad
+\hat{\mathbf{e}}_{\parallel}
+=
+\frac{\mathbf{w}}{\|\mathbf{w}\|},
+$$
+
+for $\mathbf{w}\ne\mathbf{0}$, with the rest limit understood by continuity. Let
+
+$$
+P_{\parallel}
+=
+\hat{\mathbf{e}}_{\parallel}\otimes\hat{\mathbf{e}}_{\parallel},
+\qquad
+P_{\perp}
+=
+h-P_{\parallel}.
+$$
+
+The provisional moving-core deformation map is the branch-indexed linear map
+
+$$
+\mathcal{D}_{\beta,q}^{\mathrm{mov}}
+=
+\lambda_q(\beta)
+\left(
+P_{\perp}
++
+\xi_q(\beta)P_{\parallel}
+\right)
++
+\mathcal{E}_q(\beta),
+$$
+
+where $\xi_q=R_{\parallel,q}/R_{\perp,q}$ is the Noether-core envelope shape ratio, $\lambda_q=R_{\perp,q}/R_{\perp,q}(0)$ is the transverse scale channel, and $\mathcal{E}_q$ is a branch-sourced residual tensor. The rest normalization is
+
+$$
+\lambda_q(0)=1,
+\qquad
+\xi_q(0)=1,
+\qquad
+\mathcal{E}_q(0)=0.
+$$
+
+The deformed instantaneous layer plane and its moving cable are then
+
+$$
+\Pi_i(\beta,q)
+=
+\operatorname{span}\{
+\mathcal{D}_{\beta,q}^{\mathrm{mov}}\mathbf{e}_{i1}^{(0)},
+\mathcal{D}_{\beta,q}^{\mathrm{mov}}\mathbf{e}_{i2}^{(0)}
+\},
+$$
+
+and
+
+$$
+\mathbf{X}_i(\phi,t;\beta,q)
+=
+\mathbf{X}_{\text{cm}}(t)
++
+\mathcal{D}_{\beta,q}^{\mathrm{mov}}
+\mathbf{r}_i^{(0)}\!\left(\phi-\Omega_i(\beta,q)t\right).
+$$
+
+This formula is the intended normal form for the rest circles becoming moving spiral-helical cables. It keeps the layer-plane deformation, scale channel, and contraction channel in one object rather than assigning clock and ruler changes separately after the fact.
+
+The same deformation map must also satisfy the transverse causal-budget closure. This is the Noether-Sea dressed clock/ruler branch, so the declared channel speed is $c_{\text{eff}}$; a primitive branch-chart test must restate the same construction with $c_f$. With
+
+$$
+c_{\perp}(\beta)
+=
+c_{\text{eff}}\sqrt{1-\beta^2},
+$$
+
+define the deformed transverse path lengths by
+
+$$
+\ell_i(\beta,q)
+=
+\operatorname{len}\!\left(
+\mathcal{D}_{\beta,q}^{\mathrm{mov}}C_i^{(0)}
+\right),
+\qquad
+\ell_{ij}(\beta,q)
+=
+\operatorname{len}\!\left(
+\mathcal{D}_{\beta,q}^{\mathrm{mov}}C_{ij}^{(0)}
+\right).
+$$
+
+An admitted moving branch must solve the coupled closure equations
+
+$$
+\Omega_i(\beta,q)
+\frac{\ell_i(\beta,q)}{c_{\perp}(\beta)}
+=
+2\pi k_i,
+\qquad
+k_i\in\mathbb{Z},
+$$
+
+and
+
+$$
+\Delta\Phi_{ij}\!\left(
+\frac{\ell_{ij}(\beta,q)}{c_{\perp}(\beta)}
+\right)
+=
+2\pi q_{ij},
+\qquad
+q_{ij}\in\mathbb{Z},
+$$
+
+for the inner, middle, outer, and inter-layer channels on the same causal-root ledger. Stability then requires a positive Floquet gap for the moving branch, not only formal integer closure.
+
+The clock and ruler readouts are projections of the same map. In the homogeneous zero-leakage target,
+
+$$
+\frac{d\tau_q}{dt}
+=
+\frac{T_0}{T_q(\beta)}
+=
+\frac{c_{\perp}(\beta)}{c_{\text{eff}}}
+=
+\sqrt{1-\beta^2},
+$$
+
+and
+
+$$
+\frac{L_{\parallel,q}(\beta)}{L_{\parallel,q}(0)}
+=
+\xi_q(\beta)
+=
+\sqrt{1-\beta^2}.
+$$
+
+Thus the Lorentz square root is the common transverse-budget factor in the clock channel and the longitudinal ruler channel. The preferred-frame leakage residual for a resolved branch can be tracked by
+
+$$
+\mathcal{R}_{\mathrm{PF}}^{(q)}(\beta)
+=
+\max\left(
+\left|
+\frac{d\tau_q}{dt}
+-
+\sqrt{1-\beta^2}
+\right|,
+\left|
+\xi_q(\beta)
+-
+\sqrt{1-\beta^2}
+\right|,
+\sup_{\theta}|\Delta_{\text{tw}}^{(q)}(\beta,\theta)|
+\right).
+$$
+
+Lorentz closure on a tested drift band requires
+
+$$
+\mathcal{R}_{\mathrm{PF}}^{(q)}(\beta)
+\le
+\epsilon_{\text{LV}},
+$$
+
+with any nonzero $\Delta_{\text{tw}}^{(q)}$ traced to a named branch-chart feature such as separator proximity, inter-layer resonance, Jacobian-floor loss, finite-memory cutoff, or root-ledger transition.
+
+This gives a precise theorem target. If an open band of stable branch-indexed maps $\mathcal{D}_{\beta,q}^{\mathrm{mov}}$ exists, if the all-layer integer closure equations hold with positive Floquet gap, and if $\mathcal{R}_{\mathrm{PF}}^{(q)}\le\epsilon_{\text{LV}}$, then a Noether-core clock and ruler built from that branch recover
+
+$$
+\frac{d\tau_q}{dt}
+=
+\frac{1}{\gamma_{\text{eff}}}
++
+O(\epsilon_{\text{LV}}),
+\qquad
+\frac{L_{\parallel,q}(\beta)}{L_{\parallel,q}(0)}
+=
+\frac{1}{\gamma_{\text{eff}}}
++
+O(\epsilon_{\text{LV}}),
+$$
+
+where $\gamma_{\text{eff}}=(1-\beta^2)^{-1/2}$ in the homogeneous Noether-Sea cell. The exact next proof step is the first nontrivial coefficient test on a reduced neutral branch:
+
+$$
+\mathcal{D}_{\beta,q}^{\mathrm{mov}}
+=
+I+d_2\beta^2P_{\parallel}
++
+O(\beta^4),
+\qquad
+\Omega_M(\beta,q)
+=
+\Omega_M^{(0)}
+\left(
+1+s_2\beta^2
+\right)
++
+O(\beta^4).
+$$
+
+The moving-core map reaches the Lorentz square root at this order only if the same returned-section residual gives
+
+$$
+d_2=-\frac{1}{2},
+\qquad
+s_2=-\frac{1}{2},
+$$
+
+while the inter-layer phase residuals and $\Delta_{\text{tw}}^{(q)}$ remain within the declared leakage scale. The broader proof route is to construct $\mathcal{D}_{\beta,q}^{\mathrm{mov}}$ from a completed moving branch chart rather than fitting $\xi_q$, $T_q$, and $\Delta_{\text{tw}}^{(q)}$ independently. The failure mode is equally sharp: if the same branch ledger cannot produce layer-plane deformation, clock-rate reduction, ruler contraction, and bounded preferred-frame leakage without separate tuning, then the Lorentz bridge fails at the moving-core stage.
+
 Once velocity is encoded as internal geometry, the clock question becomes unavoidable. A stable assembly measures time by completing internal cycles. If bulk motion changes the geometry and timing of those cycles, then proper time must be derived from the same spiral-helical closure rather than introduced as a separate relativistic postulate.
 
 ## The Geometry of Time, the Field-Speed Separator, and the Event Horizon Limit
@@ -1199,7 +1435,7 @@ The following tasks define the theorem roadmap for the chapter. Each item names 
    directly from the delayed root sum and causal Jacobian, including the Noether-Sea dressing map that converts primitive $c_f$ wake-delay weighting into the effective tensor $\mathcal{M}_{\text{sea}}^{ab}\to h^{ab}/c_{\text{eff}}^2$ in the homogeneous isotropic limit.
 2. Connect separator fold parity, root-ledger multiplicity, and $h$-like action transfer in one certified branch chart.
 3. Quantify $\zeta(A)$ for representative assemblies from far-field wake fits rather than treating it as detector efficiency or a symbolic leakage factor.
-4. Show that a moving tri-binary Noether core has a stable deformed resonance branch whose three nested layers, realized as braided spiral-helical cables in motion, simultaneously achieve contraction, clock-rate change, and phase relocking to reproduce $\gamma_{\text{eff}}$.
+4. Show that a moving tri-binary Noether core has a stable deformed resonance branch whose three nested layers, realized as braided spiral-helical cables in motion, are generated by the provisional map $\mathcal{D}_{\beta,q}^{\mathrm{mov}}$ and simultaneously achieve contraction, clock-rate change, phase relocking, and bounded preferred-frame leakage to reproduce $\gamma_{\text{eff}}$. The first reduced-branch coefficient test is $d_2=s_2=-1/2$ in the $O(\beta^2)$ expansion.
 5. Derive the weak-field equality of inertial and gravitational coefficients from one shared shielded-energy response map, with composition-dependent residuals satisfying $\eta_{AB}\lesssim10^{-13}$ across tested material pairs.
 6. Quantify the perturbative limits of the coasting symmetry argument: show how finite-size effects, residual Noether-Sea gradients, and external interactions supply the transverse work needed to bend or retune the helical lock.
 7. Derive proper time as an internal cycle-count functional and show that the helical pitch formula reproduces the standard dilation law.

@@ -11,16 +11,19 @@
 
 ## Task Queue
 
-1. `master_equation_law` — Record the exact dual-mollified absolute-time evolution law in the master-equation stack. Status: `done`. Depends on: none.
-2. `velocity_itinerary_verification` — Produce `certificate/itinerary.json` and `certificate/itinerary_parity_report.md` proving the proposed velocity-class itinerary satisfies the fold-parity invariants. Status: `done`. Depends on: `master_equation_law`.
-3. `candidate_cycle_packet` — Produce `certificate/phi_cyc.json` and `certificate/mesh.json` for one candidate center history, preferably using the fold-adapted fractional basis near field-speed separators or an interval-collocation replacement with the same residual targets. Status: `next`. Depends on: `velocity_itinerary_verification`.
-4. `null_coordinate_preledger` — Produce `certificate/causal_ledger.json` and `certificate/causal_preledger_interval_report.md`, proving the named `Null-Coordinate Causal Pre-Ledger` theorem target or rejecting the candidate/itinerary before branch-chart certification. Status: `next`. Depends on: `candidate_cycle_packet`.
-5. `branch_chart_certificate` — Produce `certificate/branch_chart.json` and `certificate/seed_chart_interval_report.md`, including active branches, inactive complements, Jacobian floors, memory-depth ranges, and envelope constants. Status: `pending`. Depends on: `null_coordinate_preledger`.
-6. `coupled_corridor_certificate` — Produce `certificate/corridor_nonemptiness_report.md`, `certificate/parameters.json`, and the coupled-corridor interval report for one strict parameter tuple. Status: `pending`. Depends on: `branch_chart_certificate`.
-7. `monodromy_diagnostic` — Produce the section-anchored monodromy spectrum and route returned-sample preservation to sensitivities or boundary trapping. Status: `pending`. Depends on: `branch_chart_certificate`, `coupled_corridor_certificate`.
-8. `returned_sample_certificate` — Produce returned-sample residuals or boundary-trapping budgets on the certified mesh. Status: `pending`. Depends on: `branch_chart_certificate`, `coupled_corridor_certificate`, `monodromy_diagnostic`.
-9. `topology_certificate` — Verify return transversality, origin-layer continuity, certified fold-event atlas, and certified branch-chart well-posedness on the same domain. Status: `pending`. Depends on: `returned_sample_certificate`.
-10. `schauder_closeout` — Promote the conditional Schauder theorem to an existence theorem after all certificate rows pass. Status: `pending`. Depends on: `topology_certificate`.
+1. `candidate_cycle_packet` — Produce `certificate/phi_cyc.json` and `certificate/mesh.json` for one candidate center history, preferably using the fold-adapted fractional basis near field-speed separators or an interval-collocation replacement with the same residual targets. Status: `next`. Depends on: none.
+2. `null_coordinate_preledger` — Produce `certificate/causal_ledger.json` and `certificate/causal_preledger_interval_report.md`, proving the named `Null-Coordinate Causal Pre-Ledger` theorem target or rejecting the candidate/itinerary before branch-chart certification. Status: `next`. Depends on: `candidate_cycle_packet`.
+3. `branch_chart_certificate` — Produce `certificate/branch_chart.json` and `certificate/seed_chart_interval_report.md`, including active branches, inactive complements, Jacobian floors, memory-depth ranges, and envelope constants. Status: `pending`. Depends on: `null_coordinate_preledger`.
+4. `coupled_corridor_certificate` — Produce `certificate/corridor_nonemptiness_report.md`, `certificate/parameters.json`, and the coupled-corridor interval report for one strict parameter tuple. Status: `pending`. Depends on: `branch_chart_certificate`.
+5. `monodromy_diagnostic` — Produce the section-anchored monodromy spectrum and route returned-sample preservation to sensitivities or boundary trapping. Status: `pending`. Depends on: `branch_chart_certificate`, `coupled_corridor_certificate`.
+6. `returned_sample_certificate` — Produce returned-sample residuals or boundary-trapping budgets on the certified mesh. Status: `pending`. Depends on: `branch_chart_certificate`, `coupled_corridor_certificate`, `monodromy_diagnostic`.
+7. `topology_certificate` — Verify return transversality, origin-layer continuity, certified fold-event atlas, and certified branch-chart well-posedness on the same domain. Status: `pending`. Depends on: `returned_sample_certificate`.
+8. `schauder_closeout` — Promote the conditional Schauder theorem to an existence theorem after all certificate rows pass. Status: `pending`. Depends on: `topology_certificate`.
+
+## Completed State
+
+- `master_equation_law` recorded the exact dual-mollified absolute-time evolution law in the master-equation stack; branch sums remain local simple-root reductions of that law.
+- `velocity_itinerary_verification` produced `certificate/itinerary.json` and `certificate/itinerary_parity_report.md`, giving the doubled four-arc generic itinerary a coarse parity pass before candidate-cycle generation.
 
 ## Scope
 
@@ -85,33 +88,40 @@ $$
 \phi_{\mathrm{cyc}},
 $$
 not a new roadmap.
+- The next executable packet must keep one packet identity tuple
+$$
+\mathfrak{I}_{\mathrm{seed}}
+=
+\left(
+\mathcal{K},
+T_{\mathrm{cyc}},
+\mathcal{S},
+\mathcal{P},
+\mathcal{B}_{\mathrm{rep}},
+\Theta
+\right)
+$$
+fixed across `phi_cyc.json`, `mesh.json`, `causal_ledger.json`, `branch_chart.json`, and `seed_chart_interval_report.md`.
+- The branch chart is accepted only as an authorized refinement of the null-coordinate pre-ledger: every simple branch must point to one `simple_root` pre-ledger row, empty rows must stay inactive with positive gaps, and fold-layer rows must not be reduced to branch-sum formulas.
 - Treat [tri-binary-causal-closure](../../tri-binary-causal-closure/tri-binary-causal-closure.md) as a separate active-development synthesis workstream, not as a replacement for the finite certificate packet. Before deployment, unresolved synthesis items must be closed, kept as explicit roadmap targets, routed into the relevant priority workstream, or cut.
 
-## Immediate Cross-Document Action Plan
+## Active Cross-Document Action Plan
 
-1. The exact dual-mollified absolute-time equation now belongs in [master-equation.md](../../../../content/markdown/aaa/dynamics/master-equation.md) as the canonical evolution law for certification. Branch sums are local simple-root reductions of that law.
-2. Verify the proposed velocity-class itinerary before generating a candidate cycle. For the four-arc skeleton or any replacement itinerary, check the fold-parity constraints
-   $$
-   \Delta N\in 2\mathbb{Z},
-   \qquad
-   \Delta D=0,
-   $$
-   from Proposition 3 of [master-equation.md](../../../../content/markdown/aaa/dynamics/master-equation.md).
-3. Generate one candidate collinear cycle
+1. Generate one candidate collinear cycle
    $$
    \phi_{\mathrm{cyc}}
    $$
    by ansatz, collocation, or simulation.
-4. Run the named `Null-Coordinate Causal Pre-Ledger` target as the first seed-chart gate: use
+2. Run the named `Null-Coordinate Causal Pre-Ledger` target as the first seed-chart gate: use
    $$
    u=c_f t-x,
    \qquad
    w=c_f t+x
    $$
    to classify every ordered arc-pair block as empty, simple-root, or fold-layer before attempting a full branch chart.
-5. Enumerate active and inactive path-history roots on a finite mesh around that candidate only after the pre-ledger has strict finite margins.
-6. Verify the five audit rows below on the same certified domain.
-7. Promote the conditional Schauder theorem in [collinear-breather.md](../../../../content/markdown/aaa/proof-programs/collinear-breather.md) only after the finite audit passes.
+3. Enumerate active and inactive path-history roots on a finite mesh around that candidate only after the pre-ledger has strict finite margins.
+4. Verify the five audit rows below on the same certified domain.
+5. Promote the conditional Schauder theorem in [collinear-breather.md](../../../../content/markdown/aaa/proof-programs/collinear-breather.md) only after the finite audit passes.
 
 The vulnerable assumption is that a finite active branch chart with positive Jacobian floors and positive inactive-root gaps exists around one candidate cycle. The direct test is root enumeration plus interval certification for
 $$

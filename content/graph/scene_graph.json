@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 485,
-      "edges": 1237,
-      "scenes": 319,
+      "nodes": 487,
+      "edges": 1239,
+      "scenes": 320,
       "markdownIndexes": 0,
-      "markdownDocs": 166,
+      "markdownDocs": 167,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2063,6 +2063,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "theory_bridges__return_cycle_lorentz_quantization",
+      "name": "Return-Cycle Lorentz Quantization",
+      "path": "content/scenes/theory-bridges/return_cycle_lorentz_quantization.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/reading-copies/architrino-textbook.md",
       "name": "Architrino Textbook",
       "path": "content/generated/markdown/textbook/reading-copies/architrino-textbook.md",
@@ -2822,6 +2828,12 @@
       "id": "content/markdown/aaa/theory-bridges/README.md",
       "name": "Theory Bridges",
       "path": "content/markdown/aaa/theory-bridges/README.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
+      "name": "Return-Cycle Lorentz Quantization",
+      "path": "content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5572,6 +5584,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/theory-bridges/return_cycle_lorentz_quantization.json",
+      "nodeType": "scene",
+      "id": "theory_bridges__return_cycle_lorentz_quantization",
+      "name": "Return-Cycle Lorentz Quantization",
+      "path": "content/scenes/theory-bridges/return_cycle_lorentz_quantization.json",
+      "searchTarget": "content/scenes/theory-bridges/return_cycle_lorentz_quantization.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/theory-bridges/spacetime_models_and_noether_sea.json",
       "nodeType": "scene",
       "id": "theory_bridges__spacetime_models_and_noether_sea",
@@ -7072,6 +7093,15 @@
       "name": "Theory Bridges",
       "path": "content/markdown/aaa/theory-bridges/README.md",
       "searchTarget": "content/markdown/aaa/theory-bridges/README.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
+      "name": "Return-Cycle Lorentz Quantization",
+      "path": "content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
+      "searchTarget": "content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
       "implicit": false
     },
     {
@@ -11338,7 +11368,7 @@
       "to": "scene:content/scenes/theory-bridges/klein_gordon_scalar_fields.json",
       "edgeType": "subscene",
       "source": "content/scenes/theory-bridges/theory_bridges.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/theory-bridges/theory_bridges.json",
@@ -11352,7 +11382,7 @@
       "to": "scene:content/scenes/theory-bridges/planck_scale_tri_binary_alignment.json",
       "edgeType": "subscene",
       "source": "content/scenes/theory-bridges/theory_bridges.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/theory-bridges/theory_bridges.json",
@@ -11363,10 +11393,17 @@
     },
     {
       "from": "scene:content/scenes/theory-bridges/theory_bridges.json",
-      "to": "scene:content/scenes/theory-bridges/spacetime_models_and_noether_sea.json",
+      "to": "scene:content/scenes/theory-bridges/return_cycle_lorentz_quantization.json",
       "edgeType": "subscene",
       "source": "content/scenes/theory-bridges/theory_bridges.json",
       "field": "scene.children[7]"
+    },
+    {
+      "from": "scene:content/scenes/theory-bridges/theory_bridges.json",
+      "to": "scene:content/scenes/theory-bridges/spacetime_models_and_noether_sea.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/theory-bridges/theory_bridges.json",
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/theory-bridges/theory_bridges.json",
@@ -11387,7 +11424,7 @@
       "to": "scene:content/scenes/theory-bridges/weak_mixing_ckm.json",
       "edgeType": "subscene",
       "source": "content/scenes/theory-bridges/theory_bridges.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/validation/action_energy.json",
@@ -12500,6 +12537,13 @@
       "to": "markdown_doc:content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/theory-bridges/quantum_operator_mapping.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/theory-bridges/return_cycle_lorentz_quantization.json",
+      "to": "markdown_doc:content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/theory-bridges/return_cycle_lorentz_quantization.json",
       "field": "scene.source.path"
     },
     {

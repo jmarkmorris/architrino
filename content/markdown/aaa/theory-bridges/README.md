@@ -44,6 +44,7 @@ Each mature bridge should include:
 - [Pilot-Wave Character](./pilot-wave-character.md)
 - [Mapping the Planck Scale to the Tri-Binary Geometry](./planck-scale-tri-binary-alignment.md)
 - [Quantum Operator Mapping](./quantum-operator-mapping.md)
+- [Return-Cycle Lorentz Quantization](./return-cycle-lorentz-quantization.md)
 - [Special Relativity and Deformable Noether Cores](./special-relativity-noether-core.md)
 - [Spacetime Models and the Noether Sea](./spacetime-models-and-noether-sea.md)
 - [Superposition Mechanism](./superposition-mechanism.md)

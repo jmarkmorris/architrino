@@ -4,7 +4,7 @@ This chapter is the focused program statement for deriving operational Lorentz b
 
 The opening abstract states the target; the later sections move through the governing delayed dynamics, the anisotropy mechanism, and the conditions under which assembly-built observers could recover standard Lorentz kinematics.
 
-For the theory-bridge version that maps special-relativistic terms directly to the deformable Noether-core story, see [Special Relativity and Deformable Noether Cores](../theory-bridges/special-relativity-noether-core.md).
+For the theory-bridge version that maps special-relativistic terms directly to the deformable Noether-core story, see [Special Relativity and Deformable Noether Cores](../theory-bridges/special-relativity-noether-core.md). For the reader-facing synthesis of the branch-quantized Lorentz milestone, see [Return-Cycle Lorentz Quantization](../theory-bridges/return-cycle-lorentz-quantization.md).
 
 ## Abstract
 
@@ -17,6 +17,8 @@ $$
 with bounded preferred-frame leakage in measurable observables.
 
 Speed convention: this chapter uses $c_f$ in primitive delayed-root benchmarks and uses the declared speed $c_\star$ in observer-level closure statements. The [transverse causal budget lemma](../dynamics/tri-binary-dynamics.md#transverse-causal-budget-lemma) fixes the convention: set $c_\star=c_f$ for a primitive wake branch chart, $c_\star=c_{\text{eff}}(\mathbf{x})$ for Noether-Sea dressed clocks and rulers, and $c_\star=c_\gamma(\mathbf{x})$ for photon synchronization. The low-gradient Lorentz limit may identify the measured channel speed with $c_0=c_{\text{eff}}(\infty)$ only after the dressing map is declared.
+
+A stronger prediction is also available. The Lorentz formulas should not be imported as an independent observer-level rule and then copied onto assemblies. They should be recovered from the same causal-root progression that gives stable assemblies their discrete branch ledgers. In that sense the Lorentz factor is a closure target for the quantum-facing branch structure of the dynamics: the root ledger must generate the contraction, clock-retuning, and residual-leakage coefficients rather than merely coexist with them.
 
 ## Problem Statement
 
@@ -176,6 +178,105 @@ $$
 \qquad
 \mu=0:\ \bar{\tau}=\frac{r}{c_f}\gamma,\ \nu=\frac{c_f}{r}\frac{1}{\gamma}.
 $$
+
+### 3.1.2 Closed-return derivation of the Lorentz axis ratio
+
+The one-way roots above expose the preferred branch chart. They are not yet an observer-facing Lorentz law, because a physical clock or ruler is not made from a single one-way leg. A stable material branch is admitted only when the relevant causal wake returns to a compatible phase. The primitive Lorentz-geometry object is therefore a closed return cycle.
+
+Use the declared channel speed $c_\star$ for the closure problem under consideration, with
+$$
+\beta_\star\equiv\frac{v}{c_\star},
+\qquad
+\gamma_\star\equiv\frac{1}{\sqrt{1-\beta_\star^2}}.
+$$
+In a homogeneous Noether-Sea cell, take $R_{\parallel}$ to be the semiaxis along drift and $R_{\perp}$ to be a transverse semiaxis. A longitudinal return cycle has unequal forward and rear legs,
+$$
+t_{+}=\frac{R_{\parallel}}{c_\star-v},
+\qquad
+t_{-}=\frac{R_{\parallel}}{c_\star+v},
+$$
+so its closed return time is
+$$
+T_{\parallel}
+=t_{+}+t_{-}
+=
+\frac{R_{\parallel}}{c_\star-v}
++
+\frac{R_{\parallel}}{c_\star+v}
+=
+\frac{2R_{\parallel}c_\star}{c_\star^2-v^2}
+=
+\frac{2R_{\parallel}}{c_\star}\gamma_\star^2.
+$$
+A transverse return cycle uses part of the causal budget to keep pace with the translated receiver. The remaining transverse closure speed is
+$$
+c_{\perp}=c_\star\sqrt{1-\frac{v^2}{c_\star^2}}
+=\frac{c_\star}{\gamma_\star},
+$$
+and therefore
+$$
+T_{\perp}
+=
+\frac{2R_{\perp}}{c_{\perp}}
+=
+\frac{2R_{\perp}}{c_\star}\gamma_\star.
+$$
+
+The closure condition for a Lorentz-admissible branch is that the same material return cycle closes with one period in the longitudinal and transverse channels:
+$$
+T_{\parallel}=T_{\perp}+O(\epsilon_{\mathrm{LV}}T_0).
+$$
+In the zero-leakage homogeneous limit this gives
+$$
+\frac{2R_{\parallel}}{c_\star}\gamma_\star^2
+=
+\frac{2R_{\perp}}{c_\star}\gamma_\star,
+$$
+hence
+$$
+\xi(v)
+\equiv
+\frac{R_{\parallel}(v)}{R_{\perp}(v)}
+=
+\frac{1}{\gamma_\star(v)}.
+$$
+This is the direct map from Lorentz kinematics to Noether-core geometry. The oblate spheroidal envelope for an admitted branch $q$ can be written
+$$
+\frac{x_{\perp,1}^2+x_{\perp,2}^2}{R_{\perp,q}^2}
++
+\frac{x_{\parallel}^2}{R_{\parallel,q}^2}
+=1,
+\qquad
+R_{\parallel,q}
+=
+\frac{R_{\perp,q}}{\gamma_\star}
++O(\epsilon_{\mathrm{LV}}R_{\perp,q}).
+$$
+Equivalently, the realized ruler factor is the inverse shape ratio:
+$$
+\gamma_{\mathrm{rul}}^{(q)}(v)
+\equiv
+\frac{R_{\perp,q}(v)}{R_{\parallel,q}(v)}
+=
+\frac{1}{\xi_q(v)}
+=
+\gamma_\star(v)+O(\epsilon_{\mathrm{LV}}).
+$$
+
+In this precise sense, the Lorentz equation is quantized in the framework. The smooth function $\gamma_\star(v)$ remains the observer-level envelope, but a physical material branch realizes that envelope only through a discrete admissible closure class $q$. The quantized object is not the algebraic curve by itself; it is the branch-indexed realization
+$$
+q
+\longmapsto
+\left(
+\xi_q(v),
+\gamma_{\mathrm{rul}}^{(q)}(v),
+\gamma_{\mathrm{clk}}^{(q)}(v),
+\mathcal{L}_{\mathrm{root}}^{(q)}(v)
+\right),
+$$
+with admissibility requiring the same causal-root ledger to close the spheroid geometry, clock period, and preferred-frame leakage bounds. Thus a continuous Lorentz formula can be recovered as the common envelope of discrete Noether-core return-cycle classes.
+
+This derivation is stronger than assigning an ellipsoid after the fact. The one-way longitudinal legs remain asymmetric; the Lorentz geometry appears only when the closed return cycle is allowed to choose the semiaxes that make longitudinal and transverse closure periods agree. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the spheroid is the visible projection of a branch that has solved its return-cycle ledger.
 
 ### 3.2 Effective shape law
 
@@ -773,6 +874,104 @@ $$
 $$
 So the $O(\beta^4)$ closure coefficients are obtained directly from the causal path-history Hessian on the circular benchmark branch and are not fit parameters.
 
+### 5.6.1 Causal-root ledger progression as a Lorentz prediction
+
+The coefficient calculation above suggests a sharper interpretation of the Lorentz closure problem. In standard observer physics, the Lorentz formulas are usually treated as kinematic consequences of invariant signal speed and the relativity principle. In this chapter they are instead treated as emergent observer-level consequences of a delayed assembly dynamics. The additional $\mathbb{A}\mathbb{A}\mathbb{A}$ prediction is that the Lorentz coefficients are not merely smooth deformation coefficients. They should be generated by the same branch-chart structure that later appears, after coarse-graining, as discrete quantum behavior.
+
+Stated more strongly, the novel claim is a branch-quantized Lorentz response. This does not mean that the algebraic function
+$$
+\gamma(v)=\frac{1}{\sqrt{1-v^2/c_\star^2}}
+$$
+is replaced everywhere by a step function. It means that a physical clock or ruler can realize Lorentz behavior only through stable branch charts whose causal-root ledgers are integer objects. For a stable branch class $q$, define the realized clock and ruler Lorentz factors by
+$$
+\gamma_{\mathrm{clk}}^{(q)}(\beta)\equiv \frac{T_q(\beta)}{T_0},
+\qquad
+\gamma_{\mathrm{rul}}^{(q)}(\beta)\equiv \frac{R_{\perp,q}(\beta)}{R_{\parallel,q}(\beta)}.
+$$
+The branch-quantization claim is that the admissible material responses at fixed background conditions form the ledger-indexed set
+$$
+\Gamma_{\mathrm{adm}}(\beta)
+=
+\left\{
+\big(\gamma_{\mathrm{clk}}^{(q)}(\beta),\gamma_{\mathrm{rul}}^{(q)}(\beta)\big)
+:
+q\in\mathcal{Q}_{\mathrm{stable}}(\beta)
+\right\},
+$$
+where $\mathcal{Q}_{\mathrm{stable}}(\beta)$ is the set of stable causal-root ledger classes. The observer-level Lorentz factor is recovered only when the active branch family, hierarchy averaging, and Noether-Sea dressing collapse this set to a universal effective value:
+$$
+\gamma_{\mathrm{clk}}^{(q)}(\beta)
+=
+\gamma_{\mathrm{rul}}^{(q)}(\beta)
+=
+\gamma(\beta)+O(\epsilon_{\mathrm{LV}})
+$$
+for all admitted clock/ruler assemblies in the tested homogeneous regime. Thus $\gamma$ remains the continuous effective envelope measured by Physical Observers, while the substrate implementation is quantized by admissible causal-root ledgers. If this is correct, residual deviations from exact Lorentz closure should carry branch-spectrum signatures rather than arbitrary smooth phenomenological drift.
+
+In this chapter, the native formulation of this idea is the progression of the causal-root ledger. This progression is the ordered change, under a control parameter such as drift speed $\beta$, of the active causal-root ledger
+$$
+\mathcal{L}_{\mathrm{root}}(\beta)
+=
+\left\{
+(a,b,m,t,t_{0,m},J_{ab}^{(m)},\sigma_{ab}^{(m)})
+:
+m\in\mathcal{R}^{\mathrm{act}}_{ab}(\beta)
+\right\}.
+$$
+Here $a$ is the receiver, $b$ is the source, $m$ labels an active delayed branch, $t_{0,m}$ is the emission time, $J_{ab}^{(m)}$ is the causal Jacobian, and $\sigma_{ab}^{(m)}$ records the interaction sign or channel orientation used by the local branch chart. The ledger is quantum-facing because stable assembly states depend on integer branch counts, separator events, and admissible self-hit / partner-hit histories. It is Lorentz-facing because the same roots determine the cycle-averaged stiffness tensor and clock period.
+
+The local prediction can be stated as a closure condition. There must exist one admissible branch-chart class $\mathfrak{B}_{\mathrm{mov}}(\beta)$ on a drift band $0\le\beta\le\beta_\star$ such that
+$$
+K_{ab}(\beta)
+=
+\left\langle
+\sum_{(a,b,m)\in\mathcal{L}_{\mathrm{root}}(\beta)}
+\partial_a\partial_b
+\mathcal{U}_{ab}^{(m)}(t;\beta,\eta)
+\right\rangle_{\mathrm{cyc}},
+$$
+and the extracted coefficient vector
+$$
+\mathbf{c}_{\mathrm{L}}(\mathfrak{B}_{\mathrm{mov}})
+\equiv
+(k_2,\ell_2,k_4,\ell_4)
+$$
+satisfies
+$$
+\mathbf{c}_{\mathrm{L}}(\mathfrak{B}_{\mathrm{mov}})
+=
+\left(-\frac{1}{3},-\frac{4}{3},-\frac{1}{9},\frac{2}{9}\right)
++O(\epsilon_{\mathrm{br}}+\epsilon_{\mathrm{hier}}+\epsilon_{\mathrm{reg}}).
+$$
+The error terms have distinct jobs. $\epsilon_{\mathrm{br}}$ measures branch-chart incompleteness or missed active roots, $\epsilon_{\mathrm{hier}}$ measures tri-binary hierarchy leakage away from the binary benchmark, and $\epsilon_{\mathrm{reg}}$ measures finite-$\eta$ regularization error. This condition is stronger than fitting $L_{\parallel}=L_0/\gamma$ and $T(v)=\gamma T_0$. It says the fitted coefficients must be traceable to active causal roots with no independent Lorentz postulate and no per-observable retuning.
+
+This gives a possible prediction of the framework. If Lorentz behavior is rooted in causal-root progression, then the first nonzero deviations from exact Lorentz closure should not be arbitrary smooth functions of speed. They should inherit the structure of branch charts: smooth even-power drift terms inside a fixed chart, plus localized or resonant leakage near separator events, small-divisor interlayer resonances, or changes in admissible root multiplicity. In a nonresonant chart the leakage should obey
+$$
+\left\|
+\mathbf{c}_{\mathrm{L}}(\beta)
+-
+\left(-\frac{1}{3},-\frac{4}{3},-\frac{1}{9},\frac{2}{9}\right)
+\right\|_W
+\le
+C_{\mathrm{br}}\epsilon_{\mathrm{br}}
++C_{\mathrm{hier}}\epsilon_{\mathrm{hier}}
++C_{\mathrm{reg}}\epsilon_{\mathrm{reg}},
+$$
+while near a chart-changing event the two-way anisotropy diagnostic should decompose into the ordinary Lorentz-canceling part plus a branch-sourced residual:
+$$
+\Delta_{\mathrm{tw}}(\beta,\theta)
+=
+\Delta_{\mathrm{tw}}^{\mathrm{smooth}}(\beta,\theta)
++
+\sum_{r\in\mathcal{R}_{\mathrm{res}}}
+B_r\,\mathcal{W}_r(\beta)\cos(2m_r\theta+\varphi_r).
+$$
+Here each residual label $r$ must correspond to a named branch-chart feature: a separator approach, a small-divisor relation between layer frequencies, a finite-memory cutoff, a Jacobian-floor loss, or a root-ledger transition. A residual with no branch-chart source is not a successful prediction; it is either ordinary fitting error or an incomplete closure model.
+
+The technology-facing status is therefore conditional. The immediate test is not necessarily a laboratory Lorentz-violation search. The first test is mathematical and computational: solve a controlled translating branch chart, extract $\mathcal{L}_{\mathrm{root}}(\beta)$, compute $K_{\parallel}$, $K_{\perp}$, $T(v)$, and $\Delta_{\mathrm{tw}}$, and verify that the same ledger produces the Lorentz coefficients and any residual sidebands. Only after a nonzero residual survives branch completion, hierarchy averaging, and $\eta\to0$ control does the question become an experimental one. If the predicted residual amplitude lies below existing clock, resonator, matter-interferometer, or photon-channel sensitivity, the theory remains constrained but not yet technology-testable. If a branch-sourced residual survives at an accessible scale, its signature should be more specific than a generic Lorentz-violation coefficient: it should carry the speed, orientation, material-channel, or medium-density dependence of the responsible branch-chart feature.
+
+This also prevents overclaiming. The present chapter does not prove that quantum mechanics causes special relativity. It states a narrower closure target: in $\mathbb{A}\mathbb{A}\mathbb{A}$, the discrete causal-root progression that supports quantum-facing assembly behavior must also generate the Lorentz formulas in the homogeneous weak-field observer limit. If the branch ledger produces quantum-like discreteness but fails to produce the Lorentz coefficient vector, then the proposed common mechanism fails. If it produces the Lorentz vector only by tuning a separate clock law, ruler law, or photon speed for each observable, the Lorentz bridge also fails.
+
 ### 5.7 Tri-binary adiabatic decoupling bound
 
 Let
@@ -923,6 +1122,7 @@ Key outputs to pass into validation and simulation layers:
 2. Velocity-dependent clock shift coefficients beyond leading $\gamma$ term.
 3. Orientation-dependent residuals in two-way propagation observables.
 4. Parameter surfaces where leakage remains below target bounds.
+5. Branch-sourced residual labels linking any nonzero $\Delta_{\text{tw}}$ sideband, clock residual, or shape residual to a specific causal-root ledger feature rather than to a free phenomenological coefficient.
 
 ## Failure Conditions
 
@@ -934,6 +1134,7 @@ The Lorentzian conspiracy program fails if any of the following occur:
 4. Different assembly decorations produce incompatible kinematic laws that prevent universal operational closure.
 5. The weak-field connection built from $g_{\mu\nu}^{\text{eff}}$ fails to reproduce a Newtonian Poisson limit for $\Phi_{\text{eff}}$ in the operational observer sector.
 6. Diophantine nonresonance fails (small-divisor regime), causing secular interlayer resonance and invalidating the adiabatic mismatch bound used in Sec. 5.7.
+7. The extracted Lorentz coefficients cannot be traced to the causal-root ledger on a completed branch chart, or the same ledger cannot generate clock, ruler, and two-way signal closure without separate per-observable tuning.
 
 ## Position in the $\mathbb{A}\mathbb{A}\mathbb{A}$ Program
 
