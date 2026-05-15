@@ -133,6 +133,28 @@ $$
 $$
 If $\Delta_{\mathrm{rec}}=O(1)$ on that window, the apparatus has not yet produced an independent record in the ontology of this chapter. The correct description is still an unresolved interference or weak-probe regime, not a completed branch selection.
 
+A completed record should also make the retained reduced description restartable. Let $\mathcal{T}^{\mathcal{Q},W}_{a\to b}$ be the transition operator induced by the same substrate flow after projecting to a declared coarse-graining $\mathcal{Q}$ and retained access region $W$. For $t_0<t_1<t_2$, with $t_1$ and $t_2$ inside the candidate record window, define
+$$
+\Delta_{\mathrm{div}}(t_0,t_1,t_2;\mathcal{Q},W)
+=
+\left\|
+\mathcal{T}^{\mathcal{Q},W}_{t_0\to t_2}
+-
+\mathcal{T}^{\mathcal{Q},W}_{t_1\to t_2}
+\mathcal{T}^{\mathcal{Q},W}_{t_0\to t_1}
+\right\|_{\mathrm{TV}\to\mathrm{TV}}.
+$$
+The restartability closure condition is
+$$
+\sup_{t_1,t_2\in[\tau_{\text{meas}},\,\tau_{\text{meas}}+T_{\text{rec}}]}
+\Delta_{\mathrm{div}}(t_0,t_1,t_2;\mathcal{Q},W)
+\le
+\varepsilon_{\mathrm{div}},
+\qquad
+\varepsilon_{\mathrm{div}}\ll 1.
+$$
+This condition says that, after record formation, the retained apparatus-target record can be treated as a new effective starting point without carrying unresolved cross-basin history as live interference. If $\Delta_{\mathrm{div}}=O(1)$, the interaction may have decohered in a reduced description, but it has not yet supplied the independent record assumed by a wave function transition.
+
 ## Weak-Probe Limit
 
 A weak measurement is not a different ontology. It is the small-coupling regime of the same apparatus-target dynamics in which a probe samples the target without creating a record-forming separatrix crossing on the retained trial window. Let $\epsilon$ denote the probe-coupling strength and let $(X_\epsilon,A_\epsilon)$ be the coupled trajectory under that probe. The no-record condition is

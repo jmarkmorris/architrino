@@ -1,0 +1,142 @@
+{
+  "metadata": {
+    "artifact": "a0-tier0-branch-search",
+    "status": "tier0-certificate-scaffold",
+    "config": "scripts/mass-map/a0-tier0-default-grid.json",
+    "note": "Tier 0 rows are reduced carrier certificate diagnostics. Passing rows may seed Tier 1 only; they are not accepted attractors."
+  },
+  "tolerances": {
+    "root": 0.000001,
+    "state": 0.02,
+    "phase": 0.02,
+    "speed": 0.02
+  },
+  "candidates": [
+    {
+      "row": 1,
+      "status": "tier0_continuation_ready",
+      "failure_code": "candidate",
+      "branch_label": {
+        "k": {
+          "I": 60,
+          "M": 5,
+          "O": 1
+        },
+        "q": {
+          "IM": 55,
+          "MO": 4,
+          "IO": 59
+        }
+      },
+      "closure_labels": {
+        "T_k": 3.9269908169872414,
+        "activeRootClasses": {
+          "partner": 96,
+          "self": 32,
+          "inter_layer": 384
+        }
+      },
+      "state_vector": {
+        "centerGauge": "C_A0=0 diagnostic carrier chart",
+        "historyWindow": 4.908738521234052,
+        "initial": []
+      },
+      "geometry": {
+        "radii": {
+          "O": 1,
+          "M": 0.25,
+          "I": 0.025
+        },
+        "commonPeriod": 3.9269908169872414
+      },
+      "root_ledger": {
+        "byRelation": {
+          "partner": 96,
+          "self": 32,
+          "inter_layer": 384
+        },
+        "maxRootResidual": 2.8e-7
+      },
+      "residuals": {
+        "phase": {
+          "value": 0,
+          "tolerance": 0.02,
+          "status": "pass"
+        },
+        "root": {
+          "value": 2.8e-7,
+          "tolerance": 0.000001,
+          "status": "pass"
+        },
+        "energy": {
+          "value": null,
+          "tolerance": null,
+          "status": "not_computed_in_tier0"
+        }
+      }
+    },
+    {
+      "row": 2,
+      "status": "tier0_rejected",
+      "failure_code": "self-root-fold-layer-required",
+      "branch_label": {
+        "k": {
+          "I": 48,
+          "M": 4,
+          "O": 1
+        },
+        "q": {
+          "IM": 44,
+          "MO": 3,
+          "IO": 47
+        }
+      },
+      "closure_labels": {
+        "T_k": 3.9269908169872414,
+        "activeRootClasses": {
+          "partner": 96,
+          "self": 30,
+          "inter_layer": 384
+        }
+      },
+      "state_vector": {
+        "centerGauge": "C_A0=0 diagnostic carrier chart",
+        "historyWindow": 4.908738521234052,
+        "initial": []
+      },
+      "geometry": {
+        "radii": {
+          "O": 1,
+          "M": 0.25,
+          "I": 0.03125
+        },
+        "commonPeriod": 3.9269908169872414
+      },
+      "root_ledger": {
+        "byRelation": {
+          "partner": 96,
+          "self": 30,
+          "inter_layer": 384
+        },
+        "maxRootResidual": 4.1e-7
+      },
+      "residuals": {
+        "phase": {
+          "value": 0,
+          "tolerance": 0.02,
+          "status": "pass"
+        },
+        "root": {
+          "value": 4.1e-7,
+          "tolerance": 0.000001,
+          "status": "pass"
+        },
+        "energy": {
+          "value": null,
+          "tolerance": null,
+          "status": "not_computed_in_tier0"
+        }
+      }
+    }
+  ]
+}

@@ -24,7 +24,7 @@ This file should not grow into a proof queue. Any hypothesis that becomes action
 | --- | --- | --- | --- |
 | `keep_hypothesis_registry` | This file | [strong-field-closure](strong-field-closure.md) and [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) | A preserved hypothesis gains a concrete boundary condition, equation, simulation target, or observable before leaving the watchlist. |
 | `protect_421_model` | This file | [dyadic-lock](../dyadic-lock/dyadic-lock.md), [tri-binary-dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md), or [planck-scale-tri-binary-alignment](../../../content/markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md) | The `4:2:1` idea is rederived from a reduced-map, branch-ledger, or Planck-alignment result before being promoted beyond hypothesis status. |
-| `dark_sector_photon_like_modes` | This file, [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [radiation-gate-c-benchmarks](../tri-binary-causal-closure/radiation-gate-c-benchmarks.md), and [cosmology-closure](../cosmology-closure/cosmology-closure.md) | [strong-field-closure](strong-field-closure.md), [CMB](../../../content/markdown/aaa/cosmology/CMB.md), or [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) | The hypothesis gains a release-channel boundary condition, an event-ledger route through radiation Gate C, a redshift / thermalization / re-entry criterion, and at least one discriminating observable before being promoted beyond watchlist status. |
+| `dark_sector_photon_like_modes` | [dark-sector-photon-like-mode](../dark-sector/dark-sector-photon-like-mode.md), [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [radiation-gate-c-benchmarks](../tri-binary-causal-closure/radiation-gate-c-benchmarks.md), and [cosmology-closure](../cosmology-closure/cosmology-closure.md) | [dark-sector](../dark-sector/dark-sector.md), [strong-field-closure](strong-field-closure.md), [CMB](../../../content/markdown/aaa/cosmology/CMB.md), or [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) | The hypothesis gains a release-channel boundary condition, an event-ledger route through radiation Gate C, a redshift / thermalization / re-entry criterion, and at least one discriminating observable before being promoted beyond watchlist status. |
 
 ## Hypotheses To Preserve
 
@@ -43,6 +43,10 @@ This file should not grow into a proof queue. Any hypothesis that becomes action
 - What threshold lets a dark-sector photon-like mode re-enter the visible photon channel after redshift or medium transport?
 - Could high-redshift compact red sources, including the Little Red Dot class now commonly compared with young AGN or dense SMBH cocoons, become a discriminating observable for dark-sector photon-like release without overriding ordinary AGN, dust, dense-gas, or star-forming explanations?
 
+## Dark-Sector Photon-Like Mode Detail
+
+The expanded dark-sector photon-like mode brainstorm, candidate assembly registry, redshift-triggered reaction ideas, CMB speculation, and Little Red Dot observational checklist now live in [dark-sector-photon-like-mode](../dark-sector/dark-sector-photon-like-mode.md). This file keeps only the strong-field watchlist pointer so the detailed packet has one main home.
+
 ## `4:2:1` Hypothesis Variants To Keep
 
 - Maybe the zero on the `4:2:1` scale is wrong.
@@ -56,6 +60,7 @@ This file should not grow into a proof queue. Any hypothesis that becomes action
 ## Related Priorities
 
 - [strong-field-closure](strong-field-closure.md)
+- [dark-sector](../dark-sector/dark-sector.md)
 - [phenomenological-heuristics](../dyadic-lock/phenomenological-heuristics.md)
 - [cosmology-closure](../cosmology-closure/cosmology-closure.md)
 - [dynamo-team-insights](../deferred/dynamo-team-insights.md)

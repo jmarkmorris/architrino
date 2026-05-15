@@ -583,7 +583,7 @@ The detailed black-hole treatment now lives in [../spacetime/black-holes.md](../
 
 - at the horizon interface, forward-sector components approach terminal alignment near $c_f$;
 - in the interior, maximum-curvature and recycling dynamics dominate;
-- outward release may later appear as jets, diffuse outflow, or dark-sector / dark-photon-like channels.
+- outward release may later appear as jets, diffuse outflow, or dark-sector photon-like channels.
 
 This chapter therefore keeps only the tri-binary regime map and leaves the ontology, recycling logic, and observer-facing strong-field interpretation to the canonical spacetime chapters.
 

@@ -49,6 +49,7 @@ The goal is to expose exactly where $\mathbb{A}\mathbb{A}\mathbb{A}$ matches, re
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
 - [strong-field-closure](../strong-field-closure/strong-field-closure.md)
 - [strong-field hypothesis bank](../strong-field-closure/hypothesis-bank.md)
+- [dark-sector](../dark-sector/dark-sector.md)
 - [simulations](../simulations/simulations.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes

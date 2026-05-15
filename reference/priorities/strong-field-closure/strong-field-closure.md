@@ -31,6 +31,7 @@ Release-channel accounting consumes the shared [residual-routing event-ledger th
 | File | Role | Target $\mathbb{A}\mathbb{A}\mathbb{A}$ notes |
 | --- | --- | --- |
 | [hypothesis-bank.md](hypothesis-bank.md) | Watchlist for strong-field and tri-binary hypotheses that should not outrank the derivation spine. | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md), [tri-binary-dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md), [spacetime-assemblies](../../../content/markdown/aaa/spacetime/spacetime-assemblies.md) |
+| [dark-sector-photon-like-mode.md](../dark-sector/dark-sector-photon-like-mode.md) | Detailed watchlist packet for candidate dark-sector photon-like release, redshift, reaction, and visible-channel re-entry. | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [radiation](../../../content/markdown/aaa/reactions/radiation.md) |
 
 ## Promotion Map
 
@@ -69,6 +70,7 @@ Black-hole entropy and Page-curve recovery are high-value downstream consistency
 
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
 - [tri-binary-causal-closure](../tri-binary-causal-closure/tri-binary-causal-closure.md)
+- [dark-sector](../dark-sector/dark-sector.md)
 - [cosmology-closure](../cosmology-closure/cosmology-closure.md)
 - [simulations](../simulations/simulations.md)
 
