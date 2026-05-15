@@ -1,0 +1,23 @@
+{
+  "schema": "tri-binary-floquet-report-fixture/v1",
+  "rows": [
+    {
+      "id": "fixture-B12-B13-a",
+      "from": 0.12,
+      "to": 0.1,
+      "continuation": 0.09
+    },
+    {
+      "id": "fixture-B20-B21-b",
+      "from": 0.11,
+      "to": 0.095,
+      "continuation": 0.085
+    },
+    {
+      "id": "fixture-B07-B08-control",
+      "from": 0.04,
+      "to": 0.03,
+      "continuation": 0.02
+    }
+  ]
+}
