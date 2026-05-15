@@ -229,8 +229,9 @@ function continuationContract(row, etaLadder) {
       script: "scripts/mass-map/a0-tier1-continuation-source-prototype.mjs",
       status: "blocked_carrier_replay_only",
       failure_code: "tier1-integrator-not-run",
+      computed_predicate: "speed_ordering_retained",
       note:
-        "The prototype replays Tier 0 carrier samples and provisional carrier roots for validation plumbing only; it is not an accepted Tier 1 continuation.",
+        "The prototype replays Tier 0 carrier samples and provisional carrier roots, then computes a bounded one-step speed-ordering diagnostic only; it is not an accepted Tier 1 continuation.",
     },
     residuals_to_recompute: [
       "state",

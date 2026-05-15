@@ -5,6 +5,7 @@ import path from "node:path";
 
 const DEFAULT_ROWS = "ready";
 const DEFAULT_SAMPLE_COUNT = 320;
+const DEFAULT_DYNAMICS_STEP_FRACTION = 1 / 4096;
 const LAYER_ORDER = ["I", "M", "O"];
 const POLARITIES = ["+", "-"];
 const BODY_IDS = ["I+", "I-", "M+", "M-", "O+", "O-"];
@@ -19,6 +20,7 @@ function parseArgs(argv) {
     config: null,
     rows: DEFAULT_ROWS,
     sampleCount: DEFAULT_SAMPLE_COUNT,
+    dynamicsStepFraction: DEFAULT_DYNAMICS_STEP_FRACTION,
     pretty: false,
     out: null,
     help: false,
@@ -35,6 +37,8 @@ function parseArgs(argv) {
       args.rows = argv[++i];
     } else if (arg === "--sample-count") {
       args.sampleCount = parsePositiveInteger(argv[++i], "--sample-count");
+    } else if (arg === "--dynamics-step-fraction") {
+      args.dynamicsStepFraction = parsePositiveNumber(argv[++i], "--dynamics-step-fraction");
     } else if (arg === "--pretty") {
       args.pretty = true;
     } else if (arg === "--out") {
@@ -54,6 +58,8 @@ Options:
   --config PATH         Tier 0 grid config. Defaults to tier0.metadata.config when present.
   --rows VALUE          "ready", "all", or a comma-separated row list. Defaults to "ready".
   --sample-count N      Carrier replay samples across the required source-time interval. Defaults to ${DEFAULT_SAMPLE_COUNT}.
+  --dynamics-step-fraction VALUE
+                       Bounded one-step diagnostic fraction of T_k. Defaults to ${DEFAULT_DYNAMICS_STEP_FRACTION}.
   --out PATH            Write JSON output to a file instead of stdout.
   --pretty              Pretty-print JSON.
   --help                Show this help.
@@ -72,6 +78,14 @@ function parsePositiveInteger(value, name) {
   const number = Number(value);
   if (!Number.isInteger(number) || number <= 1) {
     throw new Error(`Expected ${name} to be an integer greater than 1, got: ${value}`);
+  }
+  return number;
+}
+
+function parsePositiveNumber(value, name) {
+  const number = Number(value);
+  if (!Number.isFinite(number) || number <= 0) {
+    throw new Error(`Expected ${name} to be a positive number, got: ${value}`);
   }
   return number;
 }
@@ -141,6 +155,13 @@ function sub(a, b) {
 
 function scale(a, k) {
   return [a[0] * k, a[1] * k, a[2] * k];
+}
+
+function addTo(a, b) {
+  a[0] += b[0];
+  a[1] += b[1];
+  a[2] += b[2];
+  return a;
 }
 
 function dot(a, b) {
@@ -520,6 +541,166 @@ function rootReplayDiagnostics(roots, configResult) {
   };
 }
 
+function bodyLayer(bodyId) {
+  return bodyId.slice(0, 1);
+}
+
+function bodyPolarity(bodyId) {
+  return bodyId.slice(1);
+}
+
+function bodyCharge(bodyId) {
+  return CHARGE[bodyPolarity(bodyId)] ?? 0;
+}
+
+function speed(value) {
+  return norm(value);
+}
+
+function relationWeight(relation) {
+  return {
+    self: 0.5,
+    partner: 0.75,
+    inter_layer: 1,
+  }[relation] ?? 0.5;
+}
+
+function regularizationEta(row, tier0, configResult) {
+  return (
+    row.self_root_delay_window?.foldLayerDelay ??
+    tier0.tolerances?.selfRootFoldLayerDelay ??
+    configResult.config?.sampling?.rootTolerance ??
+    tier0.tolerances?.root ??
+    1e-6
+  );
+}
+
+function rootsAtObservationTime(roots, t) {
+  const tolerance = 1e-9;
+  return roots.filter((root) => Math.abs(root.t - t) <= tolerance);
+}
+
+function rootKickAccelerations(row, tier0, configResult, roots, observationTime) {
+  const values = rowValues(row);
+  const eta = regularizationEta(row, tier0, configResult);
+  const accelerations = Object.fromEntries(BODY_IDS.map((bodyId) => [bodyId, [0, 0, 0]]));
+  const selectedRoots = rootsAtObservationTime(roots, observationTime);
+  let invalidContributionCount = 0;
+
+  for (const root of selectedRoots) {
+    const receiver = bodyCatalog().find((body) => body.id === root.receiver);
+    const source = bodyCatalog().find((body) => body.id === root.source);
+    if (!receiver || !source || !Number.isFinite(root.delay) || !Number.isFinite(root.J)) {
+      invalidContributionCount += 1;
+      continue;
+    }
+    const receiverState = bodyState(receiver, values, observationTime);
+    const sourceState = bodyState(source, values, observationTime - root.delay);
+    const sourceToReceiver = sub(sourceState.position, receiverState.position);
+    const regularizedDistanceSquared = dot(sourceToReceiver, sourceToReceiver) + eta * eta;
+    const regularizedDistance = Math.sqrt(regularizedDistanceSquared);
+    const denominator = Math.max(regularizedDistanceSquared * regularizedDistance, Number.EPSILON);
+    const signedCharge = bodyCharge(root.receiver) * bodyCharge(root.source);
+    const jacobianWeight = 1 / Math.max(Math.abs(root.J), 1e-6);
+    const coefficient = relationWeight(root.relation) * signedCharge * jacobianWeight;
+    addTo(accelerations[root.receiver], scale(sourceToReceiver, coefficient / denominator));
+  }
+
+  return {
+    eta,
+    observation_time: observationTime,
+    root_count: selectedRoots.length,
+    invalid_contribution_count: invalidContributionCount,
+    accelerations,
+  };
+}
+
+function layerAverageSpeeds(states) {
+  return Object.fromEntries(
+    LAYER_ORDER.map((layer) => {
+      const layerBodies = POLARITIES.map((polarity) => `${layer}${polarity}`);
+      const values = layerBodies.map((bodyId) => speed(states[bodyId].velocity));
+      return [layer, values.reduce((sum, value) => sum + value, 0) / values.length];
+    })
+  );
+}
+
+function speedOrderingResidual(layerSpeeds, cF) {
+  return Math.max(
+    Math.max(0, (cF - layerSpeeds.I) / cF),
+    Math.abs(layerSpeeds.M - cF) / cF,
+    Math.max(0, (layerSpeeds.O - cF) / cF)
+  );
+}
+
+function speedOrderingPass(layerSpeeds, cF, tolerance) {
+  return speedOrderingResidual(layerSpeeds, cF) <= tolerance;
+}
+
+function oneStepDynamicsDiagnostic(row, tier0, configResult, roots, args) {
+  const period = row.closure_labels?.T_k ?? row.geometry?.commonPeriod;
+  const cF = configResult.config?.seaCell?.c_f ?? tier0.sea_cell?.c_f ?? 1;
+  const tolerance = configResult.config?.sampling?.speedTolerance ?? tier0.tolerances?.speed ?? 0.02;
+  const baseDt = Number.isFinite(period) ? period * args.dynamicsStepFraction : null;
+  const maxDeltaV = cF * args.dynamicsStepFraction;
+  const initialStates = finiteBodyStates(row, 0);
+  const accelerations = rootKickAccelerations(row, tier0, configResult, roots, 0);
+  const maxAcceleration = Math.max(...BODY_IDS.map((bodyId) => speed(accelerations.accelerations[bodyId])));
+  const boundedDt =
+    Number.isFinite(baseDt) && maxAcceleration > 0
+      ? Math.min(baseDt, maxDeltaV / maxAcceleration)
+      : baseDt;
+  const steppedStates = Object.fromEntries(
+    BODY_IDS.map((bodyId) => {
+      const initial = initialStates[bodyId];
+      const acceleration = accelerations.accelerations[bodyId];
+      const velocity = Number.isFinite(boundedDt)
+        ? add(initial.velocity, scale(acceleration, boundedDt))
+        : initial.velocity;
+      return [
+        bodyId,
+        {
+          position: initial.position,
+          velocity,
+        },
+      ];
+    })
+  );
+  const initialLayerSpeeds = layerAverageSpeeds(initialStates);
+  const steppedLayerSpeeds = layerAverageSpeeds(steppedStates);
+  const initialResidual = speedOrderingResidual(initialLayerSpeeds, cF);
+  const steppedResidual = speedOrderingResidual(steppedLayerSpeeds, cF);
+  const pass =
+    accelerations.root_count > 0 &&
+    accelerations.invalid_contribution_count === 0 &&
+    Number.isFinite(boundedDt) &&
+    speedOrderingPass(initialLayerSpeeds, cF, tolerance) &&
+    speedOrderingPass(steppedLayerSpeeds, cF, tolerance);
+  return {
+    status: pass ? "one-step-speed-ordering-retained" : "one-step-speed-ordering-failed",
+    schema_status: "provisional",
+    dynamics_scope: "single bounded root-weighted regularized step",
+    observation_time: 0,
+    formula:
+      "a_r = sum_s w_relation q_r q_s (x_s(t-delay)-x_r(t)) / ((|x_s(t-delay)-x_r(t)|^2 + eta^2)^(3/2) max(|J|,1e-6))",
+    regularization_eta: accelerations.eta,
+    requested_dt: baseDt,
+    bounded_dt: boundedDt,
+    max_delta_v: maxDeltaV,
+    max_acceleration: maxAcceleration,
+    tolerance,
+    root_count: accelerations.root_count,
+    invalid_contribution_count: accelerations.invalid_contribution_count,
+    initial_speed_ordering_residual: initialResidual,
+    stepped_speed_ordering_residual: steppedResidual,
+    initial_layer_speeds: initialLayerSpeeds,
+    stepped_layer_speeds: steppedLayerSpeeds,
+    speed_ordering_retained: pass,
+    acceptance_scope:
+      "This computes only a bounded one-step speed-ordering diagnostic; it does not prove residual convergence, secular-drift absence, root-ledger stability, Delta_k, or branch persistence.",
+  };
+}
+
 function sourceCoverageComplete(row, samples) {
   const period = row.closure_labels?.T_k ?? row.geometry?.commonPeriod;
   const maxDelay = row.root_ledger?.maxDelay ?? 0;
@@ -533,6 +714,7 @@ function continuationSourceRow(row, tier0, configResult, args) {
   const samples = carrierReplaySamples(row, args.sampleCount);
   const roots = configResult.error ? [] : enumerateCarrierRoots(row, tier0, configResult);
   const rootReplay = rootReplayDiagnostics(roots, configResult);
+  const dynamicsDiagnostic = oneStepDynamicsDiagnostic(row, tier0, configResult, roots, args);
   const coverageComplete = sourceCoverageComplete(row, samples);
   return {
     row: row.row,
@@ -563,13 +745,16 @@ function continuationSourceRow(row, tier0, configResult, args) {
       },
       root_replay: rootReplay,
     },
+    diagnostics: {
+      speed_ordering: dynamicsDiagnostic,
+    },
     samples,
     active_causal_root_ledger: roots,
     validation: {
       status_is_accepted_history_segment: false,
       root_ledger_stable_under_refinement: false,
       residuals_below_tolerance: false,
-      speed_ordering_retained: false,
+      speed_ordering_retained: dynamicsDiagnostic.speed_ordering_retained,
       no_secular_center_drift: false,
       Delta_k_positive: false,
       same_branch_persists_across_eta_ladder: false,
