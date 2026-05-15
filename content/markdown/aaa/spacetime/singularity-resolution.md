@@ -27,6 +27,42 @@ v_M=c_f,\quad v_O\to c_f.
 $$
 The boundary data $\partial\Omega$ record the surrounding Noether-Sea and effective exterior state. A viable singularity replacement must solve the alignment condition with finite boundary data in embedded, non-isolated settings, rather than relying on asymptotic flatness as an implicit support.
 
+### Trapped-Surface Comparison Pressure
+
+Penrose-style singularity theorems are useful here because they remove a misleading loophole: collapse failure cannot be dismissed merely by abandoning exact spherical symmetry. At the effective GR comparison layer, a trapped surface is detected by both future-directed null expansions becoming negative,
+$$
+\theta_+^{\mathrm{eff}}<0,\qquad \theta_-^{\mathrm{eff}}<0.
+$$
+That is a standard-theory warning that weak-field continuation has entered a generic strong-collapse regime.
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ response is not to import the singularity as ontology. The comparison target is instead
+$$
+\theta_+^{\mathrm{eff}}<0,\quad \theta_-^{\mathrm{eff}}<0
+\quad\Longrightarrow\quad
+F_H=0,\qquad \mathcal{R}_H(\Omega)<\infty
+$$
+for the corresponding compact strong-field region $\Omega$, after the effective variables are translated into native Noether-Sea boundary data. In plain terms, whenever the observer-level GR description says collapse has passed the generic trapped-surface threshold, the native model must enter a finite maximum-curvature or horizon-interface regime rather than requiring symmetry, a zero-volume endpoint, or an arbitrary branch choice.
+
+### Finite-Boundary-Data Regularity
+
+The useful comparison lesson from analytic singularity-removal programs is not an imported mirror boundary or complex-time ontology. It is the regularity criterion: a candidate strong-field replacement must keep the native variables finite and the continuation rule unambiguous in the regime where the effective metric description would otherwise diverge.
+
+For a compact strong-field region $\Omega$, a minimal diagnostic is
+$$
+\mathcal{R}_H(\Omega)
+=
+\sup_{\Omega}
+\left(
+|\rho_{\text{core}}(\mathbf{x},t)|
++
+\|\Sigma_{\text{medium}}(\mathbf{x},t)\|
++
+\|\mathbf{u}_{\text{medium}}(\mathbf{x},t)\|
+\right)
+<\infty,
+$$
+together with the horizon-interface condition $F_H=0$ and a finite Noether-core closure-label ensemble. This is a theorem target, not a definition of success: the strong-field model must show that finite boundary data determine a finite maximum-curvature replacement rather than a zero-volume endpoint or an arbitrary branch choice.
+
 ## Maximal Curvature vs Planck Scale
 
 The **inner binary** (maximal curvature, self-hit regime) is a stabilization outcome of wake dynamics. The **middle binary always rides field speed** ($v=c_f$), with **variable radius and frequency**; it serves as the **energy-storage fulcrum** for transfers across the tri-binary.

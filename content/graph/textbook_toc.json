@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1128
+      "sections": 1132
     }
   },
   "tocRoot": {
@@ -2912,6 +2912,14 @@
                     "markdownSection": "PMNS closure program (primary lepton integration)",
                     "sectionKey": "pmns closure program primary lepton integration",
                     "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Empirical Decision Gates",
+                    "markdownPath": "content/markdown/aaa/assemblies/fermions/neutrinos.md",
+                    "markdownSection": "Empirical Decision Gates",
+                    "sectionKey": "empirical decision gates",
+                    "headingLevel": 2
                   }
                 ]
               },
@@ -5600,6 +5608,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Scalar and Tensor Benchmark",
+                "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
+                "markdownSection": "Scalar and Tensor Benchmark",
+                "sectionKey": "scalar and tensor benchmark",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Planck-Alignment Boundary",
                 "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
                 "markdownSection": "Planck-Alignment Boundary",
@@ -6216,6 +6232,14 @@
                 "markdownPath": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
                 "markdownSection": "Coupled Interpretation Channels",
                 "sectionKey": "coupled interpretation channels",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "DESI-Era Data-Product Gate",
+                "markdownPath": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
+                "markdownSection": "DESI-Era Data-Product Gate",
+                "sectionKey": "desi era data product gate",
                 "headingLevel": 2
               },
               {
@@ -8071,6 +8095,14 @@
                 "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
                 "markdownSection": "General Relativity and Quantum Theory",
                 "sectionKey": "general relativity and quantum theory",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "AdS Control and de Sitter Reality",
+                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+                "markdownSection": "AdS Control and de Sitter Reality",
+                "sectionKey": "ads control and de sitter reality",
                 "headingLevel": 2
               },
               {
@@ -10003,10 +10035,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Ed Witten (1951–) - String Theory",
+                    "title": "Ed Witten (1951–), Leonard Susskind (1940–), and String Theory",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Ed Witten (1951–) - String Theory",
-                    "sectionKey": "ed witten 1951 string theory",
+                    "markdownSection": "Ed Witten (1951–), Leonard Susskind (1940–), and String Theory",
+                    "sectionKey": "ed witten 1951 leonard susskind 1940 and string theory",
                     "headingLevel": 3
                   },
                   {

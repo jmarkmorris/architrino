@@ -252,6 +252,8 @@ This is an expanding spatial sphere through the absolute-time stack, not a funda
 
 The causal wake geometry does not forbid an architrino from having $v>c_f$. It forbids backward-time influence. This separates kinematic freedom from dynamical stability: the Euclidean substrate places no kinematic speed limit on a point architrino, but that freedom does not imply that an assembly can be carried through the same regime intact.
 
+In effective wave language, causality is often diagnosed by front velocity rather than group or phase velocity. The substrate statement is sharper: the causal front is the first nonzero causal-wake support in absolute time. Observer-level group-speed, phase-speed, or packet-reshaping effects cannot override the support condition above; they are summaries of how an already causal wake record is sampled by assemblies.
+
 For standard-matter assemblies, the effective relativistic speed limit is a dynamical consequence of assembly structure. As an assembly's drift speed approaches $c_f$, its constituents increasingly outrun the potential interactions that normally maintain internal closure, so the leading side of the assembly encounters a strongly asymmetric wake ledger while trailing structure remains tied to older path-history contributions. The result is severe mechanical deformation rather than a substrate-level prohibition. The "speed of light" limit for macroscopic assemblies is therefore a structural integrity barrier: an assembly-level failure mode under extreme asymmetric self-interaction, not a curvature boundary or geometric wall in absolute timespace.
 
 ## Coordinates and Forbidden Transformations

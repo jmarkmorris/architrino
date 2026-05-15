@@ -113,10 +113,10 @@ must be observationally negligible in validated regimes. This is not optional. I
 
 The medium picture must recover the observed near-luminal propagation of gravitational disturbances:
 $$
-\left|\frac{v_{\mathrm{GW}}-c}{c}\right| \ll 1.
+\left|\frac{v_{\mathrm{GW}}-c_0}{c_0}\right| \ll 1.
 $$
 
-In repo terms, gravitational waves are propagating collective disturbances of the Noether Sea. Their speed, dispersion, and polarization content must remain consistent with current timing bounds. Any large medium-dispersion signature in already-tested bands is excluded.
+In repo terms, gravitational waves are propagating collective disturbances of the Noether Sea. Their speed, dispersion, and polarization content must remain consistent with current timing bounds and detector-mode constraints. Any large medium-dispersion signature or unsuppressed scalar/vector/longitudinal response in already-tested bands is excluded. A cosmological-scale finite-range response must therefore decouple from the weak-field gravitational-wave channel through the same constitutive coefficient record, not through an observational-channel-specific patch.
 
 ## Strong-Field Regime
 
@@ -140,7 +140,7 @@ This chapter is closed only if the spacetime branch can demonstrate all of the f
 3. light bending,
 4. 1PN orbital corrections,
 5. negligible preferred-frame leakage in tested regimes,
-6. gravitational-wave speed compatibility.
+6. gravitational-wave speed, dispersion, and two-mode polarization compatibility.
 
 The same coefficient set must survive all six.
 
@@ -150,7 +150,7 @@ The GR-observables interface fails if any of the following occur:
 
 - redshift, lensing, and Shapiro delay require different constitutive parameter choices,
 - preferred-frame leakage exceeds the bounds recorded in [constraint-ledger.md](../validation/constraint-ledger.md),
-- gravitational-wave propagation departs from observational timing bounds in validated regimes,
+- gravitational-wave propagation departs from observational timing, dispersion, or polarization bounds in validated regimes,
 - or the weak-field map cannot recover the GR coefficients to the required precision while remaining consistent with the rest of the substrate story.
 
 In compact form, the required acceptance set is

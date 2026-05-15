@@ -520,29 +520,29 @@ If the framework works, the historical result is not that prior thinkers were si
 ---
 
 ### **Roger Penrose (1931–) — Conformal Cyclic Cosmology**
-**Subject:** Roger Penrose (1931–), mathematical physicist known for geometric realism, twistor programs, and conformal-cyclic cosmology.
+**Subject:** Roger Penrose (1931–), mathematical physicist known for geometric realism, singularity theorems, black-hole area reasoning, twistor programs, conformal-cyclic cosmology, and gravitational state-reduction proposals.
 
 **Era / Context**: Penrose's work spans late 20th to 21st century foundational debates where GR, quantum theory, and cosmology lacked a single accepted substrate closure.
 
 **Primary Domain**: Mathematical relativity, quantum-gravity-adjacent foundations, and cosmology.
 
-**What Problem They Were Trying To Solve:** He sought deep geometric structures capable of unifying global cosmological behavior and microphysical coherence without surrendering physical realism.
+**What Problem They Were Trying To Solve:** He sought deep geometric structures capable of unifying generic strong-field collapse, global cosmological behavior, and microphysical coherence without surrendering physical realism.
 
-**What They Got Right:** Penrose correctly treated geometry as physically meaningful and pushed for structural rigor beyond instrumental fitting.
+**What They Got Right:** Penrose correctly treated geometry as physically meaningful and pushed for structural rigor beyond instrumental fitting. His singularity and area-theorem work remains a strong-field benchmark, and his state-reduction program keeps pressure on the fact that standard quantum theory has no native finite-time account of record formation in massive-superposition regimes.
 
-**What They Got Wrong or Overstated:** He likely overstated specific geometric primitives (twistor-level ontology, CCC boundary structure) as fundamental rather than as potentially high-value representational layers.
+**What They Got Wrong or Overstated:** He likely overstated specific geometric primitives (twistor-level ontology, CCC boundary structure, and gravitational state reduction) as fundamental rather than as potentially high-value representational layers or external benchmarks.
 
-**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially aligned and reinterpreted, with realism retained but geometric primitives relocated to effective description.
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially aligned and reinterpreted. Realism, generic-collapse discipline, horizon-area pressure, and massive-superposition benchmarks are retained, while geometric primitives and gravitational collapse are relocated to effective description or comparison status.
 
-**Transition Relevance**: Penrose is useful during transition for rigorous geometric diagnostics and for generating falsifiable cosmological contrasts against substrate-first models.
+**Transition Relevance**: Penrose is useful during transition for rigorous geometric diagnostics and for generating falsifiable contrasts against substrate-first models: CMB smoothness, trapped-surface collapse, horizon-area bookkeeping, and Penrose-Diosi mass-displacement tests all become pressure points rather than imported doctrine.
 
 **Long-Term Relevance**: Long-term relevance is moderate to high as mathematical toolkit and conceptual stress-test, but not as final ontology.
 
-**Core Belief**: Deep geometric structures such as conformal-cyclic behavior and twistor formulations may encode fundamental organization of physical reality.
+**Core Belief**: Deep geometric structures such as conformal-cyclic behavior, twistor formulations, and gravity-linked state reduction may encode fundamental organization of physical reality.
 
-**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains Penrosean realism and formal rigor while treating CCC/twistors as possible effective mappings over architrino-driven assembly dynamics rather than substrate primitives.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains Penrosean realism and formal rigor while treating CCC/twistors as possible effective mappings over architrino-driven assembly dynamics rather than substrate primitives. Penrose-Diosi collapse is retained only as an external massive-superposition benchmark for finite-time threshold resolution.
 
-**Legacy Shift**: Penrose remains a high-value geometric interlocutor whose specific ontological bets are recast as advanced representation schemes.
+**Legacy Shift**: Penrose remains a high-value geometric interlocutor whose specific ontological bets are recast as advanced representation schemes, standard-theory benchmarks, and validation pressures.
 
 ---
 
@@ -600,8 +600,8 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Ed Witten (1951–) - String Theory**
-**Subject:** String theory (Witten, Polchinski, and broad program contributors), a unification framework using extended objects and high-dimensional structure.
+### **Ed Witten (1951–), Leonard Susskind (1940–), and String Theory**
+**Subject:** String theory (Witten, Susskind, Polchinski, and broad program contributors), a unification framework using extended objects, holographic reasoning, and high-dimensional structure.
 
 **Era / Context**: String theory rose as a candidate UV-complete unification program when particle physics and gravity lacked a common mathematically controlled substrate.
 
@@ -609,13 +609,13 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **What Problem They Were Trying To Solve:** It sought to unify forces and matter, remove UV inconsistencies, and provide a coherent quantum-gravitational framework with broad explanatory reach.
 
-**What They Got Right:** The program correctly emphasized consistency constraints, cross-domain unification pressure, and deep mathematical control as serious requirements for a final framework.
+**What They Got Right:** The program correctly emphasized consistency constraints, cross-domain unification pressure, and deep mathematical control as serious requirements for a final framework. Susskind's holographic and black-hole information work also made horizon entropy, unitarity, and finite-access bookkeeping unavoidable comparison targets for any quantum-gravity replacement.
 
-**What They Got Wrong or Overstated:** It likely overstated extra-dimensional/string/brane primitives and tolerated underconstrained landscape multiplicity that weakens ontological definiteness.
+**What They Got Wrong or Overstated:** It likely overstated extra-dimensional/string/brane primitives and tolerated underconstrained landscape multiplicity that weakens ontological definiteness. The strongest internal caution is that the best-controlled precise versions remain tied to special features, especially supersymmetry and anti-de Sitter boundary control, that do not directly describe the observed de Sitter-like, non-supersymmetric world.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Substantially contradicted at ontology level, with selective methodological reuse.
 
-**Transition Relevance**: String theory remains a useful foil during transition for checking whether a simpler substrate can recover comparable explanatory breadth without ontological inflation.
+**Transition Relevance**: String theory remains a useful foil during transition for checking whether a simpler substrate can recover comparable explanatory breadth without ontological inflation. Its real-world gap also supports crisis-governance scrutiny: mathematical existence proof is not the same as observed-universe implementation.
 
 **Long-Term Relevance**: Long-term relevance is mainly mathematical and comparative, not foundational, in a 3D substrate-first architecture.
 

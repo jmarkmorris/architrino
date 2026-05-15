@@ -2615,6 +2615,45 @@ $$
 
 independent of $\hat{\mathbf{m}}_B$, and similarly on the other side. No usable signal, energy transfer, or causal wake may pass between spacelike-separated detectors during the measurement. The Bell burden is therefore not solved by adding a faster-than-$c_f$ influence.
 
+For simulation and proof packets, this final gate should be reported with three residuals rather than with a single success label:
+
+$$
+\Delta_{\mathrm{MI}}^{\mathrm{prov}}
+=
+\sup_{\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B}
+D_{\mathrm{TV}}\!\left(
+\rho_{AB}^{\mathrm{prov}}(\lambda\mid\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B),
+\rho_{AB}^{\mathrm{prov}}(\lambda)
+\right),
+$$
+
+$$
+\Delta_{\mathrm{NS}}^{A}
+=
+\sup_{\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B,\hat{\mathbf{m}}'_B}
+\sum_a
+\left|
+P(a\mid \hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
+-
+P(a\mid \hat{\mathbf{m}}_A,\hat{\mathbf{m}}'_B)
+\right|,
+$$
+
+with the analogous $\Delta_{\mathrm{NS}}^{B}$, and
+
+$$
+\Delta_{\mathrm{Bell}}
+=
+\sup_{\theta\in[0,\pi]}
+\left|
+E_{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)+\cos\theta
+\right|.
+$$
+
+The required outcome is small $\Delta_{\mathrm{Bell}}$ and vanishing no-signaling residuals while $\Delta_{\mathrm{MI}}^{\mathrm{prov}}$ remains zero within tolerance. If fitting the Bell curve requires setting-dependent provenance preparation, the angular-momentum ledger has not supplied the intended $\mathbb{A}\mathbb{A}\mathbb{A}$ closure.
+
+Here $D_{\mathrm{TV}}$ is total-variation distance on the pair-provenance distribution.
+
 The correct development order is:
 
 1. derive the delayed total angular-momentum functional for architrino dynamics;

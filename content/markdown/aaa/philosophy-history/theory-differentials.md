@@ -1791,7 +1791,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Massive Gravity is a theory in the gravity and geometry domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
+Massive Gravity modifies the relativistic spin-2 description by giving the gravitational field a finite range or mass-like term. Its strongest use here is comparative: it records what goes wrong when one tries to weaken gravity on large scales while still recovering local GR, stable perturbations, and observed gravitational-wave behavior.
 
 #### 2. Ontological Commitments
 
@@ -1799,11 +1799,11 @@ Massive Gravity carries specific ontological commitments even when it is present
 
 #### 3. What This Concept Gets Right
 
-Massive Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
+Massive Gravity gets something durable right by turning large-scale gravity modification into a tightly constrained mathematical problem. The vDVZ discontinuity, nonlinear recovery mechanisms, Boulware-Deser ghost problem, Higuchi-type de Sitter bounds, and gravitational-wave mode constraints are not ontology for this project, but they are valuable benchmark failures. Any $\mathbb{A}\mathbb{A}\mathbb{A}$ weakening or screening channel must show how local GR recovery, bounded energy, stable mode counting, and two-mode near-luminal gravitational-wave propagation survive.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
-In the neutral comparative stack, Massive Gravity sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Partially Recovered**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
+In the neutral comparative stack, Massive Gravity sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Partially Recovered**: the finite-range mathematics and no-go lessons are retained as comparison gates, while the massive graviton is not promoted to substrate content.
 
 #### 5. Transition-Period Relevance
 
@@ -1815,11 +1815,11 @@ In a mature stack the successful parts survive as effective geometry or constitu
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Massive Gravity is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Massive Gravity is that its native variables are too easily promoted from successful descriptors into final ontology. A second tension is technical: large-scale weakening often threatens the same constraints that make gravity locally successful. If a comparison model needs a ghost-like mode, order-one solar-system deviation, unstable de Sitter branch, or unconstrained extra gravitational-wave polarization, it is a warning label rather than a candidate import.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive a scale-dependent Noether-Sea response that can mimic finite-range weakening in cosmology while recovering the GR limit in validated local and gravitational-wave regimes. The useful target is therefore a constitutive equation for $G_{\text{eff}}(a,k)$ and its local-recovery factor, not a fundamental graviton mass.
 
 ---
 
@@ -2873,7 +2873,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Conformal Cyclic Cosmology is a theory in the cyclic conformal history domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
+Conformal Cyclic Cosmology is a theory in the cyclic conformal history domain. It treats each apparent big-bang boundary as conformally related to a remote future in which mass and scale become physically irrelevant. In the comparative stack it is best read as a mathematically controlled cosmology program and a source of smoothness constraints, not as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -2881,15 +2881,15 @@ Conformal Cyclic Cosmology carries specific ontological commitments even when it
 
 #### 3. What This Concept Gets Right
 
-Conformal Cyclic Cosmology gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
+Conformal Cyclic Cosmology gets something durable right by separating a data-facing problem from a standard interpretation. The smooth early effective record, the CMB horizon/smoothness burden, the low effective gravitational free-mode content of the early universe, and the observed positive late-time acceleration are real pressures that any serious replacement must preserve. Its conformal machinery is valuable as comparison mathematics only after those observables have been separated from the eon-to-eon ontology.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
-In the neutral comparative stack, Conformal Cyclic Cosmology sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Recoverable Only After Reinterpretation**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
+In the neutral comparative stack, Conformal Cyclic Cosmology sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes** and to the cosmology validation layer. The relation type is **Recoverable Only After Reinterpretation**: CMB smoothness, scalar/tensor bounds, positive late-time acceleration, and long-history comparison pressure survive, while conformal eons and boundary matching do not become substrate primitives.
 
 #### 5. Transition-Period Relevance
 
-This remains crucial during migration because cosmological fit pipelines, population models, and expansion-history summaries are the main way legacy data stay in play while deeper ontology is reworked. For Conformal Cyclic Cosmology specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
+This remains crucial during migration because cosmological fit pipelines, population models, and expansion-history summaries are the main way legacy data stay in play while deeper ontology is reworked. For Conformal Cyclic Cosmology specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience. Its most useful near-term role is to sharpen the question of why the effective early record is smooth without letting an external conformal-continuation story choose the answer.
 
 #### 6. Long-Term Relevance
 
@@ -2897,11 +2897,11 @@ In a mature stack only the empirically successful large-scale summaries survive,
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Conformal Cyclic Cosmology is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Conformal Cyclic Cosmology is that its native variables are too easily promoted from successful descriptors into final ontology. A second tension is evidential: proposed pre-eon signals or conformal boundary traces remain underdetermined unless they are cleanly separated from standard CMB statistics, foregrounds, and source-model freedom. Until those tensions are resolved, the concept cannot function as ultimate explanation even if it remains useful as a comparison framework.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. The concrete reduction target is a single Noether-Sea history that reproduces CMB smoothness, TT/TE/EE, blackbody behavior, scalar/tensor bounds, late-time acceleration, and redshift handoff without importing conformal eons as ontology.
 
 ---
 

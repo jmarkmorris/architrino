@@ -55,6 +55,18 @@ $$
 $$
 to leading order (higher-order dispersive corrections are constitutive and model-dependent).
 
+Finite-range comparison models may introduce gravitational-wave dispersion, but here that is only a deviation diagnostic. Define the group speed
+$$
+v_{\mathrm{g,GW}}\equiv\frac{\partial\omega}{\partial k}.
+$$
+In validated frequency bands the constitutive map must satisfy
+$$
+\left|\frac{v_{\mathrm{g,GW}}-c_0}{c_0}\right|<\epsilon_{\mathrm{GW}},
+\qquad
+\left|\frac{\partial^2\omega}{\partial k^2}\right|_{\mathrm{band}}\leq\epsilon_{\mathrm{disp}},
+$$
+with the integrated phase drift across the source distance below the detector residual bound. A finite-range cosmological response is not acceptable if it leaks into already-tested gravitational-wave timing as measurable dispersion.
+
 ## Polarization Content
 
 In the repo-wide spin taxonomy, this is the effective **spin-2 / tensor** channel: the wave is not a scalar breathing mode or a single-axis vector mode, but a transverse-traceless deformation carrying quadrupolar shape data.
@@ -66,6 +78,12 @@ h_+(t,\mathbf{x}),\qquad h_\times(t,\mathbf{x}).
 $$
 
 *Derivation sketch:* Standard counting in Lorenz gauge plus TT projection gives 10 components $\to$ gauge/constraint reduction $\to$ two physical helicity-2 modes, provided the effective-metric gauge structure is recovered by the constitutive map.
+
+Any scalar, vector, or longitudinal gravitational-wave response is therefore an effective deviation to be bounded, not a new default channel:
+$$
+\frac{\mathcal{P}_{\mathrm{extra}}}{\mathcal{P}_{\mathrm{TT}}}<\epsilon_{\mathrm{pol}}.
+$$
+The numerator collects non-TT detector power after known instrumental and astrophysical residuals are removed.
 
 ## Energy Flux
 

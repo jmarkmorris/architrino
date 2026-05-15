@@ -253,6 +253,72 @@ $$
 
 The formal observables remain standard; in practice this includes TT/TE/EE spectra (with damping-tail and lensing behavior), with $C_\ell$ as compact notation.
 
+### Scalar and Tensor Closure Target
+
+The scalar/tensor layer is an observable gate, not an origin-story selector. Whether the source story is primordial, distributed, or recycling-based, a candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ CMB record $\theta$ must reproduce the scalar perturbation spectrum and avoid an excessive tensor contribution using the same Noether-Sea history that later supplies TT/TE/EE, damping, lensing, and redshift handoff.
+
+Use the comparison parameterization
+$$
+\mathcal{P}_{\mathcal{R}}^{\theta}(k)
+=
+A_s^{\theta}
+\left(\frac{k}{k_*}\right)^{
+n_s^{\theta}-1+\frac12\alpha_s^{\theta}\ln(k/k_*)
+},
+\qquad
+r^{\theta}(k_*)
+=
+\frac{\mathcal{P}_{T}^{\theta}(k_*)}{\mathcal{P}_{\mathcal{R}}^{\theta}(k_*)}.
+$$
+
+Here $A_s^{\theta}$ is the scalar amplitude, $n_s^{\theta}$ the scalar tilt, $\alpha_s^{\theta}$ an optional running term, and $r^{\theta}$ the tensor-to-scalar comparison ratio. The tensor condition is a bound,
+$$
+r^{\theta}(k_*)\le r_{\max},
+$$
+with $r_{\max}$ supplied by the current observational analysis being used for the comparison. This keeps tensor non-detection as a pressure on source models without turning any particular inflationary or anti-inflationary interpretation into corpus doctrine.
+
+A compact residual for CMB closure is
+$$
+\mathcal{R}_{\mathrm{CMB}}(\theta)
+=
+\sum_{X\in\{TT,TE,EE\}}\sum_{\ell}
+\frac{(C_{\ell,X}^{\theta}-C_{\ell,X}^{\mathrm{obs}})^2}{\sigma_{\ell,X}^2}
++
+\frac{(A_s^{\theta}-A_s^{\mathrm{obs}})^2}{\sigma_{A_s}^2}
++
+\frac{(n_s^{\theta}-n_s^{\mathrm{obs}})^2}{\sigma_{n_s}^2}
++
+\lambda_T\max(0,r^{\theta}-r_{\max})^2.
+$$
+
+The closure target is one medium-and-assembly model with bounded $\mathcal{R}_{\mathrm{CMB}}$, not a separate fit for each observable family.
+
+The same gate should include the smoothness pressure usually hidden inside origin-story language. Conformal-cosmology comparisons are useful here only because they isolate a real burden: the effective early record must have a very small free gravitational-mode contribution compared with the complicated strong-field behavior expected near generic collapse. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not import conformal continuation as ontology. It preserves the observable requirement by asking the CMB-producing Noether-Sea history to suppress effective Weyl-like curvature in the decoupling comparison layer.
+
+For an effective metric reconstruction $g_{\theta}^{\text{eff}}$ associated with a candidate history $\theta$, one useful comparison residual is
+$$
+\mathcal{R}_{\mathrm{smooth}}(\theta)
+=
+\frac{
+\int_{\Sigma_{\mathrm{dec}}}
+\left\|C_{\alpha\beta\gamma\delta}(g_{\theta}^{\text{eff}})\right\|^2\,dV_{\mathrm{eff}}
+}{
+\int_{\Sigma_{\mathrm{dec}}}
+\left\|R_{\alpha\beta}(g_{\theta}^{\text{eff}})\right\|^2\,dV_{\mathrm{eff}}
++\epsilon_R
+}.
+$$
+
+This is not a statement that the Euclidean void is curved. It is an observer-level diagnostic on the effective reconstruction used to compare with CMB data. A stronger closure criterion is therefore
+$$
+\mathcal{R}_{\mathrm{CMB}}(\theta)
++
+\lambda_{\mathrm{smooth}}\mathcal{R}_{\mathrm{smooth}}(\theta)
+\le
+\varepsilon_{\mathrm{CMB}},
+$$
+with $\lambda_{\mathrm{smooth}}$ and $\varepsilon_{\mathrm{CMB}}$ declared by the data release or simulation protocol. Passing this test would mean that the same medium-and-assembly history recovers TT/TE/EE, blackbody behavior, scalar/tensor bounds, and the low effective gravitational free-mode budget without changing ontology between modules.
+
 ### Forward Prediction Map
 
 Use one continuous causal map:

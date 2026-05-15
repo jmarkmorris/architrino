@@ -34,7 +34,9 @@ Here we catalogue how coupling between macroscopic bodies and the Noether Sea ca
 
 The propagation speed of the density waves in the Sea must align with the measured gravitational-wave velocity, so this section records the tolerance within which new physics can coexist with GW timing data without contradicting the LIGO/Virgo baseline.
 
-* **Constraint** – gravitational waves, modeled as density ripples in the Sea, must travel within $|v_{GW}-c|/c < 10^{-15}$ of the local light speed to preserve consistency with LIGO/Virgo timing.
+* **Constraint** – gravitational waves, modeled as density ripples in the Sea, must travel within $|v_{\mathrm{GW}}-c_0|/c_0 < 10^{-15}$ of the local light-channel speed to preserve consistency with LIGO/Virgo timing.
+* **Mode and Dispersion Gate** – finite-range or medium-compliance corrections must keep accumulated dispersion and any scalar, vector, or longitudinal gravitational-wave detector response below the residual bounds for the validated band.
+* **Failure Condition** – a cosmological-scale weakening channel fails if it predicts measurable gravitational-wave dispersion, an unsuppressed non-TT mode, or a speed offset in the same regime where the weak-field metric map is supposed to recover GR.
 
 ### Euclidean vs. Metric Pathing (The Refraction Mapping)
 
@@ -50,6 +52,15 @@ We require that the proposed mechanical slowing induced by Noether-core density 
 
 * **Constraint** – reproduce GPS clock offsets (38 μs/day), the Pound–Rebka redshift, and height-resolved optical-clock redshift with $\Delta\nu/\nu\approx gL/c_0^2$; this includes the approximate scales $1.1\times10^{-19}$ across $1\,\mathrm{mm}$ and $3.6\times10^{-17}$ across $33\,\mathrm{cm}$ near Earth's surface.
 * **Mechanism** – mechanical slowing of tri-binary orbital frequencies couples to the local Noether-core density and Noether-Sea delay factor, generating the observed dilation without changing the constitutive map used for other weak-field observables.
+
+### CMB Scalar/Tensor Gate
+
+The cosmology branch must recover the CMB scalar and tensor observables as data products before any source interpretation is promoted.
+
+* **Constraint** – one medium-and-assembly record must recover TT/TE/EE spectra, damping, lensing, blackbody preservation, scalar amplitude $A_s$, scalar tilt $n_s$, and the tensor bound $r\le r_{\max}$ without changing Noether-Sea state variables between the CMB, BBN, expansion, and growth modules.
+* **Observable** – the CMB comparison residual $\mathcal{R}_{\mathrm{CMB}}(\theta)$ defined in [CMB](../cosmology/CMB.md) must remain within the declared tolerance for the data release being used.
+* **Smoothness Check** – the same record must also bound the effective smoothness residual $\mathcal{R}_{\mathrm{smooth}}(\theta)$, so early-universe smoothness is tested as low observer-level gravitational free-mode content rather than assumed from an imported origin story.
+* **Failure Condition** – if the framework can fit the source story only by retuning scalar power, tensor contribution, blackbody recovery, or TT/TE/EE transfer independently, the cosmology closure fails at the observational layer.
 
 ### Closure Program Tracking Hooks
 

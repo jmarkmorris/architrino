@@ -51,6 +51,23 @@ For $S_8$:
 - scale-dependent medium response and partial sector coupling can reduce late-time growth amplitude,
 - growth suppression mechanisms must remain consistent with CMB-derived early-time loading.
 
+## DESI-Era Data-Product Gate
+
+The 2025 DESI first-three-year BAO results strengthen the comparison pressure for time-varying dark-energy fits when BAO measurements are combined with CMB, supernova, and weak-lensing data. As of April 2026, DESI has completed the observations for its originally planned five-year survey, but the first dark-energy results from the full five-year dataset are expected in 2027. This is a data-product signal, not an ontology claim. The useful requirement is to preserve the separable observables: BAO distances, supernova residual handling, CMB anchoring, weak-lensing growth, and $f\sigma_8$ growth.
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ question is whether one Noether-Sea medium history can satisfy
+$$
+\mathcal{C}_{H_0}
+\cap
+\mathcal{C}_{S_8}
+\cap
+\mathcal{C}_{\mathrm{BAO/SN/CMB}}
+\cap
+\mathcal{C}_{\mathrm{growth}}
+\neq \varnothing
+$$
+without assigning separate medium states to each inference pipeline. If the preferred $w(a)$ trend requires one state for distance data and another for growth, the cosmology branch has only hidden the tension.
+
 ## Dipole and Bulk-Flow Diagnostic
 
 The same medium-relaxation model that shifts local $H$ inference should also predict where directional residuals appear. A compact test is to compare the line-of-sight Hubble residual with the matter-dipole residual from source catalogues:
