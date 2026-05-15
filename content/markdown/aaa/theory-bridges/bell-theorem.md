@@ -145,6 +145,20 @@ $$
 
 while still preserving no-signaling. The mechanism for that failure must be derived from the angular-momentum ledger and the detector coupling, not inserted by terminology.
 
+A shared past is not enough by itself. If a declared common-past record $C$ screens the two wings into independent one-wing laws while measurement independence and no-signaling hold, the model has re-entered the Bell-local class. A useful residual for this check is
+
+$$
+\Delta_{\mathrm{fact}}(C)
+=
+\sup_{\hat{m}_A,\hat{m}_B}
+D_{\mathrm{TV}}\!\left(
+P(a,b\mid \hat{m}_A,\hat{m}_B,C),
+P(a\mid \hat{m}_A,C)P(b\mid \hat{m}_B,C)
+\right).
+$$
+
+Here $C$ is not a new substrate object; it is the retained common-past or pair-provenance record used by the proposed Bell closure. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ route must explain why the declared provenance and apparatus-response compression leaves a nonzero factorization residual while keeping the measurement-independence and no-signaling residuals below tolerance. If $\Delta_{\mathrm{fact}}(C)$ vanishes for the completed hidden-variable record, the closure has not escaped the theorem.
+
 ### Bell Closure Diagnostics
 
 The Bell gate should be checked by separate residuals, because different failures mean different physics. A model may fail by correlating the preparation variable with the settings, by allowing a signaling marginal, or by producing the wrong correlation curve. These are not interchangeable.
