@@ -1642,6 +1642,205 @@ function carrierReplayResidualAndCenterDriftDiagnostic(row, tier0, configResult,
   };
 }
 
+function sortedRootObservationTimes(row, roots) {
+  const period = row.closure_labels?.T_k ?? row.geometry?.commonPeriod ?? null;
+  const tolerance = rootTimeTolerance(row);
+  const times = uniqueRootTimes(
+    roots.filter((root) => Number.isFinite(root.t) && root.t >= -tolerance && (!Number.isFinite(period) || root.t < period)),
+    tolerance
+  );
+  if (times.length === 0 || Math.abs(times[0]) > tolerance) {
+    times.unshift(0);
+  }
+  return times;
+}
+
+function cloneStates(states) {
+  return Object.fromEntries(
+    Object.entries(states).map(([bodyId, state]) => [
+      bodyId,
+      {
+        position: [...state.position],
+        velocity: [...state.velocity],
+      },
+    ])
+  );
+}
+
+function centerGaugeFromStates(states) {
+  return {
+    position: averageVectors(BODY_IDS.map((bodyId) => states[bodyId].position)),
+    velocity: averageVectors(BODY_IDS.map((bodyId) => states[bodyId].velocity)),
+  };
+}
+
+function meanSquaredSpeed(states) {
+  return BODY_IDS.reduce((sum, bodyId) => sum + dot(states[bodyId].velocity, states[bodyId].velocity), 0) / BODY_IDS.length;
+}
+
+function finiteStateMap(states) {
+  return BODY_IDS.every((bodyId) => {
+    const state = states[bodyId];
+    return (
+      state &&
+      state.position.every(Number.isFinite) &&
+      state.velocity.every(Number.isFinite)
+    );
+  });
+}
+
+function maxEndpointStateDrift(states, referenceStates, scales) {
+  let maxPositionDrift = 0;
+  let maxVelocityDrift = 0;
+  for (const bodyId of BODY_IDS) {
+    maxPositionDrift = Math.max(maxPositionDrift, norm(sub(states[bodyId].position, referenceStates[bodyId].position)));
+    maxVelocityDrift = Math.max(maxVelocityDrift, norm(sub(states[bodyId].velocity, referenceStates[bodyId].velocity)));
+  }
+  return {
+    max_position_drift: maxPositionDrift,
+    max_velocity_drift: maxVelocityDrift,
+    max_normalized_position_drift: maxPositionDrift / scales.position,
+    max_normalized_velocity_drift: maxVelocityDrift / scales.velocity,
+  };
+}
+
+function frozenRootOnePeriodDriftDiagnostic(row, tier0, configResult, roots, samples) {
+  const period = row.closure_labels?.T_k ?? row.geometry?.commonPeriod ?? null;
+  const config = carrierReplayConfig(tier0, configResult.config);
+  const cF = config.seaCell.c_f;
+  const speedTolerance = config.sampling.speedTolerance ?? tier0.tolerances?.speed ?? 0.02;
+  const scales = carrierReplayScales(row, samples, cF);
+  const observationTimes = sortedRootObservationTimes(row, roots);
+  const initialStates = finiteBodyStates(row, 0);
+  const endpointReferenceStates = Number.isFinite(period) ? finiteBodyStates(row, period) : initialStates;
+  const states = cloneStates(initialStates);
+  const stepExamples = [];
+  let intervalCount = 0;
+  let rootObservationCount = 0;
+  let invalidContributionCount = 0;
+  let maxAcceleration = 0;
+  let maxStepDeltaV = 0;
+  let maxStepDeltaX = 0;
+  let maxStepDt = 0;
+
+  if (!Number.isFinite(period) || period <= 0) {
+    return {
+      schema: "frozen-root-one-period-drift/v1",
+      status: "frozen-root-one-period-drift-blocked",
+      failure_code: "period-unavailable",
+      acceptance_scope:
+        "Frozen-root one-period drift diagnostic only; does not establish accepted Tier 1 continuation or Floquet stability.",
+      validation_effect: {
+        status_is_accepted_history_segment: false,
+        Delta_k_positive: false,
+        same_branch_persists_across_eta_ladder: false,
+      },
+    };
+  }
+
+  for (let i = 0; i < observationTimes.length; i += 1) {
+    const t = observationTimes[i];
+    const nextT = i + 1 < observationTimes.length ? observationTimes[i + 1] : period;
+    const dt = nextT - t;
+    if (!Number.isFinite(dt) || dt <= 0) {
+      continue;
+    }
+    const accelerationRecord = rootKickAccelerations(row, tier0, configResult, roots, t);
+    rootObservationCount += accelerationRecord.root_count > 0 ? 1 : 0;
+    invalidContributionCount += accelerationRecord.invalid_contribution_count;
+    intervalCount += 1;
+    maxStepDt = Math.max(maxStepDt, dt);
+    for (const bodyId of BODY_IDS) {
+      const state = states[bodyId];
+      const acceleration = accelerationRecord.accelerations[bodyId];
+      const deltaV = scale(acceleration, dt);
+      const deltaX = add(scale(state.velocity, dt), scale(acceleration, 0.5 * dt * dt));
+      state.position = add(state.position, deltaX);
+      state.velocity = add(state.velocity, deltaV);
+      maxAcceleration = Math.max(maxAcceleration, speed(acceleration));
+      maxStepDeltaV = Math.max(maxStepDeltaV, speed(deltaV));
+      maxStepDeltaX = Math.max(maxStepDeltaX, norm(deltaX));
+    }
+    if (stepExamples.length < 10) {
+      stepExamples.push({
+        t,
+        dt,
+        root_count: accelerationRecord.root_count,
+        max_step_delta_v: maxStepDeltaV,
+        max_step_delta_x: maxStepDeltaX,
+      });
+    }
+  }
+
+  const endpointDrift = maxEndpointStateDrift(states, endpointReferenceStates, scales);
+  const endpointCenter = centerGaugeFromStates(states);
+  const referenceCenter = centerGaugeFromStates(endpointReferenceStates);
+  const initialSpeedEnergy = meanSquaredSpeed(initialStates);
+  const endpointSpeedEnergy = meanSquaredSpeed(states);
+  const speedEnergyDrift =
+    initialSpeedEnergy > 0 ? Math.abs(endpointSpeedEnergy - initialSpeedEnergy) / initialSpeedEnergy : null;
+  const endpointLayerSpeeds = layerAverageSpeeds(states);
+  const endpointSpeedOrderingResidual = speedOrderingResidual(endpointLayerSpeeds, cF);
+  const numericallyBounded =
+    finiteStateMap(states) &&
+    Number.isFinite(endpointDrift.max_normalized_position_drift) &&
+    Number.isFinite(endpointDrift.max_normalized_velocity_drift) &&
+    Number.isFinite(endpointSpeedOrderingResidual) &&
+    invalidContributionCount === 0;
+  const driftTolerances = {
+    endpoint_state_drift: 1,
+    endpoint_speed_ordering: speedTolerance,
+    speed_energy_drift: 1,
+  };
+  const dynamicallyBounded =
+    numericallyBounded &&
+    endpointDrift.max_normalized_position_drift <= driftTolerances.endpoint_state_drift &&
+    endpointDrift.max_normalized_velocity_drift <= driftTolerances.endpoint_state_drift &&
+    endpointSpeedOrderingResidual <= driftTolerances.endpoint_speed_ordering &&
+    (speedEnergyDrift === null || speedEnergyDrift <= driftTolerances.speed_energy_drift);
+
+  return {
+    schema: "frozen-root-one-period-drift/v1",
+    status: dynamicallyBounded ? "frozen-root-one-period-drift-recorded" : "frozen-root-one-period-drift-warning",
+    warning_code: dynamicallyBounded ? null : "frozen-root-kick-map-large-endpoint-drift",
+    dynamics_scope: "frozen_root_replay_kick_map_only",
+    acceptance_scope:
+      "Frozen-root one-period drift diagnostic only; does not establish accepted Tier 1 continuation, residual convergence, eta persistence, or Floquet stability.",
+    formula:
+      "x_{n+1}=x_n+v_n dt+0.5 a_root(t_n) dt^2, v_{n+1}=v_n+a_root(t_n) dt",
+    period,
+    observation_time_count: observationTimes.length,
+    interval_count: intervalCount,
+    root_observation_count: rootObservationCount,
+    invalid_contribution_count: invalidContributionCount,
+    scales,
+    drift_tolerances: driftTolerances,
+    maxima: {
+      max_step_dt: maxStepDt,
+      max_acceleration: maxAcceleration,
+      max_step_delta_v: maxStepDeltaV,
+      max_step_delta_x: maxStepDeltaX,
+      endpoint_speed_ordering_residual: endpointSpeedOrderingResidual,
+      speed_energy_drift: speedEnergyDrift,
+      endpoint_center_position_drift: norm(sub(endpointCenter.position, referenceCenter.position)) / scales.position,
+      endpoint_center_velocity_drift: norm(sub(endpointCenter.velocity, referenceCenter.velocity)) / scales.velocity,
+      ...endpointDrift,
+    },
+    endpoint_layer_speeds: endpointLayerSpeeds,
+    numerically_bounded: numericallyBounded,
+    dynamically_bounded: dynamicallyBounded,
+    step_examples: stepExamples,
+    validation_effect: {
+      status_is_accepted_history_segment: false,
+      residuals_below_tolerance: false,
+      no_secular_center_drift: false,
+      Delta_k_positive: false,
+      same_branch_persists_across_eta_ladder: false,
+      reason: "roots and accelerations are replayed from the Tier 0 carrier chart rather than recomputed from a direct Tier 1 delayed-dynamics trajectory",
+    },
+  };
+}
+
 function sourceCoverageComplete(row, samples) {
   const period = row.closure_labels?.T_k ?? row.geometry?.commonPeriod;
   const maxDelay = row.root_ledger?.maxDelay ?? 0;
@@ -1658,6 +1857,7 @@ function continuationSourceRow(row, tier0, configResult, args) {
   const dynamicsDiagnostic = oneStepDynamicsDiagnostic(row, tier0, configResult, roots, args);
   const rootRefinementDiagnostic = carrierRootLedgerRefinementDiagnostic(row, tier0, configResult, roots, args);
   const residualBudgetDiagnostic = carrierReplayResidualAndCenterDriftDiagnostic(row, tier0, configResult, samples, roots);
+  const frozenRootDriftDiagnostic = frozenRootOnePeriodDriftDiagnostic(row, tier0, configResult, roots, samples);
   const coverageComplete = sourceCoverageComplete(row, samples);
   return {
     row: row.row,
@@ -1692,6 +1892,7 @@ function continuationSourceRow(row, tier0, configResult, args) {
       speed_ordering: dynamicsDiagnostic,
       root_ledger_refinement: rootRefinementDiagnostic,
       residual_budget: residualBudgetDiagnostic,
+      frozen_root_one_period_drift: frozenRootDriftDiagnostic,
     },
     samples,
     active_causal_root_ledger: roots,
