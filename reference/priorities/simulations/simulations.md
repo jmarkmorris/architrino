@@ -4,14 +4,14 @@
 
 - Kind: `priority`
 - Rank: `5`
-- Value: `13.69`
+- Value: `13.45`
 - Cost: `4.1`
-- ROI: `3.34`
+- ROI: `3.28`
 - Status: `queued`
 
 ## Task Queue
 
-1. `tier0_tier1_runs` — Implement tier-0 and tier-1 simulation protocols. Status: `next`. Depends on: none.
+1. `tier0_tier1_runs` — Implement the $A_0$ self-root fold/splitting diagnostic, then run the one-period adaptive direct-root Tier 1 continuation only after the surplus event is classified. Status: `next`. Depends on: none.
 2. `convergence_and_provenance` — Publish convergence plots and $\mathbb{U}_{\text{now}}$ provenance logs. Status: `pending`. Depends on: `tier0_tier1_runs`.
 3. `eta_positive_package` — Consolidate the formal $\eta > 0$ existence and continuation package. Status: `pending`. Depends on: `tier0_tier1_runs`.
 
@@ -25,7 +25,7 @@ This file remains the control surface for the simulations workstream. No sibling
 
 | Task | Detailed source | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
-| `tier0_tier1_runs` | This file | [run-protocols](../../../content/markdown/aaa/validation/simulations/run-protocols.md) and [well-posedness-and-regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md) | Tier-0 and tier-1 runs emit root ledgers, branch residuals, regularization data, and explicit failure codes rather than generic instability summaries. |
+| `tier0_tier1_runs` | This file | [run-protocols](../../../content/markdown/aaa/validation/simulations/run-protocols.md) and [well-posedness-and-regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md) | Tier 1 runs classify self-root surplus events, emit root ledgers, branch residuals, regularization data, and explicit failure codes rather than generic instability summaries. |
 | `convergence_and_provenance` | This file | [convergence-tests](../../../content/markdown/aaa/validation/simulations/convergence-tests.md) and [synthetic-observables](../../../content/markdown/aaa/validation/simulations/synthetic-observables.md) | Convergence plots and $\mathbb{U}_{\text{now}}$ provenance logs are reproducible enough to audit a promoted result. |
 | `eta_positive_package` | This file | [well-posedness-and-regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md) | The formal $\eta > 0$ package states existence, uniqueness, continuation criteria, and no-runaway bounds for the relevant causal-wake model. |
 

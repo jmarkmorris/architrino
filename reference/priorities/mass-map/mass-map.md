@@ -3,15 +3,15 @@
 ## Workstream Metadata
 
 - Kind: `priority`
-- Rank: `8`
-- Value: `16.12`
-- Cost: `5.2`
-- ROI: `3.10`
+- Rank: `6`
+- Value: `15.81`
+- Cost: `4.9`
+- ROI: `3.26`
 - Status: `active`
 
 ## Task Queue
 
-1. `derive_first_attractor_family` — Derive the first tri-binary attractor family with shielding extraction. Status: `next`. Depends on: none.
+1. `derive_first_attractor_family` — Classify the $A_0$ adaptive direct-root self-branch surplus as `fold-layer`, `branch-proliferation`, or `resolution-artifact`, then run one-period Tier 1 continuation only after the surplus event is no longer ambiguous. Status: `next`. Depends on: none.
 2. `derive_zeta` — Derive $\zeta(A)$ and target a baseline electron-mass prediction. Status: `pending`. Depends on: `derive_first_attractor_family`.
 3. `exposure_quotient_theorem` — Generalize shielding extraction into a sector exposure/quotient theorem for mass, weak chirality, color exceptionality, photon transverse support, and vector-corridor visibility. Status: `pending`. Depends on: `derive_zeta`.
 4. `mass_hierarchy_check` — Test the first mass map against hierarchy ratios and hadron constraints. Status: `pending`. Depends on: `exposure_quotient_theorem`.
@@ -401,14 +401,14 @@ This schema deliberately keeps particle labels out of the accepted packet. Elect
 
 ### Immediate Work Packet
 
-1. Construct the simplest reduced multi-scale $A_0$ scan using the state vector and output schema above, following the [$A_0$ Reduced Branch Certificate Packet](a0-reduced-branch-certificate.md): homogeneous Noether-Sea cell, zero drift, no imposed external gradient, and primitive speed selector $c_\star=c_f$ for wake intersections.
-2. Enforce the speed ordering $s_I > c_f$, $s_M \approx c_f$, and $s_O < c_f$ while allowing separated radii, separated periods, and non-circular carriers.
-3. Use separable circular or elliptic layer models only as diagnostic carriers; if they leave tangential residuals, convert those residuals into required inter-layer phase, branch, or carrier corrections.
-4. Split internal corrections into averaging, locking, and leakage classes before any far-field simplification.
-5. For any candidate branch, report the residuals, root ledger, and Floquet gap before interpreting the branch as an attractor.
-6. Compute the sign-resolved internal-energy ledger and far-field shielding extraction only for branches that pass the closure and stability gates.
-7. Extract the homogeneous $\mathcal{M}_{\text{sea}}^{ab}$ baseline from small acceleration and gradient probes.
-8. Promote only stable, calibration-free outputs into the $\zeta$ and hierarchy steps.
+1. Consume the `first_branch_surplus_bracket` emitted by `scripts/mass-map/a0-tier1-continuation-source-prototype.mjs` for the two surplus branch keys `I+|I+|self|active` and `I-|I-|self|active`.
+2. Compute a local bracket packet with previous and current self-root delays, $J$ values, residuals, and step times for each surplus event.
+3. Fit or interval-check the local $F_{aa}(t;t_0)$ normal form around each new short-delay self root.
+4. Test the parity rule $\Delta N\in2\mathbb{Z}$ and classify the event as `fold-layer`, `branch-proliferation`, or `resolution-artifact`.
+5. Repeat the classification under root-grid, $\Delta t$, history-depth, and $\eta$ refinement.
+6. Route a bounded fold-layer event into $\mathcal{R}_{\text{lock}}`; route unresolved proliferation to `root-ledger-instability`.
+7. Keep accepted-history output blocked until one-period residual closure, no secular center drift, positive $\Delta_{\mathbf{k}}$, and branch persistence across the declared $\eta$ ladder are all present.
+8. After the surplus event is classified, run the one-period adaptive direct-root Tier 1 continuation with residual budgets and monodromy setup before any Tier 2 energy or shielding extraction.
 
 The reduced branch certificate is the executable handoff between this workstream and the simulations workstream. It is the place to record Tier 0 root-ledger enumeration, Tier 1 $\eta>0$ continuation, Tier 2 energy/shielding extraction, and the promotion rule from `derive_first_attractor_family` to `derive_zeta`.
 

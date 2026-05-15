@@ -4,9 +4,9 @@
 
 - Kind: `deferred-priority`
 - Rank: `17`
-- Value: `3.97`
+- Value: `3.90`
 - Cost: `6.9`
-- ROI: `0.57`
+- ROI: `0.56`
 - Status: `deferred`
 
 ## Task Queue
