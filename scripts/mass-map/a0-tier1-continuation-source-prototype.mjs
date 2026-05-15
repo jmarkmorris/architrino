@@ -7,6 +7,7 @@ const DEFAULT_ROWS = "ready";
 const DEFAULT_SAMPLE_COUNT = 320;
 const DEFAULT_DYNAMICS_STEP_FRACTION = 1 / 4096;
 const DEFAULT_ROOT_REFINEMENT_FACTOR = 2;
+const DEFAULT_DIRECT_PROBE_STEPS = 8;
 const DEFAULT_J_ATTRIBUTION_FRACTION = 0.75;
 const DEFAULT_BRANCH_GAP_DELAY_FACTOR = 4;
 const LAYER_ORDER = ["I", "M", "O"];
@@ -26,6 +27,7 @@ function parseArgs(argv) {
     sampleCount: DEFAULT_SAMPLE_COUNT,
     dynamicsStepFraction: DEFAULT_DYNAMICS_STEP_FRACTION,
     rootRefinementFactor: DEFAULT_ROOT_REFINEMENT_FACTOR,
+    directProbeSteps: DEFAULT_DIRECT_PROBE_STEPS,
     pretty: false,
     out: null,
     help: false,
@@ -46,6 +48,8 @@ function parseArgs(argv) {
       args.dynamicsStepFraction = parsePositiveNumber(argv[++i], "--dynamics-step-fraction");
     } else if (arg === "--root-refinement-factor") {
       args.rootRefinementFactor = parsePositiveInteger(argv[++i], "--root-refinement-factor");
+    } else if (arg === "--direct-probe-steps") {
+      args.directProbeSteps = parsePositiveInteger(argv[++i], "--direct-probe-steps");
     } else if (arg === "--pretty") {
       args.pretty = true;
     } else if (arg === "--out") {
@@ -69,6 +73,8 @@ Options:
                        Bounded one-step diagnostic fraction of T_k. Defaults to ${DEFAULT_DYNAMICS_STEP_FRACTION}.
   --root-refinement-factor N
                        Multiplier for carrier-root replay refinement. Defaults to ${DEFAULT_ROOT_REFINEMENT_FACTOR}.
+  --direct-probe-steps N
+                       Direct root-recomputing probe steps. Defaults to ${DEFAULT_DIRECT_PROBE_STEPS}.
   --out PATH            Write JSON output to a file instead of stdout.
   --pretty              Pretty-print JSON.
   --help                Show this help.
@@ -1841,6 +1847,396 @@ function frozenRootOnePeriodDriftDiagnostic(row, tier0, configResult, roots, sam
   };
 }
 
+function interpolateBodyState(a, b, t) {
+  const span = b.t - a.t;
+  if (!(span > 0)) {
+    return null;
+  }
+  const weight = (t - a.t) / span;
+  return Object.fromEntries(
+    BODY_IDS.map((bodyId) => {
+      const aState = a.states[bodyId];
+      const bState = b.states[bodyId];
+      return [
+        bodyId,
+        {
+          position: add(scale(aState.position, 1 - weight), scale(bState.position, weight)),
+          velocity: add(scale(aState.velocity, 1 - weight), scale(bState.velocity, weight)),
+        },
+      ];
+    })
+  );
+}
+
+function stateHistoryAt(row, history, t) {
+  const tolerance = 1e-12;
+  if (history.length === 0 || t < history[0].t - tolerance) {
+    return finiteBodyStates(row, t);
+  }
+  for (const record of history) {
+    if (Math.abs(record.t - t) <= tolerance) {
+      return record.states;
+    }
+  }
+  for (let i = 0; i < history.length - 1; i += 1) {
+    const current = history[i];
+    const next = history[i + 1];
+    if (t >= current.t - tolerance && t <= next.t + tolerance) {
+      return interpolateBodyState(current, next, t);
+    }
+  }
+  const last = history[history.length - 1];
+  return t <= last.t + tolerance ? last.states : null;
+}
+
+function directRootFunction(receiverState, sourceState, delay, cF) {
+  return norm(sub(receiverState.position, sourceState.position)) - cF * delay;
+}
+
+function directRootValue(row, history, receiverState, source, t, delay, cF) {
+  const sourceStates = stateHistoryAt(row, history, t - delay);
+  const sourceState = sourceStates?.[source.id] ?? null;
+  return sourceState ? directRootFunction(receiverState, sourceState, delay, cF) : null;
+}
+
+function solveDirectRoot(row, history, receiverState, source, t, lo, hi, cF, tolerance, options = {}) {
+  let a = lo;
+  let b = hi;
+  let fa = directRootValue(row, history, receiverState, source, t, a, cF);
+  let fb = directRootValue(row, history, receiverState, source, t, b, cF);
+  if (fa === null || fb === null) {
+    return null;
+  }
+  if (!options.ignoreLoEndpoint && Math.abs(fa) <= tolerance) {
+    return a;
+  }
+  if (!options.ignoreHiEndpoint && Math.abs(fb) <= tolerance) {
+    return b;
+  }
+  if (fa * fb > 0) {
+    return null;
+  }
+  for (let i = 0; i < 64; i += 1) {
+    const mid = 0.5 * (a + b);
+    const fm = directRootValue(row, history, receiverState, source, t, mid, cF);
+    if (fm === null) {
+      return null;
+    }
+    if (Math.abs(fm) <= tolerance || Math.abs(b - a) <= tolerance) {
+      return mid;
+    }
+    if (fa * fm <= 0) {
+      b = mid;
+      fb = fm;
+    } else {
+      a = mid;
+      fa = fm;
+    }
+  }
+  return 0.5 * (a + b);
+}
+
+function buildDirectRootRecord(row, history, receiver, source, receiverState, t, rootDelay, cF, config) {
+  const sourceStates = stateHistoryAt(row, history, t - rootDelay);
+  const sourceState = sourceStates?.[source.id] ?? null;
+  if (!sourceState) {
+    return null;
+  }
+  const direction = unit(sub(receiverState.position, sourceState.position));
+  const j = 1 - dot(sourceState.velocity, direction) / cF;
+  const rootClass = classifyRoot(receiver, source, rootDelay, j, config);
+  return {
+    receiver: receiver.id,
+    source: source.id,
+    relation: rootClass.relation,
+    status: rootClass.status,
+    t,
+    delay: rootDelay,
+    residual: Math.abs(directRootFunction(receiverState, sourceState, rootDelay, cF)),
+    J: j,
+    nearSeparator: rootClass.nearSeparator,
+    nearZeroSelf: rootClass.nearZeroSelf,
+    selfDelayClass: rootClass.selfDelayClass,
+    selfFoldLayer: rootClass.selfFoldLayer,
+    delayedSelfHit: rootClass.delayedSelfHit,
+    admissibleDelayedSelfHit: rootClass.admissibleDelayedSelfHit,
+    provenance: "tier1_direct_root_recompute_probe",
+  };
+}
+
+function enumerateDirectRoots(row, tier0, configResult, history, t, states) {
+  const config = carrierReplayConfig(tier0, configResult.config);
+  const values = rowValues(row);
+  const cF = config.seaCell.c_f;
+  const bodies = bodyCatalog();
+  const sampling = config.sampling;
+  const historyWindow = sampling.historyPeriods * Math.max(...Object.values(values.periods));
+  const rootStep = historyWindow / sampling.rootSamples;
+  const duplicateTolerance = rootDuplicateTolerance(sampling, rootStep);
+  const selfWindow = selfRootDelayWindow(config);
+  const roots = [];
+
+  for (const receiver of bodies) {
+    const receiverState = states[receiver.id];
+    for (const source of bodies) {
+      const relation = sourceRelation(receiver, source);
+      let priorDelay = sampling.minDelay;
+      let priorValue = directRootValue(row, history, receiverState, source, t, priorDelay, cF);
+      for (let index = 1; index <= sampling.rootSamples; index += 1) {
+        const delay = sampling.minDelay + index * rootStep;
+        const value = directRootValue(row, history, receiverState, source, t, delay, cF);
+        if (priorValue === null || value === null) {
+          priorDelay = delay;
+          priorValue = value;
+          continue;
+        }
+        const hasBracket = priorValue === 0 || value === 0 || priorValue * value < 0;
+        if (hasBracket) {
+          const rootDelay = solveDirectRoot(
+            row,
+            history,
+            receiverState,
+            source,
+            t,
+            priorDelay,
+            delay,
+            cF,
+            sampling.rootTolerance
+          );
+          if (rootDelay !== null) {
+            const root = buildDirectRootRecord(row, history, receiver, source, receiverState, t, rootDelay, cF, config);
+            if (root) {
+              pushDistinctRoot(roots, root, duplicateTolerance);
+            }
+            if (relation === "self" && rootDelay <= selfWindow.foldLayerDelay && delay > selfWindow.foldLayerDelay) {
+              const delayedRootDelay = solveDirectRoot(
+                row,
+                history,
+                receiverState,
+                source,
+                t,
+                selfWindow.foldLayerDelay,
+                delay,
+                cF,
+                sampling.rootTolerance,
+                { ignoreLoEndpoint: true }
+              );
+              if (delayedRootDelay !== null) {
+                const delayedRoot = buildDirectRootRecord(
+                  row,
+                  history,
+                  receiver,
+                  source,
+                  receiverState,
+                  t,
+                  delayedRootDelay,
+                  cF,
+                  config
+                );
+                if (delayedRoot) {
+                  pushDistinctRoot(roots, delayedRoot, duplicateTolerance);
+                }
+              }
+            }
+          }
+        }
+        priorDelay = delay;
+        priorValue = value;
+      }
+    }
+  }
+  return roots.filter((root) => root.status === "active");
+}
+
+function directRootKickAccelerations(row, tier0, configResult, roots, states, history, observationTime) {
+  const eta = regularizationEta(row, tier0, configResult);
+  const accelerations = Object.fromEntries(BODY_IDS.map((bodyId) => [bodyId, [0, 0, 0]]));
+  let invalidContributionCount = 0;
+
+  for (const root of roots) {
+    const receiverState = states[root.receiver];
+    const sourceStates = stateHistoryAt(row, history, observationTime - root.delay);
+    const sourceState = sourceStates?.[root.source] ?? null;
+    if (!receiverState || !sourceState || !Number.isFinite(root.delay) || !Number.isFinite(root.J)) {
+      invalidContributionCount += 1;
+      continue;
+    }
+    const sourceToReceiver = sub(sourceState.position, receiverState.position);
+    const regularizedDistanceSquared = dot(sourceToReceiver, sourceToReceiver) + eta * eta;
+    const regularizedDistance = Math.sqrt(regularizedDistanceSquared);
+    const denominator = Math.max(regularizedDistanceSquared * regularizedDistance, Number.EPSILON);
+    const signedCharge = bodyCharge(root.receiver) * bodyCharge(root.source);
+    const jacobianWeight = 1 / Math.max(Math.abs(root.J), 1e-6);
+    const coefficient = relationWeight(root.relation) * signedCharge * jacobianWeight;
+    addTo(accelerations[root.receiver], scale(sourceToReceiver, coefficient / denominator));
+  }
+
+  return {
+    eta,
+    observation_time: observationTime,
+    root_count: roots.length,
+    invalid_contribution_count: invalidContributionCount,
+    accelerations,
+  };
+}
+
+function directRootRecomputingProbeDiagnostic(row, tier0, configResult, args, samples) {
+  if (configResult.error) {
+    return {
+      schema: "direct-root-recomputing-probe/v1",
+      status: "direct-root-recomputing-probe-blocked",
+      failure_code: "config-unavailable",
+      config_error: configResult.error,
+    };
+  }
+  const period = row.closure_labels?.T_k ?? row.geometry?.commonPeriod ?? null;
+  const config = carrierReplayConfig(tier0, configResult.config);
+  const cF = config.seaCell.c_f;
+  const speedTolerance = config.sampling.speedTolerance ?? tier0.tolerances?.speed ?? 0.02;
+  const baseDt = Number.isFinite(period) ? period * args.dynamicsStepFraction : null;
+  const maxDeltaV = cF * args.dynamicsStepFraction;
+  const scales = carrierReplayScales(row, samples, cF);
+  let states = finiteBodyStates(row, 0);
+  let currentTime = 0;
+  const history = [{ t: currentTime, states: cloneStates(states) }];
+  const stepRecords = [];
+  let completedSteps = 0;
+  let invalidContributionCount = 0;
+  let maxAcceleration = 0;
+  let maxStepDeltaV = 0;
+  let maxStepDeltaX = 0;
+  let maxRootCount = 0;
+  let minRootCount = Number.POSITIVE_INFINITY;
+  let maxRootResidual = 0;
+  let failureCode = null;
+
+  if (!Number.isFinite(period) || period <= 0 || !Number.isFinite(baseDt) || baseDt <= 0) {
+    return {
+      schema: "direct-root-recomputing-probe/v1",
+      status: "direct-root-recomputing-probe-blocked",
+      failure_code: "period-or-step-unavailable",
+      acceptance_scope:
+        "Short-horizon direct root-recomputing probe only; does not establish accepted Tier 1 continuation.",
+    };
+  }
+
+  for (let step = 0; step < args.directProbeSteps; step += 1) {
+    const roots = enumerateDirectRoots(row, tier0, configResult, history, currentTime, states);
+    if (roots.length === 0) {
+      failureCode = "direct-roots-missing";
+      break;
+    }
+    const accelerations = directRootKickAccelerations(row, tier0, configResult, roots, states, history, currentTime);
+    const stepMaxAcceleration = Math.max(...BODY_IDS.map((bodyId) => speed(accelerations.accelerations[bodyId])));
+    const boundedDt = stepMaxAcceleration > 0 ? Math.min(baseDt, maxDeltaV / stepMaxAcceleration) : baseDt;
+    if (!Number.isFinite(boundedDt) || boundedDt <= 0) {
+      failureCode = "bounded-step-unavailable";
+      break;
+    }
+    const nextStates = cloneStates(states);
+    let stepMaxDeltaV = 0;
+    let stepMaxDeltaX = 0;
+    for (const bodyId of BODY_IDS) {
+      const state = states[bodyId];
+      const acceleration = accelerations.accelerations[bodyId];
+      const deltaV = scale(acceleration, boundedDt);
+      const deltaX = add(scale(state.velocity, boundedDt), scale(acceleration, 0.5 * boundedDt * boundedDt));
+      nextStates[bodyId] = {
+        position: add(state.position, deltaX),
+        velocity: add(state.velocity, deltaV),
+      };
+      stepMaxDeltaV = Math.max(stepMaxDeltaV, speed(deltaV));
+      stepMaxDeltaX = Math.max(stepMaxDeltaX, norm(deltaX));
+    }
+    currentTime += boundedDt;
+    states = nextStates;
+    history.push({ t: currentTime, states: cloneStates(states) });
+    completedSteps += 1;
+    invalidContributionCount += accelerations.invalid_contribution_count;
+    maxAcceleration = Math.max(maxAcceleration, stepMaxAcceleration);
+    maxStepDeltaV = Math.max(maxStepDeltaV, stepMaxDeltaV);
+    maxStepDeltaX = Math.max(maxStepDeltaX, stepMaxDeltaX);
+    maxRootCount = Math.max(maxRootCount, roots.length);
+    minRootCount = Math.min(minRootCount, roots.length);
+    maxRootResidual = Math.max(maxRootResidual, ...roots.map((root) => root.residual));
+    if (stepRecords.length < 10) {
+      stepRecords.push({
+        step,
+        t: currentTime,
+        dt: boundedDt,
+        root_count: roots.length,
+        max_acceleration: stepMaxAcceleration,
+        max_step_delta_v: stepMaxDeltaV,
+        max_step_delta_x: stepMaxDeltaX,
+      });
+    }
+  }
+
+  const referenceStates = finiteBodyStates(row, currentTime);
+  const endpointDrift = maxEndpointStateDrift(states, referenceStates, scales);
+  const endpointCenter = centerGaugeFromStates(states);
+  const referenceCenter = centerGaugeFromStates(referenceStates);
+  const endpointLayerSpeeds = layerAverageSpeeds(states);
+  const endpointSpeedOrderingResidual = speedOrderingResidual(endpointLayerSpeeds, cF);
+  const numericallyBounded =
+    completedSteps === args.directProbeSteps &&
+    failureCode === null &&
+    finiteStateMap(states) &&
+    invalidContributionCount === 0 &&
+    Number.isFinite(endpointSpeedOrderingResidual);
+  const horizonFraction = period > 0 ? currentTime / period : null;
+  const dynamicallyBounded =
+    numericallyBounded &&
+    endpointDrift.max_normalized_position_drift <= 1 &&
+    endpointDrift.max_normalized_velocity_drift <= 1 &&
+    endpointSpeedOrderingResidual <= speedTolerance;
+
+  return {
+    schema: "direct-root-recomputing-probe/v1",
+    status: dynamicallyBounded ? "direct-root-recomputing-probe-recorded" : "direct-root-recomputing-probe-warning",
+    warning_code: dynamicallyBounded ? null : failureCode ?? "direct-root-probe-short-horizon-only",
+    dynamics_scope: "short_horizon_direct_root_recomputing_probe",
+    acceptance_scope:
+      "Short-horizon direct root-recomputing probe only; does not establish accepted Tier 1 continuation, one-period closure, eta persistence, or Floquet stability.",
+    formula:
+      "At each step, recompute active causal roots from the evolving state history, then apply x_{n+1}=x_n+v_n dt+0.5 a_root(t_n) dt^2 and v_{n+1}=v_n+a_root(t_n) dt.",
+    requested_steps: args.directProbeSteps,
+    completed_steps: completedSteps,
+    requested_dt: baseDt,
+    reached_time: currentTime,
+    horizon_period_fraction: horizonFraction,
+    max_delta_v: maxDeltaV,
+    invalid_contribution_count: invalidContributionCount,
+    root_count_range: {
+      min: Number.isFinite(minRootCount) ? minRootCount : 0,
+      max: maxRootCount,
+    },
+    scales,
+    maxima: {
+      max_acceleration: maxAcceleration,
+      max_step_delta_v: maxStepDeltaV,
+      max_step_delta_x: maxStepDeltaX,
+      max_root_residual: maxRootResidual,
+      endpoint_speed_ordering_residual: endpointSpeedOrderingResidual,
+      endpoint_center_position_drift: norm(sub(endpointCenter.position, referenceCenter.position)) / scales.position,
+      endpoint_center_velocity_drift: norm(sub(endpointCenter.velocity, referenceCenter.velocity)) / scales.velocity,
+      ...endpointDrift,
+    },
+    endpoint_layer_speeds: endpointLayerSpeeds,
+    numerically_bounded: numericallyBounded,
+    dynamically_bounded: dynamicallyBounded,
+    step_records: stepRecords,
+    validation_effect: {
+      status_is_accepted_history_segment: false,
+      residuals_below_tolerance: false,
+      no_secular_center_drift: false,
+      Delta_k_positive: false,
+      same_branch_persists_across_eta_ladder: false,
+      reason: "probe covers only a bounded short horizon and has no eta ladder or monodromy calculation",
+    },
+  };
+}
+
 function sourceCoverageComplete(row, samples) {
   const period = row.closure_labels?.T_k ?? row.geometry?.commonPeriod;
   const maxDelay = row.root_ledger?.maxDelay ?? 0;
@@ -1858,6 +2254,7 @@ function continuationSourceRow(row, tier0, configResult, args) {
   const rootRefinementDiagnostic = carrierRootLedgerRefinementDiagnostic(row, tier0, configResult, roots, args);
   const residualBudgetDiagnostic = carrierReplayResidualAndCenterDriftDiagnostic(row, tier0, configResult, samples, roots);
   const frozenRootDriftDiagnostic = frozenRootOnePeriodDriftDiagnostic(row, tier0, configResult, roots, samples);
+  const directRootProbeDiagnostic = directRootRecomputingProbeDiagnostic(row, tier0, configResult, args, samples);
   const coverageComplete = sourceCoverageComplete(row, samples);
   return {
     row: row.row,
@@ -1893,6 +2290,7 @@ function continuationSourceRow(row, tier0, configResult, args) {
       root_ledger_refinement: rootRefinementDiagnostic,
       residual_budget: residualBudgetDiagnostic,
       frozen_root_one_period_drift: frozenRootDriftDiagnostic,
+      direct_root_recomputing_probe: directRootProbeDiagnostic,
     },
     samples,
     active_causal_root_ledger: roots,
@@ -1913,7 +2311,7 @@ function continuationSourceRow(row, tier0, configResult, args) {
       "roots are provisional carrier roots, not continuation roots",
       "no eta ladder was integrated",
       "no monodromy operator or Delta_k was computed",
-      "no direct dynamics dt, history-window, or eta refinement was tested",
+      "direct root-recomputing probe is short-horizon only; no one-period direct continuation was accepted",
     ],
     nonfit_statement:
       "No CKM magnitude, CKM angle, charged-lepton mass ratio, particle mass, or CKM-derived transport action was used to emit this carrier-replay source.",
