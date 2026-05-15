@@ -231,7 +231,7 @@ function continuationContract(row, etaLadder) {
       failure_code: "tier1-integrator-not-run",
       computed_predicates: ["speed_ordering_retained", "root_ledger_stable_under_refinement"],
       note:
-        "The prototype replays Tier 0 carrier samples and provisional carrier roots, then computes bounded one-step speed-ordering, carrier-root refinement, root-Jacobian drift attribution, carrier-replay residual-budget, frozen-root one-period drift, and short-horizon direct root-recomputing diagnostics; it is not an accepted Tier 1 continuation.",
+        "The prototype replays Tier 0 carrier samples and provisional carrier roots, then computes bounded one-step speed-ordering, carrier-root refinement, root-Jacobian drift attribution, carrier-replay residual-budget, frozen-root one-period drift, short-horizon direct root-recomputing, and direct-root horizon-ladder diagnostics; it is not an accepted Tier 1 continuation.",
     },
     residuals_to_recompute: [
       "state",

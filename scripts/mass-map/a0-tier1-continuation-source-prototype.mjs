@@ -8,6 +8,7 @@ const DEFAULT_SAMPLE_COUNT = 320;
 const DEFAULT_DYNAMICS_STEP_FRACTION = 1 / 4096;
 const DEFAULT_ROOT_REFINEMENT_FACTOR = 2;
 const DEFAULT_DIRECT_PROBE_STEPS = 8;
+const DIRECT_PROBE_LADDER_FACTORS = [4, 16];
 const DEFAULT_J_ATTRIBUTION_FRACTION = 0.75;
 const DEFAULT_BRANCH_GAP_DELAY_FACTOR = 4;
 const LAYER_ORDER = ["I", "M", "O"];
@@ -2080,6 +2081,38 @@ function directRootKickAccelerations(row, tier0, configResult, roots, states, hi
   };
 }
 
+function directRootBranchKey(root) {
+  return [root.receiver, root.source, root.relation, root.status].join("|");
+}
+
+function directRootBranchCounts(roots) {
+  const counts = new Map();
+  for (const root of roots) {
+    const key = directRootBranchKey(root);
+    counts.set(key, (counts.get(key) ?? 0) + 1);
+  }
+  return counts;
+}
+
+function retainedRootBranchCount(initialCounts, currentCounts) {
+  let retained = 0;
+  for (const [key, count] of initialCounts.entries()) {
+    retained += Math.min(count, currentCounts.get(key) ?? 0);
+  }
+  return retained;
+}
+
+function missingRootBranchKeys(initialCounts, currentCounts) {
+  const missing = [];
+  for (const [key, count] of initialCounts.entries()) {
+    const current = currentCounts.get(key) ?? 0;
+    for (let i = current; i < count; i += 1) {
+      missing.push(key);
+    }
+  }
+  return missing;
+}
+
 function directRootRecomputingProbeDiagnostic(row, tier0, configResult, args, samples) {
   if (configResult.error) {
     return {
@@ -2109,6 +2142,11 @@ function directRootRecomputingProbeDiagnostic(row, tier0, configResult, args, sa
   let minRootCount = Number.POSITIVE_INFINITY;
   let maxRootResidual = 0;
   let failureCode = null;
+  let initialBranchCounts = null;
+  let initialBranchCount = 0;
+  let minBranchRetainedCount = Number.POSITIVE_INFINITY;
+  let firstBranchLossStep = null;
+  let firstMissingBranchKeys = [];
 
   if (!Number.isFinite(period) || period <= 0 || !Number.isFinite(baseDt) || baseDt <= 0) {
     return {
@@ -2125,6 +2163,17 @@ function directRootRecomputingProbeDiagnostic(row, tier0, configResult, args, sa
     if (roots.length === 0) {
       failureCode = "direct-roots-missing";
       break;
+    }
+    const branchCounts = directRootBranchCounts(roots);
+    if (initialBranchCounts === null) {
+      initialBranchCounts = branchCounts;
+      initialBranchCount = roots.length;
+    }
+    const branchRetainedCount = retainedRootBranchCount(initialBranchCounts, branchCounts);
+    minBranchRetainedCount = Math.min(minBranchRetainedCount, branchRetainedCount);
+    if (firstBranchLossStep === null && branchRetainedCount < initialBranchCount) {
+      firstBranchLossStep = step;
+      firstMissingBranchKeys = missingRootBranchKeys(initialBranchCounts, branchCounts).slice(0, 10);
     }
     const accelerations = directRootKickAccelerations(row, tier0, configResult, roots, states, history, currentTime);
     const stepMaxAcceleration = Math.max(...BODY_IDS.map((bodyId) => speed(accelerations.accelerations[bodyId])));
@@ -2165,6 +2214,7 @@ function directRootRecomputingProbeDiagnostic(row, tier0, configResult, args, sa
         t: currentTime,
         dt: boundedDt,
         root_count: roots.length,
+        retained_branch_count: branchRetainedCount,
         max_acceleration: stepMaxAcceleration,
         max_step_delta_v: stepMaxDeltaV,
         max_step_delta_x: stepMaxDeltaX,
@@ -2211,6 +2261,12 @@ function directRootRecomputingProbeDiagnostic(row, tier0, configResult, args, sa
       min: Number.isFinite(minRootCount) ? minRootCount : 0,
       max: maxRootCount,
     },
+    branch_retention: {
+      initial_branch_count: initialBranchCount,
+      min_retained_branch_count: Number.isFinite(minBranchRetainedCount) ? minBranchRetainedCount : 0,
+      first_branch_loss_step: firstBranchLossStep,
+      first_missing_branch_keys: firstMissingBranchKeys,
+    },
     scales,
     maxima: {
       max_acceleration: maxAcceleration,
@@ -2237,6 +2293,138 @@ function directRootRecomputingProbeDiagnostic(row, tier0, configResult, args, sa
   };
 }
 
+function directRootProbeSummary(probe) {
+  return {
+    status: probe.status,
+    warning_code: probe.warning_code ?? null,
+    failure_code: probe.failure_code ?? null,
+    completed_steps: probe.completed_steps ?? 0,
+    horizon_period_fraction: probe.horizon_period_fraction ?? null,
+    root_count_range: probe.root_count_range ?? null,
+    branch_retention: probe.branch_retention ?? null,
+    dynamically_bounded: probe.dynamically_bounded ?? false,
+    endpoint_speed_ordering_residual: probe.maxima?.endpoint_speed_ordering_residual ?? null,
+    max_normalized_position_drift: probe.maxima?.max_normalized_position_drift ?? null,
+    max_normalized_velocity_drift: probe.maxima?.max_normalized_velocity_drift ?? null,
+  };
+}
+
+function branchRetentionRestored(probe) {
+  const retention = probe.branch_retention;
+  return (
+    retention !== null &&
+    retention !== undefined &&
+    retention.initial_branch_count > 0 &&
+    retention.min_retained_branch_count === retention.initial_branch_count &&
+    retention.first_branch_loss_step === null
+  );
+}
+
+function directRootBranchLossRefinementRescue(row, tier0, configResult, args, samples, stepCount) {
+  const baseConfig = carrierReplayConfig(tier0, configResult.config);
+  const refinedResult = refinedConfigResult(tier0, configResult, args.rootRefinementFactor);
+  const refinedConfig = carrierReplayConfig(tier0, refinedResult.config);
+  const refinedProbe = directRootRecomputingProbeDiagnostic(
+    row,
+    tier0,
+    refinedResult,
+    { ...args, directProbeSteps: stepCount },
+    samples
+  );
+  return {
+    schema: "direct-root-branch-loss-refinement-rescue/v1",
+    refinement_factor: args.rootRefinementFactor,
+    base_root_samples: baseConfig.sampling.rootSamples,
+    refined_root_samples: refinedConfig.sampling.rootSamples,
+    base_sample_count: baseConfig.sampling.sampleCount,
+    refined_sample_count: refinedConfig.sampling.sampleCount,
+    restored_branch_retention: branchRetentionRestored(refinedProbe),
+    refined_probe: directRootProbeSummary(refinedProbe),
+  };
+}
+
+function directRootHorizonLadderStatus(allEntriesBlocked, firstBranchLossEntry, unresolvedBranchLossEntry) {
+  if (allEntriesBlocked) {
+    return "direct-root-horizon-ladder-blocked";
+  }
+  if (firstBranchLossEntry === null) {
+    return "direct-root-horizon-ladder-recorded";
+  }
+  if (unresolvedBranchLossEntry === null) {
+    return "direct-root-horizon-ladder-refinement-rescued";
+  }
+  return "direct-root-horizon-ladder-branch-loss-warning";
+}
+
+function directRootHorizonLadderDiagnostic(row, tier0, configResult, args, samples) {
+  const stepCounts = DIRECT_PROBE_LADDER_FACTORS.map((factor) => args.directProbeSteps * factor);
+  const entries = stepCounts.map((stepCount) => {
+    const probe = directRootRecomputingProbeDiagnostic(
+      row,
+      tier0,
+      configResult,
+      { ...args, directProbeSteps: stepCount },
+      samples
+    );
+    const summary = directRootProbeSummary(probe);
+    const branchLossStep = summary.branch_retention?.first_branch_loss_step ?? null;
+    return {
+      requested_steps: stepCount,
+      ...summary,
+      branch_loss_refinement_rescue:
+        branchLossStep === null
+          ? null
+          : directRootBranchLossRefinementRescue(row, tier0, configResult, args, samples, stepCount),
+    };
+  });
+  const boundedEntries = entries.filter((entry) => entry.dynamically_bounded && Number.isFinite(entry.horizon_period_fraction));
+  const bestBoundedEntry = boundedEntries.reduce(
+    (best, entry) =>
+      !best || entry.horizon_period_fraction > best.horizon_period_fraction ? entry : best,
+    null
+  );
+  const branchLossEntries = entries.filter((entry) => {
+    const branchLossStep = entry.branch_retention?.first_branch_loss_step;
+    return branchLossStep !== null && branchLossStep !== undefined;
+  });
+  const allEntriesBlocked =
+    entries.length > 0 && entries.every((entry) => entry.status === "direct-root-recomputing-probe-blocked");
+  const firstBranchLossEntry =
+    branchLossEntries.length > 0 ? branchLossEntries[0] : null;
+  const unresolvedBranchLossEntry =
+    branchLossEntries.find((entry) => !entry.branch_loss_refinement_rescue?.restored_branch_retention) ?? null;
+  return {
+    schema: "direct-root-horizon-ladder/v1",
+    status: directRootHorizonLadderStatus(allEntriesBlocked, firstBranchLossEntry, unresolvedBranchLossEntry),
+    failure_code: allEntriesBlocked ? entries[0]?.failure_code ?? "direct-root-horizon-ladder-blocked" : null,
+    dynamics_scope: "short_horizon_direct_root_recomputing_ladder",
+    acceptance_scope:
+      "Horizon ladder for the direct root-recomputing probe only; does not establish accepted Tier 1 continuation or Floquet stability.",
+    base_requested_steps: args.directProbeSteps,
+    ladder_factors: DIRECT_PROBE_LADDER_FACTORS,
+    requested_step_counts: stepCounts,
+    best_bounded_horizon_period_fraction: bestBoundedEntry?.horizon_period_fraction ?? null,
+    first_branch_loss: firstBranchLossEntry
+      ? {
+          requested_steps: firstBranchLossEntry.requested_steps,
+          first_branch_loss_step: firstBranchLossEntry.branch_retention.first_branch_loss_step,
+          first_missing_branch_keys: firstBranchLossEntry.branch_retention.first_missing_branch_keys,
+          refinement_rescued:
+            firstBranchLossEntry.branch_loss_refinement_rescue?.restored_branch_retention ?? false,
+        }
+      : null,
+    entries,
+    validation_effect: {
+      status_is_accepted_history_segment: false,
+      residuals_below_tolerance: false,
+      no_secular_center_drift: false,
+      Delta_k_positive: false,
+      same_branch_persists_across_eta_ladder: false,
+      reason: "ladder is a bounded horizon-extension diagnostic and has no one-period closure or monodromy calculation",
+    },
+  };
+}
+
 function sourceCoverageComplete(row, samples) {
   const period = row.closure_labels?.T_k ?? row.geometry?.commonPeriod;
   const maxDelay = row.root_ledger?.maxDelay ?? 0;
@@ -2255,6 +2443,7 @@ function continuationSourceRow(row, tier0, configResult, args) {
   const residualBudgetDiagnostic = carrierReplayResidualAndCenterDriftDiagnostic(row, tier0, configResult, samples, roots);
   const frozenRootDriftDiagnostic = frozenRootOnePeriodDriftDiagnostic(row, tier0, configResult, roots, samples);
   const directRootProbeDiagnostic = directRootRecomputingProbeDiagnostic(row, tier0, configResult, args, samples);
+  const directRootHorizonLadder = directRootHorizonLadderDiagnostic(row, tier0, configResult, args, samples);
   const coverageComplete = sourceCoverageComplete(row, samples);
   return {
     row: row.row,
@@ -2291,6 +2480,7 @@ function continuationSourceRow(row, tier0, configResult, args) {
       residual_budget: residualBudgetDiagnostic,
       frozen_root_one_period_drift: frozenRootDriftDiagnostic,
       direct_root_recomputing_probe: directRootProbeDiagnostic,
+      direct_root_horizon_ladder: directRootHorizonLadder,
     },
     samples,
     active_causal_root_ledger: roots,
