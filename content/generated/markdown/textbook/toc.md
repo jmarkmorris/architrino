@@ -889,6 +889,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Run Protocols](../../../scenes/validation/sim_run_protocols.json)
       - [Master Simulation Protocol (Absolute Frame)](../../../markdown/aaa/validation/simulations/run-protocols.md?section=Master+Simulation+Protocol+%28Absolute+Frame%29)
       - [A₀ Branch-Certificate Protocol](../../../markdown/aaa/validation/simulations/run-protocols.md?section=%24A_0%24+Branch-Certificate+Protocol)
+      - [Cosmology Shared-Residual Protocol](../../../markdown/aaa/validation/simulations/run-protocols.md?section=Cosmology+Shared-Residual+Protocol)
       - [Tier 0 / Tier 1 Campaign Packet](../../../markdown/aaa/validation/simulations/run-protocols.md?section=Tier+0+%2F+Tier+1+Campaign+Packet)
       - [Run Protocol: Absolute-Frame + $\mathbb{U}_{\text{now}}$ Logging](../../../markdown/aaa/validation/simulations/run-protocols.md?section=Run+Protocol%3A+Absolute-Frame+%2B+%24%5Cmathbb%7BU%7D_%7B%5Ctext%7Bnow%7D%7D%24+Logging)
     - [A0 Branch Certificate Protocol](../../../scenes/validation/sim_a0_branch_certificate_protocol.json)

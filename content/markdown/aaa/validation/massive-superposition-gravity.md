@@ -4,6 +4,14 @@ This packet turns the massive-superposition gravitational which-path benchmark i
 
 Related homes are [Measurement Ontology](../quantum/measurement-ontology.md#external-gravitational-which-path-benchmark), [Observer Framework](../spacetime/observer-framework.md#boundary-wake-covariance-scaffold), and [Constraint Ledger](constraint-ledger.md#massive-superposition-gravitational-distinguishability).
 
+## Comparison Boundary
+
+The packet may use external classical-quantum gravity proposals as comparison pressure, but only at the level of observables and inference. The comparison row is:
+
+| External comparison | Retained pressure | $\mathbb{A}\mathbb{A}\mathbb{A}$ use | Not imported |
+| --- | --- | --- | --- |
+| Oppenheim-style classical-quantum gravity | A classical or effective gravity readout must not reveal branch information while the quantum branch description still shows interference. | Bound $\mathcal{D}_{\mathrm{grav}}$, constrain $N_{AB}$, and require a Physical Observer record before treating gravity-side branch information as a measurement. | Stochastic-metric ontology, fundamental collapse, external terminology, or the claim that gravity must remain classical at the substrate level. |
+
 ## Observable Target
 
 The target experiment compares two branch-level mass-density histories over a coherence window $T$:
@@ -136,6 +144,66 @@ S_{AB}^{-1}\,
 $$
 This special case is the first numerical target because it turns the validation packet into a finite time-series calculation once $m$, $\sigma$, $\mathbf{d}(t)$, $G_A$, and $S_{AB}$ are supplied.
 
+## Worked Acceleration Bound
+
+A first sanity bound can use a single acceleration readout channel before introducing a full detector geometry. Suppose the branch displacement is bounded by $\|\mathbf{d}(t)\|\le d_0$, the detector is at distance $R$ from the branch center with $d_0\ll R$, and the weak-field map satisfies $G_{\mathrm{eff}}(\theta)\to G$ in the tested regime. The branch acceleration difference is bounded by
+$$
+|\Delta h(t)|
+\le
+\frac{2G_{\mathrm{eff}}(\theta)M d_0}{R^3}.
+$$
+For a white acceleration readout covariance $N(t,t')=S_a\delta(t-t')$, the distinguishability obeys
+$$
+\mathcal{D}_{\mathrm{grav}}(T;\theta)
+\le
+\frac{4G_{\mathrm{eff}}^2(\theta)M^2d_0^2T}{R^6S_a}.
+$$
+With benchmark values
+$$
+M=10^{-14}\,\mathrm{kg},\qquad
+d_0=10^{-6}\,\mathrm{m},\qquad
+R=10^{-3}\,\mathrm{m},\qquad
+T=1\,\mathrm{s},
+$$
+and an aggressive acceleration-noise amplitude
+$$
+S_a^{1/2}=10^{-15}\,\mathrm{m\,s^{-2}}/\sqrt{\mathrm{Hz}},
+$$
+the bound is
+$$
+\mathcal{D}_{\mathrm{grav}}
+\lesssim
+1.8\times10^{-12}
+\left(\frac{M}{10^{-14}\,\mathrm{kg}}\right)^2
+\left(\frac{d_0}{10^{-6}\,\mathrm{m}}\right)^2
+\left(\frac{10^{-3}\,\mathrm{m}}{R}\right)^6
+\left(\frac{T}{1\,\mathrm{s}}\right)
+\left(
+\frac{10^{-15}\,\mathrm{m\,s^{-2}}/\sqrt{\mathrm{Hz}}}{S_a^{1/2}}
+\right)^2.
+$$
+For a which-path threshold of order unity, this run is deep in the weak-probe class. Solving the same bound for the mass needed to reach $\mathcal{D}_{\mathrm{grav}}\sim\varepsilon_{\mathrm{wp}}$ gives
+$$
+M_{\mathrm{crit}}
+\approx
+\frac{R^3}{2G_{\mathrm{eff}}(\theta)d_0}
+\sqrt{\frac{\varepsilon_{\mathrm{wp}}S_a}{T}},
+$$
+or, in the same benchmark geometry,
+$$
+M_{\mathrm{crit}}
+\approx
+7.5\times10^{-9}\,\mathrm{kg}\,
+\varepsilon_{\mathrm{wp}}^{1/2}
+\left(\frac{R}{10^{-3}\,\mathrm{m}}\right)^3
+\left(\frac{10^{-6}\,\mathrm{m}}{d_0}\right)
+\left(
+\frac{S_a^{1/2}}{10^{-15}\,\mathrm{m\,s^{-2}}/\sqrt{\mathrm{Hz}}}
+\right)
+\left(\frac{1\,\mathrm{s}}{T}\right)^{1/2}.
+$$
+This is not a new ontology or an experimental forecast. It is a scale check: for ordinary mesoscopic masses, gravity-side which-path leakage is negligible unless the branch mass, separation, proximity, coherence time, or readout sensitivity moves by many orders of magnitude. A full detector calculation should replace the scalar factor $2/R^3$ with the tensor response in the Minimal Response Model above.
+
 ## Acceptance Criteria
 
 For an interference-preserving run, the metric or gravity-side readout must satisfy
@@ -175,4 +243,4 @@ m,\sigma,\mathbf{d}(t),T,G_A,N_{AB},R,\Sigma
 $$
 The inputs are the branch mass scale, packet width, separation history, coherence window, detector response kernel, covariance decomposition, record variable, and separatrix. The outputs are the gravitational distinguishability, interference visibility, finite measurement time, and record-autonomy residual.
 
-This packet is closed only when one numerical or analytic instance computes all four outputs from a shared constitutive record and reports whether the branch pair is weak-probe, record-forming, or falsifying.
+The worked acceleration bound supplies the first analytic $\mathcal{D}_{\mathrm{grav}}$ estimate. Full packet closure still requires one numerical or analytic instance that computes all four outputs from a shared constitutive record and reports whether the branch pair is weak-probe, record-forming, or falsifying.

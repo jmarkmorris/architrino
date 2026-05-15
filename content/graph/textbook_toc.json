@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1141
+      "sections": 1142
     }
   },
   "tocRoot": {
@@ -7287,6 +7287,14 @@
                     "markdownPath": "content/markdown/aaa/validation/simulations/run-protocols.md",
                     "markdownSection": "$A_0$ Branch-Certificate Protocol",
                     "sectionKey": "a 0 branch certificate protocol",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Cosmology Shared-Residual Protocol",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/run-protocols.md",
+                    "markdownSection": "Cosmology Shared-Residual Protocol",
+                    "sectionKey": "cosmology shared residual protocol",
                     "headingLevel": 2
                   },
                   {

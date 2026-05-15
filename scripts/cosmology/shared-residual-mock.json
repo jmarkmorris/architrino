@@ -1,0 +1,99 @@
+{
+  "schema": "cosmology-shared-residual-fit-input/v1",
+  "metadata": {
+    "run_id": "mock-shared-cosmology-residual-001",
+    "description": "Dimensionless mock packet for the shared cosmology residual gate.",
+    "source": "content/markdown/aaa/cosmology/dark-energy.md#inference-dependency-and-calibration-gates"
+  },
+  "lambda": 4,
+  "required_families": ["SN", "BAO", "CMB", "WL", "RSD", "BBN"],
+  "thresholds": {
+    "residual_total_max": 3,
+    "projection_penalty_raw_max": 0.05,
+    "shared_residual_max": 3.2,
+    "min_shared_projection_keys": 2
+  },
+  "projection_weights": {
+    "H_norm": 1,
+    "w_eff": 1,
+    "n": 1,
+    "chi_sea": 1,
+    "G_growth": 1,
+    "Y_BBN": 1
+  },
+  "theta_sea": {
+    "H_norm": 1,
+    "w_eff": -0.98,
+    "n": 1,
+    "chi_sea": 1,
+    "G_growth": 0.97,
+    "Y_BBN": 1
+  },
+  "observables": [
+    {
+      "family": "SN",
+      "residual": [0.42, -0.28],
+      "covariance_diagonal": [1, 1],
+      "projection": {
+        "H_norm": 1.01,
+        "w_eff": -0.981,
+        "n": 1.001,
+        "chi_sea": 1.002
+      }
+    },
+    {
+      "family": "BAO",
+      "residual": [0.35, -0.22],
+      "covariance_diagonal": [1, 1],
+      "projection": {
+        "H_norm": 1,
+        "w_eff": -0.976,
+        "n": 0.999,
+        "chi_sea": 1.001
+      }
+    },
+    {
+      "family": "CMB",
+      "residual": [0.18, 0.24, -0.16],
+      "covariance_diagonal": [1, 1, 1],
+      "projection": {
+        "H_norm": 0.995,
+        "w_eff": -0.982,
+        "n": 1.003,
+        "chi_sea": 0.998,
+        "Y_BBN": 1
+      }
+    },
+    {
+      "family": "WL",
+      "residual": [0.31, -0.27],
+      "covariance_diagonal": [1, 1],
+      "projection": {
+        "n": 1.005,
+        "chi_sea": 1.001,
+        "G_growth": 0.961
+      }
+    },
+    {
+      "family": "RSD",
+      "residual": [0.26, -0.2],
+      "covariance_diagonal": [1, 1],
+      "projection": {
+        "H_norm": 1.006,
+        "n": 1.004,
+        "chi_sea": 1,
+        "G_growth": 0.966
+      }
+    },
+    {
+      "family": "BBN",
+      "residual": [0.12, -0.18],
+      "covariance_diagonal": [1, 1],
+      "projection": {
+        "n": 0.998,
+        "chi_sea": 0.999,
+        "Y_BBN": 1.002
+      }
+    }
+  ]
+}

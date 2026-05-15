@@ -1401,6 +1401,22 @@ $$
 
 Thus a full causal phase-cycle transaction is naturally counted in units of $h$, while the angular-momentum generator conjugate to a phase angle is naturally counted in units of $\hbar$.
 
+The same convention supplies the action-measure target needed by the lower recordable basin-measure program in [Wavefunction Ontology](../quantum/wavefunction-ontology.md#lower-bound-on-recordable-basin-measure). Suppose a record-facing reduced chart closes to $n$ action-angle channels $(I_i,\theta_i)$ with $\theta_i\sim\theta_i+2\pi$, and suppose the Master-Equation closure, root-ledger admissibility, and apparatus channel derive the increment $\Delta I_i=\hbar$ rather than inserting it as a postulate. The local action cell in that chart is then
+$$
+\Delta\Gamma_{\text{cell}}
+=
+\prod_{i=1}^{n}
+\left(
+\int_{I_i}^{I_i+\hbar}dI_i
+\int_0^{2\pi}d\theta_i
+\right)
+=
+(2\pi\hbar)^n
+=
+h^n.
+$$
+This is not yet a derivation of quantum discreteness. It is the theorem target that would let a finite recordable basin measure reduce to $\mu_0(\mathcal{Q},W)\to C_{\mathcal{Q},W}h^n$, with $C_{\mathcal{Q},W}$ fixed by quotienting, apparatus coupling, inaccessible root-ledger variables, and the declared coarse-graining rather than chosen after the fact.
+
 For a tri-binary transaction, the compact bookkeeping statement is
 
 $$

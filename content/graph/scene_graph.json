@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 488,
+      "nodes": 489,
       "edges": 1239,
       "scenes": 320,
       "markdownIndexes": 0,
-      "markdownDocs": 168,
+      "markdownDocs": 169,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -3038,6 +3038,12 @@
       "id": "content/markdown/aaa/validation/simulations/convergence-tests.md",
       "name": "Convergence Tests for Non-Markovian Dynamics",
       "path": "content/markdown/aaa/validation/simulations/convergence-tests.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md",
+      "name": "Cosmology Shared Residual Fit Protocol",
+      "path": "content/markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -7414,6 +7420,15 @@
       "name": "Convergence Tests for Non-Markovian Dynamics",
       "path": "content/markdown/aaa/validation/simulations/convergence-tests.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/convergence-tests.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md",
+      "name": "Cosmology Shared Residual Fit Protocol",
+      "path": "content/markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md",
       "implicit": false
     },
     {

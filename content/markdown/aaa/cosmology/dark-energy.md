@@ -131,7 +131,7 @@ r_X(\theta_{\mathrm{sea}},\nu_X)
 \right\rVert^2.
 $$
 
-Here $r_X$ is the residual vector for observable family $X$, $\nu_X$ records nuisance and calibration variables, $C_X$ is the covariance model, and $\Pi_X$ projects the shared medium-state record into the variables consumed by that observable family. A dark-energy interpretation is promotable only if both the ordinary residuals and the cross-projection penalty can be controlled without replacing $\theta_{\mathrm{sea}}$ separately for each pipeline.
+Here $r_X$ is the residual vector for observable family $X$, $\nu_X$ records nuisance and calibration variables, $C_X$ is the covariance model, and $\Pi_X$ projects the shared medium-state record into the variables consumed by that observable family. A dark-energy interpretation is promotable only if both the ordinary residuals and the cross-projection penalty can be controlled without replacing $\theta_{\mathrm{sea}}$ separately for each pipeline. The first mock validation artifact for this gate is [Cosmology Shared Residual Fit Protocol](../validation/simulations/cosmology-shared-residual-fit.md).
 
 ### Thermodynamic $\Lambda_{\mathrm{eff}}$ Closure Target
 
