@@ -247,12 +247,22 @@ function layerState(layer, values, t) {
   return { relative, relativeVelocity };
 }
 
+function layerAcceleration(layer, values, t) {
+  const state = layerState(layer, values, t);
+  const omega = values.omega[layer];
+  return scale(state.relative, -omega * omega);
+}
+
 function bodyState(body, values, t) {
   const state = layerState(body.layer, values, t);
   return {
     position: scale(state.relative, SIGN[body.polarity] * 0.5),
     velocity: scale(state.relativeVelocity, SIGN[body.polarity] * 0.5),
   };
+}
+
+function bodyAcceleration(body, values, t) {
+  return scale(layerAcceleration(body.layer, values, t), SIGN[body.polarity] * 0.5);
 }
 
 function sourceRelation(receiver, source) {
@@ -1219,6 +1229,419 @@ function oneStepDynamicsDiagnostic(row, tier0, configResult, roots, args) {
   };
 }
 
+function averageVectors(vectors) {
+  if (vectors.length === 0) {
+    return [0, 0, 0];
+  }
+  const sum = vectors.reduce((acc, vector) => addTo(acc, vector), [0, 0, 0]);
+  return scale(sum, 1 / vectors.length);
+}
+
+function maxFinite(values, fallback) {
+  const finite = values.filter(Number.isFinite);
+  return finite.length === 0 ? fallback : Math.max(...finite);
+}
+
+function carrierReplayScales(row, samples, cF) {
+  const values = rowValues(row);
+  const positionNorms = [];
+  const velocityNorms = [];
+  for (const sample of samples) {
+    for (const bodyId of BODY_IDS) {
+      const state = sample.bodies?.[bodyId];
+      if (state) {
+        positionNorms.push(norm(state.position));
+        velocityNorms.push(norm(state.velocity));
+      }
+    }
+  }
+  return {
+    position: Math.max(1, maxFinite(positionNorms, 0), maxFinite(Object.values(values.radii), 0)),
+    velocity: Math.max(1, Math.abs(cF), maxFinite(velocityNorms, 0)),
+  };
+}
+
+function carrierReplayResidualTolerances(tier0, configResult) {
+  const config = carrierReplayConfig(tier0, configResult.config);
+  const rootTolerance = config.sampling.rootTolerance ?? tier0.tolerances?.root ?? 1e-6;
+  return {
+    state_return: config.sampling.stateTolerance ?? config.sampling.phaseTolerance ?? null,
+    root: rootTolerance,
+    speed: config.sampling.speedTolerance ?? tier0.tolerances?.speed ?? 0.02,
+    center_gauge: config.sampling.driftTolerance ?? config.sampling.phaseTolerance ?? Math.max(rootTolerance, Number.EPSILON),
+  };
+}
+
+function sampleCenterGauge(row, sample) {
+  const values = rowValues(row);
+  const bodies = bodyCatalog();
+  const positions = bodies.map((body) => sample.bodies[body.id]?.position ?? bodyState(body, values, sample.t).position);
+  const velocities = bodies.map((body) => sample.bodies[body.id]?.velocity ?? bodyState(body, values, sample.t).velocity);
+  const accelerations = bodies.map((body) => bodyAcceleration(body, values, sample.t));
+  return {
+    t: sample.t,
+    position: averageVectors(positions),
+    velocity: averageVectors(velocities),
+    acceleration: averageVectors(accelerations),
+  };
+}
+
+function centerSlopeVector(centers, field) {
+  if (centers.length < 2) {
+    return [0, 0, 0];
+  }
+  const meanT = centers.reduce((sum, center) => sum + center.t, 0) / centers.length;
+  const meanVector = averageVectors(centers.map((center) => center[field]));
+  const numerator = [0, 0, 0];
+  let denominator = 0;
+  for (const center of centers) {
+    const dt = center.t - meanT;
+    addTo(numerator, scale(sub(center[field], meanVector), dt));
+    denominator += dt * dt;
+  }
+  return denominator > 0 ? scale(numerator, 1 / denominator) : [0, 0, 0];
+}
+
+function centerGaugeDriftBudget(row, samples, scales, period, tolerance) {
+  const centers = samples.map((sample) => sampleCenterGauge(row, sample));
+  const first = centers[0] ?? { position: [0, 0, 0], velocity: [0, 0, 0] };
+  const last = centers[centers.length - 1] ?? first;
+  let maxCenterPositionAbs = 0;
+  let maxCenterVelocityAbs = 0;
+  let maxCenterAccelerationAbs = 0;
+  let maxCenterDrift = 0;
+  let samplesOverCenterTolerance = 0;
+  const centerDriftExamples = [];
+
+  for (const center of centers) {
+    const centerPositionAbs = norm(center.position) / scales.position;
+    const centerVelocityAbs = norm(center.velocity) / scales.velocity;
+    const centerAccelerationAbs = norm(center.acceleration) / scales.velocity;
+    const centerDrift = Math.max(
+      norm(sub(center.position, first.position)) / scales.position,
+      norm(sub(center.velocity, first.velocity)) / scales.velocity
+    );
+    maxCenterPositionAbs = Math.max(maxCenterPositionAbs, centerPositionAbs);
+    maxCenterVelocityAbs = Math.max(maxCenterVelocityAbs, centerVelocityAbs);
+    maxCenterAccelerationAbs = Math.max(maxCenterAccelerationAbs, centerAccelerationAbs);
+    maxCenterDrift = Math.max(maxCenterDrift, centerDrift);
+    if (Number.isFinite(tolerance) && centerDrift > tolerance) {
+      samplesOverCenterTolerance += 1;
+      if (centerDriftExamples.length < 10) {
+        centerDriftExamples.push({ t: center.t, center_drift: centerDrift });
+      }
+    }
+  }
+
+  const centerEndpointDrift = Math.max(
+    norm(sub(last.position, first.position)) / scales.position,
+    norm(sub(last.velocity, first.velocity)) / scales.velocity
+  );
+  const positionSlope = centerSlopeVector(centers, "position");
+  const velocitySlope = centerSlopeVector(centers, "velocity");
+  const centerSlopePosition = Number.isFinite(period) ? (norm(positionSlope) * Math.abs(period)) / scales.position : null;
+  const centerSlopeVelocity = Number.isFinite(period) ? (norm(velocitySlope) * Math.abs(period)) / scales.velocity : null;
+
+  return {
+    max_center_position_abs: maxCenterPositionAbs,
+    max_center_velocity_abs: maxCenterVelocityAbs,
+    max_center_acceleration_abs: maxCenterAccelerationAbs,
+    max_center_drift: maxCenterDrift,
+    center_endpoint_drift: centerEndpointDrift,
+    center_slope_position: centerSlopePosition,
+    center_slope_velocity: centerSlopeVelocity,
+    samples_over_center_tolerance: samplesOverCenterTolerance,
+    examples: centerDriftExamples,
+  };
+}
+
+function relationRootBudget() {
+  return Object.fromEntries(
+    ROOT_RELATIONS.map((relation) => [
+      relation,
+      {
+        root_count: 0,
+        max_root_residual: 0,
+        max_root_residual_over_tolerance: 0,
+        roots_over_tolerance: 0,
+      },
+    ])
+  );
+}
+
+function rootResidualBudget(row, roots, cF, rootTolerance) {
+  const values = rowValues(row);
+  const byRelation = relationRootBudget();
+  const examples = [];
+  let rootsEvaluated = 0;
+  let rootsOverTolerance = 0;
+  let maxRootResidual = 0;
+  let maxRootResidualOverTolerance = 0;
+
+  for (const root of roots) {
+    const receiver = bodyById(root.receiver);
+    const source = bodyById(root.source);
+    if (!receiver || !source || !Number.isFinite(root.delay)) {
+      continue;
+    }
+    const residual = Math.abs(rootFunction(receiver, source, values, root.t, root.delay, cF));
+    const residualOverTolerance = Number.isFinite(rootTolerance) && rootTolerance > 0 ? residual / rootTolerance : null;
+    rootsEvaluated += 1;
+    maxRootResidual = Math.max(maxRootResidual, residual);
+    if (residualOverTolerance !== null) {
+      maxRootResidualOverTolerance = Math.max(maxRootResidualOverTolerance, residualOverTolerance);
+    }
+    if (Object.hasOwn(byRelation, root.relation)) {
+      byRelation[root.relation].root_count += 1;
+      byRelation[root.relation].max_root_residual = Math.max(byRelation[root.relation].max_root_residual, residual);
+      byRelation[root.relation].max_root_residual_over_tolerance = Math.max(
+        byRelation[root.relation].max_root_residual_over_tolerance,
+        residualOverTolerance ?? 0
+      );
+    }
+    if (residualOverTolerance !== null && residualOverTolerance > 1) {
+      rootsOverTolerance += 1;
+      if (Object.hasOwn(byRelation, root.relation)) {
+        byRelation[root.relation].roots_over_tolerance += 1;
+      }
+      if (examples.length < 10) {
+        examples.push({
+          receiver: root.receiver,
+          source: root.source,
+          relation: root.relation,
+          t: root.t,
+          delay: root.delay,
+          root_residual: residual,
+          root_residual_over_tolerance: residualOverTolerance,
+        });
+      }
+    }
+  }
+
+  return {
+    roots_evaluated: rootsEvaluated,
+    roots_over_tolerance: rootsOverTolerance,
+    max_root_residual: maxRootResidual,
+    max_root_residual_over_tolerance: maxRootResidualOverTolerance,
+    by_relation: byRelation,
+    examples,
+  };
+}
+
+function carrierReturnResidualBudget(row, samples, period, scales, stateReturnTolerance) {
+  if (!Number.isFinite(period)) {
+    return {
+      evaluated_sample_count: 0,
+      samples_over_state_tolerance: 0,
+      max_state_return_residual: null,
+      examples: [],
+    };
+  }
+  let maxStateReturnResidual = 0;
+  let samplesOverStateTolerance = 0;
+  const examples = [];
+  for (const sample of samples) {
+    const returnStates = finiteBodyStates(row, sample.t + period);
+    let sampleResidual = 0;
+    for (const bodyId of BODY_IDS) {
+      const state = sample.bodies?.[bodyId];
+      const returnState = returnStates[bodyId];
+      if (!state || !returnState) {
+        continue;
+      }
+      sampleResidual = Math.max(
+        sampleResidual,
+        norm(sub(returnState.position, state.position)) / scales.position,
+        norm(sub(returnState.velocity, state.velocity)) / scales.velocity
+      );
+    }
+    maxStateReturnResidual = Math.max(maxStateReturnResidual, sampleResidual);
+    if (Number.isFinite(stateReturnTolerance) && sampleResidual > stateReturnTolerance) {
+      samplesOverStateTolerance += 1;
+      if (examples.length < 10) {
+        examples.push({ t: sample.t, state_return_residual: sampleResidual });
+      }
+    }
+  }
+  return {
+    evaluated_sample_count: samples.length,
+    samples_over_state_tolerance: samplesOverStateTolerance,
+    max_state_return_residual: maxStateReturnResidual,
+    examples,
+  };
+}
+
+function speedResidualBudget(samples, cF, speedTolerance) {
+  let maxSpeedOrderingResidual = 0;
+  let samplesOverSpeedTolerance = 0;
+  const examples = [];
+  for (const sample of samples) {
+    const residual = speedOrderingResidual(layerAverageSpeeds(sample.bodies), cF);
+    maxSpeedOrderingResidual = Math.max(maxSpeedOrderingResidual, residual);
+    if (Number.isFinite(speedTolerance) && residual > speedTolerance) {
+      samplesOverSpeedTolerance += 1;
+      if (examples.length < 10) {
+        examples.push({ t: sample.t, speed_ordering_residual: residual });
+      }
+    }
+  }
+  return {
+    samples_over_speed_tolerance: samplesOverSpeedTolerance,
+    max_speed_ordering_residual: maxSpeedOrderingResidual,
+    examples,
+  };
+}
+
+function carrierTrapezoidResidualBudget(row, samples, scales) {
+  const values = rowValues(row);
+  const bodies = bodyCatalog();
+  const invalidIntervals = [];
+  let intervalCount = 0;
+  let maxPositionResidual = 0;
+  let maxVelocityResidual = 0;
+  let maxNormalizedPositionResidual = 0;
+  let maxNormalizedVelocityResidual = 0;
+
+  for (let i = 0; i < samples.length - 1; i += 1) {
+    const current = samples[i];
+    const next = samples[i + 1];
+    const dt = next.t - current.t;
+    if (!Number.isFinite(dt) || dt <= 0) {
+      invalidIntervals.push({ index: i, t0: current.t, t1: next.t, dt });
+      continue;
+    }
+    intervalCount += 1;
+    for (const body of bodies) {
+      const currentState = current.bodies[body.id];
+      const nextState = next.bodies[body.id];
+      if (!currentState || !nextState) {
+        invalidIntervals.push({ index: i, body: body.id, t0: current.t, t1: next.t, reason: "missing-body-state" });
+        continue;
+      }
+      const currentAcceleration = bodyAcceleration(body, values, current.t);
+      const nextAcceleration = bodyAcceleration(body, values, next.t);
+      const positionResidual = sub(
+        sub(nextState.position, currentState.position),
+        scale(add(currentState.velocity, nextState.velocity), 0.5 * dt)
+      );
+      const velocityResidual = sub(
+        sub(nextState.velocity, currentState.velocity),
+        scale(add(currentAcceleration, nextAcceleration), 0.5 * dt)
+      );
+      const positionScale = Math.max(
+        norm(sub(nextState.position, currentState.position)),
+        norm(scale(add(currentState.velocity, nextState.velocity), 0.5 * dt)),
+        Number.EPSILON
+      );
+      const velocityScale = Math.max(
+        norm(sub(nextState.velocity, currentState.velocity)),
+        norm(scale(add(currentAcceleration, nextAcceleration), 0.5 * dt)),
+        Number.EPSILON
+      );
+      const positionResidualNorm = norm(positionResidual);
+      const velocityResidualNorm = norm(velocityResidual);
+      maxPositionResidual = Math.max(maxPositionResidual, positionResidualNorm);
+      maxVelocityResidual = Math.max(maxVelocityResidual, velocityResidualNorm);
+      maxNormalizedPositionResidual = Math.max(maxNormalizedPositionResidual, positionResidualNorm / positionScale);
+      maxNormalizedVelocityResidual = Math.max(maxNormalizedVelocityResidual, velocityResidualNorm / velocityScale);
+    }
+  }
+
+  return {
+    interval_count: intervalCount,
+    invalid_interval_count: invalidIntervals.length,
+    invalid_intervals: invalidIntervals.slice(0, 10),
+    max_position_trapezoid_residual: maxPositionResidual,
+    max_velocity_trapezoid_residual: maxVelocityResidual,
+    max_normalized_position_trapezoid_residual: maxNormalizedPositionResidual,
+    max_normalized_velocity_trapezoid_residual: maxNormalizedVelocityResidual,
+    finite_trapezoid_budget:
+      Number.isFinite(maxPositionResidual) &&
+      Number.isFinite(maxVelocityResidual) &&
+      Number.isFinite(maxNormalizedPositionResidual) &&
+      Number.isFinite(maxNormalizedVelocityResidual) &&
+      invalidIntervals.length === 0,
+  };
+}
+
+function carrierReplayResidualAndCenterDriftDiagnostic(row, tier0, configResult, samples, roots) {
+  const period = row.closure_labels?.T_k ?? row.geometry?.commonPeriod ?? null;
+  const config = carrierReplayConfig(tier0, configResult.config);
+  const cF = config.seaCell.c_f;
+  const scales = carrierReplayScales(row, samples, cF);
+  const tolerances = carrierReplayResidualTolerances(tier0, configResult);
+  const stateReturn = carrierReturnResidualBudget(row, samples, period, scales, tolerances.state_return);
+  const speedBudget = speedResidualBudget(samples, cF, tolerances.speed);
+  const rootBudget = rootResidualBudget(row, roots, cF, tolerances.root);
+  const centerBudget = centerGaugeDriftBudget(row, samples, scales, period, tolerances.center_gauge);
+  const trapezoidBudget = carrierTrapezoidResidualBudget(row, samples, scales);
+  const warning =
+    rootBudget.roots_over_tolerance > 0 ||
+    stateReturn.samples_over_state_tolerance > 0 ||
+    speedBudget.samples_over_speed_tolerance > 0 ||
+    centerBudget.samples_over_center_tolerance > 0 ||
+    trapezoidBudget.invalid_interval_count > 0;
+
+  return {
+    schema: "carrier-replay-residual-budget/v1",
+    status: warning ? "carrier-replay-residual-budget-warning" : "carrier-replay-residual-budget-recorded",
+    dynamics_scope: "carrier_replay_residual_budget_only",
+    acceptance_scope:
+      "Carrier replay residual and center-gauge audit only; does not establish Tier 1 residual convergence or secular-drift absence.",
+    formulas: {
+      state_return_residual: "epsilon_state(t) = max_b max(|x_b(t+T)-x_b(t)|/R_scale, |v_b(t+T)-v_b(t)|/V_scale)",
+      root_residual: "epsilon_root = ||x_r(t)-x_s(t-delay)|| - c_F delay",
+      position_trapezoid_residual: "e_x = x(t+h)-x(t)-0.5*h*(v(t+h)+v(t))",
+      velocity_trapezoid_residual: "e_v = v(t+h)-v(t)-0.5*h*(a_carrier(t+h)+a_carrier(t))",
+      center_gauge_position: "X_c(t) = (1/6) sum_b x_b(t)",
+      center_gauge_velocity: "V_c(t) = (1/6) sum_b v_b(t)",
+    },
+    sample_count: samples.length,
+    sample_interval: {
+      start: samples[0]?.t ?? null,
+      end: samples[samples.length - 1]?.t ?? null,
+    },
+    tolerances,
+    scales,
+    maxima: {
+      state_return_residual: stateReturn.max_state_return_residual,
+      speed_ordering_residual: speedBudget.max_speed_ordering_residual,
+      root_residual: rootBudget.max_root_residual,
+      root_residual_over_tolerance: rootBudget.max_root_residual_over_tolerance,
+      center_position_abs: centerBudget.max_center_position_abs,
+      center_velocity_abs: centerBudget.max_center_velocity_abs,
+      center_acceleration_abs: centerBudget.max_center_acceleration_abs,
+      center_drift: centerBudget.max_center_drift,
+      center_endpoint_drift: centerBudget.center_endpoint_drift,
+      center_slope_position: centerBudget.center_slope_position,
+      center_slope_velocity: centerBudget.center_slope_velocity,
+      position_trapezoid_residual: trapezoidBudget.max_position_trapezoid_residual,
+      velocity_trapezoid_residual: trapezoidBudget.max_velocity_trapezoid_residual,
+    },
+    counts: {
+      roots_evaluated: rootBudget.roots_evaluated,
+      roots_over_tolerance: rootBudget.roots_over_tolerance,
+      samples_over_state_tolerance: stateReturn.samples_over_state_tolerance,
+      samples_over_speed_tolerance: speedBudget.samples_over_speed_tolerance,
+      samples_over_center_tolerance: centerBudget.samples_over_center_tolerance,
+      invalid_trapezoid_intervals: trapezoidBudget.invalid_interval_count,
+    },
+    by_relation: rootBudget.by_relation,
+    kinematic_trapezoid_budget: trapezoidBudget,
+    examples: {
+      root_residual_over_tolerance: rootBudget.examples,
+      state_return_over_tolerance: stateReturn.examples,
+      speed_ordering_over_tolerance: speedBudget.examples,
+      center_drift_samples: centerBudget.examples,
+    },
+    validation_effect: {
+      residuals_below_tolerance: false,
+      no_secular_center_drift: false,
+      reason: "carrier replay is not a direct regularized Tier 1 delayed-dynamics integration",
+    },
+  };
+}
+
 function sourceCoverageComplete(row, samples) {
   const period = row.closure_labels?.T_k ?? row.geometry?.commonPeriod;
   const maxDelay = row.root_ledger?.maxDelay ?? 0;
@@ -1234,6 +1657,7 @@ function continuationSourceRow(row, tier0, configResult, args) {
   const rootReplay = rootReplayDiagnostics(roots, configResult);
   const dynamicsDiagnostic = oneStepDynamicsDiagnostic(row, tier0, configResult, roots, args);
   const rootRefinementDiagnostic = carrierRootLedgerRefinementDiagnostic(row, tier0, configResult, roots, args);
+  const residualBudgetDiagnostic = carrierReplayResidualAndCenterDriftDiagnostic(row, tier0, configResult, samples, roots);
   const coverageComplete = sourceCoverageComplete(row, samples);
   return {
     row: row.row,
@@ -1267,6 +1691,7 @@ function continuationSourceRow(row, tier0, configResult, args) {
     diagnostics: {
       speed_ordering: dynamicsDiagnostic,
       root_ledger_refinement: rootRefinementDiagnostic,
+      residual_budget: residualBudgetDiagnostic,
     },
     samples,
     active_causal_root_ledger: roots,
