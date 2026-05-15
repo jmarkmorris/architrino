@@ -89,6 +89,7 @@ These are tracked for visibility, but they are not ranked active workstreams in 
 | Slug or packet | Location | Role | Current disposition |
 | --- | --- | --- | --- |
 | `dark-sector` | [dark-sector.md](../dark-sector/dark-sector.md) | Speculative dark-sector candidate assembly lane for release, transport, redshift, reaction, and visible-channel re-entry hypotheses. | Priority candidate under watchlist review; promote only packets with a boundary condition, event ledger, redshift/re-entry gate, or discriminating observable. |
+| `cross-theory-mapping` | [cross-theory-mapping.md](../cross-theory-mapping/cross-theory-mapping.md) | Priority-candidate lane for observational and experimental benchmark cases whose standard-theory mathematics can sharpen $\mathbb{A}\mathbb{A}\mathbb{A}$ closure work. | Keep unranked until one case supplies a concrete acceptance predicate, closure object, promotion target, and failure mode strong enough to enter a ranked workstream. |
 | `ellipsoid` | [ellipsoid.md](../ellipsoid/ellipsoid.md) | Effective-metric routing surface plus Ideal Core app idea. | Priority candidate under routing review; retire only after sibling files have destinations. |
 | `strong-field hypothesis bank` | [hypothesis-bank.md](../strong-field-closure/hypothesis-bank.md) | Strong-field and tri-binary hypothesis watchlist. | Merged under `strong-field-closure`; not a ranked top-level workstream. |
 | `deferred` | [legacy-insights.md](../deferred/legacy-insights.md) | Archive and parking lot for non-current material. | Needs a deferred index later. |
