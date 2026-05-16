@@ -57,6 +57,41 @@ F_{\mathrm{tot}}(\Gamma_{\mathrm{tot}}),
 $$
 not a splice between quantum dynamics on the target side and a separate classical-observer dynamics on the apparatus side. A human observer, laboratory notebook, or downstream database is therefore another possible record-bearing assembly, not an ontologically privileged endpoint of the measurement.
 
+## Physical-Record Import Consistency
+
+The same rule applies when one Physical Observer records another Physical Observer's conclusion. A statement such as "observer $O_j$ is certain that record $R_k$ will occur" is not free-standing knowledge. For observer $O_i$, it is a physical communication or memory record inside $O_i$'s retained apparatus and access region. Let $C_{j\to i,k}$ denote that imported-certainty record in the declared channel for $O_i$, and let $\theta_i$ be the corresponding observer model record. With the same finite-time basin measure used for the measurement channel, write
+$$
+p_i(\ell|\theta_i)
+=
+\mu_{*,T}^{(i)}\!\left(\pi_i^{-1}(R_\ell)\right),
+\qquad
+c_{i\leftarrow j}(k|\theta_i)
+=
+\mu_{*,T}^{(i)}\!\left(\pi_i^{-1}(C_{j\to i,k})\right).
+$$
+Here $p_i$ is $O_i$'s direct record probability for outcome $R_\ell$, while $c_{i\leftarrow j}$ is the probability that $O_i$ has a valid physical record of $O_j$'s certified conclusion. For mutually exclusive record classes $R_k\cap R_\ell=\varnothing$, define a certainty-threshold residual
+$$
+\Delta_{\mathrm{cert}}^{ij}
+=
+\max_{k\ne \ell}
+\left[
+c_{i\leftarrow j}(k|\theta_i)
++
+p_i(\ell|\theta_i)
+-
+2(1-\epsilon_C)
+\right]_+,
+\qquad
+[x]_+\equiv\max(x,0).
+$$
+A valid observed-observer measurement model should satisfy
+$$
+\Delta_{\mathrm{cert}}^{ij}
+\le
+\varepsilon_{\mathrm{cert}}
+$$
+on the same declared apparatus kernel, coarse-graining, access region, and persistence window used for the ordinary record tests. This is not a new probability postulate. It is the measurement-cut rejection applied recursively: if $O_i$ can physically record $O_j$'s certified conclusion, that imported record must be part of the same substrate flow as $O_i$'s direct prediction. If the communication record, reference resources, or record-autonomy test fails, the observed-observer setup is not a completed measurement comparison rather than a contradiction in the ontology.
+
 ## Minimal Dynamical Model
 
 Let $X(t)$ denote reduced coordinates for the measured subsystem and $A(t)$ the relevant apparatus coordinates. The coupled deterministic coarse-grained dynamics may be written schematically as

@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1148
+      "sections": 1150
     }
   },
   "tocRoot": {
@@ -4352,6 +4352,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Physical-Record Import Consistency",
+                "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
+                "markdownSection": "Physical-Record Import Consistency",
+                "sectionKey": "physical record import consistency",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Minimal Dynamical Model",
                 "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
                 "markdownSection": "Minimal Dynamical Model",
@@ -4603,6 +4611,14 @@
                 "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
                 "markdownSection": "Hilbert-Representation Invariance Guardrail",
                 "sectionKey": "hilbert representation invariance guardrail",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Probability-Representation Guardrail",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+                "markdownSection": "Probability-Representation Guardrail",
+                "sectionKey": "probability representation guardrail",
                 "headingLevel": 2
               },
               {
