@@ -231,6 +231,93 @@ $$
 
 At the current harness level this diagnostic has $|S|=2\sqrt{2}$, zero measurement-independence residual, zero no-signaling residual, zero Tsirelson excess, and product-screening residual $0.35355339059327373$ against the declared independent local-marginal baseline. This is a reduced-coordinate success marker, not a substrate derivation: the open work is still to derive $\varphi_{\Pi}$ from $\Theta_{AB}^{\mathrm{rel}}$ and to compute the local record-cycle measures from apparatus return maps.
 
+### Complete-Record Parity Audit
+
+The harness now separates the existing declared-baseline product-screening residual from a stricter complete-record parity audit. The old product-screening residual asks whether the emitted table differs from the screening baseline supplied in the candidate JSON. The stricter audit asks whether each retained source record can be assigned deterministic one-wing responses across the four CHSH contexts.
+
+For a complete local-response record, write
+
+$$
+C_{ij}=A_iB_j,
+\qquad
+i,j\in\{0,1\}.
+$$
+
+Then every pointwise local assignment satisfies
+
+$$
+C_{00}C_{01}C_{10}C_{11}
+=
++1,
+$$
+
+because each one-wing sign appears twice. The generated joint-basin candidate violates this condition on the middle source interval. For both `candidate_joint_record_basin_singlet_target` and `candidate_record_cycle_pair_coordinate`, the middle interval requires
+
+$$
+(C_{00},C_{01},C_{10},C_{11})
+=
+(-1,+1,-1,-1),
+$$
+
+so
+
+$$
+C_{00}C_{01}C_{10}C_{11}=-1.
+$$
+
+This is the completed-record obstruction. It means the current candidate does not merely need a better label for $\eta_{AB}$; it must derive why the retained Bell coarse-graining is not restartable as a single common-cause record with local one-wing maps. If the completed retained variables can be refined until this parity obstruction disappears, the construction has product-screened itself and the Bell-family gate fails. If the obstruction survives while $\Delta_{\mathrm{MI}}$, $\Delta_{\mathrm{NS}}^A$, and $\Delta_{\mathrm{NS}}^B$ remain zero, the remaining burden is to prove that the nonfactorizing parity pattern is produced by finite-time joint record basins rather than by a fitted context table.
+
+### Phase-Certificate Diagnostic Contract
+
+The next executable object is not another Bell table. It is a branch-certificate phase row that can say whether the proposed $\varphi_{\Pi}$ was computed from retained source data or merely inserted as a reduced coordinate. Each row should contain:
+
+| Field | Required content |
+| --- | --- |
+| `source_event` | $t_0$, $t_{\mathrm{sep}}$, daughter positions $\mathbf X_A(t_{\mathrm{sep}})$ and $\mathbf X_B(t_{\mathrm{sep}})$, the derived $\hat{\mathbf a}_{AB}$, and a nonzero-axis margin. |
+| `layer_phase_ledgers` | For each $X\in\{A,B\}$ and $\ell\in\{I,M,O\}$: $\phi_{\ell X}(t_0^+)$, $\int_{t_0}^{t_{\mathrm{sep}}}\omega_{\ell X}(t)\,dt$, $\Phi_{\ell X}^{\text{root}}$, and $\Phi_{\ell X}^{\text{frame}}$. |
+| `angular_momentum_ledger` | $\mathbf J_{\ell X}^{\mathrm{bal}}$, the projection $\hat{\mathbf a}_{AB}\cdot\mathbf J_{\ell X}^{\mathrm{bal}}$, and the total balance residual for $\mathbf J_A+\mathbf J_B$ plus any retained wake term. |
+| `wake_phase_ledger` | $\mathbf L_{\mathrm{wake},X}^{AB}$, $\Theta_{\mathrm{wake},X}^{AB}$, $\Phi_{AB}^{\text{wake}}$, and a flag saying whether the wake phase is substrate-derived or diagnostic. |
+| `phasor_output` | $Z_A^{AB}$, $Z_B^{AB}$, their magnitudes, $\varphi_{\Pi}$, and the derived $\eta_{AB}$ fraction when local record phases are supplied. |
+| `quotient_audit` | Probe rows for allowed branch-preserving gauge changes and the resulting $\Delta_{\varphi}^{\mathrm{gauge}}$. |
+| `failure_residuals` | Nonzero-axis, angular-balance, wake-certificate, zero-phasor, and gauge-phase residuals. |
+
+The focused diagnostic emitter is:
+
+```text
+node scripts/quantum/pair-phase-certificate-emitter.mjs \
+  --pretty \
+  --out /tmp/pair-phase-certificate-diagnostic.json
+```
+
+This emitter computes $Z_A^{AB}$, $Z_B^{AB}$, $\varphi_{\Pi}$, the derived $\eta_{AB}$ fraction, and the residual fields from declared diagnostic rows. It is not a Bell-family harness candidate and does not claim substrate derivation. A row with `wake_certificate_missing=1` or `certificate_status=diagnostic_declared_row` is a JSON-shape success marker only. A future positive source-measure candidate may copy this shape into `source_records` only after the same fields are filled from an accepted branch certificate and the product-screening audit remains nonzero without setting-dependent source weights.
+
+The diagnostic residuals should be read as first filters:
+
+$$
+\widehat{\Delta}_{\varphi}^{\mathrm{gauge}}
+=
+\max_j
+\operatorname{dist}_{S^1}
+\left(
+\varphi_{\Pi}^{(j)},
+\varphi_{\Pi}^{(0)}
+\right),
+$$
+
+where $j$ ranges over declared branch-preserving gauge probes, and
+
+$$
+m_Z
+=
+\min\left(|Z_A^{AB}|,|Z_B^{AB}|\right),
+\qquad
+\Delta_Z^{0}
+=
+\mathbf 1_{m_Z\le\epsilon_0}.
+$$
+
+The wake-certificate residual is not a physics residual by itself. It is a provenance flag: it vanishes only when $\Phi_{AB}^{\text{wake}}$, $\Theta_{\mathrm{wake},X}^{AB}$, and $\mathbf L_{\mathrm{wake},X}^{AB}$ are supplied by a retained causal-wake ledger rather than declared for a diagnostic row.
+
 ## Pair-Basin Threshold Theorem Target
 
 The diagnostic target becomes a useful proof problem only if the inserted threshold can be replaced by a derived basin coordinate. A candidate reduced record may refine $\Gamma_{AB}^{\mathrm{rec}}$ by a sign branch $\sigma\in\{-1,+1\}$ and a threshold coordinate $\eta_{AB}\in[0,1]$:
@@ -331,7 +418,72 @@ $$
 \varphi_{\Pi}:\Pi_{AB}\to S^1
 $$
 
-read the relative phase component retained by $\Theta_{AB}^{\mathrm{rel}}$. The candidate pair coordinate is
+read the relative phase component retained by $\Theta_{AB}^{\mathrm{rel}}$. A concrete theorem target for this map starts from the source-separation axis
+
+$$
+\hat{\mathbf a}_{AB}
+=
+\frac{\mathbf X_A(t_{\mathrm{sep}})-\mathbf X_B(t_{\mathrm{sep}})}
+{\|\mathbf X_A(t_{\mathrm{sep}})-\mathbf X_B(t_{\mathrm{sep}})\|},
+$$
+
+when that axis is nonzero. For each daughter $X\in\{A,B\}$ and layer $\ell\in\{I,M,O\}$, define the source-to-separation phase ledger
+
+$$
+\Theta_{\ell X}^{AB}
+=
+\phi_{\ell X}(t_0^+)
++
+\int_{t_0}^{t_{\mathrm{sep}}}\omega_{\ell X}(t)\,dt
++
+\Phi_{\ell X}^{\text{root}}
++
+\Phi_{\ell X}^{\text{frame}}.
+$$
+
+Let $\mathbf J_{\ell X}^{\mathrm{bal}}$ denote the layer contribution to $\mathbf J_{AB}^{\mathrm{bal}}$, and let $\mathbf L_{\mathrm{wake},X}^{AB}$ denote the daughter-side wake contribution retained by $\mathcal W_{AB}[t_0,t_{\mathrm{sep}}]$. The angular-momentum-weighted phase phasor is
+
+$$
+Z_X^{AB}
+=
+\sum_{\ell\in\{I,M,O\}}
+\left(\hat{\mathbf a}_{AB}\cdot\mathbf J_{\ell X}^{\mathrm{bal}}\right)
+e^{i\Theta_{\ell X}^{AB}}
++
+\left(\hat{\mathbf a}_{AB}\cdot\mathbf L_{\mathrm{wake},X}^{AB}\right)
+e^{i\Theta_{\mathrm{wake},X}^{AB}}.
+$$
+
+The candidate relative phase is then
+
+$$
+\varphi_{\Pi}(\Pi_{AB})
+=
+\arg\!\left(
+-
+Z_A^{AB}\overline{Z_B^{AB}}
+e^{i\Phi_{AB}^{\text{wake}}}
+\right),
+$$
+
+where $\Phi_{AB}^{\text{wake}}$ denotes the cross-wake phase contribution extracted from $\mathcal W_{AB}[t_0,t_{\mathrm{sep}}]$. This is not a new ontology term; it is a temporary proof symbol for the phase part of the retained pair wake. The minus sign is the singlet-like phase inversion associated with the angular-momentum balance, not an imported quantum postulate.
+
+This map is admissible only if it survives the pair-provenance quotient. Let $G_{\mathrm{pair}}$ be the allowed branch-preserving gauge action on the retained pair record: time-origin changes, smooth phase reparameterizations inside one closed root-ledger cell, and deformations that preserve the declared source, root, wake, balance, and reaction-provenance records. The gauge residual is
+
+$$
+\Delta_{\varphi}^{\mathrm{gauge}}
+=
+\sup_{g\in G_{\mathrm{pair}}}
+\operatorname{dist}_{S^1}
+\left(
+\varphi_{\Pi}(g\cdot\Pi_{AB}),
+\varphi_{\Pi}(\Pi_{AB})
+\right).
+$$
+
+If $\Delta_{\varphi}^{\mathrm{gauge}}\ne0$, then $\varphi_{\Pi}$ is a coordinate artifact and the pair-basin route fails before any Bell-family comparison. If $Z_A^{AB}=0$ or $Z_B^{AB}=0$ on a positive-measure source class, the scalar phase is undefined there and the retained pair record is not strong enough for this candidate.
+
+With this candidate, the pair coordinate is
 
 $$
 \eta_{AB}
@@ -363,7 +515,29 @@ T_{\mathrm{same}}(\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
 \frac{1-\hat{\mathbf{m}}_A\cdot\hat{\mathbf{m}}_B}{2}.
 $$
 
-The first equality is the uniform-pushforward burden; the second says the same-outcome basin measure is the singlet benchmark rather than a fitted table. The candidate fails if the pushforward is imposed by hand, if the required relative phase cannot be extracted from $\Theta_{AB}^{\mathrm{rel}}$, or if the four induced basins product-screen after conditioning on the complete retained record. A concrete screening diagnostic is
+In expanded form, the first equality means
+
+$$
+\left(
+\operatorname{frac}
+\left(
+\frac{
+\theta_{\text{rec}}^A
+-
+\theta_{\text{rec}}^B
++
+\varphi_{\Pi}(\Pi_{AB})
+}{2\pi}
+\right)
+\right)_*
+\left(
+d\nu_A\,d\nu_B\,d\rho_{\mathrm{src}}
+\right)
+=
+d\eta.
+$$
+
+The first equality is the uniform-pushforward burden; the second says the same-outcome basin measure is the singlet benchmark rather than a fitted table. The candidate fails if the pushforward is imposed by hand, if the required relative phase cannot be extracted from $\Theta_{AB}^{\mathrm{rel}}$, if $\varphi_{\Pi}$ is not invariant under $G_{\mathrm{pair}}$, or if the four induced basins product-screen after conditioning on the complete retained record. A concrete screening diagnostic is
 
 $$
 \Delta_{\mathrm{prod}}
@@ -385,10 +559,11 @@ If $\Delta_{\mathrm{prod}}$ vanishes within the declared harness tolerance, the 
 This theorem target fails in any of the following cases:
 
 1. $\eta_{AB}$ or $T_{\mathrm{same}}$ is chosen directly to reproduce the singlet table rather than derived as a basin coordinate and separatrix threshold.
-2. The retained record admits a factorization into one-wing kernels after conditioning on the complete $\Pi_{AB}$ and local apparatus variables.
-3. $F_*\mu_{AB}^{\mathrm{thr}}\ne\mu_{AB}^{\mathrm{thr}}$, so the local marginals drift away from $\frac{1}{2}$.
-4. $\rho_{\mathrm{src}}(\Pi_{AB}|P_{\mathrm{src}})$ depends on later detector settings.
-5. The construction requires superluminal signal, energy transfer, causal-wake transfer, or treating information as ontology.
+2. $\Delta_{\varphi}^{\mathrm{gauge}}\ne0$, so the proposed relative phase is changed by a branch-preserving gauge transformation.
+3. The retained record admits a factorization into one-wing kernels after conditioning on the complete $\Pi_{AB}$ and local apparatus variables.
+4. $F_*\mu_{AB}^{\mathrm{thr}}\ne\mu_{AB}^{\mathrm{thr}}$, so the local marginals drift away from $\frac{1}{2}$.
+5. $\rho_{\mathrm{src}}(\Pi_{AB}|P_{\mathrm{src}})$ depends on later detector settings.
+6. The construction requires superluminal signal, energy transfer, causal-wake transfer, or treating information as ontology.
 
 ## Promotion Gates
 

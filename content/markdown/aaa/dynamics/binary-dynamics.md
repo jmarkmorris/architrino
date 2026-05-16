@@ -119,7 +119,7 @@ Once self-hit turns on, the natural question is whether the dynamics converge to
 
 MCB stability claims rely on the well-posedness of the regularized SD-NDDE. In this chapter we treat $\eta > 0$ as fixed and defer the $\eta \to 0$ limit to future work. The formal state-space framework appears in **State Space and Well-Posedness of the Two-Body Delay System**.
 
-**Goal**: Characterize the circular, constant-speed, constant-radius configuration of two opposite-charge architrinos and investigate where curvature $\kappa = 1/R$ is maximized. We work in units with field speed $c_f = 1$ and use the canonical delayed per-hit law with radial line of action and Jacobian-weighted magnitude.
+**Goal**: Characterize the circular, constant-speed, constant-radius configuration of two opposite-charge architrinos and investigate where curvature $1/R$ is maximized. We work in units with field speed $c_f = 1$ and use the canonical delayed per-hit law with radial line of action and Jacobian-weighted magnitude.
 
 **Plain language**: We seek the tightest (smallest-$R$) steady circle an opposite-charge pair can trace when the only forces come from delayed, Jacobian-weighted line-of-action interactions with the partner (partner hits, possibly multiple at higher speed) and from one's own past emissions (self-hits, active only when speed exceeds field speed).
 
@@ -129,7 +129,7 @@ MCB stability claims rely on the well-posedness of the regularized SD-NDDE. In t
 
 The architecture hypothesizes that the **maximum-curvature binary (MCB)** would be reachable first by the **inner binary** of a tri-binary assembly, stabilized by self-hit dynamics when $v > c_f$. Contingent on Conjectures A/B, it would supply the **fundamental physical units** (length and time); see **Emergent Properties and Measurement Standards** below for the explicit definitions.
 
-**Universal cap (explicit):** The MCB is treated as a single, universal limit state (one defining radius/speed). Binaries may sit below this limit, but no binary can exceed the MCB curvature or pass beyond its defining radius/speed.
+**Universal cap target (explicit):** If a stable MCB branch is certified, it would define a single limit state with one radius/speed pair. Binaries may sit below that limit, but the claim that no binary can exceed the MCB curvature or pass beyond its defining radius/speed remains conditional on the full signed-root ledger and stability certificate.
 
 If realized, the MCB radius $r_{\text{min}}$ is expected to be determined by the balance of:
 1. opposite-polarity causal-wake attraction, with the stripped inverse-square surrogate scaling as $\epsilon^2/r^2$,
@@ -191,7 +191,7 @@ This yields two delay equations:
 
 Let $\tilde{\delta}_s \in (0, \pi]$ and $\tilde{\delta}_p \in (0, \pi]$ denote the **minimal (principal) angular separations** that determine the chord lengths and force directions.
 
-The full families of causal delays are:
+In the same-sheet convention used for the first circular no-go, the full families of causal delays are:
 
 - **Self**: 
  $$
@@ -208,6 +208,26 @@ The full families of causal delays are:
 - The winding index $m$ affects **timing/ordering** of multiple hits inside that same-sheet convention.
 
 **Signed-sheet caveat:** A full circular root certificate must also track whether the full delay angle is represented as $2\pi m+\alpha$ or $2\pi m-\alpha$ for a minimal chord angle $\alpha\in(0,\pi]$. Opposite signed sheets can reverse the tangential projection of a self-hit line of action. The sign-invariant statements below are therefore certified only on the same-sheet principal branch chart unless the signed sheet has been explicitly included in the root ledger.
+
+For the full signed ledger, write
+$$
+\Delta_s^{\sigma,m}=2\pi m+\sigma\alpha_s,
+\qquad
+\Delta_p^{\sigma,m}=2\pi m+\sigma\alpha_p,
+\qquad
+\sigma\in\{+1,-1\},
+$$
+with $\sigma=-1$ requiring $m\ge1$. The signed circular root equations become
+$$
+2\pi m+\sigma\alpha_s=2s\sin(\alpha_s/2),
+\qquad
+2\pi m+\sigma\alpha_p=2s\cos(\alpha_p/2).
+$$
+The corresponding tangential signs are $\sigma\cos(\alpha_s/2)$ for self roots and $\sigma\sin(\alpha_p/2)$ for partner roots, up to positive branch weights. The first negative self sheet, $m=1,\sigma=-1$, obeys
+$$
+2\pi-\alpha=2s\sin(\alpha/2),
+$$
+and appears at $s=\pi/2$ with $\alpha=\pi$. For $s>\pi/2$ it contributes negative tangential drive. This does not prove circular closure, but it prevents the same-sheet no-go from being promoted to a full signed-ledger theorem.
 
 ---
 
@@ -463,7 +483,7 @@ This section separates the two terminology axes used throughout the chapter:
 
 The self-hit onset is dynamically special because it introduces same-source feedback and an outward self-repulsive channel. Partner multi-hit is still part of the same super-field-speed root topology: at higher speeds, older partner wake surfaces can also satisfy the causal-root condition and contribute additional inward channels.
 
-In uniform circular, non-translating geometry, admissible self-roots are indexed by winding number $m \ge 0$ and minimal angular separation $\tilde{\delta}_s \in (0, \pi]$:
+In the same-sheet uniform circular, non-translating geometry, admissible self-roots are indexed by winding number $m \ge 0$ and minimal angular separation $\tilde{\delta}_s \in (0, \pi]$:
 
 $$
 \delta_s = \tilde{\delta}_s + 2\pi m = 2s \sin(\tilde{\delta}_s / 2).
@@ -476,7 +496,7 @@ $$
 f_m(\delta;s)=2s\sin(\delta/2)-\delta-2\pi m,
 \qquad \delta\in(0,\pi].
 $$
-An $m$-branch self-hit exists exactly when $f_m(\delta;s)=0$ has a solution in $(0,\pi]$.
+An $m$-branch same-sheet self-hit exists exactly when $f_m(\delta;s)=0$ has a solution in $(0,\pi]$.
 
 - For the principal branch $m=0$, the threshold is sharp:
   $$
@@ -489,7 +509,7 @@ An $m$-branch self-hit exists exactly when $f_m(\delta;s)=0$ has a solution in $
   \sqrt{(s_m^\star)^2-1}-\arccos\!\left(\frac{1}{s_m^\star}\right)=\pi m.
   $$
 
-Thus the higher self branches do not turn on at equally spaced speeds. Their onset is governed by a nonlinear sequence of tangencies of the delayed self-intersection curve.
+Thus the higher same-sheet self branches do not turn on at equally spaced speeds. Their onset is governed by a nonlinear sequence of tangencies of the delayed self-intersection curve. A full signed-root ledger must add the $\sigma=-1$ sheets described above; the first such negative self sheet appears at $s=\pi/2$, earlier than the first higher same-sheet self branch.
 
 For large winding number $m$, the threshold has the asymptotic form
 $$
@@ -505,7 +525,7 @@ so the old equally spaced picture is recovered only as a high-speed approximatio
 
 **Context**: Non-translating, uniform circular binary at fixed speed $s$. Receiver "now" at azimuth $\theta = 0$.
 
-The emission points on the circle that can produce hits "now" form a **finite, discrete set** of azimuths determined by the delay equations--**not arbitrary locations**. Because roots are indexed by winding number $m$, multiple hits at the same "now" can occur for different windings, but the admissible azimuths remain a finite comb and never fill the circle.
+The emission points on the circle that can produce hits "now" form a **finite, discrete set** of azimuths determined by the delay equations--**not arbitrary locations**. Because roots are indexed by winding number $m$ and, in the full ledger, sheet sign $\sigma$, multiple hits at the same "now" can occur for different signed windings, but the admissible azimuths remain a finite comb and never fill the circle.
 
 #### Partner Hits
 
@@ -548,18 +568,18 @@ The emission points on the circle that can produce hits "now" form a **finite, d
 
 The super-field-speed regime is not merely the same spiral at a larger speed. It changes the root topology of the binary. Once
 $$
-v>c_f,
+\|\mathbf{v}\|>c_f,
 $$
 the receiver can intersect multiple older causal wake surfaces from both its own path and its partner's path. In the circular reduced model, these intersections are counted by two integer ledgers:
 $$
 N_s(s)
 \equiv
-\#\{m\ge0:\text{self branch }m\text{ is active at speed }s\},
+\#\{(m,\sigma):\text{self branch }(m,\sigma)\text{ is active at speed }s\},
 $$
 $$
 M_p(s)
 \equiv
-\#\{m\ge0:\text{partner branch }m\text{ is active at speed }s\}.
+\#\{(m,\sigma):\text{partner branch }(m,\sigma)\text{ is active at speed }s\}.
 $$
 The self-ledger
 $$
@@ -585,7 +605,7 @@ A_{s,m}^{\mathrm{rad}}(R,s)
 =
 \frac{s^2}{R},
 $$
-together with whatever tangential closure condition is supplied by the full regularized dynamics. The radial equation says that partner-root accumulation supplies inward pull while self-root accumulation supplies outward response. The tangential condition remains the hard part: in the bare isolated two-body kernel, the no-go result above shows that every active branch contributes positive tangential drive, so exact circular closure is not yet proved.
+together with whatever tangential closure condition is supplied by the full regularized dynamics. The radial equation says that partner-root accumulation supplies inward pull while self-root accumulation supplies outward response. The tangential condition remains the hard part: in the same-sheet bare isolated two-body kernel, the no-go result above shows that every active branch contributes positive tangential drive; in the full signed ledger, negative sheets must be included before any global no-go or closure theorem is claimed.
 
 This gives a precise, conditional meaning to binary resonance lock. A stable slot would be a region of history space in which the integer pair
 $$
@@ -836,7 +856,7 @@ $$
 *Physical Interpretation:* The "missing" momentum is strictly accounted for by the wake surfaces currently traversing the space between sources and receivers.
 
 **Corollary (Center of Mass Motion):**
-For an isolated binary, the center of mass $\mathbf{x}_{\text{cm}}$ does not move at constant velocity. Instead, it oscillates around a mean trajectory. However, **self-acceleration of the center of mass to infinity is forbidden** by the exact translation invariance of the Lagrangian. The system cannot "bootstrap" itself to arbitrary speeds without external interaction.
+For an isolated binary, the center of mass $\mathbf{x}_{\text{cm}}$ need not move at constant velocity in the mechanical coordinates alone. Instead, it can oscillate around a mean trajectory while wake momentum carries the compensating history term. A runaway center-of-mass self-acceleration is forbidden only in an action-derived model whose regularization preserves translation symmetry; in working regularized models this is a conservation diagnostic to be checked.
 
 ---
 
@@ -845,7 +865,7 @@ For an isolated binary, the center of mass $\mathbf{x}_{\text{cm}}$ does not mov
 Energy conservation is the critical constraint preventing runaway solutions (MCB-09).
 
 #### Definition 3 (The History Hamiltonian)
-Since the system is time-translation invariant, there exists a conserved quantity $\mathcal{H}$. For state-dependent delays, this is a **Lyapunov-Krasovskii Functional**:
+For an action-derived delayed model with time-translation symmetry, the target conserved quantity $\mathcal{H}$ is a history functional. For state-dependent delays, the useful comparison object is a **Lyapunov-Krasovskii-style functional**:
 $$
 \mathcal{H}(\mathbf{x}_t) = K(\mathbf{v}(t)) + \mathcal{U}_{\text{history}}(\mathbf{x}_t).
 $$
@@ -862,14 +882,14 @@ $$
 \mathcal{W}(t) = -\int_{t_0}^t \sum_i \mathbf{v}_i(s) \cdot \mathbf{F}_i(s) \, ds.
 $$
 This functional is nonlocal in time: it accumulates deferred work along the path-history of wakes and is not an instantaneous potential $U(r)$.
-Then, by construction, $\mathcal{E}_{\text{tot}} = K(t) + \mathcal{W}(t)$ is constant.
+Then, by construction along the realized trajectory, $\mathcal{E}_{\text{tot}} = K(t) + \mathcal{W}(t)$ is constant. It is an exact Noether charge only when $\mathcal{W}$ is the boundary term of the same symmetry-preserving delayed action; otherwise it is a diagnostic reconstruction.
 
 #### Lemma 1 (Boundedness of the Potential)
 **Assumption:** The interaction is regularized with width $\eta > 0$ such that the maximum force is bounded: $\|\mathbf{F}_{ij}\| \le F_{\max}(\eta)$.
 **Statement:** For a bound system (particles confined to a finite volume $V$), the rate of work is bounded by $N F_{\max} v_{\max}$.
 
 #### Theorem 4 (No-Runaway Criterion)
-In the master equation dynamics, an isolated binary cannot undergo runaway acceleration ($v \to \infty$) *unless* the potential energy functional $\mathcal{W}(t)$ diverges to $-\infty$.
+In an action-derived master-equation branch with fixed $\eta>0$, an isolated binary cannot undergo runaway acceleration ($v \to \infty$) *unless* the action-compatible potential energy functional $\mathcal{W}(t)$ diverges to $-\infty$.
 
 *Proof Logic:*
 Since $\mathcal{E}_{\text{tot}}$ is constant:
@@ -884,6 +904,6 @@ For $K(t)$ to diverge, $\mathcal{W}(t)$ must decrease without bound.
   *  Since self-hit potential is repulsive (positive energy hill), converting it to kinetic energy lowers the total potential.
   *  **Crucial Bound:** The deferred work encoded in a self-wake is finite (determined by emission charge). A particle cannot extract infinite energy from its own past unless it puts infinite energy *into* the field first.
 
-**Conclusion:** The "free lunch" runaway, where a particle accelerates itself indefinitely using self-forces, is forbidden by the conservation of $\mathcal{H}$. The system can oscillate or settle, but it cannot explode to $v=\infty$ without singular collapse of the radius.
+**Conclusion:** The "free lunch" runaway, where a particle accelerates itself indefinitely using self-forces, is forbidden by the conservation of $\mathcal{H}$ in the symmetry-preserving action model. In other working models, the same statement is a validation target: the system can oscillate or settle, but an apparent explosion to $v=\infty$ must be traced either to singular collapse, transversality loss, or a broken conservation diagnostic.
 
 ---

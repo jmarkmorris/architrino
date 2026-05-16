@@ -260,7 +260,7 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework supports a clean two-level interp
 
 **Epistemic level (Physical Observer).** The PO has access only to coarse-grained observables (effective fields, detector clicks). Unable to track the full microstate, the PO describes the system with a density matrix $\rho_{AB}$ that is non-separable. The PO interprets correlations as "entanglement" and the resolution of metastability as "collapse." These are accurate operational descriptions but do not reflect ontological indeterminacy or nonlocal influence.
 
-The persistent philosophical puzzles of entanglement—how can a measurement "here" instantaneously affect a system "there"?—dissolve under this reading. There is no instantaneous effect. There are pre-established correlations in definite hidden variables, read out locally at each detector, with the comparison requiring ordinary sub-$c_f$ communication.
+The persistent philosophical puzzles of entanglement—how can a measurement "here" instantaneously affect a system "there"?—are relocated by this reading rather than solved by assertion. There is no instantaneous effect. A successful Bell closure must show that pre-established correlations in definite hidden variables can be read out locally at each detector, with the comparison requiring ordinary sub-$c_f$ communication.
 
 ---
 
@@ -273,7 +273,7 @@ The persistent philosophical puzzles of entanglement—how can a measurement "he
 | **de Broglie–Bohm** | Yes (positions) | Yes (pilot wave) | Effective | Closest structural analogue; $\mathbb{A}\mathbb{A}\mathbb{A}$ replaces pilot wave with causal wake geometry. |
 | **QBism** | No (probabilities are personal) | No | No (belief update) | Shares epistemic reading of $\lvert\psi\rangle$ but rejects subjectivism; $\Gamma(t)$ is objective. |
 | **Superdeterminism** | Yes | No | No | Rejects; measurement independence preserved. |
-| **$\mathbb{A}\mathbb{A}\mathbb{A}$** | Yes (full microstate $\Gamma$) | Required for Bell closure (non-separable $\lambda$, no signaling) | Effective (threshold crossing) | — |
+| **$\mathbb{A}\mathbb{A}\mathbb{A}$** | Yes (full microstate $\Gamma$) | No causal signal; Bell closure requires non-separable $\lambda$ | Effective (threshold crossing) | — |
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Bohmian mechanics because a completed Bell account would be deterministic and nonlocal in Bell's technical sense. The structural differences are:
 
@@ -286,11 +286,11 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Boh
 
 ## Observables and Falsifiability
 
-**Claim:** Ordinary entanglement correlations are modeled as deterministic, correlated hidden variables established at a shared source event, maintained through path-history structure, and read out locally at each detector without superluminal influence. Special black-hole entanglement can carry effective connected-geometry meaning at the horizon-interface level, but that is a separate strong-field case rather than a general rule for arbitrary entanglement.
+**Working closure route:** Ordinary entanglement correlations should be derived from deterministic, correlated hidden variables established at a shared source event, maintained through path-history structure, and read out locally at each detector without superluminal influence. Special black-hole entanglement can carry effective connected-geometry meaning at the horizon-interface level, but that is a separate strong-field case rather than a general rule for arbitrary entanglement.
 
 **Assumptions:**
 - Complete microstate $\Gamma(t)$ is definite at all $t$.
-- Conservation constraints at the source event fully determine the joint hidden-variable distribution.
+- Conservation constraints at the source event constrain the joint hidden-variable distribution; the Bell gate must derive the remaining measure structure rather than assume it.
 - Measurement is a local threshold crossing (no distant causal input).
 - Measurement independence holds (no superdeterminism).
 

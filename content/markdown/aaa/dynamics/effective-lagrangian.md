@@ -28,7 +28,7 @@ where:
 *   $\mathbf{x}_i(t)$ is the trajectory of architrino $i$.
 *   $\mu_{\text{arch}}$ is the universal force/energy bookkeeping constant, not a particle-specific inertial mass.
 *   $r_{ij}(t; t_0)$ is the Euclidean separation between reception and emission events.
-*   $\delta_\eta$ is a mollified delta function of width $\eta > 0$, regularizing the causal wake surface to ensure a Lipschitz-continuous vector field.
+*   $\delta_\eta$ is a mollified delta function of width $\eta > 0$. It supports Lipschitz control only together with the collision floor, finite-branch, transversality, and integrability assumptions below.
 *   $\sigma_{ij} = \mathrm{sign}(q_i q_j)$ enforces attraction for opposite polarities and repulsion for like polarities.
 
 #### Regularization and Admissibility Assumptions
@@ -73,18 +73,34 @@ $$
 \right].
 $$
 
-This receiver-side gradient is one ingredient in the full first variation, but it is not the whole story: in the double-time action each varied worldline appears both as a receiver coordinate $\mathbf{x}_i(t)$ and as a source coordinate inside transposed kernels. The full branch-resolved variation is carried out in [master-equation](./master-equation.md#exact-nonlocal-lagrangian). The result is the exact delayed force law
+This receiver-side gradient is one ingredient in the full first variation, but it is not the whole story: in the double-time action each varied worldline appears both as a receiver coordinate $\mathbf{x}_i(t)$ and as a source coordinate inside transposed kernels. The full branch-resolved variation is carried out in [master-equation](./master-equation.md#exact-nonlocal-lagrangian). On branch charts where the constraint-variation residual vanishes, or is cancelled by an explicitly declared regularized counterterm, the result is the delayed force law
 $$
 \mu_{\text{arch}}\ddot{\mathbf{x}}_i(t)
 =
 \sum_j \kappa \, \sigma_{ij}|q_i q_j|
-\sum_{\tau\in\mathcal{C}_{ij}(t)}
-\frac{\hat{\mathbf{r}}_{ij}(t;\tau)}
-{r_{ij}(t;\tau)^2\,\left|1-\hat{\mathbf{r}}_{ij}(t;\tau)\cdot\mathbf{v}_j(\tau)/c_f\right|},
+\sum_{t_0\in\mathcal{C}_{ij}(t)}
+\frac{\hat{\mathbf{r}}_{ij}(t;t_0)}
+{r_{ij}(t;t_0)^2\,\left|1-\hat{\mathbf{r}}_{ij}(t;t_0)\cdot\mathbf{v}_j(t_0)/c_f\right|},
 $$
 including self-hit branches $j=i$ when the trivial coincidence root is excluded.
 
-Equivalently, in the regularized integral form one may write
+The branch collapse used here is an $\eta\to0^+$ simple-root statement, not an identity at arbitrary finite $\eta$. Since
+$$
+\partial_{t_0}g_{ij}(t,t_0)
+=
+-\left(1-\frac{\hat{\mathbf{r}}_{ij}(t;t_0)\cdot\mathbf{v}_j(t_0)}{c_f}\right),
+$$
+any branch-local smooth $f$ satisfies
+$$
+\lim_{\eta\to0^+}\int_{-\infty}^{t} f(t_0)\phi_\eta\!\big(g_{ij}(t,t_0)\big)\,dt_0
+=
+\sum_{t_0\in\mathcal{C}_{ij}(t)}
+\frac{f(t_0)}
+\left|1-\hat{\mathbf{r}}_{ij}(t;t_0)\cdot\mathbf{v}_j(t_0)/c_f\right|}
+$$
+provided the active roots are simple and separated from collision support.
+
+Equivalently, in the finite-$\eta$ branch-selector form one may write
 $$
 \mu_{\text{arch}}\ddot{\mathbf{x}}_i(t)
 =
@@ -93,7 +109,39 @@ $$
 \frac{\hat{\mathbf{r}}_{ij}(t;t_0)}{r_{ij}(t;t_0)^2}\,
 \phi_\eta\!\big(g_{ij}(t,t_0)\big),
 $$
-with the understanding that $\phi_\eta$ converges weakly to the causal selector on simple branches as $\eta\to0^+$. This is the regularized form consistent with the branch law above; the derivative term in $\nabla_{\mathbf{x}_i}\mathcal{K}_{ij}$ is absorbed only after the full delayed variation is assembled and the branch reduction is performed.
+with the understanding that the displayed finite-$\eta$ integral is a branch-selector surrogate whose weak limit is the Jacobian-weighted branch law above. The derivative term in $\nabla_{\mathbf{x}_i}\mathcal{K}_{ij}$ is absorbed only after the full delayed variation is assembled and the branch reduction is performed.
+
+For an edit or simulation to claim action-derived dynamics, it must therefore report the variation residual
+$$
+\mathbf{R}_i^{(\eta)}(t)
+=
+\mu_{\text{arch}}\ddot{\mathbf{x}}_i(t)
+-
+\sum_j\kappa\,\sigma_{ij}|q_iq_j|
+\left(
+\mathbf{F}_{ij,\mathrm{scale}}^{(\eta)}(t)
++
+\mathbf{C}_{ij}^{(\eta)}(t)
+\right),
+$$
+using the scale term and constraint residual defined in [Master Equation](./master-equation.md#exact-nonlocal-lagrangian). The dimensionless window diagnostic is
+$$
+\epsilon_{\mathrm{var}}^{(\eta)}(W)
+=
+\frac{
+\sum_i\int_W\|\mathbf{R}_i^{(\eta)}(t)\|\,dt
+}{
+\sum_i\int_W
+\left(
+\mu_{\text{arch}}\|\ddot{\mathbf{x}}_i(t)\|
++
+\|\mathbf{F}_{i,\mathrm{act}}^{(\eta)}(t)\|
+\right)dt
++
+\varepsilon
+}.
+$$
+The branch law is theorem-grade on $W$ only when this residual tends to zero with the declared branch floors and boundary convention. If it does not, the local effective Lagrangian inherits a counterterm or remains a fitted chart.
 
 ### Symmetries and History-Aware Conservation Laws
 
@@ -102,11 +150,20 @@ The regularized action $S_\eta$ is invariant under the fundamental symmetry grou
 Because the Lagrangian is nonlocal in time, the corresponding Noether charges are path-history functionals tracking "in-flight" interactions encoded in the causal wakes.
 
 **Energy Functional:**
-Invariance under absolute time translation yields a conserved total energy
+Invariance under absolute time translation yields a conserved total energy only for the symmetry-preserving action-derived model:
 $$
 E_{\text{tot}}(t)=K(t)+E_{\text{wake}}(t),
 $$
-where the exact nonlocal Noether charge can be written as in [master-equation](./master-equation.md#exact-wake-energy-functional-at-time-boundary-t):
+where the action-level nonlocal Noether charge can be written with the weighted causal kernel from [master-equation](./master-equation.md#action-level-wake-energy-functional-at-time-boundary-t). To avoid confusing the receiver-gradient kernel above with the Noether-energy kernel, write
+$$
+\mathcal{K}_{ij}^{E}(t_1,t_0)
+=
+\frac{\kappa\,\sigma_{ij}\,|q_iq_j|}{c_f}
+\Theta(t_1-t_0)
+\frac{\delta\!\big(g_{ij}(t_1,t_0)\big)}
+{r_{ij}(t_1,t_0)}.
+$$
+Then:
 
 $$
 E_{\text{wake}}(t)
@@ -114,14 +171,36 @@ E_{\text{wake}}(t)
 \frac{1}{2}\sum_{i,j}
 \int_{-\infty}^{t} dt_0
 \int_{t}^{\infty} dt_1\,
-\partial_{t_1}\mathcal{K}_{ij}(t_1,t_0).
+\partial_{t_1}\mathcal{K}_{ij}^{E}(t_1,t_0).
 $$
 
-For trajectory reconstruction one may equivalently use the work-integral form
+For compatible trajectory reconstruction one may use the work-integral form
 $$
 U(t)=U_\ast-\int_{t_\ast}^{t}\sum_i \mu_{\text{arch}}\,\mathbf{a}_i(t')\cdot\mathbf{v}_i(t')\,dt',
 $$
-which differs from $E_{\text{wake}}(t)$ at most by a reference constant and boundary convention.
+when it is derived from the same action-level force and boundary convention. Otherwise $U(t)$ is a diagnostic history functional, not an independently proved Noether charge.
+
+The corresponding finite-window energy residual is
+$$
+\epsilon_E^{(\eta)}(W)
+=
+\frac{
+\left|
+\Delta_W\left(K+E_{\text{wake}}^{(\eta)}\right)
+-
+\int_W\sum_i\mathbf{v}_i\cdot\mathbf{R}_i^{(\eta)}\,dt
+-
+\int_W\mathcal{B}_E^{(\eta)}\,dt
+\right|
+}{
+\left|\Delta_W K\right|
++
+\left|\Delta_W E_{\text{wake}}^{(\eta)}\right|
++
+\varepsilon
+}.
+$$
+Here $\mathcal{B}_E^{(\eta)}$ is the declared endpoint or period-cut leakage. For isolated period-matched tests, $\epsilon_{\mathrm{var}}^{(\eta)}\to0$, $\mathcal{B}_E^{(\eta)}\to0$, and $\epsilon_E^{(\eta)}\to0$ are the minimal conservation checks before the effective Hamiltonian is promoted beyond a diagnostic fit.
 
 **Generalized Momentum:**
 Spatial translation invariance guarantees the conservation of total momentum, $\mathbf{P}_{\text{tot}} = \mathbf{P}_{\text{mech}}(t) + \mathbf{P}_{\text{wake}}(t)$, where the mechanical momentum of the architrinos is balanced by the momentum flux propagating within the causal wake surfaces. Boundedness of the history-aware energy is therefore the natural diagnostic against runaway behavior, not a separate postulate.
@@ -172,7 +251,17 @@ $$
 \mu_{\mathcal{Q}}
 +O(\epsilon_{\mathcal{Q}})
 $$
-on the retained regime. If the residual $\epsilon_{\mathcal{Q}}$ is not controlled, the local Hamiltonian is only a fitting chart, not a derived mechanics.
+on the retained regime. This measure condition is necessary but not sufficient for canonical mechanics. The same handoff must also control a bracket or symplectic residual, for example
+$$
+\left\|
+(\mathcal{P}_{\Delta t}^{\mathrm{eff}})^*\omega_{\mathcal{Q}}
+-
+\omega_{\mathcal{Q}}
+\right\|
+\le
+\epsilon_{\omega},
+$$
+for the retained two-form $\omega_{\mathcal{Q}}$, or an equivalent Poisson-bracket residual on the admitted observables. If $\epsilon_{\mathcal{Q}}$ or $\epsilon_{\omega}$ is not controlled, the local Hamiltonian is only a fitting chart, not a derived mechanics.
 
 This gate keeps the exact and effective levels separate. The Master Equation owns the delayed causal dynamics; the effective Hamiltonian owns only those regimes where internal wake memory, branch changes, and unresolved Noether-Sea exchange have been compressed without losing the observer-level invariants being compared.
 
@@ -180,7 +269,7 @@ The same domain restriction applies before translating an effective Hamiltonian 
 
 ### Topological Constraints and Assembly Stability
 
-The effective Lagrangian restricts the allowed topological configurations of the architrino medium. Stable assemblies, such as nested maximal-curvature candidates inside tri-binaries, should therefore be treated as theorem targets for localized, phase-locked causal-locus classes rather than as already-proved vortices or knots of a continuum field.
+The delayed action, after branch reduction to causal-locus and root-ledger data, constrains the allowed topological configurations of the architrino medium. Stable assemblies, such as nested maximal-curvature candidates inside tri-binaries, should therefore be treated as theorem targets for localized, phase-locked causal-locus classes rather than as already-proved vortices or knots of a continuum field.
 
 The stability of these assemblies must be checked by the nonlinear self-hit feedback embedded in the interaction functional. When internal circulation velocities exceed $c_f$, the non-Markovian repulsion supplies a candidate branch-trapping mechanism; it becomes a robust geometric attractor only after a branch chart, Lyapunov or Floquet diagnostic, and history-aware energy bound are supplied. Likewise, mass-gap language is a closure target tied to discrete admissible branch classes, not an automatic consequence of writing the effective action.
 
@@ -191,8 +280,9 @@ This chapter supplies the variational bridge used by the quantum closure chain.
 From the regularized nonlocal action, derive a continuum effective action in terms of coarse fields $(\rho_q,\mathbf{j}_q)$, then test a phase-amplitude closure ansatz for the retained nonnegative envelope channel:
 $$
 \rho_{\mathrm{env}}=|\psi|^2,\qquad
-\mathbf{j}_{\mathrm{env}}=\frac{\hbar_{\mathrm{eff}}}{m}\Im(\psi^*\nabla\psi).
+\mathbf{j}_{\mathrm{env}}=\frac{\hbar_{\mathrm{eff}}}{m_{\mathrm{eff}}}\Im(\psi^*\nabla\psi).
 $$
+Here $m_{\mathrm{eff}}$ is the retained envelope mass parameter of the benchmark chart, not a primitive architrino mass. The projection from the signed polarity/current data $(\rho_q,\mathbf{j}_q)$ to the nonnegative envelope channel must be declared before $\rho_{\mathrm{env}}$ is interpreted as $|\psi|^2$.
 
 The handoff must report the continuity residual
 $$
@@ -208,21 +298,31 @@ $$
 =
 \mathbf{j}_q-\mathbf{j}_{\mathrm{env}}
 $$
-as an explicit residual rather than absorbing it into fitted constants.
+as an explicit residual rather than absorbing it into fitted constants. Equivalently, with $\Delta\rho=\rho_q-\rho_{\mathrm{env}}$,
+$$
+\partial_t\rho_q+\nabla\cdot\mathbf{j}_q
+=
+R_{\mathrm{cg}}
++
+\partial_t\Delta\rho
++
+\nabla\cdot\mathbf{j}_{\mathrm{mem}}.
+$$
+Thus a small $R_{\mathrm{cg}}$ by itself does not prove envelope closure; the projection mismatch and memory-current divergence must be controlled as well.
 
 For the non-relativistic, fixed-particle-number benchmark, the same envelope must also admit a phase chart
 $$
 \psi=\sqrt{\rho_{\mathrm{env}}}\,e^{iS_{\mathrm{env}}/\hbar_{\mathrm{eff}}},
 \qquad
-\mathbf{j}_{\mathrm{env}}=\frac{\rho_{\mathrm{env}}}{m}\nabla S_{\mathrm{env}}.
+\mathbf{j}_{\mathrm{env}}=\frac{\rho_{\mathrm{env}}}{m_{\mathrm{eff}}}\nabla S_{\mathrm{env}}.
 $$
 Define
 $$
-K_{\mathrm{env}}=\frac{\|\nabla S_{\mathrm{env}}\|^2}{2m},
+K_{\mathrm{env}}=\frac{\|\nabla S_{\mathrm{env}}\|^2}{2m_{\mathrm{eff}}},
 \qquad
 Q_{\mathrm{env}}
 =
--\frac{\hbar_{\mathrm{eff}}^2}{2m}
+-\frac{\hbar_{\mathrm{eff}}^2}{2m_{\mathrm{eff}}}
 \frac{\nabla^2\sqrt{\rho_{\mathrm{env}}}}{\sqrt{\rho_{\mathrm{env}}}},
 $$
 and test the corresponding Hamilton-Jacobi residual

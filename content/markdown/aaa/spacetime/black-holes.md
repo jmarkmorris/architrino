@@ -180,17 +180,25 @@ S_H
 $$
 where $A_H$ is the observer-level horizon area and $A_{\text{align}}$ is the alignment-area scale from the Planck-alignment program, with the numerical and $2\pi$ conventions fixed by that derivation rather than by definition here. Page-curve recovery then becomes a release-channel theorem: outward channels must preserve enough phase, axial-pattern, and path-history information from $\mathcal{B}_{H}$ to make evaporation or recycling unitary at the effective quantum level, while still appearing thermal to coarse exterior measurements.
 
-The coefficient in this target is not a literal claim that one alignment patch carries $e^{1/4}$ independent states. The local target is a block entropy density. For a connected block $U$ of horizon-adjacent alignment patches, let $\mathcal{L}_U^H(\theta)$ be the retained alignment-compatible label set induced by the same strong-field record. The local density target is
+The coefficient in this target is not a literal claim that one alignment patch carries $e^{1/4}$ independent states. The local target is an area-normalized block entropy density. For a connected block $U$ of horizon-adjacent alignment patches, let $\mathcal{L}_U^H(\theta)$ be the retained alignment-compatible label set induced by the same strong-field record and let $A_H(U)$ be the observer-level area represented by that block. The local density target is
 $$
 s_{\mathrm{align}}^H(\theta)
 =
 \lim_{|U|\to\infty}
 \frac{1}{|U|}
-\log\left|\mathcal{L}_U^H(\theta)\right|
+\log\left|\mathcal{L}_U^H(\theta)\right|,
+\qquad
+a_H(\theta)
+=
+\lim_{|U|\to\infty}
+\frac{A_H(U)}
+{|U|A_{\text{align}}},
+\qquad
+\frac{s_{\mathrm{align}}^H(\theta)}{a_H(\theta)}
 \longrightarrow
 \frac{1}{4},
 $$
-with boundary corrections vanishing in the large-block limit. This is the local calculation that must make the global area law credible.
+with boundary corrections vanishing in the large-block limit. This is the local calculation that must make the global area law credible; the raw statement $s_{\mathrm{align}}^H\to1/4$ is only the special case $a_H\to1$.
 
 This global horizon ensemble must be compatible with the local boundary-wake entropy density used in [Emergent Metric](emergent-metric.md#local-horizon-recovery-target). For a compact region $\Omega$ whose boundary intersects the horizon interface, let $\pi_{\partial\Omega}^{(O)}$ be the Physical Observer projection from strong-field horizon-interface labels to retained boundary-wake labels, and write $\mathcal{B}_{H}(\theta)$ for the horizon-interface ensemble selected by the same strong-field record. The proof route requires
 $$

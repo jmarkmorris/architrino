@@ -319,13 +319,13 @@ A more explicit reduction is the boundary-factorization theorem target. Let $\ma
 $$
 A_{\mathrm{eff}}(P_a)
 =
-A_{\text{align}}
+a_{\theta}A_{\text{align}}
 +
 \mathcal{O}(\epsilon_A A_{\text{align}}),
 \qquad
 P_a\in\mathcal{P}_{\partial\Omega}.
 $$
-The coefficient cannot be interpreted as a literal independent one-patch count: $\log|\mathcal{L}_a|=1/4$ would require $|\mathcal{L}_a|=e^{1/4}$, not the cardinality of a finite set. The coherent target is a block entropy density. For a connected patch block $U\subseteq\mathcal{P}_{\partial\Omega}$, let $\mathcal{L}_U(\theta_{\Omega,O,W})$ be the joint retained boundary-wake label set on $U$ after fixing the observer record and the edge data to the accuracy declared by $\epsilon_{\mathrm{local}}$. The local aligned-label density is
+where $a_{\theta}$ is the derived dimensionless patch-area normalization for the retained record. The coefficient cannot be interpreted as a literal independent one-patch count: $\log|\mathcal{L}_a|=1/4$ would require $|\mathcal{L}_a|=e^{1/4}$, not the cardinality of a finite set. The coherent target is an area-normalized block entropy density. For a connected patch block $U\subseteq\mathcal{P}_{\partial\Omega}$, let $\mathcal{L}_U(\theta_{\Omega,O,W})$ be the joint retained boundary-wake label set on $U$ after fixing the observer record and the edge data to the accuracy declared by $\epsilon_{\mathrm{local}}$. The local aligned-label density is
 $$
 s_{\mathrm{align}}(\theta_{\Omega,O,W})
 =
@@ -349,11 +349,12 @@ $$
 $$
 where the correction records edge and finite-correlation effects between adjacent patches. The normalization part is then the aligned-label statement
 $$
-s_{\mathrm{align}}(\theta_{\Omega,O,W})
+\frac{s_{\mathrm{align}}(\theta_{\Omega,O,W})}
+{a_{\theta}}
 \longrightarrow
 \frac{1}{4}.
 $$
-Together with $|\mathcal{P}_{\partial\Omega}|A_{\text{align}}\to A_{\partial\Omega}^{\mathrm{eff}}$, these claims imply the area density above. This does not prove the coefficient by definition. It reduces the problem to a local aligned-interface calculation: terminal tri-binary alignment must supply a universal block entropy density, and the surrounding Noether-Sea record must make correlations short-range enough that the boundary count is additive up to edge residuals.
+Together with $\sum_{P_a\in\mathcal{P}_{\partial\Omega}}A_{\mathrm{eff}}(P_a)\to A_{\partial\Omega}^{\mathrm{eff}}$, these claims imply the area density above. This does not prove the coefficient by definition. It reduces the problem to a local aligned-interface calculation: terminal tri-binary alignment must supply a universal block entropy density, its patch-area normalization, and surrounding Noether-Sea correlations short-range enough that the boundary count is additive up to edge residuals.
 
 ## Refraction vs. Curvature
 

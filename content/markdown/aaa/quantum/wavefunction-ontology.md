@@ -83,17 +83,17 @@ Because the local Noether Sea supplies high-dimensional, coarse-grained irregula
 
 External relational or configuration-space probability measures are useful only as comparison mathematics. A geometry may carry a natural area, volume, or contour measure and may even produce a Born-like distribution over recorded shapes, but that does not by itself close this chapter. The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is stricter: the measure must be a pushforward of deterministic assembly dynamics and apparatus coupling. In schematic form, if
 $$
-\pi:\mathcal{M}\to\mathcal{R}
+\pi_T:\Gamma_{\text{eff}}^{(T)}\to\mathcal{R}
 $$
-maps reduced metastable states to observer records, then the record probability must be
+maps the retained record-window section to observer records, then the record probability must be
 $$
-P(R_n)=\mu_*\!\left(\pi^{-1}(R_n)\right),
+P_n(T)=\mu_{*,T}\!\left(\pi_T^{-1}(R_n)\right),
 $$
-with $\mu_*$ derived from the invariant or coarse-grained measure of the same dynamics that supplies the effective wave equation. A free-standing external geometric measure, by contrast, is only a scaffold until it is tied to the Master Equation, record formation, and the retained measurement channel.
+with $\mu_{*,T}$ derived from the finite-window coarse-grained measure of the same dynamics that supplies the effective wave equation. A free-standing external geometric measure, by contrast, is only a scaffold until it is tied to the Master Equation, record formation, and the retained measurement channel.
 
-Subsystem decomposition carries the same burden. A useful comparison may speak about probability moving between subsystems, but the native statement is not a free tensor-factor flow. The preparation, apparatus kernel, coarse-graining, access region, and record window must first determine which reduced metastable coordinates and boundary data are retained. Only then can $\mu_{*,T}$ assign weights to the record basins $\pi^{-1}(R_n)$, and only the same retained transfer law may decide whether those weights are restartable after a record or still carry unresolved path-history influence before a record.
+Subsystem decomposition carries the same burden. A useful comparison may speak about probability moving between subsystems, but the native statement is not a free tensor-factor flow. The preparation, apparatus kernel, coarse-graining, access region, and record window must first determine which reduced metastable coordinates and boundary data are retained. Only then can $\mu_{*,T}$ assign weights to the record basins $\pi_T^{-1}(R_n)$, and only the same retained transfer law may decide whether those weights are restartable after a record or still carry unresolved path-history influence before a record.
 
-Repeated-record confirmation is part of the same burden. For counts $N_n$ gathered through the declared record channel, the observed frequencies $\widehat f_n=N_n/N$ must converge to the same $P(R_n)$ within the calibrated apparatus tolerance. The detailed frequency residual is owned by [Quantum Operator Mapping](../theory-bridges/quantum-operator-mapping.md#statistical-measure-and-the-born-rule-emergence), while [Measurement Ontology](measurement-ontology.md#repeated-record-confirmation) owns the record-channel version. This chapter's point is narrower: basin weights cannot remain formal branch labels if they are supposed to replace the Born rule. They must also be usable for ordinary confirmation and falsification.
+Repeated-record confirmation is part of the same burden. For counts $N_n$ gathered through the declared record channel, the observed frequencies $\widehat f_n=N_n/N$ must converge to the same $P_n(T)$ within the calibrated apparatus tolerance. The detailed frequency residual is owned by [Quantum Operator Mapping](../theory-bridges/quantum-operator-mapping.md#statistical-measure-and-the-born-rule-emergence), while [Measurement Ontology](measurement-ontology.md#repeated-record-confirmation) owns the record-channel version. This chapter's point is narrower: basin weights cannot remain formal branch labels if they are supposed to replace the Born rule. They must also be usable for ordinary confirmation and falsification.
 
 ## Epistemic Branching (Reinterpreting Many-Worlds)
 
@@ -122,11 +122,11 @@ $$
 \Delta_{\mathrm{recoh}}(t;i,j)
 =
 \frac{
-\mu_*\!\left(
+\mu_{*,T}\!\left(
 N_\varepsilon(\Phi_t(B_i))\cap N_\varepsilon(\Phi_t(B_j))
 \right)
 }{
-\min\{\mu_*(B_i),\mu_*(B_j)\}
+\min\{\mu_{*,T}(B_i),\mu_{*,T}(B_j)\}
 },
 $$
 where $N_\varepsilon$ denotes an $\varepsilon$-thickened tube in the retained coarse-grained record coordinates. If $\Delta_{\mathrm{recoh}}=O(1)$ before the persistence window closes, the alternatives have not become independent records; the effective wavefunction must continue to carry their mutual influence. A completed record requires both $\Delta_{\mathrm{rec}}\le\varepsilon_{\mathrm{rec}}$ and recoherence residuals below the apparatus-class tolerance for competing basin pairs.
@@ -194,30 +194,39 @@ If the wavefunction is an effective description of threshold dynamics rather tha
 
 ## Closure Interface: Basin-Measure Formalization
 
-For integration with the quantum closure program, formalize Born emergence through a transfer-operator framework.
+For integration with the quantum closure program, formalize Born emergence through a finite-window transfer-operator framework rather than a global ergodicity assumption.
 
-Let $\mathcal{M}$ be the reduced metastable manifold, $\Phi_t$ the deterministic coarse-grained flow, and $\mathcal{P}$ the associated Perron-Frobenius operator (with medium-driven perturbation kernel included where required):
+For a declared setup $\theta=(\mathcal{K}_A,\mathcal{Q},W,T)$, let $\Gamma_{\text{eff}}^{(T)}$ be the retained record-window section of the reduced metastable coordinates, with the target, apparatus, local Noether-Sea state, and causal-wake history included to the resolution kept by $\mathcal{Q}$. Let $\Phi_T$ be the deterministic coarse-grained flow across that same window. The required measure is a local finite-window measure $\mu_{*,T}$ satisfying approximate invariance on the retained section:
 $$
-\mathcal{P}\mu_*=\mu_*.
+d_{\mathrm{TV}}\!\left((\Phi_T)_*\mu_{*,T},\,\mu_{*,T}\right)\le\varepsilon_\mu,
+\qquad
+\varepsilon_\mu\ll 1.
 $$
-For attractor basins $\{B_n\}$,
+For record-forming attractor basins $\{B_n^{(T)}\}$,
 $$
-P_n=\mu_*(B_n).
+P_n(T)=\int_{B_n^{(T)}} d\mu_{*,T}(\Gamma).
 $$
-Here $B_n$ means a record-forming basin for the declared apparatus channel, not every formal component of a Hilbert-space expansion. If the channel carries candidate branches that have not yet satisfied the record-autonomy, persistence, event-ledger, and energy-residual tests in [Measurement Ontology](measurement-ontology.md#what-makes-an-interaction-a-record), the Born-side weight is computed only after applying that record filter:
+Here $B_n^{(T)}$ means a record-forming basin for the declared apparatus channel, not every formal component of a Hilbert-space expansion. If the channel carries candidate branches that have not yet satisfied the record-autonomy, persistence, event-ledger, and energy-residual tests in [Measurement Ontology](measurement-ontology.md#what-makes-an-interaction-a-record), the Born-side weight is computed only after applying that record filter:
 $$
-P_n
+P_n(T)
 =
 \frac{
-\mu_*(B_n)\mathbf{1}_{\mathrm{rec}}(n;\theta)
+\mu_{*,T}(B_n^{(T)})\mathbf{1}_{\mathrm{rec}}(n;\theta)
 }{
-\sum_m\mu_*(B_m)\mathbf{1}_{\mathrm{rec}}(m;\theta)
+\sum_m\mu_{*,T}(B_m^{(T)})\mathbf{1}_{\mathrm{rec}}(m;\theta)
 }.
 $$
 
 The closure target for this chapter is:
 $$
-\mu_*(B_n)=\int_{B_n}|\psi_n|^2\,d\Gamma
+\Delta_{\mathrm{Born}}(T)
+=
+\sup_n
+\left|
+P_n(T)-\int_{B_n^{(T)}}|\psi_n|^2\,d\Gamma
+\right|
+\le
+\varepsilon_{\mathrm{Born}}
 $$
 in the same regime where the envelope dynamics reduce to effective Schrödinger evolution.
 
@@ -242,7 +251,7 @@ This residual is not an additional probability postulate. It is the finite-windo
 
 ### Lower Bound on Recordable Basin Measure
 
-The probability measure $\mu_*$ is enough to state outcome weights, but it does not by itself say when a subset of $\mathcal{M}$ is an independently recordable alternative. The closure program also needs the finite, pre-normalized basin measure associated with the same coarse-graining and apparatus channel. Let $\mu_{\mathcal{Q}}$ denote that finite basin measure for a declared coarse-graining $\mathcal{Q}$ and access region $W$.
+The finite-window probability measure $\mu_{*,T}$ is enough to state outcome weights, but it does not by itself say when a subset of the retained metastable section is an independently recordable alternative. The closure program also needs the finite, pre-normalized basin measure associated with the same coarse-graining, access region, record window, and apparatus channel. Let $\mu_{\mathcal{Q}}$ denote that finite basin measure after $\mathcal{Q}$, $W$, and $T$ have been declared.
 
 For that declared setup, define the candidate recordable basin family by importing only the measurement criteria already fixed in [Measurement Ontology](measurement-ontology.md). A basin is eligible only when its apparatus-target trajectories have finite measurement crossing, satisfy entropy locking, and satisfy record autonomy on the persistence window:
 $$

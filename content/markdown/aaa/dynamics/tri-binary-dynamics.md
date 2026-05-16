@@ -289,7 +289,43 @@ s_{\mathrm{align}}(\theta)
 $$
 with the limit taken over blocks whose boundary-to-area ratio vanishes.
 
-One algebraic obstruction fixes the status of the coefficient target. A single finite unweighted $0/1$ transfer matrix cannot by itself yield an exact coefficient $s_{\mathrm{align}}=1/4$, because $\rho(\mathsf{T}_{\theta,\nu})$ is algebraic while $e^{1/4}$ is transcendental. Exact recovery of the horizon coefficient must therefore come from an asymptotic family of transfer systems, a weighted pressure, a block-density limit with area normalization, or an explicitly approximate tolerance target rather than one fixed counting matrix.
+One algebraic obstruction fixes the status of the raw label-density target. A single finite unweighted or algebraic-weighted transfer matrix cannot by itself yield an exact raw coefficient $s_{\mathrm{align}}=1/4$: the spectral radius $\rho(\mathsf{T}_{\theta,\nu})$ is algebraic, while $\log\rho=1/4$ would require $\rho=e^{1/4}$, which is transcendental by Lindemann-Weierstrass. The black-hole coefficient is therefore the area-normalized density, not the raw label density by itself. If $A_{\theta}(U)$ is the effective observer-level area represented by a block and $A_{\text{align}}$ is the alignment-area scale from the Planck-alignment map, define
+$$
+a_{\theta}
+=
+\lim_{|U|\to\infty}
+\frac{A_{\theta}(U)}
+{|U|A_{\text{align}}},
+\qquad
+\bar{\alpha}_{\mathrm{align}}(\theta)
+=
+A_{\text{align}}
+\lim_{|U|\to\infty}
+\frac{\log|\mathcal{L}_U(\theta)|}{A_{\theta}(U)}
+=
+\frac{s_{\mathrm{align}}(\theta)}{a_{\theta}}.
+$$
+The horizon target is
+$$
+\bar{\alpha}_{\mathrm{align}}(\theta)
+\longrightarrow
+\frac{1}{4}.
+$$
+The special raw statement $s_{\mathrm{align}}\to1/4$ is valid only when the terminal branch also derives $a_{\theta}\to1$. Exact recovery can therefore come from an asymptotic transfer system, a weighted pressure, a block-density limit with derived area normalization, or an explicitly approximate tolerance target rather than one fixed counting matrix. A finite computation should report a convergence criterion of the form
+$$
+\left|
+\frac{s_N(\theta)}{a_N(\theta)}
+-
+\frac{1}{4}
+\right|
+\le
+C\frac{|\partial U_N|}{|U_N|}
++
+\epsilon_{\mathrm{branch}}
++
+\epsilon_{\mathrm{quot}},
+$$
+where $a_N(\theta)=A_{\theta}(U_N)/(|U_N|A_{\text{align}})$. This tests the area coefficient as a controlled limit rather than hiding it inside one finite count.
 
 At the present derivation level, the admissible one-patch labels can be enumerated as a finite branch-ledger schema, not yet as a numerical table. For a primitive outer-period closure, the integer-lock notation gives
 $$
@@ -395,7 +431,7 @@ $$
 \ell(j_b),\ell(o_b),\,
 r_b,\,
 t_{0,b}\bmod T,\,
-\operatorname{sgn}(q_{j_b}q_{o_b}),\,
+\operatorname{sgn}(q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}}),\,
 J_b,\,
 \hat{\mathbf{r}}_b\cdot\mathbf{n}_{\nu},\,
 \mathbf{a}_{o_b\leftarrow j_b}(t_b;t_{0,b})\cdot\mathbf{n}_{\nu}
@@ -665,13 +701,13 @@ On the symmetric terminal circle, with $\mathbf{e}_{\perp}(\psi)=d\mathbf{e}(\ps
 $$
 \ddot{\mathbf{x}}_{\ell_o,\alpha_o}(t)
 \cdot
-\alpha_o\mathbf{e}(q_ou+\phi_o)
+\alpha_o\mathbf{e}(q_{\ell_o}u+\phi_{\ell_o})
 =
--R_o(q_o\omega_O)^2,
+-R_{\ell_o}(q_{\ell_o}\omega_O)^2,
 \qquad
 \ddot{\mathbf{x}}_{\ell_o,\alpha_o}(t)
 \cdot
-\alpha_o\mathbf{e}_{\perp}(q_ou+\phi_o)
+\alpha_o\mathbf{e}_{\perp}(q_{\ell_o}u+\phi_{\ell_o})
 =
 0.
 $$
@@ -679,7 +715,7 @@ Thus the vector residual $\mathcal{Q}_{\ell,\alpha}^{\mathrm{term}}$ reduces in 
 $$
 \mathcal{R}_{\ell_o,\alpha_o}^{r}(u)
 =
--R_o(q_o\omega_O)^2
+-R_{\ell_o}(q_{\ell_o}\omega_O)^2
 -
 \mathcal{A}_{\ell_o,\alpha_o}^{r}(u),
 \qquad
@@ -853,6 +889,226 @@ w_b^{(0)}(u)
 $$
 up to the sign convention fixed by writing the interaction term with a minus sign in the action. In other words, $w_b^{(\eta)}$ is not an independent fitting weight. It is the Euler-Lagrange pullback of the regularized causal kernel on a certified branch chart.
 
+The sharp receiver-side variation can be separated before the root is integrated out. Write the two-time branch kernel as
+$$
+\mathcal{L}_b^{(0)}(t_1,t_0)
+=
+\frac{1}{c_f}
+\Theta(t_1-t_0)
+\frac{\delta(g_b(t_1,t_0))}{r_b(t_1,t_0)},
+$$
+with
+$$
+g_b(t_1,t_0)
+=
+t_1-t_0
+-
+\frac{r_b(t_1,t_0)}{c_f},
+\qquad
+r_b(t_1,t_0)
+=
+\|\mathbf{x}_{o_b}(t_1)-\mathbf{x}_{j_b}(t_0)\|.
+$$
+For a receiver variation at fixed source history,
+$$
+\delta r_b
+=
+\hat{\mathbf{r}}_b\cdot\delta\mathbf{x}_{o_b}(t_1),
+\qquad
+\delta g_b
+=
+-
+\frac{1}{c_f}
+\hat{\mathbf{r}}_b\cdot\delta\mathbf{x}_{o_b}(t_1).
+$$
+Therefore
+$$
+\delta\!\left(\frac{\delta(g_b)}{r_b}\right)
+=
+-
+\left[
+\frac{\delta(g_b)}{r_b^2}
++
+\frac{\delta'(g_b)}{c_f r_b}
+\right]
+\hat{\mathbf{r}}_b\cdot\delta\mathbf{x}_{o_b}(t_1).
+$$
+The first term already gives the desired terminal branch weight after the causal root is selected:
+$$
+\int dt_0\,
+\Theta(t_1-t_0)
+\frac{\delta(g_b(t_1,t_0))}{r_b^2(t_1,t_0)}
+=
+\frac{1}{r_b^2(t_1,t_b^0)|J_b(t_1,t_b^0)|}
+=
+\frac{\omega_O^2}{c_f^2}
+\frac{1}{\delta_b^2(u)|J_b(u)|}
+=
+w_b^{(0)}(u).
+$$
+
+The second term is the nontrivial root-constraint variation. It cannot be dropped after the branch has been pulled back to $\delta_b(u)$. The terminal-chart variation proof closes exactly when the regularized two-time action satisfies, for every compactly supported or period-matched receiver variation,
+$$
+\lim_{\eta\to0}
+\left[
+\int dt_0\,
+\Theta(t_1-t_0)
+\frac{\delta_\eta'(g_b(t_1,t_0))}{c_f r_b(t_1,t_0)}
+\hat{\mathbf{r}}_b(t_1,t_0)
+\right]_{\mathrm{int}}
+=
+\mathbf{0},
+$$
+where the subscript $\mathrm{int}$ means after the source-side variation, integration by parts on the root-selected chart, and the Noether boundary term have been accounted for. Equivalently, all interior force density left by varying the causal constraint must cancel into the boundary wake increments rather than adding a second independent line-of-action force. This is the exact missing identity for a complete terminal-chart variation proof. The direct $1/r$ variation supplies the scale coefficient $w_b^{(0)}$; the remaining proof burden is to show that the $\delta_\eta'(g_b)$ contribution is a boundary/source-side term, vanishes under a local stationarity condition, or is cancelled by a declared counterterm under the same symmetry-preserving regularization used for the conservation ledger.
+
+This identity can be narrowed one step further. On a transversal branch,
+$$
+\partial_{t_0}g_b(t_1,t_0)
+=
+-J_b(t_1,t_0),
+$$
+so
+$$
+\delta_\eta'(g_b)
+=
+-
+\frac{1}{J_b}
+\partial_{t_0}\delta_\eta(g_b).
+$$
+Substituting this into the unresolved term and integrating by parts in $t_0$ gives
+$$
+\int dt_0\,
+\Theta(t_1-t_0)
+\frac{\delta_\eta'(g_b)}{c_f r_b}
+\hat{\mathbf{r}}_b
+=
+\mathcal{B}_{b}^{(\eta)}(t_1)
++
+\int dt_0\,
+\delta_\eta(g_b)
+\partial_{t_0}
+\left[
+\Theta(t_1-t_0)
+\frac{\hat{\mathbf{r}}_b}{c_f r_b J_b}
+\right],
+$$
+where $\mathcal{B}_{b}^{(\eta)}(t_1)$ is the endpoint contribution at the history-window, period, or excluded coincidence boundary. The coincidence term is removed by $H(0)=0$; the remaining endpoint term vanishes only for compactly supported variations or for period-matched terminal histories.
+
+Thus the smallest unresolved object is no longer the raw $\delta_\eta'(g_b)$ term. It is the root-chart interior derivative
+$$
+\mathbf{C}_{b}^{(\eta)}(t_1)
+=
+\int dt_0\,
+\delta_\eta(g_b)
+\partial_{t_0}
+\left[
+\Theta(t_1-t_0)
+\frac{\hat{\mathbf{r}}_b}{c_f r_b J_b}
+\right].
+$$
+The terminal action derives the claimed line-of-action branch law exactly only if
+$$
+\lim_{\eta\to0}
+\left[
+\mathbf{C}_{b}^{(\eta)}
++
+\mathbf{C}_{b,\mathrm{src}}^{(\eta)}
++
+\mathbf{C}_{b,\mathrm{bdry}}^{(\eta)}
+\right]
+=
+\mathbf{0},
+$$
+where $\mathbf{C}_{b,\mathrm{src}}^{(\eta)}$ is the source-side variation of the same two-time kernel and $\mathbf{C}_{b,\mathrm{bdry}}^{(\eta)}$ is the Noether boundary contribution assigned to the wake-history ledger. This is the precise local closure condition that would be needed for the pure scalar kernel to derive the terminal line-of-action force without an added term. If this cancellation fails, the action-derived terminal force law must include an additional regularized counterterm rather than using $w_b^{(\eta)}\hat{\mathbf{r}}_b$ alone.
+
+The source-side calculation shows why this is a real condition rather than a notational cancellation. Holding the receiver history fixed and varying the emission point gives
+$$
+\delta r_b
+=
+-\hat{\mathbf{r}}_b\cdot\delta\mathbf{x}_{j_b}(t_0),
+\qquad
+\delta g_b
+=
+\frac{1}{c_f}
+\hat{\mathbf{r}}_b\cdot\delta\mathbf{x}_{j_b}(t_0),
+$$
+and therefore
+$$
+\delta_{\mathrm{src}}\!\left(\frac{\delta_\eta(g_b)}{r_b}\right)
+=
+\left[
+\frac{\delta_\eta(g_b)}{r_b^2}
++
+\frac{\delta_\eta'(g_b)}{c_f r_b}
+\right]
+\hat{\mathbf{r}}_b\cdot\delta\mathbf{x}_{j_b}(t_0).
+$$
+On a future-reception chart for the same branch,
+$$
+\partial_{t_1}g_b(t_1,t_0)
+=
+1-\frac{\hat{\mathbf{r}}_b(t_1,t_0)\cdot\mathbf{v}_{o_b}(t_1)}{c_f},
+$$
+so the source-side derivative-of-delta contribution becomes
+$$
+\int dt_1\,
+\Theta(t_1-t_0)
+\frac{\delta_\eta'(g_b)}{c_f r_b}
+\hat{\mathbf{r}}_b
+=
+\widetilde{\mathcal{B}}_{b}^{(\eta)}(t_0)
+-
+\int dt_1\,
+\delta_\eta(g_b)
+\partial_{t_1}
+\left[
+\Theta(t_1-t_0)
+\frac{\hat{\mathbf{r}}_b}
+{c_f r_b\left(1-\hat{\mathbf{r}}_b\cdot\mathbf{v}_{o_b}/c_f\right)}
+\right].
+$$
+This is the coefficient of $\delta\mathbf{x}_{j_b}(t_0)$, not the coefficient of $\delta\mathbf{x}_{o_b}(t_1)$. For arbitrary compactly supported interior variations, the source and receiver variations are independent. The source-side term therefore does not cancel $\mathbf{C}_{b}^{(\eta)}$ pointwise in the receiver Euler-Lagrange equation. Noether boundary terms can cancel endpoint contributions or enforce global time-translation, spatial-translation, and rotation charges, but they cannot remove an interior receiver coefficient for compactly supported variations.
+
+In the sharp positive-delay, transversal limit, the receiver-side interior object reduces to
+$$
+\mathbf{C}_{b}^{(0)}(t_1)
+=
+\frac{1}{|J_b(t_1,t_b^0)|}
+\left.
+\partial_{t_0}
+\left[
+\frac{\hat{\mathbf{r}}_b(t_1,t_0)}
+{c_f r_b(t_1,t_0)J_b(t_1,t_0)}
+\right]
+\right|_{t_0=t_b^0}.
+$$
+Thus the pure regularized $1/r$ causal kernel proves the branch weight $w_b^{(0)}$ only under the additional stationarity condition
+$$
+\left.
+\partial_{t_0}
+\left[
+\frac{\hat{\mathbf{r}}_b(t_1,t_0)}
+{r_b(t_1,t_0)J_b(t_1,t_0)}
+\right]
+\right|_{t_0=t_b^0}
+=
+\mathbf{0}
+$$
+on each admitted interior branch, or under an explicit action-level counterterm whose receiver Euler derivative is
+$$
+\left[
+\frac{1}{\mu_{\text{arch}}}
+\frac{\delta S_{b,\mathrm{ct}}^{(\eta)}}{\delta\mathbf{x}_{o_b}(t_1)}
+\right]_{\!b}
+=
+-
+\kappa\,
+\operatorname{sign}(q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}})
+\left|q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}}\right|
+\mathbf{C}_{b}^{(\eta)}(t_1)
+$$
+with the same endpoint convention used for the wake-history ledger. This is the smallest correction exposed by the variation: it preserves the direct inverse-square branch law when the stationarity condition holds, and otherwise records exactly the residual force density that the scalar kernel leaves behind.
+
 The regularization is admissible only if it preserves the symmetries that supply the conservation ledger. In action form this means
 $$
 \delta_{\tau}S_{\lambda}^{(\eta)}=0,
@@ -881,7 +1137,17 @@ E_{b}^{\mathrm{wake}}(t_\ast)
 \mathcal{K}_{b}^{(\eta)}(t_1,t_0)\,
 dt_0\,dt_1,
 $$
-where $\mathcal{K}_{b}^{(\eta)}$ is the regularized causal kernel restricted to branch $b$. Over one outer period,
+where $\mathcal{K}_{b}^{(\eta)}$ is the weighted regularized causal kernel restricted to branch $b$,
+$$
+\mathcal{K}_{b}^{(\eta)}(t_1,t_0)
+=
+\frac{\kappa\,\operatorname{sign}(q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}})
+\left|q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}}\right|}{c_f}
+\Theta(t_1-t_0)
+\frac{\delta_\eta(g_b(t_1,t_0))}
+{r_b(t_1,t_0)},
+$$
+with the trivial self-coincidence branch excluded. Over one outer period,
 $$
 \Delta E_b^{\mathrm{wake}}
 =
@@ -909,13 +1175,15 @@ $$
 \boldsymbol{\Omega}\cdot
 \Delta\mathbf{J}_b^{\mathrm{wake}},
 $$
-with the mechanical increments already written above. Therefore a terminal branch proof now has a precise action-level target: derive $\mathcal{I}_b^{(\eta)}$ from the regularized causal scalar, prove that its branch variation gives $w_b^{(\eta)}$, and show that the Noether boundary terms close over the same certified branch set. Until those three steps are complete, the action scaffold supplies a constrained proof route and a rejection test, not a solved terminal $(m,n)$ selection.
+with the mechanical increments already written above. Therefore a terminal branch proof now has a precise action-level target: derive $\mathcal{I}_b^{(\eta)}$ from the regularized causal scalar, prove that its branch variation gives $w_b^{(\eta)}$ with a vanishing or explicitly cancelled constraint residual, and show that the Noether boundary terms close over the same certified branch set. Until those three steps are complete, the action scaffold supplies a constrained proof route and a rejection test, not a solved terminal $(m,n)$ selection.
 
 This scaffold identifies the smallest missing dynamics. The delayed equations must enumerate $\Lambda_{\theta}^{\mathrm{loc}}$ and derive the edge maps $\mathcal{E}_{\nu}^{\pm}$ from the terminal aligned branch. [Dyadic Resonance Lock](dyadic-resonance-lock.md) supplies the candidate integer phase lattice, and [Binary Dynamics](binary-dynamics.md#self-hit-definition-and-diagnostics) supplies the self-hit and partner-hit root vocabulary, but neither document yet computes the terminal aligned edge projections from the full three-layer dynamics.
 
-The local-horizon coefficient requires
+The local-horizon coefficient requires the area-normalized terminal density
 $$
-s_{\mathrm{align}}(\theta)
+\bar{\alpha}_{\mathrm{align}}(\theta)
+=
+\frac{s_{\mathrm{align}}(\theta)}{a_{\theta}}
 \longrightarrow
 \frac{1}{4}
 $$
@@ -930,7 +1198,7 @@ The dynamics chapter contributes the stable pieces needed by the larger theorem 
 3. Track how motion deforms the rest-state lock into braided spiral-helical geometry.
 4. Derive local clock diagnostics from the transverse causal budget lemma.
 5. Solve all-layer branch updates for one-$h$ transactions and extract the branch-indexed clock and ruler Lorentz factors.
-6. Compute the terminal-alignment label-count density $s_{\mathrm{align}}$ from alignment-restricted closure labels and edge wake compatibility.
+6. Compute the terminal-alignment area-normalized label density $\bar{\alpha}_{\mathrm{align}}=s_{\mathrm{align}}/a_{\theta}$ from alignment-restricted closure labels, patch-area normalization, and edge wake compatibility.
 7. Output alignment, closure, Floquet, grazing, branch-residual, and Cartan reconstruction diagnostics.
 8. Keep mass, photon, equivalence-principle, and full GR matching claims at the level of reconstruction targets until their proof burdens close.
 
@@ -938,7 +1206,7 @@ The dynamics chapter contributes the stable pieces needed by the larger theorem 
 
 1. The formed Noether core has stable invariants ($R_{\text{core}}$, $\omega_{\text{core}}$, fixed phase offsets).
 2. The outer-binary delay loop yields discrete plateaus and a terminal aligned mode under increasing stress.
-3. High group velocity produces an oblate causal envelope that drives planar alignment in the terminal rung.
+3. High group velocity may produce an oblate causal envelope that drives planar alignment in the terminal rung; this remains a working hypothesis until the swept-volume and branch-stability tests close.
 4. High gravitational gradient modifies phase closure through tidal or differential delay effects, shifting or destabilizing rungs.
 
 ---
@@ -1035,7 +1303,7 @@ This union geometry sets packing and overlap limits by construction, rather than
 **Modeling at $v>0$:** Use the oblate envelope as a time-dependent exclusion region whose axis precesses. The exclusion volume becomes anisotropic and typically increases with precession cone angle.
 
 **As $v_{\text{trans}} \to c_\star$:** The envelope flattens toward a disk, so the exclusion volume becomes a thin, swept annulus dominated by the equatorial plane. This tends to amplify planar alignment constraints and reduce accessible 3D configurations.
-At sufficiently high stress, this implies a terminal rung: further increases cannot support a stable 3D mode, only a planar aligned state.
+At sufficiently high stress, this suggests the terminal-rung failure mode to test: further increases may fail to support a stable 3D mode and may force a planar aligned state.
 
 **Status:** This precession-expanded exclusion volume is not explicitly modeled in the current minimal system; treat results as lower bounds until the swept-volume effect is added.
 
@@ -1043,9 +1311,9 @@ At sufficiently high stress, this implies a terminal rung: further increases can
 
 **Goal:** Define local clock-rate change as a geometric effect in the delay loop, not as distortion of substrate time or as a relativistic postulate.
 
-**Reference cadence:** Use the outer-binary Planck cadence as a reference assembly cadence: $T_0 = 1/f_P$.
+**Reference cadence:** Use a declared reference assembly cadence $T_0$; the terminal-alignment normalization may specialize this to the outer-binary Planck cadence $T_0=1/f_P$.
 
-The cadence $T_0=1/f_P$ is a reference assembly cadence, not the absolute substrate time itself. Absolute time $t$ remains the uniform ordering parameter for causal-hit evaluation. The local clock diagnostic compares assembly cycle counts to this reference cadence:
+The cadence $T_0$ is a reference assembly cadence, not the absolute substrate time itself. Absolute time $t$ remains the uniform ordering parameter for causal-hit evaluation. The local clock diagnostic compares assembly cycle counts to this reference cadence:
 $$
 N_{\text{clock}}(\mathbf{x})
 \equiv
@@ -1111,8 +1379,8 @@ Quantization here is emergent: only delay-locked, stable closures persist as dis
 - **Planarity threshold:** Declare “planar aligned” if $\max(\theta_{ij}) < \epsilon_\theta$ for $N$ consecutive outer periods.
 - **Precession cone angle:** Let $\hat{n}_{\text{net}}$ be the normalized sum of plane normals. Define $\theta_{\text{cone}} = \max_t \arccos(\hat{n}_{\text{net}}(t)\cdot\langle\hat{n}_{\text{net}}\rangle)$ over one outer period.
 - **Rotation test ($SU(2)$ vs $U(1)$):** Evolve the same state under an imposed $2\pi$ spatial rotation and compare the causal configuration $\mathcal{C}(t)$ to the unrotated one (e.g., phase-closure residuals and relative plane phases). If $\mathcal{C}(t)$ matches only after $4\pi$, treat as $SU(2)$-like; if after $2\pi$, treat as $U(1)$-like.
-- **Prediction:** As alignment strengthens, $\theta_{ij}$ and $\theta_{\text{cone}}$ should decrease monotonically; the rotation test should transition from $4\pi$ to $2\pi$ return.
-As alignment increases and planes coincide, the remaining degree of freedom is a single in-plane phase ($U(1)$-like), consistent with a boson-like terminal configuration.
+- **Diagnostic hypothesis:** As alignment strengthens, $\theta_{ij}$ and $\theta_{\text{cone}}$ should decrease monotonically; the rotation test should be checked for a possible transition from $4\pi$ to $2\pi$ return.
+As alignment increases and planes coincide, the remaining degree of freedom may reduce to a single in-plane phase ($U(1)$-like), consistent with a boson-like terminal configuration only after the rotation test passes.
 
 ### Floquet and Grazing Diagnostics
 
@@ -1124,7 +1392,7 @@ $$
 $$
 Track $\Delta_{\mathbf{k}}$ along scans in declared $\beta_\star = v_{\text{trans}}/c_\star$ and $G_{\text{grad}}$. Stable rungs have $\Delta_{\mathbf{k}}>0$; rung termination, separator clock-freeze, and gradient-driven failure should all coincide with $\Delta_{\mathbf{k}}\to 0^+$.
 
-**Grazing-bifurcation diagnostics at the separator:** Near $\|\mathbf{v}\|=c_f$, the post-crossing trajectory deviation is predicted to scale as $\sqrt{t-t_*}$ along the eigenvector of the newly activated self-hit root. Two simulation tests follow:
+**Grazing-bifurcation diagnostics at the separator:** Near $\|\mathbf{v}\|=c_f$, the post-crossing trajectory deviation is predicted to scale as $\sqrt{t-t_*}$ along the eigenvector of the newly activated self-hit root when the crossing parameter satisfies $s(t)-1\sim \dot{s}(t_*)(t-t_*)$ with $\dot{s}(t_*)\ne0$. Two simulation tests follow:
 
 - log-log fit of phase-deviation versus time-since-crossing, expected to yield slope $1/2$;
 - parameter sweep across the separator looking for a period-adding cascade in the integer ledger, with each adding event respecting $\Delta N\in 2\mathbb{Z}$.
@@ -1276,13 +1544,14 @@ The stronger claim that this architecture supplies the basis for rest mass, prop
 
 **Equation of motion near the hinge ($v \approx c_f$)** For each architrino $i$ interacting with its partner $j$:
 $$
-\ddot{\mathbf{x}}_i(t)=\mathbf{a}_{i,j}(t;\{t_{p,k}\})+H(s-1)\,\mathbf{a}_{i,i}(t;\{t_{s,m}\})+\mathbf{a}_{\text{ext}}(t),
+\ddot{\mathbf{x}}_i(t)=\mathbf{a}_{i,j}(t;\{t_{p,k}\})+\mathbf{a}_{i,i}^{\mathrm{active}}(t;\{t_{s,m}\})+\mathbf{a}_{\text{ext}}(t),
 $$
 with delay constraints (causal roots):
 $$
 \|\mathbf{x}_j(t_{p,k})-\mathbf{x}_i(t)\|=c_f\,(t-t_{p,k}), \quad
 \|\mathbf{x}_i(t_{s,m})-\mathbf{x}_i(t)\|=c_f\,(t-t_{s,m}),
 $$
+where $\mathbf{a}_{i,i}^{\mathrm{active}}$ is a shorthand for the sum over retained self-hit roots in $\mathcal{C}_{ii}(t)$, not an instantaneous switch $H(s-1)$. Self-hit remains path-history dependent: roots emitted during an earlier super-field-speed interval can stay active after the current speed has changed.
 The second constraint is the native small-scale bridge-like causal structure in this sketch: the receiver at $\mathbf{x}_i(t)$ is linked to an earlier point on the same worldline by its own causal wake. The connectedness is path-history closure in the causal-root ledger, not a tunnel in the Euclidean void. Any connected-geometry translation belongs only after coarse-graining into an effective horizon-interface or metric description.
 
 and $s=\|\mathbf{v}\|/c_f$. For symmetric, non-translating circular geometry, the delay angles satisfy
