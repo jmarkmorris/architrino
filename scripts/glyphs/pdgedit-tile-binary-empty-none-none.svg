@@ -1,0 +1,7 @@
+<svg viewBox="0 0 80 80" role="img" aria-labelledby="title desc" xmlns="http://www.w3.org/2000/svg">
+  <title>Binary tile: empty:--:none</title>
+  <desc>Binary tile: empty:--:none. Pdgedit reference tile generated from pdgedit-tiles.json.</desc>
+  <rect width="80" height="80" fill="#000000"/>
+  <rect x="6.00" y="6.00" width="68.00" height="68.00" rx="10.00" fill="none" stroke="#a259ff" stroke-width="4"/>
+  <svg x="4.00" y="4.00" width="72" height="72" viewBox="0 0 120 120" aria-hidden="true"/>
+</svg>

@@ -285,7 +285,7 @@ Standard Model fields are often treated as fundamental entities. Here, we posit 
 *   **$\mathbb{U}_{\text{now}}$ View:** Sees only point-like architrinos ($\pm |e/6|$) and their discrete potential emissions $\Phi$. There are no continuous "gauge fields," only the summation of causal potential wakes.
 *   **PO View (Emergent):** Lacking the resolution to see individual architrinos, the Physical Observer measures the **collective potential gradient** $\nabla \Phi$ at a point.
     *   **$\vec{E}$ and $\vec{B}$ fields** are statistical averages of Jacobian-weighted causal-flux density and circulation/vorticity in the Noether Sea.
-    *   **Gauge Potentials ($A_\mu$):** These correspond to local **twists, strains, or density gradients** in the lattice of the Noether Sea.
+    *   **Gauge Potentials ($A_\mu$):** These correspond to local **twists, strains, or density gradients** in the Noether-Sea assembly network.
 
 ### Symmetry Groups as Geometric Deformations
 
@@ -299,12 +299,25 @@ We map the abstract gauge groups of the Standard Model to physical deformations 
     *   *SM View:* Non-Abelian rotation in isospin space.
     *   *Architrino View:* A **chiral twist** or structural strain in the tri-binary assemblies. Because the assemblies have internal handedness (spiral structure), deformations obey non-commutative geometry (order of operations matters), mirroring the non-Abelian nature of SU(2).
 
+### Standard Model Recovery Discipline
+
+This working map starts from the measured low-energy pattern, not from a larger symmetry that must later be hidden. The durable observer-level target is the Standard Model gauge record: $U(1)_Y\times SU(2)_L\times SU(3)_c$, the charge relation $Q=T_3+Y/2$, the observed chiral weak couplings, the charge and generation tables, the running of $g_1,g_2,g_3$, and the absence of additional low-energy partners or transport modes above current bounds.
+
+From the $\mathbb{A}\mathbb{A}\mathbb{A}$ side, that means the Noether-Sea and assembly variables must first reproduce the known gauge bookkeeping. Larger group unification, supersymmetric partner bookkeeping, or extra-dimensional geometry may be useful comparison languages, but none of them is native ontology here. They become relevant only if a branch record derives the Standard Model pattern and also explains why every added observable channel is absent without using a separate suppression parameter for each failed prediction.
+
+The local closure discipline is therefore:
+
+1. recover the effective gauge group and representation table from assembly and axial-layer bookkeeping;
+2. derive $g_1,g_2,g_3$ and $\theta_W$ as shared effective outputs rather than per-observable fit constants;
+3. keep weak chirality, CKM/PMNS overlap, and weak-reaction provenance tied to the same exposed weak-coupling-triad domain;
+4. pass the null-result residual in [Failure Criteria](../../../../markdown/aaa/validation/failure-criteria.md#null-result-residual-for-added-channels) for any predicted non-baseline channel.
+
 ### The Higgs Mechanism & VEV Reinterpretation
 
 The common "God Particle" narrative is replaced by a Noether-Sea medium-response comparison.
 
 *   **The VEV (Vacuum Expectation Value):** This is simply the **equilibrium density** of the Noether Sea. It is non-zero because the void is populated.
-*   **Symmetry Breaking:** The electroweak phase transition is a literal **phase change** (like freezing). As the universe cooled, the high-energy, chaotic plasma of architrinos crystallized into the stable, coupled tri-binary "lattice" we see today.
+*   **Symmetry Breaking:** The electroweak phase transition is modeled as a **phase-change closure target**. As the universe cooled, the high-energy, chaotic plasma of architrinos must relax into the stable, coupled tri-binary medium inferred today, but the order parameter and transition dynamics still have to be derived.
 *   **Mass as medium-dressed response:** A fermion assembly moving or accelerating through the Noether Sea must relock its internal causal ledger against the surrounding medium.
     *   Photon channels propagate as coherent planar-mode transport through the sea rather than as massive bodies.
     *   Massive assemblies expose more shielded internal causal history to external probes. The measured inertial response is not ordinary dissipative drag; see [Particle Masses: Emergent Inertia in the Noether Sea](../../../../markdown/aaa/assemblies/particle-masses.md).
@@ -462,6 +475,7 @@ For $R_L\sim 10^{-19}\,\text{m}$, this predicts negligible deviations at both $\
 1. If the $R_L$ needed to fit $\Delta a_\mu$ implies $|\Delta\sigma/\sigma|>10^{-3}$ near the LEP $Z$ pole, the composite correction map is ruled out.
 2. If the required hierarchy violates nonresonance and destabilizes closure in the kinematic sector, the electroweak map is not self-consistent with Lorentz closure.
 3. If charge reconstruction from six-pole averaging acquires drift-dependent leakage (non-integer multiples of $e/3$), the quantization map fails.
+4. If the map predicts additional stable charged fermions, unsuppressed partner channels, proton-instability corridors, extra gauge modes, or other non-baseline observables above null-result bounds, the added structure is not a closed unification result.
 
 ## Gauge Symmetries
 
@@ -481,6 +495,51 @@ Assume:
 - **(G2)** Action density depends on $\Psi$ only through $\Psi$, $\partial_\mu\Psi$, and symmetry-compatible contractions.
 - **(G3)** Color axis-exceptionality space is $\mathcal{H}^{\text{color}}\cong\mathbb{C}^3$.
 - **(G4)** Weak-coupling triad is a local two-state channel at each point (effective doublet sector).
+
+### Standard Model Recovery Gate
+
+The gauge bridge is allowed to use the language of connections and covariant derivatives because those are the tested observer-level structures. It is not allowed to promote a larger symmetry, extra sector, or hidden channel merely because that larger package contains the Standard Model as a subcase. The first recovery target is the low-energy effective gauge record
+
+$$
+\mathcal{G}_{\mathrm{SM}}^{\mathrm{eff}}
+=
+U(1)_Y\times SU(2)_L\times SU(3)_c,
+\qquad
+Q=T_3+\frac{Y}{2},
+$$
+
+together with the observed charge assignments, chiral weak couplings, anomaly cancellations, running couplings, and mixing data consumed by the fermion and reaction chapters. A compact residual for this chapter is
+
+$$
+\mathcal{R}_{\mathrm{gauge}}(\theta)
+=
+d_{\mathrm{rep}}\!\left(
+\mathcal{G}_{\mathrm{eff}}(\theta),
+\mathcal{G}_{\mathrm{SM}}^{\mathrm{eff}}
+\right)
++
+d_{\mathrm{run}}\!\left(
+(g_1,g_2,g_3,\theta_W)_{\theta},
+(g_1,g_2,g_3,\theta_W)_{\mathrm{obs}}
+\right)
++
+d_{\mathrm{chiral}}\!\left(
+\mathcal{E}_{\mathrm{weak}}(\theta),
+\mathcal{E}_{\mathrm{weak}}^{\mathrm{obs}}
+\right),
+$$
+
+where $d_{\mathrm{rep}}$ checks representation and charge bookkeeping, $d_{\mathrm{run}}$ checks the scale-dependent effective couplings, and $d_{\mathrm{chiral}}$ checks the weak-coupling-triad exposure record against observed charged-current handedness. This chapter's bridge is promotable only if
+
+$$
+\mathcal{R}_{\mathrm{gauge}}(\theta)\le\epsilon_{\mathrm{gauge}}
+\qquad\text{and}\qquad
+\mathcal{R}_{\mathrm{null}}(\theta)=0,
+$$
+
+with $\mathcal{R}_{\mathrm{null}}$ defined in [Failure Criteria](../../../../markdown/aaa/validation/failure-criteria.md#null-result-residual-for-added-channels). Thus larger group unification, supersymmetry, Kaluza-Klein-style geometry, and similar constructions remain comparison frameworks unless an $\mathbb{A}\mathbb{A}\mathbb{A}$ branch record recovers the observed gauge sector while also suppressing every added observable channel from the same shared state variables.
+
+The same filter applies to especially elegant symmetry containers, including grand-unified and exceptional-group embeddings. It is not enough for a larger algebra to contain $U(1)_Y\times SU(2)_L\times SU(3)_c$ or to organize one generation of fermions. The promoted record must also explain why mirror matter, superpartners, proton-instability channels, extra gauge bosons, hidden transport modes, and other non-baseline outputs are absent in the tested regime. If those absences require separate masses, thresholds, compactification choices, or sector-specific suppressions, the construction remains a comparison framework rather than an $\mathbb{A}\mathbb{A}\mathbb{A}$ gauge closure.
 
 ### U(1) Sector
 
@@ -506,6 +565,67 @@ $$
 \Psi\mapsto e^{i\alpha(x)}\Psi,\qquad
 A_\mu\mapsto A_\mu+\frac{1}{g_1}\partial_\mu\alpha.
 $$
+
+#### Aharonov-Bohm Holonomy Benchmark
+
+The Aharonov-Bohm effect is the sharp U(1) benchmark because it separates local force from phase transport. The validated observable is not merely that an effective connection can be written, but that two force-free arms can accumulate a relative phase fixed by enclosed flux. In this chapter the benchmark is therefore a closure target for the emergent connection, not evidence that $A_\mu$ is substrate ontology.
+
+For two interferometer arms $\gamma_1$ and $\gamma_2$ whose local force channel vanishes along the arms,
+$$
+\mathbf{F}_{\mathrm{eff}}\big|_{\gamma_1}
+=
+\mathbf{F}_{\mathrm{eff}}\big|_{\gamma_2}
+=
+\mathbf{0},
+$$
+the coarse-grained wake/action ledger must still produce the observer-level phase shift
+$$
+\Delta\phi_{\mathrm{AB}}^{\mathbb{A}\mathbb{A}\mathbb{A}}
+=
+\frac{1}{\hbar_{\mathrm{eff}}}
+\left(
+\mathcal{S}_{\mathrm{wake}}[\gamma_1]
+-
+\mathcal{S}_{\mathrm{wake}}[\gamma_2]
+\right)
+\stackrel{!}{=}
+\frac{q_{\mathrm{eff}}}{\hbar}\Phi_B
+\pmod{2\pi}.
+$$
+Here $\mathcal{S}_{\mathrm{wake}}[\gamma_a]$ is the effective action accumulated by the coarse-grained causal-wake history assigned to arm $\gamma_a$, and $\Phi_B$ is the standard enclosed magnetic-flux observable. A useful residual is
+$$
+\Delta_{\mathrm{AB}}
+=
+\sup_{\Phi_B}
+\left|
+\Delta\phi_{\mathrm{AB}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\Phi_B)
+-
+\frac{q_{\mathrm{eff}}}{\hbar}\Phi_B
+\right|.
+$$
+The U(1) closure passes this benchmark only if $\Delta_{\mathrm{AB}}$ remains below the declared interferometric tolerance while the same effective connection also preserves charge continuity and ordinary electromagnetic force recovery. If the phase recovery requires a local force on the arms, a separate phase fit, or a literal promotion of $A_\mu$ to substrate ontology, this gauge bridge has failed at the AB gate.
+
+#### Global Gauge-Topology Completion Target
+
+The Aharonov-Bohm benchmark is local in the sense that it tests one enclosed-flux holonomy. A stronger gauge bridge must also recover the global content usually hidden by chartwise potential language: flux quantization, charge compatibility, and the way local effective potentials glue across overlapping regions. This remains an effective-connection target, not evidence that a gauge potential is substrate ontology.
+
+Let $\Gamma_{\mathrm{AB}}$ be a benchmark family of closed observer-level loops $\gamma$ and spanning surfaces $S$ for which the local force channel vanishes on the loop. The shared wake/action and effective-connection record should satisfy
+$$
+\Delta_{\mathrm{gauge,glob}}(\theta)
+=
+\sup_{(\gamma,S)\in\Gamma_{\mathrm{AB}}}
+\inf_{N\in\mathbb{Z}}
+\left|
+\Delta\phi_{\mathrm{wake}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\gamma;\theta)
+-
+\frac{q_{\mathrm{eff}}}{\hbar}\int_S F_{\mathrm{eff}}(\theta)
+-
+2\pi N
+\right|.
+$$
+Here $F_{\mathrm{eff}}$ is the observer-level curvature recovered from the same effective gauge record used for force and phase transport. The integer $N$ records the allowed $2\pi$ ambiguity of the phase, not an independent hidden sector.
+
+The global gauge-topology target passes only if $\Delta_{\mathrm{gauge,glob}}$ stays below tolerance while charge continuity, local force recovery, AB holonomy, and flux/charge compatibility are all read from one shared record. It fails if a chart-dependent potential must be promoted to ontology, if the topological charge is inserted separately from the wake/action ledger, or if the same sector requires different Noether-Sea variables for force, phase, and charge recovery.
 
 ### SU(2) Weak Sector
 
@@ -566,6 +686,7 @@ Required consistency conditions:
 1. **Topology respect:** effective gauge transport must preserve the admissible axis-exceptionality sector decomposition used in confinement/topology chapters.
 2. **No leakage contradiction:** constitutive preferred-frame leakage terms (from spacetime closure) must not force leading-order gauge-breaking operators.
 3. **Energy-side compatibility:** gauge sector must admit open-vs-closed braid scaling laws without violating local covariance of the effective Lagrangian.
+4. **Global completion:** local effective connections must assemble into one gauge record whose holonomies, fluxes, and charge ledgers agree across chart boundaries.
 
 Interface chapters:
 - topology and action invariants: [dynamics/causal-action-functional.md](../../../../markdown/aaa/dynamics/causal-action-functional.md)
@@ -578,6 +699,9 @@ This gauge-emergence spine fails if any of the following occur in the calibrated
 - Measured effective continuity violation: $\partial_\mu j^\mu\neq 0$ beyond numerical/experimental tolerance.
 - Weak channel requires non-SU(2)-covariant terms at leading order.
 - Color generator set fails closure or requires dimension other than 8 in the one-axis-exceptionality sector.
+- The Standard Model representation, coupling-running, or chirality residual $\mathcal{R}_{\mathrm{gauge}}$ cannot be kept below tolerance using one shared gauge record.
+- Global holonomies, fluxes, and charge compatibility cannot be recovered from the same effective gauge record that supplies local force and phase transport.
+- Added partner families, extra gauge modes, baryon-instability channels, or hidden transport channels produce $\mathcal{R}_{\mathrm{null}}(\theta)>0$.
 - Preferred-frame leakage forces explicit gauge-breaking operators at leading order.
 
 These are theory-level falsifiers for this chapter's bridge.
