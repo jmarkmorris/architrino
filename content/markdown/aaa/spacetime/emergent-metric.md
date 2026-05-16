@@ -76,6 +76,63 @@ Here $N$ is the clock-rate or lapse channel, $u^i_{\text{sea}}$ is medium drift,
 
 This form is the common handoff surface for clock redshift, Shapiro delay, lensing, geodesic motion, photon synchronization, and preferred-frame tests. A scalar speed map alone is therefore not enough for closure: it can support a first Shapiro-delay intuition, but the full PPN burden requires the lapse, drift, and spatial-compliance channels together.
 
+A practical consistency check is that those channels must be projections of one shared record of the Noether Sea and the Physical Observer, not independently tuned descriptions. For an observation window $W$, let $\theta$ collect the retained Noether-Sea state, source assemblies, observer clock/ruler state, signal-channel record, apparatus calibration, and boundary wake data. Let
+$$
+\Pi_{\mathrm{clk}}\theta,\qquad
+\Pi_{\mathrm{rul}}\theta,\qquad
+\Pi_{\mathrm{sig}}\theta
+$$
+denote the clock, ruler, and signal projections of that same record. Let $\mathcal{B}_{\mathrm{eff}}$ be the benchmark bundle returned by the candidate effective-metric map from those projections, and let $\mathcal{B}_{\mathrm{GR}}^{W}$ denote the GR/PPN benchmark bundle on $W$ for redshift, Shapiro delay, lensing, precession, two-way signal speed, and preferred-frame bounds. A compact metric-recovery residual is
+$$
+\mathcal{R}_{\mathrm{metric}}(\theta;W)
+=
+\left\|
+\mathcal{B}_{\mathrm{eff}}
+\big(
+\Pi_{\mathrm{clk}}\theta,
+\Pi_{\mathrm{rul}}\theta,
+\Pi_{\mathrm{sig}}\theta
+\big)
+-
+\mathcal{B}_{\mathrm{GR}}^{W}
+\right\|_{\Sigma_W^{-1}}
++
+\lambda_{\mathrm{PF}}\sum_{i=1}^{3}\alpha_i(\theta)^2
++
+\lambda_{\mathrm{retune}}\mathcal{S}_{\mathrm{retune}}(\theta).
+$$
+Here $\Sigma_W$ is the declared benchmark covariance, $\alpha_i$ are the preferred-frame parameters, and $\mathcal{S}_{\mathrm{retune}}(\theta)$ records whether separate parameter choices were used to pass different channels. The closure condition is
+$$
+\mathcal{R}_{\mathrm{metric}}(\theta;W)\le\epsilon_{\mathrm{metric}},
+\qquad
+\mathcal{S}_{\mathrm{retune}}(\theta)=0.
+$$
+The point is not to add a new spacetime ontology. It is to require the effective metric to behave as one constitutive summary of the same medium and observer record across clocks, rulers, signal propagation, and weak-field gravitational tests.
+
+### Matter-Channel Compatibility Target
+
+The same shared-record rule applies to the effective matter channels whose observations test the metric. The retained comparison lesson from matter-first gravity programs is not that their ontology should be imported, but that predictive matter dynamics and observer-level geometry cannot be chosen independently. In this framework, the matter channel, clock channel, ruler channel, and signal channel must remain projections of the same Noether-Sea record $\theta$.
+
+For the signal-carrying channels used in metric reconstruction, let $\operatorname{Char}_r(\theta)$ denote the observer-level characteristic surface family extracted from channel $r$, and let $\operatorname{Null}(g^{\text{eff}}_{\mu\nu}(\theta))$ denote the null surface family of the reconstructed effective metric. A compact compatibility residual is
+$$
+\mathcal{R}_{\mathrm{char}}(\theta)
+=
+\sup_{r\in\mathfrak{R}_{\mathrm{sig}}}
+\left[
+d_{\mathrm{cone}}
+\left(
+\operatorname{Char}_r(\theta),
+\operatorname{Null}(g^{\text{eff}}_{\mu\nu}(\theta))
+\right)
++
+\lambda_{\mathrm{C}}
+\mathcal{R}_{\mathrm{Cauchy}}^{(r)}(\theta)
+\right],
+$$
+where $\mathcal{R}_{\mathrm{Cauchy}}^{(r)}$ records failure of the declared channel to share the predictive Cauchy evolution used by the same observer-level metric record. In the validated weak homogeneous photon regime, this residual includes the requirement that the two physical polarization branches share the same free-space characteristic cone up to the birefringence tolerance routed through [Failure Criteria](../validation/failure-criteria.md#operational-null-result-ledger).
+
+This remains a closure target rather than substrate ontology. If $\mathcal{R}_{\mathrm{char}}$ is small only because the photon, clock, ruler, or stress channels use different fitted records, the metric has not been recovered as a constitutive output of the Noether Sea.
+
 ## Noether-Core Deformation and Metric Language
 
 At the assembly level, an individual Noether core has an oblate, deformable exclusion envelope; see [Noether Core Geometry](noether-core-geometry.md). This chapter does not identify that single-core envelope with the metric. The metric bridge uses many deforming Noether cores in the Noether Sea as the medium whose coarse variables determine clock, ruler, and signal behavior.
@@ -121,6 +178,8 @@ On this reading, quantizing the effective metric directly is not the primary mov
 This does not license dismissing low-energy quantized-metric calculations. In the long-distance regime, the effective-field-theory treatment of GR separates unknown high-energy local terms from calculable infrared corrections. $\mathbb{A}\mathbb{A}\mathbb{A}$ should preserve that result as an observer-level recovery benchmark: the microscopic account may differ, but the weak-field constitutive record must reproduce the same long-distance quantum correction when its variables are coarse-grained into the effective metric description.
 
 This support is useful but limited. A Jacobson-style argument would explain why GR-like behavior is a natural equilibrium limit of many possible media, not why $\mathbb{A}\mathbb{A}\mathbb{A}$ is uniquely correct. The distinguishing burden therefore shifts to the departures from equilibrium, where the detailed tri-binary architecture should matter.
+
+It also does not derive inertia by itself. A successful equation-of-state route can recover an effective Einstein equation while leaving open how a particular assembly acquires its inertial response, why accelerated and gradient-driven local records agree to equivalence-principle accuracy, and how the same Noether-Sea record fixes the mass-side response tensor. Those burdens remain with the mass, energy, Lorentz-closure, and tri-binary dynamics programs.
 
 ### Local-Horizon Recovery Target
 

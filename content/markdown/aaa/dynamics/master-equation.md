@@ -184,15 +184,15 @@ caps the near-collision inverse-square amplitude. Branch-resolved formulas with 
 
 ---
 
-#### Regularized Evaluation of the Exact Energy Charge
+#### Regularized Energy Diagnostic for the Exact Charge
 
-For computation with finite shell width $\eta>0$, it is useful to introduce an $\eta$-regularized representation of the same history-aware energy charge tracked by the exact nonlocal action. When one wants a quadratic kinetic bookkeeping proxy, use a single universal conversion constant $\mu_{\text{arch}}$ rather than particle-specific substrate masses. This smooth expression is used for numerical evaluation of the conserved quantity:
+For computation with finite shell width $\eta>0$, it is useful to introduce an $\eta$-regularized diagnostic for the same history-aware energy charge tracked by the exact nonlocal action. When one wants a quadratic kinetic bookkeeping proxy, use a single universal conversion constant $\mu_{\text{arch}}$ rather than particle-specific substrate masses. This smooth expression is used for numerical evaluation and convergence testing of the conserved quantity:
 $$
 E_{\text{tot}}^{(\eta)}(t)
-= \sum_i \frac{1}{2} \mu_{\text{arch}} \left|\dot{\mathbf{x}}_i(t)\right|^2
+= \sum_i \frac{1}{2} \mu_{\text{arch}} \left\|\dot{\mathbf{x}}_i(t)\right\|^2
 + E_{\text{wake}}^{(\eta)}(t).
 $$
-For the regularized interaction term, a convenient working expression is:
+For the regularized interaction diagnostic, a convenient working expression is:
 $$
 E_{\text{wake}}^{(\eta)}(t) =
 \frac{1}{2}\sum_{i,j} \kappa\,\sigma_{ij}\,|q_i q_j|
@@ -200,7 +200,7 @@ E_{\text{wake}}^{(\eta)}(t) =
 \frac{1}{r_{ij}^2(t; t_0)\,\left|J_{ij}(t;t_0)\right|}\,
 \delta_\eta\!\big(r_{ij}(t; t_0) - c_f(t - t_0)\big).
 $$
-where $\tau_{\max}$ bounds the causal memory depth used in analysis and simulation. In the $\eta \to 0$ limit, this smoothed expression is intended to recover the exact nonlocal Noether charge derived later in the chapter.
+where $\tau_{\max}$ bounds the causal memory depth used in analysis and simulation. Because this expression is written with the branch-level inverse-square force density, it should be treated as a diagnostic candidate unless it is derived from the same time-translation-invariant action-level regularization as the exact charge below. If the dual-mollified law with a core cutoff $\epsilon_c$ is used, the energy diagnostic must carry the same cutoff convention. The exact nonlocal Noether charge used for theorem-level conservation is the boundary functional in [Exact wake-energy functional at time boundary $t$](#exact-wake-energy-functional-at-time-boundary-t).
 
 ### Causal Interaction Set (The Geometry of Delay)
 
@@ -353,10 +353,20 @@ $$
 \|\mathbf{x}_i(t) - \mathbf{x}_i(t_0)\| = c_f(t - t_0), \quad t_0 < t.
 $$
 
+**Interval-speed lemma.** Let $\Delta=t-t_0>0$ and suppose $\mathbf{x}_i$ is absolutely continuous on $[t_0,t]$. If
+$$
+\|\mathbf{x}_i(t)-\mathbf{x}_i(t_0)\|=c_f\Delta,
+$$
+then
+$$
+\frac{1}{\Delta}\int_{t_0}^{t}\|\dot{\mathbf{x}}_i(s)\|\,ds\ge c_f.
+$$
+This follows immediately from the triangle inequality. Therefore strict sub-field-speed motion on the whole interval forbids a nontrivial self-hit. A simple noncoincident self-hit requires super-field-speed motion somewhere along the interval, except for the degenerate straight field-speed case where the causal branch is tangent and the simple-root Jacobian condition fails.
+
 **Critical requirements for self-hit:**
 
 1. **Curvature**: Straight-line motion admits no self-hits (the worldline never intersects its own past causal isochrons).
-2. **Super-field-speed history**: At some emission time $t_0$, the architrino must have exceeded $c_f$ (otherwise, it remains inside all past wake surfaces and never catches up).
+2. **Super-field-speed interval history**: along the interval from emission to reception, the architrino must have exceeded $c_f$ somewhere, unless the branch is the degenerate straight field-speed case excluded by the simple-root assumptions.
 
 **Key clarification:**
 
@@ -826,6 +836,29 @@ $$
 
 Therefore the regularized delayed dynamics are locally well-posed, with global existence whenever those failure modes are excluded. This conditional statement applies to the finite-$\eta$ regularized model; the ideal $\eta\to 0$ shell limit still requires separate control of root accumulation and Jacobian-degenerate branches. $\square$
 
+#### Finite-Continuation Criterion for Global Comparisons
+
+The well-posedness theorem is the dynamics-side home for global-continuation comparisons used later in [GR Phenomenology](../spacetime/gr-phenomenology.md#global-continuation-and-cosmic-censorship-comparison) and [Singularity Resolution](../spacetime/singularity-resolution.md#cauchy-horizon-comparison-pressure). It should not be read as a claim that observer records determine a unique global spacetime. Its native claim is narrower: a declared finite history, boundary wake record, and branch chart either determine a finite continuation family or they do not.
+
+For a compact subsystem $\Omega$ and window $W=[t_i,t_f]$, let $\mathcal{A}_{\Omega,W}^{(\eta)}$ be the set of branch charts that satisfy the regularized assumptions (W1)-(W5), the bounded active-branch condition, the distance floor, and the root-transversality floor on $W$ using the same finite boundary data $\mathcal{B}_{\partial\Omega}|_W$. The dynamics-side continuation family is
+$$
+\mathfrak{S}_{\Omega,W}^{\mathrm{ME},\eta}
+=
+\left\{
+\mathbf{Y}_{t_f}^{a}
+:
+a\in\mathcal{A}_{\Omega,W}^{(\eta)},
+\ \mathbf{Y}_{t_f}^{a}
+\text{ is generated by the regularized master equation from }
+\left(\mathbf{Y}_{t_i},\mathcal{B}_{\partial\Omega}|_W\right)
+\right\}.
+$$
+The comparison passes only if
+$$
+0<\left|\mathfrak{S}_{\Omega,W}^{\mathrm{ME},\eta}\right|<\infty
+$$
+with every element carrying the causal-root ledger, energy diagnostic or exact charge used for the run, and the boundary wake data that selected it. Empty, infinite, or unlabeled families are not global closure; they mark an unresolved continuation ambiguity. A later strong-field or cosmology chapter may quotient this family by observer-accessible records, but the quotient must be derived from the same master-equation data rather than imposed as a global-hyperbolicity assumption.
+
 ## Operational Principles, Self-Interaction, and Examples
 
 ### Core Principles (Operational Summary)
@@ -844,9 +877,9 @@ The total acceleration on a particle at any instant is the **vector sum** of the
 
 #### Velocity Dependence
 
-**Statement:** The dynamics are **delayed** and **radial in direction**. Because the source moves while emitting, both the emitted wake pattern and the received force are velocity dependent through causal geometry. The received force magnitude is modulated by the causal Jacobian $\left|J_{ij}\right|^{-1}$, while the receiver's speed affects the **work rate** and branch sampling via $\mathbf{F} \cdot \mathbf{v} = |\mathbf{F}| v_r$.
+**Statement:** The dynamics are **delayed** and **radial in direction**. Because the source moves while emitting, both the emitted wake pattern and the received force are velocity dependent through causal geometry. The received force magnitude is modulated by the causal Jacobian $\left|J_{ij}\right|^{-1}$, while the receiver's speed affects the **work rate** and branch sampling via $\mathbf{F} \cdot \mathbf{v} = \|\mathbf{F}\| v_r$.
 
-**Self-interaction requirement:** Self-hit requires $|\mathbf{v}_a| > c_f$ at some emission times (super-field-speed), so the worldline outruns its recent wake surfaces. Curvature alone is insufficient if $|\mathbf{v}_a| < c_f$ everywhere (a curved sub-field-speed trajectory never intersects its own past causal isochrons).
+**Self-interaction requirement:** Self-hit requires super-field-speed interval history: the worldline must exceed $c_f$ somewhere along a nontrivial emission-to-reception interval, except for the degenerate field-speed tangent case excluded by the simple-root branch condition. Curvature alone is insufficient if $\|\mathbf{v}_a\| < c_f$ everywhere on the relevant interval.
 
 **Persistent memory:** Once an architrino has exceeded $v > c_f$ in its past and emitted wake surfaces, it can **later slow down** to $v < c_f$ and **still receive self-hits** from those earlier emissions. The self-hit regime is **not instantaneously tied to current velocity**; it is a **path-history memory effect**.
 
@@ -881,7 +914,7 @@ $$
 **Requirements:**
 
 1. **Curvature**: The worldline must curve (straight-line motion admits no self-hits).
-2. **Super-field-speed history**: At emission time $t_0$, the speed must have been $|\mathbf{v}_i(t_0)| > c_f$ (otherwise, the architrino never outruns its wake surfaces).
+2. **Super-field-speed interval history**: the speed must exceed $c_f$ somewhere on the interval from emission to reception, except for the degenerate straight field-speed riding case excluded by the branch Jacobian condition.
 
 #### Multiple Self-Hits (Plural)
 
@@ -1880,30 +1913,22 @@ That’s analytically tractable and important for:
 
 ---
 
-### Natural analytic targets
+### Analytic footholds and remaining targets
 
-The most natural targets for further analytic closure are:
+Several formerly open checks are now footholds rather than blank targets:
 
-1. **Uniform circular self‑hit (single particle, v>c_f)**  
-   - Solve the transcendental equation  
-     $2R|\sin(\omega\Delta/2)| = c_f\Delta$  
-     asymptotically, analyze the self‑force series.
-   - Deliver: explicit formulas + asymptotics for self‑force vs $v/c_f$.
+1. **Partner-only circular orbit with causal delay ($v<c_f$)** now has explicit radial and tangential components, including the positive tangential-drive obstruction for a bare constant-speed circle.
+2. **Uniform circular self-hit ($v>c_f$)** now has principal-root onset asymptotics and a Jacobian-wall scaling near $v=c_f$.
+3. **Variable-pitch spiral benchmarks** now expose the branch-chart and Jacobian data that a maximum-curvature binary certificate must report.
 
-2. **Partner‑only circular orbit with causal delay (v<c_f)**  
-   - Derive exact expressions for radial and tangential forces.
-   - Prove tangential component >0 → analytic demonstration of spiral‑in instability.
+The remaining analytic targets are sharper:
 
-3. **Algebraic equilibrium conditions for the maximum‑curvature binary**  
-   - Combine 1 & 2 to write down the two averaged balance equations (radial, tangential).
-   - Even if they’re solved numerically, they give a **precise definition** of $R_\text{min}$ and equilibrium speed.
+1. extend the circular self-hit formulas to signed higher-winding branch sheets and inactive-root gaps;
+2. build the maximum-curvature branch certificate from active roots, Jacobian floors, return residuals, and radial/tangential balance;
+3. coarse-grain the master equation around a homogeneous Noether Sea and extract the linear response and dispersion relation $\omega(k)$;
+4. prove which regularized energy diagnostic is actually induced by a symmetry-preserving action-level regularization.
 
-4. **Continuum limit around homogeneous Noether Sea**  
-   - Coarse‑grain master equation,
-   - Derive linearized wave equation for small perturbations,
-   - Extract dispersion relation $\omega(k)$.
-
-These four targets are analytically accessible enough to serve as the main bridge between the formal law and the broader closure program.
+These targets keep the bridge between the formal law and the broader closure program mathematical: a branch chart, a conserved charge, or a response equation must be supplied before a stability or mass claim is promoted.
 
 ---
 
@@ -2084,7 +2109,7 @@ To connect with variational methods and with later continuum approximations, it 
 
 ##### Exact causal-delay Fokker-type interaction term
 
-For the focused action-functional development (definitions, theorem spine, and circular branch-count benchmark), see [Causal Action Functional](causal-action-functional.md#core-functional-definitions).
+For the focused scalar causal-locus statistic (definitions, theorem spine, and circular branch-count benchmark), see [Causal Action Functional](causal-action-functional.md#core-functional-definitions). That chapter's $1/(r^2J)$ functional is an action-counting diagnostic built from the received branch density; it is not automatically identical to the exact Fokker-type variational action below, whose $1/r$ causal kernel yields the inverse-square branch law after variation.
 
 Let the worldline of architrino $i$ be $\mathbf{x}_i(t)$. For the exact action-functional discussion, the same universal bookkeeping constant may be inserted in the quadratic kinetic term:
 $$

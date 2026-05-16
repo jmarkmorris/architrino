@@ -5,20 +5,20 @@ This chapter develops the variational complement to the master-equation treatmen
 The current scope is mixed. Some statements are theorem-backed in the regularized setting, while the larger closure program remains open. The chapter therefore begins with the problem statement and core functional definitions, then separates the controlled theorem spine from benchmarks, implementation notes, and longer-range closure targets.
 
 ## Problem Statement and Goal
-The objective is to explain why only certain assemblies are stable and discrete, and to interpret emergent “mass” as a consequence of causal interaction structure: intrinsic self‑action of each worldline plus coupling to the ambient tri-binary sea (effective spacetime), rather than an externally assigned input. The target is a geometric/variational functional derived from the causal‑wake kernel that can be evaluated on periodic orbits, compared across topological classes, and tested against dynamical stability.
+The objective is to explain why only certain assemblies are stable and discrete, and to interpret emergent “mass” as a consequence of causal interaction structure: intrinsic self‑action of each worldline plus coupling to the Noether-Sea tri-binary medium, rather than an externally assigned input. The target is a geometric causal-locus functional derived from the causal‑wake kernel that can be evaluated on periodic orbits, compared across topological classes, and tested against dynamical stability.
 Canonical dynamics are defined in [The Master Equation (Canonical Form)](master-equation.md#the-master-equation-canonical-form); this chapter provides the complementary action-functional lens.
 
 ## Core Functional Definitions
-**Self‑action functional:**
+**Scalar causal-hit counting functional:**
 $$
 \mathcal{A}_{\text{self}}[\gamma] = \iint_{\gamma \times \gamma}
 \frac{\delta\!\big(\|\mathbf{x}(t)-\mathbf{x}(t')\| - c_f|t-t'|\big)}
 {\|\mathbf{x}(t)-\mathbf{x}(t')\|^2\,J_\gamma(t,t')}\,dt\,dt'
 $$
-We introduce a functional to replace ad‑hoc stability searches with a single quantity that can be compared across trajectories. The goal is to identify which worldlines are dynamically preferred and to connect that preference to discrete, reproducible particle‑like states.
+We introduce a scalar causal-hit counting functional to replace ad‑hoc stability searches with a single quantity that can be compared across trajectories. This is not the exact Fokker-type variational action of [Effective Lagrangian](effective-lagrangian.md); it is the branch-density statistic obtained after retaining the received inverse-square and Jacobian weights while discarding line-of-action direction. The goal is to identify which worldlines are dynamically preferred and to connect that preference to discrete, reproducible particle‑like states.
 
-This integrates over all pairs of points on a single worldline and counts only those pairs that are causally connected by a wake moving at speed $c_f$. The inverse-square factor weights nearby self‑hits more strongly than distant ones, while $J_\gamma^{-1}$ accounts for the geometric bunching or dilation of the delayed flux along the active branch.
-Convention: this document uses the symmetric selector $|t-t'|$ in action integrals; the equivalent delayed form uses $(t-t')$ with an explicit $\Theta(t-t')$.
+This integrates over all nontrivial pairs of points on a single worldline and counts only those pairs that are causally connected by a wake moving at speed $c_f$. The trivial diagonal $t=t'$ is excluded, either by a punctured domain or by a cutoff $|t-t'|\ge\tau_{\min}>0$. The inverse-square factor weights nearby self‑hits more strongly than distant ones, while $J_\gamma^{-1}$ accounts for the geometric bunching or dilation of the delayed flux along the active branch.
+Convention: this document distinguishes the compact symmetric selector $|t-t'|$ from the lifted delayed selector $\Delta_m=t-t'+mT$. The symmetric form is useful on one-period charts; the lifted delayed form is required when multi-period causal roots are active.
 Here $J_\gamma(t,t')$ denotes the absolute delay-map Jacobian induced by the causal constraint, namely $J_\gamma(t,t')=\left|\partial_{t'}\big(\|\mathbf{x}(t)-\mathbf{x}(t')\|-c_f|t-t'|\big)\right|$.
 
 **Interpretation:**
@@ -26,17 +26,26 @@ Here $J_\gamma(t,t')$ denotes the absolute delay-map Jacobian induced by the cau
 2. **Constraint:** The delta function enforces the light‑cone condition, selecting causally connected pairs.
 3. **Measure:** The inverse-square weight emphasizes close self‑hits over distant ones, while the Jacobian factor converts constant source emission into the correct received causal flux.
 
-**Normalized (periodic) self‑action:**
+**Lifted normalized periodic self‑action statistic:**
 $$
-\bar{\mathcal{A}}_{\text{self}}[\gamma] =
-\frac{1}{T^2}\int_0^T\!\int_0^T
-\frac{\delta_\eta\!\big(r(t,t')-c_f|t-t'|\big)}{r(t,t')^2\,J_\gamma(t,t')}\,dt\,dt'
+\Delta_m(t,t')=t-t'+mT,
+\qquad
+F_m(t,t')=r(t,t')-c_f\Delta_m(t,t').
 $$
-with $r(t,t')=\|\mathbf{x}(t)-\mathbf{x}(t')\|$ and $\delta_\eta$ a mollified delta.
-This version is defined for periodic orbits. The $T^2$ normalization makes values comparable across different periods, while $\delta_\eta$ regularizes the causal constraint for numerical evaluation.
-Dimensional check: $[\bar{\mathcal{A}}_{\text{self}}]=1/\text{Length}^2$ (inverse area), consistent with a surface‑density measure over causal intersections.
+For a $T$-periodic orbit, finite memory depth $h$, and nontrivial-branch cutoff $\tau_{\min}>0$, use
+$$
+\bar{\mathcal{A}}_{\text{self},\eta,h,\tau_{\min}}[\gamma]
+=
+\frac{1}{T}
+\int_0^T\sum_{m\in\mathbb{Z}}\int_0^T
+\mathbf{1}_{\tau_{\min}\le\Delta_m\le h}
+\frac{\delta_\eta\!\big(F_m(t,t')\big)}
+{r(t,t')^2\,J_m(t,t')}\,dt'\,dt.
+$$
+with $r(t,t')=\|\mathbf{x}(t)-\mathbf{x}(t')\|$, $\delta_\eta$ a mollified delta, and $J_m(t,t')=\left|\partial_{t'}F_m(t,t')\right|$ on a simple delayed branch. This lifted form captures multi-period circular roots and avoids the trivial diagonal. A symmetric $|t-t'|$ selector is equivalent only after the diagonal is excluded and the delayed half-domain normalization is corrected; otherwise it misses high-winding branches or double-counts them.
+Dimensional status depends on the chosen time/length units and normalization by $T$, $h$, and $c_f$; use a declared dimensionless rescaling before comparing this statistic to mass or action coefficients.
 
-**Total action (multi‑assembly):**
+**Total scalar action-counting statistic (multi‑assembly):**
 $$
 \bar{\mathcal{A}}_{\text{total}}[\{\gamma_i\}] =
 \frac{1}{T^2}\left[
@@ -47,7 +56,7 @@ $$
 \frac{\delta_\eta\!\big(r_{ij}(t,t')-c_f|t-t'|\big)}{r_{ij}(t,t')^2\,J_{ij}(t,t')}\,dt\,dt'
 \right]
 $$
-This aggregates self‑terms and cross‑terms between components, with the $\frac{1}{2}\sum_{i\ne j}$ convention ensuring unordered pairs are counted once.
+This aggregates self‑terms and cross‑terms between components, with the $\frac{1}{2}\sum_{i\ne j}$ convention ensuring unordered pairs are counted once. Self-terms inherit the same nontrivial-branch exclusion used above.
 
 **Definitions:** $r(t,t')=\|\mathbf{x}(t)-\mathbf{x}(t')\|$, $r_{ij}(t,t')=\|\mathbf{x}_i(t)-\mathbf{x}_j(t')\|$, $\Delta t = t-t'$, and $J_{ij}(t,t')=\left|\partial_{t'}\big(r_{ij}(t,t')-c_f|t-t'|\big)\right|$ is the branch Jacobian induced by the delayed causal constraint.
 
@@ -83,16 +92,15 @@ F_\gamma(t,t')\equiv r(t,t')-c_f|t-t'|,
 r(t,t')=\|\mathbf{x}(t)-\mathbf{x}(t')\|.
 $$
 
-For a $T$-periodic $C^2$ trajectory $\mathbf{x}(t)$ with no collisions on the sampled
-domain ($r(t,t')\ge r_{\min}>0$ and $J_\gamma(t,t')\ge J_{\min}>0$ on support of $\phi_\eta$), define
+For a $T$-periodic $C^2$ trajectory $\mathbf{x}(t)$ with no collisions or trivial self-support on the sampled
+domain ($r(t,t')\ge r_{\min}>0$, $|t-t'|\ge\tau_{\min}>0$ on self terms, and $J_\gamma(t,t')\ge J_{\min}>0$ on support of $\phi_\eta$), define
 $$
 \bar{\mathcal{A}}_{\text{self},\eta}[\gamma]
 =\frac{1}{T^2}\int_0^T\!\!\int_0^T
 \frac{\phi_\eta(F_\gamma(t,t'))}{r(t,t')^2\,J_\gamma(t,t')}\,dt\,dt'.
 $$
 
-This is the primary object for proofs and numerics. The unregularized
-$\eta\to0^+$ limit is treated only after bounds are established.
+This is the single-period symmetric object for proofs and numerics when one period contains the full relevant causal memory. When high-winding or multi-period branches are active, replace it by the lifted statistic above with the same lower-bound and Jacobian assumptions. The unregularized $\eta\to0^+$ limit is treated only after bounds are established.
 
 ## Axioms and Admissibility Assumptions
 
@@ -100,7 +108,7 @@ We use the following minimal assumption set for theorem-level statements:
 
 - **(A1) Regularity:** $\mathbf{x}\in C^2(\mathbb{R};\mathbb{R}^3)$ and is $T$-periodic.
 - **(A2) Finite-speed causality:** The causal selector is $F_\gamma(t,t')=0$ with field speed $c_f>0$.
-- **(A3) Collision exclusion on support:** $r(t,t')\ge r_{\min}>0$ whenever $\phi_\eta(F_\gamma(t,t'))\neq0$.
+- **(A3) Collision and trivial-diagonal exclusion on support:** $r(t,t')\ge r_{\min}>0$ whenever $\phi_\eta(F_\gamma(t,t'))\neq0$, with $|t-t'|\ge\tau_{\min}>0$ on self terms unless a separate core regularization is declared.
 - **(A3b) Jacobian nondegeneracy on support:** $J_\gamma(t,t')\ge J_{\min}>0$ whenever $\phi_\eta(F_\gamma(t,t'))\neq0$.
 - **(A4) Transversality (generic branch):** $\nabla F_\gamma\neq0$ along the selected causal set.
 - **(A5) Fixed topological class:** Deformations are taken inside one homotopy class on $T^2$ unless a bifurcation condition is crossed.
@@ -125,9 +133,9 @@ The self‑action integral is the **weighted arc length** of $\mathcal{L}_{\text
 
 **Causal writhe (chirality):**
 $$
-Wr_c[\gamma] = \iint_{\mathcal{L}_{\text{causal}}} \text{sign}\!\big(\mathbf{v}(t)\times\mathbf{v}(t')\cdot\mathbf{r}\big)\,d\tau
+Wr_c[\gamma] = \iint_{\mathcal{L}_{\text{causal}}} \text{sign}\!\big(\mathbf{v}(t)\times\mathbf{v}(t')\cdot\mathbf{r}(t,t')\big)\,d\ell
 $$
-is a signed measure of handedness for the self‑interaction pattern. Nonzero $Wr_c$ ties intrinsic chirality/spin to the geometry of the wake rather than an imposed quantum number; changing $Wr_c$ requires tearing the causal locus.
+where $\mathbf{r}(t,t')=\mathbf{x}(t)-\mathbf{x}(t')$ and $d\ell$ is the induced line measure on the causal locus. This is a candidate signed measure of handedness for the self‑interaction pattern. Nonzero $Wr_c$ is a possible topological handle for chirality/spin closure; it is not yet a proof that spin is fixed by the causal locus alone.
 
 **Topological vs Noether data:** Continuous symmetries (time shifts, rotations) identify Noether-charge targets: energy from time-translation symmetry and total angular momentum from rotational symmetry. In the symmetry-preserving delayed action these become conserved history functionals. The winding class of $\mathcal{L}_{\text{causal}}$ supplies **topological charges**. Stable “generations” live where a Noether-stationary orbit is also topologically locked; dissociation would require changing the winding class, i.e., a reconnection of $\mathcal{L}_{\text{causal}}$.
 
@@ -339,12 +347,12 @@ J_j(t,\mathbf{x};t')
 =
 \frac{\mathbf{x}-\mathbf{x}_j(t')}{\|\mathbf{x}-\mathbf{x}_j(t')\|}.
 $$
-and map it to an effective metric
+This scalar hit density is not itself the effective metric. At most, it supplies one provisional scalar channel feeding the ADM/Cartan effective-metric handoff. A restricted isotropic subcase may be written as
 $$
-g_{\mu\nu}dx^\mu dx^\nu = -\alpha^2(\mathcal{I})\,c_f^2 dt^2 + \beta^2(\mathcal{I})\,\delta_{ij}dx^i dx^j,
+g^{\text{eff}}_{\mu\nu}dx^\mu dx^\nu = -N^2(\mathcal{I})\,c_f^2 dt^2 + \Omega_s^2(\mathcal{I})\,h_{ij}dx^i dx^j,
 $$
-with small couplings $\alpha=1+\lambda_t\mathcal{I}$, $\beta=1+\lambda_s\mathcal{I}$ in the weak field. Bianchi identities and weak‑equivalence demands constrain the admissible $\lambda_{t,s}$; otherwise the emergent geometry reduces to a scalar‑tensor theory with potentially observable fifth forces. Matching the long‑range limit of test‑assembly motion to geodesics in $g_{\mu\nu}[\mathcal{I}]$ is the consistency check linking microscopic causal hits to macroscopic curvature.
-Here, "fifth force" means an additional long-range interaction mediated by the scalar sector encoded in $\mathcal{I}$ (or equivalently in $\alpha,\beta$), on top of the usual spin-2 metric response. If that scalar coupling is not sufficiently constrained, test assemblies can acquire composition-dependent accelerations, producing weak-equivalence-principle violations and post-Newtonian deviations that are tightly bounded experimentally.
+with small couplings $N=1+\lambda_t\mathcal{I}$ and $\Omega_s=1+\lambda_s\mathcal{I}$ in the weak field. The full geometry program must also include the Noether-Sea lapse, shift/medium velocity, spatial metric response, stress, and PPN decision variables used by the spacetime chapters. Bianchi identities and weak‑equivalence demands constrain the admissible scalar subcase; otherwise the emergent geometry reduces to a scalar‑tensor approximation with potentially observable fifth forces. Matching the long‑range limit of test‑assembly motion to geodesics in $g^{\text{eff}}_{\mu\nu}$ is the consistency check linking microscopic causal hits to macroscopic curvature.
+Here, "fifth force" means an additional long-range interaction mediated by the scalar sector encoded in $\mathcal{I}$, on top of the shared effective-metric response. If that scalar coupling is not sufficiently constrained, test assemblies can acquire composition-dependent accelerations, producing weak-equivalence-principle violations and post-Newtonian deviations that are tightly bounded experimentally.
 Numerical check: evolve two assemblies with different internal $\bar{\mathcal{A}}_{\text{total}}$ through the same prescribed $\mathcal{I}(t,\mathbf{x})$ background and verify their centers follow the same geodesic to numerical tolerance.
 Mean‑field view: in a dilute limit with many architrinos, coarse‑graining the hit process should yield a Vlasov equation for $f(t,\mathbf{x},\mathbf{v})$ with force derived from $\mathcal{I}$, providing the statistical bridge to continuum geometry.
 

@@ -6,13 +6,13 @@ This document formalizes the variational foundation of the Architrino Assembly A
 
 The Master Equation of motion for architrinos is non-Markovian, driven by the intersection of trajectories with past causal wake surfaces. Consequently, the fundamental action principle cannot be a local integral over instantaneous states. It must be a multi-time functional that evaluates the entire path history.
 
-For a finite, isolated set of architrinos parameterized by absolute time $t$ in the Euclidean void, use the $\eta>0$ regularized delayed action (the exact kernel is recovered as $\eta\to0^+$).
+For a finite, isolated set of architrinos parameterized by absolute time $t$ in the Euclidean void, use the $\eta>0$ regularized delayed action (the exact kernel is recovered as $\eta\to0^+$). The admissible interaction sum below excludes trivial self-coincidence: $i\ne j$ terms are retained, and $i=j$ terms are retained only on nontrivial self-hit branches with $t-t_0\ge\tau_{\min}>0$ or with an explicitly declared core regularization.
 
 $$
 S_\eta[\{\mathbf{x}_i\}]
 =
-\int dt \sum_i \frac{1}{2} \mu_{\text{arch}} |\dot{\mathbf{x}}_i(t)|^2
-- \frac{1}{2}\sum_{i,j}\frac{\kappa \, \sigma_{ij} |q_i q_j|}{c_f}
+\int dt \sum_i \frac{1}{2} \mu_{\text{arch}} \|\dot{\mathbf{x}}_i(t)\|^2
+- \frac{1}{2}\sum_{i,j}^{\mathrm{adm}}\frac{\kappa \, \sigma_{ij} |q_i q_j|}{c_f}
 \int dt \int_{-\infty}^{t} dt_0\,
 \frac{\phi_\eta\!\big(g_{ij}(t,t_0)\big)}{r_{ij}(t;t_0)},
 $$
@@ -37,7 +37,7 @@ The derivation below is valid under:
 
 - **(EL1)** $\mathbf{x}_i\in C^2([t_a,t_b];\mathbb{R}^3)$ and variations $\boldsymbol{\xi}_i$ are $C^1$ with $\boldsymbol{\xi}_i(t_a)=\boldsymbol{\xi}_i(t_b)=0$.
 - **(EL2)** $\phi_\eta\in C_c^1(\mathbb{R})$, $\phi_\eta\ge0$, $\int\phi_\eta(s)\,ds=1$.
-- **(EL3)** Collision exclusion on active support: $r_{ij}(t;t_0)\ge r_{\min}>0$ whenever $\phi_\eta(g_{ij}(t,t_0))\neq0$.
+- **(EL3)** Collision and trivial-self exclusion on active support: $r_{ij}(t;t_0)\ge r_{\min}>0$ whenever $\phi_\eta(g_{ij}(t,t_0))\neq0$, and for $i=j$ the active support also satisfies $t-t_0\ge\tau_{\min}>0$ unless a separate core regularization supplies the same lower-bound control.
 - **(EL4)** Delay-root transversality on active branches: $\partial_{t_0}g_{ij}(t,t_0)\neq0$ when $g_{ij}(t,t_0)=0$.
 - **(EL5)** Integrability on the chosen history window (finite window or decay) so differentiation under the time integrals is justified.
 - **(EL6)** Delayed branch convention: only $t_0\le t$ contributes (equivalently, the $\Theta(t-t_0)$ branch of the causal selector).
@@ -97,7 +97,7 @@ with the understanding that $\phi_\eta$ converges weakly to the causal selector 
 
 ### Symmetries and History-Aware Conservation Laws
 
-The regularized action $S_\eta$ is invariant under the fundamental symmetry group of the substrate: the Euclidean group $E(3)$ and absolute time translations $\mathbb{R}_{\text{time}}$; the exact statement is recovered in the $\eta\to0^+$ limit.
+The regularized action $S_\eta$ is invariant under the fundamental symmetry group of the substrate when the mollifier, history window, and self-branch cutoff preserve those symmetries: the Euclidean group $E(3)$ and absolute time translations $\mathbb{R}_{\text{time}}$; the exact statement is recovered in the $\eta\to0^+$ limit. If the regularization is inserted only at the equation-of-motion level or uses a non-invariant window, the same quantities become diagnostics rather than proved Noether charges.
 
 Because the Lagrangian is nonlocal in time, the corresponding Noether charges are path-history functionals tracking "in-flight" interactions encoded in the causal wakes.
 
@@ -128,13 +128,13 @@ Spatial translation invariance guarantees the conservation of total momentum, $\
 
 ### Coarse-Graining: The Effective Continuum Lagrangian
 
-To describe the emergent dynamics of the Noether Sea and complex matter assemblies, we transition from discrete trajectories to continuum densities. We define a coarse-grained architrino charge density $\rho(\mathbf{x}, t)$ and current density $\mathbf{j}(\mathbf{x}, t)$, smoothed over a scale much larger than the tri-binary radius but smaller than macroscopic gradients.
+To describe the emergent dynamics of the Noether Sea and complex matter assemblies, we transition from discrete trajectories to continuum densities. We define a coarse-grained architrino polarity density $\rho_q(\mathbf{x}, t)$ and current density $\mathbf{j}_q(\mathbf{x}, t)$, smoothed over a scale much larger than the tri-binary radius but smaller than macroscopic gradients. This notation is deliberately distinct from Noether-core density variables such as $\rho_{\text{core}}$ and $n$.
 
 At the level of a branch-collapsed delayed causal action, the exact multi-time interaction double sum suggests the continuum delayed functional
 
 $$
 S_{\text{int}}^{\text{cg}} = - \frac{\kappa}{2c_f} \int dt \int d^3x \int d^3x' \,
-\frac{\rho(\mathbf{x}, t) \rho(\mathbf{x}', t - \|\mathbf{x}-\mathbf{x}'\|/c_f)}
+\frac{\rho_q(\mathbf{x}, t) \rho_q(\mathbf{x}', t - \|\mathbf{x}-\mathbf{x}'\|/c_f)}
 {\|\mathbf{x}-\mathbf{x}'\|\,J_{\mathrm{eff}}(\mathbf{x},t;\mathbf{x}',t')}
 $$
 with delayed source time
@@ -150,8 +150,8 @@ coarse transport velocity
 $$
 \mathbf{u}(\mathbf{x}',t')
 =
-\frac{\mathbf{j}(\mathbf{x}',t')}{\rho(\mathbf{x}',t')}
-\qquad (\rho\neq 0),
+\frac{\mathbf{j}_q(\mathbf{x}',t')}{\rho_q(\mathbf{x}',t')}
+\qquad (\rho_q\neq 0),
 $$
 and effective Jacobian
 $$
@@ -161,13 +161,13 @@ J_{\mathrm{eff}}(\mathbf{x},t;\mathbf{x}',t')
 $$
 This is the continuum inheritance of the discrete delayed causal $1/r$ action kernel together with the same Jacobian branch weight that appears in the master equation. Source emission remains isotropic at the microscopic level, but the received coarse flux is compressed or dilated by the delayed transport geometry. Differentiating this delayed action with respect to receiver coordinates produces the corresponding Jacobian-weighted inverse-square force density plus velocity-dependent correction terms. In the quasi-static limit $\|\mathbf{u}\|/c_f\to0$, one recovers $J_{\mathrm{eff}}\to 1$ and the leading force law reduces to the familiar inverse-square form.
 
-By defining an effective scalar potential $\Phi(\mathbf{x}, t)$ and a vector flow potential $\mathbf{A}(\mathbf{x}, t)$ that track the integrated causal wakes of the continuous medium, the system maps locally onto an effective field theory. These potentials are bookkeeping fields for delayed transport, not additional ontological primitives. The resulting local Lagrangian density $\mathcal{L}_{\text{eff}}$ therefore belongs to a further closure step beyond the exact delayed causal action.
+By defining an effective scalar potential $\Phi_{\text{wake}}(\mathbf{x}, t)$ and a vector transport potential $\mathbf{A}_{\text{wake}}(\mathbf{x}, t)$ that track the integrated causal wakes of the continuous medium, the system maps locally onto an effective field theory. These potentials are bookkeeping fields for delayed transport, not additional ontological primitives. The resulting local Lagrangian density $\mathcal{L}_{\text{eff}}$ therefore belongs to a further closure step beyond the exact delayed causal action.
 
 ### Effective Hamiltonian Domain Gate
 
-A local Hamiltonian or local Lagrangian description is admissible only after the path-history law has been reduced to a finite set of coarse variables that preserve the relevant state-counting measure over the comparison window. Let $\mathcal{Q}$ be the coarse-graining from exact histories $\Gamma(t)$ to effective coordinates $z=(\rho,\mathbf{j},\ldots)$, and let $\Phi_{\Delta t}^{\mathrm{eff}}$ be the induced effective flow. The local canonical approximation must supply a measure $\mu_{\mathcal{Q}}$ such that
+A local Hamiltonian or local Lagrangian description is admissible only after the path-history law has been reduced to a finite set of coarse variables that preserve the relevant state-counting measure over the comparison window. Let $\mathcal{Q}$ be the coarse-graining from exact histories $\Gamma(t)$ to effective coordinates $z=(\rho_q,\mathbf{j}_q,\ldots)$, and let $\mathcal{P}_{\Delta t}^{\mathrm{eff}}$ be the induced effective flow. The local canonical approximation must supply a measure $\mu_{\mathcal{Q}}$ such that
 $$
-(\Phi_{\Delta t}^{\mathrm{eff}})_*\mu_{\mathcal{Q}}
+(\mathcal{P}_{\Delta t}^{\mathrm{eff}})_*\mu_{\mathcal{Q}}
 =
 \mu_{\mathcal{Q}}
 +O(\epsilon_{\mathcal{Q}})
@@ -180,20 +180,75 @@ The same domain restriction applies before translating an effective Hamiltonian 
 
 ### Topological Constraints and Assembly Stability
 
-The effective Lagrangian restricts the allowed topological configurations of the architrino medium. Stable assemblies—such as the nested maximal-curvature orbits of tri-binaries—manifest as localized, phase-locked topological defects (vortices or knots) within the continuous flow fields.
+The effective Lagrangian restricts the allowed topological configurations of the architrino medium. Stable assemblies, such as nested maximal-curvature candidates inside tri-binaries, should therefore be treated as theorem targets for localized, phase-locked causal-locus classes rather than as already-proved vortices or knots of a continuum field.
 
-The stability of these assemblies is governed by the nonlinear self-hit feedback embedded in the interaction functional. When the internal circulation velocities exceed $c_f$, the resulting non-Markovian repulsion establishes a robust geometric attractor, providing a mass gap and fixing the spatial extent of the assembly. The effective Lagrangian thus isolates the discrete parameter space (e.g., $e/6$ polar site decorations) where these geometric attractors minimize the time-averaged path-history action.
+The stability of these assemblies must be checked by the nonlinear self-hit feedback embedded in the interaction functional. When internal circulation velocities exceed $c_f$, the non-Markovian repulsion supplies a candidate branch-trapping mechanism; it becomes a robust geometric attractor only after a branch chart, Lyapunov or Floquet diagnostic, and history-aware energy bound are supplied. Likewise, mass-gap language is a closure target tied to discrete admissible branch classes, not an automatic consequence of writing the effective action.
 
 ### Closure Interface: Action-to-Envelope Reduction
 
 This chapter supplies the variational bridge used by the quantum closure chain.
 
-From the regularized nonlocal action, derive a continuum effective action in terms of coarse fields $(\rho,\mathbf{j})$, then test a phase-amplitude closure ansatz of the form
+From the regularized nonlocal action, derive a continuum effective action in terms of coarse fields $(\rho_q,\mathbf{j}_q)$, then test a phase-amplitude closure ansatz for the retained nonnegative envelope channel:
 $$
-\rho=|\psi|^2,\qquad
-\mathbf{j}=\frac{\hbar_{\mathrm{eff}}}{m}\Im(\psi^*\nabla\psi)+\mathbf{j}_{\mathrm{mem}}.
+\rho_{\mathrm{env}}=|\psi|^2,\qquad
+\mathbf{j}_{\mathrm{env}}=\frac{\hbar_{\mathrm{eff}}}{m}\Im(\psi^*\nabla\psi).
 $$
+
+The handoff must report the continuity residual
+$$
+R_{\mathrm{cg}}=\partial_t\rho_{\mathrm{env}}+\nabla\cdot\mathbf{j}_{\mathrm{env}},
+\qquad
+\epsilon_{\mathrm{cg}}=
+\frac{\|R_{\mathrm{cg}}\|}
+{\|\partial_t\rho_{\mathrm{env}}\|+\|\nabla\cdot\mathbf{j}_{\mathrm{env}}\|+\varepsilon},
+$$
+and keep the memory current
+$$
+\mathbf{j}_{\mathrm{mem}}
+=
+\mathbf{j}_q-\mathbf{j}_{\mathrm{env}}
+$$
+as an explicit residual rather than absorbing it into fitted constants.
+
+For the non-relativistic, fixed-particle-number benchmark, the same envelope must also admit a phase chart
+$$
+\psi=\sqrt{\rho_{\mathrm{env}}}\,e^{iS_{\mathrm{env}}/\hbar_{\mathrm{eff}}},
+\qquad
+\mathbf{j}_{\mathrm{env}}=\frac{\rho_{\mathrm{env}}}{m}\nabla S_{\mathrm{env}}.
+$$
+Define
+$$
+K_{\mathrm{env}}=\frac{\|\nabla S_{\mathrm{env}}\|^2}{2m},
+\qquad
+Q_{\mathrm{env}}
+=
+-\frac{\hbar_{\mathrm{eff}}^2}{2m}
+\frac{\nabla^2\sqrt{\rho_{\mathrm{env}}}}{\sqrt{\rho_{\mathrm{env}}}},
+$$
+and test the corresponding Hamilton-Jacobi residual
+$$
+R_{\mathrm{HJ}}
+=
+\partial_t S_{\mathrm{env}}
++K_{\mathrm{env}}
++V_{\mathrm{eff}}
++Q_{\mathrm{env}}.
+$$
+The effective Schrödinger/Madelung chart is licensed on a retained window only when
+$$
+\mathcal{R}_{\mathrm{env}}
+=
+\max\!\left(
+\epsilon_{\mathrm{cg}},
+\frac{\|R_{\mathrm{HJ}}\|}
+{\|\partial_t S_{\mathrm{env}}\|+\|K_{\mathrm{env}}\|+\|V_{\mathrm{eff}}\|+\|Q_{\mathrm{env}}\|+\varepsilon},
+\frac{\|\mathbf{j}_{\mathrm{mem}}\|}{\|\mathbf{j}_q\|+\varepsilon}
+\right)
+\le\epsilon_{\mathrm{env}}.
+$$
+This is a comparison residual, not a new ontology. If it fails, the wavefunction and Hamiltonian remain useful fitting charts for that window rather than promoted quantum closure.
 
 Closure requirement for this interface:
 - the Euler-Lagrange equations of the coarse action reproduce the effective envelope equation used in [pilot-wave-character](../theory-bridges/pilot-wave-character.md),
+- the phase-amplitude chart reports $\mathcal{R}_{\mathrm{env}}$ rather than assuming the Schrödinger limit,
 - memory contributions $\mathbf{j}_{\mathrm{mem}}$ remain explicit as controlled correction terms rather than hidden parameter absorbs.

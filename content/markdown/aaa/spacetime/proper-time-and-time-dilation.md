@@ -130,6 +130,16 @@ Thus $L=1\,\mathrm{mm}$ corresponds to $\Delta\nu/\nu\approx1.1\times10^{-19}$, 
 
 For independent atoms this can be corrected pointwise, as in ordinary redshift compensation. For entangled or collective clock states, however, assigning the entire apparatus the proper time at the trap center is only an approximation. The $\mathbb{A}\mathbb{A}\mathbb{A}$ closure target is to derive the measured clock time from collective phase evolution across the sample, with the center-time prescription emerging only when the gradient-induced phase spread is below the experiment's uncertainty.
 
+Guided/free-fall atom interferometers sharpen this target because one branch is held in the laboratory frame while the other follows a free-fall trajectory. After subtracting controlled laser, magnetic, and preparation phases, the branch comparison should expose a cubic-time phase coefficient:
+$$
+\Delta\phi_{\mathrm{gf}}(T)
+=
+\widehat{\beta}_{T^3}T^3
++\Delta\phi_{\mathrm{ctrl}}(T)
++O(T^4).
+$$
+This coefficient must be derived from the same weak-field clock and phase map that produces the finite-height redshift benchmark. A fit to $\widehat{\beta}_{T^3}$ cannot be allowed to use one effective potential record while the redshift, Shapiro-delay, lensing, PPN, or gravitational-wave-speed channels use another.
+
 ### Combined Dilation
 
 In a region with potential $\Phi_N(\mathbf{x})$ and clock velocity $v$ relative to the Noether Sea, we conjecture:

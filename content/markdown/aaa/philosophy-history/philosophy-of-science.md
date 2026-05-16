@@ -88,6 +88,8 @@ Major thinkers and schools include scientific realists, constructive empiricists
 
 Realism takes explanation and convergence seriously. It holds that good theories succeed because they latch onto structures that are actually there. Anti-realism takes underdetermination seriously. It holds that multiple incompatible stories can often save the same appearances, so theory success alone does not settle what exists. What the subject gets right is that both pressures are real. Science would be impossible if theoretical posits were never trustworthy, but it would be reckless if formal success automatically conferred ontology.
 
+Constructive empiricism gives the anti-realist side its sharpest useful form: accepting a theory can mean accepting its empirical adequacy across observable phenomena without treating every unobservable posit as literally discovered. In this chapter that view functions as a comparison pressure, not as a governing doctrine. It preserves the warning that successful models are selective representations while leaving room for disciplined ontology when a hidden structure becomes derivationally necessary, falsifiable, and reusable across independent records.
+
 For $\mathbb{A}\mathbb{A}\mathbb{A}$ the crucial commitment is layered realism. Substrate ontology is treated realistically because the whole program aims to identify the mechanism that produces effective laws. Higher-level descriptions, however, must be assessed more cautiously. A field variable, fitted cosmological sector, or information-theoretic summary may be real as an effective structure without being fundamental in the same sense as the substrate.
 
 ### Internal Tensions
@@ -350,6 +352,8 @@ where $D$ is the data product, $A_{\mathrm{inst}}$ records apparatus and selecti
 
 The data product in this record is always a finite observation record. In practice $D$ should be read as $D_{W,\epsilon}$: measurements gathered over a declared observation window $W$ with an uncertainty or tolerance vector $\epsilon$. Densities, exact symmetries, zero-mass claims, continuum fields, and limiting parameters enter the review only after the finite record has been passed through $A_{\mathrm{inst}}$, $K_{\mathrm{cal}}$, and $M_{\mathrm{eff}}$. This prevents an exact effective variable from being mistaken for the raw observable that originally constrained it.
 
+Probability assignments require the same kind of material warrant. A probability measure used in theory choice, measurement closure, or validation is admissible only after the relevant sampling process, invariant measure, apparatus channel, or empirical pipeline has been stated. Indifference over labels is not enough. If two different measures are used for prediction, thermodynamic cost, and ontological interpretation, then the inference record has split and the promoted interpretation has not yet earned closure.
+
 A staged discovery review can use the same record before an interpretation is treated as settled. Let $\theta$ denote the candidate claim and let $R_i(\theta)$ be the retained residual tests extracted from $R_{\mathrm{fail}}$, with tolerances $\epsilon_i$ fixed before the announcement standard is applied. The claim is mature only when
 
 $$
@@ -376,6 +380,32 @@ $$
 $$
 
 and a nonempty residual pattern $R_{\mathrm{fail}}$ that could reject that interpretation. High predictive accuracy therefore improves the status of $M_{\mathrm{eff}}$ but does not, by itself, promote $O_{\mathrm{ont}}$ into settled ontology.
+
+The same discipline applies to theory-guided quantities. Let $D_{W,\epsilon}$ be the finite data product over window $W$ with tolerance vector $\epsilon$, and let $\widehat D_\theta$ be the data predicted by candidate record $\theta$. Ordinary observational fit first requires
+
+$$
+\Delta_{\mathrm{obs}}(\theta)
+=
+\max_i
+\frac{|D_i-\widehat D_{\theta,i}|}{\epsilon_i}
+\le 1.
+$$
+
+For any ontological component $o\in O_{\mathrm{ont}}$ promoted by $\theta$, fit alone is not enough. The promoted component must have observable leverage or derivational necessity under the same apparatus and calibration record:
+
+$$
+\operatorname{promote}(o;\theta)=1
+\Longrightarrow
+\left[
+\exists j:\frac{\partial \widehat D_{\theta,j}}{\partial o}\ne 0
+\right]
+\ \lor\
+\left[
+o\ \text{is required to derive the retained } M_{\mathrm{eff}}
+\right].
+$$
+
+If neither condition holds, the component may remain a comparison device, coordinate choice, or calculational convenience, but it has not earned ontology. This rule preserves the empirical-adequacy warning without adopting blanket anti-realism: hidden structure can be promoted, but only when it changes the recoverable record or is indispensable to deriving the effective machinery being retained.
 
 ### Internal Tensions
 

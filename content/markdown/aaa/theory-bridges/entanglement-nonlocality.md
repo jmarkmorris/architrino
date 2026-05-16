@@ -46,6 +46,12 @@ The useful black-hole signal is narrower. The thermofield-double construction fo
 
 The distinction is important because the black-hole case uses a very special entangled state and a very special strong-field geometry. The safe statement is that some controlled black-hole states make entanglement and connected effective geometry two descriptions of the same coarse-grained structure. The unsafe statement is that every entangled pair carries the same connected-geometry interpretation. Ordinary Bell-pair closure should therefore stay with pair provenance, local apparatus response, and no-signaling statistics until a separate strong-field or continuum-limit derivation earns geometric language.
 
+### Relativistic Subsystem Caution
+
+The same restraint applies to observer-dependent entanglement in relativistic quantum-field settings. Different observers, accelerated frames, access regions, or mode decompositions may assign different particle content or different bipartitions to the same effective field record. The retained data product is the correlation table for a declared preparation, detector region, mode split, and record window; the interpretation is secondary.
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, this is handled as a projection issue on the observer-level description. A Physical Observer may reconstruct a density matrix on one tensor-factor split while another observer reconstructs a different split, but neither reconstruction changes the underlying $\mathbb{U}_{\text{now}}$ state. The corresponding operator-map burden is the subsystem-partition guardrail in [Quantum Operator Mapping](./quantum-operator-mapping.md#subsystem-partition-guardrail): the pair-provenance ledger, apparatus kernels, no-signaling residuals, and record-autonomy tests must be declared before an entanglement value is used as a closure claim.
+
 ---
 
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ Mechanism

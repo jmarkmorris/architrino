@@ -4529,11 +4529,11 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to state explicitly 
 
 #### 1. Concept Summary
 
-Entropy is a quantity in the state counting and irreversibility domain. It was built to provide a mathematically controlled description of the phenomena grouped within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
+Entropy is a quantity in the state counting and irreversibility domain. It was built to provide a mathematically controlled description of heat exchange, state counting, unresolved records, and access-region bookkeeping, but those uses are not one undifferentiated object. In the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
-Entropy carries specific ontological commitments even when it is presented as "just mathematics." It typically treats state counting and irreversibility as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
+Entropy carries specific ontological commitments even when it is presented as "just mathematics." It typically treats state counting and irreversibility as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. The commitment changes with the entropy concept: Clausius entropy presupposes a reversible-process comparison class, Boltzmann entropy presupposes a macrostate partition, Gibbs/Shannon entropy presupposes a probability distribution over unresolved alternatives, and horizon or record entropy presupposes an access boundary or durable record channel. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, generally enters through statistics, uncertainty, or effective fitting rather than as primitive ontology.
 
 #### 3. What This Concept Gets Right
 
@@ -4548,6 +4548,8 @@ $$
 S_{\mathcal{Q},W}(t)=k_B\log \mu\!\left(\Gamma_{\mathcal{Q},W(t)}\right).
 $$
 The expression does useful work only after the finite measure, coarse-graining, and boundary conditions are declared. In an unbounded cosmology or a source-and-sink medium history, the relevant arrow is not "entropy of the universe" as a bare phrase; it is the balance between production, boundary flux, and record/coarse-graining residuals in the retained window.
+
+This distinction also protects the thermodynamic comparison from a common overreach. The Clausius definition $dS=\delta Q_{\mathrm{rev}}/T$ is licensed only in a regime where the reversible path comparison is well-defined; Boltzmann and Gibbs/Shannon entropies then supply different statistical summaries rather than competing ontologies. A resource or available-energy reading is retained when the apparatus, reference resources, and allowed manipulations are physical parts of the record, not when "information" is treated as a disembodied cause.
 
 #### 5. Transition-Period Relevance
 
@@ -4639,7 +4641,7 @@ The Laws of Thermodynamics gets a great deal right operationally: it is part of 
 
 In the neutral comparative stack, The Laws of Thermodynamics sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Recovered as Effective Limit**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-The second-law comparison is therefore strongest for finite, thermally mixed, or otherwise well-specified effective systems. It becomes weaker when extrapolated to the whole cosmological medium unless the candidate model supplies the flux and access terms:
+The second-law comparison is therefore strongest for finite, thermally mixed, or otherwise well-specified effective systems. It should be read as a process and reliability constraint before it is compressed into the derivative statement that entropy never decreases. If the process law is not available in a claimed regime, then the corresponding Clausius entropy may not be well-defined there. The comparison becomes weaker when extrapolated to the whole cosmological medium unless the candidate model supplies the flux and access terms:
 $$
 \frac{dS_{\mathcal{Q},W}}{dt}
 =

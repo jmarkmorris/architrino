@@ -111,6 +111,64 @@ The long-term relevance of this subject is secure as an **effective description 
 
 ---
 
+## Thermodynamic Cost of Computation
+
+### Overview
+
+**Subject:** Thermodynamic Cost of Computation. **Short Name:** Computation Cost. The core question is whether a logical operation, such as bit erasure, carries a thermodynamic cost merely because of its logical form. The central claim of the strongest information-theoretic reading is that logical irreversibility directly fixes a minimum heat or entropy cost. The safer physical reading is narrower: computation becomes thermodynamic only through an implemented device, a declared state space, a success criterion, and a heat/work ledger.
+
+This subject matters because it sits exactly where information language can either discipline physics or overrun it. A bit is not a free-floating entity. It is a stable physical distinction maintained by an apparatus, a material substrate, a reference convention, and a readout channel. Any claim about the heat cost of changing that distinction must therefore identify the physical operation that carries the distinction, not only the abstract truth table being implemented.
+
+### Historical Motivation
+
+The historical pressure came from Maxwell-demon and Szilard-engine discussions, from molecular-scale computation, and from Landauer-style attempts to connect logical irreversibility with thermodynamic dissipation. The core question was practical as well as foundational: how low can the heat cost of computing be driven, and does information theory itself supply the lower bound?
+
+The durable insight is that state discrimination, memory reset, and error suppression are not thermodynamically neutral. A reliable bit requires physical separation of alternatives, protection against thermal fluctuations, and a record channel that can be reused. The overstatement appears when the logical description is allowed to replace the device-level analysis. The fact that a formula resembles a Shannon entropy does not by itself make it a thermodynamic entropy.
+
+### Core Commitments
+
+The primary commitment of this subject, in its careful form, is implementation dependence. A logical operation is a label on a class of physical processes, not a process by itself. The relevant physical question is what work, heat, boundary exchange, and fluctuation suppression are required for a specific device to complete the operation with a declared probability of success.
+
+For a declared operation step $s$, let $\Omega_s$ be the accessible pre-operation state region, let $\Omega_s^{\mathrm{ok}}$ be the subset whose trajectories complete the intended operation inside the record window, and let $\mu_{\Theta_s}$ be the same physical measure used by the apparatus, boundary, and thermodynamic ledger. The completion probability is then
+
+$$
+p_s =
+\frac{\mu_{\Theta_s}(\Omega_s^{\mathrm{ok}})}
+{\mu_{\Theta_s}(\Omega_s)}.
+$$
+
+A physical lower-bound claim must be stated against that record, for example as a device-level entropy accounting condition
+
+$$
+\Delta S_{\mathrm{env},s}
++
+\Delta S_{\mathrm{target},s}
++
+\Delta S_{\mathrm{boundary},s}
+\ge
+k_B\log(1/p_s)-\epsilon_s.
+$$
+
+The symbols do not define a new law. They express the burden: the same record that defines success must also supply the entropy, work, heat, and boundary terms used to claim a cost.
+
+### Internal Tensions
+
+What this subject gets right is that reliable symbolic update has physical cost. The cost may appear as heat dumped to an environment, work needed to confine a state, apparatus dissipation, error-correction overhead, or boundary exchange. In all cases, the cost belongs to the physical channel by which the distinction is maintained and changed.
+
+What it gets wrong or overstates, when careless, is the inference from logical irreversibility to a universal device-independent cost. The Shannon expression for uncertainty over symbols is not automatically a Clausius, Boltzmann, Gibbs, or device entropy. A Maxwell-demon analysis that counts the target molecule while idealizing away the partition, actuator, sensor, memory, and suppressed fluctuations has not closed the thermodynamic ledger. It has selected one part of the physical record and treated the rest as free.
+
+### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
+
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **aligned as a constraint and corrective as ontology**. The framework should preserve the thermodynamic pressure: records, measurement, memory reset, and computation require physical work and entropy accounting. It should not promote bit logic, Shannon entropy, or computational description into substrate ontology.
+
+The native test is same-record closure. If a computation or measurement story uses one ensemble for logical-state probabilities, a second ensemble for heat, and a third apparatus story for completion reliability, it has hidden a split record. The valid target is one physical record that tracks the implemented state distinction, the basin in which the operation completes, apparatus fluctuations, boundary exchange, and heat/work accounting together.
+
+### What Survives
+
+The long-term relevance of this subject is as a **thermodynamic constraint on records and computation**, not as informational ontology. What survives is the demand that bits, measurements, and erasures be paid for by real physical channels. What should not survive is the shortcut from logical form to physical cost without declaring the implementation. In a mature $\mathbb{A}\mathbb{A}\mathbb{A}$ account, information-processing bounds become tests of record formation, basin reliability, and same-record entropy bookkeeping.
+
+---
+
 ## Computation as Ontology
 
 ### Overview
@@ -172,6 +230,8 @@ What this subject gets right is decisive. It keeps open the possibility that fin
 ### Internal Tensions
 
 The main overstatement arises when discreteness is too quickly equated with digitality. A discrete substrate need not behave like a register of symbolic bits, and it need not inherit the semantic baggage of computer architecture. Likewise, a graph is not yet a physical ontology unless one can say what its nodes and links are, how delayed influence propagates through them, and why effective symmetries arise. The subject therefore risks replacing one abstraction with another if its combinatorial objects are left physically underinterpreted.
+
+The same caution applies to deterministic cellular-automaton programs. A reversible local update rule can be a useful comparison model because it forces the theory to state a microstate, an update law, and a recovery burden. It does not follow that the physical substrate is a literal grid, a register, or an integer-only state table. To become physics rather than representation, such a model must identify the entities being updated, the medium through which influence propagates, the conservation ledgers it preserves, and the route by which quantum statistics, Standard Model parameters, GR-like behavior, and strong-field thermodynamics are recovered.
 
 Another tension concerns empirical recovery. Many discrete programs excel at conceptual resistance to the continuum, but fewer provide a compelling, fully worked derivation of the observed low-energy world. What they get wrong or overstate is sometimes not the discrete hypothesis itself, but the ease with which metric behavior, quantum statistics, relativistic invariance, and cosmological structure are supposed to descend from a chosen microscopic scaffold. Discreteness is a direction of repair, not a completed ontology.
 
@@ -238,6 +298,14 @@ This distinction matters because advanced science increasingly depends on numeri
 The historical motivation came from the explosive growth of computational science. Many systems of interest became too nonlinear, multiscale, or data-rich for closed-form treatment. At the same time, computability theory, complexity analysis, and numerical analysis made it obvious that not every well-defined problem is tractable, stable, or decidable in the same way. The core question thus became whether computational constraint is merely an epistemic fact about us or a clue to the architecture of reality. The central claim of stronger positions is that the boundary of computability tracks the boundary of the physically real.
 
 Major thinkers and programs include Turing-style computability analysis, complexity theory, numerical physics, simulation-heavy sciences, and debates around digital realism. What this subject inherits from them is not one doctrine but a landscape of distinctions: exact versus approximate solution, tractable versus intractable prediction, simulation versus explanation, and representational fidelity versus ontological identity. Those distinctions are exactly what a replacement ontology must keep in view.
+
+A precise version of the same pressure appears in Turing-complete dynamical systems. Suppose a formal model has a state space $\Gamma$, an evolution map $\Phi_t$, a computable encoding $E(M,w)\in\Gamma$ of a Turing machine $M$ with input $w$, and a target open set $O\subset\Gamma$. If the construction makes
+$$
+\exists t\ge 0:\Phi_t(E(M,w))\in O
+\quad\Longleftrightarrow\quad
+M(w)\ \text{halts},
+$$
+then no general algorithm can decide that reachability question for every encoded input. The retained lesson is methodological rather than ontological: a lawful deterministic model may contain questions that outrun algorithmic decision, but that does not make the physical substrate identical to computation or turn computability limits into the substance of the world.
 
 ### Core Commitments
 

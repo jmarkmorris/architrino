@@ -185,6 +185,8 @@ What we call “randomness” in quantum events (dissociation times, detector cl
 
 Operationally, we still use probabilities (Born rule, half-lives) because that is the correct **statistics** of chaotic trajectories given our coarse-grained knowledge.
 
+This effective unpredictability should not be collapsed into formal undecidability. Sensitive dependence says that nearby histories can separate faster than a finite-resolution observer can track; undecidability is the stronger claim that a formally encoded reachability question has no general decision procedure. The active claim in this chapter is the finite-window basin-selection claim: for a declared apparatus, coarse-graining, and record window, deterministic dynamics can yield stable outcome weights even when individual threshold crossings are practically inaccessible. Any stronger unbounded reachability result would be a separate theorem target, not a premise of the measurement account.
+
 Those statistics must stay tied to the same coarse-graining that carries thermodynamic cost. A probability law for threshold outcomes is not closed if the Born-style basin weights use one unresolved-history measure while the entropy, irreversibility, or apparatus-noise summaries use another. The valid target is one deterministic ensemble measure whose projections recover both the outcome frequencies and the thermodynamic summaries of the record-making interaction.
 
 ---

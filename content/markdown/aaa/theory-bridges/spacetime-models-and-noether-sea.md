@@ -27,6 +27,24 @@ Any outside model must therefore answer five questions before it can influence a
 4. Which equation, invariant, or constitutive law would have to be derived?
 5. Which failure mode would falsify the comparison?
 
+## Boundary-Response Equivalence
+
+Analog and vacuum-response comparisons should preserve the effective boundary response, not the literal laboratory object. A moving mirror, a superconducting circuit, a condensate interface, or another apparatus can serve as the same comparison only when the calibrated response kernel is equivalent on the declared window. For two boundary implementations $B_1$ and $B_2$, observer-level response channel $A$, and window $W$, a compact local residual is
+$$
+\Delta_{\mathrm{bc}}(B_1,B_2;W)
+=
+\sup_{A,t\in W}
+\frac{
+\left\|G_A^{B_1}(t)-G_A^{B_2}(t)\right\|
+}{
+\left\|G_A^{B_1}(t)\right\|
++\left\|G_A^{B_2}(t)\right\|
++\varepsilon
+}.
+$$
+
+The comparison is admissible only when $\Delta_{\mathrm{bc}}\le\epsilon_{\mathrm{bc}}$ for the apparatus class and when the same energy, momentum, and record channels are retained. Passing this residual says that two implementations realize the same effective boundary condition for a specific test; it does not import quantum-vacuum ontology, analog-medium ontology, or a new Noether-Sea mechanism.
+
 ## Historical Ladder
 
 The bridge should cover the major mathematical families rather than only modern GR-adjacent language. The point is not to endorse every family. The point is to know what each one contributed and which AAA object receives the useful part.

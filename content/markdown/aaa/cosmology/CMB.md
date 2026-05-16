@@ -54,7 +54,9 @@ The concrete packet shape for this subgate is defined in [Cosmology Shared Resid
 
 Claims about localized CMB features, including claims sometimes interpreted as pre-Big-Bang or cyclic-history signals, must first be handled as cross-instrument data products. The retained observable is not the external interpretation. It is the question of whether a common localized residual survives masking, foreground modeling, beam handling, and comparison between independent maps such as WMAP and Planck.
 
-Let $M_P(\hat{\mathbf{n}})$ and $M_W(\hat{\mathbf{n}})$ denote foreground-cleaned Planck and WMAP residual maps after a common mask and baseline $\Lambda\mathrm{CDM}$ subtraction. For an angular template $T_{\theta,\hat{\mathbf{n}}}$ centered at sky direction $\hat{\mathbf{n}}$ with scale $\theta$, define the cross-map support statistic
+The comparison packet must record the reduction path before the residual is interpreted: sky mask, component-separation or foreground model, beam and transfer-function handling, monopole/dipole treatment, baseline subtraction, look-elsewhere domain, and any simulation ensemble used to assign significance. Without that provenance, a localized feature can be a foreground, mask, beam, or null-statistics artifact while appearing as a cosmological signal.
+
+Let $M_P(\hat{\mathbf{n}})$ and $M_W(\hat{\mathbf{n}})$ denote foreground-cleaned Planck and WMAP residual maps after a common mask and baseline $\Lambda\mathrm{CDM}$ subtraction, with the above provenance fields fixed before template search. For an angular template $T_{\theta,\hat{\mathbf{n}}}$ centered at sky direction $\hat{\mathbf{n}}$ with scale $\theta$, define the cross-map support statistic
 $$
 S_{PW}(\hat{\mathbf{n}},\theta)
 =

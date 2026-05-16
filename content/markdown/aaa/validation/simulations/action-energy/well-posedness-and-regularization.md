@@ -18,7 +18,12 @@ Detailed explanation (impulses vs smooth pushes):
 - Choosing $\eta$:
   - Select $\eta$ small relative to local geometric scales (path curvature radius, inter-source spacing) to approximate the event-driven picture while maintaining numerical stability.
 
+- Finite-limit discipline:
+  - Treat finite source count, finite memory depth, finite step size, finite domain/window, and finite $\eta>0$ as the first proof or simulation regime.
+  - Promote large-system, continuum, or $\eta\to0$ statements only after the retained observables converge under the declared refinement path.
+  - Do not replace arbitrarily large finite systems with an actual infinite medium unless the limit preserves the causal-root count, Jacobian floors, work-energy residuals, and thermodynamic summaries being claimed.
+
 - Energetic consistency:
   - On resolved intervals, the work–energy relation holds with $\Phi_\eta$; as $\eta\to 0$, interval integrals converge to the impulsive model.
 
-Plain language: The ideal model gives instantaneous kicks; a tiny thickening turns them into brief, smooth nudges so you can integrate with ordinary ODE solvers.
+Plain language: The ideal model gives instantaneous kicks; a tiny thickening turns them into brief, smooth nudges so you can integrate with ordinary ODE solvers. Large-system or zero-width claims have to be earned by convergence, not assumed from the finite calculation.

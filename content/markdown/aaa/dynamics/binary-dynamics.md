@@ -57,7 +57,7 @@ By contrast, the maximum-curvature binary section studies a **uniform circular b
 
 We want a single story that links the spiral path, the per-hit force law, and the angular-momentum budget across the full velocity range. Below the wake speed, the binary feels only partner hits, yet the tangential component remains positive, so the spiral keeps tightening and the total orbital angular momentum of the **binary** grows each turn. We introduce a per-cycle gain parameter $\Delta L_c$ to track that growth (a **constant** increment per full revolution in this hypothesis).
 
-**Speculative continuity assumption:** as $v \to c_f$, the per-cycle gain transitions smoothly from $\Delta L_\text{cycle} = \Delta L_c$ (sub-field-speed) to $\Delta L_\text{cycle} = 2\Delta L_c$ (self-hit active). 
+**Speculative continuity assumption:** as $v \to c_f$, the per-cycle mechanical gain transitions smoothly from $\Delta L_\text{cycle} = \Delta L_c$ (sub-field-speed) to $\Delta L_\text{cycle} = 2\Delta L_c$ (self-hit active). This is not a claim that total angular momentum is created; the missing balance must be carried by a history-aware wake angular-momentum functional.
 
 This section treats an exponential-in-angle spiral (logarithmic spiral) as a **modeling assumption** rather than a derived law. It simply sets the bookkeeping target: a path-history force sum that yields a smooth, finite increase in $\Delta L_\text{cycle}$ at the hinge. The detailed link between the summed per-hit forces and the spiral shape remains to be derived.
 
@@ -91,7 +91,7 @@ Self-hit is the key non-Markovian feature of architrino dynamics. It occurs when
 
 **Geometric condition (absolute coordinates):** For a given architrino with trajectory $\mathbf{x}(t)$, a self-hit event is a pair of times $(t_\text{emit}, t_\text{hit})$ with $t_\text{hit} > t_\text{emit}$ such that
 $$
-|\mathbf{x}(t_\text{hit}) - \mathbf{x}(t_\text{emit})| = c_f (t_\text{hit} - t_\text{emit}),
+\|\mathbf{x}(t_\text{hit}) - \mathbf{x}(t_\text{emit})\| = c_f (t_\text{hit} - t_\text{emit}),
 $$
 and the architrino is the source of the causal wake surface emitted at $t_\text{emit}$.
 
@@ -204,8 +204,10 @@ The full families of causal delays are:
  $$
 
 **Geometric interpretation**:
-- The minimal separations $\tilde{\delta}_s$, $\tilde{\delta}_p$ determine the **geometry** (chord lengths, force directions).
-- The winding index $m$ affects **timing/ordering** of multiple hits but does not change the **sign** or **direction** of force components (all derived from principal geometry).
+- The minimal separations $\tilde{\delta}_s$, $\tilde{\delta}_p$ determine the **same-sheet principal geometry** (chord lengths, force directions).
+- The winding index $m$ affects **timing/ordering** of multiple hits inside that same-sheet convention.
+
+**Signed-sheet caveat:** A full circular root certificate must also track whether the full delay angle is represented as $2\pi m+\alpha$ or $2\pi m-\alpha$ for a minimal chord angle $\alpha\in(0,\pi]$. Opposite signed sheets can reverse the tangential projection of a self-hit line of action. The sign-invariant statements below are therefore certified only on the same-sheet principal branch chart unless the signed sheet has been explicitly included in the root ledger.
 
 ---
 
@@ -360,8 +362,8 @@ For uniform circular motion at fixed radius $R$ and constant speed $s$:
 
 #### Apparent Obstruction: Non-Negativity of Tangential Components
 
-**Theorem (No-go for constant-speed circular orbit in the bare two-body kernel).**  
-In the symmetric, non-translating circular binary with canonical delayed radial forces only, the net tangential acceleration is strictly positive whenever at least one causal root contributes.
+**Theorem (Same-sheet no-go for constant-speed circular orbit in the bare two-body kernel).**
+In the symmetric, non-translating circular binary with canonical delayed radial forces only, and with active roots restricted to the same-sheet principal branch chart defined above, the net tangential acceleration is strictly positive whenever at least one causal root contributes.
 
 $$
 T_{\mathrm{net}}
@@ -392,10 +394,10 @@ T_{s,m}
 >0,
 \qquad \tilde{\delta}_{s,m}\in(0,\pi).
 $$
-The sign is branch-invariant because winding changes timing, not chord orientation in this symmetric geometry. Therefore each summand in $T_{\mathrm{net}}$ is nonnegative, and at least one is strictly positive whenever any hit exists. Hence $T_{\mathrm{net}}>0$. $\square$
+The sign is branch-invariant on this same-sheet chart because winding changes timing, not chord orientation. Therefore each summand in $T_{\mathrm{net}}$ is nonnegative, and at least one is strictly positive whenever any hit exists. Hence $T_{\mathrm{net}}>0$ on the certified chart. $\square$
 
 **Corollary.**  
-Within the bare isolated two-body kernel, an exact constant-speed circular orbit
+Within the same-sheet bare isolated two-body kernel, an exact constant-speed circular orbit
 ($\langle T\rangle=0$) is impossible. Any MCB-like steady state must therefore come from terms outside this kernel, e.g. medium coupling/dissipation, radiation-reaction-like closure, or genuinely multi-body tri-binary effects.
 
 **Plain language**: The isolated pair shows persistent tangential drive at the per-hit level; cancellation is hard because every root pushes the same way. A steady circle must come from exceptional multi-root averaging or from extra physics beyond the bare kernel. This is a primary test of the MCB attractor hypothesis.
@@ -609,7 +611,7 @@ The circular formulas below use reduced coordinates; stability in the full histo
 
 The master equation of Motion for the architrino system constitutes a system of **State-Dependent Neutral Delay Differential Equations (SD-NDDEs)**. Unlike ordinary differential equations (ODEs) where the state is a point in $\mathbb{R}^{6N}$, the state of this system is a **function segment** representing the past history of the particles.
 
-We denote the position of the $i$-th architrino as $\mathbf{x}_i(t) \in \mathbb{R}^3$. We work in the **Euclidean Void** with fixed metric $\delta_{ij}$.
+We denote the position of the $i$-th architrino as $\mathbf{x}_i(t) \in \mathbb{R}^3$. We work in the **Euclidean void** with fixed metric $\delta_{ij}$.
 
 ---
 
@@ -643,7 +645,7 @@ g_{ij}(\tau, \phi) \equiv \|\phi_i(0) - \phi_j(-\tau)\| - c_f \tau = 0.
 $$
 
 #### Lemma 1 (Regularity of the Delay Map)
-*Assumption:* The velocities are sub-field-speed relative to the separation, i.e., $|\mathbf{v}_j| < c_f$ (single-root regime) OR we isolate a specific branch of the multi-root solution where the relative radial velocity is not $c_f$.
+*Assumption:* The velocities are sub-field-speed relative to the separation, i.e., $\|\mathbf{v}_j\| < c_f$ (single-root regime) OR we isolate a specific branch of the multi-root solution where the relative radial velocity is not $c_f$.
 
 *Statement:* If $\phi \in \mathcal{H}$ and $\tau^*$ is a simple root of $g_{ij}(\tau, \phi) = 0$ (i.e., $\partial_\tau g_{ij} \neq 0$), then there exists a neighborhood $U \subset \mathcal{H}$ of $\phi$ and a continuously differentiable functional $\tau: U \to \mathbb{R}^+$ such that $\tau(\phi) = \tau^*$.
 
@@ -670,11 +672,11 @@ unique $C^1$ map $\tau:U\to\mathbb{R}^+$ with
 $g_{ij}(\tau(\psi),\psi)=0$ and $\tau(\phi)=\tau^*$. $\square$
 
 #### Definition 3 (Regularized Force Field)
-To ensure the vector field is Lipschitz, we replace the distributional Dirac delta of the master equation with the mollifier $\rho_\eta$ (see [dynamics/master-equation.md](./master-equation.md)). The acceleration functional $F_i: \mathcal{H} \to \mathbb{R}^3$ is:
+To ensure the vector field is Lipschitz, we replace the distributional Dirac delta of the master equation with the mollifier $\delta_\eta$ (see [dynamics/master-equation.md](./master-equation.md)). The acceleration functional $F_i: \mathcal{H} \to \mathbb{R}^3$ is:
 $$
-F_i(\phi) = \sum_{j} \kappa \sigma_{ij} q_i q_j \int_{-h}^0 \frac{\phi_i(0) - \phi_j(\theta)}{\|\phi_i(0) - \phi_j(\theta)\|^3} \, \rho_\eta\left( \|\phi_i(0) - \phi_j(\theta)\| + c_f \theta \right) \, d\theta.
+F_i(\phi) = \sum_{j} \kappa \sigma_{ij} |q_i q_j| \int_{-h}^0 \frac{\phi_i(0) - \phi_j(\theta)}{\|\phi_i(0) - \phi_j(\theta)\|^3} \, \delta_\eta\left( \|\phi_i(0) - \phi_j(\theta)\| + c_f \theta \right) \, d\theta.
 $$
-**Crucial Property:** For $\eta > 0$ and smooth $\rho_\eta$, this integral operator maps $C^1$ histories to continuous accelerations.
+**Crucial Property:** For $\eta > 0$ and smooth $\delta_\eta$, this integral operator maps $C^1$ histories to continuous accelerations.
 
 ---
 
@@ -682,15 +684,16 @@ $$
 
 #### Theorem 1 (Local Existence and Uniqueness)
 **Assumptions:**
-1. $\eta > 0$, and $\rho_\eta$ is $C^1$ with bounded value and bounded derivative.
+1. $\eta > 0$, and $\delta_\eta$ is $C^1$ with bounded value and bounded derivative.
 2. Initial history $\phi^0 \in \mathcal{H}$ is admissible: there exists $d_{\min}>0$ such that all interaction channels used by Definition 3 satisfy
    $$
    \|\phi_i(0)-\phi_j(\theta)\|\ge d_{\min},\qquad \theta\in[-h,0],
    $$
    on a neighborhood of $\phi^0$.
 3. Delay roots used in channel construction are simple (transversal), i.e. no causal-shock degeneracy (Lemma 1).
-4. Couplings/charges are finite.
-5. Optional higher-smoothness gluing condition at $t=0$ (needed for $C^2$ at the junction, not for $C^1$ well-posedness).
+4. Active branches are uniformly finite on the considered history neighborhood.
+5. Couplings and polarity magnitudes are finite.
+6. Optional higher-smoothness gluing condition at $t=0$ (needed for $C^2$ at the junction, not for $C^1$ well-posedness).
 
 **Statement:**
 Let $\mathbf{Y}=(\mathbf{x},\mathbf{v})$ and write the system in first-order form
@@ -717,7 +720,7 @@ with $F$ from Definition 3.
    (\mathbf{u},\mathbf{w})\mapsto \frac{\mathbf{u}-\mathbf{w}}{\|\mathbf{u}-\mathbf{w}\|^3}
    $$
    is $C^1$ there with bounded derivative.
-2. By Assumption 1, composition with $\rho_\eta$ preserves $C^1$ regularity and bounded derivatives.  
+2. By Assumption 1, composition with $\delta_\eta$ preserves $C^1$ regularity and bounded derivatives.
 3. By Lemma 1 and Assumption 3, delay branches (where used) depend $C^1$ on history; thus branch-evaluation maps are locally Lipschitz in $\phi$.
 4. Finite sums over channels and integration over finite interval $[-h,0]$ preserve local Lipschitz continuity; hence $\mathcal{G}$ is locally Lipschitz on an open subset of $\mathcal{H}$ containing $\phi^0$.
 5. Apply the standard Banach-space existence/uniqueness theorem for state-dependent DDEs: a unique local $C^1$ solution exists and extends uniquely to a maximal interval.
@@ -818,12 +821,12 @@ $$
 $$
 Because of the delay, $\frac{d}{dt}\mathbf{P}_{\text{mech}} \neq 0$ generally.
 
-#### Theorem 2 (Conservation of Total Momentum Functional)
-There exists a functional $\mathbf{P}_{\text{wake}}[\mathbf{x}_t]$ representing the momentum flux encoded in the active causal wake surfaces such that the total momentum:
+#### Conservation Target 2 (Total Momentum Functional)
+For an action-derived delayed model with translation symmetry, there exists a functional $\mathbf{P}_{\text{wake}}[\mathbf{x}_t]$ representing the momentum flux encoded in the active causal wake surfaces such that the total momentum:
 $$
 \mathbf{P}_{\text{tot}} = \mathbf{P}_{\text{mech}}(t) + \mathbf{P}_{\text{wake}}[\mathbf{x}_t]
 $$
-is strictly conserved ($\frac{d}{dt}\mathbf{P}_{\text{tot}} = 0$).
+is conserved. For working regularized models, this same expression is a validation diagnostic unless the chosen regularization preserves the translation symmetry of the underlying action.
 
 **Explicit Form (Weak Coupling Limit):**
 For $\eta \to 0$, the wake momentum can be approximated by integrating the force impulse over the delay time:

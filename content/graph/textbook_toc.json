@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1158
+      "sections": 1163
     }
   },
   "tocRoot": {
@@ -4655,6 +4655,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Subsystem-Partition Guardrail",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+                "markdownSection": "Subsystem-Partition Guardrail",
+                "sectionKey": "subsystem partition guardrail",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Probability-Representation Guardrail",
                 "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
                 "markdownSection": "Probability-Representation Guardrail",
@@ -4667,6 +4675,14 @@
                 "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
                 "markdownSection": "Admissible Quantization-Domain Guardrail",
                 "sectionKey": "admissible quantization domain guardrail",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Observable-Domain Guardrail",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+                "markdownSection": "Observable-Domain Guardrail",
+                "sectionKey": "observable domain guardrail",
                 "headingLevel": 2
               },
               {
@@ -5135,6 +5151,14 @@
                 "markdownPath": "content/markdown/aaa/theory-bridges/spacetime-models-and-noether-sea.md",
                 "markdownSection": "Bridge Rule",
                 "sectionKey": "bridge rule",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Boundary-Response Equivalence",
+                "markdownPath": "content/markdown/aaa/theory-bridges/spacetime-models-and-noether-sea.md",
+                "markdownSection": "Boundary-Response Equivalence",
+                "sectionKey": "boundary response equivalence",
                 "headingLevel": 2
               },
               {
@@ -8941,6 +8965,14 @@
                   },
                   {
                     "kind": "markdown-section",
+                    "title": "Transactional Interpretation",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+                    "markdownSection": "Transactional Interpretation",
+                    "sectionKey": "transactional interpretation",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Many-Worlds (Everett)",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
                     "markdownSection": "Many-Worlds (Everett)",
@@ -10667,6 +10699,14 @@
                 "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
                 "markdownSection": "Information as Ontology",
                 "sectionKey": "information as ontology",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Thermodynamic Cost of Computation",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownSection": "Thermodynamic Cost of Computation",
+                "sectionKey": "thermodynamic cost of computation",
                 "headingLevel": 2
               },
               {

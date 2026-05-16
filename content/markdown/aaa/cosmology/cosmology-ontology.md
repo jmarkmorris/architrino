@@ -107,6 +107,56 @@ Large-scale homogeneity is accepted only when this residual remains within the d
 
 The same rule applies across modules. A promoted cosmology claim must preserve one shared medium-state record $\theta_{\mathrm{sea}}$ through expansion, CMB transfer, BBN, growth, lensing, and local calibration. If those modules can be fit only by replacing the state record or projection map per observable family, the result is benchmark fitting rather than cosmology closure. The current dark-energy branch states this as a shared residual gate in [dark-energy.md](./dark-energy.md#inference-dependency-and-calibration-gates).
 
+Claims about observer selection, anthropic conditioning, or typicality belong inside the same inference ledger. They should not be promoted as cosmological facts unless their weights are projected from the declared data-product family and the same shared medium-state record. For an observer-accessible datum $D_a$ on a window $W$, write
+$$
+P_{\theta_{\mathrm{sea}},W}(D_a)
+=
+\mu_{\theta_{\mathrm{sea}},W}\!\left(\pi_D^{-1}(D_a)\right),
+$$
+with $\mu_{\theta_{\mathrm{sea}},W}$ conditioned by the same $\theta_{\mathrm{sea}}$ used for expansion, CMB, BBN, growth, lensing, and calibration. A compact selection-admissibility guardrail is
+$$
+\mathcal{R}_{\mathrm{sel}}(\theta_{\mathrm{sea}},W)
+=
+\max\!\left(
+\mathcal{R}_{\mathrm{shared}}(\theta_{\mathrm{sea}}),
+d_{\mathcal{D}_{\mathrm{cos}}}\!\left(
+(\pi_D)_*\mu_{\theta_{\mathrm{sea}},W},
+\widehat{\mu}_{\mathcal{D}_{\mathrm{cos}},W}
+\right)
+\right).
+$$
+Here $\widehat{\mu}_{\mathcal{D}_{\mathrm{cos}},W}$ is the empirical distribution of the declared cosmology data products on the same window. If $\mathcal{R}_{\mathrm{sel}}$ is large, the corpus should retain the observable data product and classify the typicality claim as interpretation rather than cosmology closure.
+
+### Global-Reconstruction Promotion Gate
+
+The inference-dependency ledger should also distinguish a successful data-product fit from a promoted global history. Let $\mathcal{D}_{\mathrm{cos}}$ denote the declared cosmology data-product family: supernovae, BAO, redshift catalogues, CMB spectra, BBN yields, growth, lensing, and calibration records. For a candidate shared Noether-Sea record $\theta_{\mathrm{sea}}$, define the same-data ambiguity class
+$$
+[\theta_{\mathrm{sea}}]_{\mathcal{D}_{\mathrm{cos}},\epsilon}
+=
+\left\{
+\theta'_{\mathrm{sea}}
+:
+d_{\mathcal{D}_{\mathrm{cos}}}\!\left(
+\Pi_{\mathcal{D}_{\mathrm{cos}}}(\theta'_{\mathrm{sea}}),
+\Pi_{\mathcal{D}_{\mathrm{cos}}}(\theta_{\mathrm{sea}})
+\right)
+\le\epsilon,
+\quad
+\mathcal{R}_{\mathrm{shared}}(\theta'_{\mathrm{sea}})\le\epsilon_{\mathrm{shared}}
+\right\}.
+$$
+For a proposed global cosmology claim $P_{\mathrm{glob}}$, define
+$$
+\Delta_{\mathrm{glob}}(P_{\mathrm{glob}};\theta_{\mathrm{sea}})
+=
+\mathbf{1}\!\left[
+\exists\theta_1,\theta_2\in[\theta_{\mathrm{sea}}]_{\mathcal{D}_{\mathrm{cos}},\epsilon}
+\text{ with }
+P_{\mathrm{glob}}(\theta_1)\ne P_{\mathrm{glob}}(\theta_2)
+\right].
+$$
+A claim about a unique global chronology, asymptotic de Sitter state, global topology, or one-time origin is promoted only when this ambiguity indicator vanishes or when a native derivation selects that claim without using the fitted data products as the selection rule. Otherwise the corpus should retain the observational data product and classify the global statement as an effective reconstruction.
+
 ## Interface Variables (Predicted API Surface)
 
 Each observational component exposes explicit interface variables for cross-theory mapping:

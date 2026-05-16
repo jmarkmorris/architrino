@@ -46,6 +46,24 @@ d_{\mathrm{ord}}\!\left(\prec_{\mathrm{eff}}(\theta),\prec_{\mathrm{GR}}\right)
 $$
 The causal-order term tests the effective light-cone structure, the clock term supplies local scale, and the preferred-frame term keeps the absolute substrate frame hidden below observational bounds. Passing this check does not replace the redshift, Shapiro, lensing, 1PN, quantum-gravity EFT, or gravitational-wave tests below; it prevents them from being fit by mutually incompatible causal and clock conventions.
 
+### Global continuation and cosmic-censorship comparison
+
+Global hyperbolicity, Cauchy surfaces, Cauchy horizons, and cosmic censorship are standard GR comparison tools for asking when initial data determine a maximal observer-level spacetime. They are not substrate assumptions in $\mathbb{A}\mathbb{A}\mathbb{A}$, because the native dynamics live in absolute timespace with path-history records. Their retained value is as an extension discipline: when the effective metric comparison would treat a region as losing unique continuation, the native account must identify which finite boundary wake data, Noether-Sea state, and closure-label ensemble determine the continuation.
+
+The comparison burden can be stated as a finite-access residual rather than as an imported global axiom. For a compact comparison region $\Omega$ and window $W=[t_i,t_f]$, the strong-field or cosmology packet must specify a continuation map from the same record class used by the weak-field observables,
+$$
+\mathcal{T}_{\Omega,W}^{\theta}:
+\left(
+X_\Omega(t_i),
+\mathcal{H}_{\Omega}^{<t_i},
+\mathcal{B}_{\partial\Omega}|_{W},
+N_{\text{sea}}|_{\Omega\times W}
+\right)
+\longrightarrow
+\mathcal{S}_{\Omega}(t_f),
+$$
+where $\mathcal{S}_{\Omega}(t_f)$ is the finite accepted endpoint or branch-label set. A GR comparison that assumes global hyperbolicity can be used only after the same $\theta$ also recovers the local causal-order, clock, PPN, and gravitational-wave observables above. If $\mathcal{S}_{\Omega}(t_f)$ is empty, infinite without a finite ledger, or selected by an external global assumption rather than by the recorded boundary data, the effective-metric continuation has not closed.
+
 ## Weak-Field Observables That Must Match GR
 
 ### Gravitational redshift and clock rates
@@ -198,9 +216,10 @@ This chapter is closed only if the spacetime branch can demonstrate all of the f
 4. 1PN orbital corrections,
 5. the standard long-distance quantum-gravity EFT correction as an observer-level weak-field benchmark,
 6. negligible preferred-frame leakage in tested regimes,
-7. gravitational-wave speed, dispersion, and two-mode polarization compatibility.
+7. gravitational-wave speed, dispersion, and two-mode polarization compatibility,
+8. non-arbitrary finite-boundary continuation wherever a strong-field or cosmological comparison invokes global extension assumptions.
 
-The same coefficient set must survive all seven.
+The same coefficient set must survive all eight.
 
 ## Falsification Gate
 
@@ -210,6 +229,7 @@ The GR-observables interface fails if any of the following occur:
 - the long-distance quantum correction to the Newtonian potential requires an independent weak-field coefficient set,
 - preferred-frame leakage exceeds the bounds recorded in [constraint-ledger.md](../validation/constraint-ledger.md),
 - gravitational-wave propagation departs from observational timing, dispersion, or polarization bounds in validated regimes,
+- a strong-field or cosmology packet needs an unrecorded global assumption to select its continuation,
 - or the weak-field map cannot recover the GR coefficients to the required precision while remaining consistent with the rest of the substrate story.
 
 In compact form, the required acceptance set is
@@ -227,6 +247,8 @@ $$
 \mathcal{C}_{\text{PF}}
 \cap
 \mathcal{C}_{\text{GW}}
+\cap
+\mathcal{C}_{\text{cont}}
 \neq \varnothing.
 $$
 

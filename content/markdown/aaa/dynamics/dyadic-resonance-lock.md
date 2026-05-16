@@ -4,7 +4,7 @@ This document studies resonance lock for the nested Outer, Middle, and Inner bin
 
 It should be read together with [Binary Dynamics](binary-dynamics.md), [Tri-Binary Dynamics](tri-binary-dynamics.md), [Mapping the Planck Scale](../theory-bridges/planck-scale-tri-binary-alignment.md), and [Noether Core](../spacetime/noether-core.md), which provide the assembly geometry and scale-setting context for the lock relations derived here.
 
-We work with branch labels $k\in\{O,M,I\}$.
+We work with branch labels $k\in\{O,M,I\}$. Here $r_k$ is the characteristic layer radius and $v_k$ is the tangential speed of one member of layer $k$ around that layer's center.
 
 ## Status and Assumptions
 
@@ -36,7 +36,7 @@ This identity is exact. It is not an assumption.
 
 ### Assumption 1 (Middle-Pinned Closure)
 
-Outside the black-hole event horizon, and in the horizon-transition regime itself, the middle binary is pinned at the field speed:
+In the reduced exterior and horizon-transition branch studied here, the middle binary is pinned at the field speed:
 $$
 v_M=c_f,
 \qquad
@@ -83,9 +83,31 @@ Plain language: the rings keep the same timing relationship cycle after cycle ra
 
 ### Assumption 4 (Cancellation Selection Principle)
 
-Among the admissible integer locks $(1:m:n)$, the physically selected lock is assumed to be the one that yields the strongest cycle-averaged cancellation of the relevant low-order far-field or effective potential signal.
+Among the admissible integer locks $(1:m:n)$, the physically selected lock is assumed to be the one that yields the strongest cycle-averaged cancellation of the relevant low-order causal-wake multipole or effective potential signal.
 
 This is a selection principle, not yet a theorem. Its role is to explain why one exact integer lock might be preferred over nearby commensurate alternatives.
+
+A minimal test functional can be written before committing to a particular lock. Let $q_O=1$, $q_M=m$, and $q_I=n$, with phase variables $\theta_k=q_k\Omega t+\phi_k$. For a low-order truncation depth $L$, define
+$$
+S_L(t)
+=
+\sum_{k\in\{O,M,I\}}\sum_{a=1}^{L}
+A_{k,a}(\beta_k,r_k,\eta,J)\,
+e^{ia(q_k\Omega t+\phi_k)}.
+$$
+The cycle-averaged cancellation score is
+$$
+C_L(m,n;\phi)
+=
+\frac{1}{T}\int_0^T |S_L(t)|^2\,dt
+=
+\sum_{\nu}
+\left|
+\sum_{(k,a):\,a q_k=\nu}
+A_{k,a}e^{ia\phi_k}
+\right|^2.
+$$
+The dyadic claim becomes a theorem target only if $(m,n)=(2,4)$ minimizes this score under the admissible branch equations and retains a positive stability gap.
 
 ### Non-Assumptions
 
@@ -220,8 +242,22 @@ The right theorem target is not "prove $1:2:4$ from kinematics alone." The stron
 
 1. classify the admissible integer locks $(1:m:n)$ under exact delayed phase closure,
 2. compute the corresponding radius relations under $\beta_M=1$,
-3. define a cycle-averaged cancellation functional for the low-order field or effective potential,
-4. and determine which integer lock minimizes that functional in the exterior/horizon regime.
+3. define a cycle-averaged cancellation functional for the low-order causal-wake multipole or effective potential,
+4. determine which integer lock minimizes that functional in the exterior/horizon regime,
+5. and verify the selected lock by a finite-$\eta$ return map with a positive Floquet gap.
+
+Equivalently, for each candidate $(m,n)$ one should construct a return map
+$$
+P_{\eta,m,n}:\mathcal{S}_{m,n}\to\mathcal{S}_{m,n}
+$$
+on the retained branch chart and require
+$$
+\Delta_{m,n}
+=
+1-\max_{i\notin G}|\mu_i(P_{\eta,m,n})|
+>0
+$$
+off the neutral symmetry directions $G$.
 
 If the minimizer turns out to be $(1,2,4)$, then the dyadic hierarchy would be a derived selection result rather than a starting assumption.
 

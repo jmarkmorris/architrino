@@ -105,8 +105,8 @@ S=\int d^4x\; \left(\frac{1}{2}\partial_\mu\phi\,\partial^\mu\phi
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\phi(x)$ is a coarse-grained effective field describing collective wake and assembly behavior in the architrino/Noether-Sea system. Creation/annihilation operators encode observer-level association, dissociation, repartitioning, and normal-mode changes of assemblies, not ontic birth or death of architrinos and not fundamental quanta of a continuous field. For the underlying substance-structure distinction, see [Substance, Structure, and the Plenum of Potential](./substance-structure-and-potential.md).
 
-**What Still Works:** Quantum Field Theory (QFT) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of tri-binary assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
+**What Still Works:** Quantum Field Theory (QFT) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model. Its precision comparisons with experiment, renormalized perturbation methods, lattice calculations where applicable, effective actions, and operator language are benchmark successes that any replacement must recover in the regimes where practitioners currently use them. That success does not by itself settle the ontology of continuum fields, vacuum structure, or creation and annihilation operators; it fixes a recovery burden.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, field operators, vacuum summaries, particle-number changes, symmetries, and couplings are treated as effective descriptors of assembly association, dissociation, normal-mode changes, axial-layer states, and medium-level interaction rules rather than primitive ontology.
 **Transition Relevance:** Transition relevance is high because this is still the language in which laboratory data, precision fits, and most cross-framework calculations are reported.
 **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 
@@ -1066,6 +1066,27 @@ $$
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the state objects, ensemble quantities, and interpretive claims in this entry are reclassified as inferential or effective descriptions over definite substrate histories and assembly statistics.
 **Transition Relevance:** Transition relevance is high because these formalisms still govern how quantum, thermal, and information-theoretic results are computed and compared.
 **Long-Term Relevance:** Long-term relevance is as a stable effective or inferential language, not as final ontology, provided the same successful predictions are retained.
+
+---
+
+### Transactional Interpretation
+
+**Theory Name:** Transactional Interpretation. **Short Name:** Transactional Interpretation. **Layer Bucket:** Epistemic / Effective Observation Theories.
+
+**Summary:** The transactional family treats quantum measurement as an emitter-absorber process in which outcome-bearing events arise from a completed exchange rather than from an observer-imposed projection.
+
+**Conceptual View:** Its strongest comparative point is the distinction between ordinary correlating interaction and an interaction that is eligible to become a record. In that sense it presses on the same question as the measurement problem: what physical condition turns a formal branch, correlation, or amplitude into an outcome-bearing event?
+
+**Key Equation:** In standard notation, the comparison target is the projection-like record object
+$$
+P_a=|a\rangle\langle a|.
+$$
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ does not import transactional ontology, indeterministic actualization, or claims that quantum possibilities form a deeper non-spacetime substrate. It keeps the useful pressure as a record-formation benchmark: a candidate outcome must be produced by assembly-apparatus dynamics, satisfy conservation and event-ledger closure, persist as a record, and recover the Born weights from basin measures rather than from a projection postulate.
+
+**What Still Works:** Transactional Interpretation usefully refuses to let "measurement" mean any arbitrary interaction and keeps attention on emission, absorption, conservation, and record production.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, offer/confirmation language, claims about real possibilities, and retrocausal readings are comparison devices, not substrate terms. The native objects are assemblies, causal wakes, apparatus kernels, record basins, and effective observer descriptions.
+**Transition Relevance:** Transition relevance is moderate to high because the interpretation highlights the measurement-cut problem in a form that can sharpen $\mathbb{A}\mathbb{A}\mathbb{A}$ record criteria without changing the ontology.
+**Long-Term Relevance:** Long-term relevance is as a comparison framework for measurement and Born-rule closure, not as doctrine.
 
 ---
 

@@ -82,6 +82,29 @@ F_H=0,\qquad
 $$
 This is the singularity-resolution form of the black-hole endpoint gate: the replacement must be finite, ledger-preserving, and non-arbitrary using compact boundary data, without importing a remnant, bounce, or asymptotic boundary condition as doctrine.
 
+### Cauchy-Horizon Comparison Pressure
+
+GR Cauchy-horizon and cosmic-censorship language is useful here only as comparison pressure. It asks whether an effective initial-data surface has a unique global continuation or whether the observer-level spacetime description admits extensions not determined by that surface. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the substrate answer is not to import global hyperbolicity as an axiom. The native answer must show that the finite region record selects a finite admissible continuation family.
+
+For the same compact region $\Omega$ and interval $W=[t_i,t_f]$, define the accepted strong-field continuation family
+$$
+\mathfrak{S}_H(\theta_{\partial\Omega,W})
+=
+\left\{
+\left(X_\Omega(t_f),\mathcal{B}_H(t_f)\right)
+:
+F_H=0,\quad
+\sup_{t\in W}\mathcal{R}_H(\Omega,t)<\infty,
+\quad
+\mathcal{L}_{E\mathbf{p}\mathbf{J}}\ \text{closes}
+\right\}.
+$$
+The Cauchy-horizon comparison burden is
+$$
+0<\left|\mathfrak{S}_H(\theta_{\partial\Omega,W})\right|<\infty,
+$$
+with every element carrying a closure label, finite horizon-interface ledger, and event-ledger accounting. An empty family means no native continuation has been supplied. An infinite or unlabeled family means the endpoint remains arbitrary. A finite labeled family is admissible only if later observer-level release, entropy, and exterior $(M,\mathbf{J},Q)$ records are computed from those same finite boundary data.
+
 Stationary regularity is only the first test. A horizon construction may keep curvature invariants finite in an eternal or stationary comparison metric while still failing during collapse, merger, evaporation, or embedding in a time-dependent Noether Sea. The dynamical gate is therefore stronger:
 $$
 \theta_+^{\mathrm{eff}}<0,\quad \theta_-^{\mathrm{eff}}<0

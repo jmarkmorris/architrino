@@ -45,7 +45,7 @@ Several speed symbols must remain separated:
 | --- | --- |
 | $c_f$ | Primitive wake propagation speed in the substrate. |
 | $c_{\text{eff}}(\mathbf{x},t)$ | Noether-Sea dressed assembly-channel propagation speed used for clock/ruler closure and observer-sector metric comparisons. |
-| $c_\gamma(\mathbf{x})$ | Local photon-channel speed; in the working observer-level photon branch, $c_\gamma(\mathbf{x})\equiv c_{\text{eff}}(\mathbf{x})$. |
+| $c_\gamma(\mathbf{x})$ | Local photon-channel speed; equality with $c_{\text{eff}}(\mathbf{x})$ is a Gate A closure target for the working observer-level photon branch, not a definition. |
 | Locally measured light speed | The operational speed reconstructed by assembly clocks, rulers, and photon synchronization. |
 
 The primitive speed $c_f$ is used for wake-intersection and self-hit geometry. The effective speed $c_{\text{eff}}$ is used for Noether-Sea dressed closure and observer-level comparisons. These are not interchangeable. Any diagnostic that moves from primitive wake geometry to observer-level clocks, rulers, or photons must declare its dressing map.
@@ -288,6 +288,8 @@ s_{\mathrm{align}}(\theta)
 \log\left|\mathcal{L}_U(\theta)\right|,
 $$
 with the limit taken over blocks whose boundary-to-area ratio vanishes.
+
+One algebraic obstruction fixes the status of the coefficient target. A single finite unweighted $0/1$ transfer matrix cannot by itself yield an exact coefficient $s_{\mathrm{align}}=1/4$, because $\rho(\mathsf{T}_{\theta,\nu})$ is algebraic while $e^{1/4}$ is transcendental. Exact recovery of the horizon coefficient must therefore come from an asymptotic family of transfer systems, a weighted pressure, a block-density limit with area normalization, or an explicitly approximate tolerance target rather than one fixed counting matrix.
 
 At the present derivation level, the admissible one-patch labels can be enumerated as a finite branch-ledger schema, not yet as a numerical table. For a primitive outer-period closure, the integer-lock notation gives
 $$
@@ -799,6 +801,116 @@ $$
 $$
 This completes the local bookkeeping needed for terminal enumeration: a candidate $(m,n)$ must pass scalar root continuation, force-residual cancellation, and the history-aware conservation ledger on the same branch set. What remains unsolved is not another requirement artifact but the derivation of $w_b^{(\eta)}$ and the wake-history increments from a time-translation- and Euclidean-invariant regularized action for the coupled three-layer branch.
 
+The minimal action-level scaffold is the pullback of the exact causal-delay action in [Master Equation](master-equation.md#exact-nonlocal-lagrangian) to the certified terminal branch chart. For branch $b$, set
+$$
+t=\frac{u}{\omega_O},
+\qquad
+t_b^0(u)=t-\Delta_b(u),
+\qquad
+r_b(u)=\frac{c_f}{\omega_O}\delta_b(u).
+$$
+The sharp branch density inherited from the exact $1/r$ causal kernel is
+$$
+\mathcal{I}_b^{(0)}(u)
+=
+\frac{1}{c_f}
+\frac{1}{r_b(u)|J_b(u)|}
+=
+\frac{\omega_O}{c_f^2}
+\frac{1}{\delta_b(u)|J_b(u)|}.
+$$
+A regularized terminal action for the branch set should therefore have the form
+$$
+S_{\lambda}^{(\eta)}
+=
+\int_0^{2\pi}
+\frac{du}{\omega_O}
+\sum_o
+\frac{1}{2}\mu_{\text{arch}}
+\left\|\mathbf{v}_o(u)\right\|^2
+-
+\frac{1}{2}
+\sum_{b\in\mathcal{B}_{\mathrm{term}}(\lambda)}
+\int_0^{2\pi}
+\frac{du}{\omega_O}
+\kappa\,
+\operatorname{sign}(q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}})
+\left|q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}}\right|
+\mathcal{I}_b^{(\eta)}(u),
+$$
+with $\mathcal{I}_b^{(\eta)}\to\mathcal{I}_b^{(0)}$ weakly on any branch satisfying the positive-delay and Jacobian-floor certificate. Its branch variation must reproduce the terminal acceleration weight,
+$$
+\left[
+\frac{1}{\mu_{\text{arch}}}
+\frac{\delta S_{\lambda}^{(\eta)}}{\delta\mathbf{x}_{o_b}}
+\right]_{\!b}
+\longrightarrow
+\kappa\,
+\operatorname{sign}(q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}})
+\left|q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}}\right|
+w_b^{(0)}(u)
+\hat{\mathbf{r}}_b(u),
+$$
+up to the sign convention fixed by writing the interaction term with a minus sign in the action. In other words, $w_b^{(\eta)}$ is not an independent fitting weight. It is the Euler-Lagrange pullback of the regularized causal kernel on a certified branch chart.
+
+The regularization is admissible only if it preserves the symmetries that supply the conservation ledger. In action form this means
+$$
+\delta_{\tau}S_{\lambda}^{(\eta)}=0,
+\qquad
+\delta_{\mathbf{b}}S_{\lambda}^{(\eta)}=0,
+\qquad
+\delta_{\boldsymbol{\Omega}}S_{\lambda}^{(\eta)}=0
+$$
+for global time translations, spatial translations, and spatial rotations. A sufficient local form is to regularize only the causal scalar
+$$
+g_{ij}(t,t')
+=
+t-t'
+-
+\frac{\|\mathbf{x}_i(t)-\mathbf{x}_j(t')\|}{c_f}
+$$
+by a normalized $\delta_\eta(g_{ij})$, while keeping $H(0)=0$ and excluding the trivial coincidence self-branch. Such a regularizer depends on Euclidean distance and time difference, not on a coordinate origin, absolute phase convention, or observer record.
+
+The wake-history increments are then the Noether boundary terms of this same action. For the time-translation channel, a branch contribution across a time boundary $t_\ast$ has the form
+$$
+E_{b}^{\mathrm{wake}}(t_\ast)
+=
+\frac{1}{2}
+\int_{\{(t_1,t_0)\in b:\,t_0\le t_\ast<t_1\}}
+\partial_{t_1}
+\mathcal{K}_{b}^{(\eta)}(t_1,t_0)\,
+dt_0\,dt_1,
+$$
+where $\mathcal{K}_{b}^{(\eta)}$ is the regularized causal kernel restricted to branch $b$. Over one outer period,
+$$
+\Delta E_b^{\mathrm{wake}}
+=
+E_{b}^{\mathrm{wake}}(T)-E_{b}^{\mathrm{wake}}(0).
+$$
+The momentum and angular-momentum wake increments are the corresponding spatial-translation and rotation boundary terms:
+$$
+\Delta\mathbf{p}_b^{\mathrm{wake}}
+=
+\mathbf{P}_b^{\mathrm{wake}}(T)-\mathbf{P}_b^{\mathrm{wake}}(0),
+\qquad
+\Delta\mathbf{J}_b^{\mathrm{wake}}
+=
+\mathbf{J}_b^{\mathrm{wake}}(T)-\mathbf{J}_b^{\mathrm{wake}}(0).
+$$
+They are fixed by the coefficients of the boundary variations
+$$
+\delta_{\mathbf{b}}S_b^{(\eta)}
+=
+\mathbf{b}\cdot
+\Delta\mathbf{p}_b^{\mathrm{wake}},
+\qquad
+\delta_{\boldsymbol{\Omega}}S_b^{(\eta)}
+=
+\boldsymbol{\Omega}\cdot
+\Delta\mathbf{J}_b^{\mathrm{wake}},
+$$
+with the mechanical increments already written above. Therefore a terminal branch proof now has a precise action-level target: derive $\mathcal{I}_b^{(\eta)}$ from the regularized causal scalar, prove that its branch variation gives $w_b^{(\eta)}$, and show that the Noether boundary terms close over the same certified branch set. Until those three steps are complete, the action scaffold supplies a constrained proof route and a rejection test, not a solved terminal $(m,n)$ selection.
+
 This scaffold identifies the smallest missing dynamics. The delayed equations must enumerate $\Lambda_{\theta}^{\mathrm{loc}}$ and derive the edge maps $\mathcal{E}_{\nu}^{\pm}$ from the terminal aligned branch. [Dyadic Resonance Lock](dyadic-resonance-lock.md) supplies the candidate integer phase lattice, and [Binary Dynamics](binary-dynamics.md#self-hit-definition-and-diagnostics) supplies the self-hit and partner-hit root vocabulary, but neither document yet computes the terminal aligned edge projections from the full three-layer dynamics.
 
 The local-horizon coefficient requires
@@ -837,9 +949,9 @@ To keep speed claims consistent across documents, all binary-speed statements sh
 
 | Regime | Inner binary | Middle binary | Outer binary | Operational meaning |
 | --- | --- | --- | --- | --- |
-| **CFT exterior** (sub-horizon, weak/medium stress) | Typically in self-hit branch ($v \gtrsim c_f$ history-supported) | Near the hinge scale ($v \approx c_f$) in working models | Typically $v < c_f$ | Hierarchical tri-binary operation and ordinary ladder behavior |
-| **Holographic horizon transition** (terminal alignment) | Forward-sector components approach $c_f$ | Forward-sector components approach $c_f$ | Forward-sector components approach $c_f$ | 3D precessing structure collapses toward planar lock |
-| **AdS / self-hit interior** (post-transition, strongly nonlocal memory) | Self-hit dominated; effective closure may involve super-field effective speed | Strongly coupled to inner/outer delay closure | Can participate in states where combined in-plane effective speed satisfies $v_{\text{eff}} > c_f$ | Mach-wedge-like causal geometry and interior recycling hypotheses |
+| **Partner/exterior comparison regime** (CFT bridge label) | Typically in self-hit branch ($v \gtrsim c_f$ history-supported) | Near the hinge scale ($v \approx c_f$) in working models | Typically $v < c_f$ | Hierarchical tri-binary operation and ordinary ladder behavior |
+| **Terminal-alignment interface** (holographic bridge label) | Forward-sector components approach $c_f$ | Forward-sector components approach $c_f$ | Forward-sector components approach $c_f$ | 3D precessing structure collapses toward planar lock |
+| **Self-hit interior comparison regime** (AdS bridge label) | Self-hit dominated; effective closure may involve super-field effective speed | Strongly coupled to inner/outer delay closure | Can participate in states where combined in-plane effective speed satisfies $v_{\text{eff}} > c_f$ | Mach-wedge-like causal geometry and interior recycling hypotheses |
 
 **Notation guardrail:** "$v < c_f$" or "$v = c_f$" in role summaries refers to a component/regime statement, while $v_{\text{eff}} > c_f$ refers to the **combined in-plane effective motion** used in wake-geometry closure.
 
@@ -889,12 +1001,13 @@ $$
 **Exclusion volume (instantaneous):**
 $$
 V(v_{\text{trans}}) = \frac{4\pi}{3} R_\perp^2 R_\parallel
-= \frac{4\pi}{3} R_\perp^3 \sqrt{1-\left(\frac{v_{\text{trans}}}{c_f}\right)^2}.
+= \frac{4\pi}{3} R_\perp^3 \sqrt{1-\left(\frac{v_{\text{trans}}}{c_\star}\right)^2}.
 $$
 If the outer radius is infalling, treat $R_\perp = R_\perp(t)$ so
 $$
-V(t) = \frac{4\pi}{3} R_\perp(t)^3 \sqrt{1-\left(\frac{v_{\text{trans}}(t)}{c_f}\right)^2}.
+V(t) = \frac{4\pi}{3} R_\perp(t)^3 \sqrt{1-\left(\frac{v_{\text{trans}}(t)}{c_\star}\right)^2}.
 $$
+The primitive specialization sets $c_\star=c_f$ only after the branch chart is declared.
 
 ---
 
@@ -904,9 +1017,9 @@ $$
 
 **Assumption (testable):** A strong external gradient (tidal field or effective curvature) perturbs the delay loop, altering phase closure and stability of rungs.
 
-**Origin of the gradient (model definition):** Gravitation is implemented as an emergent spatial gradient in Noether core volume. As energy accumulates in dense collections of standard-model assemblies (protons, neutrons, electrons), the local Noether core volume contracts, and surrounding regions experience a gradient in available core volume. This gradient is the effective gravitational field in the delay-geometry model.
+**Origin of the gradient (model definition):** Gravitation is implemented as an emergent Noether-Sea response gradient, not as fundamental curvature of the Euclidean void. Dense collections of standard-model assemblies perturb Noether-Sea density, compliance, stress, effective potential, and terminal-alignment state. The effective gravitational field in this delay-geometry model is the observer-level reconstruction of those coupled gradients.
 
-**Geometry inputs:** Represent this gradient as a scalar control parameter $G_{\text{grad}}$ (e.g., $|\partial \Phi/\partial r|$ or a tidal tensor magnitude) applied to the outer-binary environment. In simulations, treat $G_{\text{grad}}$ as the local radial derivative of Noether core volume (or its proxy) around the outer-binary orbit.
+**Geometry inputs:** Represent this gradient as a scalar control parameter $G_{\text{grad}}$ only in reduced scans, for example a magnitude extracted from Noether-Sea density/compliance/stress gradients, $\partial_r\Phi_{\text{eff}}$, or a tidal tensor. In simulations, treat $G_{\text{grad}}$ as a declared proxy around the outer-binary orbit and record which Noether-Sea response channel it compresses.
 
 **Expected effects to test:**
 - Differential path delays across the outer orbit (forward vs backward sector).
@@ -921,7 +1034,7 @@ This union geometry sets packing and overlap limits by construction, rather than
 
 **Modeling at $v>0$:** Use the oblate envelope as a time-dependent exclusion region whose axis precesses. The exclusion volume becomes anisotropic and typically increases with precession cone angle.
 
-**As $v_{\text{trans}} \to c_f$:** The envelope flattens toward a disk, so the exclusion volume becomes a thin, swept annulus dominated by the equatorial plane. This tends to amplify planar alignment constraints and reduce accessible 3D configurations.
+**As $v_{\text{trans}} \to c_\star$:** The envelope flattens toward a disk, so the exclusion volume becomes a thin, swept annulus dominated by the equatorial plane. This tends to amplify planar alignment constraints and reduce accessible 3D configurations.
 At sufficiently high stress, this implies a terminal rung: further increases cannot support a stable 3D mode, only a planar aligned state.
 
 **Status:** This precession-expanded exclusion volume is not explicitly modeled in the current minimal system; treat results as lower bounds until the swept-volume effect is added.
@@ -942,7 +1055,7 @@ N_{\text{clock}}(\mathbf{x})
 $$
 in the rest branch of the local Noether-Sea cell. This quantity is the dynamics-side precursor of the effective lapse field used in the emergent-metric construction.
 
-**Local clock from delay geometry:** Define a reference round-trip delay $\Delta t_{\text{rt,ref}}$ and a local delay $\Delta t_{\text{rt}}(\theta, G_{\text{grad}})$. Then
+**Sector-delay diagnostic from delay geometry:** Define a reference round-trip delay $\Delta t_{\text{rt,ref}}$ and a local delay $\Delta t_{\text{rt}}(\theta, G_{\text{grad}})$. Then
 $$
 \alpha(\theta, G_{\text{grad}}) = \frac{\Delta t_{\text{rt}}(\theta, G_{\text{grad}})}{\Delta t_{\text{rt,ref}}}
 $$
@@ -950,11 +1063,11 @@ and, for the ellipsoid-only case with no gradient,
 $$
 \alpha(\theta) = \frac{R(\theta)}{R_{\text{ref}}}
 $$
-measures how the local phase-closure period compares to the reference cadence:
+measures how one sector's phase-closure period compares to the reference cadence:
 $$
 T_{\text{local}}(\theta) = T_0 \, \alpha(\theta, G_{\text{grad}}).
 $$
-When $\alpha > 1$, local cycles are longer relative to $T_0$; when $\alpha < 1$, they are shorter. This is a phase-closure clock-rate diagnostic, not a change in absolute time.
+When $\alpha > 1$, local cycles are longer relative to $T_0$; when $\alpha < 1$, they are shorter. This sector-delay diagnostic becomes a proper-time clock law only after the accepted branch functional $T_q(v,G_{\text{grad}})$ is derived from the full cycle and matched to the transverse causal budget. It is not a rival definition of proper time and not a change in absolute time.
 
 **Geometric source of clock-rate shift:** The causal envelope shape sets $\Delta t_{\text{rt}}$. As the tri-binary tilts out of planar and loses energy, the envelope becomes less oblate (larger $R_\parallel/R_\perp$), increasing some path lengths and stretching $T_{\text{local}}$; as it flattens, $R_\parallel$ shrinks and the corresponding delays contract. Gradients ($G_{\text{grad}}$) further skew delays across the orbit.
 
@@ -1091,6 +1204,8 @@ evaluated on coarse-grained assembly trajectories and photon planar-mode rays.
 
 The current framework should treat the equivalence principle as a closure constraint rather than as already-derived microphysics. The requirement is local: a uniformly accelerated assembly and a stationary assembly placed in a matched Noether-Sea gradient should exhibit the same local delay-geometry diagnostics to the order probed by observer-built clocks and rulers.
 
+This is a separate burden from any Jacobson-style or thermodynamic recovery of the effective Einstein equation. Metric equation-of-state behavior can explain why a coarse Noether-Sea record produces GR-like observer geometry, but it does not by itself show that an assembly's inertial response under applied acceleration is the same local record as its response inside a Noether-Sea gradient.
+
 In current language, the comparison is:
 
 - **Gravity case:** the surrounding Noether Sea carries a local gradient that skews the assembly's delay structure.
@@ -1104,6 +1219,25 @@ The practical diagnostics are the same in both cases:
 - anisotropy ratios of the internal geometry,
 - clock-rate shifts,
 - stability thresholds for aligned and oblate states.
+
+Quantum phase tests provide a second diagnostic layer for the same equivalence-principle constraint. In a guided/free-fall atom interferometer, the retained observable is not a collapse signal but the fitted cubic-time phase coefficient after ordinary control phases have been removed:
+$$
+\Delta\phi_{\mathrm{gf}}(T)
+=
+\widehat{\beta}_{T^3}T^3
++\Delta\phi_{\mathrm{ctrl}}(T)
++O(T^4).
+$$
+The dynamics-facing closure target is that the same local constitutive record $\theta$ used for clock-rate shifts and weak-field gravity predicts this coefficient:
+$$
+\mathcal{R}_{T^3}(\theta)
+=
+\frac{
+\left|\widehat{\beta}_{T^3}-\beta_{T^3}^{\mathrm{eff}}(\theta)\right|
+}{\sigma_{T^3}}
+\le 1.
+$$
+This benchmark tests whether the acceleration-driven and gradient-driven descriptions preserve the same quantum phase bookkeeping in the weak-field laboratory regime. It does not test active self-gravity of the branch mass distribution, which belongs to massive-superposition validation rather than to this local equivalence-principle check.
 
 For resonance questions, one additional diagnostic is worth tracking explicitly: a cycle-averaged causal-work or phase-slip variance. The working intuition is that non-commensurate drift samples the large-$1/|J|$ region irregularly, producing large cycle-to-cycle swings in delayed work, whereas a true lock should compress that variance and make the return map locally contractive.
 
@@ -1131,10 +1265,10 @@ An electrino:positrino binary is the most primitive assembly considered in the c
 
 Tri-binary minimality is a theorem target: the working claim is that three coupled binary layers are the minimal stable closure architecture capable of preserving inner memory, commensurability buffering, and boundary coupling under combined kinematic and gradient stress.
 
-- **Inner binary** (MCB, CFT-exterior role): typically in/near self-hit branch ($v \gtrsim c_f$ by history), and would define fundamental units if MCB attractor is confirmed.
-- **Middle binary** (CFT-exterior role): near the symmetry hinge ($v \approx c_f$) with variable radius/frequency; energy-storage fulcrum and coupling bridge.
-- **Outer binary** (CFT-exterior role): typically $v < c_f$ with expansion/contraction modes; couples strongly to Noether-Sea gravitational/cosmological response.
-At the holographic horizon, the three binaries are treated as a different regime where forward-sector components approach $c_f$ together; in interior AdS-like hypotheses, wake-closure can be described with combined $v_{\text{eff}} > c_f$ without requiring every component speed to exceed $c_f$.
+- **Inner binary** (MCB, partner/exterior comparison role): typically in/near self-hit branch ($v \gtrsim c_f$ by history), and would define fundamental units if MCB attractor is confirmed.
+- **Middle binary** (partner/exterior comparison role): near the symmetry hinge ($v \approx c_f$) with variable radius/frequency; energy-storage fulcrum and coupling bridge.
+- **Outer binary** (partner/exterior comparison role): typically $v < c_f$ with expansion/contraction modes; couples strongly to Noether-Sea gravitational/cosmological response.
+At the terminal-alignment interface, the three binaries are treated as a different regime where forward-sector components approach $c_f$ together; in self-hit interior comparison hypotheses, wake-closure can be described with combined $v_{\text{eff}} > c_f$ without requiring every component speed to exceed $c_f$.
 
 The stronger claim that this architecture supplies the basis for rest mass, proper time, photon behavior, and standard-model particle families remains a theorem burden for the broader causal-closure program.
 

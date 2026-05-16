@@ -23,9 +23,13 @@ The wavefunction encodes:
 
 When standard non-relativistic, fixed-particle-number quantum mechanics uses a unitary evolution equation (the Schrödinger equation), it is tracking the linear, idealized propagation of these coarse-grained potential distributions across the Noether Sea.
 
+That statement is licensed only after the action-to-envelope handoff supplies a controlled residual. The effective wavefunction chart must name the coarse fields, the phase-amplitude map, and the retained record window; it must pass the action-to-envelope residual $\mathcal{R}_{\mathrm{env}}\le\epsilon_{\mathrm{env}}$ in [Effective Lagrangian](../dynamics/effective-lagrangian.md#closure-interface-action-to-envelope-reduction), and any later update must pass the record-autonomy tests in [Measurement Ontology](measurement-ontology.md#what-makes-an-interaction-a-record). Otherwise $\psi$ remains a useful fitting envelope, not a promoted quantum closure.
+
 The phrase "the system is in a superposition" is therefore not a standalone ontological claim in this chapter. It is an effective statement relative to a declared representation and record channel. If the preparation, apparatus kernel, retained coarse-graining, or access region changes, the apparent basis in which a branch expansion is written may change while the underlying assembly and causal-wake history do not. The substrate claim remains the same: one deterministic history is unfolding, while the effective wavefunction carries alternatives that have not yet become autonomous records.
 
 A path-integral description is useful as a comparison because it treats possible histories rather than only final pointer states. In this chapter that comparison stays epistemic: a history weight or event measure is an observer-level bookkeeping device unless it is tied to the same deterministic assembly flow, causal-wake path history, and record criterion used in [Measurement Ontology](measurement-ontology.md). This distinction matters most in black-hole and early-cosmology regimes, where no external measuring apparatus can be placed outside the whole system.
+
+The effective status of the wavefunction does not make every overlap between state descriptions harmless. For independently prepared systems, the Pusey-Barrett-Rudolph comparison is a preparation-record audit: the account must state whether the substrate preparation measure factorizes, what provenance data are retained, and how the standard state-discrimination statistics are recovered. If those assumptions are accepted in a tested regime, overlap of effective wavefunction descriptions becomes a closure burden rather than an automatic escape from the theorem's burden; the detailed replacement constraint is recorded in [No-Go Theorems](../validation/no-go-theorems.md).
 
 ## The Origin of Uncertainty
 
@@ -87,6 +91,8 @@ P(R_n)=\mu_*\!\left(\pi^{-1}(R_n)\right),
 $$
 with $\mu_*$ derived from the invariant or coarse-grained measure of the same dynamics that supplies the effective wave equation. A free-standing external geometric measure, by contrast, is only a scaffold until it is tied to the Master Equation, record formation, and the retained measurement channel.
 
+Subsystem decomposition carries the same burden. A useful comparison may speak about probability moving between subsystems, but the native statement is not a free tensor-factor flow. The preparation, apparatus kernel, coarse-graining, access region, and record window must first determine which reduced metastable coordinates and boundary data are retained. Only then can $\mu_{*,T}$ assign weights to the record basins $\pi^{-1}(R_n)$, and only the same retained transfer law may decide whether those weights are restartable after a record or still carry unresolved path-history influence before a record.
+
 Repeated-record confirmation is part of the same burden. For counts $N_n$ gathered through the declared record channel, the observed frequencies $\widehat f_n=N_n/N$ must converge to the same $P(R_n)$ within the calibrated apparatus tolerance. The detailed frequency residual is owned by [Quantum Operator Mapping](../theory-bridges/quantum-operator-mapping.md#statistical-measure-and-the-born-rule-emergence), while [Measurement Ontology](measurement-ontology.md#repeated-record-confirmation) owns the record-channel version. This chapter's point is narrower: basin weights cannot remain formal branch labels if they are supposed to replace the Born rule. They must also be usable for ordinary confirmation and falsification.
 
 ## Epistemic Branching (Reinterpreting Many-Worlds)
@@ -96,6 +102,14 @@ The Everettian Many-Worlds interpretation visualizes a branching tree of paralle
 There is only one realized, strictly continuous trajectory in absolute time. The "branches" merely map the divergent possibilities of coarse-grained histories near a bifurcation point. Because the Physical Observer lacks the full path-history data required to calculate the exact threshold resolution, the mathematics must carry all stable attractors forward as superpositions until a macroscopic record (decoherence) isolates the realized path. No ontic universes are spawned; the system simply settles into one uniquely determined groove in the potential landscape.
 
 Branch language is also representation-sensitive. A branch family $\{B_i\}$ is meaningful only after the retained record coordinates and apparatus channel have been fixed. A basis rotation in Hilbert space may give a different-looking superposition, but it does not by itself create a new substrate event. The accepted test is whether the candidate basin family satisfies the recordability and restartability conditions in [Measurement Ontology](measurement-ontology.md#what-makes-an-interaction-a-record).
+
+A zero coefficient in one effective Hilbert expansion is therefore not a substrate-existence test. It can justify discarding a component from the observer-level envelope only when the corresponding record-basin measure is below the declared tolerance for the same apparatus channel. In symbols, an effective coefficient $c_i=0$ licenses only the record-facing claim
+$$
+\mu_{*,T}(B_i)\mathbf{1}_{\mathrm{rec}}(i;\theta)
+\le
+\varepsilon_{\mathrm{Born}},
+$$
+not the stronger claim that no substrate history exists. The substrate-side question remains whether $B_i$ is a completed, recordable basin for the declared setup $\theta$, not whether one coordinate chart happens to give a vanishing expansion coefficient.
 
 The boundary between an unresolved branch envelope and a completed record should therefore be tested by the record-autonomy residual in [Measurement Ontology](measurement-ontology.md#what-makes-an-interaction-a-record), not by a metaphysical decision about how many worlds exist. In the wavefunction description, interference remains live while
 $$
@@ -129,6 +143,19 @@ $$
 \Delta_{\mathrm{ens}}(\mathcal{Q},W,T)\le\varepsilon_{\mathrm{ens}}.
 $$
 This condition keeps the useful Everettian lesson that branch descriptions become robust through dynamics, while refusing to count a formal Hilbert-space expansion as a substrate event. If any line fails, the effective wavefunction still carries an unresolved branch envelope; it has not earned a completed record or an independent outcome count in $\mathbb{A}\mathbb{A}\mathbb{A}$.
+
+Equivalently, for a declared setup $\theta=(\mathcal{K}_A,\mathcal{Q},W,T)$, the effective branch family available for record counting is
+$$
+\mathcal{B}_{\mathrm{rec}}(\theta)
+=
+\left\{
+B_i:
+\mathbf{1}_{\mathrm{rec}}(i;\theta)=1,\quad
+\sup_{j\ne i}\sup_{t\in T}\Delta_{\mathrm{recoh}}(t;i,j)\le\varepsilon_{\mathrm{recoh}},\quad
+\mu_{*,T}(B_i)\ge\mu_0(\mathcal{Q},W)
+\right\}.
+$$
+Only basins in $\mathcal{B}_{\mathrm{rec}}(\theta)$ may be counted as completed observer-level alternatives. Formal components outside this family may remain useful for calculation, but they are unresolved envelope structure rather than independent outcomes.
 
 The same boundary can be checked from the effective transition law. Let $\mathcal{T}^{\mathcal{Q}}_{a\to b}$ denote the observer-level transition operator induced by the same deterministic substrate flow after coarse-graining by $\mathcal{Q}$. For $t_0<t_1<t_2$, define the coarse-grained divisibility residual
 $$
@@ -176,6 +203,16 @@ $$
 For attractor basins $\{B_n\}$,
 $$
 P_n=\mu_*(B_n).
+$$
+Here $B_n$ means a record-forming basin for the declared apparatus channel, not every formal component of a Hilbert-space expansion. If the channel carries candidate branches that have not yet satisfied the record-autonomy, persistence, event-ledger, and energy-residual tests in [Measurement Ontology](measurement-ontology.md#what-makes-an-interaction-a-record), the Born-side weight is computed only after applying that record filter:
+$$
+P_n
+=
+\frac{
+\mu_*(B_n)\mathbf{1}_{\mathrm{rec}}(n;\theta)
+}{
+\sum_m\mu_*(B_m)\mathbf{1}_{\mathrm{rec}}(m;\theta)
+}.
 $$
 
 The closure target for this chapter is:

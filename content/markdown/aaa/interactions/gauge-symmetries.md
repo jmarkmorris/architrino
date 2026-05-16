@@ -124,6 +124,25 @@ $$
 \frac{q_{\mathrm{eff}}}{\hbar}\Phi_B
 \right|.
 $$
+When the benchmark is evaluated as a concrete interferometer packet, the force-free and phase requirements should be checked together rather than fitted separately. For a branch record $\theta$, one compact validation residual is
+$$
+\mathcal{V}_{\mathrm{AB}}(\theta)
+=
+w_F\sum_{a=1}^{2}\int_{\gamma_a}
+\left\|\mathbf{F}_{\mathrm{eff}}(\theta)\right\|^2\,ds
++
+w_\phi
+\inf_{N\in\mathbb{Z}}
+\left|
+\Delta\phi_{\mathrm{AB}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)
+-
+\frac{q_{\mathrm{eff}}}{\hbar}\Phi_B
+-
+2\pi N
+\right|,
+$$
+with $w_F$ and $w_\phi$ fixed by the declared interferometer tolerance. The benchmark passes only when $\mathcal{V}_{\mathrm{AB}}(\theta)\le\varepsilon_{\mathrm{AB}}$ for the same wake/action ledger, so a model cannot trade a hidden local force for phase recovery or tune the phase apart from the local electromagnetic-force record.
+
 The U(1) closure passes this benchmark only if $\Delta_{\mathrm{AB}}$ remains below the declared interferometric tolerance while the same effective connection also preserves charge continuity and ordinary electromagnetic force recovery. If the phase recovery requires a local force on the arms, a separate phase fit, or a literal promotion of $A_\mu$ to substrate ontology, this gauge bridge has failed at the AB gate.
 
 ### Global Gauge-Topology Completion Target
@@ -146,7 +165,26 @@ $$
 $$
 Here $F_{\mathrm{eff}}$ is the observer-level curvature recovered from the same effective gauge record used for force and phase transport. The integer $N$ records the allowed $2\pi$ ambiguity of the phase, not an independent hidden sector.
 
-The global gauge-topology target passes only if $\Delta_{\mathrm{gauge,glob}}$ stays below tolerance while charge continuity, local force recovery, AB holonomy, and flux/charge compatibility are all read from one shared record. It fails if a chart-dependent potential must be promoted to ontology, if the topological charge is inserted separately from the wake/action ledger, or if the same sector requires different Noether-Sea variables for force, phase, and charge recovery.
+A compact sector check inside the same target is useful when the benchmark includes disconnected flux sectors or instanton-like sectors rather than a single loop. Let $\mathcal{C}_{\mathrm{top}}$ be the declared family of observer-level gauge-topology sectors, and let $\mathcal{O}_{\mathrm{SM}}(s)$ be the corresponding Standard Model comparison record for sector $s$. The same wake/action ledger may define
+$$
+\Delta_{\mathrm{sector}}(\theta)
+=
+\sup_{s\in\mathcal{C}_{\mathrm{top}}}
+\left[
+\inf_{n_s\in\mathbb{Z}}
+\left|
+\mathcal{Q}^{\mathbb{A}\mathbb{A}\mathbb{A}}_{\mathrm{wake}}(s;\theta)-n_s
+\right|
++
+d_{\mathrm{obs}}\!\left(
+\mathcal{O}_\theta(s),
+\mathcal{O}_{\mathrm{SM}}(s)
+\right)
+\right].
+$$
+Here $\mathcal{Q}^{\mathbb{A}\mathbb{A}\mathbb{A}}_{\mathrm{wake}}$ is only the sector label extracted from the retained causal-wake/action record. It is not an independent topological charge assigned after the effective gauge description has already been fitted.
+
+The global gauge-topology target passes only if $\Delta_{\mathrm{gauge,glob}}$ and any declared $\Delta_{\mathrm{sector}}$ stay below tolerance while charge continuity, local force recovery, AB holonomy, and flux/charge compatibility are all read from one shared record. It fails if a chart-dependent potential must be promoted to ontology, if the topological charge is inserted separately from the wake/action ledger, or if the same sector requires different Noether-Sea variables for force, phase, and charge recovery.
 
 ## SU(2) Weak Sector
 
