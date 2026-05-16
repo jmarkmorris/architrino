@@ -168,8 +168,10 @@ The proof route has four controlled steps.
 | `thermo-area-scaling-open` | $\widehat{S}$ scales with volume, history length, or patch choice rather than $A_{\partial\Omega}^{\mathrm{eff}}$ |
 | `thermo-temperature-split-open` | $\widehat{T}_U$ requires an acceleration or clock channel not present in the metric record |
 | `thermo-flux-split-open` | $\widehat{dQ}$ is fitted from a stress or energy record not used by the observer metric |
+| `thermo-residual-open` | $\widehat{\mathcal{R}}_{\mathrm{thermo}}^{(O)}$ exceeds the declared tolerance |
 | `thermo-conservation-open` | $\mathcal{R}_{E,\partial\Omega}^{(O)}$ exceeds tolerance |
 | `thermo-ppn-split-open` | the local-horizon residual passes only for a record that fails the weak-field ADM/Cartan or PPN gates |
+| `thermo-negative-control-open` | a declared negative control still passes the local-horizon packet |
 
 ## Negative Controls
 
@@ -180,6 +182,36 @@ A promoted packet must include at least three null runs:
 3. compute flux with an independently fitted stress record, which should be rejected as a split-record pass.
 
 If these null runs still pass, the residual is not measuring thermodynamic closure.
+
+## Runtime Artifact
+
+The first scaffold is:
+
+```text
+node scripts/gravity/thermodynamic-residual.mjs --pretty
+```
+
+It consumes:
+
+```text
+scripts/gravity/thermodynamic-residual-mock.json
+```
+
+and emits a JSON result with this shape:
+
+| Output field | Meaning |
+| --- | --- |
+| `observations` | computed label counts, entropy change, local temperature, flux, area residual, thermodynamic residual, conservation residual, same-record checks, and weak-field gate checks |
+| `negative_controls` | declared null runs and whether any passed when they should have failed |
+| `totals.max_area_residual` | largest area-scaling residual across local-horizon rows |
+| `totals.max_thermodynamic_residual` | largest $\widehat{\mathcal{R}}_{\mathrm{thermo}}^{(O)}$ across rows |
+| `totals.max_conservation_residual` | largest $\mathcal{R}_{E,\partial\Omega}^{(O)}$ across rows |
+| `gates` | label coverage, same-record temperature, same-record flux, area scaling, thermodynamic residual, conservation, weak-field same-record, and negative-control gates |
+| `failure_code` | null on pass, otherwise the first failed thermodynamic-residual gate |
+
+The mock packet is deliberately dimensionless. It uses $k_B=\hbar=c_0=A_{\text{align}}=1$ so the packet shape can be inspected by hand before any real Noether-Sea simulation supplies physical units, observer records, and boundary-wake provenance.
+
+This runtime should not be expanded into a large fixture family unless it protects a live derivation. Its main value is to keep the theory honest at the handoff point where a candidate Noether-Sea record claims to supply entropy, temperature, flux, and weak-field metric recovery together. Until such a record exists, additional passing and failing fixtures are lower value than deriving the record itself.
 
 ## Promotion Boundary
 

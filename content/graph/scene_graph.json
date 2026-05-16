@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 491,
+      "nodes": 492,
       "edges": 1239,
       "scenes": 320,
       "markdownIndexes": 0,
-      "markdownDocs": 171,
+      "markdownDocs": 172,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -3032,6 +3032,12 @@
       "id": "content/markdown/aaa/validation/simulations/architrino.md",
       "name": "Architrino Simulation Tests",
       "path": "content/markdown/aaa/validation/simulations/architrino.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/validation/simulations/bell-family-record-measure.md",
+      "name": "Bell-Family Record-Measure Harness",
+      "path": "content/markdown/aaa/validation/simulations/bell-family-record-measure.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -7423,6 +7429,15 @@
       "name": "Architrino Simulation Tests",
       "path": "content/markdown/aaa/validation/simulations/architrino.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/architrino.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/bell-family-record-measure.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/validation/simulations/bell-family-record-measure.md",
+      "name": "Bell-Family Record-Measure Harness",
+      "path": "content/markdown/aaa/validation/simulations/bell-family-record-measure.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/bell-family-record-measure.md",
       "implicit": false
     },
     {

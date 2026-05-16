@@ -203,6 +203,97 @@ $$
 $$
 must be small on the same windows. Thus the local-horizon pass condition is not only $\mathcal{R}_{\mathrm{thermo}}\le\epsilon_{\mathrm{thermo}}$, but also $\mathcal{R}_{E,\partial\Omega}^{(O)}\le\epsilon_E$ and the weak-field ADM/Cartan gates for the same $\theta$. A concrete simulation protocol for this target is [Thermodynamic Residual Protocol](../validation/simulations/thermodynamic-residual.md).
 
+#### Native Shared-Record Variation Target
+
+The residual above becomes a derivation only after the comparison record is made explicit. For a region $\Omega$, Physical Observer $O$, and finite analysis window $W$, use
+$$
+\theta_{\Omega,O,W}
+=
+\left(
+\mathcal{H}_{\Omega}^{W},
+\mathcal{B}_{\partial\Omega}^{(O)}(W),
+N_{\text{sea}}|_{\Omega,W},
+O_W,
+\Pi_{\mathrm{eff}},
+\mu_{\Omega,\theta}
+\right).
+$$
+Here $\mathcal{H}_{\Omega}^{W}$ is the retained path-history data on the window, $\mathcal{B}_{\partial\Omega}^{(O)}(W)$ is the observer-accessible boundary-wake record, $N_{\text{sea}}|_{\Omega,W}$ is the locally resolved Noether-Sea state, $O_W$ is the observer's clock, ruler, and readout state on the window, $\Pi_{\mathrm{eff}}$ is the projection to the observer-level fields $(N,u^i_{\text{sea}},\gamma_{ij},T_{\mu\nu}^{\mathrm{eff}})$, and $\mu_{\Omega,\theta}$ is the conditional measure over unresolved deterministic histories. This tuple is not a new substrate object. It only names the record that must supply entropy, temperature, flux, and effective metric data together.
+
+Let $\delta_\ell$ denote an admissible local-horizon perturbation that keeps the observer, window, projection map, and comparison regime fixed while varying the resolved Noether-Sea state and boundary flux through the patch. The native closure target is
+$$
+\delta_\ell
+\log\left|
+\mathcal{B}_{\partial\Omega}^{(O)}
+\left(\theta_{\Omega,O,W}\right)
+\right|
+=
+\frac{\delta_\ell A_{\partial\Omega}^{\mathrm{eff}}}{4A_{\text{align}}}
+=
+\frac{\delta_\ell Q_{\partial\Omega}^{(O)}}{k_B T_U^{(O)}}
++
+\mathcal{O}(\epsilon_{\mathrm{local}}).
+$$
+Equivalently, $\delta_\ell Q_{\partial\Omega}^{(O)}=T_U^{(O)}\delta_\ell S_{\partial\Omega}^{(O)}+\mathcal{O}(k_B T_U^{(O)}\epsilon_{\mathrm{local}})$, with $S_{\partial\Omega}^{(O)}=k_B\log|\mathcal{B}_{\partial\Omega}^{(O)}|$. The error term collects declared local-gradient, finite-window, and record-coarse-graining residuals; it may not hide a second entropy record, a second stress record, or a separately tuned temperature.
+
+The first proof step is to show that the logarithmic boundary-label count admits an area density on the observer-level horizon patch:
+$$
+\log\left|
+\mathcal{B}_{\partial\Omega}^{(O)}
+\left(\theta_{\Omega,O,W}\right)
+\right|
+=
+\int_{\partial\Omega}
+\sigma_{\mathrm{bw}}
+\left(\theta_{\Omega,O,W};x\right)
+dA_{\mathrm{eff}}(x)
++
+\mathcal{O}(\epsilon_{\mathrm{edge}}),
+\qquad
+\sigma_{\mathrm{bw}}
+\longrightarrow
+\frac{1}{4A_{\text{align}}}
+$$
+in the equilibrium weak-field limit. The proof fails if the distinguishable boundary-wake count scales with unresolved interior volume or arbitrary history length after the effective area is fixed, if $T_U^{(O)}$ is not extracted from the same observer-channel acceleration that defines $A_{\partial\Omega}^{\mathrm{eff}}$, if $dQ_{\partial\Omega}^{(O)}$ uses a stress tensor not projected from $\theta_{\Omega,O,W}$, or if the same record cannot also satisfy weak-field ADM/Cartan recovery.
+
+A more explicit reduction is the boundary-factorization theorem target. Let $\mathcal{P}_{\partial\Omega}$ be a patch decomposition of the observer-level horizon surface with
+$$
+A_{\mathrm{eff}}(P_a)
+=
+A_{\text{align}}
++
+\mathcal{O}(\epsilon_A A_{\text{align}}),
+\qquad
+P_a\in\mathcal{P}_{\partial\Omega}.
+$$
+Let $\mathcal{L}_a(\theta_{\Omega,O,W})$ be the retained boundary-wake labels in $P_a$ after fixing the observer record and the neighboring patch data to the accuracy declared by $\epsilon_{\mathrm{local}}$. The locality part of the theorem target is
+$$
+\log\left|
+\mathcal{B}_{\partial\Omega}^{(O)}
+\left(\theta_{\Omega,O,W}\right)
+\right|
+=
+\sum_{P_a\in\mathcal{P}_{\partial\Omega}}
+\log\left|
+\mathcal{L}_a(\theta_{\Omega,O,W})
+\right|
++
+\mathcal{O}\!\left(
+|\partial\mathcal{P}_{\partial\Omega}|\epsilon_{\mathrm{corr}}
+\right),
+$$
+where the correction records edge and finite-correlation effects between adjacent patches. The normalization part is then the aligned-label statement
+$$
+\frac{1}{|\mathcal{P}_{\partial\Omega}|}
+\sum_{P_a\in\mathcal{P}_{\partial\Omega}}
+\log\left|
+\mathcal{L}_a(\theta_{\Omega,O,W})
+\right|
+\longrightarrow
+\frac{1}{4}.
+$$
+Together with $|\mathcal{P}_{\partial\Omega}|A_{\text{align}}\to A_{\partial\Omega}^{\mathrm{eff}}$, these two claims imply the area density above. This does not prove the coefficient by definition. It reduces the problem to a local aligned-interface calculation: terminal tri-binary alignment must supply a universal distinguishable-label count per alignment-area patch, and the surrounding Noether-Sea record must make correlations short-range enough that the boundary count is additive up to edge residuals.
+
 ## Refraction vs. Curvature
 
 - From the **$\mathbb{U}_{\text{now}}$ universe-state perspective**:

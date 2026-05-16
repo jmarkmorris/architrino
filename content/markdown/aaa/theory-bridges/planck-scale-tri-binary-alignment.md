@@ -334,12 +334,29 @@ A full derivation of $G$ from medium compliance is still to be done; the formula
 With Planck alignment as an endpoint rather than a point singularity:
 
 - Black-hole-like objects are interpreted as regions where large numbers of tri-binaries are **driven close to or into** the alignment state.
-- The inner core is then made of “tiles” of characteristic size $R_{\text{align}}$.
+- The horizon-adjacent interface is then modeled by patches whose characteristic scale is $R_{\text{align}}$, while any core-volume packing interpretation remains a separate conjecture.
 
 > **Conjecture (Condensate-Like Aligned Phase).**  
 > We conjecture that black-hole cores correspond to a **condensate-like phase** dominated by planar-aligned, effectively bosonic tri-binaries. This analogy is structural:
 > - Many nearly identical aligned assemblies occupy a low-dimensional configuration manifold (planar disk orientation).
-> - Entropy and area scaling may emerge from counting these aligned “tiles” on horizon-adjacent surfaces.
+> - Entropy and area scaling would have to emerge from counting alignment-compatible boundary labels on horizon-adjacent surfaces, not from arbitrary volume packing.
+
+The area-counting part of the conjecture is narrow. If a horizon-adjacent surface is decomposed into patches with $A_{\mathrm{eff}}(P_a)=A_{\text{align}}+\mathcal{O}(\epsilon_A A_{\text{align}})$, the required local statement is
+$$
+\log|\mathcal{B}_H|
+=
+\sum_a
+\log|\mathcal{L}_a|
++
+\mathcal{O}(\epsilon_{\mathrm{edge}}),
+\qquad
+\frac{1}{N_A}
+\sum_{a=1}^{N_A}
+\log|\mathcal{L}_a|
+\longrightarrow
+\frac{1}{4},
+$$
+where $\mathcal{L}_a$ is the set of observer-distinguishable alignment-compatible labels on one patch and $N_AA_{\text{align}}\to A_H$. Thus the Planck-alignment program does not get black-hole entropy merely by naming a small area. It must show that terminal tri-binary alignment supplies a universal local label count and that correlations between neighboring patches do not restore volume scaling.
 
 We deliberately use “condensate-like” here; a full condensate claim would require:
 

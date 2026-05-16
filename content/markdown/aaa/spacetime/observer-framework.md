@@ -103,11 +103,23 @@ where $N_{\text{sea}}|_{\Omega}(t)$ denotes the locally resolved Noether-Sea sta
 
 The same finite-boundary form is the local substitute for placing a hypothetical observer at infinity in compact strong-field comparisons. For black-hole and cosmology problems, $\mathcal{B}_{\partial\Omega}$ is the controlled interface between what a Physical Observer can access and what the complete state must carry for deterministic continuation.
 
+For local-horizon thermodynamic comparisons, the countable object is not the raw boundary history by itself. It is the retained boundary-wake label family after the Physical Observer's record channel has identified histories that cannot be distinguished on the declared window:
+$$
+\mathcal{B}_{\partial\Omega}^{(O)}(\theta;W)
+=
+\left.
+\widehat{\mathcal{B}}_{\partial\Omega}(t;\theta)
+\right|_{W}
+/
+\sim_{O,\theta,W}.
+$$
+Here $\widehat{\mathcal{B}}_{\partial\Omega}(t;\theta)$ denotes the boundary wake history retained by the observer model record, and $\mathcal{B}_1\sim_{O,\theta,W}\mathcal{B}_2$ means that the two retained boundary histories give the same Physical Observer clock, ruler, detector, and readout records on $W$ within the declared tolerance. This quotient is an observer-accessible coarse-graining of deterministic boundary data, not a new substrate boundary. It is the object later counted in local-horizon entropy targets.
+
 ## Boundary-Wake Covariance Scaffold
 
 The boundary term above also supplies the native home for covariance matrices used by observer-level measurement diagnostics. A covariance is not fundamental randomness. It is a finite-access summary of boundary wake histories, detector states, and Noether-Sea variables not resolved by a Physical Observer.
 
-Let $\widehat{\mathcal{B}}_{\partial\Omega}(t;\theta)$ be the boundary wake history retained by an observer model record $\theta$. The unresolved boundary residual is
+With this notation, the unresolved boundary residual is
 $$
 \delta\mathcal{B}_{\partial\Omega}(t;\theta)
 =
