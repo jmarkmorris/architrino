@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1163
+      "sections": 1161
     }
   },
   "tocRoot": {
@@ -1678,10 +1678,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Status and Next Checks",
+                "title": "Claim Scope",
                 "markdownPath": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
-                "markdownSection": "Status and Next Checks",
-                "sectionKey": "status and next checks",
+                "markdownSection": "Claim Scope",
+                "sectionKey": "claim scope",
                 "headingLevel": 2
               }
             ]
@@ -2937,10 +2937,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Summary and Next Steps",
+                    "title": "Summary and Interfaces",
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
-                    "markdownSection": "Summary and Next Steps",
-                    "sectionKey": "summary and next steps",
+                    "markdownSection": "Summary and Interfaces",
+                    "sectionKey": "summary and interfaces",
                     "headingLevel": 2
                   }
                 ]
@@ -4252,26 +4252,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Decider: Minimal Bias-Setting Complex",
+                "title": "Switch and Decider as Future Capability",
                 "markdownPath": "content/markdown/aaa/quantum/reality-quantum-causality.md",
-                "markdownSection": "Decider: Minimal Bias-Setting Complex",
-                "sectionKey": "decider minimal bias setting complex",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Switch: Minimum Viable Atomic Hardware (He‑Rb‑He)",
-                "markdownPath": "content/markdown/aaa/quantum/reality-quantum-causality.md",
-                "markdownSection": "Switch: Minimum Viable Atomic Hardware (He‑Rb‑He)",
-                "sectionKey": "switch minimum viable atomic hardware he rb he",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Closure Targets",
-                "markdownPath": "content/markdown/aaa/quantum/reality-quantum-causality.md",
-                "markdownSection": "Closure Targets",
-                "sectionKey": "closure targets",
+                "markdownSection": "Switch and Decider as Future Capability",
+                "sectionKey": "switch and decider as future capability",
                 "headingLevel": 2
               }
             ]
@@ -5407,10 +5391,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Weak-Reaction Provenance Sketch",
+                "title": "Future Capability Illustration: Weak-Reaction Provenance",
                 "markdownPath": "content/markdown/aaa/theory-bridges/weak-mixing-ckm.md",
-                "markdownSection": "Weak-Reaction Provenance Sketch",
-                "sectionKey": "weak reaction provenance sketch",
+                "markdownSection": "Future Capability Illustration: Weak-Reaction Provenance",
+                "sectionKey": "future capability illustration weak reaction provenance",
                 "headingLevel": 2
               },
               {

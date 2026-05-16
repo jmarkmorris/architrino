@@ -54,6 +54,54 @@ while also carrying the work, dissipation, and hold-time ledgers below.
 
 This packet consumes the shared [transfer-operator and basin-measure theorem](transfer-operator-basin-measure.md). It owns the Decider topology, work ledger, hold time, and measurable basin shift; the shared packet owns the operator/measure grammar that decides whether the shift is a real change in $\mu_*(B_i)$.
 
+## Pulled-Back Illustrative Models
+
+The reader-facing reality/causality chapter should treat the following as illustrative future capability, not as canonized mechanism. They are retained here because they are useful search scaffolds for theorem and simulation work.
+
+### Self-hit threshold toy model
+
+A schematic delay-oscillator model can illustrate how a control parameter near $v/c_f$ changes stability. Let $x(t)$ be a reduced middle-binary deviation, with partner coupling approximated by a damped restoring term and self-hit feedback approximated by a delayed gain:
+$$
+\ddot{x}(t)
++2\zeta\omega_0\dot{x}(t)
++\omega_0^2x(t)
+=
+g(\beta)x(t-\tau),
+\qquad
+\beta=v/c_f.
+$$
+The characteristic equation is
+$$
+\lambda^2+2\zeta\omega_0\lambda+\omega_0^2-g(\beta)e^{-\lambda\tau}=0.
+$$
+The toy model is useful only as a threshold scaffold. A real proof must replace $g(\beta)$ and $\tau$ with active causal-root ledgers, Jacobian floors, and the branch-chart closure object from the Master Equation.
+
+### Action-step bracket toy model
+
+The uncertainty-bracket sketch should remain a working model until derived. Let $S$ be an action-like threshold coordinate and $E$ an energy-like slow coordinate:
+$$
+\dot S=E-E_{\mathrm{ref}},
+\qquad
+\dot E
+=
+-\gamma(E-E_{\mathrm{ref}})
++F_{\mathrm{ext}}(t)
++\kappa M(t-\tau).
+$$
+A basin flip is modeled when $S$ crosses $S=nh$. A finite Lyapunov time $\tau_L$ and forcing scale $|F_{\mathrm{ext}}|$ suggest a bracket $\delta\sim |F_{\mathrm{ext}}|\tau_L$, but this is not an $h$ derivation. It becomes promotable only if the bracket is computed from a declared basin measure, apparatus kernel, and record window.
+
+### Candidate switch architecture
+
+The He-Rb-He sketch is retained as a candidate applied Switch, not as a minimality theorem. Rubidium supplies a soft metastable sensor through a Rydberg-like outer-electron channel; the two helium atoms supply a biasing geometry. The proposed role split is:
+
+| Role | Illustrative implementation | Required proof condition |
+| --- | --- | --- |
+| Sensor | Rb outer-electron channel | The perturbation class reaches a declared metastable basin. |
+| Bias / clamp | Two He atoms or other stiff neighbors | The bias state changes later basin weights under fixed boundary context. |
+| Threshold slot | Rydberg-like transition or ionization channel | The held state satisfies the Switch hold-time and work-ledger gates. |
+
+The current neutral-count estimate is $2(168)+3576=3912$ architrinos, subtracting $12$ per missing electron if Rb is ionized. This number is only an illustrative computed architecture. The priority task is to enumerate role graphs and deletion tests; a smaller architecture may exist.
+
 ## Primitive Assembly Ladder
 
 The minimality question should be handled as a ladder rather than as a single yes/no label:

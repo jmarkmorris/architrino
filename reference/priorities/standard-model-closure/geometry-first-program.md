@@ -16,6 +16,14 @@ For sector visibility, this packet consumes the shared [exposure-quotient theore
 | [weak-mixing-ckm](../../../content/markdown/aaa/theory-bridges/weak-mixing-ckm.md) | CKM / PMNS overlap-integral derivations, CP phase tests, and weak `V-A` chirality. |
 | [electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md) | Weak corridor provenance and the status of $W^\pm$ as charge-routing bundles versus carriers of pro/anti Noether-core provenance. |
 
+## Pulled-Back Color SU(3) Interfaces
+
+The reader-facing color chapter should summarize the accepted algebra and confinement interface. The downstream work items remain here:
+
+1. Use the down-quark pattern families, H/M/L regime differences, and braid orientation to test neutrino-oscillation interfaces, proton-neutron mass and magnetic-moment differences, residual nuclear forces, and the QCD phase-transition / early-universe thermodynamics handoff.
+2. Derive the open-vs-closed energy scaling from one branch record, with explicit $\sigma_{\mathrm{eff}}$ extraction from medium shear, torsion, braid, or line-defect strain rather than a fitted confinement parameter.
+3. Keep baryon color singlets and flux-tube language tied to color-singlet relaxation and open-sector residuals, not to a finished derivation of all hadron observables.
+
 ## Remaining Leverage
 
 - Extend [quarks](../../../content/markdown/aaa/assemblies/fermions/quarks.md) from catalog closure to first-pass mass predictions for `u,d,c,s,t,b`.

@@ -81,12 +81,6 @@ This chapter does not own:
 - clock and ruler extraction; see [Proper Time and Time Dilation](proper-time-and-time-dilation.md),
 - or cosmological scale-factor translation; see [Expansion Mechanism](../cosmology/expansion-mechanism.md).
 
-## Status and Next Checks
+## Claim Scope
 
-This is a hypothesis note, not a closed derivation. Priority checks are:
-
-1. Define an explicit local coupling law for pro/anti core exchange and bounded imbalance relaxation.
-2. Show whether the $2+2$ cluster is actually an energy minimum under that law.
-3. Derive testable coarse-grained signatures that distinguish this medium model from purely metric-first baselines in weak and strong field regimes.
-
-Until those checks are completed, “spacetime assemblies” should be treated as a productive but provisional organizing framework.
+This is a hypothesis note, not a closed derivation. The chapter's claim is limited to the organizing possibility that local pro/anti Noether-core motifs may support the effective spacetime medium. A completed version must derive the local coupling law, test whether the $2+2$ pro/anti cluster is an energy minimum or only a design intuition, and extract weak-field, strong-field, or cosmological signatures from the same medium variables used by the effective-metric program.

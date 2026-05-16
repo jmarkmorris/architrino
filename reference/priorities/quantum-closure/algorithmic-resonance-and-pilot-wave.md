@@ -33,6 +33,28 @@ The single-ontology pilot-wave claim should be sharpened into a three-part reduc
 
 Failure occurs if the effective guidance law requires an independent configuration-space pilot field rather than a coarse-grained description of assembly and wake dynamics.
 
+## Pulled-Back Quantum Bridge Work Items
+
+The reader-facing bridge pages should state the ontology, comparison boundary, and closure interface. The operational work queue belongs here.
+
+### Effective wave and basin statistics
+
+The pilot-wave bridge keeps four active proof tasks:
+
+1. Derive the effective wave equation by coarse-graining the Master Equation over the Noether Sea at scales large compared to the tri-binary radius but small compared to atomic dimensions. The target is a regime in which a Schrödinger-form envelope appears, with leading corrections explicitly bounded.
+2. Simulate ensembles of identically prepared assemblies under the Master Equation with controlled unresolved Noether-Sea boundary histories; extract outcome distributions and compare them against $|\psi|^2$ only after the basin partition and measure source are declared.
+3. Compute phase-locking conditions for a single tri-binary assembly in a Coulomb-like confining potential, as a hydrogen-analog energy-spectrum stress test.
+4. Characterize non-Markovian guidance corrections from self-hit memory and identify regimes where causal-wake guidance can diverge from standard de Broglie-Bohm summaries.
+
+### Superposition and collapse separatrix tasks
+
+The superposition and collapse bridge pages contribute the finite-threshold component of the same program. The retained tasks are:
+
+1. Build a metastable outer-binary or switch-like target model with unresolved Noether-Sea boundary histories.
+2. Derive or simulate the first-passage time $\tau_c$ across a declared separatrix $\Sigma(X)=0$.
+3. Show that the distribution of $\tau_c$ and the selected basin weights are computed from the same transfer operator and finite-window measure.
+4. Use massive-superposition and weak-probe comparisons only as benchmark pressure; do not import a second collapse mechanism or a second ensemble.
+
 ## Algorithmic Resonance Gate
 
 For algorithmic resonance, the concrete target is a coherence-depth bound:

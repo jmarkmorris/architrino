@@ -484,6 +484,86 @@ function sourceResidualBudget(sourceRow, args) {
   };
 }
 
+function sourceStateReturnLedger(sourceRow, fallbackTolerance) {
+  const budget = sourceRow?.diagnostics?.residual_budget ?? null;
+  if (!budget) {
+    return null;
+  }
+  const tolerance = budget.tolerances?.state_return ?? fallbackTolerance;
+  const value = budget.maxima?.state_return_residual ?? null;
+  const overTolerance = budget.counts?.samples_over_state_tolerance ?? null;
+  return {
+    schema: "a0-tier1-state-return-residual/v1",
+    status: overTolerance === 0 && Number.isFinite(value) && value <= tolerance ? "passed" : "failed",
+    data_source: "carrier_replay_residual_budget",
+    acceptance_effect: false,
+    tolerance,
+    evaluated_sample_count: budget.sample_count ?? null,
+    samples_over_state_tolerance: overTolerance,
+    max_state_return_residual: value,
+    reason:
+      "Imported from exact carrier replay diagnostics. A passing value is sample-consistency evidence, not a direct Tier 1 continuation acceptance predicate.",
+  };
+}
+
+function sourceSpeedOrderingLedger(sourceRow, fallbackTolerance) {
+  const budget = sourceRow?.diagnostics?.residual_budget ?? null;
+  if (!budget) {
+    return null;
+  }
+  const tolerance = budget.tolerances?.speed ?? fallbackTolerance;
+  const value = budget.maxima?.speed_ordering_residual ?? null;
+  const overTolerance = budget.counts?.samples_over_speed_tolerance ?? null;
+  return {
+    schema: "a0-tier1-speed-ordering-residual/v1",
+    status: overTolerance === 0 && Number.isFinite(value) && value <= tolerance ? "passed" : "failed",
+    data_source: "carrier_replay_residual_budget",
+    acceptance_effect: true,
+    tolerance,
+    evaluated_sample_count: budget.sample_count ?? null,
+    samples_over_speed_tolerance: overTolerance,
+    max_speed_ordering_residual: value,
+  };
+}
+
+function sourceCenterDriftLedger(sourceRow, fallbackTolerance) {
+  const budget = sourceRow?.diagnostics?.residual_budget ?? null;
+  if (!budget) {
+    return null;
+  }
+  const tolerance = budget.tolerances?.center_gauge ?? fallbackTolerance;
+  const value = budget.maxima?.center_drift ?? null;
+  const endpoint = budget.maxima?.center_endpoint_drift ?? null;
+  const overTolerance = budget.counts?.samples_over_center_tolerance ?? null;
+  return {
+    schema: "a0-tier1-center-drift-residual/v1",
+    status: overTolerance === 0 && Number.isFinite(value) && value <= tolerance ? "passed" : "failed",
+    data_source: "carrier_replay_residual_budget",
+    acceptance_effect: false,
+    tolerance,
+    samples_over_center_tolerance: overTolerance,
+    max_center_drift: value,
+    center_endpoint_drift: endpoint,
+    reason:
+      "Imported from carrier replay diagnostics. A passing value is not enough for no_secular_center_drift until a direct regularized continuation trajectory exists.",
+  };
+}
+
+function notComputedEnergyLikeSpeedLedger(sourceRow) {
+  const frozen = sourceRow?.diagnostics?.frozen_root_one_period_drift ?? null;
+  return {
+    schema: "a0-tier1-energy-like-speed-residual/v1",
+    status: "not_computed",
+    data_source: "direct_energy_ledger_missing",
+    acceptance_effect: false,
+    tolerance: null,
+    energy_like_speed_residual: null,
+    negative_control_speed_energy_drift: frozen?.maxima?.speed_energy_drift ?? null,
+    reason:
+      "No direct fold-layer-locked trajectory energy-like speed ledger or Noether energy ledger exists. The frozen-root speed-energy drift is retained only as a negative control.",
+  };
+}
+
 function phaseClosureLedger() {
   return {
     schema: "a0-tier1-phase-closure-residual/v1",
@@ -658,12 +738,20 @@ function validationRow(row, sourceRow, args) {
     energy_like_speed: args.energyTolerance,
   };
   const ledgers = {
-    state_return: stateReturnLedger(row, samples, sampleScales, tolerances.state_return),
+    state_return:
+      sourceStateReturnLedger(sourceRow, tolerances.state_return) ??
+      stateReturnLedger(row, samples, sampleScales, tolerances.state_return),
     root_closure: sourceResidualBudget(sourceRow, args),
     phase_closure: phaseClosureLedger(),
-    speed_ordering: speedOrderingLedger(cycleSamples, args.cF, tolerances.speed),
-    center_drift: centerDriftLedger(cycleSamples, sampleScales, tolerances.center_gauge),
-    energy_like_speed: energyLikeSpeedLedger(row, samples, tolerances.energy_like_speed),
+    speed_ordering:
+      sourceSpeedOrderingLedger(sourceRow, tolerances.speed) ??
+      speedOrderingLedger(cycleSamples, args.cF, tolerances.speed),
+    center_drift:
+      sourceCenterDriftLedger(sourceRow, tolerances.center_gauge) ??
+      centerDriftLedger(cycleSamples, sampleScales, tolerances.center_gauge),
+    energy_like_speed: sourceRow
+      ? notComputedEnergyLikeSpeedLedger(sourceRow)
+      : energyLikeSpeedLedger(row, samples, tolerances.energy_like_speed),
     fold_layer_lock: lockStabilityLedger(row),
     monodromy: monodromyLedger(row),
     eta_ladder: etaLadderLedger(),

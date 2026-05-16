@@ -451,9 +451,4 @@ No step may involve faster-than-$c_f$ signal transfer. The correlations are visi
 - If any experiment demonstrates genuine **signaling** via entanglement (information transfer at $B$ contingent on the setting choice at $A$, without a classical channel), the entire framework fails.
 - If measurement independence is empirically falsified (e.g., via cosmic Bell tests showing setting–source correlations at a level incompatible with statistical noise), the assumption structure changes for all interpretations, not only $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
-**Next Steps:**
-- Derive the total angular-momentum functional for a Noether core with changing inner, middle, and outer binary frequencies, including self-action and causal-wake terms.
-- Evaluate the Master-Equation branch-sum apparatus impulse, separatrix normal, and record-cycle invariant measure for a tri-binary assembly driven by a Stern-Gerlach-like apparatus potential gradient.
-- Simulate a minimal fragmentation event (parent tri-binary $\to$ two daughters) and extract the joint pair ledger, not merely a pair of opposite classical axes.
-- Compute $E(\theta_{AB})$ from the derived response kernel and hidden-variable distribution; compare against $-\cos\theta_{AB}$ and evaluate $|S|$.
-- If $|S| < 2\sqrt{2}$, identify the source of the deficit (response-function shape, distribution non-uniformity, or residual separability) and determine whether refinement of the measurement model or the creation dynamics can close the gap.
+The Bell claim therefore stops at the closure target and failure conditions. A completed account requires lower-level angular-momentum, Stern-Gerlach response, source-measure, and pair-provenance derivations before this chapter can report success or failure.

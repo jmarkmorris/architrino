@@ -492,7 +492,7 @@ This chapter therefore carries:
 
 Primary topology spine: [dynamics/causal-action-functional.md](../../dynamics/causal-action-functional.md).
 
-## Summary and Next Steps
+## Summary and Interfaces
 
 - A **Noether core / tri‑binary** is a three-axis $(H,M,L)$, six-site axial structure: the minimal unit that carries conserved charges via its internal symmetries.
 - **Colorless** charged leptons have identical axial patterns on all three axes, while neutrinos are colorless near-photon pro/anti neutral pairs; neither route supplies quark-like axis exceptionality.
@@ -501,10 +501,4 @@ Primary topology spine: [dynamics/causal-action-functional.md](../../dynamics/ca
   - Down‑type: either (two P−, one P+) or (two Pm, one P−) families.
 - Color = which axis (H,M,L) is exceptional. This yields a natural triplet color space $\mathbb{C}^3$ on which SU(3) acts via charge‑preserving, det‑1 reconfigurations of axis exceptionality and phase.
 - **Baryon color singlets** = closed 9‑axis braids; **flux tubes** = open braids in the Noether Sea with linear energy cost per unit length → confinement.
-- Down‑quark pattern families, H/M/L regime differences, and braid orientation will feed into:
-  - Neutrino oscillation modeling,  
-  - Proton–neutron mass/moment differences,  
-  - Nuclear forces,  
-  - QCD phase transition and early‑universe thermodynamics.
-
-This draft keeps the full mechanism set explicit and marks where future derivations and simulations will test and potentially falsify the construction.
+- Down‑quark pattern families, H/M/L regime differences, and braid orientation are downstream interfaces for neutrino oscillation modeling, proton-neutron mass and moment differences, residual nuclear forces, and QCD phase-transition or early-universe thermodynamics. Those applications must inherit the same color-exceptionality and confinement ledger rather than introducing separate color rules.

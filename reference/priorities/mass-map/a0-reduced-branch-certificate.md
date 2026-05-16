@@ -839,6 +839,16 @@ The resulting intake row has status `ready_for_fold_layer_locked_one_period_atte
 
 This closes the source-coverage and attempt-budget subchecks for the compact fixture. It does not close Tier 1: `residuals_below_tolerance`, `no_secular_center_drift`, `Delta_k_positive`, and `same_branch_persists_across_eta_ladder` remain explicitly uncomputed, and the row is not an `accepted_history_segment`.
 
+Follow-up validation observer implemented on May 16, 2026:
+
+```text
+node scripts/mass-map/a0-tier1-fold-layer-locked-validator.mjs --intake /tmp/a0-tier1-one-period-continuation-prototype-fold-lock-approved.json --source /tmp/a0-tier1-continuation-source-prototype-fold-lock-approved.json --pretty --out /tmp/a0-tier1-fold-layer-locked-validator-approved.json
+```
+
+This emits `a0-tier1-fold-layer-locked-continuation-validation/v1` with row status `blocked_direct_one_period_integrator_not_run`. It records the available residual evidence without promoting the row: carrier-replay state return passes with maximum residual about $1.0\times10^{-13}$, root residuals pass with `512` roots evaluated and maximum residual about $9.92\times10^{-7}$ under the $10^{-6}$ tolerance, speed ordering passes with maximum residual about $1.11\times10^{-16}$, center drift is zero on the replay samples, and the fold-layer lock remains stable with the same two self-root keys and `963815` planned retained steps. The validator also records a frozen-root negative control: replaying frozen roots gives a large endpoint drift and is not a substitute for the fold-layer-locked direct continuation.
+
+The remaining blockers are now exact: no direct regularized fold-layer-locked one-period trajectory, no phase-closure residual series, no direct energy-like or Noether energy ledger, no quotient monodromy operator / $\Delta_{\mathbf{k}}$, and no $\eta$-ladder continuation. Passing the validator into the accepted-history writer still emits `blocked_tier1_acceptance_incomplete`, not an accepted history segment; the compact fixture also lacks a non-null `z_lambda`, so source-row identity remains a writer-side blocker until the direct continuation carries full quotient-row identity.
+
 ## Tier 2: Energy and Shielding Extraction
 
 Tier 2 begins only after Tier 1 passes.

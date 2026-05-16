@@ -11,7 +11,7 @@
 
 ## Task Queue
 
-1. `derive_first_attractor_family` — Use the source-coverage-passing, under-cap fold-layer-locked $A_0$ one-period attempt packet to compute explicit residual closure, drift, monodromy, and eta-ladder persistence before accepted-history emission. Status: `next`; compact-fixture source coverage and attempt budget validated May 16, 2026. Depends on: none.
+1. `derive_first_attractor_family` — Use the source-coverage-passing, under-cap fold-layer-locked $A_0$ one-period attempt packet to run the direct regularized one-period trajectory, phase ledger, energy ledger, monodromy, and eta-ladder persistence before accepted-history emission. Status: `next`; compact-fixture source coverage, attempt budget, and fail-closed validation observer implemented May 16, 2026. Depends on: none.
 2. `derive_zeta` — Derive $\zeta(A)$ and target a baseline electron-mass prediction. Status: `pending`. Depends on: `derive_first_attractor_family`.
 3. `exposure_quotient_theorem` — Generalize shielding extraction into a sector exposure/quotient theorem for mass, weak chirality, color exceptionality, photon transverse support, and vector-corridor visibility. Status: `pending`. Depends on: `derive_zeta`.
 4. `mass_hierarchy_check` — Test the first mass map against hierarchy ratios and hadron constraints. Status: `pending`. Depends on: `exposure_quotient_theorem`.
@@ -409,7 +409,7 @@ This schema deliberately keeps particle labels out of the accepted packet. Elect
 6. Test branch persistence across the declared $\eta$ ladder and route any lock loss or branch proliferation to `root-ledger-instability`.
 7. Keep accepted-history output blocked until one-period residual closure, no secular center drift, positive $\Delta_{\mathbf{k}}$, and branch persistence across the declared $\eta$ ladder are all present.
 
-The May 16, 2026 compact-fixture intake closes the attempt-budget and source-coverage checks for this packet: the selected fold-layer-locked integrator budget is `963815` retained steps under the `1000000` cap, and the accepted-history source-coverage diagnostic reports no missing fields. The remaining `derive_first_attractor_family` blocker is now the actual one-period continuation validation: residual closure, center-gauge drift, quotient monodromy / $\Delta_{\mathbf{k}}$, and $\eta$-ladder branch persistence.
+The May 16, 2026 compact-fixture intake closes the attempt-budget and source-coverage checks for this packet: the selected fold-layer-locked integrator budget is `963815` retained steps under the `1000000` cap, and the accepted-history source-coverage diagnostic reports no missing fields. The follow-up validator `scripts/mass-map/a0-tier1-fold-layer-locked-validator.mjs` records the available carrier-replay residual ledgers and fold-layer lock stability, then correctly blocks accepted history with `direct-regularized-one-period-integrator-not-run`. The remaining `derive_first_attractor_family` blocker is now the actual direct regularized one-period trajectory plus phase closure, energy-like / Noether energy ledger, quotient monodromy / $\Delta_{\mathbf{k}}$, and $\eta$-ladder branch persistence.
 
 The reduced branch certificate is the executable handoff between this workstream and the simulations workstream. It is the place to record Tier 0 root-ledger enumeration, Tier 1 $\eta>0$ continuation, Tier 2 energy/shielding extraction, and the promotion rule from `derive_first_attractor_family` to `derive_zeta`.
 

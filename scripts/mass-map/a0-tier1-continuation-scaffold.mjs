@@ -247,6 +247,30 @@ function continuationContract(row, etaLadder) {
       note:
         "The intake converts short-horizon direct-root diagnostics into a one-period attempt decision and residual target packet. It does not integrate a full period, emit accepted-history samples, or compute Delta_k.",
     },
+    fold_layer_locked_validator: {
+      script: "scripts/mass-map/a0-tier1-fold-layer-locked-validator.mjs",
+      consumes: [
+        "a0-tier1-one-period-continuation-prototype/v1",
+        "a0-tier1-continuation-source-prototype/v1",
+      ],
+      status: "fail_closed_validation_observer",
+      computed_predicates: [
+        "carrier_replay_state_return_residual",
+        "carrier_replay_root_residual",
+        "carrier_replay_speed_ordering_residual",
+        "carrier_replay_center_drift",
+        "fold_layer_lock_stability",
+      ],
+      blocked_predicates: [
+        "direct_regularized_one_period_trajectory",
+        "phase_closure_residual",
+        "direct_energy_like_speed_ledger",
+        "quotient_monodromy_operator",
+        "eta_ladder_continuation",
+      ],
+      note:
+        "The validator records the residual ledgers available from the carried replay source and fold-layer-locked intake, then remains blocked until a direct regularized one-period trajectory, phase ledger, monodromy, and eta ladder exist.",
+    },
     residuals_to_recompute: [
       "state",
       "root",
