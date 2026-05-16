@@ -4,9 +4,9 @@
 
 - Kind: `priority`
 - Rank: `14`
-- Value: `4.97`
+- Value: `5.59`
 - Cost: `2.7`
-- ROI: `1.84`
+- ROI: `2.07`
 - Status: `queued`
 
 ## Task Queue
@@ -22,8 +22,9 @@ This is the ranked queue for chapter-writing work and legacy-material recovery. 
 ## Scorecard Use
 
 - For scorecard purposes, this is the main Coverage bucket.
-- If the goal is the fastest score increase, pair this workstream with [mass-map](../priorities/mass-map/mass-map.md) for Coverage + Parameter Closure first.
-- Rule of thumb to retain: each `+10` points in one category adds about `+0.56` to the total 18-category mean.
+- Under the validated-closure scorecard, Coverage+Interface Readiness has weight `2`, so this queue improves reader and corpus completeness without substituting for certified equations, coefficients, parameters, or benchmark validation.
+- If the goal is the fastest validated-closure score increase, pair this workstream with [residual-routing-event-ledger](../priorities/tri-binary-causal-closure/residual-routing-event-ledger.md), [exposure-quotient-theorem](../priorities/mass-map/exposure-quotient-theorem.md), and [mass-map](../priorities/mass-map/mass-map.md) rather than treating prose coverage as the main lift.
+- Rule of thumb to retain: a `+10` point gain in Coverage+Interface Readiness adds about `+0.2` to the weighted total; high-weight categories such as Empirical Precision+Benchmark Validation, Formula+Coefficient Recovery, Master EOM+Local Dynamics, Parameter+Scale Closure, and Potential+Action Closure move the total more.
 
 ## Fast Lift
 

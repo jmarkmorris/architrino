@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1157
+      "sections": 1158
     }
   },
   "tocRoot": {
@@ -7537,6 +7537,14 @@
                 "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
                 "markdownSection": "Reusable Assessment Prompt",
                 "sectionKey": "reusable assessment prompt",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Scoring Lens",
+                "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
+                "markdownSection": "Scoring Lens",
+                "sectionKey": "scoring lens",
                 "headingLevel": 2
               },
               {

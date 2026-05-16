@@ -3,10 +3,10 @@
 ## Workstream Metadata
 
 - Kind: `priority`
-- Rank: `12`
-- Value: `12.49`
+- Rank: `11`
+- Value: `19.67`
 - Cost: `6.2`
-- ROI: `2.01`
+- ROI: `3.17`
 - Status: `queued`
 
 ## Task Queue
