@@ -343,7 +343,12 @@ This emitter is intentionally narrower than the adapter. It emits `local_respons
 The fail-closed apparatus-window extractor upstream of that emitter is:
 
 ```text
+node scripts/quantum/stern-gerlach-apparatus-window-source-emitter.mjs \
+  --pretty \
+  --out /tmp/stern-gerlach-apparatus-window-source-emitter-blocked.json
+
 node scripts/quantum/stern-gerlach-apparatus-response-input-extractor.mjs \
+  --input /tmp/stern-gerlach-apparatus-window-source-emitter-blocked.json \
   --pretty \
   --out /tmp/stern-gerlach-apparatus-response-input-extractor-blocked.json
 
@@ -353,7 +358,21 @@ node scripts/quantum/stern-gerlach-response-toy-emitter.mjs \
   --out /tmp/stern-gerlach-response-toy-emitter-from-apparatus-window.json
 ```
 
-This extractor emits `stern_gerlach_response_rows` only from explicit Master-Equation apparatus-window rows. A ready row must supply `Sigma_m_in`, `Lambda_m_in_out`, strictly ordered integrand samples with `Lambda_m_to_out`, `N_m`, and `Jdot_app`, the local record gate inputs `R_pre`, `R_rec`, `R_star`, `T_rec`, and `tau_persist`, an explicit record-cycle phase, and the same-window residuals required by the toy emitter. It computes
+The source emitter is a blocked-first producer for the extractor. It emits `apparatus_response_windows` only when a row supplies accepted-history provenance, local apparatus target metadata, an explicit response-functional source, a complete local record gate, a record-cycle phase, and same-window record residuals. For each response sample, it either carries an explicit `Jdot_app` vector or computes it from
+
+$$
+\dot{\mathbf{J}}_{C}^{\mathrm{app}}
+=
+\mu_{\mathrm{arch}}
+\sum_i
+\left(\mathbf{x}_i-\mathbf{X}_C\right)
+\times
+\mathbf a_i^{\mathrm{app}}
++
+\dot{\mathbf L}_{\mathrm{wake}}.
+$$
+
+The extractor then emits `stern_gerlach_response_rows` only from explicit Master-Equation apparatus-window rows. A ready row must supply `Sigma_m_in`, `Lambda_m_in_out`, strictly ordered integrand samples with `Lambda_m_to_out`, `N_m`, and `Jdot_app`, the local record gate inputs `R_pre`, `R_rec`, `R_star`, `T_rec`, and `tau_persist`, an explicit record-cycle phase, and the same-window residuals required by the toy emitter. It computes
 
 $$
 \mathcal{Q}_{\hat{\mathbf{m}}}
@@ -369,6 +388,37 @@ e^{\Lambda_{\hat{\mathbf{m}}}(s,t_{\mathrm{out}})}
 $$
 
 by trapezoid rule on the declared samples, computes `G_rec` with the project convention $H(0)=0$, and refuses Bell target tables, `correlation_interval`, `eta_AB_interval`, context probabilities, separatrix-zero rows, incomplete record gates, and residual-window mismatches. This supplies the first executable bridge between apparatus-window dynamics and the local-response adapter without treating a Bell-table target as a sign source.
+
+The current repo does not yet contain a real accepted-history Stern-Gerlach apparatus-window artifact. Running the nearest available mass-map path,
+
+```text
+node scripts/mass-map/a0-tier1-continuation-source-prototype.mjs \
+  --tier0 scripts/tri-binary/fixtures/a0-tier0-branch-search-minimal.json \
+  --pretty \
+  --out /tmp/a0-tier1-continuation-source-prototype.json
+
+node scripts/mass-map/a0-tier1-one-period-continuation-prototype.mjs \
+  --source /tmp/a0-tier1-continuation-source-prototype.json \
+  --pretty \
+  --out /tmp/a0-tier1-one-period-continuation-prototype.json
+
+node scripts/mass-map/a0-tier1-accepted-history-writer.mjs \
+  --tier0 scripts/tri-binary/fixtures/a0-tier0-branch-search-minimal.json \
+  --continuation /tmp/a0-tier1-continuation-source-prototype.json \
+  --pretty \
+  --out /tmp/a0-tier1-accepted-history-from-continuation-source.json
+```
+
+still leaves the one-period intake at `blocked_fold_splitting_unclassified` and the accepted-history writer at `blocked_tier1_acceptance_incomplete`. Feeding that writer output into the apparatus-window source emitter gives the live missing-field set: `accepted-history-status-missing`, `active-root-ledger-missing`, missing local apparatus target metadata (`party`, `setting`, `apparatus_kernel_id`, `setting_axis`, `Z_in_id`, `record_window_id`), missing response-functional source (`Sigma_m_in`, `Lambda_m_in_out`, sample `N_m`, and `Jdot_app` or computable torque terms), missing `record_gate`, missing `record_cycle`, and missing same-window residuals.
+
+The next minimal producer should therefore be a data artifact, not another Bell-table fixture: one row pairing an `accepted_history_segment` with an apparatus target overlay and a response-functional source. The required row shape is
+
+| Component | Required fields |
+| --- | --- |
+| Accepted history | `status=accepted_history_segment`, ordered `samples`, and nonempty `active_causal_root_ledger`. |
+| Apparatus target | `source_record_id`, `party`, `setting`, `apparatus_kernel_id`, `setting_axis`, `Z_in_id`, and `record_window_id`. |
+| Response-functional source | `Sigma_m_in`, `Lambda_m_in_out`, and ordered samples with `Lambda_m_to_out`, `N_m`, and either `Jdot_app` or torque terms `mu_arch`, `X_C`, `x_i`, `a_i_app`, and optional wake angular-momentum rate. |
+| Record closure | `record_gate`, `record_cycle`, and same-window `Delta_rec`, `Delta_div`, `entropy_locking`, and `event_ledger`. |
 
 ### Phase-Certificate Diagnostic Contract
 

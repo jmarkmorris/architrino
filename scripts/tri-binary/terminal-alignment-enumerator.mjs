@@ -240,7 +240,9 @@ candidate delayed roots, diagnostic action rows, edge-map multisets, local
 and source-recoil ledger residuals, per-branch stationarity residuals,
 branch-summed action-variation residuals, cycle-residual adapters,
 area-normalized finite-block coefficients, and transfer rows for the current
-transfer-matrix proof route. Its action kernels are
+transfer-matrix proof route. Active intra-layer partner-hit rows and any
+interior self-hit rows are materialized from the circular root ledgers; zero-delay
+self-hit boundaries are inventoried but excluded by H(0)=0. Its action kernels are
 diagnostic adapters, not accepted substrate dynamics.`);
 }
 
@@ -629,6 +631,92 @@ function circularRootSets(speed, args) {
   return { self, partner };
 }
 
+function sourceIdentity(branch) {
+  if (branch.source_identity) {
+    return branch.source_identity;
+  }
+  if (branch.sourceLayer !== branch.receiverLayer) {
+    return "inter-layer";
+  }
+  return branch.sourceSign === branch.receiverSign ? "self-hit" : "partner-hit";
+}
+
+function incrementInventoryCounter(summary, identity, layer) {
+  summary.total += 1;
+  summary.by_source_identity[identity] ??= 0;
+  summary.by_source_identity[identity] += 1;
+  summary.by_layer[layer] ??= 0;
+  summary.by_layer[layer] += 1;
+}
+
+function materializeIntraLayerRows(params, circularRoots, args) {
+  const rows = [];
+  const boundary = { total: 0, by_source_identity: {}, by_layer: {} };
+
+  for (let phaseIndex = 0; phaseIndex < args.phaseSamples; phaseIndex += 1) {
+    const t = (phaseIndex / args.phaseSamples) * params.period;
+    for (const layer of LAYERS) {
+      for (const receiverSign of SIGNS) {
+        const rootSets = [
+          {
+            source_identity: "self-hit",
+            sourceSign: receiverSign,
+            roots: circularRoots[layer].self,
+          },
+          {
+            source_identity: "partner-hit",
+            sourceSign: -receiverSign,
+            roots: circularRoots[layer].partner,
+          },
+        ];
+
+        for (const rootSet of rootSets) {
+          for (let rootIndex = 0; rootIndex < rootSet.roots.length; rootIndex += 1) {
+            const root = rootSet.roots[rootIndex];
+            const phaseDelay = root.delta + TWO_PI * root.r;
+            const delta = phaseDelay / params.omega[layer];
+            const branch = {
+              sourceLayer: layer,
+              receiverLayer: layer,
+              sourceSign: rootSet.sourceSign,
+              receiverSign,
+              source_identity: rootSet.source_identity,
+              t,
+            };
+
+            if (root.class !== "interior" || delta <= EPS) {
+              incrementInventoryCounter(boundary, rootSet.source_identity, layer);
+              continue;
+            }
+
+            const geometry = branchGeometry(params, branch, delta, args);
+            const variation_residual = branchVariationResidual(params, branch, delta, args);
+            rows.push({
+              id: `${layer}${rootSet.sourceSign > 0 ? "p" : "m"}_${layer}${receiverSign > 0 ? "p" : "m"}_phase${phaseIndex}_${rootSet.source_identity}_root${rootIndex}`,
+              sourceLayer: layer,
+              receiverLayer: layer,
+              sourceSign: rootSet.sourceSign,
+              receiverSign,
+              source_identity: rootSet.source_identity,
+              t,
+              reception_phase_fraction: phaseIndex / args.phaseSamples,
+              root_index: rootIndex,
+              root_cycle_index: root.r,
+              root_class: root.class,
+              phase_delay: phaseDelay,
+              circular_root_derivative: root.derivative,
+              ...geometry,
+              variation_residual,
+            });
+          }
+        }
+      }
+    }
+  }
+
+  return { rows, boundary };
+}
+
 function receiverKey(row) {
   return `${row.receiverLayer}:${row.receiverSign}:p${row.reception_phase_fraction}`;
 }
@@ -694,7 +782,7 @@ function cycleResidualFit(params, branchRows, args) {
     tolerance: args.cycleResidualTolerance,
     status: rms <= args.cycleResidualTolerance ? "pass" : "fail",
     note:
-      "This adapter compares circular terminal acceleration with the diagnostic inter-layer action sum. It excludes intra-layer action, regularization, and the true substrate action functional.",
+      "This adapter compares circular terminal acceleration with the diagnostic terminal-branch action sum. It still excludes regularization and the true substrate action functional.",
     worst_samples: samples
       .sort((left, right) => right.residual_norm - left.residual_norm)
       .slice(0, 6),
@@ -754,7 +842,7 @@ function localConservation(actionRows, args, ledgerKey = "action_ledger", note =
     status: residualNorm <= args.conservationTolerance ? "pass" : "fail",
     note:
       note ??
-      "This is a diagnostic receiver-side sum over sampled inter-layer branches. It becomes a proof object only after the missing source recoil, intra-layer action, and regularized energy ledger are supplied.",
+      "This is a diagnostic receiver-side sum over sampled terminal branches. It becomes a proof object only after the regularized source-recoil and wake-energy boundary ledgers are supplied.",
   };
 }
 
@@ -790,6 +878,7 @@ function variationResidualStats(actionRows, args) {
 
 function branchSummedVariationResidual(actionRows, args) {
   const groups = new Map();
+  const bySourceIdentity = {};
   const skipped = {
     non_transversal: 0,
     missing_derivative: 0,
@@ -817,6 +906,10 @@ function branchSummedVariationResidual(actionRows, args) {
       skipped.missing_jacobian += 1;
       continue;
     }
+
+    const identity = sourceIdentity(row);
+    bySourceIdentity[identity] ??= 0;
+    bySourceIdentity[identity] += 1;
 
     const key = receiverKey(row);
     if (!groups.has(key)) {
@@ -855,6 +948,7 @@ function branchSummedVariationResidual(actionRows, args) {
   return {
     branch_count: branchCount,
     receiver_count: samples.length,
+    by_source_identity: bySourceIdentity,
     skipped,
     max_residual: maxResidual,
     rms_residual: rmsResidual,
@@ -862,7 +956,7 @@ function branchSummedVariationResidual(actionRows, args) {
     status:
       maxResidual !== null && maxResidual <= args.variationTolerance ? "pass" : "fail",
     note:
-      "Branch-summed finite-difference proxy for the receiver-side scalar-action residual after the direct inverse-square term is removed. It uses sampled inter-layer rows only; full terminal closure still needs intra-layer action rows and regularized wake-boundary terms.",
+      "Branch-summed finite-difference proxy for the receiver-side scalar-action residual after the direct inverse-square term is removed. It includes sampled inter-layer rows plus active intra-layer self-hit and partner-hit rows; zero-delay self-hit boundaries remain excluded by H(0)=0. Full terminal closure still needs regularized wake-boundary terms.",
     worst_receivers: samples.slice(0, 6),
   };
 }
@@ -881,6 +975,7 @@ function edgeLedger(row, ledgerKey = "action_ledger") {
 function edgeKey(branchRow, quotient) {
   const chargeSign = branchRow.sourceSign * branchRow.receiverSign;
   const layerPair = `${branchRow.sourceLayer}->${branchRow.receiverLayer}`;
+  const identity = sourceIdentity(branchRow);
   const normalBin =
     Math.abs(branchRow.normal_projection) < 0.25
       ? "near-tangent"
@@ -890,9 +985,9 @@ function edgeKey(branchRow, quotient) {
   if (quotient === "strict") {
     const phaseBin = Math.round(branchRow.reception_phase_fraction * 24);
     const deltaBin = Math.round(branchRow.delta * 1000);
-    return `inter-layer:${layerPair}:q${chargeSign}:p${phaseBin}:d${deltaBin}:${normalBin}`;
+    return `${identity}:${layerPair}:q${chargeSign}:p${phaseBin}:d${deltaBin}:${normalBin}`;
   }
-  return `inter-layer:${layerPair}:q${chargeSign}:${normalBin}`;
+  return `${identity}:${layerPair}:q${chargeSign}:${normalBin}`;
 }
 
 function multiset(rows, side, quotient, ledgerKey = "action_ledger") {
@@ -937,7 +1032,7 @@ function terminalPatchAreaFactor(params, args) {
 
 function candidate(n, m, args) {
   const params = layerParams(n, m, args);
-  const branchRows = [];
+  const interLayerRows = [];
   const circular_roots = Object.fromEntries(
     LAYERS.map((layer) => [layer, circularRootSets(params.speed[layer], args)])
   );
@@ -956,15 +1051,17 @@ function candidate(n, m, args) {
             roots.forEach((delta, rootIndex) => {
               const geometry = branchGeometry(params, branch, delta, args);
               const variation_residual = branchVariationResidual(params, branch, delta, args);
-              branchRows.push({
+              interLayerRows.push({
                 id: `${sourceLayer}${sourceSign > 0 ? "p" : "m"}_${receiverLayer}${receiverSign > 0 ? "p" : "m"}_phase${phaseIndex}_root${rootIndex}`,
                 sourceLayer,
                 receiverLayer,
                 sourceSign,
                 receiverSign,
+                source_identity: "inter-layer",
                 t,
                 reception_phase_fraction: phaseIndex / args.phaseSamples,
                 root_index: rootIndex,
+                root_class: "interior",
                 ...geometry,
                 variation_residual,
               });
@@ -975,6 +1072,8 @@ function candidate(n, m, args) {
     }
   }
 
+  const intraLayer = materializeIntraLayerRows(params, circular_roots, args);
+  const branchRows = [...interLayerRows, ...intraLayer.rows];
   const cycle_residual_adapter = cycleResidualFit(params, branchRows, args);
   const actionRows = materializeActionRows(
     branchRows,
@@ -985,7 +1084,7 @@ function candidate(n, m, args) {
     actionRows,
     args,
     "pair_ledger",
-    "This diagnostic pairs each receiver impulse with an opposite source-recoil impulse at emission time. It still omits intra-layer action and regularized wake-energy boundary terms."
+    "This diagnostic pairs each receiver impulse with an opposite source-recoil impulse at emission time. It still omits regularized wake-energy boundary terms."
   );
   const perBranchStationarityResidual = variationResidualStats(actionRows, args);
   const actionVariationResidual = branchSummedVariationResidual(actionRows, args);
@@ -996,11 +1095,16 @@ function candidate(n, m, args) {
   const transversalCount = actionRows.filter((row) => row.transversal).length;
   const grazingCount = actionRows.length - transversalCount;
   const byLayerPair = {};
+  const bySourceIdentity = {};
   for (const row of actionRows) {
     const key = `${row.sourceLayer}->${row.receiverLayer}`;
+    const identity = sourceIdentity(row);
     byLayerPair[key] ??= { total: 0, transversal: 0, grazing: 0 };
     byLayerPair[key].total += 1;
     byLayerPair[key][row.transversal ? "transversal" : "grazing"] += 1;
+    bySourceIdentity[identity] ??= { total: 0, transversal: 0, grazing: 0 };
+    bySourceIdentity[identity].total += 1;
+    bySourceIdentity[identity][row.transversal ? "transversal" : "grazing"] += 1;
   }
 
   const result = {
@@ -1017,10 +1121,18 @@ function candidate(n, m, args) {
     circular_roots,
     delayed_branch_inventory: {
       scanned_contexts:
+        args.phaseSamples * LAYERS.length * (LAYERS.length - 1) * SIGNS.length * SIGNS.length +
+        args.phaseSamples * LAYERS.length * SIGNS.length * 2,
+      inter_layer_scanned_contexts:
         args.phaseSamples * LAYERS.length * (LAYERS.length - 1) * SIGNS.length * SIGNS.length,
+      intra_layer_scanned_contexts: args.phaseSamples * LAYERS.length * SIGNS.length * 2,
       roots_total: branchRows.length,
+      inter_layer_roots: interLayerRows.length,
+      intra_layer_active_roots: intraLayer.rows.length,
+      intra_layer_boundary_roots: intraLayer.boundary,
       transversal: transversalCount,
       grazing_or_boundary: grazingCount,
+      by_source_identity: bySourceIdentity,
       by_layer_pair: byLayerPair,
     },
     action_diagnostics: {
@@ -1445,7 +1557,7 @@ function buildPacket(args) {
     generated_by: "scripts/tri-binary/terminal-alignment-enumerator.mjs",
     comparison_level: "reduced circular, phase-offset, or shifted-center terminal-action diagnostic proof packet",
     note:
-      "This enumerates delayed roots, diagnostic branch-action rows, edge-map multisets, source-recoil ledger residuals, per-branch stationarity residuals, branch-summed action-variation residuals, transfer rows, and area-normalized finite-block coefficient residuals. Its action kernels are diagnostic adapters, not accepted substrate dynamics.",
+      "This enumerates delayed roots, active intra-layer circular-root action rows, diagnostic branch-action rows, edge-map multisets, source-recoil ledger residuals, per-branch stationarity residuals, branch-summed action-variation residuals, transfer rows, and area-normalized finite-block coefficient residuals. Zero-delay self-hit boundaries are inventoried but excluded by H(0)=0. Its action kernels are diagnostic adapters, not accepted substrate dynamics.",
     parameters: {
       min_n: args.minN,
       max_n: args.maxN,
@@ -1484,8 +1596,9 @@ function buildPacket(args) {
       edge_projection: "action_row_edge_multisets_enumerated_by_this_packet",
       cycle_averaged_residual: "diagnostic_adapter_only_until_action_kernel_is_accepted",
       local_conservation_ledger: "receiver_side_and_source_recoil_pair_ledgers_reported_but_wake_energy_boundary_terms_still_open",
-      per_branch_stationarity_residual: "finite_difference_stationarity_proxy_reported_for_each_sampled_inter_layer_branch_as_obstruction_context",
-      action_variation_residual: "branch_summed_finite_difference_residual_reported_by_receiver_phase_for_sampled_inter_layer_branches_only",
+      intra_layer_action_rows: "active_partner_hit_and_interior_self_hit_rows_materialized_from_circular_roots_zero_delay_self_hit_boundary_excluded_by_H0",
+      per_branch_stationarity_residual: "finite_difference_stationarity_proxy_reported_for_each_sampled_terminal_branch_as_obstruction_context",
+      action_variation_residual: "branch_summed_finite_difference_residual_reported_by_receiver_phase_for_sampled_inter_layer_and_active_intra_layer_branches",
       physical_observer_quotient: "coarse_or_strict_numerical_quotient_only",
       area_normalization: "declared_or_proxy_patch_area_factor_until_metric_reconstruction_supplies_A_theta",
       coefficient_target: "finite_block_area_normalized_proxy_not_horizon_entropy_proof",

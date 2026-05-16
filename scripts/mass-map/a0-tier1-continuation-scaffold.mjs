@@ -233,6 +233,17 @@ function continuationContract(row, etaLadder) {
       note:
         "The prototype replays Tier 0 carrier samples and provisional carrier roots, then computes bounded one-step speed-ordering, carrier-root refinement, root-Jacobian drift attribution, carrier-replay residual-budget, frozen-root one-period drift, short-horizon direct root-recomputing, and adaptive direct-root horizon-ladder diagnostics; it is not an accepted Tier 1 continuation.",
     },
+    one_period_intake: {
+      script: "scripts/mass-map/a0-tier1-one-period-continuation-prototype.mjs",
+      consumes: "a0-tier1-continuation-source-prototype/v1",
+      status: "fail_closed_intake_only",
+      computed_predicates: [
+        "fold_layer_routed_to_lock_ledger",
+        "estimated_steps_for_one_period_below_cap",
+      ],
+      note:
+        "The intake converts short-horizon direct-root diagnostics into a one-period attempt decision and residual target packet. It does not integrate a full period, emit accepted-history samples, or compute Delta_k.",
+    },
     residuals_to_recompute: [
       "state",
       "root",
@@ -424,6 +435,7 @@ function requiredArtifacts(row) {
   const stem = `a0-row-${row.row}-tier1`;
   return [
     `${stem}-continuation.json`,
+    `${stem}-one-period-intake.json`,
     `${stem}-accepted-history.json`,
     `${stem}-root-ledger.json`,
     `${stem}-residuals.json`,
