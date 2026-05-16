@@ -335,6 +335,17 @@ The Higgs is not a propagating assembly *through* the ambient medium; it is a re
 *   **The Response:** This distortion changes the medium-dressed response of shielded internal causal history. The observer-facing inertial mass channel is the effective response, not ordinary dissipative drag.
 *   **The Boson:** If the Noether Sea is driven hard enough (e.g., at LHC), this radial ringing mode can be excited independently. Identifying that resonance with the Higgs Boson ($125$ GeV) remains an effective matching target.
 
+The local proof obligation is a derivative test, not a new primitive field. If $\varphi$ parameterizes the radial Noether-Sea breathing displacement, the effective scalar coupling to an assembly $A$ is the change in the same mass-response map used by [Particle Masses](../particle-masses.md#higgs-and-yukawa-matching-residual):
+$$
+g_{H,A}^{\mathrm{eff}}(\theta)
+=
+\left.
+\frac{\partial M_{\mathrm{sh}}(A;\theta,\varphi)}
+{\partial \varphi}
+\right|_{\varphi=0}.
+$$
+The Higgs comparison closes only if this derivative reproduces the observed Higgs-coupling pattern while the radial mode's own resonance scale gives $M_H^{\mathrm{breath}}\approx 125$ GeV on the same Noether-Sea branch. The scalar mode is therefore a shared medium-response benchmark, not a license to add independent Yukawa parameters or a separate mass-generating substance.
+
 ---
 
 ## Summary Table

@@ -63,7 +63,55 @@ T_{ij}
 A(\mathbf{x}_j)^{-1}A(\mathbf{x}_i).
 $$
 
-This transformation constrains local reduced shear and relative convergence near the observed images. It does not by itself determine a unique global mass map in regions not sampled by the light bundles. Cluster-scale dark-matter maps therefore require an explicit inference ledger: which features are forced by local image transformations, which depend on feature matching, and which enter through lens-model priors such as light-traces-mass assumptions, thin-lens geometry, profile smoothness, line-of-sight compression, or interpolation across data-poor regions.
+This transformation constrains local reduced shear and relative convergence near the observed images. It does not by itself determine a unique global mass map in regions not sampled by the light bundles. For a candidate medium-and-assembly record $\theta$, let $\psi_\theta$ define the projected observer-level lensing potential, let $A_\theta(\mathbf{x})$ be its local Jacobian, and let
+
+$$
+T_{ij}^{\theta}
+=
+A_\theta(\mathbf{x}_j)^{-1}A_\theta(\mathbf{x}_i).
+$$
+
+The data-supported local part of the lensing comparison can then be recorded as
+
+$$
+\mathcal{R}_{\mathrm{local\ lens}}(\theta)
+=
+\sum_{(i,j)}
+\left(T_{ij}^{\mathrm{obs}}-T_{ij}^{\theta}\right)^T
+C_{ij}^{-1}
+\left(T_{ij}^{\mathrm{obs}}-T_{ij}^{\theta}\right),
+$$
+
+where $C_{ij}$ is the covariance model for the measured image-to-image transformation. This residual tests what the multiple-image data constrain before a global mass profile is imposed.
+
+The remaining global map should be labeled by how much of its convergence field is supported near the observed images. If the image centers are $\mathbf{x}_i$ with declared support widths $\sigma_i$, define
+
+$$
+w_{\mathrm{img}}(\mathbf{x})
+=
+\max_i
+\exp\!\left(
+-\frac{\|\mathbf{x}-\mathbf{x}_i\|^2}{2\sigma_i^2}
+\right).
+$$
+
+Then the inferred convergence can be reported in two pieces,
+
+$$
+M_{\mathrm{supported}}
+=
+\int_\Omega
+w_{\mathrm{img}}(\mathbf{x})\,\kappa_\theta(\mathbf{x})\,d^2x,
+\qquad
+M_{\mathrm{extrapolated}}
+=
+\int_\Omega
+\left(1-w_{\mathrm{img}}(\mathbf{x})\right)\kappa_\theta(\mathbf{x})\,d^2x.
+$$
+
+These are not new dark-sector variables. They are inference-discipline diagnostics: $M_{\mathrm{supported}}$ records the part of the projected map close to the local lensing constraints, while $M_{\mathrm{extrapolated}}$ records the model-projected part that must be justified by priors, weak-lensing data, gas dynamics, galaxy kinematics, CMB lensing, or the shared medium-state record.
+
+Cluster-scale dark-matter maps therefore require an explicit inference ledger: which features are forced by local image transformations, which depend on feature matching, and which enter through lens-model priors such as light-traces-mass assumptions, thin-lens geometry, profile smoothness, line-of-sight compression, or interpolation across data-poor regions.
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, this does not weaken lensing as a recovery target. It sharpens the target. A neutral-assembly or medium-response explanation must recover the local lensing data first, then survive the global model comparison without hiding mass in unconstrained regions or changing assumptions per cluster. If a dark-sector claim survives only through model freedom away from the multiple-image constraints, it remains an inference artifact candidate rather than a closed substrate claim.
 
@@ -165,11 +213,43 @@ before detailed $N$-body and relativistic corrections. The retained observable i
 
 ### Candidate B — Noether-Sea Medium Response
 
-**Definition.** Non-linear elastic or dispersive response of the Noether Sea itself under low-acceleration or low-density-gradient conditions. In regions where the effective gravitational acceleration falls below a characteristic scale $a_0$, the medium's compliance (inverse stiffness) may change, altering the effective force law.
+**Definition.** Non-linear elastic or dispersive response of the Noether Sea itself under low-acceleration or low-density-gradient conditions. In regions where the effective gravitational acceleration falls below a characteristic scale $a_0^{\mathrm{MOND}}$, the medium's compliance (inverse stiffness) may change, altering the effective force law. This local notation keeps the galactic acceleration threshold distinct from the rest-attractor length scale $a_0$ used in Lorentz-kinematics chapters.
 
-**Mechanism sketch.** Each Noether-Sea tri-binary has a minimum restoring-force threshold set by the outer-binary binding. Below the corresponding acceleration scale, the medium deforms more easily per unit stress—the effective $G$ increases with decreasing acceleration. This is structurally analogous to MOND ($\mu(a/a_0)\,a = a_N$) but derived from assembly elasticity rather than postulated. In the corrected master-law picture, part of this response can be understood as a constitutive shift in how the medium organizes Jacobian-weighted delayed flux under low-strain conditions: the same source population can produce a different received effective pull when branch geometry and local contraction state change. The transition function $\mu$ would then emerge from the outer-binary response curve as a function of the local strain rate $\nabla\Phi / a_0$.
+**Mechanism sketch.** Each Noether-Sea tri-binary has a minimum restoring-force threshold set by the outer-binary binding. Below the corresponding acceleration scale, the medium deforms more easily per unit stress—the effective $G$ increases with decreasing acceleration. This is structurally analogous to MOND ($\mu(a/a_0^{\mathrm{MOND}})\,a = a_N$) but derived from assembly elasticity rather than postulated. In the corrected master-law picture, part of this response can be understood as a constitutive shift in how the medium organizes Jacobian-weighted delayed flux under low-strain conditions: the same source population can produce a different received effective pull when branch geometry and local contraction state change. The transition function $\mu$ would then emerge from the outer-binary response curve as a function of the local strain rate $\nabla\Phi / a_0^{\mathrm{MOND}}$.
 
-**Characteristic scale.** The MOND acceleration $a_0 \approx 1.2 \times 10^{-10}\;\mathrm{m\,s}^{-2}$ is suggestively close to $c H_0 / (2\pi)$. In $\mathbb{A}\mathbb{A}\mathbb{A}$, this coincidence could reflect a connection between the outer-binary expansion/contraction timescale (set by the cosmological evolution of the Noether Sea) and the local stiffness threshold. This is a mapping target, not a derived result.
+**Characteristic scale.** The MOND acceleration $a_0^{\mathrm{MOND}} \approx 1.2 \times 10^{-10}\;\mathrm{m\,s}^{-2}$ is suggestively close to horizon-scale accelerations such as $c_0 H_0/(2\pi)$ and, in some entropic-gravity comparisons, $c_0 H_0/6$. In $\mathbb{A}\mathbb{A}\mathbb{A}$, those coefficients are comparison pressure rather than imported doctrine. The native question is whether the same Noether-Sea response law that supplies the effective Hubble history also yields the galaxy-scale transition acceleration.
+
+A compact cross-scale target is
+
+$$
+a_0^{\mathrm{MOND}}
+\stackrel{?}{=}
+\alpha_H\,c_0\,H_{\mathrm{eff}}^\theta(t_{\mathrm{obs}}),
+\qquad
+\alpha_H \in \left\{\frac{1}{6},\frac{1}{2\pi}\right\}
+\quad\text{as comparison coefficients.}
+$$
+
+For a shared Noether-Sea record $\theta$, define the low-acceleration comparison residual
+
+$$
+\mathcal{R}_{\mathrm{low}\text{-}a}(\theta,\alpha_H)
+=
+\left|
+\log
+\frac{
+a_0^{\mathrm{MOND}}
+}{
+\alpha_H c_0 H_{\mathrm{eff}}^\theta(t_{\mathrm{obs}})
+}
+\right|
++
+d_{\mathrm{RAR}}\!\left(\mathrm{RAR}^{\theta},\mathrm{RAR}^{\mathrm{obs}}\right)
++
+\lambda\,\mathcal{R}_{\mathrm{shared}}(\theta).
+$$
+
+Here $\mathrm{RAR}^{\theta}$ is the radial-acceleration relation predicted by the coupled neutral-assembly plus medium-response model, $\mathrm{RAR}^{\mathrm{obs}}$ is the observed relation, and $\mathcal{R}_{\mathrm{shared}}$ is the cosmology shared residual in [Dark Energy](./dark-energy.md#inference-dependency-and-calibration-gates). If no value of $\alpha_H$ follows from the Noether-Sea response law while preserving CMB loading, cluster offsets, BAO, supernova, growth, and lensing constraints, the horizon-scale coincidence remains a heuristic rather than a derived result.
 
 **Limitations.** A pure medium-response account faces well-documented difficulties:
 - Reproducing cluster-scale lensing/gas centroid separation without a collisionless component.
@@ -203,7 +283,7 @@ $$
 \nabla^2 \Phi_{\mathrm{eff}} = 4\pi G_{\mathrm{eff}}(\nabla\Phi,\rho_{\text{core}},n)\,\bigl(\rho_b + \rho_A + \delta\rho_{\text{core}}^{(\mathrm{pert})}\bigr),
 $$
 
-where $\rho_b$ is baryonic density, $\delta\rho_{\text{core}}^{(\mathrm{pert})}$ is the perturbative Sea response above its cosmological mean, and $G_{\mathrm{eff}}$ carries the medium-response modification. In the high-acceleration limit ($|\nabla\Phi| \gg a_0$), $G_{\mathrm{eff}} \to G_N$ and $\delta\rho_{\text{core}}^{(\mathrm{pert})} \to 0$; in the low-acceleration limit, $G_{\mathrm{eff}}$ stiffens and $\delta\rho_{\text{core}}^{(\mathrm{pert})}$ may contribute an effective "phantom" density that mimics additional dark matter.
+where $\rho_b$ is baryonic density, $\delta\rho_{\text{core}}^{(\mathrm{pert})}$ is the perturbative Sea response above its cosmological mean, and $G_{\mathrm{eff}}$ carries the medium-response modification. In the high-acceleration limit ($|\nabla\Phi| \gg a_0^{\mathrm{MOND}}$), $G_{\mathrm{eff}} \to G_N$ and $\delta\rho_{\text{core}}^{(\mathrm{pert})} \to 0$; in the low-acceleration limit, $G_{\mathrm{eff}}$ stiffens and $\delta\rho_{\text{core}}^{(\mathrm{pert})}$ may contribute an effective "phantom" density that mimics additional dark matter.
 
 This coupled system must be solved self-consistently. The neutral-assembly component $\rho_A$ satisfies collisionless Boltzmann transport in the potential $\Phi_{\mathrm{eff}}$; the medium response enters through constitutive relations derived from Noether-Sea tri-binary elasticity.
 
@@ -219,7 +299,7 @@ The hybrid baseline yields a unified regime architecture:
 | Galaxy outer regions / low $a$ | Hybrid: assemblies + medium response | RAR tightness; rotation-curve diversity |
 | Dwarf galaxies / ultra-low $a$ | Medium response dominant | Possible core-vs-cusp modification |
 
-The boundaries between regimes are set by the ratio $|\nabla\Phi|/a_0$ and the local Noether-Sea density gradient. These are continuous transitions within one ontology, not patched models.
+The boundaries between regimes are set by the ratio $|\nabla\Phi|/a_0^{\mathrm{MOND}}$ and the local Noether-Sea density gradient. These are continuous transitions within one ontology, not patched models.
 
 ## SMBH Recycling and Dark-Sector Flow
 
@@ -300,7 +380,7 @@ $$
 \ddot{\delta}_A + 2H\dot{\delta}_A = 4\pi G_{\mathrm{eff}}\,\rho_m\,\delta_m,
 $$
 
-where $\rho_m = \rho_b + \rho_A$ and $G_{\mathrm{eff}}$ may carry scale-dependent corrections from the medium response. In the high-acceleration (linear) regime, $G_{\mathrm{eff}} \to G_N$ and standard CDM growth is recovered. Deviations from $\Lambda\mathrm{CDM}$ growth appear only when $|\nabla\Phi|/a_0 \lesssim 1$, which on cosmological scales ($k < 0.01\;h\,\mathrm{Mpc}^{-1}$) may be relevant at low redshift and could contribute to resolving the $S_8$ tension.
+where $\rho_m = \rho_b + \rho_A$ and $G_{\mathrm{eff}}$ may carry scale-dependent corrections from the medium response. In the high-acceleration (linear) regime, $G_{\mathrm{eff}} \to G_N$ and standard CDM growth is recovered. Deviations from $\Lambda\mathrm{CDM}$ growth appear only when $|\nabla\Phi|/a_0^{\mathrm{MOND}} \lesssim 1$, which on cosmological scales ($k < 0.01\;h\,\mathrm{Mpc}^{-1}$) may be relevant at low redshift and could contribute to resolving the $S_8$ tension.
 
 ### BAO and Matter Power Spectrum
 

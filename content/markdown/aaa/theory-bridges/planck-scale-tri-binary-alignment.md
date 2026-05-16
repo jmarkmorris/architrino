@@ -341,17 +341,25 @@ With Planck alignment as an endpoint rather than a point singularity:
 > - Many nearly identical aligned assemblies occupy a low-dimensional configuration manifold (planar disk orientation).
 > - Entropy and area scaling would have to emerge from counting alignment-compatible boundary labels on horizon-adjacent surfaces, not from arbitrary volume packing.
 
-The area-counting part of the conjecture is narrow. If a horizon-adjacent surface is decomposed into patches with $A_{\mathrm{eff}}(P_a)=A_{\text{align}}+\mathcal{O}(\epsilon_A A_{\text{align}})$, the required local statement is not a literal independent count on one patch. Since $\log|\mathcal{L}_a|=1/4$ would require $|\mathcal{L}_a|=e^{1/4}$, the coefficient must be a block entropy density over alignment-compatible labels:
+The area-counting part of the conjecture is narrow. If a horizon-adjacent surface is decomposed into patches with $A_{\mathrm{eff}}(P_a)=a_{\theta}A_{\text{align}}+\mathcal{O}(\epsilon_A A_{\text{align}})$ for the retained strong-field record $\theta$, the required local statement is not a literal independent count on one patch. Since $\log|\mathcal{L}_a|=1/4$ would require $|\mathcal{L}_a|=e^{1/4}$, the coefficient must be an area-normalized block entropy density over alignment-compatible labels:
 $$
 s_{\mathrm{align}}
 =
 \lim_{|U|\to\infty}
 \frac{1}{|U|}
-\log|\mathcal{L}_U|
+\log|\mathcal{L}_U|,
+\qquad
+a_{\theta}
+=
+\lim_{|U|\to\infty}
+\frac{A_{\mathrm{eff}}(U)}
+{|U|A_{\text{align}}},
+\qquad
+\frac{s_{\mathrm{align}}}{a_{\theta}}
 \longrightarrow
 \frac{1}{4},
 $$
-where $\mathcal{L}_U$ is the observer-distinguishable set of alignment-compatible labels on a connected block $U$ and $|U|A_{\text{align}}\to A_H$ in the large-area limit. Thus the Planck-alignment program does not get black-hole entropy merely by naming a small area. It must show that terminal tri-binary alignment supplies a universal local entropy density and that correlations between neighboring patches do not restore volume or arbitrary history-length scaling.
+where $\mathcal{L}_U$ is the observer-distinguishable set of alignment-compatible labels on a connected block $U$ and $A_{\mathrm{eff}}(U)\to A_H$ in the large-area limit. Thus the Planck-alignment program does not get black-hole entropy merely by naming a small area. It must show that terminal tri-binary alignment supplies a universal local entropy density, the associated patch-area normalization, and correlations between neighboring patches that do not restore volume or arbitrary history-length scaling.
 
 We deliberately use “condensate-like” here; a full condensate claim would require:
 

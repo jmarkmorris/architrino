@@ -1353,6 +1353,21 @@ The component action table makes the proof obligation explicit:
 
 The local proof target is therefore not just a $4\pi$ lift. It is a lifted Noether-core state whose coarse spinor chart admits effective $C_{\mathrm{eff}}$, $P_{\mathrm{eff}}$, and $T_{\mathrm{eff}}$ operations compatible with weak chirality, charge conjugation, and the generation/mixing ledgers. If no such effective operations can be derived from $\Lambda_{\text{NC}}$, then the ordered-core route may reproduce a rotation double cover while still failing the fermion symmetry benchmark.
 
+### Spinor-to-Metric Compatibility Residual
+
+The ordered-core spinor target is also a dependency for fermion matter channels in the effective metric program. A metric record may advance scalar, photon, clock, ruler, and stress-channel closure independently, but a claim that fermion stress or weak-chiral matter dynamics is fully metric-compatible must include the spinor ledger. For a branch record $\theta$ on a record window $W$, use
+$$
+\mathcal{R}_{\mathrm{spin\to metric}}(\theta;W)
+=
+w_{4\pi}\Delta_{4\pi}(\theta;W)
++w_{\mathrm{op}}\Delta_{\mathrm{spin\,op}}(\theta;W)
++w_{\mathrm{weak}}\Delta_{\mathrm{WCT}}(\theta;W)
++w_{\mathrm{mat}}\mathcal{R}_{\mathrm{matter}}(\theta;W)
++w_{\mathrm{ctx}}\Delta_{\mathrm{ctx}}(\theta;W).
+$$
+
+Here $\Delta_{4\pi}$ measures failure of the $2\pi/4\pi$ ordered-core lift, $\Delta_{\mathrm{spin\,op}}$ measures failure to recover the spin-operator and Stern-Gerlach record algebra on the declared apparatus contexts, $\Delta_{\mathrm{WCT}}$ measures mismatch between the spinor/helicity ledger and the weak-coupling-triad exposure record, $\mathcal{R}_{\mathrm{matter}}$ measures failure of the fermion matter channel to project into the same Noether-Sea metric record, and $\Delta_{\mathrm{ctx}}$ is the apparatus-context residual from [Quantum Operator Mapping](quantum-operator-mapping.md#apparatus-context-guardrail). The residual passes only when all terms use the same $\theta$; otherwise the spin proof, weak handedness, and metric matter channel have been fitted by separate records rather than recovered as one closure.
+
 This is a theorem target, not a completed proof. The causal-action functional adds a promising topological handle through causal writhe,
 
 $$

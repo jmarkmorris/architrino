@@ -4,6 +4,8 @@ This chapter defines the convergence standard for simulations that include self-
 
 Because self-hit dynamics are especially prone to fake structure under poor time or history resolution, this document should be read as a validation gate rather than as optional numerical hygiene.
 
+All convergence claims in this chapter are finite-window claims. Passing the gates below validates the declared observables on the analysis window, with the stated detector set, history horizon, and regulator choices. It does not decide unbounded reachability questions for the full delayed dynamics; those would require a separate theorem about the global flow rather than a stronger convergence plot.
+
 ## Convergence in Non-Markovian (Self-Hit) Dynamics
 
 ### Scope and default observable set

@@ -462,6 +462,17 @@ $$
 
 The generation program passes this benchmark only when $\mathcal R_{3\mathrm{gen}}(\theta)$ is below the declared tolerance using the same branch record. The first term checks that the family ladder really has a closed three-step structure; the representation term checks that electric charge, weak isospin, hypercharge, and color bookkeeping are preserved across generations; the CPT term keeps generation structure compatible with the effective fermion symmetry record; the mass term tests the shielding hierarchy against measured masses; and $\mathcal R_{\mathrm{null}}$ blocks mirror matter, superpartners, added gauge modes, or other unobserved channels. This does not identify generation with an external triality or exceptional-group action. It gives the current shielding thesis the same hard tests that make those comparison frameworks interesting.
 
+The CKM bridge uses the same $T_{\mathrm{gen}}$ and $\Pi_{\mathrm{gauge}}$ objects. Its extra demand is not a new generation ontology: the weak-basis to mass-basis overlap must be unitary and must reproduce CKM magnitudes and CP invariants while the representation residual remains below tolerance,
+$$
+\max_{a\in\{0,1,2\}}
+d_{\mathrm{rep}}\!\left(
+\Pi_{\mathrm{gauge}}T_{\mathrm{gen}}^aA,
+\Pi_{\mathrm{gauge}}A
+\right)
+\le \epsilon_{\mathrm{rep}}.
+$$
+This prevents a comparison framework from explaining mixing by altering charge, weak isospin, hypercharge, color, handed weak exposure, or by adding hidden partner branches.
+
 #### Candidate Generation Operator
 
 The least risky way to make $T_{\mathrm{gen}}$ concrete is to define it first on the shielding quotient, not as a physical reaction. Let

@@ -4,7 +4,7 @@ This document studies resonance lock for the nested Outer, Middle, and Inner bin
 
 It should be read together with [Binary Dynamics](binary-dynamics.md), [Tri-Binary Dynamics](tri-binary-dynamics.md), [Mapping the Planck Scale](../theory-bridges/planck-scale-tri-binary-alignment.md), and [Noether Core](../spacetime/noether-core.md), which provide the assembly geometry and scale-setting context for the lock relations derived here.
 
-We work with branch labels $k\in\{O,M,I\}$.
+We work with branch labels $k\in\{O,M,I\}$. Here $r_k$ is the characteristic layer radius and $v_k$ is the tangential speed of one member of layer $k$ around that layer's center.
 
 ## Status and Assumptions
 
@@ -36,7 +36,7 @@ This identity is exact. It is not an assumption.
 
 ### Assumption 1 (Middle-Pinned Closure)
 
-Outside the black-hole event horizon, and in the horizon-transition regime itself, the middle binary is pinned at the field speed:
+In the reduced exterior and horizon-transition branch studied here, the middle binary is pinned at the field speed:
 $$
 v_M=c_f,
 \qquad
@@ -44,6 +44,7 @@ v_M=c_f,
 $$
 
 This is the main regime assumption of the document.
+It is not a claim that every Noether-core regime has the middle binary exactly at $c_f$; ordinary weak-stress operation may keep the middle layer only near the hinge scale, while the exact pinning here belongs to the reduced exterior/horizon-transition branch.
 
 ### Assumption 2 (Exact Integer Phase Closure)
 
@@ -68,6 +69,8 @@ Therefore $f_O:f_M:f_I = 1:m:n$, with $f_M=m f_O$ and $f_I=n f_O$.
 
 Plain language: after one outer revolution, the middle and inner rings have completed whole numbers of revolutions as well, so the three-ring pattern closes exactly.
 
+This is the reduced constant-frequency carrier model. In the full Noether-core closure problem, the simple phases $\theta_k=q_k\Omega t+\phi_k$ are replaced by integrated winding, causal-root, and frame-phase ledgers over the accepted branch chart.
+
 ### Assumption 3 (Fixed Relative Phase Lock)
 
 The lock is not just commensurate in frequency. It also carries fixed relative phase offsets over time. One convenient formulation is
@@ -83,9 +86,47 @@ Plain language: the rings keep the same timing relationship cycle after cycle ra
 
 ### Assumption 4 (Cancellation Selection Principle)
 
-Among the admissible integer locks $(1:m:n)$, the physically selected lock is assumed to be the one that yields the strongest cycle-averaged cancellation of the relevant low-order far-field or effective potential signal.
+Among the admissible integer locks $(1:m:n)$, the physically selected lock is assumed to be the one that yields the strongest cycle-averaged cancellation of the relevant low-order causal-wake multipole or effective potential signal.
 
 This is a selection principle, not yet a theorem. Its role is to explain why one exact integer lock might be preferred over nearby commensurate alternatives.
+
+A minimal test functional can be written before committing to a particular lock. Let $q_O=1$, $q_M=m$, and $q_I=n$, with phase variables $\theta_k=q_k\Omega t+\phi_k$. For a low-order truncation depth $L$, define
+$$
+S_L(t)
+=
+\sum_{k\in\{O,M,I\}}\sum_{a=1}^{L}
+A_{k,a}(\beta_k,r_k,\eta,J)\,
+e^{ia(q_k\Omega t+\phi_k)}.
+$$
+The coefficients $A_{k,a}$ are not free fit parameters. They must be extracted from the same finite-$\eta$ branch-strength, branch-Jacobian, and far-field wake ledger used to test the candidate lock.
+The cycle-averaged cancellation score is
+$$
+C_L(m,n;\phi)
+=
+\frac{1}{T}\int_0^T |S_L(t)|^2\,dt
+=
+\sum_{\nu}
+\left|
+\sum_{(k,a):\,a q_k=\nu}
+A_{k,a}e^{ia\phi_k}
+\right|^2.
+$$
+The dyadic claim becomes a theorem target only if $(m,n)=(2,4)$ minimizes this score under the admissible branch equations and retains a positive stability gap.
+
+**Harmonic-overlap lemma.** The score decomposes into resonance blocks labeled by $\nu$. A phase choice can affect cancellation between two layers only when their finite harmonic supports overlap:
+$$
+\nu\in q_k\{1,\ldots,L\}\cap q_j\{1,\ldots,L\}.
+$$
+If a block has no overlap, its contribution to $C_L$ is phase-independent and cannot select an integer lock. For the dyadic candidate $(m,n)=(2,4)$, the first Outer/Middle overlap is $\nu=2$ via $(O,a=2)$ and $(M,a=1)$; the first all-layer overlap is
+$$
+\nu=4
+$$
+via $(O,a=4)$, $(M,a=2)$, and $(I,a=1)$. Thus this functional can select $1:2:4$ only if $L\ge4$ and the $\nu=4$ block has nontrivial branch-derived amplitudes. A complete cancellation of that all-layer block additionally requires the amplitude magnitudes to satisfy the polygon condition
+$$
+\max(|A_{O,4}|,|A_{M,2}|,|A_{I,1}|)
+\le
+\text{sum of the other two}.
+$$
 
 ### Non-Assumptions
 
@@ -96,6 +137,7 @@ This document does **not** assume:
 - or the specific frequency lock $1:2:4$ at the outset.
 
 Those are possible special cases or later outcomes, not starting axioms here.
+This note studies exact integer closure. Rational or self-similar locks can be compared only after clearing denominators or constructing a separate branch map.
 
 ## Immediate Consequences
 
@@ -210,7 +252,7 @@ The cancellation principle is the extra ingredient intended to select among the 
 
 The motivation for Assumption 4 is that a cycle-closing integer lock can support persistent superposition over repeated outer periods. If the phase organization is favorable, the low-order far-field or potential contribution can cancel more effectively over one full return cycle.
 
-In that sense, the selection principle is closer to a resonance-and-superposition argument than to a bare numerology of integer ratios. The intuition is that a physically preferred lock should make the assembly as stealthy or self-canceling as possible subject to the delayed dynamics.
+In that sense, the selection principle is closer to a resonance-and-superposition argument than to a bare numerology of integer ratios. The intuition is that a physically preferred lock should minimize exposed wake leakage and phase-slip variance subject to the delayed dynamics.
 
 This does not yet prove which pair $(m,n)$ wins. It states the criterion that the reduced model should test.
 
@@ -220,8 +262,24 @@ The right theorem target is not "prove $1:2:4$ from kinematics alone." The stron
 
 1. classify the admissible integer locks $(1:m:n)$ under exact delayed phase closure,
 2. compute the corresponding radius relations under $\beta_M=1$,
-3. define a cycle-averaged cancellation functional for the low-order field or effective potential,
-4. and determine which integer lock minimizes that functional in the exterior/horizon regime.
+3. define a cycle-averaged cancellation functional for the low-order causal-wake multipole or effective potential,
+4. determine which integer lock minimizes that functional in the exterior/horizon regime,
+5. and verify the selected lock by a finite-$\eta$ return map with a positive Floquet gap.
+
+Equivalently, for each candidate $(m,n)$ one should construct a return map
+$$
+P_{\eta,m,n}:\mathcal{S}_{m,n}\to\mathcal{S}_{m,n}
+$$
+on the retained branch chart and require
+$$
+\Delta_{m,n}
+=
+1-\max_{i\notin G}|\mu_i(P_{\eta,m,n})|
+>0
+$$
+off the neutral symmetry directions $G$.
+
+Here $\mathcal{S}_{m,n}$ is a finite-$\eta$ reduced phase-amplitude branch chart: it retains the layer phases, radii, speeds, active branch data, branch-Jacobian floors, and history variables needed to evaluate one outer-period return. The neutral directions $G$ are the symmetry directions removed before testing stability, such as global time shift, global spatial rotation, and any declared relabeling symmetry of the retained branch chart.
 
 If the minimizer turns out to be $(1,2,4)$, then the dyadic hierarchy would be a derived selection result rather than a starting assumption.
 

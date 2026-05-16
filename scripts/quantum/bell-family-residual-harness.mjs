@@ -220,26 +220,29 @@ function assertDistribution(distribution, label) {
   }
 }
 
-function chshMetrics(scenario) {
+function chshContextEntries(scenario) {
   if (!scenario.chsh) {
     return null;
   }
-  const { a0, a1, b0, b1, sign = [1, -1, 1, 1] } = scenario.chsh;
-  const contexts = [
-    findContext(scenario, { A: a0, B: b0 }),
-    findContext(scenario, { A: a0, B: b1 }),
-    findContext(scenario, { A: a1, B: b0 }),
-    findContext(scenario, { A: a1, B: b1 }),
+  const { a0, a1, b0, b1 } = scenario.chsh;
+  return [
+    { key: `${a0}_${b0}`, context: findContext(scenario, { A: a0, B: b0 }) },
+    { key: `${a0}_${b1}`, context: findContext(scenario, { A: a0, B: b1 }) },
+    { key: `${a1}_${b0}`, context: findContext(scenario, { A: a1, B: b0 }) },
+    { key: `${a1}_${b1}`, context: findContext(scenario, { A: a1, B: b1 }) },
   ];
-  const expectations = contexts.map((context) => correlation(context, ["A", "B"]));
+}
+
+function chshMetrics(scenario) {
+  const entries = chshContextEntries(scenario);
+  if (!entries) {
+    return null;
+  }
+  const { sign = [1, -1, 1, 1] } = scenario.chsh;
+  const expectations = entries.map(({ context }) => correlation(context, ["A", "B"]));
   const s = expectations.reduce((sum, value, index) => sum + sign[index] * value, 0);
   return {
-    expectations: {
-      [`${a0}_${b0}`]: expectations[0],
-      [`${a0}_${b1}`]: expectations[1],
-      [`${a1}_${b0}`]: expectations[2],
-      [`${a1}_${b1}`]: expectations[3],
-    },
+    expectations: Object.fromEntries(entries.map(({ key }, index) => [key, expectations[index]])),
     S: s,
     abs_S: Math.abs(s),
     local_bound_excess: Math.max(0, Math.abs(s) - 2),
@@ -377,6 +380,186 @@ function productScreeningMetrics(scenario) {
   };
 }
 
+function completeRecordParityMetrics(scenario) {
+  const entries = chshContextEntries(scenario);
+  if (!entries || scenario.parties.length !== 2 || !scenario.parties.includes("A") || !scenario.parties.includes("B")) {
+    return null;
+  }
+
+  const records = completeRecordParityRecords(scenario, entries);
+  if (records.length === 0) {
+    return null;
+  }
+
+  const audits = records.map((record) => completeRecordParityAudit(record, entries));
+  const checkedRecords = audits.filter((record) => record.status !== "incomplete");
+  const obstructedRecords = audits.filter((record) => record.status === "obstructed");
+  const incompleteRecords = audits.filter((record) => record.status === "incomplete");
+  const obstructedWeight = obstructedRecords.reduce((sum, record) => sum + record.weight, 0);
+  const deltaPar = obstructedWeight;
+  const incompleteWeight = incompleteRecords.reduce((sum, record) => sum + record.weight, 0);
+  const includeAllRecords = Boolean(scenario.source_records) || audits.length <= 40;
+
+  return {
+    status:
+      obstructedWeight > (scenario.thresholds.complete_record_parity ?? EPS)
+        ? "fail"
+        : incompleteRecords.length > 0
+          ? "incomplete"
+          : "pass",
+    interpretation:
+      "A deterministic complete local-response record must satisfy (A0B0)(A0B1)(A1B0)(A1B1)=+1.",
+    context_order: entries.map(({ key }) => key),
+    expected_local_response_parity: 1,
+    record_source: scenario.source_records ? "source_records" : "screening_records",
+    checked_record_count: checkedRecords.length,
+    obstructed_record_count: obstructedRecords.length,
+    Delta_par: deltaPar,
+    residual: deltaPar,
+    obstructed_weight: obstructedWeight,
+    incomplete_record_count: incompleteRecords.length,
+    incomplete_weight: incompleteWeight,
+    record_reports_complete: includeAllRecords,
+    omitted_admissible_record_count: includeAllRecords
+      ? 0
+      : audits.filter((record) => record.status === "admissible").length,
+    records: includeAllRecords
+      ? audits
+      : audits.filter((record) => record.status !== "admissible").slice(0, 40),
+  };
+}
+
+function completeRecordParityRecords(scenario, entries) {
+  if (Array.isArray(scenario.source_records) && scenario.source_records.length > 0) {
+    return scenario.source_records.map((record) => ({
+      id: record.id,
+      weight: record.weight,
+      record,
+    }));
+  }
+
+  const records = new Map();
+  for (const { context } of entries) {
+    for (const record of context.screening?.records ?? []) {
+      if (!records.has(record.id)) {
+        records.set(record.id, {
+          id: record.id,
+          weight: record.weight,
+          record,
+        });
+      }
+    }
+  }
+  return [...records.values()];
+}
+
+function completeRecordParityAudit(recordEntry, entries) {
+  const signs = {};
+  const sources = {};
+  const missing_contexts = [];
+  let parityProduct = 1;
+
+  for (const { key, context } of entries) {
+    const inferred = completeRecordContextSign(recordEntry, context);
+    if (!inferred.sign) {
+      signs[key] = null;
+      sources[key] = inferred.reason;
+      missing_contexts.push(key);
+      continue;
+    }
+    signs[key] = inferred.sign;
+    sources[key] = inferred.source;
+    parityProduct *= inferred.sign;
+  }
+
+  const status =
+    missing_contexts.length > 0
+      ? "incomplete"
+      : parityProduct === 1
+        ? "admissible"
+        : "obstructed";
+
+  return {
+    id: recordEntry.id,
+    weight: recordEntry.weight,
+    signs,
+    parity_product: missing_contexts.length > 0 ? null : parityProduct,
+    status,
+    sources,
+    missing_contexts,
+  };
+}
+
+function completeRecordContextSign(recordEntry, context) {
+  const screeningRecord = context.screening?.records?.find((record) => record.id === recordEntry.id);
+  const screeningSign = screeningRecord ? deterministicScreeningSign(screeningRecord) : null;
+  if (screeningSign) {
+    return { sign: screeningSign, source: "screening_local_response" };
+  }
+
+  const thresholdSign = thresholdIntervalSign(recordEntry.record, context);
+  if (thresholdSign) {
+    return thresholdSign;
+  }
+
+  return { sign: null, reason: "no_deterministic_record_context_sign" };
+}
+
+function deterministicScreeningSign(record) {
+  const a = deterministicDistributionValue(record.local?.A);
+  const b = deterministicDistributionValue(record.local?.B);
+  return a === null || b === null ? null : a * b;
+}
+
+function deterministicDistributionValue(distribution) {
+  if (!isPlainObject(distribution)) {
+    return null;
+  }
+  let selected = null;
+  for (const [key, probability] of Object.entries(distribution)) {
+    if (probability >= 1 - EPS) {
+      if (selected !== null) {
+        return null;
+      }
+      selected = Number(key);
+    } else if (probability > EPS) {
+      return null;
+    }
+  }
+  return selected === -1 || selected === 1 ? selected : null;
+}
+
+function thresholdIntervalSign(record, context) {
+  const interval =
+    record.correlation_interval ??
+    record.eta_AB_interval ??
+    record.local_record_cycle_coordinate?.eta_AB_interval;
+  const threshold = context.basin_threshold ?? context.eta_AB_threshold;
+
+  if (!Array.isArray(interval) || interval.length !== 2 || typeof threshold !== "number") {
+    return null;
+  }
+
+  const [etaMin, etaMax] = interval;
+  if (
+    typeof etaMin !== "number" ||
+    typeof etaMax !== "number" ||
+    etaMin < -EPS ||
+    etaMax > 1 + EPS ||
+    etaMin > etaMax + EPS
+  ) {
+    return null;
+  }
+
+  if (etaMax <= threshold + EPS) {
+    return { sign: 1, source: "threshold_interval" };
+  }
+  if (etaMin >= threshold - EPS) {
+    return { sign: -1, source: "threshold_interval" };
+  }
+  return { sign: null, reason: "record_interval_straddles_context_threshold" };
+}
+
 function gate(passed, value, threshold, code) {
   const status = passed ? "pass" : "fail";
   return {
@@ -395,6 +578,7 @@ function evaluateScenario(scenario) {
   const measurementIndependence = measurementIndependenceMetrics(scenario);
   const observedFactorization = observedFactorizationMetrics(scenario);
   const productScreening = productScreeningMetrics(scenario);
+  const completeRecordParity = completeRecordParityMetrics(scenario);
 
   const gates = {
     no_signaling: gate(
@@ -445,6 +629,14 @@ function evaluateScenario(scenario) {
       "bell.product_screening_collapse"
     );
   }
+  if (completeRecordParity && completeRecordParity.checked_record_count > 0) {
+    gates.complete_record_parity = gate(
+      completeRecordParity.Delta_par <= scenario.thresholds.complete_record_parity,
+      completeRecordParity.Delta_par,
+      scenario.thresholds.complete_record_parity,
+      "bell.complete_record_parity_obstruction"
+    );
+  }
 
   const failureCodes = Object.values(gates)
     .filter(Boolean)
@@ -465,6 +657,7 @@ function evaluateScenario(scenario) {
       measurement_independence: measurementIndependence,
       observed_factorization: observedFactorization,
       product_screening: productScreening,
+      complete_record_parity: completeRecordParity,
     },
     gates,
     witness_tags: witnessTags({
@@ -474,12 +667,21 @@ function evaluateScenario(scenario) {
       noSignaling,
       measurementIndependence,
       productScreening,
+      completeRecordParity,
     }),
     failure_codes: failureCodes,
   };
 }
 
-function witnessTags({ chsh, ghz, hardy, noSignaling, measurementIndependence, productScreening }) {
+function witnessTags({
+  chsh,
+  ghz,
+  hardy,
+  noSignaling,
+  measurementIndependence,
+  productScreening,
+  completeRecordParity,
+}) {
   const tags = [];
   if (chsh?.local_bound_excess > EPS) {
     tags.push("bell.chsh_local_bound_violated");
@@ -501,6 +703,9 @@ function witnessTags({ chsh, ghz, hardy, noSignaling, measurementIndependence, p
   }
   if (productScreening?.reduces_to_product_screening) {
     tags.push("bell.product_screening_collapse");
+  }
+  if (completeRecordParity?.obstructed_weight > EPS) {
+    tags.push("bell.complete_record_parity_obstruction");
   }
   return tags;
 }
@@ -709,6 +914,7 @@ function defaults(overrides = {}) {
     ghz: 1e-9,
     hardy_margin: 1e-9,
     product_screening: 1e-9,
+    complete_record_parity: 1e-9,
     ...overrides,
   };
 }

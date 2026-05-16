@@ -46,6 +46,8 @@ A Physical Observer has access only to:
 - finite records,
 - and statistical summaries of unresolved microstate structure.
 
+No Physical Observer can be promoted into a global, outside-the-universe vantage point. The $\mathbb{U}_{\text{now}}$ universe-state perspective can define the complete state for theory construction, but a Physical Observer can only assemble finite records across a declared access region and communication history.
+
 This limitation becomes especially important in strong-gravity and cosmology comparisons. Standard quantum-gravity discussions also run into the fact that an observer cannot be placed outside the entire universe as a massless, energy-free measuring device. A real observer supplies a clock, a location, finite records, and an access region. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this does not make reality observer-created; it means that black-hole entropy, de Sitter thermodynamics, horizon access, and quantum state descriptions must be stated relative to what an embedded Physical Observer can actually clock, probe, and record.
 
 For the same reason, an expectation value, covariance, or correlation function is not automatically an ontic claim about an effective metric, the Noether Sea, or the complete microstate. It is an observer-level summary for a declared observation region, readout channel, and boundary-data model. A comparison packet may use such summaries, but it must say which Physical Observer records and boundary wake data make the summary meaningful.
@@ -102,6 +104,34 @@ $$
 where $N_{\text{sea}}|_{\Omega}(t)$ denotes the locally resolved Noether-Sea state. A Physical Observer who models only $X_\Omega(t)$ has omitted finite-speed signals, incoming causal wakes, and path-history branches crossing the boundary. That omission can make local prediction fail without implying indeterminism in the $\mathbb{U}_{\text{now}}$ universe-state perspective, because the complete state includes the boundary wake data and the path-history ledger needed for deterministic continuation.
 
 The same finite-boundary form is the local substitute for placing a hypothetical observer at infinity in compact strong-field comparisons. For black-hole and cosmology problems, $\mathcal{B}_{\partial\Omega}$ is the controlled interface between what a Physical Observer can access and what the complete state must carry for deterministic continuation.
+
+### Global-Reconstruction Ambiguity
+
+Finite observer records can underdetermine global reconstruction even when the local data are extremely rich. For a declared Physical Observer $O$, observation window $W$, data-product family $\mathcal{D}$, and tolerance $\epsilon$, let $\Pi_{\mathcal{D}}^{(O,W)}(\theta)$ be the data-product projection of a candidate closure record $\theta$. Relative to the promoted closure set $\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ from [Failure Criteria](../validation/failure-criteria.md), define
+$$
+[\theta]_{\mathcal{D},\epsilon}^{(O,W)}
+=
+\left\{
+\theta'\in\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}
+:
+d_{\mathcal{D}}\!\left(
+\Pi_{\mathcal{D}}^{(O,W)}(\theta'),
+\Pi_{\mathcal{D}}^{(O,W)}(\theta)
+\right)
+\le \epsilon
+\right\}.
+$$
+For a proposed global claim $P$, the observer-side ambiguity indicator is
+$$
+\Delta_P^{(O,W)}(\theta)
+=
+\mathbf{1}\!\left[
+\exists\theta_1,\theta_2\in[\theta]_{\mathcal{D},\epsilon}^{(O,W)}
+\text{ with }
+P(\theta_1)\ne P(\theta_2)
+\right].
+$$
+If $\Delta_P^{(O,W)}(\theta)=1$, the Physical Observer has not measured $P$ as a global fact. The data product may still be valid, but $P$ remains an effective reconstruction or comparison interpretation unless an independent $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation selects it from the same complete-state and boundary-wake record.
 
 For local-horizon thermodynamic comparisons, the countable object is not the raw boundary history by itself. It is the retained boundary-wake label family after the Physical Observer's record channel has identified histories that cannot be distinguished on the declared window:
 $$
@@ -169,6 +199,16 @@ N^{\mathrm{det}}_{AB}(t,t')
 N^{\mathrm{env}}_{AB}(t,t').
 $$
 The same decomposition should be reused across weak-probe, interferometric, and precision-gravity comparisons. If a proposed measurement model must retune the unresolved boundary covariance separately for each branch or observable, the observer-level closure has failed rather than discovered a new ontology.
+
+The same declared-measure discipline applies to observer-level probability tables and ensemble summaries. For a Physical Observer record $\theta$, observation window $W$, readout channel $Y_A$, and event set $B$, the probability assigned to that readout should be a pushforward of the conditional measure already tied to retained boundary data:
+$$
+P_{\Omega,\theta,W}(Y_A\in B)
+=
+\mu_{\Omega,\theta}\!\left(
+\{\mathcal{B}:Y_A(t;\mathcal{B},\theta)\in B\ \text{on}\ W\}
+\right).
+$$
+If a comparison requires different measures for branch weights, thermodynamic noise, observer selection, or readout covariance while holding the same observer record $\theta$, it is a set of separately fitted summaries rather than one observer-model closure.
 
 ## Absolute and Operational Simultaneity
 

@@ -11,11 +11,10 @@
 
 ## Task Queue
 
-1. `standard_entropy_baseline` - Keep the standard thermodynamic, statistical, information-theoretic, and horizon-entropy meanings separated before mapping them into $\mathbb{A}\mathbb{A}\mathbb{A}$. Status: `draft`. Depends on: none.
-2. `windowed_entropy_functional` - Promote the existing coarse-graining / access-window formula into a reusable entropy closure packet. Status: `draft`. Depends on: `standard_entropy_baseline`.
-3. `record_locking_entropy` - Connect measurement-record entropy locking to the same coarse-grained entropy grammar. Status: `draft`. Depends on: `windowed_entropy_functional`, [quantum-closure](../quantum-closure/quantum-closure.md).
-4. `horizon_label_entropy` - Route black-hole entropy through the horizon-interface label ensemble, its local block entropy density, and the Page-curve release-channel target. Status: `block-density-scaffolded`; coefficient derivation pending. Depends on: [strong-field-closure](../strong-field-closure/strong-field-closure.md), `windowed_entropy_functional`.
-5. `cosmology_entropy_balance` - State when Noether-Sea entropy, thermalization, redshift, and CMB blackbody recovery use one shared medium-state record. Status: `draft`. Depends on: [cosmology-closure](../cosmology-closure/cosmology-closure.md), [validation-gates](../validation-gates/validation-gates.md).
+1. `windowed_entropy_functional` - Promote the existing coarse-graining / access-window formula into a reusable entropy closure packet. Status: `draft`. Depends on: none.
+2. `record_locking_entropy` - Connect measurement-record entropy locking to the same coarse-grained entropy grammar. Status: `draft`. Depends on: `windowed_entropy_functional`, [quantum-closure](../quantum-closure/quantum-closure.md).
+3. `horizon_label_entropy` - Route black-hole entropy through the horizon-interface label ensemble, its local block entropy density, and the Page-curve release-channel target. Status: `block-density-scaffolded`; coefficient derivation pending. Depends on: [strong-field-closure](../strong-field-closure/strong-field-closure.md), `windowed_entropy_functional`.
+4. `cosmology_entropy_balance` - State when Noether-Sea entropy, thermalization, redshift, and CMB blackbody recovery use one shared medium-state record. Status: `draft`. Depends on: [cosmology-closure](../cosmology-closure/cosmology-closure.md), [validation-gates](../validation-gates/validation-gates.md).
 
 ## Scope
 
@@ -25,7 +24,7 @@ The purpose is to keep the current theoretical meanings of entropy intact, then 
 
 ## Current Theory Baseline
 
-Entropy currently carries several distinct but compatible roles.
+Entropy currently carries several distinct but compatible roles. The first baseline rule is therefore diagnostic: before mapping an entropy claim into $\mathbb{A}\mathbb{A}\mathbb{A}$, identify which entropy is being used, which state space or process class licenses it, which coarse-graining or probability measure is declared, and which work, record, horizon, or cosmology task consumes it.
 
 In thermodynamics, entropy is the state variable whose reversible change satisfies
 
@@ -33,9 +32,9 @@ $$
 dS=\frac{\delta Q_{\mathrm{rev}}}{T}.
 $$
 
-This definition makes entropy the bookkeeping variable for heat exchange, equilibrium, and the directionality of irreversible processes. It is powerful because it does not require detailed microscopic knowledge, but it is also coarse-grained by construction.
+This definition makes entropy the bookkeeping variable for heat exchange, equilibrium, and the directionality of irreversible processes. Its path independence is not the primitive second law; it is available only after a process constraint such as the Clausius inequality or an equivalent reversible-cycle statement has fixed the comparison class. A claimed violation should therefore be tested against the physical process law or statistical reliability bound before invoking a slogan such as bare total entropy increase.
 
-In statistical mechanics, entropy counts or measures compatible microstates. The microcanonical form is
+In statistical mechanics, entropy counts or measures compatible microstates. Boltzmann entropy attaches to a declared macrostate partition: once a microstate lies in a macrostate, the count of compatible microstates supplies the entropy associated with that macrostate. The microcanonical form is
 
 $$
 S_B=k_B\log W,
@@ -47,6 +46,8 @@ $$
 S_G=-k_B\sum_i p_i\log p_i.
 $$
 
+These two statistical objects answer different questions. Boltzmann entropy is objective only relative to the chosen macrostate partition, while Gibbs/Shannon entropy varies with the probability distribution over unresolved alternatives. Neither is meaningful before the state space, partition or distribution, and measure have been specified.
+
 In quantum theory, the analogous density-operator expression is
 
 $$
@@ -54,6 +55,14 @@ S_{\mathrm{vN}}=-k_B\operatorname{Tr}(\rho\log\rho).
 $$
 
 These formulas are not identical claims about ontology. They are different ways to assign a coarse-grained measure to unresolved possibilities after a state space, measure, and observational access rule have been declared.
+
+In resource-theory language, the relevant question is what work can be extracted or what task can be performed with the accessible operations, reference resources, and records. Helmholtz free energy,
+
+$$
+F=U-TS,
+$$
+
+is a useful inherited comparison object only after $T$, $S$, and the allowed manipulation class are declared. Information counts as a resource only when it is embodied in physical records, memory states, calibration data, or control degrees of freedom that carry their own event-ledger and entropy bookkeeping.
 
 In nonequilibrium theory, entropy is local and flux-bearing. A useful balance form is
 
@@ -125,7 +134,9 @@ Here $\sigma_W$ should be derived from unresolved branch mixing, residual routin
 | Boltzmann entropy | State-counting pressure | Count compatible reduced assembly / Noether-Sea states under declared coarse-graining | Specify $\Gamma_{\mathcal{Q},W}$, measure $\mu$, and boundary data |
 | Gibbs/Shannon entropy | Distributional uncertainty | Measure over unresolved reduced states, basins, or observer records | Derive the invariant or metastable measure rather than assigning it externally |
 | Von Neumann entropy | Quantum reduced-state entropy | Effective observer-level density-operator summary after basin, record, and access restrictions | Recover the standard quantum limit through transfer-operator and measurement-response gates |
+| Available/free energy | Extractable-work pressure under declared operations | Resource value of a record, bath, bias state, or medium state after energy and entropy channels are both routed | State the allowed operations, reference resources, and event ledger before claiming work extraction |
 | Record entropy | Irreversible-looking measurement records | Environmental locking of a durable apparatus branch | Prove $\Delta S_{\mathcal{Q},W}^{\mathrm{app+env}}\ge S_{\mathrm{lock}}>0$ for a declared apparatus class |
+| Reset or memory entropy | Physical cost of cycling a memory-bearing apparatus | Export of unresolved record alternatives into apparatus/environment history, or explicit depletion of a blank-memory resource | For cyclic reset, prove a lower-bound entropy export from the same record channel |
 | Black-hole entropy | Horizon area and generalized entropy benchmarks | Derive the compatible horizon-interface Noether-core label ensemble, its local block entropy density, and accessible outgoing channels | Derive $\mathcal{B}_H(M,\mathbf{J},Q)$, the local coefficient $s_{\mathrm{align}}^H(\theta)$, and Page-curve-compatible release accounting |
 | Cosmological entropy | Thermal history and large-scale arrow | Production, flux, and coarse-graining residuals in a finite Noether-Sea window | Preserve one medium-state record across CMB, BBN, redshift, and growth modules |
 
@@ -223,10 +234,12 @@ with boundary corrections vanishing in the large-block limit. The native content
 
 | Failure mode | Diagnostic consequence |
 | --- | --- |
+| Entropy definitions conflated | Clausius, Boltzmann, Gibbs/Shannon, von Neumann, record, horizon, or cosmology entropy has been used outside its licensed state space, process class, or measure. |
 | Bare "entropy of the universe" wording | The calculation has skipped the required access region, coarse-graining, boundary flux, and source/sink terms. |
 | State-counting without a measure | $S=k_B\log W$ is being used as rhetoric rather than a mathematical object. |
 | Horizon area imported as ontology | The strong-field packet has treated GR comparison geometry or a one-patch label count as primitive instead of deriving the horizon-interface block-density capacity. |
 | Measurement entropy treated as collapse | The quantum packet has confused record stability with a new fundamental discontinuity. |
+| Apparatus reset without exported cost | A cyclic memory or demon-style device has compressed the retained record alternatives without exporting the missing state count into apparatus/environment entropy or recording consumption of a finite blank-memory resource. |
 | Cosmology entropy fitted per observable | CMB, BBN, redshift, blackbody, and growth claims no longer consume one shared Noether-Sea state record. |
 
 ## Related Priorities

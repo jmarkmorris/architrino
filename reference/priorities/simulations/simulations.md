@@ -3,15 +3,15 @@
 ## Workstream Metadata
 
 - Kind: `priority`
-- Rank: `5`
-- Value: `13.45`
+- Rank: `3`
+- Value: `25.42`
 - Cost: `4.1`
-- ROI: `3.28`
+- ROI: `6.20`
 - Status: `queued`
 
 ## Task Queue
 
-1. `tier0_tier1_runs` — Implement the $A_0$ self-root fold/splitting diagnostic, then run the one-period adaptive direct-root Tier 1 continuation only after the surplus event is classified. Status: `next`. Depends on: none.
+1. `tier0_tier1_runs` — The $A_0$ self-root fold/splitting diagnostic now classifies all ready rows as `fold-layer`; the one-period intake remains fail-closed because the estimated direct-root step burden is about $2.93\times10^7$ to $4.62\times10^7$ steps per period. Next work is an adaptive one-period direct-root integrator or step controller that can reduce this burden before any accepted-history row is emitted. Status: `active`. Depends on: none.
 2. `convergence_and_provenance` — Publish convergence plots and $\mathbb{U}_{\text{now}}$ provenance logs. Status: `pending`. Depends on: `tier0_tier1_runs`.
 3. `eta_positive_package` — Consolidate the formal $\eta > 0$ existence and continuation package. Status: `pending`. Depends on: `tier0_tier1_runs`.
 

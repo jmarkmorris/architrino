@@ -171,6 +171,59 @@ $$
 $$
 where $\triangle$ denotes symmetric difference. A true invariant basin has $\varepsilon_{\text{leak},i}=0$; a metastable basin must declare the finite window and leakage tolerance.
 
+### Finite-Window Reachability
+
+The basin packet deliberately proves finite-window record claims, not a global promise that every future reachability question is decidable. A stronger unbounded question would fix a computable encoding $\gamma_{M,w}\in\Gamma$ of a formal machine/input pair and an open target set $O\subset\Gamma$, then ask whether
+$$
+\exists t\ge 0:\Phi_t(\gamma_{M,w})\in O
+\quad\Longleftrightarrow\quad
+M(w)\ \text{halts}.
+$$
+If such an embedding exists for a retained dynamical chart, the resulting reachability problem inherits the halting obstruction. That comparison is useful as a limit on prediction, but it is not an extra ontology and not a requirement for ordinary measurement closure.
+
+The validation-side object remains the bounded basin over a declared record window:
+$$
+B_O^T
+=
+\left\{
+\gamma\in\Gamma_{\mathrm{adm}}:
+\exists t\in[0,T]\ \text{with}\ \Phi_t(\gamma)\in O,
+\quad
+\Phi_s(\gamma)\in\Gamma_{\mathrm{adm}}\ \text{for}\ 0\le s\le T
+\right\}.
+$$
+A promoted quantum or detector claim must state which object it has controlled: finite-window basin membership, a metastable basin measure, a return-map invariant, or an explicitly separate unbounded reachability theorem. Born-rule, detector-response, and record-autonomy claims use the first three objects unless a later proof supplies the fourth.
+
+### Eligible Record Basins
+
+The Born-rule packet should normalize only over basins that become completed records in the declared channel. For a setup $\theta=(\mathcal{K}_A,\mathcal{Q},W,T)$ and candidate outcome event $\mathsf e_i$, use the record indicator
+$$
+\mathbf{1}_{\mathrm{rec}}(i;\theta)
+=
+\mathbf{1}\!\left[
+B_i\in\mathcal{B}_\Gamma,\quad
+\mu_*(\Sigma_{\mathcal{P}})=0,\quad
+\tau_{\text{meas}}(B_i)<\infty,\quad
+\Delta_{\mathrm{rec}}(i;\theta)\le\varepsilon_{\mathrm{rec}},\quad
+\Delta_{\mathrm{div}}(i;\theta)\le\varepsilon_{\mathrm{div}},
+\right.
+$$
+$$
+\left.
+\Delta S_{\mathcal{Q},W}^{\mathrm{app+env}}(i)\ge S_{\mathrm{lock}},\quad
+\|\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e_i)\|\le\varepsilon_{\mathrm{evt}},\quad
+|\Delta E_{\mathrm{unrec}}(T;\theta,i)|\le\varepsilon_E
+\right].
+$$
+The compressed probability used by a detector or measurement consumer is then
+$$
+p_i^\theta
+=
+\frac{\mu_*(B_i)\mathbf{1}_{\mathrm{rec}}(i;\theta)}
+{\sum_j\mu_*(B_j)\mathbf{1}_{\mathrm{rec}}(j;\theta)}.
+$$
+Here $\Delta_{\mathrm{rec}}(i;\theta)$ and $\Delta_{\mathrm{div}}(i;\theta)$ denote the corresponding windowed suprema from the declared measurement channel. This is the theorem-packet version of the measurement rule: a branch weight becomes an outcome probability only after the same finite-time flow has produced a record, passed the restartability and entropy-locking checks, and closed the conservation and energy ledgers. If the denominator vanishes, the proposed setup has no completed measurement channel on that window.
+
 The Born-rule recovery target is the special case in which the effective observer envelope $\psi_{\mathrm{eff}}$ exists and the basin measure agrees with the squared effective amplitude:
 $$
 \mu_*(B_i)
@@ -179,6 +232,24 @@ $$
 |\psi_{\mathrm{eff}}|^2\,d\Gamma_{\mathrm{eff}}.
 $$
 This equation is a closure condition on $\mu_*$ and $C_{\eta,h}$, not an axiom used to define either object.
+
+### Credence-Only Failure Mode
+
+Self-location, betting, or decision-theory arguments may be useful as observer-level inference stories, but they do not close the Born-rule theorem packet by themselves. Let $q_i(\mathcal{I})$ be the weight assigned by an inference rule $\mathcal{I}$ after seeing the same preparation class, apparatus channel, and record family. The rule is physically admissible for this packet only if it tracks the record-basin probability already derived from the transfer operator:
+$$
+\Delta_{\mathrm{cred}}(\mathcal{I};\theta)
+=
+\sum_i
+\left|
+q_i(\mathcal{I})
+-
+\frac{\mu_*(B_i)\mathbf{1}_{\mathrm{rec}}(i;\theta)}
+{\sum_j\mu_*(B_j)\mathbf{1}_{\mathrm{rec}}(j;\theta)}
+\right|
+\le
+\varepsilon_{\mathrm{cred}}.
+$$
+If $\Delta_{\mathrm{cred}}=O(1)$, the rule has supplied a rationality or labeling convention rather than an outcome measure. The falsifier is simple: two rules can recommend different credences for the same self-location narrative while the apparatus frequencies remain fixed. Only the transfer-operator basin measure can own the physical probability target; inference rules are consumers of that measure, not substitutes for it.
 
 ## Sector Adapters
 

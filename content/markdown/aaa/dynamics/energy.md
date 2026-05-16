@@ -6,7 +6,7 @@ This chapter underwrites [Particle Masses](../assemblies/particle-masses.md), [T
 
 All such dynamics unfold on a fixed ontological background: absolute time plus the Euclidean void. Forces and motion arise from **delayed causal hits from causal isochrons**, with line-of-action direction and Jacobian-weighted magnitude, on this fixed background. We work in units with wake speed $c_f=1$.
 
-Crucially, `spacetime` in this framework belongs to the effective level, not the ontological one. The underlying substrate is a **dense sea of scalable high-energy tri-binary assemblies** occupying the Euclidean void. These tri-binaries are extremely small compared to ordinary Standard Model particles and constitute the Noether Sea through which all other assemblies move and interact. The energetic state and configuration of this tri-binary sea control how energy, inertia, and effective geometry appear at larger scales.
+Crucially, `spacetime` in this framework belongs to the effective level, not the ontological one. The ambient Noether Sea is a **dense sea of scalable high-energy tri-binary assemblies** occupying the Euclidean void. These tri-binaries are extremely small compared to ordinary Standard Model particles and constitute the medium through which all other assemblies move and interact. The energetic state and configuration of this tri-binary sea control how energy, inertia, and effective geometry appear at larger scales.
 
 ---
 
@@ -18,17 +18,25 @@ An architrino in motion possesses kinetic energy and momentum.
   
   A scalar quantity representing the energy of motion. For a single architrino $a$ with velocity $\mathbf{v}_a(t)$, we write
   
-  $$E_{k,a}(t) = K\big(|\mathbf{v}_a(t)|\big),$$
+  $$E_{k,a}(t) = K\big(\|\mathbf{v}_a(t)\|\big),$$
   
-  where $K$ is a strictly convex, monotonically increasing function with $K(0)=0$ and $K'(v)\to\infty$ as effective saturation is reached (if applicable), or growing unboundedly in the primitive limit. $K$ is left unspecified because mass is emergent from interactions between assemblies, especially the Noether-Sea tri-binaries. Strict convexity ensures a one-to-one mapping between kinetic energy and speed magnitude. Because a free Architrino has no intrinsic speed limit in the micro-model, $E_k$ is, in principle, unbounded as $|\mathbf{v}_a|\to\infty$.
+  where $K$ is a strictly convex, monotonically increasing function with $K(0)=0$ and $K'(v)\to\infty$ as effective saturation is reached (if applicable), or growing unboundedly in the primitive limit. $K$ is left unspecified because mass is emergent from interactions between assemblies, especially the Noether-Sea tri-binaries. Strict convexity ensures a one-to-one mapping between kinetic energy and speed magnitude. Because a free architrino has no intrinsic speed limit in the micro-model, $E_k$ is, in principle, unbounded as $\|\mathbf{v}_a\|\to\infty$.
 
 - **Momentum $\mathbf{p}_a$**
   
   The vector counterpart of kinetic energy:
   
-  $$\mathbf{p}_a(t) = P\big(|\mathbf{v}_a(t)|\big)\,\hat{\mathbf{v}}_a(t), \quad \hat{\mathbf{v}}_a = \frac{\mathbf{v}_a}{|\mathbf{v}_a|},$$
+  $$\mathbf{p}_a(t) = P\big(\|\mathbf{v}_a(t)\|\big)\,\hat{\mathbf{v}}_a(t), \quad \hat{\mathbf{v}}_a = \frac{\mathbf{v}_a}{\|\mathbf{v}_a\|},$$
   
   where $P$ is a speed-dependent magnitude. Its detailed form is not postulated at the architrino level; it emerges from matching to assembly behavior.
+
+  If this momentum is treated as the conjugate momentum for the primitive kinetic scalar and $\mathbf{F}=d\mathbf{p}/dt$ is used in the work-energy relation, then $P$ and $K$ are not independent. For arbitrary nonzero velocity and acceleration, consistency requires
+  $$
+  P'(s)=\frac{K'(s)}{s}=\mu_K(s),
+  \qquad
+  P(s)=\int_0^s\frac{K'(u)}{u}\,du
+  $$
+  after choosing $P(0)=0$. If this condition is not imposed, $\mathbf{p}$ should be read as a momentum-like bookkeeping vector rather than the canonical momentum of $K$.
 
 **No fundamental mass:**
 
@@ -43,11 +51,25 @@ In this model, there is no **particle-specific substrate mass** assigned to indi
 
 ## Work–Energy Relation and Per-Hit Power
 
-Regardless of the explicit form of $K(v)$, kinetic-energy accounting is controlled by the acceleration-first master law. If one introduces the optional universal bookkeeping constant $\mu_{\text{arch}}$ and defines $\mathbf{F}_a \equiv \mu_{\text{arch}}\mathbf{a}_a$, then the quadratic bookkeeping proxy satisfies the familiar **work–energy theorem**:
+Kinetic-energy accounting is controlled by the acceleration-first master law, but the familiar quadratic work-energy form applies only after a kinetic proxy has been chosen. For a general primitive kinetic scalar with $s_a=\|\mathbf{v}_a\|$,
 
-$$\frac{dE_{k,a}}{dt} = \mathbf{F}_a(t)\cdot\mathbf{v}_a(t),$$
+$$
+\frac{dE_{k,a}}{dt}
+=
+K'(s_a)\frac{\mathbf{v}_a\cdot\mathbf{a}_a}{s_a}
+=
+\mu_K(s_a)\,\mathbf{a}_a\cdot\mathbf{v}_a,
+\qquad
+\mu_K(s)\equiv\frac{K'(s)}{s}.
+$$
 
-where $\mathbf{F}_a$ is the optional force-like bookkeeping quantity associated with the net acceleration from all causal hits.
+If one introduces the optional universal bookkeeping constant $\mu_{\text{arch}}$ and defines $\mathbf{F}_a \equiv \mu_{\text{arch}}\mathbf{a}_a$, then the quadratic bookkeeping proxy $K_{\mu,a}=\frac{1}{2}\mu_{\text{arch}}\|\mathbf{v}_a\|^2$ satisfies
+
+$$
+\frac{dK_{\mu,a}}{dt} = \mathbf{F}_a(t)\cdot\mathbf{v}_a(t).
+$$
+
+Here $\mathbf{F}_a$ is the optional force-like bookkeeping quantity associated with the net acceleration from all causal hits; it is not a particle-specific substrate mass law.
 
 From the canonical per-hit law
 
@@ -66,7 +88,7 @@ J_{o'\leftarrow o}(t;t_0)
 $$
 is the causal Jacobian encoding geometric bunching or dilation of the received wake flux.
 
-decompose the receiver's velocity into radial and transverse components:
+Decompose the receiver's velocity into radial and transverse components:
 
 $$\mathbf{v}_{o'} = v_r \hat{\mathbf{r}} + \mathbf{v}_\perp, \quad v_r=\mathbf{v}_{o'}\cdot\hat{\mathbf{r}}.$$
 
@@ -75,14 +97,14 @@ Because $\mathbf{a}_{o'\leftarrow o}\parallel\hat{\mathbf{r}}$:
 - The **instantaneous work rate** from this hit is
   
   $$
-  \frac{dE_k}{dt}\bigg|_{\text{hit}}
+  \frac{dK_\mu}{dt}\bigg|_{\text{hit}}
   =
-  \mathbf{a}_{o'\leftarrow o}\cdot\mathbf{v}_{o'}
+  \mu_{\text{arch}}\mathbf{a}_{o'\leftarrow o}\cdot\mathbf{v}_{o'}
   =
-  \frac{\kappa\,\sigma_{q_o q_{o'}}\,|q_o q_{o'}|}{r^2\,|J_{o'\leftarrow o}(t;t_0)|}\,v_r.
+  \mu_{\text{arch}}\frac{\kappa\,\sigma_{q_o q_{o'}}\,|q_o q_{o'}|}{r^2\,|J_{o'\leftarrow o}(t;t_0)|}\,v_r.
   $$
-  
-  Only $v_r$ contributes to instantaneous power.
+
+  Only $v_r$ contributes to instantaneous quadratic-proxy power. For the primitive scalar $K$, replace $\mu_{\text{arch}}$ by $\mu_K(\|\mathbf{v}_{o'}\|)$.
 
 - A hit only changes the **along-the-line** component of velocity; sideways motion $\mathbf{v}_\perp$ is unchanged instantaneously.
 
@@ -92,7 +114,7 @@ Because $\mathbf{a}_{o'\leftarrow o}\parallel\hat{\mathbf{r}}$:
 
 Potential energy arises from the interaction of an architrino with the **net potential wake landscape** generated by all architrinos (including, in some regimes, its own past emissions).
 
-### Net Potential Field
+### Net Potential Wake Landscape
 
 At a point $\mathbf{s}$ and time $t$, the net potential is the **superposition** of contributions from all sources:
 
@@ -132,11 +154,11 @@ $$U_{o'}(t) = q_{o'}\,\Phi_{\text{net}}[\text{history}]\big(\mathbf{s}_{o'}(t),t
 
 Unlike electrostatics, $\Phi_{\text{net}}$ is not a function of instantaneous source positions but a functional of their past worldlines intercepted by the backward causal-wake record of $\mathbf{s}_{o'}(t)$. The gradient $\nabla\Phi_{\text{net}}$ is taken with respect to the receiver's spatial coordinates on the fixed background, holding the causal history fixed. In the idealized picture, $\Phi$ is a distribution supported on causal isochrons, not a smooth continuum field.
 
-When we work with the mollified effective potential $\Phi_\eta$, we can also write:
+When we work with the mollified effective potential $\Phi_\eta$, we can also write the fixed-history, force-like relation:
 
-$$\mathbf{F}_{o'}(t) = -\nabla_{\mathbf{s}_{o'}}U_{o'}(t) = -q_{o'} \nabla_{\mathbf{s}_{o'}} \Phi_{\text{net}}[\text{history}]\big(\mathbf{s}_{o'}(t),t\big),$$
+$$\mathbf{F}_{o'}(t) = -\nabla_{\mathbf{s}_{o'}}U_{o'}(t) = -q_{o'} \nabla_{\mathbf{s}_{o'}} \Phi_\eta[\text{history}]\big(\mathbf{s}_{o'}(t),t\big),$$
 
-and this is equivalent to the Master Equation in the quasi-static, resolved-in-time limit.
+and this is equivalent to the Master Equation in the quasi-static, resolved-in-time limit after the same force normalization, such as $\mathbf{F}_{o'}=\mu_{\text{arch}}\mathbf{a}_{o'}$ or the appropriate $\mu_K\mathbf{a}_{o'}$, has been declared.
 The force-as-gradient identity is valid only when taking the gradient at fixed causal history; the fundamental force law remains the per-hit sum of the Master EOM.
 
 ### Macroscopic Cancellation and Localized Resonance
@@ -173,6 +195,50 @@ and is constant in time for exact isolated solutions of the causal action. In mo
 - $E_{\text{wake}}$ accounts for the exact nonlocal interaction content carried by wake structures and any radiation-like transport through the tri-binary sea.
 
 Consistency rule: either use $E_{\text{wake}}$ alone for all interaction energy, or, if a $U_{\text{int}}$ pairwise term is retained as an effective decomposition inside assemblies, then $E_{\text{wake}}$ must explicitly omit the corresponding near-field content to prevent double counting.
+
+For a finite spatial window $W\subset\Sigma_t$, conservation is a balance law rather than a claim that the window is isolated. Write
+$$
+E_W(t)
+=
+\sum_{a:\mathbf{s}_a(t)\in W}K_a(t)
++
+U_{\mathrm{int},W}(t)
++
+E_{\mathrm{wake},W}(t),
+$$
+where the terms include only the kinetic, interaction, and wake-history content retained by the declared window record. The finite-window energy balance should take the residual form
+$$
+\frac{dE_W}{dt}
++
+\int_{\partial W}\mathbf{J}_E\cdot\hat{\mathbf{n}}\,dA
+=
+P_{\mathrm{ext},W}
++
+\mathcal{R}_E(\eta,\Delta t,W).
+$$
+Here $\mathbf{J}_E$ is the boundary flux of causal-wake energy bookkeeping, $P_{\mathrm{ext},W}$ is declared external work through sources or controls not included in $W$, and $\mathcal{R}_E$ records mollifier, timestep, and omitted-boundary-history error. A finite-window conservation claim is mature only when $\mathcal{R}_E\to0$ under the same regularized causal action used for the local equation of motion.
+
+The characteristic-tail repair target in [Master Equation](./master-equation.md#exact-nonlocal-lagrangian) inherits this same rule. If the outgoing tail kernel $K_{\mathrm{ct},+}^{(\eta)}$ is used, its endpoint contribution may be counted as a Noether wake-history boundary flux only when the endpoint is characteristic, or when it is a declared fixed history boundary whose leakage residual vanishes:
+$$
+\mathcal{B}_{E,+}^{(\eta)}
+\sim
+\frac{D_{ij}R_{+}}{c_fR_{+}}\,
+\delta_\eta'\!\left(u-\frac{R_{+}}{c_f}\right)
+\longrightarrow 0
+$$
+on the retained branch chart. If $D_{ij}R_{+}\ne0$ and this residual does not vanish, the endpoint is an interior Euler source rather than a conservation-boundary term. In that case the characteristic-tail action changes the accepted branch force and cannot be used to close exact energy conservation for the current Master EOM.
+
+The analogous momentum closure must also remain tied to the same window and boundary data:
+$$
+\frac{dP_W^i}{dt}
++
+\int_{\partial W}\Pi^{ij}\hat{n}_j\,dA
+=
+F_{\mathrm{ext},W}^i
++
+\mathcal{R}_P^i(\eta,\Delta t,W).
+$$
+The tensor $\Pi^{ij}$ is a finite-window momentum-flux diagnostic for the retained causal wakes and assembly crossings, not a new substrate field. If the energy and momentum residuals can be made small only by changing the window measure, boundary wake record, or regularization separately for each observable, the calculation has fitted separate summaries rather than demonstrated one causal-history conservation law.
 
 In practice, for finite systems or simulation domains, we verify conservation by monitoring $E_{\text{total}}(t)$ and checking convergence as $\eta$ and $\Delta t$ are reduced.
 
@@ -223,15 +289,32 @@ This internal energy can be **very large**: tri-binaries and more complex assemb
 The surrounding tri-binary sea, and the arrangement of pro/anti architrinos inside an assembly, can **shield** internal energy from the external world through:
 
 - **Charge cancellation**: positive and negative architrinos within the assembly (and in surrounding tri-binaries) emit wakes that interfere destructively at larger distances.
-- **Sphere-stream structuring**: the geometry of internal orbits and tri-binary polarization patterns generates cancellation of most multipoles at scales $r \gg$ assembly size (multipole cancellation in the far field).
+- **Phase-structured far-field cancellation**: the geometry of internal orbits and tri-binary polarization patterns generates cancellation of most multipoles at scales $r \gg$ assembly size.
 - **Nested shielding**: in multi-binary fermion cores, outer binaries partially screen the deeper binaries from the surrounding sea. Generation shifts can therefore be read as loss of shielding tiers, not only as loss of constituent count.
 
-Define a **shielding (leakage) factor** $\zeta(A)\in[0,1]$ for an assembly $A$ as:
+At the reference-attractor level, define the **shielding (leakage) factor** as the leading isotropic projection of a larger far-field wake ledger:
 
-$$\zeta(A) \equiv \frac{\text{measured external field amplitude (or effective coupling)}}{\text{naive sum of constituent contributions}},$$
+$$
+\zeta(A_0)
+\equiv
+\frac{\|\Pi_0\mathcal{L}_{\text{wake}}(A_0)\|}
+{\|\mathcal{L}_{\text{naive}}(A_0)\|},
+\qquad
+\mathcal{L}_{\text{aniso}}(A_0)
+\equiv
+\mathcal{L}_{\text{wake}}(A_0)-\Pi_0\mathcal{L}_{\text{wake}}(A_0),
+$$
 
-evaluated in a regime where the assembly appears as an effective point source. For a strongly shielded, neutral tri-binary in the tri-binary sea, we expect $\zeta\ll 1$.
-Operationally, extract $\zeta(A)$ from a far-field fit of $\Phi_{\text{net}}$ (or hit amplitude) at $r \gg \text{size}(A)$: $\zeta \equiv A_{\text{measured}}/A_{\text{naive}}$, the ratio of the leading $1/r^2$ (or multipole) coefficient to the naive constituent sum.
+evaluated in a regime where the assembly appears as an effective point source. Here $\Pi_0$ extracts the monopole/isotropic component of the far-field wake ledger and $\mathcal{L}_{\text{aniso}}$ retains anisotropic leakage instead of hiding it inside a scalar error term. For a strongly shielded, neutral tri-binary in the tri-binary sea, we expect $\zeta\ll 1$.
+Operationally, extract $\zeta(A)$ from a far-field fit of $\Phi_{\text{net}}$ (or hit amplitude) at $r \gg \text{size}(A)$: $\zeta \equiv A_{\text{measured}}/A_{\text{naive}}$, the ratio of the leading $1/r^2$ (or multipole) coefficient to the naive constituent sum, with anisotropic residuals reported separately.
+The scalar shielding summary is admissible only when anisotropic leakage is small enough for the comparison being made, for example
+$$
+\frac{\|\mathcal{L}_{\text{aniso}}(A_0)\|}
+{\|\mathcal{L}_{\text{naive}}(A_0)\|}
+\le
+\epsilon_{\text{aniso}},
+$$
+with $\epsilon_{\text{aniso}}$ declared before the branch is promoted to a scalar mass-facing result.
 
 The **apparent energy** that influences other assemblies at large distances is then roughly:
 
@@ -249,19 +332,33 @@ up to proportionality constants fixed by matching to effective low-energy theory
 
 For an assembly $A$, define its inertial mass $m_{\text{inertial}}(A)$ operationally via:
 
-- Apply a small external potential field (from a distant test source) that exerts a known net force $\mathbf{F}_{\text{ext}}$ on $A$,
+- Apply a small external wake potential (from a distant test source) that exerts a known net force $\mathbf{F}_{\text{ext}}$ on $A$,
 - Measure the resulting acceleration of its center of mass $\mathbf{a}_{\text{cm}}$ in the tri-binary sea,
 - Define:
 
-$$m_{\text{inertial}}(A) \equiv \frac{|\mathbf{F}_{\text{ext}}|}{|\mathbf{a}_{\text{cm}}|}.$$
+$$m_{\text{inertial}}(A) \equiv \frac{\|\mathbf{F}_{\text{ext}}\|}{\|\mathbf{a}_{\text{cm}}\|}.$$
 
-Because the external field couples mainly to the **apparent energy**, not the full internal storm, we expect:
+Because the external wake couples mainly to the **apparent energy**, not the full internal storm, the scalar roadmap limit is:
 
 $$m_{\text{inertial}}(A) \approx \alpha\,\frac{\zeta(A)\,E_{\text{internal}}(A)}{c_{\text{eff}}^2}.$$
 
-Here $E_{\text{internal}}$ names the large internal energy circulation, while $\zeta(A)$ names the small external leakage that survives cancellation and Noether-Sea shielding. The formula therefore explains weak long-range gravitational and inertial footprints without making the internal energy small: ordinary probes couple to the leaked pattern, not to every internal exchange branch.
+The tensor handoff is more precise. For a small center-of-mass velocity $V_{\text{cm},b}$ through a declared Noether-Sea response record,
+$$
+p_{\text{int}}^{a}
+\approx
+\alpha\,\zeta(A)E_{\text{internal}}(A)\,
+\mathcal{M}_{\text{sea}}^{ab}\,
+V_{\text{cm},b},
+$$
+with homogeneous isotropic limit
+$$
+\mathcal{M}_{\text{sea}}^{ab}\to \frac{h^{ab}}{c_{\text{eff}}^2}.
+$$
+Only in that limit does the scalar mass formula above follow. Here $E_{\text{internal}}$ names the large internal energy circulation, while $\zeta(A)$ names the small external leakage that survives cancellation and Noether-Sea shielding. The formula therefore explains weak long-range gravitational and inertial footprints without making the internal energy small: ordinary probes couple to the leaked pattern, not to every internal exchange branch.
 
 This is the same shielding-based logic developed more directly in [Particle Masses](../assemblies/particle-masses.md). The matching factor $\alpha$ should be fixed only after a calibration-free reference attractor has supplied $E_{\text{internal}}$, $\zeta$, and the medium-response map; it should not be fitted separately to each particle species.
+
+Thermodynamic or entropic derivations of gravitational force are therefore comparison benchmarks for this chapter, not replacements for the mass mechanism. They may sharpen the observer-level equation-of-state target for gravity, but $m_{\text{inertial}}(A)$ is not closed until the same assembly ledger supplies its trapped internal causal history, shielding extraction, Noether-Sea response tensor, and acceleration response.
 
 The immediate hand-off is the $A_0$ reference attractor gate. The energy chapter owns the internal-energy and apparent-energy definitions that $A_0$ must report: layer energies, interaction and wake terms, total $E_{\text{internal}}(A_0)$, far-field wake coefficients, and the exposed-energy combination $\zeta(A_0)E_{\text{internal}}(A_0)$. Those outputs are still closure targets until a stable branch, shielding extraction, and response tensor are computed.
 
@@ -279,8 +376,8 @@ The tri-binary Noether Sea adds an additional layer:
 Thus:
 
 - At low speeds $v\ll c_{\text{eff}}$, we recover $E_k \approx \frac{1}{2}m_{\text{inertial}} v^2$ for assemblies.
-- At high speeds approaching $c_{\text{eff}}$, internal coupling to the tri-binary sea and self-hit effects yield a relativistic-like $E_k \sim m_{\text{inertial}}(\gamma-1)$, with $\gamma = 1/\sqrt{1-v^2/c_{\text{eff}}^2}$, as an **effective law**.
-- Near $c_{\text{eff}}$, axial architrinos would likely be stripped off, and the assembly may undergo other changes as it oblates.
+- At high speeds approaching $c_{\text{eff}}$, internal coupling to the tri-binary sea and self-hit effects yield a relativistic-like $E_k \sim m_{\text{inertial}}c_{\text{eff}}^2(\gamma_{\text{eff}}-1)$, with $\gamma_{\text{eff}} = 1/\sqrt{1-v^2/c_{\text{eff}}^2}$, as an **effective law**.
+- Near $c_{\text{eff}}$, axial architrino stripping and oblation are failure channels or branch-transition hypotheses to test, not assumed parts of the mass mechanism.
 
 The details of this emergent relativistic law arise from the combined dynamics of the assembly and the tri-binary sea; they are not postulated but must be confirmed by coefficient extraction, simulation, and matching to known particle kinematics. Ordinary dissipative drag is a failure channel for this program, not the mass mechanism. The mass-side integration and quantitative derivation path are tracked in [Particle Masses](../assemblies/particle-masses.md).
 
@@ -316,7 +413,7 @@ Cross-links:
 
 ## Energy and Self-Hit in the Tri-Binary Sea
 
-In the **super-field-speed** regime ($|\mathbf{v}_a|>1$ at some emission times), architrinos and assemblies can intersect their own past isochrons (self-hit). In the presence of the tri-binary sea:
+In the **super-field-speed** regime ($\|\mathbf{v}_a\|>1$ somewhere along the relevant path-history interval), architrinos and assemblies can intersect their own past isochrons (self-hit). In the presence of the tri-binary sea:
 
 - Self-hit repulsion acts as an internal **stiffening mechanism** for tri-binaries and more complex assemblies, contributing to their stability.
 - Energy that an architrino (or assembly) emitted into its local Noether-Sea environment can be partially re-absorbed through delayed self-interaction. At the bookkeeping level, this is an exchange between internal kinetic energy and wake/medium energy associated with the local tri-binary configuration.
@@ -327,9 +424,9 @@ At the exact causal-action level, global energy is conserved: self-hit just rout
 
 ## Intuition (Plain Language)
 
-Inside an assembly there is a huge storm of energy. Outside, you only see a faint ripple whose amplitude is set by how imperfect the internal cancellations and sea shielding are.
+Inside an assembly, large internal causal-history energy can circulate through many branch channels. Outside the assembly, distant probes couple only to the portion of that ledger that survives phase cancellation, shielding, and Noether-Sea response.
 
-Architrinos and their assemblies are where all the energy lives. The tri-binary sea is a dense, high-energy ocean in which a few special assemblies (electrons, quarks, nucleons) are like boats. The boats' mass and inertia are not just in the hull; they live in how the hull is built and how it pulls on the water. In nested fermion cores, the outer binaries also act like energy screens around the deeper engine. Most of the ocean's energy never shows up in long-range effective fields, because the waves from different directions cancel almost exactly and the deeper layers are partly hidden behind those screening shells. The tiny leftover ripples are what we call gravity and particle masses.
+Architrinos and their assemblies are where the energy bookkeeping lives. The Noether Sea is a dense population of high-energy tri-binary assemblies whose net long-range wake response is usually quiet because incoherent contributions cancel and shielded internal layers leak only weakly. In nested fermion cores, outer binaries screen deeper layers from the ambient medium. The small residual exposure is what observer-level mass and gravitational response measure.
 
 ## Summary and Role in the Larger Theory
 
@@ -349,22 +446,22 @@ Architrinos and their assemblies are where all the energy lives. The tri-binary 
 
 - **For spacetime and gravity:**
   
-  The sea of small, high-energy tri-binaries forms the Noether Sea and, at coarse-grained level, the effective spacetime medium whose energy density and stress give rise to an emergent metric. The shielding factors and internal energies of both Noether-Sea tri-binaries and "matter" assemblies will determine:
+  The sea of small, high-energy tri-binaries forms the Noether Sea and, at coarse-grained level, the effective spacetime medium whose energy density and stress give rise to an emergent metric. The shielding factors and internal energies of both Noether-Sea tri-binaries and "matter" assemblies contribute to:
   - The effective Newton constant $G$,
   - The cosmological Noether-Sea energy density,
   - How strongly observer-level effective metric response is reconstructed from different kinds of energy.
   
-  Density-driven oblation: as the tri-binary sea encounters denser matter, local tri-binaries scale down and oblate, creating a compliance gradient that contributes directly to the effective gravitational coupling $G$.
+  Density-driven oblation is a candidate contribution to the effective gravitational-coupling closure: as the tri-binary sea encounters denser matter, local tri-binaries may scale down and oblate, creating a compliance gradient that must be mapped through the Noether-Sea response tensor before it can be read as part of $G$.
 
 ---
 
 ## Appendix A: Energy Zero and Bookkeeping
 
-$\mathbb{A}\mathbb{A}\mathbb{A}$ uses a **binding-energy convention** that fixes the zero of potential energy at the **inner turning point** of a bound pair (the self-hit / max-curvature radius). This choice is both physical and operational: the system has a **hard inner cutoff** (no further compression), so the deepest accessible state is unique and history-independent.
+$\mathbb{A}\mathbb{A}\mathbb{A}$ uses a **binding-energy convention** that fixes the zero of potential energy at the **inner turning point** of an accepted bound branch (the self-hit / max-curvature radius when that branch has been certified). This choice is operational: on a branch with a self-hit lower boundary, the deepest accessible state supplies the reference. It should not be read as a proof that every isolated two-body candidate already has a unique, history-independent cutoff.
 
 ### Physical Setup and Why a New Zero is Needed
 
-For an attractive two-body system (opposite polarities), the inward motion accelerates until it reaches a **minimum radius** $r_{\min}$ where self-hit dynamics and curvature limits prevent further collapse. The motion then rebounds or orbits. Unlike a pure Coulomb potential, this system **does** have a lower bound on radius (and hence on accessible energy states).
+For an accepted attractive bound branch (opposite polarities), the inward motion accelerates until it reaches a **minimum radius** $r_{\min}$ where self-hit dynamics and curvature limits prevent further collapse. The motion then rebounds or orbits. Unlike a pure Coulomb potential, this branch has a lower bound on radius (and hence on accessible energy states).
 
 Because a lower bound exists, the natural reference is **not** "infinite separation" but the **ground configuration** at $r_{\min}$.
 
@@ -400,9 +497,9 @@ All available mechanical energy is kinetic at the inner turning point. Moving ou
 
 If an effective potential is used, the centrifugal term and the self-hit barrier both contribute:
 
-$$V_{\text{eff}}(r) = V(r) + \frac{L^2}{2 q_{\text{inertia}} r^2} + V_{\text{self-hit}}(r).$$
+$$V_{\text{eff}}(r) = V(r) + \frac{L^2}{2 m_{\text{eff}} r^2} + V_{\text{self-hit}}(r).$$
 
-Here $q_{\text{inertia}}$ is an **effective inertial scale** (a bookkeeping proxy for mass in the coarse-grained description), not the architrino charge $q$ used in $U=q\Phi$ above.
+Here $m_{\text{eff}}$ is an **effective inertial scale** (a bookkeeping proxy for mass in the coarse-grained description), not a primitive architrino mass.
 
 The convention above fixes:
 
@@ -414,13 +511,13 @@ This does **not** change dynamics; it sets a physically meaningful reference.
 
 In the current picture, the self-hit region is **not** assumed to change the local force law. The radial slope remains smooth:
 
-$$\frac{dU}{dr} \text{ is continuous, and both spirals start with slope } 1.$$
+$$\frac{dU}{dr} \text{ remains finite and continuous across the retained regularized branch chart.}$$
 
 So the transition between the $v=c_f$ regime and the self-hit regime is a **gentle grafting**, not a kink in the potential. The distinction shows up in **how energy is discretized and routed** between binaries, not in a new macroscopic slope.
 
 The discrete step is a causal-root ledger effect, not an assumption that energy itself is made of independent chunks. On a fixed branch chart, the active causal intersections have an integer multiplicity: a self-hit count $N$ and an analogous partner-hit or channel count $M$ in the root-ledger language developed in the [closed-form collinear breather ansatz](../proof-programs/closed-form-collinear-breather-ansatz.md). In the circular binary notation this same idea appears as the pair $(N_s,M_p)$ in [Super-Field-Speed Root Ledgers and Resonance Lock](binary-dynamics.md#super-field-speed-root-ledgers-and-resonance-lock). Within one ledger cell the underlying trajectory and $U(r)$ remain continuous. A visible $h$-like transaction occurs when a separator crossing changes the admissible integer ledger, for example by adding one grouped channel or, in the raw simple-root table, by a fold-pair jump satisfying $\Delta N\in 2\mathbb{Z}$ with $\Delta D=0$.
 
-Thus the candidate quantum of action is geometric bookkeeping: it is the action scale assigned to a threshold crossing of the causal-root ledger. The energy shift appears in steps because the allowed causal intersections have changed discretely, even though the path-history geometry and the local potential slope remain continuous through the regularized fold layer.
+Thus the candidate quantum of action is geometric bookkeeping: it is the action scale assigned to a threshold crossing of the causal-root ledger. The energy shift appears in steps because the allowed causal intersections have changed discretely, even though the path-history geometry and the local potential slope remain continuous through the regularized fold layer. A closed branch chart must still expose the root-change energy, wake exchange, middle-channel adjustment, and any mismatch routed into unresolved modes.
 
 Working bookkeeping hypothesis:
 

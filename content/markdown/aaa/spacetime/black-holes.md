@@ -180,17 +180,25 @@ S_H
 $$
 where $A_H$ is the observer-level horizon area and $A_{\text{align}}$ is the alignment-area scale from the Planck-alignment program, with the numerical and $2\pi$ conventions fixed by that derivation rather than by definition here. Page-curve recovery then becomes a release-channel theorem: outward channels must preserve enough phase, axial-pattern, and path-history information from $\mathcal{B}_{H}$ to make evaporation or recycling unitary at the effective quantum level, while still appearing thermal to coarse exterior measurements.
 
-The coefficient in this target is not a literal claim that one alignment patch carries $e^{1/4}$ independent states. The local target is a block entropy density. For a connected block $U$ of horizon-adjacent alignment patches, let $\mathcal{L}_U^H(\theta)$ be the retained alignment-compatible label set induced by the same strong-field record. The local density target is
+The coefficient in this target is not a literal claim that one alignment patch carries $e^{1/4}$ independent states. The local target is an area-normalized block entropy density. For a connected block $U$ of horizon-adjacent alignment patches, let $\mathcal{L}_U^H(\theta)$ be the retained alignment-compatible label set induced by the same strong-field record and let $A_H(U)$ be the observer-level area represented by that block. The local density target is
 $$
 s_{\mathrm{align}}^H(\theta)
 =
 \lim_{|U|\to\infty}
 \frac{1}{|U|}
-\log\left|\mathcal{L}_U^H(\theta)\right|
+\log\left|\mathcal{L}_U^H(\theta)\right|,
+\qquad
+a_H(\theta)
+=
+\lim_{|U|\to\infty}
+\frac{A_H(U)}
+{|U|A_{\text{align}}},
+\qquad
+\frac{s_{\mathrm{align}}^H(\theta)}{a_H(\theta)}
 \longrightarrow
 \frac{1}{4},
 $$
-with boundary corrections vanishing in the large-block limit. This is the local calculation that must make the global area law credible.
+with boundary corrections vanishing in the large-block limit. This is the local calculation that must make the global area law credible; the raw statement $s_{\mathrm{align}}^H\to1/4$ is only the special case $a_H\to1$.
 
 This global horizon ensemble must be compatible with the local boundary-wake entropy density used in [Emergent Metric](emergent-metric.md#local-horizon-recovery-target). For a compact region $\Omega$ whose boundary intersects the horizon interface, let $\pi_{\partial\Omega}^{(O)}$ be the Physical Observer projection from strong-field horizon-interface labels to retained boundary-wake labels, and write $\mathcal{B}_{H}(\theta)$ for the horizon-interface ensemble selected by the same strong-field record. The proof route requires
 $$
@@ -336,7 +344,7 @@ with outgoing energy, momentum, angular momentum, charge, polarity, provenance, 
 
 This gives a compact comparison rule for evaporation and endpoint proposals. A proposal can be used as a comparison framework if it sharpens one of those finite-ledger checks. It should not be promoted into the ontology unless the same native horizon-interface variables produce the continuation without an arbitrary endpoint branch or a separate asymptotic bookkeeping rule.
 
-No-hair, cosmic-censorship, and endpoint theorems enter this chapter with the same assumption discipline. Their strongest use is to preserve exterior compact-object behavior, horizon regularity, and finite-release accounting where their hypotheses match the comparison regime. When a theorem assumes an isolated vacuum black hole or asymptotically flat exterior, it cannot by itself settle a black hole embedded in an evolving Noether Sea. The retained burden is sharper: the native horizon-interface record must reproduce the exterior $(M,\mathbf{J},Q)$ coarse-graining and avoid observer-level naked-singularity pathology while using finite active-medium boundary data.
+No-hair, cosmic-censorship, Cauchy-horizon, and endpoint theorems enter this chapter with the same assumption discipline. Their strongest use is to preserve exterior compact-object behavior, horizon regularity, non-arbitrary continuation, and finite-release accounting where their hypotheses match the comparison regime. When a theorem assumes an isolated vacuum black hole, asymptotically flat exterior, or global hyperbolicity condition, it cannot by itself settle a black hole embedded in an evolving Noether Sea. The retained burden is sharper: the native horizon-interface record must reproduce the exterior $(M,\mathbf{J},Q)$ coarse-graining, avoid observer-level naked-singularity pathology, and select a finite continuation family using finite active-medium boundary data.
 
 As a heuristic geometric picture, the horizon can also be described as a **dimensional pinch** in the tri-binary shape trajectory. On this reading, ordinary 3D assemblies are flattened toward a near-planar disk at the alignment interface, while the interior self-hit regime permits re-opening of the suppressed axial degree of freedom. In shorthand, the proposed shape path is
 $$
@@ -475,6 +483,7 @@ The black-hole program in $\mathbb{A}\mathbb{A}\mathbb{A}$ earns credibility onl
 - **Horizon-scale consistency:** horizon imaging and near-horizon emission structure must be reproducible without introducing conflicts with the canonical alignment condition.
 - **Embedding regularity:** the same strong-field description must remain regular when the compact object is treated as embedded in an evolving large-scale medium rather than an artificially isolated background.
 - **Finite-boundary-data regularity:** finite surrounding Noether-Sea data must determine finite native variables and a non-arbitrary maximum-curvature continuation through the alignment regime.
+- **Continuation discipline:** Cauchy-horizon or endpoint comparisons may sharpen the finite-boundary-data test, but they do not select a global branch unless the native horizon-interface ledger supplies the finite continuation family.
 - **Information-theoretic recovery:** after the native horizon-interface dynamics are derived, the entropy accounting must remain compatible with unitarity and Page-curve behavior without treating islands, replica wormholes, or a boundary CFT as $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology.
 - **Population coupling test:** any claimed cosmological black-hole coupling must survive hidden-accretion and merger-systematics analysis and fit consistently with the late-time expansion history.
 - **History accounting:** any black-hole source term must be compatible with plausible compact-object formation and feeding histories; one cannot simply posit a present-day population effect while ignoring the route by which the population was produced.

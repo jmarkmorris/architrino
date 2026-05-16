@@ -213,6 +213,21 @@ $$
 
 Here $C$ is not a new substrate object; it is the retained common-past or pair-provenance record used by the proposed Bell closure. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ route must explain why the declared provenance and apparatus-response compression leaves a nonzero factorization residual while keeping the measurement-independence and no-signaling residuals below tolerance. If $\Delta_{\mathrm{fact}}(C)$ vanishes for the completed hidden-variable record, the closure has not escaped the theorem.
 
+The same point can be stated as a Markov-screening and restartability test. A finite-thickness screening region, common-past record, or pair-provenance ledger screens a Bell experiment only if the retained state at an intermediate time can be used as a restartable effective state for the later detector records. For $t_0<t_s<t_{\mathrm{rec}}$ and a declared Bell coarse-graining $\mathcal{Q}_{AB}$, define
+
+$$
+\Delta_{\mathrm{div}}^{AB}(t_0,t_s,t_{\mathrm{rec}};\mathcal{Q}_{AB})
+=
+\left\|
+\mathcal{T}^{\mathcal{Q}_{AB}}_{t_0\to t_{\mathrm{rec}}}
+-
+\mathcal{T}^{\mathcal{Q}_{AB}}_{t_s\to t_{\mathrm{rec}}}
+\mathcal{T}^{\mathcal{Q}_{AB}}_{t_0\to t_s}
+\right\|_{\mathrm{TV}\to\mathrm{TV}}.
+$$
+
+If $\Delta_{\mathrm{div}}^{AB}\le\varepsilon_{\mathrm{div}}$ and $\Delta_{\mathrm{fact}}(C)=0$ for the completed retained record, the proposed closure has supplied a restartable screened common cause and remains in the Bell-local class. If $\Delta_{\mathrm{div}}^{AB}=O(1)$ for the observer-level Bell variables, then the reduced variables have lost path-history information needed for the joint record law; that is a possible reason the Bell abstraction fails to factorize. This does not weaken Bell's theorem. It states the replacement burden: derive the non-restartable record compression from pair provenance, local apparatus kernels, and finite-time measurement dynamics while still passing the no-signaling, measurement-independence, and correlation gates below.
+
 ### Bell Closure Diagnostics
 
 The Bell gate should be checked by separate residuals, because different failures mean different physics. A model may fail by correlating the preparation variable with the settings, by allowing a signaling marginal, or by producing the wrong correlation curve. These are not interchangeable.

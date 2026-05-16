@@ -1126,21 +1126,21 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **What Problem They Were Trying To Solve:** He sought a deeper deterministic layer beneath quantum statistics that could restore ontological continuity without losing empirical agreement.
 
-**What They Got Right:** He correctly insisted that deterministic substrate options remain logically and physically viable and worth explicit construction.
+**What They Got Right:** He correctly insisted that deterministic substrate options remain logically and physically viable and worth explicit construction. He also kept the empirical burden in view: a deeper account cannot merely reinterpret measurement language, but must recover the Standard Model, GR, quantum statistics, and strong-field thermodynamics at benchmark precision.
 
-**What They Got Wrong or Overstated:** Cellular-automaton discretization is one possible route but may be too restrictive relative to continuous causal field/assembly dynamics.
+**What They Got Wrong or Overstated:** Cellular-automaton discretization, integer-only physical metaphysics, and measurement-independence denial are route-specific commitments rather than consequences of deterministic physics itself. They are too restrictive relative to continuous causal wake and assembly dynamics.
 
-**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly aligned with mechanistic divergence.
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly aligned with mechanistic divergence and validation discipline, but not with cellular-automaton ontology or superdeterministic Bell closure.
 
-**Transition Relevance**: 't Hooft is highly useful in transition for legitimizing deterministic reduction agendas and for defining test criteria against standard quantum closure.
+**Transition Relevance**: 't Hooft is highly useful in transition for legitimizing deterministic reduction agendas and for defining test criteria against standard quantum closure, especially Born-rule recovery, Bell/no-signaling constraints, Standard Model parameter recovery, and black-hole thermodynamics.
 
 **Long-Term Relevance**: Long-term relevance is high as deterministic-program ancestor, with specific CA machinery optional.
 
 **Core Belief**: Quantum behavior can emerge from deeper deterministic dynamics, potentially represented by discrete update structures.
 
-**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ shares deterministic ambition but uses continuous delayed interaction dynamics with emergent discreteness at assembly scales rather than fundamental CA update tables.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ shares deterministic ambition but uses continuous delayed interaction dynamics with emergent discreteness at assembly scales rather than fundamental cellular-automaton update tables.
 
-**Legacy Shift**: 't Hooft's deterministic challenge is retained and broadened into explicit substrate field-assembly ontology.
+**Legacy Shift**: 't Hooft's deterministic challenge is retained and broadened into explicit causal-wake and assembly ontology, while his cellular-automaton and superdeterministic routes remain comparison material rather than imported doctrine.
 
 ---
 
@@ -1155,19 +1155,19 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **What Problem They Were Trying To Solve:** He sought to explain novelty, becoming, and relational coherence without reducing reality to static inert building blocks.
 
-**What They Got Right:** Whitehead correctly stressed relational structure and the inadequacy of naive static metaphysics for dynamic physical phenomena.
+**What They Got Right:** Whitehead correctly stressed relational structure and the inadequacy of naive static metaphysics for dynamic physical phenomena. His relativity critique also usefully exposed the measurement-circularity risk in any theory that lets the geometry used by rulers and clocks merge too quickly with the gravitational process being measured.
 
-**What They Got Wrong or Overstated:** He overstated process primacy and experiential language at the foundational level, where $\mathbb{A}\mathbb{A}\mathbb{A}$ posits stable substrate entities with evolving configurations.
+**What They Got Wrong or Overstated:** He overstated process primacy and experiential language at the foundational level, where $\mathbb{A}\mathbb{A}\mathbb{A}$ posits stable substrate entities with evolving configurations. His alternative relativity remains a comparison framework, not a doctrine to import; empirical GR, PPN, clock, ruler, and signal benchmarks still control metric closure.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially retained and inverted.
 
-**Transition Relevance**: Whitehead is useful in transition for avoiding rigid mechanistic caricatures and preserving relational analysis during substrate reinterpretation.
+**Transition Relevance**: Whitehead is useful in transition for avoiding rigid mechanistic caricatures and preserving relational analysis during substrate reinterpretation. The strongest technical bridge is his ruler-calibration pressure: an emergent-metric account must recover clock, ruler, and signal behavior from one coherent observer-level record rather than by switching calibration assumptions between comparisons.
 
 **Long-Term Relevance**: Long-term relevance is moderate as conceptual supplement and low as primary ontology.
 
 **Core Belief**: Reality is fundamentally processual and relational, with enduring substances treated as abstractions over event structure.
 
-**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves relational emphasis but reverses ontological order, making stable substrate entities primary and process derivative through lawful path-history reconfiguration.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves relational emphasis but reverses ontological order, making stable substrate entities primary and process derivative through lawful path-history reconfiguration. It relocates Whitehead's metric worry into a constitutive recovery demand: effective geometry is legitimate only when the same record of the Noether Sea and the Physical Observer produces the relevant clocks, rulers, signal paths, and gravitational benchmarks.
 
 **Legacy Shift**: Whitehead remains a relational critic of simplistic substance talk, while final ontology returns to entity-first realism.
 

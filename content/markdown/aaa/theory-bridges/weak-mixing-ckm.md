@@ -141,6 +141,24 @@ $$
 =\{a\in S\mid \eta_a^{(h)}=1\}.
 $$
 
+This gate is the weak-sector term of the spinor-to-metric compatibility residual in [Angular Momentum and Spin](angular-momentum-and-spin.md#spinor-to-metric-compatibility-residual). If $\Sigma_{\mathrm{spin}}^{(h)}(\theta;W)$ is the exposure class predicted by the ordered-core spinor/helicity ledger on record window $W$, the local mismatch can be written
+$$
+\Delta_{\mathrm{WCT}}(\theta;W)
+=
+d_{\Sigma}\!\left(
+\Sigma_{\mathrm{WCT}}^{(L)},
+\Sigma_{\mathrm{spin}}^{(L)}
+\right)
++
+d_{\Sigma}\!\left(
+\Sigma_{\mathrm{WCT}}^{(R)},
+\Sigma_{\mathrm{spin}}^{(R)}
+\right)
++
+\sum_{a\in S}\left(\eta_a^{(R)}\right)^2.
+$$
+The last term records right-handed charged-current leakage in the hard-gate model, or its declared smooth replacement if later simulations soften the exposure function. The weak sector may consume the spinor ledger only when this residual stays below tolerance using the same $\theta$ that also supplies the CKM overlap and beta-reaction provenance record.
+
 The beta gate is open only when $h=L$, $\lvert\Sigma_{\mathrm{WCT}}^{(L)}\rvert=3$, and the exposed sites have the down-state inventory $A_{\Sigma}=3E$. The right-handed channel is blocked at this finite-state level:
 $$
 \mathcal{W}_{-}^{du}\lvert d_R;c,\alpha\rangle=0,
@@ -268,6 +286,22 @@ $$
 V=R_{23}(\theta_{23})\,R_{13}(\theta_{13},\delta)\,R_{12}(\theta_{12}),
 \qquad s_{ij}\equiv\sin\theta_{ij}.
 $$
+
+The comparison value of any larger generation symmetry is therefore a benchmark, not an import. The CKM/generation closure check should require one shared branch record $\theta$ to satisfy
+$$
+\mathcal R_{\mathrm{CKM,gen}}(\theta)
+=
+d_{\mathrm{unit}}\!\left(V^\dagger(\theta)V(\theta),I\right)
++d_{\mathrm{CKM}}\!\left(\{\lvert V_{ij}(\theta)\rvert\},\{\lvert V_{ij}\rvert_{\mathrm{obs}}\}\right)
++d_{\mathrm{CP}}\!\left(J(\theta),J_{\mathrm{obs}}\right)
++\max_{a\in\{0,1,2\}}
+d_{\mathrm{rep}}\!\left(
+\Pi_{\mathrm{gauge}}T_{\mathrm{gen}}^aA,
+\Pi_{\mathrm{gauge}}A
+\right)
++\mathcal R_{\mathrm{null}}(\theta).
+$$
+The residual accepts a candidate only when the same shielding-tier record gives unitary mixing, the observed CKM hierarchy and CP invariant, unchanged Standard Model gauge representation across the three charged-fermion tiers, and no added-channel leakage. A comparison framework that reproduces one angle, one phase, or the number three is not yet a $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation.
 
 Assumptions introduced in this section ($\mathbb{A}\mathbb{A}\mathbb{A}$ side):
 - **A1:** Generation transport is represented by a three-node chain $(1\leftrightarrow2\leftrightarrow3)$.

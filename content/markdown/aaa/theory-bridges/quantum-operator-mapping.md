@@ -22,6 +22,8 @@ Superposition is not a linear combination of independent ontological branches. I
 
 To legitimately map to unitary evolution, the delay integro-differential system must exhibit global existence and uniqueness without finite-time blow-up.
 
+This is a regularity and domain-of-validity gate, not a claim that every future reachability question is algorithmically decidable. The useful comparison with fluid regularity problems is the discipline of separating a well-posed evolution law, finite-window observable control, and possible global pathologies. A quantum-operator chart may be valid on the retained interval even while a stronger unbounded prediction problem remains outside the chart's authority.
+
 Unitary evolution in $\mathcal{H}$ can be recovered only if the effective phase space $\Gamma_{\text{eff}}$ carries an approximately measure-preserving flow. A plausible closure route is to prove that the interaction kernel satisfies a uniform Lipschitz bound over the relevant path-history interval. The $1/r^2$ singularity may be regularized by the maximal-curvature radius $R_{\text{min}}$ if stable binaries impose the lower bound
 $$
 \|\mathbf{r}_i(t) - \mathbf{r}_j(t_{\text{hist}})\|^2 \ge 4R_{\text{min}}^2.
@@ -52,6 +54,8 @@ for calibrated record regions whose recovered observer-sector separation is spac
 
 The bound must be evaluated while preserving shared preparation provenance. An entangled pair may carry correlations inherited from a common preparation event, but those correlations must not become a controllable signal between separated detector settings. A large $\Delta_{\mathrm{loc}}$ in a validated low-energy QFT regime is therefore a failure of effective QFT recovery. A small $\Delta_{\mathrm{loc}}$ shows only that the operator reconstruction has recovered the tested commuting algebra in that regime; it does not promote the continuum field description to final ontology. If the residual is made small only by discarding path-history, detector-kernel, Born-rule, Bell, no-signaling, or gate-latency constraints, the locality recovery is a fitted abstraction rather than a closure result.
 
+The operator reconstruction also inherits the restartability test from [Wavefunction Ontology](../quantum/wavefunction-ontology.md). On a declared coarse-graining $\mathcal{Q}$ and record window, the effective operator chart is valid only to the extent that its reduced transition law carries the path-history data needed for later records. If the corresponding divisibility residual $\Delta_{\mathrm{div}}(t_0,t_1,t_2;\mathcal{Q})$ is $O(1)$, the Hilbert-space description may still be useful as an effective branch envelope, but it has not earned a restartable observer-level state at $t_1$. After record autonomy, the same retained channel should drive $\Delta_{\mathrm{div}}$ below its declared tolerance before the operator state is used as a fresh initial condition.
+
 ## Hilbert-Representation Invariance Guardrail
 
 Effective Hilbert-space trajectories are not ontology by themselves. A time-dependent unitary re-description can change the apparent state-vector path while preserving all calibrated record probabilities if the operators and Hamiltonian are transformed with it. For
@@ -74,6 +78,46 @@ $$
 unless the apparatus kernel, preparation record, or retained boundary data have physically changed. Here $\Pi_{\mathrm{ont}}$ denotes the proposed mapping from the effective Hilbert description back to the underlying assembly, causal-wake, and record-channel content. If two unitarily related descriptions yield different substrate claims while predicting the same records, the proposal has reified a coordinate choice in Hilbert space rather than identifying a $\mathbb{A}\mathbb{A}\mathbb{A}$ object.
 
 This guardrail is especially important for superposition claims. A state vector may be expanded in many bases, so a statement that a superposition has formed becomes physically meaningful only after the record channel has fixed the effective coordinates being tested. The ontology-side claim must be expressed in terms of assembly state, causal-wake history, apparatus kernel, and record-autonomy criteria, not in terms of an unqualified Hilbert-basis expansion.
+
+For two effective Hilbert descriptions $D$ and $D'$ of the same declared setup $\theta=(\mathcal{Q},\mathcal{K},W,T)$, representation agreement is a record-probability statement:
+$$
+\Delta_{\mathrm{repr}}(D,D';\theta)
+=
+\sup_{R\in\mathcal{R}_\theta}
+D_{\mathrm{TV}}\!\left(
+P_D(R\mid\theta),
+P_{D'}(R\mid\theta)
+\right),
+$$
+where $\mathcal{R}_\theta$ is the calibrated record family for the apparatus channel. If $\Delta_{\mathrm{repr}}(D,D';\theta)\le\varepsilon_{\mathrm{repr}}$, then a zero amplitude or missing component in one representation is not a substrate-existence claim. It becomes an admissible branch removal only when the shared basin measure and record filter also give
+$$
+\mu_{*,T}(B_i)\mathbf{1}_{\mathrm{rec}}(i;\theta)
+\le
+\varepsilon_{\mathrm{Born}}.
+$$
+Otherwise the effective chart has hidden a record-bearing basin behind a coordinate choice.
+
+## Subsystem-Partition Guardrail
+
+Entanglement and subsystem claims require the same discipline. In relativistic quantum-field descriptions, a change of observer, access region, or mode decomposition can change the effective subsystem split and therefore the entanglement assigned to the record. That dependence is useful comparison mathematics, but it is not a license to promote the chosen tensor factorization into substrate ontology.
+
+For a Physical Observer $O$, analysis window $W$, apparatus kernels $K_A,K_B$, and candidate closure record $\theta$, let
+$$
+\mathcal{P}_{AB}^{(O,W)}:\Gamma_W(\theta)\to
+\mathcal{R}_A^{(O,W)}\times\mathcal{R}_B^{(O,W)}
+$$
+be the declared projection from the retained substrate history to two observer-level record regions. The entanglement diagnostic is admissible only as a pushed-forward record statement,
+$$
+E_{AB}^{(O,W)}(\theta)
+=
+\mathcal{E}_{K_A,K_B}
+\left(
+(\mathcal{P}_{AB}^{(O,W)})_*\mu_{*,T}
+\right),
+$$
+where $\mu_{*,T}$ is the finite-window basin or metastable measure used by the same measurement packet, and $\mathcal{E}_{K_A,K_B}$ denotes the selected observer-level entanglement functional after the apparatus kernels are fixed.
+
+If a second observer or mode split uses $\mathcal{P}_{A'B'}^{(O',W')}$ and gives a different value, the first question is whether the projections, access regions, and kernels are different. Such a disagreement may be a real observer-level reconstruction effect while the underlying $\mathbb{U}_{\text{now}}$ state remains one definite substrate history. It becomes an ontology claim only if the proposed projection is replayable through the same preparation, apparatus, no-signaling, Bell, and record-autonomy constraints.
 
 ## Probability-Representation Guardrail
 
@@ -121,6 +165,33 @@ $$
 \Delta_{\mathrm{qmap}}(\mathcal{Q},\mathcal{K},W,T)\le\varepsilon_{\mathrm{qmap}}
 $$
 on the same record window used for Born weights, contextuality checks, and locality checks. The restriction to $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}$ is physical only when it is fixed before fitting the benchmark and justified by the apparatus channel, retained path-history data, and recordability criteria. If the admissible set is changed after seeing a failed observable, the operator map has hidden a quantization choice inside the closure.
+
+Time-like observables obey the same guardrail. Absolute time $t$ remains the substrate parameter, not an operator that every apparatus must quantize. Arrival, dwell, delay, or traversal-time quantities become admissible only when the setup supplies a clock-pointer variable, an access region, and a record rule that turn them into calibrated observer-level records. For example, a weak clock for a declared region $\Omega$ may define
+$$
+T_\Omega
+=
+\alpha_T^{-1}
+\left(
+Y_\Omega(A_\epsilon(t_1))-Y_\Omega(A_{\text{pre}})
+\right),
+$$
+but $T_\Omega$ belongs to $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}$ only for the declared apparatus kernel and record window that calibrate $Y_\Omega$. A negative or otherwise anomalous time-like value is therefore a signed conditional response in that domain, not a new substrate time variable and not evidence for backward-in-$t$ causation. If two time observables coincide in a standard benchmark, the coincidence is a recovery target for the declared record channel; if they differ, the operator map must preserve the distinction instead of forcing one global time operator.
+
+## Observable-Domain Guardrail
+
+Dimensional or representation claims are meaningful only after the observable domain has been declared. Two effective descriptions can be operationally equivalent on a restricted apparatus record set even when their internal coordinates, apparent dimension, or auxiliary geometry differ. That equivalence is useful comparison mathematics, but it cannot be read backward as substrate ontology.
+
+For two effective descriptions $D_1$ and $D_2$ over the same declared setup $(\mathcal{Q},\mathcal{K},W,T)$, compare only the admissible observables already fixed by $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}$. A compact residual is
+$$
+\Delta_{\mathrm{obs}}(D_1,D_2;\mathcal{Q},\mathcal{K},W,T)
+=
+\sup_{O\in\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}}
+D_{\mathrm{TV}}\!\left(
+P_{D_1}(R_O\,|\,\mathcal{Q},\mathcal{K},W,T),
+P_{D_2}(R_O\,|\,\mathcal{Q},\mathcal{K},W,T)
+\right).
+$$
+Here $D_{\mathrm{TV}}$ is total-variation distance between the two induced record distributions. If this residual is small, the two descriptions are equivalent only for that record channel and window. A claim about hidden dimensions, auxiliary spaces, or a different continuum field description still requires an $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping from assembly state, causal-wake history, apparatus kernel, and retained boundary data. If the equivalence disappears when the observable set is enlarged, the extra structure was a comparison chart, not a substrate discovery.
 
 ## Apparatus-Context Guardrail
 
@@ -210,6 +281,7 @@ Decoherence is the continuous loss of path-history coherence due to unresolved f
 * **Gate Latency Scaling:** Because any newly established causal-wake coupling is limited by $c_f$, a two-qubit gate such as CNOT should acquire a distance-dependent setup or fidelity timescale with a lower bound of order $\Delta t \ge d/c_f$. Existing correlations inherited from a shared preparation event are a separate case and should not be described as newly transmitted during the gate.
 * **QFT Locality Residual:** In any regime claimed to recover local QFT, the normalized commutator residual $\Delta_{\mathrm{loc}}(A,B;I)$ must remain below $\epsilon_{\mathrm{loc}}$ for calibrated record regions outside the recovered effective causal cone. Passing this test is an effective-algebra result, not a promotion of continuum-field ontology.
 * **Quantization-Domain Residual:** In any regime claimed to recover quantum operators from a classical or coarse-grained chart, the admissible observable set $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}$ and residual $\Delta_{\mathrm{qmap}}$ must be reported. A global bracket-to-commutator claim over all smooth functions is rejected by the no-go ledger rather than treated as an open $\mathbb{A}\mathbb{A}\mathbb{A}$ obligation.
+* **Observable-Domain Residual:** When two effective descriptions are claimed to be equivalent, the declared observable set and residual $\Delta_{\mathrm{obs}}$ must be reported. A small value licenses only record-channel equivalence on that apparatus window, not a substrate claim about auxiliary dimensions or continuum field objects.
 * **Coherence Limits:** The model predicts a medium-dependent contribution to coherence loss, scaling with local Noether-core density, represented by $\rho_{\text{core}}(\mathbf{x},t)$ or normalized density $n(\mathbf{x},t)$. This is a closure target alongside standard thermal, electromagnetic, and apparatus-noise channels, not an already-derived absolute bound.
 
 ## Statistical Measure and the Born Rule Emergence

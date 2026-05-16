@@ -18,7 +18,7 @@
 5. `radiation_gravity_waves` — Use compact-binary radiation and gravitational-wave propagation as event-ledger and effective-metric stress tests. Status: `draft`. Depends on: `weak_field_metric_ppn`.
 6. `thermal_statistical_radiative_qed` — Use entropy, temperature, blackbody, radiative-correction, and boundary-vacuum cases to discipline statistical emergence, radiation Gate C, and regularization language. Status: `draft`. Depends on: `radiation_gravity_waves`.
 7. `quantum_phase_measure` — Use interference, gauge phase, and oscillation cases to test path-history phase and basin-measure maps. Status: `draft`. Depends on: `thermal_statistical_radiative_qed`.
-8. `spin_bell_measurement` — Use Stern-Gerlach and Bell tests as hard gates for angular-momentum, detector-kernel, pair-provenance, and no-signaling closure. Status: `draft`. Depends on: `quantum_phase_measure`.
+8. `spin_bell_measurement` — Use Malus' law, Stern-Gerlach, and Bell tests as hard gates for angular-momentum, photon-analyzer, detector-kernel, pair-provenance, and no-signaling closure. Status: `draft`. Depends on: `quantum_phase_measure`.
 9. `topological_transport_statistical_emergence` — Use quantum Hall and Brownian cases to test robust invariants, transport closure, and micro-to-macro emergence. Status: `draft`. Depends on: `quantum_phase_measure`.
 
 ## Scope
@@ -38,7 +38,7 @@ The lane is not authored AAA canon. It is source material for later promotion in
 | Compact radiation and gravity waves | [binary-pulsar-orbital-decay](binary-pulsar-orbital-decay.md), [gravitational-waves](gravitational-waves.md) | Radiation reaction, event ledgers, waveform phase, chirp mass, propagation speed, strong-field continuity. |
 | Thermal, statistical, radiative, and QED corrections | [entropy](entropy.md), [temperature](temperature.md), [blackbody-radiation](blackbody-radiation.md), [radiative-corrections-lamb-shift-g-minus-2](radiative-corrections-lamb-shift-g-minus-2.md), [casimir-effect](casimir-effect.md) | Entropy and temperature mapping, ensemble measures, radiation Gate C, continuum excess, regularization, mode sums, boundary-sensitive vacuum or medium response. |
 | Quantum phase and oscillation | [double-slit-mach-zehnder](double-slit-mach-zehnder.md), [aharonov-bohm-effect](aharonov-bohm-effect.md), [neutrino-oscillations](neutrino-oscillations.md) | Path-history phase, gauge-like holonomy, internal-state rotation, basin-measure closure. |
-| Spin, measurement, and Bell | [stern-gerlach](stern-gerlach.md), [bell-test-violations](bell-test-violations.md) | Ordered-frame spinor closure, detector response, pair provenance, no-signaling, Tsirelson-compatible correlations. |
+| Spin, measurement, and Bell | [malus-law](malus-law.md), [stern-gerlach](stern-gerlach.md), [bell-test-violations](bell-test-violations.md) | Photon-analyzer response, ordered-frame spinor closure, detector response, pair provenance, no-signaling, Tsirelson-compatible correlations. |
 | Topological and statistical emergence | [quantum-hall-effect](quantum-hall-effect.md), [brownian-motion](brownian-motion.md) | Robust invariants, transport coefficients, fluctuation-dissipation, micro-to-macro coarse graining. |
 
 ## Shared Closure Record
@@ -72,7 +72,7 @@ Here $\Gamma$ is the assembly state, $\mathcal{H}$ is the path-history and causa
 | Lorentz, Sagnac, and Fizeau | [tri-binary-causal-closure](../tri-binary-causal-closure/tri-binary-causal-closure.md), [master-equation-closure](../master-equation-closure/master-equation-closure.md) | Two-way light speed, time dilation, length contraction, rotation, and moving-medium transport recover observer-level formulas while bounding preferred-frame leakage. |
 | Weak-field metric | [validation-gates](../validation-gates/validation-gates.md), [mass-map](../mass-map/mass-map.md) | One $\mathcal{M}_{\mathrm{sea}}^{ab}$ maps to redshift, Shapiro delay, lensing, precession, and PPN coefficients. |
 | Radiation and gravitational waves | [tri-binary-causal-closure/radiation-gate-c-benchmarks](../tri-binary-causal-closure/radiation-gate-c-benchmarks.md), [strong-field-closure](../strong-field-closure/strong-field-closure.md) | Energy, momentum, angular momentum, recoil, medium updates, and waveform phase close in one event-ledger grammar. |
-| Quantum phase, spin, and Bell | [quantum-closure](../quantum-closure/quantum-closure.md), [angular-momentum-spin](../angular-momentum-spin/angular-momentum-spin.md) | Phase, spin, detector basins, Born weights, no-signaling, and Bell correlations derive from path history and measure closure rather than postulated probabilities. |
+| Quantum phase, spin, and Bell | [quantum-closure](../quantum-closure/quantum-closure.md), [angular-momentum-spin](../angular-momentum-spin/angular-momentum-spin.md) | Phase, spin, photon-analyzer response, detector basins, Born weights, no-signaling, and Bell correlations derive from path history and measure closure rather than postulated probabilities. |
 | Topological and statistical emergence | [validation-gates](../validation-gates/validation-gates.md), [mass-map](../mass-map/mass-map.md) | Robust integer/fractional invariants and fluctuation-dissipation limits emerge from stable basins and transport maps. |
 
 ## Failure Modes
