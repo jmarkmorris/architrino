@@ -349,6 +349,69 @@ $$
 
 This makes the next missing equations precise. To turn the schema into an actual transfer matrix, the dynamics must supply: first, the terminal branch equations fixing $(s_\ell,R_\ell,\omega_\ell,\mathbf{A}_\ell)$ under $v_M=c_f$, $v_O\to c_f$, and coplanar/co-linear alignment; second, the inter-layer maps that reduce $\mathcal{G}_{IM}^{\mathrm{align}},\mathcal{G}_{IO}^{\mathrm{align}},\mathcal{G}_{MO}^{\mathrm{align}}$ to boundary wake data; and third, the observer-record quotient that decides which edge distinctions remain visible in $\theta$.
 
+An edge-map scaffold can be written before the terminal branch is numerically solved. Let $\mathbf{n}_{\nu}$ be the outward unit normal for the chosen local edge direction, and let $\mathcal{B}_{\mathrm{term}}(\lambda)$ be the finite set of active layer and inter-layer causal branches retained by the terminal one-patch label. Each branch $b\in\mathcal{B}_{\mathrm{term}}(\lambda)$ has a source $j_b$, receiver $o_b$, emission time $t_{0,b}$, reception time $t_b$, winding or root index $r_b$, root type $\tau_b\in\{\text{self},\text{partner},\text{inter-layer}\}$, line of action
+$$
+\hat{\mathbf{r}}_b
+=
+\frac{\mathbf{x}_{o_b}(t_b)-\mathbf{x}_{j_b}(t_{0,b})}
+{\left\|\mathbf{x}_{o_b}(t_b)-\mathbf{x}_{j_b}(t_{0,b})\right\|},
+$$
+and branch Jacobian
+$$
+J_b
+=
+1
+-
+\frac{\mathbf{v}_{j_b}(t_{0,b})\cdot\hat{\mathbf{r}}_b}{c_f}.
+$$
+The branch is admissible only when its causal-root equation closes,
+$$
+\left\|\mathbf{x}_{o_b}(t_b)-\mathbf{x}_{j_b}(t_{0,b})\right\|
+=
+c_f(t_b-t_{0,b}),
+\qquad
+J_b\ne0,
+$$
+and the terminal label also satisfies the integer-lock and alignment constraints
+$$
+\omega_O T=2\pi,\qquad
+\omega_M T=2\pi m,\qquad
+\omega_I T=2\pi n,
+$$
+$$
+s_M=c_f,\qquad
+s_O\to c_f,\qquad
+\max_{\ell,\ell'}\arccos(\hat{\mathbf{A}}_\ell\cdot\hat{\mathbf{A}}_{\ell'})\to0.
+$$
+
+For such a branch, define the boundary-facing datum
+$$
+\mathfrak{d}_{\nu}^{\pm}(b)
+=
+\left[
+\tau_b,\,
+\ell(j_b),\ell(o_b),\,
+r_b,\,
+t_{0,b}\bmod T,\,
+\operatorname{sgn}(q_{j_b}q_{o_b}),\,
+J_b,\,
+\hat{\mathbf{r}}_b\cdot\mathbf{n}_{\nu},\,
+\mathbf{a}_{o_b\leftarrow j_b}(t_b;t_{0,b})\cdot\mathbf{n}_{\nu}
+\right]_{O,\theta,W}
+$$
+whenever $\pm(\hat{\mathbf{r}}_b\cdot\mathbf{n}_{\nu})>0$. Here $[\cdot]_{O,\theta,W}$ means that distinctions erased by the Physical Observer quotient for record $\theta$ are already identified. The edge maps are then the multisets after the observer quotient:
+$$
+\mathcal{E}_{\nu}^{\pm}(\lambda)
+=
+\left\{
+\mathfrak{d}_{\nu}^{\pm}(b)
+:
+b\in\mathcal{B}_{\mathrm{term}}(\lambda),\,
+\pm(\hat{\mathbf{r}}_b\cdot\mathbf{n}_{\nu})>0
+\right\}.
+$$
+This equation is the derived projection target: it reduces each terminal one-patch branch ledger to the wake data presented across one edge. The still-open numerical step is solving $\mathcal{B}_{\mathrm{term}}(\lambda)$ from the full three-layer state-dependent delayed equations, including the regularized action and energy ledger that assigns the conserved increments used in $\mathcal{C}_{\theta,\nu}$.
+
 This scaffold identifies the smallest missing dynamics. The delayed equations must enumerate $\Lambda_{\theta}^{\mathrm{loc}}$ and derive the edge maps $\mathcal{E}_{\nu}^{\pm}$ from the terminal aligned branch. [Dyadic Resonance Lock](dyadic-resonance-lock.md) supplies the candidate integer phase lattice, and [Binary Dynamics](binary-dynamics.md#self-hit-definition-and-diagnostics) supplies the self-hit and partner-hit root vocabulary, but neither document yet computes the terminal aligned edge projections from the full three-layer dynamics.
 
 The local-horizon coefficient requires
