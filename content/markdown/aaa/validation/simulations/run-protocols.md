@@ -26,7 +26,7 @@ No simulation run should report $\zeta(A_0)$, $E_{\text{internal}}(A_0)$, or $\m
 
 ## Cosmology Shared-Residual Protocol
 
-The first cosmology-facing validation scaffold is [Cosmology Shared Residual Fit Protocol](cosmology-shared-residual-fit.md). It specializes the campaign-packet rule to the shared dark-energy and cosmology calibration gate. The packet tests whether SN, BAO, CMB, weak-lensing, redshift-space-distortion, and BBN residuals can consume one $\theta_{\mathrm{sea}}$ without per-observable retuning.
+The first cosmology-facing validation scaffold is [Cosmology Shared Residual Fit Protocol](cosmology-shared-residual-fit.md). It specializes the campaign-packet rule to the shared dark-energy and cosmology calibration gate. The packet tests whether SN, BAO, CMB, weak-lensing, redshift-space-distortion, BBN, and pre-BBN branch residuals can consume one $\theta_{\mathrm{sea}}$ without per-observable retuning.
 
 No cosmology packet should report a promoted dark-energy, $H_0$, $S_8$, BBN, CMB, or growth closure unless its ordinary residuals and cross-family projection penalty are both inside declared tolerances.
 

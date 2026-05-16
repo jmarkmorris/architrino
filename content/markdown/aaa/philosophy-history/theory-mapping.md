@@ -1073,18 +1073,16 @@ $$
 
 **Theory Name:** Many-Worlds (Everett). **Short Name:** Everett. **Layer Bucket:** Epistemic / Effective Observation Theories.
 
-**Summary:** All possible outcomes occur, each in its own branch of the
-universe.
+**Summary:** Everettian quantum mechanics removes the collapse postulate and treats the universal quantum state as evolving unitarily. In literal many-worlds readings, the decohering quasi-classical branches are interpreted as all realized rather than as merely possible outcomes.
 
-**Conceptual View:** The wavefunction never collapses. Decoherence yields branches
-that appear classical to observers.
+**Conceptual View:** The wavefunction never collapses. Decoherence yields effectively autonomous branch structure that appears classical to observers, while the Born-rule question becomes the problem of why branch weights play the role of probabilities.
 
 **Key Equation:** Unitary evolution only:
 $$
 i\hbar \frac{\partial}{\partial t}|\psi\rangle = \hat H |\psi\rangle,
 $$
 with no collapse postulate.
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps a single underlying architrino reality. Decoherence corresponds to practical loss of phase information between different assembly histories as they become entangled with many unobserved degrees of freedom. Many-worlds language can be re-interpreted as a way to track effectively non-interfering subsets of architrino trajectories, not as literal branching of the underlying Euclidean container.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps the no-special-collapse pressure but not literal branch ontology. It keeps a single underlying architrino reality. Decoherence corresponds to practical loss of phase information between different assembly histories as they become entangled with many unobserved degrees of freedom. Many-worlds language can be re-interpreted as a way to track effectively non-interfering subsets of architrino trajectories, not as literal branching of the underlying Euclidean container.
 
 **What Still Works:** Many-Worlds (Everett) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the state objects, ensemble quantities, and interpretive claims in this entry are reclassified as inferential or effective descriptions over definite substrate histories and assembly statistics.

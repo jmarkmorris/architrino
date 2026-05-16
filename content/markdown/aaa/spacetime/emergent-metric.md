@@ -122,6 +122,46 @@ This does not license dismissing low-energy quantized-metric calculations. In th
 
 This support is useful but limited. A Jacobson-style argument would explain why GR-like behavior is a natural equilibrium limit of many possible media, not why $\mathbb{A}\mathbb{A}\mathbb{A}$ is uniquely correct. The distinguishing burden therefore shifts to the departures from equilibrium, where the detailed tri-binary architecture should matter.
 
+### Local-Horizon Recovery Target
+
+The Jacobson comparison gives this chapter a sharper recovery target than the general phrase "metric as equation of state." In the standard argument, a local horizon patch is assigned a boost-energy flux $dQ$, an Unruh temperature $T_U$, and an entropy change $dS$ proportional to horizon area. The $\mathbb{A}\mathbb{A}\mathbb{A}$ translation cannot assume those quantities as substrate facts. It must derive their observer-level analogues from one Noether-Sea record, using the same clock, signal, stress, and finite-boundary data that later recover weak-field GR.
+
+For a Physical Observer $O$ and a small effective-horizon patch $\partial\Omega$, let $\theta$ denote the shared Noether-Sea and observer-channel record. Let $\mathcal{B}_{\partial\Omega}^{(O)}(\theta)$ be the observer-accessible boundary-wake label set induced by the finite-boundary data in [Observer Framework](observer-framework.md#ontic-and-epistemic-levels). A compact thermodynamic comparison residual is
+$$
+dS_{\partial\Omega}^{(O)}(\theta)
+=
+d\left(
+k_B\log\left|\mathcal{B}_{\partial\Omega}^{(O)}(\theta)\right|
+\right),
+\qquad
+dQ_{\partial\Omega}^{(O)}(\theta)
+=
+\int_{\partial\Omega}
+T_{\mu\nu}^{\mathrm{eff}}(\theta)\xi^\mu d\Sigma^\nu,
+$$
+and
+$$
+\mathcal{R}_{\mathrm{thermo}}(\theta)
+=
+\sup_{O,\partial\Omega}
+\frac{
+\left|
+dQ_{\partial\Omega}^{(O)}(\theta)
+-
+T_U^{(O)}dS_{\partial\Omega}^{(O)}(\theta)
+\right|
+}{
+\left|dQ_{\partial\Omega}^{(O)}(\theta)\right|
++
+T_U^{(O)}
+\left|dS_{\partial\Omega}^{(O)}(\theta)\right|
++
+\varepsilon
+}.
+$$
+
+The local-horizon gate is $\mathcal{R}_{\mathrm{thermo}}(\theta)\le\epsilon_{\mathrm{thermo}}$ in the equilibrium weak-field comparison regime, with the same $\theta$ also passing the ADM/Cartan and PPN gates below. If the residual can be made small only by assigning independent entropy, temperature, and stress records to each patch, then the equation-of-state analogy has not become a native closure. If it can be made small for all local horizon patches while local observer-level conservation holds, the Jacobson route supplies a proof scaffold for recovering an effective Einstein equation without treating the Euclidean void as curved.
+
 ## Refraction vs. Curvature
 
 - From the **$\mathbb{U}_{\text{now}}$ universe-state perspective**:

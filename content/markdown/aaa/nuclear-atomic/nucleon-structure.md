@@ -107,6 +107,54 @@ $$
 
 The neutron is therefore not neutral because it lacks internal charge structure, but because its quark-level axial asymmetries cancel in total.
 
+## CP-Odd Neutron Dipole Scaffold
+
+The strong-CP comparison problem enters this chapter through the neutron electric dipole moment. The retained observable is a spin-aligned electric first moment of the neutron assembly, not the ontology of any particular Standard-Model repair. This section supplies the nucleon-side scaffold used by [The Strong CP Problem](../philosophy-history/unknowns-paradoxes.md#the-strong-cp-problem).
+
+Let the neutron's axial sites carry polarity signs $\sigma_a\in\{+1,-1\}$ and positions $\mathbf{r}_a$ relative to the tri-core center, with each site carrying polarity magnitude $\epsilon=|e|/6$. The axial contribution to the neutron dipole is
+$$
+\mathbf{d}_{n,\mathrm{ax}}
+=
+\epsilon\sum_{a\in A_n}\sigma_a\,\mathbf{r}_a,
+\qquad
+\sum_{a\in A_n}\sigma_a=0.
+$$
+The second condition is the neutron's neutral axial inventory $(9P,9E)$; it cancels net charge but does not by itself prove that the first moment vanishes. For a declared neutron envelope scale $R_n$ and spin direction $\hat{\mathbf{J}}_n$, define the dimensionless CP-odd axial imbalance
+$$
+\vartheta_n
+=
+\frac{\hat{\mathbf{J}}_n\cdot\mathbf{d}_{n,\mathrm{ax}}}{\epsilon R_n}.
+$$
+
+The strong-sector flux corridor and local Noether-Sea response may contribute additional spin-aligned effective moments. A compact neutron-assembly residual is therefore
+$$
+d_n^{\mathrm{asm}}
+=
+\epsilon R_n
+\left(
+\vartheta_n
++
+\vartheta_{\mathrm{flux}}
++
+\vartheta_{\mathrm{sea}}
+\right),
+\qquad
+\mathcal{R}_{\mathrm{nEDM}}
+=
+\frac{|d_n^{\mathrm{asm}}|}{d_n^{\max}}.
+$$
+
+The first target lemma is a cancellation statement, not a numerical fit:
+$$
+\text{color-singlet }udd\text{ ground state}
+\quad\Longrightarrow\quad
+\left\langle
+\vartheta_n+\vartheta_{\mathrm{flux}}+\vartheta_{\mathrm{sea}}
+\right\rangle_T
+=0
+$$
+up to bounded CP-odd perturbations in the same branch record that recovers the neutron magnetic moment and proton-neutron mass splitting. A proof should use the explicit `udd` color-singlet ledger: one $u$ core, two $d$ cores, one $H$, one $M$, and one $L$ exceptional axis across the tri-core, with the two down-type branches paired by the same strong-sector closure map. If that quotient leaves a nonzero time-averaged spin-aligned first moment above $d_n^{\max}$, the strong-CP assembly repair fails.
+
 ## Effective Internal Geometry
 
 The current nucleon picture has three structural layers.
@@ -207,7 +255,8 @@ This chapter is in good enough shape to serve as the canonical nucleon reference
 1. quantitative proton and neutron magnetic moments,
 2. proton spin decomposition from the completed single-core angular-momentum ledger and hadron-level color-corridor ledger,
 3. explicit Y-junction or equivalent flux-energy functional,
-4. quantitative proton-neutron mass splitting.
+4. quantitative proton-neutron mass splitting,
+5. CP-odd neutron electric-dipole cancellation through the same `udd` color-singlet ledger.
 
 Those are now downstream derivations, not missing definitions.
 

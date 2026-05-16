@@ -93,6 +93,8 @@ Beginning with Freedman and Clauser (1972) and Aspect, Dalibard, and Roger (1982
 - **Detection loophole**: sufficiently high detection efficiency to rule out biased subsamples.
 - **Freedom-of-choice loophole**: settings determined by sources (distant quasars, cosmic photons) causally disconnected from the particle source.
 
+Cosmic setting-choice tests make the measurement-independence burden concrete. They do not prove metaphysical freedom; they bound the possibility that the apparatus settings and the pair-preparation variables shared an unrecorded common cause inside the relevant past lightcone overlap. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, any proposed pair-provenance explanation must keep that setting-source correlation inside the declared $\Delta_{\mathrm{MI}}$ tolerance rather than using remote common-cause leakage as an untracked escape route.
+
 The experimental conclusion is unambiguous: at least one of the three Bell assumptions must fail.
 
 ---
@@ -314,6 +316,8 @@ Superdeterministic models deny measurement independence: the detector settings a
 ### Retrocausal Models
 
 Retrocausal interpretations allow influences from future measurement settings to propagate backward in time to the source, effectively setting $\lambda$ in response to $\hat{m}_A$ and $\hat{m}_B$. $\mathbb{A}\mathbb{A}\mathbb{A}$'s absolute-time ontology categorically forbids backward-in-$t$ causation. All causal influences propagate forward in absolute time at or below $c_f$. The correlations in $\lambda$ are forward-causal consequences of the creation event, established before any measurement setting is chosen.
+
+Temporal-nonlocality language is therefore a comparison diagnostic, not a mechanism to import. In a relativistic observer description, different frames may assign different time orderings to spacelike-separated measurement records; that does not license future-boundary variables in the substrate ledger. A candidate Bell record should evaluate pair provenance, $\Delta_{\mathrm{MI}}$, $\Delta_{\mathrm{NS}}^{A}$, $\Delta_{\mathrm{NS}}^{B}$, and $\Delta_{\mathrm{Bell}}$ on the absolute-time record. If the correlation fit requires $\lambda$ to depend on later settings, the record has left the stated $\mathbb{A}\mathbb{A}\mathbb{A}$ route and should be classified with retrocausal or measurement-independence-denying comparison models.
 
 ---
 

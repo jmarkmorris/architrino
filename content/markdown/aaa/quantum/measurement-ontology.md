@@ -216,6 +216,34 @@ $$
 $$
 This condition says that, after record formation, the retained apparatus-target record can be treated as a new effective starting point without carrying unresolved cross-basin history as live interference. If $\Delta_{\mathrm{div}}=O(1)$, the interaction may have decohered in a reduced description, but it has not yet supplied the independent record assumed by a wave function transition.
 
+## Repeated-Record Confirmation
+
+A measurement account is incomplete if it can name single records but cannot say how repeated records confirm or disconfirm the record law. For a fixed preparation class, apparatus kernel, coarse-graining, access region, and record window, let $D_N=\{N_k\}$ be the observed counts for $N$ completed records and let $\widehat f_k=N_k/N$ be the corresponding frequencies. The same finite-time basin measure used above should determine
+$$
+P_\theta(k)
+=
+\mu_{*,T}\!\left(\pi^{-1}(R_k)\right)
+$$
+for the declared record map $\pi$ and model record $\theta$. A compact confirmation residual is
+$$
+\Delta_{\mathrm{freq}}^{\mathrm{meas}}(N;\theta)
+=
+\max_k
+\frac{\left|\widehat f_k-P_\theta(k)\right|}{\varepsilon_k(N)}.
+$$
+The validation target is
+$$
+\Pr_{\mu_{*,T}}\!\left[
+\Delta_{\mathrm{freq}}^{\mathrm{meas}}(N;\theta)>1
+\right]
+\le
+\alpha_N,
+\qquad
+\varepsilon_k(N)\to0,\quad
+\alpha_N\to0
+$$
+in the calibrated repeated-record regime. This is not a new probability ontology. It is the ordinary scientific-inference burden stated in measurement language: the same substrate flow, record channel, and basin measure that produce a completed record must also produce the frequencies used to test the theory. If a model changes the measure between record formation, Born weights, thermodynamic summaries, and repeated-record statistics, it has hidden an ensemble retuning inside the measurement account.
+
 ## Weak-Probe Limit
 
 A weak measurement is not a different ontology. It is the small-coupling regime of the same apparatus-target dynamics in which a probe samples the target without creating a record-forming separatrix crossing on the retained trial window. Let $\epsilon$ denote the probe-coupling strength and let $(X_\epsilon,A_\epsilon)$ be the coupled trajectory under that probe. The no-record condition is

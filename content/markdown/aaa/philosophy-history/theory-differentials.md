@@ -1214,19 +1214,19 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Many-Worlds Interpretation is a interpretation in the branching ontology domain. It was built to provide a mathematically controlled description of the phenomena grouped within quantum foundations and interpretations, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
+Many-Worlds Interpretation is an interpretation in the branching ontology domain. It removes the collapse postulate and treats quantum dynamics as universally unitary; in its stronger modern forms, worlds are not added as a second law but read as emergent quasi-classical structure within the unitary state. In the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
-Many-Worlds Interpretation carries specific ontological commitments even when it is presented as "just mathematics." It typically treats branching ontology as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability enters either as an ontic claim, an ensemble summary, or an observer-facing update rule depending on the program.
+Many-Worlds Interpretation carries specific ontological commitments even when it is presented as "just mathematics." It typically treats branch autonomy as explanatorily central and may promote decohering branch structure into literal ontology unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability enters either as branch-weight interpretation, an ensemble summary, or an observer-facing update rule depending on the program.
 
 #### 3. What This Concept Gets Right
 
-Many-Worlds Interpretation gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
+Many-Worlds Interpretation gets two durable points right: measurement should not require an observer-exception clause, and decoherence mathematics identifies when alternatives become effectively autonomous in a record-facing description. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
-In the neutral comparative stack, Many-Worlds Interpretation sits at **Inference layer**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Deeply Incompatible**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
+In the neutral comparative stack, Many-Worlds Interpretation sits at **Inference layer**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Deeply Incompatible**: the no-collapse motivation and branch-isolation mathematics survive as comparison pressure, while literal many-world ontology is not allowed to keep the ontological authority it often carries in present discourse.
 
 #### 5. Transition-Period Relevance
 
@@ -2621,11 +2621,27 @@ Primordial Black Hole Dark Matter carries specific ontological commitments even 
 
 #### 3. What This Concept Gets Right
 
-Primordial Black Hole Dark Matter gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
+Primordial Black Hole Dark Matter gets something durable right: it turns a dark-sector interpretation into a constrained observable packet. The retained content is not the claim that primordial black holes are the dark matter, but the mass-function discipline, formation-clock inference, evaporation and null-result bounds, lensing and structure-growth constraints, and possible local compact-object signatures. A compact comparison projection is
+$$
+\Pi_{\mathrm{PBH}}
+=
+\left(
+\psi(M),\;
+f_{\mathrm{PBH}},\;
+t_f(M),\;
+\Delta\mathbf{Y}_{\mathrm{BBN}},\;
+\Delta C_\ell,\;
+\Delta P(k,z),\;
+\Omega_{\mathrm{GW}}(f),\;
+\Delta\mathbf{x}_{\mathrm{ephem}}(t),\;
+\Phi_{\mathrm{HE}}(E,t)
+\right),
+$$
+where $\psi(M)$ is the compact-object mass function, $f_{\mathrm{PBH}}$ is the dark-matter fraction in that comparison model, $t_f(M)$ is the inferred formation epoch, $\Delta\mathbf{x}_{\mathrm{ephem}}$ is a solar-system ephemeris perturbation, and $\Phi_{\mathrm{HE}}$ denotes any high-energy particle or radiation flux tied to evaporation or analogous release. This projection is useful precisely because it separates observables from the interpretation that produced them.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
-In the neutral comparative stack, Primordial Black Hole Dark Matter sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Partially Recovered**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
+In the neutral comparative stack, Primordial Black Hole Dark Matter sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Partially Recovered**: the useful population, constraint, and detection mathematics survive as comparison pressure, while primordial-black-hole ontology is not allowed to keep the explanatory authority it often carries in present discourse.
 
 #### 5. Transition-Period Relevance
 
@@ -2641,7 +2657,7 @@ The clearest limiting tension for Primordial Black Hole Dark Matter is that its 
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the retained compact-object observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. If a primordial-Noether-core-defect or other neutral-assembly branch is proposed as the native analogue, it must recover the same mass-function, BBN/CMB/growth, local-ephemeris, high-energy-flux, and null-result rows from one shared closure record. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 

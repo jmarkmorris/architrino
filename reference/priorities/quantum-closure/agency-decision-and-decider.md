@@ -6,6 +6,22 @@ This detailed priority file supports [Quantum Closure](quantum-closure.md). It c
 
 The Decider idea can sharpen the quantum program because it asks for the smallest assembly topology that can alter its own transition probabilities before a perturbation arrives. The native object is a controlled change in basin geometry, not free will language and not primitive randomness.
 
+The new source signal is stronger than a generic threshold analogy: every Noether core already contains a middle binary at the field-speed hinge. That means metastability is not an accidental high-level feature added only in neural or biological systems. It is built into the assembly architecture. The open problem is therefore not whether nature has metastable threshold material; the open problem is which additional control topology turns a built-in metastable hinge into a Switch, and which still richer topology turns a Switch into a Decider.
+
+Let $s_M(\gamma)$ be the characteristic middle-binary speed in a reduced Noether-core state $\gamma$. A field-speed metastability slot over a window $T$ can be represented schematically as
+$$
+\mathcal{K}_M(\epsilon_M,T)
+=
+\left\{
+\gamma:
+\sup_{0\le t\le T}
+\frac{|s_M(\Phi_t\gamma)-c_f|}{c_f}
+\le
+\epsilon_M
+\right\}.
+$$
+Membership in $\mathcal{K}_M$ is not agency. It says only that the assembly carries a threshold-sensitive hinge. A Switch claim begins only when an internal or adjacent bias variable $u$ moves that hinge nearer to or farther from a declared separatrix before a later perturbation arrives. A Decider claim begins only when the system can set, hold, update, and reuse such bias states through feedback.
+
 Let $\Gamma$ denote the assembly microstate and let $u$ denote an internally held bias configuration. A Decider should be modeled as a family of basin partitions
 
 $$
@@ -38,11 +54,26 @@ while also carrying the work, dissipation, and hold-time ledgers below.
 
 This packet consumes the shared [transfer-operator and basin-measure theorem](transfer-operator-basin-measure.md). It owns the Decider topology, work ledger, hold time, and measurable basin shift; the shared packet owns the operator/measure grammar that decides whether the shift is a real change in $\mu_*(B_i)$.
 
+## Primitive Assembly Ladder
+
+The minimality question should be handled as a ladder rather than as a single yes/no label:
+
+| Level | Required structure | Status |
+| --- | --- | --- |
+| Bare Noether core | Inner self-hit engine, field-speed middle binary, outer coupling layer, and stable closure label. | Metastability substrate, not decision. |
+| Switch | A metastable target plus a bias-to-state mechanism that changes later basin access under fixed boundary context. | Candidate minimal decision event executor. |
+| Decider | A Switch family plus held bias state, feedback, memory-bearing update, work and dissipation ledger, and measurable basin-weight shift. | Candidate minimal agency architecture. |
+| Biological or neural assembly | A network of Switch/Decider-like elements with many coupled thresholds and record channels. | Possible applied regime, not primitive evidence for consciousness. |
+
+This ladder keeps the free-will question disciplined. A field-speed middle binary supplies the primitive physical reason that threshold alternatives exist. It does not by itself select among them in the agency sense. The transition from metastability to decision requires controllable internal preparation, and the transition from decision to functional agency requires feedback-stabilized reuse of that preparation.
+
 ## Required Variables
 
 | Variable | Meaning |
 | --- | --- |
 | $\Gamma(t)$ | Full microstate of the candidate decider assembly. |
+| $s_M$ | Characteristic middle-binary speed used to identify the field-speed metastability slot. |
+| $\mathcal{K}_M(\epsilon_M,T)$ | Noether-core metastability window near $s_M=c_f$. |
 | $u$ | Bias configuration held by the controller or tuner subassembly. |
 | $\mathcal{P}_u$ | Basin partition under the chosen bias state. |
 | $\Delta\mu_i$ | Measurable basin-weight shift caused by changing the bias state. |
@@ -52,15 +83,16 @@ This packet consumes the shared [transfer-operator and basin-measure theorem](tr
 
 ## Minimality Gate
 
-The minimal Decider claim should be accepted only after three tests:
+The minimal Decider claim should be accepted only after four tests:
 
-1. **Topology:** identify the smallest architecture that contains a sensor, threshold amplifier, and bias-setting controller without hiding one role in the environment.
-2. **Energetics:** show that changing $u$ has a positive work or dissipation ledger,
+1. **Metastability:** identify the Noether-core middle-binary hinge or other declared threshold slot and show that it remains in a metastable window long enough to matter.
+2. **Topology:** identify the smallest architecture that contains a sensor, threshold amplifier, and bias-setting controller without hiding one role in the environment.
+3. **Energetics:** show that changing $u$ has a positive work or dissipation ledger,
    $$
    \Delta W_u+\Delta E_{\text{dump}}>0,
    $$
    except in reversible ideal limits that still require a prepared state.
-3. **Effect size:** prove that the basin shift is measurable in the later transition statistics, not only in unobserved microstate labels.
+4. **Effect size:** prove that the basin shift is measurable in the later transition statistics, not only in unobserved microstate labels.
 
 ## Promotion Targets
 

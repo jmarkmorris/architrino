@@ -116,6 +116,20 @@ $$
 $$
 This gate preserves the observable pressure while rejecting the interpretation shortcut. A pre-BBN branch that disappears only by changing state variables between BBN, CMB, structure formation, and gravitational-wave comparisons is not hidden; it has split the cosmology record.
 
+If $X$ is a compact-object branch, the projection must also record the mass function and release history rather than only an effective density:
+$$
+\Pi_{\mathrm{compact}}(\theta_X)
+=
+\left(
+\psi_X(M),\;
+f_X,\;
+t_f(M),\;
+\Gamma_{\mathrm{release}}^X(E,t),\;
+\Delta\mathbf{x}_{\mathrm{ephem}}^X(t)
+\right).
+$$
+Here $\psi_X(M)$ is the comparison mass function, $f_X$ is the dark-sector fraction in that branch, $t_f(M)$ is the inferred formation or release clock, $\Gamma_{\mathrm{release}}^X$ is any Hawking-like or native release spectrum, and $\Delta\mathbf{x}_{\mathrm{ephem}}^X$ is retained only for late-time local-detection consistency. These variables do not add compact-object ontology to the inflation module; they make explicit which observables a pre-BBN compact branch must carry into the BBN, CMB, growth, gravitational-wave, and local-detection ledgers.
+
 ## Planck-Alignment Boundary
 
 Planck scale is treated as an alignment-horizon state of assemblies, not a minimal-length axiom.

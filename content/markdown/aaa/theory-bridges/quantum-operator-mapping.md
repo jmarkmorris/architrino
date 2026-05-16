@@ -161,6 +161,25 @@ $$
 $$
 while the model does not introduce a global context-independent value map for all effective operators. This is the Kochen-Specker side of the operator-closure burden recorded in [No-Go Theorems](../validation/no-go-theorems.md); it is a constraint on apparatus-resolved records, not a new substrate ontology.
 
+A compact state-independent benchmark is the Mermin-Peres square. In a Pauli benchmark chart, let $\mathcal{C}_{\mathrm{MP}}$ be the three row contexts and three column contexts of the square, with benchmark product signs
+$$
+\chi_C\in\{+1,+1,+1,+1,+1,-1\}
+$$
+under a fixed row/column convention. The corresponding residual is the same apparatus-context test specialized to this calibrated square:
+$$
+\Delta_{\mathrm{MP}}
+=
+\max\!\left(
+\sup_{C\in\mathcal{C}_{\mathrm{MP}}}
+\Pr\!\left[
+\prod_{O\in C}r_{O,C}\ne\chi_C
+\right],
+\sup_{O,C,C'}
+D_{\mathrm{TV}}\!\left(P(r_{O,C}),P(r_{O,C'})\right)
+\right).
+$$
+Passing the benchmark means $\Delta_{\mathrm{MP}}\le\epsilon_{\mathrm{MP}}$ without assigning a global context-independent value $v(O)\in\{-1,+1\}$ to every effective observable. The parity proof explains why that last clause is mandatory: if such a value map existed, multiplying all six context-product equations would give $\prod_O v(O)^2=+1$ on the left, while the benchmark signs multiply to $-1$ on the right. The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is therefore to derive the context-indexed records from one substrate flow, not to hide a noncontextual value assignment inside the effective operator map.
+
 ## Unitary Evolution and Topological Torques
 
 Quantum gates correspond to continuous, energy-conserving topological torques applied to the tri-binary orbital planes. 
@@ -223,6 +242,23 @@ $$
 \Delta_{\mathrm{ens}}(\mathcal{Q},W,T)\le\varepsilon_{\mathrm{ens}},
 $$
 on the same retained window. If the Born weights and the thermodynamic summaries require incompatible measures, the model has hidden an ensemble retuning inside the measurement account.
+
+The same derived weights must also support ordinary empirical use. For a repeated preparation class and a fixed apparatus record channel, let $D_N=\{N_k\}$ be $N$ recorded outcomes and $\widehat f_k=N_k/N$ the observed frequencies. The inference-facing residual is
+$$
+\Delta_{\mathrm{freq}}(N,T)
+=
+\sum_k\left|\widehat f_k-P_k(T)\right|.
+$$
+The closure target is not a decision-theory axiom and not a new probability postulate. It is the requirement that the same basin weights used above make repeated-record statistics converge in the calibrated regime:
+$$
+\Pr_{\mu_{*,T}}\!\left[
+\Delta_{\mathrm{freq}}(N,T)>\varepsilon_{\mathrm{freq}}(N)
+\right]\le\alpha_N,
+\qquad
+\varepsilon_{\mathrm{freq}}(N)\to0,\quad
+\alpha_N\to0.
+$$
+This is the $\mathbb{A}\mathbb{A}\mathbb{A}$-native version of the scientific-inference burden: once a record channel is declared, the derived $P_k(T)$ must be usable for confirmation and falsification in the same way the Born weights are used in laboratory quantum mechanics, without importing agent-centered rationality assumptions as substrate physics.
 
 ## Kinetic Limits and Decoherence
 The continuous loss of path-history coherence must be formalized as a transport phenomenon within the Noether Sea, or in bridge prose the spacetime medium.

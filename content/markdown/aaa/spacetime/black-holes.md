@@ -192,6 +192,37 @@ Y_O
 $$
 Before a black-hole information claim is promoted, the comparison packet must say which $\mathcal{K}_{O}^{\mathrm{rad}}$, reference resources, access region, and finite boundary data make the outgoing channel meaningful. A coarse exterior channel may legitimately see an approximately thermal distribution while a richer correlated reference channel retains structure, but that difference is a statement about observer-accessible records. It does not import a boundary CFT, many-copy tomography story, or external reference frame as $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology.
 
+The same packet should also carry a detailed-balance comparison rather than treating CPT language as an ontological shortcut. Let $\mathcal{L}_{H}$ be the declared set of horizon-interface formation and release ledger channels for a compact region $\Omega$. For a candidate strong-field record $\theta$, require
+$$
+\mathcal{R}_{H,\mathrm{bal}}(\theta)
+=
+\sum_{\ell\in\mathcal{L}_{H}}
+w_\ell
+\left[
+P_\theta(\ell_{\mathrm{in}}\to\mathcal{B}_H)
+-
+P_\theta(\mathcal{B}_H\to(CPT)_{\mathrm{eff}}\ell_{\mathrm{out}})
+\right]^2
++
+d_{\mathrm{ent}}\!\left(
+S_H^{(O)},
+k_B\log|\mathcal{B}_{H}^{(O)}|+S_{\mathrm{out}}^{(O)}
+\right)
++
+d_{\mathrm{CPT}}\!\left(\mathcal{R}_{\mathrm{CPT}}(\theta),0\right).
+$$
+The pass condition is $\mathcal{R}_{H,\mathrm{bal}}(\theta)\le\epsilon_H$ using the same branch record that recovers exterior compact-object observables. This does not assert a literal mirror universe, a white-hole ontology, or a final-state boundary postulate. It says that if the effective comparison invokes CPT or thermal equilibrium, the native horizon-interface release ledger must exhibit the corresponding formation/release balance within the declared observer access channel.
+
+The species puzzle supplies a separate entropy guardrail. If $N_{\mathrm{spect}}$ counts effective spectator species that do not enter the native closure labels, release channels, or null-result ledger, then horizon entropy should be insensitive to those labels:
+$$
+\left|
+\frac{\partial S_H^\theta}{\partial N_{\mathrm{spect}}}
+\right|_{\mathcal{B}_H,\partial\Omega}
+\le
+\epsilon_{\mathrm{spect}}.
+$$
+If an added species is physically real, it must change $\mathcal{B}_{H}$, $S_{\mathrm{out}}^{(O)}$, a release-channel row, or $\mathcal{R}_{\mathrm{null}}$. If it changes none of those records, it is an effective-description label and may not be used to tune black-hole entropy.
+
 The classical area-increase result supplies a direct benchmark for this target. In the standard exterior description, a clean merger comparison has
 $$
 A_{H,\mathrm{final}}
@@ -221,6 +252,8 @@ k_B\log\left|\mathcal{B}_{H}^{(O)}(t)\right|
 S_{\mathrm{out}}^{(O)}(t),
 $$
 where $S_{\mathrm{out}}^{(O)}(t)$ summarizes the entropy of accessible outgoing channels. This equation is not a new ontology. It is a bookkeeping target: the native horizon-interface model should explain how the area-like ledger term and the outgoing-channel entropy combine into a finite observer-level entropy, and how that combined quantity can reproduce Page-curve behavior without importing islands, replica wormholes, or a boundary CFT as primitive structure.
+
+This also disciplines the local semiclassical version of the information paradox. A statement that a horizon-straddling correlation has been lost is only a promoted comparison claim after the access region, reference resources, boundary wake data, and readout channel have been declared. Local QFT pair language remains useful near a smooth effective horizon, but it is an approximation to an observer-level calculation. The native black-hole closure must say which Physical Observer could recover which part of the release record, and which finite boundary data make that recovery meaningful.
 
 #### Complexity-Growth Comparison Target
 
@@ -272,6 +305,8 @@ $$
 with outgoing energy, momentum, angular momentum, charge, polarity, provenance, and medium-update rows accounted for through the release-channel ledger.
 
 This gives a compact comparison rule for evaporation and endpoint proposals. A proposal can be used as a comparison framework if it sharpens one of those finite-ledger checks. It should not be promoted into the ontology unless the same native horizon-interface variables produce the continuation without an arbitrary endpoint branch or a separate asymptotic bookkeeping rule.
+
+No-hair, cosmic-censorship, and endpoint theorems enter this chapter with the same assumption discipline. Their strongest use is to preserve exterior compact-object behavior, horizon regularity, and finite-release accounting where their hypotheses match the comparison regime. When a theorem assumes an isolated vacuum black hole or asymptotically flat exterior, it cannot by itself settle a black hole embedded in an evolving Noether Sea. The retained burden is sharper: the native horizon-interface record must reproduce the exterior $(M,\mathbf{J},Q)$ coarse-graining and avoid observer-level naked-singularity pathology while using finite active-medium boundary data.
 
 As a heuristic geometric picture, the horizon can also be described as a **dimensional pinch** in the tri-binary shape trajectory. On this reading, ordinary 3D assemblies are flattened toward a near-planar disk at the alignment interface, while the interior self-hit regime permits re-opening of the suppressed axial degree of freedom. In shorthand, the proposed shape path is
 $$

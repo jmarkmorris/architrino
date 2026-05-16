@@ -5,7 +5,7 @@ import path from "node:path";
 
 const SCRIPT_DIR = path.dirname(new URL(import.meta.url).pathname);
 const DEFAULT_INPUT_PATH = path.join(SCRIPT_DIR, "shared-residual-mock.json");
-const DEFAULT_REQUIRED_FAMILIES = ["SN", "BAO", "CMB", "WL", "RSD", "BBN"];
+const DEFAULT_REQUIRED_FAMILIES = ["SN", "BAO", "CMB", "WL", "RSD", "BBN", "PRE_BBN"];
 const DEFAULT_REQUIRED_FRAME_FAMILIES = ["CMB", "MATTER_DIPOLE", "SN", "BAO", "H0"];
 
 function parseArgs(argv) {

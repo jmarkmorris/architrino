@@ -1,6 +1,6 @@
 # Cosmology Shared Residual Fit Protocol
 
-This protocol turns the shared calibration gate in [Dark Energy](../../cosmology/dark-energy.md#inference-dependency-and-calibration-gates) into a first machine-checkable validation scaffold. Its purpose is narrow: test whether supernova, BAO, CMB, weak-lensing, redshift-space-distortion, and BBN comparison packets can consume one shared Noether-Sea state record without silently replacing the state per observable family.
+This protocol turns the shared calibration gate in [Dark Energy](../../cosmology/dark-energy.md#inference-dependency-and-calibration-gates) into a first machine-checkable validation scaffold. Its purpose is narrow: test whether supernova, BAO, CMB, weak-lensing, redshift-space-distortion, BBN, and pre-BBN comparison packets can consume one shared Noether-Sea state record without silently replacing the state per observable family.
 
 This is not a cosmological parameter fit and not an empirical claim. The first runtime artifact is a mock packet that fixes the object shape, residual accounting, projection-penalty semantics, gates, and failure codes that a real survey-facing packet must later populate.
 
@@ -11,7 +11,7 @@ Let
 $$
 \mathcal{X}_{\mathrm{cos}}
 =
-\{\mathrm{SN},\mathrm{BAO},\mathrm{CMB},\mathrm{WL},\mathrm{RSD},\mathrm{BBN}\}.
+\{\mathrm{SN},\mathrm{BAO},\mathrm{CMB},\mathrm{WL},\mathrm{RSD},\mathrm{BBN},\mathrm{PREBBN}\}.
 $$
 
 For each family $X\in\mathcal{X}_{\mathrm{cos}}$, the packet records a residual vector $r_X$, a covariance object $C_X$, nuisance/calibration context $\nu_X$, and a projection $\Pi_X\theta_{\mathrm{sea}}$ of the shared medium-state record into that family. The scaffold computes
@@ -60,7 +60,7 @@ The runtime packet should preserve this shape even when a later empirical packet
 | Field | Required content | Promotion role |
 | --- | --- | --- |
 | `metadata` | run identifier, source commit when available, input provenance, fit family, and declared comparison level | makes the packet reproducible |
-| `required_families` | required observable families, defaulting to `SN`, `BAO`, `CMB`, `WL`, `RSD`, and `BBN` | prevents cherry-picking a subset of cosmology constraints |
+| `required_families` | required observable families, defaulting to `SN`, `BAO`, `CMB`, `WL`, `RSD`, `BBN`, and `PRE_BBN` | prevents cherry-picking a subset of cosmology constraints |
 | `theta_sea` | shared dimensionless state record used by all projections | names the single medium-state candidate under test |
 | `observables` | one row per family with residual vector, covariance, nuisance/calibration note when available, and projection coordinates | supplies $\mathcal{R}_X$ and $\Pi_X\theta_{\mathrm{sea}}$ |
 | `projection_weights` | dimensionless weights $w_a$ for common projection coordinates | makes the split penalty explicit rather than rhetorical |
@@ -69,7 +69,24 @@ The runtime packet should preserve this shape even when a later empirical packet
 | `gates` | pass/fail records for coverage, residual total, projection penalty, projection overlap, and total shared residual | turns the comparison into an auditable decision surface |
 | `failure_code` | null on pass, otherwise the first failed gate | gives follow-up work a stable repair target |
 
-The current mock packet uses normalized comparison coordinates such as `H_norm`, `w_eff`, `n`, `chi_sea`, `G_growth`, and `Y_BBN`. These are not new ontology. They are dimensionless placeholders for observer-level expansion, equation-of-state, normalized Noether-core density, Noether-Sea delay, growth-response, and BBN-yield comparison channels.
+The current mock packet uses normalized comparison coordinates such as `H_norm`, `w_eff`, `n`, `chi_sea`, `G_growth`, `Y_BBN`, `Delta_N_eff`, `lambda_fs`, and `Omega_GW`. These are not new ontology. They are dimensionless placeholders for observer-level expansion, equation-of-state, normalized Noether-core density, Noether-Sea delay, growth-response, BBN-yield, relativistic-species, free-streaming, and stochastic-gravitational-wave comparison channels.
+
+## Pre-BBN Branch Packet
+
+The `PRE_BBN` row is the runtime version of the comparison gate defined in [Inflation Model](../../cosmology/inflation-model.md#pre-bbn-comparison-gate), [BBN Constraints](../../cosmology/BBN-constraints.md#pre-bbn-handoff-gate), [Structure Formation](../../cosmology/structure-formation.md#cmb-lensing-and-acoustic-peaks), and [Gravitational Waves](../../spacetime/gravitational-waves.md#early-universe-stochastic-background-gate). It represents one declared branch $X$ per packet. Multiple candidate branches should be compared by running separate packets or by building an explicitly documented aggregate row, not by hiding several branches inside one unlabeled residual.
+
+The pre-BBN residual vector should preserve the observable/data-product split:
+$$
+r_{\mathrm{PREBBN}}
+=
+\left(
+\frac{\|\Delta\mathbf{Y}_{\mathrm{BBN}}^X\|}{\epsilon_{\mathrm{BBN}}},
+\frac{\|\Delta C_\ell^X\|}{\epsilon_{\mathrm{CMB}}},
+\frac{\|\Delta P_X(k,z)\|}{\epsilon_{\mathrm{growth}}},
+\sup_f\frac{\Omega_{\mathrm{GW}}^X(f)}{\Omega_{\mathrm{GW}}^{\max}(f)}
+\right).
+$$
+The projection keys should include the ordinary shared cosmology coordinates plus branch-facing coordinates such as `Delta_N_eff`, `lambda_fs`, and `Omega_GW`. The packet passes this subgate only when the ordinary residual $\mathcal{R}_{\mathrm{PREBBN}}$ is small and the projection penalty shows that the same $\theta_{\mathrm{sea}}$ is being consumed by BBN, CMB, growth, and gravitational-wave comparisons.
 
 ## Frame-Split Measurement Recipe
 

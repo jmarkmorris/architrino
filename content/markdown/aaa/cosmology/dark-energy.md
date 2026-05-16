@@ -200,6 +200,33 @@ $$
 
 with $a = 1/(1+z)$ the effective scale factor (defined operationally through the redshift of photon-mode assemblies).
 
+### Observed Equation of State and Medium Accounting
+
+A fitted $w(a)$ is a data-product parameterization, not automatically the physical pressure law of the Noether Sea. The standard no-source reading defines an observed effective value by
+$$
+\frac{d\ln\rho_{\mathrm{DE,fit}}}{d\ln a}
+=
+-3\bigl(1+w_{\mathrm{obs}}(a)\bigr).
+$$
+In a medium-state model, the same fitted trend can absorb at least three distinct effects: the native pressure ratio $w_{\mathrm{source}}(a)$, an actual source or transfer term $\mathcal{S}_{\mathrm{relax}}$, and drift in the observer-level map from Noether-Sea variables to effective dark-energy density. If
+$$
+\rho_{\mathrm{DE,fit}}(a)
+=
+\Pi_{\mathrm{DE}}(a)\,\rho_{\mathrm{DE,eff}}(a),
+$$
+with $\Pi_{\mathrm{DE}}$ denoting the declared projection from the shared medium record into the fitted dark-energy density, then the accounting identity is
+$$
+1+w_{\mathrm{obs}}(a)
+=
+1+w_{\mathrm{source}}(a)
+-
+\frac{\mathcal{S}_{\mathrm{relax}}}{3H\rho_{\mathrm{DE,eff}}}
+-
+\frac{1}{3}
+\frac{d\ln\Pi_{\mathrm{DE}}}{d\ln a}.
+$$
+This split prevents a time-varying $w(a)$ preference from being promoted too quickly. The observable to preserve is the distance, lensing, growth, and covariance record that produced $w_{\mathrm{obs}}(a)$; the interpretation remains open until the same $\theta_{\mathrm{sea}}$ derives the source term and the projection drift without changing records between pipelines.
+
 ### de Sitter and Phantom-$w$ Comparison
 
 Standard quantum-gravity discussions often use de Sitter space as the clean comparison model for a universe with asymptotically constant positive dark energy. In holographic language, the speculative target is a boundary or statistical description associated with the far future. In this chapter, that comparison should remain effective rather than ontological: $a(t)$, $H(t)$, and $w(a)$ are observer-level summaries of Noether-Sea evolution, not fundamental variables of the Euclidean void.

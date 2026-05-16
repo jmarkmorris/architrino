@@ -219,7 +219,7 @@ The area law is a benchmark to recover. The native content is the count over adm
 
 ## Related Priorities
 
-- [temperature](../temperature/temperature.md)
+- [temperature](temperature.md)
 - [strong-field-closure](../strong-field-closure/strong-field-closure.md)
 - [quantum-closure](../quantum-closure/quantum-closure.md)
 - [cosmology-closure](../cosmology-closure/cosmology-closure.md)

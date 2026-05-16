@@ -48,6 +48,16 @@ N_{\text{sea}}|_{\Omega}(t)
 $$
 The basin geometry and threshold control of the subsystem are therefore functions of internal state plus omitted boundary wakes and Noether-Sea conditions, not of the locally inspected state alone. Local prediction can fail for an open subsystem even when the $\mathbb{U}_{\text{now}}$ universe-state perspective remains globally deterministic, because the global state retains the finite-speed signals and path-history data that the Physical Observer has not resolved.
 
+A sharper validation condition is to hold the external boundary context fixed and ask whether internal preparation changes the basin weights. Let
+$$
+c_\Omega(t)=\left(\mathcal{H}_{\Omega}^{<t},\mathcal{B}_{\partial\Omega}(t),N_{\text{sea}}|_{\Omega}(t)\right)
+$$
+denote that fixed context. For a time window $T$, let $P_{c_\Omega,x,T}(k)$ be the normalized measure of admissible histories that resolve into basin $B_k$ when the internal state is prepared as $X_\Omega(t)=x$. A Switch or Decider claim has measurable internal content only if there are admissible internal states $x_a$ and $x_b$ such that
+$$
+D\!\left(P_{c_\Omega,x_a,T},P_{c_\Omega,x_b,T}\right)\ge\epsilon_I,
+$$
+where $D$ is a declared distance on outcome distributions and $\epsilon_I$ is the resolution threshold for the experiment or simulation. The same boundary context $c_\Omega(t)$ must be used on both sides, and the work, dissipation, and hold time needed to maintain $x_a$ or $x_b$ must be recorded. If this distance vanishes under fixed boundary context, the behavior is externally driven or observationally equivalent to a fixed-threshold response. If it is nonzero, the system's stored configuration changes the basin partition without breaking deterministic law.
+
 ## Will as Threshold Setting
 
 In this framework, `will` is a compatibilist and functional term for organized threshold setting across a networked assembly. It is not a primitive force and not an exception to causality.
@@ -78,6 +88,7 @@ The He-Rb-He example supplies a minimal worked foothold for threshold tuning. It
 | **Libertarian Free Will** | Excluded as uncaused or law-violating initiation |
 | **Compatibilist Agency** | Allowed when complex assemblies navigate deterministic dynamics through internal state and feedback |
 | **Mechanism of "Decision"** | Threshold tuning + feedback + memory in networked assemblies |
+| **Validation Target** | Fixed boundary context plus different internal preparations must produce a measurable basin-weight shift with work, dissipation, and hold time recorded |
 | **Switch** | Bias-to-state mechanism; computed example currently uses He-Rb-He |
 | **Decider** | Candidate bias-setting architecture built from controlled thresholds, feedback, and memory |
 

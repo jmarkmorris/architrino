@@ -12,7 +12,7 @@
 ## Task Queue
 
 1. `standard_temperature_baseline` - Keep thermodynamic, kinetic, statistical, radiation, cosmological, and horizon-temperature meanings separated before mapping them into $\mathbb{A}\mathbb{A}\mathbb{A}$. Status: `draft`. Depends on: none.
-2. `ensemble_temperature_definition` - Convert the radiation chapter's ensemble-temperature relation into a reusable condition for when temperature is available. Status: `draft`. Depends on: [entropy](../entropy/entropy.md).
+2. `ensemble_temperature_definition` - Convert the radiation chapter's ensemble-temperature relation into a reusable condition for when temperature is available. Status: `draft`. Depends on: [entropy](entropy.md).
 3. `kelvin_kb_bridge` - Route the Kelvin and $k_B$ discussion through Noether-Sea ensemble dynamics without treating a single Noether core as thermodynamically hot. Status: `draft`. Depends on: `ensemble_temperature_definition`, [mass-map](../mass-map/mass-map.md).
 4. `blackbody_temperature_gate` - Tie Planck-spectrum recovery to Gate A, Gate B, Gate C, detailed balance, and thermalization depth. Status: `draft`. Depends on: [tri-binary-causal-closure](../tri-binary-causal-closure/tri-binary-causal-closure.md).
 5. `cosmology_temperature_handoff` - Separate intrinsic Noether-core energy, local emissive ensemble temperature, and observer-inferred CMB temperature. Status: `draft`. Depends on: [cosmology-closure](../cosmology-closure/cosmology-closure.md), [validation-gates](../validation-gates/validation-gates.md).
@@ -220,7 +220,7 @@ This split should be promoted anywhere cosmology prose risks converting the obse
 
 | Task | Primary promotion target | Promotion gate |
 | --- | --- | --- |
-| `ensemble_temperature_definition` | [radiation](../../../content/markdown/aaa/reactions/radiation.md), [theory-differentials](../../../content/markdown/aaa/philosophy-history/theory-differentials.md), and [entropy](../entropy/entropy.md) | Temperature is introduced only after an ensemble, entropy-energy derivative, or kinetic distribution is declared. |
+| `ensemble_temperature_definition` | [radiation](../../../content/markdown/aaa/reactions/radiation.md), [theory-differentials](../../../content/markdown/aaa/philosophy-history/theory-differentials.md), and [entropy](entropy.md) | Temperature is introduced only after an ensemble, entropy-energy derivative, or kinetic distribution is declared. |
 | `kelvin_kb_bridge` | [architrino-si-base-units](../../../content/markdown/aaa/validation/architrino-si-base-units.md), [mass-map](../mass-map/mass-map.md), and [Noether Sea](../../../content/markdown/aaa/spacetime/noether-sea.md) | $k_B$ is routed through Noether-Sea thermal equilibrium, effective assembly mass, and velocity-distribution width. |
 | `blackbody_temperature_gate` | [radiation](../../../content/markdown/aaa/reactions/radiation.md), [reaction-cosmology-provenance-ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md), and [radiation Gate C](../tri-binary-causal-closure/radiation-gate-c-benchmarks.md) | Planck occupation follows from detailed balance, transition rates, ensemble weights, and zero effective photon chemical potential. |
 | `cosmology_temperature_handoff` | [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [cosmology-ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md), and [cosmology-shared-residual-fit](../../../content/markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md) | Source, thermalization, transport, redshift, anisotropy, and observer temperature consume one medium-state record. |
@@ -238,7 +238,7 @@ This split should be promoted anywhere cosmology prose risks converting the obse
 
 ## Related Priorities
 
-- [entropy](../entropy/entropy.md)
+- [entropy](entropy.md)
 - [cosmology-closure](../cosmology-closure/cosmology-closure.md)
 - [tri-binary-causal-closure](../tri-binary-causal-closure/tri-binary-causal-closure.md)
 - [mass-map](../mass-map/mass-map.md)

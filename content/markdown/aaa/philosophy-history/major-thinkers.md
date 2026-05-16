@@ -937,7 +937,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **What They Got Right:** Everett correctly targeted collapse inconsistency and emphasized that measurement should be treated as ordinary physical interaction.
 
-**What They Got Wrong or Overstated:** He overstated branching-world ontology where single-world lawful evolution with branch-sensitive attractor selection can recover outcome structure without multiplying worlds.
+**What They Got Wrong or Overstated:** Everett and later many-worlds readings overstate branch ontology when effective branch autonomy is treated as literal world multiplication. A single-world lawful evolution with branch-sensitive attractor selection can still target outcome structure without multiplying worlds.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Motivationally aligned but ontologically contradicted.
 
@@ -945,7 +945,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is moderate as conceptual catalyst and low for final ontology.
 
-**Core Belief**: Universal wavefunction dynamics never collapse, and all measurement outcomes are realized across branching world histories.
+**Core Belief**: Universal wavefunction dynamics never collapse. In many-worlds readings, decohering branch histories are treated as jointly realized rather than as merely unrealized possibilities.
 
 **Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps no-collapse dynamics and no special observer ontology but replaces branching with single-history evolution through deterministic multistable branch points.
 

@@ -211,6 +211,8 @@ This structure avoids the conceptual difficulties of standard nonlocality:
 - **No frame-dependent causal ordering**: absolute time provides a unique, consistent ordering.
 - **No tension with causality**: all causal influences propagate at $c_f$ or below; the correlations are set up in the shared causal past.
 
+Temporal-nonlocality and retrocausal interpretations remain useful only as comparison routes. They help identify which Bell assumption is being changed in observer-level language, especially when relativistic frame order is ambiguous. They are not the mechanism here. The $\mathbb{A}\mathbb{A}\mathbb{A}$ account must keep the hidden-variable ledger forward-causal in absolute time and must report the same measurement-independence, no-signaling, and Bell-correlation residuals used in [Bell Theorem](./bell-theorem.md#bell-closure-diagnostics).
+
 ### No-Signaling: Why Correlations Cannot Transmit Information
 
 Any accepted Bell closure in the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework must preserve no-signaling for a precise structural reason. The marginal probability of obtaining outcome $a$ at detector $A$ is:

@@ -305,6 +305,23 @@ r^{\theta}(k_*)\le r_{\max},
 $$
 with $r_{\max}$ supplied by the current observational analysis being used for the comparison. This keeps tensor non-detection as a pressure on source models without turning any particular inflationary or anti-inflationary interpretation into corpus doctrine.
 
+Finite-range or medium-compliance gravity comparisons enter this same tensor gate. They do not add a massive-graviton ontology; they add the requirement that the same Noether-Sea record which weakens the large-scale response also predicts the tensor and B-mode data products. A compact comparison residual is
+$$
+\mathcal{R}_{T,\mathrm{range}}(\theta)
+=
+\sum_{\ell\in\mathcal{L}_{BB}}
+\frac{
+\left(C_{\ell,BB}^{\theta}-C_{\ell,BB}^{\mathrm{obs}}\right)^2
+}{
+\sigma_{\ell,BB}^2
+}
++
+\lambda_r\max(0,r^{\theta}-r_{\max})^2
++
+\lambda_{\mathrm{low}}\mathcal{R}_{\mathrm{GW,low}}(\theta),
+$$
+where $\mathcal{L}_{BB}$ is the declared B-mode comparison window and $\mathcal{R}_{\mathrm{GW,low}}$ is the low-frequency dispersion forecast from [Gravitational Waves](../spacetime/gravitational-waves.md#linear-wave-equation). This keeps the CMB tensor bound and gravitational-wave dispersion gate tied to one comparison record rather than allowing a finite-range branch to fit them separately.
+
 A compact residual for CMB closure is
 $$
 \mathcal{R}_{\mathrm{CMB}}(\theta)
@@ -389,10 +406,12 @@ $$
 \lambda_{\mathrm{lens}}\mathcal{R}_{\mathrm{lens}}(\theta)
 +
 \lambda_{\mathrm{smooth}}\mathcal{R}_{\mathrm{smooth}}(\theta)
++
+\lambda_{\mathrm{range}}\mathcal{R}_{T,\mathrm{range}}(\theta)
 \le
 \varepsilon_{\mathrm{CMB}},
 $$
-with $\lambda_{\mathrm{phase}}$, $\lambda_V$, $\lambda_{\mathrm{lens}}$, $\lambda_{\mathrm{smooth}}$, and $\varepsilon_{\mathrm{CMB}}$ declared by the data release or simulation protocol. Passing this test would mean that the same medium-and-assembly history recovers TT/TE/EE, blackbody behavior, scalar/tensor bounds, acoustic phase coherence, vector-mode suppression, CMB-lensing reconstruction, and the low effective gravitational free-mode budget without changing ontology between modules.
+with $\lambda_{\mathrm{phase}}$, $\lambda_V$, $\lambda_{\mathrm{lens}}$, $\lambda_{\mathrm{smooth}}$, $\lambda_{\mathrm{range}}$, and $\varepsilon_{\mathrm{CMB}}$ declared by the data release or simulation protocol. Passing this test would mean that the same medium-and-assembly history recovers TT/TE/EE, blackbody behavior, scalar/tensor bounds, acoustic phase coherence, vector-mode suppression, CMB-lensing reconstruction, the low effective gravitational free-mode budget, and any declared finite-range comparison branch without changing ontology between modules.
 
 ### Forward Prediction Map
 

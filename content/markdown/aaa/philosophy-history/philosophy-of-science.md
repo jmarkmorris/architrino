@@ -561,6 +561,8 @@ What this subject gets right is that theory enters at multiple points: apparatus
 
 This separation is especially relevant when existing theories define the very language in which data are reported. If the theory under revision also structures the measurement pipeline, replacement work must be unusually careful.
 
+A second commitment is finite-record accountability. Separating data product from interpretation is not enough if the proposed replacement cannot say how repeated records would confirm or disconfirm its own map. For a declared measurement pipeline, the same record map that produces an observable must also supply the expected frequencies, uncertainties, and error channels used to test it. Otherwise the theory has preserved a philosophical distinction while losing the empirical discipline that made the observable valuable.
+
 ### Internal Tensions
 
 What the subject gets wrong or overstates, when pushed too far, is a slide into evidential relativism. The fact that observation is theory-laden does not mean that evidence is arbitrary or that world-contact disappears. Instruments still couple to real processes. Calibration can fail, but it can also improve. Theory-ladenness is a warning about mediation, not a license for epistemic despair.

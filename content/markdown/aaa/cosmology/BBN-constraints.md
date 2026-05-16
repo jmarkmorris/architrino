@@ -151,6 +151,15 @@ The branch may remain in the comparison ledger only when $\mathcal{R}_{\mathrm{B
 
 The $\eta_X$ term is the BBN-facing projection of the matter-asymmetry ledger in [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md#matter-asymmetry-provenance). It should be computed from transported baryon, antibaryon, and photon event records over the declared source window, not assigned independently after the yields are fit.
 
+Compact-object comparison branches add a sharper injection test. If the branch contains a small-mass tail with late release near the BBN window, record the injected spectrum as
+$$
+\mathcal{I}_X(E,t)
+=
+\int \psi_X(M,t)\,
+\Gamma_{\mathrm{release}}^X(E,t;M)\,dM,
+$$
+where $\psi_X(M,t)$ is the branch mass function and $\Gamma_{\mathrm{release}}^X$ is the Hawking-like or native release channel being compared. The yield shifts $\Delta\mathbf{Y}_{\mathrm{BBN}}^X$ must be computed from $\mathcal{I}_X$ and the same thermal, photon-loading, neutrino, and Noether-Sea state used elsewhere in the BBN gate. A branch that uses late energetic injection to repair one isotope while changing $\eta_X$, $N_{\text{eff}}$, or the CMB handoff independently is a failed comparison branch, not a promoted source mechanism.
+
 ## Observable-Mapping Goals (Interpretation-Scoped)
 
 These goals are for mapping $\mathbb{A}\mathbb{A}\mathbb{A}$ dynamics to measured cosmological observables in SMBH-reactor-style interpretations. They are viability objectives and consistency checks, not yet settled derivations.

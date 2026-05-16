@@ -87,6 +87,8 @@ P(R_n)=\mu_*\!\left(\pi^{-1}(R_n)\right),
 $$
 with $\mu_*$ derived from the invariant or coarse-grained measure of the same dynamics that supplies the effective wave equation. A free-standing external geometric measure, by contrast, is only a scaffold until it is tied to the Master Equation, record formation, and the retained measurement channel.
 
+Repeated-record confirmation is part of the same burden. For counts $N_n$ gathered through the declared record channel, the observed frequencies $\widehat f_n=N_n/N$ must converge to the same $P(R_n)$ within the calibrated apparatus tolerance. The detailed frequency residual is owned by [Quantum Operator Mapping](../theory-bridges/quantum-operator-mapping.md#statistical-measure-and-the-born-rule-emergence), while [Measurement Ontology](measurement-ontology.md#repeated-record-confirmation) owns the record-channel version. This chapter's point is narrower: basin weights cannot remain formal branch labels if they are supposed to replace the Born rule. They must also be usable for ordinary confirmation and falsification.
+
 ## Epistemic Branching (Reinterpreting Many-Worlds)
 
 The Everettian Many-Worlds interpretation visualizes a branching tree of parallel realities corresponding to superposed wavefunction components. In $\mathbb{A}\mathbb{A}\mathbb{A}$, this branching is entirely **epistemic**.
@@ -114,6 +116,19 @@ N_\varepsilon(\Phi_t(B_i))\cap N_\varepsilon(\Phi_t(B_j))
 },
 $$
 where $N_\varepsilon$ denotes an $\varepsilon$-thickened tube in the retained coarse-grained record coordinates. If $\Delta_{\mathrm{recoh}}=O(1)$ before the persistence window closes, the alternatives have not become independent records; the effective wavefunction must continue to carry their mutual influence. A completed record requires both $\Delta_{\mathrm{rec}}\le\varepsilon_{\mathrm{rec}}$ and recoherence residuals below the apparatus-class tolerance for competing basin pairs.
+
+For a declared apparatus kernel, coarse-graining, access region, and record window $(\mathcal{K}_A,\mathcal{Q},W,T)$, a candidate branch $B_i$ may be counted as an independent observer-level alternative only when the same retained window clears the basin, recoherence, Born-weight, and thermodynamic projection tests:
+$$
+N_{\mathcal{Q},W}(B_i)\ge 1,
+\qquad
+\sup_{j\ne i}\sup_{t\in T}\Delta_{\mathrm{recoh}}(t;i,j)\le\varepsilon_{\mathrm{recoh}},
+$$
+$$
+\Delta_{\mathrm{Born}}(T)\le\varepsilon_{\mathrm{Born}},
+\qquad
+\Delta_{\mathrm{ens}}(\mathcal{Q},W,T)\le\varepsilon_{\mathrm{ens}}.
+$$
+This condition keeps the useful Everettian lesson that branch descriptions become robust through dynamics, while refusing to count a formal Hilbert-space expansion as a substrate event. If any line fails, the effective wavefunction still carries an unresolved branch envelope; it has not earned a completed record or an independent outcome count in $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
 The same boundary can be checked from the effective transition law. Let $\mathcal{T}^{\mathcal{Q}}_{a\to b}$ denote the observer-level transition operator induced by the same deterministic substrate flow after coarse-graining by $\mathcal{Q}$. For $t_0<t_1<t_2$, define the coarse-grained divisibility residual
 $$

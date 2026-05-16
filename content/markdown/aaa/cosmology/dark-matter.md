@@ -141,11 +141,27 @@ Here $C_{\mathrm{DM/DE}}$ is the covariance or weighting model for the joint dar
 
 - **Heavier neutral assemblies (hypothetical):** Tri-binary cores carrying axial patterns that are globally neutral and whose internal dynamics suppress electromagnetic coupling below detection thresholds. In $\mathbb{A}\mathbb{A}\mathbb{A}$ these would be assemblies whose axial layers cancel in both net charge and oscillating dipole moment, analogous to the neutrino's balanced axial layer but realized on a heavier core (e.g., a bi-binary or uni-binary core with an appropriately locked axial layer, or a multi-core composite). The mass scale is set by the core's internal binding energy, shielding, and medium-dressed response to the Noether Sea.
 
-- **Primordial Noether-core defects:** Dense, self-gravitating clusters of maximally contracted tri-binaries produced in the high-energy epoch—analogous to primordial black holes in standard cosmology but with internal Planck-core structure replacing singular interiors. Their mass spectrum depends on formation-epoch dynamics.
+- **Primordial Noether-core defects:** Dense, self-gravitating clusters of maximally contracted tri-binaries produced in the high-energy epoch—analogous to primordial black holes in standard cosmology but with internal Planck-core structure replacing singular interiors. Their mass spectrum depends on formation-epoch dynamics. The analogy is a benchmark, not an identification: a native defect branch would have to inherit the compact-object mass-function, BBN/CMB/growth, local-ephemeris, high-energy-flux, and null-result checks without importing primordial-black-hole ontology.
 
 **Behavior.** These assemblies are pressureless at late times (kinetic energy $\ll$ rest energy), cluster gravitationally, and are collisionless on galactic scales because their interaction cross-section with baryonic and electromagnetic assemblies is negligible (no exposed charge → no long-range dipole coupling). They therefore reproduce the canonical CDM clustering phenomenology: hierarchical structure formation, flat rotation curves from halo profiles, and the correct matter-loading signature in the CMB.
 
 In a cluster-merger interpretation, neutral assemblies remain collisionless while baryonic gas assemblies decelerate electromagnetically, yielding natural separation between gravitating and X-ray-bright components.
+
+Compact neutral candidates also have a local-detection gate. For a candidate branch with representative mass $M_A$, local fraction $f_A$, and relative speed distribution centered at $\langle v_{\mathrm{rel}}\rangle$, the expected flyby rate inside impact parameter $b_{\max}$ is estimated by
+$$
+\Gamma_{\mathrm{flyby}}(b_{\max},M_A)
+=
+\frac{f_A\rho_{\mathrm{DM}}}{M_A}\,
+\pi b_{\max}^2\,
+\langle v_{\mathrm{rel}}\rangle.
+$$
+A nearby passage gives the order-of-magnitude impulse
+$$
+\Delta v_{\mathrm{test}}
+\simeq
+\frac{2GM_A}{b\,v_{\mathrm{rel}}},
+$$
+before detailed $N$-body and relativistic corrections. The retained observable is the ephemeris residual, not the compact-object interpretation: a candidate detection must produce a trajectory-consistent perturbation above the ranging error floor, fail ordinary visible-object and catalogued-asteroid explanations under the same covariance model, and carry any high-energy co-signature through the same branch record.
 
 ### Candidate B — Noether-Sea Medium Response
 

@@ -50,6 +50,8 @@ This limitation becomes especially important in strong-gravity and cosmology com
 
 For the same reason, an expectation value, covariance, or correlation function is not automatically an ontic claim about an effective metric, the Noether Sea, or the complete microstate. It is an observer-level summary for a declared observation region, readout channel, and boundary-data model. A comparison packet may use such summaries, but it must say which Physical Observer records and boundary wake data make the summary meaningful.
 
+Strong-gravity information claims require the same declared-access discipline. A local field-theory expression such as a horizon-crossing correlation, a reduced density matrix, or a fine-grained radiation entropy is not yet a substrate statement. It becomes a legitimate comparison object only after the Physical Observer, reference resources, access region, finite boundary wake data, and record channel have been specified. This keeps black-hole information accounting from smuggling in an external observer at infinity, a literal boundary CFT, or an unrecorded many-copy measurement idealization.
+
 The same discipline applies when one Physical Observer uses another Physical Observer's report. The report is not a disembodied update rule. It is a physical record carried by signals, memory states, documents, detector logs, or other assemblies, and it can be imported only through a declared communication channel with finite latency, calibration, and persistence. If two observers appear to certify incompatible conclusions, the first diagnostic question is whether both conclusions belong to the same declared record channel and access model. A mismatch in readout channel, missing reference resources, or failed record autonomy is an observer-layer failure, not evidence that the complete ontic state has become contradictory.
 
 ## Ontic and Epistemic Levels
@@ -205,6 +207,19 @@ d_{\mathrm{ord}}\!\left(\prec_{\mathrm{eff}}(\theta),\prec_{\mathrm{GR}}\right)
 \sum_{i=1}^{3}\alpha_i(\theta)^2.
 $$
 Here $d_{\mathrm{ord}}$ measures mismatch of inferred causal order on the comparison domain, the clock term supplies the missing local scale, and the preferred-frame term penalizes residual PPN drift coefficients. This is a closure target for the observer layer, not a claim that substrate spacetime is Lorentzian.
+
+Process-matrix and indefinite-causal-order formalisms are useful here only as comparison frameworks. They test whether operational records can be represented without assuming a prior observer-level causal order, but their generalized process object is not a substrate replacement for absolute timespace. For settings or interventions $\mathbf{s}$ and records $\mathbf{r}$, let $P_{\mathrm{proc}}(\mathbf{r}|\mathbf{s})$ be the external process-table benchmark and let $P_{\mathrm{rec}}^\theta(\mathbf{r}|\mathbf{s})$ be the record distribution derived from Physical Observer laboratories, boundary wake data, apparatus kernels, and the candidate observer-state record $\theta$. A compact diagnostic is
+$$
+\Delta_{\mathrm{proc}}(\theta)
+=
+D_{\mathrm{TV}}\!\left(
+P_{\mathrm{proc}}(\mathbf{r}|\mathbf{s}),
+P_{\mathrm{rec}}^\theta(\mathbf{r}|\mathbf{s})
+\right)
++
+\lambda_{\mathrm{causal}}\mathcal{R}_{\mathrm{causal}}(\theta).
+$$
+Small process-table mismatch with large $\mathcal{R}_{\mathrm{causal}}$ is a warning that the observer layer has not recovered an effective causal order. It is not evidence that the ontic substrate lacks absolute time. The admissible lesson is diagnostic: preserve the operational record constraint while forcing the Physical Observer account to say how causal order, clocks, and records are recovered together.
 
 ## Physical Observer Clocks and Rulers
 
