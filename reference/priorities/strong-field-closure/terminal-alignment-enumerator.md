@@ -84,11 +84,38 @@ The result isolates the missing mechanism. Nonzero horizon block entropy cannot 
 3. terminal branch families beyond the concentric circular, bounded phase-offset, and first shifted-center ansatz, such as axial-frame variants or wake-memory classes that survive the Physical Observer quotient;
 4. a two-dimensional patch-network pressure rather than a one-strip self-loop proxy.
 
+The current action-kernel candidate is the delayed-interior characteristic-tail kernel promoted in the dynamics canon:
+
+$$
+K_{\mathrm{eff}}^{(\eta)}(r,g)
+=
+\int_{-\infty}^{g}
+\frac{\delta_\eta(s)}
+{c_f(u-s)^2}
+ds,
+\qquad
+u=g+\frac{r}{c_f}.
+$$
+
+It satisfies
+
+$$
+\left(
+\partial_r-\frac{1}{c_f}\partial_g
+\right)
+K_{\mathrm{eff}}^{(\eta)}
+=
+-
+\frac{\delta_\eta(g)}{r^2},
+$$
+
+after characteristic endpoint normalization. This makes it the first non-diagnostic replacement candidate for the inverse-square branch adapter. It is still not executable terminal closure until the enumerator receives Noether boundary increments from the same kernel.
+
 ## Remaining Proof Obligations
 
 The script explicitly leaves these proof obligations unresolved:
 
-- replace the diagnostic inverse-square branch action with the declared substrate action kernel;
+- replace the diagnostic inverse-square branch action with the delayed-interior characteristic-tail kernel after the Noether boundary convention is accepted;
 - compute $\mathcal{Q}_{\ell,\alpha}^{\mathrm{term}}(\lambda)$ from the declared action kernel, including intra-layer action and regularization;
 - replace the diagnostic source-recoil impulse ledger with Noether boundary increments from an accepted regularized action;
 - replace the coarse numerical edge quotient with the Physical Observer quotient $\sim_{O,\theta,W}$ for a declared strong-field record $\theta$;

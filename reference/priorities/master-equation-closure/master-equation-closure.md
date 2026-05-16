@@ -11,21 +11,23 @@
 
 ## Task Queue
 
-1. `circular_asymptotics` — Extend higher-winding and large-beta circular self-force asymptotics. Status: `next`. Depends on: none.
-2. `spiral_turning_conditions` — Record the variable-pitch partner/self branch formulas, radial turn inequality, and weighted tangential obstruction test. Status: `advanced-theorem-target`. Depends on: none.
-3. `spiral_branch_chart_test` — Certify whether any admissible variable-pitch spiral roots realize negative weighted tangential drive with positive Jacobian floors and finite memory depth. Status: `next`. Depends on: `spiral_turning_conditions`, `circular_asymptotics`.
-4. `lorentz_gr_bridge` — Close the Lorentz and weak-field GR bridge from the coarse-grained delayed medium. Status: `pending`. Depends on: `spiral_branch_chart_test`.
+1. `characteristic_tail_noether_closure` — Close the endpoint normalization and Noether boundary increments for the delayed-interior characteristic-tail kernel so it can replace the diagnostic scalar action without changing the accepted Master EOM branch force. Status: `next`. Depends on: none.
+2. `circular_asymptotics` — Extend higher-winding and large-beta circular self-force asymptotics. Status: `next`. Depends on: none.
+3. `spiral_turning_conditions` — Record the variable-pitch partner/self branch formulas, radial turn inequality, and weighted tangential obstruction test. Status: `advanced-theorem-target`. Depends on: none.
+4. `spiral_branch_chart_test` — Certify whether any admissible variable-pitch spiral roots realize negative weighted tangential drive with positive Jacobian floors and finite memory depth. Status: `next`. Depends on: `spiral_turning_conditions`, `circular_asymptotics`.
+5. `lorentz_gr_bridge` — Close the Lorentz and weak-field GR bridge from the coarse-grained delayed medium. Status: `pending`. Depends on: `spiral_branch_chart_test`, `characteristic_tail_noether_closure`.
 
 ## Scope
 
 Keep dynamics, geometry, and mapping centered on [master-equation.md](../../../content/markdown/aaa/dynamics/master-equation.md). This workstream now also carries the Lorentz / metric / clock / ruler bridge to GR and the deep closure burden for quantum and core dynamics.
 
-This file remains the control surface for the workstream. No sibling detailed priority file is needed yet; if the program grows, the natural split is one circular/spiral closure packet and one Lorentz/GR bridge packet.
+This file remains the control surface for the workstream. No sibling detailed priority file is needed yet; if the program grows, the natural split is one action-kernel / Noether-boundary packet, one circular/spiral closure packet, and one Lorentz/GR bridge packet.
 
 ## Promotion Map
 
 | Task | Detailed source | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
+| `characteristic_tail_noether_closure` | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md), [effective-lagrangian](../../../content/markdown/aaa/dynamics/effective-lagrangian.md), and [tri-binary-dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md) | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md), [effective-lagrangian](../../../content/markdown/aaa/dynamics/effective-lagrangian.md), and downstream conservation ledgers | The normalized delayed-interior kernel has accepted endpoint clearance, receiver-gradient cancellation, and energy, momentum, and angular-momentum Noether boundary increments on the retained branch chart. |
 | `circular_asymptotics` | This file | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) | Higher-winding and large-$\beta$ circular self-force asymptotics are extended beyond the current leading-order footholds. |
 | `spiral_turning_conditions` | This file | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) | Variable-pitch partner/self branch formulas, radial turn inequality, and weighted tangential obstruction test are stated with enough detail to drive a branch-chart test. |
 | `spiral_branch_chart_test` | This file | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) and [dyadic-lock](../dyadic-lock/dyadic-lock.md) | One admissible variable-pitch candidate reports partner and self roots, positive Jacobian floors, finite memory depth, radial-turn status, and weighted tangential-drive verdict. |
@@ -33,6 +35,7 @@ This file remains the control surface for the workstream. No sibling detailed pr
 
 ## Live Targets
 
+- Exact action-kernel closure for the Master EOM through the delayed-interior characteristic-tail kernel and its Noether wake-history boundary terms.
 - Full 3D translating tri-binary NFDE / DDE control for emergent $\gamma$-scaling.
 - Transfer-operator and invariant-measure control for Born-rule emergence.
 - Exact 6-body core stability and shielding extraction for the first-principles mass program.

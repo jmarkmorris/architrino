@@ -231,7 +231,7 @@ function continuationContract(row, etaLadder) {
       failure_code: "tier1-integrator-not-run",
       computed_predicates: ["speed_ordering_retained", "root_ledger_stable_under_refinement"],
       note:
-        "The prototype replays Tier 0 carrier samples and provisional carrier roots, then computes bounded one-step speed-ordering, carrier-root refinement, root-Jacobian drift attribution, carrier-replay residual-budget, frozen-root one-period drift, short-horizon direct root-recomputing, and adaptive direct-root horizon-ladder diagnostics; it is not an accepted Tier 1 continuation.",
+        "The prototype replays Tier 0 carrier samples and provisional carrier roots, then computes bounded one-step speed-ordering, carrier-root refinement, root-Jacobian drift attribution, carrier-replay residual-budget, frozen-root one-period drift, short-horizon direct root-recomputing, adaptive direct-root horizon-ladder diagnostics, an optional step-fraction controller, an event-local fold-layer lock diagnostic, and a fold-layer-locked integrator seed; it is not an accepted Tier 1 continuation.",
     },
     one_period_intake: {
       script: "scripts/mass-map/a0-tier1-one-period-continuation-prototype.mjs",
@@ -239,7 +239,10 @@ function continuationContract(row, etaLadder) {
       status: "fail_closed_intake_only",
       computed_predicates: [
         "fold_layer_routed_to_lock_ledger",
+        "event_local_fold_layer_lock_ready",
+        "adaptive_fold_layer_locked_attempt_below_cap",
         "estimated_steps_for_one_period_below_cap",
+        "step_fraction_controller_best_estimate_selected",
       ],
       note:
         "The intake converts short-horizon direct-root diagnostics into a one-period attempt decision and residual target packet. It does not integrate a full period, emit accepted-history samples, or compute Delta_k.",

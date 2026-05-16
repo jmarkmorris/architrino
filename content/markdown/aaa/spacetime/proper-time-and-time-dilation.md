@@ -56,6 +56,22 @@ where $\omega(\text{state})$ is the instantaneous internal oscillation frequency
 
 The central problem is to compute $\omega(\mathbf{v},n,\chi_{\text{sea}},\Phi_{\text{eff}})$ from the master dynamics.
 
+### Noether-Sea Core Cadence
+
+For redshift and cosmology work, the local Noether-Sea core cadence can serve as the immediate clock reference before any separate detector clock is introduced. Let $\Omega_N(\mathbf{x},t)$ be a representative cadence extracted from the local Noether-Sea core population, with $T_N(\mathbf{x},t)=2\pi/\Omega_N(\mathbf{x},t)$. Relative to the weak homogeneous reference cadence, define
+
+$$
+\Gamma_N(\mathbf{x},t)
+\equiv
+\frac{T_N(\mathbf{x},t)}{T_{N0}}
+=
+\frac{\Omega_{N0}}{\Omega_N(\mathbf{x},t)}.
+$$
+
+The quantity $\Gamma_N$ records local cadence stretching of the Noether Sea itself. It is therefore a substrate-facing clock diagnostic: $\Gamma_N=1$ marks the weak homogeneous reference, while $\Gamma_N>1$ marks a locally slowed or stretched Noether-Sea cadence. In the homogeneous moving-core branch, the Lorentz-closure target is to derive the appropriate limit $\Gamma_N\to\gamma$ or, equivalently, $\Omega_N/\Omega_{N0}\to1/\gamma$ for the declared clock channel. In a gravitational or cosmological medium-state comparison, $\Gamma_N$ must instead be extracted from $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, $\Phi_{\text{eff}}$, and clock geometry.
+
+This diagnostic does not replace $d\tau/dt$. It supplies a more primitive Noether-Sea cadence factor from which clock-rate comparisons, gravitational redshift, and the redshift factorization in [Expansion Mechanism](../cosmology/expansion-mechanism.md#noether-sea-core-factorization-target) can be built.
+
 ---
 
 ## Mechanisms for Time Dilation

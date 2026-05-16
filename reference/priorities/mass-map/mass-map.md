@@ -11,7 +11,7 @@
 
 ## Task Queue
 
-1. `derive_first_attractor_family` — Classify the $A_0$ adaptive direct-root self-branch surplus as `fold-layer`, `branch-proliferation`, or `resolution-artifact`, then run one-period Tier 1 continuation only after the surplus event is no longer ambiguous. Status: `next`. Depends on: none.
+1. `derive_first_attractor_family` — Use the source-coverage-passing fold-layer-locked $A_0$ one-period attempt packet to compute explicit residual closure, drift, monodromy, and eta-ladder persistence before accepted-history emission. Status: `next`. Depends on: none.
 2. `derive_zeta` — Derive $\zeta(A)$ and target a baseline electron-mass prediction. Status: `pending`. Depends on: `derive_first_attractor_family`.
 3. `exposure_quotient_theorem` — Generalize shielding extraction into a sector exposure/quotient theorem for mass, weak chirality, color exceptionality, photon transverse support, and vector-corridor visibility. Status: `pending`. Depends on: `derive_zeta`.
 4. `mass_hierarchy_check` — Test the first mass map against hierarchy ratios and hadron constraints. Status: `pending`. Depends on: `exposure_quotient_theorem`.
@@ -401,14 +401,13 @@ This schema deliberately keeps particle labels out of the accepted packet. Elect
 
 ### Immediate Work Packet
 
-1. Consume the `first_branch_surplus_bracket` emitted by `scripts/mass-map/a0-tier1-continuation-source-prototype.mjs` for the two surplus branch keys `I+|I+|self|active` and `I-|I-|self|active`.
-2. Compute a local bracket packet with previous and current self-root delays, $J$ values, residuals, and step times for each surplus event.
-3. Fit or interval-check the local $F_{aa}(t;t_0)$ normal form around each new short-delay self root.
-4. Test the parity rule $\Delta N\in2\mathbb{Z}$ and classify the event as `fold-layer`, `branch-proliferation`, or `resolution-artifact`.
-5. Repeat the classification under root-grid, $\Delta t$, history-depth, and $\eta$ refinement.
-6. Route a bounded fold-layer event into $\mathcal{R}_{\text{lock}}`; route unresolved proliferation to `root-ledger-instability`.
+1. Consume the `direct_root_fold_layer_lock` diagnostic emitted by `scripts/mass-map/a0-tier1-continuation-source-prototype.mjs` for the two locked self-root fold-layer keys `I+|I+|self|active` and `I-|I-|self|active`.
+2. Treat the classified fold-layer row as a branch-chart lock input, not as an accepted self-hit branch or an accepted-history segment.
+3. Use the fold-layer-locked macro-stride attempt packet whose retained direct-root step burden is now below the accepted attempt cap.
+4. Report residual budgets for state return, root closure, phase closure, speed ordering, energy-like speed ledger, and $\mathcal{R}_{\text{lock}}$.
+5. Report no secular center drift after symmetry removal and construct the monodromy setup needed to test $\Delta_{\mathbf{k}}>0$.
+6. Test branch persistence across the declared $\eta$ ladder and route any lock loss or branch proliferation to `root-ledger-instability`.
 7. Keep accepted-history output blocked until one-period residual closure, no secular center drift, positive $\Delta_{\mathbf{k}}$, and branch persistence across the declared $\eta$ ladder are all present.
-8. After the surplus event is classified, run the one-period adaptive direct-root Tier 1 continuation with residual budgets and monodromy setup before any Tier 2 energy or shielding extraction.
 
 The reduced branch certificate is the executable handoff between this workstream and the simulations workstream. It is the place to record Tier 0 root-ledger enumeration, Tier 1 $\eta>0$ continuation, Tier 2 energy/shielding extraction, and the promotion rule from `derive_first_attractor_family` to `derive_zeta`.
 

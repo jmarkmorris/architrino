@@ -2595,6 +2595,87 @@ g
 $$
 so it is a causal interior tail behind the arriving wake surface, not a same-support surface density. Conversely, a lower endpoint $r_\ast<r$ supports a tail with $g\le0$ and is not delayed-interior causal support unless the boundary convention supplies a separate interpretation. This proves a useful but limited result: the characteristic-tail equation can cancel the scalar scaffold's interior derivative residual at the level of the Euler derivative, but it does so by adding a nonlocal tail and endpoint ledger obligation. It is not yet an exact action for the Master EOM.
 
+A nondegenerate characteristic endpoint gives the cleanest current candidate. On a retained chart choose
+$$
+R_{+}(u)
+=
+c_f(u+h_{+}),
+\qquad
+h_{+}>0,
+$$
+or take the controlled $R_{+}=\infty$ limit. Since $R_{+}=R_{+}(u)$ and $D_{ij}u=0$, the endpoint is characteristic and the Euler leakage term proportional to $D_{ij}R_{+}$ vanishes. The outgoing counterterm can then be written, after the change of variable $s=u-\rho/c_f$, as
+$$
+K_{\mathrm{ct},+}^{(\eta)}(r,g)
+=
+H_{+}^{(\eta)}(u)
+-
+\int_{-h_{+}}^{g}
+\frac{\delta_\eta'(s)}
+{c_f(u-s)}
+ds.
+$$
+Integrating by parts gives
+$$
+\frac{\delta_\eta(g)}{r}
++
+K_{\mathrm{ct},+}^{(\eta)}(r,g)
+=
+H_{+}^{(\eta)}(u)
++
+\frac{\delta_\eta(-h_{+})}
+{c_f(u+h_{+})}
++
+\int_{-h_{+}}^{g}
+\frac{\delta_\eta(s)}
+{c_f(u-s)^2}
+ds.
+$$
+The finite-endpoint clearance condition is therefore
+$$
+\mathcal{B}_{+}^{(\eta)}(u,h_{+})
+\equiv
+\frac{\delta_\eta(-h_{+})}
+{c_f(u+h_{+})}
+=0,
+$$
+for a compactly supported mollifier with $h_{+}$ outside the support, or $\mathcal{B}_{+}^{(\eta)}\to0$ in the declared weak limit for a Gaussian mollifier. If finite-$\eta$ endpoint clearance is not exact, the characteristic gauge must be fixed by
+$$
+H_{+}^{(\eta)}(u)
+=
+-
+\mathcal{B}_{+}^{(\eta)}(u,h_{+})
+$$
+before the kernel is treated as a normalized action object. This condition is invisible to the receiver Euler derivative because it depends only on $u$, but it is visible to the Noether wake-history charge.
+
+With the endpoint-clear normalization imposed, the delayed-interior effective kernel is
+$$
+K_{\mathrm{eff},h_{+}}^{(\eta)}(r,g)
+=
+\int_{-h_{+}}^{g}
+\frac{\delta_\eta(s)}
+{c_f(u-s)^2}
+ds,
+\qquad
+u=g+\frac{r}{c_f}.
+$$
+In the infinite-endpoint form,
+$$
+K_{\mathrm{eff}}^{(\eta)}(r,g)
+=
+\int_{-\infty}^{g}
+\frac{\delta_\eta(s)}
+{c_f(u-s)^2}
+ds.
+$$
+Both forms satisfy the receiver-gradient identity
+$$
+D_{ij}K_{\mathrm{eff}}^{(\eta)}
+=
+-
+\frac{\delta_\eta(g)}{r^2},
+$$
+with the finite form using the same identity after endpoint clearance. Thus the delayed-interior characteristic-tail kernel cancels the derivative-of-constraint residual without adding a second inverse-square scale term. It may replace the diagnostic inverse-square adapter only when the accompanying Noether boundary terms for energy, momentum, and angular momentum are derived from the same normalized kernel.
+
 Self‑interaction ($i=j$) is included by adding $S_{ii}$ with the same kernel, but explicitly excluding the trivial coincidence $t'=t$ (no instantaneous self‑push at the moment of emission). Self‑hit corresponds to nontrivial roots $t_0<t$ where the worldline re‑intersects its own causal isochrons, which are captured naturally by the same double‑integral structure.
 
 Thus:
@@ -2602,7 +2683,7 @@ Thus:
 - The scalar $1/r$ action above is a nonlocal variational scaffold for the delayed dynamics under the stated branch and regularization assumptions,
 - It becomes an exact action derivation of the Master EOM only on branch charts where the constraint residual vanishes or is cancelled by an invariant action-level counterterm,
 - A finite same-support local scalar or delta-jet counterterm has been ruled out because it cancels the derivative residual only by disturbing the inverse-square scale term,
-- The remaining minimal action repair is a characteristic-tail proof target; its Euler-derivative cancellation is explicit, but it is not a canonized replacement action until the causal endpoint and Noether-ledger tests close,
+- The remaining minimal action repair is the delayed-interior characteristic-tail kernel above; its receiver Euler derivative has the desired inverse-square identity, but it is not a canonized exact replacement action until the endpoint normalization and Noether-ledger tests close,
 - Without such closure, the pure scalar action is falsified as the universal exact action for the Master EOM and should be treated as a diagnostic scaffold,
 - Any $\delta_\eta$ replacement must preserve the symmetries that supply the Noether charges if conservation claims are to remain exact.
 

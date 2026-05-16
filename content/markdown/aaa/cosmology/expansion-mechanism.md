@@ -57,6 +57,46 @@ For modeling and diagnostics, separate at least three effective channels:
 - source/observer relative-motion (Doppler-like) contribution,
 - propagation contribution from traversed medium state and gradients.
 
+### Noether-Sea Core Factorization Target
+
+A sharper closure target rewrites the endpoint clock-rate comparison in terms of the local Noether-Sea core cadence itself. Let $\Omega_N(\mathbf{x},t)$ denote a representative local Noether-Sea core cadence and $T_N(\mathbf{x},t)=2\pi/\Omega_N(\mathbf{x},t)$ its cycle period. Relative to a weak homogeneous reference core, define
+
+$$
+\Gamma_N(\mathbf{x},t)
+\equiv
+\frac{T_N(\mathbf{x},t)}{T_{N0}}
+=
+\frac{\Omega_{N0}}{\Omega_N(\mathbf{x},t)}.
+$$
+
+The factor $\Gamma_N$ is not a new time variable. It records how strongly the local Noether-Sea core cadence is stretched relative to the weak homogeneous reference. In a validated homogeneous Lorentz-closure branch, $\Gamma_N$ should reduce to the corresponding moving-core deformation factor; outside that limit it remains a medium-state diagnostic to be derived from Noether-core geometry and clock extraction.
+
+For a spectral transition family $X$, the working redshift factorization is
+
+$$
+1+z_X
+\approx
+\frac{\Gamma_{N,E}}{\Gamma_{N,R}}\,
+\frac{\mathcal{P}_{E\to R}}
+{B_X(E)\,\mathcal{L}_{E\to R}(\hat{\mathbf{k}})}.
+$$
+
+Here $\Gamma_{N,E}/\Gamma_{N,R}$ is the emitter-to-receiver Noether-Sea core cadence ratio, $\mathcal{P}_{E\to R}$ is the path-history propagation factor through the intervening Noether Sea, $B_X(E)$ records any real source-branch shift in the emitting transition, and $\mathcal{L}_{E\to R}(\hat{\mathbf{k}})$ records directional launch geometry from relative motion. The clean reference case has $B_X(E)=1$ and negligible path accumulation. Strong local-gradient redshift is dominated by $\Gamma_{N,E}/\Gamma_{N,R}$; gentle deep-space redshift may instead accumulate mainly through $\mathcal{P}_{E\to R}$.
+
+The logarithmic budget makes the scale hierarchy explicit:
+
+$$
+\ln(1+z_X)
+\approx
+\ln\Gamma_{N,E}
+-\ln\Gamma_{N,R}
++\ln\mathcal{P}_{E\to R}
+-\ln B_X(E)
+-\ln\mathcal{L}_{E\to R}(\hat{\mathbf{k}}).
+$$
+
+A factor may be set to $1$ only when its logarithmic contribution is small relative to the dominant contribution and to the observational tolerance. This prevents the same redshift record from silently switching between gravitational, relative-motion, source-branch, and propagation explanations.
+
 ## Directional Residuals in the Redshift Map
 
 An effective redshift-distance relation cannot be accepted only as an all-sky average. The same data must also be decomposed by direction and environment:

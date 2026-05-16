@@ -34,6 +34,50 @@ with the clock map depending on $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x
 - source/observer relative-motion contribution,
 - propagation through the traversed Noether-Sea state and gradients.
 
+### Candidate Noether-Sea Core Factorization
+
+The more substrate-facing version should use the local Noether-Sea core cadence itself as the clock. Let $\Omega_N(\mathbf{x},t)$ be the representative local Noether-Sea core cadence and $T_N(\mathbf{x},t)=2\pi/\Omega_N(\mathbf{x},t)$ its cycle period. Relative to a weak homogeneous reference core, define the candidate endpoint deformation factor
+
+$$
+\Gamma_N(\mathbf{x},t)
+\equiv
+\frac{T_N(\mathbf{x},t)}{T_{N0}}
+=
+\frac{\Omega_{N0}}{\Omega_N(\mathbf{x},t)}.
+$$
+
+Here $\Gamma_N=1$ marks the reference weak-sea cadence, while $\Gamma_N>1$ marks a locally slowed or stretched Noether-Sea core cadence. In a homogeneous Lorentz-closure branch, this factor should reduce to the appropriate moving-core deformation factor only after the Noether-core geometry and clock extraction have been derived; schematically one expects $\Gamma_N\to(1-\beta_N^2)^{-1/2}$ in the validated limit.
+
+For a spectral transition family $X$, introduce three dimensionless factors:
+
+- $B_X(E)$: source-branch factor, equal to $1$ when the internal transition gap is the clean reference branch and different from $1$ when local source conditions genuinely alter the transition before propagation;
+- $\mathcal{L}_{E\to R}(\hat{\mathbf{k}})$: directional launch factor from source motion and emission direction, normalized so values above $1$ compress the phase train toward the receiver and values below $1$ stretch it;
+- $\mathcal{P}_{E\to R}$: path-history propagation factor through the intervening Noether Sea, normalized so $\mathcal{P}_{E\to R}>1$ is net redward phase stretching.
+
+The candidate redshift factorization is then
+
+$$
+1+z_X
+\approx
+\frac{\Gamma_{N,E}}{\Gamma_{N,R}}\,
+\frac{\mathcal{P}_{E\to R}}
+{B_X(E)\,\mathcal{L}_{E\to R}(\hat{\mathbf{k}})}.
+$$
+
+This equation is a closure target, not a completed derivation. Its value is that gravitational redshift, relative-motion redshift, intrinsic source-branch shifts, and deep-space propagation redshift become separate multiplicative terms in one replayable medium record. In logarithmic form,
+
+$$
+\ln(1+z_X)
+\approx
+\ln\Gamma_{N,E}
+-\ln\Gamma_{N,R}
++\ln\mathcal{P}_{E\to R}
+-\ln B_X(E)
+-\ln\mathcal{L}_{E\to R}(\hat{\mathbf{k}}),
+$$
+
+so factors can be dropped only when their logarithmic contribution is small compared with the dominant term and the observational tolerance. In the strong local-gradient limit, the endpoint ratio $\Gamma_{N,E}/\Gamma_{N,R}$ dominates. In the gentle deep-space limit, the endpoint ratio may sit near unity while $\mathcal{P}_{E\to R}$ accumulates over long path history. In clean laboratory spectroscopy, $B_X(E)$ should remain $1$ within tolerance; in high acceleration, strong gravity, plasma, magnetic, or tidal environments, $B_X(E)\neq1$ records a real change in the source branch rather than a propagation redshift.
+
 An effective scale factor $a(t)$ may summarize medium evolution, but it is not geometric stretching of the Euclidean void. A generic scattering-loss tired-light mechanism is excluded when it fails image sharpness or $(1+z)$ time-dilation consistency.
 
 Directional residuals are part of the canon, not optional postprocessing. A redshift-distance fit must expose
@@ -50,7 +94,7 @@ with monopole, dipole, and higher directional terms tested against the same Noet
 
 ## Task Queue
 
-1. `redshift_transfer_record` — Define a redshift map $z=\mathcal{Z}[\rho_{\text{core}},n,\chi_{\text{sea}},\Phi_{\text{eff}},\Gamma_{\text{path}},\Gamma_{\text{src}},\Gamma_{\text{obs}}]$ with explicit endpoint, relative-motion, and propagation terms. Status: `draft`.
+1. `redshift_factorization_record` — Derive or falsify the candidate map $1+z_X\approx(\Gamma_{N,E}/\Gamma_{N,R})\mathcal{P}_{E\to R}/(B_X\mathcal{L}_{E\to R})$ from the shared Noether-Sea core cadence, source-branch, launch-geometry, and path-history records. Status: `draft`.
 2. `time_dilation_gate` — Require supernova light-curve dilation and spectral redshift to use the same $\mathcal{Z}$ record. Status: `draft`.
 3. `distance_duality_gate` — Test whether $D_L=(1+z)^2D_A$ survives the effective transport map. Status: `draft`.
 4. `cmb_bao_handoff` — Route CMB blackbody, BAO scale, and growth variables through one cosmology closure record. Status: `draft`.
@@ -60,6 +104,7 @@ with monopole, dipole, and higher directional terms tested against the same Noet
 
 - Transfer map: $\mathcal{Z}$ from source, path-history, and observer clock records to measured $z$.
 - Channel decomposition: $\mathcal{Z}=\mathcal{Z}_{\mathrm{clock}}\oplus\mathcal{Z}_{\mathrm{motion}}\oplus\mathcal{Z}_{\mathrm{prop}}$ until a derivation proves a lower-dimensional representation.
+- Candidate factor record: endpoint Noether-Sea core deformation factors $\Gamma_{N,E},\Gamma_{N,R}$; source-branch factor $B_X(E)$; directional launch factor $\mathcal{L}_{E\to R}$; and path-history propagation factor $\mathcal{P}_{E\to R}$.
 - Cosmology acceptance vector: $(z,D_L,D_A,H(z),T_{\mathrm{CMB}},P(k),f\sigma_8)$.
 - Shared medium variables: $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, and $\mathcal{M}_{\mathrm{sea}}^{ab}$.
 - Frame-consistency record for CMB, matter dipoles, supernova directionality, BAO anisotropy, and local $H_0$ scatter.

@@ -143,7 +143,30 @@ $$
 $$
 The branch law is theorem-grade on $W$ only when this residual tends to zero with the declared branch floors and boundary convention. If it does not, the local effective Lagrangian remains a fitted chart unless an invariant action-level mechanism derives the required counterterm.
 
-The current status is therefore settled at the scaffold level. The pure scalar $1/r$ action is not a universal exact action for the Master EOM; it is valid as an action derivation only on residual-closed charts. The same-support local scalar route and its finite delta-jet extension are ruled out under the restricted assumptions in [master-equation](./master-equation.md#exact-nonlocal-lagrangian): cancelling the derivative residual forces the counterterm to change the accepted inverse-square scale term. The remaining minimal repair is the characteristic-tail counterterm equation stated there. Its Euler-derivative cancellation is explicit, but the delayed-interior orientation introduces a tail and an endpoint term. The endpoint can be assigned to the Noether wake-history ledger without changing the accepted branch force only when the endpoint is characteristic or held fixed as a declared history boundary whose endpoint leakage vanishes in the sharp-support limit. A generic non-characteristic endpoint is an extra interior Euler source, so effective Lagrangian reductions should inherit the Master EOM directly until that endpoint convention and ledger closure are proved on the retained chart.
+The current status is therefore settled at the scaffold level. The pure scalar $1/r$ action is not a universal exact action for the Master EOM; it is valid as an action derivation only on residual-closed charts. The same-support local scalar route and its finite delta-jet extension are ruled out under the restricted assumptions in [master-equation](./master-equation.md#exact-nonlocal-lagrangian): cancelling the derivative residual forces the counterterm to change the accepted inverse-square scale term. The remaining minimal repair is the delayed-interior characteristic-tail kernel stated there. With
+$$
+u=g+\frac{r}{c_f},
+$$
+the endpoint-clear candidate is
+$$
+K_{\mathrm{eff}}^{(\eta)}(r,g)
+=
+\int_{-\infty}^{g}
+\frac{\delta_\eta(s)}
+{c_f(u-s)^2}
+ds,
+$$
+or the finite-endpoint variant with lower limit $-h_{+}$ after the characteristic gauge has cancelled the endpoint-clearance term. It satisfies
+$$
+\left(
+\partial_r-\frac{1}{c_f}\partial_g
+\right)
+K_{\mathrm{eff}}^{(\eta)}
+=
+-
+\frac{\delta_\eta(g)}{r^2},
+$$
+so it cancels the derivative-of-constraint residual without changing the accepted inverse-square scale term. Effective Lagrangian reductions should still inherit the Master EOM directly until the same normalized kernel also supplies closed Noether wake-history terms on the retained chart.
 
 ### Symmetries and History-Aware Conservation Laws
 
@@ -165,6 +188,19 @@ $$
 \frac{\delta\!\big(g_{ij}(t_1,t_0)\big)}
 {r_{ij}(t_1,t_0)}.
 $$
+For the delayed-interior characteristic-tail candidate, the Noether-energy kernel must instead be built from the same normalized action kernel,
+$$
+\mathcal{K}_{ij,\mathrm{eff}}^{E}(t_1,t_0)
+=
+\frac{\kappa\,\sigma_{ij}\,|q_iq_j|}{c_f}
+\Theta(t_1-t_0)
+K_{\mathrm{eff}}^{(\eta)}
+\!\left(
+r_{ij}(t_1,t_0),
+g_{ij}(t_1,t_0)
+\right).
+$$
+The scalar $1/r$ expression remains the diagnostic scaffold only when this replacement has not been declared for the chart.
 Then:
 
 $$

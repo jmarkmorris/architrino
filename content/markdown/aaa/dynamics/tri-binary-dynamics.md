@@ -1001,6 +1001,37 @@ w_b^{(0)}(u)
 $$
 up to the sign convention fixed by writing the interaction term with a minus sign in the action. In other words, $w_b^{(\eta)}$ is not an independent fitting weight. It is the Euler-Lagrange pullback of the regularized causal kernel on a certified branch chart.
 
+The strongest current action-kernel candidate is not the diagnostic same-support inverse-square adapter. Pull back the delayed-interior characteristic-tail kernel from [Master Equation](master-equation.md#exact-nonlocal-lagrangian) before reducing to a one-period branch density. For the two-time branch, define the local characteristic coordinate
+$$
+u_b^{\mathrm{c}}(t_1,t_0)
+=
+g_b(t_1,t_0)
++
+\frac{r_b(t_1,t_0)}{c_f}.
+$$
+After endpoint-clear normalization, the candidate branch kernel is
+$$
+K_{b,\mathrm{eff}}^{(\eta)}(t_1,t_0)
+=
+\int_{-\infty}^{g_b(t_1,t_0)}
+\frac{\delta_\eta(s)}
+{c_f\left(u_b^{\mathrm{c}}(t_1,t_0)-s\right)^2}
+ds,
+$$
+or the finite-endpoint version with lower limit $-h_{+}$ when the endpoint-clearance term is cancelled by the characteristic gauge. Its receiver-gradient identity is
+$$
+\left(
+\partial_{r_b}
+-
+\frac{1}{c_f}\partial_{g_b}
+\right)
+K_{b,\mathrm{eff}}^{(\eta)}
+=
+-
+\frac{\delta_\eta(g_b)}{r_b^2}.
+$$
+This is the action-level object that can replace the diagnostic inverse-square adapter once the Noether boundary terms below are computed from the same kernel. Until then, terminal enumerator rows using $w_b^{(\eta)}\hat{\mathbf{r}}_b$ remain diagnostic branch-force rows rather than a completed action derivation.
+
 The sharp receiver-side variation can be separated before the root is integrated out. Write the two-time branch kernel as
 $$
 \mathcal{L}_b^{(0)}(t_1,t_0)
@@ -1345,7 +1376,16 @@ $$
 \frac{\delta_\eta(g_b(t_1,t_0))}
 {r_b(t_1,t_0)},
 $$
-with the trivial self-coincidence branch excluded. Over one outer period,
+for the pure scalar scaffold. For the delayed-interior characteristic-tail candidate, the branch kernel is instead
+$$
+\mathcal{K}_{b,\mathrm{eff}}^{(\eta)}(t_1,t_0)
+=
+\frac{\kappa\,\operatorname{sign}(q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}})
+\left|q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}}\right|}{c_f}
+\Theta(t_1-t_0)
+K_{b,\mathrm{eff}}^{(\eta)}(t_1,t_0),
+$$
+with the trivial self-coincidence branch excluded in either case. Over one outer period,
 $$
 \Delta E_b^{\mathrm{wake}}
 =
@@ -1373,7 +1413,7 @@ $$
 \boldsymbol{\Omega}\cdot
 \Delta\mathbf{J}_b^{\mathrm{wake}},
 $$
-with the mechanical increments already written above. Therefore a terminal branch proof now has a precise action-level target: derive $\mathcal{I}_b^{(\eta)}$ from the regularized causal scalar, prove that its branch variation gives $w_b^{(\eta)}$ with a vanishing or explicitly cancelled constraint residual, and show that the Noether boundary terms close over the same certified branch set. Until those three steps are complete, the action scaffold supplies a constrained proof route and a rejection test, not a solved terminal $(m,n)$ selection.
+with the mechanical increments already written above. Therefore a terminal branch proof now has a precise action-level target: derive $\mathcal{I}_b^{(\eta)}$ from the normalized delayed-interior kernel, prove that its branch variation gives $w_b^{(\eta)}$ with the derivative-of-constraint residual cancelled by the receiver-gradient identity, and show that the Noether boundary terms close over the same certified branch set. Until those three steps are complete, the action scaffold supplies a constrained proof route and a rejection test, not a solved terminal $(m,n)$ selection.
 
 This scaffold identifies the smallest missing dynamics. The delayed equations must enumerate $\Lambda_{\theta}^{\mathrm{loc}}$ and derive the edge maps $\mathcal{E}_{\nu}^{\pm}$ from the terminal aligned branch. [Dyadic Resonance Lock](dyadic-resonance-lock.md) supplies the candidate integer phase lattice, and [Binary Dynamics](binary-dynamics.md#self-hit-definition-and-diagnostics) supplies the self-hit and partner-hit root vocabulary, but neither document yet computes the terminal aligned edge projections from the full three-layer dynamics.
 

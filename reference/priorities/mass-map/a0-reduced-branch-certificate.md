@@ -821,9 +821,12 @@ The first adaptive stress result is:
 - at the $1024$-step rung, the coarse grid first under-resolves the two self branches `I+|I+|self|active` and `I-|I-|self|active` at step `1014`;
 - adaptive root-grid refinement from `rootSamples=128` to `rootSamples=256` restores all $32$ retained branches before the state update;
 - at the $4096$-step rung, the initial branches remain retained, but the same two self branches become surplus branches at steps `1103` and `1102` for the two ready rows;
-- the surplus bracket shows that the retained long-delay self root at delay `0.021361944626227355` persists with $J\approx0.377185$, while a new short-delay self root appears at delay `0.00003471070297711964` with $J\approx-0.060$ and root residual near $7.3\times10^{-7}$.
+- the surplus bracket shows that the retained long-delay self root at delay `0.021361944626227355` persists with $J\approx0.377185$, while a new short-delay self root appears at delay `0.00003471070297711964` with $J\approx-0.060$ and root residual near $7.3\times10^{-7}$;
+- the step-fraction controller and event-local fold-layer lock now classify the first self-root surplus as `fold-layer` and route it to $\mathcal{R}_{\text{lock}}$;
+- the raw lock estimate is still above the direct attempt cap, but the fold-layer-locked macro-stride attempt packet plans about $9.16\times10^5$--$9.64\times10^5$ retained steps, below the current `1000000` cap;
+- the one-period intake now carries the replay samples and active root ledger forward, so accepted-history source coverage passes while the accepted-history writer still blocks on the uncomputed one-period predicates.
 
-The exact next calculation is to promote the surplus event into a fold/splitting diagnostic rather than treating it as either success or failure. Use the recorded adjacent root ledgers to compute the local $F_{aa}(t;t_0)$ normal form around the new short-delay self root, and test whether the event obeys the expected even fold-pair rule $\Delta N\in2\mathbb{Z}$. If the surplus pair persists under root-grid, $\Delta t$, history-depth, and $\eta$ refinement without a fold-layer classification, route it as branch proliferation. If it is a bounded fold-layer event with positive exits and no retained-branch loss, it becomes a locking/fold-layer row in the Tier 1 branch chart rather than a ledger failure.
+The exact next calculation is no longer surplus classification, step-budget reduction, or accepted-history source coverage. The active target is to run or validate the fold-layer-locked one-period continuation attempt: keep the locked self-root row outside ordinary branch-sum reduction, use it only as a bounded $\mathcal{R}_{\text{lock}}$ input, and then report residual closure, no secular center drift, monodromy setup, and $\eta$-ladder branch persistence before any accepted-history segment is emitted.
 
 ## Tier 2: Energy and Shielding Extraction
 
@@ -892,19 +895,16 @@ Every failed certificate should classify the failure:
 
 The first Tier 0 implementation packet is complete enough for the next handoff. The current scripts emit the reduced grid, carrier evaluator, active root ledger by relation class, $J_{ab}^{(m)}$ values, quotient row $z_\Lambda$, residual surface, $\Delta_{\mathbf{k}}$ placeholder, weak-retained handoff placeholder, blocked accepted-history writer output, and weak-emitter fail-closed behavior. Those items should no longer be carried as next tasks here.
 
-The active next implementation packet is the self-root fold/splitting diagnostic for the adaptive direct-root horizon ladder. It should consume `first_branch_surplus_bracket` from the continuation-source prototype and classify the new short-delay inner self roots.
+The active next implementation packet is the fold-layer-locked one-period Tier 1 continuation attempt. It should consume the seed-ready fold-layer-locked attempt packet from the one-period intake, preserve the locked fold-layer row as $\mathcal{R}_{\text{lock}}$ rather than as an accepted active self branch, and keep accepted-history output blocked until the full one-period gates pass.
 
 The next pass should produce:
 
-1. a local bracket packet for the two surplus branch keys `I+|I+|self|active` and `I-|I-|self|active`, including the previous and current self-root delays, $J$ values, residuals, and step times;
-2. a local normal-form fit or interval sign chart for $F_{aa}(t;t_0)$ around the new short-delay self root;
-3. a parity verdict for whether the event obeys the fold-pair rule $\Delta N\in2\mathbb{Z}$;
-4. a classification field with one of `fold-layer`, `branch-proliferation`, or `resolution-artifact`;
+1. a fold-layer-locked one-period attempt that uses the planned under-cap retained-step budget without treating that budget as accepted history;
+2. a branch-chart row that carries the two locked self-root fold-layer keys `I+|I+|self|active` and `I-|I-|self|active` in $\mathcal{R}_{\text{lock}}$;
+3. one-period residual ledgers for state return, root closure, phase closure, speed ordering, energy-like speed balance, drift, and lock stability;
+4. a finite-difference monodromy setup with symmetry modes removed and an explicit $\Delta_{\mathbf{k}}$ verdict or blocker;
 5. refinement checks under root-grid, $\Delta t$, history-depth, and $\eta$ changes;
-6. an updated Tier 1 branch-chart row that routes a bounded fold-layer event to $\mathcal{R}_{\text{lock}}$ but routes unresolved proliferation to `root-ledger-instability`;
-7. confirmation that accepted-history output remains blocked until one-period residual closure, no secular center drift, positive $\Delta_{\mathbf{k}}$, and branch persistence across the declared $\eta$ ladder are all present.
-
-After this fold/splitting packet is classified, the following Tier 1 implementation packet is a one-period adaptive direct-root continuation with residual budgets and monodromy setup. It should not begin until the self-root surplus event is no longer ambiguous.
+6. confirmation that accepted-history output remains blocked until one-period residual closure, no secular center drift, positive $\Delta_{\mathbf{k}}$, and branch persistence across the declared $\eta$ ladder are all present.
 
 ## Promotion Rule
 
