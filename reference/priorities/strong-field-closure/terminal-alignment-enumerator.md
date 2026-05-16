@@ -109,15 +109,17 @@ K_{\mathrm{eff}}^{(\eta)}
 \frac{\delta_\eta(g)}{r^2},
 $$
 
-after characteristic endpoint normalization. This makes it the first non-diagnostic replacement candidate for the inverse-square branch adapter. It is still not executable terminal closure until the enumerator receives Noether boundary increments from the same kernel.
+after characteristic endpoint normalization. This makes it the first non-diagnostic replacement candidate for the inverse-square branch adapter. It is still not executable terminal closure until the enumerator consumes the Noether boundary increments from the same kernel.
+
+The Master Equation now fixes those normalized wake-history increments for energy, momentum, and angular momentum. The remaining terminal-alignment work is therefore implementation and branch-chart evaluation: replace the diagnostic source-recoil and scalar-action rows with the normalized characteristic-tail increments, then test whether the mechanical plus wake ledger closes on the same active terminal rows that pass the force and root-ledger predicates.
 
 ## Remaining Proof Obligations
 
 The script explicitly leaves these proof obligations unresolved:
 
-- replace the diagnostic inverse-square branch action with the delayed-interior characteristic-tail kernel after the Noether boundary convention is accepted;
+- replace the diagnostic inverse-square branch action with the normalized delayed-interior characteristic-tail kernel and its Master-Equation wake-history increments;
 - compute $\mathcal{Q}_{\ell,\alpha}^{\mathrm{term}}(\lambda)$ from the declared action kernel, including intra-layer action and regularization;
-- replace the diagnostic source-recoil impulse ledger with Noether boundary increments from an accepted regularized action;
+- replace the diagnostic source-recoil impulse ledger with the normalized energy, momentum, and angular-momentum boundary increments;
 - replace the coarse numerical edge quotient with the Physical Observer quotient $\sim_{O,\theta,W}$ for a declared strong-field record $\theta$;
 - rerun the transfer calculation on the resulting admissible $\Lambda_{\theta}^{\mathrm{loc}}$;
 - test whether the two-dimensional block pressure, not only the one-dimensional strip proxy, can approach the target coefficient;

@@ -36,6 +36,10 @@ This document distinguishes three audience scopes:
 - If multiple nearby terms appear to overlap, resolve which one is the canonical project term before proceeding, and then use that term consistently.
 - If no project-specific term has been established yet, pause and ask the operator/developer before introducing new terminology.
 - Prefer building-block explanations that make relationships between concepts, components, and steps explicit. Use diagrams, mappings, comparisons, or other visual structure when helpful.
+- Maintain operator/developer workflow feedback in [README-op.md](README-op.md), using one-line checklist items that start with `- [ ]` for open feedback or `- [x]` for op improved feedback.
+- When Cody notices a recurring operator-side friction point, add or reopen a concrete task in [README-op.md](README-op.md) instead of burying the feedback in a transient chat summary.
+- Treat checked operator feedback as the operator's current claim of improvement; if the same friction recurs, Cody may uncheck it and add a concise dated note.
+- Keep operator feedback direct, actionable, and tied to faster technical closure across efficiency, clarity, multi-agent use, and proof/corpus closure.
 
 ### Workspace Workflow
 

@@ -97,6 +97,76 @@ $$
 
 A factor may be set to $1$ only when its logarithmic contribution is small relative to the dominant contribution and to the observational tolerance. This prevents the same redshift record from silently switching between gravitational, relative-motion, source-branch, and propagation explanations.
 
+### Limiting Recovery Cases
+
+The factorization must recover familiar redshift regimes by controlled limits. The purpose is not to treat those inherited regimes as final ontology, but to show which Noether-Sea term carries each observational effect.
+
+For weak-field gravitational redshift, take $B_X(E)=1$, $\mathcal{L}_{E\to R}=1$, and $\mathcal{P}_{E\to R}=1$. If the endpoint Noether-Sea core cadence satisfies
+
+$$
+\frac{\Omega_N}{\Omega_{N0}}
+\approx
+1+\frac{\Phi_N}{c_0^2},
+\qquad
+\Gamma_N
+\approx
+1-\frac{\Phi_N}{c_0^2},
+$$
+
+then
+
+$$
+\ln(1+z_X)
+\approx
+\ln\Gamma_{N,E}-\ln\Gamma_{N,R}
+\approx
+\frac{\Phi_N(R)-\Phi_N(E)}{c_0^2}.
+$$
+
+A source deeper in the potential has $\Phi_N(E) < \Phi_N(R)$, so the endpoint ratio produces redshift. This is the local strong-gradient limit of the same cadence map.
+
+For relative-motion redshift in a nearly homogeneous medium, take $\Gamma_{N,E}\approx\Gamma_{N,R}$, $\mathcal{P}_{E\to R}=1$, and $B_X(E)=1$. Let $\hat{\mathbf{k}}$ point from emitter to receiver. In the low-speed line-of-sight limit, the launch factor should reduce to
+
+$$
+\mathcal{L}_{E\to R}(\hat{\mathbf{k}})
+\approx
+1+\frac{(\mathbf{v}_E-\mathbf{v}_R)\cdot\hat{\mathbf{k}}}{c_0},
+$$
+
+so
+
+$$
+1+z_X
+\approx
+\frac{1}{\mathcal{L}_{E\to R}(\hat{\mathbf{k}})}.
+$$
+
+Motion that compresses the emitted phase train toward the receiver gives $\mathcal{L}_{E\to R} > 1$ and a blueward shift; motion that stretches the phase train gives $\mathcal{L}_{E\to R} < 1$ and a redward shift.
+
+For clean source spectroscopy, $B_X(E)=1$ means the source transition itself remains on its reference branch. If high acceleration, strong gravity, plasma, magnetic environment, tidal distortion, or other local conditions alter the transition gap, then $B_X(E)\neq1$. That contribution is not propagation redshift. It records a changed emission branch before the packet begins its path-history through the Noether Sea.
+
+For gentle deep-space accumulation, take $\Gamma_{N,E}\approx\Gamma_{N,R}$, $\mathcal{L}_{E\to R}\approx1$, and $B_X(E)=1$. Then
+
+$$
+1+z_X
+\approx
+\mathcal{P}_{E\to R}.
+$$
+
+A useful continuous form is
+
+$$
+\ln\mathcal{P}_{E\to R}
+=
+\int_{\gamma_{E\to R}}
+\alpha_{\mathrm{prop}}\!\left(
+\rho_{\text{core}},n,\chi_{\text{sea}},\Phi_{\text{eff}},
+\hat{\mathbf{k}},X
+\right)\,d\ell,
+$$
+
+where $\alpha_{\mathrm{prop}}$ is a path-local propagation-rate functional along the Euclidean path element $d\ell$. Any nonzero $\alpha_{\mathrm{prop}}$ must preserve image sharpness, spectral coherence, and $(1+z)$ time-dilation consistency; otherwise it degenerates into an excluded tired-light mechanism.
+
 ## Directional Residuals in the Redshift Map
 
 An effective redshift-distance relation cannot be accepted only as an all-sky average. The same data must also be decomposed by direction and environment:

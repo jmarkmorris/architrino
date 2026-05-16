@@ -38,5 +38,8 @@ Suggested defaults:
 - `high` for solver-core reasoning, provenance rules, search behavior, or other semantics-heavy work;
 - use `high` for large UI refactors only when the task likely requires deeper restructuring of a major coordinator or composition root.
 
+## Feedback Loop
+
+When parallel Codex threads create overlap, ambiguity, duplicated work, or idle integration time, add a one-line unchecked task to [README-op.md](../../README-op.md) under `Multi-Agent Use`.
 
 

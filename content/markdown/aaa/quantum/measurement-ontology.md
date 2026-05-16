@@ -55,6 +55,44 @@ p_k(\theta)
 $$
 not an extra rule assigned after the dynamics. This keeps the empirical measurement formalism intact while forcing the words "measurement," "outcome," and "probability" to earn a physical record channel.
 
+### Transfer-Operator Measure Contract
+
+The record packet above is a finite-window object. Let $\mathcal{H}_{\eta,h}(t)$ denote the retained causal-wake and branch-ledger history at resolution $\eta$ and memory depth $h$, and let the declared coarse state space be
+$$
+\Gamma_{\eta,h}
+=
+\Gamma_{\mathrm{asm}}
+\times
+\Gamma_{\mathrm{wake}}
+\times
+\Gamma_{\mathrm{sea}}
+\times
+\Gamma_{\mathrm{reg}}
+\times
+U.
+$$
+The coarse-state map is
+$$
+C_{\eta,h}:
+\left(
+\mathbb{U}_{\mathrm{now}}(t),
+\mathcal{H}_{\eta,h}(t)
+\right)
+\longrightarrow
+\Gamma_{\eta,h},
+$$
+where $\mathbb{U}_{\mathrm{now}}(t)$ is the instantaneous substrate state retained by the model and $U$ records declared apparatus controls or settings.
+
+The measurement transfer operator is first a deterministic pushforward of the retained flow,
+$$
+\mathcal{T}_{\Delta t}\rho
+=
+\left(
+\Phi_{\Delta t}^{u,\mathcal{H},\mathcal{W}_{\mathrm{sea}}}
+\right)_*\rho.
+$$
+A reduced Markov kernel is a later compression of this pushforward, not an assumed Born kernel. It is licensed only after unresolved variables receive an explicit occupation measure from a material return map, a record cycle, or the Noether-Sea context used by the same apparatus channel. Otherwise the probability rule has been inserted at the cut rather than derived from the record-forming flow.
+
 The rejection of the cut can be stated as a closure condition on the dynamics. Let
 $$
 \Gamma_{\mathrm{tot}}(t)=(X(t),A(t),Z(t),\mathcal{W}(t))
@@ -483,6 +521,16 @@ $$
 P(R_k)=\mu_*\!\left(\pi^{-1}(R_k)\right).
 $$
 The source of $\mu_*$ is therefore part of the measurement closure, not an optional interpretive add-on.
+
+The basin-measure necessity statement sharpens this interface. For a declared basin partition $\{B_i\}$ with separatrix boundaries of $\mu_*$-measure zero, the only admissible record probability is
+$$
+p_i
+=
+\int_{\Gamma_{\eta,h}}\mathbf{1}_{B_i}\,d\mu_*
+=
+\mu_*(B_i),
+$$
+up to the metastability, leakage, escape, and coarse-state errors declared for that same finite window. A weight assignment that is not this basin measure introduces an untracked kernel between the substrate flow and the recorded outcome.
 
 The same restriction applies to branch language. If a branch or record class is emergent from later apparatus/environment dynamics, its probability cannot be inserted as an axiom before the record map, basin family, and measure source have been fixed. Assigning weights to emergent branches without that pullback repeats the measurement cut in probabilistic form. A valid branch probability must be a derived property of the same deterministic flow that creates and preserves the record, not a label attached after the ontology has already been compressed.
 

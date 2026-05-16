@@ -72,6 +72,30 @@ The quantity $\Gamma_N$ records local cadence stretching of the Noether Sea itse
 
 This diagnostic does not replace $d\tau/dt$. It supplies a more primitive Noether-Sea cadence factor from which clock-rate comparisons, gravitational redshift, and the redshift factorization in [Expansion Mechanism](../cosmology/expansion-mechanism.md#noether-sea-core-factorization-target) can be built.
 
+In the weak-field endpoint limit, the required recovery condition is
+
+$$
+\frac{\Omega_N(\mathbf{x},t)}{\Omega_{N0}}
+\approx
+1+\frac{\Phi_N(\mathbf{x},t)}{c_0^2},
+\qquad
+\Gamma_N(\mathbf{x},t)
+\approx
+1-\frac{\Phi_N(\mathbf{x},t)}{c_0^2},
+$$
+
+to first order in $\Phi_N/c_0^2$. Since $\Phi_N < 0$ in a deeper potential, this gives $\Gamma_N > 1$ there: the local Noether-Sea core cadence is stretched relative to the weak homogeneous reference. For two endpoint cells $E$ and $R$ with no source-branch, launch, or path-history correction, the redshift recovery condition is therefore
+
+$$
+\ln(1+z)
+\approx
+\ln\Gamma_{N,E}-\ln\Gamma_{N,R}
+\approx
+\frac{\Phi_N(R)-\Phi_N(E)}{c_0^2}.
+$$
+
+This is the clock-channel version of the weak gravitational-redshift benchmark. The derivation burden is to obtain the first equation from Noether-Sea constitutive response rather than impose it as an imported metric fact.
+
 ---
 
 ## Mechanisms for Time Dilation

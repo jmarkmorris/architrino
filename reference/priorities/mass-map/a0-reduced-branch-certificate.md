@@ -828,6 +828,17 @@ The first adaptive stress result is:
 
 The exact next calculation is no longer surplus classification, step-budget reduction, or accepted-history source coverage. The active target is to run or validate the fold-layer-locked one-period continuation attempt: keep the locked self-root row outside ordinary branch-sum reduction, use it only as a bounded $\mathcal{R}_{\text{lock}}$ input, and then report residual closure, no secular center drift, monodromy setup, and $\eta$-ladder branch persistence before any accepted-history segment is emitted.
 
+Approved validation run on May 16, 2026:
+
+```text
+node scripts/mass-map/a0-tier1-continuation-source-prototype.mjs --tier0 scripts/tri-binary/fixtures/a0-tier0-branch-search-minimal.json --direct-probe-steps 64 --direct-step-fraction-ladder 0.0009765625 --pretty --out /tmp/a0-tier1-continuation-source-prototype-fold-lock-approved.json
+node scripts/mass-map/a0-tier1-one-period-continuation-prototype.mjs --source /tmp/a0-tier1-continuation-source-prototype-fold-lock-approved.json --pretty --out /tmp/a0-tier1-one-period-continuation-prototype-fold-lock-approved.json
+```
+
+The resulting intake row has status `ready_for_fold_layer_locked_one_period_attempt`. The event-local fold-layer lock is ready, classifies the first surplus as `fold-layer`, and passes the paired-polarity validation predicates for the two locked self-root keys. The seed reports `41905` locked events, `276` retained direct-root steps per event, `11565780` locked direct-root steps before macro-striding, selected macro stride `12`, and `963815` planned retained steps, below the `1000000` attempt cap. Accepted-history source coverage passes with no missing fields: `320` ordered finite samples cover the delayed source window and one cycle, `512` active roots have valid labels, nonnegative finite delays, and finite $J$, and partner, self, and inter-layer relations are all present.
+
+This closes the source-coverage and attempt-budget subchecks for the compact fixture. It does not close Tier 1: `residuals_below_tolerance`, `no_secular_center_drift`, `Delta_k_positive`, and `same_branch_persists_across_eta_ladder` remain explicitly uncomputed, and the row is not an `accepted_history_segment`.
+
 ## Tier 2: Energy and Shielding Extraction
 
 Tier 2 begins only after Tier 1 passes.

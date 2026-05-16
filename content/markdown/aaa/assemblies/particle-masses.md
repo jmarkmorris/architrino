@@ -46,6 +46,30 @@ $$
 
 in a homogeneous isotropic Noether-Sea cell. Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice. The tensor version is the sharper target because it carries direction dependence, gradient response, and the distinction between primitive wake speed and observer-facing effective signal speed. Until the internal ledger, shielding coefficient, and medium-response tensor are derived from stable assembly closure, this remains a roadmap formula rather than a theorem.
 
+#### Sector Exposure Quotient
+
+The scalar shielding factor $\zeta(A)$ is the mass-facing specialization of a more general sector exposure map. A stable assembly can carry far more internal ledger structure than any one observer-level sector is allowed to see. The mass map therefore cannot promote a hidden internal energy, phase, polarity, or branch label as an external response until the sector projection and quotient have been declared.
+
+Let $\mathcal{L}_A\in\mathfrak{L}_A$ be the emitted or retained ledger of an accepted assembly or branch family $A$. The ledger is derived from the accepted branch ledger, causal-wake history, cycle averages, energy entries, multipole entries, polarity/provenance labels, phase labels, and angular-momentum entries required by the sector under test. For a sector $S$, define a sector projection $\Pi_S$ to the retained sector-visible ledger and a quotient $Q_S$ that removes only declared gauge choices, branch-preserving relabelings, hidden internal rotations, canceled pro/anti structure, or unobservable frame choices that do not change the sector benchmark. The visible response is
+$$
+\mathcal{E}_S(A)
+=
+Q_S[\Pi_S\mathcal{L}_A].
+$$
+
+For the isotropic mass-facing scalar sector, $\zeta(A)$ is the scalar summary of $\mathcal{E}_0(A)$. If anisotropic leakage survives, the sector must report a tensor exposure instead of hiding that residue inside $\zeta(A)$.
+
+An exposure map is admissible only when the source ledger has branch-ledger provenance, $\Pi_S$ is idempotent on the retained sector data, $Q_S$ does not identify benchmark-distinct ledgers, and the discarded residue is below the declared tolerance. A useful reader-facing error contract is
+$$
+\epsilon_S
+=
+\epsilon_{S,\mathrm{leak}}
++\epsilon_{S,Q}
++\epsilon_{S,\mathrm{gauge}}
++\epsilon_{S,\mathrm{rec}}.
+$$
+Any discarded channel above tolerance blocks promotion of the sector response. It cannot be absorbed into shielding, fitted by the benchmark, or left as an unnamed hidden variable.
+
 ### The Noether Core as a Causal Knot
 
 A Noether core can be read as a causal knot: not a material knot in space, but a stable closure of delayed path-history relations. The inner, middle, and outer binaries continually exchange partner-hit, self-hit, and inter-layer wakes. When those returns close with stable phase and integer ledger structure, the assembly traps geometric history in a localized causal circuit.

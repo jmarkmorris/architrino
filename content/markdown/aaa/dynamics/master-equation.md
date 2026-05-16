@@ -129,6 +129,45 @@ $$
 $$
 Thus a simple causal root moves continuously with receiver time as long as the denominator stays away from zero. Simulations should track this root-transport residual alongside the root residual and the $J$ floor; failure of the transport equation is a branch-chart failure, not an ordinary force fluctuation.
 
+#### Branch-Chart Closure Object
+
+A local master-equation closure claim should be attached to an explicit branch-chart object, not just to a plotted orbit or a small force residual. For a branch chart on a section $\mathcal{S}$, define
+$$
+\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)
+=
+\left(
+\mathcal{R}^{\mathrm{act}},
+\mathcal{G}^{\mathrm{inact}},
+\nu_J,
+h_{\mathrm{mem}},
+\mathcal{R}_{\mathrm{ret}},
+\lambda_{\mathrm{sec}}
+\right).
+$$
+Here $\mathcal{R}^{\mathrm{act}}$ is the active causal-root set retained by the chart, $\mathcal{G}^{\mathrm{inact}}$ is the collection of inactive branch-gap functions, $\nu_J$ is the active-root Jacobian floor, $h_{\mathrm{mem}}$ is the required memory depth, $\mathcal{R}_{\mathrm{ret}}$ is the return residual on the section, and $\lambda_{\mathrm{sec}}$ is the transverse section-stability margin.
+
+The object is acceptable only when
+$$
+\nu_J>0,
+\qquad
+\inf_{\mathcal{G}^{\mathrm{inact}}} g_a^{ij}>0,
+\qquad
+0<h_{\mathrm{mem}}<h<\infty,
+\qquad
+\|\mathcal{R}_{\mathrm{ret}}\|\le\epsilon_{\mathrm{ret}},
+$$
+and the section return is stable, for example
+$$
+\rho\!\left(M_{\mathcal{S}}\vert_{E_\perp}\right)
+\le
+1-\lambda_{\mathrm{sec}},
+\qquad
+\lambda_{\mathrm{sec}}>0.
+$$
+The inactive-gap condition means that nearby discarded causal roots remain separated from the active chart; the stability condition means that a small transverse section error is trapped rather than amplified.
+
+**Local promotion lemma.** If a candidate history supplies $\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)$ with positive active-root floors, positive inactive gaps, finite memory, bounded return residual, and stable section monodromy, then the history may support a local master-equation closure claim on that section. The lemma does not prove global closure, eliminate all folds, control the $\eta\to0$ limit, or certify unrelated histories. It only promotes the branch chart from a numerical trace to a locally replayable causal-root closure record.
+
 #### Dual-Mollified Absolute-Time Evolution Law
 
 For proof work, branch sums should be derived from one regularized absolute-time law rather than treated as the primary definition through every causal fold. Fix a memory horizon
@@ -2674,7 +2713,70 @@ D_{ij}K_{\mathrm{eff}}^{(\eta)}
 -
 \frac{\delta_\eta(g)}{r^2},
 $$
-with the finite form using the same identity after endpoint clearance. Thus the delayed-interior characteristic-tail kernel cancels the derivative-of-constraint residual without adding a second inverse-square scale term. It may replace the diagnostic inverse-square adapter only when the accompanying Noether boundary terms for energy, momentum, and angular momentum are derived from the same normalized kernel.
+with the finite form using the same identity after endpoint clearance. Thus the delayed-interior characteristic-tail kernel cancels the derivative-of-constraint residual without adding a second inverse-square scale term. The accompanying Noether boundary terms for energy, momentum, and angular momentum must be taken from the same normalized kernel, as below; replacement of a diagnostic inverse-square adapter on any concrete branch still requires the branch-chart residual and conservation checks.
+
+**Noether boundary increments for the normalized tail.** With the endpoint-clear normalization imposed, there is no remaining free $H_{+}^{(\eta)}(u)$ gauge term that can shift the wake-history charge. Define the weighted effective action kernel
+$$
+\mathcal{K}_{ij,\mathrm{eff}}^{(\eta)}(t_1,t_0)
+=
+\frac{\kappa\,\sigma_{ij}|q_iq_j|}{c_f}
+\Theta(t_1-t_0)
+K_{\mathrm{eff}}^{(\eta)}
+\!\left(
+r_{ij}(t_1;t_0),
+g_{ij}(t_1,t_0)
+\right),
+$$
+with the same finite-endpoint version when the chart uses $h_{+}<\infty$. For a time cut $t_\ast$, let
+$$
+X_{ij}(t_\ast)
+=
+\{(t_1,t_0):t_0\le t_\ast<t_1,\ t_1>t_0\},
+$$
+with the trivial self-coincidence branch excluded when $i=j$. The normalized characteristic-tail wake increments are
+$$
+E_{\mathrm{wake,eff}}^{(\eta)}(t_\ast)
+=
+\frac{1}{2}\sum_{i,j}
+\int_{X_{ij}(t_\ast)}
+\partial_{t_1}
+\mathcal{K}_{ij,\mathrm{eff}}^{(\eta)}(t_1,t_0)
+\,dt_0\,dt_1,
+$$
+$$
+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}(t_\ast)
+=
+-\frac{1}{2}\sum_{i,j}
+\int_{X_{ij}(t_\ast)}
+\nabla_{\mathbf{x}_i(t_1)}
+\mathcal{K}_{ij,\mathrm{eff}}^{(\eta)}(t_1,t_0)
+\,dt_0\,dt_1,
+$$
+and
+$$
+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}(t_\ast)
+=
+-\frac{1}{2}\sum_{i,j}
+\int_{X_{ij}(t_\ast)}
+\mathbf{x}_i(t_1)\times
+\nabla_{\mathbf{x}_i(t_1)}
+\mathcal{K}_{ij,\mathrm{eff}}^{(\eta)}(t_1,t_0)
+\,dt_0\,dt_1.
+$$
+The minus signs in the spatial charges follow the sign convention that the interaction contribution appears with a minus sign in the action. The receiver-gradient identity gives
+$$
+\nabla_{\mathbf{x}_i(t_1)}
+K_{\mathrm{eff}}^{(\eta)}
+=
+\hat{\mathbf r}_{ij}D_{ij}K_{\mathrm{eff}}^{(\eta)}
+=
+-
+\frac{\delta_\eta(g_{ij})}{r_{ij}^{2}}
+\hat{\mathbf r}_{ij},
+$$
+while the source-end gradient is the opposite. Therefore a global spatial translation or rotation of both endpoints changes no interior action density, and a step translation or step rotation across $t_\ast$ exposes exactly the boundary increments above. The characteristic endpoint condition $D_{ij}R_{+}=0$, together with endpoint clearance, is the local reason these increments are wake-history boundary terms rather than a hidden extra receiver force.
+
+This closes the local kernel-normalization and Noether-increment definition for the delayed-interior characteristic-tail repair. It does not by itself certify any proposed branch, terminal label, or tri-binary attractor: a branch chart must still show vanishing Euler residual, finite memory depth, positive Jacobian floors, and closure of $K_{\mu}+E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, and $\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$ over the same retained branch set.
 
 Self‑interaction ($i=j$) is included by adding $S_{ii}$ with the same kernel, but explicitly excluding the trivial coincidence $t'=t$ (no instantaneous self‑push at the moment of emission). Self‑hit corresponds to nontrivial roots $t_0<t$ where the worldline re‑intersects its own causal isochrons, which are captured naturally by the same double‑integral structure.
 
@@ -2683,7 +2785,7 @@ Thus:
 - The scalar $1/r$ action above is a nonlocal variational scaffold for the delayed dynamics under the stated branch and regularization assumptions,
 - It becomes an exact action derivation of the Master EOM only on branch charts where the constraint residual vanishes or is cancelled by an invariant action-level counterterm,
 - A finite same-support local scalar or delta-jet counterterm has been ruled out because it cancels the derivative residual only by disturbing the inverse-square scale term,
-- The remaining minimal action repair is the delayed-interior characteristic-tail kernel above; its receiver Euler derivative has the desired inverse-square identity, but it is not a canonized exact replacement action until the endpoint normalization and Noether-ledger tests close,
+- The remaining minimal action repair is the delayed-interior characteristic-tail kernel above; its receiver Euler derivative has the desired inverse-square identity, and its normalized wake-history boundary increments are now explicit,
 - Without such closure, the pure scalar action is falsified as the universal exact action for the Master EOM and should be treated as a diagnostic scaffold,
 - Any $\delta_\eta$ replacement must preserve the symmetries that supply the Noether charges if conservation claims are to remain exact.
 

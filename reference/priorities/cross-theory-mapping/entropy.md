@@ -13,7 +13,7 @@
 
 1. `windowed_entropy_functional` - Promote the existing coarse-graining / access-window formula into a reusable entropy closure packet. Status: `draft`. Depends on: none.
 2. `record_locking_entropy` - Connect measurement-record entropy locking to the same coarse-grained entropy grammar. Status: `draft`. Depends on: `windowed_entropy_functional`, [quantum-closure](../quantum-closure/quantum-closure.md).
-3. `horizon_label_entropy` - Route black-hole entropy through the horizon-interface label ensemble, its local block entropy density, and the Page-curve release-channel target. Status: `kernel-candidate-scaffolded`; delayed-interior kernel Noether-boundary increments and coefficient derivation pending. Depends on: [strong-field-closure](../strong-field-closure/strong-field-closure.md), `windowed_entropy_functional`.
+3. `horizon_label_entropy` - Route black-hole entropy through the horizon-interface label ensemble, its local block entropy density, and the Page-curve release-channel target. Status: `kernel-handoff-ready`; terminal enumerator consumption and coefficient derivation pending. Depends on: [strong-field-closure](../strong-field-closure/strong-field-closure.md), `windowed_entropy_functional`.
 4. `cosmology_entropy_balance` - State when Noether-Sea entropy, thermalization, redshift, and CMB blackbody recovery use one shared medium-state record. Status: `draft`. Depends on: [cosmology-closure](../cosmology-closure/cosmology-closure.md), [validation-gates](../validation-gates/validation-gates.md).
 
 ## Scope

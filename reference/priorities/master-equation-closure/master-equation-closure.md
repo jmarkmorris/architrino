@@ -11,11 +11,10 @@
 
 ## Task Queue
 
-1. `characteristic_tail_noether_closure` — Close the endpoint normalization and Noether boundary increments for the delayed-interior characteristic-tail kernel so it can replace the diagnostic scalar action without changing the accepted Master EOM branch force. Status: `next`. Depends on: none.
-2. `circular_asymptotics` — Extend higher-winding and large-beta circular self-force asymptotics. Status: `next`. Depends on: none.
-3. `spiral_turning_conditions` — Record the variable-pitch partner/self branch formulas, radial turn inequality, and weighted tangential obstruction test. Status: `advanced-theorem-target`. Depends on: none.
-4. `spiral_branch_chart_test` — Certify whether any admissible variable-pitch spiral roots realize negative weighted tangential drive with positive Jacobian floors and finite memory depth. Status: `next`. Depends on: `spiral_turning_conditions`, `circular_asymptotics`.
-5. `lorentz_gr_bridge` — Close the Lorentz and weak-field GR bridge from the coarse-grained delayed medium. Status: `pending`. Depends on: `spiral_branch_chart_test`, `characteristic_tail_noether_closure`.
+1. `circular_asymptotics` — Extend higher-winding and large-beta circular self-force asymptotics. Status: `next`. Depends on: none.
+2. `spiral_turning_conditions` — Record the variable-pitch partner/self branch formulas, radial turn inequality, and weighted tangential obstruction test. Status: `advanced-theorem-target`. Depends on: none.
+3. `spiral_branch_chart_test` — Certify whether any admissible variable-pitch spiral roots realize negative weighted tangential drive with positive Jacobian floors and finite memory depth. Status: `next`. Depends on: `spiral_turning_conditions`, `circular_asymptotics`.
+4. `lorentz_gr_bridge` — Close the Lorentz and weak-field GR bridge from the coarse-grained delayed medium. Status: `pending`. Depends on: `spiral_branch_chart_test`.
 
 ## Scope
 
@@ -27,15 +26,27 @@ This file remains the control surface for the workstream. No sibling detailed pr
 
 | Task | Detailed source | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
-| `characteristic_tail_noether_closure` | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md), [effective-lagrangian](../../../content/markdown/aaa/dynamics/effective-lagrangian.md), and [tri-binary-dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md) | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md), [effective-lagrangian](../../../content/markdown/aaa/dynamics/effective-lagrangian.md), and downstream conservation ledgers | The normalized delayed-interior kernel has accepted endpoint clearance, receiver-gradient cancellation, and energy, momentum, and angular-momentum Noether boundary increments on the retained branch chart. |
 | `circular_asymptotics` | This file | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) | Higher-winding and large-$\beta$ circular self-force asymptotics are extended beyond the current leading-order footholds. |
 | `spiral_turning_conditions` | This file | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) | Variable-pitch partner/self branch formulas, radial turn inequality, and weighted tangential obstruction test are stated with enough detail to drive a branch-chart test. |
 | `spiral_branch_chart_test` | This file | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) and [dyadic-lock](../dyadic-lock/dyadic-lock.md) | One admissible variable-pitch candidate reports partner and self roots, positive Jacobian floors, finite memory depth, radial-turn status, and weighted tangential-drive verdict. |
 | `lorentz_gr_bridge` | This file | [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) | Moving tri-binary contraction, clock retuning, and coarse-grained medium response recover weak-field GR targets without ad hoc tuning. |
 
+## Completed Kernel Handoff
+
+`characteristic_tail_noether_closure` is closed at the local action-kernel level. [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) now fixes the endpoint-clear normalized delayed-interior characteristic-tail kernel, proves the receiver-gradient identity
+$$
+D_{ij}K_{\mathrm{eff}}^{(\eta)}
+=
+-
+\frac{\delta_\eta(g)}{r^2},
+$$
+and defines the corresponding energy, momentum, and angular-momentum wake-history increments across a time cut. [effective-lagrangian](../../../content/markdown/aaa/dynamics/effective-lagrangian.md) and [tri-binary-dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md) now consume that kernel as the available action-level repair rather than as a missing Noether-boundary placeholder.
+
+This completion does not certify a branch or terminal label. Downstream consumers must still pull the increments back to their retained branch charts and prove closure of $K_{\mu}+E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, and $\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$ with the same root-ledger, memory-depth, and Jacobian-floor conditions used by the Master EOM.
+
 ## Live Targets
 
-- Exact action-kernel closure for the Master EOM through the delayed-interior characteristic-tail kernel and its Noether wake-history boundary terms.
+- Branch-chart consumption of the normalized delayed-interior characteristic-tail kernel and its Noether wake-history boundary terms.
 - Full 3D translating tri-binary NFDE / DDE control for emergent $\gamma$-scaling.
 - Transfer-operator and invariant-measure control for Born-rule emergence.
 - Exact 6-body core stability and shielding extraction for the first-principles mass program.
@@ -310,7 +321,7 @@ Interface. The dyadic-lock and angular-momentum lanes may consume the promotion 
 
 ## Longer-Tail Dynamics Program
 
-1. Exact Noether derivation of momentum and angular momentum from the delayed action.
+1. Branch-chart evaluation of the normalized Noether wake increments for momentum and angular momentum.
 2. $\eta \to 0$ existence and uniqueness theory for the exact shell model.
 3. Controlled kinetic or coarse-grained equation from the master law.
 4. Lorentz-suppression emergence for moving assemblies in the full dynamics, ideally independent of axial-layer details.
