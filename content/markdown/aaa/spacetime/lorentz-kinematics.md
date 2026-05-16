@@ -599,7 +599,7 @@ g_{\text{eff}}^{\mu\nu}(x)=
 $$
 Hence microscopic shape closure, when it yields $\xi\to1/\gamma$, is injected directly into $g_{\mu\nu}^{\text{eff}}$.
 
-In the local medium-rest frame ($\hat{u}^\mu=(1,0,0,0)$), with $x^0=c_f t$:
+In the local medium-rest frame ($\hat{u}^\mu=(1,0,0,0)$), with observer-sector coordinate $x^0=c_0 t$:
 $$
 ds_{\text{eff}}^2=g_{\mu\nu}^{\text{eff}}dx^\mu dx^\nu
 =\Omega^{2}\left[-\xi^{2}(dx^0)^2+d\mathbf{x}^2\right].
@@ -637,32 +637,32 @@ Operational Lorentz closure therefore requires this residual to vanish, or remai
 
 ### 4.3 Round-trip anisotropy cancellation through $O(\beta^4)$
 
-Let arm lengths in the preferred frame be
+Let arm lengths in the preferred frame be written using the declared two-way signal channel speed, with $\beta_\star=v/c_\star$:
 $$
-\frac{L_{\parallel}}{L_0}=1+\alpha_2\beta^2+\alpha_4\beta^4+O(\beta^6),\qquad
-\frac{L_{\perp}}{L_0}=1+b_2\beta^2+b_4\beta^4+O(\beta^6).
+\frac{L_{\parallel}}{L_0}=1+\alpha_2\beta_\star^2+\alpha_4\beta_\star^4+O(\beta_\star^6),\qquad
+\frac{L_{\perp}}{L_0}=1+b_2\beta_\star^2+b_4\beta_\star^4+O(\beta_\star^6).
 $$
 Round-trip absolute times are
 $$
 t_{\parallel}
-=\frac{2L_{\parallel}c_f}{c_f^2-v^2}
-=\frac{2L_0}{c_f}\left[
-1+(1+\alpha_2)\beta^2+(1+\alpha_2+\alpha_4)\beta^4+O(\beta^6)
+=\frac{2L_{\parallel}c_\star}{c_\star^2-v^2}
+=\frac{2L_0}{c_\star}\left[
+1+(1+\alpha_2)\beta_\star^2+(1+\alpha_2+\alpha_4)\beta_\star^4+O(\beta_\star^6)
 \right],
 $$
 $$
 t_{\perp}
-=\frac{2L_{\perp}}{\sqrt{c_f^2-v^2}}
-=\frac{2L_0}{c_f}\left[
-1+\left(b_2+\frac{1}{2}\right)\beta^2
-+\left(b_4+\frac{b_2}{2}+\frac{3}{8}\right)\beta^4
-+O(\beta^6)
+=\frac{2L_{\perp}}{\sqrt{c_\star^2-v^2}}
+=\frac{2L_0}{c_\star}\left[
+1+\left(b_2+\frac{1}{2}\right)\beta_\star^2
++\left(b_4+\frac{b_2}{2}+\frac{3}{8}\right)\beta_\star^4
++O(\beta_\star^6)
 \right].
 $$
 Define the normalized anisotropy mismatch
 $$
-\Delta_{\text{tw}}(\beta)\equiv \frac{t_{\parallel}-t_{\perp}}{2L_0/c_f}
-=A_2\beta^2+A_4\beta^4+O(\beta^6),
+\Delta_{\text{tw}}(\beta_\star)\equiv \frac{t_{\parallel}-t_{\perp}}{2L_0/c_\star}
+=A_2\beta_\star^2+A_4\beta_\star^4+O(\beta_\star^6),
 $$
 with
 $$
@@ -678,7 +678,7 @@ In the transverse-gauge choice $b_2=b_4=0$, this yields
 $$
 \alpha_2=-\frac{1}{2},\qquad \alpha_4=-\frac{1}{8},
 $$
-which is precisely $L_{\parallel}=L_0/\gamma+O(\beta^6)$.
+which is precisely $L_{\parallel}=L_0/\gamma_\star+O(\beta_\star^6)$.
 
 ## Derivation Program
 
@@ -737,24 +737,24 @@ $$
 
 For weak drift, slowly varying medium flow, and quasi-static fields in a local medium-rest frame, define
 $$
-\Phi_{\text{eff}}(x)\equiv c_f^2\ln\!\big(\Omega(n,\lambda)\,\xi\big).
+\Phi_{\text{eff}}(x)\equiv c_0^2\ln\!\big(\Omega(n,\lambda)\,\xi\big).
 $$
 Then the nonrelativistic geodesic limit becomes
 $$
 \frac{d^2\mathbf{x}}{dt^2}
 =-\xi^{2}\nabla \Phi_{\text{eff}}
-+O\!\left(\frac{|\mathbf{v}|^2}{c_f^2},\epsilon_{\text{LV}}\right)
++O\!\left(\frac{\|\mathbf{v}\|^2}{c_0^2},\epsilon_{\text{LV}}\right)
 =-\nabla \Phi_{\text{eff}}
 +O\!\left(
 \left|1-\xi^{2}\right|\,\left|\nabla\Phi_{\text{eff}}\right|,
-\frac{|\mathbf{v}|^2}{c_f^2},
+\frac{\|\mathbf{v}\|^2}{c_0^2},
 \epsilon_{\text{LV}}
 \right),
 $$
 with explicit source channels
 $$
 \nabla \Phi_{\text{eff}}
-=c_f^2\left[
+=c_0^2\left[
 \partial_{\ln n}\ln\Omega\ \nabla\ln n
 +\partial_{\ln \lambda}\ln\Omega\ \nabla\ln \lambda
 +\nabla\ln\xi
@@ -1059,16 +1059,18 @@ For admissible coupling and regularization parameters, there exists a bounded tr
 
 ### Theorem B (anisotropic deformation law)
 
+Let $\beta_\star=v/c_\star$ and $\gamma_\star=(1-\beta_\star^2)^{-1/2}$ for the declared observer channel.
+
 On the attracting manifold, principal-axis deformation obeys
 $$
 \frac{a_{\parallel}}{a_{\perp}}
-=1-\frac{1}{2}\beta^2-\frac{1}{8}\beta^4+R_1(\beta),
+=1-\frac{1}{2}\beta_\star^2-\frac{1}{8}\beta_\star^4+R_1(\beta_\star),
 \qquad
-|R_1(\beta)|\le C_1\epsilon_{\text{LV}}\,\beta^2,
+|R_1(\beta_\star)|\le C_1\epsilon_{\text{LV}}\,\beta_\star^2,
 $$
 equivalently
 $$
-\frac{a_{\parallel}}{a_{\perp}}=\frac{1}{\gamma}+R_1(\beta).
+\frac{a_{\parallel}}{a_{\perp}}=\frac{1}{\gamma_\star}+R_1(\beta_\star).
 $$
 
 ### Theorem C (clock renormalization law)
@@ -1076,25 +1078,25 @@ $$
 Fundamental period satisfies
 $$
 \frac{T(v)}{T_0}
-=1+\frac{1}{2}\beta^2+\frac{3}{8}\beta^4+R_2(\beta),
+=1+\frac{1}{2}\beta_\star^2+\frac{3}{8}\beta_\star^4+R_2(\beta_\star),
 \qquad
-|R_2(\beta)|\le C_2\epsilon_{\text{LV}}\,\beta^2,
+|R_2(\beta_\star)|\le C_2\epsilon_{\text{LV}}\,\beta_\star^2,
 $$
 equivalently
 $$
-\frac{T(v)}{T_0}=\gamma+R_2(\beta).
+\frac{T(v)}{T_0}=\gamma_\star+R_2(\beta_\star).
 $$
 
 ### Theorem D (operational Lorentz closure)
 
 For composite observers formed from this assembly class, two-way kinematic observables satisfy
 $$
-\Delta_{\text{tw}}(\beta,\theta)
-=\sum_{m\ge 1}\mathcal{A}_{2m}(\beta)\cos(2m\theta),
+\Delta_{\text{tw}}(\beta_\star,\theta)
+=\sum_{m\ge 1}\mathcal{A}_{2m}(\beta_\star)\cos(2m\theta),
 \qquad
-|\mathcal{A}_{2m}(\beta)|\le C_m\epsilon_{\text{LV}},
+|\mathcal{A}_{2m}(\beta_\star)|\le C_m\epsilon_{\text{LV}},
 $$
-uniformly on $\beta\in[0,\beta_\star]$.
+uniformly on $0\le\beta_\star\le\beta_{\max}$.
 
 ### Theorem E (coefficient identifiability from attractor statistics)
 

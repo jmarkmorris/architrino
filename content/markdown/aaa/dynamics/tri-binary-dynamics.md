@@ -500,6 +500,116 @@ $$
 $$
 This defines the current reduced solve: $\mathcal{B}_{\mathrm{term}}(\lambda)$ is the finite set of intra-layer and inter-layer roots satisfying the terminal kinematics, transversality, cycle-averaged dynamics, conservation ledger, and observer quotient. A numerical enumeration can now target these equations directly; if no solution has $|J_b|$ bounded away from zero, the label must be reclassified as a grazing boundary case rather than counted as an interior transfer-matrix state.
 
+In the symmetric common-center specialization, the inter-layer root problem reduces to scalar root curves over the outer phase. Set
+$$
+\mathbf{c}_I=\mathbf{c}_M=\mathbf{c}_O,
+\qquad
+q_I=n,\quad q_M=m,\quad q_O=1,
+\qquad
+u=\omega_O t\pmod{2\pi},
+$$
+and introduce dimensionless layer radii
+$$
+x_\ell
+=
+\frac{\omega_O R_\ell}{c_f}
+=
+\frac{s_\ell/c_f}{q_\ell}.
+$$
+For a branch from source layer $\ell_j$ and sign $\alpha_j$ to receiver layer $\ell_o$ and sign $\alpha_o$, write the outer-period delay as $\delta=\omega_O\Delta$. The phase separation is
+$$
+\Theta_{jo}^{\alpha_j\alpha_o}(u,\delta)
+=
+(q_o-q_j)u
++
+q_j\delta
++
+\phi_o-\phi_j,
+$$
+and the causal-root equation becomes
+$$
+\delta
+=
+\left[
+x_o^2+x_j^2
+-
+2\alpha_o\alpha_j x_o x_j
+\cos\Theta_{jo}^{\alpha_j\alpha_o}(u,\delta)
+\right]^{1/2},
+\qquad
+0<\delta\le \omega_O H_{\lambda}.
+$$
+The corresponding inter-layer Jacobian reduces to
+$$
+J_{jo}^{\alpha_j\alpha_o}(u,\delta)
+=
+1
+-
+\alpha_o\alpha_j
+\frac{(s_j/c_f)x_o}{\delta}
+\sin\Theta_{jo}^{\alpha_j\alpha_o}(u,\delta).
+$$
+
+Thus an inter-layer entry of $\mathcal{B}_{\mathrm{term}}(\lambda)$ is not an arbitrary phase sample. It is a smooth $2\pi$-periodic root curve $\delta_b(u)$ of the scalar equation above, with $|J_{jo}^{\alpha_j\alpha_o}(u,\delta_b(u))|$ bounded away from zero and with the same emission-order class over the full outer period. The intra-layer pieces remain the self-hit and partner-hit equations already listed for each $\ell$. In this symmetric special case, the unknowns left for enumeration are therefore
+$$
+(m,n),\quad
+(x_I,x_M,x_O),\quad
+(\phi_{MO}^{\ast},\phi_{IO}^{\ast}),\quad
+\{\delta_b(u)\}_{b\in\mathcal{B}_{\mathrm{term}}(\lambda)},
+$$
+subject to $x_M=1/m$, $x_O\to1$, branch transversality, the cycle residual $\mathcal{Q}_{\ell,\alpha}^{\mathrm{term}}=0$, and the conservation ledger. This is the first algebraic reduction of the terminal branch problem. It still does not select $(m,n)$ or prove existence; selection requires the residual and conservation equations to admit at least one branch set with a positive Jacobian floor.
+
+The scalar reduction does, however, give an exact no-grazing certificate for a proposed inter-layer branch. Define the squared residual
+$$
+F_{jo}^{\alpha_j\alpha_o}(u,\delta)
+=
+x_o^2+x_j^2
+-
+2\alpha_o\alpha_j x_o x_j
+\cos\Theta_{jo}^{\alpha_j\alpha_o}(u,\delta)
+-
+\delta^2.
+$$
+The causal-root equation is equivalent to $F_{jo}^{\alpha_j\alpha_o}(u,\delta)=0$ with $\delta>0$, and, using $q_jx_j=s_j/c_f$, its delay derivative is
+$$
+\partial_{\delta}F_{jo}^{\alpha_j\alpha_o}(u,\delta)
+=
+-2\delta\,
+J_{jo}^{\alpha_j\alpha_o}(u,\delta).
+$$
+Thus the branch Jacobian is exactly the implicit-function denominator for the scalar root. Any nonzero root with $|J_{jo}^{\alpha_j\alpha_o}|>0$ continues locally as a smooth delay curve, and along such a curve
+$$
+\frac{d\delta_b}{du}
+=
+\frac{
+\alpha_o\alpha_j x_o x_j(q_o-q_j)
+\sin\Theta_{jo}^{\alpha_j\alpha_o}(u,\delta_b(u))
+}{
+\delta_b(u)
+J_{jo}^{\alpha_j\alpha_o}(u,\delta_b(u))
+}.
+$$
+
+This turns the symmetric terminal branch problem into a compact root-curve test before the force residual is evaluated. Any inter-layer root must lie in the geometric delay strip
+$$
+|x_o-x_j|
+\le
+\delta
+\le
+\min\{x_o+x_j,\omega_OH_{\lambda}\}.
+$$
+For fixed $(m,n)$, radii, and relative phases, an interior inter-layer ledger is admissible only if its initial roots at one outer phase continue around the full $2\pi$ period as closed curves $\delta_b(u)$ that remain inside this strip, satisfy a uniform floor
+$$
+\delta_b(u)\ge\epsilon_{\delta}>0,
+\qquad
+\left|
+J_{jo}^{\alpha_j\alpha_o}(u,\delta_b(u))
+\right|
+\ge
+\epsilon_J>0,
+$$
+and preserve the declared emission-order and observer-record class. Failure of the delay strip rejects the candidate kinematically; failure of the Jacobian floor places it in the grazing boundary class; failure of closed return changes the root ledger over one outer period. Passing this scalar certificate is still not terminal-branch existence, because $\mathcal{Q}_{\ell,\alpha}^{\mathrm{term}}=0$ and the conservation ledger must still close, but it is the first finite rejection and continuation criterion for candidate $(m,n)$ branch labels.
+
 This scaffold identifies the smallest missing dynamics. The delayed equations must enumerate $\Lambda_{\theta}^{\mathrm{loc}}$ and derive the edge maps $\mathcal{E}_{\nu}^{\pm}$ from the terminal aligned branch. [Dyadic Resonance Lock](dyadic-resonance-lock.md) supplies the candidate integer phase lattice, and [Binary Dynamics](binary-dynamics.md#self-hit-definition-and-diagnostics) supplies the self-hit and partner-hit root vocabulary, but neither document yet computes the terminal aligned edge projections from the full three-layer dynamics.
 
 The local-horizon coefficient requires
@@ -558,7 +668,7 @@ Primitive dynamics scans and effective-metric comparisons must not mix $c_f$ and
 
 ### A) High Group Velocity Geometry (Oblate Spheroid)
 
-**Assumption (testable):** The outer binary moving at translational speed $v_{\text{trans}}$ generates a causal interaction envelope that is oblate and flattens along the direction of motion as $v_{\text{trans}} \to c_f$.
+**Assumption (testable):** The outer binary moving at translational speed $v_{\text{trans}}$ generates a causal interaction envelope that is oblate and flattens along the direction of motion as $v_{\text{trans}} \to c_\star$ for the declared diagnostic. Primitive branch charts set $c_\star=c_f$; observer-level closure sets $c_\star=c_{\text{eff}}(\mathbf{x})$ or the relevant photon-channel speed.
 
 **Geometry:** Let the motion define the $z$-axis. Model the envelope as an ellipsoid
 $$
@@ -568,20 +678,20 @@ with transverse radius $R_\perp$ and longitudinal radius $R_\parallel$.
 
 Adopt a kinematic contraction law (to be validated by dynamics):
 $$
-\beta = \frac{v_{\text{trans}}}{c_f}, \quad \gamma = \frac{1}{\sqrt{1-\beta^2}}, \quad R_\parallel = \frac{R_\perp}{\gamma}.
+\beta_\star = \frac{v_{\text{trans}}}{c_\star}, \quad \gamma_\star = \frac{1}{\sqrt{1-\beta_\star^2}}, \quad R_\parallel = \frac{R_\perp}{\gamma_\star}.
 $$
-As $\beta \to 1$, $R_\parallel \to 0$ and the envelope collapses toward a disk.
-**Right-triangle link:** Treat $c_f$ as the fixed causal propagation speed and decompose it into orthogonal components: one leg is the group translation $v_{\text{trans}}$, the other leg is the longitudinal closure speed $v_\parallel$. Then
+As $\beta_\star \to 1$, $R_\parallel \to 0$ and the envelope collapses toward a disk.
+**Right-triangle link:** Treat $c_\star$ as the declared causal propagation speed and decompose it into orthogonal components: one leg is the group translation $v_{\text{trans}}$, the other leg is the longitudinal closure speed $v_\parallel$. Then
 $$
-c_f^2 = v_{\text{trans}}^2 + v_\parallel^2 \quad \Rightarrow \quad v_\parallel = c_f\sqrt{1-\beta^2}.
+c_\star^2 = v_{\text{trans}}^2 + v_\parallel^2 \quad \Rightarrow \quad v_\parallel = c_\star\sqrt{1-\beta_\star^2}.
 $$
-Mapping causal speed to closure length gives $R_\parallel = R_\perp (v_\parallel/c_f) = R_\perp\sqrt{1-\beta^2} = R_\perp/\gamma$, recovering the ellipsoid law from the triangle geometry.
+Mapping causal speed to closure length gives $R_\parallel = R_\perp (v_\parallel/c_\star) = R_\perp\sqrt{1-\beta_\star^2} = R_\perp/\gamma_\star$, recovering the ellipsoid law from the triangle geometry.
 
 **Impact on delay locking:** The round-trip delay $\Delta t_{\text{rt}}$ is the time between an outer-binary architrino’s emission and the moment its wake returns to influence that same architrino, approximating the inner+middle as a compact core at the center. For a ray at polar angle $\theta$ relative to the $z$-axis, the intersection radius with the ellipsoid is
 $$
 R(\theta) = \left(\frac{\sin^2\theta}{R_\perp^2} + \frac{\cos^2\theta}{R_\parallel^2}\right)^{-1/2}.
 $$
-Then $\Delta t_{\text{rt}}(\theta) \approx 2 R(\theta)/c_f$, and the phase condition generalizes to
+Then $\Delta t_{\text{rt}}(\theta) \approx 2 R(\theta)/c_\star$, and the phase condition generalizes to
 $$
 \Phi_n(\theta, \mathbf{v}_{\text{trans}}) = \omega_n\,\Delta t_{\text{rt}}(\theta) + \phi_{\text{geom}}(n).
 $$
@@ -710,7 +820,7 @@ Two nonlinear-dynamics diagnostics extend the standard alignment invariants and 
 $$
 \Delta_{\mathbf{k}} = 1 - \max_{i\notin G}\|\mu_i(\mathbf{k})\|.
 $$
-Track $\Delta_{\mathbf{k}}$ along scans in $\beta = v_{\text{trans}}/c_f$ and $G_{\text{grad}}$. Stable rungs have $\Delta_{\mathbf{k}}>0$; rung termination, separator clock-freeze, and gradient-driven failure should all coincide with $\Delta_{\mathbf{k}}\to 0^+$.
+Track $\Delta_{\mathbf{k}}$ along scans in declared $\beta_\star = v_{\text{trans}}/c_\star$ and $G_{\text{grad}}$. Stable rungs have $\Delta_{\mathbf{k}}>0$; rung termination, separator clock-freeze, and gradient-driven failure should all coincide with $\Delta_{\mathbf{k}}\to 0^+$.
 
 **Grazing-bifurcation diagnostics at the separator:** Near $\|\mathbf{v}\|=c_f$, the post-crossing trajectory deviation is predicted to scale as $\sqrt{t-t_*}$ along the eigenvector of the newly activated self-hit root. Two simulation tests follow:
 
@@ -852,7 +962,7 @@ $$
 $$
 The second constraint is the native small-scale bridge-like causal structure in this sketch: the receiver at $\mathbf{x}_i(t)$ is linked to an earlier point on the same worldline by its own causal wake. The connectedness is path-history closure in the causal-root ledger, not a tunnel in the Euclidean void. Any connected-geometry translation belongs only after coarse-graining into an effective horizon-interface or metric description.
 
-and $s=|\mathbf{v}|/c_f$. For symmetric, non-translating circular geometry, the delay angles satisfy
+and $s=\|\mathbf{v}\|/c_f$. For symmetric, non-translating circular geometry, the delay angles satisfy
 $$
 \delta_p=2s\cos(\delta_p/2), \qquad \delta_s=2s\sin(\delta_s/2),
 $$

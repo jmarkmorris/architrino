@@ -73,7 +73,7 @@ When the clock moves with velocity $\mathbf{v}$ relative to the Noether Sea:
  Primitive self-hit and partner-hit roots are mediated by delayed, radial path-history interactions at speed $c_f$. When those roots are dressed into an observer-level clock law, the transverse budget must be formed with the declared channel speed $c_\star$: $c_\star=c_f$ for a primitive branch test and $c_\star=c_{\text{eff}}(\mathbf{x})$ for a Noether-Sea dressed clock comparison.
 
 3. **Shape deformation (Lorentz‑link hypothesis):** 
- To remain dynamically stable under increased $|\mathbf{v}|$, the tri‑binary’s outer exclusion surface becomes **oblate**, flattened along the direction of motion:
+ To remain dynamically stable under increased $\|\mathbf{v}\|$, the tri‑binary’s outer exclusion surface becomes **oblate**, flattened along the direction of motion:
  - At low $v$, the outer exclusion surface is nearly spherical.
  - As $v\to c_\star$, that exclusion surface contracts along $\hat{\mathbf{v}}$ while maintaining transverse dimensions, yielding an ellipsoid with semi‑axes $(a_\perp, a_\perp, a_\parallel)$ and $a_\parallel < a_\perp$.
  - This geometric dilation changes internal path lengths and curvature, lowering $\omega$.
