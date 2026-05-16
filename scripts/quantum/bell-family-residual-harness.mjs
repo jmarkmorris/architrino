@@ -10,6 +10,7 @@ function parseArgs(argv) {
     pretty: false,
     out: null,
     scenario: "all",
+    candidate: null,
     help: false,
   };
 
@@ -23,9 +24,21 @@ function parseArgs(argv) {
       args.out = argv[++i];
     } else if (arg === "--scenario") {
       args.scenario = argv[++i];
+    } else if (arg === "--candidate") {
+      args.candidate = argv[++i];
     } else {
       throw new Error(`Unknown argument: ${arg}`);
     }
+  }
+
+  if (args.out === undefined) {
+    throw new Error("--out requires a path.");
+  }
+  if (args.scenario === undefined) {
+    throw new Error("--scenario requires an id.");
+  }
+  if (args.candidate === undefined) {
+    throw new Error("--candidate requires a path.");
   }
 
   return args;
@@ -36,6 +49,8 @@ function printHelp() {
 
 Options:
   --scenario ID  Scenario id to evaluate, or "all". Defaults to all.
+  --candidate PATH
+                 Read candidate scenario JSON instead of built-in scenarios.
   --out PATH     Write JSON output to a file instead of stdout.
   --pretty       Pretty-print JSON output.
   --help         Show this help.
@@ -171,6 +186,38 @@ function productMarginalDistribution(context, parties) {
 function numericValue(value) {
   const numeric = Number(value);
   return Number.isNaN(numeric) ? value : numeric;
+}
+
+function isPlainObject(value) {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
+
+function assertNonemptyString(value, label) {
+  if (typeof value !== "string" || value.trim() === "") {
+    throw new Error(`${label} must be a nonempty string.`);
+  }
+}
+
+function assertNumber(value, label) {
+  if (typeof value !== "number" || !Number.isFinite(value)) {
+    throw new Error(`${label} must be a finite number.`);
+  }
+}
+
+function assertDistribution(distribution, label) {
+  if (!isPlainObject(distribution)) {
+    throw new Error(`${label} must be an object distribution.`);
+  }
+  const total = Object.entries(distribution).reduce((sum, [key, value]) => {
+    assertNumber(value, `${label}.${key}`);
+    if (value < -EPS) {
+      throw new Error(`${label}.${key} must be nonnegative.`);
+    }
+    return sum + value;
+  }, 0);
+  if (Math.abs(total - 1) > 1e-8) {
+    throw new Error(`${label} probabilities sum to ${total}, not 1.`);
+  }
 }
 
 function chshMetrics(scenario) {
@@ -408,6 +455,8 @@ function evaluateScenario(scenario) {
     id: scenario.id,
     description: scenario.description,
     classification: scenario.classification,
+    source_protocol: scenario.source_protocol ?? null,
+    source_record_count: scenario.source_records?.length ?? null,
     metrics: {
       chsh,
       ghz,
@@ -664,6 +713,270 @@ function defaults(overrides = {}) {
   };
 }
 
+function readCandidateScenarios(candidatePath) {
+  let parsed;
+  try {
+    parsed = JSON.parse(fs.readFileSync(candidatePath, "utf8"));
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    throw new Error(`Unable to read candidate JSON ${candidatePath}: ${message}`);
+  }
+
+  const scenarios = Array.isArray(parsed)
+    ? parsed
+    : Array.isArray(parsed?.scenarios)
+      ? parsed.scenarios
+      : [parsed];
+
+  if (scenarios.length === 0) {
+    throw new Error(`${candidatePath} contains no candidate scenarios.`);
+  }
+
+  return scenarios.map((scenario, index) =>
+    normalizeCandidateScenario(scenario, `candidate scenario ${index + 1} in ${candidatePath}`)
+  );
+}
+
+function normalizeCandidateScenario(scenario, label) {
+  if (!isPlainObject(scenario)) {
+    throw new Error(`${label} must be an object.`);
+  }
+  assertNonemptyString(scenario.id, `${label}.id`);
+  if (!Array.isArray(scenario.parties) || scenario.parties.length === 0) {
+    throw new Error(`${label}.parties must be a nonempty array.`);
+  }
+  const parties = scenario.parties.map((party, index) => {
+    assertNonemptyString(party, `${label}.parties[${index}]`);
+    return party;
+  });
+
+  assertObjectField(scenario, "source_protocol", label);
+  assertObjectField(scenario, "source_balance", label);
+  assertObjectField(scenario, "local_apparatus_records", label);
+  assertObjectField(scenario, "record_basins", label);
+  assertObjectField(scenario, "compression_audit", label);
+  assertObjectField(scenario, "guardrails", label);
+
+  const sourceRecords = normalizeSourceRecords(scenario.source_records, `${label}.source_records`);
+  const thresholds = normalizeThresholds(scenario.thresholds, `${label}.thresholds`);
+  if (!Array.isArray(scenario.contexts) || scenario.contexts.length === 0) {
+    throw new Error(`${label}.contexts must be a nonempty array.`);
+  }
+  const contexts = scenario.contexts.map((context, index) =>
+    normalizeCandidateContext(
+      context,
+      `${label}.contexts[${index}]`,
+      parties,
+      sourceRecords.records,
+      sourceRecords.provenance
+    )
+  );
+
+  return {
+    ...scenario,
+    classification: scenario.classification ?? "candidate",
+    parties,
+    source_records: sourceRecords.records,
+    contexts,
+    thresholds,
+  };
+}
+
+function assertObjectField(scenario, key, label) {
+  if (!isPlainObject(scenario[key])) {
+    throw new Error(`${label}.${key} must be an object.`);
+  }
+}
+
+function normalizeThresholds(thresholds, label) {
+  if (thresholds === undefined) {
+    return defaults();
+  }
+  if (!isPlainObject(thresholds)) {
+    throw new Error(`${label} must be an object when present.`);
+  }
+  for (const [key, value] of Object.entries(thresholds)) {
+    assertNumber(value, `${label}.${key}`);
+    if (value < 0) {
+      throw new Error(`${label}.${key} must be nonnegative.`);
+    }
+  }
+  return defaults(thresholds);
+}
+
+function normalizeSourceRecords(records, label) {
+  if (!Array.isArray(records) || records.length === 0) {
+    throw new Error(`${label} must be a nonempty array.`);
+  }
+
+  let total = 0;
+  const provenance = {};
+  const normalized = records.map((record, index) => {
+    const recordLabel = `${label}[${index}]`;
+    if (!isPlainObject(record)) {
+      throw new Error(`${recordLabel} must be an object.`);
+    }
+    assertNonemptyString(record.id, `${recordLabel}.id`);
+    assertNumber(record.weight, `${recordLabel}.weight`);
+    if (record.weight < -EPS) {
+      throw new Error(`${recordLabel}.weight must be nonnegative.`);
+    }
+    if (record.local_response !== undefined) {
+      validateLocalResponse(record.local_response, `${recordLabel}.local_response`);
+    }
+    total += record.weight;
+    provenance[record.id] = record.weight;
+    return record;
+  });
+
+  if (Math.abs(total - 1) > 1e-8) {
+    throw new Error(`${label} weights sum to ${total}, not 1.`);
+  }
+
+  return { records: normalized, provenance };
+}
+
+function validateLocalResponse(localResponse, label) {
+  if (!isPlainObject(localResponse)) {
+    throw new Error(`${label} must be an object when present.`);
+  }
+  for (const [party, settings] of Object.entries(localResponse)) {
+    if (!isPlainObject(settings)) {
+      throw new Error(`${label}.${party} must be an object.`);
+    }
+    for (const [setting, distribution] of Object.entries(settings)) {
+      assertDistribution(distribution, `${label}.${party}.${setting}`);
+    }
+  }
+}
+
+function normalizeCandidateContext(context, label, parties, sourceRecords, sourceProvenance) {
+  if (!isPlainObject(context)) {
+    throw new Error(`${label} must be an object.`);
+  }
+  assertNonemptyString(context.id, `${label}.id`);
+  if (!isPlainObject(context.settings)) {
+    throw new Error(`${label}.settings must be an object.`);
+  }
+  const settings = { ...context.settings };
+  for (const party of parties) {
+    if (!(party in settings)) {
+      throw new Error(`${label}.settings is missing party ${party}.`);
+    }
+  }
+  if (!Array.isArray(context.probabilities) || context.probabilities.length === 0) {
+    throw new Error(`${label}.probabilities must be a nonempty array.`);
+  }
+
+  const probabilities = context.probabilities.map((row, index) =>
+    normalizeProbabilityRow(row, `${label}.probabilities[${index}]`, parties)
+  );
+  const provenance = context.provenance ?? sourceProvenance;
+  if (provenance) {
+    assertDistribution(provenance, `${label}.provenance`);
+  }
+
+  const screening =
+    context.screening ??
+    buildScreeningFromLocalResponses(sourceRecords, parties, settings);
+
+  return {
+    ...context,
+    settings,
+    probabilities,
+    provenance,
+    screening: screening ? normalizeScreening(screening, `${label}.screening`, parties) : undefined,
+  };
+}
+
+function normalizeProbabilityRow(row, label, parties) {
+  if (!isPlainObject(row)) {
+    throw new Error(`${label} must be an object.`);
+  }
+  if (!isPlainObject(row.outcome)) {
+    throw new Error(`${label}.outcome must be an object.`);
+  }
+  assertNumber(row.p, `${label}.p`);
+  if (row.p < -EPS) {
+    throw new Error(`${label}.p must be nonnegative.`);
+  }
+  const outcome = {};
+  for (const party of parties) {
+    if (!(party in row.outcome)) {
+      throw new Error(`${label}.outcome is missing party ${party}.`);
+    }
+    outcome[party] = row.outcome[party];
+  }
+  return { outcome, p: row.p };
+}
+
+function buildScreeningFromLocalResponses(sourceRecords, parties, settings) {
+  if (!sourceRecords.every((record) => isPlainObject(record.local_response))) {
+    return null;
+  }
+
+  return {
+    records: sourceRecords.map((record) => {
+      const local = {};
+      for (const party of parties) {
+        const setting = settings[party];
+        const distribution = record.local_response?.[party]?.[setting];
+        if (!distribution) {
+          throw new Error(
+            `source record ${record.id} is missing local_response.${party}.${setting}.`
+          );
+        }
+        local[party] = distribution;
+      }
+      return {
+        id: record.id,
+        weight: record.weight,
+        local,
+      };
+    }),
+  };
+}
+
+function normalizeScreening(screening, label, parties) {
+  if (!isPlainObject(screening)) {
+    throw new Error(`${label} must be an object.`);
+  }
+  if (!Array.isArray(screening.records) || screening.records.length === 0) {
+    throw new Error(`${label}.records must be a nonempty array.`);
+  }
+  let total = 0;
+  const records = screening.records.map((record, index) => {
+    const recordLabel = `${label}.records[${index}]`;
+    if (!isPlainObject(record)) {
+      throw new Error(`${recordLabel} must be an object.`);
+    }
+    assertNonemptyString(record.id, `${recordLabel}.id`);
+    assertNumber(record.weight, `${recordLabel}.weight`);
+    if (record.weight < -EPS) {
+      throw new Error(`${recordLabel}.weight must be nonnegative.`);
+    }
+    if (!isPlainObject(record.local)) {
+      throw new Error(`${recordLabel}.local must be an object.`);
+    }
+    const local = {};
+    for (const party of parties) {
+      if (!isPlainObject(record.local[party])) {
+        throw new Error(`${recordLabel}.local.${party} must be a distribution.`);
+      }
+      assertDistribution(record.local[party], `${recordLabel}.local.${party}`);
+      local[party] = record.local[party];
+    }
+    total += record.weight;
+    return { id: record.id, weight: record.weight, local };
+  });
+
+  if (Math.abs(total - 1) > 1e-8) {
+    throw new Error(`${label}.records weights sum to ${total}, not 1.`);
+  }
+
+  return { ...screening, records };
+}
+
 const SCENARIOS = [
   {
     id: "chsh_quantum_singlet",
@@ -858,10 +1171,13 @@ function main() {
     return;
   }
 
+  const scenarioPool = args.candidate
+    ? readCandidateScenarios(args.candidate)
+    : SCENARIOS;
   const selected =
     args.scenario === "all"
-      ? SCENARIOS
-      : SCENARIOS.filter((scenario) => scenario.id === args.scenario);
+      ? scenarioPool
+      : scenarioPool.filter((scenario) => scenario.id === args.scenario);
 
   if (selected.length === 0) {
     throw new Error(`Unknown scenario: ${args.scenario}`);
@@ -872,6 +1188,8 @@ function main() {
       artifact: "bell-family-residual-harness",
       comparison_level: "probability-table validation scaffold",
       note: "Benchmarks and negative controls only; not an AAA Bell closure proof.",
+      source: args.candidate ? "candidate" : "built_in",
+      candidate_path: args.candidate,
     },
     scenarios: selected.map(evaluateScenario),
   };

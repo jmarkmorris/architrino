@@ -10,7 +10,7 @@ This document establishes the **ontological bedrock** of $\mathbb{A}\mathbb{A}\m
 
 1. **The Substrate** ([absolute time](./absolute-time.md), [Euclidean void](./euclidean-void.md), and [absolute timespace](./absolute-timespace.md))
 2. **The Fundamental Entity** ([architrino](./architrino.md): point transceiver of potential-bearing causal wakes)
-3. **The Physical Medium** ([Noether Sea](../spacetime/noether-sea.md): emergent assembly medium)
+3. **The Physical Medium** ([Noether Sea](../spacetime/noether-sea.md): emergent physical medium formed by coupled neutral Noether-core assemblies)
 4. **The Observer Framework** ([complete-state vs Physical Observer access](../spacetime/observer-framework.md))
 5. **Terminology Discipline** ([canonical level-aware terminology](../archie/terminology-usage.md))
 6. **Parameter Ledger** ([fundamental postulates vs derived quantities](../validation/parameter-ledger.md))
@@ -27,7 +27,7 @@ Two category distinctions govern the rest of this hub. First, fundamental materi
 
 In this ontology hub, the key commitment is:
 
-> **Postulate 1 (Absolute Time):** Time is an absolute, universal, one-dimensional continuum $\mathbb{R}$ with fixed orientation, frame-independent duration, and no substrate-level time dilation or relativity of simultaneity.
+> **Postulate 1 (Absolute Time):** Time is an absolute, universal, one-dimensional continuum $\mathbb{R}$ with fixed orientation, uniform advancement, frame-independent duration, non-dynamical status, and no substrate-level time dilation or relativity of simultaneity. Dynamics occur through finite-speed causal-wake propagation ($c_f$) in absolute time, with all interactions routed through path history rather than instantaneous action-at-a-distance or advanced effects; worldlines are parametrized directly by $t$.
 
 For the argumentative case, see [Absolute Time Defense](./absolute-time-defense.md). For observer-level clocks and dilation, see [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md).
 
@@ -37,17 +37,17 @@ For the argumentative case, see [Absolute Time Defense](./absolute-time-defense.
 
 In this ontology hub, the key commitment is:
 
-> **Postulate 2 (Euclidean Void):** Space is an absolute, static, flat container $\mathbb{R}^3$ with fixed Euclidean metric $h_{ij}=\delta_{ij}$. Curvature-like observations arise from contents and dynamics inside the void, not from curvature of the void itself.
+> **Postulate 2 (Euclidean Void):** Space is an absolute, static, flat, homogeneous, isotropic container $\mathbb{R}^3$ with fixed Euclidean metric $h_{ij}=\delta_{ij}$. Curvature-like observations arise from contents, wakes, and dynamics inside the void, not from curvature of the void itself.
 
 The Noether Sea is physical content within the void, not the void itself. For the medium branch, see [Noether Sea](../spacetime/noether-sea.md), [Spacetime Assemblies](../spacetime/spacetime-assemblies.md), and [Emergent Metric](../spacetime/emergent-metric.md).
 
 ### Absolute Timespace (The Product Structure)
 
-[Absolute Timespace](./absolute-timespace.md) is the canonical product-structure specification for the background arena $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$. It owns the foliation into simultaneous Euclidean slices, the separated Newton-Cartan data $(\tau,h)$, Galilean kinematic structure, product measures and spatial operators, and causal wake geometry.
+[Absolute Timespace](./absolute-timespace.md) is the canonical product-structure specification for the background arena $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$. It owns the foliation into simultaneous Euclidean slices, the separated clock-form/spatial-metric data $(dt,h)$, Galilean kinematic structure, product measures and spatial operators, and causal wake geometry.
 
 In this ontology hub, the key commitment is:
 
-> **Postulate 3 (Absolute Timespace):** The background arena is the product manifold $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, foliated by absolute-time slices $\Sigma_t$. Causality is ordered by $t$ and constrained by finite wake speed $c_f$.
+> **Postulate 3 (Absolute Timespace):** The background arena is the product manifold $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, equipped with the exact substrate clock form $dt$ and Euclidean spatial metric $h_{ij}=\delta_{ij}$, foliated by absolute-time slices $\Sigma_t$. The background is non-dynamical and non-curved; causality is ordered by $t$ and constrained by finite wake speed $c_f$. The product background preserves Galilean kinematic structure while the interaction law selects a preferred rest frame dynamically.
 
 For the factor-level specifications, see [Absolute Time](./absolute-time.md) and [Euclidean Void](./euclidean-void.md). For the observer-level metric bridge, see [Emergent Metric](../spacetime/emergent-metric.md).
 
@@ -61,7 +61,7 @@ The architrino is the sole primitive material substance of the theory. This does
 
 In this ontology hub, the key commitment is:
 
-> **Postulate 4 (Architrino):** The architrino is the sole primitive entity: a point transceiver in absolute timespace with definite polarity, persistent identity, continuous causal-wake emission, universal wake reception, and non-creation/non-destruction at the ontological level.
+> **Postulate 4 (Architrino):** The architrino is the sole primitive entity of $\mathbb{A}\mathbb{A}\mathbb{A}$: a point transceiver in absolute timespace with definite polarity, persistent identity, continuous causal-wake emission, universal wake reception, and non-creation/non-destruction at the ontological level. The set of architrino identities is fixed. Particles, effective fields, clock behavior, and emergent spacetime phenomena arise from architrino configurations, wake intersections, and assembly dynamics rather than from additional fundamental substances.
 
 For the full primitive-entity page, see [Architrino](./architrino.md). For the receiving-law derivation, see [Master Equation](../dynamics/master-equation.md). For assembly emergence, see [Emergence](./emergence.md) and [Noether Core](../spacetime/noether-core.md).
 
@@ -73,7 +73,7 @@ For the full primitive-entity page, see [Architrino](./architrino.md). For the r
 
 In this ontology hub, the key commitment is:
 
-> **Medium Commitment (Noether Sea):** The Noether Sea is physical content inside the Euclidean void, not the void itself. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock dilation, signal refraction, inertia, and cosmological behavior are reconstructed from Noether-Sea dynamics and assembly coupling, not from curvature or expansion of the void.
+> **Medium Commitment (Noether Sea):** The Noether Sea is physical content inside the Euclidean void, not the void itself. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock and ruler behavior, signal delay/refraction, inertia, and cosmological behavior are reconstructed from Noether-Sea dynamics and assembly coupling, not from curvature or expansion of the void.
 
 The routing boundary is:
 
@@ -95,8 +95,9 @@ The routing boundary is:
 
 - [Observer Framework](../spacetime/observer-framework.md) owns complete-state versus Physical Observer access.
 - [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md) owns observer clocks, clock slowing, and $t\mapsto\tau$ extraction.
-- [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) owns moving-observer comparison and Lorentz-suppression kinematics.
+- [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) owns moving-assembly deformation, clock/ruler retuning, two-way signal synchronization, and preferred-frame leakage bounds.
 - [Emergent Metric](../spacetime/emergent-metric.md) owns metric reconstruction from observer clocks, rulers, and signals.
+- [Wavefunction Ontology](../quantum/wavefunction-ontology.md) and [Measurement Ontology](../quantum/measurement-ontology.md) own quantum-state and measurement descriptions at the observer-accessible layer.
 
 ## Terminology Discipline (Locked Definitions)
 
@@ -142,9 +143,9 @@ For the current pressure ledger, see:
 
 This Foundational Ontology defines:
 
-1. **The Substrate**: absolute time, Euclidean void, and absolute timespace as the fixed non-dynamical background.
-2. **The Fundamental Entity**: architrino as the primitive point transceiver with polarity and persistent identity.
-3. **The Physical Medium**: Noether Sea as emergent physical content inside the Euclidean void.
+1. **The Substrate**: absolute time and Euclidean void organized as absolute timespace, the fixed non-dynamical product background.
+2. **The Fundamental Entity**: architrino as the fixed-identity primitive point transceiver with polarity and persistent identity.
+3. **The Physical Medium**: Noether Sea as emergent physical content formed by coupled neutral Noether-core assemblies inside the Euclidean void.
 4. **The Observer Framework**: complete-state bookkeeping versus Physical Observer access.
 5. **Terminology Discipline**: level-aware wording routed to the Archie canon.
 6. **Validation Routing**: parameters, closure burdens, and open questions routed to validation and branch chapters.

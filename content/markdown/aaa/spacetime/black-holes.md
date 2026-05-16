@@ -180,7 +180,19 @@ S_H
 $$
 where $A_H$ is the observer-level horizon area and $A_{\text{align}}$ is the alignment-area scale from the Planck-alignment program, with the numerical and $2\pi$ conventions fixed by that derivation rather than by definition here. Page-curve recovery then becomes a release-channel theorem: outward channels must preserve enough phase, axial-pattern, and path-history information from $\mathcal{B}_{H}$ to make evaporation or recycling unitary at the effective quantum level, while still appearing thermal to coarse exterior measurements.
 
-This global horizon ensemble must be compatible with the local boundary-wake count used in [Emergent Metric](emergent-metric.md#local-horizon-recovery-target). For a compact region $\Omega$ whose boundary intersects the horizon interface, let $\pi_{\partial\Omega}^{(O)}$ be the Physical Observer projection from strong-field horizon-interface labels to retained boundary-wake labels, and write $\mathcal{B}_{H}(\theta)$ for the horizon-interface ensemble selected by the same strong-field record. The proof route requires
+The coefficient in this target is not a literal claim that one alignment patch carries $e^{1/4}$ independent states. The local target is a block entropy density. For a connected block $U$ of horizon-adjacent alignment patches, let $\mathcal{L}_U^H(\theta)$ be the retained alignment-compatible label set induced by the same strong-field record. The local density target is
+$$
+s_{\mathrm{align}}^H(\theta)
+=
+\lim_{|U|\to\infty}
+\frac{1}{|U|}
+\log\left|\mathcal{L}_U^H(\theta)\right|
+\longrightarrow
+\frac{1}{4},
+$$
+with boundary corrections vanishing in the large-block limit. This is the local calculation that must make the global area law credible.
+
+This global horizon ensemble must be compatible with the local boundary-wake entropy density used in [Emergent Metric](emergent-metric.md#local-horizon-recovery-target). For a compact region $\Omega$ whose boundary intersects the horizon interface, let $\pi_{\partial\Omega}^{(O)}$ be the Physical Observer projection from strong-field horizon-interface labels to retained boundary-wake labels, and write $\mathcal{B}_{H}(\theta)$ for the horizon-interface ensemble selected by the same strong-field record. The proof route requires
 $$
 \left|
 \log\left|
@@ -196,7 +208,7 @@ $$
 \le
 \epsilon_{\mathrm{proj}},
 $$
-for the same strong-field record $\theta$ restricted to the observer window. If the local boundary count and the global horizon-interface count require different records, the entropy target has split into two fitted stories. If they agree, the black-hole area law is no longer an isolated assumption; it becomes the compact strong-field version of the local boundary-factorization theorem target.
+for the same strong-field record $\theta$ restricted to the observer window and the same block or patch family. If the local boundary density and the global horizon-interface count require different records, the entropy target has split into two fitted stories. If they agree, the black-hole area law is no longer an isolated assumption; it becomes the compact strong-field version of the local boundary-factorization theorem target.
 
 The words "thermal," "scrambled," and "recoverable" are therefore readout-channel claims, not direct ontology labels. For a Physical Observer $O$, let $\mathcal{K}_{O}^{\mathrm{rad}}$ denote the declared radiation readout kernel and let $\mathcal{R}_{O}$ denote the physical reference resources used to compare outgoing quanta. A horizon-interface ledger state $\lambda\in\mathcal{B}_{H}(M,\mathbf{J},Q)$ reaches the observer through a channel of the schematic form
 $$

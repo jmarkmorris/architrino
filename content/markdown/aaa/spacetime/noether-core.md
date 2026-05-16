@@ -8,7 +8,7 @@ This chapter owns the Noether core as the assembly scaffold that later supports 
 
 Just as an Electrino and a Positrino can form a stable binary, two binaries can orbit a common center to form a larger, second-order binary. This process can, in principle, repeat. The key to stability is a significant separation in scale: for a nested system to be stable, each new surrounding orbit must have a much larger radius and a much lower frequency than the inner orbit(s).
 
-This nesting creates a hierarchical structure, like a set of Russian dolls. Each level of the hierarchy operates at a distinct energy scale.
+This nesting creates a scale-separated hierarchy. Each level operates at a distinct radius, frequency, energy scale, and causal-root ledger.
 
 ### The Noether Core: A Triply Nested Binary
 
@@ -16,15 +16,15 @@ A candidate stable configuration is the **triply nested binary**. This structure
 
 -   **Why Three?** The stability of a triply nested structure is a theorem target tied to the three-dimensional nature of Euclidean space. Each binary defines an orbital plane. The working claim is that three mutually orthogonal orbital planes can form a dynamically stable, symmetric, 3D structure that is resistant to perturbation; the proof burden is to derive that role count from the delayed causal dynamics rather than assuming it.
 
--   **Why "Noether Core"?** This assembly is named in honor of Emmy Noether. Noether's theorem links symmetries in physical systems to conserved quantities. The highly symmetric and stable structure of the tri-binary core is the emergent foundation for conserved properties like spin and quantized energy levels that characterize standard model particles.
+-   **Why "Noether Core"?** This assembly is named in honor of Emmy Noether. Noether's theorem links symmetries in physical systems to conserved quantities. The highly symmetric tri-binary core is the candidate scaffold through which spin, branch-quantized energy records, and other conserved observer-level labels should be recovered from closure labels and emitted causal-wake envelopes.
 
 ### Properties of the Noether Core
 
 -   **Energy-Separated Scales:** In low-energy conditions, the three binaries that make up a Noether core have energy-separated orbital radii and frequencies. The innermost binary is the smallest and fastest, while the outermost is the largest and slowest. This separation of scales is crucial for the system's stability.
 
--   **Internal Stabilization:** The system is self-stabilizing. The constant, high-frequency causal-wake emissions from the innermost binary create a complex, time-averaged potential well that helps to stabilize the orbits of the two outer binaries. This creates a robust, self-tuning feedback loop.
+-   **Internal Stabilization:** The system is expected to be stable only on branches where the high-frequency causal-wake emissions from the innermost binary, inter-layer wake exchange, and outer-layer shielding close into a persistent return cycle. The time-averaged potential picture is useful, but the theorem burden is to show that the root ledger, phase closure, and separator conditions keep the coupled hierarchy on the same branch.
 
--   **Energy Shielding via Superposition:** From a distance, a Noether core appears to have far less energy and a much smaller potential signature than the raw sum of its six constituent architrinos. The rapid oscillation of the positive and negative point potentials within the nested structure causes their wake contributions to largely cancel out through superposition. This shielding effect is the working mechanism for how highly energetic structures can form the basis for relatively low-mass observed particles; quantitative extraction remains a mass-map closure target.
+-   **Energy Shielding via Superposition:** From a distance, a Noether core appears to have far less energy and a much smaller potential signature than the raw sum of its six constituent architrinos. The rapid oscillation of the positive- and negative-polarity architrinos within the nested structure causes their wake contributions to largely cancel out through superposition. This shielding effect is the working mechanism for how highly energetic structures can form the basis for relatively low-mass observed particles; quantitative extraction remains a mass-map closure target.
 
 ### Integer Phase-Closure States
 
@@ -71,6 +71,34 @@ This label is reduced because it omits the full architrino trajectories and reta
 
 The quantum-number generalization begins at this level. Generation, spin, chirality, and later observer-level orbital labels should be read as downstream coarse-grainings or measurement labels derived from admissible Noether-core closure labels and their emitted causal-wake envelopes. They should not be imposed as primitive particle labels before the closure, wake-envelope, and apparatus-coupling maps have been derived.
 
+For the horizon-interface entropy calculation, the counted labels must be restrictions of this same reduced closure label, not a second black-hole bookkeeping system. The alignment-restricted label is the theorem-target restriction
+$$
+\Lambda_{\text{NC}}^{\mathrm{align}}
+=
+\left.
+\Lambda_{\text{NC}}
+\right|_{\substack{
+v_M=c_f,\;v_O\to c_f\\
+\text{coplanar/co-linear binary layers}\\
+\text{precession ceases}
+}},
+$$
+with the remaining admissible entries inherited from the layer ledgers, inter-layer ledgers, chirality slot, and emitted wake envelope. For a connected block $U$ of alignment-area patches, the local label set to be counted has the schematic form
+$$
+\mathcal{L}_U(\theta)
+=
+\left\{
+\left(\Lambda_{\text{NC},a}^{\mathrm{align}}\right)_{a\in U}
+:
+\mathcal{G}_{\partial U},\,
+\mathcal{B}_{\partial\Omega}^{(O)}(\theta;W),\,
+\text{conservation and interface compatibility hold}
+\right\}
+/
+\sim_{O,\theta,W}.
+$$
+Here $\mathcal{G}_{\partial U}$ records the causal-root and wake-exchange compatibility across the edge of the block. This expression does not yet derive the entropy coefficient. It identifies the native object whose block entropy density must be computed before $\log|\mathcal{L}_U|/|U|\to1/4$ can be treated as more than a comparison target.
+
 ### Geometry and Exclusion Envelope
 
 The same tri-binary motion that supplies shielding also sweeps out a persistent dynamic exclusion envelope. That envelope is not the core definition itself; it is the geometric footprint of the nested assembly. For the oblate spheroidal form, exclusion-zone interpretation, and deformation channels, see [Noether Core Geometry](./noether-core-geometry.md).
@@ -87,14 +115,14 @@ On this reading, the generation ladder is not an arbitrary label attached after 
 
 ### Tri-Binary Alignment and Planck-Scale Framing
 
-The **inner binary** (maximal curvature, self-hit regime) is a stabilization outcome of wake dynamics. The **middle binary always rides field speed** ($v=c_f$), but its **radius and frequency vary**; it acts as the **energy-storage fulcrum** for transfers across the tri-binary.
+The **inner binary** (maximal curvature, self-hit regime) is a stabilization outcome of wake dynamics. The **middle binary** is the near-field-speed hinge, written as $s_M\approx c_f$ in the ordinary weak-stress branch and as $v_M=c_f$ in the terminal-alignment target; its **radius and frequency vary**. It acts as the **energy-storage fulcrum** for transfers across the tri-binary.
 
-As a tri-binary approaches an event horizon, the **outer binary frequency increases** and its **velocity approaches field speed**, while the **middle binary** remains at $v=c_f$ as its radius/frequency shift. At the horizon, the **middle and outer binaries reach $v=c_f$ and become coplanar and co-linear with the inner binary**, with **precession ceasing** at alignment.
+As a tri-binary approaches an event horizon, the **outer binary frequency increases** and its **speed approaches $c_f$**, while the **middle binary** remains on the declared hinge branch as its radius/frequency shift. At the horizon-alignment target, the **middle and outer binaries reach $c_f$ and become coplanar and co-linear with the inner binary**, with **precession ceasing** at alignment.
 
 **Rule of thumb:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (tri-binary coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale; compare [Singularity Resolution](singularity-resolution.md) and [Mapping the Planck Scale to the Tri-Binary Geometry](../theory-bridges/planck-scale-tri-binary-alignment.md).
 
 ### The Foundation for Fermions
 
-The Noether core is the structural foundation for fermions (such as electrons, quarks, and neutrinos). Different configurations and energy levels of the core and its surrounding axial/wake structure give rise to the different flavors and generations of particles in the Standard Model.
+The Noether core is the structural scaffold used by the fermion program. Different closure labels, shielding tiers, energy records, and surrounding axial/wake structures are expected to map to Standard Model flavors and generations, but the mapping remains a derivation target until the branch labels, axial-layer inventory, and apparatus-coupling records have been recovered from the dynamics.
 
 The collective motion, or **group velocity**, of a Noether core assembly determines its emergent behavior. The way these assemblies interact and pack together can lead to different statistical properties. The geometry-facing version of that claim is developed in [Fermi-Dirac and Bose-Einstein Statistics](../quantum/quantum-statistics.md): volumetric Noether-core envelopes are the substrate candidate for fermionic exclusion, while strongly oblated coherent support is the candidate route to bosonic shared occupation.

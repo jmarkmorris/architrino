@@ -66,12 +66,12 @@ There are no closed timelike curves, no backward-time propagation, and no fundam
 
 The background geometry is encoded by a pair of structures rather than by a single non-degenerate 4D metric.
 
-The absolute clock 1-form is
+The substrate clock 1-form is
 $$
 \tau=dt.
 $$
 
-This 1-form is closed, exact, and nowhere vanishing on $\mathcal{M}$. Its level sets are the simultaneity slices $\Sigma_t$.
+This 1-form is closed, exact, and nowhere vanishing on $\mathcal{M}$. Its level sets are the simultaneity slices $\Sigma_t$. This substrate use of $\tau$ must be kept distinct from separately declared observer clock readings or delay-root variables.
 
 The spatial metric on each slice is
 $$
@@ -215,7 +215,7 @@ The Galilean group may be summarized as a semidirect product combining time tran
 
 ## Preferred Rest Frame and Dynamical Symmetry Breaking
 
-Although Galilean boosts preserve the product foliation kinematically, the interaction law selects a preferred rest frame: the frame in which the wake speed $c_f$ is isotropic.
+Although Galilean boosts preserve the product foliation kinematically, the interaction law selects a preferred rest frame: the frame in which the wake speed $c_f$ is isotropic. This selects the rest structure for the dynamics, not a pre-labeled spatial origin or built-in axis orientation.
 
 This preferred frame is not curvature of the background. It is a dynamical consequence of finite-speed causal wake propagation and the medium/assembly dynamics built on top of the absolute timespace substrate.
 
@@ -243,18 +243,18 @@ $$
 t>t_0.
 $$
 
-The corresponding causal influence region is
+The filled causal future of that emission is
 $$
 \{(t,\mathbf{x}):t\geq t_0,\ \|\mathbf{x}-\mathbf{x}_0\|\leq c_f(t-t_0)\}.
 $$
 
-This is an expanding spatial sphere through the absolute-time stack, not a fundamental light cone of a Lorentzian metric. The boundary surface is the locus of points receiving the wake contribution emitted at $t_0$.
+The equality surface is an expanding spatial sphere through the absolute-time stack, not a fundamental light cone of a Lorentzian metric. The filled region records causal order and finite-speed reachability. It is not filled by the single emitted wake at that time: in the exact Master Equation, a receiver is acted on only at boundary roots satisfying the equality condition above. With a mollifier, support is a narrow neighborhood of that boundary and is interpreted in the weak limit.
 
-The causal wake geometry does not forbid an architrino from having $v>c_f$. It forbids backward-time influence. This separates kinematic freedom from dynamical stability: the Euclidean substrate places no kinematic speed limit on a point architrino, but that freedom does not imply that an assembly can be carried through the same regime intact.
+The causal wake geometry does not forbid a point architrino from having $\|\mathbf{v}\|>c_f$. It forbids backward-time influence. This separates kinematic freedom from dynamical stability: the Euclidean substrate places no kinematic speed limit on a point architrino, but that freedom does not imply that an assembly can be carried through the same regime intact.
 
 In effective wave language, causality is often diagnosed by front velocity rather than group or phase velocity. The substrate statement is sharper: the causal front is the first nonzero causal-wake support in absolute time. Observer-level group-speed, phase-speed, or packet-reshaping effects cannot override the support condition above; they are summaries of how an already causal wake record is sampled by assemblies.
 
-For standard-matter assemblies, the effective relativistic speed limit is a dynamical consequence of assembly structure. As an assembly's drift speed approaches $c_f$, its constituents increasingly outrun the potential interactions that normally maintain internal closure, so the leading side of the assembly encounters a strongly asymmetric wake ledger while trailing structure remains tied to older path-history contributions. The result is severe mechanical deformation rather than a substrate-level prohibition. The "speed of light" limit for macroscopic assemblies is therefore a structural integrity barrier: an assembly-level failure mode under extreme asymmetric self-interaction, not a curvature boundary or geometric wall in absolute timespace.
+For standard-matter assemblies, the observer-level relativistic speed limit is a closure result of assembly structure and channel dressing, usually expressed with the declared local comparison speed $c_\star$ and with $c_0$ in the weak homogeneous observer branch. At the primitive branch level, as constituent architrino speeds approach the wake-speed threshold $c_f$, the constituents increasingly outrun the potential interactions that normally maintain internal closure, so the leading side of the assembly encounters a strongly asymmetric wake ledger while trailing structure remains tied to older path-history contributions. The result is severe mechanical deformation rather than a substrate-level prohibition. The observer "speed of light" limit for macroscopic assemblies is therefore a structural integrity barrier in the recovered observer branch: an assembly-level failure mode under extreme asymmetric delayed-root closure, not a curvature boundary or geometric wall in absolute timespace.
 
 ## Coordinates and Forbidden Transformations
 
@@ -337,7 +337,7 @@ These assumptions are not additional ontology. They are the analytic conditions 
 | **Spatial geometry** | Fixed Euclidean slices | Part of a dynamical metric |
 | **Metric** | Separate $(\tau,h)$ data | Non-degenerate $g_{\mu\nu}$ |
 | **Simultaneity** | Absolute global foliation | Observer/frame dependent |
-| **Causality** | Absolute order plus finite wake speed | Metric light cones |
+| **Causality** | Absolute order plus finite wake speed | Effective metric light cones |
 | **Gravity** | Emergent from assembly and Noether-Sea dynamics | Spacetime curvature |
 | **Expansion** | No expansion of the void | Metric expansion possible |
 
@@ -355,4 +355,4 @@ Absolute timespace is the formal product background in which all architrino dyna
 
 ## Summary Postulate
 
-> **Postulate 3 (Absolute Timespace):** The background arena for all physics is the product manifold $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, equipped with absolute time $\tau=dt$ and Euclidean spatial metric $h_{ij}=\delta_{ij}$. This defines a global foliation into simultaneous Euclidean slices indexed by universal time. The background is non-dynamical and non-curved. Causality is defined by absolute temporal ordering and finite wake speed $c_f$. The product background preserves Galilean kinematic structure, while the interaction law selects a preferred rest frame dynamically. Effective Lorentz behavior, gravity, lensing, clock dilation, and cosmological expansion are emergent descriptions of assemblies and Noether-Sea dynamics within absolute timespace, not properties of the background itself.
+> **Postulate 3 (Absolute Timespace):** The background arena for all physics is the product manifold $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, equipped with the exact substrate clock form $\tau=dt$ and Euclidean spatial metric $h_{ij}=\delta_{ij}$. This defines a global foliation into simultaneous Euclidean slices indexed by universal time. The background is non-dynamical and non-curved. Causality is defined by absolute temporal ordering and finite wake speed $c_f$. The product background preserves Galilean kinematic structure, while the interaction law selects a preferred rest frame dynamically. Effective Lorentz behavior, gravity, lensing, clock dilation, and cosmological expansion are emergent descriptions of assemblies and Noether-Sea dynamics within absolute timespace, not properties of the background itself.

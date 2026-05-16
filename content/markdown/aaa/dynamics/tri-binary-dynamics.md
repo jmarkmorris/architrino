@@ -224,6 +224,591 @@ $$
 
 This metric is not substrate ontology. It is the effective clock, ruler, and null-path bookkeeping induced by the Noether-Sea state. The open reconstruction task is to show that the resulting connection reproduces Newtonian acceleration, redshift, Shapiro delay, lensing, and the required weak-field PPN coefficients while keeping torsion, nonmetricity, dispersion, birefringence, and preferred-frame residuals below observational limits.
 
+## Terminal Alignment Label-Count Target
+
+The black-hole entropy route needs a dynamics-side calculation, not a new gate. Once a Noether-core branch is driven to terminal alignment, the dynamics should output the admissible alignment-restricted closure labels and their neighbor-compatibility rules. For a connected block $U$ of horizon-adjacent alignment patches, the object is
+$$
+\mathcal{L}_U(\theta)
+=
+\left\{
+\left(\Lambda_{\text{NC},a}^{\mathrm{align}}\right)_{a\in U}
+:
+\text{all layer ledgers close, edge wake ledgers match, and } \theta \text{ is preserved}
+\right\}
+/
+\sim_{O,\theta,W}.
+$$
+
+The first calculation route is a transfer-compatibility problem. Fix a local strip direction $\nu$ on the horizon-adjacent interface. Let $\Lambda_{\theta}^{\mathrm{loc}}$ be the set of one-patch labels $\lambda$ obtained from $\Lambda_{\text{NC}}^{\mathrm{align}}$ after imposing one-patch layer closure, terminal-alignment conditions, and the Physical Observer quotient for the declared record $\theta$. Each $\lambda\in\Lambda_{\theta}^{\mathrm{loc}}$ carries two edge projections $\mathcal{E}_{\nu}^{-}(\lambda)$ and $\mathcal{E}_{\nu}^{+}(\lambda)$: the active causal-root, winding, emission-order, Jacobian-branch, and wake-exchange data presented to the two neighboring patches in the $\nu$ direction.
+
+Define the pair-compatibility predicate $\mathcal{C}_{\theta,\nu}(\lambda,\lambda')$ to hold exactly when:
+
+- $\mathcal{E}_{\nu}^{+}(\lambda)=\mathcal{E}_{\nu}^{-}(\lambda')$ up to the declared observer tolerance,
+- the edge balance satisfies $(\Delta E,\Delta\mathbf{p},\Delta\mathbf{J},\Delta q)_{\lambda,\lambda'}=(0,\mathbf{0},\mathbf{0},0)$,
+- the chirality entry $\chi_c$ and axial-frame orientation remain compatible under the coplanar/co-linear terminal-alignment condition,
+- and the combined pair projects to the same observer record, $\mathcal{R}_{O,W}(\lambda,\lambda')=\mathcal{R}_{O,W}^{\theta}$.
+
+The first counting matrix is therefore
+$$
+\left(\mathsf{T}_{\theta,\nu}\right)_{\lambda\lambda'}
+=
+\begin{cases}
+1, & \mathcal{C}_{\theta,\nu}(\lambda,\lambda'),\\
+0, & \text{otherwise},
+\end{cases}
+\qquad
+\lambda,\lambda'\in\Lambda_{\theta}^{\mathrm{loc}}.
+$$
+This is a counting matrix, not a thermodynamic weight. For an open strip of $N$ patches,
+$$
+\left|\mathcal{L}_{[1,N]}(\theta)\right|
+=
+\mathbf{1}^{T}
+\mathsf{T}_{\theta,\nu}^{N-1}
+\mathbf{1}
++
+\mathcal{O}(\epsilon_{\mathrm{edge}}),
+$$
+while a periodic strip uses $\mathrm{Tr}(\mathsf{T}_{\theta,\nu}^{N})$. If the label set is finite and the transfer rule is local, the strip entropy density is
+$$
+s_{\mathrm{align}}(\theta;\nu)
+=
+\lim_{N\to\infty}
+\frac{1}{N}
+\log\left|\mathcal{L}_{[1,N]}(\theta)\right|
+=
+\log\rho(\mathsf{T}_{\theta,\nu}),
+$$
+where $\rho$ is the spectral radius. In a two-dimensional patch network the same target becomes the subadditive pressure
+$$
+s_{\mathrm{align}}(\theta)
+=
+\lim_{|U|\to\infty}
+\frac{1}{|U|}
+\log\left|\mathcal{L}_U(\theta)\right|,
+$$
+with the limit taken over blocks whose boundary-to-area ratio vanishes.
+
+At the present derivation level, the admissible one-patch labels can be enumerated as a finite branch-ledger schema, not yet as a numerical table. For a primitive outer-period closure, the integer-lock notation gives
+$$
+(k_I,k_M,k_O)=(n,m,1),
+\qquad
+1<m<n,
+$$
+with longer closure periods represented by common integer multiples before reduction to the primitive label. For each layer $\ell\in\{I,M,O\}$, write $\sigma_\ell=s_\ell/c_f$ in the circular reduced root chart. The binary root vocabulary supplies finite active branch sets on any resolved terminal branch:
+$$
+\mathcal{M}_{s,\ell}
+=
+\left\{
+r\in\mathbb{Z}_{\ge0}
+:
+\tilde{\delta}_{s,\ell}+2\pi r
+=
+2\sigma_\ell\sin(\tilde{\delta}_{s,\ell}/2)
+\right\},
+$$
+$$
+\mathcal{M}_{p,\ell}
+=
+\left\{
+r\in\mathbb{Z}_{\ge0}
+:
+\tilde{\delta}_{p,\ell}+2\pi r
+=
+2\sigma_\ell\cos(\tilde{\delta}_{p,\ell}/2)
+\right\}.
+$$
+Branch-birth or grazing cases, where a Jacobian ceases to be transversal, must be split into their own boundary class rather than silently folded into a smooth label.
+
+Thus the current one-patch candidate has the form
+$$
+\lambda
+=
+\left(
+(n,m,1);\,
+(\mathcal{M}_{s,\ell},\mathcal{M}_{p,\ell},J_{\ell},\prec_{\ell})_{\ell=I,M,O};\,
+\mathcal{G}_{IM}^{\mathrm{align}},\mathcal{G}_{IO}^{\mathrm{align}},\mathcal{G}_{MO}^{\mathrm{align}};\,
+\chi_c;\,
+\mathcal{E}_{\nu}^{-},\mathcal{E}_{\nu}^{+};\,
+\mathcal{R}_{O,W}^{\theta}
+\right),
+$$
+where $J_{\ell}$ collects the active branch Jacobians and $\prec_{\ell}$ records the emission-order relation within the layer. The finite candidate set is the subset of these labels satisfying exact one-patch phase closure, terminal-alignment conditions, edge conservation, inter-layer wake compatibility, and the observer quotient:
+$$
+\Lambda_{\theta}^{\mathrm{loc}}
+\subseteq
+\left\{
+\lambda:
+\Delta E=\Delta\mathbf{p}=\Delta\mathbf{J}=0,\;
+\Delta q=0,\;
+\mathcal{R}_{O,W}(\lambda)=\mathcal{R}_{O,W}^{\theta}
+\right\}
+/
+\sim_{O,\theta,W}.
+$$
+
+This makes the next missing equations precise. To turn the schema into an actual transfer matrix, the dynamics must supply: first, the terminal branch equations fixing $(s_\ell,R_\ell,\omega_\ell,\mathbf{A}_\ell)$ under $v_M=c_f$, $v_O\to c_f$, and coplanar/co-linear alignment; second, the inter-layer maps that reduce $\mathcal{G}_{IM}^{\mathrm{align}},\mathcal{G}_{IO}^{\mathrm{align}},\mathcal{G}_{MO}^{\mathrm{align}}$ to boundary wake data; and third, the observer-record quotient that decides which edge distinctions remain visible in $\theta$.
+
+An edge-map scaffold can be written before the terminal branch is numerically solved. Let $\mathbf{n}_{\nu}$ be the outward unit normal for the chosen local edge direction, and let $\mathcal{B}_{\mathrm{term}}(\lambda)$ be the finite set of active layer and inter-layer causal branches retained by the terminal one-patch label. Each branch $b\in\mathcal{B}_{\mathrm{term}}(\lambda)$ has a source $j_b$, receiver $o_b$, emission time $t_{0,b}$, reception time $t_b$, winding or root index $r_b$, root type $\tau_b\in\{\text{self},\text{partner},\text{inter-layer}\}$, line of action
+$$
+\hat{\mathbf{r}}_b
+=
+\frac{\mathbf{x}_{o_b}(t_b)-\mathbf{x}_{j_b}(t_{0,b})}
+{\left\|\mathbf{x}_{o_b}(t_b)-\mathbf{x}_{j_b}(t_{0,b})\right\|},
+$$
+and branch Jacobian
+$$
+J_b
+=
+1
+-
+\frac{\mathbf{v}_{j_b}(t_{0,b})\cdot\hat{\mathbf{r}}_b}{c_f}.
+$$
+The branch is admissible only when its causal-root equation closes,
+$$
+\left\|\mathbf{x}_{o_b}(t_b)-\mathbf{x}_{j_b}(t_{0,b})\right\|
+=
+c_f(t_b-t_{0,b}),
+\qquad
+J_b\ne0,
+$$
+and the terminal label also satisfies the integer-lock and alignment constraints
+$$
+\omega_O T=2\pi,\qquad
+\omega_M T=2\pi m,\qquad
+\omega_I T=2\pi n,
+$$
+$$
+s_M=c_f,\qquad
+s_O\to c_f,\qquad
+\max_{\ell,\ell'}\arccos(\hat{\mathbf{A}}_\ell\cdot\hat{\mathbf{A}}_{\ell'})\to0.
+$$
+
+For such a branch, define the boundary-facing datum
+$$
+\mathfrak{d}_{\nu}^{\pm}(b)
+=
+\left[
+\tau_b,\,
+\ell(j_b),\ell(o_b),\,
+r_b,\,
+t_{0,b}\bmod T,\,
+\operatorname{sgn}(q_{j_b}q_{o_b}),\,
+J_b,\,
+\hat{\mathbf{r}}_b\cdot\mathbf{n}_{\nu},\,
+\mathbf{a}_{o_b\leftarrow j_b}(t_b;t_{0,b})\cdot\mathbf{n}_{\nu}
+\right]_{O,\theta,W}
+$$
+whenever $\pm(\hat{\mathbf{r}}_b\cdot\mathbf{n}_{\nu})>0$. Here $[\cdot]_{O,\theta,W}$ means that distinctions erased by the Physical Observer quotient for record $\theta$ are already identified. The edge maps are then the multisets after the observer quotient:
+$$
+\mathcal{E}_{\nu}^{\pm}(\lambda)
+=
+\left\{
+\mathfrak{d}_{\nu}^{\pm}(b)
+:
+b\in\mathcal{B}_{\mathrm{term}}(\lambda),\,
+\pm(\hat{\mathbf{r}}_b\cdot\mathbf{n}_{\nu})>0
+\right\}.
+$$
+This equation is the derived projection target: it reduces each terminal one-patch branch ledger to the wake data presented across one edge. The still-open numerical step is solving $\mathcal{B}_{\mathrm{term}}(\lambda)$ from the full three-layer state-dependent delayed equations, including the regularized action and energy ledger that assigns the conserved increments used in $\mathcal{C}_{\theta,\nu}$.
+
+The reduced terminal branch system can be stated as a finite residual problem on the primitive outer period. Choose $T>0$ and integers $1<m<n$, set
+$$
+\omega_O=\frac{2\pi}{T},
+\qquad
+\omega_M=m\omega_O,
+\qquad
+\omega_I=n\omega_O,
+$$
+and represent the aligned circular branch by
+$$
+\mathbf{x}_{\ell,\alpha}(t)
+=
+\mathbf{c}_{\ell}
++
+\alpha R_{\ell}
+\mathbf{e}\!\left(\omega_\ell t+\phi_\ell\right),
+\qquad
+\ell\in\{I,M,O\},
+\qquad
+\alpha\in\{+1,-1\},
+$$
+where $\mathbf{e}(\psi)$ is the unit vector in the common terminal plane. The phase-lock and terminal-alignment constraints are
+$$
+\phi_M-m\phi_O=\phi_{MO}^{\ast},
+\qquad
+\phi_I-n\phi_O=\phi_{IO}^{\ast},
+$$
+$$
+R_\ell\omega_\ell=s_\ell,
+\qquad
+s_M=c_f,
+\qquad
+s_O\to c_f,
+\qquad
+\mathbf{A}_I=\mathbf{A}_M=\mathbf{A}_O
+$$
+up to the declared terminal-alignment tolerance. The intra-layer branches use the self-hit and partner-hit equations above. The inter-layer candidates are the delayed roots
+$$
+F_b(\Delta_b)
+\equiv
+\left\|
+\mathbf{x}_{\ell_o,\alpha_o}(t_b)
+-
+\mathbf{x}_{\ell_j,\alpha_j}(t_b-\Delta_b)
+\right\|
+-
+c_f\Delta_b
+=
+0,
+$$
+with $0<\Delta_b\le H_{\lambda}$ for the finite history window assigned to $\lambda$, layer pair $(\ell_j,\ell_o)\in\{(I,M),(I,O),(M,O),(M,I),(O,I),(O,M)\}$, signs $\alpha_j,\alpha_o\in\{+1,-1\}$, and emission phase recorded modulo $T$. The branch is kept in $\mathcal{B}_{\mathrm{term}}(\lambda)$ only if it is transversal,
+$$
+J_b
+=
+1
+-
+\frac{\mathbf{v}_{\ell_j,\alpha_j}(t_b-\Delta_b)\cdot\hat{\mathbf{r}}_b}{c_f}
+\ne0,
+$$
+and belongs to the same integer-lock, emission-order, and observer-record class as $\lambda$.
+
+The remaining dynamics are not another gate; they are the equations that decide whether a proposed branch label exists. For each terminal branch label, the cycle-averaged squared residual must vanish:
+$$
+\mathcal{Q}_{\ell,\alpha}^{\mathrm{term}}(\lambda)
+=
+\frac{1}{T}
+\int_0^T
+\left\|
+\ddot{\mathbf{x}}_{\ell,\alpha}(t)
+-
+\sum_{b:\,o_b=(\ell,\alpha)}
+\mathbf{a}_{o_b\leftarrow j_b}(t;t-\Delta_b)
+\right\|^2
+dt
+=
+0,
+$$
+with the same branch set also satisfying the local conservation ledger
+$$
+\sum_{b\in\mathcal{B}_{\mathrm{term}}(\lambda)}
+\left(
+\Delta E_b,\Delta\mathbf{p}_b,\Delta\mathbf{J}_b,\Delta q_b
+\right)
+=
+(0,\mathbf{0},\mathbf{0},0).
+$$
+This defines the current reduced solve: $\mathcal{B}_{\mathrm{term}}(\lambda)$ is the finite set of intra-layer and inter-layer roots satisfying the terminal kinematics, transversality, cycle-averaged dynamics, conservation ledger, and observer quotient. A numerical enumeration can now target these equations directly; if no solution has $|J_b|$ bounded away from zero, the label must be reclassified as a grazing boundary case rather than counted as an interior transfer-matrix state.
+
+In the symmetric common-center specialization, the inter-layer root problem reduces to scalar root curves over the outer phase. Set
+$$
+\mathbf{c}_I=\mathbf{c}_M=\mathbf{c}_O,
+\qquad
+q_I=n,\quad q_M=m,\quad q_O=1,
+\qquad
+u=\omega_O t\pmod{2\pi},
+$$
+and introduce dimensionless layer radii
+$$
+x_\ell
+=
+\frac{\omega_O R_\ell}{c_f}
+=
+\frac{s_\ell/c_f}{q_\ell}.
+$$
+For a branch from source layer $\ell_j$ and sign $\alpha_j$ to receiver layer $\ell_o$ and sign $\alpha_o$, write the outer-period delay as $\delta=\omega_O\Delta$. The phase separation is
+$$
+\Theta_{jo}^{\alpha_j\alpha_o}(u,\delta)
+=
+(q_o-q_j)u
++
+q_j\delta
++
+\phi_o-\phi_j,
+$$
+and the causal-root equation becomes
+$$
+\delta
+=
+\left[
+x_o^2+x_j^2
+-
+2\alpha_o\alpha_j x_o x_j
+\cos\Theta_{jo}^{\alpha_j\alpha_o}(u,\delta)
+\right]^{1/2},
+\qquad
+0<\delta\le \omega_O H_{\lambda}.
+$$
+The corresponding inter-layer Jacobian reduces to
+$$
+J_{jo}^{\alpha_j\alpha_o}(u,\delta)
+=
+1
+-
+\alpha_o\alpha_j
+\frac{(s_j/c_f)x_o}{\delta}
+\sin\Theta_{jo}^{\alpha_j\alpha_o}(u,\delta).
+$$
+
+Thus an inter-layer entry of $\mathcal{B}_{\mathrm{term}}(\lambda)$ is not an arbitrary phase sample. It is a smooth $2\pi$-periodic root curve $\delta_b(u)$ of the scalar equation above, with $|J_{jo}^{\alpha_j\alpha_o}(u,\delta_b(u))|$ bounded away from zero and with the same emission-order class over the full outer period. The intra-layer pieces remain the self-hit and partner-hit equations already listed for each $\ell$. In this symmetric special case, the unknowns left for enumeration are therefore
+$$
+(m,n),\quad
+(x_I,x_M,x_O),\quad
+(\phi_{MO}^{\ast},\phi_{IO}^{\ast}),\quad
+\{\delta_b(u)\}_{b\in\mathcal{B}_{\mathrm{term}}(\lambda)},
+$$
+subject to $x_M=1/m$, $x_O\to1$, branch transversality, the cycle residual $\mathcal{Q}_{\ell,\alpha}^{\mathrm{term}}=0$, and the conservation ledger. This is the first algebraic reduction of the terminal branch problem. It still does not select $(m,n)$ or prove existence; selection requires the residual and conservation equations to admit at least one branch set with a positive Jacobian floor.
+
+The scalar reduction does, however, give an exact no-grazing certificate for a proposed inter-layer branch. Define the squared residual
+$$
+F_{jo}^{\alpha_j\alpha_o}(u,\delta)
+=
+x_o^2+x_j^2
+-
+2\alpha_o\alpha_j x_o x_j
+\cos\Theta_{jo}^{\alpha_j\alpha_o}(u,\delta)
+-
+\delta^2.
+$$
+The causal-root equation is equivalent to $F_{jo}^{\alpha_j\alpha_o}(u,\delta)=0$ with $\delta>0$, and, using $q_jx_j=s_j/c_f$, its delay derivative is
+$$
+\partial_{\delta}F_{jo}^{\alpha_j\alpha_o}(u,\delta)
+=
+-2\delta\,
+J_{jo}^{\alpha_j\alpha_o}(u,\delta).
+$$
+Thus the branch Jacobian is exactly the implicit-function denominator for the scalar root. Any nonzero root with $|J_{jo}^{\alpha_j\alpha_o}|>0$ continues locally as a smooth delay curve, and along such a curve
+$$
+\frac{d\delta_b}{du}
+=
+\frac{
+\alpha_o\alpha_j x_o x_j(q_o-q_j)
+\sin\Theta_{jo}^{\alpha_j\alpha_o}(u,\delta_b(u))
+}{
+\delta_b(u)
+J_{jo}^{\alpha_j\alpha_o}(u,\delta_b(u))
+}.
+$$
+
+This turns the symmetric terminal branch problem into a compact root-curve test before the force residual is evaluated. Any inter-layer root must lie in the geometric delay strip
+$$
+|x_o-x_j|
+\le
+\delta
+\le
+\min\{x_o+x_j,\omega_OH_{\lambda}\}.
+$$
+For fixed $(m,n)$, radii, and relative phases, an interior inter-layer ledger is admissible only if its initial roots at one outer phase continue around the full $2\pi$ period as closed curves $\delta_b(u)$ that remain inside this strip, satisfy a uniform floor
+$$
+\delta_b(u)\ge\epsilon_{\delta}>0,
+\qquad
+\left|
+J_{jo}^{\alpha_j\alpha_o}(u,\delta_b(u))
+\right|
+\ge
+\epsilon_J>0,
+$$
+and preserve the declared emission-order and observer-record class. Failure of the delay strip rejects the candidate kinematically; failure of the Jacobian floor places it in the grazing boundary class; failure of closed return changes the root ledger over one outer period. Passing this scalar certificate is still not terminal-branch existence, because $\mathcal{Q}_{\ell,\alpha}^{\mathrm{term}}=0$ and the conservation ledger must still close, but it is the first finite rejection and continuation criterion for candidate $(m,n)$ branch labels.
+
+The same chart projects the force residual once a certified root curve is supplied. Let $q_{\ell,\alpha}^{\mathrm{pol}}=\sigma_{\ell,\alpha}\epsilon$ denote the polarity bookkeeping unit carried by the architrino on layer $\ell$ and sign $\alpha$, distinguishing it from the layer frequency integer $q_\ell$. Write the signed coefficient inherited from the canonical per-hit law as
+$$
+\mathcal{K}_{jo}^{\alpha_j\alpha_o}
+=
+\kappa\,
+\operatorname{sign}(q_{\ell_j,\alpha_j}^{\mathrm{pol}}q_{\ell_o,\alpha_o}^{\mathrm{pol}})
+\left|q_{\ell_j,\alpha_j}^{\mathrm{pol}}q_{\ell_o,\alpha_o}^{\mathrm{pol}}\right|
+\frac{\omega_O^2}{c_f^2}.
+$$
+For a certified inter-layer curve $\delta_b(u)$, the circular-frame radial component, positive outward from the common center of the receiver layer, is
+$$
+a_{jo,r}^{\alpha_j\alpha_o}(u)
+=
+\mathcal{K}_{jo}^{\alpha_j\alpha_o}
+\frac{
+x_o-\alpha_o\alpha_j x_j
+\cos\Theta_{jo}^{\alpha_j\alpha_o}(u,\delta_b(u))
+}{
+\left(\delta_b(u)\right)^3
+\left|J_{jo}^{\alpha_j\alpha_o}(u,\delta_b(u))\right|
+},
+$$
+and the tangential component, positive in the receiver's instantaneous direction of motion, is
+$$
+a_{jo,\tau}^{\alpha_j\alpha_o}(u)
+=
+\mathcal{K}_{jo}^{\alpha_j\alpha_o}
+\frac{
+\alpha_o\alpha_j x_j
+\sin\Theta_{jo}^{\alpha_j\alpha_o}(u,\delta_b(u))
+}{
+\left(\delta_b(u)\right)^3
+\left|J_{jo}^{\alpha_j\alpha_o}(u,\delta_b(u))\right|
+}.
+$$
+These formulas are just the canonical line-of-action acceleration projected onto the two circular-frame basis vectors. The intra-layer self-hit and partner-hit pieces use the same projection after substituting their own certified delay roots from the binary branch chart.
+
+For each receiver $(\ell_o,\alpha_o)$, sum all admitted branch contributions into
+$$
+\mathcal{A}_{\ell_o,\alpha_o}^{r}(u)
+=
+\sum_{b:\,o_b=(\ell_o,\alpha_o)}
+a_{b,r}(u),
+\qquad
+\mathcal{A}_{\ell_o,\alpha_o}^{\tau}(u)
+=
+\sum_{b:\,o_b=(\ell_o,\alpha_o)}
+a_{b,\tau}(u).
+$$
+On the symmetric terminal circle, with $\mathbf{e}_{\perp}(\psi)=d\mathbf{e}(\psi)/d\psi$, the target acceleration has only inward radial component,
+$$
+\ddot{\mathbf{x}}_{\ell_o,\alpha_o}(t)
+\cdot
+\alpha_o\mathbf{e}(q_ou+\phi_o)
+=
+-R_o(q_o\omega_O)^2,
+\qquad
+\ddot{\mathbf{x}}_{\ell_o,\alpha_o}(t)
+\cdot
+\alpha_o\mathbf{e}_{\perp}(q_ou+\phi_o)
+=
+0.
+$$
+Thus the vector residual $\mathcal{Q}_{\ell,\alpha}^{\mathrm{term}}$ reduces in this chart to the two scalar residual functions
+$$
+\mathcal{R}_{\ell_o,\alpha_o}^{r}(u)
+=
+-R_o(q_o\omega_O)^2
+-
+\mathcal{A}_{\ell_o,\alpha_o}^{r}(u),
+\qquad
+\mathcal{R}_{\ell_o,\alpha_o}^{\tau}(u)
+=
+-
+\mathcal{A}_{\ell_o,\alpha_o}^{\tau}(u).
+$$
+Equivalently,
+$$
+\mathcal{Q}_{\ell_o,\alpha_o}^{\mathrm{term}}
+=
+\frac{1}{2\pi}
+\int_0^{2\pi}
+\left[
+\left(\mathcal{R}_{\ell_o,\alpha_o}^{r}(u)\right)^2
++
+\left(\mathcal{R}_{\ell_o,\alpha_o}^{\tau}(u)\right)^2
+\right]
+du.
+$$
+Since the integrand is non-negative on a smooth certified branch, $\mathcal{Q}_{\ell_o,\alpha_o}^{\mathrm{term}}=0$ is equivalent to $\mathcal{R}_{\ell_o,\alpha_o}^{r}(u)=0$ and $\mathcal{R}_{\ell_o,\alpha_o}^{\tau}(u)=0$ for the full outer period. This is the residual projection that can select or reject candidate integer locks after the scalar root curves are known. The remaining missing closure is the signed branch-strength and conservation assignment: without the polarity factors, regularized intra-layer branch weights, and conserved increments $(\Delta E_b,\Delta\mathbf{p}_b,\Delta\mathbf{J}_b,\Delta q_b)$, the chart can reject kinematic and force-residual failures but cannot yet prove that a particular $(m,n)$ is the terminal solution.
+
+The branch-strength closure data can be stated without adding another gate. For every admitted branch $b$, the terminal ledger must record
+$$
+b
+\mapsto
+\left(
+j_b,o_b,\tau_b,\delta_b(u),\hat{\mathbf{r}}_b(u),J_b(u),
+q_{j_b}^{\mathrm{pol}},q_{o_b}^{\mathrm{pol}},w_b^{(\eta)}(u)
+\right),
+$$
+where $j_b$ and $o_b$ are the source and receiver architrinos, $\tau_b$ is the hit type, and $w_b^{(\eta)}$ is the regularized inverse-square/Jacobian weight assigned to that branch. On a sharp transversal inter-layer branch,
+$$
+w_b^{(0)}(u)
+=
+\frac{\omega_O^2}{c_f^2}
+\frac{1}{
+\left(\delta_b(u)\right)^2
+\left|J_b(u)\right|
+},
+$$
+while intra-layer self-hit and partner-hit entries use the corresponding binary-root delay and Jacobian. The branch acceleration is then the canonical per-hit law in ledger form,
+$$
+\mathbf{a}_b^{(\eta)}(u)
+=
+\kappa\,
+\operatorname{sign}(q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}})
+\left|q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}}\right|
+w_b^{(\eta)}(u)
+\hat{\mathbf{r}}_b(u).
+$$
+The sharp limit is acceptable only when the positive delay and Jacobian-floor certificate above holds; otherwise the branch must retain its regularized weight and remain a boundary case rather than an interior terminal label.
+
+The conservation increments attached to a branch must separate mechanical exchange from wake-history bookkeeping. Over one outer period,
+$$
+\Delta E_{b}^{\mathrm{mech}}
+=
+\frac{\mu_{\text{arch}}}{\omega_O}
+\int_0^{2\pi}
+\mathbf{a}_b^{(\eta)}(u)\cdot\mathbf{v}_{o_b}(u)\,du,
+$$
+$$
+\Delta\mathbf{p}_{b}^{\mathrm{mech}}
+=
+\frac{\mu_{\text{arch}}}{\omega_O}
+\int_0^{2\pi}
+\mathbf{a}_b^{(\eta)}(u)\,du,
+\qquad
+\Delta\mathbf{J}_{b}^{\mathrm{mech}}
+=
+\frac{\mu_{\text{arch}}}{\omega_O}
+\int_0^{2\pi}
+\mathbf{x}_{o_b}(u)\times\mathbf{a}_b^{(\eta)}(u)\,du.
+$$
+Because delayed momentum and energy are not purely instantaneous mechanical quantities, the full ledger entries are
+$$
+\Delta E_b
+=
+\Delta E_b^{\mathrm{mech}}
++
+\Delta E_b^{\mathrm{wake}},
+\qquad
+\Delta\mathbf{p}_b
+=
+\Delta\mathbf{p}_b^{\mathrm{mech}}
++
+\Delta\mathbf{p}_b^{\mathrm{wake}},
+$$
+$$
+\Delta\mathbf{J}_b
+=
+\Delta\mathbf{J}_b^{\mathrm{mech}}
++
+\Delta\mathbf{J}_b^{\mathrm{wake}}.
+$$
+For an internal causal-wake hit, $\Delta q_b=0$ because no architrino identity is created, destroyed, or transferred; nonzero charge entries belong only to a declared provenance crossing of the patch boundary. The terminal conservation ledger is therefore the simultaneous closure condition
+$$
+\sum_{b\in\mathcal{B}_{\mathrm{term}}(\lambda)}
+\Delta E_b
+=
+0,
+\qquad
+\sum_{b\in\mathcal{B}_{\mathrm{term}}(\lambda)}
+\Delta\mathbf{p}_b
+=
+\mathbf{0},
+$$
+$$
+\sum_{b\in\mathcal{B}_{\mathrm{term}}(\lambda)}
+\Delta\mathbf{J}_b
+=
+\mathbf{0},
+\qquad
+\sum_{b\in\mathcal{B}_{\mathrm{term}}(\lambda)}
+\Delta q_b
+=
+0.
+$$
+This completes the local bookkeeping needed for terminal enumeration: a candidate $(m,n)$ must pass scalar root continuation, force-residual cancellation, and the history-aware conservation ledger on the same branch set. What remains unsolved is not another requirement artifact but the derivation of $w_b^{(\eta)}$ and the wake-history increments from a time-translation- and Euclidean-invariant regularized action for the coupled three-layer branch.
+
+This scaffold identifies the smallest missing dynamics. The delayed equations must enumerate $\Lambda_{\theta}^{\mathrm{loc}}$ and derive the edge maps $\mathcal{E}_{\nu}^{\pm}$ from the terminal aligned branch. [Dyadic Resonance Lock](dyadic-resonance-lock.md) supplies the candidate integer phase lattice, and [Binary Dynamics](binary-dynamics.md#self-hit-definition-and-diagnostics) supplies the self-hit and partner-hit root vocabulary, but neither document yet computes the terminal aligned edge projections from the full three-layer dynamics.
+
+The local-horizon coefficient requires
+$$
+s_{\mathrm{align}}(\theta)
+\longrightarrow
+\frac{1}{4}
+$$
+in the equilibrium weak-field horizon-interface limit. This is the precise missing dynamics calculation. It fails if terminal alignment admits many inequivalent local labels with long-range constraints that restore volume or history-length scaling, if the observer quotient erases the labels needed for Page-compatible release accounting, or if the transfer rule must be retuned separately for entropy, flux, and ADM/Cartan recovery.
+
 ## Dynamics-Side Roadmap
 
 The dynamics chapter contributes the stable pieces needed by the larger theorem program:
@@ -233,8 +818,9 @@ The dynamics chapter contributes the stable pieces needed by the larger theorem 
 3. Track how motion deforms the rest-state lock into braided spiral-helical geometry.
 4. Derive local clock diagnostics from the transverse causal budget lemma.
 5. Solve all-layer branch updates for one-$h$ transactions and extract the branch-indexed clock and ruler Lorentz factors.
-6. Output alignment, closure, Floquet, grazing, branch-residual, and Cartan reconstruction diagnostics.
-7. Keep mass, photon, equivalence-principle, and full GR matching claims at the level of reconstruction targets until their proof burdens close.
+6. Compute the terminal-alignment label-count density $s_{\mathrm{align}}$ from alignment-restricted closure labels and edge wake compatibility.
+7. Output alignment, closure, Floquet, grazing, branch-residual, and Cartan reconstruction diagnostics.
+8. Keep mass, photon, equivalence-principle, and full GR matching claims at the level of reconstruction targets until their proof burdens close.
 
 ## Working Hypotheses
 
@@ -271,7 +857,7 @@ Primitive dynamics scans and effective-metric comparisons must not mix $c_f$ and
 
 ### A) High Group Velocity Geometry (Oblate Spheroid)
 
-**Assumption (testable):** The outer binary moving at translational speed $v_{\text{trans}}$ generates a causal interaction envelope that is oblate and flattens along the direction of motion as $v_{\text{trans}} \to c_f$.
+**Assumption (testable):** The outer binary moving at translational speed $v_{\text{trans}}$ generates a causal interaction envelope that is oblate and flattens along the direction of motion as $v_{\text{trans}} \to c_\star$ for the declared diagnostic. Primitive branch charts set $c_\star=c_f$; observer-level closure sets $c_\star=c_{\text{eff}}(\mathbf{x})$ or the relevant photon-channel speed.
 
 **Geometry:** Let the motion define the $z$-axis. Model the envelope as an ellipsoid
 $$
@@ -281,20 +867,20 @@ with transverse radius $R_\perp$ and longitudinal radius $R_\parallel$.
 
 Adopt a kinematic contraction law (to be validated by dynamics):
 $$
-\beta = \frac{v_{\text{trans}}}{c_f}, \quad \gamma = \frac{1}{\sqrt{1-\beta^2}}, \quad R_\parallel = \frac{R_\perp}{\gamma}.
+\beta_\star = \frac{v_{\text{trans}}}{c_\star}, \quad \gamma_\star = \frac{1}{\sqrt{1-\beta_\star^2}}, \quad R_\parallel = \frac{R_\perp}{\gamma_\star}.
 $$
-As $\beta \to 1$, $R_\parallel \to 0$ and the envelope collapses toward a disk.
-**Right-triangle link:** Treat $c_f$ as the fixed causal propagation speed and decompose it into orthogonal components: one leg is the group translation $v_{\text{trans}}$, the other leg is the longitudinal closure speed $v_\parallel$. Then
+As $\beta_\star \to 1$, $R_\parallel \to 0$ and the envelope collapses toward a disk.
+**Right-triangle link:** Treat $c_\star$ as the declared causal propagation speed and decompose it into orthogonal components: one leg is the group translation $v_{\text{trans}}$, the other leg is the longitudinal closure speed $v_\parallel$. Then
 $$
-c_f^2 = v_{\text{trans}}^2 + v_\parallel^2 \quad \Rightarrow \quad v_\parallel = c_f\sqrt{1-\beta^2}.
+c_\star^2 = v_{\text{trans}}^2 + v_\parallel^2 \quad \Rightarrow \quad v_\parallel = c_\star\sqrt{1-\beta_\star^2}.
 $$
-Mapping causal speed to closure length gives $R_\parallel = R_\perp (v_\parallel/c_f) = R_\perp\sqrt{1-\beta^2} = R_\perp/\gamma$, recovering the ellipsoid law from the triangle geometry.
+Mapping causal speed to closure length gives $R_\parallel = R_\perp (v_\parallel/c_\star) = R_\perp\sqrt{1-\beta_\star^2} = R_\perp/\gamma_\star$, recovering the ellipsoid law from the triangle geometry.
 
 **Impact on delay locking:** The round-trip delay $\Delta t_{\text{rt}}$ is the time between an outer-binary architrino’s emission and the moment its wake returns to influence that same architrino, approximating the inner+middle as a compact core at the center. For a ray at polar angle $\theta$ relative to the $z$-axis, the intersection radius with the ellipsoid is
 $$
 R(\theta) = \left(\frac{\sin^2\theta}{R_\perp^2} + \frac{\cos^2\theta}{R_\parallel^2}\right)^{-1/2}.
 $$
-Then $\Delta t_{\text{rt}}(\theta) \approx 2 R(\theta)/c_f$, and the phase condition generalizes to
+Then $\Delta t_{\text{rt}}(\theta) \approx 2 R(\theta)/c_\star$, and the phase condition generalizes to
 $$
 \Phi_n(\theta, \mathbf{v}_{\text{trans}}) = \omega_n\,\Delta t_{\text{rt}}(\theta) + \phi_{\text{geom}}(n).
 $$
@@ -340,11 +926,11 @@ At sufficiently high stress, this implies a terminal rung: further increases can
 
 **Status:** This precession-expanded exclusion volume is not explicitly modeled in the current minimal system; treat results as lower bounds until the swept-volume effect is added.
 
-### D) Time Distortion: Spacetime Time vs Absolute Time
+### D) Local Clock-Rate Diagnostic
 
-**Goal:** Define "time in spacetime" as a geometric effect in the delay loop, not a relativistic postulate.
+**Goal:** Define local clock-rate change as a geometric effect in the delay loop, not as distortion of substrate time or as a relativistic postulate.
 
-**Absolute clock:** Use the outer-binary Planck cadence as a reference cadence: $T_0 = 1/f_P$.
+**Reference cadence:** Use the outer-binary Planck cadence as a reference assembly cadence: $T_0 = 1/f_P$.
 
 The cadence $T_0=1/f_P$ is a reference assembly cadence, not the absolute substrate time itself. Absolute time $t$ remains the uniform ordering parameter for causal-hit evaluation. The local clock diagnostic compares assembly cycle counts to this reference cadence:
 $$
@@ -364,19 +950,19 @@ and, for the ellipsoid-only case with no gradient,
 $$
 \alpha(\theta) = \frac{R(\theta)}{R_{\text{ref}}}
 $$
-measures how the local phase-closure period compares to the invariant clock:
+measures how the local phase-closure period compares to the reference cadence:
 $$
 T_{\text{local}}(\theta) = T_0 \, \alpha(\theta, G_{\text{grad}}).
 $$
-When $\alpha > 1$, local cycles are longer relative to $T_0$; when $\alpha < 1$, they are shorter. This is the penultimate definition of time distortion in this model.
+When $\alpha > 1$, local cycles are longer relative to $T_0$; when $\alpha < 1$, they are shorter. This is a phase-closure clock-rate diagnostic, not a change in absolute time.
 
-**Geometric source of distortion:** The causal envelope shape sets $\Delta t_{\text{rt}}$. As the tri-binary tilts out of planar and loses energy, the envelope becomes less oblate (larger $R_\parallel/R_\perp$), increasing some path lengths and stretching $T_{\text{local}}$; as it flattens, $R_\parallel$ shrinks and the corresponding delays contract. Gradients ($G_{\text{grad}}$) further skew delays across the orbit.
+**Geometric source of clock-rate shift:** The causal envelope shape sets $\Delta t_{\text{rt}}$. As the tri-binary tilts out of planar and loses energy, the envelope becomes less oblate (larger $R_\parallel/R_\perp$), increasing some path lengths and stretching $T_{\text{local}}$; as it flattens, $R_\parallel$ shrinks and the corresponding delays contract. Gradients ($G_{\text{grad}}$) further skew delays across the orbit.
 
-**Lorentz beta in geometric form:** In Lorentz kinematics, $\beta = v/c$ and $\gamma = 1/\sqrt{1-\beta^2}$. In this model, use $\beta = v_{\text{trans}}/c_f$ and the oblate ellipsoid relation
+**Lorentz beta in geometric form:** In Lorentz kinematics, $\beta = v/c$ and $\gamma = 1/\sqrt{1-\beta^2}$. For observer-level clock or ruler closure, use the declared channel speed $c_\star$ and define $\beta_\star = v_{\text{trans}}/c_\star$ and $\gamma_\star=1/\sqrt{1-\beta_\star^2}$; use $c_f$ only for a primitive branch-chart scan before Noether-Sea dressing. The oblate ellipsoid relation is
 $$
-R_\parallel = R_\perp \sqrt{1-\beta^2} = \frac{R_\perp}{\gamma}.
+R_\parallel = R_\perp \sqrt{1-\beta_\star^2} = \frac{R_\perp}{\gamma_\star}.
 $$
-Geometrically, $\beta$ is the axis-squash control: as $\beta \to 1$, the causal envelope collapses along the motion axis, shrinking longitudinal path lengths and altering the delay.
+Geometrically, $\beta_\star$ is the axis-squash control for the declared channel: as $\beta_\star \to 1$, the causal envelope collapses along the motion axis, shrinking longitudinal path lengths and altering the delay.
 
 **Where it enters phase closure:** In scans, treat the local clock as an effective frequency $\omega_n/\alpha$ inside $\Phi_n$ for the sector under consideration. Redshift follows because emitted periodicity inherits the local clock rate: longer causal loops (larger $\alpha$) yield lower observed frequency at fixed absolute-time reference.
 
@@ -423,7 +1009,7 @@ Two nonlinear-dynamics diagnostics extend the standard alignment invariants and 
 $$
 \Delta_{\mathbf{k}} = 1 - \max_{i\notin G}\|\mu_i(\mathbf{k})\|.
 $$
-Track $\Delta_{\mathbf{k}}$ along scans in $\beta = v_{\text{trans}}/c_f$ and $G_{\text{grad}}$. Stable rungs have $\Delta_{\mathbf{k}}>0$; rung termination, separator clock-freeze, and gradient-driven failure should all coincide with $\Delta_{\mathbf{k}}\to 0^+$.
+Track $\Delta_{\mathbf{k}}$ along scans in declared $\beta_\star = v_{\text{trans}}/c_\star$ and $G_{\text{grad}}$. Stable rungs have $\Delta_{\mathbf{k}}>0$; rung termination, separator clock-freeze, and gradient-driven failure should all coincide with $\Delta_{\mathbf{k}}\to 0^+$.
 
 **Grazing-bifurcation diagnostics at the separator:** Near $\|\mathbf{v}\|=c_f$, the post-crossing trajectory deviation is predicted to scale as $\sqrt{t-t_*}$ along the eigenvector of the newly activated self-hit root. Two simulation tests follow:
 
@@ -565,7 +1151,7 @@ $$
 $$
 The second constraint is the native small-scale bridge-like causal structure in this sketch: the receiver at $\mathbf{x}_i(t)$ is linked to an earlier point on the same worldline by its own causal wake. The connectedness is path-history closure in the causal-root ledger, not a tunnel in the Euclidean void. Any connected-geometry translation belongs only after coarse-graining into an effective horizon-interface or metric description.
 
-and $s=|\mathbf{v}|/c_f$. For symmetric, non-translating circular geometry, the delay angles satisfy
+and $s=\|\mathbf{v}\|/c_f$. For symmetric, non-translating circular geometry, the delay angles satisfy
 $$
 \delta_p=2s\cos(\delta_p/2), \qquad \delta_s=2s\sin(\delta_s/2),
 $$

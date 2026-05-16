@@ -8,14 +8,14 @@ The opening fixes the ontological picture and the canonical symbols first. The l
 
 ## Ontological Picture
 
-- **Substrate**: A fixed Euclidean 3D void with absolute time $t$. Coordinates $(x,y,z)$ never move or curve.
+- **Substrate**: A fixed Euclidean 3D void with absolute time $t$. A chosen chart $(x,y,z)$ represents fixed void locations; the labels never move or curve.
 - **Medium**: The [Noether Sea](noether-sea.md), a pervasive medium of coupled pro/anti Noether cores (tri-binary assemblies). The bridge term *spacetime medium* is used when translating toward effective spacetime language.
-- **$\mathbb{U}_{\text{now}}$ universe-state perspective**: A conceptual observer in the absolute frame who knows:
+- **$\mathbb{U}_{\text{now}}$ universe-state perspective**: Complete-state bookkeeping on the absolute-time slice, carrying:
   - The full architrino microstate $S(t)$,
   - The instantaneous state of the Noether Sea (density $\rho_{\text{core}}(x,t)$, alignment, stress),
   - The effective potential field $\Phi_{\text{eff}}(x,t)$ and its gradients.
 
-From this vantage point, there is only:
+From this bookkeeping perspective, there is only:
 - Flat Euclidean geometry $h_{ij}=\delta_{ij}$,
 - A dynamic medium (Noether cores) moving and rearranging in that geometry.
 
@@ -266,39 +266,41 @@ A_{\text{align}}
 \qquad
 P_a\in\mathcal{P}_{\partial\Omega}.
 $$
-Let $\mathcal{L}_a(\theta_{\Omega,O,W})$ be the retained boundary-wake labels in $P_a$ after fixing the observer record and the neighboring patch data to the accuracy declared by $\epsilon_{\mathrm{local}}$. The locality part of the theorem target is
+The coefficient cannot be interpreted as a literal independent one-patch count: $\log|\mathcal{L}_a|=1/4$ would require $|\mathcal{L}_a|=e^{1/4}$, not the cardinality of a finite set. The coherent target is a block entropy density. For a connected patch block $U\subseteq\mathcal{P}_{\partial\Omega}$, let $\mathcal{L}_U(\theta_{\Omega,O,W})$ be the joint retained boundary-wake label set on $U$ after fixing the observer record and the edge data to the accuracy declared by $\epsilon_{\mathrm{local}}$. The local aligned-label density is
+$$
+s_{\mathrm{align}}(\theta_{\Omega,O,W})
+=
+\lim_{|U|\to\infty}
+\frac{1}{|U|}
+\log\left|
+\mathcal{L}_U(\theta_{\Omega,O,W})
+\right|,
+$$
+when the limit exists after boundary corrections. The locality part of the theorem target is
 $$
 \log\left|
-\mathcal{B}_{\partial\Omega}^{(O)}
-\left(\theta_{\Omega,O,W}\right)
+\mathcal{L}_U(\theta_{\Omega,O,W})
 \right|
 =
-\sum_{P_a\in\mathcal{P}_{\partial\Omega}}
-\log\left|
-\mathcal{L}_a(\theta_{\Omega,O,W})
-\right|
+|U|\,s_{\mathrm{align}}(\theta_{\Omega,O,W})
 +
 \mathcal{O}\!\left(
-|\partial\mathcal{P}_{\partial\Omega}|\epsilon_{\mathrm{corr}}
+|\partial U|\epsilon_{\mathrm{corr}}
 \right),
 $$
 where the correction records edge and finite-correlation effects between adjacent patches. The normalization part is then the aligned-label statement
 $$
-\frac{1}{|\mathcal{P}_{\partial\Omega}|}
-\sum_{P_a\in\mathcal{P}_{\partial\Omega}}
-\log\left|
-\mathcal{L}_a(\theta_{\Omega,O,W})
-\right|
+s_{\mathrm{align}}(\theta_{\Omega,O,W})
 \longrightarrow
 \frac{1}{4}.
 $$
-Together with $|\mathcal{P}_{\partial\Omega}|A_{\text{align}}\to A_{\partial\Omega}^{\mathrm{eff}}$, these two claims imply the area density above. This does not prove the coefficient by definition. It reduces the problem to a local aligned-interface calculation: terminal tri-binary alignment must supply a universal distinguishable-label count per alignment-area patch, and the surrounding Noether-Sea record must make correlations short-range enough that the boundary count is additive up to edge residuals.
+Together with $|\mathcal{P}_{\partial\Omega}|A_{\text{align}}\to A_{\partial\Omega}^{\mathrm{eff}}$, these claims imply the area density above. This does not prove the coefficient by definition. It reduces the problem to a local aligned-interface calculation: terminal tri-binary alignment must supply a universal block entropy density, and the surrounding Noether-Sea record must make correlations short-range enough that the boundary count is additive up to edge residuals.
 
 ## Refraction vs. Curvature
 
 - From the **$\mathbb{U}_{\text{now}}$ universe-state perspective**:
-  - Light and gravity-like perturbations travel on straight lines in $(x,y,z)$,
-  - But with an *effective speed* $c_{\text{eff}}(x)$ that depends on the local Noether-core configuration:
+  - Primitive causal-wake support is measured by Euclidean distances in $(x,y,z)$,
+  - While effective ray paths and clock comparisons depend on an *effective speed* $c_{\text{eff}}(x)$ set by the local Noether-core configuration:
     $c_{\text{eff}}(x) < c_f \quad \text{in dense regions (near mass)}$
 - From the **physical observer** (built from assemblies):
   - Light and free-falling matter appear to move along curved paths (geodesics) of an effective metric $g^{\text{eff}}_{\mu\nu}$.

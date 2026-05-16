@@ -92,7 +92,7 @@ It is crucial to clarify what is **fundamental** versus what is **emergent**:
 | Concept | Status in $\mathbb{A}\mathbb{A}\mathbb{A}$ |
 |:--------|:-------------------------------|
 | **Architrino Position/Velocity** | Fundamental (substrate level) |
-| **Architrino Charge ($\epsilon = e/6$)** | Fundamental |
+| **Architrino polarity bookkeeping unit ($\epsilon=|e|/6$)** | Fundamental at the polarity-bookkeeping layer; observer-level electric charge is assembly-level inventory |
 | **Noether Sea State** | Emergent density, compliance, drift, and clock-response fields |
 | **Inertial Mass ($m$)** | **Emergent** (shielded internal energy + medium-dressed response) |
 | **Gravitational Mass** | **Emergent** (Noether-Sea gradient response) |

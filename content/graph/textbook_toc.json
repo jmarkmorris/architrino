@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1154
+      "sections": 1157
     }
   },
   "tocRoot": {
@@ -722,6 +722,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Reconstruction Existence Lemma",
+                "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+                "markdownSection": "Reconstruction Existence Lemma",
+                "sectionKey": "reconstruction existence lemma",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Step 1: Establishing the Origin (The Anchor Point)",
                 "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
                 "markdownSection": "Step 1: Establishing the Origin (The Anchor Point)",
@@ -1127,6 +1135,14 @@
                 "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
                 "markdownSection": "ADM/Cartan Reconstruction Target",
                 "sectionKey": "adm cartan reconstruction target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Terminal Alignment Label-Count Target",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Terminal Alignment Label-Count Target",
+                "sectionKey": "terminal alignment label count target",
                 "headingLevel": 2
               },
               {
@@ -6447,10 +6463,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Validation Protocols: Proving the Absolute Frame",
+                "title": "Validation Protocols: Preferred-Frame Leakage and Frame Proxies",
                 "markdownPath": "content/markdown/aaa/validation/validation-protocols.md",
-                "markdownSection": "Validation Protocols: Proving the Absolute Frame",
-                "sectionKey": "validation protocols proving the absolute frame",
+                "markdownSection": "Validation Protocols: Preferred-Frame Leakage and Frame Proxies",
+                "sectionKey": "validation protocols preferred frame leakage and frame proxies",
                 "headingLevel": 2
               }
             ]
@@ -7199,10 +7215,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Self-Interaction Switch at $\\|\\mathbf{v}\\| = v$",
+                    "title": "Self-Hit Onset Boundary at $\\|\\mathbf{v}\\| = c_f$",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Self-Interaction Switch at $\\|\\mathbf{v}\\| = v$",
-                    "sectionKey": "self interaction switch at mathbf v v",
+                    "markdownSection": "Self-Hit Onset Boundary at $\\|\\mathbf{v}\\| = c_f$",
+                    "sectionKey": "self hit onset boundary at mathbf v c f",
                     "headingLevel": 2
                   },
                   {
@@ -7529,6 +7545,14 @@
                 "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
                 "markdownSection": "Assessment Table",
                 "sectionKey": "assessment table",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "2026-05-16 Assessment Notes",
+                "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
+                "markdownSection": "2026-05-16 Assessment Notes",
+                "sectionKey": "2026 05 16 assessment notes",
                 "headingLevel": 2
               }
             ]

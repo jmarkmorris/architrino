@@ -130,7 +130,7 @@ For a particle $o'$ with charge $q_{o'}$ at position $\mathbf{s}_{o'}(t)$, the p
 
 $$U_{o'}(t) = q_{o'}\,\Phi_{\text{net}}[\text{history}]\big(\mathbf{s}_{o'}(t),t\big).$$
 
-Unlike electrostatics, $\Phi_{\text{net}}$ is not a function of instantaneous source positions but a functional of their past worldlines intercepted by the backward causal cone of $\mathbf{s}_{o'}(t)$. The gradient $\nabla\Phi_{\text{net}}$ is taken with respect to the receiver's spatial coordinates on the fixed background, holding the causal history fixed. In the idealized picture, $\Phi$ is a distribution supported on causal isochrons, not a smooth continuum field.
+Unlike electrostatics, $\Phi_{\text{net}}$ is not a function of instantaneous source positions but a functional of their past worldlines intercepted by the backward causal-wake record of $\mathbf{s}_{o'}(t)$. The gradient $\nabla\Phi_{\text{net}}$ is taken with respect to the receiver's spatial coordinates on the fixed background, holding the causal history fixed. In the idealized picture, $\Phi$ is a distribution supported on causal isochrons, not a smooth continuum field.
 
 When we work with the mollified effective potential $\Phi_\eta$, we can also write:
 
@@ -184,9 +184,9 @@ At the fundamental level, the Euclidean void is an empty container. **Effective 
 
 - These tri-binaries are extremely small compared to ordinary particles (electrons, protons, etc.).
 - Each tri-binary is itself a tightly bound architrino assembly with very high internal kinetic and potential energy.
-- As a sea, they form a **dense manifold of coupled assemblies** that fills the Euclidean void. This ambient Noether-Sea content carries non-zero assembly density and internal stress. It provides the constitutive relations (permittivity, permeability, and medium-dressed inertial response) that deform the primitive architrino dynamics into effective relativistic kinematics, providing the bridge-level spacetime medium for:
+- As a sea, they form a **dense population of coupled assemblies** occupying the Euclidean void. This ambient Noether-Sea content carries non-zero assembly density and internal stress. It provides the constitutive relations (permittivity, permeability, and medium-dressed inertial response) that deform the primitive architrino dynamics into effective relativistic kinematics, providing the bridge-level spacetime medium for:
   - Emergent inertia and mass,
-  - Emergent light cones and Lorentz-like behavior,
+  - Effective light-cone behavior and Lorentz-like behavior,
   - Effective gravitational coupling (emergent geometry at large scales).
 
 Energy in this picture is distributed across:
@@ -352,7 +352,7 @@ Architrinos and their assemblies are where all the energy lives. The tri-binary 
   The sea of small, high-energy tri-binaries forms the Noether Sea and, at coarse-grained level, the effective spacetime medium whose energy density and stress give rise to an emergent metric. The shielding factors and internal energies of both Noether-Sea tri-binaries and "matter" assemblies will determine:
   - The effective Newton constant $G$,
   - The cosmological Noether-Sea energy density,
-  - How strongly spacetime curvature responds to different kinds of energy.
+  - How strongly observer-level effective metric response is reconstructed from different kinds of energy.
   
   Density-driven oblation: as the tri-binary sea encounters denser matter, local tri-binaries scale down and oblate, creating a compliance gradient that contributes directly to the effective gravitational coupling $G$.
 

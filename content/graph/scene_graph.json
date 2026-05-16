@@ -2346,7 +2346,7 @@
     },
     {
       "id": "content/markdown/aaa/cosmology/dark-matter.md",
-      "name": "Dark Matter in the Architrino Assembly Architecture",
+      "name": "Dark Matter in $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
       "path": "content/markdown/aaa/cosmology/dark-matter.md",
       "nodeType": "markdown_doc"
     },
@@ -6400,7 +6400,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/cosmology/dark-matter.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/cosmology/dark-matter.md",
-      "name": "Dark Matter in the Architrino Assembly Architecture",
+      "name": "Dark Matter in $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
       "path": "content/markdown/aaa/cosmology/dark-matter.md",
       "searchTarget": "content/markdown/aaa/cosmology/dark-matter.md",
       "implicit": false

@@ -1319,6 +1319,17 @@ which is **linear** in $\theta_{AB}$ and does not violate the CHSH bound. This i
 
 This calculation is important because it shows what not to claim. Angular-momentum conservation at creation is not enough if it is reduced to preassigned opposite local axes. Simple smoothing of a local axis response is also not automatically enough; it must be checked against the full correlation function.
 
+A sharper obstruction is product screening. Even a model with an explicit finite pair-provenance ledger and local apparatus kernels fails Bell closure if the completed table can be reconstructed as
+$$
+P_\theta(\mathbf{r}|\mathbf{s})
+=
+\int_{\Pi}
+\prod_i
+K_i(r_i|s_i,\Pi)\,
+d\rho_{\mathrm{prov}}(\Pi).
+$$
+That form can preserve no-signaling and measurement independence while still staying inside the Bell-local bound. The validation harness records this as `bell.product_screening_collapse`, so pair provenance is useful only if the retained record law avoids this compression without introducing setting-dependent provenance or distant signaling.
+
 The candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ route lies in the finite-time measurement interaction of a full Noether-core ledger rather than in a preassigned spin label. The ingredients to derive are:
 
 1. **Angular-momentum ledger geometry**: the internal spin ledger includes ordered binary-plane geometry, binary frequencies, causal-root branches, and causal-wake angular momentum.
@@ -1414,6 +1425,7 @@ No step may involve faster-than-$c_f$ signal transfer. The correlations are visi
 **Failure Modes:**
 - If the Master Equation dynamics for a tri-binary measurement interaction yield a response function that is **not** $\cos^2(\alpha/2)$—for instance, a linear or piecewise-linear function—the resulting $E(\theta_{AB})$ will disagree with the quantum prediction and with experiment. This is a falsification of the specific mechanism, requiring revision of the measurement model or the assembly-apparatus coupling.
 - If simulations of correlated pair creation under the Master Equation produce a hidden-variable distribution $\rho(\lambda)$ that is **separable** (factorizes into independent local distributions), the theory reduces to a local hidden-variable model and cannot violate the CHSH bound. This would be a fundamental failure requiring revision of the creation-event dynamics or the conservation-law implementation.
+- If the retained pair-provenance ledger and apparatus kernels reduce to the product-screened form $\int_{\Pi}\prod_iK_i\,d\rho_{\mathrm{prov}}$, then the model has explicit common-past data but still remains Bell-local. This is a failure even when no-signaling and measurement independence pass.
 - If $\Delta_{\mathrm{MI}}$ is nonzero in a way that is necessary for the correlation fit, the model has abandoned the stated $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell route and must be reclassified before any corpus claim is promoted.
 - If any experiment demonstrates genuine **signaling** via entanglement (information transfer at $B$ contingent on the setting choice at $A$, without a classical channel), the entire framework fails.
 - If measurement independence is empirically falsified (e.g., via cosmic Bell tests showing setting–source correlations at a level incompatible with statistical noise), the assumption structure changes for all interpretations, not only $\mathbb{A}\mathbb{A}\mathbb{A}$.
@@ -3352,22 +3364,17 @@ With Planck alignment as an endpoint rather than a point singularity:
 > - Many nearly identical aligned assemblies occupy a low-dimensional configuration manifold (planar disk orientation).
 > - Entropy and area scaling would have to emerge from counting alignment-compatible boundary labels on horizon-adjacent surfaces, not from arbitrary volume packing.
 
-The area-counting part of the conjecture is narrow. If a horizon-adjacent surface is decomposed into patches with $A_{\mathrm{eff}}(P_a)=A_{\text{align}}+\mathcal{O}(\epsilon_A A_{\text{align}})$, the required local statement is
+The area-counting part of the conjecture is narrow. If a horizon-adjacent surface is decomposed into patches with $A_{\mathrm{eff}}(P_a)=A_{\text{align}}+\mathcal{O}(\epsilon_A A_{\text{align}})$, the required local statement is not a literal independent count on one patch. Since $\log|\mathcal{L}_a|=1/4$ would require $|\mathcal{L}_a|=e^{1/4}$, the coefficient must be a block entropy density over alignment-compatible labels:
 $$
-\log|\mathcal{B}_H|
+s_{\mathrm{align}}
 =
-\sum_a
-\log|\mathcal{L}_a|
-+
-\mathcal{O}(\epsilon_{\mathrm{edge}}),
-\qquad
-\frac{1}{N_A}
-\sum_{a=1}^{N_A}
-\log|\mathcal{L}_a|
+\lim_{|U|\to\infty}
+\frac{1}{|U|}
+\log|\mathcal{L}_U|
 \longrightarrow
 \frac{1}{4},
 $$
-where $\mathcal{L}_a$ is the set of observer-distinguishable alignment-compatible labels on one patch and $N_AA_{\text{align}}\to A_H$. Thus the Planck-alignment program does not get black-hole entropy merely by naming a small area. It must show that terminal tri-binary alignment supplies a universal local label count and that correlations between neighboring patches do not restore volume scaling.
+where $\mathcal{L}_U$ is the observer-distinguishable set of alignment-compatible labels on a connected block $U$ and $|U|A_{\text{align}}\to A_H$ in the large-area limit. Thus the Planck-alignment program does not get black-hole entropy merely by naming a small area. It must show that terminal tri-binary alignment supplies a universal local entropy density and that correlations between neighboring patches do not restore volume or arbitrary history-length scaling.
 
 We deliberately use “condensate-like” here; a full condensate claim would require:
 

@@ -480,7 +480,7 @@ Notes:
 ### Provenance
 
 - We ultimately want **provenance**, not just bookkeeping: track every architrino’s path through a reaction, so simulations can reproduce PDG observables from first principles.
-- Beyond individual architrinos, track **sub-assembly provenance**: entire Noether cores may transfer intact, detach outer binaries, or be destroyed/reformed. Knowing which cores move as units vs fragment gives insight into allowed channels and lifetimes.
+- Beyond individual architrinos, track **sub-assembly provenance**: entire Noether cores may transfer intact, detach outer binaries, dissociate, reassociate, or relock into different groupings while their architrino identities persist. Knowing which cores move as units vs fragment gives insight into allowed channels and lifetimes.
 - Conservation: electrinos IN = electrinos OUT. Same for positrinos. Transmutation: reactants → products; true understanding is to map (simulate) each architrino's path.
 - Point to ponder: What becomes of a spare electrino and positrino from a reaction? Do they couple and spiral inward to max curvature? Do they become highly reactive at some point?
 
@@ -489,7 +489,7 @@ Charge Conservation Enforcement (speculative, to simulate):
 - Any spare axial architrinos must close through one of the following channels:
   - **Product incorporation:** absorbed into a final-state assembly while preserving charge/polarity bookkeeping.
   - **Current carriage:** carried out on charged lepton/neutrino legs as part of the weak-current flow.
-  - **Immediate annihilation:** cancelled by opposite-polarity architrinos drawn from the Sea, releasing short coaxial contra-rotating pro/anti planar-pair photon modes.
+  - **Immediate neutral relock:** paired with opposite-polarity architrinos drawn from the Sea, routing energy into short coaxial contra-rotating pro/anti planar-pair photon modes while all participating identities remain in the ledger.
 - Practical rule for simulations: treat a true long-range "escape" channel as forbidden unless a dedicated high-resolution run demonstrates otherwise.
 
 Decision cues to log in sims: initial separation, relative phase, local Noether-core density; pick dominant channel based on these and record energy/charge routing.

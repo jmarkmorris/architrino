@@ -96,7 +96,7 @@ These symbols belong to the delayed microscopic law itself.
 | ID | Symbol | Class | Current status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
 | K1 | $c_f$ | Fundamental parameter | Primitive | field speed of causal wake propagation | [../dynamics/master-equation.md](../dynamics/master-equation.md), [../foundations/absolute-timespace.md](../foundations/absolute-timespace.md) |
-| K2 | $\epsilon$ | Fundamental parameter | Primitive | unit architrino charge magnitude, with observer-level charge reconstructed from it | [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md), [../interactions/gauge-structure-emergence.md](../interactions/gauge-structure-emergence.md) |
+| K2 | $\epsilon$ | Fundamental parameter | Primitive | potential polarity-unit magnitude, with observer-level electric charge reconstructed from it | [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md), [../interactions/gauge-structure-emergence.md](../interactions/gauge-structure-emergence.md) |
 | K3 | $\kappa$ | Fundamental parameter or normalization-sensitive coupling | Open | universal coupling strength in the per-hit acceleration law | [../dynamics/master-equation.md](../dynamics/master-equation.md), [architrino-si-base-units.md](./architrino-si-base-units.md) |
 | K4 | $\eta$ | Regulator / convention | Open but non-ontological | mollifier width used to regularize causal wake surfaces for smooth dynamics and numerics | [simulations/action-energy/well-posedness-and-regularization.md](./simulations/action-energy/well-posedness-and-regularization.md), [../dynamics/master-equation.md](../dynamics/master-equation.md) |
 | K5 | $Z_e$ | Regulator / convention | Convention, default $Z_e=1$ | coarse-graining / normalization factor in the substrate-to-observer charge map | [../interactions/gauge-structure-emergence.md](../interactions/gauge-structure-emergence.md), [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md) |
@@ -173,14 +173,16 @@ This is the substrate-side parameter core. Any exact or numerical closure that c
 
 The current substrate-to-observer charge map is
 $$
-e = 6\epsilon \sqrt{\kappa c_f}\,Z_e,
+|e| = 6\epsilon \sqrt{\kappa c_f}\,Z_e,
 $$
 with canonical normalization choice
 $$
 Z_e=1.
 $$
 
-This relation is important because it shows that $e$ is not presently a primitive input in the architrino ontology. It is a recovered observer-level benchmark.
+This relation is important because it shows that the elementary charge magnitude is not presently a primitive input in the architrino ontology. It is a recovered observer-level benchmark.
+
+This equation is a normalization-sensitive substrate-to-observer reconstruction, not a second primitive definition of $\epsilon$. The primitive polarity convention used by the foundation and mathematics-canon pages is $\epsilon=|e|/6$ after the observer-level electric bookkeeping normalization is fixed. If $\sqrt{\kappa c_f}Z_e\ne1$ in a dimensional convention, that factor belongs to the conversion map rather than to a separate architrino charge ontology. Closing this equivalence remains tied to the K3/K5 normalization problem.
 
 ### 3. Medium normalization and clock-channel potential
 
@@ -307,7 +309,7 @@ The current corpus supports the following conservative closure assessment.
 ### Closed enough to treat as canonical
 
 - $c_f$ is treated consistently as the substrate propagation speed, even when chapters temporarily write $v=1$.
-- $\epsilon$ is treated consistently as the unit architrino charge magnitude.
+- $\epsilon$ is treated consistently as the potential polarity-unit magnitude.
 - $\rho_{\text{core},0}$ is the reference density symbol for the spacetime medium.
 - $\Phi_{\text{eff}}=c_f^2\ln(\Omega\xi)$ is the canonical clock-channel potential definition for the exponential metric subclass, with $\xi$ retained as a geometry-first Noether-core shape ratio.
 

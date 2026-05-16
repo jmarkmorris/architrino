@@ -1,0 +1,1428 @@
+{
+  "artifact": "bell-family-source-measure-candidate",
+  "generated_by": "scripts/quantum/source-measure-joint-basin-emitter.mjs",
+  "scenarios": [
+    {
+      "id": "candidate_joint_record_basin_singlet_target",
+      "description": "Generated source-measure candidate for an ideal joint record-basin target; recovers the singlet CHSH benchmark but does not prove a substrate mechanism.",
+      "classification": "diagnostic_candidate",
+      "parties": [
+        "A",
+        "B"
+      ],
+      "source_protocol": {
+        "id": "ideal_joint_record_basin_target",
+        "source_section": "six-cell return section from a uniform correlation-threshold coordinate and marginal branch",
+        "measure": "setting-independent cell weights induced by splitting a uniform threshold coordinate at the benchmark basin thresholds"
+      },
+      "source_records": [
+        {
+          "id": "pi_low_minus",
+          "weight": 0.0732233047033631,
+          "correlation_interval": [
+            0,
+            0.1464466094067262
+          ],
+          "marginal_branch": -1,
+          "retained_pair_provenance": {
+            "branch_bin": "low",
+            "marginal_branch": -1,
+            "angular_momentum_balance": "singlet-like target ledger; not substrate-derived"
+          }
+        },
+        {
+          "id": "pi_low_plus",
+          "weight": 0.0732233047033631,
+          "correlation_interval": [
+            0,
+            0.1464466094067262
+          ],
+          "marginal_branch": 1,
+          "retained_pair_provenance": {
+            "branch_bin": "low",
+            "marginal_branch": 1,
+            "angular_momentum_balance": "singlet-like target ledger; not substrate-derived"
+          }
+        },
+        {
+          "id": "pi_middle_minus",
+          "weight": 0.3535533905932738,
+          "correlation_interval": [
+            0.1464466094067262,
+            0.8535533905932737
+          ],
+          "marginal_branch": -1,
+          "retained_pair_provenance": {
+            "branch_bin": "middle",
+            "marginal_branch": -1,
+            "angular_momentum_balance": "singlet-like target ledger; not substrate-derived"
+          }
+        },
+        {
+          "id": "pi_middle_plus",
+          "weight": 0.3535533905932738,
+          "correlation_interval": [
+            0.1464466094067262,
+            0.8535533905932737
+          ],
+          "marginal_branch": 1,
+          "retained_pair_provenance": {
+            "branch_bin": "middle",
+            "marginal_branch": 1,
+            "angular_momentum_balance": "singlet-like target ledger; not substrate-derived"
+          }
+        },
+        {
+          "id": "pi_high_minus",
+          "weight": 0.0732233047033631,
+          "correlation_interval": [
+            0.8535533905932737,
+            1
+          ],
+          "marginal_branch": -1,
+          "retained_pair_provenance": {
+            "branch_bin": "high",
+            "marginal_branch": -1,
+            "angular_momentum_balance": "singlet-like target ledger; not substrate-derived"
+          }
+        },
+        {
+          "id": "pi_high_plus",
+          "weight": 0.0732233047033631,
+          "correlation_interval": [
+            0.8535533905932737,
+            1
+          ],
+          "marginal_branch": 1,
+          "retained_pair_provenance": {
+            "branch_bin": "high",
+            "marginal_branch": 1,
+            "angular_momentum_balance": "singlet-like target ledger; not substrate-derived"
+          }
+        }
+      ],
+      "source_balance": {
+        "status": "target_emitter",
+        "angular_momentum": "records preserve an effective singlet-like balance label; the Noether-core derivation remains open",
+        "measurement_independence": "source weights are reused unchanged for every context"
+      },
+      "local_apparatus_records": {
+        "status": "idealized",
+        "material_measure": "unbiased local marginal branch with no distant-setting dependence",
+        "unresolved_variable": "marginal_branch supplies unbiased local records; correlation_interval supplies joint-basin thresholding"
+      },
+      "record_basins": {
+        "construction": "context-indexed joint basin over retained source records",
+        "threshold_coordinate": "correlation_interval",
+        "thresholds": {
+          "low": 0.1464466094067262,
+          "high": 0.8535533905932737
+        },
+        "caveat": "the joint basin is a target object to be derived from apparatus and pair provenance, not an accepted mechanism"
+      },
+      "compression_audit": {
+        "expected": "product_screening_escape_pass",
+        "baseline": "context screening uses the same source records with independent unbiased local marginals"
+      },
+      "guardrails": {
+        "expected": [
+          "no_signaling_pass",
+          "measurement_independence_pass",
+          "tsirelson_pass",
+          "product_screening_escape_pass"
+        ]
+      },
+      "contexts": [
+        {
+          "id": "joint_basin_A0_B0",
+          "settings": {
+            "A": "A0",
+            "B": "B0"
+          },
+          "target_correlation": -0.7071067811865476,
+          "basin_threshold": 0.1464466094067262,
+          "basin_rule": "same outcome when correlation_interval is below the context threshold; opposite outcome otherwise",
+          "probabilities": [
+            {
+              "outcome": {
+                "A": -1,
+                "B": -1
+              },
+              "p": 0.0732233047033631
+            },
+            {
+              "outcome": {
+                "A": -1,
+                "B": 1
+              },
+              "p": 0.42677669529663687
+            },
+            {
+              "outcome": {
+                "A": 1,
+                "B": -1
+              },
+              "p": 0.42677669529663687
+            },
+            {
+              "outcome": {
+                "A": 1,
+                "B": 1
+              },
+              "p": 0.0732233047033631
+            }
+          ],
+          "screening": {
+            "records": [
+              {
+                "id": "pi_low_minus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_low_plus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_middle_minus",
+                "weight": 0.3535533905932738,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_middle_plus",
+                "weight": 0.3535533905932738,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_high_minus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_high_plus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "joint_basin_A0_B1",
+          "settings": {
+            "A": "A0",
+            "B": "B1"
+          },
+          "target_correlation": 0.7071067811865475,
+          "basin_threshold": 0.8535533905932737,
+          "basin_rule": "same outcome when correlation_interval is below the context threshold; opposite outcome otherwise",
+          "probabilities": [
+            {
+              "outcome": {
+                "A": -1,
+                "B": -1
+              },
+              "p": 0.42677669529663687
+            },
+            {
+              "outcome": {
+                "A": -1,
+                "B": 1
+              },
+              "p": 0.0732233047033631
+            },
+            {
+              "outcome": {
+                "A": 1,
+                "B": -1
+              },
+              "p": 0.0732233047033631
+            },
+            {
+              "outcome": {
+                "A": 1,
+                "B": 1
+              },
+              "p": 0.42677669529663687
+            }
+          ],
+          "screening": {
+            "records": [
+              {
+                "id": "pi_low_minus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_low_plus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_middle_minus",
+                "weight": 0.3535533905932738,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_middle_plus",
+                "weight": 0.3535533905932738,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_high_minus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_high_plus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "joint_basin_A1_B0",
+          "settings": {
+            "A": "A1",
+            "B": "B0"
+          },
+          "target_correlation": -0.7071067811865476,
+          "basin_threshold": 0.1464466094067262,
+          "basin_rule": "same outcome when correlation_interval is below the context threshold; opposite outcome otherwise",
+          "probabilities": [
+            {
+              "outcome": {
+                "A": -1,
+                "B": -1
+              },
+              "p": 0.0732233047033631
+            },
+            {
+              "outcome": {
+                "A": -1,
+                "B": 1
+              },
+              "p": 0.42677669529663687
+            },
+            {
+              "outcome": {
+                "A": 1,
+                "B": -1
+              },
+              "p": 0.42677669529663687
+            },
+            {
+              "outcome": {
+                "A": 1,
+                "B": 1
+              },
+              "p": 0.0732233047033631
+            }
+          ],
+          "screening": {
+            "records": [
+              {
+                "id": "pi_low_minus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_low_plus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_middle_minus",
+                "weight": 0.3535533905932738,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_middle_plus",
+                "weight": 0.3535533905932738,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_high_minus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_high_plus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "joint_basin_A1_B1",
+          "settings": {
+            "A": "A1",
+            "B": "B1"
+          },
+          "target_correlation": -0.7071067811865476,
+          "basin_threshold": 0.1464466094067262,
+          "basin_rule": "same outcome when correlation_interval is below the context threshold; opposite outcome otherwise",
+          "probabilities": [
+            {
+              "outcome": {
+                "A": -1,
+                "B": -1
+              },
+              "p": 0.0732233047033631
+            },
+            {
+              "outcome": {
+                "A": -1,
+                "B": 1
+              },
+              "p": 0.42677669529663687
+            },
+            {
+              "outcome": {
+                "A": 1,
+                "B": -1
+              },
+              "p": 0.42677669529663687
+            },
+            {
+              "outcome": {
+                "A": 1,
+                "B": 1
+              },
+              "p": 0.0732233047033631
+            }
+          ],
+          "screening": {
+            "records": [
+              {
+                "id": "pi_low_minus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_low_plus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_middle_minus",
+                "weight": 0.3535533905932738,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_middle_plus",
+                "weight": 0.3535533905932738,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_high_minus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_high_plus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "chsh": {
+        "a0": "A0",
+        "a1": "A1",
+        "b0": "B0",
+        "b1": "B1"
+      }
+    },
+    {
+      "id": "candidate_record_cycle_pair_coordinate",
+      "description": "Generated diagnostic for the pair record-cycle coordinate eta_AB = frac(theta_rec_A - theta_rec_B + phi_Pi); recovers the singlet CHSH benchmark as a reduced target without proving the substrate origin of phi_Pi.",
+      "classification": "diagnostic_candidate",
+      "parties": [
+        "A",
+        "B"
+      ],
+      "source_protocol": {
+        "id": "pair_record_cycle_coordinate_target",
+        "source_section": "six-cell return section from a uniform eta_AB pushforward and unbiased marginal branch",
+        "measure": "setting-independent cell weights; each source record carries a retained relative phase component and local record-cycle coordinate metadata"
+      },
+      "source_records": [
+        {
+          "id": "rc_low_minus",
+          "weight": 0.0732233047033631,
+          "eta_AB_interval": [
+            0,
+            0.1464466094067262
+          ],
+          "marginal_branch": -1,
+          "retained_pair_provenance": {
+            "branch_bin": "low",
+            "marginal_branch": -1,
+            "angular_momentum_balance": "singlet-like target ledger; not substrate-derived",
+            "theta_AB_rel": "relative pair phase component retained by Theta_AB^rel; represented by phi_Pi_fraction here"
+          },
+          "local_record_cycle_coordinate": {
+            "formula": "eta_AB = frac(theta_rec_A - theta_rec_B + phi_Pi)",
+            "theta_rec_A_fraction": [
+              0,
+              0
+            ],
+            "theta_rec_B_fraction": [
+              0,
+              0
+            ],
+            "phi_Pi_fraction": [
+              0,
+              0.1464466094067262
+            ],
+            "eta_AB_interval": [
+              0,
+              0.1464466094067262
+            ]
+          }
+        },
+        {
+          "id": "rc_low_plus",
+          "weight": 0.0732233047033631,
+          "eta_AB_interval": [
+            0,
+            0.1464466094067262
+          ],
+          "marginal_branch": 1,
+          "retained_pair_provenance": {
+            "branch_bin": "low",
+            "marginal_branch": 1,
+            "angular_momentum_balance": "singlet-like target ledger; not substrate-derived",
+            "theta_AB_rel": "relative pair phase component retained by Theta_AB^rel; represented by phi_Pi_fraction here"
+          },
+          "local_record_cycle_coordinate": {
+            "formula": "eta_AB = frac(theta_rec_A - theta_rec_B + phi_Pi)",
+            "theta_rec_A_fraction": [
+              0,
+              0
+            ],
+            "theta_rec_B_fraction": [
+              0,
+              0
+            ],
+            "phi_Pi_fraction": [
+              0,
+              0.1464466094067262
+            ],
+            "eta_AB_interval": [
+              0,
+              0.1464466094067262
+            ]
+          }
+        },
+        {
+          "id": "rc_middle_minus",
+          "weight": 0.3535533905932738,
+          "eta_AB_interval": [
+            0.1464466094067262,
+            0.8535533905932737
+          ],
+          "marginal_branch": -1,
+          "retained_pair_provenance": {
+            "branch_bin": "middle",
+            "marginal_branch": -1,
+            "angular_momentum_balance": "singlet-like target ledger; not substrate-derived",
+            "theta_AB_rel": "relative pair phase component retained by Theta_AB^rel; represented by phi_Pi_fraction here"
+          },
+          "local_record_cycle_coordinate": {
+            "formula": "eta_AB = frac(theta_rec_A - theta_rec_B + phi_Pi)",
+            "theta_rec_A_fraction": [
+              0,
+              0
+            ],
+            "theta_rec_B_fraction": [
+              0,
+              0
+            ],
+            "phi_Pi_fraction": [
+              0.1464466094067262,
+              0.8535533905932737
+            ],
+            "eta_AB_interval": [
+              0.1464466094067262,
+              0.8535533905932737
+            ]
+          }
+        },
+        {
+          "id": "rc_middle_plus",
+          "weight": 0.3535533905932738,
+          "eta_AB_interval": [
+            0.1464466094067262,
+            0.8535533905932737
+          ],
+          "marginal_branch": 1,
+          "retained_pair_provenance": {
+            "branch_bin": "middle",
+            "marginal_branch": 1,
+            "angular_momentum_balance": "singlet-like target ledger; not substrate-derived",
+            "theta_AB_rel": "relative pair phase component retained by Theta_AB^rel; represented by phi_Pi_fraction here"
+          },
+          "local_record_cycle_coordinate": {
+            "formula": "eta_AB = frac(theta_rec_A - theta_rec_B + phi_Pi)",
+            "theta_rec_A_fraction": [
+              0,
+              0
+            ],
+            "theta_rec_B_fraction": [
+              0,
+              0
+            ],
+            "phi_Pi_fraction": [
+              0.1464466094067262,
+              0.8535533905932737
+            ],
+            "eta_AB_interval": [
+              0.1464466094067262,
+              0.8535533905932737
+            ]
+          }
+        },
+        {
+          "id": "rc_high_minus",
+          "weight": 0.0732233047033631,
+          "eta_AB_interval": [
+            0.8535533905932737,
+            1
+          ],
+          "marginal_branch": -1,
+          "retained_pair_provenance": {
+            "branch_bin": "high",
+            "marginal_branch": -1,
+            "angular_momentum_balance": "singlet-like target ledger; not substrate-derived",
+            "theta_AB_rel": "relative pair phase component retained by Theta_AB^rel; represented by phi_Pi_fraction here"
+          },
+          "local_record_cycle_coordinate": {
+            "formula": "eta_AB = frac(theta_rec_A - theta_rec_B + phi_Pi)",
+            "theta_rec_A_fraction": [
+              0,
+              0
+            ],
+            "theta_rec_B_fraction": [
+              0,
+              0
+            ],
+            "phi_Pi_fraction": [
+              0.8535533905932737,
+              1
+            ],
+            "eta_AB_interval": [
+              0.8535533905932737,
+              1
+            ]
+          }
+        },
+        {
+          "id": "rc_high_plus",
+          "weight": 0.0732233047033631,
+          "eta_AB_interval": [
+            0.8535533905932737,
+            1
+          ],
+          "marginal_branch": 1,
+          "retained_pair_provenance": {
+            "branch_bin": "high",
+            "marginal_branch": 1,
+            "angular_momentum_balance": "singlet-like target ledger; not substrate-derived",
+            "theta_AB_rel": "relative pair phase component retained by Theta_AB^rel; represented by phi_Pi_fraction here"
+          },
+          "local_record_cycle_coordinate": {
+            "formula": "eta_AB = frac(theta_rec_A - theta_rec_B + phi_Pi)",
+            "theta_rec_A_fraction": [
+              0,
+              0
+            ],
+            "theta_rec_B_fraction": [
+              0,
+              0
+            ],
+            "phi_Pi_fraction": [
+              0.8535533905932737,
+              1
+            ],
+            "eta_AB_interval": [
+              0.8535533905932737,
+              1
+            ]
+          }
+        }
+      ],
+      "source_balance": {
+        "status": "target_emitter",
+        "angular_momentum": "records preserve an effective singlet-like balance label; deriving phi_Pi from the Noether-core pair ledger remains open",
+        "measurement_independence": "source weights and retained eta_AB intervals are reused unchanged for every context"
+      },
+      "local_apparatus_records": {
+        "status": "idealized_record_cycle_coordinate",
+        "material_measure": "local record-cycle phases are represented in normalized phase fractions; the emitted target uses the calibrated uniform-pushforward case",
+        "unresolved_variable": "theta_rec_A and theta_rec_B are local record-cycle phases; phi_Pi is the retained relative pair phase component"
+      },
+      "record_basins": {
+        "construction": "context-indexed same/opposite basin over eta_AB generated from record-cycle coordinate metadata",
+        "threshold_coordinate": "eta_AB = frac(theta_rec_A - theta_rec_B + phi_Pi)",
+        "thresholds": {
+          "low": 0.1464466094067262,
+          "high": 0.8535533905932737
+        },
+        "caveat": "the diagnostic tests the reduced coordinate shape; it does not derive phi_Pi or the local record-cycle measures from substrate dynamics"
+      },
+      "compression_audit": {
+        "expected": "product_screening_escape_pass",
+        "baseline": "context screening uses the same source records with independent unbiased local marginals"
+      },
+      "guardrails": {
+        "expected": [
+          "no_signaling_pass",
+          "measurement_independence_pass",
+          "tsirelson_pass",
+          "product_screening_escape_pass"
+        ]
+      },
+      "contexts": [
+        {
+          "id": "record_cycle_A0_B0",
+          "settings": {
+            "A": "A0",
+            "B": "B0"
+          },
+          "target_correlation": -0.7071067811865476,
+          "eta_AB_threshold": 0.1464466094067262,
+          "basin_rule": "same outcome when eta_AB_interval from the record-cycle coordinate lies below the context threshold; opposite outcome otherwise",
+          "probabilities": [
+            {
+              "outcome": {
+                "A": -1,
+                "B": -1
+              },
+              "p": 0.0732233047033631
+            },
+            {
+              "outcome": {
+                "A": -1,
+                "B": 1
+              },
+              "p": 0.42677669529663687
+            },
+            {
+              "outcome": {
+                "A": 1,
+                "B": -1
+              },
+              "p": 0.42677669529663687
+            },
+            {
+              "outcome": {
+                "A": 1,
+                "B": 1
+              },
+              "p": 0.0732233047033631
+            }
+          ],
+          "screening": {
+            "records": [
+              {
+                "id": "rc_low_minus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "rc_low_plus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "rc_middle_minus",
+                "weight": 0.3535533905932738,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "rc_middle_plus",
+                "weight": 0.3535533905932738,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "rc_high_minus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "rc_high_plus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "record_cycle_A0_B1",
+          "settings": {
+            "A": "A0",
+            "B": "B1"
+          },
+          "target_correlation": 0.7071067811865475,
+          "eta_AB_threshold": 0.8535533905932737,
+          "basin_rule": "same outcome when eta_AB_interval from the record-cycle coordinate lies below the context threshold; opposite outcome otherwise",
+          "probabilities": [
+            {
+              "outcome": {
+                "A": -1,
+                "B": -1
+              },
+              "p": 0.42677669529663687
+            },
+            {
+              "outcome": {
+                "A": -1,
+                "B": 1
+              },
+              "p": 0.0732233047033631
+            },
+            {
+              "outcome": {
+                "A": 1,
+                "B": -1
+              },
+              "p": 0.0732233047033631
+            },
+            {
+              "outcome": {
+                "A": 1,
+                "B": 1
+              },
+              "p": 0.42677669529663687
+            }
+          ],
+          "screening": {
+            "records": [
+              {
+                "id": "rc_low_minus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "rc_low_plus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "rc_middle_minus",
+                "weight": 0.3535533905932738,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "rc_middle_plus",
+                "weight": 0.3535533905932738,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "rc_high_minus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "rc_high_plus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "record_cycle_A1_B0",
+          "settings": {
+            "A": "A1",
+            "B": "B0"
+          },
+          "target_correlation": -0.7071067811865476,
+          "eta_AB_threshold": 0.1464466094067262,
+          "basin_rule": "same outcome when eta_AB_interval from the record-cycle coordinate lies below the context threshold; opposite outcome otherwise",
+          "probabilities": [
+            {
+              "outcome": {
+                "A": -1,
+                "B": -1
+              },
+              "p": 0.0732233047033631
+            },
+            {
+              "outcome": {
+                "A": -1,
+                "B": 1
+              },
+              "p": 0.42677669529663687
+            },
+            {
+              "outcome": {
+                "A": 1,
+                "B": -1
+              },
+              "p": 0.42677669529663687
+            },
+            {
+              "outcome": {
+                "A": 1,
+                "B": 1
+              },
+              "p": 0.0732233047033631
+            }
+          ],
+          "screening": {
+            "records": [
+              {
+                "id": "rc_low_minus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "rc_low_plus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "rc_middle_minus",
+                "weight": 0.3535533905932738,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "rc_middle_plus",
+                "weight": 0.3535533905932738,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "rc_high_minus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "rc_high_plus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "record_cycle_A1_B1",
+          "settings": {
+            "A": "A1",
+            "B": "B1"
+          },
+          "target_correlation": -0.7071067811865476,
+          "eta_AB_threshold": 0.1464466094067262,
+          "basin_rule": "same outcome when eta_AB_interval from the record-cycle coordinate lies below the context threshold; opposite outcome otherwise",
+          "probabilities": [
+            {
+              "outcome": {
+                "A": -1,
+                "B": -1
+              },
+              "p": 0.0732233047033631
+            },
+            {
+              "outcome": {
+                "A": -1,
+                "B": 1
+              },
+              "p": 0.42677669529663687
+            },
+            {
+              "outcome": {
+                "A": 1,
+                "B": -1
+              },
+              "p": 0.42677669529663687
+            },
+            {
+              "outcome": {
+                "A": 1,
+                "B": 1
+              },
+              "p": 0.0732233047033631
+            }
+          ],
+          "screening": {
+            "records": [
+              {
+                "id": "rc_low_minus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "rc_low_plus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "rc_middle_minus",
+                "weight": 0.3535533905932738,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "rc_middle_plus",
+                "weight": 0.3535533905932738,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "rc_high_minus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "rc_high_plus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "chsh": {
+        "a0": "A0",
+        "a1": "A1",
+        "b0": "B0",
+        "b1": "B1"
+      }
+    }
+  ]
+}

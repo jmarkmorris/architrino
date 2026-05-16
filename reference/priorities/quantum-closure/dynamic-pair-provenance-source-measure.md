@@ -186,13 +186,209 @@ The next simulation should not add another hand-written probability table. It sh
 | `compression_audit` | Product-screening residual against the declared complete $\Pi_{AB}$ and apparatus variables. |
 | `guardrails` | $\Delta_{\mathrm{MI}}$, $\Delta_{\mathrm{NS}}^A$, $\Delta_{\mathrm{NS}}^B$, Tsirelson, GHZ, and Hardy diagnostics. |
 
-The minimal executable target is to produce a JSON scenario that can be converted into the existing Bell-family harness format and then run through
+The minimal executable target is to produce a JSON scenario that can be read by the Bell-family harness:
 
 ```text
-node scripts/quantum/bell-family-residual-harness.mjs --pretty
+node scripts/quantum/bell-family-residual-harness.mjs \
+  --candidate scripts/quantum/product-screened-axis-candidate.json \
+  --pretty
 ```
 
-or a future `--candidate` reader. The present harness already supplies the negative control. A positive candidate may be added only after its probability tables are generated from the source records and record basins above.
+The `--candidate` reader is an intake path, not a new gate. The included `product-screened-axis-candidate.json` fixture is a success marker for the existing failure mode: it reproduces a no-signaling, measurement-independent, product-screened negative control from explicit source records. Candidate scenarios must supply `source_protocol`, `source_records`, `source_balance`, `local_apparatus_records`, `record_basins`, `compression_audit`, `guardrails`, and `contexts`. If a context omits provenance, the reader uses the normalized `source_records` weights. If a context omits screening records and every source record supplies a `local_response`, the reader builds the product-screening audit from those local responses. A positive candidate may be added only after its probability tables are generated from the source records and record basins above.
+
+The first generated joint-basin target is emitted by
+
+```text
+node scripts/quantum/source-measure-joint-basin-emitter.mjs \
+  --pretty \
+  --out scripts/quantum/source-measure-joint-basin-candidate.json
+```
+
+and checked by
+
+```text
+node scripts/quantum/bell-family-residual-harness.mjs \
+  --candidate scripts/quantum/source-measure-joint-basin-candidate.json \
+  --pretty
+```
+
+This target uses a setting-independent six-cell source measure over a uniform threshold coordinate and an unbiased marginal branch. Its context-indexed joint basin recovers the singlet CHSH benchmark, preserves zero measurement-independence and no-signaling residuals, and does not reduce to the declared product-screening baseline. It is not a Bell closure proof: the threshold rule is a reduced target object whose substrate origin must still be derived from the pair-provenance ledger, the local apparatus record-window measures, and the joint record basins.
+
+The same emitter now also includes `candidate_record_cycle_pair_coordinate`, which replaces the abstract `correlation_interval` label with records carrying the reduced coordinate
+
+$$
+\eta_{AB}
+=
+\operatorname{frac}
+\left(
+\theta_{\text{rec}}^A
+-
+\theta_{\text{rec}}^B
++
+\varphi_{\Pi}
+\right).
+$$
+
+At the current harness level this diagnostic has $|S|=2\sqrt{2}$, zero measurement-independence residual, zero no-signaling residual, zero Tsirelson excess, and product-screening residual $0.35355339059327373$ against the declared independent local-marginal baseline. This is a reduced-coordinate success marker, not a substrate derivation: the open work is still to derive $\varphi_{\Pi}$ from $\Theta_{AB}^{\mathrm{rel}}$ and to compute the local record-cycle measures from apparatus return maps.
+
+## Pair-Basin Threshold Theorem Target
+
+The diagnostic target becomes a useful proof problem only if the inserted threshold can be replaced by a derived basin coordinate. A candidate reduced record may refine $\Gamma_{AB}^{\mathrm{rec}}$ by a sign branch $\sigma\in\{-1,+1\}$ and a threshold coordinate $\eta_{AB}\in[0,1]$:
+
+$$
+\Gamma_{AB}^{\mathrm{thr}}
+=
+\Pi_{AB}
+\times
+\Theta_A(\hat{\mathbf{m}}_A)
+\times
+\Theta_B(\hat{\mathbf{m}}_B)
+\times
+\{-1,+1\}_{\sigma}
+\times
+[0,1]_{\eta}.
+$$
+
+The required source-and-apparatus measure must be invariant under the sign flip
+
+$$
+F(\Pi_{AB},\zeta_A,\zeta_B,\sigma,\eta_{AB})
+=
+(\Pi_{AB},\zeta_A,\zeta_B,-\sigma,\eta_{AB}),
+\qquad
+F_*\mu_{AB}^{\mathrm{thr}}=\mu_{AB}^{\mathrm{thr}}.
+$$
+
+For spin-singlet settings, the target same-outcome threshold is
+
+$$
+T_{\mathrm{same}}(\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
+=
+\frac{1-\hat{\mathbf{m}}_A\cdot\hat{\mathbf{m}}_B}{2}.
+$$
+
+The reduced target basins are then
+
+$$
+B_{\sigma,\sigma}^{\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B}
+=
+\left\{
+(\cdots,\sigma,\eta_{AB}):
+0\le\eta_{AB}<T_{\mathrm{same}}(\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
+\right\},
+$$
+
+and
+
+$$
+B_{\sigma,-\sigma}^{\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B}
+=
+\left\{
+(\cdots,\sigma,\eta_{AB}):
+T_{\mathrm{same}}(\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)<\eta_{AB}\le1
+\right\},
+$$
+
+with boundary measure zero. If $(\eta_{AB})_*\mu_{AB}^{\mathrm{thr}}=d\eta$ and the sign branch has equal measure, the induced table is
+
+$$
+P(\sigma,\sigma|\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
+=
+\frac{1}{2}T_{\mathrm{same}},
+\qquad
+P(\sigma,-\sigma|\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
+=
+\frac{1}{2}\left(1-T_{\mathrm{same}}\right),
+$$
+
+so
+
+$$
+E(\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
+=
+2T_{\mathrm{same}}-1
+=
+-\hat{\mathbf{m}}_A\cdot\hat{\mathbf{m}}_B.
+$$
+
+**No-signaling marginal lemma.** Under the sign-flip symmetry above, the one-wing marginals are
+
+$$
+\sum_bP(+1,b|\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
+=
+\sum_bP(-1,b|\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
+=
+\frac{1}{2},
+$$
+
+and similarly for the $B$ wing. Therefore the emitted probability table has zero no-signaling residual even though the joint basin is context-indexed. This is only a table-level lemma. A substrate proof must still show that the context-indexed basin is produced by pair provenance, local apparatus record-window dynamics, and ordinary later record comparison, not by distant-setting dependence at either detector.
+
+### Candidate Source For $\eta_{AB}$
+
+The first substrate candidate for the inserted threshold coordinate should reuse existing record-window variables rather than add a new random label. Let $\theta_{\text{rec}}^A$ and $\theta_{\text{rec}}^B$ be the local apparatus record-cycle phases inside $\Theta_A(\hat{\mathbf{m}}_A)$ and $\Theta_B(\hat{\mathbf{m}}_B)$, and let
+
+$$
+\varphi_{\Pi}:\Pi_{AB}\to S^1
+$$
+
+read the relative phase component retained by $\Theta_{AB}^{\mathrm{rel}}$. The candidate pair coordinate is
+
+$$
+\eta_{AB}
+=
+\frac{1}{2\pi}
+\left[
+\theta_{\text{rec}}^A
+-
+\theta_{\text{rec}}^B
++
+\varphi_{\Pi}(\Pi_{AB})
+\right]_{2\pi},
+$$
+
+where $[\cdot]_{2\pi}$ denotes the representative in $[0,2\pi)$. This equation is only a theorem target. It is admissible only if $\varphi_{\Pi}$ is computed from the retained pair-provenance ledger and if the two local record-cycle phases are sampled from the local apparatus return-map measures already present in the joint record law.
+
+For each detector-setting context, let $\mu_{AB}^{\mathrm{rec}}$ denote the joint measure in the earlier record-law integral. The closure target is
+
+$$
+(\eta_{AB})_*\mu_{AB}^{\mathrm{rec}}=d\eta,
+\qquad
+\mu_{AB}^{\mathrm{rec}}
+\left(
+0\le\eta_{AB}
+<
+T_{\mathrm{same}}(\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
+\right)
+=
+\frac{1-\hat{\mathbf{m}}_A\cdot\hat{\mathbf{m}}_B}{2}.
+$$
+
+The first equality is the uniform-pushforward burden; the second says the same-outcome basin measure is the singlet benchmark rather than a fitted table. The candidate fails if the pushforward is imposed by hand, if the required relative phase cannot be extracted from $\Theta_{AB}^{\mathrm{rel}}$, or if the four induced basins product-screen after conditioning on the complete retained record. A concrete screening diagnostic is
+
+$$
+\Delta_{\mathrm{prod}}
+=
+\inf_{K_A,K_B}
+\sup_{a,b,\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B}
+\left|
+P_\theta(a,b|\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
+-
+\int
+K_A(a|\hat{\mathbf{m}}_A,\Pi_{AB},\zeta_A)
+K_B(b|\hat{\mathbf{m}}_B,\Pi_{AB},\zeta_B)
+\,d\mu_{AB}^{\mathrm{rec}}
+\right|.
+$$
+
+If $\Delta_{\mathrm{prod}}$ vanishes within the declared harness tolerance, the coordinate has reduced to the Bell-local class and the Bell-family gate fails. If $\Delta_{\mathrm{prod}}$ remains nonzero while $\Delta_{\mathrm{MI}}$, $\Delta_{\mathrm{NS}}^A$, and $\Delta_{\mathrm{NS}}^B$ vanish, the construction becomes a serious candidate for a substrate derivation.
+
+This theorem target fails in any of the following cases:
+
+1. $\eta_{AB}$ or $T_{\mathrm{same}}$ is chosen directly to reproduce the singlet table rather than derived as a basin coordinate and separatrix threshold.
+2. The retained record admits a factorization into one-wing kernels after conditioning on the complete $\Pi_{AB}$ and local apparatus variables.
+3. $F_*\mu_{AB}^{\mathrm{thr}}\ne\mu_{AB}^{\mathrm{thr}}$, so the local marginals drift away from $\frac{1}{2}$.
+4. $\rho_{\mathrm{src}}(\Pi_{AB}|P_{\mathrm{src}})$ depends on later detector settings.
+5. The construction requires superluminal signal, energy transfer, causal-wake transfer, or treating information as ontology.
 
 ## Promotion Gates
 
@@ -209,7 +405,8 @@ or a future `--candidate` reader. The present harness already supplies the negat
 - The delayed total-angular-momentum functional still needs a source-event evaluation for a changing-frequency Noether core.
 - The effective spinor coordinate and the conditions under which the record-cycle measure flattens to the ideal chart remain lower-level proof obligations.
 - The current product-screened generated axis model is a correct failure control, not a partial success.
-- A future source-measure scenario must decide whether nonfactorization comes from an incomplete retained record, a genuinely joint record-basin construction, or a failed premise in the attempted $\Pi_{AB}$ compression. Vague nonlocality language is not an acceptable output.
+- The generated joint-basin target now shows the intended nonfactorizing success shape at the harness level, but it leaves the central derivation open: explain why the joint basin exists in the substrate record law rather than inserting the singlet threshold as an effective target.
+- Any future source-measure scenario must decide whether nonfactorization comes from an incomplete retained record, a genuinely joint record-basin construction, or a failed premise in the attempted $\Pi_{AB}$ compression. Vague nonlocality language is not an acceptable output.
 
 ## Handoff
 

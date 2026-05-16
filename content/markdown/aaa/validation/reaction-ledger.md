@@ -105,6 +105,31 @@ $$
 
 componentwise across the tuple. Nonzero physical recoil, medium heating, remnant excitation, outgoing product energy, or photon output is allowed only as a named term inside $Y_{\mathsf e}$; it is not allowed as an implicit loss.
 
+### Provenance-Preserving Polarity Inventory
+
+Count conservation is not enough for reaction closure. Since the ontic architrino set $\mathcal{A}$ is fixed, every serious reaction record must route identity-labeled architrinos through the event after expanding the input and output state to include any explicitly recruited or returned Noether-Sea content.
+
+Let $R_{\mathsf e}^{\mathrm{in}}\subset\mathcal{A}$ and $R_{\mathsf e}^{\mathrm{out}}\subset\mathcal{A}$ denote the participating architrino identities before and after the event. A closed event must supply a bijection
+$$
+\Pi_{\mathsf e}:R_{\mathsf e}^{\mathrm{in}}\to R_{\mathsf e}^{\mathrm{out}}
+$$
+such that, for every routed identity $a$,
+$$
+q_{\Pi_{\mathsf e}(a)}=q_a,\qquad
+q_a=\sigma_a\epsilon,\qquad
+\sigma_a\in\{-1,+1\}.
+$$
+Equivalently, the polarity inventory vector
+$$
+\mathbf{N}_{\mathsf e}
+=
+\left(
+\#\{a:q_a=-\epsilon\},
+\#\{a:q_a=+\epsilon\}
+\right)
+$$
+must agree before and after the event once all named reservoir terms are included. Photon assemblies, causal wakes, and corridor payloads may carry energy, momentum, angular momentum, phase, and path-history data, but they do not create new elements of $\mathcal{A}$. If a pair-production, weak, charged-pair relock, bremsstrahlung, synchrotron, or scattering record lacks $\Pi_{\mathsf e}$ or an equivalent identity-routing statement, the record remains provisional even when its net observer-level charge balances.
+
 The contract for each serious channel is:
 
 | Contract field | Required content |
@@ -112,7 +137,7 @@ The contract for each serious channel is:
 | Residual | Define $\mathcal{R}$ from the local state, causal-wake ledger, density field, Noether-Sea delay factor, and sector variables. |
 | Threshold or separatrix | State the critical surface, basin boundary, channel boundary, or return-map condition that selects an admissible route. |
 | Candidate channels | List the allowed routes, including radiative, recoil, medium, reaction, remnant, or record-forming terms when applicable. |
-| Event ledger | Close $E$, $\mathbf{p}$, $\mathbf{J}$, charge/provenance, recoil, medium update, remnant state, and architrino inventory where applicable. |
+| Event ledger | Close $E$, $\mathbf{p}$, $\mathbf{J}$, charge/provenance, recoil, medium update, remnant state, architrino inventory, and identity routing where applicable. |
 | Benchmark recovery | Name the observer-level reaction, cross-section, threshold, rate, or conservation benchmark recovered by the route. |
 | Closure status | Mark the record as baseline, provisional map, derivation target, failed map, or inherited gate. |
 
@@ -123,7 +148,7 @@ A reaction record may be promoted beyond a provisional map only when all of the 
 1. **Replayable residual:** $\mathcal{R}(X)$ is computed from $\Gamma$, $\mathcal{H}$, $\rho_{\text{core}}(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, and explicitly named sector variables, with no hidden sector-specific residual term.
 2. **Boundary selection:** each selected channel has a stated boundary test $g_i(X,\mathcal{R})\ge0$, and every excluded channel required by the sector either fails its boundary test or is ruled out by a compatibility condition.
 3. **Admissible output:** $Y_{\mathsf e}$ names all outgoing assemblies, recoil targets, medium updates, remnant states, and provenance records required by the selected channel set.
-4. **Ledger closure:** $\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)=\mathbf{0}$ after adding the sector-required charge, polarity, architrino-inventory, path-history, Noether-Sea, and remnant rows.
+4. **Ledger closure:** $\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)=\mathbf{0}$ after adding the sector-required charge, polarity, architrino-inventory, identity-routing, path-history, Noether-Sea, and remnant rows.
 5. **Benchmark compatibility:** the promoted event recovers the sector benchmark without breaking any required weak, quantum, gravity, hadronic, radiation, cosmology, conservation-law, or direct-observation acceptance gate.
 
 This is a promotion criterion, not a completed theorem. Worked sector cases remain open until at least one channel supplies a named residual, a named threshold or separatrix, a channel decision, a complete $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ ledger, a benchmark recovery, and a failure diagnostic in one record. The free-neutron beta reaction, the $t\to b+W^+$ channel, radiation-coupled pair channels, and nuclear reaction examples therefore remain provisional where their sector records still lack closed residual routing, outgoing core provenance, angular-momentum balance, rate recovery, or quantitative benchmark closure.
@@ -136,6 +161,7 @@ This is a promotion criterion, not a completed theorem. Worked sector cases rema
 | Boundary failure | A resolved event occurs while every required $g_i(X,\mathcal{R})<0$, or two mutually exclusive selected channels demand incompatible output assignments. |
 | Ledger residual failure | After all sector-required rows are included, $\Delta_E\ne0$, $\Delta_{\mathbf{p}}\ne\mathbf{0}$, or $\Delta_{\mathbf{J}}\ne\mathbf{0}$. |
 | Inventory or provenance failure | $\Delta_{\mathrm{pol}}\ne0$, $\Delta_{\mathrm{arch}}\ne0$, or $\Delta_{\mathrm{path}}\ne0$ after the claimed Noether-Sea, corridor, source-identity, emission-time, causal-root, and branch-Jacobian records are included. |
+| Identity-routing failure | No bijection $\Pi_{\mathsf e}$, or equivalent identity route, maps participating input architrinos to participating output architrinos after named Noether-Sea reservoir terms are included. |
 | Medium or remnant failure | $\Delta_{\mathrm{med}}\ne0$ or $\Delta_{\mathrm{rem}}\ne0$, meaning the route used medium heating, recoil, retained excitation, or remnant deformation as an implicit loss term. |
 | Retuning failure | The same benchmark family can be recovered only by changing the residual definition, the channel boundary, or the Noether-Sea state variables between sector cases. |
 | Cross-sector failure | The local route succeeds only by violating another required sector acceptance gate. |

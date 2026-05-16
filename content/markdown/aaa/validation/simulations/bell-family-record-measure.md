@@ -18,12 +18,24 @@ To inspect one case:
 node scripts/quantum/bell-family-residual-harness.mjs --scenario ghz_local_value_table --pretty
 ```
 
+To inspect the candidate-fixture intake path:
+
+```text
+node scripts/quantum/bell-family-residual-harness.mjs \
+  --candidate scripts/quantum/product-screened-axis-candidate.json \
+  --pretty
+```
+
 The script emits JSON with one row per scenario:
 
 | Field | Meaning |
 | --- | --- |
+| `metadata.source` | whether the run used built-in scenarios or a candidate JSON fixture |
+| `metadata.candidate_path` | candidate fixture path when `metadata.source` is `candidate` |
 | `id` | stable scenario identifier |
 | `classification` | `benchmark` or `negative_control` |
+| `source_protocol` | declared source construction for candidate fixtures, when supplied |
+| `source_record_count` | number of retained source records in a candidate fixture |
 | `metrics.chsh` | CHSH expectations, $S$, local-bound excess, and Tsirelson excess |
 | `metrics.ghz` | GHZ product-context expectations and $\Delta_{\mathrm{GHZ}}$ residual |
 | `metrics.hardy` | Hardy zero-term probabilities and positive-event margin |
@@ -189,6 +201,8 @@ K_B(b|B_j,\Pi_k).
 $$
 
 This is a useful negative control because it has explicit pair provenance, explicit local kernels, clean no-signaling, and clean measurement independence, but it still reaches only the classical-axis correlation. The product-screening residual is zero by construction, so the `product_screening_escape` gate must fail with `bell.product_screening_collapse`.
+
+The candidate-reader path now makes that obstruction inspectable from a declared source-record fixture rather than only from built-in tables. The current fixture `scripts/quantum/product-screened-axis-candidate.json` supplies eight explicit source records, local deterministic response tables, normalized source weights, and four CHSH contexts. It is not a positive Bell candidate. It is a compact negative control showing that explicit provenance can still reduce to Bell-local product screening unless the completed record law supplies a stronger joint record-basin measure.
 
 ## Built-In Scenarios
 

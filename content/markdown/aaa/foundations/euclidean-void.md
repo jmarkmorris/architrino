@@ -45,6 +45,22 @@ d(\mathbf{p},\mathbf{q})=
 \sqrt{(x_p-x_q)^2+(y_p-y_q)^2+(z_p-z_q)^2}.
 $$
 
+For fixed void points, this distance is time-independent. Equivalently, with
+$$
+D_h(\mathbf{p},\mathbf{q})
+=
+\sqrt{h_{ij}(p^i-q^i)(p^j-q^j)},
+$$
+the substrate condition is
+$$
+\partial_t h_{ij}=0,
+\qquad
+R^i{}_{jkl}(h)=0,
+\qquad
+\frac{d}{dt}D_h(\mathbf{p},\mathbf{q})=0.
+$$
+Any cosmological scale variable must therefore be an effective summary of medium or observer records, not a time-dependent scale factor multiplying the void metric.
+
 > **Plain language:** The void is ordinary three-dimensional Euclidean space with the familiar straight-line distance formula. Any two points have a unique, well-defined separation.
 
 ## Flat Geometry and Topology
@@ -76,13 +92,13 @@ Topologically, the void is fixed as $\mathbb{R}^3$: contractible, simply connect
 
 ## Canonical Coordinates and Event Identity
 
-The canonical spatial chart is a rigid Cartesian coordinate system
+The Euclidean void does not contain pre-labeled axes or an intrinsic origin. Once a coordinate scaffold has been selected for calculation, the canonical spatial chart is a rigid Cartesian coordinate system
 $$
 \mathcal{C}=\{x,y,z\}
 $$
-grounded in the Euclidean void.
+on the Euclidean void.
 
-Unlike General Relativity, where coordinates may function as gauge labels under diffeomorphism invariance, the canonical Cartesian chart in $\mathbb{A}\mathbb{A}\mathbb{A}$ names fixed spatial locations in the substrate. Coordinate points do not move, curve, or stretch.
+Unlike General Relativity, where coordinates may function as gauge labels under diffeomorphism invariance, a declared Cartesian chart in $\mathbb{A}\mathbb{A}\mathbb{A}$ names fixed spatial locations in the substrate. The chart is a scaffold for components and simulation addresses, not an extra ontological ingredient. Coordinate points do not move, curve, or stretch.
 
 This gives fixed spatial identity:
 
@@ -92,9 +108,19 @@ This gives fixed spatial identity:
 
 This fixed identity is important for self-hit diagnostics, path-history bookkeeping, and simulations that must track where a wake was emitted and where it is later received.
 
+For a received wake contribution, the provenance record should preserve the source identity, emission time, emission location, receiver identity, reception time, and reception location:
+$$
+(j,t_0,\mathbf{s}_j(t_0),o',t,\mathbf{s}_{o'}(t)).
+$$
+The causal-root condition is then
+$$
+\|\mathbf{s}_{o'}(t)-\mathbf{s}_j(t_0)\|_h=c_f(t-t_0).
+$$
+This condition is invariant under Euclidean translations and rotations of the chosen coordinate scaffold. The scaffold may be changed for calculation, but the underlying void point where emission occurred is not moved by that relabeling.
+
 ## Curvilinear Coordinates
 
-Cartesian coordinates are the natural substrate chart, but the same Euclidean geometry can be expressed in curvilinear coordinates for convenience.
+Cartesian coordinates are the natural chart once a scaffold has been chosen, but the same Euclidean geometry can be expressed in curvilinear coordinates for convenience.
 
 In spherical coordinates $(r,\theta,\phi)$ with $r\geq0$, $\theta\in[0,\pi]$, and $\phi\in[0,2\pi)$,
 $$
@@ -187,13 +213,20 @@ $$
 \partial_x v^x+\partial_y v^y+\partial_z v^z.
 $$
 
-The scalar Laplacian is
+The scalar Laplacian in Cartesian coordinates is
 $$
 \Delta f=\nabla^2 f=h^{ij}\partial_i\partial_j f
 =\partial_x^2f+\partial_y^2f+\partial_z^2f.
 $$
 
-All these operators remain coordinate-invariant when expressed tensorially.
+In curvilinear coordinates on the same flat geometry, the invariant scalar Laplacian is
+$$
+\Delta f
+=
+\frac{1}{\sqrt{\det h}}\partial_i\left(\sqrt{\det h}\,h^{ij}\partial_j f\right).
+$$
+
+All these operators remain coordinate-invariant when expressed tensorially, while their component formulas depend on the chosen coordinate chart.
 
 ## Homogeneity, Isotropy, and the Euclidean Group
 
@@ -222,8 +255,8 @@ Homogeneity and isotropy imply:
 - Laws of physics are identical at any two void locations.
 - There is no center or edge of space.
 - No direction is preferred by the substrate.
-- Translation symmetry supplies the kinematic basis for momentum conservation.
-- Rotation symmetry supplies the kinematic basis for angular momentum conservation.
+- Translation symmetry supplies the kinematic basis for momentum conservation when the delayed action and wake-ledger channels preserve the same symmetry.
+- Rotation symmetry supplies the kinematic basis for angular momentum conservation when the delayed action and wake-ledger channels preserve the same symmetry.
 
 Any preferred-frame effect, anisotropy, or effective Lorentz behavior must arise from dynamics, Noether-Sea response, or observer construction, not from an anisotropy of the Euclidean void.
 
@@ -244,10 +277,12 @@ Thus deviations from straight-line motion arise from causal wakes, self-interact
 
 ## Forbidden Transformations
 
-Allowed substrate transformations are those that preserve the Euclidean spatial metric:
+Allowed spatial isometries of the Euclidean void are those that preserve the Euclidean spatial metric:
 
 - Spatial translations.
 - Spatial rotations.
+
+At the product-background level, absolute timespace may also be described in coordinate systems related by time translations or Galilean boosts that preserve the foliation by constant-$t$ slices. Those transformations are coordinate descriptions of the product structure, not spatial isometries of a single void slice. The wake law still selects the preferred rest frame in which $c_f$ is isotropic.
 
 Forbidden as substrate symmetries:
 
@@ -256,7 +291,7 @@ Forbidden as substrate symmetries:
 - Transformations that mix spatial coordinates with absolute time as though the product background were a single relativistic metric.
 - Any operation that introduces a preferred direction at the substrate level.
 
-Galilean behavior may appear as an effective observer-level symmetry, and Lorentz behavior remains a closure target for moving assemblies, clocks, rulers, and signals. Neither is the fundamental symmetry of the Euclidean void itself.
+Galilean coordinate behavior belongs to the absolute-timespace product structure. Lorentz behavior remains a closure target for moving assemblies, clocks, rulers, and signals. Neither Lorentz boosts nor effective metric transformations are fundamental symmetries of the Euclidean void itself.
 
 ## Boundary With the Noether Sea
 
@@ -271,13 +306,23 @@ The distinction is:
 
 At any time $t$, a coordinate point may be occupied by an architrino, traversed by a wake, located inside a Noether-Sea cell, or empty of local architrino content. None of those occupancy states changes the identity or metric of the underlying void point.
 
+This gives a direct no-expanding-void criterion for cosmology. Effective cosmology variables such as $a(t)$, $H(t)$, redshift, and CMB temperature summaries are admissible only as functions of Noether-Sea state, transport history, and observer clock comparison:
+$$
+a_{\mathrm{eff}}(t)=\mathcal{A}[\theta_{\mathrm{sea}}(t),O(t)].
+$$
+They must not be interpreted as
+$$
+h_{ij}(t)=a_{\mathrm{eff}}^2(t)\delta_{ij}
+$$
+for the Euclidean void.
+
 ### Plenum of Potential
 
 The Euclidean void is strictly empty of material substance. It is not a material ether, not a quantum foam, and not a hidden continuum with internal state variables. Its points do not store energy, density, curvature, stress, or memory.
 
-Nevertheless, a coordinate location in the full universe should not be treated as relationally empty. Because architrinos continuously emit expanding causal isochrons, the void is saturated by overlapping geometrical wakes from unbounded historical architrino motion. These wakes do not fill the void as material contents; they form the delayed relational ledger through which later architrino intersections can be computed.
+Nevertheless, a coordinate location in the full universe should not be treated as relationally empty. Because architrinos continuously emit expanding causal isochrons, a location may lie on many geometrical wakes from historical architrino motion. These wakes do not fill the void as material contents; they form the delayed relational ledger through which later architrino intersections can be computed.
 
-In this precise sense, the void is a **Plenum of Potential**: materially empty, but relationally and computationally dense. The phrase does not add a new substance between the Euclidean void and the Noether Sea. It names the fact that an empty coordinate location can still lie within the superposed causal-wake history of the architrino population.
+In this precise sense, the void is a **Plenum of Potential**: materially empty, but relationally available to causal-wake history. The phrase does not add a new substance between the Euclidean void and the Noether Sea. It names the fact that an empty coordinate location can still lie within the superposed causal-wake history of the architrino population.
 
 Noether-Sea density and response variables belong to the medium layer, not the spatial substrate. For the medium ontology, see [Noether Sea](../spacetime/noether-sea.md). For medium assembly hypotheses, see [Spacetime Assemblies](../spacetime/spacetime-assemblies.md). For the metric bridge, see [Emergent Metric](../spacetime/emergent-metric.md). For cosmological translation, see [Cosmology Ontology](../cosmology/cosmology-ontology.md).
 
@@ -296,4 +341,4 @@ The phrase `curved space` should not be used for the fundamental ontology. Use `
 
 ## Summary Postulate
 
-> **Postulate 2 (Euclidean Void):** Three-dimensional space is the Euclidean void: an absolute, static, flat container $\mathbb{R}^3$ equipped with fixed metric $h_{ij}=\delta_{ij}$. It is homogeneous, isotropic, non-dynamical, and does not curve, expand, contract, or respond to matter and energy. All spatial displacements, distances, volumes, and spatial differential operators are defined by the fixed Euclidean metric. Curvature-like observations arise from trajectories, assemblies, wakes, and Noether-Sea response within the void, not from curvature of the void itself.
+> **Postulate 2 (Euclidean Void):** Three-dimensional space is the Euclidean void: an absolute, static, flat container $\mathbb{R}^3$ equipped with fixed metric $h_{ij}=\delta_{ij}$. It is homogeneous, isotropic, non-dynamical, and does not curve, expand, contract, or respond to matter and energy. All spatial displacements, distances, volumes, and spatial differential operators are defined by the fixed Euclidean metric. Curvature-like observations, effective scale histories, and observer-level redshift summaries arise from trajectories, assemblies, wakes, and Noether-Sea response within the void, not from curvature or expansion of the void itself.

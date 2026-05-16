@@ -305,17 +305,17 @@ Finite-range gravity and massive-gravity programs are useful here only as compar
 
 In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, cosmological redshift is not caused by the stretching of space (the void does not stretch) but by the comparison of clocks at emission and reception:
 
-- A photon-mode assembly emitted at cosmic time $t_e$ carries a frequency set by the tri-binary oscillation rates of the source assembly at that epoch.
-- At reception time $t_0$, the observer's local clock rate is set by the current Noether-Sea state.
-- If the Noether-Sea state has evolved between $t_e$ and $t_0$—specifically, if outer-binary radii have increased and internal frequencies have decreased—then the received frequency is lower than the emitted frequency. This is the operational content of $1 + z = \nu_e/\nu_0$.
+- A photon-mode assembly emitted at effective cosmic time $\tau_{c,e}$, corresponding to substrate time $t_e$ in the exact record, carries a frequency set by the tri-binary oscillation rates of the source assembly at that epoch.
+- At the reception epoch $\tau_{c,o}$, corresponding to substrate time $t_o$, the observer's local clock rate is set by the current Noether-Sea state.
+- If the Noether-Sea state has evolved between $t_e$ and $t_o$—specifically, if outer-binary radii have increased and internal frequencies have decreased—then the received frequency is lower than the emitted frequency. This is the operational content of $1 + z = \nu_e/\nu_o$.
 
 The redshift-distance relation $z(d_L)$ encodes the entire history of Noether-Sea state evolution along the photon's path. In the effective Friedmann description, this is captured by:
 
 $$
-d_L(z) = (1+z)\int_0^z \frac{c\,dz'}{H(z')},
+d_L(z) = (1+z)\int_0^z \frac{c_0\,dz'}{H(z')},
 $$
 
-which serves as the effective expansion-history map used by observers.
+where $c_0$ is the asymptotic observer-channel speed used in the effective comparison layer. This serves as the effective expansion-history map used by observers.
 
 ### Tired-Light Exclusion
 
