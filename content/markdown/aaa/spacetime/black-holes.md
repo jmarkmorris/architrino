@@ -180,6 +180,67 @@ S_H
 $$
 where $A_H$ is the observer-level horizon area and $A_{\text{align}}$ is the alignment-area scale from the Planck-alignment program, with the numerical and $2\pi$ conventions fixed by that derivation rather than by definition here. Page-curve recovery then becomes a release-channel theorem: outward channels must preserve enough phase, axial-pattern, and path-history information from $\mathcal{B}_{H}$ to make evaporation or recycling unitary at the effective quantum level, while still appearing thermal to coarse exterior measurements.
 
+This global horizon ensemble must be compatible with the local boundary-wake count used in [Emergent Metric](emergent-metric.md#local-horizon-recovery-target). For a compact region $\Omega$ whose boundary intersects the horizon interface, let $\pi_{\partial\Omega}^{(O)}$ be the Physical Observer projection from strong-field horizon-interface labels to retained boundary-wake labels, and write $\mathcal{B}_{H}(\theta)$ for the horizon-interface ensemble selected by the same strong-field record. The proof route requires
+$$
+\left|
+\log\left|
+\pi_{\partial\Omega}^{(O)}
+\mathcal{B}_{H}(\theta)
+\right|
+-
+\log\left|
+\mathcal{B}_{\partial\Omega}^{(O)}
+\left(\theta_{\Omega,O,W}\right)
+\right|
+\right|
+\le
+\epsilon_{\mathrm{proj}},
+$$
+for the same strong-field record $\theta$ restricted to the observer window. If the local boundary count and the global horizon-interface count require different records, the entropy target has split into two fitted stories. If they agree, the black-hole area law is no longer an isolated assumption; it becomes the compact strong-field version of the local boundary-factorization theorem target.
+
+The words "thermal," "scrambled," and "recoverable" are therefore readout-channel claims, not direct ontology labels. For a Physical Observer $O$, let $\mathcal{K}_{O}^{\mathrm{rad}}$ denote the declared radiation readout kernel and let $\mathcal{R}_{O}$ denote the physical reference resources used to compare outgoing quanta. A horizon-interface ledger state $\lambda\in\mathcal{B}_{H}(M,\mathbf{J},Q)$ reaches the observer through a channel of the schematic form
+$$
+Y_O
+=
+\pi_O^{\mathrm{rad}}\!\left(
+\lambda;\mathcal{K}_{O}^{\mathrm{rad}},
+\mathcal{R}_{O},
+\mathcal{B}_{\partial\Omega}
+\right).
+$$
+Before a black-hole information claim is promoted, the comparison packet must say which $\mathcal{K}_{O}^{\mathrm{rad}}$, reference resources, access region, and finite boundary data make the outgoing channel meaningful. A coarse exterior channel may legitimately see an approximately thermal distribution while a richer correlated reference channel retains structure, but that difference is a statement about observer-accessible records. It does not import a boundary CFT, many-copy tomography story, or external reference frame as $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology.
+
+The same packet should also carry a detailed-balance comparison rather than treating CPT language as an ontological shortcut. Let $\mathcal{L}_{H}$ be the declared set of horizon-interface formation and release ledger channels for a compact region $\Omega$. For a candidate strong-field record $\theta$, require
+$$
+\mathcal{R}_{H,\mathrm{bal}}(\theta)
+=
+\sum_{\ell\in\mathcal{L}_{H}}
+w_\ell
+\left[
+P_\theta(\ell_{\mathrm{in}}\to\mathcal{B}_H)
+-
+P_\theta(\mathcal{B}_H\to(CPT)_{\mathrm{eff}}\ell_{\mathrm{out}})
+\right]^2
++
+d_{\mathrm{ent}}\!\left(
+S_H^{(O)},
+k_B\log|\mathcal{B}_{H}^{(O)}|+S_{\mathrm{out}}^{(O)}
+\right)
++
+d_{\mathrm{CPT}}\!\left(\mathcal{R}_{\mathrm{CPT}}(\theta),0\right).
+$$
+The pass condition is $\mathcal{R}_{H,\mathrm{bal}}(\theta)\le\epsilon_H$ using the same branch record that recovers exterior compact-object observables. This does not assert a literal mirror universe, a white-hole ontology, or a final-state boundary postulate. It says that if the effective comparison invokes CPT or thermal equilibrium, the native horizon-interface release ledger must exhibit the corresponding formation/release balance within the declared observer access channel.
+
+The species puzzle supplies a separate entropy guardrail. If $N_{\mathrm{spect}}$ counts effective spectator species that do not enter the native closure labels, release channels, or null-result ledger, then horizon entropy should be insensitive to those labels:
+$$
+\left|
+\frac{\partial S_H^\theta}{\partial N_{\mathrm{spect}}}
+\right|_{\mathcal{B}_H,\partial\Omega}
+\le
+\epsilon_{\mathrm{spect}}.
+$$
+If an added species is physically real, it must change $\mathcal{B}_{H}$, $S_{\mathrm{out}}^{(O)}$, a release-channel row, or $\mathcal{R}_{\mathrm{null}}$. If it changes none of those records, it is an effective-description label and may not be used to tune black-hole entropy.
+
 The classical area-increase result supplies a direct benchmark for this target. In the standard exterior description, a clean merger comparison has
 $$
 A_{H,\mathrm{final}}
@@ -210,6 +271,31 @@ S_{\mathrm{out}}^{(O)}(t),
 $$
 where $S_{\mathrm{out}}^{(O)}(t)$ summarizes the entropy of accessible outgoing channels. This equation is not a new ontology. It is a bookkeeping target: the native horizon-interface model should explain how the area-like ledger term and the outgoing-channel entropy combine into a finite observer-level entropy, and how that combined quantity can reproduce Page-curve behavior without importing islands, replica wormholes, or a boundary CFT as primitive structure.
 
+This also disciplines the local semiclassical version of the information paradox. A statement that a horizon-straddling correlation has been lost is only a promoted comparison claim after the access region, reference resources, boundary wake data, and readout channel have been declared. Local QFT pair language remains useful near a smooth effective horizon, but it is an approximation to an observer-level calculation. The native black-hole closure must say which Physical Observer could recover which part of the release record, and which finite boundary data make that recovery meaningful.
+
+#### Complexity-Growth Comparison Target
+
+Black-hole complexity proposals add a narrower comparison target. Their useful content is not the claim that interior volume is primitive ontology. It is the observation that some black-hole interior comparisons continue to change long after ordinary thermal entropy has effectively saturated. The native translation is a horizon-interface ledger complexity, not a new spacetime substance.
+
+For two compatible horizon-interface label states $\Lambda_a,\Lambda_b\in\mathcal{B}_{H}(M,\mathbf{J},Q)$, define
+$$
+\mathcal{C}_{H}(\Lambda_a,\Lambda_b)
+=
+\min\left\{
+N:
+G_N\circ\cdots\circ G_1(\Lambda_a)=\Lambda_b,\
+G_i\in\mathcal{G}_{\mathrm{loc}}
+\right\},
+$$
+where $\mathcal{G}_{\mathrm{loc}}$ is the permitted set of local Noether-core, path-history, and release-ledger updates inside the horizon-interface model. For a horizon history, write $\mathcal{C}_{H}^{(O)}(t)$ for the minimum such update count between the observer-accessible initial ledger and the compatible ledger class at time $t$.
+
+The comparison burden is then:
+$$
+S_H^{(O)}(t)\ \text{approximately saturates while}\
+\mathcal{C}_{H}^{(O)}(t)\ \text{can continue to grow},
+$$
+without breaking exterior no-hair behavior, Page-compatible release accounting, or finite-boundary-data regularity. If this growth can be matched only by importing a literal boundary CFT, an AdS interior ontology, or an independent hidden state not present in $\mathcal{B}_{H}^{(O)}(t)$, then the complexity comparison has not been translated into the native black-hole closure.
+
 ### Finite-Boundary Endpoint Closure
 
 The endpoint and information questions should be posed on a compact strong-field region rather than by assuming an observer at asymptotic infinity. For a region $\Omega$ bounded by finite observer-accessible data between times $t_i$ and $t_f$, the native closure target is a single continuation map
@@ -237,6 +323,8 @@ $$
 with outgoing energy, momentum, angular momentum, charge, polarity, provenance, and medium-update rows accounted for through the release-channel ledger.
 
 This gives a compact comparison rule for evaporation and endpoint proposals. A proposal can be used as a comparison framework if it sharpens one of those finite-ledger checks. It should not be promoted into the ontology unless the same native horizon-interface variables produce the continuation without an arbitrary endpoint branch or a separate asymptotic bookkeeping rule.
+
+No-hair, cosmic-censorship, and endpoint theorems enter this chapter with the same assumption discipline. Their strongest use is to preserve exterior compact-object behavior, horizon regularity, and finite-release accounting where their hypotheses match the comparison regime. When a theorem assumes an isolated vacuum black hole or asymptotically flat exterior, it cannot by itself settle a black hole embedded in an evolving Noether Sea. The retained burden is sharper: the native horizon-interface record must reproduce the exterior $(M,\mathbf{J},Q)$ coarse-graining and avoid observer-level naked-singularity pathology while using finite active-medium boundary data.
 
 As a heuristic geometric picture, the horizon can also be described as a **dimensional pinch** in the tri-binary shape trajectory. On this reading, ordinary 3D assemblies are flattened toward a near-planar disk at the alignment interface, while the interior self-hit regime permits re-opening of the suppressed axial degree of freedom. In shorthand, the proposed shape path is
 $$
@@ -279,7 +367,7 @@ The working picture has four parts:
 - infalling assemblies are compressed toward maximal-curvature states;
 - energy is redistributed across inner, middle, and outer layers rather than lost from the ontology;
 - the horizon interface mediates which excitations remain trapped, which are delayed, and which can be re-expressed as outbound channels;
-- re-emergence may occur through jets, radiative outflows, dark-photon-like channels, or other medium excitations, depending on the local state of the core and interface.
+- re-emergence may occur through jets, radiative outflows, dark-sector photon-like modes, or other medium excitations, depending on the local state of the core and interface.
 
 This is the sense in which black holes are treated as recycling furnaces in the cosmology chapters. The claim is not that every specific ejecta channel has already been derived. The claim is that the interior is an energy-partition and reprocessing regime, not a terminal ontic sink.
 
@@ -293,7 +381,7 @@ For that reason, the framework uses a release-channel hierarchy:
 
 - **Constitutive claim:** infalling matter and radiation can be reprocessed into outward channels.
 - **Astrophysical channel claim:** some of those outward channels may become observable jets or winds.
-- **Dark-sector claim:** some channels may cross outward through the horizon interface as recycled dark-matter-like or dark-energy-like assemblies, or in dark-photon-like form, before later converting into visible excitations, if they do so at all.
+- **Dark-sector claim:** some channels may cross outward through the horizon interface as recycled dark-matter-like or dark-energy-like assemblies, or as dark-sector photon-like modes, before later converting into visible excitations, if they do so at all.
 
 This hierarchy keeps the theory from overcommitting to a single morphology. A jet is evidence for organized outflow, not by itself proof that all recycling must emerge in collimated form.
 
@@ -313,7 +401,7 @@ Three working possibilities remain live:
 
 - **Dark-sector escape:** a released mode stays weakly coupled to visible matter after outward crossing and contributes mainly through gravitational or dark-sector signatures.
 - **Recycled dark assemblies:** the released content emerges as assembly populations that behave effectively like dark matter or dark energy after outward crossing, remaining weakly coupled to visible channels.
-- **Dark-photon-like escape with later conversion:** a released mode exits in an initially dark form and only farther from the horizon re-enters visible channels through dissipation, coupling, or geometric relaxation.
+- **Dark-sector photon-like escape with later conversion:** a released mode exits in an initially dark photon-channel-adjacent form and only farther from the horizon re-enters visible channels through dissipation, coupling, or geometric relaxation.
 
 ### Jet Production as a Selection Problem
 

@@ -78,6 +78,39 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the conservative requirement is therefore 
 
 A dark-matter interpretation fails if it treats CMB lensing as direct proof of one substrate while using a different medium state to fit galaxy clustering, weak lensing, or cluster offsets.
 
+### Cluster-Offset Inference Gate
+
+Cluster mergers such as the Bullet Cluster are high-pressure dark-sector tests because gravitational lensing, X-ray gas, and galaxy-light distributions separate during the event. They are not, however, direct photographs of a substrate. The retained data product is the ensemble of local lensing constraints, centroid offsets, gas-dynamical records, galaxy-tracer distributions, line-of-sight priors, and covariance assumptions used to infer the mass map.
+
+For a candidate medium record $\theta_{\mathrm{sea}}$ and neutral-assembly density $\rho_A$, let $\mathcal{P}_{\mathrm{cl}}(\theta_{\mathrm{sea}},\rho_A)$ project the model into that cluster-observable packet. A compact cluster-offset residual is
+
+$$
+\mathcal{R}_{\mathrm{cl\ offset}}(\theta_{\mathrm{sea}},\rho_A)
+=
+\left\lVert
+D_{\mathrm{cl}}^{\mathrm{obs}}
+-
+\mathcal{P}_{\mathrm{cl}}(\theta_{\mathrm{sea}},\rho_A)
+\right\rVert_{C_{\mathrm{cl}}^{-1}}^2
++
+\mathcal{R}_{\mathrm{lens\ prior}}
++
+\mathcal{R}_{\mathrm{gas}}
++
+\mathcal{R}_{\mathrm{shared}}(\theta_{\mathrm{sea}}).
+$$
+
+Here $D_{\mathrm{cl}}^{\mathrm{obs}}$ is the retained cluster-offset data packet and $C_{\mathrm{cl}}$ records the covariance of the lensing, gas, and tracer reconstruction. The residual should be evaluated across an ensemble of merging clusters, not treated as a one-image proof. A pure medium-response branch fails this gate only when
+
+$$
+\inf_{\theta_{\mathrm{sea}}:\rho_A=0}
+\mathcal{R}_{\mathrm{cl\ offset}}(\theta_{\mathrm{sea}},0)
+>
+\varepsilon_{\mathrm{cl}},
+$$
+
+with the same lensing priors, gas model, and shared medium-state record used to test the neutral-assembly or hybrid branch. Passing the gate does not by itself prove a collisionless neutral-assembly interpretation; it shows that the candidate branch has recovered the cluster-offset observable without changing the inference stack per system.
+
 ### Shared Dark-Sector Scale Gate
 
 Some quantum-gravity comparison programs try to relate the dark-matter and dark-energy problems through one scale. In this chapter that signal is useful only as a closure discipline. The $\mathbb{A}\mathbb{A}\mathbb{A}$ claim is not that dark matter and dark energy are one imported object; it is that any proposed relation between them must be carried by the same Noether-Sea state record used by the dark-energy, growth, lensing, and CMB modules.
@@ -108,11 +141,27 @@ Here $C_{\mathrm{DM/DE}}$ is the covariance or weighting model for the joint dar
 
 - **Heavier neutral assemblies (hypothetical):** Tri-binary cores carrying axial patterns that are globally neutral and whose internal dynamics suppress electromagnetic coupling below detection thresholds. In $\mathbb{A}\mathbb{A}\mathbb{A}$ these would be assemblies whose axial layers cancel in both net charge and oscillating dipole moment, analogous to the neutrino's balanced axial layer but realized on a heavier core (e.g., a bi-binary or uni-binary core with an appropriately locked axial layer, or a multi-core composite). The mass scale is set by the core's internal binding energy, shielding, and medium-dressed response to the Noether Sea.
 
-- **Primordial Noether-core defects:** Dense, self-gravitating clusters of maximally contracted tri-binaries produced in the high-energy epoch—analogous to primordial black holes in standard cosmology but with internal Planck-core structure replacing singular interiors. Their mass spectrum depends on formation-epoch dynamics.
+- **Primordial Noether-core defects:** Dense, self-gravitating clusters of maximally contracted tri-binaries produced in the high-energy epoch—analogous to primordial black holes in standard cosmology but with internal Planck-core structure replacing singular interiors. Their mass spectrum depends on formation-epoch dynamics. The analogy is a benchmark, not an identification: a native defect branch would have to inherit the compact-object mass-function, BBN/CMB/growth, local-ephemeris, high-energy-flux, and null-result checks without importing primordial-black-hole ontology.
 
 **Behavior.** These assemblies are pressureless at late times (kinetic energy $\ll$ rest energy), cluster gravitationally, and are collisionless on galactic scales because their interaction cross-section with baryonic and electromagnetic assemblies is negligible (no exposed charge → no long-range dipole coupling). They therefore reproduce the canonical CDM clustering phenomenology: hierarchical structure formation, flat rotation curves from halo profiles, and the correct matter-loading signature in the CMB.
 
 In a cluster-merger interpretation, neutral assemblies remain collisionless while baryonic gas assemblies decelerate electromagnetically, yielding natural separation between gravitating and X-ray-bright components.
+
+Compact neutral candidates also have a local-detection gate. For a candidate branch with representative mass $M_A$, local fraction $f_A$, and relative speed distribution centered at $\langle v_{\mathrm{rel}}\rangle$, the expected flyby rate inside impact parameter $b_{\max}$ is estimated by
+$$
+\Gamma_{\mathrm{flyby}}(b_{\max},M_A)
+=
+\frac{f_A\rho_{\mathrm{DM}}}{M_A}\,
+\pi b_{\max}^2\,
+\langle v_{\mathrm{rel}}\rangle.
+$$
+A nearby passage gives the order-of-magnitude impulse
+$$
+\Delta v_{\mathrm{test}}
+\simeq
+\frac{2GM_A}{b\,v_{\mathrm{rel}}},
+$$
+before detailed $N$-body and relativistic corrections. The retained observable is the ephemeris residual, not the compact-object interpretation: a candidate detection must produce a trajectory-consistent perturbation above the ranging error floor, fail ordinary visible-object and catalogued-asteroid explanations under the same covariance model, and carry any high-energy co-signature through the same branch record.
 
 ### Candidate B — Noether-Sea Medium Response
 
@@ -135,7 +184,7 @@ These difficulties motivate retaining Candidate A as the primary dark-matter sub
 
 **Rationale.** This hybrid is the working baseline because:
 
-- Neutral assemblies handle the heavy lifting: CMB matter loading, large-scale power spectrum, Bullet Cluster collisionless behavior, and BBN consistency ($\Omega_b$ remains small).
+- Neutral assemblies handle the heavy lifting: CMB matter loading, large-scale power spectrum, cluster-merger offset behavior, and BBN consistency ($\Omega_b$ remains small).
 - Medium response can address observed tensions at galaxy scale—the diversity of rotation-curve shapes, the radial-acceleration relation (RAR) tightness, and possible deviations from pure NFW profiles—without introducing additional free parameters per galaxy.
 - The two contributions arise from the same ontological substrate (tri-binary assemblies in Euclidean void with absolute time) and are coupled: neutral assemblies compress the Sea, which in turn responds non-linearly, feeding back on the effective potential.
 - If residual discrepancies concentrate in regions of strong Noether-Sea contraction or steepening contraction gradient, especially toward galactic centers and SMBH environments, that pattern would be naturally suggestive of medium-response contributions rather than of an entirely separate particulate sector.

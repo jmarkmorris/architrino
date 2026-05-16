@@ -1,0 +1,45 @@
+# Casimir Effect
+
+## Standard-Theory Concept
+
+The Casimir effect is a boundary-dependent force between conducting or material bodies. In the ideal parallel-plate limit,
+
+$$
+\frac{F}{A}
+=
+-\frac{\pi^2\hbar c}{240a^4},
+$$
+
+where $a$ is plate separation. Standard calculations use boundary-modified mode sums, regularization, and material corrections.
+
+## Existing $\mathbb{A}\mathbb{A}\mathbb{A}$ Signals
+
+This case is useful but risky. It can sharpen boundary-sensitive Noether-Sea and photon-channel language, but it should not be used as a shortcut to broad vacuum-energy claims. The corpus already says to prefer Noether Sea or medium context over empty-space vacuum ontology. The Casimir mapping should therefore focus on boundary-modified material and photon-channel modes.
+
+## Task Queue
+
+1. `boundary_mode_record` — Define the mode restriction induced by material boundary assemblies. Status: `draft`.
+2. `force_ledger` — Close plate force, recoil, material response, and medium update without untracked energy. Status: `draft`.
+3. `regularization_gate` — Separate physical boundary subtraction from arbitrary divergent vacuum energy. Status: `draft`.
+
+## Closure Objects
+
+- Boundary-conditioned mode set $\mathcal{K}_{\partial M}$.
+- Material response record for conductor or dielectric plates.
+- Force/energy derivative $F=-\partial E_{\mathrm{eff}}/\partial a$.
+- Regularization and subtraction record with physical reference state.
+
+## Promotion Map
+
+| Source draft | Promotion target | Gate |
+| --- | --- | --- |
+| This file | [mass-map/condensed-matter-medium-transport](../mass-map/condensed-matter-medium-transport.md) | Route material boundary response through medium transport rather than empty-space ontology. |
+| This file | [tri-binary-causal-closure/radiation-gate-c-benchmarks](../tri-binary-causal-closure/radiation-gate-c-benchmarks.md) | Test photon-channel mode restrictions and event-ledger balance. |
+| This file | [validation-gates](../validation-gates/validation-gates.md) | Prevent Casimir reasoning from importing unconstrained vacuum-energy claims. |
+
+## Failure Modes
+
+- `casimir.vacuum_overclaim`: boundary force is promoted into a general Noether-Sea energy proof without the boundary derivation.
+- `casimir.material_omission`: material conductivity, temperature, geometry, or surface corrections are ignored.
+- `casimir.regularization_gap`: divergent mode sums are subtracted without a physical reference record.
+- `casimir.force_no_ledger`: plate force has no recoil or medium-update ledger.

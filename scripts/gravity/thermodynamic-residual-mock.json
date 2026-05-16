@@ -1,0 +1,81 @@
+{
+  "schema": "thermodynamic-residual-input/v1",
+  "metadata": {
+    "run_id": "mock-thermodynamic-residual-001",
+    "description": "Dimensionless mock packet for the local-horizon thermodynamic residual gate.",
+    "source": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md"
+  },
+  "constants": {
+    "k_B": 1,
+    "hbar": 1,
+    "c0": 1,
+    "A_align": 1
+  },
+  "epsilon": 1e-12,
+  "thresholds": {
+    "min_boundary_labels": 16,
+    "area_residual_max": 0.02,
+    "thermodynamic_residual_max": 0.01,
+    "conservation_residual_max": 0.01
+  },
+  "observations": [
+    {
+      "observer_id": "O_local",
+      "patch_id": "rindler_patch_mock",
+      "record_channels": {
+        "metric": "theta-local-horizon-mock-001",
+        "entropy_labels": "theta-local-horizon-mock-001",
+        "temperature": "theta-local-horizon-mock-001",
+        "flux": "theta-local-horizon-mock-001",
+        "weak_field": "theta-local-horizon-mock-001"
+      },
+      "boundary_label_count_initial": 100,
+      "boundary_label_count_final": 122,
+      "area_samples": [
+        {
+          "area_effective": 4,
+          "boundary_label_count": 100
+        },
+        {
+          "area_effective": 5,
+          "boundary_label_count": 128
+        }
+      ],
+      "observer_acceleration": 6.283185307179586,
+      "flux_terms": [
+        {
+          "sigma": 1,
+          "energy": 0.1,
+          "weight": 1
+        },
+        {
+          "sigma": 1,
+          "energy": 0.09885085874516517,
+          "weight": 1
+        }
+      ],
+      "region_energy_change": -0.19885085874516517,
+      "weak_field_gates": {
+        "adm_cartan": "pass",
+        "ppn": "pass"
+      }
+    }
+  ],
+  "negative_controls": [
+    {
+      "name": "dropped-boundary-labels",
+      "expected_failure": "area scaling or conservation breaks after retained labels are dropped",
+      "failure_code": "thermo-area-scaling-open"
+    },
+    {
+      "name": "constant-temperature-parameter",
+      "expected_failure": "temperature is no longer derived from the observer metric channel",
+      "failure_code": "thermo-temperature-split-open"
+    },
+    {
+      "name": "independent-stress-record",
+      "expected_failure": "flux is computed from a record not used by the observer metric",
+      "failure_code": "thermo-flux-split-open"
+    }
+  ]
+}

@@ -124,6 +124,27 @@ The event record must avoid creation-from-nothing wording. Incoming photon assem
 
 The BBN module needs a source-zone photon ledger. It must identify which radiation channels supply the effective photon-dominated environment and whether they preserve deuterium survival, helium clustering, and $N_{\text{eff}}$ compatibility without per-source retuning.
 
+### Matter-Asymmetry Provenance
+
+The observed baryon-to-photon ratio is a data-product constraint, not permission to import an external baryogenesis mechanism as doctrine. Any matter-asymmetry story used by the cosmology program must be rewritten as a reaction provenance record over a declared source window $W$. Let $N_B(W)$, $N_{\bar B}(W)$, and $N_\gamma(W)$ be the baryon, antibaryon, and photon counts after the event records have been transported to the BBN comparison surface. Define
+$$
+\eta_B^{\mathrm{ledger}}(W)
+=
+\frac{N_B(W)-N_{\bar B}(W)}{N_\gamma(W)}.
+$$
+The acceptance residual should be reported as
+$$
+\mathcal{R}_{B/\gamma}(W)
+=
+\max\left(
+\frac{|\eta_B^{\mathrm{ledger}}(W)-\eta_B^{\mathrm{obs}}|}{\varepsilon_\eta},
+\frac{|\Delta B_{\mathrm{unrec}}(W)|}{\varepsilon_B},
+\frac{|\Delta Q_{\mathrm{unrec}}(W)|}{\varepsilon_Q},
+\frac{|\Delta E_{\mathrm{unrec}}(W)|}{\varepsilon_E}
+\right).
+$$
+Here $\Delta B_{\mathrm{unrec}}$, $\Delta Q_{\mathrm{unrec}}$, and $\Delta E_{\mathrm{unrec}}$ are not new ontology. They are failure counters for baryon-number bookkeeping, electric-charge bookkeeping, and energy balance after all declared reaction, recoil, medium, and escape channels have been included. A source model may remain in the comparison ledger only when $\mathcal{R}_{B/\gamma}\le1$ and the same event record also passes the BBN photon-loading and CMB thermalization checks below.
+
 ### CMB Thermalization
 
 The CMB module needs a source-to-transport-to-decoupling ledger. It must track:
@@ -149,9 +170,10 @@ with $\tau_{\mathrm{th}}^{-1}$ decomposed into the specific event-recorded chann
 1. **Planar-mode threshold closure:** derive a shared threshold condition for bremsstrahlung and synchrotron photon assembly output.
 2. **Pair-production provenance closure:** prove that local Noether-Sea recruitment can satisfy architrino inventory, energy-momentum, and Breit-Wheeler rate constraints in the same event record.
 3. **Photon-bath closure:** show that the relevant radiation channels can maintain BBN-compatible photon loading during the deuterium bottleneck window.
-4. **Detailed-balance closure:** derive the rate symmetry and ensemble weight relation that make emission, absorption, and stimulated terms recover Planck occupation with zero effective photon chemical potential.
-5. **Blackbody closure:** show that distributed source channels plus Noether-Sea transport can generate and preserve the CMB blackbody spectrum within observational limits.
-6. **Clock/redshift closure:** use one medium-state map for photon propagation, endpoint clock comparison, and redshift-distance inference.
+4. **Matter-asymmetry closure:** derive $\eta_B^{\mathrm{ledger}}$ from event-level reaction provenance without hidden baryon inventory, charge, or energy sources.
+5. **Detailed-balance closure:** derive the rate symmetry and ensemble weight relation that make emission, absorption, and stimulated terms recover Planck occupation with zero effective photon chemical potential.
+6. **Blackbody closure:** show that distributed source channels plus Noether-Sea transport can generate and preserve the CMB blackbody spectrum within observational limits.
+7. **Clock/redshift closure:** use one medium-state map for photon propagation, endpoint clock comparison, and redshift-distance inference.
 
 ## Failure Modes
 
@@ -164,5 +186,6 @@ The provenance program fails for a channel if a source story cannot survive the 
 | Per-observable refit | The same Noether-Sea state variables must be re-fit independently for photon loading, blackbody recovery, damping, redshift, or growth observables | The cosmology interpretation loses its shared medium-state map |
 | Standard-limit violation | Pair, Compton-like, bremsstrahlung, synchrotron, or photon propagation channels violate validated limits in regimes where those limits are already measured | The proposed substrate route fails before it can claim new deviations |
 | Insufficient thermalization depth | $\mathcal{D}_{\mathrm{th}}$ is too small, or its channel decomposition is not tied to event records | Source photons need not relax to a Planck bath, and a nonzero effective photon chemical potential or spectral distortion remains |
+| Matter-asymmetry ledger failure | $\eta_B^{\mathrm{ledger}}$ cannot match the observed baryon-to-photon ratio without unrecorded baryon inventory, charge imbalance, or energy imbalance | A baryogenesis-like source story cannot be promoted into cosmology provenance |
 | BBN photon-loading failure | Source-zone photon production cannot preserve deuterium survival, helium clustering, lithium constraints, and $N_{\text{eff}}$ compatibility | The BBN local-reactor mapping cannot replace the standard photon-to-baryon environment |
 | CMB handoff failure | Blackbody precision, damping behavior, anisotropy, polarization, or TT/TE/EE coherence cannot be carried through the same transport and redshift map | CMB thermalization cannot be treated as a successful source-to-observer provenance path |

@@ -1,16 +1,19 @@
 # Massive-Superposition Gravity Validation Packet
 
-This packet turns the massive-superposition gravitational which-path benchmark into a concrete validation target. It belongs to the observable and inference layer: the task is to preserve the branch mass histories, coherence data, detector response, and record criteria without importing any external collapse ontology.
+This packet turns massive-superposition gravity experiments into concrete validation targets. It belongs to the observable and inference layer: the task is to preserve the branch mass histories, coherence data, detector response, entanglement data, and record criteria without importing any external collapse ontology or quantum-metric ontology.
 
 Related homes are [Measurement Ontology](../quantum/measurement-ontology.md#external-gravitational-which-path-benchmark), [Observer Framework](../spacetime/observer-framework.md#boundary-wake-covariance-scaffold), and [Constraint Ledger](constraint-ledger.md#massive-superposition-gravitational-distinguishability).
 
 ## Comparison Boundary
 
-The packet may use external classical-quantum gravity proposals as comparison pressure, but only at the level of observables and inference. The comparison row is:
+The packet may use external classical-quantum gravity proposals as comparison pressure, but only at the level of observables and inference. The comparison rows are:
 
 | External comparison | Retained pressure | $\mathbb{A}\mathbb{A}\mathbb{A}$ use | Not imported |
 | --- | --- | --- | --- |
 | Oppenheim-style classical-quantum gravity | A classical or effective gravity readout must not reveal branch information while the quantum branch description still shows interference. | Bound $\mathcal{D}_{\mathrm{grav}}$, constrain $N_{AB}$, and require a Physical Observer record before treating gravity-side branch information as a measurement. | Stochastic-metric ontology, fundamental collapse, external terminology, or the claim that gravity must remain classical at the substrate level. |
+| Gravitationally induced entanglement | Two isolated massive probes can acquire branch-dependent correlations through gravity alone. | Require the same effective-metric record $\theta$ to generate the branch interaction phase and to keep which-path leakage below the retained weak-probe threshold. | Constructor-theory doctrine, `Q-number` terminology, fundamental graviton ontology, or the claim that spacetime geometry itself has been prepared in superposition. |
+
+Every averaged quantity in this packet is a run-record summary. A covariance matrix, branch expectation value, or correlation function may be used only after the Physical Observer access region, detector channel, boundary-data model, and persistence criterion have been declared. It may not be promoted into a primitive gravity state or collapse mechanism merely because it appears in a successful inference pipeline.
 
 ## Observable Target
 
@@ -102,6 +105,54 @@ G_A(t,s;\mathbf{x};\theta)\,
 $$
 This gives the first closure equation: a mass displacement history should map to a predicted detector-channel separation before any interpretive claim about classical or quantum spacetime is introduced.
 
+## Mediated Entanglement Comparison
+
+A complementary massive-superposition test asks whether two independently prepared massive probes can become entangled through the gravity-side channel while non-gravitational couplings are suppressed or bounded. This is a positive branch-phase benchmark, not a new ontology. The observable is the final two-probe correlation record, together with the calibration record showing that electromagnetic, spin-spin, thermal, and apparatus cross-talk channels are too small to account for the effect.
+
+Let the two probes be $A$ and $B$, with branch labels $a,b\in\{+,-\}$ and branch mass histories $\rho_A^a(\mathbf{x},t)$ and $\rho_B^b(\mathbf{x},t)$. The same weak-field constitutive record $\theta$ used for redshift, Shapiro delay, lensing, PPN, gravitational-wave speed, and $\mathcal{D}_{\mathrm{grav}}$ must determine the branch interaction energy
+$$
+U_{ab}^{\mathrm{eff}}(t;\theta)
+=
+-G_{\mathrm{eff}}(\theta)
+\int_{\Sigma_t}\!\!\int_{\Sigma_t}
+\frac{\rho_A^a(\mathbf{x},t)\rho_B^b(\mathbf{y},t)}
+{\|\mathbf{x}-\mathbf{y}\|}
+\,d^3x\,d^3y
++O(c_0^{-2}).
+$$
+The branch phase is then
+$$
+\Phi_{ab}(T;\theta)
+=
+\frac{1}{\hbar}
+\int_0^T
+U_{ab}^{\mathrm{eff}}(t;\theta)\,dt.
+$$
+Local branch phases can be absorbed into the one-probe descriptions. The entangling invariant is the cross-branch phase combination
+$$
+\Delta\Phi_{\mathrm{ent}}(T;\theta)
+=
+\Phi_{++}(T;\theta)+\Phi_{--}(T;\theta)
+-\Phi_{+-}(T;\theta)-\Phi_{-+}(T;\theta).
+$$
+For the ideal equal-amplitude two-branch packet, a first witness target is
+$$
+C_{\mathrm{GIE}}(T;\theta)
+=
+\left|
+\sin\frac{\Delta\Phi_{\mathrm{ent}}(T;\theta)}{2}
+\right|.
+$$
+This formula is an observer-level benchmark. It does not say that the Euclidean void is quantized, that the effective metric is fundamental, or that a graviton field is the native substrate. It says that the same gravity-side constitutive record must produce the branch phase that standard low-energy descriptions would attribute to gravitational mediation.
+
+The comparison is meaningful only when the non-gravitational residual is bounded. Let $\mathcal{R}_{\mathrm{nongrav}}$ collect calibrated electromagnetic, spin-spin, Casimir, thermal, vibration, and apparatus cross-talk contributions to the same entanglement witness. A run can be used as a gravity-side validation target only if
+$$
+\mathcal{R}_{\mathrm{nongrav}}
+\le
+\varepsilon_{\mathrm{iso}},
+$$
+with $\varepsilon_{\mathrm{iso}}$ declared by the apparatus class and retained alongside the covariance record $N_{AB}$.
+
 ## Input Record Schema
 
 The packet is evaluated on an explicit run record:
@@ -112,8 +163,11 @@ The packet is evaluated on an explicit run record:
 | branch separation | $\mathbf{d}(t)$ | center or multipole separation history with declared packet width $\sigma$ |
 | apparatus/environment record | $\mathcal{A}_{\mathrm{rec}}$ | record variable, persistence window, environmental coupling channels, and ordinary decoherence estimate |
 | gravity response kernel | $G_A(t,s;\mathbf{x};\theta)$ | detector response derived from the same effective-metric constitutive record used in weak-field gravity |
+| mediated-entanglement phase | $\Delta\Phi_{\mathrm{ent}}$ | cross-branch phase predicted from $\rho_A^a,\rho_B^b$ and the shared constitutive record $\theta$ |
+| non-gravitational residual | $\mathcal{R}_{\mathrm{nongrav}}$ | calibrated bound on non-gravity channels that could create the observed correlation |
 | covariance decomposition | $N_{AB}$ | detector noise, unresolved boundary-wake terms, environmental residuals, and calibration residuals |
 | visibility data | $\mathcal{V}(T)$ | observed or predicted interference visibility over the run |
+| entanglement data | $C_{\mathrm{obs}}$ | measured or predicted two-probe entanglement witness in the retained readout basis |
 | record criteria | $R,\Sigma,T_{\text{rec}}$ | Physical Observer record variable, separatrix, and persistence threshold |
 
 No row may be filled by changing the weak-field metric record after the positive gravity benchmarks have already been fit. The same $\theta$ must be replayable through redshift, Shapiro delay, lensing, PPN, gravitational-wave speed, and this massive-superposition packet.
@@ -125,11 +179,13 @@ No row may be filled by changing the weak-field metric record after the positive
 3. **Assemble the covariance.** Build $N_{AB}=N^{\mathrm{det}}_{AB}+N^{\mathrm{env}}_{AB}+N^{\mathrm{wake}}_{AB}+N^{\mathrm{cal}}_{AB}$, with each term either derived from the apparatus model or bounded by calibration data.
 4. **Evaluate distinguishability.** Compute $\mathcal{D}_{\mathrm{grav}}(T;\theta)$ and compare it with $\varepsilon_{\mathrm{wp}}$.
 5. **Evaluate record formation.** Compute $\tau_{\text{meas}}$, $\Delta_{\mathrm{rec}}$, and the persistence window from the measurement chapter's record criteria.
-6. **Classify the run.** Use the same output record to assign one of three statuses:
+6. **Evaluate mediated entanglement when present.** If the run is a two-probe mediated-entanglement experiment, compute $\Delta\Phi_{\mathrm{ent}}$, $C_{\mathrm{GIE}}$, and $\mathcal{R}_{\mathrm{nongrav}}$ from the same run record.
+7. **Classify the run.** Use the same output record to assign one of four statuses:
 
 | Status | Conditions | Interpretation |
 | --- | --- | --- |
 | weak-probe | $\mathcal{D}_{\mathrm{grav}}\le\varepsilon_{\mathrm{wp}}$ and no durable record forms | gravitational response is too weak to act as a which-path record |
+| mediated-entangling | $C_{\mathrm{GIE}}\ge C_{\mathrm{obs}}-\varepsilon_C$, $\mathcal{R}_{\mathrm{nongrav}}\le\varepsilon_{\mathrm{iso}}$, $\mathcal{D}_{\mathrm{grav}}\le\varepsilon_{\mathrm{wp}}$, and no durable which-path record forms | the branch phase is strong enough to account for the entanglement witness while the gravity-side readout remains below record threshold |
 | record-forming | $\mathcal{D}_{\mathrm{grav}} > \varepsilon_{\mathrm{wp}}$, $\tau_{\text{meas}} < T$, and $\Delta_{\mathrm{rec}}$ stays below threshold through $T_{\text{rec}}$ | the apparatus/environment has formed an autonomous record |
 | falsifying | $\mathcal{D}_{\mathrm{grav}}\gg1$ while visibility remains high and no record-autonomy criterion is met | the effective-metric response overproduces observable which-path information |
 
@@ -212,6 +268,18 @@ $$
 \le
 \varepsilon_{\mathrm{wp}}.
 $$
+For a mediated-entanglement run, the same record must also satisfy
+$$
+C_{\mathrm{GIE}}(T;\theta)
+\ge
+C_{\mathrm{obs}}-\varepsilon_C,
+\qquad
+\mathcal{R}_{\mathrm{nongrav}}
+\le
+\varepsilon_{\mathrm{iso}}.
+$$
+This combined gate preserves the observable without overclaiming the interpretation: the run tests whether the retained gravity-side constitutive record can generate the observed branch correlation while avoiding premature which-path record formation.
+
 If a which-path record is claimed instead, the measurement chapter's record criteria must also hold:
 $$
 \tau_{\text{meas}} < T,
@@ -231,16 +299,18 @@ The minimal simulation target is the map
 $$
 \mathcal{S}_{\mathrm{grav}}:
 \left(
-m,\sigma,\mathbf{d}(t),T,G_A,N_{AB},R,\Sigma
+m,\sigma,\mathbf{d}(t),T,G_A,N_{AB},R,\Sigma,\rho_A^a,\rho_B^b
 \right)
 \longmapsto
 \left(
 \mathcal{D}_{\mathrm{grav}},
 \mathcal{V}(T),
+\Delta\Phi_{\mathrm{ent}},
+C_{\mathrm{GIE}},
 \tau_{\text{meas}},
 \Delta_{\mathrm{rec}}
 \right).
 $$
-The inputs are the branch mass scale, packet width, separation history, coherence window, detector response kernel, covariance decomposition, record variable, and separatrix. The outputs are the gravitational distinguishability, interference visibility, finite measurement time, and record-autonomy residual.
+The inputs are the branch mass scale, packet width, separation history, coherence window, detector response kernel, covariance decomposition, record variable, separatrix, and two-probe branch histories when present. The outputs are the gravitational distinguishability, interference visibility, entangling phase, mediated-entanglement witness, finite measurement time, and record-autonomy residual.
 
-The worked acceleration bound supplies the first analytic $\mathcal{D}_{\mathrm{grav}}$ estimate. Full packet closure still requires one numerical or analytic instance that computes all four outputs from a shared constitutive record and reports whether the branch pair is weak-probe, record-forming, or falsifying.
+The worked acceleration bound supplies the first analytic $\mathcal{D}_{\mathrm{grav}}$ estimate. The mediated-entanglement comparison supplies the first branch-phase target. Full packet closure still requires one numerical or analytic instance that computes the retained outputs from a shared constitutive record and reports whether the branch pair is weak-probe, mediated-entangling, record-forming, or falsifying.

@@ -38,6 +38,29 @@ These identifications are **conjectured mappings**, not definitions. They must e
 
 In plain terms, the Planck scale is a **dynamic alignment horizon**, not a minimal length by fiat: under extreme stress the assembly’s internal geometry snaps into a universal, planar lock, forward-sector updates are starved, and no smaller stable mode remains.
 
+## Operational Probing Limit
+
+The same scale also appears from the standard quantum-gravity probing argument. A probe of energy $E$ cannot localize structure more sharply than its quantum wavelength, but concentrating too much energy into the same region also produces a gravitational horizon. In $\mathbb{A}\mathbb{A}\mathbb{A}$ notation this gives the effective lower bound
+
+$$
+\ell_{\mathrm{probe}}(E)
+\sim
+\max\!\left(
+\frac{\hbar c_f}{E},
+\frac{2GE}{c_f^4}
+\right).
+$$
+
+The first term is the wavelength-limited localization scale. The second term is the gravitational-radius scale associated with the same energy concentration. The minimum occurs when the two constraints meet,
+
+$$
+E_{\mathrm{cross}}^2 \sim \frac{\hbar c_f^5}{2G},
+\qquad
+\ell_{\mathrm{probe,min}} \sim O(\ell_P).
+$$
+
+Thus the Planck scale is not merely a guessed lattice spacing or primitive grain of length. It is an operational closure point: attempts to force shorter localization either lose resolution through quantum wavelength or replace the target region with a horizon-scale causal boundary. This supports the interpretation of $\ell_P$ as the observed trace of a tri-binary alignment horizon rather than as proof that spacetime is made of smaller static beads.
+
 **Regime clarification (to prevent speed-label conflicts):**
 - In this chapter, "$v_{\text{trans}} \to c_f$" and "$v_{\text{orb}}^{\text{tan}} \to c_f$" are component-speed saturation statements in the terminal alignment regime.
 - The statement "$v_{\text{eff}} > c_f$" refers to a **combined in-plane effective motion** used for Mach-wedge causal geometry, not a claim that either component speed is individually $> c_f$.
@@ -311,12 +334,29 @@ A full derivation of $G$ from medium compliance is still to be done; the formula
 With Planck alignment as an endpoint rather than a point singularity:
 
 - Black-hole-like objects are interpreted as regions where large numbers of tri-binaries are **driven close to or into** the alignment state.
-- The inner core is then made of “tiles” of characteristic size $R_{\text{align}}$.
+- The horizon-adjacent interface is then modeled by patches whose characteristic scale is $R_{\text{align}}$, while any core-volume packing interpretation remains a separate conjecture.
 
 > **Conjecture (Condensate-Like Aligned Phase).**  
 > We conjecture that black-hole cores correspond to a **condensate-like phase** dominated by planar-aligned, effectively bosonic tri-binaries. This analogy is structural:
 > - Many nearly identical aligned assemblies occupy a low-dimensional configuration manifold (planar disk orientation).
-> - Entropy and area scaling may emerge from counting these aligned “tiles” on horizon-adjacent surfaces.
+> - Entropy and area scaling would have to emerge from counting alignment-compatible boundary labels on horizon-adjacent surfaces, not from arbitrary volume packing.
+
+The area-counting part of the conjecture is narrow. If a horizon-adjacent surface is decomposed into patches with $A_{\mathrm{eff}}(P_a)=A_{\text{align}}+\mathcal{O}(\epsilon_A A_{\text{align}})$, the required local statement is
+$$
+\log|\mathcal{B}_H|
+=
+\sum_a
+\log|\mathcal{L}_a|
++
+\mathcal{O}(\epsilon_{\mathrm{edge}}),
+\qquad
+\frac{1}{N_A}
+\sum_{a=1}^{N_A}
+\log|\mathcal{L}_a|
+\longrightarrow
+\frac{1}{4},
+$$
+where $\mathcal{L}_a$ is the set of observer-distinguishable alignment-compatible labels on one patch and $N_AA_{\text{align}}\to A_H$. Thus the Planck-alignment program does not get black-hole entropy merely by naming a small area. It must show that terminal tri-binary alignment supplies a universal local label count and that correlations between neighboring patches do not restore volume scaling.
 
 We deliberately use “condensate-like” here; a full condensate claim would require:
 

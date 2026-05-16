@@ -200,6 +200,33 @@ $$
 
 with $a = 1/(1+z)$ the effective scale factor (defined operationally through the redshift of photon-mode assemblies).
 
+### Observed Equation of State and Medium Accounting
+
+A fitted $w(a)$ is a data-product parameterization, not automatically the physical pressure law of the Noether Sea. The standard no-source reading defines an observed effective value by
+$$
+\frac{d\ln\rho_{\mathrm{DE,fit}}}{d\ln a}
+=
+-3\bigl(1+w_{\mathrm{obs}}(a)\bigr).
+$$
+In a medium-state model, the same fitted trend can absorb at least three distinct effects: the native pressure ratio $w_{\mathrm{source}}(a)$, an actual source or transfer term $\mathcal{S}_{\mathrm{relax}}$, and drift in the observer-level map from Noether-Sea variables to effective dark-energy density. If
+$$
+\rho_{\mathrm{DE,fit}}(a)
+=
+\Pi_{\mathrm{DE}}(a)\,\rho_{\mathrm{DE,eff}}(a),
+$$
+with $\Pi_{\mathrm{DE}}$ denoting the declared projection from the shared medium record into the fitted dark-energy density, then the accounting identity is
+$$
+1+w_{\mathrm{obs}}(a)
+=
+1+w_{\mathrm{source}}(a)
+-
+\frac{\mathcal{S}_{\mathrm{relax}}}{3H\rho_{\mathrm{DE,eff}}}
+-
+\frac{1}{3}
+\frac{d\ln\Pi_{\mathrm{DE}}}{d\ln a}.
+$$
+This split prevents a time-varying $w(a)$ preference from being promoted too quickly. The observable to preserve is the distance, lensing, growth, and covariance record that produced $w_{\mathrm{obs}}(a)$; the interpretation remains open until the same $\theta_{\mathrm{sea}}$ derives the source term and the projection drift without changing records between pipelines.
+
 ### de Sitter and Phantom-$w$ Comparison
 
 Standard quantum-gravity discussions often use de Sitter space as the clean comparison model for a universe with asymptotically constant positive dark energy. In holographic language, the speculative target is a boundary or statistical description associated with the far future. In this chapter, that comparison should remain effective rather than ontological: $a(t)$, $H(t)$, and $w(a)$ are observer-level summaries of Noether-Sea evolution, not fundamental variables of the Euclidean void.
@@ -207,6 +234,18 @@ Standard quantum-gravity discussions often use de Sitter space as the clean comp
 The strongest lesson from modern string and holographic debates is that de Sitter comparison cannot be treated as a minor variant of the anti-de Sitter case. Anti-de Sitter control relies on a spatial boundary where a conformal theory can be placed; the de Sitter-like late universe instead gives observers horizon-limited access inside an evolving medium state. The local target is therefore an observer-horizon accounting rule, not a literal boundary CFT.
 
 Time-varying dark energy would weaken the usefulness of exact de Sitter comparison because the far-future state would not be a fixed de Sitter limit unless the variation eventually stops. The local closure target is therefore not a literal dS/CFT correspondence. It is a medium-state law that tells when the observer-level fit approaches $w_{\mathrm{eff}} \approx -1$, when it departs from that value, and how those departures remain compatible with redshift, clock-rate, BAO, CMB, and structure-growth benchmarks.
+
+A useful way to keep that comparison disciplined is to make the observer-horizon residual explicit. For a shared Noether-Sea record $\theta_{\mathrm{sea}}$ and a Physical Observer $O$, define a schematic de Sitter comparison residual
+$$
+\mathcal{R}_{\mathrm{dS}}^{(O)}(\theta_{\mathrm{sea}})
+=
+d_H\!\left(H_{\mathrm{eff}}^{\theta},H_{\mathrm{obs}}\right)
++d_w\!\left(w_{\mathrm{eff}}^{\theta},w_{\mathrm{obs}}\right)
++d_\Omega\!\left(\Omega_k^{\theta},\Omega_k^{\mathrm{obs}}\right)
++d_S\!\left(S_{\mathrm{hor}}^{(O),\theta},S_{\mathrm{hor}}^{(O),\mathrm{bench}}\right)
++d_{\mathrm{obs}}\!\left(\mathcal{B}_{\mathrm{SN/BAO/CMB/growth}}^{\theta},\mathcal{B}_{\mathrm{obs}}\right).
+$$
+The distances here are comparison metrics fixed by the data product being tested, not new ontological variables. The residual passes only when the same $\theta_{\mathrm{sea}}$ accounts for the effective Hubble history, equation-of-state fit, curvature bound, horizon-access entropy, and SN/BAO/CMB/growth records. This keeps de Sitter language as an observer-level benchmark rather than a boundary theory imported into the Euclidean void.
 
 A fitted value $w_{\mathrm{eff}} < -1$ requires special care. In standard perfect-fluid language, persistent phantom behavior threatens the energy-condition and causality assumptions that also protect ordinary horizon and wormhole results. In this framework, such a fit is admissible only if it is an effective transfer signature, for example energy being routed between matter, radiation, black-hole recycling channels, and the slowly varying Noether-Sea tension sector. It should not be read as permission for acausal propagation or unaccounted energy creation.
 

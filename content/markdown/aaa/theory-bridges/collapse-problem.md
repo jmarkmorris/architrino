@@ -51,6 +51,18 @@ $$
 
 The interpretation of $\mathcal{Q}_{\mathrm{PD}}$ is limited. If the $\mathbb{A}\mathbb{A}\mathbb{A}$ threshold model predicts a different scaling from $\tau_G$, that difference becomes an experimental discriminator in massive interferometry and Bose-Einstein-condensate superposition tests. If a competing collapse model predicts continual spontaneous heating, that heating prediction must be checked against low-background laboratory bounds and compact-object heating constraints. The comparison should therefore preserve the observable pressure while keeping branch selection rooted in finite-time separatrix dynamics.
 
+The spontaneous-heating comparison is therefore a ledger constraint, not a second collapse mechanism. For any proposed apparatus-target run, the same record window that supplies Born weights and thermodynamic summaries must also account for declared work, recoil, emitted assemblies, medium excitation, and boundary exchange. The compact acceptance diagnostic is the measurement-and-heating residual in [Measurement Ontology](../quantum/measurement-ontology.md#measurement-and-heating-residual):
+$$
+\mathcal{R}_{\mathrm{meas+heat}}(T;\theta)
+=
+\max\left(
+\frac{\Delta_{\mathrm{Born}}(T)}{\varepsilon_{\mathrm{Born}}},
+\frac{\Delta_{\mathrm{ens}}(\mathcal{Q},W,T)}{\varepsilon_{\mathrm{ens}}},
+\frac{|\Delta E_{\mathrm{unrec}}(T;\theta)|}{\varepsilon_E}
+\right).
+$$
+The collapse comparison remains viable only when $\mathcal{R}_{\mathrm{meas+heat}}\le1$ on the declared channel. If the Born statistics require one ensemble while the heating bound requires another, or if $\Delta E_{\mathrm{unrec}}$ persists after all event-recorded channels have been included, the model has not closed the measurement account.
+
 ### Observables and Falsifiability
 
 Treating collapse as a deterministic, finite-time threshold resolution imposes strict constraints on measurement dynamics that deviate from standard instantaneous projection.

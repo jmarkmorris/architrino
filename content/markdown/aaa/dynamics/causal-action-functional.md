@@ -411,6 +411,6 @@ Combined with causal-locus class constraints, this gives a quantitative separati
   finiteness, coarea reduction, topological invariance away from critical points,
   and a precise bifurcation condition for branch changes.
 - An emergent-metric ansatz from coarse-grained hit density $\mathcal{I}$ is proposed but must satisfy weak-field and equivalence constraints; this remains conjectural.
-- Overall: the geometric quantization mechanism is now partly formalized (theorem-level
+- Overall: the causal-locus action-counting route is now partly formalized (theorem-level
   in the regularized regime), while mass mapping, asymptotic stability, and emergent
   metric closure remain open.

@@ -48,6 +48,12 @@ A Physical Observer has access only to:
 
 This limitation becomes especially important in strong-gravity and cosmology comparisons. Standard quantum-gravity discussions also run into the fact that an observer cannot be placed outside the entire universe as a massless, energy-free measuring device. A real observer supplies a clock, a location, finite records, and an access region. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this does not make reality observer-created; it means that black-hole entropy, de Sitter thermodynamics, horizon access, and quantum state descriptions must be stated relative to what an embedded Physical Observer can actually clock, probe, and record.
 
+For the same reason, an expectation value, covariance, or correlation function is not automatically an ontic claim about an effective metric, the Noether Sea, or the complete microstate. It is an observer-level summary for a declared observation region, readout channel, and boundary-data model. A comparison packet may use such summaries, but it must say which Physical Observer records and boundary wake data make the summary meaningful.
+
+Strong-gravity information claims require the same declared-access discipline. A local field-theory expression such as a horizon-crossing correlation, a reduced density matrix, or a fine-grained radiation entropy is not yet a substrate statement. It becomes a legitimate comparison object only after the Physical Observer, reference resources, access region, finite boundary wake data, and record channel have been specified. This keeps black-hole information accounting from smuggling in an external observer at infinity, a literal boundary CFT, or an unrecorded many-copy measurement idealization.
+
+The same discipline applies when one Physical Observer uses another Physical Observer's report. The report is not a disembodied update rule. It is a physical record carried by signals, memory states, documents, detector logs, or other assemblies, and it can be imported only through a declared communication channel with finite latency, calibration, and persistence. If two observers appear to certify incompatible conclusions, the first diagnostic question is whether both conclusions belong to the same declared record channel and access model. A mismatch in readout channel, missing reference resources, or failed record autonomy is an observer-layer failure, not evidence that the complete ontic state has become contradictory.
+
 ## Ontic and Epistemic Levels
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ uses a two-level distinction:
@@ -97,11 +103,23 @@ where $N_{\text{sea}}|_{\Omega}(t)$ denotes the locally resolved Noether-Sea sta
 
 The same finite-boundary form is the local substitute for placing a hypothetical observer at infinity in compact strong-field comparisons. For black-hole and cosmology problems, $\mathcal{B}_{\partial\Omega}$ is the controlled interface between what a Physical Observer can access and what the complete state must carry for deterministic continuation.
 
+For local-horizon thermodynamic comparisons, the countable object is not the raw boundary history by itself. It is the retained boundary-wake label family after the Physical Observer's record channel has identified histories that cannot be distinguished on the declared window:
+$$
+\mathcal{B}_{\partial\Omega}^{(O)}(\theta;W)
+=
+\left.
+\widehat{\mathcal{B}}_{\partial\Omega}(t;\theta)
+\right|_{W}
+/
+\sim_{O,\theta,W}.
+$$
+Here $\widehat{\mathcal{B}}_{\partial\Omega}(t;\theta)$ denotes the boundary wake history retained by the observer model record, and $\mathcal{B}_1\sim_{O,\theta,W}\mathcal{B}_2$ means that the two retained boundary histories give the same Physical Observer clock, ruler, detector, and readout records on $W$ within the declared tolerance. This quotient is an observer-accessible coarse-graining of deterministic boundary data, not a new substrate boundary. It is the object later counted in local-horizon entropy targets.
+
 ## Boundary-Wake Covariance Scaffold
 
 The boundary term above also supplies the native home for covariance matrices used by observer-level measurement diagnostics. A covariance is not fundamental randomness. It is a finite-access summary of boundary wake histories, detector states, and Noether-Sea variables not resolved by a Physical Observer.
 
-Let $\widehat{\mathcal{B}}_{\partial\Omega}(t;\theta)$ be the boundary wake history retained by an observer model record $\theta$. The unresolved boundary residual is
+With this notation, the unresolved boundary residual is
 $$
 \delta\mathcal{B}_{\partial\Omega}(t;\theta)
 =
@@ -201,6 +219,19 @@ d_{\mathrm{ord}}\!\left(\prec_{\mathrm{eff}}(\theta),\prec_{\mathrm{GR}}\right)
 \sum_{i=1}^{3}\alpha_i(\theta)^2.
 $$
 Here $d_{\mathrm{ord}}$ measures mismatch of inferred causal order on the comparison domain, the clock term supplies the missing local scale, and the preferred-frame term penalizes residual PPN drift coefficients. This is a closure target for the observer layer, not a claim that substrate spacetime is Lorentzian.
+
+Process-matrix and indefinite-causal-order formalisms are useful here only as comparison frameworks. They test whether operational records can be represented without assuming a prior observer-level causal order, but their generalized process object is not a substrate replacement for absolute timespace. For settings or interventions $\mathbf{s}$ and records $\mathbf{r}$, let $P_{\mathrm{proc}}(\mathbf{r}|\mathbf{s})$ be the external process-table benchmark and let $P_{\mathrm{rec}}^\theta(\mathbf{r}|\mathbf{s})$ be the record distribution derived from Physical Observer laboratories, boundary wake data, apparatus kernels, and the candidate observer-state record $\theta$. A compact diagnostic is
+$$
+\Delta_{\mathrm{proc}}(\theta)
+=
+D_{\mathrm{TV}}\!\left(
+P_{\mathrm{proc}}(\mathbf{r}|\mathbf{s}),
+P_{\mathrm{rec}}^\theta(\mathbf{r}|\mathbf{s})
+\right)
++
+\lambda_{\mathrm{causal}}\mathcal{R}_{\mathrm{causal}}(\theta).
+$$
+Small process-table mismatch with large $\mathcal{R}_{\mathrm{causal}}$ is a warning that the observer layer has not recovered an effective causal order. It is not evidence that the ontic substrate lacks absolute time. The admissible lesson is diagnostic: preserve the operational record constraint while forcing the Physical Observer account to say how causal order, clocks, and records are recovered together.
 
 ## Physical Observer Clocks and Rulers
 

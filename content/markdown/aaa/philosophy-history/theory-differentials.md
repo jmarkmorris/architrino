@@ -948,11 +948,13 @@ Axion Theory / Peccei-Quinn Mechanism carries specific ontological commitments e
 
 #### 3. What This Concept Gets Right
 
-Axion Theory / Peccei-Quinn Mechanism gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
+Axion Theory / Peccei-Quinn Mechanism gets something durable right: it isolates the neutron-electric-dipole constraint as a precision observable that any serious replacement must preserve. Its durable value lies in the strong-CP comparison target, the axion-search null-result surface, astrophysical cooling bounds, and the mathematical idea of dynamical relaxation toward a CP-even effective state. None of that requires treating the axion field as final substrate ontology before the branch is derived.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Axion Theory / Peccei-Quinn Mechanism sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Empirically Useful Placeholder; Partially Recovered**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
+
+The retained $\mathbb{A}\mathbb{A}\mathbb{A}$ content is the neutron-EDM residual and the possibility that a Peccei-Quinn-like relaxation law emerges effectively from assembly stability. If an axion-like particle is predicted by a future branch, its mass, coupling, abundance, and cooling signatures must route through the null-result and dark-sector gates rather than entering as a default repair.
 
 #### 5. Transition-Period Relevance
 
@@ -968,7 +970,7 @@ The clearest limiting tension for Axion Theory / Peccei-Quinn Mechanism is that 
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive neutron-EDM suppression from assembly and medium behavior, then decide whether any Peccei-Quinn-like effective relaxation appears as a consequence of that derivation. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
@@ -1212,19 +1214,19 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 #### 1. Concept Summary
 
-Many-Worlds Interpretation is a interpretation in the branching ontology domain. It was built to provide a mathematically controlled description of the phenomena grouped within quantum foundations and interpretations, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
+Many-Worlds Interpretation is an interpretation in the branching ontology domain. It removes the collapse postulate and treats quantum dynamics as universally unitary; in its stronger modern forms, worlds are not added as a second law but read as emergent quasi-classical structure within the unitary state. In the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
-Many-Worlds Interpretation carries specific ontological commitments even when it is presented as "just mathematics." It typically treats branching ontology as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability enters either as an ontic claim, an ensemble summary, or an observer-facing update rule depending on the program.
+Many-Worlds Interpretation carries specific ontological commitments even when it is presented as "just mathematics." It typically treats branch autonomy as explanatorily central and may promote decohering branch structure into literal ontology unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability enters either as branch-weight interpretation, an ensemble summary, or an observer-facing update rule depending on the program.
 
 #### 3. What This Concept Gets Right
 
-Many-Worlds Interpretation gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
+Many-Worlds Interpretation gets two durable points right: measurement should not require an observer-exception clause, and decoherence mathematics identifies when alternatives become effectively autonomous in a record-facing description. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
-In the neutral comparative stack, Many-Worlds Interpretation sits at **Inference layer**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Deeply Incompatible**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
+In the neutral comparative stack, Many-Worlds Interpretation sits at **Inference layer**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Deeply Incompatible**: the no-collapse motivation and branch-isolation mathematics survive as comparison pressure, while literal many-world ontology is not allowed to keep the ontological authority it often carries in present discourse.
 
 #### 5. Transition-Period Relevance
 
@@ -2302,7 +2304,7 @@ Holography / AdS-CFT carries specific ontological commitments even when it is pr
 
 #### 3. What This Concept Gets Right
 
-Holography / AdS-CFT gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
+Holography / AdS-CFT gets something durable right: it provides controlled examples where gravitational, quantum, entropy, and boundary-data accounting can be computed with unusual precision. Its durable value is strongest as a mathematical laboratory for horizon entropy, Page-curve-compatible bookkeeping, and bulk/effective reconstruction tests. It is weakest when the controlled anti-de Sitter setting is treated as direct evidence for the ontology of the observed cosmological environment.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -2322,7 +2324,7 @@ The clearest limiting tension for Holography / AdS-CFT is that its native variab
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the entropy, reconstruction, and unitarity constraints that holographic calculations sharpen while deriving the mechanism from horizon-interface alignment, path-history bookkeeping, Noether-Sea storage, and release-channel selection. The duality is a comparison framework unless those bookkeeping constraints are recovered natively.
 
 ---
 
@@ -2619,11 +2621,27 @@ Primordial Black Hole Dark Matter carries specific ontological commitments even 
 
 #### 3. What This Concept Gets Right
 
-Primordial Black Hole Dark Matter gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
+Primordial Black Hole Dark Matter gets something durable right: it turns a dark-sector interpretation into a constrained observable packet. The retained content is not the claim that primordial black holes are the dark matter, but the mass-function discipline, formation-clock inference, evaporation and null-result bounds, lensing and structure-growth constraints, and possible local compact-object signatures. A compact comparison projection is
+$$
+\Pi_{\mathrm{PBH}}
+=
+\left(
+\psi(M),\;
+f_{\mathrm{PBH}},\;
+t_f(M),\;
+\Delta\mathbf{Y}_{\mathrm{BBN}},\;
+\Delta C_\ell,\;
+\Delta P(k,z),\;
+\Omega_{\mathrm{GW}}(f),\;
+\Delta\mathbf{x}_{\mathrm{ephem}}(t),\;
+\Phi_{\mathrm{HE}}(E,t)
+\right),
+$$
+where $\psi(M)$ is the compact-object mass function, $f_{\mathrm{PBH}}$ is the dark-matter fraction in that comparison model, $t_f(M)$ is the inferred formation epoch, $\Delta\mathbf{x}_{\mathrm{ephem}}$ is a solar-system ephemeris perturbation, and $\Phi_{\mathrm{HE}}$ denotes any high-energy particle or radiation flux tied to evaporation or analogous release. This projection is useful precisely because it separates observables from the interpretation that produced them.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
-In the neutral comparative stack, Primordial Black Hole Dark Matter sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Partially Recovered**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
+In the neutral comparative stack, Primordial Black Hole Dark Matter sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Partially Recovered**: the useful population, constraint, and detection mathematics survive as comparison pressure, while primordial-black-hole ontology is not allowed to keep the explanatory authority it often carries in present discourse.
 
 #### 5. Transition-Period Relevance
 
@@ -2639,7 +2657,7 @@ The clearest limiting tension for Primordial Black Hole Dark Matter is that its 
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the retained compact-object observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. If a primordial-Noether-core-defect or other neutral-assembly branch is proposed as the native analogue, it must recover the same mass-function, BBN/CMB/growth, local-ephemeris, high-energy-flux, and null-result rows from one shared closure record. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
@@ -3932,7 +3950,7 @@ Conformal Field Theory carries specific ontological commitments even when it is 
 
 #### 3. What This Concept Gets Right
 
-Conformal Field Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
+Conformal Field Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in controlled operator data, scaling limits, Ward identities, fixed-point behavior, and exactly or nearly solvable comparison targets. Those are technical and effective-closure assets, not a warrant to make scale-free continuum fields final ontology.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -3952,7 +3970,7 @@ The clearest limiting tension for Conformal Field Theory is that empirical and c
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover conformal behavior as a controlled effective fixed point of substrate and assembly dynamics, with explicit domain-of-validity conditions and declared symmetry-breaking departures. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
@@ -4067,7 +4085,7 @@ Twistor Theory carries specific ontological commitments even when it is presente
 
 #### 3. What This Concept Gets Right
 
-Twistor Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
+Twistor Theory gets something durable right: it exposes how null directions, spinor structure, scattering data, and geometric representation can simplify problems that look opaque in ordinary spacetime variables. Its durable value is as a compact representation and calculation strategy. The representation does not by itself decide substrate ontology.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -4087,7 +4105,7 @@ The clearest limiting tension for Twistor Theory is that its native variables ar
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to use twistor-style representation only where it sharpens effective spin, null-propagation, or scattering closure, then translate the result back into assembly and medium variables. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
@@ -4382,7 +4400,7 @@ Vacuum Landscape / String Landscape carries specific ontological commitments eve
 
 #### 3. What This Concept Gets Right
 
-Vacuum Landscape / String Landscape gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
+Vacuum Landscape / String Landscape gets something limited but useful right: large theory spaces and weakly coupled sectors can reveal how easily a framework can become empirically underconstrained. Its durable value is therefore mostly diagnostic. It can nominate comparison residuals such as pre-BBN energy components, hidden-sector relics, moduli-like relaxation channels, or stochastic-background signatures, but it cannot promote vacuum multiplicity into ontology without direct closure.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -4402,7 +4420,7 @@ The clearest limiting tension for Vacuum Landscape / String Landscape is that th
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the sound data product from the stronger ontological story and show what additional evidence would be required to move beyond placeholder status. That closure target is what turns comparison into actual reduction rather than a verbal promise.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate any sound data product from the stronger vacuum-multiplicity story and route proposed pre-BBN branches through BBN, CMB, structure-formation, gravitational-wave, and null-result residuals. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
@@ -4427,7 +4445,7 @@ Swampland Program carries specific ontological commitments even when it is prese
 
 #### 3. What This Concept Gets Right
 
-Swampland Program gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
+Swampland Program gets something durable right as a discipline of consistency filtering: it asks whether effective theories that look acceptable at low energy can actually belong to a deeper quantum-gravity completion. Its useful content for $\mathbb{A}\mathbb{A}\mathbb{A}$ is not the authority of any specific conjecture, but the demand that field ranges, cutoffs, de Sitter-like behavior, and inflationary histories be routed through explicit closure criteria rather than treated as freely adjustable effective models.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -4447,7 +4465,7 @@ The clearest limiting tension for Swampland Program is that its native variables
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recast any useful swampland-style filter as a derivable cutoff, range, energy-condition, or cosmology-history residual inside assembly and medium dynamics. Conjectural filters remain comparison tools until they are either independently tested or recovered as native consistency conditions.
 
 ---
 

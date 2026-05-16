@@ -20,6 +20,8 @@ In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, superposition is an epistemic
 
 The linearity of quantum superposition arises strictly from the linearity of the Master Equation: the total potential experienced by any receiver is the exact, unmediated linear sum of all Jacobian-weighted inverse-square causal wake-surface intersections at its current location.
 
+This statement is substrate-level and should not be confused with the effective claim that a quantum state has formed a superposition in some Hilbert basis. Basis-dependent superposition language is admissible only after a preparation, apparatus kernel, retained coarse-graining, and record window have been declared. A change of Hilbert representation may move the apparent state-vector branch structure without changing the underlying assembly, causal-wake, or record-channel content.
+
 When a tri-binary assembly is described as being in a "superposition," it is physically occupying a metastable region of its configuration space—typically a boundary zone near a separatrix between resonance bands, or hovering near the symmetry-breaking velocity threshold ($v = c_f$). The assembly is continuously driven by the high-dimensional, deterministic flux of the local Noether Sea.
 
 Because a Physical Observer lacks access to the complete microstate and the exact path-history phases of the surrounding architrino weather, the system exhibits informational ambiguity. The assembly's exact trajectory is definite, but its eventual resolution into a stable basin is operationally unpredictable. The quantum state $|\psi\rangle$ is therefore a coarse-grained statistical envelope tracking this deterministic uncertainty.
@@ -53,9 +55,21 @@ $$
 \tau_c=\inf\{t>0:\Sigma(X_t)=0\}.
 $$
 
-Closure requirement:
+For a declared apparatus kernel $\mathcal{K}_A$, coarse-graining $\mathcal{Q}$, access region $W$, and competing basin family $\{B_i(t)\}$, the pre-record branch interval can be bounded by the first time at which multiple alternatives are recordable in the retained description:
+$$
+\tau_{\mathrm{split}}
+=
+\inf\{t>t_0:\exists i\ne j,
+N_{\mathcal{Q},W}(B_i(t))\ge 1,
+N_{\mathcal{Q},W}(B_j(t))\ge 1,
+\Delta_{\mathrm{div}}(t_0,t,T;\mathcal{Q},W)>\varepsilon_{\mathrm{div}}\}.
+$$
+Here $N_{\mathcal{Q},W}$ is the recordable basin count defined in [Wavefunction Ontology](../quantum/wavefunction-ontology.md#lower-bound-on-recordable-basin-measure), and $\Delta_{\mathrm{div}}$ is the restartability residual used in [Measurement Ontology](../quantum/measurement-ontology.md#what-makes-an-interaction-a-record). This is not a consciousness criterion. It is a guardrail against treating an arbitrary basis expansion as a physical branch event.
+
+Closure requirements:
 - $\tau_c$ is finite in measurement-strength regimes that produce records,
 - the distribution of $\tau_c$ is consistent with the same coarse-grained model that yields the outcome weights $P_n$,
+- any claimed branch formation names $\mathcal{K}_A$, $\mathcal{Q}$, $W$, and the record window,
 - no instantaneous-update limit appears once finite $c_f$ and interaction extent are enforced.
 
 Primary synthesis location: [Pilot-Wave Character](./pilot-wave-character.md).

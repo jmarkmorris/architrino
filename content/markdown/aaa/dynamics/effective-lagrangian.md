@@ -176,6 +176,8 @@ on the retained regime. If the residual $\epsilon_{\mathcal{Q}}$ is not controll
 
 This gate keeps the exact and effective levels separate. The Master Equation owns the delayed causal dynamics; the effective Hamiltonian owns only those regimes where internal wake memory, branch changes, and unresolved Noether-Sea exchange have been compressed without losing the observer-level invariants being compared.
 
+The same domain restriction applies before translating an effective Hamiltonian chart into quantum operators. The admissible observable set in [Quantum Operator Mapping](../theory-bridges/quantum-operator-mapping.md#admissible-quantization-domain-guardrail) must be derived from this retained coarse-graining and record window, not chosen afterward as a free quantization convention.
+
 ### Topological Constraints and Assembly Stability
 
 The effective Lagrangian restricts the allowed topological configurations of the architrino medium. Stable assemblies—such as the nested maximal-curvature orbits of tri-binaries—manifest as localized, phase-locked topological defects (vortices or knots) within the continuous flow fields.

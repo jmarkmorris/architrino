@@ -82,6 +82,17 @@ F_H=0,\qquad
 $$
 This is the singularity-resolution form of the black-hole endpoint gate: the replacement must be finite, ledger-preserving, and non-arbitrary using compact boundary data, without importing a remnant, bounce, or asymptotic boundary condition as doctrine.
 
+Stationary regularity is only the first test. A horizon construction may keep curvature invariants finite in an eternal or stationary comparison metric while still failing during collapse, merger, evaporation, or embedding in a time-dependent Noether Sea. The dynamical gate is therefore stronger:
+$$
+\theta_+^{\mathrm{eff}}<0,\quad \theta_-^{\mathrm{eff}}<0
+\quad\Longrightarrow\quad
+F_H(t)=0,\qquad
+\sup_{t\in[t_i,t_f]}\mathcal{R}_H(\Omega,t)<\infty,
+\qquad
+0<\left|\mathcal{B}_{H}(t_f)\right|<\infty,
+$$
+with the same finite boundary data driving the transition across the whole interval. A result that proves regularity only for an isolated stationary exterior remains a comparison result until it supplies this dynamical continuation.
+
 ## Maximal Curvature vs Planck Scale
 
 The **inner binary** (maximal curvature, self-hit regime) is a stabilization outcome of wake dynamics. The **middle binary always rides field speed** ($v=c_f$), with **variable radius and frequency**; it serves as the **energy-storage fulcrum** for transfers across the tri-binary.

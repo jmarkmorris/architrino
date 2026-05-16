@@ -21,6 +21,8 @@ The ontology is therefore:
 - **measurement outcome:** the attractor basin into which the coupled system settles,
 - **record:** a durable asymmetry in apparatus/environment variables that can be re-read without reconstructing the original metastable state.
 
+The apparatus configuration is part of the record channel, not external decoration. In a concrete detector model, the geometry, coupling settings, thresholds, and readout coarse-graining are collected into an apparatus record kernel $\mathcal{K}_A$, so the separatrix and record variable are really $\Sigma_{\mathcal{K}_A}(X,A)=0$ and $R_{\mathcal{K}_A}(A)$. The unindexed $\Sigma$ and $R$ below are shorthand after the channel is fixed. This does not make the observer a creator of the target state; it means that a record is a coupled system-apparatus event with declared physical coupling.
+
 ## No Heisenberg Cut
 
 The ontology rejects a fundamental system-observer split.
@@ -38,6 +40,57 @@ What standard quantum mechanics calls a "measurement" is therefore just a specia
 3. dissipation into the surrounding Noether Sea so that coherent reversal becomes practically inaccessible.
 
 This also sets the comparison boundary for path-integral and generalized-quantum-mechanics language. A history-sum formalism can reproduce ordinary pointer-record probabilities and may assign measures to microscopic event statements, but those measures are not automatically $\mathbb{A}\mathbb{A}\mathbb{A}$ records. The native question remains whether the apparatus-target dynamics below produce a separatrix crossing, a durable record variable, and a persistence window without invoking an external classical observer.
+
+Expectation values, covariance matrices, correlation functions, and decoherence rates obey the same rule. They are legitimate observer-level summaries only after the target, apparatus, environment, access region, and record channel have been declared. In closed-system, cosmology, or quantum-gravity comparisons, an averaged quantity is therefore not automatically a statement about what the substrate is doing; it is a data product that must be tied back to $\Gamma_{\mathrm{tot}}$, the retained boundary data, and the record criteria below.
+
+The rejection of the cut can be stated as a closure condition on the dynamics. Let
+$$
+\Gamma_{\mathrm{tot}}(t)=(X(t),A(t),Z(t),\mathcal{W}(t))
+$$
+collect the target coordinates $X$, apparatus coordinates $A$, retained environment coordinates $Z$, and causal-wake history $\mathcal{W}$. A valid measurement model must be the projection of one substrate flow,
+$$
+\dot{\Gamma}_{\mathrm{tot}}
+=
+F_{\mathrm{tot}}(\Gamma_{\mathrm{tot}}),
+\qquad
+\pi_{XA}\Phi_t^{\mathrm{tot}}(\Gamma_0)=(X(t),A(t)),
+$$
+not a splice between quantum dynamics on the target side and a separate classical-observer dynamics on the apparatus side. A human observer, laboratory notebook, or downstream database is therefore another possible record-bearing assembly, not an ontologically privileged endpoint of the measurement.
+
+## Physical-Record Import Consistency
+
+The same rule applies when one Physical Observer records another Physical Observer's conclusion. A statement such as "observer $O_j$ is certain that record $R_k$ will occur" is not free-standing knowledge. For observer $O_i$, it is a physical communication or memory record inside $O_i$'s retained apparatus and access region. Let $C_{j\to i,k}$ denote that imported-certainty record in the declared channel for $O_i$, and let $\theta_i$ be the corresponding observer model record. With the same finite-time basin measure used for the measurement channel, write
+$$
+p_i(\ell|\theta_i)
+=
+\mu_{*,T}^{(i)}\!\left(\pi_i^{-1}(R_\ell)\right),
+\qquad
+c_{i\leftarrow j}(k|\theta_i)
+=
+\mu_{*,T}^{(i)}\!\left(\pi_i^{-1}(C_{j\to i,k})\right).
+$$
+Here $p_i$ is $O_i$'s direct record probability for outcome $R_\ell$, while $c_{i\leftarrow j}$ is the probability that $O_i$ has a valid physical record of $O_j$'s certified conclusion. For mutually exclusive record classes $R_k\cap R_\ell=\varnothing$, define a certainty-threshold residual
+$$
+\Delta_{\mathrm{cert}}^{ij}
+=
+\max_{k\ne \ell}
+\left[
+c_{i\leftarrow j}(k|\theta_i)
++
+p_i(\ell|\theta_i)
+-
+2(1-\epsilon_C)
+\right]_+,
+\qquad
+[x]_+\equiv\max(x,0).
+$$
+A valid observed-observer measurement model should satisfy
+$$
+\Delta_{\mathrm{cert}}^{ij}
+\le
+\varepsilon_{\mathrm{cert}}
+$$
+on the same declared apparatus kernel, coarse-graining, access region, and persistence window used for the ordinary record tests. This is not a new probability postulate. It is the measurement-cut rejection applied recursively: if $O_i$ can physically record $O_j$'s certified conclusion, that imported record must be part of the same substrate flow as $O_i$'s direct prediction. If the communication record, reference resources, or record-autonomy test fails, the observed-observer setup is not a completed measurement comparison rather than a contradiction in the ontology.
 
 ## Minimal Dynamical Model
 
@@ -61,6 +114,28 @@ $$
 $$
 
 This is the ontology-level replacement for instantaneous collapse. The transition is continuous in absolute time, though it may appear effectively abrupt to a coarse observer.
+
+The time at which an effective branch description becomes useful is not fixed by the phrase "superposition" alone. It depends on the apparatus kernel, coarse-graining, access region, and record window. For a declared channel $(\mathcal{K}_A,\mathcal{Q},W,T)$ and candidate basin family $\{B_i(t)\}$, a pre-record branch separation can be treated as present only when the retained transition law is no longer restartable through a single reduced state while at least two alternatives are independently recordable in that channel:
+$$
+\tau_{\mathrm{split}}
+=
+\inf\{t>t_0:\exists i\ne j,
+N_{\mathcal{Q},W}(B_i(t))\ge 1,
+N_{\mathcal{Q},W}(B_j(t))\ge 1,
+\Delta_{\mathrm{div}}(t_0,t,T;\mathcal{Q},W)>\varepsilon_{\mathrm{div}}\}.
+$$
+Here $N_{\mathcal{Q},W}$ is the recordable basin count from [Wavefunction Ontology](wavefunction-ontology.md#lower-bound-on-recordable-basin-measure), and $\Delta_{\mathrm{div}}$ is the restartability residual defined below for the same coarse-graining, access region, and record window.
+
+The record time is later, and stricter:
+$$
+\tau_{\mathrm{rec}}
+=
+\inf\{t>\tau_{\mathrm{split}}:
+\Delta_{\mathrm{rec}}(t;k)\le\varepsilon_{\mathrm{rec}},
+\Delta_{\mathrm{div}}(t_0,t,T;\mathcal{Q},W)\le\varepsilon_{\mathrm{div}},
+\Delta S_{\mathcal{Q},W}^{\mathrm{app+env}}\ge S_{\mathrm{lock}}\}.
+$$
+The unresolved interval $\tau_{\mathrm{rec}}-\tau_{\mathrm{split}}$ is a validation target for a concrete apparatus model. It is not a new collapse law and not a substrate-level consciousness event. It names the window in which an effective wavefunction may need to carry multiple alternatives while the ontology still owes a finite-time record-forming transition.
 
 ## What Makes an Interaction a Record
 
@@ -119,6 +194,56 @@ $$
 $$
 If $\Delta_{\mathrm{rec}}=O(1)$ on that window, the apparatus has not yet produced an independent record in the ontology of this chapter. The correct description is still an unresolved interference or weak-probe regime, not a completed branch selection.
 
+A completed record should also make the retained reduced description restartable. Let $\mathcal{T}^{\mathcal{Q},W}_{a\to b}$ be the transition operator induced by the same substrate flow after projecting to a declared coarse-graining $\mathcal{Q}$ and retained access region $W$. For $t_0<t_1<t_2$, with $t_1$ and $t_2$ inside the candidate record window, define
+$$
+\Delta_{\mathrm{div}}(t_0,t_1,t_2;\mathcal{Q},W)
+=
+\left\|
+\mathcal{T}^{\mathcal{Q},W}_{t_0\to t_2}
+-
+\mathcal{T}^{\mathcal{Q},W}_{t_1\to t_2}
+\mathcal{T}^{\mathcal{Q},W}_{t_0\to t_1}
+\right\|_{\mathrm{TV}\to\mathrm{TV}}.
+$$
+The restartability closure condition is
+$$
+\sup_{t_1,t_2\in[\tau_{\text{meas}},\,\tau_{\text{meas}}+T_{\text{rec}}]}
+\Delta_{\mathrm{div}}(t_0,t_1,t_2;\mathcal{Q},W)
+\le
+\varepsilon_{\mathrm{div}},
+\qquad
+\varepsilon_{\mathrm{div}}\ll 1.
+$$
+This condition says that, after record formation, the retained apparatus-target record can be treated as a new effective starting point without carrying unresolved cross-basin history as live interference. If $\Delta_{\mathrm{div}}=O(1)$, the interaction may have decohered in a reduced description, but it has not yet supplied the independent record assumed by a wave function transition.
+
+## Repeated-Record Confirmation
+
+A measurement account is incomplete if it can name single records but cannot say how repeated records confirm or disconfirm the record law. For a fixed preparation class, apparatus kernel, coarse-graining, access region, and record window, let $D_N=\{N_k\}$ be the observed counts for $N$ completed records and let $\widehat f_k=N_k/N$ be the corresponding frequencies. The same finite-time basin measure used above should determine
+$$
+P_\theta(k)
+=
+\mu_{*,T}\!\left(\pi^{-1}(R_k)\right)
+$$
+for the declared record map $\pi$ and model record $\theta$. A compact confirmation residual is
+$$
+\Delta_{\mathrm{freq}}^{\mathrm{meas}}(N;\theta)
+=
+\max_k
+\frac{\left|\widehat f_k-P_\theta(k)\right|}{\varepsilon_k(N)}.
+$$
+The validation target is
+$$
+\Pr_{\mu_{*,T}}\!\left[
+\Delta_{\mathrm{freq}}^{\mathrm{meas}}(N;\theta)>1
+\right]
+\le
+\alpha_N,
+\qquad
+\varepsilon_k(N)\to0,\quad
+\alpha_N\to0
+$$
+in the calibrated repeated-record regime. This is not a new probability ontology. It is the ordinary scientific-inference burden stated in measurement language: the same substrate flow, record channel, and basin measure that produce a completed record must also produce the frequencies used to test the theory. If a model changes the measure between record formation, Born weights, thermodynamic summaries, and repeated-record statistics, it has hidden an ensemble retuning inside the measurement account.
+
 ## Weak-Probe Limit
 
 A weak measurement is not a different ontology. It is the small-coupling regime of the same apparatus-target dynamics in which a probe samples the target without creating a record-forming separatrix crossing on the retained trial window. Let $\epsilon$ denote the probe-coupling strength and let $(X_\epsilon,A_\epsilon)$ be the coupled trajectory under that probe. The no-record condition is
@@ -152,6 +277,29 @@ $$
 \mu\!\left(B\mid R_{\mathrm{post}}\in\mathcal{R}_f\right).
 $$
 This conditional measure can sharpen which weak-probe displacements are averaged, but all substrate evolution still runs forward in absolute time. The closure target is to derive the weak-probe response and its post-selected statistics from the same deterministic flow, separatrix geometry, and record criterion used for ordinary measurements.
+
+The signed-response benchmark for post-selected weak probes should therefore be stated at the ensemble level. For a declared weak-probe pointer coordinate $Y$ and accepted later record class $\mathcal{R}_f$, define the normalized conditional response
+$$
+\bar{Y}_{\epsilon\mid\mathcal{R}_f}
+=
+\frac{1}{\epsilon}
+\int
+\left(
+Y(A_\epsilon(t_1))-Y(A_{\text{pre}})
+\right)
+d\mu_{\mathrm{post}}.
+$$
+If standard weak-value analysis predicts a signed displacement, $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover that sign and magnitude as a conditional average over below-threshold probe trajectories:
+$$
+\left|
+\bar{Y}_{\epsilon\mid\mathcal{R}_f}^{\mathbb{A}\mathbb{A}\mathbb{A}}
+-
+\bar{Y}_{\epsilon\mid\mathcal{R}_f}^{\mathrm{QM}}
+\right|
+\le
+\varepsilon_Y,
+$$
+while still satisfying the no-record condition for each retained weak-probe trial. A negative or otherwise anomalous signed average is therefore a constraint on the conditional response kernel, not evidence for negative-mass ontology, backward substrate causation, or a completed measurement record inside the weak-probe window.
 
 ## Relation to the Wavefunction
 
@@ -211,6 +359,8 @@ P(R_k)=\mu_*\!\left(\pi^{-1}(R_k)\right).
 $$
 The source of $\mu_*$ is therefore part of the measurement closure, not an optional interpretive add-on.
 
+The same restriction applies to branch language. If a branch or record class is emergent from later apparatus/environment dynamics, its probability cannot be inserted as an axiom before the record map, basin family, and measure source have been fixed. Assigning weights to emergent branches without that pullback repeats the measurement cut in probabilistic form. A valid branch probability must be a derived property of the same deterministic flow that creates and preserves the record, not a label attached after the ontology has already been compressed.
+
 ## External Penrose-Diosi Benchmark
 
 Penrose-Diosi gravitational-collapse proposals provide an external comparison target for massive-superposition measurement claims. Their useful pressure is the tension between two inherited principles: local free-fall equivalence in gravity and linear superposition in quantum state descriptions. If one branch of a massive superposition can be locally transformed away only by a different free-fall frame than the other branch, the comparison asks whether the mismatch has an energy scale that should limit the lifetime of the unresolved branch description.
@@ -237,6 +387,30 @@ $$
 \frac{\tau_{\text{meas}}\Delta E_G}{\hbar}.
 $$
 This ratio is not an ontology selector. It is a validation diagnostic: $\tau_{\text{meas}}$ must be derived from the Master-Equation separatrix and record-locking dynamics, while $\tau_G$ supplies an external mass-displacement benchmark. Collapse-model variants that imply persistent spontaneous heating add a separate empirical pressure, because neutron-star and low-background heating bounds can exclude that heating channel without deciding the $\mathbb{A}\mathbb{A}\mathbb{A}$ threshold-resolution mechanism.
+
+### Measurement And Heating Residual
+
+The heating pressure from objective-collapse comparisons should be retained as an energy-ledger test, not as imported stochastic-collapse ontology. A declared apparatus channel $(\mathcal{K}_A,\mathcal{Q},W,T)$ already has a Born-window residual $\Delta_{\mathrm{Born}}(T)$ and thermodynamic ensemble residual $\Delta_{\mathrm{ens}}(\mathcal{Q},W,T)$ in [Quantum Operator Mapping](../theory-bridges/quantum-operator-mapping.md#statistical-measure-and-the-born-rule-emergence). The same run should also carry an unrecorded energy residual after declared work, recoil, emitted assemblies, medium excitation, and boundary exchange are accounted for:
+$$
+\Delta E_{\mathrm{unrec}}(T;\theta)
+=
+\Delta E_{\mathrm{target+app+env}}(T)
+{}-W_{\mathrm{decl}}(T;\theta)
+{}-E_{\mathrm{recoil}}(T;\theta)
+{}-E_{\mathrm{medium}}(T;\theta)
+{}-E_{\mathrm{boundary}}(T;\theta).
+$$
+Here $\theta$ is the apparatus and environment record used for the same measurement run. The combined validation diagnostic is
+$$
+\mathcal{R}_{\mathrm{meas+heat}}(T;\theta)
+=
+\max\left(
+\frac{\Delta_{\mathrm{Born}}(T)}{\varepsilon_{\mathrm{Born}}},
+\frac{\Delta_{\mathrm{ens}}(\mathcal{Q},W,T)}{\varepsilon_{\mathrm{ens}}},
+\frac{|\Delta E_{\mathrm{unrec}}(T;\theta)|}{\varepsilon_E}
+\right).
+$$
+A measurement model that fits Born weights only by changing the thermodynamic ensemble, or that leaves a persistent unexplained heating term, has not closed the record-forming channel. A model may still compare to CSL-like or Penrose-Diosi-like formulas, but the retained content is the observable residual, not the external collapse mechanism.
 
 ## External Gravitational Which-Path Benchmark
 

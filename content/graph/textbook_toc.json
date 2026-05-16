@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1142
+      "sections": 1154
     }
   },
   "tocRoot": {
@@ -2196,6 +2196,22 @@
                   },
                   {
                     "kind": "markdown-section",
+                    "title": "Merger and Ringdown Horizon-Interface Gate",
+                    "markdownPath": "content/markdown/aaa/spacetime/gravitational-waves.md",
+                    "markdownSection": "Merger and Ringdown Horizon-Interface Gate",
+                    "sectionKey": "merger and ringdown horizon interface gate",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Early-Universe Stochastic Background Gate",
+                    "markdownPath": "content/markdown/aaa/spacetime/gravitational-waves.md",
+                    "markdownSection": "Early-Universe Stochastic Background Gate",
+                    "sectionKey": "early universe stochastic background gate",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Energy Flux",
                     "markdownPath": "content/markdown/aaa/spacetime/gravitational-waves.md",
                     "markdownSection": "Energy Flux",
@@ -3524,6 +3540,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "CP-Odd Neutron Dipole Scaffold",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+                "markdownSection": "CP-Odd Neutron Dipole Scaffold",
+                "sectionKey": "cp odd neutron dipole scaffold",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Effective Internal Geometry",
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
                 "markdownSection": "Effective Internal Geometry",
@@ -4344,6 +4368,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Physical-Record Import Consistency",
+                "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
+                "markdownSection": "Physical-Record Import Consistency",
+                "sectionKey": "physical record import consistency",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Minimal Dynamical Model",
                 "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
                 "markdownSection": "Minimal Dynamical Model",
@@ -4356,6 +4388,14 @@
                 "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
                 "markdownSection": "What Makes an Interaction a Record",
                 "sectionKey": "what makes an interaction a record",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Repeated-Record Confirmation",
+                "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
+                "markdownSection": "Repeated-Record Confirmation",
+                "sectionKey": "repeated record confirmation",
                 "headingLevel": 2
               },
               {
@@ -4587,6 +4627,38 @@
                 "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
                 "markdownSection": "QFT Locality Residual",
                 "sectionKey": "qft locality residual",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Hilbert-Representation Invariance Guardrail",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+                "markdownSection": "Hilbert-Representation Invariance Guardrail",
+                "sectionKey": "hilbert representation invariance guardrail",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Probability-Representation Guardrail",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+                "markdownSection": "Probability-Representation Guardrail",
+                "sectionKey": "probability representation guardrail",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Admissible Quantization-Domain Guardrail",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+                "markdownSection": "Admissible Quantization-Domain Guardrail",
+                "sectionKey": "admissible quantization domain guardrail",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Apparatus-Context Guardrail",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+                "markdownSection": "Apparatus-Context Guardrail",
+                "sectionKey": "apparatus context guardrail",
                 "headingLevel": 2
               },
               {
@@ -5329,6 +5401,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Operational Probing Limit",
+                "markdownPath": "content/markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md",
+                "markdownSection": "Operational Probing Limit",
+                "sectionKey": "operational probing limit",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "What Planck Units Imply About the Outer Binary",
                 "markdownPath": "content/markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md",
                 "markdownSection": "What Planck Units Imply About the Outer Binary",
@@ -5676,6 +5756,14 @@
                 "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
                 "markdownSection": "Scalar and Tensor Benchmark",
                 "sectionKey": "scalar and tensor benchmark",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Pre-BBN Comparison Gate",
+                "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
+                "markdownSection": "Pre-BBN Comparison Gate",
+                "sectionKey": "pre bbn comparison gate",
                 "headingLevel": 2
               },
               {
@@ -10605,6 +10693,14 @@
                 "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
                 "markdownSection": "Functional Agency",
                 "sectionKey": "functional agency",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Primitive Metastability",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Primitive Metastability",
+                "sectionKey": "primitive metastability",
                 "headingLevel": 2
               },
               {

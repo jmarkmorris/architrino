@@ -28,6 +28,7 @@ Rules:
 - Future-only work belongs in the Priority Action Menu or in `reference/priorities` as a concrete action item. Do not leave vague future-work prose in authored AAA content or final reports.
 - Cross-links are not advancement by themselves. Add or recommend links only when they make an accepted mathematical claim easier to verify, compare, or read.
 - Infrastructure recommendations are secondary. Include them only when a specific recurring failure pattern has a concrete check, script, ledger, or priority item.
+- Gate, checker, fixture, and requirement proliferation is a known failure mode, but concrete successes should still accumulate. Separate obligation artifacts from success markers: a new requirement, gate, checker, fixture, or standalone ledger row creates future maintenance load, while a success marker records a recovery, benchmark pass, worked example, derivation milestone, or validation win under an existing proof route or gate. Before recommending or adding another obligation artifact, assess its incremental value against the already large set of AAA gates: name the tested observable, mathematical consistency condition, or active proof route it protects; identify whether it strengthens or replaces an existing gate; and explain why improving the native derivation would not capture the same value. If the value is not reasonable, defer the artifact and spend the pass on the theory. Prefer recording low-maintenance success markers under existing validation families over creating a new gate.
 
 ## Closure-Target Triage
 
@@ -184,6 +185,7 @@ Infrastructure findings:
 - List only recurring drift patterns that can become a concrete automated corpus-audit script, validation rule, or priority item.
 - List only theorem targets with enough structure to become a closure-target ledger entry.
 - List repeated cross-document concepts only when they deserve a concrete explainer, proof packet, or bridge document.
+- For any proposed new requirement, gate, checker, fixture, or ledger row, include a value assessment relative to the current gate set and classify it as an obligation artifact or a success marker. Add new obligation artifacts only when they protect a tested observable, mathematical consistency condition, or live proof/derivation route that existing gates do not already cover. Encourage concrete recovery successes, benchmark passes, worked examples, derivation milestones, and validation wins as success markers when they attach to an existing requirement or proof route and do not create a new maintenance burden. If a proposed artifact mainly names another hurdle without materially advancing a live derivation, protecting contact with tested physics, or recording a concrete success under an existing gate, recommend against adding it.
 - List leaps of intuition separately from edit recommendations. Each leap should say what prompted it, what it might advance, what evidence is missing, and the exact question to discuss with Op before editing it into AAA prose or canon.
 
 Important constraints:
@@ -245,6 +247,7 @@ Advancement priorities:
 - Remove or replace empty future-work prose. If the work cannot be done in this edit batch, convert it into a concrete priority action item or detailed prompt option.
 - Prefer local, reader-useful cross-links within content/markdown/aaa only when a link materially helps a mathematical claim, proof path, or reader-critical comparison.
 - Keep bridge terms such as `spacetime medium` subordinate to the canonical ontology term `Noether Sea`.
+- Do not expand gates, checkers, fixtures, or requirement ledgers by default. Add or recommend a new obligation artifact only after stating its incremental value over existing gates and confirming that it serves a live derivation or tested-physics contact point; otherwise prefer a theory-first derivation, equation, lemma, or proof scaffold. Do record low-maintenance success markers when an edit batch produces a recovery, benchmark pass, worked example, derivation milestone, or validation win under an existing gate.
 
 Constraints:
 - Use `apply_patch` for edits.

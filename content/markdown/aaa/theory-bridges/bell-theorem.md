@@ -85,6 +85,58 @@ $$
 
 which violates the CHSH bound. The value $2\sqrt{2}$ is the **Tsirelson bound**, the maximum achievable by any quantum state.
 
+### Bell-Family Strengthenings: GHZ and Hardy
+
+The CHSH inequality is the main statistical benchmark, but it is not the only Bell-family validation target. Two primary-source strengthenings are useful because they expose failures that can be hidden by fitting one averaged correlation curve.
+
+**GHZ perfect-correlation benchmark.** For a calibrated three-party GHZ state, choose local Pauli-type settings $X$ and $Y$ and define the four product contexts
+$$
+\mathcal{C}_{\mathrm{GHZ}}=\{XXX,XYY,YXY,YYX\}.
+$$
+Quantum mechanics assigns product signs $\chi_C\in\{-1,+1\}$ for those contexts such that
+$$
+\prod_{C\in\mathcal{C}_{\mathrm{GHZ}}}\chi_C=-1.
+$$
+Any context-independent local assignment of predetermined values $x_A,y_A,x_B,y_B,x_C,y_C\in\{-1,+1\}$ gives product $+1$, because every local value appears twice when the four context products are multiplied. This is the all-or-nothing GHZ obstruction: a model cannot pass by reproducing only a Bell average while carrying one fixed local value table across all contexts.
+
+For an $\mathbb{A}\mathbb{A}\mathbb{A}$ record model, the corresponding residual is
+$$
+\Delta_{\mathrm{GHZ}}
+=
+\max_{C\in\mathcal{C}_{\mathrm{GHZ}}}
+\left[
+1-\chi_C E_\theta(C)
+\right]_+,
+$$
+where $E_\theta(C)$ is the product expectation of the three declared apparatus records in context $C$ and $[x]_+\equiv\max(x,0)$. Passing this benchmark means deriving the context-indexed joint record distribution from pair or multiplet provenance and local detector kernels, not assigning context-independent substrate values to all effective $X$ and $Y$ operators.
+
+**Hardy zero/positive event benchmark.** Hardy's two-particle proof uses binary observables $U_i,D_i$ and a nonmaximally entangled state to combine three zero-probability constraints with one positive-probability event. In one common convention the quantum target is
+$$
+P(U_1=1,U_2=1)=0,
+\qquad
+P(D_1=1,U_2=0)=0,
+$$
+$$
+P(U_1=0,D_2=1)=0,
+\qquad
+P(D_1=1,D_2=1)>0.
+$$
+Local realism turns the positive $D_1=D_2=1$ event into a forbidden $U_1=U_2=1$ event. A compact validation margin is
+$$
+\Delta_{\mathrm{Hardy}}
+=
+\left[
+P_\theta(D_1=1,D_2=1)
+-
+P_\theta(U_1=1,U_2=1)
+-
+P_\theta(D_1=1,U_2=0)
+-
+P_\theta(U_1=0,D_2=1)
+\right]_+.
+$$
+The target is not to import Hardy's notation as ontology. The target is to make the declared joint record measure reproduce the zero constraints and the positive event while preserving measurement independence and no-signaling.
+
 ### Experimental Status
 
 Beginning with Freedman and Clauser (1972) and Aspect, Dalibard, and Roger (1982), and culminating in loophole-free tests (Hensen et al. 2015, Giustina et al. 2015, Shalm et al. 2015), experiments consistently observe $|S| > 2$, in agreement with the quantum prediction. The three principal loopholes have been individually and jointly closed:
@@ -92,6 +144,8 @@ Beginning with Freedman and Clauser (1972) and Aspect, Dalibard, and Roger (1982
 - **Locality loophole**: measurement settings chosen and outcomes recorded in spacelike-separated regions.
 - **Detection loophole**: sufficiently high detection efficiency to rule out biased subsamples.
 - **Freedom-of-choice loophole**: settings determined by sources (distant quasars, cosmic photons) causally disconnected from the particle source.
+
+Cosmic setting-choice tests make the measurement-independence burden concrete. They do not prove metaphysical freedom; they bound the possibility that the apparatus settings and the pair-preparation variables shared an unrecorded common cause inside the relevant past lightcone overlap. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, any proposed pair-provenance explanation must keep that setting-source correlation inside the declared $\Delta_{\mathrm{MI}}$ tolerance rather than using remote common-cause leakage as an untracked escape route.
 
 The experimental conclusion is unambiguous: at least one of the three Bell assumptions must fail.
 
@@ -144,6 +198,20 @@ P(a, b \,|\, \hat{m}_A, \hat{m}_B, \lambda) \neq P(a \,|\, \hat{m}_A, \lambda)\;
 $$
 
 while still preserving no-signaling. The mechanism for that failure must be derived from the angular-momentum ledger and the detector coupling, not inserted by terminology.
+
+A shared past is not enough by itself. If a declared common-past record $C$ screens the two wings into independent one-wing laws while measurement independence and no-signaling hold, the model has re-entered the Bell-local class. A useful residual for this check is
+
+$$
+\Delta_{\mathrm{fact}}(C)
+=
+\sup_{\hat{m}_A,\hat{m}_B}
+D_{\mathrm{TV}}\!\left(
+P(a,b\mid \hat{m}_A,\hat{m}_B,C),
+P(a\mid \hat{m}_A,C)P(b\mid \hat{m}_B,C)
+\right).
+$$
+
+Here $C$ is not a new substrate object; it is the retained common-past or pair-provenance record used by the proposed Bell closure. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ route must explain why the declared provenance and apparatus-response compression leaves a nonzero factorization residual while keeping the measurement-independence and no-signaling residuals below tolerance. If $\Delta_{\mathrm{fact}}(C)$ vanishes for the completed hidden-variable record, the closure has not escaped the theorem.
 
 ### Bell Closure Diagnostics
 
@@ -212,7 +280,12 @@ $$
 \qquad
 \Delta_{\mathrm{NS}}^{A},\Delta_{\mathrm{NS}}^{B}\le\epsilon_{\mathrm{NS}},
 \qquad
-\Delta_{\mathrm{MI}}\le\epsilon_{\mathrm{MI}}.
+\Delta_{\mathrm{MI}}\le\epsilon_{\mathrm{MI}},
+\qquad
+\Delta_{\mathrm{GHZ}}\le\epsilon_{\mathrm{GHZ}},
+\qquad
+\Delta_{\mathrm{Hardy}}>0
+\text{ in the calibrated Hardy regime.}
 $$
 Thus record reconstruction is the output surface of the Bell program, not a substitute for the pair-provenance and apparatus-response derivation.
 
@@ -301,6 +374,8 @@ Superdeterministic models deny measurement independence: the detector settings a
 
 Retrocausal interpretations allow influences from future measurement settings to propagate backward in time to the source, effectively setting $\lambda$ in response to $\hat{m}_A$ and $\hat{m}_B$. $\mathbb{A}\mathbb{A}\mathbb{A}$'s absolute-time ontology categorically forbids backward-in-$t$ causation. All causal influences propagate forward in absolute time at or below $c_f$. The correlations in $\lambda$ are forward-causal consequences of the creation event, established before any measurement setting is chosen.
 
+Temporal-nonlocality language is therefore a comparison diagnostic, not a mechanism to import. In a relativistic observer description, different frames may assign different time orderings to spacelike-separated measurement records; that does not license future-boundary variables in the substrate ledger. A candidate Bell record should evaluate pair provenance, $\Delta_{\mathrm{MI}}$, $\Delta_{\mathrm{NS}}^{A}$, $\Delta_{\mathrm{NS}}^{B}$, and $\Delta_{\mathrm{Bell}}$ on the absolute-time record. If the correlation fit requires $\lambda$ to depend on later settings, the record has left the stated $\mathbb{A}\mathbb{A}\mathbb{A}$ route and should be classified with retrocausal or measurement-independence-denying comparison models.
+
 ---
 
 ## The Role of Absolute Time
@@ -323,7 +398,7 @@ No step may involve faster-than-$c_f$ signal transfer. The correlations are visi
 
 ## Observables, Falsifiability, and Failure Modes
 
-**Closure target:** $\mathbb{A}\mathbb{A}\mathbb{A}$ must reproduce all experimentally observed Bell inequality violations from architrino-level angular-momentum and measurement-response dynamics, without superluminal signaling or denial of measurement independence.
+**Closure target:** $\mathbb{A}\mathbb{A}\mathbb{A}$ must reproduce all experimentally observed Bell-family correlation constraints from architrino-level angular-momentum and measurement-response dynamics, without superluminal signaling or denial of measurement independence.
 
 **Assumptions:**
 - The full microstate $\Gamma(t)$ is definite at all $t$ (realism).
@@ -335,6 +410,8 @@ No step may involve faster-than-$c_f$ signal transfer. The correlations are visi
 **Required recoveries:**
 - All standard Bell-CHSH violations are reproduced: $|S| = 2\sqrt{2}$ for singlet pairs with optimal settings.
 - No violation of the Tsirelson bound: $|S| \leq 2\sqrt{2}$. Observing $|S| > 2\sqrt{2}$ would falsify both QM and any $\mathbb{A}\mathbb{A}\mathbb{A}$ model that reproduces QM.
+- GHZ product-sign contexts are recovered without assigning one context-independent local value table across all $X/Y$ settings.
+- Hardy's zero-probability constraints and positive event margin are recovered for the calibrated nonmaximally entangled regime.
 - No-signaling is exact: no measurement protocol on $A$ can alter the marginal statistics at $B$.
 - Measurement-independence leakage is explicitly bounded by $\Delta_{\mathrm{MI}}\le\epsilon_{\mathrm{MI}}$ rather than absorbed into the pair-provenance explanation.
 - Correlation recovery is checked through $\Delta_{\mathrm{Bell}}$ against the full $-\cos\theta$ curve, not only by a single CHSH setting choice.

@@ -1,0 +1,6 @@
+gate,status,max_relative_shift,threshold,note
+temporal,pass,0.004,0.01,fixture temporal refinement row
+history_resolution,pass,0.002,0.01,fixture history-resolution row
+spatial,pass,0.003,0.01,fixture spatial row
+cross_integrator,pass,0.005,0.01,fixture cross-integrator row
+negative_control,pass,,,wrong-c_f-control fails the packet gates

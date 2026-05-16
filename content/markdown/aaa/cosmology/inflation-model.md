@@ -75,6 +75,61 @@ The scalar/tensor gate should be read as a closure burden on the high-curvature 
 
 Smoothness is a separate benchmark from scalar amplitude and tensor suppression. Inflationary language is often credited with explaining why the early effective record has low gravitational free-mode content, while generic strong-field collapse is expected to develop complicated anisotropic curvature. In this framework that pressure becomes a medium-history constraint, not an inflaton ontology. The high-curvature release channel must therefore deliver the CMB-facing smoothness residual defined in [CMB](./CMB.md) using the same Noether-Sea variables that supply $\left(A_s^{\theta},n_s^{\theta},\alpha_s^{\theta},r^{\theta}\right)$.
 
+Eternal-inflation and landscape language add no ontology by themselves. They become useful only when they nominate data products that can be tested without assuming the multiverse interpretation. Two examples are the effective spatial-curvature channel and localized CMB residuals. For a candidate high-curvature release record $\theta$, define a comparison-only residual
+$$
+\mathcal{R}_{\mathrm{EI}}(\theta)
+=
+d_\Omega\!\left(\Omega_k^{\theta},\Omega_k^{\mathrm{obs}}\right)
++d_{\mathrm{loc}}\!\left(S_{PW}^{\theta},S_{PW}^{\mathrm{obs}}\right)
++d_{\mathrm{shared}}\!\left(\theta_{\mathrm{CMB}},\theta_{\mathrm{growth}}\right).
+$$
+Here $S_{PW}$ is the cross-map localized-feature statistic defined in [CMB](./CMB.md), and $d_{\mathrm{shared}}$ penalizes a fit that explains localized features or curvature by changing the cosmology state independently from the acoustic peaks, lensing, BAO, BBN, or structure-growth records. A positive localized feature, negative-curvature trend, or bubble-collision-style template would be an observational pressure to explain, not evidence that the external population picture has become $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology.
+
+## Pre-BBN Comparison Gate
+
+Weakly coupled sectors proposed by external frameworks are useful here only as pre-BBN comparison branches. They may nominate a residual energy component, a lifetime, a free-streaming scale, a relativistic-species contribution, or a stochastic gravitational-wave background. They do not become added ontology merely because a formal model can hide them before light-element formation.
+
+For a candidate branch record $\theta_X$ active before the BBN comparison window, retain only the observable projection
+$$
+\Pi_{\mathrm{preBBN}}(\theta_X)
+=
+\left(
+\Omega_X(a),\;
+w_X(a),\;
+\tau_X,\;
+\Delta N_{\text{eff}}^X,\;
+\lambda_{\mathrm{fs}}^X,\;
+\Omega_{\mathrm{GW}}^X(f)
+\right),
+$$
+where $\Omega_X(a)$ and $w_X(a)$ summarize effective energy density and equation of state, $\tau_X$ is the decay or handoff timescale if the branch is transient, $\Delta N_{\text{eff}}^X$ is the relativistic-species contribution, $\lambda_{\mathrm{fs}}^X$ is the structure-growth free-streaming scale, and $\Omega_{\mathrm{GW}}^X(f)$ is the stochastic gravitational-wave energy-density spectrum when present. The branch is admissible only if the same $\theta_{\mathrm{sea}}$ used for the scalar/tensor, BBN, CMB, and growth records satisfies
+$$
+\mathcal{R}_{\mathrm{preBBN}}(\theta_X,\theta_{\mathrm{sea}})
+=
+\max\left(
+\frac{\|\Delta\mathbf{Y}_{\mathrm{BBN}}^X\|}{\epsilon_{\mathrm{BBN}}},
+\frac{\|\Delta C_\ell^X\|}{\epsilon_{\mathrm{CMB}}},
+\frac{\|\Delta P^X(k,z)\|}{\epsilon_{\mathrm{growth}}},
+\sup_f\frac{\Omega_{\mathrm{GW}}^X(f)}{\Omega_{\mathrm{GW}}^{\max}(f)}
+\right)
+\le 1.
+$$
+This gate preserves the observable pressure while rejecting the interpretation shortcut. A pre-BBN branch that disappears only by changing state variables between BBN, CMB, structure formation, and gravitational-wave comparisons is not hidden; it has split the cosmology record.
+
+If $X$ is a compact-object branch, the projection must also record the mass function and release history rather than only an effective density:
+$$
+\Pi_{\mathrm{compact}}(\theta_X)
+=
+\left(
+\psi_X(M),\;
+f_X,\;
+t_f(M),\;
+\Gamma_{\mathrm{release}}^X(E,t),\;
+\Delta\mathbf{x}_{\mathrm{ephem}}^X(t)
+\right).
+$$
+Here $\psi_X(M)$ is the comparison mass function, $f_X$ is the dark-sector fraction in that branch, $t_f(M)$ is the inferred formation or release clock, $\Gamma_{\mathrm{release}}^X$ is any Hawking-like or native release spectrum, and $\Delta\mathbf{x}_{\mathrm{ephem}}^X$ is retained only for late-time local-detection consistency. These variables do not add compact-object ontology to the inflation module; they make explicit which observables a pre-BBN compact branch must carry into the BBN, CMB, growth, gravitational-wave, and local-detection ledgers.
+
 ## Planck-Alignment Boundary
 
 Planck scale is treated as an alignment-horizon state of assemblies, not a minimal-length axiom.

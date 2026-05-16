@@ -114,6 +114,8 @@ $$
 
 where $a, b$ are outcomes and $\hat{\mathbf{m}}_A, \hat{\mathbf{m}}_B$ are measurement settings. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ closure program, this factorization is the gate to fail—not because of any superluminal influence at the time of measurement, but because $\lambda$ may encode **joint geometric constraints** (correlated binary-phase orientations, conserved angular-momentum projections, and path-history relations) that are lost when the pair is partitioned into independent local packages. The pair-provenance ledger by itself is not yet the proof. The proof must derive the two local apparatus-response maps and show that their observer-level compression fails Bell's factorized form while preserving no-signaling.
 
+The common-cause version of the same warning is sharper: conditioning on a shared creation event must not simply screen the joint record law into two independent one-wing laws. If the retained pair-provenance record behaves as an ordinary screening variable, then the account has only rebuilt a Bell-local hidden-variable model. The useful claim is narrower: the pair-provenance object plus local response kernels must identify which observer-level compression prevents product factorization, while still leaving each one-wing marginal independent of the distant setting.
+
 **Pair-provenance response kernel.** The Bell gate can be written as an attempted compression of the full provenance into a measurable joint response. Define the pair-provenance hidden-variable object as
 
 $$
@@ -208,6 +210,8 @@ This structure avoids the conceptual difficulties of standard nonlocality:
 - **No action at a distance**: $A$'s measurement does not send any signal or influence to $B$.
 - **No frame-dependent causal ordering**: absolute time provides a unique, consistent ordering.
 - **No tension with causality**: all causal influences propagate at $c_f$ or below; the correlations are set up in the shared causal past.
+
+Temporal-nonlocality and retrocausal interpretations remain useful only as comparison routes. They help identify which Bell assumption is being changed in observer-level language, especially when relativistic frame order is ambiguous. They are not the mechanism here. The $\mathbb{A}\mathbb{A}\mathbb{A}$ account must keep the hidden-variable ledger forward-causal in absolute time and must report the same measurement-independence, no-signaling, and Bell-correlation residuals used in [Bell Theorem](./bell-theorem.md#bell-closure-diagnostics).
 
 ### No-Signaling: Why Correlations Cannot Transmit Information
 

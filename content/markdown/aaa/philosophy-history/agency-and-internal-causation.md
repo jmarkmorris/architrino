@@ -25,6 +25,23 @@ The local vocabulary distinguishes two levels:
 
 The He-Rb-He example is currently best treated as a computed Switch candidate, not as a proof of minimal agency. A Decider remains a higher-level architectural claim whose minimality and implementation details require separate derivation.
 
+This vocabulary should not be read as branch-choice metaphysics. In quantum comparisons, a Decider does not select an ontic world from a set of already existing worlds. It changes the physical basin partition, threshold placement, and response timing of an assembly before later perturbations are resolved. Any claim that agency changes outcome statistics must therefore report the bias state, work or dissipation ledger, hold time, and measurable basin-weight shift.
+
+## Primitive Metastability
+
+The deeper point is that metastability is not an accidental feature of complicated organisms. In the current [Noether core](../spacetime/noether-core.md) architecture, every Noether core contains a middle binary at the field-speed hinge $v=c_f$, while [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md) treats that middle layer as the separator-sensitive fulcrum between the inner self-hit engine and the outer coupling layer. Metastability is therefore built into ordinary assembly structure.
+
+This does not make every Noether core an agent. A bare Noether core has a threshold-sensitive internal hinge, but it has not yet been shown to set its own threshold, hold a bias, or reuse feedback. The philosophical ladder is:
+
+| Level | Philosophical reading |
+| --- | --- |
+| Bare Noether core | Metastability exists as a physical threshold resource. |
+| Switch | Bias-to-state behavior exists when one preparation moves a metastable unit nearer to or farther from a transition boundary. |
+| Decider | Functional decision exists when an assembly can set, hold, update, and reuse bias states that change later basin weights. |
+| Mature agent | Compatibilist agency exists when many such controlled thresholds are integrated with memory, feedback, and record-making action. |
+
+The most primitive assembly that can make a decision is therefore not the first metastable assembly. It is the first assembly whose internal preparation changes the later basin distribution under the same external boundary context. A metastable middle binary supplies the possibility of alternatives; controlled threshold placement supplies the decision.
+
 ## Determinism and Predictability
 
 Determinism does not imply simplicity or practical predictability. A deterministic system can still be high-dimensional, nonlinear, history-dependent, and sensitive near bifurcation boundaries. Under those conditions, limited observers may experience outcomes as open even when the underlying dynamics remain lawful.
@@ -46,9 +63,21 @@ N_{\text{sea}}|_{\Omega}(t)
 $$
 The basin geometry and threshold control of the subsystem are therefore functions of internal state plus omitted boundary wakes and Noether-Sea conditions, not of the locally inspected state alone. Local prediction can fail for an open subsystem even when the $\mathbb{U}_{\text{now}}$ universe-state perspective remains globally deterministic, because the global state retains the finite-speed signals and path-history data that the Physical Observer has not resolved.
 
+A sharper validation condition is to hold the external boundary context fixed and ask whether internal preparation changes the basin weights. Let
+$$
+c_\Omega(t)=\left(\mathcal{H}_{\Omega}^{<t},\mathcal{B}_{\partial\Omega}(t),N_{\text{sea}}|_{\Omega}(t)\right)
+$$
+denote that fixed context. For a time window $T$, let $P_{c_\Omega,x,T}(k)$ be the normalized measure of admissible histories that resolve into basin $B_k$ when the internal state is prepared as $X_\Omega(t)=x$. A Switch or Decider claim has measurable internal content only if there are admissible internal states $x_a$ and $x_b$ such that
+$$
+D\!\left(P_{c_\Omega,x_a,T},P_{c_\Omega,x_b,T}\right)\ge\epsilon_I,
+$$
+where $D$ is a declared distance on outcome distributions and $\epsilon_I$ is the resolution threshold for the experiment or simulation. The same boundary context $c_\Omega(t)$ must be used on both sides, and the work, dissipation, and hold time needed to maintain $x_a$ or $x_b$ must be recorded. If this distance vanishes under fixed boundary context, the behavior is externally driven or observationally equivalent to a fixed-threshold response. If it is nonzero, the system's stored configuration changes the basin partition without breaking deterministic law.
+
 ## Will as Threshold Setting
 
 In this framework, `will` is a compatibilist and functional term for organized threshold setting across a networked assembly. It is not a primitive force and not an exception to causality.
+
+Because metastability is already present in Noether-core architecture, the philosophical burden shifts. The question is not how uncaused freedom enters matter. The question is how matter with built-in metastable hinges becomes organized enough to prepare its own boundary conditions. On this reading, will is the assembly-level governance of sensitivity: which thresholds are softened, which are damped, which records are allowed to form, and which incoming causal-wake patterns are ignored.
 
 When a Decider amplifies a signal, the proposed sequence is:
 
@@ -76,6 +105,8 @@ The He-Rb-He example supplies a minimal worked foothold for threshold tuning. It
 | **Libertarian Free Will** | Excluded as uncaused or law-violating initiation |
 | **Compatibilist Agency** | Allowed when complex assemblies navigate deterministic dynamics through internal state and feedback |
 | **Mechanism of "Decision"** | Threshold tuning + feedback + memory in networked assemblies |
+| **Metastability Substrate** | Field-speed middle binary in the Noether core supplies a primitive threshold resource, but not agency by itself |
+| **Validation Target** | Fixed boundary context plus different internal preparations must produce a measurable basin-weight shift with work, dissipation, and hold time recorded |
 | **Switch** | Bias-to-state mechanism; computed example currently uses He-Rb-He |
 | **Decider** | Candidate bias-setting architecture built from controlled thresholds, feedback, and memory |
 

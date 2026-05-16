@@ -405,6 +405,22 @@ $$
 
 **Remark on the Thermodynamic Arrow of Time:** Any observed arrow of time in thermodynamic, biological, or cosmological systems, such as entropy increase, aging, or expansion, is an **emergent property** arising from the dynamics of assemblies and fields, not a kinematic postulate. The background time manifold $\mathbb{R}$ is symmetric under time reversal $t \mapsto -t$; the asymmetry emerges at macroscopic scales from initial conditions and dynamics.
 
+The entropy arrow is therefore a finite-window statement, not a definition of time itself. For a chosen coarse-graining $\mathcal{Q}$ and observer-accessible window $W(t)$, an entropy summary has the schematic form
+$$
+S_{\mathcal{Q},W}(t)=k_B\log \mu\!\left(\Gamma_{\mathcal{Q},W(t)}\right),
+$$
+where $\Gamma_{\mathcal{Q},W(t)}$ is the set of microstates compatible with the retained macroscopic records in that window. This expression is meaningful only after the measure, coarse-graining, and access window are specified. In cosmology or other unbounded settings, the relevant bookkeeping must also expose boundary flux:
+$$
+\frac{dS_{\mathcal{Q},W}}{dt}
+=
+\sigma_W(t)
+-
+\int_{\partial W(t)}\mathbf{J}_S\cdot\hat{\mathbf{n}}\,dA
++
+\mathcal{R}_{\mathcal{Q}}(t),
+$$
+with $\sigma_W$ the local production term, $\mathbf{J}_S$ the entropy flux through the boundary, and $\mathcal{R}_{\mathcal{Q}}$ the residual created by changing the coarse-graining or record set. Plain language: entropy can diagnose an emergent arrow inside a stated physical and inferential window, but it does not supply the absolute ordering parameter $t$.
+
 ### Absolute and Universal Nature
 
 The time coordinate $t$ is **absolute and universal**:
@@ -505,6 +521,16 @@ Because $t$ is universal and absolute, we can unambiguously define the past (all
 ### Provenance and Identity Through Time
 
 Each architrino carries a unique **provenance** label tied to its worldline history. That provenance is strictly monotone in $t$: exchanging labels is not a mere relabeling but an operation that changes the physical history of the participating entities. Any bookkeeping, conservation statement, or coarse-graining must explicitly state when provenance has been suppressed or when identical-looking exchanges are being treated at the effective level.
+
+Consequently, an exact global flip or permutation of architrinos is not a substrate symmetry unless it preserves the full path-history and causal-wake record. Schematically, if a universe state is written as
+
+$$
+\mathbb{U}_{\text{now}}\equiv S(t)
+=
+\{(\mathbf{x}_i(t),\mathbf{v}_i(t),q_i,H_i(t))\}_i,
+$$
+
+where $H_i(t)$ denotes the path-history and provenance record carried by architrino $i$, then a proposed exchange is exact only when it preserves the instantaneous data and the corresponding $H_i(t)$ records. Generic architrinos are therefore not interchangeable at the ontic level even when finite observers can treat their exposed properties as effectively identical.
 
 The architrino-specific identity claim is developed further in [Architrino](../../../../markdown/aaa/foundations/architrino.md).
 
@@ -1091,6 +1117,8 @@ $$
 This is an expanding spatial sphere through the absolute-time stack, not a fundamental light cone of a Lorentzian metric. The boundary surface is the locus of points receiving the wake contribution emitted at $t_0$.
 
 The causal wake geometry does not forbid an architrino from having $v>c_f$. It forbids backward-time influence. This separates kinematic freedom from dynamical stability: the Euclidean substrate places no kinematic speed limit on a point architrino, but that freedom does not imply that an assembly can be carried through the same regime intact.
+
+In effective wave language, causality is often diagnosed by front velocity rather than group or phase velocity. The substrate statement is sharper: the causal front is the first nonzero causal-wake support in absolute time. Observer-level group-speed, phase-speed, or packet-reshaping effects cannot override the support condition above; they are summaries of how an already causal wake record is sampled by assemblies.
 
 For standard-matter assemblies, the effective relativistic speed limit is a dynamical consequence of assembly structure. As an assembly's drift speed approaches $c_f$, its constituents increasingly outrun the potential interactions that normally maintain internal closure, so the leading side of the assembly encounters a strongly asymmetric wake ledger while trailing structure remains tied to older path-history contributions. The result is severe mechanical deformation rather than a substrate-level prohibition. The "speed of light" limit for macroscopic assemblies is therefore a structural integrity barrier: an assembly-level failure mode under extreme asymmetric self-interaction, not a curvature boundary or geometric wall in absolute timespace.
 
@@ -1687,6 +1715,57 @@ The closer pedagogical analogy is a population of coupled delayed-feedback oscil
 -   **Emergent assemblies:** Through these continuous delayed interactions, architrinos can self-organize into complex, stable, or quasi-stable configurations called **assemblies**. These assemblies are better understood as attractor-basin structures of the delay-differential dynamics, comparable in pedagogy to synchronized oscillator clusters, vortices, or soliton-like coherent structures.
 
 The stability of an assembly is therefore dynamic rather than static. It depends on an ongoing balance of forces from the superposition of all dynamically active wakes. An assembly can persist when its trajectory remains inside a stable or metastable attractor basin; it can dissolve, branch, or reconfigure when perturbations or self-hit thresholds push it across a basin boundary.
+
+#### Context as Constraint on Basin Selection
+
+Higher-level context does not add a rival ontology to the lower-level dynamics. It selects boundary conditions, admissible branch charts, and effective constraints for the same architrino-level flow. If $\mathcal{S}_L$ is a lower-level state space containing the required path-history data, $X(t)\in\mathcal{S}_L$ is a regularized lower-level state, $\Pi_L X$ is the lower-level data exposed to a higher-level description, and $c$ denotes the surrounding assembly or Noether-Sea context, then the context-restricted state set can be written as
+
+$$
+K_c=\{\,X\in\mathcal{S}_L\mid G_\alpha(\Pi_L X,c)=0\ \text{for all}\ \alpha\,\}.
+$$
+
+The constrained flow is still the lower-level causal-wake dynamics,
+
+$$
+\frac{dX}{dt}=F_L(X_t),\qquad X(t)\in K_c,
+$$
+
+where $X_t$ indicates the path-history segment needed by the delayed equation of motion. The equations $G_\alpha=0$ encode the surrounding context as constraints on which lower-level histories are available, not as independent causes outside the architrino dynamics.
+
+This also gives a compact basin-selection measure. Let $B_k\subset\mathcal{S}_L$ be the attractor basin for an assembly branch $k$, and let $\mu_c$ be the normalized measure on the context-restricted set $K_c$. Then
+
+$$
+P_c(k)=\mu_c(B_k\cap K_c)
+$$
+
+is the context-conditioned weight of that branch. Changing $c$ can shift $P_c(k)$ by moving basin boundaries, suppressing some causal-root branches, or opening self-hit channels, while the underlying ontology remains the same collection of architrino worldlines and causal wakes.
+
+#### Context Changes and Energy Ledger
+
+A change in context is not a free semantic relabeling. If a surrounding assembly or Noether-Sea state changes from $c$ to $c'$, the emergence claim is admissible only when the changed constraints alter the accessible basin support and the change can be accounted for by the same energy and provenance bookkeeping used elsewhere in the theory.
+
+For a candidate assembly branch $B_k$, a clean opening criterion is
+
+$$
+\mu_c(B_k\cap K_c)=0,
+\qquad
+\mu_{c'}(B_k\cap K_{c'})>0.
+$$
+
+The reverse inequality pattern records branch closure, and partial changes in $\mu_c(B_k\cap K_c)$ record ordinary reshaping of basin weights. In each case, the context change must be tied to a physical transition rather than to a new ontology outside the architrino dynamics.
+
+The corresponding ledger can be written schematically as
+
+$$
+W_{c\to c'}
+=
+\Delta K_\mu
++\Delta E_{\text{wake}}
++\Delta U_{\text{pot}}
++\Delta E_{\text{diss}}.
+$$
+
+Here $W_{c\to c'}$ is the work routed into the context change over the retained degrees of freedom. The terms track kinetic bookkeeping, nonlocal causal-wake interaction content, local potential-energy reconstruction, and dissipative or medium-relaxation loss. If radiation, recoil, reaction products, or unresolved medium excitation are present, they must be routed through the relevant channel ledger rather than hidden inside the phrase "emergence." In plain language, a new higher-level branch becomes available because the physical constraints changed, not because a second law or substance was added on top of the lower-level dynamics.
 
 #### Assembly Theory and Recursion
 

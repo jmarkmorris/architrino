@@ -279,6 +279,33 @@ The methodological lesson is narrower than many historical repairs made it sound
 
 **Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** A candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ account treats the smallness of the CP-violating angle $\theta$ as a possible assembly-stability selection effect rather than as a free coincidence. On this reading, a non-zero neutron electric dipole moment would correspond to an asymmetric axial-charge distribution relative to the tri-binary rotation structure, and sufficiently large asymmetry could destabilize the assembly through torque, Noether-Sea coupling, or self-hit imbalance. This remains a derivation target. The theory must compute the allowed asymmetry, recover the observed electric-dipole-moment bounds, and show whether any Peccei-Quinn-like effective behavior emerges from assembly relaxation rather than from a new fundamental axion field. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
 
+**Residual Scaffold:** The retained observable is the neutron electric dipole moment, not the ontology of any proposed repair. The nucleon-side scaffold in [Nucleon Structure](../nuclear-atomic/nucleon-structure.md#cp-odd-neutron-dipole-scaffold) defines $\vartheta_n$ as the spin-aligned axial first moment of the neutron assembly, with additional flux and Noether-Sea contributions retained in the same branch record. A minimal comparison residual is
+$$
+d_n^{\mathrm{asm}}(\vartheta_n;\theta)
+=
+\epsilon R_n
+\left(
+\vartheta_n
++
+\vartheta_{\mathrm{flux}}
++
+\vartheta_{\mathrm{sea}}
+\right)
++O(\vartheta_n^3),
+\qquad
+\mathcal{R}_{\mathrm{nEDM}}(\theta)
+=
+\frac{|d_n^{\mathrm{asm}}|}{d_n^{\max}}.
+$$
+The closure burden is to derive $\mathcal{R}_{\mathrm{nEDM}}\le1$ from assembly stability rather than parameter choice. A proof route would exhibit a relaxation law of the schematic form
+$$
+\frac{d\vartheta_n}{dt}
+=
+-\partial_{\vartheta_n}V_{\mathrm{asm}}(\vartheta_n;\theta)
+-\Gamma_{\mathrm{sea}}(\theta)\,\vartheta_n,
+$$
+with $\vartheta_n=0$ as a stable attractor in the same record that recovers nucleon structure, flavor CP phases, and null results for axion-like channels if such channels are predicted. Until that derivation exists, Peccei-Quinn and axion language remains a comparison framework and search surface, not adopted ontology.
+
 **What Would Count As Resolution:** Resolution would require either direct evidence for the axion or another mechanism that explains the near-zero neutron electric dipole moment without introducing a comparably unexplained parameter elsewhere.
 
 ### The Flavor Problem
@@ -433,11 +460,11 @@ The methodological lesson is narrower than many historical repairs made it sound
 
 **What Current Physics Gets Right:** Current physics correctly reproduces the semiclassical, field-theoretic, and information-theoretic behavior that made the problem visible in the first place. Any deeper account must therefore preserve those successes while closing the conceptual gap.
 
-**What Remains Unresolved:** The tension remains because one must explain how information escapes without sacrificing either smooth horizons, effective field theory near the horizon, or unitary evolution.
+**What Remains Unresolved:** The tension remains because one must explain how information is stored, what observer-accessible record can recover it, and why the local semiclassical horizon description is either valid or only approximate without sacrificing smooth horizons, effective field theory in its domain, or unitary evolution.
 
 **Standard Repairs:** Standard repairs include black-hole complementarity, soft hair, holographic duality, islands, replica-wormhole arguments, and firewall-style revisions. These strongly suggest information recovery, but the microscopic mechanism is still debated.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** The candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ closure is that black-hole information is stored and released through structured tri-binary flows rather than erased. The event-horizon region would correspond to middle-binary behavior near $v=c_f$, while core microstate storage would involve maximal-curvature self-hit structures. Possible dark-photon or deformation-wave cascades should be treated as a mechanism proposal until their provenance, energy budget, and visible-sector handoff are derived. Under the closure-target discipline, island and replica-wormhole results are comparison mathematics and high-value consistency pressure, not $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology. They show the kind of Page-curve recovery a mature black-hole account must match, but they do not decide the native mechanism. The Page curve would have to be recovered by showing how emitted assemblies preserve enough phase and axial-pattern information without invoking firewalls or hiding the mechanism in formal duality. The proposed zero-entropy limiting state is a separate high-risk closure target, not an established result. Transition relevance is very high because these are the cleanest tests of whether a substrate-first replacement actually provides closure rather than merely relabeling the old paradox. Long-term relevance is as a foundational compliance test: a successful theory should turn these from paradoxes into explicit closure demonstrations.
+**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** The candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ closure is that black-hole information is stored and released through structured tri-binary flows rather than erased. The event-horizon region would correspond to middle-binary behavior near $v=c_f$, while core microstate storage would involve maximal-curvature self-hit structures. Possible dark-photon or deformation-wave cascades should be treated as a mechanism proposal until their provenance, energy budget, and visible-sector handoff are derived. Under the closure-target discipline, island, replica-wormhole, and boundary-unitarity results are comparison mathematics and high-value consistency pressure, not $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology. They show the kind of Page-curve or boundary-access recovery a mature black-hole account must match, but they do not decide the native mechanism. The Page curve would have to be recovered by showing how emitted assemblies preserve enough phase and axial-pattern information through declared Physical Observer records, finite boundary wake data, and release-channel ledgers, without invoking firewalls or hiding the mechanism in formal duality. The proposed zero-entropy limiting state is a separate high-risk closure target, not an established result. Transition relevance is very high because these are the cleanest tests of whether a substrate-first replacement actually provides closure rather than merely relabeling the old paradox. Long-term relevance is as a foundational compliance test: a successful theory should turn these from paradoxes into explicit closure demonstrations.
 
 **What Would Count As Resolution:** Resolution would require a transparent account of where the information is stored and how it is released, in a form that recovers the Page curve without hiding the mechanism behind purely formal duality language.
 
@@ -468,6 +495,8 @@ The methodological lesson is narrower than many historical repairs made it sound
 **Overview:** The fundamental dynamical laws of physics are time-symmetric, yet our macroscopic universe exhibits a clear irreversibility described by the Second Law of Thermodynamics (entropy increase). This arrow of time is traced back to the "Past Hypothesis": the universe began in an incredibly low-entropy state. The paradox lies in explaining *why* the initial conditions of the Big Bang were so special and ordered, distinct from the generic, high-entropy singularity one might expect from random selection in phase space or gravitational collapse.
 
 **Where It Appears:** Microscopic laws are invariant under time reversal, yet macroscopic irreversibility emerges from statistical mechanics and the growth of entropy. This requires a special low-entropy initial condition for the universe, which is not explained by the dynamical laws themselves. Gravitational systems complicate the story because clumping can increase entropy, suggesting the early smooth universe was extraordinarily ordered. Ideas include inflationary smoothing, multiverse selection, or fundamental cosmological boundary conditions, but none provides a definitive origin of the arrow.
+
+The entropy statement also has a domain-of-validity gate. A finite subsystem admits ordinary thermodynamic entropy only after a measure, coarse-graining, and access window have been declared. In an unbounded cosmology or a source-and-sink medium history, the relevant object is not a bare "entropy of the universe" assertion, but a windowed balance among local production, boundary flux, and record/coarse-graining residuals. This preserves the Second Law as a validated effective limit while preventing it from being used as a primitive definition of time or as an unrestricted cosmological premise.
 
 **What Current Physics Gets Right:** Current physics correctly reproduces the semiclassical, field-theoretic, and information-theoretic behavior that made the problem visible in the first place. Any deeper account must therefore preserve those successes while closing the conceptual gap.
 

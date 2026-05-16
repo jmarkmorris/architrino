@@ -2,11 +2,11 @@
   "schema": "cosmology-shared-residual-fit-input/v1",
   "metadata": {
     "run_id": "mock-shared-cosmology-residual-001",
-    "description": "Dimensionless mock packet for the shared cosmology residual gate.",
+    "description": "Dimensionless mock packet for the shared cosmology residual and pre-BBN branch gate.",
     "source": "content/markdown/aaa/cosmology/dark-energy.md#inference-dependency-and-calibration-gates"
   },
   "lambda": 4,
-  "required_families": ["SN", "BAO", "CMB", "WL", "RSD", "BBN"],
+  "required_families": ["SN", "BAO", "CMB", "WL", "RSD", "BBN", "PRE_BBN"],
   "thresholds": {
     "residual_total_max": 3,
     "projection_penalty_raw_max": 0.05,
@@ -19,7 +19,10 @@
     "n": 1,
     "chi_sea": 1,
     "G_growth": 1,
-    "Y_BBN": 1
+    "Y_BBN": 1,
+    "Delta_N_eff": 1,
+    "lambda_fs": 1,
+    "Omega_GW": 1
   },
   "theta_sea": {
     "H_norm": 1,
@@ -27,7 +30,10 @@
     "n": 1,
     "chi_sea": 1,
     "G_growth": 0.97,
-    "Y_BBN": 1
+    "Y_BBN": 1,
+    "Delta_N_eff": 0,
+    "lambda_fs": 0,
+    "Omega_GW": 0
   },
   "observables": [
     {
@@ -94,6 +100,101 @@
         "chi_sea": 0.999,
         "Y_BBN": 1.002
       }
+    },
+    {
+      "family": "PRE_BBN",
+      "label": "comparison-branch",
+      "residual": [0.05, -0.04, 0.03, 0.02],
+      "covariance_diagonal": [1, 1, 1, 1],
+      "projection": {
+        "n": 1.001,
+        "chi_sea": 1,
+        "Y_BBN": 1.001,
+        "G_growth": 0.965,
+        "Delta_N_eff": 0.004,
+        "lambda_fs": 0.002,
+        "Omega_GW": 0.001
+      }
     }
-  ]
+  ],
+  "frame_split": {
+    "schema": "cosmology-frame-split-input/v1",
+    "description": "Mock directional packet for the cosmology.frame_split witness.",
+    "lambda": 4,
+    "required_families": ["CMB", "MATTER_DIPOLE", "SN", "BAO", "H0"],
+    "thresholds": {
+      "frame_residual_total_max": 0.2,
+      "projection_penalty_raw_max": 0.02,
+      "frame_shared_residual_max": 0.28,
+      "min_shared_projection_keys": 3,
+      "max_angle_deg": 12
+    },
+    "projection_weights": {
+      "frame_x": 1,
+      "frame_y": 1,
+      "frame_z": 1
+    },
+    "observables": [
+      {
+        "family": "CMB",
+        "label": "dipole-reference",
+        "vector": [1, 0, 0],
+        "expected_vector": [1, 0, 0],
+        "covariance_diagonal": [1, 1, 1],
+        "projection": {
+          "frame_x": 0.02,
+          "frame_y": 0.008,
+          "frame_z": -0.005
+        }
+      },
+      {
+        "family": "MATTER_DIPOLE",
+        "label": "source-count",
+        "vector": [1.04, 0.018, -0.011],
+        "expected_vector": [1.03, 0.014, -0.009],
+        "covariance_diagonal": [0.04, 0.04, 0.04],
+        "projection": {
+          "frame_x": 0.021,
+          "frame_y": 0.008,
+          "frame_z": -0.005
+        }
+      },
+      {
+        "family": "SN",
+        "label": "distance-modulus-dipole",
+        "vector": [0.021, 0.009, -0.004],
+        "expected_vector": [0.02, 0.008, -0.005],
+        "covariance_diagonal": [0.0025, 0.0025, 0.0025],
+        "projection": {
+          "frame_x": 0.02,
+          "frame_y": 0.009,
+          "frame_z": -0.004
+        }
+      },
+      {
+        "family": "BAO",
+        "label": "anisotropic-scale-dipole",
+        "vector": [0.019, 0.007, -0.006],
+        "expected_vector": [0.02, 0.008, -0.005],
+        "covariance_diagonal": [0.0036, 0.0036, 0.0036],
+        "projection": {
+          "frame_x": 0.019,
+          "frame_y": 0.008,
+          "frame_z": -0.006
+        }
+      },
+      {
+        "family": "H0",
+        "label": "local-scatter-dipole",
+        "vector": [0.022, 0.008, -0.006],
+        "expected_vector": [0.02, 0.008, -0.005],
+        "covariance_diagonal": [0.0049, 0.0049, 0.0049],
+        "projection": {
+          "frame_x": 0.022,
+          "frame_y": 0.008,
+          "frame_z": -0.006
+        }
+      }
+    ]
+  }
 }

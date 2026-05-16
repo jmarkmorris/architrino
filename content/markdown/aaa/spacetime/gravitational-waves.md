@@ -67,6 +67,33 @@ $$
 $$
 with the integrated phase drift across the source distance below the detector residual bound. A finite-range cosmological response is not acceptable if it leaks into already-tested gravitational-wave timing as measurable dispersion.
 
+The same finite-range comparison must also supply a low-frequency forecast rather than leaving drift unconstrained below current ground-based event bands. For a declared pulsar-timing or space-interferometer band $\mathcal{B}_{\mathrm{low}}$, define the accumulated phase drift
+$$
+\Delta\phi_{\mathrm{GW,low}}^{\theta}(f)
+=
+\int_{\Gamma}
+\left[
+k_{\theta}(f,\mathbf{x},t)
+-
+k_{\mathrm{GR}}(f,\mathbf{x},t)
+\right]\,d\ell,
+$$
+where $\Gamma$ is the observer-level propagation path used by the comparison. A useful low-frequency residual is
+$$
+\mathcal{R}_{\mathrm{GW,low}}(\theta)
+=
+\sup_{f\in\mathcal{B}_{\mathrm{low}}}
+\frac{
+\left|\Delta\phi_{\mathrm{GW,low}}^{\theta}(f)\right|
+}{\epsilon_{\phi}(f)}
++
+\sup_{f\in\mathcal{B}_{\mathrm{low}}}
+\frac{
+\left|v_{\mathrm{g,GW}}^{\theta}(f)-c_0\right|
+}{c_0\,\epsilon_{v}(f)}.
+$$
+This is a forecast and comparison gate. It does not license a massive-graviton ontology; it only says that any cosmological-scale weakening channel must remain compatible with the low-frequency strain and timing residuals that would test long-wavelength dispersion.
+
 ## Polarization Content
 
 In the repo-wide spin taxonomy, this is the effective **spin-2 / tensor** channel: the wave is not a scalar breathing mode or a single-axis vector mode, but a transverse-traceless deformation carrying quadrupolar shape data.
@@ -108,6 +135,45 @@ $$
 $$
 
 with the tolerances fixed by the validation band. This gate protects the separation between the observable data product and the ontology: the data product is a calibrated, coincident, low-residual strain record, while the $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation must still earn the claim that the record is the tensor-sector response of the effective metric induced by Noether-Sea constitutive dynamics.
+
+When $\theta_{\mathrm{GW}}$ is also used to support a finite-range or dark-energy comparison, $\mathcal{R}_{\mathrm{GW,low}}(\theta)$ must be carried beside this detector residual. Passing a high-frequency event-timing gate alone is not enough to promote a long-wavelength dispersion claim.
+
+## Merger and Ringdown Horizon-Interface Gate
+
+Stationary no-hair agreement is not enough to close the dynamical strong-field problem. If a black-hole model changes the horizon-interface boundary condition during formation, merger, or evaporation, the change must be tested against the detector-facing waveform packet and the same final compact-object labels used by exterior GR.
+
+For a candidate horizon-interface record $\theta_H$, let $h_{\ell m}^{\theta_H}(t)$ be the effective strain modes predicted after projection through the detector response, and let $D_{\mathrm{merge}}^{\mathrm{obs}}$ collect the observed inspiral, merger, ringdown, calibration, and covariance packet. A compact residual is
+$$
+\mathcal{R}_{\mathrm{merge}}(\theta_H)
+=
+\left\lVert
+D_{\mathrm{merge}}^{\mathrm{obs}}
+-
+\mathcal{P}_{\mathrm{det}}\{h_{\ell m}^{\theta_H}\}
+\right\rVert_{C_{\mathrm{merge}}^{-1}}^2
++
+d_{\mathrm{nohair}}\!\left(
+(M_f,\mathbf{J}_f,Q_f)^{\theta_H},
+(M_f,\mathbf{J}_f,Q_f)^{\mathrm{obs}}
+\right)
++
+d_{\mathrm{shared}}(\theta_H,\theta_{\mathrm{GW}},\theta_{\mathrm{BH}}).
+$$
+Here $\mathcal{P}_{\mathrm{det}}$ is the detector projection and $d_{\mathrm{shared}}$ penalizes any fit that uses one state record for the strain channel, another for the horizon-interface label, and another for the black-hole entropy or release ledger. The gate is satisfied only if $\mathcal{R}_{\mathrm{merge}}(\theta_H)$ is below the declared tolerance while preserving the validated inspiral limit, the two tensor polarizations, and the final exterior no-hair coarse-graining. A predicted deviation is admissible only as a bounded residual or a falsifiable template, not as permission to loosen already-tested gravitational-wave recovery.
+
+## Early-Universe Stochastic Background Gate
+
+A stochastic gravitational-wave background is a data product before it is an ontology claim. If an early-universe or pre-BBN comparison branch predicts a background, retain the detector-facing spectrum and its cosmology linkage, not the branch interpretation that generated it. For a candidate branch $X$, define
+$$
+\mathcal{R}_{\mathrm{GW,early}}(\theta_X)
+=
+\sup_{f\in\mathcal{B}_{\mathrm{det}}}
+\frac{\Omega_{\mathrm{GW}}^X(f)}
+{\Omega_{\mathrm{GW}}^{\max}(f)}
++
+d_{\mathrm{shared}}\!\left(\theta_{\mathrm{GW}},\theta_{\mathrm{BBN}},\theta_{\mathrm{CMB}},\theta_{\mathrm{growth}}\right),
+$$
+where $\mathcal{B}_{\mathrm{det}}$ is the validated detector band and $d_{\mathrm{shared}}$ penalizes any branch that requires a gravitational-wave source record inconsistent with the BBN, CMB, or structure-formation records. A positive stochastic signal would become observational pressure on the early medium history; a null result closes only the corresponding branch amplitude, not the whole cosmology program.
 
 ## Energy Flux
 

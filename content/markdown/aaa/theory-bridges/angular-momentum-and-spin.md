@@ -1417,6 +1417,33 @@ h^n.
 $$
 This is not yet a derivation of quantum discreteness. It is the theorem target that would let a finite recordable basin measure reduce to $\mu_0(\mathcal{Q},W)\to C_{\mathcal{Q},W}h^n$, with $C_{\mathcal{Q},W}$ fixed by quotienting, apparatus coupling, inaccessible root-ledger variables, and the declared coarse-graining rather than chosen after the fact.
 
+To make the chart test explicit, the reduced action-angle variables should report a local canonical-chart residual before any action-cell count is accepted:
+$$
+\epsilon_{\mathrm{can}}(\mathcal{Q},W,T)
+=
+\sup_{a,b}
+\max\left(
+\left|\{I_a,I_b\}_{\mathcal{Q},W,T}\right|,
+\left|\{\theta_a,\theta_b\}_{\mathcal{Q},W,T}\right|,
+\left|\{I_a,\theta_b\}_{\mathcal{Q},W,T}-\delta_{ab}\right|
+\right).
+$$
+Here $\{\cdot,\cdot\}_{\mathcal{Q},W,T}$ is the effective bracket induced by the retained coarse-graining on the same record window used for the basin-measure claim. The chart is admissible for action-cell comparison only when $\epsilon_{\mathrm{can}}\le\varepsilon_{\mathrm{can}}$ and the variables are fixed by Master-Equation closure, root-ledger admissibility, and apparatus recordability rather than by a representation chosen to produce a desired count.
+
+The corresponding state-count residual should compare physical basin records with action cells in a declared record domain $D$:
+$$
+\Delta_{\mathrm{cell}}(D)
+=
+\frac{
+\left|N_{\mathrm{basin}}(D)-N_{\mathrm{cell}}(D)\right|
+}{
+N_{\mathrm{cell}}(D)+1
+}.
+$$
+Here $N_{\mathrm{basin}}(D)$ counts independently recordable basin alternatives derived from the delayed dynamics, while $N_{\mathrm{cell}}(D)$ counts the $h^n$ action cells that remain after quotienting inaccessible root-ledger and apparatus-equivalent variables. A small $\Delta_{\mathrm{cell}}$ supports an effective action-cell comparison; it does not by itself promote the chart to substrate ontology.
+
+The action-angle chart should therefore be treated as a comparison chart selected after the recordable basin family has been fixed, not as a free quantization rule. In ordinary Bohr-Sommerfeld language one counts integral action leaves. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ closure route, the corresponding count is accepted only when the same Master-Equation branch record, root-ledger admissibility, and apparatus channel already identify the leaves as independently recordable alternatives. A singular or representation-dependent action-angle chart that changes the count without changing those physical records is a failed effective chart, not a new state sector.
+
 For a tri-binary transaction, the compact bookkeeping statement is
 
 $$
