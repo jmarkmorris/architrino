@@ -186,13 +186,33 @@ The next simulation should not add another hand-written probability table. It sh
 | `compression_audit` | Product-screening residual against the declared complete $\Pi_{AB}$ and apparatus variables. |
 | `guardrails` | $\Delta_{\mathrm{MI}}$, $\Delta_{\mathrm{NS}}^A$, $\Delta_{\mathrm{NS}}^B$, Tsirelson, GHZ, and Hardy diagnostics. |
 
-The minimal executable target is to produce a JSON scenario that can be converted into the existing Bell-family harness format and then run through
+The minimal executable target is to produce a JSON scenario that can be read by the Bell-family harness:
 
 ```text
-node scripts/quantum/bell-family-residual-harness.mjs --pretty
+node scripts/quantum/bell-family-residual-harness.mjs \
+  --candidate scripts/quantum/product-screened-axis-candidate.json \
+  --pretty
 ```
 
-or a future `--candidate` reader. The present harness already supplies the negative control. A positive candidate may be added only after its probability tables are generated from the source records and record basins above.
+The `--candidate` reader is an intake path, not a new gate. The included `product-screened-axis-candidate.json` fixture is a success marker for the existing failure mode: it reproduces a no-signaling, measurement-independent, product-screened negative control from explicit source records. Candidate scenarios must supply `source_protocol`, `source_records`, `source_balance`, `local_apparatus_records`, `record_basins`, `compression_audit`, `guardrails`, and `contexts`. If a context omits provenance, the reader uses the normalized `source_records` weights. If a context omits screening records and every source record supplies a `local_response`, the reader builds the product-screening audit from those local responses. A positive candidate may be added only after its probability tables are generated from the source records and record basins above.
+
+The first generated joint-basin target is emitted by
+
+```text
+node scripts/quantum/source-measure-joint-basin-emitter.mjs \
+  --pretty \
+  --out scripts/quantum/source-measure-joint-basin-candidate.json
+```
+
+and checked by
+
+```text
+node scripts/quantum/bell-family-residual-harness.mjs \
+  --candidate scripts/quantum/source-measure-joint-basin-candidate.json \
+  --pretty
+```
+
+This target uses a setting-independent six-cell source measure over a uniform threshold coordinate and an unbiased marginal branch. Its context-indexed joint basin recovers the singlet CHSH benchmark, preserves zero measurement-independence and no-signaling residuals, and does not reduce to the declared product-screening baseline. It is not a Bell closure proof: the threshold rule is a reduced target object whose substrate origin must still be derived from the pair-provenance ledger, the local apparatus record-window measures, and the joint record basins.
 
 ## Promotion Gates
 
@@ -209,7 +229,8 @@ or a future `--candidate` reader. The present harness already supplies the negat
 - The delayed total-angular-momentum functional still needs a source-event evaluation for a changing-frequency Noether core.
 - The effective spinor coordinate and the conditions under which the record-cycle measure flattens to the ideal chart remain lower-level proof obligations.
 - The current product-screened generated axis model is a correct failure control, not a partial success.
-- A future source-measure scenario must decide whether nonfactorization comes from an incomplete retained record, a genuinely joint record-basin construction, or a failed premise in the attempted $\Pi_{AB}$ compression. Vague nonlocality language is not an acceptable output.
+- The generated joint-basin target now shows the intended nonfactorizing success shape at the harness level, but it leaves the central derivation open: explain why the joint basin exists in the substrate record law rather than inserting the singlet threshold as an effective target.
+- Any future source-measure scenario must decide whether nonfactorization comes from an incomplete retained record, a genuinely joint record-basin construction, or a failed premise in the attempted $\Pi_{AB}$ compression. Vague nonlocality language is not an acceptable output.
 
 ## Handoff
 

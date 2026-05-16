@@ -1,0 +1,657 @@
+{
+  "artifact": "bell-family-source-measure-candidate",
+  "generated_by": "scripts/quantum/source-measure-joint-basin-emitter.mjs",
+  "scenarios": [
+    {
+      "id": "candidate_joint_record_basin_singlet_target",
+      "description": "Generated source-measure candidate for an ideal joint record-basin target; recovers the singlet CHSH benchmark but does not prove a substrate mechanism.",
+      "classification": "diagnostic_candidate",
+      "parties": [
+        "A",
+        "B"
+      ],
+      "source_protocol": {
+        "id": "ideal_joint_record_basin_target",
+        "source_section": "six-cell return section from a uniform correlation-threshold coordinate and marginal branch",
+        "measure": "setting-independent cell weights induced by splitting a uniform threshold coordinate at the benchmark basin thresholds"
+      },
+      "source_records": [
+        {
+          "id": "pi_low_minus",
+          "weight": 0.0732233047033631,
+          "correlation_interval": [
+            0,
+            0.1464466094067262
+          ],
+          "marginal_branch": -1,
+          "retained_pair_provenance": {
+            "branch_bin": "low",
+            "marginal_branch": -1,
+            "angular_momentum_balance": "singlet-like target ledger; not substrate-derived"
+          }
+        },
+        {
+          "id": "pi_low_plus",
+          "weight": 0.0732233047033631,
+          "correlation_interval": [
+            0,
+            0.1464466094067262
+          ],
+          "marginal_branch": 1,
+          "retained_pair_provenance": {
+            "branch_bin": "low",
+            "marginal_branch": 1,
+            "angular_momentum_balance": "singlet-like target ledger; not substrate-derived"
+          }
+        },
+        {
+          "id": "pi_middle_minus",
+          "weight": 0.3535533905932738,
+          "correlation_interval": [
+            0.1464466094067262,
+            0.8535533905932737
+          ],
+          "marginal_branch": -1,
+          "retained_pair_provenance": {
+            "branch_bin": "middle",
+            "marginal_branch": -1,
+            "angular_momentum_balance": "singlet-like target ledger; not substrate-derived"
+          }
+        },
+        {
+          "id": "pi_middle_plus",
+          "weight": 0.3535533905932738,
+          "correlation_interval": [
+            0.1464466094067262,
+            0.8535533905932737
+          ],
+          "marginal_branch": 1,
+          "retained_pair_provenance": {
+            "branch_bin": "middle",
+            "marginal_branch": 1,
+            "angular_momentum_balance": "singlet-like target ledger; not substrate-derived"
+          }
+        },
+        {
+          "id": "pi_high_minus",
+          "weight": 0.0732233047033631,
+          "correlation_interval": [
+            0.8535533905932737,
+            1
+          ],
+          "marginal_branch": -1,
+          "retained_pair_provenance": {
+            "branch_bin": "high",
+            "marginal_branch": -1,
+            "angular_momentum_balance": "singlet-like target ledger; not substrate-derived"
+          }
+        },
+        {
+          "id": "pi_high_plus",
+          "weight": 0.0732233047033631,
+          "correlation_interval": [
+            0.8535533905932737,
+            1
+          ],
+          "marginal_branch": 1,
+          "retained_pair_provenance": {
+            "branch_bin": "high",
+            "marginal_branch": 1,
+            "angular_momentum_balance": "singlet-like target ledger; not substrate-derived"
+          }
+        }
+      ],
+      "source_balance": {
+        "status": "target_emitter",
+        "angular_momentum": "records preserve an effective singlet-like balance label; the Noether-core derivation remains open",
+        "measurement_independence": "source weights are reused unchanged for every context"
+      },
+      "local_apparatus_records": {
+        "status": "idealized",
+        "material_measure": "unbiased local marginal branch with no distant-setting dependence",
+        "unresolved_variable": "marginal_branch supplies unbiased local records; correlation_interval supplies joint-basin thresholding"
+      },
+      "record_basins": {
+        "construction": "context-indexed joint basin over retained source records",
+        "threshold_coordinate": "correlation_interval",
+        "thresholds": {
+          "low": 0.1464466094067262,
+          "high": 0.8535533905932737
+        },
+        "caveat": "the joint basin is a target object to be derived from apparatus and pair provenance, not an accepted mechanism"
+      },
+      "compression_audit": {
+        "expected": "product_screening_escape_pass",
+        "baseline": "context screening uses the same source records with independent unbiased local marginals"
+      },
+      "guardrails": {
+        "expected": [
+          "no_signaling_pass",
+          "measurement_independence_pass",
+          "tsirelson_pass",
+          "product_screening_escape_pass"
+        ]
+      },
+      "contexts": [
+        {
+          "id": "joint_basin_A0_B0",
+          "settings": {
+            "A": "A0",
+            "B": "B0"
+          },
+          "target_correlation": -0.7071067811865476,
+          "basin_threshold": 0.1464466094067262,
+          "basin_rule": "same outcome when correlation_interval is below the context threshold; opposite outcome otherwise",
+          "probabilities": [
+            {
+              "outcome": {
+                "A": -1,
+                "B": -1
+              },
+              "p": 0.0732233047033631
+            },
+            {
+              "outcome": {
+                "A": -1,
+                "B": 1
+              },
+              "p": 0.42677669529663687
+            },
+            {
+              "outcome": {
+                "A": 1,
+                "B": -1
+              },
+              "p": 0.42677669529663687
+            },
+            {
+              "outcome": {
+                "A": 1,
+                "B": 1
+              },
+              "p": 0.0732233047033631
+            }
+          ],
+          "screening": {
+            "records": [
+              {
+                "id": "pi_low_minus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_low_plus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_middle_minus",
+                "weight": 0.3535533905932738,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_middle_plus",
+                "weight": 0.3535533905932738,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_high_minus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_high_plus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "joint_basin_A0_B1",
+          "settings": {
+            "A": "A0",
+            "B": "B1"
+          },
+          "target_correlation": 0.7071067811865475,
+          "basin_threshold": 0.8535533905932737,
+          "basin_rule": "same outcome when correlation_interval is below the context threshold; opposite outcome otherwise",
+          "probabilities": [
+            {
+              "outcome": {
+                "A": -1,
+                "B": -1
+              },
+              "p": 0.42677669529663687
+            },
+            {
+              "outcome": {
+                "A": -1,
+                "B": 1
+              },
+              "p": 0.0732233047033631
+            },
+            {
+              "outcome": {
+                "A": 1,
+                "B": -1
+              },
+              "p": 0.0732233047033631
+            },
+            {
+              "outcome": {
+                "A": 1,
+                "B": 1
+              },
+              "p": 0.42677669529663687
+            }
+          ],
+          "screening": {
+            "records": [
+              {
+                "id": "pi_low_minus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_low_plus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_middle_minus",
+                "weight": 0.3535533905932738,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_middle_plus",
+                "weight": 0.3535533905932738,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_high_minus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_high_plus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "joint_basin_A1_B0",
+          "settings": {
+            "A": "A1",
+            "B": "B0"
+          },
+          "target_correlation": -0.7071067811865476,
+          "basin_threshold": 0.1464466094067262,
+          "basin_rule": "same outcome when correlation_interval is below the context threshold; opposite outcome otherwise",
+          "probabilities": [
+            {
+              "outcome": {
+                "A": -1,
+                "B": -1
+              },
+              "p": 0.0732233047033631
+            },
+            {
+              "outcome": {
+                "A": -1,
+                "B": 1
+              },
+              "p": 0.42677669529663687
+            },
+            {
+              "outcome": {
+                "A": 1,
+                "B": -1
+              },
+              "p": 0.42677669529663687
+            },
+            {
+              "outcome": {
+                "A": 1,
+                "B": 1
+              },
+              "p": 0.0732233047033631
+            }
+          ],
+          "screening": {
+            "records": [
+              {
+                "id": "pi_low_minus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_low_plus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_middle_minus",
+                "weight": 0.3535533905932738,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_middle_plus",
+                "weight": 0.3535533905932738,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_high_minus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_high_plus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "joint_basin_A1_B1",
+          "settings": {
+            "A": "A1",
+            "B": "B1"
+          },
+          "target_correlation": -0.7071067811865476,
+          "basin_threshold": 0.1464466094067262,
+          "basin_rule": "same outcome when correlation_interval is below the context threshold; opposite outcome otherwise",
+          "probabilities": [
+            {
+              "outcome": {
+                "A": -1,
+                "B": -1
+              },
+              "p": 0.0732233047033631
+            },
+            {
+              "outcome": {
+                "A": -1,
+                "B": 1
+              },
+              "p": 0.42677669529663687
+            },
+            {
+              "outcome": {
+                "A": 1,
+                "B": -1
+              },
+              "p": 0.42677669529663687
+            },
+            {
+              "outcome": {
+                "A": 1,
+                "B": 1
+              },
+              "p": 0.0732233047033631
+            }
+          ],
+          "screening": {
+            "records": [
+              {
+                "id": "pi_low_minus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_low_plus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_middle_minus",
+                "weight": 0.3535533905932738,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_middle_plus",
+                "weight": 0.3535533905932738,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_high_minus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              },
+              {
+                "id": "pi_high_plus",
+                "weight": 0.0732233047033631,
+                "local": {
+                  "A": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  },
+                  "B": {
+                    "1": 0.5,
+                    "-1": 0.5
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "chsh": {
+        "a0": "A0",
+        "a1": "A1",
+        "b0": "B0",
+        "b1": "B1"
+      }
+    }
+  ]
+}

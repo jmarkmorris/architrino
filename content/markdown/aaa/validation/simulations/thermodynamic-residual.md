@@ -45,6 +45,18 @@ k_B\log
 \right|>0.
 $$
 
+This finite count is a packet estimator, not the final horizon-interface coefficient. For coefficient recovery, a row should be interpreted as a finite-block sample of the block-density target
+$$
+\widehat{s}_{U}^{(O)}(\theta;W)
+=
+\frac{1}{|U|}
+\log
+\left|
+\mathcal{B}_{U}^{(O)}(\theta;W)
+\right|,
+$$
+where $U$ is the declared connected patch block and $\mathcal{B}_{U}^{(O)}$ retains only labels accessible to the same observer record. The large-block target is $\widehat{s}_{U}^{(O)}\to1/4$ after boundary corrections, not a literal one-patch cardinality.
+
 Area scaling is a recovery target, not a definition. Compare neighboring patches or refinements with the same observer and record:
 $$
 \mathcal{R}_{A}^{(O)}
@@ -61,7 +73,7 @@ $$
 }.
 $$
 
-Passing this subgate means the retained boundary labels scale like horizon-interface area in the relevant equilibrium regime. It does not yet prove Page-curve recovery or black-hole endpoint closure.
+Passing this subgate means the retained logarithmic label count has the target area slope in the relevant equilibrium regime. It does not yet prove Page-curve recovery or black-hole endpoint closure.
 
 ## Temperature and Flux
 
@@ -201,7 +213,7 @@ and emits a JSON result with this shape:
 
 | Output field | Meaning |
 | --- | --- |
-| `observations` | computed label counts, entropy change, local temperature, flux, area residual, thermodynamic residual, conservation residual, same-record checks, and weak-field gate checks |
+| `observations` | computed label counts or finite-block samples, entropy change, local temperature, flux, area residual, thermodynamic residual, conservation residual, same-record checks, and weak-field gate checks |
 | `negative_controls` | declared null runs and whether any passed when they should have failed |
 | `totals.max_area_residual` | largest area-scaling residual across local-horizon rows |
 | `totals.max_thermodynamic_residual` | largest $\widehat{\mathcal{R}}_{\mathrm{thermo}}^{(O)}$ across rows |

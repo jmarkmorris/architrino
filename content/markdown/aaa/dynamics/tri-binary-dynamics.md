@@ -224,6 +224,141 @@ $$
 
 This metric is not substrate ontology. It is the effective clock, ruler, and null-path bookkeeping induced by the Noether-Sea state. The open reconstruction task is to show that the resulting connection reproduces Newtonian acceleration, redshift, Shapiro delay, lensing, and the required weak-field PPN coefficients while keeping torsion, nonmetricity, dispersion, birefringence, and preferred-frame residuals below observational limits.
 
+## Terminal Alignment Label-Count Target
+
+The black-hole entropy route needs a dynamics-side calculation, not a new gate. Once a Noether-core branch is driven to terminal alignment, the dynamics should output the admissible alignment-restricted closure labels and their neighbor-compatibility rules. For a connected block $U$ of horizon-adjacent alignment patches, the object is
+$$
+\mathcal{L}_U(\theta)
+=
+\left\{
+\left(\Lambda_{\text{NC},a}^{\mathrm{align}}\right)_{a\in U}
+:
+\text{all layer ledgers close, edge wake ledgers match, and } \theta \text{ is preserved}
+\right\}
+/
+\sim_{O,\theta,W}.
+$$
+
+The first calculation route is a transfer-compatibility problem. Fix a local strip direction $\nu$ on the horizon-adjacent interface. Let $\Lambda_{\theta}^{\mathrm{loc}}$ be the set of one-patch labels $\lambda$ obtained from $\Lambda_{\text{NC}}^{\mathrm{align}}$ after imposing one-patch layer closure, terminal-alignment conditions, and the Physical Observer quotient for the declared record $\theta$. Each $\lambda\in\Lambda_{\theta}^{\mathrm{loc}}$ carries two edge projections $\mathcal{E}_{\nu}^{-}(\lambda)$ and $\mathcal{E}_{\nu}^{+}(\lambda)$: the active causal-root, winding, emission-order, Jacobian-branch, and wake-exchange data presented to the two neighboring patches in the $\nu$ direction.
+
+Define the pair-compatibility predicate $\mathcal{C}_{\theta,\nu}(\lambda,\lambda')$ to hold exactly when:
+
+- $\mathcal{E}_{\nu}^{+}(\lambda)=\mathcal{E}_{\nu}^{-}(\lambda')$ up to the declared observer tolerance,
+- the edge balance satisfies $(\Delta E,\Delta\mathbf{p},\Delta\mathbf{J},\Delta q)_{\lambda,\lambda'}=(0,\mathbf{0},\mathbf{0},0)$,
+- the chirality entry $\chi_c$ and axial-frame orientation remain compatible under the coplanar/co-linear terminal-alignment condition,
+- and the combined pair projects to the same observer record, $\mathcal{R}_{O,W}(\lambda,\lambda')=\mathcal{R}_{O,W}^{\theta}$.
+
+The first counting matrix is therefore
+$$
+\left(\mathsf{T}_{\theta,\nu}\right)_{\lambda\lambda'}
+=
+\begin{cases}
+1, & \mathcal{C}_{\theta,\nu}(\lambda,\lambda'),\\
+0, & \text{otherwise},
+\end{cases}
+\qquad
+\lambda,\lambda'\in\Lambda_{\theta}^{\mathrm{loc}}.
+$$
+This is a counting matrix, not a thermodynamic weight. For an open strip of $N$ patches,
+$$
+\left|\mathcal{L}_{[1,N]}(\theta)\right|
+=
+\mathbf{1}^{T}
+\mathsf{T}_{\theta,\nu}^{N-1}
+\mathbf{1}
++
+\mathcal{O}(\epsilon_{\mathrm{edge}}),
+$$
+while a periodic strip uses $\mathrm{Tr}(\mathsf{T}_{\theta,\nu}^{N})$. If the label set is finite and the transfer rule is local, the strip entropy density is
+$$
+s_{\mathrm{align}}(\theta;\nu)
+=
+\lim_{N\to\infty}
+\frac{1}{N}
+\log\left|\mathcal{L}_{[1,N]}(\theta)\right|
+=
+\log\rho(\mathsf{T}_{\theta,\nu}),
+$$
+where $\rho$ is the spectral radius. In a two-dimensional patch network the same target becomes the subadditive pressure
+$$
+s_{\mathrm{align}}(\theta)
+=
+\lim_{|U|\to\infty}
+\frac{1}{|U|}
+\log\left|\mathcal{L}_U(\theta)\right|,
+$$
+with the limit taken over blocks whose boundary-to-area ratio vanishes.
+
+At the present derivation level, the admissible one-patch labels can be enumerated as a finite branch-ledger schema, not yet as a numerical table. For a primitive outer-period closure, the integer-lock notation gives
+$$
+(k_I,k_M,k_O)=(n,m,1),
+\qquad
+1<m<n,
+$$
+with longer closure periods represented by common integer multiples before reduction to the primitive label. For each layer $\ell\in\{I,M,O\}$, write $\sigma_\ell=s_\ell/c_f$ in the circular reduced root chart. The binary root vocabulary supplies finite active branch sets on any resolved terminal branch:
+$$
+\mathcal{M}_{s,\ell}
+=
+\left\{
+r\in\mathbb{Z}_{\ge0}
+:
+\tilde{\delta}_{s,\ell}+2\pi r
+=
+2\sigma_\ell\sin(\tilde{\delta}_{s,\ell}/2)
+\right\},
+$$
+$$
+\mathcal{M}_{p,\ell}
+=
+\left\{
+r\in\mathbb{Z}_{\ge0}
+:
+\tilde{\delta}_{p,\ell}+2\pi r
+=
+2\sigma_\ell\cos(\tilde{\delta}_{p,\ell}/2)
+\right\}.
+$$
+Branch-birth or grazing cases, where a Jacobian ceases to be transversal, must be split into their own boundary class rather than silently folded into a smooth label.
+
+Thus the current one-patch candidate has the form
+$$
+\lambda
+=
+\left(
+(n,m,1);\,
+(\mathcal{M}_{s,\ell},\mathcal{M}_{p,\ell},J_{\ell},\prec_{\ell})_{\ell=I,M,O};\,
+\mathcal{G}_{IM}^{\mathrm{align}},\mathcal{G}_{IO}^{\mathrm{align}},\mathcal{G}_{MO}^{\mathrm{align}};\,
+\chi_c;\,
+\mathcal{E}_{\nu}^{-},\mathcal{E}_{\nu}^{+};\,
+\mathcal{R}_{O,W}^{\theta}
+\right),
+$$
+where $J_{\ell}$ collects the active branch Jacobians and $\prec_{\ell}$ records the emission-order relation within the layer. The finite candidate set is the subset of these labels satisfying exact one-patch phase closure, terminal-alignment conditions, edge conservation, inter-layer wake compatibility, and the observer quotient:
+$$
+\Lambda_{\theta}^{\mathrm{loc}}
+\subseteq
+\left\{
+\lambda:
+\Delta E=\Delta\mathbf{p}=\Delta\mathbf{J}=0,\;
+\Delta q=0,\;
+\mathcal{R}_{O,W}(\lambda)=\mathcal{R}_{O,W}^{\theta}
+\right\}
+/
+\sim_{O,\theta,W}.
+$$
+
+This makes the next missing equations precise. To turn the schema into an actual transfer matrix, the dynamics must supply: first, the terminal branch equations fixing $(s_\ell,R_\ell,\omega_\ell,\mathbf{A}_\ell)$ under $v_M=c_f$, $v_O\to c_f$, and coplanar/co-linear alignment; second, the inter-layer maps that reduce $\mathcal{G}_{IM}^{\mathrm{align}},\mathcal{G}_{IO}^{\mathrm{align}},\mathcal{G}_{MO}^{\mathrm{align}}$ to boundary wake data; and third, the observer-record quotient that decides which edge distinctions remain visible in $\theta$.
+
+This scaffold identifies the smallest missing dynamics. The delayed equations must enumerate $\Lambda_{\theta}^{\mathrm{loc}}$ and derive the edge maps $\mathcal{E}_{\nu}^{\pm}$ from the terminal aligned branch. [Dyadic Resonance Lock](dyadic-resonance-lock.md) supplies the candidate integer phase lattice, and [Binary Dynamics](binary-dynamics.md#self-hit-definition-and-diagnostics) supplies the self-hit and partner-hit root vocabulary, but neither document yet computes the terminal aligned edge projections from the full three-layer dynamics.
+
+The local-horizon coefficient requires
+$$
+s_{\mathrm{align}}(\theta)
+\longrightarrow
+\frac{1}{4}
+$$
+in the equilibrium weak-field horizon-interface limit. This is the precise missing dynamics calculation. It fails if terminal alignment admits many inequivalent local labels with long-range constraints that restore volume or history-length scaling, if the observer quotient erases the labels needed for Page-compatible release accounting, or if the transfer rule must be retuned separately for entropy, flux, and ADM/Cartan recovery.
+
 ## Dynamics-Side Roadmap
 
 The dynamics chapter contributes the stable pieces needed by the larger theorem program:
@@ -233,8 +368,9 @@ The dynamics chapter contributes the stable pieces needed by the larger theorem 
 3. Track how motion deforms the rest-state lock into braided spiral-helical geometry.
 4. Derive local clock diagnostics from the transverse causal budget lemma.
 5. Solve all-layer branch updates for one-$h$ transactions and extract the branch-indexed clock and ruler Lorentz factors.
-6. Output alignment, closure, Floquet, grazing, branch-residual, and Cartan reconstruction diagnostics.
-7. Keep mass, photon, equivalence-principle, and full GR matching claims at the level of reconstruction targets until their proof burdens close.
+6. Compute the terminal-alignment label-count density $s_{\mathrm{align}}$ from alignment-restricted closure labels and edge wake compatibility.
+7. Output alignment, closure, Floquet, grazing, branch-residual, and Cartan reconstruction diagnostics.
+8. Keep mass, photon, equivalence-principle, and full GR matching claims at the level of reconstruction targets until their proof burdens close.
 
 ## Working Hypotheses
 

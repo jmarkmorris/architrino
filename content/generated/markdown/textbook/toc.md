@@ -139,6 +139,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [All-Layer Lorentz Branch Response](../../../markdown/aaa/dynamics/tri-binary-dynamics.md?section=All-Layer+Lorentz+Branch+Response)
     - [Transverse Causal Budget Lemma](../../../markdown/aaa/dynamics/tri-binary-dynamics.md?section=Transverse+Causal+Budget+Lemma)
     - [ADM/Cartan Reconstruction Target](../../../markdown/aaa/dynamics/tri-binary-dynamics.md?section=ADM%2FCartan+Reconstruction+Target)
+    - [Terminal Alignment Label-Count Target](../../../markdown/aaa/dynamics/tri-binary-dynamics.md?section=Terminal+Alignment+Label-Count+Target)
     - [Dynamics-Side Roadmap](../../../markdown/aaa/dynamics/tri-binary-dynamics.md?section=Dynamics-Side+Roadmap)
     - [Working Hypotheses](../../../markdown/aaa/dynamics/tri-binary-dynamics.md?section=Working+Hypotheses)
     - [Regime Map for Speed Statements (CFT / Horizon / AdS)](../../../markdown/aaa/dynamics/tri-binary-dynamics.md?section=Regime+Map+for+Speed+Statements+%28CFT+%2F+Horizon+%2F+AdS%29)

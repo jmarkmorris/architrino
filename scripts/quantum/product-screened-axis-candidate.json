@@ -1,0 +1,155 @@
+{
+  "artifact": "bell-family-candidate-fixture",
+  "scenarios": [
+    {
+      "id": "candidate_product_screened_axis",
+      "description": "Compact candidate fixture for a product-screened pair-provenance axis model.",
+      "classification": "negative_control",
+      "parties": ["A", "B"],
+      "source_protocol": {
+        "id": "uniform_planar_axis_fixture",
+        "source_section": "finite eight-record source return section",
+        "measure": "uniform source-record weights"
+      },
+      "source_records": [
+        {
+          "id": "pi_000",
+          "weight": 0.125,
+          "local_response": {
+            "A": { "A0": { "1": 1 }, "A1": { "1": 1 } },
+            "B": { "B0": { "-1": 1 }, "B1": { "1": 1 } }
+          }
+        },
+        {
+          "id": "pi_001",
+          "weight": 0.125,
+          "local_response": {
+            "A": { "A0": { "1": 1 }, "A1": { "1": 1 } },
+            "B": { "B0": { "-1": 1 }, "B1": { "-1": 1 } }
+          }
+        },
+        {
+          "id": "pi_002",
+          "weight": 0.125,
+          "local_response": {
+            "A": { "A0": { "-1": 1 }, "A1": { "1": 1 } },
+            "B": { "B0": { "-1": 1 }, "B1": { "-1": 1 } }
+          }
+        },
+        {
+          "id": "pi_003",
+          "weight": 0.125,
+          "local_response": {
+            "A": { "A0": { "-1": 1 }, "A1": { "1": 1 } },
+            "B": { "B0": { "1": 1 }, "B1": { "-1": 1 } }
+          }
+        },
+        {
+          "id": "pi_004",
+          "weight": 0.125,
+          "local_response": {
+            "A": { "A0": { "-1": 1 }, "A1": { "-1": 1 } },
+            "B": { "B0": { "1": 1 }, "B1": { "-1": 1 } }
+          }
+        },
+        {
+          "id": "pi_005",
+          "weight": 0.125,
+          "local_response": {
+            "A": { "A0": { "-1": 1 }, "A1": { "-1": 1 } },
+            "B": { "B0": { "1": 1 }, "B1": { "1": 1 } }
+          }
+        },
+        {
+          "id": "pi_006",
+          "weight": 0.125,
+          "local_response": {
+            "A": { "A0": { "1": 1 }, "A1": { "-1": 1 } },
+            "B": { "B0": { "1": 1 }, "B1": { "1": 1 } }
+          }
+        },
+        {
+          "id": "pi_007",
+          "weight": 0.125,
+          "local_response": {
+            "A": { "A0": { "1": 1 }, "A1": { "-1": 1 } },
+            "B": { "B0": { "-1": 1 }, "B1": { "1": 1 } }
+          }
+        }
+      ],
+      "source_balance": {
+        "status": "toy_fixture",
+        "angular_momentum": "opposite local axes only; no substrate closure claimed"
+      },
+      "local_apparatus_records": {
+        "kernel": "deterministic local sign response",
+        "settings": {
+          "A": ["A0", "A1"],
+          "B": ["B0", "B1"]
+        }
+      },
+      "record_basins": {
+        "construction": "product-screened deterministic source-record responses",
+        "outcomes": [-1, 1]
+      },
+      "compression_audit": {
+        "expected": "bell.product_screening_collapse"
+      },
+      "guardrails": {
+        "expected": [
+          "no_signaling_pass",
+          "measurement_independence_pass",
+          "product_screening_escape_fail"
+        ]
+      },
+      "contexts": [
+        {
+          "id": "fixture_axis_A0_B0",
+          "settings": { "A": "A0", "B": "B0" },
+          "probabilities": [
+            { "outcome": { "A": -1, "B": -1 }, "p": 0.125 },
+            { "outcome": { "A": -1, "B": 1 }, "p": 0.375 },
+            { "outcome": { "A": 1, "B": -1 }, "p": 0.375 },
+            { "outcome": { "A": 1, "B": 1 }, "p": 0.125 }
+          ]
+        },
+        {
+          "id": "fixture_axis_A0_B1",
+          "settings": { "A": "A0", "B": "B1" },
+          "probabilities": [
+            { "outcome": { "A": -1, "B": -1 }, "p": 0.375 },
+            { "outcome": { "A": -1, "B": 1 }, "p": 0.125 },
+            { "outcome": { "A": 1, "B": -1 }, "p": 0.125 },
+            { "outcome": { "A": 1, "B": 1 }, "p": 0.375 }
+          ]
+        },
+        {
+          "id": "fixture_axis_A1_B0",
+          "settings": { "A": "A1", "B": "B0" },
+          "probabilities": [
+            { "outcome": { "A": -1, "B": -1 }, "p": 0.125 },
+            { "outcome": { "A": -1, "B": 1 }, "p": 0.375 },
+            { "outcome": { "A": 1, "B": -1 }, "p": 0.375 },
+            { "outcome": { "A": 1, "B": 1 }, "p": 0.125 }
+          ]
+        },
+        {
+          "id": "fixture_axis_A1_B1",
+          "settings": { "A": "A1", "B": "B1" },
+          "probabilities": [
+            { "outcome": { "A": -1, "B": -1 }, "p": 0.125 },
+            { "outcome": { "A": -1, "B": 1 }, "p": 0.375 },
+            { "outcome": { "A": 1, "B": -1 }, "p": 0.375 },
+            { "outcome": { "A": 1, "B": 1 }, "p": 0.125 }
+          ]
+        }
+      ],
+      "chsh": {
+        "a0": "A0",
+        "a1": "A1",
+        "b0": "B0",
+        "b1": "B1"
+      }
+    }
+  ]
+}
