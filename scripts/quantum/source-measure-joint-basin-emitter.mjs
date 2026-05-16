@@ -60,8 +60,8 @@ This emits a diagnostic source-measure candidate for the Bell-family harness.
 It is an ideal joint-basin target, not an AAA Bell closure proof.`);
 }
 
-function sourceRecords() {
-  const bins = [
+function thresholdBins() {
+  return [
     {
       id: "low",
       eta_min: 0,
@@ -81,8 +81,10 @@ function sourceRecords() {
       weight: P_SAME_LOW,
     },
   ];
+}
 
-  return bins.flatMap((bin) =>
+function sourceRecords() {
+  return thresholdBins().flatMap((bin) =>
     [-1, 1].map((marginalSign) => ({
       id: `pi_${bin.id}_${marginalSign === -1 ? "minus" : "plus"}`,
       weight: bin.weight / 2,
@@ -97,6 +99,31 @@ function sourceRecords() {
   );
 }
 
+function recordCycleSourceRecords() {
+  return thresholdBins().flatMap((bin) =>
+    [-1, 1].map((marginalSign) => ({
+      id: `rc_${bin.id}_${marginalSign === -1 ? "minus" : "plus"}`,
+      weight: bin.weight / 2,
+      eta_AB_interval: [bin.eta_min, bin.eta_max],
+      marginal_branch: marginalSign,
+      retained_pair_provenance: {
+        branch_bin: bin.id,
+        marginal_branch: marginalSign,
+        angular_momentum_balance: "singlet-like target ledger; not substrate-derived",
+        theta_AB_rel:
+          "relative pair phase component retained by Theta_AB^rel; represented by phi_Pi_fraction here",
+      },
+      local_record_cycle_coordinate: {
+        formula: "eta_AB = frac(theta_rec_A - theta_rec_B + phi_Pi)",
+        theta_rec_A_fraction: [0, 0],
+        theta_rec_B_fraction: [0, 0],
+        phi_Pi_fraction: [bin.eta_min, bin.eta_max],
+        eta_AB_interval: [bin.eta_min, bin.eta_max],
+      },
+    }))
+  );
+}
+
 function singletCorrelation(aSetting, bSetting) {
   return -Math.cos(ANGLES[aSetting] - ANGLES[bSetting]);
 }
@@ -106,7 +133,10 @@ function sameOutcomeThreshold(correlation) {
 }
 
 function sameOutcome(record, threshold) {
-  const [etaMin, etaMax] = record.correlation_interval;
+  const [etaMin, etaMax] =
+    record.correlation_interval ??
+    record.eta_AB_interval ??
+    record.local_record_cycle_coordinate?.eta_AB_interval;
   if (etaMax <= threshold + EPS) {
     return true;
   }
@@ -164,7 +194,7 @@ function contextScreening(records) {
   };
 }
 
-function contexts(records) {
+function jointBasinContexts(records) {
   return CHSH_CONTEXTS.map(([aSetting, bSetting]) => {
     const correlation = singletCorrelation(aSetting, bSetting);
     return {
@@ -180,8 +210,25 @@ function contexts(records) {
   });
 }
 
+function recordCycleContexts(records) {
+  return CHSH_CONTEXTS.map(([aSetting, bSetting]) => {
+    const correlation = singletCorrelation(aSetting, bSetting);
+    return {
+      id: `record_cycle_${aSetting}_${bSetting}`,
+      settings: { A: aSetting, B: bSetting },
+      target_correlation: correlation,
+      eta_AB_threshold: sameOutcomeThreshold(correlation),
+      basin_rule:
+        "same outcome when eta_AB_interval from the record-cycle coordinate lies below the context threshold; opposite outcome otherwise",
+      probabilities: contextProbabilities(records, aSetting, bSetting),
+      screening: contextScreening(records),
+    };
+  });
+}
+
 function candidate() {
   const records = sourceRecords();
+  const recordCycleRecords = recordCycleSourceRecords();
   return {
     artifact: "bell-family-source-measure-candidate",
     generated_by: "scripts/quantum/source-measure-joint-basin-emitter.mjs",
@@ -236,7 +283,68 @@ function candidate() {
             "product_screening_escape_pass",
           ],
         },
-        contexts: contexts(records),
+        contexts: jointBasinContexts(records),
+        chsh: {
+          a0: "A0",
+          a1: "A1",
+          b0: "B0",
+          b1: "B1",
+        },
+      },
+      {
+        id: "candidate_record_cycle_pair_coordinate",
+        description:
+          "Generated diagnostic for the pair record-cycle coordinate eta_AB = frac(theta_rec_A - theta_rec_B + phi_Pi); recovers the singlet CHSH benchmark as a reduced target without proving the substrate origin of phi_Pi.",
+        classification: "diagnostic_candidate",
+        parties: ["A", "B"],
+        source_protocol: {
+          id: "pair_record_cycle_coordinate_target",
+          source_section:
+            "six-cell return section from a uniform eta_AB pushforward and unbiased marginal branch",
+          measure:
+            "setting-independent cell weights; each source record carries a retained relative phase component and local record-cycle coordinate metadata",
+        },
+        source_records: recordCycleRecords,
+        source_balance: {
+          status: "target_emitter",
+          angular_momentum:
+            "records preserve an effective singlet-like balance label; deriving phi_Pi from the Noether-core pair ledger remains open",
+          measurement_independence:
+            "source weights and retained eta_AB intervals are reused unchanged for every context",
+        },
+        local_apparatus_records: {
+          status: "idealized_record_cycle_coordinate",
+          material_measure:
+            "local record-cycle phases are represented in normalized phase fractions; the emitted target uses the calibrated uniform-pushforward case",
+          unresolved_variable:
+            "theta_rec_A and theta_rec_B are local record-cycle phases; phi_Pi is the retained relative pair phase component",
+        },
+        record_basins: {
+          construction:
+            "context-indexed same/opposite basin over eta_AB generated from record-cycle coordinate metadata",
+          threshold_coordinate:
+            "eta_AB = frac(theta_rec_A - theta_rec_B + phi_Pi)",
+          thresholds: {
+            low: P_SAME_LOW,
+            high: P_SAME_HIGH,
+          },
+          caveat:
+            "the diagnostic tests the reduced coordinate shape; it does not derive phi_Pi or the local record-cycle measures from substrate dynamics",
+        },
+        compression_audit: {
+          expected: "product_screening_escape_pass",
+          baseline:
+            "context screening uses the same source records with independent unbiased local marginals",
+        },
+        guardrails: {
+          expected: [
+            "no_signaling_pass",
+            "measurement_independence_pass",
+            "tsirelson_pass",
+            "product_screening_escape_pass",
+          ],
+        },
+        contexts: recordCycleContexts(recordCycleRecords),
         chsh: {
           a0: "A0",
           a1: "A1",

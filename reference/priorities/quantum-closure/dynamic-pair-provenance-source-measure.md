@@ -214,6 +214,23 @@ node scripts/quantum/bell-family-residual-harness.mjs \
 
 This target uses a setting-independent six-cell source measure over a uniform threshold coordinate and an unbiased marginal branch. Its context-indexed joint basin recovers the singlet CHSH benchmark, preserves zero measurement-independence and no-signaling residuals, and does not reduce to the declared product-screening baseline. It is not a Bell closure proof: the threshold rule is a reduced target object whose substrate origin must still be derived from the pair-provenance ledger, the local apparatus record-window measures, and the joint record basins.
 
+The same emitter now also includes `candidate_record_cycle_pair_coordinate`, which replaces the abstract `correlation_interval` label with records carrying the reduced coordinate
+
+$$
+\eta_{AB}
+=
+\operatorname{frac}
+\left(
+\theta_{\text{rec}}^A
+-
+\theta_{\text{rec}}^B
++
+\varphi_{\Pi}
+\right).
+$$
+
+At the current harness level this diagnostic has $|S|=2\sqrt{2}$, zero measurement-independence residual, zero no-signaling residual, zero Tsirelson excess, and product-screening residual $0.35355339059327373$ against the declared independent local-marginal baseline. This is a reduced-coordinate success marker, not a substrate derivation: the open work is still to derive $\varphi_{\Pi}$ from $\Theta_{AB}^{\mathrm{rel}}$ and to compute the local record-cycle measures from apparatus return maps.
+
 ## Pair-Basin Threshold Theorem Target
 
 The diagnostic target becomes a useful proof problem only if the inserted threshold can be replaced by a derived basin coordinate. A candidate reduced record may refine $\Gamma_{AB}^{\mathrm{rec}}$ by a sign branch $\sigma\in\{-1,+1\}$ and a threshold coordinate $\eta_{AB}\in[0,1]$:
