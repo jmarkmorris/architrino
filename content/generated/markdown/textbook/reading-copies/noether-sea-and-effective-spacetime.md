@@ -257,6 +257,34 @@ This label is reduced because it omits the full architrino trajectories and reta
 
 The quantum-number generalization begins at this level. Generation, spin, chirality, and later observer-level orbital labels should be read as downstream coarse-grainings or measurement labels derived from admissible Noether-core closure labels and their emitted causal-wake envelopes. They should not be imposed as primitive particle labels before the closure, wake-envelope, and apparatus-coupling maps have been derived.
 
+For the horizon-interface entropy calculation, the counted labels must be restrictions of this same reduced closure label, not a second black-hole bookkeeping system. The alignment-restricted label is the theorem-target restriction
+$$
+\Lambda_{\text{NC}}^{\mathrm{align}}
+=
+\left.
+\Lambda_{\text{NC}}
+\right|_{\substack{
+v_M=c_f,\;v_O\to c_f\\
+\text{coplanar/co-linear binary layers}\\
+\text{precession ceases}
+}},
+$$
+with the remaining admissible entries inherited from the layer ledgers, inter-layer ledgers, chirality slot, and emitted wake envelope. For a connected block $U$ of alignment-area patches, the local label set to be counted has the schematic form
+$$
+\mathcal{L}_U(\theta)
+=
+\left\{
+\left(\Lambda_{\text{NC},a}^{\mathrm{align}}\right)_{a\in U}
+:
+\mathcal{G}_{\partial U},\,
+\mathcal{B}_{\partial\Omega}^{(O)}(\theta;W),\,
+\text{conservation and interface compatibility hold}
+\right\}
+/
+\sim_{O,\theta,W}.
+$$
+Here $\mathcal{G}_{\partial U}$ records the causal-root and wake-exchange compatibility across the edge of the block. This expression does not yet derive the entropy coefficient. It identifies the native object whose block entropy density must be computed before $\log|\mathcal{L}_U|/|U|\to1/4$ can be treated as more than a comparison target.
+
 #### Geometry and Exclusion Envelope
 
 The same tri-binary motion that supplies shielding also sweeps out a persistent dynamic exclusion envelope. That envelope is not the core definition itself; it is the geometric footprint of the nested assembly. For the oblate spheroidal form, exclusion-zone interpretation, and deformation channels, see [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md).
@@ -2764,33 +2792,35 @@ A_{\text{align}}
 \qquad
 P_a\in\mathcal{P}_{\partial\Omega}.
 $$
-Let $\mathcal{L}_a(\theta_{\Omega,O,W})$ be the retained boundary-wake labels in $P_a$ after fixing the observer record and the neighboring patch data to the accuracy declared by $\epsilon_{\mathrm{local}}$. The locality part of the theorem target is
+The coefficient cannot be interpreted as a literal independent one-patch count: $\log|\mathcal{L}_a|=1/4$ would require $|\mathcal{L}_a|=e^{1/4}$, not the cardinality of a finite set. The coherent target is a block entropy density. For a connected patch block $U\subseteq\mathcal{P}_{\partial\Omega}$, let $\mathcal{L}_U(\theta_{\Omega,O,W})$ be the joint retained boundary-wake label set on $U$ after fixing the observer record and the edge data to the accuracy declared by $\epsilon_{\mathrm{local}}$. The local aligned-label density is
+$$
+s_{\mathrm{align}}(\theta_{\Omega,O,W})
+=
+\lim_{|U|\to\infty}
+\frac{1}{|U|}
+\log\left|
+\mathcal{L}_U(\theta_{\Omega,O,W})
+\right|,
+$$
+when the limit exists after boundary corrections. The locality part of the theorem target is
 $$
 \log\left|
-\mathcal{B}_{\partial\Omega}^{(O)}
-\left(\theta_{\Omega,O,W}\right)
+\mathcal{L}_U(\theta_{\Omega,O,W})
 \right|
 =
-\sum_{P_a\in\mathcal{P}_{\partial\Omega}}
-\log\left|
-\mathcal{L}_a(\theta_{\Omega,O,W})
-\right|
+|U|\,s_{\mathrm{align}}(\theta_{\Omega,O,W})
 +
 \mathcal{O}\!\left(
-|\partial\mathcal{P}_{\partial\Omega}|\epsilon_{\mathrm{corr}}
+|\partial U|\epsilon_{\mathrm{corr}}
 \right),
 $$
 where the correction records edge and finite-correlation effects between adjacent patches. The normalization part is then the aligned-label statement
 $$
-\frac{1}{|\mathcal{P}_{\partial\Omega}|}
-\sum_{P_a\in\mathcal{P}_{\partial\Omega}}
-\log\left|
-\mathcal{L}_a(\theta_{\Omega,O,W})
-\right|
+s_{\mathrm{align}}(\theta_{\Omega,O,W})
 \longrightarrow
 \frac{1}{4}.
 $$
-Together with $|\mathcal{P}_{\partial\Omega}|A_{\text{align}}\to A_{\partial\Omega}^{\mathrm{eff}}$, these two claims imply the area density above. This does not prove the coefficient by definition. It reduces the problem to a local aligned-interface calculation: terminal tri-binary alignment must supply a universal distinguishable-label count per alignment-area patch, and the surrounding Noether-Sea record must make correlations short-range enough that the boundary count is additive up to edge residuals.
+Together with $|\mathcal{P}_{\partial\Omega}|A_{\text{align}}\to A_{\partial\Omega}^{\mathrm{eff}}$, these claims imply the area density above. This does not prove the coefficient by definition. It reduces the problem to a local aligned-interface calculation: terminal tri-binary alignment must supply a universal block entropy density, and the surrounding Noether-Sea record must make correlations short-range enough that the boundary count is additive up to edge residuals.
 
 #### Refraction vs. Curvature
 
@@ -4184,7 +4214,19 @@ S_H
 $$
 where $A_H$ is the observer-level horizon area and $A_{\text{align}}$ is the alignment-area scale from the Planck-alignment program, with the numerical and $2\pi$ conventions fixed by that derivation rather than by definition here. Page-curve recovery then becomes a release-channel theorem: outward channels must preserve enough phase, axial-pattern, and path-history information from $\mathcal{B}_{H}$ to make evaporation or recycling unitary at the effective quantum level, while still appearing thermal to coarse exterior measurements.
 
-This global horizon ensemble must be compatible with the local boundary-wake count used in [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md#local-horizon-recovery-target). For a compact region $\Omega$ whose boundary intersects the horizon interface, let $\pi_{\partial\Omega}^{(O)}$ be the Physical Observer projection from strong-field horizon-interface labels to retained boundary-wake labels, and write $\mathcal{B}_{H}(\theta)$ for the horizon-interface ensemble selected by the same strong-field record. The proof route requires
+The coefficient in this target is not a literal claim that one alignment patch carries $e^{1/4}$ independent states. The local target is a block entropy density. For a connected block $U$ of horizon-adjacent alignment patches, let $\mathcal{L}_U^H(\theta)$ be the retained alignment-compatible label set induced by the same strong-field record. The local density target is
+$$
+s_{\mathrm{align}}^H(\theta)
+=
+\lim_{|U|\to\infty}
+\frac{1}{|U|}
+\log\left|\mathcal{L}_U^H(\theta)\right|
+\longrightarrow
+\frac{1}{4},
+$$
+with boundary corrections vanishing in the large-block limit. This is the local calculation that must make the global area law credible.
+
+This global horizon ensemble must be compatible with the local boundary-wake entropy density used in [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md#local-horizon-recovery-target). For a compact region $\Omega$ whose boundary intersects the horizon interface, let $\pi_{\partial\Omega}^{(O)}$ be the Physical Observer projection from strong-field horizon-interface labels to retained boundary-wake labels, and write $\mathcal{B}_{H}(\theta)$ for the horizon-interface ensemble selected by the same strong-field record. The proof route requires
 $$
 \left|
 \log\left|
@@ -4200,7 +4242,7 @@ $$
 \le
 \epsilon_{\mathrm{proj}},
 $$
-for the same strong-field record $\theta$ restricted to the observer window. If the local boundary count and the global horizon-interface count require different records, the entropy target has split into two fitted stories. If they agree, the black-hole area law is no longer an isolated assumption; it becomes the compact strong-field version of the local boundary-factorization theorem target.
+for the same strong-field record $\theta$ restricted to the observer window and the same block or patch family. If the local boundary density and the global horizon-interface count require different records, the entropy target has split into two fitted stories. If they agree, the black-hole area law is no longer an isolated assumption; it becomes the compact strong-field version of the local boundary-factorization theorem target.
 
 The words "thermal," "scrambled," and "recoverable" are therefore readout-channel claims, not direct ontology labels. For a Physical Observer $O$, let $\mathcal{K}_{O}^{\mathrm{rad}}$ denote the declared radiation readout kernel and let $\mathcal{R}_{O}$ denote the physical reference resources used to compare outgoing quanta. A horizon-interface ledger state $\lambda\in\mathcal{B}_{H}(M,\mathbf{J},Q)$ reaches the observer through a channel of the schematic form
 $$
