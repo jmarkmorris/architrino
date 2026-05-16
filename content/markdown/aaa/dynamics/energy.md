@@ -218,6 +218,16 @@ P_{\mathrm{ext},W}
 $$
 Here $\mathbf{J}_E$ is the boundary flux of causal-wake energy bookkeeping, $P_{\mathrm{ext},W}$ is declared external work through sources or controls not included in $W$, and $\mathcal{R}_E$ records mollifier, timestep, and omitted-boundary-history error. A finite-window conservation claim is mature only when $\mathcal{R}_E\to0$ under the same regularized causal action used for the local equation of motion.
 
+The characteristic-tail repair target in [Master Equation](./master-equation.md#exact-nonlocal-lagrangian) inherits this same rule. If the outgoing tail kernel $K_{\mathrm{ct},+}^{(\eta)}$ is used, its endpoint contribution may be counted as a Noether wake-history boundary flux only when the endpoint is characteristic, or when it is a declared fixed history boundary whose leakage residual vanishes:
+$$
+\mathcal{B}_{E,+}^{(\eta)}
+\sim
+\frac{D_{ij}R_{+}}{c_fR_{+}}\,
+\delta_\eta'\!\left(u-\frac{R_{+}}{c_f}\right)
+\longrightarrow 0
+$$
+on the retained branch chart. If $D_{ij}R_{+}\ne0$ and this residual does not vanish, the endpoint is an interior Euler source rather than a conservation-boundary term. In that case the characteristic-tail action changes the accepted branch force and cannot be used to close exact energy conservation for the current Master EOM.
+
 The analogous momentum closure must also remain tied to the same window and boundary data:
 $$
 \frac{dP_W^i}{dt}

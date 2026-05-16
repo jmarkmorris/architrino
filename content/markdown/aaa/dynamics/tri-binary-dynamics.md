@@ -402,6 +402,26 @@ $$
 $$
 The dynamics-backed transfer predicate is therefore the earlier edge-match condition plus closure of the paired source-recoil ledger, the cycle residual, and $\epsilon_{\mathrm{var}}$. In the current executable packet this `terminal_dynamic` transfer has zero accepted edges. With $3\le n\le5$, `phase-samples = 12`, and the layer-sum area proxy, the edge-only coefficient is $\bar{\alpha}_{16}=0.09174$, but the terminal-dynamic coefficient is undefined; the maximum sampled stationarity residual is about $166.83$. With $3\le n\le6$, the edge-only coefficient is $\bar{\alpha}_{16}=0.12120$, while the terminal-dynamic transfer remains empty and the maximum sampled stationarity residual rises to about $322.67$. Thus the obstruction is not merely the observer quotient or area normalization. The reduced concentric terminal ansatz fails the action-variation and cycle-support tests before it can become a horizon-interface transfer system.
 
+The first bounded branch-family variation gives the same conclusion. The executable phase-offset family keeps the centers concentric but changes the layer phases by
+$$
+\phi_I=-2\pi f,
+\qquad
+\phi_M=2\pi f,
+\qquad
+\phi_O=0,
+$$
+with tested offsets $f=1/8$ and $f=1/4$. These packets raise the delayed inter-layer root inventory to $288$ sampled roots per candidate, but the terminal-dynamic transfer still has zero accepted edges under both coarse and strict quotients. For $3\le n\le5$, the edge-only coefficient remains $\bar{\alpha}_{16}=0.09174$ while $\epsilon_{\mathrm{var}}^{\max}$ is about $179.54$ at $f=1/8$ and about $166.83$ at $f=1/4$. For $3\le n\le6$, the edge-only coefficient remains $\bar{\alpha}_{16}=0.12120$ while $\epsilon_{\mathrm{var}}^{\max}$ reaches about $322.67$. A bounded phase offset therefore does not rescue the reduced circular terminal ansatz.
+
+The first shifted-center branch family is now also negative. The executable `shifted-center` family keeps the circular speeds and layer phases fixed, but places the three circular centers at
+$$
+\mathbf{c}_I=(-\epsilon_c R_O,0),
+\qquad
+\mathbf{c}_M=\left(\frac{\epsilon_c R_O}{2},\frac{\sqrt{3}\epsilon_c R_O}{2}\right),
+\qquad
+\mathbf{c}_O=\left(\frac{\epsilon_c R_O}{2},-\frac{\sqrt{3}\epsilon_c R_O}{2}\right),
+$$
+where $R_O=1/\omega_O$ is the outer alignment radius and $\epsilon_c$ is the tested center-shift fraction. Runs at $\epsilon_c=0.01$, $0.05$, and $0.10$ again raised the delayed inter-layer inventory to $288$ sampled roots per candidate, but they produced zero terminal-dynamic transfer edges. The $\epsilon_c=0.05$ and $\epsilon_c=0.10$ packets were empty even at the edge-proxy level for $3\le n\le5$ and $3\le n\le6$. The smaller $\epsilon_c=0.01$ packet produced only one widened edge-proxy edge at $3\le n\le6$, with zero finite-block coefficient and still no terminal-dynamic edge. The sampled stationarity residuals remained large: $\epsilon_{\mathrm{var}}^{\max}$ was about $620.96$ for $\epsilon_c=0.01$ at $3\le n\le5$, about $965.98$ to $1103.36$ for $\epsilon_c=0.05$, and about $693.97$ for $\epsilon_c=0.10$. Thus small shifted centers make the reduced chart more brittle rather than more entropy-bearing. The next useful variation must change the action kernel, the wake-memory ledger, or the observer quotient, not merely the first-order circular geometry.
+
 At the present derivation level, the admissible one-patch labels can be enumerated as a finite branch-ledger schema, not yet as a numerical table. For a primitive outer-period closure, the integer-lock notation gives
 $$
 (k_I,k_M,k_O)=(n,m,1),
@@ -1184,7 +1204,91 @@ $$
 $$
 with the same endpoint convention used for the wake-history ledger. Such a counterterm is admissible only when derived from the same symmetry-preserving action-level mechanism, not when inserted as a fit to the accepted branch law. This is the smallest correction exposed by the variation: it preserves the direct inverse-square branch law when the stationarity condition holds, and otherwise records exactly the residual force density that the scalar kernel leaves behind.
 
-For the same causal-surface local scalar class, this counterterm route is ruled out. A scalar term $a(r_b,J_b)\delta_\eta(g_b)$ must choose $a=-1/r_b$ to cancel the derivative-of-delta coefficient, but that same choice changes the direct $w_b^{(0)}$ scale contribution. The finite local delta-jet extension has the same obstruction. The terminal branch proof should therefore test stationarity or residual closure directly; otherwise the remaining action-level option is the nonlocal characteristic-tail repair target from [Master Equation](./master-equation.md#exact-nonlocal-lagrangian), or a richer velocity/history-dependent invariant mechanism. Neither option is a fitted scalar patch.
+For the same causal-surface local scalar class, this counterterm route is ruled out. A scalar term $a(r_b,J_b)\delta_\eta(g_b)$ must choose $a=-1/r_b$ to cancel the derivative-of-delta coefficient, but that same choice changes the direct $w_b^{(0)}$ scale contribution. The finite local delta-jet extension has the same obstruction. In the common-center inter-layer chart, the stationarity option is also ruled out by the lemma below. The terminal branch proof should therefore test branch-summed residual closure directly; otherwise the remaining action-level option is the nonlocal characteristic-tail repair target from [Master Equation](./master-equation.md#exact-nonlocal-lagrangian), or a richer velocity/history-dependent invariant mechanism. Neither option is a fitted scalar patch.
+
+**Lemma (common-center inter-layer stationarity obstruction).** In the symmetric common-center terminal chart, no positive-delay, non-grazing inter-layer branch with nonzero layer radii and nonzero source speed satisfies the per-branch stationarity condition above. Define the dimensionless separation vector
+$$
+\mathbf{Y}_b(u,\delta)
+=
+\alpha_o x_o\mathbf{e}(q_o u+\phi_o)
+-
+\alpha_j x_j\mathbf{e}(q_j(u-\delta)+\phi_j),
+\qquad
+\rho_b(u,\delta)
+=
+\|\mathbf{Y}_b(u,\delta)\|.
+$$
+Since $r_b=(c_f/\omega_O)\rho_b$ and $\hat{\mathbf{r}}_b=\mathbf{Y}_b/\rho_b$, the branch stationarity condition is equivalent up to a nonzero scale to
+$$
+\left.
+\partial_\delta
+\left[
+\frac{\mathbf{Y}_b(u,\delta)}
+{\rho_b^2(u,\delta)J_b(u,\delta)}
+\right]
+\right|_{\delta=\delta_b(u)}
+=
+\mathbf{0}.
+$$
+The vector derivative can vanish only if $\partial_\delta\mathbf{Y}_b$ is parallel to $\mathbf{Y}_b$. But
+$$
+\partial_\delta\mathbf{Y}_b
+=
+\alpha_j q_j x_j\,
+\mathbf{e}_{\perp}(q_j(u-\delta)+\phi_j),
+$$
+so parallelism forces the separation to be tangent to the source circle:
+$$
+\mathbf{Y}_b\cdot\mathbf{e}(q_j(u-\delta)+\phi_j)
+=
+0
+\quad\Longleftrightarrow\quad
+\alpha_o x_o\cos\Theta_{jo}^{\alpha_j\alpha_o}(u,\delta)
+=
+\alpha_j x_j.
+$$
+On this tangent subcase, $\rho_{b,\delta\delta}=0$ and $J_b=1-\rho_{b,\delta}$. The remaining scalar stationarity condition reduces to
+$$
+\partial_\delta(\rho_bJ_b)
+=
+\rho_{b,\delta}(1-\rho_{b,\delta})
+=
+0.
+$$
+The first factor would require $\rho_{b,\delta}=0$; with $q_jx_j=s_j/c_f\ne0$ and the tangent condition, that collapses the separation to $\rho_b=0$ and violates the positive-delay floor. The second factor gives $J_b=0$, which violates the Jacobian floor. Therefore per-branch stationarity is not the terminal inter-layer closure mechanism on this chart. The remaining action-level route is branch-summed residual closure over the signed admitted branch set, or a richer invariant action mechanism whose Euler derivative supplies the missing residual without fitting the force law.
+
+**Branch-summed residual closure.** The terminal action scaffold can still close without per-branch stationarity if the receiver-side interior residual cancels across the signed admitted branch set. Define the dimensionless branch residual vector
+$$
+\mathbf{A}_b(u)
+=
+\left.
+\partial_\delta
+\left[
+\frac{\mathbf{Y}_b(u,\delta)}
+{\rho_b^2(u,\delta)J_b(u,\delta)}
+\right]
+\right|_{\delta=\delta_b(u)}.
+$$
+Using $t_0=t_1-\delta/\omega_O$, $r_b=(c_f/\omega_O)\rho_b$, and $\hat{\mathbf{r}}_b=\mathbf{Y}_b/\rho_b$, the sharp receiver-side interior term becomes
+$$
+\mathbf{C}_{b}^{(0)}(u)
+=
+-
+\frac{\omega_O^2}{c_f^2}
+\frac{\mathbf{A}_b(u)}{|J_b(u)|}.
+$$
+After the common nonzero scale is removed, the necessary pointwise receiver-side closure equation is
+$$
+\sum_{b:\,o_b=(\ell_o,\alpha_o)}
+\operatorname{sign}(q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}})
+\left|q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}}\right|
+\frac{\mathbf{A}_b(u)}{|J_b(u)|}
+=
+\mathbf{0}
+\qquad
+\text{for all }u.
+$$
+This is a different equation from the force residuals $\mathcal{R}_{\ell_o,\alpha_o}^{r}=\mathcal{R}_{\ell_o,\alpha_o}^{\tau}=0$ and from the conservation-ledger sums. The force residual tests whether the accepted Master EOM supplies the terminal circular acceleration. The conservation ledger tests Noether bookkeeping over the same branch set. The branch-summed residual equation tests whether the scalar action scaffold has no leftover Euler derivative on that receiver after the direct inverse-square term has already been accounted for.
 
 The regularization is admissible only if it preserves the symmetries that supply the conservation ledger. In action form this means
 $$

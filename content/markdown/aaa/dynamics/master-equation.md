@@ -2491,6 +2491,20 @@ without adding another $\delta_\eta(g)/r^2$ scale term. For $N\ge1$, the highest
 
 The conclusion is narrow but decisive for local repairs: no finite same-support local scalar or delta-jet counterterm cancels the scalar-kernel residual while leaving the canonical branch strength intact. A viable action-level repair must instead be nonlocal along the $(r,g)$ characteristic, or must use a richer velocity/history-dependent invariant action. Either route changes the action ontology enough that it should be discussed explicitly before canonization.
 
+The terminal common-center inter-layer chart gives a concrete obstruction to the remaining per-branch stationarity route. In that specialization, stationarity of $\hat{\mathbf r}/(rJ)$ forces the source tangent to be parallel to the source-receiver separation. The scalar part then reduces to $\rho_\delta(1-\rho_\delta)=0$: the first factor collapses a positive-delay branch when the source speed is nonzero, and the second factor is $J=0$, a grazing branch excluded by the Jacobian floor. Thus terminal inter-layer charts should not expect the scalar scaffold to close by per-branch stationarity; the remaining local target is branch-summed residual closure, unless a richer invariant action mechanism supplies the residual cancellation.
+
+At the Master EOM level, the branch-summed residual target is the vanishing of the signed receiver-side interior Euler derivative after the direct inverse-square term is removed:
+$$
+\sum_{b:\,o_b=i}
+\kappa\,
+\operatorname{sign}(q_{j_b}q_i)
+\left|q_{j_b}q_i\right|
+\mathbf{C}_{b}^{(0)}(t)
+=
+\mathbf{0}
+$$
+with the same positive-delay, Jacobian-floor, and boundary convention used by the branch chart. This is not the Master EOM force residual and not the Noether conservation ledger. It is the additional condition needed for the scalar action scaffold to have no leftover interior Euler derivative on that receiver.
+
 **Nonlocal characteristic repair target.** The least invasive remaining action-level route is to solve the counterterm equation before imposing causal-surface support. In the reduced scalar variables, the required receiver-gradient correction has the form
 $$
 D_{ij}K_{\mathrm{ct}}^{(\eta)}(r,g)
@@ -2522,6 +2536,65 @@ with $H_{\mathrm{ct}}^{(\eta)}$ and the lower characteristic endpoint $r_\ast$ f
 
 This gives a concrete proof target rather than a completed replacement action. A candidate nonlocal action may be promoted only if its endpoint convention preserves $H(0)=0$, its Euler derivative cancels the residual above without changing the accepted inverse-square branch term, and its Noether boundary terms close the same energy, momentum, and angular-momentum ledger used by the Master EOM.
 
+The endpoint calculation sharpens that target. The lower-endpoint form above is only the formal characteristic integral. A delayed-interior tail should instead be oriented toward an outgoing endpoint:
+$$
+K_{\mathrm{ct},+}^{(\eta)}(r,g)
+=
+H_{+}^{(\eta)}\!\left(g+\frac{r}{c_f}\right)
+-
+\int_{r}^{R_{+}}
+\frac{1}{c_f\rho}\,
+\delta_\eta'\!\left(u-\frac{\rho}{c_f}\right)
+d\rho,
+\qquad
+u=g+\frac{r}{c_f},
+$$
+with $R_{+}\ge r$ on the retained finite history chart, or with an explicitly controlled $R_{+}=\infty$ limit. A characteristic endpoint is the special case $R_{+}=R_{+}(u)$. Since $D_{ij}u=0$, differentiation gives
+$$
+D_{ij}K_{\mathrm{ct},+}^{(\eta)}
+=
+\frac{\delta_\eta'(g)}{c_f r}
+-
+\frac{D_{ij}R_{+}}{c_fR_{+}}\,
+\delta_\eta'\!\left(u-\frac{R_{+}}{c_f}\right).
+$$
+Thus the desired interior cancellation holds without an extra endpoint source only when $R_{+}$ is itself a characteristic endpoint, $D_{ij}R_{+}=0$.
+
+**Endpoint-ledger decision.** The displayed endpoint term is not automatically a Noether boundary term. Its support is
+$$
+u=\frac{R_{+}}{c_f},
+\qquad
+g=\frac{R_{+}-r}{c_f},
+$$
+which is generally an interior tail surface of the retained delayed chart, not the primary arrival surface $g=0$. If $D_{ij}R_{+}\ne0$, compact receiver variations inside the retained chart see
+$$
+-\frac{D_{ij}R_{+}}{c_fR_{+}}\,
+\delta_\eta'\!\left(u-\frac{R_{+}}{c_f}\right)
+$$
+as an Euler coefficient. Moving that term into the Noether wake-history ledger would hide a force-law change unless the endpoint is a declared fixed history boundary whose variation is held fixed. Therefore the characteristic-tail repair preserves the accepted Master EOM branch force only under one of the following conditions:
+$$
+D_{ij}R_{+}=0,
+\qquad\text{or}\qquad
+\lim_{\eta\to0^+}
+\int_W
+\left\|
+\frac{D_{ij}R_{+}}{c_fR_{+}}\,
+\delta_\eta'\!\left(u-\frac{R_{+}}{c_f}\right)
+\right\|dt
+=0
+$$
+for the declared branch chart and fixed endpoint convention. In that admissible case the endpoint contributes only a boundary wake-history flux, not a new receiver force. In the generic non-characteristic case, the repair is a no-go for the current Master EOM because it adds an extra interior action force.
+
+In the sharp-support limit, the outgoing form is supported on
+$$
+0
+\le
+g
+\le
+\frac{R_{+}-r}{c_f},
+$$
+so it is a causal interior tail behind the arriving wake surface, not a same-support surface density. Conversely, a lower endpoint $r_\ast<r$ supports a tail with $g\le0$ and is not delayed-interior causal support unless the boundary convention supplies a separate interpretation. This proves a useful but limited result: the characteristic-tail equation can cancel the scalar scaffold's interior derivative residual at the level of the Euler derivative, but it does so by adding a nonlocal tail and endpoint ledger obligation. It is not yet an exact action for the Master EOM.
+
 Self‑interaction ($i=j$) is included by adding $S_{ii}$ with the same kernel, but explicitly excluding the trivial coincidence $t'=t$ (no instantaneous self‑push at the moment of emission). Self‑hit corresponds to nontrivial roots $t_0<t$ where the worldline re‑intersects its own causal isochrons, which are captured naturally by the same double‑integral structure.
 
 Thus:
@@ -2529,7 +2602,7 @@ Thus:
 - The scalar $1/r$ action above is a nonlocal variational scaffold for the delayed dynamics under the stated branch and regularization assumptions,
 - It becomes an exact action derivation of the Master EOM only on branch charts where the constraint residual vanishes or is cancelled by an invariant action-level counterterm,
 - A finite same-support local scalar or delta-jet counterterm has been ruled out because it cancels the derivative residual only by disturbing the inverse-square scale term,
-- The remaining minimal action repair is a characteristic-tail proof target, not a canonized replacement action, until its endpoint, Euler-derivative, and Noether-ledger tests close,
+- The remaining minimal action repair is a characteristic-tail proof target; its Euler-derivative cancellation is explicit, but it is not a canonized replacement action until the causal endpoint and Noether-ledger tests close,
 - Without such closure, the pure scalar action is falsified as the universal exact action for the Master EOM and should be treated as a diagnostic scaffold,
 - Any $\delta_\eta$ replacement must preserve the symmetries that supply the Noether charges if conservation claims are to remain exact.
 

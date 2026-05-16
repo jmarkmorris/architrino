@@ -19,6 +19,9 @@ function parseArgs(argv) {
     innerSpeed: 0.92,
     middleSpeed: 1,
     outerSpeed: 0.999,
+    terminalFamily: "concentric",
+    terminalPhaseOffset: 0.125,
+    terminalCenterShift: 0.05,
     rootTolerance: 1e-9,
     actionKernel: "inverse-square",
     kernelStrength: 1,
@@ -63,6 +66,12 @@ function parseArgs(argv) {
       args.middleSpeed = Number(argv[++i]);
     } else if (arg === "--outer-speed") {
       args.outerSpeed = Number(argv[++i]);
+    } else if (arg === "--terminal-family") {
+      args.terminalFamily = argv[++i];
+    } else if (arg === "--terminal-phase-offset") {
+      args.terminalPhaseOffset = Number(argv[++i]);
+    } else if (arg === "--terminal-center-shift") {
+      args.terminalCenterShift = Number(argv[++i]);
     } else if (arg === "--root-tolerance") {
       args.rootTolerance = Number(argv[++i]);
     } else if (arg === "--action-kernel") {
@@ -149,6 +158,23 @@ function parseArgs(argv) {
   if (!["coarse", "strict"].includes(args.quotient)) {
     throw new Error("--quotient must be coarse or strict.");
   }
+  if (!["concentric", "phase-offset", "shifted-center"].includes(args.terminalFamily)) {
+    throw new Error("--terminal-family must be concentric, phase-offset, or shifted-center.");
+  }
+  if (
+    !Number.isFinite(args.terminalPhaseOffset) ||
+    args.terminalPhaseOffset < -0.5 ||
+    args.terminalPhaseOffset > 0.5
+  ) {
+    throw new Error("--terminal-phase-offset must be a finite outer-period fraction in [-0.5, 0.5].");
+  }
+  if (
+    !Number.isFinite(args.terminalCenterShift) ||
+    args.terminalCenterShift < 0 ||
+    args.terminalCenterShift > 1
+  ) {
+    throw new Error("--terminal-center-shift must be a finite outer-radius fraction in [0, 1].");
+  }
   if (!["declared", "outer-disk", "layer-sum"].includes(args.areaModel)) {
     throw new Error("--area-model must be declared, outer-disk, or layer-sum.");
   }
@@ -179,6 +205,12 @@ Options:
   --inner-speed X       Normalized s_I/c_f. Defaults to 0.92.
   --middle-speed X      Normalized s_M/c_f. Defaults to 1.
   --outer-speed X       Normalized s_O/c_f. Defaults to 0.999.
+  --terminal-family MODE
+                         Terminal branch family: concentric, phase-offset, or shifted-center. Defaults to concentric.
+  --terminal-phase-offset X
+                         Phase-offset family fraction of one outer period. Defaults to 0.125.
+  --terminal-center-shift X
+                         Shifted-center family fraction of the outer alignment radius. Defaults to 0.05.
   --action-kernel MODE  Diagnostic action kernel: none, unit-radial, or inverse-square. Defaults to inverse-square.
   --kernel-strength X   Use a fixed diagnostic kernel strength instead of the least-squares fitted strength.
   --fit-kernel-strength Fit the kernel strength per candidate. This is the default.
@@ -205,9 +237,10 @@ Options:
 
 This is a reduced terminal-alignment kinematic enumerator. It computes
 candidate delayed roots, diagnostic action rows, edge-map multisets, local
-ledger residuals, cycle-residual adapters, and transfer rows for the current
-transfer-matrix proof route. Its action kernels are diagnostic adapters, not
-accepted substrate dynamics.`);
+and source-recoil ledger residuals, action-variation stationarity residuals,
+cycle-residual adapters, area-normalized finite-block coefficients, and transfer
+rows for the current transfer-matrix proof route. Its action kernels are
+diagnostic adapters, not accepted substrate dynamics.`);
 }
 
 function layerParams(n, m, args) {
@@ -220,18 +253,37 @@ function layerParams(n, m, args) {
   const radius = Object.fromEntries(
     LAYERS.map((layer) => [layer, speed[layer] / omega[layer]])
   );
+  const phase =
+    args.terminalFamily === "phase-offset"
+      ? {
+          I: -TWO_PI * args.terminalPhaseOffset,
+          M: TWO_PI * args.terminalPhaseOffset,
+          O: 0,
+        }
+      : { I: 0, M: 0, O: 0 };
+  const alignRadius = 1 / omega.O;
+  const centerShift =
+    args.terminalFamily === "shifted-center" ? args.terminalCenterShift * alignRadius : 0;
+  const center =
+    args.terminalFamily === "shifted-center"
+      ? {
+          I: [-centerShift, 0],
+          M: [0.5 * centerShift, (Math.sqrt(3) / 2) * centerShift],
+          O: [0.5 * centerShift, -(Math.sqrt(3) / 2) * centerShift],
+        }
+      : {
+          I: [0, 0],
+          M: [0, 0],
+          O: [0, 0],
+        };
   return {
     cF: 1,
     period: TWO_PI,
     omega,
     speed,
     radius,
-    phase: { I: 0, M: 0, O: 0 },
-    center: {
-      I: [0, 0],
-      M: [0, 0],
-      O: [0, 0],
-    },
+    phase,
+    center,
   };
 }
 
@@ -875,6 +927,11 @@ function candidate(n, m, args) {
     integer_lock: { I: n, M: m, O: 1 },
     normalized_speeds: params.speed,
     normalized_radii: params.radius,
+    terminal_family: args.terminalFamily,
+    terminal_phase_offset: args.terminalFamily === "phase-offset" ? args.terminalPhaseOffset : 0,
+    terminal_center_shift: args.terminalFamily === "shifted-center" ? args.terminalCenterShift : 0,
+    terminal_phases: params.phase,
+    terminal_centers: params.center,
     terminal_area_factor: terminalPatchAreaFactor(params, args),
     circular_roots,
     delayed_branch_inventory: {
@@ -1300,9 +1357,9 @@ function buildPacket(args) {
   return {
     artifact: "terminal-alignment-action-enumerator",
     generated_by: "scripts/tri-binary/terminal-alignment-enumerator.mjs",
-    comparison_level: "reduced circular terminal-action diagnostic proof packet",
+    comparison_level: "reduced circular, phase-offset, or shifted-center terminal-action diagnostic proof packet",
     note:
-      "This enumerates delayed roots, diagnostic branch-action rows, edge-map multisets, local ledger residuals, transfer rows, and area-normalized finite-block coefficient residuals. Its action kernels are diagnostic adapters, not accepted substrate dynamics.",
+      "This enumerates delayed roots, diagnostic branch-action rows, edge-map multisets, source-recoil ledger residuals, action-variation stationarity residuals, transfer rows, and area-normalized finite-block coefficient residuals. Its action kernels are diagnostic adapters, not accepted substrate dynamics.",
     parameters: {
       min_n: args.minN,
       max_n: args.maxN,
@@ -1311,6 +1368,11 @@ function buildPacket(args) {
       delta_samples: args.deltaSamples,
       max_root_index: args.maxRootIndex,
       jacobian_floor: args.jacobianFloor,
+      terminal_family: args.terminalFamily,
+      terminal_phase_offset:
+        args.terminalFamily === "phase-offset" ? args.terminalPhaseOffset : 0,
+      terminal_center_shift:
+        args.terminalFamily === "shifted-center" ? args.terminalCenterShift : 0,
       action_kernel: args.actionKernel,
       kernel_strength: args.kernelStrength,
       fit_kernel_strength: args.fitKernelStrength,
@@ -1332,6 +1394,7 @@ function buildPacket(args) {
     },
     proof_obligations: {
       terminal_kinematics: "enumerated_by_this_packet",
+      terminal_family: "concentric_baseline_bounded_phase_offset_or_shifted_center_variant",
       edge_projection: "action_row_edge_multisets_enumerated_by_this_packet",
       cycle_averaged_residual: "diagnostic_adapter_only_until_action_kernel_is_accepted",
       local_conservation_ledger: "receiver_side_and_source_recoil_pair_ledgers_reported_but_wake_energy_boundary_terms_still_open",

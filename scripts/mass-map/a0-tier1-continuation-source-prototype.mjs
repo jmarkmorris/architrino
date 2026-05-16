@@ -20,6 +20,7 @@ const CHARGE = { "+": 1, "-": -1 };
 const SIGN = { "+": 1, "-": -1 };
 const BLOCKED_STATUS = "blocked_carrier_replay_only";
 const BLOCKED_FAILURE_CODE = "tier1-integrator-not-run";
+const SOURCE_TIME_COVERAGE_EPSILON_FACTOR = 16;
 
 function parseArgs(argv) {
   const args = {
@@ -530,8 +531,16 @@ function replaySampleTimes(row, sampleCount) {
   const maxDelay = row.root_ledger?.maxDelay ?? 0;
   const period = row.closure_labels?.T_k ?? row.geometry?.commonPeriod;
   const start = -maxDelay;
+  if (sampleCount <= 1) {
+    return [{ t: start }];
+  }
   return Array.from({ length: sampleCount }, (_, i) => ({
-    t: start + ((period - start) * i) / (sampleCount - 1),
+    t:
+      i === 0
+        ? start
+        : i === sampleCount - 1
+          ? period
+          : start + ((period - start) * i) / (sampleCount - 1),
   }));
 }
 
@@ -2699,10 +2708,41 @@ function directRootHorizonLadderDiagnostic(row, tier0, configResult, args, sampl
 function sourceCoverageComplete(row, samples) {
   const period = row.closure_labels?.T_k ?? row.geometry?.commonPeriod;
   const maxDelay = row.root_ledger?.maxDelay ?? 0;
+  const firstSampleTime = samples[0]?.t;
+  const lastSampleTime = samples[samples.length - 1]?.t;
+  const coverageTolerance = sourceTimeCoverageTolerance(period, maxDelay);
   if (!Number.isFinite(period) || samples.length === 0) {
     return false;
   }
-  return samples[0].t <= -maxDelay && samples[samples.length - 1].t >= period;
+  return (
+    Number.isFinite(firstSampleTime) &&
+    Number.isFinite(lastSampleTime) &&
+    firstSampleTime <= -maxDelay + coverageTolerance &&
+    lastSampleTime + coverageTolerance >= period
+  );
+}
+
+function sourceTimeCoverageTolerance(period, maxDelay) {
+  const scale = Math.max(
+    1,
+    Number.isFinite(period) ? Math.abs(period) : 0,
+    Number.isFinite(maxDelay) ? Math.abs(maxDelay) : 0
+  );
+  return SOURCE_TIME_COVERAGE_EPSILON_FACTOR * Number.EPSILON * scale;
+}
+
+function lowerEndpointDeficit(sampleTime, requiredTime) {
+  if (!Number.isFinite(sampleTime) || !Number.isFinite(requiredTime)) {
+    return null;
+  }
+  return Math.max(0, sampleTime - requiredTime);
+}
+
+function upperEndpointDeficit(sampleTime, requiredTime) {
+  if (!Number.isFinite(sampleTime) || !Number.isFinite(requiredTime)) {
+    return null;
+  }
+  return Math.max(0, requiredTime - sampleTime);
 }
 
 function continuationSourceRow(row, tier0, configResult, args) {
@@ -2716,6 +2756,12 @@ function continuationSourceRow(row, tier0, configResult, args) {
   const directRootProbeDiagnostic = directRootRecomputingProbeDiagnostic(row, tier0, configResult, args, samples);
   const directRootHorizonLadder = directRootHorizonLadderDiagnostic(row, tier0, configResult, args, samples);
   const coverageComplete = sourceCoverageComplete(row, samples);
+  const period = row.closure_labels?.T_k ?? row.geometry?.commonPeriod ?? null;
+  const maxDelay = row.root_ledger?.maxDelay ?? 0;
+  const requiredStart = -maxDelay;
+  const sampleStart = samples[0]?.t ?? null;
+  const sampleEnd = samples[samples.length - 1]?.t ?? null;
+  const coverageTolerance = sourceTimeCoverageTolerance(period, maxDelay);
   return {
     row: row.row,
     schema: "a0-tier1-continuation-source-prototype-row/v1",
@@ -2727,7 +2773,7 @@ function continuationSourceRow(row, tier0, configResult, args) {
         : roots.length === 0
           ? "provisional-root-records-missing"
           : "source-time-coverage-incomplete",
-    period: row.closure_labels?.T_k ?? row.geometry?.commonPeriod ?? null,
+    period,
     source_row: {
       branch_label: row.branch_label ?? null,
       z_lambda: row.z_lambda ?? null,
@@ -2738,10 +2784,13 @@ function continuationSourceRow(row, tier0, configResult, args) {
       center_gauge: row.state_vector?.centerGauge ?? null,
       sample_count: samples.length,
       sample_interval: {
-        start: samples[0]?.t ?? null,
-        end: samples[samples.length - 1]?.t ?? null,
-        required_start: -(row.root_ledger?.maxDelay ?? 0),
-        required_end: row.closure_labels?.T_k ?? row.geometry?.commonPeriod ?? null,
+        start: sampleStart,
+        end: sampleEnd,
+        required_start: requiredStart,
+        required_end: period,
+        coverage_tolerance: coverageTolerance,
+        start_deficit: lowerEndpointDeficit(sampleStart, requiredStart),
+        end_deficit: upperEndpointDeficit(sampleEnd, period),
       },
       root_replay: rootReplay,
     },

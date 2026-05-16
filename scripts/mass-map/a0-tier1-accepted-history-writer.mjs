@@ -8,6 +8,7 @@ const ACCEPTED_HISTORY_STATUS = "accepted_history_segment";
 const BODY_IDS = ["I+", "I-", "M+", "M-", "O+", "O-"];
 const ROOT_RELATIONS = ["partner", "self", "inter_layer"];
 const POLARITIES = ["+", "-"];
+const SOURCE_TIME_COVERAGE_EPSILON_FACTOR = 16;
 const ACCEPTED_CONTINUATION_STATUSES = new Set([
   "accepted_tier1_continuation",
   "tier1_continuation_accepted",
@@ -359,25 +360,53 @@ function coverageDiagnostics(segment, row) {
   const maxSampleTime = samples.length > 0 ? samples[samples.length - 1].t : null;
   const maxRequiredDelay = Math.max(roots.max_delay, row.root_ledger?.maxDelay ?? 0);
   const requiredStart = -maxRequiredDelay;
+  const coverageTolerance = sourceTimeCoverageTolerance(period, maxRequiredDelay);
   return {
     min_sample_time: minSampleTime,
     max_sample_time: maxSampleTime,
     required_start: requiredStart,
     required_end: period,
     max_active_root_delay: maxRequiredDelay,
+    coverage_tolerance: coverageTolerance,
+    cycle_start_deficit: lowerEndpointDeficit(minSampleTime, 0),
+    delayed_source_start_deficit: lowerEndpointDeficit(minSampleTime, requiredStart),
+    end_deficit: upperEndpointDeficit(maxSampleTime, period),
     samples_cover_cycle:
       Number.isFinite(minSampleTime) &&
       Number.isFinite(maxSampleTime) &&
       Number.isFinite(period) &&
-      minSampleTime <= 0 &&
-      maxSampleTime >= period,
+      minSampleTime <= coverageTolerance &&
+      maxSampleTime + coverageTolerance >= period,
     samples_cover_all_delayed_source_times:
       Number.isFinite(minSampleTime) &&
       Number.isFinite(maxSampleTime) &&
       Number.isFinite(period) &&
-      minSampleTime <= requiredStart &&
-      maxSampleTime >= period,
+      minSampleTime <= requiredStart + coverageTolerance &&
+      maxSampleTime + coverageTolerance >= period,
   };
+}
+
+function sourceTimeCoverageTolerance(period, maxDelay) {
+  const scale = Math.max(
+    1,
+    Number.isFinite(period) ? Math.abs(period) : 0,
+    Number.isFinite(maxDelay) ? Math.abs(maxDelay) : 0
+  );
+  return SOURCE_TIME_COVERAGE_EPSILON_FACTOR * Number.EPSILON * scale;
+}
+
+function lowerEndpointDeficit(sampleTime, requiredTime) {
+  if (!Number.isFinite(sampleTime) || !Number.isFinite(requiredTime)) {
+    return null;
+  }
+  return Math.max(0, sampleTime - requiredTime);
+}
+
+function upperEndpointDeficit(sampleTime, requiredTime) {
+  if (!Number.isFinite(sampleTime) || !Number.isFinite(requiredTime)) {
+    return null;
+  }
+  return Math.max(0, requiredTime - sampleTime);
 }
 
 function declaredValidation(segment, field) {

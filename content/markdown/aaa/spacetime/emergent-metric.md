@@ -133,6 +133,16 @@ where $\mathcal{R}_{\mathrm{Cauchy}}^{(r)}$ records failure of the declared chan
 
 This remains a closure target rather than substrate ontology. If $\mathcal{R}_{\mathrm{char}}$ is small only because the photon, clock, ruler, or stress channels use different fitted records, the metric has not been recovered as a constitutive output of the Noether Sea.
 
+For fermion matter channels, the compatibility burden inherits the spinor ledger. The effective metric may summarize the matter channel only after the ordered-core spinor target, the effective spin-operator record, and weak-coupling-triad exposure are supplied by the same branch record. In compact form,
+$$
+\mathcal{R}_{\mathrm{metric}}^{\mathrm{fermion}}(\theta;W)
+=
+\mathcal{R}_{\mathrm{metric}}(\theta;W)
++\lambda_{\mathrm{s2m}}
+\mathcal{R}_{\mathrm{spin\to metric}}(\theta;W),
+$$
+with $\mathcal{R}_{\mathrm{spin\to metric}}$ defined in [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md#spinor-to-metric-compatibility-residual). This does not add spinor ontology to the metric. It states when fermion matter records are mature enough to be consumed by the metric constitutive map without importing weak handedness or spin as unexplained effective labels.
+
 ## Noether-Core Deformation and Metric Language
 
 At the assembly level, an individual Noether core has an oblate, deformable exclusion envelope; see [Noether Core Geometry](noether-core-geometry.md). This chapter does not identify that single-core envelope with the metric. The metric bridge uses many deforming Noether cores in the Noether Sea as the medium whose coarse variables determine clock, ruler, and signal behavior.

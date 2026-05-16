@@ -141,6 +141,24 @@ $$
 =\{a\in S\mid \eta_a^{(h)}=1\}.
 $$
 
+This gate is the weak-sector term of the spinor-to-metric compatibility residual in [Angular Momentum and Spin](angular-momentum-and-spin.md#spinor-to-metric-compatibility-residual). If $\Sigma_{\mathrm{spin}}^{(h)}(\theta;W)$ is the exposure class predicted by the ordered-core spinor/helicity ledger on record window $W$, the local mismatch can be written
+$$
+\Delta_{\mathrm{WCT}}(\theta;W)
+=
+d_{\Sigma}\!\left(
+\Sigma_{\mathrm{WCT}}^{(L)},
+\Sigma_{\mathrm{spin}}^{(L)}
+\right)
++
+d_{\Sigma}\!\left(
+\Sigma_{\mathrm{WCT}}^{(R)},
+\Sigma_{\mathrm{spin}}^{(R)}
+\right)
++
+\sum_{a\in S}\left(\eta_a^{(R)}\right)^2.
+$$
+The last term records right-handed charged-current leakage in the hard-gate model, or its declared smooth replacement if later simulations soften the exposure function. The weak sector may consume the spinor ledger only when this residual stays below tolerance using the same $\theta$ that also supplies the CKM overlap and beta-reaction provenance record.
+
 The beta gate is open only when $h=L$, $\lvert\Sigma_{\mathrm{WCT}}^{(L)}\rvert=3$, and the exposed sites have the down-state inventory $A_{\Sigma}=3E$. The right-handed channel is blocked at this finite-state level:
 $$
 \mathcal{W}_{-}^{du}\lvert d_R;c,\alpha\rangle=0,

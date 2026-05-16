@@ -325,6 +325,21 @@ node scripts/quantum/local-response-contract-adapter.mjs \
 
 This adapter emits replay-ready `local_response` patches only when a candidate local Stern-Gerlach apparatus row already supplies `source_record_id`, `party`, `setting`, `sign`, `response_source`, `apparatus_kernel_id`, `setting_axis`, `Z_in_id`, `G_rec`, `Q_m`, `theta_rec_fraction`, and the same-window residuals `Delta_rec`, `Delta_div`, `entropy_locking`, and `event_ledger`. It refuses to synthesize signs from `correlation_interval`, `eta_AB_interval`, or Bell target tables. Its stable blocker codes are `local-response-row-missing`, `source-record-id-missing`, `party-missing`, `setting-missing`, `response-sign-missing`, `response-source-not-accepted`, `forbidden-bell-threshold-source`, `apparatus-kernel-missing`, `setting-axis-missing`, `z-in-missing`, `record-gate-missing`, `local-return-map-measure-missing`, `record-cycle-phase-missing`, `local-record-residuals-missing`, `delta-rec-missing`, `delta-div-missing`, `entropy-locking-missing`, `event-ledger-missing`, and `local-response-duplicate-row`.
 
+The minimal diagnostic Stern-Gerlach response emitter is:
+
+```text
+node scripts/quantum/stern-gerlach-response-toy-emitter.mjs \
+  --pretty \
+  --out /tmp/stern-gerlach-response-toy-emitter-blocked.json
+
+node scripts/quantum/local-response-contract-adapter.mjs \
+  --input /tmp/stern-gerlach-response-toy-emitter-blocked.json \
+  --pretty \
+  --out /tmp/local-response-contract-adapter-from-sg.json
+```
+
+This emitter is intentionally narrower than the adapter. It emits `local_response_rows` only from explicit local Stern-Gerlach apparatus response inputs with `G_rec`, a nonzero signed `Q_m` or `mathcal_Q_m`, `theta_rec_fraction`, `setting_axis`, `Z_in_id`, `record_window_id`, an accepted `response_source`, and same-window residuals. It refuses `correlation_interval`, `eta_AB_interval`, Bell target tables, context probability tables, and separatrix-zero rows. Its stable blocker codes are `sg-response-row-missing`, `source-record-id-missing`, `party-missing`, `setting-missing`, `response-source-not-accepted`, `forbidden-bell-threshold-source`, `apparatus-kernel-missing`, `setting-axis-missing`, `z-in-missing`, `record-window-missing`, `record-gate-missing`, `signed-response-functional-missing`, `signed-response-separatrix-zero`, `record-cycle-phase-missing`, `local-record-residuals-missing`, `residual-window-missing`, `residual-window-mismatch`, `delta-rec-missing`, `delta-div-missing`, `entropy-locking-missing`, `event-ledger-missing`, and `sg-response-duplicate-row`.
+
 ### Phase-Certificate Diagnostic Contract
 
 The next executable object is not another Bell table. It is a branch-certificate phase row that can say whether the proposed $\varphi_{\Pi}$ was computed from retained source data or merely inserted as a reduced coordinate. Each row should contain:
