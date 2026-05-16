@@ -4,7 +4,7 @@
 
 - Kind: `priority-proof-packet`
 - Workstream task: `horizon_entropy_packet`
-- Status: `action-diagnostic-implemented`
+- Status: `terminal-dynamic-diagnostic-implemented`
 
 ## Purpose
 
@@ -16,7 +16,7 @@ The implemented script is:
 node scripts/tri-binary/terminal-alignment-enumerator.mjs
 ```
 
-It enumerates reduced circular terminal labels, delayed inter-layer roots, branch Jacobian transversality, diagnostic branch-action rows, local ledger residuals, cycle-residual adapters, observer-quotiented edge-map multisets, and the resulting transfer proxies.
+It enumerates reduced circular terminal labels, delayed inter-layer roots, branch Jacobian transversality, diagnostic branch-action rows, receiver-side and source-recoil ledger residuals, action-variation stationarity residuals, cycle-residual adapters, observer-quotiented edge-map multisets, area-normalized finite-block coefficients, and the resulting transfer proxies.
 
 ## Current Command
 
@@ -63,7 +63,9 @@ $$
 \rho(\mathsf{T}_{\theta,\nu}^{\mathrm{act}})=0.
 $$
 
-The reason is structural. In the reduced concentric circular model, the symmetric inter-layer action sum fits the required circular terminal acceleration with an effectively zero fitted strength; the remaining acceleration residual is the circular acceleration itself. The first sampled label has RMS residual about `2.05` against tolerance `0.01`. This does not recover the target local coefficient. The important result is negative but useful: reduced concentric circular terminal kinematics plus the first diagnostic action kernel supplies transversal branch inventories and edge maps, but it does not create the nontrivial label growth or cycle support needed for
+The newer `terminal_dynamic` transfer adds paired source-recoil ledgers and the sampled action-variation stationarity residual. It remains empty in the same reduced concentric circular family. With `3 <= n <= 5`, `phase-samples = 12`, `block-size = 16`, and the `layer-sum` area proxy, the edge-only finite coefficient is about `0.09174`, but the terminal-dynamic coefficient is undefined because no transfer edges are accepted. The maximum sampled stationarity residual is about `166.83`. With `3 <= n <= 6`, the edge-only finite coefficient is about `0.12120`, the terminal-dynamic transfer is still empty, and the maximum stationarity residual rises to about `322.67`.
+
+The reason is structural. In the reduced concentric circular model, the symmetric inter-layer action sum fits the required circular terminal acceleration with an effectively zero fitted strength; the remaining acceleration residual is the circular acceleration itself. The sampled action-variation residual also fails the stationarity condition exposed by the scalar-action no-go result. This does not recover the target local coefficient. The important result is negative but useful: reduced concentric circular terminal kinematics plus the diagnostic action kernel supplies transversal branch inventories, area-normalized finite-block output, source-recoil residuals, and edge maps, but it does not create the nontrivial label growth, cycle support, or action stationarity needed for
 
 $$
 s_{\mathrm{align}}(\theta)\to\frac{1}{4}.
@@ -84,10 +86,11 @@ The script explicitly leaves these proof obligations unresolved:
 
 - replace the diagnostic inverse-square branch action with the declared substrate action kernel;
 - compute $\mathcal{Q}_{\ell,\alpha}^{\mathrm{term}}(\lambda)$ from the declared action kernel, including intra-layer action and regularization;
-- assign accepted branch increments $(\Delta E_b,\Delta\mathbf{p}_b,\Delta\mathbf{J}_b,\Delta q_b)$ so edge compatibility includes the local conservation ledger;
+- replace the diagnostic source-recoil impulse ledger with Noether boundary increments from an accepted regularized action;
 - replace the coarse numerical edge quotient with the Physical Observer quotient $\sim_{O,\theta,W}$ for a declared strong-field record $\theta$;
 - rerun the transfer calculation on the resulting admissible $\Lambda_{\theta}^{\mathrm{loc}}$;
-- test whether the two-dimensional block pressure, not only the one-dimensional strip proxy, can approach the target coefficient.
+- test whether the two-dimensional block pressure, not only the one-dimensional strip proxy, can approach the target coefficient;
+- test branch families beyond the concentric circular ansatz, because the current terminal-dynamic residuals fail before the transfer matrix can carry entropy density.
 
 ## Failure Interpretation
 

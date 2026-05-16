@@ -166,6 +166,17 @@ $$
 $$
 on the same record window used for Born weights, contextuality checks, and locality checks. The restriction to $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}$ is physical only when it is fixed before fitting the benchmark and justified by the apparatus channel, retained path-history data, and recordability criteria. If the admissible set is changed after seeing a failed observable, the operator map has hidden a quantization choice inside the closure.
 
+Time-like observables obey the same guardrail. Absolute time $t$ remains the substrate parameter, not an operator that every apparatus must quantize. Arrival, dwell, delay, or traversal-time quantities become admissible only when the setup supplies a clock-pointer variable, an access region, and a record rule that turn them into calibrated observer-level records. For example, a weak clock for a declared region $\Omega$ may define
+$$
+T_\Omega
+=
+\alpha_T^{-1}
+\left(
+Y_\Omega(A_\epsilon(t_1))-Y_\Omega(A_{\text{pre}})
+\right),
+$$
+but $T_\Omega$ belongs to $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}$ only for the declared apparatus kernel and record window that calibrate $Y_\Omega$. A negative or otherwise anomalous time-like value is therefore a signed conditional response in that domain, not a new substrate time variable and not evidence for backward-in-$t$ causation. If two time observables coincide in a standard benchmark, the coincidence is a recovery target for the declared record channel; if they differ, the operator map must preserve the distinction instead of forcing one global time operator.
+
 ## Observable-Domain Guardrail
 
 Dimensional or representation claims are meaningful only after the observable domain has been declared. Two effective descriptions can be operationally equivalent on a restricted apparatus record set even when their internal coordinates, apparent dimension, or auxiliary geometry differ. That equivalence is useful comparison mathematics, but it cannot be read backward as substrate ontology.

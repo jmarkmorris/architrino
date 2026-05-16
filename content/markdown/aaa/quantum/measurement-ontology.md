@@ -127,6 +127,19 @@ $$
 
 This is the ontology-level replacement for instantaneous collapse. The transition is continuous in absolute time, though it may appear effectively abrupt to a coarse observer.
 
+A Physical Observer may still be unable to resolve the crossing from the retained record. Let $\pi_O$ be the observer's access projection from the coupled measurement state to retained records, let $d_O$ be the induced record distance, and let $\epsilon_O$ be the declared record tolerance. For a branch basin $B_k$, the boundary is operationally unresolved for $O$ when
+
+$$
+d_O\!\left(
+\pi_O\!\left(X(t),A(t),\mathcal{W}\right),
+\pi_O(\partial B_k)
+\right)
+\le
+\epsilon_O.
+$$
+
+This condition does not add a second ontology or a language-level vagueness postulate. It says only that the available record cannot decide the basin side. If the full measurement dynamics place $(X(t),A(t),\mathcal{W})$ inside or outside $B_k$, that fact remains substrate-level; a failure claim must instead show that the basin family or its boundary is absent, unstable under the declared coarse-graining, or not tied to the record channel.
+
 The time at which an effective branch description becomes useful is not fixed by the phrase "superposition" alone. It depends on the apparatus kernel, coarse-graining, access region, and record window. For a declared channel $(\mathcal{K}_A,\mathcal{Q},W,T)$ and candidate basin family $\{B_i(t)\}$, a pre-record branch separation can be treated as present only when the retained transition law is no longer restartable through a single reduced state while at least two alternatives are independently recordable in that channel:
 $$
 \tau_{\mathrm{split}}
@@ -376,6 +389,40 @@ $$
 \varepsilon_Y,
 $$
 while still satisfying the no-record condition for each retained weak-probe trial. A negative or otherwise anomalous signed average is therefore a constraint on the conditional response kernel, not evidence for negative-mass ontology, backward substrate causation, or a completed measurement record inside the weak-probe window.
+
+The same discipline applies when the weak probe is calibrated as a time-like observable. Let $\Omega$ be the declared region, barrier, channel, or internal state being sampled, let $Y_\Omega$ be the weak clock-pointer coordinate, and let $\alpha_T$ convert pointer displacement into the calibrated clock unit for that apparatus. The conditional weak-time response is
+$$
+\bar{T}_{\Omega\mid\mathcal{R}_f}^{\mathbb{A}\mathbb{A}\mathbb{A}}
+=
+\lim_{\epsilon\to0}
+\frac{1}{\epsilon\,\alpha_T}
+\int
+\left(
+Y_\Omega(A_\epsilon(t_1))-Y_\Omega(A_{\text{pre}})
+\right)
+d\mu_{\mathrm{post}}.
+$$
+For a standard weak-measurement benchmark with prediction $T_{\Omega\mid\mathcal{R}_f}^{\mathrm{QM,weak}}$, the recovery target is
+$$
+\left|
+\bar{T}_{\Omega\mid\mathcal{R}_f}^{\mathbb{A}\mathbb{A}\mathbb{A}}
+-
+T_{\Omega\mid\mathcal{R}_f}^{\mathrm{QM,weak}}
+\right|
+\le
+\varepsilon_T,
+$$
+while the no-record condition above still holds on each retained trial. If two clock designs are known to agree in a calibrated regime, such as a dwell-style internal-state clock and a delay-style pulse clock, the additional equality target is
+$$
+\left|
+\bar{T}_{\mathrm{dwell}\mid\mathcal{R}_f}
+-
+\bar{T}_{\mathrm{delay}\mid\mathcal{R}_f}
+\right|
+\le
+\varepsilon_{\mathrm{eq}}.
+$$
+A negative value of $\bar{T}_{\Omega\mid\mathcal{R}_f}$ is therefore a signed conditional clock response in the post-selected ensemble. It is not negative absolute time, not a backward-in-time causal process, and not a claim that an intermediate record has already formed inside the weak-probe window.
 
 ## Relation to the Wavefunction
 

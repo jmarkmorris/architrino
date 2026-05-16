@@ -147,6 +147,8 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, the corresponding mechanism involves the No
 - If the wake gradient at the assembly's location points into the barrier and the assembly's internal configuration (binary phases, wake history) places it near a basin boundary, the assembly can be driven across the barrier by the residual wake gradient.
 - The tunneling probability depends on the barrier geometry, the local medium density, and the assembly's internal phase—all computable from the Master Equation in principle.
 
+Weak-measurement trajectory reconstructions sharpen this comparison without settling the ontology. If a post-selected weak probe recovers an averaged path, flux, dwell time, or traversal-time response that agrees with a de Broglie--Bohm trajectory calculation, the retained content is the calibrated conditional ensemble observable. That result is useful comparison pressure on the causal-wake proof route, but it is not by itself evidence for a separate pilot wave, a completed intermediate record, or a literal Bohmian trajectory ontology. The $\mathbb{A}\mathbb{A}\mathbb{A}$ task is to derive the same averaged response from below-threshold apparatus coupling, path-history data, and the record-forming basin selected at the end of the trial.
+
 ### Quantization of Energy Levels
 
 In dBB, energy quantization follows from the requirement that $\psi$ be single-valued and normalizable, which selects discrete eigenvalues.

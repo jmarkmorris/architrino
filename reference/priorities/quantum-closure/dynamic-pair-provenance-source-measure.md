@@ -267,6 +267,64 @@ $$
 
 This is the completed-record obstruction. It means the current candidate does not merely need a better label for $\eta_{AB}$; it must derive why the retained Bell coarse-graining is not restartable as a single common-cause record with local one-wing maps. If the completed retained variables can be refined until this parity obstruction disappears, the construction has product-screened itself and the Bell-family gate fails. If the obstruction survives while $\Delta_{\mathrm{MI}}$, $\Delta_{\mathrm{NS}}^A$, and $\Delta_{\mathrm{NS}}^B$ remain zero, the remaining burden is to prove that the nonfactorizing parity pattern is produced by finite-time joint record basins rather than by a fitted context table.
 
+The harness reports this as the parity residual
+
+$$
+\Delta_{\mathrm{par}}
+=
+\mu_{AB}^{\mathrm{rec}}
+\left(
+\left\{
+\lambda:
+C_{00}C_{01}C_{10}C_{11}=-1
+\right\}
+\right).
+$$
+
+For the two generated joint-basin candidates, $\Delta_{\mathrm{par}}=1/\sqrt{2}$ at the table level. This demotes those candidates from possible Bell closure candidates to failure-boundary fixtures and simulation targets. They preserve the exact obstruction a substrate derivation must explain, but they do not yet explain it. A claim that $\Delta_{\mathrm{div}}^{AB}=O(1)$ explains the obstruction is admissible only if that residual is computed before the completed local record boundary. If $\Delta_{\mathrm{div}}^{AB}=O(1)$ remains after both wings satisfy their local $\Delta_{\mathrm{rec}}$ and $\Delta_{\mathrm{div}}$ record tests, then the model has not supplied completed local measurement records in the sense required by measurement ontology.
+
+### Local-Response Replay Target
+
+Before another positive Bell-table candidate is promoted, the next simulation target should replay the same retained source row through the declared local apparatus response for each CHSH setting. The purpose is not to add a new Bell gate; it is to decide whether the current parity obstruction is a lawful finite-time record-window effect or a fitted context table.
+
+| Replay input | Required content |
+| --- | --- |
+| Source row | $\Pi_{AB}$ identifier, weight, phase-certificate identifier, $\varphi_{\Pi}$ status, and any retained $\eta_{AB}$ or correlation interval. |
+| Local apparatus row | For each $X\in\{A,B\}$ and each setting $i\in\{0,1\}$: apparatus kernel, local return-map measure, local record-cycle phase coordinate, and outcome sign when the record completes. |
+| Local record residuals | $\Delta_{\mathrm{rec}}^X$, $\Delta_{\mathrm{div}}^X$, entropy-locking residual, and event-ledger residual for the same record window. |
+| Pair audit row | $\Delta_{\mathrm{MI}}$, $\Delta_{\mathrm{NS}}^A$, $\Delta_{\mathrm{NS}}^B$, $\Delta_{\mathrm{prod}}$, and $\Delta_{\mathrm{par}}$ on the emitted table. |
+
+The replay pass/fail rule is:
+
+1. If replay supplies deterministic local signs $A_0,A_1,B_0,B_1$ for each completed retained row, then $C_{00}C_{01}C_{10}C_{11}=+1$ pointwise. Any resulting Bell-table success has product-screened or used another prohibited escape route.
+2. If replay cannot supply the four one-wing signs because the retained source row is not restartable before the local record window, the route remains only a simulation target. It must next show how actual-setting local records still satisfy $\Delta_{\mathrm{rec}}^X\le\varepsilon_{\mathrm{rec}}$ and $\Delta_{\mathrm{div}}^X\le\varepsilon_{\mathrm{div}}$ without distant-setting dependence.
+3. If $\Delta_{\mathrm{par}}>0$ is caused by setting-dependent source weights, signaling marginals, or failed local record residuals, the candidate is classified as measurement-dependent, signaling, or incomplete-record behavior rather than Bell closure.
+
+The executable replay fixture is:
+
+```text
+node scripts/quantum/source-measure-joint-basin-emitter.mjs \
+  --pretty \
+  --out /tmp/source-measure-joint-basin-candidate.json
+
+node scripts/quantum/source-measure-local-response-replay.mjs \
+  --candidate /tmp/source-measure-joint-basin-candidate.json \
+  --pretty \
+  --out /tmp/source-measure-local-response-replay.json
+```
+
+On the current generated joint-basin candidate, the expected replay status is `failure_boundary_missing_local_response`: $\Delta_{\mathrm{par}}=1/\sqrt{2}$ remains visible, but no completed local one-wing response signs or local record residuals have been supplied.
+
+The fail-closed local-response adapter is:
+
+```text
+node scripts/quantum/local-response-contract-adapter.mjs \
+  --pretty \
+  --out /tmp/local-response-contract-adapter-blocked.json
+```
+
+This adapter emits replay-ready `local_response` patches only when a candidate local Stern-Gerlach apparatus row already supplies `source_record_id`, `party`, `setting`, `sign`, `response_source`, `apparatus_kernel_id`, `setting_axis`, `Z_in_id`, `G_rec`, `Q_m`, `theta_rec_fraction`, and the same-window residuals `Delta_rec`, `Delta_div`, `entropy_locking`, and `event_ledger`. It refuses to synthesize signs from `correlation_interval`, `eta_AB_interval`, or Bell target tables. Its stable blocker codes are `local-response-row-missing`, `source-record-id-missing`, `party-missing`, `setting-missing`, `response-sign-missing`, `response-source-not-accepted`, `forbidden-bell-threshold-source`, `apparatus-kernel-missing`, `setting-axis-missing`, `z-in-missing`, `record-gate-missing`, `local-return-map-measure-missing`, `record-cycle-phase-missing`, `local-record-residuals-missing`, `delta-rec-missing`, `delta-div-missing`, `entropy-locking-missing`, `event-ledger-missing`, and `local-response-duplicate-row`.
+
 ### Phase-Certificate Diagnostic Contract
 
 The next executable object is not another Bell table. It is a branch-certificate phase row that can say whether the proposed $\varphi_{\Pi}$ was computed from retained source data or merely inserted as a reduced coordinate. Each row should contain:
@@ -290,6 +348,27 @@ node scripts/quantum/pair-phase-certificate-emitter.mjs \
 ```
 
 This emitter computes $Z_A^{AB}$, $Z_B^{AB}$, $\varphi_{\Pi}$, the derived $\eta_{AB}$ fraction, and the residual fields from declared diagnostic rows. It is not a Bell-family harness candidate and does not claim substrate derivation. A row with `wake_certificate_missing=1` or `certificate_status=diagnostic_declared_row` is a JSON-shape success marker only. A future positive source-measure candidate may copy this shape into `source_records` only after the same fields are filled from an accepted branch certificate and the product-screening audit remains nonzero without setting-dependent source weights.
+
+The fail-closed intake adapter is:
+
+```text
+node scripts/quantum/pair-phase-certificate-adapter.mjs \
+  --pretty \
+  --out /tmp/pair-phase-certificate-adapter-blocked.json
+```
+
+This adapter reads accepted-history or action-increment style artifacts and refuses to synthesize a positive pair-phase row unless the accepted branch certificate already supplies the pair-source event, daughter certificates, layer phase ledgers, angular-momentum balances, substrate-derived wake phase ledger, local record-cycle phases, and gauge probes. Its stable blocker codes are `accepted-branch-certificate-missing`, `pair-source-event-missing`, `source-weight-missing`, `daughter-certificate-missing`, `layer-phase-ledger-missing`, `angular-momentum-balance-missing`, `wake-phase-ledger-missing`, and `gauge-probe-missing`. A blocked adapter artifact is a provenance audit, not a failure of the phase diagnostic itself.
+
+The accepted-history layer-phase diagnostic is:
+
+```text
+node scripts/quantum/accepted-history-layer-phase-extractor.mjs \
+  --input /tmp/a0-tier1-accepted-history-layer-phase-extractor.json \
+  --pretty \
+  --out /tmp/accepted-history-layer-phase-extractor.json
+```
+
+This extractor computes provisional per-layer relative vectors, reduced angular-momentum vectors, unwrapped phase samples, and plane-stability residuals from accepted-history samples. It remains fail-closed: unaccepted history rows stay blocked, and the script emits pair-phase-certificate input only when the pair-source event, daughter ledgers, substrate-derived wake phase, source weight, local record-cycle phases, and quotient-audit probes are already explicit in the input. It therefore narrows the layer phase part of $\Theta_{\ell X}^{AB}$ without claiming $\varphi_{\Pi}$, $\eta_{AB}$, or Bell-family closure.
 
 The diagnostic residuals should be read as first filters:
 
@@ -580,7 +659,7 @@ This theorem target fails in any of the following cases:
 - The delayed total-angular-momentum functional still needs a source-event evaluation for a changing-frequency Noether core.
 - The effective spinor coordinate and the conditions under which the record-cycle measure flattens to the ideal chart remain lower-level proof obligations.
 - The current product-screened generated axis model is a correct failure control, not a partial success.
-- The generated joint-basin target now shows the intended nonfactorizing success shape at the harness level, but it leaves the central derivation open: explain why the joint basin exists in the substrate record law rather than inserting the singlet threshold as an effective target.
+- The generated joint-basin target is now a failure-boundary fixture and simulation target, not a positive Bell closure candidate. Its table-level success is blocked by $\Delta_{\mathrm{par}}=1/\sqrt{2}$ until a local-response replay target locates the obstruction before the completed local record boundary without setting-dependent source weights or signaling.
 - Any future source-measure scenario must decide whether nonfactorization comes from an incomplete retained record, a genuinely joint record-basin construction, or a failed premise in the attempted $\Pi_{AB}$ compression. Vague nonlocality language is not an acceptable output.
 
 ## Handoff

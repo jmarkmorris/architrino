@@ -1,10 +1,10 @@
 # Effective Lagrangian
 
-This document formalizes the variational foundation of the Architrino Assembly Architecture. It bridges the exact, path-history-dependent microdynamics of discrete architrinos with the coarse-grained, effective field theories that govern macroscopic assembly behavior in the Noether Sea.
+This document formalizes the conditional variational scaffold used by the Architrino Assembly Architecture. It bridges the exact, path-history-dependent microdynamics of discrete architrinos with the coarse-grained, effective field theories that govern macroscopic assembly behavior in the Noether Sea, while keeping the Master EOM primary until the variation residual closes.
 
 ### Regularized Nonlocal Action and Variation
 
-The Master Equation of motion for architrinos is non-Markovian, driven by the intersection of trajectories with past causal wake surfaces. Consequently, the fundamental action principle cannot be a local integral over instantaneous states. It must be a multi-time functional that evaluates the entire path history.
+The Master Equation of motion for architrinos is non-Markovian, driven by the intersection of trajectories with past causal wake surfaces. Consequently, any action-level scaffold for it cannot be a local integral over instantaneous states. It must be a multi-time functional that evaluates the entire path history, and its variation residual must vanish before it is treated as an exact action derivation.
 
 For a finite, isolated set of architrinos parameterized by absolute time $t$ in the Euclidean void, use the $\eta>0$ regularized delayed action (the exact kernel is recovered as $\eta\to0^+$). The admissible interaction sum below excludes trivial self-coincidence: $i\ne j$ terms are retained, and $i=j$ terms are retained only on nontrivial self-hit branches with $t-t_0\ge\tau_{\min}>0$ or with an explicitly declared core regularization.
 
@@ -141,7 +141,9 @@ $$
 \varepsilon
 }.
 $$
-The branch law is theorem-grade on $W$ only when this residual tends to zero with the declared branch floors and boundary convention. If it does not, the local effective Lagrangian inherits a counterterm or remains a fitted chart.
+The branch law is theorem-grade on $W$ only when this residual tends to zero with the declared branch floors and boundary convention. If it does not, the local effective Lagrangian remains a fitted chart unless an invariant action-level mechanism derives the required counterterm.
+
+The current status is therefore settled at the scaffold level. The pure scalar $1/r$ action is not a universal exact action for the Master EOM; it is valid as an action derivation only on residual-closed charts. The same-support local scalar route and its finite delta-jet extension are ruled out under the restricted assumptions in [master-equation](./master-equation.md#exact-nonlocal-lagrangian): cancelling the derivative residual forces the counterterm to change the accepted inverse-square scale term. The remaining minimal repair is the characteristic-tail counterterm equation stated there. Effective Lagrangian reductions should inherit the Master EOM directly until that nonlocal endpoint convention, Euler derivative, and Noether-ledger closure are proved on the retained chart.
 
 ### Symmetries and History-Aware Conservation Laws
 

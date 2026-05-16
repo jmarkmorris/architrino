@@ -2361,7 +2361,7 @@ $$
 =
 \mathbf{0},
 $$
-or if the action is supplemented by an explicit regularized counterterm whose receiver Euler derivative cancels this residual interior vector. Without one of those conditions, the displayed Master EOM remains the accepted causal law and branch diagnostic, while the pure scalar $1/r$ Fokker-type action is only a partial variational scaffold for it.
+as a sufficient special case, or if the action is supplemented by an explicit regularized counterterm whose receiver Euler derivative cancels this residual interior vector. Such a counterterm must come from an invariant action-level mechanism, not from fitting the already accepted force law. Without one of those conditions, the displayed Master EOM remains the accepted causal law and branch diagnostic, while the pure scalar $1/r$ Fokker-type action is only a partial variational scaffold for it.
 
 Equivalently, define the direct scale term
 $$
@@ -2392,22 +2392,145 @@ $$
 \mathbf{C}_{ij}^{(\eta)}(t)
 \right).
 $$
-The canonical branch law is recovered in the weak simple-root limit only if
+The canonical branch law is recovered on a tested window $W$ in the weak simple-root limit only if
 $$
 \lim_{\eta\to0^+}
+\int_W
+\left\|
 \sum_j\kappa\,\sigma_{ij}|q_iq_j|
-\mathbf{C}_{ij}^{(\eta)}
+\mathbf{C}_{ij}^{(\eta)}(t)
+\right\|dt
 =
+0
+$$
+with the same branch floors and boundary convention used to define the action. This windowed residual condition is the minimal proof obligation for upgrading the variational scaffold to an exact action derivation of the Master EOM.
+
+**Decision (pure scalar action).** The pure scalar $1/r$ Fokker-type scaffold does not generically derive the canonical branch law. The obstruction is local, not merely a boundary convention: for compactly supported receiver variations, the source-side coefficient and Noether endpoint terms cannot cancel the receiver-side interior derivative unless the branch satisfies the stationarity condition above or an invariant action-level counterterm supplies the missing Euler derivative.
+
+Equivalently, on an admissible branch with $r_{ij}>0$ and $|J_{ij}|>J_{\min}>0$,
+$$
+\left.
+\partial_{t'}
+\left[
+\frac{\hat{\mathbf r}_{ij}(t,t')}
+{r_{ij}(t,t')J_{ij}(t;t')}
+\right]
+\right|_{t'=t_0}
+\ne
 \mathbf{0}
 $$
-on the tested window. This is the minimal proof obligation for upgrading the variational scaffold to an exact action derivation of the Master EOM.
+is a certificate that the pure scalar scaffold leaves a nonzero receiver-force residual on that branch. This falsifies the universal claim "the scalar $1/r$ action by itself is the exact action for the Master EOM." It does not falsify the Master EOM, the action-level Noether bookkeeping on closed charts, or the possibility of a later invariant counterterm derived from a richer regularized action.
+
+**No-go scaffold (same-support local scalar counterterm).** The clean local scalar counterterm route is closed under the following restricted assumptions: the added term has the same causal-surface support as the $1/r$ kernel, uses only $g_{ij}$, $r_{ij}$, and $J_{ij}$ on the existing branch chart, introduces no new variables, adds no off-surface support, and is not fitted after the force law is already known. Suppressing the common coupling and sign factors, the allowed branch-pair form is
+$$
+S_{\mathrm{ct},ij}^{(\eta)}
+=
+\int dt\,dt'\,
+\Theta(t-t')\,
+a(r_{ij},J_{ij})\,\delta_\eta(g_{ij}).
+$$
+For receiver variation,
+$$
+\delta r_{ij}
+=
+\hat{\mathbf r}_{ij}\cdot\delta\mathbf{x}_i,
+\qquad
+\delta g_{ij}
+=
+-\frac{1}{c_f}\hat{\mathbf r}_{ij}\cdot\delta\mathbf{x}_i.
+$$
+Before any optional $J_{ij}$-variation is included, the radial part of the counterterm variation contains
+$$
+\delta_{\mathbf{x}_i}S_{\mathrm{ct},ij}^{(\eta)}
+\supset
+\left[
+\partial_{r_{ij}}a\,\delta_\eta(g_{ij})
+-
+\frac{a}{c_f}\delta_\eta'(g_{ij})
+\right]
+\hat{\mathbf r}_{ij}\cdot\delta\mathbf{x}_i.
+$$
+The optional $J_{ij}$-dependence can add transverse and source-velocity terms, but it does not remove the scalar radial coefficient that must cancel the original derivative-of-delta residual. Cancelling that coefficient for all admitted receiver variations requires
+$$
+a(r_{ij},J_{ij})
+=
+-\frac{1}{r_{ij}}.
+$$
+This choice necessarily adds
+$$
+\partial_{r_{ij}}a\,\delta_\eta(g_{ij})
+=
+\frac{\delta_\eta(g_{ij})}{r_{ij}^{2}},
+$$
+which changes the accepted inverse-square scale term. Any further same-support scalar correction that removes this scale change reintroduces a derivative-of-delta coefficient. A $g_{ij}$-antiderivative of $\delta_\eta(g_{ij})$ would move support away from the causal wake surface and is outside the assumptions. Therefore no same-support local scalar counterterm built only from $g_{ij}$, $r_{ij}$, and $J_{ij}$ is admissible under this restricted route.
+
+The obstruction also survives a finite local delta-jet extension. Let
+$$
+K_{\mathrm{ct}}^{(\eta)}(r,g)
+=
+\sum_{n=0}^{N}a_n(r)\delta_\eta^{(n)}(g),
+\qquad
+D_{ij}
+\equiv
+\partial_r-\frac{1}{c_f}\partial_g.
+$$
+The direct kernel $K_0^{(\eta)}=\delta_\eta(g)/r$ has
+$$
+D_{ij}K_0^{(\eta)}
+=
+-\frac{\delta_\eta(g)}{r^2}
+-\frac{\delta_\eta'(g)}{c_f r}.
+$$
+Cancelling only the derivative-of-constraint residual would require
+$$
+D_{ij}K_{\mathrm{ct}}^{(\eta)}
+=
+\frac{\delta_\eta'(g)}{c_f r}
+$$
+without adding another $\delta_\eta(g)/r^2$ scale term. For $N\ge1$, the highest derivative coefficient is $-a_N(r)\delta_\eta^{(N+1)}(g)/c_f$, so $a_N=0$; descending through the jet order forces $a_n=0$ for every $n\ge1$. The remaining $N=0$ case requires $a_0(r)=-1/r$, but then $\partial_r a_0=1/r^2$, so the counterterm again changes the inverse-square scale term it was supposed to preserve.
+
+The conclusion is narrow but decisive for local repairs: no finite same-support local scalar or delta-jet counterterm cancels the scalar-kernel residual while leaving the canonical branch strength intact. A viable action-level repair must instead be nonlocal along the $(r,g)$ characteristic, or must use a richer velocity/history-dependent invariant action. Either route changes the action ontology enough that it should be discussed explicitly before canonization.
+
+**Nonlocal characteristic repair target.** The least invasive remaining action-level route is to solve the counterterm equation before imposing causal-surface support. In the reduced scalar variables, the required receiver-gradient correction has the form
+$$
+D_{ij}K_{\mathrm{ct}}^{(\eta)}(r,g)
+=
+\frac{\delta_\eta'(g)}{c_f r},
+\qquad
+D_{ij}
+=
+\partial_r-\frac{1}{c_f}\partial_g.
+$$
+The characteristics of $D_{ij}$ preserve
+$$
+u
+=
+g+\frac{r}{c_f}.
+$$
+Thus a formal characteristic solution is
+$$
+K_{\mathrm{ct}}^{(\eta)}(r,g)
+=
+H_{\mathrm{ct}}^{(\eta)}\!\left(g+\frac{r}{c_f}\right)
++
+\int_{r_\ast}^{r}
+\frac{1}{c_f\rho}\,
+\delta_\eta'\!\left(g+\frac{r-\rho}{c_f}\right)
+d\rho,
+$$
+with $H_{\mathrm{ct}}^{(\eta)}$ and the lower characteristic endpoint $r_\ast$ fixed by the history-window, core-regularization, or boundary convention. This expression is invariant under time translation, spatial translation, and spatial rotation because it depends only on the causal scalar $g$, the Euclidean separation $r$, and declared scalar endpoints. It is not a same-support wake-surface term: it carries a characteristic tail in $(r,g)$ and therefore changes the action scaffold.
+
+This gives a concrete proof target rather than a completed replacement action. A candidate nonlocal action may be promoted only if its endpoint convention preserves $H(0)=0$, its Euler derivative cancels the residual above without changing the accepted inverse-square branch term, and its Noether boundary terms close the same energy, momentum, and angular-momentum ledger used by the Master EOM.
 
 Self‑interaction ($i=j$) is included by adding $S_{ii}$ with the same kernel, but explicitly excluding the trivial coincidence $t'=t$ (no instantaneous self‑push at the moment of emission). Self‑hit corresponds to nontrivial roots $t_0<t$ where the worldline re‑intersects its own causal isochrons, which are captured naturally by the same double‑integral structure.
 
 Thus:
 
 - The scalar $1/r$ action above is a nonlocal variational scaffold for the delayed dynamics under the stated branch and regularization assumptions,
-- It becomes an exact action derivation of the Master EOM only on branch charts where the constraint residual vanishes or is cancelled by an explicitly declared regularized counterterm,
+- It becomes an exact action derivation of the Master EOM only on branch charts where the constraint residual vanishes or is cancelled by an invariant action-level counterterm,
+- A finite same-support local scalar or delta-jet counterterm has been ruled out because it cancels the derivative residual only by disturbing the inverse-square scale term,
+- The remaining minimal action repair is a characteristic-tail proof target, not a canonized replacement action, until its endpoint, Euler-derivative, and Noether-ledger tests close,
+- Without such closure, the pure scalar action is falsified as the universal exact action for the Master EOM and should be treated as a diagnostic scaffold,
 - Any $\delta_\eta$ replacement must preserve the symmetries that supply the Noether charges if conservation claims are to remain exact.
 
 ---

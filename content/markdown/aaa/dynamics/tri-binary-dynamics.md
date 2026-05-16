@@ -327,6 +327,81 @@ C\frac{|\partial U_N|}{|U_N|}
 $$
 where $a_N(\theta)=A_{\theta}(U_N)/(|U_N|A_{\text{align}})$. This tests the area coefficient as a controlled limit rather than hiding it inside one finite count.
 
+**Finite-block coefficient enumerator.** A reduced enumerator can now report the coefficient target without pretending to solve the full terminal dynamics. For a finite connected block $U_N$ of candidate labels, compute
+$$
+s_N(\theta)
+=
+\frac{1}{|U_N|}
+\log|\mathcal{L}_{U_N}(\theta)|,
+\qquad
+a_N(\theta)
+=
+\frac{A_{\theta}(U_N)}
+{|U_N|A_{\text{align}}},
+\qquad
+\bar{\alpha}_N(\theta)
+=
+\frac{s_N(\theta)}{a_N(\theta)}.
+$$
+The finite-block residual vector is
+$$
+\mathcal{R}_{\mathrm{coeff}}(U_N,\theta)
+=
+\left(
+\left|\bar{\alpha}_N(\theta)-\frac{1}{4}\right|,
+\frac{|\partial U_N|}{|U_N|},
+\epsilon_{\mathrm{branch}},
+\epsilon_{\mathrm{area}},
+\epsilon_{\mathrm{quot}},
+\epsilon_{\mathrm{cons}},
+\epsilon_{\mathrm{var}}
+\right).
+$$
+Here $\epsilon_{\mathrm{area}}$ records how much the patch-area assignment varies across the retained block, $\epsilon_{\mathrm{cons}}$ is the conservation-ledger residual, and $\epsilon_{\mathrm{var}}$ is the action-variation residual inherited from the terminal branch scaffold below. This object is the right simulation output: it can pass, fail, or converge under refinement without turning the coefficient into a definition.
+
+**Current reduced-adapter status.** The present reduced circular packet family does not converge to the target coefficient. In the tested $3\le n\le5$ packets, the edge proxy gives
+$$
+\bar{\alpha}_8=0.22397,
+\qquad
+\bar{\alpha}_{16}=0.11198,
+\qquad
+\bar{\alpha}_{32}=0.05599,
+$$
+while the widened $3\le n\le6$ packet gives
+$$
+\bar{\alpha}_{16}=0.14391,
+\qquad
+\bar{\alpha}_{32}=0.07196.
+$$
+These values scale like a finite-label open-strip count divided by block length, with asymptotic proxy coefficient $0$, rather than trending toward $1/4$. Coarse and strict quotients coincide on these packets. The action-complete transfer has no accepted transfer edges, so its coefficient is undefined rather than near the target. This is a failure of the reduced adapter as a horizon-coefficient proof, not a failure of the coefficient target itself.
+
+The next diagnostic transfer relation has now been made explicit. For each sampled terminal branch, pair the receiver impulse with the equal-and-opposite source recoil at the emission event and define
+$$
+\Delta\Pi_b^{\mathrm{pair}}
+=
+\Delta\Pi_{b,\mathrm{recv}}
++
+\Delta\Pi_{b,\mathrm{src}},
+\qquad
+\Delta\Pi=(\Delta E,\Delta\mathbf{p},\Delta J,\Delta q).
+$$
+Also record the action-variation stationarity residual
+$$
+\epsilon_{\mathrm{var}}(\lambda)
+=
+\max_{b\in\mathcal{B}_{\mathrm{term}}(\lambda)}
+\left\|
+\left.
+\partial_{t_0}
+\left[
+\frac{\hat{\mathbf r}_b(t_b,t_0)}
+{r_b(t_b,t_0)J_b(t_b,t_0)}
+\right]
+\right|_{t_0=t_b-\Delta_b}
+\right\|.
+$$
+The dynamics-backed transfer predicate is therefore the earlier edge-match condition plus closure of the paired source-recoil ledger, the cycle residual, and $\epsilon_{\mathrm{var}}$. In the current executable packet this `terminal_dynamic` transfer has zero accepted edges. With $3\le n\le5$, `phase-samples = 12`, and the layer-sum area proxy, the edge-only coefficient is $\bar{\alpha}_{16}=0.09174$, but the terminal-dynamic coefficient is undefined; the maximum sampled stationarity residual is about $166.83$. With $3\le n\le6$, the edge-only coefficient is $\bar{\alpha}_{16}=0.12120$, while the terminal-dynamic transfer remains empty and the maximum sampled stationarity residual rises to about $322.67$. Thus the obstruction is not merely the observer quotient or area normalization. The reduced concentric terminal ansatz fails the action-variation and cycle-support tests before it can become a horizon-interface transfer system.
+
 At the present derivation level, the admissible one-patch labels can be enumerated as a finite branch-ledger schema, not yet as a numerical table. For a primitive outer-period closure, the integer-lock notation gives
 $$
 (k_I,k_M,k_O)=(n,m,1),
@@ -1082,7 +1157,7 @@ $$
 \right]
 \right|_{t_0=t_b^0}.
 $$
-Thus the pure regularized $1/r$ causal kernel proves the branch weight $w_b^{(0)}$ only under the additional stationarity condition
+Thus the pure regularized $1/r$ causal kernel is promoted to an exact branch-weight derivation only under the sufficient local stationarity condition
 $$
 \left.
 \partial_{t_0}
@@ -1107,7 +1182,9 @@ $$
 \left|q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}}\right|
 \mathbf{C}_{b}^{(\eta)}(t_1)
 $$
-with the same endpoint convention used for the wake-history ledger. This is the smallest correction exposed by the variation: it preserves the direct inverse-square branch law when the stationarity condition holds, and otherwise records exactly the residual force density that the scalar kernel leaves behind.
+with the same endpoint convention used for the wake-history ledger. Such a counterterm is admissible only when derived from the same symmetry-preserving action-level mechanism, not when inserted as a fit to the accepted branch law. This is the smallest correction exposed by the variation: it preserves the direct inverse-square branch law when the stationarity condition holds, and otherwise records exactly the residual force density that the scalar kernel leaves behind.
+
+For the same causal-surface local scalar class, this counterterm route is ruled out. A scalar term $a(r_b,J_b)\delta_\eta(g_b)$ must choose $a=-1/r_b$ to cancel the derivative-of-delta coefficient, but that same choice changes the direct $w_b^{(0)}$ scale contribution. The finite local delta-jet extension has the same obstruction. The terminal branch proof should therefore test stationarity or residual closure directly; otherwise the remaining action-level option is the nonlocal characteristic-tail repair target from [Master Equation](./master-equation.md#exact-nonlocal-lagrangian), or a richer velocity/history-dependent invariant mechanism. Neither option is a fitted scalar patch.
 
 The regularization is admissible only if it preserves the symmetries that supply the conservation ledger. In action form this means
 $$

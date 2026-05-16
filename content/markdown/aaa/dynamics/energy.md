@@ -196,6 +196,40 @@ and is constant in time for exact isolated solutions of the causal action. In mo
 
 Consistency rule: either use $E_{\text{wake}}$ alone for all interaction energy, or, if a $U_{\text{int}}$ pairwise term is retained as an effective decomposition inside assemblies, then $E_{\text{wake}}$ must explicitly omit the corresponding near-field content to prevent double counting.
 
+For a finite spatial window $W\subset\Sigma_t$, conservation is a balance law rather than a claim that the window is isolated. Write
+$$
+E_W(t)
+=
+\sum_{a:\mathbf{s}_a(t)\in W}K_a(t)
++
+U_{\mathrm{int},W}(t)
++
+E_{\mathrm{wake},W}(t),
+$$
+where the terms include only the kinetic, interaction, and wake-history content retained by the declared window record. The finite-window energy balance should take the residual form
+$$
+\frac{dE_W}{dt}
++
+\int_{\partial W}\mathbf{J}_E\cdot\hat{\mathbf{n}}\,dA
+=
+P_{\mathrm{ext},W}
++
+\mathcal{R}_E(\eta,\Delta t,W).
+$$
+Here $\mathbf{J}_E$ is the boundary flux of causal-wake energy bookkeeping, $P_{\mathrm{ext},W}$ is declared external work through sources or controls not included in $W$, and $\mathcal{R}_E$ records mollifier, timestep, and omitted-boundary-history error. A finite-window conservation claim is mature only when $\mathcal{R}_E\to0$ under the same regularized causal action used for the local equation of motion.
+
+The analogous momentum closure must also remain tied to the same window and boundary data:
+$$
+\frac{dP_W^i}{dt}
++
+\int_{\partial W}\Pi^{ij}\hat{n}_j\,dA
+=
+F_{\mathrm{ext},W}^i
++
+\mathcal{R}_P^i(\eta,\Delta t,W).
+$$
+The tensor $\Pi^{ij}$ is a finite-window momentum-flux diagnostic for the retained causal wakes and assembly crossings, not a new substrate field. If the energy and momentum residuals can be made small only by changing the window measure, boundary wake record, or regularization separately for each observable, the calculation has fitted separate summaries rather than demonstrated one causal-history conservation law.
+
 In practice, for finite systems or simulation domains, we verify conservation by monitoring $E_{\text{total}}(t)$ and checking convergence as $\eta$ and $\Delta t$ are reduced.
 
 ---

@@ -26,7 +26,13 @@ function parseArgs(argv) {
     conservationTolerance: 1e-6,
     cycleResidualTolerance: 1e-2,
     ledgerTolerance: 1e-6,
+    variationTolerance: 1e-3,
+    variationStep: 1e-4,
     quotient: "coarse",
+    blockSize: 16,
+    patchAreaFactor: 1,
+    areaModel: "declared",
+    coefficientTarget: 0.25,
     includeBranches: false,
     pretty: false,
     out: null,
@@ -74,8 +80,20 @@ function parseArgs(argv) {
       args.cycleResidualTolerance = Number(argv[++i]);
     } else if (arg === "--ledger-tolerance") {
       args.ledgerTolerance = Number(argv[++i]);
+    } else if (arg === "--variation-tolerance") {
+      args.variationTolerance = Number(argv[++i]);
+    } else if (arg === "--variation-step") {
+      args.variationStep = Number(argv[++i]);
     } else if (arg === "--quotient") {
       args.quotient = argv[++i];
+    } else if (arg === "--block-size") {
+      args.blockSize = Number(argv[++i]);
+    } else if (arg === "--patch-area-factor") {
+      args.patchAreaFactor = Number(argv[++i]);
+    } else if (arg === "--area-model") {
+      args.areaModel = argv[++i];
+    } else if (arg === "--coefficient-target") {
+      args.coefficientTarget = Number(argv[++i]);
     } else if (arg === "--include-branches") {
       args.includeBranches = true;
     } else if (arg === "--pretty") {
@@ -111,7 +129,14 @@ function parseArgs(argv) {
   if (!["none", "unit-radial", "inverse-square"].includes(args.actionKernel)) {
     throw new Error("--action-kernel must be none, unit-radial, or inverse-square.");
   }
-  for (const key of ["kernelStrength", "conservationTolerance", "cycleResidualTolerance", "ledgerTolerance"]) {
+  for (const key of [
+    "kernelStrength",
+    "conservationTolerance",
+    "cycleResidualTolerance",
+    "ledgerTolerance",
+    "variationTolerance",
+    "variationStep",
+  ]) {
     if (!Number.isFinite(args[key]) || args[key] < 0) {
       throw new Error(`--${key.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)} must be nonnegative.`);
     }
@@ -123,6 +148,18 @@ function parseArgs(argv) {
   }
   if (!["coarse", "strict"].includes(args.quotient)) {
     throw new Error("--quotient must be coarse or strict.");
+  }
+  if (!["declared", "outer-disk", "layer-sum"].includes(args.areaModel)) {
+    throw new Error("--area-model must be declared, outer-disk, or layer-sum.");
+  }
+  if (!Number.isInteger(args.blockSize) || args.blockSize < 1) {
+    throw new Error("--block-size must be a positive integer.");
+  }
+  if (!Number.isFinite(args.patchAreaFactor) || args.patchAreaFactor <= 0) {
+    throw new Error("--patch-area-factor must be positive.");
+  }
+  if (!Number.isFinite(args.coefficientTarget) || args.coefficientTarget < 0) {
+    throw new Error("--coefficient-target must be nonnegative.");
   }
 
   return args;
@@ -152,7 +189,15 @@ Options:
   --cycle-residual-tolerance X
                          Tolerance for the cycle residual adapter. Defaults to 1e-2.
   --ledger-tolerance X  Tolerance for edge-ledger transfer balance. Defaults to 1e-6.
+  --variation-tolerance X
+                         Tolerance for the branch action-variation residual. Defaults to 1e-3.
+  --variation-step X    Finite-difference step for variation residuals. Defaults to 1e-4.
   --quotient MODE       Edge-key quotient: coarse or strict. Defaults to coarse.
+  --block-size N        Open-strip finite block length for coefficient residuals. Defaults to 16.
+  --patch-area-factor X Dimensionless a_theta = A_theta/(|U| A_align). Defaults to 1.
+  --area-model MODE     Patch area model: declared, outer-disk, or layer-sum. Defaults to declared.
+  --coefficient-target X
+                         Area-normalized entropy coefficient target. Defaults to 0.25.
   --include-branches    Include sampled delayed branch rows in the JSON output.
   --out PATH            Write JSON output to PATH instead of stdout.
   --pretty              Pretty-print JSON output.
@@ -397,10 +442,78 @@ function branchGeometry(params, branch, delta, args) {
     normal_projection: normalProjection,
     edge_side: side,
     r_hat: rHat,
+    distance,
     charge_sign: chargeSign,
+    source_position: source,
+    source_velocity: sourceVelocity,
     receiver_position: receiver,
     receiver_velocity: receiverVelocity,
     base_acceleration: baseAcceleration,
+  };
+}
+
+function branchVariationKernel(params, branch, delta) {
+  const receiver = position(params, branch.receiverLayer, branch.receiverSign, branch.t);
+  const source = position(
+    params,
+    branch.sourceLayer,
+    branch.sourceSign,
+    branch.t - delta
+  );
+  const displacement = vecSub(receiver, source);
+  const distance = norm(displacement);
+  if (distance <= EPS) {
+    return null;
+  }
+  const rHat = scale(displacement, 1 / distance);
+  const sourceVelocity = velocity(
+    params,
+    branch.sourceLayer,
+    branch.sourceSign,
+    branch.t - delta
+  );
+  const jacobian = 1 - dot(sourceVelocity, rHat) / params.cF;
+  if (Math.abs(jacobian) <= EPS) {
+    return null;
+  }
+  return scale(rHat, 1 / (distance * jacobian));
+}
+
+function branchVariationResidual(params, branch, delta, args) {
+  const requestedStep = args.variationStep || 0;
+  const step = Math.max(requestedStep, args.rootTolerance * 100, EPS);
+  const leftDelta = delta - step;
+  const rightDelta = delta + step;
+  const center = branchVariationKernel(params, branch, delta);
+  let derivative = null;
+  let mode = null;
+
+  if (leftDelta > EPS) {
+    const left = branchVariationKernel(params, branch, leftDelta);
+    const right = branchVariationKernel(params, branch, rightDelta);
+    if (left && right) {
+      derivative = scale(vecSub(right, left), -1 / (2 * step));
+      mode = "central_t0_difference";
+    }
+  }
+
+  if (!derivative && center) {
+    const right = branchVariationKernel(params, branch, rightDelta);
+    if (right) {
+      derivative = scale(vecSub(right, center), -1 / step);
+      mode = "forward_t0_difference";
+    }
+  }
+
+  const residualNorm = derivative ? norm(derivative) : null;
+  return {
+    derivative,
+    residual_norm: residualNorm,
+    finite_difference_step: step,
+    mode,
+    tolerance: args.variationTolerance,
+    status:
+      residualNorm !== null && residualNorm <= args.variationTolerance ? "pass" : "fail",
   };
 }
 
@@ -537,16 +650,27 @@ function cycleResidualFit(params, branchRows, args) {
 
 function branchLedger(row, kernelStrength) {
   const acceleration = scale(row.base_acceleration, kernelStrength);
-  const impulse = scale(acceleration, row.delta);
-  const work = dot(impulse, row.receiver_velocity);
+  const receiverImpulse = scale(acceleration, row.delta);
+  const sourceImpulse = scale(receiverImpulse, -1);
+  const receiverWork = dot(receiverImpulse, row.receiver_velocity);
+  const sourceWork = dot(sourceImpulse, row.source_velocity);
+  const receiverLedger = {
+    deltaE: receiverWork,
+    deltaP: receiverImpulse,
+    deltaJ: cross2d(row.receiver_position, receiverImpulse),
+    deltaQ: 0,
+  };
+  const sourceLedger = {
+    deltaE: sourceWork,
+    deltaP: sourceImpulse,
+    deltaJ: cross2d(row.source_position, sourceImpulse),
+    deltaQ: 0,
+  };
   return {
     acceleration,
-    ledger: {
-      deltaE: work,
-      deltaP: impulse,
-      deltaJ: cross2d(row.receiver_position, impulse),
-      deltaQ: 0,
-    },
+    ledger: receiverLedger,
+    source_recoil_ledger: sourceLedger,
+    pair_ledger: addLedger(receiverLedger, sourceLedger),
   };
 }
 
@@ -557,32 +681,67 @@ function materializeActionRows(branchRows, kernelStrength) {
       ...row,
       action_acceleration: action.acceleration,
       action_ledger: action.ledger,
+      source_recoil_ledger: action.source_recoil_ledger,
+      pair_ledger: action.pair_ledger,
     };
   });
 }
 
-function localConservation(actionRows, args) {
+function localConservation(actionRows, args, ledgerKey = "action_ledger", note = null) {
   const total = actionRows.reduce(
-    (sum, row) => addLedger(sum, row.action_ledger ?? zeroLedger()),
+    (sum, row) => addLedger(sum, row[ledgerKey] ?? zeroLedger()),
     zeroLedger()
   );
   const residualNorm = ledgerNorm(total);
   return {
+    ledger_key: ledgerKey,
     total,
     residual_norm: residualNorm,
     tolerance: args.conservationTolerance,
     status: residualNorm <= args.conservationTolerance ? "pass" : "fail",
     note:
+      note ??
       "This is a diagnostic receiver-side sum over sampled inter-layer branches. It becomes a proof object only after the missing source recoil, intra-layer action, and regularized energy ledger are supplied.",
   };
 }
 
-function edgeLedger(row) {
+function variationResidualStats(actionRows, args) {
+  const residuals = actionRows
+    .map((row) => row.variation_residual?.residual_norm)
+    .filter((value) => value !== null && value !== undefined);
+  if (!residuals.length) {
+    return {
+      branch_count: 0,
+      max_residual: null,
+      rms_residual: null,
+      tolerance: args.variationTolerance,
+      status: "fail",
+      note:
+        "No branch variation residuals were available; the terminal action stationarity condition is untested.",
+    };
+  }
+  const maxResidual = Math.max(...residuals);
+  const rmsResidual = Math.sqrt(
+    residuals.reduce((sum, value) => sum + value * value, 0) / residuals.length
+  );
+  return {
+    branch_count: residuals.length,
+    max_residual: maxResidual,
+    rms_residual: rmsResidual,
+    tolerance: args.variationTolerance,
+    status: maxResidual <= args.variationTolerance ? "pass" : "fail",
+    note:
+      "Finite-difference proxy for the receiver-side action-variation stationarity condition D_{t0}[r_hat/(rJ)]=0 on sampled terminal branches.",
+  };
+}
+
+function edgeLedger(row, ledgerKey = "action_ledger") {
+  const ledger = row[ledgerKey] ?? zeroLedger();
   if (row.edge_side === "plus") {
-    return row.action_ledger ?? zeroLedger();
+    return ledger;
   }
   if (row.edge_side === "minus") {
-    return scaleLedger(row.action_ledger ?? zeroLedger(), -1);
+    return scaleLedger(ledger, -1);
   }
   return zeroLedger();
 }
@@ -604,7 +763,7 @@ function edgeKey(branchRow, quotient) {
   return `inter-layer:${layerPair}:q${chargeSign}:${normalBin}`;
 }
 
-function multiset(rows, side, quotient) {
+function multiset(rows, side, quotient, ledgerKey = "action_ledger") {
   const entries = new Map();
   for (const row of rows) {
     if (row.edge_side !== side || !row.transversal) {
@@ -616,7 +775,7 @@ function multiset(rows, side, quotient) {
     }
     const entry = entries.get(key);
     entry.count += 1;
-    entry.ledger = addLedger(entry.ledger, edgeLedger(row));
+    entry.ledger = addLedger(entry.ledger, edgeLedger(row, ledgerKey));
   }
   return [...entries.values()]
     .sort((left, right) => left.key.localeCompare(right.key))
@@ -629,6 +788,19 @@ function multiset(rows, side, quotient) {
 function sameMultiset(left, right) {
   const simplify = (entries) => entries.map((entry) => ({ key: entry.key, count: entry.count }));
   return JSON.stringify(simplify(left)) === JSON.stringify(simplify(right));
+}
+
+function terminalPatchAreaFactor(params, args) {
+  const alignRadius = params.cF / params.omega.O;
+  if (args.areaModel === "outer-disk") {
+    return args.patchAreaFactor * (params.radius.O / alignRadius) ** 2;
+  }
+  if (args.areaModel === "layer-sum") {
+    const layerArea =
+      params.radius.I ** 2 + params.radius.M ** 2 + params.radius.O ** 2;
+    return args.patchAreaFactor * layerArea / alignRadius ** 2;
+  }
+  return args.patchAreaFactor;
 }
 
 function candidate(n, m, args) {
@@ -651,6 +823,7 @@ function candidate(n, m, args) {
             const roots = delayedRoots(params, branch, args);
             roots.forEach((delta, rootIndex) => {
               const geometry = branchGeometry(params, branch, delta, args);
+              const variation_residual = branchVariationResidual(params, branch, delta, args);
               branchRows.push({
                 id: `${sourceLayer}${sourceSign > 0 ? "p" : "m"}_${receiverLayer}${receiverSign > 0 ? "p" : "m"}_phase${phaseIndex}_root${rootIndex}`,
                 sourceLayer,
@@ -661,6 +834,7 @@ function candidate(n, m, args) {
                 reception_phase_fraction: phaseIndex / args.phaseSamples,
                 root_index: rootIndex,
                 ...geometry,
+                variation_residual,
               });
             });
           }
@@ -674,9 +848,18 @@ function candidate(n, m, args) {
     branchRows,
     cycle_residual_adapter.used_kernel_strength
   );
-  const local_conservation = localConservation(actionRows, args);
+  const receiverSideConservation = localConservation(actionRows, args);
+  const sourceRecoilConservation = localConservation(
+    actionRows,
+    args,
+    "pair_ledger",
+    "This diagnostic pairs each receiver impulse with an opposite source-recoil impulse at emission time. It still omits intra-layer action and regularized wake-energy boundary terms."
+  );
+  const actionVariationResidual = variationResidualStats(actionRows, args);
   const plus = multiset(actionRows, "plus", args.quotient);
   const minus = multiset(actionRows, "minus", args.quotient);
+  const terminalPlus = multiset(actionRows, "plus", args.quotient, "pair_ledger");
+  const terminalMinus = multiset(actionRows, "minus", args.quotient, "pair_ledger");
   const transversalCount = actionRows.filter((row) => row.transversal).length;
   const grazingCount = actionRows.length - transversalCount;
   const byLayerPair = {};
@@ -692,6 +875,7 @@ function candidate(n, m, args) {
     integer_lock: { I: n, M: m, O: 1 },
     normalized_speeds: params.speed,
     normalized_radii: params.radius,
+    terminal_area_factor: terminalPatchAreaFactor(params, args),
     circular_roots,
     delayed_branch_inventory: {
       scanned_contexts:
@@ -703,9 +887,13 @@ function candidate(n, m, args) {
     },
     action_diagnostics: {
       cycle_residual_adapter,
-      local_conservation,
+      local_conservation: receiverSideConservation,
+      receiver_side_conservation: receiverSideConservation,
+      source_recoil_conservation: sourceRecoilConservation,
+      action_variation_residual: actionVariationResidual,
     },
     edge_maps: { plus, minus },
+    terminal_edge_maps: { plus: terminalPlus, minus: terminalMinus },
     status:
       branchRows.length === 0
         ? "no_delayed_roots_found"
@@ -785,6 +973,65 @@ function transferRow(left, right, args) {
   };
 }
 
+function terminalTransferRow(left, right, args) {
+  const edgeKeyMatch = sameMultiset(
+    left.terminal_edge_maps.plus,
+    right.terminal_edge_maps.minus
+  );
+  const balance = edgeBalance(left.terminal_edge_maps.plus, right.terminal_edge_maps.minus);
+  const sourceRecoilPass =
+    left.action_diagnostics.source_recoil_conservation.status === "pass" &&
+    right.action_diagnostics.source_recoil_conservation.status === "pass";
+  const variationPass =
+    left.action_diagnostics.action_variation_residual.status === "pass" &&
+    right.action_diagnostics.action_variation_residual.status === "pass";
+  const cycleResidualPass =
+    left.action_diagnostics.cycle_residual_adapter.status === "pass" &&
+    right.action_diagnostics.cycle_residual_adapter.status === "pass";
+  const edgeLedgerPass = balance.residual_norm <= args.ledgerTolerance;
+  const accepted =
+    edgeKeyMatch && edgeLedgerPass && sourceRecoilPass && variationPass && cycleResidualPass;
+  const failureCodes = [];
+  if (!edgeKeyMatch) {
+    failureCodes.push("terminal_dynamic.edge_key_mismatch");
+  }
+  if (!edgeLedgerPass) {
+    failureCodes.push("terminal_dynamic.source_recoil_edge_ledger_balance_residual");
+  }
+  if (!sourceRecoilPass) {
+    failureCodes.push("terminal_dynamic.source_recoil_conservation_residual");
+  }
+  if (!variationPass) {
+    failureCodes.push("terminal_dynamic.action_variation_residual");
+  }
+  if (!cycleResidualPass) {
+    failureCodes.push("terminal_dynamic.cycle_residual_adapter_residual");
+  }
+  return {
+    from: left.id,
+    to: right.id,
+    edge_key_match: edgeKeyMatch,
+    source_recoil_edge_ledger_balance_norm: balance.residual_norm,
+    source_recoil_residual_norm: Math.max(
+      left.action_diagnostics.source_recoil_conservation.residual_norm,
+      right.action_diagnostics.source_recoil_conservation.residual_norm
+    ),
+    action_variation_max_residual: Math.max(
+      left.action_diagnostics.action_variation_residual.max_residual ?? Infinity,
+      right.action_diagnostics.action_variation_residual.max_residual ?? Infinity
+    ),
+    cycle_residual_rms: Math.max(
+      left.action_diagnostics.cycle_residual_adapter.rms_residual,
+      right.action_diagnostics.cycle_residual_adapter.rms_residual
+    ),
+    ledger_tolerance: args.ledgerTolerance,
+    variation_tolerance: args.variationTolerance,
+    cycle_residual_tolerance: args.cycleResidualTolerance,
+    accepted,
+    failure_codes: failureCodes,
+  };
+}
+
 function compatibility(candidates, args) {
   const edgeProxyMatrix = candidates.map((left) =>
     candidates.map((right) => (sameMultiset(left.edge_maps.plus, right.edge_maps.minus) ? 1 : 0))
@@ -792,9 +1039,19 @@ function compatibility(candidates, args) {
   const rows = candidates.flatMap((left) =>
     candidates.map((right) => transferRow(left, right, args))
   );
+  const terminalRows = candidates.flatMap((left) =>
+    candidates.map((right) => terminalTransferRow(left, right, args))
+  );
   const actionMatrix = candidates.map((left) =>
     candidates.map((right) =>
       rows.some((row) => row.from === left.id && row.to === right.id && row.accepted) ? 1 : 0
+    )
+  );
+  const terminalMatrix = candidates.map((left) =>
+    candidates.map((right) =>
+      terminalRows.some((row) => row.from === left.id && row.to === right.id && row.accepted)
+        ? 1
+        : 0
     )
   );
   const edges = [];
@@ -811,6 +1068,9 @@ function compatibility(candidates, args) {
   const acceptedEdges = rows
     .filter((row) => row.accepted)
     .map((row) => ({ from: row.from, to: row.to }));
+  const terminalEdges = terminalRows
+    .filter((row) => row.accepted)
+    .map((row) => ({ from: row.from, to: row.to }));
   return {
     edge_proxy: {
       matrix: edgeProxyMatrix,
@@ -822,6 +1082,12 @@ function compatibility(candidates, args) {
       edges: acceptedEdges,
       rows,
       spectral_radius: spectralRadius(actionMatrix),
+    },
+    terminal_dynamic: {
+      matrix: terminalMatrix,
+      edges: terminalEdges,
+      rows: terminalRows,
+      spectral_radius: spectralRadius(terminalMatrix),
     },
   };
 }
@@ -847,6 +1113,161 @@ function spectralRadius(matrix) {
   return lambda;
 }
 
+function finiteOpenStripCount(matrix, blockSize) {
+  const size = matrix.length;
+  if (size === 0) {
+    return 0;
+  }
+  let counts = Array(size).fill(1);
+  for (let step = 1; step < blockSize; step += 1) {
+    const next = Array(size).fill(0);
+    for (let left = 0; left < size; left += 1) {
+      for (let right = 0; right < size; right += 1) {
+        next[right] += counts[left] * matrix[left][right];
+      }
+    }
+    counts = next;
+  }
+  return counts.reduce((sum, value) => sum + value, 0);
+}
+
+function finiteOpenStripStats(matrix, blockSize, areaFactors) {
+  const size = matrix.length;
+  if (size === 0) {
+    return {
+      count: 0,
+      total_area_factor_sum: 0,
+      average_total_area_factor: null,
+      average_patch_area_factor: null,
+    };
+  }
+  let counts = Array(size).fill(1);
+  let areaSums = areaFactors.slice(0, size);
+  for (let step = 1; step < blockSize; step += 1) {
+    const nextCounts = Array(size).fill(0);
+    const nextAreaSums = Array(size).fill(0);
+    for (let left = 0; left < size; left += 1) {
+      for (let right = 0; right < size; right += 1) {
+        const transitions = matrix[left][right];
+        if (!transitions) {
+          continue;
+        }
+        nextCounts[right] += counts[left] * transitions;
+        nextAreaSums[right] +=
+          transitions * (areaSums[left] + counts[left] * areaFactors[right]);
+      }
+    }
+    counts = nextCounts;
+    areaSums = nextAreaSums;
+  }
+  const count = counts.reduce((sum, value) => sum + value, 0);
+  const totalAreaFactorSum = areaSums.reduce((sum, value) => sum + value, 0);
+  const averageTotalAreaFactor = count > 0 ? totalAreaFactorSum / count : null;
+  return {
+    count,
+    total_area_factor_sum: totalAreaFactorSum,
+    average_total_area_factor: averageTotalAreaFactor,
+    average_patch_area_factor:
+      averageTotalAreaFactor === null ? null : averageTotalAreaFactor / blockSize,
+  };
+}
+
+function areaVariation(areaFactors) {
+  if (!areaFactors.length) {
+    return 0;
+  }
+  const mean = areaFactors.reduce((sum, value) => sum + value, 0) / areaFactors.length;
+  if (mean <= EPS) {
+    return 0;
+  }
+  const variance =
+    areaFactors.reduce((sum, value) => sum + (value - mean) ** 2, 0) / areaFactors.length;
+  return Math.sqrt(variance) / mean;
+}
+
+function maxEdgeLedgerResidual(rows) {
+  if (!rows?.length) {
+    return null;
+  }
+  return Math.max(...rows.map((row) => row.edge_ledger_balance_norm));
+}
+
+function maxTerminalLedgerResidual(rows) {
+  if (!rows?.length) {
+    return null;
+  }
+  return Math.max(...rows.map((row) => row.source_recoil_edge_ledger_balance_norm));
+}
+
+function maxTerminalVariationResidual(rows) {
+  if (!rows?.length) {
+    return null;
+  }
+  const finite = rows
+    .map((row) => row.action_variation_max_residual)
+    .filter((value) => Number.isFinite(value));
+  return finite.length ? Math.max(...finite) : null;
+}
+
+function coefficientSummary(matrix, args, residuals = {}) {
+  const rho = spectralRadius(matrix);
+  const areaFactors =
+    residuals.areaFactors?.length === matrix.length
+      ? residuals.areaFactors
+      : Array(matrix.length).fill(args.patchAreaFactor);
+  const meanAreaFactor =
+    areaFactors.length > 0
+      ? areaFactors.reduce((sum, value) => sum + value, 0) / areaFactors.length
+      : args.patchAreaFactor;
+  const finiteStats = finiteOpenStripStats(matrix, args.blockSize, areaFactors);
+  const asymptoticDensity = rho > 0 ? Math.log(rho) : null;
+  const finiteCount = finiteStats.count;
+  const finiteDensity = finiteCount > 0 ? Math.log(finiteCount) / args.blockSize : null;
+  const asymptoticCoefficient =
+    asymptoticDensity === null ? null : asymptoticDensity / meanAreaFactor;
+  const finiteCoefficient =
+    finiteCount > 0 && finiteStats.average_total_area_factor !== null
+      ? Math.log(finiteCount) / finiteStats.average_total_area_factor
+      : null;
+  const epsilonArea = areaVariation(areaFactors);
+  return {
+    block_size: args.blockSize,
+    patch_area_factor: meanAreaFactor,
+    area_model: args.areaModel,
+    area_factor_range:
+      areaFactors.length > 0
+        ? {
+            min: Math.min(...areaFactors),
+            max: Math.max(...areaFactors),
+            coefficient_of_variation: epsilonArea,
+          }
+        : null,
+    coefficient_target: args.coefficientTarget,
+    open_strip_label_count: finiteCount,
+    boundary_to_block_proxy: 2 / args.blockSize,
+    finite_block_average_total_area_factor: finiteStats.average_total_area_factor,
+    finite_block_average_patch_area_factor: finiteStats.average_patch_area_factor,
+    asymptotic_entropy_density_proxy: asymptoticDensity,
+    asymptotic_area_normalized_coefficient_proxy: asymptoticCoefficient,
+    asymptotic_coefficient_residual:
+      asymptoticCoefficient === null ? null : Math.abs(asymptoticCoefficient - args.coefficientTarget),
+    finite_block_entropy_density_proxy: finiteDensity,
+    finite_block_area_normalized_coefficient_proxy: finiteCoefficient,
+    finite_block_coefficient_residual:
+      finiteCoefficient === null ? null : Math.abs(finiteCoefficient - args.coefficientTarget),
+    finite_block_residual_vector: {
+      coefficient:
+        finiteCoefficient === null ? null : Math.abs(finiteCoefficient - args.coefficientTarget),
+      boundary_to_block_proxy: 2 / args.blockSize,
+      epsilon_branch: residuals.epsilonBranch ?? null,
+      epsilon_area: residuals.epsilonArea ?? epsilonArea,
+      epsilon_quot: residuals.epsilonQuot ?? null,
+      epsilon_cons: residuals.epsilonCons ?? null,
+      epsilon_var: residuals.epsilonVar ?? null,
+    },
+  };
+}
+
 function buildPacket(args) {
   const candidates = [];
   for (let n = args.minN; n <= args.maxN; n += 1) {
@@ -857,12 +1278,31 @@ function buildPacket(args) {
   const transfer = compatibility(candidates, args);
   const edgeRho = transfer.edge_proxy.spectral_radius;
   const actionRho = transfer.action_complete.spectral_radius;
+  const terminalRho = transfer.terminal_dynamic.spectral_radius;
+  const areaFactors = candidates.map((item) => item.terminal_area_factor);
+  const meanAreaFactor =
+    areaFactors.length > 0
+      ? areaFactors.reduce((sum, value) => sum + value, 0) / areaFactors.length
+      : args.patchAreaFactor;
+  const edgeCoefficient = coefficientSummary(transfer.edge_proxy.matrix, args, {
+    areaFactors,
+  });
+  const actionCoefficient = coefficientSummary(transfer.action_complete.matrix, args, {
+    areaFactors,
+    epsilonCons: maxEdgeLedgerResidual(transfer.action_complete.rows),
+    epsilonVar: null,
+  });
+  const terminalCoefficient = coefficientSummary(transfer.terminal_dynamic.matrix, args, {
+    areaFactors,
+    epsilonCons: maxTerminalLedgerResidual(transfer.terminal_dynamic.rows),
+    epsilonVar: maxTerminalVariationResidual(transfer.terminal_dynamic.rows),
+  });
   return {
     artifact: "terminal-alignment-action-enumerator",
     generated_by: "scripts/tri-binary/terminal-alignment-enumerator.mjs",
     comparison_level: "reduced circular terminal-action diagnostic proof packet",
     note:
-      "This enumerates delayed roots, diagnostic branch-action rows, edge-map multisets, local ledger residuals, and transfer rows. Its action kernels are diagnostic adapters, not accepted substrate dynamics.",
+      "This enumerates delayed roots, diagnostic branch-action rows, edge-map multisets, local ledger residuals, transfer rows, and area-normalized finite-block coefficient residuals. Its action kernels are diagnostic adapters, not accepted substrate dynamics.",
     parameters: {
       min_n: args.minN,
       max_n: args.maxN,
@@ -877,7 +1317,13 @@ function buildPacket(args) {
       conservation_tolerance: args.conservationTolerance,
       cycle_residual_tolerance: args.cycleResidualTolerance,
       ledger_tolerance: args.ledgerTolerance,
+      variation_tolerance: args.variationTolerance,
+      variation_step: args.variationStep,
       quotient: args.quotient,
+      block_size: args.blockSize,
+      patch_area_factor: args.patchAreaFactor,
+      area_model: args.areaModel,
+      coefficient_target: args.coefficientTarget,
       normalized_speeds: {
         I: args.innerSpeed,
         M: args.middleSpeed,
@@ -888,8 +1334,11 @@ function buildPacket(args) {
       terminal_kinematics: "enumerated_by_this_packet",
       edge_projection: "action_row_edge_multisets_enumerated_by_this_packet",
       cycle_averaged_residual: "diagnostic_adapter_only_until_action_kernel_is_accepted",
-      local_conservation_ledger: "diagnostic_receiver_side_sum_only_until_source_recoil_and_regularized_energy_ledger_are_supplied",
+      local_conservation_ledger: "receiver_side_and_source_recoil_pair_ledgers_reported_but_wake_energy_boundary_terms_still_open",
+      action_variation_residual: "finite_difference_stationarity_proxy_reported_for_each_sampled_terminal_branch",
       physical_observer_quotient: "coarse_or_strict_numerical_quotient_only",
+      area_normalization: "declared_or_proxy_patch_area_factor_until_metric_reconstruction_supplies_A_theta",
+      coefficient_target: "finite_block_area_normalized_proxy_not_horizon_entropy_proof",
     },
     candidates,
     transfer_compatibility: {
@@ -897,18 +1346,39 @@ function buildPacket(args) {
       edge_proxy: {
         ...transfer.edge_proxy,
         strip_entropy_density_proxy: edgeRho > 0 ? Math.log(edgeRho) : null,
+        area_normalized_coefficient_proxy:
+          edgeRho > 0 ? Math.log(edgeRho) / meanAreaFactor : null,
+        coefficient_residual:
+          edgeRho > 0 ? Math.abs(Math.log(edgeRho) / meanAreaFactor - args.coefficientTarget) : null,
+        finite_block_coefficient: edgeCoefficient,
       },
       action_complete: {
         ...transfer.action_complete,
         strip_entropy_density_proxy: actionRho > 0 ? Math.log(actionRho) : null,
+        area_normalized_coefficient_proxy:
+          actionRho > 0 ? Math.log(actionRho) / meanAreaFactor : null,
+        coefficient_residual:
+          actionRho > 0 ? Math.abs(Math.log(actionRho) / meanAreaFactor - args.coefficientTarget) : null,
+        finite_block_coefficient: actionCoefficient,
+      },
+      terminal_dynamic: {
+        ...transfer.terminal_dynamic,
+        strip_entropy_density_proxy: terminalRho > 0 ? Math.log(terminalRho) : null,
+        area_normalized_coefficient_proxy:
+          terminalRho > 0 ? Math.log(terminalRho) / meanAreaFactor : null,
+        coefficient_residual:
+          terminalRho > 0 ? Math.abs(Math.log(terminalRho) / meanAreaFactor - args.coefficientTarget) : null,
+        finite_block_coefficient: terminalCoefficient,
       },
     },
     classification:
-      actionRho > 0
-        ? "nonempty_action_complete_transfer_proxy"
-        : edgeRho > 0
-          ? "edge_proxy_nonempty_but_action_complete_transfer_blocked"
-          : "empty_edge_proxy_or_overstrict_quotient",
+      terminalRho > 0
+        ? "nonempty_terminal_dynamic_transfer"
+        : actionRho > 0
+          ? "action_complete_transfer_nonempty_but_terminal_dynamic_blocked"
+          : edgeRho > 0
+            ? "edge_proxy_nonempty_but_terminal_dynamic_transfer_blocked"
+            : "empty_edge_proxy_or_overstrict_quotient",
   };
 }
 

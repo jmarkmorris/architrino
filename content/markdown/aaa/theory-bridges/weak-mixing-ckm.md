@@ -269,6 +269,22 @@ V=R_{23}(\theta_{23})\,R_{13}(\theta_{13},\delta)\,R_{12}(\theta_{12}),
 \qquad s_{ij}\equiv\sin\theta_{ij}.
 $$
 
+The comparison value of any larger generation symmetry is therefore a benchmark, not an import. The CKM/generation closure check should require one shared branch record $\theta$ to satisfy
+$$
+\mathcal R_{\mathrm{CKM,gen}}(\theta)
+=
+d_{\mathrm{unit}}\!\left(V^\dagger(\theta)V(\theta),I\right)
++d_{\mathrm{CKM}}\!\left(\{\lvert V_{ij}(\theta)\rvert\},\{\lvert V_{ij}\rvert_{\mathrm{obs}}\}\right)
++d_{\mathrm{CP}}\!\left(J(\theta),J_{\mathrm{obs}}\right)
++\max_{a\in\{0,1,2\}}
+d_{\mathrm{rep}}\!\left(
+\Pi_{\mathrm{gauge}}T_{\mathrm{gen}}^aA,
+\Pi_{\mathrm{gauge}}A
+\right)
++\mathcal R_{\mathrm{null}}(\theta).
+$$
+The residual accepts a candidate only when the same shielding-tier record gives unitary mixing, the observed CKM hierarchy and CP invariant, unchanged Standard Model gauge representation across the three charged-fermion tiers, and no added-channel leakage. A comparison framework that reproduces one angle, one phase, or the number three is not yet a $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation.
+
 Assumptions introduced in this section ($\mathbb{A}\mathbb{A}\mathbb{A}$ side):
 - **A1:** Generation transport is represented by a three-node chain $(1\leftrightarrow2\leftrightarrow3)$.
 - **A2:** Mixing-angle magnitudes follow exponential transport-action suppression.

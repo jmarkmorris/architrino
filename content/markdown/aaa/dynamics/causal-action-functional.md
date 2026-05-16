@@ -1,6 +1,6 @@
 # Causal Action Functional
 
-This chapter develops the variational complement to the master-equation treatment of dynamics. Its job is to define a scalar causal-hit statistic that can compare delayed worldline structures, identify candidate stable assembly classes, and supply one geometric input to later mass, shielding, and medium-response closure.
+This chapter develops the action-counting complement to the master-equation treatment of dynamics. Its job is to define a scalar causal-hit statistic that can compare delayed worldline structures, identify candidate stable assembly classes, and supply one geometric input to later mass, shielding, and medium-response closure. It is not the exact variational action for the Master EOM; action-derived dynamics require the variation residual to vanish under the test stated in [Effective Lagrangian](effective-lagrangian.md#regularized-nonlocal-action-and-variation) and [Master Equation](master-equation.md#exact-nonlocal-lagrangian).
 
 The current scope is mixed. Some statements are theorem-backed in the regularized setting, while the larger closure program remains open. The chapter therefore begins with the problem statement and core functional definitions, then separates the controlled theorem spine from benchmarks, implementation notes, and longer-range closure targets.
 
@@ -89,9 +89,9 @@ This single-period symmetric form aggregates self‑terms and cross‑terms betw
 $$
 \text{Force kernel: } \left[ \frac{\hat{\mathbf{r}}(t,t')}{r^2\,J}, \delta\!\big(r-c_f\Delta t\big) \right]
 \qquad
-\text{Action kernel: } \left[ \frac{1}{r^2\,J}, \delta\!\big(r-c_f\Delta t\big) \right]
+\text{Scalar statistic kernel: } \left[ \frac{1}{r^2\,J}, \delta\!\big(r-c_f\Delta t\big) \right]
 $$
-The force kernel retains direction via $\hat{\mathbf{r}}$, while the action kernel keeps only the scalar magnitude. This is the minimal change that turns a vector interaction into a scalar functional suitable for variational comparisons while preserving the same causal Jacobian geometry as the master equation.
+The force kernel retains direction via $\hat{\mathbf{r}}$, while the scalar statistic kernel keeps only the magnitude. This is the minimal change that turns a vector interaction into a scalar comparison functional while preserving the same causal Jacobian geometry as the master equation. It should not be read as the exact Fokker-type action whose variation derives the force law.
 
 As a scalar, $\mathcal{A}_{\text{self}}$ summarizes the total strength of causal self‑hits along a worldline. It is derived directly from the interaction structure, but with the directional information removed.
 

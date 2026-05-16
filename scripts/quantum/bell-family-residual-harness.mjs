@@ -396,6 +396,7 @@ function completeRecordParityMetrics(scenario) {
   const obstructedRecords = audits.filter((record) => record.status === "obstructed");
   const incompleteRecords = audits.filter((record) => record.status === "incomplete");
   const obstructedWeight = obstructedRecords.reduce((sum, record) => sum + record.weight, 0);
+  const deltaPar = obstructedWeight;
   const incompleteWeight = incompleteRecords.reduce((sum, record) => sum + record.weight, 0);
   const includeAllRecords = Boolean(scenario.source_records) || audits.length <= 40;
 
@@ -413,6 +414,8 @@ function completeRecordParityMetrics(scenario) {
     record_source: scenario.source_records ? "source_records" : "screening_records",
     checked_record_count: checkedRecords.length,
     obstructed_record_count: obstructedRecords.length,
+    Delta_par: deltaPar,
+    residual: deltaPar,
     obstructed_weight: obstructedWeight,
     incomplete_record_count: incompleteRecords.length,
     incomplete_weight: incompleteWeight,
@@ -628,8 +631,8 @@ function evaluateScenario(scenario) {
   }
   if (completeRecordParity && completeRecordParity.checked_record_count > 0) {
     gates.complete_record_parity = gate(
-      completeRecordParity.obstructed_weight <= scenario.thresholds.complete_record_parity,
-      completeRecordParity.obstructed_weight,
+      completeRecordParity.Delta_par <= scenario.thresholds.complete_record_parity,
+      completeRecordParity.Delta_par,
       scenario.thresholds.complete_record_parity,
       "bell.complete_record_parity_obstruction"
     );
