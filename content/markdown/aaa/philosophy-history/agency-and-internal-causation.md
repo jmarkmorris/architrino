@@ -25,6 +25,8 @@ The local vocabulary distinguishes two levels:
 
 The He-Rb-He example is currently best treated as a computed Switch candidate, not as a proof of minimal agency. A Decider remains a higher-level architectural claim whose minimality and implementation details require separate derivation.
 
+This vocabulary should not be read as branch-choice metaphysics. In quantum comparisons, a Decider does not select an ontic world from a set of already existing worlds. It changes the physical basin partition, threshold placement, and response timing of an assembly before later perturbations are resolved. Any claim that agency changes outcome statistics must therefore report the bias state, work or dissipation ledger, hold time, and measurable basin-weight shift.
+
 ## Determinism and Predictability
 
 Determinism does not imply simplicity or practical predictability. A deterministic system can still be high-dimensional, nonlinear, history-dependent, and sensitive near bifurcation boundaries. Under those conditions, limited observers may experience outcomes as open even when the underlying dynamics remain lawful.

@@ -26,6 +26,16 @@ $$
 
 where $\mu_*$ is the invariant or metastable basin measure used by the Born-rule program. This makes agency a constrained special case of the same transfer-operator problem, with an added work and memory ledger.
 
+The packet explicitly excludes branch-choice ontology. The update $u_0\to u_1$ is not a selection among already existing worlds and not an exception to deterministic evolution. It is a controlled change in the later basin partition and record-window measure. A proposed Decider therefore has to show a measurable basin-weight shift,
+$$
+\Delta\mu_i
+=
+\mu_*\!\left(B_i(u_1)\right)
+-
+\mu_*\!\left(B_i(u_0)\right),
+$$
+while also carrying the work, dissipation, and hold-time ledgers below.
+
 This packet consumes the shared [transfer-operator and basin-measure theorem](transfer-operator-basin-measure.md). It owns the Decider topology, work ledger, hold time, and measurable basin shift; the shared packet owns the operator/measure grammar that decides whether the shift is a real change in $\mu_*(B_i)$.
 
 ## Required Variables
@@ -35,6 +45,7 @@ This packet consumes the shared [transfer-operator and basin-measure theorem](tr
 | $\Gamma(t)$ | Full microstate of the candidate decider assembly. |
 | $u$ | Bias configuration held by the controller or tuner subassembly. |
 | $\mathcal{P}_u$ | Basin partition under the chosen bias state. |
+| $\Delta\mu_i$ | Measurable basin-weight shift caused by changing the bias state. |
 | $\Delta W_u$ | Work required to move or hold the bias configuration. |
 | $\tau_{\text{hold}}$ | Time for which the bias remains stable before perturbation. |
 | $\Delta E_{\text{dump}}$ | Energy exported to the Noether Sea or local environment while maintaining or changing the bias. |

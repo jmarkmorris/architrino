@@ -185,6 +185,8 @@ What we call “randomness” in quantum events (dissociation times, detector cl
 
 Operationally, we still use probabilities (Born rule, half-lives) because that is the correct **statistics** of chaotic trajectories given our coarse-grained knowledge.
 
+Those statistics must stay tied to the same coarse-graining that carries thermodynamic cost. A probability law for threshold outcomes is not closed if the Born-style basin weights use one unresolved-history measure while the entropy, irreversibility, or apparatus-noise summaries use another. The valid target is one deterministic ensemble measure whose projections recover both the outcome frequencies and the thermodynamic summaries of the record-making interaction.
+
 ---
 
 ## Agency and Decision
@@ -199,6 +201,7 @@ We keep everything strictly dynamical:
 
 - There is no extra agency substance or separate agency medium.
 - “Decision” = **the assembly’s internal state and architecture bias which attractor/transition is realized** for a given class of incoming potential patterns.
+- Agency does not choose among pre-existing Everett-style branches. It changes basin geometry, threshold placement, or response kernels before a later perturbation is resolved.
 
 So the question becomes: what is the minimal set of features an assembly must have to *non‑trivially* modulate its own threshold behavior, instead of being a passive, fixed-threshold detector?
 
@@ -212,6 +215,8 @@ This chapter's stance on determinism and agency follows from the delayed core dy
 4. **Predictability is limited**: microstate sensitivity makes outcomes effectively unpredictable to operational observers without introducing ontological randomness.
 
 These points motivate the working definition of determinism, branching, and agency used in this chapter.
+
+This also prevents a common overreading of branch language. In a quantum comparison, the effective wavefunction may carry several alternatives because the retained description has not yet become a record. A Decider or agentic assembly does not select an ontic universe or create an uncaused outcome. Its admissible role is narrower: it may update an internal bias state $u$, alter the basin family $\{B_i(u)\}$, pay the associated work and dissipation cost, and thereby change the later basin weights seen by a declared apparatus channel.
 
 ### Position Summary
 

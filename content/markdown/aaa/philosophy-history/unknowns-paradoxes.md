@@ -279,6 +279,25 @@ The methodological lesson is narrower than many historical repairs made it sound
 
 **Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** A candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ account treats the smallness of the CP-violating angle $\theta$ as a possible assembly-stability selection effect rather than as a free coincidence. On this reading, a non-zero neutron electric dipole moment would correspond to an asymmetric axial-charge distribution relative to the tri-binary rotation structure, and sufficiently large asymmetry could destabilize the assembly through torque, Noether-Sea coupling, or self-hit imbalance. This remains a derivation target. The theory must compute the allowed asymmetry, recover the observed electric-dipole-moment bounds, and show whether any Peccei-Quinn-like effective behavior emerges from assembly relaxation rather than from a new fundamental axion field. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
 
+**Residual Scaffold:** The retained observable is the neutron electric dipole moment, not the ontology of any proposed repair. Let $\vartheta_A$ denote a local CP-odd axial-frame imbalance coordinate for a neutron assembly and let $D_A(\theta)$ be the induced electric-dipole response coefficient of a candidate branch record $\theta$. A minimal comparison residual is
+$$
+d_n^{\mathrm{asm}}(\vartheta_A;\theta)
+=
+D_A(\theta)\,\vartheta_A+O(\vartheta_A^3),
+\qquad
+\mathcal{R}_{\mathrm{nEDM}}(\theta)
+=
+\frac{|d_n^{\mathrm{asm}}|}{d_n^{\max}}.
+$$
+The closure burden is to derive $\mathcal{R}_{\mathrm{nEDM}}\le1$ from assembly stability rather than parameter choice. A proof route would exhibit a relaxation law of the schematic form
+$$
+\frac{d\vartheta_A}{dt}
+=
+-\partial_{\vartheta_A}V_{\mathrm{asm}}(\vartheta_A;\theta)
+-\Gamma_{\mathrm{sea}}(\theta)\,\vartheta_A,
+$$
+with $\vartheta_A=0$ as a stable attractor in the same record that recovers nucleon structure, flavor CP phases, and null results for axion-like channels if such channels are predicted. Until that derivation exists, Peccei-Quinn and axion language remains a comparison framework and search surface, not adopted ontology.
+
 **What Would Count As Resolution:** Resolution would require either direct evidence for the axion or another mechanism that explains the near-zero neutron electric dipole moment without introducing a comparably unexplained parameter elsewhere.
 
 ### The Flavor Problem

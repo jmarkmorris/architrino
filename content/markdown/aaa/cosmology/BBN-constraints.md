@@ -130,6 +130,23 @@ This keeps lithium inside one coherent mechanism family rather than adding a sep
 - Avoid per-source ad hoc retuning that breaks universality across SMBH populations.
 - Maintain reaction and thermalization provenance consistent with [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md).
 
+### Pre-BBN Handoff Gate
+
+Pre-BBN comparison branches are accepted only through their effect on the light-element and relativistic-species record. The BBN side of the gate does not import the external branch ontology; it asks whether the same thermal, photon-loading, neutrino, and Noether-Sea state used by the local-reactor mapping can absorb the branch without damaging the successful yield constraints.
+
+For a candidate branch $X$, define the BBN residual
+$$
+\mathcal{R}_{\mathrm{BBN},X}
+=
+\max\left(
+\frac{|\left(D/H\right)_X-\left(D/H\right)_{\mathrm{obs}}|}{\epsilon_D},\;
+\frac{|Y_{p,X}-Y_{p,\mathrm{obs}}|}{\epsilon_{Y_p}},\;
+\frac{|\left({}^7\mathrm{Li}/H\right)_X-\left({}^7\mathrm{Li}/H\right)_{\mathrm{obs}}|}{\epsilon_{\mathrm{Li}}},\;
+\frac{|\Delta N_{\text{eff}}^X|}{\epsilon_N}
+\right).
+$$
+The branch may remain in the comparison ledger only when $\mathcal{R}_{\mathrm{BBN},X}\le1$ using the same provenance and Noether-Sea record carried into [CMB](./CMB.md), [Structure Formation](./structure-formation.md), and [Gravitational Waves](../spacetime/gravitational-waves.md). A component that repairs one BBN channel while spoiling deuterium survival, helium clustering, or $N_{\text{eff}}$ compatibility is a failed comparison branch, not a new explanatory resource.
+
 ## Observable-Mapping Goals (Interpretation-Scoped)
 
 These goals are for mapping $\mathbb{A}\mathbb{A}\mathbb{A}$ dynamics to measured cosmological observables in SMBH-reactor-style interpretations. They are viability objectives and consistency checks, not yet settled derivations.

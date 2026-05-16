@@ -52,9 +52,64 @@ for calibrated record regions whose recovered observer-sector separation is spac
 
 The bound must be evaluated while preserving shared preparation provenance. An entangled pair may carry correlations inherited from a common preparation event, but those correlations must not become a controllable signal between separated detector settings. A large $\Delta_{\mathrm{loc}}$ in a validated low-energy QFT regime is therefore a failure of effective QFT recovery. A small $\Delta_{\mathrm{loc}}$ shows only that the operator reconstruction has recovered the tested commuting algebra in that regime; it does not promote the continuum field description to final ontology. If the residual is made small only by discarding path-history, detector-kernel, Born-rule, Bell, no-signaling, or gate-latency constraints, the locality recovery is a fitted abstraction rather than a closure result.
 
+## Hilbert-Representation Invariance Guardrail
+
+Effective Hilbert-space trajectories are not ontology by themselves. A time-dependent unitary re-description can change the apparent state-vector path while preserving all calibrated record probabilities if the operators and Hamiltonian are transformed with it. For
+$$
+|\psi'\rangle=U(t)|\psi\rangle,
+\qquad
+\widehat O'_a=U(t)\widehat O_aU^\dagger(t),
+$$
+the Hamiltonian transforms as
+$$
+H'=UHU^\dagger+i\hbar\,\dot U\,U^\dagger.
+$$
+
+A substrate interpretation of an effective operator model must therefore be invariant under this representational freedom:
+$$
+\Pi_{\mathrm{ont}}\!\left[\psi,H,\{\widehat O_a\}\right]
+=
+\Pi_{\mathrm{ont}}\!\left[\psi',H',\{\widehat O'_a\}\right],
+$$
+unless the apparatus kernel, preparation record, or retained boundary data have physically changed. Here $\Pi_{\mathrm{ont}}$ denotes the proposed mapping from the effective Hilbert description back to the underlying assembly, causal-wake, and record-channel content. If two unitarily related descriptions yield different substrate claims while predicting the same records, the proposal has reified a coordinate choice in Hilbert space rather than identifying a $\mathbb{A}\mathbb{A}\mathbb{A}$ object.
+
+This guardrail is especially important for superposition claims. A state vector may be expanded in many bases, so a statement that a superposition has formed becomes physically meaningful only after the record channel has fixed the effective coordinates being tested. The ontology-side claim must be expressed in terms of assembly state, causal-wake history, apparatus kernel, and record-autonomy criteria, not in terms of an unqualified Hilbert-basis expansion.
+
+## Admissible Quantization-Domain Guardrail
+
+The operator map is not a global quantization of every classical function. Groenewold-van Hove-type obstructions are useful here because they prevent a hidden overclaim: no bridge should assert that all smooth observer-level functions can be assigned operators while preserving every Poisson bracket as a commutator. The $\mathbb{A}\mathbb{A}\mathbb{A}$ target is narrower. For a declared coarse-graining $\mathcal{Q}$, apparatus kernel $\mathcal{K}$, retained access region $W$, and record window $T$, let
+$$
+\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}
+\subset C^\infty(M_{\mathcal{Q}})
+$$
+be the admissible effective observables whose records are physically calibrated by that setup. For $f,g\in\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}$, define
+$$
+\Delta_{\mathrm{qmap}}(\mathcal{Q},\mathcal{K},W,T)
+=
+\sup_{f,g}
+\frac{
+\left\|
+[\widehat O_f,\widehat O_g]
+-
+i\hbar\,\widehat O_{\{f,g\}_{\mathcal{Q}}}
+\right\|_{\mathcal{K},W,T}
+}{
+\|\widehat O_f\|_{\mathcal{K},W,T}\,
+\|\widehat O_g\|_{\mathcal{K},W,T}
++\varepsilon_{\mathrm{op}}
+}.
+$$
+The quantization-domain closure condition is
+$$
+\Delta_{\mathrm{qmap}}(\mathcal{Q},\mathcal{K},W,T)\le\varepsilon_{\mathrm{qmap}}
+$$
+on the same record window used for Born weights, contextuality checks, and locality checks. The restriction to $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}$ is physical only when it is fixed before fitting the benchmark and justified by the apparatus channel, retained path-history data, and recordability criteria. If the admissible set is changed after seeing a failed observable, the operator map has hidden a quantization choice inside the closure.
+
 ## Apparatus-Context Guardrail
 
 A self-adjoint operator is an effective observer-level record map, not a guarantee that the substrate carries a preassigned value for that operator in every possible measurement context. The same target assembly can be coupled to different apparatus kernels, and those kernels define different record channels. The closure problem is therefore contextual in the operational sense: each claimed observable must name the preparation, apparatus kernel, coarse-graining, and persistence window that make the record physically meaningful.
+
+The same rule applies before a record forms. A candidate branch split is an apparatus-context statement when the retained transition law loses restartability across the candidate alternatives, but it is not yet an autonomous record until the record and entropy-locking tests pass. This keeps "formation of a superposition" separate from both arbitrary representation choice and completed measurement.
 
 For a commuting measurement context $C$ with apparatus kernel $\mathcal{K}_C$, let
 $$
@@ -118,6 +173,7 @@ Decoherence is the continuous loss of path-history coherence due to unresolved f
 
 * **Gate Latency Scaling:** Because any newly established causal-wake coupling is limited by $c_f$, a two-qubit gate such as CNOT should acquire a distance-dependent setup or fidelity timescale with a lower bound of order $\Delta t \ge d/c_f$. Existing correlations inherited from a shared preparation event are a separate case and should not be described as newly transmitted during the gate.
 * **QFT Locality Residual:** In any regime claimed to recover local QFT, the normalized commutator residual $\Delta_{\mathrm{loc}}(A,B;I)$ must remain below $\epsilon_{\mathrm{loc}}$ for calibrated record regions outside the recovered effective causal cone. Passing this test is an effective-algebra result, not a promotion of continuum-field ontology.
+* **Quantization-Domain Residual:** In any regime claimed to recover quantum operators from a classical or coarse-grained chart, the admissible observable set $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}$ and residual $\Delta_{\mathrm{qmap}}$ must be reported. A global bracket-to-commutator claim over all smooth functions is rejected by the no-go ledger rather than treated as an open $\mathbb{A}\mathbb{A}\mathbb{A}$ obligation.
 * **Coherence Limits:** The model predicts a medium-dependent contribution to coherence loss, scaling with local Noether-core density, represented by $\rho_{\text{core}}(\mathbf{x},t)$ or normalized density $n(\mathbf{x},t)$. This is a closure target alongside standard thermal, electromagnetic, and apparatus-noise channels, not an already-derived absolute bound.
 
 ## Statistical Measure and the Born Rule Emergence
@@ -134,6 +190,22 @@ $$
 P_k(T)=\int_{\mathcal{B}_k^{(T)}} d\mu_{*,T}(\Gamma).
 $$
 * **Born Rule Target:** The $|\psi_k|^2$ statistic should emerge as the calibrated limit of these weighted finite-time basin volumes. When the tri-binary's meta-stable limit cycle is perturbed by the macroscopic energy gradient of the measurement apparatus, the theory must show that microstate sensitivity plus the finite-time apparatus flow recover $\mu_{*,T}$ and push it through the record basins with $P_k(T)\to |\psi_k|^2$ in the relevant operating regime. This is a local invariant-measure recovery target, not an assumption of global ergodicity.
+* **Thermodynamic Ensemble Consistency Target:** The same $\mu_{*,T}$ must also support the thermodynamic summaries used to describe apparatus irreversibility and decoherence. For a declared coarse-graining $\mathcal{Q}$, access region $W$, record window $T$, and thermodynamic projection $\pi_{\mathrm{th}}:\Gamma_{\text{eff}}^{(T)}\to\mathcal{Y}_{\mathrm{th}}$, define
+$$
+\Delta_{\mathrm{ens}}(\mathcal{Q},W,T)
+=
+d_{\mathrm{TV}}\!\left(
+(\pi_{\mathrm{th}})_*\mu_{*,T},
+\mu_{\mathrm{th}}^{\mathcal{Q},W,T}
+\right).
+$$
+Here $\mu_{\mathrm{th}}^{\mathcal{Q},W,T}$ is the observer-level thermodynamic ensemble fixed by the same retained energy, boundary data, apparatus calibration, and record channel. It is not a second ontological probability law. Let $\Delta_{\mathrm{Born}}(T)$ denote the distance between the derived basin weights and the calibrated $|\psi_k|^2$ target on the same window. A credible Born-rule closure should report
+$$
+\Delta_{\mathrm{Born}}(T)\le\varepsilon_{\mathrm{Born}},
+\qquad
+\Delta_{\mathrm{ens}}(\mathcal{Q},W,T)\le\varepsilon_{\mathrm{ens}},
+$$
+on the same retained window. If the Born weights and the thermodynamic summaries require incompatible measures, the model has hidden an ensemble retuning inside the measurement account.
 
 ## Kinetic Limits and Decoherence
 The continuous loss of path-history coherence must be formalized as a transport phenomenon within the Noether Sea, or in bridge prose the spacetime medium.

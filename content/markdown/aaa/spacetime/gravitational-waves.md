@@ -109,6 +109,20 @@ $$
 
 with the tolerances fixed by the validation band. This gate protects the separation between the observable data product and the ontology: the data product is a calibrated, coincident, low-residual strain record, while the $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation must still earn the claim that the record is the tensor-sector response of the effective metric induced by Noether-Sea constitutive dynamics.
 
+## Early-Universe Stochastic Background Gate
+
+A stochastic gravitational-wave background is a data product before it is an ontology claim. If an early-universe or pre-BBN comparison branch predicts a background, retain the detector-facing spectrum and its cosmology linkage, not the branch interpretation that generated it. For a candidate branch $X$, define
+$$
+\mathcal{R}_{\mathrm{GW,early}}(\theta_X)
+=
+\sup_{f\in\mathcal{B}_{\mathrm{det}}}
+\frac{\Omega_{\mathrm{GW}}^X(f)}
+{\Omega_{\mathrm{GW}}^{\max}(f)}
++
+d_{\mathrm{shared}}\!\left(\theta_{\mathrm{GW}},\theta_{\mathrm{BBN}},\theta_{\mathrm{CMB}},\theta_{\mathrm{growth}}\right),
+$$
+where $\mathcal{B}_{\mathrm{det}}$ is the validated detector band and $d_{\mathrm{shared}}$ penalizes any branch that requires a gravitational-wave source record inconsistent with the BBN, CMB, or structure-formation records. A positive stochastic signal would become observational pressure on the early medium history; a null result closes only the corresponding branch amplitude, not the whole cosmology program.
+
 ## Energy Flux
 
 **Closure Target 3 (leading-order GW flux).**

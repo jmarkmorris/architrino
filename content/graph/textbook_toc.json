@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1144
+      "sections": 1148
     }
   },
   "tocRoot": {
@@ -2192,6 +2192,14 @@
                     "markdownPath": "content/markdown/aaa/spacetime/gravitational-waves.md",
                     "markdownSection": "Detector-Side Inference Gate",
                     "sectionKey": "detector side inference gate",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Early-Universe Stochastic Background Gate",
+                    "markdownPath": "content/markdown/aaa/spacetime/gravitational-waves.md",
+                    "markdownSection": "Early-Universe Stochastic Background Gate",
+                    "sectionKey": "early universe stochastic background gate",
                     "headingLevel": 2
                   },
                   {
@@ -4591,6 +4599,22 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Hilbert-Representation Invariance Guardrail",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+                "markdownSection": "Hilbert-Representation Invariance Guardrail",
+                "sectionKey": "hilbert representation invariance guardrail",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Admissible Quantization-Domain Guardrail",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+                "markdownSection": "Admissible Quantization-Domain Guardrail",
+                "sectionKey": "admissible quantization domain guardrail",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Apparatus-Context Guardrail",
                 "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
                 "markdownSection": "Apparatus-Context Guardrail",
@@ -5692,6 +5716,14 @@
                 "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
                 "markdownSection": "Scalar and Tensor Benchmark",
                 "sectionKey": "scalar and tensor benchmark",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Pre-BBN Comparison Gate",
+                "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
+                "markdownSection": "Pre-BBN Comparison Gate",
+                "sectionKey": "pre bbn comparison gate",
                 "headingLevel": 2
               },
               {

@@ -198,6 +198,19 @@ The core commitment is clear: a serious theory must expose itself to potentially
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$ this translates into concrete governance: substrate claims must imply recoveries of known effective theories, constrain where those recoveries break down, and predict coupled signatures not already guaranteed by flexible fitting. Without that discipline, the project would merely redescribe dissatisfaction with current theory.
 
+A further distinction matters for replacement theory. A model is not scientifically useful merely because it can name a distant measurement that would eventually rule it out. The hypothesis must also close a real inconsistency, recover the tested regime it claims to replace, and expose a failure condition that is tied to its own mechanism rather than to an arbitrary parameter extension. Otherwise the theory can be formally falsifiable while adding no disciplined explanatory burden.
+
+This is especially important for data-starved domains. A mathematically elaborate framework may be interesting as a comparison tool while still being unready for corpus promotion. A compact promotion guard is
+$$
+\operatorname{promote}(\theta)=1
+\Longrightarrow
+\mathcal{E}_{\mathrm{obs}}(\theta)\ne\varnothing,\quad
+\mathcal{R}_{\mathrm{rec}}(\theta)\le1,\quad
+\mathcal{R}_{\mathrm{null}}^{\mathrm{op}}(\theta)=0,\quad
+\mathcal{S}_{\mathrm{retune}}(\theta)=0.
+$$
+Here $\mathcal{E}_{\mathrm{obs}}$ is the nonempty set of observational or standard-theory contacts, $\mathcal{R}_{\mathrm{rec}}$ is the relevant recovery residual, $\mathcal{R}_{\mathrm{null}}^{\mathrm{op}}$ is the operational null-result residual from [Failure Criteria](../validation/failure-criteria.md#null-result-residual-for-added-channels), and $\mathcal{S}_{\mathrm{retune}}$ records whether separate parameter choices are being used to pass different benchmarks. The rule is not anti-speculative; it simply keeps speculation in the comparison layer until it earns recovery, null-result discipline, and no-retuning closure.
+
 ### Internal Tensions
 
 What falsificationism overstates is the speed and simplicity with which theories are abandoned. Real science often works through auxiliary assumptions, measurement uncertainty, and underdeveloped modeling. A single anomaly does not always kill a good program. The danger is therefore premature rejection of genuinely promising frameworks before their test architecture is mature.
