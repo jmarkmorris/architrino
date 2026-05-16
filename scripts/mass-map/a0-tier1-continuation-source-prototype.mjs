@@ -21,6 +21,7 @@ const SIGN = { "+": 1, "-": -1 };
 const BLOCKED_STATUS = "blocked_carrier_replay_only";
 const BLOCKED_FAILURE_CODE = "tier1-integrator-not-run";
 const SOURCE_TIME_COVERAGE_EPSILON_FACTOR = 16;
+const SELF_ROOT_FOLD_SIGN_OFFSETS = [-1, -0.5, 0, 0.5, 1];
 
 function parseArgs(argv) {
   const args = {
@@ -2179,6 +2180,258 @@ function directRootRecordsForBranchKeys(roots, branchKeys) {
     }));
 }
 
+function parseDirectRootBranchKey(branchKey) {
+  const [receiver, source, relation, status] = String(branchKey).split("|");
+  return { receiver, source, relation, status };
+}
+
+function isSelfActiveRootBranchKey(branchKey) {
+  const parsed = parseDirectRootBranchKey(branchKey);
+  return parsed.receiver === parsed.source && parsed.relation === "self" && parsed.status === "active";
+}
+
+function rawDirectRootRecordsForBranchKey(roots, branchKey) {
+  return roots
+    .filter((root) => directRootBranchKey(root) === branchKey)
+    .sort((a, b) => a.delay - b.delay);
+}
+
+function unmatchedCurrentRootRecords(previousRecords, currentRecords, delayTolerance) {
+  return currentRecords.filter(
+    (current) =>
+      !previousRecords.some((previous) => Math.abs(previous.delay - current.delay) <= delayTolerance)
+  );
+}
+
+function foldSplittingDelayRadius(row, config, delay) {
+  const rootStep = rootStepFor(row, config);
+  const rootTolerance = config.sampling.rootTolerance ?? 0;
+  const minDelay = config.sampling.minDelay ?? 0;
+  const lowerRoom = Math.max(0, delay - minDelay);
+  const scale = Math.max(rootTolerance * 16, Math.abs(delay) * 0.5, Number.EPSILON);
+  const radius = Math.min(scale, rootStep * 0.25, lowerRoom * 0.75 || scale);
+  return Number.isFinite(radius) && radius > 0 ? radius : Math.max(rootTolerance, Number.EPSILON);
+}
+
+function directRootValueAtRecord(row, history, states, root, t, delay, cF) {
+  const receiverState = states[root.receiver] ?? null;
+  const source = bodyById(root.source);
+  if (!receiverState || !source) {
+    return null;
+  }
+  return directRootValue(row, history, receiverState, source, t, delay, cF);
+}
+
+function rootSign(value, tolerance) {
+  if (!Number.isFinite(value)) {
+    return null;
+  }
+  if (Math.abs(value) <= tolerance) {
+    return 0;
+  }
+  return value > 0 ? 1 : -1;
+}
+
+function selfRootFoldSignChart(row, history, states, root, t, cF, config) {
+  const radius = foldSplittingDelayRadius(row, config, root.delay);
+  const rootTolerance = config.sampling.rootTolerance ?? 0;
+  const samples = SELF_ROOT_FOLD_SIGN_OFFSETS.map((offset) => {
+    const delay = root.delay + offset * radius;
+    const value = delay > 0 ? directRootValueAtRecord(row, history, states, root, t, delay, cF) : null;
+    return {
+      offset,
+      delay,
+      value,
+      sign: rootSign(value, rootTolerance),
+    };
+  });
+  const left = samples.find((sample) => sample.offset === -1);
+  const center = samples.find((sample) => sample.offset === 0);
+  const right = samples.find((sample) => sample.offset === 1);
+  const signChangeAcrossRoot =
+    Number.isFinite(left?.value) &&
+    Number.isFinite(right?.value) &&
+    left.value * right.value <= 0;
+  const finiteValues = samples.map((sample) => sample.value).filter(Number.isFinite);
+  const minAbsValue = finiteValues.length === 0 ? null : Math.min(...finiteValues.map((value) => Math.abs(value)));
+  const positiveExitTouch =
+    Number.isFinite(left?.value) &&
+    Number.isFinite(center?.value) &&
+    Number.isFinite(right?.value) &&
+    Math.abs(center.value) <= rootTolerance &&
+    left.value >= -rootTolerance &&
+    right.value >= -rootTolerance;
+  const foldLayerSupport = signChangeAcrossRoot || positiveExitTouch;
+  const slopeEstimate =
+    Number.isFinite(left?.value) && Number.isFinite(right?.value)
+      ? (right.value - left.value) / (2 * radius)
+      : null;
+  const curvatureEstimate =
+    Number.isFinite(left?.value) && Number.isFinite(center?.value) && Number.isFinite(right?.value)
+      ? (left.value - 2 * center.value + right.value) / (radius * radius)
+      : null;
+  return {
+    root_delay: root.delay,
+    radius,
+    root_tolerance: rootTolerance,
+    samples,
+    min_abs_value: minAbsValue,
+    sign_change_across_root: signChangeAcrossRoot,
+    positive_exit_touch: positiveExitTouch,
+    fold_layer_support: foldLayerSupport,
+    slope_estimate: slopeEstimate,
+    curvature_estimate: curvatureEstimate,
+  };
+}
+
+function selfRootPolarityPairStatus(branchPackets) {
+  const byLayer = new Map();
+  for (const packet of branchPackets) {
+    const body = bodyById(packet.receiver);
+    if (!body) {
+      continue;
+    }
+    const entry = byLayer.get(body.layer) ?? { layer: body.layer, plus: 0, minus: 0 };
+    if (body.polarity === "+") {
+      entry.plus += packet.new_root_count;
+    } else if (body.polarity === "-") {
+      entry.minus += packet.new_root_count;
+    }
+    byLayer.set(body.layer, entry);
+  }
+  const layers = [...byLayer.values()];
+  return {
+    layers,
+    paired_polarities:
+      layers.length > 0 && layers.every((entry) => entry.plus > 0 && entry.plus === entry.minus),
+  };
+}
+
+function selfRootFoldSplittingClassification({
+  allKeysSelf,
+  retainedInitialBranches,
+  evenSurplusParity,
+  pairedPolarityStatus,
+  branchPackets,
+}) {
+  const newRoots = branchPackets.flatMap((packet) => packet.new_roots);
+  const allNewRootsResolved =
+    newRoots.length > 0 &&
+    newRoots.every(
+      (root) =>
+        Number.isFinite(root.residual) &&
+        Number.isFinite(root.J) &&
+        root.sign_chart?.fold_layer_support === true
+    );
+  if (!allKeysSelf || !retainedInitialBranches || !evenSurplusParity || !pairedPolarityStatus.paired_polarities) {
+    return {
+      classification: "branch-proliferation",
+      reason:
+        "surplus roots are not a retained, even-parity, polarity-paired self-root event",
+    };
+  }
+  if (!allNewRootsResolved) {
+    return {
+      classification: "resolution-artifact",
+      reason:
+        "surplus self-root event lacks complete local sign-chart or residual evidence at the selected resolution",
+    };
+  }
+  return {
+    classification: "fold-layer",
+    reason:
+      "surplus is an even-parity, polarity-paired self-root event with retained initial branches and local positive-exit/sign-chart support",
+  };
+}
+
+function selfRootFoldSplittingDiagnostic(
+  row,
+  tier0,
+  rootSelection,
+  previousRootEvaluation,
+  roots,
+  currentTime,
+  states,
+  history,
+  initialBranchCount,
+  step
+) {
+  const extraKeys = rootSelection.extra_branch_keys ?? [];
+  if (extraKeys.length === 0 || rootSelection.extra_branch_count <= 0) {
+    return null;
+  }
+  const config = carrierReplayConfig(tier0, rootSelection.configResult.config);
+  const cF = config.seaCell.c_f;
+  const delayTolerance = rootDuplicateTolerance(config.sampling, rootStepFor(row, config));
+  const branchPackets = extraKeys.map((branchKey) => {
+    const parsed = parseDirectRootBranchKey(branchKey);
+    const previousRoots =
+      previousRootEvaluation === null
+        ? []
+        : rawDirectRootRecordsForBranchKey(previousRootEvaluation.roots, branchKey);
+    const currentRoots = rawDirectRootRecordsForBranchKey(roots, branchKey);
+    const newRoots = unmatchedCurrentRootRecords(previousRoots, currentRoots, delayTolerance).map((root) => ({
+      ...directRootRecordSummary(root),
+      sign_chart: selfRootFoldSignChart(row, history, states, root, currentTime, cF, config),
+    }));
+    return {
+      branch_key: branchKey,
+      receiver: parsed.receiver,
+      source: parsed.source,
+      relation: parsed.relation,
+      status: parsed.status,
+      previous_root_count: previousRoots.length,
+      current_root_count: currentRoots.length,
+      new_root_count: newRoots.length,
+      previous_roots: previousRoots.map(directRootRecordSummary),
+      current_roots: currentRoots.map(directRootRecordSummary),
+      new_roots: newRoots,
+    };
+  });
+  const allKeysSelf = extraKeys.every(isSelfActiveRootBranchKey);
+  const retainedInitialBranches =
+    initialBranchCount > 0 &&
+    rootSelection.branch_retained_count === initialBranchCount &&
+    rootSelection.branch_loss === false;
+  const evenSurplusParity = rootSelection.extra_branch_count > 0 && rootSelection.extra_branch_count % 2 === 0;
+  const pairedPolarityStatus = selfRootPolarityPairStatus(branchPackets);
+  const verdict = selfRootFoldSplittingClassification({
+    allKeysSelf,
+    retainedInitialBranches,
+    evenSurplusParity,
+    pairedPolarityStatus,
+    branchPackets,
+  });
+  return {
+    schema: "self-root-fold-splitting-diagnostic/v1",
+    status: `self-root-${verdict.classification}`,
+    classification: verdict.classification,
+    reason: verdict.reason,
+    step,
+    t: currentTime,
+    selected_refinement_level: rootSelection.refinement_level,
+    selected_root_samples: rootSelection.root_samples,
+    initial_branch_count: initialBranchCount,
+    retained_branch_count: rootSelection.branch_retained_count,
+    surplus_branch_count: rootSelection.extra_branch_count,
+    surplus_branch_keys: extraKeys,
+    all_surplus_keys_self_active: allKeysSelf,
+    retained_initial_branches: retainedInitialBranches,
+    even_surplus_parity: evenSurplusParity,
+    polarity_pair_status: pairedPolarityStatus,
+    local_bracket_packets: branchPackets,
+    validation_effect: {
+      status_is_accepted_history_segment: false,
+      residuals_below_tolerance: false,
+      no_secular_center_drift: false,
+      Delta_k_positive: false,
+      same_branch_persists_across_eta_ladder: false,
+      reason:
+        "self-root fold/splitting classification is a branch-chart diagnostic only and does not establish one-period Tier 1 continuation",
+    },
+  };
+}
+
 function directRootAdaptiveConfigResult(tier0, configResult, args, refinementLevel) {
   if (refinementLevel <= 0) {
     return configResult;
@@ -2319,6 +2572,7 @@ function directRootRecomputingProbeDiagnostic(row, tier0, configResult, args, sa
   let firstExtraBranchKeys = [];
   let firstExtraBranchRecords = [];
   let firstBranchSurplusBracket = null;
+  let firstSelfRootFoldSplitting = null;
   let previousRootEvaluation = null;
   let adaptiveRootRefinementUseCount = 0;
   let maxAdaptiveRootRefinementLevel = 0;
@@ -2384,6 +2638,18 @@ function directRootRecomputingProbeDiagnostic(row, tier0, configResult, args, sa
           surplus_branch_records: firstExtraBranchRecords,
         },
       };
+      firstSelfRootFoldSplitting = selfRootFoldSplittingDiagnostic(
+        row,
+        tier0,
+        rootSelection,
+        previousRootEvaluation,
+        roots,
+        currentTime,
+        states,
+        history,
+        initialBranchCount,
+        step
+      );
     }
     if (rootSelection.refinement_level > 0) {
       adaptiveRootRefinementUseCount += 1;
@@ -2506,6 +2772,7 @@ function directRootRecomputingProbeDiagnostic(row, tier0, configResult, args, sa
       first_surplus_branch_records: firstExtraBranchRecords,
       first_branch_surplus_bracket: firstBranchSurplusBracket,
     },
+    self_root_fold_splitting: firstSelfRootFoldSplitting,
     adaptive_root_refinement: {
       enabled: true,
       max_refinement_level: DIRECT_PROBE_MAX_ADAPTIVE_REFINEMENT_LEVEL,
@@ -2552,6 +2819,7 @@ function directRootProbeSummary(probe) {
     root_count_range: probe.root_count_range ?? null,
     branch_retention: probe.branch_retention ?? null,
     adaptive_root_refinement: probe.adaptive_root_refinement ?? null,
+    self_root_fold_splitting: probe.self_root_fold_splitting ?? null,
     dynamically_bounded: probe.dynamically_bounded ?? false,
     endpoint_speed_ordering_residual: probe.maxima?.endpoint_speed_ordering_residual ?? null,
     max_normalized_position_drift: probe.maxima?.max_normalized_position_drift ?? null,
@@ -2641,6 +2909,7 @@ function directRootHorizonLadderDiagnostic(row, tier0, configResult, args, sampl
     const branchSurplusStep = entry.branch_retention?.first_branch_surplus_step;
     return branchSurplusStep !== null && branchSurplusStep !== undefined;
   });
+  const foldSplittingEntries = entries.filter((entry) => entry.self_root_fold_splitting !== null);
   const adaptiveEntries = entries.filter((entry) => (entry.adaptive_root_refinement?.use_count ?? 0) > 0);
   const allEntriesBlocked =
     entries.length > 0 && entries.every((entry) => entry.status === "direct-root-recomputing-probe-blocked");
@@ -2693,6 +2962,16 @@ function directRootHorizonLadderDiagnostic(row, tier0, configResult, args, sampl
             first_branch_surplus_bracket: branchSurplusEntries[0].branch_retention.first_branch_surplus_bracket,
             max_extra_branch_count: branchSurplusEntries[0].branch_retention.max_extra_branch_count,
           },
+    first_self_root_fold_splitting:
+      foldSplittingEntries.length === 0 ? null : foldSplittingEntries[0].self_root_fold_splitting,
+    self_root_fold_splitting_classifications: Object.fromEntries(
+      ["fold-layer", "branch-proliferation", "resolution-artifact"].map((classification) => [
+        classification,
+        foldSplittingEntries.filter(
+          (entry) => entry.self_root_fold_splitting?.classification === classification
+        ).length,
+      ])
+    ),
     entries,
     validation_effect: {
       status_is_accepted_history_segment: false,

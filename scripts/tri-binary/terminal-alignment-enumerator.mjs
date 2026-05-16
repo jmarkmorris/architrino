@@ -222,7 +222,7 @@ Options:
                          Tolerance for the cycle residual adapter. Defaults to 1e-2.
   --ledger-tolerance X  Tolerance for edge-ledger transfer balance. Defaults to 1e-6.
   --variation-tolerance X
-                         Tolerance for the branch action-variation residual. Defaults to 1e-3.
+                         Tolerance for the branch-summed action-variation residual. Defaults to 1e-3.
   --variation-step X    Finite-difference step for variation residuals. Defaults to 1e-4.
   --quotient MODE       Edge-key quotient: coarse or strict. Defaults to coarse.
   --block-size N        Open-strip finite block length for coefficient residuals. Defaults to 16.
@@ -237,9 +237,10 @@ Options:
 
 This is a reduced terminal-alignment kinematic enumerator. It computes
 candidate delayed roots, diagnostic action rows, edge-map multisets, local
-and source-recoil ledger residuals, action-variation stationarity residuals,
-cycle-residual adapters, area-normalized finite-block coefficients, and transfer
-rows for the current transfer-matrix proof route. Its action kernels are
+and source-recoil ledger residuals, per-branch stationarity residuals,
+branch-summed action-variation residuals, cycle-residual adapters,
+area-normalized finite-block coefficients, and transfer rows for the current
+transfer-matrix proof route. Its action kernels are
 diagnostic adapters, not accepted substrate dynamics.`);
 }
 
@@ -787,6 +788,85 @@ function variationResidualStats(actionRows, args) {
   };
 }
 
+function branchSummedVariationResidual(actionRows, args) {
+  const groups = new Map();
+  const skipped = {
+    non_transversal: 0,
+    missing_derivative: 0,
+    missing_jacobian: 0,
+  };
+  let branchCount = 0;
+
+  for (const row of actionRows) {
+    if (!row.transversal) {
+      skipped.non_transversal += 1;
+      continue;
+    }
+
+    const derivative = row.variation_residual?.derivative;
+    if (
+      !Array.isArray(derivative) ||
+      derivative.length !== 2 ||
+      !derivative.every((value) => Number.isFinite(value))
+    ) {
+      skipped.missing_derivative += 1;
+      continue;
+    }
+
+    if (!Number.isFinite(row.jacobian) || Math.abs(row.jacobian) <= EPS) {
+      skipped.missing_jacobian += 1;
+      continue;
+    }
+
+    const key = receiverKey(row);
+    if (!groups.has(key)) {
+      groups.set(key, {
+        receiver: key,
+        branch_count: 0,
+        residual: [0, 0],
+      });
+    }
+
+    const group = groups.get(key);
+    const contribution = scale(
+      derivative,
+      row.charge_sign / Math.abs(row.jacobian)
+    );
+    group.residual = vecAdd(group.residual, contribution);
+    group.branch_count += 1;
+    branchCount += 1;
+  }
+
+  const samples = [...groups.values()]
+    .map((group) => ({
+      ...group,
+      residual_norm: norm(group.residual),
+    }))
+    .sort((left, right) => right.residual_norm - left.residual_norm);
+
+  const maxResidual = samples.length ? samples[0].residual_norm : null;
+  const rmsResidual = samples.length
+    ? Math.sqrt(
+        samples.reduce((sum, sample) => sum + sample.residual_norm ** 2, 0) /
+          samples.length
+      )
+    : null;
+
+  return {
+    branch_count: branchCount,
+    receiver_count: samples.length,
+    skipped,
+    max_residual: maxResidual,
+    rms_residual: rmsResidual,
+    tolerance: args.variationTolerance,
+    status:
+      maxResidual !== null && maxResidual <= args.variationTolerance ? "pass" : "fail",
+    note:
+      "Branch-summed finite-difference proxy for the receiver-side scalar-action residual after the direct inverse-square term is removed. It uses sampled inter-layer rows only; full terminal closure still needs intra-layer action rows and regularized wake-boundary terms.",
+    worst_receivers: samples.slice(0, 6),
+  };
+}
+
 function edgeLedger(row, ledgerKey = "action_ledger") {
   const ledger = row[ledgerKey] ?? zeroLedger();
   if (row.edge_side === "plus") {
@@ -907,7 +987,8 @@ function candidate(n, m, args) {
     "pair_ledger",
     "This diagnostic pairs each receiver impulse with an opposite source-recoil impulse at emission time. It still omits intra-layer action and regularized wake-energy boundary terms."
   );
-  const actionVariationResidual = variationResidualStats(actionRows, args);
+  const perBranchStationarityResidual = variationResidualStats(actionRows, args);
+  const actionVariationResidual = branchSummedVariationResidual(actionRows, args);
   const plus = multiset(actionRows, "plus", args.quotient);
   const minus = multiset(actionRows, "minus", args.quotient);
   const terminalPlus = multiset(actionRows, "plus", args.quotient, "pair_ledger");
@@ -947,6 +1028,7 @@ function candidate(n, m, args) {
       local_conservation: receiverSideConservation,
       receiver_side_conservation: receiverSideConservation,
       source_recoil_conservation: sourceRecoilConservation,
+      per_branch_stationarity_residual: perBranchStationarityResidual,
       action_variation_residual: actionVariationResidual,
     },
     edge_maps: { plus, minus },
@@ -1076,6 +1158,10 @@ function terminalTransferRow(left, right, args) {
     action_variation_max_residual: Math.max(
       left.action_diagnostics.action_variation_residual.max_residual ?? Infinity,
       right.action_diagnostics.action_variation_residual.max_residual ?? Infinity
+    ),
+    per_branch_stationarity_max_residual: Math.max(
+      left.action_diagnostics.per_branch_stationarity_residual.max_residual ?? Infinity,
+      right.action_diagnostics.per_branch_stationarity_residual.max_residual ?? Infinity
     ),
     cycle_residual_rms: Math.max(
       left.action_diagnostics.cycle_residual_adapter.rms_residual,
@@ -1359,7 +1445,7 @@ function buildPacket(args) {
     generated_by: "scripts/tri-binary/terminal-alignment-enumerator.mjs",
     comparison_level: "reduced circular, phase-offset, or shifted-center terminal-action diagnostic proof packet",
     note:
-      "This enumerates delayed roots, diagnostic branch-action rows, edge-map multisets, source-recoil ledger residuals, action-variation stationarity residuals, transfer rows, and area-normalized finite-block coefficient residuals. Its action kernels are diagnostic adapters, not accepted substrate dynamics.",
+      "This enumerates delayed roots, diagnostic branch-action rows, edge-map multisets, source-recoil ledger residuals, per-branch stationarity residuals, branch-summed action-variation residuals, transfer rows, and area-normalized finite-block coefficient residuals. Its action kernels are diagnostic adapters, not accepted substrate dynamics.",
     parameters: {
       min_n: args.minN,
       max_n: args.maxN,
@@ -1398,7 +1484,8 @@ function buildPacket(args) {
       edge_projection: "action_row_edge_multisets_enumerated_by_this_packet",
       cycle_averaged_residual: "diagnostic_adapter_only_until_action_kernel_is_accepted",
       local_conservation_ledger: "receiver_side_and_source_recoil_pair_ledgers_reported_but_wake_energy_boundary_terms_still_open",
-      action_variation_residual: "finite_difference_stationarity_proxy_reported_for_each_sampled_terminal_branch",
+      per_branch_stationarity_residual: "finite_difference_stationarity_proxy_reported_for_each_sampled_inter_layer_branch_as_obstruction_context",
+      action_variation_residual: "branch_summed_finite_difference_residual_reported_by_receiver_phase_for_sampled_inter_layer_branches_only",
       physical_observer_quotient: "coarse_or_strict_numerical_quotient_only",
       area_normalization: "declared_or_proxy_patch_area_factor_until_metric_reconstruction_supplies_A_theta",
       coefficient_target: "finite_block_area_normalized_proxy_not_horizon_entropy_proof",

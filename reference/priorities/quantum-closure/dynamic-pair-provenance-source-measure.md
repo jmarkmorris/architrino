@@ -340,6 +340,36 @@ node scripts/quantum/local-response-contract-adapter.mjs \
 
 This emitter is intentionally narrower than the adapter. It emits `local_response_rows` only from explicit local Stern-Gerlach apparatus response inputs with `G_rec`, a nonzero signed `Q_m` or `mathcal_Q_m`, `theta_rec_fraction`, `setting_axis`, `Z_in_id`, `record_window_id`, an accepted `response_source`, and same-window residuals. It refuses `correlation_interval`, `eta_AB_interval`, Bell target tables, context probability tables, and separatrix-zero rows. Its stable blocker codes are `sg-response-row-missing`, `source-record-id-missing`, `party-missing`, `setting-missing`, `response-source-not-accepted`, `forbidden-bell-threshold-source`, `apparatus-kernel-missing`, `setting-axis-missing`, `z-in-missing`, `record-window-missing`, `record-gate-missing`, `signed-response-functional-missing`, `signed-response-separatrix-zero`, `record-cycle-phase-missing`, `local-record-residuals-missing`, `residual-window-missing`, `residual-window-mismatch`, `delta-rec-missing`, `delta-div-missing`, `entropy-locking-missing`, `event-ledger-missing`, and `sg-response-duplicate-row`.
 
+The fail-closed apparatus-window extractor upstream of that emitter is:
+
+```text
+node scripts/quantum/stern-gerlach-apparatus-response-input-extractor.mjs \
+  --pretty \
+  --out /tmp/stern-gerlach-apparatus-response-input-extractor-blocked.json
+
+node scripts/quantum/stern-gerlach-response-toy-emitter.mjs \
+  --input /tmp/stern-gerlach-apparatus-response-input-extractor-blocked.json \
+  --pretty \
+  --out /tmp/stern-gerlach-response-toy-emitter-from-apparatus-window.json
+```
+
+This extractor emits `stern_gerlach_response_rows` only from explicit Master-Equation apparatus-window rows. A ready row must supply `Sigma_m_in`, `Lambda_m_in_out`, strictly ordered integrand samples with `Lambda_m_to_out`, `N_m`, and `Jdot_app`, the local record gate inputs `R_pre`, `R_rec`, `R_star`, `T_rec`, and `tau_persist`, an explicit record-cycle phase, and the same-window residuals required by the toy emitter. It computes
+
+$$
+\mathcal{Q}_{\hat{\mathbf{m}}}
+=
+e^{\Lambda_{\hat{\mathbf{m}}}(t_{\mathrm{in}},t_{\mathrm{out}})}
+\Sigma_{\hat{\mathbf{m}}}(Z_{\mathrm{in}})
++
+\int
+e^{\Lambda_{\hat{\mathbf{m}}}(s,t_{\mathrm{out}})}
+\mathcal{N}_{\hat{\mathbf{m}}}(Z(s),s)
+\cdot
+\dot{\mathbf{J}}_{C}^{\mathrm{app}}(s)\,ds
+$$
+
+by trapezoid rule on the declared samples, computes `G_rec` with the project convention $H(0)=0$, and refuses Bell target tables, `correlation_interval`, `eta_AB_interval`, context probabilities, separatrix-zero rows, incomplete record gates, and residual-window mismatches. This supplies the first executable bridge between apparatus-window dynamics and the local-response adapter without treating a Bell-table target as a sign source.
+
 ### Phase-Certificate Diagnostic Contract
 
 The next executable object is not another Bell table. It is a branch-certificate phase row that can say whether the proposed $\varphi_{\Pi}$ was computed from retained source data or merely inserted as a reduced coordinate. Each row should contain:
