@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1153
+      "sections": 1154
     }
   },
   "tocRoot": {
@@ -10693,6 +10693,14 @@
                 "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
                 "markdownSection": "Functional Agency",
                 "sectionKey": "functional agency",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Primitive Metastability",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Primitive Metastability",
+                "sectionKey": "primitive metastability",
                 "headingLevel": 2
               },
               {

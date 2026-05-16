@@ -162,6 +162,47 @@ $$
 
 The local-horizon gate is $\mathcal{R}_{\mathrm{thermo}}(\theta)\le\epsilon_{\mathrm{thermo}}$ in the equilibrium weak-field comparison regime, with the same $\theta$ also passing the ADM/Cartan and PPN gates below. If the residual can be made small only by assigning independent entropy, temperature, and stress records to each patch, then the equation-of-state analogy has not become a native closure. If it can be made small for all local horizon patches while local observer-level conservation holds, the Jacobson route supplies a proof scaffold for recovering an effective Einstein equation without treating the Euclidean void as curved.
 
+The first proof scaffold is to make the boundary count, temperature, and flux three projections of the same record rather than three fitted fields. For a finite analysis window $W$, the boundary label count should satisfy
+$$
+\mathcal{N}_{\partial\Omega}^{(O)}(\theta;W)
+=
+\left|\mathcal{B}_{\partial\Omega}^{(O)}(\theta;W)\right|,
+\qquad
+S_{\partial\Omega}^{(O)}(\theta;W)
+=
+k_B\log\mathcal{N}_{\partial\Omega}^{(O)}(\theta;W).
+$$
+The area-scaling target is not imposed as ontology. It is the recoverable limit
+$$
+\frac{\partial S_{\partial\Omega}^{(O)}}{\partial A_{\partial\Omega}^{\mathrm{eff}}}
+\longrightarrow
+\frac{k_B}{4A_{\text{align}}},
+$$
+where $A_{\partial\Omega}^{\mathrm{eff}}$ is the observer-level patch area and $A_{\text{align}}$ is the alignment-area scale used in the black-hole entropy target. The local temperature comparison is
+$$
+T_U^{(O)}
+=
+\frac{\hbar a_O}{2\pi k_B c_0},
+\qquad
+a_O^2
+=
+\gamma_{ij}a_O^i a_O^j,
+$$
+with $a_O^i$ extracted from the same observer-channel metric record. The flux projection must then agree with the effective stress-energy flux computed from that record, and the local conservation residual
+$$
+\mathcal{R}_{E,\partial\Omega}^{(O)}(\theta;W)
+=
+\frac{
+\left|\Delta E_{\Omega}^{(O)}(\theta;W)
++dQ_{\partial\Omega}^{(O)}(\theta;W)\right|
+}{
+\left|\Delta E_{\Omega}^{(O)}(\theta;W)\right|
++\left|dQ_{\partial\Omega}^{(O)}(\theta;W)\right|
++\varepsilon
+}
+$$
+must be small on the same windows. Thus the local-horizon pass condition is not only $\mathcal{R}_{\mathrm{thermo}}\le\epsilon_{\mathrm{thermo}}$, but also $\mathcal{R}_{E,\partial\Omega}^{(O)}\le\epsilon_E$ and the weak-field ADM/Cartan gates for the same $\theta$. A concrete simulation protocol for this target is [Thermodynamic Residual Protocol](../validation/simulations/thermodynamic-residual.md).
+
 ## Refraction vs. Curvature
 
 - From the **$\mathbb{U}_{\text{now}}$ universe-state perspective**:

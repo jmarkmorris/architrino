@@ -1303,6 +1303,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
   - [Agency and Internal Causation](../../../scenes/philosophy_history/agency_and_internal_causation.json)
     - [Internal vs External Causation](../../../markdown/aaa/philosophy-history/agency-and-internal-causation.md?section=Internal+vs+External+Causation)
     - [Functional Agency](../../../markdown/aaa/philosophy-history/agency-and-internal-causation.md?section=Functional+Agency)
+    - [Primitive Metastability](../../../markdown/aaa/philosophy-history/agency-and-internal-causation.md?section=Primitive+Metastability)
     - [Determinism and Predictability](../../../markdown/aaa/philosophy-history/agency-and-internal-causation.md?section=Determinism+and+Predictability)
     - [Will as Threshold Setting](../../../markdown/aaa/philosophy-history/agency-and-internal-causation.md?section=Will+as+Threshold+Setting)
     - [Compatibilist Agency](../../../markdown/aaa/philosophy-history/agency-and-internal-causation.md?section=Compatibilist+Agency)

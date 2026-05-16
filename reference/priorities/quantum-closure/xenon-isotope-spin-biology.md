@@ -33,6 +33,20 @@ The packet must not be promoted into authored $\mathbb{A}\mathbb{A}\mathbb{A}$ p
 | Effective summary | The observer-level data product is an anesthetic potency or response threshold indexed by isotope, apparatus protocol, organism or organoid preparation, and endpoint. |
 | Speculation | Radical-pair mechanisms, quantum-consciousness interpretations, and claims about controllable biological spin states remain outside the corpus until separated from the observable by a mature inference record. |
 
+## Metastability and Decision Relevance
+
+The reason this watch item belongs near the Decider work is not that xenon would prove free will or consciousness. The reason is that a replicated isotope contrast would be an external example of a tiny spin-indexed input changing a larger metastable biological response threshold. That is the same mathematical kind of question as a Switch or Decider benchmark: does a small internal or molecular variable change basin access under a fixed boundary context?
+
+For a biological endpoint $k$, the corresponding response-kernel comparison would be
+$$
+\Delta p_k(a,b)
+=
+\mu_*^{a}\!\left(B_k^{a}\right)
+-
+\mu_*^{b}\!\left(B_k^{b}\right),
+$$
+where $a$ and $b$ are isotope labels and $B_k^{a}$ is the endpoint basin under the declared isotope exposure protocol. The watch item becomes useful only if $\Delta p_k$ survives the nuisance controls below. Even then, it would be a biological threshold-control benchmark, not evidence that nuclear spin is consciousness and not evidence that the organism is making a Decider-level choice.
+
 ## Minimal Validation Variables
 
 Let the isotope set be

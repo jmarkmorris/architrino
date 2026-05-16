@@ -211,6 +211,8 @@ $$
 $$
 If $\Delta p_i=0$ for every $i$, the update $u_0\to u_1$ has shifted labels, coordinates, or narratives but has not changed outcome weights.
 
+For agency and Switch consumers, the comparison must also declare the fixed boundary context $c_\Omega$ held across the bias update. A change in incoming causal-wake class, Noether-Sea context, or unresolved boundary history is an external protocol change, not an internal decision effect. The cost and hold-time ledgers remain consumer-side obligations: $\Delta p_i$ is not a valid Decider claim unless the update $u_0\to u_1$ has a recorded work or dissipation transaction and the prepared state survives through the perturbation and record window.
+
 A pilot-wave-like guidance reduction is a conditional mean of the same coarse dynamics:
 $$
 a^2(\bar x)
