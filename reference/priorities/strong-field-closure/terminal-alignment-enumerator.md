@@ -4,7 +4,7 @@
 
 - Kind: `priority-proof-packet`
 - Workstream task: `horizon_entropy_packet`
-- Status: `kinematic-baseline-implemented`
+- Status: `action-diagnostic-implemented`
 
 ## Purpose
 
@@ -16,7 +16,7 @@ The implemented script is:
 node scripts/tri-binary/terminal-alignment-enumerator.mjs
 ```
 
-It enumerates reduced circular terminal-kinematic labels, delayed inter-layer roots, branch Jacobian transversality, observer-quotiented edge-map multisets, and the resulting edge-map transfer proxy.
+It enumerates reduced circular terminal labels, delayed inter-layer roots, branch Jacobian transversality, diagnostic branch-action rows, local ledger residuals, cycle-residual adapters, observer-quotiented edge-map multisets, and the resulting transfer proxies.
 
 ## Current Command
 
@@ -41,7 +41,7 @@ For each candidate it found the expected zero-delay self-root boundary class and
 
 ## Transfer Result
 
-The coarse edge-map quotient produced a nonempty transfer proxy, but only through self-compatibility. The strict quotient produced the same classification for this reduced run:
+The coarse edge-map quotient still produces a nonempty transfer proxy, but only through self-compatibility:
 
 $$
 \mathsf{T}_{\theta,\nu}
@@ -57,7 +57,13 @@ $$
 \log\rho(\mathsf{T}_{\theta,\nu})=0.
 $$
 
-This does not recover the target local coefficient. The important result is negative but useful: the reduced concentric circular terminal kinematics, by itself, supplies transversal branch inventories and edge maps, but it does not create the nontrivial label growth needed for
+The action-complete diagnostic transfer is stricter. It requires edge-key agreement, edge-ledger balance, local conservation closure, and a passing cycle-residual adapter. Under the default inverse-square diagnostic kernel with least-squares fitted strength, the sampled local conservation residual closes to numerical roundoff, but the cycle-residual adapter fails. The action-complete transfer matrix is therefore empty:
+
+$$
+\rho(\mathsf{T}_{\theta,\nu}^{\mathrm{act}})=0.
+$$
+
+The reason is structural. In the reduced concentric circular model, the symmetric inter-layer action sum fits the required circular terminal acceleration with an effectively zero fitted strength; the remaining acceleration residual is the circular acceleration itself. The first sampled label has RMS residual about `2.05` against tolerance `0.01`. This does not recover the target local coefficient. The important result is negative but useful: reduced concentric circular terminal kinematics plus the first diagnostic action kernel supplies transversal branch inventories and edge maps, but it does not create the nontrivial label growth or cycle support needed for
 
 $$
 s_{\mathrm{align}}(\theta)\to\frac{1}{4}.
@@ -65,10 +71,10 @@ $$
 
 ## Interpretation
 
-The result isolates the missing mechanism. Nonzero horizon block entropy cannot come from merely listing terminal circular roots under the current coarse quotient. At least one of the following must enter before the area coefficient can appear:
+The result isolates the missing mechanism. Nonzero horizon block entropy cannot come from merely listing terminal circular roots under the current coarse quotient, and it also cannot come from the first symmetric diagnostic action kernel. At least one of the following must enter before the area coefficient can appear:
 
 1. a nontrivial observer quotient that identifies cross-label edge data without erasing Page-compatible release information;
-2. an action kernel whose acceleration and ledger increments turn the kinematic edge maps into conservation-compatible transitions;
+2. an asymmetric or regularized action kernel whose acceleration and ledger increments turn the edge maps into conservation-compatible, cycle-supporting transitions;
 3. terminal branch families beyond the concentric circular ansatz, such as shifted centers, axial-frame variants, wake-memory classes, or inter-layer phase offsets that survive the Physical Observer quotient;
 4. a two-dimensional patch-network pressure rather than a one-strip self-loop proxy.
 
@@ -76,8 +82,9 @@ The result isolates the missing mechanism. Nonzero horizon block entropy cannot 
 
 The script explicitly leaves these proof obligations unresolved:
 
-- compute $\mathcal{Q}_{\ell,\alpha}^{\mathrm{term}}(\lambda)$ from a declared action kernel;
-- assign branch increments $(\Delta E_b,\Delta\mathbf{p}_b,\Delta\mathbf{J}_b,\Delta q_b)$ so edge compatibility includes the local conservation ledger;
+- replace the diagnostic inverse-square branch action with the declared substrate action kernel;
+- compute $\mathcal{Q}_{\ell,\alpha}^{\mathrm{term}}(\lambda)$ from the declared action kernel, including intra-layer action and regularization;
+- assign accepted branch increments $(\Delta E_b,\Delta\mathbf{p}_b,\Delta\mathbf{J}_b,\Delta q_b)$ so edge compatibility includes the local conservation ledger;
 - replace the coarse numerical edge quotient with the Physical Observer quotient $\sim_{O,\theta,W}$ for a declared strong-field record $\theta$;
 - rerun the transfer calculation on the resulting admissible $\Lambda_{\theta}^{\mathrm{loc}}$;
 - test whether the two-dimensional block pressure, not only the one-dimensional strip proxy, can approach the target coefficient.

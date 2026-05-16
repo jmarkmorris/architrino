@@ -610,6 +610,195 @@ J_{jo}^{\alpha_j\alpha_o}(u,\delta_b(u))
 $$
 and preserve the declared emission-order and observer-record class. Failure of the delay strip rejects the candidate kinematically; failure of the Jacobian floor places it in the grazing boundary class; failure of closed return changes the root ledger over one outer period. Passing this scalar certificate is still not terminal-branch existence, because $\mathcal{Q}_{\ell,\alpha}^{\mathrm{term}}=0$ and the conservation ledger must still close, but it is the first finite rejection and continuation criterion for candidate $(m,n)$ branch labels.
 
+The same chart projects the force residual once a certified root curve is supplied. Let $q_{\ell,\alpha}^{\mathrm{pol}}=\sigma_{\ell,\alpha}\epsilon$ denote the polarity bookkeeping unit carried by the architrino on layer $\ell$ and sign $\alpha$, distinguishing it from the layer frequency integer $q_\ell$. Write the signed coefficient inherited from the canonical per-hit law as
+$$
+\mathcal{K}_{jo}^{\alpha_j\alpha_o}
+=
+\kappa\,
+\operatorname{sign}(q_{\ell_j,\alpha_j}^{\mathrm{pol}}q_{\ell_o,\alpha_o}^{\mathrm{pol}})
+\left|q_{\ell_j,\alpha_j}^{\mathrm{pol}}q_{\ell_o,\alpha_o}^{\mathrm{pol}}\right|
+\frac{\omega_O^2}{c_f^2}.
+$$
+For a certified inter-layer curve $\delta_b(u)$, the circular-frame radial component, positive outward from the common center of the receiver layer, is
+$$
+a_{jo,r}^{\alpha_j\alpha_o}(u)
+=
+\mathcal{K}_{jo}^{\alpha_j\alpha_o}
+\frac{
+x_o-\alpha_o\alpha_j x_j
+\cos\Theta_{jo}^{\alpha_j\alpha_o}(u,\delta_b(u))
+}{
+\left(\delta_b(u)\right)^3
+\left|J_{jo}^{\alpha_j\alpha_o}(u,\delta_b(u))\right|
+},
+$$
+and the tangential component, positive in the receiver's instantaneous direction of motion, is
+$$
+a_{jo,\tau}^{\alpha_j\alpha_o}(u)
+=
+\mathcal{K}_{jo}^{\alpha_j\alpha_o}
+\frac{
+\alpha_o\alpha_j x_j
+\sin\Theta_{jo}^{\alpha_j\alpha_o}(u,\delta_b(u))
+}{
+\left(\delta_b(u)\right)^3
+\left|J_{jo}^{\alpha_j\alpha_o}(u,\delta_b(u))\right|
+}.
+$$
+These formulas are just the canonical line-of-action acceleration projected onto the two circular-frame basis vectors. The intra-layer self-hit and partner-hit pieces use the same projection after substituting their own certified delay roots from the binary branch chart.
+
+For each receiver $(\ell_o,\alpha_o)$, sum all admitted branch contributions into
+$$
+\mathcal{A}_{\ell_o,\alpha_o}^{r}(u)
+=
+\sum_{b:\,o_b=(\ell_o,\alpha_o)}
+a_{b,r}(u),
+\qquad
+\mathcal{A}_{\ell_o,\alpha_o}^{\tau}(u)
+=
+\sum_{b:\,o_b=(\ell_o,\alpha_o)}
+a_{b,\tau}(u).
+$$
+On the symmetric terminal circle, with $\mathbf{e}_{\perp}(\psi)=d\mathbf{e}(\psi)/d\psi$, the target acceleration has only inward radial component,
+$$
+\ddot{\mathbf{x}}_{\ell_o,\alpha_o}(t)
+\cdot
+\alpha_o\mathbf{e}(q_ou+\phi_o)
+=
+-R_o(q_o\omega_O)^2,
+\qquad
+\ddot{\mathbf{x}}_{\ell_o,\alpha_o}(t)
+\cdot
+\alpha_o\mathbf{e}_{\perp}(q_ou+\phi_o)
+=
+0.
+$$
+Thus the vector residual $\mathcal{Q}_{\ell,\alpha}^{\mathrm{term}}$ reduces in this chart to the two scalar residual functions
+$$
+\mathcal{R}_{\ell_o,\alpha_o}^{r}(u)
+=
+-R_o(q_o\omega_O)^2
+-
+\mathcal{A}_{\ell_o,\alpha_o}^{r}(u),
+\qquad
+\mathcal{R}_{\ell_o,\alpha_o}^{\tau}(u)
+=
+-
+\mathcal{A}_{\ell_o,\alpha_o}^{\tau}(u).
+$$
+Equivalently,
+$$
+\mathcal{Q}_{\ell_o,\alpha_o}^{\mathrm{term}}
+=
+\frac{1}{2\pi}
+\int_0^{2\pi}
+\left[
+\left(\mathcal{R}_{\ell_o,\alpha_o}^{r}(u)\right)^2
++
+\left(\mathcal{R}_{\ell_o,\alpha_o}^{\tau}(u)\right)^2
+\right]
+du.
+$$
+Since the integrand is non-negative on a smooth certified branch, $\mathcal{Q}_{\ell_o,\alpha_o}^{\mathrm{term}}=0$ is equivalent to $\mathcal{R}_{\ell_o,\alpha_o}^{r}(u)=0$ and $\mathcal{R}_{\ell_o,\alpha_o}^{\tau}(u)=0$ for the full outer period. This is the residual projection that can select or reject candidate integer locks after the scalar root curves are known. The remaining missing closure is the signed branch-strength and conservation assignment: without the polarity factors, regularized intra-layer branch weights, and conserved increments $(\Delta E_b,\Delta\mathbf{p}_b,\Delta\mathbf{J}_b,\Delta q_b)$, the chart can reject kinematic and force-residual failures but cannot yet prove that a particular $(m,n)$ is the terminal solution.
+
+The branch-strength closure data can be stated without adding another gate. For every admitted branch $b$, the terminal ledger must record
+$$
+b
+\mapsto
+\left(
+j_b,o_b,\tau_b,\delta_b(u),\hat{\mathbf{r}}_b(u),J_b(u),
+q_{j_b}^{\mathrm{pol}},q_{o_b}^{\mathrm{pol}},w_b^{(\eta)}(u)
+\right),
+$$
+where $j_b$ and $o_b$ are the source and receiver architrinos, $\tau_b$ is the hit type, and $w_b^{(\eta)}$ is the regularized inverse-square/Jacobian weight assigned to that branch. On a sharp transversal inter-layer branch,
+$$
+w_b^{(0)}(u)
+=
+\frac{\omega_O^2}{c_f^2}
+\frac{1}{
+\left(\delta_b(u)\right)^2
+\left|J_b(u)\right|
+},
+$$
+while intra-layer self-hit and partner-hit entries use the corresponding binary-root delay and Jacobian. The branch acceleration is then the canonical per-hit law in ledger form,
+$$
+\mathbf{a}_b^{(\eta)}(u)
+=
+\kappa\,
+\operatorname{sign}(q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}})
+\left|q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}}\right|
+w_b^{(\eta)}(u)
+\hat{\mathbf{r}}_b(u).
+$$
+The sharp limit is acceptable only when the positive delay and Jacobian-floor certificate above holds; otherwise the branch must retain its regularized weight and remain a boundary case rather than an interior terminal label.
+
+The conservation increments attached to a branch must separate mechanical exchange from wake-history bookkeeping. Over one outer period,
+$$
+\Delta E_{b}^{\mathrm{mech}}
+=
+\frac{\mu_{\text{arch}}}{\omega_O}
+\int_0^{2\pi}
+\mathbf{a}_b^{(\eta)}(u)\cdot\mathbf{v}_{o_b}(u)\,du,
+$$
+$$
+\Delta\mathbf{p}_{b}^{\mathrm{mech}}
+=
+\frac{\mu_{\text{arch}}}{\omega_O}
+\int_0^{2\pi}
+\mathbf{a}_b^{(\eta)}(u)\,du,
+\qquad
+\Delta\mathbf{J}_{b}^{\mathrm{mech}}
+=
+\frac{\mu_{\text{arch}}}{\omega_O}
+\int_0^{2\pi}
+\mathbf{x}_{o_b}(u)\times\mathbf{a}_b^{(\eta)}(u)\,du.
+$$
+Because delayed momentum and energy are not purely instantaneous mechanical quantities, the full ledger entries are
+$$
+\Delta E_b
+=
+\Delta E_b^{\mathrm{mech}}
++
+\Delta E_b^{\mathrm{wake}},
+\qquad
+\Delta\mathbf{p}_b
+=
+\Delta\mathbf{p}_b^{\mathrm{mech}}
++
+\Delta\mathbf{p}_b^{\mathrm{wake}},
+$$
+$$
+\Delta\mathbf{J}_b
+=
+\Delta\mathbf{J}_b^{\mathrm{mech}}
++
+\Delta\mathbf{J}_b^{\mathrm{wake}}.
+$$
+For an internal causal-wake hit, $\Delta q_b=0$ because no architrino identity is created, destroyed, or transferred; nonzero charge entries belong only to a declared provenance crossing of the patch boundary. The terminal conservation ledger is therefore the simultaneous closure condition
+$$
+\sum_{b\in\mathcal{B}_{\mathrm{term}}(\lambda)}
+\Delta E_b
+=
+0,
+\qquad
+\sum_{b\in\mathcal{B}_{\mathrm{term}}(\lambda)}
+\Delta\mathbf{p}_b
+=
+\mathbf{0},
+$$
+$$
+\sum_{b\in\mathcal{B}_{\mathrm{term}}(\lambda)}
+\Delta\mathbf{J}_b
+=
+\mathbf{0},
+\qquad
+\sum_{b\in\mathcal{B}_{\mathrm{term}}(\lambda)}
+\Delta q_b
+=
+0.
+$$
+This completes the local bookkeeping needed for terminal enumeration: a candidate $(m,n)$ must pass scalar root continuation, force-residual cancellation, and the history-aware conservation ledger on the same branch set. What remains unsolved is not another requirement artifact but the derivation of $w_b^{(\eta)}$ and the wake-history increments from a time-translation- and Euclidean-invariant regularized action for the coupled three-layer branch.
+
 This scaffold identifies the smallest missing dynamics. The delayed equations must enumerate $\Lambda_{\theta}^{\mathrm{loc}}$ and derive the edge maps $\mathcal{E}_{\nu}^{\pm}$ from the terminal aligned branch. [Dyadic Resonance Lock](dyadic-resonance-lock.md) supplies the candidate integer phase lattice, and [Binary Dynamics](binary-dynamics.md#self-hit-definition-and-diagnostics) supplies the self-hit and partner-hit root vocabulary, but neither document yet computes the terminal aligned edge projections from the full three-layer dynamics.
 
 The local-horizon coefficient requires

@@ -306,6 +306,65 @@ $$
 
 and similarly for the $B$ wing. Therefore the emitted probability table has zero no-signaling residual even though the joint basin is context-indexed. This is only a table-level lemma. A substrate proof must still show that the context-indexed basin is produced by pair provenance, local apparatus record-window dynamics, and ordinary later record comparison, not by distant-setting dependence at either detector.
 
+### Candidate Source For $\eta_{AB}$
+
+The first substrate candidate for the inserted threshold coordinate should reuse existing record-window variables rather than add a new random label. Let $\theta_{\text{rec}}^A$ and $\theta_{\text{rec}}^B$ be the local apparatus record-cycle phases inside $\Theta_A(\hat{\mathbf{m}}_A)$ and $\Theta_B(\hat{\mathbf{m}}_B)$, and let
+
+$$
+\varphi_{\Pi}:\Pi_{AB}\to S^1
+$$
+
+read the relative phase component retained by $\Theta_{AB}^{\mathrm{rel}}$. The candidate pair coordinate is
+
+$$
+\eta_{AB}
+=
+\frac{1}{2\pi}
+\left[
+\theta_{\text{rec}}^A
+-
+\theta_{\text{rec}}^B
++
+\varphi_{\Pi}(\Pi_{AB})
+\right]_{2\pi},
+$$
+
+where $[\cdot]_{2\pi}$ denotes the representative in $[0,2\pi)$. This equation is only a theorem target. It is admissible only if $\varphi_{\Pi}$ is computed from the retained pair-provenance ledger and if the two local record-cycle phases are sampled from the local apparatus return-map measures already present in the joint record law.
+
+For each detector-setting context, let $\mu_{AB}^{\mathrm{rec}}$ denote the joint measure in the earlier record-law integral. The closure target is
+
+$$
+(\eta_{AB})_*\mu_{AB}^{\mathrm{rec}}=d\eta,
+\qquad
+\mu_{AB}^{\mathrm{rec}}
+\left(
+0\le\eta_{AB}
+<
+T_{\mathrm{same}}(\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
+\right)
+=
+\frac{1-\hat{\mathbf{m}}_A\cdot\hat{\mathbf{m}}_B}{2}.
+$$
+
+The first equality is the uniform-pushforward burden; the second says the same-outcome basin measure is the singlet benchmark rather than a fitted table. The candidate fails if the pushforward is imposed by hand, if the required relative phase cannot be extracted from $\Theta_{AB}^{\mathrm{rel}}$, or if the four induced basins product-screen after conditioning on the complete retained record. A concrete screening diagnostic is
+
+$$
+\Delta_{\mathrm{prod}}
+=
+\inf_{K_A,K_B}
+\sup_{a,b,\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B}
+\left|
+P_\theta(a,b|\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
+-
+\int
+K_A(a|\hat{\mathbf{m}}_A,\Pi_{AB},\zeta_A)
+K_B(b|\hat{\mathbf{m}}_B,\Pi_{AB},\zeta_B)
+\,d\mu_{AB}^{\mathrm{rec}}
+\right|.
+$$
+
+If $\Delta_{\mathrm{prod}}$ vanishes within the declared harness tolerance, the coordinate has reduced to the Bell-local class and the Bell-family gate fails. If $\Delta_{\mathrm{prod}}$ remains nonzero while $\Delta_{\mathrm{MI}}$, $\Delta_{\mathrm{NS}}^A$, and $\Delta_{\mathrm{NS}}^B$ vanish, the construction becomes a serious candidate for a substrate derivation.
+
 This theorem target fails in any of the following cases:
 
 1. $\eta_{AB}$ or $T_{\mathrm{same}}$ is chosen directly to reproduce the singlet table rather than derived as a basin coordinate and separatrix threshold.

@@ -61,7 +61,7 @@ For an assembly center trajectory $\mathbf{X}(t)$ with mean velocity $\mathbf{v}
 $$
 \mathbf{x}_i(t)=\mathbf{X}(t)+\mathbf{r}_i(t),\qquad \sum_i m_i\mathbf{r}_i(t)=\mathbf{0}.
 $$
-The closure task is to solve for bounded relative motion $\mathbf{r}_i(t)$ under translation $|\mathbf{v}|<c_f$ and extract period and geometry renormalization.
+The closure task is to solve for bounded relative motion $\mathbf{r}_i(t)$ under translation $\|\mathbf{v}\|<c_f$ and extract period and geometry renormalization.
 
 ### 2.3 Dimensionless drift-delay form and variational closure
 
@@ -670,7 +670,7 @@ A_2=\alpha_2-b_2+\frac{1}{2},
 \qquad
 A_4=\alpha_4-b_4+\alpha_2-\frac{b_2}{2}+\frac{5}{8}.
 $$
-Operational isotropy through $O(\beta^4)$ requires
+Operational isotropy through $O(\beta_\star^4)$ requires
 $$
 A_2=0,\qquad A_4=0.
 $$
@@ -1055,7 +1055,7 @@ for small integers $(m,n)$ and nonlinear coupling width $\delta\omega_{\text{nl}
 
 ### Theorem A (attractor existence under drift)
 
-For admissible coupling and regularization parameters, there exists a bounded translating attractor family for binary and tri-binary systems for $|\mathbf{v}|<c_f$.
+For admissible coupling and regularization parameters, there exists a bounded translating attractor family for binary and tri-binary systems for $\|\mathbf{v}\|<c_f$.
 
 ### Theorem B (anisotropic deformation law)
 
