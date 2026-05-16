@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1155
+      "sections": 1156
     }
   },
   "tocRoot": {
@@ -718,6 +718,14 @@
                 "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
                 "markdownSection": "Overview",
                 "sectionKey": "overview",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Reconstruction Existence Lemma",
+                "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+                "markdownSection": "Reconstruction Existence Lemma",
+                "sectionKey": "reconstruction existence lemma",
                 "headingLevel": 2
               },
               {
@@ -6455,10 +6463,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Validation Protocols: Proving the Absolute Frame",
+                "title": "Validation Protocols: Preferred-Frame Leakage and Frame Proxies",
                 "markdownPath": "content/markdown/aaa/validation/validation-protocols.md",
-                "markdownSection": "Validation Protocols: Proving the Absolute Frame",
-                "sectionKey": "validation protocols proving the absolute frame",
+                "markdownSection": "Validation Protocols: Preferred-Frame Leakage and Frame Proxies",
+                "sectionKey": "validation protocols preferred frame leakage and frame proxies",
                 "headingLevel": 2
               }
             ]
@@ -7207,10 +7215,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Self-Interaction Switch at $\\|\\mathbf{v}\\| = v$",
+                    "title": "Self-Hit Onset Boundary at $\\|\\mathbf{v}\\| = c_f$",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Self-Interaction Switch at $\\|\\mathbf{v}\\| = v$",
-                    "sectionKey": "self interaction switch at mathbf v v",
+                    "markdownSection": "Self-Hit Onset Boundary at $\\|\\mathbf{v}\\| = c_f$",
+                    "sectionKey": "self hit onset boundary at mathbf v c f",
                     "headingLevel": 2
                   },
                   {

@@ -38,7 +38,7 @@ The Euclidean void and the Noether Sea must remain distinct.
 | Noether Sea | Emergent physical medium | Density, stress, flow, orientation, energy storage, delay-factor response |
 | Effective spacetime | Observer-level reconstruction | Clock rates, ruler behavior, signal propagation, effective metric |
 
-The void does not curve, expand, contract, or carry energy. The Noether Sea can do all of those things as physical content. Effective curvature is therefore a derived description of Noether-Sea response, not curvature of the void itself.
+The void does not curve, expand, contract, or carry energy. The Noether Sea, as physical content, can carry energy and stress, flow, strain, compress, relax, and change its response variables. Effective curvature and effective expansion are therefore derived descriptions of Noether-Sea response, not curvature or expansion of the void itself.
 
 At a fixed coordinate point $\mathbf{x}$ and absolute time $t$, the medium state may change:
 $$

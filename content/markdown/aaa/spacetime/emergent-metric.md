@@ -8,14 +8,14 @@ The opening fixes the ontological picture and the canonical symbols first. The l
 
 ## Ontological Picture
 
-- **Substrate**: A fixed Euclidean 3D void with absolute time $t$. Coordinates $(x,y,z)$ never move or curve.
+- **Substrate**: A fixed Euclidean 3D void with absolute time $t$. A chosen chart $(x,y,z)$ represents fixed void locations; the labels never move or curve.
 - **Medium**: The [Noether Sea](noether-sea.md), a pervasive medium of coupled pro/anti Noether cores (tri-binary assemblies). The bridge term *spacetime medium* is used when translating toward effective spacetime language.
-- **$\mathbb{U}_{\text{now}}$ universe-state perspective**: A conceptual observer in the absolute frame who knows:
+- **$\mathbb{U}_{\text{now}}$ universe-state perspective**: Complete-state bookkeeping on the absolute-time slice, carrying:
   - The full architrino microstate $S(t)$,
   - The instantaneous state of the Noether Sea (density $\rho_{\text{core}}(x,t)$, alignment, stress),
   - The effective potential field $\Phi_{\text{eff}}(x,t)$ and its gradients.
 
-From this vantage point, there is only:
+From this bookkeeping perspective, there is only:
 - Flat Euclidean geometry $h_{ij}=\delta_{ij}$,
 - A dynamic medium (Noether cores) moving and rearranging in that geometry.
 
@@ -299,8 +299,8 @@ Together with $|\mathcal{P}_{\partial\Omega}|A_{\text{align}}\to A_{\partial\Ome
 ## Refraction vs. Curvature
 
 - From the **$\mathbb{U}_{\text{now}}$ universe-state perspective**:
-  - Light and gravity-like perturbations travel on straight lines in $(x,y,z)$,
-  - But with an *effective speed* $c_{\text{eff}}(x)$ that depends on the local Noether-core configuration:
+  - Primitive causal-wake support is measured by Euclidean distances in $(x,y,z)$,
+  - While effective ray paths and clock comparisons depend on an *effective speed* $c_{\text{eff}}(x)$ set by the local Noether-core configuration:
     $c_{\text{eff}}(x) < c_f \quad \text{in dense regions (near mass)}$
 - From the **physical observer** (built from assemblies):
   - Light and free-falling matter appear to move along curved paths (geodesics) of an effective metric $g^{\text{eff}}_{\mu\nu}$.

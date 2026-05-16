@@ -1,10 +1,10 @@
 # Detecting the Absolute Frame
 
-This chapter isolates the complete-state diagnostic problem of identifying absolute rest inside a theory with Euclidean void and absolute time. Its purpose is to show that the preferred frame is not a purely metaphysical declaration but something that, at least in principle, is encoded in the geometry of causal wakes.
+This chapter isolates the complete-state diagnostic problem of identifying absolute rest inside a theory with Euclidean void and absolute time. Its purpose is to show that the preferred frame is not a purely metaphysical declaration but something that, at least in principle, is encoded in the source-tagged geometry of causal wakes available to complete-state bookkeeping.
 
 ## Overview
 
-This chapter isolates the conceptual question that has to be answered before any coordinate construction can begin: can the architrino framework identify **absolute rest** from its own physics, without assuming a pre-labeled grid? The answer in this framework is yes. The detection criterion is the **concentricity of causal wakes** emitted by a stationary architrino.
+This chapter isolates the conceptual question that has to be answered before any coordinate construction can begin: can the architrino framework identify **absolute rest** from its own physics, without assuming a pre-labeled grid? The answer in this framework is yes, from the $\mathbb{U}_{\text{now}}$ universe-state perspective. The complete-state diagnostic is the **concentricity of source-tagged causal isochrons** emitted by a stationary architrino.
 
 This argument sits between [Euclidean Void](euclidean-void.md), which states the underlying substrate, and [Reconstructing a Coordinate Frame from Wake Geometry](bootstrapping-the-absolute-frame.md), which turns the preferred-rest diagnostic into a usable coordinate scaffold. Its operational shielding claims also connect directly to [Absolute Time Defense](absolute-time-defense.md) and [Lorentz Kinematics](../spacetime/lorentz-kinematics.md).
 
@@ -15,9 +15,9 @@ The architrino theory posits an **Euclidean 3D void** and **absolute time** as t
 This presents an apparent paradox:
 - We claim architrinos have **definite positions** $\mathbf{x}(t)$ and **definite velocities** $\mathbf{v}(t)$ in absolute space and time.
 - Yet absolute space is **translationally and rotationally invariant**: the physics is identical at any location, any orientation, and any moment.
-- How can the theory internally distinguish absolute rest ($v = 0$) from absolute motion ($v \neq 0$) without reference coordinates?
+- How can the theory internally distinguish absolute rest ($\mathbf{v} = \mathbf{0}$) from absolute motion ($\mathbf{v} \neq \mathbf{0}$) without reference coordinates?
 
-This is not merely a philosophical puzzle. It is a **practical requirement** for the theory's internal consistency. If the theory cannot, even in principle, extract a preferred rest condition from intrinsic physics, then claims about absolute velocity are empirically empty.
+This is not merely a philosophical puzzle. It is a **practical requirement** for the theory's internal consistency. If the theory cannot, even in principle, extract a preferred rest condition from intrinsic physics, then claims about absolute velocity lack complete-state content.
 
 ## Detecting Absolute Rest: The Causal Wake Diagnostic
 
@@ -27,58 +27,69 @@ The resolution exploits the theory's **finite wake-speed** postulate: architrino
 
 ### The Nature of Causal Wakes
 
-Each architrino continuously emits potential-bearing structure that propagates outward as a **spherically expanding causal wake**: a continuous causal-wake surface expanding at speed $c_f$ from the emission point. This is not a discrete shell or particle; it is a **continuous potential distribution** that grows radially from its origin. At any given absolute time, the wake forms a spherical surface of radius $r = c_f \Delta t$ centered on the point where it was emitted.
+Each architrino continuously emits potential-bearing structure as **expanding causal isochrons**. A single emission at time $t_0$ produces a causal wake surface expanding at speed $c_f$ from the emission point. This is not a discrete shell or particle; it is a **continuous potential distribution** that grows radially from its origin. At any given absolute time, that emitted isochron has radius $r = c_f \Delta t$ centered on the point where it was emitted.
 
-The crucial point is that this expanding wake carries information about the **absolute location** where the architrino was when it emitted that portion of the potential-bearing wake. The wake does not remember where the architrino went afterward. It simply continues expanding from its birth point in the void.
+The crucial point is that this expanding causal isochron carries information about the **absolute location** where the architrino was when it emitted that portion of the potential-bearing wake. The isochron does not follow where the architrino goes afterward. It simply continues expanding from its birth point in the void.
 
 ### The Concentricity Test
 
 Consider a $\mathbb{U}_{\text{now}}$ universe-state perspective with access to complete microdynamics that can track:
 1. The complete path history of any architrino,
-2. The geometric centers of all emitted and expanding wake structures,
-3. All outgoing potential wakes it has emitted.
+2. The source identity and provenance of each emitted causal isochron,
+3. The geometric centers of all emitted and expanding causal wake surfaces,
+4. All outgoing potential wakes it has emitted.
 
-**The Diagnostic Signature:** An architrino at **absolute rest** ($\mathbf{v} = 0$) exhibits a unique geometric property. It remains at the **exact center** of every spherically expanding causal wake it has ever emitted.
+**The Diagnostic Signature:** An architrino at **absolute rest** ($\mathbf{v} = \mathbf{0}$) exhibits a unique geometric property. It remains at the **exact center** of every source-tagged expanding causal isochron it has ever emitted during the rest interval.
 
 **The Physical Basis:**
-- At time $t_0$, the architrino emits potential from position $\mathbf{x}_0$, creating a causal wake.
-- This wake expands at speed $c_f$ relative to the void, centered on $\mathbf{x}_0$.
+- At time $t_0$, the architrino emits potential from position $\mathbf{x}_0$, creating a causal isochron.
+- This causal isochron expands at speed $c_f$ relative to the void, centered on $\mathbf{x}_0$.
 - If the architrino is stationary, at later time $t_1 = t_0 + \Delta t$, it remains at $\mathbf{x}_0$.
-- The wake has expanded to radius $r = c_f \Delta t$, but its center remains $\mathbf{x}_0$.
-- All successive emissions create perfectly **concentric wakes**: nested spherical potential distributions sharing a common geometric center.
+- The causal isochron has expanded to radius $r = c_f \Delta t$, but its center remains $\mathbf{x}_0$.
+- All successive emissions create perfectly **concentric causal isochrons**: nested potential distributions sharing a common geometric center.
 
 **If the architrino moves:**
 - At $t_0$, emission occurs at $\mathbf{x}_0$.
-- At $t_1$, the architrino has displaced to $\mathbf{x}_1 = \mathbf{x}_0 + \mathbf{v} \Delta t$.
-- The first wake remains centered on $\mathbf{x}_0$ with radius $c_f \Delta t$.
-- Subsequent wakes are centered on displaced positions along the trajectory.
-- The wake centers are **non-coincident**; the pattern is **non-concentric**.
+- On a uniform segment, at $t_1$ the architrino has displaced to $\mathbf{x}_1 = \mathbf{x}_0 + \mathbf{v} \Delta t$.
+- The first causal isochron remains centered on $\mathbf{x}_0$ with radius $c_f \Delta t$.
+- Subsequent causal isochrons are centered on displaced positions along the trajectory.
+- The emitted centers are **non-coincident**; the source-tagged wake stream is **non-concentric**.
 - The architrino lies closer to the expanding wake front in its direction of motion, producing a Doppler-like geometry in the absolute frame.
 
 ### The Complete-State Diagnostic Procedure
 
-**Step 1:** Track the geometric centers of all spherically expanding causal wakes emitted by a target architrino over a measurement interval.
+**Step 1:** Track the source-tagged geometric centers of all expanding causal isochrons emitted by a target architrino over a diagnostic interval.
 
 **Step 2:** Test for spatial coincidence of these centers.
 
 **Result:**
-- **All centers coincident** -> $\mathbf{v}_{\text{abs}} = 0$ (absolute rest)
-- **Centers form a trajectory** -> $\mathbf{v}_{\text{abs}} \neq 0$; the displacement vector $\Delta \mathbf{x}$ per unit time $\Delta t$ yields the absolute velocity: $\mathbf{v}_{\text{abs}} = \Delta \mathbf{x} / \Delta t$
+- **All centers coincident** -> $\mathbf{v}_{\text{abs}} = \mathbf{0}$ on that interval (absolute rest)
+- **Centers form a trajectory** -> $\mathbf{v}_{\text{abs}} \neq \mathbf{0}$; for a uniform segment, the displacement vector $\Delta \mathbf{x}$ per unit time $\Delta t$ yields the absolute velocity: $\mathbf{v}_{\text{abs}} = \Delta \mathbf{x} / \Delta t$
 
-**The Power of This Test:** This is a **coordinate-free** geometric diagnostic. It does not compare position to some external grid. It checks an **intrinsic relational property**: whether the centers of continuous spherical wakes occupy the same point in the Euclidean void.
+**Coordinate-Free Invariant:** For a target architrino $a$ and emission interval $I$, define the source-tagged center set
+$$
+Z_a(I)=\{\mathbf{x}_a(s):s\in I\},
+$$
+and its Euclidean diameter
+$$
+D_a(I)=\sup_{s,u\in I}\|\mathbf{x}_a(s)-\mathbf{x}_a(u)\|.
+$$
+
+With exact complete-state access and source-independent propagation at $c_f$, $D_a(I)=0$ if and only if $\mathbf{x}_a(s)$ is constant on $I$, so $\mathbf{v}_a(s)=\mathbf{0}$ almost everywhere on that interval. For uniform motion, $D_a([t_0,t_0+T])=\|\mathbf{v}_a\|T$. This is a **coordinate-free** geometric diagnostic. It does not compare position to some external grid. It checks an **intrinsic relational property**: whether the source-tagged centers of emitted causal isochrons occupy the same point in the Euclidean void.
 
 ## Connections to Core Dynamics
 
-### Self-Hit Dynamics (Ch. 5)
+### Self-Hit and Delay-Root Geometry (Ch. 5)
 
-The concentricity diagnostic connects directly to **self-interaction geometry**:
+The concentricity diagnostic connects directly to the geometry that later appears in **self-hit** and delay-root analysis, but the two claims must remain distinct:
 
-- An architrino at rest ($v = 0$) experiences **symmetric self-hit**: it intercepts its own past potential wake equally from all directions.
-- An architrino in motion ($v > 0$) experiences **asymmetric self-hit**: stronger interaction with wake components emitted ahead of its trajectory. As the absolute velocity increases, this becomes a sonic-boom-like or Cherenkov-like threshold geometry in which the source increasingly plows into its own newly emitted wakes instead of receiving them as a nearly symmetric delayed background.
-- For bound assemblies, that asymmetric self-interaction produces an extreme drag and deformation profile on the internal orbits. Long before an assembly could cross $v=c_f$ as an intact standard-matter object, the wake asymmetry would disrupt the delicate phase closure required for Noether-core stability.
-- This asymmetry is one input to the medium-dressed inertial response of bound assemblies: acceleration skews the delayed causal ledger, while shielding determines how much of the internal energy is exposed to external probes.
+- An architrino at rest ($\mathbf{v}=\mathbf{0}$) emits concentric causal isochrons, but it does not receive a delayed self-hit merely by being stationary. For $t_0<t$, the self-hit root condition would require $\|\mathbf{x}_i(t)-\mathbf{x}_i(t_0)\|=c_f(t-t_0)$; a stationary worldline has the left side equal to zero while the right side is positive.
+- An architrino in ordinary sub-field-speed straight motion emits non-concentric source-tagged isochrons, but that is still not enough by itself to create a self-hit. Self-hit is a source-identity root condition, not a synonym for nonzero absolute velocity.
+- Curved path history and super-field-speed history are the relevant self-hit ingredients. Once the source worldline folds through its own emitted causal isochrons, same-source roots can enter the causal-root ledger and produce non-Markovian feedback.
+- For bound assemblies, the corresponding closure problem is conditional: a translating Noether core must retune its moving-assembly deformation, clock/ruler behavior, two-way signal synchronization, and preferred-frame leakage while its internal causal-root ledgers remain admissible. Failure of that shared closure would appear as phase loss, dissociation, or unacceptable preferred-frame leakage; the disruption claim is a theorem target, not an established consequence of the rest diagnostic alone.
+- This moving-assembly bias is one input to the medium-dressed inertial response of bound assemblies: acceleration skews the delayed causal ledger, while shielding determines how much of the internal energy is exposed to external probes.
 
-**The upshot:** Absolute velocity is not merely a kinematic label. It has **dynamical consequences** through the self-hit geometry of the continuous causal wakes. The inability to accelerate standard-matter assemblies past the effective speed of light is therefore mechanical rather than substrate-geometric: near the $c_f$ threshold, an assembly would shear apart or dissolve under its own asymmetric wake forces before crossing as a stable bound system.
+**The upshot:** Absolute velocity is not merely a kinematic label, but the direct rest diagnostic is geometric rather than an immediate self-hit claim. The dynamical burden belongs to the Lorentz-closure ladder: moving assemblies must show stable delayed-root closure, medium-dressed deformation, and bounded preferred-frame leakage before Physical Observers can recover ordinary relativistic behavior.
 
 ### Master Equation Requirements (Ch. 9)
 
@@ -90,7 +101,7 @@ The concentric-wake diagnostic demonstrates that $\mathbf{x}_i(t)$ is physically
 
 ### Foundational Validation (Ch. 7)
 
-This measurement serves as a **consistency test**:
+This complete-state diagnostic serves as a **consistency test**:
 - Can the theory self-consistently define its own reference frame from intrinsic physics alone?
 - **Yes**: through geometric properties of continuous wake dynamics.
 
@@ -102,7 +113,7 @@ This prevents the theory from being stranded without empirical content or operat
 
 **Ontologically fundamental (physically real):**
 - **Absolute space and time**: The substrate in which all architrino dynamics occur
-- **Absolute velocity**: Physically meaningful and detectable via wake concentricity
+- **Absolute velocity**: Physically meaningful and detectable to complete-state reconstruction via source-tagged wake concentricity
 - **Causal wakes**: continuous potential-bearing structures propagating through the void
 - **Geometric relationships**: Concentricity and displacement are objective, observer-independent properties
 
@@ -113,7 +124,7 @@ This prevents the theory from being stranded without empirical content or operat
 
 ### Why Physical Observers Don't Detect the Preferred Frame
 
-The concentric-wake measurement requires access to full microdynamics: something only a $\mathbb{U}_{\text{now}}$ universe-state perspective can achieve. **Physical Observers** composed of assemblies measure through assembly-based apparatus:
+The concentric-wake diagnostic requires access to full microdynamics: something only a $\mathbb{U}_{\text{now}}$ universe-state perspective can achieve. **Physical Observers** composed of assemblies measure through assembly-based apparatus:
 
 - **Proper time** $\tau$ via internal clocks, not absolute time $t$
 - **Effective coordinates** via local rulers
@@ -142,30 +153,30 @@ The architrino framework is **substantivalist**, but it avoids the idea that the
 This places the theory in the tradition of **Lorentz Ether Theory**:
 - Absolute space and time are fundamental
 - Lorentz symmetry is emergent and approximate
-- A preferred frame exists but is operationally hidden at low energies
+- A preferred frame exists but must be operationally hidden at low energies by the moving-assembly closure ladder
 
 **Key distinctions from classical LET:**
 - The medium is not a continuous classical ether; it is a discrete sea of tri-binary assemblies
 - The preferred frame is hidden by emergent effective geometry
-- The framework makes explicit predictions for where symmetry-breaking signatures should appear
+- The framework states explicit closure targets and failure criteria for where symmetry-breaking signatures would appear
 
 ## Summary: The Detection Method
 
 **The Question:** Can a $\mathbb{U}_{\text{now}}$ universe-state perspective determine when an architrino has absolute velocity zero, without pre-existing coordinates?
 
-**The Answer:** **Yes**, by testing the **concentricity** of outgoing spherically expanding causal wakes.
+**The Answer:** **Yes**, by testing the **concentricity** of source-tagged outgoing causal isochrons.
 
 **Detection signatures:**
-- Absolute rest -> all wake centers spatially coincident
-- Absolute motion -> wake centers form a displacement trajectory; velocity $\mathbf{v}_{\text{abs}} = \Delta \mathbf{x} / \Delta t$
+- Absolute rest -> all source-tagged wake centers spatially coincident
+- Absolute motion -> wake centers form a displacement trajectory; for uniform segments, velocity $\mathbf{v}_{\text{abs}} = \Delta \mathbf{x} / \Delta t$
 
 **Why this works:**
 - Wake speed $c_f$ is isotropic in the void's rest frame
 - Emission centers mark absolute positions in the void
-- Concentricity is a coordinate-free geometric invariant of continuous potential distributions
+- Concentricity is a coordinate-free geometric invariant of source-tagged continuous potential distributions
 
 **Theoretical implications:**
-- Absolute space and time have measurable dynamical content
+- Absolute space and time have complete-state diagnostic content
 - The theory can identify a preferred rest condition from intrinsic physics alone
 - Operational Lorentz invariance is compatible with fundamental absolute structure
 

@@ -26,7 +26,7 @@ A stronger prediction is also available. The Lorentz formulas should not be impo
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, the substrate ontology is:
 
-1. Euclidean 3-space with absolute coordinates.
+1. Euclidean 3-space represented by a chosen absolute-frame coordinate scaffold.
 2. Global absolute time $t$.
 3. Finite propagation speed $c_f$ for potential transfer through the Noether Sea.
 
@@ -529,11 +529,11 @@ Relevant to Lorentzian closure, the core deformation is not only axis-ratio chan
 1. Shape channel (oblateness): longitudinal compression relative to transverse radius.
 2. Scale channel (radius rescaling): transverse radius changes with energy state.
 
-Use
+Use the declared observer-channel speed for this closure step:
 $$
-R_\parallel=\frac{R_\perp}{\gamma},\qquad \gamma=\frac{1}{\sqrt{1-\beta^2}},\qquad \beta=\frac{v_{\text{tr}}}{c_f},
+R_\parallel=\frac{R_\perp}{\gamma_\star},\qquad \gamma_\star=\frac{1}{\sqrt{1-\beta_\star^2}},\qquad \beta_\star=\frac{v_{\text{tr}}}{c_\star},
 $$
-and
+with $c_\star=c_{\text{eff}}$ for Noether-Sea dressed clock/ruler closure and $c_\star=c_f$ only for a primitive branch-chart calculation. For the scale channel, use
 $$
 R_\perp=R_\perp(E),\qquad \frac{dR_\perp}{dE}<0
 $$
@@ -541,13 +541,13 @@ as the default constitutive sign convention in energized regimes.
 
 The corresponding exclusion volume model is
 $$
-V(\beta,E)=\frac{4\pi}{3}R_\perp(E)^2R_\parallel(E,\beta)
-=\frac{4\pi}{3}R_\perp(E)^3\sqrt{1-\beta^2}.
+V(\beta_\star,E)=\frac{4\pi}{3}R_\perp(E)^2R_\parallel(E,\beta_\star)
+=\frac{4\pi}{3}R_\perp(E)^3\sqrt{1-\beta_\star^2}.
 $$
 
 This gives a direct state-space channel from energy and translation into local medium geometry:
 $$
-(\beta,E)\longmapsto (R_\parallel,R_\perp,V).
+(\beta_\star,E)\longmapsto (R_\parallel,R_\perp,V).
 $$
 
 ### 3.9 Local deformation fields and effective geometry handoff

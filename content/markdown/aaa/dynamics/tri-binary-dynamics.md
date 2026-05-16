@@ -412,6 +412,94 @@ b\in\mathcal{B}_{\mathrm{term}}(\lambda),\,
 $$
 This equation is the derived projection target: it reduces each terminal one-patch branch ledger to the wake data presented across one edge. The still-open numerical step is solving $\mathcal{B}_{\mathrm{term}}(\lambda)$ from the full three-layer state-dependent delayed equations, including the regularized action and energy ledger that assigns the conserved increments used in $\mathcal{C}_{\theta,\nu}$.
 
+The reduced terminal branch system can be stated as a finite residual problem on the primitive outer period. Choose $T>0$ and integers $1<m<n$, set
+$$
+\omega_O=\frac{2\pi}{T},
+\qquad
+\omega_M=m\omega_O,
+\qquad
+\omega_I=n\omega_O,
+$$
+and represent the aligned circular branch by
+$$
+\mathbf{x}_{\ell,\alpha}(t)
+=
+\mathbf{c}_{\ell}
++
+\alpha R_{\ell}
+\mathbf{e}\!\left(\omega_\ell t+\phi_\ell\right),
+\qquad
+\ell\in\{I,M,O\},
+\qquad
+\alpha\in\{+1,-1\},
+$$
+where $\mathbf{e}(\psi)$ is the unit vector in the common terminal plane. The phase-lock and terminal-alignment constraints are
+$$
+\phi_M-m\phi_O=\phi_{MO}^{\ast},
+\qquad
+\phi_I-n\phi_O=\phi_{IO}^{\ast},
+$$
+$$
+R_\ell\omega_\ell=s_\ell,
+\qquad
+s_M=c_f,
+\qquad
+s_O\to c_f,
+\qquad
+\mathbf{A}_I=\mathbf{A}_M=\mathbf{A}_O
+$$
+up to the declared terminal-alignment tolerance. The intra-layer branches use the self-hit and partner-hit equations above. The inter-layer candidates are the delayed roots
+$$
+F_b(\Delta_b)
+\equiv
+\left\|
+\mathbf{x}_{\ell_o,\alpha_o}(t_b)
+-
+\mathbf{x}_{\ell_j,\alpha_j}(t_b-\Delta_b)
+\right\|
+-
+c_f\Delta_b
+=
+0,
+$$
+with $0<\Delta_b\le H_{\lambda}$ for the finite history window assigned to $\lambda$, layer pair $(\ell_j,\ell_o)\in\{(I,M),(I,O),(M,O),(M,I),(O,I),(O,M)\}$, signs $\alpha_j,\alpha_o\in\{+1,-1\}$, and emission phase recorded modulo $T$. The branch is kept in $\mathcal{B}_{\mathrm{term}}(\lambda)$ only if it is transversal,
+$$
+J_b
+=
+1
+-
+\frac{\mathbf{v}_{\ell_j,\alpha_j}(t_b-\Delta_b)\cdot\hat{\mathbf{r}}_b}{c_f}
+\ne0,
+$$
+and belongs to the same integer-lock, emission-order, and observer-record class as $\lambda$.
+
+The remaining dynamics are not another gate; they are the equations that decide whether a proposed branch label exists. For each terminal branch label, the cycle-averaged squared residual must vanish:
+$$
+\mathcal{Q}_{\ell,\alpha}^{\mathrm{term}}(\lambda)
+=
+\frac{1}{T}
+\int_0^T
+\left\|
+\ddot{\mathbf{x}}_{\ell,\alpha}(t)
+-
+\sum_{b:\,o_b=(\ell,\alpha)}
+\mathbf{a}_{o_b\leftarrow j_b}(t;t-\Delta_b)
+\right\|^2
+dt
+=
+0,
+$$
+with the same branch set also satisfying the local conservation ledger
+$$
+\sum_{b\in\mathcal{B}_{\mathrm{term}}(\lambda)}
+\left(
+\Delta E_b,\Delta\mathbf{p}_b,\Delta\mathbf{J}_b,\Delta q_b
+\right)
+=
+(0,\mathbf{0},\mathbf{0},0).
+$$
+This defines the current reduced solve: $\mathcal{B}_{\mathrm{term}}(\lambda)$ is the finite set of intra-layer and inter-layer roots satisfying the terminal kinematics, transversality, cycle-averaged dynamics, conservation ledger, and observer quotient. A numerical enumeration can now target these equations directly; if no solution has $|J_b|$ bounded away from zero, the label must be reclassified as a grazing boundary case rather than counted as an interior transfer-matrix state.
+
 This scaffold identifies the smallest missing dynamics. The delayed equations must enumerate $\Lambda_{\theta}^{\mathrm{loc}}$ and derive the edge maps $\mathcal{E}_{\nu}^{\pm}$ from the terminal aligned branch. [Dyadic Resonance Lock](dyadic-resonance-lock.md) supplies the candidate integer phase lattice, and [Binary Dynamics](binary-dynamics.md#self-hit-definition-and-diagnostics) supplies the self-hit and partner-hit root vocabulary, but neither document yet computes the terminal aligned edge projections from the full three-layer dynamics.
 
 The local-horizon coefficient requires
@@ -539,11 +627,11 @@ At sufficiently high stress, this implies a terminal rung: further increases can
 
 **Status:** This precession-expanded exclusion volume is not explicitly modeled in the current minimal system; treat results as lower bounds until the swept-volume effect is added.
 
-### D) Time Distortion: Spacetime Time vs Absolute Time
+### D) Local Clock-Rate Diagnostic
 
-**Goal:** Define "time in spacetime" as a geometric effect in the delay loop, not a relativistic postulate.
+**Goal:** Define local clock-rate change as a geometric effect in the delay loop, not as distortion of substrate time or as a relativistic postulate.
 
-**Absolute clock:** Use the outer-binary Planck cadence as a reference cadence: $T_0 = 1/f_P$.
+**Reference cadence:** Use the outer-binary Planck cadence as a reference assembly cadence: $T_0 = 1/f_P$.
 
 The cadence $T_0=1/f_P$ is a reference assembly cadence, not the absolute substrate time itself. Absolute time $t$ remains the uniform ordering parameter for causal-hit evaluation. The local clock diagnostic compares assembly cycle counts to this reference cadence:
 $$
@@ -563,19 +651,19 @@ and, for the ellipsoid-only case with no gradient,
 $$
 \alpha(\theta) = \frac{R(\theta)}{R_{\text{ref}}}
 $$
-measures how the local phase-closure period compares to the invariant clock:
+measures how the local phase-closure period compares to the reference cadence:
 $$
 T_{\text{local}}(\theta) = T_0 \, \alpha(\theta, G_{\text{grad}}).
 $$
-When $\alpha > 1$, local cycles are longer relative to $T_0$; when $\alpha < 1$, they are shorter. This is the penultimate definition of time distortion in this model.
+When $\alpha > 1$, local cycles are longer relative to $T_0$; when $\alpha < 1$, they are shorter. This is a phase-closure clock-rate diagnostic, not a change in absolute time.
 
-**Geometric source of distortion:** The causal envelope shape sets $\Delta t_{\text{rt}}$. As the tri-binary tilts out of planar and loses energy, the envelope becomes less oblate (larger $R_\parallel/R_\perp$), increasing some path lengths and stretching $T_{\text{local}}$; as it flattens, $R_\parallel$ shrinks and the corresponding delays contract. Gradients ($G_{\text{grad}}$) further skew delays across the orbit.
+**Geometric source of clock-rate shift:** The causal envelope shape sets $\Delta t_{\text{rt}}$. As the tri-binary tilts out of planar and loses energy, the envelope becomes less oblate (larger $R_\parallel/R_\perp$), increasing some path lengths and stretching $T_{\text{local}}$; as it flattens, $R_\parallel$ shrinks and the corresponding delays contract. Gradients ($G_{\text{grad}}$) further skew delays across the orbit.
 
-**Lorentz beta in geometric form:** In Lorentz kinematics, $\beta = v/c$ and $\gamma = 1/\sqrt{1-\beta^2}$. In this model, use $\beta = v_{\text{trans}}/c_f$ and the oblate ellipsoid relation
+**Lorentz beta in geometric form:** In Lorentz kinematics, $\beta = v/c$ and $\gamma = 1/\sqrt{1-\beta^2}$. For observer-level clock or ruler closure, use the declared channel speed $c_\star$ and define $\beta_\star = v_{\text{trans}}/c_\star$ and $\gamma_\star=1/\sqrt{1-\beta_\star^2}$; use $c_f$ only for a primitive branch-chart scan before Noether-Sea dressing. The oblate ellipsoid relation is
 $$
-R_\parallel = R_\perp \sqrt{1-\beta^2} = \frac{R_\perp}{\gamma}.
+R_\parallel = R_\perp \sqrt{1-\beta_\star^2} = \frac{R_\perp}{\gamma_\star}.
 $$
-Geometrically, $\beta$ is the axis-squash control: as $\beta \to 1$, the causal envelope collapses along the motion axis, shrinking longitudinal path lengths and altering the delay.
+Geometrically, $\beta_\star$ is the axis-squash control for the declared channel: as $\beta_\star \to 1$, the causal envelope collapses along the motion axis, shrinking longitudinal path lengths and altering the delay.
 
 **Where it enters phase closure:** In scans, treat the local clock as an effective frequency $\omega_n/\alpha$ inside $\Phi_n$ for the sector under consideration. Redshift follows because emitted periodicity inherits the local clock rate: longer causal loops (larger $\alpha$) yield lower observed frequency at fixed absolute-time reference.
 

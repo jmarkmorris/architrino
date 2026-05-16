@@ -4,7 +4,7 @@ This framework appears to fit a surprising breadth of phenomena not because of a
 
 Historically, general relativity and quantum mechanics are extraordinarily successful as effective theories that summarize large classes of phenomena. We position this neoclassical, delayed line-of-action model as a simpler dynamical substrate whose coherent assemblies recover GR/QM-like phenomenology in appropriate coarse-grained, slow/weak, or phase-locked limits.
 
-We work throughout in units with field speed $v=1$; per-hit accelerations are directed along $\hat{\mathbf{r}}$, weighted by the causal Jacobian, and superpose linearly.
+We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerations are directed along $\hat{\mathbf{r}}$, weighted by the causal Jacobian, and superpose linearly.
 
 ---
 
@@ -15,7 +15,7 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are di
   - Each causal hit is directed along $\hat{\mathbf{r}}$ from the source history point to the receiver, with received magnitude weighted by the branch Jacobian.
 
 - Why it matters:
-  - Gauss-like behavior falls out immediately (1/r² on wavefronts).
+  - Gauss-like behavior falls out immediately (1/r² on causal wake fronts).
   - Moving systems automatically generate tangential components in the receiver’s frame due to path-history geometry and causal-flux bunching: the “aim point” is in the past, and source motion enhances or suppresses active branches through the Jacobian. Orbital and vortex-like patterns emerge from delay, not from any B∝v×E construction.
 
 - Consequence:
@@ -34,14 +34,14 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are di
 
 ---
 
-## Self-Interaction Switch at $\|\mathbf{v}\| = v$
+## Self-Hit Onset Boundary at $\|\mathbf{v}\| = c_f$
 
 - What we assume:
-- When a worldline outruns its own recently emitted isochrons ($\|\mathbf{v}\| > 1$ in our units), the causal roots include self-hits.
+- When a worldline outruns its own recently emitted isochrons ($\|\mathbf{v}\| > c_f$, or $\|\mathbf{v}\| > 1$ in $c_f=1$ units), the causal roots include self-hits.
   - Self-hits are always repulsive (like-on-like).
 
 - Why it matters:
-  - This nonlinearity is the core stabilizer. Slow motion ($\|\mathbf{v}\| < 1$) is dominated by external attraction/repulsion. Crossing $\|\mathbf{v}\| = 1$ turns on an internal, strong, repulsive channel that can balance or overtake inward trends.
+  - This nonlinearity is the core stabilizer. Slow motion ($\|\mathbf{v}\| < c_f$) is dominated by external attraction/repulsion. Crossing $\|\mathbf{v}\| = c_f$ turns on an internal, strong, repulsive channel that can balance or overtake inward trends.
   - Scale selection emerges: the balance of delayed attraction with self-repulsion defines a smallest sustainable orbital radius d0 and a fastest natural frequency, yielding a canonical time unit t0.
 
 ---
@@ -83,7 +83,7 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are di
 ## Consequences that explain the “fit”
 
 - Stability without fine-tuned potentials:
-  - The $\|\mathbf{v}\| = 1$ switch and delay geometry set operating points and prevent singular collapse.
+  - The $\|\mathbf{v}\| = c_f$ switch and delay geometry set operating points and prevent singular collapse.
 - Scale emergence:
   - $d_0$ and $t_0$ arise from dynamics; they are not postulated rulers and clocks but attractors of the binary system.
 - Shielding and apparent inertia:
@@ -97,7 +97,7 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are di
 
 - No Lorentzian spacetime metric at the fundamental level (background is absolute time + Euclidean space; emergent cones are effective, not kinematic).
 - No right-hand-rule magnetism or $\mathbf{v}\times\mathbf{B}$ forces; every per-hit action is along $\hat{\mathbf{r}}$.
-- No gauge field inventory beyond the architrino fields; interaction carriers are the geometry of delayed isochrons and their couplings.
+- No gauge field inventory beyond architrino causal wakes; interaction carriers are the geometry of delayed isochrons and their couplings.
 
 ---
 
@@ -109,10 +109,10 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are di
 
 2) Scale selection for $d_0$ and $t_0$
 - With $\delta\to\delta_\eta$, compute the mean inward attraction from the partner versus the mean outward self-repulsion across one orbit; the fixed point defines $d_0$ and the maximum orbital frequency $2\pi/t_0$.
-- Prediction: the same d0 appears across binaries with the same $\epsilon$ and v, independent of initial conditions after sufficient relaxation.
+- Prediction: the same $d_0$ appears across binaries with the same $\epsilon$ and $c_f$, independent of initial conditions after sufficient relaxation.
 
-3) Energy consistency across the $\|\mathbf{v}\|=1$ transition
-- Use $\Phi_\eta$ to evaluate $U$ and verify $\Delta E_k = -\,\Delta U$ across events that cross the symmetry point; in the $\eta\to 0$ limit, impulses integrate to the same work.
+3) Energy consistency across the $\|\mathbf{v}\|=c_f$ transition
+- Use $\Phi_\eta$ to evaluate $U$ and verify $\Delta E_k = -\,\Delta U$ across events that cross the self-hit onset boundary; in the $\eta\to 0$ limit, impulses integrate to the same work.
 
 4) Numerical recipe (robust, minimal assumptions)
 - For each receiver time $t$: (i) root-find causal emission times $t_0$ for all sources (and self), (ii) discard non-physical roots ($H(0)=0$, handle $r=0$ by symmetry), (iii) sum $a_{o′\leftarrow o}(t;t_0)$, (iv) integrate velocity and position with an event-aware scheme. Use $\varepsilon$-thickening for smooth integration when needed.
@@ -122,7 +122,7 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are di
 ## Comparisons and falsifiable edges
 
 - Classical E&M:
-  - Replace Maxwell + Lorentz force with delayed, radial-only action; predict the same far-zone radiation patterns for coherent assemblies but different near-zone dynamics when $\|\mathbf{v}\|\approx1$ or self-hits occur.
+  - Replace Maxwell + Lorentz force with delayed, radial-only action; predict the same far-zone radiation patterns for coherent assemblies but different near-zone dynamics when $\|\mathbf{v}\|\approx c_f$ or self-hits occur.
 - QCD phenomenology:
   - Confinement-like behavior emerges from polar-vortex coupling; falsifiable via constraints on hadron breakup channels and energy distributions if the coupling geometry is perturbed.
 - Inertia/apparent mass:
@@ -134,7 +134,7 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are di
 
 - Exact analytic forms for d0 and t0 in the symmetric binary with the canonical modulation.
 - Rigorous conditions for uniqueness/multiplicity of causal roots in accelerated motion and their contribution to stability.
-- Statistical mechanics of many-body wake structures: when and how do coherent, Lorentz-consistent effective cones emerge from moving-assembly deformation, clock/ruler retuning, and Noether-Sea response, and with what characteristic speed relative to $v$?
+- Statistical mechanics of many-body wake structures: when and how do coherent, Lorentz-consistent effective cones emerge from moving-assembly deformation, clock/ruler retuning, and Noether-Sea response, and with what characteristic speed relative to the declared branch speed $c_\star$?
 
 Plain language summary: Keep the hits radial, delay them in time, keep per-wavefront amplitude constant, and let fast movers run into their own wakes. From those four ideas, you get stable orbits, natural rulers and clocks, shielding that looks like inertia, and “magnetic-like” structures—all without any right-hand-rule magnetism.
 
@@ -142,7 +142,7 @@ Plain language summary: Keep the hits radial, delay them in time, keep per-wavef
 
 ## Effective observables and states (quantum-like layer)
 
-Premise: single-hit information is sparse. At an instant, a receiver learns only (i) the net magnitude of the push and (ii) an unoriented line of action through its current position. Even an $\mathbb{U}_{\text{now}}$ universe-state perspective (perfect global clock and Euclidean frame) does not see the hidden emission ledger of all sources.
+Premise: single-hit information is sparse. At an instant, a receiver learns only (i) the net magnitude of the push and (ii) an unoriented line of action through its current position. The $\mathbb{U}_{\text{now}}$ universe-state perspective can include the full source-tagged emission ledger as complete-state bookkeeping, but a local receiver or Physical Observer cannot infer that hidden ledger from a single hit.
 
 - Emission ledger (microstate): the set of tuples {(t₀, s_j(t₀), v_j(t₀), q_j)} over all sources j that causally affect the receiver.
 - Observational map: ledgers → histories of hits {A(t_k), L(t_k)} across one or more receivers and over time.
@@ -176,7 +176,7 @@ Absolute time and Euclidean frames remove coordinate ambiguity (synchronization 
 - Self-hit aliasing: self-intersections can mimic external sources along L.
 - Surrogate location recast: any instantaneous hit may be recast to a stationary surrogate source placed somewhere along L with an adjusted emission time; useful for inference and visualization, but it does not resolve the sign/side ambiguity or fix distance without temporal data.
 
-Consequence: even the $\mathbb{U}_{\text{now}}$ universe-state perspective must reason statistically over ledger classes; “quantum-like” observability is not a contradiction but a necessity.
+Consequence: embedded observers and synthetic detector records must reason statistically over ledger classes. The $\mathbb{U}_{\text{now}}$ universe-state perspective can compare those classes against the complete ledger, but the observer-accessible data remain many-to-one; “quantum-like” observability is not a contradiction but a necessity.
 
 ---
 

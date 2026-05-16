@@ -48,11 +48,11 @@ The minimal useful first path is BBN photon loading: identify a source-zone radi
 
 | Field | What must be recorded | Why it matters |
 | --- | --- | --- |
-| Architrino inventory | $E/P$ counts and core/axial-layer separation | Prevents creation-from-nothing wording in pair and weak channels |
+| Architrino inventory | $E/P$ counts, core/axial-layer separation, and identity routing for recruited or returned substrate content | Prevents creation-from-nothing wording in pair and weak channels |
 | Noether-Sea state | $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy, and excitation state | Keeps density, delay, and transport variables distinct |
 | Radiation event record | Source assembly, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, causal-wake ledger, and closure status | Provides the local event schema that can be propagated into source-zone, transport, and observer-level cosmology claims |
 | Photon assembly channel | Planar-mode nucleation threshold, emitted energy, direction, polarization basis, and transverse angular-momentum ledger | Links bremsstrahlung, synchrotron, and CMB photon-bath claims |
-| Pair channel | Incoming photon assemblies, recruited Noether-core content, final $e^+e^-$ assemblies, and recoil/medium excitation | Keeps pair production as association from local substrate content, not ex nihilo creation |
+| Pair channel | Incoming photon assemblies, identity-routed recruited Noether-core content, final $e^+e^-$ assemblies, and recoil/medium excitation | Keeps pair production as association from local substrate content, not ex nihilo creation |
 | Energy-momentum ledger | Internal energy, kinetic energy, recoil, emitted assemblies, and medium excitation | Required for observer-rate and spectrum recovery |
 | Thermalization path | scattering depth, coupling time, cooling time, and escape time | Determines when local reactions can feed BBN or CMB background claims |
 | Observer handoff | emissivity, opacity, redshift kernel, effective temperature, $N_{\text{eff}}$, and $C_\ell$ inputs | Keeps standard comparison variables useful without treating them as ontology |
@@ -110,11 +110,11 @@ The event record must connect charged-assembly curvature, the effective magnetic
 
 ### Pair Production
 
-The event record must avoid creation-from-nothing wording. Incoming photon assemblies trigger association of local substrate content into $e^+e^-$ assemblies when the observer-level threshold is satisfied. The incoming photons should preserve their radiation event records through the pair vertex. The pair-channel record must include:
+The event record must avoid creation-from-nothing wording. Incoming photon assemblies trigger association of local substrate content into $e^+e^-$ assemblies when the observer-level threshold is satisfied. The incoming photons supply energy, momentum, polarization handoff, and trigger geometry; they do not supply new architrino identities. The incoming photons should preserve their radiation event records through the pair vertex. The pair-channel record must include:
 
 - incoming photon assembly energies and directions,
 - incoming photon polarization handoffs as inherited Gate B records,
-- local Noether-core material recruited or reconfigured,
+- local Noether-core material recruited or reconfigured, including identity routing for the architrinos assigned to the final charged assemblies,
 - final charged assembly inventories,
 - recoil and medium-excitation terms,
 - causal-wake ledger and closure status,

@@ -6,7 +6,7 @@ It should be read together with [Parameter Ledger](parameter-ledger.md), [Angula
 
 ## Executive Summary
 
-The **2019 revision of the SI** redefined all seven base units in terms of **fixed fundamental constants**, eliminating physical artifacts. This is structurally aligned with the goal of $\mathbb{A}\mathbb{A}\mathbb{A}$: deriving observable physics from a minimal set of substrate postulates (Euclidean void, absolute time, architrino charge $|e/6|$, field speed $c_f$).
+The **2019 revision of the SI** redefined all seven base units in terms of **fixed fundamental constants**, eliminating physical artifacts. This is structurally aligned with the goal of $\mathbb{A}\mathbb{A}\mathbb{A}$: deriving observable physics from a minimal set of substrate postulates (Euclidean void, absolute time, architrino polarity-unit magnitude $\epsilon=|e|/6$, field speed $c_f$).
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ program can potentially:
 1. **Derive** the numerical values of SI-defining constants from architrino geometry
@@ -44,8 +44,8 @@ In this framework, the candidate substrate-level quantities are:
 - **Field propagation speed** $c_f$ (primitive propagation speed for causal wakes)
 
 ### Category B: Fundamental Entity
-- **Architrino charge magnitude** $|q_{\text{arch}}| = |e/6|$
-- **Architrino interaction kernel** (inverse-square potential, Dirac-delta at $r=0$)
+- **Architrino polarity-unit magnitude** $\epsilon=|e|/6$
+- **Causal wake interaction kernel** (inverse-square line-of-action weighting over causal wake surfaces, with regularized coincidence handling)
 
 ### Category C: Assembly Geometry (Emergent but Calculable)
 - **Tri-binary radius ratios** (inner/middle/outer scales)
@@ -61,7 +61,7 @@ In this framework, the candidate substrate-level quantities are:
 
 For the units program, it is useful to distinguish primitive measures from derived ones rather than treating the SI list as a flat catalog.
 
-- **Primitive substrate inputs:** field speed $c_f$, architrino charge magnitude $|e/6|$, absolute time ordering, and the geometric closure scales that belong to stable assemblies.
+- **Primitive substrate inputs:** field speed $c_f$, architrino polarity-unit magnitude $\epsilon=|e|/6$, absolute time ordering, and the geometric closure scales that belong to stable assemblies.
 - **First-order derived measures:** characteristic time, length, action, and energy scales attached to a single stable closure problem.
 - **Second-order derived measures:** area, volume, velocity ratios, densities, currents, and transport coefficients built from the first-order scales.
 
@@ -88,7 +88,7 @@ This is an atomic-clock validation target, not a closed spin derivation. The ele
 
 **What we must derive:**
 $$
-\Delta \nu_{\text{Cs}} = f(\text{tri-binary geometry, } c_f, |e/6|, \text{ Noether-Sea coupling})
+\Delta \nu_{\text{Cs}} = f(\text{tri-binary geometry, } c_f, \epsilon, \text{ Noether-Sea coupling})
 $$
 
 **Challenge:** The frequency is determined by:
@@ -98,7 +98,7 @@ $$
 
 **Pathway:**
 1. Calculate the electron's Middle Binary orbital frequency $\omega_{\text{MB}}$ for Cs ground state
-2. Calculate the magnetic moment $\mu = \frac{|e/6| \cdot \omega_{\text{MB}} \cdot r_{\text{MB}}}{2}$ (classical analogue)
+2. Calculate the magnetic moment $\mu = \frac{\epsilon \cdot \omega_{\text{MB}} \cdot r_{\text{MB}}}{2}$ (classical analogue)
 3. Calculate the nuclear spin coupling via Noether-Sea-mediated potential exchange
 4. Derive the splitting frequency
 
@@ -158,7 +158,7 @@ $$
 
 **Hypothesis:**
 $$
-\hbar \stackrel{\text{hyp.}}{\approx} |e/6| \cdot c_f \cdot r_{\text{outer}},
+\hbar \stackrel{\text{hyp.}}{\approx} \epsilon \cdot c_f \cdot r_{\text{outer}},
 \qquad
 h = 2\pi\hbar
 $$
@@ -167,11 +167,11 @@ where $r_{\text{outer}}$ is the characteristic radius of the outer binary in the
 **Derivation pathway:**
 1. Calculate the outer-binary radius for the hydrogen ground-state assembly (energy minimization + self-hit constraints).
 2. Show that closed-cycle action quantization ($\oint p\,dq = n h$) and the equivalent radian-normalized relation ($I=n\hbar$) arise from geometric quantization of the internal binary orbit.
-3. Relate $h$ and $\hbar$ to $|e/6|$, $c_f$, and tri-binary geometry.
+3. Relate $h$ and $\hbar$ to $\epsilon$, $c_f$, and tri-binary geometry.
 
 **Target relation:**
 $$
-h \propto |e/6| \cdot c_f \cdot (\text{geometric factor from tri-binary})
+h \propto \epsilon \cdot c_f \cdot (\text{geometric factor from tri-binary})
 $$
 
 
@@ -186,15 +186,15 @@ $$
 
 **Architrino Interpretation:**
 
-The elementary charge $e$ is **already in the theory**:
+The elementary charge magnitude is recovered in the observer-level bookkeeping convention:
 $$
-e = 6 \cdot |q_{\text{arch}}| = 6 \cdot |e/6|
+|e| = 6\epsilon
 $$
 
 **What we must explain:**
-- Why only integer multiples of $|e/6|$ are stable (charge quantization)
-- Why we observe $0, \pm e/3, \pm 2e/3, \pm e$ in nature, never $\pm e/6$ isolated
-- Answer: **Confinement**. The $|e/6|$ units are bound in tri-binaries (quarks) or assemblies (leptons). You can't isolate a single architrino without infinite energy.
+- Why only integer multiples of $\epsilon$ appear in stable observer-level electric-charge inventories (charge quantization)
+- Why we observe $0, \pm |e|/3, \pm 2|e|/3, \pm |e|$ in nature, never an isolated $\pm\epsilon$ polarity unit
+- Candidate answer: **confinement or dynamical suppression**. The $\epsilon$ polarity units are bound in tri-binaries (quarks) or assemblies (leptons). Isolated $\pm\epsilon$ polarity units are not observed as stable observer-level particles, so the suppression mechanism remains a closure target rather than a completed infinite-energy theorem.
 
 
 ---
@@ -290,7 +290,7 @@ The frequency 540 THz corresponds to green light ($\lambda \approx 555$ nm), whe
 | $\Delta \nu_{\text{Cs}}$ | **Derivable** | Hyperfine splitting from Middle Binary magnetic moments |
 | $c$ | **Operational limit near $c_f$** | Low-gradient photon-channel speed; deviations are encoded by $\chi_{\text{sea}}$ |
 | $h$ | **Derivation target (open)** | Closed-cycle action quantization; equivalent outer-binary rotational-action increments in units of $\hbar$; lower recordable basin-measure scale after quantum closure |
-| $e$ | **Fundamental** | $e = 6 \times |e/6|$ (architrino charge) |
+| $e$ | **Recovered observer benchmark** | $|e|=6\epsilon$ after choosing the observer-level electric bookkeeping normalization |
 | $k_B$ | **Derivable** | Noether-Sea thermal equilibrium + assembly mass |
 | $N_A$ | **Emergent** | Follows from proton mass derivation |
 | $K_{\text{cd}}$ | **Anthropic** | Human biology; not fundamental physics |
@@ -301,16 +301,16 @@ The frequency 540 THz corresponds to green light ($\lambda \approx 555$ nm), whe
 
 If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the seven SI-defining constants with:
 
-### New Fundamental Constants (Architrino SI)
-1. **Architrino charge** $|e/6|$ (replaces $e$)
+### Candidate Substrate Inputs (Architrino SI)
+1. **Architrino polarity-unit magnitude** $\epsilon=|e|/6$ (with observer charge benchmark $|e|=6\epsilon$)
 2. **Field speed** $c_f$ (replaces $c$)
 3. **Tri-binary geometry parameter** (e.g., outer radius $r_{\text{outer}}$ or max-curvature radius) (replaces $h$)
 4. **Noether-Sea assembly mass** $m_{\text{NS}}$ (replaces $k_B$ when combined with $c_f$)
 
 **Everything else is intended to be derived after closure:**
-- $e = 6 |e/6|$
+- $|e| = 6\epsilon$
 - $c_{\text{eff}}\to c_f$ in the low-gradient Noether-Sea limit
-- $h \stackrel{\text{target}}{=} 2\pi |e/6| \cdot c_f \cdot r_{\text{outer}}$ after the action-closure derivation, not by definition
+- $h \stackrel{\text{target}}{=} 2\pi \epsilon \cdot c_f \cdot r_{\text{outer}}$ after the action-closure derivation, not by definition
 - $k_B = f(m_{\text{NS}}, c_f)$
 - $N_A = f(m_p / m_{\text{NS}})$
 - $\Delta \nu_{\text{Cs}} = f(\text{Cs tri-binary geometry})$
@@ -353,7 +353,7 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
 
 7. **Explain fine-structure constant $\alpha$**
    - $\alpha = \frac{e^2}{4\pi \epsilon_0 \hbar c} \approx 1/137$
-   - In architrino terms: $\alpha = f(|e/6|, c_f, r_{\text{outer}}, \text{Noether Sea})$
+   - In architrino terms: $\alpha = f(\epsilon, c_f, r_{\text{outer}}, \text{Noether Sea})$
    - Derive numerically; explain why $\alpha \ll 1$
 
 ---
@@ -372,8 +372,8 @@ The **architrino revision** completes the journey:
 **The ultimate goal:** A measurement system where every quantity is expressed in terms of:
 - **Lengths** (in units of $c_f \cdot t$)
 - **Times** (in absolute time units)
-- **Charges** (in units of $|e/6|$)
+- **Polarity units** (in units of $\epsilon=|e|/6$)
 
-No kilograms, no kelvins, no moles—just **geometry, time, and charge**.
+No kilograms, no kelvins, no moles—just **geometry, time, and polarity bookkeeping**, with observer units recovered above that layer.
 
 That would be a substrate-level measurement framework, with observer units recovered as derived conventions.

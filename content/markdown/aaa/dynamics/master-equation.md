@@ -355,7 +355,7 @@ $$
 
 **Critical requirements for self-hit:**
 
-1. **Curvature**: Straight-line motion admits no self-hits (the worldline never intersects its own past light cones).
+1. **Curvature**: Straight-line motion admits no self-hits (the worldline never intersects its own past causal isochrons).
 2. **Super-field-speed history**: At some emission time $t_0$, the architrino must have exceeded $c_f$ (otherwise, it remains inside all past wake surfaces and never catches up).
 
 **Key clarification:**
@@ -846,7 +846,7 @@ The total acceleration on a particle at any instant is the **vector sum** of the
 
 **Statement:** The dynamics are **delayed** and **radial in direction**. Because the source moves while emitting, both the emitted wake pattern and the received force are velocity dependent through causal geometry. The received force magnitude is modulated by the causal Jacobian $\left|J_{ij}\right|^{-1}$, while the receiver's speed affects the **work rate** and branch sampling via $\mathbf{F} \cdot \mathbf{v} = |\mathbf{F}| v_r$.
 
-**Self-interaction requirement:** Self-hit requires $|\mathbf{v}_a| > c_f$ at some emission times (super-field-speed), so the worldline outruns its recent wake surfaces. Curvature alone is insufficient if $|\mathbf{v}_a| < c_f$ everywhere (a curved sub-field-speed trajectory never intersects its own past light cones).
+**Self-interaction requirement:** Self-hit requires $|\mathbf{v}_a| > c_f$ at some emission times (super-field-speed), so the worldline outruns its recent wake surfaces. Curvature alone is insufficient if $|\mathbf{v}_a| < c_f$ everywhere (a curved sub-field-speed trajectory never intersects its own past causal isochrons).
 
 **Persistent memory:** Once an architrino has exceeded $v > c_f$ in its past and emitted wake surfaces, it can **later slow down** to $v < c_f$ and **still receive self-hits** from those earlier emissions. The self-hit regime is **not instantaneously tied to current velocity**; it is a **path-history memory effect**.
 
@@ -858,7 +858,7 @@ $$
 t_B > t_A \quad \text{and} \quad \|\mathbf{x}_B - \mathbf{x}_A\| \leq c_f(t_B - t_A).
 $$
 
-This defines a **field-speed light cone** (or "causal cone") centered at each event.
+This defines a **field-speed causal cone** centered at each event. The filled inequality is the reachability condition; exact hits still occur only on causal wake surfaces satisfying the equality root.
 
 **No action-at-a-distance:** All influences propagate at finite speed $c_f$. There are no instantaneous interactions across spatial separation.
 
@@ -996,7 +996,7 @@ $$
 J_{ii}(t;t_0)=0,
 $$
 
-with approach from the admissible side $J_{ii}>0$. Geometrically, this is the state where the receiver trajectory is tangent to the causal cone of its own past emission (the “riding-the-shock” limit).
+with approach from the admissible side $J_{ii}>0$. Geometrically, this is the state where the receiver trajectory is tangent to the causal wake surface of its own past emission (the “riding-the-shock” limit).
 
 **Why this is a hard wall in the exact theory:**
 In the exact branch-resolved force, the self-hit contribution carries the factor
@@ -1145,7 +1145,7 @@ At each hit, log:
 
 **Use cases:**
 
-- Visualize causal light cones and causal isochrons
+- Visualize causal cones and causal isochrons
 - Identify self-hit events and winding numbers
 - Trace energy transfer pathways
 - Validate superposition (sum of logged forces = total acceleration?)
@@ -2117,7 +2117,7 @@ $$
 Key points:
 
 - $\Theta(t-t')$ enforces the purely past-causal branch ($t' \le t$).
-- $\delta(g_{ij})$ restricts support to the characteristic causal cone $r_{ij}=c_f(t-t')$.
+- $\delta(g_{ij})$ restricts support to the characteristic causal surface $r_{ij}=c_f(t-t')$.
 - The exact action contains no mollifier: $\eta$ is not a fundamental parameter.
 
 Integrating out the delta via the delay-map Jacobian gives the branch-resolved form:

@@ -148,9 +148,36 @@ const rules = [
     suggestion: "Use Noether Sea as the standalone noun; reserve Noether-Sea for compound modifiers.",
   },
   {
+    id: "void-noether-sea-fusion",
+    description: "Noether Sea wording should not identify the medium with the Euclidean void.",
+    pattern:
+      /(\bNoether Sea\b[^\n]{0,200}\bIt is\s+(?:an?\s+|the\s+)?(?:\[Euclidean void\]\([^)]+\)|Euclidean void)\b[^\n]{0,120}\bfilled with\b|\bEuclidean void\b[^\n.]{0,100}\bis populated by\b[^\n.]{0,100}\bNoether Sea\b|\bEuclidean void\b[^\n.]{0,120}\bfilled with\b[^\n.]{0,120}\bNoether Sea\b)/i,
+    suggestion:
+      "Say the Noether Sea occupies the Euclidean void; the void is the fixed container and the Noether Sea is medium content.",
+  },
+  {
+    id: "void-expansion-leak",
+    description: "Effective cosmology variables should not be stated as expansion or curvature of the Euclidean void.",
+    pattern:
+      /(\bEuclidean void\b[^\n.]{0,160}\b(expands|stretches|curves|carries energy|stores energy|has density|has stress)\b|h_\{ij\}\(t\)\s*=\s*a[^\n.]{0,80}\\delta_\{ij\})/i,
+    requiredContextPattern:
+      /\b(must not|not be interpreted as|Forbidden inference|forbidden|forbid|not from curvature or expansion|not as metric expansion|does not curve|does not expand)\b/i,
+    contextRadius: 3,
+    suggestion:
+      "Route a(t), H(t), redshift, and effective curvature to Noether-Sea / observer records, not to the void metric.",
+  },
+  {
+    id: "effective-metric-notation",
+    description: "Effective metric references should use the canonical effective metric symbol.",
+    pattern: /\beffective metric \$g_\{\\mu\\nu\}\$/i,
+    suggestion:
+      "Use $g_{\\mu\\nu}^{\\text{eff}}$ for observer-level effective metric unless explicitly quoting standard GR notation.",
+  },
+  {
     id: "aaa-theory-name-drift",
     description: "Loose theory-name wording in authored AAA prose.",
-    pattern: /\b(architrino framework|architrino theory|Architrino Assembly Architecture)\b/i,
+    pattern:
+      /\b(architrino framework|architrino theory|architrino picture|architrino ontology|architrino assembly architecture|Architrino Assembly Architecture)\b/i,
     suggestion:
       "Use the stylized theory name $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ unless referring to a literal title, path, or code identifier.",
   },

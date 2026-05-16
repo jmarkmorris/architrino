@@ -4,29 +4,29 @@ This chapter is a working emergence map from Noether-Sea substrate language to o
 
 ## The Physical Substrate: From Vacuum Language to Noether Sea
 
-In standard QFT, the vacuum is a complex state of harmonic oscillators with zero point energy. In the Architrino Assembly Architecture, we reject this abstraction in favor of a physical definition.
+In standard QFT, the vacuum is a complex state of harmonic oscillators with zero point energy. In $\mathbb{A}\mathbb{A}\mathbb{A}$, we reject this abstraction in favor of a physical definition.
 
 **Definition: The Noether Sea**
-The Noether Sea is not empty space. It is a [Euclidean void](../foundations/euclidean-void.md) filled with a dense, permeating medium of coupled, neutral tri-binary assemblies ([spacetime assemblies](../spacetime/spacetime-assemblies.md)).
+The Noether Sea is not empty space and is not the Euclidean void itself. It is the dense, permeating medium of coupled, neutral tri-binary assemblies occupying the [Euclidean void](../foundations/euclidean-void.md); see [spacetime assemblies](../spacetime/spacetime-assemblies.md).
 *   **Occupancy:** Non-zero occupancy of pro/anti binaries.
 *   **Net Properties:** Global charge $\sum q = 0$, global spin $\sum S = 0$.
-*   **Substrate:** This medium defines the local permeability $\mu_0$ and permittivity $\epsilon_0$ of space. These are not fundamental constants but derived measures of the medium's "stiffness" (resistance to polarization) and "density."
+*   **Medium response:** This medium is the working source for the effective local permeability $\mu_0$ and permittivity $\epsilon_0$ read by observer-level electrodynamics. These are not fundamental constants of the void but derived measures of Noether-Sea response, including resistance to polarization and density-like occupation.
 
 One useful assembly-level picture is that long-lived Noether-Sea units arise when complementary pro/anti cores pair in anti-parallel fashion so that exposed axial circulation is mutually plugged rather than left open. In that reading, Noether-Sea transparency is not emptiness but a successful cancellation strategy: the medium remains quiet because its local pole leakage is internally routed and its large-scale moments stay near zero.
 
 ## The "Field" Illusion
 
-Standard Model fields are often treated as fundamental entities. Here, we posit that fields are **emergent bookkeeping tools** describing the state of the Noether Sea.
+Standard Model fields are often treated as fundamental entities. Here, field language is an **effective bookkeeping tool** for Noether-Sea and assembly state, not a second substrate ontology.
 
 **The $\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$) vs. The Physical Observer (PO)**
-*   **$\mathbb{U}_{\text{now}}$ View:** Sees only point-like architrinos ($\pm |e/6|$) and their discrete potential emissions $\Phi$. There are no continuous "gauge fields," only the summation of causal potential wakes.
+*   **$\mathbb{U}_{\text{now}}$ View:** Sees architrinos with polarity bookkeeping labels $q=\pm\epsilon$ and their continuous causal-wake histories. There are no primitive continuous "gauge fields," only effective potential summaries reconstructed from causal wake contributions.
 *   **PO View (Emergent):** Lacking the resolution to see individual architrinos, the Physical Observer measures the **collective potential gradient** $\nabla \Phi$ at a point.
     *   **$\vec{E}$ and $\vec{B}$ fields** are statistical averages of Jacobian-weighted causal-flux density and circulation/vorticity in the Noether Sea.
     *   **Gauge Potentials ($A_\mu$):** These correspond to local **twists, strains, or density gradients** in the Noether-Sea assembly network.
 
 ## Symmetry Groups as Geometric Deformations
 
-We map the abstract gauge groups of the Standard Model to physical deformations of the tri-binary medium:
+We map the abstract gauge groups of the Standard Model to physical deformations of the Noether Sea and its tri-binary assemblies:
 
 1.  **U(1) (Electromagnetism):**
     *   *SM View:* Phase rotation of the complex field.
@@ -35,6 +35,8 @@ We map the abstract gauge groups of the Standard Model to physical deformations 
 2.  **SU(2) (Weak Interaction):**
     *   *SM View:* Non-Abelian rotation in isospin space.
     *   *Architrino View:* A **chiral twist** or structural strain in the tri-binary assemblies. Because the assemblies have internal handedness (spiral structure), deformations obey non-commutative geometry (order of operations matters), mirroring the non-Abelian nature of SU(2).
+
+The emergence claim in this chapter is therefore a mapping target with four required parts. The mechanism is delayed causal-wake coupling through Noether-Sea and axial-layer deformation. The mapping is from closure labels, axial inventories, exposed weak-coupling triads, and medium-response variables to the observer-level symbols $U(1)_Y$, $SU(2)_L$, $g_1$, $g_2$, $\theta_W$, and the charge table. The regime is the low-energy observer sector where stable assemblies, weak gradients, and resolved apparatus records make the coarse variables meaningful. The breakdown occurs at root-ledger changes, unstable axial inventories, unresolved Noether-Sea updates, or any branch that predicts extra low-energy partners or transport modes.
 
 ## Standard Model Recovery Discipline
 
@@ -53,8 +55,8 @@ The local closure discipline is therefore:
 
 The common "God Particle" narrative is replaced by a Noether-Sea medium-response comparison.
 
-*   **The VEV (Vacuum Expectation Value):** This is simply the **equilibrium density** of the Noether Sea. It is non-zero because the void is populated.
-*   **Symmetry Breaking:** The electroweak phase transition is modeled as a **phase-change closure target**. As the universe cooled, the high-energy, chaotic plasma of architrinos must relax into the stable, coupled tri-binary medium inferred today, but the order parameter and transition dynamics still have to be derived.
+*   **The VEV (Vacuum Expectation Value):** This is interpreted as an **equilibrium density or order-parameter proxy** for the Noether Sea. It is non-zero because medium contents occupy the void, not because the void has its own density; the exact order parameter and conversion to observer-level electroweak normalization remain closure targets.
+*   **Symmetry Breaking:** The electroweak phase transition is modeled as a **phase-change closure target**. As the universe cooled, the high-energy, chaotic plasma of architrinos must relax into the stable, coupled Noether Sea inferred today, but the order parameter and transition dynamics still have to be derived.
 *   **Mass as medium-dressed response:** A fermion assembly moving or accelerating through the Noether Sea must relock its internal causal ledger against the surrounding medium.
     *   Photon channels propagate as coherent planar-mode transport through the sea rather than as massive bodies.
     *   Massive assemblies expose more shielded internal causal history to external probes. The measured inertial response is not ordinary dissipative drag; see [Particle Masses: Emergent Inertia in the Noether Sea](../assemblies/particle-masses.md).
@@ -70,16 +72,16 @@ General Relativity predicts that an accelerating observer sees a thermal bath of
 
 ## Quantization from Stability (Selection Rules)
 
-Why are charges quantized in units of e/3?
+Why do observer-level electric charges appear in units of $e/3$?
 *   The Standard Model asserts this; $\mathbb{A}\mathbb{A}\mathbb{A}$ treats it as a stability-selection closure target grounded in six-site axial bookkeeping.
-*   **Stability Selection:** The $\mathbb{U}_{\text{now}}$ universe-state perspective sees that arbitrary clusters of $|e/6|$ charges are likely unstable. They either collapse (self-hit singularity) or fly apart.
+*   **Stability Selection:** The $\mathbb{U}_{\text{now}}$ universe-state perspective sees that arbitrary clusters of $\epsilon$ polarity units are likely unstable. They either collapse (self-hit singularity) or fly apart.
 *   **The Survivors:** Specific geometric configurations (the six-pole axial patterns) are candidate stable resonances where attractive and repulsive forces balance via the tri-binary structure. The local combinatorics reproduce the observed charge set; dynamical exclusion of non-SM stable assemblies remains part of the closure burden.
 
-**SM Charge Quantization ($\mathbb{A}\mathbb{A}\mathbb{A}$: Six e/6 Axial Architrinos)**
+**SM Charge Quantization ($\mathbb{A}\mathbb{A}\mathbb{A}$: Six $\epsilon$ Axial Architrinos)**
 
-| split | electrinos | positrinos | net fermion charge |
+| split | Electrinos | Positrinos | net observer-level charge |
 |:-----:|:----------:|:----------:|:------------------:|
-| (−:+) |   (−e/6)   |   (+e/6)   |        (e)         |
+| polarity label |   $-\epsilon$   |   $+\epsilon$   |        units of $|e|$         |
 |     6:0     |         6         |         0         |           −1           |
 |     5:1     |         5         |         1         |          −2/3          |
 |     4:2     |         4         |         2         |          −1/3          |
@@ -88,30 +90,30 @@ Why are charges quantized in units of e/3?
 |     1:5     |         1         |         5         |          +2/3          |
 |     0:6     |         0         |         6         |           +1           |
 
-The tri-binary’s six polar regions demand six axial architrinos per fermion assembly; sweeping all electrino:positrino splits across those poles yields exactly the SM charge set with no extras.
+Under the six-site axial-layer hypothesis, sweeping all Electrino:Positrino splits across the polar sites yields exactly the Standard Model charge values listed below and no other total charge values within that fixed six-site inventory. Dynamical exclusion of non-Standard-Model stable assemblies remains a separate closure burden.
 
-### Combinatorial Proof (Six $\pm e/6$ Slots)
+### Combinatorial Proof (Six $\pm\epsilon$ Slots)
 
-**Proposition.** If a fermion axial layer has exactly six polar sites, each occupied by either $+e/6$ or $-e/6$, then the total charge can only be
+**Proposition.** If a fermion axial layer has exactly six polar sites, each occupied by either $+\epsilon$ or $-\epsilon$, then the observer-level charge can only be
 $$
-\{-e,-2e/3,-e/3,0,+e/3,+2e/3,+e\}.
+\{-|e|,-2|e|/3,-|e|/3,0,+|e|/3,+2|e|/3,+|e|\}.
 $$
 
-**Proof.** Let $N_+$ be the number of $+e/6$ slots and $N_-$ the number of $-e/6$ slots. Then
+**Proof.** Let $N_+$ be the number of $+\epsilon$ slots and $N_-$ the number of $-\epsilon$ slots. Then
 $$
 N_+ + N_- = 6,\qquad N_+,N_- \in \{0,1,\dots,6\}.
 $$
 The net observer-level charge carried by the axial layer is
 $$
-Q=\frac{e}{6}(N_+ - N_-).
+Q=\epsilon(N_+ - N_-).
 $$
 Using $N_-=6-N_+$,
 $$
-Q=\frac{e}{6}(2N_+ - 6)=\frac{e}{3}(N_+ - 3).
+Q=\epsilon(2N_+ - 6)=\frac{|e|}{3}(N_+ - 3).
 $$
 Since $N_+$ is an integer from $0$ to $6$, $(N_+-3)\in\{-3,-2,-1,0,1,2,3\}$, so
 $$
-Q\in\left\{-e,-\frac{2e}{3},-\frac{e}{3},0,\frac{e}{3},\frac{2e}{3},e\right\}.
+Q\in\left\{-|e|,-\frac{2|e|}{3},-\frac{|e|}{3},0,\frac{|e|}{3},\frac{2|e|}{3},|e|\right\}.
 $$
 No other values are possible. Different permutations with the same $(N_+,N_-)$ have identical total $Q$; they only change micro-geometry, not net charge.
 

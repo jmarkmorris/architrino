@@ -17,11 +17,11 @@ $$
 
 A specific instant is represented by a point $t \in \mathbb{R}$.
 
-We equivalently encode absolute time as a **1-form**:
+We equivalently encode the orientation of absolute time by the exact **clock 1-form**:
 $$
-\tau = dt
+dt
 $$
-on the manifold $T \cong \mathbb{R}$. This 1-form is closed and exact, and its level sets define surfaces of simultaneity when combined with space in the product manifold $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$.
+on the manifold $T \cong \mathbb{R}$. This 1-form is closed and exact, and its level sets define surfaces of simultaneity when combined with space in the product manifold $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$. The symbol $\tau$ is reserved for derived observer clock time or causal delay, not for the substrate time form itself.
 
 ## Dimensionalization
 
@@ -61,9 +61,9 @@ $$
 t_1 < t_2, \quad t_1 = t_2, \quad \text{or} \quad t_1 > t_2.
 $$
 
-**Causality:** Event A causally precedes event B if and only if $t_A < t_B$. This ordering is absolute and observer-independent.
+**Temporal ordering:** Event A temporally precedes event B if and only if $t_A < t_B$. This ordering is absolute and observer-independent. Causal influence is stricter: Event A can influence event B only when $t_A<t_B$ and B lies on the finite-speed causal wake support emitted from A.
 
-**Remark on the Thermodynamic Arrow of Time:** Any observed arrow of time in thermodynamic, biological, or cosmological systems, such as entropy increase, aging, or expansion, is an **emergent property** arising from the dynamics of assemblies and fields, not a kinematic postulate. The background time manifold $\mathbb{R}$ is symmetric under time reversal $t \mapsto -t$; the asymmetry emerges at macroscopic scales from initial conditions and dynamics.
+**Remark on the Thermodynamic Arrow of Time:** Any observed arrow of time in thermodynamic, biological, or cosmological systems, such as entropy increase, aging, or expansion, is an **emergent property** arising from the dynamics of assemblies, causal wakes, and effective fields, not a kinematic postulate. The background time manifold $\mathbb{R}$ is symmetric under time reversal $t \mapsto -t$; the asymmetry emerges at macroscopic scales from initial conditions and dynamics.
 
 The entropy arrow is therefore a finite-window statement, not a definition of time itself. For a chosen coarse-graining $\mathcal{Q}$ and observer-accessible window $W(t)$, an entropy summary has the schematic form
 $$
@@ -80,6 +80,16 @@ $$
 \mathcal{R}_{\mathcal{Q}}(t),
 $$
 with $\sigma_W$ the local production term, $\mathbf{J}_S$ the entropy flux through the boundary, and $\mathcal{R}_{\mathcal{Q}}$ the residual created by changing the coarse-graining or record set. Plain language: entropy can diagnose an emergent arrow inside a stated physical and inferential window, but it does not supply the absolute ordering parameter $t$.
+
+A monotone entropy arrow in that window is therefore a conditional balance statement:
+$$
+\frac{dS_{\mathcal{Q},W}}{dt}\ge 0
+\quad\Longleftrightarrow\quad
+\sigma_W(t)+\mathcal{R}_{\mathcal{Q}}(t)
+\ge
+\int_{\partial W(t)}\mathbf{J}_S\cdot\hat{\mathbf{n}}\,dA
+$$
+for the declared coarse-graining and record set. Without those window data, the theory does not promote entropy increase into a definition of time.
 
 ## Absolute and Universal Nature
 
@@ -151,7 +161,7 @@ where $I$ is an interval and $t$ is **strictly increasing** with respect to the 
 $$
 \frac{dt}{ds} > 0
 $$
-for any parametrization $s$ of the worldline.
+for any admissible orientation-preserving parametrization $s$ of the worldline.
 
 ## Causality and Finite Propagation Speed
 
@@ -159,12 +169,14 @@ for any parametrization $s$ of the worldline.
 
 **Finite Propagation Speed:** All physical interactions are mediated by causal wakes that propagate at a **finite speed** $c_f$, the wake speed defined by the master equation.
 
-**Path-History Interactions:** If a source is located at $(\hat{t}_0, \mathbf{x}_0)$, its influence reaches a receiver at $(\hat{t}, \mathbf{x})$ at the **emission time**:
+**Path-History Interactions:** If source $j$ emits from $\mathbf{x}_j(t_0)$ and receiver $i$ is at $\mathbf{x}_i(t)$, the contributing emission times are the delayed roots
 $$
-\hat{t}_{\text{emit}} = \hat{t} - \frac{\|\mathbf{x} - \mathbf{x}_0\|}{c_f}.
+\mathcal{C}_{ij}(t)
+=
+\{\,t_0<t:\|\mathbf{x}_i(t)-\mathbf{x}_j(t_0)\|=c_f(t-t_0)\,\}.
 $$
 
-Only if $\hat{t} \geq \hat{t}_{\text{emit}}$ can the source influence the receiver.
+Only emission times in $\mathcal{C}_{ij}(t)$ contribute to the receiver at time $t$. In dimensional variables, the same condition is written with hatted times and positions using the corresponding dimensional value of $c_f$.
 
 The interaction law is built entirely from path-history contributions at times $t' < t$; $\mathbb{A}\mathbb{A}\mathbb{A}$ contains no advanced or instantaneous interaction terms. This ensures causality at the fundamental level.
 
@@ -205,7 +217,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, time itself has no internal structure or dy
 
 They do **not** arise from any curvature or dynamics of the time coordinate itself.
 
-**Comparison to General Relativity:** In GR, time is part of a dynamical spacetime manifold that curves in response to stress-energy. Here, time is **fixed and non-dynamical**; any time-like curvature or dilation observed in experiments must emerge from the dynamics of assemblies and effective fields acting within this rigid temporal framework.
+**Comparison to General Relativity:** In GR, time is part of a dynamical spacetime manifold that curves in response to stress-energy. Here, time is **fixed and non-dynamical**; any observer-level clock dilation, lapse effect, or effective metric curvature observed in experiments must emerge from the dynamics of assemblies and effective fields acting within this rigid temporal framework.
 
 ## Distinction from Relativistic Time
 
@@ -222,4 +234,4 @@ They do **not** arise from any curvature or dynamics of the time coordinate itse
 
 ## Summary Postulate
 
-> **Postulate 1 (Absolute Time):** Time is an **absolute, universal, one-dimensional continuum** $\mathbb{R}$, with a fixed orientation (future = increasing $t$) and a uniform rate of advancement. Duration between events is **frame-independent**. The time coordinate is **non-dynamical** and does not encode forces or curvature. All dynamics occur via finite-speed wake propagation ($c_f$) in absolute time, with all interactions via path history; there is no instantaneous action-at-a-distance. Worldlines are parametrized directly by $t$ with no reparametrization freedom. Any physical arrow of time or observed time dilation is an emergent property of assemblies and their dynamics, not a feature of the background $t$ parameter itself.
+> **Postulate 1 (Absolute Time):** Time is an **absolute, universal, one-dimensional continuum** $\mathbb{R}$, with a fixed orientation (future = increasing $t$) and a uniform rate of advancement. Duration between events is **frame-independent**. The time coordinate is **non-dynamical** and does not encode forces or curvature. All dynamics occur via finite-speed wake propagation ($c_f$) in absolute time, with all interactions via path history; there is no instantaneous action-at-a-distance. Worldlines are parametrized directly by $t$ with no reparametrization freedom. Any physical arrow of time or observer-clock dilation is an emergent property of assemblies and their dynamics, not a feature of the background $t$ parameter itself.

@@ -11,7 +11,7 @@ Define a canonical $\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathb
 
 ### Definition
 A $\mathbb{U}_{\text{now}}$ is defined by:
-- Fixed Euclidean sample points or worldlines $P = \{x_k\}$ in $\mathbb{R}^3$
+- Fixed Euclidean sample points or worldlines $P = \{x_k\}$ in a declared coordinate scaffold on $\mathbb{R}^3$
 - Access to the full state $S(t) = \{(x_i(t), v_i(t), q_i, \dots)\}$ for all architrinos
 - Output channels:
   - Local potential $\Phi(x_k,t)$

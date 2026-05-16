@@ -214,6 +214,106 @@ node scripts/quantum/bell-family-residual-harness.mjs \
 
 This target uses a setting-independent six-cell source measure over a uniform threshold coordinate and an unbiased marginal branch. Its context-indexed joint basin recovers the singlet CHSH benchmark, preserves zero measurement-independence and no-signaling residuals, and does not reduce to the declared product-screening baseline. It is not a Bell closure proof: the threshold rule is a reduced target object whose substrate origin must still be derived from the pair-provenance ledger, the local apparatus record-window measures, and the joint record basins.
 
+## Pair-Basin Threshold Theorem Target
+
+The diagnostic target becomes a useful proof problem only if the inserted threshold can be replaced by a derived basin coordinate. A candidate reduced record may refine $\Gamma_{AB}^{\mathrm{rec}}$ by a sign branch $\sigma\in\{-1,+1\}$ and a threshold coordinate $\eta_{AB}\in[0,1]$:
+
+$$
+\Gamma_{AB}^{\mathrm{thr}}
+=
+\Pi_{AB}
+\times
+\Theta_A(\hat{\mathbf{m}}_A)
+\times
+\Theta_B(\hat{\mathbf{m}}_B)
+\times
+\{-1,+1\}_{\sigma}
+\times
+[0,1]_{\eta}.
+$$
+
+The required source-and-apparatus measure must be invariant under the sign flip
+
+$$
+F(\Pi_{AB},\zeta_A,\zeta_B,\sigma,\eta_{AB})
+=
+(\Pi_{AB},\zeta_A,\zeta_B,-\sigma,\eta_{AB}),
+\qquad
+F_*\mu_{AB}^{\mathrm{thr}}=\mu_{AB}^{\mathrm{thr}}.
+$$
+
+For spin-singlet settings, the target same-outcome threshold is
+
+$$
+T_{\mathrm{same}}(\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
+=
+\frac{1-\hat{\mathbf{m}}_A\cdot\hat{\mathbf{m}}_B}{2}.
+$$
+
+The reduced target basins are then
+
+$$
+B_{\sigma,\sigma}^{\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B}
+=
+\left\{
+(\cdots,\sigma,\eta_{AB}):
+0\le\eta_{AB}<T_{\mathrm{same}}(\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
+\right\},
+$$
+
+and
+
+$$
+B_{\sigma,-\sigma}^{\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B}
+=
+\left\{
+(\cdots,\sigma,\eta_{AB}):
+T_{\mathrm{same}}(\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)<\eta_{AB}\le1
+\right\},
+$$
+
+with boundary measure zero. If $(\eta_{AB})_*\mu_{AB}^{\mathrm{thr}}=d\eta$ and the sign branch has equal measure, the induced table is
+
+$$
+P(\sigma,\sigma|\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
+=
+\frac{1}{2}T_{\mathrm{same}},
+\qquad
+P(\sigma,-\sigma|\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
+=
+\frac{1}{2}\left(1-T_{\mathrm{same}}\right),
+$$
+
+so
+
+$$
+E(\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
+=
+2T_{\mathrm{same}}-1
+=
+-\hat{\mathbf{m}}_A\cdot\hat{\mathbf{m}}_B.
+$$
+
+**No-signaling marginal lemma.** Under the sign-flip symmetry above, the one-wing marginals are
+
+$$
+\sum_bP(+1,b|\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
+=
+\sum_bP(-1,b|\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
+=
+\frac{1}{2},
+$$
+
+and similarly for the $B$ wing. Therefore the emitted probability table has zero no-signaling residual even though the joint basin is context-indexed. This is only a table-level lemma. A substrate proof must still show that the context-indexed basin is produced by pair provenance, local apparatus record-window dynamics, and ordinary later record comparison, not by distant-setting dependence at either detector.
+
+This theorem target fails in any of the following cases:
+
+1. $\eta_{AB}$ or $T_{\mathrm{same}}$ is chosen directly to reproduce the singlet table rather than derived as a basin coordinate and separatrix threshold.
+2. The retained record admits a factorization into one-wing kernels after conditioning on the complete $\Pi_{AB}$ and local apparatus variables.
+3. $F_*\mu_{AB}^{\mathrm{thr}}\ne\mu_{AB}^{\mathrm{thr}}$, so the local marginals drift away from $\frac{1}{2}$.
+4. $\rho_{\mathrm{src}}(\Pi_{AB}|P_{\mathrm{src}})$ depends on later detector settings.
+5. The construction requires superluminal signal, energy transfer, causal-wake transfer, or treating information as ontology.
+
 ## Promotion Gates
 
 1. $\rho_{\mathrm{src}}(\Pi_{AB}|P_{\mathrm{src}})$ is a pushforward of a declared source measure, not a fitted Bell table.
