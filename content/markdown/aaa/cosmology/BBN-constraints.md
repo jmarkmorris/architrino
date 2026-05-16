@@ -126,6 +126,7 @@ This keeps lithium inside one coherent mechanism family rather than adding a sep
 - Preserve deuterium survival through the bottleneck window without recirculation overburn.
 - Preserve narrow helium clustering (for example near $Y_p\approx0.245$ with low dispersion).
 - Preserve effective photon loading in the reaction window (BBN-compatible $\eta$ behavior).
+- Preserve matter-asymmetry provenance: the baryon-to-photon ratio must be carried by the same reaction ledger used for photon loading, not inserted as an independent initial condition.
 - Preserve effective neutrino-sector closure near three-species behavior (observer-level $N_{\text{eff}}$ compatibility).
 - Avoid per-source ad hoc retuning that breaks universality across SMBH populations.
 - Maintain reaction and thermalization provenance consistent with [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md).
@@ -142,10 +143,13 @@ $$
 \frac{|\left(D/H\right)_X-\left(D/H\right)_{\mathrm{obs}}|}{\epsilon_D},\;
 \frac{|Y_{p,X}-Y_{p,\mathrm{obs}}|}{\epsilon_{Y_p}},\;
 \frac{|\left({}^7\mathrm{Li}/H\right)_X-\left({}^7\mathrm{Li}/H\right)_{\mathrm{obs}}|}{\epsilon_{\mathrm{Li}}},\;
+\frac{|\eta_X-\eta_{\mathrm{obs}}|}{\epsilon_\eta},\;
 \frac{|\Delta N_{\text{eff}}^X|}{\epsilon_N}
 \right).
 $$
 The branch may remain in the comparison ledger only when $\mathcal{R}_{\mathrm{BBN},X}\le1$ using the same provenance and Noether-Sea record carried into [CMB](./CMB.md), [Structure Formation](./structure-formation.md), and [Gravitational Waves](../spacetime/gravitational-waves.md). A component that repairs one BBN channel while spoiling deuterium survival, helium clustering, or $N_{\text{eff}}$ compatibility is a failed comparison branch, not a new explanatory resource.
+
+The $\eta_X$ term is the BBN-facing projection of the matter-asymmetry ledger in [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md#matter-asymmetry-provenance). It should be computed from transported baryon, antibaryon, and photon event records over the declared source window, not assigned independently after the yields are fit.
 
 ## Observable-Mapping Goals (Interpretation-Scoped)
 
@@ -183,6 +187,7 @@ The BBN reaction sequence requires a high photon-to-baryon environment so D is n
 - **Interpretive option:** Distinct shear layers, diffuse outflow regions, or pair/synchrotron-bright release channels can be tested as photon-bath suppliers, rather than matter-heavy disk zones.
 - **Source-model objective:** Show how recycling-zone photon production (for example pair annihilation, bremsstrahlung, and synchrotron cascades) can maintain BBN-compatible photon loading during the D bottleneck window.
 - **Thermalization-depth check:** Treat photon loading as an ensemble closure target. The relevant source zone should satisfy a channel-recorded depth condition $\mathcal{D}_{\mathrm{th}}^{\mathrm{BBN}}(\nu)\gtrsim 1$ across the photon energies that control deuterium photodissociation and nuclear freeze-out timing, while preserving the same Noether-Sea state variables used for density dilution, cooling, and neutrino-sector handoff.
+- **Matter-asymmetry check:** The same source-zone record must yield $\eta_B^{\mathrm{ledger}}$ compatible with $\eta_{\mathrm{obs}}$ after baryon, antibaryon, and photon transport to the BBN comparison surface.
 - **Consistency check:** If this condition is unmet, D forms too early and is over-processed.
 
 ### 5. Lithium Goal: Promote to a Distinguishing Prediction

@@ -474,9 +474,21 @@ E_{\mathrm{closed}}(L)\to E_{\infty}<\infty
 $$
 and vanishing far-field color flux.
 
+This energy law is a closure target, not a restatement of QCD in native vocabulary. The observer-level benchmarks to preserve are the static-potential string tension, the absence of asymptotic free color charge, a finite pure-gauge mass gap, and the hadron-spectrum constraints currently organized by QCD and lattice calculations. A useful confinement residual is
+$$
+\mathcal{R}_{\mathrm{conf}}(\theta)
+=
+d_{\sigma}\!\left(\sigma_{\mathrm{eff}}(\theta),\sigma_{\mathrm{QCD}}\right)
++
+d_{\mathrm{gap}}\!\left(M_{\mathrm{glue}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta),M_{\mathrm{glue}}^{\mathrm{lat}}\right)
++
+d_{\mathrm{free}}\!\left(O_{\mathrm{color}}(\theta),O_{\mathrm{color}}^{\max}\right),
+$$
+where the terms compare the extracted open-sector tension, the lowest closed strong-sector excitation scale, and the predicted free-color signal against the corresponding accepted benchmark or bound. The same branch record must drive all three terms. If $\sigma_{\mathrm{eff}}$, the mass gap, and free-color suppression require independent Noether-Sea variables or separate color-sector fits, the confinement program has reproduced the appearance of QCD rather than deriving its non-perturbative content.
+
 This chapter therefore carries:
 - **already closed:** color Hilbert space, generator construction, and $\mathfrak{su}(3)$ algebra closure;
-- **to close quantitatively:** open-vs-closed energy scaling with explicit $\sigma_{\mathrm{eff}}$ extraction from medium shear/torsion.
+- **to close quantitatively:** open-vs-closed energy scaling with explicit $\sigma_{\mathrm{eff}}$ extraction from medium shear/torsion, finite mass-gap recovery, and bounded free-color residuals.
 
 Primary topology spine: [dynamics/causal-action-functional.md](../../dynamics/causal-action-functional.md).
 

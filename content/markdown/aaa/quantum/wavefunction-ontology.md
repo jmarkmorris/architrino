@@ -173,6 +173,21 @@ This is the Born-rule basin-measure ledger. It should stay distinct from the spi
 
 The same measure must also survive thermodynamic projection checks. When the measurement story uses apparatus entropy, decoherence rates, or environment summaries, those quantities may not be fitted by a second ensemble unrelated to the Born-rule basin measure. The finite-window version $\mu_{*,T}$ in [Quantum Operator Mapping](../theory-bridges/quantum-operator-mapping.md#statistical-measure-and-the-born-rule-emergence) must project to the thermodynamic summary used by the same record channel, within an explicitly declared tolerance.
 
+The finite-window measure also has to survive the energy bookkeeping of the record event. If the apparatus explanation invokes thermalization, decoherence, or collapse-model comparison noise, the same run record must keep the unrecorded energy residual $\Delta E_{\mathrm{unrec}}(T;\theta)$ below tolerance in [Measurement Ontology](measurement-ontology.md#measurement-and-heating-residual). The wavefunction-side update is therefore licensed only when the Born weights, thermodynamic projection, and energy ledger are compatible on one window:
+$$
+\mathcal{R}_{\mathrm{wf-rec}}(T;\theta)
+=
+\max\left(
+\frac{\Delta_{\mathrm{Born}}(T)}{\varepsilon_{\mathrm{Born}}},
+\frac{\Delta_{\mathrm{ens}}(\mathcal{Q},W,T)}{\varepsilon_{\mathrm{ens}}},
+\frac{|\Delta E_{\mathrm{unrec}}(T;\theta)|}{\varepsilon_E},
+\sup_{t\in[\tau_{\text{meas}},\,\tau_{\text{meas}}+T_{\text{rec}}]}
+\frac{\Delta_{\mathrm{rec}}(t;k)}{\varepsilon_{\mathrm{rec}}}
+\right)
+\le 1.
+$$
+This residual is not an additional probability postulate. It is the finite-window acceptance test for treating the effective wavefunction as having updated to a completed record rather than to an unresolved branch envelope.
+
 ### Lower Bound on Recordable Basin Measure
 
 The probability measure $\mu_*$ is enough to state outcome weights, but it does not by itself say when a subset of $\mathcal{M}$ is an independently recordable alternative. The closure program also needs the finite, pre-normalized basin measure associated with the same coarse-graining and apparatus channel. Let $\mu_{\mathcal{Q}}$ denote that finite basin measure for a declared coarse-graining $\mathcal{Q}$ and access region $W$.

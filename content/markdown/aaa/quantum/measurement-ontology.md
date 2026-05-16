@@ -360,6 +360,30 @@ $$
 $$
 This ratio is not an ontology selector. It is a validation diagnostic: $\tau_{\text{meas}}$ must be derived from the Master-Equation separatrix and record-locking dynamics, while $\tau_G$ supplies an external mass-displacement benchmark. Collapse-model variants that imply persistent spontaneous heating add a separate empirical pressure, because neutron-star and low-background heating bounds can exclude that heating channel without deciding the $\mathbb{A}\mathbb{A}\mathbb{A}$ threshold-resolution mechanism.
 
+### Measurement And Heating Residual
+
+The heating pressure from objective-collapse comparisons should be retained as an energy-ledger test, not as imported stochastic-collapse ontology. A declared apparatus channel $(\mathcal{K}_A,\mathcal{Q},W,T)$ already has a Born-window residual $\Delta_{\mathrm{Born}}(T)$ and thermodynamic ensemble residual $\Delta_{\mathrm{ens}}(\mathcal{Q},W,T)$ in [Quantum Operator Mapping](../theory-bridges/quantum-operator-mapping.md#statistical-measure-and-the-born-rule-emergence). The same run should also carry an unrecorded energy residual after declared work, recoil, emitted assemblies, medium excitation, and boundary exchange are accounted for:
+$$
+\Delta E_{\mathrm{unrec}}(T;\theta)
+=
+\Delta E_{\mathrm{target+app+env}}(T)
+{}-W_{\mathrm{decl}}(T;\theta)
+{}-E_{\mathrm{recoil}}(T;\theta)
+{}-E_{\mathrm{medium}}(T;\theta)
+{}-E_{\mathrm{boundary}}(T;\theta).
+$$
+Here $\theta$ is the apparatus and environment record used for the same measurement run. The combined validation diagnostic is
+$$
+\mathcal{R}_{\mathrm{meas+heat}}(T;\theta)
+=
+\max\left(
+\frac{\Delta_{\mathrm{Born}}(T)}{\varepsilon_{\mathrm{Born}}},
+\frac{\Delta_{\mathrm{ens}}(\mathcal{Q},W,T)}{\varepsilon_{\mathrm{ens}}},
+\frac{|\Delta E_{\mathrm{unrec}}(T;\theta)|}{\varepsilon_E}
+\right).
+$$
+A measurement model that fits Born weights only by changing the thermodynamic ensemble, or that leaves a persistent unexplained heating term, has not closed the record-forming channel. A model may still compare to CSL-like or Penrose-Diosi-like formulas, but the retained content is the observable residual, not the external collapse mechanism.
+
 ## External Gravitational Which-Path Benchmark
 
 Massive-superposition tests also create a second external benchmark: whether the gravitational or effective-metric readout of two branches can carry which-path information. This comparison preserves the observable pressure without adopting a stochastic-metric ontology. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the effective metric is an observer-level reconstruction, so a gravitational readout becomes measurement-relevant only when a Physical Observer apparatus can turn the branch-dependent response into an autonomous record.

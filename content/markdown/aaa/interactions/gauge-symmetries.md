@@ -126,6 +126,28 @@ $$
 $$
 The U(1) closure passes this benchmark only if $\Delta_{\mathrm{AB}}$ remains below the declared interferometric tolerance while the same effective connection also preserves charge continuity and ordinary electromagnetic force recovery. If the phase recovery requires a local force on the arms, a separate phase fit, or a literal promotion of $A_\mu$ to substrate ontology, this gauge bridge has failed at the AB gate.
 
+### Global Gauge-Topology Completion Target
+
+The Aharonov-Bohm benchmark is local in the sense that it tests one enclosed-flux holonomy. A stronger gauge bridge must also recover the global content usually hidden by chartwise potential language: flux quantization, charge compatibility, and the way local effective potentials glue across overlapping regions. This remains an effective-connection target, not evidence that a gauge potential is substrate ontology.
+
+Let $\Gamma_{\mathrm{AB}}$ be a benchmark family of closed observer-level loops $\gamma$ and spanning surfaces $S$ for which the local force channel vanishes on the loop. The shared wake/action and effective-connection record should satisfy
+$$
+\Delta_{\mathrm{gauge,glob}}(\theta)
+=
+\sup_{(\gamma,S)\in\Gamma_{\mathrm{AB}}}
+\inf_{N\in\mathbb{Z}}
+\left|
+\Delta\phi_{\mathrm{wake}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\gamma;\theta)
+-
+\frac{q_{\mathrm{eff}}}{\hbar}\int_S F_{\mathrm{eff}}(\theta)
+-
+2\pi N
+\right|.
+$$
+Here $F_{\mathrm{eff}}$ is the observer-level curvature recovered from the same effective gauge record used for force and phase transport. The integer $N$ records the allowed $2\pi$ ambiguity of the phase, not an independent hidden sector.
+
+The global gauge-topology target passes only if $\Delta_{\mathrm{gauge,glob}}$ stays below tolerance while charge continuity, local force recovery, AB holonomy, and flux/charge compatibility are all read from one shared record. It fails if a chart-dependent potential must be promoted to ontology, if the topological charge is inserted separately from the wake/action ledger, or if the same sector requires different Noether-Sea variables for force, phase, and charge recovery.
+
 ## SU(2) Weak Sector
 
 Let $\chi$ denote the local weak doublet (effective exposed-triad channel).
@@ -185,6 +207,7 @@ Required consistency conditions:
 1. **Topology respect:** effective gauge transport must preserve the admissible axis-exceptionality sector decomposition used in confinement/topology chapters.
 2. **No leakage contradiction:** constitutive preferred-frame leakage terms (from spacetime closure) must not force leading-order gauge-breaking operators.
 3. **Energy-side compatibility:** gauge sector must admit open-vs-closed braid scaling laws without violating local covariance of the effective Lagrangian.
+4. **Global completion:** local effective connections must assemble into one gauge record whose holonomies, fluxes, and charge ledgers agree across chart boundaries.
 
 Interface chapters:
 - topology and action invariants: [dynamics/causal-action-functional.md](../dynamics/causal-action-functional.md)
@@ -198,6 +221,7 @@ This gauge-emergence spine fails if any of the following occur in the calibrated
 - Weak channel requires non-SU(2)-covariant terms at leading order.
 - Color generator set fails closure or requires dimension other than 8 in the one-axis-exceptionality sector.
 - The Standard Model representation, coupling-running, or chirality residual $\mathcal{R}_{\mathrm{gauge}}$ cannot be kept below tolerance using one shared gauge record.
+- Global holonomies, fluxes, and charge compatibility cannot be recovered from the same effective gauge record that supplies local force and phase transport.
 - Added partner families, extra gauge modes, baryon-instability channels, or hidden transport channels produce $\mathcal{R}_{\mathrm{null}}(\theta)>0$.
 - Preferred-frame leakage forces explicit gauge-breaking operators at leading order.
 

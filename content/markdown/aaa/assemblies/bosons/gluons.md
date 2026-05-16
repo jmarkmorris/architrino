@@ -103,6 +103,15 @@ Quarks are confined because an open color corridor stores energy in the surround
   $$
 - **Result:** the energy grows approximately linearly with separation, $V \propto r$, until it becomes cheaper to create a new quark-antiquark pair than to keep stretching the corridor.
 
+This is the standard flux-tube observable pressure translated into Noether-Sea language, not an import of perturbative string ontology. The string-tension scale is useful because QCD and lattice calculations already treat the approximately linear static potential as a non-perturbative benchmark. The $\mathbb{A}\mathbb{A}\mathbb{A}$ task is to extract $\sigma_{\mathrm{eff}}$ from the same medium shear/torsion record that also suppresses free color and produces a finite closed-braid excitation scale.
+
+The validation gate is therefore:
+
+- **Static-potential recovery:** the open corridor must reproduce the accepted hadronic-scale linear potential within the declared tolerance.
+- **No free color:** an isolated color sector must exceed the free-color bound rather than becoming a long-lived asymptotic object.
+- **Mass-gap recovery:** closed pure strong-sector braids must have a finite lowest excitation scale instead of a continuum of arbitrarily soft color modes.
+- **Shared record:** the same Noether-Sea state variables must control tension, screening, and closed-braid excitation energy; otherwise the model has only matched separate QCD-looking observables by retuning.
+
 ### The Color Singlet (White)
 
 A proton such as $(u_R,u_G,d_B)$ is stable because the three quarks occupy the three exceptional-axis sectors once each; see also [Nucleon Structure](../../nuclear-atomic/nucleon-structure.md) and [Transient Hadrons: Mesons and Δ Resonances](../mesons/mesons.md).
