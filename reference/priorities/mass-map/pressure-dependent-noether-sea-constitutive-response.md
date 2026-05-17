@@ -162,6 +162,8 @@ b_n\ln n
 +\mathcal{R}_{\Gamma}^{P}.
 $$
 
+The homogeneous moving-core Lorentz branch fixes the coefficient multiplying $-\ln\xi$ to $1$ up to preferred-frame leakage. Pressure-response tests therefore constrain the remaining isotropic combination of $b_n$, $b_\chi$, $b_\lambda$, and $b_R$ unless the tested material branch also produces a resolved anisotropic shape response.
+
 Since
 
 $$

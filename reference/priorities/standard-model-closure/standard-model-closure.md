@@ -16,7 +16,7 @@
 3. `confinement_energetics` — Derive confinement-scale behavior from topological or strain energetics. Status: `pending`. Depends on: `overlap_integrals`.
 4. `weak_sector_gauge_closure` — Unify weak axial-frame exposure, `V-A`, CKM/PMNS overlap, weak-corridor provenance, and effective gauge covariance into one closure packet. Status: `review`. Depends on: `overlap_integrals`.
 5. `nuclear_binding_closure` — Build the first nuclear benchmark ladder from hadronic geometry and residual strong channels: deuteron, saturation, alpha-like cluster, and beta stability. Status: `review`. Depends on: `confinement_energetics`.
-6. `hydrogen_fermion_sea_boundary` — Derive the four-fermion hydrogen boundary map that separates exact assembly-ledger membership from dynamic exclusion-envelope and Noether-Sea coarse-graining boundaries. Status: `scaffolded`. Depends on: `confinement_energetics`, `nuclear_binding_closure`.
+6. `hydrogen_fermion_sea_boundary` — Derive the four-fermion hydrogen boundary map that separates exact assembly-ledger membership from dynamic exclusion-envelope and Noether-Sea coarse-graining boundaries. Status: `kernel-scaffolded`. Depends on: `confinement_energetics`, `nuclear_binding_closure`.
 
 ## Scope
 
@@ -55,15 +55,41 @@ $$
 and
 
 $$
-\partial\Omega_f(D_*,t)
+\partial\Omega_f(D_X,t)
 =
 \left\{
 \mathbf{x}\in\Sigma_t:
-D_f(\mathbf{x},t)=D_*
+D_{f,X}(\mathbf{x},t)=D_X
 \right\}.
 $$
 
-Here $\mathcal{A}_{\mathrm{H}}$ is the exact hydrogen matter-assembly ledger, $S_{\mathrm{sea}}^{\Omega_{\mathrm{H}}}$ is the local Noether-Sea complement, and $\partial\Omega_f(D_*,t)$ is the effective spatial interface extracted from locked-assembly wake dominance. The closure target is to derive $D_f$ from the same Noether-core geometry and causal-wake ledgers used for mass, confinement, and atomic orbital recovery.
+Here $\mathcal{A}_{\mathrm{H}}$ is the exact hydrogen matter-assembly ledger, $S_{\mathrm{sea}}^{\Omega_{\mathrm{H}}}$ is the local Noether-Sea complement, and $\partial\Omega_f(D_X,t)$ is the effective spatial interface extracted from locked-assembly wake dominance in channel $X$. The closure target is to derive $D_{f,X}$ from the same Noether-core geometry and causal-wake ledgers used for mass, confinement, and atomic orbital recovery.
+
+The current kernel scaffold now derives the two wake terms from the Master-Equation causal-root flux. In a declared channel $X$, the locked numerator keeps the simple-root branch weight
+
+$$
+w_{j,f}^{\mathrm{lock}}(t_0;t)
+\frac{\alpha_{j,X}(t_0)}
+{r_{\mathbf{x}j}^2(t;t_0)\left|J_{\mathbf{x}j}(t;t_0)\right|}
+$$
+
+for contributors $j\in\mathcal{I}_f(t)$ that are phase-locked to the fermion ledger, while the ambient denominator uses the same branch weight for $j\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)$ after excluding the fermion ledger. The first threshold discipline is
+
+$$
+0
+<
+D_{\mathrm{clock}}
+\le
+D_{\mathrm{corridor}}
+\le
+D_{\mathrm{packing}}
+\le
+D_{\mathrm{penetration}}
+<
+1.
+$$
+
+The next proof burden is not another boundary label. It is to derive $w_{j,f}^{\mathrm{lock}}$, $w_j^{\mathrm{sea}}$, and $\alpha_{j,X}$ from the same branch ledgers used for confinement, electron resonance envelopes, and clock coupling.
 
 Failure modes:
 
@@ -71,6 +97,8 @@ Failure modes:
 - `hydrogen.orbital_body_blend`: the electron resonance envelope is treated as the electron's Noether-core boundary.
 - `hydrogen.sea_core_count_blend`: the four matter Noether cores are counted as the local spacetime medium rather than as assemblies embedded in the ambient Noether Sea.
 - `hydrogen.proton_quark_split`: the three quark assemblies are treated as free Noether cores rather than as a color-singlet proton closure.
+- `hydrogen.kernel_split`: the locked numerator and ambient denominator are computed with different wake kernels, windows, or causal-width rules.
+- `hydrogen.threshold_fit`: $D_X$ is tuned separately per observable instead of being tied to the declared stability criterion.
 
 ## Element-Dependent Response Extension
 

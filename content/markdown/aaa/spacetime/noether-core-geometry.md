@@ -33,32 +33,99 @@ Another Noether core approaching this region does not encounter a classical wall
 
 The dynamic exclusion zone supplies a spatial approximation to a deeper ledger boundary. At the exact level, an assembly is defined by the architrinos, closure labels, and wake-exchange records phase-locked to that assembly. The surrounding Noether Sea is the neighboring neutral-core population and its ambient wake record after the assembly ledger has been excluded.
 
-For an assembly $a$, let $\mathcal{W}_{a}^{\mathrm{locked}}(\mathbf{x},t)$ denote the local coarse-grained wake/exclusion contribution tied to the assembly's accepted closure label, and let $\mathcal{W}_{\mathrm{sea}}^{\mathrm{ambient}}(\mathbf{x},t)$ denote the ambient Noether-Sea contribution in the same region. A practical interface diagnostic is
+For an assembly $a$ and a declared response channel $X$, let $\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf{x},t)$ denote the local coarse-grained wake/exclusion contribution tied to the assembly's accepted closure label, and let $\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf{x},t)$ denote the ambient Noether-Sea contribution in the same region. A practical interface diagnostic is
 
 $$
-D_a(\mathbf{x},t)
+D_{a,X}(\mathbf{x},t)
 =
 \frac{
-\left\lVert\mathcal{W}_{a}^{\mathrm{locked}}(\mathbf{x},t)\right\rVert
+\left\lVert\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf{x},t)\right\rVert
 }{
-\left\lVert\mathcal{W}_{a}^{\mathrm{locked}}(\mathbf{x},t)\right\rVert
+\left\lVert\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf{x},t)\right\rVert
 +
-\left\lVert\mathcal{W}_{\mathrm{sea}}^{\mathrm{ambient}}(\mathbf{x},t)\right\rVert
+\left\lVert\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf{x},t)\right\rVert
 }.
 $$
 
-Then the effective assembly-Noether-Sea interface for a declared stability threshold $D_*$ is the level set
+The first computable form comes from the same causal-root flux used in the Master Equation. Fix a coarse-graining window $W_\ell$, a channel $X$ being tested, and a sample event $(\mathbf{x},t)$. For a source constituent $j$ at emission time $t_0$, define
 
 $$
-\partial\Omega_a(D_*,t)
+r_{\mathbf{x}j}(t;t_0)
+=
+\left\lVert\mathbf{x}-\mathbf{x}_j(t_0)\right\rVert,
+\qquad
+g_{\mathbf{x}j}(t;t_0)
+=
+r_{\mathbf{x}j}(t;t_0)-c_f(t-t_0),
+$$
+
+$$
+J_{\mathbf{x}j}(t;t_0)
+=
+1-
+\frac{\mathbf{v}_j(t_0)\cdot\hat{\mathbf{r}}_{\mathbf{x}j}(t;t_0)}{c_f},
+\qquad
+\mathcal{C}_{\mathbf{x}j}(t)
+=
+\{t_0<t:g_{\mathbf{x}j}(t;t_0)=0\}.
+$$
+
+Let $\mathcal{I}_a(t)$ be the architrino constituents and bound wake records belonging to assembly $a$, and let $\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)$ be the ambient Noether-Sea contributors in the same coarse window after excluding $\mathcal{I}_a(t)$. Let $w_{j,a}^{\mathrm{lock}}(t_0;t)$ retain the branches phase-locked to the assembly label, let $w_j^{\mathrm{sea}}(t_0;t)$ retain the ambient branches, and let $\alpha_{j,X}(t_0)\ge 0$ be the channel intensity inherited from charge, polarity, shielding, and the selected response channel. Then the simple-root diagnostic is
+
+$$
+\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf{x},t;\ell)
+=
+W_\ell *
+\sum_{j\in\mathcal{I}_a(t)}
+\sum_{t_0\in\mathcal{C}_{\mathbf{x}j}(t)}
+w_{j,a}^{\mathrm{lock}}(t_0;t)
+\frac{\alpha_{j,X}(t_0)}
+{r_{\mathbf{x}j}^2(t;t_0)\left|J_{\mathbf{x}j}(t;t_0)\right|},
+$$
+
+and
+
+$$
+\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf{x},t;\ell)
+=
+W_\ell *
+\sum_{j\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)}
+\sum_{t_0\in\mathcal{C}_{\mathbf{x}j}(t)}
+w_j^{\mathrm{sea}}(t_0;t)
+\frac{\alpha_{j,X}(t_0)}
+{r_{\mathbf{x}j}^2(t;t_0)\left|J_{\mathbf{x}j}(t;t_0)\right|}.
+$$
+
+For regularized simulations, the branch sum is replaced by the corresponding finite-width integral with $\delta_\eta(g_{\mathbf{x}j})$. The important constraint is that the numerator and denominator of $D_{a,X}$ use the same channel $X$, the same causal-width rule, and the same coarse-graining window. Signed force cancellation belongs in acceleration calculations; interface dominance uses retained channel magnitude so that a cancellation in one direction is not mistaken for absence of wake activity.
+
+Then the effective assembly-Noether-Sea interface for a declared stability threshold $D_X$ is the level set
+
+$$
+\partial\Omega_a(D_X,t)
 =
 \left\{
 \mathbf{x}\in\Sigma_t:
-D_a(\mathbf{x},t)=D_*
+D_{a,X}(\mathbf{x},t)=D_X
 \right\}.
 $$
 
-The level-set threshold is not universal. A penetration calculation, packing calculation, clock-coupling calculation, and reaction-corridor calculation may choose different $D_*$ values because they test different stability criteria. What must remain invariant is the level distinction: exact assembly membership is a closure-ledger fact, while $\partial\Omega_a(D_*,t)$ is a spatial interface extracted from that ledger and the surrounding Noether-Sea response.
+The level-set threshold is not universal. A penetration calculation, packing calculation, clock-coupling calculation, and reaction-corridor calculation choose different $D_X$ values because they test different stability criteria. A useful ordering of first thresholds is
+
+$$
+0
+<
+D_{\mathrm{clock}}
+\le
+D_{\mathrm{corridor}}
+\le
+D_{\mathrm{packing}}
+\le
+D_{\mathrm{penetration}}
+<
+1.
+$$
+
+Clock-coupling can be sensitive to weak locked-wake tails. A reaction corridor needs a stronger coherent channel but need not coincide with the full exclusion envelope. Packing asks where another stable Noether core or assembly can remain without persistent phase disruption. Penetration asks where transit through the assembly-dominated wake becomes dynamically unstable. What must remain invariant is the level distinction: exact assembly membership is a closure-ledger fact, while $\partial\Omega_a(D_X,t)$ is a spatial interface extracted from that ledger and the surrounding Noether-Sea response.
 
 ## Oblate Spheroidal Form
 
