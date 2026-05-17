@@ -70,7 +70,17 @@ $$
 
 The quantity $\Gamma_N$ records local cadence stretching of the Noether Sea itself. It is therefore a substrate-facing clock diagnostic: $\Gamma_N=1$ marks the weak homogeneous reference, while $\Gamma_N>1$ marks a locally slowed or stretched Noether-Sea cadence. In the homogeneous moving-core branch, the Lorentz-closure target is to derive the appropriate limit $\Gamma_N\to\gamma$ or, equivalently, $\Omega_N/\Omega_{N0}\to1/\gamma$ for the declared clock channel. In a gravitational or cosmological medium-state comparison, $\Gamma_N$ must instead be extracted from $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, $\Phi_{\text{eff}}$, and clock geometry.
 
-This diagnostic does not replace $d\tau/dt$. It supplies a more primitive Noether-Sea cadence factor from which clock-rate comparisons, gravitational redshift, and the redshift factorization in [Expansion Mechanism](../cosmology/expansion-mechanism.md#noether-sea-core-factorization-target) can be built.
+This diagnostic does not replace $d\tau/dt$. It supplies a more primitive Noether-Sea cadence factor from which clock-rate comparisons, gravitational redshift, and the redshift factorization in [Expansion Mechanism](../cosmology/expansion-mechanism.md#noether-sea-core-factorization-target) can be built. The ordinary local clock-rate factor is the inverse:
+
+$$
+C_N(\mathbf{x},t)
+\equiv
+\frac{\Omega_N(\mathbf{x},t)}{\Omega_{N0}}
+=
+\Gamma_N^{-1}(\mathbf{x},t).
+$$
+
+In the homogeneous moving-core branch, the geometry-to-clock closure target is $C_N\to\xi\to1/\gamma$, so the corresponding cadence-stretch target is $\Gamma_N\to1/\xi\to\gamma$.
 
 In the weak-field endpoint limit, the required recovery condition is
 
@@ -172,6 +182,46 @@ $$
 
 with the remaining coefficients belonging to the isotropic Noether-Sea constitutive response rather than to Lorentz geometry.
 
+This is also the convention bridge to the effective metric subclass. If the local metric clock-rate factor is written as an isotropic factor times the envelope shape ratio,
+
+$$
+C_N^{\mathrm{met}}
+=
+\Omega_{\mathrm{clk}}(n,\chi_{\text{sea}},\lambda,R_{\text{core}})\,\xi,
+$$
+
+then the cadence-stretch factor is
+
+$$
+\Gamma_N^{\mathrm{met}}
+=
+\left(
+\Omega_{\mathrm{clk}}\xi
+\right)^{-1}.
+$$
+
+Writing
+
+$$
+\ln\Omega_{\mathrm{clk}}
+=
+\omega_n\ln n
++\omega_\chi\ln\chi_{\text{sea}}
++\omega_\lambda\ln\lambda
++\omega_R\ln\frac{R_{\text{core}}}{R_{\text{core},0}}
++\mathcal{R}_{\Omega}
+$$
+
+therefore gives the coefficient identification
+
+$$
+b_n=-\omega_n,\qquad
+b_\chi=-\omega_\chi,\qquad
+b_\lambda=-\omega_\lambda,\qquad
+b_R=-\omega_R,\qquad
+b_\xi=1.
+$$
+
 The weak-field recovery condition then becomes a constraint on the same coefficient row:
 
 $$
@@ -205,7 +255,65 @@ $$
 b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1.
 $$
 
-This is the first useful reduction of the proof burden. The Lorentz branch fixes the shape coefficient $b_\xi$, while static weak-field redshift fixes one isotropic coefficient combination. Individual values of $b_n$, $b_\chi$, $b_\lambda$, and $b_R$ require a constitutive calculation or simulation that extracts how a mass source changes $n$, $\chi_{\text{sea}}$, $\lambda$, and $R_{\text{core}}$ in the same Noether-Sea cell.
+In clock-rate language this is the equivalent condition
+
+$$
+\omega_n a_n+\omega_\chi a_\chi+\omega_\lambda a_\lambda+\omega_R a_R=-1.
+$$
+
+This is the first useful reduction of the proof burden. The Lorentz branch fixes the shape coefficient $b_\xi$, while static weak-field redshift fixes one isotropic coefficient combination. Individual values of $b_n$, $b_\chi$, $b_\lambda$, and $b_R$, or equivalently of the $\omega$ row, require a constitutive calculation or simulation that extracts how a mass source changes $n$, $\chi_{\text{sea}}$, $\lambda$, and $R_{\text{core}}$ in the same Noether-Sea cell.
+
+Existing weak-field signal tests constrain one neighboring component of this vector. The PPN Shapiro-delay map uses the observer-normalized delay factor
+
+$$
+\bar{\chi}_{\text{sea}}
+=
+\frac{c_0}{c_{\text{eff}}}
+=
+1+(1+\gamma_{\text{eff}})\frac{U}{c_0^2}
++O\!\left(\frac{U^2}{c_0^4}\right),
+$$
+
+so its logarithmic response is
+
+$$
+\delta\ln\bar{\chi}_{\text{sea}}
+=
+(1+\gamma_{\text{eff}})\frac{U}{c_0^2}
++O\!\left(\frac{U^2}{c_0^4}\right).
+$$
+
+This fixes a signal-delay response coefficient $a_\chi^{\mathrm{sig}}=1+\gamma_{\text{eff}}$, giving $a_\chi^{\mathrm{sig}}\approx2$ in the GR-matching solar-system branch. It becomes the clock-row coefficient $a_\chi$ only if the clock cadence and signal-propagation channel share the same scalar delay response in the tested branch. If they do not, the difference is not fit freedom; it is a channel-splitting residual that must be carried into PPN, redshift, and pressure-response comparisons.
+
+#### Shared Clock/Signal Delay Closure
+
+The equality between the clock coefficient and the Shapiro-delay coefficient is therefore a closure condition:
+
+$$
+\Delta_\chi^{\mathrm{clk\text{-}sig}}
+\equiv
+a_\chi-a_\chi^{\mathrm{sig}}
+=
+a_\chi-(1+\gamma_{\text{eff}}),
+\qquad
+\Delta_\chi^{\mathrm{clk\text{-}sig}}=0.
+$$
+
+A branch may impose this condition only when the same first-order Noether-Sea delay factor retimes assembly clocks and signal propagation, the photon or signal channel has no separate $\chi_\gamma$ response at $O(U/c_0^2)$, the asymptotic normalization $c_0/c_f$ is spatially constant in the comparison, and the weak cell is isotropic enough that first-order birefringent or stress-anisotropic delay terms are absent.
+
+Under this shared-delay closure, the static endpoint constraint becomes
+
+$$
+b_n a_n+b_\chi(1+\gamma_{\text{eff}})+b_\lambda a_\lambda+b_R a_R=1,
+$$
+
+or, equivalently in clock-rate-row language,
+
+$$
+\omega_n a_n+\omega_\chi(1+\gamma_{\text{eff}})+\omega_\lambda a_\lambda+\omega_R a_R=-1.
+$$
+
+In the GR-matching weak solar-system branch, $\gamma_{\text{eff}}=1$ makes the delay contribution $2b_\chi$ in the cadence-stretch row and $2\omega_\chi$ in the clock-rate row. If $\Delta_\chi^{\mathrm{clk\text{-}sig}}\neq0$, the branch has not failed by definition, but it must carry $\Delta_\chi^{\mathrm{clk\text{-}sig}}$ as a measured residual across clock redshift, Shapiro delay, pressure-response, and cosmological redshift comparisons rather than absorbing it into a fitted coefficient.
 
 This gives the derivation a concrete target. The same $\Gamma_N$ extraction map must recover $\Gamma_N=1$ in the weak homogeneous reference, $\Gamma_N\to1/\xi$ in the homogeneous moving-core Lorentz branch, and $\Gamma_N\approx1-\Phi_N/c_0^2$ in the weak gravitational endpoint branch. It must also remain separate from the launch factor $D_v$ and the path-history propagation factor $Y_X$, so the endpoint contribution to redshift is only
 
@@ -391,6 +499,24 @@ For the reference run $(v=0,\Phi_N=0)$, set $\omega_0=\omega_{\text{clk}}^{\text
 $$
 \frac{d\tau}{dt}\equiv\frac{\omega_{\text{clk}}}{\omega_0}.
 $$
+
+This observable is the benchmark preserved by the clock projector in [Noether Core Geometry](noether-core-geometry.md#assembly-noether-sea-interface-diagnostic). For a branch record $\mathcal{B}_{\mathbf{x}j}^{(t_0)}$, the clock-facing projection keeps only the entries that can change the extracted phase or cadence:
+
+$$
+\Pi_{\mathrm{clock}}
+\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+=
+\left(
+\delta\theta_{\mathrm{clk}}^{(j)},\,
+\delta\omega_{\mathrm{clk}}^{(j)},\,
+\delta\chi_{\mathrm{sea}}^{(\ell,j)},\,
+J_{\mathbf{x}j},\,
+\Lambda_j,\,
+\mathcal{L}_{j}^{\mathrm{wake}}\big|_{\mathrm{phase}}
+\right).
+$$
+
+Thus a boundary contribution may affect clock coupling only by changing the same phase increment, measured frequency, Noether-Sea delay factor, or phase-retained wake ledger used to compute $\omega_{\text{clk}}/\omega_0$. A separate clock fit that bypasses this projection would split the clock benchmark from the assembly/Noether-Sea interface diagnostic.
 
 ### Controlled Perturbation Family
 

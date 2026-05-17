@@ -23,7 +23,7 @@ This priority packet is a report and derivation scaffold, not reader-facing cano
   +\mathcal{R}_{\Gamma}.
   $$
 - [Atomic Structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md) already requires atomic calculations to distinguish resolved matter assemblies from the complementary local Noether-Sea record inside the same atomic window.
-- [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md) and [Condensed Matter and Medium Transport](condensed-matter-medium-transport.md) already separate reversible medium-dressed inertial response from dissipative resistance through $\mathcal{R}_{\text{tr}}$.
+- [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md) and [Condensed Matter and Medium Transport](condensed-matter-medium-transport.md) already separate reversible medium-dressed inertial response from dissipative resistance through $\mathcal{R}_{\text{tr}}$, and carry the Earth-core iron guardrail that ordinary planetary differentiation has no iron-nucleus source term.
 - [Noether-Core Scaling and Packing Scaffold](../dyadic-lock/noether-core-scaling-and-packing.md) supplies the current priority-side packing estimate, including packing-limited center density and oblate-envelope support-function contact conditions.
 
 ## Claim Map
@@ -162,7 +162,7 @@ b_n\ln n
 +\mathcal{R}_{\Gamma}^{P}.
 $$
 
-The homogeneous moving-core Lorentz branch fixes the coefficient multiplying $-\ln\xi$ to $1$ up to preferred-frame leakage. Pressure-response tests therefore constrain the remaining isotropic combination of $b_n$, $b_\chi$, $b_\lambda$, and $b_R$ unless the tested material branch also produces a resolved anisotropic shape response.
+The homogeneous moving-core Lorentz branch fixes the coefficient multiplying $-\ln\xi$ to $1$ up to preferred-frame leakage. Equivalently, the clock-rate factor is $C_N=\Gamma_N^{-1}$, so the metric-subclass clock row has the opposite sign for the isotropic coefficients. Pressure-response tests therefore constrain the remaining isotropic combination of $b_n$, $b_\chi$, $b_\lambda$, and $b_R$ unless the tested material branch also produces a resolved anisotropic shape response.
 
 Since
 
@@ -251,6 +251,133 @@ C_A
 $$
 
 The useful comparison is not merely "high pressure changes spectra." Standard condensed-matter physics already expects many pressure shifts. The $\mathbb{A}\mathbb{A}\mathbb{A}$ claim is narrower: after ordinary electronic, magnetic, thermal, and elastic corrections, any remaining Noether-Sea residual must follow one shared pressure-loading record across cadence, signal-delay, strain, and inertial-response channels.
+
+## Earth-Core Iron Residual Packet
+
+Earth-core iron is the boundary case where the pressure law must remain disciplined. The standard correction is retained: most iron in Earth predates Earth accretion, then segregates into the core during planetary differentiation. Core pressure and temperature may stabilize metallic branches, change transport, and retune already existing iron-bearing assemblies, but they do not by themselves create iron nuclei. The ordinary planetary branch therefore keeps
+
+$$
+\partial_t \mathcal{N}_{\mathrm{Fe}}
++
+\nabla\cdot\mathbf{J}_{\mathrm{Fe}}
+=
+S_{\mathrm{Fe}}^{\mathrm{nuc}},
+\qquad
+S_{\mathrm{Fe}}^{\mathrm{nuc}}=0.
+$$
+
+Here $\mathcal{N}_{\mathrm{Fe}}$ is the number density of iron nuclei and $\mathbf{J}_{\mathrm{Fe}}$ is their segregation flux. Any nonzero $S_{\mathrm{Fe}}^{\mathrm{nuc}}$ is a separate nuclear-reaction provenance claim; it must preserve nuclear inventory, charge, energy, momentum, and medium-provenance bookkeeping before it can enter this pressure packet.
+
+For an Earth-core iron replay, use the state record
+
+$$
+\Theta_{\oplus\mathrm{Fe}}
+=
+\left(
+\mathcal{N}_{\mathrm{Fe}},
+\mathbf{J}_{\mathrm{Fe}},
+P,T,\Phi_{\mathrm{eff}},
+\mathcal B_{\mathrm{lat}},
+\theta_{\mathrm{sea}},
+M_{\mathrm{sh}},
+\mathcal{R}_{\text{tr}}
+\right),
+$$
+
+with
+
+$$
+\theta_{\mathrm{sea}}
+=
+\left(
+\rho_{\text{core}},
+n,
+\chi_{\text{sea}},
+\Gamma_N,
+\lambda,
+\xi,
+\mathbf{u}_{\text{sea}},
+S_{ij},
+\mathcal{M}_{\text{sea}}^{ab}
+\right).
+$$
+
+The quantified residual packet is
+
+$$
+\mathcal{Q}_{\oplus\mathrm{Fe}}
+=
+w_S
+\left(
+\frac{S_{\mathrm{Fe}}^{\mathrm{nuc}}}{\epsilon_S}
+\right)^2
++
+w_J
+\left\lVert
+\frac{
+\mathbf{J}_{\mathrm{Fe}}
++
+D_{\mathrm{Fe}}\nabla\!\left[
+\mu_{\mathrm{Fe}}
++
+M_{\mathrm{sh}}\Phi_{\mathrm{eff}}
+\right]
+}{\epsilon_J}
+\right\rVert^2
++
+w_G
+\left[
+\frac{
+\left[
+\Delta G_{\mathrm{Fe}}^{\mathrm{metal/silicate}}
+\right]_+
+}{\epsilon_G}
+\right]^2
++
+w_\Gamma
+\left(
+\frac{
+\ln\Gamma_N-\mathbf{b}_N\cdot\mathbf{g}_N
+}{\epsilon_\Gamma}
+\right)^2
++
+w_{\text{tr}}
+\left[
+\frac{
+\left[
+\mathcal{R}_{\text{tr}}-\mathcal{R}_{\text{tr},*}
+\right]_+
+}{\epsilon_{\text{tr}}}
+\right]^2,
+$$
+
+where $[x]_+\equiv\max(x,0)$ and
+
+$$
+\mathbf{g}_N
+=
+\left(
+\ln n,\,
+\ln\chi_{\text{sea}},\,
+\ln\lambda,\,
+-\ln\xi,\,
+\ln\frac{R_{\text{core}}}{R_{\text{core},0}}
+\right)^T.
+$$
+
+The source term enforces the no-new-iron guardrail. The segregation term tests whether existing iron-bearing assemblies follow the density-sorting functional. The phase term tests whether the metallic branch is favored over a silicate comparison after standard condensed-matter corrections. The cadence term tests whether the same Noether-Sea record that drives pressure response also supplies $\Gamma_N$. The transport term blocks ordinary drag below threshold and requires any above-threshold loss to be logged as excitation, heating, radiation-like shedding, or branch transition.
+
+| Residual component | Already constrained by the corpus | Requires simulation or data bridge |
+| --- | --- | --- |
+| Source conservation | $S_{\mathrm{Fe}}^{\mathrm{nuc}}=0$ for ordinary planetary differentiation; nonzero source requires reaction provenance. | Any actual iron-producing reaction mechanism, including nuclear inventory and energy-momentum bookkeeping. |
+| Segregation | The allowed functional is a flux down chemical, gravitational, and medium-response potential for existing iron assemblies. | $D_{\mathrm{Fe}}$, $\mu_{\mathrm{Fe}}(P,T,\theta_{\mathrm{sea}})$, Earth-interior profiles, and covariance tolerances. |
+| Metallic phase preference | $\Delta G_{\mathrm{Fe}}^{\mathrm{metal/silicate}}=\Delta G_{\mathrm{std}}+\delta G_{\mathrm{sea}}$ and the dense-medium condition $\partial_n\Delta\mu_{\mathrm{Fe/silicate}}^{\mathrm{metal}}<0$. | Ordinary phase corrections, $\delta G_{\mathrm{sea}}$ coefficients, lattice branch records, and pressure-temperature data. |
+| Cadence and clock response | $b_\xi=1$ on the homogeneous moving-core branch and $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$ in the weak static endpoint branch. | Individual isotropic coefficients, pressure-dependent $\mathbf{g}_N$ extraction, and branch-specific $\mathcal{R}_{\Gamma}^{P}$ tolerances. |
+| Transport threshold | $\mathcal{R}_{\text{tr}}<\mathcal{R}_{\text{tr},*}$ means reversible retuning with no ordinary drag; above threshold requires a logged channel. | The quantitative form of $\mathcal{R}_{\text{tr}}$, its critical value, and stability-gap inputs for iron-rich material branches. |
+
+Acceptance requires all five components to use one shared $\theta_{\mathrm{sea}}$ record, not separate observable-specific medium parameters. Demotion is appropriate if the pressure residual can be fit only with material-specific rows and no branch transition. Failure is required if the packet needs unlogged iron-nucleus creation, hides transmutation inside $\delta G_{\mathrm{sea}}$, mixes $n$ with $\chi_{\text{sea}}$, predicts ordinary drag below $\mathcal{R}_{\text{tr},*}$, or violates clock/signal, birefringence, dispersion, preferred-frame, or transport null bounds.
+
+The Fe/Cr replay below tests only the shared pressure-response row for a heavy/control material pair. It does not validate Earth-core iron until the source, segregation, phase, cadence, and transport components of $\mathcal{Q}_{\oplus\mathrm{Fe}}$ are supplied with real material and Earth-interior records.
 
 ## Assumptions
 
@@ -453,3 +580,9 @@ up to the shared coefficient combination multiplying $\delta\ln\Gamma_N$. The sa
 - **Demote:** the residual channels can be fit only by material-specific rows $B_H$ and $B_L$. The effect should be treated as ordinary material-specific condensed-matter correction unless a branch transition explains the split.
 - **Fail:** any fit that passes pressure residuals by violating birefringence, dispersion, preferred-frame, clock/signal, or transport-threshold bounds is rejected by the shared closure record.
 - **Bound-only result:** if the residual channels are consistent with zero, the replay still gives upper bounds on $a_S$, $m_S$, $\eta_Z$, and the pressure sensitivity of $\Gamma_N$.
+
+The first scaffold-only worked packet is [Fe/Cr Toy Pressure Replay](pressure-replay-fe-cr-toy.md). It generates a two-material table from one declared row pair, reports $\mathcal{A}_{\Gamma}^{\mathrm{Fe/Cr}}\approx1.140$ for the toy inputs, and keeps the result explicitly below empirical-validation status. The related segregation-side packet is [Fe/Silicate Dense-Medium Segregation](fe-silicate-dense-medium-segregation.md), which asks whether an iron-rich metallic phase has lower relative medium-response cost than a silicate phase as $n$ increases, without introducing an iron-nucleus source term.
+
+The first empirical replay handoff is [Metallic-Lattice Pressure Replay Data Schema](pressure-replay-metallic-lattice-data-schema.md). It locks the material-state record, observable extractor, covariance model, shared-row fit, heavy-scaling scan, and null-sector bounds before any Fe/Cr or Ni/Co data are interpreted.
+
+The first empty empirical packet is [Fe/Cr Empirical Pressure Replay Skeleton](pressure-replay-fe-cr-empirical-skeleton.md). It chooses Fe/Cr as the provisional first pair from the local priority stack, marks every missing material input explicitly, and keeps the current reading at `bound_only`.

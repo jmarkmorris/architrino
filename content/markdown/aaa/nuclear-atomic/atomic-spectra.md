@@ -33,12 +33,160 @@ Spectral lines should then be recovered as transitions between effective envelop
 $$
 h\nu_{a\to b}
 =
-E_{\text{env}}(a;\mathcal W_{\text{nuc}},\rho_{\text{core}},\chi_{\text{sea}})
+E_{\text{env}}(a;\mathcal W_{\text{nuc}},\rho_{\text{core}},n,\chi_{\text{sea}})
 -
-E_{\text{env}}(b;\mathcal W_{\text{nuc}},\rho_{\text{core}},\chi_{\text{sea}}),
+E_{\text{env}}(b;\mathcal W_{\text{nuc}},\rho_{\text{core}},n,\chi_{\text{sea}}),
 $$
 
 with the local clock/rate conversion applied before comparing to observer frequencies. This keeps the atomic spectrum tied to geometry and causal-wake closure without claiming that the standard orbital postulate has already been derived.
+
+For hydrogen, the spectral channel should be the first channel-scan case inherited from [Atomic Structure](atomic-structure.md#hydrogen-channel-scan-proof-target). In this channel the scan fixes $X=\mathrm{spec}$, chooses $\ell\in I_{\mathrm{spec}}^{\mathrm{atom}}$, and extracts the electron-envelope branch and local Noether-Sea response through
+
+$$
+\mathcal O_{\mathrm H,\mathrm{spec}}^{(\ell)}
+=
+F_{\mathrm{spec}}
+\!\left[
+\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)},
+D_{p,\mathrm{spec}}^{(\ell)},
+D_{e,\mathrm{spec}}^{(\ell)}
+\right].
+$$
+
+The first spectral readout target is the pair of local envelope gaps and clock/rate entries
+
+$$
+\mathcal O_{\mathrm H,\mathrm{spec}}^{(\ell)}
+\longmapsto
+\left(
+E_{\text{env}}^{(\ell)}(a),
+E_{\text{env}}^{(\ell)}(b),
+\Gamma_N^{(\ell)},
+\chi_{\text{sea}}^{(\ell)}
+\right),
+$$
+
+with $E_{\text{env}}^{(\ell)}$ still depending on $\mathcal W_{\text{nuc}}$, $\rho_{\text{core}}$, $n$, and $\chi_{\text{sea}}$ in the same declared window. A schematic observer-frequency comparison can then be written as
+
+$$
+\nu_{a\to b}^{\mathrm{obs},(\ell)}
+=
+\Gamma_N^{(\ell)}
+\frac{
+E_{\text{env}}^{(\ell)}(a)
+-
+E_{\text{env}}^{(\ell)}(b)
+}{h},
+$$
+
+where $\Gamma_N^{(\ell)}$ stands for the local cadence-stretch readout until the clock/rate closure supplies the final conversion law. The spectral scan passes only if the same hydrogen ledger and Noether-Sea complement produce a stable line readout under admissible refinement:
+
+$$
+\Delta_{\mathrm{spec}}(\ell,\ell')
+=
+\frac{
+\left|
+\nu_{a\to b}^{\mathrm{obs},(\ell)}
+-
+\nu_{a\to b}^{\mathrm{obs},(\ell')}
+\right|
+}{
+\left|
+\nu_{a\to b}^{\mathrm{obs},(\ell)}
+\right|
++
+\varepsilon_{\mathrm{spec}}
+}
+\le
+\Delta_{\mathrm{spec}}^{\mathrm{tol}}.
+$$
+
+The failure modes are direct: the spectral target fails if $(n,\chi_{\text{sea}})$ collapse into one parameter, if $(n,\ell,m)$ are used as inputs rather than recovered labels, if the proton source envelope is replaced by three free quark sources, or if $R_\infty$ must be fitted independently of the same $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$ record that supplies the line gaps.
+
+## Hydrogen Rydberg Benchmark Target
+
+The first calibration-free hydrogen benchmark should use ordinary isolated hydrogen lines only after the envelope labels have been recovered. Let $\mathcal L_{\mathrm H}^{0}$ be a chosen weak-homogeneous line set with transitions $a\to b$, where $a$ and $b$ carry recovered principal labels $n_a>n_b$ and no external field or material branch is active. Define the observer-level line factor
+
+$$
+\Lambda_{ab}
+=
+\frac{1}{n_b^2}
+-
+\frac{1}{n_a^2}.
+$$
+
+For each line in this set, the spectral scan extracts a Rydberg readout from the same channel record:
+
+$$
+\widehat R_{\mathrm H}^{(\ell)}(a,b)
+=
+\frac{
+\nu_{a\to b}^{\mathrm{obs},(\ell)}
+}{
+c_{\gamma,0}^{(\ell)}\,\Lambda_{ab}
+},
+$$
+
+where $c_{\gamma,0}^{(\ell)}$ is the local photon-channel speed in the same weak homogeneous reference used for the line comparison. The benchmark is not that the symbol $R_\infty$ is inserted by hand. The target is that the hydrogen line set has one transition-independent readout,
+
+$$
+\max_{(a,b),(c,d)\in\mathcal L_{\mathrm H}^{0}}
+\frac{
+\left|
+\widehat R_{\mathrm H}^{(\ell)}(a,b)
+-
+\widehat R_{\mathrm H}^{(\ell)}(c,d)
+\right|
+}{
+\left|
+\widehat R_{\mathrm H}^{(\ell)}(a,b)
+\right|
++
+\varepsilon_R
+}
+\le
+\Delta_R^{\mathrm{tol}},
+$$
+
+after using the same $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$, $\Gamma_N^{(\ell)}$, and $\chi_{\text{sea}}^{(\ell)}$ for every line in the set. The infinite-nuclear-mass limit is then a recovery target,
+
+$$
+\lim_{M_p/m_e\to\infty}
+\widehat R_{\mathrm H}^{(\ell)}
+=
+R_\infty,
+$$
+
+with $m_e$ and $M_p$ read as externally exposed mass responses rather than primitive point-particle masses. The finite-hydrogen benchmark may retain the usual reduced-mass correction as an observer-level comparison, but it must not become an independent fitted constant.
+
+The line-gap residual is the companion check:
+
+$$
+\mathcal E_{ab}^{\mathrm{gap},(\ell)}
+=
+\frac{
+\left|
+h\nu_{a\to b}^{\mathrm{obs},(\ell)}
+-
+\Gamma_N^{(\ell)}
+\left(
+E_{\text{env}}^{(\ell)}(a)
+-
+E_{\text{env}}^{(\ell)}(b)
+\right)
+\right|
+}{
+\left|
+h\nu_{a\to b}^{\mathrm{obs},(\ell)}
+\right|
++
+\varepsilon_E
+}
+\le
+\Delta_E^{\mathrm{tol}}.
+$$
+
+This residual keeps the spectral benchmark tied to the envelope calculation. It fails if each line requires a separate $R_\infty$ adjustment, if reduced mass, recoil, or clock/rate effects are absorbed into the envelope energy without being named, if $c_{\gamma,0}^{(\ell)}$ is changed between lines, or if the local Noether-Sea variables are retuned after the line set is chosen. The event-level emission and absorption ledger that tests the same gaps belongs to [Atomic Transition Radiation](../reactions/atomic-transition-radiation.md#hydrogen-line-benchmark-record).
 
 For element comparisons, shell closure should enter through the realized envelope and its stability gap, not through the periodic-table family name. A local shell-closure diagnostic can be written as
 
@@ -52,6 +200,7 @@ E_{\mathrm{env}}
 \mathcal B_e+\delta\mathcal B_e;
 \mathcal W_{\text{nuc}},
 \rho_{\text{core}},
+n,
 \chi_{\text{sea}}
 \right)
 -
@@ -60,6 +209,7 @@ E_{\mathrm{env}}
 \mathcal B_e;
 \mathcal W_{\text{nuc}},
 \rho_{\text{core}},
+n,
 \chi_{\text{sea}}
 \right)
 \right].

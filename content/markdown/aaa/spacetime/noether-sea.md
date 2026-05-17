@@ -168,6 +168,40 @@ $$
 
 where $r_\sigma$ is the local rate density of accepted $\sigma$ transactions per core and $\Delta\nu_N^{(q,\sigma)}$ is the cadence component extracted from $\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}$. Deep space can therefore look smooth without making the underlying transactions continuous. Moving from deep space toward a solar-system environment should not be modeled as a scalar temperature increase alone; it is a bias in the local population toward higher cadence, stronger strain, stronger alignment, and larger gradients. Near a proton or other matter assembly, the neighboring Noether cores see a sharper boundary condition and retune more discretely around the assembly.
 
+The same smoothing record supplies the ambient-branch acceptance used at assembly boundaries. For a neutral-core quantity $f_k(t)$ in a coarse window $\Omega_\ell$, define
+
+$$
+\left\langle f\right\rangle_{\mathrm{sea},\ell}(\mathbf{x},t)
+=
+\frac{
+\sum_{k\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)}
+W_\ell(\mathbf{x}-\mathbf{X}_k(t))f_k(t)
+}{
+\sum_{k\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)}
+W_\ell(\mathbf{x}-\mathbf{X}_k(t))
+}.
+$$
+
+The branch-level equilibrium test is not that every Noether core has the same cadence. It is that, after all resolved assembly ledgers have been removed, an ambient branch belongs to the local neutral-core population when its cadence lies within the smoothed distribution and the remaining pro/anti orientation balance is small. In symbolic form,
+
+$$
+\zeta_{\mathrm{sea}}^{(\ell)}
+=
+\chi_{\mathrm{comp}}^{(\ell)}
+\exp
+\!\left[
+-
+\frac{1}{2}
+\left(
+\Delta_{\mathrm{cad}}^2
++
+\Delta_{\mathrm{bal}}^2
+\right)
+\right],
+$$
+
+where $\chi_{\mathrm{comp}}^{(\ell)}$ removes branches phase-locked to resolved assemblies, $\Delta_{\mathrm{cad}}$ compares the branch cadence with $\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and $\Delta_{\mathrm{bal}}$ measures the residual neutral-pairing and orientation imbalance of the same window. The assembly-facing definition is given in [Noether Core Geometry](noether-core-geometry.md#assembly-noether-sea-interface-diagnostic). The conceptual point is that a matter Noether core can sit inside the same coordinate window as ambient Noether-Sea cores without becoming part of the ambient medium record; ledger complement, not mere spatial proximity, makes the separation.
+
 A candidate equilibrium-transport equation is
 
 $$

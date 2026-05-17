@@ -7,7 +7,7 @@
 - Value: `18.69`
 - Cost: `6.2`
 - ROI: `3.01`
-- Status: `queued`
+- Status: `ambient-projector-scaffolded`
 
 ## Task Queue
 
@@ -16,7 +16,7 @@
 3. `confinement_energetics` — Derive confinement-scale behavior from topological or strain energetics. Status: `pending`. Depends on: `overlap_integrals`.
 4. `weak_sector_gauge_closure` — Unify weak axial-frame exposure, `V-A`, CKM/PMNS overlap, weak-corridor provenance, and effective gauge covariance into one closure packet. Status: `review`. Depends on: `overlap_integrals`.
 5. `nuclear_binding_closure` — Build the first nuclear benchmark ladder from hadronic geometry and residual strong channels: deuteron, saturation, alpha-like cluster, and beta stability. Status: `review`. Depends on: `confinement_energetics`.
-6. `hydrogen_fermion_sea_boundary` — Derive the four-fermion hydrogen boundary map that separates exact assembly-ledger membership from dynamic exclusion-envelope and Noether-Sea coarse-graining boundaries. Status: `kernel-scaffolded`. Depends on: `confinement_energetics`, `nuclear_binding_closure`.
+6. `hydrogen_fermion_sea_boundary` — Derive the four-fermion hydrogen boundary map that separates exact assembly-ledger membership from dynamic exclusion-envelope and Noether-Sea coarse-graining boundaries. Status: `ambient-projector-scaffolded`. Depends on: `confinement_energetics`, `nuclear_binding_closure`.
 
 ## Scope
 
@@ -69,7 +69,7 @@ The current kernel scaffold now derives the two wake terms from the Master-Equat
 
 $$
 w_{j,f}^{\mathrm{lock}}(t_0;t)
-\frac{\alpha_{j,X}(t_0)}
+\frac{\alpha_{j,X}(\mathbf{x},t;t_0)}
 {r_{\mathbf{x}j}^2(t;t_0)\left|J_{\mathbf{x}j}(t;t_0)\right|}
 $$
 
@@ -89,7 +89,165 @@ D_{\mathrm{penetration}}
 1.
 $$
 
-The next proof burden is not another boundary label. It is to derive $w_{j,f}^{\mathrm{lock}}$, $w_j^{\mathrm{sea}}$, and $\alpha_{j,X}$ from the same branch ledgers used for confinement, electron resonance envelopes, and clock coupling.
+The weight scaffold now turns those symbols into branch-ledger projectors. For a root-selected branch record
+
+$$
+\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+=
+\left(
+j,t_0,\hat{\mathbf{r}}_{\mathbf{x}j},r_{\mathbf{x}j},J_{\mathbf{x}j},q_j,
+\mathcal{L}_{j}^{\mathrm{wake}},\Lambda_j
+\right)_{(\mathbf{x},t;t_0)},
+$$
+
+the locked and ambient weights are constrained by
+
+$$
+w_{j,f}^{\mathrm{lock}}
+=
+\mathbf{1}_{j\in\mathcal{I}_f(t)}
+\zeta_f
+\!\left(
+\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\right),
+\qquad
+w_j^{\mathrm{sea}}
+=
+\mathbf{1}_{j\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)}
+\zeta_{\mathrm{sea}}^{(\ell)}
+\!\left(
+\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\right).
+$$
+
+The ambient projector is now constrained by neutral-core equilibrium rather than left as a free denominator weight. For resolved assembly ledgers $\mathfrak A_{\mathrm{res}}(\Omega_\ell,t)$ in the same window,
+
+$$
+\chi_{\mathrm{comp}}^{(\ell)}
+\!\left(
+\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\right)
+=
+\mathbf{1}_{j\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)}
+\prod_{a'\in\mathfrak A_{\mathrm{res}}(\Omega_\ell,t)}
+\left[
+1-
+\zeta_{a'}
+\!\left(
+\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\right)
+\right],
+$$
+
+and the first equilibrium acceptance is
+
+$$
+\zeta_{\mathrm{sea}}^{(\ell)}
+\!\left(
+\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\right)
+=
+\chi_{\mathrm{comp}}^{(\ell)}
+\!\left(
+\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\right)
+\exp
+\!\left[
+-
+\frac{1}{2}
+\left(
+\Delta_{\mathrm{cad}}^2
++
+\Delta_{\mathrm{bal}}^2
+\right)
+\right].
+$$
+
+Here $\Delta_{\mathrm{cad}}$ compares the branch cadence with the local smoothed neutral-core cadence $\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and $\Delta_{\mathrm{bal}}$ measures the residual neutral-pairing and orientation imbalance after resolved assembly ledgers have been removed. Exact assembly-locked branches are rejected by $\chi_{\mathrm{comp}}^{(\ell)}$; neutral Noether-Sea branches in the same coarse window are retained when they remain outside all resolved matter/corridor ledgers and agree with the ambient equilibrium record.
+
+The channel intensity is the exposure norm
+
+$$
+\alpha_{j,X}(\mathbf{x},t;t_0)
+=
+\kappa
+\left\|
+Q_X
+\!\left[
+\Pi_X
+\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\right]
+\right\|_X.
+$$
+
+The projection scaffold now fixes the first retained-entry maps:
+
+$$
+\Pi_{\mathrm{clock}}
+\mathcal{B}
+=
+\left(
+\delta\theta_{\mathrm{clk}},\delta\omega_{\mathrm{clk}},
+\delta\chi_{\mathrm{sea}}^{(\ell)},J,\Lambda,
+\mathcal{L}^{\mathrm{wake}}\big|_{\mathrm{phase}}
+\right),
+$$
+
+$$
+\Pi_{\mathrm{corridor}}
+\mathcal{B}
+=
+\left(
+\hat{\mathbf{r}},q,
+\mathcal{L}^{\mathrm{wake}}\big|_{\mathrm{oriented}},
+\mathcal{L}^{\mathrm{corr}},
+\mathcal{P}^{\mathrm{prov}},
+\Theta^{\mathrm{strain}}
+\right),
+$$
+
+$$
+\Pi_{\mathrm{packing}}
+\mathcal{B}
+=
+\left(
+\left\|\mathcal{L}^{\mathrm{wake}}\right\|_{\mathrm{excl}},
+\mathcal{S}_{\mathrm{excl}}^{ab},
+R_{\parallel},R_{\perp},\lambda,\xi
+\right),
+$$
+
+and, for a declared test path tangent $\hat{\mathbf{u}}$,
+
+$$
+\Pi_{\mathrm{penetration}}
+\mathcal{B}
+=
+\left(
+\mathbf{a}_{\mathbf{x}\leftarrow j},
+\mathbf{a}_{\mathbf{x}\leftarrow j}\cdot\hat{\mathbf{u}},
+\Delta\phi_{\mathrm{disrupt}},
+r,J,\Lambda
+\right).
+$$
+
+The mismatch metric behind the regularized locked projector is now constrained to compare discrete label compatibility, phase distance, active causal-root ledger distance, provenance distance, and conserved-increment residual:
+
+$$
+d_{\Lambda_f}^2
+=
+d_{\mathrm{disc}}^2
++
+\frac{\operatorname{dist}_{S^1}^2}{\epsilon_\phi^2}
++
+\frac{d_{\mathrm{root}}^2}{\epsilon_{\mathrm{root}}^2}
++
+\frac{d_{\mathrm{prov}}^2}{\epsilon_{\mathrm{prov}}^2}
++
+\frac{\left\|\Delta\mathcal{N}\right\|_{\mathrm{cons}}^2}{\epsilon_{\mathrm{cons}}^2}.
+$$
+
+The next proof burden is to compute the four projection norms from completed confinement, electron resonance, clock-coupling, and Noether-Sea cadence ledgers rather than assigning channel thresholds by fit. The neutral-equilibrium projector also has to be tested against refinement of $\ell$: changing resolution may change the retained window population, but it must not let an assembly-locked branch re-enter the ambient denominator by relabeling.
 
 Failure modes:
 

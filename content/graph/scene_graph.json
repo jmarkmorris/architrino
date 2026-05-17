@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 494,
+      "nodes": 495,
       "edges": 1239,
       "scenes": 320,
       "markdownIndexes": 0,
-      "markdownDocs": 174,
+      "markdownDocs": 175,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -3080,6 +3080,12 @@
       "id": "content/markdown/aaa/validation/simulations/run-protocols.md",
       "name": "Simulation Run Protocols",
       "path": "content/markdown/aaa/validation/simulations/run-protocols.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/validation/simulations/static-response-vector-toy-model.md",
+      "name": "Static Response Vector Toy Model",
+      "path": "content/markdown/aaa/validation/simulations/static-response-vector-toy-model.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -7513,6 +7519,15 @@
       "name": "Simulation Run Protocols",
       "path": "content/markdown/aaa/validation/simulations/run-protocols.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/run-protocols.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/static-response-vector-toy-model.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/validation/simulations/static-response-vector-toy-model.md",
+      "name": "Static Response Vector Toy Model",
+      "path": "content/markdown/aaa/validation/simulations/static-response-vector-toy-model.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/static-response-vector-toy-model.md",
       "implicit": false
     },
     {

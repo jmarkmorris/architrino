@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1169
+      "sections": 1174
     }
   },
   "tocRoot": {
@@ -2319,6 +2319,14 @@
                   },
                   {
                     "kind": "markdown-section",
+                    "title": "Collapse-Response Ladder",
+                    "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                    "markdownSection": "Collapse-Response Ladder",
+                    "sectionKey": "collapse response ladder",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Canonical Horizon Condition",
                     "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
                     "markdownSection": "Canonical Horizon Condition",
@@ -3554,6 +3562,22 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Hydrogen Boundary Theorem Target",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-structure.md",
+                "markdownSection": "Hydrogen Boundary Theorem Target",
+                "sectionKey": "hydrogen boundary theorem target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Hydrogen Channel-Scan Proof Target",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-structure.md",
+                "markdownSection": "Hydrogen Channel-Scan Proof Target",
+                "sectionKey": "hydrogen channel scan proof target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Element-Dependent Sea Response",
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-structure.md",
                 "markdownSection": "Element-Dependent Sea Response",
@@ -3608,6 +3632,14 @@
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
                 "markdownSection": "Color-Singlet Closure",
                 "sectionKey": "color singlet closure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Proton Source-Envelope Closure Target",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+                "markdownSection": "Proton Source-Envelope Closure Target",
+                "sectionKey": "proton source envelope closure target",
                 "headingLevel": 2
               },
               {
@@ -3811,6 +3843,14 @@
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
                 "markdownSection": "Atomic Orbitals as Lattice Resonances",
                 "sectionKey": "atomic orbitals as lattice resonances",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Hydrogen Rydberg Benchmark Target",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
+                "markdownSection": "Hydrogen Rydberg Benchmark Target",
+                "sectionKey": "hydrogen rydberg benchmark target",
                 "headingLevel": 2
               },
               {

@@ -284,6 +284,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Black Holes](../../../scenes/spacetime/black_holes.json)
       - [Scope and Purpose](../../../markdown/aaa/spacetime/black-holes.md?section=Scope+and+Purpose)
       - [What the Framework Treats as a Black Hole](../../../markdown/aaa/spacetime/black-holes.md?section=What+the+Framework+Treats+as+a+Black+Hole)
+      - [Collapse-Response Ladder](../../../markdown/aaa/spacetime/black-holes.md?section=Collapse-Response+Ladder)
       - [Canonical Horizon Condition](../../../markdown/aaa/spacetime/black-holes.md?section=Canonical+Horizon+Condition)
       - [Singularity Replacement and the Maximum-Curvature Core](../../../markdown/aaa/spacetime/black-holes.md?section=Singularity+Replacement+and+the+Maximum-Curvature+Core)
       - [Horizon Interface](../../../markdown/aaa/spacetime/black-holes.md?section=Horizon+Interface)
@@ -434,6 +435,8 @@ Chapter links open scenes. Section links open the corresponding markdown section
   - [Atomic Structure](../../../scenes/nuclear/atomic_structure.json)
     - [Multi-Body Assembly Structure](../../../markdown/aaa/nuclear-atomic/atomic-structure.md?section=Multi-Body+Assembly+Structure)
     - [Hydrogen as a Four-Fermion Boundary Test](../../../markdown/aaa/nuclear-atomic/atomic-structure.md?section=Hydrogen+as+a+Four-Fermion+Boundary+Test)
+    - [Hydrogen Boundary Theorem Target](../../../markdown/aaa/nuclear-atomic/atomic-structure.md?section=Hydrogen+Boundary+Theorem+Target)
+    - [Hydrogen Channel-Scan Proof Target](../../../markdown/aaa/nuclear-atomic/atomic-structure.md?section=Hydrogen+Channel-Scan+Proof+Target)
     - [Element-Dependent Sea Response](../../../markdown/aaa/nuclear-atomic/atomic-structure.md?section=Element-Dependent+Sea+Response)
     - [Angular-Momentum Handoff](../../../markdown/aaa/nuclear-atomic/atomic-structure.md?section=Angular-Momentum+Handoff)
   - [Nucleon Structure](../../../scenes/nuclear/nucleon_structure.json)
@@ -441,6 +444,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Core Claim](../../../markdown/aaa/nuclear-atomic/nucleon-structure.md?section=Core+Claim)
     - [Constituents and Counting](../../../markdown/aaa/nuclear-atomic/nucleon-structure.md?section=Constituents+and+Counting)
     - [Color-Singlet Closure](../../../markdown/aaa/nuclear-atomic/nucleon-structure.md?section=Color-Singlet+Closure)
+    - [Proton Source-Envelope Closure Target](../../../markdown/aaa/nuclear-atomic/nucleon-structure.md?section=Proton+Source-Envelope+Closure+Target)
     - [Proton and Neutron as Ground-State Tri-Cores](../../../markdown/aaa/nuclear-atomic/nucleon-structure.md?section=Proton+and+Neutron+as+Ground-State+Tri-Cores)
     - [CP-Odd Neutron Dipole Scaffold](../../../markdown/aaa/nuclear-atomic/nucleon-structure.md?section=CP-Odd+Neutron+Dipole+Scaffold)
     - [Effective Internal Geometry](../../../markdown/aaa/nuclear-atomic/nucleon-structure.md?section=Effective+Internal+Geometry)
@@ -466,6 +470,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
   - [Atom](../../../scenes/nuclear/atom.json) _(diagram)_
   - [Atomic Spectra](../../../scenes/nuclear/atomic_spectra.json)
     - [Atomic Orbitals as Lattice Resonances](../../../markdown/aaa/nuclear-atomic/atomic-spectra.md?section=Atomic+Orbitals+as+Lattice+Resonances)
+    - [Hydrogen Rydberg Benchmark Target](../../../markdown/aaa/nuclear-atomic/atomic-spectra.md?section=Hydrogen+Rydberg+Benchmark+Target)
     - [Spin-Sensitive Spectral Targets](../../../markdown/aaa/nuclear-atomic/atomic-spectra.md?section=Spin-Sensitive+Spectral+Targets)
   - [Periodic Table](../../../scenes/chemistry/periodic_table_scene.json) _(diagram)_
   - [Hyde Periodic Table](../../../scenes/chemistry/hyde_periodic_table_scene.json) _(diagram)_
