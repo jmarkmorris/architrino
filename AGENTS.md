@@ -36,12 +36,30 @@ This document distinguishes three audience scopes:
 - If multiple nearby terms appear to overlap, resolve which one is the canonical project term before proceeding, and then use that term consistently.
 - If no project-specific term has been established yet, pause and ask the operator/developer before introducing new terminology.
 - Prefer building-block explanations that make relationships between concepts, components, and steps explicit. Use diagrams, mappings, comparisons, or other visual structure when helpful.
+- Maintain operator/developer workflow feedback in [README-op.md](README-op.md), using one-line checklist items that start with `- [ ]` for open feedback or `- [x]` for op improved feedback.
+- When Cody notices a recurring operator-side friction point, add or reopen a concrete task in [README-op.md](README-op.md) instead of burying the feedback in a transient chat summary.
+- Treat checked operator feedback as the operator's current claim of improvement; if the same friction recurs, Cody may uncheck it and add a concise dated note.
+- Keep operator feedback direct, actionable, and tied to faster technical closure across efficiency, clarity, multi-agent use, and proof/corpus closure.
 
 ### Workspace Workflow
 
 - For software architecture, cleanup discipline, canonical-path decisions, and anti-cruft maintenance guidance, follow [content/markdown/aaa/archie/software-architecture-and-maintenance.md](content/markdown/aaa/archie/software-architecture-and-maintenance.md).
 
 - If you are working on a task in a priority list and you complete that task, remove it from the priority list and renumber any items that follow.
+
+### Current Core Theory Focus
+
+- Default high-value work is now core geometrical theory closure: master-equation closure, potential/action proof programs, certified branch geometry, executable simulations that discipline the equations, $A_0$ continuation, mass-map derivation, tri-binary causal closure, Lorentz/effective-metric recovery, photon closure, and Noether-Sea constitutive response.
+- Bias substantial theory sessions toward one hard mathematical artifact: a definition, equation, lemma, invariant, proof route, branch certificate, simulation target with variables, or falsifiable closure condition.
+- Treat broad prose coverage, cross-linking, app/UI work, presentation work, and new infrastructure as secondary unless the operator/developer explicitly selects them or they directly unblock the current core geometry target.
+- When multiple possible improvements compete, choose the one that most reduces mathematical uncertainty in the current proof stack rather than the one that merely improves organization or presentation.
+
+### Theory Advancement Capture
+
+- Do not leave substantive theory advancements only in chat. After a discussion produces a new derivation, equation, invariant, mechanism, simulation target, proof route, terminology decision, or corrected claim level, make a capture decision before closing the thread.
+- Prefer direct promotion into `content/markdown/aaa` when the advancement is solid enough for reader-facing corpus prose and can be stated with its assumptions and remaining obligations.
+- If the advancement is valuable but not yet corpus-solid, stage it in `reference/priorities` as priority material with its claim level, assumptions, proof burden, and intended corpus destination.
+- If no durable capture is made, state why in the operator/developer handoff so the gap is visible rather than silently losing the advancement.
 
 ### Authoring and Editorial Policy
 

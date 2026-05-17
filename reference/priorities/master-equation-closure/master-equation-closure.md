@@ -20,7 +20,7 @@
 
 Keep dynamics, geometry, and mapping centered on [master-equation.md](../../../content/markdown/aaa/dynamics/master-equation.md). This workstream now also carries the Lorentz / metric / clock / ruler bridge to GR and the deep closure burden for quantum and core dynamics.
 
-This file remains the control surface for the workstream. No sibling detailed priority file is needed yet; if the program grows, the natural split is one circular/spiral closure packet and one Lorentz/GR bridge packet.
+This file remains the control surface for the workstream. No sibling detailed priority file is needed yet; if the program grows, the natural split is one action-kernel / Noether-boundary packet, one circular/spiral closure packet, and one Lorentz/GR bridge packet.
 
 ## Promotion Map
 
@@ -31,8 +31,22 @@ This file remains the control surface for the workstream. No sibling detailed pr
 | `spiral_branch_chart_test` | This file | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) and [dyadic-lock](../dyadic-lock/dyadic-lock.md) | One admissible variable-pitch candidate reports partner and self roots, positive Jacobian floors, finite memory depth, radial-turn status, and weighted tangential-drive verdict. |
 | `lorentz_gr_bridge` | This file | [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) | Moving tri-binary contraction, clock retuning, and coarse-grained medium response recover weak-field GR targets without ad hoc tuning. |
 
+## Completed Kernel Handoff
+
+`characteristic_tail_noether_closure` is closed at the local action-kernel level. [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) now fixes the endpoint-clear normalized delayed-interior characteristic-tail kernel, proves the receiver-gradient identity
+$$
+D_{ij}K_{\mathrm{eff}}^{(\eta)}
+=
+-
+\frac{\delta_\eta(g)}{r^2},
+$$
+and defines the corresponding energy, momentum, and angular-momentum wake-history increments across a time cut. [effective-lagrangian](../../../content/markdown/aaa/dynamics/effective-lagrangian.md) and [tri-binary-dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md) now consume that kernel as the available action-level repair rather than as a missing Noether-boundary placeholder.
+
+This completion does not certify a branch or terminal label. Downstream consumers must still pull the increments back to their retained branch charts and prove closure of $K_{\mu}+E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, and $\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$ with the same root-ledger, memory-depth, and Jacobian-floor conditions used by the Master EOM.
+
 ## Live Targets
 
+- Branch-chart consumption of the normalized delayed-interior characteristic-tail kernel and its Noether wake-history boundary terms.
 - Full 3D translating tri-binary NFDE / DDE control for emergent $\gamma$-scaling.
 - Transfer-operator and invariant-measure control for Born-rule emergence.
 - Exact 6-body core stability and shielding extraction for the first-principles mass program.
@@ -307,7 +321,7 @@ Interface. The dyadic-lock and angular-momentum lanes may consume the promotion 
 
 ## Longer-Tail Dynamics Program
 
-1. Exact Noether derivation of momentum and angular momentum from the delayed action.
+1. Branch-chart evaluation of the normalized Noether wake increments for momentum and angular momentum.
 2. $\eta \to 0$ existence and uniqueness theory for the exact shell model.
 3. Controlled kinetic or coarse-grained equation from the master law.
 4. Lorentz-suppression emergence for moving assemblies in the full dynamics, ideally independent of axial-layer details.

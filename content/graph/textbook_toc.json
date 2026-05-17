@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1163
+      "sections": 1169
     }
   },
   "tocRoot": {
@@ -1123,6 +1123,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Cadence-Scale Retuning Closure",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Cadence-Scale Retuning Closure",
+                "sectionKey": "cadence scale retuning closure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Transverse Causal Budget Lemma",
                 "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
                 "markdownSection": "Transverse Causal Budget Lemma",
@@ -1482,6 +1490,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Absolute Record and Observer Readout",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "Absolute Record and Observer Readout",
+                "sectionKey": "absolute record and observer readout",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Composition",
                 "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
                 "markdownSection": "Composition",
@@ -1502,6 +1518,14 @@
                 "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
                 "markdownSection": "Medium Properties",
                 "sectionKey": "medium properties",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Equilibrium Transport Hypothesis",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "Equilibrium Transport Hypothesis",
+                "sectionKey": "equilibrium transport hypothesis",
                 "headingLevel": 2
               },
               {
@@ -1588,6 +1612,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Assembly-Noether-Sea Interface Diagnostic",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownSection": "Assembly-Noether-Sea Interface Diagnostic",
+                "sectionKey": "assembly noether sea interface diagnostic",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Oblate Spheroidal Form",
                 "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
                 "markdownSection": "Oblate Spheroidal Form",
@@ -1608,6 +1640,14 @@
                 "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
                 "markdownSection": "Lorentz Projection Role",
                 "sectionKey": "lorentz projection role",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Retuning Projection to Envelope Variables",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownSection": "Retuning Projection to Envelope Variables",
+                "sectionKey": "retuning projection to envelope variables",
                 "headingLevel": 2
               },
               {
@@ -1678,10 +1718,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Status and Next Checks",
+                "title": "Claim Scope",
                 "markdownPath": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
-                "markdownSection": "Status and Next Checks",
-                "sectionKey": "status and next checks",
+                "markdownSection": "Claim Scope",
+                "sectionKey": "claim scope",
                 "headingLevel": 2
               }
             ]
@@ -2192,6 +2232,14 @@
                     "markdownPath": "content/markdown/aaa/spacetime/gravitational-waves.md",
                     "markdownSection": "Linear Wave Equation",
                     "sectionKey": "linear wave equation",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Medium-Transport Perturbation",
+                    "markdownPath": "content/markdown/aaa/spacetime/gravitational-waves.md",
+                    "markdownSection": "Medium-Transport Perturbation",
+                    "sectionKey": "medium transport perturbation",
                     "headingLevel": 2
                   },
                   {
@@ -2937,10 +2985,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Summary and Next Steps",
+                    "title": "Summary and Interfaces",
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
-                    "markdownSection": "Summary and Next Steps",
-                    "sectionKey": "summary and next steps",
+                    "markdownSection": "Summary and Interfaces",
+                    "sectionKey": "summary and interfaces",
                     "headingLevel": 2
                   }
                 ]
@@ -3494,6 +3542,22 @@
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-structure.md",
                 "markdownSection": "Multi-Body Assembly Structure",
                 "sectionKey": "multi body assembly structure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Hydrogen as a Four-Fermion Boundary Test",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-structure.md",
+                "markdownSection": "Hydrogen as a Four-Fermion Boundary Test",
+                "sectionKey": "hydrogen as a four fermion boundary test",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Element-Dependent Sea Response",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-structure.md",
+                "markdownSection": "Element-Dependent Sea Response",
+                "sectionKey": "element dependent sea response",
                 "headingLevel": 2
               },
               {
@@ -4252,26 +4316,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Decider: Minimal Bias-Setting Complex",
+                "title": "Switch and Decider as Future Capability",
                 "markdownPath": "content/markdown/aaa/quantum/reality-quantum-causality.md",
-                "markdownSection": "Decider: Minimal Bias-Setting Complex",
-                "sectionKey": "decider minimal bias setting complex",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Switch: Minimum Viable Atomic Hardware (He‑Rb‑He)",
-                "markdownPath": "content/markdown/aaa/quantum/reality-quantum-causality.md",
-                "markdownSection": "Switch: Minimum Viable Atomic Hardware (He‑Rb‑He)",
-                "sectionKey": "switch minimum viable atomic hardware he rb he",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Closure Targets",
-                "markdownPath": "content/markdown/aaa/quantum/reality-quantum-causality.md",
-                "markdownSection": "Closure Targets",
-                "sectionKey": "closure targets",
+                "markdownSection": "Switch and Decider as Future Capability",
+                "sectionKey": "switch and decider as future capability",
                 "headingLevel": 2
               }
             ]
@@ -5407,10 +5455,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Weak-Reaction Provenance Sketch",
+                "title": "Future Capability Illustration: Weak-Reaction Provenance",
                 "markdownPath": "content/markdown/aaa/theory-bridges/weak-mixing-ckm.md",
-                "markdownSection": "Weak-Reaction Provenance Sketch",
-                "sectionKey": "weak reaction provenance sketch",
+                "markdownSection": "Future Capability Illustration: Weak-Reaction Provenance",
+                "sectionKey": "future capability illustration weak reaction provenance",
                 "headingLevel": 2
               },
               {

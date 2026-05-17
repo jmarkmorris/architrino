@@ -305,11 +305,11 @@ Finite-range gravity and massive-gravity programs are useful here only as compar
 
 ### Mechanism
 
-In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, cosmological redshift is not caused by the stretching of space (the void does not stretch) but by the comparison of clocks at emission and reception:
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, cosmological redshift is not caused by the stretching of space (the void does not stretch). It is read through endpoint clock-cadence comparison, source-branch state, launch geometry, and path-history propagation through the Noether Sea:
 
 - A photon-mode assembly emitted at effective cosmic time $\tau_{c,e}$, corresponding to substrate time $t_e$ in the exact record, carries a frequency set by the tri-binary oscillation rates of the source assembly at that epoch.
 - At the reception epoch $\tau_{c,o}$, corresponding to substrate time $t_o$, the observer's local clock rate is set by the current Noether-Sea state.
-- If the Noether-Sea state has evolved between $t_e$ and $t_o$—specifically, if outer-binary radii have increased and internal frequencies have decreased—then the received frequency is lower than the emitted frequency. This is the operational content of $1 + z = \nu_e/\nu_o$.
+- If the Noether-Sea state has evolved between $t_e$ and $t_o$—specifically, if outer-binary radii have increased and internal frequencies have decreased—then the received frequency can be lower than the emitted frequency after endpoint cadence, launch, source-branch, and path-history factors are separated. This is the operational content of $1 + z = \nu_e/\nu_o$.
 
 The redshift-distance relation $z(d_L)$ encodes the entire history of Noether-Sea state evolution along the photon's path. In the effective Friedmann description, this is captured by:
 
@@ -319,6 +319,173 @@ $$
 
 where $c_0$ is the asymptotic observer-channel speed used in the effective comparison layer. This serves as the effective expansion-history map used by observers.
 
+The native handoff to [Expansion Mechanism](./expansion-mechanism.md) is more constrained than a raw $z(d_L)$ fit. The dark-energy sector supplies a candidate Noether-Sea state history that must reproduce the corrected propagation residual $Z_{\mathrm{prop},X}$ after endpoint cadence, source-branch state, and launch geometry have been removed. Its effective $H(z)$ curve is therefore a comparison summary of the same medium state, not an independent expansion of the Euclidean void.
+
+### Redshift-Transfer Handoff Target
+
+The effective dark-energy sector can enter the redshift-transfer law only through the Noether-Sea state variables that determine endpoint cadence and propagation. It should not be added as a separate photon-energy loss channel. A scoped handoff target is
+
+$$
+\partial_t\boldsymbol{\theta}_\gamma
+=
+\mathbf{J}_{\mathrm{DE}}
+\begin{pmatrix}
+\partial_t\ln\rho_{\mathrm{DE,eff}}\\
+\partial_t w_{\mathrm{eff}}\\
+\mathcal{S}_{\mathrm{sea}}/\rho_{\mathrm{DE,eff}}\\
+\mathcal{S}_{\mathrm{BH}}/\rho_{\mathrm{DE,eff}}
+\end{pmatrix}
++
+\partial_t\boldsymbol{\theta}_{\gamma,\mathrm{local}},
+$$
+
+where
+
+$$
+\boldsymbol{\theta}_\gamma
+\equiv
+\left(
+\ln\chi_\gamma,\,
+\ln n,\,
+\ln R_{\text{core}}
+\right).
+$$
+
+The matrix $\mathbf{J}_{\mathrm{DE}}$ is a constitutive derivative of the Noether-Sea response law, not a new dark-energy fluid. The residual term $\partial_t\boldsymbol{\theta}_{\gamma,\mathrm{local}}$ records local environment, source-neighborhood, and calibration effects that must be separated before attributing a redshift-transfer slope to the dark-energy sector.
+
+Inserted into the propagation functional, the dark-energy contribution has the schematic form
+
+$$
+\alpha_{\mathrm{prop},X}^{\mathrm{DE}}
+=
+\frac{1}{c_\gamma}
+\begin{pmatrix}
+a_\chi^X & a_n^X & a_R^X
+\end{pmatrix}
+\mathbf{J}_{\mathrm{DE}}
+\begin{pmatrix}
+\partial_t\ln\rho_{\mathrm{DE,eff}}\\
+\partial_t w_{\mathrm{eff}}\\
+\mathcal{S}_{\mathrm{sea}}/\rho_{\mathrm{DE,eff}}\\
+\mathcal{S}_{\mathrm{BH}}/\rho_{\mathrm{DE,eff}}
+\end{pmatrix}.
+$$
+
+This is a derivation target. It says that $\rho_{\mathrm{DE,eff}}$, $w_{\mathrm{eff}}$, and recycling source terms become observable in redshift only by changing the Noether-Sea delay, density, or core-scale state sampled by the photon path. If the same $\mathbf{J}_{\mathrm{DE}}$ cannot also support CMB, BAO, supernova, and growth projections, then the dark-energy handoff has not closed.
+
+### First-Order Coefficient Packet
+
+For coefficient work, collect the dark-energy-side rate variables into
+
+$$
+\mathbf{q}_{\mathrm{DE}}
+\equiv
+\begin{pmatrix}
+q_\rho\\
+q_w\\
+q_{\mathrm{sea}}\\
+q_{\mathrm{BH}}
+\end{pmatrix}
+=
+\begin{pmatrix}
+\partial_t\ln\rho_{\mathrm{DE,eff}}\\
+\partial_t w_{\mathrm{eff}}\\
+\mathcal{S}_{\mathrm{sea}}/\rho_{\mathrm{DE,eff}}\\
+\mathcal{S}_{\mathrm{BH}}/\rho_{\mathrm{DE,eff}}
+\end{pmatrix}.
+$$
+
+Each entry has dimensions of inverse time. The matrix $\mathbf{J}_{\mathrm{DE}}$ is therefore dimensionless in the minimal first-order closure, because it maps rate variables in $\mathbf{q}_{\mathrm{DE}}$ to the rate vector $\partial_t\boldsymbol{\theta}_\gamma$. For a clean line family $X$, define the transport-facing coefficient row
+
+$$
+\boldsymbol{\lambda}_X^T
+\equiv
+\begin{pmatrix}
+a_\chi^X & a_n^X & a_R^X
+\end{pmatrix}
+\mathbf{J}_{\mathrm{DE}}
+=
+\begin{pmatrix}
+\lambda_\rho^X & \lambda_w^X & \lambda_{\mathrm{sea}}^X & \lambda_{\mathrm{BH}}^X
+\end{pmatrix}.
+$$
+
+Then the dark-energy contribution to the corrected propagation slope is
+
+$$
+\alpha_{\mathrm{prop},X}^{\mathrm{DE}}
+=
+\frac{1}{c_\gamma}
+\boldsymbol{\lambda}_X^T\mathbf{q}_{\mathrm{DE}}.
+$$
+
+The effective continuity equation already constrains $q_\rho$. In the homogeneous comparison branch,
+
+$$
+q_\rho
+=
+-3H_{\mathrm{eff}}(1+w_{\mathrm{eff}})
++q_{\mathrm{sea}}
++q_{\mathrm{BH}},
+$$
+
+where $H_{\mathrm{eff}}$ is the redshift-transfer slope inferred from the same propagation record, not expansion of the Euclidean void. Combining this identity with $H_{\mathrm{eff},X}^{\mathrm{DE}}=c_0\alpha_{\mathrm{prop},X}^{\mathrm{DE}}$ gives the first closed coefficient equation:
+
+$$
+H_{\mathrm{eff},X}^{\mathrm{DE}}
+=
+\frac{
+\frac{c_0}{c_\gamma}
+\left[
+\lambda_w^X\,\partial_t w_{\mathrm{eff}}
++(\lambda_\rho^X+\lambda_{\mathrm{sea}}^X)\frac{\mathcal{S}_{\mathrm{sea}}}{\rho_{\mathrm{DE,eff}}}
++(\lambda_\rho^X+\lambda_{\mathrm{BH}}^X)\frac{\mathcal{S}_{\mathrm{BH}}}{\rho_{\mathrm{DE,eff}}}
+\right]
+}{
+1+3\frac{c_0}{c_\gamma}\lambda_\rho^X(1+w_{\mathrm{eff}})
+}.
+$$
+
+This equation is not yet a measured value of $H_0$. It is the first coefficient closure target for interpreting a Hubble-like slope inside $\mathbb{A}\mathbb{A}\mathbb{A}$: the slope comes from a Noether-Sea relaxation rate, a line-family transport row, and source terms, with no stretching of the Euclidean void.
+
+The coefficient packet has four immediate checks:
+
+- Static homogeneous limit: if $\mathbf{q}_{\mathrm{DE}}=0$, then $\alpha_{\mathrm{prop},X}^{\mathrm{DE}}=0$.
+- Clean-line coherence: for clean photon-channel lines $X$ and $Y$, $\boldsymbol{\lambda}_X^T\mathbf{q}_{\mathrm{DE}}-\boldsymbol{\lambda}_Y^T\mathbf{q}_{\mathrm{DE}}$ must stay below chromaticity tolerance.
+- Time-dilation coherence: the same coefficient row must drive frequency shift and packet-cadence stretch in the clean propagation branch.
+- Shared-state coherence: the $\mathbf{J}_{\mathrm{DE}}$ used here must also project into the CMB, BAO, supernova, lensing, and growth records without replacing the Noether-Sea state family by family.
+
+### Equilibrium Current and Effective Expansion
+
+The equilibrium version of the dark-energy hypothesis refines what the source terms mean. A Noether core with cadence $\nu_N$ carries the local energy scale
+
+$$
+E_N=h\nu_N.
+$$
+
+Individual Noether cores may change branch through $h$-scale ledger steps. Each accepted step forces a branchwise retuning of cadence and scale variables, not a simple rise in thermodynamic temperature, but a large population can still coarse-grain into a smooth medium response. For the dark-energy module, the relevant object is not a single transition. It is a distribution $f_N(\nu,\mathbf{x},t)$ and its cadence-space current:
+
+$$
+\partial_t f_N
++\nabla\cdot(\mathbf{u}_{\mathrm{sea}}f_N)
++\partial_\nu J_\nu
+=
+S_{\mathrm{BH}}
++S_{\mathrm{GW}}
+-R_{\mathrm{eq}}[f_N].
+$$
+
+This packet gives a more microscopic reading of $\mathcal{S}_{\mathrm{sea}}$ and $\mathcal{S}_{\mathrm{BH}}$. The term $R_{\mathrm{eq}}[f_N]$ is local neighbor equilibration in the Noether Sea, $S_{\mathrm{BH}}$ is loading from strong-field recycling regions, and $S_{\mathrm{GW}}$ is the bounded perturbation from gravitational-wave disturbances. The projection into the redshift handoff should be a constitutive map
+
+$$
+\partial_t\boldsymbol{\theta}_\gamma
+=
+\Pi_\gamma\!\left[f_N,J_\nu,S_{\mathrm{BH}},S_{\mathrm{GW}},R_{\mathrm{eq}}\right]
++\partial_t\boldsymbol{\theta}_{\gamma,\mathrm{local}}.
+$$
+
+This strengthens the expansion claim and limits it at the same time. If $J_\nu$ vanishes in the homogeneous coarse-grained limit, or if the source and equilibration terms cancel with no signed large-scale current, the equilibrium hypothesis does not generate a dark-energy-like redshift-transfer slope. If a signed current remains, it may contribute to $H_{\mathrm{eff},X}^{\mathrm{DE}}$ only through the same $\boldsymbol{\theta}_\gamma$ variables already used for redshift, CMB, BAO, lensing, and growth. It is therefore a candidate mechanism for the effective expansion history, not a separate expansion of the Euclidean void and not a standalone photon-energy loss channel.
+
 ### Tired-Light Exclusion
 
 This mechanism is distinct from classical tired-light proposals. In tired light, photons lose energy through scattering or absorption, producing:
@@ -326,7 +493,7 @@ This mechanism is distinct from classical tired-light proposals. In tired light,
 - Time-dilation violations (SN Ia light curves confirm $\Delta t \propto (1+z)$),
 - Modified surface-brightness relations (Tolman test).
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism does not involve photon energy loss in transit. The photon assembly propagates through the Noether Sea without degradation (in the weak-field, low-density limit); the frequency difference arises from the evolving calibration of source and receiver clocks. This reproduces the standard $(1+z)$ time-dilation signature and is consistent with Tolman surface-brightness tests.
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism does not involve untracked photon energy loss in transit. The photon assembly propagates through the Noether Sea without degradation in the weak-field, low-density limit; any path-history factor changes the phase-cadence relation later sampled by the receiver rather than acting as generic scattering loss. This reproduces the standard $(1+z)$ time-dilation signature and is consistent with Tolman surface-brightness tests.
 
 ## SMBH Recycling and Energy Flow
 
@@ -439,7 +606,7 @@ The acceleration onset redshift $z \sim 0.7$ is treated as the characteristic cr
 
 In the modular cosmology architecture, this chapter provides:
 
-- **Output to [expansion-mechanism.md](./expansion-mechanism.md):** $H(z)$ derived from the effective Friedmann equation with $\rho_{\mathrm{DE,eff}}(z)$ and $w_{\mathrm{eff}}(z)$ from the medium-relaxation model.
+- **Output to [expansion-mechanism.md](./expansion-mechanism.md):** medium-relaxation variables that feed the corrected redshift-transfer curve, plus the comparison $H(z)$ derived from the effective Friedmann equation with $\rho_{\mathrm{DE,eff}}(z)$ and $w_{\mathrm{eff}}(z)$.
 - **Output to [CMB.md](./CMB.md):** late-time ISW contribution and distance to last scattering.
 - **Output to [structure-formation.md](./structure-formation.md):** potential evolution $\dot{\Phi}(z)$ entering the growth equation.
 - **Cross-link to [../spacetime/black-holes.md](../spacetime/black-holes.md):** strong-field recycling map and the constitutive interpretation of any SMBH population coupling.

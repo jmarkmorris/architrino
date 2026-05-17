@@ -50,6 +50,280 @@ On this reading, an accepted energy-level change is a one-$h$ closed-cycle actio
 
 The same closure-label machinery is the native carrier for branch-quantized Lorentz response. A moving Noether core should not be assigned a Lorentz factor independently of its internal ledger. Instead, a stable closure label should determine the all-layer retuning of radii, frequencies, characteristic speeds, and wake exchange; the outer envelope then projects the ruler factor seen by Physical Observers. In the homogeneous weak-field limit, the admitted labels must collapse to the usual effective $\gamma(v)$ within the preferred-frame leakage bound.
 
+### Cadence-Scale Retuning Hypothesis
+
+The single-core version of the $h$-step claim is geometric rather than merely thermal. An accepted action transaction does not add energy to a rigid object. It moves the Noether core from one admissible closure branch toward another, and the core resolves that transaction by retuning its cadence-scale closure.
+
+The bookkeeping distinction is
+
+$$
+h=\text{action per accepted cycle},
+\qquad
+A_N=Nh,
+\qquad
+E_N=A_N\nu_N.
+$$
+
+Here $h$ is the fixed closed-cycle action unit, $N$ is the integer number of accepted action units carried by the branch, $A_N$ is the total branch action level, and $\nu_N$ is a representative cadence extracted from the closed Noether-core branch. A one-$h$ transaction changes the action ledger; a branch with many accepted units is scaled by $Nh$. The accepted branch may answer through one or more of the cadence, layer radii, envelope scale, envelope ratio, orientation, strain, and inter-layer wake-exchange variables:
+
+$$
+\Delta A_{\mathrm{cyc}}=\pm h
+\quad\Rightarrow\quad
+(\nu_N,\ R_I,R_M,R_O,\ \lambda,\ \xi,\ \mathcal{G}_{IM},\mathcal{G}_{IO},\mathcal{G}_{MO})
+\longmapsto
+(\nu_N',\ R_I',R_M',R_O',\ \lambda',\ \xi',\ \mathcal{G}_{IM}',\mathcal{G}_{IO}',\mathcal{G}_{MO}').
+$$
+
+In the simplest fixed-speed layer estimate,
+
+$$
+v_\ell\sim 2\pi R_\ell\nu_\ell,
+\qquad
+\ell\in\{I,M,O\}.
+$$
+
+If a branch keeps $v_\ell$ approximately fixed while accepting the transaction, then
+
+$$
+R_\ell\nu_\ell\approx\text{constant},
+\qquad
+\Delta\nu_\ell>0\Rightarrow\Delta R_\ell<0,
+\qquad
+\Delta\nu_\ell<0\Rightarrow\Delta R_\ell>0.
+$$
+
+The proof target is the constrained map, not only this sign rule. On a fixed branch chart $q$, collect the logarithmic retuning variables into
+
+$$
+\mathbf{y}_q
+=
+\left(
+\ln\nu_I,\ln\nu_M,\ln\nu_O,\,
+\ln R_I,\ln R_M,\ln R_O,\,
+\ln\lambda,\ln\xi
+\right)_q^{T}.
+$$
+
+Let $A_{\mathrm{cyc},q}(\mathbf{y},\mathcal{G})$ be the closed-cycle action ledger on that chart, and let
+
+$$
+\mathcal{C}_q(\mathbf{y},\mathcal{G})=0
+$$
+
+collect the integer phase-closure, causal-root, separator, inter-layer wake-exchange, and stability conditions that define the branch. A first-order accepted retuning with sign $\sigma\in\{+1,-1\}$ must satisfy
+
+$$
+D A_{\mathrm{cyc},q}[\Delta\mathbf{y}]
++
+\Delta A_{\mathrm{wake}}
+=
+\sigma h,
+$$
+
+together with the branch-preservation condition
+
+$$
+D\mathcal{C}_q[\Delta\mathbf{y}]
++
+\Delta\mathcal{C}_{\mathcal{G}}
+=0.
+$$
+
+If $\Delta\mathcal{C}_{\mathcal{G}}=0$, the retuning stays on the same causal-root ledger. If $\Delta\mathcal{C}_{\mathcal{G}}\neq0$, the event is a branch transition and must be treated as a separator crossing or causal-locus reconnection rather than as smooth single-core drift.
+
+The local cadence-scale retuning map is therefore the closure target
+
+$$
+\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}
+:
+(\Lambda_{\text{NC}},\theta_{\mathrm{env}})
+\longmapsto
+\left(
+\Delta\nu_N,\Delta R_I,\Delta R_M,\Delta R_O,\Delta\lambda,\Delta\xi
+\right),
+$$
+
+where $\theta_{\mathrm{env}}$ records the local Noether-Sea and neighboring-assembly conditions. The representative cadence increment is an extraction from the layer increments, for example
+
+$$
+\Delta\ln\nu_N
+=
+w_I^{(q)}\Delta\ln\nu_I
++
+w_M^{(q)}\Delta\ln\nu_M
++
+w_O^{(q)}\Delta\ln\nu_O,
+\qquad
+w_I^{(q)}+w_M^{(q)}+w_O^{(q)}=1,
+$$
+
+with the weights determined by the same branch and exposure record used for clock and medium coupling. The full tri-binary need not put the entire transaction into a single layer. One layer may tighten while another expands, and the outer envelope may change through $\lambda$ or $\xi$, provided the total closure label remains admissible.
+
+This is the local branchwise origin of the smoother Noether-Sea equilibrium-current language: individual retunings are discrete, while many asynchronous accepted retunings can coarse-grain into a continuous cadence-space current.
+
+### Rest-Level Scaling Curve
+
+The cadence-scale retuning map becomes more predictive when a homogeneous pool of group-velocity-zero Noether cores is assumed to occupy the same reduced closure label and the same integer rest level. In that case the pool is made of equal cores at one level $N$, while the scaling curve compares neighboring admissible rest levels along the same branch. The scaling variable is not $h$ itself. The fixed quantity is the closed-cycle action unit $h$; the branch variable is the total action level
+
+$$
+A_N=Nh,
+\qquad
+N\in\mathbb{Z}_{>0}.
+$$
+
+For the outer binary, write the outer action allocation as
+
+$$
+N_O=p_O^{(q)}N,
+\qquad
+I_O=N_O\hbar
+=p_O^{(q)}N\frac{h}{2\pi}.
+$$
+
+Here $p_O^{(q)}$ is the branch share carried by the outer binary. With the reduced circular-action chart
+
+$$
+I_O=\mu_O^{\mathrm{rot}}R_O v_O,
+$$
+
+the action ledger determines the product
+
+$$
+\boxed{
+R_O(N)\,v_O(N)
+=
+\frac{p_O^{(q)}Nh}{2\pi\mu_O^{\mathrm{rot}}}.
+}
+$$
+
+This is the part fixed directly by the $Nh$ action ledger. It says that a higher rest level must carry a larger radius-speed product, but it does not by itself decide whether the extra product appears as larger outer radius, higher outer speed, or both. The separate functions $R_O(N)$, $v_O(N)$, and
+
+$$
+f_O(N)=\frac{v_O(N)}{2\pi R_O(N)}
+$$
+
+therefore require one more branch-closure equation.
+
+One possible closure is a branch-pinned speed. If the outer branch keeps
+
+$$
+v_O=\beta_Oc_f
+$$
+
+with fixed $\beta_O$, then
+
+$$
+\boxed{
+R_O(N)
+=
+\frac{p_O^{(q)}Nh}{2\pi\mu_O^{\mathrm{rot}}\beta_Oc_f},
+\qquad
+f_O(N)
+=
+\frac{\mu_O^{\mathrm{rot}}\beta_O^2c_f^2}
+{p_O^{(q)}Nh}.
+}
+$$
+
+This special branch gives
+
+$$
+\boxed{
+R_O\propto N,
+\qquad
+v_O\propto N^0,
+\qquad
+f_O\propto N^{-1}.
+}
+$$
+
+A different closure comes from a bare inverse-square radial balance. If the delayed root ledger reduces to
+
+$$
+\frac{v_O^2}{R_O}
+=
+\frac{K_O}{4R_O^2}\mathcal{B}_O(\beta_O;\Lambda_O),
+$$
+
+and if $\mathcal{B}_O$ is approximately constant on the compared segment, then the same action product gives
+
+$$
+\boxed{
+R_O\propto N^2,
+\qquad
+v_O\propto N^{-1},
+\qquad
+f_O\propto N^{-3}.
+}
+$$
+
+Thus the $Nh$ ledger alone does not canonize a single radius curve. It supplies the product law; the branch speed, delayed-root radial balance, tangential closure, and any Noether-Sea return terms decide the actual rest-level scaling.
+
+If the outer binary instead carries a declared outer energy projection
+
+$$
+E_O(N)=\zeta_O^{(q)}\mu_O^{\mathrm{rot}}v_O^2,
+$$
+
+then
+
+$$
+\boxed{
+v_O(N)
+=
+\sqrt{\frac{E_O(N)}{\zeta_O^{(q)}\mu_O^{\mathrm{rot}}}},
+\qquad
+R_O(N)
+=
+\frac{p_O^{(q)}Nh\sqrt{\zeta_O^{(q)}}}
+{2\pi\sqrt{\mu_O^{\mathrm{rot}}E_O(N)}}.
+}
+$$
+
+This form is the safest way to use any external energy-level equation: insert the branch energy projection $E_O(N)$, then derive the corresponding outer radius and speed.
+
+The same chart also gives a packing readout for the Noether-Sea medium. In a nearly spherical exclusion-envelope approximation, let
+
+$$
+R_{\mathrm{excl}}
+=
+\alpha_O^{(q)}R_O,
+$$
+
+where $\alpha_O^{(q)}$ converts the outer-binary radius into the selected exclusion-interface threshold. Equal-core center contact then occurs at
+
+$$
+d_{\mathrm{nn}}=2R_{\mathrm{excl}},
+$$
+
+and the densest ordinary equal-sphere center density is
+
+$$
+\rho_{\mathrm{core},\max}^{\#}
+=
+\frac{1}{4\sqrt{2}R_{\mathrm{excl}}^3}.
+$$
+
+Therefore the packing curve inherits the radius closure:
+
+$$
+\rho_{\mathrm{core},\max}^{\#}(N)
+\propto
+R_O(N)^{-3}.
+$$
+
+For example, the fixed-speed branch gives $\rho_{\mathrm{core},\max}^{\#}\propto N^{-3}$, while the bare inverse-square branch with approximately constant $\mathcal{B}_O$ gives $\rho_{\mathrm{core},\max}^{\#}\propto N^{-6}$. These are branch diagnostics, not competing definitions of a Noether core.
+
+This packing formula is only the spherical leading estimate. At high relative velocity, high Noether-Sea delay, or high gravitational strain, the branch data cannot be kept constant:
+
+$$
+p_O^{(q)},\ \mu_O^{\mathrm{rot}},\ \alpha_O^{(q)},\ \mathcal{B}_O(\beta_O;\Lambda_O)
+\longrightarrow
+p_O(q,\theta_{\mathrm{env}}),\ \mu_O^{\mathrm{rot}}(q,\theta_{\mathrm{env}}),\ \alpha_O(q,\theta_{\mathrm{env}}),\ \mathcal{B}_O(\beta_O;\Lambda_O,\theta_{\mathrm{env}}).
+$$
+
+The scaling curve is therefore piecewise by branch. Once the branch supplies $\xi$ and $\lambda$, the exclusion envelope must be treated as an oblate spheroid rather than a sphere, and the center-density calculation must inherit orientation, strain, and Noether-Sea delay data from the same branch label.
+
 ### Reduced Noether-Core Closure Label
 
 For proof work, the integer phase-closure state should be packaged with the branch data that made the closure admissible. The reduced Noether-core closure label is a branch label, not a new ontological ingredient:

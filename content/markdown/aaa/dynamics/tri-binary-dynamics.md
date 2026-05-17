@@ -122,7 +122,7 @@ B_q(v)\longrightarrow B_{q'}(v+\Delta v),
 $$
 subject to the all-layer action and energy ledgers
 $$
-\Delta A_{\text{cycle}}=\sigma h,
+\Delta A_{\mathrm{cyc}}\equiv\Delta A_{\text{cycle}}=\sigma h,
 \qquad
 \Delta I_I+\Delta I_M+\Delta I_O+\Delta I_{\text{wake}}=\sigma\hbar,
 $$
@@ -151,6 +151,105 @@ $$
 \gamma_\star(v)+O(\epsilon_{\mathrm{LV}})
 $$
 after Noether-Sea dressing and hierarchy averaging on admitted stable branches. Any residual mismatch must be reported with its branch source: separator proximity, inter-layer resonance, Jacobian-floor loss, finite-memory cutoff, wake-ledger residue, or envelope-projection error.
+
+## Cadence-Scale Retuning Closure
+
+The retuning-map problem is the local dynamics version of the one-$h$ transaction. On a branch chart $q$, define
+
+$$
+\mathbf{y}_q
+=
+\left(
+\ln\nu_I,\ln\nu_M,\ln\nu_O,\,
+\ln R_I,\ln R_M,\ln R_O,\,
+\ln\lambda,\ln\xi
+\right)^{T},
+\qquad
+\omega_\ell=2\pi\nu_\ell.
+$$
+
+The layer-speed identities give the first kinematic constraint:
+
+$$
+\Delta\ln s_\ell
+=
+\Delta\ln R_\ell
++
+\Delta\ln\nu_\ell,
+\qquad
+\ell\in\{I,M,O\}.
+$$
+
+The simple inverse rule $\Delta\ln R_\ell=-\Delta\ln\nu_\ell$ is therefore valid only on a sub-branch where $\Delta\ln s_\ell=0$. The ordinary tri-binary speed hierarchy instead imposes inequalities and hinge tolerances:
+
+$$
+s_I'>c_f,
+\qquad
+\left|s_M'-c_f\right|\le\epsilon_M c_f,
+\qquad
+s_O'<c_f,
+$$
+
+where primed quantities are evaluated after retuning and $\epsilon_M$ is the declared middle-hinge tolerance. A transaction that violates these conditions is not a smooth retuning inside the same regime; it is a branch event at the speed-regime boundary.
+
+The first calculable closure can be written as a constrained compliance problem. Let $\mathcal{C}_q(\mathbf{y},\mathcal{G})=0$ collect the phase-closure, causal-root, separator, inter-layer exchange, and stability constraints. Let $\mathbf{K}^{\mathrm{ret}}_q$ be the positive semidefinite local compliance matrix for retuning costs on the declared branch chart. Then the candidate increment is
+
+$$
+\Delta\mathbf{y}_{q,\sigma}
+=
+\underset{\Delta\mathbf{y}}{\operatorname{arg\,min}}\;
+\frac{1}{2}
+\Delta\mathbf{y}^{T}
+\mathbf{K}^{\mathrm{ret}}_q
+\Delta\mathbf{y},
+$$
+
+subject to
+
+$$
+D A_{\mathrm{cyc},q}[\Delta\mathbf{y}]
++
+\Delta A_{\mathrm{wake}}
+=
+\sigma h,
+\qquad
+D\mathcal{C}_q[\Delta\mathbf{y}]
++
+\Delta\mathcal{C}_{\mathcal{G}}
+=0,
+$$
+
+and to the post-retuning speed-regime inequalities above. The matrix $\mathbf{K}^{\mathrm{ret}}_q$ is not a new force law. It is the local second-variation record of how costly it is for the accepted branch to place the action increment into cadence, layer scale, envelope shape, orientation, or wake exchange. In a simulation, it should be estimated from the linearized return map or from finite retuning trials around an admitted branch.
+
+The cadence-scale retuning map is then the projection
+
+$$
+\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}
+=
+\Pi_{\mathrm{ret}}
+\left(
+\Delta\mathbf{y}_{q,\sigma},
+\Delta\mathcal{G}_{q,\sigma}
+\right),
+$$
+
+with
+
+$$
+\Pi_{\mathrm{ret}}
+\left(
+\Delta\mathbf{y},
+\Delta\mathcal{G}
+\right)
+=
+\left(
+\Delta\nu_N,\Delta R_I,\Delta R_M,\Delta R_O,\Delta\lambda,\Delta\xi
+\right).
+$$
+
+This map is falsifiable at the branch level. It fails if no admissible minimizer exists, if the minimizer crosses a separator while being treated as same-branch drift, if the middle hinge leaves its declared tolerance, if the envelope projection gives $\gamma_{\mathrm{rul}}$ without the matching $\gamma_{\mathrm{clk}}$, or if the wake-ledger residual is large enough to survive hierarchy averaging. These are not bookkeeping nuisances; they are the diagnostics that decide whether the same one-$h$ transaction can become the Noether-Sea cadence current used in cosmology.
+
+The first arithmetic fixture for this target is [Retuning-Map Toy Model](../validation/simulations/retuning-map-toy-model.md), with runtime script `scripts/tri-binary/retuning-map-toy-model.mjs`. That fixture solves the linearized constrained compliance problem and reports the induced $J_\nu$ estimate. It is a branch-bookkeeping scaffold, not delayed-dynamics validation.
 
 ## Transverse Causal Budget Lemma
 
@@ -1001,6 +1100,37 @@ w_b^{(0)}(u)
 $$
 up to the sign convention fixed by writing the interaction term with a minus sign in the action. In other words, $w_b^{(\eta)}$ is not an independent fitting weight. It is the Euler-Lagrange pullback of the regularized causal kernel on a certified branch chart.
 
+The strongest current action-kernel candidate is not the diagnostic same-support inverse-square adapter. Pull back the delayed-interior characteristic-tail kernel from [Master Equation](master-equation.md#exact-nonlocal-lagrangian) before reducing to a one-period branch density. For the two-time branch, define the local characteristic coordinate
+$$
+u_b^{\mathrm{c}}(t_1,t_0)
+=
+g_b(t_1,t_0)
++
+\frac{r_b(t_1,t_0)}{c_f}.
+$$
+After endpoint-clear normalization, the candidate branch kernel is
+$$
+K_{b,\mathrm{eff}}^{(\eta)}(t_1,t_0)
+=
+\int_{-\infty}^{g_b(t_1,t_0)}
+\frac{\delta_\eta(s)}
+{c_f\left(u_b^{\mathrm{c}}(t_1,t_0)-s\right)^2}
+ds,
+$$
+or the finite-endpoint version with lower limit $-h_{+}$ when the endpoint-clearance term is cancelled by the characteristic gauge. Its receiver-gradient identity is
+$$
+\left(
+\partial_{r_b}
+-
+\frac{1}{c_f}\partial_{g_b}
+\right)
+K_{b,\mathrm{eff}}^{(\eta)}
+=
+-
+\frac{\delta_\eta(g_b)}{r_b^2}.
+$$
+This is the action-level object that can replace the diagnostic inverse-square adapter once the Noether boundary terms below are computed from the same kernel. Until then, terminal enumerator rows using $w_b^{(\eta)}\hat{\mathbf{r}}_b$ remain diagnostic branch-force rows rather than a completed action derivation.
+
 The sharp receiver-side variation can be separated before the root is integrated out. Write the two-time branch kernel as
 $$
 \mathcal{L}_b^{(0)}(t_1,t_0)
@@ -1345,7 +1475,16 @@ $$
 \frac{\delta_\eta(g_b(t_1,t_0))}
 {r_b(t_1,t_0)},
 $$
-with the trivial self-coincidence branch excluded. Over one outer period,
+for the pure scalar scaffold. For the delayed-interior characteristic-tail candidate, the branch kernel is instead
+$$
+\mathcal{K}_{b,\mathrm{eff}}^{(\eta)}(t_1,t_0)
+=
+\frac{\kappa\,\operatorname{sign}(q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}})
+\left|q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}}\right|}{c_f}
+\Theta(t_1-t_0)
+K_{b,\mathrm{eff}}^{(\eta)}(t_1,t_0),
+$$
+with the trivial self-coincidence branch excluded in either case. Over one outer period,
 $$
 \Delta E_b^{\mathrm{wake}}
 =
@@ -1373,7 +1512,9 @@ $$
 \boldsymbol{\Omega}\cdot
 \Delta\mathbf{J}_b^{\mathrm{wake}},
 $$
-with the mechanical increments already written above. Therefore a terminal branch proof now has a precise action-level target: derive $\mathcal{I}_b^{(\eta)}$ from the regularized causal scalar, prove that its branch variation gives $w_b^{(\eta)}$ with a vanishing or explicitly cancelled constraint residual, and show that the Noether boundary terms close over the same certified branch set. Until those three steps are complete, the action scaffold supplies a constrained proof route and a rejection test, not a solved terminal $(m,n)$ selection.
+with the mechanical increments already written above. Therefore a terminal branch proof now has a precise action-level target: derive $\mathcal{I}_b^{(\eta)}$ from the normalized delayed-interior kernel, prove that its branch variation gives $w_b^{(\eta)}$ with the derivative-of-constraint residual cancelled by the receiver-gradient identity, and show that the Noether boundary terms close over the same certified branch set. Until those three steps are complete, the action scaffold supplies a constrained proof route and a rejection test, not a solved terminal $(m,n)$ selection.
+
+The Master Equation now fixes the normalized delayed-interior kernel and its energy, momentum, and angular-momentum wake-history boundary increments. The terminal-alignment proof therefore no longer needs to invent the Noether terms; it must pull those increments back to the finite terminal branch chart, evaluate the resulting $\Delta E_b^{\mathrm{wake}}$, $\Delta\mathbf{p}_b^{\mathrm{wake}}$, and $\Delta\mathbf{J}_b^{\mathrm{wake}}$, and prove that the mechanical plus wake ledger closes on the same rows that pass the force-residual and root-ledger tests. Until that branch-summed evaluation passes, the terminal rows remain a diagnostic action packet rather than a solved terminal $(m,n)$ selection.
 
 This scaffold identifies the smallest missing dynamics. The delayed equations must enumerate $\Lambda_{\theta}^{\mathrm{loc}}$ and derive the edge maps $\mathcal{E}_{\nu}^{\pm}$ from the terminal aligned branch. [Dyadic Resonance Lock](dyadic-resonance-lock.md) supplies the candidate integer phase lattice, and [Binary Dynamics](binary-dynamics.md#self-hit-definition-and-diagnostics) supplies the self-hit and partner-hit root vocabulary, but neither document yet computes the terminal aligned edge projections from the full three-layer dynamics.
 

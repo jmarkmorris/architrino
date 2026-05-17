@@ -28,6 +28,7 @@ When the reduced map is used as a probability or stability laboratory, this work
 | File | Role | Target AAA notes |
 | --- | --- | --- |
 | [phenomenological-heuristics.md](phenomenological-heuristics.md) | Preserved archive for conjectural geometry, scaling, and cosmology intuitions that should not drive the active derivation unless rederived from the reduced dynamics. | [dyadic-resonance-lock](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md), [binary-dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md), [mode-taxonomy](../../../content/markdown/aaa/interactions/mode-taxonomy.md) |
+| [noether-core-scaling-and-packing.md](noether-core-scaling-and-packing.md) | Priority scaffold for ideal Noether-core same-energy scaling, outer-binary radius/speed equations, and exclusion-envelope packing center density. | [dyadic-resonance-lock](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md), [binary-dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md), [noether-core](../../../content/markdown/aaa/spacetime/noether-core.md), [noether-core-geometry](../../../content/markdown/aaa/spacetime/noether-core-geometry.md), [noether-sea](../../../content/markdown/aaa/spacetime/noether-sea.md) |
 
 ## What Is Solid
 

@@ -356,6 +356,33 @@ $$
 $$
 Only in that limit does the scalar mass formula above follow. Here $E_{\text{internal}}$ names the large internal energy circulation, while $\zeta(A)$ names the small external leakage that survives cancellation and Noether-Sea shielding. The formula therefore explains weak long-range gravitational and inertial footprints without making the internal energy small: ordinary probes couple to the leaked pattern, not to every internal exchange branch.
 
+At the matter-to-medium interface, a Standard Model fermion assembly should therefore be treated as a localized source of exposed response, not as an unshielded dump of all internal energy into the surrounding Noether Sea. For a coarse cell $\Omega_\ell$, the source supplied by stable matter assemblies can be written schematically as
+
+$$
+S_{\mathrm{mat}\to\mathrm{sea}}^{(\ell)}(\mathbf{x},t)
+=
+\sum_{A\subset\Omega_\ell}
+W_\ell(\mathbf{x}-\mathbf{X}_A(t))\,
+\zeta(A)E_{\text{internal}}(A)
++
+S_{\mathrm{aniso}}^{(\ell)}(\mathbf{x},t),
+$$
+
+where $W_\ell$ is the coarse-graining window, $\mathbf{X}_A$ is the assembly center, and $S_{\mathrm{aniso}}^{(\ell)}$ records exposed tensor, orientation, spin, or wake-history residue that cannot be collapsed into the scalar shielding factor. This source then perturbs the local Noether-Sea state through a constitutive response map,
+
+$$
+\delta\theta_{\mathrm{sea}}^{(\ell)}
+=
+\mathcal{C}_{\mathrm{mat}\to\mathrm{sea}}
+\left(
+S_{\mathrm{mat}\to\mathrm{sea}}^{(\ell)},
+\lambda_A,\xi_A,\mathcal{H}_A,
+\theta_{\mathrm{sea},0}^{(\ell)}
+\right),
+$$
+
+with $\delta\theta_{\mathrm{sea}}^{(\ell)}$ projecting into $n$, $\chi_{\text{sea}}$, $\Gamma_N$, strain, orientation, cadence, and envelope-scale variables. In this language, saying that neighboring Noether cores absorb the exposed potential means that they retune their branch state. Depending on the accepted branch, that retuning may appear as higher cadence, changed strain, stronger alignment, envelope-scale shift, or altered coupling to nearby cores; it should not be compressed into a generic statement that the cores simply gain energy and expand.
+
 This is the same shielding-based logic developed more directly in [Particle Masses](../assemblies/particle-masses.md). The matching factor $\alpha$ should be fixed only after a calibration-free reference attractor has supplied $E_{\text{internal}}$, $\zeta$, and the medium-response map; it should not be fitted separately to each particle species.
 
 Thermodynamic or entropic derivations of gravitational force are therefore comparison benchmarks for this chapter, not replacements for the mass mechanism. They may sharpen the observer-level equation-of-state target for gravity, but $m_{\text{inertial}}(A)$ is not closed until the same assembly ledger supplies its trapped internal causal history, shielding extraction, Noether-Sea response tensor, and acceleration response.

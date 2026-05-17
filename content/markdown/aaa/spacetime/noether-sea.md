@@ -48,6 +48,24 @@ $$
 $$
 without changing the identity of the underlying void point.
 
+## Absolute Record and Observer Readout
+
+The complete substrate description is the universe state
+
+$$
+\mathbb{U}_{\text{now}}\equiv S(t).
+$$
+
+This state is not an observer frame. It is the absolute-time record of positions, velocities, assemblies, causal wakes, Noether-Sea variables, and path-history ledgers inside the Euclidean void. Physical observers recover clock rates, photon frequencies, energies, distances, and effective geometry only after their local assemblies couple to part of that record.
+
+This distinction matters most in redshift language. The void does not stretch, and absolute time does not slow. A source assembly emits a photon-channel packet with a local emission ledger; the packet follows a definite path history through the Noether Sea; and the receiver assembly samples the packet using its own local cadence. The measured energy is therefore a receiver-coupling result,
+
+$$
+E_{\mathrm{obs}}=h\nu_{\mathrm{obs}},
+$$
+
+not a primitive frame-free photon scalar. The redshift task is to compute the endpoint cadence, launch geometry, and path-history propagation terms from the same $S(t)$ record rather than changing explanation between gravitational, relative-motion, and cosmological cases.
+
 ## Composition
 
 The medium is composed of neutral Noether-core assemblies. Each Noether core is a tri-binary assembly made from three nested electrino:positrino binary pairs. The core itself is not elementary; its stability is a downstream assembly result.
@@ -101,6 +119,70 @@ Important medium properties include:
 - **Delay-factor response:** how $\chi_{\text{sea}}$, signal propagation, clock behavior, and effective light speed depend on local medium state.
 
 These are medium variables. They are not properties of the Euclidean void.
+
+## Equilibrium Transport Hypothesis
+
+A provisional cosmology-facing hypothesis treats the Noether Sea as a dense neighbor-coupled population of Noether cores whose individual action transactions are discrete while the ensemble response can be smooth. Most cores in a weak deep-space region have other Noether cores as their nearest dynamical neighbors. Photons and neutrinos can traverse the population, and gravitational waves can perturb it, but the baseline relaxation law is a core-to-core medium law.
+
+Let $\nu_N$ denote an ordinary frequency extracted from a representative Noether-core cadence state. The local core energy scale is then
+
+$$
+E_N=h\nu_N.
+$$
+
+The point of this expression is not to add a new quantum postulate at the medium level. It records the same closed-cycle action accounting used elsewhere in the corpus: a cadence state carries energy as action per cycle times cycles per unit absolute time. A single core may cross a neighboring branch through an $h$-scale ledger step, while a large asynchronous ensemble can produce an apparently smooth drift in the coarse variables.
+
+At the single-core level, each accepted $h$-scale transfer forces a Noether core to retune its cadence-scale closure. The retuning may appear as a cadence shift, layer-radius shift, envelope-scale change, envelope-ratio change, orientation or strain update, or modified coupling to neighboring cores. In the simplest fixed-speed layer approximation,
+
+$$
+v_N\sim 2\pi R_N\nu_N,
+\qquad
+R_N\nu_N\approx\text{constant},
+$$
+
+so a higher accepted cadence corresponds to a smaller representative scale, while a lower accepted cadence corresponds to a larger representative scale. The full tri-binary can partition the same transaction across its inner, middle, and outer layers, so this relation is a first estimate rather than a complete closure law.
+
+At the ensemble level, let $f_N(\nu,\mathbf{x},t)$ be the local distribution of Noether-core cadence states. The cadence-space current is the coarse-grained flux of many branchwise retunings:
+
+$$
+J_\nu
+\sim
+f_N
+\left\langle
+\dot{\nu}_N
+\right\rangle_{\Delta A_{\mathrm{cyc}}=\pm h},
+$$
+
+where the average is taken over accepted $h$-scale transactions inside the coarse-graining cell. Once the single-core retuning map $\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}$ is specified, the first current estimate is
+
+$$
+J_\nu(\nu,\mathbf{x},t)
+=
+\sum_{\sigma=\pm1}
+f_N(\nu,\mathbf{x},t)\,
+r_\sigma(\nu,\mathbf{x},t)\,
+\Delta\nu_N^{(q,\sigma)}
++
+O\!\left((\Delta\nu_N)^2\partial_\nu f_N\right),
+$$
+
+where $r_\sigma$ is the local rate density of accepted $\sigma$ transactions per core and $\Delta\nu_N^{(q,\sigma)}$ is the cadence component extracted from $\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}$. Deep space can therefore look smooth without making the underlying transactions continuous. Moving from deep space toward a solar-system environment should not be modeled as a scalar temperature increase alone; it is a bias in the local population toward higher cadence, stronger strain, stronger alignment, and larger gradients. Near a proton or other matter assembly, the neighboring Noether cores see a sharper boundary condition and retune more discretely around the assembly.
+
+A candidate equilibrium-transport equation is
+
+$$
+\partial_t f_N
++\nabla\cdot(\mathbf{u}_{\mathrm{sea}}f_N)
++\partial_\nu J_\nu
+=
+S_{\mathrm{BH}}
++S_{\mathrm{GW}}
+-R_{\mathrm{eq}}[f_N].
+$$
+
+Here $J_\nu$ is the current through frequency or cadence state space, $S_{\mathrm{BH}}$ is loading from black-hole recycling regions, $S_{\mathrm{GW}}$ is the perturbative contribution from gravitational-wave disturbances, and $R_{\mathrm{eq}}[f_N]$ is the local neighbor-equilibration operator. This equation is a derivation target, not a completed constitutive law. It becomes relevant to redshift only if the same $f_N$ record also determines $\Gamma_N$, $\chi_{\text{sea}}$, and the path-history propagation term $\mathcal{P}_{E\to R}$ used in the cosmology chapters.
+
+The expansionary reading is therefore conditional. Local equilibrium by itself does not imply an effective expansion history. A Hubble-like redshift slope appears only if the coarse-grained transport has a signed, persistent cadence-space current or source-relaxation imbalance that projects into the photon path-rate functional while preserving image sharpness, line coherence, and packet time-dilation consistency.
 
 ## Refractive Gravity and Effective Metric
 

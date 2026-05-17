@@ -40,6 +40,33 @@ $$
 
 with the local clock/rate conversion applied before comparing to observer frequencies. This keeps the atomic spectrum tied to geometry and causal-wake closure without claiming that the standard orbital postulate has already been derived.
 
+For element comparisons, shell closure should enter through the realized envelope and its stability gap, not through the periodic-table family name. A local shell-closure diagnostic can be written as
+
+$$
+C_{\mathrm{shell}}(\mathcal B_e)
+=
+\min_{\delta\mathcal B_e\ne0}
+\left[
+E_{\mathrm{env}}
+\!\left(
+\mathcal B_e+\delta\mathcal B_e;
+\mathcal W_{\text{nuc}},
+\rho_{\text{core}},
+\chi_{\text{sea}}
+\right)
+-
+E_{\mathrm{env}}
+\!\left(
+\mathcal B_e;
+\mathcal W_{\text{nuc}},
+\rho_{\text{core}},
+\chi_{\text{sea}}
+\right)
+\right].
+$$
+
+Closed-shell atoms should correspond to large $C_{\mathrm{shell}}$ and weak low-order external envelope multipoles. Transition metals should correspond to several nearby anisotropic electron-envelope branches, especially in $d$-envelope recovery. Iron-group elements add isotope-specific nuclear binding and, in material states, magnetic or lattice branches. The words `closed shell`, `transition metal`, and `iron group` are therefore observer-level summaries until translated into $\mathcal B_e$, $\mathcal W_{\text{nuc}}$, $C_{\mathrm{shell}}$, and any realized bonding or lattice branch.
+
 This chapter owns the envelope gap and observer-level spectral comparison. The emission, absorption, recoil, non-radiative alternatives, and Gate C transition-rate record belong to [Atomic Transition Radiation](../reactions/atomic-transition-radiation.md).
 
 The second closure target is gravitational spectral shift. A viable account should derive redshift-sensitive atomic spectra from both local assembly resonance and the effective clock/rate layer, rather than treating the shift as a density-only lattice effect.

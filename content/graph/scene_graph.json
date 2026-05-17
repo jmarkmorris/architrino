@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 492,
+      "nodes": 494,
       "edges": 1239,
       "scenes": 320,
       "markdownIndexes": 0,
-      "markdownDocs": 172,
+      "markdownDocs": 174,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -3062,6 +3062,18 @@
       "id": "content/markdown/aaa/validation/simulations/README.md",
       "name": "Simulation README",
       "path": "content/markdown/aaa/validation/simulations/README.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/validation/simulations/redshift-budget-toy-model.md",
+      "name": "Redshift-Budget Toy Model",
+      "path": "content/markdown/aaa/validation/simulations/redshift-budget-toy-model.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/validation/simulations/retuning-map-toy-model.md",
+      "name": "Retuning-Map Toy Model",
+      "path": "content/markdown/aaa/validation/simulations/retuning-map-toy-model.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -7474,6 +7486,24 @@
       "name": "Simulation README",
       "path": "content/markdown/aaa/validation/simulations/README.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/README.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/redshift-budget-toy-model.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/validation/simulations/redshift-budget-toy-model.md",
+      "name": "Redshift-Budget Toy Model",
+      "path": "content/markdown/aaa/validation/simulations/redshift-budget-toy-model.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/redshift-budget-toy-model.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/retuning-map-toy-model.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/validation/simulations/retuning-map-toy-model.md",
+      "name": "Retuning-Map Toy Model",
+      "path": "content/markdown/aaa/validation/simulations/retuning-map-toy-model.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/retuning-map-toy-model.md",
       "implicit": false
     },
     {

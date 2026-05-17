@@ -14,6 +14,12 @@ The highest-value use of this prompt is not mere phrase cleanup or another parag
 
 High-priority autonomous method: when no more specific lane is supplied, inspect `reference/priorities/aaa-work-threads/priorities.md` and the relevant files under `reference/priorities/` early in the pass. Treat those files as an operator-maintained issue ledger, not as authored AAA content. Use them to identify concrete corpus-advancement opportunities, proof routes, missing derivations, validation ledgers, and safe edit batches. Do not link from authored `content/markdown/aaa` files to priority files; if priority material belongs in the AAA corpus, restate or promote the needed substance inside the relevant AAA document.
 
+## Current Core Geometrical Theory Bias
+
+The default target for corpus advancement is now hard mathematical progress on the core geometry-dynamics stack. When no narrower lane is supplied, prefer source signals tied to master-equation closure, potential/action proof programs, certified branch geometry, simulations that discipline the equations, $A_0$ continuation, mass-map derivation, tri-binary causal closure, Lorentz/effective-metric recovery, photon closure, or Noether-Sea constitutive response.
+
+Do not spend a self-running pass mainly on prose polish, broad coverage, linking, app surfaces, or new infrastructure unless the operator explicitly requested that mode or the work directly unblocks a core mathematical artifact.
+
 ## Mathematics-First Discipline
 
 The default posture is aggressive mathematical advancement. Do not stop at "this should be developed later" when a local definition, equation, lemma, proof scaffold, calculation, or falsifiable simulation target can be written now.
@@ -326,6 +332,7 @@ Default lane distribution:
 - If a priority-ledger pass was just completed by another active claim, choose one primary lane from A-G and use Lane H only as a cross-check.
 - If several claims exist, choose the least-covered lane and least-covered path shard.
 - Avoid doing a broad all-corpus scan unless the active claims show no one else is currently covering the corpus.
+- During the current core theory push, choose Closure lab, Proof-route forge, Priority-ledger advancement, or Recent-change propagator before reader-completeness, cross-link, or hygiene postures unless Op explicitly requested those support modes.
 
 Internal exploration palette:
 If Op does not specify a lane, shard, or posture, choose one or two of these postures before choosing lanes. Give high priority to postures that can produce a concrete mathematical artifact now, bias away from active claim cards and recently covered territory, and keep hygiene postures as occasional secondary passes. State the selected posture in the claim card and final report.

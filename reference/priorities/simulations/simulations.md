@@ -7,11 +7,11 @@
 - Value: `25.42`
 - Cost: `4.1`
 - ROI: `6.20`
-- Status: `queued`
+- Status: `active`
 
 ## Task Queue
 
-1. `tier0_tier1_runs` — The $A_0$ self-root fold/splitting diagnostic now classifies all ready rows as `fold-layer`; the one-period intake remains fail-closed because the estimated direct-root step burden is about $2.93\times10^7$ to $4.62\times10^7$ steps per period. Next work is an adaptive one-period direct-root integrator or step controller that can reduce this burden before any accepted-history row is emitted. Status: `active`. Depends on: none.
+1. `tier0_tier1_runs` — The $A_0$ self-root fold/splitting diagnostic now classifies all ready rows as `fold-layer`; the step-fraction controller lowers the fail-closed one-period estimate from about $2.93\times10^7$--$4.62\times10^7$ steps to about $7.32\times10^6$--$1.16\times10^7$ steps; the event-local fold-layer lock lowers it again to about $3.66\times10^6$--$5.78\times10^6$ steps; and the fold-layer-locked macro-stride attempt brings all ready rows under the $10^6$ attempt cap with planned counts about $9.16\times10^5$--$9.64\times10^5$. The compact-fixture validation run on May 16, 2026 selected `963815` retained steps under cap, passed accepted-history source coverage with no missing fields, and now has a fail-closed validator that records carrier-replay state/root/speed/center residuals plus lock stability. The attempt remains blocked until a direct regularized one-period trajectory, phase ledger, energy ledger, $\Delta_k$, and eta-ladder persistence are computed. Status: `active`. Depends on: none.
 2. `convergence_and_provenance` — Publish convergence plots and $\mathbb{U}_{\text{now}}$ provenance logs. Status: `pending`. Depends on: `tier0_tier1_runs`.
 3. `eta_positive_package` — Consolidate the formal $\eta > 0$ existence and continuation package. Status: `pending`. Depends on: `tier0_tier1_runs`.
 

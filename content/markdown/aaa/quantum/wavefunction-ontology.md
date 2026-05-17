@@ -232,6 +232,32 @@ in the same regime where the envelope dynamics reduce to effective Schrödinger 
 
 This is the Born-rule basin-measure ledger. It should stay distinct from the spin-statistics / exchange ledger in [Fermi-Dirac and Bose-Einstein Statistics](./quantum-statistics.md), which asks why effective states are antisymmetric or symmetric in the first place. Photon-channel squared-amplitude capture is a special measurement-channel bridge in [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md), not a replacement for the basin-measure derivation.
 
+### Basin-Measure Necessity
+
+The basin measure is not just a convenient way to write probabilities. Let $\mathcal{T}_{\Delta t}$ be the deterministic pushforward or return map on the retained finite-window section, let $\mu_*$ be invariant or metastable for that map, and let $\mathcal{P}=\{B_i\}$ be a measurable partition whose separatrix boundaries have $\mu_*$-measure zero. Then the record weights are forced to be
+$$
+p_i
+=
+\int_{\Gamma_{\mathrm{eff}}^{(T)}}\mathbf{1}_{B_i}\,d\mu_*
+=
+\mu_*(B_i),
+$$
+within the finite-window error budget. A representative acceptance bound is
+$$
+\left|
+\mathcal{T}_{\tau_{\mathrm{rec}}}^*\mu_*(B_i)
+-
+\mu_*(B_i)
+\right|
+\le
+\varepsilon_{\mathrm{meta}}
++\varepsilon_{\mathrm{leak},i}
++\varepsilon_{\mathrm{esc}}
++\varepsilon_C.
+$$
+
+If a model assigns branch weights that are not the basin measures of the same record-forming flow, it has added an untracked transition kernel, an external interpretive rule, or a hidden ensemble change. Such a model may still be a comparison formalism, but it has not derived Born weights from $\mathbb{A}\mathbb{A}\mathbb{A}$ threshold dynamics.
+
 The same measure must also survive thermodynamic projection checks. When the measurement story uses apparatus entropy, decoherence rates, or environment summaries, those quantities may not be fitted by a second ensemble unrelated to the Born-rule basin measure. The finite-window version $\mu_{*,T}$ in [Quantum Operator Mapping](../theory-bridges/quantum-operator-mapping.md#statistical-measure-and-the-born-rule-emergence) must project to the thermodynamic summary used by the same record channel, within an explicitly declared tolerance.
 
 The finite-window measure also has to survive the energy bookkeeping of the record event. If the apparatus explanation invokes thermalization, decoherence, or collapse-model comparison noise, the same run record must keep the unrecorded energy residual $\Delta E_{\mathrm{unrec}}(T;\theta)$ below tolerance in [Measurement Ontology](measurement-ontology.md#measurement-and-heating-residual). The wavefunction-side update is therefore licensed only when the Born weights, thermodynamic projection, and energy ledger are compatible on one window:

@@ -4,12 +4,32 @@ import fs from "node:fs";
 import path from "node:path";
 
 const DEFAULT_MAX_ESTIMATED_STEPS = 1_000_000;
+const BODY_IDS = ["I+", "I-", "M+", "M-", "O+", "O-"];
+const ROOT_RELATIONS = ["partner", "self", "inter_layer"];
+const POLARITIES = ["+", "-"];
+const SOURCE_TIME_COVERAGE_EPSILON_FACTOR = 16;
 const ACCEPTED_HISTORY_BLOCKERS = [
   "status_is_accepted_history_segment",
   "residuals_below_tolerance",
   "no_secular_center_drift",
   "Delta_k_positive",
   "same_branch_persists_across_eta_ladder",
+];
+const ACCEPTED_HISTORY_SOURCE_COVERAGE_FIELDS = [
+  "source_row_present",
+  "sample_count_at_least_two",
+  "samples_ordered_by_t",
+  "samples_cover_cycle",
+  "samples_cover_all_delayed_source_times",
+  "all_required_body_states_present",
+  "body_state_vectors_finite",
+  "active_root_labels_valid",
+  "active_root_delays_finite_nonnegative",
+  "active_root_J_finite",
+  "root_ledger_stable_under_refinement",
+  "speed_ordering_retained",
+  "benchmark_inputs_excluded",
+  "active_root_sources_cover_selected_layers",
 ];
 
 function parseArgs(argv) {
@@ -56,7 +76,8 @@ Options:
 This is a fail-closed one-period continuation intake prototype. It does not run
 the full one-period delayed dynamics and does not compute Delta_k. It consumes
 short-horizon direct-root diagnostics, carries fold-layer routing forward, and
-reports whether a one-period attempt is computationally and structurally ready.`);
+reports whether a direct or fold-layer-locked one-period attempt is
+computationally and structurally ready.`);
 }
 
 function parsePositiveInteger(value, name) {
@@ -99,6 +120,18 @@ function directRootHorizonLadder(row) {
   return row.diagnostics?.direct_root_horizon_ladder ?? null;
 }
 
+function directRootStepFractionController(row) {
+  return row.diagnostics?.direct_root_step_fraction_controller ?? null;
+}
+
+function directRootFoldLayerLock(row) {
+  return row.diagnostics?.direct_root_fold_layer_lock ?? null;
+}
+
+function directRootFoldLayerLockedIntegratorSeed(row) {
+  return row.diagnostics?.direct_root_fold_layer_locked_integrator_seed ?? null;
+}
+
 function bestBoundedEntry(ladder) {
   const entries = Array.isArray(ladder?.entries) ? ladder.entries : [];
   const bounded = entries.filter(
@@ -132,8 +165,599 @@ function estimateOnePeriodSteps(entry) {
   return Math.ceil(requestedSteps / entry.horizon_period_fraction);
 }
 
-function foldLayerRouting(fold) {
+function finiteVector3(value) {
+  return Array.isArray(value) && value.length === 3 && value.every((entry) => Number.isFinite(entry));
+}
+
+function normalizeVector3(value) {
+  return Array.isArray(value) ? value.map((entry) => Number(entry)) : null;
+}
+
+function sampleBodyState(sample, bodyId) {
+  const bodies = sample.bodies ?? sample.state ?? sample.states ?? null;
+  if (!bodies) {
+    return null;
+  }
+  if (Array.isArray(bodies)) {
+    return bodies.find((body) => body.id === bodyId) ?? null;
+  }
+  return bodies[bodyId] ?? null;
+}
+
+function rawSamples(row) {
+  const samples = row?.samples ?? row?.history ?? [];
+  if (!Array.isArray(samples)) {
+    return [];
+  }
+  return samples.map((sample) => ({
+    ...sample,
+    t: Number.isFinite(sample.t) ? sample.t : sample.time,
+  }));
+}
+
+function canonicalSamples(row) {
+  return rawSamples(row)
+    .filter((sample) => Number.isFinite(sample.t))
+    .map((sample) => ({
+      t: sample.t,
+      bodies: Object.fromEntries(
+        BODY_IDS.map((bodyId) => {
+          const state = sampleBodyState(sample, bodyId) ?? {};
+          return [
+            bodyId,
+            {
+              position: normalizeVector3(state.position),
+              velocity: normalizeVector3(state.velocity),
+            },
+          ];
+        })
+      ),
+    }))
+    .sort((a, b) => a.t - b.t);
+}
+
+function sampleTimeDiagnostics(row) {
+  const samples = rawSamples(row);
+  let finiteSampleCount = 0;
+  let invalidTimeCount = 0;
+  let ordered = true;
+  let priorTime = null;
+  for (const sample of samples) {
+    if (!Number.isFinite(sample.t)) {
+      invalidTimeCount += 1;
+      continue;
+    }
+    finiteSampleCount += 1;
+    if (priorTime !== null && sample.t < priorTime) {
+      ordered = false;
+    }
+    priorTime = sample.t;
+  }
+  return {
+    raw_sample_count: samples.length,
+    finite_sample_count: finiteSampleCount,
+    invalid_time_count: invalidTimeCount,
+    sample_count_at_least_two: finiteSampleCount >= 2,
+    samples_ordered_by_t: ordered,
+    sample_times_finite: invalidTimeCount === 0,
+  };
+}
+
+function bodyStateDiagnostics(row) {
+  const samples = rawSamples(row).filter((sample) => Number.isFinite(sample.t));
+  let missingStateCount = 0;
+  let invalidVectorCount = 0;
+  const invalidExamples = [];
+  for (const sample of samples) {
+    for (const bodyId of BODY_IDS) {
+      const state = sampleBodyState(sample, bodyId);
+      if (!state) {
+        missingStateCount += 1;
+        invalidExamples.push({ t: sample.t, body: bodyId, reason: "missing" });
+        continue;
+      }
+      if (!finiteVector3(state.position) || !finiteVector3(state.velocity)) {
+        invalidVectorCount += 1;
+        invalidExamples.push({ t: sample.t, body: bodyId, reason: "nonfinite-vector" });
+      }
+    }
+  }
+  return {
+    missing_state_count: missingStateCount,
+    invalid_vector_count: invalidVectorCount,
+    invalid_examples: invalidExamples.slice(0, 20),
+    all_required_body_states_present: missingStateCount === 0,
+    body_state_vectors_finite: invalidVectorCount === 0,
+  };
+}
+
+function rawRoots(row) {
+  const roots =
+    row?.active_causal_root_ledger ??
+    row?.active_roots ??
+    row?.root_ledger?.active_roots ??
+    row?.root_ledger?.roots ??
+    [];
+  return Array.isArray(roots) ? roots : [];
+}
+
+function canonicalRoots(row) {
+  return rawRoots(row).map((root) => ({
+    source: root.source ?? null,
+    receiver: root.receiver ?? null,
+    relation: root.relation ?? null,
+    delay: Number(root.delay ?? root.tau ?? root.root_delay),
+    J: Number(root.J),
+    status: root.status ?? null,
+  }));
+}
+
+function rootDiagnostics(row) {
+  const roots = canonicalRoots(row);
+  const invalidRoots = [];
+  let maxDelay = 0;
+  const relations = new Set();
+  let invalidLabelCount = 0;
+  let invalidDelayCount = 0;
+  let invalidJCount = 0;
+  for (const root of roots) {
+    const labelsValid = BODY_IDS.includes(root.source) && BODY_IDS.includes(root.receiver);
+    const relationValid = ROOT_RELATIONS.includes(root.relation);
+    const delayValid = Number.isFinite(root.delay) && root.delay >= 0;
+    const jValid = Number.isFinite(root.J);
+    const statusValid = root.status === "active";
+    if (delayValid) {
+      maxDelay = Math.max(maxDelay, root.delay);
+    }
+    if (statusValid && relationValid) {
+      relations.add(root.relation);
+    }
+    if (!labelsValid) {
+      invalidLabelCount += 1;
+    }
+    if (!delayValid) {
+      invalidDelayCount += 1;
+    }
+    if (!jValid) {
+      invalidJCount += 1;
+    }
+    if (!(labelsValid && relationValid && delayValid && jValid && statusValid)) {
+      invalidRoots.push(root);
+    }
+  }
+  return {
+    root_count: roots.length,
+    invalid_root_count: invalidRoots.length,
+    invalid_roots: invalidRoots.slice(0, 20),
+    max_delay: maxDelay,
+    active_root_relations_present: Object.fromEntries(
+      ROOT_RELATIONS.map((relation) => [relation, relations.has(relation)])
+    ),
+    active_root_labels_valid: invalidLabelCount === 0,
+    active_root_delays_finite_nonnegative: invalidDelayCount === 0,
+    active_root_J_finite: invalidJCount === 0,
+  };
+}
+
+function selectedWeakTierLayers(row) {
+  return (
+    row?.selected_weak_tier_layers ??
+    row?.weak_retained_amplitude_handoff?.tier_selector?.active_layers ??
+    ["I", "M", "O"]
+  );
+}
+
+function sourceCoverageDiagnostics(row, activeLayers) {
+  const sourceLabels = new Set(canonicalRoots(row).map((root) => root.source).filter(Boolean));
+  const requiredSources = activeLayers.flatMap((layer) => POLARITIES.map((polarity) => `${layer}${polarity}`));
+  const missingSources = requiredSources.filter((source) => !sourceLabels.has(source));
+  return {
+    required_sources: requiredSources,
+    missing_sources: missingSources,
+    active_root_sources_cover_selected_layers: missingSources.length === 0,
+  };
+}
+
+function sourceTimeCoverageTolerance(period, maxDelay) {
+  const scale = Math.max(
+    1,
+    Number.isFinite(period) ? Math.abs(period) : 0,
+    Number.isFinite(maxDelay) ? Math.abs(maxDelay) : 0
+  );
+  return SOURCE_TIME_COVERAGE_EPSILON_FACTOR * Number.EPSILON * scale;
+}
+
+function lowerEndpointDeficit(sampleTime, requiredTime) {
+  if (!Number.isFinite(sampleTime) || !Number.isFinite(requiredTime)) {
+    return null;
+  }
+  return Math.max(0, sampleTime - requiredTime);
+}
+
+function upperEndpointDeficit(sampleTime, requiredTime) {
+  if (!Number.isFinite(sampleTime) || !Number.isFinite(requiredTime)) {
+    return null;
+  }
+  return Math.max(0, requiredTime - sampleTime);
+}
+
+function coverageDiagnostics(row) {
+  const samples = canonicalSamples(row);
+  const roots = rootDiagnostics(row);
+  const period = row?.period ?? null;
+  const minSampleTime = samples.length > 0 ? samples[0].t : null;
+  const maxSampleTime = samples.length > 0 ? samples[samples.length - 1].t : null;
+  const maxRequiredDelay = roots.max_delay;
+  const requiredStart = -maxRequiredDelay;
+  const coverageTolerance = sourceTimeCoverageTolerance(period, maxRequiredDelay);
+  return {
+    min_sample_time: minSampleTime,
+    max_sample_time: maxSampleTime,
+    required_start: requiredStart,
+    required_end: period,
+    max_active_root_delay: maxRequiredDelay,
+    coverage_tolerance: coverageTolerance,
+    cycle_start_deficit: lowerEndpointDeficit(minSampleTime, 0),
+    delayed_source_start_deficit: lowerEndpointDeficit(minSampleTime, requiredStart),
+    end_deficit: upperEndpointDeficit(maxSampleTime, period),
+    samples_cover_cycle:
+      Number.isFinite(minSampleTime) &&
+      Number.isFinite(maxSampleTime) &&
+      Number.isFinite(period) &&
+      minSampleTime <= coverageTolerance &&
+      maxSampleTime + coverageTolerance >= period,
+    samples_cover_all_delayed_source_times:
+      Number.isFinite(minSampleTime) &&
+      Number.isFinite(maxSampleTime) &&
+      Number.isFinite(period) &&
+      minSampleTime <= requiredStart + coverageTolerance &&
+      maxSampleTime + coverageTolerance >= period,
+  };
+}
+
+function declaredValidation(row, field) {
+  return row?.validation?.[field] === true;
+}
+
+function foldLayerLockedValidationPacket(row) {
+  const sampleTimes = sampleTimeDiagnostics(row);
+  const bodyStates = bodyStateDiagnostics(row);
+  const roots = rootDiagnostics(row);
+  const coverage = coverageDiagnostics(row);
+  const sourceCoverage = sourceCoverageDiagnostics(row, selectedWeakTierLayers(row));
+  const validationEffect = {
+    status_is_accepted_history_segment: false,
+    source_row_present: row?.source_row !== null && row?.source_row !== undefined,
+    sample_count_at_least_two: sampleTimes.sample_count_at_least_two,
+    samples_ordered_by_t: sampleTimes.samples_ordered_by_t,
+    samples_cover_cycle: coverage.samples_cover_cycle,
+    samples_cover_all_delayed_source_times: coverage.samples_cover_all_delayed_source_times,
+    all_required_body_states_present: bodyStates.all_required_body_states_present,
+    body_state_vectors_finite: bodyStates.body_state_vectors_finite,
+    active_root_labels_valid: roots.active_root_labels_valid && roots.invalid_root_count === 0,
+    active_root_delays_finite_nonnegative:
+      roots.active_root_delays_finite_nonnegative && roots.invalid_root_count === 0,
+    active_root_J_finite: roots.active_root_J_finite && roots.invalid_root_count === 0,
+    root_ledger_stable_under_refinement: declaredValidation(row, "root_ledger_stable_under_refinement"),
+    residuals_below_tolerance: false,
+    speed_ordering_retained: declaredValidation(row, "speed_ordering_retained"),
+    no_secular_center_drift: false,
+    Delta_k_positive: false,
+    same_branch_persists_across_eta_ladder: false,
+    benchmark_inputs_excluded: declaredValidation(row, "benchmark_inputs_excluded"),
+    active_root_relations_present: roots.active_root_relations_present,
+    active_root_sources_cover_selected_layers: sourceCoverage,
+  };
+  const missingSourceCoverageFields = ACCEPTED_HISTORY_SOURCE_COVERAGE_FIELDS.filter((field) => {
+    if (field === "active_root_sources_cover_selected_layers") {
+      return validationEffect.active_root_sources_cover_selected_layers
+        ?.active_root_sources_cover_selected_layers !== true;
+    }
+    return validationEffect[field] !== true;
+  });
+  const missingRootRelations = ROOT_RELATIONS.filter(
+    (relation) => validationEffect.active_root_relations_present?.[relation] !== true
+  ).map((relation) => `active_root_relations_present.${relation}`);
+  const sourceCoveragePassed =
+    missingSourceCoverageFields.length === 0 && missingRootRelations.length === 0;
+  return {
+    schema: "a0-tier1-fold-layer-locked-validation-packet/v1",
+    status: sourceCoveragePassed
+      ? "accepted-history-source-coverage-computed"
+      : "accepted-history-source-coverage-incomplete",
+    source_row_identity_check: {
+      status: "deferred_to_accepted_history_writer",
+      source_row_present: validationEffect.source_row_present,
+      reason:
+        "source-row branch-label and z-lambda equality requires the Tier 0 row supplied to the accepted-history writer",
+    },
+    selected_weak_tier_layers: selectedWeakTierLayers(row),
+    accepted_history_source_coverage: {
+      status: sourceCoveragePassed ? "passed" : "blocked",
+      passed: sourceCoveragePassed,
+      missing_fields: [...missingSourceCoverageFields, ...missingRootRelations],
+      diagnostics: {
+        sample_times: sampleTimes,
+        body_states: bodyStates,
+        roots,
+        coverage,
+      },
+    },
+    residual_closure: {
+      status: "not_computed",
+      residuals_below_tolerance: false,
+      reason: "the fold-layer-locked macro-stride attempt has not integrated a one-period return map",
+    },
+    center_drift: {
+      status: "not_computed",
+      no_secular_center_drift: false,
+      reason: "center-gauge drift has not been evaluated on a one-period continuation trajectory",
+    },
+    monodromy: {
+      status: "not_computed",
+      Delta_k_positive: false,
+      reason: "the quotient monodromy operator has not been constructed",
+    },
+    eta_ladder: {
+      status: "not_computed",
+      same_branch_persists_across_eta_ladder: false,
+      reason: "no eta-ladder continuation has been run from the fold-layer-locked attempt",
+    },
+    accepted_history_blockers: ACCEPTED_HISTORY_BLOCKERS,
+    minimum_uncomputed_predicates: [
+      "residuals_below_tolerance",
+      "no_secular_center_drift",
+      "Delta_k_positive",
+      "same_branch_persists_across_eta_ladder",
+    ],
+    validation_effect: validationEffect,
+    next_required_computation:
+      "run the fold-layer-locked one-period continuation and compute residual closure, center-gauge drift, quotient monodromy, and eta-ladder branch persistence before accepted-history emission",
+  };
+}
+
+function foldSplittingProbeEvidence(ladder, fold) {
+  const entries = Array.isArray(ladder?.entries) ? ladder.entries : [];
+  const requestedStepCounts = entries.map((entry) => entry.requested_steps).filter(Number.isFinite);
+  const bestEntry = bestBoundedEntry(ladder);
+  const blockedEntries = entries.filter(
+    (entry) => entry.status === "direct-root-recomputing-probe-blocked"
+  );
+  const rootUnavailableEntries = entries.filter(
+    (entry) => entry.failure_code === "direct-roots-missing" || entry.warning_code === "direct-roots-missing"
+  );
+  if (fold) {
+    return {
+      schema: "self-root-fold-splitting-probe-evidence/v1",
+      status: "self-root-fold-splitting-classified",
+      requested_step_counts: requestedStepCounts,
+      best_bounded_horizon_period_fraction: bestEntry?.horizon_period_fraction ?? null,
+      first_branch_loss: ladder?.first_branch_loss ?? null,
+      first_branch_surplus: ladder?.first_branch_surplus ?? null,
+      next_required_computation:
+        "use the classified fold-layer row only as a branch-chart input; one-period residual closure and monodromy are still required",
+    };
+  }
+  if (!ladder || entries.length === 0) {
+    return {
+      schema: "self-root-fold-splitting-probe-evidence/v1",
+      status: "direct-root-horizon-ladder-missing",
+      requested_step_counts: requestedStepCounts,
+      best_bounded_horizon_period_fraction: null,
+      first_branch_loss: null,
+      first_branch_surplus: null,
+      next_required_computation:
+        "emit a direct-root horizon ladder before classifying self-root fold/splitting",
+    };
+  }
+  if (blockedEntries.length === entries.length || rootUnavailableEntries.length === entries.length) {
+    return {
+      schema: "self-root-fold-splitting-probe-evidence/v1",
+      status: "direct-root-probe-unavailable",
+      requested_step_counts: requestedStepCounts,
+      best_bounded_horizon_period_fraction: bestEntry?.horizon_period_fraction ?? null,
+      first_branch_loss: ladder?.first_branch_loss ?? null,
+      first_branch_surplus: ladder?.first_branch_surplus ?? null,
+      next_required_computation:
+        "restore finite carrier-chart state vectors and active direct roots before classifying self-root fold/splitting",
+    };
+  }
+  if (ladder.first_branch_surplus) {
+    return {
+      schema: "self-root-fold-splitting-probe-evidence/v1",
+      status: "self-root-surplus-unclassified",
+      requested_step_counts: requestedStepCounts,
+      best_bounded_horizon_period_fraction: bestEntry?.horizon_period_fraction ?? null,
+      first_branch_loss: ladder.first_branch_loss ?? null,
+      first_branch_surplus: ladder.first_branch_surplus,
+      next_required_computation:
+        "compute the self-root fold/splitting diagnostic from the first_branch_surplus_bracket",
+    };
+  }
+  if (bestEntry) {
+    return {
+      schema: "self-root-fold-splitting-probe-evidence/v1",
+      status: "no-self-root-surplus-observed-in-current-ladder",
+      requested_step_counts: requestedStepCounts,
+      best_bounded_horizon_period_fraction: bestEntry.horizon_period_fraction,
+      first_branch_loss: ladder.first_branch_loss ?? null,
+      first_branch_surplus: null,
+      next_required_computation:
+        "extend the direct-root horizon ladder until the first self-root branch surplus/loss or one period is reached; for the minimal fixture, the known diagnostic rung is --direct-probe-steps 256",
+    };
+  }
+  return {
+    schema: "self-root-fold-splitting-probe-evidence/v1",
+    status: "bounded-direct-root-horizon-missing",
+    requested_step_counts: requestedStepCounts,
+    best_bounded_horizon_period_fraction: null,
+    first_branch_loss: ladder.first_branch_loss ?? null,
+    first_branch_surplus: ladder.first_branch_surplus ?? null,
+    next_required_computation:
+      "produce at least one dynamically bounded direct-root horizon entry before classifying self-root fold/splitting",
+  };
+}
+
+function controllerCandidateEntry(candidate) {
+  if (!candidate || !Number.isFinite(candidate.estimated_steps_for_one_period)) {
+    return null;
+  }
+  const bestEntry = candidate.best_bounded_entry ?? null;
+  if (!bestEntry) {
+    return null;
+  }
+  return {
+    requested_steps: bestEntry.requested_steps,
+    completed_steps: bestEntry.completed_steps,
+    horizon_period_fraction: bestEntry.horizon_period_fraction,
+    status: bestEntry.status,
+    dynamically_bounded: bestEntry.dynamically_bounded,
+    dynamics_step_fraction: candidate.dynamics_step_fraction,
+    estimated_steps_for_one_period: candidate.estimated_steps_for_one_period,
+  };
+}
+
+function foldLayerLockCandidateEntry(foldLayerLock) {
+  const candidate = foldLayerLock?.best_candidate ?? null;
+  if (
+    foldLayerLock?.status !== "direct-root-fold-layer-lock-ready" ||
+    !candidate ||
+    !Number.isFinite(candidate.estimated_steps_for_one_period)
+  ) {
+    return null;
+  }
+  return {
+    requested_steps: candidate.first_branch_surplus_step,
+    completed_steps: candidate.first_branch_surplus_step,
+    horizon_period_fraction: candidate.event_horizon_period_fraction,
+    status: foldLayerLock.status,
+    dynamically_bounded: false,
+    fold_layer_lock_ready: true,
+    dynamics_step_fraction: candidate.dynamics_step_fraction,
+    estimated_steps_for_one_period: candidate.estimated_steps_for_one_period,
+  };
+}
+
+function foldLayerLockedIntegratorCandidateEntry(integratorSeed, maxEstimatedSteps) {
+  if (
+    integratorSeed?.status !== "direct-root-fold-layer-locked-integrator-seed-ready" ||
+    !Number.isFinite(integratorSeed.locked_direct_root_step_count) ||
+    integratorSeed.locked_direct_root_step_count <= 0 ||
+    !Number.isFinite(maxEstimatedSteps) ||
+    maxEstimatedSteps <= 0
+  ) {
+    return null;
+  }
+  const macroStride = Math.max(1, Math.ceil(integratorSeed.locked_direct_root_step_count / maxEstimatedSteps));
+  const estimatedSteps = Math.ceil(integratorSeed.locked_direct_root_step_count / macroStride);
+  const capReductionFactor = integratorSeed.locked_direct_root_step_count / estimatedSteps;
+  return {
+    requested_steps: estimatedSteps,
+    completed_steps: 0,
+    horizon_period_fraction: 1,
+    status: "direct-root-fold-layer-locked-integrator-attempt-planned",
+    dynamically_bounded: false,
+    fold_layer_locked_integrator_ready: true,
+    macro_stride: macroStride,
+    cap_reduction_factor: capReductionFactor,
+    locked_event_count: integratorSeed.locked_event_count,
+    retained_direct_root_steps_per_event: integratorSeed.retained_direct_root_steps_per_event,
+    locked_direct_root_step_count: integratorSeed.locked_direct_root_step_count,
+    retained_direct_root_step_count: estimatedSteps,
+    dynamics_step_fraction: integratorSeed.dynamics_step_fraction,
+    estimated_steps_for_one_period: estimatedSteps,
+    attempt_formula:
+      "N_attempt=ceil(locked_direct_root_step_count/macro_stride); the resulting row is an attempt budget, not an accepted history segment.",
+  };
+}
+
+function selectedStepBudget(ladder, stepController, foldLayerLock, integratorSeed, maxEstimatedSteps) {
+  const baseEntry = bestBoundedEntry(ladder);
+  const baseEstimate = estimateOnePeriodSteps(baseEntry);
+  const controllerEntry = controllerCandidateEntry(stepController?.best_candidate ?? null);
+  const controllerEstimate = controllerEntry?.estimated_steps_for_one_period ?? null;
+  const foldLockEntry = foldLayerLockCandidateEntry(foldLayerLock);
+  const foldLockEstimate = foldLockEntry?.estimated_steps_for_one_period ?? null;
+  const integratorEntry = foldLayerLockedIntegratorCandidateEntry(integratorSeed, maxEstimatedSteps);
+  const integratorEstimate = integratorEntry?.estimated_steps_for_one_period ?? null;
+  const candidates = [
+    {
+      source: "direct_root_horizon_ladder",
+      entry: baseEntry,
+      estimate: baseEstimate,
+    },
+    {
+      source: "direct_root_step_fraction_controller",
+      entry: controllerEntry,
+      estimate: controllerEstimate,
+    },
+    {
+      source: "direct_root_fold_layer_lock",
+      entry: foldLockEntry,
+      estimate: foldLockEstimate,
+    },
+    {
+      source: "direct_root_fold_layer_locked_integrator",
+      entry: integratorEntry,
+      estimate: integratorEstimate,
+    },
+  ].filter((candidate) => candidate.entry && Number.isFinite(candidate.estimate));
+  const best = candidates.reduce(
+    (currentBest, candidate) =>
+      !currentBest || candidate.estimate < currentBest.estimate ? candidate : currentBest,
+    null
+  );
+  if (best) {
+    return {
+      source: best.source,
+      entry: best.entry,
+      estimated_steps_for_one_period: best.estimate,
+      base_estimated_steps_for_one_period: baseEstimate,
+      controller_estimated_steps_for_one_period: controllerEstimate,
+      fold_layer_lock_estimated_steps_for_one_period: foldLockEstimate,
+      fold_layer_locked_integrator_estimated_steps_for_one_period: integratorEstimate,
+    };
+  }
+  return {
+    source: "direct_root_horizon_ladder",
+    entry: baseEntry,
+    estimated_steps_for_one_period: baseEstimate,
+    base_estimated_steps_for_one_period: baseEstimate,
+    controller_estimated_steps_for_one_period: controllerEstimate,
+    fold_layer_lock_estimated_steps_for_one_period: foldLockEstimate,
+    fold_layer_locked_integrator_estimated_steps_for_one_period: integratorEstimate,
+  };
+}
+
+function foldLayerRouting(fold, probeEvidence) {
   if (!fold) {
+    if (probeEvidence?.status === "direct-root-probe-unavailable") {
+      return {
+        status: "missing",
+        classification: null,
+        route: "direct-root-probe-required",
+        can_route_to_lock_ledger: false,
+        failure_code: "direct-root-probe-unavailable",
+      };
+    }
+    if (probeEvidence?.status === "no-self-root-surplus-observed-in-current-ladder") {
+      return {
+        status: "missing",
+        classification: null,
+        route: "extend-direct-root-horizon-ladder",
+        can_route_to_lock_ledger: false,
+        failure_code: "self-root-fold-splitting-probe-horizon-too-short",
+      };
+    }
+    if (probeEvidence?.status === "self-root-surplus-unclassified") {
+      return {
+        status: "missing",
+        classification: null,
+        route: "compute-self-root-fold-splitting-diagnostic",
+        can_route_to_lock_ledger: false,
+        failure_code: "self-root-fold-splitting-diagnostic-missing",
+      };
+    }
     return {
       status: "missing",
       classification: null,
@@ -166,6 +790,63 @@ function foldLayerRouting(fold) {
     route: "resolution-refinement-required",
     can_route_to_lock_ledger: false,
     failure_code: "self-root-resolution-artifact",
+  };
+}
+
+function foldFromStepController(stepController) {
+  const candidate = stepController?.best_candidate ?? null;
+  if (!candidate) {
+    return null;
+  }
+  if (candidate.first_self_root_fold_splitting) {
+    return candidate.first_self_root_fold_splitting;
+  }
+  if (!candidate.fold_layer_classification) {
+    return null;
+  }
+  return {
+    schema: "self-root-fold-splitting-diagnostic-summary/v1",
+    status: `self-root-${candidate.fold_layer_classification}`,
+    classification: candidate.fold_layer_classification,
+    reason:
+      "summary classification carried from direct-root step-fraction controller; full local bracket packet was not present in this source artifact",
+    selected_dynamics_step_fraction: candidate.dynamics_step_fraction,
+    best_bounded_horizon_period_fraction: candidate.best_bounded_horizon_period_fraction ?? null,
+    validation_effect: {
+      status_is_accepted_history_segment: false,
+      residuals_below_tolerance: false,
+      no_secular_center_drift: false,
+      Delta_k_positive: false,
+      same_branch_persists_across_eta_ladder: false,
+      reason:
+        "step-fraction fold classification is a branch-chart diagnostic only and does not establish one-period Tier 1 continuation",
+    },
+  };
+}
+
+function foldFromFoldLayerLock(foldLayerLock) {
+  const candidate = foldLayerLock?.best_candidate ?? null;
+  if (!candidate?.classification) {
+    return null;
+  }
+  return {
+    schema: "self-root-fold-splitting-diagnostic-summary/v1",
+    status: `self-root-${candidate.classification}`,
+    classification: candidate.classification,
+    reason:
+      "summary classification carried from event-local fold-layer lock; full local bracket packet remains in the source diagnostic candidate when available",
+    selected_dynamics_step_fraction: candidate.dynamics_step_fraction,
+    event_horizon_period_fraction: candidate.event_horizon_period_fraction,
+    fold_splitting_summary: candidate.fold_splitting_summary ?? null,
+    validation_effect: {
+      status_is_accepted_history_segment: false,
+      residuals_below_tolerance: false,
+      no_secular_center_drift: false,
+      Delta_k_positive: false,
+      same_branch_persists_across_eta_ladder: false,
+      reason:
+        "fold-layer lock is a branch-chart diagnostic only and does not establish one-period Tier 1 continuation",
+    },
   };
 }
 
@@ -203,8 +884,26 @@ function monodromySetup(row) {
   };
 }
 
-function rowStatus({ routing, estimatedSteps, maxEstimatedSteps, bestEntry }) {
+function rowStatus({ routing, estimatedSteps, maxEstimatedSteps, bestEntry, stepBudget, foldLayerLock }) {
   if (routing.status === "missing") {
+    if (routing.failure_code === "direct-root-probe-unavailable") {
+      return {
+        status: "blocked_direct_root_probe_unavailable",
+        failure_code: routing.failure_code,
+      };
+    }
+    if (routing.failure_code === "self-root-fold-splitting-probe-horizon-too-short") {
+      return {
+        status: "blocked_fold_splitting_probe_horizon_short",
+        failure_code: routing.failure_code,
+      };
+    }
+    if (routing.failure_code === "self-root-fold-splitting-diagnostic-missing") {
+      return {
+        status: "blocked_fold_splitting_diagnostic_missing",
+        failure_code: routing.failure_code,
+      };
+    }
     return {
       status: "blocked_fold_splitting_unclassified",
       failure_code: routing.failure_code,
@@ -229,9 +928,27 @@ function rowStatus({ routing, estimatedSteps, maxEstimatedSteps, bestEntry }) {
     };
   }
   if (estimatedSteps > maxEstimatedSteps) {
+    if (foldLayerLock?.status === "direct-root-fold-layer-lock-ready") {
+      return {
+        status: "blocked_fold_layer_lock_step_budget_exceeds_cap",
+        failure_code: "fold-layer-lock-step-budget-exceeds-cap",
+      };
+    }
+    if (stepBudget?.source === "direct_root_step_fraction_controller") {
+      return {
+        status: "blocked_step_fraction_controller_budget_exceeds_cap",
+        failure_code: "step-fraction-controller-budget-exceeds-cap",
+      };
+    }
     return {
       status: "blocked_one_period_step_budget_exceeds_cap",
       failure_code: "estimated-step-count-exceeds-cap",
+    };
+  }
+  if (stepBudget?.source === "direct_root_fold_layer_locked_integrator") {
+    return {
+      status: "ready_for_fold_layer_locked_one_period_attempt",
+      failure_code: "fold-layer-locked-integrator-validation-not-run",
     };
   }
   return {
@@ -242,17 +959,60 @@ function rowStatus({ routing, estimatedSteps, maxEstimatedSteps, bestEntry }) {
 
 function onePeriodRow(row, args) {
   const ladder = directRootHorizonLadder(row);
-  const bestEntry = bestBoundedEntry(ladder);
+  const stepController = directRootStepFractionController(row);
+  const foldLayerLock = directRootFoldLayerLock(row);
+  const integratorSeed = directRootFoldLayerLockedIntegratorSeed(row);
+  const stepBudget = selectedStepBudget(
+    ladder,
+    stepController,
+    foldLayerLock,
+    integratorSeed,
+    args.maxEstimatedSteps
+  );
+  const bestEntry = stepBudget.entry;
   const surplusEntry = firstSurplusEntry(ladder);
-  const fold = ladder?.first_self_root_fold_splitting ?? surplusEntry?.self_root_fold_splitting ?? null;
-  const routing = foldLayerRouting(fold);
-  const estimatedSteps = estimateOnePeriodSteps(bestEntry);
+  const ladderFold = ladder?.first_self_root_fold_splitting ?? surplusEntry?.self_root_fold_splitting ?? null;
+  const controllerFold = foldFromStepController(stepController);
+  const lockFold = foldFromFoldLayerLock(foldLayerLock);
+  const fold = ladderFold ?? controllerFold ?? lockFold;
+  const foldProbeEvidence = foldSplittingProbeEvidence(ladder, fold);
+  const routing = foldLayerRouting(fold, foldProbeEvidence);
+  const estimatedSteps = stepBudget.estimated_steps_for_one_period;
   const status = rowStatus({
     routing,
     estimatedSteps,
     maxEstimatedSteps: args.maxEstimatedSteps,
     bestEntry,
+    stepBudget,
+    foldLayerLock,
   });
+  const stepBudgetBlocker =
+    estimatedSteps !== null && estimatedSteps > args.maxEstimatedSteps
+      ? {
+          schema: "a0-tier1-one-period-step-budget-blocker/v1",
+          status: status.status,
+          failure_code: status.failure_code,
+          selected_step_budget_source: stepBudget.source,
+          max_estimated_steps: args.maxEstimatedSteps,
+          estimated_steps_for_one_period: estimatedSteps,
+          base_estimated_steps_for_one_period: stepBudget.base_estimated_steps_for_one_period,
+          controller_estimated_steps_for_one_period:
+            stepBudget.controller_estimated_steps_for_one_period,
+          fold_layer_lock_estimated_steps_for_one_period:
+            stepBudget.fold_layer_lock_estimated_steps_for_one_period,
+          fold_layer_locked_integrator_estimated_steps_for_one_period:
+            stepBudget.fold_layer_locked_integrator_estimated_steps_for_one_period,
+          fold_layer_lock_ready:
+            foldLayerLock?.status === "direct-root-fold-layer-lock-ready",
+          required_reduction_factor:
+            Number.isFinite(estimatedSteps) && args.maxEstimatedSteps > 0
+              ? estimatedSteps / args.maxEstimatedSteps
+              : null,
+          next_required_computation:
+            "derive or run an adaptive fold-layer-locked one-period integrator that reduces the retained direct-root step count below the attempt cap while still reporting residual closure, no secular center drift, Delta_k, and eta-ladder persistence",
+        }
+      : null;
+  const validationPacket = foldLayerLockedValidationPacket(row);
   return {
     row: row.row,
     schema: "a0-tier1-one-period-continuation-prototype-row/v1",
@@ -262,13 +1022,52 @@ function onePeriodRow(row, args) {
     source_status: row.status ?? null,
     source_failure_code: row.failure_code ?? null,
     period: row.period ?? null,
+    source_row: row.source_row ?? null,
+    selected_weak_tier_layers: selectedWeakTierLayers(row),
+    samples: canonicalSamples(row),
+    active_causal_root_ledger: canonicalRoots(row),
     branch_chart: {
       self_root_fold_splitting: fold,
+      fold_splitting_source: ladderFold
+        ? "direct_root_horizon_ladder"
+        : controllerFold
+          ? "direct_root_step_fraction_controller"
+          : lockFold
+            ? "direct_root_fold_layer_lock"
+            : null,
+      fold_splitting_probe: foldProbeEvidence,
       fold_layer_routing: routing,
+      fold_layer_lock:
+        foldLayerLock === null
+          ? null
+          : {
+              status: foldLayerLock.status,
+              event_horizon_stable: foldLayerLock.event_horizon_stable ?? false,
+              best_candidate: foldLayerLock.best_candidate
+                ? {
+                    source: foldLayerLock.best_candidate.source,
+                    dynamics_step_fraction: foldLayerLock.best_candidate.dynamics_step_fraction,
+                    estimated_steps_for_one_period:
+                      foldLayerLock.best_candidate.estimated_steps_for_one_period,
+                    event_horizon_period_fraction:
+                      foldLayerLock.best_candidate.event_horizon_period_fraction,
+                    first_branch_surplus_step:
+                      foldLayerLock.best_candidate.first_branch_surplus_step,
+                    validation: foldLayerLock.best_candidate.validation,
+                  }
+                : null,
+            },
       branch_surplus_source: ladder?.first_branch_surplus ?? null,
     },
     one_period_step_budget: {
       max_estimated_steps: args.maxEstimatedSteps,
+      selected_step_budget_source: stepBudget.source,
+      base_estimated_steps_for_one_period: stepBudget.base_estimated_steps_for_one_period,
+      controller_estimated_steps_for_one_period: stepBudget.controller_estimated_steps_for_one_period,
+      fold_layer_lock_estimated_steps_for_one_period:
+        stepBudget.fold_layer_lock_estimated_steps_for_one_period,
+      fold_layer_locked_integrator_estimated_steps_for_one_period:
+        stepBudget.fold_layer_locked_integrator_estimated_steps_for_one_period,
       best_bounded_entry:
         bestEntry === null
           ? null
@@ -278,6 +1077,19 @@ function onePeriodRow(row, args) {
               horizon_period_fraction: bestEntry.horizon_period_fraction,
               status: bestEntry.status,
               dynamically_bounded: bestEntry.dynamically_bounded,
+              dynamics_step_fraction: bestEntry.dynamics_step_fraction ?? null,
+              fold_layer_lock_ready: bestEntry.fold_layer_lock_ready ?? false,
+              fold_layer_locked_integrator_ready:
+                bestEntry.fold_layer_locked_integrator_ready ?? false,
+              macro_stride: bestEntry.macro_stride ?? null,
+              cap_reduction_factor: bestEntry.cap_reduction_factor ?? null,
+              locked_event_count: bestEntry.locked_event_count ?? null,
+              retained_direct_root_steps_per_event:
+                bestEntry.retained_direct_root_steps_per_event ?? null,
+              locked_direct_root_step_count: bestEntry.locked_direct_root_step_count ?? null,
+              retained_direct_root_step_count:
+                bestEntry.retained_direct_root_step_count ?? null,
+              attempt_formula: bestEntry.attempt_formula ?? null,
             },
       first_surplus_entry:
         surplusEntry === null
@@ -292,15 +1104,70 @@ function onePeriodRow(row, args) {
       estimated_steps_for_one_period: estimatedSteps,
       can_attempt_with_current_cap:
         estimatedSteps !== null && estimatedSteps <= args.maxEstimatedSteps && routing.can_route_to_lock_ledger,
+      step_budget_blocker: stepBudgetBlocker,
+      fold_layer_locked_integrator:
+        integratorSeed === null
+          ? null
+          : {
+              status: integratorSeed.status,
+              locked_event_count: integratorSeed.locked_event_count ?? null,
+              retained_direct_root_steps_per_event:
+                integratorSeed.retained_direct_root_steps_per_event ?? null,
+              locked_direct_root_step_count:
+                integratorSeed.locked_direct_root_step_count ?? null,
+              selected_macro_stride:
+                stepBudget.source === "direct_root_fold_layer_locked_integrator"
+                  ? stepBudget.entry?.macro_stride ?? null
+                  : null,
+              cap_reduction_factor:
+                stepBudget.source === "direct_root_fold_layer_locked_integrator"
+                  ? stepBudget.entry?.cap_reduction_factor ?? null
+                  : null,
+              planned_estimated_steps_for_one_period:
+                stepBudget.source === "direct_root_fold_layer_locked_integrator"
+                  ? stepBudget.estimated_steps_for_one_period
+                  : null,
+              planned_attempt_formula:
+                stepBudget.source === "direct_root_fold_layer_locked_integrator"
+                  ? stepBudget.entry?.attempt_formula ?? null
+                  : null,
+              validation_effect: integratorSeed.validation_effect ?? null,
+            },
+      step_fraction_controller:
+        stepController === null
+          ? null
+          : {
+              status: stepController.status,
+              simple_step_relaxation_reduces_burden:
+                stepController.simple_step_relaxation_reduces_burden ?? false,
+              best_candidate: stepController.best_candidate
+                ? {
+                    dynamics_step_fraction: stepController.best_candidate.dynamics_step_fraction,
+                    estimated_steps_for_one_period:
+                      stepController.best_candidate.estimated_steps_for_one_period,
+                    best_bounded_horizon_period_fraction:
+                      stepController.best_candidate.best_bounded_horizon_period_fraction,
+                    fold_layer_classification: stepController.best_candidate.fold_layer_classification,
+                  }
+                : null,
+              controller_decision: stepController.controller_decision ?? null,
+              recommended_next_rule: stepController.recommended_next_rule ?? null,
+            },
     },
     residual_targets: residualTargets(),
     monodromy_setup: monodromySetup(row),
+    fold_layer_locked_validation_packet: validationPacket,
+    validation: validationPacket.validation_effect,
     accepted_history_boundary: {
       status_is_accepted_history_segment: false,
       residuals_below_tolerance: false,
       no_secular_center_drift: false,
       Delta_k_positive: false,
       same_branch_persists_across_eta_ladder: false,
+      accepted_history_source_coverage:
+        validationPacket.accepted_history_source_coverage.status,
+      accepted_history_source_coverage_missing_fields:
+        validationPacket.accepted_history_source_coverage.missing_fields,
       blocked_fields: ACCEPTED_HISTORY_BLOCKERS,
       reason:
         "this prototype records feasibility and residual targets only; it does not emit accepted-history rows",
@@ -319,28 +1186,46 @@ function summarize(rows) {
   }
   return {
     row_count: rows.length,
-    ready_for_one_period_attempt_count: rows.filter((row) => row.status === "ready_for_one_period_continuation_attempt").length,
+    ready_for_one_period_attempt_count: rows.filter(isReadyForOnePeriodAttempt).length,
+    ready_for_direct_one_period_attempt_count: rows.filter(
+      (row) => row.status === "ready_for_one_period_continuation_attempt"
+    ).length,
+    ready_for_fold_layer_locked_one_period_attempt_count: rows.filter(
+      (row) => row.status === "ready_for_fold_layer_locked_one_period_attempt"
+    ).length,
     accepted_history_row_count: 0,
     status_counts,
     failure_codes,
   };
 }
 
+function isReadyForOnePeriodAttempt(row) {
+  return (
+    row.status === "ready_for_one_period_continuation_attempt" ||
+    row.status === "ready_for_fold_layer_locked_one_period_attempt"
+  );
+}
+
 function run(sourceArtifact, sourcePath, args) {
   const rows = selectRows(sourceArtifact, args.rows).map((row) => onePeriodRow(row, args));
+  const allDirectReady =
+    rows.length > 0 && rows.every((row) => row.status === "ready_for_one_period_continuation_attempt");
+  const allFoldLayerLockedReady =
+    rows.length > 0 && rows.every((row) => row.status === "ready_for_fold_layer_locked_one_period_attempt");
   return {
     metadata: {
       artifact: "a0-tier1-one-period-continuation-prototype",
       schema: "a0-tier1-one-period-continuation-prototype/v1",
-      status:
-        rows.length > 0 && rows.every((row) => row.status === "ready_for_one_period_continuation_attempt")
-          ? "ready_for_one_period_attempt"
+      status: allDirectReady
+        ? "ready_for_one_period_attempt"
+        : allFoldLayerLockedReady
+          ? "ready_for_fold_layer_locked_one_period_attempt"
           : "blocked_one_period_continuation",
       generatedAt: new Date().toISOString(),
       source: path.relative(process.cwd(), sourcePath),
       max_estimated_steps: args.maxEstimatedSteps,
       note:
-        "Fail-closed intake from short-horizon direct-root diagnostics; this artifact does not integrate a full period and does not compute Delta_k.",
+        "Fail-closed intake from short-horizon direct-root diagnostics; this artifact may report a fold-layer-locked one-period attempt budget, but it does not integrate a full period and does not compute Delta_k.",
     },
     source_metadata: sourceArtifact.metadata ?? null,
     summary: summarize(rows),

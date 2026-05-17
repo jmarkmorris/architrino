@@ -56,6 +56,166 @@ where $\omega(\text{state})$ is the instantaneous internal oscillation frequency
 
 The central problem is to compute $\omega(\mathbf{v},n,\chi_{\text{sea}},\Phi_{\text{eff}})$ from the master dynamics.
 
+### Noether-Sea Core Cadence
+
+For redshift and cosmology work, the local Noether-Sea core cadence can serve as the immediate clock reference before any separate detector clock is introduced. Let $\Omega_N(\mathbf{x},t)$ be a representative cadence extracted from the local Noether-Sea core population, with $T_N(\mathbf{x},t)=2\pi/\Omega_N(\mathbf{x},t)$. Relative to the weak homogeneous reference cadence, define
+
+$$
+\Gamma_N(\mathbf{x},t)
+\equiv
+\frac{T_N(\mathbf{x},t)}{T_{N0}}
+=
+\frac{\Omega_{N0}}{\Omega_N(\mathbf{x},t)}.
+$$
+
+The quantity $\Gamma_N$ records local cadence stretching of the Noether Sea itself. It is therefore a substrate-facing clock diagnostic: $\Gamma_N=1$ marks the weak homogeneous reference, while $\Gamma_N>1$ marks a locally slowed or stretched Noether-Sea cadence. In the homogeneous moving-core branch, the Lorentz-closure target is to derive the appropriate limit $\Gamma_N\to\gamma$ or, equivalently, $\Omega_N/\Omega_{N0}\to1/\gamma$ for the declared clock channel. In a gravitational or cosmological medium-state comparison, $\Gamma_N$ must instead be extracted from $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, $\Phi_{\text{eff}}$, and clock geometry.
+
+This diagnostic does not replace $d\tau/dt$. It supplies a more primitive Noether-Sea cadence factor from which clock-rate comparisons, gravitational redshift, and the redshift factorization in [Expansion Mechanism](../cosmology/expansion-mechanism.md#noether-sea-core-factorization-target) can be built.
+
+In the weak-field endpoint limit, the required recovery condition is
+
+$$
+\frac{\Omega_N(\mathbf{x},t)}{\Omega_{N0}}
+\approx
+1+\frac{\Phi_N(\mathbf{x},t)}{c_0^2},
+\qquad
+\Gamma_N(\mathbf{x},t)
+\approx
+1-\frac{\Phi_N(\mathbf{x},t)}{c_0^2},
+$$
+
+to first order in $\Phi_N/c_0^2$. Since $\Phi_N < 0$ in a deeper potential, this gives $\Gamma_N > 1$ there: the local Noether-Sea core cadence is stretched relative to the weak homogeneous reference. For two endpoint cells $E$ and $R$ with no source-branch, launch, or path-history correction, the redshift recovery condition is therefore
+
+$$
+\ln(1+z)
+\approx
+\ln\Gamma_{N,E}-\ln\Gamma_{N,R}
+\approx
+\frac{\Phi_N(R)-\Phi_N(E)}{c_0^2}.
+$$
+
+This is the clock-channel version of the weak gravitational-redshift benchmark. The derivation burden is to obtain the first equation from Noether-Sea constitutive response rather than impose it as an imported metric fact.
+
+### Gamma-N Geometry Extraction Target
+
+The equations above define the endpoint benchmark, but they do not yet derive the Noether-Sea cadence factor from core geometry. A first-order extraction scaffold should start from the local variables that already appear in the clock and transport programs: normalized Noether-core density $n$, Noether-Sea delay factor $\chi_{\text{sea}}$, envelope scale $\lambda$, envelope shape ratio $\xi$, and a representative Noether-core scale $R_{\text{core}}$. Around the weak homogeneous reference, collect the logarithmic deformation record
+
+$$
+\mathbf{g}_N
+=
+\left(
+\ln n,\,
+\ln\chi_{\text{sea}},\,
+\ln\lambda,\,
+-\ln\xi,\,
+\ln\frac{R_{\text{core}}}{R_{\text{core},0}}
+\right)^T.
+$$
+
+The candidate extraction law is
+
+$$
+\ln\Gamma_N
+=
+\mathbf{b}_N\cdot\mathbf{g}_N
++\mathcal{R}_{\Gamma},
+$$
+
+where $\mathbf{b}_N$ is a constitutive coefficient row and $\mathcal{R}_{\Gamma}$ contains higher-order and branch-specific corrections. Write the row as
+
+$$
+\mathbf{b}_N
+=
+\left(
+b_n,\,
+b_\chi,\,
+b_\lambda,\,
+b_\xi,\,
+b_R
+\right).
+$$
+
+The sign convention places $-\ln\xi$ in the deformation record because the homogeneous Lorentz-closure branch requires $\Gamma_N\to1/\xi$ when the clock readout is controlled only by oblate moving-core geometry. In that branch
+
+$$
+\mathbf{g}_N^{\mathrm{mov}}
+=
+\left(
+0,\,
+0,\,
+0,\,
+\ln\gamma,\,
+0
+\right)^T
++O(\epsilon_{\mathrm{LV}}),
+$$
+
+so the moving-core constraint fixes
+
+$$
+b_\xi=1
+$$
+
+up to preferred-frame leakage. The first-order admissible row is therefore
+
+$$
+\mathbf{b}_N
+=
+\left(
+b_n,\,
+b_\chi,\,
+b_\lambda,\,
+1,\,
+b_R
+\right),
+$$
+
+with the remaining coefficients belonging to the isotropic Noether-Sea constitutive response rather than to Lorentz geometry.
+
+The weak-field recovery condition then becomes a constraint on the same coefficient row:
+
+$$
+\ln\Gamma_N(\mathbf{x},t)
+=
+-\frac{\Phi_N(\mathbf{x},t)}{c_0^2}
++O\!\left(\frac{\Phi_N^2}{c_0^4}\right),
+$$
+
+or, locally,
+
+$$
+\mathbf{b}_N\cdot\nabla\mathbf{g}_N
+=
+-\frac{\nabla\Phi_N}{c_0^2}
++O\!\left(\frac{\Phi_N\nabla\Phi_N}{c_0^4}\right).
+$$
+
+Equivalently, let $U\equiv-\Phi_N>0$ and define the static weak-potential response coefficients by
+
+$$
+\ln n=a_n\frac{U}{c_0^2},\qquad
+\ln\chi_{\text{sea}}=a_\chi\frac{U}{c_0^2},\qquad
+\ln\lambda=a_\lambda\frac{U}{c_0^2},\qquad
+\ln\frac{R_{\text{core}}}{R_{\text{core},0}}=a_R\frac{U}{c_0^2},
+$$
+
+to first order, with $-\ln\xi=0+O(U^2/c_0^4)$ in an isotropic static endpoint cell. Then weak gravitational redshift fixes only the scalar combination
+
+$$
+b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1.
+$$
+
+This is the first useful reduction of the proof burden. The Lorentz branch fixes the shape coefficient $b_\xi$, while static weak-field redshift fixes one isotropic coefficient combination. Individual values of $b_n$, $b_\chi$, $b_\lambda$, and $b_R$ require a constitutive calculation or simulation that extracts how a mass source changes $n$, $\chi_{\text{sea}}$, $\lambda$, and $R_{\text{core}}$ in the same Noether-Sea cell.
+
+This gives the derivation a concrete target. The same $\Gamma_N$ extraction map must recover $\Gamma_N=1$ in the weak homogeneous reference, $\Gamma_N\to1/\xi$ in the homogeneous moving-core Lorentz branch, and $\Gamma_N\approx1-\Phi_N/c_0^2$ in the weak gravitational endpoint branch. It must also remain separate from the launch factor $D_v$ and the path-history propagation factor $Y_X$, so the endpoint contribution to redshift is only
+
+$$
+\ln(1+z)_{\mathrm{endpoint}}
+=
+\ln\Gamma_{N,E}
+-\ln\Gamma_{N,R}.
+$$
+
 ---
 
 ## Mechanisms for Time Dilation

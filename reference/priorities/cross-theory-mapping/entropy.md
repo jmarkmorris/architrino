@@ -13,7 +13,7 @@
 
 1. `windowed_entropy_functional` - Promote the existing coarse-graining / access-window formula into a reusable entropy closure packet. Status: `draft`. Depends on: none.
 2. `record_locking_entropy` - Connect measurement-record entropy locking to the same coarse-grained entropy grammar. Status: `draft`. Depends on: `windowed_entropy_functional`, [quantum-closure](../quantum-closure/quantum-closure.md).
-3. `horizon_label_entropy` - Route black-hole entropy through the horizon-interface label ensemble, its local block entropy density, and the Page-curve release-channel target. Status: `block-density-scaffolded`; coefficient derivation pending. Depends on: [strong-field-closure](../strong-field-closure/strong-field-closure.md), `windowed_entropy_functional`.
+3. `horizon_label_entropy` - Route black-hole entropy through the horizon-interface label ensemble, its local block entropy density, and the Page-curve release-channel target. Status: `kernel-handoff-ready`; terminal enumerator consumption and coefficient derivation pending. Depends on: [strong-field-closure](../strong-field-closure/strong-field-closure.md), `windowed_entropy_functional`.
 4. `cosmology_entropy_balance` - State when Noether-Sea entropy, thermalization, redshift, and CMB blackbody recovery use one shared medium-state record. Status: `draft`. Depends on: [cosmology-closure](../cosmology-closure/cosmology-closure.md), [validation-gates](../validation-gates/validation-gates.md).
 
 ## Scope
@@ -125,6 +125,8 @@ $$
 $$
 
 Here $\sigma_W$ should be derived from unresolved branch mixing, residual routing, thermalization, record formation, and dissipative medium response. The boundary flux term carries emitted assemblies, radiation, recoil, release channels, and Noether-Sea transport across $\partial W(t)$. The residual $\mathcal{R}_{\mathcal{Q}}$ records coarse-graining error, not an extra physical substance.
+
+The Noether-core equilibrium transport hypothesis supplies a concrete cosmology-facing candidate for part of this entropy balance. If $f_N(\nu,\mathbf{x},t)$ is the distribution of Noether-core cadence states and $J_\nu$ is its frequency-space current, then entropy production should be tested against the neighbor-equilibration term $R_{\mathrm{eq}}[f_N]$, while boundary flux should carry the source terms $S_{\mathrm{BH}}$ and $S_{\mathrm{GW}}$ only through declared medium-loading and perturbation records. A useful entropy packet must therefore show whether the proposed bulk movement from recycling sites toward lower-energy Noether-Sea states increases coarse-grained entropy, exports entropy through $\partial W(t)$, or merely redistributes an already constrained medium record.
 
 ## Mapping Table
 

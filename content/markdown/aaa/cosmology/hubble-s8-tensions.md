@@ -10,13 +10,39 @@ This document frames $H_0$ and $S_8$ as linked conceptual problems inside a sing
 
 ## Tension Meanings
 
-- **$H_0$ tension:** disagreement between early-inferred and local-inferred expansion rates.
+- **$H_0$ tension:** disagreement between early-inferred and local-inferred expansion-rate or redshift-transfer-slope estimates.
 - **$S_8$ tension:** disagreement between early-inferred and late-inferred structure-growth amplitude.
 
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ Interpretation
 
 - $H_0$ is read through inhomogeneous medium evolution and region-dependent effective histories.
 - $S_8$ is read through growth behavior in baryonic and neutral assembly sectors with medium-coupled dynamics.
+
+Operationally, $H_0$ is the present local slope of the corrected redshift-distance transfer map defined in [Expansion Mechanism](expansion-mechanism.md#distance-and-effective-hubble-coefficient). It remains a useful comparison coefficient, but in this ontology it measures redshift per Euclidean distance after source, motion, clock-cadence, and path-history corrections, not literal expansion of the Euclidean void.
+
+The sharper local object is the directional transfer coefficient
+
+$$
+H_{\mathrm{eff},X}(R,\hat{\mathbf{k}})
+=
+c_0\,\alpha_{R,X}(\hat{\mathbf{k}}),
+$$
+
+with the next correction governed by the local curvature $\mathcal{K}_X(R,\hat{\mathbf{k}})$ of the corrected log-redshift curve. The $H_0$ tension is therefore not only a disagreement between two scalar estimates. In this ontology it is a question about whether early-inferred and late-inferred pipelines are sampling the same local transfer coefficient, the same higher-order redshift curvature, and the same environment-conditioned Noether-Sea state record.
+
+For diagnostic use, raw measured redshift should first be converted into the propagation residual
+
+$$
+Z_{\mathrm{prop},X}
+=
+\ln(1+z_X)
+-\ln\Gamma_{N,E}
++\ln\Gamma_{N,R}
++\ln B_X(E)
++\ln D_v,
+$$
+
+so that endpoint cadence, source-branch shifts, and launch motion are not folded into a single apparent $H_0$ offset. Only then should local and early-inferred transfer slopes be compared.
 
 This is conceptually adjacent to inhomogeneous/timescape interpretations, but implemented here through explicit Noether-Sea state variables and module couplings.
 
@@ -45,6 +71,7 @@ For $H_0$:
 - a non-zero environment-conditioned scatter in local $H$ inference is expected if medium-state gradients are physically relevant.
 - a diagnostic expectation is correlation between local inferred-$H$ scatter and bulk-flow/environment anisotropy indicators along the same sightlines.
 - the CMB-frame correction used in local-ladder and supernova pipelines must be tested against matter-dipole and bulk-flow residuals rather than assumed to erase all direction dependence.
+- the quadratic term in the local redshift-transfer curve should be fitted or bounded before a local distance-ladder slope is promoted to a universal coefficient.
 
 For $S_8$:
 
@@ -84,7 +111,19 @@ $$
 \right).
 $$
 
-Here $\delta H(z,\hat{\mathbf{n}})$ is the directional departure from an isotropic inferred expansion rate, and $\Delta_{\mathrm{dip}}^{X}$ is the source-catalogue dipole residual defined in [CMB](CMB.md). The expected sign and scale of $\mathcal{R}_{H,D}$ must come from the same Noether-Sea density, delay, and flow variables used by the expansion and growth modules. If the correlation is absent after known survey systematics are controlled, the local-environment explanation for $H_0$ loses support. If the correlation exists but requires a different medium state from the one used for CMB, BAO, or growth, the cosmology branch has split its ontology and fails the shared-closure requirement.
+Here $\delta H(z,\hat{\mathbf{n}})$ is the directional departure from an isotropic inferred transfer slope, and $\Delta_{\mathrm{dip}}^{X}$ is the source-catalogue dipole residual defined in [CMB](CMB.md). Operationally, the Hubble residual should be computed from corrected propagation slopes, for example
+
+$$
+\delta H_X(z,\hat{\mathbf{n}})
+=
+c_0
+\left(
+\alpha_{\mathcal{E},X}(z,\hat{\mathbf{n}})
+-\bar\alpha_X(z)
+\right),
+$$
+
+after source, endpoint, and launch factors have been removed. The expected sign and scale of $\mathcal{R}_{H,D}$ must come from the same Noether-Sea density, delay, and flow variables used by the expansion and growth modules. If the correlation is absent after known survey systematics are controlled, the local-environment explanation for $H_0$ loses support. If the correlation exists but requires a different medium state from the one used for CMB, BAO, or growth, the cosmology branch has split its ontology and fails the shared-closure requirement.
 
 The operational version of this diagnostic is the frame-split packet in [Cosmology Shared Residual Fit Protocol](../validation/simulations/cosmology-shared-residual-fit.md#frame-split-measurement-recipe), where local $H_0$ scatter is tested beside CMB, matter-dipole, supernova, and BAO directional rows.
 

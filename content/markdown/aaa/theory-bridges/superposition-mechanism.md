@@ -44,7 +44,7 @@ Treating superposition as a dynamically maintained metastability rather than a f
 *   **Claim**: Superposition represents a metastable dynamical state subject to local causal wake interactions, and "collapse" is a continuous, finite-time threshold crossing.
 *   **Prediction**: The state transition (collapse) time is finite and bounded by the local field speed $c_f$, the physical extent of the interacting assemblies, and the local density of the Noether Sea. 
 *   **Failure Mode**: Observation of strictly instantaneous state updates across space-like separated macroscopic distances—without mediation by previously correlated local hidden variables in the shared path history—falsifies the mechanism.
-*   **Next Steps**: Simulation of the Master Equation for a metastable outer binary subjected to modeled unresolved Noether-Sea boundary histories is required to derive the Born rule ($P_n = |c_n|^2$) analytically from the fractional phase-space volumes of the competing attractors.
+*   **Closure Boundary**: This chapter supplies the separatrix and finite-threshold interface. Born weights require the basin-measure and transfer-operator closure developed in the quantum ontology chapters.
 
 ### Closure Interface: Finite-Time Separatrix Law
 

@@ -10,6 +10,7 @@ const DEFAULT_ROOT_REFINEMENT_FACTOR = 2;
 const DEFAULT_DIRECT_PROBE_STEPS = 8;
 const DIRECT_PROBE_LADDER_FACTORS = [4, 16];
 const DIRECT_PROBE_MAX_ADAPTIVE_REFINEMENT_LEVEL = 2;
+const FOLD_LAYER_LOCK_MAX_RELATIVE_EVENT_HORIZON_SPREAD = 0.01;
 const DEFAULT_J_ATTRIBUTION_FRACTION = 0.75;
 const DEFAULT_BRANCH_GAP_DELAY_FACTOR = 4;
 const LAYER_ORDER = ["I", "M", "O"];
@@ -18,6 +19,7 @@ const BODY_IDS = ["I+", "I-", "M+", "M-", "O+", "O-"];
 const ROOT_RELATIONS = ["partner", "self", "inter_layer"];
 const CHARGE = { "+": 1, "-": -1 };
 const SIGN = { "+": 1, "-": -1 };
+const TWO_PI = 2 * Math.PI;
 const BLOCKED_STATUS = "blocked_carrier_replay_only";
 const BLOCKED_FAILURE_CODE = "tier1-integrator-not-run";
 const SOURCE_TIME_COVERAGE_EPSILON_FACTOR = 16;
@@ -32,6 +34,7 @@ function parseArgs(argv) {
     dynamicsStepFraction: DEFAULT_DYNAMICS_STEP_FRACTION,
     rootRefinementFactor: DEFAULT_ROOT_REFINEMENT_FACTOR,
     directProbeSteps: DEFAULT_DIRECT_PROBE_STEPS,
+    directStepFractionLadder: [],
     pretty: false,
     out: null,
     help: false,
@@ -54,6 +57,8 @@ function parseArgs(argv) {
       args.rootRefinementFactor = parsePositiveInteger(argv[++i], "--root-refinement-factor");
     } else if (arg === "--direct-probe-steps") {
       args.directProbeSteps = parsePositiveInteger(argv[++i], "--direct-probe-steps");
+    } else if (arg === "--direct-step-fraction-ladder") {
+      args.directStepFractionLadder = parsePositiveNumberList(argv[++i], "--direct-step-fraction-ladder");
     } else if (arg === "--pretty") {
       args.pretty = true;
     } else if (arg === "--out") {
@@ -79,6 +84,9 @@ Options:
                        Multiplier for carrier-root replay refinement. Defaults to ${DEFAULT_ROOT_REFINEMENT_FACTOR}.
   --direct-probe-steps N
                        Direct root-recomputing probe steps. Defaults to ${DEFAULT_DIRECT_PROBE_STEPS}.
+  --direct-step-fraction-ladder LIST
+                       Comma-separated dynamics-step fractions for the fail-closed
+                       direct-root step controller. Disabled by default.
   --out PATH            Write JSON output to a file instead of stdout.
   --pretty              Pretty-print JSON.
   --help                Show this help.
@@ -107,6 +115,31 @@ function parsePositiveNumber(value, name) {
     throw new Error(`Expected ${name} to be a positive number, got: ${value}`);
   }
   return number;
+}
+
+function parsePositiveNumberList(value, name) {
+  const numbers = String(value)
+    .split(",")
+    .map((entry) => entry.trim())
+    .filter((entry) => entry.length > 0)
+    .map((entry) => parsePositiveNumber(entry, name));
+  if (numbers.length === 0) {
+    throw new Error(`Expected ${name} to be a comma-separated list of positive numbers, got: ${value}`);
+  }
+  return uniqueSortedPositiveNumbers(numbers);
+}
+
+function uniqueSortedPositiveNumbers(values) {
+  const seen = new Set();
+  const result = [];
+  for (const value of values) {
+    const key = value.toPrecision(16);
+    if (!seen.has(key)) {
+      seen.add(key);
+      result.push(value);
+    }
+  }
+  return result.sort((a, b) => a - b);
 }
 
 function requireTier0Path(args) {
@@ -225,17 +258,78 @@ function bodyCatalog() {
   );
 }
 
+function finiteLayerMap(source) {
+  return Object.fromEntries(
+    LAYER_ORDER.map((layer) => [layer, Number.isFinite(source?.[layer]) ? source[layer] : null])
+  );
+}
+
+function layerWindings(row) {
+  return (
+    row.branch_label?.k ??
+    row.closure_labels?.k ??
+    row.z_lambda?.branch_class?.windings ??
+    null
+  );
+}
+
+function resolvedPeriods(row, commonPeriod) {
+  const explicit = finiteLayerMap(row.geometry?.periods);
+  const windings = layerWindings(row);
+  return Object.fromEntries(
+    LAYER_ORDER.map((layer) => {
+      if (Number.isFinite(explicit[layer]) && explicit[layer] > 0) {
+        return [layer, explicit[layer]];
+      }
+      const k = windings?.[layer];
+      if (Number.isFinite(commonPeriod) && Number.isFinite(k) && k > 0) {
+        return [layer, commonPeriod / k];
+      }
+      return [layer, null];
+    })
+  );
+}
+
+function resolvedOmega(row, periods, commonPeriod) {
+  const explicit = finiteLayerMap(row.geometry?.omega);
+  const windings = layerWindings(row);
+  return Object.fromEntries(
+    LAYER_ORDER.map((layer) => {
+      if (Number.isFinite(explicit[layer])) {
+        return [layer, explicit[layer]];
+      }
+      if (Number.isFinite(periods[layer]) && periods[layer] > 0) {
+        return [layer, TWO_PI / periods[layer]];
+      }
+      const k = windings?.[layer];
+      if (Number.isFinite(commonPeriod) && Number.isFinite(k) && k > 0) {
+        return [layer, (TWO_PI * k) / commonPeriod];
+      }
+      return [layer, null];
+    })
+  );
+}
+
+function resolvedHandedness(row) {
+  const source = row.branch_label?.handedness ?? row.z_lambda?.handedness ?? null;
+  return Object.fromEntries(
+    LAYER_ORDER.map((layer) => [layer, Number.isFinite(source?.[layer]) ? source[layer] : 1])
+  );
+}
+
 function rowValues(row) {
+  const commonPeriod = row.closure_labels?.T_k ?? row.geometry?.commonPeriod ?? null;
+  const periods = resolvedPeriods(row, commonPeriod);
   const ellipticity =
     typeof row.branch_label?.ellipticity === "number"
       ? row.branch_label.ellipticity
       : row.z_lambda?.ellipticity?.I ?? 1;
   return {
     radii: row.geometry?.radii ?? {},
-    omega: row.geometry?.omega ?? {},
-    periods: row.geometry?.periods ?? {},
-    commonPeriod: row.closure_labels?.T_k ?? row.geometry?.commonPeriod ?? null,
-    handedness: row.branch_label?.handedness ?? row.z_lambda?.handedness ?? {},
+    omega: resolvedOmega(row, periods, commonPeriod),
+    periods,
+    commonPeriod,
+    handedness: resolvedHandedness(row),
     ellipticity,
   };
 }
@@ -528,8 +622,15 @@ function finiteBodyStates(row, t) {
   );
 }
 
-function replaySampleTimes(row, sampleCount) {
-  const maxDelay = row.root_ledger?.maxDelay ?? 0;
+function maxActiveRootDelay(roots, fallback = 0) {
+  return roots.reduce(
+    (maxDelay, root) => (Number.isFinite(root.delay) ? Math.max(maxDelay, root.delay) : maxDelay),
+    Number.isFinite(fallback) ? fallback : 0
+  );
+}
+
+function replaySampleTimes(row, sampleCount, maxDelayOverride = null) {
+  const maxDelay = Number.isFinite(maxDelayOverride) ? maxDelayOverride : row.root_ledger?.maxDelay ?? 0;
   const period = row.closure_labels?.T_k ?? row.geometry?.commonPeriod;
   const start = -maxDelay;
   if (sampleCount <= 1) {
@@ -545,8 +646,8 @@ function replaySampleTimes(row, sampleCount) {
   }));
 }
 
-function carrierReplaySamples(row, sampleCount) {
-  return replaySampleTimes(row, sampleCount).map((sample) => ({
+function carrierReplaySamples(row, sampleCount, maxDelayOverride = null) {
+  return replaySampleTimes(row, sampleCount, maxDelayOverride).map((sample) => ({
     t: sample.t,
     bodies: finiteBodyStates(row, sample.t),
   }));
@@ -2984,9 +3085,442 @@ function directRootHorizonLadderDiagnostic(row, tier0, configResult, args, sampl
   };
 }
 
-function sourceCoverageComplete(row, samples) {
+function estimateOnePeriodStepsFromEntry(entry) {
+  if (!entry || !Number.isFinite(entry.horizon_period_fraction) || entry.horizon_period_fraction <= 0) {
+    return null;
+  }
+  const requestedSteps = entry.requested_steps ?? entry.completed_steps;
+  if (!Number.isFinite(requestedSteps) || requestedSteps <= 0) {
+    return null;
+  }
+  return Math.ceil(requestedSteps / entry.horizon_period_fraction);
+}
+
+function firstSurplusEntryFromLadder(ladder) {
+  const entries = Array.isArray(ladder?.entries) ? ladder.entries : [];
+  return (
+    entries.find((entry) => {
+      const step = entry.branch_retention?.first_branch_surplus_step;
+      return step !== null && step !== undefined;
+    }) ?? null
+  );
+}
+
+function bestBoundedEntryFromLadder(ladder) {
+  const entries = Array.isArray(ladder?.entries) ? ladder.entries : [];
+  const bounded = entries.filter(
+    (entry) => entry.dynamically_bounded === true && Number.isFinite(entry.horizon_period_fraction)
+  );
+  return bounded.reduce(
+    (best, entry) =>
+      !best || entry.horizon_period_fraction > best.horizon_period_fraction ? entry : best,
+    null
+  );
+}
+
+function stepControllerEntrySummary(entry) {
+  if (!entry) {
+    return null;
+  }
+  return {
+    requested_steps: entry.requested_steps,
+    completed_steps: entry.completed_steps,
+    status: entry.status,
+    warning_code: entry.warning_code ?? null,
+    horizon_period_fraction: entry.horizon_period_fraction,
+    dynamically_bounded: entry.dynamically_bounded,
+    first_branch_loss_step: entry.branch_retention?.first_branch_loss_step ?? null,
+    first_branch_surplus_step: entry.branch_retention?.first_branch_surplus_step ?? null,
+    endpoint_speed_ordering_residual: entry.endpoint_speed_ordering_residual ?? null,
+    max_normalized_position_drift: entry.max_normalized_position_drift ?? null,
+    max_normalized_velocity_drift: entry.max_normalized_velocity_drift ?? null,
+  };
+}
+
+function foldLayerLockEventHorizon(row, entry, fold) {
+  const period = row.closure_labels?.T_k ?? row.geometry?.commonPeriod ?? null;
+  const eventTime =
+    entry?.branch_retention?.first_branch_surplus_bracket?.current?.t ??
+    fold?.t ??
+    null;
+  if (Number.isFinite(period) && period > 0 && Number.isFinite(eventTime)) {
+    return eventTime / period;
+  }
+  return Number.isFinite(entry?.horizon_period_fraction) ? entry.horizon_period_fraction : null;
+}
+
+function foldLayerLockValidation(fold, entry) {
+  const classificationIsFoldLayer = fold?.classification === "fold-layer";
+  const retainedInitialBranches = fold?.retained_initial_branches === true;
+  const allSurplusKeysSelfActive = fold?.all_surplus_keys_self_active === true;
+  const evenSurplusParity = fold?.even_surplus_parity === true;
+  const pairedPolarities = fold?.polarity_pair_status?.paired_polarities === true;
+  const noBranchLossBeforeEvent =
+    entry?.branch_retention?.first_branch_loss_step === null ||
+    entry?.branch_retention?.first_branch_loss_step === undefined ||
+    (Number.isFinite(entry?.branch_retention?.first_branch_surplus_step) &&
+      Number.isFinite(entry?.branch_retention?.first_branch_loss_step) &&
+      entry.branch_retention.first_branch_loss_step > entry.branch_retention.first_branch_surplus_step);
+  return {
+    classification_is_fold_layer: classificationIsFoldLayer,
+    retained_initial_branches: retainedInitialBranches,
+    all_surplus_keys_self_active: allSurplusKeysSelfActive,
+    even_surplus_parity: evenSurplusParity,
+    paired_polarities: pairedPolarities,
+    no_branch_loss_before_event: noBranchLossBeforeEvent,
+    pass:
+      classificationIsFoldLayer &&
+      retainedInitialBranches &&
+      allSurplusKeysSelfActive &&
+      evenSurplusParity &&
+      pairedPolarities &&
+      noBranchLossBeforeEvent,
+  };
+}
+
+function foldLayerLockCandidateFromProbeEntry(entry, source, dynamicsStepFraction, row) {
+  if (!entry) {
+    return null;
+  }
+  const fold = entry.self_root_fold_splitting ?? null;
+  const eventHorizon = foldLayerLockEventHorizon(row, entry, fold);
+  const surplusStep = entry.branch_retention?.first_branch_surplus_step ?? null;
+  const validation = foldLayerLockValidation(fold, entry);
+  if (!Number.isFinite(eventHorizon) || eventHorizon <= 0 || !Number.isFinite(surplusStep) || surplusStep <= 0) {
+    return null;
+  }
+  return {
+    source,
+    dynamics_step_fraction: Number.isFinite(dynamicsStepFraction) ? dynamicsStepFraction : null,
+    requested_steps: entry.requested_steps ?? null,
+    completed_steps: entry.completed_steps ?? null,
+    first_branch_surplus_step: surplusStep,
+    event_horizon_period_fraction: eventHorizon,
+    estimated_steps_for_one_period: Math.ceil(surplusStep / eventHorizon),
+    classification: fold?.classification ?? null,
+    surplus_branch_count: fold?.surplus_branch_count ?? entry.branch_retention?.max_extra_branch_count ?? null,
+    surplus_branch_keys: fold?.surplus_branch_keys ?? entry.branch_retention?.first_extra_branch_keys ?? [],
+    validation,
+    fold_splitting_summary: fold
+      ? {
+          status: fold.status,
+          classification: fold.classification,
+          reason: fold.reason,
+          step: fold.step,
+          t: fold.t,
+          selected_refinement_level: fold.selected_refinement_level,
+          selected_root_samples: fold.selected_root_samples,
+        }
+      : null,
+  };
+}
+
+function directRootStepFractionCandidate(row, tier0, configResult, args, samples, dynamicsStepFraction) {
+  const ladder = directRootHorizonLadderDiagnostic(
+    row,
+    tier0,
+    configResult,
+    { ...args, dynamicsStepFraction, directStepFractionLadder: [] },
+    samples
+  );
+  const bestEntry = bestBoundedEntryFromLadder(ladder);
+  const surplusEntry = firstSurplusEntryFromLadder(ladder);
+  const lockCandidate = foldLayerLockCandidateFromProbeEntry(
+    surplusEntry,
+    "direct_root_step_fraction_controller",
+    dynamicsStepFraction,
+    row
+  );
+  return {
+    dynamics_step_fraction: dynamicsStepFraction,
+    ladder_status: ladder.status,
+    best_bounded_horizon_period_fraction: bestEntry?.horizon_period_fraction ?? null,
+    best_bounded_entry: stepControllerEntrySummary(bestEntry),
+    estimated_steps_for_one_period: estimateOnePeriodStepsFromEntry(bestEntry),
+    fold_layer_classification: ladder.first_self_root_fold_splitting?.classification ?? null,
+    first_self_root_fold_splitting: ladder.first_self_root_fold_splitting ?? null,
+    first_surplus: surplusEntry
+      ? {
+          requested_steps: surplusEntry.requested_steps,
+          first_branch_surplus_step: surplusEntry.branch_retention?.first_branch_surplus_step ?? null,
+          horizon_period_fraction: surplusEntry.horizon_period_fraction,
+          event_horizon_period_fraction: lockCandidate?.event_horizon_period_fraction ?? null,
+          event_estimated_steps_for_one_period: lockCandidate?.estimated_steps_for_one_period ?? null,
+          classification: surplusEntry.self_root_fold_splitting?.classification ?? null,
+        }
+      : null,
+    fold_layer_lock_candidate: lockCandidate,
+    entries: ladder.entries.map(stepControllerEntrySummary),
+  };
+}
+
+function bestEstimatedStepCandidate(candidates) {
+  return candidates
+    .filter((candidate) => Number.isFinite(candidate.estimated_steps_for_one_period))
+    .reduce(
+      (best, candidate) =>
+        !best || candidate.estimated_steps_for_one_period < best.estimated_steps_for_one_period
+          ? candidate
+          : best,
+      null
+    );
+}
+
+function stepFractionControllerStatus(bestCandidate, baselineCandidate) {
+  if (!bestCandidate) {
+    return "direct-root-step-fraction-controller-blocked";
+  }
+  if (
+    baselineCandidate &&
+    Number.isFinite(baselineCandidate.estimated_steps_for_one_period) &&
+    bestCandidate.estimated_steps_for_one_period < baselineCandidate.estimated_steps_for_one_period
+  ) {
+    return "direct-root-step-fraction-controller-improved";
+  }
+  return "direct-root-step-fraction-controller-no-improvement";
+}
+
+function directRootStepFractionControllerDiagnostic(row, tier0, configResult, args, samples) {
+  if (args.directStepFractionLadder.length === 0) {
+    return null;
+  }
+  const fractions = uniqueSortedPositiveNumbers([
+    args.dynamicsStepFraction,
+    ...args.directStepFractionLadder,
+  ]);
+  const candidates = fractions.map((fraction) =>
+    directRootStepFractionCandidate(row, tier0, configResult, args, samples, fraction)
+  );
+  const baselineCandidate =
+    candidates.find(
+      (candidate) =>
+        Math.abs(candidate.dynamics_step_fraction - args.dynamicsStepFraction) <= Number.EPSILON
+    ) ?? null;
+  const bestCandidate = bestEstimatedStepCandidate(candidates);
+  const status = stepFractionControllerStatus(bestCandidate, baselineCandidate);
+  const surplusHorizonFractions = candidates
+    .map((candidate) => candidate.first_surplus?.horizon_period_fraction)
+    .filter(Number.isFinite);
+  return {
+    schema: "direct-root-step-fraction-controller/v1",
+    status,
+    acceptance_scope:
+      "Step-fraction controller for short-horizon direct-root diagnostics only; it does not establish one-period closure, eta persistence, accepted-history status, or Delta_k.",
+    requested_step_fractions: fractions,
+    baseline_candidate: baselineCandidate,
+    best_candidate: bestCandidate,
+    simple_step_relaxation_reduces_burden: status === "direct-root-step-fraction-controller-improved",
+    surplus_horizon_period_fraction_range:
+      surplusHorizonFractions.length === 0
+        ? null
+        : {
+            min: Math.min(...surplusHorizonFractions),
+            max: Math.max(...surplusHorizonFractions),
+          },
+    controller_decision:
+      status === "direct-root-step-fraction-controller-improved"
+        ? "use the best bounded step-fraction candidate as the next one-period attempt budget"
+        : "simple step-fraction relaxation did not reduce the direct-root one-period burden",
+    recommended_next_rule:
+      status === "direct-root-step-fraction-controller-improved"
+        ? "feed the improved candidate into the event-local fold-layer lock and require the one-period intake cap check before any continuation attempt"
+        : "build an event-local fold-layer lock rule before attempting full-period integration",
+    candidates,
+    validation_effect: {
+      status_is_accepted_history_segment: false,
+      residuals_below_tolerance: false,
+      no_secular_center_drift: false,
+      Delta_k_positive: false,
+      same_branch_persists_across_eta_ladder: false,
+      reason: "step-fraction controller compares short-horizon probes only and does not run the full return map",
+    },
+  };
+}
+
+function foldLayerLockCandidatesFromLadder(row, ladder) {
+  const entries = Array.isArray(ladder?.entries) ? ladder.entries : [];
+  return entries
+    .map((entry) => foldLayerLockCandidateFromProbeEntry(entry, "direct_root_horizon_ladder", null, row))
+    .filter(Boolean);
+}
+
+function foldLayerLockCandidatesFromController(stepController) {
+  return Array.isArray(stepController?.candidates)
+    ? stepController.candidates
+        .map((candidate) => candidate.fold_layer_lock_candidate ?? null)
+        .filter(Boolean)
+    : [];
+}
+
+function bestFoldLayerLockCandidate(candidates) {
+  return candidates
+    .filter(
+      (candidate) =>
+        candidate.validation?.pass === true &&
+        Number.isFinite(candidate.estimated_steps_for_one_period)
+    )
+    .reduce(
+      (best, candidate) =>
+        !best || candidate.estimated_steps_for_one_period < best.estimated_steps_for_one_period
+          ? candidate
+          : best,
+      null
+    );
+}
+
+function eventHorizonSpread(candidates) {
+  const horizons = candidates
+    .map((candidate) => candidate.event_horizon_period_fraction)
+    .filter(Number.isFinite);
+  if (horizons.length === 0) {
+    return null;
+  }
+  const min = Math.min(...horizons);
+  const max = Math.max(...horizons);
+  const center = Math.max(0.5 * (min + max), Number.EPSILON);
+  return {
+    min,
+    max,
+    relative_spread: (max - min) / center,
+  };
+}
+
+function directRootFoldLayerLockDiagnostic(row, ladder, stepController) {
+  const candidates = [
+    ...foldLayerLockCandidatesFromLadder(row, ladder),
+    ...foldLayerLockCandidatesFromController(stepController),
+  ];
+  const passingCandidates = candidates.filter((candidate) => candidate.validation?.pass === true);
+  const spread = eventHorizonSpread(passingCandidates);
+  const eventHorizonStable =
+    spread === null ||
+    spread.relative_spread <= FOLD_LAYER_LOCK_MAX_RELATIVE_EVENT_HORIZON_SPREAD;
+  const bestCandidate = bestFoldLayerLockCandidate(
+    eventHorizonStable ? passingCandidates : []
+  );
+  const status =
+    candidates.length === 0
+      ? "direct-root-fold-layer-lock-missing"
+      : bestCandidate && eventHorizonStable
+        ? "direct-root-fold-layer-lock-ready"
+        : eventHorizonStable
+          ? "direct-root-fold-layer-lock-blocked"
+          : "direct-root-fold-layer-lock-unstable";
+  return {
+    schema: "direct-root-fold-layer-lock/v1",
+    status,
+    acceptance_scope:
+      "Event-local fold-layer lock for direct-root diagnostics only; it does not establish one-period closure, eta persistence, accepted-history status, or Delta_k.",
+    rule:
+      "If a self-root surplus is classified as a retained, paired-polarity fold-layer event, record it as a local branch-chart transition instead of root-ledger instability. Reject the lock if any predicate fails or if the event horizon drifts beyond the declared tolerance.",
+    lock_predicates: {
+      required: [
+        "classification_is_fold_layer",
+        "retained_initial_branches",
+        "all_surplus_keys_self_active",
+        "even_surplus_parity",
+        "paired_polarities",
+        "no_branch_loss_before_event",
+      ],
+      max_relative_event_horizon_spread: FOLD_LAYER_LOCK_MAX_RELATIVE_EVENT_HORIZON_SPREAD,
+    },
+    event_horizon_spread: spread,
+    event_horizon_stable: eventHorizonStable,
+    best_candidate: bestCandidate,
+    candidate_count: candidates.length,
+    passing_candidate_count: passingCandidates.length,
+    next_required_computation:
+      status === "direct-root-fold-layer-lock-ready"
+        ? "emit the fold-layer-locked integrator seed and feed it into the one-period intake; run residual closure, center-drift, Delta_k, and eta-ladder validation before any accepted-history emission"
+        : "produce a stable passing fold-layer lock candidate before attempting full-period integration",
+    candidates,
+    validation_effect: {
+      status_is_accepted_history_segment: false,
+      residuals_below_tolerance: false,
+      no_secular_center_drift: false,
+      Delta_k_positive: false,
+      same_branch_persists_across_eta_ladder: false,
+      reason:
+        "fold-layer lock is an event-local branch-chart rule and does not run a full one-period return map",
+    },
+  };
+}
+
+function directRootFoldLayerLockedIntegratorSeedDiagnostic(foldLayerLock) {
+  const candidate = foldLayerLock?.best_candidate ?? null;
+  if (foldLayerLock?.status !== "direct-root-fold-layer-lock-ready" || !candidate) {
+    return {
+      schema: "direct-root-fold-layer-locked-integrator-seed/v1",
+      status: "direct-root-fold-layer-locked-integrator-seed-blocked",
+      failure_code: "fold-layer-lock-not-ready",
+      acceptance_scope:
+        "Integrator seed only; it does not establish one-period closure, eta persistence, accepted-history status, or Delta_k.",
+      validation_effect: {
+        status_is_accepted_history_segment: false,
+        residuals_below_tolerance: false,
+        no_secular_center_drift: false,
+        Delta_k_positive: false,
+        same_branch_persists_across_eta_ladder: false,
+        reason: "fold-layer lock was not ready, so no fold-layer-locked integrator seed was emitted",
+      },
+    };
+  }
+  const eventHorizon = candidate.event_horizon_period_fraction;
+  const retainedStepsPerEvent = candidate.first_branch_surplus_step;
+  const lockedEventCount =
+    Number.isFinite(eventHorizon) && eventHorizon > 0 ? Math.ceil(1 / eventHorizon) : null;
+  const lockedStepCount =
+    Number.isFinite(lockedEventCount) && Number.isFinite(retainedStepsPerEvent)
+      ? lockedEventCount * retainedStepsPerEvent
+      : candidate.estimated_steps_for_one_period ?? null;
+  const ready =
+    Number.isFinite(lockedEventCount) &&
+    lockedEventCount > 0 &&
+    Number.isFinite(retainedStepsPerEvent) &&
+    retainedStepsPerEvent > 0 &&
+    Number.isFinite(lockedStepCount) &&
+    lockedStepCount > 0;
+  return {
+    schema: "direct-root-fold-layer-locked-integrator-seed/v1",
+    status: ready
+      ? "direct-root-fold-layer-locked-integrator-seed-ready"
+      : "direct-root-fold-layer-locked-integrator-seed-blocked",
+    failure_code: ready ? null : "fold-layer-lock-event-count-unavailable",
+    acceptance_scope:
+      "Seed for a fold-layer-locked one-period attempt only; it does not establish residual closure, eta persistence, accepted-history status, or Delta_k.",
+    rule:
+      "Treat each validated fold-layer event as a local branch-chart transition. A downstream intake may macro-stride over repeated locked events only if it keeps residual closure, center drift, Delta_k, and eta-ladder persistence fail-closed until explicitly computed.",
+    closure_map:
+      "P_L(s)=C_tail o C_L^{ceil(locked_direct_root_step_count/s)}, where C_L is the retained fold-layer branch-chart transition and s is the selected macro stride.",
+    lock_candidate_source: candidate.source,
+    dynamics_step_fraction: candidate.dynamics_step_fraction,
+    event_horizon_period_fraction: eventHorizon,
+    locked_event_count: lockedEventCount,
+    retained_direct_root_steps_per_event: retainedStepsPerEvent,
+    locked_direct_root_step_count: lockedStepCount,
+    macro_stride_attempt_formula:
+      "N_attempt(s)=ceil(locked_direct_root_step_count/s), where s is the fold-layer locked macro stride selected by the one-period intake cap.",
+    minimum_validation_before_acceptance: [
+      "residuals_below_tolerance",
+      "no_secular_center_drift",
+      "Delta_k_positive",
+      "same_branch_persists_across_eta_ladder",
+    ],
+    validation_effect: {
+      status_is_accepted_history_segment: false,
+      residuals_below_tolerance: false,
+      no_secular_center_drift: false,
+      Delta_k_positive: false,
+      same_branch_persists_across_eta_ladder: false,
+      reason:
+        "fold-layer-locked integrator seed is a cap-planning artifact and does not run the full one-period return map",
+    },
+  };
+}
+
+function sourceCoverageComplete(row, samples, maxDelayOverride = null) {
   const period = row.closure_labels?.T_k ?? row.geometry?.commonPeriod;
-  const maxDelay = row.root_ledger?.maxDelay ?? 0;
+  const maxDelay = Number.isFinite(maxDelayOverride) ? maxDelayOverride : row.root_ledger?.maxDelay ?? 0;
   const firstSampleTime = samples[0]?.t;
   const lastSampleTime = samples[samples.length - 1]?.t;
   const coverageTolerance = sourceTimeCoverageTolerance(period, maxDelay);
@@ -3025,8 +3559,9 @@ function upperEndpointDeficit(sampleTime, requiredTime) {
 }
 
 function continuationSourceRow(row, tier0, configResult, args) {
-  const samples = carrierReplaySamples(row, args.sampleCount);
   const roots = configResult.error ? [] : enumerateCarrierRoots(row, tier0, configResult);
+  const replayMaxDelay = maxActiveRootDelay(roots, row.root_ledger?.maxDelay ?? 0);
+  const samples = carrierReplaySamples(row, args.sampleCount, replayMaxDelay);
   const rootReplay = rootReplayDiagnostics(roots, configResult);
   const dynamicsDiagnostic = oneStepDynamicsDiagnostic(row, tier0, configResult, roots, args);
   const rootRefinementDiagnostic = carrierRootLedgerRefinementDiagnostic(row, tier0, configResult, roots, args);
@@ -3034,9 +3569,23 @@ function continuationSourceRow(row, tier0, configResult, args) {
   const frozenRootDriftDiagnostic = frozenRootOnePeriodDriftDiagnostic(row, tier0, configResult, roots, samples);
   const directRootProbeDiagnostic = directRootRecomputingProbeDiagnostic(row, tier0, configResult, args, samples);
   const directRootHorizonLadder = directRootHorizonLadderDiagnostic(row, tier0, configResult, args, samples);
-  const coverageComplete = sourceCoverageComplete(row, samples);
+  const directRootStepFractionController = directRootStepFractionControllerDiagnostic(
+    row,
+    tier0,
+    configResult,
+    args,
+    samples
+  );
+  const directRootFoldLayerLock = directRootFoldLayerLockDiagnostic(
+    row,
+    directRootHorizonLadder,
+    directRootStepFractionController
+  );
+  const directRootFoldLayerLockedIntegratorSeed =
+    directRootFoldLayerLockedIntegratorSeedDiagnostic(directRootFoldLayerLock);
+  const coverageComplete = sourceCoverageComplete(row, samples, replayMaxDelay);
   const period = row.closure_labels?.T_k ?? row.geometry?.commonPeriod ?? null;
-  const maxDelay = row.root_ledger?.maxDelay ?? 0;
+  const maxDelay = replayMaxDelay;
   const requiredStart = -maxDelay;
   const sampleStart = samples[0]?.t ?? null;
   const sampleEnd = samples[samples.length - 1]?.t ?? null;
@@ -3080,6 +3629,11 @@ function continuationSourceRow(row, tier0, configResult, args) {
       frozen_root_one_period_drift: frozenRootDriftDiagnostic,
       direct_root_recomputing_probe: directRootProbeDiagnostic,
       direct_root_horizon_ladder: directRootHorizonLadder,
+      ...(directRootStepFractionController
+        ? { direct_root_step_fraction_controller: directRootStepFractionController }
+        : {}),
+      direct_root_fold_layer_lock: directRootFoldLayerLock,
+      direct_root_fold_layer_locked_integrator_seed: directRootFoldLayerLockedIntegratorSeed,
     },
     samples,
     active_causal_root_ledger: roots,

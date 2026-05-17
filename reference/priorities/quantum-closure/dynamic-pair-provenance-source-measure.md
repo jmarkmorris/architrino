@@ -23,6 +23,16 @@ This packet adds no new validation gate. It sharpens the existing Bell gate by g
 
 The value is live because it protects contact with tested Bell-family data and prevents a proof from passing by naming shared provenance while silently re-entering the Bell-local class.
 
+## Pulled-Back Bell Work Queue
+
+The reader-facing Bell chapter should stop at the closure target, obstruction, and failure conditions. The operational Bell work queue is retained here:
+
+1. Derive the total angular-momentum functional for a Noether core with changing inner, middle, and outer binary frequencies, including self-action and causal-wake terms.
+2. Evaluate the Master-Equation branch-sum apparatus impulse, separatrix normal, and record-cycle invariant measure for a tri-binary assembly driven by a Stern-Gerlach-like apparatus potential gradient.
+3. Simulate a minimal fragmentation event and extract the joint pair ledger, not merely a pair of opposite classical axes.
+4. Compute $E(\theta_{AB})$ from the derived response kernel and source measure; compare against $-\cos\theta_{AB}$ and evaluate $|S|$.
+5. If $|S|<2\sqrt{2}$, identify whether the deficit comes from response-function shape, distribution non-uniformity, residual separability, or a product-screening collapse.
+
 ## Claim Map
 
 | Bucket | Claim |
@@ -409,9 +419,25 @@ node scripts/mass-map/a0-tier1-accepted-history-writer.mjs \
   --out /tmp/a0-tier1-accepted-history-from-continuation-source.json
 ```
 
-still leaves the one-period intake at `blocked_fold_splitting_unclassified` and the accepted-history writer at `blocked_tier1_acceptance_incomplete`. Feeding that writer output into the apparatus-window source emitter gives the live missing-field set: `accepted-history-status-missing`, `active-root-ledger-missing`, missing local apparatus target metadata (`party`, `setting`, `apparatus_kernel_id`, `setting_axis`, `Z_in_id`, `record_window_id`), missing response-functional source (`Sigma_m_in`, `Lambda_m_in_out`, sample `N_m`, and `Jdot_app` or computable torque terms), missing `record_gate`, missing `record_cycle`, and missing same-window residuals.
+now reconstructs finite carrier-chart samples and the carrier root ledger from the compact Tier 0 fixture. The default short direct-root ladder blocks the one-period intake at `blocked_fold_splitting_probe_horizon_short`, with `estimated_steps_for_one_period=46141573`; the sharper controller-and-lock diagnostic is:
 
-The next minimal producer should therefore be a data artifact, not another Bell-table fixture: one row pairing an `accepted_history_segment` with an apparatus target overlay and a response-functional source. The required row shape is
+```text
+node scripts/mass-map/a0-tier1-continuation-source-prototype.mjs \
+  --tier0 scripts/tri-binary/fixtures/a0-tier0-branch-search-minimal.json \
+  --direct-probe-steps 64 \
+  --direct-step-fraction-ladder 0.0009765625 \
+  --pretty \
+  --out /tmp/a0-tier1-continuation-source-prototype-fold-lock.json
+
+node scripts/mass-map/a0-tier1-one-period-continuation-prototype.mjs \
+  --source /tmp/a0-tier1-continuation-source-prototype-fold-lock.json \
+  --pretty \
+  --out /tmp/a0-tier1-one-period-continuation-prototype-fold-lock.json
+```
+
+On the compact Tier 0 fixture this run classifies the first self-root surplus as `fold-layer` at step `276` with `dynamics_step_fraction=0.0009765625`, surplus keys `I+|I+|self|active` and `I-|I-|self|active`, and an event horizon fraction `0.00002386388014033042`. The event-local `direct-root-fold-layer-lock` is `ready`. The raw controller lowers the estimate from `46247370` to `11561729` direct-root steps per period, and the raw fold-layer-lock event estimate is `11565597`, still about `11.56` times the current direct attempt cap. The fold-layer-locked integrator seed then compresses the locked event work into `41905` locked events with `276` retained direct-root steps per event, selects macro stride `12`, and the one-period intake reports `ready_for_fold_layer_locked_one_period_attempt` with `estimated_steps_for_one_period=963815` under the current `1000000` cap. This is an attempt-budget milestone only, not accepted Tier 1 history: residual closure, no secular center drift, `Delta_k_positive`, and same-branch persistence across the eta ladder remain uncomputed and fail-closed. The accepted-history writer remains correctly blocked at `blocked_tier1_acceptance_incomplete`; the remaining acceptance blockers are `status_is_accepted_history_segment`, `source_row_identity_matches` because the compact fixture lacks `z_lambda`, `residuals_below_tolerance`, `no_secular_center_drift`, `Delta_k_positive`, and `same_branch_persists_across_eta_ladder`. Feeding that writer output into the apparatus-window source emitter gives the live missing-field set: `accepted-history-status-missing`, missing local apparatus target metadata (`party`, `setting`, `apparatus_kernel_id`, `setting_axis`, `Z_in_id`, `record_window_id`), missing response-functional source (`Sigma_m_in`, `Lambda_m_in_out`, sample `N_m`, and `Jdot_app` or computable torque terms), missing `record_gate`, missing `record_cycle`, and missing same-window residuals.
+
+The next minimal quantum-side producer remains a data artifact, not another Bell-table fixture, but it is blocked on the upstream fold-layer-locked Tier 1 continuation emitting a real `accepted_history_segment`. Once that exists, pair one accepted-history row with an apparatus target overlay and a response-functional source. The required row shape is
 
 | Component | Required fields |
 | --- | --- |

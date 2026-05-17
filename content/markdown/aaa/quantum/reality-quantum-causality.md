@@ -134,34 +134,9 @@ We use "threshold" and "separatrix" in several regimes. A separatrix is a bounda
 
 Where the exact topology is not proven, we use "-like" and treat the label as a structural analogy.
 
-#### Schematic Self‑Hit Threshold Dynamics (Toy Model)
+#### Self-Hit Threshold Analogy
 
-Status: This is a toy delay‑oscillator model chosen to illustrate how a control parameter ($v/c_f$) can change stability; the mapping to exact $h$‑scale increments is heuristic, not derived.
-
-This is a **schematic** dynamical sketch that makes the $v \approx c_f$ threshold concrete in textbook terms. It is not a full derivation of the architrino master equation, but it shows how a **bifurcation surface** can arise from delayed self‑interaction.
-
-Let $x(t)$ be a reduced coordinate describing a middle‑binary deviation (e.g., radius or phase offset) from a nominal orbit. Model partner coupling as a damped harmonic restoring force, and model **self‑hit** as a delayed feedback term whose gain increases rapidly as $\beta = v/c_f \to 1$:
-
-$$
-\ddot{x}(t) + 2\zeta\omega_0 \dot{x}(t) + \omega_0^2 x(t) = g(\beta)\,x(t-\tau).
-$$
-
-- $\tau$ is the causal delay around the orbit (set by path length and $c_f$).
-- $g(\beta)$ is small for $\beta<1$ and rises sharply as $\beta \to 1$ because active branches become strongly Jacobian-weighted near the self-hit threshold; it encodes the onset of self‑hit coupling.
-
-Linearizing with $x(t) \sim e^{\lambda t}$ gives the characteristic equation:
-
-$$
-\lambda^2 + 2\zeta\omega_0 \lambda + \omega_0^2 - g(\beta)\,e^{-\lambda\tau} = 0.
-$$
-
-As $g(\beta)$ crosses a critical value $g_c$, an eigenvalue crosses $\Re(\lambda)=0$ (a **stability change**). For small $\tau$, one finds $g_c \approx \omega_0^2$ (real‑root crossing); for finite $\tau$, a **Hopf‑type** crossing appears when $\lambda=i\omega$ satisfies the phase and gain conditions. In either case the qualitative picture is standard for delay systems:
-
-- **Below threshold** ($g<g_c$): a single stable attractor (no self‑hit amplification).
-- **At threshold** ($g\approx g_c$): sensitivity surges; a separatrix forms between basins.
-- **Above threshold** ($g>g_c$): new attractors or limit cycles appear; trajectories split.
-
-This schematic shows how **$v \approx c_f$ defines a bifurcation surface** in a reduced phase space: the self‑hit feedback term activates and changes the stability of the local orbit. A full derivation and numerical phase‑portrait mapping would require the full delay‑kernel of the master equation and is handled in the dynamics notes.
+The delay-oscillator picture is useful only as an illustration: a control parameter near $v/c_f$ can change stability, and delayed self-hit feedback can create a bifurcation surface in reduced phase space. The canonical claim is limited to that structural point. A proof must replace the toy gain and delay parameters with active causal-root ledgers, Jacobian floors, and a branch-chart closure object from the Master Equation.
 
 ### Chaos and Effective Unpredictability
 
@@ -396,33 +371,7 @@ These are the four points where $\mathbb{A}\mathbb{A}\mathbb{A}$ maps standard q
 >
 > Operationally, the uncertainty principle and measurement back‑action limit how precisely an observer can place the system relative to the basin boundary. This creates a **finite bracket** around the threshold. The step is real; the bracket is epistemic.
 >
-> **Status:** The rule below is a phenomenological summary of micro-dynamics, not a derivation.
->
-> **Toy dynamics (one plausible micro-model):** Let $S$ be an action-like variable and $E$ an energy-like slow variable.
-> $\dot S = E - E_{\mathrm{ref}}$  
-> $\dot E = -\gamma (E - E_{\mathrm{ref}}) + F_{\mathrm{ext}}(t) + \kappa M(t-\tau)$  
-> A basin flip occurs when $S$ crosses $S = n h$. A finite Lyapunov time $\tau_L$ and typical forcing scale $|F_{\mathrm{ext}}|$ yield a bracket $\delta \sim |F_{\mathrm{ext}}| \tau_L$ (order-of-magnitude), with measurement back-action contributing at the same scale.
->
-> #### **Outer Binary as a Quasi-Harmonic Oscillator (Attractor Bands)**
-> **Baseline orbit:** Model the outer binary as an effective two-body oscillator with potential $V(r) = -\kappa q^2/r + \Phi_{\mathrm{ext}}(t)$. For a circular orbit,
-> $m r \omega_0^2 = \kappa q^2/r^2$, so $\omega_0^2 = \kappa q^2/(m r^3)$.
->
-> **Action variable:** Define the action $J = \oint p \, dq$. For near-harmonic motion, $J$ scales like $E/\omega_0$. Under weak periodic driving, resonances occur when the phase advances by $2\pi f$ per drive period (winding number $f$). In standard driven-oscillator models, the Poincare section then shows island chains labeled by $f$; each chain is a stable attractor family.
->
-> **Band labeling:** In architrino language we label these families by integer $f$ and use $J \approx f h$ as a working threshold (toy model). A resonant packet with frequency $\nu$ supplies $\Delta E \approx h \nu$; for resonances near $\nu \approx f \nu_0$ this yields action steps of order $h$. In this schematic picture, long-lived families occupy band-like intervals $E \in [f h \nu_0, (f+1) h \nu_0)$ (or, in normalized units, $E \in [f h, (f+1) h)$), with transitions at the boundaries.
->
-> **Transition:** When $E$ (or $J$) crosses the boundary, the system crosses the separatrix between island chains (see 3.1.1) and falls into the next island chain. This is the discrete step $f \to f \pm 1$; near that boundary the islands shrink, sensitivity grows, and the uncertainty bracket appears operationally.
->
-> **Operational summary (black-box view):**
-> ```
-> Input: potential packet P + internal state S
-> Compute: action increment per cycle ΔA
-> If ΔA < h - δ   → stay in band f
-> If ΔA > h + δ   → shift band (f → f ± 1)
-> If |ΔA - h| ≤ δ → bifurcation zone (microstate decides)
-> ```
->
-> Here $\delta$ is an **uncertainty bandwidth** of order $h$ set by operational limits, not by ontological randomness. This provides the linkage: **the integer step is real in the model**, and **uncertainty brackets it** operationally.
+> The toy oscillator and action-bracket models are working-draft scaffolds, not derivations. The accepted statement is only that a recordable transition must be described by a declared basin boundary, an action-transfer ledger, and a finite uncertainty bracket whose width is derived from the apparatus and unresolved-history measure rather than inserted as primitive randomness.
 
 > ### **Branching Trees Are Epistemic, Not Ontic**
 > Many-worlds diagrams visualize the tree of **possible coarse-grained histories** near a bifurcation. In $\mathbb{A}\mathbb{A}\mathbb{A}$ there is still **one realized trajectory** in absolute time; the "branching" reflects the observer's incomplete knowledge of microstate and wake history. The diagram is a map of epistemic alternatives, not a claim that reality splits.
@@ -474,194 +423,31 @@ If $\mathbb{A}\mathbb{A}\mathbb{A}$ is correct, the last 150 years should be rea
 
 ---
 
-## Decider: Minimal Bias-Setting Complex
-
-An assembly that can **decide** in the limited dynamical sense above must be able to alter its own probability of transition in response to external inputs. That requires more structure than a single atom. The candidate architecture is a **Decider**: a minimal bias-setting complex that can set a sensitivity bias before a later perturbation arrives.
-
-### Minimality Lens (Fewest-Architrino Candidates)
-
-One way to classify the evolution of mechanism is by **fewest architrinos** required to implement a function. This is only **one** classifier; others include assembly depth (single element vs network), threshold type, and energy budget. Under the minimality lens we currently have two candidate mechanisms:
-
-- **Decider (bias‑setting complex):** the smallest *architectural topology* that can implement biasing + threshold placement + feedback. The architrino count is not yet computed; this is a **candidate minimal topology**, not a proven minimum.
-- **Switch (bias‑to‑state mechanism):** the smallest *computed* self‑contained gate we can exhibit (see Section 6). Current estimate: **3912 architrinos** for a neutral He‑Rb‑He assembly.
-
-The engineering architecture below is a candidate minimal **Decider** based on the tri-binary physics already used elsewhere in the corpus. It is a closure target, not a proof that this is the unique or globally minimal agency architecture.
-
-### Architecture
-
-To achieve the ability to leverage or ignore **large‑deviation wake peaks** (≥ 3σ constructive interference above the local unresolved fluctuation floor), the system needs three distinct functional components:
-
-1.  **The Resonator (The Sensor)**: An assembly exposed to the environment.
-2.  **The Switch (The Amplifier)**: A Middle Binary sitting near $v \approx c_f$.
-3.  **The Bias Unit (The Controller)**: An adjacent assembly that acts as a "tuner."
-
----
-
-### Mechanism 1: Bias Control (Amplitude Tuning)
-
-This is the most direct method to toggle between **leveraging** and **ignoring** (see 4.7 for the full conceptual framing). A bias unit adjacent to the target assembly shifts the target’s middle‑binary threshold:
-
-- **Ignore (high threshold):** move the Bias Unit closer (or stabilize phase) → deepen the local potential well → pull the target away from $v=c_f$.
-- **Leverage (high sensitivity):** move the Bias Unit away (or destabilize phase) → shallow the well → bring the target toward $v\approx c_f$ so incoming peaks can tip it.
-
-The **decision** is the bias configuration held by the assembly at that moment.
-
----
-
-### Mechanism 2: Frequency Matching (Resonance Tuning)
-
-Instead of changing the threshold amplitude, the assembly changes *what* it listens to.
-
-**The Physics:**
-The Outer Binary is an oscillator. It absorbs energy most efficiently when the incoming potential frequency matches its orbital frequency (or harmonics).
-
-**The Tuning Mechanism:**
-1.  **Energy Injection/Extraction:** The Decider pumps a small amount of energy into the Outer Binary.
-2.  **Radius Change:** This changes the orbital radius ($r$) and velocity ($v$).
-3.  **Frequency Shift:** Consequently, the orbital frequency $\omega$ shifts.
-
-**The Result:**
-*   The assembly was resonating with "Signal A" (frequency $\omega_A$).
-*   By shifting to $\omega_B$, it now becomes transparent to Signal A (ignoring it) and highly absorbent to Signal B (leveraging it).
-*   This is exactly how a radio tuner works, but built out of orbital mechanics.
-
----
-
-### Mechanism 3: Geometric Gating (Spatial Tuning)
-
-Architrino wake interactions carry directionality through delayed source-receiver geometry and line-of-action structure.
-
-**The Physics:**
-A Middle Binary is planar (or toroidal). It is most sensitive to potential impacts that align with its orbital plane or rotation axis (depending on the specific coupling).
-
-**The Mechanism:**
-*   **Precession Control:** The Decider can induce a Larmor-like precession in the Target assembly using a neighbor-induced, Jacobian-weighted delayed interaction that coarse-grains to a magnetic-like effect.
-*   **Alignment:**
-    *   **Ignore:** Orient the Target's sensitive plane *orthogonal* to the direction of incoming peaks. The cross-section is minimized.
-    *   **Leverage:** Precess the Target until its plane is *parallel* to the incoming causal-wake pattern. The cross-section is maximized.
-
----
-
-### Cost of Decision (Thermodynamics)
-
-None of this is free. To move the Bias Unit, shift the frequency, or precess the axis requires **work**.
-*   The system must expend stored energy to change its configuration.
-*   Agency requires energy dissipation because changing a sensitivity distribution is a physical transition.
-*   Energy invested in the Bias Unit lowers a threshold only if the later information or energy gain compensates for the tuning cost.
-
-### Summary
-
-To build a system that decides:
-1.  **Construct a Decider** containing a **Switch core** (metastable tri‑binary).
-2.  **Surround it with "Control Binaries"** (Bias Units).
-3.  **Implement Feedback:**
-    *   To **Ignore**: Use Control Binaries to dampen the Switch core (pull $v \ll c_f$).
-    *   To **Leverage**: Use Control Binaries to push the Switch core toward the threshold region ($v \approx c_f$) or tune its frequency to match the incoming causal-wake pattern.
-
-This transforms the assembly from a fixed-threshold responder into an active filter of Noether-Sea wake patterns.
-
----
-
-## Switch: Minimum Viable Atomic Hardware (He‑Rb‑He)
-
-### 6A General Architecture for Threshold Control
-
-A Switch is a **bias-to-state** transformer: upstream bias positions a metastable unit near or far from a threshold, and a subsequent perturbation triggers (or does not trigger) a basin flip. This is the generic architecture; the next section gives a concrete atomic realization.
-
-### 6B Worked Example: He‑Rb‑He
-
-This is one **applied realization** of the **Switch** mechanism, not the unique way to do it. It is the smallest mechanism currently estimated in this chapter that **takes a bias signal and executes a larger-scale physical state change**. Many physical architectures can implement the same control loop: bias setting -> threshold positioning -> bifurcation. In the **minimality lens**, the He-Rb-He assembly is the smallest *computed* Switch so far, where the **bias** is upstream in the configuration and the **electron transition** is the downstream execution.
-
-The target is a system with **tunable metastability**: stable enough to hold a configuration, but soft enough that a controlled bias can move it toward or away from a threshold.
-
-The proposed minimum is a **triatomic cluster**, here He-Rb-He.
-
-The following bill of materials states the proposed architecture and the rationale behind it.
-
----
-
-### Hardware: Rydberg He‑Rb‑He Assembly
-
-The candidate minimal **Switch** uses:
-
-**1. The Sensor Atom: One Rubidium-87 ($^{87}\text{Rb}$) Atom**
-**2. The Bias/Clamp Atoms: Two Helium-4 ($^4\text{He}$) Atoms (or Protons)**
-
-#### Rationale for Atom Selection
-
-**1. The Sensor (Rubidium): The "Feeler"**
-*   **Architrino Physics:** Rubidium is an Alkali metal. It has one lonely electron in its outer shell (5s orbital). This electron is heavily shielded by the inner core. In architrino terms, this outer tri-binary assembly is loosely coupled to the atomic nucleus.
-*   **The edge state:** Because the outer electron is loosely bound, it can be excited into a **Rydberg state** with a high principal quantum number, for example $n=50$. In that state the orbital radius is large, the orbital velocity is lower, and the electron assembly is highly sensitive to weak external perturbations. It is therefore a natural metastable sensor for threshold-control experiments.
-
-**2. The Bias Unit (The Helium Pair): The "Vise"**
-*   **Architrino Physics:** Helium is a very stable closed-shell assembly. Its role is to supply a comparatively stiff bias environment.
-*   **The Function:** We place the two Helium atoms on either side of the Rubidium. They act as **inertial anchors** or a "potential vise."
-*   **The Tuning Mechanism:** By adjusting the distance or angle of the Helium atoms relative to the Rubidium (using Van der Waals forces or phonon vibrations), we shape the potential well that the Rubidium electron sits in.
-
----
-
-### Switch Mechanism
-
-We form a **linear or triangular molecule**: $\text{He} - \text{Rb} - \text{He}$.
-
-**1. State A: "Ignore Mode" (Damped)**
-*   **Configuration:** The He‑Rb‑He assembly allows the Helium atoms to relax closer to the Rubidium core.
-*   **Effect:** The potential wakes from the stable Helium atoms overlap with the Rubidium's outer electron. They compress the orbital, increasing the "pressure."
-*   **Architrino Result:** The Rubidium electron's Middle Binary is pushed **away** from the critical velocity $c_f$ (down to a safer, lower velocity).
-*   **Outcome:** The Sensor is "detuned." It ignores peaks.
-
-**2. State B: "Leverage Mode" (High Sensitivity)**
-*   **Configuration:** The He‑Rb‑He assembly excites a vibrational mode (a "breathing mode") where the Helium atoms oscillate slightly outward.
-*   **Effect:** The pressure releases. The Rubidium electron expands further out.
-*   **Architrino Result:** The electron's Middle Binary drifts closer to the instability threshold ($v \approx c_f$). It is now balanced on the razor's edge.
-*   **Outcome:** The Sensor is sensitive. A weak external fluctuation in the local Noether-Sea wake background can then trigger a transition such as ionization or a state flip.
-
----
-
-### Why Three Atoms?
-
-Geometric heuristic: you need 3 because **2 points form a line, but 3 points form a geometry.**
-*   With 2 atoms, you only have distance (1 degree of freedom).
-*   With 3 atoms, you have **distance** and **angle** (bending mode).
-*   **Symmetry Breaking:** A linear molecule ($\text{He-Rb-He}$) has high symmetry. If you bend it ($\angle < 180^\circ$), you break that symmetry. This geometric symmetry breaking maps directly to the **Middle Binary's velocity threshold**.
-*   **Minimum Complexity:** A single atom has fixed energy levels. A diatomic molecule has fixed bonds. A **triatomic cluster** is the simplest system that supports **mode crossings** in its potential energy surface (analogous to conical intersections in molecular physics)—regions where the distinction between states vanishes and "decision" (bifurcation) becomes physically possible (see 3.1.1).
-
-### Summary
-
-This Switch executes a bias into a physical state change. It is not a full **Decider**; it is the minimal **bias‑to‑state** mechanism. The Decider that sets the bias sits upstream (Section 5).
-
-In compressed form, Rubidium supplies the soft metastable sensor, while the two Helium atoms supply the biasing geometry. Changing the biasing geometry changes whether the sensor sits far from or close to a transition threshold.
-
----
-
-### Architrino Count (Current Estimate)
-
-Using the working counts (12 architrinos per electron, 36 per nucleon):
-
-- **He‑4**: 4 nucleons × 36 = 144; 2 electrons × 12 = 24; total **168**
-- **Rb‑87 (neutral)**: 87 nucleons × 36 = 3132; 37 electrons × 12 = 444; total **3576**
-- **He‑Rb‑He total (neutral)**: 2 × 168 + 3576 = **3912 architrinos**
-
-If the Rb is ionized, subtract **12** per missing electron.
-
-**Caveat:** This is the smallest self‑contained **Switch** we can explicitly calculate at present. There may be architectures with fewer architrinos that still implement a threshold decision, but we have not derived them yet.
-
-## Closure Targets
-
-1. **Natural selection of states**
-   - Formalize the filtering mechanism where highly reactive linear stealth states are eliminated, leaving only stable circulation-locked or corkscrew states in middle binaries. This would provide a physical reason for the stability of observed matter.
-
-2. **Middle-binary bifurcation**
-   - Specify at least one toy dynamical system, even a low-dimensional map, where:
-     - A control parameter mimics $v/c_f$,
-     - The response shows $h$ vs $2h$-like thresholds,
-     - Basins of attraction and Lyapunov exponents can be computed.
-
-3. **Chaos → Born rule**
-   - State a clear program for investigating whether chaotic threshold dynamics in the Noether-Sea wake background can reproduce $|\psi|^2$ distributions.
-   - The derivation likely requires both simulation and ergodic or measure-theoretic analysis.
-
-4. **Causality language**
-   - Keep absolute causality and emergent operational causality distinct, and align this split with the foundations chapters.
-
----
+## Switch and Decider as Future Capability
+
+The decision language in this chapter is not an additional ontology. It is a future capability target: the theory should be able to describe an assembly whose internal preparation changes later basin weights before a perturbation arrives. A **Switch** is the simpler case: a held bias moves a metastable target nearer to or farther from a separatrix. A **Decider** adds memory-bearing feedback, so the bias can be updated and reused after earlier records.
+
+The controlled distinction is:
+
+- a bare Noether core may supply threshold-sensitive material;
+- a Switch must show a measurable basin-weight shift under fixed boundary context;
+- a Decider must also show feedback, hold time, and a nonzero work or dissipation ledger.
+
+The minimal proof object is a family of biased basin partitions $\mathcal{P}_u=\{B_i(u)\}$ with outcome weights
+$$
+P_{c_\Omega,u,T}(i)
+=
+\mu_{c_\Omega,u,T}\!\left(B_i(u)\right).
+$$
+A Switch claim requires two preparations $u_a,u_b$ such that
+$$
+D\!\left(
+P_{c_\Omega,u_a,T},
+P_{c_\Omega,u_b,T}
+\right)
+\ge
+\epsilon_{\mathrm{sw}}
+$$
+while the boundary context $c_\Omega$ is held fixed and the work ledger remains finite. A Decider claim additionally requires a record-sensitive update map $u_{n+1}=G(u_n,r_n,\chi_n)$ whose later basin weights differ above tolerance.
+
+Concrete hardware sketches, including a Rydberg-like He-Rb-He Switch, are illustrations of what such a future capability might look like. They are not canonized minimal architectures and may be replaced or falsified by later branch-chart, basin-measure, and energy-ledger calculations.

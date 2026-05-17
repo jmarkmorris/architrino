@@ -81,6 +81,8 @@ In horizon physics, Hawking and Unruh temperatures are comparison targets associ
 
 Temperature is not a primitive substrate property. The primitive and medium-level objects are architrino assemblies, Noether-core populations, causal wakes, event ledgers, and Noether-Sea state variables. Temperature becomes available only when a selected population has enough mixing, exchange, and stability for an ensemble description.
 
+The Noether-core equilibrium transport hypothesis adds one useful caution. If a representative core cadence carries $E_N=h\nu_N$, that is an energy-cadence ledger for individual or coarse-grained core states, not a thermodynamic temperature by itself. A temperature for the Noether Sea requires the distribution $f_N(\nu,\mathbf{x},t)$, an ensemble measure, and a local-equilibrium or entropy-energy derivative condition. The same hypothesis can therefore feed temperature work only after its equilibration term $R_{\mathrm{eq}}[f_N]$ and source terms are shown to define a stable ensemble window.
+
 The cleanest existing $\mathbb{A}\mathbb{A}\mathbb{A}$ condition is the radiation chapter's ensemble definition. Using the dimensionless-entropy convention of that local passage,
 
 $$
