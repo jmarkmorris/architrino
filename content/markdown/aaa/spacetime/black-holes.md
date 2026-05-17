@@ -447,6 +447,20 @@ The clean constitutive chain is:
 
 This means black holes are candidate contributors to dark-energy phenomenology, not substitutes for the medium ontology.
 
+The equilibrium-transport version of this claim is more specific. Strong-field recycling may act as a source term for the Noether-core cadence distribution of the surrounding Noether Sea. If $f_N(\nu,\mathbf{x},t)$ records the local distribution of Noether-core cadence states with $E_N=h\nu_N$, then a black-hole contribution appears as $S_{\mathrm{BH}}$ in a medium equation of the form
+
+$$
+\partial_t f_N
++\nabla\cdot(\mathbf{u}_{\mathrm{sea}}f_N)
++\partial_\nu J_\nu
+=
+S_{\mathrm{BH}}
++S_{\mathrm{GW}}
+-R_{\mathrm{eq}}[f_N].
+$$
+
+This is the controlled sense of a bulk recycling movement: processed content from high-gradient recycling regions can load the medium and then relax toward lower-energy Noether-Sea cadence states. The statement remains conditional because $S_{\mathrm{BH}}$ must be energy-accounted, population-history dependent, and small enough not to spoil weak-field gravity, photon coherence, CMB blackbody quality, or gravitational-wave propagation. If the resulting current $J_\nu$ has no signed large-scale component, the recycling channel may still heat or perturb local environments without becoming an effective expansion-history source.
+
 ## Cosmological Coupling Hypothesis
 
 One modern comparison target is the claim that some dormant supermassive black holes appear to gain mass in step with the late-time cosmological background more strongly than standard accretion and merger channels predict. The common phenomenological summary is

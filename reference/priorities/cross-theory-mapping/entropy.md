@@ -126,6 +126,8 @@ $$
 
 Here $\sigma_W$ should be derived from unresolved branch mixing, residual routing, thermalization, record formation, and dissipative medium response. The boundary flux term carries emitted assemblies, radiation, recoil, release channels, and Noether-Sea transport across $\partial W(t)$. The residual $\mathcal{R}_{\mathcal{Q}}$ records coarse-graining error, not an extra physical substance.
 
+The Noether-core equilibrium transport hypothesis supplies a concrete cosmology-facing candidate for part of this entropy balance. If $f_N(\nu,\mathbf{x},t)$ is the distribution of Noether-core cadence states and $J_\nu$ is its frequency-space current, then entropy production should be tested against the neighbor-equilibration term $R_{\mathrm{eq}}[f_N]$, while boundary flux should carry the source terms $S_{\mathrm{BH}}$ and $S_{\mathrm{GW}}$ only through declared medium-loading and perturbation records. A useful entropy packet must therefore show whether the proposed bulk movement from recycling sites toward lower-energy Noether-Sea states increases coarse-grained entropy, exports entropy through $\partial W(t)$, or merely redistributes an already constrained medium record.
+
 ## Mapping Table
 
 | Current concept | What survives | $\mathbb{A}\mathbb{A}\mathbb{A}$ draft translation | Required gate |

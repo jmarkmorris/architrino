@@ -122,7 +122,7 @@ B_q(v)\longrightarrow B_{q'}(v+\Delta v),
 $$
 subject to the all-layer action and energy ledgers
 $$
-\Delta A_{\text{cycle}}=\sigma h,
+\Delta A_{\mathrm{cyc}}\equiv\Delta A_{\text{cycle}}=\sigma h,
 \qquad
 \Delta I_I+\Delta I_M+\Delta I_O+\Delta I_{\text{wake}}=\sigma\hbar,
 $$
@@ -151,6 +151,103 @@ $$
 \gamma_\star(v)+O(\epsilon_{\mathrm{LV}})
 $$
 after Noether-Sea dressing and hierarchy averaging on admitted stable branches. Any residual mismatch must be reported with its branch source: separator proximity, inter-layer resonance, Jacobian-floor loss, finite-memory cutoff, wake-ledger residue, or envelope-projection error.
+
+## Cadence-Scale Retuning Closure
+
+The retuning-map problem is the local dynamics version of the one-$h$ transaction. On a branch chart $q$, define
+
+$$
+\mathbf{y}_q
+=
+\left(
+\ln\nu_I,\ln\nu_M,\ln\nu_O,\,
+\ln R_I,\ln R_M,\ln R_O,\,
+\ln\lambda,\ln\xi
+\right)^{T},
+\qquad
+\omega_\ell=2\pi\nu_\ell.
+$$
+
+The layer-speed identities give the first kinematic constraint:
+
+$$
+\Delta\ln s_\ell
+=
+\Delta\ln R_\ell
++
+\Delta\ln\nu_\ell,
+\qquad
+\ell\in\{I,M,O\}.
+$$
+
+The simple inverse rule $\Delta\ln R_\ell=-\Delta\ln\nu_\ell$ is therefore valid only on a sub-branch where $\Delta\ln s_\ell=0$. The ordinary tri-binary speed hierarchy instead imposes inequalities and hinge tolerances:
+
+$$
+s_I'>c_f,
+\qquad
+\left|s_M'-c_f\right|\le\epsilon_M c_f,
+\qquad
+s_O'<c_f,
+$$
+
+where primed quantities are evaluated after retuning and $\epsilon_M$ is the declared middle-hinge tolerance. A transaction that violates these conditions is not a smooth retuning inside the same regime; it is a branch event at the speed-regime boundary.
+
+The first calculable closure can be written as a constrained compliance problem. Let $\mathcal{C}_q(\mathbf{y},\mathcal{G})=0$ collect the phase-closure, causal-root, separator, inter-layer exchange, and stability constraints. Let $\mathbf{K}^{\mathrm{ret}}_q$ be the positive semidefinite local compliance matrix for retuning costs on the declared branch chart. Then the candidate increment is
+
+$$
+\Delta\mathbf{y}_{q,\sigma}
+=
+\underset{\Delta\mathbf{y}}{\operatorname{arg\,min}}\;
+\frac{1}{2}
+\Delta\mathbf{y}^{T}
+\mathbf{K}^{\mathrm{ret}}_q
+\Delta\mathbf{y},
+$$
+
+subject to
+
+$$
+D A_{\mathrm{cyc},q}[\Delta\mathbf{y}]
++
+\Delta A_{\mathrm{wake}}
+=
+\sigma h,
+\qquad
+D\mathcal{C}_q[\Delta\mathbf{y}]
++
+\Delta\mathcal{C}_{\mathcal{G}}
+=0,
+$$
+
+and to the post-retuning speed-regime inequalities above. The matrix $\mathbf{K}^{\mathrm{ret}}_q$ is not a new force law. It is the local second-variation record of how costly it is for the accepted branch to place the action increment into cadence, layer scale, envelope shape, orientation, or wake exchange. In a simulation, it should be estimated from the linearized return map or from finite retuning trials around an admitted branch.
+
+The cadence-scale retuning map is then the projection
+
+$$
+\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}
+=
+\Pi_{\mathrm{ret}}
+\left(
+\Delta\mathbf{y}_{q,\sigma},
+\Delta\mathcal{G}_{q,\sigma}
+\right),
+$$
+
+with
+
+$$
+\Pi_{\mathrm{ret}}
+\left(
+\Delta\mathbf{y},
+\Delta\mathcal{G}
+\right)
+=
+\left(
+\Delta\nu_N,\Delta R_I,\Delta R_M,\Delta R_O,\Delta\lambda,\Delta\xi
+\right).
+$$
+
+This map is falsifiable at the branch level. It fails if no admissible minimizer exists, if the minimizer crosses a separator while being treated as same-branch drift, if the middle hinge leaves its declared tolerance, if the envelope projection gives $\gamma_{\mathrm{rul}}$ without the matching $\gamma_{\mathrm{clk}}$, or if the wake-ledger residual is large enough to survive hierarchy averaging. These are not bookkeeping nuisances; they are the diagnostics that decide whether the same one-$h$ transaction can become the Noether-Sea cadence current used in cosmology.
 
 ## Transverse Causal Budget Lemma
 

@@ -12,6 +12,7 @@ This file is Cody's living feedback backlog for improving operator/developer wor
 
 ## Efficiency
 
+- [ ] Bias substantial sessions toward one core geometrical theory closure target before app, prose, presentation, or infrastructure work.
 - [ ] Start each substantial session by naming the single closure objective, likely files in scope, and definition of done.
 - [ ] Give Cody the expected verification command, app path, or rendered target when that target is not obvious.
 - [ ] Keep priority lists ordered by closure value rather than historical arrival order.
@@ -42,6 +43,8 @@ This file is Cody's living feedback backlog for improving operator/developer wor
 
 ## Technical Closure
 
+- [ ] End each substantive theory discussion with a capture decision: promote solid advancements into `content/markdown/aaa` or stage provisional ones in `reference/priorities`.
+- [x] Require each major theory push to leave behind at least one mathematical artifact: equation, lemma, invariant, proof route, branch certificate, or simulation target.
 - [ ] Prioritize native derivations, invariants, equations, and testable variables over new gates or ledgers.
 - [ ] For each closure target, name the tested physical constraint or accepted mathematical consistency condition it protects.
 - [ ] Require every promoted result to state what it proves, what it assumes, and what remains open.

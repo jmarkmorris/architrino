@@ -1,0 +1,312 @@
+{
+  "schema": "aaa-redshift-budget-toy-input/v1",
+  "metadata": {
+    "run_id": "mock-redshift-budget-001",
+    "description": "Dimensionless toy packet for endpoint/source/motion/propagation redshift-budget replay.",
+    "source": "content/markdown/aaa/cosmology/expansion-mechanism.md#minimal-redshift-budget-toy-model"
+  },
+  "constants": {
+    "c0_km_s": 299792.458,
+    "h_j_s": 6.62607015e-34,
+    "mpc_km": 3.0856775814913673e19
+  },
+  "line_families": {
+    "H21": {
+      "nu_ref_hz": 1420405751.0
+    },
+    "clean_optical": {
+      "nu_ref_hz": 500000000000000.0
+    }
+  },
+  "scenarios": [
+    {
+      "name": "clean_laboratory_line",
+      "description": "All redshift-budget factors are near unity after local correction.",
+      "line_family": "H21",
+      "comparison_line_family": "clean_optical",
+      "distance_mpc": 0.000001,
+      "B_X_E": 1,
+      "D_v": 1,
+      "Gamma_N_E": 1,
+      "Gamma_N_R": 1,
+      "segments": [
+        {
+          "delta_s_mpc": 0.000001,
+          "alpha_prop_by_line": {
+            "H21": 0,
+            "clean_optical": 0
+          },
+          "alpha_prop_cadence_by_line": {
+            "H21": 0,
+            "clean_optical": 0
+          },
+          "beam_alpha_prop_by_line": {
+            "H21": [0, 0, 0]
+          }
+        }
+      ]
+    },
+    {
+      "name": "clean_galaxy_path",
+      "description": "A clean cosmological path with small peculiar-motion correction.",
+      "line_family": "H21",
+      "comparison_line_family": "clean_optical",
+      "distance_mpc": 120,
+      "B_X_E": 1,
+      "D_v": 0.9985,
+      "Gamma_N_E": 1.00002,
+      "Gamma_N_R": 1,
+      "segments": [
+        {
+          "delta_s_mpc": 40,
+          "alpha_prop_by_line": {
+            "H21": 0.000230,
+            "clean_optical": 0.0002302
+          },
+          "alpha_prop_cadence_by_line": {
+            "H21": 0.0002301,
+            "clean_optical": 0.0002302
+          },
+          "beam_alpha_prop_by_line": {
+            "H21": [0.0002298, 0.0002300, 0.0002303]
+          }
+        },
+        {
+          "delta_s_mpc": 40,
+          "alpha_prop_by_line": {
+            "H21": 0.000235,
+            "clean_optical": 0.0002351
+          },
+          "alpha_prop_cadence_by_line": {
+            "H21": 0.0002350,
+            "clean_optical": 0.0002351
+          },
+          "beam_alpha_prop_by_line": {
+            "H21": [0.0002348, 0.0002350, 0.0002352]
+          }
+        },
+        {
+          "delta_s_mpc": 40,
+          "alpha_prop_by_line": {
+            "H21": 0.000238,
+            "clean_optical": 0.0002381
+          },
+          "alpha_prop_cadence_by_line": {
+            "H21": 0.0002382,
+            "clean_optical": 0.0002381
+          },
+          "beam_alpha_prop_by_line": {
+            "H21": [0.0002377, 0.0002380, 0.0002384]
+          }
+        }
+      ]
+    },
+    {
+      "name": "equilibrium_transport_smooth_h_step",
+      "description": "A smooth coarse-grained path where Noether-core h-step relaxation terms supply the propagation coefficient.",
+      "line_family": "H21",
+      "comparison_line_family": "clean_optical",
+      "distance_mpc": 120,
+      "B_X_E": 1,
+      "D_v": 1,
+      "Gamma_N_E": 1,
+      "Gamma_N_R": 1,
+      "segments": [
+        {
+          "delta_s_mpc": 40,
+          "transport_terms_by_line": {
+            "H21": {
+              "equilibrium_relaxation": 0.000198,
+              "smbh_source": 0.000030,
+              "gw_perturbation": 0.000001
+            },
+            "clean_optical": {
+              "equilibrium_relaxation": 0.0001981,
+              "smbh_source": 0.0000300,
+              "gw_perturbation": 0.0000010
+            }
+          },
+          "transport_terms_cadence_by_line": {
+            "H21": {
+              "equilibrium_relaxation": 0.000198,
+              "smbh_source": 0.000030,
+              "gw_perturbation": 0.000001
+            },
+            "clean_optical": {
+              "equilibrium_relaxation": 0.0001981,
+              "smbh_source": 0.0000300,
+              "gw_perturbation": 0.0000010
+            }
+          },
+          "beam_alpha_prop_by_line": {
+            "H21": [0.0002288, 0.0002290, 0.0002292]
+          }
+        },
+        {
+          "delta_s_mpc": 40,
+          "transport_terms_by_line": {
+            "H21": {
+              "equilibrium_relaxation": 0.000201,
+              "smbh_source": 0.000032,
+              "gw_perturbation": -0.000001
+            },
+            "clean_optical": {
+              "equilibrium_relaxation": 0.0002011,
+              "smbh_source": 0.0000320,
+              "gw_perturbation": -0.0000010
+            }
+          },
+          "transport_terms_cadence_by_line": {
+            "H21": {
+              "equilibrium_relaxation": 0.000201,
+              "smbh_source": 0.000032,
+              "gw_perturbation": -0.000001
+            },
+            "clean_optical": {
+              "equilibrium_relaxation": 0.0002011,
+              "smbh_source": 0.0000320,
+              "gw_perturbation": -0.0000010
+            }
+          },
+          "beam_alpha_prop_by_line": {
+            "H21": [0.0002317, 0.0002320, 0.0002323]
+          }
+        },
+        {
+          "delta_s_mpc": 40,
+          "transport_terms_by_line": {
+            "H21": {
+              "equilibrium_relaxation": 0.000205,
+              "smbh_source": 0.000034,
+              "gw_perturbation": 0.000000
+            },
+            "clean_optical": {
+              "equilibrium_relaxation": 0.0002051,
+              "smbh_source": 0.0000340,
+              "gw_perturbation": 0.0000000
+            }
+          },
+          "transport_terms_cadence_by_line": {
+            "H21": {
+              "equilibrium_relaxation": 0.000205,
+              "smbh_source": 0.000034,
+              "gw_perturbation": 0.000000
+            },
+            "clean_optical": {
+              "equilibrium_relaxation": 0.0002051,
+              "smbh_source": 0.0000340,
+              "gw_perturbation": 0.0000000
+            }
+          },
+          "beam_alpha_prop_by_line": {
+            "H21": [0.0002387, 0.0002390, 0.0002393]
+          }
+        }
+      ]
+    },
+    {
+      "name": "dark_energy_coefficient_packet",
+      "description": "A clean path where the propagation coefficient is computed from a declared lambda row and q_DE rate record.",
+      "line_family": "H21",
+      "comparison_line_family": "clean_optical",
+      "distance_mpc": 120,
+      "B_X_E": 1,
+      "D_v": 1,
+      "Gamma_N_E": 1,
+      "Gamma_N_R": 1,
+      "segments": [
+        {
+          "delta_s_mpc": 120,
+          "dark_energy_transport_by_line": {
+            "H21": {
+              "lambda_row": {
+                "rho": 0.30,
+                "w": 0.05,
+                "sea": 0.55,
+                "bh": 0.10
+              },
+              "q_DE_per_s": {
+                "rho": -4.0e-19,
+                "w": 3.0e-19,
+                "sea": 3.95e-18,
+                "bh": 1.9e-18
+              }
+            },
+            "clean_optical": {
+              "lambda_row": {
+                "rho": 0.30,
+                "w": 0.05,
+                "sea": 0.5503,
+                "bh": 0.10
+              },
+              "q_DE_per_s": {
+                "rho": -4.0e-19,
+                "w": 3.0e-19,
+                "sea": 3.95e-18,
+                "bh": 1.9e-18
+              }
+            }
+          },
+          "beam_alpha_prop_by_line": {
+            "H21": [0.0002321, 0.0002324, 0.0002327]
+          }
+        }
+      ]
+    },
+    {
+      "name": "strong_source_near_black_hole",
+      "description": "Endpoint cadence and source branch dominate over path accumulation.",
+      "line_family": "H21",
+      "comparison_line_family": "clean_optical",
+      "distance_mpc": 8,
+      "B_X_E": 0.972,
+      "D_v": 0.994,
+      "Gamma_N_E": 1.18,
+      "Gamma_N_R": 1,
+      "segments": [
+        {
+          "delta_s_mpc": 2,
+          "alpha_prop_by_line": {
+            "H21": 0.000240,
+            "clean_optical": 0.000241
+          },
+          "alpha_prop_cadence_by_line": {
+            "H21": 0.000241,
+            "clean_optical": 0.000241
+          },
+          "beam_alpha_prop_by_line": {
+            "H21": [0.000235, 0.000240, 0.000248]
+          }
+        },
+        {
+          "delta_s_mpc": 3,
+          "alpha_prop_by_line": {
+            "H21": 0.000260,
+            "clean_optical": 0.000261
+          },
+          "alpha_prop_cadence_by_line": {
+            "H21": 0.000264,
+            "clean_optical": 0.000261
+          },
+          "beam_alpha_prop_by_line": {
+            "H21": [0.000252, 0.000260, 0.000272]
+          }
+        },
+        {
+          "delta_s_mpc": 3,
+          "alpha_prop_by_line": {
+            "H21": 0.000250,
+            "clean_optical": 0.000251
+          },
+          "alpha_prop_cadence_by_line": {
+            "H21": 0.000252,
+            "clean_optical": 0.000251
+          },
+          "beam_alpha_prop_by_line": {
+            "H21": [0.000243, 0.000250, 0.000260]
+          }
+        }
+      ]
+    }
+  ]
+}

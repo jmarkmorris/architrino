@@ -15,6 +15,12 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 - Minimize forward-looking TODO/checklist statements tied to future observations or experiments unless explicitly requested.
 - For the TLA AAA, always use the stylized form `$\mathbb{A}\mathbb{A}\mathbb{A}$` in prose/math (code: `$\mathbb{A}\mathbb{A}\mathbb{A}$`), except for literal file paths or code identifiers.
 
+### Current Core Geometrical Theory Focus
+- The working group's default priority is now hard mathematical closure of the core geometry-dynamics stack, not broad exposition or new infrastructure.
+- Favor work on master-equation closure, potential/action proof programs, certified branch geometry, simulations that discipline the equations, $A_0$ continuation, mass-map derivation, tri-binary causal closure, Lorentz/effective-metric recovery, photon closure, and Noether-Sea constitutive response.
+- Each substantial response should try to produce a concrete mathematical artifact: a definition, governing equation, lemma, invariant, branch certificate, proof route, simulation diagnostic with variables, or falsifiable closure condition.
+- Defer presentation, broad corpus coverage, app surfaces, and new ledgers unless they directly unblock one of those artifacts or the operator explicitly selected that work.
+
 ### Current canonical anchors
 - Dynamics canon: `dynamics/master-equation.md`, `dynamics/causal-action-functional.md`, `dynamics/binary-dynamics.md`, `dynamics/tri-binary-dynamics.md`.
 - Ontology canon: `foundations/ontology.md`, `foundations/absolute-time-defense.md`, `foundations/bootstrapping-the-absolute-frame.md`.

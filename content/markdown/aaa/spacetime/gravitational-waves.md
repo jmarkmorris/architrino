@@ -94,6 +94,34 @@ $$
 $$
 This is a forecast and comparison gate. It does not license a massive-graviton ontology; it only says that any cosmological-scale weakening channel must remain compatible with the low-frequency strain and timing residuals that would test long-wavelength dispersion.
 
+## Medium-Transport Perturbation
+
+For cosmology-facing transport work, gravitational waves should also be treated as bounded perturbations of the same Noether-Sea state used by redshift and dark-energy modules. In the provisional Noether-core equilibrium packet,
+
+$$
+\partial_t f_N
++\nabla\cdot(\mathbf{u}_{\mathrm{sea}}f_N)
++\partial_\nu J_\nu
+=
+S_{\mathrm{BH}}
++S_{\mathrm{GW}}
+-R_{\mathrm{eq}}[f_N],
+$$
+
+the term $S_{\mathrm{GW}}$ records the disturbance of the local Noether-core cadence distribution by the gravitational-wave channel. It is not an additional default polarization mode and not a license for frequency-dependent gravitational-wave propagation in validated bands. It is a possible low-amplitude contribution to the medium state later sampled by photons, clocks, and growth observables.
+
+The redshift-facing projection should therefore be bounded as a perturbation of the path-rate functional:
+
+$$
+\delta\alpha_{\mathrm{prop},X}^{\mathrm{GW}}
+=
+\mathcal{A}_{X,\mathrm{GW}}\!\left[
+S_{\mathrm{GW}},f_N,J_\nu;\mathbf{x},t,\hat{\mathbf{k}}
+\right],
+$$
+
+with the associated beam variance, chromaticity residual, and packet time-dilation residual below the same tolerances used for the redshift budget. If $S_{\mathrm{GW}}$ produces measurable photon dispersion, image blur, or gravitational-wave timing drift beyond the detector gates above, the perturbative transport branch fails.
+
 ## Polarization Content
 
 In the repo-wide spin taxonomy, this is the effective **spin-2 / tensor** channel: the wave is not a scalar breathing mode or a single-axis vector mode, but a transverse-traceless deformation carrying quadrupolar shape data.

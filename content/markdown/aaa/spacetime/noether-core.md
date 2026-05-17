@@ -50,6 +50,115 @@ On this reading, an accepted energy-level change is a one-$h$ closed-cycle actio
 
 The same closure-label machinery is the native carrier for branch-quantized Lorentz response. A moving Noether core should not be assigned a Lorentz factor independently of its internal ledger. Instead, a stable closure label should determine the all-layer retuning of radii, frequencies, characteristic speeds, and wake exchange; the outer envelope then projects the ruler factor seen by Physical Observers. In the homogeneous weak-field limit, the admitted labels must collapse to the usual effective $\gamma(v)$ within the preferred-frame leakage bound.
 
+### Cadence-Scale Retuning Hypothesis
+
+The single-core version of the $h$-step claim is geometric rather than merely thermal. An accepted action transaction does not add energy to a rigid object. It moves the Noether core from one admissible closure branch toward another, and the core resolves that transaction by retuning its cadence-scale closure.
+
+The bookkeeping distinction is
+
+$$
+h=\text{action per accepted cycle},
+\qquad
+E_N=h\nu_N.
+$$
+
+Here $\nu_N$ is a representative cadence extracted from the closed Noether-core branch. A one-$h$ transaction changes the action ledger; the accepted branch may answer through one or more of the cadence, layer radii, envelope scale, envelope ratio, orientation, strain, and inter-layer wake-exchange variables:
+
+$$
+\Delta A_{\mathrm{cyc}}=\pm h
+\quad\Rightarrow\quad
+(\nu_N,\ R_I,R_M,R_O,\ \lambda,\ \xi,\ \mathcal{G}_{IM},\mathcal{G}_{IO},\mathcal{G}_{MO})
+\longmapsto
+(\nu_N',\ R_I',R_M',R_O',\ \lambda',\ \xi',\ \mathcal{G}_{IM}',\mathcal{G}_{IO}',\mathcal{G}_{MO}').
+$$
+
+In the simplest fixed-speed layer estimate,
+
+$$
+v_\ell\sim 2\pi R_\ell\nu_\ell,
+\qquad
+\ell\in\{I,M,O\}.
+$$
+
+If a branch keeps $v_\ell$ approximately fixed while accepting the transaction, then
+
+$$
+R_\ell\nu_\ell\approx\text{constant},
+\qquad
+\Delta\nu_\ell>0\Rightarrow\Delta R_\ell<0,
+\qquad
+\Delta\nu_\ell<0\Rightarrow\Delta R_\ell>0.
+$$
+
+The proof target is the constrained map, not only this sign rule. On a fixed branch chart $q$, collect the logarithmic retuning variables into
+
+$$
+\mathbf{y}_q
+=
+\left(
+\ln\nu_I,\ln\nu_M,\ln\nu_O,\,
+\ln R_I,\ln R_M,\ln R_O,\,
+\ln\lambda,\ln\xi
+\right)_q^{T}.
+$$
+
+Let $A_{\mathrm{cyc},q}(\mathbf{y},\mathcal{G})$ be the closed-cycle action ledger on that chart, and let
+
+$$
+\mathcal{C}_q(\mathbf{y},\mathcal{G})=0
+$$
+
+collect the integer phase-closure, causal-root, separator, inter-layer wake-exchange, and stability conditions that define the branch. A first-order accepted retuning with sign $\sigma\in\{+1,-1\}$ must satisfy
+
+$$
+D A_{\mathrm{cyc},q}[\Delta\mathbf{y}]
++
+\Delta A_{\mathrm{wake}}
+=
+\sigma h,
+$$
+
+together with the branch-preservation condition
+
+$$
+D\mathcal{C}_q[\Delta\mathbf{y}]
++
+\Delta\mathcal{C}_{\mathcal{G}}
+=0.
+$$
+
+If $\Delta\mathcal{C}_{\mathcal{G}}=0$, the retuning stays on the same causal-root ledger. If $\Delta\mathcal{C}_{\mathcal{G}}\neq0$, the event is a branch transition and must be treated as a separator crossing or causal-locus reconnection rather than as smooth single-core drift.
+
+The local cadence-scale retuning map is therefore the closure target
+
+$$
+\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}
+:
+(\Lambda_{\text{NC}},\theta_{\mathrm{env}})
+\longmapsto
+\left(
+\Delta\nu_N,\Delta R_I,\Delta R_M,\Delta R_O,\Delta\lambda,\Delta\xi
+\right),
+$$
+
+where $\theta_{\mathrm{env}}$ records the local Noether-Sea and neighboring-assembly conditions. The representative cadence increment is an extraction from the layer increments, for example
+
+$$
+\Delta\ln\nu_N
+=
+w_I^{(q)}\Delta\ln\nu_I
++
+w_M^{(q)}\Delta\ln\nu_M
++
+w_O^{(q)}\Delta\ln\nu_O,
+\qquad
+w_I^{(q)}+w_M^{(q)}+w_O^{(q)}=1,
+$$
+
+with the weights determined by the same branch and exposure record used for clock and medium coupling. The full tri-binary need not put the entire transaction into a single layer. One layer may tighten while another expands, and the outer envelope may change through $\lambda$ or $\xi$, provided the total closure label remains admissible.
+
+This is the local branchwise origin of the smoother Noether-Sea equilibrium-current language: individual retunings are discrete, while many asynchronous accepted retunings can coarse-grain into a continuous cadence-space current.
+
 ### Reduced Noether-Core Closure Label
 
 For proof work, the integer phase-closure state should be packaged with the branch data that made the closure admissible. The reduced Noether-core closure label is a branch label, not a new ontological ingredient:

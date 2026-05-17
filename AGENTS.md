@@ -47,6 +47,20 @@ This document distinguishes three audience scopes:
 
 - If you are working on a task in a priority list and you complete that task, remove it from the priority list and renumber any items that follow.
 
+### Current Core Theory Focus
+
+- Default high-value work is now core geometrical theory closure: master-equation closure, potential/action proof programs, certified branch geometry, executable simulations that discipline the equations, $A_0$ continuation, mass-map derivation, tri-binary causal closure, Lorentz/effective-metric recovery, photon closure, and Noether-Sea constitutive response.
+- Bias substantial theory sessions toward one hard mathematical artifact: a definition, equation, lemma, invariant, proof route, branch certificate, simulation target with variables, or falsifiable closure condition.
+- Treat broad prose coverage, cross-linking, app/UI work, presentation work, and new infrastructure as secondary unless the operator/developer explicitly selects them or they directly unblock the current core geometry target.
+- When multiple possible improvements compete, choose the one that most reduces mathematical uncertainty in the current proof stack rather than the one that merely improves organization or presentation.
+
+### Theory Advancement Capture
+
+- Do not leave substantive theory advancements only in chat. After a discussion produces a new derivation, equation, invariant, mechanism, simulation target, proof route, terminology decision, or corrected claim level, make a capture decision before closing the thread.
+- Prefer direct promotion into `content/markdown/aaa` when the advancement is solid enough for reader-facing corpus prose and can be stated with its assumptions and remaining obligations.
+- If the advancement is valuable but not yet corpus-solid, stage it in `reference/priorities` as priority material with its claim level, assumptions, proof burden, and intended corpus destination.
+- If no durable capture is made, state why in the operator/developer handoff so the gap is visible rather than silently losing the advancement.
+
 ### Authoring and Editorial Policy
 
 #### Document Scope and Linking

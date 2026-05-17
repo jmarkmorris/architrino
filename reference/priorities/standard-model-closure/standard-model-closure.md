@@ -16,12 +16,15 @@
 3. `confinement_energetics` — Derive confinement-scale behavior from topological or strain energetics. Status: `pending`. Depends on: `overlap_integrals`.
 4. `weak_sector_gauge_closure` — Unify weak axial-frame exposure, `V-A`, CKM/PMNS overlap, weak-corridor provenance, and effective gauge covariance into one closure packet. Status: `review`. Depends on: `overlap_integrals`.
 5. `nuclear_binding_closure` — Build the first nuclear benchmark ladder from hadronic geometry and residual strong channels: deuteron, saturation, alpha-like cluster, and beta stability. Status: `review`. Depends on: `confinement_energetics`.
+6. `hydrogen_fermion_sea_boundary` — Derive the four-fermion hydrogen boundary map that separates exact assembly-ledger membership from dynamic exclusion-envelope and Noether-Sea coarse-graining boundaries. Status: `seeded`. Depends on: `confinement_energetics`, `nuclear_binding_closure`.
 
 ## Scope
 
 This workstream owns the remaining Standard Model-facing closure tasks that are not already carried by [mass-map](../mass-map/mass-map.md), [angular-momentum-spin](../angular-momentum-spin/angular-momentum-spin.md), or [quantum-closure](../quantum-closure/quantum-closure.md).
 
 The quark catalog and basic $SU(3)\times SU(2)\times U(1)$ bookkeeping are in place. The remaining leverage is mass prediction, explicit overlap-integral flavor mixing, confinement energetics, weak-sector exposure/gauge closure, and nuclear coarse-graining. Weak `V-A` chirality and weak-reaction provenance are preserved as subgates of `weak_sector_gauge_closure`, not as separate top-level queue items.
+
+The hydrogen boundary question is now a staged standard-model-to-atomic bridge. Its value is not another validation gate; it is the first clean local map between four charged fermion assemblies, the proton's color-singlet closure, the electron resonance envelope, and the ambient Noether-Sea coarse-graining used as local spacetime.
 
 ## Detailed Priority Files
 
@@ -40,6 +43,7 @@ The quark catalog and basic $SU(3)\times SU(2)\times U(1)$ bookkeeping are in pl
 | `confinement_energetics` | [geometry-first-program.md](geometry-first-program.md) | [color-charge-su3](../../../content/markdown/aaa/assemblies/fermions/color-charge-su3.md) | Confinement-scale behavior derived from topological or strain energetics with a color-singlet bound-state check. |
 | `weak_sector_gauge_closure` | [weak-sector-gauge-closure.md](weak-sector-gauge-closure.md) | [weak-mixing-angle](../../../content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md), [weak-mixing-ckm](../../../content/markdown/aaa/theory-bridges/weak-mixing-ckm.md), [electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md), [gauge-symmetries](../../../content/markdown/aaa/interactions/gauge-symmetries.md), and [gauge-structure-emergence](../../../content/markdown/aaa/interactions/gauge-structure-emergence.md) | One weak-exposure domain supports `V-A`, CKM/PMNS overlap, weak-reaction provenance, and effective gauge covariance without leading-order preferred-frame leakage. |
 | `nuclear_binding_closure` | [nuclear-binding-closure.md](nuclear-binding-closure.md) | [nuclear-binding](../../../content/markdown/aaa/nuclear-atomic/nuclear-binding.md), [nucleon-structure](../../../content/markdown/aaa/nuclear-atomic/nucleon-structure.md), and [mesons](../../../content/markdown/aaa/assemblies/mesons/mesons.md) | The hadronic program binds $p+n$, avoids an unphysical $p+p$ bound state, explains saturation and alpha-like enhancement, and keeps beta stability in one ledger. |
+| `hydrogen_fermion_sea_boundary` | This file | [atomic-structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md) and [noether-core-geometry](../../../content/markdown/aaa/spacetime/noether-core-geometry.md) | The hydrogen atom is used to derive the distinction between exact fermion assembly membership, dynamic exclusion envelope, electron resonance envelope, and ambient Noether-Sea coarse-graining. |
 
 ## Related Priorities
 
@@ -60,4 +64,5 @@ The quark catalog and basic $SU(3)\times SU(2)\times U(1)$ bookkeeping are in pl
 - [gauge-structure-emergence](../../../content/markdown/aaa/interactions/gauge-structure-emergence.md)
 - [nuclear-binding](../../../content/markdown/aaa/nuclear-atomic/nuclear-binding.md)
 - [nucleon-structure](../../../content/markdown/aaa/nuclear-atomic/nucleon-structure.md)
+- [atomic-structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md)
 - [mesons](../../../content/markdown/aaa/assemblies/mesons/mesons.md)

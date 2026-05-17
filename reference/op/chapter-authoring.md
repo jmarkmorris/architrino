@@ -19,6 +19,10 @@
 
 This is the ranked queue for chapter-writing work and legacy-material recovery. It is the main coverage bucket and should be used to fill thin chapters with formal minimums rather than ornamental prose.
 
+## Core Theory Focus Constraint
+
+During the current core geometrical theory push, do not treat chapter coverage as a substitute for solving the mathematics. Use this queue only when the chapter work adds or clarifies definitions, equations, closure targets, proof routes, validation criteria, or worked examples that directly serve the active theory stack.
+
 ## Scorecard Use
 
 - For scorecard purposes, this is the main Coverage bucket.

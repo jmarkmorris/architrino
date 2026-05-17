@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1162
+      "sections": 1167
     }
   },
   "tocRoot": {
@@ -1123,6 +1123,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Cadence-Scale Retuning Closure",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Cadence-Scale Retuning Closure",
+                "sectionKey": "cadence scale retuning closure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Transverse Causal Budget Lemma",
                 "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
                 "markdownSection": "Transverse Causal Budget Lemma",
@@ -1514,6 +1522,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Equilibrium Transport Hypothesis",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "Equilibrium Transport Hypothesis",
+                "sectionKey": "equilibrium transport hypothesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Refractive Gravity and Effective Metric",
                 "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
                 "markdownSection": "Refractive Gravity and Effective Metric",
@@ -1616,6 +1632,14 @@
                 "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
                 "markdownSection": "Lorentz Projection Role",
                 "sectionKey": "lorentz projection role",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Retuning Projection to Envelope Variables",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownSection": "Retuning Projection to Envelope Variables",
+                "sectionKey": "retuning projection to envelope variables",
                 "headingLevel": 2
               },
               {
@@ -2200,6 +2224,14 @@
                     "markdownPath": "content/markdown/aaa/spacetime/gravitational-waves.md",
                     "markdownSection": "Linear Wave Equation",
                     "sectionKey": "linear wave equation",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Medium-Transport Perturbation",
+                    "markdownPath": "content/markdown/aaa/spacetime/gravitational-waves.md",
+                    "markdownSection": "Medium-Transport Perturbation",
+                    "sectionKey": "medium transport perturbation",
                     "headingLevel": 2
                   },
                   {
@@ -3502,6 +3534,14 @@
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-structure.md",
                 "markdownSection": "Multi-Body Assembly Structure",
                 "sectionKey": "multi body assembly structure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Hydrogen as a Four-Fermion Boundary Test",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-structure.md",
+                "markdownSection": "Hydrogen as a Four-Fermion Boundary Test",
+                "sectionKey": "hydrogen as a four fermion boundary test",
                 "headingLevel": 2
               },
               {

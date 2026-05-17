@@ -40,7 +40,7 @@ $$
 \frac{d\tau}{dt}=F\!\left(\mathbf{v},\rho_{\text{core}}(\mathbf{x},t),n(\mathbf{x},t),\chi_{\text{sea}}(\mathbf{x},t),\Phi_{\text{eff}},\text{clock geometry}\right).
 $$
 
-A photon that traverses regions with different $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, and $\Phi_{\text{eff}}$ is read by clocks with different local rates. The observed $z$ is then an emergent comparison of those rates along the path history.
+A photon that traverses regions with different $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, and $\Phi_{\text{eff}}$ is read by clocks with different local rates. The observed $z$ is then an emergent comparison of those rates along the path-history record.
 
 Operationally:
 
@@ -73,7 +73,7 @@ where absolute time $t$ indexes definite architrino positions, velocities, assem
 | Absolute time | $t$ does not dilate; it orders the emission, propagation, and reception events. |
 | Noether Sea | The medium deforms, flows, polarizes, relaxes, and changes cadence. |
 | Emitter | A local assembly changes branch and releases a photon-channel packet. |
-| Photon packet | The packet carries a definite path history through the Noether Sea. |
+| Photon packet | The packet carries a definite path-history record through the Noether Sea. |
 | Receiver | A local assembly samples or captures the packet using its own local cadence. |
 | Measured energy | $E_{\mathrm{obs}}=h\nu_{\mathrm{obs}}$ is the receiver-coupling result, not a standalone scalar detached from emission, path, and reception. |
 
@@ -185,6 +185,179 @@ This is not an additional energy-loss term. The local emission ledger is carried
 The hard closure question is therefore not which observer frame carries the true photon energy. It is whether one absolute Noether-Sea transport law can compute $\Gamma_N$, $D_v$, and $\mathcal{P}_{E\to R}$ from $S(t)$ without switching explanations between gravitational, relative-motion, and deep-space redshift cases.
 
 The factor $D_v$ is not an independent ontology. It is the low-speed endpoint of the source/receiver launch-geometry term $\mathcal{L}_{E\to R}(\hat{\mathbf{k}})$.
+
+### Absolute-Record Transport Map
+
+The first proof scaffold is to define one extraction map from the absolute record. For a line family $X$, emission event $E=(\mathbf{x}_E,t_E)$, reception event $R=(\mathbf{x}_R,t_R)$, and declared photon-channel path $\gamma_{E\to R}$, let
+
+$$
+\mathcal{S}_{X,E\to R}
+\equiv
+S(t)\big|_{\{E,R,X,\gamma_{E\to R},\theta_{\mathrm{sea}},\mathcal{H}_{\mathrm{wake}}\}}
+$$
+
+denote the restricted record containing the source assembly branch, receiver assembly branch, path-history wake ledger, Noether-Sea state variables, and photon-channel path data needed for the comparison. This is not an observer frame; it is the part of $\mathbb{U}_{\text{now}}\equiv S(t)$ consumed by the redshift calculation.
+
+The transport map target is
+
+$$
+\mathfrak{T}_X[\mathcal{S}_{X,E\to R}]
+=
+\left(
+\Gamma_{N,E},\,
+\Gamma_{N,R},\,
+B_X(E),\,
+D_v,\,
+Y_{X,E\to R}
+\right),
+$$
+
+with
+
+$$
+Y_{X,E\to R}
+\equiv
+\ln\mathcal{P}_{E\to R,X}.
+$$
+
+The recovered redshift is then
+
+$$
+Z_X[\mathcal{S}_{X,E\to R}]
+\equiv
+\ln(1+z_X)
+=
+\ln\Gamma_{N,E}
+-\ln\Gamma_{N,R}
++Y_{X,E\to R}
+-\ln B_X(E)
+-\ln D_v.
+$$
+
+Each term has a separate extraction rule.
+
+Endpoint cadence is read from the local Noether-Sea core cadence:
+
+$$
+\Gamma_{N,A}
+=
+\frac{\Omega_{N0}}
+{\Omega_N(\mathbf{x}_A,t_A;\Pi_N S(t_A))},
+\qquad
+A\in\{E,R\},
+$$
+
+where $\Pi_N S(t_A)$ is the local Noether-Sea core record near endpoint $A$. Source-branch shift is read before propagation:
+
+$$
+B_X(E)
+=
+\frac{\nu_{X,\mathrm{emit}}(E;\Pi_E S(t_E))}
+{\nu_{X,0}},
+$$
+
+where $\Pi_E S(t_E)$ is the local source-assembly and environment record that determines whether the transition remains on the clean reference branch.
+
+Launch geometry is the homogeneous-reference replay of the same source and receiver worldlines:
+
+$$
+D_v
+\equiv
+\left.
+\frac{dN_\phi/dt_R}{dN_\phi/dt_E}
+\right|_{\theta_{\mathrm{sea}}=\theta_0,\;\Gamma_N=1,\;B_X=1},
+$$
+
+where $N_\phi$ counts adjacent emitted phase markers received in the reference Noether-Sea state $\theta_0$. This definition isolates source/receiver motion and emission direction from endpoint cadence and path-history propagation. In the simple radial, weak-speed limit it reduces to
+
+$$
+D_v
+\approx
+\sqrt{\frac{1-\beta_r}{1+\beta_r}},
+\qquad
+\beta_r=\frac{(\mathbf{v}_R-\mathbf{v}_E)\cdot\hat{\mathbf{k}}}{c_0}.
+$$
+
+Path-history propagation is then the remaining Noether-Sea transport integral:
+
+$$
+Y_{X,E\to R}
+=
+\int_{\gamma_{E\to R}}
+\mathcal{C}_X
+\!\left(
+\Pi_\gamma S(t(\ell)),
+\hat{\mathbf{k}}(\ell)
+\right)d\ell,
+$$
+
+with
+
+$$
+\Pi_\gamma S(t(\ell))
+=
+\left(
+\boldsymbol{\theta}_\gamma,\,
+\mathbf{u}_{\text{sea}},\,
+S_{ij},\,
+\mathcal{H}_{\mathrm{wake}}
+\right)_{\gamma(\ell),t(\ell)}.
+$$
+
+This makes the proof obligation explicit. A gravitational endpoint redshift is the special case $B_X=1$, $D_v=1$, and $Y_X\approx0$, with $\Gamma_N$ supplying the weak-field benchmark. A homogeneous relative-motion redshift is the special case $\Gamma_{N,E}=\Gamma_{N,R}=1$, $B_X=1$, and $Y_X=0$, with $D_v$ supplying the shift. A deep-space propagation redshift is the special case where endpoint and launch terms are controlled while $Y_X$ accumulates from the path-history Noether-Sea record.
+
+The one-map closure condition is therefore
+
+$$
+\mathfrak{T}_X[\mathcal{S}_{X,E\to R}]
+\quad\text{uses one }S(t)\text{ restriction and one coefficient record.}
+$$
+
+If the endpoint, launch, and propagation terms can be made to fit only by changing $\Pi_N S$, $\Pi_E S$, $\Pi_\gamma S$, or the coefficient row independently for each observational family, then the factorization is a useful diagnostic but not yet an $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation.
+
+### Equilibrium-Transport Candidate for Path History
+
+The current candidate for the gentle deep-space term is a Noether-core equilibrium transport law. In this reading, a weak-field path does not accumulate redshift because the photon loses energy as it scatters. It accumulates a phase-cadence path-history term because the photon packet traverses a Noether-Sea population whose core-cadence distribution evolves in absolute time.
+
+Let $f_N(\nu,\mathbf{x},t)$ be the local distribution of Noether-core cadence states, with representative core energy $E_N=h\nu_N$. At the discrete level, each accepted $h$-scale transaction retunes a core's cadence-scale closure rather than sliding a continuous single-core frequency. The continuum current should therefore be read as the ensemble flux
+
+$$
+J_\nu
+\sim
+f_N
+\left\langle
+\dot{\nu}_N
+\right\rangle_{\Delta A_{\mathrm{cyc}}=\pm h},
+$$
+
+with the average taken over accepted branch changes inside the coarse-graining cell. A provisional transport packet is
+
+$$
+\partial_t f_N
++\nabla\cdot(\mathbf{u}_{\mathrm{sea}}f_N)
++\partial_\nu J_\nu
+=
+S_{\mathrm{BH}}
++S_{\mathrm{GW}}
+-R_{\mathrm{eq}}[f_N],
+$$
+
+where $J_\nu$ is the frequency-space relaxation current, $S_{\mathrm{BH}}$ is medium loading from black-hole recycling regions, $S_{\mathrm{GW}}$ is a gravitational-wave perturbation term, and $R_{\mathrm{eq}}[f_N]$ is the local neighbor-equilibration operator. The projection into the redshift budget should have the form
+
+$$
+\alpha_{\mathrm{prop},X}
+=
+\mathcal{A}_X\!\left[
+f_N,\,
+J_\nu,\,
+S_{\mathrm{BH}},\,
+S_{\mathrm{GW}},\,
+R_{\mathrm{eq}};
+\mathbf{x},t,\hat{\mathbf{k}}
+\right].
+$$
+
+This is a closure target. If $J_\nu$ vanishes after coarse-graining, or if the source and equilibration terms cancel without a signed large-scale drift, the equilibrium law supplies no expansion-like effect. If the projection is nonzero, it must still pass the same image-sharpness, chromaticity, and packet time-dilation checks as the rest of $\mathcal{P}_{E\to R}$. That condition keeps the hypothesis out of the excluded tired-light class.
 
 In a weak field sourced by masses $M_a$, the Newtonian benchmark potential is
 
@@ -586,6 +759,103 @@ $$
 
 The same closure must show that the phase-frequency rate and the arrival-cadence rate share this $Y_X$ variable. If the Noether-Sea transport dynamics instead require separate variables for frequency shift and packet cadence, then the unified propagation explanation fails the time-dilation recovery and the residual must be moved out of $\mathcal{P}_{E\to R}$.
 
+### Dark-Energy Handoff to Transport
+
+The [Dark Energy](./dark-energy.md) module can feed the transport map only by supplying a Noether-Sea state history. In the redshift budget, its native entry point is the time derivative of $\boldsymbol{\theta}_\gamma$, plus any associated flow and strain terms. With the dark-energy handoff written as
+
+$$
+\partial_t\boldsymbol{\theta}_\gamma
+=
+\mathbf{J}_{\mathrm{DE}}\mathbf{q}_{\mathrm{DE}}
++
+\partial_t\boldsymbol{\theta}_{\gamma,\mathrm{local}},
+$$
+
+where
+
+$$
+\mathbf{q}_{\mathrm{DE}}
+\equiv
+\begin{pmatrix}
+\partial_t\ln\rho_{\mathrm{DE,eff}}\\
+\partial_t w_{\mathrm{eff}}\\
+\mathcal{S}_{\mathrm{sea}}/\rho_{\mathrm{DE,eff}}\\
+\mathcal{S}_{\mathrm{BH}}/\rho_{\mathrm{DE,eff}}
+\end{pmatrix},
+$$
+
+the induced propagation contribution is
+
+$$
+\alpha_{\mathrm{prop},X}^{\mathrm{DE}}
+=
+\frac{1}{c_\gamma}
+\begin{pmatrix}
+a_\chi^X & a_n^X & a_R^X
+\end{pmatrix}
+\mathbf{J}_{\mathrm{DE}}\mathbf{q}_{\mathrm{DE}}.
+$$
+
+This bridge keeps the level distinction explicit. The effective quantities $\rho_{\mathrm{DE,eff}}$ and $w_{\mathrm{eff}}$ remain observer-side summaries of medium relaxation. They affect redshift only insofar as the underlying Noether-Sea response changes $\chi_\gamma$, $n$, $R_{\text{core}}$, flow, or strain along the path. A fit that assigns $H(z)$ directly while bypassing this handoff is a comparison model, not a completed $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation.
+
+For the homogeneous first-order branch, define the transport-facing row
+
+$$
+\boldsymbol{\lambda}_X^T
+\equiv
+\begin{pmatrix}
+a_\chi^X & a_n^X & a_R^X
+\end{pmatrix}
+\mathbf{J}_{\mathrm{DE}}
+=
+\begin{pmatrix}
+\lambda_\rho^X & \lambda_w^X & \lambda_{\mathrm{sea}}^X & \lambda_{\mathrm{BH}}^X
+\end{pmatrix}.
+$$
+
+Then
+
+$$
+\alpha_{\mathrm{prop},X}^{\mathrm{DE}}
+=
+\frac{1}{c_\gamma}
+\left(
+\lambda_\rho^X q_\rho
++\lambda_w^X q_w
++\lambda_{\mathrm{sea}}^X q_{\mathrm{sea}}
++\lambda_{\mathrm{BH}}^X q_{\mathrm{BH}}
+\right),
+$$
+
+with $q_\rho=\partial_t\ln\rho_{\mathrm{DE,eff}}$, $q_w=\partial_t w_{\mathrm{eff}}$, $q_{\mathrm{sea}}=\mathcal{S}_{\mathrm{sea}}/\rho_{\mathrm{DE,eff}}$, and $q_{\mathrm{BH}}=\mathcal{S}_{\mathrm{BH}}/\rho_{\mathrm{DE,eff}}$. If the same homogeneous branch also obeys the effective continuity identity
+
+$$
+q_\rho
+=
+-3H_{\mathrm{eff}}(1+w_{\mathrm{eff}})
++q_{\mathrm{sea}}
++q_{\mathrm{BH}},
+$$
+
+and if $H_{\mathrm{eff},X}^{\mathrm{DE}}=c_0\alpha_{\mathrm{prop},X}^{\mathrm{DE}}$, then the redshift-transfer slope implied by this coefficient packet is
+
+$$
+H_{\mathrm{eff},X}^{\mathrm{DE}}
+=
+\frac{
+\frac{c_0}{c_\gamma}
+\left[
+\lambda_w^X\,\partial_t w_{\mathrm{eff}}
++(\lambda_\rho^X+\lambda_{\mathrm{sea}}^X)\frac{\mathcal{S}_{\mathrm{sea}}}{\rho_{\mathrm{DE,eff}}}
++(\lambda_\rho^X+\lambda_{\mathrm{BH}}^X)\frac{\mathcal{S}_{\mathrm{BH}}}{\rho_{\mathrm{DE,eff}}}
+\right]
+}{
+1+3\frac{c_0}{c_\gamma}\lambda_\rho^X(1+w_{\mathrm{eff}})
+}.
+$$
+
+This is the first coefficient-level meaning of an $\mathbb{A}\mathbb{A}\mathbb{A}$ Hubble-like number. It is a solved transfer coefficient for a declared clean branch, not a primitive expansion rate. The denominator must stay finite, and the numerator must be compatible across line families and cadence diagnostics before the result can be promoted from coefficient packet to cosmological closure.
+
 ### Distance and Effective Hubble Coefficient
 
 Redshift alone is not distance in this framework. A redshift becomes a distance estimate only after endpoint cadence, source-branch shift, relative motion, and path-history propagation have been separated. Define the propagation residual
@@ -802,6 +1072,8 @@ $$
 n_j,\,
 R_{\text{core},j},\,
 \mathbf{u}_{\text{sea},j},\,
+f_{N,j},\,
+J_{\nu,j},\,
 S_{ij}^{(j)},\,
 \mathcal{R}_{\mathrm{prop},X}^{(j)}
 \right).
@@ -856,14 +1128,15 @@ E_{\mathrm{obs},X}
 h\nu_{\mathrm{obs},X}.
 $$
 
-The toy model should report at least four diagnostics:
+The toy model should report at least five diagnostics:
 
 - the corrected propagation residual $Y_{X,N}=Z_{\mathrm{prop},X}$;
 - the effective nearby slope $H_{\mathrm{eff},X}\approx c_0Y_{X,N}/D$ for short paths;
+- the integrated named transport contributions, such as equilibrium relaxation, SMBH loading, and gravitational-wave perturbation terms;
 - the line-family chromaticity residual $\left|Y_{X,N}-Y_{Y,N}\right|$ for two clean lines $X$ and $Y$ over the same path;
 - the time-dilation residual $\left|Y_{X,N}^{(\nu)}-Y_{X,N}^{(\Delta t)}\right|$ when frequency and packet-cadence updates are computed separately as a failure test.
 
-This simulation is useful precisely because each factor can be turned on or off in a controlled way. A laboratory line should return $Y_{X,N}\approx0$ after local corrections. A clean galaxy path should isolate $Y_{X,N}$ from $D_v$. A strong-source path should show when $\Gamma_{N,E}$ or $B_X(E)$ dominates enough that a propagation-only distance estimate is invalid.
+This simulation is useful precisely because each factor can be turned on or off in a controlled way. A laboratory line should return $Y_{X,N}\approx0$ after local corrections. A clean galaxy path should isolate $Y_{X,N}$ from $D_v$. An equilibrium-transport path should show whether smooth coarse-grained $h$-step relaxation can supply $Y_{X,N}$ while gravitational-wave perturbations average below residual tolerance. A strong-source path should show when $\Gamma_{N,E}$ or $B_X(E)$ dominates enough that a propagation-only distance estimate is invalid.
 
 ## Directional Residuals in the Redshift Map
 
