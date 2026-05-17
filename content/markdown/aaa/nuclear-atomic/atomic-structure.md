@@ -164,6 +164,72 @@ $$
 d_N\ll \ell_{\mathrm{proton}}\ll R_p.
 $$
 
+## Element-Dependent Sea Response
+
+Hydrogen fixes the clean boundary case, but heavier atoms should use the same ledger-complement discipline. An element name is not itself a Noether-Sea boundary condition. It becomes physically meaningful only after the isotope, ionization state, electron-envelope branch, and any material bonding branch are fixed inside the $\mathbb{U}_{\text{now}}$ state record.
+
+For an atomic window $\Omega_E$ with proton number $Z$, neutron number $N$, electron-envelope branch $\mathcal B_e$, and optional bonding or lattice branch $\mathcal B_{\mathrm{lat}}$, write the nuclear assembly ledger schematically as
+
+$$
+\mathcal A_{\mathrm{nuc}}^{Z,N}(t)
+=
+\bigcup_{\alpha=1}^{Z}\mathcal A_{p_\alpha}(t)
+\cup
+\bigcup_{\nu=1}^{N}\mathcal A_{n_\nu}(t)
+\cup
+\mathcal L_{\mathrm{nuc}}^{Z,N}(t),
+$$
+
+where $\mathcal L_{\mathrm{nuc}}^{Z,N}$ records the residual nuclear binding, corridor, pairing, and shell-structure ledgers that make the protons and neutrons one nuclear assembly rather than a list of free nucleons. The locally resolved Noether-Sea complement is then
+
+$$
+S_{\mathrm{sea}}^{\Omega_E}(t)
+=
+S(t)\big|_{\Omega_E}
+\setminus
+\left(
+\mathcal A_{\mathrm{nuc}}^{Z,N}(t)
+\cup
+\mathcal A_{\mathrm{e-env}}^{\mathcal B_e}(t)
+\cup
+\mathcal L_{\mathrm{bond}}^{\mathcal B_{\mathrm{lat}}}(t)
+\right).
+$$
+
+At atomic resolution the corresponding coarse-grained response should be decomposed as
+
+$$
+\theta_E^{(\ell)}(\mathbf{x},t)
+=
+\theta_{\mathrm{bg}}^{(\ell)}(\mathbf{x},t)
++
+\delta\theta_{\mathrm{nuc}}^{(\ell)}
+\!\left[
+Z,N,\Sigma_{\mathrm{ax}}^{Z,N},\mathcal L_{\mathrm{nuc}}^{Z,N}
+\right]
++
+\delta\theta_{\mathrm{e-env}}^{(\ell)}
+\!\left[
+\mathcal B_e
+\right]
++
+\delta\theta_{\mathrm{bond}}^{(\ell)}
+\!\left[
+\mathcal B_{\mathrm{lat}}
+\right],
+$$
+
+where $\Sigma_{\mathrm{ax}}^{Z,N}$ abbreviates the proton and neutron axial inventories after nuclear closure. The three perturbation terms are calculation slots, not separate substances: the nucleus supplies the coarse nuclear causal-wake envelope, the electron branch supplies the realized resonance and exclusion envelope, and the bonding branch supplies any shared wake corridors or lattice constraints.
+
+This gives a strict level distinction for periodic-table language:
+
+| Property or label | Continuum role |
+| --- | --- |
+| $Z$, $N$, isotope, proton/neutron axial inventories, nuclear binding ledger | Direct inputs to $\delta\theta_{\mathrm{nuc}}^{(\ell)}$ after coarse-graining. |
+| Electron-envelope branch, shell stability gap, ionization state | Inputs to $\delta\theta_{\mathrm{e-env}}^{(\ell)}$ only after a realized branch is specified. |
+| Bonding corridor, lattice phase, magnetic or transport branch | Inputs to $\delta\theta_{\mathrm{bond}}^{(\ell)}$ only for material states, not for the isolated element name. |
+| Element symbol, group, block, oxidation-state family, electronegativity, atomic radius, and chemical family name | Observer-level summaries and validation targets; they do not by themselves source the Noether-Sea response. |
+
 ## Angular-Momentum Handoff
 
 The immediate atomic target is to recover observer-level orbital quantum numbers from electron assemblies moving in an external nuclear and Noether-Sea environment. That target is separate from the internal rotational action of the electron's Noether-core assembly. A later atomic-spin pass must show how spin-orbit and hyperfine structure arise when the external resonance envelope couples to the completed internal spin ledger and to the measurement-response model. Until then, this chapter should treat shell filling and exclusion language as effective atomic bookkeeping inherited from the spin-statistics proof program.

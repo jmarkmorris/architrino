@@ -4,7 +4,7 @@ This priority packet is a report and derivation scaffold, not reader-facing cano
 
 ## Claim Level
 
-- **Status:** candidate constitutive law.
+- **Status:** candidate constitutive law with two-material replay scaffold.
 - **Main claim:** local atomic and lattice pressure should retune the surrounding Noether Sea through one shared record for normalized Noether-core density $n(\mathbf{x},t)$, delay factor $\chi_{\text{sea}}(\mathbf{x},t)$, effective speed $c_{\text{eff}}(\mathbf{x},t)$, Noether-Sea cadence factor $\Gamma_N(\mathbf{x},t)$, and assembly strain.
 - **Open burden:** coefficients must be derived from an accepted Noether-core branch, pressure-sensitive packing geometry, and the medium-response tensor probe. Until then this packet supplies a falsifiable ansatz, not a promoted theorem.
 - **Promotion targets:** [Noether Sea](../../../content/markdown/aaa/spacetime/noether-sea.md), [Noether Core Geometry](../../../content/markdown/aaa/spacetime/noether-core-geometry.md), [Atomic Structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md), [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md), [Proper Time and Time Dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [Parameter Ledger](../../../content/markdown/aaa/validation/parameter-ledger.md) after branch and validation support exists.
@@ -267,14 +267,187 @@ The useful comparison is not merely "high pressure changes spectra." Standard co
 5. **Metric/null-result failure:** the pressure response predicts photon dispersion, birefringence, preferred-frame leakage, PPN drift, or clock/signal mismatch above the validation bounds already owned by the gravity and Lorentz gates.
 6. **Branch-sign failure:** measured pressure response reverses sign without a corresponding branch transition, separator crossing, or lattice-state change in the retained record.
 
-## Next Calculation
+## Two-Material Pressure Replay Scaffold
 
-The first calculation should not try to fit all condensed matter. It should build a two-material pressure replay:
+The first replay should not try to fit all condensed matter. It should test whether one heavy metallic pressure case and one lighter neighboring-metal control can share the same coefficient row after ordinary material corrections are subtracted.
 
-1. choose one iron or nickel reference phase and one lighter neighboring-metal control;
-2. declare $P_\ell$, $C_A$, and the crystal-strain tensor from material data or a toy packet;
-3. propagate the law to $(n,\chi_{\text{sea}},c_{\text{eff}},\Gamma_N,S_{ij},\mathcal{M}_{\text{sea}}^{ab})$;
-4. require one coefficient row to explain all selected residual channels;
-5. report whether the fitted row stays below null-result bounds for anisotropic propagation and preferred-frame leakage.
+The default symbolic pair is
 
-If the two-material replay cannot produce a shared coefficient row, the pressure law should be demoted to an ordinary material-specific effective correction rather than promoted into Noether-Sea constitutive response.
+$$
+H=\mathrm{Fe},
+\qquad
+L=\mathrm{Cr},
+$$
+
+when the goal is a bcc transition-metal comparison with a lighter neighboring control. The alternate close-packed pair is
+
+$$
+H=\mathrm{Ni},
+\qquad
+L=\mathrm{Co},
+$$
+
+when the goal is a high-coordination comparison. These are replay labels, not a canon claim that chromium or cobalt is uniquely correct. A replay packet may replace the control if it gives a better match in phase, magnetic state, isotope purity, or pressure range.
+
+For each material $M\in\{H,L\}$ and pressure step $r$, declare the corrected pressure record
+
+$$
+\mathbf{q}_{M,r}
+=
+\left(
+\Delta\Pi_{M,r},\,
+\Delta\Pi_{M,r}^{\parallel-\perp},\,
+\Delta\ln n_{\max,M,r}^{\mathrm{obl}},\,
+C_M\left(\frac{Z_M}{Z_*}\right)^{\eta_Z}\frac{\Delta P_{\mathrm{ext},M,r}}{K_{\text{sea}}}
+\right)^T.
+$$
+
+Here $\Delta\Pi_{M,r}$ is the isotropic pressure-loading increment, $\Delta\Pi_{M,r}^{\parallel-\perp}$ is the anisotropic loading increment, and $\Delta\ln n_{\max,M,r}^{\mathrm{obl}}$ records packing-ceiling changes from $\lambda$, $\xi$, and orientation. The last entry isolates the heavy-atom scaling hypothesis.
+
+The observable residual vector is the material-corrected channel record
+
+$$
+\mathbf{y}_{M,r}
+=
+\mathbf{y}_{M,r}^{\mathrm{raw}}
+-\mathbf{y}_{M,r}^{\mathrm{std}},
+$$
+
+where $\mathbf{y}^{\mathrm{std}}$ contains ordinary electronic, magnetic, thermal, and elastic corrections. The retained Noether-Sea residual channels are
+
+$$
+\mathbf{y}_{M,r}
+=
+\left(
+\delta\ln\Gamma_N,\,
+\delta\ln\chi_{\text{sea}},\,
+\delta\ln(c_{\text{eff}}/c_f),\,
+\delta\mathcal{M}_{0},\,
+\delta\mathcal{M}_{2},\,
+\delta S_{\mathrm{dev}}
+\right)^T_{M,r}.
+$$
+
+$\delta\mathcal{M}_{0}$ is the isotropic component of the medium-response tensor perturbation, $\delta\mathcal{M}_{2}$ is the leading directional or quadrupolar component, and $\delta S_{\mathrm{dev}}$ is the retained deviatoric strain channel.
+
+The replay asks whether one matrix $B_P$ maps both materials:
+
+$$
+\widehat{\mathbf{y}}_{M,r}
+=
+B_P\mathbf{q}_{M,r}.
+$$
+
+The shared-row residual is
+
+$$
+\mathcal{R}_{\mathrm{row}}
+=
+\min_{B_P}
+\sum_{M\in\{H,L\}}
+\sum_r
+\left\|
+\mathbf{y}_{M,r}-B_P\mathbf{q}_{M,r}
+\right\|_{\Sigma_{M,r}^{-1}}^2.
+$$
+
+To prevent a hidden material-specific fit, compare against a separated fit:
+
+$$
+\mathcal{R}_{\mathrm{sep}}
+=
+\min_{B_H,B_L}
+\sum_{M\in\{H,L\}}
+\sum_r
+\left\|
+\mathbf{y}_{M,r}-B_M\mathbf{q}_{M,r}
+\right\|_{\Sigma_{M,r}^{-1}}^2,
+$$
+
+and define
+
+$$
+\mathcal{R}_{\mathrm{split}}
+=
+\left[
+\frac{\mathcal{R}_{\mathrm{row}}-\mathcal{R}_{\mathrm{sep}}}
+{\nu_{\mathrm{dof}}+\varepsilon}
+-\epsilon_{\mathrm{split}}
+\right]_+.
+$$
+
+The pressure law survives this replay only if
+
+$$
+\mathcal{R}_{\mathrm{row}}\le\epsilon_{\mathrm{row}},
+\qquad
+\mathcal{R}_{\mathrm{split}}=0,
+$$
+
+and the null-result residuals remain below their sector bounds:
+
+$$
+\mathcal{R}_{\mathrm{null}}^{P}
+=
+\max\left(
+\mathcal{R}_{\mathrm{biref}},
+\mathcal{R}_{\gamma\mathrm{disp}},
+\mathcal{R}_{\mathrm{LV}},
+\mathcal{R}_{\mathrm{clksig}},
+\mathcal{R}_{\mathrm{tr}}
+\right)
+\le
+\epsilon_P.
+$$
+
+The first discriminating heavy/control scaling is the pressure slope ratio for any retained channel $Y$:
+
+$$
+\mathcal{A}_{Y}^{H/L}
+\equiv
+\frac{
+\partial Y_H/\partial P_{\mathrm{ext},H}
+}{
+\partial Y_L/\partial P_{\mathrm{ext},L}
+}.
+$$
+
+For the cadence channel in the weak, branch-preserving, delay-dominated limit, the candidate predicts
+
+$$
+\mathcal{A}_{\Gamma}^{H/L}
+\approx
+\frac{
+C_H Z_H^{\eta_Z}
+\left(1-n_H/n_{\max,H}^{\mathrm{obl}}\right)
+}{
+C_L Z_L^{\eta_Z}
+\left(1-n_L/n_{\max,L}^{\mathrm{obl}}\right)
+}
+\cdot
+\frac{K_{\text{sea},L}}{K_{\text{sea},H}},
+$$
+
+up to the shared coefficient combination multiplying $\delta\ln\Gamma_N$. The same inferred $\eta_Z$ and packing factor must also work for the $\chi_{\text{sea}}$, $c_{\text{eff}}$, strain, and tensor-response channels. If Fe/Cr or Ni/Co needs a different $\eta_Z$ per channel, the Noether-Sea pressure law fails as a shared constitutive response.
+
+### Replay Packet Fields
+
+| Field | Meaning |
+| --- | --- |
+| `material_id` | `Fe`, `Cr`, `Ni`, `Co`, or another declared material label |
+| `phase_label` | crystal phase, magnetic state, isotope choice, and pressure range |
+| `Z` | nuclear charge used only inside the declared heavy-atom scaling term |
+| `C_A` | coordination/compression factor for the selected material state |
+| `P_ext` | applied pressure or equivalent lattice pressure record |
+| `strain_principal` | three principal strain entries used to form $\Pi_\ell^{\parallel-\perp}$ and $S_{ij}^{\mathrm{dev}}$ |
+| `packing_record` | $\lambda$, $\xi$, $\mathcal{O}$, and $n_{\max}^{\mathrm{obl}}$ inputs |
+| `standard_corrections` | ordinary electronic, magnetic, thermal, and elastic corrections subtracted into $\mathbf{y}^{\mathrm{std}}$ |
+| `residual_channels` | $\delta\ln\Gamma_N$, $\delta\ln\chi_{\text{sea}}$, $\delta\ln(c_{\text{eff}}/c_f)$, $\delta\mathcal{M}_{0}$, $\delta\mathcal{M}_{2}$, and $\delta S_{\mathrm{dev}}$ |
+| `null_bounds` | birefringence, dispersion, preferred-frame, clock/signal, and transport-threshold tolerances |
+
+### Replay Reading
+
+- **Pass:** $\mathcal{R}_{\mathrm{row}}\le\epsilon_{\mathrm{row}}$, $\mathcal{R}_{\mathrm{split}}=0$, and $\mathcal{R}_{\mathrm{null}}^{P}\le\epsilon_P$. The pressure law remains a viable Noether-Sea constitutive candidate.
+- **Demote:** the residual channels can be fit only by material-specific rows $B_H$ and $B_L$. The effect should be treated as ordinary material-specific condensed-matter correction unless a branch transition explains the split.
+- **Fail:** any fit that passes pressure residuals by violating birefringence, dispersion, preferred-frame, clock/signal, or transport-threshold bounds is rejected by the shared closure record.
+- **Bound-only result:** if the residual channels are consistent with zero, the replay still gives upper bounds on $a_S$, $m_S$, $\eta_Z$, and the pressure sensitivity of $\Gamma_N$.

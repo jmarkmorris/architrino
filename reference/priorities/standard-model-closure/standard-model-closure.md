@@ -72,6 +72,87 @@ Failure modes:
 - `hydrogen.sea_core_count_blend`: the four matter Noether cores are counted as the local spacetime medium rather than as assemblies embedded in the ambient Noether Sea.
 - `hydrogen.proton_quark_split`: the three quark assemblies are treated as free Noether cores rather than as a color-singlet proton closure.
 
+## Element-Dependent Response Extension
+
+The hydrogen boundary scaffold generalizes to heavier atoms only if the element name is expanded into state data. The priority object is not `Fe`, `Ne`, or `transition metal` as a label. It is the local assembly record: isotope, nuclear closure ledger, electron-envelope branch, shell stability gap, and any realized bonding, lattice, or magnetic branch.
+
+For an element or isotope window $\Omega_E$, the promoted target is
+
+$$
+S_{\mathrm{sea}}^{\Omega_E}(t)
+=
+S(t)\big|_{\Omega_E}
+\setminus
+\left(
+\mathcal A_{\mathrm{nuc}}^{Z,N}(t)
+\cup
+\mathcal A_{\mathrm{e-env}}^{\mathcal B_e}(t)
+\cup
+\mathcal L_{\mathrm{bond}}^{\mathcal B_{\mathrm{lat}}}(t)
+\right),
+$$
+
+with response decomposition
+
+$$
+\theta_E^{(\ell)}
+=
+\theta_{\mathrm{bg}}^{(\ell)}
++
+\delta\theta_{\mathrm{nuc}}^{(\ell)}
+\!\left[
+Z,N,\Sigma_{\mathrm{ax}}^{Z,N},\mathcal L_{\mathrm{nuc}}^{Z,N}
+\right]
++
+\delta\theta_{\mathrm{e-env}}^{(\ell)}
+\!\left[
+\mathcal B_e
+\right]
++
+\delta\theta_{\mathrm{bond}}^{(\ell)}
+\!\left[
+\mathcal B_{\mathrm{lat}}
+\right].
+$$
+
+The associated medium-response tensor target is
+
+$$
+\mathcal M_{\mathrm{sea},E}^{ab}
+=
+\mathcal M_0^{ab}
++
+\Delta\mathcal M_{\mathrm{nuc}}^{ab}
+\!\left(
+Z,N,\Sigma_{\mathrm{ax}}^{Z,N}
+\right)
++
+\Delta\mathcal M_{\mathrm{e}}^{ab}
+\!\left(
+\mathcal B_e,C_{\mathrm{shell}}
+\right)
++
+\Delta\mathcal M_{\mathrm{bond}}^{ab}
+\!\left(
+\mathcal B_{\mathrm{lat}}
+\right).
+$$
+
+This extension creates benchmark classes without adding a new top-level validation gate:
+
+| Benchmark class | Continuum input to compute | Observer summaries to keep downstream |
+| --- | --- | --- |
+| Light atoms | $Z,N$, minimal nuclear ledger, low-order electron envelope, weak local $\delta\theta_E^{(\ell)}$ | `light atom`, element symbol, simple $s/p$ label |
+| Closed-shell atoms | Large $C_{\mathrm{shell}}$, low external multipole stress, stable electron envelope | `noble gas`, inertness, ionization-energy maximum |
+| Transition metals | Nearby anisotropic $d$-envelope branches, multiple corridor-compatible electron states | `transition metal`, oxidation-state family, coordination-rich chemistry |
+| Iron-group elements | Isotope-specific nuclear ledger, $3d$ branch structure, and material magnetic/lattice branch when present | `iron group`, metallurgy, abundance, conventional stability narrative |
+
+Failure modes:
+
+- `element.label_boundary_blend`: a periodic-table family name is treated as a Noether-Sea boundary condition without an explicit assembly record.
+- `element.chemistry_source_blend`: oxidation state, electronegativity, or atomic radius is used as an input rather than a recovered observer-level summary.
+- `element.lattice_isolated_blend`: lattice, bonding, or magnetic response is assigned to an isolated atom without a realized material branch.
+
 ## Detailed Priority Files
 
 | File | Role | Target $\mathbb{A}\mathbb{A}\mathbb{A}$ notes |

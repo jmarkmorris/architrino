@@ -1,99 +1,102 @@
 # Noether-Core Scaling and Packing Scaffold
 
-This priority packet captures the 2026-05-17 operator discussion on ideal Noether-core scaling, outer-binary radius/speed equations, and same-energy pool packing. It is priority material, not reader-facing canon. Its purpose is to preserve the concrete equations and proof burdens until the branch constants can be extracted from the Master Equation, dyadic-lock reduction, or a finite-$\eta$ simulation.
+This priority packet captures the 2026-05-17 operator discussion on ideal Noether-core scaling, outer-binary radius/speed equations, and same-level pool packing. It is priority material, not reader-facing canon. Its purpose is to preserve the concrete equations and proof burdens until the branch constants can be extracted from the Master Equation, dyadic-lock reduction, or a finite-$\eta$ simulation.
 
 ## Claim Level
 
 - **Status:** derivation scaffold.
-- **Main claim:** for a same-energy pool of Noether cores on one fixed branch, $h$ is fixed and the scaling variable is the total branch action level $A_N=Nh$. The first ideal scaling gives $r_O\propto Nh$ and therefore close-packed center density $n_{\max}\propto (Nh)^{-3}$.
-- **Open burden:** the actual curve is not determined until the outer action share, rotational bookkeeping coefficient, speed factor, exclusion-threshold map, and delayed root-ledger balance are fixed on a branch chart.
+- **Main claim:** for a group-velocity-zero Noether core at integer rest level $N$, the fixed $Nh$ action ledger determines the outer product $r_O v_O\propto Nh$. It does not by itself determine separate functions $r_O(N)$ and $v_O(N)$.
+- **Open burden:** the actual curve is not determined until the outer action share, rotational bookkeeping coefficient, speed closure, exclusion-threshold map, and delayed root-ledger balance are fixed on a branch chart. The former $r_O\propto Nh$ law is only the fixed-speed branch subcase.
 - **Promotion targets:** [dyadic-resonance-lock.md](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md), [binary-dynamics.md](../../../content/markdown/aaa/dynamics/binary-dynamics.md), [noether-core.md](../../../content/markdown/aaa/spacetime/noether-core.md), [noether-core-geometry.md](../../../content/markdown/aaa/spacetime/noether-core-geometry.md), and [noether-sea.md](../../../content/markdown/aaa/spacetime/noether-sea.md) after the constants and branch assumptions are certified.
 
 ## Notation Discipline
 
-Use $h$ here only for the fixed closed-cycle action unit. The branch-scaling variable is $A_N=Nh$, where $N$ is the integer action-unit count. Do not confuse $h$ with the history horizon used in proof-program files. If both appear in the same calculation, write $h_{\mathrm{act}}$ for closed-cycle action and $h_{\mathrm{mem}}$ for memory depth.
+Use $h$ here only for the fixed closed-cycle action unit. The branch-scaling variable is $A_N=Nh$, where $N$ is the integer action-unit count. Do not confuse $h$ with the history horizon used in proof-program files. If both appear in the same calculation, write $h_{\mathrm{act}}$ for closed-cycle action and $h_{\mathrm{mem}}$ for memory depth. A pool at one rest level has all cores at the same $N$; a scaling curve compares admissible rest levels $N$ along a branch.
 
 All kinematics below live in absolute time and Euclidean space. A Noether-core center is a point $X_a(t)\in\Sigma_t$ attached to a reduced closure label, not the position of any one architrino.
 
-## Same-Energy Pool Scaling
+## Rest-Level Pool Scaling
 
-Let every Noether core in the ideal pool have the same core energy scale
+Let every Noether core in the ideal pool have group velocity zero and the same integer rest level $N$. The pool is homogeneous at that level; the scaling curve compares admissible rest levels along one branch.
 
-$$
-E_*=E_N.
-$$
-
-Use the current cadence bookkeeping relation
+For the outer binary, the action allocation is
 
 $$
-E_N=Nh\nu_N.
-$$
-
-Then the representative cadence is
-
-$$
-\nu_N(N)=\frac{E_*}{Nh}.
-$$
-
-On a fixed branch $q$, let the outer binary frequency be tied to the representative cadence by
-
-$$
-f_O=m_O^{(q)}\nu_N,
-$$
-
-where $m_O^{(q)}$ is a branch extraction coefficient. The exact kinematic identity is
-
-$$
-v_O=2\pi f_O r_O=\beta_O c_f.
-$$
-
-Therefore
-
-$$
-r_{O,q}(N)
+I_O=p_O^{(q)}N\hbar
 =
-\frac{\beta_O^{(q)}(N)c_f}{2\pi m_O^{(q)}(N)}\frac{Nh}{E_*}.
+p_O^{(q)}N\frac{h}{2\pi}.
 $$
 
-The log-slope is
+With
 
 $$
-\frac{d\ln r_O}{d\ln (Nh)}
-=
-1
-+\frac{d\ln\beta_O}{d\ln (Nh)}
--\frac{d\ln m_O}{d\ln (Nh)}.
+I_O=\mu_O^{\mathrm{rot}}r_O v_O,
 $$
 
-Thus the first ideal branch result is
+the branch action ledger fixes
 
 $$
 \boxed{
-r_O\propto Nh
+r_O(N)\,v_O(N)
+=
+\frac{p_O^{(q)}Nh}{2\pi\mu_O^{\mathrm{rot}}}.
 }
 $$
 
-only when $\beta_O$ and $m_O$ remain fixed across the compared branch segment. If the root ledger changes, the curve can have a cusp, jump, or branch switch rather than a smooth slope.
+This product law is the invariant consequence of the $Nh$ ledger. It is not yet a radius law or a velocity law. The separate functions $r_O(N)$ and $v_O(N)$ require one more branch closure condition.
 
-For all three layers, if
+The exact kinematic identity is
 
 $$
-f_\ell=m_\ell^{(q)}\nu_N,
+v_O=2\pi f_O r_O.
+$$
+
+Therefore, once either $r_O(N)$ or $v_O(N)$ is supplied by the branch closure,
+
+$$
+f_O(N)=\frac{v_O(N)}{2\pi r_O(N)}.
+$$
+
+If the branch pins the speed,
+
+$$
+v_O=\beta_Oc_f
+$$
+
+with fixed $\beta_O$, then
+
+$$
+\boxed{
+r_O(N)=
+\frac{p_O^{(q)}Nh}{2\pi\mu_O^{\mathrm{rot}}\beta_Oc_f},
 \qquad
-v_\ell=\beta_\ell^{(q)}c_f,
-\qquad
-\ell\in\{I,M,O\},
-$$
-
-then
-
-$$
-r_{\ell,q}(N)
+f_O(N)
 =
-\frac{\beta_\ell^{(q)}(N)c_f}{2\pi m_\ell^{(q)}(N)}\frac{Nh}{E_*}.
+\frac{\mu_O^{\mathrm{rot}}\beta_O^2c_f^2}{p_O^{(q)}Nh}.
+}
 $$
 
-This is the same linear-in-$Nh$ estimate for every layer, with deviations entirely assigned to branch-dependent speed factors and frequency-ratio extraction.
+This special subcase gives
+
+$$
+r_O\propto N,
+\qquad
+v_O\propto N^0,
+\qquad
+f_O\propto N^{-1}.
+$$
+
+If the branch instead reduces to the bare inverse-square radial balance with approximately constant $\mathcal{B}_O$, the product law combines with the radial balance to give
+
+$$
+r_O\propto N^2,
+\qquad
+v_O\propto N^{-1},
+\qquad
+f_O\propto N^{-3}.
+$$
+
+Those two subcases are diagnostics of different closure assumptions, not competing definitions of the Noether core.
 
 ## Outer-Binary Action Equation
 
@@ -108,7 +111,7 @@ $$
 where $p_O^{(q)}$ is the outer action-share fraction of the branch. Introduce the effective rotational bookkeeping coefficient $\mu_O^{\mathrm{rot}}$ by
 
 $$
-I_O=\mu_O^{\mathrm{rot}}r_Ov_O.
+I_O=\mu_O^{\mathrm{rot}}r_O v_O.
 $$
 
 Then
@@ -413,7 +416,7 @@ r_O
 .
 $$
 
-This $r_O\propto (Nh)^2$ result is not the same as the fixed-speed same-energy-pool estimate. It is the leading bare radial-balance result when the only speed-determining term is the partner-root inverse-square channel. The tension is useful: it says the observed scaling exponent depends on whether $\beta_O$ is branch-fixed, energy-fixed, or solved from the bare radial force law.
+This $r_O\propto (Nh)^2$ result is not the same as the fixed-speed rest-level subcase. It is the leading bare radial-balance result when the only speed-determining term is the partner-root inverse-square channel. The tension is useful: it says the observed scaling exponent depends on whether $\beta_O$ is branch-fixed, energy-projected, or solved from the bare radial force law.
 
 ## Relation to Dyadic Layer Ratios
 
@@ -511,7 +514,7 @@ n_{\max}
 }
 $$
 
-Using $R_{\mathrm{excl}}=\alpha_O r_O$ and the fixed-branch outer action equation gives
+Using $R_{\mathrm{excl}}=\alpha_O r_O$ and the fixed-speed outer action subcase gives
 
 $$
 n_{\max}(N)
@@ -597,9 +600,9 @@ s_a(\hat{\mathbf{n}}_{ab})
 +\delta_{\mathrm{wake}}.
 $$
 
-This is the correct place to study how shape ratio $\xi$ changes packing, anisotropy, and Noether-Sea delay. For an isotropic same-energy pool, orientation averaging may make the coarse medium nearly scalar even when each individual core is oblate.
+This is the correct place to study how shape ratio $\xi$ changes packing, anisotropy, and Noether-Sea delay. For an isotropic same-level pool, orientation averaging may make the coarse medium nearly scalar even when each individual core is oblate.
 
-## Energy-Scaling Ambiguity to Resolve
+## Energy-Closure Ambiguity to Resolve
 
 Two useful energy readings currently coexist:
 
@@ -609,7 +612,7 @@ Two useful energy readings currently coexist:
    \qquad
    f_O=m_O\nu_N.
    $$
-   At fixed $h$ and fixed branch speed, this gives
+   At fixed branch speed, this gives
    $$
    r_O\propto NE_N^{-1}.
    $$
@@ -625,7 +628,7 @@ Two useful energy readings currently coexist:
    r_O\propto E_O^{-1/2}.
    $$
 
-This is not necessarily a contradiction. $E_N$ is a representative whole-core cadence energy, while $E_O$ is an outer-channel action-energy projection. The closure burden is to supply the branch map
+This is not necessarily a contradiction. $E_N$ is a representative whole-core cadence energy, while $E_O$ is an outer-channel action-energy projection. Neither replaces the outer product law $r_O v_O\propto Nh$. The closure burden is to supply the branch map
 
 $$
 E_O=\chi_O^{(q)}E_N
@@ -671,7 +674,7 @@ For a branch-chart calculation:
    R_{\mathrm{excl}}=\alpha_Or_O
    $$
    in the spherical estimate, or to $(R_\perp,R_\parallel,\xi)$ through the Noether-core geometry projection.
-7. Compute same-energy-pool packing:
+7. Compute same-level pool packing:
    $$
    n_{\max}=\frac{1}{4\sqrt{2}R_{\mathrm{excl}}^3}
    $$
@@ -689,7 +692,7 @@ For a branch-chart calculation:
 ## Immediate Study Targets
 
 1. Evaluate the minimal $\mathcal{B}_O(\beta_O;\Lambda_O)$ and $\mathcal{T}_O(\beta_O;\Lambda_O)$ formulas above for the principal partner branch, the principal self branch, and the first negative signed sheet.
-2. Decide whether the same-energy pool should use the core-cadence energy $E_N$, the outer-channel energy $E_O$, or a declared projection $E_O=\chi_O^{(q)}E_N$.
+2. Decide whether the rest-level closure should use the core-cadence energy $E_N$, the outer-channel energy $E_O$, or a declared projection $E_O=\chi_O^{(q)}E_N$.
 3. Compute the first toy curves for $r_O(N)$, $v_O(N)$, and $n_{\max}(N)$ under three branch choices:
    - fixed $\beta_O$,
    - middle-pinned dyadic branch with $\beta_O\to1$,
