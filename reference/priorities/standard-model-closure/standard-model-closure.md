@@ -7,7 +7,7 @@
 - Value: `18.69`
 - Cost: `6.2`
 - ROI: `3.01`
-- Status: `channel-norm-scaffolded`
+- Status: `tolerance-rule-scaffolded`
 
 ## Task Queue
 
@@ -16,7 +16,7 @@
 3. `confinement_energetics` — Derive confinement-scale behavior from topological or strain energetics. Status: `pending`. Depends on: `overlap_integrals`.
 4. `weak_sector_gauge_closure` — Unify weak axial-frame exposure, `V-A`, CKM/PMNS overlap, weak-corridor provenance, and effective gauge covariance into one closure packet. Status: `review`. Depends on: `overlap_integrals`.
 5. `nuclear_binding_closure` — Build the first nuclear benchmark ladder from hadronic geometry and residual strong channels: deuteron, saturation, alpha-like cluster, and beta stability. Status: `review`. Depends on: `confinement_energetics`.
-6. `hydrogen_fermion_sea_boundary` — Derive the four-fermion hydrogen boundary map that separates exact assembly-ledger membership from dynamic exclusion-envelope and Noether-Sea coarse-graining boundaries. Status: `channel-norm-scaffolded`. Depends on: `confinement_energetics`, `nuclear_binding_closure`.
+6. `hydrogen_fermion_sea_boundary` — Derive the four-fermion hydrogen boundary map that separates exact assembly-ledger membership from dynamic exclusion-envelope and Noether-Sea coarse-graining boundaries. Status: `tolerance-rule-scaffolded`. Depends on: `confinement_energetics`, `nuclear_binding_closure`.
 
 ## Scope
 
@@ -291,7 +291,31 @@ $$
 \frac{\left(\Delta\ln|J|\right)^2}{\epsilon_J^2}.
 $$
 
-The tolerance symbols are chart and benchmark declarations. They may differ by channel because clock bias, corridor coherence, stable packing, and penetration stability are different tests, but they must be fixed before the hydrogen line, boundary, or transport observable is evaluated.
+The tolerance symbols are chart and benchmark declarations. They may differ by channel because clock bias, corridor coherence, stable packing, and penetration stability are different tests, but they must be fixed before the hydrogen line, boundary, or transport observable is evaluated. The current rule is to pull each retained-entry scale back from a declared readout tolerance:
+
+$$
+\epsilon_{\mu,X}^{2}
+=
+\sup_{\delta y_\mu}
+\left\{
+\left(\delta y_\mu\right)^2:
+\frac{
+\left\|
+\mathcal O_X[\mathcal B+\delta_\mu\mathcal B]
+-
+\mathcal O_X[\mathcal B]
+\right\|_X
+}{
+\left\|
+\mathcal O_X[\mathcal B]
+\right\|_X+\varepsilon_X
+}
+\le
+\Delta_X^{\mathrm{tol}}
+\right\}.
+$$
+
+For hydrogen, the strict corridor acceptance is the intersection of proton open-color closure, provenance closure, direction coherence, and inclusion of $\mathcal L_{\mathrm{strong}}^{uud}$ inside $\mathcal A_{\mathrm H}(t)$; it is not a minimum over unlike tolerances.
 
 The mismatch metric behind the regularized locked projector is now constrained to compare discrete label compatibility, phase distance, active causal-root ledger distance, provenance distance, and conserved-increment residual:
 

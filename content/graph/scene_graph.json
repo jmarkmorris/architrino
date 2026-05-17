@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 495,
+      "nodes": 496,
       "edges": 1239,
       "scenes": 320,
       "markdownIndexes": 0,
-      "markdownDocs": 175,
+      "markdownDocs": 176,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -3050,6 +3050,12 @@
       "id": "content/markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md",
       "name": "Cosmology Shared Residual Fit Protocol",
       "path": "content/markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
+      "name": "Hydrogen $\\Gamma_N$ Spectral Coefficient Row Toy Scan",
+      "path": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -7474,6 +7480,15 @@
       "name": "Cosmology Shared Residual Fit Protocol",
       "path": "content/markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
+      "name": "Hydrogen $\\Gamma_N$ Spectral Coefficient Row Toy Scan",
+      "path": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
       "implicit": false
     },
     {

@@ -312,7 +312,95 @@ p_{u,X}\nabla\cdot\mathbf u_{\mathrm{sea}}
 \mathcal R_{\mathrm{coh},X},
 $$
 
-with $\boldsymbol\theta_{\mathrm{sea}}=(\ln n,\ln\chi_{\text{sea}},\ln\lambda,-\ln\xi)^T$. The first term records smooth medium-gradient transport, the second records signed cadence-space current, the third records medium-flow compression or rarefaction, and $\mathcal R_{\mathrm{coh},X}$ is constrained by image-sharpness, line-coherence, chromaticity, and packet time-dilation tests. This ansatz is a closure target: the coefficient rows $\mathbf b_N$ and $\mathbf p_X$ must be fixed from the declared Noether-Sea constitutive response and then reused across gravitational, relative-motion, and deep-space cases.
+with $\boldsymbol\theta_{\mathrm{sea}}=(\ln n,\ln\chi_{\text{sea}},\ln\lambda,-\ln\xi)^T$. The sharper continuity form replaces the isolated current-divergence term with the source-balanced cadence residual. Along a photon path, let
+
+$$
+D_{\gamma}
+=
+c_{\gamma}^{-1}\partial_t
++
+\hat{\mathbf k}\cdot\nabla,
+$$
+
+where $\hat{\mathbf k}$ is the path tangent and $s$ is path length. The transport equation defines
+
+$$
+\mathcal C_N[f_N]
+=
+\frac{
+S_{\mathrm{BH}}
++
+S_{\mathrm{GW}}
+-
+R_{\mathrm{eq}}[f_N]
+-
+\partial_\nu J_\nu
+}{
+f_N+\epsilon_f
+},
+$$
+
+so that, away from the regularization floor,
+
+$$
+\left(
+\partial_t
++
+\mathbf u_{\mathrm{sea}}\cdot\nabla
+\right)
+\ln f_N
+\approx
+\mathcal C_N[f_N]
+-
+\nabla\cdot\mathbf u_{\mathrm{sea}}.
+$$
+
+The continuity-disciplined path rate is therefore
+
+$$
+\alpha_{\mathrm{prop},X}
+=
+\mathbf p_X\cdot
+D_{\gamma}\boldsymbol\theta_{\mathrm{sea}}
++
+p_{\nu,X}
+\mathcal C_N[f_N]
++
+p_{u,X}
+\nabla\cdot\mathbf u_{\mathrm{sea}}
++
+p_{\sigma,X}
+\hat k_a\hat k_b
+\Sigma_{\mathrm{sea},X}^{ab}
++
+\mathcal R_{\mathrm{coh},X}.
+$$
+
+Here $\Sigma_{\mathrm{sea},X}^{ab}$ is the trace-free anisotropic medium-response tensor seen by channel $X$ and vanishes in the isotropic weak limit. The coefficient rows $\mathbf b_N$ and $(\mathbf p_X,p_{\nu,X},p_{u,X},p_{\sigma,X})$ must be fixed from the declared Noether-Sea constitutive response and then reused across gravitational, relative-motion, and deep-space cases. A deep-space contribution may come from a persistent $\mathcal C_N[f_N]$, flow-divergence, or anisotropic-response record, but not from switching to a generic photon-energy-loss explanation.
+
+The coherence residue is admissible only if the same $Y_X$ passes the observational transport tests,
+
+$$
+\operatorname{Var}_{\perp}(Y_X)
+\le
+\epsilon_{\mathrm{img},X}^2,
+\qquad
+\left|
+\partial_{\ln\nu_X}Y_X
+\right|
+\le
+\epsilon_{\mathrm{chrom},X},
+\qquad
+\left|
+Y_X^{\mathrm{freq}}
+-
+Y_X^{\mathrm{dur}}
+\right|
+\le
+\epsilon_{\mathrm{td},X}.
+$$
+
+The path term is thus phase-cadence retiming read from $S(t)$: it may change the energy a receiver assigns through $E=h\nu_{\mathrm{obs}}$, but it is not an untracked energy sink along the path.
 
 With this map, the received frequency is
 

@@ -456,6 +456,90 @@ $$
 
 The signed entries in the penetration record remain available before the norm is taken, so a stabilizing tangent push and a destabilizing tangent push are not treated as the same path-history branch. The scalar norm is used only after the sign-sensitive admissibility test has decided which branch contributes to the penetration benchmark.
 
+The tolerance scales must be inherited from declared ledger comparisons. Let $\mathcal O_X[\mathcal B]$ be the channel readout produced from the projected branch record, and let $\Delta_X^{\mathrm{tol}}$ be the benchmark sensitivity fixed before the scan. For any retained scalar entry $y_\mu(\mathcal B)$ in channel $X$, the first admissible scale is the local pullback of that readout tolerance,
+
+$$
+\epsilon_{\mu,X}^{2}
+=
+\sup_{\delta y_\mu}
+\left\{
+\left(\delta y_\mu\right)^2:
+\frac{
+\left\|
+\mathcal O_X[\mathcal B+\delta_\mu\mathcal B]
+-
+\mathcal O_X[\mathcal B]
+\right\|_X
+}{
+\left\|
+\mathcal O_X[\mathcal B]
+\right\|_X+\varepsilon_X
+}
+\le
+\Delta_X^{\mathrm{tol}}
+\right\}.
+$$
+
+This definition makes the $\epsilon$ values derived chart scales: they are how far a retained ledger entry may move before the declared channel readout changes by more than the accepted tolerance. The practical first estimates are:
+
+$$
+\epsilon_\omega=\Delta_{\Gamma}^{\mathrm{tol}},
+\qquad
+\epsilon_\theta=\Delta_{\theta}^{\mathrm{tol}},
+\qquad
+\epsilon_\chi=\Delta_{\chi}^{\mathrm{clk\text{-}sig,tol}},
+$$
+
+for clock scans;
+
+$$
+\epsilon_{\mathrm{dir}}
+=
+1-\cos\theta_X^{\mathrm{tol}},
+\qquad
+\epsilon_{\mathrm{prov}}
+=
+\Delta_{\mathrm{prov},X}^{\mathrm{tol}},
+$$
+
+for corridor scans, with exact provenance closure represented by the limit $\Delta_{\mathrm{prov},X}^{\mathrm{tol}}\to0$ after regularization; and
+
+$$
+\epsilon_{\parallel}
+=
+\Delta\ln R_{\parallel}^{\mathrm{stab}},
+\qquad
+\epsilon_{\perp}
+=
+\Delta\ln R_{\perp}^{\mathrm{stab}},
+\qquad
+\epsilon_{\lambda}
+=
+\Delta\ln\lambda^{\mathrm{stab}},
+\qquad
+\epsilon_{\xi}
+=
+\Delta\ln\xi^{\mathrm{stab}},
+$$
+
+for packing scans, where the stable ranges are measured over accepted neighboring-core branches rather than chosen per atom or line. For penetration over a trial path of duration $T_{\mathrm{path}}$ and speed $v_{\mathrm{path}}$,
+
+$$
+a_{\parallel,\mathrm{tol}}
+=
+\frac{v_{\mathrm{path}}\Delta v_{\parallel}^{\mathrm{tol}}}{T_{\mathrm{path}}},
+\qquad
+a_{\perp,\mathrm{tol}}
+=
+\frac{v_{\mathrm{path}}\theta_{\mathrm{path}}^{\mathrm{tol}}}{T_{\mathrm{path}}},
+\qquad
+\epsilon_{\mathrm{disrupt}}
+=
+\Delta\phi_{\mathrm{path}}^{\mathrm{tol}}.
+$$
+
+Thus tolerance derivation is a ledger-replay problem. A hydrogen line, packing calculation, or penetration test may choose a different channel tolerance because it asks a different stability question, but it may not retune the tolerance after seeing the observable.
+
 The mismatch metric used in the regularized locked projector must also be ledger-derived. Let $\mathcal{R}_a(t)$ be the accepted reduced record of assembly $a$ containing its closure label, phase state, active causal roots, provenance entries, and conserved ledger increments. The first symbolic mismatch is
 
 $$

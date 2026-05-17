@@ -602,6 +602,149 @@ $$
 
 This is the correct place to study how shape ratio $\xi$ changes packing, anisotropy, and Noether-Sea delay. For an isotropic same-level pool, orientation averaging may make the coarse medium nearly scalar even when each individual core is oblate.
 
+### Support-Function Lattice-Cell Bound
+
+The support-function condition gives an executable upper bound for a local packing ceiling before a full dense spheroid-packing theorem is available. For a material or branch cell $X$, let the oblate envelope be
+
+$$
+R_{\parallel,X}=\xi_XR_{\perp,X},
+\qquad
+V_{\mathrm{env},X}
+=
+\frac{4\pi}{3}\xi_XR_{\perp,X}^3.
+$$
+
+Let the orientation record be a weighted set
+
+$$
+\mathcal{O}_X
+=
+\{(\hat{\mathbf{u}}_{X,j},w_{X,j})\}_{j=1}^{J_X},
+\qquad
+\sum_jw_{X,j}=1.
+$$
+
+The orientation-averaged support radius in a trial contact direction is
+
+$$
+\bar{s}_X(\hat{\mathbf{n}})
+=
+\sum_jw_{X,j}
+\sqrt{
+R_{\perp,X}^2
++
+\left(R_{\parallel,X}^2-R_{\perp,X}^2\right)
+(\hat{\mathbf{n}}\cdot\hat{\mathbf{u}}_{X,j})^2
+}.
+$$
+
+For a lattice-cell basis $\mathcal{L}_X=(\hat{\mathbf{b}}_{X,1},\hat{\mathbf{b}}_{X,2},\hat{\mathbf{b}}_{X,3})$ with primitive-cell factor $c_{\mathrm{cell},X}$, define the support-function center spacings
+
+$$
+D_{X,i}
+=
+2\bar{s}_X(\hat{\mathbf{b}}_{X,i})
++
+\delta_{\mathrm{wake},X}
++
+\delta_{\mathrm{lat},X,i}.
+$$
+
+Then every center density in that declared lattice cell obeys
+
+$$
+V_{\mathrm{cell},X}^{\mathrm{sf}}
+=
+c_{\mathrm{cell},X}
+\left|
+\det(
+\hat{\mathbf{b}}_{X,1},
+\hat{\mathbf{b}}_{X,2},
+\hat{\mathbf{b}}_{X,3}
+)
+\right|
+\prod_{i=1}^3D_{X,i},
+$$
+
+and therefore
+
+$$
+\boxed{
+n_{\max,X}^{\mathrm{obl}}
+\le
+\frac{\nu_{\mathrm{pack},0}}
+{V_{\mathrm{cell},X}^{\mathrm{sf}}}.
+}
+$$
+
+Here $\nu_{\mathrm{pack},0}$ is the chosen conversion from the branch cell units to normalized Noether-core density. Equality is a lattice-cell replay assumption; the inequality is the support-function exclusion bound.
+
+The same record also supplies a first packing-compliance diagnostic. Let $\mathcal{K}_X=\{(\hat{\mathbf{k}}_{X,a},\omega_{X,a})\}$ be the retained contact network, with effective coordination
+
+$$
+z_X^{\mathrm{eff}}=\sum_a\omega_{X,a}.
+$$
+
+Define
+
+$$
+D_X(\hat{\mathbf{k}})
+=
+2\bar{s}_X(\hat{\mathbf{k}})
++
+\delta_{\mathrm{wake},X}
++
+\delta_{\mathrm{lat},X},
+$$
+
+$$
+\sigma_{\ln D,X}^2
+=
+\left\langle
+\left(
+\ln D_X-\langle\ln D_X\rangle_{\mathcal{K}_X}
+\right)^2
+\right\rangle_{\mathcal{K}_X},
+$$
+
+and
+
+$$
+\phi_X^{\mathrm{sf}}
+=
+\frac{V_{\mathrm{env},X}}
+{V_{\mathrm{cell},X}^{\mathrm{sf}}},
+\qquad
+u_X
+=
+\left[
+1-\frac{z_X^{\mathrm{eff}}}{z_*}
+\right]_+,
+\qquad
+h_X
+=
+\left[
+\frac{\phi_*-\phi_X^{\mathrm{sf}}}{\phi_*}
+\right]_+.
+$$
+
+A replay may then use the bounded packing-compliance input
+
+$$
+\boxed{
+e_X^{\mathrm{sf}}
+=
+\left(
+\frac{V_{\mathrm{cell},X}^{\mathrm{sf}}}{V_*}
+\right)^{1/3}
+\left(
+1+w_uu_X+w_{\phi}h_X+w_{\sigma}\sigma_{\ln D,X}^2
+\right).
+}
+$$
+
+This does not prove that the declared lattice is dynamically selected. It removes the direct scalar insertion of $e_X$ and $n_{\max,X}^{\mathrm{obl}}$ by tying both quantities to the oblate envelope, orientation record, contact network, and lattice-cell volume. The remaining proof burden is to derive $\xi_X$, $\mathcal{O}_X$, $\mathcal{L}_X$, $\mathcal{K}_X$, and the shared weights from the Noether-core branch rather than from a mock material record.
+
 ## Energy-Closure Ambiguity to Resolve
 
 Two useful energy readings currently coexist:
@@ -678,7 +821,7 @@ For a branch-chart calculation:
    $$
    n_{\max}=\frac{1}{4\sqrt{2}R_{\mathrm{excl}}^3}
    $$
-   for equal near-spherical envelopes, or use the spheroid support-function condition for oblate aligned or mixed-orientation pools.
+   for equal near-spherical envelopes, or use $V_{\mathrm{cell},X}^{\mathrm{sf}}$ and $e_X^{\mathrm{sf}}$ from the support-function lattice-cell bound for oblate aligned or mixed-orientation pools.
 
 ## Failure Modes
 
@@ -697,4 +840,3 @@ For a branch-chart calculation:
    - fixed $\beta_O$,
    - middle-pinned dyadic branch with $\beta_O\to1$,
    - root-ledger implicit branch with $\mathcal{B}_O(\beta)/\beta$.
-4. Replace the spherical packing estimate with a support-function spheroid packing diagnostic once $\xi(N)$ or $\xi(E)$ is supplied by the Noether-core geometry projection.

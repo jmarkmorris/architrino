@@ -216,6 +216,8 @@ $$
 
 This residual keeps the spectral benchmark tied to the envelope calculation. It fails if each line requires a separate $R_\infty$ adjustment, if reduced mass, recoil, or clock/rate effects are absorbed into the envelope energy without being named, if $c_{\gamma,0}^{(\ell)}$ is changed between lines, or if the local Noether-Sea variables are retuned after the line set is chosen. The event-level emission and absorption ledger that tests the same gaps belongs to [Atomic Transition Radiation](../reactions/atomic-transition-radiation.md#hydrogen-line-benchmark-record).
 
+The coefficient row version of the same benchmark is the [Hydrogen $\Gamma_N$ Spectral Coefficient Row Toy Scan](../validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md). Its input variables are the shared hydrogen channel ledger, the line set $\mathcal L_{\mathrm H}^{0}$, the envelope gaps, the observer frequencies, the clock-facing deformation record $\mathbf{g}_{N,\mathrm H}^{(\ell)}$, and the declared residual budgets. The scan accepts only rows that preserve $b_\xi=1$, satisfy the weak static endpoint constraint, and use the same $C_N=\Gamma_N^{-1}$ clock-rate conversion for every selected transition. It therefore turns the Rydberg benchmark into a coefficient row constraint rather than a per-line fitting surface.
+
 For element comparisons, shell closure should enter through the realized envelope and its stability gap, not through the periodic-table family name. A local shell-closure diagnostic can be written as
 
 $$

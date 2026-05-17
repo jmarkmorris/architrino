@@ -156,6 +156,29 @@ $$
 
 This is the nucleon-side handoff used by the hydrogen response map in [Atomic Structure](atomic-structure.md#hydrogen-boundary-theorem-target). It lets the atomic calculation see a proton source envelope with retained charge, multipole, shielding, and corridor coefficients, while preventing the three quark Noether cores from being counted as free atomic sources.
 
+The proton boundary tolerance inherited by hydrogen is therefore an admissible-source condition, not a fitted proton radius. For channel $X$,
+
+$$
+\mathfrak A_{p,X}^{\mathrm{tol}}
+=
+\left\{
+\mathcal B:
+\mathcal E_{p,X}^{\mathrm{color}}
+\le
+\Delta_{p,X}^{\mathrm{color}},
+\quad
+\Delta_{p,X}^{\mathrm{env}}(\ell,\ell')
+\le
+\Delta_{p,X}^{\mathrm{env,tol}},
+\quad
+\mathcal L_{\mathrm{strong}}^{uud}
+\subset
+\mathcal A_{\mathrm H}(t)
+\right\}.
+$$
+
+The first inequality blocks open-color leakage, the second blocks unstable quark-resolution dependence after atomic projection, and the third keeps the strong-sector corridor inside the matter assembly ledger. Hydrogen corridor and packing tolerances may then ask different stability questions, but they cannot be looser than this proton source-envelope acceptance.
+
 The source-envelope closure fails if any of the following occurs:
 
 1. **Free-quark failure:** the atomic scan must keep three independent quark source envelopes to fit a hydrogen line or clock response.

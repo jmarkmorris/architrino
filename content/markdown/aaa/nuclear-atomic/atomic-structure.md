@@ -297,6 +297,57 @@ $$
 
 The hydrogen channel decision is then not a free radius choice. It is the stability statement that the relevant exposure scan crosses the declared threshold while the same ambient denominator uses $\zeta_{\mathrm{sea,H}}^{(\ell)}$. Clock scans use the dimensionless phase/cadence/delay norm; corridor scans use orientation, provenance, and strong-sector ledger coherence; packing scans use exclusion magnitude and envelope-shape response; and penetration scans use signed path acceleration plus phase disruption before taking the scalar dominance norm. The same branch can therefore be weakly visible to clocks while still far below the packing or penetration thresholds.
 
+Hydrogen-specific tolerance scales are fixed by the channel readout being protected. For a declared hydrogen channel readout $\mathcal O_{\mathrm H,X}^{(\ell)}$, the admissible tolerance pullback is
+
+$$
+\epsilon_{\mu,\mathrm H,X}^{2}
+=
+\sup_{\delta y_\mu}
+\left\{
+\left(\delta y_\mu\right)^2:
+\Delta_{\mathrm H,X}^{(\mu)}(\ell)
+\le
+\Delta_{\mathrm H,X}^{\mathrm{tol}}
+\right\},
+$$
+
+where $\Delta_{\mathrm H,X}^{(\mu)}$ is the channel stability residual after perturbing only the retained ledger entry $y_\mu$ and projecting back to the same $\mathcal O_{\mathrm H,X}^{(\ell)}$. In the first hydrogen pass this gives the following routing:
+
+| Channel | Tolerance source | Hydrogen interpretation |
+| --- | --- | --- |
+| Clock | $\Delta_{\Gamma}^{\mathrm{tol}}$, $\Delta_{\theta}^{\mathrm{tol}}$, and $\Delta_{\chi}^{\mathrm{clk\text{-}sig,tol}}$ | Allowed clock-rate, phase, and delay perturbation before the local cadence comparison changes |
+| Spectral | $\Delta_{\mathrm{spec}}^{\mathrm{tol}}$ and $\Delta_R^{\mathrm{tol}}$ | Allowed envelope-gap and common-Rydberg readout change across the chosen line set |
+| Corridor | $\Delta_{p,X}^{\mathrm{color}}$ and $\Delta_{\mathrm{prov},X}^{\mathrm{tol}}$ | Allowed open-color and provenance residual after the proton is projected as one color-singlet source |
+| Packing | Accepted neighboring-core stability range in $(R_{\parallel},R_{\perp},\lambda,\xi,\mathcal S_{\mathrm{excl}}^{ab})$ | Allowed adjacency deformation before the branch ceases to count as stable packing |
+| Penetration | Trial-path acceleration, deflection, and phase-disruption limits | Allowed path disturbance before transit through the fermion envelope becomes dynamically unstable |
+
+The corridor row is the strictest hydrogen constraint: the proton's $\mathcal L_{\mathrm{strong}}^{uud}$ contribution remains inside the matter ledger, so any corridor tolerance must also satisfy the nucleon source-envelope color test before the atomic window treats the proton as one source envelope. In acceptance-set form,
+
+$$
+\mathfrak A_{\mathrm{corr,H},X}^{(\ell)}
+=
+\left\{
+\mathcal B:
+\mathcal E_{p,X}^{\mathrm{color}}
+\le
+\Delta_{p,X}^{\mathrm{color}},
+\quad
+d_{\mathrm{prov}}
+\le
+\Delta_{\mathrm{prov},X}^{\mathrm{tol}},
+\quad
+\frac{1-\hat{\mathbf r}\cdot\hat{\mathbf c}_X}{\epsilon_{\mathrm{dir}}^2}
+\le
+1,
+\quad
+\mathcal L_{\mathrm{strong}}^{uud}
+\subset
+\mathcal A_{\mathrm H}(t)
+\right\}.
+$$
+
+This prevents unlike quantities from being collapsed into one scalar tolerance. The hydrogen corridor is accepted only when the color, provenance, direction, and matter-ledger inclusion tests all pass.
+
 This resolves the scale question in layered form:
 
 | Layer | What is being resolved | Boundary meaning |

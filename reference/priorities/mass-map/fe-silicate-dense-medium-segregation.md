@@ -83,21 +83,23 @@ This condition says that the iron-rich metallic branch becomes relatively cheape
 
 ## Sufficient Sign Condition
 
-A minimal medium-cost model is
+A minimal medium-cost model on a matched branch interval $I$ is
 
 $$
 \mu_X^{\mathrm{sea}}
 =
 A_X
 \Psi\!\left(
-\frac{n}{n_{\max,X}^{\mathrm{obl}}}
+\frac{n}{n_{\max,X}^{\mathrm{obl}}(n)}
 \right)
 -
 G_X n
 +
 C_X^{\chi}\ln\chi_{\text{sea}}
 +
-C_X^{S}S_{ij}Q_X^{ij}.
+C_X^{S}S_{ij}Q_X^{ij}
++
+C_X^P\Pi.
 $$
 
 Here:
@@ -106,51 +108,256 @@ Here:
 | --- | --- |
 | $A_X$ | strength of exclusion or compression penalty for phase $X$ |
 | $\Psi$ | convex penalty as local Noether-core density approaches the phase-specific packing ceiling |
-| $n_{\max,X}^{\mathrm{obl}}$ | oblate-envelope packing ceiling for the local phase and orientation record |
+| $n_{\max,X}^{\mathrm{obl}}(n)$ | oblate-envelope packing ceiling for the local phase and orientation record, derived from support-function packing rather than ordinary density alone |
 | $G_X$ | coherent medium-coupling benefit for phase $X$ |
 | $C_X^{\chi}$ | delay-factor coupling coefficient |
 | $C_X^S Q_X^{ij}$ | strain-coupling record for the phase branch |
+| $C_X^P\Pi$ | pressure-response term after ordinary pressure, temperature, electronic, elastic, magnetic, and gravity corrections have been separated |
 
-Then
+Assume first that $A_X$, $G_X$, $C_X^{\chi}$, $C_X^S Q_X^{ij}$, and $C_X^P$ are fixed by the declared material branch on $I$. If coefficient drift remains, bound the unmodeled derivative contribution by $|\mathcal{R}_{\mathrm{coeff}}|\le B_{\mathrm{coeff}}$. Set
+
+$$
+z_X(n)
+=
+\frac{n}{n_{\max,X}^{\mathrm{obl}}(n)}
+$$
+
+and define the marginal packing cost
+
+$$
+\mathcal{P}_X(n)
+=
+A_X
+\Psi'\!\left(
+z_X(n)
+\right)
+\frac{1}{n_{\max,X}^{\mathrm{obl}}(n)}
+\left(
+1
+-
+n\frac{\partial}{\partial n}
+\ln n_{\max,X}^{\mathrm{obl}}(n)
+\right)
+$$
+
+and the delay, strain, and pressure derivative term
+
+$$
+\mathcal{D}_X(n)
+=
+C_X^{\chi}
+\frac{\partial}{\partial n}\ln\chi_{\text{sea}}
++
+C_X^S Q_X^{ij}
+\frac{\partial S_{ij}}{\partial n}
++
+C_X^P
+\frac{\partial\Pi}{\partial n}.
+$$
+
+Then the branch derivative decomposes as
 
 $$
 \frac{\partial}{\partial n}
 \Delta\mu_{\mathrm{Fe/silicate}}^{\mathrm{metal}}
 =
-\frac{A_{\mathrm{Fe}}}{n_{\max,\mathrm{Fe}}^{\mathrm{obl}}}
-\Psi'\!\left(
-\frac{n}{n_{\max,\mathrm{Fe}}^{\mathrm{obl}}}
-\right)
--
-\frac{A_{\mathrm{sil}}}{n_{\max,\mathrm{sil}}^{\mathrm{obl}}}
-\Psi'\!\left(
-\frac{n}{n_{\max,\mathrm{sil}}^{\mathrm{obl}}}
+\left(
+\mathcal{P}_{\mathrm{Fe}}-\mathcal{P}_{\mathrm{sil}}
 \right)
 -
 \left(
 G_{\mathrm{Fe}}-G_{\mathrm{sil}}
 \right)
-+\mathcal{R}_{\chi S}.
++
+\left(
+\mathcal{D}_{\mathrm{Fe}}-\mathcal{D}_{\mathrm{sil}}
+\right)
++
+\mathcal{R}_{\mathrm{coeff}}.
 $$
 
-The sign is negative if iron's metallic branch has a larger effective packing ceiling, smaller marginal exclusion/compression penalty, stronger coherent Noether-Sea coupling benefit, or a favorable delay/strain residual compared with the silicate branch. A sufficient inequality is
+**Lemma: packing-coupling dense-medium preference.** If, for every $n\in I$, the metallic branch and the silicate branch use the same Noether-Sea state record and there is an $\epsilon>0$ such that
 
 $$
 G_{\mathrm{Fe}}-G_{\mathrm{sil}}
 >
-\frac{A_{\mathrm{Fe}}}{n_{\max,\mathrm{Fe}}^{\mathrm{obl}}}
-\Psi'\!\left(
-\frac{n}{n_{\max,\mathrm{Fe}}^{\mathrm{obl}}}
+\left(
+\mathcal{P}_{\mathrm{Fe}}-\mathcal{P}_{\mathrm{sil}}
 \right)
--
-\frac{A_{\mathrm{sil}}}{n_{\max,\mathrm{sil}}^{\mathrm{obl}}}
-\Psi'\!\left(
-\frac{n}{n_{\max,\mathrm{sil}}^{\mathrm{obl}}}
++
+\left(
+\mathcal{D}_{\mathrm{Fe}}-\mathcal{D}_{\mathrm{sil}}
 \right)
-+\mathcal{R}_{\chi S}.
++
+B_{\mathrm{coeff}}
++
+\epsilon,
 $$
 
-This is the first proof target. The left side must come from assembly coupling and metallic coordination; the right side must come from packing, exclusion-volume, delay, and strain costs. If either side is inserted as a free phase label, the argument has not been derived.
+then
+
+$$
+\frac{\partial}{\partial n}
+\Delta\mu_{\mathrm{Fe/silicate}}^{\mathrm{metal}}
+<
+-\epsilon
+<
+0
+$$
+
+throughout $I$. The proof is direct substitution into the derivative decomposition above. The important new term is
+
+$$
+1
+-
+n\frac{\partial}{\partial n}
+\ln n_{\max,X}^{\mathrm{obl}}(n),
+$$
+
+which is the packing-headroom correction. If a branch raises its oblate-envelope packing ceiling as ambient normalized Noether-core density increases, its marginal exclusion penalty is reduced. If the ceiling rises too slowly, the convex packing penalty grows. The metallic Fe preference is therefore sharpened to a strict margin claim: Fe wins only when the branch-derived metallic coordination and Noether-Sea coupling benefit exceed the Fe-minus-silicate marginal packing, delay, strain, pressure, and coefficient-drift costs.
+
+This is the first proof target. The left side must come from assembly coupling and metallic coordination; the right side must come from support-function packing, exclusion-volume response, delay, strain, pressure response, and coefficient-drift bounds. If either side is inserted as a free phase label, the argument has not been derived.
+
+## Support-Function Packing Reduction
+
+The packing side should now be treated as a support-function lattice-cell calculation, not as two scalar declarations. For phase $X$, start with an oblate Noether-core envelope
+
+$$
+R_{\parallel,X}=\xi_XR_{\perp,X},
+\qquad
+V_{\mathrm{env},X}
+=
+\frac{4\pi}{3}\xi_XR_{\perp,X}^3.
+$$
+
+The orientation record is
+
+$$
+\mathcal{O}_X
+=
+\{(\hat{\mathbf{u}}_{X,j},w_{X,j})\}_{j=1}^{J_X},
+\qquad
+\sum_jw_{X,j}=1,
+$$
+
+and the orientation-averaged support radius is
+
+$$
+\bar{s}_X(\hat{\mathbf{n}})
+=
+\sum_jw_{X,j}
+\sqrt{
+R_{\perp,X}^2
++
+\left(R_{\parallel,X}^2-R_{\perp,X}^2\right)
+(\hat{\mathbf{n}}\cdot\hat{\mathbf{u}}_{X,j})^2
+}.
+$$
+
+For lattice basis directions $\hat{\mathbf{b}}_{X,i}$ and primitive-cell factor $c_{\mathrm{cell},X}$, define
+
+$$
+D_{X,i}
+=
+2\bar{s}_X(\hat{\mathbf{b}}_{X,i})
++
+\delta_{\mathrm{wake},X}
++
+\delta_{\mathrm{lat},X,i},
+$$
+
+and
+
+$$
+V_{\mathrm{cell},X}^{\mathrm{sf}}
+=
+c_{\mathrm{cell},X}
+\left|
+\det(
+\hat{\mathbf{b}}_{X,1},
+\hat{\mathbf{b}}_{X,2},
+\hat{\mathbf{b}}_{X,3}
+)
+\right|
+\prod_{i=1}^3D_{X,i}.
+$$
+
+The oblate packing ceiling is then bounded by
+
+$$
+\boxed{
+n_{\max,X}^{\mathrm{obl}}
+\le
+\frac{\nu_{\mathrm{pack},0}}
+{V_{\mathrm{cell},X}^{\mathrm{sf}}}.
+}
+$$
+
+Equality is a replay assumption for a declared cell; the inequality is the support-function exclusion bound. A Fe metal branch can exceed a silicate branch in $n_{\max,X}^{\mathrm{obl}}$ only when its envelope, orientation, contact network, and primitive cell jointly reduce $V_{\mathrm{cell},X}^{\mathrm{sf}}$. Ordinary mass density alone is not sufficient.
+
+The exclusion/compression coefficient is likewise reduced to a support-function compliance diagnostic. For retained contact network $\mathcal{K}_X=\{(\hat{\mathbf{k}}_{X,a},\omega_{X,a})\}$, set
+
+$$
+z_X^{\mathrm{eff}}=\sum_a\omega_{X,a},
+$$
+
+$$
+D_X(\hat{\mathbf{k}})
+=
+2\bar{s}_X(\hat{\mathbf{k}})
++
+\delta_{\mathrm{wake},X}
++
+\delta_{\mathrm{lat},X},
+$$
+
+$$
+\sigma_{\ln D,X}^2
+=
+\left\langle
+\left(
+\ln D_X-\langle\ln D_X\rangle_{\mathcal{K}_X}
+\right)^2
+\right\rangle_{\mathcal{K}_X},
+$$
+
+and
+
+$$
+\phi_X^{\mathrm{sf}}
+=
+\frac{V_{\mathrm{env},X}}
+{V_{\mathrm{cell},X}^{\mathrm{sf}}},
+\qquad
+u_X
+=
+\left[
+1-\frac{z_X^{\mathrm{eff}}}{z_*}
+\right]_+,
+\qquad
+h_X
+=
+\left[
+\frac{\phi_*-\phi_X^{\mathrm{sf}}}{\phi_*}
+\right]_+.
+$$
+
+The replay input for the packing penalty becomes
+
+$$
+\boxed{
+e_X^{\mathrm{sf}}
+=
+\left(
+\frac{V_{\mathrm{cell},X}^{\mathrm{sf}}}{V_*}
+\right)^{1/3}
+\left(
+1+w_uu_X+w_{\phi}h_X+w_{\sigma}\sigma_{\ln D,X}^2
+\right).
+}
+$$
+
+This formula is a constrained bound, not a final theorem: the shared weights $w_u$, $w_{\phi}$, and $w_{\sigma}$ still require a branch derivation. It is nevertheless stronger than declaring $e_X$ directly, because Fe versus silicate must now differ through support-function spacing, orientation coherence, effective coordination, and lattice-cell volume.
 
 ## Coefficient-Derivation Replay
 
@@ -159,7 +366,7 @@ The toy replay should no longer treat $B_{\mathrm{seg}}$ as a free row when the 
 $$
 A_X
 =
-a_0 e_X,
+a_0 e_X^{\mathrm{sf}},
 $$
 
 $$
@@ -198,17 +405,24 @@ $$
 
 where $\mathcal{C}_X$ is the declared material cell. For a pure metallic Fe toy cell this can reduce to the Fe entry; for a silicate cell it must remain a phase average over the stated constituent mix.
 
-Here $e_X$ is the declared exclusion/compression penalty, $H_X$ is the heavy/coordinated assembly loading term, $B_X$ is the bonding-corridor coherence term, $U_X$ is the local alignment term, $d_X$ is the delay coupling, $s_X$ is the branch-projected strain coupling, and $p_X$ is the pressure-response factor. For a silicate branch, $H_X$ must be a material-cell average over the declared phase, not an element-name shortcut.
+Here $e_X^{\mathrm{sf}}$ is the support-function packing-compliance input derived or bounded above, $H_X$ is the heavy/coordinated assembly loading term, $B_X$ is the bonding-corridor coherence term, $U_X$ is the local alignment term, $d_X$ is the delay coupling, $s_X$ is the branch-projected strain coupling, and $p_X$ is the pressure-response factor. For a silicate branch, $H_X$ must be a material-cell average over the declared phase, not an element-name shortcut.
 
 For pressure/density step $r$,
 
 $$
 n_{\max,X,r}^{\mathrm{obl}}
 =
-n_{\max,X,0}^{\mathrm{obl}}
-\exp\!\left(
+\frac{\nu_{\mathrm{pack},0}}
+{V_{\mathrm{cell},X,r}^{\mathrm{sf}}},
+\qquad
 \Delta\ln n_{\max,X,r}^{\mathrm{obl}}
-\right).
+=
+\ln
+\frac{
+V_{\mathrm{cell},X,0}^{\mathrm{sf}}
+}{
+V_{\mathrm{cell},X,r}^{\mathrm{sf}}
+}.
 $$
 
 The branch-derived medium residual is then
@@ -258,15 +472,51 @@ $$
 0.
 $$
 
-The replay is a branch-derived success only if the same coefficient functional produces both material residuals and this component sum. The current mock fixture has $\mathcal{S}_{\mathrm{Fe/sil}}\approx-0.174$ on the first interval and $\mathcal{S}_{\mathrm{Fe/sil}}\approx-0.196$ on the second. In that fixture the dominant signs come from a lower Fe packing penalty and higher Fe coherent-coupling benefit:
+The finite-difference packing term is the replay counterpart of $\mathcal{P}_X(n)$. On interval $r\to r+1$ it must compute
+
+$$
+\mathcal{S}_{\mathrm{pack},r}
+=
+\frac{
+A_{\mathrm{Fe}}
+\left[
+\Psi\!\left(
+\frac{n_{r+1}}{n_{\max,\mathrm{Fe},r+1}^{\mathrm{obl}}}
+\right)
+-
+\Psi\!\left(
+\frac{n_r}{n_{\max,\mathrm{Fe},r}^{\mathrm{obl}}}
+\right)
+\right]
+-
+A_{\mathrm{sil}}
+\left[
+\Psi\!\left(
+\frac{n_{r+1}}{n_{\max,\mathrm{sil},r+1}^{\mathrm{obl}}}
+\right)
+-
+\Psi\!\left(
+\frac{n_r}{n_{\max,\mathrm{sil},r}^{\mathrm{obl}}}
+\right)
+\right]
+}{
+n_{r+1}-n_r
+}.
+$$
+
+Thus $\Delta\ln n_{\max,X,r}^{\mathrm{obl}}$ is not a cosmetic fixture field. It is the falsifiable packing-headroom input: changing it changes the sign through the same derivative channel as the support-function packing proof.
+
+The replay is a branch-derived success only if the same coefficient functional produces both material residuals and this component sum. The current mock fixture has $\mathcal{S}_{\mathrm{Fe/sil}}\approx-0.165$ on the first interval and $\mathcal{S}_{\mathrm{Fe/sil}}\approx-0.187$ on the second. In that fixture the dominant signs come from a support-function-derived lower Fe packing penalty and higher Fe coherent-coupling benefit:
 
 | Component | First interval $\mathcal{S}_{\mathrm{Fe/sil}}$ | Second interval $\mathcal{S}_{\mathrm{Fe/sil}}$ | Reading |
 | --- | ---: | ---: | --- |
-| Packing | $-0.126$ | $-0.149$ | Fe has more packing headroom and a smaller marginal exclusion cost. |
+| Packing | $-0.118$ | $-0.140$ | Fe has more packing headroom and a smaller marginal exclusion cost from the support-function lattice-cell record. |
 | Coherent coupling | $-0.046$ | $-0.046$ | Fe's metallic branch has stronger coordinated medium-coupling benefit. |
 | Delay | $-0.0002$ | $-0.0002$ | Delay coupling mildly favors Fe in this declared branch. |
 | Strain | $-0.0009$ | $-0.0009$ | Deviatoric strain response mildly favors Fe. |
 | Pressure | $0$ | $0$ | Pressure is neutral in the current mock so it cannot carry the result. |
+
+The same fixture derives $e_{\mathrm{Fe}}^{\mathrm{sf}}\approx0.838$, $e_{\mathrm{sil}}^{\mathrm{sf}}\approx1.187$, $n_{\max,\mathrm{Fe},0}^{\mathrm{obl}}\approx1.8$, and $n_{\max,\mathrm{sil},0}^{\mathrm{obl}}\approx1.3$ from its support-function packing records. These values remain mock branch records, but they are no longer independent scalar knobs.
 
 The important advancement is not the numerical values; they remain mock inputs. The advancement is the failure-sensitive form: if any future replay changes the branch ingredients and the component ledger no longer sums negative, the dense-medium preference is not derived for that branch.
 
@@ -280,7 +530,7 @@ M\in\{\mathrm{Fe},\mathrm{sil}\},
 r=0,\ldots,R
 $$
 
-label material phase and pressure/density step. For each step, declare
+label material phase and pressure/density step. For a shared-row replay, declare
 
 $$
 \mathbf{q}_{M,r}
@@ -294,6 +544,8 @@ $$
 C_M Z_M^{\eta_Z}
 \right)^T.
 $$
+
+For the coefficient-derived replay, $\Delta\ln n_{\max,M,r}^{\mathrm{obl}}$ should instead be computed from `packing_record` and `packing_update` as the lattice-cell volume ratio above.
 
 The material-corrected response is
 
@@ -359,11 +611,11 @@ over the branch interval where iron-rich metallic segregation is being explained
 | `phase_label` | crystal/melt phase, pressure range, temperature range, oxidation state, and magnetic state when relevant |
 | `inventory_guardrail` | fixed $Z$, $A$, and $S_{\mathrm{Fe}}^{\mathrm{nuc}}=0$ for ordinary differentiation |
 | `n_steps` | normalized Noether-core density values or increments |
-| `packing_record` | $\lambda$, $\xi$, $\mathcal{O}$, $n_{\max}^{\mathrm{obl}}$, and support-function contact assumptions |
+| `packing_record` | $\lambda$, $\xi$, $\mathcal{O}$, support-function contact network, and lattice-cell assumptions used to derive $n_{\max}^{\mathrm{obl}}$ |
 | `standard_corrections` | ordinary phase, pressure, temperature, electronic, elastic, magnetic, and gravity corrections |
 | `sea_residual` | retained $\mu_X^{\mathrm{sea}}$ or residual proxy after corrections |
 | `coefficient_model` | declared $a_0$, $g_0$, $p_0$, $w_Z$, $w_B$, $w_U$, and $\Psi$ used to derive, not fit, the residual row |
-| `coefficient_inputs` | phase-specific $e_X$, $n_{\max,X,0}^{\mathrm{obl}}$, $H_X$, $B_X$, $U_X$, $d_X$, $s_X$, and $p_X$ inputs |
+| `coefficient_inputs` | phase-specific `packing_record`, $H_X$, $B_X$, $U_X$, $d_X$, $s_X$, and $p_X$ inputs; $e_X^{\mathrm{sf}}$ and $n_{\max,X}^{\mathrm{obl}}$ are derived from `packing_record` |
 | `transport_record` | $\mathcal{R}_{\text{tr}}$ regime and any logged excitation, heating, or branch transition |
 | `null_bounds` | bounds for hidden transmutation, drag below threshold, birefringence, dispersion, and clock/signal mismatch |
 
@@ -401,9 +653,9 @@ y_{M,r}
 \mu_{M,0}^{\mathrm{sea}},
 $$
 
-where $\mu^{\mathrm{sea}}$ is generated from the coefficient model above. It then tests the finite-difference sign $\mathcal{S}_{\mathrm{Fe/sil}}<0$ and records the packing, coherent-coupling, delay, strain, and pressure contributions. Its gates check the no-new-iron guardrail, standard-correction subtraction, matched density intervals, derived-model residual, dense-medium sign, transport threshold, null bounds, and a declared transmutation-leak failure injection.
+where $\mu^{\mathrm{sea}}$ is generated from the coefficient model above. The fixture now derives $e_X^{\mathrm{sf}}$, $n_{\max,X,0}^{\mathrm{obl}}$, and $\Delta\ln n_{\max,X,r}^{\mathrm{obl}}$ from each material `packing_record` and step `packing_update`. It then tests the finite-difference sign $\mathcal{S}_{\mathrm{Fe/sil}}<0$ and records the packing, coherent-coupling, delay, strain, and pressure contributions. Its gates check the no-new-iron guardrail, standard-correction subtraction, matched density intervals, derived-model residual, dense-medium sign, transport threshold, null bounds, and a declared transmutation-leak failure injection.
 
-The current mock packet is promotion-ready only as a toy scaffold. It becomes a real simulation target only after the coefficient inputs are replaced by empirical or branch-derived pressure, temperature, phase, packing, covariance, transport, and null-sector records.
+The current mock packet is promotion-ready only as a toy scaffold. It becomes a real simulation target only after the remaining coefficient inputs are replaced by empirical or branch-derived pressure, temperature, phase, packing, covariance, transport, and null-sector records.
 
 ## Promotion Reading
 

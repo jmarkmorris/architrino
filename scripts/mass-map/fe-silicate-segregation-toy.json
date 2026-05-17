@@ -32,6 +32,15 @@
       "heavy": 0.7,
       "bonding": 0.2,
       "alignment": 0.1
+    },
+    "packing_model": {
+      "density_scale": 1,
+      "reference_cell_volume": 1,
+      "reference_packing_fraction": 0.7404804896930609,
+      "coordination_reference": 12,
+      "undercoordination_weight": 0.3,
+      "void_fraction_weight": 0.5,
+      "spacing_anisotropy_weight": 1
     }
   },
   "null_bounds": {
@@ -53,8 +62,46 @@
         "S_Fe_nuc": 0
       },
       "coefficient_inputs": {
-        "exclusion_penalty": 0.75,
-        "n_max_obl_ref": 1.8,
+        "packing_record": {
+          "oblate_envelope": {
+            "R_perp": 0.5,
+            "xi": 0.76,
+            "lambda": 1
+          },
+          "orientation_record": {
+            "distribution": [
+              {
+                "axis": [0, 0, 1],
+                "weight": 1
+              }
+            ]
+          },
+          "lattice_cell": {
+            "cell_volume_factor": 0.7309941520467836,
+            "basis_directions": [
+              [1, 0, 0],
+              [0, 1, 0],
+              [0, 0, 1]
+            ]
+          },
+          "contact_network": {
+            "coordination_number": 12,
+            "directions": [
+              [1, 1, 0],
+              [1, -1, 0],
+              [-1, 1, 0],
+              [-1, -1, 0],
+              [1, 0, 1],
+              [1, 0, -1],
+              [-1, 0, 1],
+              [-1, 0, -1],
+              [0, 1, 1],
+              [0, 1, -1],
+              [0, -1, 1],
+              [0, -1, -1]
+            ]
+          }
+        },
         "metallic_bonding": 1,
         "coherent_alignment": 0.9,
         "delay_coupling": 0.015,
@@ -74,7 +121,6 @@
           "mu_raw": 0.2,
           "features": {
             "delta_n": 0,
-            "delta_ln_n_max_obl": 0,
             "delta_ln_chi_sea": 0,
             "delta_S_dev": 0,
             "delta_P_over_K_sea": 0,
@@ -85,10 +131,14 @@
           "step_index": 1,
           "n": 1.15,
           "mu_std": 0.235,
-          "mu_raw": 0.22975216253207877,
+          "mu_raw": 0.23070184337995746,
+          "packing_update": {
+            "oblate_envelope": {
+              "lambda": 0.9960079893439915
+            }
+          },
           "features": {
             "delta_n": 0.15,
-            "delta_ln_n_max_obl": 0.012,
             "delta_ln_chi_sea": 0.006,
             "delta_S_dev": 0.002,
             "delta_P_over_K_sea": 0.02,
@@ -99,10 +149,14 @@
           "step_index": 2,
           "n": 1.3,
           "mu_std": 0.27,
-          "mu_raw": 0.2600388961107789,
+          "mu_raw": 0.26199985853167957,
+          "packing_update": {
+            "oblate_envelope": {
+              "lambda": 0.9910403787728836
+            }
+          },
           "features": {
             "delta_n": 0.3,
-            "delta_ln_n_max_obl": 0.027,
             "delta_ln_chi_sea": 0.012,
             "delta_S_dev": 0.004,
             "delta_P_over_K_sea": 0.042,
@@ -120,8 +174,46 @@
         "S_Fe_nuc": 0
       },
       "coefficient_inputs": {
-        "exclusion_penalty": 1.2,
-        "n_max_obl_ref": 1.3,
+        "packing_record": {
+          "oblate_envelope": {
+            "R_perp": 0.5,
+            "xi": 0.88,
+            "lambda": 1
+          },
+          "orientation_record": {
+            "distribution": [
+              {
+                "axis": [1, 0, 0],
+                "weight": 1
+              },
+              {
+                "axis": [0, 1, 0],
+                "weight": 1
+              },
+              {
+                "axis": [0, 0, 1],
+                "weight": 1
+              }
+            ]
+          },
+          "lattice_cell": {
+            "cell_volume_factor": 0.8694466702279203,
+            "basis_directions": [
+              [1, 0, 0],
+              [0, 1, 0],
+              [0, 0, 1]
+            ]
+          },
+          "contact_network": {
+            "coordination_number": 4,
+            "directions": [
+              [1, 1, 1],
+              [1, -1, -1],
+              [-1, 1, -1],
+              [-1, -1, 1]
+            ]
+          }
+        },
         "metallic_bonding": 0.25,
         "coherent_alignment": 0.4,
         "delay_coupling": 0.02,
@@ -141,7 +233,6 @@
           "mu_raw": 0.17,
           "features": {
             "delta_n": 0,
-            "delta_ln_n_max_obl": 0,
             "delta_ln_chi_sea": 0,
             "delta_S_dev": 0,
             "delta_P_over_K_sea": 0,
@@ -152,10 +243,14 @@
           "step_index": 1,
           "n": 1.15,
           "mu_std": 0.202,
-          "mu_raw": 0.2228069446690353,
+          "mu_raw": 0.22251518998300293,
+          "packing_update": {
+            "oblate_envelope": {
+              "lambda": 0.9993335555061811
+            }
+          },
           "features": {
             "delta_n": 0.15,
-            "delta_ln_n_max_obl": 0.002,
             "delta_ln_chi_sea": 0.006,
             "delta_S_dev": 0.001,
             "delta_P_over_K_sea": 0.02,
@@ -166,10 +261,14 @@
           "step_index": 2,
           "n": 1.3,
           "mu_std": 0.237,
-          "mu_raw": 0.28250248623205067,
+          "mu_raw": 0.28187717621240435,
+          "packing_update": {
+            "oblate_envelope": {
+              "lambda": 0.999000499833375
+            }
+          },
           "features": {
             "delta_n": 0.3,
-            "delta_ln_n_max_obl": 0.003,
             "delta_ln_chi_sea": 0.012,
             "delta_S_dev": 0.0018,
             "delta_P_over_K_sea": 0.042,

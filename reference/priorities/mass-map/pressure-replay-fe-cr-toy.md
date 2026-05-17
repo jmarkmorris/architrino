@@ -197,6 +197,141 @@ This is a pressure-normalized arithmetic bridge, not a PPN interpretation. If on
 
 The executable mock row is `pressure_bridge_fe_cr_toy_isotropic_projection` in `scripts/spacetime/static-response-vector-mock.json`, replayed by `scripts/spacetime/static-response-vector-toy-model.mjs`.
 
+## Shared Constitutive Row Compatibility Lemma
+
+The toy handoff now gives one concrete falsification condition for a single isotropic Noether-Sea cadence row. Let the weak gravitational endpoint record after shared-delay closure be
+
+$$
+\mathbf{a}^{G}
+=
+\left(
+a_n^{G},\,
+1+\gamma_{\text{eff}},\,
+a_\lambda^{G},\,
+a_R^{G}
+\right)^T,
+$$
+
+and let the pressure-normalized isotropic record be
+
+$$
+\mathbf{a}^{P\to\Gamma}
+=
+\frac{
+\delta\mathbf{g}^{P,\mathrm{iso}}
+}{
+\delta\ln\Gamma_N^{P,\mathrm{iso}}
+}
+=
+\left(
+a_n^{P\to\Gamma},\,
+a_\chi^{P\to\Gamma},\,
+a_\lambda^{P\to\Gamma},\,
+a_R^{P\to\Gamma}
+\right)^T.
+$$
+
+A shared isotropic row
+
+$$
+\mathbf{b}
+=
+\left(
+b_n,\,
+b_\chi,\,
+b_\lambda,\,
+b_R
+\right)^T
+$$
+
+is admissible only if the same coefficients satisfy
+
+$$
+\begin{pmatrix}
+\left(\mathbf{a}^{G}\right)^T\\
+\left(\mathbf{a}^{P\to\Gamma}\right)^T
+\end{pmatrix}
+\mathbf{b}
+=
+\begin{pmatrix}
+1\\
+1
+\end{pmatrix},
+\qquad
+\omega_i=-b_i
+\quad
+\text{for}\quad
+i\in\{n,\chi,\lambda,R\}.
+$$
+
+In the chi-only subclass this reduces to
+
+$$
+b_\chi(1+\gamma_{\text{eff}})=1,
+\qquad
+b_\chi a_\chi^{P\to\Gamma}=1,
+$$
+
+so consistency requires
+
+$$
+a_\chi^{P\to\Gamma}=1+\gamma_{\text{eff}}.
+$$
+
+The current toy pressure projection has $a_\chi^{P\to\Gamma}=0.6$, while the GR-matching Shapiro branch has $1+\gamma_{\text{eff}}=2$. Therefore the chi-only shared row is falsified by the toy packet:
+
+$$
+\Delta_{\chi\text{-only}}^{\mathrm{shared}}
+=
+a_\chi^{P\to\Gamma}
+-
+(1+\gamma_{\text{eff}})
+=
+-1.4
+\ne 0.
+$$
+
+This does not falsify a broader shared row. It creates a proof obligation for non-$\chi_{\text{sea}}$ isotropic response. If the gravitational branch keeps the clean GR value $b_\chi=1/(1+\gamma_{\text{eff}})=1/2$, then the pressure record must supply
+
+$$
+b_n a_n^{P\to\Gamma}
++b_\lambda a_\lambda^{P\to\Gamma}
++b_R a_R^{P\to\Gamma}
+=
+1-\frac{a_\chi^{P\to\Gamma}}{1+\gamma_{\text{eff}}}
+=
+0.7
+$$
+
+for the toy pressure number. The corresponding gravitational non-$\chi_{\text{sea}}$ projection must still satisfy
+
+$$
+b_n a_n^{G}
++b_\lambda a_\lambda^{G}
++b_R a_R^{G}
+=
+0
+$$
+
+in the same clean weak-field branch. Any future claim of one shared row must therefore either derive this compensating density, scale, or core-radius contribution from Noether-Sea constitutive response, or accept the chi-only falsification above.
+
+Anisotropic pressure terms remain outside this scalar endpoint equation. The replay must keep
+
+$$
+\delta\mathbf{g}^{P}
+=
+\delta\mathbf{g}^{P,\mathrm{iso}}
++
+\delta\mathbf{g}^{P,\mathrm{dev}},
+\qquad
+\mathbf{b}\cdot
+\delta\mathbf{g}^{P,\mathrm{iso}}
+=
+\delta\ln\Gamma_N^{P,\mathrm{iso}},
+$$
+
+and carry $\delta\mathbf{g}^{P,\mathrm{dev}}$ through `anisotropic_residuals` and the existing null-sector checks. Directional pressure response cannot be used to repair the scalar shared-row mismatch.
+
 ## Failure Injection
 
 A real replay should demote or fail the constitutive law if any of the following occur after ordinary condensed-matter corrections are subtracted:

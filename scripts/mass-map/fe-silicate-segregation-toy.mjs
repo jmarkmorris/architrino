@@ -161,6 +161,7 @@ function coefficientModel(input) {
   }
   const raw = asObject(input.coefficient_model, "coefficient_model");
   const weights = asObject(raw.coupling_weights ?? {}, "coefficient_model.coupling_weights");
+  const packing = asObject(raw.packing_model ?? {}, "coefficient_model.packing_model");
   return {
     name: raw.name ?? "coefficient-derivation",
     convex_penalty: raw.convex_penalty ?? "half_square",
@@ -171,6 +172,33 @@ function coefficientModel(input) {
       heavy: finiteNumber(weights.heavy ?? 0, "coefficient_model.coupling_weights.heavy"),
       bonding: finiteNumber(weights.bonding ?? 0, "coefficient_model.coupling_weights.bonding"),
       alignment: finiteNumber(weights.alignment ?? 0, "coefficient_model.coupling_weights.alignment"),
+    },
+    packing_model: {
+      density_scale: positiveNumber(packing.density_scale ?? 1, "coefficient_model.packing_model.density_scale"),
+      reference_cell_volume: positiveNumber(
+        packing.reference_cell_volume ?? 1,
+        "coefficient_model.packing_model.reference_cell_volume"
+      ),
+      reference_packing_fraction: positiveNumber(
+        packing.reference_packing_fraction ?? Math.PI / (3 * Math.sqrt(2)),
+        "coefficient_model.packing_model.reference_packing_fraction"
+      ),
+      coordination_reference: positiveNumber(
+        packing.coordination_reference ?? 12,
+        "coefficient_model.packing_model.coordination_reference"
+      ),
+      undercoordination_weight: nonnegativeNumber(
+        packing.undercoordination_weight ?? 0,
+        "coefficient_model.packing_model.undercoordination_weight"
+      ),
+      void_fraction_weight: nonnegativeNumber(
+        packing.void_fraction_weight ?? 0,
+        "coefficient_model.packing_model.void_fraction_weight"
+      ),
+      spacing_anisotropy_weight: nonnegativeNumber(
+        packing.spacing_anisotropy_weight ?? 0,
+        "coefficient_model.packing_model.spacing_anisotropy_weight"
+      ),
     },
   };
 }
@@ -203,6 +231,249 @@ function convexPenalty(kind, x, label) {
   throw new Error(`${label}.convex_penalty has unsupported value: ${kind}`);
 }
 
+function vector3(value, label) {
+  if (!Array.isArray(value) || value.length !== 3) {
+    throw new Error(`${label} must be a three-entry vector.`);
+  }
+  return value.map((entry, index) => finiteNumber(entry, `${label}[${index}]`));
+}
+
+function normalizeVector(value, label) {
+  const vector = vector3(value, label);
+  const norm = Math.hypot(...vector);
+  if (norm <= 0) {
+    throw new Error(`${label} must have nonzero length.`);
+  }
+  return vector.map((entry) => entry / norm);
+}
+
+function dot(a, b) {
+  return a.reduce((sum, entry, index) => sum + entry * b[index], 0);
+}
+
+function det3(a, b, c) {
+  return (
+    a[0] * (b[1] * c[2] - b[2] * c[1]) -
+    a[1] * (b[0] * c[2] - b[2] * c[0]) +
+    a[2] * (b[0] * c[1] - b[1] * c[0])
+  );
+}
+
+function weightedDirections(rawDirections, label, directionKey = "direction") {
+  if (!Array.isArray(rawDirections) || rawDirections.length === 0) {
+    throw new Error(`${label} must be a nonempty array.`);
+  }
+  const directions = rawDirections.map((entry, index) => {
+    if (Array.isArray(entry)) {
+      return {
+        direction: normalizeVector(entry, `${label}[${index}]`),
+        weight: 1,
+      };
+    }
+    const object = asObject(entry, `${label}[${index}]`);
+    return {
+      direction: normalizeVector(object[directionKey], `${label}[${index}].${directionKey}`),
+      weight: positiveNumber(object.weight ?? 1, `${label}[${index}].weight`),
+    };
+  });
+  const totalWeight = directions.reduce((sum, entry) => sum + entry.weight, 0);
+  return { directions, totalWeight };
+}
+
+function weightedMean(values) {
+  const totalWeight = values.reduce((sum, entry) => sum + entry.weight, 0);
+  return values.reduce((sum, entry) => sum + entry.weight * entry.value, 0) / totalWeight;
+}
+
+function weightedVariance(values) {
+  const mean = weightedMean(values);
+  const totalWeight = values.reduce((sum, entry) => sum + entry.weight, 0);
+  return values.reduce(
+    (sum, entry) => sum + entry.weight * (entry.value - mean) ** 2,
+    0
+  ) / totalWeight;
+}
+
+function clonePackingRecord(record) {
+  return JSON.parse(JSON.stringify(record));
+}
+
+function packingRecordWithUpdate(baseRecord, update = {}) {
+  const record = clonePackingRecord(baseRecord);
+  const updateObject = update && typeof update === "object" ? update : {};
+  if (updateObject.oblate_envelope) {
+    record.oblate_envelope = {
+      ...record.oblate_envelope,
+      ...updateObject.oblate_envelope,
+    };
+  }
+  if (updateObject.orientation_record) {
+    record.orientation_record = {
+      ...record.orientation_record,
+      ...updateObject.orientation_record,
+    };
+  }
+  if (updateObject.lattice_cell) {
+    record.lattice_cell = {
+      ...record.lattice_cell,
+      ...updateObject.lattice_cell,
+    };
+  }
+  if (updateObject.contact_network) {
+    record.contact_network = {
+      ...record.contact_network,
+      ...updateObject.contact_network,
+    };
+  }
+  for (const key of ["wake_clearance", "lattice_clearance", "density_scale"]) {
+    if (updateObject[key] !== undefined) {
+      record[key] = updateObject[key];
+    }
+  }
+  return record;
+}
+
+function derivePacking(recordInput, materialLabel, modelPacking) {
+  const record = asObject(recordInput, `${materialLabel}.coefficient_inputs.packing_record`);
+  const envelope = asObject(
+    record.oblate_envelope,
+    `${materialLabel}.coefficient_inputs.packing_record.oblate_envelope`
+  );
+  const baseRPerp = positiveNumber(
+    envelope.R_perp,
+    `${materialLabel}.coefficient_inputs.packing_record.oblate_envelope.R_perp`
+  );
+  const lambda = positiveNumber(
+    envelope.lambda ?? 1,
+    `${materialLabel}.coefficient_inputs.packing_record.oblate_envelope.lambda`
+  );
+  const xi = positiveNumber(
+    envelope.xi,
+    `${materialLabel}.coefficient_inputs.packing_record.oblate_envelope.xi`
+  );
+  const RPerp = baseRPerp * lambda;
+  const RParallel = RPerp * xi;
+  const orientationRecord = asObject(
+    record.orientation_record,
+    `${materialLabel}.coefficient_inputs.packing_record.orientation_record`
+  );
+  const orientations = weightedDirections(
+    orientationRecord.distribution,
+    `${materialLabel}.coefficient_inputs.packing_record.orientation_record.distribution`,
+    "axis"
+  );
+  const latticeCell = asObject(
+    record.lattice_cell,
+    `${materialLabel}.coefficient_inputs.packing_record.lattice_cell`
+  );
+  const basis = weightedDirections(
+    latticeCell.basis_directions,
+    `${materialLabel}.coefficient_inputs.packing_record.lattice_cell.basis_directions`
+  ).directions.map((entry) => entry.direction);
+  if (basis.length !== 3) {
+    throw new Error(`${materialLabel}.coefficient_inputs.packing_record.lattice_cell.basis_directions must have exactly three basis directions.`);
+  }
+  const basisDeterminant = Math.abs(det3(basis[0], basis[1], basis[2]));
+  if (basisDeterminant <= 0) {
+    throw new Error(`${materialLabel}.coefficient_inputs.packing_record.lattice_cell.basis_directions must span a nonzero cell volume.`);
+  }
+  const cellVolumeFactor = positiveNumber(
+    latticeCell.cell_volume_factor ?? 1,
+    `${materialLabel}.coefficient_inputs.packing_record.lattice_cell.cell_volume_factor`
+  );
+  const wakeClearance = nonnegativeNumber(
+    record.wake_clearance ?? 0,
+    `${materialLabel}.coefficient_inputs.packing_record.wake_clearance`
+  );
+  const latticeClearance = nonnegativeNumber(
+    record.lattice_clearance ?? 0,
+    `${materialLabel}.coefficient_inputs.packing_record.lattice_clearance`
+  );
+
+  const supportRadius = (direction) => weightedMean(
+    orientations.directions.map((orientation) => {
+      const alignment = dot(direction, orientation.direction);
+      return {
+        value: Math.sqrt(
+          RPerp ** 2 + (RParallel ** 2 - RPerp ** 2) * alignment ** 2
+        ),
+        weight: orientation.weight,
+      };
+    })
+  );
+  const spacing = (direction) => 2 * supportRadius(direction) + wakeClearance + latticeClearance;
+  const basisSpacings = basis.map((direction) => spacing(direction));
+  const latticeCellVolume = cellVolumeFactor *
+    basisDeterminant *
+    basisSpacings.reduce((product, entry) => product * entry, 1);
+  const densityScale = positiveNumber(
+    record.density_scale ?? modelPacking.density_scale,
+    `${materialLabel}.coefficient_inputs.packing_record.density_scale`
+  );
+  const nMaxObl = densityScale / latticeCellVolume;
+  const envelopeVolume = (4 * Math.PI / 3) * RPerp ** 2 * RParallel;
+  const packingFraction = envelopeVolume / latticeCellVolume;
+  const contactNetwork = asObject(
+    record.contact_network,
+    `${materialLabel}.coefficient_inputs.packing_record.contact_network`
+  );
+  const contacts = weightedDirections(
+    contactNetwork.directions,
+    `${materialLabel}.coefficient_inputs.packing_record.contact_network.directions`
+  );
+  const logContactSpacings = contacts.directions.map((entry) => ({
+    value: Math.log(spacing(entry.direction)),
+    weight: entry.weight,
+  }));
+  const spacingLogVariance = weightedVariance(logContactSpacings);
+  const effectiveCoordination = finiteNumber(
+    contactNetwork.coordination_number ?? contacts.totalWeight,
+    `${materialLabel}.coefficient_inputs.packing_record.contact_network.coordination_number`
+  );
+  const undercoordination = Math.max(
+    0,
+    1 - effectiveCoordination / modelPacking.coordination_reference
+  );
+  const voidFraction = Math.max(
+    0,
+    (modelPacking.reference_packing_fraction - packingFraction) /
+      modelPacking.reference_packing_fraction
+  );
+  const cellLengthScale = Math.cbrt(latticeCellVolume / modelPacking.reference_cell_volume);
+  const exclusionPenalty = cellLengthScale * (
+    1 +
+    modelPacking.undercoordination_weight * undercoordination +
+    modelPacking.void_fraction_weight * voidFraction +
+    modelPacking.spacing_anisotropy_weight * spacingLogVariance
+  );
+
+  return {
+    exclusion_penalty: exclusionPenalty,
+    n_max_obl: nMaxObl,
+    envelope: {
+      R_perp: RPerp,
+      R_parallel: RParallel,
+      xi,
+      lambda,
+      volume: envelopeVolume,
+    },
+    orientation_weight: orientations.totalWeight,
+    lattice_cell: {
+      basis_spacings: basisSpacings,
+      basis_determinant: basisDeterminant,
+      cell_volume_factor: cellVolumeFactor,
+      volume: latticeCellVolume,
+    },
+    contact_network: {
+      effective_coordination: effectiveCoordination,
+      spacing_log_variance: spacingLogVariance,
+    },
+    packing_fraction: packingFraction,
+    void_fraction: voidFraction,
+    undercoordination,
+  };
+}
+
 function materialCoefficientInputs(material, materialLabel) {
   return asObject(material.coefficient_inputs ?? {}, `${materialLabel}.coefficient_inputs`);
 }
@@ -210,6 +481,11 @@ function materialCoefficientInputs(material, materialLabel) {
 function deriveCoefficients(material, materialLabel, features, prediction) {
   const model = prediction.coefficient_model;
   const input = materialCoefficientInputs(material, materialLabel);
+  const packing = derivePacking(
+    input.packing_record,
+    materialLabel,
+    model.packing_model
+  );
   const heavyScaling = finiteNumber(
     features.heavy_scaling ?? input.heavy_scaling ?? 0,
     `${materialLabel}.coefficient_inputs.heavy_scaling`
@@ -232,14 +508,8 @@ function deriveCoefficients(material, materialLabel, features, prediction) {
   );
   const weights = model.coupling_weights;
   return {
-    A: model.exclusion_scale * positiveNumber(
-      input.exclusion_penalty,
-      `${materialLabel}.coefficient_inputs.exclusion_penalty`
-    ),
-    n_max_obl_ref: positiveNumber(
-      input.n_max_obl_ref,
-      `${materialLabel}.coefficient_inputs.n_max_obl_ref`
-    ),
+    A: model.exclusion_scale * packing.exclusion_penalty,
+    n_max_obl_ref: packing.n_max_obl,
     G: model.coupling_scale * (
       weights.heavy * heavyScaling +
       weights.bonding * metallicBonding +
@@ -256,16 +526,20 @@ function deriveCoefficients(material, materialLabel, features, prediction) {
       strain_alignment: strainAlignment,
       pressure_response: pressureResponse,
     },
+    packing_derivation: packing,
   };
 }
 
-function mediumCostComponents(material, materialLabel, features, prediction) {
+function mediumCostComponents(material, materialLabel, features, prediction, step) {
   const coefficients = deriveCoefficients(material, materialLabel, features, prediction);
-  const deltaLnNMax = finiteNumber(
-    features.delta_ln_n_max_obl ?? 0,
-    `${materialLabel}.features.delta_ln_n_max_obl`
+  const input = materialCoefficientInputs(material, materialLabel);
+  const currentPacking = derivePacking(
+    packingRecordWithUpdate(input.packing_record, step.packing_update),
+    materialLabel,
+    prediction.coefficient_model.packing_model
   );
-  const nMaxObl = coefficients.n_max_obl_ref * Math.exp(deltaLnNMax);
+  const deltaLnNMax = Math.log(currentPacking.n_max_obl / coefficients.n_max_obl_ref);
+  const nMaxObl = currentPacking.n_max_obl;
   const n = finiteNumber(features.delta_n + 1, `${materialLabel}.features.delta_n + 1`);
   if (n <= 0) {
     throw new Error(`${materialLabel}.features.delta_n must keep n positive.`);
@@ -302,6 +576,8 @@ function mediumCostComponents(material, materialLabel, features, prediction) {
       pressure,
       total: packing + coupling + delay + strain + pressure,
     },
+    delta_ln_n_max_obl: deltaLnNMax,
+    packing_derivation: currentPacking,
   };
 }
 
@@ -354,7 +630,11 @@ function evaluateMaterial(material, materialIndex, order, prediction) {
     const features = Object.fromEntries(
       order.map((featureKey) => [
         featureKey,
-        finiteNumber(featuresInput[featureKey], `${rowKey}.features.${featureKey}`),
+        featuresInput[featureKey] === undefined &&
+          prediction.kind === "coefficient_derivation" &&
+          featureKey === "delta_ln_n_max_obl"
+          ? 0
+          : finiteNumber(featuresInput[featureKey], `${rowKey}.features.${featureKey}`),
       ])
     );
     const muRaw = finiteNumber(step.mu_raw, `${rowKey}.mu_raw`);
@@ -367,7 +647,8 @@ function evaluateMaterial(material, materialIndex, order, prediction) {
     let predictionRecord = null;
     let predictedSeaResidual = null;
     if (prediction.kind === "coefficient_derivation") {
-      const predicted = mediumCostComponents(material, rowKey, features, prediction);
+      const predicted = mediumCostComponents(material, rowKey, features, prediction, step);
+      features.delta_ln_n_max_obl = predicted.delta_ln_n_max_obl;
       if (baselineComponents === null) {
         baselineComponents = predicted.components;
       }
@@ -379,6 +660,7 @@ function evaluateMaterial(material, materialIndex, order, prediction) {
         n: predicted.n,
         n_max_obl: predicted.n_max_obl,
         x_n_over_n_max: predicted.x_n_over_n_max,
+        packing_derivation: predicted.packing_derivation,
         component_values: predicted.components,
         component_deltas: componentDeltas,
       };

@@ -588,3 +588,5 @@ The Fe/Cr toy row now has an executable static-response bridge in `scripts/space
 The first empirical replay handoff is [Metallic-Lattice Pressure Replay Data Schema](pressure-replay-metallic-lattice-data-schema.md). It locks the material-state record, observable extractor, covariance model, shared-row fit, heavy-scaling scan, and null-sector bounds before any Fe/Cr or Ni/Co data are interpreted.
 
 The first empty empirical packet is [Fe/Cr Empirical Pressure Replay Skeleton](pressure-replay-fe-cr-empirical-skeleton.md). It chooses Fe/Cr as the provisional first pair from the local priority stack, marks every missing material input explicitly, and keeps the current reading at `bound_only`.
+
+The coefficient-side closure packet is [Pressure-Response Coefficient Closure](pressure-response-coefficient-closure.md). It derives the branch-conditional isotropic and anisotropic pressure combinations for $\chi_{\text{sea}}$, $c_{\text{eff}}$, $\Gamma_N$, and $\mathcal{M}_{\text{sea}}^{ab}$, and records the null-sector bounds that prevent the replay from fitting separate observable-local pressure rows.
