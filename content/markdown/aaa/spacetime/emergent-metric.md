@@ -58,6 +58,20 @@ $$
 
 The first arrow is the open constitutive problem. The second arrow is the observer-level metric assembly; it does not curve the Euclidean void.
 
+### Weak-Gravity Visibility Scale
+
+For weak effective-metric recovery, the useful small parameter is not the material temperature measured against the Planck temperature. It is the dimensionless effective potential, together with the density-length scale that sources that potential. For a roughly uniform ordinary-matter body of characteristic size $L$ and standard-matter density $\rho_{\mathrm{mat}}$, the Newtonian comparison estimate is
+
+$$
+\epsilon_{\Phi}
+\equiv
+\frac{|\Phi_{\text{eff}}|}{c_0^2}
+\sim
+\frac{4\pi G_{\mathrm{eff}}\rho_{\mathrm{mat}}L^2}{3c_0^2}.
+$$
+
+Thus ordinary density can be weakly visible to clocks and signal paths when it is integrated over planetary or stellar length scales, while meter-scale laboratory samples require much higher density or precision. The Earth core is thermally cold on a Planck-temperature comparison, but that fact is not the limiting variable for weak gravity. Its contribution to observer-level metric response comes from the rest-energy, pressure, stress, and exposed assembly ledger distributed over a large body, projected through the same Noether-Sea response map that supplies $\Phi_{\text{eff}}$, $\Gamma_N$, and $\chi_{\text{sea}}$.
+
 ## ADM/Cartan Reconstruction Surface
 
 The metric bridge should now be expressed through the same ADM/Cartan variables used by [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md#admcartan-reconstruction-target). The observer-level line element target is

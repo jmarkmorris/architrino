@@ -59,10 +59,12 @@ The bookkeeping distinction is
 $$
 h=\text{action per accepted cycle},
 \qquad
-E_N=h\nu_N.
+A_N=Nh,
+\qquad
+E_N=A_N\nu_N.
 $$
 
-Here $\nu_N$ is a representative cadence extracted from the closed Noether-core branch. A one-$h$ transaction changes the action ledger; the accepted branch may answer through one or more of the cadence, layer radii, envelope scale, envelope ratio, orientation, strain, and inter-layer wake-exchange variables:
+Here $h$ is the fixed closed-cycle action unit, $N$ is the integer number of accepted action units carried by the branch, $A_N$ is the total branch action level, and $\nu_N$ is a representative cadence extracted from the closed Noether-core branch. A one-$h$ transaction changes the action ledger; a branch with many accepted units is scaled by $Nh$. The accepted branch may answer through one or more of the cadence, layer radii, envelope scale, envelope ratio, orientation, strain, and inter-layer wake-exchange variables:
 
 $$
 \Delta A_{\mathrm{cyc}}=\pm h
@@ -158,6 +160,258 @@ $$
 with the weights determined by the same branch and exposure record used for clock and medium coupling. The full tri-binary need not put the entire transaction into a single layer. One layer may tighten while another expands, and the outer envelope may change through $\lambda$ or $\xi$, provided the total closure label remains admissible.
 
 This is the local branchwise origin of the smoother Noether-Sea equilibrium-current language: individual retunings are discrete, while many asynchronous accepted retunings can coarse-grain into a continuous cadence-space current.
+
+### Shared-Branch Scaling Curve
+
+The cadence-scale retuning map becomes more predictive when a homogeneous pool of Noether cores is assumed to occupy the same reduced closure label. In that case the branch constants are common across the pool rather than fitted separately for each core. This is still a macro-scale reduction, not a completed derivation from the Master Equation, but it gives a concrete target for unifying external equations that constrain Noether-core behavior.
+
+The scaling variable is not $h$ itself. The fixed quantity is the closed-cycle action unit $h$; the branch variable is the total action level
+
+$$
+A_N=Nh,
+\qquad
+N\in\mathbb{Z}_{>0}.
+$$
+
+Let all cores in the pool share the same branch $q$, the same representative core energy $E_N$, and the same integer action-unit count $N$. For each binary layer
+
+$$
+\ell\in\{I,M,O\},
+$$
+
+write the layer frequency as a fixed branch multiple of the representative cadence,
+
+$$
+f_\ell=m_\ell^{(q)}\nu_N,
+\qquad
+\omega_\ell=2\pi f_\ell,
+$$
+
+and write the layer action allocation as
+
+$$
+N_\ell=p_\ell^{(q)}N,
+\qquad
+I_\ell=N_\ell\hbar
+=p_\ell^{(q)}N\frac{h}{2\pi}.
+$$
+
+Here $m_\ell^{(q)}$, $p_\ell^{(q)}$, and the effective rotational bookkeeping coefficient $\mu_\ell^{\mathrm{rot}}$ are branch data to be extracted from the closure label and its causal-root ledger. If the wake carries a resolved action share, the partition condition is
+
+$$
+p_I^{(q)}+p_M^{(q)}+p_O^{(q)}+p_{\mathrm{wake}}^{(q)}=1;
+$$
+
+otherwise the retained layer shares should be read as the visible projection of the full branch action ledger.
+
+The reduced circular-action chart is
+
+$$
+I_\ell
+=
+\mu_\ell^{\mathrm{rot}}R_\ell v_\ell
+=
+\mu_\ell^{\mathrm{rot}}R_\ell^2\omega_\ell,
+$$
+
+with the exact kinematic identity
+
+$$
+v_\ell=2\pi f_\ell R_\ell=\omega_\ell R_\ell.
+$$
+
+Combining these equations with
+
+$$
+E_N=Nh\nu_N
+$$
+
+gives the shared-branch scaling laws
+
+$$
+\boxed{
+f_\ell=\frac{m_\ell^{(q)}E_N}{Nh},
+\qquad
+\omega_\ell=\frac{2\pi m_\ell^{(q)}E_N}{Nh}
+}
+$$
+
+and
+
+$$
+\boxed{
+R_\ell
+=
+\frac{Nh}{2\pi}
+\sqrt{
+\frac{p_\ell^{(q)}}{\mu_\ell^{\mathrm{rot}}m_\ell^{(q)}E_N}
+},
+\qquad
+v_\ell
+=
+\sqrt{
+\frac{p_\ell^{(q)}m_\ell^{(q)}E_N}{\mu_\ell^{\mathrm{rot}}}
+}.
+}
+$$
+
+Thus, on a fixed shared branch at fixed core energy,
+
+$$
+\boxed{
+f_\ell\propto (Nh)^{-1},
+\qquad
+R_\ell\propto Nh,
+\qquad
+v_\ell\propto (Nh)^0.
+}
+$$
+
+Since $h$ is fixed, this is equivalently
+
+$$
+\boxed{
+f_\ell\propto N^{-1},
+\qquad
+R_\ell\propto N,
+\qquad
+v_\ell\propto N^0.
+}
+$$
+
+At fixed action level $Nh$, increasing the common core energy gives
+
+$$
+\boxed{
+R_\ell\propto E_N^{-1/2},
+\qquad
+f_\ell\propto E_N,
+\qquad
+v_\ell\propto E_N^{1/2}.
+}
+$$
+
+This is the simplest unified scaling curve. It says that the total action level $Nh$ sets the radius-frequency scale, while the common branch energy sets the layer speeds and compression.
+
+The velocity ratio on the same branch is
+
+$$
+\beta_\ell
+\equiv
+\frac{v_\ell}{c_f}
+=
+\sqrt{
+\frac{p_\ell^{(q)}m_\ell^{(q)}E_N}
+{\mu_\ell^{\mathrm{rot}}c_f^2}
+}.
+$$
+
+External equations can therefore be read as constraints on the same branch constants. For example, a middle-hinge condition
+
+$$
+v_M=c_f
+$$
+
+requires
+
+$$
+E_N
+=
+\frac{\mu_M^{\mathrm{rot}}c_f^2}
+{p_M^{(q)}m_M^{(q)}}.
+$$
+
+An outer alignment condition
+
+$$
+v_O=c_f
+$$
+
+requires
+
+$$
+E_N
+=
+\frac{\mu_O^{\mathrm{rot}}c_f^2}
+{p_O^{(q)}m_O^{(q)}}.
+$$
+
+If a branch claims both conditions at the same energy, then the constants must satisfy the compatibility equation
+
+$$
+\frac{\mu_M^{\mathrm{rot}}}
+{p_M^{(q)}m_M^{(q)}}
+=
+\frac{\mu_O^{\mathrm{rot}}}
+{p_O^{(q)}m_O^{(q)}}.
+$$
+
+The same chart also gives a packing readout for the Noether-Sea medium. In a nearly spherical exclusion-envelope approximation, let
+
+$$
+R_{\mathrm{excl}}
+=
+\alpha_O^{(q)}R_O,
+$$
+
+where $\alpha_O^{(q)}$ converts the outer-binary radius into the selected exclusion-interface threshold. Equal-core center contact then occurs at
+
+$$
+d_{\mathrm{nn}}=2R_{\mathrm{excl}},
+$$
+
+and the densest ordinary equal-sphere center density is
+
+$$
+\rho_{\mathrm{core},\max}^{\#}
+=
+\frac{1}{4\sqrt{2}R_{\mathrm{excl}}^3}.
+$$
+
+Substituting the shared-branch outer radius gives
+
+$$
+\boxed{
+\rho_{\mathrm{core},\max}^{\#}
+=
+\frac{1}{4\sqrt{2}\left(\alpha_O^{(q)}\right)^3}
+\left(\frac{2\pi}{Nh}\right)^3
+\left(
+\frac{\mu_O^{\mathrm{rot}}m_O^{(q)}E_N}
+{p_O^{(q)}}
+\right)^{3/2}.
+}
+$$
+
+Therefore, in the same fixed-branch, fixed-energy idealization,
+
+$$
+\boxed{
+\rho_{\mathrm{core},\max}^{\#}\propto (Nh)^{-3},
+}
+$$
+
+and, because $h$ is fixed,
+
+$$
+\rho_{\mathrm{core},\max}^{\#}\propto N^{-3}.
+$$
+
+At fixed action level $Nh$, the packing density scales as
+
+$$
+\rho_{\mathrm{core},\max}^{\#}\propto E_N^{3/2}.
+$$
+
+This packing formula is only the spherical leading estimate. At high relative velocity, high Noether-Sea delay, or high gravitational strain, the branch data cannot be kept constant:
+
+$$
+p_\ell^{(q)},\ m_\ell^{(q)},\ \mu_\ell^{\mathrm{rot}},\ \alpha_O^{(q)}
+\longrightarrow
+p_\ell(q,\theta_{\mathrm{env}}),\ m_\ell(q,\theta_{\mathrm{env}}),\ \mu_\ell^{\mathrm{rot}}(q,\theta_{\mathrm{env}}),\ \alpha_O(q,\theta_{\mathrm{env}}).
+$$
+
+The scaling curve is therefore piecewise by branch. Once the branch supplies $\xi$ and $\lambda$, the exclusion envelope must be treated as an oblate spheroid rather than a sphere, and the center-density calculation must inherit orientation, strain, and Noether-Sea delay data from the same branch label.
 
 ### Reduced Noether-Core Closure Label
 

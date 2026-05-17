@@ -5,13 +5,13 @@ This priority packet captures the 2026-05-17 operator discussion on ideal Noethe
 ## Claim Level
 
 - **Status:** derivation scaffold.
-- **Main claim:** for a same-energy pool of Noether cores on one fixed branch, the first ideal scaling gives $r_O\propto h$ and therefore close-packed center density $n_{\max}\propto h^{-3}$.
+- **Main claim:** for a same-energy pool of Noether cores on one fixed branch, $h$ is fixed and the scaling variable is the total branch action level $A_N=Nh$. The first ideal scaling gives $r_O\propto Nh$ and therefore close-packed center density $n_{\max}\propto (Nh)^{-3}$.
 - **Open burden:** the actual curve is not determined until the outer action share, rotational bookkeeping coefficient, speed factor, exclusion-threshold map, and delayed root-ledger balance are fixed on a branch chart.
 - **Promotion targets:** [dyadic-resonance-lock.md](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md), [binary-dynamics.md](../../../content/markdown/aaa/dynamics/binary-dynamics.md), [noether-core.md](../../../content/markdown/aaa/spacetime/noether-core.md), [noether-core-geometry.md](../../../content/markdown/aaa/spacetime/noether-core-geometry.md), and [noether-sea.md](../../../content/markdown/aaa/spacetime/noether-sea.md) after the constants and branch assumptions are certified.
 
 ## Notation Discipline
 
-Use $h$ here only for closed-cycle action. Do not confuse it with the history horizon used in proof-program files. If both appear in the same calculation, write $h_{\mathrm{act}}$ for closed-cycle action and $h_{\mathrm{mem}}$ for memory depth.
+Use $h$ here only for the fixed closed-cycle action unit. The branch-scaling variable is $A_N=Nh$, where $N$ is the integer action-unit count. Do not confuse $h$ with the history horizon used in proof-program files. If both appear in the same calculation, write $h_{\mathrm{act}}$ for closed-cycle action and $h_{\mathrm{mem}}$ for memory depth.
 
 All kinematics below live in absolute time and Euclidean space. A Noether-core center is a point $X_a(t)\in\Sigma_t$ attached to a reduced closure label, not the position of any one architrino.
 
@@ -26,13 +26,13 @@ $$
 Use the current cadence bookkeeping relation
 
 $$
-E_N=h\nu_N.
+E_N=Nh\nu_N.
 $$
 
 Then the representative cadence is
 
 $$
-\nu_N(h)=\frac{E_*}{h}.
+\nu_N(N)=\frac{E_*}{Nh}.
 $$
 
 On a fixed branch $q$, let the outer binary frequency be tied to the representative cadence by
@@ -50,26 +50,26 @@ $$
 Therefore
 
 $$
-r_{O,q}(h)
+r_{O,q}(N)
 =
-\frac{\beta_O^{(q)}(h)c_f}{2\pi m_O^{(q)}(h)}\frac{h}{E_*}.
+\frac{\beta_O^{(q)}(N)c_f}{2\pi m_O^{(q)}(N)}\frac{Nh}{E_*}.
 $$
 
 The log-slope is
 
 $$
-\frac{d\ln r_O}{d\ln h}
+\frac{d\ln r_O}{d\ln (Nh)}
 =
 1
-+\frac{d\ln\beta_O}{d\ln h}
--\frac{d\ln m_O}{d\ln h}.
++\frac{d\ln\beta_O}{d\ln (Nh)}
+-\frac{d\ln m_O}{d\ln (Nh)}.
 $$
 
 Thus the first ideal branch result is
 
 $$
 \boxed{
-r_O\propto h
+r_O\propto Nh
 }
 $$
 
@@ -88,24 +88,24 @@ $$
 then
 
 $$
-r_{\ell,q}(h)
+r_{\ell,q}(N)
 =
-\frac{\beta_\ell^{(q)}(h)c_f}{2\pi m_\ell^{(q)}(h)}\frac{h}{E_*}.
+\frac{\beta_\ell^{(q)}(N)c_f}{2\pi m_\ell^{(q)}(N)}\frac{Nh}{E_*}.
 $$
 
-This is the same linear-in-$h$ estimate for every layer, with deviations entirely assigned to branch-dependent speed factors and frequency-ratio extraction.
+This is the same linear-in-$Nh$ estimate for every layer, with deviations entirely assigned to branch-dependent speed factors and frequency-ratio extraction.
 
 ## Outer-Binary Action Equation
 
-The sharper outer-binary route starts with the outer rotational-action ledger. Let the outer layer carry
+The sharper outer-binary route starts with the outer rotational-action ledger. Let the outer layer carry the action share $N_O=p_O^{(q)}N$:
 
 $$
-I_O=a_O^{(q)}\hbar
+I_O=N_O\hbar
 =
-a_O^{(q)}\frac{h}{2\pi},
+p_O^{(q)}N\frac{h}{2\pi},
 $$
 
-where $a_O^{(q)}$ is the outer action share of the branch. Introduce the effective rotational bookkeeping coefficient $\mu_O^{\mathrm{rot}}$ by
+where $p_O^{(q)}$ is the outer action-share fraction of the branch. Introduce the effective rotational bookkeeping coefficient $\mu_O^{\mathrm{rot}}$ by
 
 $$
 I_O=\mu_O^{\mathrm{rot}}r_Ov_O.
@@ -117,7 +117,7 @@ $$
 \boxed{
 r_O
 =
-\frac{a_O^{(q)}h}{2\pi\mu_O^{\mathrm{rot}}v_O}
+\frac{p_O^{(q)}Nh}{2\pi\mu_O^{\mathrm{rot}}v_O}
 }
 $$
 
@@ -125,9 +125,9 @@ and, with $v_O=\beta_Oc_f$,
 
 $$
 \boxed{
-r_O(h)
+r_O(N)
 =
-\frac{a_O^{(q)}h}
+\frac{p_O^{(q)}Nh}
 {2\pi\mu_O^{\mathrm{rot}}\beta_Oc_f}.
 }
 $$
@@ -164,9 +164,9 @@ and
 
 $$
 \boxed{
-r_O(h;E_O)
+r_O(N;E_O)
 =
-\frac{a_O^{(q)}h\sqrt{\zeta_O^{(q)}}}
+\frac{p_O^{(q)}Nh\sqrt{\zeta_O^{(q)}}}
 {2\pi\sqrt{\mu_O^{\mathrm{rot}}E_O}}.
 }
 $$
@@ -205,10 +205,10 @@ Combining this with the outer action equation gives the implicit speed equation
 
 $$
 \boxed{
-h
+Nh
 =
 \frac{\pi\mu_O^{\mathrm{rot}}K_O}
-{2a_O^{(q)}c_f}
+{2p_O^{(q)}c_f}
 \frac{\mathcal{B}_O(\beta_O;\Lambda_O)}{\beta_O}.
 }
 $$
@@ -220,7 +220,7 @@ v_O=\beta_Oc_f,
 $$
 
 $$
-r_O=\frac{a_O^{(q)}h}{2\pi\mu_O^{\mathrm{rot}}\beta_Oc_f},
+r_O=\frac{p_O^{(q)}Nh}{2\pi\mu_O^{\mathrm{rot}}\beta_Oc_f},
 $$
 
 and
@@ -228,15 +228,15 @@ and
 $$
 f_O=\frac{v_O}{2\pi r_O}
 =
-\frac{\mu_O^{\mathrm{rot}}\beta_O^2c_f^2}{a_O^{(q)}h}.
+\frac{\mu_O^{\mathrm{rot}}\beta_O^2c_f^2}{p_O^{(q)}Nh}.
 $$
 
 The simplified operator-discussion equation
 
 $$
-h
+Nh
 =
-\frac{\pi\kappa Q_O^2}{2a_Oc_f}
+\frac{\pi\kappa Q_O^2}{2p_Oc_f}
 \frac{\mathcal{B}_O(\beta_O;\Lambda_O)}{\beta_O}
 $$
 
@@ -394,7 +394,7 @@ Combining this with the action equation yields, to leading order,
 $$
 \beta_O
 \approx
-\frac{\pi\mu_O^{\mathrm{rot}}K_O}{2a_O^{(q)}c_fh},
+\frac{\pi\mu_O^{\mathrm{rot}}K_O}{2p_O^{(q)}Nc_fh},
 $$
 
 and therefore
@@ -402,18 +402,18 @@ and therefore
 $$
 r_O
 \approx
-\frac{a_O^{(q)}h}{2\pi\mu_O^{\mathrm{rot}}c_f}
+\frac{p_O^{(q)}Nh}{2\pi\mu_O^{\mathrm{rot}}c_f}
 \left(
-\frac{2a_O^{(q)}c_fh}
+\frac{2p_O^{(q)}Nc_fh}
 {\pi\mu_O^{\mathrm{rot}}K_O}
 \right)
 =
-\frac{(a_O^{(q)})^2h^2}
+\frac{(p_O^{(q)})^2N^2h^2}
 {\pi^2(\mu_O^{\mathrm{rot}})^2K_O}
 .
 $$
 
-This $r_O\propto h^2$ result is not the same as the fixed-speed same-energy-pool estimate. It is the leading bare radial-balance result when the only speed-determining term is the partner-root inverse-square channel. The tension is useful: it says the observed scaling exponent depends on whether $\beta_O$ is branch-fixed, energy-fixed, or solved from the bare radial force law.
+This $r_O\propto (Nh)^2$ result is not the same as the fixed-speed same-energy-pool estimate. It is the leading bare radial-balance result when the only speed-determining term is the partner-root inverse-square channel. The tension is useful: it says the observed scaling exponent depends on whether $\beta_O$ is branch-fixed, energy-fixed, or solved from the bare radial force law.
 
 ## Relation to Dyadic Layer Ratios
 
@@ -514,20 +514,20 @@ $$
 Using $R_{\mathrm{excl}}=\alpha_O r_O$ and the fixed-branch outer action equation gives
 
 $$
-n_{\max}(h)
+n_{\max}(N)
 =
 \frac{1}{4\sqrt{2}}
 \left(
 \frac{2\pi\mu_O^{\mathrm{rot}}\beta_Oc_f}
-{\alpha_Oa_O^{(q)}h}
+{\alpha_O^{(q)}p_O^{(q)}Nh}
 \right)^3.
 $$
 
-Therefore, on a fixed branch with fixed $\alpha_O$, $a_O$, $\mu_O^{\mathrm{rot}}$, and $\beta_O$,
+Therefore, on a fixed branch with fixed $\alpha_O$, $p_O^{(q)}$, $\mu_O^{\mathrm{rot}}$, and $\beta_O$,
 
 $$
 \boxed{
-n_{\max}(h)\propto h^{-3}.
+n_{\max}(N)\propto (Nh)^{-3}.
 }
 $$
 
@@ -605,22 +605,22 @@ Two useful energy readings currently coexist:
 
 1. **Core-cadence reading**
    $$
-   E_N=h\nu_N,
+   E_N=Nh\nu_N,
    \qquad
    f_O=m_O\nu_N.
    $$
    At fixed $h$ and fixed branch speed, this gives
    $$
-   r_O\propto E_N^{-1}.
+   r_O\propto NE_N^{-1}.
    $$
 
 2. **Outer action-channel reading**
    $$
    E_O=\zeta_O\mu_O^{\mathrm{rot}}v_O^2,
    \qquad
-   I_O=a_Oh/(2\pi).
+   I_O=p_ONh/(2\pi).
    $$
-   At fixed $h$ and fixed branch coefficients, this gives
+   At fixed $N h$ and fixed branch coefficients, this gives
    $$
    r_O\propto E_O^{-1/2}.
    $$
@@ -641,7 +641,8 @@ For a branch-chart calculation:
 2. Declare whether $h$ means closed-cycle action $h_{\mathrm{act}}$ and reserve $h_{\mathrm{mem}}$ for memory depth.
 3. Extract or choose provisional values for
    $$
-   a_O^{(q)},\quad
+   N,\quad
+   p_O^{(q)},\quad
    \mu_O^{\mathrm{rot}},\quad
    \mu_O^{\mathrm{acc}},\quad
    Q_O^2,\quad
@@ -650,10 +651,10 @@ For a branch-chart calculation:
    $$
 4. Solve
    $$
-   h
+   Nh
    =
    \frac{\pi\mu_O^{\mathrm{rot}}K_O}
-   {2a_O^{(q)}c_f}
+   {2p_O^{(q)}c_f}
    \frac{\mathcal{B}_O(\beta_O;\Lambda_O)}{\beta_O}
    $$
    for $\beta_O$.
@@ -661,7 +662,7 @@ For a branch-chart calculation:
    $$
    v_O=\beta_Oc_f,
    \qquad
-   r_O=\frac{a_O^{(q)}h}{2\pi\mu_O^{\mathrm{rot}}\beta_Oc_f},
+   r_O=\frac{p_O^{(q)}Nh}{2\pi\mu_O^{\mathrm{rot}}\beta_Oc_f},
    \qquad
    f_O=\frac{v_O}{2\pi r_O}.
    $$
@@ -678,8 +679,8 @@ For a branch-chart calculation:
 
 ## Failure Modes
 
-- If $\beta_O(h)$ changes substantially, the curve is not linear in $h$.
-- If $a_O^{(q)}$ changes, the action share has crossed a branch boundary or the chosen projection is not invariant.
+- If $\beta_O(N)$ changes substantially, the curve is not linear in $Nh$.
+- If $p_O^{(q)}$ changes, the action share has crossed a branch boundary or the chosen projection is not invariant.
 - If $\mathcal{B}_O$ changes discontinuously, the active causal-root ledger has changed.
 - If $\alpha_O$ depends strongly on energy or environment, the packing curve can differ from the outer-radius curve.
 - If the Noether-core pool is oblate and orientation-correlated, equal-sphere close packing is the wrong center-density model.
@@ -689,8 +690,8 @@ For a branch-chart calculation:
 
 1. Evaluate the minimal $\mathcal{B}_O(\beta_O;\Lambda_O)$ and $\mathcal{T}_O(\beta_O;\Lambda_O)$ formulas above for the principal partner branch, the principal self branch, and the first negative signed sheet.
 2. Decide whether the same-energy pool should use the core-cadence energy $E_N$, the outer-channel energy $E_O$, or a declared projection $E_O=\chi_O^{(q)}E_N$.
-3. Compute the first toy curves for $r_O(h)$, $v_O(h)$, and $n_{\max}(h)$ under three branch choices:
+3. Compute the first toy curves for $r_O(N)$, $v_O(N)$, and $n_{\max}(N)$ under three branch choices:
    - fixed $\beta_O$,
    - middle-pinned dyadic branch with $\beta_O\to1$,
    - root-ledger implicit branch with $\mathcal{B}_O(\beta)/\beta$.
-4. Replace the spherical packing estimate with a support-function spheroid packing diagnostic once $\xi(h)$ or $\xi(E)$ is supplied by the Noether-core geometry projection.
+4. Replace the spherical packing estimate with a support-function spheroid packing diagnostic once $\xi(N)$ or $\xi(E)$ is supplied by the Noether-core geometry projection.
