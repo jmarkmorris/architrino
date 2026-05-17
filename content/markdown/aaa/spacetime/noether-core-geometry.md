@@ -29,6 +29,37 @@ This region acts as a dynamic **exclusion zone**. It is not a solid object with 
 
 Another Noether core approaching this region does not encounter a classical wall. It encounters a rapidly varying causal-wake environment whose accelerations and phase constraints can prevent stable transit through the core volume.
 
+## Assembly-Noether-Sea Interface Diagnostic
+
+The dynamic exclusion zone supplies a spatial approximation to a deeper ledger boundary. At the exact level, an assembly is defined by the architrinos, closure labels, and wake-exchange records phase-locked to that assembly. The surrounding Noether Sea is the neighboring neutral-core population and its ambient wake record after the assembly ledger has been excluded.
+
+For an assembly $a$, let $\mathcal{W}_{a}^{\mathrm{locked}}(\mathbf{x},t)$ denote the local coarse-grained wake/exclusion contribution tied to the assembly's accepted closure label, and let $\mathcal{W}_{\mathrm{sea}}^{\mathrm{ambient}}(\mathbf{x},t)$ denote the ambient Noether-Sea contribution in the same region. A practical interface diagnostic is
+
+$$
+D_a(\mathbf{x},t)
+=
+\frac{
+\left\lVert\mathcal{W}_{a}^{\mathrm{locked}}(\mathbf{x},t)\right\rVert
+}{
+\left\lVert\mathcal{W}_{a}^{\mathrm{locked}}(\mathbf{x},t)\right\rVert
++
+\left\lVert\mathcal{W}_{\mathrm{sea}}^{\mathrm{ambient}}(\mathbf{x},t)\right\rVert
+}.
+$$
+
+Then the effective assembly-Noether-Sea interface for a declared stability threshold $D_*$ is the level set
+
+$$
+\partial\Omega_a(D_*,t)
+=
+\left\{
+\mathbf{x}\in\Sigma_t:
+D_a(\mathbf{x},t)=D_*
+\right\}.
+$$
+
+The level-set threshold is not universal. A penetration calculation, packing calculation, clock-coupling calculation, and reaction-corridor calculation may choose different $D_*$ values because they test different stability criteria. What must remain invariant is the level distinction: exact assembly membership is a closure-ledger fact, while $\partial\Omega_a(D_*,t)$ is a spatial interface extracted from that ledger and the surrounding Noether-Sea response.
+
 ## Oblate Spheroidal Form
 
 The tri-binary structure of the Noether core is anisotropic. The three nested binaries orbit and precess, with their orbital planes tending toward mutual orthogonality in stable low-apparent-energy conditions. The time-averaged envelope is therefore not perfectly spherical.

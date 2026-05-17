@@ -47,6 +47,43 @@
       ]
     },
     {
+      "name": "endpoint_launch_record_extraction",
+      "description": "Endpoint cadence and launch geometry are computed from record inputs.",
+      "line_family": "H21",
+      "comparison_line_family": "clean_optical",
+      "distance_mpc": 0.000001,
+      "B_X_E": 1,
+      "endpoint_records": {
+        "emitter": {
+          "Omega_N_over_Omega_N0": 0.995
+        },
+        "receiver": {
+          "Omega_N_over_Omega_N0": 1
+        }
+      },
+      "launch_record": {
+        "emitter_velocity_km_s": [0, 0, 0],
+        "receiver_velocity_km_s": [449.688687, 0, 0],
+        "line_of_sight": [1, 0, 0]
+      },
+      "segments": [
+        {
+          "delta_s_mpc": 0.000001,
+          "alpha_prop_by_line": {
+            "H21": 0,
+            "clean_optical": 0
+          },
+          "alpha_prop_cadence_by_line": {
+            "H21": 0,
+            "clean_optical": 0
+          },
+          "beam_alpha_prop_by_line": {
+            "H21": [0, 0, 0]
+          }
+        }
+      ]
+    },
+    {
       "name": "clean_galaxy_path",
       "description": "A clean cosmological path with small peculiar-motion correction.",
       "line_family": "H21",

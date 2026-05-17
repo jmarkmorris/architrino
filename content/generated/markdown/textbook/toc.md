@@ -198,6 +198,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
   - [Noether Core Geometry](../../../scenes/spacetime/noether_core_geometry.json)
     - [Ownership Boundary](../../../markdown/aaa/spacetime/noether-core-geometry.md?section=Ownership+Boundary)
     - [Dynamic Exclusion Zone](../../../markdown/aaa/spacetime/noether-core-geometry.md?section=Dynamic+Exclusion+Zone)
+    - [Assembly-Noether-Sea Interface Diagnostic](../../../markdown/aaa/spacetime/noether-core-geometry.md?section=Assembly-Noether-Sea+Interface+Diagnostic)
     - [Oblate Spheroidal Form](../../../markdown/aaa/spacetime/noether-core-geometry.md?section=Oblate+Spheroidal+Form)
     - [Canonical Geometry Variables](../../../markdown/aaa/spacetime/noether-core-geometry.md?section=Canonical+Geometry+Variables)
     - [Lorentz Projection Role](../../../markdown/aaa/spacetime/noether-core-geometry.md?section=Lorentz+Projection+Role)

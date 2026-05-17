@@ -91,7 +91,7 @@ $$
 \frac{\Omega_{N0}}{\Omega_N(\mathbf{x},t)}.
 $$
 
-The factor $\Gamma_N$ is not a new time variable. It records how strongly the local Noether-Sea core cadence is stretched relative to the weak homogeneous reference. In a validated homogeneous Lorentz-closure branch, $\Gamma_N$ should reduce to the corresponding moving-core deformation factor; outside that limit it remains a medium-state diagnostic to be derived from Noether-core geometry and clock extraction.
+The factor $\Gamma_N$ is not a new time variable. It records how strongly the local Noether-Sea core cadence is stretched relative to the weak homogeneous reference. In a validated homogeneous Lorentz-closure branch, $\Gamma_N$ should reduce to the corresponding moving-core deformation factor; outside that limit it remains a medium-state diagnostic to be derived from Noether-core geometry and clock extraction. The endpoint extraction target is stated in [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md#gamma-n-geometry-extraction-target), where the same coefficient row is constrained by homogeneous reference, moving-core, and weak-field endpoint limits.
 
 For a spectral transition family $X$, the working redshift factorization is
 

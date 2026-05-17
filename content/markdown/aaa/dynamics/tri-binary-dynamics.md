@@ -249,6 +249,8 @@ $$
 
 This map is falsifiable at the branch level. It fails if no admissible minimizer exists, if the minimizer crosses a separator while being treated as same-branch drift, if the middle hinge leaves its declared tolerance, if the envelope projection gives $\gamma_{\mathrm{rul}}$ without the matching $\gamma_{\mathrm{clk}}$, or if the wake-ledger residual is large enough to survive hierarchy averaging. These are not bookkeeping nuisances; they are the diagnostics that decide whether the same one-$h$ transaction can become the Noether-Sea cadence current used in cosmology.
 
+The first arithmetic fixture for this target is [Retuning-Map Toy Model](../validation/simulations/retuning-map-toy-model.md), with runtime script `scripts/tri-binary/retuning-map-toy-model.mjs`. That fixture solves the linearized constrained compliance problem and reports the induced $J_\nu$ estimate. It is a branch-bookkeeping scaffold, not delayed-dynamics validation.
+
 ## Transverse Causal Budget Lemma
 
 Proper time $\tau$ is the cycle count of a stable Noether-core clock, not the absolute substrate time $t$ itself. The reusable dynamics target behind that clock law is the transverse causal budget lemma.

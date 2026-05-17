@@ -79,12 +79,40 @@ Each scenario supplies:
 | `D_v` | launch or relative-motion factor $D_v$ |
 | `Gamma_N_E` | emitter endpoint Noether-Sea cadence factor $\Gamma_{N,E}$ |
 | `Gamma_N_R` | receiver endpoint Noether-Sea cadence factor $\Gamma_{N,R}$ |
+| `endpoint_records` | optional endpoint records from which $\Gamma_{N,E}$ and $\Gamma_{N,R}$ are extracted |
+| `launch_record` | optional source/receiver velocity record from which $D_v$ is extracted |
 | `segments` | path segments carrying $\Delta s_j$ and propagation coefficients |
 | `transport_terms_by_line` | optional segment-level decomposition of $\alpha_{\mathrm{prop},X}$ into named source, relaxation, or perturbation terms |
 | `transport_terms_cadence_by_line` | optional cadence-channel version of the same decomposition for time-dilation checks |
 | `dark_energy_transport_by_line` | optional coefficient packet that computes $\alpha_{\mathrm{prop},X}^{\mathrm{DE}}$ from a declared $\boldsymbol{\lambda}_X$ row and $\mathbf{q}_{\mathrm{DE}}$ record |
 
 Segment records may provide separate coefficient arrays for frequency, packet cadence, line-family comparison, and image-bundle beams. This is intentional: the first validation target is to expose when those channels agree and when they split.
+
+Endpoint records may declare $\Gamma_N$ directly or provide a cadence measurement from which the same factor is computed:
+
+$$
+\Gamma_N
+=
+\frac{T_N}{T_{N0}}
+=
+\frac{\Omega_{N0}}{\Omega_N}.
+$$
+
+In JSON, this is supplied as `Gamma_N`, `T_N_over_T_N0`, `Omega_N_over_Omega_N0`, or the weak-field proxy `Phi_N_over_c0_squared`, for which the fixture uses $\Gamma_N\approx1-\Phi_N/c_0^2$. Scalar `Gamma_N_E` and `Gamma_N_R` values remain valid fallbacks for older or hand-written scenarios.
+
+Launch records compute the low-speed source/receiver geometry factor from the radial endpoint velocity,
+
+$$
+\beta_r
+=
+\frac{(\mathbf{v}_R-\mathbf{v}_E)\cdot\hat{\mathbf{k}}}{c_0},
+\qquad
+D_v
+=
+\sqrt{\frac{1-\beta_r}{1+\beta_r}},
+$$
+
+where $\hat{\mathbf{k}}$ points from emitter to receiver and $v_r>0$ means the endpoint separation is increasing. A packet may provide `beta_r`, `radial_velocity_km_s`, or the triple `emitter_velocity_km_s`, `receiver_velocity_km_s`, and `line_of_sight`. Scalar `D_v` remains the fallback.
 
 The equilibrium-transport extension uses named terms such as `equilibrium_relaxation`, `smbh_source`, and `gw_perturbation`. These terms are added to any explicit `alpha_prop` value for the segment. This keeps the fixture diagnostic: it can show whether a smooth coarse-grained Noether-core $h$-step relaxation current supplies the path coefficient, while still reporting whether SMBH loading or gravitational-wave perturbations dominate the result.
 
@@ -121,16 +149,18 @@ The fixture reports:
 | `observables.E_obs_j` | receiver-facing photon energy |
 | `component_logs` | endpoint, propagation, source-branch, and launch contributions to $Z_X$ |
 | `transport_term_logs` | integrated named contributions to $Y_{X,N}$ for frequency and cadence channels |
+| `extraction_logs` | endpoint and launch extraction methods, including scalar fallback versus record-derived values |
 
 The diagnostics are not pass/fail cosmology claims. They are failure witnesses for the factorization itself.
 
 ## Expected Mock Behavior
 
-The default mock packet has four hand-checkable rows.
+The default mock packet has six hand-checkable rows.
 
 | Scenario | Expected behavior |
 | --- | --- |
 | `clean_laboratory_line` | All factors are unity or zero, so $Z_{\mathrm{prop},X}=0$, $z=0$, and $H_{\mathrm{eff}}=0$. |
+| `endpoint_launch_record_extraction` | Endpoint and launch factors are extracted from records: $\Gamma_{N,E}=1/0.995$, $\Gamma_{N,R}=1$, and $D_v\approx0.998501$. The path residual remains $Z_{\mathrm{prop},X}=0$, so the total redshift comes only from endpoint cadence plus launch geometry. |
 | `clean_galaxy_path` | Path history dominates the corrected residual: $Z_{\mathrm{prop},X}=0.02812$, giving a local slope near $70.25\;\mathrm{km\,s^{-1}\,Mpc^{-1}}$ while chromaticity, beam variance, and time-dilation residuals remain small. |
 | `equilibrium_transport_smooth_h_step` | Named equilibrium-transport terms supply $Z_{\mathrm{prop},X}=0.02800$, giving a local slope near $69.95\;\mathrm{km\,s^{-1}\,Mpc^{-1}}$ with the gravitational-wave perturbation averaging small over the path. |
 | `dark_energy_coefficient_packet` | The propagation coefficient is computed from `lambda_row` and `q_DE_per_s`, giving $Z_{\mathrm{prop},X}\approx0.02788$ and a local slope near $69.66\;\mathrm{km\,s^{-1}\,Mpc^{-1}}$. |

@@ -54,6 +54,7 @@ This replays the toy redshift-budget map:
   Y_{j+1} = Y_j + alpha_prop,j * Delta s_j
   Z_X = ln Gamma_E - ln Gamma_R + Y_N - ln B_X(E) - ln D_v.
 Named transport terms and dark-energy coefficient packets, when present, are added into alpha_prop,j.
+Endpoint records can compute Gamma_E/Gamma_R, and launch records can compute D_v; scalar factors remain fallbacks.
 It is a fixture for closure work, not an empirical cosmology fitter.`);
 }
 
@@ -77,6 +78,30 @@ function positiveNumber(value, label) {
   return number;
 }
 
+function vector3(value, label) {
+  if (!Array.isArray(value) || value.length !== 3) {
+    throw new Error(`${label} must be a three-component array.`);
+  }
+  return value.map((entry, index) => finiteNumber(entry, `${label}[${index}]`));
+}
+
+function dot(left, right) {
+  return left.reduce((sum, value, index) => sum + value * right[index], 0);
+}
+
+function norm(value) {
+  return Math.sqrt(dot(value, value));
+}
+
+function unitVector3(value, label) {
+  const vector = vector3(value, label);
+  const length = norm(vector);
+  if (length <= 0) {
+    throw new Error(`${label} must have nonzero length.`);
+  }
+  return vector.map((entry) => entry / length);
+}
+
 function lineScopedValue(container, lineKey, label) {
   if (container === undefined) {
     return undefined;
@@ -95,6 +120,104 @@ function lineFamily(packet, lineKey) {
   return {
     key: lineKey,
     nuRefHz: positiveNumber(line.nu_ref_hz, `line_families.${lineKey}.nu_ref_hz`),
+  };
+}
+
+function endpointGammaFromRecord(record, label) {
+  if (!record || typeof record !== "object" || Array.isArray(record)) {
+    throw new Error(`${label} must be an object.`);
+  }
+  if (record.Gamma_N !== undefined) {
+    return {
+      value: positiveNumber(record.Gamma_N, `${label}.Gamma_N`),
+      method: "Gamma_N",
+    };
+  }
+  if (record.T_N_over_T_N0 !== undefined) {
+    return {
+      value: positiveNumber(record.T_N_over_T_N0, `${label}.T_N_over_T_N0`),
+      method: "T_N_over_T_N0",
+    };
+  }
+  if (record.Omega_N_over_Omega_N0 !== undefined) {
+    return {
+      value: 1 / positiveNumber(record.Omega_N_over_Omega_N0, `${label}.Omega_N_over_Omega_N0`),
+      method: "Omega_N_over_Omega_N0",
+    };
+  }
+  if (record.Phi_N_over_c0_squared !== undefined) {
+    return {
+      value: positiveNumber(1 - finiteNumber(record.Phi_N_over_c0_squared, `${label}.Phi_N_over_c0_squared`), label),
+      method: "weak_field_Phi_N",
+    };
+  }
+  throw new Error(`${label} must define Gamma_N, T_N_over_T_N0, Omega_N_over_Omega_N0, or Phi_N_over_c0_squared.`);
+}
+
+function endpointGamma(scenario, side, scalarValue) {
+  const records = scenario.endpoint_records;
+  if (records !== undefined && (!records || typeof records !== "object" || Array.isArray(records))) {
+    throw new Error("endpoint_records must be an object.");
+  }
+  const record = records?.[side];
+  if (record !== undefined) {
+    return endpointGammaFromRecord(record, `endpoint_records.${side}`);
+  }
+  return {
+    value: positiveNumber(scalarValue ?? 1, `Gamma_N_${side === "emitter" ? "E" : "R"}`),
+    method: "scalar_fallback",
+  };
+}
+
+function launchFactorFromRecord(record, constants) {
+  if (!record || typeof record !== "object" || Array.isArray(record)) {
+    throw new Error("launch_record must be an object.");
+  }
+
+  const c0KmS = positiveNumber(constants.c0_km_s ?? DEFAULT_C0_KM_S, "constants.c0_km_s");
+  let betaR = null;
+  let radialVelocityKmS = null;
+  let method = null;
+
+  if (record.beta_r !== undefined) {
+    betaR = finiteNumber(record.beta_r, "launch_record.beta_r");
+    radialVelocityKmS = betaR * c0KmS;
+    method = "beta_r";
+  } else if (record.radial_velocity_km_s !== undefined) {
+    radialVelocityKmS = finiteNumber(record.radial_velocity_km_s, "launch_record.radial_velocity_km_s");
+    betaR = radialVelocityKmS / c0KmS;
+    method = "radial_velocity_km_s";
+  } else {
+    const emitterVelocity = vector3(record.emitter_velocity_km_s, "launch_record.emitter_velocity_km_s");
+    const receiverVelocity = vector3(record.receiver_velocity_km_s, "launch_record.receiver_velocity_km_s");
+    const lineOfSight = unitVector3(record.line_of_sight, "launch_record.line_of_sight");
+    const relativeVelocity = receiverVelocity.map((value, index) => value - emitterVelocity[index]);
+    radialVelocityKmS = dot(relativeVelocity, lineOfSight);
+    betaR = radialVelocityKmS / c0KmS;
+    method = "velocity_projection";
+  }
+
+  if (Math.abs(betaR) >= 1) {
+    throw new Error("launch_record radial speed must satisfy |beta_r| < 1.");
+  }
+
+  return {
+    value: Math.sqrt((1 - betaR) / (1 + betaR)),
+    beta_r: betaR,
+    radial_velocity_km_s: radialVelocityKmS,
+    method,
+  };
+}
+
+function launchFactor(scenario, constants) {
+  if (scenario.launch_record !== undefined) {
+    return launchFactorFromRecord(scenario.launch_record, constants);
+  }
+  return {
+    value: positiveNumber(scenario.D_v ?? 1, "D_v"),
+    beta_r: null,
+    radial_velocity_km_s: null,
+    method: "scalar_fallback",
   };
 }
 
@@ -292,9 +415,11 @@ function evaluateScenario(packet, scenario, index) {
     `${name}.distance_mpc`
   );
   const sourceBranch = positiveNumber(scenario.B_X_E ?? 1, `${name}.B_X_E`);
-  const launchFactor = positiveNumber(scenario.D_v ?? 1, `${name}.D_v`);
-  const gammaEmitter = positiveNumber(scenario.Gamma_N_E ?? 1, `${name}.Gamma_N_E`);
-  const gammaReceiver = positiveNumber(scenario.Gamma_N_R ?? 1, `${name}.Gamma_N_R`);
+  const launch = launchFactor(scenario, constants);
+  const gammaEmitterRecord = endpointGamma(scenario, "emitter", scenario.Gamma_N_E);
+  const gammaReceiverRecord = endpointGamma(scenario, "receiver", scenario.Gamma_N_R);
+  const gammaEmitter = gammaEmitterRecord.value;
+  const gammaReceiver = gammaReceiverRecord.value;
 
   const yProp = integrateY(segments, line.key, constants, "frequency");
   const yCadence = integrateY(segments, line.key, constants, "cadence");
@@ -308,7 +433,7 @@ function evaluateScenario(packet, scenario, index) {
     Math.log(gammaReceiver) +
     yProp -
     Math.log(sourceBranch) -
-    Math.log(launchFactor);
+    Math.log(launch.value);
   const redshift = Math.exp(zLog) - 1;
   const nuObsHz = line.nuRefHz * Math.exp(-zLog);
   const energyObsJ = hJs * nuObsHz;
@@ -323,7 +448,7 @@ function evaluateScenario(packet, scenario, index) {
       Gamma_N_E: gammaEmitter,
       Gamma_N_R: gammaReceiver,
       B_X_E: sourceBranch,
-      D_v: launchFactor,
+      D_v: launch.value,
       P_E_to_R: Math.exp(yProp),
     },
     diagnostics: {
@@ -339,6 +464,13 @@ function evaluateScenario(packet, scenario, index) {
       frequency: transportTerms,
       cadence: transportTermsCadence,
     },
+    extraction_logs: {
+      endpoint: {
+        emitter: gammaEmitterRecord,
+        receiver: gammaReceiverRecord,
+      },
+      launch,
+    },
     observables: {
       nu_obs_hz: nuObsHz,
       E_obs_j: energyObsJ,
@@ -347,7 +479,7 @@ function evaluateScenario(packet, scenario, index) {
       endpoint: Math.log(gammaEmitter) - Math.log(gammaReceiver),
       propagation: yProp,
       source_branch: -Math.log(sourceBranch),
-      launch: -Math.log(launchFactor),
+      launch: -Math.log(launch.value),
     },
     beam_Y_values: beamY,
   };

@@ -96,6 +96,60 @@ $$
 
 This is the clock-channel version of the weak gravitational-redshift benchmark. The derivation burden is to obtain the first equation from Noether-Sea constitutive response rather than impose it as an imported metric fact.
 
+### Gamma-N Geometry Extraction Target
+
+The equations above define the endpoint benchmark, but they do not yet derive the Noether-Sea cadence factor from core geometry. A first-order extraction scaffold should start from the local variables that already appear in the clock and transport programs: normalized Noether-core density $n$, Noether-Sea delay factor $\chi_{\text{sea}}$, envelope scale $\lambda$, envelope shape ratio $\xi$, and a representative Noether-core scale $R_{\text{core}}$. Around the weak homogeneous reference, collect the logarithmic deformation record
+
+$$
+\mathbf{g}_N
+=
+\left(
+\ln n,\,
+\ln\chi_{\text{sea}},\,
+\ln\lambda,\,
+-\ln\xi,\,
+\ln\frac{R_{\text{core}}}{R_{\text{core},0}}
+\right)^T.
+$$
+
+The candidate extraction law is
+
+$$
+\ln\Gamma_N
+=
+\mathbf{b}_N\cdot\mathbf{g}_N
++\mathcal{R}_{\Gamma},
+$$
+
+where $\mathbf{b}_N$ is a constitutive coefficient row and $\mathcal{R}_{\Gamma}$ contains higher-order and branch-specific corrections. The sign convention places $-\ln\xi$ in the deformation record because the homogeneous Lorentz-closure branch requires $\Gamma_N\to1/\xi$ when the clock readout is controlled only by oblate moving-core geometry.
+
+The weak-field recovery condition then becomes a constraint on the same coefficient row:
+
+$$
+\ln\Gamma_N(\mathbf{x},t)
+=
+-\frac{\Phi_N(\mathbf{x},t)}{c_0^2}
++O\!\left(\frac{\Phi_N^2}{c_0^4}\right),
+$$
+
+or, locally,
+
+$$
+\mathbf{b}_N\cdot\nabla\mathbf{g}_N
+=
+-\frac{\nabla\Phi_N}{c_0^2}
++O\!\left(\frac{\Phi_N\nabla\Phi_N}{c_0^4}\right).
+$$
+
+This gives the derivation a concrete target. The same $\Gamma_N$ extraction map must recover $\Gamma_N=1$ in the weak homogeneous reference, $\Gamma_N\to1/\xi$ in the homogeneous moving-core Lorentz branch, and $\Gamma_N\approx1-\Phi_N/c_0^2$ in the weak gravitational endpoint branch. It must also remain separate from the launch factor $D_v$ and the path-history propagation factor $Y_X$, so the endpoint contribution to redshift is only
+
+$$
+\ln(1+z)_{\mathrm{endpoint}}
+=
+\ln\Gamma_{N,E}
+-\ln\Gamma_{N,R}.
+$$
+
 ---
 
 ## Mechanisms for Time Dilation

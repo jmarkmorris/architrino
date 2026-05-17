@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1167
+      "sections": 1168
     }
   },
   "tocRoot": {
@@ -1608,6 +1608,14 @@
                 "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
                 "markdownSection": "Dynamic Exclusion Zone",
                 "sectionKey": "dynamic exclusion zone",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Assembly-Noether-Sea Interface Diagnostic",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownSection": "Assembly-Noether-Sea Interface Diagnostic",
+                "sectionKey": "assembly noether sea interface diagnostic",
                 "headingLevel": 2
               },
               {

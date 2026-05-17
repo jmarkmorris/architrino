@@ -1,0 +1,195 @@
+{
+  "schema": "aaa.retuning_map_toy.input.v0",
+  "action_increment_h": 1,
+  "variables": [
+    "ln_nu_I",
+    "ln_nu_M",
+    "ln_nu_O",
+    "ln_R_I",
+    "ln_R_M",
+    "ln_R_O",
+    "ln_lambda",
+    "ln_xi"
+  ],
+  "scenarios": [
+    {
+      "id": "same_branch_plus_minus_balance",
+      "description": "Candidate same-branch pair: fixed layer speeds, outer-envelope projection, and unequal accepted rates leave a small signed J_nu.",
+      "reference_state": {
+        "nu_N": 1,
+        "R_I": 1,
+        "R_M": 10,
+        "R_O": 100,
+        "lambda": 1,
+        "xi": 0.96,
+        "s_I": 1.35,
+        "s_M": 1,
+        "s_O": 0.72,
+        "c_f": 1,
+        "epsilon_M": 0.025
+      },
+      "representative_cadence_weights": {
+        "I": 0.18,
+        "M": 0.52,
+        "O": 0.30
+      },
+      "compliance_diagonal": {
+        "ln_nu_I": 9,
+        "ln_nu_M": 4,
+        "ln_nu_O": 3,
+        "ln_R_I": 9,
+        "ln_R_M": 4,
+        "ln_R_O": 3,
+        "ln_lambda": 2,
+        "ln_xi": 6
+      },
+      "action_gradient_h_per_log": {
+        "ln_nu_I": 14,
+        "ln_nu_M": 38,
+        "ln_nu_O": 22,
+        "ln_R_I": -5,
+        "ln_R_M": -13,
+        "ln_R_O": -8,
+        "ln_lambda": 6,
+        "ln_xi": 3
+      },
+      "constraints": [
+        {
+          "id": "inner_fixed_speed",
+          "coefficients": {
+            "ln_nu_I": 1,
+            "ln_R_I": 1
+          },
+          "target": 0
+        },
+        {
+          "id": "middle_hinge_fixed_speed",
+          "coefficients": {
+            "ln_nu_M": 1,
+            "ln_R_M": 1
+          },
+          "target": 0
+        },
+        {
+          "id": "outer_interface_fixed_speed",
+          "coefficients": {
+            "ln_nu_O": 1,
+            "ln_R_O": 1
+          },
+          "target": 0
+        },
+        {
+          "id": "outer_envelope_scale",
+          "coefficients": {
+            "ln_lambda": 1,
+            "ln_R_O": -1
+          },
+          "target": 0
+        },
+        {
+          "id": "outer_oblation_response",
+          "coefficients": {
+            "ln_xi": 1,
+            "ln_R_O": 0.35,
+            "ln_nu_M": -0.15
+          },
+          "target": 0
+        }
+      ],
+      "f_N": 100000,
+      "partial_nu_f_N": -2.5,
+      "transactions": [
+        {
+          "id": "plus_h_retuning",
+          "sigma": 1,
+          "wake_action_increment_h": 0.08,
+          "rate_density_per_core": 0.000012
+        },
+        {
+          "id": "minus_h_retuning",
+          "sigma": -1,
+          "wake_action_increment_h": -0.05,
+          "rate_density_per_core": 0.000010
+        }
+      ]
+    },
+    {
+      "id": "middle_hinge_violation_control",
+      "description": "Negative control: the middle layer is not constrained to keep the hinge, so the speed gate fails even though the linear action constraint can be solved.",
+      "reference_state": {
+        "nu_N": 1,
+        "R_I": 1,
+        "R_M": 10,
+        "R_O": 100,
+        "lambda": 1,
+        "xi": 0.96,
+        "s_I": 1.35,
+        "s_M": 1,
+        "s_O": 0.72,
+        "c_f": 1,
+        "epsilon_M": 0.01
+      },
+      "representative_cadence_weights": {
+        "I": 0.12,
+        "M": 0.70,
+        "O": 0.18
+      },
+      "compliance_diagonal": {
+        "ln_nu_I": 15,
+        "ln_nu_M": 1,
+        "ln_nu_O": 8,
+        "ln_R_I": 15,
+        "ln_R_M": 10,
+        "ln_R_O": 8,
+        "ln_lambda": 4,
+        "ln_xi": 6
+      },
+      "action_gradient_h_per_log": {
+        "ln_nu_I": 2,
+        "ln_nu_M": 30,
+        "ln_nu_O": 4,
+        "ln_R_I": -1,
+        "ln_R_M": 0,
+        "ln_R_O": -2,
+        "ln_lambda": 1,
+        "ln_xi": 1
+      },
+      "constraints": [
+        {
+          "id": "inner_fixed_speed",
+          "coefficients": {
+            "ln_nu_I": 1,
+            "ln_R_I": 1
+          },
+          "target": 0
+        },
+        {
+          "id": "outer_interface_fixed_speed",
+          "coefficients": {
+            "ln_nu_O": 1,
+            "ln_R_O": 1
+          },
+          "target": 0
+        },
+        {
+          "id": "outer_envelope_scale",
+          "coefficients": {
+            "ln_lambda": 1,
+            "ln_R_O": -1
+          },
+          "target": 0
+        }
+      ],
+      "f_N": 100000,
+      "partial_nu_f_N": -2.5,
+      "transactions": [
+        {
+          "id": "plus_h_hinge_violation",
+          "sigma": 1,
+          "wake_action_increment_h": 0,
+          "rate_density_per_core": 0.000012
+        }
+      ]
+    }
+  ]
+}

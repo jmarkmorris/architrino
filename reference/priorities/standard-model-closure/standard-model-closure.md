@@ -16,7 +16,7 @@
 3. `confinement_energetics` — Derive confinement-scale behavior from topological or strain energetics. Status: `pending`. Depends on: `overlap_integrals`.
 4. `weak_sector_gauge_closure` — Unify weak axial-frame exposure, `V-A`, CKM/PMNS overlap, weak-corridor provenance, and effective gauge covariance into one closure packet. Status: `review`. Depends on: `overlap_integrals`.
 5. `nuclear_binding_closure` — Build the first nuclear benchmark ladder from hadronic geometry and residual strong channels: deuteron, saturation, alpha-like cluster, and beta stability. Status: `review`. Depends on: `confinement_energetics`.
-6. `hydrogen_fermion_sea_boundary` — Derive the four-fermion hydrogen boundary map that separates exact assembly-ledger membership from dynamic exclusion-envelope and Noether-Sea coarse-graining boundaries. Status: `seeded`. Depends on: `confinement_energetics`, `nuclear_binding_closure`.
+6. `hydrogen_fermion_sea_boundary` — Derive the four-fermion hydrogen boundary map that separates exact assembly-ledger membership from dynamic exclusion-envelope and Noether-Sea coarse-graining boundaries. Status: `scaffolded`. Depends on: `confinement_energetics`, `nuclear_binding_closure`.
 
 ## Scope
 
@@ -25,6 +25,52 @@ This workstream owns the remaining Standard Model-facing closure tasks that are 
 The quark catalog and basic $SU(3)\times SU(2)\times U(1)$ bookkeeping are in place. The remaining leverage is mass prediction, explicit overlap-integral flavor mixing, confinement energetics, weak-sector exposure/gauge closure, and nuclear coarse-graining. Weak `V-A` chirality and weak-reaction provenance are preserved as subgates of `weak_sector_gauge_closure`, not as separate top-level queue items.
 
 The hydrogen boundary question is now a staged standard-model-to-atomic bridge. Its value is not another validation gate; it is the first clean local map between four charged fermion assemblies, the proton's color-singlet closure, the electron resonance envelope, and the ambient Noether-Sea coarse-graining used as local spacetime.
+
+## Hydrogen Boundary Closure Object
+
+The current scaffold separates three objects that must not be collapsed:
+
+$$
+\mathcal{A}_{\mathrm{H}}(t)
+=
+\mathcal{A}_{e}(t)
+\cup
+\mathcal{A}_{u_1}(t)
+\cup
+\mathcal{A}_{u_2}(t)
+\cup
+\mathcal{A}_{d}(t)
+\cup
+\mathcal{L}_{\mathrm{strong}}^{uud}(t),
+$$
+
+$$
+S_{\mathrm{sea}}^{\Omega_{\mathrm{H}}}(t)
+=
+S(t)\big|_{\Omega_{\mathrm{H}}}
+\setminus
+\mathcal{A}_{\mathrm{H}}(t),
+$$
+
+and
+
+$$
+\partial\Omega_f(D_*,t)
+=
+\left\{
+\mathbf{x}\in\Sigma_t:
+D_f(\mathbf{x},t)=D_*
+\right\}.
+$$
+
+Here $\mathcal{A}_{\mathrm{H}}$ is the exact hydrogen matter-assembly ledger, $S_{\mathrm{sea}}^{\Omega_{\mathrm{H}}}$ is the local Noether-Sea complement, and $\partial\Omega_f(D_*,t)$ is the effective spatial interface extracted from locked-assembly wake dominance. The closure target is to derive $D_f$ from the same Noether-core geometry and causal-wake ledgers used for mass, confinement, and atomic orbital recovery.
+
+Failure modes:
+
+- `hydrogen.ledger_surface_blend`: exact assembly membership is mistaken for a literal hard spatial surface.
+- `hydrogen.orbital_body_blend`: the electron resonance envelope is treated as the electron's Noether-core boundary.
+- `hydrogen.sea_core_count_blend`: the four matter Noether cores are counted as the local spacetime medium rather than as assemblies embedded in the ambient Noether Sea.
+- `hydrogen.proton_quark_split`: the three quark assemblies are treated as free Noether cores rather than as a color-singlet proton closure.
 
 ## Detailed Priority Files
 
