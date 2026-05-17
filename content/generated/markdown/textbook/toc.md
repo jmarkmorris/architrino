@@ -182,6 +182,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
   - [Noether Sea](../../../scenes/spacetime/noether_sea.json)
     - [Core Definition](../../../markdown/aaa/spacetime/noether-sea.md?section=Core+Definition)
     - [Boundary With the Euclidean Void](../../../markdown/aaa/spacetime/noether-sea.md?section=Boundary+With+the+Euclidean+Void)
+    - [Absolute Record and Observer Readout](../../../markdown/aaa/spacetime/noether-sea.md?section=Absolute+Record+and+Observer+Readout)
     - [Composition](../../../markdown/aaa/spacetime/noether-sea.md?section=Composition)
     - [State Variables](../../../markdown/aaa/spacetime/noether-sea.md?section=State+Variables)
     - [Medium Properties](../../../markdown/aaa/spacetime/noether-sea.md?section=Medium+Properties)

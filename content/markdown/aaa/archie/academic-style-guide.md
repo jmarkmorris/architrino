@@ -33,6 +33,8 @@ The prose should do three things at once:
 2. Explain the conceptual structure behind the claim.
 3. Distinguish what is established, what is inferred, and what remains open.
 
+For central theory passages, the strongest pattern combines explanatory prose, formal precision, and a small equation. Begin by naming what is happening in the substrate or effective layer. Then give a compact map, table, or list that separates the moving parts. Then introduce the equation that binds those parts together, followed immediately by plain-language meanings for the symbols and the closure question that remains. The equation should clarify the prose rather than replace it, and the prose should make the equation's conceptual burden visible.
+
 ## Style Principles
 
 ### 1. Prefer disciplined clarity over rhetorical flourish
@@ -80,6 +82,8 @@ When relevant, state whether a claim belongs to:
 - observational or inferential reconstruction
 
 Do not allow predictive success, measurement language, and final ontology to collapse into one another by stylistic implication.
+
+When a subject has both a substrate record and an observer-level readout, write both layers explicitly. A good passage should say what happens in absolute time and the Euclidean void, what changes in assemblies or the Noether Sea, what physical observers infer, and which equation connects those levels. For example, do not stop at "the photon is redshifted"; state which emission ledger, path-history term, medium cadence, and receiver coupling are being compared.
 
 ### 4. Preserve strengths before criticizing limits
 

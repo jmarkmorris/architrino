@@ -305,11 +305,11 @@ Finite-range gravity and massive-gravity programs are useful here only as compar
 
 ### Mechanism
 
-In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, cosmological redshift is not caused by the stretching of space (the void does not stretch) but by the comparison of clocks at emission and reception:
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, cosmological redshift is not caused by the stretching of space (the void does not stretch). It is read through endpoint clock-cadence comparison, source-branch state, launch geometry, and path-history propagation through the Noether Sea:
 
 - A photon-mode assembly emitted at effective cosmic time $\tau_{c,e}$, corresponding to substrate time $t_e$ in the exact record, carries a frequency set by the tri-binary oscillation rates of the source assembly at that epoch.
 - At the reception epoch $\tau_{c,o}$, corresponding to substrate time $t_o$, the observer's local clock rate is set by the current Noether-Sea state.
-- If the Noether-Sea state has evolved between $t_e$ and $t_o$—specifically, if outer-binary radii have increased and internal frequencies have decreased—then the received frequency is lower than the emitted frequency. This is the operational content of $1 + z = \nu_e/\nu_o$.
+- If the Noether-Sea state has evolved between $t_e$ and $t_o$—specifically, if outer-binary radii have increased and internal frequencies have decreased—then the received frequency can be lower than the emitted frequency after endpoint cadence, launch, source-branch, and path-history factors are separated. This is the operational content of $1 + z = \nu_e/\nu_o$.
 
 The redshift-distance relation $z(d_L)$ encodes the entire history of Noether-Sea state evolution along the photon's path. In the effective Friedmann description, this is captured by:
 
@@ -319,6 +319,8 @@ $$
 
 where $c_0$ is the asymptotic observer-channel speed used in the effective comparison layer. This serves as the effective expansion-history map used by observers.
 
+The native handoff to [Expansion Mechanism](./expansion-mechanism.md) is more constrained than a raw $z(d_L)$ fit. The dark-energy sector supplies a candidate Noether-Sea state history that must reproduce the corrected propagation residual $Z_{\mathrm{prop},X}$ after endpoint cadence, source-branch state, and launch geometry have been removed. Its effective $H(z)$ curve is therefore a comparison summary of the same medium state, not an independent expansion of the Euclidean void.
+
 ### Tired-Light Exclusion
 
 This mechanism is distinct from classical tired-light proposals. In tired light, photons lose energy through scattering or absorption, producing:
@@ -326,7 +328,7 @@ This mechanism is distinct from classical tired-light proposals. In tired light,
 - Time-dilation violations (SN Ia light curves confirm $\Delta t \propto (1+z)$),
 - Modified surface-brightness relations (Tolman test).
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism does not involve photon energy loss in transit. The photon assembly propagates through the Noether Sea without degradation (in the weak-field, low-density limit); the frequency difference arises from the evolving calibration of source and receiver clocks. This reproduces the standard $(1+z)$ time-dilation signature and is consistent with Tolman surface-brightness tests.
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism does not involve untracked photon energy loss in transit. The photon assembly propagates through the Noether Sea without degradation in the weak-field, low-density limit; any path-history factor changes the phase-cadence relation later sampled by the receiver rather than acting as generic scattering loss. This reproduces the standard $(1+z)$ time-dilation signature and is consistent with Tolman surface-brightness tests.
 
 ## SMBH Recycling and Energy Flow
 
@@ -439,7 +441,7 @@ The acceleration onset redshift $z \sim 0.7$ is treated as the characteristic cr
 
 In the modular cosmology architecture, this chapter provides:
 
-- **Output to [expansion-mechanism.md](./expansion-mechanism.md):** $H(z)$ derived from the effective Friedmann equation with $\rho_{\mathrm{DE,eff}}(z)$ and $w_{\mathrm{eff}}(z)$ from the medium-relaxation model.
+- **Output to [expansion-mechanism.md](./expansion-mechanism.md):** medium-relaxation variables that feed the corrected redshift-transfer curve, plus the comparison $H(z)$ derived from the effective Friedmann equation with $\rho_{\mathrm{DE,eff}}(z)$ and $w_{\mathrm{eff}}(z)$.
 - **Output to [CMB.md](./CMB.md):** late-time ISW contribution and distance to last scattering.
 - **Output to [structure-formation.md](./structure-formation.md):** potential evolution $\dot{\Phi}(z)$ entering the growth equation.
 - **Cross-link to [../spacetime/black-holes.md](../spacetime/black-holes.md):** strong-field recycling map and the constitutive interpretation of any SMBH population coupling.

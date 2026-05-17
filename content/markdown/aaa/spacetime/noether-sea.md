@@ -48,6 +48,24 @@ $$
 $$
 without changing the identity of the underlying void point.
 
+## Absolute Record and Observer Readout
+
+The complete substrate description is the universe state
+
+$$
+\mathbb{U}_{\text{now}}\equiv S(t).
+$$
+
+This state is not an observer frame. It is the absolute-time record of positions, velocities, assemblies, causal wakes, Noether-Sea variables, and path-history ledgers inside the Euclidean void. Physical observers recover clock rates, photon frequencies, energies, distances, and effective geometry only after their local assemblies couple to part of that record.
+
+This distinction matters most in redshift language. The void does not stretch, and absolute time does not slow. A source assembly emits a photon-channel packet with a local emission ledger; the packet follows a definite path history through the Noether Sea; and the receiver assembly samples the packet using its own local cadence. The measured energy is therefore a receiver-coupling result,
+
+$$
+E_{\mathrm{obs}}=h\nu_{\mathrm{obs}},
+$$
+
+not a primitive frame-free photon scalar. The redshift task is to compute the endpoint cadence, launch geometry, and path-history propagation terms from the same $S(t)$ record rather than changing explanation between gravitational, relative-motion, and cosmological cases.
+
 ## Composition
 
 The medium is composed of neutral Noether-core assemblies. Each Noether core is a tri-binary assembly made from three nested electrino:positrino binary pairs. The core itself is not elementary; its stability is a downstream assembly result.

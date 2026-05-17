@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1161
+      "sections": 1162
     }
   },
   "tocRoot": {
@@ -1478,6 +1478,14 @@
                 "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
                 "markdownSection": "Boundary With the Euclidean Void",
                 "sectionKey": "boundary with the euclidean void",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Absolute Record and Observer Readout",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "Absolute Record and Observer Readout",
+                "sectionKey": "absolute record and observer readout",
                 "headingLevel": 2
               },
               {
