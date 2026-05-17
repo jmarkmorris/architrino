@@ -679,6 +679,37 @@ $$
 
 Here $\nu_{\mathrm{pack},0}$ is the chosen conversion from the branch cell units to normalized Noether-core density. Equality is a lattice-cell replay assumption; the inequality is the support-function exclusion bound.
 
+The reference constants are not independent material knobs when the cell volume has already been nondimensionalized against the reference Noether-core density. In that branch-normalized convention,
+
+$$
+\widetilde V_{\mathrm{cell},X}^{\mathrm{sf}}
+=
+\rho_{\text{core},0}V_{\mathrm{cell},X}^{\mathrm{sf}},
+\qquad
+\nu_{\mathrm{pack},0}=1,
+$$
+
+so
+
+$$
+n_{\max,X}^{\mathrm{obl}}
+\le
+\frac{1}
+{\widetilde V_{\mathrm{cell},X}^{\mathrm{sf}}}.
+$$
+
+The coordination and packing benchmarks are likewise fixed by the same-level Euclidean contact scaffold:
+
+$$
+z_*=12,
+\qquad
+\phi_*=\frac{\pi}{3\sqrt{2}},
+\qquad
+V_*=1
+$$
+
+in branch-normalized volume units. The value $z_*=12$ is the three-dimensional kissing-number bound for equal support-contact neighbors, while $\phi_*$ is the FCC/HCP equal-sphere reference fraction. For oblate envelopes $\phi_*$ is a benchmark headroom scale, not a proof that all oblate arrangements are sphere packings.
+
 The same record also supplies a first packing-compliance diagnostic. Let $\mathcal{K}_X=\{(\hat{\mathbf{k}}_{X,a},\omega_{X,a})\}$ be the retained contact network, with effective coordination
 
 $$
@@ -743,7 +774,24 @@ e_X^{\mathrm{sf}}
 }
 $$
 
-This does not prove that the declared lattice is dynamically selected. It removes the direct scalar insertion of $e_X$ and $n_{\max,X}^{\mathrm{obl}}$ by tying both quantities to the oblate envelope, orientation record, contact network, and lattice-cell volume. The remaining proof burden is to derive $\xi_X$, $\mathcal{O}_X$, $\mathcal{L}_X$, $\mathcal{K}_X$, and the shared weights from the Noether-core branch rather than from a mock material record.
+The compliance weights are not free signs. Until the branch-response functional is derived, require the passive unit-bounded range
+
+$$
+0\le w_u,w_{\phi},w_{\sigma}\le1.
+$$
+
+Equivalently, the logarithmic packing penalty is allowed to respond at no more than unit first-order strength to undercoordination, void headroom, and contact-spacing anisotropy:
+
+$$
+\frac{\partial\ln e_X^{\mathrm{sf}}}{\partial u_X},
+\quad
+\frac{\partial\ln e_X^{\mathrm{sf}}}{\partial h_X},
+\quad
+\frac{\partial\ln e_X^{\mathrm{sf}}}{\partial \sigma_{\ln D,X}^2}
+\in[0,1].
+$$
+
+This does not prove that the declared lattice is dynamically selected. It removes the direct scalar insertion of $e_X$ and $n_{\max,X}^{\mathrm{obl}}$ by tying both quantities to the oblate envelope, orientation record, contact network, and lattice-cell volume. The remaining proof burden is to derive $\xi_X$, $\mathcal{O}_X$, $\mathcal{L}_X$, $\mathcal{K}_X$, and the exact shared compliance weights from the Noether-core branch rather than from a mock material record.
 
 ## Energy-Closure Ambiguity to Resolve
 
@@ -830,6 +878,7 @@ For a branch-chart calculation:
 - If $\mathcal{B}_O$ changes discontinuously, the active causal-root ledger has changed.
 - If $\alpha_O$ depends strongly on energy or environment, the packing curve can differ from the outer-radius curve.
 - If the Noether-core pool is oblate and orientation-correlated, equal-sphere close packing is the wrong center-density model.
+- If $\xi_X>1$, $z_X^{\mathrm{eff}}>12$, $\phi_X^{\mathrm{sf}}>1$, or any compliance weight leaves $[0,1]$, the oblate support-function replay has left the bounded packing scaffold and needs a separate branch-response derivation.
 - If the energy variable is not specified as $E_N$, $E_O$, or a layer projection, the energy scaling exponent cannot be trusted.
 
 ## Immediate Study Targets

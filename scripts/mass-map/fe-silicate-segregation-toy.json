@@ -34,10 +34,6 @@
       "alignment": 0.1
     },
     "packing_model": {
-      "density_scale": 1,
-      "reference_cell_volume": 1,
-      "reference_packing_fraction": 0.7404804896930609,
-      "coordination_reference": 12,
       "undercoordination_weight": 0.3,
       "void_fraction_weight": 0.5,
       "spacing_anisotropy_weight": 1

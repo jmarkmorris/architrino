@@ -1,0 +1,244 @@
+{
+  "schema": "aaa-hydrogen-gamma-n-spectral-row-toy-input/v1",
+  "metadata": {
+    "description": "Mock hydrogen spectral coefficient-row replay for Gamma_N closure arithmetic."
+  },
+  "defaults": {
+    "endpoint_tolerance": 1e-9,
+    "gamma_tolerance": 1e-8,
+    "row_tolerance": 1e-8,
+    "response_mismatch_tolerance": 1e-12,
+    "epsilon_gamma": 1e-12,
+    "epsilon_row": 1e-12
+  },
+  "scenarios": [
+    {
+      "name": "shared_row_clean_packet",
+      "expect_pass": true,
+      "static_response": {
+        "a_n": 0,
+        "a_chi": 2,
+        "a_lambda": 0,
+        "a_R": 0
+      },
+      "candidate_rows": [
+        {
+          "name": "shared_delay_clean_gr_row",
+          "b_n": 0,
+          "b_chi": 0.5,
+          "b_lambda": 0,
+          "b_R": 0
+        },
+        {
+          "name": "underclosed_control_row",
+          "b_n": 0,
+          "b_chi": 0.45,
+          "b_lambda": 0,
+          "b_R": 0
+        }
+      ],
+      "records": [
+        {
+          "ell": "ell0",
+          "g_N_H": {
+            "ln_n": 0,
+            "ln_chi_sea": 0.002,
+            "ln_lambda": 0,
+            "minus_ln_xi": 0,
+            "ln_R_core_ratio": 0
+          },
+          "lines": [
+            {
+              "transition": "H_alpha_3_to_2",
+              "envelope_gap_over_h": 1.0010005001667084,
+              "observed_frequency": 1
+            },
+            {
+              "transition": "H_beta_4_to_2",
+              "envelope_gap_over_h": 2.002001000333417,
+              "observed_frequency": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "direct_cadence_multiplication_failure",
+      "expect_pass": false,
+      "static_response": {
+        "a_n": 0,
+        "a_chi": 2,
+        "a_lambda": 0,
+        "a_R": 0
+      },
+      "candidate_rows": [
+        {
+          "name": "shared_delay_clean_gr_row",
+          "b_n": 0,
+          "b_chi": 0.5,
+          "b_lambda": 0,
+          "b_R": 0
+        }
+      ],
+      "records": [
+        {
+          "ell": "ell0",
+          "g_N_H": {
+            "ln_n": 0,
+            "ln_chi_sea": 0.002,
+            "ln_lambda": 0,
+            "minus_ln_xi": 0,
+            "ln_R_core_ratio": 0
+          },
+          "lines": [
+            {
+              "transition": "wrong_direct_Gamma_multiplier",
+              "envelope_gap_over_h": 0.999000499833375,
+              "observed_frequency": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "per_line_row_fit_failure",
+      "expect_pass": false,
+      "expect_per_line_spoof_pass": true,
+      "static_response": {
+        "a_n": 1,
+        "a_chi": 1,
+        "a_lambda": 0,
+        "a_R": 0
+      },
+      "candidate_rows": [
+        {
+          "name": "line_A_row",
+          "b_n": 0.5,
+          "b_chi": 0.5,
+          "b_lambda": 0,
+          "b_R": 0
+        },
+        {
+          "name": "line_B_row",
+          "b_n": 0.2,
+          "b_chi": 0.8,
+          "b_lambda": 0,
+          "b_R": 0
+        }
+      ],
+      "records": [
+        {
+          "ell": "ell0",
+          "g_N_H": {
+            "ln_n": 0.001,
+            "ln_chi_sea": 0.002,
+            "ln_lambda": 0,
+            "minus_ln_xi": 0,
+            "ln_R_core_ratio": 0
+          },
+          "lines": [
+            {
+              "transition": "line_A_only",
+              "envelope_gap_over_h": 1.001501125562711,
+              "observed_frequency": 1
+            },
+            {
+              "transition": "line_B_only",
+              "envelope_gap_over_h": 1.0018016209724376,
+              "observed_frequency": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "endpoint_row_violation_failure",
+      "expect_pass": false,
+      "static_response": {
+        "a_n": 0,
+        "a_chi": 1,
+        "a_lambda": 0,
+        "a_R": 0
+      },
+      "candidate_rows": [
+        {
+          "name": "line_matching_endpoint_bad_row",
+          "b_n": 0,
+          "b_chi": 0.5,
+          "b_lambda": 0,
+          "b_R": 0
+        }
+      ],
+      "records": [
+        {
+          "ell": "ell0",
+          "g_N_H": {
+            "ln_n": 0,
+            "ln_chi_sea": 0.002,
+            "ln_lambda": 0,
+            "minus_ln_xi": 0,
+            "ln_R_core_ratio": 0
+          },
+          "lines": [
+            {
+              "transition": "line_matches_but_endpoint_fails",
+              "envelope_gap_over_h": 1.0010005001667084,
+              "observed_frequency": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "response_record_mismatch_failure",
+      "expect_pass": false,
+      "expect_response_record_mismatch": true,
+      "static_response": {
+        "a_n": 0,
+        "a_chi": 2,
+        "a_lambda": 0,
+        "a_R": 0
+      },
+      "candidate_rows": [
+        {
+          "name": "shared_delay_clean_gr_row",
+          "b_n": 0,
+          "b_chi": 0.5,
+          "b_lambda": 0,
+          "b_R": 0
+        }
+      ],
+      "records": [
+        {
+          "ell": "ell0",
+          "g_N_H": {
+            "ln_n": 0,
+            "ln_chi_sea": 0.002,
+            "ln_lambda": 0,
+            "minus_ln_xi": 0,
+            "ln_R_core_ratio": 0
+          },
+          "lines": [
+            {
+              "transition": "shared_record_line",
+              "envelope_gap_over_h": 1.0010005001667084,
+              "observed_frequency": 1
+            },
+            {
+              "transition": "retuned_record_line",
+              "envelope_gap_over_h": 1.0012007202880864,
+              "observed_frequency": 1,
+              "g_N_H": {
+                "ln_n": 0,
+                "ln_chi_sea": 0.0024,
+                "ln_lambda": 0,
+                "minus_ln_xi": 0,
+                "ln_R_core_ratio": 0
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

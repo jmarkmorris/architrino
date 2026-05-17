@@ -258,6 +258,8 @@ $$
 
 The ideal-analyzer closure target is $(\eta_{\hat{\mathbf a}})_*d\nu_{\hat{\mathbf a}}=d\eta$. If this pushforward is biased, the deviation $P_{\text{pass}}(\rho)-\rho$ is a material calibration diagnostic rather than a new photon law. The concrete substrate proof still has to compute the return map and basin filtration from an analyzer assembly simulation.
 
+The same material-projector logic should govern ordinary surfaces. A metal, absorber, dielectric, or analyzer is not a passive wall for a photon object. It supplies a material return map whose electron-envelope, nuclear-source, bonding/lattice, and Noether-Sea records decide whether the incoming transverse ledger is coherently re-released, captured, scattered, converted into heat, or retained as a bound excitation. In this framing a reflected photon is an outgoing coaxial contra-rotating pro/anti planar pair with a new path-history ledger, while an absorbed photon has no remaining free planar-pair identity even though its energy, momentum, transverse angular momentum, and medium update remain in the event record. This is a Gate C surface-routing target, not a completed proof of reflectivity, opacity, or blackbody behavior.
+
 The polarization-pair no-signaling test is part of the same gate. For entangled photon preparations with analyzer settings $\alpha,\beta$, the completed ledger must recover setting-independent local marginals:
 
 $$

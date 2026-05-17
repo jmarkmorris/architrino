@@ -315,6 +315,97 @@ $$
 
 in the same clean weak-field branch. Any future claim of one shared row must therefore either derive this compensating density, scale, or core-radius contribution from Noether-Sea constitutive response, or accept the chi-only falsification above.
 
+The minimal compensation problem can be stated without adding a new fixture. Define the non-$\chi_{\text{sea}}$ vectors
+
+$$
+\mathbf{u}^{G}
+=
+\left(
+a_n^{G},\,
+a_\lambda^{G},\,
+a_R^{G}
+\right)^T,
+\qquad
+\mathbf{u}^{P}
+=
+\left(
+a_n^{P\to\Gamma},\,
+a_\lambda^{P\to\Gamma},\,
+a_R^{P\to\Gamma}
+\right)^T,
+$$
+
+and the non-$\chi_{\text{sea}}$ coefficient row
+
+$$
+\mathbf{c}
+=
+\left(
+b_n,\,
+b_\lambda,\,
+b_R
+\right)^T.
+$$
+
+In the clean-delay anchored subclass, where $b_\chi=1/(1+\gamma_{\text{eff}})$, the compensation target is
+
+$$
+\mathbf{c}\cdot\mathbf{u}^{G}=0,
+\qquad
+\mathbf{c}\cdot\mathbf{u}^{P}
+=
+\eta_P,
+\qquad
+\eta_P
+\equiv
+1-\frac{a_\chi^{P\to\Gamma}}{1+\gamma_{\text{eff}}}.
+$$
+
+For the toy pressure number, $\eta_P=0.7$. The minimal Euclidean-norm compensation row exists only if the pressure non-$\chi_{\text{sea}}$ vector has a component outside the gravitational non-$\chi_{\text{sea}}$ projection. Let
+
+$$
+\mathbf{u}^{P}_{\perp G}
+=
+\begin{cases}
+\mathbf{u}^{P}
+-
+\dfrac{\mathbf{u}^{P}\cdot\mathbf{u}^{G}}
+{\left\|\mathbf{u}^{G}\right\|^2}
+\mathbf{u}^{G},
+&
+\left\|\mathbf{u}^{G}\right\|>0,
+\\[8pt]
+\mathbf{u}^{P},
+&
+\left\|\mathbf{u}^{G}\right\|=0.
+\end{cases}
+$$
+
+Then the minimal candidate is
+
+$$
+\mathbf{c}_{\min}
+=
+\frac{\eta_P}{\left\|\mathbf{u}^{P}_{\perp G}\right\|^2}
+\mathbf{u}^{P}_{\perp G},
+\qquad
+\left\|\mathbf{u}^{P}_{\perp G}\right\|>0.
+$$
+
+If $\left\|\mathbf{u}^{P}_{\perp G}\right\|=0$ while $\eta_P\ne0$, the clean-delay anchored shared row is falsified at the isotropic scalar level. This is the current status of the executable toy fixture: its declared isotropic pressure deltas include only $\delta\ln\chi_{\text{sea}}$, so $\mathbf{u}^{P}=\mathbf{0}$ and no non-$\chi_{\text{sea}}$ compensation row can be derived from that packet. A future broader-row attempt must therefore supply at least one nonzero isotropic pressure delta in $n$, $\lambda$, or $R_{\text{core}}$, and it must remain separated from the anisotropic pressure residuals.
+
+The one-coordinate candidates are immediate corollaries. A density-only repair requires
+
+$$
+a_n^{G}=0,
+\qquad
+a_n^{P\to\Gamma}\ne0,
+\qquad
+b_n=\frac{\eta_P}{a_n^{P\to\Gamma}},
+$$
+
+with analogous formulas for $\lambda$ and $R_{\text{core}}$. If the selected coordinate has nonzero gravitational projection, it cannot both preserve the clean gravitational row and repair the pressure row by itself.
+
 Anisotropic pressure terms remain outside this scalar endpoint equation. The replay must keep
 
 $$

@@ -249,6 +249,91 @@ Y_{X,E\to R}
 \exp(Y_{X,E\to R}).
 $$
 
+The minimal state needed for the first executable closure is a projection of the absolute record, not a new ontology. For a segmented path $\gamma_{E\to R}=\{\Delta s_j\}_{j=1}^N$, use
+
+$$
+\mathcal S_{X,E\to R}^{\min}
+=
+\left(
+\mathcal G_E,\,
+\mathcal G_R,\,
+\mathcal V_{E,R},\,
+B_X(E),\,
+\left\{
+\mathcal K_{X,j},\Delta s_j
+\right\}_{j=1}^{N}
+\right),
+$$
+
+with endpoint records
+
+$$
+\mathcal G_Q
+=
+\left(
+\mathbf g_N(Q),
+\mathcal R_{\Gamma,Q}
+\right),
+\qquad
+Q\in\{E,R\},
+$$
+
+launch record
+
+$$
+\mathcal V_{E,R}
+=
+\left(
+\mathbf v_E,\mathbf v_R,\hat{\mathbf k},\mathcal R_v
+\right),
+$$
+
+and segment record
+
+$$
+\mathcal K_{X,j}
+=
+\left(
+\mathbf d_{\theta,j},\,
+f_{N,j},\,
+S_{\mathrm{BH},j},\,
+S_{\mathrm{GW},j},\,
+R_{\mathrm{eq},j},\,
+\partial_\nu J_{\nu,j},\,
+\delta_{u,j},\,
+\sigma_{X,j},\,
+\mathcal R_{\mathrm{coh},X,j}
+\right).
+$$
+
+Here $\mathbf d_{\theta,j}=D_{\gamma}\boldsymbol\theta_{\mathrm{sea}}|_j$, $\delta_{u,j}=(\nabla\cdot\mathbf u_{\mathrm{sea}})_j$, and $\sigma_{X,j}=\hat k_a\hat k_b\Sigma_{\mathrm{sea},X,j}^{ab}$. The transport coefficients are one fixed row for the line family,
+
+$$
+\Theta_X
+=
+\left(
+\mathbf b_N,\,
+\mathbf p_X,\,
+p_{\nu,X},\,
+p_{u,X},\,
+p_{\sigma,X}
+\right),
+$$
+
+so the no-case-switch requirement is simply
+
+$$
+\Theta_X^{\mathrm{grav}}
+=
+\Theta_X^{\mathrm{motion}}
+=
+\Theta_X^{\mathrm{deep}}
+\equiv
+\Theta_X.
+$$
+
+The three cases may supply different restrictions of $S(t)$: a strong endpoint deformation record, a launch-velocity record, or a long weak path-history record. They fail the absolute-record transport target if the coefficient row or explanatory class changes between those restrictions.
+
 The endpoint cadence factors are extracted from the same local deformation record used by the clock program:
 
 $$
@@ -376,7 +461,34 @@ p_{\sigma,X}
 \mathcal R_{\mathrm{coh},X}.
 $$
 
-Here $\Sigma_{\mathrm{sea},X}^{ab}$ is the trace-free anisotropic medium-response tensor seen by channel $X$ and vanishes in the isotropic weak limit. The coefficient rows $\mathbf b_N$ and $(\mathbf p_X,p_{\nu,X},p_{u,X},p_{\sigma,X})$ must be fixed from the declared Noether-Sea constitutive response and then reused across gravitational, relative-motion, and deep-space cases. A deep-space contribution may come from a persistent $\mathcal C_N[f_N]$, flow-divergence, or anisotropic-response record, but not from switching to a generic photon-energy-loss explanation.
+Here $\Sigma_{\mathrm{sea},X}^{ab}$ is the trace-free anisotropic medium-response tensor seen by channel $X$ and vanishes in the isotropic weak limit. In the segmented fixture this is the computable update
+
+$$
+\alpha_{\mathrm{prop},X,j}
+=
+\mathbf p_X\cdot\mathbf d_{\theta,j}
++
+p_{\nu,X}
+\frac{
+S_{\mathrm{BH},j}
++
+S_{\mathrm{GW},j}
+-
+R_{\mathrm{eq},j}
+-
+\partial_\nu J_{\nu,j}
+}{
+f_{N,j}+\epsilon_f
+}
++
+p_{u,X}\delta_{u,j}
++
+p_{\sigma,X}\sigma_{X,j}
++
+\mathcal R_{\mathrm{coh},X,j}.
+$$
+
+The coefficient rows $\mathbf b_N$ and $(\mathbf p_X,p_{\nu,X},p_{u,X},p_{\sigma,X})$ must be fixed from the declared Noether-Sea constitutive response and then reused across gravitational, relative-motion, and deep-space cases. A deep-space contribution may come from a persistent $\mathcal C_N[f_N]$, flow-divergence, or anisotropic-response record, but not from switching to a generic photon-energy-loss explanation.
 
 The coherence residue is admissible only if the same $Y_X$ passes the observational transport tests,
 

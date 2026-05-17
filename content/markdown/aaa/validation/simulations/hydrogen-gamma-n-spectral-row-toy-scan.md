@@ -10,6 +10,22 @@ C_{N,\mathrm H}^{(\ell)}
 \left(\Gamma_{N,\mathrm H}^{(\ell)}\right)^{-1}.
 $$
 
+## Runtime Artifact
+
+Run the default mock packet with:
+
+```text
+node scripts/spacetime/hydrogen-gamma-n-spectral-row-toy-scan.mjs --pretty
+```
+
+The script consumes:
+
+```text
+scripts/spacetime/hydrogen-gamma-n-spectral-row-mock.json
+```
+
+and emits one result row per scenario. The mock packet includes one passing shared-row case and intentional failure witnesses for direct cadence multiplication, per-line row fitting, endpoint-row violation, and response-record mismatch.
+
 ## Input Variables
 
 Each toy packet supplies one weak-homogeneous hydrogen line set $\mathcal L_{\mathrm H}^{0}$ and one or more admissible resolution records $\ell\in I_{\mathrm{spec}}^{\mathrm{atom}}$. For each record, the packet declares:
@@ -217,3 +233,18 @@ The packet must include intentional failing rows or records for the following ca
 | response-record mismatch | changing $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ between lines after $\mathcal L_{\mathrm H}^{0}$ is chosen fails |
 
 These failure tests keep the spectral row tied to the shared clock/rate map. They also separate the proof obligations: the envelope calculation owns the line gaps, the clock-row calculation owns $\Gamma_N$ and $C_N$, and the photon-channel event record owns emission and absorption propagation.
+
+## Output Diagnostics
+
+The executable packet reports:
+
+| Output field | Meaning |
+| --- | --- |
+| `diagnostics.accepted_rows` | candidate rows that satisfy $b_\xi=1$, the endpoint constraint, the line-set residual, and the refinement residual |
+| `diagnostics.response_record_mismatch_pass` | whether every line used the shared $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ record for its resolution |
+| `diagnostics.per_line_spoof` | whether each line could be made to pass by some row even though no shared row passes |
+| `diagnostics.row_results[].diagnostics.endpoint_residual` | residual for $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$ |
+| `diagnostics.row_results[].diagnostics.line_residuals` | line-by-line values of $\mathcal E_{\Gamma}^{(\ell)}(a,b;\mathbf{b}_{N}^{\mathrm{spec}})$ |
+| `diagnostics.row_results[].diagnostics.refinement_residuals` | resolution-pair residuals for the shared row prediction |
+
+The packet succeeds only when its declared expectations are met. A failure witness should therefore have `status: "fail"` but `expectation_status: "pass"` when it fails for the intended reason.

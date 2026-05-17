@@ -180,6 +180,103 @@ $$
 
 Channel pages may add specialized variables, but they should not remove these fields. The polarization handoff remains inherited from photon Gate B; radiation records carry the fields needed by that gate, while the photon-spin and polarization proof remains outside the local radiation event record.
 
+## Photon-Material Surface Routing
+
+A material surface interaction is the near-field Gate C version of the same event schema. It should not be pictured as a small projectile striking a hard wall. At atomic resolution the incoming photon is a coaxial contra-rotating pro/anti planar pair with Gate A and Gate B ledgers, while the material supplies an electron-envelope branch, a nuclear source envelope, a bonding or lattice branch, and a local Noether-Sea response record. The local event state can be written as
+
+$$
+X_{\mathrm{surf}}
+=
+\left(
+\gamma_{\mathrm{in}},
+\mathcal B_e,
+\mathcal A_{\mathrm{nuc}}^{Z,N},
+\mathcal B_{\mathrm{lat}},
+\Theta_E^{(\ell)},
+\mathcal H_{\gamma\to\Omega}
+\right),
+$$
+
+where $\gamma_{\mathrm{in}}$ carries $E_{\gamma,\mathrm{in}}$, $\mathbf p_{\gamma,\mathrm{in}}$, direction, phase frequency, local $c_\gamma$, and transverse ledger data; $\mathcal B_e$ is the realized electron-envelope branch; $\mathcal A_{\mathrm{nuc}}^{Z,N}$ is the nuclear assembly ledger; $\mathcal B_{\mathrm{lat}}$ is the realized material bonding or lattice branch; $\Theta_E^{(\ell)}$ is the coarse Noether-Sea response record in the surface cell; and $\mathcal H_{\gamma\to\Omega}$ is the causal-wake and path-history ledger for the incoming packet and local material window.
+
+The route decision selects a finite channel set
+
+$$
+I_{\mathrm{surf}}
+\subset
+\{
+B_{\mathrm{refl}},
+B_{\mathrm{cap}},
+B_{\mathrm{scat}},
+B_{\mathrm{heat}},
+B_{\mathrm{recoil}},
+B_{\mathrm{rem}}
+\}.
+$$
+
+The selected route must close the scalar ledger
+
+$$
+E_{\gamma,\mathrm{in}}
+=
+E_{\gamma,\mathrm{out}}
++
+\Delta E_{e\text{-env}}
++
+\Delta E_{\mathrm{lat}}
++
+\Delta E_{\mathrm{sea}}
++
+\Delta E_{\mathrm{recoil}}
++
+\Delta E_{\mathrm{rem}},
+$$
+
+with corresponding momentum and angular-momentum rows
+
+$$
+\mathbf p_{\gamma,\mathrm{in}}
+=
+\mathbf p_{\gamma,\mathrm{out}}
++
+\Delta \mathbf p_{e\text{-env}}
++
+\Delta \mathbf p_{\mathrm{lat}}
++
+\Delta \mathbf p_{\mathrm{sea}}
++
+\Delta \mathbf p_{\mathrm{recoil}},
+$$
+
+$$
+\mathcal J_{\gamma,\mathrm{in}}^{\perp}
+=
+\mathcal J_{\gamma,\mathrm{out}}^{\perp}
++
+\Delta \mathcal J_{e\text{-env}}
++
+\Delta \mathcal J_{\mathrm{lat}}
++
+\Delta \mathcal J_{\mathrm{sea}}
++
+\Delta \mathcal J_{\mathrm{wake}}.
+$$
+
+Here $E_{\gamma,\mathrm{out}}=0$ when no free photon leaves the cell. In that case the photon branch has been captured or dephased as a free planar-pair mode, but the event has not lost energy; the electron-envelope, lattice, Noether-Sea, recoil, remnant, and wake rows carry the balance. For ordinary optical or infrared surface events, the nuclear inventory remains fixed: $\Delta Z=0$ and $\Delta A=0$ unless a separate nuclear-reaction gate is explicitly supplied.
+
+| Route | Material meaning | Required closure target |
+| --- | --- | --- |
+| $B_{\mathrm{refl}}$ | coherent re-release of an outgoing planar-pair branch, typically supported by a collective surface-electron response in a metal-like branch | recover phase, angle, polarization, and skin-depth behavior without treating reflection as a hard bounce |
+| $B_{\mathrm{cap}}$ | capture of the incoming planar-pair ledger into electron-envelope excitation or a higher material basin | close energy, momentum, transverse angular momentum, and remnant rows when $E_{\gamma,\mathrm{out}}=0$ |
+| $B_{\mathrm{scat}}$ | outgoing photon branch survives with changed direction, phase, frequency, or polarization record | close shifted photon provenance together with recoil and material update |
+| $B_{\mathrm{heat}}$ | captured action thermalizes through electron, lattice, and Noether-Sea updates | derive the route from material return dynamics rather than inserting untracked heat |
+| $B_{\mathrm{recoil}}$ | lattice, nuclear source envelope, or medium component receives momentum balance | keep recoil even when its energy is small |
+| $B_{\mathrm{rem}}$ | retained bound excitation or dephased surface state remains after the event window | record the remnant state instead of hiding it in attenuation |
+
+A Vantablack-like absorber is then not a special photon ontology. It is a material branch with high geometric and electronic capture depth: many surface cells route the incoming planar-pair ledger into $B_{\mathrm{cap}}$, $B_{\mathrm{heat}}$, $B_{\mathrm{recoil}}$, and $B_{\mathrm{rem}}$ before a coherent $B_{\mathrm{refl}}$ escape channel can survive. A metal surface is the opposite limiting case: the conduction-electron branch supports a coherent surface-current response, so a large part of the incoming ledger reappears as $E_{\gamma,\mathrm{out}}$ with an organized phase relation, while absorption loss remains in the electron-envelope, lattice, Noether-Sea, and recoil rows.
+
+The worked surface case is still a derivation target. It fails if reflection is modeled as a hard geometric bounce with no electron-envelope response, if absorption becomes annihilation or untracked heat, if the same material requires separate Noether-Sea variables for reflection and absorption, if a hidden longitudinal free-photon channel is used, or if ordinary optical events change nuclear inventory without a separate reaction provenance ledger.
+
 ## Ensemble Temperature
 
 The term "hot" should be used with care. A single excited Noether core is not hot in the full thermodynamic or blackbody sense. It is better described as internally excited, closure-mismatched, or metastable above a local stable rung. Temperature is an ensemble-level effective variable: many assemblies must exchange energy, emit, absorb, scatter, and thermalize so that a stable distribution can be assigned.

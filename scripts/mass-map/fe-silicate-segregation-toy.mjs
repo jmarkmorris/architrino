@@ -22,6 +22,12 @@ const DEFAULT_THRESHOLDS = {
   slope_bound_only_abs_max: 1e-6,
   demote_abs_sea_residual_max: 1e-6,
 };
+const FCC_HCP_PACKING_FRACTION = Math.PI / (3 * Math.sqrt(2));
+const EUCLIDEAN_3D_KISSING_NUMBER = 12;
+const BRANCH_NORMALIZED_DENSITY_SCALE = 1;
+const BRANCH_NORMALIZED_REFERENCE_CELL_VOLUME = 1;
+const COMPLIANCE_WEIGHT_MIN = 0;
+const COMPLIANCE_WEIGHT_MAX = 1;
 
 function parseArgs(argv) {
   const args = {
@@ -104,6 +110,22 @@ function positiveNumber(value, label) {
   return number;
 }
 
+function boundedNumber(value, label, min, max) {
+  const number = finiteNumber(value, label);
+  if (number < min || number > max) {
+    throw new Error(`${label} must be between ${min} and ${max}.`);
+  }
+  return number;
+}
+
+function positiveAtMostNumber(value, label, max) {
+  const number = positiveNumber(value, label);
+  if (number > max) {
+    throw new Error(`${label} must be at most ${max}.`);
+  }
+  return number;
+}
+
 function thresholdMap(inputThresholds = {}) {
   const raw = { ...DEFAULT_THRESHOLDS, ...inputThresholds };
   const modelResidualAbsMax = raw.model_residual_abs_max ?? raw.shared_row_residual_abs_max;
@@ -174,31 +196,47 @@ function coefficientModel(input) {
       alignment: finiteNumber(weights.alignment ?? 0, "coefficient_model.coupling_weights.alignment"),
     },
     packing_model: {
-      density_scale: positiveNumber(packing.density_scale ?? 1, "coefficient_model.packing_model.density_scale"),
+      density_scale: positiveNumber(
+        packing.density_scale ?? BRANCH_NORMALIZED_DENSITY_SCALE,
+        "coefficient_model.packing_model.density_scale"
+      ),
       reference_cell_volume: positiveNumber(
-        packing.reference_cell_volume ?? 1,
+        packing.reference_cell_volume ?? BRANCH_NORMALIZED_REFERENCE_CELL_VOLUME,
         "coefficient_model.packing_model.reference_cell_volume"
       ),
       reference_packing_fraction: positiveNumber(
-        packing.reference_packing_fraction ?? Math.PI / (3 * Math.sqrt(2)),
+        packing.reference_packing_fraction ?? FCC_HCP_PACKING_FRACTION,
         "coefficient_model.packing_model.reference_packing_fraction"
       ),
       coordination_reference: positiveNumber(
-        packing.coordination_reference ?? 12,
+        packing.coordination_reference ?? EUCLIDEAN_3D_KISSING_NUMBER,
         "coefficient_model.packing_model.coordination_reference"
       ),
-      undercoordination_weight: nonnegativeNumber(
+      undercoordination_weight: boundedNumber(
         packing.undercoordination_weight ?? 0,
-        "coefficient_model.packing_model.undercoordination_weight"
+        "coefficient_model.packing_model.undercoordination_weight",
+        COMPLIANCE_WEIGHT_MIN,
+        COMPLIANCE_WEIGHT_MAX
       ),
-      void_fraction_weight: nonnegativeNumber(
+      void_fraction_weight: boundedNumber(
         packing.void_fraction_weight ?? 0,
-        "coefficient_model.packing_model.void_fraction_weight"
+        "coefficient_model.packing_model.void_fraction_weight",
+        COMPLIANCE_WEIGHT_MIN,
+        COMPLIANCE_WEIGHT_MAX
       ),
-      spacing_anisotropy_weight: nonnegativeNumber(
+      spacing_anisotropy_weight: boundedNumber(
         packing.spacing_anisotropy_weight ?? 0,
-        "coefficient_model.packing_model.spacing_anisotropy_weight"
+        "coefficient_model.packing_model.spacing_anisotropy_weight",
+        COMPLIANCE_WEIGHT_MIN,
+        COMPLIANCE_WEIGHT_MAX
       ),
+      derived_constants: {
+        density_scale: packing.density_scale === undefined,
+        reference_cell_volume: packing.reference_cell_volume === undefined,
+        reference_packing_fraction: packing.reference_packing_fraction === undefined,
+        coordination_reference: packing.coordination_reference === undefined,
+        compliance_weight_bounds: [COMPLIANCE_WEIGHT_MIN, COMPLIANCE_WEIGHT_MAX],
+      },
     },
   };
 }
@@ -351,6 +389,11 @@ function derivePacking(recordInput, materialLabel, modelPacking) {
     envelope.xi,
     `${materialLabel}.coefficient_inputs.packing_record.oblate_envelope.xi`
   );
+  positiveAtMostNumber(
+    xi,
+    `${materialLabel}.coefficient_inputs.packing_record.oblate_envelope.xi`,
+    1
+  );
   const RPerp = baseRPerp * lambda;
   const RParallel = RPerp * xi;
   const orientationRecord = asObject(
@@ -413,6 +456,9 @@ function derivePacking(recordInput, materialLabel, modelPacking) {
   const nMaxObl = densityScale / latticeCellVolume;
   const envelopeVolume = (4 * Math.PI / 3) * RPerp ** 2 * RParallel;
   const packingFraction = envelopeVolume / latticeCellVolume;
+  if (packingFraction <= 0 || packingFraction > 1) {
+    throw new Error(`${materialLabel}.coefficient_inputs.packing_record yields invalid packing_fraction ${packingFraction}.`);
+  }
   const contactNetwork = asObject(
     record.contact_network,
     `${materialLabel}.coefficient_inputs.packing_record.contact_network`
@@ -430,6 +476,11 @@ function derivePacking(recordInput, materialLabel, modelPacking) {
     contactNetwork.coordination_number ?? contacts.totalWeight,
     `${materialLabel}.coefficient_inputs.packing_record.contact_network.coordination_number`
   );
+  if (effectiveCoordination < 0 || effectiveCoordination > modelPacking.coordination_reference) {
+    throw new Error(
+      `${materialLabel}.coefficient_inputs.packing_record.contact_network.coordination_number must be between 0 and ${modelPacking.coordination_reference}.`
+    );
+  }
   const undercoordination = Math.max(
     0,
     1 - effectiveCoordination / modelPacking.coordination_reference
@@ -469,6 +520,7 @@ function derivePacking(recordInput, materialLabel, modelPacking) {
       spacing_log_variance: spacingLogVariance,
     },
     packing_fraction: packingFraction,
+    reference_packing_fraction: modelPacking.reference_packing_fraction,
     void_fraction: voidFraction,
     undercoordination,
   };

@@ -58,6 +58,47 @@ $$
 
 This is the condensed-matter version of medium-dressed inertial response. The Noether Sea may shape the response tensor, the local delay factor, and the stability margin, but it must not drain energy from a stable bound state merely because that state is moving through the medium.
 
+### Photon-Coupled Surface Transport
+
+Photon absorption, reflection, and surface heating are thresholded transport events in the same condensed-matter sense. The incoming photon ledger does not permit a continuous drag term on the material, and the material does not act as a hard spatial wall. A surface cell supplies electron-envelope, bonding or lattice, nuclear-source, and local Noether-Sea records that route the incoming planar-pair ledger into coherent re-release, capture, scattering, heat, recoil, or retained excitation.
+
+A compact surface residual can be treated as a specialization of the transport residual:
+
+$$
+\mathcal R_{\mathrm{surf}}
+=
+\mathcal R_{\mathrm{surf}}\!\left(
+a_{\perp},
+\mathcal B_e,
+\mathcal B_{\mathrm{lat}},
+\Theta_E^{(\ell)},
+\mathcal M_{\text{sea}}^{ab},
+\Delta_{\mathbf{k}}
+\right),
+$$
+
+where $a_{\perp}$ is the incoming photon transverse ledger, $\mathcal B_e$ is the realized electron-envelope branch, $\mathcal B_{\mathrm{lat}}$ is the material bonding or lattice branch, $\Theta_E^{(\ell)}$ is the local Noether-Sea response record, $\mathcal M_{\text{sea}}^{ab}$ is the medium-response tensor, and $\Delta_{\mathbf{k}}$ is the relevant stability gap. The surface channel becomes dissipative only when the selected route opens a logged excitation or heating channel; otherwise the event is coherent transport or reversible retuning.
+
+The corresponding energy row is
+
+$$
+E_{\gamma,\mathrm{in}}
+=
+E_{\gamma,\mathrm{out}}
++
+\Delta E_{e\text{-env}}
++
+\Delta E_{\mathrm{lat}}
++
+\Delta E_{\mathrm{sea}}
++
+\Delta E_{\mathrm{recoil}}
++
+\Delta E_{\mathrm{rem}}.
+$$
+
+For a metal-like branch, the conduction-electron response supports a coherent re-release channel with large $E_{\gamma,\mathrm{out}}$. For a Vantablack-like branch, repeated capture and dephasing through the material geometry drive $E_{\gamma,\mathrm{out}}$ toward zero while the ledger closes through electron-envelope excitation, lattice heating, Noether-Sea update, recoil, and remnant terms. Ordinary optical surface routing must preserve nuclear inventory, so $\Delta Z=0$ and $\Delta A=0$ unless a separate nuclear-reaction gate is supplied.
+
 ### Earth-Core Iron as a Boundary Case
 
 Earth-core iron is a useful correction case because it separates three levels that are easy to collapse. In standard geophysics and nucleosynthesis, most iron in Earth formed before Earth accreted, then became incorporated during accretion and segregated into the core during planetary differentiation. The high pressure and temperature of the core stabilize metallic phases and alter transport, electronic, and elastic response. They do not, by themselves, create iron nuclei.
@@ -163,6 +204,45 @@ B_{\mathrm{coeff}}.
 $$
 
 This is a sufficient inequality, not yet a completed derivation. It becomes a derivation only when $n_{\max,X}^{\mathrm{obl}}(n)$ comes from exclusion-envelope packing, $G_X$ comes from metallic coordination and Noether-Sea coupling, and $\mathcal{D}_X$ comes from the same local Noether-Sea state record used for clock, delay, strain, and transport response.
+
+The support-function version of the packing burden is concrete. For branch-cell directions $\hat{\mathbf{b}}_{X,i}$, define support-function spacings
+
+$$
+D_{X,i}
+=
+2\bar{s}_X(\hat{\mathbf{b}}_{X,i})
++
+\delta_{\mathrm{wake},X}
++
+\delta_{\mathrm{lat},X,i},
+$$
+
+and the support-function cell volume
+
+$$
+V_{\mathrm{cell},X}^{\mathrm{sf}}
+=
+c_{\mathrm{cell},X}
+\left|
+\det(
+\hat{\mathbf{b}}_{X,1},
+\hat{\mathbf{b}}_{X,2},
+\hat{\mathbf{b}}_{X,3}
+)
+\right|
+\prod_{i=1}^3D_{X,i}.
+$$
+
+Then the oblate packing ceiling must satisfy
+
+$$
+n_{\max,X}^{\mathrm{obl}}
+\le
+\frac{\nu_{\mathrm{pack},0}}
+{V_{\mathrm{cell},X}^{\mathrm{sf}}}.
+$$
+
+Equality is only a replay assumption for a declared branch cell. The Fe/silicate sign can therefore be credited to packing only when the Fe metallic branch earns a smaller support-function cell volume, higher effective coordination, or lower spacing anisotropy from the declared exclusion-envelope geometry.
 
 The metallic-phase side can be written as
 

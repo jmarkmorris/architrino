@@ -2,7 +2,7 @@
 
 This protocol documents the first redshift-budget simulation fixture for the cosmology branch. The fixture is a bookkeeping replay of the factorized redshift record in [Expansion Mechanism](../../cosmology/expansion-mechanism.md#minimal-redshift-budget-toy-model), not an empirical distance-ladder fit.
 
-Its purpose is narrow: verify that endpoint cadence, source-branch state, launch geometry, and Noether-Sea path-history remain separable in a machine-readable packet before any survey-facing cosmology comparison is attempted.
+Its purpose is narrow: verify that endpoint cadence, source-branch state, launch geometry, and Noether-Sea path-history remain separable in a machine-readable packet before any survey-facing cosmology comparison is attempted. The current packet also exposes the continuity-disciplined path-rate law, so source loading, equilibration, frequency-space current, flow divergence, and anisotropic response are not hidden as unrelated fitted terms.
 
 ## Runtime Artifact
 
@@ -82,6 +82,7 @@ Each scenario supplies:
 | `endpoint_records` | optional endpoint records from which $\Gamma_{N,E}$ and $\Gamma_{N,R}$ are extracted |
 | `launch_record` | optional source/receiver velocity record from which $D_v$ is extracted |
 | `segments` | path segments carrying $\Delta s_j$ and propagation coefficients |
+| `continuity_transport_by_line` | optional segment-level continuity packet for $\mathbf p_X\cdot D_\gamma\boldsymbol\theta_{\mathrm{sea}}$, $\mathcal C_N[f_N]$, flow divergence, and anisotropic response |
 | `transport_terms_by_line` | optional segment-level decomposition of $\alpha_{\mathrm{prop},X}$ into named source, relaxation, or perturbation terms |
 | `transport_terms_cadence_by_line` | optional cadence-channel version of the same decomposition for time-dilation checks |
 | `dark_energy_transport_by_line` | optional coefficient packet that computes $\alpha_{\mathrm{prop},X}^{\mathrm{DE}}$ from a declared $\boldsymbol{\lambda}_X$ row and $\mathbf{q}_{\mathrm{DE}}$ record |
@@ -114,7 +115,34 @@ $$
 
 where $\hat{\mathbf{k}}$ points from emitter to receiver and $v_r>0$ means the endpoint separation is increasing. A packet may provide `beta_r`, `radial_velocity_km_s`, or the triple `emitter_velocity_km_s`, `receiver_velocity_km_s`, and `line_of_sight`. Scalar `D_v` remains the fallback.
 
-The equilibrium-transport extension uses named terms such as `equilibrium_relaxation`, `smbh_source`, and `gw_perturbation`. These terms are added to any explicit `alpha_prop` value for the segment. This keeps the fixture diagnostic: it can show whether a smooth coarse-grained Noether-core $h$-step relaxation current supplies the path coefficient, while still reporting whether SMBH loading or gravitational-wave perturbations dominate the result.
+The continuity-transport extension uses the segment packet
+
+$$
+\alpha_{\mathrm{prop},X,j}
+=
+\mathbf p_X\cdot\mathbf d_{\theta,j}
++
+p_{\nu,X}
+\frac{
+S_{\mathrm{BH},j}
++
+S_{\mathrm{GW},j}
+-
+R_{\mathrm{eq},j}
+-
+\partial_\nu J_{\nu,j}
+}{
+f_{N,j}+\epsilon_f
+}
++
+p_{u,X}\delta_{u,j}
++
+p_{\sigma,X}\sigma_{X,j}
++
+\mathcal R_{\mathrm{coh},X,j}.
+$$
+
+In JSON, `continuity_transport_by_line` supplies `p_theta_row`, `D_gamma_theta`, `p_nu`, `f_N`, `S_BH`, `S_GW`, `R_eq`, `partial_nu_J_nu`, `p_u`, `div_u_sea`, `p_sigma`, `sigma_projection`, and `R_coh` as needed. The fixture logs the resulting pieces as `continuity.theta_gradient`, `continuity.cadence_residual`, `continuity.flow_divergence`, `continuity.anisotropic_response`, and `continuity.coherence_residue`. Legacy named `transport_terms_by_line` values are still accepted as explicit additions, but a promotable transport scenario should prefer the continuity packet whenever it is claiming to test Noether-Sea equilibrium transport.
 
 The dark-energy coefficient extension uses
 
@@ -162,7 +190,7 @@ The default mock packet has six hand-checkable rows.
 | `clean_laboratory_line` | All factors are unity or zero, so $Z_{\mathrm{prop},X}=0$, $z=0$, and $H_{\mathrm{eff}}=0$. |
 | `endpoint_launch_record_extraction` | Endpoint and launch factors are extracted from records: $\Gamma_{N,E}=1/0.995$, $\Gamma_{N,R}=1$, and $D_v\approx0.998501$. The path residual remains $Z_{\mathrm{prop},X}=0$, so the total redshift comes only from endpoint cadence plus launch geometry. |
 | `clean_galaxy_path` | Path history dominates the corrected residual: $Z_{\mathrm{prop},X}=0.02812$, giving a local slope near $70.25\;\mathrm{km\,s^{-1}\,Mpc^{-1}}$ while chromaticity, beam variance, and time-dilation residuals remain small. |
-| `equilibrium_transport_smooth_h_step` | Named equilibrium-transport terms supply $Z_{\mathrm{prop},X}=0.02800$, giving a local slope near $69.95\;\mathrm{km\,s^{-1}\,Mpc^{-1}}$ with the gravitational-wave perturbation averaging small over the path. |
+| `equilibrium_transport_smooth_h_step` | The continuity packet supplies $Z_{\mathrm{prop},X}=0.02800$, giving a local slope near $69.95\;\mathrm{km\,s^{-1}\,Mpc^{-1}}$ with source and gravitational-wave contributions logged inside the source-balanced cadence residual. |
 | `dark_energy_coefficient_packet` | The propagation coefficient is computed from `lambda_row` and `q_DE_per_s`, giving $Z_{\mathrm{prop},X}\approx0.02788$ and a local slope near $69.66\;\mathrm{km\,s^{-1}\,Mpc^{-1}}$. |
 | `strong_source_near_black_hole` | Endpoint cadence and source-branch terms dominate the total redshift. The path residual is only $Z_{\mathrm{prop},X}=0.00201$, so a propagation-only distance estimate would be invalid without the endpoint and source corrections. |
 
@@ -178,6 +206,7 @@ The first failure modes are concrete:
 | large `image_bundle_variance` | neighboring beams accumulate incompatible $Y$ values, which threatens image sharpness |
 | large `time_dilation_residual` | frequency shift and packet-cadence stretch no longer share one propagation record |
 | large `dark_energy.*` dominance with failed chromaticity or cadence checks | the dark-energy handoff is acting like a fitted redshift source rather than a shared Noether-Sea transport coefficient |
+| continuity packet replaced by unrelated named source terms | the run is not testing the no-case-switch transport law because $\partial_\nu J_\nu$, source loading, equilibration, and flow response have been separated into free knobs |
 | large total $Z_X$ with small $Z_{\mathrm{prop},X}$ | endpoint cadence, source branch, or launch geometry dominate, so distance cannot be inferred from propagation alone |
 | nonzero laboratory residual after local corrections | the factorization leaks local calibration or source-branch effects into the propagation channel |
 

@@ -295,6 +295,28 @@ $$
 
 Equality is a replay assumption for a declared cell; the inequality is the support-function exclusion bound. A Fe metal branch can exceed a silicate branch in $n_{\max,X}^{\mathrm{obl}}$ only when its envelope, orientation, contact network, and primitive cell jointly reduce $V_{\mathrm{cell},X}^{\mathrm{sf}}$. Ordinary mass density alone is not sufficient.
 
+In branch-normalized units the reference constants are fixed by the same-level packing scaffold:
+
+$$
+\widetilde V_{\mathrm{cell},X}^{\mathrm{sf}}
+=
+\rho_{\text{core},0}V_{\mathrm{cell},X}^{\mathrm{sf}},
+\qquad
+\nu_{\mathrm{pack},0}=1,
+\qquad
+V_*=1.
+$$
+
+The contact and packing benchmarks are
+
+$$
+z_*=12,
+\qquad
+\phi_*=\frac{\pi}{3\sqrt{2}}.
+$$
+
+Here $z_*=12$ is the three-dimensional equal-center contact bound and $\phi_*$ is the FCC/HCP equal-sphere reference fraction used as a headroom scale. These constants are no longer material-specific fixture fields.
+
 The exclusion/compression coefficient is likewise reduced to a support-function compliance diagnostic. For retained contact network $\mathcal{K}_X=\{(\hat{\mathbf{k}}_{X,a},\omega_{X,a})\}$, set
 
 $$
@@ -358,6 +380,14 @@ e_X^{\mathrm{sf}}
 $$
 
 This formula is a constrained bound, not a final theorem: the shared weights $w_u$, $w_{\phi}$, and $w_{\sigma}$ still require a branch derivation. It is nevertheless stronger than declaring $e_X$ directly, because Fe versus silicate must now differ through support-function spacing, orientation coherence, effective coordination, and lattice-cell volume.
+
+Until the exact compliance functional is derived, the executable replay constrains these shared weights by
+
+$$
+0\le w_u,w_{\phi},w_{\sigma}\le1.
+$$
+
+This means undercoordination, void headroom, and contact-spacing anisotropy can increase the exclusion/compression penalty only with nonnegative unit-bounded strength. A sign reversal or weight larger than one would be a new branch-response claim and must be derived before entering the replay.
 
 ## Coefficient-Derivation Replay
 
@@ -516,7 +546,7 @@ The replay is a branch-derived success only if the same coefficient functional p
 | Strain | $-0.0009$ | $-0.0009$ | Deviatoric strain response mildly favors Fe. |
 | Pressure | $0$ | $0$ | Pressure is neutral in the current mock so it cannot carry the result. |
 
-The same fixture derives $e_{\mathrm{Fe}}^{\mathrm{sf}}\approx0.838$, $e_{\mathrm{sil}}^{\mathrm{sf}}\approx1.187$, $n_{\max,\mathrm{Fe},0}^{\mathrm{obl}}\approx1.8$, and $n_{\max,\mathrm{sil},0}^{\mathrm{obl}}\approx1.3$ from its support-function packing records. These values remain mock branch records, but they are no longer independent scalar knobs.
+The same fixture derives $e_{\mathrm{Fe}}^{\mathrm{sf}}\approx0.838$, $e_{\mathrm{sil}}^{\mathrm{sf}}\approx1.187$, $n_{\max,\mathrm{Fe},0}^{\mathrm{obl}}\approx1.8$, and $n_{\max,\mathrm{sil},0}^{\mathrm{obl}}\approx1.3$ from its support-function packing records while taking $\nu_{\mathrm{pack},0}=1$, $V_*=1$, $z_*=12$, and $\phi_*=\pi/(3\sqrt{2})$ from the branch-normalized support-function scaffold. These values remain mock branch records, but they are no longer independent scalar knobs.
 
 The important advancement is not the numerical values; they remain mock inputs. The advancement is the failure-sensitive form: if any future replay changes the branch ingredients and the component ledger no longer sums negative, the dense-medium preference is not derived for that branch.
 
@@ -628,6 +658,7 @@ over the branch interval where iron-rich metallic segregation is being explained
 5. **Transport violation:** the branch produces ordinary dissipative drag below $\mathcal{R}_{\text{tr},*}$ or sheds energy above threshold without a logged event channel.
 6. **Packing shortcut:** the proof assumes $n_{\max,\mathrm{Fe}}^{\mathrm{obl}}>n_{\max,\mathrm{sil}}^{\mathrm{obl}}$ from ordinary density alone instead of deriving it from exclusion envelope, lattice, and support-function geometry.
 7. **Coefficient insertion:** the replay chooses $A_X$, $G_X$, $C_X^{\chi}$, $C_X^S Q_X^{\mathrm{dev}}$, or $C_X^P$ directly to force the sign instead of deriving them from the declared branch ingredients.
+8. **Packing-bound violation:** the replay uses $\xi_X>1$ in an oblate branch, $z_X^{\mathrm{eff}}>12$ in the same-level contact proxy, $\phi_X^{\mathrm{sf}}>1$, or compliance weights outside $[0,1]$ without a branch-response derivation.
 
 ## Executable Toy Replay Fixture
 
@@ -653,7 +684,7 @@ y_{M,r}
 \mu_{M,0}^{\mathrm{sea}},
 $$
 
-where $\mu^{\mathrm{sea}}$ is generated from the coefficient model above. The fixture now derives $e_X^{\mathrm{sf}}$, $n_{\max,X,0}^{\mathrm{obl}}$, and $\Delta\ln n_{\max,X,r}^{\mathrm{obl}}$ from each material `packing_record` and step `packing_update`. It then tests the finite-difference sign $\mathcal{S}_{\mathrm{Fe/sil}}<0$ and records the packing, coherent-coupling, delay, strain, and pressure contributions. Its gates check the no-new-iron guardrail, standard-correction subtraction, matched density intervals, derived-model residual, dense-medium sign, transport threshold, null bounds, and a declared transmutation-leak failure injection.
+where $\mu^{\mathrm{sea}}$ is generated from the coefficient model above. The fixture now derives $e_X^{\mathrm{sf}}$, $n_{\max,X,0}^{\mathrm{obl}}$, and $\Delta\ln n_{\max,X,r}^{\mathrm{obl}}$ from each material `packing_record` and step `packing_update`, while the runner supplies the branch-normalized defaults $\nu_{\mathrm{pack},0}=1$, $V_*=1$, $z_*=12$, and $\phi_*=\pi/(3\sqrt{2})$. It then tests the finite-difference sign $\mathcal{S}_{\mathrm{Fe/sil}}<0$ and records the packing, coherent-coupling, delay, strain, and pressure contributions. Its gates check the no-new-iron guardrail, standard-correction subtraction, matched density intervals, derived-model residual, dense-medium sign, transport threshold, null bounds, and a declared transmutation-leak failure injection.
 
 The current mock packet is promotion-ready only as a toy scaffold. It becomes a real simulation target only after the remaining coefficient inputs are replaced by empirical or branch-derived pressure, temperature, phase, packing, covariance, transport, and null-sector records.
 
