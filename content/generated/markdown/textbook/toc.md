@@ -434,6 +434,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
   - [Atomic Structure](../../../scenes/nuclear/atomic_structure.json)
     - [Multi-Body Assembly Structure](../../../markdown/aaa/nuclear-atomic/atomic-structure.md?section=Multi-Body+Assembly+Structure)
     - [Hydrogen as a Four-Fermion Boundary Test](../../../markdown/aaa/nuclear-atomic/atomic-structure.md?section=Hydrogen+as+a+Four-Fermion+Boundary+Test)
+    - [Element-Dependent Sea Response](../../../markdown/aaa/nuclear-atomic/atomic-structure.md?section=Element-Dependent+Sea+Response)
     - [Angular-Momentum Handoff](../../../markdown/aaa/nuclear-atomic/atomic-structure.md?section=Angular-Momentum+Handoff)
   - [Nucleon Structure](../../../scenes/nuclear/nucleon_structure.json)
     - [Purpose](../../../markdown/aaa/nuclear-atomic/nucleon-structure.md?section=Purpose)
