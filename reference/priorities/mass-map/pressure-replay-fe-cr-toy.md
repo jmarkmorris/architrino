@@ -141,6 +141,62 @@ $$
 
 The same ratio appears for the isotropic contribution to $\delta\ln\chi_{\text{sea}}$, $\delta\ln(c_{\text{eff}}/c_f)$, and $\delta\mathcal{M}_0$ because the toy row shares one $\Theta_{M,r}$ coefficient. The anisotropic entries depart slightly according to the declared $\Delta\Pi^{\parallel-\perp}$ steps, not according to a material-specific row.
 
+## Static Response Vector Handoff
+
+The Fe/Cr toy row can now be replayed by the static response vector fixture after projecting out anisotropic pressure. For the isotropic part of the toy row,
+
+$$
+\delta\ln\Gamma_N^{\mathrm{iso}}
+=
+0.60\,\Theta_{M,r},
+\qquad
+\delta\ln\chi_{\text{sea}}^{\mathrm{iso}}
+=
+0.36\,\Theta_{M,r}.
+$$
+
+If this pressure response is normalized by the cadence shift, the static-equivalent pressure vector has
+
+$$
+a_\chi^{P\to\Gamma}
+=
+\frac{
+\delta\ln\chi_{\text{sea}}^{\mathrm{iso}}
+}{
+\delta\ln\Gamma_N^{\mathrm{iso}}
+}
+=
+0.6.
+$$
+
+A minimal chi-only cadence row then uses
+
+$$
+b_\chi^{P\to\Gamma}
+=
+\frac{
+\delta\ln\Gamma_N^{\mathrm{iso}}
+}{
+\delta\ln\chi_{\text{sea}}^{\mathrm{iso}}
+}
+=
+\frac{5}{3},
+\qquad
+\omega_\chi^{P\to\Gamma}=-\frac{5}{3},
+$$
+
+so the pressure bridge closes
+
+$$
+b_\chi^{P\to\Gamma}a_\chi^{P\to\Gamma}=1,
+\qquad
+\omega_\chi^{P\to\Gamma}a_\chi^{P\to\Gamma}=-1.
+$$
+
+This is a pressure-normalized arithmetic bridge, not a PPN interpretation. If one formally compares $a_\chi^{P\to\Gamma}=0.6$ against $a_\chi^{\mathrm{sig}}=1+\gamma_{\text{eff}}$, the matching algebraic value would be $\gamma_{\text{eff}}=-0.4$, which is not the GR-matching Shapiro branch. The point of the handoff is therefore narrower: pressure data can now feed the same $\Gamma_N$ row checker, while anisotropic pressure remains a separate residual and gravitational shared-delay closure remains separately tested.
+
+The executable mock row is `pressure_bridge_fe_cr_toy_isotropic_projection` in `scripts/spacetime/static-response-vector-mock.json`, replayed by `scripts/spacetime/static-response-vector-toy-model.mjs`.
+
 ## Failure Injection
 
 A real replay should demote or fail the constitutive law if any of the following occur after ordinary condensed-matter corrections are subtracted:

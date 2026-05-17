@@ -16,19 +16,23 @@
   "thresholds": {
     "source_abs_max": 0,
     "standard_subtraction_abs_max": 1e-12,
-    "shared_row_residual_abs_max": 1e-9,
+    "model_residual_abs_max": 1e-9,
     "n_interval_match_abs_max": 1e-12,
     "slope_upper_bound": -1e-9,
     "slope_bound_only_abs_max": 1e-6,
     "demote_abs_sea_residual_max": 1e-6
   },
-  "shared_row": {
-    "delta_n": -0.05,
-    "delta_ln_n_max_obl": -0.6,
-    "delta_ln_chi_sea": 0.02,
-    "delta_S_dev": -0.2,
-    "delta_P_over_K_sea": 0.01,
-    "heavy_scaling": -0.01
+  "coefficient_model": {
+    "name": "branch-derived half-square packing and coherent-coupling model",
+    "convex_penalty": "half_square",
+    "exclusion_scale": 0.24,
+    "coupling_scale": 0.09,
+    "pressure_scale": 0.005,
+    "coupling_weights": {
+      "heavy": 0.7,
+      "bonding": 0.2,
+      "alignment": 0.1
+    }
   },
   "null_bounds": {
     "hidden_transmutation": "pass",
@@ -48,6 +52,16 @@
         "fixed_nuclei": true,
         "S_Fe_nuc": 0
       },
+      "coefficient_inputs": {
+        "exclusion_penalty": 0.75,
+        "n_max_obl_ref": 1.8,
+        "metallic_bonding": 1,
+        "coherent_alignment": 0.9,
+        "delay_coupling": 0.015,
+        "strain_coupling": -0.08,
+        "strain_alignment": 1,
+        "pressure_response": 1
+      },
       "transport_record": {
         "R_tr": 0.18,
         "R_tr_star": 1
@@ -57,7 +71,7 @@
           "step_index": 0,
           "n": 1,
           "mu_std": 0.2,
-          "mu_raw": 0.19,
+          "mu_raw": 0.2,
           "features": {
             "delta_n": 0,
             "delta_ln_n_max_obl": 0,
@@ -71,7 +85,7 @@
           "step_index": 1,
           "n": 1.15,
           "mu_std": 0.235,
-          "mu_raw": 0.21022,
+          "mu_raw": 0.22975216253207877,
           "features": {
             "delta_n": 0.15,
             "delta_ln_n_max_obl": 0.012,
@@ -85,7 +99,7 @@
           "step_index": 2,
           "n": 1.3,
           "mu_std": 0.27,
-          "mu_raw": 0.22866,
+          "mu_raw": 0.2600388961107789,
           "features": {
             "delta_n": 0.3,
             "delta_ln_n_max_obl": 0.027,
@@ -105,6 +119,16 @@
         "fixed_nuclei": true,
         "S_Fe_nuc": 0
       },
+      "coefficient_inputs": {
+        "exclusion_penalty": 1.2,
+        "n_max_obl_ref": 1.3,
+        "metallic_bonding": 0.25,
+        "coherent_alignment": 0.4,
+        "delay_coupling": 0.02,
+        "strain_coupling": -0.03,
+        "strain_alignment": 1,
+        "pressure_response": 1
+      },
       "transport_record": {
         "R_tr": 0.16,
         "R_tr_star": 1
@@ -114,7 +138,7 @@
           "step_index": 0,
           "n": 1,
           "mu_std": 0.17,
-          "mu_raw": 0.1645,
+          "mu_raw": 0.17,
           "features": {
             "delta_n": 0,
             "delta_ln_n_max_obl": 0,
@@ -128,7 +152,7 @@
           "step_index": 1,
           "n": 1.15,
           "mu_std": 0.202,
-          "mu_raw": 0.18792,
+          "mu_raw": 0.2228069446690353,
           "features": {
             "delta_n": 0.15,
             "delta_ln_n_max_obl": 0.002,
@@ -142,7 +166,7 @@
           "step_index": 2,
           "n": 1.3,
           "mu_std": 0.237,
-          "mu_raw": 0.215,
+          "mu_raw": 0.28250248623205067,
           "features": {
             "delta_n": 0.3,
             "delta_ln_n_max_obl": 0.003,

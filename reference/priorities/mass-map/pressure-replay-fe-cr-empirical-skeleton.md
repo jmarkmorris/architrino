@@ -340,6 +340,29 @@ $$
 
 This is the intended state of the skeleton. A future replay may change the reading only after the material-state rows, residual rows, covariance blocks, and null-sector bounds are inserted without changing the fit contract.
 
+## Fit-Runner Handoff
+
+The executable scaffold is
+
+```text
+node scripts/mass-map/pressure-replay-fit-runner.mjs --input scripts/mass-map/pressure-replay-fe-cr-empty-fixture.json --pretty
+```
+
+The empty fixture is intentionally fail-closed:
+
+| Runner field | Empty-fixture value |
+| --- | --- |
+| `rows_total` | `0` |
+| `active_observations` | `0` |
+| `fits.shared.status` | `bound_only` |
+| `fits.separated.status` | `bound_only` |
+| `fits.split.status` | `bound_only` |
+| `null_bounds.status` | `missing` |
+| `reading` | `bound_only` |
+| `empirical_pass` | `false` |
+
+This runner is allowed to compute $\mathcal{R}_{\mathrm{row}}$, $\mathcal{R}_{\mathrm{sep}}$, $\mathcal{R}_{\mathrm{split}}$, rank eligibility, and null-sector status from declared rows, but it may not infer missing pressure rows, covariances, channel masks, or null-sector bounds.
+
 ## Next Data Insertion Checklist
 
 1. Insert at least three pressure rows per retained material-state segment, or declare the channel bound-only by rank.

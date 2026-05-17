@@ -101,6 +101,18 @@ $$
 
 It plays the role that refractive index plays in ordinary optical analogies, but it is a native Noether-Sea response variable. Do not use $n$ for this delay factor; $n$ is reserved for normalized Noether-core density.
 
+Clock and spectral comparisons may also extract the Noether-Sea cadence-stretch diagnostic
+
+$$
+\Gamma_N(\mathbf{x},t)
+=
+\frac{\Omega_{N0}}{\Omega_N(\mathbf{x},t)},
+\qquad
+C_N(\mathbf{x},t)=\Gamma_N^{-1}(\mathbf{x},t).
+$$
+
+Here $\Omega_N$ is a representative local Noether-Sea core cadence and $C_N$ is the corresponding clock-rate factor. This pair is not a new density or delay factor: $n$ tracks normalized core density, $\chi_{\text{sea}}$ tracks effective causal delay, and $\Gamma_N$ tracks cadence stretch. The clock extraction and hydrogen spectral use of this diagnostic belong in [Proper Time and Time Dilation](proper-time-and-time-dilation.md#hydrogen-spectral-clock-rate-conversion-target).
+
 When a calculation needs pro/anti subcomponents, orientation imbalance, or coupling-regime stability thresholds, use [Spacetime Assemblies](spacetime-assemblies.md).
 
 Older parameter-ledger language may denote the baseline ambient Noether-Sea density by $\rho_{vac}$. In spacetime chapters, the preferred medium-density notation is $\rho_{\text{core},0}$ for the reference density and $\rho_{\text{core}}(\mathbf{x},t)$ for the local density. When both notations appear, read $\rho_{vac}$ as the baseline ambient density parameter, not as a separate kind of substance.
@@ -215,6 +227,105 @@ S_{\mathrm{BH}}
 $$
 
 Here $J_\nu$ is the current through frequency or cadence state space, $S_{\mathrm{BH}}$ is loading from black-hole recycling regions, $S_{\mathrm{GW}}$ is the perturbative contribution from gravitational-wave disturbances, and $R_{\mathrm{eq}}[f_N]$ is the local neighbor-equilibration operator. This equation is a derivation target, not a completed constitutive law. It becomes relevant to redshift only if the same $f_N$ record also determines $\Gamma_N$, $\chi_{\text{sea}}$, and the path-history propagation term $\mathcal{P}_{E\to R}$ used in the cosmology chapters.
+
+The first absolute-record transport target packages those requirements into one map. For a photon-channel or spectral family $X$ emitted at $E$ and received at $R$, let $\mathcal S_{X,E\to R}$ be the restriction of $S(t)$ to the source branch, receiver branch, endpoint Noether-Sea cadence records, medium flow, causal wakes, and the path-history ledger relevant to that packet. The candidate transport map is
+
+$$
+\mathfrak T_X
+\!\left[
+\mathcal S_{X,E\to R}
+\right]
+=
+\left(
+\Gamma_{N,E},\,
+\Gamma_{N,R},\,
+B_X(E),\,
+D_v,\,
+Y_{X,E\to R}
+\right),
+\qquad
+\mathcal P_{E\to R,X}
+=
+\exp(Y_{X,E\to R}).
+$$
+
+The endpoint cadence factors are extracted from the same local deformation record used by the clock program:
+
+$$
+\Gamma_{N,Q}
+=
+\exp
+\!\left[
+\mathbf b_N\cdot\mathbf g_N(Q)
++
+\mathcal R_{\Gamma,Q}
+\right],
+\qquad
+Q\in\{E,R\},
+$$
+
+where $\mathbf g_N=(\ln n,\ln\chi_{\text{sea}},\ln\lambda,-\ln\xi,\ln(R_{\text{core}}/R_{\text{core},0}))^T$ in the local endpoint cell. The launch term is the causal-root compression of the emitted phase train. In the first weak-velocity form,
+
+$$
+D_v
+=
+\frac{
+1-\boldsymbol\beta_R\cdot\hat{\mathbf k}
+}{
+1-\boldsymbol\beta_E\cdot\hat{\mathbf k}
+}
+\exp(\mathcal R_v),
+\qquad
+\boldsymbol\beta_Q
+=
+\frac{\mathbf v_Q}{c_{\gamma,Q}},
+$$
+
+where $\hat{\mathbf k}$ points from source to receiver, $c_{\gamma,Q}$ is the local photon-channel speed used for the endpoint comparison, and $\mathcal R_v$ carries higher-order and multi-root Jacobian corrections from the exact causal ledger.
+
+The path-history term is a line integral over the packet path through the Noether Sea:
+
+$$
+Y_{X,E\to R}
+=
+\int_{\gamma_{E\to R}}
+\alpha_{\mathrm{prop},X}
+\!\left[
+S(t_s)
+\right]
+\,ds.
+$$
+
+A first local path-rate ansatz is
+
+$$
+\alpha_{\mathrm{prop},X}
+=
+\mathbf p_X\cdot
+\frac{d\boldsymbol\theta_{\mathrm{sea}}}{ds}
++
+p_{\nu,X}
+\frac{\partial_\nu J_\nu}{f_N+\epsilon_f}
++
+p_{u,X}\nabla\cdot\mathbf u_{\mathrm{sea}}
++
+\mathcal R_{\mathrm{coh},X},
+$$
+
+with $\boldsymbol\theta_{\mathrm{sea}}=(\ln n,\ln\chi_{\text{sea}},\ln\lambda,-\ln\xi)^T$. The first term records smooth medium-gradient transport, the second records signed cadence-space current, the third records medium-flow compression or rarefaction, and $\mathcal R_{\mathrm{coh},X}$ is constrained by image-sharpness, line-coherence, chromaticity, and packet time-dilation tests. This ansatz is a closure target: the coefficient rows $\mathbf b_N$ and $\mathbf p_X$ must be fixed from the declared Noether-Sea constitutive response and then reused across gravitational, relative-motion, and deep-space cases.
+
+With this map, the received frequency is
+
+$$
+\nu_{\mathrm{obs},X}
+=
+\nu_{X,0}B_X(E)
+\frac{\Gamma_{N,R}}{\Gamma_{N,E}}
+D_v
+\exp(-Y_{X,E\to R}),
+$$
+
+so no factor is interpreted as untracked photon energy loss. The packet energy read by the receiver is $E_{\mathrm{obs},X}=h\nu_{\mathrm{obs},X}$ after source branch, endpoint cadence, launch compression, and path-history propagation have all been extracted from the same absolute record.
 
 The expansionary reading is therefore conditional. Local equilibrium by itself does not imply an effective expansion history. A Hubble-like redshift slope appears only if the coarse-grained transport has a signed, persistent cadence-space current or source-relaxation imbalance that projects into the photon path-rate functional while preserving image sharpness, line coherence, and packet time-dilation consistency.
 

@@ -1,0 +1,161 @@
+{
+  "schema": "earth-core-iron-replay/v1",
+  "metadata": {
+    "claim": "Mock Earth-core iron residual replay",
+    "source_packet": "reference/priorities/mass-map/pressure-dependent-noether-sea-constitutive-response.md",
+    "status": "mock scaffold, not empirical geophysics",
+    "guardrail": "Core pressure retunes existing iron assemblies; it does not create iron nuclei."
+  },
+  "thresholds": {
+    "source_abs_max": 0,
+    "segregation_residual_abs_max": 1e-12,
+    "phase_positive_abs_max": 0,
+    "gamma_residual_abs_max": 1e-12,
+    "transport_excess_abs_max": 0,
+    "null_residual_abs_max": 1e-9,
+    "Q_max": 1e-18
+  },
+  "epsilons": {
+    "S": 1,
+    "J": 1,
+    "G": 1,
+    "Gamma": 1,
+    "tr": 1
+  },
+  "weights": {
+    "S": 1,
+    "J": 1,
+    "G": 1,
+    "Gamma": 1,
+    "tr": 1
+  },
+  "inventory_guardrail": {
+    "element": "Fe",
+    "Z": 26,
+    "A": 56,
+    "fixed_inventory": true,
+    "delta_Z_Fe": 0,
+    "delta_A_Fe": 0,
+    "S_Fe_nuc": 0
+  },
+  "shared_theta_sea_id": "theta_core_mock_v1",
+  "theta_sea_records": [
+    {
+      "theta_sea_id": "theta_core_mock_v1",
+      "rho_core": 1.18,
+      "n": 1.18,
+      "chi_sea": 1.12,
+      "ln_Gamma_N": 0.095,
+      "Gamma_N": 1.0996588638142402,
+      "lambda": 0.985,
+      "xi": 0.995,
+      "R_core_ratio": 1,
+      "u_sea": [0, 0, 0],
+      "S_dev": 0.002,
+      "M_sea": {
+        "M0": 1.04,
+        "M2": 0.001
+      },
+      "g_N": {
+        "ln_n": 0.2,
+        "ln_chi_sea": 0.1,
+        "ln_lambda": -0.02,
+        "neg_ln_xi": 0.005,
+        "ln_R_core_ratio": 0
+      },
+      "cadence_row": {
+        "b_n": 0.2,
+        "b_chi": 0.4,
+        "b_lambda": -0.5,
+        "b_xi": 1,
+        "b_R": 0
+      }
+    }
+  ],
+  "rows": [
+    {
+      "row_id": "outer_core_mock",
+      "region": "outer core branch-preserving mock row",
+      "theta_sea_id": "theta_core_mock_v1",
+      "P_GPa": 135,
+      "T_K": 4100,
+      "Phi_eff": -0.68,
+      "phase_label": "iron-rich metallic liquid branch",
+      "lattice_branch": "metallic branch mock state",
+      "N_Fe_density": 1,
+      "J_Fe": [-0.024, 0, 0],
+      "D_Fe": 0.6,
+      "grad_mu_plus_msh_phi_eff": [0.04, 0, 0],
+      "delta_G_Fe_metal_silicate": -0.032,
+      "delta_G_sea_transmutation_claim": false,
+      "R_tr": 0.18,
+      "R_tr_star": 1,
+      "logged_event_channel": null,
+      "null_bounds": {
+        "R_biref": 0,
+        "R_gamma_disp": 0,
+        "R_LV": 0,
+        "R_clksig": 0,
+        "R_tr": 0
+      }
+    },
+    {
+      "row_id": "inner_core_mock",
+      "region": "inner core branch-preserving mock row",
+      "theta_sea_id": "theta_core_mock_v1",
+      "P_GPa": 330,
+      "T_K": 5600,
+      "Phi_eff": -0.75,
+      "phase_label": "iron-rich metallic solid branch",
+      "lattice_branch": "metallic branch mock state",
+      "N_Fe_density": 1.08,
+      "J_Fe": [-0.03, 0, 0],
+      "D_Fe": 0.5,
+      "grad_mu_plus_msh_phi_eff": [0.06, 0, 0],
+      "delta_G_Fe_metal_silicate": -0.045,
+      "delta_G_sea_transmutation_claim": false,
+      "R_tr": 0.22,
+      "R_tr_star": 1,
+      "logged_event_channel": null,
+      "null_bounds": {
+        "R_biref": 0,
+        "R_gamma_disp": 0,
+        "R_LV": 0,
+        "R_clksig": 0,
+        "R_tr": 0
+      }
+    }
+  ],
+  "failure_injections": [
+    {
+      "name": "transmutation_leak_control",
+      "expected_failure_code": "source-guardrail-open",
+      "mutations": [
+        {
+          "path": ["inventory_guardrail", "S_Fe_nuc"],
+          "value": 0.000001
+        }
+      ]
+    },
+    {
+      "name": "transport_threshold_control",
+      "expected_failure_code": "transport-threshold-open",
+      "mutations": [
+        {
+          "path": ["rows", 0, "R_tr"],
+          "value": 1.4
+        }
+      ]
+    },
+    {
+      "name": "clock_row_split_control",
+      "expected_failure_code": "gamma-row-open",
+      "mutations": [
+        {
+          "path": ["theta_sea_records", 0, "ln_Gamma_N"],
+          "value": 0.12
+        }
+      ]
+    }
+  ]
+}

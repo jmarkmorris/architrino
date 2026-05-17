@@ -67,6 +67,67 @@ $$
 
 The branch is shared-delay closed only when $\Delta_\chi^{\mathrm{clk\text{-}sig}}=0$ within the declared tolerance.
 
+## Pressure Bridge
+
+Pressure-response packets can feed the same fixture after their anisotropic terms are separated from the isotropic static projection. For a pressure row $r$, the bridge uses
+
+$$
+\delta\mathbf{g}_r^{P}
+=
+\left(
+\delta\ln n,\,
+\delta\ln\chi_{\text{sea}},\,
+\delta\ln\lambda,\,
+\delta\ln R
+\right)_r
+$$
+
+and checks the pressure version of the cadence row:
+
+$$
+\widehat{\delta\ln\Gamma}_{N,r}^{P}
+=
+b_n\delta\ln n_r
++b_\chi\delta\ln\chi_{\text{sea},r}
++b_\lambda\delta\ln\lambda_r
++b_R\delta\ln R_r.
+$$
+
+The pressure cadence residual is
+
+$$
+\mathcal{R}_{\Gamma,r}^{P}
+=
+\widehat{\delta\ln\Gamma}_{N,r}^{P}
+-\delta\ln\Gamma_{N,r}.
+$$
+
+The inverse clock-rate row must also close:
+
+$$
+\mathcal{R}_{C,r}^{P}
+=
+\left(
+\omega_n\delta\ln n_r
++\omega_\chi\delta\ln\chi_{\text{sea},r}
++\omega_\lambda\delta\ln\lambda_r
++\omega_R\delta\ln R_r
+\right)
++\delta\ln\Gamma_{N,r}.
+$$
+
+When `derive_response` is `gamma_normalized`, the fixture also forms a normalized static-equivalent response vector
+
+$$
+a_i^{P\to\Gamma}
+=
+\frac{\delta g_i^P}{\delta\ln\Gamma_N}.
+$$
+
+This normalization makes pressure rows replayable by the same endpoint arithmetic, but it does not convert pressure loading into a gravitational PPN branch. The `gamma_eff_sweep` diagnostic is only an algebraic comparison against $a_\chi^{\mathrm{sig}}=1+\gamma_{\text{eff}}$; a pressure-normalized value that closes for some formal $\gamma_{\text{eff}}$ is not a solar-system Shapiro result.
+
+Anisotropic pressure entries, such as $\Delta\Pi^{\parallel-\perp}$ or deviatoric strain, must be either projected out before the isotropic static row is evaluated or carried in `anisotropic_residuals`. The isotropic $\Gamma_N$ row must not absorb directional pressure response as a hidden scalar coefficient.
+
 ## Input Packet
 
 Each scenario supplies:
@@ -74,7 +135,9 @@ Each scenario supplies:
 | Field | Meaning |
 | --- | --- |
 | `gamma_eff` | PPN Shapiro-delay coefficient through $a_\chi^{\mathrm{sig}}=1+\gamma_{\text{eff}}$ |
+| `gamma_eff_sweep` | optional list of trial $\gamma_{\text{eff}}$ values for the shared-delay diagnostic |
 | `response` | static weak-potential response vector $(a_n,a_\chi,a_\lambda,a_R)$ |
+| `pressure_bridge` | optional pressure row used to derive a normalized static-equivalent response vector |
 | `cadence_row` | cadence-stretch coefficients $(b_n,b_\chi,b_\lambda,b_R)$ for $\ln\Gamma_N$ |
 | `clock_rate_row` | inverse clock-rate coefficients $(\omega_n,\omega_\chi,\omega_\lambda,\omega_R)$ |
 | `expect_shared_delay` | whether the scenario is expected to satisfy $\Delta_\chi^{\mathrm{clk\text{-}sig}}=0$ |
@@ -88,17 +151,19 @@ The fixture reports:
 | --- | --- |
 | `diagnostics.a_chi_sig` | signal-delay coefficient fixed by the PPN Shapiro map |
 | `diagnostics.delta_chi_clk_sig` | shared clock/signal delay residual |
+| `diagnostics.gamma_eff_sweep` | optional sweep of shared-delay residuals over trial $\gamma_{\text{eff}}$ values |
 | `diagnostics.endpoint_sum` | cadence-stretch row sum |
 | `diagnostics.endpoint_residual` | endpoint residual relative to $1$ |
 | `diagnostics.clock_rate_sum` | inverse clock-rate row sum |
 | `diagnostics.clock_rate_residual` | clock-rate residual relative to $-1$ |
 | `diagnostics.row_inverse_residuals` | coefficient-by-coefficient residuals $b_i+\omega_i$ |
+| `diagnostics.pressure_bridge` | optional pressure-row replay of $\mathcal{R}_{\Gamma}^{P}$, $\mathcal{R}_{C}^{P}$, and effective-speed identity |
 
 These diagnostics turn the first-order response vector into an executable closure object. A later constitutive simulation can replace the mock response values with measured $(a_n,a_\chi,a_\lambda,a_R)$ rows while keeping the same gate.
 
 ## Expected Mock Behavior
 
-The default mock packet has four rows.
+The default mock packet has five rows.
 
 | Scenario | Expected behavior |
 | --- | --- |
@@ -106,5 +171,6 @@ The default mock packet has four rows.
 | `density_scale_compensated_branch` | Passes with nonzero density, scale, and core-radius responses while preserving the endpoint and row-inverse constraints. |
 | `split_clock_signal_delay_branch` | Fails shared-delay closure even though its endpoint and clock-rate rows close arithmetically. |
 | `underclosed_clock_row` | Fails the endpoint and clock-rate sums while satisfying the shared-delay residual. |
+| `pressure_bridge_fe_cr_toy_isotropic_projection` | Passes the pressure-projected cadence and clock-rate rows using the Fe/Cr toy isotropic projection, while correctly reporting that its pressure-normalized $a_\chi^{P\to\Gamma}=0.6$ is not the GR-matching Shapiro branch. |
 
-The two failing rows are intentional failure witnesses. They show that a model can fit the static clock row while violating shared delay, or satisfy shared delay while underclosing the endpoint row.
+The two failing rows are intentional failure witnesses. They show that a model can fit the static clock row while violating shared delay, or satisfy shared delay while underclosing the endpoint row. The pressure bridge row is a third kind of witness: it demonstrates that a pressure packet can close the isotropic $\Gamma_N$ arithmetic while still remaining outside the gravitational PPN interpretation.

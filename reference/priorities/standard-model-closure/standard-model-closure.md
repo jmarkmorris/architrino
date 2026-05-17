@@ -7,7 +7,7 @@
 - Value: `18.69`
 - Cost: `6.2`
 - ROI: `3.01`
-- Status: `ambient-projector-scaffolded`
+- Status: `channel-norm-scaffolded`
 
 ## Task Queue
 
@@ -16,7 +16,7 @@
 3. `confinement_energetics` — Derive confinement-scale behavior from topological or strain energetics. Status: `pending`. Depends on: `overlap_integrals`.
 4. `weak_sector_gauge_closure` — Unify weak axial-frame exposure, `V-A`, CKM/PMNS overlap, weak-corridor provenance, and effective gauge covariance into one closure packet. Status: `review`. Depends on: `overlap_integrals`.
 5. `nuclear_binding_closure` — Build the first nuclear benchmark ladder from hadronic geometry and residual strong channels: deuteron, saturation, alpha-like cluster, and beta stability. Status: `review`. Depends on: `confinement_energetics`.
-6. `hydrogen_fermion_sea_boundary` — Derive the four-fermion hydrogen boundary map that separates exact assembly-ledger membership from dynamic exclusion-envelope and Noether-Sea coarse-graining boundaries. Status: `ambient-projector-scaffolded`. Depends on: `confinement_energetics`, `nuclear_binding_closure`.
+6. `hydrogen_fermion_sea_boundary` — Derive the four-fermion hydrogen boundary map that separates exact assembly-ledger membership from dynamic exclusion-envelope and Noether-Sea coarse-graining boundaries. Status: `channel-norm-scaffolded`. Depends on: `confinement_energetics`, `nuclear_binding_closure`.
 
 ## Scope
 
@@ -231,6 +231,68 @@ r,J,\Lambda
 \right).
 $$
 
+The first norm packet makes those projectors computable as dimensionless stability diagnostics:
+
+$$
+\left\|\mathcal E_{\mathrm{clock}}\right\|_{\mathrm{clock}}^2
+=
+\frac{\left(\delta\omega_{\mathrm{clk}}/\omega_0\right)^2}{\epsilon_\omega^2}
++
+\frac{\operatorname{dist}_{S^1}^2(\delta\theta_{\mathrm{clk}},0)}{\epsilon_\theta^2}
++
+\frac{\left(\delta\chi_{\mathrm{sea}}^{(\ell)}/\chi_{\mathrm{sea}}^{(\ell)}\right)^2}{\epsilon_\chi^2}
++
+\frac{\left\|\mathcal L^{\mathrm{wake}}\big|_{\mathrm{phase}}\right\|_{\mathrm{phase}}^2}{\epsilon_{\mathrm{phase}}^2},
+$$
+
+$$
+\left\|\mathcal E_{\mathrm{corridor}}\right\|_{\mathrm{corridor}}^2
+=
+\frac{1-\hat{\mathbf r}\cdot\hat{\mathbf c}_X}{\epsilon_{\mathrm{dir}}^2}
++
+\frac{\left\|\mathcal L^{\mathrm{wake}}\big|_{\mathrm{oriented}}\right\|_{\mathrm{or}}^2}{\epsilon_{\mathrm{or}}^2}
++
+\frac{\left\|\mathcal L^{\mathrm{corr}}\right\|_{\mathrm{corr}}^2}{\epsilon_{\mathrm{corr}}^2}
++
+\frac{d_{\mathrm{prov}}^2}{\epsilon_{\mathrm{prov}}^2}
++
+\frac{\left\|\Theta^{\mathrm{strain}}\right\|^2}{\epsilon_\Theta^2},
+$$
+
+$$
+\left\|\mathcal E_{\mathrm{packing}}\right\|_{\mathrm{packing}}^2
+=
+\frac{\left\|\mathcal L^{\mathrm{wake}}\right\|_{\mathrm{excl}}^2}{\epsilon_{\mathrm{excl}}^2}
++
+\frac{\left\|\mathcal S_{\mathrm{excl}}^{ab}\right\|_S^2}{\epsilon_S^2}
++
+\frac{\left(\Delta\ln R_{\parallel}\right)^2}{\epsilon_{\parallel}^2}
++
+\frac{\left(\Delta\ln R_{\perp}\right)^2}{\epsilon_{\perp}^2}
++
+\frac{\left(\Delta\ln\lambda\right)^2}{\epsilon_\lambda^2}
++
+\frac{\left(\Delta\ln\xi\right)^2}{\epsilon_\xi^2},
+$$
+
+and
+
+$$
+\left\|\mathcal E_{\mathrm{penetration}}\right\|_{\mathrm{penetration}}^2
+=
+\frac{a_{\parallel}^2}{a_{\parallel,\mathrm{tol}}^2}
++
+\frac{\left\|\mathbf a_{\perp}\right\|^2}{a_{\perp,\mathrm{tol}}^2}
++
+\frac{\operatorname{dist}_{S^1}^2(\Delta\phi_{\mathrm{disrupt}},0)}{\epsilon_{\mathrm{disrupt}}^2}
++
+\frac{\left(\Delta\ln r\right)^2}{\epsilon_r^2}
++
+\frac{\left(\Delta\ln|J|\right)^2}{\epsilon_J^2}.
+$$
+
+The tolerance symbols are chart and benchmark declarations. They may differ by channel because clock bias, corridor coherence, stable packing, and penetration stability are different tests, but they must be fixed before the hydrogen line, boundary, or transport observable is evaluated.
+
 The mismatch metric behind the regularized locked projector is now constrained to compare discrete label compatibility, phase distance, active causal-root ledger distance, provenance distance, and conserved-increment residual:
 
 $$
@@ -247,7 +309,7 @@ d_{\mathrm{disc}}^2
 \frac{\left\|\Delta\mathcal{N}\right\|_{\mathrm{cons}}^2}{\epsilon_{\mathrm{cons}}^2}.
 $$
 
-The next proof burden is to compute the four projection norms from completed confinement, electron resonance, clock-coupling, and Noether-Sea cadence ledgers rather than assigning channel thresholds by fit. The neutral-equilibrium projector also has to be tested against refinement of $\ell$: changing resolution may change the retained window population, but it must not let an assembly-locked branch re-enter the ambient denominator by relabeling.
+The next proof burden is to compute the tolerance scales and retained branch entries from completed confinement, electron resonance, clock-coupling, and Noether-Sea cadence ledgers rather than assigning channel thresholds by fit. The neutral-equilibrium projector also has to be tested against refinement of $\ell$: changing resolution may change the retained window population, but it must not let an assembly-locked branch re-enter the ambient denominator by relabeling.
 
 Failure modes:
 

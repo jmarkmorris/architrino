@@ -16,7 +16,7 @@ const DEFAULT_FEATURE_ORDER = [
 const DEFAULT_THRESHOLDS = {
   source_abs_max: 0,
   standard_subtraction_abs_max: 1e-12,
-  shared_row_residual_abs_max: 1e-9,
+  model_residual_abs_max: 1e-9,
   n_interval_match_abs_max: 1e-12,
   slope_upper_bound: -1e-9,
   slope_bound_only_abs_max: 1e-6,
@@ -60,7 +60,7 @@ Options:
 
 This evaluates a toy Fe/silicate dense-medium segregation replay:
   y_M,r = mu_raw,M,r - mu_std,M,r
-  yhat_M,r = B_seg q_M,r
+  yhat_M,r = Delta mu_sea,M,r from coefficient model or B_seg q_M,r
   S_Fe/sil = d y_Fe / d n - d y_sil / d n.
 It is a scaffold for proof and simulation closure, not empirical geophysics.`);
 }
@@ -96,17 +96,26 @@ function nonnegativeNumber(value, label) {
   return number;
 }
 
+function positiveNumber(value, label) {
+  const number = finiteNumber(value, label);
+  if (number <= 0) {
+    throw new Error(`${label} must be positive.`);
+  }
+  return number;
+}
+
 function thresholdMap(inputThresholds = {}) {
   const raw = { ...DEFAULT_THRESHOLDS, ...inputThresholds };
+  const modelResidualAbsMax = raw.model_residual_abs_max ?? raw.shared_row_residual_abs_max;
   return {
     source_abs_max: nonnegativeNumber(raw.source_abs_max, "thresholds.source_abs_max"),
     standard_subtraction_abs_max: nonnegativeNumber(
       raw.standard_subtraction_abs_max,
       "thresholds.standard_subtraction_abs_max"
     ),
-    shared_row_residual_abs_max: nonnegativeNumber(
-      raw.shared_row_residual_abs_max,
-      "thresholds.shared_row_residual_abs_max"
+    model_residual_abs_max: nonnegativeNumber(
+      modelResidualAbsMax,
+      "thresholds.model_residual_abs_max"
     ),
     n_interval_match_abs_max: nonnegativeNumber(
       raw.n_interval_match_abs_max,
@@ -133,6 +142,9 @@ function featureOrder(input) {
 }
 
 function sharedRow(input, order) {
+  if (input.shared_row === undefined) {
+    return null;
+  }
   const row = asObject(input.shared_row, "shared_row");
   return Object.fromEntries(
     order.map((key) => [key, finiteNumber(row[key], `shared_row.${key}`)])
@@ -141,6 +153,162 @@ function sharedRow(input, order) {
 
 function dotRow(row, features, order) {
   return order.reduce((sum, key) => sum + row[key] * features[key], 0);
+}
+
+function coefficientModel(input) {
+  if (input.coefficient_model === undefined) {
+    return null;
+  }
+  const raw = asObject(input.coefficient_model, "coefficient_model");
+  const weights = asObject(raw.coupling_weights ?? {}, "coefficient_model.coupling_weights");
+  return {
+    name: raw.name ?? "coefficient-derivation",
+    convex_penalty: raw.convex_penalty ?? "half_square",
+    exclusion_scale: positiveNumber(raw.exclusion_scale, "coefficient_model.exclusion_scale"),
+    coupling_scale: positiveNumber(raw.coupling_scale, "coefficient_model.coupling_scale"),
+    pressure_scale: finiteNumber(raw.pressure_scale ?? 0, "coefficient_model.pressure_scale"),
+    coupling_weights: {
+      heavy: finiteNumber(weights.heavy ?? 0, "coefficient_model.coupling_weights.heavy"),
+      bonding: finiteNumber(weights.bonding ?? 0, "coefficient_model.coupling_weights.bonding"),
+      alignment: finiteNumber(weights.alignment ?? 0, "coefficient_model.coupling_weights.alignment"),
+    },
+  };
+}
+
+function predictionModel(input, order) {
+  const model = coefficientModel(input);
+  const row = sharedRow(input, order);
+  if (model && row) {
+    throw new Error("Declare coefficient_model or shared_row, not both.");
+  }
+  if (model) {
+    return {
+      kind: "coefficient_derivation",
+      coefficient_model: model,
+    };
+  }
+  if (row) {
+    return {
+      kind: "shared_row",
+      shared_row: row,
+    };
+  }
+  throw new Error("Input must declare coefficient_model or shared_row.");
+}
+
+function convexPenalty(kind, x, label) {
+  if (kind === "half_square") {
+    return 0.5 * x * x;
+  }
+  throw new Error(`${label}.convex_penalty has unsupported value: ${kind}`);
+}
+
+function materialCoefficientInputs(material, materialLabel) {
+  return asObject(material.coefficient_inputs ?? {}, `${materialLabel}.coefficient_inputs`);
+}
+
+function deriveCoefficients(material, materialLabel, features, prediction) {
+  const model = prediction.coefficient_model;
+  const input = materialCoefficientInputs(material, materialLabel);
+  const heavyScaling = finiteNumber(
+    features.heavy_scaling ?? input.heavy_scaling ?? 0,
+    `${materialLabel}.coefficient_inputs.heavy_scaling`
+  );
+  const metallicBonding = finiteNumber(
+    input.metallic_bonding ?? 0,
+    `${materialLabel}.coefficient_inputs.metallic_bonding`
+  );
+  const coherentAlignment = finiteNumber(
+    input.coherent_alignment ?? 0,
+    `${materialLabel}.coefficient_inputs.coherent_alignment`
+  );
+  const strainAlignment = finiteNumber(
+    input.strain_alignment ?? 1,
+    `${materialLabel}.coefficient_inputs.strain_alignment`
+  );
+  const pressureResponse = finiteNumber(
+    input.pressure_response ?? 1,
+    `${materialLabel}.coefficient_inputs.pressure_response`
+  );
+  const weights = model.coupling_weights;
+  return {
+    A: model.exclusion_scale * positiveNumber(
+      input.exclusion_penalty,
+      `${materialLabel}.coefficient_inputs.exclusion_penalty`
+    ),
+    n_max_obl_ref: positiveNumber(
+      input.n_max_obl_ref,
+      `${materialLabel}.coefficient_inputs.n_max_obl_ref`
+    ),
+    G: model.coupling_scale * (
+      weights.heavy * heavyScaling +
+      weights.bonding * metallicBonding +
+      weights.alignment * coherentAlignment
+    ),
+    C_chi: finiteNumber(input.delay_coupling ?? 0, `${materialLabel}.coefficient_inputs.delay_coupling`),
+    C_S_Q: finiteNumber(input.strain_coupling ?? 0, `${materialLabel}.coefficient_inputs.strain_coupling`) *
+      strainAlignment,
+    C_P: model.pressure_scale * pressureResponse,
+    term_inputs: {
+      heavy_scaling: heavyScaling,
+      metallic_bonding: metallicBonding,
+      coherent_alignment: coherentAlignment,
+      strain_alignment: strainAlignment,
+      pressure_response: pressureResponse,
+    },
+  };
+}
+
+function mediumCostComponents(material, materialLabel, features, prediction) {
+  const coefficients = deriveCoefficients(material, materialLabel, features, prediction);
+  const deltaLnNMax = finiteNumber(
+    features.delta_ln_n_max_obl ?? 0,
+    `${materialLabel}.features.delta_ln_n_max_obl`
+  );
+  const nMaxObl = coefficients.n_max_obl_ref * Math.exp(deltaLnNMax);
+  const n = finiteNumber(features.delta_n + 1, `${materialLabel}.features.delta_n + 1`);
+  if (n <= 0) {
+    throw new Error(`${materialLabel}.features.delta_n must keep n positive.`);
+  }
+  const x = n / nMaxObl;
+  const packing = coefficients.A * convexPenalty(
+    prediction.coefficient_model.convex_penalty,
+    x,
+    "coefficient_model"
+  );
+  const coupling = -coefficients.G * n;
+  const delay = coefficients.C_chi * finiteNumber(
+    features.delta_ln_chi_sea ?? 0,
+    `${materialLabel}.features.delta_ln_chi_sea`
+  );
+  const strain = coefficients.C_S_Q * finiteNumber(
+    features.delta_S_dev ?? 0,
+    `${materialLabel}.features.delta_S_dev`
+  );
+  const pressure = coefficients.C_P * finiteNumber(
+    features.delta_P_over_K_sea ?? 0,
+    `${materialLabel}.features.delta_P_over_K_sea`
+  );
+  return {
+    coefficients,
+    n,
+    n_max_obl: nMaxObl,
+    x_n_over_n_max: x,
+    components: {
+      packing,
+      coupling,
+      delay,
+      strain,
+      pressure,
+      total: packing + coupling + delay + strain + pressure,
+    },
+  };
+}
+
+function subtractComponents(current, baseline) {
+  return Object.fromEntries(
+    Object.keys(current).map((key) => [key, current[key] - baseline[key]])
+  );
 }
 
 function gate(status, value, threshold, failureCode) {
@@ -169,7 +337,7 @@ function sourceValue(guardrail, label) {
   return finiteNumber(source, `${label}.S_Fe_nuc`);
 }
 
-function evaluateMaterial(material, materialIndex, order, row) {
+function evaluateMaterial(material, materialIndex, order, prediction) {
   const key = materialKey(material, materialIndex);
   const guardrail = asObject(material.inventory_guardrail ?? {}, `${key}.inventory_guardrail`);
   const source = sourceValue(guardrail, `${key}.inventory_guardrail`);
@@ -179,6 +347,7 @@ function evaluateMaterial(material, materialIndex, order, row) {
     throw new Error(`${key}.steps must include at least two density steps.`);
   }
 
+  let baselineComponents = null;
   const rows = steps.map((step, stepIndex) => {
     const rowKey = stepKey(material, materialIndex, step, stepIndex);
     const featuresInput = asObject(step.features, `${rowKey}.features`);
@@ -195,7 +364,30 @@ function evaluateMaterial(material, materialIndex, order, row) {
         ? muRaw - muStd
         : finiteNumber(step.sea_residual, `${rowKey}.sea_residual`);
     const standardSubtractionResidual = seaResidual - (muRaw - muStd);
-    const predictedSeaResidual = dotRow(row, features, order);
+    let predictionRecord = null;
+    let predictedSeaResidual = null;
+    if (prediction.kind === "coefficient_derivation") {
+      const predicted = mediumCostComponents(material, rowKey, features, prediction);
+      if (baselineComponents === null) {
+        baselineComponents = predicted.components;
+      }
+      const componentDeltas = subtractComponents(predicted.components, baselineComponents);
+      predictedSeaResidual = componentDeltas.total;
+      predictionRecord = {
+        kind: prediction.kind,
+        derived_coefficients: predicted.coefficients,
+        n: predicted.n,
+        n_max_obl: predicted.n_max_obl,
+        x_n_over_n_max: predicted.x_n_over_n_max,
+        component_values: predicted.components,
+        component_deltas: componentDeltas,
+      };
+    } else {
+      predictedSeaResidual = dotRow(prediction.shared_row, features, order);
+      predictionRecord = {
+        kind: prediction.kind,
+      };
+    }
     return {
       key: rowKey,
       step_index: step.step_index ?? stepIndex,
@@ -206,7 +398,8 @@ function evaluateMaterial(material, materialIndex, order, row) {
       standard_subtraction_residual: standardSubtractionResidual,
       features,
       predicted_sea_residual: predictedSeaResidual,
-      shared_row_residual: seaResidual - predictedSeaResidual,
+      model_residual: seaResidual - predictedSeaResidual,
+      prediction: predictionRecord,
     };
   });
 
@@ -285,6 +478,22 @@ function slopeRows(fe, sil, thresholds) {
     }
     const slopeFe = (feCurrent.sea_residual - fePrev.sea_residual) / dNFe;
     const slopeSil = (silCurrent.sea_residual - silPrev.sea_residual) / dNSil;
+    const componentSlopes = {};
+    const feCurrentComponents = feCurrent.prediction?.component_deltas;
+    const fePrevComponents = fePrev.prediction?.component_deltas;
+    const silCurrentComponents = silCurrent.prediction?.component_deltas;
+    const silPrevComponents = silPrev.prediction?.component_deltas;
+    if (feCurrentComponents && fePrevComponents && silCurrentComponents && silPrevComponents) {
+      for (const key of Object.keys(feCurrentComponents)) {
+        const feComponentSlope = (feCurrentComponents[key] - fePrevComponents[key]) / dNFe;
+        const silComponentSlope = (silCurrentComponents[key] - silPrevComponents[key]) / dNSil;
+        componentSlopes[key] = {
+          slope_fe: feComponentSlope,
+          slope_silicate: silComponentSlope,
+          S_Fe_sil: feComponentSlope - silComponentSlope,
+        };
+      }
+    }
     rows.push({
       interval_index: i - 1,
       from_step: [fePrev.step_index, silPrev.step_index],
@@ -294,6 +503,7 @@ function slopeRows(fe, sil, thresholds) {
       slope_fe: slopeFe,
       slope_silicate: slopeSil,
       S_Fe_sil: slopeFe - slopeSil,
+      component_slopes: componentSlopes,
     });
   }
   return { rows, intervalFailures };
@@ -321,6 +531,7 @@ function firstFailureCode(gates) {
     "source_guardrail",
     "standard_correction_subtraction",
     "pair_coverage",
+    "derived_model_fit",
     "shared_row_fit",
     "dense_medium_sign",
     "transport_threshold",
@@ -378,6 +589,12 @@ function applyFailureInjection(input, injection) {
         ...mutation.shared_row,
       };
     }
+    if (mutation.coefficient_model) {
+      scenario.coefficient_model = {
+        ...scenario.coefficient_model,
+        ...mutation.coefficient_model,
+      };
+    }
     if (mutation.material_id) {
       const material = scenario.materials?.find((entry) => entry.material_id === mutation.material_id);
       if (!material) {
@@ -387,6 +604,12 @@ function applyFailureInjection(input, injection) {
         material.inventory_guardrail = {
           ...material.inventory_guardrail,
           ...mutation.inventory_guardrail,
+        };
+      }
+      if (mutation.coefficient_inputs) {
+        material.coefficient_inputs = {
+          ...material.coefficient_inputs,
+          ...mutation.coefficient_inputs,
         };
       }
     }
@@ -422,7 +645,7 @@ function evaluateFailureInjections(input, inputPath) {
 function evaluateScenario(input, inputPath, options = {}) {
   const includeFailureInjections = options.includeFailureInjections ?? true;
   const order = featureOrder(input);
-  const row = sharedRow(input, order);
+  const prediction = predictionModel(input, order);
   const thresholds = thresholdMap(input.thresholds);
   const materialsInput = Array.isArray(input.materials) ? input.materials : [];
   if (materialsInput.length < 2) {
@@ -430,7 +653,7 @@ function evaluateScenario(input, inputPath, options = {}) {
   }
 
   const materials = materialsInput.map((material, index) =>
-    evaluateMaterial(material, index, order, row)
+    evaluateMaterial(material, index, order, prediction)
   );
   const fe = pickMaterial(materials, "Fe");
   const sil = pickMaterial(materials, "silicate");
@@ -447,8 +670,8 @@ function evaluateScenario(input, inputPath, options = {}) {
   const maxStandardSubtractionResidual = Math.max(
     ...allRows.map((rowEntry) => Math.abs(rowEntry.standard_subtraction_residual))
   );
-  const maxSharedRowResidual = Math.max(
-    ...allRows.map((rowEntry) => Math.abs(rowEntry.shared_row_residual))
+  const maxModelResidual = Math.max(
+    ...allRows.map((rowEntry) => Math.abs(rowEntry.model_residual))
   );
   const maxAbsSeaResidual = Math.max(...allRows.map((rowEntry) => Math.abs(rowEntry.sea_residual)));
   const maxSFeSil = Math.max(...slopes.map((rowEntry) => rowEntry.S_Fe_sil));
@@ -458,6 +681,7 @@ function evaluateScenario(input, inputPath, options = {}) {
     ? evaluateFailureInjections(input, inputPath)
     : { controls: [], failures: [] };
 
+  const fitGateKey = prediction.kind === "coefficient_derivation" ? "derived_model_fit" : "shared_row_fit";
   const gates = {
     source_guardrail: gate(
       sourceFailures.length === 0 ? "pass" : "fail",
@@ -486,11 +710,11 @@ function evaluateScenario(input, inputPath, options = {}) {
       "matched Fe/silicate density intervals",
       "density-interval-open"
     ),
-    shared_row_fit: gate(
-      maxSharedRowResidual <= thresholds.shared_row_residual_abs_max ? "pass" : "fail",
-      maxSharedRowResidual,
-      thresholds.shared_row_residual_abs_max,
-      "shared-row-open"
+    [fitGateKey]: gate(
+      maxModelResidual <= thresholds.model_residual_abs_max ? "pass" : "fail",
+      maxModelResidual,
+      thresholds.model_residual_abs_max,
+      prediction.kind === "coefficient_derivation" ? "derived-coefficient-open" : "shared-row-open"
     ),
     dense_medium_sign: gate(
       maxSFeSil < thresholds.slope_upper_bound ? "pass" : "fail",
@@ -520,7 +744,7 @@ function evaluateScenario(input, inputPath, options = {}) {
   const totals = {
     max_abs_sea_residual: maxAbsSeaResidual,
     max_standard_subtraction_residual: maxStandardSubtractionResidual,
-    max_shared_row_residual: maxSharedRowResidual,
+    max_model_residual: maxModelResidual,
     max_S_Fe_sil: maxSFeSil,
     failure_injection_count: failureInjections.controls.length,
   };
@@ -531,7 +755,7 @@ function evaluateScenario(input, inputPath, options = {}) {
     input_path: path.relative(process.cwd(), inputPath),
     metadata: input.metadata ?? {},
     feature_order: order,
-    shared_row: row,
+    prediction_model: prediction,
     thresholds,
     materials,
     slope_rows: slopes,
@@ -542,7 +766,7 @@ function evaluateScenario(input, inputPath, options = {}) {
     promotion_status: classification.promotion_status,
     failure_code: classification.failure_code,
     note:
-      "This is a toy replay scaffold for the Fe/silicate dense-medium sign condition. Passing it does not validate Earth-core iron segregation; it only checks the declared packet shape, guardrails, shared row, and sign logic.",
+      "This is a toy replay scaffold for the Fe/silicate dense-medium sign condition. Passing it does not validate Earth-core iron segregation; it only checks the declared packet shape, guardrails, coefficient model, and sign logic.",
   };
 }
 

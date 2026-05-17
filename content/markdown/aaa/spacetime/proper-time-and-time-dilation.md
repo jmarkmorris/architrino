@@ -324,6 +324,113 @@ $$
 -\ln\Gamma_{N,R}.
 $$
 
+The full candidate redshift comparison keeps that endpoint clock term separate from source, launch, and path-history terms:
+
+$$
+\ln(1+z_X)
+=
+\ln\Gamma_{N,E}
+-\ln\Gamma_{N,R}
+-\ln D_v
++Y_{X,E\to R}
+-\ln B_X(E).
+$$
+
+Here $B_X(E)$ is the source-branch factor, $D_v$ is the launch or relative-motion phase-compression factor, and $Y_{X,E\to R}=\ln\mathcal P_{E\to R,X}$ is the path-history propagation integral through the Noether Sea. This chapter owns the extraction of $\Gamma_N$ and $C_N=\Gamma_N^{-1}$. The other factors are routed through the absolute-record transport map in [Noether Sea](noether-sea.md#equilibrium-transport-hypothesis) and must not be folded into $\Gamma_N$ unless a derivation proves the reduction in a declared limit.
+
+### Hydrogen Spectral Clock-Rate Conversion Target
+
+Hydrogen spectra give the first atom-local use of the $\Gamma_N$ extraction map. The cadence-stretch factor is not the frequency multiplier itself. In the sign convention above, $\Gamma_N>1$ means the local Noether-Sea cadence is stretched, so the corresponding local clock-rate factor is
+
+$$
+C_N(\mathbf{x},t)
+=
+\Gamma_N^{-1}(\mathbf{x},t).
+$$
+
+For the hydrogen spectral channel at resolution $\ell$, extract the clock-facing deformation record from the same response map used by the spectral scan:
+
+$$
+\mathbf{g}_{N,\mathrm H}^{(\ell)}
+=
+\left(
+\ln n_{\mathrm H}^{(\ell)},\,
+\ln\chi_{\text{sea},\mathrm H}^{(\ell)},\,
+\ln\lambda_{\mathrm H}^{(\ell)},\,
+-\ln\xi_{\mathrm H}^{(\ell)},\,
+\ln\frac{R_{\text{core},\mathrm H}^{(\ell)}}{R_{\text{core},0}}
+\right)^T.
+$$
+
+The hydrogen clock/rate conversion target is then
+
+$$
+\ln\Gamma_{N,\mathrm H}^{(\ell)}
+=
+\mathbf{b}_{N}^{\mathrm{spec}}\cdot
+\mathbf{g}_{N,\mathrm H}^{(\ell)}
++
+\mathcal R_{\Gamma,\mathrm H}^{\mathrm{spec},(\ell)},
+\qquad
+C_{N,\mathrm H}^{(\ell)}
+=
+\left(\Gamma_{N,\mathrm H}^{(\ell)}\right)^{-1}.
+$$
+
+The row $\mathbf{b}_{N}^{\mathrm{spec}}$ is not a per-line fit. It is the spectral-channel instance of the same clock-row program above, with $b_\xi=1$ inherited from the homogeneous Lorentz branch and the weak-field scalar combination constrained by gravitational redshift. The residual $\mathcal R_{\Gamma,\mathrm H}^{\mathrm{spec},(\ell)}$ carries higher-order branch effects such as recoil, hyperfine structure, medium anisotropy, or unresolved source-branch corrections; it must not absorb the basic distinction between $n$, $\chi_{\text{sea}}$, and clock cadence.
+
+For a hydrogen transition $a\to b$, the clock-converted spectral readout is therefore
+
+$$
+\nu_{a\to b}^{\mathrm{obs},(\ell)}
+=
+C_{N,\mathrm H}^{(\ell)}
+\frac{
+E_{\text{env}}^{(\ell)}(a)
+-
+E_{\text{env}}^{(\ell)}(b)
+}{h}
++
+\nu_{a\to b}^{\mathrm{res},(\ell)}.
+$$
+
+Equivalently, an isolated line with bounded event residual gives a line-inferred cadence stretch,
+
+$$
+\widehat\Gamma_{N,\mathrm H}^{(\ell)}(a,b)
+=
+\frac{
+E_{\text{env}}^{(\ell)}(a)
+-
+E_{\text{env}}^{(\ell)}(b)
+}{
+h\nu_{a\to b}^{\mathrm{obs},(\ell)}
+}.
+$$
+
+The first pass condition is that one $\Gamma_{N,\mathrm H}^{(\ell)}$ from the local Noether-Sea response controls the chosen line set:
+
+$$
+\max_{(a,b)\in\mathcal L_{\mathrm H}^{0}}
+\frac{
+\left|
+\ln\widehat\Gamma_{N,\mathrm H}^{(\ell)}(a,b)
+-
+\ln\Gamma_{N,\mathrm H}^{(\ell)}
+\right|
+}{
+\left|
+\ln\Gamma_{N,\mathrm H}^{(\ell)}
+\right|
++
+\varepsilon_{\Gamma}
+}
+\le
+\Delta_{\Gamma}^{\mathrm{tol}}.
+$$
+
+This target fails if $\Gamma_N$ is multiplied directly into the line frequency after being defined as cadence stretch, if each transition requires its own clock coefficient row, if $n$ or $\chi_{\text{sea}}$ is used as a substitute for $\Gamma_N$, if recoil or photon-channel propagation is hidden inside $\Gamma_N$, or if the hydrogen spectral map uses a different Noether-Sea response record than the clock, Shapiro-delay, or endpoint-redshift comparisons.
+
 ---
 
 ## Mechanisms for Time Dilation

@@ -26,7 +26,7 @@ $$
 
 The labels $(n,\ell,m)$ are therefore spectral and orbital recovery labels for the effective envelope. They should not be used backward as evidence that the internal nuclear or electron Noether-core ledgers have already been derived.
 
-The first closure target is the Rydberg constant. In the present notation, a completed model should express $R_\infty$ as a function of the effective nuclear causal-wake envelope $\mathcal W_{\text{nuc}}$, the physical Noether-core density $\rho_{\text{core}}(\mathbf{x},t)$, the normalized density $n(\mathbf{x},t)$, and the local clock/rate response encoded by $\chi_{\text{sea}}(\mathbf{x},t)$. The important discipline is to keep $n$ as normalized density and $\chi_{\text{sea}}$ as the delay factor.
+The first closure target is the Rydberg constant. In the present notation, a completed model should express $R_\infty$ as a function of the effective nuclear causal-wake envelope $\mathcal W_{\text{nuc}}$, the physical Noether-core density $\rho_{\text{core}}(\mathbf{x},t)$, the normalized density $n(\mathbf{x},t)$, the Noether-Sea delay factor $\chi_{\text{sea}}(\mathbf{x},t)$, and the local clock/rate response encoded by $\Gamma_N(\mathbf{x},t)$. The important discipline is to keep $n$ as normalized density, $\chi_{\text{sea}}$ as the delay factor, and $\Gamma_N$ as the cadence-stretch diagnostic.
 
 Spectral lines should then be recovered as transitions between effective envelope basins:
 
@@ -71,7 +71,7 @@ with $E_{\text{env}}^{(\ell)}$ still depending on $\mathcal W_{\text{nuc}}$, $\r
 $$
 \nu_{a\to b}^{\mathrm{obs},(\ell)}
 =
-\Gamma_N^{(\ell)}
+\left(\Gamma_N^{(\ell)}\right)^{-1}
 \frac{
 E_{\text{env}}^{(\ell)}(a)
 -
@@ -79,7 +79,35 @@ E_{\text{env}}^{(\ell)}(b)
 }{h},
 $$
 
-where $\Gamma_N^{(\ell)}$ stands for the local cadence-stretch readout until the clock/rate closure supplies the final conversion law. The spectral scan passes only if the same hydrogen ledger and Noether-Sea complement produce a stable line readout under admissible refinement:
+where $\Gamma_N^{(\ell)}$ stands for the local cadence-stretch readout and $\left(\Gamma_N^{(\ell)}\right)^{-1}$ is the corresponding clock-rate conversion from [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md#hydrogen-spectral-clock-rate-conversion-target). The spectral scan passes only if the same hydrogen ledger and Noether-Sea complement produce a stable line readout under admissible refinement:
+
+$$
+\left\|
+\mathcal E_{\mathrm{spec}}
+\right\|_{\mathrm{spec}}^2
+=
+\left\|
+\mathcal E_{\mathrm{clock}}
+\right\|_{\mathrm{clock}}^2
++
+\frac{
+\left[
+\delta E_{\mathrm{env}}^{(\ell)}(a)
+-
+\delta E_{\mathrm{env}}^{(\ell)}(b)
+\right]^2
+}{
+\epsilon_{\mathrm{gap}}^2
+}
++
+\frac{
+\left(\delta\Gamma_N^{(\ell)}/\Gamma_N^{(\ell)}\right)^2
+}{
+\epsilon_{\Gamma}^2
+}.
+$$
+
+This makes the spectral channel a composite readout, not a separate fitted surface. The clock norm supplies the phase/cadence/delay part, while the envelope-gap term tests whether the same electron branch and proton source envelope recover the line spacing. If the line can be matched only by changing $\Gamma_N^{(\ell)}$, $\chi_{\text{sea}}^{(\ell)}$, or the electron-envelope branch after the transition pair is chosen, the spectral channel has split from the hydrogen boundary scan.
 
 $$
 \Delta_{\mathrm{spec}}(\ell,\ell')
@@ -168,7 +196,7 @@ $$
 \left|
 h\nu_{a\to b}^{\mathrm{obs},(\ell)}
 -
-\Gamma_N^{(\ell)}
+\left(\Gamma_N^{(\ell)}\right)^{-1}
 \left(
 E_{\text{env}}^{(\ell)}(a)
 -

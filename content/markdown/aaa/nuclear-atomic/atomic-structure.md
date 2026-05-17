@@ -270,6 +270,33 @@ At hydrogen resolution the four first projectors have distinct jobs:
 | $\Pi_{\mathrm{packing}}$ | Exclusion magnitude, exclusion-stress tensor, and envelope scale/shape entries | Determines stable adjacency and coarse excluded volume without treating signs of force as a packing criterion |
 | $\Pi_{\mathrm{penetration}}$ | Signed branch acceleration, path-tangent acceleration, and phase-disruption entries | Determines whether a trial path through the fermion envelope remains dynamically stable |
 
+The corresponding first norm packet for hydrogen is inherited from the channel norms in [Noether Core Geometry](../spacetime/noether-core-geometry.md#assembly-noether-sea-interface-diagnostic). In an atomic window, define the channel exposure scan
+
+$$
+\mathfrak N_{\mathrm H,X}^{(\ell)}(f)
+=
+\sum_{j\in\mathcal I_f(t)}
+\sum_{t_0\in\mathcal C_{\mathbf{x}j}(t)}
+\zeta_f
+\!\left(
+\mathcal B_{\mathbf{x}j}^{(t_0)}
+\right)
+\frac{
+\left\|
+\mathcal E_X
+\!\left(
+\mathcal B_{\mathbf{x}j}^{(t_0)}
+\right)
+\right\|_X
+}{
+r_{\mathbf{x}j}^2\left|J_{\mathbf{x}j}\right|
+},
+\qquad
+f\in\{e,u_1,u_2,d\}.
+$$
+
+The hydrogen channel decision is then not a free radius choice. It is the stability statement that the relevant exposure scan crosses the declared threshold while the same ambient denominator uses $\zeta_{\mathrm{sea,H}}^{(\ell)}$. Clock scans use the dimensionless phase/cadence/delay norm; corridor scans use orientation, provenance, and strong-sector ledger coherence; packing scans use exclusion magnitude and envelope-shape response; and penetration scans use signed path acceleration plus phase disruption before taking the scalar dominance norm. The same branch can therefore be weakly visible to clocks while still far below the packing or penetration thresholds.
+
 This resolves the scale question in layered form:
 
 | Layer | What is being resolved | Boundary meaning |

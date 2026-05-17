@@ -152,6 +152,124 @@ $$
 
 This is the first proof target. The left side must come from assembly coupling and metallic coordination; the right side must come from packing, exclusion-volume, delay, and strain costs. If either side is inserted as a free phase label, the argument has not been derived.
 
+## Coefficient-Derivation Replay
+
+The toy replay should no longer treat $B_{\mathrm{seg}}$ as a free row when the target is proof-route advancement. A coefficient-derived replay first declares branch ingredients for each material phase $X$ and computes the cost coefficients from them:
+
+$$
+A_X
+=
+a_0 e_X,
+$$
+
+$$
+G_X
+=
+g_0
+\left(
+w_Z H_X
++
+w_B B_X
++
+w_U U_X
+\right),
+$$
+
+$$
+C_X^{\chi}=d_X,
+\qquad
+C_X^S Q_X^{\mathrm{dev}}=s_X,
+\qquad
+C_X^P=p_0 p_X.
+$$
+
+The heavy/coordinated loading term is
+
+$$
+H_X
+=
+\left\langle
+C_A
+\left(
+\frac{Z_A}{Z_*}
+\right)^{\eta_Z}
+\right\rangle_{A\in\mathcal{C}_X},
+$$
+
+where $\mathcal{C}_X$ is the declared material cell. For a pure metallic Fe toy cell this can reduce to the Fe entry; for a silicate cell it must remain a phase average over the stated constituent mix.
+
+Here $e_X$ is the declared exclusion/compression penalty, $H_X$ is the heavy/coordinated assembly loading term, $B_X$ is the bonding-corridor coherence term, $U_X$ is the local alignment term, $d_X$ is the delay coupling, $s_X$ is the branch-projected strain coupling, and $p_X$ is the pressure-response factor. For a silicate branch, $H_X$ must be a material-cell average over the declared phase, not an element-name shortcut.
+
+For pressure/density step $r$,
+
+$$
+n_{\max,X,r}^{\mathrm{obl}}
+=
+n_{\max,X,0}^{\mathrm{obl}}
+\exp\!\left(
+\Delta\ln n_{\max,X,r}^{\mathrm{obl}}
+\right).
+$$
+
+The branch-derived medium residual is then
+
+$$
+\widehat y_{X,r}
+=
+\mu_{X,r}^{\mathrm{sea}}
+-
+\mu_{X,0}^{\mathrm{sea}},
+$$
+
+with
+
+$$
+\mu_{X,r}^{\mathrm{sea}}
+=
+A_X
+\Psi\!\left(
+\frac{n_r}{n_{\max,X,r}^{\mathrm{obl}}}
+\right)
+-
+G_X n_r
++
+C_X^{\chi}\ln\chi_{\text{sea},r}
++
+C_X^S Q_X^{\mathrm{dev}}S_{\mathrm{dev},r}
++
+C_X^P\Pi_r.
+$$
+
+The sign test becomes a component ledger:
+
+$$
+\mathcal{S}_{\mathrm{Fe/sil}}
+=
+\mathcal{S}_{\mathrm{pack}}
++
+\mathcal{S}_{G}
++
+\mathcal{S}_{\chi}
++
+\mathcal{S}_{S}
++
+\mathcal{S}_{P}
+<
+0.
+$$
+
+The replay is a branch-derived success only if the same coefficient functional produces both material residuals and this component sum. The current mock fixture has $\mathcal{S}_{\mathrm{Fe/sil}}\approx-0.174$ on the first interval and $\mathcal{S}_{\mathrm{Fe/sil}}\approx-0.196$ on the second. In that fixture the dominant signs come from a lower Fe packing penalty and higher Fe coherent-coupling benefit:
+
+| Component | First interval $\mathcal{S}_{\mathrm{Fe/sil}}$ | Second interval $\mathcal{S}_{\mathrm{Fe/sil}}$ | Reading |
+| --- | ---: | ---: | --- |
+| Packing | $-0.126$ | $-0.149$ | Fe has more packing headroom and a smaller marginal exclusion cost. |
+| Coherent coupling | $-0.046$ | $-0.046$ | Fe's metallic branch has stronger coordinated medium-coupling benefit. |
+| Delay | $-0.0002$ | $-0.0002$ | Delay coupling mildly favors Fe in this declared branch. |
+| Strain | $-0.0009$ | $-0.0009$ | Deviatoric strain response mildly favors Fe. |
+| Pressure | $0$ | $0$ | Pressure is neutral in the current mock so it cannot carry the result. |
+
+The important advancement is not the numerical values; they remain mock inputs. The advancement is the failure-sensitive form: if any future replay changes the branch ingredients and the component ledger no longer sums negative, the dense-medium preference is not derived for that branch.
+
 ## Two-Phase Replay Scaffold
 
 The first replay should compare an iron-rich metallic phase against a declared silicate phase under matched planetary-interior state records. Let
@@ -187,10 +305,20 @@ y_{M,r}
 \Delta\mu_{M,r}^{\mathrm{std}},
 $$
 
-where $\Delta\mu^{\mathrm{std}}$ contains ordinary phase, pressure, temperature, electronic, elastic, magnetic, and gravity-side corrections. The replay asks whether one shared row predicts the residual medium term:
+where $\Delta\mu^{\mathrm{std}}$ contains ordinary phase, pressure, temperature, electronic, elastic, magnetic, and gravity-side corrections. The initial fitted scaffold asks whether one shared row predicts the residual medium term:
 
 $$
 \widehat{y}_{M,r}=B_{\mathrm{seg}}\mathbf{q}_{M,r}.
+$$
+
+The stronger coefficient-derived replay replaces the free row by the coefficient functional above:
+
+$$
+\widehat{y}_{M,r}
+=
+\mu_{M,r}^{\mathrm{sea}}
+-
+\mu_{M,0}^{\mathrm{sea}}.
 $$
 
 The dense-medium preference check is not simply a good fit. It requires the finite-difference slope
@@ -234,6 +362,8 @@ over the branch interval where iron-rich metallic segregation is being explained
 | `packing_record` | $\lambda$, $\xi$, $\mathcal{O}$, $n_{\max}^{\mathrm{obl}}$, and support-function contact assumptions |
 | `standard_corrections` | ordinary phase, pressure, temperature, electronic, elastic, magnetic, and gravity corrections |
 | `sea_residual` | retained $\mu_X^{\mathrm{sea}}$ or residual proxy after corrections |
+| `coefficient_model` | declared $a_0$, $g_0$, $p_0$, $w_Z$, $w_B$, $w_U$, and $\Psi$ used to derive, not fit, the residual row |
+| `coefficient_inputs` | phase-specific $e_X$, $n_{\max,X,0}^{\mathrm{obl}}$, $H_X$, $B_X$, $U_X$, $d_X$, $s_X$, and $p_X$ inputs |
 | `transport_record` | $\mathcal{R}_{\text{tr}}$ regime and any logged excitation, heating, or branch transition |
 | `null_bounds` | bounds for hidden transmutation, drag below threshold, birefringence, dispersion, and clock/signal mismatch |
 
@@ -245,6 +375,7 @@ over the branch interval where iron-rich metallic segregation is being explained
 4. **Wrong sign:** $\mathcal{S}_{\mathrm{Fe/sil}}\ge0$ on the branch where the hypothesis predicts denser-medium compatibility.
 5. **Transport violation:** the branch produces ordinary dissipative drag below $\mathcal{R}_{\text{tr},*}$ or sheds energy above threshold without a logged event channel.
 6. **Packing shortcut:** the proof assumes $n_{\max,\mathrm{Fe}}^{\mathrm{obl}}>n_{\max,\mathrm{sil}}^{\mathrm{obl}}$ from ordinary density alone instead of deriving it from exclusion envelope, lattice, and support-function geometry.
+7. **Coefficient insertion:** the replay chooses $A_X$, $G_X$, $C_X^{\chi}$, $C_X^S Q_X^{\mathrm{dev}}$, or $C_X^P$ directly to force the sign instead of deriving them from the declared branch ingredients.
 
 ## Executable Toy Replay Fixture
 
@@ -254,7 +385,7 @@ The first executable scaffold is [fe-silicate-segregation-toy.mjs](../../../scri
 node scripts/mass-map/fe-silicate-segregation-toy.mjs --pretty
 ```
 
-The fixture computes
+The fixture now computes
 
 $$
 y_{M,r}
@@ -265,12 +396,14 @@ y_{M,r}
 \qquad
 \widehat{y}_{M,r}
 =
-B_{\mathrm{seg}}\mathbf q_{M,r},
+\mu_{M,r}^{\mathrm{sea}}
+-
+\mu_{M,0}^{\mathrm{sea}},
 $$
 
-then tests the finite-difference sign $\mathcal{S}_{\mathrm{Fe/sil}}<0$ under one shared $B_{\mathrm{seg}}$ row. Its gates check the no-new-iron guardrail, standard-correction subtraction, matched density intervals, shared-row residual, dense-medium sign, transport threshold, null bounds, and a declared transmutation-leak failure injection.
+where $\mu^{\mathrm{sea}}$ is generated from the coefficient model above. It then tests the finite-difference sign $\mathcal{S}_{\mathrm{Fe/sil}}<0$ and records the packing, coherent-coupling, delay, strain, and pressure contributions. Its gates check the no-new-iron guardrail, standard-correction subtraction, matched density intervals, derived-model residual, dense-medium sign, transport threshold, null bounds, and a declared transmutation-leak failure injection.
 
-The current mock packet is promotion-ready only as a toy scaffold. It becomes a real simulation target only after the material rows are replaced by empirical or branch-derived pressure, temperature, phase, packing, covariance, transport, and null-sector records.
+The current mock packet is promotion-ready only as a toy scaffold. It becomes a real simulation target only after the coefficient inputs are replaced by empirical or branch-derived pressure, temperature, phase, packing, covariance, transport, and null-sector records.
 
 ## Promotion Reading
 

@@ -352,6 +352,110 @@ $$
 
 where $\mathbf{a}_{\mathbf{x}\leftarrow j}$ is the signed branch acceleration obtained from the same causal-root law and $\Delta\phi_{\mathrm{disrupt}}^{(j)}$ is the induced phase-disruption increment on the tested transit branch. Unlike packing, penetration keeps the signed line-of-action entry because the benchmark asks whether the transit path remains dynamically stable.
 
+The first channel norms are dimensionless stability diagnostics on these retained records. Their denominator scales are declared resolution or benchmark tolerances for the channel chart; they are not per-observable fit knobs. For clock coupling,
+
+$$
+\left\|
+\mathcal E_{\mathrm{clock}}
+\right\|_{\mathrm{clock}}^2
+=
+\frac{\left(\delta\omega_{\mathrm{clk}}/\omega_0\right)^2}{\epsilon_\omega^2}
++
+\frac{\operatorname{dist}_{S^1}^2(\delta\theta_{\mathrm{clk}},0)}{\epsilon_\theta^2}
++
+\frac{\left(\delta\chi_{\mathrm{sea}}^{(\ell,j)}/\chi_{\mathrm{sea}}^{(\ell)}\right)^2}{\epsilon_\chi^2}
++
+\frac{\left\|
+\mathcal{L}_{j}^{\mathrm{wake}}\big|_{\mathrm{phase}}
+\right\|_{\mathrm{phase}}^2}{\epsilon_{\mathrm{phase}}^2}.
+$$
+
+For a declared reaction corridor with oriented corridor record $\hat{\mathbf c}_X$,
+
+$$
+\left\|
+\mathcal E_{\mathrm{corridor}}
+\right\|_{\mathrm{corridor}}^2
+=
+\frac{1-\hat{\mathbf r}_{\mathbf{x}j}\cdot\hat{\mathbf c}_X}{\epsilon_{\mathrm{dir}}^2}
++
+\frac{\left\|
+\mathcal{L}_{j}^{\mathrm{wake}}\big|_{\mathrm{oriented}}
+\right\|_{\mathrm{oriented}}^2}{\epsilon_{\mathrm{or}}^2}
++
+\frac{\left\|
+\mathcal{L}_{j}^{\mathrm{corr}}
+\right\|_{\mathrm{corr}}^2}{\epsilon_{\mathrm{corr}}^2}
++
+\frac{d_{\mathrm{prov}}^2(\mathcal P_j^{\mathrm{prov}},\mathcal P_X^{\mathrm{prov}})}{\epsilon_{\mathrm{prov}}^2}
++
+\frac{\left\|\Theta_j^{\mathrm{strain}}\right\|^2}{\epsilon_{\Theta}^2}.
+$$
+
+For packing, signs of attraction and repulsion have already been quotiented out, but exclusion magnitude and shape remain:
+
+$$
+\left\|
+\mathcal E_{\mathrm{packing}}
+\right\|_{\mathrm{packing}}^2
+=
+\frac{
+\left\|
+\mathcal{L}_{j}^{\mathrm{wake}}
+\right\|_{\mathrm{excl}}^2
+}{\epsilon_{\mathrm{excl}}^2}
++
+\frac{
+\left\|
+\mathcal{S}_{j,\mathrm{excl}}^{ab}
+\right\|_{S}^2
+}{\epsilon_S^2}
++
+\frac{\left(\Delta\ln R_{\parallel,j}\right)^2}{\epsilon_{\parallel}^2}
++
+\frac{\left(\Delta\ln R_{\perp,j}\right)^2}{\epsilon_{\perp}^2}
++
+\frac{\left(\Delta\ln\lambda_j\right)^2}{\epsilon_\lambda^2}
++
+\frac{\left(\Delta\ln\xi_j\right)^2}{\epsilon_\xi^2}.
+$$
+
+Here each $\Delta\ln$ term is measured relative to the declared branch reference for the channel: the weak homogeneous core for clock/ruler calibration, the candidate neighboring core for packing, or the pre-entry path branch for penetration.
+
+For penetration along $\hat{\mathbf u}$, decompose the signed branch acceleration into tangent and transverse parts,
+
+$$
+a_{\parallel,j}
+=
+\mathbf a_{\mathbf{x}\leftarrow j}\cdot\hat{\mathbf u},
+\qquad
+\mathbf a_{\perp,j}
+=
+\mathbf a_{\mathbf{x}\leftarrow j}
+-
+a_{\parallel,j}\hat{\mathbf u}.
+$$
+
+The dominance norm is
+
+$$
+\left\|
+\mathcal E_{\mathrm{penetration}}
+\right\|_{\mathrm{penetration}}^2
+=
+\frac{a_{\parallel,j}^2}{a_{\parallel,\mathrm{tol}}^2}
++
+\frac{\left\|\mathbf a_{\perp,j}\right\|^2}{a_{\perp,\mathrm{tol}}^2}
++
+\frac{\operatorname{dist}_{S^1}^2(\Delta\phi_{\mathrm{disrupt}}^{(j)},0)}{\epsilon_{\mathrm{disrupt}}^2}
++
+\frac{\left(\Delta\ln r_{\mathbf{x}j}\right)^2}{\epsilon_r^2}
++
+\frac{\left(\Delta\ln|J_{\mathbf{x}j}|\right)^2}{\epsilon_J^2}.
+$$
+
+The signed entries in the penetration record remain available before the norm is taken, so a stabilizing tangent push and a destabilizing tangent push are not treated as the same path-history branch. The scalar norm is used only after the sign-sensitive admissibility test has decided which branch contributes to the penetration benchmark.
+
 The mismatch metric used in the regularized locked projector must also be ledger-derived. Let $\mathcal{R}_a(t)$ be the accepted reduced record of assembly $a$ containing its closure label, phase state, active causal roots, provenance entries, and conserved ledger increments. The first symbolic mismatch is
 
 $$
