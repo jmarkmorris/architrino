@@ -72,6 +72,121 @@ In the present geometric language:
 
 That color closure is what makes the proton and neutron long-lived hadronic attractors rather than open-color transients.
 
+## Proton Source-Envelope Closure Target
+
+Hydrogen calculations need the proton to enter the atomic window as one color-singlet source envelope, not as three free quark assemblies. For a proton branch, let the three quark color sectors be
+
+$$
+s_{u_1},s_{u_2},s_d\in\{H,M,L\},
+\qquad
+\{s_{u_1},s_{u_2},s_d\}
+=
+\{H,M,L\}.
+$$
+
+The second condition is the color-singlet occupancy rule: the exceptional-axis sectors occur once each. Let $\mathcal L_{\mathrm{strong}}^{uud}(t)$ denote the strong-sector corridor ledger that locks these three quark branches into one accepted proton branch. At proton-sensitive resolution, the candidate source envelope in response channel $X$ is
+
+$$
+\mathcal W_{p,X}^{\mathrm{locked}}
+=
+C_{\ell,X}^{p}
+\left[
+\mathcal W_{u_1,X}^{\mathrm{locked}}
++
+\mathcal W_{u_2,X}^{\mathrm{locked}}
++
+\mathcal W_{d,X}^{\mathrm{locked}}
++
+\mathcal W_{\mathrm{strong},X}^{uud}
+\right],
+\qquad
+d_N\ll\ell\ll R_p.
+$$
+
+Here $C_{\ell,X}^{p}$ is the declared proton-window projection and $\mathcal W_{\mathrm{strong},X}^{uud}$ is the channel exposure of $\mathcal L_{\mathrm{strong}}^{uud}(t)$. The strong-sector term includes the closed color-corridor contribution needed to make the three quark branches one proton source; it is not ambient Noether Sea and is not a fourth quark-like constituent.
+
+The first closure condition is absence of open color leakage at the proton boundary:
+
+$$
+\mathcal E_{p,X}^{\mathrm{color}}
+=
+\frac{
+\left\lVert
+\Pi_{\mathrm{open},X}
+\mathcal W_{p,X}^{\mathrm{locked}}
+\right\rVert_X
+}{
+\left\lVert
+\Pi_{\mathrm{singlet},X}
+\mathcal W_{p,X}^{\mathrm{locked}}
+\right\rVert_X
++
+\varepsilon_{p,X}
+}
+\le
+\Delta_{p,X}^{\mathrm{color}}.
+$$
+
+The projection $\Pi_{\mathrm{singlet},X}$ retains the channel entries that are compatible with the color-singlet branch, while $\Pi_{\mathrm{open},X}$ retains any residual open-color exposure. This is a closure target, not a completed confinement proof. It should later be derived from the same color-corridor dynamics that recover the static strong potential and no-free-color benchmark in [Gluons and the Strong Force: Geometric Origins](../assemblies/bosons/gluons.md#confinement-and-energetics).
+
+The second condition is atomic-window stability. After the proton-sensitive calculation is projected into the atomic window, the proton contribution must be stable under admissible refinement:
+
+$$
+\Delta_{p,X}^{\mathrm{env}}(\ell,\ell')
+=
+\frac{
+\left\lVert
+C_{\ell_{\mathrm{atom}},X}
+\mathcal W_{p,X}^{\mathrm{locked}}(\ell)
+-
+C_{\ell_{\mathrm{atom}},X}
+\mathcal W_{p,X}^{\mathrm{locked}}(\ell')
+\right\rVert_X
+}{
+\left\lVert
+C_{\ell_{\mathrm{atom}},X}
+\mathcal W_{p,X}^{\mathrm{locked}}(\ell)
+\right\rVert_X
++
+\varepsilon_{p,X}^{\mathrm{env}}
+}
+\le
+\Delta_{p,X}^{\mathrm{env,tol}}.
+$$
+
+This is the nucleon-side handoff used by the hydrogen response map in [Atomic Structure](atomic-structure.md#hydrogen-boundary-theorem-target). It lets the atomic calculation see a proton source envelope with retained charge, multipole, shielding, and corridor coefficients, while preventing the three quark Noether cores from being counted as free atomic sources.
+
+The proton boundary tolerance inherited by hydrogen is therefore an admissible-source condition, not a fitted proton radius. For channel $X$,
+
+$$
+\mathfrak A_{p,X}^{\mathrm{tol}}
+=
+\left\{
+\mathcal B:
+\mathcal E_{p,X}^{\mathrm{color}}
+\le
+\Delta_{p,X}^{\mathrm{color}},
+\quad
+\Delta_{p,X}^{\mathrm{env}}(\ell,\ell')
+\le
+\Delta_{p,X}^{\mathrm{env,tol}},
+\quad
+\mathcal L_{\mathrm{strong}}^{uud}
+\subset
+\mathcal A_{\mathrm H}(t)
+\right\}.
+$$
+
+The first inequality blocks open-color leakage, the second blocks unstable quark-resolution dependence after atomic projection, and the third keeps the strong-sector corridor inside the matter assembly ledger. Hydrogen corridor and packing tolerances may then ask different stability questions, but they cannot be looser than this proton source-envelope acceptance.
+
+The source-envelope closure fails if any of the following occurs:
+
+1. **Free-quark failure:** the atomic scan must keep three independent quark source envelopes to fit a hydrogen line or clock response.
+2. **Open-color failure:** $\mathcal E_{p,X}^{\mathrm{color}}$ exceeds the declared tolerance in the isolated proton branch.
+3. **Corridor-complement failure:** $\mathcal L_{\mathrm{strong}}^{uud}(t)$ or $\mathcal W_{\mathrm{strong},X}^{uud}$ is counted as ambient Noether Sea rather than as part of the proton branch.
+4. **Projection failure:** proton-sensitive refinements do not converge to one atomic-window envelope after $C_{\ell_{\mathrm{atom}},X}$ is applied.
+5. **Channel-retuning failure:** spectral, clock, packing, or corridor calculations require different proton ledgers instead of different projections of the same color-singlet branch.
+
 ## Proton and Neutron as Ground-State Tri-Cores
 
 ### Proton

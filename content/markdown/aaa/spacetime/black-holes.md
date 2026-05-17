@@ -26,6 +26,53 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, a black hole is not a hole in the Euclidean
 
 This should be read as one constitutive continuum rather than three disconnected objects. The black-hole vocabulary remains useful at the effective level, but the ontic content is a regime map of the Noether Sea.
 
+## Collapse-Response Ladder
+
+The route from ordinary matter to a black-hole interior is not a single increase in temperature or a simple rise in material density. It is a sequence of assembly-regime changes in which more of the matter ledger becomes exposed to the surrounding Noether Sea. In stable low-energy matter, the Noether Sea normally receives only the externally exposed residual of shielded assemblies, not the full internal causal-history energy stored inside those assemblies. In compact collapse, that weak-response approximation progressively fails.
+
+The useful ladder is:
+
+| Regime | Matter state | Noether-Sea response |
+| :--- | :--- | :--- |
+| Ordinary atom | Electron resonance envelopes and nuclei remain distinct. | Tiny, phase-coherent, near-lossless response; ordinary atomic stability requires no drag-like loss. |
+| Earth or metallic matter | Atomic and metallic bonding are compressed but remain ordinary condensed-matter states. | Weak constitutive response controlled by the exposed matter ledger and density-length scale, not by Planck-temperature proximity. |
+| White-dwarf-like matter | Electrons become a degenerate pressure reservoir while nuclei remain identifiable over much of the star. | Stronger but still non-horizon response; electron shielding and pressure support dominate the compact-object balance. |
+| Collapsing iron core | Electron support fails, electron capture and nuclear breakup change the active assembly inventory. | Nonlinear response: exposed fermion channels, neutrino transport, stress, cadence, and delay-factor gradients can no longer be treated as small perturbations. |
+| Neutron-star branch | Neutron-rich nuclear matter or denser phases carry the pressure budget. | Extreme non-horizon response with packed fermion assemblies and strong gradients in $n$, $\chi_{\text{sea}}$, $\Gamma_N$, and stress. |
+| Horizon-interface branch | Stable volumetric matter support fails. | Terminal alignment and maximum-curvature bookkeeping replace ordinary matter-language continuation. |
+
+This ladder does not add a new validation gate. It identifies which existing variables must stop being interpreted in their weak-response limit as collapse progresses.
+
+### Iron-Core Collapse Handoff
+
+For an iron-group stellar core, the central Standard Model transition is electron capture,
+
+$$
+p+e^-\rightarrow n+\nu_e.
+$$
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ reading keeps this reaction as a required observer-level channel while reclassifying the surrounding story as a change in exposed assembly response.
+
+| Collapse stage | Electrons | Nucleons and nuclei | Noether Sea |
+| :--- | :--- | :--- | :--- |
+| Iron core near instability | Electrons form a dense pressure reservoir rather than atomic orbital clouds. | Iron-group nuclei remain identifiable but no longer release useful fusion support. | The medium sees a compact but still non-horizon matter source through exposed shielded response. |
+| Electron-capture onset | Electron number falls as electrons are consumed by proton channels. | Protons convert toward neutrons, and the composition becomes more neutron-rich. | Atomic-scale electron resonance is no longer the right response picture; the active ledger shifts toward nuclear reaction provenance. |
+| Photodisintegration and breakup | Electron pressure keeps weakening as collapse accelerates. | Heavy nuclei break into smaller nuclei, alpha-like fragments, and free nucleons, consuming energy. | The old iron-nucleus closure loses authority; source terms into the medium become fragmented, anisotropic, and rapidly changing. |
+| Neutrino-trapping regime | Lepton accounting must include trapped and escaping neutrino channels. | Matter approaches nuclear density, and free nucleons dominate the local inventory. | Transport is no longer globally transparent: neutrino, stress, heat, and medium-update ledgers must be tracked together. |
+| Bounce or continued collapse | Electrons become secondary to nuclear and neutrino pressure channels. | Nuclear-density stiffening can halt the inner core, or support can fail. | A neutron-star branch remains an extreme non-horizon Noether-Sea response; continued collapse routes the same record toward the horizon-interface condition. |
+
+The compact summary is therefore:
+
+$$
+\text{atomic electron resonance}
+\rightarrow
+\text{electron-capture ledger}
+\rightarrow
+\text{neutron-rich packed fermion response}
+\rightarrow
+\text{strong Noether-Sea constitutive regime}.
+$$
+
 ## Canonical Horizon Condition
 
 The canonical strong-field alignment condition is inherited from [singularity-resolution.md](./singularity-resolution.md). Near the horizon interface, the working regime definition is

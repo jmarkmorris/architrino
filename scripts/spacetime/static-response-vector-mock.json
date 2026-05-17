@@ -1,0 +1,150 @@
+{
+  "schema": "aaa-static-response-vector-toy-input/v1",
+  "metadata": {
+    "description": "Mock static weak-potential response-vector replay for Gamma_N closure arithmetic."
+  },
+  "defaults": {
+    "tolerance": 1e-9
+  },
+  "scenarios": [
+    {
+      "name": "shared_delay_clean_gr_branch",
+      "gamma_eff": 1,
+      "response": {
+        "a_n": 0,
+        "a_chi": 2,
+        "a_lambda": 0,
+        "a_R": 0
+      },
+      "cadence_row": {
+        "b_n": 0,
+        "b_chi": 0.5,
+        "b_lambda": 0,
+        "b_R": 0
+      },
+      "clock_rate_row": {
+        "omega_n": 0,
+        "omega_chi": -0.5,
+        "omega_lambda": 0,
+        "omega_R": 0
+      },
+      "gamma_eff_sweep": [
+        0.9,
+        1,
+        1.1
+      ],
+      "expect_shared_delay": true
+    },
+    {
+      "name": "density_scale_compensated_branch",
+      "gamma_eff": 1,
+      "response": {
+        "a_n": 0.25,
+        "a_chi": 2,
+        "a_lambda": -0.1,
+        "a_R": 0.05
+      },
+      "cadence_row": {
+        "b_n": 0.4,
+        "b_chi": 0.4,
+        "b_lambda": -0.5,
+        "b_R": 1
+      },
+      "clock_rate_row": {
+        "omega_n": -0.4,
+        "omega_chi": -0.4,
+        "omega_lambda": 0.5,
+        "omega_R": -1
+      },
+      "expect_shared_delay": true
+    },
+    {
+      "name": "split_clock_signal_delay_branch",
+      "gamma_eff": 1,
+      "response": {
+        "a_n": 0,
+        "a_chi": 1.6,
+        "a_lambda": 0,
+        "a_R": 0
+      },
+      "cadence_row": {
+        "b_n": 0,
+        "b_chi": 0.625,
+        "b_lambda": 0,
+        "b_R": 0
+      },
+      "clock_rate_row": {
+        "omega_n": 0,
+        "omega_chi": -0.625,
+        "omega_lambda": 0,
+        "omega_R": 0
+      },
+      "expect_shared_delay": true
+    },
+    {
+      "name": "underclosed_clock_row",
+      "gamma_eff": 1,
+      "response": {
+        "a_n": 0,
+        "a_chi": 2,
+        "a_lambda": 0,
+        "a_R": 0
+      },
+      "cadence_row": {
+        "b_n": 0,
+        "b_chi": 0.45,
+        "b_lambda": 0,
+        "b_R": 0
+      },
+      "clock_rate_row": {
+        "omega_n": 0,
+        "omega_chi": -0.45,
+        "omega_lambda": 0,
+        "omega_R": 0
+      },
+      "expect_shared_delay": true
+    },
+    {
+      "name": "pressure_bridge_fe_cr_toy_isotropic_projection",
+      "gamma_eff": 1,
+      "gamma_eff_sweep": [
+        -0.4,
+        0,
+        1
+      ],
+      "pressure_bridge": {
+        "source": "reference/priorities/mass-map/pressure-replay-fe-cr-toy.md",
+        "projection": "isotropic_static",
+        "material_id": "Fe",
+        "step": 1,
+        "pressure_coordinate": 0.0091,
+        "anisotropic_coordinate": 0.0012,
+        "delta_ln_Gamma_N": 0.00546,
+        "response_deltas": {
+          "delta_ln_chi_sea": 0.003276
+        },
+        "observed_deltas": {
+          "delta_ln_chi_sea": 0.003324,
+          "delta_ln_c_eff_over_c_f": -0.003324
+        },
+        "anisotropic_residuals": {
+          "delta_ln_chi_sea": 0.000048,
+          "delta_ln_c_eff_over_c_f": -0.000048
+        }
+      },
+      "cadence_row": {
+        "b_n": 0,
+        "b_chi": 1.6666666666666667,
+        "b_lambda": 0,
+        "b_R": 0
+      },
+      "clock_rate_row": {
+        "omega_n": 0,
+        "omega_chi": -1.6666666666666667,
+        "omega_lambda": 0,
+        "omega_R": 0
+      },
+      "expect_shared_delay": false
+    }
+  ]
+}

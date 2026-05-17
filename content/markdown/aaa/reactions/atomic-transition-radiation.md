@@ -37,6 +37,74 @@ $$
 
 In the ideal isolated line limit, the non-photon terms are negligible and $E_\gamma\simeq h\nu_{a\to b}^{\mathrm{loc}}$. In dense media, strong gradients, or unresolved recoil regimes, those terms must remain in the ledger rather than being silently absorbed into the line frequency.
 
+## Hydrogen Line Benchmark Record
+
+The hydrogen Rydberg benchmark in [Atomic Spectra](../nuclear-atomic/atomic-spectra.md#hydrogen-rydberg-benchmark-target) supplies the line-gap side of the test. This page supplies the event-record side. For an isolated weak-homogeneous hydrogen transition $a\to b$, the same envelope gap must close as a routed event:
+
+$$
+\Delta E_{a\to b}^{\mathrm{env}}
+=
+E_\gamma
++
+\Delta E_{\mathrm{recoil}}
++
+\Delta E_{\mathrm{med}}
++
+\Delta E_{\mathrm{core remnant}},
+$$
+
+with $\Delta E_{\mathrm{med}}$ and $\Delta E_{\mathrm{core remnant}}$ bounded by the declared isolated-line tolerance rather than hidden in the fitted line frequency. A compact event residual is
+
+$$
+\mathcal E_{ab}^{\mathrm{evt}}
+=
+\frac{
+\left|
+\Delta E_{a\to b}^{\mathrm{env}}
+-
+E_\gamma
+-
+\Delta E_{\mathrm{recoil}}
+-
+\Delta E_{\mathrm{med}}
+-
+\Delta E_{\mathrm{core remnant}}
+\right|
+}{
+\left|
+\Delta E_{a\to b}^{\mathrm{env}}
+\right|
++
+\varepsilon_{\mathrm{evt}}
+}
+\le
+\Delta_{\mathrm{evt}}^{\mathrm{tol}}.
+$$
+
+The frequency readout must then agree with the local photon record:
+
+$$
+\mathcal E_{ab}^{\gamma}
+=
+\frac{
+\left|
+E_\gamma
+-
+h\nu_{\gamma}^{\mathrm{loc}}
+\right|
+}{
+\left|
+E_\gamma
+\right|
++
+\varepsilon_{\gamma}
+}
+\le
+\Delta_{\gamma}^{\mathrm{tol}}.
+$$
+
+The benchmark fails if a Rydberg-consistent line can be obtained only by dropping recoil, medium excitation, or residual atomic energy from the ledger; if the planar-mode gate is changed between hydrogen lines; if the photon-channel speed used by the spectral comparison differs from the emitted photon record; or if path-history provenance is not sufficient to replay which envelope transition produced the coaxial contra-rotating pro/anti planar pair.
+
 ## Planar-Mode Gate
 
 A basin transition is not automatically photon emission. It becomes atomic transition radiation only when the available gap and the local channel geometry cross the planar-mode nucleation gate inherited from the radiation program:

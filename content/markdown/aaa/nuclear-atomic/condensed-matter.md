@@ -120,6 +120,50 @@ $$
 
 along the planetary-interior branch, with $n=\rho_{\text{core}}/\rho_{\text{core},0}$. This does not say that Noether-Sea density creates iron. It says that, after iron already exists, the metallic iron branch may reduce relative chemical and medium-response cost as ambient Noether-core density increases. In ordinary terms, iron-rich material sinks because it is dense; in the native theory, density must eventually be derived from assembly packing, exclusion-volume response, metallic bonding, pressure response, and Noether-Sea coupling.
 
+A local sufficient condition can be stated by differentiating the packing ceiling rather than treating it as a fixed phase label. For a material branch $X$, let
+
+$$
+z_X(n)
+=
+\frac{n}{n_{\max,X}^{\mathrm{obl}}(n)}
+$$
+
+and define the marginal packing term
+
+$$
+\mathcal{P}_X(n)
+=
+A_X
+\Psi'\!\left(
+z_X(n)
+\right)
+\frac{1}{n_{\max,X}^{\mathrm{obl}}(n)}
+\left(
+1
+-
+n\frac{\partial}{\partial n}
+\ln n_{\max,X}^{\mathrm{obl}}(n)
+\right).
+$$
+
+The factor $1-n\,\partial_n\ln n_{\max,X}^{\mathrm{obl}}$ is the packing-headroom correction: if the branch-derived oblate-envelope packing ceiling rises with ambient density, the marginal exclusion penalty is reduced. With the delay, strain, and pressure derivative terms collected into $\mathcal{D}_X(n)$ and any remaining coefficient drift bounded by $B_{\mathrm{coeff}}$, the sign condition is guaranteed on a branch interval if
+
+$$
+G_{\mathrm{Fe}}-G_{\mathrm{sil}}
+>
+\left(
+\mathcal{P}_{\mathrm{Fe}}-\mathcal{P}_{\mathrm{sil}}
+\right)
++
+\left(
+\mathcal{D}_{\mathrm{Fe}}-\mathcal{D}_{\mathrm{sil}}
+\right)
++
+B_{\mathrm{coeff}}.
+$$
+
+This is a sufficient inequality, not yet a completed derivation. It becomes a derivation only when $n_{\max,X}^{\mathrm{obl}}(n)$ comes from exclusion-envelope packing, $G_X$ comes from metallic coordination and Noether-Sea coupling, and $\mathcal{D}_X$ comes from the same local Noether-Sea state record used for clock, delay, strain, and transport response.
+
 The metallic-phase side can be written as
 
 $$

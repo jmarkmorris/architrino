@@ -121,6 +121,95 @@ $$
 
 so the local emission ledger, endpoint cadence, launch geometry, path-history propagation, and receiver coupling remain separated until a derivation proves that some factors combine in a declared limit.
 
+The first symbolic absolute-record law should be written as one extraction map on the restricted state record:
+
+$$
+\mathfrak T_X
+\!\left[
+\mathcal S_{X,E\to R}
+\right]
+=
+\left(
+\Gamma_{N,E},\,
+\Gamma_{N,R},\,
+B_X(E),\,
+D_v,\,
+Y_{X,E\to R}
+\right),
+\qquad
+\mathcal P_{E\to R,X}
+=
+\exp(Y_{X,E\to R}).
+$$
+
+The endpoint factors come from the same cadence-stretch row used in the clock chapter,
+
+$$
+\Gamma_{N,Q}
+=
+\exp
+\!\left[
+\mathbf b_N\cdot\mathbf g_N(Q)
++
+\mathcal R_{\Gamma,Q}
+\right],
+\qquad
+\mathbf g_N
+=
+\left(
+\ln n,\ln\chi_{\text{sea}},\ln\lambda,-\ln\xi,
+\ln\frac{R_{\text{core}}}{R_{\text{core},0}}
+\right)^T.
+$$
+
+The launch factor is the endpoint phase-compression record. In the weak-velocity limit,
+
+$$
+D_v
+=
+\frac{
+1-\boldsymbol\beta_R\cdot\hat{\mathbf k}
+}{
+1-\boldsymbol\beta_E\cdot\hat{\mathbf k}
+}
+\exp(\mathcal R_v),
+\qquad
+\boldsymbol\beta_Q=\frac{\mathbf v_Q}{c_{\gamma,Q}},
+$$
+
+where $\mathcal R_v$ carries higher-order and multi-root Jacobian corrections from the causal ledger. The propagation term is the path integral
+
+$$
+Y_{X,E\to R}
+=
+\int_{\gamma_{E\to R}}
+\alpha_{\mathrm{prop},X}[S(t_s)]\,ds,
+$$
+
+with first path-rate ansatz
+
+$$
+\alpha_{\mathrm{prop},X}
+=
+\mathbf p_X\cdot
+\frac{d\boldsymbol\theta_{\mathrm{sea}}}{ds}
++
+p_{\nu,X}
+\frac{\partial_\nu J_\nu}{f_N+\epsilon_f}
++
+p_{u,X}\nabla\cdot\mathbf u_{\mathrm{sea}}
++
+\mathcal R_{\mathrm{coh},X},
+\qquad
+\boldsymbol\theta_{\mathrm{sea}}
+=
+\left(
+\ln n,\ln\chi_{\text{sea}},\ln\lambda,-\ln\xi
+\right)^T.
+$$
+
+This law is falsified if $\mathbf b_N$, $\mathbf p_X$, $D_v$, or $\mathcal R_{\mathrm{coh},X}$ must be redefined between gravitational redshift, ordinary relative-motion redshift, and gentle deep-space redshift. The allowed difference between cases is the restricted $S(t)$ record supplied to the same map, not a change of explanatory class.
+
 ### Noether-Core Equilibrium Transport Hypothesis
 
 A sharper candidate for the deep-space term is an equilibrium transport law over Noether-core cadence states. The hypothesis is that most Noether-Sea cores interact primarily with neighboring Noether cores, while photons, neutrinos, and stronger disturbances provide sparse probe or perturbation channels. If a representative core cadence is written as $\nu_N$, the local core energy scale is
@@ -178,10 +267,10 @@ with monopole, dipole, and higher directional terms tested against the same Noet
 4. `cmb_bao_handoff` — Route CMB blackbody, BAO scale, and growth variables through one cosmology closure record. Status: `draft`.
 5. `directional_residual_gate` — Decompose supernova, BAO, CMB-frame, and local $H_0$ residuals by direction and environment before accepting an isotropic Friedmann-like bridge. Status: `draft`.
 6. `propagation_slope_record` — Define the endpoint-subtracted propagation residual $Z_{\mathrm{prop},X}$, derive or bound the path-rate functional $\alpha_{\mathrm{prop},X}$, and recover $H_{0,\mathbb{A}\mathbb{A}\mathbb{A}}=c_0\,\partial Z_{\mathrm{prop},X}/\partial D$ in the clean low-redshift limit. Status: `draft`.
-7. `absolute_transport_law` — Derive or falsify a single absolute-record law that maps $S(t)$ to $\Gamma_N$, $D_v$, and $\mathcal{P}_{E\to R}$ for gravitational, relative-motion, and deep-space redshift without changing coefficients or explanatory class per case. Status: `seeded`; proof scaffold: `content/markdown/aaa/cosmology/expansion-mechanism.md#absolute-record-transport-map`; runtime extractor: `scripts/cosmology/redshift-budget-toy-model.mjs`.
-8. `gamma_n_geometry_extraction` — Derive the coefficient row $\mathbf{b}_N$ that maps $(n,\chi_{\text{sea}},\lambda,\xi,R_{\text{core}})$ into $\Gamma_N$ while recovering the weak homogeneous reference, homogeneous moving-core Lorentz branch, and weak gravitational endpoint limit. Status: `row-constrained`; fixed result: $b_\xi=1$ for the coefficient multiplying $-\ln\xi$; remaining weak-field constraint: $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$ for the isotropic static response vector. Proof scaffold: `content/markdown/aaa/spacetime/proper-time-and-time-dilation.md#gamma-n-geometry-extraction-target`.
+7. `absolute_transport_law` — Derive or falsify a single absolute-record law that maps $S(t)$ to $\Gamma_N$, $D_v$, and $\mathcal{P}_{E\to R}$ for gravitational, relative-motion, and deep-space redshift without changing coefficients or explanatory class per case. Status: `path-rate-continuity-scaffolded`; proof scaffold: `content/markdown/aaa/spacetime/noether-sea.md#equilibrium-transport-hypothesis`; runtime extractor: `scripts/cosmology/redshift-budget-toy-model.mjs`.
+8. `gamma_n_geometry_extraction` — Derive the coefficient row $\mathbf{b}_N$ that maps $(n,\chi_{\text{sea}},\lambda,\xi,R_{\text{core}})$ into $\Gamma_N$ while recovering the weak homogeneous reference, homogeneous moving-core Lorentz branch, and weak gravitational endpoint limit. Status: `fixture-seeded`; fixed result: $C_N=\Gamma_N^{-1}$ is the clock-rate factor, $\Gamma_N=(\Omega_{\mathrm{clk}}\xi)^{-1}$ in the metric subclass, and $b_\xi=1$ for the coefficient multiplying $-\ln\xi$; remaining weak-field constraint: $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$; signal-delay neighbor: $a_\chi^{\mathrm{sig}}=1+\gamma_{\text{eff}}$ from the Shapiro-delay map, promotable to clock $a_\chi$ only under shared clock/signal delay closure $\Delta_\chi^{\mathrm{clk\text{-}sig}}=0$. Proof scaffold: `content/markdown/aaa/spacetime/proper-time-and-time-dilation.md#gamma-n-geometry-extraction-target`; runtime fixture: `scripts/spacetime/static-response-vector-toy-model.mjs`.
 9. `cadence_scale_retuning_map` — Derive or falsify the single-core map from an accepted $\Delta A_{\mathrm{cyc}}=\pm h$ transaction to $(\Delta\nu_N,\Delta R_I,\Delta R_M,\Delta R_O,\Delta\lambda,\Delta\xi)$ and show how its coarse-grained average becomes $J_\nu$. Status: `fixture-seeded`; proof scaffold: `content/markdown/aaa/dynamics/tri-binary-dynamics.md#cadence-scale-retuning-closure`; runtime fixture: `scripts/tri-binary/retuning-map-toy-model.mjs`.
-10. `noether_core_equilibrium_transport` — Derive or falsify the candidate $f_N$ transport law, including $J_\nu$, $S_{\mathrm{BH}}$, $S_{\mathrm{GW}}$, and $R_{\mathrm{eq}}[f_N]$, and test whether it supplies a signed contribution to $\alpha_{\mathrm{prop},X}$ without violating photon coherence gates. Status: `draft`.
+10. `noether_core_equilibrium_transport` — Derive or falsify the candidate $f_N$ transport law, including $J_\nu$, $S_{\mathrm{BH}}$, $S_{\mathrm{GW}}$, and $R_{\mathrm{eq}}[f_N]$, and test whether it supplies a signed contribution to $\alpha_{\mathrm{prop},X}$ without violating photon coherence gates. Status: `path-rate-continuity-scaffolded`.
 
 ## Closure Objects
 
@@ -190,15 +279,17 @@ with monopole, dipole, and higher directional terms tested against the same Noet
 - Candidate factor record: endpoint Noether-Sea core deformation factors $\Gamma_{N,E},\Gamma_{N,R}$; source-branch factor $B_X(E)$; directional launch factor $\mathcal{L}_{E\to R}$; and path-history propagation factor $\mathcal{P}_{E\to R}$.
 - Observable frequency and energy record: $\nu_{\mathrm{obs},X}$ and $E_{\mathrm{obs},X}=h\nu_{\mathrm{obs},X}$ after endpoint cadence, source branch, launch, and path-history factors are separated.
 - Endpoint-subtracted propagation residual: $Z_{\mathrm{prop},X}=\ln(1+z_X)-\ln\Gamma_{N,E}+\ln\Gamma_{N,R}+\ln B_X(E)+\ln D_v$.
-- Gamma-N geometry extraction row: $\ln\Gamma_N=\mathbf{b}_N\cdot\mathbf{g}_N+\mathcal{R}_{\Gamma}$, with $\mathbf{g}_N=(\ln n,\ln\chi_{\text{sea}},\ln\lambda,-\ln\xi,\ln(R_{\text{core}}/R_{\text{core},0}))^T$; the homogeneous moving-core branch fixes $b_\xi=1$, while the weak static endpoint branch fixes $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$ for $\ln n=a_nU/c_0^2$, $\ln\chi_{\text{sea}}=a_\chi U/c_0^2$, $\ln\lambda=a_\lambda U/c_0^2$, and $\ln(R_{\text{core}}/R_{\text{core},0})=a_RU/c_0^2$.
-- Path-rate functional: $\alpha_{\mathrm{prop},X}$ with image-sharpness, line-coherence, chromaticity, and time-dilation residual bounds.
+- Gamma-N geometry extraction row: $\ln\Gamma_N=\mathbf{b}_N\cdot\mathbf{g}_N+\mathcal{R}_{\Gamma}$, with $\mathbf{g}_N=(\ln n,\ln\chi_{\text{sea}},\ln\lambda,-\ln\xi,\ln(R_{\text{core}}/R_{\text{core},0}))^T$; the clock-rate factor is $C_N=\Gamma_N^{-1}$, and in the metric subclass $C_N=\Omega_{\mathrm{clk}}\xi$, so $b_\xi=1$ and $b_i=-\omega_i$ for the isotropic clock-rate row. The weak static endpoint branch fixes $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$ for $\ln n=a_nU/c_0^2$, $\ln\chi_{\text{sea}}=a_\chi U/c_0^2$, $\ln\lambda=a_\lambda U/c_0^2$, and $\ln(R_{\text{core}}/R_{\text{core},0})=a_RU/c_0^2$. The signal-delay neighbor is $a_\chi^{\mathrm{sig}}=1+\gamma_{\text{eff}}$ from $\bar{\chi}_{\text{sea}}=1+(1+\gamma_{\text{eff}})U/c_0^2+\cdots$, but equality $a_\chi=a_\chi^{\mathrm{sig}}$ is a shared-channel closure condition, not a definition.
+- Shared clock/signal delay residual: $\Delta_\chi^{\mathrm{clk\text{-}sig}}\equiv a_\chi-(1+\gamma_{\text{eff}})$; the shared-delay branch requires $\Delta_\chi^{\mathrm{clk\text{-}sig}}=0$, while nonzero residuals must be carried across PPN delay, clock-redshift, pressure-response, and cosmological redshift packets.
+- Static response vector fixture: `scripts/spacetime/static-response-vector-toy-model.mjs`, documented in `content/markdown/aaa/validation/simulations/static-response-vector-toy-model.md`, replays candidate $(a_n,a_\chi,a_\lambda,a_R)$ response vectors against the cadence-stretch row, inverse clock-rate row, row-inverse condition, and shared-delay residual; its pressure bridge also checks $b\cdot\delta\mathbf{g}^{P}=\delta\ln\Gamma_N$, the inverse clock-rate pressure row, effective-speed identity, anisotropic pressure residuals, and optional $\gamma_{\text{eff}}$ sweeps.
+- Path-rate functional: $\alpha_{\mathrm{prop},X}=\mathbf p_X\cdot D_{\gamma}\boldsymbol\theta_{\mathrm{sea}}+p_{\nu,X}\mathcal C_N[f_N]+p_{u,X}\nabla\cdot\mathbf u_{\mathrm{sea}}+p_{\sigma,X}\hat k_a\hat k_b\Sigma_{\mathrm{sea},X}^{ab}+\mathcal R_{\mathrm{coh},X}$, where $D_{\gamma}=c_{\gamma}^{-1}\partial_t+\hat{\mathbf k}\cdot\nabla$ and $\mathcal C_N[f_N]=(S_{\mathrm{BH}}+S_{\mathrm{GW}}-R_{\mathrm{eq}}[f_N]-\partial_\nu J_\nu)/(f_N+\epsilon_f)$; acceptance requires image-sharpness, line-coherence, chromaticity, and time-dilation residual bounds.
 - Minimal redshift-budget fixture: $Y_{X,j+1}=Y_{X,j}+\alpha_{\mathrm{prop},X,j}\Delta s_j$, with $\mathcal{P}_{E\to R,X}=\exp(Y_{X,N})$; documented in `content/markdown/aaa/validation/simulations/redshift-budget-toy-model.md` with runtime fixture `scripts/cosmology/redshift-budget-toy-model.mjs`.
 - Endpoint/launch runtime extractor: `endpoint_records` computes $\Gamma_N$ from `Gamma_N`, `T_N_over_T_N0`, `Omega_N_over_Omega_N0`, or weak-field `Phi_N_over_c0_squared`; `launch_record` computes $D_v$ from `beta_r`, `radial_velocity_km_s`, or endpoint velocity projection along $\hat{\mathbf{k}}$; `extraction_logs` records whether each factor came from record extraction or scalar fallback.
 - Dark-energy handoff target: $\partial_t\boldsymbol{\theta}_\gamma=\mathbf{J}_{\mathrm{DE}}\mathbf{q}_{\mathrm{DE}}+\partial_t\boldsymbol{\theta}_{\gamma,\mathrm{local}}$, where $\mathbf{q}_{\mathrm{DE}}$ carries $\partial_t\ln\rho_{\mathrm{DE,eff}}$, $\partial_t w_{\mathrm{eff}}$, $\mathcal{S}_{\mathrm{sea}}/\rho_{\mathrm{DE,eff}}$, and $\mathcal{S}_{\mathrm{BH}}/\rho_{\mathrm{DE,eff}}$.
 - First-order dark-energy coefficient row: $\boldsymbol{\lambda}_X^T=(a_\chi^X\ a_n^X\ a_R^X)\mathbf{J}_{\mathrm{DE}}$, giving $\alpha_{\mathrm{prop},X}^{\mathrm{DE}}=c_\gamma^{-1}\boldsymbol{\lambda}_X^T\mathbf{q}_{\mathrm{DE}}$ and, in the homogeneous continuity branch, a solved $H_{\mathrm{eff},X}^{\mathrm{DE}}$ transfer slope.
 - Runtime coefficient packet: `dark_energy_transport_by_line` in `scripts/cosmology/redshift-budget-toy-model.mjs`, which converts a declared $\boldsymbol{\lambda}_X$ row and `q_DE_per_s` or `q_DE_per_mpc` record into additive `dark_energy.*` path-rate terms.
 - Effective Hubble slope: $H_{0,\mathbb{A}\mathbb{A}\mathbb{A}}(\hat{\mathbf{k}},X)=c_0\,\partial Z_{\mathrm{prop},X}/\partial D$ in the corrected nearby limit.
-- Absolute-record transport map: $\mathfrak{T}_X[\mathcal{S}_{X,E\to R}]=(\Gamma_{N,E},\Gamma_{N,R},B_X(E),D_v,Y_{X,E\to R})$ from one restricted $S(t)$ record containing the source branch, receiver branch, Noether-Sea cadence, medium flow, causal wakes, and photon path-history ledger relevant to the measured line.
+- Absolute-record transport map: $\mathfrak{T}_X[\mathcal{S}_{X,E\to R}]=(\Gamma_{N,E},\Gamma_{N,R},B_X(E),D_v,Y_{X,E\to R})$ from one restricted $S(t)$ record containing the source branch, receiver branch, Noether-Sea cadence, medium flow, causal wakes, and photon path-history ledger relevant to the measured line; the path-rate row must use the same continuity-disciplined $\mathcal C_N[f_N]$ term in gravitational, relative-motion, and deep-space cases.
 - Cadence-scale retuning map: an accepted $\Delta A_{\mathrm{cyc}}=\pm h$ transaction maps one core closure label into another through $\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}=(\Delta\nu_N,\Delta R_I,\Delta R_M,\Delta R_O,\Delta\lambda,\Delta\xi)$, with the ensemble average supplying the candidate current $J_\nu\sim f_N\langle\dot{\nu}_N\rangle_{\Delta A_{\mathrm{cyc}}=\pm h}$ and first estimate $J_\nu=\sum_\sigma f_N r_\sigma\Delta\nu_N^{(q,\sigma)}+O((\Delta\nu_N)^2\partial_\nu f_N)$.
 - Retuning-map toy fixture: `scripts/tri-binary/retuning-map-toy-model.mjs` with documentation in `content/markdown/aaa/validation/simulations/retuning-map-toy-model.md`; this fixture solves the linearized constrained compliance problem and reports branch speed gates plus net $J_\nu$.
 - Noether-core equilibrium transport packet: $f_N(\nu,\mathbf{x},t)$, $J_\nu$, $S_{\mathrm{BH}}$, $S_{\mathrm{GW}}$, $R_{\mathrm{eq}}[f_N]$, and the projection from that packet into $\alpha_{\mathrm{prop},X}$.
@@ -220,8 +311,12 @@ with monopole, dipole, and higher directional terms tested against the same Noet
 - `cosmology.tired_light_failure`: redshift loses supernova time dilation, surface-brightness, or image-sharpness constraints.
 - `cosmology.channel_blend`: endpoint clock-rate comparison, relative motion, and propagation are collapsed into one fitted scalar before the shared transport law is derived.
 - `cosmology.energy_loss_leak`: $\mathcal{P}_{E\to R}$ is treated as generic photon energy loss rather than phase-cadence path-history with image-sharpness, coherence, and time-dilation constraints.
+- `cosmology.path_rate_continuity_split`: the path-rate law uses $\partial_\nu J_\nu$, source loading, equilibration, flow divergence, or anisotropic response as independent fit knobs instead of the continuity-balanced $\mathcal C_N[f_N]$ record and declared medium-response tensor.
 - `cosmology.absolute_record_split`: $\Gamma_N$, $B_X(E)$, $D_v$, and $Y_X$ are fit from incompatible restrictions of $S(t)$ rather than one absolute redshift record.
 - `cosmology.scalar_factor_leak`: endpoint or launch factors are inserted as free scalars when the underlying endpoint cadence or velocity records are available, hiding whether $\Gamma_N$ and $D_v$ were extracted from the same absolute record.
+- `cosmology.transport_case_switch`: gravitational, relative-motion, and deep-space redshift are fit by changing the coefficient rows or explanatory class instead of changing only the restricted $S(t)$ record supplied to $\mathfrak T_X$.
+- `cosmology.clock_signal_delay_split`: the same branch uses different first-order $\chi_{\text{sea}}$ responses for Shapiro delay and clock redshift without carrying $\Delta_\chi^{\mathrm{clk\text{-}sig}}$ as an explicit residual.
+- `cosmology.static_response_vector_underclosure`: candidate $(a_n,a_\chi,a_\lambda,a_R)$ vectors close one weak-field row while failing the endpoint, inverse clock-rate, row-inverse, or shared-delay constraints.
 - `cosmology.dark_energy_coefficient_split`: the dark-energy coefficient row fits a redshift slope but fails chromaticity, cadence, image-sharpness, or shared-state projection checks.
 - `cosmology.equilibrium_current_null`: the proposed Noether-core equilibrium law relaxes to zero signed $J_\nu$ or cancels source terms, so it cannot supply an expansion-like path-rate contribution.
 - `cosmology.retuning_continuum_leak`: a model treats discrete one-core $h$-scale retunings as smooth single-core frequency drift and loses the branch ledger needed to define $J_\nu$.

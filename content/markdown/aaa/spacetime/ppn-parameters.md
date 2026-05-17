@@ -83,6 +83,23 @@ with $\Delta t_{\text{obs}}=t_{\text{obs}}-R/c_0$.
 
 In the weak-field solar-system regime, $\gamma_{\text{eff}}$ is the direct refractive-space-curvature map parameter.
 
+The same Shapiro map also fixes the first-order signal-delay response coefficient
+
+$$
+a_\chi^{\mathrm{sig}}=1+\gamma_{\text{eff}}.
+$$
+
+This is not automatically the clock coefficient $a_\chi$ used in the static $\Gamma_N$ endpoint row. The shared clock/signal delay branch is the additional condition
+
+$$
+\Delta_\chi^{\mathrm{clk\text{-}sig}}
+\equiv
+a_\chi-a_\chi^{\mathrm{sig}}
+=0.
+$$
+
+When this residual vanishes, Shapiro delay and gravitational clock redshift are using the same first-order Noether-Sea delay response. When it does not vanish, PPN delay, redshift, lensing, pressure-response, and cosmological redshift comparisons must carry the residual explicitly rather than refitting $\chi_{\text{sea}}$ per observable.
+
 ### PPN Parameters and the Euclidean Anchor
 
 #### Parameter $\gamma$ (Space Curvature / Refraction)
@@ -135,9 +152,9 @@ $$
 
 If the constitutive clock channel is exactly
 $$
-\Omega\xi=e^{-\Phi_{\text{eff}}/c_0^2},
+\Omega\xi=e^{\Phi_{\text{eff}}/c_0^2},
 \qquad
-g_{00}=-(\Omega\xi)^{-2},
+g_{00}=-(\Omega\xi)^2,
 $$
 then with $U_{\Phi}\equiv -\Phi_{\text{eff}}$:
 $$
@@ -152,6 +169,8 @@ $$
 \boxed{\beta_{\text{PPN}}=1}
 $$
 without additional fit freedom.
+
+Here $\Omega\xi$ is the local clock-rate factor $d\tau/dt$ in this subclass. The Noether-Sea cadence-stretch factor used in redshift bookkeeping is its inverse, $\Gamma_N=(\Omega\xi)^{-1}$, when the same local clock channel is being compared.
 
 The general $C_2(a,k)$ map above remains the umbrella constitutive form; the exponential channel is the closure-special case where it collapses to GR's $\beta=1$ exactly.
 When $\Phi_{\text{eff}}=\Phi_N+O(\Phi_N^2/c_0^2)$, one has $U_{\Phi}=U+O(U^2/c_0^2)$ at weak field.

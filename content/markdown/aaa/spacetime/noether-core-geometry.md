@@ -70,7 +70,7 @@ J_{\mathbf{x}j}(t;t_0)
 \{t_0<t:g_{\mathbf{x}j}(t;t_0)=0\}.
 $$
 
-Let $\mathcal{I}_a(t)$ be the architrino constituents and bound wake records belonging to assembly $a$, and let $\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)$ be the ambient Noether-Sea contributors in the same coarse window after excluding $\mathcal{I}_a(t)$. Let $w_{j,a}^{\mathrm{lock}}(t_0;t)$ retain the branches phase-locked to the assembly label, let $w_j^{\mathrm{sea}}(t_0;t)$ retain the ambient branches, and let $\alpha_{j,X}(t_0)\ge 0$ be the channel intensity inherited from charge, polarity, shielding, and the selected response channel. Then the simple-root diagnostic is
+Let $\mathcal{I}_a(t)$ be the architrino constituents and bound wake records belonging to assembly $a$, and let $\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)$ be the ambient Noether-Sea contributors in the same coarse window after excluding $\mathcal{I}_a(t)$. Let $w_{j,a}^{\mathrm{lock}}(t_0;t)$ retain the branches phase-locked to the assembly label, let $w_j^{\mathrm{sea}}(t_0;t)$ retain the ambient branches, and let $\alpha_{j,X}(\mathbf{x},t;t_0)\ge 0$ be the channel intensity inherited from branch-ledger exposure in channel $X$. Then the simple-root diagnostic is
 
 $$
 \mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf{x},t;\ell)
@@ -79,7 +79,7 @@ W_\ell *
 \sum_{j\in\mathcal{I}_a(t)}
 \sum_{t_0\in\mathcal{C}_{\mathbf{x}j}(t)}
 w_{j,a}^{\mathrm{lock}}(t_0;t)
-\frac{\alpha_{j,X}(t_0)}
+\frac{\alpha_{j,X}(\mathbf{x},t;t_0)}
 {r_{\mathbf{x}j}^2(t;t_0)\left|J_{\mathbf{x}j}(t;t_0)\right|},
 $$
 
@@ -92,9 +92,493 @@ W_\ell *
 \sum_{j\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)}
 \sum_{t_0\in\mathcal{C}_{\mathbf{x}j}(t)}
 w_j^{\mathrm{sea}}(t_0;t)
-\frac{\alpha_{j,X}(t_0)}
+\frac{\alpha_{j,X}(\mathbf{x},t;t_0)}
 {r_{\mathbf{x}j}^2(t;t_0)\left|J_{\mathbf{x}j}(t;t_0)\right|}.
 $$
+
+These coefficients are not fit amplitudes. For each accepted causal root, define the root-selected branch record
+
+$$
+\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+=
+\left(
+j,\,
+t_0,\,
+\hat{\mathbf{r}}_{\mathbf{x}j},\,
+r_{\mathbf{x}j},\,
+J_{\mathbf{x}j},\,
+q_j,\,
+\mathcal{L}_{j}^{\mathrm{wake}},\,
+\Lambda_j
+\right)_{(\mathbf{x},t;t_0)}.
+$$
+
+Here $\mathcal{L}_{j}^{\mathrm{wake}}$ is the wake-history ledger carried by the source branch and $\Lambda_j$ is the closure label or neutral-core label available on that branch. The locked weight is the assembly projector
+
+$$
+w_{j,a}^{\mathrm{lock}}(t_0;t)
+=
+\mathbf{1}_{j\in\mathcal{I}_a(t)}
+\,
+\zeta_a
+\!\left(
+\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\right),
+$$
+
+where $\zeta_a\in[0,1]$ is one for an accepted phase-locked branch of $\Lambda_a(t)$ and zero for a rejected branch in the exact ledger limit. A regularized branch chart may replace this sharp value by
+
+$$
+\zeta_a^{(\eta_\Lambda)}
+\!\left(
+\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\right)
+=
+\exp
+\!\left[
+-
+\frac{
+d_{\Lambda_a}^2
+\!\left(
+\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\right)}
+{\eta_\Lambda^2}
+\right],
+$$
+
+where $d_{\Lambda_a}$ measures closure-label, phase, and branch-provenance mismatch against the accepted assembly ledger. The ambient weight is the complement projector
+
+$$
+w_j^{\mathrm{sea}}(t_0;t)
+=
+\mathbf{1}_{j\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)}
+\,
+\zeta_{\mathrm{sea}}^{(\ell)}
+\!\left(
+\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\right),
+$$
+
+where $\zeta_{\mathrm{sea}}^{(\ell)}\in[0,1]$ retains branches belonging to the neutral-core equilibrium record in the coarse window after all resolved assembly ledgers have been removed. Thus a branch cannot contribute to the locked numerator and the ambient denominator by relabeling alone; it must pass the corresponding ledger projector.
+
+The first symbolic form of this ambient projector comes from ledger complement plus local cadence smoothing. Let $\mathfrak A_{\mathrm{res}}(\Omega_\ell,t)$ be the resolved assembly ledgers inside the same coarse window, including matter assemblies and any resolved corridor ledger that has not been declared ambient Noether Sea. Define the complement factor
+
+$$
+\chi_{\mathrm{comp}}^{(\ell)}
+\!\left(
+\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\right)
+=
+\mathbf{1}_{j\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)}
+\prod_{a'\in\mathfrak A_{\mathrm{res}}(\Omega_\ell,t)}
+\left[
+1-
+\zeta_{a'}
+\!\left(
+\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\right)
+\right].
+$$
+
+For any neutral-core branch quantity $f_k(t)$, write the ambient window average after resolved assembly ledgers have been removed as
+
+$$
+\left\langle f\right\rangle_{\mathrm{sea},\ell}(\mathbf{x},t)
+=
+\frac{
+\sum_{k\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)}
+W_\ell(\mathbf{x}-\mathbf{X}_k(t))f_k(t)
+}{
+\sum_{k\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)}
+W_\ell(\mathbf{x}-\mathbf{X}_k(t))
+}.
+$$
+
+Let $\nu_k$ be the cadence variable of neutral core $k$, let $\bar\nu_{\mathrm{sea}}^{(\ell)}=\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and let $\sigma_{\nu,\ell}^2=\left\langle(\nu-\bar\nu_{\mathrm{sea}}^{(\ell)})^2\right\rangle_{\mathrm{sea},\ell}$. The cadence residual of the candidate branch is
+
+$$
+\Delta_{\mathrm{cad}}^{(\ell)}
+\!\left(
+\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\right)
+=
+\frac{
+\nu_j(t_0)-\bar\nu_{\mathrm{sea}}^{(\ell)}(\mathbf{x},t)
+}{
+\sqrt{\sigma_{\nu,\ell}^2+\epsilon_\nu^2}
+}.
+$$
+
+Let $\mathcal N_{\ell}^{\setminus\mathrm{res}}$ be the neutral-pairing residual and $\mathbf P_{\ell}^{\setminus\mathrm{res}}$ the orientation/polarization residual of the same window after resolved assembly ledgers have been removed. The window-balance residual is
+
+$$
+\left(\Delta_{\mathrm{bal}}^{(\ell)}\right)^2
+=
+\frac{
+\left\|\mathcal N_{\ell}^{\setminus\mathrm{res}}\right\|^2
+}{
+\epsilon_N^2
+}
++
+\frac{
+\left\|\mathbf P_{\ell}^{\setminus\mathrm{res}}\right\|^2
+}{
+\epsilon_P^2
+}.
+$$
+
+The ambient acceptance is then
+
+$$
+\zeta_{\mathrm{sea}}^{(\ell)}
+\!\left(
+\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\right)
+=
+\chi_{\mathrm{comp}}^{(\ell)}
+\!\left(
+\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\right)
+\exp
+\!\left[
+-
+\frac{1}{2}
+\left(
+\left(\Delta_{\mathrm{cad}}^{(\ell)}\right)^2
++
+\left(\Delta_{\mathrm{bal}}^{(\ell)}\right)^2
+\right)
+\right].
+$$
+
+This form rejects assembly-locked branches because any resolved locked projector $\zeta_{a'}=1$ drives the complement factor to zero in the exact ledger limit. It retains ambient Noether-Sea branches in the same coarse window when they remain outside all resolved assembly ledgers and agree with the locally smoothed neutral-core cadence and balance record. The tolerances $\epsilon_\nu$, $\epsilon_N$, and $\epsilon_P$ are resolution tolerances for the chosen window and ledger chart; they are not channel-specific fit knobs. Channel differences still enter through $\Pi_X$ and $Q_X$, while the assembly/complement split and neutral-equilibrium projector remain common to the diagnostic.
+
+The channel intensity is the sector exposure of the same root-selected branch record:
+
+$$
+\mathcal{E}_{X}
+\!\left(
+\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\right)
+=
+Q_X
+\!\left[
+\Pi_X
+\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\right],
+\qquad
+\alpha_{j,X}(\mathbf{x},t;t_0)
+=
+\kappa\,
+\left\|
+\mathcal{E}_{X}
+\!\left(
+\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\right)
+\right\|_X.
+$$
+
+The projection $\Pi_X$ selects the channel being tested and $Q_X$ removes only equivalences that preserve that channel's benchmark. Clock-coupling keeps cadence and phase entries that perturb the clock functional. Reaction-corridor calculations keep the oriented exchange, line-defect, color, weak, or provenance entries declared by that corridor. Packing keeps scalar or tensor exclusion-stress magnitude after force signs are discarded. Penetration keeps the local acceleration and phase-disruption entries along the tested path. These channels may use different $\Pi_X$, but they must not change the causal-root kernel, the assembly/complement split, or the source branch record.
+
+The first concrete projector family can be stated as retained entries of $\mathcal{B}_{\mathbf{x}j}^{(t_0)}$ plus derived local entries computed from the same branch. For the clock channel,
+
+$$
+\Pi_{\mathrm{clock}}
+\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+=
+\left(
+\delta\theta_{\mathrm{clk}}^{(j)},\,
+\delta\omega_{\mathrm{clk}}^{(j)},\,
+\delta\chi_{\mathrm{sea}}^{(\ell,j)},\,
+J_{\mathbf{x}j},\,
+\Lambda_j,\,
+\mathcal{L}_{j}^{\mathrm{wake}}\big|_{\mathrm{phase}}
+\right),
+$$
+
+where $\delta\theta_{\mathrm{clk}}^{(j)}$ and $\delta\omega_{\mathrm{clk}}^{(j)}$ are the branch-induced phase and cadence increments of the declared clock functional, and $\delta\chi_{\mathrm{sea}}^{(\ell,j)}$ is the branch contribution to the coarse Noether-Sea delay factor. The quotient $Q_{\mathrm{clock}}$ may remove phase-origin choices and hidden constituent relabelings only when $\omega_{\mathrm{clk}}/\omega_0$ is unchanged.
+
+For a reaction corridor,
+
+$$
+\Pi_{\mathrm{corridor}}
+\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+=
+\left(
+\hat{\mathbf{r}}_{\mathbf{x}j},\,
+q_j,\,
+\mathcal{L}_{j}^{\mathrm{wake}}\big|_{\mathrm{oriented}},\,
+\mathcal{L}_{j}^{\mathrm{corr}},\,
+\mathcal{P}_{j}^{\mathrm{prov}},\,
+\Theta_j^{\mathrm{strain}}
+\right),
+$$
+
+where $\mathcal{L}_{j}^{\mathrm{corr}}$ is the declared strong, weak, color, electromagnetic, or material corridor ledger, $\mathcal{P}_{j}^{\mathrm{prov}}$ is the provenance record of participating architrinos and energy entries, and $\Theta_j^{\mathrm{strain}}$ is the line-defect or medium-strain entry when the corridor calculation requires one. The quotient $Q_{\mathrm{corridor}}$ may remove only corridor-basis relabelings that preserve the recovered reaction channel, provenance ledger, and line-defect energy.
+
+For packing,
+
+$$
+\Pi_{\mathrm{packing}}
+\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+=
+\left(
+\left\|\mathcal{L}_{j}^{\mathrm{wake}}\right\|_{\mathrm{excl}},\,
+\mathcal{S}_{j,\mathrm{excl}}^{ab},\,
+R_{\parallel,j},\,
+R_{\perp,j},\,
+\lambda_j,\,
+\xi_j
+\right),
+$$
+
+where $\mathcal{S}_{j,\mathrm{excl}}^{ab}$ is the local exclusion-stress entry and $(R_{\parallel,j},R_{\perp,j},\lambda_j,\xi_j)$ are the envelope entries exposed by the branch. Packing deliberately discards attraction/repulsion sign after the exclusion magnitude and stress tensor are retained, because the benchmark is stable adjacency rather than signed acceleration along one path.
+
+For penetration along a declared test path with tangent $\hat{\mathbf{u}}$ at $\mathbf{x}$,
+
+$$
+\Pi_{\mathrm{penetration}}
+\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+=
+\left(
+\mathbf{a}_{\mathbf{x}\leftarrow j}(t;t_0),\,
+\mathbf{a}_{\mathbf{x}\leftarrow j}(t;t_0)\cdot\hat{\mathbf{u}},\,
+\Delta\phi_{\mathrm{disrupt}}^{(j)},\,
+r_{\mathbf{x}j},\,
+J_{\mathbf{x}j},\,
+\Lambda_j
+\right),
+$$
+
+where $\mathbf{a}_{\mathbf{x}\leftarrow j}$ is the signed branch acceleration obtained from the same causal-root law and $\Delta\phi_{\mathrm{disrupt}}^{(j)}$ is the induced phase-disruption increment on the tested transit branch. Unlike packing, penetration keeps the signed line-of-action entry because the benchmark asks whether the transit path remains dynamically stable.
+
+The first channel norms are dimensionless stability diagnostics on these retained records. Their denominator scales are declared resolution or benchmark tolerances for the channel chart; they are not per-observable fit knobs. For clock coupling,
+
+$$
+\left\|
+\mathcal E_{\mathrm{clock}}
+\right\|_{\mathrm{clock}}^2
+=
+\frac{\left(\delta\omega_{\mathrm{clk}}/\omega_0\right)^2}{\epsilon_\omega^2}
++
+\frac{\operatorname{dist}_{S^1}^2(\delta\theta_{\mathrm{clk}},0)}{\epsilon_\theta^2}
++
+\frac{\left(\delta\chi_{\mathrm{sea}}^{(\ell,j)}/\chi_{\mathrm{sea}}^{(\ell)}\right)^2}{\epsilon_\chi^2}
++
+\frac{\left\|
+\mathcal{L}_{j}^{\mathrm{wake}}\big|_{\mathrm{phase}}
+\right\|_{\mathrm{phase}}^2}{\epsilon_{\mathrm{phase}}^2}.
+$$
+
+For a declared reaction corridor with oriented corridor record $\hat{\mathbf c}_X$,
+
+$$
+\left\|
+\mathcal E_{\mathrm{corridor}}
+\right\|_{\mathrm{corridor}}^2
+=
+\frac{1-\hat{\mathbf r}_{\mathbf{x}j}\cdot\hat{\mathbf c}_X}{\epsilon_{\mathrm{dir}}^2}
++
+\frac{\left\|
+\mathcal{L}_{j}^{\mathrm{wake}}\big|_{\mathrm{oriented}}
+\right\|_{\mathrm{oriented}}^2}{\epsilon_{\mathrm{or}}^2}
++
+\frac{\left\|
+\mathcal{L}_{j}^{\mathrm{corr}}
+\right\|_{\mathrm{corr}}^2}{\epsilon_{\mathrm{corr}}^2}
++
+\frac{d_{\mathrm{prov}}^2(\mathcal P_j^{\mathrm{prov}},\mathcal P_X^{\mathrm{prov}})}{\epsilon_{\mathrm{prov}}^2}
++
+\frac{\left\|\Theta_j^{\mathrm{strain}}\right\|^2}{\epsilon_{\Theta}^2}.
+$$
+
+For packing, signs of attraction and repulsion have already been quotiented out, but exclusion magnitude and shape remain:
+
+$$
+\left\|
+\mathcal E_{\mathrm{packing}}
+\right\|_{\mathrm{packing}}^2
+=
+\frac{
+\left\|
+\mathcal{L}_{j}^{\mathrm{wake}}
+\right\|_{\mathrm{excl}}^2
+}{\epsilon_{\mathrm{excl}}^2}
++
+\frac{
+\left\|
+\mathcal{S}_{j,\mathrm{excl}}^{ab}
+\right\|_{S}^2
+}{\epsilon_S^2}
++
+\frac{\left(\Delta\ln R_{\parallel,j}\right)^2}{\epsilon_{\parallel}^2}
++
+\frac{\left(\Delta\ln R_{\perp,j}\right)^2}{\epsilon_{\perp}^2}
++
+\frac{\left(\Delta\ln\lambda_j\right)^2}{\epsilon_\lambda^2}
++
+\frac{\left(\Delta\ln\xi_j\right)^2}{\epsilon_\xi^2}.
+$$
+
+Here each $\Delta\ln$ term is measured relative to the declared branch reference for the channel: the weak homogeneous core for clock/ruler calibration, the candidate neighboring core for packing, or the pre-entry path branch for penetration.
+
+For penetration along $\hat{\mathbf u}$, decompose the signed branch acceleration into tangent and transverse parts,
+
+$$
+a_{\parallel,j}
+=
+\mathbf a_{\mathbf{x}\leftarrow j}\cdot\hat{\mathbf u},
+\qquad
+\mathbf a_{\perp,j}
+=
+\mathbf a_{\mathbf{x}\leftarrow j}
+-
+a_{\parallel,j}\hat{\mathbf u}.
+$$
+
+The dominance norm is
+
+$$
+\left\|
+\mathcal E_{\mathrm{penetration}}
+\right\|_{\mathrm{penetration}}^2
+=
+\frac{a_{\parallel,j}^2}{a_{\parallel,\mathrm{tol}}^2}
++
+\frac{\left\|\mathbf a_{\perp,j}\right\|^2}{a_{\perp,\mathrm{tol}}^2}
++
+\frac{\operatorname{dist}_{S^1}^2(\Delta\phi_{\mathrm{disrupt}}^{(j)},0)}{\epsilon_{\mathrm{disrupt}}^2}
++
+\frac{\left(\Delta\ln r_{\mathbf{x}j}\right)^2}{\epsilon_r^2}
++
+\frac{\left(\Delta\ln|J_{\mathbf{x}j}|\right)^2}{\epsilon_J^2}.
+$$
+
+The signed entries in the penetration record remain available before the norm is taken, so a stabilizing tangent push and a destabilizing tangent push are not treated as the same path-history branch. The scalar norm is used only after the sign-sensitive admissibility test has decided which branch contributes to the penetration benchmark.
+
+The tolerance scales must be inherited from declared ledger comparisons. Let $\mathcal O_X[\mathcal B]$ be the channel readout produced from the projected branch record, and let $\Delta_X^{\mathrm{tol}}$ be the benchmark sensitivity fixed before the scan. For any retained scalar entry $y_\mu(\mathcal B)$ in channel $X$, the first admissible scale is the local pullback of that readout tolerance,
+
+$$
+\epsilon_{\mu,X}^{2}
+=
+\sup_{\delta y_\mu}
+\left\{
+\left(\delta y_\mu\right)^2:
+\frac{
+\left\|
+\mathcal O_X[\mathcal B+\delta_\mu\mathcal B]
+-
+\mathcal O_X[\mathcal B]
+\right\|_X
+}{
+\left\|
+\mathcal O_X[\mathcal B]
+\right\|_X+\varepsilon_X
+}
+\le
+\Delta_X^{\mathrm{tol}}
+\right\}.
+$$
+
+This definition makes the $\epsilon$ values derived chart scales: they are how far a retained ledger entry may move before the declared channel readout changes by more than the accepted tolerance. The practical first estimates are:
+
+$$
+\epsilon_\omega=\Delta_{\Gamma}^{\mathrm{tol}},
+\qquad
+\epsilon_\theta=\Delta_{\theta}^{\mathrm{tol}},
+\qquad
+\epsilon_\chi=\Delta_{\chi}^{\mathrm{clk\text{-}sig,tol}},
+$$
+
+for clock scans;
+
+$$
+\epsilon_{\mathrm{dir}}
+=
+1-\cos\theta_X^{\mathrm{tol}},
+\qquad
+\epsilon_{\mathrm{prov}}
+=
+\Delta_{\mathrm{prov},X}^{\mathrm{tol}},
+$$
+
+for corridor scans, with exact provenance closure represented by the limit $\Delta_{\mathrm{prov},X}^{\mathrm{tol}}\to0$ after regularization; and
+
+$$
+\epsilon_{\parallel}
+=
+\Delta\ln R_{\parallel}^{\mathrm{stab}},
+\qquad
+\epsilon_{\perp}
+=
+\Delta\ln R_{\perp}^{\mathrm{stab}},
+\qquad
+\epsilon_{\lambda}
+=
+\Delta\ln\lambda^{\mathrm{stab}},
+\qquad
+\epsilon_{\xi}
+=
+\Delta\ln\xi^{\mathrm{stab}},
+$$
+
+for packing scans, where the stable ranges are measured over accepted neighboring-core branches rather than chosen per atom or line. For penetration over a trial path of duration $T_{\mathrm{path}}$ and speed $v_{\mathrm{path}}$,
+
+$$
+a_{\parallel,\mathrm{tol}}
+=
+\frac{v_{\mathrm{path}}\Delta v_{\parallel}^{\mathrm{tol}}}{T_{\mathrm{path}}},
+\qquad
+a_{\perp,\mathrm{tol}}
+=
+\frac{v_{\mathrm{path}}\theta_{\mathrm{path}}^{\mathrm{tol}}}{T_{\mathrm{path}}},
+\qquad
+\epsilon_{\mathrm{disrupt}}
+=
+\Delta\phi_{\mathrm{path}}^{\mathrm{tol}}.
+$$
+
+Thus tolerance derivation is a ledger-replay problem. A hydrogen line, packing calculation, or penetration test may choose a different channel tolerance because it asks a different stability question, but it may not retune the tolerance after seeing the observable.
+
+The mismatch metric used in the regularized locked projector must also be ledger-derived. Let $\mathcal{R}_a(t)$ be the accepted reduced record of assembly $a$ containing its closure label, phase state, active causal roots, provenance entries, and conserved ledger increments. The first symbolic mismatch is
+
+$$
+d_{\Lambda_a}^2
+\!\left(
+\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\right)
+=
+d_{\mathrm{disc}}^2
++
+\frac{
+\operatorname{dist}_{S^1}^2
+\!\left(
+\phi_j-\phi_a
+\right)}
+{\epsilon_\phi^2}
++
+\frac{
+d_{\mathrm{root}}^2
+\!\left(
+\mathcal{R}_j,\mathcal{R}_a
+\right)}
+{\epsilon_{\mathrm{root}}^2}
++
+\frac{
+d_{\mathrm{prov}}^2
+\!\left(
+\mathcal{P}_j,\mathcal{P}_a
+\right)}
+{\epsilon_{\mathrm{prov}}^2}
++
+\frac{
+\left\|
+\Delta\mathcal{N}_{j\to a}
+\right\|_{\mathrm{cons}}^2}
+{\epsilon_{\mathrm{cons}}^2}.
+$$
+
+Here $d_{\mathrm{disc}}=0$ when the discrete closure labels are compatible and $d_{\mathrm{disc}}=\infty$ when they are incompatible; $\operatorname{dist}_{S^1}$ is phase distance; $d_{\mathrm{root}}$ compares active causal-root ledgers; $d_{\mathrm{prov}}$ compares participating-source provenance; and $\Delta\mathcal{N}_{j\to a}$ collects the energy, momentum, angular-momentum, polarity, and other conserved-increment residuals needed by the assembly ledger. This makes $\zeta_a$ a branch-admission test. If any term has to be chosen separately for clock, corridor, packing, and penetration benchmarks, the interface diagnostic has reverted to a fitted surface rather than a closure-ledger projection.
 
 For regularized simulations, the branch sum is replaced by the corresponding finite-width integral with $\delta_\eta(g_{\mathbf{x}j})$. The important constraint is that the numerator and denominator of $D_{a,X}$ use the same channel $X$, the same causal-width rule, and the same coarse-graining window. Signed force cancellation belongs in acceleration calculations; interface dominance uses retained channel magnitude so that a cancellation in one direction is not mistaken for absence of wake activity.
 
