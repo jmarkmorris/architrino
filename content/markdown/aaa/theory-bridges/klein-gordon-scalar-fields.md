@@ -114,6 +114,73 @@ $$
 
 Here $J$ may be an ordinary source density, a distributional point or surface source, or a regularized source $J_\eta$ used for calculation. This distinction matters because a Dirac delta is not an infinite-valued ordinary scalar field; it is a distributional source whose mollified version becomes an ordinary finite scalar profile.
 
+## Variational Scalar Closure Benchmark
+
+The statistical-field-theory comparison gives a concrete continuum test: if a coarse scalar mode is legitimate, it should have a controlled quadratic fluctuation operator around a saddle of an effective free-energy or action functional. In $\mathbb{A}\mathbb{A}\mathbb{A}$ notation the bridge target can be stated as
+$$
+\mathcal{F}_{\mathrm{eff}}[\phi]
+=
+\int_{\Sigma_t}
+\left[
+\frac{K_\phi}{2}\|\nabla\phi\|^2
++V_{\mathrm{eff}}(\phi)
+\right]\,dV,
+$$
+where
+$$
+\phi
+$$
+is a coarse-grained Noether-Sea or assembly-response amplitude, not a substrate primitive. A homogeneous branch
+$$
+\phi=\phi_\ast
+$$
+is a candidate background only if
+$$
+V_{\mathrm{eff}}'(\phi_\ast)=0.
+$$
+Linearizing gives
+$$
+\partial_t^2\delta\phi
+\approx
+c_{\mathrm{eff}}^2\Delta\delta\phi
+-\omega_0^2\delta\phi,
+\qquad
+\omega_0^2\propto V_{\mathrm{eff}}''(\phi_\ast),
+$$
+which is the bridge route to the Klein-Gordon dispersion target.
+
+The same benchmark supplies a defect test. If
+$$
+V_{\mathrm{eff}}
+$$
+has two locally stable branches
+$$
+\phi_-
+\quad\text{and}\quad
+\phi_+,
+$$
+then a one-dimensional interface profile should satisfy the saddle equation
+$$
+K_\phi\frac{d^2\phi}{dx^2}
+=
+V_{\mathrm{eff}}'(\phi),
+\qquad
+\lim_{x\to-\infty}\phi(x)=\phi_-,
+\qquad
+\lim_{x\to+\infty}\phi(x)=\phi_+.
+$$
+Its interface cost is
+$$
+\sigma_\phi
+=
+\int_{-\infty}^{\infty}
+\left[
+\frac{K_\phi}{2}\left(\frac{d\phi}{dx}\right)^2
++V_{\mathrm{eff}}(\phi)-V_{\mathrm{eff}}(\phi_\pm)
+\right]\,dx,
+$$
+with the appropriate branch value subtracted on each side. For this bridge, such domain-wall or kink-like profiles are comparison diagnostics for coarse scalar closure; they are not evidence that the underlying architrino ontology is a continuous scalar field.
+
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ Reading
 
 $\phi$ should be treated as a coarse-grained scalar amplitude of Noether-Sea density, compression, or radial-breathing response, not as a fundamental continuous substance.
@@ -144,6 +211,8 @@ To promote this bridge from mapping to derivation, the following targets must cl
 4. Show when linearization around a homogeneous Noether-Sea background yields $\omega^2=c_{\mathrm{eff}}^2k^2+\omega_0^2$.
 5. Relate the effective mass parameter $m$ to assembly stiffness, confinement energy, or radial restoring dynamics rather than treating it as primitive.
 6. Determine whether effective curvature coupling $\xi R\phi^2$ emerges from medium-density gradients, strain response, or scalar-tensor leakage in the emergent metric closure.
+7. Derive an effective functional $\mathcal{F}_{\mathrm{eff}}[\phi]$ with a positive fluctuation operator on the retained branch, and identify any zero modes as symmetry or collective-coordinate directions rather than as unstable scalar modes.
+8. If multiple scalar branches exist, compute the interface profile and interface cost $\sigma_\phi$ as a defect benchmark, then test whether such interfaces are stable, proliferate, or are excluded by the underlying delayed dynamics.
 
 ## Summary Commitment
 

@@ -86,8 +86,11 @@ Another recurring pattern is failure to revisit earlier assumption sets after la
 | 1887-1904 (Michelson-Morley + Lorentz) | Null aether-wind result, dynamical contraction/time slowdown models | Emergent Lorentz symmetry from matter-medium interaction | "Undetectable medium = dispensable medium" became the decisive simplification |
 | 1905 (Special Relativity) | Full Lorentz covariance of inertial laws | Could have been read as effective symmetry of assemblies in one substrate | Principle-theory victory reclassified kinematic effects as fundamental spacetime structure |
 | 1915-1920 (General Relativity) | Metric dynamics with exceptional predictive power | Metric as coarse-grained constitutive field of deeper medium state | Geometrization succeeded so strongly that "geometry is fundamental" became default |
+| 1917 (Einstein World) | Boundary-condition pressure at spatial infinity, Machian relativity-of-inertia aims, and the first relativistic global cosmology | Global geometry could have been held as a closure hypothesis requiring observation, stability, and source/boundary residual tests | Logical consistency and aesthetic closedness could outrun empirical comparison and perturbative stability analysis |
 | 1924-1930 (de Broglie, pilot-wave, early quantum debates) | Deterministic alternatives existed, wave-particle dual structure observed | Deterministic microstate + contextual readout + basin selection | Copenhagen operationalism treated ontology as unnecessary overhead |
 | 1930s-1950s (QFT vacuum, renormalization) | Vacuum structure, divergence control, effective computational rules | Divergences as signs of missing microstructure and finite substrate scales | Renormalization success normalized continuum ontology plus parameter absorption |
+| 1941-1954 (Wheeler's particles-first to fields-first turn) | Wheeler-Feynman direct-action electrodynamics, Machian inertia pressure, liaison/light-ray reconstruction attempts, EIH point-particle motion, and geon-style nonsingular field configurations | A constituent-first program could have asked whether field-like and inertial behavior are derived summaries of causal interaction records rather than primitive continua | The failed liaison-action program and the success of GR/QED redirected pressure toward fields-first formalism before a delayed causal-wake ontology was available |
+| 1960s-1970s (Wheeler's collapse and law-without-law turn) | Gravitational-collapse singularity pressure, black-hole no-hair compression, and Wheeler's claim that baryon and lepton conservation lose operational content in collapse | Lawfulness could have been treated as an emergent closure whose conservation records survive only where the accessible exterior variables still carry the needed provenance | Collapse and no-hair results redirected Wheeler from lawlike geometrodynamics toward law-without-law, participatory cosmology, and universe-evolution language |
 | 1964-1982 (Bell + Aspect era) | Nonlocal correlations experimentally robust | Absolute-time nonlocal substrate dynamics without signaling | The discourse framed options as "local realism dead" rather than "which nonlocal ontology?" |
 | 1970s-1990s (SM success + naturalness programs) | Precision particle physics with many free parameters | Assembly geometry as origin of masses/charges/mixing patterns | Parameter-fit pragmatism displaced geometric micro-construction programs |
 | 1998-2010s (Dark energy and precision cosmology) | Accelerated expansion inferred from distance-redshift data | Medium-relaxation / clock-comparison interpretation in fixed void | $\Lambda$ as baseline closure model hardened into ontology, not just effective fit |
@@ -210,6 +213,60 @@ The long-term relevance of this episode is permanent process guidance. Recovery 
 
 ---
 
+## Einstein's 1917 Static World: Closure Before Validation
+
+### Overview
+
+**Episode:** Einstein's 1917 Static World: Closure Before Validation. **Short Name:** Einstein World. **Period:** 1916-1931, from the boundary-condition debates after general relativity through the later abandonment of the static model. The near-miss thesis is methodological: Einstein's first relativistic cosmology converted a real closure pressure into a logically consistent global geometry, but the model was not promoted through observation, perturbative stability, and explicit boundary/source ledger tests before being treated as a candidate world-picture.
+
+### Where The Opening Appeared
+
+What physics already had was a sharp problem. Planetary and local relativistic solutions could use asymptotic conditions, but a model of the universe as a whole could not simply appeal to a flat metric at spatial infinity without reintroducing an external reference structure. Einstein's Machian pressure for the relativity of inertia made this issue especially acute: if inertia was to be conditioned by matter rather than by space on its own, then the global boundary condition was not a minor technical detail. It was part of the meaning of the theory.
+
+Einstein's answer was to remove spatial infinity by using a closed, static, homogeneous model with nonzero mean density and an added cosmological constant term. In the 1917 calculation, the new term supplied the mathematical support needed for static equilibrium, yielding the familiar relation among mean density, curvature radius, and $\lambda$. The opening, from the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, was not that the Einstein World was the right cosmology. It was that a global geometry should have remained visibly conditional on the closure work it performs: the same model element that solves a boundary problem must also survive empirical comparison, perturbative stability, and a declared source/boundary ledger.
+
+### What Current Physics Still Gets Right
+
+What still works from the Einstein World episode is substantial. The model inaugurated relativistic cosmology as a concrete mathematical discipline, made the boundary-condition problem impossible to ignore, and showed that global assumptions about matter distribution, curvature, and field equations are coupled. The later de Sitter, Friedmann, Lemaître, Eddington, Hubble, and Einstein-de Sitter developments did not erase that achievement. They turned it into a live comparison sequence in which static, empty, and time-varying cosmologies had to face observation and internal consistency.
+
+The review also makes Einstein's local rationality clear. In 1917 the extragalactic scale was not settled, the observed universe was often identified with the Milky Way, and the static assumption was a defensible approximation to the known stellar system. His reluctance to publish a radius estimate was likely tied to distrust of mean-density estimates rather than indifference to data. The cautionary point is therefore narrower: logical consistency inside the field equations is not yet enough to license a global world-picture.
+
+### Where Interpretation Locked In
+
+The narrative lock-in was the promotion of formal closure before validation closure. Closed spatial geometry eliminated the need for boundary conditions at infinity, and $\lambda$ made a static matter-filled solution possible, but the model's physical status depended on additional tests that were not carried through in the 1917 memoir. The cosmological constant was also doing ambiguous work: it was allowed by the equations, but its physical interpretation shifted among mathematical support, negative-pressure or negative-density language, and later integration-constant language.
+
+The de Sitter, Friedmann, and Lemaître responses exposed the weakness of treating the static solution as privileged. De Sitter showed that the same modified equations admitted a rival matter-free comparison solution with redshift-relevant behavior. Friedmann and Lemaître showed that non-static solutions were mathematically natural, and Lemaître tied the dynamics to nebular redshift evidence. Einstein's eventual abandonment of the static world after Hubble-era evidence and Eddington's instability analysis illustrates the methodological correction: a candidate cosmology must lose authority when observation and stability fail, even if the original closure motivation was serious.
+
+### What Was Left Unfinished
+
+What was occluded was an explicit promotion rule for global cosmological models. The 1917 episode contains three separable obligations that should not be merged: a boundary obligation, a stability obligation, and an observational obligation. A model may solve one and fail the others. For a candidate effective cosmological branch $\theta$ over an observation window $W$, the lesson can be stated as a residual discipline:
+$$
+\mathcal{R}_{\mathrm{cos}}(\theta;W)
+=
+\mathcal{R}_{\mathrm{obs}}(\theta;W)
++\mathcal{R}_{\mathrm{stab}}(\theta;W)
++\mathcal{R}_{\mathrm{src/bdy}}(\theta;W).
+$$
+Here $\mathcal{R}_{\mathrm{obs}}$ measures mismatch to the declared astronomical data packet, $\mathcal{R}_{\mathrm{stab}}$ measures growth of admissible perturbations around the branch, and $\mathcal{R}_{\mathrm{src/bdy}}$ measures whether boundary fluxes and source terms close one shared ledger rather than being inserted independently. In continuity form, the last term has the schematic structure
+$$
+\mathcal{R}_{\mathrm{src/bdy}}(\theta;W)
+=
+\frac{\left\|\partial_t Q_\theta+\nabla\cdot \mathbf{F}_\theta-\mathcal{S}_\theta\right\|_W}{\epsilon_Q},
+$$
+where $Q_\theta$ is the retained effective quantity, $\mathbf{F}_\theta$ is its boundary flux, $\mathcal{S}_\theta$ is its declared source, and $\epsilon_Q$ is the tolerance fixed by the comparison packet. A global geometry, medium interpretation, or effective scale-factor story should not be promoted unless the three terms are simultaneously small under one branch record.
+
+### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
+
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **cautionary and directly useful as method**. It does not support importing Einstein's static closed universe, nor does it justify treating $\lambda$ as a disguised proof of Noether-Sea dynamics. It supports a stricter rule: whenever $\mathbb{A}\mathbb{A}\mathbb{A}$ proposes an effective cosmological history in a fixed Euclidean void, the history must distinguish observer-level variables such as $a(t)$ and $H(t)$ from substrate claims about assemblies and the Noether Sea, and it must carry observation, stability, and source/boundary residuals together.
+
+Transition relevance is high because emergent cosmologies are especially vulnerable to the same failure mode. A model can be mathematically elegant, philosophically attractive, and still be under-validated. The Einstein World warns that a closure device should remain a closure device until it survives the full residual check.
+
+### Recovery Target
+
+The long-term relevance of this episode is permanent process control for cosmology. Recovery would require every proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmological branch to state its effective observables, perturbation class, and source/boundary ledger before the branch is used ontologically. A fixed-void medium account must therefore show, on one branch record, how redshift, CMB, BBN, growth, lensing, and clock-rate comparisons remain compatible while $\mathcal{R}_{\mathrm{obs}}$, $\mathcal{R}_{\mathrm{stab}}$, and $\mathcal{R}_{\mathrm{src/bdy}}$ remain below their declared tolerances.
+
+---
+
 ## Copenhagen: Multistability Lost to Epistemic Minimalism
 
 ### Overview
@@ -275,6 +332,107 @@ The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly supportive**. Tra
 ### Recovery Target
 
 The long-term relevance of this episode is permanent until a deeper microtheory derives field-like low-energy behavior without making continuum infinity primitive. Recovery would require showing how renormalized success emerges from finite substrate organization and why the old formalism was such an effective approximation over the domains where it triumphed.
+
+---
+
+## Wheeler's Tokyo Program: Particles, Fields, and Direct Action
+
+### Overview
+
+**Episode:** Wheeler's Tokyo Program: Particles, Fields, and Direct Action. **Short Name:** Wheeler Tokyo Near Miss. **Period:** roughly 1941-1954, from Wheeler-Feynman direct-action electrodynamics through Wheeler's 1953 Tokyo lecture and the 1954 turn toward geon-style field configurations. The near-miss thesis is that Wheeler's path briefly held together several $\mathbb{A}\mathbb{A}\mathbb{A}$-adjacent pressures: particles before fields, inertia from cosmic interaction, light-ray relational data before spacetime reconstruction, and a demand that particle masses not enter as arbitrary primitive constants.
+
+### Where The Opening Appeared
+
+What physics already had was unusually rich. Wheeler-Feynman electrodynamics had shown that a field-mediated interaction could be reformulated as direct interparticle action under strong boundary assumptions. Wheeler then tried to extend that style of thinking to gravity by replacing independent spacetime and field variables with world lines connected by light-ray relations, which he called liaisons. In the simplest historical notation, a liaison composition such as
+$$
+\alpha'=\alpha^{-}(\gamma^{+}(\beta^{+}(\alpha)))
+$$
+was meant to recover a geometrical relation from world lines and causal light-ray contact alone. The important opening was not the success of this formula as a theory. It was the attempt to make geometry and field structure answer to observable interparticle connection data rather than treating them as the first layer of ontology.
+
+The Tokyo lecture added a second opening: inertia and mass were treated as effects that should be generated by interaction rather than inserted by hand. Wheeler's Machian comparison used the condition
+$$
+\frac{G}{c^2}\sum_k\frac{m_k}{r_k}\sim 1
+$$
+as a proof-of-principle scale statement for inertia from cosmic matter, while the field-generated-mass discussion pressed the same question locally for elementary particles. From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, the safe lesson is not that Wheeler's formulas should be imported. It is that mass and inertia were already being forced into the form of a ledger problem: if a particle has an exposed inertial response, the response should be derived from its interaction history and the surrounding universe record.
+
+### What Current Physics Still Gets Right
+
+What still works from the victorious path is substantial. Wheeler-Feynman theory did not replace field theory as the standard route to QED, and Wheeler's liaison action for gravity was not produced. Renormalized QED, GR field equations, and later particle physics achieved far stronger calculational control than the speculative particles-first route. The geon program itself did not become the accepted structure of elementary particles, but it helped redirect attention to exact solutions, strong-field questions, gravitational radiation, and the physical problem pressure that made general relativity a live part of mid-century physics again.
+
+### Where Interpretation Locked In
+
+The narrative lock-in was the return from particles-first reconstruction to fields-first formalism. That return was rational. Direct action required difficult boundary assumptions, liaison theory lacked a working action, point singularities carried unresolved mass and stability problems, and renormalized field theory was becoming more effective. Wheeler's own sequence shows the pressure clearly: first fields were to be derived from particles, then particles became singularities of fields, then particles were pursued as nonsingular field configurations.
+
+Blum and Furlan's 2022 reconstruction of Wheeler's later turn adds a sharper collapse episode to the same historical arc. Wheeler moved from daringly lawlike geometrodynamics toward "law without law" after black-hole collapse appeared to erase the operational meaning of baryon and lepton conservation, while no-hair results compressed the source's detailed particle history into only mass, charge, and angular momentum. The safe lesson for $\mathbb{A}\mathbb{A}\mathbb{A}$ is contextual rather than doctrinal: Wheeler's crisis marks a real recovery target, namely to show how conservation-law provenance passes through collapse, is coarse-grained into exterior observables, or is explicitly lost as an effective descriptor without making lawfulness itself primitive magic.
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ caution is that this historical failure should not be overread. It did not show that every constituent-first or path-history ontology is impossible. It showed that Wheeler lacked a finite delayed causal-wake microdynamics with explicit assembly states, a causal-root ledger, and a mass-map derivation. Without those objects, the particles-first program had no stable mathematical carrier.
+
+### What Was Left Unfinished
+
+What was occluded was a controlled comparison between direct interaction, effective field language, and finite constituent dynamics. In the present corpus, the useful closure target is a direct-action comparison residual over a declared window $W$:
+$$
+\mathcal{R}_{\mathrm{DA}}(W)
+=
+\frac{\left\|\Delta\mathbf{p}_{\mathrm{wake}}(W)-\Delta\mathbf{p}_{\mathrm{eff}}(W)\right\|}{p_W}
++\frac{\left\|\mathcal{P}_{\mathrm{wake}}(W)-\mathcal{P}_{\mathrm{field}}(W)\right\|}{P_W}
++\frac{\left|m_{\mathrm{resp}}(W)-m_{\mathrm{obs}}(W)\right|}{m_W}.
+$$
+Here $\Delta\mathbf{p}_{\mathrm{wake}}$ is the impulse accumulated from finite-speed causal-wake hits, $\Delta\mathbf{p}_{\mathrm{eff}}$ is the corresponding impulse in the effective field description being recovered, $\mathcal{P}_{\mathrm{wake}}$ and $\mathcal{P}_{\mathrm{field}}$ are matched provenance records for where the interaction content enters and exits the calculation, and $m_{\mathrm{resp}}$ is the externally exposed inertial response derived from path history, shielding, and Noether-Sea coupling. A Wheeler-style near miss becomes live only if all three terms are small without adding instantaneous action, non-causal branch content, or independent mass constants.
+
+The later collapse crisis adds a companion requirement: no-hair coarse-graining must not be mistaken for literal source erasure unless the derivation says so. A recovery account has to identify which incoming assembly records remain available to exterior effective variables, which are hidden behind the collapse boundary, and which conservation labels were only valid at the pre-collapse effective layer. That is the concrete historical pressure behind Wheeler's law-without-law language: if lawfulness is emergent closure, the corpus must specify the closure map rather than simply deny Wheeler's worry.
+
+### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
+
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **partially supportive and strongly cautionary**. It is supportive because Wheeler's search exposed exactly the right pressure points: field variables may be effective summaries, mass should not be an unexplained insert, and observable light-ray relations can carry more primitive relational data than a finished metric presentation suggests. It is cautionary because Wheeler's route also shows how quickly a constituent-first program collapses if it cannot supply a working action, stability mechanism, and particle-category map.
+
+Transition relevance is high. The project should not inherit Wheeler's particles-first language naively, nor should it accept the fields-first reversal as final. The disciplined middle position is to treat architrino assemblies and causal wakes as substrate ontology, while treating continuum fields, metric variables, and standard particle labels as recovered observer-level summaries until their derivations close.
+
+### Recovery Target
+
+The long-term relevance of this episode is permanent until the field/particle distinction is closed at the constitutive level. Recovery would require deriving effective fields from causal-wake superposition, deriving inertial response from trapped internal causal history and Noether-Sea coupling, and replacing singular point-particle idealization with finite stable assembly branches that still reproduce the tested point-particle and field-theory limits. Wheeler's historical sequence then becomes a near-miss benchmark: $\mathbb{A}\mathbb{A}\mathbb{A}$ succeeds only if it can keep the particles-first pressure without losing the field-level successes that Wheeler eventually had to recover.
+
+---
+
+## Einstein's Abandoned Steady-State Cosmology
+
+### Overview
+
+**Episode:** Einstein's Abandoned Steady-State Cosmology. **Short Name:** Einstein Steady-State Manuscript. **Period:** early 1931, after Hubble's redshift-distance evidence and before Einstein's published evolving cosmologies. The near-miss thesis is cautionary: Einstein tried to preserve a constant-density expanding universe by associating a cosmological-constant term with a source of matter, but the model failed because the source was not actually present in the equations.
+
+### Where The Opening Appeared
+
+What physics already had was unusually concentrated: Hubble's approximately linear redshift-distance relation, the instability of Einstein's static model, de Sitter-style exponential expansion, and the cosmological constant as a mathematical term in the field equations. The opening was to ask whether apparent expansion could be modeled while avoiding a one-time global origin and preserving a large-scale statistical steadiness. In modern comparison language, the relevant effective branch is
+$$
+a_{\mathrm{eff}}(t)=a_0e^{H_*t},
+\qquad
+\dot{\rho}_{m,\mathrm{eff}}=0.
+$$
+The mathematical pressure is immediate. With no source term, dust continuity gives
+$$
+\dot{\rho}_{m,\mathrm{eff}}
++3H_*\rho_{m,\mathrm{eff}}=0,
+$$
+so a nonzero constant density requires a provenance source $\mathcal{S}_{m,\mathrm{eff}}=3H_*\rho_{m,\mathrm{eff}}$.
+
+### What Current Physics Still Gets Right
+
+The later rejection of steady-state cosmology was empirically and mathematically justified. Galaxy-evolution evidence and the CMB made an unevolving cosmic population untenable, and the missing source term in Einstein's manuscript was a real closure failure rather than an editorial inconvenience. The valid retained content is not the steady-state universe. It is the conservation lesson: if an effective density is held constant while the comparison volume grows, the source term and its physical ledger must be explicit.
+
+### Where Interpretation Locked In
+
+The historical lock-in around this episode is two-sided. Einstein's preference for an unchanging large-scale universe initially made the constant-density option attractive, even after redshift evidence favored dynamical models. Later, once steady-state cosmology failed observationally, the useful mathematical warning could be hidden under the broader rejection of the model family. Both moves can obscure the layer distinction between an effective scale-factor curve, a source equation, and substrate ontology.
+
+### What Was Left Unfinished
+
+What was occluded was a disciplined source-provenance analysis. A cosmological constant, dark-energy-like stress, or medium tension can alter an effective expansion history without automatically producing matter. Conversely, recurring assembly association, dissociation, black-hole recycling, or Noether-Sea exchange can source effective matter only if the ledger closes in absolute time. The unfinished target is therefore not "revive steady state"; it is "never allow a fitted expansion history to smuggle in unaccounted source terms."
+
+### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
+
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **cautionary but useful**. The Euclidean void does not supply matter or energy. The Noether Sea may carry medium-state dynamics that project into $a_{\mathrm{eff}}(t)$, $H_{\mathrm{eff}}(t)$, and $\rho_{\mathrm{DE,eff}}$, but any effective matter source must be derived from assembly and medium histories inside $S(t)$. This episode therefore sharpens the fixed-void cosmology discipline rather than weakening it.
+
+### Recovery Target
+
+Recovery would require a sourced effective continuity theorem: for every proposed constant-density, recycling, or matter-loading branch, derive $\mathcal{S}_{m,\mathrm{eff}}$ from a declared absolute record and prove that the same record also feeds redshift, CMB, BBN, growth, and lensing comparisons. If the source term is inserted only to maintain a preferred history, the branch fails in the same structural way as the abandoned steady-state attempt.
 
 ---
 

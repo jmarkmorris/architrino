@@ -24,6 +24,10 @@ This is the parameter-closure and first mass-formula bucket. Treat [parameter-le
 
 This file is the workstream control surface for mass-side integration. It should decide what belongs in canonical $\mathbb{A}\mathbb{A}\mathbb{A}$ prose, what remains an active theorem target, and what must be routed to other priority workstreams before any stronger mass claim is deployed.
 
+## OpenAlex Baseline
+
+[openalex-baseline.md](openalex-baseline.md) records the May 18, 2026 OpenAlex review set for mass generation, Higgs-sector scalar benchmarks, hadron masses, effective mass, and medium-response constraints.
+
 ## Detailed Priority Files
 
 | File | Role | Target AAA notes |
@@ -78,6 +82,7 @@ Here $\zeta(A)$ is the shielding or exposure coefficient and $c_{\text{eff}}$ is
 
 - Stronger mass claims must declare which role is meant: rest mass, inertial response, gravitational response, external mass footprint, effective boson mass scale, neutral-assembly mass, or internal energy ledger.
 - Effective boson mass scale must split photon-like and weak-corridor cases. Photon-like planar channels lose stable volumetric rest-clock closure and therefore occupy the massless null branch; $W/Z$ corridors retain a localized recoupling burden whose longitudinal or mixed-axis structure appears as a short-lived massive vector channel.
+- Higgs-sector mass language is downstream of the mass map. The ATLAS scalar benchmark may be used only after the branch, shielding, and medium-response records are fixed without particle-mass input. The closure target is not merely $M_H^{\mathrm{breath}}\approx126.0\,\mathrm{GeV}$; the same scalar response must also recover $\hat{\mu}=1.4\pm0.3$, the channel-rate ledger for $ZZ^{(*)}4\ell$, $\gamma\gamma$, and $WW^{(*)}\ell\nu\ell\nu$, and the absence of additional accepted scalar windows. If those terms require separate tuning, the mass map has not recovered the Higgs sector.
 - Avoid treating Noether-Sea response as ordinary dissipative drag unless dissipation is actually being modeled. The preferred derivation language is medium-dressed inertial response.
 
 ## Assembly-Level Reduction Status
@@ -141,6 +146,7 @@ Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate sli
 - Show that inertial and gravitational response share the same shielded-energy coefficient within equivalence-principle bounds.
 - Derive the slow-fast tri-binary minimality theorem needed before claiming that three nested binaries are the universal stable matter unit.
 - Derive the $W/Z$ corridor mass scale as a localized recoupling and medium-response cost, distinct from both stable matter rest mass and photon masslessness.
+- Derive the scalar breathing-mode mass and detector-facing rate response as a downstream Higgs benchmark, including ATLAS mass, signal strength, channel-rate compatibility, and excluded-scalar-window pressure, without using those observables as inputs to the $A_0$ branch or shielding extraction.
 
 ### Priority
 
@@ -154,7 +160,7 @@ Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate sli
 ## Program Notes
 
 - For scorecard purposes, this is the main Parameter Closure + Mass Formulas bucket.
-- If the goal is the fastest score lift, pair this workstream with [chapter-authoring](../../op/chapter-authoring.md) for Parameter Closure + Coverage.
+- If the goal is the fastest score lift, pair this workstream with [chapter-authoring](../chapter-authoring/chapter-authoring.md) for Parameter Closure + Coverage.
 - Keep the constants question attached to the mass map only when it sharpens the derivation. Otherwise it belongs in background notes, not in the active deliverable.
 
 ## Concrete Deliverables

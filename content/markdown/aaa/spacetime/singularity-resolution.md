@@ -35,6 +35,20 @@ $$
 $$
 That is a standard-theory warning that weak-field continuation has entered a generic strong-collapse regime.
 
+The useful Penrose comparison assumption vector is
+$$
+\mathcal{A}_{\mathrm{P}}^{\mathrm{eff}}
+=
+\left(
+\theta_+^{\mathrm{eff}}<0,\,
+\theta_-^{\mathrm{eff}}<0,\,
+\mathrm{NullComplete}^{\mathrm{eff}}_+,\,
+T_{\mu\nu}^{\mathrm{eff}}k^\mu k^\nu\ge 0,\,
+\mathcal{C}^{\mathrm{eff}}
+\right),
+$$
+where $\mathrm{NullComplete}^{\mathrm{eff}}_+$ records future null completeness, $T_{\mu\nu}^{\mathrm{eff}}k^\mu k^\nu\ge 0$ records the non-negative local energy condition along null directions, and $\mathcal{C}^{\mathrm{eff}}$ records the comparison assumption that the effective spacetime is the future development of an initial Cauchy surface with the required global orientation. Penrose's disjunction is then the pressure point: once a trapped surface forms under the local energy and global continuation assumptions, at least one assumption in $\mathcal{A}_{\mathrm{P}}^{\mathrm{eff}}$ must fail if a physical endpoint is to remain nonsingular.
+
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ response is not to import the singularity as ontology. The comparison target is instead
 $$
 \theta_+^{\mathrm{eff}}<0,\quad \theta_-^{\mathrm{eff}}<0
@@ -42,6 +56,27 @@ $$
 F_H=0,\qquad \mathcal{R}_H(\Omega)<\infty
 $$
 for the corresponding compact strong-field region $\Omega$, after the effective variables are translated into native Noether-Sea boundary data. In plain terms, whenever the observer-level GR description says collapse has passed the generic trapped-surface threshold, the native model must enter a finite maximum-curvature or horizon-interface regime rather than requiring symmetry, a zero-volume endpoint, or an arbitrary branch choice.
+
+Equivalently, the finite-boundary-data closure target is the residual
+$$
+\mathcal{P}_{H}(\Omega)
+=
+\left(
+\theta_+^{\mathrm{eff}}<0,\,
+\theta_-^{\mathrm{eff}}<0,\,
+T_{\mu\nu}^{\mathrm{eff}}k^\mu k^\nu\ge 0,\,
+\mathcal{C}^{\mathrm{eff}}
+\right)
+\Longrightarrow
+\left(
+\neg\,\mathrm{NullComplete}^{\mathrm{eff}}_+
+\quad\mathrm{is\ replaced\ by}\quad
+F_H=0,\,
+\mathcal{R}_H(\Omega)<\infty,\,
+0<\left|\mathcal{B}_{H}\right|<\infty
+\right).
+$$
+The theorem burden is not to deny the trapped-surface comparison result. It is to show exactly which effective global-completeness assumption is superseded by compact Noether-Sea boundary data, while preserving the non-negative local energy comparison and producing a finite, labeled strong-field continuation.
 
 ### Finite-Boundary-Data Regularity
 

@@ -196,7 +196,7 @@ and is constant in time for exact isolated solutions of the causal action. In mo
 
 Consistency rule: either use $E_{\text{wake}}$ alone for all interaction energy, or, if a $U_{\text{int}}$ pairwise term is retained as an effective decomposition inside assemblies, then $E_{\text{wake}}$ must explicitly omit the corresponding near-field content to prevent double counting.
 
-For a finite spatial window $W\subset\Sigma_t$, conservation is a balance law rather than a claim that the window is isolated. Write
+For a finite spatial window $W\subset\Sigma_t$, conservation is a balance law rather than a claim that the window is isolated. This is the conservation-law upgrade relative to instantaneous mechanics: energy, momentum, and angular momentum are not generally conserved equal-time particle snapshots, but finite-window history functionals whose apparent deficits must be carried by causal-wake fluxes or by an explicit residual. Write
 $$
 E_W(t)
 =
@@ -228,7 +228,7 @@ $$
 $$
 on the retained branch chart. If $D_{ij}R_{+}\ne0$ and this residual does not vanish, the endpoint is an interior Euler source rather than a conservation-boundary term. In that case the characteristic-tail action changes the accepted branch force and cannot be used to close exact energy conservation for the current Master EOM.
 
-The analogous momentum closure must also remain tied to the same window and boundary data:
+The analogous momentum and angular-momentum closures must also remain tied to the same window and boundary data. The finite-window momentum functional $P_W^i$ contains the mechanical momentum retained in $W$ plus the retained wake-history momentum record:
 $$
 \frac{dP_W^i}{dt}
 +
@@ -238,9 +238,137 @@ F_{\mathrm{ext},W}^i
 +
 \mathcal{R}_P^i(\eta,\Delta t,W).
 $$
-The tensor $\Pi^{ij}$ is a finite-window momentum-flux diagnostic for the retained causal wakes and assembly crossings, not a new substrate field. If the energy and momentum residuals can be made small only by changing the window measure, boundary wake record, or regularization separately for each observable, the calculation has fitted separate summaries rather than demonstrated one causal-history conservation law.
+For a declared origin $\mathbf{x}_0$, the corresponding angular-momentum history functional has the schematic form
+$$
+\mathbf{L}_W(t)
+=
+\sum_{a:\mathbf{s}_a(t)\in W}
+\big(\mathbf{s}_a(t)-\mathbf{x}_0\big)\times\mathbf{p}_a(t)
++
+\mathbf{L}_{\mathrm{wake},W}(t),
+$$
+where $\mathbf{p}_a$ is the declared mechanical momentum proxy for the chosen kinetic bookkeeping. Its finite-window balance target is
+$$
+\frac{dL_W^i}{dt}
++
+\int_{\partial W}\Lambda^{ij}\hat{n}_j\,dA
+=
+\tau_{\mathrm{ext},W}^i
++
+\mathcal{R}_L^i(\eta,\Delta t,W).
+$$
+Here $\Pi^{ij}$ and $\Lambda^{ij}$ are finite-window flux diagnostics for retained causal wakes and assembly crossings, not new substrate fields. $\tau_{\mathrm{ext},W}^i$ is the external torque about the same origin $\mathbf{x}_0$. If the energy, momentum, and angular-momentum residuals can be made small only by changing the window measure, boundary wake record, or regularization separately for each observable, the calculation has fitted separate summaries rather than demonstrated one causal-history conservation law.
 
-In practice, for finite systems or simulation domains, we verify conservation by monitoring $E_{\text{total}}(t)$ and checking convergence as $\eta$ and $\Delta t$ are reduced.
+Cosmological inventory comparisons add one more finite-window caution. A gravitational binding contribution is negative relative to dispersed matter in the declared window, but the sign is meaningful only after the boundary and coarse-graining are fixed. For a component inventory over $W$,
+$$
+E_{\mathrm{bind},W}^{\mathrm{grav}}
+=
+-\frac{1}{2}
+\int_W\!\int_W
+\frac{G_{\mathrm{eff}}(\theta;\mathbf{x},\mathbf{y})\,
+\rho_{\mathrm{eff}}(\mathbf{x})\rho_{\mathrm{eff}}(\mathbf{y})}
+{\|\mathbf{x}-\mathbf{y}\|}
+\,dV_{\mathbf{x}}\,dV_{\mathbf{y}}
++
+\mathcal{B}_{\partial W},
+$$
+where $\mathcal{B}_{\partial W}$ records boundary and embedding terms. The corresponding inventory residual is
+$$
+\mathcal{R}_{\mathrm{grav\,bind},W}
+=
+\frac{
+\left|
+E_{\mathrm{bind},W}^{\mathrm{grav}}
+-
+E_{\mathrm{bind},W}^{\mathrm{obs}}
+\right|
+}{\epsilon_{\mathrm{bind}}}
++
+\frac{|\mathcal{B}_{\partial W}|}{\epsilon_{\partial W}}.
+$$
+This keeps gravitational binding from being used as an adjustable bookkeeping sign that can repair the cosmic energy inventory without specifying the same window, boundary wake history, and effective $G_{\mathrm{eff}}$ used by the rest of the cosmology branch.
+
+**Theorem target (center of response).** The standard center-of-mass theorem depends on equal-time internal force cancellation. In delayed causal dynamics that cancellation is not available as a particle-only statement on $\Sigma_t$: the reciprocal hit generally belongs to a different emission time, a different causal-root branch, or a boundary wake record not retained by the finite window. For an assembly window $W_A(t)$, the replacement target is to prove that there is a response center $\mathbf{X}_{\mathrm{resp}}(t)$ and an assembly response tensor $M_A^{ij}$ such that the finite-window momentum balance reduces, over resolved windows, to
+$$
+\frac{d}{dt}\left(M_A^{ij}\dot{X}_{\mathrm{resp},j}\right)
+=
+F_{\mathrm{ext},W_A}^i
+-
+\int_{\partial W_A}\Pi^{ij}\hat{n}_j\,dA
++
+\mathcal{R}_{\mathrm{resp}}^i(\eta,\Delta t,W_A).
+$$
+Only when the wake-history boundary flux and residual vanish does this reduce to the familiar center-of-mass form. Until that theorem is closed, a center-of-mass trajectory is an effective readout of the assembly response, not a substrate-level proof that internal delayed forces cancel instantaneously.
+
+In practice, finite systems or simulation domains should monitor $E_W(t)$, $P_W^i(t)$, and $L_W^i(t)$ together with their boundary fluxes and residuals. $E_{\text{total}}(t)$ is the isolated-system limit when the declared window contains the full wake-history record and the boundary terms vanish.
+
+---
+
+## Entropy, Free Energy, and Coarse Residuals
+
+Entropy and free-energy language belongs to coarse-grained records, not to empty Euclidean void. It is useful when a simulation or continuum reduction groups many microhistories into the same retained macrostate. For a declared coarse map $\mathcal Q:S(t)\mapsto z$ with cell probabilities $p_\alpha$ over the retained histories, the entropy diagnostic is
+$$
+S_{\mathcal Q}
+=
+-k_B\sum_{\alpha}p_\alpha\log p_\alpha.
+$$
+When a temperature-like channel $T_{\mathcal Q}$ is declared by the same record, the Helmholtz-style free-energy diagnostic is
+$$
+F_{\mathcal Q}
+=
+E_{\mathcal Q}
+-
+T_{\mathcal Q}S_{\mathcal Q}.
+$$
+This is not an added thermodynamic postulate. It is a test that the chosen coarse variables have retained enough state counting to make relaxation and response claims reproducible.
+
+For an isolated finite window, the minimum coarse thermodynamic gate is the same-record entropy-production residual
+$$
+\mathcal R_{S,W}
+=
+\frac{
+\left[
+-
+\Delta_W S_{\mathcal Q}
++
+\int_W
+\frac{
+\mathcal D_{\mathcal Q}
+}{
+T_{\mathcal Q}+\varepsilon_T
+}
+dt
+\right]_+
+}{
+|\Delta_W S_{\mathcal Q}|
++
+\int_W
+\left|
+\frac{\mathcal D_{\mathcal Q}}{T_{\mathcal Q}+\varepsilon_T}
+\right|dt
++\varepsilon
+},
+$$
+where $[x]_+=\max(x,0)$ and $\mathcal D_{\mathcal Q}$ is the declared coherent-to-incoherent transfer rate, including viscous, thermal, wake-boundary, or Noether-Sea response channels retained by the packet. Passing this gate means only that the selected coarse record has not made entropy decrease after unresolved boundary leakage is accounted for. It does not prove a fundamental stochastic substrate.
+
+In near-equilibrium comparison runs, response and fluctuation must also come from one record. If an observable $O_A$ has response kernel $\chi_{AB}(\omega)$ to a controlled source coupled to $O_B$, the causal-response check is that the dissipative part and the equilibrium fluctuation spectrum $S_{AB}(\omega)$ obey a declared classical or quantum fluctuation-dissipation row. A dimensionless packet residual can be written as
+$$
+\mathcal R_{\mathrm{FD}}(A,B)
+=
+\frac{
+\left\|
+S_{AB}^{\mathrm{meas}}(\omega)
+-
+\mathcal F_T\!\left(\chi_{AB}''(\omega)\right)
+\right\|_{\omega}
+}{
+\left\|S_{AB}^{\mathrm{meas}}(\omega)\right\|_{\omega}
++
+\left\|\mathcal F_T\!\left(\chi_{AB}''(\omega)\right)\right\|_{\omega}
++\varepsilon
+}.
+$$
+Here $\mathcal F_T$ is the packet's chosen fluctuation-dissipation map, and $\chi_{AB}''$ is the imaginary, dissipative response. A passing value supports the coarse response chart; a failing value means the noise, dissipation, and energy ledger have been fitted separately.
 
 ---
 
@@ -486,6 +614,8 @@ Architrinos and their assemblies are where the energy bookkeeping lives. The Noe
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ uses a **binding-energy convention** that fixes the zero of potential energy at the **inner turning point** of an accepted bound branch (the self-hit / max-curvature radius when that branch has been certified). This choice is operational: on a branch with a self-hit lower boundary, the deepest accessible state supplies the reference. It should not be read as a proof that every isolated two-body candidate already has a unique, history-independent cutoff.
 
+Cosmology inventory prose uses the same convention only after declaring the comparison window. Positive component entries such as matter, radiation, dark-sector bookkeeping, and thermal reservoirs are mass-equivalent or energy-density terms measured relative to that window, while gravitational binding is a negative finite-window contribution. Mixing a local branch convention with a cosmological inventory convention without naming the window and boundary term risks double counting the same retained wake-history energy.
+
 ### Physical Setup and Why a New Zero is Needed
 
 For an accepted attractive bound branch (opposite polarities), the inward motion accelerates until it reaches a **minimum radius** $r_{\min}$ where self-hit dynamics and curvature limits prevent further collapse. The motion then rebounds or orbits. Unlike a pure Coulomb potential, this branch has a lower bound on radius (and hence on accessible energy states).
@@ -628,3 +758,33 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, the hard inner cutoff **creates** a natural
 ### One-Line Rule
 
 If the model has a hard inner bound, **set the potential zero at that bound** and measure all energies outward from it.
+
+**Adiabatic branch invariant target.** On a certified branch chart for binary layer $a$, suppose the reduced cycle admits a canonical pair $(Q_a,\Pi_a)$ and a slowly varying branch parameter $\lambda(t)$, such as a local Noether-Sea response variable, shielding parameter, or neighboring-layer phase parameter. Define the rotational action
+$$
+I_a(\lambda)
+\equiv
+\frac{1}{2\pi}
+\oint_{\gamma_a(\lambda)}
+\Pi_a\,dQ_a.
+$$
+If the parameter changes slowly compared with the cycle period $T_a(\lambda)$,
+$$
+\epsilon_{\mathrm{ad},a}
+\equiv
+\max_{t\in W}
+\left(
+T_a(\lambda(t))\,
+\left\|\frac{d\lambda}{dt}\right\|\,
+\ell_{\lambda}^{-1}
+\right)
+\ll1,
+$$
+and the path remains inside the same causal-root ledger cell, the theorem target is
+$$
+\frac{dI_a}{dt}
+=
+O(\epsilon_{\mathrm{ad},a})
++
+\mathcal{R}_{\mathrm{branch},a}(t).
+$$
+Here $\ell_{\lambda}$ is the declared scale over which the reduced Hamiltonian changes appreciably, and $\mathcal{R}_{\mathrm{branch},a}$ records branch folds, omitted wake-history exchange, non-characteristic boundary leakage, or failure of the reduced symplectic chart. Thus the action variable is expected to drift only adiabatically between separator crossings, while a root-ledger transition may produce the discrete $\Delta I$ recorded above. This turns the $h$-like bookkeeping into a branch invariant target rather than an assumption that energy itself is quantized at the primitive level.

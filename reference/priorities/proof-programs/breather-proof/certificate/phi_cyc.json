@@ -1,0 +1,200 @@
+{
+  "schema": "breather-phi-cyc-v1",
+  "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+  "status": "candidate",
+  "status_notes": [
+    "Finite velocity-class template only.",
+    "Not an EOM-solved cycle.",
+    "Not a pre-ledger, branch-chart, returned-sample, topology, or Schauder certificate."
+  ],
+  "itinerary_id": "doubled_four_arc_generic",
+  "packet_identity": {
+    "K": "doubled_four_arc_generic",
+    "T_cyc": 6.28318530718,
+    "S": "section x(0)=1.25, xdot(0)=0 with inbound-side convention supplied by the first nonzero mesh point",
+    "P": {
+      "c_f": 1.0,
+      "eta": 0.02,
+      "epsilon_c": 0.05,
+      "g": 1.0,
+      "h": 6.28318530718
+    },
+    "B_rep": "cosine-velocity-class-template-v0",
+    "Theta": "mesh.json:nodes"
+  },
+  "parameters": {
+    "c_f": 1.0,
+    "eta": 0.02,
+    "epsilon_c": 0.05,
+    "g": 1.0,
+    "memory_horizon_h": 6.28318530718,
+    "normalization_choices": {
+      "period": "T_cyc=2*pi",
+      "template_amplitude": "A=1.25",
+      "field_speed": "c_f=1",
+      "peak_speed": "max |xdot|=1.25"
+    }
+  },
+  "period": {
+    "T_cyc": 6.28318530718,
+    "phase_interval": [
+      0.0,
+      1.0
+    ],
+    "section_anchor": {
+      "theta": 0.0,
+      "x": 1.25,
+      "xdot": 0.0,
+      "note": "Apocenter anchor; inbound sign is sampled immediately after theta=0."
+    }
+  },
+  "symmetry": {
+    "periodic_identification": "x(theta+1)=x(theta)",
+    "mirror_origin_crossings": [
+      {
+        "event_id": "C_1",
+        "theta": 0.25
+      },
+      {
+        "event_id": "C_2",
+        "theta": 0.75
+      }
+    ],
+    "separator_events": [
+      {
+        "event_id": "Sigma_1",
+        "theta": 0.14758361765,
+        "transition": "sub_to_super"
+      },
+      {
+        "event_id": "Sigma_2",
+        "theta": 0.35241638235,
+        "transition": "super_to_sub"
+      },
+      {
+        "event_id": "Sigma_3",
+        "theta": 0.64758361765,
+        "transition": "sub_to_super"
+      },
+      {
+        "event_id": "Sigma_4",
+        "theta": 0.85241638235,
+        "transition": "super_to_sub"
+      }
+    ]
+  },
+  "basis": {
+    "type": "analytic_template",
+    "basis_label": "cosine-velocity-class-template-v0",
+    "formula": {
+      "x(theta)": "1.25*cos(2*pi*theta)",
+      "xdot(theta)": "-1.25*sin(2*pi*theta)",
+      "xddot(theta)": "-1.25*cos(2*pi*theta)"
+    },
+    "coefficients": {
+      "A": 1.25,
+      "T_cyc": 6.28318530718,
+      "omega": 1.0
+    },
+    "fold_layer_policy": "Field-speed separators are marked for fold-layer treatment; no branch-sum residual is evaluated on separator layers."
+  },
+  "arcs": [
+    {
+      "id": "I0",
+      "theta_range": [
+        0.0,
+        0.14758361765
+      ],
+      "velocity_class": "sub",
+      "description": "Inbound sub-field leg from apocenter to first field-speed separator."
+    },
+    {
+      "id": "I1",
+      "theta_range": [
+        0.14758361765,
+        0.35241638235
+      ],
+      "velocity_class": "super",
+      "description": "First super-field leg containing origin-layer event C_1."
+    },
+    {
+      "id": "I2",
+      "theta_range": [
+        0.35241638235,
+        0.64758361765
+      ],
+      "velocity_class": "sub",
+      "description": "Apocenter or recapture sub-field leg."
+    },
+    {
+      "id": "I3",
+      "theta_range": [
+        0.64758361765,
+        0.85241638235
+      ],
+      "velocity_class": "super",
+      "description": "Mirror super-field leg containing origin-layer event C_2."
+    },
+    {
+      "id": "I4",
+      "theta_range": [
+        0.85241638235,
+        1.0
+      ],
+      "velocity_class": "sub",
+      "description": "Final sub-field return leg, periodically identified with I0."
+    }
+  ],
+  "samples": [
+    {"node_id": "theta_0000", "theta": 0.0, "t": 0.0, "x": 1.25, "xdot": 0.0, "xddot": -1.25, "speed": 0.0, "u": -1.25, "w": 1.25},
+    {"node_id": "theta_007379", "theta": 0.073791808825, "t": 0.463647609001, "x": 1.11803398875, "xdot": -0.559016994375, "xddot": -1.11803398875, "speed": 0.559016994375, "u": -0.654386379749, "w": 1.581681597751},
+    {"node_id": "Sigma_1", "theta": 0.14758361765, "t": 0.927295218002, "x": 0.75, "xdot": -1.0, "xddot": -0.75, "speed": 1.0, "u": 0.177295218002, "w": 1.677295218002},
+    {"node_id": "theta_019879", "theta": 0.198791808825, "t": 1.249045772398, "x": 0.395284707521, "xdot": -1.185854122563, "xddot": -0.395284707521, "speed": 1.185854122563, "u": 0.853761064877, "w": 1.644330479919},
+    {"node_id": "C_1", "theta": 0.25, "t": 1.570796326795, "x": 0.0, "xdot": -1.25, "xddot": 0.0, "speed": 1.25, "u": 1.570796326795, "w": 1.570796326795},
+    {"node_id": "theta_030121", "theta": 0.301208191175, "t": 1.892546881192, "x": -0.395284707521, "xdot": -1.185854122563, "xddot": 0.395284707521, "speed": 1.185854122563, "u": 2.287831588713, "w": 1.49726217367},
+    {"node_id": "Sigma_2", "theta": 0.35241638235, "t": 2.214297435588, "x": -0.75, "xdot": -1.0, "xddot": 0.75, "speed": 1.0, "u": 2.964297435588, "w": 1.464297435588},
+    {"node_id": "theta_050000", "theta": 0.5, "t": 3.14159265359, "x": -1.25, "xdot": 0.0, "xddot": 1.25, "speed": 0.0, "u": 4.39159265359, "w": 1.89159265359},
+    {"node_id": "Sigma_3", "theta": 0.64758361765, "t": 4.068887871591, "x": -0.75, "xdot": 1.0, "xddot": 0.75, "speed": 1.0, "u": 4.818887871591, "w": 3.318887871591},
+    {"node_id": "theta_069879", "theta": 0.698791808825, "t": 4.390638425988, "x": -0.395284707521, "xdot": 1.185854122563, "xddot": 0.395284707521, "speed": 1.185854122563, "u": 4.785923133509, "w": 3.995353718467},
+    {"node_id": "C_2", "theta": 0.75, "t": 4.712388980385, "x": 0.0, "xdot": 1.25, "xddot": 0.0, "speed": 1.25, "u": 4.712388980385, "w": 4.712388980385},
+    {"node_id": "theta_080121", "theta": 0.801208191175, "t": 5.034139534781, "x": 0.395284707521, "xdot": 1.185854122563, "xddot": -0.395284707521, "speed": 1.185854122563, "u": 4.63885482726, "w": 5.429424242302},
+    {"node_id": "Sigma_4", "theta": 0.85241638235, "t": 5.355890089178, "x": 0.75, "xdot": 1.0, "xddot": -0.75, "speed": 1.0, "u": 4.605890089178, "w": 6.105890089178},
+    {"node_id": "theta_092621", "theta": 0.926208191175, "t": 5.819537698179, "x": 1.11803398875, "xdot": 0.559016994375, "xddot": -1.11803398875, "speed": 0.559016994375, "u": 4.701503709429, "w": 6.937571686929},
+    {"node_id": "theta_1000", "theta": 1.0, "t": 6.28318530718, "x": 1.25, "xdot": 0.0, "xddot": -1.25, "speed": 0.0, "u": 5.03318530718, "w": 7.53318530718}
+  ],
+  "evaluation_enclosures": {
+    "x_range": [-1.25, 1.25],
+    "xdot_range": [-1.25, 1.25],
+    "xddot_range": [-1.25, 1.25],
+    "u_sample_range": [-1.25, 5.03318530718],
+    "w_sample_range": [1.25, 7.53318530718],
+    "separator_velocity_target": "|xdot|=c_f at Sigma_1 through Sigma_4",
+    "note": "Ranges are analytic-template ranges or sampled ranges only; they are not interval-certified pre-ledger ranges."
+  },
+  "residual_targets": {
+    "E_j": {
+      "status": "not_evaluated",
+      "target": "Compute against the dual-mollified absolute-time law after causal_ledger.json supplies simple-root and fold-layer rows."
+    },
+    "fold_integral_targets": {
+      "status": "not_evaluated",
+      "fold_rows": ["Sigma_1", "Sigma_2", "Sigma_3", "Sigma_4"]
+    },
+    "R_j_x": {
+      "status": "not_evaluated"
+    },
+    "R_j_v": {
+      "status": "not_evaluated"
+    }
+  },
+  "artifact_inputs": {
+    "itinerary": "itinerary.json:selected_itinerary.id=doubled_four_arc_generic",
+    "mesh": "mesh.json:packet_id=seed-doubled-four-arc-cosine-template-v0",
+    "report": "candidate_cycle_packet_report.md"
+  },
+  "construction_notes": {
+    "route": "analytic velocity-class template",
+    "why_this_template": "It is the smallest finite packet that realizes the doubled four-arc itinerary, all four field-speed separators, and both origin-layer events on one explicit mesh.",
+    "known_obstruction": "The template is not solved against the dual-mollified absolute-time law; it only supplies a finite object for the null-coordinate pre-ledger attempt."
+  }
+}

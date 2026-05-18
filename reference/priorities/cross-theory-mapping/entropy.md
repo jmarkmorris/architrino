@@ -13,7 +13,7 @@
 
 1. `windowed_entropy_functional` - Promote the existing coarse-graining / access-window formula into a reusable entropy closure packet. Status: `draft`. Depends on: none.
 2. `record_locking_entropy` - Connect measurement-record entropy locking to the same coarse-grained entropy grammar. Status: `draft`. Depends on: `windowed_entropy_functional`, [quantum-closure](../quantum-closure/quantum-closure.md).
-3. `horizon_label_entropy` - Route black-hole entropy through the horizon-interface label ensemble, its local block entropy density, and the Page-curve release-channel target. Status: `kernel-handoff-ready`; terminal enumerator consumption and coefficient derivation pending. Depends on: [strong-field-closure](../strong-field-closure/strong-field-closure.md), `windowed_entropy_functional`.
+3. `horizon_label_entropy` - Route black-hole entropy through the horizon-interface label ensemble, its local block entropy density, the RT horizon-wrapping ratio $\eta_H(A;\theta)$, and the Page-curve release-channel target. Status: `kernel-handoff-ready`; terminal enumerator consumption, coefficient derivation, and thermal-limit reduction pending. Depends on: [strong-field-closure](../strong-field-closure/strong-field-closure.md), `windowed_entropy_functional`.
 4. `cosmology_entropy_balance` - State when Noether-Sea entropy, thermalization, redshift, and CMB blackbody recovery use one shared medium-state record. Status: `draft`. Depends on: [cosmology-closure](../cosmology-closure/cosmology-closure.md), [validation-gates](../validation-gates/validation-gates.md).
 
 ## Scope
@@ -84,6 +84,22 @@ $$
 
 with generalized entropy adding an outside-region contribution. For this lane, those results are required recovery targets or comparison targets, not imported ontology.
 
+Ryu-Takayanagi-style minimal-surface entropy is useful here as an access-region benchmark, but only after the horizon component is separated from the general boundary-surface comparison. For a candidate record $\theta$, define the horizon-wrapping fraction
+
+$$
+\eta_H(A;\theta)
+=
+\frac{
+A_{\mathrm{eff}}\!\left(\gamma_A^{\mathrm{eff}}(\theta)\cap H_{\mathrm{eff}}(\theta)\right)
+}{
+A_{\mathrm{eff}}\!\left(\gamma_A^{\mathrm{eff}}(\theta)\right)
+},
+\qquad
+H_{\mathrm{eff}}(\theta)=\{F_H=0\}.
+$$
+
+The limit $\eta_H\to1$ is the black-hole or thermal horizon-wrapping regime. Values near zero are still entropy-surface comparisons, but they do not license the stronger statement that the holographic boundary is the event horizon.
+
 ## Corpus Source Signals
 
 The local corpus already gives a coherent first map.
@@ -139,7 +155,7 @@ The Noether-core equilibrium transport hypothesis supplies a concrete cosmology-
 | Available/free energy | Extractable-work pressure under declared operations | Resource value of a record, bath, bias state, or medium state after energy and entropy channels are both routed | State the allowed operations, reference resources, and event ledger before claiming work extraction |
 | Record entropy | Irreversible-looking measurement records | Environmental locking of a durable apparatus branch | Prove $\Delta S_{\mathcal{Q},W}^{\mathrm{app+env}}\ge S_{\mathrm{lock}}>0$ for a declared apparatus class |
 | Reset or memory entropy | Physical cost of cycling a memory-bearing apparatus | Export of unresolved record alternatives into apparatus/environment history, or explicit depletion of a blank-memory resource | For cyclic reset, prove a lower-bound entropy export from the same record channel |
-| Black-hole entropy | Horizon area and generalized entropy benchmarks | Derive the compatible horizon-interface Noether-core label ensemble, its local block entropy density, and accessible outgoing channels | Derive $\mathcal{B}_H(M,\mathbf{J},Q)$, the local coefficient $s_{\mathrm{align}}^H(\theta)$, and Page-curve-compatible release accounting |
+| Black-hole entropy | Horizon area, generalized entropy, and RT horizon-wrapping benchmarks | Derive the compatible horizon-interface Noether-core label ensemble, its local block entropy density, region-anchored entropy surfaces, and accessible outgoing channels | Derive $\mathcal{B}_H(M,\mathbf{J},Q)$, the local coefficient $s_{\mathrm{align}}^H(\theta)/a_H(\theta)$, the $\eta_H(A;\theta)\to1$ thermal limit, and Page-curve-compatible release accounting |
 | Cosmological entropy | Thermal history and large-scale arrow | Production, flux, and coarse-graining residuals in a finite Noether-Sea window | Preserve one medium-state record across CMB, BBN, redshift, and growth modules |
 
 ## Concrete Closure Objects
@@ -217,11 +233,32 @@ s_{\mathrm{align}}^H(\theta)
 \lim_{|U|\to\infty}
 \frac{1}{|U|}
 \log\left|\mathcal{L}_U^H(\theta)\right|
+\qquad
+a_H(\theta)
+=
+\lim_{|U|\to\infty}
+\frac{A_H(U)}
+{|U|A_{\text{align}}},
+\qquad
+\frac{s_{\mathrm{align}}^H(\theta)}
+{a_H(\theta)}
 \longrightarrow
 \frac{1}{4},
 $$
 
-with boundary corrections vanishing in the large-block limit. The native content is the growth rate of admissible Noether-core label families plus release-channel ledgers.
+with boundary corrections vanishing in the large-block limit. The native content is the area-normalized growth rate of admissible Noether-core label families plus release-channel ledgers; the simpler $s_{\mathrm{align}}^H\to1/4$ statement is only the special case $a_H\to1$.
+
+The matching region-anchored target is
+
+$$
+S_{\mathcal{Q},A}^{(O)}(t)
+\stackrel{\mathrm{target}}{=}
+k_B\log\left|\mathcal{L}_{\gamma_A}^{(O)}(t)\right|
++
+S_{\mathrm{out},A}^{(O)}(t).
+$$
+
+The proof burden is to derive $\mathcal{L}_{\gamma_A}^{(O)}(t)$ from native horizon-interface, boundary-wake, and release-channel records. Only the $\eta_H(A;\theta)\to1$ thermal limit should reduce to black-hole horizon entropy; the $\eta_H=0$ case remains an access-region entropy comparison.
 
 ## Promotion Map
 

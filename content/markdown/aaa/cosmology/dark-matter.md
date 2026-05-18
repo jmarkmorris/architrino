@@ -10,6 +10,8 @@ Standard $\Lambda\mathrm{CDM}$ cosmology attributes roughly 27% of the present e
 
 Throughout, "dark matter" refers to the set of phenomena conventionally attributed to CDM: flat galaxy rotation curves, cluster lensing offsets, the third acoustic peak of the CMB, large-scale structure growth, and BBN-consistent $\Omega_b$. The task is to explain this phenomenology within one ontology—Euclidean void, absolute time, architrinos, and tri-binary assemblies—without importing new fundamental fields or ad hoc modifications to gravity.
 
+The dark-matter density entry is an observationally constrained bookkeeping requirement before it is a substrate identification. Lensing, growth, CMB matter loading, cluster offsets, and baryon-fraction constraints require an effective gravitating component beyond ordinary baryons, but the component ledger does not by itself decide whether the native carrier is neutral assemblies, Noether-Sea medium response, or a hybrid branch.
+
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ Ontology Foundations
 
 ### The Noether Sea as Gravitational Medium
@@ -211,6 +213,29 @@ $$
 $$
 before detailed $N$-body and relativistic corrections. The retained observable is the ephemeris residual, not the compact-object interpretation: a candidate detection must produce a trajectory-consistent perturbation above the ranging error floor, fail ordinary visible-object and catalogued-asteroid explanations under the same covariance model, and carry any high-energy co-signature through the same branch record.
 
+A compact dark-candidate branch also admits a track-search comparison in old material. For a candidate compact fraction $f_X$, mass $M_X$, local dark-sector density $\rho_{\mathrm{DM}}$, and relative-speed distribution with mean $\langle v_{\mathrm{rel}}\rangle$, the flux estimate is
+$$
+\Phi_X
+=
+\frac{f_X\rho_{\mathrm{DM}}}{M_X}
+\langle v_{\mathrm{rel}}\rangle,
+\qquad
+N_{\mathrm{track}}
+=
+\Phi_X A_{\mathrm{scan}}T_{\mathrm{age}}P_{\mathrm{surv}}P_{\mathrm{det}}.
+$$
+Here $A_{\mathrm{scan}}$ is the scanned cross-section, $T_{\mathrm{age}}$ is the exposure time of the material, $P_{\mathrm{surv}}$ is the survival probability of the track under thermal, geological, and mechanical erasure, and $P_{\mathrm{det}}$ is the detection efficiency after morphology cuts. The residual is not simply a count mismatch:
+$$
+\mathcal{R}_{\mathrm{track}}
+=
+\frac{|N_{\mathrm{track}}-N_{\mathrm{track}}^{\mathrm{obs}}|}{\epsilon_N}
++
+\mathcal{R}_{\mathrm{morph}}
++
+\mathcal{R}_{\mathrm{ordinary}}.
+$$
+The morphology term requires the candidate track to match the predicted energy-deposition and damage profile for the branch, while $\mathcal{R}_{\mathrm{ordinary}}$ penalizes fits explained by ordinary radiation, defects, inclusions, machining damage, or impact history. A null search becomes a constraint on $f_X(M_X)$ only after the survival and detection functions are declared; a positive search becomes a compact-object claim only after the same branch also passes the BBN, CMB, ephemeris, and high-energy co-signature tests.
+
 ### Candidate B — Noether-Sea Medium Response
 
 **Definition.** Non-linear elastic or dispersive response of the Noether Sea itself under low-acceleration or low-density-gradient conditions. In regions where the effective gravitational acceleration falls below a characteristic scale $a_0^{\mathrm{MOND}}$, the medium's compliance (inverse stiffness) may change, altering the effective force law. This local notation keeps the galactic acceleration threshold distinct from the rest-attractor length scale $a_0$ used in Lorentz-kinematics chapters.
@@ -287,6 +312,252 @@ where $\rho_b$ is baryonic density, $\delta\rho_{\text{core}}^{(\mathrm{pert})}$
 
 This coupled system must be solved self-consistently. The neutral-assembly component $\rho_A$ satisfies collisionless Boltzmann transport in the potential $\Phi_{\mathrm{eff}}$; the medium response enters through constitutive relations derived from Noether-Sea tri-binary elasticity.
 
+### Scalar-Fluid and MOND-Extension Comparison Gate
+
+Khoury-style hybrid models supply a useful comparison framework because they separate two burdens that are often blended in dark-sector prose: a nearly pressureless component can recover the expansion history and linear growth, while a distinct nonlinear force law accounts for galaxy rotation curves and cluster gas profiles. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not evidence for imported scalar fields. It is a discipline for the hybrid baseline: the neutral-assembly sector must carry the linear CDM-like loading, and the Noether-Sea response sector must carry the low-acceleration nonlinear residual without allowing either side to be retuned independently.
+
+The comparison acceleration law can be recorded as
+
+$$
+a_{\mathrm{cmp}}(a_N; a_\star,f)
+=
+\begin{cases}
+a_N, & a_N\gg a_\star,\\
+\sqrt{a_Na_\star}, & a_\star/f^2\ll a_N\ll a_\star,\\
+f\,a_N, & a_N\ll a_\star/f^2,
+\end{cases}
+$$
+
+where $a_N$ is the baryonic Newtonian benchmark acceleration, $a_\star$ is the environment-dependent low-acceleration transition scale, and $f$ is the ultra-low-acceleration inverse-square enhancement. For the $\mathbb{A}\mathbb{A}\mathbb{A}$ hybrid branch these are not new constants. They are observer-level summaries of a shared Noether-Sea state:
+
+$$
+a_\star(E)=A_\star(\Pi_E\theta_{\mathrm{sea}}),
+\qquad
+f(E)=F_\star(\Pi_E\theta_{\mathrm{sea}}),
+$$
+
+with $E$ denoting an environment class such as spiral galaxies, pressure-supported dwarfs, clusters, or diffuse absorbers. A viable branch must reproduce the galaxy radial-acceleration relation in the middle regime while allowing clusters to fall in the ultra-low-acceleration regime without assigning a separate medium record to each class.
+
+A compact residual is
+
+$$
+\mathcal{R}_{a_\star f}(\theta_{\mathrm{sea}})
+=
+\sum_E
+\left[
+d_E\!\left(
+a_{\mathrm{obs}}(E),
+a_{\mathrm{cmp}}\big(a_N(E);A_\star(\Pi_E\theta_{\mathrm{sea}}),F_\star(\Pi_E\theta_{\mathrm{sea}})\big)
+\right)
++
+\lambda_E
+d_{\mathrm{shared}}\!\left(
+\Pi_E\theta_{\mathrm{sea}},
+\Pi_{\mathrm{cos}}\theta_{\mathrm{sea}}
+\right)
+\right].
+$$
+
+This residual is useful because it turns the cluster-versus-galaxy pressure into a falsifiable question. If the observed cluster temperature and lensing profiles require an $a_\star$ scale significantly above the galaxy radial-acceleration scale, that scale shift must be derived from environment-dependent Noether-Sea density, delay, stress, or neutral-assembly loading. If the same shift is inserted by hand, the branch has reproduced a comparison curve but not closed a native dark-sector mechanism.
+
+Berezhiani-Khoury superfluid dark matter sharpens the same comparison discipline. Its source-level claim is that one dark sector can be CDM-like in cosmology and clusters while producing a MOND-like galactic force through collective low-temperature behavior. In this chapter that signal is not an ontology import: the Noether Sea is not identified with a literal superfluid, and the comparison phonon is not added as a new $\mathbb{A}\mathbb{A}\mathbb{A}$ constituent. What survives is the environment split that any hybrid branch must explain from one shared medium-and-assembly record.
+
+For that comparison, introduce source-side observer coordinates for the effective condensate and normal fractions,
+
+$$
+\Theta_{\mathrm{cmp}}(E)
+\equiv
+\frac{T_{\mathrm{cmp}}(E)}{T_{c,\mathrm{cmp}}(E)},
+\qquad
+\zeta_{\mathrm{cond}}^{\mathrm{cmp}}(E)
+\leftrightarrow
+\max\!\left(0,1-\Theta_{\mathrm{cmp}}(E)^{3/2}\right),
+\qquad
+\zeta_{\mathrm{norm}}^{\mathrm{cmp}}(E)
+=
+1-\zeta_{\mathrm{cond}}^{\mathrm{cmp}}(E).
+$$
+
+Here $E$ is an observer-level environment class, such as spiral galaxies, pressure-supported dwarfs, clusters, or the cosmological background. The temperature ratio and fractions are comparison coordinates only. A native branch must instead derive their effective values from $\Pi_E\theta_{\mathrm{sea}}$, $\rho_A$, $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, and $\chi_{\text{sea}}(\mathbf{x},t)$:
+
+$$
+\zeta_{\mathrm{cond}}^{\mathrm{cmp}}(E)
+=
+Z_{\mathrm{cond}}\!\left(
+\Pi_E\theta_{\mathrm{sea}},
+\rho_A,
+\rho_{\text{core}}(\mathbf{x},t),
+n(\mathbf{x},t),
+\chi_{\text{sea}}(\mathbf{x},t)
+\right),
+\qquad
+\zeta_{\mathrm{norm}}^{\mathrm{cmp}}(E)
+=
+Z_{\mathrm{norm}}\!\left(
+\Pi_E\theta_{\mathrm{sea}},
+\rho_A,
+\rho_{\text{core}}(\mathbf{x},t),
+n(\mathbf{x},t),
+\chi_{\text{sea}}(\mathbf{x},t)
+\right).
+$$
+
+The comparison target is therefore not "make a superfluid." It is the stronger phase-environment closure: galaxy environments should project toward a large low-acceleration response coordinate, cluster environments should retain a substantial CDM-like or normal component, and the cosmological background should remain pressureless enough to preserve CMB loading and growth. The MOND-like part is fixed by the radial-acceleration relation and by the BTFR limit
+
+$$
+a_{\mathrm{obs}}(r)\simeq\sqrt{a_N(r)a_0^{\mathrm{MOND}}},
+\qquad
+v_c^4\simeq G_NM_ba_0^{\mathrm{MOND}}.
+$$
+
+A compact version of the closure residual is
+
+$$
+\begin{aligned}
+\mathcal{R}_{\mathrm{phase\ split}}(\theta_{\mathrm{sea}},\rho_A)
+=&
+\ d_{\mathrm{gal}}\!\left(
+D_{\mathrm{RAR/BTFR}}^{\mathrm{obs}},
+\mathcal{P}_{\mathrm{gal}}\!\left(\theta_{\mathrm{sea}},\rho_A,\zeta_{\mathrm{cond}}^{\mathrm{cmp}}\right)
+\right)
+\\
+&+
+d_{\mathrm{cos+cl}}\!\left(
+D_{\mathrm{cos+cl}}^{\mathrm{obs}},
+\mathcal{P}_{\mathrm{cos+cl}}\!\left(\theta_{\mathrm{sea}},\rho_A,\zeta_{\mathrm{norm}}^{\mathrm{cmp}}\right)
+\right)
+\\
+&+
+\mathcal{R}_{\mathrm{stable\ branch}}(\theta_{\mathrm{sea}})
++
+\lambda\,\mathcal{R}_{\mathrm{shared}}(\theta_{\mathrm{sea}}).
+\end{aligned}
+$$
+
+This residual records the Berezhiani-Khoury pressure in $\mathbb{A}\mathbb{A}\mathbb{A}$ terms. The same $\theta_{\mathrm{sea}}$ must pass the galaxy RAR/BTFR comparison, the cluster temperature/lensing comparison, and the cosmological CDM-like comparison. $\mathcal{R}_{\mathrm{stable\ branch}}$ is included because the source's MOND branch requires finite-temperature stabilization; the native analogue is that a low-acceleration Noether-Sea response branch must be dynamically stable, not only curve-fit successful.
+
+Ferreira-Franzmann-Khoury-Brandenberger unified-superfluid dark-sector models add a sharper comparison target: late-time acceleration can be driven by the same dark substance if that substance has two distinguishable states whose relative phase is coupled by a Josephson/Rabi interaction. In this chapter that is comparison language, not substrate ontology. The Noether Sea is not identified with a literal superfluid, and the phase variables are not introduced as new $\mathbb{A}\mathbb{A}\mathbb{A}$ constituents. What survives is a one-record discipline: the same dark-sector state must carry CDM-like loading, state conversion, late-time acceleration, and the growth history.
+
+Introduce comparison coordinates for two dark-sector populations,
+
+$$
+\eta_1^{\mathrm{cmp}}+\eta_2^{\mathrm{cmp}}=1,
+\qquad
+\varphi_{\mathrm{rel}}^{\mathrm{cmp}}(t)
+=
+\varphi_2^{\mathrm{cmp}}-\varphi_1^{\mathrm{cmp}}+\Delta E\,t,
+$$
+
+and the source-side phase-coupling potential
+
+$$
+V_J^{\mathrm{cmp}}(t)
+=
+M_J^4
+\cos^2\!\left(
+\frac{\varphi_{\mathrm{rel}}^{\mathrm{cmp}}(t)}{2f_J}
+\right).
+$$
+
+The native branch must derive these comparison coordinates from a medium-and-assembly projection, not fit them independently:
+
+$$
+\left(
+\eta_1^{\mathrm{cmp}},
+\eta_2^{\mathrm{cmp}},
+\varphi_{\mathrm{rel}}^{\mathrm{cmp}},
+M_J,
+\Delta E,
+f_J
+\right)
+=
+\mathcal{J}_{\mathrm{dark}}\!\left(
+\Pi_{\mathrm{cos}}\theta_{\mathrm{sea}},
+\rho_A,
+\rho_{\text{core}}(\mathbf{x},t),
+n(\mathbf{x},t),
+\chi_{\text{sea}}(\mathbf{x},t)
+\right).
+$$
+
+The conversion discipline can be recorded in source-term form,
+
+$$
+\dot N_1+3H_{\mathrm{eff}}^\theta N_1
+=
+-Q_J^\theta,
+\qquad
+\dot N_2+3H_{\mathrm{eff}}^\theta N_2
+=
+Q_J^\theta,
+\qquad
+Q_J^\theta
+\sim
+\Delta E\,\partial_{\varphi_{\mathrm{rel}}}V_J^{\mathrm{cmp}},
+$$
+
+so that the total dark-sector count $N_1+N_2$ is conserved while the relative population can evolve. The comparison background equation then becomes
+
+$$
+2\dot H_{\mathrm{eff}}^\theta
++3\left(H_{\mathrm{eff}}^\theta\right)^2
+\simeq
+\frac{V_J^{\mathrm{cmp}}(t)}{M_{\mathrm{Pl}}^2},
+$$
+
+as a source-side benchmark for late-time acceleration without adding an independent dark-energy fluid. A native $\mathbb{A}\mathbb{A}\mathbb{A}$ branch may pass this benchmark only if the right-hand side is reconstructed from $\theta_{\mathrm{sea}}$ and $\rho_A$ through $\mathcal{J}_{\mathrm{dark}}$.
+
+The same source also supplies a perturbation-discipline lesson. Unified dark-sector models often fail when the component that imitates dark energy develops too large an adiabatic sound speed and corrupts the matter power spectrum. The comparison therefore imposes the linear pressurelessness condition
+
+$$
+c_{s,\mathrm{lin}}^{2,\theta}(a,k)
+\ll
+1
+$$
+
+over the CMB and large-scale-structure regime, while allowing nonlinear galaxy-scale medium response to depart from pressureless CDM. Growth must be tested with both the growth factor $D(z)$ and the growth rate
+
+$$
+f_{\mathrm{grow}}(z)
+\equiv
+\frac{d\ln D}{d\ln a}
+=
+-\frac{d\ln D}{d\ln(1+z)}.
+$$
+
+The paper's numerical examples show why this matters: the background history and growth factor can remain close to $\Lambda\mathrm{CDM}$ while the late-time growth rate deviates more strongly. The $\mathbb{A}\mathbb{A}\mathbb{A}$ residual should therefore not stop at an $H(z)$ fit:
+
+$$
+\begin{aligned}
+\mathcal{R}_{\mathrm{2state}}(\theta_{\mathrm{sea}},\rho_A)
+=&
+\ d_H\!\left(
+2\dot H_{\mathrm{eff}}^\theta
++3\left(H_{\mathrm{eff}}^\theta\right)^2,
+\frac{V_J^{\mathrm{cmp}}}{M_{\mathrm{Pl}}^2}
+\right)
+\\
+&+
+d_Q\!\left(
+\dot N_1+3H_{\mathrm{eff}}^\theta N_1+Q_J^\theta,
+\dot N_2+3H_{\mathrm{eff}}^\theta N_2-Q_J^\theta
+\right)
+\\
+&+
+d_c\!\left(c_{s,\mathrm{lin}}^{2,\theta},c_{s,\max}^2\right)
++
+d_D\!\left(D^\theta,D^{\mathrm{obs}}\right)
++
+d_f\!\left(f_{\mathrm{grow}}^\theta,f_{\mathrm{grow}}^{\mathrm{obs}}\right)
++
+\lambda\,\mathcal{R}_{\mathrm{shared}}(\theta_{\mathrm{sea}}).
+\end{aligned}
+$$
+
+This residual is the safe promoted signal from the two-state dark-sector comparison. It tests whether one shared Noether-Sea and neutral-assembly record can supply effective acceleration, conserve the total dark-sector count while allowing internal conversion, keep the linear sound speed low, and reproduce growth observations without assigning separate medium histories to dark matter and dark energy.
+
+The source's observational signatures are retained as comparison hooks rather than canonized predictions. Substructure-lensing features associated with vortices, merger behavior controlled by an infall-speed versus sound-speed threshold, mixed cluster lensing peaks, and MOND-free globular clusters are useful only if the native branch supplies corresponding Noether-Sea or neutral-assembly variables. Without that native map, those signatures remain model-specific to the superfluid-DM comparison.
+
 ## Regime Map
 
 The hybrid baseline yields a unified regime architecture:
@@ -317,7 +588,7 @@ The neutral-assembly mass is not a free parameter to be fitted post hoc; it must
 
 - $m \sim$ eV: warm dark matter; suppresses small-scale structure.
 - $m \sim$ keV–GeV: canonical cold dark matter window.
-- $m \sim$ GeV–TeV: WIMP-like regime.
+- $m \sim$ GeV–TeV: WIMP-like comparison window, not a neutralino identification.
 - $m \gg$ TeV: superheavy; must be produced non-thermally (e.g., gravitational production or SMBH-related formation in early epochs).
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework does not currently predict a unique mass; deriving the mass spectrum from first-principles tri-binary binding energies and formation rates is a high-priority simulation target.
@@ -348,6 +619,30 @@ $$
 \Delta N_{\mathrm{eff}}\in\mathcal{B}_{\mathrm{BBN/CMB}}.
 $$
 Failure of any row keeps the branch external to the working dark-matter ontology. Passing these rows would still not identify the branch with the current neutral-assembly baseline unless the same internal-energy, shielding, and Noether-Sea response map derives its mass and coupling suppression.
+
+### Source-Limited WIMP/Neutralino Comparison Benchmark
+
+A WIMP or neutralino comparison is useful here only as detector-facing benchmark language. The Jungman--Kamionkowski--Griest arXiv record used for this comparison exposes the abstract, metadata, table of contents, and source note, but not the full review text; it therefore supplies constraint categories rather than detailed supersymmetric model claims. In this chapter, a neutralino-like benchmark does not identify a native assembly with a superpartner and does not make supersymmetry part of Noether-core ontology.
+
+For any neutral-assembly branch $A$, record the comparison vector
+
+$$
+\mathcal{B}_{A}^{\mathrm{WIMP}}
+=
+\left(
+m_A,
+\Omega_A h^2,
+\langle\sigma v\rangle_A,
+\sigma_A^{\mathrm{scalar}},
+\sigma_A^{\mathrm{axial}},
+\Gamma_{\nu}^{\odot/\oplus},
+\Phi_{\bar p},
+\Phi_{e^+},
+\Phi_\gamma
+\right).
+$$
+
+The entries track assembly mass, relic abundance, annihilation rate, scalar and axial scattering channels for direct detection, neutrino rates from solar or terrestrial capture, and indirect antiproton, positron, and gamma-ray fluxes. The native branch may pass this benchmark only if one medium-and-assembly record predicts or bounds all entries while satisfying direct-detection, indirect-detection, collider, CMB/BBN, structure-growth, and other relevant null-result constraints. Matching $\Omega_A h^2$ alone is not dark-matter closure; the same branch must also keep scattering and annihilation channels below excluded levels or declare a detectable channel.
 
 ### Interaction Cross-Sections
 

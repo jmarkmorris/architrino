@@ -251,6 +251,88 @@ D_{\mathrm{TV}}\!\left(P(r_{O,C}),P(r_{O,C'})\right)
 $$
 Passing the benchmark means $\Delta_{\mathrm{MP}}\le\epsilon_{\mathrm{MP}}$ without assigning a global context-independent value $v(O)\in\{-1,+1\}$ to every effective observable. The parity proof explains why that last clause is mandatory: if such a value map existed, multiplying all six context-product equations would give $\prod_O v(O)^2=+1$ on the left, while the benchmark signs multiply to $-1$ on the right. The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is therefore to derive the context-indexed records from one substrate flow, not to hide a noncontextual value assignment inside the effective operator map.
 
+## Symmetry and Geometric-Phase Guardrails
+
+Discrete symmetries and geometric phases are effective operator constraints, not automatic substrate identifications. A parity benchmark should specify the observer-level action on position and momentum records,
+$$
+\Pi\widehat{\mathbf{x}}\Pi^\dagger=-\widehat{\mathbf{x}},
+\qquad
+\Pi\widehat{\mathbf{p}}\Pi^\dagger=-\widehat{\mathbf{p}},
+$$
+while axial angular-momentum records obey the corresponding pseudo-vector rule. In a central-potential chart the comparison parity of a state is $(-1)^l$. The $\mathbb{A}\mathbb{A}\mathbb{A}$ recovery target is to derive the same even/odd selection structure from the apparatus-resolved assembly and wake geometry, not to assume a continuum spherical-harmonic ontology.
+
+Time reversal is more restrictive because the standard operator is antiunitary. A valid effective chart must preserve transition probabilities while conjugating amplitudes and reversing momentum-like records:
+$$
+\Theta i\Theta^{-1}=-i,
+\qquad
+\Theta\widehat{\mathbf{x}}\Theta^{-1}=\widehat{\mathbf{x}},
+\qquad
+\Theta\widehat{\mathbf{p}}\Theta^{-1}=-\widehat{\mathbf{p}}.
+$$
+For half-integer spin charts the standard benchmark is $\Theta^2=-1$, which forces Kramers degeneracy when the Hamiltonian is time-reversal invariant. A compact residual is
+$$
+\mathcal{R}_{\Theta}(\theta)
+=
+\max\left(
+\frac{\|[\Theta,H_\theta]\|_{\mathcal{K},W,T}}{\varepsilon_{\Theta H}},
+\frac{\left\|\Theta_\theta^2+I\right\|_{\mathrm{spin}}}{\varepsilon_{\Theta^2}},
+\frac{\max_a|\Delta E_a^{\mathrm{pair}}|}{\varepsilon_K}
+\right)
+\le 1
+$$
+on a declared half-integer-spin benchmark. Failure of this residual means the operator map has not recovered the tested antiunitary symmetry, even if it reproduces some energy levels.
+
+Adiabatic evolution adds a holonomy benchmark. For a slowly varied effective Hamiltonian $H_\theta(\lambda)$ with non-degenerate state $|n(\lambda)\rangle$, the comparison Berry connection and curvature are
+$$
+A_i^{(n)}(\lambda)
+=
+-i\left\langle n(\lambda)\middle|\partial_i n(\lambda)\right\rangle,
+\qquad
+F_{ij}^{(n)}
+=
+\partial_iA_j^{(n)}-\partial_jA_i^{(n)}.
+$$
+The effective geometric phase around a closed parameter loop $C$ is
+$$
+e^{i\gamma_n(C)}
+=
+\exp\!\left(-i\oint_C A_i^{(n)}\,d\lambda^i\right),
+$$
+with Chern-number benchmark
+$$
+\frac{1}{2\pi}\int_S F^{(n)}\in\mathbb{Z}
+$$
+for closed parameter surfaces where the effective bundle is defined. The native closure packet must identify the slow assembly controls, the avoided-crossing gap, and the record channel that reads the phase. A Berry phase inserted only as an abstract Hilbert-space phase is a comparison annotation, not an operator recovery.
+
+## Supersymmetric Index Comparison
+
+Supersymmetric quantum mechanics is useful here as an external invariance benchmark. Its algebra
+$$
+H=\frac{1}{2}\{Q,Q^\dagger\},
+\qquad
+Q^2=0
+$$
+forces non-negative energy, pairs positive-energy bosonic and fermionic states, and leaves unpaired zero modes counted by the Witten index
+$$
+I_W=\operatorname{Tr}\left((-1)^F e^{-\beta H}\right)
+=
+\dim H_{0,B}-\dim H_{0,F}.
+$$
+For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not an imported supersymmetric ontology. It is a model for how an effective operator chart can carry a robust integer invariant while individual paired states move under parameter changes.
+
+If a future branch chart uses a supercharge-like factorization or Morse-theory analogy, it should report an index residual
+$$
+\mathcal{R}_{\mathrm{ind}}(\theta)
+=
+\max\left(
+\frac{\|H_\theta-\frac{1}{2}\{Q_\theta,Q_\theta^\dagger\}\|}{\varepsilon_H},
+\frac{\|Q_\theta^2\|}{\varepsilon_Q},
+\frac{|I_{\mathrm{branch}}-\sum_X(-1)^{\mu(X)}|}{\varepsilon_I}
+\right)
+\le 1.
+$$
+Here $X$ ranges over declared critical assemblies or branch critical points and $\mu(X)$ is the Morse index of the retained effective Hessian. Instanton or tunneling terms may lift paired approximate ground states, but they must do so through a declared Morse-Witten differential rather than through an unexplained deletion of records. This comparison is high value because it separates robust topological counting from ordinary spectral fitting.
+
 ## Unitary Evolution and Topological Torques
 
 Quantum gates correspond to continuous, energy-conserving topological torques applied to the tri-binary orbital planes. 

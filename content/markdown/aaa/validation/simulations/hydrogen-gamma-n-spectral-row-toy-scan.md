@@ -144,6 +144,53 @@ This makes the packet stronger than a mock arithmetic witness. It now checks tha
 
 The scaffold still has a limited claim level. It derives the observer-frequency and envelope-gap entries from the Rydberg line-factor equation and a declared shared cadence stretch, but it does not derive the hydrogen envelope gaps from the master dynamics, does not derive the static response vector, and does not assign real observer frequencies. Its job is to make those inputs explicit and replaceable while keeping the coefficient-row scan executable.
 
+## Hydrogen Spectral Residual Separation
+
+The row scan uses the Rydberg principal-label factor as its leading benchmark, but real hydrogen spectroscopy is not exhausted by that factor. The source-level comparison stack separates at least five corrections that must not be hidden inside $\Gamma_N$:
+
+| Channel | Standard benchmark role | Packet treatment |
+| --- | --- | --- |
+| reduced mass | replaces $m_e$ by $m_eM/(m_e+M)$ in the leading Coulomb spectrum | declared input to the envelope gap, not a per-line row fit |
+| fine structure | relativistic kinetic, spin-orbit with Thomas-precession factor, and Darwin/contact terms split levels at order $(Z\alpha)^4$ | later correction residual, not part of the shared cadence row |
+| hyperfine structure | nuclear spin and magnetic moment couple to electron spin/orbital channels | apparatus/source-branch residual unless explicitly modeled |
+| Lamb-type shift | QED photon-field correction splitting Dirac-degenerate levels | external QED recovery residual |
+| finite nuclear structure | nuclear size, magnetic distribution, and quadrupole effects alter small-radius states | envelope/source-model residual |
+
+For a line $a\to b$, write the declared comparison gap as
+$$
+\Delta E_{\mathrm H}^{(\ell)}(a,b)
+=
+\Delta E_{\mathrm{Ryd}}(a,b)
++
+\Delta E_{\mathrm{fs}}(a,b)
++
+\Delta E_{\mathrm{hfs}}(a,b)
++
+\Delta E_{\mathrm{Lamb}}(a,b)
++
+\Delta E_{\mathrm{nuc}}(a,b)
++
+\Delta E_{\mathrm{rem}}(a,b).
+$$
+The current toy scaffold sets the correction terms to zero by declaration and therefore tests only the shared-row handling of the leading Rydberg factor. A non-toy packet must report a residual-separation check
+$$
+\mathcal{R}_{\mathrm{H,res}}^{(\ell)}
+=
+\max_{(a,b)\in\mathcal L_{\mathrm H}^{0}}
+\frac{
+\left|
+\Delta E_{\mathrm H}^{(\ell)}(a,b)
+-
+\sum_{c\in\{\mathrm{Ryd},\mathrm{fs},\mathrm{hfs},\mathrm{Lamb},\mathrm{nuc}\}}
+\Delta E_c(a,b)
+\right|
+}{
+\varepsilon_{\mathrm{rem}}(a,b)
+}
+\le 1.
+$$
+This prevents the coefficient scan from passing by absorbing known spectral physics into the cadence-stretch row. It also fixes the degeneracy burden: the leading Coulomb target must recover the $n^2$ orbital degeneracy before correction channels split it, while the fine-structure channel may depend on $j$ and the hyperfine channel may depend on nuclear-spin records.
+
 ## Compensated-Row Readout
 
 The current scaffold makes the compensated-family test explicit. The accepted split-record row is
@@ -415,6 +462,7 @@ The packet must include intentional failing rows or records for the following ca
 | endpoint-row violation | a row that fits the line set but violates $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$ is rejected |
 | residual overuse | hiding recoil, hyperfine structure, photon-channel propagation, or unresolved source-branch effects inside $\mathcal R_{\Gamma,\mathrm H}^{\mathrm{spec},(\ell)}$ beyond the declared budget fails |
 | response-record mismatch | changing $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ between lines after $\mathcal L_{\mathrm H}^{0}$ is chosen fails |
+| spectral-correction collapse | absorbing fine-structure, hyperfine, Lamb-type, reduced-mass, or nuclear-size corrections into $\mathbf{b}_{N}^{\mathrm{spec}}$ fails once the correction channels are declared |
 
 These failure tests keep the spectral row tied to the shared clock/rate map. They also separate the proof obligations: the envelope calculation owns the line gaps, the clock-row calculation owns $\Gamma_N$ and $C_N$, and the photon-channel event record owns emission and absorption propagation.
 

@@ -158,12 +158,38 @@ Using a single symbol $Y$ for hypercharge, $Q = T_3 + Y/2$:
 *   $d$: $T_3 (-1/2) + Y/2 (+1/6) = -1/3$.
 *   Geometric insight: hypercharge lives on the three complementary polar sites plus any core offset; the weak-coupling triad sets $T_3$.
 
-### Chirality (Why Right-Handed = 0?)
+### Sector exposure and left/right asymmetry
+
+The useful distinction is that `left-handed` does not mean "all weak effects exist" while `right-handed` means "no electroweak contact exists." It means the exposed weak-coupling-triad part of the ledger is available only in the left-handed channel.
+
+At the effective Standard Model level, the photon reads electric charge $Q$, the charged $W^\pm$ corridor changes weak isospin, and the neutral $Z^0$ corridor reads a mixture of weak isospin and electric charge:
+$$
+g_Z\left(T_3-Q\sin^2\theta_W\right).
+$$
+For right-handed charged fermions, the weak-coupling triad is hidden and the $SU(2)_L$ label is a singlet, so $T_3^{(R)}=0$. The neutral-current handle does not vanish automatically; it reduces to the electric/hypercharge-side term
+$$
+g_Z\left(-Q\sin^2\theta_W\right).
+$$
+This is why a right-handed electron can still have a neutral weak coupling, while a charged-current reaction such as $e^-_R\to\nu$ is blocked. A sterile right-handed neutrino candidate would have $T_3=0$ and $Q=0$, so this leading neutral-current handle would also be absent.
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the sector exposure map is:
+
+| Sector | Geometry read by the channel | Left/right behavior |
+| --- | --- | --- |
+| Electromagnetic | axial electric bookkeeping $Q$ | mostly left/right symmetric |
+| Strong | color as axis exceptionality | vector-like; mostly left/right symmetric |
+| Charged weak $W^\pm$ | exposed weak-coupling triad, changing $T_3$ | strongly left-selective; blocked when the triad is hidden |
+| Neutral weak $Z^0$ | neutral electroweak phase/bookkeeping mixture of $T_3$ and $Q$ | both sides for charged fermions, but with different weights |
+| Higgs/scalar | derivative of the mass-response map under radial Noether-Sea perturbation | controlled by shielding and mass response, not by a charge swap |
+
+This table is a bridge statement, not a proof. The closure burden is to derive one assembly record whose projections recover all five readouts without redefining the exposed domain from sector to sector.
+
+### Charged-current chirality (Why right-handed charged-current coupling is zero)
 Why can't a Right-Handed Electron ($e^-_R$) turn into a Neutrino?
 *   **Geometric Mechanism:** Chirality is the alignment of the particle's **Spin** with its **Momentum**.
 *   **Lock-out:** In the "Right-Handed" configuration, the **weak-coupling triad** is geometrically rotated *into the wake* of the particle or shielded by the binary arms.
-*   **Result:** The $W$ boson (which has its own helicity) cannot physically "dock" with the weak-coupling triad to perform the swap. It bounces off.
-*   Therefore, $e^-_R$ has no accessible weak-coupling triad. $T_3 = 0$.
+*   **Result:** The $W$ boson (which has its own helicity) cannot physically "dock" with the weak-coupling triad to perform the swap.
+*   Therefore, $e^-_R$ has no accessible charged-current weak-coupling triad. For the charged-current $SU(2)_L$ channel, $T_3^{(R)} = 0$.
 
 ---
 
@@ -356,6 +382,22 @@ d^c_L:(\bar 3,1,+\tfrac{2}{3}),\quad
 e^c_L:(1,1,+2),
 $$
 the Standard-Model gauge anomalies cancel exactly.
+
+The pure color anomaly cancels before hypercharge is even used:
+$$
+\mathcal{A}_{[SU(3)_c]^3}
+=
+2A(3)+A(\bar 3)+A(\bar 3)
+=2-1-1=0,
+$$
+where the factor $2$ is the weak-doublet multiplicity of $q_L$ and $A(\bar 3)=-A(3)$.
+
+The non-perturbative $SU(2)$ Witten check also passes. One generation contains three quark doublets, one for each color, plus one lepton doublet:
+$$
+N_{2,\mathrm{Weyl}}=3+1=4,\qquad
+N_{2,\mathrm{Weyl}}\equiv0\pmod2.
+$$
+Thus the quark and lepton sectors are tied together by the same consistency condition: removing either $q_L$ or $\ell_L$ breaks the even-doublet requirement.
 
 With $T(3)=T(\bar 3)=\tfrac{1}{2}$ and $T(2)=\tfrac{1}{2}$, the mixed non-abelian anomalies are
 $$
@@ -725,6 +767,50 @@ $$
 e = 6\epsilon \sqrt{\kappa c_f}\,Z_e,
 $$
 with $Z_e$ fixed by canonical field normalization when mapping to observer-level kinetic terms.
+
+### Inertial response and magnetic-moment interface
+
+Mass, inertial response, and magnetic moment are not additional quantum-number rows in this dictionary. A rigid-body inertia tensor is a useful comparison object because it maps angular velocity to angular momentum for a fixed mass distribution. The fermion assembly is not treated as that kind of rigid body. Its observer-level response is derived from trapped causal history, shielding, Noether-Sea coupling, and the orientation of the Noether core plus axial layer.
+
+For a fermion assembly $A$, write the local response maps as
+$$
+\delta p_i
+=
+\mathcal{M}^{\mathrm{resp}}_{ij}
+\!\left(A;\mathcal{H}_A,\mathcal{S}_A,\mathcal{N}_A,R_A\right)
+\delta v^j,
+\qquad
+\delta J_i
+=
+\mathcal{I}^{\mathrm{resp}}_{ij}
+\!\left(A;\mathcal{H}_A,\mathcal{S}_A,\mathcal{N}_A,R_A\right)
+\delta\Omega^j.
+$$
+
+The directional observer scalars are projections of these maps,
+$$
+m_A^{\mathrm{obs}}(\hat{\mathbf{u}})
+=
+\hat u^i\mathcal{M}^{\mathrm{resp}}_{ij}\hat u^j,
+\qquad
+I_A^{\mathrm{obs}}(\hat{\mathbf{n}})
+=
+\hat n^i\mathcal{I}^{\mathrm{resp}}_{ij}\hat n^j.
+$$
+Here $\mathcal{H}_A$ is the path-history/causal-root ledger, $\mathcal{S}_A$ is the shielding state, $\mathcal{N}_A$ is the local Noether-Sea state, and $R_A$ records assembly orientation. In an isotropic low-energy branch, $m_A^{\mathrm{obs}}$ reduces to the scalar mass used in Standard Model kinematics; away from that limit, the anisotropic response belongs to the medium-response map, not to a new quantum number.
+
+The lepton magnetic-moment correction below should be read through the same interface. The coefficient $\mathcal{C}_\ell$ is a channel projection of response data,
+$$
+\mathcal{C}_\ell
+=
+\mathcal{P}_\ell\!\left[
+\mathcal{M}^{\mathrm{resp}},
+\mathcal{I}^{\mathrm{resp}},
+\mathcal{V}_{\mathrm{NS}},
+R_\ell
+\right],
+$$
+where $\mathcal{P}_\ell$ denotes the observer-channel projection into the measured lepton magnetic-moment observable. This keeps magnetic moment tied to finite-size orientation response and Noether-Sea dressing without treating magnetic language as substrate ontology.
 
 ### Lepton magnetic moments
 

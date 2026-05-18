@@ -289,6 +289,42 @@ Let $I$ denote the radian-normalized total rotational action of a tri-binary ass
 
 If the dynamics admit multiple distinct aligned states with significantly different $\mathcal{A}_{\text{align}}^{\text{cycle}}$ or $I_{\text{align}}$, this identification fails.
 
+### Topological Bound Comparison
+
+Soliton and supersymmetric field theory provide a disciplined comparison pattern: sometimes a charge sector supplies a lower bound, and special solutions saturate it by satisfying first-order equations. For this chapter that pattern should be used only as a proof template, not as imported ontology.
+
+Let
+$$
+Q_{\mathrm{align}}
+$$
+denote the retained topological and phase-lock data of the aligned tri-binary branch: winding class, layer-lock integers, chirality sign if retained, and the active causal-root ledger over one cycle. A useful theorem target is a bound of the form
+$$
+\mathcal{A}_{\text{cycle}}[\Gamma]
+\ge
+\mathcal{B}(Q_{\mathrm{align}})
+$$
+for all admissible histories
+$$
+\Gamma
+$$
+in the same sector. Planck alignment would become much stronger if the terminal aligned mode were shown to saturate the bound,
+$$
+\mathcal{A}_{\text{align}}^{\text{cycle}}
+=
+\mathcal{B}(Q_{\mathrm{align}}),
+$$
+and if the saturation equations reduced to explicit first-order delay-geometry closure conditions, such as field-speed component saturation, finite branch ledger closure, and zero holonomy after one cycle.
+
+The failure test is equally important. If no sectorwise lower bound exists, or if the aligned branch is not the minimizer within its own
+$$
+Q_{\mathrm{align}}
+$$
+sector, then the identification
+$$
+\mathcal{A}_{\text{align}}^{\text{cycle}}\stackrel{\text{hyp.}}{\approx}h
+$$
+remains only a dimensional and operational mapping rather than a dynamical derivation.
+
 ### Alignment Radius: $R_{\text{align}}$ and $\ell_P$
 
 Define

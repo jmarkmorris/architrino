@@ -59,6 +59,24 @@ From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, these crisis-axes matte
 
 That is the standard the chapter should keep in view. The crisis only matters if it sharpens ontology and sharpens tests. For $\mathbb{A}\mathbb{A}\mathbb{A}$, resolution would mean recovering established effective success, reducing multiple tensions by common mechanism, exposing clear failure conditions, and explaining why prior frameworks worked as well as they did. Anything weaker would risk replacing one rhetorical overreach with another.
 
+### Empirical Establishment Discipline
+
+The history of experimental gravity adds a methodological constraint to the crisis map. General relativity did not become secure because one elegant argument or one celebrated measurement was persuasive by itself. It became secure because redshift, light bending, Shapiro timing, orbital precession, equivalence tests, frame-dragging, binary-pulsar timing, gravitational waves, and CMB-era cosmology formed a mutually constraining network with different instruments and different nuisance channels.
+
+The corresponding standard for $\mathbb{A}\mathbb{A}\mathbb{A}$ is a cross-check score rather than a single showcase prediction:
+$$
+\mathcal{S}_{\mathrm{est}}
+=
+N_{\mathrm{ind}}
+-
+N_{\mathrm{free}}
+-
+N_{\mathrm{shared\ nuisance}}
+-
+N_{\mathrm{posthoc}},
+$$
+where $N_{\mathrm{ind}}$ counts independent successful benchmark families, $N_{\mathrm{free}}$ counts unconstrained parameters, $N_{\mathrm{shared\ nuisance}}$ counts nuisance assumptions reused across supposedly independent rows, and $N_{\mathrm{posthoc}}$ counts repairs introduced after seeing the target data. The formula is not a universal philosophy of science. It is a working discipline for this corpus: a substrate claim should not be treated as established until its effective successes outnumber its adjustable and nuisance-dependent supports across multiple measurement families.
+
 ---
 
 ## Progress vs. Time
@@ -427,7 +445,7 @@ The long-term relevance is likely permanent as a caution against treating succes
 
 The tension emerges because the vacuum in modern physics is no longer simple emptiness. It carries fluctuations, boundary effects, state structure, effective energy assignments, symmetry-breaking roles, and, in gravitational contexts, metric behavior that determines clock rates, propagation, and free motion. The category pressure is therefore straightforward: once empty space is allowed to bend, slow signals, store energy, or condition inertial and gravitational behavior, the descriptive burden placed on "emptiness" becomes unusually high.
 
-This pressure is intensified by a historical asymmetry. General relativity formalized gravitation geometrically, and that achievement was genuine. But the stronger cultural conclusion often drawn from that success is that one must not ask what, if anything, physically underwrites the effective geometry. The result is an ontological selectivity: large amounts of structure are granted to spacetime in mathematical form, while composition questions are sometimes treated as though they were residues of a discredited ether picture rather than legitimate requests for substrate clarification.
+This pressure is intensified by a historical asymmetry. General relativity formalized gravitation geometrically, and that achievement was genuine. But the stronger cultural conclusion often drawn from that success is that one must not ask what, if anything, physically underwrites the effective geometry. The result is an ontological selectivity: large amounts of structure are granted to spacetime in mathematical form, while composition questions are sometimes treated as though they were residues of a discredited older medium picture rather than legitimate requests for substrate clarification.
 
 ### What Current Physics Gets Right
 
@@ -445,7 +463,7 @@ Standard repairs include treating vacuum properties as field-theoretic state str
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The theory distinguishes the fixed Euclidean void from the physical medium that occupies it. In that vocabulary, the void is the geometric container, the Noether Sea is the constitutive medium whose organized state is summarized as spacetime behavior at the observer level, and matter assemblies are higher-order organizations within the same constitutive world. The companion bridge [Substance, Structure, and the Plenum of Potential](substance-structure-and-potential.md) adds the further distinction between primitive architrino substance and causal wake structure. This does not recover an older ether by simple relabeling. It instead proposes a disciplined separation between geometry, occupancy, dynamical medium response, causal wake history, and effective observer-level metric behavior. Transition relevance is high because this crisis exposes a recurring hesitation in modern physics: admitting effective structure while refusing the corresponding substrate language.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The theory distinguishes the fixed Euclidean void from the physical medium that occupies it. In that vocabulary, the void is the geometric container, the Noether Sea is the constitutive medium whose organized state is summarized as spacetime behavior at the observer level, and matter assemblies are higher-order organizations within the same constitutive world. The companion bridge [Substance, Structure, and the Plenum of Potential](substance-structure-and-potential.md) adds the further distinction between primitive architrino substance and causal wake structure. This does not recover an older medium theory by simple relabeling. It instead proposes a disciplined separation between geometry, occupancy, dynamical medium response, causal wake history, and effective observer-level metric behavior. Transition relevance is high because this crisis exposes a recurring hesitation in modern physics: admitting effective structure while refusing the corresponding substrate language.
 
 ### What Would Count As Resolution
 

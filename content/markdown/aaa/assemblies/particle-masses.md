@@ -46,6 +46,36 @@ $$
 
 in a homogeneous isotropic Noether-Sea cell. Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice. The tensor version is the sharper target because it carries direction dependence, gradient response, and the distinction between primitive wake speed and observer-facing effective signal speed. Until the internal ledger, shielding coefficient, and medium-response tensor are derived from stable assembly closure, this remains a roadmap formula rather than a theorem.
 
+Superfluid-vacuum and Nambu-Jona-Lasinio-style comparisons add a useful caution: an excitation gap can look like a rest-energy term without being the ontology of mass. For an accepted assembly branch $A$, the native analogue would be a branch gap
+$$
+\Delta_A^\theta
+=
+E_{\mathrm{first\,exc}}^\theta(A)
+-
+E_{\mathrm{branch}}^\theta(A),
+$$
+computed from the same causal ledger, shielding, and Noether-Sea response record as the mass map. A compact comparison residual is
+$$
+\mathcal{R}_{\mathrm{gap}\to m}(A;\theta)
+=
+\frac{
+\left|
+\Delta_A^\theta
+-
+M_{\mathrm{sh}}(A;\theta)c_{\text{eff}}^2
+\right|
+}{\epsilon_{\Delta}}
++
+\frac{
+\left\|
+\partial_{\theta_{\mathrm{sea}}}\Delta_A^\theta
+-
+\partial_{\theta_{\mathrm{sea}}}\!\left[M_{\mathrm{sh}}(A;\theta)c_{\text{eff}}^2\right]
+\right\|
+}{\epsilon_{\mathrm{env}}}.
+$$
+If this residual is small, the gap comparison supports the mass-map thesis. If it is small only after choosing a separate gap for each particle species, the comparison has merely renamed the observed mass table.
+
 #### Sector Exposure Quotient
 
 The scalar shielding factor $\zeta(A)$ is the mass-facing specialization of a more general sector exposure map. A stable assembly can carry far more internal ledger structure than any one observer-level sector is allowed to see. The mass map therefore cannot promote a hidden internal energy, phase, polarity, or branch label as an external response until the sector projection and quotient have been declared.
@@ -140,7 +170,7 @@ The mass thesis must keep the particle categories separate. The photon channel i
 ### Comparison to Standard Model
 In the Standard Model, mass arises via the **Higgs Mechanism**: particles acquire mass by coupling to a background Higgs field (a scalar condensate with vacuum expectation value $v \approx 246$ GeV).
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Higgs-sector comparison is an effective matching problem, not yet a derived replacement. The working expectation is that Standard Model mass parameters and Yukawa couplings would be reinterpreted as effective summaries of assembly geometry, shielding, and Noether-Sea response. The 125 GeV Higgs mode may eventually be modeled as a collective excitation of this medium, but that identification is a theorem target, not an established result.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Higgs-sector comparison is an effective matching problem, not yet a derived replacement. The working expectation is that Standard Model mass parameters and Yukawa couplings would be reinterpreted as effective summaries of assembly geometry, shielding, and Noether-Sea response. The ATLAS discovery benchmark is a neutral scalar-compatible resonance at $126.0\pm0.4\text{ (stat)}\pm0.4\text{ (sys)}\,\mathrm{GeV}$ with signal-strength normalization near the Standard Model expectation. Modeling that resonance as a collective medium excitation is a theorem target, not an established result.
 
 For the electroweak medium interpretation behind this replacement, see [Emergence of U(1)/SU(2)](../interactions/gauge-structure-emergence.md).
 
@@ -186,6 +216,35 @@ M_H^{\mathrm{breath}}(\theta)-M_H^{\mathrm{obs}}
 $$
 
 Here $\mathfrak{F}_{H}$ is the set of fermion channels with measured Higgs-coupling information, $M_H^{\mathrm{obs}}$ is the observed scalar resonance near $125$ GeV, and $M_H^{\mathrm{breath}}(\theta)$ is the predicted radial Noether-Sea breathing-mode mass on the same branch. The benchmark fails if Yukawa-like numbers are inserted as independent per-particle constants, if $v_{\mathrm{EW}}^{\mathrm{eff}}$ is fitted separately from the gauge-sector normalization, or if the $125$ GeV scalar match uses a different Noether-Sea record than the inertial-mass map.
+
+The ATLAS discovery surface makes the residual sharper than a single mass entry. A candidate scalar branch must recover the mass, rate normalization, channel pattern, and absence of broad additional scalar signals in the excluded windows:
+$$
+\mathcal{R}_{\mathrm{ATLAS}\text{-}H}(\theta)
+=
+\left[
+\frac{
+M_H^{\mathrm{breath}}(\theta)-126.0\,\mathrm{GeV}
+}{
+\sqrt{0.4^2+0.4^2}\,\mathrm{GeV}
+}
+\right]^2
++
+\left[
+\frac{
+\mu_H^{\mathrm{eff}}(\theta)-1.4
+}{0.3}
+\right]^2
++
+\sum_{c\in\{ZZ^{(*)}4\ell,\gamma\gamma,WW^{(*)}\ell\nu\ell\nu\}}
+\left[
+\frac{
+Z_c^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)-Z_c^{\mathrm{ATLAS}}
+}{\sigma_{Z_c}}
+\right]^2
++
+\mathcal{R}_{\mathrm{excluded\,scalar}}(\theta).
+$$
+Here $\mu_H^{\mathrm{eff}}$ is the observer-level production-and-branching normalization, and $Z_c$ records the channel significance or equivalent likelihood contribution for the high-resolution $ZZ^{(*)}\to4\ell$, $\gamma\gamma$, and $WW^{(*)}$ channels. The $\gamma\gamma$ channel also protects the scalar-vs-vector distinction: it supports a spin-$0$-compatible comparison and rules against treating the Higgs benchmark as another photon or massive-vector corridor.
 
 ### Naturalness Comparison: QCD Running
 

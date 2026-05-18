@@ -29,6 +29,45 @@ A first useful decomposition is:
 
 This decomposition can organize molecular shape before the spin proof is complete, but it cannot close molecular occupancy by itself. The exclusion-cost term must eventually inherit Pauli/statistics closure, while phase compatibility must eventually be connected to the completed atomic spin and orbital ledger.
 
+The first mathematical object should be an effective corridor functional on nuclear positions, electron-envelope branch data, and local Noether-Sea response:
+
+$$
+\mathcal E_{\mathrm{mol}}
+=
+\mathcal E_{\mathrm{mol}}\!\left(
+\{\mathbf R_A\},
+\mathcal B_{e,1},\ldots,\mathcal B_{e,N},
+\mathcal B_{\mathrm{bond}},
+\Theta_{\mathrm{sea}}^{(\ell)}
+\right).
+$$
+
+Equilibrium molecular geometry is the stationary branch
+
+$$
+\frac{\partial\mathcal E_{\mathrm{mol}}}{\partial R_A^i}=0,
+\qquad
+\mathcal H_{Ai,Bj}
+=
+\frac{\partial^2\mathcal E_{\mathrm{mol}}}{\partial R_A^i\partial R_B^j}
+\succeq 0
+$$
+
+after removing overall translation and rotation modes. The Hessian $\mathcal H$ is the molecular analogue of the lattice dynamical matrix: its eigenvalues give the local vibrational stiffnesses, while its eigenvectors identify stretching, bending, and torsional response. This supplies a concrete way to test bond lengths and angles without importing an orbital-hybridization template as the cause.
+
+For a stable molecule, the small-oscillation target is
+
+$$
+\omega_s^2\,\epsilon_{s,Ai}
+=
+\sum_{B,j}
+\left(M^{-1}\right)_{Ai,Ck}
+\mathcal H_{Ck,Bj}\,
+\epsilon_{s,Bj},
+$$
+
+where $M$ is the observer-level mass-response matrix of the participating nuclei or molecular fragments. The normal-mode spectrum is therefore a validation surface for the same corridor, exclusion, and medium-response functional that fixes shape. A geometry fit fails if it recovers equilibrium angles only by using one functional while vibrational frequencies require an unrelated stiffness map.
+
 ## Closure Targets
 
 A completed molecular-geometry derivation should recover, at minimum, the familiar qualitative sequence of linear, trigonal, tetrahedral, and bent arrangements from assembly geometry rather than imposing them as orbital templates. The first practical benchmark should be a small set of molecules whose standard geometries are sharply constrained: $\mathrm{H}_2$, $\mathrm{H}_2\mathrm{O}$, $\mathrm{CO}_2$, $\mathrm{NH}_3$, and $\mathrm{CH}_4$.

@@ -1,0 +1,283 @@
+{
+  "schemaVersion": "0.1",
+  "description": "Central still-image catalog for repo-managed historical, explanatory, and illustrative images.",
+  "storageRoot": "content/assets/images/",
+  "images": [
+    {
+      "id": "solvay-conference-1927-restored",
+      "title": "Solvay Conference, 1927",
+      "description": "Restored group photograph of participants at the 1927 Solvay Conference on quantum mechanics in Brussels, Belgium.",
+      "path": "content/assets/images/historical/solvay-conference-1927-restored.jpg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 4708,
+        "height": 3227
+      },
+      "fileSizeBytes": 6274028,
+      "sha256": "e8922207067a0e900cda83cecfbf357686be1c96df0d9b60ec5f99fcaf04c7df",
+      "dateCreated": "1927",
+      "dateImported": "2026-05-18",
+      "status": "approved",
+      "category": "historical",
+      "source": {
+        "name": "Wikimedia Commons",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Solvay_conference_1927_restored.jpg",
+        "pageRevisionUrl": "https://commons.wikimedia.org/w/index.php?title=File:Solvay_conference_1927_restored.jpg&oldid=1123314211",
+        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Solvay_conference_1927_restored.jpg",
+        "listedSources": [
+          "http://w3.pppl.gov/",
+          "http://doi.org/10.3932/ethz-a-000046848"
+        ],
+        "accessedDate": "2026-05-18"
+      },
+      "creators": [
+        {
+          "name": "Benjamin Couprie",
+          "role": "photographer"
+        },
+        {
+          "name": "Institut International de Physique de Solvay",
+          "role": "owning institution listed by Wikimedia Commons"
+        },
+        {
+          "name": "Wilfredor",
+          "role": "photo restoration"
+        }
+      ],
+      "license": {
+        "rightsStatus": "public-domain",
+        "label": "Public domain",
+        "rationale": "Wikimedia Commons marks the file public domain because the image, owned by the Institut International de Physique Solvay, was published in Belgium more than 70 years ago.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Photograph by Benjamin Couprie, Institut International de Physique de Solvay; restoration by Wilfredor. Public domain via Wikimedia Commons.",
+      "usage": {
+        "intendedUses": [
+          "historical context",
+          "image tray",
+          "scene overlay",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Chosen as the first catalog image because it is a high-resolution restored Commons file with public-domain status and strong historical relevance to quantum theory.",
+        "Selected over the 4,749 x 3,286 PNG source because the current restored JPEG is the cleaned final Commons restoration."
+      ]
+    },
+    {
+      "id": "platos-cave-saenredam-1604-nga",
+      "title": "Plato's Cave",
+      "description": "Engraving of Plato's cave allegory by Jan Pietersz Saenredam after Cornelis Cornelisz van Haarlem, published by Hendrik Hondius I in 1604.",
+      "path": "content/assets/images/historical/platos-cave-saenredam-1604-nga.jpg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 4096,
+        "height": 3070
+      },
+      "fileSizeBytes": 5091714,
+      "sha256": "f294e2ff62e1a4a43749efa2d7aaa37d6563f27b8ab693d5e1a28856a905afdb",
+      "dateCreated": "1604",
+      "dateImported": "2026-05-18",
+      "status": "approved",
+      "category": "historical",
+      "source": {
+        "name": "National Gallery of Art",
+        "pageUrl": "https://www.nga.gov/artworks/62542-platos-cave",
+        "fileUrl": "https://api.nga.gov/iiif/66e4ef40-041c-410a-bd57-abd3c7544b93/full/full/0/default.jpg?attachment_filename=plato_s_cave_1983.61.1.jpg",
+        "accessionNumber": "1983.61.1",
+        "accessedDate": "2026-05-18"
+      },
+      "creators": [
+        {
+          "name": "Jan Pietersz Saenredam",
+          "role": "engraver"
+        },
+        {
+          "name": "Cornelis Cornelisz van Haarlem",
+          "role": "artist after"
+        },
+        {
+          "name": "Hendrik Hondius I",
+          "role": "publisher"
+        }
+      ],
+      "license": {
+        "rightsStatus": "public-domain",
+        "label": "Public domain",
+        "rationale": "The National Gallery of Art marks this object's media as free and in the public domain.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Jan Pietersz Saenredam after Cornelis Cornelisz van Haarlem, Plato's Cave, 1604. Public domain, National Gallery of Art, Washington.",
+      "usage": {
+        "intendedUses": [
+          "historical context",
+          "image tray",
+          "scene overlay",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Chosen as the first Plato's cave catalog image because it is a historically significant 1604 engraving with public-domain status and direct museum-source media.",
+        "Selected over the older Wikimedia Commons copy because the National Gallery of Art download is higher resolution."
+      ]
+    },
+    {
+      "id": "standard-model-elementary-particles",
+      "title": "Standard Model of Elementary Particles",
+      "description": "Vector chart of the Standard Model of elementary particles, showing the 12 fundamental fermions and 5 fundamental bosons with interaction-group loops.",
+      "path": "content/assets/images/physics/standard-model-elementary-particles.svg",
+      "mediaType": "image/svg+xml",
+      "dimensions": {
+        "width": 1390,
+        "height": 1330
+      },
+      "fileSizeBytes": 38227,
+      "sha256": "a498d82029b1db4a0dabe888297f30c3d9f0d65c5340553f7e298a46f3aaf83e",
+      "dateCreated": "2019-09-17",
+      "dateImported": "2026-05-18",
+      "status": "approved",
+      "category": "physics-diagram",
+      "source": {
+        "name": "Wikimedia Commons",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Standard_Model_of_Elementary_Particles.svg",
+        "pageRevisionUrl": "https://commons.wikimedia.org/w/index.php?title=File:Standard_Model_of_Elementary_Particles.svg&oldid=1197420232",
+        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/0/00/Standard_Model_of_Elementary_Particles.svg",
+        "accessedDate": "2026-05-18"
+      },
+      "creators": [
+        {
+          "name": "Cush",
+          "role": "current version author"
+        },
+        {
+          "name": "MissMJ",
+          "role": "original version author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "free-license",
+        "label": "Current version public domain; original version CC BY 3.0",
+        "rationale": "Wikimedia Commons marks the current version public domain by Cush and lists the original version by MissMJ under Creative Commons Attribution 3.0 Unported.",
+        "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+        "requiresAttribution": true
+      },
+      "creditLine": "Standard Model of Elementary Particles by Cush; original version by MissMJ, CC BY 3.0. Via Wikimedia Commons.",
+      "usage": {
+        "intendedUses": [
+          "physics reference",
+          "image tray",
+          "scene overlay",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Chosen as the Standard Model catalog image because it is the canonical Commons vector diagram, is compact and scalable, includes the Higgs boson, and records particle masses as current as of 2024 in the Commons description.",
+        "Selected over raster renderings because the SVG remains crisp across markdown, tray, and scene-overlay uses."
+      ]
+    },
+    {
+      "id": "electromagnetic-spectrum-planck-scale",
+      "title": "Electromagnetic Spectrum, Extended To The Planck Scale",
+      "description": "Repo-native SVG diagram of electromagnetic radiation bands from long radio wavelengths to a hypothetical Planck-scale photon marker.",
+      "path": "content/assets/images/physics/electromagnetic-spectrum-planck-scale.svg",
+      "mediaType": "image/svg+xml",
+      "dimensions": {
+        "width": 1800,
+        "height": 1050
+      },
+      "fileSizeBytes": 11528,
+      "sha256": "8896e3e55153c469e583b619833a6806909ab9b57c39638066422dcad2cc7ba9",
+      "dateCreated": "2026-05-18",
+      "dateImported": "2026-05-18",
+      "status": "approved",
+      "category": "physics-diagram",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "dataReferences": [
+          "https://www.nist.gov/programs-projects/codata-values-fundamental-physical-constants"
+        ],
+        "accessedDate": "2026-05-18"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "diagram author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as a repo-native diagram for this project using conventional electromagnetic band boundaries and NIST/CODATA physical constants.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "physics reference",
+          "image tray",
+          "scene overlay",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Created instead of importing an existing electromagnetic-spectrum diagram because the requested scope extends explicitly to a hypothetical Planck-scale photon marker.",
+        "The Planck-scale marker is labeled as hypothetical rather than as an observed radiation band."
+      ]
+    },
+    {
+      "id": "bremsstrahlung",
+      "title": "Bremsstrahlung Schematic",
+      "description": "Vector schematic of bremsstrahlung radiation produced by deflection of a fast electron in a nuclear Coulomb field.",
+      "path": "content/assets/images/effects/bremsstrahlung.svg",
+      "mediaType": "image/svg+xml",
+      "dimensions": {
+        "width": 801,
+        "height": 1024
+      },
+      "fileSizeBytes": 1863,
+      "sha256": "869d62f2acfbf261398e47d6d803af12774f0c844210ee1b34442fe4fceb1a3f",
+      "dateCreated": "2007-01-06",
+      "dateImported": "2026-05-18",
+      "status": "approved",
+      "category": "radiation-effect",
+      "source": {
+        "name": "Wikimedia Commons",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Bremsstrahlung.svg",
+        "pageRevisionUrl": "https://commons.wikimedia.org/w/index.php?title=File:Bremsstrahlung.svg&oldid=1097087077",
+        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Bremsstrahlung.svg",
+        "accessedDate": "2026-05-18"
+      },
+      "creators": [
+        {
+          "name": "Journey234",
+          "role": "assumed author listed by Wikimedia Commons"
+        }
+      ],
+      "license": {
+        "rightsStatus": "public-domain",
+        "label": "Public domain",
+        "rationale": "Wikimedia Commons records the copyright holder releasing the work into the public domain.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Bremsstrahlung schematic, Journey234 assumed. Public domain via Wikimedia Commons.",
+      "usage": {
+        "intendedUses": [
+          "radiation-effect reference",
+          "image tray",
+          "scene overlay",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Chosen as a small public-domain vector schematic for radiation emitted by charge deflection."
+      ]
+    }
+  ]
+}

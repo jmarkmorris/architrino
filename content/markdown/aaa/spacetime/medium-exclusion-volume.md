@@ -50,6 +50,39 @@ Notes:
 
 This gives a **geometric baseline** for how much space a molecule excludes. But in real matter, things are more flexible.
 
+The kinetic baseline is not just occupied volume; it is also the collision length compared with the scale being probed. For a dilute molecular species with number density $n_m$ and effective hard-core diameter $d_m$, the order-of-magnitude mean free path is
+$$
+\lambda_m
+\sim
+\frac{1}{\pi d_m^2 n_m},
+$$
+up to the usual order-one correction for relative molecular motion. A probe of size $L$ is in a continuum regime only when
+$$
+\mathrm{Kn}_m
+\equiv
+\frac{\lambda_m}{L}
+\ll 1.
+$$
+When $\mathrm{Kn}_m$ is not small, a molecular continuum pressure or viscosity description is a poor model even if the geometric occupancy is tiny.
+
+This distinction is useful for $\mathbb{A}\mathbb{A}\mathbb{A}$ because molecular exclusion and Noether-Sea response answer different questions. Molecular packing fraction estimates what ordinary matter blocks geometrically. Mean-free-path and Knudsen estimates say whether a gas can be treated as a continuum at the scale of the probe. Neither estimate determines whether a photon, neutrino, gravitational-wave channel, or clock-rate comparison couples strongly to the Noether Sea. Those channels require their own coupling and propagation records.
+
+For any simulation or synthetic-observable packet that compares ordinary matter with medium-level propagation, the minimal separation is
+$$
+\phi_{\mathrm{VdW}}
+=
+n_m V_{\mathrm{VdW}},
+\qquad
+\mathrm{Kn}_m
+=
+\frac{\lambda_m}{L},
+\qquad
+\mathcal C_X
+=
+\text{declared coupling record for channel }X.
+$$
+A low $\phi_{\mathrm{VdW}}$ or high $\mathrm{Kn}_m$ may explain molecular sparsity or gas-kinetic behavior; it is not evidence by itself for transparency of channel $X$.
+
 ---
 
 ## Levels of Excluded Volume

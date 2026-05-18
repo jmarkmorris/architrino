@@ -210,6 +210,55 @@ This record is a derivation target. It must recover $\nu_c\propto\gamma^2B$, $P_
 
 - Pair threshold closure: enforce $s = (k_1+k_2)^2 \ge 4m_e^2c^4$ for $\gamma\gamma \rightarrow e^+e^-$, where $k^\mu_i$ are photon 4-momenta. In the head-on collision frame this reduces to $E_1 E_2 \ge (m_e c^2)^2$; for general angle $\theta_{12}$ between photon directions, $E_1 E_2 (1-\cos\theta_{12}) \ge 2(m_e c^2)^2$. Breit-Wheeler cross-section peak occurs at $s \sim 10 m_e^2 c^4$ and must be reproduced in validated cascade limits.
 - Frequency closure: recover $\nu_c = (3/2)\gamma^2(eB/2\pi m_e c)\sin\alpha$ and the ensemble scaling $\nu_c\propto\gamma^2B$ in uniform-field, weak homogeneous limits.
+- Jet-shock polarization closure: in resolved AGN or microquasar working surfaces, shock compression should rotate the observer-level synchrotron polarization basis consistently with the effective $B_{\mathrm{eff}}$ geometry inferred from $\mathcal{V}_{\mathrm{NS}}$. For a declared knot or hot-spot region $K$, a useful residual is
+$$
+\Delta_{\mathrm{pol}}^{K}
+=
+\left\langle
+\sin^2\!\left[
+\psi_{\mathrm{syn}}(\mathbf{x})
+-
+\psi_{B,\mathrm{eff}}^{\perp}(\mathbf{x})
+\right]
+\right\rangle_{\mathbf{x}\in K}^{1/2},
+$$
+where $\psi_{\mathrm{syn}}$ is the synthetic linear-polarization angle and $\psi_{B,\mathrm{eff}}^{\perp}$ is the projected field-compression basis expected for the observer-level shock model. The target is not a new free-photon polarization proof; it is a source-scale Gate B consumer. Persistent knot-scale misalignment after Faraday rotation, beam averaging, and turbulent depolarization are accounted for would falsify the directional $B_{\mathrm{eff}}\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ map in that regime.
+- Radiation-zone closure: for the local transverse-acceleration segment with $\mathbf{v}\cdot\mathbf{a}_\perp=0$, axes chosen so $\mathbf{v}$ lies along $z$ and $\mathbf{a}_\perp$ along $x$, and $\beta=\|\mathbf{v}\|/c$, recover the angular target
+
+$$
+\frac{dP_{\perp,\mathrm{std}}}{d\Omega}
+=
+\frac{q^2\|\mathbf{a}_\perp\|^2}{16\pi^2\epsilon_0c^3}
+\frac{1}{(1-\beta\cos\theta)^3}
+\left[
+1
+-
+\frac{\sin^2\theta\cos^2\phi}
+{\gamma^2(1-\beta\cos\theta)^2}
+\right],
+$$
+
+and the total-power target
+
+$$
+P_{\perp,\mathrm{std}}
+=
+\frac{q^2\gamma^4\|\mathbf{a}_\perp\|^2}{6\pi\epsilon_0c^3}.
+$$
+
+The channel residual is
+
+$$
+\Delta_{\mathrm{syn,rad}}
+=
+\left(
+\frac{P_{\mathrm{map}}}{P_{\perp,\mathrm{std}}}-1,
+\frac{\nu_{\gamma}^{\mathrm{out}}}{\nu_c}-1,
+\Delta_{\gamma,\mathrm{flux}}
+\right),
+$$
+
+with $\Delta_{\gamma,\mathrm{flux}}$ inherited from [Radiation](radiation.md). In validated weak homogeneous limits, all components must tend to zero without retuning the $B\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ map.
 - Rate closure: recover standard synchrotron and Breit-Wheeler limits in validated regimes.
 - Timing closure: in weak-gravity astrophysical limits, $\Gamma_{\mathrm{eff}} \rightarrow \gamma_{\mathrm{SR}}$ so cooling breaks are preserved. This is an effective closure target for the clock law, not an assumption that substrate time is observer proper time.
 - Polarization closure: recover observer-level synchrotron polarization geometry from directional $B$ mapping; in uniform-field limits, failure to recover linear polarization fractions $\Pi \approx 70\%-75\%$ falsifies the geometric mapping (Rybicki and Lightman 1979, Sec. 6.3; observational confirmation in radio pulsars and synchrotron nebulae typically shows $\Pi_{\mathrm{obs}} \sim 0.3$-0.7 after depolarization from field disorder and Faraday rotation).
@@ -227,6 +276,31 @@ This record is a derivation target. It must recover $\nu_c\propto\gamma^2B$, $P_
 - Polarization signatures tracing magnetic-field geometry and turbulence level.
 - Pair-opacity features and spectral softening at high energies in compact sources.
 - Strong coupling to inverse Compton and bremsstrahlung channels in dense radiation or matter environments.
+
+### Jet and Outflow Source Benchmarks
+
+Relativistic AGN and microquasar jets are the cleanest source-scale benchmark for this chapter because their resolved knots, hot spots, lobes, and broadband continua force the same model to reproduce morphology, spectra, and polarization together. In standard source language, the relevant flow variables are the jet speed $v_j$, Lorentz factor $\gamma_j$, density ratio $\eta_j=\rho_j/\rho_a$, Mach number $M_j$, effective magnetic amplitude $B_{\mathrm{eff}}$, electron distribution $N_e(\gamma)$, and source size $L$. In this chapter they remain observer-level comparison variables reconstructed from the event and medium record, not substrate objects added to the Euclidean void.
+
+For a resolved radio/X-ray jet region $\Omega_j$, the minimal synthetic synchrotron packet is
+
+$$
+\mathcal{J}_{\mathrm{syn}}(\Omega_j)
+=
+\left(
+I_{\nu}^{\mathrm{syn}},
+I_{\nu}^{\mathrm{IC}},
+\Pi_{\nu},
+\psi_{\nu},
+\nu_{\mathrm{br}},
+\tau_{\mathrm{syn}},
+\tau_{\mathrm{esc}},
+\Delta_{\mathrm{pol}}^{K}
+\right),
+$$
+
+where $I_{\nu}^{\mathrm{syn}}$ and $I_{\nu}^{\mathrm{IC}}$ are the synthetic synchrotron and inverse-Compton maps, $\Pi_{\nu}$ and $\psi_{\nu}$ are the linear-polarization fraction and angle, $\nu_{\mathrm{br}}$ is the cooling-break frequency, and $\Delta_{\mathrm{pol}}^{K}$ is evaluated on knots or shock-compressed regions. A source model passes this benchmark only if the same electron transport, $B_{\mathrm{eff}}\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ map, and photon event ledger recover both the radio synchrotron and X-ray inverse-Compton morphology without separately tuning the field map for each band.
+
+This source packet also disciplines composition claims. The observed synchrotron continuum proves the presence of relativistic charged leptons and an ordered effective magnetic component, but it does not by itself decide whether the bulk jet is electron-proton, electron-positron, or mixed. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, composition is therefore a downstream identity-routing and inertia-loading problem, not a result that can be read directly from the synchrotron channel alone.
 
 ## Standard Interpretation vs $\mathbb{A}\mathbb{A}\mathbb{A}$ Interpretation
 
@@ -307,6 +381,32 @@ $$
 Here $\mathcal{T}(\nu,z_{\mathrm{em}}\rightarrow z_{\mathrm{obs}})$ is the cumulative transfer function including absorption (for example, $e^{-\tau_{\gamma\gamma}(\nu,z)}$ for pair production on extragalactic background light) and any intervening scattering. For nearby sources ($z \ll 1$), $\mathcal{T} \approx 1$.
 
 with $1+z \equiv (1+z_{\mathrm{em}})/(1+z_{\mathrm{obs}})$. In standard-limit regimes, this must reduce to conventional transport results used in high-energy astrophysics.
+
+When the path includes plasma or conducting material, the transfer function must carry the same response rows used by [Radiation](radiation.md). In an effective plasma comparison,
+
+$$
+\epsilon_{\mathrm{eff}}(\omega)
+\approx
+\epsilon_0\left(1-\frac{\omega_p^2}{\omega^2}\right),
+\qquad
+\omega_p^2=\frac{n_{\mathrm{car}}q^2}{m\epsilon_0}.
+$$
+
+For $\omega>\omega_p$, the transparent branch must recover
+
+$$
+\omega^2=\omega_p^2+c^2k^2,
+$$
+
+while $\omega<\omega_p$ is an evanescent or reflected transport row with $k=i\kappa_{\mathrm{ev}}$ rather than a lost photon ledger. Absorbing conductors use $k=k_1+ik_2$ and add an attenuation factor schematically of the form
+
+$$
+\mathcal{T}_{\mathrm{abs}}(\omega)
+=
+\exp\!\left[-2\int_{\mathrm{path}}k_2(\omega,s)\,ds\right].
+$$
+
+If $\epsilon_{\mathrm{eff}}(\omega)=0$ produces a longitudinal plasma oscillation, the cascade record routes it into medium excitation or plasmon-like content. It is not counted as a free photon branch and it cannot repair a failed Gate B no-longitudinal-mode check.
 
 ### Absolute-Time vs Proper-Time Bookkeeping (Provisional)
 

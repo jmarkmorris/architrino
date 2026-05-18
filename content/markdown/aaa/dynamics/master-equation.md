@@ -93,6 +93,8 @@ $$
 $$
 provided the active roots are simple. This is the path-history integral representation of the exact branch law: acceleration at $t$ depends on the causal contributions selected by the source worldline, with no contribution from noncausal points on that worldline.
 
+The word "set" in $\mathcal{C}_{ij}(t)$ should therefore be read as a root set extracted from a continuous path-history integral, not as a replacement for that history. The source worldline is continuous data. In the sharp causal-wake limit the delta constraint collapses the received contribution to the emission times in $\mathcal{C}_{ij}(t)$; with $\eta > 0$ mollification, the received contribution comes from finite-width neighborhoods of those roots. A single source can contribute more than one root at the same receiver event when its worldline crosses the receiver's backward causal surface more than once, especially in curved or super-field-speed history. The same bookkeeping applies to nontrivial self-history roots when $j=i$.
+
 Writing
 $$
 J_{ij}(t;t_0)
@@ -167,6 +169,34 @@ $$
 The inactive-gap condition means that nearby discarded causal roots remain separated from the active chart; the stability condition means that a small transverse section error is trapped rather than amplified.
 
 **Local promotion lemma.** If a candidate history supplies $\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)$ with positive active-root floors, positive inactive gaps, finite memory, bounded return residual, and stable section monodromy, then the history may support a local master-equation closure claim on that section. The lemma does not prove global closure, eliminate all folds, control the $\eta\to0$ limit, or certify unrelated histories. It only promotes the branch chart from a numerical trace to a locally replayable causal-root closure record.
+
+#### State-Dependent Delay Compatibility
+
+A branch-chart closure object must also be compatible with the delayed history space that generates the active roots. Fix a retained history tube
+$$
+\mathcal{U}_{\mathfrak{B}}
+\subset
+C^1\!\left([-h,0],(\mathbb{R}^3)^N\right)
+$$
+around the returned history segment. For each active branch row $\ell$, write its emission offset as $s_\ell(\phi)\in[-h,0)$ for a history $\phi\in\mathcal{U}_{\mathfrak{B}}$, and define
+$$
+F_\ell(\phi,s)
+=
+\left\|
+\phi_i(0)-\phi_j(s)
+\right\|
+-c_f(0-s).
+$$
+The branch chart is history-compatible on $\mathcal{U}_{\mathfrak{B}}$ only if
+$$
+F_\ell(\phi,s_\ell(\phi))=0,
+\qquad
+\left|\partial_s F_\ell(\phi,s_\ell(\phi))\right|
+\ge c_f\nu_J>0,
+$$
+and if every inactive complement remains separated by the declared positive gap. Under these conditions the implicit-function theorem gives $C^1$ dependence of $s_\ell$ on the retained history, so the branch acceleration, root-transport residual, and wake-history Noether increments are functionals on one local history chart rather than pointwise rows that only happen to close at one evaluation time.
+
+This compatibility condition is a theorem-target requirement, not a new force law. It says that a promoted branch chart must define a locally replayable delayed functional system: nearby retained histories must keep the same root identities, positive Jacobian floor, inactive gaps, and finite memory depth until a declared fold, branch transition, or chart boundary is reached.
 
 #### Dual-Mollified Absolute-Time Evolution Law
 
@@ -1586,26 +1616,83 @@ J^\star = 1-\beta^\star \cos\xi^\star = 0.
 $$
 So each new circular self branch is born directly on a Jacobian-null boundary: branch creation and null-separatrix contact are the same event in the uniform circular toy model.
 
-For large winding index, the tangency points lie near the poles of $\tan\xi$, so if
-$$
-\xi_m^\star \in \left(\left(m+\frac{1}{2}\right)\pi-\varepsilon,\ \left(m+\frac{1}{2}\right)\pi\right),
-$$
-then
-$$
-\xi_m^\star
-=
-\left(m+\frac{1}{2}\right)\pi + O\!\left(\frac{1}{m}\right),
-\qquad
-\beta_m^\star
-=
-\left(m+\frac{1}{2}\right)\pi + O\!\left(\frac{1}{m}\right).
-$$
-Consequently the number of admissible self branches below speed $\beta$ grows only linearly:
-$$
-N_{\text{self}}(\beta)=\frac{\beta}{\pi}+O(1),
-\qquad \beta\to\infty.
-$$
-This branch-count law is enough to control the combinatorics of the circular self-hit sum even before one has a full closed-form force series.
+> **Theorem Target (Signed higher-winding circular branch birth).**
+> The circular distance equation should be read branchwise as
+> $$
+> g_{\beta,s}(\xi)\equiv s\sin\xi-\frac{\xi}{\beta}=0,
+> \qquad
+> s=\operatorname{sign}(\sin\xi)\in\{+1,-1\}.
+> $$
+> For each higher half-winding $n\ge 1$, set
+> $$
+> I_n=\left(n\pi,\left(n+\frac{1}{2}\right)\pi\right),
+> \qquad
+> s_n=(-1)^n,
+> $$
+> and let $\xi_n^\star\in I_n$ be the unique positive solution of
+> $$
+> \tan\xi_n^\star=\xi_n^\star.
+> $$
+> The signed branch-birth speed is
+> $$
+> \beta_n^\star
+> =
+> s_n\sec\xi_n^\star
+> =
+> |\sec\xi_n^\star|
+> =
+> \sqrt{1+(\xi_n^\star)^2}.
+> $$
+> If
+> $$
+> a_n=\left(n+\frac{1}{2}\right)\pi,
+> $$
+> then
+> $$
+> \xi_n^\star=a_n-\frac{1}{a_n}+O(a_n^{-3}),
+> \qquad
+> \beta_n^\star=a_n-\frac{1}{2a_n}+O(a_n^{-3}).
+> $$
+> For $\beta=\beta_n^\star+\mu$ with $0<\mu\ll 1$, the two newly active roots satisfy
+> $$
+> \xi_{n,\pm}(\beta)
+> =
+> \xi_n^\star
+> \pm
+> \sqrt{\frac{2\mu}{\beta_n^\star}}
+> +O(\mu),
+> $$
+> and their force-law Jacobians have opposite signs:
+> $$
+> J_{n,\pm}
+> =
+> 1-\beta s_n\cos\xi_{n,\pm}
+> =
+> \pm\,\xi_n^\star
+> \sqrt{\frac{2\mu}{\beta_n^\star}}
+> +O(\mu).
+> $$
+> Thus a higher-winding fold creates a signed root pair on a Jacobian-null boundary. Since $r_{n,\pm}\to 2R\xi_n^\star/\beta_n^\star\neq0$, the master-equation force-law weight scales as
+> $$
+> \frac{1}{r_{n,\pm}^2|J_{n,\pm}|}
+> =
+> O(\mu^{-1/2}).
+> $$
+> The causal-action coarea weight is a separate collapse factor:
+> $$
+> g_{\beta,s_n}'(\xi_{n,\pm})
+> =
+> s_n\cos\xi_{n,\pm}-\frac{1}{\beta}
+> =
+> -\frac{J_{n,\pm}}{\beta},
+> $$
+> so the action-counting density carries an additional $|g_{\beta,s_n}'|^{-1}$ and scales as $O(\mu^{-1})$ at fixed nonzero $r_n^\star$. The coarea factor does not replace the force-law Jacobian weight; it is an additional measure factor from collapsing the causal-action integral onto the circular causal roots.
+>
+> Consequently the circular self-hit combinatorics remain linearly bounded in $\beta$. A one-sign subchart has
+> $$
+> N_{\text{self}}^{(+)}(\beta)=\frac{\beta}{\pi}+O(1),
+> $$
+> while the full signed $|\sin\xi|$ chart has the same no-proliferation form with the convention-dependent leading constant.
 
 > **Benchmark Proposition (Circular branch-count bound).**
 > In the symmetric circular benchmark, if the speed ratio obeys
@@ -1653,6 +1740,141 @@ This is the right playground to:
 - Derive a condition for equilibrium between self‑repulsion and an imposed centripetal requirement,
 - Define $R_\text{min}(v)$ and in particular the extremal radius / speed.
 
+The same circular chart also gives a branchwise force decomposition. On the positive-sine self-hit subchart, every active root satisfies
+$$
+\sin\xi=\frac{\xi}{\beta},
+\qquad
+r=2R\sin\xi=2R\frac{\xi}{\beta},
+\qquad
+J=1-\beta\cos\xi=1-\xi\cot\xi.
+$$
+Resolving the line-of-action direction into the instantaneous circular frame gives
+$$
+\hat{\mathbf{r}}(\xi)=\sin\xi\,\mathbf{e}_r+\cos\xi\,\mathbf{e}_\theta.
+$$
+With
+$$
+C=\frac{\kappa q^2}{4R^2},
+$$
+the branchwise self-hit projections are therefore
+$$
+a_r(\xi)=C\,\frac{\beta}{\xi |J|},
+\qquad
+a_\theta(\xi)=C\,\frac{\beta^2\cos\xi}{\xi^2 |J|}.
+$$
+Thus the radial projection is outward on every active self root, while the tangential projection is controlled entirely by the sign of $\cos\xi$.
+
+The branch sheets have the following one-sign structure:
+
+| Sheet | Root status for $\sin\xi=\xi/\beta$ | Radial projection | Tangential projection |
+| --- | --- | --- | --- |
+| Negative sine lobes | No roots, because $\xi/\beta>0$ | Inactive | Inactive |
+| First positive lobe | One nonzero root for $\beta>1$ | Outward | Forward for $\cos\xi>0$, backward for $\cos\xi<0$ |
+| Higher positive left sheets | One root after birth from a Jacobian-null fold | Outward | Forward |
+| Higher positive right sheets | Paired root after the same birth | Outward | Backward |
+
+For large $\beta$, away from arbitrarily small Jacobian-null birth windows, the signed circular self-hit sums obey
+$$
+A_r(\beta)=\sum_{\xi_n}a_r(\xi_n)
+=
+\frac{C}{\pi}\log\beta+O(C),
+$$
+and
+$$
+A_\theta(\beta)=\sum_{\xi_n}a_\theta(\xi_n)
+=
+-\frac{C\beta}{12}+O(C\log\beta).
+$$
+The corresponding absolute tangential activity is
+$$
+\sum_{\xi_n}|a_\theta(\xi_n)|
+=
+\frac{C\beta}{6}+O(C\log\beta).
+$$
+The full signed $|\sin\xi|$ circular chart uses $s=\operatorname{sign}(\sin\xi)$ and
+$$
+s\sin\xi=\frac{\xi}{\beta},
+\qquad
+J=1-\beta s\cos\xi,
+\qquad
+\hat{\mathbf{r}}(\xi)=|\sin\xi|\,\mathbf{e}_r+s\cos\xi\,\mathbf{e}_\theta.
+$$
+Thus the full signed-chart projections are
+$$
+a_r^{|\sin|}(\xi)=C\,\frac{\beta}{\xi |J|},
+\qquad
+a_\theta^{|\sin|}(\xi)=C\,\frac{\beta^2s\cos\xi}{\xi^2 |J|}.
+$$
+The radial contribution is still outward on every active self root. The tangential contribution is forward on each left sheet and backward on each right sheet, independent of the sine-lobe sign. In the full signed chart, the order-$\beta$ signed tangential terms cancel pairwise between adjacent sheets, giving the bound
+$$
+A_r^{|\sin|}(\beta)=\frac{2C}{\pi}\log\beta+O(C),
+\qquad
+A_\theta^{|\sin|}(\beta)=O(C),
+$$
+again away from arbitrarily small Jacobian-null birth windows. The absolute tangential activity remains large:
+$$
+\sum_{\xi_n}|a_\theta^{|\sin|}(\xi_n)|
+=
+\frac{C\beta}{3}+O(C\log\beta).
+$$
+Pure circular self-hit is therefore not tangentially neutral branchwise. It supplies outward radial support and large cancelling forward/backward tangential activity; on the positive-sine subchart alone the signed large-$\beta$ residue is backward and order $\beta$, while on the full signed chart the linear signed terms cancel to a bounded remainder. This corrects the stronger blanket statement that self branches are always positive-tangential, without by itself proving or disproving full binary closure.
+
+#### Large-$\beta$ partner/self circular residual
+
+The exact partner branch can now be combined with the self-hit sums to get a high-speed obstruction for the equal-magnitude bare circular binary. Let $\xi_p(\beta)$ solve
+$$
+\cos\xi_p=\frac{\xi_p}{\beta},
+\qquad
+0<\xi_p<\frac{\pi}{2},
+$$
+and set
+$$
+C=\frac{\kappa q^2}{4R^2}.
+$$
+Then
+$$
+\xi_p=\frac{\pi}{2}-\frac{\pi}{2\beta}+O(\beta^{-2}),
+$$
+so the partner projections satisfy
+$$
+a_{\theta}^{(\mathrm{part})}
+=
+\frac{4C}{\pi^2}\beta+O(C),
+\qquad
+a_{r}^{(\mathrm{part})}
+=
+-\frac{2C}{\pi}+O(C\beta^{-1}).
+$$
+On the positive-sine self chart,
+$$
+a_{\theta}^{(\mathrm{part})}+A_\theta(\beta)
+=
+C\left(\frac{4}{\pi^2}-\frac{1}{12}\right)\beta+O(C\log\beta)>0
+$$
+for sufficiently large $\beta$, and
+$$
+a_{r}^{(\mathrm{part})}+A_r(\beta)
+=
+\frac{C}{\pi}\log\beta-\frac{2C}{\pi}+O(C)
+$$
+is outward for sufficiently large $\beta$ outside Jacobian-null birth windows.
+
+On the full signed $|\sin\xi|$ chart,
+$$
+a_{\theta}^{(\mathrm{part})}+A_\theta^{|\sin|}(\beta)
+=
+\frac{4C}{\pi^2}\beta+O(C)>0,
+$$
+while
+$$
+a_{r}^{(\mathrm{part})}+A_r^{|\sin|}(\beta)
+=
+\frac{2C}{\pi}\log\beta-\frac{2C}{\pi}+O(C)
+$$
+is again outward for sufficiently large $\beta$. Thus an exact high-speed constant-radius circular orbit is asymptotically excluded in the equal-magnitude bare two-body kernel away from Jacobian-null windows: the tangential residual remains forward, and the radial branch sum does not provide the required inward acceleration $-\omega^2R$. This is not yet a finite-$\beta$ no-go theorem; any surviving finite-speed window still requires a certified branch chart with positive Jacobian floor, inactive gaps, finite memory depth, and signed residual closure.
+
+The circular self-hit and partner-hit formulas are kernel benchmarks. They are not the Noether-core model. The Noether-core model is the six-body tri-binary branch chart containing self, partner, and inter-layer causal roots, with hierarchy averaging only where justified by separated scales and certified branch data.
+
 ---
 
 #### Maximum‑curvature binary (inner binary idealization)
@@ -1678,16 +1900,16 @@ Analytic expectations:
   - That gives us a **pair of algebraic conditions** in $R$ and $\omega$ (or equivalently $R$ and $v$).
   - Solving those algebraic conditions (perhaps numerically) defines a maximum‑curvature solution family.
 
-However, the circular benchmark also already exposes a serious obstruction in the bare two-body kernel. In the symmetric isolated binary, every active partner branch contributes a positive tangential component, and every active self branch also contributes a positive tangential component. Therefore the branchwise tangential sum is strictly positive whenever any branch is active. Within the bare circular two-body ansatz, exact constant-speed closure cannot come from cancellation among the delayed branches alone.
+However, the circular benchmark still exposes a serious obstruction in the bare two-body kernel. In the symmetric isolated binary, every active partner branch contributes a positive tangential component. The self sector is different: the circular self-hit branch table above gives outward radial support, while the tangential projection changes sign by sheet; on the full signed chart its order-$\beta$ signed tangential terms cancel to a bounded remainder, with order-$\beta$ absolute tangential activity still present. Therefore the former blanket self-branch positive-tangential claim is too strong. Exact constant-speed closure of the bare circular two-body ansatz is not ruled out by a branchwise sign argument alone; it requires the actual signed partner-plus-self tangential sum to vanish on a certified branch chart.
 
 This sharpens the maximum-curvature program into a concrete fork:
 
-- either the isolated two-body MCB does **not** exist as an exact constant-speed circular orbit of the bare kernel, or
-- closure requires additional structure beyond the bare circular two-body ansatz, such as medium coupling, genuine tri-binary multi-body locking, or a more subtle non-circular periodic balance.
+- either the certified signed branch sum fails to cancel the partner drive, so the isolated two-body MCB does **not** exist as an exact constant-speed circular orbit of the bare kernel, or
+- an algebraic cancellation exists, after which stability still requires a separate delay-operator proof and may require additional structure beyond the bare circular two-body ansatz, such as medium coupling, genuine tri-binary multi-body locking, or a more subtle non-circular periodic balance.
 
 So:
 
-- Analytically: we can reduce the existence question to algebraic conditions and asymptotic expansions, and in the bare circular ansatz we can already identify the tangential no-cancellation obstruction.
+- Analytically: we can reduce the existence question to algebraic conditions and asymptotic expansions, and in the bare circular ansatz we can identify the partner-positive/self-signed tangential balance that any closure certificate must satisfy.
 - Dynamically: the stability question remains separate from the algebraic construction and requires numerical analysis of attractivity versus fine-tuned orbit families.
 
 The expected answer for the bare two-body kernel is instability, not robust attraction. Existence of a circular or maximum-curvature solution would only solve the algebraic balance conditions
@@ -1711,11 +1933,11 @@ $$
 is an unstable mode.
 
 > **Target Proposition (MCB transverse stability diagnostic).**
-> For any candidate bare two-body maximum-curvature binary, compute the linearized delay operator on radial and tangential perturbations. The null-separatrix self-hit wall may stabilize or block the radial collapse channel, but the sign-definite tangential partner contribution generically leaves a transverse unstable direction unless an additional medium, tri-binary, or multi-body locking mechanism cancels it. Thus a bare MCB should be treated as a saddle-type organizing orbit in
+> For any candidate bare two-body maximum-curvature binary, compute the linearized delay operator on radial and tangential perturbations. The null-separatrix self-hit wall may stabilize or block the radial collapse channel; partner branches supply sign-definite forward drive, while circular self branches supply outward radial support and a signed tangential channel whose full signed-chart linear terms cancel only after summing adjacent sheets. Thus a bare MCB should be treated as an uncertified organizing orbit in
 > $$
 > (R,v)
 > $$
-> space, not as the stable particle assembly itself.
+> space until the net signed tangential balance and transverse eigenvalues are certified.
 
 This is the intended dynamical interpretation. Stable particles in the present architecture are tri-binary assemblies; a bare MCB, if it exists, is a high-curvature component or limiting scaffold whose instability explains why additional locking structure is needed.
 
@@ -1972,15 +2194,14 @@ That’s analytically tractable and important for:
 Several formerly open checks are now footholds rather than blank targets:
 
 1. **Partner-only circular orbit with causal delay ($v<c_f$)** now has explicit radial and tangential components, including the positive tangential-drive obstruction for a bare constant-speed circle.
-2. **Uniform circular self-hit ($v>c_f$)** now has principal-root onset asymptotics and a Jacobian-wall scaling near $v=c_f$.
+2. **Uniform circular self-hit ($v>c_f$)** now has principal-root onset asymptotics, signed higher-winding branch birth, branchwise radial/tangential projections, and large-$\beta$ self-hit estimates.
 3. **Variable-pitch spiral benchmarks** now expose the branch-chart and Jacobian data that a maximum-curvature binary certificate must report.
 
 The remaining analytic targets are sharper:
 
-1. extend the circular self-hit formulas to signed higher-winding branch sheets and inactive-root gaps;
-2. build the maximum-curvature branch certificate from active roots, Jacobian floors, return residuals, and radial/tangential balance;
-3. coarse-grain the master equation around a homogeneous Noether Sea and extract the linear response and dispersion relation $\omega(k)$;
-4. prove which regularized energy diagnostic is actually induced by a symmetry-preserving action-level regularization.
+1. build the maximum-curvature branch certificate from active roots, Jacobian floors, return residuals, and radial/tangential balance;
+2. coarse-grain the master equation around a homogeneous Noether Sea and extract the linear response and dispersion relation $\omega(k)$;
+3. prove which regularized energy diagnostic is actually induced by a symmetry-preserving action-level regularization.
 
 These targets keep the bridge between the formal law and the broader closure program mathematical: a branch chart, a conserved charge, or a response equation must be supplied before a stability or mass claim is promoted.
 
@@ -2778,6 +2999,80 @@ while the source-end gradient is the opposite. Therefore a global spatial transl
 
 This closes the local kernel-normalization and Noether-increment definition for the delayed-interior characteristic-tail repair. It does not by itself certify any proposed branch, terminal label, or tri-binary attractor: a branch chart must still show vanishing Euler residual, finite memory depth, positive Jacobian floors, and closure of $K_{\mu}+E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, and $\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$ over the same retained branch set.
 
+**Branch-chart conservation pullback.** Let $\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)$ be a retained branch chart with active causal-root rows $\mathcal{R}^{\mathrm{act}}$, positive inactive-root gaps, positive Jacobian floor, finite memory depth, and declared endpoint convention. For a time cut $t_\ast$, define the chart-restricted crossing domain
+$$
+X_{ij}^{\mathfrak{B}}(t_\ast)
+\equiv
+X_{ij}(t_\ast)
+\cap
+\{(t_1,t_0): (i,j,t_1,t_0)\ \text{lies on a retained row of }\mathcal{R}^{\mathrm{act}}\},
+$$
+with trivial self-coincidence excluded when $i=j$. The pulled-back wake-history charges are the same Noether boundary terms above, restricted to $X_{ij}^{\mathfrak{B}}(t_\ast)$:
+$$
+E_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)}(t_\ast)
+=
+\frac{1}{2}\sum_{i,j}
+\int_{X_{ij}^{\mathfrak{B}}(t_\ast)}
+\partial_{t_1}
+\mathcal{K}_{ij,\mathrm{eff}}^{(\eta)}(t_1,t_0)
+\,dt_0\,dt_1,
+$$
+$$
+\mathbf{P}_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)}(t_\ast)
+=
+-\frac{1}{2}\sum_{i,j}
+\int_{X_{ij}^{\mathfrak{B}}(t_\ast)}
+\nabla_{\mathbf{x}_i(t_1)}
+\mathcal{K}_{ij,\mathrm{eff}}^{(\eta)}(t_1,t_0)
+\,dt_0\,dt_1,
+$$
+and
+$$
+\mathbf{J}_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)}(t_\ast)
+=
+-\frac{1}{2}\sum_{i,j}
+\int_{X_{ij}^{\mathfrak{B}}(t_\ast)}
+\mathbf{x}_i(t_1)\times
+\nabla_{\mathbf{x}_i(t_1)}
+\mathcal{K}_{ij,\mathrm{eff}}^{(\eta)}(t_1,t_0)
+\,dt_0\,dt_1.
+$$
+The matching mechanical charges on the same chart are
+$$
+K_{\mu,\mathfrak{B}}(t)=\sum_{i\in\mathfrak{B}}\frac{1}{2}\mu_{\text{arch}}\|\mathbf{v}_i(t)\|^2,
+\qquad
+\mathbf{P}_{\mathrm{mech},\mathfrak{B}}(t)=\sum_{i\in\mathfrak{B}}\mu_{\text{arch}}\mathbf{v}_i(t),
+$$
+$$
+\mathbf{J}_{\mathrm{mech},\mathfrak{B}}(t)
+=
+\sum_{i\in\mathfrak{B}}
+\mathbf{x}_i(t)\times\mu_{\text{arch}}\mathbf{v}_i(t).
+$$
+For a retained window $W=[t_a,t_b]$, the branch-chart conservation test is
+$$
+\Delta_W\left(K_{\mu,\mathfrak{B}}+E_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)}\right)
+=
+\int_W\sum_i\mathbf{v}_i(t)\cdot\mathbf{R}_{i,\mathrm{eff},\mathfrak{B}}^{(\eta)}(t)\,dt
++
+\int_W\mathcal{B}_{E,\mathfrak{B}}^{(\eta)}(t)\,dt,
+$$
+$$
+\Delta_W\left(\mathbf{P}_{\mathrm{mech},\mathfrak{B}}+\mathbf{P}_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)}\right)
+=
+\int_W\sum_i\mathbf{R}_{i,\mathrm{eff},\mathfrak{B}}^{(\eta)}(t)\,dt
++
+\int_W\boldsymbol{\mathcal{B}}_{P,\mathfrak{B}}^{(\eta)}(t)\,dt,
+$$
+$$
+\Delta_W\left(\mathbf{J}_{\mathrm{mech},\mathfrak{B}}+\mathbf{J}_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)}\right)
+=
+\int_W\sum_i\mathbf{x}_i(t)\times\mathbf{R}_{i,\mathrm{eff},\mathfrak{B}}^{(\eta)}(t)\,dt
++
+\int_W\boldsymbol{\mathcal{B}}_{J,\mathfrak{B}}^{(\eta)}(t)\,dt.
+$$
+The theorem-level branch claim requires the three residual balances to converge to zero with $\epsilon_{\mathrm{var}}^{(\eta)}(W)\to0$, vanishing declared endpoint or period-cut leakage, stable branch floors, and the same retained row set in the force residuals and in the three wake-history charges. A work-integral reconstruction $U(t)$ or a projected torque increment is only a numerical diagnostic unless it is derived from this same action kernel, endpoint convention, and retained branch chart.
+
 Self‑interaction ($i=j$) is included by adding $S_{ii}$ with the same kernel, but explicitly excluding the trivial coincidence $t'=t$ (no instantaneous self‑push at the moment of emission). Self‑hit corresponds to nontrivial roots $t_0<t$ where the worldline re‑intersects its own causal isochrons, which are captured naturally by the same double‑integral structure.
 
 Thus:
@@ -3002,6 +3297,166 @@ $$
 Closure condition for this interface:
 - the same coarse-graining window that preserves validated dynamical invariants must recover the effective Schrödinger limit in the non-relativistic, weak-field, fixed-particle-number regime;
 - residual non-Markovian terms must be explicitly retained as correction operators, not absorbed into uncontrolled fitting.
+
+**Return-map symplectic residual for action-derived branch promotion.** When a replayable branch chart is promoted to an action-derived reduced Hamiltonian chart, the section return map must preserve the reduced symplectic structure. Let $z=(Q^a,\Pi_a)$ be local reduced coordinates after the retained root constraints and section condition have been solved, let
+$$
+\mathcal{P}_{\mathcal{S}}:z_n\mapsto z_{n+1},
+\qquad
+M_{\mathcal{S}}=D\mathcal{P}_{\mathcal{S}},
+$$
+and let $\Omega_{\mathcal{S}}$ be the pulled-back symplectic matrix on the reduced section. Define
+$$
+\mathcal{R}_{\Omega}
+\equiv
+\left\|
+M_{\mathcal{S}}^{T}\Omega_{\mathcal{S}}M_{\mathcal{S}}
+-
+\Omega_{\mathcal{S}}
+\right\|,
+\qquad
+\mathcal{R}_{\mathrm{vol}}
+\equiv
+\left|\det M_{\mathcal{S}}-1\right|.
+$$
+For an exact finite-dimensional Hamiltonian reduction, $\mathcal{R}_{\Omega}=0$ and therefore $\mathcal{R}_{\mathrm{vol}}=0$. For the delayed Master EOM these are not automatic consequences of a small orbit residual: they are closure diagnostics for the claim that the retained branch chart has captured the missing path-history degrees of freedom well enough to behave like a canonical return map. A nonzero $\mathcal{R}_{\Omega}$ means at least one of the following remains unresolved: omitted causal-root rows, window-boundary wake flux, an action-level residual, or a reduction that is not actually Hamiltonian. Thus a local master-equation closure claim still uses $\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)$ as defined above, while the stronger Hamiltonian claim must additionally report $\mathcal{R}_{\Omega}\le\epsilon_{\Omega}$.
+
+**Standard charged-particle comparison target.** In ordinary electromagnetic mechanics, a charged particle can be described by
+$$
+L_{\mathrm{EM}}
+=
+\frac{1}{2}m\|\dot{\mathbf r}\|^2
+-e\phi(\mathbf r,t)
++e\,\dot{\mathbf r}\cdot\mathbf A(\mathbf r,t),
+\qquad
+\mathbf p_{\mathrm{can}}
+=
+m\dot{\mathbf r}+e\mathbf A.
+$$
+The velocity-coupled one-form shifts canonical momentum and yields the effective Lorentz-force law. Under
+$$
+\phi\mapsto\phi-\partial_t\chi,
+\qquad
+\mathbf A\mapsto\mathbf A+\nabla\chi,
+$$
+the Lagrangian changes only by $e\,d\chi/dt$, so the effective equations are unchanged. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a comparison structure, not substrate ontology: the primitive kernel still contains only radial causal hits. The corresponding closure target is to extract an assembly-level effective one-form
+$$
+\mathcal{A}_{\mathrm{eff}}
+=
+A_a^{\mathrm{eff}}(Q,t)\,dQ^a-\phi_{\mathrm{eff}}(Q,t)\,dt
+$$
+from coarse-grained causal-root geometry, then show that the observer-level residual
+$$
+\mathcal{R}_{\mathrm{EM}}(W)
+=
+\int_W
+\left\|
+\mu_A\mathbf a_A(t)
+-
+e_A\left(
+\mathbf E_{\mathrm{eff}}(\mathbf X_A,t)
++\mathbf V_A(t)\times\mathbf B_{\mathrm{eff}}(\mathbf X_A,t)
+\right)
+\right\|dt
+$$
+vanishes in the stated approximation while the underlying branch ledger remains a sum of line-of-action contributions. Failure of this residual is a magnetic-emergence failure, not evidence for inserting an intrinsic cross-product term into the Master EOM.
+
+**Constrained branch-multiplier formulation.** On a fixed retained branch chart, the causal roots may be represented as constrained variables rather than solved away immediately. Let $s_{ij,\ell}(t)$ be the emission time assigned to retained row $\ell$ and define
+$$
+G_{ij,\ell}(t)
+\equiv
+r_{ij,\ell}(t)-c_f\big(t-s_{ij,\ell}(t)\big),
+\qquad
+r_{ij,\ell}(t)
+=
+\left\|
+\mathbf{x}_i(t)-\mathbf{x}_j(s_{ij,\ell}(t))
+\right\|.
+$$
+A branch-reduced constrained scaffold on a window $W$ has the form
+$$
+S_{\mathfrak{B}}^{(\eta)}
+=
+\int_W
+\left[
+\sum_i\frac{1}{2}\mu_{\text{arch}}\|\mathbf{v}_i(t)\|^2
+-
+\sum_{(i,j,\ell)\in\mathcal{R}^{\mathrm{act}}}
+\alpha_{ij}
+\frac{w_{ij,\ell}^{(\eta)}(t)}
+{r_{ij,\ell}(t)\,|J_{ij,\ell}(t)|}
++
+\sum_{(i,j,\ell)\in\mathcal{R}^{\mathrm{act}}}
+\lambda_{ij,\ell}(t)G_{ij,\ell}(t)
+\right]dt,
+$$
+where $\alpha_{ij}=\kappa\,\sigma_{ij}|q_iq_j|/c_f$, $w_{ij,\ell}^{(\eta)}$ carries the retained mollified branch weight and cutoff convention, and $\lambda_{ij,\ell}$ is a Lagrange multiplier for the causal-root constraint. Variation with respect to $\lambda_{ij,\ell}$ enforces $G_{ij,\ell}=0$. Variation with respect to the root variable gives the row equation
+$$
+0
+=
+\partial_{s_{ij,\ell}}
+\left[
+-
+\alpha_{ij}
+\frac{w_{ij,\ell}^{(\eta)}}{r_{ij,\ell}|J_{ij,\ell}|}
++
+\lambda_{ij,\ell}G_{ij,\ell}
+\right],
+$$
+provided the row has no explicit $\dot{s}_{ij,\ell}$ dependence after the chosen reduction. Variation with respect to the receiver position exposes the constraint contribution
+$$
+\delta_{\mathbf{x}_i}
+\int_W\lambda_{ij,\ell}G_{ij,\ell}\,dt
+=
+\int_W
+\lambda_{ij,\ell}(t)\,
+\hat{\mathbf r}_{ij,\ell}(t)\cdot\delta\mathbf{x}_i(t)\,dt.
+$$
+Thus the multiplier term is not a new substrate force. It is the finite-dimensional record of the work required to keep the retained branch row on the causal-root surface while the surrounding path history is varied. The unconstrained branch action is recovered only when these multiplier contributions are either solved into the same invariant action-level counterterm used above, converted into legitimate boundary wake-history terms, or shown to vanish in the branch-summed residual:
+$$
+\mathcal{R}_{\lambda,i}(W)
+\equiv
+\int_W
+\left\|
+\sum_{\ell:\,o_\ell=i}
+\lambda_\ell(t)\hat{\mathbf r}_\ell(t)
+-
+\sum_j\kappa\,\sigma_{ij}|q_iq_j|
+\mathbf{C}_{ij}^{(\eta)}(t)
+\right\|dt
+\longrightarrow0.
+$$
+Here $o_\ell$ denotes the receiver index of branch row $\ell$. This is the delayed-action analogue of ordinary holonomic constraint handling: one may solve constraints into generalized coordinates, or retain them with multipliers, but the multiplier ledger must not be hidden inside a claimed exact force law.
+
+**Noether history-functional balance target.** Let $S_{\mathfrak{B}}^{(\eta)}$ be a symmetry-preserving regularized action on a retained branch chart, and let a one-parameter transformation have infinitesimal generator $\boldsymbol{\xi}_i(t)$ on each worldline. If the action changes only by endpoint terms,
+$$
+\delta_{\xi}S_{\mathfrak{B}}^{(\eta)}
+=
+\left[
+B_{\xi}^{(\eta)}(t)
+\right]_{t_a}^{t_b}
+$$
+after the retained causal-root constraints, endpoint convention, and excluded self-coincidence convention are applied, then the corresponding history charge at a cut $t_\ast$ has the form
+$$
+Q_{\xi}^{(\eta)}(t_\ast)
+=
+\sum_i
+\mu_{\text{arch}}\mathbf{v}_i(t_\ast)\cdot\boldsymbol{\xi}_i(t_\ast)
++
+Q_{\xi,\mathrm{wake}}^{(\eta)}(t_\ast)
+-
+B_{\xi}^{(\eta)}(t_\ast).
+$$
+Its finite-window balance is
+$$
+\frac{dQ_{\xi}^{(\eta)}}{dt}
+=
+\sum_i
+\boldsymbol{\xi}_i(t)\cdot
+\mathbf{R}_i^{(\eta)}(t)
++
+\mathcal{B}_{\xi}^{(\eta)}(t),
+$$
+where $\mathbf{R}_i^{(\eta)}$ is the Euler residual of the same action and $\mathcal{B}_{\xi}^{(\eta)}$ collects leakage through finite memory endpoints, period cuts, omitted branch rows, and non-characteristic tail endpoints. Exact conservation follows only when both terms vanish. Time translation, spatial translation, and rotation are the special cases that produce energy, momentum, and angular momentum above. This is the delayed version of the standard symmetry-to-conservation statement, with the crucial difference that the conserved object is a particle-plus-wake history functional rather than an equal-time particle function.
 
 ---
 

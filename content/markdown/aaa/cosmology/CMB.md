@@ -233,6 +233,88 @@ Isotropy in this branch is attributed to long-time averaging over many source po
 
 The framework does not yet identify an ontological root definition of temperature, so it should not simply equate the enormous internal energy of individual Noether cores with an ordinary thermodynamic temperature. A more disciplined distinction is required between three quantities: the internal energy scale of the cores, the local effective emissive temperature of the Noether Sea if it behaves as a blackbody source, and the observer-side temperature inferred from the photon bath after emission, transport, thermalization, and redshift. On that reading, the observed $2.7255\,\mathrm{K}$ background is the temperature of the ambient microwave radiation field measured by present observers, not automatically the intrinsic temperature of the Noether Sea as an emitter. The stronger claim to test is that sufficiently homogeneous regions of the Sea can generate and maintain a near-blackbody photon population whose measured spectrum tracks that emissive state after medium transport. Departures from the baseline blackbody should then encode local medium state: increasing core density, anisotropy, or internal excitation near dense matter would tend to distort the spectrum away from the homogeneous limit, while the strongest deviations should arise near black-hole recycling zones, where alignment, compression, and release-channel mixing can harden, bias, or only partially re-thermalize the emitted radiation before subsequent relaxation in the surrounding Noether Sea.
 
+### Discovery-Scale Thermal Record
+
+The 1965 Dicke-Peebles-Roll-Wilkinson and Penzias-Wilson letters are useful here as a paired constraint, not as permission to import one origin story. The theoretical side emphasized that a sufficiently hot phase with $T\gtrsim 10^{10}\,\mathrm{K}$ would drive pair production, photon exchange, and neutrino-sector equilibration rapidly enough to create a thermal radiation bath, and that subsequent homogeneous redshift would preserve the blackbody form while lowering the inferred temperature. The observational side reported an unexplained zenith antenna-temperature excess near $3.5\,\mathrm{K}$ at $4080\,\mathrm{Mc/s}$ after accounting for atmosphere, ohmic loss, back-lobe response, calibration, polarization, isotropy, and seasonal variation.
+
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the durable lesson is the constraint packet. A CMB branch must not merely point to a distributed source population; it must carry a joint thermal and measurement record
+$$
+\Theta_{\mathrm{CMB}}
+=
+\left(
+T_{\mathrm{src}},
+\mathcal{D}_{\mathrm{th}}^{\mathrm{CMB}},
+\eta_{\gamma b},
+N_{\mathrm{eff}},
+Y_p,
+\mathcal{P}_{\mathrm{instr}},
+\mathbf{D}_{\mathrm{frame}}
+\right),
+$$
+where $T_{\mathrm{src}}$ is the effective source or last-thermalization temperature, $\eta_{\gamma b}$ is the photon-to-baryon loading ledger, $N_{\mathrm{eff}}$ and $Y_p$ carry the neutrino and helium-facing constraints, $\mathcal{P}_{\mathrm{instr}}$ records the antenna, atmosphere, calibration, foreground, polarization, and seasonal checks, and $\mathbf{D}_{\mathrm{frame}}$ is the residual frame vector used in the dipole gate above. A distributed or recycling interpretation is admissible only when the same $\Theta_{\mathrm{CMB}}$ supports the spectrum, isotropy, BBN handoff, and frame correction. Fitting the microwave temperature while assigning the helium abundance, neutrino history, foreground subtraction, or dipole correction to separate records would reproduce a number while failing the CMB constraint.
+
+The same record must close the photon energy inventory, not only the fitted temperature. For a declared source-and-thermalization branch $\theta$, let $u_\gamma^\theta(t)$ be the effective photon energy density that reaches the CMB comparison surface, $B_{\mathrm{therm}}^\theta$ the energy transferred through thermalizing channels, $B_{\mathrm{loss}}^\theta$ the energy irreversibly routed into non-photon reservoirs, and $\mathcal{F}_\gamma^\theta$ the boundary flux through the selected comparison window. The CMB energy-budget residual can be written schematically as
+$$
+\mathcal{R}_{\gamma,\mathrm{CMB}}^\theta
+=
+\frac{
+\left|
+u_\gamma^\theta(t_{\mathrm{obs}})
+-
+u_{\gamma,\mathrm{Planck}}(T_0)
+\right|
+}{\epsilon_u}
++
+\frac{
+\left|
+\Delta U_{\mathrm{src}}^\theta
+-
+B_{\mathrm{therm}}^\theta
+-
+B_{\mathrm{loss}}^\theta
+-
+\int \mathcal{F}_\gamma^\theta\,dA\,dt
+\right|
+}{\epsilon_E}.
+$$
+This residual is the CMB-facing form of source provenance. A branch that recovers a blackbody curve by adding an untracked photon bath, or by hiding excess source energy in an undeclared non-photon reservoir, has not supplied the shared record required by the CMB gate.
+
+### Historical Equality and Temperature Benchmark
+
+The 1948 Alpher-Herman correction to Gamow is useful here as historical pressure, not as a present-parameter source. Their calculation corrected an early matter-density estimate, found that the naive matter-radiation-density intersection moved to an implausibly late time if the curvature term were neglected, and then restored that curvature term in the effective expanding-universe equation. In the corrected record, the matter/radiation intersection, a Jeans-style condensation mass and radius, a gas temperature at condensation, and a present radiation temperature of order $5\,\mathrm{K}$ were tied into one computation.
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ lesson is not the historical numerical value $5\,\mathrm{K}$, since the observer-side CMB temperature comparison uses the modern calibrated value stated above. The retained benchmark is the shared-record pressure: a CMB branch should not fit present radiation temperature separately from matter-radiation equality, growth onset, and the effective curvature/expansion projection. In the fixed-void interpretation, the curvature term is read as an observer-level effective-metric projection, not as curvature of the Euclidean void.
+
+A compact residual for this pressure is
+$$
+\mathcal{R}_{T,\mathrm{eq,grow}}(\theta)
+=
+\frac{(T_0^\theta-T_0^{\mathrm{obs}})^2}{\sigma_{T_0}^2}
++
+\frac{(z_{\mathrm{eq}}^\theta-z_{\mathrm{eq}}^{\mathrm{obs}})^2}{\sigma_{z_{\mathrm{eq}}}^2}
++
+\frac{(k_{\mathrm{eq}}^\theta-k_{\mathrm{eq}}^{\mathrm{obs}})^2}{\sigma_{k_{\mathrm{eq}}}^2}
++
+\lambda_H
+\sum_b
+\frac{
+\left(H_{\mathrm{eff}}^\theta(z_b)-H_{\mathrm{eff}}^{\mathrm{obs}}(z_b)\right)^2
+}{
+\sigma_{H,b}^2
+}
++
+\lambda_K
+\frac{(\Omega_{K,\mathrm{eff}}^\theta-\Omega_{K,\mathrm{eff}}^{\mathrm{obs}})^2}{\sigma_K^2}
++
+\lambda_g
+\left[
+\frac{(\ln M_{\mathrm{grow}}^\theta-\ln M_{\mathrm{grow}}^{\mathrm{ref}})^2}{\sigma_{\ln M}^2}
++
+\frac{(\ln R_{\mathrm{grow}}^\theta-\ln R_{\mathrm{grow}}^{\mathrm{ref}})^2}{\sigma_{\ln R}^2}
+\right].
+$$
+Here $T_0^\theta$ is the present observer-side radiation temperature, while $z_{\mathrm{eq}}^\theta$ and $k_{\mathrm{eq}}^\theta$ are the matter-radiation equality redshift and scale in observer variables. The term $H_{\mathrm{eff}}^\theta$ is the effective expansion or relaxation projection, and $\Omega_{K,\mathrm{eff}}^\theta$ is the effective curvature projection of the same Noether-Sea record. The positive-scale terms $M_{\mathrm{grow}}^\theta$ and $R_{\mathrm{grow}}^\theta$ are declared condensation/growth-scale comparisons supplied by the structure-formation packet rather than imported 1948 values. A successful CMB record must make this residual small without changing $\theta$ between the blackbody, equality, effective expansion, curvature, and growth projections.
+
 ### Thermalization-Depth and Planck-Recovery Target
 
 The blackbody claim should be carried as a theorem target, not as a source-story assertion. A distributed-emission interpretation must show that source channels, transport, and decoupling collectively supply enough mode exchange before free streaming. A compact diagnostic is the path-integrated thermalization depth
@@ -246,6 +328,20 @@ $$
 
 where $\tau_{\mathrm{th}}^{-1}$ is the effective rate for the already-recorded capture/release, Compton-like redistribution, pair-channel, and medium-exchange processes. The target is $\mathcal{D}_{\mathrm{th}}^{\mathrm{CMB}}\gg1$ before decoupling for spectral relaxation, followed by sufficiently weak post-decoupling coupling to preserve anisotropy, polarization, and damping information rather than erase it.
 
+Thermalization mechanisms that use opacity or distributed absorbers must also pass a side-effect test. Let $\chi_{\mathrm{op}}^\theta(\nu,t)$ be the effective opacity supplied by the proposed medium component and let $\mathcal{A}_{\ell}^{\theta}$, $\mathcal{P}_{\ell}^{\theta}$, and $\mathcal{D}_{\mathrm{FIR}}^\theta$ denote the induced changes in temperature anisotropy, polarization, and far-infrared/submillimeter background intensity. The side-effect residual is
+$$
+\mathcal{R}_{\mathrm{op}}^\theta
+=
+\frac{\|\Delta\mathcal{A}_\ell^\theta\|}{\epsilon_A}
++
+\frac{\|\Delta\mathcal{P}_\ell^\theta\|}{\epsilon_P}
++
+\frac{\|\Delta\mathcal{D}_{\mathrm{FIR}}^\theta\|}{\epsilon_{\mathrm{FIR}}}
++
+\frac{\|\partial_\nu\chi_{\mathrm{op}}^\theta\|_{\mathrm{CMB}}}{\epsilon_\chi}.
+$$
+A thermalizing component is admissible only if it helps make $\mathcal{D}_{\mathrm{th}}^{\mathrm{CMB}}\gg1$ before the free-streaming record is fixed while keeping $\mathcal{R}_{\mathrm{op}}^\theta\le1$ afterward. This is the native exclusion of absorber stories that smooth the spectrum by erasing the anisotropy and polarization record they must also preserve.
+
 In the weak homogeneous photon-channel limit, the observer-level recovery target is the Planck spectral form
 
 $$
@@ -256,6 +352,55 @@ u_\nu^{\mathrm{eff}}(T_{\text{ens}})
 $$
 
 This formula is an effective comparison object. It becomes available only after Gate A supplies the photon energy-frequency and mode-counting interface, Gate B supplies the two transverse photon modes and polarization handoff, and Gate C drives the photon chemical potential to zero through detailed balance. The redshift handoff must then preserve spectral shape by mapping photon frequencies and inferred temperature through the same Noether-Sea and clock-rate comparison variables used elsewhere in this document.
+
+The spectrum gate should be stated as a calibrated comparison, not as an assumption that the theoretical Planck curve has been directly observed without apparatus structure. For frequency channels $\nu_i$, measured intensities $I_i$, foreground model $F_i(\psi)$, and calibration covariance $C_{ij}$, define
+$$
+\mathcal{R}_{\mathrm{spec}}(\theta,T,\psi)
+=
+\sum_{i,j}
+\left[
+I_i-F_i(\psi)-B_{\nu_i}(T;\theta)
+\right]
+C^{-1}_{ij}
+\left[
+I_j-F_j(\psi)-B_{\nu_j}(T;\theta)
+\right],
+$$
+where $B_\nu(T;\theta)$ is the photon-channel blackbody comparison spectrum projected through the same medium record $\theta$. A distributed or recycling source story must make $\mathcal{R}_{\mathrm{spec}}$ small without using a foreground, calibration, or post-decoupling transport residual to erase the acoustic and polarization information.
+
+In the homogeneous comparison limit, the redshift handoff must preserve the Planck form by scaling frequency and temperature together:
+$$
+\nu_{\mathrm{obs}}
+=
+\frac{\nu_{\mathrm{dec}}}{1+z},
+\qquad
+T_{\mathrm{obs}}
+=
+\frac{T_{\mathrm{dec}}}{1+z}.
+$$
+This is an observer-level transport benchmark. It does not say that the Euclidean void expanded; it says the photon-channel distribution, endpoint clock comparison, and path-history propagation must carry a blackbody spectrum into the present microwave band without generating a chemical-potential or chromaticity residual above the CMB tolerance.
+
+Transparency supplies the complementary exclusion test. Once the universe is optically thin in the microwave band, a redshift mechanism that changes photon frequencies without the same temperature scaling generically distorts the spectrum. The CMB branch therefore carries the distortion residual
+$$
+\mathcal{R}_{\mathrm{dist}}
+=
+\frac{\mu^2}{\sigma_\mu^2}
++
+\frac{y^2}{\sigma_y^2}
++
+\mathcal{R}_{\mathrm{spec}},
+$$
+where $\mu$ and $y$ are the chemical-potential and Compton-distortion parameters of the observer-level spectrum fit. A path-history redshift proposal passes only if it preserves the near-thermal spectrum, image sharpness, and packet time-dilation behavior in the same transport record.
+
+The last-scattering benchmark should also retain the rate condition that makes the surface sharp. In standard comparison language decoupling occurs when the scattering rate falls through the effective expansion or relaxation rate,
+$$
+\Gamma_T
+=
+n_e\sigma_T c_0
+\approx
+H_{\mathrm{eff}},
+$$
+with recombination delayed by the high photon-to-baryon loading encoded in the same $\eta$ ledger used by BBN. The native CMB record therefore has to recover a thin enough last-scattering window, not only a plausible source story.
 
 ## Consistency Anchors
 
@@ -401,6 +546,8 @@ This is not a statement that the Euclidean void is curved. It is an observer-lev
 $$
 \mathcal{R}_{\mathrm{CMB}}(\theta)
 +
+\lambda_{T,\mathrm{eq,grow}}\mathcal{R}_{T,\mathrm{eq,grow}}(\theta)
++
 \lambda_{\mathrm{phase}}\mathcal{R}_{\mathrm{phase}}(\theta)
 +
 \lambda_V\mathcal{R}_{V}(\theta)
@@ -413,7 +560,7 @@ $$
 \le
 \varepsilon_{\mathrm{CMB}},
 $$
-with $\lambda_{\mathrm{phase}}$, $\lambda_V$, $\lambda_{\mathrm{lens}}$, $\lambda_{\mathrm{smooth}}$, $\lambda_{\mathrm{range}}$, and $\varepsilon_{\mathrm{CMB}}$ declared by the data release or simulation protocol. Passing this test would mean that the same medium-and-assembly history recovers TT/TE/EE, blackbody behavior, scalar/tensor bounds, acoustic phase coherence, vector-mode suppression, CMB-lensing reconstruction, the low effective gravitational free-mode budget, and any declared finite-range comparison branch without changing ontology between modules.
+with $\lambda_{T,\mathrm{eq,grow}}$, $\lambda_{\mathrm{phase}}$, $\lambda_V$, $\lambda_{\mathrm{lens}}$, $\lambda_{\mathrm{smooth}}$, $\lambda_{\mathrm{range}}$, and $\varepsilon_{\mathrm{CMB}}$ declared by the data release or simulation protocol. Passing this test would mean that the same medium-and-assembly history recovers TT/TE/EE, blackbody behavior, radiation-temperature/equality/growth consistency, scalar/tensor bounds, acoustic phase coherence, vector-mode suppression, CMB-lensing reconstruction, the low effective gravitational free-mode budget, and any declared finite-range comparison branch without changing ontology between modules.
 
 ### Forward Prediction Map
 

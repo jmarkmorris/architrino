@@ -163,6 +163,61 @@ $$
 $$
 and the same $\theta$ also satisfies the weak-field metric gates relevant to the run. A packet that fits $\widehat{S}$, $\widehat{T}_U$, and $\widehat{dQ}$ with independent records fails even if each scalar looks plausible by itself.
 
+## Free-Energy and Response Consistency
+
+The same record should also support the near-equilibrium free-energy direction when such a channel is claimed. Let the packet declare a coarse state $z(\theta;t)$, entropy estimator $\widehat S_z$, energy estimator $\widehat E_z$, and local temperature $\widehat T_z$ built from the same observer and Noether-Sea record. Define
+$$
+\widehat F_z
+=
+\widehat E_z
+-
+\widehat T_z\widehat S_z.
+$$
+On a relaxation window with no declared external work, the free-energy residual is
+$$
+\widehat{\mathcal R}_{F}^{(O)}
+=
+\frac{
+\left[
+\Delta_W\widehat F_z
+-
+W_{\mathrm{ext},z}^{(O)}
+\right]_+
+}{
+|\Delta_W\widehat F_z|
++|W_{\mathrm{ext},z}^{(O)}|
++\varepsilon
+}.
+$$
+The gate is optional unless the packet uses free-energy minimization, order-parameter relaxation, or Landau-Ginzburg language. If invoked, it must pass with the same $\theta$ that supplies $\widehat{\mathcal{R}}_{\mathrm{thermo}}^{(O)}$.
+
+If the packet includes stochastic or fluctuation claims, it must report a response/noise residual rather than fitting noise independently. For a declared observable pair $(A,B)$, use the measured fluctuation spectrum $S_{AB}^{(O)}(\omega)$ and the dissipative response $\chi_{AB}^{\prime\prime(O)}(\omega)$:
+$$
+\widehat{\mathcal R}_{\mathrm{FD}}^{(O)}(A,B)
+=
+\frac{
+\left\|
+S_{AB}^{(O)}(\omega)
+-
+\mathcal F_{\widehat T_z}
+\!\left(
+\chi_{AB}^{\prime\prime(O)}(\omega)
+\right)
+\right\|_{\omega}
+}{
+\left\|S_{AB}^{(O)}\right\|_{\omega}
++
+\left\|
+\mathcal F_{\widehat T_z}
+\!\left(
+\chi_{AB}^{\prime\prime(O)}
+\right)
+\right\|_{\omega}
++\varepsilon
+}.
+$$
+Here $\mathcal F_{\widehat T_z}$ is the packet's declared classical or quantum fluctuation-dissipation map. This check is a same-record discipline for equilibrium response. It does not assert that Noether-Sea dynamics is fundamentally stochastic.
+
 ## Proof Route
 
 The proof route has four controlled steps.

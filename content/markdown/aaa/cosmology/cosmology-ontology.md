@@ -40,6 +40,7 @@ All cosmological observables are computed from absolute-state evolution and then
 - **QSSC-like motif:** eternal background plus recurring creation/reprocessing channels.
 - **Cyclical-like motif:** repeated effective epochs without requiring one absolute beginning event.
 - **Timescape-like motif:** environment-conditioned clock calibration affecting inferred expansion history.
+- **Rotating-universe caution:** historical global-rotation proposals are retained only as anisotropy-test discipline; they do not import a rotating Euclidean void or rotating Noether Sea.
 - **Static-family caution:** retain only clock/medium insight channels; exclude generic tired-light scattering-loss mechanisms.
 
 ## Classification Axes ($\mathbb{A}\mathbb{A}\mathbb{A}$ Position)
@@ -61,6 +62,111 @@ Cosmological observables (e.g., $H(z)$, BAO, CMB peaks, lensing, growth proxies)
 
 For development and comparison, expansion, CMB transfer, BBN yields, and growth/lensing are treated as separable observational modules with explicit interface variables, while remaining one ontology.
 
+### Effective FRW Variable Ledger
+
+The standard homogeneous and isotropic comparison layer is retained as a data-product language, not as substrate geometry. A candidate medium-state history may project to an effective line element of the form
+$$
+ds_{\mathrm{FRW,eff}}^2
+=
+-c_0^2d\tau_c^2
++a_{\mathrm{eff}}^2(\tau_c)
+\left[
+\frac{d\chi^2}{1-k\chi^2}
++\chi^2d\Omega^2
+\right],
+$$
+but this is a reconstruction used by Physical Observers. The Euclidean void does not expand, and $a_{\mathrm{eff}}$, $H_{\mathrm{eff}}\equiv \dot a_{\mathrm{eff}}/a_{\mathrm{eff}}$, $k$, $\Omega_i$, $w_i$, and horizon distances are effective variables extracted from Noether-Sea evolution, clock comparison, and transport records.
+
+The useful comparison equations are therefore recovery targets:
+$$
+H_{\mathrm{eff}}^2
+=
+\frac{8\pi G_{\mathrm{eff}}}{3c_0^2}\rho_{\mathrm{eff}}
+-\frac{k c_0^2}{a_{\mathrm{eff}}^2}
++\frac{\Lambda_{\mathrm{eff}}}{3},
+$$
+$$
+\dot\rho_{\mathrm{eff}}
++3H_{\mathrm{eff}}(\rho_{\mathrm{eff}}+P_{\mathrm{eff}})
+=0.
+$$
+Passing these equations does not by itself promote metric expansion. It means that the fixed-void medium history has an observer-level FRW projection accurate enough to feed distance-redshift, CMB, BBN, and growth comparisons.
+
+### Effective Component Inventory
+
+Cosmic inventory language is useful only as an effective comparison ledger. For a component whose observer-level mass-equivalent density is $\bar\rho_i$, write
+$$
+\Omega_i^\theta(t)
+=
+\frac{8\pi G_{\mathrm{eff}}^\theta(t)\bar\rho_i^\theta(t)}
+{3\left(H_{\mathrm{eff}}^\theta(t)\right)^2}.
+$$
+For a component recorded first as an energy density $u_i^\theta$, use
+$$
+\Omega_i^\theta(t)
+=
+\frac{8\pi G_{\mathrm{eff}}^\theta(t)u_i^\theta(t)}
+{3c_0^2\left(H_{\mathrm{eff}}^\theta(t)\right)^2}.
+$$
+These $\Omega_i$ variables are data-product coordinates. They do not say that the Euclidean void contains independent density fluids. They say that the same Noether-Sea and assembly record has been projected into the standard component language at the observer epoch.
+
+A compact inventory residual is
+$$
+\mathcal{R}_{\Omega}(\theta_{\mathrm{sea}})
+=
+\Omega_{K,\mathrm{fit}}
++
+\sum_{i\in\mathcal{I}_{\mathrm{cos}}}
+\Omega_i^\theta(t_{\mathrm{obs}})
+-1,
+$$
+where $\mathcal{I}_{\mathrm{cos}}$ includes only declared comparison rows, such as dark energy, neutral assemblies, baryons, radiation, neutrinos, binding-energy entries, kinetic or plasma entries, and wake-history or medium-response entries when the local branch has supplied them. Passing this residual means the effective inventory closes; it does not identify the substrate carrier of each row.
+
+The stronger test is cross-row provenance. Let $Q_i^\theta$ and $Q_j^\theta$ be two inventory quantities that should be related by an energy-transfer, reaction, transport, or remnant ledger, and let $\mathcal{T}_{ij}^\theta$ be the declared transfer map between them. Then
+$$
+\mathcal{R}_{i\leftrightarrow j}^{\theta}
+=
+\left\lVert
+Q_i^\theta-\mathcal{T}_{ij}^\theta Q_j^\theta
+\right\rVert_{C_{ij}^{-1}}^2.
+$$
+Examples include nuclear binding versus radiation and neutrino backgrounds, baryon density versus BBN and CMB inference, quasar luminosity versus massive-black-hole remnant density, and lensing mass versus galaxy luminosity and clustering. A component row that cannot be connected to the rest of the ledger remains an interpretation placeholder.
+
+### Steady-State Failure Test for Effective Variables
+
+Historical steady-state cosmologies are useful here as failure tests, not as ontology to import. Einstein's unpublished 1931 steady-state attempt already shows the core mathematical pressure: an expanding comparison metric with constant matter density is not closed unless the matter continuity equation contains an explicit source term with a provenance ledger.
+
+In the effective FRW layer, a dust-like component obeys the no-source comparison equation
+$$
+\dot{\rho}_{m,\mathrm{eff}}
++3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}=0.
+$$
+If one imposes $\dot{\rho}_{m,\mathrm{eff}}=0$ while $H_{\mathrm{eff}}\ne0$, the equation forces $\rho_{m,\mathrm{eff}}=0$. A nontrivial constant-density branch therefore requires
+$$
+\dot{\rho}_{m,\mathrm{eff}}
++3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}
+=
+\mathcal{S}_{m,\mathrm{eff}},
+\qquad
+\mathcal{S}_{m,\mathrm{eff}}
+=3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}
+\quad
+\text{for constant }\rho_{m,\mathrm{eff}}.
+$$
+From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, $\mathcal{S}_{m,\mathrm{eff}}$ cannot mean matter produced by the Euclidean void. It must be a projection of assembly association, dissociation, recycling, transport, or Noether-Sea exchange already present in the absolute record $S(t)$. If no such provenance route is supplied, the model is only an effective parameter fit and fails as cosmology closure.
+
+For a recycling or cyclical comparison branch, this source term must also close over the declared cycle window:
+$$
+\Delta M_{\mathrm{eff}}[t_1,t_2]
+=
+\int_{t_1}^{t_2}
+\mathcal{S}_{m,\mathrm{eff}}(t)a_{\mathrm{eff}}^3(t)\,dt
+-
+\int_{t_1}^{t_2}
+3H_{\mathrm{eff}}(t)\rho_{m,\mathrm{eff}}(t)a_{\mathrm{eff}}^3(t)\,dt.
+$$
+The pass condition is not a preferred external cosmology. It is that $\Delta M_{\mathrm{eff}}$ be supplied by assembly association, dissociation, transport, recycling, or Noether-Sea exchange in the same absolute record. Otherwise the branch has kept an effective density constant by inserting a source without provenance.
+
 ## Observation-First Component Abstraction
 
 This framework does not treat cosmology as "$\mathbb{A}\mathbb{A}\mathbb{A}$ vs $\Lambda\mathrm{CDM}$" at the bundled-model level. Instead, first abstract $\Lambda\mathrm{CDM}$ into separable observational components with no interpretational linkage baked in:
@@ -80,6 +186,44 @@ The standard cosmological fit package obtains much of its strength by combining 
 The practical rule is to separate measurement from interpretation. Supernova magnitudes, BAO angles, redshift catalogues, CMB spectra, and weak-lensing maps are retained as observational data products. The inferred variables $a(t)$, $H(z)$, $\Omega_m$, $\Omega_\Lambda$, and $w(z)$ are effective reconstruction variables whose meaning depends on the model used to convert those data products into a background history. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology must reproduce the data products or explain controlled residuals, not merely refit the inherited parameters after changing their ontology.
 
 Directional tests are part of this ledger. If a data reduction assumes a cosmic rest frame, a kinematic CMB dipole correction, or an all-sky isotropic background, the same reduction must expose the residual dipole, quadrupole, and environment dependence left after the correction. Those residuals are not automatically evidence against the model; they are diagnostic handles for the Noether-Sea flow, density, delay, and clock-rate fields.
+
+Gamow's 1946 rotating-universe proposal is useful as comparison pressure here because it converts a story-level anisotropy claim into an all-sky radial-velocity test. The surviving discipline is not the rotating universe itself, but the requirement that any claimed large-scale anisotropy leave a declared directional residual after CMB-frame correction, matter-dipole residuals, local bulk-flow subtraction, and survey-window effects have been separated.
+
+For tracer $i$ with direction $\hat{\mathbf{n}}_i$ from observer position $\mathbf{x}_o$, inferred position $\mathbf{x}_i=\mathbf{x}_o+D_i\hat{\mathbf{n}}_i$, and corrected line-of-sight velocity or redshift residual $\delta v_i$, the shared Noether-Sea record should first supply its native prediction
+$$
+\epsilon_i(\theta_{\mathrm{sea}})
+=
+\delta v_i
+-
+\Pi_v(\theta_{\mathrm{sea}};\mathbf{x}_i,\hat{\mathbf{n}}_i),
+$$
+where $\Pi_v$ includes the declared Noether-Sea flow, density, delay, clock-rate, CMB-frame, and local-calibration terms. A historical rotation-like comparison can then be expressed only as a residual template,
+$$
+T_i(\mathbf{x}_c,\boldsymbol{\omega},g)
+=
+\hat{\mathbf{n}}_i\cdot
+\left[
+g(D_i)\,\boldsymbol{\omega}\times(\mathbf{x}_i-\mathbf{x}_c)
+-g(0)\,\boldsymbol{\omega}\times(\mathbf{x}_o-\mathbf{x}_c)
+\right],
+$$
+with the center $\mathbf{x}_c$, angular-rate vector $\boldsymbol{\omega}$, and distance profile $g$ declared as comparison parameters rather than new ontology. The corresponding all-sky antisymmetric-flow residual on a survey shell $S$ is
+$$
+\mathcal{R}_{\mathrm{rot}}(\theta_{\mathrm{sea}};S)
+=
+\inf_{\mathbf{x}_c,\boldsymbol{\omega},g\in\mathcal{G}_{\mathrm{decl}}}
+\left[
+\frac{1}{W_S}
+\sum_{i\in S}
+w_i\left(
+\epsilon_i(\theta_{\mathrm{sea}})
+-T_i(\mathbf{x}_c,\boldsymbol{\omega},g)
+\right)^2
+\right]^{1/2},
+\qquad
+W_S=\sum_{i\in S}w_i.
+$$
+This diagnostic protects the fixed-void ontology in both directions. If the best-fit template is insignificant or survey-dependent, the rotation story is rejected. If a stable double-sine, dipole, quadrupole, or higher directional pattern remains, it must be derived from the same $\theta_{\mathrm{sea}}$ that also fits expansion, CMB transfer, BBN, growth, lensing, and calibration; it cannot be absorbed silently into $H(z)$, $w(z)$, or a new global-rotation premise.
 
 A scale-neutral homogeneity check should also be part of the shared ledger. For a large comparison window $W\subset\Sigma_t$ with resolved tracer index set $I_W(t)$ and $N_W=\lvert I_W(t)\rvert$, define the root-mean-square separation scale
 $$

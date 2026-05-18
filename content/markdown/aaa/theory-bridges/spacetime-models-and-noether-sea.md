@@ -47,7 +47,7 @@ The comparison is admissible only when $\Delta_{\mathrm{bc}}\le\epsilon_{\mathrm
 
 ## Historical Ladder
 
-The bridge should cover the major mathematical families rather than only modern GR-adjacent language. The point is not to endorse every family. The point is to know what each one contributed and which AAA object receives the useful part.
+The bridge should cover the major mathematical families rather than only modern GR-adjacent language. The point is not to endorse every family. The point is to know what each one contributed and which $\mathbb{A}\mathbb{A}\mathbb{A}$ object receives the useful part.
 
 | Historical model family | Mathematical core | What survives as a comparison | $\mathbb{A}\mathbb{A}\mathbb{A}$ placement |
 | --- | --- | --- | --- |
@@ -59,7 +59,7 @@ The bridge should cover the major mathematical families rather than only modern 
 | Lorentz aether theory | A preferred rest frame hidden by Lorentz contraction, clock slowing, and electromagnetic dynamics. | A preferred substrate frame can be operationally hidden if clocks, rulers, and signals co-transform. | This is a close bridge for absolute time plus Euclidean void, but the closure burden is emergent Lorentz behavior with bounded preferred-frame leakage. |
 | Minkowski spacetime | A 4D pseudo-Riemannian metric with invariant interval and Lorentz symmetry. | Observer-level kinematic bookkeeping. | Treated as the homogeneous effective geometry reconstructed by Physical Observers, not as substrate ontology. |
 | General-relativistic metric spacetime | Dynamic metric geometry, curvature, geodesics, Einstein equation, and PPN observables. | The strongest tested observer-level gravitational target. | Detailed mapping belongs in the spacetime lane; this bridge records only the comparison interface. |
-| Kaluza-Klein and higher-dimensional geometry | Gauge fields from higher-dimensional metric components or compact dimensions. | A useful reminder that geometry can encode force bookkeeping. | Comparison only unless an AAA-native hidden coordinate or fiber variable is derived from assembly state. |
+| Kaluza-Klein and higher-dimensional geometry | Gauge fields from higher-dimensional metric components or compact dimensions. | A useful reminder that geometry can encode force bookkeeping. | Comparison only unless a $\mathbb{A}\mathbb{A}\mathbb{A}$-native hidden coordinate or fiber variable is derived from assembly state. |
 | Metric-affine, torsion, and Einstein-Cartan programs | Independent connection, torsion, spin coupling, and generalized geometric variables. | A structured way to ask whether spin, torsion, or nonmetricity survive as effective observer-level residues. | Possible deviation channels in the ADM/Cartan handoff, not primitive geometry of the Euclidean void. |
 | ADM and canonical spacetime decompositions | Lapse, shift, spatial metric, constraints, and foliation-based dynamics. | A practical 3+1 language for mapping observer geometry. | Directly useful as the reconstruction surface $(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij})$. |
 | Sakharov induced gravity | Gravity as an induced or elastic response of quantum vacuum degrees of freedom. | The idea that GR-like dynamics can be effective rather than fundamental. | Recast as a Noether-Sea microstructure-to-metric response problem, not as proof from QFT vacuum ontology. |
@@ -68,9 +68,10 @@ The bridge should cover the major mathematical families rather than only modern 
 | Superfluid vacuum and condensed-matter vacuum models | Order parameters, phonons, vortices, critical velocities, collective excitations, and phase transitions. | Strong mathematics for coherent media, low dissipation, and emergent quasiparticles. | Comparison only until the Noether-Sea side has a defined order parameter, excitation spectrum, and threshold law. |
 | Khoury-style superfluid dark matter | A dark-sector condensate phase whose phonons mediate MOND-like galactic behavior while other regimes resemble cold dark matter. | A worked example of one substance with phase-dependent phenomenology, collective excitations, and environment-dependent transition behavior. | Useful for the question "when does a Noether-Sea sector behave as a coherent phase?", not evidence that the Noether Sea is literally a superfluid. |
 | Bose-Einstein-condensate and fuzzy-dark-matter models | Macroscopic wavefunction, coherence length, de Broglie scale, and Gross-Pitaevskii-like dynamics. | Coherence-scale and phase-locking diagnostics. | Comparison for collective Noether-Sea phase behavior only if a native wavefunction/order parameter is derived. |
+| Berezhiani-Khoury BEC long-range interaction | Contact source coupling inside a condensate can produce an emergent inverse-square interaction whose finite range is set by self-interaction, density, and constituent mass. | A worked example where long-range behavior depends on the coherent background and on the derivative handoff between a collective mode and the source. | Useful for derivative-coupling and range-control tests on Noether-Sea collective response; not evidence that the Noether Sea is a literal BEC. |
 | Einstein-aether and vector-tensor preferred-frame theories | Metric plus unit timelike vector field and preferred-frame coefficients. | A modern mathematical way to parameterize Lorentz violation and preferred-frame observables. | Useful for bounding leakage, but the preferred frame is absolute time plus Euclidean void, not an added vector field ontology. |
-| Horava-Lifshitz-type anisotropic scaling | Preferred foliation and different UV scaling for time and space. | The idea that a preferred foliation can coexist with effective relativistic behavior. | Comparison only; AAA already has absolute time, so the question is empirical leakage and low-energy recovery. |
-| Causal-set and discrete-spacetime programs | Partial order, discreteness, and causal reconstruction. | Useful contrast for causal ordering and continuum emergence. | AAA keeps continuous Euclidean void and absolute time; discreteness, if any, belongs to assemblies or ledgers, not the void. |
+| Horava-Lifshitz-type anisotropic scaling | Preferred foliation and different UV scaling for time and space. | The idea that a preferred foliation can coexist with effective relativistic behavior. | Comparison only; $\mathbb{A}\mathbb{A}\mathbb{A}$ already has absolute time, so the question is empirical leakage and low-energy recovery. |
+| Causal-set and discrete-spacetime programs | Partial order, discreteness, and causal reconstruction. | Useful contrast for causal ordering and continuum emergence. | $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps continuous Euclidean void and absolute time; discreteness, if any, belongs to assemblies or ledgers, not the void. |
 | Loop, spin-network, and other quantum-geometry programs | Quantized geometric operators and graph-like states. | A comparison for area, volume, horizon, and spin-network claims. | Comparison framework unless a Noether-core graph or horizon ledger imports a specific validated constraint. |
 | String, brane, holographic, and AdS/CFT programs | Extended objects, extra dimensions, dual boundary descriptions, and holographic entropy relations. | High-value consistency checks when entropy, unitarity, or horizon accounting becomes unavoidable. AdS/CFT is especially valuable as a controlled anti-de Sitter laboratory, not as direct evidence that our late-time de Sitter-like universe has the same boundary structure. | Comparison framework; do not promote to closure target unless a specific tested benchmark is imported. |
 | de Sitter quantum-gravity and dS/CFT attempts | Positive-curvature late-time comparison geometry, observer horizons, finite-access entropy, and proposed future-boundary or statistical descriptions. | A sharp reminder that the observed universe is not anti-de Sitter and that horizon-limited access must be handled without pretending there is an AdS-style spatial boundary. | Comparison framework only; the native target is a Noether-Sea observer-horizon ledger, not a literal boundary CFT. |
@@ -91,7 +92,8 @@ A second comparison lesson is the distinction between a continuum approximation 
 | Elastic or continuum-medium spacetime | Stress, strain, compliance, wave propagation, and equation-of-state language. | Coarse Noether-Sea variables such as density, delay factor, stress, drift, alignment, and spatial compliance. | The medium is a featureless continuum with no assembly microstructure. | Derive continuum stress and compliance tensors from Noether-core population dynamics and identify their valid averaging scale. |
 | Analog-gravity or acoustic-metric models | Effective metrics can emerge from signal propagation through a medium. | Signal cones and clock/ruler maps emerge from Noether-Sea delay and assembly response. | The analogy proves gravity or fixes the metric by signal speed alone. | Extend scalar speed maps to the full ADM/Cartan handoff $(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij})$. |
 | Superfluid and condensate vacuum models | Coherence, order parameters, critical thresholds, quantized circulation, collective excitations, and low-dissipation transport. | Possible comparison class for coherent Noether-Sea phases only when the local document supplies a defined order parameter, excitation spectrum, critical threshold, or circulation analogue. | The Noether Sea is superfluid merely because it is coherent or low-dissipation. | Derive a concrete constitutive model: order parameter, transport equation, critical-velocity criterion, two-fluid analogue, quantized-vorticity analogue, or explicit reason the analogy fails. |
-| Khoury-style superfluid dark matter | Phase-dependent behavior: cold-dark-matter-like cosmology and cluster behavior, plus phonon-mediated MOND-like galactic behavior in a superfluid phase. | Comparison for environment-dependent Noether-Sea phase behavior, excitation channels, and galactic-scale effective-force recovery. | Noether-Sea ontology is dark matter superfluidity, or MOND behavior follows without a native phonon/order-parameter derivation. | Define the Noether-Sea analogue of condensate fraction, phonon mode, critical temperature/velocity, and baryon-coupling channel, then test whether it recovers or rejects MOND-like scaling. |
+| Berezhiani-Khoury-style superfluid dark matter | Phase-dependent behavior: cold-dark-matter-like cosmology and cluster behavior, plus phonon-mediated MOND-like galactic behavior in a superfluid phase. | Comparison for environment-dependent Noether-Sea phase behavior, excitation channels, two-component response, and galactic-scale effective-force recovery. | Noether-Sea ontology is dark matter superfluidity, or MOND behavior follows without a native phonon/order-parameter derivation. | Define the Noether-Sea analogue of condensate fraction, phonon mode, critical temperature/velocity, normal fraction, and baryon-coupling channel, then test whether it recovers or rejects MOND-like scaling. |
+| Berezhiani-Khoury BEC long-range interaction | A complex scalar condensate with contact source coupling can produce a mediated inverse-square force with $\ell^{-1}\propto\sqrt{\lambda n/m}$, and with $\ell\to\infty$ when the self-interaction is removed. | Comparison for coherent-background amplification, derivative phonon-source coupling, source-induced deformation, screening, and instability tests. | A contact-coupled BEC or phonon is the Noether Sea, or a native long-range Noether-Sea force follows without deriving the collective mode and coupling channel. | Define a Noether-Sea collective response variable, a source coupling, a range residual, a deformation parameter, and a failure condition for dense-source or unstable regimes. |
 | Sakharov or Jacobson-style emergent gravity | Metric dynamics may be thermodynamic, induced, or equation-of-state behavior rather than fundamental geometry. | Einstein-like behavior is a long-wavelength response of Noether-Sea microstructure. | The thermodynamic analogy derives $\mathbb{A}\mathbb{A}\mathbb{A}$ by itself. | Show how Noether-Sea entropy, stress, boundary-wake data, and energy exchange recover the Einstein equation or its validated weak-field approximation through one shared record. |
 | Quantum-vacuum or QFT-field ontology | Vacuum polarization, zero-point behavior, field excitations, and Standard Model effective predictions. | Observer-level fields are effective summaries of assembly and wake behavior in the Noether Sea. | The QFT vacuum is the substrate ontology. | Recover validated QFT limits while assigning substrate-level causation to assemblies, wakes, and Noether-Sea response. |
 | Preferred-foliation and vector-aether models | Controlled parameterization of Lorentz violation, foliation effects, and preferred-frame bounds. | Absolute time is already the foliation; leakage appears through observer-level anisotropy and PPN channels. | A new vector field is the substrate. | Map leakage into $\Xi_i$, $(\alpha_1,\alpha_2,\alpha_3)$, and two-way signal-speed diagnostics. |
@@ -113,7 +115,87 @@ For a Noether-Sea comparison to become superfluid-like rather than merely medium
 | Vorticity quantization | A circulation condition such as $\oint \nabla\theta\cdot d\ell=2\pi n$ or a native ledger equivalent. | Vortex language becomes mathematical rather than decorative. |
 | Baryon or matter coupling | An explicit coupling channel between ordinary assemblies and the collective mode. | MOND-like or fifth-force comparisons become falsifiable. |
 
-Khoury-style superfluid dark matter is a useful comparison because it makes this discipline visible. In that model, the same dark-sector substance is intended to behave like ordinary cold dark matter in cosmological regimes while forming a galactic superfluid phase whose phonons mediate a MOND-like force. The Noether-Sea bridge should borrow only the structure of that question: can one substrate have phase-dependent effective behavior with distinct collective modes and observational regimes? It should not borrow the conclusion unless $\mathbb{A}\mathbb{A}\mathbb{A}$ derives the corresponding Noether-Sea phase variables.
+Berezhiani-Khoury-style superfluid dark matter is a useful comparison because it makes this discipline visible. In that model, the same dark-sector substance is intended to behave like ordinary cold dark matter in cosmological regimes while forming a galactic superfluid phase whose phonons mediate a MOND-like force. The Noether-Sea bridge should borrow only the structure of that question: can one substrate have phase-dependent effective behavior with distinct collective modes and observational regimes? It should not borrow the conclusion unless $\mathbb{A}\mathbb{A}\mathbb{A}$ derives the corresponding Noether-Sea phase variables.
+
+The older Sinha-Sivaram-Sudarshan superfluid-vacuum papers sharpen a different part of the same discipline. Their useful source signal is not the literal aether claim. It is the demand that a coherent vacuum-medium comparison specify a gap, an excitation spectrum, and a critical threshold before using low-dissipation language. A BCS-like comparison has the schematic spectrum
+$$
+E_k^{\mathrm{cmp}}
+=
+\sqrt{\epsilon_k^2+|\Delta_{\mathrm{cmp}}|^2},
+\qquad
+v_c^{\mathrm{cmp}}
+=
+\min_k\frac{E_k^{\mathrm{cmp}}}{\hbar k}.
+$$
+In the source model the gap was identified with rest energy and a Compton-scale estimate pushed the critical velocity toward $c_0$. In $\mathbb{A}\mathbb{A}\mathbb{A}$ that is only a comparison test. A Noether-Sea branch may borrow the structure only after it defines a native excitation gap, explains which assemblies or collective modes carry it, and shows that any low-dissipation or transparent regime follows from $v_{\mathrm{rel}}<v_c^\theta$ rather than from naming the medium a superfluid.
+
+The longer Berezhiani-Khoury theory paper sharpens the comparison into source-side technical criteria. Its useful contribution for this bridge is not the dark-matter ontology, but the way it ties phase behavior, an order-parameter phase, a phonon effective action, a two-component finite-temperature description, and observational failure modes into one calculable structure:
+
+| Source structure | Source-side mathematical marker | Noether-Sea comparison criterion |
+| --- | --- | --- |
+| Condensation and phase onset | $\lambda_{\rm dB}\sim 1/(mv)\gtrsim(m/\rho)^{1/3}$ and $\Gamma t_{\rm dyn}\gtrsim 1$. | A coherent Noether-Sea phase comparison needs a native coherence threshold and a relaxation criterion, not only a qualitative claim of coherence. |
+| Condensate fraction | For free particles, $f_s=N_{\rm cond}/N\simeq1-(T/T_c)^{3/2}$ below $T_c$. | Environment-dependent behavior must expose a phase fraction or an explicit statement that no such fraction has been derived. |
+| Order parameter and phonon | A phase field $\theta$ with $X=\dot\theta-m\Phi-(\nabla\theta)^2/(2m)$ and $\mathcal{L}=P(X)$. | A Noether-Sea analogue must identify the variable that carries phase, stiffness, and collective-mode gradients. |
+| Polytropic equation of state | $P(\mu)=2\Lambda(2m\mu)^{3/2}/3$ and $P=\rho^3/(12\Lambda^2m^6)$. | Medium-response prose should be replaced by an explicit pressure/compliance law or by a stated failure of the polytropic analogy. |
+| MOND-like phonon action | $P(X)=2\Lambda(2m)^{3/2}X\sqrt{|X|}/3$. | A MOND-like comparison must name the non-analytic effective action or the native equation that replaces it. |
+| Baryon coupling | $\mathcal{L}_{\rm int}=-(\alpha\Lambda/M_{\rm Pl})\theta\rho_b$ and $a_\phi=(\alpha\Lambda/M_{\rm Pl})\phi'$. | Any matter-coupled collective mode must state the ordinary-assembly coupling channel and its acceleration residual. |
+| Finite-temperature two-fluid behavior | A Landau-style finite-temperature form $F(X,B,Y)$, with normal-fluid variables and stability conditions such as $\beta\ge3/2$ in the source model. | Galaxy/cluster phase claims need a superfluid-like and normal-like split with a perturbative stability check, or they remain analogy only. |
+| Critical velocity and local coherence | $c_s=\sqrt{2\mu/m}$, $v_s\sim\|\nabla\phi\|/m$, and $v_c\sim(\rho/m^4)^{1/3}$. | Low-dissipation transport and local loss of coherence must be tied to a threshold residual, not inferred from the word `superfluid`. |
+| Cluster and merger separation | Subsonic superfluid components can pass with low dissipation, while normal components can lag and produce distinct mass-response peaks. | A Noether-Sea comparison must route density, friction, and lensing through the same effective-metric handoff before making cluster-scale claims. |
+| Vortices | $\omega_{\rm cr}\sim1/(mR^2)$ and vortex line density $\sigma_v\sim m\omega$. | Vortex language needs a circulation or vorticity analogue plus a predicted density, count, or absence condition. |
+| Cold-atom analogue | The unitary Fermi gas has a non-analytic phonon action $P(X)\sim X^{5/2}$; the source model's $P\sim\rho^3$ points toward three-body interaction structure. | Cold-atom analogies are admissible only when the equation of state, symmetry, and mode content match the Noether-Sea comparison target. |
+
+A minimal source-derived MOND-like check can be stated without importing the source ontology. For a declared radial window $W$, ordinary matter mass profile $M_{\text{matter}}(r)$, Newtonian benchmark acceleration $a_N(r)=G_NM_{\text{matter}}(r)/r^2$, and native collective-mode acceleration $a_{\text{mode}}(r)$, define
+
+$$
+\Delta_{\text{MOND-like}}(W)
+=
+\sup_{r\in W}
+\frac{
+\left|a_{\text{mode}}(r)-\sqrt{a_0a_N(r)}\right|
+}{
+\sqrt{a_0a_N(r)}+\varepsilon
+}.
+$$
+
+This residual is a comparison handoff, not a doctrine. If no native $a_{\text{mode}}$ or matter-coupling channel has been derived, the residual is undefined and the MOND-like comparison fails the technical test.
+
+The later Berezhiani-Khoury BEC long-range-interaction paper sharpens a separate comparison: a source can have only contact coupling in vacuum and still acquire an effective long-range interaction after it is submerged in a coherent condensate. The safe $\mathbb{A}\mathbb{A}\mathbb{A}$ lesson is a handoff criterion, not an ontology import. A Noether-Sea comparison may borrow the logic only when a coherent background variable, a collective mode, and a source-coupling operator are all named on the Noether-Sea side.
+
+| Source signal | Source-side mathematical marker | Noether-Sea comparison criterion |
+| --- | --- | --- |
+| Vacuum contact becomes condensate-mediated range | A source coupling such as $|\Phi|^2J/\Lambda^2$ has no long-range vacuum force, but a coherent background $\Phi=ve^{i\mu t}$ changes the mediated response. | A Noether-Sea long-range comparison must identify the ambient state variable that changes the source response; contact with the Noether Sea is not enough by itself. |
+| Range is controlled by condensate parameters | The weak-distortion range obeys $\ell=(2\lambda v^2)^{-1/2}\simeq(2mc_s)^{-1}$, equivalently $\ell^{-1}$ scales like $\sqrt{\lambda n/m}$. | Any imported range claim needs a native range functional $\ell_{\text{sea}}[\mathcal{X}_{\text{sea}},\mathcal{Y}_{\text{coh}}]$ and a residual against the observer-level force window. |
+| Derivative phonon-source handoff | In the $\lambda=0$ low-energy limit, the gapless mode has $\omega_k=k^2/(2m)$ but couples through a momentum-dependent form factor after kinetic mixing between phase and modulus. | The Noether-Sea analogue must name the derivative or gradient operator that hands the source channel to the collective mode; a gapless mode alone does not license an inverse-square force. |
+| Weakly versus strongly deformed condensate | Linear treatment fails when the source size and density violate a deformation bound such as $\rho R^2/\Lambda^2<1$, or the equivalent point-source breakdown radius $r_*=M/(4\pi\Lambda^2)$. | A Noether-Sea comparison needs a deformation residual that says when the background response remains linear and when the source changes the local medium state. |
+| Dense-source screening | For repulsive source coupling and strong deformation, the effective source strength is screened; in the homogeneous spherical model $M_{\text{eff}}$ crosses from the source mass to a shell-controlled value. | If dense assemblies reduce local Noether-Sea response, the effective-metric handoff must use the screened source strength, not the bare matter inventory alone. |
+| Instability for the opposite coupling sign | For attractive coupling in the strongly deformed regime, soft modes become unstable once the same deformation threshold is crossed. | A BEC analogy fails if the native coupling sign or dense-source response destroys the coherent phase on the window being used for comparison. |
+| Galactic dark-matter application | The paper treats the force as galactic-scale and model-dependent, with screening and finite condensate-core size restricting where it can compete with gravity. | This is only a comparison framework for range-limited collective response; it does not establish MOND-like scaling, dark matter ontology, or a Noether-Sea force law. |
+
+A compact derivative-coupling handoff can be expressed at bridge level. Let $S_A(\mathbf{x},t)$ be the ordinary-assembly source channel under comparison, $q_{\text{coh}}$ a candidate collective Noether-Sea coordinate, and $\mathcal{D}_{\text{coh}}$ the native gradient or path-history operator that couples them. The comparison is admissible only if the effective interaction has the schematic form
+
+$$
+\mathcal{L}_{\text{handoff}}
+\sim
+g_A\,S_A\,\mathcal{D}_{\text{coh}}q_{\text{coh}},
+$$
+
+with $q_{\text{coh}}$, $\mathcal{D}_{\text{coh}}$, and $g_A$ derived or explicitly declared as comparison placeholders. A useful range residual for a declared radial window $W$ is then
+
+$$
+\Delta_{\ell}(W)
+=
+\sup_{r\in W}
+\frac{
+\left|a_{\text{sea-mode}}(r)-a_0(r)e^{-r/\ell_{\text{sea}}}\right|
+}{
+\left|a_{\text{sea-mode}}(r)\right|
++\left|a_0(r)e^{-r/\ell_{\text{sea}}}\right|
++\varepsilon
+}.
+$$
+
+This residual is undefined unless $a_{\text{sea-mode}}$, $a_0$, and $\ell_{\text{sea}}$ have native definitions. The failure condition is equally important: if no coherent $q_{\text{coh}}$ exists, if $\mathcal{D}_{\text{coh}}$ is only a borrowed phonon operator, if the source pushes the local Noether-Sea state outside the linear response window, or if the coupling sign destabilizes the collective mode, then the BEC analogy must be rejected for that calculation.
 
 ## Mathematical Handoff
 
@@ -167,13 +249,22 @@ $$
 \Psi_{\text{sea}}\ \text{or its native replacement},
 \rho_s,
 \rho_n,
+\frac{T}{T_c}\ \text{or a native threshold ratio},
 \omega(k),
+c_s,
 v_c,
+\omega_{\mathrm{cr}},
+\sigma_v,
+\Delta_{\text{MOND-like}},
+\ell_{\text{sea}},
+\Delta_{\ell},
+\mathcal{D}_{\text{coh}},
+\Theta_{\text{def}},
 \Gamma_{\text{matter}\leftrightarrow\text{mode}}
 \right).
 $$
 
-Without such a coherent-phase data object, `superfluid` should remain a comparison label in this bridge, not a term used in canonical Noether-Sea mechanism prose.
+Here $\Theta_{\text{def}}$ is a declared deformation parameter or residual measuring whether the ordinary source leaves the coherent background in its linear response regime. Without such a coherent-phase data object, `superfluid` and `BEC` should remain comparison labels in this bridge, not terms used in canonical Noether-Sea mechanism prose.
 
 ## Analogy Discipline
 
@@ -201,11 +292,16 @@ A spacetime comparison becomes more than a guide only when it passes the followi
 4. **No-import test:** it does not import the outside model's ontology as a substitute for Noether-Sea ontology.
 5. **Failure test:** it states what result would demote the comparison to a failed analogy.
 
-For superfluid and condensate comparisons, add three stricter tests:
+For superfluid and condensate comparisons, add these stricter tests:
 
 1. **Order-parameter test:** the comparison names a native coherent variable or explicitly says no such variable has been derived.
 2. **Mode test:** the comparison states the collective excitation or admits that no phonon-like branch is available.
 3. **Threshold test:** the comparison provides a critical threshold or keeps low-dissipation language out of mechanism prose.
+4. **Phase-fraction test:** the comparison supplies a superfluid-like and normal-like fraction, a threshold ratio such as $T/T_c$, or an explicit rejection of two-component behavior.
+5. **Coupling test:** any MOND-like or fifth-force claim names the ordinary-assembly coupling and evaluates an acceleration residual such as $\Delta_{\text{MOND-like}}$ on a declared window.
+6. **Vortex and merger test:** vortex or low-friction merger claims provide a critical angular velocity, line-density estimate, sound-speed criterion, or a native failure condition.
+7. **Derivative-handoff test:** any condensate-mediated long-range comparison names the native operator, such as $\mathcal{D}_{\text{coh}}$, that couples the source channel to the collective mode.
+8. **Range and deformation test:** any finite-range or inverse-square condensate comparison defines $\ell_{\text{sea}}$, $\Delta_{\ell}$, and a deformation residual such as $\Theta_{\text{def}}$, or else rejects the comparison for dense-source regimes.
 
 The most important failure mode is hidden synonym drift. If a comparison term starts replacing `Noether Sea`, `effective metric`, `medium response`, `causal wake`, or `closure target`, the bridge has stopped clarifying and has started importing ontology.
 
@@ -224,6 +320,7 @@ This document is an internal bridge, not a bibliography, but several external ma
 | Visser acoustic metrics | Explicit analog-gravity example where perturbations see an effective Lorentzian geometry. |
 | Volovik-style superfluid vacuum programs | Condensed-matter vacuum comparison using quasiparticles and collective modes. |
 | Berezhiani-Khoury superfluid dark matter | Phase-dependent dark-sector model with phonon-mediated MOND-like galactic behavior. |
+| Berezhiani-Khoury BEC long-range interaction | Contact-to-long-range condensate response with derivative phonon-source coupling, screening, and range control. |
 
 ## Summary Commitment
 

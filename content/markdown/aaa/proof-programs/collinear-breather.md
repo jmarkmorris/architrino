@@ -205,7 +205,60 @@ $$
 x_{c_f}=1.
 $$
 
-This is the cleanest way to formalize the intuition that the partner-only inbound fall from infinity reaches field speed at a distinguished radius.
+This is the cleanest way to formalize the intuition that the partner-only inbound fall from infinity reaches field speed at a distinguished radius. In the bookkeeping convention just displayed, setting $x_{c_f}=1$ fixes the dimensionless combination
+$$
+\frac{\kappa\epsilon^2}{\mu_{\text{arch}}c_f^2}=1.
+$$
+If one also chooses reduced units with $c_f=1$, $\epsilon=1$, and $\mu_{\text{arch}}=1$, then the local benchmark has $\kappa=1$. This is a unit convention for the partner-only hinge estimate, not a physical derivation of the coupling. An acceleration-first normalization that omits the quadratic bookkeeping constant must declare its convention separately, because numerical factors in the hinge relation then shift.
+
+The partner-only benchmark should also not be read as a crossing formula at the origin. The same zeroth-order energy estimate gives
+$$
+u^2
+\approx
+\frac{\kappa\epsilon^2}{\mu_{\text{arch}}x},
+$$
+so it predicts $|u|\to\infty$ as $x\to0^+$. The hinge marks where the reduced partner-only model has reached the self-hit-capable regime and should hand off to the delayed root ledger rather than being extrapolated through the origin.
+
+## Prepared Held-Release Benchmark
+
+A useful initial-data test fixes the pre-release history explicitly. Let a right-hand Positrino and left-hand Electrino be held at
+$$
+x_2(t)=+x_0,\qquad x_1(t)=-x_0,\qquad x_0 > 0,
+$$
+with zero velocity for a holding interval long enough that the stationary partner wakes have reached the opposite side before release:
+$$
+T_{\mathrm{hold}}\ge \frac{2x_0}{c_f}.
+$$
+Set the release time to $t=0$. During the held interval the holding constraint cancels the stationary partner attraction, and a stationary architrino has no nontrivial self-hit root.
+
+For the right-hand coordinate after release, while the partner emission time still lies in the held history, the partner source position is fixed at $-x_0$ and the partner Jacobian is $1$. The reduced equation is the ordinary initial-value problem
+$$
+\ddot x(t)
+=
+-\frac{\kappa\epsilon^2}{(x(t)+x_0)^2},
+\qquad
+x(0)=x_0,\qquad
+\dot x(0)=0.
+$$
+In particular,
+$$
+\ddot x(0)
+=
+-\frac{\kappa\epsilon^2}{4x_0^2}.
+$$
+This ODE segment remains valid until the first post-release partner emission reaches the right-hand receiver. If $t_\ast$ denotes that handoff time, then
+$$
+x(t_\ast)+x_0=c_f t_\ast.
+$$
+After that time the partner root samples the moving history and must be solved as a delayed emission time $t_e < t$:
+$$
+x(t)+x(t_e)=c_f(t-t_e),
+$$
+with exterior-branch partner Jacobian
+$$
+J_p(t;t_e)=1+\frac{\dot x(t_e)}{c_f}.
+$$
+Thus the held-release benchmark supplies a simple ODE start, but it does not remove the delayed partner-root problem once the receiver begins sampling post-release history.
 
 ## Partner-Hit and Self-Hit Root Equations
 
@@ -4438,6 +4491,20 @@ The finite self-map ledger has four rows. The first, second, and fourth rows pro
    L_j^v,
    $$
    this row authorizes the residual-plus-sensitivity route. Schauder itself does not require linear stability; this row is a proof-strategy selector for the finite preservation audit.
+
+   The same row must also report the zero-mode quotient used for interpretation. Let
+   $$
+   Z_{\mathrm{time}}(\theta)=\dot\phi_{\mathrm{cyc}}(\theta)
+   $$
+   denote the infinitesimal time-shift direction before section anchoring. If additional ansatz or certificate parameters
+   $$
+   \alpha^a
+   $$
+   are carried, their tangent rows
+   $$
+   Z_a(\theta)=\partial_{\alpha^a}\phi_{\mathrm{cyc}}(\theta;\alpha)
+   $$
+   must be classified as neutral, constrained by the section, or transverse. This prevents a harmless collective-coordinate drift from being mistaken for an unstable return direction, and it prevents a genuine transverse instability from being hidden inside a free parameter.
 4. **Returned-sample row.**
    Prefer the direct one-sided budget route when local sensitivities are large: prove
    $$

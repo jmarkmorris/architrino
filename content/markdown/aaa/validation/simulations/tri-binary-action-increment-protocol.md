@@ -31,13 +31,15 @@ B_q\to B_{q'}:
 \Delta_{\mathbf{k}}>0,\ 
 \mathcal{R}_{\mathrm{phase}}\le\tau_{\mathrm{phase}},\ 
 \mathcal{R}_{E}\le\tau_E,\ 
+\mathcal{R}_{P}\le\tau_P,\ 
+\mathcal{R}_{J}\le\tau_J,\ 
 \Delta N_{\mathrm{self}}\in2\mathbb{Z},\ 
 \mathcal{R}_{\mathrm{root}}\le\tau_{\mathrm{root}}
 \right\}.
 $$
-The tolerances $\tau_{\mathrm{phase}}$, $\tau_E$, and $\tau_{\mathrm{root}}$ must be declared before the run. The transition is not accepted merely because it improves a fit to `$h$`.
+The tolerances $\tau_{\mathrm{phase}}$, $\tau_E$, $\tau_P$, $\tau_J$, and $\tau_{\mathrm{root}}$ must be declared before the run. The transition is not accepted merely because it improves a fit to `$h$`.
 
-Plain language: only stable, energy-accounted, root-accounted branch changes are allowed to vote on the action increment.
+Plain language: only stable, conservation-accounted, root-accounted branch changes are allowed to vote on the action increment.
 
 ## Master-Equation Increment
 
@@ -54,6 +56,25 @@ $$
 \right).
 $$
 Here $\mathbf T_\ell$ is the layer torque reconstructed from causal-wake forces on the architrinos in layer $\ell$, and $\Delta\mathbf L_{\mathrm{wake},\partial}$ is the angular momentum still carried across the chosen core boundary at the end of the transition window.
+
+## Branch-Chart Conservation Pullback
+
+The projected action increment is a diagnostic until the exact nonlocal Noether charges close on the same retained branch chart. For each accepted transition, pull the normalized delayed-interior characteristic-tail increments from [Master Equation](../../dynamics/master-equation.md#exact-nonlocal-lagrangian) back to the retained branch rows and report
+$$
+\mathcal{E}_{\mathrm{tot}}^{(\eta)}
+=
+K_{\mu}+E_{\mathrm{wake,eff}}^{(\eta)},
+\qquad
+\boldsymbol{\mathcal{P}}_{\mathrm{tot}}^{(\eta)}
+=
+\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)},
+$$
+$$
+\boldsymbol{\mathcal{J}}_{\mathrm{tot}}^{(\eta)}
+=
+\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}.
+$$
+The residuals $\mathcal{R}_{E}$, $\mathcal{R}_{P}$, and $\mathcal{R}_{J}$ are the normalized window changes of these three totals after subtracting the declared Euler-residual and endpoint-leakage terms. They must use the same branch rows as the root ledger, force residual, and $\Delta I_{\mathrm{ME}}$ calculation. A work-integral energy reconstruction or torque projection may be reported as a diagnostic, but it does not replace the exact wake-history pullback.
 
 The candidate increment floor is
 $$
@@ -108,11 +129,12 @@ The minimum campaign packet contains:
 | --- | --- |
 | `campaign.json` | source commit, protocol version, run ids, integrator, tolerances, declared benchmark policy, and whether `$h,\hbar$` entered only after the Master-Equation increment was computed |
 | `branch_pairs.csv` | each $B_q\to B_{q'}$ row, branch labels, integer windings, inter-layer closure integers, transition window, and inclusion/exclusion status |
-| `state_vectors.json` | pre/post layer radii, frequencies, speeds, plane normals, phase offsets, source channel, and transaction axis |
-| `root_ledger_before_after.json` | partner, self, and inter-layer roots before and after transition, with delays, Jacobians, separator flags, and $\Delta N_{\mathrm{self}}$ |
-| `torque_integrals.csv` | $\int\mathbf T_I\,dt$, $\int\mathbf T_M\,dt$, $\int\mathbf T_O\,dt$, $\Delta\mathbf L_{\mathrm{wake},\partial}$, and projection onto $\hat{\mathbf a}$ |
+| `state_vectors.json` | pre/post layer radii, frequencies, speeds, plane normals, phase offsets, source channel, transaction axis, and mechanical endpoint charges |
+| `root_ledger_before_after.json` | partner, self, and inter-layer roots before and after transition, with delays, action-level $g$, $u$, Jacobians, separator flags, and $\Delta N_{\mathrm{self}}$ |
+| `torque_integrals.csv` | diagnostic $\int\mathbf T_I\,dt$, $\int\mathbf T_M\,dt$, $\int\mathbf T_O\,dt$, $\Delta\mathbf L_{\mathrm{wake},\partial}$, and projection onto $\hat{\mathbf a}$ |
 | `action_increment_rows.csv` | $\Delta I_{\mathrm{ME}}$, absolute value, cluster id, accepted/rejected status, and failure code |
-| `energy_ledger.csv` | $\sum_\ell\int\omega_\ell\,dI_\ell$, $\Delta E_{\mathrm{wake}}$, $\Delta E_{\mathrm{coupl}}$, and $\mathcal{R}_E$ |
+| `energy_ledger.csv` | $\sum_\ell\int\omega_\ell\,dI_\ell$, $\Delta E_{\mathrm{wake}}$, $\Delta E_{\mathrm{coupl}}$, exact $E_{\mathrm{wake,eff}}^{(\eta)}$, diagnostic $U$ if used, and $\mathcal{R}_E$ |
+| `conservation_pullback.csv` | branch-chart id, cut/window id, $\eta$, $\epsilon_c$, $h$, endpoint convention, $\nu_J$, inactive-gap minimum, $h_{\mathrm{mem}}$, $K_{\mu}$, $E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}$, $\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{J}_{\mathrm{mech}}$, $\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$, $\mathcal{R}_E$, $\mathcal{R}_P$, $\mathcal{R}_J$, and verdict |
 | `phase_closure_residuals.csv` | layer and inter-layer phase closure residuals, winding labels, and tolerance status |
 | `floquet_report.json` | monodromy or finite-difference return map, excluded symmetry modes, multipliers, and $\Delta_{\mathbf{k}}$ |
 | `cluster_summary.json` | $\Delta I_*$, class means, class standard deviations, $\delta_I$, $h_{\mathrm{AAA}}$, $\delta_h$, and promotion status |
@@ -127,7 +149,7 @@ A packet may promote `candidate_action_increment` only if all of the following p
 1. `$h,\hbar$` are absent from the simulated equations of motion and accepted-transition selection, except as post-run benchmark labels.
 2. At least one transition class has $0<\Delta I_*<\infty$.
 3. Endpoint branches and transition continuations have $\Delta_{\mathbf{k}}>0$ after symmetry modes are removed.
-4. Phase closure, root residuals, and energy residuals pass the predeclared tolerances.
+4. Phase closure, root residuals, energy residuals, momentum residuals, and angular-momentum residuals pass the predeclared tolerances.
 5. $\delta_I$ is below the predeclared cluster tolerance.
 6. The temporal, history-resolution, spatial, cross-integrator, and negative-control checks from [Convergence Tests](convergence-tests.md) pass.
 7. The packet reports $\delta_h$ honestly, whether or not the benchmark match is good.
@@ -145,6 +167,7 @@ Only a packet that also has small $\delta_h$ may promote `candidate_h_recovery`.
 | `phase-closure-open` | layer or inter-layer closure residuals exceed tolerance |
 | `root-ledger-instability` | active roots change under refinement or the self-hit parity condition fails |
 | `energy-ledger-open` | $\mathcal{R}_E$ exceeds tolerance or the wake/root energy channel is unaccounted |
+| `conservation-pullback-open` | $\mathcal{R}_P$ or $\mathcal{R}_J$ exceeds tolerance, or the exact Noether pullback uses different rows than the root ledger or force residual |
 | `convergence-fail` | required convergence or cross-integrator gates fail |
 | `negative-control-fail` | the intentionally wrong model still passes the packet gates |
 | `benchmark-mismatch` | $h_{\mathrm{AAA}}$ is stable but fails the declared `$h$` benchmark tolerance |

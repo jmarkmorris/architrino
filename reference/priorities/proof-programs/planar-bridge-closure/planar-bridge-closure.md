@@ -14,7 +14,7 @@
 1. `planar_seed_packet` — Define the reduced planar history space, seed packet, and quantitative section transversality. Status: `next`. Depends on: none.
 2. `cone_branch_regularity` — Prove local sectorized cone control and short-time branch regularity on the first excursion slab. Status: `pending`. Depends on: `planar_seed_packet`.
 3. `bounded_fold_transit` — Prove bounded caustic transit through the first planar fold tube. Status: `pending`. Depends on: `cone_branch_regularity`.
-4. `radial_turnaround` — Prove radial turnaround with inward delayed forcing beating centrifugal leakage. Status: `pending`. Depends on: `bounded_fold_transit`.
+4. `radial_turnaround` — Prove the radial leakage-budget inequality with inward delayed forcing beating centrifugal leakage, fold uncertainty, branch uncertainty, and gauge-reset error by a strict $\gamma_{\mathrm{turn}}>0$. Status: `pending`. Depends on: `bounded_fold_transit`.
 5. `tame_return_map` — Assemble the tame-envelope return theorem with continuous gauge reset. Status: `pending`. Depends on: `radial_turnaround`.
 
 ## Scope
@@ -37,7 +37,7 @@ Its role is narrower than the full breather program. It does not attempt immedia
 - Define the rotational gauge and return section cleanly enough that the reduced return map is well posed.
 - Prove a local directional-cone result that keeps delayed chords and instantaneous velocities inside a finite admissible angular atlas on a short post-section interval.
 - Prove a bounded fold-transit theorem so Jacobian-null events are crossed as part of the mechanism rather than excluded as pathologies.
-- Prove a strict radial majorization in which inward delayed forcing beats centrifugal leakage on the inbound leg.
+- Prove a strict radial leakage-budget inequality in which inward delayed forcing beats centrifugal leakage, fold uncertainty, branch uncertainty, and gauge-reset error on the first turnaround window.
 - Close a convex tame envelope of reduced planar histories under one-cycle return plus gauge reset.
 
 ## Failure Alternatives
@@ -47,8 +47,8 @@ If the bridge does not close, the useful obstruction alternatives are:
 1. no seed packet with quantitative section transversality can be maintained;
 2. local cone control fails before the first useful excursion slab is complete;
 3. fold transit produces unbounded delayed impulse or uncontrolled branch proliferation;
-4. centrifugal leakage outruns radial recapture before turnaround;
-5. the reduced return map loses continuity under gauge reset.
+4. centrifugal leakage or uncertified branch/fold error outruns radial recapture before turnaround;
+5. the reduced return map loses continuity under gauge reset because the return crossing or compensating rotation lacks a strict margin.
 
 Each of these outcomes is still informative because it identifies the exact geometric obstruction rather than leaving the whole higher-dimensional closure program vague.
 
@@ -63,7 +63,7 @@ Each of these outcomes is still informative because it identifies the exact geom
 1. Define the reduced planar history space, seed packet, and quantitative section transversality.
 2. Prove local sectorized cone control and short-time branch regularity on the first excursion slab.
 3. Prove a bounded caustic-transit theorem for the first planar fold tube.
-4. Prove a radial-turnaround inequality in which inward delayed forcing beats centrifugal leakage.
+4. Prove the radial leakage-budget inequality in which inward delayed forcing beats centrifugal leakage and the certified fold, branch, and gauge error budgets.
 5. Assemble these ingredients into a tame-envelope return theorem with continuous gauge reset.
 
 ## Related Priorities

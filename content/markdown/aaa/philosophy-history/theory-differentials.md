@@ -2719,7 +2719,14 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 #### 1. Concept Summary
 
-Steady State Cosmology is a theory in the cosmic history alternative domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
+Steady State Cosmology is a theory in the cosmic history alternative domain. It tried to combine an expanding comparison history with constant large-scale matter density, usually by adding some continuous source of matter. Einstein's unpublished 1931 attempt is the sharp failure prototype: with dust-like matter, constant density and nonzero expansion require an explicit source term, but the source was not present in the field equations. In effective notation the pressure is
+$$
+\dot{\rho}_{m,\mathrm{eff}}
++3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}
+=
+\mathcal{S}_{m,\mathrm{eff}},
+$$
+so $\dot{\rho}_{m,\mathrm{eff}}=0$ and $H_{\mathrm{eff}}\ne0$ require $\mathcal{S}_{m,\mathrm{eff}}=3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}$. Without that term, the nontrivial constant-density branch is not closed.
 
 #### 2. Ontological Commitments
 
@@ -2727,7 +2734,7 @@ Steady State Cosmology carries specific ontological commitments even when it is 
 
 #### 3. What This Concept Gets Right
 
-Steady State Cosmology still gets something limited but important right: it preserved a real empirical pressure or explanatory demand even though its central ontology failed. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
+Steady State Cosmology still gets something limited but important right: it preserved the demand that cosmology account for source, density, and history rather than simply accept a singular global story. Its durable value for $\mathbb{A}\mathbb{A}\mathbb{A}$ is now mainly negative and diagnostic. It shows that an exponential or de Sitter-like effective scale factor is not enough; the continuity equation, source provenance, and observational evolution record must close together.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -2743,11 +2750,11 @@ In a mature stack only the empirically successful large-scale summaries survive,
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Steady State Cosmology is that its explanatory core could not survive broader empirical scrutiny even though some motivating pressure was legitimate. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Steady State Cosmology is that its explanatory core could not survive broader empirical scrutiny and its source accounting was often underdetermined. Einstein's failed version exposes the mathematical core of the problem: assigning energy to the geometric comparison term does not by itself create matter, and a constant-density expanding branch needs a source equation with a physical ledger. Later steady-state variants made that source more explicit, but the model family still failed the observed-evolution tests.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to explain which empirical pressure the older concept was trying to answer and show how that pressure is handled without reviving the failed ontology. That closure target is what turns comparison into actual reduction rather than a verbal promise.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to retain the conservation discipline while rejecting the failed ontology. Any fixed-void cosmology that uses recycling, medium loading, or recurring assembly production must derive $\mathcal{S}_{m,\mathrm{eff}}$ from the absolute record $S(t)$ and then pass CMB, galaxy-evolution, BBN, redshift, growth, and lensing comparisons. The source term is admissible only as a projection of assembly and Noether-Sea histories, never as matter produced by the Euclidean void.
 
 ---
 

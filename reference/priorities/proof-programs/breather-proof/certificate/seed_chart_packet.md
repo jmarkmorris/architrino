@@ -242,6 +242,79 @@ $$
 $$
 supplies the pre-ledger inputs, branch-chart inputs, and residual targets without changing period, normalization, mesh, or tolerances between files.
 
+### Finite residual construction route
+
+The candidate cycle may come from a closed-form ansatz, direct quadrature,
+simulation-assisted fitting, continuation, or interval collocation. These routes
+are equivalent at this gate only if they produce one finite residual problem on
+the same packet identity. Let
+$$
+\mathbf a
+=
+\left(
+T_{\mathrm{cyc}},
+\mathcal S,
+\mathcal P,
+\mathbf c
+\right)
+$$
+collect the period, section/symmetry data, parameter tuple, and finite
+representation coefficients for
+$$
+\phi_{\mathrm{cyc}}(\cdot;\mathbf a).
+$$
+The candidate residual vector is
+$$
+\mathcal R_{\mathrm{cand}}(\mathbf a)
+=
+\left(
+G_{\mathrm{sec}},
+G_{\mathrm{sym}},
+G_{\mathrm{per}},
+\{E_j\}_{j\in\Theta_{\mathrm{simple}}},
+\{I_{\Sigma,k}\}_{k},
+\{R_j^x,R_j^v\}_{j\in\Theta}
+\right).
+$$
+Here
+$$
+G_{\mathrm{sec}},
+\qquad
+G_{\mathrm{sym}},
+\qquad
+G_{\mathrm{per}}
+$$
+enforce section anchoring, symmetry, and periodicity;
+$$
+E_j
+$$
+are the simple-root equation residuals;
+$$
+I_{\Sigma,k}
+$$
+are the dual-mollified fold-layer integral residuals; and
+$$
+R_j^x,
+\qquad
+R_j^v
+$$
+are the returned-history sample residuals.
+
+If the route uses interval Newton, a Krawczyk operator, or an equivalent
+interval-collocation enclosure, the candidate-construction certificate should
+prove
+$$
+K(X)\subset \operatorname{int}(X)
+$$
+for a coefficient box
+$$
+X\ni\mathbf a.
+$$
+This inclusion is not a breather theorem and does not replace the pre-ledger. It
+only promotes `candidate data absent` to a finite candidate packet whose
+residuals, pre-ledger rows, branch chart, fold atlas, and returned-sample
+targets can be tested on the same mesh.
+
 ## Candidate Cycle Schema
 
 `phi_cyc.json` should use this top-level shape:

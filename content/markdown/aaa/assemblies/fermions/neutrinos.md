@@ -75,6 +75,15 @@ $$
 \Delta_{ij}=\frac{\Delta\lambda_{ij}L}{4E}.
 $$
 
+The two-basis distinction is part of the recovery target, not optional notation. Weak reactions create and detect flavor-basis states $|\nu_\alpha\rangle$, while propagation follows the eigenbasis $|\nu_i\rangle$ of $H_{\mathrm{geo}}$. In the two-state limit this reduces to the benchmark form
+$$
+P_{\nu_e\to\nu_\mu}(L,E)
+=
+\sin^2(2\theta)\,
+\sin^2\!\left(\frac{\Delta\lambda\,L}{4E}\right),
+$$
+using the same Hamiltonian-eigenvalue gap convention as the three-flavor equation above. Any later conversion to mass-squared language is a comparison-layer unit map; it must not replace the geometric eigenvalue derivation.
+
 Matter correction enters through the medium state:
 $$
 H_{\mathrm{eff}}=H_{\mathrm{geo}}+V_{\mathrm{sea}}(\rho_{\mathrm{sea}}).

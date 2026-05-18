@@ -55,6 +55,68 @@ Specify Noether-Sea state variables used by mapping:
 $(\rho_{\text{core}}, n, \chi_{\text{sea}}, \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{core}}, \Phi, T_{\mathrm{eff}}, J_{\mathrm{loc}})$.
 These variables are mapping handles, not replacement observables.
 
+Magnetic-like observer language belongs at this mapping layer. It is not a substrate force law and is not imported from rotating-frame coordinates. At substrate level each primitive hit remains line-of-action; the magnetic-like transverse channel is the part of the delayed-branch sum that survives after projection perpendicular to the assembly drift and after Noether-Sea anisotropy/vorticity dressing.
+
+For an assembly $A$ with $\|\mathbf{v}_A\|>0$, define
+$$
+\Pi_{\perp}^{ij}(A)
+=
+\delta^{ij}-\hat v_A^i\hat v_A^j,
+\qquad
+\hat{\mathbf{v}}_A=\frac{\mathbf{v}_A}{\|\mathbf{v}_A\|}.
+$$
+
+A minimal transverse-channel map is
+$$
+F_{\perp,A}^{i}(t)
+=
+\Pi_{\perp}^{ij}(A)
+\sum_{k}\sum_{t_0\in\mathcal{C}_{Ak}(t)}
+W_{Ak}\!\left(t;t_0,\mathcal{V}_{\mathrm{NS}},R_A\right)
+\hat r_{Ak,j}(t;t_0).
+$$
+
+The weight $W_{Ak}$ packages the inverse-square causal-wake factor, polarity sign, causal Jacobian, and local Noether-Sea anisotropy/vorticity response. This equation is the allowed bridge to magnetic-like language: transverse force is recovered as a projected consequence of delayed branch geometry plus medium response, not as an independent $\mathbf{v}\times\mathbf{B}$ substrate term.
+
+In this expression, $\mathcal{C}_{Ak}(t)$ is the causal-root set for source branch $k$ acting on assembly $A$, and $\hat r_{Ak,j}$ is the $j$ component of the delayed line-of-action unit vector. The formula therefore preserves the primitive line-of-action law while naming the observer-level transverse projection.
+
+Electromagnetic field variables used in reaction chapters are effective observer/channel variables. They are not imported as substrate ontology. A reaction page that claims electromagnetic recovery should therefore pass an effective EM Gate residual,
+
+$$
+\mathcal{G}_{\mathrm{EM}}
+=
+\left(
+\Delta_{\mathrm{cont}},
+\Delta_E^{\mathrm{EM}},
+\Delta_{\mathbf{p}}^{\mathrm{EM}},
+\Delta_{\mathbf{J}}^{\mathrm{EM}},
+\Delta_{\mathrm{gauge}}
+\right),
+$$
+
+where the continuity component is
+
+$$
+\Delta_{\mathrm{cont}}
+\equiv
+\partial_t\rho_{\mathrm{eff}}
++
+\nabla\cdot\mathbf{J}_{\mathrm{eff}},
+$$
+
+and the gauge component requires every observer-level observable $\mathcal O$ used by the channel to obey
+
+$$
+\Delta_{\mathrm{gauge}}[\mathcal O,\chi]
+\equiv
+\mathcal O[A_{\mu}^{\mathrm{eff}}+\partial_\mu\chi]
+-
+\mathcal O[A_{\mu}^{\mathrm{eff}}]
+=0.
+$$
+
+The energy, momentum, and angular-momentum components are defined by the effective electromagnetic energy-momentum gate in [Radiation](../reactions/radiation.md). A channel passes only when these components vanish in the declared validated limit or when each nonzero term is assigned to a named photon, material, recoil, wake, or remnant row. This keeps Maxwell-level ledgers as recovery tests for channel bookkeeping rather than as primitive Noether-Sea dynamics.
+
 5. **Evaluate wake-strain trigger**
 Compute whether interaction forcing crosses the relevant mode boundary.
 - If below threshold: no mode-lock event, energy routes into transport/heating/scattering channels.
@@ -125,7 +187,7 @@ Observer channels:
 - pair channel: $\gamma + \gamma \rightarrow e^+ + e^-$.
 
 Step map:
-1. Directional magnetic state $B$ is represented as effective Noether-Sea anisotropy/vorticity map $\mathcal{V}_{\mathrm{NS}}$ together with the delayed branch geometry and Jacobian weighting that generate observer-level transverse forcing.
+1. Directional magnetic state $B$ is represented as observer shorthand for the effective Noether-Sea anisotropy/vorticity map $\mathcal{V}_{\mathrm{NS}}$ together with the delayed branch geometry and Jacobian weighting that generate observer-level transverse forcing.
 2. Curved charged-assembly transport drives repeated planar-mode opportunities.
 3. Emitted photons propagate and may enter pair threshold windows in dense radiation zones.
 4. Pair nucleation relocks local substrate content into $e^+e^-$ assemblies with provenance updates.
@@ -208,6 +270,14 @@ $$
 \qquad
 \mathrm{BR}_{\mathrm{map}} \rightarrow \mathrm{BR}_{\mathrm{PDG}}
 $$
+
+For low-energy charged weak processes the same mapping must also recover the contracted current-current limit
+$$
+\mathcal{L}_{\mathrm{map}}^{\mathrm{low}}
+\rightarrow
+-\frac{4G_F}{\sqrt 2}\,J_+^\mu J^-_\mu,
+$$
+with $G_F$ supplied by the electroweak corridor scale rather than by an independent contact parameter. This keeps corridor-mode bookkeeping tied to measured beta-decay and muon-decay limits while leaving the finite $W^\pm$ channel as the higher-energy provenance record.
 
 $$
 \sum Q_{\mathrm{in}}=\sum Q_{\mathrm{out}},

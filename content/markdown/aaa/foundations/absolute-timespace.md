@@ -100,6 +100,22 @@ $$
 
 Covariant derivatives then reduce to ordinary partial derivatives, and spatial geodesics within each slice are straight lines. Nonzero coefficients introduced by rotating or accelerating coordinates are non-inertial descriptions of the same fixed substrate, not background curvature.
 
+### Non-Inertial Coordinate Terms
+
+A rotating coordinate chart can make ordinary motion acquire extra coordinate terms. If $\mathbf{x}=R(t)\mathbf{x}'$ with angular velocity $\boldsymbol{\Omega}$, then the Cartesian-rest-frame acceleration decomposes as
+$$
+\mathbf{a}
+=
+R(t)\left[
+\mathbf{a}'
++2\boldsymbol{\Omega}\times\mathbf{v}'
++\boldsymbol{\Omega}\times(\boldsymbol{\Omega}\times\mathbf{x}')
++\dot{\boldsymbol{\Omega}}\times\mathbf{x}'
+\right].
+$$
+
+The terms proportional to $2\boldsymbol{\Omega}\times\mathbf{v}'$, $\boldsymbol{\Omega}\times(\boldsymbol{\Omega}\times\mathbf{x}')$, and $\dot{\boldsymbol{\Omega}}\times\mathbf{x}'$ are coordinate descriptions on absolute timespace. They do not add curvature to the Euclidean void, and they do not introduce a substrate magnetic field. Their value is diagnostic: they show how transverse-looking observer equations can arise from a choice of non-inertial chart while the underlying substrate remains $\mathbb{R}\times\mathbb{R}^3$ with the selected flat connection in the Euclidean-void rest frame.
+
 ## No Fundamental 4D Metric
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ does **not** define a fundamental non-degenerate 4D metric $g_{\mu\nu}$ on $\mathcal{M}$.
@@ -174,6 +190,25 @@ T=\frac{1}{2}m v^2.
 $$
 
 Forces cause accelerations in the Euclidean void. Time supplies the universal evolution parameter; it does not supply curvature, force, or clock dilation by itself.
+
+The scalar $m$ in the low-velocity observer formula is not a primitive rigid-body constant of the substrate. A rigid-body inertia tensor is a useful foil: in ordinary mechanics it maps a fixed body's angular velocity to angular momentum after a mass distribution has already been supplied. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the corresponding observer-level inertial response must be derived from the assembly's trapped causal history, shielding state, coupling to the Noether Sea, and orientation.
+
+For a coarse-grained assembly $A$, the local linear response may be written as a pair of response maps
+$$
+\delta p_i
+=
+\mathcal{M}^{\mathrm{resp}}_{ij}
+\!\left(A;\mathcal{H}_A,\mathcal{S}_A,\mathcal{N}_A,R_A\right)
+\delta v^j,
+\qquad
+\delta J_i
+=
+\mathcal{I}^{\mathrm{resp}}_{ij}
+\!\left(A;\mathcal{H}_A,\mathcal{S}_A,\mathcal{N}_A,R_A\right)
+\delta\Omega^j.
+$$
+
+Here $\mathcal{H}_A$ denotes the trapped path-history and causal-root ledger of the assembly, $\mathcal{S}_A$ its shielding state, $\mathcal{N}_A$ the local Noether-Sea state sampled by the assembly, and $R_A\in SO(3)$ its orientation relative to the Euclidean-void rest frame. The ordinary scalar mass relation is recovered only in an isotropic observer branch where $\mathcal{M}^{\mathrm{resp}}_{ij}\to m\,\delta_{ij}$ over the probed directions.
 
 ## Galilean Kinematic Structure
 

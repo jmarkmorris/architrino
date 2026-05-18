@@ -26,6 +26,10 @@ This file remains the control surface for strong-field quantitative closure. The
 
 Release-channel accounting consumes the shared [residual-routing event-ledger theorem](../tri-binary-causal-closure/residual-routing-event-ledger.md). This workstream owns the strong-field boundary conditions, label ensemble, channel candidates, and observables; the shared packet owns the general rule that any release route must close $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ without untracked loss or missing remnant state.
 
+## OpenAlex Baseline
+
+[openalex-baseline.md](openalex-baseline.md) records the May 18, 2026 OpenAlex review set for black-hole thermodynamics, information accounting, gravitational-wave observations, horizon imaging, jets, and strong-field tests.
+
 ## Detailed Priority Files
 
 | File | Role | Target $\mathbb{A}\mathbb{A}\mathbb{A}$ notes |
@@ -61,6 +65,7 @@ Black-hole entropy and Page-curve recovery are high-value downstream consistency
 ## Quantitative Targets
 
 - Formulate the embedded horizon-interface condition $F_H[\rho_{\text{core}},\Sigma_{\text{medium}},\mathbf{u}_{\text{medium}},\{\Lambda_{\text{NC}}\};\partial\Omega]=0$ and identify which boundary data are required before observer-level strong-field predictions can be trusted.
+- Use the neutron-star branch as the predecessor radial test for the embedded boundary formulation: for retained radii $0\le r\le R_*$, state when $\Theta_{\mathrm{NS}}(r)=(\rho_{\text{core}},n,\chi_{\text{sea}},\Gamma_N,S_{ij},\mathcal{M}_{\text{sea}}^{ab},\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(\Omega_r)})$ remains a compact non-horizon branch through $0<1-v_O(r)/c_f$, finite $\mathcal{R}_H(\Omega_r)$, closed event ledgers, and candidate packing headroom $0\le s_n(r)\le1$ when a pressure-packing model is used.
 - Derive a stronger observer-level strong-field prediction set.
 - Define the horizon-interface label ensemble $\mathcal{B}_H(M,\mathbf{J},Q)$ together with a local block label family $\mathcal{L}_U^H(\theta)$, then test whether $\lim_{|U|\to\infty}|U|^{-1}\log|\mathcal{L}_U^H(\theta)|\to 1/4$ supplies the area-scaling coefficient.
 - Test any proposed horizon identification by checking that the induced identified ensemble preserves exterior readout distributions, $\mathcal{R}_{H,\mathrm{bal}}$, Page-compatible release, finite boundary data, and the standard Hawking-temperature normalization within declared tolerances.

@@ -112,6 +112,14 @@ The validation gate is therefore:
 - **Mass-gap recovery:** closed pure strong-sector braids must have a finite lowest excitation scale instead of a continuum of arbitrarily soft color modes.
 - **Shared record:** the same Noether-Sea state variables must control tension, screening, and closed-braid excitation energy; otherwise the model has only matched separate QCD-looking observables by retuning.
 
+The compact gauge-invariant diagnostic is inherited from the Wilson-loop test in [Color Charge and SU(3)](../fermions/color-charge-su3.md#closure-interface-confinement-energy-scaling):
+$$
+\left\langle W(C_{R,T})\right\rangle_{\theta}
+\sim
+\exp[-\sigma_{\mathrm{eff}}(\theta)RT]
+$$
+in the confining window. At the assembly level, this says that an open color corridor must accumulate energy proportional to the swept corridor area in the comparison geometry, while a closed singlet branch avoids that open-sector cost. A gluon-corridor story that cannot be read through this gauge-invariant diagnostic has not yet recovered QCD confinement.
+
 ### The Color Singlet (White)
 
 A proton such as $(u_R,u_G,d_B)$ is stable because the three quarks occupy the three exceptional-axis sectors once each; see also [Nucleon Structure](../../nuclear-atomic/nucleon-structure.md) and [Transient Hadrons: Mesons and Δ Resonances](../mesons/mesons.md).

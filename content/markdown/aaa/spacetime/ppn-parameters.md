@@ -107,6 +107,20 @@ When this residual vanishes, Shapiro delay and gravitational clock redshift are 
 * **Architrino Interpretation:** Measures the refractive response of the [Noether Sea](noether-sea.md). A massive body increases local assembly density, slowing the effective signal speed $c_{\text{eff}}(\mathbf{x})$ relative to the asymptotic observer speed $c_0$, while $c_f$ remains the primitive wake speed.
 * **Observable:** Shapiro-delay coefficient in the explicit refractive integral above.
 
+The light-bending half-test makes the same point numerically. A lapse-only weak-field map gives the Newtonian-scale deflection
+$$
+\Delta\theta_{\mathrm{half}}
+=
+\frac{2GM}{b\,c_0^2},
+$$
+while the full GR-matching target is
+$$
+\Delta\theta_{\mathrm{GR}}
+=
+\frac{4GM}{b\,c_0^2}.
+$$
+In the forward projection below, the missing half is precisely the $\gamma_{\text{eff}}$ spatial-compliance contribution. Therefore a constitutive map cannot claim PPN closure by matching Shapiro delay with a scalar delay factor while leaving the ruler/spatial-compliance row undefined.
+
 #### Parameter $\beta$ (Non-linearity of Gravity)
 * **GR Context:** Measures the non-linearity in the superposition of gravitational fields.
 * **Architrino Interpretation:** Captures second-order (in potential) clock/medium response from self-hit and Noether-Sea constitutive nonlinearity.
@@ -225,6 +239,41 @@ and no momentum-density coupling term $w^iV_i$ at the retained PN order.
 
 The coefficients $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ parameterize preferred-frame leakage terms in the weak-field constitutive expansion.
 
+### Preferred-Motion Null-Test Bundle
+
+Historical clock, interferometer, Zeeman-splitting, and gravimeter tests show how many different apparatus types can search for the same preferred-frame leakage without sharing the same dominant nuisance. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this becomes a bundle test on the same drift coefficients, not a set of independent knobs. For an apparatus channel $A$ with orientation $\hat{\mathbf{n}}_A(t)$ and laboratory velocity $\mathbf{w}(t)$ relative to the medium-rest comparison frame, write the leading fractional readout as
+$$
+y_A(t)
+=
+y_{A,0}
++\mathbf{s}_A^{\mathsf T}
+\begin{pmatrix}
+\alpha_1\\
+\alpha_2\\
+\alpha_3
+\end{pmatrix}
+\frac{w^2(t)}{c_0^2}
++\zeta_A
+\frac{
+\left(\mathbf{w}(t)\cdot\hat{\mathbf{n}}_A(t)\right)^2
+-w^2(t)/3
+}{c_0^2}
++n_A(t).
+$$
+Here $\mathbf{s}_A$ is the PPN sensitivity row for the channel, $\zeta_A$ is an allowed apparatus-calibration nuisance fixed by the instrument model, and $n_A$ is detector/environment noise. The shared preferred-frame residual is
+$$
+\mathcal{R}_{\mathrm{PF\text{-}bundle}}
+=
+\sum_A
+\left\|
+y_A^{\mathrm{obs}}-y_A^{\theta}
+\right\|_{C_A^{-1}}^2
++
+\lambda_{\mathrm{PF}}
+\left(\alpha_1^2+\alpha_2^2+\alpha_3^2\right).
+$$
+The bundle fails if one clock or material channel requires a nonzero $\alpha_i$ that another channel excludes, or if the orientation/annual term is hidden in $\zeta_A$ rather than projected through $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$.
+
 ### Weak-Field Constraint Table (Decision Layer)
 
 Use this table to close the constitutive loop against modern benchmarks.
@@ -232,10 +281,10 @@ Use this table to close the constitutive loop against modern benchmarks.
 | Channel | Model estimator | GR/PPN target | Closure requirement |
 | --- | --- | --- | --- |
 | Time nonlinearity | $\beta_{\text{PPN}}$ from $g_{00}$ expansion | $\beta_{\text{PPN}}=1$ | Residual inside ledger tolerance |
-| Space curvature/refraction | $\gamma_{\text{eff}}$ from Shapiro estimator | $\gamma_{\text{PPN}}=1$ | Residual inside ledger tolerance |
+| Space curvature/refraction | $\gamma_{\text{eff}}$ from the shared spatial-compliance row, with Shapiro and lensing as projections | $\gamma_{\text{PPN}}=1$ | Residual inside ledger tolerance |
 | Preferred-frame leakage | $(\alpha_1,\alpha_2,\alpha_3)$ from $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ | all $\approx 0$ | No significant nonzero leakage |
 | Newtonian limit | $\mathbf{a}=-\nabla\Phi_{\text{eff}}$ (weak field) | exact leading-order recovery | No constitutive contradiction |
-| Cross-observable consistency | same constitutive coefficients across delay, redshift, precession, lensing | single-parameter-set closure | No per-observable re-fit |
+| Cross-observable consistency | same constitutive coefficients across delay, redshift, precession, lensing, acceleration, and preferred-frame tests | single-parameter-set closure | No per-observable re-fit |
 
 Numeric pass/fail thresholds are taken from [validation/constraint-ledger.md](../validation/constraint-ledger.md).
 
@@ -258,6 +307,83 @@ Cross-chapter integration:
 - constitutive map source: [spacetime/emergent-metric.md](./emergent-metric.md)
 - clock-law coefficient extraction: [spacetime/proper-time-and-time-dilation.md](./proper-time-and-time-dilation.md)
 - threshold enforcement: [validation/constraint-ledger.md](../validation/constraint-ledger.md)
+
+### ADM/Cartan Extraction Equations
+
+The PPN vector must be extracted from the same ADM/Cartan fields used by the effective metric map, not from observable-specific fits. With $x^0=c_0t$, the line element
+$$
+ds_{\rm eff}^2
+=
+-N^2c_0^2dt^2
++
+\gamma_{ij}
+\left(dx^i-u^i_{\text{sea}}dt\right)
+\left(dx^j-u^j_{\text{sea}}dt\right)
+$$
+gives the observer-sector metric components
+$$
+g_{00}^{\mathrm{eff}}
+=
+-N^2+\frac{\gamma_{ij}u^i_{\text{sea}}u^j_{\text{sea}}}{c_0^2},
+\qquad
+g_{0i}^{\mathrm{eff}}
+=
+-\frac{\gamma_{ij}u^j_{\text{sea}}}{c_0},
+\qquad
+g_{ij}^{\mathrm{eff}}=\gamma_{ij}.
+$$
+
+In the local medium-rest weak-field row, write
+$$
+N
+=
+1-\frac{U_{\Phi}}{c_0^2}
++C_2\frac{U_{\Phi}^2}{c_0^4}
++O(c_0^{-6},\epsilon_{\mathrm{LV}}),
+$$
+and extract
+$$
+\gamma_{\mathrm{PPN}}
+=
+\frac{c_0^2}{2U_{\Phi}}
+\left(
+\frac{h^{ij}\gamma_{ij}}{3}-1
+\right)
++O(U_{\Phi}/c_0^2,\epsilon_{\mathrm{LV}}),
+\qquad
+\beta_{\mathrm{PPN}}-1=C_2-\frac12.
+$$
+The preferred-frame coefficients are the retained drift coefficients in $g_{0i}^{\mathrm{eff}}$ and $g_{00}^{\mathrm{eff}}$ under the $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ expansion above, with
+$$
+\alpha_1=\Xi_1,\qquad
+\alpha_2=\Xi_2,\qquad
+\alpha_3=\Xi_1-\Xi_2-\Xi_3.
+$$
+
+For a declared observation window $W$, the shared weak-field residual can be recorded as
+$$
+\mathbf{r}_{\mathrm{weak}}(\theta;W)
+=
+\begin{pmatrix}
+R_{\mathrm{red}}\\
+R_{\mathrm{Shap}}\\
+R_{\mathrm{lens}}\\
+R_{\mathrm{acc}}\\
+\gamma_{\mathrm{PPN}}-1\\
+\beta_{\mathrm{PPN}}-1\\
+\alpha_1\\
+\alpha_2\\
+\alpha_3
+\end{pmatrix},
+$$
+with
+$$
+R_{\mathrm{acc}}
+=
+\frac{\left\|\frac{d^2\mathbf{x}}{dt^2}+\nabla\Phi_{\text{eff}}\right\|_W}
+{\left\|\nabla\Phi_{\text{eff}}\right\|_W+\varepsilon}.
+$$
+The other residuals are the redshift, Shapiro, and lensing differences computed from the same $\theta$ and the forward projection below. This strengthens the existing decision layer; it is not a separate gate.
 
 ### Numeric Closure Pipeline and Global Objective
 

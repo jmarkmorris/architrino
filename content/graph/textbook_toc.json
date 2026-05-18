@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1175
+      "sections": 1195
     }
   },
   "tocRoot": {
@@ -911,6 +911,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Entropy, Free Energy, and Coarse Residuals",
+                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
+                "markdownSection": "Entropy, Free Energy, and Coarse Residuals",
+                "sectionKey": "entropy free energy and coarse residuals",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Noether Sea, Effective Spacetime, and Energy Storage",
                 "markdownPath": "content/markdown/aaa/dynamics/energy.md",
                 "markdownSection": "Noether Sea, Effective Spacetime, and Energy Storage",
@@ -1293,6 +1301,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "RG-Style Truncation Test",
+                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+                "markdownSection": "RG-Style Truncation Test",
+                "sectionKey": "rg style truncation test",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Reduced-Theorem Target",
                 "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
                 "markdownSection": "Reduced-Theorem Target",
@@ -1518,6 +1534,14 @@
                 "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
                 "markdownSection": "Medium Properties",
                 "sectionKey": "medium properties",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Continuum Balance and Constitutive Closure",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "Continuum Balance and Constitutive Closure",
+                "sectionKey": "continuum balance and constitutive closure",
                 "headingLevel": 2
               },
               {
@@ -2162,6 +2186,14 @@
                   },
                   {
                     "kind": "markdown-section",
+                    "title": "Equivalence-Principle Channels",
+                    "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                    "markdownSection": "Equivalence-Principle Channels",
+                    "sectionKey": "equivalence principle channels",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Preferred-Frame Leakage",
                     "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
                     "markdownSection": "Preferred-Frame Leakage",
@@ -2363,6 +2395,14 @@
                     "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
                     "markdownSection": "Interior Dynamics and Recycling",
                     "sectionKey": "interior dynamics and recycling",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Mass-Scale Traversal",
+                    "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                    "markdownSection": "Mass-Scale Traversal",
+                    "sectionKey": "mass scale traversal",
                     "headingLevel": 2
                   },
                   {
@@ -3395,10 +3435,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "The Higgs Boson ($H$): The Noether-Sea Breathing Mode",
+                "title": "The Higgs Boson ($H$): Scalar Noether-Sea Benchmark",
                 "markdownPath": "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
-                "markdownSection": "The Higgs Boson ($H$): The Noether-Sea Breathing Mode",
-                "sectionKey": "the higgs boson h the noether sea breathing mode",
+                "markdownSection": "The Higgs Boson ($H$): Scalar Noether-Sea Benchmark",
+                "sectionKey": "the higgs boson h scalar noether sea benchmark",
                 "headingLevel": 2
               },
               {
@@ -3855,6 +3895,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Magnetic and Recoil Spectral Benchmarks",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
+                "markdownSection": "Magnetic and Recoil Spectral Benchmarks",
+                "sectionKey": "magnetic and recoil spectral benchmarks",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Spin-Sensitive Spectral Targets",
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
                 "markdownSection": "Spin-Sensitive Spectral Targets",
@@ -3934,6 +3982,30 @@
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
                 "markdownSection": "Noether-Sea Transport",
                 "sectionKey": "noether sea transport",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Lattice and Band-Response Recovery",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
+                "markdownSection": "Lattice and Band-Response Recovery",
+                "sectionKey": "lattice and band response recovery",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Lattice Scattering and Phonon Response",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
+                "markdownSection": "Lattice Scattering and Phonon Response",
+                "sectionKey": "lattice scattering and phonon response",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Hall and Topological Response Benchmarks",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
+                "markdownSection": "Hall and Topological Response Benchmarks",
+                "sectionKey": "hall and topological response benchmarks",
                 "headingLevel": 2
               }
             ]
@@ -4676,6 +4748,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Effective Exchange-State Contract",
+                "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
+                "markdownSection": "Effective Exchange-State Contract",
+                "sectionKey": "effective exchange state contract",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Interfaces",
                 "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
                 "markdownSection": "Interfaces",
@@ -4779,6 +4859,22 @@
                 "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
                 "markdownSection": "Apparatus-Context Guardrail",
                 "sectionKey": "apparatus context guardrail",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Symmetry and Geometric-Phase Guardrails",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+                "markdownSection": "Symmetry and Geometric-Phase Guardrails",
+                "sectionKey": "symmetry and geometric phase guardrails",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Supersymmetric Index Comparison",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+                "markdownSection": "Supersymmetric Index Comparison",
+                "sectionKey": "supersymmetric index comparison",
                 "headingLevel": 2
               },
               {
@@ -5377,6 +5473,14 @@
                 "markdownPath": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
                 "markdownSection": "Source Terms",
                 "sectionKey": "source terms",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Variational Scalar Closure Benchmark",
+                "markdownPath": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
+                "markdownSection": "Variational Scalar Closure Benchmark",
+                "sectionKey": "variational scalar closure benchmark",
                 "headingLevel": 2
               },
               {
@@ -6540,6 +6644,22 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Distance-Growth Coupling Residual",
+                "markdownPath": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
+                "markdownSection": "Distance-Growth Coupling Residual",
+                "sectionKey": "distance growth coupling residual",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Low-Acceleration Scale Coupling",
+                "markdownPath": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
+                "markdownSection": "Low-Acceleration Scale Coupling",
+                "sectionKey": "low acceleration scale coupling",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Cross-Module Interface",
                 "markdownPath": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
                 "markdownSection": "Cross-Module Interface",
@@ -7541,6 +7661,14 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
+                    "title": "Master-Equation Handoff Boundary",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+                    "markdownSection": "Master-Equation Handoff Boundary",
+                    "sectionKey": "master equation handoff boundary",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Certificate Packet Schema",
                     "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
                     "markdownSection": "Certificate Packet Schema",
@@ -7910,6 +8038,14 @@
                 "markdownPath": "content/markdown/aaa/proof-programs/collinear-breather.md",
                 "markdownSection": "Partner-Only Hinge Radius",
                 "sectionKey": "partner only hinge radius",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Prepared Held-Release Benchmark",
+                "markdownPath": "content/markdown/aaa/proof-programs/collinear-breather.md",
+                "markdownSection": "Prepared Held-Release Benchmark",
+                "sectionKey": "prepared held release benchmark",
                 "headingLevel": 2
               },
               {
@@ -10119,6 +10255,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Einstein's 1917 Static World: Closure Before Validation",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Einstein's 1917 Static World: Closure Before Validation",
+                "sectionKey": "einstein s 1917 static world closure before validation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Copenhagen: Multistability Lost to Epistemic Minimalism",
                 "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
                 "markdownSection": "Copenhagen: Multistability Lost to Epistemic Minimalism",
@@ -10131,6 +10275,22 @@
                 "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
                 "markdownSection": "Renormalization Era: Warnings Reframed",
                 "sectionKey": "renormalization era warnings reframed",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Wheeler's Tokyo Program: Particles, Fields, and Direct Action",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Wheeler's Tokyo Program: Particles, Fields, and Direct Action",
+                "sectionKey": "wheeler s tokyo program particles fields and direct action",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Einstein's Abandoned Steady-State Cosmology",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Einstein's Abandoned Steady-State Cosmology",
+                "sectionKey": "einstein s abandoned steady state cosmology",
                 "headingLevel": 2
               },
               {

@@ -90,6 +90,47 @@ Here $N$ is the clock-rate or lapse channel, $u^i_{\text{sea}}$ is medium drift,
 
 This form is the common handoff surface for clock redshift, Shapiro delay, lensing, geodesic motion, photon synchronization, and preferred-frame tests. A scalar speed map alone is therefore not enough for closure: it can support a first Shapiro-delay intuition, but the full PPN burden requires the lapse, drift, and spatial-compliance channels together.
 
+The retained weak-field coefficient map should therefore be expressed at the ADM/Cartan level before observable projections are evaluated. With
+$$
+\delta n\equiv n-1,\qquad
+\delta\chi\equiv\frac{\chi_{\text{sea}}}{\chi_{\text{sea}}(\infty)}-1,
+\qquad
+\varphi\equiv\frac{\Phi_{\text{eff}}}{c_0^2},
+$$
+and with $\sigma_{ij}$ the retained Noether-Sea stress projection, the minimal coefficient scaffold is
+$$
+N
+=
+1
++A_N^n\delta n
++A_N^\chi\delta\chi
++A_N^\Phi\varphi
++Q_N(\delta n,\delta\chi,\varphi,\sigma)
++O(c_0^{-6},\epsilon_{\mathrm{LV}}),
+$$
+$$
+\gamma_{ij}
+=
+h_{ij}
+\left(
+1
++A_\gamma^n\delta n
++A_\gamma^\chi\delta\chi
++A_\gamma^\Phi\varphi
+\right)
++A_{\gamma,\mathrm{tf}}\sigma^{\mathrm{tf}}_{ij}
++O(c_0^{-4},\epsilon_{\mathrm{LV}}),
+$$
+$$
+u^i_{\text{sea}}
+=
+B^i{}_j w^j\frac{U}{c_0^2}
++O(c_0^{-5},\epsilon_{\mathrm{LV}}),
+\qquad
+\gamma_{ij}=\delta_{ab}e^a{}_i e^b{}_j.
+$$
+Here $w^i$ is the medium drift relative to the comparison frame and $U$ is the positive PPN potential. These are not new substrate fields. They are coefficient rows for the observer-level reconstruction. Redshift, Shapiro delay, lensing, weak-field acceleration, and preferred-frame residuals must read from these rows as one shared constitutive record.
+
 A practical consistency check is that those channels must be projections of one shared record of the Noether Sea and the Physical Observer, not independently tuned descriptions. For an observation window $W$, let $\theta$ collect the retained Noether-Sea state, source assemblies, observer clock/ruler state, signal-channel record, apparatus calibration, and boundary wake data. Let
 $$
 \Pi_{\mathrm{clk}}\theta,\qquad
@@ -122,6 +163,103 @@ $$
 \mathcal{S}_{\mathrm{retune}}(\theta)=0.
 $$
 The point is not to add a new spacetime ontology. It is to require the effective metric to behave as one constitutive summary of the same medium and observer record across clocks, rulers, signal propagation, and weak-field gravitational tests.
+
+### Geodesic and Lensing Recovery Benchmarks
+
+The effective metric map must also recover the two standard variational benchmarks consumed by orbital, clock, and light-propagation tests. For timelike records,
+$$
+S_{\mathrm{clk}}
+=
+-m c_0^2
+\int d\tau,
+\qquad
+d\tau
+=
+\frac{1}{c_0}
+\sqrt{-g^{\text{eff}}_{\mu\nu}dx^\mu dx^\nu},
+$$
+and extremizing this observer-level action must give the same weak-field acceleration row used in the PPN bundle,
+$$
+\frac{d^2\mathbf{x}}{dt^2}
+=
+-\nabla\Phi_{\text{eff}}
++O(c_0^{-2}).
+$$
+For null signal records,
+$$
+g^{\text{eff}}_{\mu\nu}dx^\mu dx^\nu=0
+$$
+must match the eikonal path-time extremal of the Noether-Sea signal channel. In the point-mass weak-field limit, the recovered deflection target is
+$$
+\Delta\theta
+=
+2(1+\gamma_{\text{eff}})
+\frac{GM}{b\,c_0^2}
++O(c_0^{-4}),
+$$
+so the GR limit $\gamma_{\text{eff}}=1$ gives $\Delta\theta=4GM/(b\,c_0^2)$. A lapse-only or scalar-delay-only map that supplies only $2GM/(b\,c_0^2)$ has recovered the Newtonian half-test, not the full effective metric. This is why the ADM/Cartan map must carry both the clock/lapse channel and the spatial-compliance channel.
+
+### Lensing-Dynamics Equality Constraint
+
+Hybrid dark-sector comparisons sharpen the metric burden: a modified force law that changes baryonic dynamics must also give the correct lensing potential, or the inferred dynamical mass and lensing mass will disagree. In weak-field comparison language, write the effective metric potentials as
+
+$$
+ds_{\mathrm{eff}}^2
+=
+-\left(1+\frac{2\Phi_{\mathrm{dyn}}}{c_0^2}\right)c_0^2dt^2
++
+\left(1-\frac{2\Psi_{\mathrm{sp}}}{c_0^2}\right)d\mathbf{x}^2.
+$$
+
+Massive slow probes read the dynamical potential $\Phi_{\mathrm{dyn}}$, while weak lensing reads the Weyl combination
+
+$$
+\Phi_{\mathrm{lens}}
+=
+\frac{\Phi_{\mathrm{dyn}}+\Psi_{\mathrm{sp}}}{2}.
+$$
+
+The equality target is therefore
+
+$$
+\Phi_{\mathrm{lens}}
+=
+\Phi_{\mathrm{dyn}}
++O(\epsilon_{\mathrm{lens}}),
+\qquad
+\Psi_{\mathrm{sp}}-\Phi_{\mathrm{dyn}}
+=
+O(\epsilon_{\mathrm{lens}}),
+$$
+
+equivalently $\gamma_{\text{eff}}\equiv\Psi_{\mathrm{sp}}/\Phi_{\mathrm{dyn}}\to1$ in the weak-field lensing regime. A scalar force or medium-response correction that appears only in the clock/lapse channel accelerates matter but under-deflects light. A valid $\mathbb{A}\mathbb{A}\mathbb{A}$ response must project the same Noether-Sea state into the lapse and spatial-compliance channels so that rotation curves, hydrostatic mass, time delay, and lensing consume one effective metric.
+
+For a window $W$, add the lensing-dynamics residual
+
+$$
+\mathcal{R}_{\mathrm{lens=dyn}}(\theta;W)
+=
+\left\|
+\nabla\Phi_{\mathrm{dyn}}^\theta
+-
+\nabla\Phi_{\mathrm{dyn}}^{\mathrm{obs}}
+\right\|_{C_{\mathrm{dyn}}^{-1}}^2
++
+\left\|
+\nabla\Phi_{\mathrm{lens}}^\theta
+-
+\nabla\Phi_{\mathrm{lens}}^{\mathrm{obs}}
+\right\|_{C_{\mathrm{lens}}^{-1}}^2
++
+\lambda_\gamma
+\left\|
+\gamma_{\text{eff}}^\theta-1
+\right\|_W^2
++
+\lambda_{\mathrm{shared}}\mathcal{S}_{\mathrm{retune}}(\theta).
+$$
+
+This residual belongs to the effective-metric closure program, not to dark-sector ontology by itself. It is the condition that lets a medium-response explanation of galaxy or cluster dynamics remain compatible with the same lensing map.
 
 ### Matter-Channel Compatibility Target
 
@@ -198,6 +336,29 @@ That comparative point fits $\mathbb{A}\mathbb{A}\mathbb{A}$ cleanly:
 - and relativistic metric behavior is the long-wavelength thermodynamic closure of that microstructure.
 
 On this reading, quantizing the effective metric directly is not the primary move. The primary move is to understand and simulate the microphysical medium well enough that GR-like geometry emerges as its coarse constitutive summary.
+
+The spacetime-condensate comparison makes the same point in hydrodynamic language. If $g_{\mu\nu}^{\mathrm{eff}}$ is a collective variable, then a long-wavelength quantized-metric calculation is analogous to quantizing a collective mode. The missing microscopic question is the coarse-graining map
+$$
+\Pi_{\mathrm{hydro}}:
+\left(
+S(t),\mathcal{H}_{\Omega}^{W},\Theta_{\mathrm{sea}}
+\right)
+\longrightarrow
+g_{\mu\nu}^{\mathrm{eff}},
+$$
+and the residual
+$$
+\mathcal{R}_{\mathrm{hydro}\to g}(\theta)
+=
+\frac{
+\left\|
+g_{\mu\nu}^{\mathrm{eff}}(\theta)
+-
+\Pi_{\mathrm{hydro}}[S(t),\mathcal{H}_{\Omega}^{W},\Theta_{\mathrm{sea}}]
+\right\|
+}{\epsilon_g}.
+$$
+This residual is not a new gate; it states the existing constitutive burden in a form that separates collective-mode recovery from microscopic derivation.
 
 This does not license dismissing low-energy quantized-metric calculations. In the long-distance regime, the effective-field-theory treatment of GR separates unknown high-energy local terms from calculable infrared corrections. $\mathbb{A}\mathbb{A}\mathbb{A}$ should preserve that result as an observer-level recovery benchmark: the microscopic account may differ, but the weak-field constitutive record must reproduce the same long-distance quantum correction when its variables are coarse-grained into the effective metric description.
 
@@ -390,6 +551,8 @@ Together with $\sum_{P_a\in\mathcal{P}_{\partial\Omega}}A_{\mathrm{eff}}(P_a)\to
   - Light and free-falling matter appear to move along curved paths (geodesics) of an effective metric $g^{\text{eff}}_{\mu\nu}$.
   - Shapiro delay, light bending, and perihelion precession become **refractive-medium effects** rather than curvature of the void itself.
 
+A flat-space refraction analogy is therefore useful only when it is kept at the correct level. A scalar $c_{\text{eff}}(x)$ or scalar refractive-index map can encode a first signal-path delay, but it is not by itself an effective metric. GR/PPN recovery requires the same Noether-Sea record to determine the lapse $N$, drift $u^i_{\text{sea}}$, frame field $e^a{}_i$, and spatial compliance $\gamma_{ij}$, so clock, ruler, and signal projections cannot be tuned as separate channels.
+
 The core task of this document will be to:
 
 1. Specify the functional dependence of $g^{\text{eff}}_{\mu\nu}(x)$ on:
@@ -457,13 +620,13 @@ $$
 
 This is the concrete first-order realization of
 $$
-(h_{ij},n,\chi_{\text{sea}},\text{stress},\Phi_N)
+(h_{ij},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{stress})
 \mapsto
-(N,u^i_{\text{sea}},\gamma_{ij})
+(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij})
 \mapsto
 g^{\text{eff}}_{\mu\nu},
 $$
-with $\gamma_{\text{eff}}$ the observable refraction/space-curvature coefficient to be fitted from Shapiro-delay data. Implementation of the corresponding one-way delay integral is given in [ppn-parameters](./ppn-parameters.md#explicit-weak-field-noether-sea-delay-map-ppn-gamma).
+with $\gamma_{\text{eff}}$ the observer-level refraction/spatial-compliance coefficient extracted from the same constitutive record whose Shapiro-delay and lensing projections are tested in [ppn-parameters](./ppn-parameters.md#explicit-weak-field-noether-sea-delay-map-ppn-gamma).
 
 ## Closure Program Interface (metric constitutive map)
 
@@ -484,8 +647,10 @@ Distribute proof obligations as:
 
 Minimal closure condition:
 1. Eikonal path-time extremals in the refractive picture match null geodesics of $g^{\text{eff}}_{\mu\nu}$ in weak field.
-2. The same $N$, $u^i_{\text{sea}}$, and $\gamma_{ij}$ coefficients predict Shapiro delay, lensing, redshift, and preferred-frame residuals without re-fitting per observable.
+2. The same $N$, $u^i_{\text{sea}}$, $e^a{}_i$, and $\gamma_{ij}$ coefficients predict Shapiro delay, lensing, redshift, weak-field acceleration, and preferred-frame residuals without re-fitting per observable.
 3. The long-distance GR-EFT correction to weak gravity is recovered from the same constitutive record, without treating the effective metric as microscopic ontology.
+
+A proposed recovery that supplies only $c_{\text{eff}}(\mathbf{x})$ or $\chi_{\text{sea}}(\mathbf{x})$ therefore closes only a refractive signal model. It becomes a metric recovery candidate only after that scalar row is embedded in one shared clock/ruler/signal map for $N$, $u^i_{\text{sea}}$, $e^a{}_i$, and $\gamma_{ij}$.
 
 ## Weak-Field Geodesic Handoff (ADM Constitutive Subclass)
 

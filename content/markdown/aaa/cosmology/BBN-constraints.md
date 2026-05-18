@@ -83,6 +83,46 @@ $$
 
 The reaction bookkeeping is unchanged; the $\mathbb{A}\mathbb{A}\mathbb{A}$ shift is the background interpretation that sets temperature, density, and freeze-out timing.
 
+For a local-reactor, recycling, or compact-object comparison branch, the network also needs a source-channel energy partition. Let $s$ label source channels and let $E_s^\theta$ be the energy carried into the declared BBN window by baryons, photons, neutrino-sector excitations, compact-object release, or Noether-Sea work terms. The branch supplies an acceptable thermal record only if
+$$
+E_{\mathrm{in}}^\theta
+=
+\sum_s E_s^\theta,
+\qquad
+\boldsymbol{\eta}_{\mathrm{BBN}}^\theta
+=
+\left(
+\eta_{b\gamma}^\theta,\,
+N_{\mathrm{eff}}^\theta,\,
+\frac{n_n^\theta}{n_p^\theta},\,
+\frac{s_\gamma^\theta}{n_b^\theta}
+\right)
+$$
+is propagated through the same source window that produces the yields. A source story that changes the photon loading, neutron fraction, entropy per baryon, or relativistic-species count independently of the light-element network has not supplied a BBN mechanism; it has assigned separate knobs to the outputs.
+
+The standard freeze-out scalings should remain explicit because they are the hard targets for any SMBH-local or transport-cooling replacement. In a radiation-dominated comparison packet,
+$$
+t
+\approx
+\frac{2.4\ \mathrm{s}}{\sqrt{g_*}}
+\left(\frac{1\ \mathrm{MeV}}{k_BT}\right)^2,
+$$
+where $g_*$ is the effective relativistic-species loading. The neutron-to-proton ratio follows the equilibrium estimate
+$$
+\frac{n_n}{n_p}
+\approx
+\exp\!\left(-\frac{\Delta m\,c_0^2}{k_BT}\right)
+$$
+until weak reactions fall out of equilibrium. Deuterium survival is delayed by the high photon loading; a schematic bottleneck condition is
+$$
+\frac{n_D}{n_p}
+\sim
+\eta
+\left(\frac{k_BT}{m_p c_0^2}\right)^{3/2}
+\exp\!\left(\frac{E_D}{k_BT}\right),
+$$
+with $E_D$ the deuterium binding energy and $\eta$ the baryon-to-photon ledger variable. These equations are observer-level benchmarks for the thermal record. A native local-reactor branch may reinterpret where the history occurs, but it must reproduce the same freeze-out, deuterium-bottleneck, $Y_p$, D/H, lithium, $\eta$, and $N_{\text{eff}}$ residuals without fitting them in separate source zones.
+
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ SMBH-Local Nucleation Chain
 
 The BBN story is one continuous mechanism:
@@ -151,6 +191,24 @@ The branch may remain in the comparison ledger only when $\mathcal{R}_{\mathrm{B
 
 The $\eta_X$ term is the BBN-facing projection of the matter-asymmetry ledger in [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md#matter-asymmetry-provenance). It should be computed from transported baryon, antibaryon, and photon event records over the declared source window, not assigned independently after the yields are fit.
 
+The branch must also carry a nucleosynthesis exposure record, because light-element abundances are not an equilibrium imprint of one temperature-density point. They are the arrested output of a coupled reaction network along a cooling history. For each source channel $s$, define
+$$
+\mathcal{E}_{i,s}^X
+=
+\int_{\tau_{\mathrm{on},s}}^{\tau_{\mathrm{off},s}}
+n_n^X(\tau,s)\,
+\langle\sigma v_{\mathrm{rel}}\rangle_{i,n}^X(T(\tau,s),\rho(\tau,s))\,
+d\tau,
+$$
+and require the yield vector to be computed as $\mathbf{Y}_{\mathrm{BBN}}^X=\mathbf{Y}[\{T,\rho,n_b,n_\gamma,n_n,\mathcal{E}_{i,s}^X\}]$ over the same source-window record used for $\eta_X$ and $N_{\text{eff}}$. The corresponding exposure closure term is
+$$
+\mathcal{R}_{\mathrm{exp},X}
+=
+\max_i
+\frac{|\mathcal{E}_{i,\mathrm{eff}}^X-\mathcal{E}_{i,\mathrm{BBN}}^{\mathrm{obs}}|}{\epsilon_{\mathcal{E}_i}},
+$$
+where $\mathcal{E}_{i,\mathrm{eff}}^X$ is the channel-weighted exposure reaching the BBN comparison surface. A SMBH-local or fixed-void replacement branch fails this gate if it matches final D/H, $Y_p$, or lithium while its integrated exposure requires a different density-temperature timing record than the one used for photon loading, weak freeze-out, and the CMB handoff.
+
 Compact-object comparison branches add a sharper injection test. If the branch contains a small-mass tail with late release near the BBN window, record the injected spectrum as
 $$
 \mathcal{I}_X(E,t)
@@ -159,6 +217,20 @@ $$
 \Gamma_{\mathrm{release}}^X(E,t;M)\,dM,
 $$
 where $\psi_X(M,t)$ is the branch mass function and $\Gamma_{\mathrm{release}}^X$ is the Hawking-like or native release channel being compared. The yield shifts $\Delta\mathbf{Y}_{\mathrm{BBN}}^X$ must be computed from $\mathcal{I}_X$ and the same thermal, photon-loading, neutrino, and Noether-Sea state used elsewhere in the BBN gate. A branch that uses late energetic injection to repair one isotope while changing $\eta_X$, $N_{\text{eff}}$, or the CMB handoff independently is a failed comparison branch, not a promoted source mechanism.
+
+If the compact branch evaporates, releases, or otherwise injects energy before or during the BBN window, the sharper residual is
+$$
+\mathcal{R}_{\mathrm{evap},X}
+=
+\max\left(
+\frac{\|\Delta\mathbf{Y}_{\mathrm{BBN}}^X\|_{C_Y^{-1}}}{\epsilon_Y},
+\frac{|\Delta N_{\text{eff}}^X|}{\epsilon_N},
+\frac{|\Delta\eta_X|}{\epsilon_\eta},
+\frac{\|\Delta f_\gamma^X(E,t)\|}{\epsilon_\gamma},
+\frac{\|\Delta f_\nu^X(E,t)\|}{\epsilon_\nu}
+\right).
+$$
+Here $\Delta f_\gamma^X$ and $\Delta f_\nu^X$ are photon- and neutrino-sector spectral distortions induced by the release history. This term keeps primordial-compact-object comparisons as constraints on a shared thermal history rather than a license to import compact objects as an explanatory ontology.
 
 ## Observable-Mapping Goals (Interpretation-Scoped)
 

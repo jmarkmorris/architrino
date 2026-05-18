@@ -127,6 +127,66 @@ after source, endpoint, and launch factors have been removed. The expected sign 
 
 The operational version of this diagnostic is the frame-split packet in [Cosmology Shared Residual Fit Protocol](../validation/simulations/cosmology-shared-residual-fit.md#frame-split-measurement-recipe), where local $H_0$ scatter is tested beside CMB, matter-dipole, supernova, and BAO directional rows.
 
+## Distance-Growth Coupling Residual
+
+The $H_0$ and $S_8$ tests should share the same effective distance and growth coefficients. For the low-redshift distance side, retain the expansion
+$$
+d_L(z)
+=
+\frac{c_0}{H_{0,\mathrm{eff}}}
+\left[
+z+\frac12(1-q_{0,\mathrm{eff}})z^2+O(z^3)
+\right],
+$$
+where $H_{0,\mathrm{eff}}$ and $q_{0,\mathrm{eff}}$ are coefficients of the corrected redshift-transfer map. For the growth side, retain
+$$
+f\sigma_8(z,k)
+=
+\frac{d\ln D(z,k)}{d\ln a_{\mathrm{eff}}}\,
+\sigma_8(z,k),
+\qquad
+S_8=\sigma_8\sqrt{\Omega_m/0.3}.
+$$
+A compact shared-state diagnostic is
+$$
+\mathcal{R}_{H_0S_8}(\theta_{\mathrm{sea}})
+=
+\mathcal{R}_{d_L}(\theta_{\mathrm{sea}})
++\mathcal{R}_{f\sigma_8}(\theta_{\mathrm{sea}})
++\lambda_{\mathrm{shared}}
+d_{\mathrm{shared}}\!\left(
+\Pi_{\mathrm{dist}}\theta_{\mathrm{sea}},
+\Pi_{\mathrm{growth}}\theta_{\mathrm{sea}}
+\right).
+$$
+A distance improvement that raises the shared-state penalty or worsens $f\sigma_8$ is therefore not a resolution of the tension pair. It is a sign that the fit has separated the background and growth projections.
+
+## Low-Acceleration Scale Coupling
+
+MOND-like comparison models often expose a numerical proximity between a galaxy acceleration scale and an effective Hubble scale. In this ontology that proximity is not a derivation. It becomes useful only when it is tested as a shared Noether-Sea projection connecting distance transfer, growth, and nonlinear dark-sector response.
+
+Let $a_\star(E)$ denote the observer-level acceleration transition extracted from environment class $E$, such as disc galaxies or clusters. Let $H_{\mathrm{eff}}^\theta(t)$ be the corrected redshift-transfer coefficient from the same medium-state record. A minimal coupling diagnostic is
+
+$$
+\mathcal{R}_{aH}(\theta_{\mathrm{sea}})
+=
+\sum_E
+\left|
+\log
+\frac{
+a_\star(E)
+}{
+\alpha_E c_0 H_{\mathrm{eff}}^\theta(t_E)
+}
+\right|
++
+\lambda_H\mathcal{R}_{H_0S_8}(\theta_{\mathrm{sea}})
++
+\lambda_{\mathrm{cl}}\mathcal{R}_{\mathrm{cl/gal}}(\theta_{\mathrm{sea}}),
+$$
+
+where $\alpha_E$ is a declared comparison coefficient rather than a fitted afterthought. The cluster-versus-galaxy term $\mathcal{R}_{\mathrm{cl/gal}}$ records whether the same Noether-Sea state explains any required difference between galaxy-scale and cluster-scale acceleration thresholds. A branch that fits galaxy rotation curves with one $a_\star$, cluster gas with another, and the $H_0/S_8$ pair with a third effective history has not linked the tensions; it has split the medium record.
+
 ## Cross-Module Interface
 
 In the modular cosmology map, this document is the coupling layer between:

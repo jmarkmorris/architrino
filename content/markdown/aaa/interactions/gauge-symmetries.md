@@ -60,6 +60,83 @@ $$
 
 with $\mathcal{R}_{\mathrm{null}}$ defined in [Failure Criteria](../validation/failure-criteria.md#null-result-residual-for-added-channels). Thus larger group unification, supersymmetry, Kaluza-Klein-style geometry, and similar constructions remain comparison frameworks unless an $\mathbb{A}\mathbb{A}\mathbb{A}$ branch record recovers the observed gauge sector while also suppressing every added observable channel from the same shared state variables.
 
+### Gauge Redundancy and Anomaly Ledger
+
+The effective gauge variables are redundant coordinates on an observer-level record. In the bridge theory, a gauge transformation must move within one physical equivalence class rather than between two distinct substrate states:
+$$
+A_\mu\sim A_\mu+\partial_\mu\alpha,\qquad
+W_\mu\sim U W_\mu U^{-1}+\frac{i}{g_2}U\partial_\mu U^{-1},
+\qquad
+G_\mu\sim V G_\mu V^{-1}+\frac{i}{g_3}V\partial_\mu V^{-1}.
+$$
+This is why the chapter treats $A_\mu,W_\mu,G_\mu$ as effective connections. The substrate burden is not to find primitive gauge fields, but to recover one gauge-invariant record of forces, phases, holonomies, and charge ledgers from causal-wake and assembly histories.
+
+Global symmetries and gauge redundancies have different tests. For a genuine global transformation $\delta\Psi=\epsilon X(\Psi)$, the regularized effective action gives a Noether current through
+$$
+\delta S_{\mathrm{eff}}
+=
+-\int d^4x\,\epsilon(x)\,\partial_\mu J^\mu,
+\qquad
+\partial_\mu J^\mu=0
+$$
+on solutions. In the quantum/effective bridge this becomes a Ward-identity recovery target for the coarse-grained generating functional. A local gauge redundancy, by contrast, is acceptable only if the unphysical directions are quotiented out and no anomalous gauge variation remains.
+
+The anomaly ledger for a candidate branch record $\theta$ is therefore
+$$
+\mathcal{A}_{\mathrm{gauge}}(\theta)
+=
+\left(
+\mathcal{A}_{[SU(3)_c]^3},
+N_{2,\mathrm{Weyl}}\bmod 2,
+\mathcal{A}_{[SU(3)_c]^2U(1)_Y},
+\mathcal{A}_{[SU(2)_L]^2U(1)_Y},
+\mathcal{A}_{[U(1)_Y]^3},
+\mathcal{A}_{[\mathrm{grav}]^2U(1)_Y}
+\right)_\theta .
+$$
+For the Standard Model recovery gate this vector must equal
+$$
+\mathcal{A}_{\mathrm{gauge}}(\theta)=(0,0,0,0,0,0).
+$$
+The second entry is the non-perturbative $SU(2)$ Witten check: the number of left-handed $SU(2)$ doublets must be even. Global anomalies that are part of known physics, such as axial-current violation and pion-to-photon anomaly matching, may be retained as observer-level recovery targets, but a gauge anomaly is a consistency failure rather than an optional correction.
+
+### Running-Coupling Bridge
+
+The standard high-energy plot of $U(1)_Y$, $SU(2)_L$, and $SU(3)_c$ interaction strengths is read here as a scale-dependent effective gauge record, not as evidence that three substrate fields literally merge. The $SU(3)_c$ curve tests how color axis-exceptionality transport is exposed at short causal-wake and assembly scales. The $SU(2)_L$ curve tests the exposed weak-coupling-triad channel. The $U(1)_Y$ curve tests the hypercharge/electromagnetic bookkeeping before electroweak mixing. A candidate branch record must therefore output the running vector
+
+$$
+\mathbf{g}_{\mathbb{A}\mathbb{A}\mathbb{A}}(\mu;\theta)
+=
+\bigl(
+g_1(\mu;\theta),
+g_2(\mu;\theta),
+g_3(\mu;\theta),
+\theta_W(\mu;\theta)
+\bigr),
+$$
+
+where $\mu$ is the observer-level probe scale and $\theta$ is the retained branch and constitutive record. The term $d_{\mathrm{run}}$ measures the distance between this output and the observed running record across a declared scale window; it is not permission to fit each sector independently at one reference energy.
+
+Near-convergence at high scale may be tracked as a comparison diagnostic by
+
+$$
+\Delta_{\mathrm{meet}}(\theta)
+=
+\inf_{\mu\in W_{\mathrm{run}}}
+\max_{i,j\in\{1,2,3\}}
+\left|
+\alpha_i^{\mathbb{A}\mathbb{A}\mathbb{A}}(\mu;\theta)
+-
+\alpha_j^{\mathbb{A}\mathbb{A}\mathbb{A}}(\mu;\theta)
+\right|,
+\qquad
+\alpha_i^{\mathbb{A}\mathbb{A}\mathbb{A}}(\mu;\theta)
+=
+\frac{g_i^2(\mu;\theta)}{4\pi}.
+$$
+
+This diagnostic is subordinate to $d_{\mathrm{run}}$ and $\mathcal{R}_{\mathrm{null}}$. A small $\Delta_{\mathrm{meet}}$ does not promote a grand-unified container unless the same branch record recovers the observed low-energy gauge record, reproduces the scale dependence, and explains the absence of mirror matter, superpartners, proton-instability channels, extra gauge bosons, hidden transport modes, and other non-baseline outputs in the tested regime.
+
 For a proposed symmetry container $C$, a compact audit form is
 $$
 \mathcal{R}_{\mathrm{container}}(\theta;C)

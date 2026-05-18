@@ -255,6 +255,60 @@ The second closure target is gravitational spectral shift. A viable account shou
 
 For the medium-level gravitational side of that program, see [Emergent Metric](../spacetime/emergent-metric.md) and [Black Holes](../spacetime/black-holes.md).
 
+## Magnetic and Recoil Spectral Benchmarks
+
+External magnetic spectra should be treated as recovery benchmarks for the same effective U(1) connection used by radiation and material-response closure. In a weak homogeneous magnetic branch, the observer-level Landau comparison asks for an effective cyclotron spacing
+
+$$
+\Delta E_{\mathrm{LL}}
+=
+\hbar\omega_c,
+\qquad
+\omega_c
+=
+\frac{eB}{m_*},
+$$
+
+where $m_*$ is the material or envelope effective mass when the electron assembly is in a branch environment. This is not a primitive Lorentz-force postulate. It is a test that the envelope branch, effective magnetic-state map, and exposed mass response combine to reproduce the standard spacing in the validated limit.
+
+Zeeman splitting should remain downstream of the spin ledger, but it gives a useful coefficient target:
+
+$$
+\Delta E_Z
+=
+g_{\mathrm{eff}}\mu_B B.
+$$
+
+The closure burden is to derive $g_{\mathrm{eff}}$ from the completed internal spinor ledger, material branch, and measurement-response model rather than assigning a free spin label. In isolated-atom comparisons this protects fine, hyperfine, and Zeeman recovery from being fitted independently of the base spectral envelope.
+
+Nuclear recoil-free resonant absorption supplies a separate material-coupled benchmark. For a photon of energy $E_\gamma$ absorbed by a free atom of mass $M$, the observer-level recoil scale is
+
+$$
+E_{\mathrm{recoil}}
+=
+\frac{E_\gamma^2}{2Mc_0^2}.
+$$
+
+In a solid branch, a recoil-free event is allowed only when the momentum is routed coherently through the material branch with no phonon occupation change in the relevant channel. In ledger form,
+
+$$
+\Delta E_{\gamma}
+=
+\Delta E_{\mathrm{nuc}}
++
+\Delta E_{\mathrm{recoil}}
++
+\Delta E_{\mathrm{lat}},
+\qquad
+\Delta E_{\mathrm{lat}}
+=
+\sum_s\int_{\mathrm{BZ}}
+\frac{d^3k}{(2\pi)^3}
+\hbar\omega_s(\mathbf k)\Delta N_s(\mathbf k).
+$$
+
+The recoil-free spectral line is the branch with $\Delta N_s(\mathbf k)=0$ for the emitted or absorbed channel and with recoil assigned to the coherent material response rather than to a single free nucleus. This benchmark connects atomic spectra to [Condensed Matter](condensed-matter.md#lattice-scattering-and-phonon-response) without turning the lattice into a new nuclear source.
+
 ## Spin-Sensitive Spectral Targets
 
 After the base resonance and clock/rate program is stable, the spin-sensitive spectrum should be revisited as a validation surface for the completed angular-momentum ledger. Fine-structure and spin-orbit terms must distinguish observer-level orbital angular momentum from internal Noether-core spinor behavior. Hyperfine terms must add the nuclear spin ledger without treating proton or neutron spin decomposition as already closed. Zeeman and related analyzer-response cases must use the finite-time measurement-response model rather than inserting preassigned spin labels.

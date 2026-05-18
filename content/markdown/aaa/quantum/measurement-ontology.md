@@ -107,6 +107,42 @@ F_{\mathrm{tot}}(\Gamma_{\mathrm{tot}}),
 $$
 not a splice between quantum dynamics on the target side and a separate classical-observer dynamics on the apparatus side. A human observer, laboratory notebook, or downstream database is therefore another possible record-bearing assembly, not an ontologically privileged endpoint of the measurement.
 
+When the environment is compressed to an open-system map, the compression must declare its memory assumption. A standard trace-preserving completely positive comparison map has Kraus form
+$$
+\rho\mapsto\mathcal{L}[\rho]
+=
+\sum_m M_m\rho M_m^\dagger,
+\qquad
+\sum_m M_m^\dagger M_m=I.
+$$
+A differential Lindblad comparison is admissible only after the environment correlation time $\tau_{\mathrm{env}}$ is short compared with the retained record window. In that regime the benchmark generator has the form
+$$
+\partial_t\rho
+=
+-\frac{i}{\hbar}[H,\rho]
++
+\sum_m
+\left(
+L_m\rho L_m^\dagger
+-
+\frac{1}{2}L_m^\dagger L_m\rho
+-
+\frac{1}{2}\rho L_m^\dagger L_m
+\right).
+$$
+The native residual is a memory check, not a demand that the substrate be Markovian:
+$$
+\mathcal{R}_{\mathrm{open}}(\theta)
+=
+\max\left(
+\frac{\tau_{\mathrm{env}}}{T_{\mathrm{rec}}},
+\frac{\left\|\mathcal{T}_{t_0\to t_2}^{\mathcal{Q}}-\mathcal{T}_{t_1\to t_2}^{\mathcal{Q}}\mathcal{T}_{t_0\to t_1}^{\mathcal{Q}}\right\|_{\mathrm{TV}\to\mathrm{TV}}}{\varepsilon_{\mathrm{div}}},
+\frac{\left\|\partial_t\rho_{\mathrm{rec}}-\mathcal{L}_{\mathrm{Lind}}[\rho_{\mathrm{rec}}]\right\|}{\varepsilon_L}
+\right)
+\le 1.
+$$
+If the first two terms are large, a Kraus or Lindblad description may remain a useful short-time fit, but it has not earned a restartable measurement state. This matches the $\mathbb{A}\mathbb{A}\mathbb{A}$ distinction between a completed record and a reduced description that has discarded live path-history memory.
+
 ## Physical-Record Import Consistency
 
 The same rule applies when one Physical Observer records another Physical Observer's conclusion. A statement such as "observer $O_j$ is certain that record $R_k$ will occur" is not free-standing knowledge. For observer $O_i$, it is a physical communication or memory record inside $O_i$'s retained apparatus and access region. Let $C_{j\to i,k}$ denote that imported-certainty record in the declared channel for $O_i$, and let $\theta_i$ be the corresponding observer model record. With the same finite-time basin measure used for the measurement channel, write
@@ -201,6 +237,118 @@ $$
 The unresolved interval $\tau_{\mathrm{rec}}-\tau_{\mathrm{split}}$ is a validation target for a concrete apparatus model. It is not a new collapse law and not a substrate-level consciousness event. It names the window in which an effective wavefunction may need to carry multiple alternatives while the ontology still owes a finite-time record-forming transition.
 
 Because this definition is windowed, it does not require a global decision procedure for every future trajectory question. The measurement claim is narrower: within a declared apparatus kernel, coarse-graining, access region, and record window, the coupled dynamics either reaches a recordable basin satisfying the residual tests or remains unresolved. Unbounded reachability questions for the same dynamical law belong to a separate theorem class and should not be treated as prerequisites for ordinary record formation.
+
+### Basin-Update Equation
+
+The standard projection rule can be retained as an effective update only after the physical record has already formed. Let $\mu_{0,\theta}$ be the preparation measure for a declared measurement channel $\theta=(\mathcal{K}_A,\mathcal{Q},W,T)$, and let
+$$
+\nu_{\tau_{\mathrm{rec}}}
+=
+\left(\Phi_{\tau_{\mathrm{rec}}-t_0}^{\mathrm{tot}}\right)_*\mu_{0,\theta}
+$$
+be the pushed-forward ensemble at the record time. If the completed record is the basin $B_k^{\mathrm{rec}}(\theta)$ and its measure is nonzero, then the native post-record update is conditionalization on the realized basin:
+$$
+\mu_{\theta,k}^{+}(B)
+=
+\frac{
+\nu_{\tau_{\mathrm{rec}}}\!\left(B\cap B_k^{\mathrm{rec}}(\theta)\right)
+}{
+\nu_{\tau_{\mathrm{rec}}}\!\left(B_k^{\mathrm{rec}}(\theta)\right)
+}.
+$$
+This is not a new stochastic law. It is the observer's effective ensemble after the deterministic apparatus-target flow has crossed the separatrix, locked the record, and passed the record-autonomy tests.
+
+Let $\mathcal{E}_\theta$ denote the effective wavefunction extraction map for the same retained chart. The wavefunction update is then a derived description,
+$$
+\psi_\theta^{-}
+=
+\mathcal{E}_\theta(\nu_{\tau_{\mathrm{split}}}),
+\qquad
+\psi_{\theta,k}^{+}
+=
+\mathcal{E}_\theta(\mu_{\theta,k}^{+}).
+$$
+In subsystem language this is the measurement analogue of a conditional or effective wavefunction. If a total extracted state is written on a target-apparatus chart as $\Psi_{\mathrm{tot}}(x_S,y_A,t)$ and the apparatus record has entered the basin coordinate $Y_{A,k}$, the comparison update has the schematic form
+$$
+\psi_{S,k}^{\mathrm{cond}}(x_S,t)
+=
+\mathcal{N}_k
+\Psi_{\mathrm{tot}}(x_S,Y_{A,k},t),
+$$
+with normalization $\mathcal{N}_k$ fixed after the record exists. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a primitive collapse event. It is the effective description extracted from the basin-conditioned measure $\mu_{\theta,k}^{+}$ after the apparatus has produced a persistent record.
+
+For a non-degenerate operator benchmark with eigenstate $\phi_k$, the recovery target is
+$$
+\inf_{\alpha_k\in\mathbb{R}}
+\left\|
+\psi_{\theta,k}^{+}
+-
+e^{i\alpha_k}\phi_k
+\right\|_{\mathcal{H}_\theta}
+\le
+\varepsilon_{\mathrm{upd}}.
+$$
+For a degenerate outcome $\lambda$, with projector $\Pi_\lambda$, the corresponding target is
+$$
+\inf_{\alpha_\lambda\in\mathbb{R}}
+\left\|
+\psi_{\theta,\lambda}^{+}
+-
+e^{i\alpha_\lambda}
+\frac{\Pi_\lambda\psi_\theta^{-}}{\|\Pi_\lambda\psi_\theta^{-}\|_{\mathcal{H}_\theta}}
+\right\|_{\mathcal{H}_\theta}
+\le
+\varepsilon_{\mathrm{upd}},
+$$
+whenever the denominator is nonzero. This equation is the measurement-basin version of the textbook projection rule: first the coupled physical system selects and records a basin, then the observer-level wavefunction is updated to the corresponding effective eigenspace.
+
+Generalized measurements sharpen this requirement because the observer-level measurement record is not always projective. A calibrated record channel may be represented by a POVM $\{E_m\}$ with
+$$
+E_m=E_m^\dagger,\qquad E_m\ge0,\qquad \sum_m E_m=I,
+$$
+and an instrument choice $\{M_m\}$ satisfying
+$$
+E_m=M_m^\dagger M_m,
+\qquad
+\sum_m M_m^\dagger M_m=I.
+$$
+The comparison probabilities and conditional updates are
+$$
+p_m=\operatorname{Tr}(\rho E_m),
+\qquad
+\rho\mapsto\rho_m^+
+=
+\frac{M_m\rho M_m^\dagger}{p_m}.
+$$
+At the probability level, the native record map should first recover the POVM outcome distribution before any operator is treated as a valid comparison label:
+$$
+\Delta_{\mathrm{POVM}}^\theta
+=
+\sup_{\|\psi\|=1}
+d_{\mathrm{TV}}\!\left(
+P_{\mathrm{rec}}^{\theta}(\cdot\mid\psi),
+\langle\psi|E_{\theta}(\cdot)|\psi\rangle
+\right)
+\le
+\varepsilon_{\mathrm{POVM}}.
+$$
+This residual says that the operator summary is licensed by the apparatus record map; it is not a primitive property carried into the interaction.
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is not merely to reproduce the POVM probabilities. The same coupled target-apparatus-environment flow must also recover the instrument update, because different $M_m$ can give the same $E_m$ while leaving different post-record states.
+
+For a declared channel $\theta$, let $\rho_{\theta,m}^{\mathrm{rec},+}$ be the effective state extracted from the basin-conditioned measure $\mu_{\theta,m}^+$ above, and let $\rho_{\theta,m}^{\mathrm{inst},+}=M_m\rho_\theta^-M_m^\dagger/p_m$ be the comparison instrument update. A compact generalized-measurement residual is
+$$
+\mathcal{R}_{\mathrm{inst}}(\theta)
+=
+\max_m
+\max\left(
+\frac{\left|\mu_{*,T}(\pi^{-1}(R_m))-p_m\right|}{\varepsilon_p},
+\frac{\left\|\rho_{\theta,m}^{\mathrm{rec},+}-\rho_{\theta,m}^{\mathrm{inst},+}\right\|_1}{\varepsilon_{\mathrm{inst}}},
+\frac{\left|\Delta E_{\mathrm{unrec}}(T;\theta,m)\right|}{\varepsilon_E}
+\right)
+\le 1.
+$$
+This is the measurement-channel version of the usual dilation result: a POVM can be represented as a projective measurement on a larger Hilbert space, but the native account must identify the physical apparatus, environment, and inaccessible degrees of freedom that realize that larger record space. Photon detection is the warning case. The record may use projective effects for "photon absent" and "photon present," while the instrument maps both outcomes to the no-photon post-record channel because the photon assembly has been absorbed into the apparatus/event ledger.
 
 ## What Makes an Interaction a Record
 
@@ -482,21 +630,40 @@ Thus "collapse" is not an extra physical law. It is the observer's forced update
 
 Different measurement types correspond to different apparatus couplings, but the ontology is the same.
 
+The channel definition must say what the apparatus actively does, not merely name the standard observable. For a declared apparatus kernel $\mathcal{K}_A$, let
+$$
+\pi_{\mathcal{K}_A}:
+\Gamma_{\mathrm{tot}}
+\longrightarrow
+\mathcal{R}_{\mathcal{K}_A}
+$$
+be the record map from the coupled target-apparatus-environment state to the retained record classes. A claimed observable label $O$ is admissible in this chapter only after it has been represented by a family of record basins
+$$
+B_k^{O,\mathcal{K}_A}
+=
+\pi_{\mathcal{K}_A}^{-1}(R_k)
+\cap
+\{\mathbf{1}_{\mathrm{rec}}(k;\theta)=1\}.
+$$
+This condition keeps the Bricmont-Goldstein/Bohmian warning in native form: a channel may reveal a position-like record, but spin-, momentum-, phase-, and energy-like labels are often apparatus-defined outcomes of an interaction. They need not be primitive properties carried unchanged into the apparatus. The deterministic substrate may still contain velocities, angular-momentum ledgers, phases, and causal-wake histories; the measurement claim is narrower, namely that the chosen apparatus kernel maps the coupled flow into a persistent record with the advertised observer-level statistics.
+
 ### Position-like measurements
 
 The apparatus couples to spatial localization or arrival geometry. The record is a site-selective apparatus response such as a screen hit or detector cell trigger.
 
 ### Momentum- or phase-like measurements
 
-The apparatus couples to a resonance band, interference geometry, or transport mode. The record is a stable branch in the apparatus-sensitive phase channel.
+The apparatus couples to a resonance band, interference geometry, transport mode, or late-time arrival geometry. The record is a stable branch in the apparatus-sensitive phase channel. A time-of-flight or far-field momentum record, for example, is a record of the later apparatus position or transport branch calibrated back to a momentum variable; it is not automatically a direct reading of the target's initial substrate velocity.
 
 ### Spin / discrete-outcome measurements
 
-The apparatus couples to a discrete assembly orientation or topological branch. The record is a branch-specific amplification, for example one of two detector channels.
+The apparatus couples to a discrete assembly orientation, angular-momentum response channel, or topological branch. The record is a branch-specific amplification, for example one of two detector channels.
 
 In this language, "spin up" and "spin down" are not tiny literal arrows hidden inside the particle. They are the two stable branch labels selected by the apparatus relative to its chosen measurement axis.
 
 For fermion spin-$\tfrac{1}{2}$, the standard Stern-Gerlach recovery target is a two-channel apparatus record with angular-momentum projections $+\hbar/2$ and $-\hbar/2$ along the apparatus axis. In $\mathbb{A}\mathbb{A}\mathbb{A}$, that two-channel split must come from finite-time basin resolution of the target assembly plus apparatus, not from a primitive spin variable attached to an architrino.
+
+The spin operator is therefore a compact generator of the recovered record statistics and basis rotations, not a new substrate degree of freedom. Its eigenlabels are licensed only when the apparatus kernel maps the Noether-core spin ledger into stable basin records with the standard half-angle probabilities.
 
 The Stern-Gerlach-like specialization is developed in [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response). In that channel, the apparatus potential-gradient geometry couples to the full Noether-core spin ledger, including layer phases, frequencies, active causal-root branches, self-hit history, and causal-wake angular momentum. The two recorded outcomes are basin resolutions after a finite interaction time. The derived kernels are deterministic pullbacks of the record-forming basins. In the reduced spinor-record chart, the concrete separatrix and unbiased record-phase measure recover the spin-$\tfrac{1}{2}$ half-angle probabilities. The Master-Equation origin of the external apparatus terms is now explicit: the angular impulse is the core-centered torque of delayed apparatus cross-root hits, and the record-phase measure is the invariant measure of the locked apparatus record cycle. The remaining substrate closure target is to derive the effective spinor coordinate and verify when the record cycle and apparatus impulse reduce to the ideal chart.
 

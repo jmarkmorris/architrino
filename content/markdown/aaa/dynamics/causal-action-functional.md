@@ -164,6 +164,41 @@ where $\mathbf{r}(t,t')=\mathbf{x}(t)-\mathbf{x}(t')$ and $d\ell$ is the induced
 
 **Topological vs Noether data:** Continuous symmetries (time shifts, rotations) identify Noether-charge targets: energy from time-translation symmetry and total angular momentum from rotational symmetry. In the symmetry-preserving delayed action these become conserved history functionals. The winding class of $\mathcal{L}_{\text{causal}}$ supplies **topological charges**. Stable “generations” live where a Noether-stationary orbit is also topologically locked; dissociation would require changing the winding class, i.e., a reconnection of $\mathcal{L}_{\text{causal}}$.
 
+**Topological charge as a comparison invariant:** The soliton comparison teaches a useful restraint: a topological charge labels a sector, while a dynamical or variational argument must still select a representative inside that sector. For this chapter the native invariant is the homology class of the causal locus. Write
+$$
+Q_{\mathrm{causal}}(\gamma)
+=
+\{[(\mathcal{L}_{\text{causal}})_a]\}_a
+\subset H_1(T^2,\mathbb{Z}),
+$$
+the multiset of winding classes of connected causal-locus components, optionally refined by source identity and chirality sign. The comparison rule is:
+$$
+Q_{\mathrm{causal}}(\gamma_0)=Q_{\mathrm{causal}}(\gamma_1)
+$$
+means the two trajectories lie in the same branch-topology sector; it does not imply equal action, equal mass response, or stability. A stability claim additionally needs either a constrained critical-point test for
+$$
+\bar{\mathcal{A}}_{\text{total}}
+$$
+or a return-map spectrum for the actual delayed dynamics.
+
+**Instanton-style path competition:** When two branch-topology sectors are connected only by passing through a transversality failure, the useful comparison object is not a new force law but a minimal regularized barrier in path space. For a one-parameter path of histories
+$$
+\Gamma:[0,1]\to \mathcal{H}_h,
+\qquad
+\Gamma(0)=\gamma_0,
+\qquad
+\Gamma(1)=\gamma_1,
+$$
+define the barrier proxy
+$$
+B_{\eta,h}(\gamma_0\to\gamma_1)
+\equiv
+\inf_{\Gamma}
+\max_{s\in[0,1]}
+\bar{\mathcal{A}}_{\text{total},\eta,h}[\Gamma(s)].
+$$
+The infimum is taken over paths whose endpoints lie in the declared sectors and whose intermediate histories obey the same regularization convention. This is an instanton-like comparison only in the variational sense: it measures the least regularized action-counting barrier between sectors. It does not assert tunneling, supersymmetry, or Euclidean field-theory ontology.
+
 **Multi‑component topology:** For assemblies, project the spatial trajectories over one period, classify the resulting link, and when hyperbolic, use the volume of the link complement as a complexity measure. Brunnian or highly knotted complements signal strong causal interlocking and higher action density.
 
 ## Theorem Spine (Provable Core under A1-A5)
@@ -447,3 +482,70 @@ Combined with causal-locus class constraints, this would give a quantitative sep
 - Overall: the causal-locus action-counting route is now partly formalized (theorem-level
   in the regularized regime), while mass mapping, asymptotic stability, and emergent
   metric closure remain open.
+
+**Branch return-map symplectic residual.** The scalar statistic can identify candidate stationary branch classes, but a stationary value of $\bar{\mathcal{A}}$ is not yet a Hamiltonian closure claim. On a retained branch chart $\mathfrak{B}$ with reduced section coordinates $z=(Q^a,\Pi_a)$, let
+$$
+\mathcal{P}_{\mathfrak{B}}:z_n\mapsto z_{n+1}
+$$
+be the one-cycle return map and let
+$$
+M_{\mathfrak{B}}(z)=D\mathcal{P}_{\mathfrak{B}}(z)
+$$
+be its linearized monodromy. If the reduced chart is genuinely inherited from a symmetry-preserving delayed action, then after the retained constraints and section condition are solved there must be a pulled-back symplectic form $\Omega_{\mathfrak{B}}$ for which
+$$
+\mathcal{R}_{\Omega}(\mathfrak{B})
+\equiv
+\sup_{z\in U}
+\left\|
+M_{\mathfrak{B}}(z)^T
+\Omega_{\mathfrak{B}}(z)
+M_{\mathfrak{B}}(z)
+-
+\Omega_{\mathfrak{B}}(\mathcal{P}_{\mathfrak{B}}(z))
+\right\|
+$$
+is small on the tested neighborhood $U$ of the branch. The companion phase-volume residual
+$$
+\mathcal{R}_{\mathrm{vol}}(\mathfrak{B})
+\equiv
+\sup_{z\in U}
+\left|
+\det M_{\mathfrak{B}}(z)-1
+\right|
+$$
+is weaker but easier to compute. The closure direction is therefore:
+$$
+\nabla_{\gamma}\bar{\mathcal{A}}=0
+\quad\text{within a winding class}
+\qquad
+\mathcal{R}_{\Omega}(\mathfrak{B})\le\epsilon_{\Omega}
+\qquad
+\lambda_{\mathrm{sec}}>0.
+$$
+The first condition marks a candidate branch class, the second tests whether the retained return map has the canonical structure expected of an action-derived conservative reduction, and the third checks local section persistence. A failure of $\mathcal{R}_{\Omega}$ does not falsify the Master EOM; it says that the scalar action-counting extremum has not yet been promoted to a reduced Hamiltonian branch certificate.
+
+**Hamilton-Jacobi branch phase target.** If a retained branch chart passes the action-derived return-map tests, one can ask for a Hamilton-Jacobi description of the same reduced motion. This is only a comparison target until the delayed action residual closes. Let $H_{\mathfrak{B}}(Q,\Pi,t)$ be the reduced Hamiltonian on the certified chart. A branch principal function $W_{\mathfrak{B}}(Q,t)$ should satisfy
+$$
+\mathcal{R}_{\mathrm{HJ}}(Q,t)
+\equiv
+\partial_t W_{\mathfrak{B}}(Q,t)
++
+H_{\mathfrak{B}}\!\left(Q,\partial_Q W_{\mathfrak{B}}(Q,t),t\right)
+$$
+with $\mathcal{R}_{\mathrm{HJ}}\to0$ on the retained window. The associated momentum reconstruction is
+$$
+\Pi_a=\partial_{Q^a}W_{\mathfrak{B}},
+$$
+and the first-order branch motion is
+$$
+\dot Q^a
+=
+\left.
+\frac{\partial H_{\mathfrak{B}}}{\partial \Pi_a}
+\right|_{\Pi=\partial_Q W_{\mathfrak{B}}}.
+$$
+For a time-independent reduced chart, the separated form
+$$
+W_{\mathfrak{B}}(Q,t)=W_{\mathfrak{B}}^{0}(Q)-E_{\mathfrak{B}}t
+$$
+turns the energy label $E_{\mathfrak{B}}$ into a branch-family parameter. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this would not replace the causal-root ledger; it would be a compact phase-function certificate that the retained ledger, wake-history charge, and reduced canonical coordinates are mutually consistent.

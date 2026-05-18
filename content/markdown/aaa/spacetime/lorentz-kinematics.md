@@ -16,7 +16,7 @@ T(v)=\gamma_\star(v)\,T_0,\qquad
 $$
 with bounded preferred-frame leakage in measurable observables.
 
-Speed convention: this chapter uses $c_f$ in primitive delayed-root benchmarks and uses the declared speed $c_\star$ in observer-level closure statements. The [transverse causal budget lemma](../dynamics/tri-binary-dynamics.md#transverse-causal-budget-lemma) fixes the convention: set $c_\star=c_f$ for a primitive wake branch chart, $c_\star=c_{\text{eff}}(\mathbf{x})$ for Noether-Sea dressed clocks and rulers, and $c_\star=c_\gamma(\mathbf{x})$ for photon synchronization. The low-gradient Lorentz limit may identify the measured channel speed with $c_0=c_{\text{eff}}(\infty)$ only after the dressing map is declared.
+Speed convention: primitive delayed-root equations are solved with $c_f$. The declared speed $c_\star$ enters only after the channel has been named: set $c_\star=c_f$ for a primitive wake branch chart, $c_\star=c_{\text{eff}}(\mathbf{x})$ for Noether-Sea dressed clocks and rulers, and $c_\star=c_\gamma(\mathbf{x})$ for photon synchronization. The low-gradient Lorentz limit may identify the measured channel speed with $c_0=c_{\text{eff}}(\infty)$ only after the dressing map is declared.
 
 A stronger prediction is also available. The Lorentz formulas should not be imported as an independent observer-level rule and then copied onto assemblies. They should be recovered from the same causal-root progression that gives stable assemblies their discrete branch ledgers. In that sense the Lorentz factor is a closure target for the quantum-facing branch structure of the dynamics: the root ledger must generate the contraction, clock-retuning, and residual-leakage coefficients rather than merely coexist with them.
 
@@ -263,7 +263,7 @@ $$
 \gamma_\star(v)+O(\epsilon_{\mathrm{LV}}).
 $$
 
-In this precise sense, the Lorentz equation is quantized in the framework. The smooth function $\gamma_\star(v)$ remains the observer-level envelope, but a physical material branch realizes that envelope only through a discrete admissible closure class $q$. The quantized object is not the algebraic curve by itself; it is the branch-indexed realization
+In this precise theorem-target sense, Lorentz response is branch-indexed in the framework. The smooth function $\gamma_\star(v)$ remains the observer-level envelope, but a physical material branch can realize that envelope only through a discrete admissible closure class $q$. The quantized object is not the algebraic curve by itself; it is the branch-indexed realization
 $$
 q
 \longmapsto
@@ -274,32 +274,87 @@ q
 \mathcal{L}_{\mathrm{root}}^{(q)}(v)
 \right),
 $$
-with admissibility requiring the same causal-root ledger to close the spheroid geometry, clock period, and preferred-frame leakage bounds. Thus a continuous Lorentz formula can be recovered as the common envelope of discrete Noether-core return-cycle classes.
+with admissibility requiring the same causal-root ledger to close the spheroid geometry, clock period, and preferred-frame leakage bounds. Thus a continuous Lorentz formula would be recovered as the common envelope of discrete Noether-core return-cycle classes only after those branch-admissibility conditions close.
+
+To keep this closure target testable, the branch should report a single Lorentz residual record rather than separate narrative successes. For a declared channel speed $c_\star$ and branch $q$, write
+$$
+\mathcal{R}_{\mathrm{Lor},q}(\beta_\star)
+=
+\left(
+R_T^{(q)},
+R_\xi^{(q)},
+R_u^{(q)},
+R_{E\mathbf{p}}^{(q)},
+R_\gamma^{(q)},
+\epsilon_{\mathrm{LV}}^{(q)}
+\right),
+$$
+where
+$$
+R_T^{(q)}(v)
+\equiv
+\frac{T_q(v)}{T_0}-\gamma_\star(v),
+\qquad
+R_\xi^{(q)}(v)
+\equiv
+\xi_q(v)-\frac{1}{\gamma_\star(v)}.
+$$
+For a one-dimensional velocity-composition test in the same declared channel,
+$$
+R_u^{(q)}
+\equiv
+u_{\mathrm{eff}}
+-
+\frac{u'+v}{1+u'v/c_\star^2}.
+$$
+For the effective mass-shell and photon-channel tests, use
+$$
+R_{E\mathbf{p}}^{(q)}
+\equiv
+E_q^2-\left(\|\mathbf{p}_q\|^2c_\star^2+m_q^2c_\star^4\right),
+\qquad
+R_\gamma^{(q)}
+\equiv
+E_\gamma-c_\gamma\|\mathbf{p}_\gamma\|.
+$$
+Here $m_q$ is the observer-sector inertial response assigned to the admitted branch, and $R_\gamma^{(q)}$ is evaluated only after the photon channel has been declared. The same causal-root ledger, medium dressing map, and branch state must feed all components. A branch that fits clock slowing with one ledger, ruler contraction with another, and photon propagation with an independent channel has not closed Lorentz behavior; it has only matched isolated formulas.
 
 This derivation is stronger than assigning an ellipsoid after the fact. The one-way longitudinal legs remain asymmetric; the Lorentz geometry appears only when the closed return cycle is allowed to choose the semiaxes that make longitudinal and transverse closure periods agree. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the spheroid is the visible projection of a branch that has solved its return-cycle ledger.
 
 ### 3.2 Effective shape law
 
+Fix a drift band $0\le\beta_f\le\beta_{\max}<1$, with $\beta_f=v/c_f$, and choose one admitted translating branch $q$. The primitive root ledger on that band is still solved at $c_f$; $\beta_\star=v/c_\star$ is introduced only for the declared primitive or dressed observer channel being tested.
+
 Define the cycle-averaged shape tensor on the translating attractor:
 $$
-Q_{ab}(v)\equiv
-\frac{1}{M}
+Q_{ab}^{(q)}(v)\equiv
+\frac{1}{M_q}
 \left\langle
 \sum_i m_i\,r_{i,a}r_{i,b}
-\right\rangle_{\text{cyc}},
+\right\rangle_{\text{cyc},q},
 \qquad
-M\equiv \sum_i m_i.
+M_q\equiv \sum_i m_i.
 $$
-Let $q_{\parallel}(v),q_{\perp,1}(v),q_{\perp,2}(v)$ be principal-frame eigenvalues of $Q(v)$, with principal axis chosen along drift for $q_{\parallel}$. Define semiaxes
+Let $q_{\parallel}(v),q_{\perp,1}(v),q_{\perp,2}(v)$ be principal-frame eigenvalues of $Q^{(q)}(v)$, with principal axis chosen along drift for $q_{\parallel}$. Define extracted semiaxes
 $$
-a_{\parallel}(v)\equiv \sqrt{q_{\parallel}(v)},\qquad
-a_{\perp}(v)\equiv \sqrt{\frac{q_{\perp,1}(v)+q_{\perp,2}(v)}{2}}.
+a_{\parallel,q}(v)\equiv \sqrt{q_{\parallel}(v)},\qquad
+a_{\perp,q}(v)\equiv \sqrt{\frac{q_{\perp,1}(v)+q_{\perp,2}(v)}{2}}.
 $$
-The Lorentzian conspiracy then requires
+The moving-assembly contraction residual is
 $$
-\frac{a_{\parallel}(v)}{a_{\perp}(v)}=\frac{1}{\gamma(v)}+O(\epsilon_{\text{LV}}),
+R_{\parallel}^{(q)}(v)
+\equiv
+\frac{a_{\parallel,q}(v)}{a_{\perp,q}(v)}
+-
+\frac{1}{\gamma_\star(v)},
 $$
-with $\epsilon_{\text{LV}}$ the preferred-frame leakage scale.
+and the theorem target is the leakage bound
+$$
+\left|R_{\parallel}^{(q)}(v)\right|
+\le
+C_{\parallel}\epsilon_{\text{LV}}\beta_\star^2
+$$
+uniformly on the declared drift band. This is a moving-assembly extraction condition. Weak-field PPN tests can later falsify the dressed medium response, but they are not inputs to this semiaxis extraction.
 
 ### 3.2.1 Quadratic closure and coefficient constraints
 
@@ -397,9 +452,19 @@ Therefore the Lorentz-matching constraints in Sec. 3.2.1 and Sec. 3.3.1 become e
 
 ### 3.3 Period renormalization
 
-Let $T(v)$ be the fundamental oscillation period of the assembly attractor in absolute time. Operational proper-time behavior requires
+Let $T_q(v)$ be the fundamental oscillation period of the assembly attractor in absolute time, extracted from the declared clock phase on the same branch ledger as the semiaxes. The clock retuning residual is
 $$
-T(v)=\gamma(v)\,T_0\,[1+O(\epsilon_{\text{LV}})].
+R_T^{(q)}(v)
+\equiv
+\frac{T_q(v)}{T_0}
+-
+\gamma_\star(v).
+$$
+Operational proper-time behavior requires the theorem-target bound
+$$
+\left|R_T^{(q)}(v)\right|
+\le
+C_T\epsilon_{\text{LV}}\beta_\star^2.
 $$
 Exact closure is the limit $\epsilon_{\text{LV}}\to 0$.
 
@@ -772,10 +837,10 @@ in the weak-field refractive regime.
 
 ### 5.5 Coefficient-extraction and closure estimators
 
-For each simulated drift speed $\beta_j$, extract from long-window attractor statistics:
+For each simulated drift speed, keep the channel label explicit. Primitive branch calculations use $\beta=v/c_f$; dressed observer-channel fits use $\beta_\star=v/c_\star$ after the dressing map is declared. Extract from long-window attractor statistics:
 $$
-\hat{\alpha}_j\equiv \frac{a_{\parallel}(\beta_j)}{a_{\perp}(\beta_j)},\qquad
-\hat{\tau}_j\equiv \frac{T(\beta_j)}{T_0}.
+\hat{\alpha}_j\equiv \frac{a_{\parallel,q}(\beta_j)}{a_{\perp,q}(\beta_j)},\qquad
+\hat{\tau}_j\equiv \frac{T_q(\beta_j)}{T_0}.
 $$
 Fit even-power truncations
 $$
@@ -787,18 +852,29 @@ $$
 \hat{\alpha}_2=-\frac{1}{2},\quad \hat{\alpha}_4=-\frac{1}{8},\qquad
 \hat{\tau}_2=\frac{1}{2},\quad \hat{\tau}_4=\frac{3}{8}.
 $$
-Define sup-norm closure defects on a calibration band $\beta\in[0,\beta_\star]$:
+Define closure residuals on a primitive calibration band $0\le\beta\le\beta_{\max}$, or on the dressed band after replacing $\beta$ by $\beta_\star$ and $\gamma$ by $\gamma_\star$:
+$$
+R_{\parallel}^{(q)}(\beta)
+\equiv
+\hat{\alpha}(\beta)-\frac{1}{\gamma(\beta)},
+$$
+$$
+R_T^{(q)}(\beta)
+\equiv
+\hat{\tau}(\beta)-\gamma(\beta).
+$$
+The reported leakage scores are
 $$
 \mathcal{E}_{\text{shape}}
 \equiv
-\sup_{0\le \beta\le \beta_\star}
-\left|\hat{\alpha}(\beta)-\frac{1}{\gamma(\beta)}\right|,
+\sup_{0\le \beta\le \beta_{\max}}
+\left|R_{\parallel}^{(q)}(\beta)\right|,
 $$
 $$
 \mathcal{E}_{\text{clock}}
 \equiv
-\sup_{0\le \beta\le \beta_\star}
-\left|\hat{\tau}(\beta)-\gamma(\beta)\right|.
+\sup_{0\le \beta\le \beta_{\max}}
+\left|R_T^{(q)}(\beta)\right|.
 $$
 For two-way anisotropy, fit
 $$
@@ -820,9 +896,9 @@ For each principal oscillator channel, $J_i\propto \sqrt{K_i}\,A_i^2$, so adiaba
 $$
 A_i(\beta)=A_i(0)\left(\frac{K_i(0)}{K_i(\beta)}\right)^{1/4}.
 $$
-This provides a Noether-constrained route from stiffness expansion to the coefficient extraction in Sec. 3.2.2.
+This provides the fixed-action retuning route from stiffness expansion to the coefficient extraction in Sec. 3.2.2.
 
-For translation $\mathbf{v}=v\hat{\mathbf{e}}_{\parallel}$ with $\beta=v/c_f$, use the causal-delay potential form
+The simplest scalar kernel is useful mainly because it fails in a controlled way. For translation $\mathbf{v}=v\hat{\mathbf{e}}_{\parallel}$ with primitive $\beta=v/c_f$, suppose one tries the causal-delay potential form
 $$
 \mathcal{U}_{\text{eff}}(\mathbf{r};\beta)
 =
@@ -838,29 +914,26 @@ K_{ab}(\beta)
 \frac{\partial^2 \mathcal{U}_{\text{eff}}}{\partial r_a\partial r_b}
 \right\rangle_{\text{cyc}}.
 $$
-Expanding the causal-delay closure
+Naively expanding the causal-delay closure
 $$
 \tau=\frac{\|\mathbf{r}+\mathbf{v}\tau\|}{c_f}
 $$
-and projecting longitudinal/transverse channels gives
+and projecting longitudinal/transverse channels would suggest integrals of the form
 $$
 \mathcal{I}_{\parallel}(\beta)
 =
 \mathcal{I}_0\int_0^{2\pi}\frac{d\theta}{2\pi}
-\frac{\cos^2\theta}{(1-\beta\cos\theta)^3}
-=
-\mathcal{I}_0\left[1-\frac{1}{3}\beta^2-\frac{1}{9}\beta^4+O(\beta^6)\right],
+\frac{\cos^2\theta}{(1-\beta\cos\theta)^3},
 $$
 $$
 \mathcal{I}_{\perp}(\beta)
 =
 \mathcal{I}_0\int_0^{2\pi}\frac{d\theta}{2\pi}
-\frac{\sin^2\theta}{(1-\beta\cos\theta)^3}
-=
-\mathcal{I}_0\left[1-\frac{4}{3}\beta^2+\frac{2}{9}\beta^4+O(\beta^6)\right].
+\frac{\sin^2\theta}{(1-\beta\cos\theta)^3}.
 $$
-The exact Noether route and the Sec. 3.2.2 derivative route are equivalent once both are expanded on the same branch.
-Using the Sec. 3.2.2 extraction rules,
+This naive block is not a derivation of the Lorentz-matching vector. With the displayed normalization it gives positive normalized stiffness growth rather than the required negative coefficient pattern, and any sign reversal would require an additional channel normalization that is not present in the scalar kernel. The block is therefore a failure diagnostic: the target vector must come from the completed action kernel on the same causal-root ledger, with branch phase closure and fixed-action retuning included before the stiffness derivatives are taken.
+
+The valid theorem target keeps the Sec. 3.2.2 extraction rules,
 $$
 k_2=
 \frac{\partial_{\beta}^2\mathcal{I}_{\parallel}\big|_{\beta=0}}
@@ -879,13 +952,13 @@ k_4=
 \frac{\partial_{\beta}^4\mathcal{I}_{\perp}\big|_{\beta=0}}
 {24\,\mathcal{I}_{\perp}(0)},
 $$
-hence
+but now requires the branch-action integrals $\mathcal{I}_{\parallel},\mathcal{I}_{\perp}$ to be computed from the completed delayed action and the admitted moving branch chart. The Lorentz-matching closure condition remains
 $$
 (k_2,\ell_2,k_4,\ell_4)
 =
 \left(-\frac{1}{3},-\frac{4}{3},-\frac{1}{9},\frac{2}{9}\right).
 $$
-So the $O(\beta^4)$ closure coefficients are obtained directly from the causal path-history Hessian on the circular benchmark branch and are not fit parameters.
+The target vector is not a fit parameter, but this section no longer claims that the displayed scalar kernel derives it. A valid derivation must show that the completed action kernel, the causal-root ledger, branch phase closure, and fixed-action retuning together yield the derivative identities above on the same branch.
 
 ### 5.6.1 Causal-root ledger progression as a Lorentz prediction
 

@@ -242,8 +242,60 @@ $$
 $$
 Here $\mathcal{B}_E^{(\eta)}$ is the declared endpoint or period-cut leakage. For isolated period-matched tests, $\epsilon_{\mathrm{var}}^{(\eta)}\to0$, $\mathcal{B}_E^{(\eta)}\to0$, and $\epsilon_E^{(\eta)}\to0$ are the minimal conservation checks before the effective Hamiltonian is promoted beyond a diagnostic fit.
 
+For a branch chart that explicitly chooses the normalized delayed-interior characteristic-tail kernel, the conservation object is not the generic scalar $1/r$ scaffold above but the pullback
+$$
+K_{\mu,\mathfrak{B}}+E_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)},
+\qquad
+\mathbf{P}_{\mathrm{mech},\mathfrak{B}}+\mathbf{P}_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)},
+\qquad
+\mathbf{J}_{\mathrm{mech},\mathfrak{B}}+\mathbf{J}_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)}
+$$
+defined on the same retained branch rows that enter the force residual. The energy residual above is theorem-level only after this chart declares the action-level $g$, endpoint convention, branch floors, and endpoint or period-cut leakage terms. The work-integral reconstruction $U(t)$ remains a trajectory diagnostic unless it is derived from that same normalized kernel and boundary convention.
+
 **Generalized Momentum:**
 Spatial translation invariance guarantees the conservation of total momentum, $\mathbf{P}_{\text{tot}} = \mathbf{P}_{\text{mech}}(t) + \mathbf{P}_{\text{wake}}(t)$, where the mechanical momentum of the architrinos is balanced by the momentum flux propagating within the causal wake surfaces. Boundedness of the history-aware energy is therefore the natural diagnostic against runaway behavior, not a separate postulate.
+
+For an effective reduction to promote a retained chart rather than fit it, it must also report vector residuals for the same branch pullback:
+$$
+\epsilon_P^{(\eta)}(W)
+=
+\frac{
+\left\|
+\Delta_W\left(\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}\right)
+-
+\int_W\sum_i\mathbf{R}_i^{(\eta)}\,dt
+-
+\int_W\boldsymbol{\mathcal{B}}_P^{(\eta)}\,dt
+\right\|
+}{
+\left\|\Delta_W\mathbf{P}_{\mathrm{mech}}\right\|
++
+\left\|\Delta_W\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}\right\|
++
+\varepsilon
+},
+$$
+and
+$$
+\epsilon_J^{(\eta)}(W)
+=
+\frac{
+\left\|
+\Delta_W\left(\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}\right)
+-
+\int_W\sum_i\mathbf{x}_i(t)\times\mathbf{R}_i^{(\eta)}\,dt
+-
+\int_W\boldsymbol{\mathcal{B}}_J^{(\eta)}\,dt
+\right\|
+}{
+\left\|\Delta_W\mathbf{J}_{\mathrm{mech}}\right\|
++
+\left\|\Delta_W\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}\right\|
++
+\varepsilon
+}.
+$$
+Small $\epsilon_E^{(\eta)}$, $\epsilon_P^{(\eta)}$, and $\epsilon_J^{(\eta)}$ are conservation diagnostics when the regularization is inserted at the equation-of-motion level. They become Noether-charge tests only when the action regularization itself preserves time translation, spatial translation, and rotation symmetry on the retained chart.
 
 ### Coarse-Graining: The Effective Continuum Lagrangian
 
@@ -279,6 +331,67 @@ J_{\mathrm{eff}}(\mathbf{x},t;\mathbf{x}',t')
 \left|1-\frac{\mathbf{u}(\mathbf{x}',t')\cdot\hat{\mathbf{n}}(\mathbf{x},\mathbf{x}')}{c_f}\right|.
 $$
 This is the continuum inheritance of the discrete delayed causal $1/r$ action kernel together with the same Jacobian branch weight that appears in the master equation. Source emission remains isotropic at the microscopic level, but the received coarse flux is compressed or dilated by the delayed transport geometry. Differentiating this delayed action with respect to receiver coordinates produces the corresponding Jacobian-weighted inverse-square force density plus velocity-dependent correction terms. In the quasi-static limit $\|\mathbf{u}\|/c_f\to0$, one recovers $J_{\mathrm{eff}}\to 1$ and the leading force law reduces to the familiar inverse-square form.
+
+The continuum variables are admitted only through balance laws inherited from resolved histories. A coarse polarity density and current must satisfy
+$$
+\partial_t\rho_q+\nabla\cdot\mathbf{j}_q
+=
+R_{\rho}^{\mathrm{cg}},
+$$
+and the first two kinetic moments must close through a declared momentum-current tensor and energy-flux vector,
+$$
+\partial_t(\rho_q u^i)
++\partial_j\Pi_q^{ij}
+=
+f_q^i+R_{P,q}^i,
+$$
+$$
+\partial_t e_q
++\nabla\cdot\mathbf{J}_{e,q}
+=
+\mathbf{f}_q\cdot\mathbf{u}
++R_{E,q}.
+$$
+Here $\Pi_q^{ij}$ and $\mathbf{J}_{e,q}$ are coarse-history summaries of the retained causal-wake record, not new substrate fields. The effective action is a promoted continuum chart only when $R_{\rho}^{\mathrm{cg}}$, $R_{P,q}^i$, and $R_{E,q}$ are small under history, spatial, and regulator refinement. Otherwise the chart has only reproduced low-order moments while leaving unresolved memory in the omitted kinetic hierarchy.
+
+For near-equilibrium reductions, a constitutive response may be written schematically as
+$$
+\Pi_q^{ij}
+=
+\Pi_{\mathrm{rev}}^{ij}
+-
+2\eta_{\mathrm{cg}}
+\left(
+E^{ij}-\frac{1}{3}(\nabla\cdot\mathbf{u})h^{ij}
+\right)
+-
+\zeta_{\mathrm{cg}}(\nabla\cdot\mathbf{u})h^{ij}
++\Pi_{\mathrm{mem}}^{ij},
+$$
+where $E^{ij}=\frac{1}{2}(\partial^iu^j+\partial^ju^i)$. This is a comparison form borrowed from continuum mechanics and kinetic theory. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it becomes native only after $\eta_{\mathrm{cg}}$, $\zeta_{\mathrm{cg}}$, and $\Pi_{\mathrm{mem}}^{ij}$ are derived from the same delayed branch record that supplies the force law. The corresponding dissipation residual is
+$$
+\mathcal R_{\mathrm{diss}}(W)
+=
+\frac{
+\left|
+\Delta_W K_{\mathrm{cg}}
++\int_W
+2\eta_{\mathrm{cg}}E_{ij}E^{ij}
++\zeta_{\mathrm{cg}}(\nabla\cdot\mathbf{u})^2\,dt\,dV
++\Delta_W E_{\mathrm{wake}}
+\right|
+}{
+|\Delta_W K_{\mathrm{cg}}|
++\int_W
+\left(
+2\eta_{\mathrm{cg}}E_{ij}E^{ij}
++\zeta_{\mathrm{cg}}(\nabla\cdot\mathbf{u})^2
+\right)dt\,dV
++|\Delta_W E_{\mathrm{wake}}|
++\varepsilon
+}.
+$$
+This residual prevents ordinary viscous loss language from replacing the exact wake-history energy ledger. A nonzero positive quadratic term is allowed as a coarse channel for coherent-to-incoherent transfer, but the transferred content must appear in the retained wake, heat, or medium-response record.
 
 By defining an effective scalar potential $\Phi_{\text{wake}}(\mathbf{x}, t)$ and a vector transport potential $\mathbf{A}_{\text{wake}}(\mathbf{x}, t)$ that track the integrated causal wakes of the continuous medium, the system maps locally onto an effective field theory. These potentials are bookkeeping fields for delayed transport, not additional ontological primitives. The resulting local Lagrangian density $\mathcal{L}_{\text{eff}}$ therefore belongs to a further closure step beyond the exact delayed causal action.
 

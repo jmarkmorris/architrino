@@ -46,6 +46,45 @@ $Q$ depends on the global shape of $R$ (the amplitude of $\psi$), not on its loc
 
 If the initial particle distribution is $|\psi(\mathbf{Q}, t_0)|^2$ (the **quantum equilibrium hypothesis**), the guidance equation preserves this distribution for all future times ($|\psi|^2$-equivariance). All statistical predictions of standard QM—including the Born rule—follow as theorems, not axioms, once equilibrium is assumed.
 
+The lesson for $\mathbb{A}\mathbb{A}\mathbb{A}$ is structural rather than ontological. The useful part of the Bohmian comparison is not the separate pilot wave; it is the contract among a deterministic flow, an invariant or transported measure, and the observer-level record statistics. Let $\Phi_{t-t_0}$ denote the retained deterministic causal-wake flow on a resolved state space $\Gamma_{\eta,h}$ with mollifier scale $\eta$ and retained path-history depth $h$. If $\mu_0$ is the preparation measure, then
+$$
+\mu_t
+=
+(\Phi_{t-t_0})_*\mu_0
+$$
+is the only admissible source of outcome weights in the corresponding $\mathbb{A}\mathbb{A}\mathbb{A}$ channel. For an extracted effective wavefunction $\psi_{\mathrm{eff}}$ and a declared record-channel partition $\{B_k^\theta(t)\}$ of $\Gamma_{\eta,h}$, the Born comparison is therefore the residual
+$$
+\Delta_{\mathrm{Born}}^\theta(t)
+=
+\max_k
+\frac{
+\left|
+\mu_t(B_k^\theta(t))
+-
+\int_{\Omega_k^\theta(t)}
+|\psi_{\mathrm{eff}}(q,t)|^2\,dq
+\right|
+}{\varepsilon_k}.
+$$
+The closure target is $\Delta_{\mathrm{Born}}^\theta(t)\le1$ over the declared record window, with the same $\mu_t$ also generating the apparatus frequencies and thermodynamic summaries. This is the causal-wake analogue of equivariance: Born weights must be preserved or approached by the native deterministic state and basin map, not inserted as an observer-side probability rule.
+
+The stronger equivariance target compares currents, not only endpoint weights. If $\mathcal{P}_\theta:\Gamma_{\eta,h}\to\Omega_\theta$ is the effective configuration projection and $\rho_\theta(q,t)$ is the pushed-forward density, the record current induced by the deterministic flow should satisfy
+$$
+\partial_t\rho_\theta(q,t)
++
+\nabla_q\cdot \mathbf{J}_\theta(q,t)
+=
+\mathcal{R}_{\mathrm{eq}}^\theta(q,t),
+$$
+with
+$$
+\frac{\|\mathcal{R}_{\mathrm{eq}}^\theta\|_{\mathcal{D}'(\Omega_\theta\times T)}}{\epsilon_{\mathrm{eq}}}
++
+\frac{\|\mathbf{J}_\theta-\mathbf{J}_{\psi_{\mathrm{eff}}}\|_{W^{-1,1}}}{\epsilon_J}
+\le 1.
+$$
+This is the piece of the Bohmian lesson that can be promoted without adopting particle positions plus a separate configuration-space wave as ontology: the native flow must carry a measure and current whose compression behaves like the quantum continuity law.
+
 ### Ontological Inventory
 
 dBB theory has **two ontological categories**:
@@ -157,6 +196,188 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, quantization arises from a different but eq
 
 This is the wake-based analog of the Bohr-Sommerfeld quantization condition, derived from the self-consistency of the causal response loop rather than imposed as a boundary condition on an abstract wave.
 
+De Broglie's 1924 phase-harmony argument sharpens this into a single action-optics closure target for $\mathbb{A}\mathbb{A}\mathbb{A}$. The useful content is not a second pilot-wave ontology; it is the requirement that the assembly's internal periodicity, the phase carried by the associated causal wake, and the dynamically possible path remain locked. For a retained assembly center $\mathbf{X}(t)$, effective action $S_{\mathrm{eff}}$, internal phase $\theta_{\mathrm{int}}(t)$, and wake phase $\theta_{\mathrm{wake}}(\mathbf{x},t)=S_{\mathrm{eff}}(\mathbf{x},t)/\hbar_{\mathrm{eff}}$, the phase-guidance residual may be stated as
+$$
+\mathcal{R}_{\mathrm{phase}}(\gamma)
+=
+\max\left(
+\sup_{t\in[0,T]}
+\frac{|\theta_{\mathrm{int}}(t)-\theta_{\mathrm{wake}}(\mathbf{X}(t),t)-2\pi k(t)|}{\varepsilon_\theta},
+\sup_{t\in[0,T]}
+\frac{\left|\,\mathbf{v}_{\mathrm{group}}(\mathbf{X}(t),t)-\dot{\mathbf{X}}(t)\,\right|}{\varepsilon_v},
+\frac{\left|\oint_\gamma \mathbf{p}_{\mathrm{eff}}\cdot d\mathbf{x}-n h_{\mathrm{eff}}\right|}{\varepsilon_I}
+\right)
+\le 1,
+$$
+with $k(t),n\in\mathbb{Z}$, $\mathbf{p}_{\mathrm{eff}}=\nabla S_{\mathrm{eff}}$, and $\gamma$ the closed retained orbit. The first term is phase harmony between the internal periodicity and the causal-wake phase along the realized path. The second term is the group-velocity recovery condition: the envelope of the effective wake packet must move with the assembly, not merely share its phase. The third term is the loop condition linking Fermat-style ray selection to Maupertuis action closure. Thus geometrical optics, dynamics, and stable quantization are one recovery burden: rays of the extracted wake phase must coincide with dynamically admissible causal-wake paths, and closed stable modes must return with integer action phase.
+
+### Boundary Conditions and Spectral Quantization
+
+Standard bound-state quantization is not produced by integers alone. It is produced by normalizability, self-adjointness, and boundary matching. In one-dimensional comparison problems, finite jumps in $V(x)$ require
+$$
+[\psi]_{x=a}=0,
+\qquad
+[\psi']_{x=a}=0,
+$$
+while an attractive point potential carries the derivative jump
+$$
+[\psi']_{0}
+=
+-\frac{2mV_0}{\hbar^2}\psi(0).
+$$
+For three-dimensional central potentials, the radial substitution $\chi(r)=rR(r)$ leaves the self-adjoint boundary requirement
+$$
+\chi(0)=0
+$$
+for ordinary regular states. Equivalently, the radial Hamiltonian must make the boundary form vanish,
+$$
+\mathcal{B}_0[R,S]
+=
+\lim_{r\to0}
+r^2
+\left(
+S\frac{dR}{dr}
+-
+\frac{dS}{dr}R
+\right)
+=0
+$$
+for all admissible radial functions $R$ and $S$ in the effective domain.
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ analogue is not a literal wavefunction wall. It is a branch-domain condition on the assembly return map and causal-wake history. A candidate mode $\Gamma_n$ with return time $T_n$ must satisfy
+$$
+\mathcal{Q}_{\mathrm{bc}}(n)
+=
+\max\left(
+\frac{\operatorname{dist}(\mathcal{P}_{T_n}(\Gamma_n),\Gamma_n)}{\varepsilon_{\mathrm{return}}},
+\frac{|\Delta\varphi_n-2\pi q_n|}{\varepsilon_\varphi},
+\frac{|\Delta I_n-N_n h_{\mathrm{eff}}|}{\varepsilon_I},
+\frac{|\mathcal{B}_0^{\mathrm{eff}}|}{\varepsilon_{\mathrm{sa}}}
+\right)
+\le 1.
+$$
+Here $\mathcal{P}_{T_n}$ is the retained assembly return map, $\Delta\varphi_n$ is the closed-cycle phase return, $q_n\in\mathbb{Z}$ is the winding count, $\Delta I_n$ is the action returned through the mode, and $\mathcal{B}_0^{\mathrm{eff}}$ is the effective self-adjoint boundary residual after the coarse-grained chart has been extracted. This is the boundary-condition bridge: standard eigenvalue discreteness is recovered only when a native causal-wake mode also closes its return, phase, action, and effective-domain tests.
+
+Central potentials add a second comparison target. Standard quantum mechanics uses
+$$
+\hat{\mathbf{L}}=-i\hbar\,\mathbf{x}\times\nabla,
+\qquad
+[\hat L_i,\hat L_j]=i\hbar\,\epsilon_{ijk}\hat L_k,
+\qquad
+[\hat H,\hat L_i]=[\hat H,\hat L^2]=0
+$$
+for a central potential, allowing states to be labeled by $n,l,m$. The hydrogen benchmark is
+$$
+E_n^{\mathrm{QM}}=-\frac{\mathrm{Ry}}{n^2},
+\qquad
+l=0,\ldots,n-1,
+\qquad
+m=-l,\ldots,l,
+\qquad
+g_n=n^2.
+$$
+The effective atomic assembly closure should therefore report, for levels up to a declared $N$,
+$$
+\mathcal{R}_{\mathrm{H}}(N)
+=
+\max_{1\le n\le N}
+\left(
+\frac{|E_n^{\mathbb{A}\mathbb{A}\mathbb{A}}+\mathrm{Ry}_\theta/n^2|}{\varepsilon_E(n)},
+\frac{|g_n^{\mathbb{A}\mathbb{A}\mathbb{A}}-n^2|}{\varepsilon_g(n)}
+\right)
+\le 1,
+$$
+with fine-structure and Lamb-type splittings treated as later, smaller correction targets. The degeneracy test is important because ordinary central symmetry gives only the $2l+1$ angular degeneracy; hydrogen's $n^2$ pattern is a stronger Coulomb benchmark that a phase-locking story must reproduce rather than merely invoke.
+
+Scattering supplies the continuum counterpart of the same spectral test. In one dimension, a localized potential has an $S$-matrix built from reflection and transmission amplitudes, and probability conservation requires unitarity. In three-dimensional central scattering, the corresponding partial-wave benchmark is
+$$
+S_l(k)=e^{2i\delta_l(k)},
+\qquad
+f(\theta)
+=
+\frac{1}{2ik}
+\sum_{l=0}^{\infty}
+(2l+1)\left(e^{2i\delta_l(k)}-1\right)P_l(\cos\theta).
+$$
+The total cross-section and optical theorem become
+$$
+\sigma_T(k)
+=
+\frac{4\pi}{k^2}
+\sum_l(2l+1)\sin^2\delta_l(k),
+\qquad
+\sigma_T(k)=\frac{4\pi}{k}\operatorname{Im}f(0).
+$$
+An $\mathbb{A}\mathbb{A}\mathbb{A}$ scattering recovery should therefore report
+$$
+\mathcal{R}_{S}(K;\theta)
+=
+\max_{k\in K}
+\max\left(
+\frac{\|S_\theta(k)S_\theta^\dagger(k)-I\|}{\varepsilon_U},
+\frac{\left|\sigma_T^\theta(k)-4\pi\,\operatorname{Im}f_\theta(0;k)/k\right|}{\varepsilon_{\mathrm{opt}}},
+\sup_l\frac{|\sigma_l^\theta(k)-4\pi(2l+1)\sin^2\delta_l^\theta(k)/k^2|}{\varepsilon_l}
+\right)
+\le 1.
+$$
+This residual is a conservation and asymptotic-domain test. It does not require the substrate to contain an abstract incoming plane wave; it requires the retained causal-wake packet to reproduce the same outgoing flux ledger after the detector and access region have been declared.
+
+The analytic structure of the $S$-matrix is a separate benchmark. Bound states appear as poles on the positive imaginary momentum axis, while resonances appear as lower-half-plane poles with
+$$
+E=E_0-\frac{i\Gamma}{2},
+\qquad
+S(E)\sim e^{2i\theta(E)}
+\frac{E-E_0-i\Gamma/2}{E-E_0+i\Gamma/2}.
+$$
+Near such a pole the partial cross-section has the Breit-Wigner form
+$$
+\sigma_l(E)
+\approx
+\frac{4\pi}{k^2}(2l+1)
+\frac{\Gamma^2}{4(E-E_0)^2+\Gamma^2}.
+$$
+The native recovery target is to derive $E_0$ and $\Gamma$ from a metastable assembly basin and its escape channel. A resonance width fitted directly to a spectral peak without a path-history escape ledger is a phenomenological match, not a completed causal-wake explanation.
+
+The Lippmann-Schwinger equation provides a controlled perturbative comparison for weak effective potentials:
+$$
+|\psi\rangle
+=
+|\phi\rangle
++
+\frac{1}{E-H_0+i0^+}V|\psi\rangle.
+$$
+At first Born order the scattering amplitude is proportional to the Fourier transform of the effective potential. This gives a direct failure test for any proposed $V_{\mathrm{eff}}$: short-distance structure at scale $L$ should enter only through momentum transfers $q\sim 1/L$, and long-range Coulomb-like channels require a separate asymptotic phase treatment rather than the compact-support Born packet.
+
+### Pointlike Idealizations and Running Couplings
+
+Pointlike effective potentials are useful only when their cutoff dependence is controlled. The two-dimensional attractive delta-potential comparison is the warning case. With dimensionless coupling $\tilde g=mg/\hbar^2$ and UV cutoff $\Lambda$, the bound-state energy scale can be written as
+$$
+E_B(\Lambda,\tilde g)
+=
+\frac{\Lambda^2}{2\left(e^{2\pi/\tilde g}-1\right)}.
+$$
+Keeping $E_B$ fixed while changing $\Lambda$ requires the coupling to run,
+$$
+\tilde g(\Lambda;E_B)
+=
+\frac{2\pi}{\log\!\left(1+\Lambda^2/(2E_B)\right)}.
+$$
+A pointlike comparison model is acceptable only if cutoff changes are compensated by the declared effective coupling:
+$$
+\mathcal{R}_{\mathrm{run}}(\Lambda_1,\Lambda_2)
+=
+\left|
+\frac{
+E_B(\Lambda_1,\tilde g(\Lambda_1))
+-
+E_B(\Lambda_2,\tilde g(\Lambda_2))
+}{E_B}
+\right|
+\le
+\varepsilon_{\mathrm{run}}.
+$$
+For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a caution about singular idealizations, not an imported ontology. Whenever a calculation uses a mollifier width $\eta$, a core cutoff $\epsilon_c$, a memory cutoff $\tau_{\min}$, or a point-source effective potential, the predicted spectrum, scattering response, or basin threshold must either be cutoff-independent inside tolerance or accompanied by a running effective parameter such as $\kappa_{\mathrm{eff}}(\Lambda)$. A spectrum that exists only at one arbitrary cutoff is a regularization artifact, not a recovered quantum level.
+
 ---
 
 ## The Phenomenological Mapping
@@ -195,6 +416,8 @@ This is the wake-based analog of the Bohr-Sommerfeld quantization condition, der
 **Computational tractability.** The full Master Equation with path-history dependence and self-hit is a coupled system of state-dependent delay differential equations for $\sim 10^{80}$ architrinos. Practical calculations require controlled coarse-graining at multiple scales. The hierarchy of effective theories (architrino → binary → tri-binary → assembly → continuum field) must be established with quantitative error bounds at each level.
 
 **Relativistic extension.** dBB has well-known difficulties with relativistic generalization (preferred foliation, particle creation/annihilation). $\mathbb{A}\mathbb{A}\mathbb{A}$'s absolute-time substrate handles the preferred foliation naturally but must demonstrate that emergent Lorentz invariance holds to the required precision ($< 10^{-17}$) and that particle creation/annihilation (assembly formation/dissolution) is correctly described.
+
+The comparison warning is that a preferred foliation is not disqualifying by itself; empirical failure appears only if the foliation leaks into observer-level signal statistics, clock/ruler behavior, or creation-channel rates. The $\mathbb{A}\mathbb{A}\mathbb{A}$ closure burden is therefore twofold: derive the effective Lorentz map tightly enough that preferred-frame leakage stays below the precision bound, and show that assembly association/dissociation induces the same record statistics that QFT encodes as particle creation and annihilation.
 
 ---
 

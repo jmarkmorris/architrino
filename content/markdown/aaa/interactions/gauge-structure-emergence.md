@@ -42,6 +42,24 @@ The emergence claim in this chapter is therefore a mapping target with four requ
 
 This working map starts from the measured low-energy pattern, not from a larger symmetry that must later be hidden. The durable observer-level target is the Standard Model gauge record: $U(1)_Y\times SU(2)_L\times SU(3)_c$, the charge relation $Q=T_3+Y/2$, the observed chiral weak couplings, the charge and generation tables, the running of $g_1,g_2,g_3$, and the absence of additional low-energy partners or transport modes above current bounds.
 
+The familiar running-coupling plot is a useful bridge for this target. It says that the effective $SU(3)_c$, $SU(2)_L$, and $U(1)_Y$ interaction strengths change with observer-level probe scale, with approximate high-scale convergence in many normalizations. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not treated as proof of grand-unified ontology. It is a pressure on the mapping: the same Noether-Sea medium response, axial-layer exposure, and color axis-exceptionality bookkeeping must generate the scale-dependent effective record discussed in [Gauge Symmetries](gauge-symmetries.md#running-coupling-bridge), while the same branch record keeps non-baseline channels absent.
+
+There is a second consistency pressure that is just as important as the charge table. The Standard Model is a chiral gauge theory, so the low-energy fermion collection must cancel gauge anomalies and the $SU(2)$ Witten obstruction as a set. In this working emergence map, anomaly cancellation is read as a recovery condition on the assembly dictionary:
+$$
+\mathcal{A}_{\mathrm{SM}}^{\mathbb{A}\mathbb{A}\mathbb{A}}
+=
+\left(
+\mathcal{A}_{[SU(3)_c]^3},
+N_{2,\mathrm{Weyl}}\bmod2,
+\mathcal{A}_{[SU(3)_c]^2U(1)_Y},
+\mathcal{A}_{[SU(2)_L]^2U(1)_Y},
+\mathcal{A}_{[U(1)_Y]^3},
+\mathcal{A}_{[\mathrm{grav}]^2U(1)_Y}
+\right)
+=(0,0,0,0,0,0).
+$$
+This does not make the Standard Model variables substrate ontology. It says that any accepted Noether-Sea and axial-layer branch must project to the same anomaly-free effective gauge record; otherwise the branch cannot be the observer-level Standard Model limit.
+
 From the $\mathbb{A}\mathbb{A}\mathbb{A}$ side, that means the Noether-Sea and assembly variables must first reproduce the known gauge bookkeeping. Larger group unification, supersymmetric partner bookkeeping, or extra-dimensional geometry may be useful comparison languages, but none of them is native ontology here. They become relevant only if a branch record derives the Standard Model pattern and also explains why every added observable channel is absent without using a separate suppression parameter for each failed prediction.
 
 The local closure discipline is therefore:
@@ -50,6 +68,20 @@ The local closure discipline is therefore:
 2. derive $g_1,g_2,g_3$ and $\theta_W$ as shared effective outputs rather than per-observable fit constants;
 3. keep weak chirality, CKM/PMNS overlap, and weak-reaction provenance tied to the same exposed weak-coupling-triad domain;
 4. pass the null-result residual in [Failure Criteria](../validation/failure-criteria.md#null-result-residual-for-added-channels) for any predicted non-baseline channel.
+
+Superfluid-source-of-interactions models are useful here only as a mode-taxonomy warning. They show how one ground-state medium picture can try to generate scalar, vector, and tensor bosons as collective excitations, but they also show the closure burden this creates. For a candidate observer-level boson channel $b$, define the comparison record
+$$
+\mathcal{M}_b^\theta
+=
+\left(
+J_b^\theta,\,
+P_b^\theta,\,
+m_b^\theta,\,
+\omega_b^\theta(k),\,
+\mathcal{C}_b^\theta
+\right),
+$$
+where $J_b^\theta$ is the recovered spin label, $P_b^\theta$ the parity or transverse/longitudinal projector record when applicable, $m_b^\theta$ the mass or gap, $\omega_b^\theta(k)$ the dispersion, and $\mathcal{C}_b^\theta$ the coupling ledger to fermion, photon, weak, color, or gravitational channels. A collective-mode interpretation is admissible only when one Noether-Sea and assembly branch supplies $\mathcal{M}_b^\theta$ while also suppressing unobserved scalar, vector, tensor, mirror, or hidden channels. Otherwise "boson as excitation" is an analogy, not gauge-structure emergence.
 
 ## The Higgs Mechanism & VEV Reinterpretation
 
@@ -116,6 +148,47 @@ $$
 Q\in\left\{-|e|,-\frac{2|e|}{3},-\frac{|e|}{3},0,\frac{|e|}{3},\frac{2|e|}{3},|e|\right\}.
 $$
 No other values are possible. Different permutations with the same $(N_+,N_-)$ have identical total $Q$; they only change micro-geometry, not net charge.
+
+### Loop-Phase Quantization Target
+
+Dirac's 1931 monopole argument is useful here as an observer-level gauge-potential lesson, not as a claim that magnetic poles are $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology. The comparison target is the global phase condition: a local effective potential may be chart-dependent, but the phase accumulated around a closed loop must be single-valued modulo $2\pi$. For any observer-level loop $\gamma$ and spanning surface $S$ in a declared gauge-topology benchmark, the effective connection reconstructed from the wake/action ledger should therefore obey
+$$
+\Theta_\gamma(Q)
+=
+\frac{Q}{\hbar}\oint_\gamma A_{\mathrm{eff}}\cdot d\ell
+=
+\frac{Q}{\hbar}\int_S F_{\mathrm{eff}}
+$$
+with the physical ambiguity only
+$$
+\Theta_\gamma(Q)-2\pi N_\gamma \to 0,\qquad N_\gamma\in\mathbb{Z}.
+$$
+The six-site axial bookkeeping must make this a charge-compatibility condition, not a separately imposed monopole postulate. A compact residual for the allowed axial-layer charge set is
+$$
+\mathcal{R}_{\mathrm{loop}\text{-}Q}
+=
+\max_{Q\in\{-|e|,-2|e|/3,-|e|/3,0,|e|/3,2|e|/3,|e|\}}
+\inf_{N_\gamma\in\mathbb{Z}}
+\left|
+\frac{Q}{\hbar}\int_S F_{\mathrm{eff}}
+-2\pi N_\gamma
+\right|.
+$$
+This residual belongs to the observer-level recovery map. It passes only when the same Noether-Sea and axial-layer branch record that supplies local electromagnetic force and phase transport also yields $\mathcal{R}_{\mathrm{loop}\text{-}Q}\le\varepsilon_{\mathrm{loop}\text{-}Q}$ for the benchmark loop family. If a branch recovers the charge table locally but cannot make closed-loop phase globally consistent, the six-site quantization proof is only combinatorial and has not yet recovered the gauge-topological content of charge quantization.
+
+A magnetic-charge comparison branch must also separate formation from capture. In observer-level language a magnetically charged compact object can form with charge or later capture charged defects. The $\mathbb{A}\mathbb{A}\mathbb{A}$ gauge map should not import either story as ontology, but it can retain the provenance distinction as a residual on the effective flux record:
+$$
+Q_{m,\mathrm{eff}}^\theta(t)
+=
+Q_{m,\mathrm{form}}^\theta
++
+\int_{t_{\mathrm{form}}}^{t}
+\Gamma_{m,\mathrm{cap}}^\theta(t')\,dt'
+-
+\int_{t_{\mathrm{form}}}^{t}
+\Gamma_{m,\mathrm{loss}}^\theta(t')\,dt'.
+$$
+The loop-phase target above then requires the same branch record to support both the effective magnetic-flux label and the allowed electric axial-layer charge set. A compact object that solves a monopole-abundance problem by hiding charge in an untracked capture channel has not recovered gauge structure; it has moved the charge ledger outside the derivation.
 
 ## Observer-Level Electroweak Closure Map (Working)
 

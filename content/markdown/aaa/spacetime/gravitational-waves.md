@@ -164,6 +164,60 @@ $$
 
 with the tolerances fixed by the validation band. This gate protects the separation between the observable data product and the ontology: the data product is a calibrated, coincident, low-residual strain record, while the $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation must still earn the claim that the record is the tensor-sector response of the effective metric induced by Noether-Sea constitutive dynamics.
 
+Coincidence is part of the data product, not an afterthought. For a detector network with instruments $D_a$, calibrated strain streams $s_a(t)$, response templates $h_a^\theta(t)$, and allowed light-speed timing windows $\Delta t_{ab}^{\mathrm{geom}}$, define
+$$
+\mathcal{R}_{\mathrm{coin}}(\theta)
+=
+\sum_a
+\left\|
+s_a-\mathcal{P}_{D_a}h^\theta
+\right\|_{C_a^{-1}}^2
++
+\sum_{a<b}
+\frac{
+\left(
+\Delta t_{ab}^{\mathrm{fit}}-\Delta t_{ab}^{\mathrm{geom}}
+\right)^2
+}{
+\sigma_{ab}^2
+}.
+$$
+This residual is the modern version of the separated-detector check: a signal must be coherent across instruments after antenna response, timing, calibration, and background rejection are fixed. An isolated excess in one detector, or a coincidence that requires an implausible source energy after the same response projection, remains a candidate disturbance rather than an accepted gravitational-wave record.
+
+**Closure Target 2A (graviton-comparison detectability residual).**
+When a detector record is compared with a quantum-gravity language, keep the comparison at observer level. A calibrated classical strain event does not become a single-quantum detection merely because a graviton basis can be used for bookkeeping. For a narrowband comparison with angular frequency $\omega$ and strain amplitude $f$, retain the occupation lower bound
+$$
+N_{\mathrm{occ}}
+\ge
+\frac{
+\rho_{\mathrm{GW}}
+}{
+\rho_1
+},
+\qquad
+\rho_{\mathrm{GW}}
+\sim
+\frac{c_0^2}{32\pi G_{\mathrm{eff}}}\omega^2 f^2,
+\qquad
+\rho_1
+\lesssim
+\frac{\hbar\omega^4}{c_0^3}.
+$$
+The accepted gravitational-wave record is therefore classical whenever $N_{\mathrm{occ}}\gg1$. A separate single-quantum claim would need a detector-side packet $\theta_{\mathrm{1g}}$ satisfying
+$$
+\mathcal{R}_{\mathrm{1g}}(\theta_{\mathrm{1g}})
+=
+\max\left(
+\frac{|N_{\mathrm{occ}}-1|}{\epsilon_N},
+\frac{\delta_{\mathrm{det}}}{\delta_{\mathrm{req}}},
+\frac{2G_{\mathrm{eff}}M_{\mathrm{det}}}{c_0^2D_{\mathrm{det}}},
+\frac{B_{\mathrm{th}}}{S_{\mathrm{1g}}^2}
+\right)
+\le
+1,
+$$
+with $\delta_{\mathrm{req}}\sim L_{\mathrm{P}}$ for a single-graviton interferometric distance readout, $\delta_{\mathrm{det}}$ the achieved distance uncertainty, $M_{\mathrm{det}}$ and $D_{\mathrm{det}}$ the detector mass and size, $S_{\mathrm{1g}}$ the predicted single-graviton count, $B_{\mathrm{th}}$ the relevant thermal or particle-background count, and $\epsilon_N$ the allowed occupation-window tolerance. The compactness term prevents a sensitivity claim from hiding a black-hole detector; the background term prevents a thermal-graviton claim from being promoted when statistical scatter in known backgrounds dominates the putative count. Failure of this residual does not refute gravitons as a comparison basis and does not add graviton ontology to $\mathbb{A}\mathbb{A}\mathbb{A}$; it only blocks the stronger detector claim that an observed strain or thermal count has directly resolved individual quanta.
+
 When $\theta_{\mathrm{GW}}$ is also used to support a finite-range or dark-energy comparison, $\mathcal{R}_{\mathrm{GW,low}}(\theta)$ must be carried beside this detector residual. Passing a high-frequency event-timing gate alone is not enough to promote a long-wavelength dispersion claim.
 
 ## Merger and Ringdown Horizon-Interface Gate
@@ -205,6 +259,17 @@ where $\mathcal{B}_{\mathrm{det}}$ is the validated detector band and $d_{\mathr
 
 ## Energy Flux
 
+The source-side benchmark is also part of closure. In the GR weak-field comparison, isolated systems do not radiate monopole or dipole gravitational waves at leading order because total energy, momentum, and angular momentum conservation remove those channels. The first radiative source is quadrupolar. A compact observer-level target is
+$$
+P_{\mathrm{GW}}
+=
+\frac{G_{\text{eff}}}{5c_{\text{GW}}^5}
+\left\langle
+\dddot Q_{ij}\dddot Q^{ij}
+\right\rangle,
+$$
+with $Q_{ij}$ the trace-free mass quadrupole of the effective source record in the validated weak-field limit. A native Noether-Sea wave model must therefore explain why scalar monopole leakage, vector dipole leakage, and non-TT power remain below detector bounds rather than adding them as free source channels.
+
 **Closure Target 3 (leading-order GW flux).**
 In the same regime, the cycle-averaged flux is
 $$
@@ -213,4 +278,4 @@ $$
 \frac{c_{\text{GW}}^3}{32\pi G_{\text{eff}}}
 \left\langle \dot h_+^2+\dot h_\times^2\right\rangle.
 $$
-This is the quantity used for binary-orbit energy-loss consistency checks.
+This is the quantity used for binary-orbit energy-loss consistency checks. Energy localization for gravitational waves is an observer-level effective description: the packet may use cycle-averaged fluxes and asymptotic energy loss, but it should not promote a gauge-dependent local gravitational energy density into substrate ontology.
