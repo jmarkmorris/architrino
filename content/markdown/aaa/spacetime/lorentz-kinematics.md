@@ -276,6 +276,49 @@ q
 $$
 with admissibility requiring the same causal-root ledger to close the spheroid geometry, clock period, and preferred-frame leakage bounds. Thus a continuous Lorentz formula would be recovered as the common envelope of discrete Noether-core return-cycle classes only after those branch-admissibility conditions close.
 
+To keep this closure target testable, the branch should report a single Lorentz residual record rather than separate narrative successes. For a declared channel speed $c_\star$ and branch $q$, write
+$$
+\mathcal{R}_{\mathrm{Lor},q}(\beta_\star)
+=
+\left(
+R_T^{(q)},
+R_\xi^{(q)},
+R_u^{(q)},
+R_{E\mathbf{p}}^{(q)},
+R_\gamma^{(q)},
+\epsilon_{\mathrm{LV}}^{(q)}
+\right),
+$$
+where
+$$
+R_T^{(q)}(v)
+\equiv
+\frac{T_q(v)}{T_0}-\gamma_\star(v),
+\qquad
+R_\xi^{(q)}(v)
+\equiv
+\xi_q(v)-\frac{1}{\gamma_\star(v)}.
+$$
+For a one-dimensional velocity-composition test in the same declared channel,
+$$
+R_u^{(q)}
+\equiv
+u_{\mathrm{eff}}
+-
+\frac{u'+v}{1+u'v/c_\star^2}.
+$$
+For the effective mass-shell and photon-channel tests, use
+$$
+R_{E\mathbf{p}}^{(q)}
+\equiv
+E_q^2-\left(\|\mathbf{p}_q\|^2c_\star^2+m_q^2c_\star^4\right),
+\qquad
+R_\gamma^{(q)}
+\equiv
+E_\gamma-c_\gamma\|\mathbf{p}_\gamma\|.
+$$
+Here $m_q$ is the observer-sector inertial response assigned to the admitted branch, and $R_\gamma^{(q)}$ is evaluated only after the photon channel has been declared. The same causal-root ledger, medium dressing map, and branch state must feed all components. A branch that fits clock slowing with one ledger, ruler contraction with another, and photon propagation with an independent channel has not closed Lorentz behavior; it has only matched isolated formulas.
+
 This derivation is stronger than assigning an ellipsoid after the fact. The one-way longitudinal legs remain asymmetric; the Lorentz geometry appears only when the closed return cycle is allowed to choose the semiaxes that make longitudinal and transverse closure periods agree. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the spheroid is the visible projection of a branch that has solved its return-cycle ledger.
 
 ### 3.2 Effective shape law

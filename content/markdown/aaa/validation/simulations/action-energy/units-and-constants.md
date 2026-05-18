@@ -43,4 +43,47 @@ Detailed explanation (dynamical geometry):
 - Combined role in assembly scales:
   - The trio $(\kappa,\epsilon,\eta)$, together with the $1/r^2$ law, determines emergent scales such as the smallest sustainable orbit $d_0$ and fastest natural frequency $2\pi/t_0$. Intuitively, stronger coupling (larger $\kappa\epsilon^2$) and sharper wake surfaces (smaller $\eta$) favor tighter, faster structures until self-interaction and delay balance inward trends.
 
+- Dimensionless branch-scan controls:
+  - Simulation sweeps should report dimensionless controls rather than only raw choices of $(\kappa,\epsilon,\eta,L_0,T_0)$. Choose a reference length $L_\star$ and the corresponding reference time $T_\star=L_\star/c_f$; in field-speed units, $c_f=1$ and $T_\star=L_\star$.
+  - **Speed ratio:** use
+    $$
+    \beta_i(t)=\frac{\|\mathbf{v}_i(t)\|}{c_f},
+    $$
+    and, for circular binary scans, the existing speed factor
+    $$
+    s=\frac{R\omega}{c_f}.
+    $$
+    A branch scan must state whether the sampled histories remain below, cross, or remain above the self-hit onset $\beta=1$.
+  - **Delay/window ratio:** use
+    $$
+    \Theta_\tau=\frac{\tau_{\max}}{T_{\mathrm{win}}},
+    $$
+    where $\tau_{\max}$ is the longest active causal lookback time and $T_{\mathrm{win}}$ is the averaging, diagnostic, or return-map window. The stored history horizon $h$ must satisfy $h\ge\tau_{\max}$ on the scanned branch chart.
+  - **Regularization thickness:** use
+    $$
+    \hat{\eta}=\frac{\eta}{L_\star},
+    $$
+    with local checks such as $\eta/r_{\min}$ against the smallest resolved separation. A scan is numerically meaningful only when branch counts and averaged observables stabilize as $\hat{\eta}$ is reduced while the causal wakes remain resolved.
+  - **Coupling scale:** compare the per-hit acceleration scale with the reference acceleration $L_\star/T_\star^2$:
+    $$
+    g_\kappa
+    =
+    \frac{\kappa\epsilon^2 T_\star^2}{L_\star^3}
+    =
+    \frac{\kappa\epsilon^2}{c_f^2 L_\star}.
+    $$
+    In field-speed units this reduces to $g_\kappa=\kappa\epsilon^2/L_\star$.
+  - **Branch/root tolerances:** for the causal-root residual
+    $$
+    g_{ij}(\tau,\phi)
+    =
+    \|\phi_i(0)-\phi_j(-\tau)\|-c_f\tau,
+    $$
+    accept a root only when $|g_{ij}|/L_\star\le\varepsilon_{\mathrm{root}}$, keep distinct roots separated by $|\tau_a-\tau_b|/T_\star>\varepsilon_{\mathrm{sep}}$, and treat $|J|\le\varepsilon_J$ as a branch-birth or caustic zone rather than an ordinary stable branch.
+  - A branch-scan report should therefore include at least
+    $$
+    (\beta_{\max}\ \text{or}\ s,\ \Theta_\tau,\ \hat{\eta},\ g_\kappa,\ \varepsilon_{\mathrm{root}},\ \varepsilon_{\mathrm{sep}},\ \varepsilon_J),
+    $$
+    together with the active causal-root ledger. This prevents a change in units, regularization, or root finder tolerance from masquerading as a new physical branch.
+
 Plain language: We measure speeds in units where the field speed is one, use $\kappa$ to set how hard every hit pushes, use $\eta$ to slightly thicken the razor-thin isochrons so calculus works, and use $\epsilon$ as the basic unit of polarity. The push is always straight along the line back to where the isochron was emitted, but its received strength is also shaped by the Jacobian factor $|J|^{-1}$; like polarities push out, unlike polarities pull in.

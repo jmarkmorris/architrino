@@ -196,7 +196,7 @@ and is constant in time for exact isolated solutions of the causal action. In mo
 
 Consistency rule: either use $E_{\text{wake}}$ alone for all interaction energy, or, if a $U_{\text{int}}$ pairwise term is retained as an effective decomposition inside assemblies, then $E_{\text{wake}}$ must explicitly omit the corresponding near-field content to prevent double counting.
 
-For a finite spatial window $W\subset\Sigma_t$, conservation is a balance law rather than a claim that the window is isolated. Write
+For a finite spatial window $W\subset\Sigma_t$, conservation is a balance law rather than a claim that the window is isolated. This is the conservation-law upgrade relative to instantaneous mechanics: energy, momentum, and angular momentum are not generally conserved equal-time particle snapshots, but finite-window history functionals whose apparent deficits must be carried by causal-wake fluxes or by an explicit residual. Write
 $$
 E_W(t)
 =
@@ -228,7 +228,7 @@ $$
 $$
 on the retained branch chart. If $D_{ij}R_{+}\ne0$ and this residual does not vanish, the endpoint is an interior Euler source rather than a conservation-boundary term. In that case the characteristic-tail action changes the accepted branch force and cannot be used to close exact energy conservation for the current Master EOM.
 
-The analogous momentum closure must also remain tied to the same window and boundary data:
+The analogous momentum and angular-momentum closures must also remain tied to the same window and boundary data. The finite-window momentum functional $P_W^i$ contains the mechanical momentum retained in $W$ plus the retained wake-history momentum record:
 $$
 \frac{dP_W^i}{dt}
 +
@@ -238,9 +238,40 @@ F_{\mathrm{ext},W}^i
 +
 \mathcal{R}_P^i(\eta,\Delta t,W).
 $$
-The tensor $\Pi^{ij}$ is a finite-window momentum-flux diagnostic for the retained causal wakes and assembly crossings, not a new substrate field. If the energy and momentum residuals can be made small only by changing the window measure, boundary wake record, or regularization separately for each observable, the calculation has fitted separate summaries rather than demonstrated one causal-history conservation law.
+For a declared origin $\mathbf{x}_0$, the corresponding angular-momentum history functional has the schematic form
+$$
+\mathbf{L}_W(t)
+=
+\sum_{a:\mathbf{s}_a(t)\in W}
+\big(\mathbf{s}_a(t)-\mathbf{x}_0\big)\times\mathbf{p}_a(t)
++
+\mathbf{L}_{\mathrm{wake},W}(t),
+$$
+where $\mathbf{p}_a$ is the declared mechanical momentum proxy for the chosen kinetic bookkeeping. Its finite-window balance target is
+$$
+\frac{dL_W^i}{dt}
++
+\int_{\partial W}\Lambda^{ij}\hat{n}_j\,dA
+=
+\tau_{\mathrm{ext},W}^i
++
+\mathcal{R}_L^i(\eta,\Delta t,W).
+$$
+Here $\Pi^{ij}$ and $\Lambda^{ij}$ are finite-window flux diagnostics for retained causal wakes and assembly crossings, not new substrate fields. $\tau_{\mathrm{ext},W}^i$ is the external torque about the same origin $\mathbf{x}_0$. If the energy, momentum, and angular-momentum residuals can be made small only by changing the window measure, boundary wake record, or regularization separately for each observable, the calculation has fitted separate summaries rather than demonstrated one causal-history conservation law.
 
-In practice, for finite systems or simulation domains, we verify conservation by monitoring $E_{\text{total}}(t)$ and checking convergence as $\eta$ and $\Delta t$ are reduced.
+**Theorem target (center of response).** The standard center-of-mass theorem depends on equal-time internal force cancellation. In delayed causal dynamics that cancellation is not available as a particle-only statement on $\Sigma_t$: the reciprocal hit generally belongs to a different emission time, a different causal-root branch, or a boundary wake record not retained by the finite window. For an assembly window $W_A(t)$, the replacement target is to prove that there is a response center $\mathbf{X}_{\mathrm{resp}}(t)$ and an assembly response tensor $M_A^{ij}$ such that the finite-window momentum balance reduces, over resolved windows, to
+$$
+\frac{d}{dt}\left(M_A^{ij}\dot{X}_{\mathrm{resp},j}\right)
+=
+F_{\mathrm{ext},W_A}^i
+-
+\int_{\partial W_A}\Pi^{ij}\hat{n}_j\,dA
++
+\mathcal{R}_{\mathrm{resp}}^i(\eta,\Delta t,W_A).
+$$
+Only when the wake-history boundary flux and residual vanish does this reduce to the familiar center-of-mass form. Until that theorem is closed, a center-of-mass trajectory is an effective readout of the assembly response, not a substrate-level proof that internal delayed forces cancel instantaneously.
+
+In practice, finite systems or simulation domains should monitor $E_W(t)$, $P_W^i(t)$, and $L_W^i(t)$ together with their boundary fluxes and residuals. $E_{\text{total}}(t)$ is the isolated-system limit when the declared window contains the full wake-history record and the boundary terms vanish.
 
 ---
 

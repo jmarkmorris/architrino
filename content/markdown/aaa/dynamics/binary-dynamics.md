@@ -28,6 +28,29 @@ A symmetric set of equations governs the Positrino's motion based on the Electri
 
 In the strictly sub-field-speed regime (no self-interaction, $\|\mathbf{v}\|\le c_f$), a stable, circular orbit is impossible. Because the attractive force on each particle points to the *past* position of its partner, it is not a true central force. This delay yields an **inward spiral that is naturally modeled as exponential in angle** (a logarithmic spiral), consistent with a per-cycle angular-momentum increment $\Delta L_c$ in the partner-only regime. The radius shrinks geometrically per turn and speed increases until the self-interaction threshold ($\|\mathbf{v}\|>c_f$) is crossed.
 
+Standard central-force mechanics conserves angular momentum because the force at time $t$ is collinear with the equal-time separation vector. The partner-hit branch does not have that geometry. Define the equal-time separation and delayed line of action by
+$$
+\mathbf{r}_{12}^{\mathrm{eq}}(t)
+\equiv
+\mathbf{s}_1(t)-\mathbf{s}_2(t),
+\qquad
+\widehat{\mathbf{r}}_{12}(t;t_0)
+=
+\frac{\mathbf{s}_1(t)-\mathbf{s}_2(t_0)}
+{\|\mathbf{s}_1(t)-\mathbf{s}_2(t_0)\|}.
+$$
+The delayed partner branch carries the angular-momentum-change direction
+$$
+\mathbf{r}_{12}^{\mathrm{eq}}(t)
+\times
+\widehat{\mathbf{r}}_{12}(t;t_0),
+$$
+which is generically nonzero because $\mathbf{s}_2(t_0)$ is not the partner's equal-time position. Therefore the usual angular-momentum barrier and the instantaneous effective potential
+$$
+V_{\mathrm{eff}}(r)=V(r)+\frac{ml^2}{2r^2}
+$$
+cannot be imported as the binary's governing reduction. A conserved angular-momentum-like quantity, if present, must include the causal-wake history term that balances the delayed torque.
+
 **Lemma (No stable circular orbit for $v < c_f$).** In circular motion, $v=s=R\omega$. In the partner-only regime, the per-hit tangential component satisfies
 $$
 T_p \propto \frac{\sin(\delta_p/2)}{\cos^2(\delta_p/2)} > 0 \quad (0<\delta_p<\pi),
@@ -620,6 +643,42 @@ $$
 would provide a deterministic mechanism for quantized bound-state geometry: allowed radii and frequencies would be selected by integer causal-root ledgers rather than by a continuum of arbitrary circular orbits.
 
 This statement is deliberately conditional. The present chapter derives the discrete root ledgers and the radial balance target, but the stability and quantization claims require the missing full-history certificate: finite active branches, positive Jacobian floors, returned-history closure, and a monodromy or boundary-trapping argument. In practice, that certificate may close first in a collinear breather or tri-binary setting rather than in the bare circular two-body kernel.
+
+#### Branch Stability Target (Hessian Bridge)
+
+The standard equilibrium test in central-force mechanics uses the Hessian of an instantaneous effective potential. If $q_\star$ is an equilibrium, the matrix
+$$
+H_{ab}(q_\star)=\partial_a\partial_b V_{\mathrm{eff}}(q_\star)
+$$
+tests local stiffness in the non-symmetry directions. This is useful as comparison language, but it is not yet a stability proof for an architrino binary because the force law depends on path-history, the active signed causal-root ledger, and the branch Jacobian floors.
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ branch-stability target is therefore a cycle-averaged stiffness matrix on a fixed branch chart. Let $b$ denote a fixed signed causal-root ledger and let $\mathbf{X}_b(t)$ be a candidate periodic history with period $P_b$. For reduced branch coordinates $y^a$ transverse to time-shift and rotation symmetries, define the diagnostic stiffness target
+$$
+K^{(b)}_{ab}
+=
+\frac{1}{P_b}\int_0^{P_b}
+\left.
+\frac{\delta^2 U_{\eta,b}^{\mathrm{hist}}}{\delta y^a\,\delta y^b}
+\right|_{\mathbf{x}_t=\mathbf{X}_{b,t}}
+dt,
+$$
+where $U_{\eta,b}^{\mathrm{hist}}$ is the action-compatible history potential, or the corresponding diagnostic reconstruction when the regularization has not yet been derived from the delayed action. Negative stiffness in this matrix is a local instability signal; positive stiffness is only a necessary reduced-coordinate check, not a certificate.
+
+The actual branch certificate must be delayed-history and Floquet-style. Let
+$$
+\mathcal{P}_b:\mathcal{N}_b\subset\mathcal{H}\to\mathcal{H}
+$$
+advance an admissible history by one candidate cycle while the signed causal-root ledger remains fixed. A stable branch requires the return map to stay inside the same branch neighborhood,
+$$
+\mathcal{P}_b(\mathcal{N}_b)\subset\mathcal{N}_b,
+\qquad
+\inf_{\phi\in\mathcal{N}_b}|J(\phi)|\ge J_{\min}>0,
+$$
+and the non-symmetry Floquet multipliers of $D\mathcal{P}_b[\mathbf{X}_b]$ to satisfy
+$$
+|\mu_\alpha|<1.
+$$
+Only that return-map condition would upgrade the Hessian-style stiffness picture into branch stability. Until it is supplied, MCB stability remains a conditional target rather than a completed proof.
 
 #### Finite-dimensional projection caveat
 

@@ -8,9 +8,20 @@ Use the AAA corpus advancement skill in self-running mode.
 
 Optionally follow it with a specific lane, shard, priority area, or edit-batch instruction.
 
-Use this prompt when the AAA corpus needs active advancement: a recent batch may contain a newer theoretical signal, the priority ledgers may identify open issues that should be turned into mathematics, or the corpus itself may contain underdeveloped proof routes, mathematical closure targets, newly visible insights, notation fixes, or occasional terminology corrections. Cross-linking and general cleanup are secondary unless they directly support a concrete mathematical advance.
+Use this prompt when the AAA corpus needs active advancement: a recent batch may contain a newer theoretical signal, the priority ledgers may identify open issues that should be turned into mathematics, an external source may contain AAA-relevant physics that should be mined, or the corpus itself may contain underdeveloped proof routes, mathematical closure targets, newly visible insights, notation fixes, or occasional terminology corrections. Cross-linking and general cleanup are secondary unless they directly support a concrete mathematical advance.
 
-The highest-value use of this prompt is not mere phrase cleanup or another paragraph saying work remains. Use the review to make concrete mathematical progress: propose definitions, equations, lemmas, invariants, estimates, closure conditions, proof sketches, toy models, counterexamples, or simulation hooks. Each recurring claim should be sorted as ontology, derivation/closure target, effective summary, or speculation, but that sorting is a launch point for work, not the final product. When the current user request grants advancement, integration, cleanup, or self-running authority, perform safe, low-risk, canon-conforming edits instead of withholding them for approval. Reserve approval or discussion for new theory leaps, terminology policy, Archie canon changes, broad scope expansion, or ambiguous operator intent. The final response should identify what was edited now, what mathematical object was attempted now, what intuition deserves disciplined discussion with Op, and what should become a concrete priority action item.
+The highest-value use of this prompt is not mere phrase cleanup, a skimmed highlight list, or another paragraph saying work remains. Use the review to make concrete mathematical progress: propose definitions, equations, lemmas, invariants, estimates, closure conditions, proof sketches, toy models, counterexamples, or simulation hooks. Each recurring claim should be sorted as ontology, derivation/closure target, effective summary, or speculation, but that sorting is a launch point for work, not the final product. When the current user request grants advancement, integration, cleanup, source mining, or self-running authority, perform safe, low-risk, canon-conforming edits instead of withholding them for approval. Reserve approval or discussion for new theory leaps, terminology policy, Archie canon changes, broad scope expansion, or ambiguous operator intent. The final response should identify what was edited now, what mathematical object was attempted now, what valuable source material was intentionally deferred or rejected, what intuition deserves disciplined discussion with Op, and what should become a concrete priority action item.
+
+## Source Mining Standard
+
+When a source document, paper, lecture note, accepted observation list, or prior audit result is supplied, mine it for all valuable AAA-relevant material, not only the strongest highlights. Read section by section or observation by observation. For each relevant signal, decide whether it should be:
+
+- promoted directly into `content/markdown/aaa` as safe, scoped, canon-conforming textbook prose;
+- converted into a concrete theorem target, equation, invariant, proof route, closure condition, scale estimate, or simulation target in the current batch;
+- staged as a specific Op-discussion prompt because it would canonize a new theory leap, terminology policy, or broad ontology claim;
+- rejected as irrelevant, duplicate, too speculative, or lower value than the core geometry/math work at hand.
+
+The pass is complete only when the valuable material has been exhaustively triaged and the safe portion has advanced the AAA textbook corpus. Do not stop after one or two high-leverage edits if additional source signals can safely strengthen core geometry, dynamics, closure mathematics, branch certification, Lorentz/effective-metric recovery, photon closure, mass-map work, or executable validation targets.
 
 High-priority autonomous method: when no more specific lane is supplied, inspect `reference/priorities/aaa-work-threads/priorities.md` and the relevant files under `reference/priorities/` early in the pass. Treat those files as an operator-maintained issue ledger, not as authored AAA content. Use them to identify concrete corpus-advancement opportunities, proof routes, missing derivations, validation ledgers, and safe edit batches. Do not link from authored `content/markdown/aaa` files to priority files; if priority material belongs in the AAA corpus, restate or promote the needed substance inside the relevant AAA document.
 
@@ -167,12 +178,13 @@ Required method:
    - content/markdown/aaa/archie/mathematics-terminology.md
    - content/markdown/aaa/archie/comparative-glossary.md
 4. Build a concise list of the selected source signals' theory advancements or priority-ledger issues.
-5. Convert that list into a claim map using the four buckets: ontology, derivation/closure target, effective summary, speculation.
-6. Choose the strongest one or two signals and attempt a concrete mathematical advance: candidate definition, lemma, closure equation, invariant, proof scaffold, scale estimate, provenance equation, validation criterion, or minimal simulation target.
-7. Search the corpus for related claims, older terminology, weaker formulations, missing implications, inconsistent notation, and documents that would benefit from the advancement.
-8. Search for exact stale phrases first, then broaden to conceptual neighbors. Prefer `rg` searches and include search patterns only when they seed a concrete follow-on prompt.
-9. If this request is report-only, do not edit. Otherwise, apply safe, low-risk, canon-conforming edits discovered inside the current pass. Do not edit to canonize a new theory leap, change terminology policy, update Archie canon, or make a broad scope expansion without Op discussion or an explicit prompt granting that authority.
-10. Produce a report organized by mathematical advance first, then by affected document.
+5. For source-mining tasks, continue until every AAA-relevant source signal has an outcome: edited now, converted into a concrete mathematical target, staged for Op discussion, or rejected with a short reason.
+6. Convert that list into a claim map using the four buckets: ontology, derivation/closure target, effective summary, speculation.
+7. Attempt concrete mathematical advances for all safe high-value signals in scope, not just the top one or two: candidate definitions, lemmas, closure equations, invariants, proof scaffolds, scale estimates, provenance equations, validation criteria, or minimal simulation targets.
+8. Search the corpus for related claims, older terminology, weaker formulations, missing implications, inconsistent notation, and documents that would benefit from the advancement.
+9. Search for exact stale phrases first, then broaden to conceptual neighbors. Prefer `rg` searches and include search patterns only when they seed a concrete follow-on prompt.
+10. If this request is report-only, do not edit. Otherwise, apply safe, low-risk, canon-conforming edits discovered inside the current pass. Do not edit to canonize a new theory leap, change terminology policy, update Archie canon, or make a broad scope expansion without Op discussion or an explicit prompt granting that authority.
+11. Produce a report organized by mathematical advance first, then by affected document.
 
 For each affected document, report:
 - Path

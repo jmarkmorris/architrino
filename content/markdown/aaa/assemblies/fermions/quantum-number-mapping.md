@@ -726,6 +726,50 @@ e = 6\epsilon \sqrt{\kappa c_f}\,Z_e,
 $$
 with $Z_e$ fixed by canonical field normalization when mapping to observer-level kinetic terms.
 
+### Inertial response and magnetic-moment interface
+
+Mass, inertial response, and magnetic moment are not additional quantum-number rows in this dictionary. A rigid-body inertia tensor is a useful comparison object because it maps angular velocity to angular momentum for a fixed mass distribution. The fermion assembly is not treated as that kind of rigid body. Its observer-level response is derived from trapped causal history, shielding, Noether-Sea coupling, and the orientation of the Noether core plus axial layer.
+
+For a fermion assembly $A$, write the local response maps as
+$$
+\delta p_i
+=
+\mathcal{M}^{\mathrm{resp}}_{ij}
+\!\left(A;\mathcal{H}_A,\mathcal{S}_A,\mathcal{N}_A,R_A\right)
+\delta v^j,
+\qquad
+\delta J_i
+=
+\mathcal{I}^{\mathrm{resp}}_{ij}
+\!\left(A;\mathcal{H}_A,\mathcal{S}_A,\mathcal{N}_A,R_A\right)
+\delta\Omega^j.
+$$
+
+The directional observer scalars are projections of these maps,
+$$
+m_A^{\mathrm{obs}}(\hat{\mathbf{u}})
+=
+\hat u^i\mathcal{M}^{\mathrm{resp}}_{ij}\hat u^j,
+\qquad
+I_A^{\mathrm{obs}}(\hat{\mathbf{n}})
+=
+\hat n^i\mathcal{I}^{\mathrm{resp}}_{ij}\hat n^j.
+$$
+Here $\mathcal{H}_A$ is the path-history/causal-root ledger, $\mathcal{S}_A$ is the shielding state, $\mathcal{N}_A$ is the local Noether-Sea state, and $R_A$ records assembly orientation. In an isotropic low-energy branch, $m_A^{\mathrm{obs}}$ reduces to the scalar mass used in Standard Model kinematics; away from that limit, the anisotropic response belongs to the medium-response map, not to a new quantum number.
+
+The lepton magnetic-moment correction below should be read through the same interface. The coefficient $\mathcal{C}_\ell$ is a channel projection of response data,
+$$
+\mathcal{C}_\ell
+=
+\mathcal{P}_\ell\!\left[
+\mathcal{M}^{\mathrm{resp}},
+\mathcal{I}^{\mathrm{resp}},
+\mathcal{V}_{\mathrm{NS}},
+R_\ell
+\right],
+$$
+where $\mathcal{P}_\ell$ denotes the observer-channel projection into the measured lepton magnetic-moment observable. This keeps magnetic moment tied to finite-size orientation response and Noether-Sea dressing without treating magnetic language as substrate ontology.
+
 ### Lepton magnetic moments
 
 The leading finite-size correction is encoded as
