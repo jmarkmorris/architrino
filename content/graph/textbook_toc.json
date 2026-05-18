@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1177
+      "sections": 1178
     }
   },
   "tocRoot": {
@@ -2363,6 +2363,14 @@
                     "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
                     "markdownSection": "Interior Dynamics and Recycling",
                     "sectionKey": "interior dynamics and recycling",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Mass-Scale Traversal",
+                    "markdownPath": "content/markdown/aaa/spacetime/black-holes.md",
+                    "markdownSection": "Mass-Scale Traversal",
+                    "sectionKey": "mass scale traversal",
                     "headingLevel": 2
                   },
                   {

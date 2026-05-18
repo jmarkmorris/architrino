@@ -1,0 +1,29 @@
+<svg width="212mm" height="271mm" version="1.1" viewBox="0 0 212 271" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <rect y="8.077e-15" width="212" height="271" fill="#fff"/>
+ <path d="m13 19c82 46 134 95 150 197" fill="none" stroke="#000" stroke-dasharray="4"/>
+ <path d="m165 229 4 35m-156-245 54 25" fill="none" stroke="#00f"/>
+ <path d="m173 261-4 3-4-2 5 7zm-107-222l1 5-5 2h9z" fill="#00f"/>
+ <path d="m207.5 85 3-10-10 3 6 1z" fill="#0f0"/>
+ <g transform="matrix(.887-.512 .512 .887-58 90)">
+  <path id="a" d="m158 118c9-11 9 11 18 0" fill="none" stroke="#0f0"/>
+  <use transform="translate(18)" xlink:href="#a"/>
+  <use transform="translate(36)" xlink:href="#a"/>
+  <use transform="translate(54)" xlink:href="#a"/>
+ </g>
+ <circle cx="77" cy="153" r="11" fill="#f00"/>
+ <g font-family="Times" font-size="13px" text-anchor="middle">
+  <g id="b">
+   <circle cx="8" cy="17" r="5" fill="#00f"/>
+   <text x="8" y="20" fill="#0ff">-</text>
+  </g>
+  <use transform="translate(156 206)" xlink:href="#b"/>
+  <text x="77" y="161" font-size="23px">+</text>
+  <text x="9" y="10" font-style="italic">E<tspan dy="3" font-size="8px" font-style="normal">1</tspan></text>
+  <text x="8" y="29">e</text>
+  <text x="39" y="27" font-style="italic">v<tspan dy="3" font-size="8px" font-style="normal">1</tspan></text>
+  <text x="171" y="212" font-style="italic">E<tspan dy="3" font-size="8px" font-style="normal">2</tspan></text>
+  <text x="173" y="247" font-style="italic">v<tspan dy="3" font-size="8px" font-style="normal">2</tspan></text>
+  <text x="155" y="226">e</text>
+  <text x="150" y="84" font-style="italic">h·f  = E<tspan dy="3" font-size="8px" font-style="normal">1</tspan><tspan dy="-3" font-style="normal"> –  </tspan>E<tspan dy="3" font-size="8px" font-style="normal">2</tspan></text>
+ </g>
+</svg>

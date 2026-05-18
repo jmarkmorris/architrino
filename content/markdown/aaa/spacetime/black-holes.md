@@ -73,6 +73,43 @@ $$
 \text{strong Noether-Sea constitutive regime}.
 $$
 
+### Neutron-Star Branch as a Radial Test
+
+The neutron-star branch is the sharpest compact-object test before horizon-interface language becomes active. It is already far outside weak-field matter, but it remains a non-horizon branch as long as volumetric neutron-rich matter support has not been forced into terminal tri-binary alignment. For a spherical bookkeeping radius $r$ inside a star of surface radius $R_*$, the useful local record is not a scalar density alone but a Noether-Sea and matter-response bundle,
+
+$$
+\Theta_{\mathrm{NS}}(r)
+=
+\left(
+\rho_{\text{core}}(r),
+n(r),
+\chi_{\text{sea}}(r),
+\Gamma_N(r),
+S_{ij}(r),
+\mathcal{M}_{\text{sea}}^{ab}(r),
+\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(\Omega_r)}
+\right),
+$$
+
+where $\Omega_r$ is the compact interior region retained by the comparison and $\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(\Omega_r)}$ records the local energy, momentum, angular-momentum, reaction, neutrino, stress, heat, medium-update, and remnant rows needed for that region. The exterior region samples the same record through redshift, orbital motion, lensing, and signal-delay channels. The surface is not a hard boundary of the Euclidean void; it is the branch boundary where exterior Noether-Sea response starts coupling to neutron-rich packed matter, charged layers, radiation channels, magnetic stresses when present, and surface transport.
+
+Inside the star, electron-envelope language has mostly lost authority. The active ledger is neutron-rich nuclear matter or denser phases together with residual charged components, neutrino transport, pressure support, heat flow, stress, and local Noether-Sea updates. A compact branch-survival condition can therefore be stated as
+
+$$
+0<
+1-\frac{v_O(r)}{c_f},
+\qquad
+0\le s_n(r)\le1,
+\qquad
+\mathcal{R}_H(\Omega_r)<\infty,
+\qquad
+\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(\Omega_r)}\ \text{closes},
+$$
+
+for all retained radii $0\le r\le R_*$. Here $v_O$ is the outer-binary speed in the relevant branch record, $s_n$ is the packing-headroom diagnostic when a pressure-packing model is being used, and $\mathcal{R}_H$ is the strong-field regularity residual. The $s_n$ condition should be read as a candidate pressure-response target until a neutron-star dense-matter branch supplies the corresponding $K_{\mathrm{pack}}$, packing ceiling, and branch residuals.
+
+The center of an ideal nonrotating neutron star is therefore not automatically horizon-like. The first radial gradients vanish there by symmetry, while pressure, stress, cadence stretch, and packing pressure can be maximal. If scalar density response is exhausted while $v_O<c_f$, the response must route into shape, strain, contact, transport, or dense-matter branch change. If the same record forces $v_O\to c_f$ and activates the horizon-interface condition, the neutron-star branch has ended and the continuation belongs to the horizon-interface branch below.
+
 ## Canonical Horizon Condition
 
 The canonical strong-field alignment condition is inherited from [singularity-resolution.md](./singularity-resolution.md). Near the horizon interface, the working regime definition is
@@ -439,6 +476,50 @@ The working picture has four parts:
 This is the sense in which black holes are treated as recycling furnaces in the cosmology chapters. The claim is not that every specific ejecta channel has already been derived. The claim is that the interior is an energy-partition and reprocessing regime, not a terminal ontic sink.
 
 The same picture implies that the effective mass of a black hole need not be interpreted as a purely isolated bookkeeping variable. If the horizon interface and interior remain constitutively coupled to the ambient Noether Sea, then part of what observers infer as compact-object mass can depend on how the surrounding medium loads, unloads, or stores energy around the recycling site. This does not license arbitrary mass drift. It means that the distinction between "local compact-object state" and "embedding medium state" is dynamical rather than absolute.
+
+## Mass-Scale Traversal
+
+The exterior-to-core sequence is the same for black holes at every mass scale, but the relative weight of the local gradients, horizon-interface capacity, release channels, and cosmological embedding changes with mass. The useful comparison is therefore not a separate ontology for small, stellar, and supermassive black holes. It is one traversal map evaluated with different effective horizon scales.
+
+In a weak exterior comparison, write the observer-level horizon scale as
+
+$$
+R_H(M;\theta)
+\simeq
+\frac{2G_{\mathrm{eff}}(\theta)M}{c_0^2},
+\qquad
+A_H(M;\theta)
+=
+4\pi R_H^2(M;\theta).
+$$
+
+The native strong-field interpretation does not treat $R_H$ or $A_H$ as primitive geometry of the Euclidean void. They are observer-level readouts of the same horizon-interface condition $v_M=c_f,\ v_O\to c_f$. Still, their scaling organizes which closure burden dominates. The interface label capacity scales schematically like
+
+$$
+N_{\mathrm{align}}(M;\theta)
+\sim
+\frac{A_H(M;\theta)}{A_{\mathrm{align}}},
+$$
+
+while the exterior tidal or curvature pressure at the horizon scales, in the same comparison limit, like
+
+$$
+\mathcal{K}_H(M;\theta)
+\sim
+\frac{G_{\mathrm{eff}}(\theta)M}{R_H^3(M;\theta)}
+\propto
+M^{-2}.
+$$
+
+This gives a compact mass-scale rule. Small black holes concentrate the traversal into a tiny region with steep local gradients, high comparison temperature, and release-channel pressure. Stellar-mass or intermediate black holes are the clean collapse-ladder case: the record must pass from compact matter through the neutron-star branch or its failure into the horizon-interface branch. Supermassive black holes have comparatively gentle local horizon gradients but enormous interface capacity, long-lived recycling, and the strongest coupling to the ambient Noether-Sea embedding.
+
+| Scale | Dominant pressure | $\mathbb{A}\mathbb{A}\mathbb{A}$ reading |
+| :--- | :--- | :--- |
+| Small or near-evaporating black hole | Steep local gradients, high release-channel pressure, small $N_{\mathrm{align}}$ | Best stress test for finite maximum-curvature replacement, Hawking-like release normalization, and endpoint ledger closure. |
+| Stellar-mass or intermediate black hole | Collapse-ladder continuity and merger/ringdown consistency | Best stress test for the handoff from dense matter support to terminal alignment and for exterior strong-field recovery. |
+| Supermassive black hole | Large $N_{\mathrm{align}}$, long recycling time, strong environmental embedding | Best stress test for Noether-Sea loading, release-channel selection, dark-sector hypotheses, and possible cosmological coupling. |
+
+The scale map is a classification aid, not a new gate. It says which existing black-hole burdens become sharp as $M$ changes: small black holes emphasize endpoint and release accounting, medium black holes emphasize collapse continuity, and supermassive black holes emphasize embedded recycling and medium-state source terms.
 
 ## Jets and Other Release Channels
 

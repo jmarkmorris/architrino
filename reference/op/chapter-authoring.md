@@ -1,4 +1,4 @@
-# Chapter Authoring and Legacy Recovery
+# Chapter Authoring and Source Mining
 
 ## Workstream Metadata
 
@@ -13,11 +13,11 @@
 
 1. `fill_thin_chapters` — Fill empty or thin chapters with formal minimums. Status: `next`. Depends on: none.
 2. `deepen_drafted_chapters` — Deepen the current drafted philosophy and history chapters. Status: `pending`. Depends on: `fill_thin_chapters`.
-3. `recover_legacy_material` — Mine legacy material only where it materially saves time. Status: `pending`. Depends on: `fill_thin_chapters`.
+3. `mine_source_material` — Mine legacy and external source material only where it materially saves time. Status: `pending`. Depends on: `fill_thin_chapters`.
 
 ## Scope
 
-This is the ranked queue for chapter-writing work and legacy-material recovery. It is the main coverage bucket and should be used to fill thin chapters with formal minimums rather than ornamental prose.
+This is the ranked queue for chapter-writing work and source-material mining. It is the main coverage bucket and should be used to fill thin chapters with formal minimums rather than ornamental prose.
 
 ## Core Theory Focus Constraint
 
@@ -33,7 +33,7 @@ During the current core geometrical theory push, do not treat chapter coverage a
 ## Fast Lift
 
 - Add definitions, governing equations, closure targets, and falsification gates to empty or thin chapters.
-- Recover useful material from WordPress or old presentations only where it saves real time.
+- Recover useful material from prior posts, old presentations, archived papers, lecture notes, PDFs, and videos only where it saves real time.
 - Deepen the current drafted philosophy/history chapters in ranked order.
 
 ## Current Drafted Chapters To Deepen
@@ -67,10 +67,37 @@ During the current core geometrical theory push, do not treat chapter coverage a
   12. `Reconstructing Physics and Cosmology`
   13. `Vision for the Future / Toward New Technologies`
 
-## Legacy Recovery Feeds
+## Source Mining Feeds
 
-- Mine material from WordPress where it materially saves time.
-- Clean up old PowerPoints, or better, migrate the worthwhile ones into the web site.
+- Mine material from WordPress and other prior blog material where it materially saves time.
+- Mine old PowerPoint decks, cleaning them up only when migration into the web site or $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus is worthwhile.
+- Mine archived papers, arXiv-style papers, and local PDF paper collections for definitions, examples, derivation routes, and source leads.
+- Mine YouTube videos and course playlists when transcripts, slides, or lecture notes can be reduced into concrete chapter material.
+- Mine David Kaiser's MIT OCW `STS.042J/8.225J` course sequence, especially Lecture 23, `The Birth of Particle Cosmology`, plus the surrounding late-course particle-cosmology lectures.
+- Mine David Tong's official lecture-note PDFs from [Teaching | David Tong](https://davidtong.org/teaching/):
+  - [Dynamics and Relativity](https://davidtong.org/pdfs/teaching/dynamics-and-relativity/dynrel.pdf)
+  - [Classical Dynamics](https://davidtong.org/pdfs/teaching/classical-dynamics/clas.pdf)
+  - [Vector Calculus](https://davidtong.org/pdfs/teaching/vector-calculus/vc.pdf)
+  - [Electromagnetism](https://davidtong.org/pdfs/teaching/electromagnetism/electro.pdf)
+  - [Quantum Mechanics](https://davidtong.org/pdfs/teaching/quantum-mechanics/qm.pdf)
+  - [Topics in Quantum Mechanics](https://davidtong.org/pdfs/teaching/topics-in-quantum-mechanics/topicsinqm.pdf)
+  - [Solid State Physics](https://davidtong.org/pdfs/teaching/solid-state-physics/solidstate.pdf)
+  - [Quantum Hall Effect](https://davidtong.org/pdfs/teaching/quantum-hall-effect/qhe.pdf)
+  - [Fluid Mechanics](https://davidtong.org/pdfs/teaching/fluid-mechanics/fluids.pdf)
+  - [Kinetic Theory](https://davidtong.org/pdfs/teaching/kinetic-theory/kinetic.pdf)
+  - [Mathematical Biology](https://davidtong.org/pdfs/teaching/mathematical-biology/mathbio.pdf)
+  - [Statistical Physics](https://davidtong.org/pdfs/teaching/statistical-physics/statphys.pdf)
+  - [Statistical Field Theory](https://davidtong.org/pdfs/teaching/statistical-field-theory/sft.pdf)
+  - [General Relativity](https://davidtong.org/pdfs/teaching/general-relativity/gr.pdf)
+  - [Cosmology](https://davidtong.org/pdfs/teaching/cosmology/cosmo.pdf)
+  - [Quantum Field Theory](https://davidtong.org/pdfs/teaching/quantum-field-theory/qft.pdf)
+  - [Gauge Theory](https://davidtong.org/pdfs/teaching/gauge-theory/gauge.pdf)
+  - [Particle Physics](https://davidtong.org/pdfs/teaching/particle-physics/pp.pdf)
+  - [The Standard Model](https://davidtong.org/pdfs/teaching/standard-model/standardmodel.pdf)
+  - [Supersymmetric Quantum Mechanics](https://davidtong.org/pdfs/teaching/supersymmetric-quantum-mechanics/susyqm.pdf)
+  - [Supersymmetric Field Theory](https://davidtong.org/pdfs/teaching/supersymmetric-field-theory/susy.pdf)
+  - [String Theory](https://davidtong.org/pdfs/teaching/string-theory/string.pdf)
+  - [Solitons and D-Branes](https://davidtong.org/pdfs/teaching/solitons/tasi.pdf)
 
 ## Related Priorities
 

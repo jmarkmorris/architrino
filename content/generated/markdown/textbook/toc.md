@@ -290,6 +290,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
       - [Horizon Interface](../../../markdown/aaa/spacetime/black-holes.md?section=Horizon+Interface)
       - [Cosmological Embedding and Horizon Regularity](../../../markdown/aaa/spacetime/black-holes.md?section=Cosmological+Embedding+and+Horizon+Regularity)
       - [Interior Dynamics and Recycling](../../../markdown/aaa/spacetime/black-holes.md?section=Interior+Dynamics+and+Recycling)
+      - [Mass-Scale Traversal](../../../markdown/aaa/spacetime/black-holes.md?section=Mass-Scale+Traversal)
       - [Jets and Other Release Channels](../../../markdown/aaa/spacetime/black-holes.md?section=Jets+and+Other+Release+Channels)
       - [Relation to Dark Energy and Expansion History](../../../markdown/aaa/spacetime/black-holes.md?section=Relation+to+Dark+Energy+and+Expansion+History)
       - [Cosmological Coupling Hypothesis](../../../markdown/aaa/spacetime/black-holes.md?section=Cosmological+Coupling+Hypothesis)
