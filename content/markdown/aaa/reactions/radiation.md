@@ -86,6 +86,27 @@ $$
 
 where $\Gamma(t)$ is the assembly microstate and the other inputs are the causal-root, Jacobian, density, and delay data already used elsewhere in the corpus.
 
+The classical point-charge comparison sharpens this requirement. A singular charged source makes the near-field energy formally divergent, so the observed inertial mass cannot be identified with electromagnetic field energy alone without adding a compensating internal term. In $\mathbb{A}\mathbb{A}\mathbb{A}$ language, that pathology is a warning against treating radiation damping as a separate force law attached after the motion has been chosen. The event record must instead expose the finite balance
+
+$$
+\mathcal{D}_{\mathrm{rad}}
+\equiv
+\Delta P^\mu_{\mathrm{asm}}
++
+\Delta P^\mu_{\gamma}
++
+\Delta P^\mu_{\mathrm{near}}
++
+\Delta P^\mu_{\mathrm{wake}}
++
+\Delta P^\mu_{\mathrm{mass/rem}}
+=0,
+$$
+
+where $\Delta P^\mu_{\mathrm{near}}$ is the reversible near-field or acceleration-energy comparison row, $\Delta P^\mu_{\mathrm{wake}}$ is the causal-wake branch exchange computed from delayed path-history data, and $\Delta P^\mu_{\mathrm{mass/rem}}$ is the finite internal mass or remnant ledger that prevents electromagnetic self-energy from being mistaken for the whole mass story. A completed radiation-reaction derivation must show that the observer-level damping term is the irreversible part of this conservation residual after the reversible near-field row is separated, not an independently appended self-force.
+
+Classical decompositions that compare outgoing and incoming field pieces can be used only as effective recovery tools. In the corpus notation their role is to test whether the same causal-wake history yields a finite $\mathcal{D}_{\mathrm{rad}}$ when the comparison tube around the source is shrunk. They do not license acausal substrate dynamics: any nonlocal-looking term must be re-expressed as branch accounting over the event window, with delayed path-history provenance and a named residual row for every unmatched energy-momentum component.
+
 ## Excitation Basins
 
 If $\delta\Theta_a$ remains within the local basin, the core retunes without a resolved radiative event. If the mismatch crosses a separatrix, the Noether core enters an internally excited, closure-mismatched, or metastable state above its nearest stable rung. The excess energy is then a state-space gap:

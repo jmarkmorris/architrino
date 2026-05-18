@@ -135,6 +135,33 @@ Q\in\left\{-|e|,-\frac{2|e|}{3},-\frac{|e|}{3},0,\frac{|e|}{3},\frac{2|e|}{3},|e
 $$
 No other values are possible. Different permutations with the same $(N_+,N_-)$ have identical total $Q$; they only change micro-geometry, not net charge.
 
+### Loop-Phase Quantization Target
+
+Dirac's 1931 monopole argument is useful here as an observer-level gauge-potential lesson, not as a claim that magnetic poles are $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology. The comparison target is the global phase condition: a local effective potential may be chart-dependent, but the phase accumulated around a closed loop must be single-valued modulo $2\pi$. For any observer-level loop $\gamma$ and spanning surface $S$ in a declared gauge-topology benchmark, the effective connection reconstructed from the wake/action ledger should therefore obey
+$$
+\Theta_\gamma(Q)
+=
+\frac{Q}{\hbar}\oint_\gamma A_{\mathrm{eff}}\cdot d\ell
+=
+\frac{Q}{\hbar}\int_S F_{\mathrm{eff}}
+$$
+with the physical ambiguity only
+$$
+\Theta_\gamma(Q)-2\pi N_\gamma \to 0,\qquad N_\gamma\in\mathbb{Z}.
+$$
+The six-site axial bookkeeping must make this a charge-compatibility condition, not a separately imposed monopole postulate. A compact residual for the allowed axial-layer charge set is
+$$
+\mathcal{R}_{\mathrm{loop}\text{-}Q}
+=
+\max_{Q\in\{-|e|,-2|e|/3,-|e|/3,0,|e|/3,2|e|/3,|e|\}}
+\inf_{N_\gamma\in\mathbb{Z}}
+\left|
+\frac{Q}{\hbar}\int_S F_{\mathrm{eff}}
+-2\pi N_\gamma
+\right|.
+$$
+This residual belongs to the observer-level recovery map. It passes only when the same Noether-Sea and axial-layer branch record that supplies local electromagnetic force and phase transport also yields $\mathcal{R}_{\mathrm{loop}\text{-}Q}\le\varepsilon_{\mathrm{loop}\text{-}Q}$ for the benchmark loop family. If a branch recovers the charge table locally but cannot make closed-loop phase globally consistent, the six-site quantization proof is only combinatorial and has not yet recovered the gauge-topological content of charge quantization.
+
 ## Observer-Level Electroweak Closure Map (Working)
 
 To connect microdynamics to observer-sector electroweak equations, start from the causal path-history action:

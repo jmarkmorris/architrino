@@ -252,7 +252,21 @@ $$
 =
 \frac{2(a_A^S-a_B^S)}{a_A^S+a_B^S}.
 $$
-The weak equivalence row requires $\eta_{AB}^{S}$ to vanish within the material-composition bounds while the same clock, signal, and PPN record is held fixed. A separate strong-equivalence row tests whether gravitational self-energy or medium binding changes the acceleration of extended bodies:
+The weak equivalence row requires $\eta_{AB}^{S}$ to vanish within the material-composition bounds while the same clock, signal, and PPN record is held fixed. The point is not to assume equivalence as a substrate axiom, but to recover it as an observer-level constraint on the same record $\theta_W$. If local clock/ruler states for different apparatuses are allowed to absorb the gravitational response through material-dependent scale factors $\lambda_A(\mathbf{x};\theta_W)$, the residual must also satisfy
+$$
+\mathcal{R}_{\mathrm{scale\text{-}EP}}^{S}(\theta_W)
+=
+\max_{A,B}
+\frac{
+\left\|
+\nabla\ln\!\left(\lambda_A/\lambda_B\right)
+\right\|_W
+}{
+\left\|\nabla\Phi_{\text{eff}}\right\|_W/c_0^2+\varepsilon
+}
+\ll 1,
+$$
+with the source assembly, boundary wake data, cosmological record, and PPN coefficients held fixed. This forbids a flat-description or local-unit rewriting from replacing universal gravitational acceleration by apparatus-specific material response. Equivalence recovery therefore couples the torsion-balance row, clock-comparison row, and cosmological/boundary record: a Mach-like dependence of inertial standards on the surrounding matter distribution is admissible only if it is common to the accepted observer record and leaves no composition-dependent acceleration residue. A separate strong-equivalence row tests whether gravitational self-energy or medium binding changes the acceleration of extended bodies:
 $$
 \eta_{\mathrm{SEP}}
 =

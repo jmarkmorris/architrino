@@ -84,3 +84,11 @@ During the current core geometrical theory push, do not treat chapter coverage a
 | Alexander Blum and Dieter Brill, `1905.05988v1.pdf`, `Tokyo Wheeler or the Epistemic Preconditions of the Renaissance of Relativity` | May 18, 2026 |
 | R. H. Dicke, P. J. E. Peebles, P. G. Roll, and D. T. Wilkinson, `1965ApJ___142__414D.pdf`, `Cosmic Black-Body Radiation` | May 18, 2026 |
 | A. A. Penzias and R. W. Wilson, `1965ApJ___142__419P.pdf`, `A Measurement of Excess Antenna Temperature at 4080 Mc/s` | May 18, 2026 |
+| Contemporary Physics Education Project, `2014-fund-chart.pdf`, `The Standard Model of Fundamental Particles and Interactions` | May 18, 2026 |
+| Alexander Blum and Stefano Furlan, `2206.14664v1.pdf`, `How John Wheeler lost his faith in the law` | May 18, 2026 |
+| Murray Gell-Mann, `8foldway1961gellmann.pdf`, `The Eightfold Way: A Theory of Strong Interaction Symmetry` | May 18, 2026 |
+| Carroll O. Alley, Darryl Leiter, Yutaka Mizobuchi, and Huseyin Yilmaz, `9906458.pdf`, `Energy Crisis in Astrophysics (Black Holes vs. N-Body Metrics)` | May 18, 2026 |
+| Gordon Kane, `Are virtual particles really constantly popping in and out of existence? Or are they merely a mathem.pdf`, `Are virtual particles really constantly popping in and out of existence? Or are they merely a mathematical bookkeeping device for quantum mechanics?` | May 18, 2026 |
+| R. H. Dicke, `DickeRevModPhys.29.363.pdf`, `Gravitation without a Principle of Equivalence` | May 18, 2026 |
+| P. A. M. Dirac, `Dirac.pdf`, `Quantised Singularities in the Electromagnetic Field` | May 18, 2026 |
+| P. A. M. Dirac, `Dirac1938.pdf`, `Classical Theory of Radiating Electrons` | May 18, 2026 |

@@ -53,6 +53,33 @@ a_n=\langle\phi_n|\psi\rangle_\theta,
 $$
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is to derive the chart, the inner product, the admissible operator, and the coefficients from the retained deterministic flow and apparatus kernel. If those objects are inserted independently of the record-forming dynamics, the formal Hilbert-space description has been assumed rather than recovered.
 
+### Virtual-Channel Comparison Contract
+
+Perturbative quantum field theory often describes loop corrections by saying that virtual particles appear as intermediate components of an interaction. In this chapter that language is admitted only as comparison-layer bookkeeping. Lamb-shift splittings, Casimir-force corrections, electroweak mass shifts, and similar loop-sensitive observables are real record statistics to recover, but the phrase "particles constantly popping in and out" is not substrate ontology in $\mathbb{A}\mathbb{A}\mathbb{A}$.
+
+For a declared effective chart $\theta=(M_\theta,\mathcal{Q},W,T)$ and apparatus channel $C$, let $\mathcal{O}_{\mathrm{loop}}^{\mathrm{QFT}}(C)$ denote the standard loop-corrected prediction for the recorded observable, including whatever virtual-channel terms the comparison calculation uses. The $\mathbb{A}\mathbb{A}\mathbb{A}$ replacement must instead derive an effective channel operator $\hat O_{\mathrm{eff}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(C;\theta)$ and record distribution $P_{\mathrm{rec}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\cdot\mid C,\theta)$ from the same deterministic assembly flow, causal-wake path history, and finite-window basin measure used elsewhere in this chapter. The comparison is accepted only when a virtual-channel residual is controlled:
+$$
+\mathcal{R}_{\mathrm{virt}}(C;\theta)
+=
+\max\left(
+\frac{
+\left|
+\langle \hat O_{\mathrm{eff}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(C;\theta)\rangle_{\mathrm{rec}}
+-
+\mathcal{O}_{\mathrm{loop}}^{\mathrm{QFT}}(C)
+\right|
+}{\varepsilon_{\mathrm{loop}}},
+\frac{
+d_{\mathrm{TV}}\!\left(
+P_{\mathrm{rec}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\cdot\mid C,\theta),
+P_{\mathrm{obs}}(\cdot\mid C)
+\right)
+}{\varepsilon_{\mathrm{rec}}}
+\right)
+\le 1.
+$$
+The first term tests the effective operator or channel residual against the loop benchmark; the second tests the actual recorded statistics. Passing this residual licenses the perturbative virtual-particle description as an economical calculation layer. It does not license a substrate claim that additional short-lived particles are being created and erased between records.
+
 ### Density-Current Closure Target
 
 Born probability is only half of the effective wavefunction contract. Standard Schrödinger evolution also carries a local conservation law. For an effective single-assembly chart with mass parameter $m_{\mathrm{eff}}$ and action constant $\hbar_{\mathrm{eff}}$, define

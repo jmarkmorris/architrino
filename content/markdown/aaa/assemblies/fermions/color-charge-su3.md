@@ -392,6 +392,35 @@ for the standard SU(3) structure constants in this basis.
 
 **Proof.** Each element of $\mathcal{B}$ is Hermitian and traceless, and there are eight linearly independent such matrices. Under the basis identification above, $\mathcal{B}$ maps one-to-one to the Gell-Mann basis $\{\lambda_a/2\}_{a=1}^8$, whose commutator algebra is $\mathfrak{su}(3)$. Therefore the axis-exceptionality generators close under commutator with the same structure constants.
 
+### Eightfold-way recovery residual
+
+The historical Eightfold Way lesson is useful here only as an algebraic recovery target: $SU(3)$ first classified hadrons by triplet, conjugate-triplet, and adjoint/octet representations before supplying the underlying strong-sector dynamics. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, that means the axis-exceptionality construction must recover the representation bookkeeping while keeping the Noether core as the ontology.
+
+The branch condition is:
+$$
+\mathcal{H}^{\text{color}}_q\cong 3,\qquad
+\mathcal{H}^{\text{color}}_{\bar q}\cong \bar 3,\qquad
+\mathrm{span}_{\mathbb{R}}\mathcal{B}\cong 8_{\mathrm{adj}},
+$$
+with the observable closed sectors assembled through the usual singlet-containing products
+$$
+3\otimes\bar 3=1\oplus 8,\qquad
+3\otimes 3\otimes 3\supset 1.
+$$
+This does not identify the Eightfold Way flavor octets with color itself. It says that any successful color branch must reproduce the same algebraic fact that eight traceless generators organize an octet-class residual, while native confinement and color-singlet closure still come from axis exceptionality, braid closure, and Noether-Sea energetics.
+
+Symmetry breaking is then tested as a residual, not promoted to a second color rule. Let $M_{\mathrm{obs}}$ be the observed hadron mass vector for a chosen baryon or meson octet, and let $M_{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)$ be the mass vector predicted after projecting a closed color-singlet assembly onto its flavor and axial-layer labels. The admissible branch must support a decomposition
+$$
+M_{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)=m_0\mathbf{1}+\alpha T_8+\beta D_8+\Delta_{\mathrm{axis}}(\theta),
+$$
+where $T_8$ and $D_8$ denote the two octet-breaking directions available to the adjoint classification, and $\Delta_{\mathrm{axis}}(\theta)$ is the native correction from H/M/L regime differences, axial-layer family selection, and braid energy. The recovery residual is
+$$
+\mathcal{R}_{8}
+=\min_{m_0,\alpha,\beta,\theta}
+\left\|M_{\mathrm{obs}}-\left(m_0\mathbf{1}+\alpha T_8+\beta D_8+\Delta_{\mathrm{axis}}(\theta)\right)\right\|.
+$$
+A branch fails this Eightfold-way check if $\mathcal{R}_{8}$ can be made small only by fitting unrelated parameters separately for baryons, mesons, and color confinement, or if $\Delta_{\mathrm{axis}}$ erases the triplet/conjugate-triplet and adjoint structure above. The source signal to preserve is therefore narrow: algebraic classification and Gell-Mann-Okubo-style mass splitting are recovery constraints on the emergent branch, not evidence that the classification algebra is the underlying medium.
+
 ### Example: H↔M axis-swap generator
 
 The infinitesimal H↔M mixer is
