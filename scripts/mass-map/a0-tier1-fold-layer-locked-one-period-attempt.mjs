@@ -21,6 +21,8 @@ const DEFAULT_PHASE_TOLERANCE = 0.02;
 const DEFAULT_SPEED_TOLERANCE = 0.02;
 const DEFAULT_CENTER_TOLERANCE = 0.02;
 const DEFAULT_ENERGY_TOLERANCE = 0.02;
+const DEFAULT_BALANCE_TOLERANCE = 0.02;
+const DEFAULT_BALANCE_RIDGE = 1e-12;
 const COMPONENTS_PER_BODY = 6;
 const ACCEPTED_HISTORY_BLOCKERS = [
   "status_is_accepted_history_segment",
@@ -48,6 +50,8 @@ function parseArgs(argv) {
     speedTolerance: DEFAULT_SPEED_TOLERANCE,
     centerTolerance: DEFAULT_CENTER_TOLERANCE,
     energyTolerance: DEFAULT_ENERGY_TOLERANCE,
+    balanceTolerance: DEFAULT_BALANCE_TOLERANCE,
+    balanceRidge: DEFAULT_BALANCE_RIDGE,
     pretty: false,
     out: null,
     help: false,
@@ -88,6 +92,10 @@ function parseArgs(argv) {
       args.centerTolerance = parsePositiveNumber(argv[++i], "--center-tolerance");
     } else if (arg === "--energy-tolerance") {
       args.energyTolerance = parsePositiveNumber(argv[++i], "--energy-tolerance");
+    } else if (arg === "--balance-tolerance") {
+      args.balanceTolerance = parsePositiveNumber(argv[++i], "--balance-tolerance");
+    } else if (arg === "--balance-ridge") {
+      args.balanceRidge = parsePositiveNumber(argv[++i], "--balance-ridge");
     } else if (arg === "--pretty") {
       args.pretty = true;
     } else if (arg === "--out") {
@@ -113,6 +121,8 @@ Options:
   --c-f N                Field-speed scale. Defaults to ${DEFAULT_C_F}.
   --max-abs-state N      Abort if any position or velocity component exceeds this absolute value.
   --max-speed N          Abort if any body speed exceeds this value.
+  --balance-tolerance N  Relative residual tolerance for scalar relation-weight balance.
+  --balance-ridge N      Ridge term for the relation-weight normal equation.
   --out PATH             Write JSON output to a file instead of stdout.
   --pretty               Pretty-print JSON.
   --help                 Show this help.
@@ -1094,6 +1104,276 @@ function rootClosureLedger(samples, roots, period, tolerance) {
   };
 }
 
+function sourceSamplesForBalance(row, sourceRow) {
+  const sourceSamples = canonicalSamples(sourceRow ?? {});
+  return sourceSamples.length > 0 ? sourceSamples : canonicalSamples(row);
+}
+
+function accelerationStep(samples, period) {
+  const nonnegative = samples
+    .map((sample) => sample.t)
+    .filter((time) => Number.isFinite(time) && time >= 0 && time <= period)
+    .sort((a, b) => a - b);
+  const gaps = [];
+  for (let i = 1; i < nonnegative.length; i += 1) {
+    const gap = nonnegative[i] - nonnegative[i - 1];
+    if (Number.isFinite(gap) && gap > Number.EPSILON) {
+      gaps.push(gap);
+    }
+  }
+  if (gaps.length > 0) {
+    return gaps.reduce((min, gap) => Math.min(min, gap), gaps[0]);
+  }
+  return Number.isFinite(period) && period > 0 ? period / 320 : null;
+}
+
+function sourceStateAt(samples, t, bodyId) {
+  const sample = interpolateSample(samples, t);
+  return sample ? stateFromSample(sample, bodyId) : null;
+}
+
+function finiteDifferenceCarrierAcceleration(samples, t, h) {
+  if (!Number.isFinite(h) || h <= 0) {
+    return null;
+  }
+  const left = interpolateSample(samples, t - h);
+  const right = interpolateSample(samples, t + h);
+  if (!left || !right || !finiteStateSample(left) || !finiteStateSample(right)) {
+    return null;
+  }
+  return Object.fromEntries(
+    BODY_IDS.map((bodyId) => {
+      const leftVelocity = left.bodies[bodyId].velocity;
+      const rightVelocity = right.bodies[bodyId].velocity;
+      return [bodyId, scale(sub(rightVelocity, leftVelocity), 1 / (2 * h))];
+    })
+  );
+}
+
+function relationBasisAt(samples, rootsByTime, lockedKeys, period, t, eta, jMin) {
+  const current = interpolateSample(samples, t);
+  if (!current || !finiteStateSample(current)) {
+    return null;
+  }
+  const basis = Object.fromEntries(
+    ROOT_RELATIONS.map((relation) => [
+      relation,
+      Object.fromEntries(BODY_IDS.map((bodyId) => [bodyId, [0, 0, 0]])),
+    ])
+  );
+  const bucket = nearestRootBucket(rootsByTime, t, period);
+  let evaluatedRootCount = 0;
+  let lockedRootCount = 0;
+  let invalidRootCount = 0;
+  for (const root of bucket.roots) {
+    if (lockedKeys.has(rootKey(root))) {
+      lockedRootCount += 1;
+      continue;
+    }
+    const receiverState = current.bodies[root.receiver];
+    const sourceState = sourceStateAt(samples, t - root.delay, root.source);
+    if (!receiverState || !sourceState || !basis[root.relation]) {
+      invalidRootCount += 1;
+      continue;
+    }
+    const sourceToReceiver = sub(sourceState.position, receiverState.position);
+    const regularizedDistanceSquared = dot(sourceToReceiver, sourceToReceiver) + eta * eta;
+    const denominator =
+      regularizedDistanceSquared *
+      Math.sqrt(regularizedDistanceSquared) *
+      Math.max(Math.abs(root.J), jMin);
+    if (!Number.isFinite(denominator) || denominator <= 0) {
+      invalidRootCount += 1;
+      continue;
+    }
+    const coefficient = (bodyCharge(root.receiver) * bodyCharge(root.source)) / denominator;
+    const contribution = scale(sourceToReceiver, coefficient);
+    const receiverBasis = basis[root.relation][root.receiver];
+    receiverBasis[0] += contribution[0];
+    receiverBasis[1] += contribution[1];
+    receiverBasis[2] += contribution[2];
+    evaluatedRootCount += 1;
+  }
+  return {
+    basis,
+    bucket_time: bucket.t,
+    evaluatedRootCount,
+    lockedRootCount,
+    invalidRootCount,
+  };
+}
+
+function addOuterProduct(normal, row) {
+  for (let i = 0; i < ROOT_RELATIONS.length; i += 1) {
+    for (let j = 0; j < ROOT_RELATIONS.length; j += 1) {
+      normal[i][j] += row[i] * row[j];
+    }
+  }
+}
+
+function addScaledRow(rhs, row, value) {
+  for (let i = 0; i < ROOT_RELATIONS.length; i += 1) {
+    rhs[i] += row[i] * value;
+  }
+}
+
+function solveLinear3(matrix, rhs) {
+  const a = matrix.map((row, index) => [...row, rhs[index]]);
+  for (let col = 0; col < 3; col += 1) {
+    let pivot = col;
+    for (let row = col + 1; row < 3; row += 1) {
+      if (Math.abs(a[row][col]) > Math.abs(a[pivot][col])) {
+        pivot = row;
+      }
+    }
+    if (Math.abs(a[pivot][col]) <= Number.EPSILON) {
+      return null;
+    }
+    if (pivot !== col) {
+      [a[pivot], a[col]] = [a[col], a[pivot]];
+    }
+    const pivotValue = a[col][col];
+    for (let entry = col; entry < 4; entry += 1) {
+      a[col][entry] /= pivotValue;
+    }
+    for (let row = 0; row < 3; row += 1) {
+      if (row === col) {
+        continue;
+      }
+      const factor = a[row][col];
+      for (let entry = col; entry < 4; entry += 1) {
+        a[row][entry] -= factor * a[col][entry];
+      }
+    }
+  }
+  const solution = [a[0][3], a[1][3], a[2][3]];
+  return solution.every(Number.isFinite) ? solution : null;
+}
+
+function residualBalanceLedger(row, sourceRow, trajectory, args) {
+  const period = row.period;
+  const samples = sourceSamplesForBalance(row, sourceRow);
+  const roots = trajectory.roots;
+  const lockedKeys = new Set(row.trajectory_target?.branch_chart_assumptions?.locked_self_root_keys ?? []);
+  const eta = trajectory.diagnostics?.eta ?? resolveEta(row, sourceRow, args);
+  const h = accelerationStep(samples, period);
+  if (!Number.isFinite(period) || period <= 0 || samples.length === 0 || roots.length === 0 || !Number.isFinite(h)) {
+    return {
+      schema: "a0-tier1-residual-balance-ledger/v1",
+      status: "not_computed",
+      reason: "source samples, active roots, period, or acceleration step missing",
+    };
+  }
+  const rootsByTime = groupRootsByObservationTime(roots, period);
+  const normal = ROOT_RELATIONS.map(() => ROOT_RELATIONS.map(() => 0));
+  const rhs = ROOT_RELATIONS.map(() => 0);
+  let equationCount = 0;
+  let sampleCount = 0;
+  let evaluatedRootContributions = 0;
+  let lockedRootContributions = 0;
+  let invalidRootContributions = 0;
+  let targetNormSquared = 0;
+  const rows = [];
+
+  for (const bucket of rootsByTime) {
+    const t = bucket.t;
+    if (!Number.isFinite(t) || t < 0 || t > period) {
+      continue;
+    }
+    const target = finiteDifferenceCarrierAcceleration(samples, t, h);
+    const basisPacket = relationBasisAt(samples, rootsByTime, lockedKeys, period, t, eta, args.jMin);
+    if (!target || !basisPacket) {
+      continue;
+    }
+    sampleCount += 1;
+    evaluatedRootContributions += basisPacket.evaluatedRootCount;
+    lockedRootContributions += basisPacket.lockedRootCount;
+    invalidRootContributions += basisPacket.invalidRootCount;
+    for (const bodyId of BODY_IDS) {
+      for (let component = 0; component < 3; component += 1) {
+        const rowVector = ROOT_RELATIONS.map((relation) => basisPacket.basis[relation][bodyId][component]);
+        const targetValue = target[bodyId][component];
+        if (!rowVector.every(Number.isFinite) || !Number.isFinite(targetValue)) {
+          continue;
+        }
+        addOuterProduct(normal, rowVector);
+        addScaledRow(rhs, rowVector, targetValue);
+        targetNormSquared += targetValue * targetValue;
+        rows.push({ rowVector, targetValue });
+        equationCount += 1;
+      }
+    }
+  }
+
+  if (equationCount < ROOT_RELATIONS.length || targetNormSquared <= 0) {
+    return {
+      schema: "a0-tier1-residual-balance-ledger/v1",
+      status: "not_computed",
+      sample_count: sampleCount,
+      equation_count: equationCount,
+      reason: "insufficient carrier-acceleration equations for relation-weight balance",
+    };
+  }
+
+  const regularizedNormal = normal.map((rowValues, index) =>
+    rowValues.map((value, col) => value + (index === col ? args.balanceRidge : 0))
+  );
+  const solution = solveLinear3(regularizedNormal, rhs);
+  if (!solution) {
+    return {
+      schema: "a0-tier1-residual-balance-ledger/v1",
+      status: "failed",
+      failure_code: "relation-weight-normal-equation-singular",
+      sample_count: sampleCount,
+      equation_count: equationCount,
+      normal_matrix: normal,
+      rhs,
+    };
+  }
+
+  let residualNormSquared = 0;
+  let maxComponentResidual = 0;
+  for (const row of rows) {
+    const predicted = row.rowVector.reduce((sum, value, index) => sum + value * solution[index], 0);
+    const residual = row.targetValue - predicted;
+    residualNormSquared += residual * residual;
+    maxComponentResidual = Math.max(maxComponentResidual, Math.abs(residual));
+  }
+  const relativeResidual = Math.sqrt(residualNormSquared / targetNormSquared);
+  const status =
+    relativeResidual <= args.balanceTolerance
+      ? "relation_weight_balance_candidate"
+      : "relation_weight_only_no_go_carrier_correction_required";
+  return {
+    schema: "a0-tier1-residual-balance-ledger/v1",
+    status,
+    failure_code: status === "relation_weight_balance_candidate" ? null : "relation-weight-only-residual-too-large",
+    tolerance: args.balanceTolerance,
+    ridge: args.balanceRidge,
+    source: "branch-carrier finite-difference acceleration and active causal-root basis",
+    sample_count: sampleCount,
+    equation_count: equationCount,
+    acceleration_step: h,
+    eta,
+    relation_weight_solution: Object.fromEntries(
+      ROOT_RELATIONS.map((relation, index) => [relation, solution[index]])
+    ),
+    target_norm: Math.sqrt(targetNormSquared),
+    residual_norm: Math.sqrt(residualNormSquared),
+    relative_residual: relativeResidual,
+    max_component_residual: maxComponentResidual,
+    evaluated_root_contributions: evaluatedRootContributions,
+    locked_root_contributions: lockedRootContributions,
+    invalid_root_contributions: invalidRootContributions,
+    correction_equation:
+      "d_l''(t) must supply the component of carrier acceleration outside span{B_self,B_partner,B_inter} when scalar relation weights do not meet tolerance.",
+    no_go_statement:
+      relativeResidual <= args.balanceTolerance
+        ? "Scalar branch-native relation weights are not yet falsified by this residual-balance projection."
+        : "Scalar branch-native relation weights alone cannot close the compact fixture; a non-circular carrier correction or richer branch equation is required.",
+  };
+}
+
 function lockLedger(row) {
   const target = row.trajectory_target ?? {};
   const assumptions = target.branch_chart_assumptions ?? {};
@@ -1155,6 +1435,7 @@ function residualLedgers(row, sourceRow, trajectory, args) {
     speed_ordering: speedOrderingLedger(samples, args.cF, args.speedTolerance),
     center_drift: centerDriftLedger(samples, args.centerTolerance),
     energy_like_speed: energyLikeSpeedLedger(samples, period, args.energyTolerance),
+    residual_balance: residualBalanceLedger(row, sourceRow, trajectory, args),
     fold_layer_lock: lockLedger(row),
     monodromy: monodromyLedger(),
     eta_ladder: etaLadderLedger(),

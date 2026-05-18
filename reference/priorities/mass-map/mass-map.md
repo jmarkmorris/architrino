@@ -11,7 +11,7 @@
 
 ## Task Queue
 
-1. `derive_first_attractor_family` — Use the source-coverage-passing, under-cap fold-layer-locked $A_0$ one-period attempt packet to run the direct regularized one-period trajectory, phase ledger, energy ledger, monodromy, and eta-ladder persistence before accepted-history emission. Status: `next`; compact-fixture source coverage, attempt budget, and fail-closed validation observer implemented May 16, 2026. Depends on: none.
+1. `derive_first_attractor_family` — Use the May 18, 2026 fold-layer-locked $A_0$ one-period failure and residual-balance no-go to derive a non-circular carrier correction $\mathbf{d}_\ell(t)$ or richer branch-native interaction basis, then rerun one-period residual closure before monodromy, eta-ladder persistence, energy, shielding, finite envelope-Hessian extraction, or accepted-history emission. Status: `next`; compact-fixture source coverage, under-cap attempt budget, direct one-period runner, and scalar relation-weight no-go implemented May 18, 2026. Depends on: none.
 2. `derive_zeta` — Derive $\zeta(A)$ and target a baseline electron-mass prediction. Status: `pending`. Depends on: `derive_first_attractor_family`.
 3. `exposure_quotient_theorem` — Generalize shielding extraction into a sector exposure/quotient theorem for mass, weak chirality, color exceptionality, photon transverse support, and vector-corridor visibility. Status: `pending`. Depends on: `derive_zeta`.
 4. `mass_hierarchy_check` — Test the first mass map against hierarchy ratios and hadron constraints. Status: `pending`. Depends on: `exposure_quotient_theorem`.
@@ -409,15 +409,16 @@ This schema deliberately keeps particle labels out of the accepted packet. Elect
 
 ### Immediate Work Packet
 
-1. Consume the `direct_root_fold_layer_lock` diagnostic emitted by `scripts/mass-map/a0-tier1-continuation-source-prototype.mjs` for the two locked self-root fold-layer keys `I+|I+|self|active` and `I-|I-|self|active`.
-2. Treat the classified fold-layer row as a branch-chart lock input, not as an accepted self-hit branch or an accepted-history segment.
-3. Use the fold-layer-locked macro-stride attempt packet whose retained direct-root step burden is now below the accepted attempt cap.
-4. Report residual budgets for state return, root closure, phase closure, speed ordering, energy-like speed ledger, and $\mathcal{R}_{\text{lock}}$.
-5. Report no secular center drift after symmetry removal and construct the monodromy setup needed to test $\Delta_{\mathbf{k}}>0$.
-6. Test branch persistence across the declared $\eta$ ladder and route any lock loss or branch proliferation to `root-ledger-instability`.
-7. Keep accepted-history output blocked until one-period residual closure, no secular center drift, positive $\Delta_{\mathbf{k}}$, and branch persistence across the declared $\eta$ ladder are all present.
+1. Consume the `a0-tier1-fold-layer-locked-one-period-attempt/v1` diagnostic emitted by `scripts/mass-map/a0-tier1-fold-layer-locked-one-period-attempt.mjs`.
+2. Treat the direct one-period residual failure as a branch-equation falsification for the compact carrier chart, not as accepted history and not as a particle-facing result.
+3. Use `a0-tier1-residual-balance-ledger/v1` as the next proof target: scalar branch-native relation weights leave relative acceleration residual about `0.755` against tolerance `0.02`.
+4. Derive the smallest branch-native correction target for $\mathbf{d}_\ell''(t)$ or a richer root/interaction basis without observed particle masses, charged-lepton ratios, CKM data, electron radius, or measured $\alpha$.
+5. Rerun the corrected fold-layer-locked one-period map and require state return, root closure, phase closure, speed ordering, energy-like speed closure, center-drift closure, and $\mathcal{R}_{\text{lock}}$ to pass before monodromy.
+6. Only after corrected one-period residuals pass, construct the quotient monodromy operator, remove symmetry modes, report $\Delta_{\mathbf{k}}$, and run the declared $\eta$ ladder.
+7. If the same finite branch passes, emit the quotient-normal envelope-Hessian entries $k_R$, $k_\xi$, $k_{R\xi}$ and support-function derivatives $c_R$, $c_\xi$ as finite-branch evidence for the compensated-family scanner.
+8. Keep accepted-history output blocked until one-period residual closure, no secular center drift, positive $\Delta_{\mathbf{k}}$, quotient-row identity, and branch persistence across the declared $\eta$ ladder are all present.
 
-The May 16, 2026 compact-fixture intake closes the attempt-budget and source-coverage checks for this packet: the selected fold-layer-locked integrator budget is `963815` retained steps under the `1000000` cap, and the accepted-history source-coverage diagnostic reports no missing fields. The follow-up validator `scripts/mass-map/a0-tier1-fold-layer-locked-validator.mjs` records the available carrier-replay residual ledgers and fold-layer lock stability, then correctly blocks accepted history with `direct-regularized-one-period-integrator-not-run`. The remaining `derive_first_attractor_family` blocker is now the actual direct regularized one-period trajectory plus phase closure, energy-like / Noether energy ledger, quotient monodromy / $\Delta_{\mathbf{k}}$, and $\eta$-ladder branch persistence.
+The May 18, 2026 compact-fixture run closes the previous attempt-budget and direct-run blockers: the fold-layer-locked runner executed `963815` planned retained steps with the two locked self-root keys in $\mathcal{R}_{\text{lock}}$ and no trajectory abort. The result is a controlled negative result: state return, root closure, phase closure, speed ordering, center drift, and energy-like speed closure all fail, while the lock ledger passes. The residual-balance projection then proves a sharper local no-go for the compact chart: scalar relation weights over $B_{\text{self}}$, $B_{\text{partner}}$, and $B_{\text{inter}}$ cannot reduce the carrier acceleration residual below tolerance. The remaining `derive_first_attractor_family` blocker is now the non-circular carrier-correction or richer branch-basis equation, followed by a corrected one-period residual pass, quotient-row identity, monodromy / $\Delta_{\mathbf{k}}$, $\eta$-ladder branch persistence, and only then finite envelope-Hessian evidence for pressure-response and compensated-family work.
 
 The reduced branch certificate is the executable handoff between this workstream and the simulations workstream. It is the place to record Tier 0 root-ledger enumeration, Tier 1 $\eta>0$ continuation, Tier 2 energy/shielding extraction, and the promotion rule from `derive_first_attractor_family` to `derive_zeta`.
 

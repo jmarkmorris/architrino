@@ -938,6 +938,15 @@ function foldLayerLockedTrajectoryTarget(row, fold, routing, stepBudget, validat
       residual: "R_E=|mean_b |v_b(T)|^2 - mean_b |v_b(0)|^2|/max(mean_b |v_b(0)|^2,eps)",
       blocker: "direct energy-like speed ledger and Noether energy ledger missing",
     },
+    residual_balance_projection: {
+      required: true,
+      normal_equation:
+        "min_alpha ||a_carrier - alpha_self B_self - alpha_partner B_partner - alpha_inter_layer B_inter_layer||_2",
+      pass_only_if:
+        "branch-native scalar relation weights reduce the relative acceleration residual below tolerance without particle benchmarks",
+      no_go_if:
+        "relation-weight-only residual remains above tolerance; then d_l''(t) must supply the unresolved carrier correction component",
+    },
     monodromy_condition: {
       required: true,
       operator: "P_eta_Lambda_L",

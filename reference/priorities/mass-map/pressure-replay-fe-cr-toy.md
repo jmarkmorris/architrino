@@ -1003,7 +1003,31 @@ For the toy GR-matching numbers, $\alpha_P=7/6$. A minimal $\chi_{\text{sea}}$-o
 
 For a broader compensated row, the algebraic rescue is not ruled out by Hessian positivity alone. A positive reduced Hessian can realize any pair $(A_H,B_H)$ on the affine line $c_RA_H+c_\xi B_H=1$; the falsifiers are the actual branch Hessian, the density-sign condition, the declared $R_{\text{core}}$ readout, and the null-sector bound on $B_H$.
 
+The executable scanner now evaluates this reduction directly:
+
+```text
+node scripts/mass-map/noether-core-envelope-hessian-scanner.mjs --pretty
+```
+
+The branch-promotion replay requires finite-branch evidence:
+
+```text
+node scripts/mass-map/noether-core-envelope-hessian-scanner.mjs --require-branch-evidence --pretty
+```
+
+The default mock packet reports one rescue witness and one falsification control:
+
+| Scenario | Readout candidate | Scanner status | Reason |
+| --- | --- | --- | --- |
+| `chi_only_falsification_control` | all four readouts | fail | scalar feasibility is not enough because the delay denominator is zero and $\kappa_n$ is undefined |
+| `fixed_core_density_rescue_toy` | fixed-core readout | pass | positive Hessian, $B_H=0$, $\kappa_n=1$, and zero scalar residual |
+| `fixed_core_density_rescue_toy` | transverse-radius, volume-equivalent, parallel-radius readouts | fail | same Hessian and pressure rows give a nonzero scalar feasibility residual for those $R_{\text{core}}$ readouts |
+
+This is a branch-certificate scaffold, not empirical evidence. Its value is that future finite-branch Hessian entries can replace the toy values without changing the rescue test.
+
 This is the first concrete compensated-row branch target. It is not a validation result: it becomes a candidate only after a positive Hessian branch supplies $k_R$, $k_\xi$, $k_{R\xi}$, $c_R$, $c_\xi$, the readout $(q_R,q_\xi)$, and null-sector residuals that keep the induced shape response admissible.
+
+The current finite-branch intake verdict is negative. The compact $A_0$ fold-layer-locked one-period attempt in [A0 Reduced Branch Certificate Packet](a0-reduced-branch-certificate.md) fails direct one-period residual closure and does not compute the quotient monodromy, positive $\Delta_{\mathbf{k}}$, or $\eta$-ladder persistence. Its residual-balance ledger also gives a relation-weight-only no-go with relative residual about `0.755`, so it cannot supply a finite envelope Hessian. With `--require-branch-evidence`, both default scanner scenarios fail as toy rows rather than accepted branch rows. Therefore the broader compensated family remains optional but unpromoted; nonzero $a_n$, $a_\lambda$, or $a_R$ are not required by the endpoint constraints, and they remain disfavored as independent fit knobs until a finite branch derives the corresponding pressure-side entries.
 
 Anisotropic pressure terms remain outside this scalar endpoint equation. The replay must keep
 

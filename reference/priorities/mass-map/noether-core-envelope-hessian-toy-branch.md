@@ -15,6 +15,28 @@ This priority packet supplies the first reduced Hessian calculation behind the N
 - [Noether-Core Scaling and Packing Scaffold](../dyadic-lock/noether-core-scaling-and-packing.md) defines the oblate envelope, support-function lattice-cell bound, and same-level packing scalings.
 - [Pressure-Response Coefficient Closure](pressure-response-coefficient-closure.md) records how shape response feeds $\chi_{\text{sea}}$, $\Gamma_N$, and $\mathcal{M}_{\text{sea}}^{ab}$.
 
+## Runtime Artifact
+
+Run the priority-side scanner with:
+
+```text
+node scripts/mass-map/noether-core-envelope-hessian-scanner.mjs --pretty
+```
+
+For branch-promotion checks, require finite-branch evidence explicitly:
+
+```text
+node scripts/mass-map/noether-core-envelope-hessian-scanner.mjs --require-branch-evidence --pretty
+```
+
+The script consumes:
+
+```text
+scripts/mass-map/noether-core-envelope-hessian-scan.mock.json
+```
+
+and emits one result row per Hessian scenario, with candidate rows for fixed-core, transverse-radius, volume-equivalent, and parallel-radius $R_{\text{core}}$ readouts. It reports $\Delta_H$, $D_H$, $k_{\mathrm{env}}^{(V)}$, $A_H$, $B_H$, the affine residual $c_RA_H+c_\xi B_H-1$, scalar feasibility residuals, $\kappa_n$, branch-evidence status, and the induced $\xi$ residual. The default run evaluates toy algebra. The `--require-branch-evidence` run fails any row whose Hessian entries are not declared as accepted finite-branch output.
+
 ## Reduced Branch Variables
 
 Use the active log-coordinate vector
@@ -414,6 +436,54 @@ The induced envelope response can be fed into the pressure coefficient closure t
 4. **Null-sector violation:** the Hessian-induced $\delta\ln\xi$ drives birefringence, dispersion, preferred-frame, clock/signal, or tensor anisotropy above the retained bounds.
 5. **Coefficient split:** the replay fits $\lambda$ and $\xi$ responses with coefficients inconsistent with the Hessian deformation vector $\boldsymbol{\theta}_{\min}$.
 
-## Next Closure Target
+## Scanner Handoff
 
-The next executable step is a small Hessian scanner that samples $(k_R,k_\xi,k_{R\xi},c_\xi)$, reports $k_{\mathrm{env}}^{(V)}$, $A_H$, $B_H$, $\delta\ln R_\perp/\epsilon_n$, $\delta\ln\xi/\epsilon_n$, and flags positive, floppy, unstable, and null-sector-danger branches. For pressure-row rescue work, the scanner should also accept a declared $(q_R,q_\xi)$ readout and report $Q_H=q_RA_H+q_\xi B_H$. That scanner should remain a priority-side validation aid until a finite Noether-core branch supplies actual Hessian entries.
+The first scanner now samples $(k_R,k_\xi,k_{R\xi},c_\xi)$, reports $k_{\mathrm{env}}^{(V)}$, $A_H$, $B_H$, $\delta\ln R_\perp/\epsilon_n$, $\delta\ln\xi/\epsilon_n$, and flags positive, scalar-feasible, density-sign-passing, and null-sector-safe branches. For pressure-row rescue work, it accepts a declared $(q_R,q_\xi)$ readout and reports $Q_H=q_RA_H+q_\xi B_H$.
+
+The default mock packet has two scenarios:
+
+| Scenario | Scanner result | Reading |
+| --- | --- | --- |
+| `chi_only_falsification_control` | all four readouts fail | the scalar equation is formally underdetermined, but the density denominator is zero, so $\kappa_n$ cannot be positive while $G_\chi\ne0$ |
+| `fixed_core_density_rescue_toy` | fixed-core readout passes; transverse-radius, volume-equivalent, and parallel-radius readouts fail scalar feasibility | a positive aligned-cancellation Hessian can rescue the toy row only for the declared fixed-core readout and density-side pressure response |
+
+This is still a toy branch certificate. It should remain priority-side material until a finite Noether-core branch supplies actual Hessian entries and the induced $\xi$ residual is checked against the retained null-sector bounds.
+
+## Finite-Branch Intake Verdict
+
+The current compact $A_0$ branch material cannot replace the mock Hessian entries. The fold-layer-locked one-period attempt in [A0 Reduced Branch Certificate Packet](a0-reduced-branch-certificate.md) is a direct negative result for the naive root-weighted map: it reports `failed_direct_one_period_residuals`, leaves the quotient monodromy and $\eta$ ladder uncomputed, and gives a relation-weight-only no-go with relative residual about `0.755`. It therefore does not define an accepted history segment and does not emit a finite envelope Hessian.
+
+The finite replacement condition is exact. For an accepted branch $\Lambda$, the scanner row must replace the toy stiffnesses by
+
+$$
+k_R
+=
+\frac{\partial^2 E_{\mathrm{env}}^\Lambda}{\partial(\ln R_\perp)^2},
+\qquad
+k_\xi
+=
+\frac{\partial^2 E_{\mathrm{env}}^\Lambda}{\partial(\ln\xi)^2},
+\qquad
+k_{R\xi}
+=
+\frac{\partial^2 E_{\mathrm{env}}^\Lambda}{\partial(\ln R_\perp)\partial(\ln\xi)}
+$$
+
+on the quotient-normal branch chart after symmetry modes are removed, together with
+
+$$
+c_R
+=
+\frac{\partial\ln V_{\mathrm{cell}}^{\mathrm{sf}}}{\partial\ln R_\perp},
+\qquad
+c_\xi
+=
+\frac{\partial\ln V_{\mathrm{cell}}^{\mathrm{sf}}}{\partial\ln\xi}.
+$$
+
+Until those quantities are produced by the same finite branch that passes residual closure, positive $\Delta_{\mathbf{k}}$, and $\eta$-ladder persistence, the compensated-row scanner has only two durable conclusions:
+
+1. the $\chi_{\text{sea}}$-only row is falsified by the pressure denominator and density-sign test;
+2. the fixed-core density rescue is a toy witness, not branch evidence.
+
+Running the scanner with finite-branch evidence required currently returns zero passing scenarios and zero passing candidates, because both default scenarios are marked as toy algebra rather than accepted branch output.
