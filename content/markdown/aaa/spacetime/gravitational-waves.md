@@ -184,6 +184,40 @@ s_a-\mathcal{P}_{D_a}h^\theta
 $$
 This residual is the modern version of the separated-detector check: a signal must be coherent across instruments after antenna response, timing, calibration, and background rejection are fixed. An isolated excess in one detector, or a coincidence that requires an implausible source energy after the same response projection, remains a candidate disturbance rather than an accepted gravitational-wave record.
 
+**Closure Target 2A (graviton-comparison detectability residual).**
+When a detector record is compared with a quantum-gravity language, keep the comparison at observer level. A calibrated classical strain event does not become a single-quantum detection merely because a graviton basis can be used for bookkeeping. For a narrowband comparison with angular frequency $\omega$ and strain amplitude $f$, retain the occupation lower bound
+$$
+N_{\mathrm{occ}}
+\ge
+\frac{
+\rho_{\mathrm{GW}}
+}{
+\rho_1
+},
+\qquad
+\rho_{\mathrm{GW}}
+\sim
+\frac{c_0^2}{32\pi G_{\mathrm{eff}}}\omega^2 f^2,
+\qquad
+\rho_1
+\lesssim
+\frac{\hbar\omega^4}{c_0^3}.
+$$
+The accepted gravitational-wave record is therefore classical whenever $N_{\mathrm{occ}}\gg1$. A separate single-quantum claim would need a detector-side packet $\theta_{\mathrm{1g}}$ satisfying
+$$
+\mathcal{R}_{\mathrm{1g}}(\theta_{\mathrm{1g}})
+=
+\max\left(
+\frac{|N_{\mathrm{occ}}-1|}{\epsilon_N},
+\frac{\delta_{\mathrm{det}}}{\delta_{\mathrm{req}}},
+\frac{2G_{\mathrm{eff}}M_{\mathrm{det}}}{c_0^2D_{\mathrm{det}}},
+\frac{B_{\mathrm{th}}}{S_{\mathrm{1g}}^2}
+\right)
+\le
+1,
+$$
+with $\delta_{\mathrm{req}}\sim L_{\mathrm{P}}$ for a single-graviton interferometric distance readout, $\delta_{\mathrm{det}}$ the achieved distance uncertainty, $M_{\mathrm{det}}$ and $D_{\mathrm{det}}$ the detector mass and size, $S_{\mathrm{1g}}$ the predicted single-graviton count, $B_{\mathrm{th}}$ the relevant thermal or particle-background count, and $\epsilon_N$ the allowed occupation-window tolerance. The compactness term prevents a sensitivity claim from hiding a black-hole detector; the background term prevents a thermal-graviton claim from being promoted when statistical scatter in known backgrounds dominates the putative count. Failure of this residual does not refute gravitons as a comparison basis and does not add graviton ontology to $\mathbb{A}\mathbb{A}\mathbb{A}$; it only blocks the stronger detector claim that an observed strain or thermal count has directly resolved individual quanta.
+
 When $\theta_{\mathrm{GW}}$ is also used to support a finite-range or dark-energy comparison, $\mathcal{R}_{\mathrm{GW,low}}(\theta)$ must be carried beside this detector residual. Passing a high-frequency event-timing gate alone is not enough to promote a long-wavelength dispersion claim.
 
 ## Merger and Ringdown Horizon-Interface Gate

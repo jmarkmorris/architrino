@@ -92,3 +92,11 @@ During the current core geometrical theory push, do not treat chapter coverage a
 | R. H. Dicke, `DickeRevModPhys.29.363.pdf`, `Gravitation without a Principle of Equivalence` | May 18, 2026 |
 | P. A. M. Dirac, `Dirac.pdf`, `Quantised Singularities in the Electromagnetic Field` | May 18, 2026 |
 | P. A. M. Dirac, `Dirac1938.pdf`, `Classical Theory of Radiating Electrons` | May 18, 2026 |
+| Freeman Dyson, `Dyson - Is A Graviton Detectable - poincare2012.pdf`, `Is a Graviton Detectable?` | May 18, 2026 |
+| J. S. Farnes, `JSFarnes-1712.07962.pdf`, `A unifying theory of dark energy and dark matter: Negative masses and matter creation within a modified Lambda-CDM framework` | May 18, 2026 |
+| Louis de Broglie, `Phil-Mag-47-446-1924.pdf`, `A Tentative Theory of Light Quanta` | May 18, 2026 |
+| Ralph A. Alpher, H. Bethe, and George Gamow, `PhysRev.73.803.pdf`, `The Origin of Chemical Elements` | May 18, 2026 |
+| M. Tanabashi et al. (Particle Data Group), `PhysRevD.98.030001.pdf`, `Review of Particle Physics` | May 18, 2026 |
+| Roger Penrose, `PhysRevLett.14.57.pdf`, `Gravitational Collapse and Space-Time Singularities` | May 18, 2026 |
+| K. P. Sinha, C. Sivaram, and E. C. G. Sudarshan, `The_superfluid_vacuum_state_time-varying_cosmologi.pdf`, `The Superfluid Vacuum State, Time-Varying Cosmological Constant, and Nonsingular Cosmological Models` | May 18, 2026 |
+| F. Hoyle, G. Burbidge, and J. V. Narlikar, `burbidge2.pdf`, `On the Hubble constant and the cosmological constant` | May 18, 2026 |

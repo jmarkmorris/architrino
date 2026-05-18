@@ -297,6 +297,40 @@ S(t);
 $$
 where $\Pi_m$ projects the absolute assembly, reaction, recycling, and Noether-Sea histories into the effective matter source. The residual must vanish within tolerance before a constant-density or matter-creation-like interpretation is promoted. This is the safe lesson from failed steady-state models: conservation can be preserved only by an explicit source channel, not by assigning unexplained energy to the container.
 
+The same discipline applies to comparison models that obtain acceleration through negative effective mass, phase-transition vacuum energy, time-varying $\Lambda(t)$, or Hubble-age pressure on $\Lambda$. These are useful as branch-role stress tests, not as imported ontology. Let the comparison branch declare
+
+$$
+\mathcal{C}_{\mathrm{DE}}
+\in
+\{\mathrm{negative\ effective\ fluid},\mathrm{phase\text{-}transition\ vacuum\ comparison},\mathrm{time\text{-}varying\ }\Lambda,\mathrm{Hubble\text{-}age\ pressure}\}.
+$$
+
+For that branch, the promoted Noether-Sea account must keep the effective stress, matter source, and observer-level constant separate:
+
+$$
+\mathcal{R}_{\mathrm{role}}
+=
+\left\lVert
+\begin{pmatrix}
+\rho_{\mathrm{DE,eff}} \\
+p_{\mathrm{sea}} \\
+\mathcal{S}_{m,\mathrm{eff}} \\
+\dot{\Lambda}_{\mathrm{eff}}
+\end{pmatrix}
+-
+\Pi_{\mathrm{role}}\!\left[
+\theta_{\mathrm{sea}};
+\mathcal{C}_{\mathrm{DE}},
+\mathcal{H}_{\mathrm{assoc}},
+\mathcal{H}_{\mathrm{diss}},
+\mathcal{H}_{\mathrm{BH}},
+\mathcal{H}_{\mathrm{sea}}
+\right]
+\right\rVert .
+$$
+
+The closure condition is $\mathcal{R}_{\mathrm{role}}\to 0$ without changing $\theta_{\mathrm{sea}}$ between the distance, age, growth, and source ledgers. A negative sign in an effective fluid may be retained only as a sign in the comparison stress tensor; it does not license negative masses as native assemblies. A phase-transition or vacuum-energy comparison may constrain $\dot{\Lambda}_{\mathrm{eff}}$ or the shielding law; it does not make $\Lambda(t)$ fundamental. A Hubble-age repair may motivate a branch constant; it does not supply $\mathcal{S}_{m,\mathrm{eff}}$. This protects the Noether-Sea derivation from smuggling negative masses, matter creation, or variable $\Lambda$ into $\mathbb{A}\mathbb{A}\mathbb{A}$ as doctrine.
+
 ## Effective Friedmann Framework
 
 ### Background Equations
