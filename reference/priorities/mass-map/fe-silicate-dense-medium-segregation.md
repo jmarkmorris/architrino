@@ -876,6 +876,46 @@ The executable packing fields now use `oblate_envelope.deformation_branch` to de
 
 The current finite-$\eta$ branch-assumption packet is promotion-ready only as a toy scaffold. It becomes a real simulation target only after the remaining coefficient inputs are replaced by empirical or branch-derived pressure, temperature, phase, packing, covariance, transport, and null-sector records.
 
+## Remaining Proof Obligations
+
+This thread leaves four priority items for the next theory-advancement pass:
+
+1. **Branch-speed certification.** Replace the finite-$\eta$ branch assumptions $\beta_{\mathrm{Fe}}=2/3$ and $\beta_{\mathrm{sil}}=1/2$ with a Noether-core return-map derivation or with certified intervals. If only intervals are available, propagate
+
+   $$
+   \left|
+   \xi_X-\sqrt{1-\beta_X^2}
+   \right|
+   \le
+   \epsilon_{\eta,X}
+   +
+   \epsilon_{\mathrm{LV},X}
+   $$
+
+   through $V_{\mathrm{env},X}$, $V_{\mathrm{cell},X}^{\mathrm{sf}}$, $e_X^{\mathrm{sf}}$, $n_{\max,X}^{\mathrm{obl}}$, and the final sign condition $\mathcal{S}_{\mathrm{Fe/sil}}<0$.
+
+2. **Support-function packing fraction derivation.** Replace the mock values $\phi_{\mathrm{Fe}}^{\mathrm{target}}\approx0.716$ and $\phi_{\mathrm{sil}}^{\mathrm{target}}\approx0.599$ with a branch argument or a rigorous bound from $\mathcal{O}_X$, $\mathcal{L}_X$, $\mathcal{K}_X$, wake clearance, and lattice clearance. Promotion requires $0 < \phi_X^{\mathrm{target}} \le \phi_*$ and a stated reason the Fe and silicate contact families are admissible in the same Noether-Sea state record.
+
+3. **Packing-compliance stiffness shares.** Derive or bound
+
+   $$
+   w_u
+   =
+   \frac{K_u^{(\mathcal B)}}{K_{\mathrm{pack}}^{(\mathcal B)}},
+   \qquad
+   w_{\phi}
+   =
+   \frac{K_{\phi}^{(\mathcal B)}}{K_{\mathrm{pack}}^{(\mathcal B)}},
+   \qquad
+   w_{\sigma}
+   =
+   \frac{K_{\sigma}^{(\mathcal B)}}{K_{\mathrm{pack}}^{(\mathcal B)}}
+   $$
+
+   from the branch Hessian or a finite-cell perturbation calculation. Until this is done, the replay may only use unit-bounded placeholders and must keep $w_u+w_{\phi}+w_{\sigma}\le1$ as a passive-response bound.
+
+4. **Material-state replacement.** Replace the remaining toy coefficient inputs $H_X$, $B_X$, $U_X$, $d_X$, $s_X$, $p_X$, and the step updates with a declared material-state fixture or empirical proxy after ordinary pressure, temperature, electronic, elastic, magnetic, and gravity corrections are subtracted. The no-new-iron guardrail $S_{\mathrm{Fe}}^{\mathrm{nuc}}=0$ must remain explicit.
+
 ## Promotion Reading
 
 - **Promote as proof target:** if the sufficient sign inequality can be expressed entirely through branch-derived packing, coupling, delay, strain, and medium-response coefficients.

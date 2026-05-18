@@ -647,6 +647,364 @@ $$
 
 Thus the slope row can be derived only on a positive Hessian branch with $D_H>0$ and a declared $(q_R,q_\xi)$. The current toy fixture still sets the slope row to zero because it does not declare $s_n$, $\kappa_n$, the Hessian entries, or the $R_{\text{core}}$ readout. A compensated shared row would require a future packet to insert those branch quantities and then re-evaluate the delay and cadence equations above.
 
+### Hessian Feasibility Condition For Shared-Row Rescue
+
+The previous equations can be reduced to one algebraic feasibility condition. Define the Hessian response ratios
+
+$$
+A_H
+\equiv
+\frac{
+k_\xi c_R-k_{R\xi}c_\xi
+}{
+D_H
+},
+\qquad
+B_H
+\equiv
+\frac{
+k_Rc_\xi-k_{R\xi}c_R
+}{
+D_H
+},
+$$
+
+and the $R_{\text{core}}$ readout combination
+
+$$
+Q_H
+\equiv
+q_RA_H+q_\xi B_H.
+$$
+
+Then the derived pressure slopes are
+
+$$
+\kappa_n^{P}=\kappa_n,
+\qquad
+\kappa_\lambda^{P}=\kappa_nA_H,
+\qquad
+\kappa_R^{P}=-\kappa_nQ_H.
+$$
+
+Substitution into the delay and cadence equations gives
+
+$$
+\kappa_n
+\left(
+d_n+d_\lambda A_H-d_RQ_H
+\right)
+=
+G_\chi,
+$$
+
+and
+
+$$
+\kappa_n
+\left(
+b_n-b_\lambda A_H-b_RQ_H
+\right)
+=
+G_\Gamma
+-
+\frac{G_\chi}{1+\gamma_{\text{eff}}}.
+$$
+
+Eliminating $\kappa_n$ gives the scalar shared-row feasibility equation
+
+$$
+\boxed{
+G_\chi
+\left(
+b_n-b_\lambda A_H-b_RQ_H
+\right)
+=
+\left(
+G_\Gamma
+-
+\frac{G_\chi}{1+\gamma_{\text{eff}}}
+\right)
+\left(
+d_n+d_\lambda A_H-d_RQ_H
+\right).
+}
+$$
+
+For the toy GR-matching branch, $G_\Gamma=0.60$, $G_\chi=0.36$, and $\gamma_{\text{eff}}=1$, so this reduces to
+
+$$
+\boxed{
+6
+\left(
+b_n-b_\lambda A_H-b_RQ_H
+\right)
+=
+7
+\left(
+d_n+d_\lambda A_H-d_RQ_H
+\right).
+}
+$$
+
+The same branch must also make the density slope positive:
+
+$$
+\boxed{
+\kappa_n
+=
+\frac{
+G_\chi
+}{
+d_n+d_\lambda A_H-d_RQ_H
+}
+>0.
+}
+$$
+
+If the denominator vanishes while $G_\chi\ne0$, or if the resulting $\kappa_n$ is nonpositive on a branch that requires positive density response, the compensated row is falsified for that Hessian/readout choice.
+
+This feasibility condition is only scalar. It does not license using a first-order shape-ratio response as a hidden isotropic repair. If the scalar pressure row is to exclude the $-\ln\xi$ channel, the branch must either carry the induced $\delta\ln\xi$ as an explicit residual subject to null-sector bounds or impose the Hessian cancellation
+
+$$
+\boxed{
+B_H=0
+\quad\Longleftrightarrow\quad
+k_Rc_\xi=k_{R\xi}c_R.
+}
+$$
+
+In the cancellation subcase,
+
+$$
+A_H=\frac{1}{c_R},
+\qquad
+Q_H=\frac{q_R}{c_R},
+$$
+
+so the toy GR-matching feasibility condition becomes
+
+$$
+\boxed{
+6
+\left(
+b_n-\frac{b_\lambda+b_Rq_R}{c_R}
+\right)
+=
+7
+\left(
+d_n+\frac{d_\lambda-d_Rq_R}{c_R}
+\right).
+}
+$$
+
+For the aligned support-function branch $c_R=3$, this specializes to
+
+$$
+\boxed{
+6
+\left(
+b_n-\frac{b_\lambda+b_Rq_R}{3}
+\right)
+=
+7
+\left(
+d_n+\frac{d_\lambda-d_Rq_R}{3}
+\right).
+}
+$$
+
+Equivalently, when the coefficient multiplying $q_R$ is nonzero, the aligned cancellation branch requires
+
+$$
+\boxed{
+q_R
+=
+\frac{
+21d_n+7d_\lambda-18b_n+6b_\lambda
+}{
+-6b_R+7d_R
+}.
+}
+$$
+
+If $-6b_R+7d_R=0$, the aligned cancellation branch is admissible only if
+
+$$
+\boxed{
+21d_n+7d_\lambda-18b_n+6b_\lambda=0.
+}
+$$
+
+Otherwise the aligned cancellation branch is falsified for the declared delay and cadence coefficients.
+
+This gives a direct test for simple $R_{\text{core}}$ readouts. Define
+
+$$
+N_q
+\equiv
+21d_n+7d_\lambda-18b_n+6b_\lambda,
+\qquad
+D_q
+\equiv
+-6b_R+7d_R.
+$$
+
+When $D_q\ne0$, the aligned cancellation branch requires $q_R=N_q/D_q$. When $D_q=0$, the branch is admissible only if $N_q=0$, and the scalar condition no longer selects a unique $q_R$.
+
+| Candidate $R_{\text{core}}$ readout | Branch readout | Aligned cancellation test | Current status |
+| --- | --- | --- | --- |
+| Fixed-core readout | $(q_R,q_\xi)=(0,0)$ | viable iff $N_q=0$ | underdetermined until $(b_i,d_i)$ are declared |
+| Transverse-radius readout | $(q_R,q_\xi)=(1,0)$ | viable iff $N_q=D_q$ | underdetermined until $(b_i,d_i)$ are declared |
+| Volume-equivalent readout | $(q_R,q_\xi)=(1,\frac13)$ | same scalar test as transverse when $B_H=0$ | not distinguishable from transverse without an allowed $\xi$ residual |
+| Parallel-radius readout | $(q_R,q_\xi)=(1,1)$ | same scalar test as transverse when $B_H=0$ | not distinguishable from transverse without an allowed $\xi$ residual |
+
+The collapse of the last three rows is not a proof that the readouts are physically equivalent. It is a consequence of enforcing $B_H=0$, which removes first-order $\xi$ response from the scalar pressure row. If a later branch allows $\delta\ln\xi$ as an explicit bounded residual, the general feasibility equation above must be used with $Q_H=q_RA_H+q_\xi B_H$, and the volume-equivalent and parallel-radius readouts become distinguishable.
+
+### Positive-Hessian Feasibility Reduction
+
+The Hessian packet adds one useful simplification. The normalized Hessian ratios obey
+
+$$
+\boxed{
+c_RA_H+c_\xi B_H=1.
+}
+$$
+
+For the common case $c_\xi\ne0$, write
+
+$$
+B_H
+=
+\frac{1-c_RA_H}{c_\xi},
+\qquad
+Q_H
+=
+q_0+q_1A_H,
+$$
+
+where
+
+$$
+q_0\equiv\frac{q_\xi}{c_\xi},
+\qquad
+q_1\equiv q_R-\frac{q_\xi c_R}{c_\xi}.
+$$
+
+Define the pressure mismatch ratio
+
+$$
+\alpha_P
+\equiv
+\frac{
+G_\Gamma-\dfrac{G_\chi}{1+\gamma_{\text{eff}}}
+}{
+G_\chi
+}.
+$$
+
+The scalar feasibility condition is then linear in $A_H$. With
+
+$$
+C_0\equiv b_n-b_Rq_0,
+\qquad
+C_1\equiv b_\lambda+b_Rq_1,
+$$
+
+and
+
+$$
+D_0\equiv d_n-d_Rq_0,
+\qquad
+D_1\equiv d_\lambda-d_Rq_1,
+$$
+
+it becomes
+
+$$
+C_0-C_1A_H
+=
+\alpha_P
+\left(
+D_0+D_1A_H
+\right).
+$$
+
+Thus, when $C_1+\alpha_PD_1\ne0$, the only scalar-rescue candidate on the declared readout is
+
+$$
+\boxed{
+A_H^{*}
+=
+\frac{
+C_0-\alpha_PD_0
+}{
+C_1+\alpha_PD_1
+},
+\qquad
+B_H^{*}
+=
+\frac{1-c_RA_H^{*}}{c_\xi},
+\qquad
+Q_H^{*}
+=
+q_0+q_1A_H^{*}.
+}
+$$
+
+If $C_1+\alpha_PD_1=0$, the scalar equation is feasible only when $C_0-\alpha_PD_0=0$; then the scalar row leaves $A_H$ unresolved and the density-sign and null-sector tests must select or reject the branch.
+
+If $c_\xi=0$, the affine identity instead fixes $A_H=1/c_R$. The same scalar feasibility equation should then be solved directly for $B_H$ through $Q_H=q_R/c_R+q_\xi B_H$, unless $q_\xi=0$, in which case the shape-ratio direction is invisible to the scalar readout and only the null-sector bound can constrain it.
+
+The density sign condition is
+
+$$
+\boxed{
+\kappa_n
+=
+\frac{
+G_\chi
+}{
+D_0+D_1A_H^{*}
+}
+>0.
+}
+$$
+
+The induced shape-ratio residual is
+
+$$
+\boxed{
+\delta\ln\xi
+=
+-\kappa_nB_H^{*}\Theta.
+}
+$$
+
+If the replay claims a strictly scalar isotropic pressure row, the branch must set $B_H^{*}=0$. If it allows a bounded shape residual, it must instead satisfy the declared null-sector tolerance
+
+$$
+\boxed{
+\max_r
+\left|
+\frac{
+G_\chi B_H^{*}
+}{
+D_0+D_1A_H^{*}
+}
+\Theta_r
+\right|
+\le
+\epsilon_{\xi}^{P}.
+}
+$$
+
+For the toy GR-matching numbers, $\alpha_P=7/6$. A minimal $\chi_{\text{sea}}$-only cadence row has $b_n=b_\lambda=b_R=0$, so the scalar cadence side vanishes. It can satisfy the feasibility equation only by forcing the delay denominator to vanish, which contradicts $G_\chi\ne0$ and $\kappa_n>0$. This recovers the earlier chi-only falsification from the Hessian reduction.
+
+For a broader compensated row, the algebraic rescue is not ruled out by Hessian positivity alone. A positive reduced Hessian can realize any pair $(A_H,B_H)$ on the affine line $c_RA_H+c_\xi B_H=1$; the falsifiers are the actual branch Hessian, the density-sign condition, the declared $R_{\text{core}}$ readout, and the null-sector bound on $B_H$.
+
+This is the first concrete compensated-row branch target. It is not a validation result: it becomes a candidate only after a positive Hessian branch supplies $k_R$, $k_\xi$, $k_{R\xi}$, $c_R$, $c_\xi$, the readout $(q_R,q_\xi)$, and null-sector residuals that keep the induced shape response admissible.
+
 Anisotropic pressure terms remain outside this scalar endpoint equation. The replay must keep
 
 $$
@@ -663,6 +1021,37 @@ $$
 $$
 
 and carry $\delta\mathbf{g}^{P,\mathrm{dev}}$ through `anisotropic_residuals` and the existing null-sector checks. Directional pressure response cannot be used to repair the scalar shared-row mismatch.
+
+## Compensated Static-Family Status
+
+The current edit-batch result is a conditional falsification, not a validation of the broader compensated family.
+
+- The weak static endpoint, finite-height clock redshift, and endpoint-subtracted redshift require only the scalar endpoint sum
+
+  $$
+  b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1.
+  $$
+
+  They do not require nonzero $a_n$, $a_\lambda$, or $a_R$ by themselves.
+
+- The current Fe/Cr pressure projection falsifies the $\chi_{\text{sea}}$-only shared row because $a_\chi^{P\to\Gamma}=0.6$ cannot equal $1+\gamma_{\text{eff}}=2$ on the GR-matching branch.
+
+- The broader compensated row survives only as a branch target. It requires a nonzero isotropic pressure-side vector
+
+  $$
+  \mathbf{u}^{P}
+  =
+  \frac{1}{G_\Gamma}
+  \left(
+  \kappa_n^{P},\,
+  -\kappa_\lambda^{P},\,
+  \kappa_R^{P}
+  \right)^T
+  $$
+
+  with a nonzero component outside the gravitational non-$\chi_{\text{sea}}$ projection. In the clean-delay anchored subclass this is the condition $\left\|\mathbf{u}^{P}_{\perp G}\right\|>0$ with $\mathbf{c}\cdot\mathbf{u}^{P}=0.7$ for the toy pressure numbers.
+
+Priority reading: nonzero static endpoint coefficients $a_n$, $a_\lambda$, and $a_R$ remain optional and disfavored unless a branch calculation derives them. Nonzero pressure slopes $\kappa_n^{P}$, $\kappa_\lambda^{P}$, or $\kappa_R^{P}$ are the immediate rescue obligation for the Fe/Cr toy mismatch; they must be derived from packing headroom, the envelope Hessian, and an $R_{\text{core}}$ readout rather than inserted as row-local fit freedom.
 
 ## Failure Injection
 

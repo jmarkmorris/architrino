@@ -920,6 +920,7 @@ function foldLayerLockedTrajectoryTarget(row, fold, routing, stepBudget, validat
           : null,
     },
     trajectory_equation: {
+      runner_script: "scripts/mass-map/a0-tier1-fold-layer-locked-one-period-attempt.mjs",
       update_map:
         "X_{n+1}=Phi_{eta,Lambda,L}(X_n;dt): solve active causal roots at X_n, route locked self roots K_L to R_lock, update the state/history, and recompute the root ledger before the next step.",
       diagnostic_acceleration:

@@ -282,6 +282,78 @@ $$
 
 If the pressure replay or null-sector bounds require no first-order shape response, the Hessian must satisfy this cancellation, lock $\xi$ through a large shape stiffness, or route the mismatch into an explicit anisotropic residual. It cannot simply set $\kappa_\xi=0$ independently of the branch Hessian.
 
+## Normalized Hessian Response Ratios
+
+The pressure replay uses the density-normalized deformation ratios
+
+$$
+A_H
+\equiv
+\frac{
+k_\xi c_R-k_{R\xi}c_\xi
+}{
+D_H
+},
+\qquad
+B_H
+\equiv
+\frac{
+k_Rc_\xi-k_{R\xi}c_R
+}{
+D_H
+}.
+$$
+
+They are not independent. Direct substitution gives
+
+$$
+\boxed{
+c_RA_H+c_\xi B_H=1.
+}
+$$
+
+Thus a positive reduced Hessian can move the scalar compression between transverse scale and shape ratio, but the support-function volume derivative fixes their affine combination. Positivity of the Hessian is also not, by itself, a falsification of any particular pair $(A_H,B_H)$ on this affine line. For any candidate pair satisfying $c_RA_H+c_\xi B_H=1$, one can choose a positive matrix $H_{\mathrm{env}}^{-1}$ with
+
+$$
+H_{\mathrm{env}}^{-1}\mathbf c
+\propto
+\begin{pmatrix}
+A_H\\
+B_H
+\end{pmatrix},
+$$
+
+and hence recover that pair through the normalized projection. The real branch burden is stronger: the finite Noether-core branch must supply the Hessian entries, and the resulting $B_H$ must pass the retained null-sector bounds.
+
+For a pressure coordinate $\Theta$ with
+
+$$
+\delta\ln n=\kappa_n\Theta,
+$$
+
+the induced shape-ratio response is
+
+$$
+\boxed{
+\delta\ln\xi=-\kappa_nB_H\Theta.
+}
+$$
+
+If the scalar pressure row excludes first-order $-\ln\xi$, the branch must either impose $B_H=0$ or declare a residual tolerance such as
+
+$$
+\boxed{
+\max_r
+\left|
+\kappa_nB_H\Theta_r
+\right|
+\le
+\epsilon_{\xi}^{P}.
+}
+$$
+
+This is not a new validation gate. It is the local null-sector bookkeeping already required when an isotropic pressure row induces a shape-ratio response.
+
 ## Modulus Handoff
 
 The envelope contribution to the pressure modulus is
@@ -344,4 +416,4 @@ The induced envelope response can be fed into the pressure coefficient closure t
 
 ## Next Closure Target
 
-The next executable step is a small Hessian scanner that samples $(k_R,k_\xi,k_{R\xi},c_\xi)$, reports $k_{\mathrm{env}}^{(V)}$, $\delta\ln R_\perp/\epsilon_n$, $\delta\ln\xi/\epsilon_n$, and flags positive, floppy, unstable, and null-sector-danger branches. That scanner should remain a priority-side validation aid until a finite Noether-core branch supplies actual Hessian entries.
+The next executable step is a small Hessian scanner that samples $(k_R,k_\xi,k_{R\xi},c_\xi)$, reports $k_{\mathrm{env}}^{(V)}$, $A_H$, $B_H$, $\delta\ln R_\perp/\epsilon_n$, $\delta\ln\xi/\epsilon_n$, and flags positive, floppy, unstable, and null-sector-danger branches. For pressure-row rescue work, the scanner should also accept a declared $(q_R,q_\xi)$ readout and report $Q_H=q_RA_H+q_\xi B_H$. That scanner should remain a priority-side validation aid until a finite Noether-core branch supplies actual Hessian entries.

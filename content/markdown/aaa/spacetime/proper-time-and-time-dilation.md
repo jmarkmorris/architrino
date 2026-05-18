@@ -398,7 +398,112 @@ A_\chi
 \omega_i=-b_i.
 $$
 
-The minimal packet is falsified if finite-height clock redshift, Shapiro delay, pressure-response replay, hydrogen spectral conversion, or endpoint-subtracted redshift records require nonzero first-order $n$, $\lambda$, or $R_{\text{core}}$ contributions while preserving the same weak static branch.
+#### Compensated Static-Family Validation Packet
+
+The compensated family is a constrained endpoint row, not an additional redshift fit. Under shared clock/signal delay, define the non-$\chi_{\text{sea}}$ static response vector and coefficient row by
+
+$$
+\mathbf{u}^{G}
+=
+\left(
+a_n,\,
+a_\lambda,\,
+a_R
+\right)^T,
+\qquad
+\mathbf{c}
+=
+\left(
+b_n,\,
+b_\lambda,\,
+b_R
+\right)^T.
+$$
+
+The weak static endpoint condition is then
+
+$$
+S_G
+\equiv
+\mathbf{c}\cdot\mathbf{u}^{G}
++b_\chi A_\chi
+=1.
+$$
+
+A finite-height clock comparison samples the spatial derivative of the same scalar. For a small upward separation $L$ near Earth, with $U(z+L)-U(z)\approx-gL$, the clock-rate ratio obeys
+
+$$
+\frac{\Delta\nu}{\nu}
+=
+-\Delta\ln\Gamma_N
+=
+S_G\frac{gL}{c_0^2}
++O(L^2)
++O\!\left(\frac{U^2}{c_0^4}\right).
+$$
+
+Thus finite-height redshift fixes $S_G=1$ to the experimental tolerance. It does not distinguish the minimal row $\mathbf{c}=\mathbf{0}$ from a compensated row with $\mathbf{c}\cdot\mathbf{u}^{G}\ne0$ and adjusted $b_\chi$, provided the same coefficients are used across the sample.
+
+Hydrogen spectral conversion adds a record-difference test rather than another endpoint normalization. For two admissible hydrogen records $\ell$ and $\ell'$ whose line-inferred cadence stretch agrees after the envelope-gap residual is removed, the same spectral row must satisfy
+
+$$
+\mathbf{b}_{N}^{\mathrm{spec}}\cdot
+\left(
+\mathbf{g}_{N,\mathrm H}^{(\ell)}
+-
+\mathbf{g}_{N,\mathrm H}^{(\ell')}
+\right)
+=0.
+$$
+
+The minimal shared-delay row passes only if the record difference has no uncompensated $\chi_{\text{sea}}$ component after the fixed $-\ln\xi$ term is included. The hydrogen toy scan now demonstrates the discriminant: the clean shared-delay row passes a clean $\chi_{\text{sea}}$-only packet, while the density/scale-compensated row passes the split-record scaffold. This does not yet prove that the gravitational static endpoint has nonzero $a_n$, $a_\lambda$, or $a_R$; it proves that any atom-local record with persistent density, scale, or core-radius splits must use one shared compensated row instead of per-line clock factors.
+
+Pressure-response replay supplies the independent shared-row test. Let
+
+$$
+\mathbf{a}^{G}
+=
+\left(
+a_n,\,
+A_\chi,\,
+a_\lambda,\,
+a_R
+\right)^T,
+\qquad
+\mathbf{a}^{P\to\Gamma}
+=
+\frac{\delta\mathbf{g}^{P,\mathrm{iso}}}
+{\delta\ln\Gamma_N^{P,\mathrm{iso}}}.
+$$
+
+A single isotropic cadence row can serve both the gravitational endpoint and the pressure-normalized replay only if
+
+$$
+\begin{pmatrix}
+\left(\mathbf{a}^{G}\right)^T\\
+\left(\mathbf{a}^{P\to\Gamma}\right)^T
+\end{pmatrix}
+\mathbf{b}
+=
+\begin{pmatrix}
+1\\
+1
+\end{pmatrix},
+\qquad
+\omega_i=-b_i.
+$$
+
+The current Fe/Cr toy pressure projection has $\mathbf{a}^{P\to\Gamma}=(0,0.6,0,0)^T$, while the GR-matching shared-delay endpoint has $A_\chi=2$. Therefore the $\chi_{\text{sea}}$-only shared row is falsified for that toy pressure replay. A broader compensated row remains conditional: it requires branch-derived non-$\chi_{\text{sea}}$ pressure response in $n$, $\lambda$, or $R_{\text{core}}$, and it must still preserve $S_G=1$ for finite-height and endpoint redshift.
+
+The current validation result is therefore:
+
+| Coefficient | Current status |
+| --- | --- |
+| $a_n$ | Optional in the weak static endpoint; conditionally required only if a branch-derived density response is needed to keep hydrogen or pressure records on one shared row. |
+| $a_\lambda$ | Optional in the weak static endpoint; conditionally required only if the envelope-scale branch supplies the compensating record. |
+| $a_R$ | Optional in the weak static endpoint; conditionally required only after a declared $R_{\text{core}}$ readout ties the pressure or spectral record to the same row. |
+
+Unconstrained nonzero values of $a_n$, $a_\lambda$, or $a_R$ are disfavored. They may be promoted only as branch-derived compensated response, not as adjustable redshift coefficients.
 
 This gives the derivation a concrete target. The same $\Gamma_N$ extraction map must recover $\Gamma_N=1$ in the weak homogeneous reference, $\Gamma_N\to1/\xi$ in the homogeneous moving-core Lorentz branch, and $\Gamma_N\approx1-\Phi_N/c_0^2$ in the weak gravitational endpoint branch. It must also remain separate from the launch factor $D_v$ and the path-history propagation factor $Y_X$, so the endpoint contribution to redshift is only
 

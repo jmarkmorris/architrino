@@ -981,6 +981,31 @@ Current validation rerun on May 18, 2026:
 
 Next falsification target: implement and run $\mathcal{P}_{\eta,\Lambda,K_L}$ over the under-cap one-period attempt. The row fails closed if any one-period residual exceeds tolerance, if locked roots are promoted into the active self-branch count, if $\Delta_{\mathbf{k}}\le0$, if the quotient-row identity cannot be carried, or if the same branch does not persist across the declared $\eta$ ladder.
 
+Implementation run on May 18, 2026:
+
+```text
+node scripts/mass-map/a0-tier1-fold-layer-locked-one-period-attempt.mjs --intake /tmp/a0-tier1-one-period-continuation-prototype-fold-lock-impl.json --source /tmp/a0-tier1-continuation-source-prototype-fold-lock-impl.json --pretty --out /tmp/a0-tier1-fold-layer-locked-one-period-attempt-impl-v2.json
+```
+
+The runner executed the planned fold-layer-locked map for row `1` with `963815` steps, $\Delta t\approx4.0744\times10^{-6}$, $\eta\approx1.7355\times10^{-5}$, `16` root-observation buckets, the same two locked self-root keys $K_L$, and no trajectory abort. This is the first direct negative result for the compact branch chart: the lock ledger passes, but the direct residual ledgers fail.
+
+Observed failures:
+
+- $R_{\text{state}}\approx0.999$ against tolerance `0.02`;
+- maximum direct root residual $\approx42.67$ against tolerance $10^{-6}$;
+- $R_{\text{phase}}\approx0.208$ with layer residuals approximately `I: 0.012`, `M: 0.208`, `O: 0.0229`;
+- maximum speed-ordering residual $\approx29.93$ against tolerance `0.02`;
+- center-drift residual $\approx0.132$ against tolerance `0.02`;
+- energy-like speed residual $\approx26.68$ against tolerance `0.02`.
+
+This falsifies the naive fold-layer-locked root-weighted map as a closed $A_0$ branch equation. It does not falsify the $A_0$ branch program, because the current map still lacks the residual-balanced carrier correction $\mathbf{d}_\ell(t)$, calibrated branch-native interaction weights, quotient-row identity, monodromy, and eta-ladder continuation. The next executable mathematical step is therefore no longer budget reduction. It is a residual-balanced branch-equation correction or a controlled no-go condition:
+$$
+\Phi_{\eta,\Lambda,K_L}
+\quad\leadsto\quad
+\Phi_{\eta,\Lambda,K_L,\mathbf{d},\alpha_{\mathrm{rel}}}
+$$
+where $\mathbf{d}_\ell(t)$ and the branch-native relation weights $\alpha_{\mathrm{rel}}$ must reduce the failed residual vector without using particle benchmarks.
+
 ## Tier 2: Energy and Shielding Extraction
 
 Tier 2 begins only after Tier 1 passes.

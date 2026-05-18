@@ -238,3 +238,102 @@ The default mock packet has five rows.
 | `pressure_bridge_fe_cr_toy_isotropic_projection` | Passes the pressure-projected cadence and clock-rate rows using the Fe/Cr toy isotropic projection, while correctly reporting that its pressure-normalized $a_\chi^{P\to\Gamma}=0.6$ is not the GR-matching Shapiro branch. |
 
 The two failing rows are intentional failure witnesses. They show that a model can fit the static clock row while violating shared delay, or satisfy shared delay while underclosing the endpoint row. The pressure bridge row is a third kind of witness: it demonstrates that a pressure packet can close the isotropic $\Gamma_N$ arithmetic while still remaining outside the gravitational PPN interpretation.
+
+## Compensated-Family Validation Result
+
+The executable separates three claims that should not be collapsed.
+
+First, the minimal shared-delay row passes the weak GR endpoint:
+
+$$
+\left(
+a_n,\,
+a_\chi,\,
+a_\lambda,\,
+a_R
+\right)
+=
+\left(
+0,\,
+2,\,
+0,\,
+0
+\right),
+\qquad
+\left(
+b_n,\,
+b_\chi,\,
+b_\lambda,\,
+b_R
+\right)
+=
+\left(
+0,\,
+\frac{1}{2},\,
+0,\,
+0
+\right).
+$$
+
+Second, the density/scale-compensated row also passes the endpoint and inverse-row checks:
+
+$$
+\left(
+a_n,\,
+a_\chi,\,
+a_\lambda,\,
+a_R
+\right)
+=
+\left(
+0.25,\,
+2,\,
+-0.1,\,
+0.05
+\right),
+\qquad
+\left(
+b_n,\,
+b_\chi,\,
+b_\lambda,\,
+b_R
+\right)
+=
+\left(
+0.4,\,
+0.4,\,
+-0.5,\,
+1
+\right),
+$$
+
+because
+
+$$
+0.4(0.25)+0.4(2)+(-0.5)(-0.1)+1(0.05)=1.
+$$
+
+This is an admissibility witness for the compensated static family, not a derivation of those numbers.
+
+Third, the Fe/Cr pressure bridge falsifies the $\chi_{\text{sea}}$-only shared row for the toy isotropic pressure projection. The pressure-normalized response is
+
+$$
+\mathbf{a}^{P\to\Gamma}
+=
+\left(
+0,\,
+0.6,\,
+0,\,
+0
+\right)^T,
+$$
+
+so no single $\chi_{\text{sea}}$ coefficient can satisfy both
+
+$$
+b_\chi(2)=1,
+\qquad
+b_\chi(0.6)=1.
+$$
+
+The current validation status is therefore conditional. Nonzero static endpoint coefficients $a_n$, $a_\lambda$, and $a_R$ are not required by the endpoint row itself. They become necessary only if an independent branch record, such as hydrogen spectral refinement or pressure-response replay, supplies non-$\chi_{\text{sea}}$ response that must share the same $\Gamma_N$ row. The next proof obligation is to replace the toy nonzero entries with branch-derived density, envelope-scale, or $R_{\text{core}}$ response rather than treating them as fit parameters.

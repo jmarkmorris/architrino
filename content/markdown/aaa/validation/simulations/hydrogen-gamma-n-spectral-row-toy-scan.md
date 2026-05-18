@@ -144,6 +144,72 @@ This makes the packet stronger than a mock arithmetic witness. It now checks tha
 
 The scaffold still has a limited claim level. It derives the observer-frequency and envelope-gap entries from the Rydberg line-factor equation and a declared shared cadence stretch, but it does not derive the hydrogen envelope gaps from the master dynamics, does not derive the static response vector, and does not assign real observer frequencies. Its job is to make those inputs explicit and replaceable while keeping the coefficient-row scan executable.
 
+## Compensated-Row Readout
+
+The current scaffold makes the compensated-family test explicit. The accepted split-record row is
+
+$$
+\mathbf{b}_{N}^{\mathrm{spec}}
+=
+\left(
+0.4,\,
+0.4,\,
+-0.5,\,
+1,\,
+1
+\right),
+$$
+
+with
+
+$$
+\mathbf{g}_{N,\mathrm H}^{(A)}
+=
+\left(
+0.0005,\,
+0.002,\,
+0.0002,\,
+0,\,
+0.0001
+\right)^T,
+\qquad
+\mathbf{g}_{N,\mathrm H}^{(B)}
+=
+\left(
+0.0007,\,
+0.0018,\,
+0.0001,\,
+0,\,
+0.00005
+\right)^T.
+$$
+
+The refinement difference satisfies
+
+$$
+\mathbf{b}_{N}^{\mathrm{spec}}\cdot
+\left(
+\mathbf{g}_{N,\mathrm H}^{(B)}
+-
+\mathbf{g}_{N,\mathrm H}^{(A)}
+\right)
+=0,
+$$
+
+so both records give the same $\ln\Gamma_{N,\mathrm H}=0.001$ while preserving separate $n$, $\chi_{\text{sea}}$, $\lambda$, and $R_{\text{core}}$ entries. By contrast, the shared-delay-only control row
+
+$$
+\left(
+0,\,
+\frac{1}{2},\,
+0,\,
+1,\,
+0
+\right)
+$$
+
+predicts a refinement mismatch of $-0.0001$ on record $B$ in the default scaffold. This is the current hydrogen validation result: atom-local refinement can falsify the minimal row when the accepted response record changes component split, but the scaffold does not yet require nonzero gravitational endpoint coefficients $a_n$, $a_\lambda$, or $a_R$ unless a constitutive hydrogen branch derives the same split from the static endpoint response.
+
 ## Input Variables
 
 Each toy packet supplies one weak-homogeneous hydrogen line set $\mathcal L_{\mathrm H}^{0}$ and one or more admissible resolution records $\ell\in I_{\mathrm{spec}}^{\mathrm{atom}}$. For each record, the packet declares:

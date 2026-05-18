@@ -583,6 +583,48 @@ $$
 
 Thus the launch factor carries the ordinary first-order Doppler or phase-compression term; no component of $(\mathbf p_X,p_{\nu,X},p_{u,X},p_{\sigma,X})$ may be adjusted to recover a pure relative-motion redshift.
 
+Endpoint-subtracted redshift gives the corresponding isolation test for the path row. From
+
+$$
+\ln(1+z_X)
+=
+\ln\Gamma_{N,E}
+-\ln\Gamma_{N,R}
+-\ln D_v
++Y_{X,E\to R}
+-\ln B_X(E),
+$$
+
+the replayed propagation term is
+
+$$
+Y_{X,E\to R}^{\mathrm{sub}}
+=
+\ln(1+z_X)
+-\left(
+\ln\Gamma_{N,E}
+-\ln\Gamma_{N,R}
+\right)
++\ln D_v
++\ln B_X(E).
+$$
+
+In a weak static endpoint comparison,
+
+$$
+\ln\Gamma_{N,Q}
+=
+\left(
+b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R
+\right)
+\frac{U_Q}{c_0^2}
++O\!\left(\frac{U_Q^2}{c_0^4}\right),
+\qquad
+Q\in\{E,R\}.
+$$
+
+Endpoint-subtracted replay therefore constrains the propagation row only after the endpoint scalar is fixed. A compensated static family is invisible to this first-order subtraction when it preserves $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$; it becomes disfavored only if it leaves an endpoint residual that the path-history row must repair.
+
 The deep-space continuity packet constrains the remaining path row by endpoint-subtracted replay:
 
 $$
