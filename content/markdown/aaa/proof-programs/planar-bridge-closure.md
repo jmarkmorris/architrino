@@ -145,6 +145,85 @@ The proof burden splits into two parts:
 
 This makes tangential control subordinate but essential. Tangential dynamics do not supply a separate closure theorem; they must be bounded tightly enough to prevent centrifugal leakage from destroying the radial return.
 
+### Radial leakage-budget target
+
+The external breather comparison adds one useful discipline: a formal oscillatory
+ansatz is not enough when a nonintegrable system can leak energy or drift out of
+the putative bound state. In the planar bridge, the corresponding failure
+channel is tangential leakage. The first radial-turnaround theorem should
+therefore be written as an integrated budget, not only as a pointwise slogan.
+
+Let
+$$
+I_{\mathrm{turn}}=[t_a,t_b]
+$$
+be the first candidate outward-to-inward turnaround window in the reduced
+planar history, with
+$$
+\dot\rho(t_a)>0.
+$$
+Write the net radial acceleration from the delayed master equation as
+$$
+a_r(t)=\mathbf a(t)\cdot\hat{\mathbf e}_r(t),
+$$
+so that
+$$
+\ddot\rho(t)=a_r(t)+\frac{u_\theta^2(t)}{\rho(t)}.
+$$
+Define the inward delayed budget and tangential leakage budget by
+$$
+B_{\mathrm{in}}
+\equiv
+\int_{t_a}^{t_b}[-a_r(t)]_+\,dt,
+\qquad
+B_\theta
+\equiv
+\int_{t_a}^{t_b}\frac{u_\theta^2(t)}{\rho(t)}\,dt.
+$$
+Let
+$$
+E_{\mathrm{fold}},
+\qquad
+E_{\mathrm{branch}},
+\qquad
+E_{\mathrm{gauge}}
+$$
+denote certified upper bounds for unresolved fold-layer impulse, delayed-branch
+classification error, and section/gauge-reset error on the same controlled
+window. The first useful planar recapture certificate is the strict inequality
+$$
+B_{\mathrm{in}}
+-
+B_\theta
+-
+E_{\mathrm{fold}}
+-
+E_{\mathrm{branch}}
+-
+E_{\mathrm{gauge}}
+\ge
+\dot\rho(t_a)+\gamma_{\mathrm{turn}},
+\qquad
+\gamma_{\mathrm{turn}}>0.
+$$
+This implies
+$$
+\dot\rho(t_b)\le -\gamma_{\mathrm{turn}}
+$$
+under the certified error budget. If the inequality cannot be made strict on
+any admissible seed packet, the planar bridge fails for a precise reason:
+centrifugal leakage and uncertified branch/fold uncertainty outrun radial
+recapture before the return map can close.
+
+This budget also fixes what the later gauge-continuity row must provide. The
+return event must satisfy a transverse crossing margin
+$$
+|\dot\rho(T_{\mathrm{ret}})|\ge\nu_{\mathrm{ret}}>0,
+$$
+and the compensating rotation angle must have a bounded sensitivity on the same
+history box. Otherwise the gauge-reset map can lose continuity even if the
+radial budget itself turns the orbit around.
+
 ## Tame-Envelope and Gauge Closure
 
 The eventual return theorem needs a closed domain on which a fixed-point or continuation argument can act. The desired envelope should control at least:
@@ -197,7 +276,10 @@ The next sequence should be short and disciplined.
 1. Define the reduced planar history space, seed packet, and quantitative section transversality.
 2. Prove local sectorized cone control and short-time branch regularity on the first excursion slab.
 3. Prove a bounded caustic-transit theorem for the first planar fold tube.
-4. Prove a radial-turnaround inequality in which inward delayed forcing beats centrifugal leakage.
+4. Prove the radial leakage-budget inequality in which inward delayed forcing beats centrifugal leakage, fold uncertainty, branch uncertainty, and gauge-reset error with a strict
+   $$
+   \gamma_{\mathrm{turn}}>0.
+   $$
 5. Assemble these ingredients into a tame-envelope return theorem with continuous gauge reset.
 
 That order matters. Without a transverse seed packet, the return map is not well-defined. Without local cone control, the branch atlas is not stable enough to transport. Without bounded fold transit, the self-hit mechanism is not mathematically usable. Without a radial-turnaround inequality, no planar breather can exist.

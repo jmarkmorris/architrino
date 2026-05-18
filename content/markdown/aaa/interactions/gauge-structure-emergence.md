@@ -69,6 +69,20 @@ The local closure discipline is therefore:
 3. keep weak chirality, CKM/PMNS overlap, and weak-reaction provenance tied to the same exposed weak-coupling-triad domain;
 4. pass the null-result residual in [Failure Criteria](../validation/failure-criteria.md#null-result-residual-for-added-channels) for any predicted non-baseline channel.
 
+Superfluid-source-of-interactions models are useful here only as a mode-taxonomy warning. They show how one ground-state medium picture can try to generate scalar, vector, and tensor bosons as collective excitations, but they also show the closure burden this creates. For a candidate observer-level boson channel $b$, define the comparison record
+$$
+\mathcal{M}_b^\theta
+=
+\left(
+J_b^\theta,\,
+P_b^\theta,\,
+m_b^\theta,\,
+\omega_b^\theta(k),\,
+\mathcal{C}_b^\theta
+\right),
+$$
+where $J_b^\theta$ is the recovered spin label, $P_b^\theta$ the parity or transverse/longitudinal projector record when applicable, $m_b^\theta$ the mass or gap, $\omega_b^\theta(k)$ the dispersion, and $\mathcal{C}_b^\theta$ the coupling ledger to fermion, photon, weak, color, or gravitational channels. A collective-mode interpretation is admissible only when one Noether-Sea and assembly branch supplies $\mathcal{M}_b^\theta$ while also suppressing unobserved scalar, vector, tensor, mirror, or hidden channels. Otherwise "boson as excitation" is an analogy, not gauge-structure emergence.
+
 ## The Higgs Mechanism & VEV Reinterpretation
 
 The common "God Particle" narrative is replaced by a Noether-Sea medium-response comparison.

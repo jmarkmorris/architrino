@@ -27,6 +27,10 @@ This workstream owns the synthesis bridge from tri-binary Noether-core closure t
 
 The deployed dynamics baseline is [Tri-Binary Dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md). That chapter owns the Noether-core roles, speed-regime conventions, delay-envelope geometry, gradient response, local clock diagnostics, and stability tests. This priority document should import those mechanisms rather than re-defining them, then test whether they support the mass, time, relativity, photon, and measurement claims in the sibling synthesis file.
 
+## OpenAlex Baseline
+
+[openalex-baseline.md](openalex-baseline.md) records the May 18, 2026 OpenAlex review set for QED identities, photon/radiation benchmarks, event-generator ledgers, and detector/material routing.
+
 ## Detailed Priority Files
 
 | File | Role | Primary promotion targets |

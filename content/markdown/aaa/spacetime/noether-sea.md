@@ -154,6 +154,8 @@ S_{\rho}
 $$
 The same standard applies to cadence, orientation, strain, and energy variables. A continuum equation is therefore not added because fluids are a good analogy; it is admitted only when it is the low-moment projection of the resolved Noether-core population and the residual decreases under refinement.
 
+The hydrodynamic comparison also has a domain warning: quantizing the coarse variable does not by itself reveal the microscopic contents. In a medium analogy, phonon quantization recovers collective excitations of the continuum; it does not recover the atoms. For the Noether Sea, this means that a quantized effective metric, scalar, or vector channel is a recovery benchmark for long-wavelength behavior, while the microscopic derivation still has to come from Noether-core population dynamics, causal wakes, and branch ledgers.
+
 The kinetic-theory lesson is that hydrodynamic variables are the slow variables associated with conserved quantities. For the Noether Sea, the candidate slow state is
 $$
 \Theta_{\mathrm{sea}}
@@ -185,6 +187,30 @@ $$
 },
 $$
 with $a$ ranging over the retained density, momentum, energy, cadence, and orientation moments. This residual is the guardrail against closing the Noether Sea by naming a fluid-like equation while hiding unresolved causal-wake memory in fitted coefficients.
+
+Hu's stochastic-gravity comparison sharpens the next rung above moment closure. Mean-field variables are not enough; fluctuations and correlations carry information about the mesoscopic state. Let $\delta T_A^{\mathrm{eff}}$ denote observer-level stress, cadence, or response-channel fluctuations induced by a branch record $\theta$, and let $C_{AB}^{\theta}(x,y)$ be the corresponding two-point correlation:
+$$
+C_{AB}^{\theta}(x,y)
+=
+\left\langle
+\delta T_A^{\mathrm{eff}}(x)\,
+\delta T_B^{\mathrm{eff}}(y)
+\right\rangle_{\theta}.
+$$
+The Noether-Sea side must supply this from unresolved deterministic histories, not from an independent stochastic metric postulate. A compact correlation-hierarchy residual is
+$$
+\mathcal{R}_{\mathrm{corr},n}(\theta)
+=
+\frac{
+\left\|
+C_{\mathrm{obs}}^{(n)}-
+\Pi_{\mathrm{corr}}^{(n)}[\mu_{\Omega,\theta},\Theta_{\mathrm{sea}},\mathcal{H}_{\Omega}^{W}]
+\right\|
+}{\epsilon_n},
+\qquad
+n=2,3,\ldots .
+$$
+Here $\Pi_{\mathrm{corr}}^{(n)}$ is the declared projection from retained Noether-Sea histories to the $n$-point observer-level correlation. Passing the $n=2$ test is the analogue of the noise-kernel step in stochastic gravity; higher $n$ tests are the kinetic-theory route toward mesoscopic closure.
 
 Constitutive response must be stated as a map from the same state variables. A weak linear row has the schematic form
 $$

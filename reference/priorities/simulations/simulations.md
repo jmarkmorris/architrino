@@ -22,9 +22,9 @@ Lock the simulation and numerics side tightly enough to support the analytic clo
 
 This file remains the control surface for the simulations workstream. No sibling detailed priority file is needed yet; concrete campaign packets can be added later if a run family becomes too large for this queue.
 
-## OpenAlex Source Baseline
+## OpenAlex Baseline
 
-[openalex-source-baseline.md](openalex-source-baseline.md) records the May 18, 2026 source-mining baseline for this rank-3 workstream. The useful external backbone is state-dependent delay solution-manifold theory, numerical delay-equation convergence, neutral or derivative-sensitive regularization, and delayed-electrodynamics two-body history problems. The immediate corpus promotion from that pass is the finite-$\eta$ branch-transition criterion now added to [well-posedness-and-regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md).
+[openalex-baseline.md](openalex-baseline.md) records the May 18, 2026 source-mining baseline for this rank-3 workstream. The useful external backbone is state-dependent delay solution-manifold theory, numerical delay-equation convergence, neutral or derivative-sensitive regularization, and delayed-electrodynamics two-body history problems. The immediate corpus promotion from that pass is the finite-$\eta$ branch-transition criterion now added to [well-posedness-and-regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md).
 
 ## Promotion Map
 

@@ -24,6 +24,10 @@ This is the parameter-closure and first mass-formula bucket. Treat [parameter-le
 
 This file is the workstream control surface for mass-side integration. It should decide what belongs in canonical $\mathbb{A}\mathbb{A}\mathbb{A}$ prose, what remains an active theorem target, and what must be routed to other priority workstreams before any stronger mass claim is deployed.
 
+## OpenAlex Baseline
+
+[openalex-baseline.md](openalex-baseline.md) records the May 18, 2026 OpenAlex review set for mass generation, Higgs-sector scalar benchmarks, hadron masses, effective mass, and medium-response constraints.
+
 ## Detailed Priority Files
 
 | File | Role | Target AAA notes |

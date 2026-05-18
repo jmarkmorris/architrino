@@ -46,6 +46,36 @@ $$
 
 in a homogeneous isotropic Noether-Sea cell. Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice. The tensor version is the sharper target because it carries direction dependence, gradient response, and the distinction between primitive wake speed and observer-facing effective signal speed. Until the internal ledger, shielding coefficient, and medium-response tensor are derived from stable assembly closure, this remains a roadmap formula rather than a theorem.
 
+Superfluid-vacuum and Nambu-Jona-Lasinio-style comparisons add a useful caution: an excitation gap can look like a rest-energy term without being the ontology of mass. For an accepted assembly branch $A$, the native analogue would be a branch gap
+$$
+\Delta_A^\theta
+=
+E_{\mathrm{first\,exc}}^\theta(A)
+-
+E_{\mathrm{branch}}^\theta(A),
+$$
+computed from the same causal ledger, shielding, and Noether-Sea response record as the mass map. A compact comparison residual is
+$$
+\mathcal{R}_{\mathrm{gap}\to m}(A;\theta)
+=
+\frac{
+\left|
+\Delta_A^\theta
+-
+M_{\mathrm{sh}}(A;\theta)c_{\text{eff}}^2
+\right|
+}{\epsilon_{\Delta}}
++
+\frac{
+\left\|
+\partial_{\theta_{\mathrm{sea}}}\Delta_A^\theta
+-
+\partial_{\theta_{\mathrm{sea}}}\!\left[M_{\mathrm{sh}}(A;\theta)c_{\text{eff}}^2\right]
+\right\|
+}{\epsilon_{\mathrm{env}}}.
+$$
+If this residual is small, the gap comparison supports the mass-map thesis. If it is small only after choosing a separate gap for each particle species, the comparison has merely renamed the observed mass table.
+
 #### Sector Exposure Quotient
 
 The scalar shielding factor $\zeta(A)$ is the mass-facing specialization of a more general sector exposure map. A stable assembly can carry far more internal ledger structure than any one observer-level sector is allowed to see. The mass map therefore cannot promote a hidden internal energy, phase, polarity, or branch label as an external response until the sector projection and quotient have been declared.

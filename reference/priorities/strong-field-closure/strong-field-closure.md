@@ -26,6 +26,10 @@ This file remains the control surface for strong-field quantitative closure. The
 
 Release-channel accounting consumes the shared [residual-routing event-ledger theorem](../tri-binary-causal-closure/residual-routing-event-ledger.md). This workstream owns the strong-field boundary conditions, label ensemble, channel candidates, and observables; the shared packet owns the general rule that any release route must close $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ without untracked loss or missing remnant state.
 
+## OpenAlex Baseline
+
+[openalex-baseline.md](openalex-baseline.md) records the May 18, 2026 OpenAlex review set for black-hole thermodynamics, information accounting, gravitational-wave observations, horizon imaging, jets, and strong-field tests.
+
 ## Detailed Priority Files
 
 | File | Role | Target $\mathbb{A}\mathbb{A}\mathbb{A}$ notes |

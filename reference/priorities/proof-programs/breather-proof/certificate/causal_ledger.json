@@ -1,0 +1,1675 @@
+{
+  "schema": "breather-causal-ledger-v1",
+  "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+  "status": "preledger_rejected_split_required_rows",
+  "theorem_target": "Null-Coordinate Causal Pre-Ledger",
+  "packet_identity_refs": {
+    "phi_cyc": "phi_cyc.json:packet_identity",
+    "mesh": "mesh.json",
+    "itinerary": "itinerary.json:selected_itinerary.id=doubled_four_arc_generic"
+  },
+  "evaluation_policy": {
+    "null_coordinates": {
+      "u": "u(t)=c_f t-x(t)",
+      "w": "w(t)=c_f t+x(t)"
+    },
+    "field_speed_c_f": 1,
+    "period_T_cyc": 6.28318530718,
+    "source_time_rule": "If the source interval is later in phase order than the receiver interval, the source interval is lifted by -T_cyc. Same-arc rows retain the diagonal contact and therefore require an explicit split before promotion.",
+    "strict_acceptance_rule": "A row is accepted only as empty with positive range gap, simple_root with strict monotonicity, coverage, memory-depth, and sign margins, or fold_layer with an isolated separator-layer certificate."
+  },
+  "summary": {
+    "total_rows": 50,
+    "empty_rows": 28,
+    "simple_root_rows": 0,
+    "fold_layer_rows": 0,
+    "split_required_rows": 22,
+    "accepted_rows": 28,
+    "blocking_rows": 22
+  },
+  "global_margins": {
+    "gamma_empty": 0.214297435588,
+    "nu_simple": null,
+    "gamma_cov": null,
+    "gamma_tau": null,
+    "gamma_h": null,
+    "gamma_sign": null,
+    "gamma_inact": 0.214297435588,
+    "pass": false
+  },
+  "blocking_summary": {
+    "reason": "The current coarse arc mesh has no simple_root or fold_layer rows. Twenty-two overlapping ledger rows require diagonal splits, separator-layer isolation, or receiver/source subrange splits before the branch chart may be attempted.",
+    "split_required_row_ids": [
+      "L_u_I0_I0",
+      "L_u_I0_I4",
+      "L_u_I1_I0",
+      "L_u_I1_I1",
+      "L_u_I2_I1",
+      "L_u_I2_I2",
+      "L_u_I3_I2",
+      "L_u_I3_I3",
+      "L_u_I4_I2",
+      "L_u_I4_I3",
+      "L_u_I4_I4",
+      "L_w_I0_I0",
+      "L_w_I0_I4",
+      "L_w_I1_I0",
+      "L_w_I1_I1",
+      "L_w_I2_I0",
+      "L_w_I2_I1",
+      "L_w_I2_I2",
+      "L_w_I3_I2",
+      "L_w_I3_I3",
+      "L_w_I4_I3",
+      "L_w_I4_I4"
+    ]
+  },
+  "rows": [
+    {
+      "row_id": "L_u_I0_I0",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I0_I0",
+      "receiver_interval": "I0",
+      "source_interval": "I0",
+      "ledger": "u",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        -1.25,
+        0.177295217996
+      ],
+      "source_range": [
+        -1.25,
+        0.177295217996
+      ],
+      "status": "split_required",
+      "range_gap": 0,
+      "monotone_floor": 1,
+      "receiver_monotone_floor": 1,
+      "root_count_bound": null,
+      "root_sign": null,
+      "jacobian_floor": 1,
+      "memory_depth_range": null,
+      "separator_event": null,
+      "itinerary_required": "unresolved_before_branch_chart",
+      "failure_code": "diagonal_contact_not_split",
+      "failure_reasons": [
+        "diagonal_contact_not_split",
+        "range_overlap_not_strictly_covered"
+      ]
+    },
+    {
+      "row_id": "L_u_I0_I1",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I0_I1",
+      "receiver_interval": "I0",
+      "source_interval": "I1",
+      "ledger": "u",
+      "source_lift_periods": -1,
+      "receiver_range": [
+        -1.25,
+        0.177295217996
+      ],
+      "source_range": [
+        -6.105890089184,
+        -3.318887871586
+      ],
+      "status": "empty",
+      "range_gap": 2.068887871586,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": null,
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_u_I0_I2",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I0_I2",
+      "receiver_interval": "I0",
+      "source_interval": "I2",
+      "ledger": "u",
+      "source_lift_periods": -1,
+      "receiver_range": [
+        -1.25,
+        0.177295217996
+      ],
+      "source_range": [
+        -3.318887871586,
+        -1.464297435588
+      ],
+      "status": "empty",
+      "range_gap": 0.214297435588,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_3",
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_u_I0_I3",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I0_I3",
+      "receiver_interval": "I0",
+      "source_interval": "I3",
+      "ledger": "u",
+      "source_lift_periods": -1,
+      "receiver_range": [
+        -1.25,
+        0.177295217996
+      ],
+      "source_range": [
+        -1.677295218002,
+        -1.464297435588
+      ],
+      "status": "empty",
+      "range_gap": 0.214297435588,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_3; source:Sigma_4",
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_u_I0_I4",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I0_I4",
+      "receiver_interval": "I0",
+      "source_interval": "I4",
+      "ledger": "u",
+      "source_lift_periods": -1,
+      "receiver_range": [
+        -1.25,
+        0.177295217996
+      ],
+      "source_range": [
+        -1.677295218002,
+        -1.25
+      ],
+      "status": "split_required",
+      "range_gap": 0,
+      "monotone_floor": 0,
+      "receiver_monotone_floor": 1,
+      "root_count_bound": null,
+      "root_sign": null,
+      "jacobian_floor": 0,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_4",
+      "itinerary_required": "unresolved_before_branch_chart",
+      "failure_code": "zero_derivative_separator_not_isolated",
+      "failure_reasons": [
+        "zero_derivative_separator_not_isolated",
+        "range_overlap_not_strictly_covered",
+        "periodic_lift_boundary_contact_not_split"
+      ]
+    },
+    {
+      "row_id": "L_u_I1_I0",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I1_I0",
+      "receiver_interval": "I1",
+      "source_interval": "I0",
+      "ledger": "u",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        0.177295217996,
+        2.964297435594
+      ],
+      "source_range": [
+        -1.25,
+        0.177295217996
+      ],
+      "status": "split_required",
+      "range_gap": 0,
+      "monotone_floor": 1,
+      "receiver_monotone_floor": 1.999999999998,
+      "root_count_bound": null,
+      "root_sign": null,
+      "jacobian_floor": 1,
+      "memory_depth_range": null,
+      "separator_event": null,
+      "itinerary_required": "unresolved_before_branch_chart",
+      "failure_code": "range_overlap_not_strictly_covered",
+      "failure_reasons": [
+        "range_overlap_not_strictly_covered"
+      ]
+    },
+    {
+      "row_id": "L_u_I1_I1",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I1_I1",
+      "receiver_interval": "I1",
+      "source_interval": "I1",
+      "ledger": "u",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        0.177295217996,
+        2.964297435594
+      ],
+      "source_range": [
+        0.177295217996,
+        2.964297435594
+      ],
+      "status": "split_required",
+      "range_gap": 0,
+      "monotone_floor": 1.999999999998,
+      "receiver_monotone_floor": 1.999999999998,
+      "root_count_bound": null,
+      "root_sign": null,
+      "jacobian_floor": 1.999999999998,
+      "memory_depth_range": null,
+      "separator_event": null,
+      "itinerary_required": "unresolved_before_branch_chart",
+      "failure_code": "diagonal_contact_not_split",
+      "failure_reasons": [
+        "diagonal_contact_not_split",
+        "range_overlap_not_strictly_covered"
+      ]
+    },
+    {
+      "row_id": "L_u_I1_I2",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I1_I2",
+      "receiver_interval": "I1",
+      "source_interval": "I2",
+      "ledger": "u",
+      "source_lift_periods": -1,
+      "receiver_range": [
+        0.177295217996,
+        2.964297435594
+      ],
+      "source_range": [
+        -3.318887871586,
+        -1.464297435588
+      ],
+      "status": "empty",
+      "range_gap": 1.641592653584,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_3",
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_u_I1_I3",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I1_I3",
+      "receiver_interval": "I1",
+      "source_interval": "I3",
+      "ledger": "u",
+      "source_lift_periods": -1,
+      "receiver_range": [
+        0.177295217996,
+        2.964297435594
+      ],
+      "source_range": [
+        -1.677295218002,
+        -1.464297435588
+      ],
+      "status": "empty",
+      "range_gap": 1.641592653584,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_3; source:Sigma_4",
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_u_I1_I4",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I1_I4",
+      "receiver_interval": "I1",
+      "source_interval": "I4",
+      "ledger": "u",
+      "source_lift_periods": -1,
+      "receiver_range": [
+        0.177295217996,
+        2.964297435594
+      ],
+      "source_range": [
+        -1.677295218002,
+        -1.25
+      ],
+      "status": "empty",
+      "range_gap": 1.427295217996,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_4",
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_u_I2_I0",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I2_I0",
+      "receiver_interval": "I2",
+      "source_interval": "I0",
+      "ledger": "u",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        2.964297435594,
+        4.818887871592
+      ],
+      "source_range": [
+        -1.25,
+        0.177295217996
+      ],
+      "status": "empty",
+      "range_gap": 2.787002217598,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": "receiver:Sigma_3",
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_u_I2_I1",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I2_I1",
+      "receiver_interval": "I2",
+      "source_interval": "I1",
+      "ledger": "u",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        2.964297435594,
+        4.818887871592
+      ],
+      "source_range": [
+        0.177295217996,
+        2.964297435594
+      ],
+      "status": "split_required",
+      "range_gap": 0,
+      "monotone_floor": 1.999999999998,
+      "receiver_monotone_floor": 0,
+      "root_count_bound": null,
+      "root_sign": null,
+      "jacobian_floor": 1.999999999998,
+      "memory_depth_range": null,
+      "separator_event": "receiver:Sigma_3",
+      "itinerary_required": "unresolved_before_branch_chart",
+      "failure_code": "zero_derivative_separator_not_isolated",
+      "failure_reasons": [
+        "zero_derivative_separator_not_isolated",
+        "range_overlap_not_strictly_covered"
+      ]
+    },
+    {
+      "row_id": "L_u_I2_I2",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I2_I2",
+      "receiver_interval": "I2",
+      "source_interval": "I2",
+      "ledger": "u",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        2.964297435594,
+        4.818887871592
+      ],
+      "source_range": [
+        2.964297435594,
+        4.818887871592
+      ],
+      "status": "split_required",
+      "range_gap": 0,
+      "monotone_floor": 0,
+      "receiver_monotone_floor": 0,
+      "root_count_bound": null,
+      "root_sign": null,
+      "jacobian_floor": 0,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_3; receiver:Sigma_3",
+      "itinerary_required": "unresolved_before_branch_chart",
+      "failure_code": "diagonal_contact_not_split",
+      "failure_reasons": [
+        "diagonal_contact_not_split",
+        "zero_derivative_separator_not_isolated",
+        "range_overlap_not_strictly_covered"
+      ]
+    },
+    {
+      "row_id": "L_u_I2_I3",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I2_I3",
+      "receiver_interval": "I2",
+      "source_interval": "I3",
+      "ledger": "u",
+      "source_lift_periods": -1,
+      "receiver_range": [
+        2.964297435594,
+        4.818887871592
+      ],
+      "source_range": [
+        -1.677295218002,
+        -1.464297435588
+      ],
+      "status": "empty",
+      "range_gap": 4.428594871182,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_3; source:Sigma_4; receiver:Sigma_3",
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_u_I2_I4",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I2_I4",
+      "receiver_interval": "I2",
+      "source_interval": "I4",
+      "ledger": "u",
+      "source_lift_periods": -1,
+      "receiver_range": [
+        2.964297435594,
+        4.818887871592
+      ],
+      "source_range": [
+        -1.677295218002,
+        -1.25
+      ],
+      "status": "empty",
+      "range_gap": 4.214297435594,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_4; receiver:Sigma_3",
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_u_I3_I0",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I3_I0",
+      "receiver_interval": "I3",
+      "source_interval": "I0",
+      "ledger": "u",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        4.605890089178,
+        4.818887871592
+      ],
+      "source_range": [
+        -1.25,
+        0.177295217996
+      ],
+      "status": "empty",
+      "range_gap": 4.428594871182,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": "receiver:Sigma_3; receiver:Sigma_4",
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_u_I3_I1",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I3_I1",
+      "receiver_interval": "I3",
+      "source_interval": "I1",
+      "ledger": "u",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        4.605890089178,
+        4.818887871592
+      ],
+      "source_range": [
+        0.177295217996,
+        2.964297435594
+      ],
+      "status": "empty",
+      "range_gap": 1.641592653584,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": "receiver:Sigma_3; receiver:Sigma_4",
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_u_I3_I2",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I3_I2",
+      "receiver_interval": "I3",
+      "source_interval": "I2",
+      "ledger": "u",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        4.605890089178,
+        4.818887871592
+      ],
+      "source_range": [
+        2.964297435594,
+        4.818887871592
+      ],
+      "status": "split_required",
+      "range_gap": 0,
+      "monotone_floor": 0,
+      "receiver_monotone_floor": 0,
+      "root_count_bound": null,
+      "root_sign": null,
+      "jacobian_floor": 0,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_3; receiver:Sigma_3; receiver:Sigma_4",
+      "itinerary_required": "unresolved_before_branch_chart",
+      "failure_code": "zero_derivative_separator_not_isolated",
+      "failure_reasons": [
+        "zero_derivative_separator_not_isolated",
+        "range_overlap_not_strictly_covered"
+      ]
+    },
+    {
+      "row_id": "L_u_I3_I3",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I3_I3",
+      "receiver_interval": "I3",
+      "source_interval": "I3",
+      "ledger": "u",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        4.605890089178,
+        4.818887871592
+      ],
+      "source_range": [
+        4.605890089178,
+        4.818887871592
+      ],
+      "status": "split_required",
+      "range_gap": 0,
+      "monotone_floor": 0,
+      "receiver_monotone_floor": 0,
+      "root_count_bound": null,
+      "root_sign": null,
+      "jacobian_floor": 0,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_3; source:Sigma_4; receiver:Sigma_3; receiver:Sigma_4",
+      "itinerary_required": "unresolved_before_branch_chart",
+      "failure_code": "diagonal_contact_not_split",
+      "failure_reasons": [
+        "diagonal_contact_not_split",
+        "zero_derivative_separator_not_isolated",
+        "range_overlap_not_strictly_covered"
+      ]
+    },
+    {
+      "row_id": "L_u_I3_I4",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I3_I4",
+      "receiver_interval": "I3",
+      "source_interval": "I4",
+      "ledger": "u",
+      "source_lift_periods": -1,
+      "receiver_range": [
+        4.605890089178,
+        4.818887871592
+      ],
+      "source_range": [
+        -1.677295218002,
+        -1.25
+      ],
+      "status": "empty",
+      "range_gap": 5.855890089178,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_4; receiver:Sigma_3; receiver:Sigma_4",
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_u_I4_I0",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I4_I0",
+      "receiver_interval": "I4",
+      "source_interval": "I0",
+      "ledger": "u",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        4.605890089178,
+        5.03318530718
+      ],
+      "source_range": [
+        -1.25,
+        0.177295217996
+      ],
+      "status": "empty",
+      "range_gap": 4.428594871182,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": "receiver:Sigma_4",
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_u_I4_I1",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I4_I1",
+      "receiver_interval": "I4",
+      "source_interval": "I1",
+      "ledger": "u",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        4.605890089178,
+        5.03318530718
+      ],
+      "source_range": [
+        0.177295217996,
+        2.964297435594
+      ],
+      "status": "empty",
+      "range_gap": 1.641592653584,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": "receiver:Sigma_4",
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_u_I4_I2",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I4_I2",
+      "receiver_interval": "I4",
+      "source_interval": "I2",
+      "ledger": "u",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        4.605890089178,
+        5.03318530718
+      ],
+      "source_range": [
+        2.964297435594,
+        4.818887871592
+      ],
+      "status": "split_required",
+      "range_gap": 0,
+      "monotone_floor": 0,
+      "receiver_monotone_floor": 0,
+      "root_count_bound": null,
+      "root_sign": null,
+      "jacobian_floor": 0,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_3; receiver:Sigma_4",
+      "itinerary_required": "unresolved_before_branch_chart",
+      "failure_code": "zero_derivative_separator_not_isolated",
+      "failure_reasons": [
+        "zero_derivative_separator_not_isolated",
+        "range_overlap_not_strictly_covered"
+      ]
+    },
+    {
+      "row_id": "L_u_I4_I3",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I4_I3",
+      "receiver_interval": "I4",
+      "source_interval": "I3",
+      "ledger": "u",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        4.605890089178,
+        5.03318530718
+      ],
+      "source_range": [
+        4.605890089178,
+        4.818887871592
+      ],
+      "status": "split_required",
+      "range_gap": 0,
+      "monotone_floor": 0,
+      "receiver_monotone_floor": 0,
+      "root_count_bound": null,
+      "root_sign": null,
+      "jacobian_floor": 0,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_3; source:Sigma_4; receiver:Sigma_4",
+      "itinerary_required": "unresolved_before_branch_chart",
+      "failure_code": "zero_derivative_separator_not_isolated",
+      "failure_reasons": [
+        "zero_derivative_separator_not_isolated",
+        "range_overlap_not_strictly_covered"
+      ]
+    },
+    {
+      "row_id": "L_u_I4_I4",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I4_I4",
+      "receiver_interval": "I4",
+      "source_interval": "I4",
+      "ledger": "u",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        4.605890089178,
+        5.03318530718
+      ],
+      "source_range": [
+        4.605890089178,
+        5.03318530718
+      ],
+      "status": "split_required",
+      "range_gap": 0,
+      "monotone_floor": 0,
+      "receiver_monotone_floor": 0,
+      "root_count_bound": null,
+      "root_sign": null,
+      "jacobian_floor": 0,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_4; receiver:Sigma_4",
+      "itinerary_required": "unresolved_before_branch_chart",
+      "failure_code": "diagonal_contact_not_split",
+      "failure_reasons": [
+        "diagonal_contact_not_split",
+        "zero_derivative_separator_not_isolated",
+        "range_overlap_not_strictly_covered"
+      ]
+    },
+    {
+      "row_id": "L_w_I0_I0",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I0_I0",
+      "receiver_interval": "I0",
+      "source_interval": "I0",
+      "ledger": "w",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        1.25,
+        1.677295218002
+      ],
+      "source_range": [
+        1.25,
+        1.677295218002
+      ],
+      "status": "split_required",
+      "range_gap": 0,
+      "monotone_floor": 0,
+      "receiver_monotone_floor": 0,
+      "root_count_bound": null,
+      "root_sign": null,
+      "jacobian_floor": 0,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_1; receiver:Sigma_1",
+      "itinerary_required": "unresolved_before_branch_chart",
+      "failure_code": "diagonal_contact_not_split",
+      "failure_reasons": [
+        "diagonal_contact_not_split",
+        "zero_derivative_separator_not_isolated",
+        "range_overlap_not_strictly_covered"
+      ]
+    },
+    {
+      "row_id": "L_w_I0_I1",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I0_I1",
+      "receiver_interval": "I0",
+      "source_interval": "I1",
+      "ledger": "w",
+      "source_lift_periods": -1,
+      "receiver_range": [
+        1.25,
+        1.677295218002
+      ],
+      "source_range": [
+        -4.818887871592,
+        -4.605890089178
+      ],
+      "status": "empty",
+      "range_gap": 5.855890089178,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_1; source:Sigma_2; receiver:Sigma_1",
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_w_I0_I2",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I0_I2",
+      "receiver_interval": "I0",
+      "source_interval": "I2",
+      "ledger": "w",
+      "source_lift_periods": -1,
+      "receiver_range": [
+        1.25,
+        1.677295218002
+      ],
+      "source_range": [
+        -4.818887871592,
+        -2.964297435594
+      ],
+      "status": "empty",
+      "range_gap": 4.214297435594,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_2; receiver:Sigma_1",
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_w_I0_I3",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I0_I3",
+      "receiver_interval": "I0",
+      "source_interval": "I3",
+      "ledger": "w",
+      "source_lift_periods": -1,
+      "receiver_range": [
+        1.25,
+        1.677295218002
+      ],
+      "source_range": [
+        -2.964297435594,
+        -0.177295217996
+      ],
+      "status": "empty",
+      "range_gap": 1.427295217996,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": "receiver:Sigma_1",
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_w_I0_I4",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I0_I4",
+      "receiver_interval": "I0",
+      "source_interval": "I4",
+      "ledger": "w",
+      "source_lift_periods": -1,
+      "receiver_range": [
+        1.25,
+        1.677295218002
+      ],
+      "source_range": [
+        -0.177295217996,
+        1.25
+      ],
+      "status": "split_required",
+      "range_gap": 0,
+      "monotone_floor": 1,
+      "receiver_monotone_floor": 0,
+      "root_count_bound": null,
+      "root_sign": null,
+      "jacobian_floor": 1,
+      "memory_depth_range": null,
+      "separator_event": "receiver:Sigma_1",
+      "itinerary_required": "unresolved_before_branch_chart",
+      "failure_code": "zero_derivative_separator_not_isolated",
+      "failure_reasons": [
+        "zero_derivative_separator_not_isolated",
+        "range_overlap_not_strictly_covered",
+        "periodic_lift_boundary_contact_not_split"
+      ]
+    },
+    {
+      "row_id": "L_w_I1_I0",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I1_I0",
+      "receiver_interval": "I1",
+      "source_interval": "I0",
+      "ledger": "w",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        1.464297435588,
+        1.677295218002
+      ],
+      "source_range": [
+        1.25,
+        1.677295218002
+      ],
+      "status": "split_required",
+      "range_gap": 0,
+      "monotone_floor": 0,
+      "receiver_monotone_floor": 0,
+      "root_count_bound": null,
+      "root_sign": null,
+      "jacobian_floor": 0,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_1; receiver:Sigma_1; receiver:Sigma_2",
+      "itinerary_required": "unresolved_before_branch_chart",
+      "failure_code": "zero_derivative_separator_not_isolated",
+      "failure_reasons": [
+        "zero_derivative_separator_not_isolated",
+        "range_overlap_not_strictly_covered"
+      ]
+    },
+    {
+      "row_id": "L_w_I1_I1",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I1_I1",
+      "receiver_interval": "I1",
+      "source_interval": "I1",
+      "ledger": "w",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        1.464297435588,
+        1.677295218002
+      ],
+      "source_range": [
+        1.464297435588,
+        1.677295218002
+      ],
+      "status": "split_required",
+      "range_gap": 0,
+      "monotone_floor": 0,
+      "receiver_monotone_floor": 0,
+      "root_count_bound": null,
+      "root_sign": null,
+      "jacobian_floor": 0,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_1; source:Sigma_2; receiver:Sigma_1; receiver:Sigma_2",
+      "itinerary_required": "unresolved_before_branch_chart",
+      "failure_code": "diagonal_contact_not_split",
+      "failure_reasons": [
+        "diagonal_contact_not_split",
+        "zero_derivative_separator_not_isolated",
+        "range_overlap_not_strictly_covered"
+      ]
+    },
+    {
+      "row_id": "L_w_I1_I2",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I1_I2",
+      "receiver_interval": "I1",
+      "source_interval": "I2",
+      "ledger": "w",
+      "source_lift_periods": -1,
+      "receiver_range": [
+        1.464297435588,
+        1.677295218002
+      ],
+      "source_range": [
+        -4.818887871592,
+        -2.964297435594
+      ],
+      "status": "empty",
+      "range_gap": 4.428594871182,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_2; receiver:Sigma_1; receiver:Sigma_2",
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_w_I1_I3",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I1_I3",
+      "receiver_interval": "I1",
+      "source_interval": "I3",
+      "ledger": "w",
+      "source_lift_periods": -1,
+      "receiver_range": [
+        1.464297435588,
+        1.677295218002
+      ],
+      "source_range": [
+        -2.964297435594,
+        -0.177295217996
+      ],
+      "status": "empty",
+      "range_gap": 1.641592653584,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": "receiver:Sigma_1; receiver:Sigma_2",
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_w_I1_I4",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I1_I4",
+      "receiver_interval": "I1",
+      "source_interval": "I4",
+      "ledger": "w",
+      "source_lift_periods": -1,
+      "receiver_range": [
+        1.464297435588,
+        1.677295218002
+      ],
+      "source_range": [
+        -0.177295217996,
+        1.25
+      ],
+      "status": "empty",
+      "range_gap": 0.214297435588,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": "receiver:Sigma_1; receiver:Sigma_2",
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_w_I2_I0",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I2_I0",
+      "receiver_interval": "I2",
+      "source_interval": "I0",
+      "ledger": "w",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        1.464297435588,
+        3.318887871586
+      ],
+      "source_range": [
+        1.25,
+        1.677295218002
+      ],
+      "status": "split_required",
+      "range_gap": 0,
+      "monotone_floor": 0,
+      "receiver_monotone_floor": 0,
+      "root_count_bound": null,
+      "root_sign": null,
+      "jacobian_floor": 0,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_1; receiver:Sigma_2",
+      "itinerary_required": "unresolved_before_branch_chart",
+      "failure_code": "zero_derivative_separator_not_isolated",
+      "failure_reasons": [
+        "zero_derivative_separator_not_isolated",
+        "range_overlap_not_strictly_covered"
+      ]
+    },
+    {
+      "row_id": "L_w_I2_I1",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I2_I1",
+      "receiver_interval": "I2",
+      "source_interval": "I1",
+      "ledger": "w",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        1.464297435588,
+        3.318887871586
+      ],
+      "source_range": [
+        1.464297435588,
+        1.677295218002
+      ],
+      "status": "split_required",
+      "range_gap": 0,
+      "monotone_floor": 0,
+      "receiver_monotone_floor": 0,
+      "root_count_bound": null,
+      "root_sign": null,
+      "jacobian_floor": 0,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_1; source:Sigma_2; receiver:Sigma_2",
+      "itinerary_required": "unresolved_before_branch_chart",
+      "failure_code": "zero_derivative_separator_not_isolated",
+      "failure_reasons": [
+        "zero_derivative_separator_not_isolated",
+        "range_overlap_not_strictly_covered"
+      ]
+    },
+    {
+      "row_id": "L_w_I2_I2",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I2_I2",
+      "receiver_interval": "I2",
+      "source_interval": "I2",
+      "ledger": "w",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        1.464297435588,
+        3.318887871586
+      ],
+      "source_range": [
+        1.464297435588,
+        3.318887871586
+      ],
+      "status": "split_required",
+      "range_gap": 0,
+      "monotone_floor": 0,
+      "receiver_monotone_floor": 0,
+      "root_count_bound": null,
+      "root_sign": null,
+      "jacobian_floor": 0,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_2; receiver:Sigma_2",
+      "itinerary_required": "unresolved_before_branch_chart",
+      "failure_code": "diagonal_contact_not_split",
+      "failure_reasons": [
+        "diagonal_contact_not_split",
+        "zero_derivative_separator_not_isolated",
+        "range_overlap_not_strictly_covered"
+      ]
+    },
+    {
+      "row_id": "L_w_I2_I3",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I2_I3",
+      "receiver_interval": "I2",
+      "source_interval": "I3",
+      "ledger": "w",
+      "source_lift_periods": -1,
+      "receiver_range": [
+        1.464297435588,
+        3.318887871586
+      ],
+      "source_range": [
+        -2.964297435594,
+        -0.177295217996
+      ],
+      "status": "empty",
+      "range_gap": 1.641592653584,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": "receiver:Sigma_2",
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_w_I2_I4",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I2_I4",
+      "receiver_interval": "I2",
+      "source_interval": "I4",
+      "ledger": "w",
+      "source_lift_periods": -1,
+      "receiver_range": [
+        1.464297435588,
+        3.318887871586
+      ],
+      "source_range": [
+        -0.177295217996,
+        1.25
+      ],
+      "status": "empty",
+      "range_gap": 0.214297435588,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": "receiver:Sigma_2",
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_w_I3_I0",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I3_I0",
+      "receiver_interval": "I3",
+      "source_interval": "I0",
+      "ledger": "w",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        3.318887871586,
+        6.105890089184
+      ],
+      "source_range": [
+        1.25,
+        1.677295218002
+      ],
+      "status": "empty",
+      "range_gap": 1.641592653584,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_1",
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_w_I3_I1",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I3_I1",
+      "receiver_interval": "I3",
+      "source_interval": "I1",
+      "ledger": "w",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        3.318887871586,
+        6.105890089184
+      ],
+      "source_range": [
+        1.464297435588,
+        1.677295218002
+      ],
+      "status": "empty",
+      "range_gap": 1.641592653584,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_1; source:Sigma_2",
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_w_I3_I2",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I3_I2",
+      "receiver_interval": "I3",
+      "source_interval": "I2",
+      "ledger": "w",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        3.318887871586,
+        6.105890089184
+      ],
+      "source_range": [
+        1.464297435588,
+        3.318887871586
+      ],
+      "status": "split_required",
+      "range_gap": 0,
+      "monotone_floor": 0,
+      "receiver_monotone_floor": 1.999999999998,
+      "root_count_bound": null,
+      "root_sign": null,
+      "jacobian_floor": 0,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_2",
+      "itinerary_required": "unresolved_before_branch_chart",
+      "failure_code": "zero_derivative_separator_not_isolated",
+      "failure_reasons": [
+        "zero_derivative_separator_not_isolated",
+        "range_overlap_not_strictly_covered"
+      ]
+    },
+    {
+      "row_id": "L_w_I3_I3",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I3_I3",
+      "receiver_interval": "I3",
+      "source_interval": "I3",
+      "ledger": "w",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        3.318887871586,
+        6.105890089184
+      ],
+      "source_range": [
+        3.318887871586,
+        6.105890089184
+      ],
+      "status": "split_required",
+      "range_gap": 0,
+      "monotone_floor": 1.999999999998,
+      "receiver_monotone_floor": 1.999999999998,
+      "root_count_bound": null,
+      "root_sign": null,
+      "jacobian_floor": 1.999999999998,
+      "memory_depth_range": null,
+      "separator_event": null,
+      "itinerary_required": "unresolved_before_branch_chart",
+      "failure_code": "diagonal_contact_not_split",
+      "failure_reasons": [
+        "diagonal_contact_not_split",
+        "range_overlap_not_strictly_covered"
+      ]
+    },
+    {
+      "row_id": "L_w_I3_I4",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I3_I4",
+      "receiver_interval": "I3",
+      "source_interval": "I4",
+      "ledger": "w",
+      "source_lift_periods": -1,
+      "receiver_range": [
+        3.318887871586,
+        6.105890089184
+      ],
+      "source_range": [
+        -0.177295217996,
+        1.25
+      ],
+      "status": "empty",
+      "range_gap": 2.068887871586,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": null,
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_w_I4_I0",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I4_I0",
+      "receiver_interval": "I4",
+      "source_interval": "I0",
+      "ledger": "w",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        6.105890089184,
+        7.53318530718
+      ],
+      "source_range": [
+        1.25,
+        1.677295218002
+      ],
+      "status": "empty",
+      "range_gap": 4.428594871182,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_1",
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_w_I4_I1",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I4_I1",
+      "receiver_interval": "I4",
+      "source_interval": "I1",
+      "ledger": "w",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        6.105890089184,
+        7.53318530718
+      ],
+      "source_range": [
+        1.464297435588,
+        1.677295218002
+      ],
+      "status": "empty",
+      "range_gap": 4.428594871182,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_1; source:Sigma_2",
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_w_I4_I2",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I4_I2",
+      "receiver_interval": "I4",
+      "source_interval": "I2",
+      "ledger": "w",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        6.105890089184,
+        7.53318530718
+      ],
+      "source_range": [
+        1.464297435588,
+        3.318887871586
+      ],
+      "status": "empty",
+      "range_gap": 2.787002217598,
+      "monotone_floor": null,
+      "receiver_monotone_floor": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
+      "root_sign": null,
+      "jacobian_floor": null,
+      "memory_depth_range": null,
+      "separator_event": "source:Sigma_2",
+      "itinerary_required": "inactive_complement",
+      "failure_code": "",
+      "failure_reasons": []
+    },
+    {
+      "row_id": "L_w_I4_I3",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I4_I3",
+      "receiver_interval": "I4",
+      "source_interval": "I3",
+      "ledger": "w",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        6.105890089184,
+        7.53318530718
+      ],
+      "source_range": [
+        3.318887871586,
+        6.105890089184
+      ],
+      "status": "split_required",
+      "range_gap": 0,
+      "monotone_floor": 1.999999999998,
+      "receiver_monotone_floor": 1,
+      "root_count_bound": null,
+      "root_sign": null,
+      "jacobian_floor": 1.999999999998,
+      "memory_depth_range": null,
+      "separator_event": null,
+      "itinerary_required": "unresolved_before_branch_chart",
+      "failure_code": "range_overlap_not_strictly_covered",
+      "failure_reasons": [
+        "range_overlap_not_strictly_covered"
+      ]
+    },
+    {
+      "row_id": "L_w_I4_I4",
+      "packet_id": "seed-doubled-four-arc-cosine-template-v0",
+      "subblock_id": "B_I4_I4",
+      "receiver_interval": "I4",
+      "source_interval": "I4",
+      "ledger": "w",
+      "source_lift_periods": 0,
+      "receiver_range": [
+        6.105890089184,
+        7.53318530718
+      ],
+      "source_range": [
+        6.105890089184,
+        7.53318530718
+      ],
+      "status": "split_required",
+      "range_gap": 0,
+      "monotone_floor": 1,
+      "receiver_monotone_floor": 1,
+      "root_count_bound": null,
+      "root_sign": null,
+      "jacobian_floor": 1,
+      "memory_depth_range": null,
+      "separator_event": null,
+      "itinerary_required": "unresolved_before_branch_chart",
+      "failure_code": "diagonal_contact_not_split",
+      "failure_reasons": [
+        "diagonal_contact_not_split",
+        "range_overlap_not_strictly_covered"
+      ]
+    }
+  ]
+}

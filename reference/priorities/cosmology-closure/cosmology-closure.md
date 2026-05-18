@@ -20,6 +20,10 @@ Convert the current cosmology story from narrative strength to equation-level cl
 
 This file remains the control surface for deferred cosmology closure. No sibling detailed priority file is needed until component-interface work resumes.
 
+## OpenAlex Baseline
+
+[openalex-baseline.md](openalex-baseline.md) records the May 18, 2026 OpenAlex review set for CMB, supernova, BAO, $H_0$, $S_8$, and transfer-function pipeline constraints.
+
 ## Promotion Map
 
 | Task | Detailed source | Primary promotion target | Promotion gate |

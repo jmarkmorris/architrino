@@ -2,6 +2,10 @@
 
 This detailed priority file supports [Noether-Core Stability and First Mass Map](mass-map.md). It generalizes shielding extraction into a sector exposure/quotient theorem: what part of internal Noether-core geometry becomes externally visible to a sector.
 
+## OpenAlex Baseline
+
+[exposure-quotient-openalex-baseline.md](exposure-quotient-openalex-baseline.md) records the May 18, 2026 OpenAlex review set for symmetry, reduction, gauge redundancy, and quotient-observable discipline.
+
 ## Core Theorem Target
 
 The common exposure form is:

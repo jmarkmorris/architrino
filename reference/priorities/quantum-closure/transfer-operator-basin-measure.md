@@ -2,6 +2,10 @@
 
 This packet defines the shared measure-theoretic grammar consumed by [Quantum Closure](quantum-closure.md), [Agency, Decision, and Decider Closure](agency-decision-and-decider.md), [Algorithmic Resonance and Pilot-Wave Closure](algorithmic-resonance-and-pilot-wave.md), [dyadic-lock](../dyadic-lock/dyadic-lock.md), and [Photon, Measurement, and Bell Gates](../angular-momentum-spin/photon-measurement-bell-gates.md).
 
+## OpenAlex Baseline
+
+[transfer-operator-openalex-baseline.md](transfer-operator-openalex-baseline.md) records the May 18, 2026 OpenAlex review set for transfer operators, Koopman reductions, metastable Markov models, and basin-measure diagnostics.
+
 ## State Space And Coarse-Graining
 
 Fix a finite causal-wake regularization width $\eta > 0$, a history horizon $h>0$, and a record or return time window $0<\tau_{\text{rec}}\le T_{\text{meta}}$. The history object retained before coarse-graining is

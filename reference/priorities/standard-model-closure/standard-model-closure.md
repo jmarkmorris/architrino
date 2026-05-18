@@ -27,6 +27,10 @@ The quark catalog and basic $SU(3)\times SU(2)\times U(1)$ bookkeeping are in pl
 
 The hydrogen boundary question is now a staged standard-model-to-atomic bridge. Its value is not another validation gate; it is the first clean local map between four charged fermion assemblies, the proton's color-singlet closure, the electron resonance envelope, and the ambient Noether-Sea coarse-graining used as local spacetime.
 
+## OpenAlex Baseline
+
+[openalex-baseline.md](openalex-baseline.md) records the May 18, 2026 OpenAlex review set for electroweak, flavor, QCD, confinement, scalar-sector, and nuclear-bridge constraints.
+
 ## Scalar-Boson Acceptance Target
 
 The Higgs discovery benchmark is a required Standard Model-facing recovery target, not evidence for primitive Higgs ontology in $\mathbb{A}\mathbb{A}\mathbb{A}$. The acceptance target is a shared scalar residual combining ATLAS mass, inclusive signal strength, channel-rate compatibility, and excluded-scalar-window pressure. The benchmark fails if the native scalar mode is fit only by mass, if production and branching channels require independent tuning, or if extra scalar strength survives in search windows where ATLAS reports no accepted resonance.

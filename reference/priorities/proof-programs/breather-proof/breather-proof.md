@@ -11,7 +11,7 @@
 
 ## Task Queue
 
-1. `candidate_cycle_packet` — Produce `certificate/phi_cyc.json` and `certificate/mesh.json` for one candidate center history, preferably using the fold-adapted fractional basis near field-speed separators or an interval-collocation replacement with the same residual targets. Status: `next`. Depends on: none.
+1. `candidate_cycle_packet` — Produce `certificate/phi_cyc.json` and `certificate/mesh.json` for one candidate center history, preferably using the fold-adapted fractional basis near field-speed separators or an interval-collocation replacement with the same residual targets. Status: `drafted-template`; first finite velocity-class template exists, not EOM-solved or pre-ledger-certified. Depends on: none.
 2. `null_coordinate_preledger` — Produce `certificate/causal_ledger.json` and `certificate/causal_preledger_interval_report.md`, proving the named `Null-Coordinate Causal Pre-Ledger` theorem target or rejecting the candidate/itinerary before branch-chart certification. Status: `next`. Depends on: `candidate_cycle_packet`.
 3. `branch_chart_certificate` — Produce `certificate/branch_chart.json` and `certificate/seed_chart_interval_report.md`, including active branches, inactive complements, Jacobian floors, memory-depth ranges, and envelope constants. Status: `pending`. Depends on: `null_coordinate_preledger`.
 4. `coupled_corridor_certificate` — Produce `certificate/corridor_nonemptiness_report.md`, `certificate/parameters.json`, and the coupled-corridor interval report for one strict parameter tuple. Status: `pending`. Depends on: `branch_chart_certificate`.
@@ -24,6 +24,7 @@
 
 - `master_equation_law` recorded the exact dual-mollified absolute-time evolution law in the master-equation stack; branch sums remain local simple-root reductions of that law.
 - `velocity_itinerary_verification` produced `certificate/itinerary.json` and `certificate/itinerary_parity_report.md`, giving the doubled four-arc generic itinerary a coarse parity pass before candidate-cycle generation.
+- `candidate_cycle_template_packet` produced `certificate/phi_cyc.json`, `certificate/mesh.json`, and `certificate/candidate_cycle_packet_report.md` for one finite cosine velocity-class template. This clears only `Candidate data absent`; EOM residuals, pre-ledger rows, branch-chart rows, returned-history residuals, and topology remain uncertified.
 
 ## Scope
 
@@ -139,11 +140,11 @@ The current scaffold is no longer blocked by abstract Schauder theory. It is blo
 $$
 \phi_{\mathrm{cyc}}.
 $$
-It is not blocked by the absence of an elementary closed-form orbit. The dual-mollified absolute-time integral law is sufficient as the evolution law; branch-sum formulas are simple-root reductions used on certified charts. What is still absent is an instantiated
+It is not blocked by the absence of an elementary closed-form orbit. The dual-mollified absolute-time integral law is sufficient as the evolution law; branch-sum formulas are simple-root reductions used on certified charts. A first instantiated velocity-class template now exists as
 $$
 \phi_{\mathrm{cyc}},
 $$
-sample mesh, coefficient table, numerical certificate, or symbolic certificate in the repository. Therefore the proof cannot honestly be marked complete without constructing or computing that candidate and verifying its finite audit rows.
+with a sample mesh and coefficient table in the repository. What is still absent is a dynamics-solved or interval-certified candidate: the current template has not passed the null-coordinate pre-ledger, branch-chart certification, EOM residual evaluation, returned-sample preservation, or topology row. Therefore the proof cannot honestly be marked complete until that finite audit is run on the same packet identity and passes with strict margins.
 
 The first itinerary gate has a coarse parity pass for the doubled four-arc generic itinerary. This pass is necessary rather than sufficient: it verifies the separator-level fold arithmetic, but it does not yet certify active self-image roots, inactive-root gaps, Jacobian floors, or returned residuals. If the branch enumeration forces a different itinerary, this gate must be rerun.
 
@@ -152,7 +153,7 @@ Its executable artifacts are:
 - `certificate/itinerary.json`: velocity-class itinerary, arc labels, separator events, proposed fold events, and expected root-count jumps.
 - `certificate/itinerary_parity_report.md`: algebraic check that every separator event satisfies the even-jump law and signed-degree conservation, and that the closed-cycle branch ledger returns to itself.
 
-The next gate is the null-coordinate pre-ledger. This is now a named theorem target in [closed-form-collinear-breather-ansatz.md](../../../../content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md): before a candidate can claim an active branch chart, the ordered arc-pair blocks must be reduced to certified empty blocks, simple-root blocks, and fold-layer blocks using
+The next gate is the null-coordinate pre-ledger. This is now a named theorem target in [closed-form-collinear-breather-ansatz.md](../../../../content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md): before the current template or any later candidate can claim an active branch chart, the ordered arc-pair blocks must be reduced to certified empty blocks, simple-root blocks, and fold-layer blocks using
 $$
 u=c_f t-x,
 \qquad

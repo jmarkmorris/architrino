@@ -117,6 +117,18 @@ For a Noether-Sea comparison to become superfluid-like rather than merely medium
 
 Berezhiani-Khoury-style superfluid dark matter is a useful comparison because it makes this discipline visible. In that model, the same dark-sector substance is intended to behave like ordinary cold dark matter in cosmological regimes while forming a galactic superfluid phase whose phonons mediate a MOND-like force. The Noether-Sea bridge should borrow only the structure of that question: can one substrate have phase-dependent effective behavior with distinct collective modes and observational regimes? It should not borrow the conclusion unless $\mathbb{A}\mathbb{A}\mathbb{A}$ derives the corresponding Noether-Sea phase variables.
 
+The older Sinha-Sivaram-Sudarshan superfluid-vacuum papers sharpen a different part of the same discipline. Their useful source signal is not the literal aether claim. It is the demand that a coherent vacuum-medium comparison specify a gap, an excitation spectrum, and a critical threshold before using low-dissipation language. A BCS-like comparison has the schematic spectrum
+$$
+E_k^{\mathrm{cmp}}
+=
+\sqrt{\epsilon_k^2+|\Delta_{\mathrm{cmp}}|^2},
+\qquad
+v_c^{\mathrm{cmp}}
+=
+\min_k\frac{E_k^{\mathrm{cmp}}}{\hbar k}.
+$$
+In the source model the gap was identified with rest energy and a Compton-scale estimate pushed the critical velocity toward $c_0$. In $\mathbb{A}\mathbb{A}\mathbb{A}$ that is only a comparison test. A Noether-Sea branch may borrow the structure only after it defines a native excitation gap, explains which assemblies or collective modes carry it, and shows that any low-dissipation or transparent regime follows from $v_{\mathrm{rel}}<v_c^\theta$ rather than from naming the medium a superfluid.
+
 The longer Berezhiani-Khoury theory paper sharpens the comparison into source-side technical criteria. Its useful contribution for this bridge is not the dark-matter ontology, but the way it ties phase behavior, an order-parameter phase, a phonon effective action, a two-component finite-temperature description, and observational failure modes into one calculable structure:
 
 | Source structure | Source-side mathematical marker | Noether-Sea comparison criterion |

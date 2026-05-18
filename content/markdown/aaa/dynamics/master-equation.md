@@ -1819,6 +1819,60 @@ $$
 $$
 Pure circular self-hit is therefore not tangentially neutral branchwise. It supplies outward radial support and large cancelling forward/backward tangential activity; on the positive-sine subchart alone the signed large-$\beta$ residue is backward and order $\beta$, while on the full signed chart the linear signed terms cancel to a bounded remainder. This corrects the stronger blanket statement that self branches are always positive-tangential, without by itself proving or disproving full binary closure.
 
+#### Large-$\beta$ partner/self circular residual
+
+The exact partner branch can now be combined with the self-hit sums to get a high-speed obstruction for the equal-magnitude bare circular binary. Let $\xi_p(\beta)$ solve
+$$
+\cos\xi_p=\frac{\xi_p}{\beta},
+\qquad
+0<\xi_p<\frac{\pi}{2},
+$$
+and set
+$$
+C=\frac{\kappa q^2}{4R^2}.
+$$
+Then
+$$
+\xi_p=\frac{\pi}{2}-\frac{\pi}{2\beta}+O(\beta^{-2}),
+$$
+so the partner projections satisfy
+$$
+a_{\theta}^{(\mathrm{part})}
+=
+\frac{4C}{\pi^2}\beta+O(C),
+\qquad
+a_{r}^{(\mathrm{part})}
+=
+-\frac{2C}{\pi}+O(C\beta^{-1}).
+$$
+On the positive-sine self chart,
+$$
+a_{\theta}^{(\mathrm{part})}+A_\theta(\beta)
+=
+C\left(\frac{4}{\pi^2}-\frac{1}{12}\right)\beta+O(C\log\beta)>0
+$$
+for sufficiently large $\beta$, and
+$$
+a_{r}^{(\mathrm{part})}+A_r(\beta)
+=
+\frac{C}{\pi}\log\beta-\frac{2C}{\pi}+O(C)
+$$
+is outward for sufficiently large $\beta$ outside Jacobian-null birth windows.
+
+On the full signed $|\sin\xi|$ chart,
+$$
+a_{\theta}^{(\mathrm{part})}+A_\theta^{|\sin|}(\beta)
+=
+\frac{4C}{\pi^2}\beta+O(C)>0,
+$$
+while
+$$
+a_{r}^{(\mathrm{part})}+A_r^{|\sin|}(\beta)
+=
+\frac{2C}{\pi}\log\beta-\frac{2C}{\pi}+O(C)
+$$
+is again outward for sufficiently large $\beta$. Thus an exact high-speed constant-radius circular orbit is asymptotically excluded in the equal-magnitude bare two-body kernel away from Jacobian-null windows: the tangential residual remains forward, and the radial branch sum does not provide the required inward acceleration $-\omega^2R$. This is not yet a finite-$\beta$ no-go theorem; any surviving finite-speed window still requires a certified branch chart with positive Jacobian floor, inactive gaps, finite memory depth, and signed residual closure.
+
 The circular self-hit and partner-hit formulas are kernel benchmarks. They are not the Noether-core model. The Noether-core model is the six-body tri-binary branch chart containing self, partner, and inter-layer causal roots, with hierarchy averaging only where justified by separated scales and certified branch data.
 
 ---

@@ -11,7 +11,7 @@
 
 ## Task Queue
 
-1. `circular_asymptotics` — Extend higher-winding and large-$\beta$ circular self-force asymptotics. Status: `in_progress`; the branchwise large-$\beta$ self-hit estimates partially advance the self-hit side, but the full bare-kernel circular MCB verdict remains open. Depends on: none.
+1. `circular_asymptotics` — Extend higher-winding and large-$\beta$ circular self-force asymptotics. Status: `in_progress`; the branchwise large-$\beta$ self-hit estimates, derivative-sensitive residual packet, high-speed circular obstruction, sampled finite-band branch table, and Jacobian-null finite-crossing criteria now advance the self-hit side, but the formal finite-band interval proof for the bare-kernel circular MCB verdict remains open. Depends on: none.
 2. `spiral_branch_chart_test` — Certify whether any admissible variable-pitch spiral roots realize negative weighted tangential drive with positive Jacobian floors and finite memory depth, using the promoted variable-pitch formulas, radial-turn inequality, and weighted tangential obstruction test. Status: `next`. Depends on: `circular_asymptotics`.
 3. `lorentz_gr_bridge` — Close the Lorentz and weak-field GR bridge from the coarse-grained delayed medium. Status: `pending`. Depends on: `spiral_branch_chart_test`.
 
@@ -21,9 +21,9 @@ Keep dynamics, geometry, and mapping centered on [master-equation.md](../../../c
 
 This file remains the control surface for the workstream. No sibling detailed priority file is needed yet; if the program grows, the natural split is one action-kernel / Noether-boundary packet, one circular/spiral closure packet, and one Lorentz/GR bridge packet.
 
-## OpenAlex Source Baseline
+## OpenAlex Baseline
 
-[openalex-source-baseline.md](openalex-source-baseline.md) records the May 18, 2026 source-mining baseline for this rank-1 workstream. The useful external backbone is functional differential equation theory for history-space well-posedness, state-dependent delay smoothness for active-root charts, direct-action electrodynamics for action-level conservation accounting, and Lorentz/PPN/preferred-frame tests for the bridge acceptance surface. The immediate corpus promotion from that pass is the state-dependent delay compatibility condition now added to [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md).
+[openalex-baseline.md](openalex-baseline.md) records the May 18, 2026 source-mining baseline for this rank-1 workstream. The useful external backbone is functional differential equation theory for history-space well-posedness, state-dependent delay smoothness for active-root charts, direct-action electrodynamics for action-level conservation accounting, and Lorentz/PPN/preferred-frame tests for the bridge acceptance surface. The immediate corpus promotion from that pass is the state-dependent delay compatibility condition now added to [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md).
 
 ## Promotion Map
 
@@ -62,7 +62,9 @@ This completion does not certify a branch or terminal label. Downstream consumer
 - Each such branch is born on a Jacobian-null surface.
 - Circular self-branch count grows only linearly.
 - The circular self-hit sum is branchwise sign-resolved: radial self terms are outward, higher-winding tangential self terms are not sign-definite, the positive-sine subchart has a backward order-$\beta$ signed tangential residue, and the full signed $|\sin\xi|$ chart cancels the order-$\beta$ signed tangential terms to a bounded remainder while retaining order-$\beta$ absolute tangential activity.
-- The symmetric isolated circular two-body ansatz has a partner-side tangential obstruction; the full self-sector cancellation and radial balance must still be certified before a bare-kernel circular MCB no-go or existence theorem is promoted.
+- Combining the exact partner branch with those self sums gives a high-speed circular obstruction outside Jacobian-null windows: for the equal-magnitude opposite-charge bare kernel, the net tangential residual is positive of order $C\beta$ on both the positive-sine and full signed self charts, and the net radial acceleration becomes outward for sufficiently large $\beta$ before any centripetal closure equation can be satisfied.
+- The sampled finite-band branch table through the first eight higher-winding birth bands finds no tangential-zero survivor after excluding $|J|<0.02$ windows; this is a certificate target, not yet a theorem-grade interval proof.
+- The symmetric isolated circular two-body ansatz has a partner-side tangential obstruction; after the high-speed obstruction and sampled finite-band table, only the formal finite-band interval certificate remains before a bare-kernel circular MCB no-go or existence theorem is promoted.
 
 ## Breather Certificate Routing Gate
 
@@ -81,10 +83,320 @@ Use the collinear-breather certificate as the smallest finite-root-ledger test f
 
 ## Circular Work Order
 
+Status update. The branch-history packet below is now the required baseline for `circular_asymptotics`. The high-speed residual computation, sampled finite-band branch table, and Jacobian-null finite-crossing criteria are recorded here. The remaining circular task is to convert the sampled finite-band table into a formal interval certificate or executable proof artifact.
+
 1. Treat the self-hit side as partially advanced: preserve the branchwise large-$\beta$ estimates, distinguish the positive-sine subchart from the full signed $|\sin\xi|$ chart, keep radial self terms outward, and keep higher-winding tangential self terms branchwise rather than sign-definite.
-2. Finish the remaining circular asymptotics: super-field-speed partner branch asymptotics, radial balance against the outward self terms, and Jacobian-null window control.
-3. Prove either the bare-kernel circular MCB no-go theorem or an existence theorem; do not treat the Jacobian-null wall as circular closure.
-4. Push the isolated binary to non-circular periodic-orbit closure.
+2. Preserve the exact partner branch asymptotics on the same retained history chart, reporting the branch ledger, Jacobian floor, inactive gaps, and root-transport residuals branch by branch.
+3. Convert the sampled finite-band circular table into an interval certificate, including the full partner/self signed sum rather than only the partner obstruction or only the self-sector cancellation.
+4. Apply the finite-crossing criteria below to every Jacobian-null birth window; keep any failed window out of the theorem statement.
+5. Prove either the formal finite-band bare-kernel circular MCB no-go theorem or an existence theorem; do not treat the Jacobian-null wall as circular closure.
+6. Push the isolated binary to non-circular periodic-orbit closure after the circular verdict is classified.
+
+## Circular Derivative-Sensitive Branch-History Packet
+
+Purpose. This packet converts `circular_asymptotics` from a pointwise circular root count into a retained-history branch chart. It consumes the OpenAlex delayed-functional baseline by requiring every circular partner and self contribution to be classified as delayed-state, derivative-sensitive, or blocked by a Jacobian-null window before its force-balance residue is used.
+
+History tube. Fix a symmetric circular two-body history $\Gamma_{\mathrm{circ}}(\beta)$ on a speed band $\mathcal{B}_{\beta}=[\beta_-,\beta_+]$ and memory horizon $h$. The retained circular chart is
+$$
+\mathcal{U}_{\mathrm{circ}}
+\subset
+C^1([-h,0],(\mathbb{R}^3)^2)
+$$
+around the translated history segment. Active branches are split as
+$$
+\mathcal{A}_{\mathrm{circ}}
+=
+\mathcal{A}_{p}\sqcup\mathcal{A}_{s},
+$$
+where $\mathcal{A}_{p}$ contains partner causal-delay roots and $\mathcal{A}_{s}$ contains self-hit roots. Each row $\alpha\in\mathcal{A}_{\mathrm{circ}}$ carries a phase offset $\xi_\alpha(\beta,\phi)$ satisfying
+$$
+F_\alpha(\beta,\xi_\alpha(\beta,\phi);\phi)=0.
+$$
+The chart is admissible on an interval $I\subset\mathcal{B}_{\beta}$ only if
+$$
+|\partial_\xi F_\alpha(\beta,\xi_\alpha;\phi)|
+\ge
+\nu_{\xi}>0
+\quad
+\text{for every active row,}
+$$
+and every inactive complement has a declared gap
+$$
+\inf_{\mathcal{G}^{\mathrm{inact}}_{\mathrm{circ}}}|F_\alpha|
+\ge
+g_{\mathrm{circ}}>0.
+$$
+The Jacobian-null windows are
+$$
+\mathcal{N}_{J,\varepsilon}
+=
+\{(\beta,\alpha): |J_\alpha(\beta)|\le\varepsilon_J\}.
+$$
+Rows inside $\mathcal{N}_{J,\varepsilon}$ are not theorem-grade branch-sum rows unless a dual-mollified finite-crossing packet supplies a bounded replacement for the singular $J_\alpha^{-1}$ weight.
+
+Root transport. Each active circular row must report the phase-transport residual
+$$
+\mathcal{R}^{\mathrm{circ}}_{\mathrm{tr},\alpha}(\theta)
+=
+\left|
+1-\frac{d\xi_\alpha}{d\theta}
+-
+\frac{1-\hat{\mathbf r}_\alpha\cdot \mathbf{v}_{i,\alpha}/c_f}{J_\alpha}
+\right|.
+$$
+For the exactly symmetric circular ansatz, $\xi_\alpha$ is constant in the co-rotating coordinate, so this residual reduces to the analytic branchwise identity obtained by evaluating the displayed formula with $d\xi_\alpha/d\theta=0$. A circular row is usable only when $\sup_\theta\mathcal{R}^{\mathrm{circ}}_{\mathrm{tr},\alpha}(\theta)\le\varepsilon_{\mathrm{tr}}$ on the chart interval.
+
+Branchwise classification.
+
+| Circular object | Classification | Required report |
+| --- | --- | --- |
+| Partner root equation | Delayed-state on a fixed $C^1$ chart while $|J_p|\ge\nu_J$ and inactive gaps stay positive. | Root phase, branch label, memory depth, inactive gaps, and partner-side tangential sign. |
+| Partner branch weight and transported force term | Derivative-sensitive because $J_p^{-1}$ and the transported source state depend on delayed velocity through the branch map. | $J_p$ floor, $\mathcal{R}^{\mathrm{circ}}_{\mathrm{tr},p}$, radial projection, tangential projection, and contribution to the signed residuals. |
+| Self-hit root equation | Delayed-state away from branch births; blocked at $\tan\xi=\xi$ birth windows until finite-crossing control is supplied. | Root phase, birth interval status, memory depth, inactive gaps, and whether the row is outside $\mathcal{N}_{J,\varepsilon}$. |
+| Self-hit branch weight and higher-winding contribution | Derivative-sensitive away from $J_s=0$ because $J_s^{-1}$ amplifies delayed-state changes and changes the large-$\beta$ asymptotic budget. | Signed radial term, signed tangential term, absolute tangential activity, positive-sine subchart residue, and full signed $|\sin\xi|$ chart residue. |
+| Noether wake-history pullback | Derivative-sensitive theorem target; not neutral-type unless delayed acceleration or boundary-derivative dependence is introduced and a continuity estimate is proved. | Declare the functional norm, the delayed-velocity dependence, and whether any boundary term upgrades the packet to neutral-type. |
+
+Circular residuals. Outside $\mathcal{N}_{J,\varepsilon}$, the packet must report the signed partner/self force-balance residuals
+$$
+\mathcal{R}^{\mathrm{circ}}_{T}
+=
+\sum_{\alpha\in\mathcal{A}_{p}}T_{p,\alpha}
++
+\sum_{\alpha\in\mathcal{A}_{s}}T_{s,\alpha},
+\qquad
+\mathcal{R}^{\mathrm{circ}}_{R}
+=
+\sum_{\alpha\in\mathcal{A}_{p}}R_{p,\alpha}
++
+\sum_{\alpha\in\mathcal{A}_{s}}R_{s,\alpha}
+-R_{\mathrm{cent}},
+$$
+with declared tolerances
+$$
+|\mathcal{R}^{\mathrm{circ}}_{T}|\le\varepsilon_T,
+\qquad
+|\mathcal{R}^{\mathrm{circ}}_{R}|\le\varepsilon_R.
+$$
+Here $T_{\bullet,\alpha}$ and $R_{\bullet,\alpha}$ are the already-promoted circular tangential and radial projections evaluated with the same branch weight, regulator, and history chart. A no-go verdict requires a sign-definite residual obstruction on every admissible chart interval. An existence verdict requires both residuals to close with positive Jacobian floor, positive inactive gaps, finite memory depth, and no undeclared branch transition.
+
+Large-$\beta$ residual computation. Let $\xi_p(\beta)$ be the unique partner root
+$$
+\cos\xi_p=\frac{\xi_p}{\beta},
+\qquad
+0<\xi_p<\frac{\pi}{2},
+$$
+and let
+$$
+C_p=\frac{\kappa |q_1q_2|}{4R^2},
+\qquad
+C_s=\frac{\kappa q_1^2}{4R^2}.
+$$
+For the equal-magnitude opposite-charge bare kernel, $C_p=C_s=C$. The exact partner projections give
+$$
+T_p(\beta)
+=
+C_p\frac{\sin\xi_p}{\cos^2\xi_p(1+\beta\sin\xi_p)}
+=
+\frac{4C_p}{\pi^2}\beta+O(C_p),
+$$
+and
+$$
+R_p(\beta)
+=
+-C_p\frac{1}{\cos\xi_p(1+\beta\sin\xi_p)}
+=
+-\frac{2C_p}{\pi}+O(C_p\beta^{-1}).
+$$
+On the positive-sine self chart,
+$$
+A_{s,T}^{(+)}(\beta)
+=
+-\frac{C_s}{12}\beta+O(C_s\log\beta),
+\qquad
+A_{s,R}^{(+)}(\beta)
+=
+\frac{C_s}{\pi}\log\beta+O(C_s).
+$$
+Therefore, for $C_p=C_s=C$,
+$$
+T_p+A_{s,T}^{(+)}
+=
+C\left(\frac{4}{\pi^2}-\frac{1}{12}\right)\beta
++O(C\log\beta)>0
+$$
+for sufficiently large $\beta$, and
+$$
+R_p+A_{s,R}^{(+)}
+=
+\frac{C}{\pi}\log\beta-\frac{2C}{\pi}+O(C)
+$$
+is outward for sufficiently large $\beta$ outside the excluded Jacobian-null windows.
+
+On the full signed $|\sin\xi|$ self chart,
+$$
+A_{s,T}^{|\sin|}(\beta)=O(C_s),
+\qquad
+A_{s,R}^{|\sin|}(\beta)=\frac{2C_s}{\pi}\log\beta+O(C_s),
+$$
+so the equal-magnitude bare-kernel residuals obey
+$$
+T_p+A_{s,T}^{|\sin|}
+=
+\frac{4C}{\pi^2}\beta+O(C)>0,
+$$
+and
+$$
+R_p+A_{s,R}^{|\sin|}
+=
+\frac{2C}{\pi}\log\beta-\frac{2C}{\pi}+O(C),
+$$
+again outward for sufficiently large $\beta$. Thus high-speed exact circular closure is asymptotically excluded on the certified full signed chart: the tangential residual remains forward of order $C\beta$, and the radial branch sum does not supply the required inward acceleration. This does not settle finite $\beta$ intervals, where the branch table must still be evaluated directly.
+
+## Finite-Band Circular Branch Table
+
+Claim level. This is a sampled certificate target for the equal-magnitude opposite-charge bare circular binary, not yet a theorem-grade interval proof. It uses the exact scalar branch equations already promoted in the master-equation chapter and excludes samples whenever an active row has $|J|<\varepsilon_J$ with $\varepsilon_J=0.02$. The formal no-go theorem still needs interval bounds on each listed component of the retained history chart.
+
+Normalized residuals. Set
+$$
+C=\frac{\kappa q^2}{4R^2}
+$$
+and define the normalized tangential residuals
+$$
+\Theta_{|\sin|}(\beta)
+=
+\frac{1}{C}
+\left(
+T_p(\beta)
++
+\sum_{\alpha\in\mathcal{A}_{s}^{|\sin|}(\beta)}T_{s,\alpha}(\beta)
+\right),
+$$
+and
+$$
+\Theta_{+}(\beta)
+=
+\frac{1}{C}
+\left(
+T_p(\beta)
++
+\sum_{\alpha\in\mathcal{A}_{s}^{+}(\beta)}T_{s,\alpha}(\beta)
+\right).
+$$
+Here $\mathcal{A}_{s}^{|\sin|}$ is the full signed self chart and $\mathcal{A}_{s}^{+}$ is the positive-sine subchart. The branch births occur at
+$$
+\beta_k^\star=\sqrt{1+(\xi_k^\star)^2},
+\qquad
+\tan\xi_k^\star=\xi_k^\star,
+$$
+with the first thresholds
+$$
+\beta_1^\star=4.603339,\quad
+\beta_2^\star=7.789706,\quad
+\beta_3^\star=10.949880,\quad
+\beta_4^\star=14.101695,\quad
+\beta_5^\star=17.249766,\quad
+\beta_6^\star=20.395833,\quad
+\beta_7^\star=23.540702,\quad
+\beta_8^\star=26.684798.
+$$
+
+Sampled branch table. The table records the lowest sampled value of each normalized tangential residual on each fold band after excluding $|J|<0.02$ samples. A positive entry means the sampled chart has no tangential-zero candidate in that band.
+
+| Band | Speed interval | Self rows $|\sin\xi|$ / $+$ | $\min\Theta_{|\sin|}$ | $\min\Theta_+$ | Sampled verdict |
+| --- | --- | ---: | ---: | ---: | --- |
+| 0 | $(1,\beta_1^\star)$ | 1 / 1 | $0.956$ at $\beta\approx1.797$ | $0.956$ at $\beta\approx1.797$ | No tangential-zero sample. |
+| 1 | $(\beta_1^\star,\beta_2^\star)$ | 3 / 1 | $2.172$ at $\beta\approx4.903$ | $1.705$ at $\beta\approx4.603$ | No tangential-zero sample. |
+| 2 | $(\beta_2^\star,\beta_3^\star)$ | 5 / 3 | $3.390$ at $\beta\approx7.973$ | $2.901$ at $\beta\approx7.998$ | No tangential-zero sample. |
+| 3 | $(\beta_3^\star,\beta_4^\star)$ | 7 / 3 | $4.632$ at $\beta\approx11.081$ | $3.757$ at $\beta\approx10.950$ | No tangential-zero sample. |
+| 4 | $(\beta_4^\star,\beta_5^\star)$ | 9 / 5 | $5.886$ at $\beta\approx14.204$ | $4.874$ at $\beta\approx14.220$ | No tangential-zero sample. |
+| 5 | $(\beta_5^\star,\beta_6^\star)$ | 11 / 5 | $7.146$ at $\beta\approx17.333$ | $5.788$ at $\beta\approx17.250$ | No tangential-zero sample. |
+| 6 | $(\beta_6^\star,\beta_7^\star)$ | 13 / 7 | $8.410$ at $\beta\approx20.467$ | $6.874$ at $\beta\approx20.478$ | No tangential-zero sample. |
+| 7 | $(\beta_7^\star,\beta_8^\star)$ | 15 / 7 | $9.676$ at $\beta\approx23.602$ | $7.815$ at $\beta\approx23.541$ | No tangential-zero sample. |
+
+Residual consequence. Since exact constant-speed circular closure requires the tangential residual to vanish before the radial balance can be tuned against $R_{\mathrm{cent}}$, the sampled finite-band table supports the bare-kernel circular no-go route: no finite-band tangential candidate survived the branch count, Jacobian-window exclusion, and partner/self signed-sum test. The radial residual still changes sign in some bands before the centripetal term is imposed, so the radial row is not the leading obstruction. The leading obstruction remains $\Theta_{|\sin|}>0$ and $\Theta_+>0$ on every sampled component.
+
+Formalization target. Promote this table to theorem grade by replacing the sampled minima with interval lower bounds
+$$
+\Theta_{|\sin|}(\beta)\ge\delta_m>0,
+\qquad
+\Theta_+(\beta)\ge\delta_m^+>0
+$$
+on each component of
+$$
+(\beta_m^\star,\beta_{m+1}^\star)\setminus\mathcal{N}_{J,\varepsilon}.
+$$
+If those interval bounds pass and the high-speed asymptotic tail is attached with an explicit threshold $\beta_{\mathrm{tail}}$, the bare-kernel circular MCB no-go theorem can be promoted for the equal-magnitude circular ansatz.
+
+## Circular Jacobian-Null Finite-Crossing Packet
+
+Scope. This packet controls the branch births at
+$$
+\tan\xi_n^\star=\xi_n^\star,
+\qquad
+\beta_n^\star=\sqrt{1+(\xi_n^\star)^2},
+$$
+without promoting the singular point itself as a circular closure. It applies to continuation or simulation passages through a birth window; an exact constant circular theorem at $\beta=\beta_n^\star$ remains blocked because the instantaneous branch weight is singular.
+
+Fold normal form. For
+$$
+\mu=\beta-\beta_n^\star>0,
+$$
+the two newborn self roots satisfy
+$$
+\xi_{n,\pm}(\beta)
+=
+\xi_n^\star
+\pm
+\sqrt{\frac{2\mu}{\beta_n^\star}}
++O(\mu),
+$$
+and
+$$
+J_{n,\pm}
+=
+\pm\,\xi_n^\star
+\sqrt{\frac{2\mu}{\beta_n^\star}}
++O(\mu).
+$$
+Therefore there are constants $0<c_n<C_n<\infty$ and $\mu_n>0$ such that, on $0<\mu<\mu_n$,
+$$
+c_n\sqrt{\mu}
+\le
+|J_{n,\pm}|
+\le
+C_n\sqrt{\mu}.
+$$
+The instantaneous force-law branch weight is $O(\mu^{-1/2})$ at fixed nonzero $r_n^\star$, while the action coarea density carries one additional $|J|^{-1}$ factor and is not interchangeable with the force-law weight.
+
+Finite-crossing condition. A dynamic passage through the fold is admissible only if the speed history crosses with a nonzero transverse rate
+$$
+\beta(t)=\beta_n^\star+\dot{\beta}_n(t_n)(t-t_n)+O((t-t_n)^2),
+\qquad
+|\dot{\beta}_n(t_n)|\ge b_n>0.
+$$
+For an excluded speed window $0<\mu\le\varepsilon_\beta$, the absolute branch impulse must be reported with a regulator-uniform bound
+$$
+\sup_{0<\eta\le\eta_0}
+\int_{\{0<\beta(t)-\beta_n^\star\le\varepsilon_\beta\}}
+\sum_{\pm}\|\mathbf{a}_{n,\pm}^{(\eta)}(t)\|\,dt
+\le
+B_{J,n}(\varepsilon_\beta),
+$$
+where the fold estimate gives the target scaling
+$$
+B_{J,n}(\varepsilon_\beta)
+\le
+\frac{2K_n}{b_n}\sqrt{\varepsilon_\beta}
++O(\varepsilon_\beta),
+$$
+for a declared local force constant $K_n$ depending on $R$, $q$, $\kappa$, and $\xi_n^\star$, but not on $\eta$. The same absolute budget must dominate the radial and tangential projections separately; signed cancellation may be used only after the absolute bound and branch labels have been certified.
+
+Acceptance. A Jacobian-null window is usable in a theorem only in one of two ways:
+
+1. Exclusion route: remove $\mathcal{N}_{J,\varepsilon}$ from the circular interval, prove the residual verdict on each remaining component, and carry the excluded-window statement explicitly in the theorem.
+2. Finite-crossing route: supply the fold normal form, transverse crossing rate, regulator-uniform impulse bound, and post-crossing inactive-gap restoration. Then the passage may be used for continuation or simulation, but not as an exact constant-speed circular closure at $J=0$.
+
+Failure modes. The packet fails if $\dot{\beta}_n=0$ at the fold, if the regulator-uniform impulse bound depends on the unresolved $\eta\to0$ schedule, if branch labels swap without a certified continuation map, if the self pair is counted without restoring inactive gaps after the window, or if a signed radial/tangential cancellation is asserted before the absolute finite-crossing budget is proved.
 
 ## Spiral Intuition To Preserve
 
