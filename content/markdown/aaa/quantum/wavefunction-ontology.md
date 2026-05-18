@@ -131,6 +131,41 @@ $$
 $$
 Here $\Delta_x^{2,\mathrm{QM}}(t)$ is the standard Gaussian spreading benchmark for the same initial covariance. If the derived envelope violates this bound in ordinary free-packet regimes, then the uncertainty explanation has remained qualitative rather than becoming a quantum closure.
 
+The WKB comparison supplies the corresponding semi-classical envelope test. For a one-dimensional retained chart with effective momentum
+$$
+p_\theta(x;E)=\sqrt{2m_{\mathrm{eff}}\left(E-V_{\mathrm{eff}}(x)\right)},
+$$
+the standard oscillatory benchmark away from turning points is
+$$
+\psi_{\mathrm{WKB}}(x)
+\sim
+\frac{1}{\sqrt{p_\theta(x;E)}}
+\exp\!\left(\pm\frac{i}{\hbar_{\mathrm{eff}}}\int^x p_\theta(x';E)\,dx'\right),
+$$
+with validity only when the effective wavelength varies slowly across one wavelength. A closure packet should therefore report a WKB-envelope residual on the declared access interval $W$:
+$$
+\mathcal{R}_{\mathrm{WKB}}(W,E;\theta)
+=
+\max\left(
+\frac{\sup_{x\in W_{\mathrm{osc}}}\left|\rho_{\mathrm{rec}}(x)-C_E/p_\theta(x;E)\right|}{\varepsilon_{\mathrm{amp}}},
+\frac{\sup_{x\in W_{\mathrm{osc}}}\left|\partial_x\varphi_{\mathrm{rec}}(x)-p_\theta(x;E)/\hbar_{\mathrm{eff}}\right|}{\varepsilon_{\varphi}},
+\frac{\sup_{x\in W_{\mathrm{turn}}}\left|\mathcal{A}_{\mathrm{turn}}^{\mathbb{A}\mathbb{A}\mathbb{A}}-\mathcal{A}_{\mathrm{Airy}}\right|}{\varepsilon_{\mathrm{turn}}}
+\right)
+\le 1.
+$$
+The final term is the turning-point matching check: near $E=V_{\mathrm{eff}}(x)$ the effective chart must pass through the Airy-function benchmark rather than pretending the WKB expression remains valid at $p_\theta=0$. This makes the semi-classical wavefunction comparison a falsifiable envelope recovery, not a visual analogy.
+
+For a metastable barrier, the same comparison gives a tunneling-action benchmark. If $x_0$ and $x_1$ are the effective turning points bounding the forbidden region, the standard exponent is
+$$
+S_{\mathrm{tun}}(E)
+=
+\int_{x_0}^{x_1}
+\sqrt{2m_{\mathrm{eff}}\left(V_{\mathrm{eff}}(x)-E\right)}\,dx,
+\qquad
+T_{\mathrm{WKB}}\sim e^{-2S_{\mathrm{tun}}/\hbar_{\mathrm{eff}}}.
+$$
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ target is to derive $S_{\mathrm{tun}}$ from the action accumulated by deterministic assembly histories that cross the retained separatrix tube. A fitted barrier exponent that is not tied to the same $\mu_{*,T}$, apparatus kernel, and path-history flow used for record probabilities is only a comparison curve.
+
 Weak probes sit below the record-forming part of this back-action. They may perturb the target and apparatus by a small amount, but they do not by themselves force the target across a separatrix or create a durable apparatus/environment asymmetry. In the notation of [Measurement Ontology](measurement-ontology.md#weak-probe-limit), the retained weak-probe window satisfies
 $$
 \tau_{\text{meas}}^{(\epsilon)}>t_1-t_0

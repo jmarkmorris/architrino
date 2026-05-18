@@ -270,6 +270,16 @@ $$
 
 The operator $\widehat V_{\mathrm{eff}}$ is only an effective comparison object. The foundation-up burden is to show that its matrix-element behavior emerges from overlap and capture probabilities between the atomic assembly and the photon planar-mode branch. The same passage must recover the effective electromagnetic coupling scale $\alpha$ without treating $\alpha$ as a separate ontology.
 
+The finite-window definition above supplies the provenance version of the same limit: for long windows and weak coupling, the basin-measure rate must factor into an effective amplitude squared and a final-state density. Equivalently,
+$$
+\Gamma_{a\to f}^{\mathbb{A}\mathbb{A}\mathbb{A}}
+\rightarrow
+2\pi\,
+\left|\mathcal{M}_{a\to f}^{\mathrm{eff}}\right|^2
+\rho_f,
+$$
+after unit conventions are fixed. The important closure is not the symbol $\mathcal{M}$ itself; it is that the same event window, source basin, accepted photon branch, recoil row, and residual row generate both the discrete line rate and the continuum final-state density used by the comparison formula.
+
 Selection rules should be carried as Gate C closure targets. In this framing, an allowed line corresponds to a nonzero basin measure for the accepted photon channel after energy, momentum, transverse angular momentum, parity-like geometry, and local medium constraints are applied. A forbidden or suppressed line corresponds to zero or small basin measure in the leading channel, with possible recovery through higher-order routing, medium coupling, or multi-photon channels only when the event ledger closes.
 
 ## Observer-Level Recovery

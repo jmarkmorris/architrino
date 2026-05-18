@@ -59,9 +59,32 @@ Require $p_{\mathrm{obs}}\ge 0.8$ for at least one primary field channel ($\Phi$
 - Pass if $E_{\mathrm{rel}}(\Phi)\le 0.03$, $E_{\mathrm{rel}}(\|\nabla\Phi\|)\le 0.05$.
 - Provenance agreement must satisfy $D_W\le 0.08$ and $D_{JS}\le 0.03$.
 
+5. Continuum moment refinement when a run promotes a coarse PDE, kinetic moment, or Noether-Sea transport equation:
+- Pass if the retained density/current channel satisfies
+  $$
+  E_{\mathrm{rel}}(R_{\rho}^{\mathrm{cg}})\le0.03,
+  \qquad
+  E_{\mathrm{rel}}(R_{P}^{\mathrm{cg}})\le0.05,
+  \qquad
+  E_{\mathrm{rel}}(R_E^{\mathrm{cg}})\le0.05.
+  $$
+- The moment-closure residual must decrease under temporal, history, and spatial refinement. A continuum plot is not promotion evidence if the next unresolved moment grows or if the memory-current residual is absorbed into fitted constants.
+
+6. Stochastic and response refinement when a run adds Langevin, Fokker-Planck, or fluctuation-response summaries:
+- For the first two moments of any declared distribution $P(z,t)$, require agreement with direct event-root ensembles:
+  $$
+  E_{\mathrm{rel}}(\langle z\rangle)\le0.03,
+  \qquad
+  E_{\mathrm{rel}}(\operatorname{Cov}(z))\le0.05.
+  $$
+- If a diffusion tensor $D^{ij}(z)$ is inferred from jump or ledger increments, require it to remain positive semidefinite on the retained domain and stable under refinement.
+- If a response kernel $\chi_{AB}$ is promoted, require the causal dispersion residual $\mathcal R_{\mathrm{KK}}(\chi_{AB})\le0.05$ on the declared frequency band and require any fluctuation-dissipation residual to be reported from the same record.
+
 ### Machine-checkable convergence output
 
 Every promoted claim must emit `convergence_table.csv` with one row for each required gate: temporal refinement, history-resolution refinement, spatial refinement, cross-integrator validation, regulator ladder when used, and negative control. Each row records the two run identifiers being compared, the restricted observable channel, $E_{\mathrm{rel}}(\Phi)$, $E_{\mathrm{rel}}(\|\nabla\Phi\|)$, $D_W$, $D_{JS}$, $p_{\mathrm{obs}}$, active-root mismatch, self-hit or stability-window shift, pass/fail status, and failure code.
+
+For continuum or stochastic promotions, append rows for `moment-closure`, `distribution-moments`, `diffusion-tensor`, `causal-response`, and `fluctuation-dissipation` when those channels are claimed. These rows must include the artifact hash of the direct event-root run and the artifact hash of the reduced continuum or stochastic run being compared.
 
 The regulator row must include each promoted observable $Y$ and the value of
 $$

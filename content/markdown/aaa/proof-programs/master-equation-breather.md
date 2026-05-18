@@ -408,6 +408,36 @@ The portable theorem ladder should therefore look as follows.
 
 This is the abstract endpoint once no quotient gauge reset is being used. In any reduced or gauge-fixed planar setting, the same fixed-point statement first gives a relative breather in the quotient variables. An absolute periodic trajectory in the fixed Euclidean void requires an additional zero-holonomy reconstruction condition. The real work is not the formal Schauder step itself, but the geometric production and certification of the tame self-map domain on which Schauder is allowed to act.
 
+### Collective-coordinate and zero-mode bookkeeping
+
+Higher-dimensional transport must also separate genuine deformation directions from neutral collective coordinates. For a candidate cycle
+$$
+\mathbf{X}_{\mathrm{cyc}}(t;\alpha),
+$$
+with finite parameters
+$$
+\alpha^a,
+$$
+define the tangent histories
+$$
+Z_a(\theta)\equiv
+\partial_{\alpha^a}\mathbf{X}_{\mathrm{cyc}}(\theta;\alpha).
+$$
+Each
+$$
+Z_a
+$$
+must be assigned to one of three roles before the monodromy or Floquet data are used:
+
+- removed by section or gauge fixing, such as time translation or rigid rotation;
+- retained as a physical collective coordinate whose return is tested by a zero-holonomy or phase-closure equation;
+- transverse to the branch and therefore part of the stability or returned-sample certificate.
+
+This is the master-equation analogue of moduli and zero-mode bookkeeping in soliton theory, but it remains an $\mathbb{A}\mathbb{A}\mathbb{A}$ certificate rule. It does not add supersymmetry or gauge-theory ontology. Its concrete use is to prevent neutral drift from contaminating the finite certificate: the return-map derivative should be interpreted on the quotient chart, while any retained collective coordinate must satisfy its own closure residual
+$$
+\mathcal{H}_a(\Phi_{\mathrm{cyc}})=0.
+$$
+
 ## Immediate Geometric Research Burdens
 
 The first master-equation work should now concentrate on four concrete questions.

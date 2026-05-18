@@ -169,6 +169,21 @@ R_{\mathrm{acc}}
 $$
 The redshift, Shapiro, lensing, acceleration, 1PN, and preferred-frame rows are acceptable only when they are projections of this same $\theta_W$. If any row requires replacing $N$, $u^i_{\text{sea}}$, $e^a{}_i$, $\gamma_{ij}$, $\Phi_{\text{eff}}$, $\chi_{\text{sea}}$, or the boundary/noise record, the phenomenology pass has become a set of separate fits rather than a GR recovery.
 
+The perihelion row should carry the explicit GR target rather than only the name of the test. For a weak-field bound orbit with semi-major axis $a$ and eccentricity $e$,
+$$
+\Delta\varpi_{\mathrm{GR}}
+=
+\frac{6\pi GM}{a(1-e^2)c_0^2}
+$$
+per orbit. In the PPN projection this is the special case of
+$$
+\Delta\varpi_{\mathrm{PPN}}
+=
+\frac{2\pi GM}{a(1-e^2)c_0^2}
+\left(2+2\gamma_{\text{PPN}}-\beta_{\text{PPN}}\right),
+$$
+so Mercury-type precession is a joint test of the same spatial-compliance coefficient that controls lensing and the same nonlinear clock coefficient that controls $\beta_{\text{PPN}}$.
+
 ### Low-Energy Quantum-Gravity EFT Benchmark
 
 The classical weak-field observables above do not exhaust the recovery gate. Standard low-energy effective-field-theory calculations treat GR as a valid long-distance theory and separate unknown high-energy local terms from calculable infrared behavior. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not take the quantized metric as microscopic ontology, but it must recover the same long-distance observer-level data product where the expansion is controlled.
@@ -237,6 +252,16 @@ The strong-field interpretation is therefore:
 - outside the alignment regime, GR-like effective geometry should emerge to the accuracy already tested,
 - near the alignment regime, departures may appear through medium saturation, coplanarity, altered signal propagation, and assembly reconfiguration,
 - but those departures must be stated as predictions, not used as excuses to miss weak-field closure.
+
+The exterior benchmark still includes the standard compact-object scales before any native horizon-interface departure is promoted:
+$$
+r_s=\frac{2GM}{c_0^2},
+\qquad
+r_{\mathrm{ph}}=\frac{3GM}{c_0^2},
+\qquad
+r_{\mathrm{ISCO}}=\frac{6GM}{c_0^2}
+$$
+for the Schwarzschild comparison branch. The first is the effective horizon radius, the second the null photon-orbit radius, and the third the innermost stable circular orbit for massive test bodies in the nonrotating exterior comparison. A native black-hole record may reinterpret what the horizon is made of, but it must still recover these exterior scales, or provide a declared residual template, before using strong-field ontology to explain compact-object observations.
 
 ## Closure Targets
 

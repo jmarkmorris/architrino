@@ -164,6 +164,41 @@ $$
 $$
 The point is not to add a new spacetime ontology. It is to require the effective metric to behave as one constitutive summary of the same medium and observer record across clocks, rulers, signal propagation, and weak-field gravitational tests.
 
+### Geodesic and Lensing Recovery Benchmarks
+
+The effective metric map must also recover the two standard variational benchmarks consumed by orbital, clock, and light-propagation tests. For timelike records,
+$$
+S_{\mathrm{clk}}
+=
+-m c_0^2
+\int d\tau,
+\qquad
+d\tau
+=
+\frac{1}{c_0}
+\sqrt{-g^{\text{eff}}_{\mu\nu}dx^\mu dx^\nu},
+$$
+and extremizing this observer-level action must give the same weak-field acceleration row used in the PPN bundle,
+$$
+\frac{d^2\mathbf{x}}{dt^2}
+=
+-\nabla\Phi_{\text{eff}}
++O(c_0^{-2}).
+$$
+For null signal records,
+$$
+g^{\text{eff}}_{\mu\nu}dx^\mu dx^\nu=0
+$$
+must match the eikonal path-time extremal of the Noether-Sea signal channel. In the point-mass weak-field limit, the recovered deflection target is
+$$
+\Delta\theta
+=
+2(1+\gamma_{\text{eff}})
+\frac{GM}{b\,c_0^2}
++O(c_0^{-4}),
+$$
+so the GR limit $\gamma_{\text{eff}}=1$ gives $\Delta\theta=4GM/(b\,c_0^2)$. A lapse-only or scalar-delay-only map that supplies only $2GM/(b\,c_0^2)$ has recovered the Newtonian half-test, not the full effective metric. This is why the ADM/Cartan map must carry both the clock/lapse channel and the spatial-compliance channel.
+
 ### Matter-Channel Compatibility Target
 
 The same shared-record rule applies to the effective matter channels whose observations test the metric. The retained comparison lesson from matter-first gravity programs is not that their ontology should be imported, but that predictive matter dynamics and observer-level geometry cannot be chosen independently. In this framework, the matter channel, clock channel, ruler channel, and signal channel must remain projections of the same Noether-Sea record $\theta$.

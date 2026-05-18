@@ -107,6 +107,20 @@ When this residual vanishes, Shapiro delay and gravitational clock redshift are 
 * **Architrino Interpretation:** Measures the refractive response of the [Noether Sea](noether-sea.md). A massive body increases local assembly density, slowing the effective signal speed $c_{\text{eff}}(\mathbf{x})$ relative to the asymptotic observer speed $c_0$, while $c_f$ remains the primitive wake speed.
 * **Observable:** Shapiro-delay coefficient in the explicit refractive integral above.
 
+The light-bending half-test makes the same point numerically. A lapse-only weak-field map gives the Newtonian-scale deflection
+$$
+\Delta\theta_{\mathrm{half}}
+=
+\frac{2GM}{b\,c_0^2},
+$$
+while the full GR-matching target is
+$$
+\Delta\theta_{\mathrm{GR}}
+=
+\frac{4GM}{b\,c_0^2}.
+$$
+In the forward projection below, the missing half is precisely the $\gamma_{\text{eff}}$ spatial-compliance contribution. Therefore a constitutive map cannot claim PPN closure by matching Shapiro delay with a scalar delay factor while leaving the ruler/spatial-compliance row undefined.
+
 #### Parameter $\beta$ (Non-linearity of Gravity)
 * **GR Context:** Measures the non-linearity in the superposition of gravitational fields.
 * **Architrino Interpretation:** Captures second-order (in potential) clock/medium response from self-hit and Noether-Sea constitutive nonlinearity.

@@ -474,6 +474,24 @@ E_{\mathrm{closed}}(L)\to E_{\infty}<\infty
 $$
 and vanishing far-field color flux.
 
+The Wilson-loop benchmark is the observer-level gauge-theory diagnostic for the same distinction. For a rectangular loop $C_{R,T}$ in the fundamental color representation, the strong-sector branch should recover
+$$
+\left\langle W(C_{R,T})\right\rangle_{\theta}
+\sim
+\exp\!\left[-\sigma_{\mathrm{eff}}(\theta)\,R\,T+\mathcal{O}(R+T)\right]
+$$
+in the confining window, while non-confining or screened limits must show the corresponding perimeter-law or string-breaking behavior. This target is not a claim that the lattice Wilson loop is fundamental ontology; it is the tested gauge-invariant way to compare open color-corridor energy with QCD.
+
+The same branch must also provide a closed-sector mass-gap diagnostic. For a pair of gauge-invariant closed color probes separated by $R$,
+$$
+\left\langle \mathcal{O}_{\mathrm{closed}}(0)\mathcal{O}_{\mathrm{closed}}(R)\right\rangle_{\theta}
+\sim
+\exp\!\left[-M_{\mathrm{gap}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)R\right],
+\qquad
+M_{\mathrm{gap}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)>0.
+$$
+This is the mass-gap recovery target for closed strong-sector braids, separate from the open-string tension target.
+
 This energy law is a closure target, not a restatement of QCD in native vocabulary. The observer-level benchmarks to preserve are the static-potential string tension, the absence of asymptotic free color charge, a finite pure-gauge mass gap, and the hadron-spectrum constraints currently organized by QCD and lattice calculations. A useful confinement residual is
 $$
 \mathcal{R}_{\mathrm{conf}}(\theta)

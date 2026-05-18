@@ -67,6 +67,15 @@ Here we catalogue how coupling between macroscopic bodies and the Noether Sea ca
 * **Constraint** – interactions with the Noether Sea must not induce orbital decay that outpaces GR’s gravitational-wave emission bounds.
 * **Validation Target** – match observed orbital stability and perihelion advance within GR limits while modeling any extra coupling as a conserving medium-dressed response rather than ordinary dissipative drag.
 
+### Condensed-Matter Response Gate
+
+Ordinary materials supply a broad recovery surface for the same assembly, electron-envelope, and Noether-Sea response variables. The gate is not that $\mathbb{A}\mathbb{A}\mathbb{A}$ adopts band theory as ontology. The gate is that periodic material branches recover the benchmark mathematics of bands, lattice scattering, phonons, and Hall response without per-probe retuning.
+
+* **Constraint** – one material-branch record $\theta_{\mathrm{mat}}=(\mathcal B_e,\mathcal B_{\mathrm{lat}},\rho_{\text{core}},n,\chi_{\text{sea}},\mathcal M_{\text{sea}}^{ab})$ must recover Bloch-form bands $E_\alpha(\mathbf k)$, effective mass tensor $(m_{\alpha,*}^{-1})^{ij}=\hbar^{-2}\partial_i\partial_jE_\alpha$, Fermi-surface or band-gap classification, reciprocal-lattice scattering $\mathbf q\in\Lambda^*$ with structure factor $S(\mathbf q)$, and phonon dispersion from one declared lattice branch.
+* **Hall / Topology Target** – for two-dimensional gapped branches with an effective U(1) connection, the same record must recover $\sigma_{xy}=(e^2/2\pi\hbar)C$ with integer Chern number $C$ and $\rho_{xx}$ below tolerance on the plateau. Fractional Hall, anyon, and Chern-Simons descriptions are recovery/comparison structures unless a local branch derivation consumes them directly.
+* **No-Drag Consistency** – the ideal periodic branch must not require ordinary dissipative drag; finite $\tau^{-1}$ must be routed to disorder, vacancies, phonons, boundary exchange, heating, radiation-like shedding, or branch transition.
+* **Failure Condition** – the condensed-matter branch fails if it fits band curvature, phonon stiffness, scattering peaks, Hall conductance, and transport relaxation with independent material records, if a filled band carries unlogged current or heat, if a topological plateau changes without a gap closure or branch change, or if ordinary Noether-Sea drag is used to explain resistance below the transport threshold in [Condensed Matter](../nuclear-atomic/condensed-matter.md).
+
 ### GW Speed
 
 The propagation speed of gravitational-wave disturbances in the Noether Sea must align with the measured gravitational-wave velocity, so this section records the tolerance within which new physics can coexist with GW timing data without contradicting the LIGO/Virgo baseline. The relevant benchmark is now multi-messenger rather than merely assumed: GW170817/GRB 170817A constrained the gravity-channel and light-channel speed difference at roughly the $10^{-15}$ level.

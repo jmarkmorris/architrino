@@ -89,6 +89,51 @@ P_-\mathcal{H}_\theta^{\otimes N}.
 $$
 The exchange rule is a statement about the effective quotient after inaccessible provenance has been compressed, not a claim that substrate identities disappear. Individual architrinos still retain path history and provenance; $P_\pm$ acts only after the apparatus and coarse-graining have made those labels unavailable to the observer-level state.
 
+The standard Slater-determinant construction is the first finite-$N$ benchmark for the fermionic side of this quotient. For one-particle states $\{\psi_i\}_{i=1}^N$, the observer-level comparison state is
+$$
+\Psi_-(1,\ldots,N)
+=
+\frac{1}{\sqrt{N!}}
+\det\!\left[\psi_i(j)\right].
+$$
+This state changes sign under exchange and vanishes when two effective rows become identical, so it packages both antisymmetry and Pauli exclusion. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this determinant is not substrate identity loss; it is the record-facing compression obtained after the apparatus cannot access individual architrino provenance.
+
+Two-electron atoms give a sharper energy benchmark because the Coulomb exchange integral separates the direct repulsion from the exchange contribution:
+$$
+J_{ab}
+=
+\frac{e^2}{4\pi\epsilon_0}
+\int
+\frac{|\psi_a(\mathbf{r}_1)|^2|\psi_b(\mathbf{r}_2)|^2}
+{\|\mathbf{r}_1-\mathbf{r}_2\|}
+d^3r_1d^3r_2,
+$$
+$$
+K_{ab}
+=
+\frac{e^2}{4\pi\epsilon_0}
+\int
+\frac{
+\psi_a^*(\mathbf{r}_1)\psi_b^*(\mathbf{r}_2)
+\psi_a(\mathbf{r}_2)\psi_b(\mathbf{r}_1)
+}
+{\|\mathbf{r}_1-\mathbf{r}_2\|}
+d^3r_1d^3r_2.
+$$
+The symmetric and antisymmetric spatial states split as $J_{ab}\pm K_{ab}$, with the fermionic spin sector supplying the compensating exchange symmetry. A useful exchange-energy recovery residual is therefore
+$$
+\mathcal{R}_{\mathrm{Slater}}(\theta)
+=
+\max_{a,b}
+\max\left(
+\frac{\|(I-P_-)\mathcal{E}_{2,\theta}(\mu_{ab}^{\mathrm{3D}})\|}{\varepsilon_-},
+\frac{\left|\Delta E_{ab}^{\mathbb{A}\mathbb{A}\mathbb{A}}-\left(J_{ab}-K_{ab}\right)\right|}{\varepsilon_K},
+\frac{\left|\Delta E_{ab}^{\mathrm{sym}}-\left(J_{ab}+K_{ab}\right)\right|}{\varepsilon_J}
+\right)
+\le 1.
+$$
+This does not replace the ordered-frame spinor proof. It prevents a purely geometric exclusion story from missing the experimentally important exchange-energy splitting that appears before full many-electron Hartree-Fock closure.
+
 The geometry hypothesis in this chapter can now be stated as a recovery residual. Let $\mathcal{E}_{N,\theta}$ be the effective $N$-assembly state extraction map, let $\mu_{\mathrm{3D}}$ be a retained ensemble of volumetric Noether-core configurations with $\xi\ge\xi_F$, and let $\mu_{\mathrm{2D}}$ be a retained ensemble of coherent planar-channel configurations with $\xi\le\xi_B$. The exchange closure target is
 $$
 \mathcal{R}_{\mathrm{ex}}(\theta)

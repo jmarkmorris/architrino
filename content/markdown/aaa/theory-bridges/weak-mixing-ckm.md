@@ -37,6 +37,16 @@ Interpretation of the angles and phase (with the hierarchical view used in this 
 
 Overall physics interpretation: CKM is not an extra force. It is the measurable misalignment between the quark mass basis (set by Yukawa diagonalization) and the weak SU(2) interaction basis. Experimentally, this misalignment sets charged-current transition rates via $\lvert V_{ij}\rvert^2$ and fixes CP-violating interference through rephasing-invariant combinations such as the Jarlskog invariant.
 
+The Standard Model source of this matrix is the simultaneous diagonalization problem for the two quark Yukawa matrices. After electroweak symmetry breaking one may diagonalize
+$$
+y_u\mapsto D_u,\qquad y_d\mapsto D_d,
+$$
+but the left-handed rotations need not agree:
+$$
+V_{\mathrm{CKM}}=U_{uL}^{\dagger}U_{dL}.
+$$
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ translation must therefore recover one mass-basis operator and one weak-basis operator whose mismatch produces this unitary matrix. If the assembly model fits CKM entries without first defining those two bases from the same shielding and weak-coupling-triad record, it has only reproduced a table of numbers.
+
 ### How to read CKM rows (first-year guide)
 Mass eigenstates are the definite-mass quark states $(u,c,t)$ and $(d,s,b)$. A charged-current interaction does not couple an up-type quark to only one down-type mass eigenstate; it couples to a superposition weighted by one CKM row:
 $$
@@ -265,6 +275,37 @@ Quantitative target (heuristic): “high” should land near 0.2–1, “medium�
 - **Semileptonic $B$ reaction:** $b \to c\,\ell^- \bar\nu_\ell$ uses $V_{cb}\approx0.041$; $\Gamma \propto \lvert V_{cb}\rvert^2 G_F^2 m_b^5$ (times hadronic form factor).
 - **Loop/rare $b\to s$:** factors like $V_{tb} V^*_{ts}$ set the suppression and the CP phase in interference terms.
 
+### Neutral-current and GIM recovery target
+
+The mass-basis rotation must leave the photon and $Z$ currents flavor diagonal at tree level while placing $V_{\mathrm{CKM}}$ only in charged currents. A compact tree-level residual is
+$$
+\mathcal{R}_{\mathrm{FCNC}}^{\mathrm{tree}}(\theta)
+=
+\sum_{i\ne j}
+\left(
+\left|J^{\gamma,\theta}_{ij}\right|^2
+\;+\;
+\left|J^{Z,\theta}_{ij}\right|^2
+\right),
+$$
+and the Standard Model recovery target is
+$$
+\mathcal{R}_{\mathrm{FCNC}}^{\mathrm{tree}}(\theta)=0.
+$$
+
+Loop-level flavor-changing neutral currents are not zero; they are suppressed by unitarity and mass splittings. For a benchmark such as $b\to s\gamma$, the branch must reproduce the GIM cancellation structure
+$$
+\mathcal{M}_{b\to s\gamma}^{\theta}
+\propto
+\sum_{i=u,c,t}
+V_{ib}(\theta)V_{is}^{*}(\theta)\,f_i(\theta),
+$$
+with exact cancellation when the loop functions are equal:
+$$
+\sum_{i=u,c,t}V_{ib}V_{is}^{*}=0.
+$$
+The nonzero Standard Model amplitude is then controlled by mass-dependent differences among the $f_i$, not by a tree-level neutral weak corridor. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, this is a provenance gate: neutral corridors may transmit phase and energy, but they must not directly change generation labels unless the event ledger includes the charged-current loop history that carries the CKM factors.
+
 ## CKM geometric-overlap minimal model
 
 Bridge note: equations in this section keep SM unitary CKM structure, while provenance/path language is the $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretive layer.
@@ -356,6 +397,24 @@ $$
 $$
 
 where $c_{ij}\equiv\sqrt{1-s_{ij}^2}$. The resulting magnitude matrix is numerically close to the PDG central hierarchy, and the phase/Jarlskog emerge from the overlap geometry rather than an independent CP fit parameter.
+
+The basis-invariant CP check is stronger than reading off one phase convention. If $Y_u$ and $Y_d$ are the Hermitian mass-basis operators represented by the branch, define
+$$
+C_{\mathrm{CP}}(\theta)=[Y_u(\theta),Y_d(\theta)].
+$$
+The Standard Model comparison requires
+$$
+\det C_{\mathrm{CP}}(\theta)
+\propto
+-2i\,F_u(\theta)F_d(\theta)J(\theta),
+$$
+with
+$$
+F_u=(y_t-y_c)(y_t-y_u)(y_c-y_u),
+\qquad
+F_d=(y_b-y_s)(y_b-y_d)(y_s-y_d).
+$$
+Thus CP violation must vanish if any same-type Yukawa eigenvalues coincide, if any mixing angle collapses, or if the holonomy phase is removable by a basis redefinition. This gives the geometry a falsifier: the proposed CKM holonomy must reproduce $J$ as a rephasing-invariant commutator measure, not merely as a fitted angle in one matrix convention.
 
 ### Uncertainty propagation for holonomy closure
 

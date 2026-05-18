@@ -44,6 +44,22 @@ This working map starts from the measured low-energy pattern, not from a larger 
 
 The familiar running-coupling plot is a useful bridge for this target. It says that the effective $SU(3)_c$, $SU(2)_L$, and $U(1)_Y$ interaction strengths change with observer-level probe scale, with approximate high-scale convergence in many normalizations. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not treated as proof of grand-unified ontology. It is a pressure on the mapping: the same Noether-Sea medium response, axial-layer exposure, and color axis-exceptionality bookkeeping must generate the scale-dependent effective record discussed in [Gauge Symmetries](gauge-symmetries.md#running-coupling-bridge), while the same branch record keeps non-baseline channels absent.
 
+There is a second consistency pressure that is just as important as the charge table. The Standard Model is a chiral gauge theory, so the low-energy fermion collection must cancel gauge anomalies and the $SU(2)$ Witten obstruction as a set. In this working emergence map, anomaly cancellation is read as a recovery condition on the assembly dictionary:
+$$
+\mathcal{A}_{\mathrm{SM}}^{\mathbb{A}\mathbb{A}\mathbb{A}}
+=
+\left(
+\mathcal{A}_{[SU(3)_c]^3},
+N_{2,\mathrm{Weyl}}\bmod2,
+\mathcal{A}_{[SU(3)_c]^2U(1)_Y},
+\mathcal{A}_{[SU(2)_L]^2U(1)_Y},
+\mathcal{A}_{[U(1)_Y]^3},
+\mathcal{A}_{[\mathrm{grav}]^2U(1)_Y}
+\right)
+=(0,0,0,0,0,0).
+$$
+This does not make the Standard Model variables substrate ontology. It says that any accepted Noether-Sea and axial-layer branch must project to the same anomaly-free effective gauge record; otherwise the branch cannot be the observer-level Standard Model limit.
+
 From the $\mathbb{A}\mathbb{A}\mathbb{A}$ side, that means the Noether-Sea and assembly variables must first reproduce the known gauge bookkeeping. Larger group unification, supersymmetric partner bookkeeping, or extra-dimensional geometry may be useful comparison languages, but none of them is native ontology here. They become relevant only if a branch record derives the Standard Model pattern and also explains why every added observable channel is absent without using a separate suppression parameter for each failed prediction.
 
 The local closure discipline is therefore:

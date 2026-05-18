@@ -1188,34 +1188,47 @@ A candidate ansatz packet must produce:
    x,
    $$
    together with the paired branch-label rule;
-6. a null-coordinate causal pre-ledger in
+6. a neutral-coordinate audit identifying every continuous freedom that leaves the same physical certificate unchanged. At minimum this includes the removed time-shift freedom, any declared reflection or relabeling symmetry, and any ansatz parameter whose first variation is tangent to the candidate branch rather than transverse to it. In finite form, if
+   $$
+   \alpha^a
+   $$
+   are ansatz coordinates and
+   $$
+   Z_a(\theta)\equiv \frac{\partial \phi_{\mathrm{cyc}}(\theta;\alpha)}{\partial \alpha^a},
+   $$
+   then the certificate must classify each
+   $$
+   Z_a
+   $$
+   as section-fixed, symmetry-neutral, or genuinely deforming before monodromy or residual rows are interpreted;
+7. a null-coordinate causal pre-ledger in
    $$
    u=c_f t-x,
    \qquad
    w=c_f t+x,
    $$
    marking empty, candidate nonempty, and fold-split self-image blocks before interval root solving;
-7. a certificate mesh
+8. a certificate mesh
    $$
    \{\theta_j\}_{j=0}^{N}
    \subset[-h,0];
    $$
-8. algebraic, Lienard phase quadrature, fractionally augmented Chebyshev or cubic
+9. algebraic, Lienard phase quadrature, fractionally augmented Chebyshev or cubic
    $$
    C^1,
    $$
    or other interval-validated formulas for each arc;
-9. separator impulse laws at every
+10. separator impulse laws at every
    $$
    |\dot x|=c_f
    $$
    event, including the fold normal-form constants and finite impulse bounds;
-10. a bifurcation-parameter sweep over
+11. a bifurcation-parameter sweep over
    $$
    (\eta,\epsilon_c,V_{\max})
    $$
    or a justified lower-dimensional slice, identifying the region where the itinerary is admissible, the required roots exist, inactive-root gaps are positive, and fold impulses are finite;
-11. returned-history residuals
+12. returned-history residuals
    $$
    R_j^x,
    \qquad

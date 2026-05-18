@@ -4491,6 +4491,20 @@ The finite self-map ledger has four rows. The first, second, and fourth rows pro
    L_j^v,
    $$
    this row authorizes the residual-plus-sensitivity route. Schauder itself does not require linear stability; this row is a proof-strategy selector for the finite preservation audit.
+
+   The same row must also report the zero-mode quotient used for interpretation. Let
+   $$
+   Z_{\mathrm{time}}(\theta)=\dot\phi_{\mathrm{cyc}}(\theta)
+   $$
+   denote the infinitesimal time-shift direction before section anchoring. If additional ansatz or certificate parameters
+   $$
+   \alpha^a
+   $$
+   are carried, their tangent rows
+   $$
+   Z_a(\theta)=\partial_{\alpha^a}\phi_{\mathrm{cyc}}(\theta;\alpha)
+   $$
+   must be classified as neutral, constrained by the section, or transverse. This prevents a harmless collective-coordinate drift from being mistaken for an unstable return direction, and it prevents a genuine transverse instability from being hidden inside a free parameter.
 4. **Returned-sample row.**
    Prefer the direct one-sided budget route when local sensitivities are large: prove
    $$

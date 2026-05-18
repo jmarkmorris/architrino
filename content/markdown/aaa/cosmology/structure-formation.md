@@ -70,6 +70,18 @@ Within $\mathbb{A}\mathbb{A}\mathbb{A}$ the same integral structure holds, with 
 - If $G_{\text{eff}}$ is constant and the medium equation of state matches $\Lambda$CDM, then $f(a) \approx \Omega_m(a)^{0.55}$ as in GR.
 - If $G_{\text{eff}}$ carries scale dependence from medium compliance, $f$ acquires a $k$-dependent correction that is absent in standard gravity and can be tested against galaxy survey data.
 
+The comparison should also preserve the standard linear-regime milestones. During matter domination, the growing mode satisfies $D(a)\propto a$ in the GR/CDM limit, while the decaying mode falls as $a^{-3/2}$. During radiation domination, subhorizon matter growth is strongly slowed, so the transfer function retains an equality-scale break. A compact benchmark is
+$$
+P(k,z)
+=
+P_{\mathrm{seed}}(k)\,T^2(k)\,D^2(z),
+\qquad
+T(k)\sim1\ \text{for }k\ll k_{\mathrm{eq}},
+\qquad
+T(k)\sim k^{-2}\ \text{for }k\gg k_{\mathrm{eq}},
+$$
+up to the declared baryon acoustic, neutrino/free-streaming, and nonlinear corrections. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not an import of metric expansion ontology. It is the observer-level shape test that the same medium-state history must pass while computing $G_{\text{eff}}(a,k)$, CMB lensing, $f\sigma_8$, and high-redshift halo statistics.
+
 ---
 
 ## Matter Content and the Dark Sector

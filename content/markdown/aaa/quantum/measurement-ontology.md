@@ -107,6 +107,42 @@ F_{\mathrm{tot}}(\Gamma_{\mathrm{tot}}),
 $$
 not a splice between quantum dynamics on the target side and a separate classical-observer dynamics on the apparatus side. A human observer, laboratory notebook, or downstream database is therefore another possible record-bearing assembly, not an ontologically privileged endpoint of the measurement.
 
+When the environment is compressed to an open-system map, the compression must declare its memory assumption. A standard trace-preserving completely positive comparison map has Kraus form
+$$
+\rho\mapsto\mathcal{L}[\rho]
+=
+\sum_m M_m\rho M_m^\dagger,
+\qquad
+\sum_m M_m^\dagger M_m=I.
+$$
+A differential Lindblad comparison is admissible only after the environment correlation time $\tau_{\mathrm{env}}$ is short compared with the retained record window. In that regime the benchmark generator has the form
+$$
+\partial_t\rho
+=
+-\frac{i}{\hbar}[H,\rho]
++
+\sum_m
+\left(
+L_m\rho L_m^\dagger
+-
+\frac{1}{2}L_m^\dagger L_m\rho
+-
+\frac{1}{2}\rho L_m^\dagger L_m
+\right).
+$$
+The native residual is a memory check, not a demand that the substrate be Markovian:
+$$
+\mathcal{R}_{\mathrm{open}}(\theta)
+=
+\max\left(
+\frac{\tau_{\mathrm{env}}}{T_{\mathrm{rec}}},
+\frac{\left\|\mathcal{T}_{t_0\to t_2}^{\mathcal{Q}}-\mathcal{T}_{t_1\to t_2}^{\mathcal{Q}}\mathcal{T}_{t_0\to t_1}^{\mathcal{Q}}\right\|_{\mathrm{TV}\to\mathrm{TV}}}{\varepsilon_{\mathrm{div}}},
+\frac{\left\|\partial_t\rho_{\mathrm{rec}}-\mathcal{L}_{\mathrm{Lind}}[\rho_{\mathrm{rec}}]\right\|}{\varepsilon_L}
+\right)
+\le 1.
+$$
+If the first two terms are large, a Kraus or Lindblad description may remain a useful short-time fit, but it has not earned a restartable measurement state. This matches the $\mathbb{A}\mathbb{A}\mathbb{A}$ distinction between a completed record and a reduced description that has discarded live path-history memory.
+
 ## Physical-Record Import Consistency
 
 The same rule applies when one Physical Observer records another Physical Observer's conclusion. A statement such as "observer $O_j$ is certain that record $R_k$ will occur" is not free-standing knowledge. For observer $O_i$, it is a physical communication or memory record inside $O_i$'s retained apparatus and access region. Let $C_{j\to i,k}$ denote that imported-certainty record in the declared channel for $O_i$, and let $\theta_i$ be the corresponding observer model record. With the same finite-time basin measure used for the measurement channel, write
@@ -256,6 +292,40 @@ e^{i\alpha_\lambda}
 \varepsilon_{\mathrm{upd}},
 $$
 whenever the denominator is nonzero. This equation is the measurement-basin version of the textbook projection rule: first the coupled physical system selects and records a basin, then the observer-level wavefunction is updated to the corresponding effective eigenspace.
+
+Generalized measurements sharpen this requirement because the observer-level measurement record is not always projective. A calibrated record channel may be represented by a POVM $\{E_m\}$ with
+$$
+E_m=E_m^\dagger,\qquad E_m\ge0,\qquad \sum_m E_m=I,
+$$
+and an instrument choice $\{M_m\}$ satisfying
+$$
+E_m=M_m^\dagger M_m,
+\qquad
+\sum_m M_m^\dagger M_m=I.
+$$
+The comparison probabilities and conditional updates are
+$$
+p_m=\operatorname{Tr}(\rho E_m),
+\qquad
+\rho\mapsto\rho_m^+
+=
+\frac{M_m\rho M_m^\dagger}{p_m}.
+$$
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is not merely to reproduce the POVM probabilities. The same coupled target-apparatus-environment flow must also recover the instrument update, because different $M_m$ can give the same $E_m$ while leaving different post-record states.
+
+For a declared channel $\theta$, let $\rho_{\theta,m}^{\mathrm{rec},+}$ be the effective state extracted from the basin-conditioned measure $\mu_{\theta,m}^+$ above, and let $\rho_{\theta,m}^{\mathrm{inst},+}=M_m\rho_\theta^-M_m^\dagger/p_m$ be the comparison instrument update. A compact generalized-measurement residual is
+$$
+\mathcal{R}_{\mathrm{inst}}(\theta)
+=
+\max_m
+\max\left(
+\frac{\left|\mu_{*,T}(\pi^{-1}(R_m))-p_m\right|}{\varepsilon_p},
+\frac{\left\|\rho_{\theta,m}^{\mathrm{rec},+}-\rho_{\theta,m}^{\mathrm{inst},+}\right\|_1}{\varepsilon_{\mathrm{inst}}},
+\frac{\left|\Delta E_{\mathrm{unrec}}(T;\theta,m)\right|}{\varepsilon_E}
+\right)
+\le 1.
+$$
+This is the measurement-channel version of the usual dilation result: a POVM can be represented as a projective measurement on a larger Hilbert space, but the native account must identify the physical apparatus, environment, and inaccessible degrees of freedom that realize that larger record space. Photon detection is the warning case. The record may use projective effects for "photon absent" and "photon present," while the instrument maps both outcomes to the no-photon post-record channel because the photon assembly has been absorbed into the apparatus/event ledger.
 
 ## What Makes an Interaction a Record
 

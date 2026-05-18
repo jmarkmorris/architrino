@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1179
+      "sections": 1190
     }
   },
   "tocRoot": {
@@ -911,6 +911,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Entropy, Free Energy, and Coarse Residuals",
+                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
+                "markdownSection": "Entropy, Free Energy, and Coarse Residuals",
+                "sectionKey": "entropy free energy and coarse residuals",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Noether Sea, Effective Spacetime, and Energy Storage",
                 "markdownPath": "content/markdown/aaa/dynamics/energy.md",
                 "markdownSection": "Noether Sea, Effective Spacetime, and Energy Storage",
@@ -1293,6 +1301,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "RG-Style Truncation Test",
+                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+                "markdownSection": "RG-Style Truncation Test",
+                "sectionKey": "rg style truncation test",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Reduced-Theorem Target",
                 "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
                 "markdownSection": "Reduced-Theorem Target",
@@ -1518,6 +1534,14 @@
                 "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
                 "markdownSection": "Medium Properties",
                 "sectionKey": "medium properties",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Continuum Balance and Constitutive Closure",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "Continuum Balance and Constitutive Closure",
+                "sectionKey": "continuum balance and constitutive closure",
                 "headingLevel": 2
               },
               {
@@ -3863,6 +3887,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Magnetic and Recoil Spectral Benchmarks",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
+                "markdownSection": "Magnetic and Recoil Spectral Benchmarks",
+                "sectionKey": "magnetic and recoil spectral benchmarks",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Spin-Sensitive Spectral Targets",
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
                 "markdownSection": "Spin-Sensitive Spectral Targets",
@@ -3942,6 +3974,30 @@
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
                 "markdownSection": "Noether-Sea Transport",
                 "sectionKey": "noether sea transport",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Lattice and Band-Response Recovery",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
+                "markdownSection": "Lattice and Band-Response Recovery",
+                "sectionKey": "lattice and band response recovery",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Lattice Scattering and Phonon Response",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
+                "markdownSection": "Lattice Scattering and Phonon Response",
+                "sectionKey": "lattice scattering and phonon response",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Hall and Topological Response Benchmarks",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
+                "markdownSection": "Hall and Topological Response Benchmarks",
+                "sectionKey": "hall and topological response benchmarks",
                 "headingLevel": 2
               }
             ]
@@ -4799,6 +4855,22 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Symmetry and Geometric-Phase Guardrails",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+                "markdownSection": "Symmetry and Geometric-Phase Guardrails",
+                "sectionKey": "symmetry and geometric phase guardrails",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Supersymmetric Index Comparison",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+                "markdownSection": "Supersymmetric Index Comparison",
+                "sectionKey": "supersymmetric index comparison",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Unitary Evolution and Topological Torques",
                 "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
                 "markdownSection": "Unitary Evolution and Topological Torques",
@@ -5393,6 +5465,14 @@
                 "markdownPath": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
                 "markdownSection": "Source Terms",
                 "sectionKey": "source terms",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Variational Scalar Closure Benchmark",
+                "markdownPath": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
+                "markdownSection": "Variational Scalar Closure Benchmark",
+                "sectionKey": "variational scalar closure benchmark",
                 "headingLevel": 2
               },
               {
@@ -6552,6 +6632,14 @@
                 "markdownPath": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
                 "markdownSection": "Dipole and Bulk-Flow Diagnostic",
                 "sectionKey": "dipole and bulk flow diagnostic",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Distance-Growth Coupling Residual",
+                "markdownPath": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
+                "markdownSection": "Distance-Growth Coupling Residual",
+                "sectionKey": "distance growth coupling residual",
                 "headingLevel": 2
               },
               {

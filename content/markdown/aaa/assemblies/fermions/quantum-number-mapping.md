@@ -357,6 +357,22 @@ e^c_L:(1,1,+2),
 $$
 the Standard-Model gauge anomalies cancel exactly.
 
+The pure color anomaly cancels before hypercharge is even used:
+$$
+\mathcal{A}_{[SU(3)_c]^3}
+=
+2A(3)+A(\bar 3)+A(\bar 3)
+=2-1-1=0,
+$$
+where the factor $2$ is the weak-doublet multiplicity of $q_L$ and $A(\bar 3)=-A(3)$.
+
+The non-perturbative $SU(2)$ Witten check also passes. One generation contains three quark doublets, one for each color, plus one lepton doublet:
+$$
+N_{2,\mathrm{Weyl}}=3+1=4,\qquad
+N_{2,\mathrm{Weyl}}\equiv0\pmod2.
+$$
+Thus the quark and lepton sectors are tied together by the same consistency condition: removing either $q_L$ or $\ell_L$ breaks the even-doublet requirement.
+
 With $T(3)=T(\bar 3)=\tfrac{1}{2}$ and $T(2)=\tfrac{1}{2}$, the mixed non-abelian anomalies are
 $$
 \mathcal{A}_{[SU(3)_c]^2U(1)_Y}

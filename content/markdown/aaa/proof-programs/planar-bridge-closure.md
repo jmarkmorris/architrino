@@ -161,6 +161,16 @@ The closure target is:
 
 The gauge-reset operator must be included in that statement. After one excursion, the returned history must be rotated back into the section gauge. That step is continuous only if the return event is quantitatively transverse; otherwise the return time and the compensating rotation angle need not vary continuously with the incoming history.
 
+The planar bridge should therefore treat the phase, rotation, and section-time variables as collective coordinates rather than as ordinary stability directions. If
+$$
+\alpha=(t_0,\psi,\rho_\ast,\ldots)
+$$
+records the finite chart data of a candidate reduced cycle, then the tangent rows
+$$
+Z_a(\theta)=\partial_{\alpha^a}\mathbf r_{\mathrm{cyc}}(\theta;\alpha)
+$$
+must be classified before the return spectrum is interpreted. The rotation and time rows are removed by gauge and section choices; any remaining geometric row must either close by a holonomy residual or enter the transverse stability certificate. This finite zero-mode ledger is the clean way to state what the planar proof means by "the same cycle" after one excursion.
+
 This is the exact higher-dimensional replacement for the collinear tame-class closure. If it succeeds, the abstract fixed-point capstone from [Master-Equation Breather Program](./master-equation-breather.md) becomes actionable rather than aspirational.
 
 ## Failure Alternatives

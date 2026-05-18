@@ -275,6 +275,74 @@ In practice, finite systems or simulation domains should monitor $E_W(t)$, $P_W^
 
 ---
 
+## Entropy, Free Energy, and Coarse Residuals
+
+Entropy and free-energy language belongs to coarse-grained records, not to empty Euclidean void. It is useful when a simulation or continuum reduction groups many microhistories into the same retained macrostate. For a declared coarse map $\mathcal Q:S(t)\mapsto z$ with cell probabilities $p_\alpha$ over the retained histories, the entropy diagnostic is
+$$
+S_{\mathcal Q}
+=
+-k_B\sum_{\alpha}p_\alpha\log p_\alpha.
+$$
+When a temperature-like channel $T_{\mathcal Q}$ is declared by the same record, the Helmholtz-style free-energy diagnostic is
+$$
+F_{\mathcal Q}
+=
+E_{\mathcal Q}
+-
+T_{\mathcal Q}S_{\mathcal Q}.
+$$
+This is not an added thermodynamic postulate. It is a test that the chosen coarse variables have retained enough state counting to make relaxation and response claims reproducible.
+
+For an isolated finite window, the minimum coarse thermodynamic gate is the same-record entropy-production residual
+$$
+\mathcal R_{S,W}
+=
+\frac{
+\left[
+-
+\Delta_W S_{\mathcal Q}
++
+\int_W
+\frac{
+\mathcal D_{\mathcal Q}
+}{
+T_{\mathcal Q}+\varepsilon_T
+}
+dt
+\right]_+
+}{
+|\Delta_W S_{\mathcal Q}|
++
+\int_W
+\left|
+\frac{\mathcal D_{\mathcal Q}}{T_{\mathcal Q}+\varepsilon_T}
+\right|dt
++\varepsilon
+},
+$$
+where $[x]_+=\max(x,0)$ and $\mathcal D_{\mathcal Q}$ is the declared coherent-to-incoherent transfer rate, including viscous, thermal, wake-boundary, or Noether-Sea response channels retained by the packet. Passing this gate means only that the selected coarse record has not made entropy decrease after unresolved boundary leakage is accounted for. It does not prove a fundamental stochastic substrate.
+
+In near-equilibrium comparison runs, response and fluctuation must also come from one record. If an observable $O_A$ has response kernel $\chi_{AB}(\omega)$ to a controlled source coupled to $O_B$, the causal-response check is that the dissipative part and the equilibrium fluctuation spectrum $S_{AB}(\omega)$ obey a declared classical or quantum fluctuation-dissipation row. A dimensionless packet residual can be written as
+$$
+\mathcal R_{\mathrm{FD}}(A,B)
+=
+\frac{
+\left\|
+S_{AB}^{\mathrm{meas}}(\omega)
+-
+\mathcal F_T\!\left(\chi_{AB}''(\omega)\right)
+\right\|_{\omega}
+}{
+\left\|S_{AB}^{\mathrm{meas}}(\omega)\right\|_{\omega}
++
+\left\|\mathcal F_T\!\left(\chi_{AB}''(\omega)\right)\right\|_{\omega}
++\varepsilon
+}.
+$$
+Here $\mathcal F_T$ is the packet's chosen fluctuation-dissipation map, and $\chi_{AB}''$ is the imaginary, dissipative response. A passing value supports the coarse response chart; a failing value means the noise, dissipation, and energy ledger have been fitted separately.
+
+---
+
 ## Noether Sea, Effective Spacetime, and Energy Storage
 
 At the fundamental level, the Euclidean void is an empty container. **Effective spacetime** is the observer-level summary of a **sea of high-energy tri-binary assemblies**:

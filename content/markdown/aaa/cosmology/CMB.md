@@ -257,6 +257,28 @@ $$
 
 This formula is an effective comparison object. It becomes available only after Gate A supplies the photon energy-frequency and mode-counting interface, Gate B supplies the two transverse photon modes and polarization handoff, and Gate C drives the photon chemical potential to zero through detailed balance. The redshift handoff must then preserve spectral shape by mapping photon frequencies and inferred temperature through the same Noether-Sea and clock-rate comparison variables used elsewhere in this document.
 
+In the homogeneous comparison limit, the redshift handoff must preserve the Planck form by scaling frequency and temperature together:
+$$
+\nu_{\mathrm{obs}}
+=
+\frac{\nu_{\mathrm{dec}}}{1+z},
+\qquad
+T_{\mathrm{obs}}
+=
+\frac{T_{\mathrm{dec}}}{1+z}.
+$$
+This is an observer-level transport benchmark. It does not say that the Euclidean void expanded; it says the photon-channel distribution, endpoint clock comparison, and path-history propagation must carry a blackbody spectrum into the present microwave band without generating a chemical-potential or chromaticity residual above the CMB tolerance.
+
+The last-scattering benchmark should also retain the rate condition that makes the surface sharp. In standard comparison language decoupling occurs when the scattering rate falls through the effective expansion or relaxation rate,
+$$
+\Gamma_T
+=
+n_e\sigma_T c_0
+\approx
+H_{\mathrm{eff}},
+$$
+with recombination delayed by the high photon-to-baryon loading encoded in the same $\eta$ ledger used by BBN. The native CMB record therefore has to recover a thin enough last-scattering window, not only a plausible source story.
+
 ## Consistency Anchors
 
 - Expansion wording here should remain consistent with [expansion-mechanism.md](./expansion-mechanism.md).

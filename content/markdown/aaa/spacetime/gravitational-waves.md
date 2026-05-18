@@ -205,6 +205,17 @@ where $\mathcal{B}_{\mathrm{det}}$ is the validated detector band and $d_{\mathr
 
 ## Energy Flux
 
+The source-side benchmark is also part of closure. In the GR weak-field comparison, isolated systems do not radiate monopole or dipole gravitational waves at leading order because total energy, momentum, and angular momentum conservation remove those channels. The first radiative source is quadrupolar. A compact observer-level target is
+$$
+P_{\mathrm{GW}}
+=
+\frac{G_{\text{eff}}}{5c_{\text{GW}}^5}
+\left\langle
+\dddot Q_{ij}\dddot Q^{ij}
+\right\rangle,
+$$
+with $Q_{ij}$ the trace-free mass quadrupole of the effective source record in the validated weak-field limit. A native Noether-Sea wave model must therefore explain why scalar monopole leakage, vector dipole leakage, and non-TT power remain below detector bounds rather than adding them as free source channels.
+
 **Closure Target 3 (leading-order GW flux).**
 In the same regime, the cycle-averaged flux is
 $$
@@ -213,4 +224,4 @@ $$
 \frac{c_{\text{GW}}^3}{32\pi G_{\text{eff}}}
 \left\langle \dot h_+^2+\dot h_\times^2\right\rangle.
 $$
-This is the quantity used for binary-orbit energy-loss consistency checks.
+This is the quantity used for binary-orbit energy-loss consistency checks. Energy localization for gravitational waves is an observer-level effective description: the packet may use cycle-averaged fluxes and asymptotic energy loss, but it should not promote a gauge-dependent local gravitational energy density into substrate ontology.

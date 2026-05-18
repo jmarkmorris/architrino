@@ -53,6 +53,35 @@ $$
 
 A low value of the first term alone is insufficient. The second term is the split-ontology guard: it rejects a fit that keeps each observable close to its benchmark only by assigning mutually incompatible projections of $\theta_{\mathrm{sea}}$.
 
+The first empirical packet should keep the leading standard comparison objects visible inside the residual vectors:
+$$
+r_{\mathrm{SN/BAO}}
+\supset
+\left(
+\frac{d_L^\theta(z)-d_L^{\mathrm{obs}}(z)}{\sigma_{d_L}},
+\frac{D_M^\theta(z)/r_d^\theta-(D_M/r_d)^{\mathrm{obs}}}{\sigma_{D_M/r_d}},
+\frac{H^\theta(z)r_d^\theta-(Hr_d)^{\mathrm{obs}}}{\sigma_{Hr_d}}
+\right),
+$$
+$$
+r_{\mathrm{CMB}}
+\supset
+\left(
+\frac{\Delta T_{\mathrm{bb}}^\theta}{\epsilon_{\mathrm{bb}}},
+\frac{C_{\ell}^{\theta}-C_{\ell}^{\mathrm{obs}}}{\sigma_{C_\ell}},
+\frac{C_L^{\phi\phi,\theta}-C_L^{\phi\phi,\mathrm{obs}}}{\sigma_{C_L^{\phi\phi}}}
+\right),
+$$
+$$
+r_{\mathrm{growth}}
+\supset
+\left(
+\frac{f\sigma_8^\theta(z,k)-f\sigma_8^{\mathrm{obs}}(z,k)}{\sigma_{f\sigma_8}},
+\frac{P^\theta(k,z)-P^{\mathrm{obs}}(k,z)}{\sigma_P}
+\right),
+$$
+and $r_{\mathrm{BBN}}$ should retain D/H, $Y_p$, lithium, $\eta$, and $\Delta N_{\text{eff}}$ rows. These are data-product coordinates, not ontology claims. They make the shared packet check luminosity distance, BAO rulers, blackbody preservation, CMB lensing, growth, and BBN yield recovery before any medium-state interpretation is promoted.
+
 ## Packet Schema
 
 The runtime packet should preserve this shape even when a later empirical packet replaces the mock values:

@@ -12,7 +12,7 @@ $$
 $$
 that reproduces, in the appropriate regime,
 $$
-\frac{d\tau}{dt} \approx \sqrt{1+\frac{2\Phi_N}{c^2} - \frac{v^2}{c^2}}
+\frac{d\tau}{dt} \approx \sqrt{1+\frac{2\Phi_N}{c_0^2} - \frac{v^2}{c_0^2}}
 $$
 and generalizes to strong‑field / high‑velocity conditions.
 
@@ -144,6 +144,25 @@ $$
 $$
 
 This is the clock-channel version of the weak gravitational-redshift benchmark. The derivation burden is to obtain the first equation from Noether-Sea constitutive response rather than impose it as an imported metric fact.
+
+### Proper-Time Functional Benchmark
+
+The same clock map must also reproduce the observer-level proper-time functional that GR uses for timelike records. For a candidate effective metric recovered from the Noether-Sea record,
+$$
+d\tau
+=
+\frac{1}{c_0}
+\sqrt{-g^{\text{eff}}_{\mu\nu}dx^\mu dx^\nu},
+$$
+with the weak-field static endpoint limit above and the moving-clock limit
+$$
+g^{\text{eff}}_{\mu\nu}
+\frac{dx^\mu}{d\tau}
+\frac{dx^\nu}{d\tau}
+=
+-c_0^2.
+$$
+This equation is not a claim that the Euclidean void is a four-dimensional curved substrate. It is the observer-level action benchmark: physical clocks should extremize the same effective interval that the signal, ruler, and orbital modules use when they project the Noether-Sea state into GR comparison language. If a branch recovers endpoint redshift but fails the integrated clock functional along accelerated or orbital records, the proper-time map has not closed.
 
 ### Gamma-N Geometry Extraction Target
 

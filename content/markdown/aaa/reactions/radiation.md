@@ -126,6 +126,16 @@ $$
 
 The pure radiative limit has $\Delta E_{\text{rxn}}=0$. A sub-threshold transport event has $E_\gamma=0$ and routes energy into $\Delta E_{\text{med}}$, $\Delta E_{\text{recoil}}$, or $\Delta E_{\text{core remnant}}$. A reaction event has nonzero $\Delta E_{\text{rxn}}$ and must use the full reaction provenance ledger.
 
+In weak-coupling comparison limits, the same ledger must also recover the standard rate and scattering normalizations. A finite event window should reduce to
+$$
+\Gamma_{\mathbb{A}\mathbb{A}\mathbb{A}\to f}
+\rightarrow
+2\pi\,
+\left|\mathcal{M}_{\mathrm{eff}}\right|^2
+\rho_f
+$$
+after unit conventions are declared, with $\rho_f$ the density of accepted final records. For scattering channels, cross sections must be the same transition probability divided by incoming flux and integrated over the outgoing phase-space ledger. Thus amplitudes, decay widths, and cross sections are comparison-layer summaries of one provenance record, not independent event ontologies.
+
 Momentum and angular momentum must close at the same vertex:
 
 $$

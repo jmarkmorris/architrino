@@ -332,6 +332,67 @@ J_{\mathrm{eff}}(\mathbf{x},t;\mathbf{x}',t')
 $$
 This is the continuum inheritance of the discrete delayed causal $1/r$ action kernel together with the same Jacobian branch weight that appears in the master equation. Source emission remains isotropic at the microscopic level, but the received coarse flux is compressed or dilated by the delayed transport geometry. Differentiating this delayed action with respect to receiver coordinates produces the corresponding Jacobian-weighted inverse-square force density plus velocity-dependent correction terms. In the quasi-static limit $\|\mathbf{u}\|/c_f\to0$, one recovers $J_{\mathrm{eff}}\to 1$ and the leading force law reduces to the familiar inverse-square form.
 
+The continuum variables are admitted only through balance laws inherited from resolved histories. A coarse polarity density and current must satisfy
+$$
+\partial_t\rho_q+\nabla\cdot\mathbf{j}_q
+=
+R_{\rho}^{\mathrm{cg}},
+$$
+and the first two kinetic moments must close through a declared momentum-current tensor and energy-flux vector,
+$$
+\partial_t(\rho_q u^i)
++\partial_j\Pi_q^{ij}
+=
+f_q^i+R_{P,q}^i,
+$$
+$$
+\partial_t e_q
++\nabla\cdot\mathbf{J}_{e,q}
+=
+\mathbf{f}_q\cdot\mathbf{u}
++R_{E,q}.
+$$
+Here $\Pi_q^{ij}$ and $\mathbf{J}_{e,q}$ are coarse-history summaries of the retained causal-wake record, not new substrate fields. The effective action is a promoted continuum chart only when $R_{\rho}^{\mathrm{cg}}$, $R_{P,q}^i$, and $R_{E,q}$ are small under history, spatial, and regulator refinement. Otherwise the chart has only reproduced low-order moments while leaving unresolved memory in the omitted kinetic hierarchy.
+
+For near-equilibrium reductions, a constitutive response may be written schematically as
+$$
+\Pi_q^{ij}
+=
+\Pi_{\mathrm{rev}}^{ij}
+-
+2\eta_{\mathrm{cg}}
+\left(
+E^{ij}-\frac{1}{3}(\nabla\cdot\mathbf{u})h^{ij}
+\right)
+-
+\zeta_{\mathrm{cg}}(\nabla\cdot\mathbf{u})h^{ij}
++\Pi_{\mathrm{mem}}^{ij},
+$$
+where $E^{ij}=\frac{1}{2}(\partial^iu^j+\partial^ju^i)$. This is a comparison form borrowed from continuum mechanics and kinetic theory. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it becomes native only after $\eta_{\mathrm{cg}}$, $\zeta_{\mathrm{cg}}$, and $\Pi_{\mathrm{mem}}^{ij}$ are derived from the same delayed branch record that supplies the force law. The corresponding dissipation residual is
+$$
+\mathcal R_{\mathrm{diss}}(W)
+=
+\frac{
+\left|
+\Delta_W K_{\mathrm{cg}}
++\int_W
+2\eta_{\mathrm{cg}}E_{ij}E^{ij}
++\zeta_{\mathrm{cg}}(\nabla\cdot\mathbf{u})^2\,dt\,dV
++\Delta_W E_{\mathrm{wake}}
+\right|
+}{
+|\Delta_W K_{\mathrm{cg}}|
++\int_W
+\left(
+2\eta_{\mathrm{cg}}E_{ij}E^{ij}
++\zeta_{\mathrm{cg}}(\nabla\cdot\mathbf{u})^2
+\right)dt\,dV
++|\Delta_W E_{\mathrm{wake}}|
++\varepsilon
+}.
+$$
+This residual prevents ordinary viscous loss language from replacing the exact wake-history energy ledger. A nonzero positive quadratic term is allowed as a coarse channel for coherent-to-incoherent transfer, but the transferred content must appear in the retained wake, heat, or medium-response record.
+
 By defining an effective scalar potential $\Phi_{\text{wake}}(\mathbf{x}, t)$ and a vector transport potential $\mathbf{A}_{\text{wake}}(\mathbf{x}, t)$ that track the integrated causal wakes of the continuous medium, the system maps locally onto an effective field theory. These potentials are bookkeeping fields for delayed transport, not additional ontological primitives. The resulting local Lagrangian density $\mathcal{L}_{\text{eff}}$ therefore belongs to a further closure step beyond the exact delayed causal action.
 
 ### Effective Hamiltonian Domain Gate

@@ -61,6 +61,36 @@ Cosmological observables (e.g., $H(z)$, BAO, CMB peaks, lensing, growth proxies)
 
 For development and comparison, expansion, CMB transfer, BBN yields, and growth/lensing are treated as separable observational modules with explicit interface variables, while remaining one ontology.
 
+### Effective FRW Variable Ledger
+
+The standard homogeneous and isotropic comparison layer is retained as a data-product language, not as substrate geometry. A candidate medium-state history may project to an effective line element of the form
+$$
+ds_{\mathrm{FRW,eff}}^2
+=
+-c_0^2d\tau_c^2
++a_{\mathrm{eff}}^2(\tau_c)
+\left[
+\frac{d\chi^2}{1-k\chi^2}
++\chi^2d\Omega^2
+\right],
+$$
+but this is a reconstruction used by Physical Observers. The Euclidean void does not expand, and $a_{\mathrm{eff}}$, $H_{\mathrm{eff}}\equiv \dot a_{\mathrm{eff}}/a_{\mathrm{eff}}$, $k$, $\Omega_i$, $w_i$, and horizon distances are effective variables extracted from Noether-Sea evolution, clock comparison, and transport records.
+
+The useful comparison equations are therefore recovery targets:
+$$
+H_{\mathrm{eff}}^2
+=
+\frac{8\pi G_{\mathrm{eff}}}{3c_0^2}\rho_{\mathrm{eff}}
+-\frac{k c_0^2}{a_{\mathrm{eff}}^2}
++\frac{\Lambda_{\mathrm{eff}}}{3},
+$$
+$$
+\dot\rho_{\mathrm{eff}}
++3H_{\mathrm{eff}}(\rho_{\mathrm{eff}}+P_{\mathrm{eff}})
+=0.
+$$
+Passing these equations does not by itself promote metric expansion. It means that the fixed-void medium history has an observer-level FRW projection accurate enough to feed distance-redshift, CMB, BBN, and growth comparisons.
+
 ## Observation-First Component Abstraction
 
 This framework does not treat cosmology as "$\mathbb{A}\mathbb{A}\mathbb{A}$ vs $\Lambda\mathrm{CDM}$" at the bundled-model level. Instead, first abstract $\Lambda\mathrm{CDM}$ into separable observational components with no interpretational linkage baked in:

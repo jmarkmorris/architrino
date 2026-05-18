@@ -315,6 +315,19 @@ The distinction between photon helicity and massive-vector spin should remain ex
     *   **Chirality:** Allowed couplings follow from the **Path-History Geometry**. The corridor's internal spiral must match the phase structure of the target's nested binaries. "Wrong-handed" targets present a phase mismatch, preventing the tether from locking on.
 *   **Absorption:** The corridor is re-captured by a target binary, integrating its payload and updating the target's internal mode energy.
 
+### Low-Energy Four-Fermi Limit
+
+At energies far below the $W$ corridor scale, the resolved corridor may be contracted to a current-current comparison operator. The recovery target is
+$$
+\mathcal{L}_{\mathrm{weak}}^{\mathrm{low}}
+=
+-\frac{4G_F}{\sqrt 2}\,
+J_+^\mu J^-_\mu,
+\qquad
+G_F=\frac{1}{\sqrt 2\,v_{\mathrm{EW}}^2}.
+$$
+This is not a new substrate interaction. It is the low-energy observer limit of the same charged-corridor event after the finite-width mediator has been integrated out. The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is therefore to derive the corridor stiffness or electroweak scale $v_{\mathrm{EW}}$ from Noether-Sea response and then recover $G_F$, beta rates, and charged-current branching fractions without fitting a separate contact coupling.
+
 ### Effective Mass Scales
 *   **Apparent Energy:** The "Mass" ($M_W \approx 80$ GeV, $M_Z \approx 91$ GeV) is not a rest mass of a solid object. It is the **Apparent Confinement Energy** of the corridor at the moment of creation.
 *   **Environment Dependence:**

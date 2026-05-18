@@ -164,6 +164,41 @@ where $\mathbf{r}(t,t')=\mathbf{x}(t)-\mathbf{x}(t')$ and $d\ell$ is the induced
 
 **Topological vs Noether data:** Continuous symmetries (time shifts, rotations) identify Noether-charge targets: energy from time-translation symmetry and total angular momentum from rotational symmetry. In the symmetry-preserving delayed action these become conserved history functionals. The winding class of $\mathcal{L}_{\text{causal}}$ supplies **topological charges**. Stable “generations” live where a Noether-stationary orbit is also topologically locked; dissociation would require changing the winding class, i.e., a reconnection of $\mathcal{L}_{\text{causal}}$.
 
+**Topological charge as a comparison invariant:** The soliton comparison teaches a useful restraint: a topological charge labels a sector, while a dynamical or variational argument must still select a representative inside that sector. For this chapter the native invariant is the homology class of the causal locus. Write
+$$
+Q_{\mathrm{causal}}(\gamma)
+=
+\{[(\mathcal{L}_{\text{causal}})_a]\}_a
+\subset H_1(T^2,\mathbb{Z}),
+$$
+the multiset of winding classes of connected causal-locus components, optionally refined by source identity and chirality sign. The comparison rule is:
+$$
+Q_{\mathrm{causal}}(\gamma_0)=Q_{\mathrm{causal}}(\gamma_1)
+$$
+means the two trajectories lie in the same branch-topology sector; it does not imply equal action, equal mass response, or stability. A stability claim additionally needs either a constrained critical-point test for
+$$
+\bar{\mathcal{A}}_{\text{total}}
+$$
+or a return-map spectrum for the actual delayed dynamics.
+
+**Instanton-style path competition:** When two branch-topology sectors are connected only by passing through a transversality failure, the useful comparison object is not a new force law but a minimal regularized barrier in path space. For a one-parameter path of histories
+$$
+\Gamma:[0,1]\to \mathcal{H}_h,
+\qquad
+\Gamma(0)=\gamma_0,
+\qquad
+\Gamma(1)=\gamma_1,
+$$
+define the barrier proxy
+$$
+B_{\eta,h}(\gamma_0\to\gamma_1)
+\equiv
+\inf_{\Gamma}
+\max_{s\in[0,1]}
+\bar{\mathcal{A}}_{\text{total},\eta,h}[\Gamma(s)].
+$$
+The infimum is taken over paths whose endpoints lie in the declared sectors and whose intermediate histories obey the same regularization convention. This is an instanton-like comparison only in the variational sense: it measures the least regularized action-counting barrier between sectors. It does not assert tunneling, supersymmetry, or Euclidean field-theory ontology.
+
 **Multi‑component topology:** For assemblies, project the spatial trajectories over one period, classify the resulting link, and when hyperbolic, use the volume of the link complement as a complexity measure. Brunnian or highly knotted complements signal strong causal interlocking and higher action density.
 
 ## Theorem Spine (Provable Core under A1-A5)

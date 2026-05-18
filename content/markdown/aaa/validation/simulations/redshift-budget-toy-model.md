@@ -66,6 +66,20 @@ $$
 
 This is not an untracked photon-energy loss model. $Y_{X,N}$ is the path-history phase-cadence stretch left after endpoint cadence, source-branch shift, and launch geometry have been declared.
 
+For cosmology-facing packets, the same replay should expose whether the redshift channel also supplies the standard time-dilation and flux factors. The comparison target is
+$$
+\frac{\Delta t_{\mathrm{obs}}}{\Delta t_{\mathrm{emit}}}
+=
+1+z_X,
+\qquad
+F
+=
+\frac{L}{4\pi D_A^2(1+z_X)^2},
+\qquad
+d_L=(1+z_X)^2D_A.
+$$
+These are observer-level distance-ladder diagnostics. A path law that shifts line frequencies but does not dilate packet cadence, or that loses flux without the two redshift factors and angular-distance reciprocity, is not an acceptable cosmological redshift replacement.
+
 ## Input Packet
 
 Each scenario supplies:
@@ -230,6 +244,8 @@ The fixture reports:
 | `diagnostics.chromaticity_residual` | $\left|Y_{X,N}-Y_{Y,N}\right|$ for two clean lines |
 | `diagnostics.image_bundle_variance` | variance of beam-specific $Y$ values |
 | `diagnostics.time_dilation_residual` | split between frequency and packet-cadence propagation |
+| `diagnostics.luminosity_factor_residual` | mismatch between the replayed flux factor and the expected $(1+z)^2$ distance-ladder factor |
+| `diagnostics.distance_reciprocity_residual` | mismatch in the observer-level $d_L=(1+z)^2D_A$ relation |
 | `observables.nu_obs_hz` | receiver-facing observed frequency |
 | `observables.E_obs_j` | receiver-facing photon energy |
 | `component_logs` | endpoint, propagation, source-branch, and launch contributions to $Z_X$ |

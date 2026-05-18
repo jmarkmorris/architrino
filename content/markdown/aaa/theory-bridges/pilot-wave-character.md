@@ -235,6 +235,65 @@ $$
 $$
 with fine-structure and Lamb-type splittings treated as later, smaller correction targets. The degeneracy test is important because ordinary central symmetry gives only the $2l+1$ angular degeneracy; hydrogen's $n^2$ pattern is a stronger Coulomb benchmark that a phase-locking story must reproduce rather than merely invoke.
 
+Scattering supplies the continuum counterpart of the same spectral test. In one dimension, a localized potential has an $S$-matrix built from reflection and transmission amplitudes, and probability conservation requires unitarity. In three-dimensional central scattering, the corresponding partial-wave benchmark is
+$$
+S_l(k)=e^{2i\delta_l(k)},
+\qquad
+f(\theta)
+=
+\frac{1}{2ik}
+\sum_{l=0}^{\infty}
+(2l+1)\left(e^{2i\delta_l(k)}-1\right)P_l(\cos\theta).
+$$
+The total cross-section and optical theorem become
+$$
+\sigma_T(k)
+=
+\frac{4\pi}{k^2}
+\sum_l(2l+1)\sin^2\delta_l(k),
+\qquad
+\sigma_T(k)=\frac{4\pi}{k}\operatorname{Im}f(0).
+$$
+An $\mathbb{A}\mathbb{A}\mathbb{A}$ scattering recovery should therefore report
+$$
+\mathcal{R}_{S}(K;\theta)
+=
+\max_{k\in K}
+\max\left(
+\frac{\|S_\theta(k)S_\theta^\dagger(k)-I\|}{\varepsilon_U},
+\frac{\left|\sigma_T^\theta(k)-4\pi\,\operatorname{Im}f_\theta(0;k)/k\right|}{\varepsilon_{\mathrm{opt}}},
+\sup_l\frac{|\sigma_l^\theta(k)-4\pi(2l+1)\sin^2\delta_l^\theta(k)/k^2|}{\varepsilon_l}
+\right)
+\le 1.
+$$
+This residual is a conservation and asymptotic-domain test. It does not require the substrate to contain an abstract incoming plane wave; it requires the retained causal-wake packet to reproduce the same outgoing flux ledger after the detector and access region have been declared.
+
+The analytic structure of the $S$-matrix is a separate benchmark. Bound states appear as poles on the positive imaginary momentum axis, while resonances appear as lower-half-plane poles with
+$$
+E=E_0-\frac{i\Gamma}{2},
+\qquad
+S(E)\sim e^{2i\theta(E)}
+\frac{E-E_0-i\Gamma/2}{E-E_0+i\Gamma/2}.
+$$
+Near such a pole the partial cross-section has the Breit-Wigner form
+$$
+\sigma_l(E)
+\approx
+\frac{4\pi}{k^2}(2l+1)
+\frac{\Gamma^2}{4(E-E_0)^2+\Gamma^2}.
+$$
+The native recovery target is to derive $E_0$ and $\Gamma$ from a metastable assembly basin and its escape channel. A resonance width fitted directly to a spectral peak without a path-history escape ledger is a phenomenological match, not a completed causal-wake explanation.
+
+The Lippmann-Schwinger equation provides a controlled perturbative comparison for weak effective potentials:
+$$
+|\psi\rangle
+=
+|\phi\rangle
++
+\frac{1}{E-H_0+i0^+}V|\psi\rangle.
+$$
+At first Born order the scattering amplitude is proportional to the Fourier transform of the effective potential. This gives a direct failure test for any proposed $V_{\mathrm{eff}}$: short-distance structure at scale $L$ should enter only through momentum transfers $q\sim 1/L$, and long-range Coulomb-like channels require a separate asymptotic phase treatment rather than the compact-support Born packet.
+
 ### Pointlike Idealizations and Running Couplings
 
 Pointlike effective potentials are useful only when their cutoff dependence is controlled. The two-dimensional attractive delta-potential comparison is the warning case. With dimensionless coupling $\tilde g=mg/\hbar^2$ and UV cutoff $\Lambda$, the bound-state energy scale can be written as

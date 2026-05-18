@@ -271,6 +271,14 @@ $$
 \mathrm{BR}_{\mathrm{map}} \rightarrow \mathrm{BR}_{\mathrm{PDG}}
 $$
 
+For low-energy charged weak processes the same mapping must also recover the contracted current-current limit
+$$
+\mathcal{L}_{\mathrm{map}}^{\mathrm{low}}
+\rightarrow
+-\frac{4G_F}{\sqrt 2}\,J_+^\mu J^-_\mu,
+$$
+with $G_F$ supplied by the electroweak corridor scale rather than by an independent contact parameter. This keeps corridor-mode bookkeeping tied to measured beta-decay and muon-decay limits while leaving the finite $W^\pm$ channel as the higher-energy provenance record.
+
 $$
 \sum Q_{\mathrm{in}}=\sum Q_{\mathrm{out}},
 \qquad

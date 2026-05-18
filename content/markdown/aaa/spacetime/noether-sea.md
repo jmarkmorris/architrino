@@ -132,6 +132,88 @@ Important medium properties include:
 
 These are medium variables. They are not properties of the Euclidean void.
 
+## Continuum Balance and Constitutive Closure
+
+The first continuum obligation for the Noether Sea is local bookkeeping of conserved or slowly relaxing coarse variables. For a material region $V\subset\Sigma_t$, a density variable is mature only when its integral changes by boundary flux, declared source, and residual:
+$$
+\frac{d}{dt}\int_V \rho_{\text{core}}\,dV
++
+\int_{\partial V}\rho_{\text{core}}\mathbf{u}_{\mathrm{sea}}\cdot\hat{\mathbf n}\,dA
+=
+\int_V S_{\rho}\,dV
++
+R_{\rho,V}.
+$$
+Equivalently, on resolved windows,
+$$
+\partial_t\rho_{\text{core}}
++\nabla\cdot(\rho_{\text{core}}\mathbf{u}_{\mathrm{sea}})
+=
+S_{\rho}
++r_{\rho}.
+$$
+The same standard applies to cadence, orientation, strain, and energy variables. A continuum equation is therefore not added because fluids are a good analogy; it is admitted only when it is the low-moment projection of the resolved Noether-core population and the residual decreases under refinement.
+
+The kinetic-theory lesson is that hydrodynamic variables are the slow variables associated with conserved quantities. For the Noether Sea, the candidate slow state is
+$$
+\Theta_{\mathrm{sea}}
+=
+\left(
+\rho_{\text{core}},
+\mathbf{u}_{\mathrm{sea}},
+e_{\mathrm{sea}},
+\boldsymbol\theta_{\mathrm{sea}},
+f_N
+\right),
+$$
+where $e_{\mathrm{sea}}$ is the retained medium energy density and $\boldsymbol\theta_{\mathrm{sea}}$ packages the declared orientation, delay, and envelope variables. The moment-closure residual is
+$$
+\mathcal R_{\mathrm{mom}}
+=
+\max_a
+\frac{
+\left\|
+\partial_t M_a[\Theta_{\mathrm{sea}}]
++\nabla\cdot J_a[\Theta_{\mathrm{sea}}]
+-S_a[\Theta_{\mathrm{sea}}]
+\right\|
+}{
+\left\|\partial_t M_a\right\|
++\left\|\nabla\cdot J_a\right\|
++\left\|S_a\right\|
++\varepsilon
+},
+$$
+with $a$ ranging over the retained density, momentum, energy, cadence, and orientation moments. This residual is the guardrail against closing the Noether Sea by naming a fluid-like equation while hiding unresolved causal-wake memory in fitted coefficients.
+
+Constitutive response must be stated as a map from the same state variables. A weak linear row has the schematic form
+$$
+\delta Y_A(\omega,\mathbf{k})
+=
+\sum_B
+\chi_{AB}(\omega,\mathbf{k})\,
+\delta X_B(\omega,\mathbf{k})
++R_A^{\chi},
+$$
+where $X_B$ are declared perturbations of $\Theta_{\mathrm{sea}}$ and $Y_A$ are observer-channel readouts such as delay factor, stress, cadence, or clock response. Causality requires the time-domain kernel to have delayed support only, which becomes an analyticity and dispersion check in frequency space. The practical residual is
+$$
+\mathcal R_{\mathrm{KK}}(\chi_{AB})
+=
+\frac{
+\left\|
+\operatorname{Re}\chi_{AB}(\omega)
+-
+\mathcal H\!\left(\operatorname{Im}\chi_{AB}\right)(\omega)
+\right\|_{\omega}
+}{
+\left\|\operatorname{Re}\chi_{AB}\right\|_{\omega}
++
+\left\|\mathcal H\!\left(\operatorname{Im}\chi_{AB}\right)\right\|_{\omega}
++\varepsilon
+},
+$$
+where $\mathcal H$ is the principal-value Hilbert transform used by the packet. A nonzero residual means the proposed response row is not yet a causal Noether-Sea constitutive law.
+
 ## Equilibrium Transport Hypothesis
 
 A provisional cosmology-facing hypothesis treats the Noether Sea as a dense neighbor-coupled population of Noether cores whose individual action transactions are discrete while the ensemble response can be smooth. Most cores in a weak deep-space region have other Noether cores as their nearest dynamical neighbors. Photons and neutrinos can traverse the population, and gravitational waves can perturb it, but the baseline relaxation law is a core-to-core medium law.

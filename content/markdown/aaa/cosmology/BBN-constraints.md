@@ -83,6 +83,29 @@ $$
 
 The reaction bookkeeping is unchanged; the $\mathbb{A}\mathbb{A}\mathbb{A}$ shift is the background interpretation that sets temperature, density, and freeze-out timing.
 
+The standard freeze-out scalings should remain explicit because they are the hard targets for any SMBH-local or transport-cooling replacement. In a radiation-dominated comparison packet,
+$$
+t
+\approx
+\frac{2.4\ \mathrm{s}}{\sqrt{g_*}}
+\left(\frac{1\ \mathrm{MeV}}{k_BT}\right)^2,
+$$
+where $g_*$ is the effective relativistic-species loading. The neutron-to-proton ratio follows the equilibrium estimate
+$$
+\frac{n_n}{n_p}
+\approx
+\exp\!\left(-\frac{\Delta m\,c_0^2}{k_BT}\right)
+$$
+until weak reactions fall out of equilibrium. Deuterium survival is delayed by the high photon loading; a schematic bottleneck condition is
+$$
+\frac{n_D}{n_p}
+\sim
+\eta
+\left(\frac{k_BT}{m_p c_0^2}\right)^{3/2}
+\exp\!\left(\frac{E_D}{k_BT}\right),
+$$
+with $E_D$ the deuterium binding energy and $\eta$ the baryon-to-photon ledger variable. These equations are observer-level benchmarks for the thermal record. A native local-reactor branch may reinterpret where the history occurs, but it must reproduce the same freeze-out, deuterium-bottleneck, $Y_p$, D/H, lithium, $\eta$, and $N_{\text{eff}}$ residuals without fitting them in separate source zones.
+
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ SMBH-Local Nucleation Chain
 
 The BBN story is one continuous mechanism:

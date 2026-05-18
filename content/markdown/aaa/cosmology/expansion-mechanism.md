@@ -915,6 +915,25 @@ $$
 
 The symbol $H_0$ can therefore remain in the comparison language, but its physical meaning changes. It summarizes the present local redshift-per-distance coefficient of Noether-Sea transport and clock-rate comparison after source and motion corrections. It is not a direct measurement of space stretching. Directional or environmental variation in the inferred $H_0$ is not automatically a calibration failure; it is a diagnostic of whether the local Noether-Sea state is close enough to the homogeneous limit used by the distance ladder.
 
+Distance observables must also keep the flux factors separate. In the homogeneous comparison limit, luminosity distance is not only a geometric area proxy; it packages photon energy redshift and arrival-rate dilation:
+$$
+F
+=
+\frac{L}{4\pi D_A^2(1+z)^2},
+\qquad
+d_L=(1+z)^2D_A.
+$$
+For a low-redshift effective FRW projection this becomes
+$$
+d_L(z)
+=
+\frac{c_0}{H_{0,\mathrm{eff}}}
+\left[
+z+\frac12(1-q_{0,\mathrm{eff}})z^2+O(z^3)
+\right].
+$$
+In the fixed-void reading, $H_{0,\mathrm{eff}}$ and $q_{0,\mathrm{eff}}$ are coefficients of the corrected transport and clock-comparison map. A branch that fits redshift but fails the two flux factors, time-dilation factor, or angular-distance reciprocity has not recovered the cosmological distance ladder.
+
 ### Local Redshift-Transfer Curve
 
 The corrected propagation residual should be modeled as a local transfer curve before it is averaged into any Hubble-like number. Let the receiver event be $R=(\mathbf{x}_R,t_R)$, and let $\hat{\mathbf{k}}$ point from emitter to receiver. Measure Euclidean path distance $s$ backward from the receiver toward the emitter:
@@ -1215,10 +1234,20 @@ Conceptually, this layer is adjacent to inhomogeneous/clock-calibration cosmolog
 For data-comparison work, one may retain a Friedmann-like summary:
 
 $$
-H^2 = \frac{8\pi G_{\text{eff}}}{3}\left(\rho_m+\rho_r+\rho_{\text{sea}}\right)-\frac{k_{\text{eff}}}{a^2},
+H_{\mathrm{eff}}^2
+=
+\frac{8\pi G_{\text{eff}}}{3c_0^2}
+\left(\rho_m+\rho_r+\rho_{\text{sea}}\right)
+-\frac{k_{\text{eff}}c_0^2}{a_{\mathrm{eff}}^2},
 $$
 
-with $a(t)$ interpreted as a medium-state parameter and $G_{\text{eff}},k_{\text{eff}}$ as effective summaries of assembly-medium response.
+with $a_{\mathrm{eff}}(t)$ interpreted as a medium-state parameter and $G_{\text{eff}},k_{\text{eff}}$ as effective summaries of assembly-medium response. If a pressure variable is used in the same projection, it must satisfy the comparison continuity row
+$$
+\dot\rho_{\mathrm{eff}}
++3H_{\mathrm{eff}}(\rho_{\mathrm{eff}}+P_{\mathrm{eff}})
+=0
+$$
+or declare the residual source term supplied by Noether-Sea transport.
 
 This equation is a comparison layer for the homogeneous and isotropic limit. It does not by itself justify the assumption that supernovae, BAO, CMB distances, and local-ladder calibrations all share one isotropic background. That shared background must be recovered as a limit of the medium-state model or replaced by an explicitly directional effective map.
 

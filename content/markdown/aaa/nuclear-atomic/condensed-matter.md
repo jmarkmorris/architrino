@@ -58,6 +58,260 @@ $$
 
 This is the condensed-matter version of medium-dressed inertial response. The Noether Sea may shape the response tensor, the local delay factor, and the stability margin, but it must not drain energy from a stable bound state merely because that state is moving through the medium.
 
+## Lattice and Band-Response Recovery
+
+The first standard condensed-matter recovery target is not a new substrate ontology. It is the observer-level band description that must emerge when electron assemblies move through a periodic material branch. Fix a material branch $\mathcal B_{\mathrm{lat}}$ with primitive lattice vectors $\mathbf a_i$, reciprocal vectors $\mathbf b_i$ satisfying
+
+$$
+\mathbf a_i\cdot\mathbf b_j=2\pi\delta_{ij},
+$$
+
+and a Brillouin zone $\mathrm{BZ}$ given by the Wigner-Seitz cell of the reciprocal lattice. The effective electron-envelope states should admit a Bloch-form recovery
+
+$$
+\psi_{\alpha\mathbf k}(\mathbf x)
+=
+e^{i\mathbf k\cdot\mathbf x}
+u_{\alpha\mathbf k}(\mathbf x),
+\qquad
+u_{\alpha\mathbf k}(\mathbf x+\mathbf R)=u_{\alpha\mathbf k}(\mathbf x),
+\qquad
+\mathbf R\in\Lambda,
+$$
+
+with $\mathbf k$ identified modulo reciprocal-lattice vectors. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is an effective envelope statement: the periodic material branch constrains the electron assembly's resonance envelope, while the underlying causal-wake and Noether-Sea records remain the native dynamics.
+
+The corresponding band residual should compare the recovered dispersion $E_\alpha(\mathbf k)$ to the observed material branch without fitting a separate rule for each probe:
+
+$$
+\mathcal R_{\mathrm{band}}
+=
+\mathcal R_{\mathrm{band}}\!\left(
+E_\alpha(\mathbf k),
+\mathcal B_e,
+\mathcal B_{\mathrm{lat}},
+\rho_{\text{core}},
+n,
+\chi_{\text{sea}},
+\mathcal M_{\text{sea}}^{ab}
+\right).
+$$
+
+Near a non-degenerate band extremum, the effective mass tensor is the required local curvature object,
+
+$$
+\left(m_{\alpha,*}^{-1}\right)^{ij}
+=
+\frac{1}{\hbar^2}
+\frac{\partial^2 E_\alpha}{\partial k_i\partial k_j}.
+$$
+
+This tensor is a material-response readout, not the primitive mass of the electron assembly. It belongs beside the medium-dressed inertial response above: the exposed assembly mass determines how the electron assembly enters the material branch, while the band curvature determines how that branch responds to slow envelope perturbations.
+
+The Fermi-surface target is likewise a recovery target. For a chemical potential $\mu$,
+
+$$
+\mathcal F_{\alpha}
+=
+\left\{
+\mathbf k\in\mathrm{BZ}:
+E_\alpha(\mathbf k)=\mu
+\right\}.
+$$
+
+Metal-like branches have a nonempty $\mathcal F_\alpha$ and therefore low-energy response at arbitrarily small excitation cost along the surface. Band-insulator branches have filled bands separated by a positive gap,
+
+$$
+\Delta_{\mathrm{band}}
+=
+\min_{\alpha\in\mathrm{empty},\,\beta\in\mathrm{filled},\,\mathbf k,\mathbf k'}
+\left[
+E_\alpha(\mathbf k)-E_\beta(\mathbf k')
+\right]
+>
+0.
+$$
+
+Semiconductor, Mott-insulator, and topological-insulator comparisons should enter as refinements of this gap-and-branch classification. A Mott branch cannot be recovered by single-electron band filling alone; it requires an interaction or exclusion residual that blocks double occupancy or its assembly-level analogue. A topological branch cannot be promoted from gap size alone; it needs a Berry-curvature or boundary-mode invariant tied to the same effective connection used by the electromagnetic recovery program.
+
+The minimal transport consistency condition is that a perfect periodic branch has no ordinary Drude loss term. If a current relaxes, the relaxation time $\tau$ must be traced to disorder, vacancies, phonons, boundary exchange, or another logged branch disturbance. The observer-level Drude comparison may keep
+
+$$
+\sigma
+=
+\frac{e^2\tau n_{\mathrm{car}}}{m_*},
+$$
+
+but $\tau^{-1}$ must vanish in the ideal branch limit and must not be confused with Noether-Sea drag below $\mathcal{R}_{\text{tr},*}$. This is the condensed-matter version of the no-drag rule: stable Bloch transport is coherent envelope transport until a material imperfection, lattice excitation, or branch transition opens a logged loss channel.
+
+## Lattice Scattering and Phonon Response
+
+The scattering target should recover reciprocal-lattice selectivity before interpreting material images or diffraction data. For incident and outgoing wavevectors $\mathbf k$ and $\mathbf k'$, let $\mathbf q=\mathbf k-\mathbf k'$. A periodic lattice branch must give constructive elastic scattering only on reciprocal-lattice transfers,
+
+$$
+\mathbf q\in\Lambda^*,
+$$
+
+with basis dependence carried by a structure factor
+
+$$
+S(\mathbf q)
+=
+\sum_i f_i(\mathbf q)e^{i\mathbf q\cdot\mathbf d_i}.
+$$
+
+The residual
+
+$$
+\mathcal R_{\mathrm{diff}}
+=
+\mathcal R_{\mathrm{diff}}\!\left(
+\{\mathbf q_{\mathrm{obs}}\},
+\Lambda^*,
+S(\mathbf q),
+\mathcal B_{\mathrm{lat}},
+\Theta_E^{(\ell)}
+\right)
+$$
+
+tests whether the declared lattice branch, basis, and atom-local Noether-Sea response generate the same reciprocal-space selection rule. Thermal or zero-point lattice motion may reduce peak intensity through an effective Debye-Waller factor, but it should not move the reciprocal-lattice condition unless the material branch itself changes.
+
+Phonons are the next material-response layer. For a branch displacement vector $\mathbf u_n(t)$ about equilibrium sites, the harmonic branch is governed by a dynamical matrix $D_{ij}(\mathbf k)$:
+
+$$
+\omega_s^2(\mathbf k)\,\epsilon_{s,i}(\mathbf k)
+=
+D_{ij}(\mathbf k)\epsilon_{s,j}(\mathbf k).
+$$
+
+In a long-wavelength isotropic elastic limit, the same branch should reduce to a displacement field $u_i(\mathbf x,t)$ with strain
+
+$$
+u_{ij}
+=
+\frac{1}{2}
+\left(
+\frac{\partial u_i}{\partial x_j}
++
+\frac{\partial u_j}{\partial x_i}
+\right)
+$$
+
+and elastic action
+
+$$
+S_{\mathrm{el}}
+=
+\int dtd^3x
+\left[
+\frac{\rho_{\mathrm{mat}}}{2}
+\left(
+\frac{\partial u_i}{\partial t}
+\right)^2
+-
+2\mu u_{ij}u_{ij}
+-
+\lambda u_{ii}u_{jj}
+\right].
+$$
+
+The acoustic recovery target is
+
+$$
+\omega_{\mathrm L}^2
+=
+\frac{2\mu+\lambda}{\rho_{\mathrm{mat}}}k^2,
+\qquad
+\omega_{\mathrm T}^2
+=
+\frac{\mu}{\rho_{\mathrm{mat}}}k^2,
+$$
+
+for longitudinal and transverse modes in the low-$k$ limit. Optical phonons require a multi-atom basis and a nonzero branch frequency as $\mathbf k\to0$. These modes are effective collective excitations of the material branch; they are not new primitive particles in the ontology.
+
+This gives a sharper transport accounting rule. If a material event excites a phonon, the energy ledger must record it as a lattice-branch update:
+
+$$
+\Delta E_{\mathrm{lat}}
+=
+\sum_s\int_{\mathrm{BZ}}
+\frac{d^3k}{(2\pi)^3}
+\hbar\omega_s(\mathbf k)\,
+\Delta N_s(\mathbf k),
+$$
+
+where $\Delta N_s$ is the changed phonon occupation in the effective branch description. A coherent recoil-free or elastic event has $\Delta N_s=0$ for the relevant phonon channels and must route momentum through the whole branch or boundary record. This is the material analogue of distinguishing reversible retuning from heating.
+
+## Hall and Topological Response Benchmarks
+
+Hall response is a high-value comparison because it separates ordinary transport loss from transverse, nondissipative response. The classical Hall branch supplies the baseline tensor target
+
+$$
+\rho_{xy}
+=
+\frac{B}{n_{\mathrm{car}}e},
+\qquad
+\rho_{xx}
+=
+\frac{m_*}{n_{\mathrm{car}}e^2\tau}.
+$$
+
+This baseline is observer-level bookkeeping. The effective magnetic-state map must still be derived from the photon/action ledger and material branch, and the Lorentz-force form must remain a recovery target rather than a primitive substrate force law.
+
+The integer quantum Hall recovery target is stronger. In a two-dimensional gapped branch, the Hall conductivity must reduce to
+
+$$
+\sigma_{xy}
+=
+\frac{e^2}{2\pi\hbar}\,C,
+\qquad
+C\in\mathbb Z,
+$$
+
+where $C$ is the first Chern number of the filled effective band bundle,
+
+$$
+C
+=
+-
+\frac{1}{2\pi}
+\int_{\mathrm{BZ}}F_{xy}(\mathbf k)\,d^2k,
+\qquad
+F_{xy}
+=
+\frac{\partial A_y}{\partial k_x}
+-
+\frac{\partial A_x}{\partial k_y}.
+$$
+
+Here $A_i(\mathbf k)=-i\langle u_{\mathbf k}|\partial_{k_i}u_{\mathbf k}\rangle$ is an effective Berry connection over the Brillouin zone. This is a comparison/recovery object: it tests whether the effective U(1) connection and material branch reproduce topological quantization. It should not be imported as a fundamental gauge-potential ontology.
+
+The robustness condition is that a small branch perturbation cannot change $C$ while the gap stays open:
+
+$$
+\Delta_{\mathrm{top}}>0
+\quad\Longrightarrow\quad
+\delta C=0.
+$$
+
+Disorder may localize non-transporting states and widen observed plateaux, but the plateau value must come from the topological invariant of the extended branch, not from disorder as a fitted correction. A compact Hall residual is
+
+$$
+\mathcal R_{\mathrm{QH}}
+=
+\left|
+\frac{2\pi\hbar}{e^2}\sigma_{xy}
+-
+C_{\mathrm{filled}}
+\right|
++
+\frac{\rho_{xx}}{\rho_{xx}^{\mathrm{tol}}}
++
+\frac{\max(0,-\Delta_{\mathrm{top}})}{\Delta_{\mathrm{top}}^{\mathrm{tol}}}.
+$$
+
+Fractional quantum Hall states, anyons, non-Abelian edge sectors, Chern-Simons effective actions, and chiral boundary liquids are valuable comparison material, but they should stay in the recovery/comparison bucket unless a local $\mathbb{A}\mathbb{A}\mathbb{A}$ closure target consumes them directly. The safe present requirement is narrower: recover quantized Hall response, edge robustness, fractional charge/statistics as observer-level collective behavior where experimentally required, and keep every topological field description downstream of the effective material branch rather than treating it as substrate ontology.
+
 ### Photon-Coupled Surface Transport
 
 Photon absorption, reflection, and surface heating are thresholded transport events in the same condensed-matter sense. The incoming photon ledger does not permit a continuous drag term on the material, and the material does not act as a hard spatial wall. A surface cell supplies electron-envelope, bonding or lattice, nuclear-source, and local Noether-Sea records that route the incoming planar-pair ledger into coherent re-release, capture, scattering, heat, recoil, or retained excitation.
