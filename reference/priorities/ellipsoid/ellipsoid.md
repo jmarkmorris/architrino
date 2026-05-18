@@ -11,9 +11,11 @@
 
 ## Task Queue
 
-1. `effective_metric_route_decision` — Decide whether the shape-plus-scale deformation draft should be promoted into effective-metric, proper-time, Noether-core-geometry, strong-field, or cosmology closure paths. Status: `review`. Depends on: none.
-2. `raw_note_route_decision` — Preserve and classify the raw notes on closed-form energy, $h$ transfer, black-hole interior behavior, frequency mismatch, radiation, and temperature. Status: `parked`. Depends on: none.
-3. `ideal_core_route_decision` — Decide whether the Ideal Core app design brief moves to animator, simulations, deferred, or a concrete inspection-instrument packet. Status: `review`. Depends on: `effective_metric_route_decision`.
+1. `raw_note_route_decision` — Preserve and classify the raw notes on closed-form energy, $h$ transfer, black-hole interior behavior, frequency mismatch, radiation, and temperature. Status: `parked`. Depends on: none.
+2. `ideal_core_route_decision` — Decide whether the Ideal Core app design brief moves to animator, simulations, deferred, or a concrete inspection-instrument packet. Status: `review`. Depends on: none.
+3. `ellipsoid_retirement_review` — Verify that the promoted shape-plus-scale deformation material is now owned by Noether-core geometry, proper-time, and effective-metric work, then retire or defer any remaining ellipsoid-only residue. Status: `next`. Depends on: `raw_note_route_decision`, `ideal_core_route_decision`.
+
+Completed corpus-sync note: `effective_metric_route_decision` is no longer an active priority item. The core shape-plus-scale deformation language now lives in the Noether-core geometry, proper-time, and effective-metric corpus paths; this directory only keeps residual routing and app-design decisions.
 
 ## Scope
 
@@ -37,9 +39,9 @@ The immediate organization goal is to keep three materials distinct:
 
 | Task | Detailed file | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
-| `effective_metric_route_decision` | [effective-metric-deformation.md](effective-metric-deformation.md) | [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [noether-core-geometry](../../../content/markdown/aaa/spacetime/noether-core-geometry.md) | The draft states a quantitative route from Noether-core shape/scale variables to effective metric, clock, lensing, and anisotropy predictions without overclaiming GR closure. |
 | `raw_note_route_decision` | [raw-notes.md](raw-notes.md) | [energy](../../../content/markdown/aaa/dynamics/energy.md), [tri-binary-dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md), and [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) | Each raw note is either promoted into a named theorem target, routed to another workstream, or left parked as exploratory intuition. |
 | `ideal_core_route_decision` | [ideal-core.md](ideal-core.md) | [animator](../animator/animator.md) and [simulations](../simulations/simulations.md) | The app brief is tied to a concrete simulation or visualization use case before implementation work is promoted. |
+| `ellipsoid_retirement_review` | [effective-metric-deformation.md](effective-metric-deformation.md), [raw-notes.md](raw-notes.md), and [ideal-core.md](ideal-core.md) | Existing priority workstreams or deferred archive | No ellipsoid-only priority remains unless it has a distinct equation, simulation target, observable, or app owner that cannot live in an existing workstream. |
 
 ## Retirement Conditions
 

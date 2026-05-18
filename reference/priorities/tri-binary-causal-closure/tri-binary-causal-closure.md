@@ -12,7 +12,7 @@
 ## Task Queue
 
 1. `photon_qed_gate` — Build the three photon/QED stress-test packets for kinematics and optics, polarization and spin, and vertices and transitions. Status: `pending`. Depends on: none.
-2. `residual_routing_event_ledger` — Advance the promoted residual-to-channel contract into worked sector cases for radiation, transport, weak reactions, nuclear binding, measurement records, and strong-field release. Status: `contract-promoted`; worked theorem cases pending. Depends on: none.
+2. `residual_routing_event_ledger` — Advance the promoted residual-to-channel contract into worked sector cases for radiation, transport, weak reactions, nuclear binding, measurement records, and strong-field release. Status: `worked-cases-pending`. Depends on: none.
 3. `radiation_gate_c_benchmarks` — Build the radiation Gate C benchmark ledger for atomic transitions, bremsstrahlung, synchrotron, Compton-like scattering, pair channels, and blackbody recovery. Status: `pending`. Depends on: `photon_qed_gate`, `residual_routing_event_ledger`.
 
 ## Completed State
@@ -39,14 +39,13 @@ The deployed dynamics baseline is [Tri-Binary Dynamics](../../../content/markdow
 
 ## Promotion Map
 
+Completed map-cleanup items are recorded in `Completed State` above. The live promotion map now lists only active or downstream queue items.
+
 | Task | Detailed file | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
-| `tri_binary_dependency_map` | [tri-binary-dependency-map.md](tri-binary-dependency-map.md) | All tri-binary causal-closure promotion targets. | Every unresolved claim has a `closed`, `roadmap`, `priority`, or `cut` disposition before textbook-facing deployment. |
-| `continuity_pass` | [rest-mass-proper-time-relativity-synthesis.md](rest-mass-proper-time-relativity-synthesis.md) | [energy](../../../content/markdown/aaa/dynamics/energy.md), [tri-binary-dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md), [special-relativity-noether-core](../../../content/markdown/aaa/theory-bridges/special-relativity-noether-core.md), and [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md) | The synthesis is walked against the dependency map, theorem-roadmap tags stay attached to open burdens, and unsupported theorem prose is routed or cut. |
 | `photon_qed_gate` | [rest-mass-proper-time-relativity-synthesis.md](rest-mass-proper-time-relativity-synthesis.md) | [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md), [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md), and downstream Standard Model closure material. | Photon gates A-C are separated into kinematics/optics, polarization/spin, and vertices/transitions with explicit null-test burdens before deployment. |
 | `residual_routing_event_ledger` | [residual-routing-event-ledger.md](residual-routing-event-ledger.md) | [reaction-ledger](../../../content/markdown/aaa/validation/reaction-ledger.md), [reaction-cosmology-provenance-ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md), [energy](../../../content/markdown/aaa/dynamics/energy.md), and [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) | A named residual routes through admissible channels into a complete $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ event ledger before any transition, radiation event, measurement record, reaction, transport excitation, or strong-field release is promoted. |
 | `radiation_gate_c_benchmarks` | [radiation-gate-c-benchmarks.md](radiation-gate-c-benchmarks.md) | [radiation](../../../content/markdown/aaa/reactions/radiation.md), [atomic-transition-radiation](../../../content/markdown/aaa/reactions/atomic-transition-radiation.md), [bremsstrahlung](../../../content/markdown/aaa/reactions/bremsstrahlung.md), [synchrotron](../../../content/markdown/aaa/reactions/synchrotron.md), and [reaction-ledger](../../../content/markdown/aaa/validation/reaction-ledger.md) | One closure-residual event ledger recovers the benchmark electromagnetic/QED-like channels without per-observable retuning and without bypassing photon Gate A/B. |
-| `deployment_handoff` | [tri-binary-dependency-map.md](tri-binary-dependency-map.md) and [rest-mass-proper-time-relativity-synthesis.md](rest-mass-proper-time-relativity-synthesis.md) | Target AAA dynamics, spacetime, quantum, and theory-bridge docs. | Each promotion claim is either integrated into the target document or retained as an explicit priority task. |
 
 ## Related Priorities
 

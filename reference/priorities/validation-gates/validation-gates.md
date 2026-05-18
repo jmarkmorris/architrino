@@ -93,9 +93,7 @@ is nonempty. Local sector success is therefore not mature until at least one sha
 
 | Task | Detailed file | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
-| `closure_intersection_ledger` | [closure-intersection-ledger.md](closure-intersection-ledger.md) | [known-tensions](../../../content/markdown/aaa/validation/known-tensions.md) and [closure-scorecard](../../../content/markdown/aaa/validation/closure-scorecard.md) | The pressure ledger is rewritten as explicit acceptance sets with pass/fail dependencies rather than a flat list of worries. |
-| `no_go_applicability_map` | [closure-intersection-ledger.md](closure-intersection-ledger.md) | [no-go-theorems](../../../content/markdown/aaa/validation/no-go-theorems.md) | Each formal obstruction records assumptions, applicability, required replacement condition, and failure mode. |
-| `failure_condition_routing` | [closure-intersection-ledger.md](closure-intersection-ledger.md) | [failure-criteria](../../../content/markdown/aaa/validation/failure-criteria.md) | Tier 1 and Tier 2 failure conditions route to named workstreams without weakening the falsifier. |
+| `worked_shared_closure_record` | [closure-intersection-ledger.md](closure-intersection-ledger.md) | [known-tensions](../../../content/markdown/aaa/validation/known-tensions.md), [no-go-theorems](../../../content/markdown/aaa/validation/no-go-theorems.md), [failure-criteria](../../../content/markdown/aaa/validation/failure-criteria.md), and [closure-scorecard](../../../content/markdown/aaa/validation/closure-scorecard.md) | The first sector case that claims promotion produces either a nonempty extension fiber inside $\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ or a named incompatibility witness. |
 
 ## Related Priorities
 

@@ -12,9 +12,8 @@
 ## Task Queue
 
 1. `circular_asymptotics` — Extend higher-winding and large-beta circular self-force asymptotics. Status: `next`. Depends on: none.
-2. `spiral_turning_conditions` — Record the variable-pitch partner/self branch formulas, radial turn inequality, and weighted tangential obstruction test. Status: `advanced-theorem-target`. Depends on: none.
-3. `spiral_branch_chart_test` — Certify whether any admissible variable-pitch spiral roots realize negative weighted tangential drive with positive Jacobian floors and finite memory depth. Status: `next`. Depends on: `spiral_turning_conditions`, `circular_asymptotics`.
-4. `lorentz_gr_bridge` — Close the Lorentz and weak-field GR bridge from the coarse-grained delayed medium. Status: `pending`. Depends on: `spiral_branch_chart_test`.
+2. `spiral_branch_chart_test` — Certify whether any admissible variable-pitch spiral roots realize negative weighted tangential drive with positive Jacobian floors and finite memory depth, using the promoted variable-pitch formulas, radial-turn inequality, and weighted tangential obstruction test. Status: `next`. Depends on: `circular_asymptotics`.
+3. `lorentz_gr_bridge` — Close the Lorentz and weak-field GR bridge from the coarse-grained delayed medium. Status: `pending`. Depends on: `spiral_branch_chart_test`.
 
 ## Scope
 
@@ -27,7 +26,6 @@ This file remains the control surface for the workstream. No sibling detailed pr
 | Task | Detailed source | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
 | `circular_asymptotics` | This file | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) | Higher-winding and large-$\beta$ circular self-force asymptotics are extended beyond the current leading-order footholds. |
-| `spiral_turning_conditions` | This file | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) | Variable-pitch partner/self branch formulas, radial turn inequality, and weighted tangential obstruction test are stated with enough detail to drive a branch-chart test. |
 | `spiral_branch_chart_test` | This file | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) and [dyadic-lock](../dyadic-lock/dyadic-lock.md) | One admissible variable-pitch candidate reports partner and self roots, positive Jacobian floors, finite memory depth, radial-turn status, and weighted tangential-drive verdict. |
 | `lorentz_gr_bridge` | This file | [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) | Moving tri-binary contraction, clock retuning, and coarse-grained medium response recover weak-field GR targets without ad hoc tuning. |
 
@@ -43,6 +41,8 @@ $$
 and defines the corresponding energy, momentum, and angular-momentum wake-history increments across a time cut. [effective-lagrangian](../../../content/markdown/aaa/dynamics/effective-lagrangian.md) and [tri-binary-dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md) now consume that kernel as the available action-level repair rather than as a missing Noether-boundary placeholder.
 
 This completion does not certify a branch or terminal label. Downstream consumers must still pull the increments back to their retained branch charts and prove closure of $K_{\mu}+E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, and $\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$ with the same root-ledger, memory-depth, and Jacobian-floor conditions used by the Master EOM.
+
+`spiral_turning_conditions` is also promoted into [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md). The corpus now contains the variable-pitch extension, corrected partner Jacobian, self-branch Frenet analogue, radial-turn inequality, and weighted tangential obstruction test. The active priority is no longer to state those formulas; it is to certify or falsify a concrete branch chart that consumes them.
 
 ## Live Targets
 
