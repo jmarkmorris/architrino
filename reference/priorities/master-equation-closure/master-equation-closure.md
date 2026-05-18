@@ -21,6 +21,10 @@ Keep dynamics, geometry, and mapping centered on [master-equation.md](../../../c
 
 This file remains the control surface for the workstream. No sibling detailed priority file is needed yet; if the program grows, the natural split is one action-kernel / Noether-boundary packet, one circular/spiral closure packet, and one Lorentz/GR bridge packet.
 
+## OpenAlex Source Baseline
+
+[openalex-source-baseline.md](openalex-source-baseline.md) records the May 18, 2026 source-mining baseline for this rank-1 workstream. The useful external backbone is functional differential equation theory for history-space well-posedness, state-dependent delay smoothness for active-root charts, direct-action electrodynamics for action-level conservation accounting, and Lorentz/PPN/preferred-frame tests for the bridge acceptance surface. The immediate corpus promotion from that pass is the state-dependent delay compatibility condition now added to [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md).
+
 ## Promotion Map
 
 | Task | Detailed source | Primary promotion target | Promotion gate |
@@ -347,6 +351,57 @@ $$
 \inf_{\theta\in I_\ast,\ 0<\Delta<\Delta_{\mathrm{co}}}
 \frac{|F_s(\theta,\Delta)|}{\Delta}>0.
 $$
+
+#### VP-1 History-Compatibility Row
+
+The VP-1 packet must also pass the state-dependent delay compatibility condition now promoted in the Master Equation. Let
+$$
+\mathcal{U}_{\mathrm{VP1}}
+\subset
+C^1([-h,0],(\mathbb{R}^3)^2)
+$$
+be a retained history tube around the candidate pair history on $I_\ast$. Every certified active root must be represented by a $C^1$ root-offset map
+$$
+\Delta_\alpha:I_\ast\times\mathcal{U}_{\mathrm{VP1}}\to D_h,
+\qquad
+\alpha\in\mathcal{A}_{\mathrm{VP1}},
+$$
+where $\mathcal{A}_{\mathrm{VP1}}$ indexes the retained partner and self root tubes. The maps must satisfy
+$$
+F_{\alpha}(\theta,\Delta_\alpha(\theta,\phi);\phi)=0,
+\qquad
+\left|\partial_\Delta F_{\alpha}(\theta,\Delta_\alpha(\theta,\phi);\phi)\right|
+\ge \nu_{\Delta}>0,
+$$
+for all $\theta\in I_\ast$ and all $\phi\in\mathcal{U}_{\mathrm{VP1}}$, with the same active-root identities as the nominal VP-1 chart. The inactive boxes $Q_a^p,Q_a^s$ must retain positive interval gaps throughout the same tube:
+$$
+\inf_{\phi\in\mathcal{U}_{\mathrm{VP1}}}\inf_{Q_a^p}|F_p(\theta,\Delta;\phi)|>0,
+\qquad
+\inf_{\phi\in\mathcal{U}_{\mathrm{VP1}}}\inf_{Q_a^s}|F_s(\theta,\Delta;\phi)|>0.
+$$
+
+The root-transport residual is evaluated in the $\theta$ parametrization. Since $t=\theta/\Omega$ and an active emission time is $t_0=(\theta-\Delta_\alpha(\theta))/\Omega$, a simple root must satisfy
+$$
+\mathcal{R}_{\mathrm{tr},\alpha}(\theta)
+\equiv
+\left|
+1-\frac{d\Delta_\alpha}{d\theta}
+-
+\frac{1-\hat{\mathbf r}_\alpha\cdot\mathbf{v}_{i,\alpha}/c_f}
+{J_\alpha}
+\right|
+=0
+$$
+up to the declared interval or quadrature tolerance. The VP-1 certificate must therefore report
+$$
+\max_{\alpha\in\mathcal{A}_{\mathrm{VP1}}}
+\sup_{\theta\in I_\ast}
+\mathcal{R}_{\mathrm{tr},\alpha}(\theta)
+\le \varepsilon_{\mathrm{tr}},
+$$
+alongside $\nu_J$, inactive-gap floors, the finite-memory bound, $\mathcal{T}_r(0)$, and $\mathcal{D}_T(I_\ast)$.
+
+Classification. VP-1 is derivative-sensitive on the retained $C^1$ history chart because $J_\alpha^{-1}$ and the transported root offsets depend on delayed source velocities. It should not be promoted as a neutral-type theorem unless a later Noether wake-history pullback introduces delayed acceleration or boundary-derivative dependence and supplies the corresponding continuity estimate. Failure of $C^1$ root-offset dependence, inactive-gap persistence, or the root-transport residual blocks the VP-1 branch chart before the radial-turn and weighted tangential-drive verdicts are interpreted.
 
 The finite-memory bound is supplied by
 $$

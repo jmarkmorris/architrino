@@ -162,6 +162,20 @@ $$
 $$
 This residual belongs to the observer-level recovery map. It passes only when the same Noether-Sea and axial-layer branch record that supplies local electromagnetic force and phase transport also yields $\mathcal{R}_{\mathrm{loop}\text{-}Q}\le\varepsilon_{\mathrm{loop}\text{-}Q}$ for the benchmark loop family. If a branch recovers the charge table locally but cannot make closed-loop phase globally consistent, the six-site quantization proof is only combinatorial and has not yet recovered the gauge-topological content of charge quantization.
 
+A magnetic-charge comparison branch must also separate formation from capture. In observer-level language a magnetically charged compact object can form with charge or later capture charged defects. The $\mathbb{A}\mathbb{A}\mathbb{A}$ gauge map should not import either story as ontology, but it can retain the provenance distinction as a residual on the effective flux record:
+$$
+Q_{m,\mathrm{eff}}^\theta(t)
+=
+Q_{m,\mathrm{form}}^\theta
++
+\int_{t_{\mathrm{form}}}^{t}
+\Gamma_{m,\mathrm{cap}}^\theta(t')\,dt'
+-
+\int_{t_{\mathrm{form}}}^{t}
+\Gamma_{m,\mathrm{loss}}^\theta(t')\,dt'.
+$$
+The loop-phase target above then requires the same branch record to support both the effective magnetic-flux label and the allowed electric axial-layer charge set. A compact object that solves a monopole-abundance problem by hiding charge in an untracked capture channel has not recovered gauge structure; it has moved the charge ledger outside the derivation.
+
 ## Observer-Level Electroweak Closure Map (Working)
 
 To connect microdynamics to observer-sector electroweak equations, start from the causal path-history action:

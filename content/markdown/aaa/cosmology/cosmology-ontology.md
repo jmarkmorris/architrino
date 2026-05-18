@@ -92,6 +92,46 @@ $$
 $$
 Passing these equations does not by itself promote metric expansion. It means that the fixed-void medium history has an observer-level FRW projection accurate enough to feed distance-redshift, CMB, BBN, and growth comparisons.
 
+### Effective Component Inventory
+
+Cosmic inventory language is useful only as an effective comparison ledger. For a component whose observer-level mass-equivalent density is $\bar\rho_i$, write
+$$
+\Omega_i^\theta(t)
+=
+\frac{8\pi G_{\mathrm{eff}}^\theta(t)\bar\rho_i^\theta(t)}
+{3\left(H_{\mathrm{eff}}^\theta(t)\right)^2}.
+$$
+For a component recorded first as an energy density $u_i^\theta$, use
+$$
+\Omega_i^\theta(t)
+=
+\frac{8\pi G_{\mathrm{eff}}^\theta(t)u_i^\theta(t)}
+{3c_0^2\left(H_{\mathrm{eff}}^\theta(t)\right)^2}.
+$$
+These $\Omega_i$ variables are data-product coordinates. They do not say that the Euclidean void contains independent density fluids. They say that the same Noether-Sea and assembly record has been projected into the standard component language at the observer epoch.
+
+A compact inventory residual is
+$$
+\mathcal{R}_{\Omega}(\theta_{\mathrm{sea}})
+=
+\Omega_{K,\mathrm{fit}}
++
+\sum_{i\in\mathcal{I}_{\mathrm{cos}}}
+\Omega_i^\theta(t_{\mathrm{obs}})
+-1,
+$$
+where $\mathcal{I}_{\mathrm{cos}}$ includes only declared comparison rows, such as dark energy, neutral assemblies, baryons, radiation, neutrinos, binding-energy entries, kinetic or plasma entries, and wake-history or medium-response entries when the local branch has supplied them. Passing this residual means the effective inventory closes; it does not identify the substrate carrier of each row.
+
+The stronger test is cross-row provenance. Let $Q_i^\theta$ and $Q_j^\theta$ be two inventory quantities that should be related by an energy-transfer, reaction, transport, or remnant ledger, and let $\mathcal{T}_{ij}^\theta$ be the declared transfer map between them. Then
+$$
+\mathcal{R}_{i\leftrightarrow j}^{\theta}
+=
+\left\lVert
+Q_i^\theta-\mathcal{T}_{ij}^\theta Q_j^\theta
+\right\rVert_{C_{ij}^{-1}}^2.
+$$
+Examples include nuclear binding versus radiation and neutrino backgrounds, baryon density versus BBN and CMB inference, quasar luminosity versus massive-black-hole remnant density, and lensing mass versus galaxy luminosity and clustering. A component row that cannot be connected to the rest of the ledger remains an interpretation placeholder.
+
 ### Steady-State Failure Test for Effective Variables
 
 Historical steady-state cosmologies are useful here as failure tests, not as ontology to import. Einstein's unpublished 1931 steady-state attempt already shows the core mathematical pressure: an expanding comparison metric with constant matter density is not closed unless the matter continuity equation contains an explicit source term with a provenance ledger.
@@ -114,6 +154,18 @@ $$
 \text{for constant }\rho_{m,\mathrm{eff}}.
 $$
 From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, $\mathcal{S}_{m,\mathrm{eff}}$ cannot mean matter produced by the Euclidean void. It must be a projection of assembly association, dissociation, recycling, transport, or Noether-Sea exchange already present in the absolute record $S(t)$. If no such provenance route is supplied, the model is only an effective parameter fit and fails as cosmology closure.
+
+For a recycling or cyclical comparison branch, this source term must also close over the declared cycle window:
+$$
+\Delta M_{\mathrm{eff}}[t_1,t_2]
+=
+\int_{t_1}^{t_2}
+\mathcal{S}_{m,\mathrm{eff}}(t)a_{\mathrm{eff}}^3(t)\,dt
+-
+\int_{t_1}^{t_2}
+3H_{\mathrm{eff}}(t)\rho_{m,\mathrm{eff}}(t)a_{\mathrm{eff}}^3(t)\,dt.
+$$
+The pass condition is not a preferred external cosmology. It is that $\Delta M_{\mathrm{eff}}$ be supplied by assembly association, dissociation, transport, recycling, or Noether-Sea exchange in the same absolute record. Otherwise the branch has kept an effective density constant by inserting a source without provenance.
 
 ## Observation-First Component Abstraction
 

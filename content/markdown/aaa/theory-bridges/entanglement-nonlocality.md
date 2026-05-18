@@ -203,6 +203,8 @@ These residuals keep the observable constraint separate from the interpretation.
 
 **Which Bell assumption must fail?** The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is closest in structure to de Broglie–Bohm theory: deterministic, definite trajectories, with correlations maintained through a shared dynamical structure (in Bohm's case, the pilot wave on configuration space; in $\mathbb{A}\mathbb{A}\mathbb{A}$, the correlated path-history wake geometry in absolute time). The comparison is useful, but it is a proof route rather than a completed Bell derivation. If the Bell gate passes, the nonlocality is ontological (the hidden-variable space is non-separable) but not operational (no usable signal).
 
+The Bohmian comparison also gives a warning about where the proof burden sits. A deterministic ontology can reproduce Bell correlations only if the hidden-variable space is not separable into two independent local packages at measurement time, or if another Bell assumption is explicitly changed. $\mathbb{A}\mathbb{A}\mathbb{A}$ should therefore not present pair provenance as an ordinary local hidden-variable repair. The derivation must show which shared path-history, basin-measure, or apparatus-response term prevents factorization while still preserving free settings and no-signaling.
+
 **Measurement independence** is preserved: the choice of measurement settings at $A$ and $B$ can be freely varied without correlation with the hidden variables $\lambda$ established at the source event. The theory does not invoke superdeterminism.
 
 ### The Absolute-Time Framework and Nonlocality
@@ -234,6 +236,19 @@ where $\rho(\lambda)$ is the distribution over hidden variables as accessible to
 3. The local dynamics at $A$ are fully determined by $A$'s microstate plus the local Noether Sea—no input from the distant setting.
 
 The correlations become visible only when outcomes from both sides are **compared** (via a classical, sub-$c_f$ communication channel). This is precisely the no-signaling structure observed experimentally.
+
+This can be recorded as a screenable marginal residual. For settings $\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B$ and outcomes $a,b$, define
+$$
+\Delta_{\mathrm{screen}}
+=
+\max_{a,\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B,\hat{\mathbf{m}}'_B}
+\left|
+\sum_b P(a,b\mid\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
+-
+\sum_b P(a,b\mid\hat{\mathbf{m}}_A,\hat{\mathbf{m}}'_B)
+\right|.
+$$
+The Bell-correlation recovery is admissible only with $\Delta_{\mathrm{screen}}\le\epsilon_{\mathrm{NS}}$ and the analogous $B$-side residual. This residual keeps the non-separable ontology from becoming an operational signal channel.
 
 ---
 

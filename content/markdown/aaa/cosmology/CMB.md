@@ -253,6 +253,32 @@ Y_p,
 $$
 where $T_{\mathrm{src}}$ is the effective source or last-thermalization temperature, $\eta_{\gamma b}$ is the photon-to-baryon loading ledger, $N_{\mathrm{eff}}$ and $Y_p$ carry the neutrino and helium-facing constraints, $\mathcal{P}_{\mathrm{instr}}$ records the antenna, atmosphere, calibration, foreground, polarization, and seasonal checks, and $\mathbf{D}_{\mathrm{frame}}$ is the residual frame vector used in the dipole gate above. A distributed or recycling interpretation is admissible only when the same $\Theta_{\mathrm{CMB}}$ supports the spectrum, isotropy, BBN handoff, and frame correction. Fitting the microwave temperature while assigning the helium abundance, neutrino history, foreground subtraction, or dipole correction to separate records would reproduce a number while failing the CMB constraint.
 
+The same record must close the photon energy inventory, not only the fitted temperature. For a declared source-and-thermalization branch $\theta$, let $u_\gamma^\theta(t)$ be the effective photon energy density that reaches the CMB comparison surface, $B_{\mathrm{therm}}^\theta$ the energy transferred through thermalizing channels, $B_{\mathrm{loss}}^\theta$ the energy irreversibly routed into non-photon reservoirs, and $\mathcal{F}_\gamma^\theta$ the boundary flux through the selected comparison window. The CMB energy-budget residual can be written schematically as
+$$
+\mathcal{R}_{\gamma,\mathrm{CMB}}^\theta
+=
+\frac{
+\left|
+u_\gamma^\theta(t_{\mathrm{obs}})
+-
+u_{\gamma,\mathrm{Planck}}(T_0)
+\right|
+}{\epsilon_u}
++
+\frac{
+\left|
+\Delta U_{\mathrm{src}}^\theta
+-
+B_{\mathrm{therm}}^\theta
+-
+B_{\mathrm{loss}}^\theta
+-
+\int \mathcal{F}_\gamma^\theta\,dA\,dt
+\right|
+}{\epsilon_E}.
+$$
+This residual is the CMB-facing form of source provenance. A branch that recovers a blackbody curve by adding an untracked photon bath, or by hiding excess source energy in an undeclared non-photon reservoir, has not supplied the shared record required by the CMB gate.
+
 ### Historical Equality and Temperature Benchmark
 
 The 1948 Alpher-Herman correction to Gamow is useful here as historical pressure, not as a present-parameter source. Their calculation corrected an early matter-density estimate, found that the naive matter-radiation-density intersection moved to an implausibly late time if the curvature term were neglected, and then restored that curvature term in the effective expanding-universe equation. In the corrected record, the matter/radiation intersection, a Jeans-style condensation mass and radius, a gas temperature at condensation, and a present radiation temperature of order $5\,\mathrm{K}$ were tied into one computation.
@@ -301,6 +327,20 @@ $$
 $$
 
 where $\tau_{\mathrm{th}}^{-1}$ is the effective rate for the already-recorded capture/release, Compton-like redistribution, pair-channel, and medium-exchange processes. The target is $\mathcal{D}_{\mathrm{th}}^{\mathrm{CMB}}\gg1$ before decoupling for spectral relaxation, followed by sufficiently weak post-decoupling coupling to preserve anisotropy, polarization, and damping information rather than erase it.
+
+Thermalization mechanisms that use opacity or distributed absorbers must also pass a side-effect test. Let $\chi_{\mathrm{op}}^\theta(\nu,t)$ be the effective opacity supplied by the proposed medium component and let $\mathcal{A}_{\ell}^{\theta}$, $\mathcal{P}_{\ell}^{\theta}$, and $\mathcal{D}_{\mathrm{FIR}}^\theta$ denote the induced changes in temperature anisotropy, polarization, and far-infrared/submillimeter background intensity. The side-effect residual is
+$$
+\mathcal{R}_{\mathrm{op}}^\theta
+=
+\frac{\|\Delta\mathcal{A}_\ell^\theta\|}{\epsilon_A}
++
+\frac{\|\Delta\mathcal{P}_\ell^\theta\|}{\epsilon_P}
++
+\frac{\|\Delta\mathcal{D}_{\mathrm{FIR}}^\theta\|}{\epsilon_{\mathrm{FIR}}}
++
+\frac{\|\partial_\nu\chi_{\mathrm{op}}^\theta\|_{\mathrm{CMB}}}{\epsilon_\chi}.
+$$
+A thermalizing component is admissible only if it helps make $\mathcal{D}_{\mathrm{th}}^{\mathrm{CMB}}\gg1$ before the free-streaming record is fixed while keeping $\mathcal{R}_{\mathrm{op}}^\theta\le1$ afterward. This is the native exclusion of absorber stories that smooth the spectrum by erasing the anisotropy and polarization record they must also preserve.
 
 In the weak homogeneous photon-channel limit, the observer-level recovery target is the Planck spectral form
 

@@ -268,6 +268,15 @@ $$
 =
 \mathcal{E}_\theta(\mu_{\theta,k}^{+}).
 $$
+In subsystem language this is the measurement analogue of a conditional or effective wavefunction. If a total extracted state is written on a target-apparatus chart as $\Psi_{\mathrm{tot}}(x_S,y_A,t)$ and the apparatus record has entered the basin coordinate $Y_{A,k}$, the comparison update has the schematic form
+$$
+\psi_{S,k}^{\mathrm{cond}}(x_S,t)
+=
+\mathcal{N}_k
+\Psi_{\mathrm{tot}}(x_S,Y_{A,k},t),
+$$
+with normalization $\mathcal{N}_k$ fixed after the record exists. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a primitive collapse event. It is the effective description extracted from the basin-conditioned measure $\mu_{\theta,k}^{+}$ after the apparatus has produced a persistent record.
+
 For a non-degenerate operator benchmark with eigenstate $\phi_k$, the recovery target is
 $$
 \inf_{\alpha_k\in\mathbb{R}}
@@ -311,6 +320,20 @@ p_m=\operatorname{Tr}(\rho E_m),
 =
 \frac{M_m\rho M_m^\dagger}{p_m}.
 $$
+At the probability level, the native record map should first recover the POVM outcome distribution before any operator is treated as a valid comparison label:
+$$
+\Delta_{\mathrm{POVM}}^\theta
+=
+\sup_{\|\psi\|=1}
+d_{\mathrm{TV}}\!\left(
+P_{\mathrm{rec}}^{\theta}(\cdot\mid\psi),
+\langle\psi|E_{\theta}(\cdot)|\psi\rangle
+\right)
+\le
+\varepsilon_{\mathrm{POVM}}.
+$$
+This residual says that the operator summary is licensed by the apparatus record map; it is not a primitive property carried into the interaction.
+
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is not merely to reproduce the POVM probabilities. The same coupled target-apparatus-environment flow must also recover the instrument update, because different $M_m$ can give the same $E_m$ while leaving different post-record states.
 
 For a declared channel $\theta$, let $\rho_{\theta,m}^{\mathrm{rec},+}$ be the effective state extracted from the basin-conditioned measure $\mu_{\theta,m}^+$ above, and let $\rho_{\theta,m}^{\mathrm{inst},+}=M_m\rho_\theta^-M_m^\dagger/p_m$ be the comparison instrument update. A compact generalized-measurement residual is
@@ -639,6 +662,8 @@ The apparatus couples to a discrete assembly orientation, angular-momentum respo
 In this language, "spin up" and "spin down" are not tiny literal arrows hidden inside the particle. They are the two stable branch labels selected by the apparatus relative to its chosen measurement axis.
 
 For fermion spin-$\tfrac{1}{2}$, the standard Stern-Gerlach recovery target is a two-channel apparatus record with angular-momentum projections $+\hbar/2$ and $-\hbar/2$ along the apparatus axis. In $\mathbb{A}\mathbb{A}\mathbb{A}$, that two-channel split must come from finite-time basin resolution of the target assembly plus apparatus, not from a primitive spin variable attached to an architrino.
+
+The spin operator is therefore a compact generator of the recovered record statistics and basis rotations, not a new substrate degree of freedom. Its eigenlabels are licensed only when the apparatus kernel maps the Noether-core spin ledger into stable basin records with the standard half-angle probabilities.
 
 The Stern-Gerlach-like specialization is developed in [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response). In that channel, the apparatus potential-gradient geometry couples to the full Noether-core spin ledger, including layer phases, frequencies, active causal-root branches, self-hit history, and causal-wake angular momentum. The two recorded outcomes are basin resolutions after a finite interaction time. The derived kernels are deterministic pullbacks of the record-forming basins. In the reduced spinor-record chart, the concrete separatrix and unbiased record-phase measure recover the spin-$\tfrac{1}{2}$ half-angle probabilities. The Master-Equation origin of the external apparatus terms is now explicit: the angular impulse is the core-centered torque of delayed apparatus cross-root hits, and the record-phase measure is the invariant measure of the locked apparatus record cycle. The remaining substrate closure target is to derive the effective spinor coordinate and verify when the record cycle and apparatus impulse reduce to the ideal chart.
 

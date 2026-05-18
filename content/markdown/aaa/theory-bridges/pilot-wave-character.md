@@ -68,6 +68,23 @@ $$
 $$
 The closure target is $\Delta_{\mathrm{Born}}^\theta(t)\le1$ over the declared record window, with the same $\mu_t$ also generating the apparatus frequencies and thermodynamic summaries. This is the causal-wake analogue of equivariance: Born weights must be preserved or approached by the native deterministic state and basin map, not inserted as an observer-side probability rule.
 
+The stronger equivariance target compares currents, not only endpoint weights. If $\mathcal{P}_\theta:\Gamma_{\eta,h}\to\Omega_\theta$ is the effective configuration projection and $\rho_\theta(q,t)$ is the pushed-forward density, the record current induced by the deterministic flow should satisfy
+$$
+\partial_t\rho_\theta(q,t)
++
+\nabla_q\cdot \mathbf{J}_\theta(q,t)
+=
+\mathcal{R}_{\mathrm{eq}}^\theta(q,t),
+$$
+with
+$$
+\frac{\|\mathcal{R}_{\mathrm{eq}}^\theta\|_{\mathcal{D}'(\Omega_\theta\times T)}}{\epsilon_{\mathrm{eq}}}
++
+\frac{\|\mathbf{J}_\theta-\mathbf{J}_{\psi_{\mathrm{eff}}}\|_{W^{-1,1}}}{\epsilon_J}
+\le 1.
+$$
+This is the piece of the Bohmian lesson that can be promoted without adopting particle positions plus a separate configuration-space wave as ontology: the native flow must carry a measure and current whose compression behaves like the quantum continuity law.
+
 ### Ontological Inventory
 
 dBB theory has **two ontological categories**:
@@ -399,6 +416,8 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a caution about singular idealizati
 **Computational tractability.** The full Master Equation with path-history dependence and self-hit is a coupled system of state-dependent delay differential equations for $\sim 10^{80}$ architrinos. Practical calculations require controlled coarse-graining at multiple scales. The hierarchy of effective theories (architrino → binary → tri-binary → assembly → continuum field) must be established with quantitative error bounds at each level.
 
 **Relativistic extension.** dBB has well-known difficulties with relativistic generalization (preferred foliation, particle creation/annihilation). $\mathbb{A}\mathbb{A}\mathbb{A}$'s absolute-time substrate handles the preferred foliation naturally but must demonstrate that emergent Lorentz invariance holds to the required precision ($< 10^{-17}$) and that particle creation/annihilation (assembly formation/dissolution) is correctly described.
+
+The comparison warning is that a preferred foliation is not disqualifying by itself; empirical failure appears only if the foliation leaks into observer-level signal statistics, clock/ruler behavior, or creation-channel rates. The $\mathbb{A}\mathbb{A}\mathbb{A}$ closure burden is therefore twofold: derive the effective Lorentz map tightly enough that preferred-frame leakage stays below the precision bound, and show that assembly association/dissociation induces the same record statistics that QFT encodes as particle creation and annihilation.
 
 ---
 

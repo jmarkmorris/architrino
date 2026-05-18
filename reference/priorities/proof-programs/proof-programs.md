@@ -25,6 +25,7 @@ This file is the parent control surface for proof programs. The nested structure
 
 - [breather-proof](./breather-proof/breather-proof.md): active finite-certificate program for the 1D collinear breather. Its next executable gates are the candidate cycle packet, the named null-coordinate pre-ledger target, and the branch-chart certificate.
 - [planar-bridge-closure](./planar-bridge-closure/planar-bridge-closure.md): queued higher-dimensional bridge from the collinear program to the first planar delayed return map.
+- [openalex-baseline](./openalex-baseline.md): May 18, 2026 source baseline for state-dependent delay equations, periodic-orbit construction, breather terminology, and direct-action comparison. Its immediate effect is to sharpen candidate-cycle generation as a finite residual/collocation packet rather than to add a new validation gate.
 
 ## Promotion Map
 

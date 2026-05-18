@@ -170,6 +170,34 @@ The inactive-gap condition means that nearby discarded causal roots remain separ
 
 **Local promotion lemma.** If a candidate history supplies $\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)$ with positive active-root floors, positive inactive gaps, finite memory, bounded return residual, and stable section monodromy, then the history may support a local master-equation closure claim on that section. The lemma does not prove global closure, eliminate all folds, control the $\eta\to0$ limit, or certify unrelated histories. It only promotes the branch chart from a numerical trace to a locally replayable causal-root closure record.
 
+#### State-Dependent Delay Compatibility
+
+A branch-chart closure object must also be compatible with the delayed history space that generates the active roots. Fix a retained history tube
+$$
+\mathcal{U}_{\mathfrak{B}}
+\subset
+C^1\!\left([-h,0],(\mathbb{R}^3)^N\right)
+$$
+around the returned history segment. For each active branch row $\ell$, write its emission offset as $s_\ell(\phi)\in[-h,0)$ for a history $\phi\in\mathcal{U}_{\mathfrak{B}}$, and define
+$$
+F_\ell(\phi,s)
+=
+\left\|
+\phi_i(0)-\phi_j(s)
+\right\|
+-c_f(0-s).
+$$
+The branch chart is history-compatible on $\mathcal{U}_{\mathfrak{B}}$ only if
+$$
+F_\ell(\phi,s_\ell(\phi))=0,
+\qquad
+\left|\partial_s F_\ell(\phi,s_\ell(\phi))\right|
+\ge c_f\nu_J>0,
+$$
+and if every inactive complement remains separated by the declared positive gap. Under these conditions the implicit-function theorem gives $C^1$ dependence of $s_\ell$ on the retained history, so the branch acceleration, root-transport residual, and wake-history Noether increments are functionals on one local history chart rather than pointwise rows that only happen to close at one evaluation time.
+
+This compatibility condition is a theorem-target requirement, not a new force law. It says that a promoted branch chart must define a locally replayable delayed functional system: nearby retained histories must keep the same root identities, positive Jacobian floor, inactive gaps, and finite memory depth until a declared fold, branch transition, or chart boundary is reached.
+
 #### Dual-Mollified Absolute-Time Evolution Law
 
 For proof work, branch sums should be derived from one regularized absolute-time law rather than treated as the primary definition through every causal fold. Fix a memory horizon

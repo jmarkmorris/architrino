@@ -3435,10 +3435,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "The Higgs Boson ($H$): The Noether-Sea Breathing Mode",
+                "title": "The Higgs Boson ($H$): Scalar Noether-Sea Benchmark",
                 "markdownPath": "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
-                "markdownSection": "The Higgs Boson ($H$): The Noether-Sea Breathing Mode",
-                "sectionKey": "the higgs boson h the noether sea breathing mode",
+                "markdownSection": "The Higgs Boson ($H$): Scalar Noether-Sea Benchmark",
+                "sectionKey": "the higgs boson h scalar noether sea benchmark",
                 "headingLevel": 2
               },
               {

@@ -83,6 +83,23 @@ $$
 
 The reaction bookkeeping is unchanged; the $\mathbb{A}\mathbb{A}\mathbb{A}$ shift is the background interpretation that sets temperature, density, and freeze-out timing.
 
+For a local-reactor, recycling, or compact-object comparison branch, the network also needs a source-channel energy partition. Let $s$ label source channels and let $E_s^\theta$ be the energy carried into the declared BBN window by baryons, photons, neutrino-sector excitations, compact-object release, or Noether-Sea work terms. The branch supplies an acceptable thermal record only if
+$$
+E_{\mathrm{in}}^\theta
+=
+\sum_s E_s^\theta,
+\qquad
+\boldsymbol{\eta}_{\mathrm{BBN}}^\theta
+=
+\left(
+\eta_{b\gamma}^\theta,\,
+N_{\mathrm{eff}}^\theta,\,
+\frac{n_n^\theta}{n_p^\theta},\,
+\frac{s_\gamma^\theta}{n_b^\theta}
+\right)
+$$
+is propagated through the same source window that produces the yields. A source story that changes the photon loading, neutron fraction, entropy per baryon, or relativistic-species count independently of the light-element network has not supplied a BBN mechanism; it has assigned separate knobs to the outputs.
+
 The standard freeze-out scalings should remain explicit because they are the hard targets for any SMBH-local or transport-cooling replacement. In a radiation-dominated comparison packet,
 $$
 t
@@ -200,6 +217,20 @@ $$
 \Gamma_{\mathrm{release}}^X(E,t;M)\,dM,
 $$
 where $\psi_X(M,t)$ is the branch mass function and $\Gamma_{\mathrm{release}}^X$ is the Hawking-like or native release channel being compared. The yield shifts $\Delta\mathbf{Y}_{\mathrm{BBN}}^X$ must be computed from $\mathcal{I}_X$ and the same thermal, photon-loading, neutrino, and Noether-Sea state used elsewhere in the BBN gate. A branch that uses late energetic injection to repair one isotope while changing $\eta_X$, $N_{\text{eff}}$, or the CMB handoff independently is a failed comparison branch, not a promoted source mechanism.
+
+If the compact branch evaporates, releases, or otherwise injects energy before or during the BBN window, the sharper residual is
+$$
+\mathcal{R}_{\mathrm{evap},X}
+=
+\max\left(
+\frac{\|\Delta\mathbf{Y}_{\mathrm{BBN}}^X\|_{C_Y^{-1}}}{\epsilon_Y},
+\frac{|\Delta N_{\text{eff}}^X|}{\epsilon_N},
+\frac{|\Delta\eta_X|}{\epsilon_\eta},
+\frac{\|\Delta f_\gamma^X(E,t)\|}{\epsilon_\gamma},
+\frac{\|\Delta f_\nu^X(E,t)\|}{\epsilon_\nu}
+\right).
+$$
+Here $\Delta f_\gamma^X$ and $\Delta f_\nu^X$ are photon- and neutrino-sector spectral distortions induced by the release history. This term keeps primordial-compact-object comparisons as constraints on a shared thermal history rather than a license to import compact objects as an explanatory ontology.
 
 ## Observable-Mapping Goals (Interpretation-Scoped)
 

@@ -108,6 +108,28 @@ $$
 $$
 The first term checks Born density, the second checks local conservation for the derived record flow, and the third checks the standard probability-current benchmark. A model that matches $|\psi|^2$ only after allowing probability to disappear from one region and reappear elsewhere before a record has formed has not recovered Schrödinger continuity.
 
+The same target can be sharpened into a guidance-ratio test. Wherever $\rho_\psi>0$, the effective quantum velocity field is
+$$
+\mathbf{v}_\psi(\mathbf{x},t)
+=
+\frac{\mathbf{J}_\psi(\mathbf{x},t)}{\rho_\psi(\mathbf{x},t)}.
+$$
+Let $\mathbf{v}_{\mathrm{rec}}$ be the velocity field obtained by projecting the deterministic assembly-flow current through the same record chart. The local guidance residual is
+$$
+\mathcal{R}_{\mathrm{guid}}(W,T;\theta)
+=
+\frac{
+\sup_{t\in T}
+\left\|
+\mathbf{v}_{\mathrm{rec}}(\cdot,t)
+-
+\mathbf{v}_\psi(\cdot,t)
+\right\|_{L^1(W,\rho_\psi)}
+}{\epsilon_v}
+\le 1.
+$$
+This is a stricter recovery target than Born density alone. It asks whether the extracted wavefunction gives the same local transport law as the underlying causal-wake basin flow, not merely the same final histogram.
+
 The phrase "the system is in a superposition" is therefore not a standalone ontological claim in this chapter. It is an effective statement relative to a declared representation and record channel. If the preparation, apparatus kernel, retained coarse-graining, or access region changes, the apparent basis in which a branch expansion is written may change while the underlying assembly and causal-wake history do not. The substrate claim remains the same: one deterministic history is unfolding, while the effective wavefunction carries alternatives that have not yet become autonomous records.
 
 A path-integral description is useful as a comparison because it treats possible histories rather than only final pointer states. In this chapter that comparison stays epistemic: a history weight or event measure is an observer-level bookkeeping device unless it is tied to the same deterministic assembly flow, causal-wake path history, and record criterion used in [Measurement Ontology](measurement-ontology.md). This distinction matters most in black-hole and early-cosmology regimes, where no external measuring apparatus can be placed outside the whole system.

@@ -274,6 +274,18 @@ This is why the project treats holographic language as suggestive but not primit
 
 Modern holographic entropy work, including Ryu-Takayanagi, island, and replica-wormhole calculations, should be treated in this chapter as a comparison framework rather than as imported ontology. Its value is that it sharpens a high-value consistency target: a mature horizon-interface model should explain how compressed interface bookkeeping can remain compatible with Page-curve recovery and smooth effective horizons. It does not, by itself, supply the $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism. The native task is still to derive entropy and information accounting from terminal tri-binary alignment, path-history bookkeeping, Noether-Sea storage, and release-channel selection.
 
+The Ryu-Takayanagi comparison makes this distinction sharper. A region-anchored entropy surface is not automatically the event horizon; in vacuum or nonthermal comparisons it can have no horizon component at all, while in thermal black-hole limits a large-region surface can wrap the horizon. For a candidate strong-field record $\theta$, let $\gamma_A^{\mathrm{eff}}(\theta)$ be the effective entropy surface associated with access region $A$, and let $H_{\mathrm{eff}}(\theta)=\{F_H=0\}$ denote the observer-level horizon surface selected by the same record. The useful diagnostic is the horizon-wrapping fraction
+$$
+\eta_H(A;\theta)
+=
+\frac{
+A_{\mathrm{eff}}\!\left(\gamma_A^{\mathrm{eff}}(\theta)\cap H_{\mathrm{eff}}(\theta)\right)
+}{
+A_{\mathrm{eff}}\!\left(\gamma_A^{\mathrm{eff}}(\theta)\right)
+}.
+$$
+The event-horizon reading is justified only in the $\eta_H\to1$ regime. When $\eta_H=0$ or remains bounded away from one, the holographic comparison is still useful as an access-region entropy test, but it is not evidence that the boundary surface is the horizon-interface ontology.
+
 A useful way to state that native task is through a horizon-interface label ensemble. Let $\Lambda_{\text{NC}}$ denote the reduced Noether-core closure label from [Nested Binaries and the Noether Core](./noether-core.md). For an effective exterior black-hole label $(M,\mathbf{J},Q)$, define the schematic ensemble
 $$
 \mathcal{B}_{H}(M,\mathbf{J},Q)
@@ -414,6 +426,16 @@ k_B\log\left|\mathcal{B}_{H}^{(O)}(t)\right|
 S_{\mathrm{out}}^{(O)}(t),
 $$
 where $S_{\mathrm{out}}^{(O)}(t)$ summarizes the entropy of accessible outgoing channels. This equation is not a new ontology. It is a bookkeeping target: the native horizon-interface model should explain how the area-like ledger term and the outgoing-channel entropy combine into a finite observer-level entropy, and how that combined quantity can reproduce Page-curve behavior without importing islands, replica wormholes, or a boundary CFT as primitive structure.
+
+In the same notation, the region-anchored entropy target is
+$$
+S_{\mathcal{Q},A}^{(O)}(t)
+\stackrel{\mathrm{target}}{=}
+k_B\log\left|\mathcal{L}_{\gamma_A}^{(O)}(t)\right|
++
+S_{\mathrm{out},A}^{(O)}(t).
+$$
+The proof burden is to define the observer-relative label ensemble $\mathcal{L}_{\gamma_A}^{(O)}(t)$ from native horizon-interface, boundary-wake, and release-channel records. When $\eta_H(A;\theta)\to1$, this target must reduce to the horizon-interface ledger target above; when $\eta_H(A;\theta)=0$, it remains an access-region entropy comparison and should not be promoted as black-hole horizon entropy.
 
 This also disciplines the local semiclassical version of the information paradox. A statement that a horizon-straddling correlation has been lost is only a promoted comparison claim after the access region, reference resources, boundary wake data, and readout channel have been declared. Local QFT pair language remains useful near a smooth effective horizon, but it is an approximation to an observer-level calculation. The native black-hole closure must say which Physical Observer could recover which part of the release record, and which finite boundary data make that recovery meaningful.
 
@@ -558,6 +580,22 @@ This gives a compact mass-scale rule. Small black holes concentrate the traversa
 | Small or near-evaporating black hole | Steep local gradients, high release-channel pressure, small $N_{\mathrm{align}}$ | Best stress test for finite maximum-curvature replacement, Hawking-like release normalization, and endpoint ledger closure. |
 | Stellar-mass or intermediate black hole | Collapse-ladder continuity and merger/ringdown consistency | Best stress test for the handoff from dense matter support to terminal alignment and for exterior strong-field recovery. |
 | Supermassive black hole | Large $N_{\mathrm{align}}$, long recycling time, strong environmental embedding | Best stress test for Noether-Sea loading, release-channel selection, dark-sector hypotheses, and possible cosmological coupling. |
+
+A small compact object passing through material is therefore a response problem, not merely a mass label. For a candidate with effective radius $R_X$, mass $M_X$, speed $v_X$, and material density $\rho_{\mathrm{mat}}$, the transit ledger should estimate the deposited energy and damage radius from the material response function:
+$$
+\frac{dE_{\mathrm{dep}}}{d\ell}
+=
+\mathcal{S}_{\mathrm{mat}}(M_X,R_X,v_X;\theta_{\mathrm{mat}}),
+\qquad
+r_{\mathrm{dam}}
+=
+\mathcal{D}_{\mathrm{mat}}
+\left(
+\frac{dE_{\mathrm{dep}}}{d\ell},
+\theta_{\mathrm{mat}}
+\right).
+$$
+If the object is horizon-like in the observer comparison, $R_X$ is bounded by the effective horizon scale $R_H(M_X;\theta)$; if it is a native maximum-curvature defect, $R_X$ is instead supplied by the core-interface branch. Either way, the material claim must pass through the same energy-deposition, acoustic, thermal, and defect-survival record before it is used as evidence for a compact dark-sector branch.
 
 The scale map is a classification aid, not a new gate. It says which existing black-hole burdens become sharp as $M$ changes: small black holes emphasize endpoint and release accounting, medium black holes emphasize collapse continuity, and supermassive black holes emphasize embedded recycling and medium-state source terms.
 

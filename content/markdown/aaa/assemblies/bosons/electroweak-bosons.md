@@ -336,20 +336,20 @@ This is not a new substrate interaction. It is the low-energy observer limit of 
 
 ---
 
-## The Higgs Boson ($H$): The Noether-Sea Breathing Mode
+## The Higgs Boson ($H$): Scalar Noether-Sea Benchmark
 
-The Higgs is not a propagating assembly *through* the ambient medium; it is a resonance *of* the Noether-Sea structure.
+The Higgs comparison is modeled here as a candidate resonance of the Noether-Sea structure rather than as a propagating assembly *through* the ambient medium. That identification remains a closure target until the same branch record predicts the observed scalar mass, channel rates, and coupling pattern.
 
 ### Geometric Structure
 *   **The Substrate:** The Noether Sea is a coupled population of neutral tri-binary units ($1P, 1E$).
-*   **Scalar Excitation:** The Higgs is a **Radial Breathing Mode** ($r \to r + \delta r$) of these Noether-Sea units.
+*   **Scalar Target:** The candidate Higgs channel is a **radial breathing mode** ($r \to r + \delta r$) of these Noether-Sea units.
 *   **Spin-$0$:** The oscillation is purely radial (scalar), possessing no vector orientation.
 
 ### Mass-Channel Matching
 *   **The Cause:** Massive particles (Quarks, W/Z) have complex 3D geometries that distort the local Noether-Sea arrangement.
 *   **The Effect:** They physically displace or distort the surrounding Noether-Sea nodes.
 *   **The Response:** This distortion changes the medium-dressed response of shielded internal causal history. The observer-facing inertial mass channel is the effective response, not ordinary dissipative drag.
-*   **The Boson:** If the Noether Sea is driven hard enough (e.g., at LHC), this radial ringing mode can be excited independently. Identifying that resonance with the Higgs Boson ($125$ GeV) remains an effective matching target.
+*   **The Boson:** If the Noether Sea is driven hard enough, as in LHC-scale collisions, this radial ringing mode could be excited independently. Identifying that resonance with the observed Higgs boson remains an effective matching target anchored by the ATLAS value $126.0\pm0.4\text{ (stat)}\pm0.4\text{ (sys)}\,\mathrm{GeV}$.
 
 The local proof obligation is a derivative test, not a new primitive field. If $\varphi$ parameterizes the radial Noether-Sea breathing displacement, the effective scalar coupling to an assembly $A$ is the change in the same mass-response map used by [Particle Masses](../particle-masses.md#higgs-and-yukawa-matching-residual):
 $$
@@ -361,6 +361,21 @@ g_{H,A}^{\mathrm{eff}}(\theta)
 \right|_{\varphi=0}.
 $$
 The Higgs comparison closes only if this derivative reproduces the observed Higgs-coupling pattern while the radial mode's own resonance scale gives $M_H^{\mathrm{breath}}\approx 125$ GeV on the same Noether-Sea branch. The scalar mode is therefore a shared medium-response benchmark, not a license to add independent Yukawa parameters or a separate mass-generating substance.
+
+At the electroweak-boson level, the scalar benchmark is also a channel ledger. For collider energy $s$, decay channel $c$, detector category $k$, and production route $p\in\{\mathrm{ggF},\mathrm{VBF},WH/ZH,t\bar tH\}$, the observer-level event-count target has the schematic form
+$$
+N_{s,c,k}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)
+=
+\mathcal{L}_s
+\sum_p
+\sigma_p^{\mathbb{A}\mathbb{A}\mathbb{A}}(s;\theta)
+\,B_c^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)
+\,A_{s,c,k,p}
+\,\varepsilon_{s,c,k,p}
++
+B_{s,c,k}.
+$$
+The relevant high-resolution channels include $H\to ZZ^{(*)}\to4\ell$, $H\to\gamma\gamma$, and $H\to WW^{(*)}$. The $\gamma\gamma$ channel is especially important for this chapter because it disfavors a spin-$1$ assignment while keeping the photon channel itself a separate transverse planar-pair ledger.
 
 ---
 

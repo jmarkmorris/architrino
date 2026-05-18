@@ -78,6 +78,7 @@ Here $\zeta(A)$ is the shielding or exposure coefficient and $c_{\text{eff}}$ is
 
 - Stronger mass claims must declare which role is meant: rest mass, inertial response, gravitational response, external mass footprint, effective boson mass scale, neutral-assembly mass, or internal energy ledger.
 - Effective boson mass scale must split photon-like and weak-corridor cases. Photon-like planar channels lose stable volumetric rest-clock closure and therefore occupy the massless null branch; $W/Z$ corridors retain a localized recoupling burden whose longitudinal or mixed-axis structure appears as a short-lived massive vector channel.
+- Higgs-sector mass language is downstream of the mass map. The ATLAS scalar benchmark may be used only after the branch, shielding, and medium-response records are fixed without particle-mass input. The closure target is not merely $M_H^{\mathrm{breath}}\approx126.0\,\mathrm{GeV}$; the same scalar response must also recover $\hat{\mu}=1.4\pm0.3$, the channel-rate ledger for $ZZ^{(*)}4\ell$, $\gamma\gamma$, and $WW^{(*)}\ell\nu\ell\nu$, and the absence of additional accepted scalar windows. If those terms require separate tuning, the mass map has not recovered the Higgs sector.
 - Avoid treating Noether-Sea response as ordinary dissipative drag unless dissipation is actually being modeled. The preferred derivation language is medium-dressed inertial response.
 
 ## Assembly-Level Reduction Status
@@ -141,6 +142,7 @@ Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate sli
 - Show that inertial and gravitational response share the same shielded-energy coefficient within equivalence-principle bounds.
 - Derive the slow-fast tri-binary minimality theorem needed before claiming that three nested binaries are the universal stable matter unit.
 - Derive the $W/Z$ corridor mass scale as a localized recoupling and medium-response cost, distinct from both stable matter rest mass and photon masslessness.
+- Derive the scalar breathing-mode mass and detector-facing rate response as a downstream Higgs benchmark, including ATLAS mass, signal strength, channel-rate compatibility, and excluded-scalar-window pressure, without using those observables as inputs to the $A_0$ branch or shielding extraction.
 
 ### Priority
 

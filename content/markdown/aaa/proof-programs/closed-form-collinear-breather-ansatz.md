@@ -4,6 +4,20 @@ This note starts a parallel ansatz program for the 1D collinear breather. It doe
 
 This program is optional for the existence proof. The proof does not need an elementary closed-form orbit; it needs one candidate certified cycle and a finite certificate for the return map on a closed convex tame domain.
 
+The external breather literature supplies useful terminology pressure but not a
+mechanism that can be imported into this proof. In this chapter, `breather`
+means a bounded delayed return-map fixed point in the collinear
+$\mathbb{A}\mathbb{A}\mathbb{A}$ reduction. Standard nonlinear-wave breathers
+are comparison objects; they do not replace the causal-root ledger, fold-layer
+integrals, returned-history residuals, or Schauder-domain audit needed here.
+
+The same discipline applies to construction methods. A numerical enclosure,
+validated quadrature orbit, or interval-collocation solve is equivalent to a
+closed-form ansatz only if it produces the same finite candidate packet:
+period, section/symmetry chart, representation coefficients, mesh, residual
+targets, causal pre-ledger inputs, and branch-chart inputs on one certified
+domain.
+
 The accepted output of this note is therefore a certificate packet
 $$
 \mathfrak{C}_{\mathrm{ans}}

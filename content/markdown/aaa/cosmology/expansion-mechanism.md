@@ -30,6 +30,19 @@ $$
 
 These are effective parameterizations of medium state, not independent geometric claims.
 
+Quasi-steady and cyclical comparison families may use an oscillatory effective scale history such as
+$$
+a_{\mathrm{eff},X}(t)
+=
+e^{t/P}
+\left[
+1+\alpha\cos\left(\frac{2\pi t}{Q}+\varphi\right)
+\right],
+\qquad
+P\gg Q.
+$$
+In this framework that expression is only a projection of medium-state recurrence, source recycling, and clock or transport response. It does not describe expansion of the Euclidean void. Such a branch is admissible only if the same Noether-Sea state record supplies the source term, redshift-transfer map, CMB thermal record, and BBN yield record.
+
 ### Exponential Scale History as a Comparison Limit
 
 The de Sitter and steady-state comparison family often uses a spatially flat exponential scale history,

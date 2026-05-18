@@ -259,6 +259,35 @@ $$
 $$
 Here $\Pi^{ij}$ and $\Lambda^{ij}$ are finite-window flux diagnostics for retained causal wakes and assembly crossings, not new substrate fields. $\tau_{\mathrm{ext},W}^i$ is the external torque about the same origin $\mathbf{x}_0$. If the energy, momentum, and angular-momentum residuals can be made small only by changing the window measure, boundary wake record, or regularization separately for each observable, the calculation has fitted separate summaries rather than demonstrated one causal-history conservation law.
 
+Cosmological inventory comparisons add one more finite-window caution. A gravitational binding contribution is negative relative to dispersed matter in the declared window, but the sign is meaningful only after the boundary and coarse-graining are fixed. For a component inventory over $W$,
+$$
+E_{\mathrm{bind},W}^{\mathrm{grav}}
+=
+-\frac{1}{2}
+\int_W\!\int_W
+\frac{G_{\mathrm{eff}}(\theta;\mathbf{x},\mathbf{y})\,
+\rho_{\mathrm{eff}}(\mathbf{x})\rho_{\mathrm{eff}}(\mathbf{y})}
+{\|\mathbf{x}-\mathbf{y}\|}
+\,dV_{\mathbf{x}}\,dV_{\mathbf{y}}
++
+\mathcal{B}_{\partial W},
+$$
+where $\mathcal{B}_{\partial W}$ records boundary and embedding terms. The corresponding inventory residual is
+$$
+\mathcal{R}_{\mathrm{grav\,bind},W}
+=
+\frac{
+\left|
+E_{\mathrm{bind},W}^{\mathrm{grav}}
+-
+E_{\mathrm{bind},W}^{\mathrm{obs}}
+\right|
+}{\epsilon_{\mathrm{bind}}}
++
+\frac{|\mathcal{B}_{\partial W}|}{\epsilon_{\partial W}}.
+$$
+This keeps gravitational binding from being used as an adjustable bookkeeping sign that can repair the cosmic energy inventory without specifying the same window, boundary wake history, and effective $G_{\mathrm{eff}}$ used by the rest of the cosmology branch.
+
 **Theorem target (center of response).** The standard center-of-mass theorem depends on equal-time internal force cancellation. In delayed causal dynamics that cancellation is not available as a particle-only statement on $\Sigma_t$: the reciprocal hit generally belongs to a different emission time, a different causal-root branch, or a boundary wake record not retained by the finite window. For an assembly window $W_A(t)$, the replacement target is to prove that there is a response center $\mathbf{X}_{\mathrm{resp}}(t)$ and an assembly response tensor $M_A^{ij}$ such that the finite-window momentum balance reduces, over resolved windows, to
 $$
 \frac{d}{dt}\left(M_A^{ij}\dot{X}_{\mathrm{resp},j}\right)
@@ -584,6 +613,8 @@ Architrinos and their assemblies are where the energy bookkeeping lives. The Noe
 ## Appendix A: Energy Zero and Bookkeeping
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ uses a **binding-energy convention** that fixes the zero of potential energy at the **inner turning point** of an accepted bound branch (the self-hit / max-curvature radius when that branch has been certified). This choice is operational: on a branch with a self-hit lower boundary, the deepest accessible state supplies the reference. It should not be read as a proof that every isolated two-body candidate already has a unique, history-independent cutoff.
+
+Cosmology inventory prose uses the same convention only after declaring the comparison window. Positive component entries such as matter, radiation, dark-sector bookkeeping, and thermal reservoirs are mass-equivalent or energy-density terms measured relative to that window, while gravitational binding is a negative finite-window contribution. Mixing a local branch convention with a cosmological inventory convention without naming the window and boundary term risks double counting the same retained wake-history energy.
 
 ### Physical Setup and Why a New Zero is Needed
 

@@ -10,6 +10,8 @@ Standard $\Lambda\mathrm{CDM}$ cosmology attributes roughly 27% of the present e
 
 Throughout, "dark matter" refers to the set of phenomena conventionally attributed to CDM: flat galaxy rotation curves, cluster lensing offsets, the third acoustic peak of the CMB, large-scale structure growth, and BBN-consistent $\Omega_b$. The task is to explain this phenomenology within one ontology—Euclidean void, absolute time, architrinos, and tri-binary assemblies—without importing new fundamental fields or ad hoc modifications to gravity.
 
+The dark-matter density entry is an observationally constrained bookkeeping requirement before it is a substrate identification. Lensing, growth, CMB matter loading, cluster offsets, and baryon-fraction constraints require an effective gravitating component beyond ordinary baryons, but the component ledger does not by itself decide whether the native carrier is neutral assemblies, Noether-Sea medium response, or a hybrid branch.
+
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ Ontology Foundations
 
 ### The Noether Sea as Gravitational Medium
@@ -210,6 +212,29 @@ $$
 \frac{2GM_A}{b\,v_{\mathrm{rel}}},
 $$
 before detailed $N$-body and relativistic corrections. The retained observable is the ephemeris residual, not the compact-object interpretation: a candidate detection must produce a trajectory-consistent perturbation above the ranging error floor, fail ordinary visible-object and catalogued-asteroid explanations under the same covariance model, and carry any high-energy co-signature through the same branch record.
+
+A compact dark-candidate branch also admits a track-search comparison in old material. For a candidate compact fraction $f_X$, mass $M_X$, local dark-sector density $\rho_{\mathrm{DM}}$, and relative-speed distribution with mean $\langle v_{\mathrm{rel}}\rangle$, the flux estimate is
+$$
+\Phi_X
+=
+\frac{f_X\rho_{\mathrm{DM}}}{M_X}
+\langle v_{\mathrm{rel}}\rangle,
+\qquad
+N_{\mathrm{track}}
+=
+\Phi_X A_{\mathrm{scan}}T_{\mathrm{age}}P_{\mathrm{surv}}P_{\mathrm{det}}.
+$$
+Here $A_{\mathrm{scan}}$ is the scanned cross-section, $T_{\mathrm{age}}$ is the exposure time of the material, $P_{\mathrm{surv}}$ is the survival probability of the track under thermal, geological, and mechanical erasure, and $P_{\mathrm{det}}$ is the detection efficiency after morphology cuts. The residual is not simply a count mismatch:
+$$
+\mathcal{R}_{\mathrm{track}}
+=
+\frac{|N_{\mathrm{track}}-N_{\mathrm{track}}^{\mathrm{obs}}|}{\epsilon_N}
++
+\mathcal{R}_{\mathrm{morph}}
++
+\mathcal{R}_{\mathrm{ordinary}}.
+$$
+The morphology term requires the candidate track to match the predicted energy-deposition and damage profile for the branch, while $\mathcal{R}_{\mathrm{ordinary}}$ penalizes fits explained by ordinary radiation, defects, inclusions, machining damage, or impact history. A null search becomes a constraint on $f_X(M_X)$ only after the survival and detection functions are declared; a positive search becomes a compact-object claim only after the same branch also passes the BBN, CMB, ephemeris, and high-energy co-signature tests.
 
 ### Candidate B — Noether-Sea Medium Response
 
@@ -563,7 +588,7 @@ The neutral-assembly mass is not a free parameter to be fitted post hoc; it must
 
 - $m \sim$ eV: warm dark matter; suppresses small-scale structure.
 - $m \sim$ keV–GeV: canonical cold dark matter window.
-- $m \sim$ GeV–TeV: WIMP-like regime.
+- $m \sim$ GeV–TeV: WIMP-like comparison window, not a neutralino identification.
 - $m \gg$ TeV: superheavy; must be produced non-thermally (e.g., gravitational production or SMBH-related formation in early epochs).
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework does not currently predict a unique mass; deriving the mass spectrum from first-principles tri-binary binding energies and formation rates is a high-priority simulation target.
@@ -594,6 +619,30 @@ $$
 \Delta N_{\mathrm{eff}}\in\mathcal{B}_{\mathrm{BBN/CMB}}.
 $$
 Failure of any row keeps the branch external to the working dark-matter ontology. Passing these rows would still not identify the branch with the current neutral-assembly baseline unless the same internal-energy, shielding, and Noether-Sea response map derives its mass and coupling suppression.
+
+### Source-Limited WIMP/Neutralino Comparison Benchmark
+
+A WIMP or neutralino comparison is useful here only as detector-facing benchmark language. The Jungman--Kamionkowski--Griest arXiv record used for this comparison exposes the abstract, metadata, table of contents, and source note, but not the full review text; it therefore supplies constraint categories rather than detailed supersymmetric model claims. In this chapter, a neutralino-like benchmark does not identify a native assembly with a superpartner and does not make supersymmetry part of Noether-core ontology.
+
+For any neutral-assembly branch $A$, record the comparison vector
+
+$$
+\mathcal{B}_{A}^{\mathrm{WIMP}}
+=
+\left(
+m_A,
+\Omega_A h^2,
+\langle\sigma v\rangle_A,
+\sigma_A^{\mathrm{scalar}},
+\sigma_A^{\mathrm{axial}},
+\Gamma_{\nu}^{\odot/\oplus},
+\Phi_{\bar p},
+\Phi_{e^+},
+\Phi_\gamma
+\right).
+$$
+
+The entries track assembly mass, relic abundance, annihilation rate, scalar and axial scattering channels for direct detection, neutrino rates from solar or terrestrial capture, and indirect antiproton, positron, and gamma-ray fluxes. The native branch may pass this benchmark only if one medium-and-assembly record predicts or bounds all entries while satisfying direct-detection, indirect-detection, collider, CMB/BBN, structure-growth, and other relevant null-result constraints. Matching $\Omega_A h^2$ alone is not dark-matter closure; the same branch must also keep scattering and annihilation channels below excluded levels or declare a detectable channel.
 
 ### Interaction Cross-Sections
 

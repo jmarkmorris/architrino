@@ -100,3 +100,11 @@ During the current core geometrical theory push, do not treat chapter coverage a
 | Roger Penrose, `PhysRevLett.14.57.pdf`, `Gravitational Collapse and Space-Time Singularities` | May 18, 2026 |
 | K. P. Sinha, C. Sivaram, and E. C. G. Sudarshan, `The_superfluid_vacuum_state_time-varying_cosmologi.pdf`, `The Superfluid Vacuum State, Time-Varying Cosmological Constant, and Nonsingular Cosmological Models` | May 18, 2026 |
 | F. Hoyle, G. Burbidge, and J. V. Narlikar, `burbidge2.pdf`, `On the Hubble constant and the cosmological constant` | May 18, 2026 |
+| F. Hoyle, G. Burbidge, and J. V. Narlikar, `burbidge3.pdf`, `Further astrophysical quantities expected in a quasi-steady state Universe` | May 18, 2026 |
+| F. Hoyle, G. Burbidge, and J. V. Narlikar, `burbidge4.pdf`, `Astrophysical deductions from the quasi-steady-state cosmology` | May 18, 2026 |
+| F. Hoyle, G. Burbidge, and J. V. Narlikar, `burbidge5.pdf`, `A Quasi-Steady State Cosmological Model with Creation of Matter` | May 18, 2026 |
+| Masataka Fukugita and P. J. E. Peebles, `cosmicenergyinventory.pdf`, `The Cosmic Energy Inventory` | May 18, 2026 |
+| Chen Zhang and Xin Zhang, `pbh-2302.07002v3.pdf`, `Gravitational capture of magnetic monopoles by primordial black holes in the early universe` | May 18, 2026 |
+| Xin-Zhe Wang and Can-Min Deng, `pbh-2401.00555v2.pdf`, `The primordial black holes solution to the cosmological monopole problem` | May 18, 2026 |
+| De-Chang Dai and Dejan Stojkovic, `pbh-2409.14321v2.pdf`, `Searching for small primordial black holes in planets, asteroids and here on Earth` | May 18, 2026 |
+| Sheldon Goldstein, `qm-bohm_sc.pdf`, `Bohmian Mechanics` | May 18, 2026 |
