@@ -120,6 +120,8 @@ The event record must avoid creation-from-nothing wording. Incoming photon assem
 - causal-wake ledger and closure status,
 - and the standard-limit cross-section target.
 
+This is the ledger distinction that ordinary absorption does not need: atomic or material capture closes the photon ledger into an existing target or medium record, while pair production closes the photon ledger and separately recruits identity-routed substrate content into new charged assemblies.
+
 ### BBN Photon Loading
 
 The BBN module needs a source-zone photon ledger. It must identify which radiation channels supply the effective photon-dominated environment and whether they preserve deuterium survival, helium clustering, and $N_{\text{eff}}$ compatibility without per-source retuning.

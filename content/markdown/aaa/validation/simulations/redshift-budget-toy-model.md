@@ -144,6 +144,63 @@ $$
 
 In JSON, `continuity_transport_by_line` supplies `p_theta_row`, `D_gamma_theta`, `p_nu`, `f_N`, `S_BH`, `S_GW`, `R_eq`, `partial_nu_J_nu`, `p_u`, `div_u_sea`, `p_sigma`, `sigma_projection`, and `R_coh` as needed. The fixture logs the resulting pieces as `continuity.theta_gradient`, `continuity.cadence_residual`, `continuity.flow_divergence`, `continuity.anisotropic_response`, and `continuity.coherence_residue`. Legacy named `transport_terms_by_line` values are still accepted as explicit additions, but a promotable transport scenario should prefer the continuity packet whenever it is claiming to test Noether-Sea equilibrium transport.
 
+## Coefficient-Row Validation Notes
+
+The fixture now reads each scenario as a restriction of the same coefficient-row map, not as a separate explanation for each redshift class. The endpoint extraction tests the cadence row
+
+$$
+\mathbf b_N
+=
+\left(
+b_n,\,
+b_\chi,\,
+b_\lambda,\,
+1,\,
+b_R
+\right),
+$$
+
+with the weak static condition $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$, or $b_n a_n+b_\chi(1+\gamma_{\text{eff}})+b_\lambda a_\lambda+b_R a_R=1$ when the shared clock/signal delay closure is imposed. This fixture does not determine the individual endpoint coefficients; it checks whether endpoint records are replayed as endpoint cadence rather than hidden inside propagation or source factors.
+
+The launch extraction tests the separate relative-motion term. In a homogeneous record with no source-branch or path-history contribution, the replay must reduce to
+
+$$
+Z_X=-\ln D_v,
+\qquad
+Y_{X,N}=0.
+$$
+
+The scalar launch fallback and `launch_record` extractor therefore validate the sign and ownership of the motion term. A scenario fails the coefficient-row reading if it needs a nonzero propagation packet to recover a clean relative-motion redshift.
+
+The continuity packet tests only the path row
+
+$$
+\left(
+\mathbf p_X,\,
+p_{\nu,X},\,
+p_{u,X},\,
+p_{\sigma,X}
+\right).
+$$
+
+After endpoint, source-branch, and launch corrections have been subtracted, the residual must be
+
+$$
+Z_{\mathrm{prop},X}
+=
+\sum_j
+\left[
+\mathbf p_X\cdot\mathbf d_{\theta,j}
++p_{\nu,X}\mathcal C_{N,j}
++p_{u,X}\delta_{u,j}
++p_{\sigma,X}\sigma_{X,j}
++\mathcal R_{\mathrm{coh},X,j}
+\right]
+\Delta s_j.
+$$
+
+The current mock rows constrain products of coefficients with declared segment records; they do not by themselves fix $\mathbf p_X$, $p_{\nu,X}$, $p_{u,X}$, or $p_{\sigma,X}$ individually. Those freedoms are falsified by the diagnostics already exposed here: chromaticity residuals, image-bundle variance, time-dilation residuals, nonzero laboratory residuals, or a need to replace the continuity packet with unrelated named terms.
+
 The dark-energy coefficient extension uses
 
 $$

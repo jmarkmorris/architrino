@@ -412,4 +412,4 @@ within tolerance, or the anisotropic pressure response must be demoted for that 
 
 ## Next Closure Target
 
-[Noether-Sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md) converts the former open $K_{\text{sea}}$ target into the branch-density modulus relation $K_{\mathrm{pack}}=K_{\text{sea}}/\kappa_n$, the support-function headroom $s_n=1-n/n_{\max}^{\mathrm{obl}}$, and the first scaling laws for $K_{\mathrm{pack}}(N)$. The next unresolved calculation is the envelope Hessian $H_{\mathrm{env}}$ for one reduced Noether-core branch.
+[Noether-Sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md) converts the former open $K_{\text{sea}}$ target into the branch-density modulus relation $K_{\mathrm{pack}}=K_{\text{sea}}/\kappa_n$, the support-function headroom $s_n=1-n/n_{\max}^{\mathrm{obl}}$, and the first scaling laws for $K_{\mathrm{pack}}(N)$. [Noether-Core Envelope Hessian Toy Branch](noether-core-envelope-hessian-toy-branch.md) supplies the reduced $H_{\mathrm{env}}$ projection needed to decide whether isotropic pressure also forces $\lambda$ and $\xi$ response.

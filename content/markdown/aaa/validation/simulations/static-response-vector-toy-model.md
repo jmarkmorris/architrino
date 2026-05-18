@@ -67,6 +67,70 @@ $$
 
 The branch is shared-delay closed only when $\Delta_\chi^{\mathrm{clk\text{-}sig}}=0$ within the declared tolerance.
 
+## Minimal Shared-Delay Packet
+
+The first admissible static endpoint packet is the shared scalar delay response specialization of the equations above. Define
+
+$$
+A_\chi\equiv1+\gamma_{\text{eff}}.
+$$
+
+The minimal response vector is
+
+$$
+\left(
+a_n,\,
+a_\chi,\,
+a_\lambda,\,
+a_R
+\right)
+=
+\left(
+0,\,
+A_\chi,\,
+0,\,
+0
+\right),
+$$
+
+with cadence row
+
+$$
+\left(
+b_n,\,
+b_\chi,\,
+b_\lambda,\,
+b_R
+\right)
+=
+\left(
+0,\,
+A_\chi^{-1},\,
+0,\,
+0
+\right)
+$$
+
+and inverse clock-rate row
+
+$$
+\left(
+\omega_n,\,
+\omega_\chi,\,
+\omega_\lambda,\,
+\omega_R
+\right)
+=
+\left(
+0,\,
+-A_\chi^{-1},\,
+0,\,
+0
+\right).
+$$
+
+For the GR-matching branch, this gives $A_\chi=2$, $a_\chi=2$, $b_\chi=1/2$, and $\omega_\chi=-1/2$. The `shared_delay_clean_gr_branch` row in the mock packet is exactly this replay. The `density_scale_compensated_branch` row samples the remaining compensated family, where nonzero $a_n$, $a_\lambda$, or $a_R$ are allowed only if the same cadence row still satisfies $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$ and the inverse row remains $\omega_i=-b_i$.
+
 ## Pressure Bridge
 
 Pressure-response packets can feed the same fixture after their anisotropic terms are separated from the isotropic static projection. For a pressure row $r$, the bridge uses

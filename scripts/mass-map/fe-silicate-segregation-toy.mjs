@@ -28,6 +28,33 @@ const BRANCH_NORMALIZED_DENSITY_SCALE = 1;
 const BRANCH_NORMALIZED_REFERENCE_CELL_VOLUME = 1;
 const COMPLIANCE_WEIGHT_MIN = 0;
 const COMPLIANCE_WEIGHT_MAX = 1;
+const DIRECTION_FAMILIES = {
+  principal_axes: [
+    [1, 0, 0],
+    [0, 1, 0],
+    [0, 0, 1],
+  ],
+  fcc_12: [
+    [1, 1, 0],
+    [1, -1, 0],
+    [-1, 1, 0],
+    [-1, -1, 0],
+    [1, 0, 1],
+    [1, 0, -1],
+    [-1, 0, 1],
+    [-1, 0, -1],
+    [0, 1, 1],
+    [0, 1, -1],
+    [0, -1, 1],
+    [0, -1, -1],
+  ],
+  tetrahedral_4: [
+    [1, 1, 1],
+    [1, -1, -1],
+    [-1, 1, -1],
+    [-1, -1, 1],
+  ],
+};
 
 function parseArgs(argv) {
   const args = {
@@ -122,6 +149,14 @@ function positiveAtMostNumber(value, label, max) {
   const number = positiveNumber(value, label);
   if (number > max) {
     throw new Error(`${label} must be at most ${max}.`);
+  }
+  return number;
+}
+
+function betaBelowOne(value, label) {
+  const number = finiteNumber(value, label);
+  if (number < 0 || number >= 1) {
+    throw new Error(`${label} must be at least 0 and less than 1.`);
   }
   return number;
 }
@@ -289,6 +324,144 @@ function dot(a, b) {
   return a.reduce((sum, entry, index) => sum + entry * b[index], 0);
 }
 
+function branchBeta(record, label) {
+  if (record.beta !== undefined && record.beta_ratio !== undefined) {
+    throw new Error(`${label} must declare beta or beta_ratio, not both.`);
+  }
+  if (record.beta_ratio !== undefined) {
+    const ratio = asObject(record.beta_ratio, `${label}.beta_ratio`);
+    const numerator = finiteNumber(ratio.numerator, `${label}.beta_ratio.numerator`);
+    const denominator = positiveNumber(ratio.denominator, `${label}.beta_ratio.denominator`);
+    return betaBelowOne(numerator / denominator, `${label}.beta_ratio`);
+  }
+  return betaBelowOne(record.beta, `${label}.beta`);
+}
+
+function finiteEtaClosedReturnSingularValues(rawRecord, label) {
+  const record = asObject(rawRecord, label);
+  const kind = record.kind ?? "finite_eta_closed_return";
+  if (kind !== "finite_eta_closed_return") {
+    throw new Error(`${label}.kind has unsupported value: ${kind}`);
+  }
+  const beta = branchBeta(record, label);
+  const residualAbsMax = nonnegativeNumber(
+    record.residual_abs_max ?? 0,
+    `${label}.residual_abs_max`
+  );
+  const lambdaPerp1 = positiveNumber(
+    record.lambda_perp_1 ?? 1,
+    `${label}.lambda_perp_1`
+  );
+  const lambdaPerp2 = positiveNumber(
+    record.lambda_perp_2 ?? 1,
+    `${label}.lambda_perp_2`
+  );
+  const lambdaPerpMean = Math.sqrt(lambdaPerp1 * lambdaPerp2);
+  const xiNominal = Math.sqrt(1 - beta ** 2);
+  return {
+    lambda_perp_1: lambdaPerp1,
+    lambda_perp_2: lambdaPerp2,
+    lambda_perp_mean: lambdaPerpMean,
+    lambda_parallel: lambdaPerpMean * xiNominal,
+    beta,
+    gamma_inverse: xiNominal,
+    residual_abs_max: residualAbsMax,
+    xi_bound: {
+      min: Math.max(0, xiNominal - residualAbsMax),
+      max: Math.min(1, xiNominal + residualAbsMax),
+    },
+  };
+}
+
+function oblateEnvelopeGeometry(envelope, label) {
+  const baseRPerp = positiveNumber(envelope.R_perp, `${label}.R_perp`);
+  const lambda = positiveNumber(envelope.lambda ?? 1, `${label}.lambda`);
+  const deformationInputCount = [
+    envelope.xi !== undefined,
+    envelope.deformation_singular_values !== undefined,
+    envelope.deformation_branch !== undefined,
+  ].filter(Boolean).length;
+  if (deformationInputCount > 1) {
+    throw new Error(`${label} must declare only one deformation input.`);
+  }
+
+  if (envelope.deformation_branch !== undefined) {
+    const singularValues = finiteEtaClosedReturnSingularValues(
+      envelope.deformation_branch,
+      `${label}.deformation_branch`
+    );
+    const xi = positiveAtMostNumber(
+      singularValues.lambda_parallel / singularValues.lambda_perp_mean,
+      `${label}.deformation_branch.xi`,
+      1
+    );
+    const RPerp = baseRPerp * lambda * singularValues.lambda_perp_mean;
+    const RParallel = baseRPerp * lambda * singularValues.lambda_parallel;
+    return {
+      R_perp: RPerp,
+      R_parallel: RParallel,
+      xi,
+      lambda,
+      volume: (4 * Math.PI / 3) * RPerp ** 2 * RParallel,
+      xi_source: "finite_eta_closed_return",
+      deformation_branch: singularValues,
+    };
+  }
+
+  if (envelope.deformation_singular_values !== undefined) {
+    const singularValues = asObject(
+      envelope.deformation_singular_values,
+      `${label}.deformation_singular_values`
+    );
+    const lambdaPerp1 = positiveNumber(
+      singularValues.lambda_perp_1,
+      `${label}.deformation_singular_values.lambda_perp_1`
+    );
+    const lambdaPerp2 = positiveNumber(
+      singularValues.lambda_perp_2,
+      `${label}.deformation_singular_values.lambda_perp_2`
+    );
+    const lambdaParallel = positiveNumber(
+      singularValues.lambda_parallel,
+      `${label}.deformation_singular_values.lambda_parallel`
+    );
+    const lambdaPerpMean = Math.sqrt(lambdaPerp1 * lambdaPerp2);
+    const xi = positiveAtMostNumber(
+      lambdaParallel / lambdaPerpMean,
+      `${label}.deformation_singular_values.xi`,
+      1
+    );
+    const RPerp = baseRPerp * lambda * lambdaPerpMean;
+    const RParallel = baseRPerp * lambda * lambdaParallel;
+    return {
+      R_perp: RPerp,
+      R_parallel: RParallel,
+      xi,
+      lambda,
+      volume: (4 * Math.PI / 3) * RPerp ** 2 * RParallel,
+      xi_source: "deformation_singular_values",
+      deformation_singular_values: {
+        lambda_perp_1: lambdaPerp1,
+        lambda_perp_2: lambdaPerp2,
+        lambda_perp_mean: lambdaPerpMean,
+        lambda_parallel: lambdaParallel,
+      },
+    };
+  }
+
+  const xi = positiveAtMostNumber(envelope.xi, `${label}.xi`, 1);
+  const RPerp = baseRPerp * lambda;
+  const RParallel = RPerp * xi;
+  return {
+    R_perp: RPerp,
+    R_parallel: RParallel,
+    xi,
+    lambda,
+    volume: (4 * Math.PI / 3) * RPerp ** 2 * RParallel,
+    xi_source: "declared",
+  };
+}
+
 function det3(a, b, c) {
   return (
     a[0] * (b[1] * c[2] - b[2] * c[1]) -
@@ -316,6 +489,57 @@ function weightedDirections(rawDirections, label, directionKey = "direction") {
   });
   const totalWeight = directions.reduce((sum, entry) => sum + entry.weight, 0);
   return { directions, totalWeight };
+}
+
+function familyDirections(family, label) {
+  const directions = DIRECTION_FAMILIES[family];
+  if (!directions) {
+    throw new Error(`${label} has unsupported family: ${family}`);
+  }
+  return directions;
+}
+
+function orientationDistribution(record, label) {
+  if (record.distribution !== undefined) {
+    return weightedDirections(record.distribution, `${label}.distribution`, "axis");
+  }
+  if (record.kind === "single_axis") {
+    return weightedDirections(
+      [{ axis: record.axis, weight: 1 }],
+      `${label}.single_axis`,
+      "axis"
+    );
+  }
+  if (record.kind === "orthogonal_isotropic") {
+    return weightedDirections(
+      DIRECTION_FAMILIES.principal_axes.map((axis) => ({ axis, weight: 1 / 3 })),
+      `${label}.orthogonal_isotropic`,
+      "axis"
+    );
+  }
+  throw new Error(`${label} must declare distribution or supported kind.`);
+}
+
+function latticeBasisDirections(latticeCell, label) {
+  if (latticeCell.basis_directions !== undefined) {
+    return latticeCell.basis_directions;
+  }
+  return familyDirections(latticeCell.basis_family ?? "principal_axes", `${label}.basis_family`);
+}
+
+function contactDirections(contactNetwork, label) {
+  if (contactNetwork.directions !== undefined) {
+    return {
+      directions: contactNetwork.directions,
+      coordination_number: contactNetwork.coordination_number,
+    };
+  }
+  const family = contactNetwork.family;
+  const directions = familyDirections(family, `${label}.family`);
+  return {
+    directions,
+    coordination_number: contactNetwork.coordination_number ?? directions.length,
+  };
 }
 
 function weightedMean(values) {
@@ -377,40 +601,27 @@ function derivePacking(recordInput, materialLabel, modelPacking) {
     record.oblate_envelope,
     `${materialLabel}.coefficient_inputs.packing_record.oblate_envelope`
   );
-  const baseRPerp = positiveNumber(
-    envelope.R_perp,
-    `${materialLabel}.coefficient_inputs.packing_record.oblate_envelope.R_perp`
+  const envelopeGeometry = oblateEnvelopeGeometry(
+    envelope,
+    `${materialLabel}.coefficient_inputs.packing_record.oblate_envelope`
   );
-  const lambda = positiveNumber(
-    envelope.lambda ?? 1,
-    `${materialLabel}.coefficient_inputs.packing_record.oblate_envelope.lambda`
-  );
-  const xi = positiveNumber(
-    envelope.xi,
-    `${materialLabel}.coefficient_inputs.packing_record.oblate_envelope.xi`
-  );
-  positiveAtMostNumber(
-    xi,
-    `${materialLabel}.coefficient_inputs.packing_record.oblate_envelope.xi`,
-    1
-  );
-  const RPerp = baseRPerp * lambda;
-  const RParallel = RPerp * xi;
+  const RPerp = envelopeGeometry.R_perp;
+  const RParallel = envelopeGeometry.R_parallel;
+  const envelopeVolume = envelopeGeometry.volume;
   const orientationRecord = asObject(
     record.orientation_record,
     `${materialLabel}.coefficient_inputs.packing_record.orientation_record`
   );
-  const orientations = weightedDirections(
-    orientationRecord.distribution,
-    `${materialLabel}.coefficient_inputs.packing_record.orientation_record.distribution`,
-    "axis"
+  const orientations = orientationDistribution(
+    orientationRecord,
+    `${materialLabel}.coefficient_inputs.packing_record.orientation_record`
   );
   const latticeCell = asObject(
     record.lattice_cell,
     `${materialLabel}.coefficient_inputs.packing_record.lattice_cell`
   );
   const basis = weightedDirections(
-    latticeCell.basis_directions,
+    latticeBasisDirections(latticeCell, `${materialLabel}.coefficient_inputs.packing_record.lattice_cell`),
     `${materialLabel}.coefficient_inputs.packing_record.lattice_cell.basis_directions`
   ).directions.map((entry) => entry.direction);
   if (basis.length !== 3) {
@@ -420,10 +631,6 @@ function derivePacking(recordInput, materialLabel, modelPacking) {
   if (basisDeterminant <= 0) {
     throw new Error(`${materialLabel}.coefficient_inputs.packing_record.lattice_cell.basis_directions must span a nonzero cell volume.`);
   }
-  const cellVolumeFactor = positiveNumber(
-    latticeCell.cell_volume_factor ?? 1,
-    `${materialLabel}.coefficient_inputs.packing_record.lattice_cell.cell_volume_factor`
-  );
   const wakeClearance = nonnegativeNumber(
     record.wake_clearance ?? 0,
     `${materialLabel}.coefficient_inputs.packing_record.wake_clearance`
@@ -446,15 +653,34 @@ function derivePacking(recordInput, materialLabel, modelPacking) {
   );
   const spacing = (direction) => 2 * supportRadius(direction) + wakeClearance + latticeClearance;
   const basisSpacings = basis.map((direction) => spacing(direction));
+  const basisSpacingProduct = basisSpacings.reduce((product, entry) => product * entry, 1);
+  if (
+    latticeCell.packing_fraction_target !== undefined &&
+    latticeCell.cell_volume_factor !== undefined
+  ) {
+    throw new Error(`${materialLabel}.coefficient_inputs.packing_record.lattice_cell must declare packing_fraction_target or cell_volume_factor, not both.`);
+  }
+  const packingFractionTarget = latticeCell.packing_fraction_target === undefined
+    ? null
+    : positiveAtMostNumber(
+      latticeCell.packing_fraction_target,
+      `${materialLabel}.coefficient_inputs.packing_record.lattice_cell.packing_fraction_target`,
+      modelPacking.reference_packing_fraction
+    );
+  const cellVolumeFactor = packingFractionTarget === null
+    ? positiveNumber(
+      latticeCell.cell_volume_factor ?? 1,
+      `${materialLabel}.coefficient_inputs.packing_record.lattice_cell.cell_volume_factor`
+    )
+    : envelopeVolume / (packingFractionTarget * basisDeterminant * basisSpacingProduct);
   const latticeCellVolume = cellVolumeFactor *
     basisDeterminant *
-    basisSpacings.reduce((product, entry) => product * entry, 1);
+    basisSpacingProduct;
   const densityScale = positiveNumber(
     record.density_scale ?? modelPacking.density_scale,
     `${materialLabel}.coefficient_inputs.packing_record.density_scale`
   );
   const nMaxObl = densityScale / latticeCellVolume;
-  const envelopeVolume = (4 * Math.PI / 3) * RPerp ** 2 * RParallel;
   const packingFraction = envelopeVolume / latticeCellVolume;
   if (packingFraction <= 0 || packingFraction > 1) {
     throw new Error(`${materialLabel}.coefficient_inputs.packing_record yields invalid packing_fraction ${packingFraction}.`);
@@ -463,8 +689,12 @@ function derivePacking(recordInput, materialLabel, modelPacking) {
     record.contact_network,
     `${materialLabel}.coefficient_inputs.packing_record.contact_network`
   );
+  const contactRecord = contactDirections(
+    contactNetwork,
+    `${materialLabel}.coefficient_inputs.packing_record.contact_network`
+  );
   const contacts = weightedDirections(
-    contactNetwork.directions,
+    contactRecord.directions,
     `${materialLabel}.coefficient_inputs.packing_record.contact_network.directions`
   );
   const logContactSpacings = contacts.directions.map((entry) => ({
@@ -473,7 +703,7 @@ function derivePacking(recordInput, materialLabel, modelPacking) {
   }));
   const spacingLogVariance = weightedVariance(logContactSpacings);
   const effectiveCoordination = finiteNumber(
-    contactNetwork.coordination_number ?? contacts.totalWeight,
+    contactRecord.coordination_number ?? contacts.totalWeight,
     `${materialLabel}.coefficient_inputs.packing_record.contact_network.coordination_number`
   );
   if (effectiveCoordination < 0 || effectiveCoordination > modelPacking.coordination_reference) {
@@ -501,18 +731,16 @@ function derivePacking(recordInput, materialLabel, modelPacking) {
   return {
     exclusion_penalty: exclusionPenalty,
     n_max_obl: nMaxObl,
-    envelope: {
-      R_perp: RPerp,
-      R_parallel: RParallel,
-      xi,
-      lambda,
-      volume: envelopeVolume,
-    },
+    envelope: envelopeGeometry,
     orientation_weight: orientations.totalWeight,
     lattice_cell: {
       basis_spacings: basisSpacings,
       basis_determinant: basisDeterminant,
       cell_volume_factor: cellVolumeFactor,
+      cell_volume_factor_source: packingFractionTarget === null
+        ? "declared"
+        : "derived_from_packing_fraction_target",
+      packing_fraction_target: packingFractionTarget,
       volume: latticeCellVolume,
     },
     contact_network: {

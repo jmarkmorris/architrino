@@ -267,10 +267,10 @@ with monopole, dipole, and higher directional terms tested against the same Noet
 4. `cmb_bao_handoff` — Route CMB blackbody, BAO scale, and growth variables through one cosmology closure record. Status: `draft`.
 5. `directional_residual_gate` — Decompose supernova, BAO, CMB-frame, and local $H_0$ residuals by direction and environment before accepting an isotropic Friedmann-like bridge. Status: `draft`.
 6. `propagation_slope_record` — Define the endpoint-subtracted propagation residual $Z_{\mathrm{prop},X}$, derive or bound the path-rate functional $\alpha_{\mathrm{prop},X}$, and recover $H_{0,\mathbb{A}\mathbb{A}\mathbb{A}}=c_0\,\partial Z_{\mathrm{prop},X}/\partial D$ in the clean low-redshift limit. Status: `draft`.
-7. `absolute_transport_law` — Derive or falsify a single absolute-record law that maps $S(t)$ to $\Gamma_N$, $D_v$, and $\mathcal{P}_{E\to R}$ for gravitational, relative-motion, and deep-space redshift without changing coefficients or explanatory class per case. Status: `minimal-fixture-seeded`; proof scaffold: `content/markdown/aaa/spacetime/noether-sea.md#equilibrium-transport-hypothesis`; runtime extractor: `scripts/cosmology/redshift-budget-toy-model.mjs`.
-8. `gamma_n_geometry_extraction` — Derive the coefficient row $\mathbf{b}_N$ that maps $(n,\chi_{\text{sea}},\lambda,\xi,R_{\text{core}})$ into $\Gamma_N$ while recovering the weak homogeneous reference, homogeneous moving-core Lorentz branch, and weak gravitational endpoint limit. Status: `fixture-seeded`; fixed result: $C_N=\Gamma_N^{-1}$ is the clock-rate factor, $\Gamma_N=(\Omega_{\mathrm{clk}}\xi)^{-1}$ in the metric subclass, and $b_\xi=1$ for the coefficient multiplying $-\ln\xi$; remaining weak-field constraint: $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$; signal-delay neighbor: $a_\chi^{\mathrm{sig}}=1+\gamma_{\text{eff}}$ from the Shapiro-delay map, promotable to clock $a_\chi$ only under shared clock/signal delay closure $\Delta_\chi^{\mathrm{clk\text{-}sig}}=0$. Proof scaffold: `content/markdown/aaa/spacetime/proper-time-and-time-dilation.md#gamma-n-geometry-extraction-target`; runtime fixture: `scripts/spacetime/static-response-vector-toy-model.mjs`.
+7. `absolute_transport_law` — Derive or falsify a single absolute-record law that maps $S(t)$ to $\Gamma_N$, $D_v$, and $\mathcal{P}_{E\to R}$ for gravitational, relative-motion, and deep-space redshift without changing coefficients or explanatory class per case. Status: `candidate-constraints-promoted`; proof scaffold: `content/markdown/aaa/spacetime/noether-sea.md#equilibrium-transport-hypothesis`; runtime extractor: `scripts/cosmology/redshift-budget-toy-model.mjs`.
+8. `gamma_n_geometry_extraction` — Derive the coefficient row $\mathbf{b}_N$ that maps $(n,\chi_{\text{sea}},\lambda,\xi,R_{\text{core}})$ into $\Gamma_N$ while recovering the weak homogeneous reference, homogeneous moving-core Lorentz branch, and weak gravitational endpoint limit. Status: `minimal-static-packet-promoted`; fixed result: $C_N=\Gamma_N^{-1}$ is the clock-rate factor, $\Gamma_N=(\Omega_{\mathrm{clk}}\xi)^{-1}$ in the metric subclass, $b_\xi=1$ for the coefficient multiplying $-\ln\xi$, and the minimal shared-delay static packet has $(a_n,a_\chi,a_\lambda,a_R)=(0,1+\gamma_{\text{eff}},0,0)$ with $(b_n,b_\chi,b_\lambda,b_R)=(0,(1+\gamma_{\text{eff}})^{-1},0,0)$. Remaining weak-field family: $a_\chi=1+\gamma_{\text{eff}}$ and $b_\chi=(1-b_n a_n-b_\lambda a_\lambda-b_R a_R)/(1+\gamma_{\text{eff}})$ when nonzero density, scale, or core-radius response is admitted. Proof scaffold: `content/markdown/aaa/spacetime/proper-time-and-time-dilation.md#gamma-n-geometry-extraction-target`; runtime fixture: `scripts/spacetime/static-response-vector-toy-model.mjs`.
 9. `cadence_scale_retuning_map` — Derive or falsify the single-core map from an accepted $\Delta A_{\mathrm{cyc}}=\pm h$ transaction to $(\Delta\nu_N,\Delta R_I,\Delta R_M,\Delta R_O,\Delta\lambda,\Delta\xi)$ and show how its coarse-grained average becomes $J_\nu$. Status: `fixture-seeded`; proof scaffold: `content/markdown/aaa/dynamics/tri-binary-dynamics.md#cadence-scale-retuning-closure`; runtime fixture: `scripts/tri-binary/retuning-map-toy-model.mjs`.
-10. `noether_core_equilibrium_transport` — Derive or falsify the candidate $f_N$ transport law, including $J_\nu$, $S_{\mathrm{BH}}$, $S_{\mathrm{GW}}$, and $R_{\mathrm{eq}}[f_N]$, and test whether it supplies a signed contribution to $\alpha_{\mathrm{prop},X}$ without violating photon coherence gates. Status: `minimal-fixture-seeded`.
+10. `noether_core_equilibrium_transport` — Derive or falsify the candidate $f_N$ transport law, including $J_\nu$, $S_{\mathrm{BH}}$, $S_{\mathrm{GW}}$, and $R_{\mathrm{eq}}[f_N]$, and test whether it supplies a signed contribution to $\alpha_{\mathrm{prop},X}$ without violating photon coherence gates. Status: `continuity-packet-seeded`.
 
 ## Closure Objects
 
@@ -297,6 +297,42 @@ with monopole, dipole, and higher directional terms tested against the same Noet
 - Shared medium variables: $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, and $\mathcal{M}_{\mathrm{sea}}^{ab}$.
 - Frame-consistency record for CMB, matter dipoles, supernova directionality, BAO anisotropy, and local $H_0$ scatter.
 - Shared-state residual gate: one $\theta_{\mathrm{sea}}$ must project into SN, BAO, CMB, weak-lensing, redshift-space-distortion, and BBN comparison packets without per-family replacement.
+
+### Current Coefficient-Row Status
+
+The first candidate row is
+
+$$
+\Theta_X
+=
+\left(
+\mathbf b_N,\,
+\mathbf p_X,\,
+p_{\nu,X},\,
+p_{u,X},\,
+p_{\sigma,X}
+\right),
+\qquad
+\mathbf b_N
+=
+\left(
+b_n,b_\chi,b_\lambda,1,b_R
+\right).
+$$
+
+Solid constraints promoted to the corpus: the homogeneous moving-core branch fixes $b_\xi=1$; weak static endpoint recovery fixes $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$; shared clock/signal delay replaces $a_\chi$ by $1+\gamma_{\text{eff}}$ only when $\Delta_\chi^{\mathrm{clk\text{-}sig}}=0$; the minimal shared-delay static packet is $(a_n,a_\chi,a_\lambda,a_R)=(0,1+\gamma_{\text{eff}},0,0)$ and $(b_n,b_\chi,b_\lambda,b_R)=(0,(1+\gamma_{\text{eff}})^{-1},0,0)$; pure relative-motion recovery has $Z_X=-\ln D_v$ and $Y_X=0$ in a homogeneous record; endpoint-subtracted deep-space replay uses the continuity-disciplined path row without changing coefficients between cases.
+
+Uncertain claims staged for the next proof packet:
+
+| Component | Current status | Observable that would falsify the freedom |
+| --- | --- | --- |
+| $(a_n,a_\lambda,a_R)$ | Zero in the minimal shared-delay static packet; free only in the compensated family. | Finite-height clock redshift, hydrogen spectral conversion, pressure-response replay, or endpoint-subtracted redshift records require nonzero density, scale, or core-radius response in the same weak static branch. |
+| $(b_n,b_\lambda,b_R)$ | Zero in the minimal packet; free only with $b_\chi=(1-b_n a_n-b_\lambda a_\lambda-b_R a_R)/(1+\gamma_{\text{eff}})$. | The compensated row closes the endpoint sum but fails inverse clock-rate, row-inverse, Shapiro-delay, pressure-response, or spectral-row checks. |
+| $a_\chi=1+\gamma_{\text{eff}}$ | Fixed only inside the shared clock/signal delay branch; otherwise $\Delta_\chi^{\mathrm{clk\text{-}sig}}$ must be carried as a residual. | Clock redshift and Shapiro-delay comparisons require different first-order $\chi_{\text{sea}}$ responses after channel and normalization differences are accounted for. |
+| $\mathbf p_X$ | Free path-gradient row until independent segment records vary $D_\gamma\boldsymbol\theta_{\mathrm{sea}}$. | Clean-line chromaticity or endpoint-subtracted redshift residuals correlate with gradients in a way no single $\mathbf p_X$ can replay across line and cadence records. |
+| $p_{\nu,X}$ | Free cadence-residual coefficient until $\mathcal C_N[f_N]$ is independently derived from the $f_N$ transport packet. | Supernova time-dilation and spectral redshift require different cadence residual rows, or an independently measured $\mathcal C_N[f_N]$ gives the wrong propagation slope. |
+| $p_{u,X}$ | Free flow-divergence coefficient until large-scale Noether-Sea flow is constrained by the same redshift record. | Directional residuals or local-ladder offsets track $\nabla\cdot\mathbf u_{\mathrm{sea}}$ with a sign or amplitude incompatible with the fixed row. |
+| $p_{\sigma,X}$ | Free anisotropic-response coefficient until beam and direction records vary $\Sigma_{\mathrm{sea},X}^{ab}$. | Image-bundle variance, anisotropic redshift residuals, or line-family splits exceed tolerance when the same $p_{\sigma,X}$ is used. |
 
 ## Promotion Map
 

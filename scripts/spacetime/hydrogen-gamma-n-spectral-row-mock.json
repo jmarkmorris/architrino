@@ -1,7 +1,31 @@
 {
   "schema": "aaa-hydrogen-gamma-n-spectral-row-toy-input/v1",
   "metadata": {
-    "description": "Mock hydrogen spectral coefficient-row replay for Gamma_N closure arithmetic."
+    "description": "Hydrogen spectral coefficient-row replay for Gamma_N closure arithmetic, with a first theory-bearing input scaffold and intentional mock failure witnesses.",
+    "theory_bearing_record_plan": {
+      "claim_level": "input scaffold",
+      "source_documents": [
+        "content/markdown/aaa/nuclear-atomic/atomic-spectra.md#hydrogen-rydberg-benchmark-target",
+        "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md#hydrogen-spectral-clock-rate-conversion-target",
+        "content/markdown/aaa/validation/simulations/static-response-vector-toy-model.md"
+      ],
+      "g_N_H_components": {
+        "ln_n": "Normalized Noether-core density response from the hydrogen spectral channel ledger.",
+        "ln_chi_sea": "Noether-Sea delay factor from the same hydrogen spectral channel ledger.",
+        "ln_lambda": "Envelope transverse scale response retained by the spectral channel.",
+        "minus_ln_xi": "Negative envelope shape-ratio response; the Lorentz-branch coefficient is fixed by b_xi=1.",
+        "ln_R_core_ratio": "Representative Noether-core scale response retained by the static endpoint row."
+      },
+      "envelope_gap_over_h": "Use the electron-envelope calculation for each recovered hydrogen transition label; this scaffold derives envelope_gap_over_h as frequency_scale times Lambda_ab times exp(line_inferred_ln_Gamma_N).",
+      "observed_frequency": "Use the observer-level hydrogen line frequency after the local clock-rate conversion is declared; this scaffold derives observed_frequency as frequency_scale times Lambda_ab.",
+      "static_response": "Use the static weak-potential response vector from the Gamma_N extraction target; this scaffold replays the density-scale-compensated branch from the static response packet.",
+      "remaining_obligations": [
+        "Replace the scaffolded frequency_scale and line_inferred_ln_Gamma_N with envelope gaps computed from the hydrogen electron-envelope branch.",
+        "Replace scaffolded g_N_H entries with records extracted from the hydrogen spectral channel ledger at admissible resolutions.",
+        "Replace declared static response values with a constitutive response calculation for the same Noether-Sea cell.",
+        "Keep recoil, hyperfine structure, photon-channel propagation, and source-branch effects outside Gamma_N unless a declared residual budget carries them."
+      ]
+    }
   },
   "defaults": {
     "endpoint_tolerance": 1e-9,
@@ -12,6 +36,116 @@
     "epsilon_row": 1e-12
   },
   "scenarios": [
+    {
+      "name": "hydrogen_rydberg_static_response_scaffold",
+      "expect_pass": true,
+      "record_plan": {
+        "line_set": "Ordinary isolated hydrogen transitions with recovered principal labels and no external field or material branch.",
+        "frequency_scale": "Set R_H c_gamma to one in the weak homogeneous comparison; the runner derives observed_frequency from the Rydberg line factor Lambda_ab.",
+        "line_inferred_ln_Gamma_N": 0.001,
+        "static_response_source": "density_scale_compensated_branch in scripts/spacetime/static-response-vector-mock.json",
+        "accepted_row_source": "density_scale_compensated_branch cadence_row in scripts/spacetime/static-response-vector-mock.json"
+      },
+      "static_response": {
+        "a_n": 0.25,
+        "a_chi": 2,
+        "a_lambda": -0.1,
+        "a_R": 0.05
+      },
+      "candidate_rows": [
+        {
+          "name": "density_scale_compensated_spectral_row",
+          "b_n": 0.4,
+          "b_chi": 0.4,
+          "b_lambda": -0.5,
+          "b_R": 1
+        },
+        {
+          "name": "shared_delay_only_control_row",
+          "b_n": 0,
+          "b_chi": 0.5,
+          "b_lambda": 0,
+          "b_R": 0
+        },
+        {
+          "name": "endpoint_balanced_but_record_bad_row",
+          "b_n": 0.8,
+          "b_chi": 0.4,
+          "b_lambda": 0,
+          "b_R": 0
+        }
+      ],
+      "records": [
+        {
+          "ell": "ell_atom_density_delay_split_A",
+          "frequency_scale": 1,
+          "line_inferred_ln_Gamma_N": 0.001,
+          "record_plan": {
+            "g_N_H": "First admissible hydrogen spectral response record. The component split is deliberately retained instead of collapsing density and delay.",
+            "envelope_gaps": "Each envelope_gap_over_h is derived from exp(0.001) times the weak-homogeneous Rydberg line factor.",
+            "observer_frequencies": "Each observed_frequency is derived from Lambda_ab in the normalized weak-homogeneous comparison."
+          },
+          "g_N_H": {
+            "ln_n": 0.0005,
+            "ln_chi_sea": 0.002,
+            "ln_lambda": 0.0002,
+            "minus_ln_xi": 0,
+            "ln_R_core_ratio": 0.0001
+          },
+          "lines": [
+            {
+              "transition": "H_alpha_3_to_2",
+              "principal_n_a": 3,
+              "principal_n_b": 2
+            },
+            {
+              "transition": "H_beta_4_to_2",
+              "principal_n_a": 4,
+              "principal_n_b": 2
+            },
+            {
+              "transition": "H_gamma_5_to_2",
+              "principal_n_a": 5,
+              "principal_n_b": 2
+            }
+          ]
+        },
+        {
+          "ell": "ell_atom_density_delay_split_B",
+          "frequency_scale": 1,
+          "line_inferred_ln_Gamma_N": 0.001,
+          "record_plan": {
+            "g_N_H": "Second admissible hydrogen spectral response record with a different density/delay/scale/core split and the same row-predicted cadence stretch.",
+            "envelope_gaps": "The repeated line-inferred cadence stretch checks refinement stability after the envelope-gap convergence budget is removed.",
+            "observer_frequencies": "The observer-frequency entries remain tied to the same recovered transition labels."
+          },
+          "g_N_H": {
+            "ln_n": 0.0007,
+            "ln_chi_sea": 0.0018,
+            "ln_lambda": 0.0001,
+            "minus_ln_xi": 0,
+            "ln_R_core_ratio": 0.00005
+          },
+          "lines": [
+            {
+              "transition": "H_alpha_3_to_2",
+              "principal_n_a": 3,
+              "principal_n_b": 2
+            },
+            {
+              "transition": "H_beta_4_to_2",
+              "principal_n_a": 4,
+              "principal_n_b": 2
+            },
+            {
+              "transition": "H_gamma_5_to_2",
+              "principal_n_a": 5,
+              "principal_n_b": 2
+            }
+          ]
+        }
+      ]
+    },
     {
       "name": "shared_row_clean_packet",
       "expect_pass": true,

@@ -162,6 +162,8 @@ Every resolved radiation, sub-threshold shedding, photon-capture, or radiation-c
 | Identity routing | Bijection or equivalent route for participating architrino identities after named Noether-Sea reservoir terms are included | Prevents photon output, causal wakes, or unresolved medium terms from being treated as sources of new substrate identities |
 | Closure status | Baseline, provisional map, derivation target, failed map, or inherited gate, with any unresolved Gate A, Gate B, Gate C, reaction, or cosmology handoff named explicitly | Prevents a local channel record from being promoted to completed doctrine before its inherited gates close |
 
+For photon-capture records, $E_\gamma$ names the incoming, outgoing, shifted, or captured photon ledger; it is not an identity source for different outgoing assemblies unless the channel is explicitly a reaction or pair-production record. In those cases, the same schema must add the recruited target or Noether-Sea inventory to the identity-routing field.
+
 The common energy closure for the schema is
 
 $$

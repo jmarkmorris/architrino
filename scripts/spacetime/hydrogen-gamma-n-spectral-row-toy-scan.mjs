@@ -192,24 +192,93 @@ function rowPrediction(row, g) {
   );
 }
 
-function lineInferredLnGamma(line, recordLabel) {
-  if (line.ln_Gamma_inferred !== undefined) {
-    return finiteNumber(line.ln_Gamma_inferred, `${recordLabel}.${line.transition}.ln_Gamma_inferred`);
+function positiveInteger(value, label) {
+  const number = finiteNumber(value, label);
+  if (!Number.isInteger(number) || number <= 0) {
+    throw new Error(`${label} must be a positive integer.`);
   }
-  const gap = finiteNumber(line.envelope_gap_over_h, `${recordLabel}.${line.transition}.envelope_gap_over_h`);
-  const frequency = finiteNumber(line.observed_frequency, `${recordLabel}.${line.transition}.observed_frequency`);
+  return number;
+}
+
+function lineLabel(line) {
+  return line.transition ?? "unnamed_line";
+}
+
+function lineFactorLambda(line, recordLabel) {
+  if (line.line_factor_Lambda_ab !== undefined) {
+    return finiteNumber(line.line_factor_Lambda_ab, `${recordLabel}.${lineLabel(line)}.line_factor_Lambda_ab`);
+  }
+  if (line.principal_n_a === undefined && line.principal_n_b === undefined) {
+    return null;
+  }
+  const nA = positiveInteger(line.principal_n_a, `${recordLabel}.${lineLabel(line)}.principal_n_a`);
+  const nB = positiveInteger(line.principal_n_b, `${recordLabel}.${lineLabel(line)}.principal_n_b`);
+  if (nA <= nB) {
+    throw new Error(`${recordLabel}.${lineLabel(line)}: principal_n_a must be greater than principal_n_b.`);
+  }
+  return 1 / (nB * nB) - 1 / (nA * nA);
+}
+
+function lineFrequencyScale(record, line, recordLabel) {
+  const value = line.frequency_scale ?? record.frequency_scale ?? 1;
+  const scale = finiteNumber(value, `${recordLabel}.${lineLabel(line)}.frequency_scale`);
+  if (scale <= 0) {
+    throw new Error(`${recordLabel}.${lineLabel(line)}.frequency_scale must be positive.`);
+  }
+  return scale;
+}
+
+function observedFrequency(record, line, recordLabel) {
+  if (line.observed_frequency !== undefined) {
+    return finiteNumber(line.observed_frequency, `${recordLabel}.${lineLabel(line)}.observed_frequency`);
+  }
+  const lambda = lineFactorLambda(line, recordLabel);
+  if (lambda === null) {
+    throw new Error(`${recordLabel}.${lineLabel(line)}: observed_frequency requires envelope_gap_over_h or recovered principal labels.`);
+  }
+  return lineFrequencyScale(record, line, recordLabel) * lambda;
+}
+
+function declaredLineInferredLnGamma(record, line, recordLabel) {
+  const value = line.ln_Gamma_inferred ?? record.line_inferred_ln_Gamma_N;
+  return value === undefined
+    ? null
+    : finiteNumber(value, `${recordLabel}.${lineLabel(line)}.line_inferred_ln_Gamma_N`);
+}
+
+function envelopeGapOverH(record, line, recordLabel) {
+  if (line.envelope_gap_over_h !== undefined) {
+    return finiteNumber(line.envelope_gap_over_h, `${recordLabel}.${lineLabel(line)}.envelope_gap_over_h`);
+  }
+  const lnGamma = declaredLineInferredLnGamma(record, line, recordLabel);
+  if (lnGamma === null) {
+    throw new Error(`${recordLabel}.${lineLabel(line)}: envelope_gap_over_h requires a declared line-inferred ln Gamma_N.`);
+  }
+  return observedFrequency(record, line, recordLabel) * Math.exp(lnGamma);
+}
+
+function lineInferredLnGamma(record, line) {
+  const recordLabel = record.ell ?? "record";
+  const gap = envelopeGapOverH(record, line, recordLabel);
+  const frequency = observedFrequency(record, line, recordLabel);
   if (gap <= 0 || frequency <= 0) {
-    throw new Error(`${recordLabel}.${line.transition}: envelope_gap_over_h and observed_frequency must be positive.`);
+    throw new Error(`${recordLabel}.${lineLabel(line)}: envelope_gap_over_h and observed_frequency must be positive.`);
   }
   return Math.log(gap / frequency);
 }
 
 function lineResidual(row, record, line, epsilonGamma) {
-  const inferred = lineInferredLnGamma(line, record.ell ?? "record");
+  const recordLabel = record.ell ?? "record";
+  const inferred = lineInferredLnGamma(record, line);
   const predicted = rowPrediction(row, record.g_N_H);
   const residual = inferred - predicted;
   return {
     transition: line.transition ?? null,
+    principal_n_a: line.principal_n_a ?? null,
+    principal_n_b: line.principal_n_b ?? null,
+    line_factor_Lambda_ab: lineFactorLambda(line, recordLabel),
+    envelope_gap_over_h: envelopeGapOverH(record, line, recordLabel),
+    observed_frequency: observedFrequency(record, line, recordLabel),
     inferred_ln_Gamma_N: inferred,
     predicted_ln_Gamma_N: predicted,
     residual,

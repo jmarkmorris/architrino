@@ -272,6 +272,63 @@ K_{\text{sea},X}
 }
 $$
 
+The same decomposition supplies the support-function compliance weights used by the Fe/silicate replay. For a branch family $\mathcal B$, collect the positive reversible stiffness channels as
+
+$$
+K_{\mathrm{pack}}^{(\mathcal B)}
+=
+K_u^{(\mathcal B)}
++
+K_{\phi}^{(\mathcal B)}
++
+K_{\sigma}^{(\mathcal B)}
++
+K_{\mathrm{wake}}^{\mathrm{rev},(\mathcal B)}
++
+K_{\mathrm{res}}^{(\mathcal B)}.
+$$
+
+Then the shared weights in
+
+$$
+e_X^{\mathrm{sf}}
+=
+\left(
+\frac{V_{\mathrm{cell},X}^{\mathrm{sf}}}{V_*}
+\right)^{1/3}
+\left(
+1+w_uu_X+w_{\phi}h_X+w_{\sigma}\sigma_{\ln D,X}^2
+\right)
+$$
+
+are not material-local knobs. They are stiffness shares:
+
+$$
+\boxed{
+w_u
+=
+\frac{K_u^{(\mathcal B)}}{K_{\mathrm{pack}}^{(\mathcal B)}},
+\qquad
+w_{\phi}
+=
+\frac{K_{\phi}^{(\mathcal B)}}{K_{\mathrm{pack}}^{(\mathcal B)}},
+\qquad
+w_{\sigma}
+=
+\frac{K_{\sigma}^{(\mathcal B)}}{K_{\mathrm{pack}}^{(\mathcal B)}}.
+}
+$$
+
+Thus
+
+$$
+0\le w_u,w_{\phi},w_{\sigma}\le1,
+\qquad
+w_u+w_{\phi}+w_{\sigma}\le1.
+$$
+
+The residual share belongs to reversible wake response or other retained positive stiffness channels. If a replay needs different weights for Fe and silicate while claiming one branch family, the pressure-modulus bridge has split and the dense-medium preference has not been derived.
+
 ## Spherical Branch Scaling
 
 For an equal near-spherical same-level pool with
@@ -387,4 +444,4 @@ for the density channel, and should reserve $\Delta\ln n_{\max,X}^{\mathrm{obl}}
 
 ## Next Closure Target
 
-The next required calculation is the envelope Hessian $H_{\mathrm{env}}$ for one reduced branch. The lowest-risk route is a toy branch chart that treats $(\ln R_\perp,\ln\xi)$ as the active variables, computes $V_{\mathrm{cell}}^{\mathrm{sf}}$, and reports whether the projected stiffness $k_{\mathrm{env}}^{(V)}$ is positive, zero, or branch-unstable.
+[Noether-Core Envelope Hessian Toy Branch](noether-core-envelope-hessian-toy-branch.md) supplies the reduced $2\times2$ Hessian calculation for $(\ln R_\perp,\ln\xi)$, including the projected stiffness $k_{\mathrm{env}}^{(V)}$, stability classifier, and induced shape response. The next unresolved step is an executable Hessian scanner that samples the toy branch and flags positive, floppy, unstable, and null-sector-danger regions.

@@ -406,6 +406,247 @@ $$
 
 with analogous formulas for $\lambda$ and $R_{\text{core}}$. If the selected coordinate has nonzero gravitational projection, it cannot both preserve the clean gravitational row and repair the pressure row by itself.
 
+The pressure-dependent constitutive scaffold supplies the first candidate source for $\mathbf{u}^{P}$. In a weak isotropic pressure segment, write the pressure-coordinate slopes as
+
+$$
+\delta\ln n
+=
+\kappa_n^{P}\Theta,
+\qquad
+\delta\ln\lambda
+=
+-\kappa_\lambda^{P}\Theta,
+\qquad
+\delta\ln\frac{R_{\text{core}}}{R_{\text{core},0}}
+=
+\kappa_R^{P}\Theta,
+$$
+
+where $\Theta$ is the material-corrected scalar pressure coordinate already used by the toy packet. The toy cadence and delay slopes are
+
+$$
+G_\Gamma
+\equiv
+\frac{\delta\ln\Gamma_N^{\mathrm{iso}}}{\Theta}
+=
+0.60,
+\qquad
+G_\chi
+\equiv
+\frac{\delta\ln\chi_{\text{sea}}^{\mathrm{iso}}}{\Theta}
+=
+0.36.
+$$
+
+The pressure-normalized non-$\chi_{\text{sea}}$ vector would then be
+
+$$
+\mathbf{u}^{P}
+=
+\frac{1}{G_\Gamma}
+\left(
+\kappa_n^{P},\,
+-\kappa_\lambda^{P},\,
+\kappa_R^{P}
+\right)^T.
+$$
+
+Thus the current toy fixture corresponds to the special undeclared case
+
+$$
+\kappa_n^{P}
+=
+\kappa_\lambda^{P}
+=
+\kappa_R^{P}
+=
+0,
+$$
+
+which is why the clean-delay anchored shared row remains falsified inside that executable packet.
+
+The broader candidate is not free to choose these slopes independently of the delay channel. If the isotropic delay law is written locally as
+
+$$
+\delta\ln\chi_{\text{sea}}^{\mathrm{iso}}
+=
+d_n\,\delta\ln n
++d_\lambda(-\delta\ln\lambda)
++d_R\,\delta\ln\frac{R_{\text{core}}}{R_{\text{core},0}},
+$$
+
+with $d_R=0$ in branches where $R_{\text{core}}$ does not enter the delay law, the toy slope requires
+
+$$
+d_n\kappa_n^{P}
++d_\lambda\kappa_\lambda^{P}
++d_R\kappa_R^{P}
+=
+0.36.
+$$
+
+The clean-delay anchored cadence equation requires
+
+$$
+b_n\kappa_n^{P}
+-b_\lambda\kappa_\lambda^{P}
++b_R\kappa_R^{P}
+=
+G_\Gamma
+-
+\frac{G_\chi}{1+\gamma_{\text{eff}}}
+=
+0.42
+$$
+
+in the GR-matching branch $\gamma_{\text{eff}}=1$. Dividing by $G_\Gamma=0.60$ recovers the normalized compensation condition $\mathbf{c}\cdot\mathbf{u}^{P}=0.7$.
+
+Validation status for this candidate source is therefore conditional. The pressure-dependent scaffold can rescue the broader shared row only if a future replay derives or measures at least one nonzero isotropic slope among $\kappa_n^{P}$, $\kappa_\lambda^{P}$, and $\kappa_R^{P}$, satisfies the delay-slope equation above, and keeps the resulting $\mathbf{u}^{P}_{\perp G}$ nonzero. Until those entries are declared, the toy fixture remains a falsification witness for the clean-delay anchored shared row, not a validation of a compensated row.
+
+### Pressure-Slope Reduction From Modulus And Hessian
+
+The pressure modulus packet fixes the density-side entry of this slope row. For the toy pressure coordinate, write the material-corrected scalar loading as
+
+$$
+\Theta
+=
+s_n\Pi,
+\qquad
+s_n
+\equiv
+1-\frac{n}{n_{\max}^{\mathrm{obl}}},
+$$
+
+after the declared material amplitude $C_M(Z_M/Z_*)^{\eta_Z}$ has been folded into $\Pi$. The packing law gives
+
+$$
+\delta\ln n
+=
+\kappa_n s_n\Pi
+=
+\kappa_n\Theta,
+$$
+
+so the first derived slope is
+
+$$
+\boxed{
+\kappa_n^{P}=\kappa_n.
+}
+$$
+
+Equivalently, using $K_{\mathrm{pack}}=K_{\text{sea}}/\kappa_n$,
+
+$$
+\delta\ln n
+=
+s_n\frac{\delta P}{K_{\mathrm{pack}}},
+$$
+
+with the same material amplitude convention as the toy pressure coordinate.
+
+The envelope-Hessian packet then supplies the scale slope when $\lambda$ is identified with $R_\perp/R_{\perp,0}$ on the retained branch. With reduced variables
+
+$$
+\boldsymbol{\theta}
+=
+\left(
+\delta\ln R_\perp,\,
+\delta\ln\xi
+\right)^T,
+\qquad
+\mathbf{c}
+=
+\left(
+c_R,\,
+c_\xi
+\right)^T,
+$$
+
+define
+
+$$
+D_H
+=
+k_\xi c_R^2
+-2k_{R\xi}c_Rc_\xi
++k_Rc_\xi^2.
+$$
+
+The density-constrained Hessian deformation gives
+
+$$
+\delta\ln R_\perp
+=
+-
+\frac{
+k_\xi c_R-k_{R\xi}c_\xi
+}{
+D_H
+}
+\delta\ln n.
+$$
+
+Therefore the branch-predicted scale slope is
+
+$$
+\boxed{
+\kappa_\lambda^{P}
+=
+\kappa_n
+\frac{
+k_\xi c_R-k_{R\xi}c_\xi
+}{
+D_H
+}
+}
+$$
+
+provided $\delta\ln\lambda=\delta\ln R_\perp$. If the branch defines $\lambda$ as another support-cell average, the same formula must be replaced by that branch's declared envelope readout.
+
+The $R_{\text{core}}$ slope is not determined until the branch states how the representative core scale is read from $(R_\perp,\xi)$. Let
+
+$$
+\delta\ln\frac{R_{\text{core}}}{R_{\text{core},0}}
+=
+q_R\,\delta\ln R_\perp
++q_\xi\,\delta\ln\xi,
+$$
+
+where $(q_R,q_\xi)$ is a declared branch readout, not an observable-local fit. Since the Hessian packet gives
+
+$$
+\delta\ln\xi
+=
+-
+\frac{
+k_Rc_\xi-k_{R\xi}c_R
+}{
+D_H
+}
+\delta\ln n,
+$$
+
+the corresponding slope is
+
+$$
+\boxed{
+\kappa_R^{P}
+=
+-
+\kappa_n
+\left[
+q_R
+\frac{k_\xi c_R-k_{R\xi}c_\xi}{D_H}
++
+q_\xi
+\frac{k_Rc_\xi-k_{R\xi}c_R}{D_H}
+\right].
+}
+$$
+
+Thus the slope row can be derived only on a positive Hessian branch with $D_H>0$ and a declared $(q_R,q_\xi)$. The current toy fixture still sets the slope row to zero because it does not declare $s_n$, $\kappa_n$, the Hessian entries, or the $R_{\text{core}}$ readout. A compensated shared row would require a future packet to insert those branch quantities and then re-evaluate the delay and cadence equations above.
+
 Anisotropic pressure terms remain outside this scalar endpoint equation. The replay must keep
 
 $$
