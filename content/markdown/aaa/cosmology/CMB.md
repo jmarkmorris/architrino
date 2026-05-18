@@ -233,6 +233,42 @@ Isotropy in this branch is attributed to long-time averaging over many source po
 
 The framework does not yet identify an ontological root definition of temperature, so it should not simply equate the enormous internal energy of individual Noether cores with an ordinary thermodynamic temperature. A more disciplined distinction is required between three quantities: the internal energy scale of the cores, the local effective emissive temperature of the Noether Sea if it behaves as a blackbody source, and the observer-side temperature inferred from the photon bath after emission, transport, thermalization, and redshift. On that reading, the observed $2.7255\,\mathrm{K}$ background is the temperature of the ambient microwave radiation field measured by present observers, not automatically the intrinsic temperature of the Noether Sea as an emitter. The stronger claim to test is that sufficiently homogeneous regions of the Sea can generate and maintain a near-blackbody photon population whose measured spectrum tracks that emissive state after medium transport. Departures from the baseline blackbody should then encode local medium state: increasing core density, anisotropy, or internal excitation near dense matter would tend to distort the spectrum away from the homogeneous limit, while the strongest deviations should arise near black-hole recycling zones, where alignment, compression, and release-channel mixing can harden, bias, or only partially re-thermalize the emitted radiation before subsequent relaxation in the surrounding Noether Sea.
 
+### Historical Equality and Temperature Benchmark
+
+The 1948 Alpher-Herman correction to Gamow is useful here as historical pressure, not as a present-parameter source. Their calculation corrected an early matter-density estimate, found that the naive matter-radiation-density intersection moved to an implausibly late time if the curvature term were neglected, and then restored that curvature term in the effective expanding-universe equation. In the corrected record, the matter/radiation intersection, a Jeans-style condensation mass and radius, a gas temperature at condensation, and a present radiation temperature of order $5\,\mathrm{K}$ were tied into one computation.
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ lesson is not the historical numerical value $5\,\mathrm{K}$, since the observer-side CMB temperature comparison uses the modern calibrated value stated above. The retained benchmark is the shared-record pressure: a CMB branch should not fit present radiation temperature separately from matter-radiation equality, growth onset, and the effective curvature/expansion projection. In the fixed-void interpretation, the curvature term is read as an observer-level effective-metric projection, not as curvature of the Euclidean void.
+
+A compact residual for this pressure is
+$$
+\mathcal{R}_{T,\mathrm{eq,grow}}(\theta)
+=
+\frac{(T_0^\theta-T_0^{\mathrm{obs}})^2}{\sigma_{T_0}^2}
++
+\frac{(z_{\mathrm{eq}}^\theta-z_{\mathrm{eq}}^{\mathrm{obs}})^2}{\sigma_{z_{\mathrm{eq}}}^2}
++
+\frac{(k_{\mathrm{eq}}^\theta-k_{\mathrm{eq}}^{\mathrm{obs}})^2}{\sigma_{k_{\mathrm{eq}}}^2}
++
+\lambda_H
+\sum_b
+\frac{
+\left(H_{\mathrm{eff}}^\theta(z_b)-H_{\mathrm{eff}}^{\mathrm{obs}}(z_b)\right)^2
+}{
+\sigma_{H,b}^2
+}
++
+\lambda_K
+\frac{(\Omega_{K,\mathrm{eff}}^\theta-\Omega_{K,\mathrm{eff}}^{\mathrm{obs}})^2}{\sigma_K^2}
++
+\lambda_g
+\left[
+\frac{(\ln M_{\mathrm{grow}}^\theta-\ln M_{\mathrm{grow}}^{\mathrm{ref}})^2}{\sigma_{\ln M}^2}
++
+\frac{(\ln R_{\mathrm{grow}}^\theta-\ln R_{\mathrm{grow}}^{\mathrm{ref}})^2}{\sigma_{\ln R}^2}
+\right].
+$$
+Here $T_0^\theta$ is the present observer-side radiation temperature, while $z_{\mathrm{eq}}^\theta$ and $k_{\mathrm{eq}}^\theta$ are the matter-radiation equality redshift and scale in observer variables. The term $H_{\mathrm{eff}}^\theta$ is the effective expansion or relaxation projection, and $\Omega_{K,\mathrm{eff}}^\theta$ is the effective curvature projection of the same Noether-Sea record. The positive-scale terms $M_{\mathrm{grow}}^\theta$ and $R_{\mathrm{grow}}^\theta$ are declared condensation/growth-scale comparisons supplied by the structure-formation packet rather than imported 1948 values. A successful CMB record must make this residual small without changing $\theta$ between the blackbody, equality, effective expansion, curvature, and growth projections.
+
 ### Thermalization-Depth and Planck-Recovery Target
 
 The blackbody claim should be carried as a theorem target, not as a source-story assertion. A distributed-emission interpretation must show that source channels, transport, and decoupling collectively supply enough mode exchange before free streaming. A compact diagnostic is the path-integrated thermalization depth
@@ -450,6 +486,8 @@ This is not a statement that the Euclidean void is curved. It is an observer-lev
 $$
 \mathcal{R}_{\mathrm{CMB}}(\theta)
 +
+\lambda_{T,\mathrm{eq,grow}}\mathcal{R}_{T,\mathrm{eq,grow}}(\theta)
++
 \lambda_{\mathrm{phase}}\mathcal{R}_{\mathrm{phase}}(\theta)
 +
 \lambda_V\mathcal{R}_{V}(\theta)
@@ -462,7 +500,7 @@ $$
 \le
 \varepsilon_{\mathrm{CMB}},
 $$
-with $\lambda_{\mathrm{phase}}$, $\lambda_V$, $\lambda_{\mathrm{lens}}$, $\lambda_{\mathrm{smooth}}$, $\lambda_{\mathrm{range}}$, and $\varepsilon_{\mathrm{CMB}}$ declared by the data release or simulation protocol. Passing this test would mean that the same medium-and-assembly history recovers TT/TE/EE, blackbody behavior, scalar/tensor bounds, acoustic phase coherence, vector-mode suppression, CMB-lensing reconstruction, the low effective gravitational free-mode budget, and any declared finite-range comparison branch without changing ontology between modules.
+with $\lambda_{T,\mathrm{eq,grow}}$, $\lambda_{\mathrm{phase}}$, $\lambda_V$, $\lambda_{\mathrm{lens}}$, $\lambda_{\mathrm{smooth}}$, $\lambda_{\mathrm{range}}$, and $\varepsilon_{\mathrm{CMB}}$ declared by the data release or simulation protocol. Passing this test would mean that the same medium-and-assembly history recovers TT/TE/EE, blackbody behavior, radiation-temperature/equality/growth consistency, scalar/tensor bounds, acoustic phase coherence, vector-mode suppression, CMB-lensing reconstruction, the low effective gravitational free-mode budget, and any declared finite-range comparison branch without changing ontology between modules.
 
 ### Forward Prediction Map
 

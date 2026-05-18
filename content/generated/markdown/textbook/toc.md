@@ -1251,6 +1251,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Timeline of Near Misses](../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md?section=Timeline+of+Near+Misses)
     - [Lorentz Before Einstein: The Almost-Substrate Moment](../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md?section=Lorentz+Before+Einstein%3A+The+Almost-Substrate+Moment)
     - [Geometrization After 1915: Ontology Shift](../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md?section=Geometrization+After+1915%3A+Ontology+Shift)
+    - [Einstein's 1917 Static World: Closure Before Validation](../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md?section=Einstein%27s+1917+Static+World%3A+Closure+Before+Validation)
     - [Copenhagen: Multistability Lost to Epistemic Minimalism](../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md?section=Copenhagen%3A+Multistability+Lost+to+Epistemic+Minimalism)
     - [Renormalization Era: Warnings Reframed](../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md?section=Renormalization+Era%3A+Warnings+Reframed)
     - [Einstein's Abandoned Steady-State Cosmology](../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md?section=Einstein%27s+Abandoned+Steady-State+Cosmology)

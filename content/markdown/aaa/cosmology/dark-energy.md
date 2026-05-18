@@ -10,6 +10,14 @@ Standard $\Lambda\mathrm{CDM}$ cosmology attributes roughly 68% of the present e
 
 This chapter maps dark-energy phenomenology onto the architrino assembly architecture. The central claim is that late-time acceleration is not the expansion of the Euclidean void itself—which is fixed, non-dynamical, and does not stretch—but a macroscopic readout of the evolving internal state of the Noether Sea. The task is to identify the substrate-level mechanism and derive the effective equation of state. Within that program, black holes are treated as one possible mediator of the large-scale energy-partition history, not as a replacement for the medium ontology itself.
 
+### Historical Comparison Discipline
+
+The history of the cosmological constant is useful because it shows how one symbol has carried several different jobs. In the late nineteenth-century Newtonian setting, a constant was used as a long-range modification of gravitation. In Einstein's 1917 model, $\Lambda$ was introduced to support a static matter-filled universe, then weakened when the static assumption and the model's stability failed. Later uses were again problem-driven: age estimates, galaxy-formation timing, quasar redshift distributions, steady-state matter creation, inflationary false-vacuum comparison, and finally the modern $\Lambda\mathrm{CDM}$ concordance fit.
+
+The safe $\mathbb{A}\mathbb{A}\mathbb{A}$ lesson is not that these historical roles reveal one ontology. The lesson is that a successful constant-like fit can be a mathematical regularizer, a static-model support term, an integration constant, a vacuum-energy comparison, an inflationary effective term, or a late-time observer parameter. This chapter therefore treats $\Lambda$ and dark energy as comparison language until a Noether-Sea constitutive derivation supplies the same value, time dependence, and residual behavior from the same medium-state record.
+
+The modern return of $\Lambda$ was also not a single-observation event. It came from converging pressure: revised $H_0$ and age estimates, SN Ia distance residuals, CMB flatness and acoustic-scale constraints, matter-density and structure-formation evidence, lensing, and galaxy-clustering results. That history supports the shared-residual rule used below: no dark-energy interpretation is promotable from one pipeline alone if the same Noether-Sea record cannot also project coherently into the other comparison pipelines.
+
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ Ontology Foundations
 
 ### The Void Does Not Expand
@@ -132,6 +140,67 @@ r_X(\theta_{\mathrm{sea}},\nu_X)
 $$
 
 Here $r_X$ is the residual vector for observable family $X$, $\nu_X$ records nuisance and calibration variables, $C_X$ is the covariance model, and $\Pi_X$ projects the shared medium-state record into the variables consumed by that observable family. A dark-energy interpretation is promotable only if both the ordinary residuals and the cross-projection penalty can be controlled without replacing $\theta_{\mathrm{sea}}$ separately for each pipeline. The first mock validation artifact for this gate is [Cosmology Shared Residual Fit Protocol](../validation/simulations/cosmology-shared-residual-fit.md).
+
+### Fitted, Integration, Vacuum, and Native Readings of $\Lambda$
+
+The historical record requires a four-way separation. First, a fitted cosmological constant is an observer-model parameter chosen to minimize residuals in a declared comparison model:
+
+$$
+\Lambda_{\mathrm{fit}}
+=
+\operatorname*{arg\,min}_{\Lambda,\nu_X}
+\sum_{X\in\{\mathrm{SN},\mathrm{BAO},\mathrm{CMB},\mathrm{growth}\}}
+r_X(\Lambda,\nu_X)^T C_X^{-1}r_X(\Lambda,\nu_X).
+$$
+
+Second, an integration-constant reading treats $\Lambda$ as a branch constant fixed by the effective solution class rather than as a local material density. In comparison language this means
+
+$$
+\nabla_\mu T^{\mu\nu}_{\mathrm{eff}}=0
+\quad\Longrightarrow\quad
+\Lambda_{\mathrm{int}}=\text{constant on the chosen effective branch},
+$$
+
+but it does not explain why that branch constant has the observed value.
+
+Third, a vacuum-energy estimate belongs to continuum QFT comparison. If $\rho_{\mathrm{vac}}^{\mathrm{QFT}}$ is a mass-equivalent density estimate from zero-point, electroweak, QCD, and other effective field contributions, then the standard comparison map is
+
+$$
+\Lambda_{\mathrm{vac}}^{\mathrm{QFT}}
+=
+\frac{8\pi G}{c^2}\rho_{\mathrm{vac}}^{\mathrm{QFT}},
+\qquad
+\rho_{\mathrm{vac}}^{\mathrm{QFT}}
+=
+\rho_{\mathrm{zf}}+\rho_{\mathrm{ew}}+\rho_{\mathrm{qcd}}+\cdots.
+$$
+
+This estimate is not a measurement of energy in the Euclidean void. In this chapter it is a stress test for the Noether-Sea coupling-selection theorem target: a viable constitutive law must explain why high-frequency internal energy is shielded from the observer-level cosmological channel while the slow outer-binary and transport sectors remain exposed.
+
+Fourth, the native closure target is the effective constant reconstructed from a shared Noether-Sea state:
+
+$$
+\Lambda_{\mathrm{eff}}^{\mathrm{sea}}[\theta_{\mathrm{sea}}]
+=
+\frac{8\pi G_{\mathrm{eff}}}{c_0^2}
+\rho_{\mathrm{DE,eff}}[\theta_{\mathrm{sea}}]
+\quad
+\text{on the homogeneous } w_{\mathrm{eff}}\approx -1 \text{ comparison branch}.
+$$
+
+No identity is assumed among $\Lambda_{\mathrm{fit}}$, $\Lambda_{\mathrm{int}}$, $\Lambda_{\mathrm{vac}}^{\mathrm{QFT}}$, and $\Lambda_{\mathrm{eff}}^{\mathrm{sea}}$. A native dark-energy claim must instead pass a residual matching test,
+
+$$
+\Delta_X(\theta_{\mathrm{sea}})
+=
+\Lambda_X^{\mathrm{fit}}
+-
+\Pi_X\Lambda_{\mathrm{eff}}^{\mathrm{sea}}[\theta_{\mathrm{sea}}],
+\qquad
+X\in\{\mathrm{SN},\mathrm{BAO},\mathrm{CMB},\mathrm{growth}\},
+$$
+
+with all $\Delta_X$ controlled by the same covariance and nuisance records used in $\mathcal{R}_{\mathrm{shared}}$. If SN, BAO, CMB, or growth data require different $\theta_{\mathrm{sea}}$ records, the result is only a fitted constant, not a closed Noether-Sea derivation.
 
 ### Thermodynamic $\Lambda_{\mathrm{eff}}$ Closure Target
 

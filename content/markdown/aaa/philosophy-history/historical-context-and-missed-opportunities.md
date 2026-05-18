@@ -86,6 +86,7 @@ Another recurring pattern is failure to revisit earlier assumption sets after la
 | 1887-1904 (Michelson-Morley + Lorentz) | Null aether-wind result, dynamical contraction/time slowdown models | Emergent Lorentz symmetry from matter-medium interaction | "Undetectable medium = dispensable medium" became the decisive simplification |
 | 1905 (Special Relativity) | Full Lorentz covariance of inertial laws | Could have been read as effective symmetry of assemblies in one substrate | Principle-theory victory reclassified kinematic effects as fundamental spacetime structure |
 | 1915-1920 (General Relativity) | Metric dynamics with exceptional predictive power | Metric as coarse-grained constitutive field of deeper medium state | Geometrization succeeded so strongly that "geometry is fundamental" became default |
+| 1917 (Einstein World) | Boundary-condition pressure at spatial infinity, Machian relativity-of-inertia aims, and the first relativistic global cosmology | Global geometry could have been held as a closure hypothesis requiring observation, stability, and source/boundary residual tests | Logical consistency and aesthetic closedness could outrun empirical comparison and perturbative stability analysis |
 | 1924-1930 (de Broglie, pilot-wave, early quantum debates) | Deterministic alternatives existed, wave-particle dual structure observed | Deterministic microstate + contextual readout + basin selection | Copenhagen operationalism treated ontology as unnecessary overhead |
 | 1930s-1950s (QFT vacuum, renormalization) | Vacuum structure, divergence control, effective computational rules | Divergences as signs of missing microstructure and finite substrate scales | Renormalization success normalized continuum ontology plus parameter absorption |
 | 1964-1982 (Bell + Aspect era) | Nonlocal correlations experimentally robust | Absolute-time nonlocal substrate dynamics without signaling | The discourse framed options as "local realism dead" rather than "which nonlocal ontology?" |
@@ -207,6 +208,60 @@ The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly supportive**. Tra
 ### Recovery Target
 
 The long-term relevance of this episode is permanent process guidance. Recovery would require deriving metric behavior, geodesic motion, and gravitational effective phenomena from a non-geometric constitutive ontology without losing general relativity's observational success. Until such a derivation exists, the historical lesson remains cautionary but active.
+
+---
+
+## Einstein's 1917 Static World: Closure Before Validation
+
+### Overview
+
+**Episode:** Einstein's 1917 Static World: Closure Before Validation. **Short Name:** Einstein World. **Period:** 1916-1931, from the boundary-condition debates after general relativity through the later abandonment of the static model. The near-miss thesis is methodological: Einstein's first relativistic cosmology converted a real closure pressure into a logically consistent global geometry, but the model was not promoted through observation, perturbative stability, and explicit boundary/source ledger tests before being treated as a candidate world-picture.
+
+### Where The Opening Appeared
+
+What physics already had was a sharp problem. Planetary and local relativistic solutions could use asymptotic conditions, but a model of the universe as a whole could not simply appeal to a flat metric at spatial infinity without reintroducing an external reference structure. Einstein's Machian pressure for the relativity of inertia made this issue especially acute: if inertia was to be conditioned by matter rather than by space on its own, then the global boundary condition was not a minor technical detail. It was part of the meaning of the theory.
+
+Einstein's answer was to remove spatial infinity by using a closed, static, homogeneous model with nonzero mean density and an added cosmological constant term. In the 1917 calculation, the new term supplied the mathematical support needed for static equilibrium, yielding the familiar relation among mean density, curvature radius, and $\lambda$. The opening, from the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, was not that the Einstein World was the right cosmology. It was that a global geometry should have remained visibly conditional on the closure work it performs: the same model element that solves a boundary problem must also survive empirical comparison, perturbative stability, and a declared source/boundary ledger.
+
+### What Current Physics Still Gets Right
+
+What still works from the Einstein World episode is substantial. The model inaugurated relativistic cosmology as a concrete mathematical discipline, made the boundary-condition problem impossible to ignore, and showed that global assumptions about matter distribution, curvature, and field equations are coupled. The later de Sitter, Friedmann, Lemaître, Eddington, Hubble, and Einstein-de Sitter developments did not erase that achievement. They turned it into a live comparison sequence in which static, empty, and time-varying cosmologies had to face observation and internal consistency.
+
+The review also makes Einstein's local rationality clear. In 1917 the extragalactic scale was not settled, the observed universe was often identified with the Milky Way, and the static assumption was a defensible approximation to the known stellar system. His reluctance to publish a radius estimate was likely tied to distrust of mean-density estimates rather than indifference to data. The cautionary point is therefore narrower: logical consistency inside the field equations is not yet enough to license a global world-picture.
+
+### Where Interpretation Locked In
+
+The narrative lock-in was the promotion of formal closure before validation closure. Closed spatial geometry eliminated the need for boundary conditions at infinity, and $\lambda$ made a static matter-filled solution possible, but the model's physical status depended on additional tests that were not carried through in the 1917 memoir. The cosmological constant was also doing ambiguous work: it was allowed by the equations, but its physical interpretation shifted among mathematical support, negative-pressure or negative-density language, and later integration-constant language.
+
+The de Sitter, Friedmann, and Lemaître responses exposed the weakness of treating the static solution as privileged. De Sitter showed that the same modified equations admitted a rival matter-free comparison solution with redshift-relevant behavior. Friedmann and Lemaître showed that non-static solutions were mathematically natural, and Lemaître tied the dynamics to nebular redshift evidence. Einstein's eventual abandonment of the static world after Hubble-era evidence and Eddington's instability analysis illustrates the methodological correction: a candidate cosmology must lose authority when observation and stability fail, even if the original closure motivation was serious.
+
+### What Was Left Unfinished
+
+What was occluded was an explicit promotion rule for global cosmological models. The 1917 episode contains three separable obligations that should not be merged: a boundary obligation, a stability obligation, and an observational obligation. A model may solve one and fail the others. For a candidate effective cosmological branch $\theta$ over an observation window $W$, the lesson can be stated as a residual discipline:
+$$
+\mathcal{R}_{\mathrm{cos}}(\theta;W)
+=
+\mathcal{R}_{\mathrm{obs}}(\theta;W)
++\mathcal{R}_{\mathrm{stab}}(\theta;W)
++\mathcal{R}_{\mathrm{src/bdy}}(\theta;W).
+$$
+Here $\mathcal{R}_{\mathrm{obs}}$ measures mismatch to the declared astronomical data packet, $\mathcal{R}_{\mathrm{stab}}$ measures growth of admissible perturbations around the branch, and $\mathcal{R}_{\mathrm{src/bdy}}$ measures whether boundary fluxes and source terms close one shared ledger rather than being inserted independently. In continuity form, the last term has the schematic structure
+$$
+\mathcal{R}_{\mathrm{src/bdy}}(\theta;W)
+=
+\frac{\left\|\partial_t Q_\theta+\nabla\cdot \mathbf{F}_\theta-\mathcal{S}_\theta\right\|_W}{\epsilon_Q},
+$$
+where $Q_\theta$ is the retained effective quantity, $\mathbf{F}_\theta$ is its boundary flux, $\mathcal{S}_\theta$ is its declared source, and $\epsilon_Q$ is the tolerance fixed by the comparison packet. A global geometry, medium interpretation, or effective scale-factor story should not be promoted unless the three terms are simultaneously small under one branch record.
+
+### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
+
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **cautionary and directly useful as method**. It does not support importing Einstein's static closed universe, nor does it justify treating $\lambda$ as a disguised proof of Noether-Sea dynamics. It supports a stricter rule: whenever $\mathbb{A}\mathbb{A}\mathbb{A}$ proposes an effective cosmological history in a fixed Euclidean void, the history must distinguish observer-level variables such as $a(t)$ and $H(t)$ from substrate claims about assemblies and the Noether Sea, and it must carry observation, stability, and source/boundary residuals together.
+
+Transition relevance is high because emergent cosmologies are especially vulnerable to the same failure mode. A model can be mathematically elegant, philosophically attractive, and still be under-validated. The Einstein World warns that a closure device should remain a closure device until it survives the full residual check.
+
+### Recovery Target
+
+The long-term relevance of this episode is permanent process control for cosmology. Recovery would require every proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmological branch to state its effective observables, perturbation class, and source/boundary ledger before the branch is used ontologically. A fixed-void medium account must therefore show, on one branch record, how redshift, CMB, BBN, growth, lensing, and clock-rate comparisons remain compatible while $\mathcal{R}_{\mathrm{obs}}$, $\mathcal{R}_{\mathrm{stab}}$, and $\mathcal{R}_{\mathrm{src/bdy}}$ remain below their declared tolerances.
 
 ---
 

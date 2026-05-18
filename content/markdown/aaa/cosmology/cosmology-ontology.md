@@ -40,6 +40,7 @@ All cosmological observables are computed from absolute-state evolution and then
 - **QSSC-like motif:** eternal background plus recurring creation/reprocessing channels.
 - **Cyclical-like motif:** repeated effective epochs without requiring one absolute beginning event.
 - **Timescape-like motif:** environment-conditioned clock calibration affecting inferred expansion history.
+- **Rotating-universe caution:** historical global-rotation proposals are retained only as anisotropy-test discipline; they do not import a rotating Euclidean void or rotating Noether Sea.
 - **Static-family caution:** retain only clock/medium insight channels; exclude generic tired-light scattering-loss mechanisms.
 
 ## Classification Axes ($\mathbb{A}\mathbb{A}\mathbb{A}$ Position)
@@ -133,6 +134,44 @@ The standard cosmological fit package obtains much of its strength by combining 
 The practical rule is to separate measurement from interpretation. Supernova magnitudes, BAO angles, redshift catalogues, CMB spectra, and weak-lensing maps are retained as observational data products. The inferred variables $a(t)$, $H(z)$, $\Omega_m$, $\Omega_\Lambda$, and $w(z)$ are effective reconstruction variables whose meaning depends on the model used to convert those data products into a background history. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology must reproduce the data products or explain controlled residuals, not merely refit the inherited parameters after changing their ontology.
 
 Directional tests are part of this ledger. If a data reduction assumes a cosmic rest frame, a kinematic CMB dipole correction, or an all-sky isotropic background, the same reduction must expose the residual dipole, quadrupole, and environment dependence left after the correction. Those residuals are not automatically evidence against the model; they are diagnostic handles for the Noether-Sea flow, density, delay, and clock-rate fields.
+
+Gamow's 1946 rotating-universe proposal is useful as comparison pressure here because it converts a story-level anisotropy claim into an all-sky radial-velocity test. The surviving discipline is not the rotating universe itself, but the requirement that any claimed large-scale anisotropy leave a declared directional residual after CMB-frame correction, matter-dipole residuals, local bulk-flow subtraction, and survey-window effects have been separated.
+
+For tracer $i$ with direction $\hat{\mathbf{n}}_i$ from observer position $\mathbf{x}_o$, inferred position $\mathbf{x}_i=\mathbf{x}_o+D_i\hat{\mathbf{n}}_i$, and corrected line-of-sight velocity or redshift residual $\delta v_i$, the shared Noether-Sea record should first supply its native prediction
+$$
+\epsilon_i(\theta_{\mathrm{sea}})
+=
+\delta v_i
+-
+\Pi_v(\theta_{\mathrm{sea}};\mathbf{x}_i,\hat{\mathbf{n}}_i),
+$$
+where $\Pi_v$ includes the declared Noether-Sea flow, density, delay, clock-rate, CMB-frame, and local-calibration terms. A historical rotation-like comparison can then be expressed only as a residual template,
+$$
+T_i(\mathbf{x}_c,\boldsymbol{\omega},g)
+=
+\hat{\mathbf{n}}_i\cdot
+\left[
+g(D_i)\,\boldsymbol{\omega}\times(\mathbf{x}_i-\mathbf{x}_c)
+-g(0)\,\boldsymbol{\omega}\times(\mathbf{x}_o-\mathbf{x}_c)
+\right],
+$$
+with the center $\mathbf{x}_c$, angular-rate vector $\boldsymbol{\omega}$, and distance profile $g$ declared as comparison parameters rather than new ontology. The corresponding all-sky antisymmetric-flow residual on a survey shell $S$ is
+$$
+\mathcal{R}_{\mathrm{rot}}(\theta_{\mathrm{sea}};S)
+=
+\inf_{\mathbf{x}_c,\boldsymbol{\omega},g\in\mathcal{G}_{\mathrm{decl}}}
+\left[
+\frac{1}{W_S}
+\sum_{i\in S}
+w_i\left(
+\epsilon_i(\theta_{\mathrm{sea}})
+-T_i(\mathbf{x}_c,\boldsymbol{\omega},g)
+\right)^2
+\right]^{1/2},
+\qquad
+W_S=\sum_{i\in S}w_i.
+$$
+This diagnostic protects the fixed-void ontology in both directions. If the best-fit template is insignificant or survey-dependent, the rotation story is rejected. If a stable double-sine, dipole, quadrupole, or higher directional pattern remains, it must be derived from the same $\theta_{\mathrm{sea}}$ that also fits expansion, CMB transfer, BBN, growth, lensing, and calibration; it cannot be absorbed silently into $H(z)$, $w(z)$, or a new global-rotation premise.
 
 A scale-neutral homogeneity check should also be part of the shared ledger. For a large comparison window $W\subset\Sigma_t$ with resolved tracer index set $I_W(t)$ and $N_W=\lvert I_W(t)\rvert$, define the root-mean-square separation scale
 $$

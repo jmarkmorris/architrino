@@ -72,3 +72,7 @@ During the current core geometrical theory push, do not treat chapter coverage a
 | Lasha Berezhiani and Justin Khoury, `1507.01019.pdf`, `Theory of Dark Matter Superfluidity` | May 18, 2026 |
 | Justin Khoury, `1507.03013.pdf`, `A Dark Matter Superfluid` | May 18, 2026 |
 | Alexander Unzicker, `1510.0082v1.pdf`, `Robert Dicke's Momentous Error - A Comment on Rev.Mod.Phys. 29 (1957), p. 363` | May 18, 2026 |
+| G. Gamow, `158549a0.pdf`, `Rotating Universe` | May 18, 2026 |
+| Ralph A. Alpher and Robert Herman, `162774b0.pdf`, `Evolution of the Universe` | May 18, 2026 |
+| Cormac O'Raifeartaigh, Michael O'Keeffe, Werner Nahm, and Simon Mitton, `1701.07261.pdf`, `Einstein's 1917 Static Model of the Universe: A Centennial Review` | May 18, 2026 |
+| Cormac O'Raifeartaigh, Michael O'Keeffe, Werner Nahm, and Simon Mitton, `1711.06890.pdf`, `One Hundred Years of the Cosmological Constant: from 'Superfluous Stunt' to Dark Energy` | May 18, 2026 |

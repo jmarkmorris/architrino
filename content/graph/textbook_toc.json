@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1193
+      "sections": 1194
     }
   },
   "tocRoot": {
@@ -10251,6 +10251,14 @@
                 "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
                 "markdownSection": "Geometrization After 1915: Ontology Shift",
                 "sectionKey": "geometrization after 1915 ontology shift",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Einstein's 1917 Static World: Closure Before Validation",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Einstein's 1917 Static World: Closure Before Validation",
+                "sectionKey": "einstein s 1917 static world closure before validation",
                 "headingLevel": 2
               },
               {
