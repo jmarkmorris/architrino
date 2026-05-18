@@ -67,6 +67,16 @@ $$
 
 The branch is shared-delay closed only when $\Delta_\chi^{\mathrm{clk\text{-}sig}}=0$ within the declared tolerance.
 
+The same arithmetic also exposes the lensing/dynamics equality burden used by dark-sector comparisons. In the weak static row, the signal-deflection channel is closed only when the spatial-compliance response gives
+
+$$
+\gamma_{\text{eff}}=1,
+\qquad
+a_\chi^{\mathrm{sig}}=2,
+$$
+
+while the clock/dynamical endpoint row still satisfies the cadence and inverse-clock equations below. A response vector that changes the dynamical acceleration but leaves $a_\chi^{\mathrm{sig}}\neq2$ is a split clock/signal branch: it may fit rotation curves or hydrostatic motion, but it cannot yet claim the lensing mass equality required by cluster and galaxy-galaxy weak-lensing tests.
+
 ## Minimal Shared-Delay Packet
 
 The first admissible static endpoint packet is the shared scalar delay response specialization of the equations above. Define

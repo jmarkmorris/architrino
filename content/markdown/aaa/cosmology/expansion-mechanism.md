@@ -30,6 +30,26 @@ $$
 
 These are effective parameterizations of medium state, not independent geometric claims.
 
+### Exponential Scale History as a Comparison Limit
+
+The de Sitter and steady-state comparison family often uses a spatially flat exponential scale history,
+$$
+a_{\mathrm{eff}}(t)=a_0 e^{H_*t},
+\qquad
+H_{\mathrm{eff}}=H_*.
+$$
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not evidence that the Euclidean void expands. It is a special homogeneous projection in which the corrected redshift-transfer slope is constant over the comparison interval. In the endpoint-subtracted propagation language below, the nearby homogeneous limit must satisfy
+$$
+\bar{\alpha}_X=\frac{H_*}{c_0}
+$$
+after endpoint cadence, source-branch change, and relative launch motion have been removed.
+
+The steady-state lesson is a conservation check on this limit. Holding an effective matter density constant while $a_{\mathrm{eff}}$ grows requires a source term
+$$
+\mathcal{S}_{m,\mathrm{eff}}=3H_*\rho_{m,\mathrm{eff}},
+$$
+and that source must be routed through the same assembly and Noether-Sea provenance record that computes the redshift-transfer slope. A constant $H_*$ fit without this ledger is only a kinematic comparison curve.
+
 ## Clock-Rate Redshift Interpretation
 
 Cosmological redshift is treated as cumulative propagation through a changing medium plus clock-rate mismatch between emitter and observer environments.

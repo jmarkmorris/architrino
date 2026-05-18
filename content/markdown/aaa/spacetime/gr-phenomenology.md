@@ -26,6 +26,18 @@ $$
 
 The closure demand is not merely qualitative resemblance. The same constitutive map must jointly recover redshift, Shapiro delay, light bending, perihelion precession, and gravitational-wave propagation in the regimes where GR is already tested.
 
+### Network evidence and nuisance separation
+
+The empirical gravity lesson is that one precise test is not enough to establish an effective metric branch. A measurement can accidentally agree with the right number while sharing an unmodeled nuisance with the theory input, as in historical redshift and solar-system cases. The phenomenology gate therefore treats GR recovery as a network constraint:
+$$
+\mathcal{E}_{\mathrm{GR}}(\theta)
+=
+\mathbf{r}_{\mathrm{net}}(\theta)^{\mathsf T}
+C_{\mathrm{net}}^{-1}
+\mathbf{r}_{\mathrm{net}}(\theta),
+$$
+where $\mathbf{r}_{\mathrm{net}}$ contains the redshift, Shapiro, lensing, 1PN, preferred-frame, equivalence-principle, gravitational-wave, and CMB-derived gravity rows that are claimed by the same record $\theta$. The covariance $C_{\mathrm{net}}$ must include detector calibration, astrophysical nuisance parameters, foregrounds, and external-source uncertainty. A channel passes only when the same $\theta$ survives this joint network; agreement in a single row is a prompt for cross-checks, not closure.
+
 ### Causal-order and scale recovery
 
 Before the individual observables are checked, the effective metric map has to pass a structural check: Physical Observers must infer the same causal ordering, local clock scale, and negligible preferred-frame leakage that the GR comparison metric would provide in the validated regime. This is the phenomenology-side version of the causal-order diagnostic in [observer-framework.md](./observer-framework.md#effective-causal-order-recovery):
@@ -169,6 +181,17 @@ R_{\mathrm{acc}}
 $$
 The redshift, Shapiro, lensing, acceleration, 1PN, and preferred-frame rows are acceptable only when they are projections of this same $\theta_W$. If any row requires replacing $N$, $u^i_{\text{sea}}$, $e^a{}_i$, $\gamma_{ij}$, $\Phi_{\text{eff}}$, $\chi_{\text{sea}}$, or the boundary/noise record, the phenomenology pass has become a set of separate fits rather than a GR recovery.
 
+Solar oblateness supplies the nuisance-control version of the same rule. Mercury-type precession may be written as
+$$
+\Delta\varpi_{\mathrm{obs}}
+=
+\Delta\varpi_{\mathrm{PPN}}(\theta_W)
++\Delta\varpi_{J_{2,\odot}}
++\Delta\varpi_{\mathrm{asteroid}}
++\Delta\varpi_{\mathrm{noise}},
+$$
+where $\Delta\varpi_{J_{2,\odot}}$ is the contribution from the Sun's quadrupole moment and the remaining terms collect other modeled ephemeris corrections. A constitutive map cannot improve its PPN fit by silently moving a mismatch into $\Delta\varpi_{J_{2,\odot}}$ or by using a solar-interior assumption inconsistent with helioseismology and light-deflection records. The precession row closes only after the nuisance record is fixed independently enough that $\Delta\varpi_{\mathrm{PPN}}$ is the recovered effect rather than a residual after subtraction.
+
 The perihelion row should carry the explicit GR target rather than only the name of the test. For a weak-field bound orbit with semi-major axis $a$ and eccentricity $e$,
 $$
 \Delta\varpi_{\mathrm{GR}}
@@ -221,6 +244,28 @@ This residual is not a demand that the Noether Sea be rewritten as a graviton fi
 
 Massive-superposition entanglement experiments add a second low-energy quantum-gravity benchmark. If two isolated massive probes acquire an entanglement witness through gravity alone, the retained data product is the branch-dependent interaction phase, not a decision between graviton-field ontology and quantized-geometry ontology. The corresponding validation packet in [Massive-Superposition Gravity Validation Packet](../validation/massive-superposition-gravity.md) requires the same effective-metric record $\theta$ to generate the mediated-entanglement phase while keeping non-gravitational coupling residuals bounded and preventing the gravity-side response from becoming an unmodeled which-path record.
 
+## Equivalence-Principle Channels
+
+The weak equivalence principle and the strong equivalence principle are distinct benchmark rows. For two compact test assemblies $A$ and $B$ falling toward an external source $S$, define the composition residual
+$$
+\eta_{AB}^{S}
+=
+\frac{2(a_A^S-a_B^S)}{a_A^S+a_B^S}.
+$$
+The weak equivalence row requires $\eta_{AB}^{S}$ to vanish within the material-composition bounds while the same clock, signal, and PPN record is held fixed. A separate strong-equivalence row tests whether gravitational self-energy or medium binding changes the acceleration of extended bodies:
+$$
+\eta_{\mathrm{SEP}}
+=
+\frac{\Delta a_{\mathrm{self}}}{a}
+\bigg/
+\left(
+\frac{E_{\mathrm{grav},1}}{m_1c_0^2}
+-
+\frac{E_{\mathrm{grav},2}}{m_2c_0^2}
+\right),
+$$
+where the denominator compares gravitational binding-energy fractions for two bodies in the same external field. This row is a recovery target for lunar-ranging, binary-pulsar, and compact-body tests; it is not interchangeable with the material-composition torsion-balance row. The same residual bundle must also keep active, passive, inertial, and energy-defined mass equal in the nonrelativistic limit, or else the Newtonian and PPN rows are being fit with inconsistent mass concepts.
+
 ## Preferred-Frame Leakage
 
 Because the ontology contains an absolute frame, the observer-level phenomenology must still suppress preferred-frame signatures.
@@ -229,7 +274,7 @@ That means the effective PPN drift parameters
 $$
 \alpha_1,\alpha_2,\alpha_3
 $$
-must be observationally negligible in validated regimes. This is not optional. If the medium leaves a measurable ether-wind residue in the solar-system and pulsar regimes, the spacetime branch fails regardless of its conceptual elegance.
+must be observationally negligible in validated regimes. This is not optional. If the medium leaves a measurable preferred-frame residue in the solar-system and pulsar regimes, the spacetime branch fails regardless of its conceptual elegance.
 
 ## Gravitational-Wave Channel
 

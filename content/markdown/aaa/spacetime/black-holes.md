@@ -586,6 +586,39 @@ The open physical question is not merely whether release occurs, but why some en
 
 This is the disciplined way to keep jets in the chapter: as one important release channel among several, rather than as the whole definition of recycling.
 
+Observer-level jet phenomenology supplies three compact constraints on this selection problem. First, powerful collimated outflows are strongly associated with compact accretors and disks, so the native record must include an inflow, disk, or boundary-layer source of energy and angular momentum. Second, across young stellar objects, microquasars, and active galactic nuclei, the characteristic jet speed is usually of order the escape or Keplerian speed at the launch region:
+
+$$
+\mathcal{R}_{v,\mathrm{jet}}
+\equiv
+\frac{v_j}{v_{\mathrm{esc}}(R_{\mathrm{launch}})}
+\sim
+1,
+\qquad
+v_{\mathrm{esc}}(R_{\mathrm{launch}})
+=
+\left(\frac{2G_{\mathrm{eff}}M}{R_{\mathrm{launch}}}\right)^{1/2}.
+$$
+
+This is an effective launch benchmark, not a claim that Newtonian escape speed is substrate ontology. It says that the same strong-field or disk-interface record that powers release must also set the observed launch speed scale. Third, collimation must survive propagation through the ambient medium. A minimal release-channel packet should therefore record
+
+$$
+\mathcal{Q}_{\mathrm{jet}}
+=
+\left(
+\dot M_{\mathrm{out}},
+\dot{\mathbf{P}}_{\mathrm{out}},
+\dot E_{\mathrm{out}},
+\dot{\mathbf{J}}_{\mathrm{out}},
+\theta_j,
+\eta_j,
+\mathcal{A}_{\mathrm{NS}},
+\mathcal{R}_{v,\mathrm{jet}}
+\right),
+$$
+
+where $\theta_j$ is the opening angle, $\eta_j$ is the observer-level jet-to-ambient density ratio, and $\mathcal{A}_{\mathrm{NS}}$ is the local Noether-Sea anisotropy and loading state mapped to effective magnetic-like collimation. In a black-hole branch, spin-powered extraction, disk-powered extraction, hot-corona loading, and supercritical accretion are comparison mechanisms until the native horizon-interface ledger shows which terms actually supply $\dot E_{\mathrm{out}}$ and $\dot{\mathbf{J}}_{\mathrm{out}}$. A model fails this selection packet if it produces a horizon recycling source but leaves the launch-speed scale, angular-momentum drain, or collimation angle unrelated to the same boundary data.
+
 ## Relation to Dark Energy and Expansion History
 
 The black-hole chapter does not identify dark energy with black holes by definition. The baseline dark-energy mechanism in $\mathbb{A}\mathbb{A}\mathbb{A}$ remains Noether-Sea medium relaxation, as developed in [../cosmology/dark-energy.md](../cosmology/dark-energy.md). Black holes enter that story only if strong-field recycling makes a measurable contribution to the slowly varying outer-binary tension sector.

@@ -82,6 +82,38 @@ r_{\mathrm{growth}}
 $$
 and $r_{\mathrm{BBN}}$ should retain D/H, $Y_p$, lithium, $\eta$, and $\Delta N_{\text{eff}}$ rows. These are data-product coordinates, not ontology claims. They make the shared packet check luminosity distance, BAO rulers, blackbody preservation, CMB lensing, growth, and BBN yield recovery before any medium-state interpretation is promoted.
 
+Dark-sector comparison packets should also retain the linear/nonlinear split exposed by scalar-fluid and MOND-like hybrid models:
+
+$$
+r_{\mathrm{DM,split}}
+\supset
+\left(
+\frac{w_{\mathrm{lin}}^\theta-w_{\mathrm{lin}}^{\mathrm{CDM}}}{\sigma_w},
+\frac{(c_{s,\mathrm{lin}}^2)^\theta-(c_s^2)^{\mathrm{CDM}}}{\sigma_{c_s^2}},
+\frac{\mathrm{RAR}^{\theta}-\mathrm{RAR}^{\mathrm{obs}}}{\sigma_{\mathrm{RAR}}},
+\frac{a_\star^{\theta}(E)-a_\star^{\mathrm{obs}}(E)}{\sigma_{a_\star}},
+\frac{f_\star^{\theta}(E)-f_\star^{\mathrm{obs}}(E)}{\sigma_f}
+\right).
+$$
+
+Here $w_{\mathrm{lin}}$ and $c_{s,\mathrm{lin}}^2$ are comparison coordinates for CDM-like linear loading, while $\mathrm{RAR}$, $a_\star(E)$, and $f_\star(E)$ are nonlinear acceleration-response coordinates. They are not a request to add a new fundamental scalar-fluid ontology. Their purpose is to prevent a packet from fitting CMB and matter power data with one effective dark component while fitting galaxy and cluster accelerations with a separately tuned medium law.
+
+For cluster-facing rows, include the hydrostatic/lensing equality packet
+
+$$
+r_{\mathrm{cl}}
+\supset
+\left(
+\frac{T_{\mathrm{ICM}}^\theta(r)-T_{\mathrm{ICM}}^{\mathrm{obs}}(r)}{\sigma_T},
+\frac{P_{\mathrm{SZ}}^\theta(r)-P_{\mathrm{SZ}}^{\mathrm{obs}}(r)}{\sigma_P},
+\frac{\Phi_{\mathrm{lens}}^\theta(r)-\Phi_{\mathrm{lens}}^{\mathrm{obs}}(r)}{\sigma_{\Phi_{\mathrm{lens}}}},
+\frac{\Phi_{\mathrm{dyn}}^\theta(r)-\Phi_{\mathrm{dyn}}^{\mathrm{obs}}(r)}{\sigma_{\Phi_{\mathrm{dyn}}}},
+\frac{\gamma_{\text{eff}}^\theta(r)-1}{\sigma_\gamma}
+\right).
+$$
+
+This row is a success marker under the existing shared-state gate, not a new standalone gate. It records whether the same medium-state packet can recover cluster gas temperature, SZ pressure, lensing potential, and dynamical potential without changing the acceleration law between observables.
+
 ## Packet Schema
 
 The runtime packet should preserve this shape even when a later empirical packet replaces the mock values:

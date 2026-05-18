@@ -257,6 +257,21 @@ $$
 
 This formula is an effective comparison object. It becomes available only after Gate A supplies the photon energy-frequency and mode-counting interface, Gate B supplies the two transverse photon modes and polarization handoff, and Gate C drives the photon chemical potential to zero through detailed balance. The redshift handoff must then preserve spectral shape by mapping photon frequencies and inferred temperature through the same Noether-Sea and clock-rate comparison variables used elsewhere in this document.
 
+The spectrum gate should be stated as a calibrated comparison, not as an assumption that the theoretical Planck curve has been directly observed without apparatus structure. For frequency channels $\nu_i$, measured intensities $I_i$, foreground model $F_i(\psi)$, and calibration covariance $C_{ij}$, define
+$$
+\mathcal{R}_{\mathrm{spec}}(\theta,T,\psi)
+=
+\sum_{i,j}
+\left[
+I_i-F_i(\psi)-B_{\nu_i}(T;\theta)
+\right]
+C^{-1}_{ij}
+\left[
+I_j-F_j(\psi)-B_{\nu_j}(T;\theta)
+\right],
+$$
+where $B_\nu(T;\theta)$ is the photon-channel blackbody comparison spectrum projected through the same medium record $\theta$. A distributed or recycling source story must make $\mathcal{R}_{\mathrm{spec}}$ small without using a foreground, calibration, or post-decoupling transport residual to erase the acoustic and polarization information.
+
 In the homogeneous comparison limit, the redshift handoff must preserve the Planck form by scaling frequency and temperature together:
 $$
 \nu_{\mathrm{obs}}
@@ -268,6 +283,18 @@ T_{\mathrm{obs}}
 \frac{T_{\mathrm{dec}}}{1+z}.
 $$
 This is an observer-level transport benchmark. It does not say that the Euclidean void expanded; it says the photon-channel distribution, endpoint clock comparison, and path-history propagation must carry a blackbody spectrum into the present microwave band without generating a chemical-potential or chromaticity residual above the CMB tolerance.
+
+Transparency supplies the complementary exclusion test. Once the universe is optically thin in the microwave band, a redshift mechanism that changes photon frequencies without the same temperature scaling generically distorts the spectrum. The CMB branch therefore carries the distortion residual
+$$
+\mathcal{R}_{\mathrm{dist}}
+=
+\frac{\mu^2}{\sigma_\mu^2}
++
+\frac{y^2}{\sigma_y^2}
++
+\mathcal{R}_{\mathrm{spec}},
+$$
+where $\mu$ and $y$ are the chemical-potential and Compton-distortion parameters of the observer-level spectrum fit. A path-history redshift proposal passes only if it preserves the near-thermal spectrum, image sharpness, and packet time-dilation behavior in the same transport record.
 
 The last-scattering benchmark should also retain the rate condition that makes the surface sharp. In standard comparison language decoupling occurs when the scattering rate falls through the effective expansion or relaxation rate,
 $$

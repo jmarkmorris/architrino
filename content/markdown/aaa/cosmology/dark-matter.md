@@ -287,6 +287,54 @@ where $\rho_b$ is baryonic density, $\delta\rho_{\text{core}}^{(\mathrm{pert})}$
 
 This coupled system must be solved self-consistently. The neutral-assembly component $\rho_A$ satisfies collisionless Boltzmann transport in the potential $\Phi_{\mathrm{eff}}$; the medium response enters through constitutive relations derived from Noether-Sea tri-binary elasticity.
 
+### Scalar-Fluid and MOND-Extension Comparison Gate
+
+Khoury-style hybrid models supply a useful comparison framework because they separate two burdens that are often blended in dark-sector prose: a nearly pressureless component can recover the expansion history and linear growth, while a distinct nonlinear force law accounts for galaxy rotation curves and cluster gas profiles. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not evidence for imported scalar fields. It is a discipline for the hybrid baseline: the neutral-assembly sector must carry the linear CDM-like loading, and the Noether-Sea response sector must carry the low-acceleration nonlinear residual without allowing either side to be retuned independently.
+
+The comparison acceleration law can be recorded as
+
+$$
+a_{\mathrm{cmp}}(a_N; a_\star,f)
+=
+\begin{cases}
+a_N, & a_N\gg a_\star,\\
+\sqrt{a_Na_\star}, & a_\star/f^2\ll a_N\ll a_\star,\\
+f\,a_N, & a_N\ll a_\star/f^2,
+\end{cases}
+$$
+
+where $a_N$ is the baryonic Newtonian benchmark acceleration, $a_\star$ is the environment-dependent low-acceleration transition scale, and $f$ is the ultra-low-acceleration inverse-square enhancement. For the $\mathbb{A}\mathbb{A}\mathbb{A}$ hybrid branch these are not new constants. They are observer-level summaries of a shared Noether-Sea state:
+
+$$
+a_\star(E)=A_\star(\Pi_E\theta_{\mathrm{sea}}),
+\qquad
+f(E)=F_\star(\Pi_E\theta_{\mathrm{sea}}),
+$$
+
+with $E$ denoting an environment class such as spiral galaxies, pressure-supported dwarfs, clusters, or diffuse absorbers. A viable branch must reproduce the galaxy radial-acceleration relation in the middle regime while allowing clusters to fall in the ultra-low-acceleration regime without assigning a separate medium record to each class.
+
+A compact residual is
+
+$$
+\mathcal{R}_{a_\star f}(\theta_{\mathrm{sea}})
+=
+\sum_E
+\left[
+d_E\!\left(
+a_{\mathrm{obs}}(E),
+a_{\mathrm{cmp}}\big(a_N(E);A_\star(\Pi_E\theta_{\mathrm{sea}}),F_\star(\Pi_E\theta_{\mathrm{sea}})\big)
+\right)
++
+\lambda_E
+d_{\mathrm{shared}}\!\left(
+\Pi_E\theta_{\mathrm{sea}},
+\Pi_{\mathrm{cos}}\theta_{\mathrm{sea}}
+\right)
+\right].
+$$
+
+This residual is useful because it turns the cluster-versus-galaxy pressure into a falsifiable question. If the observed cluster temperature and lensing profiles require an $a_\star$ scale significantly above the galaxy radial-acceleration scale, that scale shift must be derived from environment-dependent Noether-Sea density, delay, stress, or neutral-assembly loading. If the same shift is inserted by hand, the branch has reproduced a comparison curve but not closed a native dark-sector mechanism.
+
 ## Regime Map
 
 The hybrid baseline yields a unified regime architecture:

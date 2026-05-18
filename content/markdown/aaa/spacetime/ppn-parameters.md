@@ -239,6 +239,41 @@ and no momentum-density coupling term $w^iV_i$ at the retained PN order.
 
 The coefficients $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ parameterize preferred-frame leakage terms in the weak-field constitutive expansion.
 
+### Preferred-Motion Null-Test Bundle
+
+Historical clock, interferometer, Zeeman-splitting, and gravimeter tests show how many different apparatus types can search for the same preferred-frame leakage without sharing the same dominant nuisance. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this becomes a bundle test on the same drift coefficients, not a set of independent knobs. For an apparatus channel $A$ with orientation $\hat{\mathbf{n}}_A(t)$ and laboratory velocity $\mathbf{w}(t)$ relative to the medium-rest comparison frame, write the leading fractional readout as
+$$
+y_A(t)
+=
+y_{A,0}
++\mathbf{s}_A^{\mathsf T}
+\begin{pmatrix}
+\alpha_1\\
+\alpha_2\\
+\alpha_3
+\end{pmatrix}
+\frac{w^2(t)}{c_0^2}
++\zeta_A
+\frac{
+\left(\mathbf{w}(t)\cdot\hat{\mathbf{n}}_A(t)\right)^2
+-w^2(t)/3
+}{c_0^2}
++n_A(t).
+$$
+Here $\mathbf{s}_A$ is the PPN sensitivity row for the channel, $\zeta_A$ is an allowed apparatus-calibration nuisance fixed by the instrument model, and $n_A$ is detector/environment noise. The shared preferred-frame residual is
+$$
+\mathcal{R}_{\mathrm{PF\text{-}bundle}}
+=
+\sum_A
+\left\|
+y_A^{\mathrm{obs}}-y_A^{\theta}
+\right\|_{C_A^{-1}}^2
++
+\lambda_{\mathrm{PF}}
+\left(\alpha_1^2+\alpha_2^2+\alpha_3^2\right).
+$$
+The bundle fails if one clock or material channel requires a nonzero $\alpha_i$ that another channel excludes, or if the orientation/annual term is hidden in $\zeta_A$ rather than projected through $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$.
+
 ### Weak-Field Constraint Table (Decision Layer)
 
 Use this table to close the constitutive loop against modern benchmarks.

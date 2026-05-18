@@ -164,6 +164,26 @@ $$
 
 with the tolerances fixed by the validation band. This gate protects the separation between the observable data product and the ontology: the data product is a calibrated, coincident, low-residual strain record, while the $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation must still earn the claim that the record is the tensor-sector response of the effective metric induced by Noether-Sea constitutive dynamics.
 
+Coincidence is part of the data product, not an afterthought. For a detector network with instruments $D_a$, calibrated strain streams $s_a(t)$, response templates $h_a^\theta(t)$, and allowed light-speed timing windows $\Delta t_{ab}^{\mathrm{geom}}$, define
+$$
+\mathcal{R}_{\mathrm{coin}}(\theta)
+=
+\sum_a
+\left\|
+s_a-\mathcal{P}_{D_a}h^\theta
+\right\|_{C_a^{-1}}^2
++
+\sum_{a<b}
+\frac{
+\left(
+\Delta t_{ab}^{\mathrm{fit}}-\Delta t_{ab}^{\mathrm{geom}}
+\right)^2
+}{
+\sigma_{ab}^2
+}.
+$$
+This residual is the modern version of the separated-detector check: a signal must be coherent across instruments after antenna response, timing, calibration, and background rejection are fixed. An isolated excess in one detector, or a coincidence that requires an implausible source energy after the same response projection, remains a candidate disturbance rather than an accepted gravitational-wave record.
+
 When $\theta_{\mathrm{GW}}$ is also used to support a finite-range or dark-energy comparison, $\mathcal{R}_{\mathrm{GW,low}}(\theta)$ must be carried beside this detector residual. Passing a high-frequency event-timing gate alone is not enough to promote a long-wavelength dispersion claim.
 
 ## Merger and Ringdown Horizon-Interface Gate

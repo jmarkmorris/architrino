@@ -278,6 +278,49 @@ The long-term relevance of this episode is permanent until a deeper microtheory 
 
 ---
 
+## Einstein's Abandoned Steady-State Cosmology
+
+### Overview
+
+**Episode:** Einstein's Abandoned Steady-State Cosmology. **Short Name:** Einstein Steady-State Manuscript. **Period:** early 1931, after Hubble's redshift-distance evidence and before Einstein's published evolving cosmologies. The near-miss thesis is cautionary: Einstein tried to preserve a constant-density expanding universe by associating a cosmological-constant term with a source of matter, but the model failed because the source was not actually present in the equations.
+
+### Where The Opening Appeared
+
+What physics already had was unusually concentrated: Hubble's approximately linear redshift-distance relation, the instability of Einstein's static model, de Sitter-style exponential expansion, and the cosmological constant as a mathematical term in the field equations. The opening was to ask whether apparent expansion could be modeled while avoiding a one-time global origin and preserving a large-scale statistical steadiness. In modern comparison language, the relevant effective branch is
+$$
+a_{\mathrm{eff}}(t)=a_0e^{H_*t},
+\qquad
+\dot{\rho}_{m,\mathrm{eff}}=0.
+$$
+The mathematical pressure is immediate. With no source term, dust continuity gives
+$$
+\dot{\rho}_{m,\mathrm{eff}}
++3H_*\rho_{m,\mathrm{eff}}=0,
+$$
+so a nonzero constant density requires a provenance source $\mathcal{S}_{m,\mathrm{eff}}=3H_*\rho_{m,\mathrm{eff}}$.
+
+### What Current Physics Still Gets Right
+
+The later rejection of steady-state cosmology was empirically and mathematically justified. Galaxy-evolution evidence and the CMB made an unevolving cosmic population untenable, and the missing source term in Einstein's manuscript was a real closure failure rather than an editorial inconvenience. The valid retained content is not the steady-state universe. It is the conservation lesson: if an effective density is held constant while the comparison volume grows, the source term and its physical ledger must be explicit.
+
+### Where Interpretation Locked In
+
+The historical lock-in around this episode is two-sided. Einstein's preference for an unchanging large-scale universe initially made the constant-density option attractive, even after redshift evidence favored dynamical models. Later, once steady-state cosmology failed observationally, the useful mathematical warning could be hidden under the broader rejection of the model family. Both moves can obscure the layer distinction between an effective scale-factor curve, a source equation, and substrate ontology.
+
+### What Was Left Unfinished
+
+What was occluded was a disciplined source-provenance analysis. A cosmological constant, dark-energy-like stress, or medium tension can alter an effective expansion history without automatically producing matter. Conversely, recurring assembly association, dissociation, black-hole recycling, or Noether-Sea exchange can source effective matter only if the ledger closes in absolute time. The unfinished target is therefore not "revive steady state"; it is "never allow a fitted expansion history to smuggle in unaccounted source terms."
+
+### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
+
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **cautionary but useful**. The Euclidean void does not supply matter or energy. The Noether Sea may carry medium-state dynamics that project into $a_{\mathrm{eff}}(t)$, $H_{\mathrm{eff}}(t)$, and $\rho_{\mathrm{DE,eff}}$, but any effective matter source must be derived from assembly and medium histories inside $S(t)$. This episode therefore sharpens the fixed-void cosmology discipline rather than weakening it.
+
+### Recovery Target
+
+Recovery would require a sourced effective continuity theorem: for every proposed constant-density, recycling, or matter-loading branch, derive $\mathcal{S}_{m,\mathrm{eff}}$ from a declared absolute record and prove that the same record also feeds redshift, CMB, BBN, growth, and lensing comparisons. If the source term is inserted only to maintain a preferred history, the branch fails in the same structural way as the abandoned steady-state attempt.
+
+---
+
 ## Precision Cosmology: Parameters into Story
 
 ### Overview

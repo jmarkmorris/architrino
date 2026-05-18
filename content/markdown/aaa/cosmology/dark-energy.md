@@ -164,6 +164,33 @@ $$
 
 with $\Lambda_{\mathrm{eff}}>0$ only if the same $\theta_{\mathrm{sea}}$ also passes $\mathcal{R}_{\mathrm{shared}}$. This makes small positive $\Lambda_{\mathrm{eff}}$ a constrained output of medium-state entropy and conserved-record selection, not a license to fit an isolated constant after the fact. If the stationary point requires changing $\theta_{\mathrm{sea}}$ separately for SN, BAO, CMB, WL, RSD, or BBN, the thermodynamic reading fails as a closure and remains only a comparison analogy.
 
+### Cosmological-Constant and Creation-Source Discipline
+
+The historical steady-state comparison is useful because it separates two ideas that are easy to conflate: a positive cosmological-constant-like term and a source of matter. In standard metric language, $\Lambda$ can be read as a constant energy-density term. That reading does not by itself supply a matter-production ledger, and in $\mathbb{A}\mathbb{A}\mathbb{A}$ it must not be rephrased as energy residing in the Euclidean void.
+
+For an effective matter component, write the sourced continuity comparison as
+$$
+\dot{\rho}_{m,\mathrm{eff}}
++3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}
+=
+\mathcal{S}_{m,\mathrm{eff}}.
+$$
+The dark-energy branch supplies $\rho_{\mathrm{DE,eff}}$, $w_{\mathrm{eff}}$, $\mathcal{S}_{\mathrm{sea}}$, and $\mathcal{S}_{\mathrm{BH}}$ as medium-state and recycling variables. It does not automatically supply $\mathcal{S}_{m,\mathrm{eff}}$. A proposed conversion from dark-energy-like stress into matter must therefore close the provenance residual
+$$
+\mathcal{R}_{\mathrm{src}}
+=
+\mathcal{S}_{m,\mathrm{eff}}
+-
+\Pi_m\!\left[
+S(t);
+\mathcal{H}_{\mathrm{assoc}},
+\mathcal{H}_{\mathrm{diss}},
+\mathcal{H}_{\mathrm{BH}},
+\mathcal{H}_{\mathrm{sea}}
+\right],
+$$
+where $\Pi_m$ projects the absolute assembly, reaction, recycling, and Noether-Sea histories into the effective matter source. The residual must vanish within tolerance before a constant-density or matter-creation-like interpretation is promoted. This is the safe lesson from failed steady-state models: conservation can be preserved only by an explicit source channel, not by assigning unexplained energy to the container.
+
 ## Effective Friedmann Framework
 
 ### Background Equations

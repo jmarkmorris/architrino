@@ -199,6 +199,68 @@ $$
 $$
 so the GR limit $\gamma_{\text{eff}}=1$ gives $\Delta\theta=4GM/(b\,c_0^2)$. A lapse-only or scalar-delay-only map that supplies only $2GM/(b\,c_0^2)$ has recovered the Newtonian half-test, not the full effective metric. This is why the ADM/Cartan map must carry both the clock/lapse channel and the spatial-compliance channel.
 
+### Lensing-Dynamics Equality Constraint
+
+Hybrid dark-sector comparisons sharpen the metric burden: a modified force law that changes baryonic dynamics must also give the correct lensing potential, or the inferred dynamical mass and lensing mass will disagree. In weak-field comparison language, write the effective metric potentials as
+
+$$
+ds_{\mathrm{eff}}^2
+=
+-\left(1+\frac{2\Phi_{\mathrm{dyn}}}{c_0^2}\right)c_0^2dt^2
++
+\left(1-\frac{2\Psi_{\mathrm{sp}}}{c_0^2}\right)d\mathbf{x}^2.
+$$
+
+Massive slow probes read the dynamical potential $\Phi_{\mathrm{dyn}}$, while weak lensing reads the Weyl combination
+
+$$
+\Phi_{\mathrm{lens}}
+=
+\frac{\Phi_{\mathrm{dyn}}+\Psi_{\mathrm{sp}}}{2}.
+$$
+
+The equality target is therefore
+
+$$
+\Phi_{\mathrm{lens}}
+=
+\Phi_{\mathrm{dyn}}
++O(\epsilon_{\mathrm{lens}}),
+\qquad
+\Psi_{\mathrm{sp}}-\Phi_{\mathrm{dyn}}
+=
+O(\epsilon_{\mathrm{lens}}),
+$$
+
+equivalently $\gamma_{\text{eff}}\equiv\Psi_{\mathrm{sp}}/\Phi_{\mathrm{dyn}}\to1$ in the weak-field lensing regime. A scalar force or medium-response correction that appears only in the clock/lapse channel accelerates matter but under-deflects light. A valid $\mathbb{A}\mathbb{A}\mathbb{A}$ response must project the same Noether-Sea state into the lapse and spatial-compliance channels so that rotation curves, hydrostatic mass, time delay, and lensing consume one effective metric.
+
+For a window $W$, add the lensing-dynamics residual
+
+$$
+\mathcal{R}_{\mathrm{lens=dyn}}(\theta;W)
+=
+\left\|
+\nabla\Phi_{\mathrm{dyn}}^\theta
+-
+\nabla\Phi_{\mathrm{dyn}}^{\mathrm{obs}}
+\right\|_{C_{\mathrm{dyn}}^{-1}}^2
++
+\left\|
+\nabla\Phi_{\mathrm{lens}}^\theta
+-
+\nabla\Phi_{\mathrm{lens}}^{\mathrm{obs}}
+\right\|_{C_{\mathrm{lens}}^{-1}}^2
++
+\lambda_\gamma
+\left\|
+\gamma_{\text{eff}}^\theta-1
+\right\|_W^2
++
+\lambda_{\mathrm{shared}}\mathcal{S}_{\mathrm{retune}}(\theta).
+$$
+
+This residual belongs to the effective-metric closure program, not to dark-sector ontology by itself. It is the condition that lets a medium-response explanation of galaxy or cluster dynamics remain compatible with the same lensing map.
+
 ### Matter-Channel Compatibility Target
 
 The same shared-record rule applies to the effective matter channels whose observations test the metric. The retained comparison lesson from matter-first gravity programs is not that their ontology should be imported, but that predictive matter dynamics and observer-level geometry cannot be chosen independently. In this framework, the matter channel, clock channel, ruler channel, and signal channel must remain projections of the same Noether-Sea record $\theta$.

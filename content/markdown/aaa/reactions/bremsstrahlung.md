@@ -199,6 +199,30 @@ For high-energy scattering language, the differential yield is tracked with $d\s
 
 Baseline takeaway: these equations are the standard observer-level scaffold that $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping is built to recover in its low-energy continuum limit. The wake-shock model does not replace the validated formulas; it supplies the proposed closure-residual provenance that must reduce to them before any Noether-Sea-dependent deviation is treated as physical.
 
+### Shock-Cooling Ledger in Outflows
+
+Jet and outflow shocks require an additional branch check before a continuum component is identified as bremsstrahlung or free-free emission. In dense radiative shocks, such as many young-stellar-object working surfaces, the total cooling function $\Lambda(T_s)$ is usually dominated by line cooling, recombination, molecular, or other channel rows over part of the temperature range. Bremsstrahlung is retained only for the part of the emissivity budget that the local plasma state actually assigns to free-free emission.
+
+For a post-shock cell, use the observer-level cooling estimate
+
+$$
+t_{\mathrm{cool}}
+=
+\frac{(n_e+n_H)k_B T_s}
+{(\gamma_{\mathrm{gas}}-1)n_e n_H\Lambda(T_s)}
+$$
+
+and compare it to the flow time $t_{\mathrm{dyn}}\sim \ell_j/v_j$. The free-free branch is promoted when its fractional cooling contribution
+
+$$
+f_{\mathrm{ff}}
+=
+\frac{\Lambda_{\mathrm{ff}}(T_s,n_e,n_i,Z)}
+{\Lambda(T_s)}
+$$
+
+is above the channel-inclusion threshold for the modeled zone. Otherwise the same shock residual should remain in the line, molecular, heat, recoil, or medium-excitation rows rather than being silently folded into bremsstrahlung. This is an observer-level plasma diagnostic. The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is to derive which event records feed $\Lambda_{\mathrm{ff}}$ and which feed the competing channels while preserving the shared energy ledger.
+
 ## Core Channels (Inclusion Rule)
 
 This chapter uses a dominant-channel rule: include reactions/channels that contribute at least about 1% in the relevant regime. Where PDG branching ratios are defined, this is a `BR > 1%` rule; where transport channels are not tabulated by PDG branching, use contribution to modeled emissivity/opacity.

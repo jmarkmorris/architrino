@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1190
+      "sections": 1193
     }
   },
   "tocRoot": {
@@ -2182,6 +2182,14 @@
                     "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
                     "markdownSection": "Weak-Field Observables That Must Match GR",
                     "sectionKey": "weak field observables that must match gr",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Equivalence-Principle Channels",
+                    "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                    "markdownSection": "Equivalence-Principle Channels",
+                    "sectionKey": "equivalence principle channels",
                     "headingLevel": 2
                   },
                   {
@@ -6644,6 +6652,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Low-Acceleration Scale Coupling",
+                "markdownPath": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
+                "markdownSection": "Low-Acceleration Scale Coupling",
+                "sectionKey": "low acceleration scale coupling",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Cross-Module Interface",
                 "markdownPath": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
                 "markdownSection": "Cross-Module Interface",
@@ -10251,6 +10267,14 @@
                 "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
                 "markdownSection": "Renormalization Era: Warnings Reframed",
                 "sectionKey": "renormalization era warnings reframed",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Einstein's Abandoned Steady-State Cosmology",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Einstein's Abandoned Steady-State Cosmology",
+                "sectionKey": "einstein s abandoned steady state cosmology",
                 "headingLevel": 2
               },
               {

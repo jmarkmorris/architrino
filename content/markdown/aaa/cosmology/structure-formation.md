@@ -82,6 +82,45 @@ T(k)\sim k^{-2}\ \text{for }k\gg k_{\mathrm{eq}},
 $$
 up to the declared baryon acoustic, neutrino/free-streaming, and nonlinear corrections. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not an import of metric expansion ontology. It is the observer-level shape test that the same medium-state history must pass while computing $G_{\text{eff}}(a,k)$, CMB lensing, $f\sigma_8$, and high-redshift halo statistics.
 
+### Linear and Nonlinear Dark-Sector Split
+
+Hybrid dark-sector comparisons make one useful mathematical demand explicit: the linear growth record and the nonlinear rotation-curve record must be separated before they are recombined. A nearly pressureless fluid, scalar, or neutral-assembly population can reproduce the expansion history, acoustic peak loading, and linear matter power spectrum if its effective equation of state and sound speed are small,
+
+$$
+|w_{\mathrm{lin}}|\ll1,
+\qquad
+c_{s,\mathrm{lin}}^2\ll1.
+$$
+
+That success does not by itself solve the nonlinear missing-mass problem in galaxies or clusters. Conversely, a MOND-like or medium-compliance law can fit low-acceleration rotation curves without automatically recovering the CMB peak structure or the linear transfer function. The $\mathbb{A}\mathbb{A}\mathbb{A}$ closure requirement is therefore a shared-record split:
+
+$$
+\theta_{\mathrm{sea}}
+\longmapsto
+\left(
+\Pi_{\mathrm{lin}}\theta_{\mathrm{sea}},
+\Pi_{\mathrm{nl}}\theta_{\mathrm{sea}}
+\right),
+$$
+
+where $\Pi_{\mathrm{lin}}\theta_{\mathrm{sea}}$ supplies $P(k,z)$, $D(z,k)$, $C_L^{\phi\phi}$, and $f\sigma_8$, while $\Pi_{\mathrm{nl}}\theta_{\mathrm{sea}}$ supplies the radial-acceleration relation, cluster hydrostatic profiles, and rotation-curve residuals. A compact split residual is
+
+$$
+\mathcal{R}_{\mathrm{lin/nl}}(\theta_{\mathrm{sea}})
+=
+\mathcal{R}_{P,D,C_L,f\sigma_8}(\Pi_{\mathrm{lin}}\theta_{\mathrm{sea}})
++
+\mathcal{R}_{\mathrm{RAR/cl/rot}}(\Pi_{\mathrm{nl}}\theta_{\mathrm{sea}})
++
+\lambda_{\mathrm{split}}
+d_{\mathrm{shared}}\!\left(
+\Pi_{\mathrm{lin}}\theta_{\mathrm{sea}},
+\Pi_{\mathrm{nl}}\theta_{\mathrm{sea}}
+\right).
+$$
+
+The last term is the important one. It prevents the model from behaving like CDM in the linear packet and like a separate modified-gravity theory in the nonlinear packet unless both projections come from the same Noether-Sea and neutral-assembly state. This also protects the $S_8$ discussion: late-time growth suppression may be allowed, but it must not erase the linear-regime matter loading that fixes the CMB and equality-scale transfer function.
+
 ---
 
 ## Matter Content and the Dark Sector

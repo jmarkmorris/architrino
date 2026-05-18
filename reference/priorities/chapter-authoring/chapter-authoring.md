@@ -64,3 +64,7 @@ During the current core geometrical theory push, do not treat chapter coverage a
 | David Tong, [Supersymmetric Field Theory](https://davidtong.org/pdfs/teaching/supersymmetric-field-theory/susy.pdf) | May 18, 2026 |
 | David Tong, [String Theory](https://davidtong.org/pdfs/teaching/string-theory/string.pdf) | May 18, 2026 |
 | David Tong, [Solitons and D-Branes](https://davidtong.org/pdfs/teaching/solitons/tasi.pdf) | May 18, 2026 |
+| Elisabete M. de Gouveia Dal Pino, `0406319.pdf`, `Astrophysical Jets and Outflows` | May 18, 2026 |
+| Phillip James Edwin Peebles, `10.1140--epjh--e2016-70034-0.pdf`, `Robert Dicke and the naissance of experimental gravity physics, 1957-1967` | May 18, 2026 |
+| Cormac O'Raifeartaigh, Brendan McCann, Werner Nahm, and Simon Mitton, `1402.0132.pdf`, `Einstein's steady-state theory: an abandoned model of the cosmos` | May 18, 2026 |
+| Justin Khoury, `1409.0012.pdf`, `An Alternative to Particle Dark Matter` | May 18, 2026 |

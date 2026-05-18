@@ -56,6 +56,21 @@ Strong-gravity information claims require the same declared-access discipline. A
 
 The same discipline applies when one Physical Observer uses another Physical Observer's report. The report is not a disembodied update rule. It is a physical record carried by signals, memory states, documents, detector logs, or other assemblies, and it can be imported only through a declared communication channel with finite latency, calibration, and persistence. If two observers appear to certify incompatible conclusions, the first diagnostic question is whether both conclusions belong to the same declared record channel and access model. A mismatch in readout channel, missing reference resources, or failed record autonomy is an observer-layer failure, not evidence that the complete ontic state has become contradictory.
 
+Purpose-built precision experiments add a practical record rule. A Physical Observer does not record only a number; the observer records an apparatus protocol, a modulation or timing method, calibration references, and a nuisance model. For a precision-gravity channel $A$, write the retained record as
+$$
+\Theta_A^{(O,W)}
+=
+\left(
+Y_A(t),
+\mathcal{K}_A,
+\mathcal{M}_A,
+C_A,
+\mathcal{N}_A,
+\mathcal{B}_{\partial\Omega}^{(O)}(W)
+\right),
+$$
+where $Y_A(t)$ is the measured readout, $\mathcal{K}_A$ is the apparatus response kernel, $\mathcal{M}_A$ is the modulation or timing protocol, $C_A$ is calibration covariance, and $\mathcal{N}_A$ is the declared nuisance family. Redshift measurements, torsion balances, preferred-frame clock tests, CMB radiometers, and interferometric gravitational-wave detectors differ mainly in these record fields. A comparison that keeps $Y_A(t)$ while replacing $\mathcal{K}_A$, $\mathcal{M}_A$, $C_A$, or $\mathcal{N}_A$ after seeing the result is not the same Physical Observer record.
+
 ## Ontic and Epistemic Levels
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ uses a two-level distinction:

@@ -91,6 +91,29 @@ $$
 $$
 Passing these equations does not by itself promote metric expansion. It means that the fixed-void medium history has an observer-level FRW projection accurate enough to feed distance-redshift, CMB, BBN, and growth comparisons.
 
+### Steady-State Failure Test for Effective Variables
+
+Historical steady-state cosmologies are useful here as failure tests, not as ontology to import. Einstein's unpublished 1931 steady-state attempt already shows the core mathematical pressure: an expanding comparison metric with constant matter density is not closed unless the matter continuity equation contains an explicit source term with a provenance ledger.
+
+In the effective FRW layer, a dust-like component obeys the no-source comparison equation
+$$
+\dot{\rho}_{m,\mathrm{eff}}
++3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}=0.
+$$
+If one imposes $\dot{\rho}_{m,\mathrm{eff}}=0$ while $H_{\mathrm{eff}}\ne0$, the equation forces $\rho_{m,\mathrm{eff}}=0$. A nontrivial constant-density branch therefore requires
+$$
+\dot{\rho}_{m,\mathrm{eff}}
++3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}
+=
+\mathcal{S}_{m,\mathrm{eff}},
+\qquad
+\mathcal{S}_{m,\mathrm{eff}}
+=3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}
+\quad
+\text{for constant }\rho_{m,\mathrm{eff}}.
+$$
+From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, $\mathcal{S}_{m,\mathrm{eff}}$ cannot mean matter produced by the Euclidean void. It must be a projection of assembly association, dissociation, recycling, transport, or Noether-Sea exchange already present in the absolute record $S(t)$. If no such provenance route is supplied, the model is only an effective parameter fit and fails as cosmology closure.
+
 ## Observation-First Component Abstraction
 
 This framework does not treat cosmology as "$\mathbb{A}\mathbb{A}\mathbb{A}$ vs $\Lambda\mathrm{CDM}$" at the bundled-model level. Instead, first abstract $\Lambda\mathrm{CDM}$ into separable observational components with no interpretational linkage baked in:
