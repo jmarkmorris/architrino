@@ -60,6 +60,43 @@ $$
 
 with $\mathcal{R}_{\mathrm{null}}$ defined in [Failure Criteria](../validation/failure-criteria.md#null-result-residual-for-added-channels). Thus larger group unification, supersymmetry, Kaluza-Klein-style geometry, and similar constructions remain comparison frameworks unless an $\mathbb{A}\mathbb{A}\mathbb{A}$ branch record recovers the observed gauge sector while also suppressing every added observable channel from the same shared state variables.
 
+### Running-Coupling Bridge
+
+The standard high-energy plot of $U(1)_Y$, $SU(2)_L$, and $SU(3)_c$ interaction strengths is read here as a scale-dependent effective gauge record, not as evidence that three substrate fields literally merge. The $SU(3)_c$ curve tests how color axis-exceptionality transport is exposed at short causal-wake and assembly scales. The $SU(2)_L$ curve tests the exposed weak-coupling-triad channel. The $U(1)_Y$ curve tests the hypercharge/electromagnetic bookkeeping before electroweak mixing. A candidate branch record must therefore output the running vector
+
+$$
+\mathbf{g}_{\mathbb{A}\mathbb{A}\mathbb{A}}(\mu;\theta)
+=
+\bigl(
+g_1(\mu;\theta),
+g_2(\mu;\theta),
+g_3(\mu;\theta),
+\theta_W(\mu;\theta)
+\bigr),
+$$
+
+where $\mu$ is the observer-level probe scale and $\theta$ is the retained branch and constitutive record. The term $d_{\mathrm{run}}$ measures the distance between this output and the observed running record across a declared scale window; it is not permission to fit each sector independently at one reference energy.
+
+Near-convergence at high scale may be tracked as a comparison diagnostic by
+
+$$
+\Delta_{\mathrm{meet}}(\theta)
+=
+\inf_{\mu\in W_{\mathrm{run}}}
+\max_{i,j\in\{1,2,3\}}
+\left|
+\alpha_i^{\mathbb{A}\mathbb{A}\mathbb{A}}(\mu;\theta)
+-
+\alpha_j^{\mathbb{A}\mathbb{A}\mathbb{A}}(\mu;\theta)
+\right|,
+\qquad
+\alpha_i^{\mathbb{A}\mathbb{A}\mathbb{A}}(\mu;\theta)
+=
+\frac{g_i^2(\mu;\theta)}{4\pi}.
+$$
+
+This diagnostic is subordinate to $d_{\mathrm{run}}$ and $\mathcal{R}_{\mathrm{null}}$. A small $\Delta_{\mathrm{meet}}$ does not promote a grand-unified container unless the same branch record recovers the observed low-energy gauge record, reproduces the scale dependence, and explains the absence of mirror matter, superpartners, proton-instability channels, extra gauge bosons, hidden transport modes, and other non-baseline outputs in the tested regime.
+
 For a proposed symmetry container $C$, a compact audit form is
 $$
 \mathcal{R}_{\mathrm{container}}(\theta;C)

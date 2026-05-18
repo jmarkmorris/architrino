@@ -966,6 +966,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Purpose](../../../markdown/aaa/proof-programs/collinear-breather.md?section=Purpose)
     - [Exact 1D State Variables](../../../markdown/aaa/proof-programs/collinear-breather.md?section=Exact+1D+State+Variables)
     - [Partner-Only Hinge Radius](../../../markdown/aaa/proof-programs/collinear-breather.md?section=Partner-Only+Hinge+Radius)
+    - [Prepared Held-Release Benchmark](../../../markdown/aaa/proof-programs/collinear-breather.md?section=Prepared+Held-Release+Benchmark)
     - [Partner-Hit and Self-Hit Root Equations](../../../markdown/aaa/proof-programs/collinear-breather.md?section=Partner-Hit+and+Self-Hit+Root+Equations)
     - [Regularized 1D Equation](../../../markdown/aaa/proof-programs/collinear-breather.md?section=Regularized+1D+Equation)
     - [Inbound/Outbound Sign Structure](../../../markdown/aaa/proof-programs/collinear-breather.md?section=Inbound%2FOutbound+Sign+Structure)
