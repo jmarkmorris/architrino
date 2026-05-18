@@ -10,6 +10,206 @@ C_{N,\mathrm H}^{(\ell)}
 \left(\Gamma_{N,\mathrm H}^{(\ell)}\right)^{-1}.
 $$
 
+## Runtime Artifact
+
+Run the default executable packet with:
+
+```text
+node scripts/spacetime/hydrogen-gamma-n-spectral-row-toy-scan.mjs --pretty
+```
+
+The script consumes:
+
+```text
+scripts/spacetime/hydrogen-gamma-n-spectral-row-mock.json
+```
+
+and emits one result row per scenario. The packet also keeps one mock passing shared-row case and intentional failure witnesses for direct cadence multiplication, per-line row fitting, endpoint-row violation, and response-record mismatch.
+
+The default packet now begins with `hydrogen_rydberg_static_response_scaffold`. That scenario is not a completed hydrogen derivation, but it is the first theory-bearing input scaffold: the line labels are ordinary hydrogen transitions with recovered principal labels, the executable derives normalized Rydberg line factors, the envelope gaps declare one shared line-inferred cadence stretch, the $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ entries preserve the density/delay/scale/core split, and the static response vector is inherited from the static response packet rather than retuned inside the spectral scan.
+
+## Theory-Bearing Input Scaffold
+
+The scaffold uses the line factors from the hydrogen Rydberg benchmark. For each line object, the executable reads the recovered labels `principal_n_a` and `principal_n_b` and forms
+
+$$
+\Lambda_{ab}
+=
+\frac{1}{n_b^2}
+-
+\frac{1}{n_a^2},
+$$
+
+The record-level `frequency_scale` represents the normalized $R_{\mathrm H}c_{\gamma,0}$ comparison scale. In the first scaffold it is set to one, so the executable derives
+
+$$
+\nu_{a\to b}^{\mathrm{obs},(\ell)}
+=
+\Lambda_{ab}.
+$$
+
+The record-level `line_inferred_ln_Gamma_N` then supplies the line-inferred cadence stretch used to derive the replay envelope gap:
+
+$$
+\frac{
+E_{\text{env}}^{(\ell)}(a)-E_{\text{env}}^{(\ell)}(b)
+}{
+h
+}
+=
+e^{0.001}\Lambda_{ab},
+$$
+
+so every selected line infers
+
+$$
+\ln\widehat\Gamma_{N,\mathrm H}^{(\ell)}(a,b)
+=
+0.001.
+$$
+
+The accepted scaffold row is the density/scale-compensated static-response row
+
+$$
+\mathbf{b}_{N}^{\mathrm{spec}}
+=
+\left(
+0.4,\,
+0.4,\,
+-0.5,\,
+1,\,
+1
+\right),
+$$
+
+with static response vector
+
+$$
+\left(
+a_n,\,
+a_\chi,\,
+a_\lambda,\,
+a_R
+\right)
+=
+\left(
+0.25,\,
+2,\,
+-0.1,\,
+0.05
+\right).
+$$
+
+It satisfies the endpoint constraint because
+
+$$
+0.4(0.25)+0.4(2)+(-0.5)(-0.1)+1(0.05)=1.
+$$
+
+The two admissible spectral records keep different component splits while preserving the same row prediction:
+
+$$
+\mathbf{g}_{N,\mathrm H}^{(A)}
+=
+\left(
+0.0005,\,
+0.002,\,
+0.0002,\,
+0,\,
+0.0001
+\right)^T,
+\qquad
+\mathbf{g}_{N,\mathrm H}^{(B)}
+=
+\left(
+0.0007,\,
+0.0018,\,
+0.0001,\,
+0,\,
+0.00005
+\right)^T,
+$$
+
+and
+
+$$
+\mathbf{b}_{N}^{\mathrm{spec}}\cdot\mathbf{g}_{N,\mathrm H}^{(A)}
+=
+\mathbf{b}_{N}^{\mathrm{spec}}\cdot\mathbf{g}_{N,\mathrm H}^{(B)}
+=
+0.001.
+$$
+
+This makes the packet stronger than a mock arithmetic witness. It now checks that a row inherited from the static response packet can control several hydrogen line labels across two admissible records without collapsing $n$ and $\chi_{\text{sea}}$ or fitting a separate coefficient row to each transition.
+
+The scaffold still has a limited claim level. It derives the observer-frequency and envelope-gap entries from the Rydberg line-factor equation and a declared shared cadence stretch, but it does not derive the hydrogen envelope gaps from the master dynamics, does not derive the static response vector, and does not assign real observer frequencies. Its job is to make those inputs explicit and replaceable while keeping the coefficient-row scan executable.
+
+## Compensated-Row Readout
+
+The current scaffold makes the compensated-family test explicit. The accepted split-record row is
+
+$$
+\mathbf{b}_{N}^{\mathrm{spec}}
+=
+\left(
+0.4,\,
+0.4,\,
+-0.5,\,
+1,\,
+1
+\right),
+$$
+
+with
+
+$$
+\mathbf{g}_{N,\mathrm H}^{(A)}
+=
+\left(
+0.0005,\,
+0.002,\,
+0.0002,\,
+0,\,
+0.0001
+\right)^T,
+\qquad
+\mathbf{g}_{N,\mathrm H}^{(B)}
+=
+\left(
+0.0007,\,
+0.0018,\,
+0.0001,\,
+0,\,
+0.00005
+\right)^T.
+$$
+
+The refinement difference satisfies
+
+$$
+\mathbf{b}_{N}^{\mathrm{spec}}\cdot
+\left(
+\mathbf{g}_{N,\mathrm H}^{(B)}
+-
+\mathbf{g}_{N,\mathrm H}^{(A)}
+\right)
+=0,
+$$
+
+so both records give the same $\ln\Gamma_{N,\mathrm H}=0.001$ while preserving separate $n$, $\chi_{\text{sea}}$, $\lambda$, and $R_{\text{core}}$ entries. By contrast, the shared-delay-only control row
+
+$$
+\left(
+0,\,
+\frac{1}{2},\,
+0,\,
+1,\,
+0
+\right)
+$$
+
+predicts a refinement mismatch of $-0.0001$ on record $B$ in the default scaffold. This is the current hydrogen validation result: atom-local refinement can falsify the minimal row when the accepted response record changes component split, but the scaffold does not yet require nonzero gravitational endpoint coefficients $a_n$, $a_\lambda$, or $a_R$ unless a constitutive hydrogen branch derives the same split from the static endpoint response.
+
 ## Input Variables
 
 Each toy packet supplies one weak-homogeneous hydrogen line set $\mathcal L_{\mathrm H}^{0}$ and one or more admissible resolution records $\ell\in I_{\mathrm{spec}}^{\mathrm{atom}}$. For each record, the packet declares:
@@ -217,3 +417,21 @@ The packet must include intentional failing rows or records for the following ca
 | response-record mismatch | changing $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ between lines after $\mathcal L_{\mathrm H}^{0}$ is chosen fails |
 
 These failure tests keep the spectral row tied to the shared clock/rate map. They also separate the proof obligations: the envelope calculation owns the line gaps, the clock-row calculation owns $\Gamma_N$ and $C_N$, and the photon-channel event record owns emission and absorption propagation.
+
+## Output Diagnostics
+
+The executable packet reports:
+
+| Output field | Meaning |
+| --- | --- |
+| `diagnostics.accepted_rows` | candidate rows that satisfy $b_\xi=1$, the endpoint constraint, the line-set residual, and the refinement residual |
+| `diagnostics.response_record_mismatch_pass` | whether every line used the shared $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ record for its resolution |
+| `diagnostics.per_line_spoof` | whether each line could be made to pass by some row even though no shared row passes |
+| `diagnostics.row_results[].diagnostics.endpoint_residual` | residual for $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$ |
+| `diagnostics.row_results[].diagnostics.line_residuals` | line-by-line values of $\mathcal E_{\Gamma}^{(\ell)}(a,b;\mathbf{b}_{N}^{\mathrm{spec}})$ |
+| `diagnostics.row_results[].diagnostics.line_residuals[].line_factor_Lambda_ab` | derived or declared hydrogen line factor $\Lambda_{ab}$ |
+| `diagnostics.row_results[].diagnostics.line_residuals[].envelope_gap_over_h` | declared or derived envelope gap divided by $h$ |
+| `diagnostics.row_results[].diagnostics.line_residuals[].observed_frequency` | declared or derived observer frequency used in the cadence-stretch readout |
+| `diagnostics.row_results[].diagnostics.refinement_residuals` | resolution-pair residuals for the shared row prediction |
+
+The packet succeeds only when its declared expectations are met. A failure witness should therefore have `status: "fail"` but `expectation_status: "pass"` when it fails for the intended reason.

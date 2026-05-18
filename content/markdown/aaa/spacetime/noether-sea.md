@@ -249,6 +249,91 @@ Y_{X,E\to R}
 \exp(Y_{X,E\to R}).
 $$
 
+The minimal state needed for the first executable closure is a projection of the absolute record, not a new ontology. For a segmented path $\gamma_{E\to R}=\{\Delta s_j\}_{j=1}^N$, use
+
+$$
+\mathcal S_{X,E\to R}^{\min}
+=
+\left(
+\mathcal G_E,\,
+\mathcal G_R,\,
+\mathcal V_{E,R},\,
+B_X(E),\,
+\left\{
+\mathcal K_{X,j},\Delta s_j
+\right\}_{j=1}^{N}
+\right),
+$$
+
+with endpoint records
+
+$$
+\mathcal G_Q
+=
+\left(
+\mathbf g_N(Q),
+\mathcal R_{\Gamma,Q}
+\right),
+\qquad
+Q\in\{E,R\},
+$$
+
+launch record
+
+$$
+\mathcal V_{E,R}
+=
+\left(
+\mathbf v_E,\mathbf v_R,\hat{\mathbf k},\mathcal R_v
+\right),
+$$
+
+and segment record
+
+$$
+\mathcal K_{X,j}
+=
+\left(
+\mathbf d_{\theta,j},\,
+f_{N,j},\,
+S_{\mathrm{BH},j},\,
+S_{\mathrm{GW},j},\,
+R_{\mathrm{eq},j},\,
+\partial_\nu J_{\nu,j},\,
+\delta_{u,j},\,
+\sigma_{X,j},\,
+\mathcal R_{\mathrm{coh},X,j}
+\right).
+$$
+
+Here $\mathbf d_{\theta,j}=D_{\gamma}\boldsymbol\theta_{\mathrm{sea}}|_j$, $\delta_{u,j}=(\nabla\cdot\mathbf u_{\mathrm{sea}})_j$, and $\sigma_{X,j}=\hat k_a\hat k_b\Sigma_{\mathrm{sea},X,j}^{ab}$. The transport coefficients are one fixed row for the line family,
+
+$$
+\Theta_X
+=
+\left(
+\mathbf b_N,\,
+\mathbf p_X,\,
+p_{\nu,X},\,
+p_{u,X},\,
+p_{\sigma,X}
+\right),
+$$
+
+so the no-case-switch requirement is simply
+
+$$
+\Theta_X^{\mathrm{grav}}
+=
+\Theta_X^{\mathrm{motion}}
+=
+\Theta_X^{\mathrm{deep}}
+\equiv
+\Theta_X.
+$$
+
+The three cases may supply different restrictions of $S(t)$: a strong endpoint deformation record, a launch-velocity record, or a long weak path-history record. They fail the absolute-record transport target if the coefficient row or explanatory class changes between those restrictions.
+
 The endpoint cadence factors are extracted from the same local deformation record used by the clock program:
 
 $$
@@ -376,7 +461,202 @@ p_{\sigma,X}
 \mathcal R_{\mathrm{coh},X}.
 $$
 
-Here $\Sigma_{\mathrm{sea},X}^{ab}$ is the trace-free anisotropic medium-response tensor seen by channel $X$ and vanishes in the isotropic weak limit. The coefficient rows $\mathbf b_N$ and $(\mathbf p_X,p_{\nu,X},p_{u,X},p_{\sigma,X})$ must be fixed from the declared Noether-Sea constitutive response and then reused across gravitational, relative-motion, and deep-space cases. A deep-space contribution may come from a persistent $\mathcal C_N[f_N]$, flow-divergence, or anisotropic-response record, but not from switching to a generic photon-energy-loss explanation.
+Here $\Sigma_{\mathrm{sea},X}^{ab}$ is the trace-free anisotropic medium-response tensor seen by channel $X$ and vanishes in the isotropic weak limit. In the segmented fixture this is the computable update
+
+$$
+\alpha_{\mathrm{prop},X,j}
+=
+\mathbf p_X\cdot\mathbf d_{\theta,j}
++
+p_{\nu,X}
+\frac{
+S_{\mathrm{BH},j}
++
+S_{\mathrm{GW},j}
+-
+R_{\mathrm{eq},j}
+-
+\partial_\nu J_{\nu,j}
+}{
+f_{N,j}+\epsilon_f
+}
++
+p_{u,X}\delta_{u,j}
++
+p_{\sigma,X}\sigma_{X,j}
++
+\mathcal R_{\mathrm{coh},X,j}.
+$$
+
+The coefficient rows $\mathbf b_N$ and $(\mathbf p_X,p_{\nu,X},p_{u,X},p_{\sigma,X})$ must be fixed from the declared Noether-Sea constitutive response and then reused across gravitational, relative-motion, and deep-space cases. A deep-space contribution may come from a persistent $\mathcal C_N[f_N]$, flow-divergence, or anisotropic-response record, but not from switching to a generic photon-energy-loss explanation.
+
+The first coefficient-row constraints are recovery constraints, not a fit to one redshift case. The endpoint row has the form
+
+$$
+\mathbf b_N
+=
+\left(
+b_n,\,
+b_\chi,\,
+b_\lambda,\,
+1,\,
+b_R
+\right),
+$$
+
+because the homogeneous moving-core branch fixes the coefficient of $-\ln\xi$ by requiring $\Gamma_N\to1/\xi\to\gamma$. The weak static endpoint branch then fixes only the scalar combination
+
+$$
+b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1,
+$$
+
+where
+
+$$
+\ln n=a_n\frac{U}{c_0^2},\qquad
+\ln\chi_{\text{sea}}=a_\chi\frac{U}{c_0^2},\qquad
+\ln\lambda=a_\lambda\frac{U}{c_0^2},\qquad
+\ln\frac{R_{\text{core}}}{R_{\text{core},0}}=a_R\frac{U}{c_0^2},
+\qquad
+U\equiv-\Phi_N.
+$$
+
+Under shared clock/signal delay closure, the Shapiro-delay response supplies
+
+$$
+a_\chi=1+\gamma_{\text{eff}},
+$$
+
+so the endpoint condition becomes
+
+$$
+b_n a_n+b_\chi(1+\gamma_{\text{eff}})+b_\lambda a_\lambda+b_R a_R=1.
+$$
+
+In the GR-matching weak branch this is $b_n a_n+2b_\chi+b_\lambda a_\lambda+b_R a_R=1$. If the shared-delay residual is nonzero, the unconstrained equation with $a_\chi$ must be used and the residual must remain visible in the clock, Shapiro-delay, pressure-response, and redshift packets.
+
+The first executable static endpoint packet is the minimal shared-delay specialization. With $A_\chi\equiv1+\gamma_{\text{eff}}$,
+
+$$
+\left(
+a_n,\,
+a_\chi,\,
+a_\lambda,\,
+a_R
+\right)
+=
+\left(
+0,\,
+A_\chi,\,
+0,\,
+0
+\right),
+\qquad
+\left(
+b_n,\,
+b_\chi,\,
+b_\lambda,\,
+b_R
+\right)
+=
+\left(
+0,\,
+A_\chi^{-1},\,
+0,\,
+0
+\right).
+$$
+
+For $\gamma_{\text{eff}}=1$, this gives $a_\chi=2$ and $b_\chi=1/2$. Nonzero $n$, $\lambda$, or $R_{\text{core}}$ contributions remain admissible only as a compensated static family that preserves the endpoint sum and the inverse clock-rate row; they are not free redshift-fit knobs.
+
+The relative-motion recovery fixes the separation between launch geometry and transport coefficients. In a homogeneous weak record with $\mathbf g_N(E)=\mathbf g_N(R)=0$, $B_X(E)=1$, and $\mathcal K_{X,j}=0$ for every segment,
+
+$$
+Z_X
+=
+\ln(1+z_X)
+=
+-\ln D_v,
+\qquad
+Y_{X,E\to R}=0.
+$$
+
+Thus the launch factor carries the ordinary first-order Doppler or phase-compression term; no component of $(\mathbf p_X,p_{\nu,X},p_{u,X},p_{\sigma,X})$ may be adjusted to recover a pure relative-motion redshift.
+
+Endpoint-subtracted redshift gives the corresponding isolation test for the path row. From
+
+$$
+\ln(1+z_X)
+=
+\ln\Gamma_{N,E}
+-\ln\Gamma_{N,R}
+-\ln D_v
++Y_{X,E\to R}
+-\ln B_X(E),
+$$
+
+the replayed propagation term is
+
+$$
+Y_{X,E\to R}^{\mathrm{sub}}
+=
+\ln(1+z_X)
+-\left(
+\ln\Gamma_{N,E}
+-\ln\Gamma_{N,R}
+\right)
++\ln D_v
++\ln B_X(E).
+$$
+
+In a weak static endpoint comparison,
+
+$$
+\ln\Gamma_{N,Q}
+=
+\left(
+b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R
+\right)
+\frac{U_Q}{c_0^2}
++O\!\left(\frac{U_Q^2}{c_0^4}\right),
+\qquad
+Q\in\{E,R\}.
+$$
+
+Endpoint-subtracted replay therefore constrains the propagation row only after the endpoint scalar is fixed. A compensated static family is invisible to this first-order subtraction when it preserves $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$; it becomes disfavored only if it leaves an endpoint residual that the path-history row must repair.
+
+The deep-space continuity packet constrains the remaining path row by endpoint-subtracted replay:
+
+$$
+Z_{\mathrm{prop},X}
+=
+\sum_{j=1}^{N}
+\left[
+\mathbf p_X\cdot\mathbf d_{\theta,j}
++p_{\nu,X}\mathcal C_{N,j}
++p_{u,X}\delta_{u,j}
++p_{\sigma,X}\sigma_{X,j}
++\mathcal R_{\mathrm{coh},X,j}
+\right]
+\Delta s_j,
+$$
+
+with
+
+$$
+\mathcal C_{N,j}
+=
+\frac{
+S_{\mathrm{BH},j}
++S_{\mathrm{GW},j}
+-R_{\mathrm{eq},j}
+-\partial_\nu J_{\nu,j}
+}{
+f_{N,j}+\epsilon_f
+}.
+$$
+
+This equation fixes the sign convention and the shared-row obligation for deep-space transport, but it does not yet determine $\mathbf p_X$, $p_{\nu,X}$, $p_{u,X}$, or $p_{\sigma,X}$ individually. They remain constitutive freedoms until independent segment records vary the corresponding Noether-Sea gradients, cadence residual, flow divergence, and anisotropic response. The first observable falsifiers are the existing transport diagnostics: chromaticity residuals for line-family dependence, time-dilation residuals for frequency/cadence splitting, image-bundle variance for anisotropic or flow-induced beam spread, and directional residuals for unmodeled large-scale Noether-Sea structure.
 
 The coherence residue is admissible only if the same $Y_X$ passes the observational transport tests,
 

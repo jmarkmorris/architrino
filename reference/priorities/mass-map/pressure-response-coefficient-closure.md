@@ -6,7 +6,7 @@ This priority packet closes the coefficient side of the pressure-dependent Noeth
 
 - **Status:** branch-conditional coefficient closure; no empirical pass claimed.
 - **Main claim:** in a branch-preserving pressure perturbation, the cadence, delay, effective-speed, strain, and medium-response tensor channels reduce to a small set of shared isotropic and anisotropic pressure coefficients. Individual values of $a_i$, $b_i$, $\kappa_i$, $m_S$, and $K_{\text{sea}}$ are not observable-local fit freedoms.
-- **Open burden:** derive $\kappa_n$, $\kappa_\lambda$, $\kappa_\xi$, $a_i$, $b_i$, $m_S$, $K_{\text{sea}}$, and the packing response from an accepted Noether-core branch or a certified pressure simulation.
+- **Open burden:** derive $\kappa_n$, $\kappa_\lambda$, $\kappa_\xi$, $a_i$, $b_i$, $m_S$, $K_{\text{sea}}$, and the packing response from an accepted Noether-core branch or a certified pressure simulation. The density-side modulus and headroom target is now staged in [Noether-Sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md).
 - **Promotion target:** none until the pressure response survives a shared-row replay and the Lorentz, clock/signal, dispersion, birefringence, and transport null sectors remain below bound.
 
 ## Source Anchors
@@ -412,4 +412,4 @@ within tolerance, or the anisotropic pressure response must be demoted for that 
 
 ## Next Closure Target
 
-The most valuable next derivation is $K_{\text{sea}}$ and the packing-headroom factor $s_n$ from the Noether-core exclusion envelope. That would convert the pressure law from a fitted dimensionless loading variable into a branch-calculated medium modulus, and it would decide whether Fe/Cr and Ni/Co pressure slopes are expected to be measurable or only null-bound in realistic material ranges.
+[Noether-Sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md) converts the former open $K_{\text{sea}}$ target into the branch-density modulus relation $K_{\mathrm{pack}}=K_{\text{sea}}/\kappa_n$, the support-function headroom $s_n=1-n/n_{\max}^{\mathrm{obl}}$, and the first scaling laws for $K_{\mathrm{pack}}(N)$. [Noether-Core Envelope Hessian Toy Branch](noether-core-envelope-hessian-toy-branch.md) supplies the reduced $H_{\mathrm{env}}$ projection needed to decide whether isotropic pressure also forces $\lambda$ and $\xi$ response.

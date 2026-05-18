@@ -54,6 +54,7 @@ This replays the toy redshift-budget map:
   Y_{j+1} = Y_j + alpha_prop,j * Delta s_j
   Z_X = ln Gamma_E - ln Gamma_R + Y_N - ln B_X(E) - ln D_v.
 Named transport terms and dark-energy coefficient packets, when present, are added into alpha_prop,j.
+Continuity transport packets compute alpha_prop,j terms from D_gamma theta, C_N[f_N], flow divergence, and anisotropic response.
 Endpoint records can compute Gamma_E/Gamma_R, and launch records can compute D_v; scalar factors remain fallbacks.
 It is a fixture for closure work, not an empirical cosmology fitter.`);
 }
@@ -83,6 +84,20 @@ function vector3(value, label) {
     throw new Error(`${label} must be a three-component array.`);
   }
   return value.map((entry, index) => finiteNumber(entry, `${label}[${index}]`));
+}
+
+function finiteNumberArray(value, label) {
+  if (!Array.isArray(value)) {
+    throw new Error(`${label} must be an array.`);
+  }
+  return value.map((entry, index) => finiteNumber(entry, `${label}[${index}]`));
+}
+
+function matrix3(value, label) {
+  if (!Array.isArray(value) || value.length !== 3) {
+    throw new Error(`${label} must be a 3x3 array.`);
+  }
+  return value.map((row, rowIndex) => vector3(row, `${label}[${rowIndex}]`));
 }
 
 function dot(left, right) {
@@ -279,6 +294,94 @@ function darkEnergyTermsFromSegment(segment, lineKey, constants, channel = "freq
   );
 }
 
+function continuityRecordFromSegment(segment, lineKey, channel = "frequency") {
+  const byLineKey = channel === "cadence" ? "continuity_transport_cadence_by_line" : "continuity_transport_by_line";
+  const scalarKey = channel === "cadence" ? "continuity_transport_cadence" : "continuity_transport";
+  const byLineRecord = lineScopedValue(segment[byLineKey], lineKey, byLineKey);
+  const raw = byLineRecord ?? segment[scalarKey];
+
+  if (raw === undefined && channel === "cadence") {
+    return continuityRecordFromSegment(segment, lineKey, "frequency");
+  }
+  if (raw === undefined) {
+    return null;
+  }
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) {
+    throw new Error(`${byLineKey}.${lineKey} must be a continuity transport object.`);
+  }
+  return raw;
+}
+
+function continuityResidualFromRecord(record, constants, label) {
+  if (record.C_N !== undefined) {
+    return finiteNumber(record.C_N, `${label}.C_N`);
+  }
+
+  const residualKeys = ["f_N", "S_BH", "S_GW", "R_eq", "partial_nu_J_nu"];
+  const hasResidualInputs = residualKeys.some((key) => Object.prototype.hasOwnProperty.call(record, key));
+  if (!hasResidualInputs) {
+    return 0;
+  }
+
+  const fN = finiteNumber(record.f_N, `${label}.f_N`);
+  const epsilonF = finiteNumber(record.epsilon_f ?? constants.epsilon_f ?? 0, `${label}.epsilon_f`);
+  const denominator = fN + epsilonF;
+  if (denominator <= 0) {
+    throw new Error(`${label}.f_N + epsilon_f must be positive.`);
+  }
+
+  return (
+    finiteNumber(record.S_BH ?? 0, `${label}.S_BH`) +
+    finiteNumber(record.S_GW ?? 0, `${label}.S_GW`) -
+    finiteNumber(record.R_eq ?? 0, `${label}.R_eq`) -
+    finiteNumber(record.partial_nu_J_nu ?? 0, `${label}.partial_nu_J_nu`)
+  ) / denominator;
+}
+
+function anisotropicProjectionFromRecord(record, label) {
+  if (record.sigma_projection !== undefined) {
+    return finiteNumber(record.sigma_projection, `${label}.sigma_projection`);
+  }
+  if (record.Sigma_sea === undefined && record.k_hat === undefined) {
+    return 0;
+  }
+  const sigma = matrix3(record.Sigma_sea, `${label}.Sigma_sea`);
+  const kHat = unitVector3(record.k_hat, `${label}.k_hat`);
+  return dot(kHat, sigma.map((row) => dot(row, kHat)));
+}
+
+function continuityTransportTermsFromSegment(segment, lineKey, constants, channel = "frequency") {
+  const record = continuityRecordFromSegment(segment, lineKey, channel);
+  if (record === null) {
+    return {};
+  }
+
+  const label = channel === "cadence"
+    ? `continuity_transport_cadence.${lineKey}`
+    : `continuity_transport.${lineKey}`;
+  const pTheta = record.p_theta_row === undefined ? [] : finiteNumberArray(record.p_theta_row, `${label}.p_theta_row`);
+  const dGammaTheta = record.D_gamma_theta === undefined ? [] : finiteNumberArray(record.D_gamma_theta, `${label}.D_gamma_theta`);
+  if (pTheta.length !== dGammaTheta.length) {
+    throw new Error(`${label}.p_theta_row and D_gamma_theta must have the same length.`);
+  }
+
+  const cN = continuityResidualFromRecord(record, constants, label);
+  const pNu = finiteNumber(record.p_nu ?? 0, `${label}.p_nu`);
+  const divUSea = finiteNumber(record.div_u_sea ?? 0, `${label}.div_u_sea`);
+  const pU = finiteNumber(record.p_u ?? 0, `${label}.p_u`);
+  const sigmaProjection = anisotropicProjectionFromRecord(record, label);
+  const pSigma = finiteNumber(record.p_sigma ?? 0, `${label}.p_sigma`);
+  const rCoh = finiteNumber(record.R_coh ?? 0, `${label}.R_coh`);
+
+  return {
+    "continuity.theta_gradient": dot(pTheta, dGammaTheta),
+    "continuity.cadence_residual": pNu * cN,
+    "continuity.flow_divergence": pU * divUSea,
+    "continuity.anisotropic_response": pSigma * sigmaProjection,
+    "continuity.coherence_residue": rCoh,
+  };
+}
+
 function transportTermsFromSegment(segment, lineKey, constants, channel = "frequency") {
   const byLineKey = channel === "cadence" ? "transport_terms_cadence_by_line" : "transport_terms_by_line";
   const scalarKey = channel === "cadence" ? "transport_terms_cadence" : "transport_terms";
@@ -295,8 +398,14 @@ function transportTermsFromSegment(segment, lineKey, constants, channel = "frequ
     return transportTermsFromSegment(segment, lineKey, constants, "frequency");
   }
 
+  const continuityTerms = continuityTransportTermsFromSegment(segment, lineKey, constants, channel);
+  const darkEnergyTerms = darkEnergyTermsFromSegment(segment, lineKey, constants, channel);
+
   if (raw === null) {
-    return darkEnergyTermsFromSegment(segment, lineKey, constants, channel);
+    return {
+      ...continuityTerms,
+      ...darkEnergyTerms,
+    };
   }
   if (!raw || typeof raw !== "object" || Array.isArray(raw)) {
     throw new Error(`${label} must be an object of named finite-number transport terms.`);
@@ -306,7 +415,8 @@ function transportTermsFromSegment(segment, lineKey, constants, channel = "frequ
     ...Object.fromEntries(
       Object.entries(raw).map(([key, value]) => [key, finiteNumber(value, `${label}.${key}`)])
     ),
-    ...darkEnergyTermsFromSegment(segment, lineKey, constants, channel),
+    ...continuityTerms,
+    ...darkEnergyTerms,
   };
 }
 

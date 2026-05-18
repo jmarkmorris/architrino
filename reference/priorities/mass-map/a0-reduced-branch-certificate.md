@@ -794,7 +794,7 @@ Tier 1 passes only if a branch has:
 - no secular center drift,
 - stable root ledger under refinement.
 
-### Current Tier 1 Diagnostic State: Adaptive Direct-Root Horizon Ladder
+### Tier 1 Diagnostic State: Adaptive Direct-Root Horizon Ladder
 
 The executable continuation-source prototype currently lives at `scripts/mass-map/a0-tier1-continuation-source-prototype.mjs`. It is still a blocked diagnostic source, not an accepted Tier 1 continuation. The accepted-history writer must continue to block its rows until residual closure, center-drift closure, $\Delta_{\mathbf{k}}>0$, and branch persistence across the declared $\eta$ ladder are all present.
 
@@ -826,7 +826,7 @@ The first adaptive stress result is:
 - the raw lock estimate is still above the direct attempt cap, but the fold-layer-locked macro-stride attempt packet plans about $9.16\times10^5$--$9.64\times10^5$ retained steps, below the current `1000000` cap;
 - the one-period intake now carries the replay samples and active root ledger forward, so accepted-history source coverage passes while the accepted-history writer still blocks on the uncomputed one-period predicates.
 
-The exact next calculation is no longer surplus classification, step-budget reduction, or accepted-history source coverage. The active target is to run or validate the fold-layer-locked one-period continuation attempt: keep the locked self-root row outside ordinary branch-sum reduction, use it only as a bounded $\mathcal{R}_{\text{lock}}$ input, and then report residual closure, no secular center drift, monodromy setup, and $\eta$-ladder branch persistence before any accepted-history segment is emitted.
+At the May 16 handoff, the exact next calculation was no longer surplus classification, step-budget reduction, or accepted-history source coverage. The active target at that point was to run or validate the fold-layer-locked one-period continuation attempt: keep the locked self-root row outside ordinary branch-sum reduction, use it only as a bounded $\mathcal{R}_{\text{lock}}$ input, and then report residual closure, no secular center drift, monodromy setup, and $\eta$-ladder branch persistence before any accepted-history segment is emitted.
 
 Approved validation run on May 16, 2026:
 
@@ -847,7 +847,216 @@ node scripts/mass-map/a0-tier1-fold-layer-locked-validator.mjs --intake /tmp/a0-
 
 This emits `a0-tier1-fold-layer-locked-continuation-validation/v1` with row status `blocked_direct_one_period_integrator_not_run`. It records the available residual evidence without promoting the row: carrier-replay state return passes with maximum residual about $1.0\times10^{-13}$, root residuals pass with `512` roots evaluated and maximum residual about $9.92\times10^{-7}$ under the $10^{-6}$ tolerance, speed ordering passes with maximum residual about $1.11\times10^{-16}$, center drift is zero on the replay samples, and the fold-layer lock remains stable with the same two self-root keys and `963815` planned retained steps. The validator also records a frozen-root negative control: replaying frozen roots gives a large endpoint drift and is not a substitute for the fold-layer-locked direct continuation.
 
-The remaining blockers are now exact: no direct regularized fold-layer-locked one-period trajectory, no phase-closure residual series, no direct energy-like or Noether energy ledger, no quotient monodromy operator / $\Delta_{\mathbf{k}}$, and no $\eta$-ladder continuation. Passing the validator into the accepted-history writer still emits `blocked_tier1_acceptance_incomplete`, not an accepted history segment; the compact fixture also lacks a non-null `z_lambda`, so source-row identity remains a writer-side blocker until the direct continuation carries full quotient-row identity.
+At the validator stage, the remaining blockers were exact: no direct regularized fold-layer-locked one-period trajectory, no phase-closure residual series, no direct energy-like or Noether energy ledger, no quotient monodromy operator / $\Delta_{\mathbf{k}}$, and no $\eta$-ladder continuation. Passing the validator into the accepted-history writer still emits `blocked_tier1_acceptance_incomplete`, not an accepted history segment; the compact fixture also lacks a non-null `z_lambda`, so source-row identity remains a writer-side blocker until the direct continuation carries full quotient-row identity. The May 18 direct-run and residual-balance sections below supersede this blocker state.
+
+### Executable Artifact: Fold-Layer-Locked One-Period Return Target
+
+The direct-run hard branch-closure artifact is the fail-closed fold-layer-locked one-period return map. The locked self-root keys are
+$$
+K_L
+=
+\{\texttt{I+|I+|self|active},\texttt{I-|I-|self|active}\}.
+$$
+They are retained as a fold-layer lock contribution to $\mathcal{R}_{\text{lock}}$, not promoted as ordinary active self branches.
+
+For the compact fixture, let the regularized Tier 1 state be
+$$
+X_n^\eta
+=
+\left(
+\{\mathbf{s}_a^n,\mathbf{v}_a^n\}_{a\in A_0},
+\mathcal{H}_n,
+\mathcal{G}_n
+\right),
+$$
+and define the one-step diagnostic continuation target
+$$
+X_{n+1}^\eta
+=
+\Phi_{\eta,\Lambda,K_L}(X_n^\eta;\Delta t_n).
+$$
+At each step, the executable must solve the active causal roots, route any matched key in $K_L$ into the lock ledger, update the state/history, and recompute the root ledger before the next step. The diagnostic root-weighted acceleration used by the current scaffold is
+$$
+\mathbf{a}_a^\eta(t_n)
+=
+\sum_{\substack{r\in\mathcal{G}_n^{\mathrm{act}}\setminus L_n\\ \operatorname{rec}(r)=a}}
+w_{\operatorname{rel}(r)}q_aq_{\operatorname{src}(r)}
+\frac{
+\mathbf{s}_{\operatorname{src}(r)}(t_n-\tau_r)-\mathbf{s}_a(t_n)
+}{
+\left(
+\|\mathbf{s}_{\operatorname{src}(r)}(t_n-\tau_r)-\mathbf{s}_a(t_n)\|^2+\eta^2
+\right)^{3/2}
+\max(|J_r|,J_{\min})
+},
+$$
+where $L_n$ is the fold-layer lock subset for that step. This is a simulation target for the branch certificate, not a promoted master-equation proof.
+
+The one-period map is
+$$
+\mathcal{P}_{\eta,\Lambda,K_L}(X_0^\eta)=X_N^\eta,
+\qquad
+\sum_{n=0}^{N-1}\Delta t_n=T_{\mathbf{k}}.
+$$
+For the current under-cap plan,
+$$
+N_{\mathrm{locked}}=11{,}565{,}780,
+\qquad
+s_{\mathrm{macro}}=12,
+\qquad
+N_{\mathrm{attempt}}=963{,}815.
+$$
+The emitted residual ledger must be
+$$
+\mathcal{R}_{\mathrm{1p}}^\eta
+=
+\left(
+R_{\text{state}},
+R_{\text{root}},
+R_{\text{phase}},
+R_E,
+R_{\text{drift}},
+R_{\text{speed}},
+R_{\text{lock}}
+\right),
+$$
+with
+$$
+R_{\text{phase}}
+=
+\max_\ell
+\frac{
+|\theta_\ell(T_{\mathbf{k}})-\theta_\ell(0)-2\pi k_\ell|
+}{2\pi},
+$$
+and
+$$
+R_E
+=
+\frac{
+|\bar v^2(T_{\mathbf{k}})-\bar v^2(0)|
+}{
+\max(\bar v^2(0),\epsilon_E)
+}.
+$$
+This energy-like ledger is only a Tier 1 speed-balance proxy until the Noether energy ledger is available.
+
+The monodromy condition for this target is
+$$
+\Delta_{\mathbf{k}}(\eta,\Lambda,K_L)
+=
+1-\rho\left(
+\Pi_{\perp G_{\text{sym}}}
+D\mathcal{P}_{\eta,\Lambda,K_L}
+\Pi_{\perp G_{\text{sym}}}
+\right),
+$$
+and the branch remains blocked unless
+$$
+\Delta_{\mathbf{k}}(\eta,\Lambda,K_L)>0.
+$$
+The eta-ladder continuation target is
+$$
+\eta_j=2^{-j}\eta_0,
+\qquad
+j=0,1,2,3,
+$$
+with the same locked keys, relation classes, source coverage, residual tolerances, and quotient-row identity retained at each rung.
+
+Assumptions for the first executable attempt:
+
+- the homogeneous Noether-Sea cell remains $u^i_{\text{sea}}=0$, $G_{\text{grad}}=0$, $n=1$, $\chi_{\text{sea}}=1$, and $c_\star=c_f$;
+- the fold-layer keys $K_L$ are lock-ledger entries only, not new accepted self branches;
+- no observed particle mass, charged-lepton ratio, CKM datum, electron radius, or measured $\alpha$ enters row selection or normalization;
+- the compact fixture must carry a non-null `z_lambda` or an equivalent quotient-row identity before accepted-history emission;
+- the macro stride is admissible only if the direct residual ledgers pass under refinement.
+
+Current validation rerun on May 18, 2026:
+
+- source coverage and root replay pass for row `1`: `512` active roots, no invalid labels, finite nonnegative delays, finite $J$, and partner/self/inter-layer relation classes all present;
+- carrier-replay residuals pass as necessary evidence: $R_{\text{state}}\approx1.00\times10^{-13}$, maximum root residual $\approx9.92\times10^{-7}$ below the $10^{-6}$ tolerance, speed-ordering residual $\approx1.11\times10^{-16}$, and center drift `0`;
+- fold-layer lock passes with `41905` locked events, `276` retained direct-root steps per event, macro stride `12`, and `963815` planned retained steps under the current `1000000` cap;
+- phase closure, direct energy-like speed closure, Noether energy closure, quotient monodromy, $\Delta_{\mathbf{k}}$, and eta-ladder persistence are still not computed;
+- the frozen-root negative control fails with large endpoint drift and speed-energy drift, so replaying frozen roots is not a valid substitute for $\Phi_{\eta,\Lambda,K_L}$.
+
+Next falsification target: implement and run $\mathcal{P}_{\eta,\Lambda,K_L}$ over the under-cap one-period attempt. The row fails closed if any one-period residual exceeds tolerance, if locked roots are promoted into the active self-branch count, if $\Delta_{\mathbf{k}}\le0$, if the quotient-row identity cannot be carried, or if the same branch does not persist across the declared $\eta$ ladder.
+
+Implementation run on May 18, 2026:
+
+```text
+node scripts/mass-map/a0-tier1-fold-layer-locked-one-period-attempt.mjs --intake /tmp/a0-tier1-one-period-continuation-prototype-fold-lock-impl.json --source /tmp/a0-tier1-continuation-source-prototype-fold-lock-impl.json --pretty --out /tmp/a0-tier1-fold-layer-locked-one-period-attempt-impl-v2.json
+```
+
+The runner executed the planned fold-layer-locked map for row `1` with `963815` steps, $\Delta t\approx4.0744\times10^{-6}$, $\eta\approx1.7355\times10^{-5}$, `16` root-observation buckets, the same two locked self-root keys $K_L$, and no trajectory abort. This is the first direct negative result for the compact branch chart: the lock ledger passes, but the direct residual ledgers fail.
+
+Observed failures:
+
+- $R_{\text{state}}\approx0.999$ against tolerance `0.02`;
+- maximum direct root residual $\approx42.67$ against tolerance $10^{-6}$;
+- $R_{\text{phase}}\approx0.208$ with layer residuals approximately `I: 0.012`, `M: 0.208`, `O: 0.0229`;
+- maximum speed-ordering residual $\approx29.93$ against tolerance `0.02`;
+- center-drift residual $\approx0.132$ against tolerance `0.02`;
+- energy-like speed residual $\approx26.68$ against tolerance `0.02`.
+
+This falsifies the naive fold-layer-locked root-weighted map as a closed $A_0$ branch equation. It does not falsify the $A_0$ branch program, because the current map still lacks the residual-balanced carrier correction $\mathbf{d}_\ell(t)$, calibrated branch-native interaction weights, quotient-row identity, monodromy, and eta-ladder continuation. The next executable mathematical step is therefore no longer budget reduction. It is a residual-balanced branch-equation correction or a controlled no-go condition:
+$$
+\Phi_{\eta,\Lambda,K_L}
+\quad\leadsto\quad
+\Phi_{\eta,\Lambda,K_L,\mathbf{d},\alpha_{\mathrm{rel}}}
+$$
+where $\mathbf{d}_\ell(t)$ and the branch-native relation weights $\alpha_{\mathrm{rel}}$ must reduce the failed residual vector without using particle benchmarks.
+
+Residual-balance projection result:
+
+The one-period runner now emits `a0-tier1-residual-balance-ledger/v1`. It builds the branch-native root-basis vectors $B_{\text{self}}$, $B_{\text{partner}}$, and $B_{\text{inter}}$ from the active causal-root ledger and solves the branch-data normal equation
+$$
+\alpha^\star
+=
+\operatorname*{arg\,min}_{\alpha}
+\left\|
+\mathbf{a}_{\mathrm{carrier}}
+-
+\alpha_{\mathrm{self}}B_{\mathrm{self}}
+-
+\alpha_{\mathrm{partner}}B_{\mathrm{partner}}
+-
+\alpha_{\mathrm{inter}}B_{\mathrm{inter}}
+\right\|_2^2,
+$$
+where $\mathbf{a}_{\mathrm{carrier}}$ is the finite-difference acceleration of the carrier chart, not a particle benchmark.
+
+For the compact fixture, this gives
+$$
+\alpha_{\mathrm{partner}}\approx-1.67\times10^{-2},
+\qquad
+\alpha_{\mathrm{self}}=0,
+\qquad
+\alpha_{\mathrm{inter}}\approx-5.66\times10^{-3},
+$$
+with relative residual
+$$
+\frac{
+\left\|\mathbf{a}_{\mathrm{carrier}}-\sum_{\rho}\alpha_\rho B_\rho\right\|_2
+}{
+\|\mathbf{a}_{\mathrm{carrier}}\|_2
+}
+\approx0.755.
+$$
+Against the declared tolerance `0.02`, scalar relation weights alone fail. The compact fixture therefore has a local no-go:
+
+**Relation-weight-only no-go.** For the current compact $A_0$ carrier chart, locked self-root routing, and scalar relation basis $\{B_{\mathrm{self}},B_{\mathrm{partner}},B_{\mathrm{inter}}\}$, no branch-native scalar relation-weight vector $\alpha_{\mathrm{rel}}$ closes the carrier acceleration residual below tolerance. A successful next branch equation must introduce a non-circular carrier correction satisfying
+$$
+\mathbf{d}_\ell''(t)
+=
+\Pi_\ell
+\left(
+\mathbf{a}_{\mathrm{carrier}}(t)
+-
+\sum_{\rho}
+\alpha_\rho B_\rho(t)
+\right)
+$$
+or a richer root/interaction basis that reduces the same residual without observed particle benchmarks.
 
 ## Tier 2: Energy and Shielding Extraction
 
@@ -914,18 +1123,34 @@ Every failed certificate should classify the failure:
 
 ## Next Implementation Packet
 
-The first Tier 0 implementation packet is complete enough for the next handoff. The current scripts emit the reduced grid, carrier evaluator, active root ledger by relation class, $J_{ab}^{(m)}$ values, quotient row $z_\Lambda$, residual surface, $\Delta_{\mathbf{k}}$ placeholder, weak-retained handoff placeholder, blocked accepted-history writer output, and weak-emitter fail-closed behavior. Those items should no longer be carried as next tasks here.
+The first Tier 0 implementation packet is complete enough for handoff. The current scripts emit the reduced grid, carrier evaluator, active root ledger by relation class, $J_{ab}^{(m)}$ values, quotient row $z_\Lambda$, residual surface, $\Delta_{\mathbf{k}}$ placeholder, weak-retained handoff placeholder, blocked accepted-history writer output, and weak-emitter fail-closed behavior. Those items should no longer be carried as next tasks here.
 
-The active next implementation packet is the fold-layer-locked one-period Tier 1 continuation attempt. It should consume the seed-ready fold-layer-locked attempt packet from the one-period intake, preserve the locked fold-layer row as $\mathcal{R}_{\text{lock}}$ rather than as an accepted active self branch, and keep accepted-history output blocked until the full one-period gates pass.
+The fold-layer-locked one-period Tier 1 attempt is now also complete as a fail-closed diagnostic. It preserves the two locked self-root fold-layer keys in $\mathcal{R}_{\text{lock}}$, runs the under-cap retained-step budget, emits one-period residual ledgers, and refuses accepted-history output. Its direct residual failure and residual-balance no-go make the compact circular / elliptic carrier chart inadequate as a closed branch equation.
+
+The active next implementation packet is the residual-balanced carrier-correction target. It should consume `a0-tier1-residual-balance-ledger/v1`, keep the locked fold-layer row as $\mathcal{R}_{\text{lock}}$, and derive the smallest branch-native correction equation that can be rerun without particle benchmarks:
+$$
+\mathbf{d}_\ell''(t)
+=
+\Pi_\ell
+\left(
+\mathbf{a}_{\mathrm{carrier}}(t)
+-
+\sum_{\rho}
+\alpha_\rho B_\rho(t)
+\right).
+$$
+If this projected correction is not closed by a periodic $\mathbf{d}_\ell(t)$ after symmetry, translation, and phase-origin modes are removed, the next result should be a stronger no-go for the compact fixture rather than a promoted branch.
 
 The next pass should produce:
 
-1. a fold-layer-locked one-period attempt that uses the planned under-cap retained-step budget without treating that budget as accepted history;
-2. a branch-chart row that carries the two locked self-root fold-layer keys `I+|I+|self|active` and `I-|I-|self|active` in $\mathcal{R}_{\text{lock}}$;
-3. one-period residual ledgers for state return, root closure, phase closure, speed ordering, energy-like speed balance, drift, and lock stability;
-4. a finite-difference monodromy setup with symmetry modes removed and an explicit $\Delta_{\mathbf{k}}$ verdict or blocker;
-5. refinement checks under root-grid, $\Delta t$, history-depth, and $\eta$ changes;
-6. confirmation that accepted-history output remains blocked until one-period residual closure, no secular center drift, positive $\Delta_{\mathbf{k}}$, and branch persistence across the declared $\eta$ ladder are all present.
+1. a correction-basis equation or scanner for $\mathbf{d}_\ell(t)$ using only branch-native residual data;
+2. an explicit decision on whether the scalar relation basis must be replaced by a richer root/interaction basis;
+3. a corrected fold-layer-locked one-period attempt, if the correction basis is executable;
+4. one-period residual ledgers for state return, root closure, phase closure, speed ordering, energy-like speed balance, drift, lock stability, and residual balance;
+5. quotient-row identity carried through the corrected branch row before accepted-history emission;
+6. monodromy / $\Delta_{\mathbf{k}}$ and $\eta$-ladder continuation only after the corrected one-period residuals pass;
+7. finite envelope-Hessian extraction only after the same corrected branch passes, with $k_R$, $k_\xi$, $k_{R\xi}$, $c_R$, and $c_\xi$ emitted as branch evidence rather than toy stiffnesses;
+8. confirmation that accepted-history output remains blocked until one-period residual closure, no secular center drift, positive $\Delta_{\mathbf{k}}$, quotient-row identity, and branch persistence across the declared $\eta$ ladder are all present.
 
 ## Promotion Rule
 

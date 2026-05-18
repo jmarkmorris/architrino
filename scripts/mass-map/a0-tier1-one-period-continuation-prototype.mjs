@@ -884,6 +884,107 @@ function monodromySetup(row) {
   };
 }
 
+function foldLayerLockedTrajectoryTarget(row, fold, routing, stepBudget, validationPacket, args) {
+  const entry = stepBudget?.entry ?? null;
+  const lockedKeys = Array.isArray(fold?.surplus_branch_keys) ? fold.surplus_branch_keys : [];
+  const lockedIntegratorReady =
+    stepBudget?.source === "direct_root_fold_layer_locked_integrator" &&
+    entry?.fold_layer_locked_integrator_ready === true &&
+    routing?.can_route_to_lock_ledger === true;
+  return {
+    schema: "a0-tier1-fold-layer-locked-trajectory-target/v1",
+    status: lockedIntegratorReady ? "ready_to_implement_fail_closed" : "blocked_until_locked_integrator_seed",
+    source_row: row.row,
+    period: row.period ?? null,
+    branch_chart_assumptions: {
+      locked_self_root_keys: lockedKeys,
+      fold_layer_route: routing?.route ?? null,
+      locked_roots_are_not_promoted_to_active_branch_count: true,
+      retained_initial_branch_count: fold?.initial_branch_count ?? null,
+      retained_branch_count_at_lock_event: fold?.retained_branch_count ?? null,
+      surplus_branch_count_at_lock_event: fold?.surplus_branch_count ?? null,
+    },
+    macro_stride_plan: {
+      selected_step_budget_source: stepBudget?.source ?? null,
+      selected_macro_stride: entry?.macro_stride ?? null,
+      locked_event_count: entry?.locked_event_count ?? null,
+      retained_direct_root_steps_per_event: entry?.retained_direct_root_steps_per_event ?? null,
+      locked_direct_root_step_count: entry?.locked_direct_root_step_count ?? null,
+      retained_direct_root_step_count: entry?.retained_direct_root_step_count ?? null,
+      estimated_steps_for_one_period: stepBudget?.estimated_steps_for_one_period ?? null,
+      cap_reduction_factor: entry?.cap_reduction_factor ?? null,
+      under_current_cap:
+        Number.isFinite(stepBudget?.estimated_steps_for_one_period) &&
+        Number.isFinite(args?.maxEstimatedSteps)
+          ? stepBudget.estimated_steps_for_one_period <= args.maxEstimatedSteps
+          : null,
+    },
+    trajectory_equation: {
+      runner_script: "scripts/mass-map/a0-tier1-fold-layer-locked-one-period-attempt.mjs",
+      update_map:
+        "X_{n+1}=Phi_{eta,Lambda,L}(X_n;dt): solve active causal roots at X_n, route locked self roots K_L to R_lock, update the state/history, and recompute the root ledger before the next step.",
+      diagnostic_acceleration:
+        "a_a(t)=sum_r w_relation q_receiver q_source (x_source(t-tau_r)-x_receiver(t))/(((|x_source(t-tau_r)-x_receiver(t)|^2+eta^2)^(3/2))*max(|J_r|,J_min)).",
+      scope:
+        "Executable diagnostic target for the fold-layer-locked attempt. It is not an accepted master-equation proof and must stay fail-closed until the one-period ledgers pass.",
+    },
+    phase_ledger: {
+      required: true,
+      residual: "R_phase=max_layer |theta_layer(T)-theta_layer(0)-2*pi*k_layer|/(2*pi)",
+      blocker: "phase-coordinate series and winding-error ledger missing",
+    },
+    energy_like_speed_ledger: {
+      required: true,
+      residual: "R_E=|mean_b |v_b(T)|^2 - mean_b |v_b(0)|^2|/max(mean_b |v_b(0)|^2,eps)",
+      blocker: "direct energy-like speed ledger and Noether energy ledger missing",
+    },
+    residual_balance_projection: {
+      required: true,
+      normal_equation:
+        "min_alpha ||a_carrier - alpha_self B_self - alpha_partner B_partner - alpha_inter_layer B_inter_layer||_2",
+      pass_only_if:
+        "branch-native scalar relation weights reduce the relative acceleration residual below tolerance without particle benchmarks",
+      no_go_if:
+        "relation-weight-only residual remains above tolerance; then d_l''(t) must supply the unresolved carrier correction component",
+    },
+    monodromy_condition: {
+      required: true,
+      operator: "P_eta_Lambda_L",
+      quotient_rule:
+        "Remove time-shift, Euclidean translation, Euclidean rotation, and branch-chart gauge modes before measuring non-symmetry multipliers.",
+      Delta_k_formula: "Delta_k=1-rho(Pi_perp D P_eta_Lambda_L Pi_perp)",
+      pass_only_if: "Delta_k>0 after residual convergence and root-ledger matching",
+    },
+    eta_ladder_continuation_target: {
+      required: true,
+      schedule: "eta_j=eta_0/2^j for the declared Tier 1 ladder",
+      branch_persistence_rule:
+        "The same locked self-root keys, relation classes, source coverage, and branch-chart routing must persist at each eta step.",
+      blocker: "eta-ladder continuation missing",
+    },
+    validation_boundary: {
+      accepted_history_source_coverage:
+        validationPacket.accepted_history_source_coverage?.status ?? null,
+      accepted_history_source_coverage_missing_fields:
+        validationPacket.accepted_history_source_coverage?.missing_fields ?? null,
+      remains_accepted_history: false,
+      fail_closed_until: [
+        "direct_regularized_one_period_trajectory",
+        "phase_closure_residual",
+        "energy_like_speed_ledger",
+        "quotient_monodromy_operator",
+        "eta_ladder_continuation",
+      ],
+    },
+    falsification_targets: [
+      "Reject the row if the direct one-period trajectory loses the retained branch ledger or promotes locked fold-layer roots as ordinary active self branches.",
+      "Reject or demote the macro stride if R_state, R_root, R_phase, R_E, R_drift, R_speed, or R_lock fails the declared tolerance under refinement.",
+      "Reject the row if Delta_k<=0 on the symmetry quotient.",
+      "Reject the row if the locked branch-chart routing changes across the eta ladder.",
+    ],
+  };
+}
+
 function rowStatus({ routing, estimatedSteps, maxEstimatedSteps, bestEntry, stepBudget, foldLayerLock }) {
   if (routing.status === "missing") {
     if (routing.failure_code === "direct-root-probe-unavailable") {
@@ -1155,6 +1256,7 @@ function onePeriodRow(row, args) {
             },
     },
     residual_targets: residualTargets(),
+    trajectory_target: foldLayerLockedTrajectoryTarget(row, fold, routing, stepBudget, validationPacket, args),
     monodromy_setup: monodromySetup(row),
     fold_layer_locked_validation_packet: validationPacket,
     validation: validationPacket.validation_effect,

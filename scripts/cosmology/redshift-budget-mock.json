@@ -151,28 +151,26 @@
       "segments": [
         {
           "delta_s_mpc": 40,
-          "transport_terms_by_line": {
+          "continuity_transport_by_line": {
             "H21": {
-              "equilibrium_relaxation": 0.000198,
-              "smbh_source": 0.000030,
-              "gw_perturbation": 0.000001
+              "p_theta_row": [1, 0, 0, 0],
+              "D_gamma_theta": [0.000198, 0, 0, 0],
+              "p_nu": 1,
+              "f_N": 1,
+              "S_BH": 0.000030,
+              "S_GW": 0.000001,
+              "R_eq": 0,
+              "partial_nu_J_nu": 0
             },
             "clean_optical": {
-              "equilibrium_relaxation": 0.0001981,
-              "smbh_source": 0.0000300,
-              "gw_perturbation": 0.0000010
-            }
-          },
-          "transport_terms_cadence_by_line": {
-            "H21": {
-              "equilibrium_relaxation": 0.000198,
-              "smbh_source": 0.000030,
-              "gw_perturbation": 0.000001
-            },
-            "clean_optical": {
-              "equilibrium_relaxation": 0.0001981,
-              "smbh_source": 0.0000300,
-              "gw_perturbation": 0.0000010
+              "p_theta_row": [1, 0, 0, 0],
+              "D_gamma_theta": [0.0001981, 0, 0, 0],
+              "p_nu": 1,
+              "f_N": 1,
+              "S_BH": 0.0000300,
+              "S_GW": 0.0000010,
+              "R_eq": 0,
+              "partial_nu_J_nu": 0
             }
           },
           "beam_alpha_prop_by_line": {
@@ -181,28 +179,26 @@
         },
         {
           "delta_s_mpc": 40,
-          "transport_terms_by_line": {
+          "continuity_transport_by_line": {
             "H21": {
-              "equilibrium_relaxation": 0.000201,
-              "smbh_source": 0.000032,
-              "gw_perturbation": -0.000001
+              "p_theta_row": [1, 0, 0, 0],
+              "D_gamma_theta": [0.000201, 0, 0, 0],
+              "p_nu": 1,
+              "f_N": 1,
+              "S_BH": 0.000032,
+              "S_GW": -0.000001,
+              "R_eq": 0,
+              "partial_nu_J_nu": 0
             },
             "clean_optical": {
-              "equilibrium_relaxation": 0.0002011,
-              "smbh_source": 0.0000320,
-              "gw_perturbation": -0.0000010
-            }
-          },
-          "transport_terms_cadence_by_line": {
-            "H21": {
-              "equilibrium_relaxation": 0.000201,
-              "smbh_source": 0.000032,
-              "gw_perturbation": -0.000001
-            },
-            "clean_optical": {
-              "equilibrium_relaxation": 0.0002011,
-              "smbh_source": 0.0000320,
-              "gw_perturbation": -0.0000010
+              "p_theta_row": [1, 0, 0, 0],
+              "D_gamma_theta": [0.0002011, 0, 0, 0],
+              "p_nu": 1,
+              "f_N": 1,
+              "S_BH": 0.0000320,
+              "S_GW": -0.0000010,
+              "R_eq": 0,
+              "partial_nu_J_nu": 0
             }
           },
           "beam_alpha_prop_by_line": {
@@ -211,28 +207,26 @@
         },
         {
           "delta_s_mpc": 40,
-          "transport_terms_by_line": {
+          "continuity_transport_by_line": {
             "H21": {
-              "equilibrium_relaxation": 0.000205,
-              "smbh_source": 0.000034,
-              "gw_perturbation": 0.000000
+              "p_theta_row": [1, 0, 0, 0],
+              "D_gamma_theta": [0.000205, 0, 0, 0],
+              "p_nu": 1,
+              "f_N": 1,
+              "S_BH": 0.000034,
+              "S_GW": 0.000000,
+              "R_eq": 0,
+              "partial_nu_J_nu": 0
             },
             "clean_optical": {
-              "equilibrium_relaxation": 0.0002051,
-              "smbh_source": 0.0000340,
-              "gw_perturbation": 0.0000000
-            }
-          },
-          "transport_terms_cadence_by_line": {
-            "H21": {
-              "equilibrium_relaxation": 0.000205,
-              "smbh_source": 0.000034,
-              "gw_perturbation": 0.000000
-            },
-            "clean_optical": {
-              "equilibrium_relaxation": 0.0002051,
-              "smbh_source": 0.0000340,
-              "gw_perturbation": 0.0000000
+              "p_theta_row": [1, 0, 0, 0],
+              "D_gamma_theta": [0.0002051, 0, 0, 0],
+              "p_nu": 1,
+              "f_N": 1,
+              "S_BH": 0.0000340,
+              "S_GW": 0.0000000,
+              "R_eq": 0,
+              "partial_nu_J_nu": 0
             }
           },
           "beam_alpha_prop_by_line": {

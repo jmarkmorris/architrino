@@ -679,6 +679,251 @@ $$
 
 Here $\nu_{\mathrm{pack},0}$ is the chosen conversion from the branch cell units to normalized Noether-core density. Equality is a lattice-cell replay assumption; the inequality is the support-function exclusion bound.
 
+The reference constants are not independent material knobs when the cell volume has already been nondimensionalized against the reference Noether-core density. In that branch-normalized convention,
+
+$$
+\widetilde V_{\mathrm{cell},X}^{\mathrm{sf}}
+=
+\rho_{\text{core},0}V_{\mathrm{cell},X}^{\mathrm{sf}},
+\qquad
+\nu_{\mathrm{pack},0}=1,
+$$
+
+so
+
+$$
+n_{\max,X}^{\mathrm{obl}}
+\le
+\frac{1}
+{\widetilde V_{\mathrm{cell},X}^{\mathrm{sf}}}.
+$$
+
+The coordination and packing benchmarks are likewise fixed by the same-level Euclidean contact scaffold:
+
+$$
+z_*=12,
+\qquad
+\phi_*=\frac{\pi}{3\sqrt{2}},
+\qquad
+V_*=1
+$$
+
+in branch-normalized volume units. The value $z_*=12$ is the three-dimensional kissing-number bound for equal support-contact neighbors, while $\phi_*$ is the FCC/HCP equal-sphere reference fraction. For oblate envelopes $\phi_*$ is a benchmark headroom scale, not a proof that all oblate arrangements are sphere packings.
+
+The executable material record should therefore be reduced to branch-geometric ingredients rather than direct declarations of $e_X$ or $n_{\max,X}^{\mathrm{obl}}$. A compact packing record is
+
+$$
+\mathfrak{P}_X
+=
+\left(
+F_X,\mathcal{O}_X,\mathcal{L}_X,\mathcal{K}_X,
+\phi_X^{\mathrm{target}}
+\right),
+$$
+
+with each entry either derived or explicitly bounded. If the local branch supplies an oblate-envelope deformation map $F_X$ with singular values
+
+$$
+\lambda_{\perp,1,X},
+\qquad
+\lambda_{\perp,2,X},
+\qquad
+\lambda_{\parallel,X},
+$$
+
+then the axisymmetric envelope reduction uses
+
+$$
+\lambda_{\perp,X}
+=
+\sqrt{\lambda_{\perp,1,X}\lambda_{\perp,2,X}},
+\qquad
+\boxed{
+\xi_X
+=
+\frac{\lambda_{\parallel,X}}{\lambda_{\perp,X}}
+},
+\qquad
+0<\xi_X\le1.
+$$
+
+The inequality is the oblate-branch constraint. If a replay cannot derive the singular values from $F_X$, it may only use them as a mock branch-geometry record and must report that burden.
+
+A finite-$\eta$ branch chart gives a stronger constraint when the deformation is the closed-return projection of a branch speed. Let $v_X$ be the retained branch speed along the declared contraction axis and define
+
+$$
+\beta_X\equiv\frac{v_X}{c_{\text{eff},X}},
+\qquad
+0\le\beta_X<1.
+$$
+
+For normalized transverse scale, let $Q_X$ be the orthogonal frame map with $Q_X\hat{\mathbf{e}}_3=\hat{\mathbf{a}}_X$. The closed-return deformation candidate is
+
+$$
+\boxed{
+F_X^{(0)}
+=
+Q_X
+\operatorname{diag}\!\left(
+1,1,\sqrt{1-\beta_X^2}
+\right)
+Q_X^T.
+}
+$$
+
+Equivalently,
+
+$$
+\lambda_{\perp,1,X}
+=
+\lambda_{\perp,2,X}
+=1,
+\qquad
+\lambda_{\parallel,X}
+=
+\sqrt{1-\beta_X^2},
+\qquad
+\xi_X
+=
+\sqrt{1-\beta_X^2}.
+$$
+
+Finite regularization and preferred-frame leakage should enter as a residual bound rather than as a new free singular value:
+
+$$
+\boxed{
+\left|
+\xi_X-\sqrt{1-\beta_X^2}
+\right|
+\le
+\epsilon_{\eta,X}
++
+\epsilon_{\mathrm{LV},X}.
+}
+$$
+
+If the branch calculation supplies only a speed interval
+
+$$
+\beta_X^{-}\le\beta_X\le\beta_X^{+},
+$$
+
+then monotonicity gives the deformation interval
+
+$$
+\boxed{
+\sqrt{1-(\beta_X^{+})^2}
+-
+\epsilon_X
+\le
+\xi_X
+\le
+\sqrt{1-(\beta_X^{-})^2}
++
+\epsilon_X,
+\qquad
+\epsilon_X\equiv\epsilon_{\eta,X}+\epsilon_{\mathrm{LV},X}.
+}
+$$
+
+This is the clean replacement for raw singular-value mocks: a replay may declare $F_X$ through a certified $\beta_X$, through a certified interval for $\beta_X$, or through an explicitly labeled finite-$\eta$ branch assumption whose residual remains visible.
+
+Two orientation records are currently executable:
+
+$$
+\mathcal{O}_X^{\mathrm{axis}}
+=
+\{(\hat{\mathbf{a}}_X,1)\},
+$$
+
+and
+
+$$
+\mathcal{O}^{\mathrm{orth}}
+=
+\left\{
+(\hat{\mathbf{e}}_1,1/3),
+(\hat{\mathbf{e}}_2,1/3),
+(\hat{\mathbf{e}}_3,1/3)
+\right\}.
+$$
+
+The first represents a coherent single-axis branch; the second represents an orthogonal isotropic coarse cell. The minimal lattice-cell family used in the replay is
+
+$$
+\mathcal{L}^{\mathrm{orth}}
+=
+(\hat{\mathbf{e}}_1,\hat{\mathbf{e}}_2,\hat{\mathbf{e}}_3).
+$$
+
+The retained contact-network families are the twelve-contact FCC/HCP cuboctahedral family
+
+$$
+\mathcal{K}_{12}^{\mathrm{fcc}}
+=
+\left\{
+\frac{\pm\hat{\mathbf{e}}_i\pm\hat{\mathbf{e}}_j}{\sqrt2}
+:\,1\le i<j\le3
+\right\},
+$$
+
+and the four-contact tetrahedral family
+
+$$
+\mathcal{K}_{4}^{\mathrm{tet}}
+=
+\left\{
+\frac{\sigma_1\hat{\mathbf{e}}_1+\sigma_2\hat{\mathbf{e}}_2+\sigma_3\hat{\mathbf{e}}_3}{\sqrt3}
+:\,
+\sigma_i\in\{-1,1\},
+\quad
+\sigma_1\sigma_2\sigma_3=1
+\right\}.
+$$
+
+The lattice-cell factor may also be derived from a bounded target support-function packing fraction instead of declared directly. For
+
+$$
+0<\phi_X^{\mathrm{target}}\le\phi_*,
+$$
+
+set
+
+$$
+\boxed{
+c_{\mathrm{cell},X}
+=
+\frac{
+V_{\mathrm{env},X}
+}{
+\phi_X^{\mathrm{target}}
+\left|
+\det(
+\hat{\mathbf{b}}_{X,1},
+\hat{\mathbf{b}}_{X,2},
+\hat{\mathbf{b}}_{X,3}
+)
+\right|
+\prod_{i=1}^3D_{X,i}
+}.
+}
+$$
+
+Then
+
+$$
+V_{\mathrm{cell},X}^{\mathrm{sf}}
+=
+\frac{V_{\mathrm{env},X}}{\phi_X^{\mathrm{target}}},
+\qquad
+n_{\max,X}^{\mathrm{obl}}
+\le
+\frac{\nu_{\mathrm{pack},0}\phi_X^{\mathrm{target}}}
+{V_{\mathrm{env},X}}.
+$$
+
+Thus the replay can move the free burden from $n_{\max,X}^{\mathrm{obl}}$ to the more structured question of which branch deformation, orientation family, contact family, and support-function packing fraction are admissible.
+
 The same record also supplies a first packing-compliance diagnostic. Let $\mathcal{K}_X=\{(\hat{\mathbf{k}}_{X,a},\omega_{X,a})\}$ be the retained contact network, with effective coordination
 
 $$
@@ -743,7 +988,24 @@ e_X^{\mathrm{sf}}
 }
 $$
 
-This does not prove that the declared lattice is dynamically selected. It removes the direct scalar insertion of $e_X$ and $n_{\max,X}^{\mathrm{obl}}$ by tying both quantities to the oblate envelope, orientation record, contact network, and lattice-cell volume. The remaining proof burden is to derive $\xi_X$, $\mathcal{O}_X$, $\mathcal{L}_X$, $\mathcal{K}_X$, and the shared weights from the Noether-core branch rather than from a mock material record.
+The compliance weights are not free signs. Until the branch-response functional is derived, require the passive unit-bounded range
+
+$$
+0\le w_u,w_{\phi},w_{\sigma}\le1.
+$$
+
+Equivalently, the logarithmic packing penalty is allowed to respond at no more than unit first-order strength to undercoordination, void headroom, and contact-spacing anisotropy:
+
+$$
+\frac{\partial\ln e_X^{\mathrm{sf}}}{\partial u_X},
+\quad
+\frac{\partial\ln e_X^{\mathrm{sf}}}{\partial h_X},
+\quad
+\frac{\partial\ln e_X^{\mathrm{sf}}}{\partial \sigma_{\ln D,X}^2}
+\in[0,1].
+$$
+
+This does not prove that the declared lattice is dynamically selected. It removes the direct scalar insertion of $e_X$ and $n_{\max,X}^{\mathrm{obl}}$ by tying both quantities to the oblate envelope, orientation record, contact network, and lattice-cell volume. The remaining proof burden is to derive $F_X$ or its certified $\beta_X$ interval, $\mathcal{O}_X$, $\mathcal{L}_X$, $\mathcal{K}_X$, and the exact shared compliance weights from the Noether-core branch rather than from a mock material record.
 
 ## Energy-Closure Ambiguity to Resolve
 
@@ -830,6 +1092,7 @@ For a branch-chart calculation:
 - If $\mathcal{B}_O$ changes discontinuously, the active causal-root ledger has changed.
 - If $\alpha_O$ depends strongly on energy or environment, the packing curve can differ from the outer-radius curve.
 - If the Noether-core pool is oblate and orientation-correlated, equal-sphere close packing is the wrong center-density model.
+- If $\xi_X>1$, $z_X^{\mathrm{eff}}>12$, $\phi_X^{\mathrm{sf}}>1$, or any compliance weight leaves $[0,1]$, the oblate support-function replay has left the bounded packing scaffold and needs a separate branch-response derivation.
 - If the energy variable is not specified as $E_N$, $E_O$, or a layer projection, the energy scaling exponent cannot be trusted.
 
 ## Immediate Study Targets

@@ -315,6 +315,196 @@ $$
 
 In the GR-matching weak solar-system branch, $\gamma_{\text{eff}}=1$ makes the delay contribution $2b_\chi$ in the cadence-stretch row and $2\omega_\chi$ in the clock-rate row. If $\Delta_\chi^{\mathrm{clk\text{-}sig}}\neq0$, the branch has not failed by definition, but it must carry $\Delta_\chi^{\mathrm{clk\text{-}sig}}$ as a measured residual across clock redshift, Shapiro delay, pressure-response, and cosmological redshift comparisons rather than absorbing it into a fitted coefficient.
 
+The first admissible static packet is the minimal shared-delay specialization of this row. Let
+
+$$
+A_\chi\equiv1+\gamma_{\text{eff}}.
+$$
+
+If the weak static endpoint cadence is assigned entirely to the shared scalar delay response at first order, then
+
+$$
+\left(
+a_n,\,
+a_\chi,\,
+a_\lambda,\,
+a_R
+\right)
+=
+\left(
+0,\,
+A_\chi,\,
+0,\,
+0
+\right),
+$$
+
+and the cadence-stretch row is
+
+$$
+\left(
+b_n,\,
+b_\chi,\,
+b_\lambda,\,
+b_R
+\right)
+=
+\left(
+0,\,
+A_\chi^{-1},\,
+0,\,
+0
+\right).
+$$
+
+The inverse clock-rate row is therefore
+
+$$
+\left(
+\omega_n,\,
+\omega_\chi,\,
+\omega_\lambda,\,
+\omega_R
+\right)
+=
+\left(
+0,\,
+-A_\chi^{-1},\,
+0,\,
+0
+\right),
+$$
+
+so
+
+$$
+\mathbf b_N\cdot\mathbf a=1,\qquad
+\boldsymbol\omega\cdot\mathbf a=-1,\qquad
+b_i+\omega_i=0.
+$$
+
+For the GR-matching weak branch, $A_\chi=2$, giving $a_\chi=2$, $b_\chi=1/2$, and $\omega_\chi=-1/2$. This is a minimal endpoint packet, not a proof that density, envelope scale, or core-radius responses are physically absent. A compensated static family remains admissible:
+
+$$
+a_\chi=A_\chi,\qquad
+b_\chi
+=
+\frac{
+1-b_n a_n-b_\lambda a_\lambda-b_R a_R
+}{
+A_\chi
+},
+\qquad
+\omega_i=-b_i.
+$$
+
+#### Compensated Static-Family Validation Packet
+
+The compensated family is a constrained endpoint row, not an additional redshift fit. Under shared clock/signal delay, define the non-$\chi_{\text{sea}}$ static response vector and coefficient row by
+
+$$
+\mathbf{u}^{G}
+=
+\left(
+a_n,\,
+a_\lambda,\,
+a_R
+\right)^T,
+\qquad
+\mathbf{c}
+=
+\left(
+b_n,\,
+b_\lambda,\,
+b_R
+\right)^T.
+$$
+
+The weak static endpoint condition is then
+
+$$
+S_G
+\equiv
+\mathbf{c}\cdot\mathbf{u}^{G}
++b_\chi A_\chi
+=1.
+$$
+
+A finite-height clock comparison samples the spatial derivative of the same scalar. For a small upward separation $L$ near Earth, with $U(z+L)-U(z)\approx-gL$, the clock-rate ratio obeys
+
+$$
+\frac{\Delta\nu}{\nu}
+=
+-\Delta\ln\Gamma_N
+=
+S_G\frac{gL}{c_0^2}
++O(L^2)
++O\!\left(\frac{U^2}{c_0^4}\right).
+$$
+
+Thus finite-height redshift fixes $S_G=1$ to the experimental tolerance. It does not distinguish the minimal row $\mathbf{c}=\mathbf{0}$ from a compensated row with $\mathbf{c}\cdot\mathbf{u}^{G}\ne0$ and adjusted $b_\chi$, provided the same coefficients are used across the sample.
+
+Hydrogen spectral conversion adds a record-difference test rather than another endpoint normalization. For two admissible hydrogen records $\ell$ and $\ell'$ whose line-inferred cadence stretch agrees after the envelope-gap residual is removed, the same spectral row must satisfy
+
+$$
+\mathbf{b}_{N}^{\mathrm{spec}}\cdot
+\left(
+\mathbf{g}_{N,\mathrm H}^{(\ell)}
+-
+\mathbf{g}_{N,\mathrm H}^{(\ell')}
+\right)
+=0.
+$$
+
+The minimal shared-delay row passes only if the record difference has no uncompensated $\chi_{\text{sea}}$ component after the fixed $-\ln\xi$ term is included. The hydrogen toy scan now demonstrates the discriminant: the clean shared-delay row passes a clean $\chi_{\text{sea}}$-only packet, while the density/scale-compensated row passes the split-record scaffold. This does not yet prove that the gravitational static endpoint has nonzero $a_n$, $a_\lambda$, or $a_R$; it proves that any atom-local record with persistent density, scale, or core-radius splits must use one shared compensated row instead of per-line clock factors.
+
+Pressure-response replay supplies the independent shared-row test. Let
+
+$$
+\mathbf{a}^{G}
+=
+\left(
+a_n,\,
+A_\chi,\,
+a_\lambda,\,
+a_R
+\right)^T,
+\qquad
+\mathbf{a}^{P\to\Gamma}
+=
+\frac{\delta\mathbf{g}^{P,\mathrm{iso}}}
+{\delta\ln\Gamma_N^{P,\mathrm{iso}}}.
+$$
+
+A single isotropic cadence row can serve both the gravitational endpoint and the pressure-normalized replay only if
+
+$$
+\begin{pmatrix}
+\left(\mathbf{a}^{G}\right)^T\\
+\left(\mathbf{a}^{P\to\Gamma}\right)^T
+\end{pmatrix}
+\mathbf{b}
+=
+\begin{pmatrix}
+1\\
+1
+\end{pmatrix},
+\qquad
+\omega_i=-b_i.
+$$
+
+The current Fe/Cr toy pressure projection has $\mathbf{a}^{P\to\Gamma}=(0,0.6,0,0)^T$, while the GR-matching shared-delay endpoint has $A_\chi=2$. Therefore the $\chi_{\text{sea}}$-only shared row is falsified for that toy pressure replay. A broader compensated row remains conditional: it requires branch-derived non-$\chi_{\text{sea}}$ pressure response in $n$, $\lambda$, or $R_{\text{core}}$, and it must still preserve $S_G=1$ for finite-height and endpoint redshift.
+
+The current validation result is therefore:
+
+| Coefficient | Current status |
+| --- | --- |
+| $a_n$ | Optional in the weak static endpoint; conditionally required only if a branch-derived density response is needed to keep hydrogen or pressure records on one shared row. |
+| $a_\lambda$ | Optional in the weak static endpoint; conditionally required only if the envelope-scale branch supplies the compensating record. |
+| $a_R$ | Optional in the weak static endpoint; conditionally required only after a declared $R_{\text{core}}$ readout ties the pressure or spectral record to the same row. |
+
+Unconstrained nonzero values of $a_n$, $a_\lambda$, or $a_R$ are disfavored. They may be promoted only as branch-derived compensated response, not as adjustable redshift coefficients.
+
 This gives the derivation a concrete target. The same $\Gamma_N$ extraction map must recover $\Gamma_N=1$ in the weak homogeneous reference, $\Gamma_N\to1/\xi$ in the homogeneous moving-core Lorentz branch, and $\Gamma_N\approx1-\Phi_N/c_0^2$ in the weak gravitational endpoint branch. It must also remain separate from the launch factor $D_v$ and the path-history propagation factor $Y_X$, so the endpoint contribution to redshift is only
 
 $$
@@ -432,6 +622,8 @@ $$
 This target fails if $\Gamma_N$ is multiplied directly into the line frequency after being defined as cadence stretch, if each transition requires its own clock coefficient row, if $n$ or $\chi_{\text{sea}}$ is used as a substitute for $\Gamma_N$, if recoil or photon-channel propagation is hidden inside $\Gamma_N$, or if the hydrogen spectral map uses a different Noether-Sea response record than the clock, Shapiro-delay, or endpoint-redshift comparisons.
 
 The first proof/simulation packet for this row is the [Hydrogen $\Gamma_N$ Spectral Coefficient Row Toy Scan](../validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md). It treats $\mathbf{b}_{N}^{\mathrm{spec}}$ as a constrained clock-row instance: $b_\xi=1$ is fixed by the homogeneous Lorentz branch, the weak static endpoint row must satisfy $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$, and the observer frequency uses $C_N=\Gamma_N^{-1}$. The packet passes only if a shared row controls the chosen hydrogen line set across admissible refinement; it fails when the scan needs a transition-specific row, a direct $\Gamma_N$ frequency multiplier, a collapsed density/delay variable, or a residual budget that hides recoil, hyperfine structure, photon-channel propagation, or unresolved source-branch effects.
+
+The first executable scaffold keeps the clock proof burden visible. Its accepted spectral row is inherited from the density/scale-compensated static-response packet, not fitted from hydrogen lines alone. Its hydrogen records also keep $n$, $\chi_{\text{sea}}$, $\lambda$, $\xi$, and $R_{\text{core}}$ as separate entries in $\mathbf{g}_{N,\mathrm H}^{(\ell)}$, so a row that matches one line or one record can still fail when the component split changes under admissible refinement. The executable now derives the scaffold line factors, observer frequencies, and replay envelope gaps from recovered principal labels plus one shared line-inferred $\ln\Gamma_N$. A completed theory-bearing record must therefore supply the same four inputs together: the hydrogen $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ record, envelope gaps, observer frequencies, and static response vector.
 
 ---
 

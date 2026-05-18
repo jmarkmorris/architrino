@@ -6,7 +6,7 @@ This priority packet is a report and derivation scaffold, not reader-facing cano
 
 - **Status:** candidate constitutive law with two-material replay scaffold.
 - **Main claim:** local atomic and lattice pressure should retune the surrounding Noether Sea through one shared record for normalized Noether-core density $n(\mathbf{x},t)$, delay factor $\chi_{\text{sea}}(\mathbf{x},t)$, effective speed $c_{\text{eff}}(\mathbf{x},t)$, Noether-Sea cadence factor $\Gamma_N(\mathbf{x},t)$, and assembly strain.
-- **Open burden:** coefficients must be derived from an accepted Noether-core branch, pressure-sensitive packing geometry, and the medium-response tensor probe. Until then this packet supplies a falsifiable ansatz, not a promoted theorem.
+- **Open burden:** coefficients must be derived from an accepted Noether-core branch, pressure-sensitive packing geometry, and the medium-response tensor probe. The first density-side modulus target is staged in [Noether-Sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md). Until then this packet supplies a falsifiable ansatz, not a promoted theorem.
 - **Promotion targets:** [Noether Sea](../../../content/markdown/aaa/spacetime/noether-sea.md), [Noether Core Geometry](../../../content/markdown/aaa/spacetime/noether-core-geometry.md), [Atomic Structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md), [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md), [Proper Time and Time Dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [Parameter Ledger](../../../content/markdown/aaa/validation/parameter-ledger.md) after branch and validation support exists.
 
 ## Source Signals
@@ -590,3 +590,5 @@ The first empirical replay handoff is [Metallic-Lattice Pressure Replay Data Sch
 The first empty empirical packet is [Fe/Cr Empirical Pressure Replay Skeleton](pressure-replay-fe-cr-empirical-skeleton.md). It chooses Fe/Cr as the provisional first pair from the local priority stack, marks every missing material input explicitly, and keeps the current reading at `bound_only`.
 
 The coefficient-side closure packet is [Pressure-Response Coefficient Closure](pressure-response-coefficient-closure.md). It derives the branch-conditional isotropic and anisotropic pressure combinations for $\chi_{\text{sea}}$, $c_{\text{eff}}$, $\Gamma_N$, and $\mathcal{M}_{\text{sea}}^{ab}$, and records the null-sector bounds that prevent the replay from fitting separate observable-local pressure rows.
+
+The density-modulus packet is [Noether-Sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md). It derives $K_{\mathrm{pack}}=K_{\text{sea}}/\kappa_n$, $s_n=1-n/n_{\max}^{\mathrm{obl}}$, a packing-limited pressure law, and support-function scaling targets for dense metallic replay rows.

@@ -295,6 +295,28 @@ $$
 
 Equality is a replay assumption for a declared cell; the inequality is the support-function exclusion bound. A Fe metal branch can exceed a silicate branch in $n_{\max,X}^{\mathrm{obl}}$ only when its envelope, orientation, contact network, and primitive cell jointly reduce $V_{\mathrm{cell},X}^{\mathrm{sf}}$. Ordinary mass density alone is not sufficient.
 
+In branch-normalized units the reference constants are fixed by the same-level packing scaffold:
+
+$$
+\widetilde V_{\mathrm{cell},X}^{\mathrm{sf}}
+=
+\rho_{\text{core},0}V_{\mathrm{cell},X}^{\mathrm{sf}},
+\qquad
+\nu_{\mathrm{pack},0}=1,
+\qquad
+V_*=1.
+$$
+
+The contact and packing benchmarks are
+
+$$
+z_*=12,
+\qquad
+\phi_*=\frac{\pi}{3\sqrt{2}}.
+$$
+
+Here $z_*=12$ is the three-dimensional equal-center contact bound and $\phi_*$ is the FCC/HCP equal-sphere reference fraction used as a headroom scale. These constants are no longer material-specific fixture fields.
+
 The exclusion/compression coefficient is likewise reduced to a support-function compliance diagnostic. For retained contact network $\mathcal{K}_X=\{(\hat{\mathbf{k}}_{X,a},\omega_{X,a})\}$, set
 
 $$
@@ -358,6 +380,200 @@ e_X^{\mathrm{sf}}
 $$
 
 This formula is a constrained bound, not a final theorem: the shared weights $w_u$, $w_{\phi}$, and $w_{\sigma}$ still require a branch derivation. It is nevertheless stronger than declaring $e_X$ directly, because Fe versus silicate must now differ through support-function spacing, orientation coherence, effective coordination, and lattice-cell volume.
+
+The pressure-modulus packet gives a sharper route to the shared weights. Let the branch-family packing stiffness decompose into the reversible channels
+
+$$
+K_{\mathrm{pack}}^{(\mathcal B)}
+=
+K_u^{(\mathcal B)}
++
+K_{\phi}^{(\mathcal B)}
++
+K_{\sigma}^{(\mathcal B)}
++
+K_{\mathrm{wake}}^{\mathrm{rev},(\mathcal B)}
++
+K_{\mathrm{res}}^{(\mathcal B)},
+$$
+
+where $K_u^{(\mathcal B)}$ is the contact-network coordination stiffness, $K_{\phi}^{(\mathcal B)}$ is the volume/packing-fraction stiffness, $K_{\sigma}^{(\mathcal B)}$ is the contact-spacing anisotropy stiffness, $K_{\mathrm{wake}}^{\mathrm{rev},(\mathcal B)}$ is reversible wake-return stiffness, and $K_{\mathrm{res}}^{(\mathcal B)}$ is any retained positive stiffness not represented by $u_X$, $h_X$, or $\sigma_{\ln D,X}^2$. The shared compliance weights are then the stiffness shares
+
+$$
+\boxed{
+w_u
+=
+\frac{K_u^{(\mathcal B)}}{K_{\mathrm{pack}}^{(\mathcal B)}},
+\qquad
+w_{\phi}
+=
+\frac{K_{\phi}^{(\mathcal B)}}{K_{\mathrm{pack}}^{(\mathcal B)}},
+\qquad
+w_{\sigma}
+=
+\frac{K_{\sigma}^{(\mathcal B)}}{K_{\mathrm{pack}}^{(\mathcal B)}}.
+}
+$$
+
+This immediately implies
+
+$$
+0\le w_u,w_{\phi},w_{\sigma}\le1,
+\qquad
+w_u+w_{\phi}+w_{\sigma}\le1.
+$$
+
+The inequality is strict when reversible wake stiffness or residual positive stiffness carries part of the packing response. A sign reversal, weight larger than one, or material-specific weight row would therefore be a coefficient-split failure unless a branch transition is logged. Until the branch Hessian and contact-network stiffnesses are available, the executable replay may keep the conservative unit-bounded values, but those values are now placeholders for stiffness shares rather than free fit knobs.
+
+### Fe/Silicate Executable Packing Records
+
+The current Fe/silicate replay uses a bounded packing record
+
+$$
+\mathfrak{P}_X
+=
+\left(
+F_X,\mathcal{O}_X,\mathcal{L}_X,\mathcal{K}_X,
+\phi_X^{\mathrm{target}}
+\right)
+$$
+
+instead of declaring $e_X$ or $n_{\max,X}^{\mathrm{obl}}$ directly. The oblate-envelope part is reduced through singular values of the branch deformation record:
+
+$$
+\lambda_{\perp,X}
+=
+\sqrt{\lambda_{\perp,1,X}\lambda_{\perp,2,X}},
+\qquad
+\xi_X
+=
+\frac{\lambda_{\parallel,X}}{\lambda_{\perp,X}},
+\qquad
+0<\xi_X\le1.
+$$
+
+The executable packet now uses the finite-$\eta$ closed-return branch constraint
+
+$$
+\lambda_{\parallel,X}
+=
+\lambda_{\perp,X}\sqrt{1-\beta_X^2},
+\qquad
+\xi_X
+=
+\sqrt{1-\beta_X^2},
+$$
+
+with any finite-regularization or preferred-frame leakage retained as an explicit residual bound. The dyadic-lock identities constrain layer frequencies and radii, but they do not select $\beta_X$ by themselves; the replay must therefore declare the branch-speed assumption until a finite-$\eta$ return map supplies it.
+
+For the Fe metal branch assumption, the executable packet sets
+
+$$
+\beta_{\mathrm{Fe}}
+=
+\frac{2}{3},
+\qquad
+\lambda_{\perp,1,\mathrm{Fe}}
+=
+\lambda_{\perp,2,\mathrm{Fe}}
+=1,
+\qquad
+\lambda_{\parallel,\mathrm{Fe}}
+=
+\frac{\sqrt{5}}{3},
+\qquad
+\xi_{\mathrm{Fe}}
+=
+\frac{\sqrt{5}}{3}
+\approx0.745,
+$$
+
+with coherent single-axis orientation record
+
+$$
+\mathcal{O}_{\mathrm{Fe}}
+=
+\{(\hat{\mathbf{e}}_3,1)\},
+$$
+
+principal-axis lattice basis, twelve-contact FCC/HCP cuboctahedral contact family, and $\phi_{\mathrm{Fe}}^{\mathrm{target}}\approx0.716$.
+
+For the silicate comparison branch assumption, the executable packet sets
+
+$$
+\beta_{\mathrm{sil}}
+=
+\frac{1}{2},
+\qquad
+\lambda_{\perp,1,\mathrm{sil}}
+=
+\lambda_{\perp,2,\mathrm{sil}}
+=1,
+\qquad
+\lambda_{\parallel,\mathrm{sil}}
+=
+\frac{\sqrt{3}}{2},
+\qquad
+\xi_{\mathrm{sil}}
+=
+\frac{\sqrt{3}}{2}
+\approx0.866,
+$$
+
+with orthogonal isotropic orientation record,
+
+$$
+\mathcal{O}_{\mathrm{sil}}
+=
+\left\{
+(\hat{\mathbf{e}}_1,1/3),
+(\hat{\mathbf{e}}_2,1/3),
+(\hat{\mathbf{e}}_3,1/3)
+\right\},
+$$
+
+principal-axis lattice basis, four-contact tetrahedral contact family, and $\phi_{\mathrm{sil}}^{\mathrm{target}}\approx0.599$.
+
+With $R_{\perp,X}=0.5$ and $\nu_{\mathrm{pack},0}=1$, the baseline ceiling calculation is
+
+$$
+n_{\max,X,0}^{\mathrm{obl}}
+\le
+\frac{\phi_X^{\mathrm{target}}}
+{(4\pi/3)\xi_XR_{\perp,X}^3}.
+$$
+
+The executable packet uses equality as its declared lattice-cell replay assumption, yielding
+
+$$
+n_{\max,\mathrm{Fe},0}^{\mathrm{obl}}\approx1.835,
+\qquad
+n_{\max,\mathrm{sil},0}^{\mathrm{obl}}\approx1.321.
+$$
+
+The same support-function records give
+
+$$
+e_{\mathrm{Fe}}^{\mathrm{sf}}\approx0.833,
+\qquad
+e_{\mathrm{sil}}^{\mathrm{sf}}\approx1.181.
+$$
+
+These numbers remain finite-$\eta$ branch assumptions, not empirical geophysics and not certified Noether-core branch constants. The advancement is that changing $F_X$, $\mathcal{O}_X$, $\mathcal{L}_X$, $\mathcal{K}_X$, or $\phi_X^{\mathrm{target}}$ now changes both the packing ceiling and the exclusion/compression coefficient through the same support-function formulas. The remaining deformation proof obligation is to replace $\beta_{\mathrm{Fe}}=2/3$ and $\beta_{\mathrm{sil}}=1/2$ with branch-certified speeds or intervals and to carry the residual bound
+
+$$
+\left|
+\xi_X-\sqrt{1-\beta_X^2}
+\right|
+\le
+\epsilon_{\eta,X}
++
+\epsilon_{\mathrm{LV},X}
+$$
+
+through the support-function replay.
+
+If the finite-$\eta$ branch calculation supplies only intervals for $\beta_{\mathrm{Fe}}$ and $\beta_{\mathrm{sil}}$, the replay should be demoted to a bound-only result unless $\mathcal{S}_{\mathrm{Fe/sil}}<0$ holds over the full induced interval for $F_X$, $e_X^{\mathrm{sf}}$, and $n_{\max,X}^{\mathrm{obl}}$. Exact promotion requires the return map to certify the two branch speeds, the regularized residual $\epsilon_{\eta,X}$, the preferred-frame leakage residual $\epsilon_{\mathrm{LV},X}$, and the orientation/contact records used by the support-function calculation.
 
 ## Coefficient-Derivation Replay
 
@@ -506,19 +722,19 @@ $$
 
 Thus $\Delta\ln n_{\max,X,r}^{\mathrm{obl}}$ is not a cosmetic fixture field. It is the falsifiable packing-headroom input: changing it changes the sign through the same derivative channel as the support-function packing proof.
 
-The replay is a branch-derived success only if the same coefficient functional produces both material residuals and this component sum. The current mock fixture has $\mathcal{S}_{\mathrm{Fe/sil}}\approx-0.165$ on the first interval and $\mathcal{S}_{\mathrm{Fe/sil}}\approx-0.187$ on the second. In that fixture the dominant signs come from a support-function-derived lower Fe packing penalty and higher Fe coherent-coupling benefit:
+The replay is a branch-derived success only if the same coefficient functional produces both material residuals and this component sum. The current finite-$\eta$ witness fixture has $\mathcal{S}_{\mathrm{Fe/sil}}\approx-0.162$ on the first interval and $\mathcal{S}_{\mathrm{Fe/sil}}\approx-0.182$ on the second. In that fixture the dominant signs come from a support-function-derived lower Fe packing penalty and higher Fe coherent-coupling benefit:
 
 | Component | First interval $\mathcal{S}_{\mathrm{Fe/sil}}$ | Second interval $\mathcal{S}_{\mathrm{Fe/sil}}$ | Reading |
 | --- | ---: | ---: | --- |
-| Packing | $-0.118$ | $-0.140$ | Fe has more packing headroom and a smaller marginal exclusion cost from the support-function lattice-cell record. |
+| Packing | $-0.114$ | $-0.135$ | Fe has more packing headroom and a smaller marginal exclusion cost from the support-function lattice-cell record. |
 | Coherent coupling | $-0.046$ | $-0.046$ | Fe's metallic branch has stronger coordinated medium-coupling benefit. |
 | Delay | $-0.0002$ | $-0.0002$ | Delay coupling mildly favors Fe in this declared branch. |
 | Strain | $-0.0009$ | $-0.0009$ | Deviatoric strain response mildly favors Fe. |
-| Pressure | $0$ | $0$ | Pressure is neutral in the current mock so it cannot carry the result. |
+| Pressure | $0$ | $0$ | Pressure is neutral in the current witness so it cannot carry the result. |
 
-The same fixture derives $e_{\mathrm{Fe}}^{\mathrm{sf}}\approx0.838$, $e_{\mathrm{sil}}^{\mathrm{sf}}\approx1.187$, $n_{\max,\mathrm{Fe},0}^{\mathrm{obl}}\approx1.8$, and $n_{\max,\mathrm{sil},0}^{\mathrm{obl}}\approx1.3$ from its support-function packing records. These values remain mock branch records, but they are no longer independent scalar knobs.
+The same fixture derives $e_{\mathrm{Fe}}^{\mathrm{sf}}\approx0.833$, $e_{\mathrm{sil}}^{\mathrm{sf}}\approx1.181$, $n_{\max,\mathrm{Fe},0}^{\mathrm{obl}}\approx1.835$, and $n_{\max,\mathrm{sil},0}^{\mathrm{obl}}\approx1.321$ from its support-function packing records while taking $\nu_{\mathrm{pack},0}=1$, $V_*=1$, $z_*=12$, and $\phi_*=\pi/(3\sqrt{2})$ from the branch-normalized support-function scaffold. These values remain finite-$\eta$ branch assumptions, but they are no longer independent scalar knobs or raw singular-value mocks.
 
-The important advancement is not the numerical values; they remain mock inputs. The advancement is the failure-sensitive form: if any future replay changes the branch ingredients and the component ledger no longer sums negative, the dense-medium preference is not derived for that branch.
+The important advancement is not the numerical values; they remain branch-assumption inputs. The advancement is the failure-sensitive form: if any future replay changes the branch ingredients and the component ledger no longer sums negative, the dense-medium preference is not derived for that branch.
 
 ## Two-Phase Replay Scaffold
 
@@ -611,7 +827,7 @@ over the branch interval where iron-rich metallic segregation is being explained
 | `phase_label` | crystal/melt phase, pressure range, temperature range, oxidation state, and magnetic state when relevant |
 | `inventory_guardrail` | fixed $Z$, $A$, and $S_{\mathrm{Fe}}^{\mathrm{nuc}}=0$ for ordinary differentiation |
 | `n_steps` | normalized Noether-core density values or increments |
-| `packing_record` | $\lambda$, $\xi$, $\mathcal{O}$, support-function contact network, and lattice-cell assumptions used to derive $n_{\max}^{\mathrm{obl}}$ |
+| `packing_record` | oblate-envelope `deformation_branch`, deformation singular values, or constrained $\xi$, plus $\mathcal{O}$, support-function contact network, and lattice-cell assumptions used to derive $n_{\max}^{\mathrm{obl}}$ |
 | `standard_corrections` | ordinary phase, pressure, temperature, electronic, elastic, magnetic, and gravity corrections |
 | `sea_residual` | retained $\mu_X^{\mathrm{sea}}$ or residual proxy after corrections |
 | `coefficient_model` | declared $a_0$, $g_0$, $p_0$, $w_Z$, $w_B$, $w_U$, and $\Psi$ used to derive, not fit, the residual row |
@@ -628,10 +844,11 @@ over the branch interval where iron-rich metallic segregation is being explained
 5. **Transport violation:** the branch produces ordinary dissipative drag below $\mathcal{R}_{\text{tr},*}$ or sheds energy above threshold without a logged event channel.
 6. **Packing shortcut:** the proof assumes $n_{\max,\mathrm{Fe}}^{\mathrm{obl}}>n_{\max,\mathrm{sil}}^{\mathrm{obl}}$ from ordinary density alone instead of deriving it from exclusion envelope, lattice, and support-function geometry.
 7. **Coefficient insertion:** the replay chooses $A_X$, $G_X$, $C_X^{\chi}$, $C_X^S Q_X^{\mathrm{dev}}$, or $C_X^P$ directly to force the sign instead of deriving them from the declared branch ingredients.
+8. **Packing-bound violation:** the replay uses $\xi_X>1$ in an oblate branch, $z_X^{\mathrm{eff}}>12$ in the same-level contact proxy, $\phi_X^{\mathrm{sf}}>1$, or compliance weights outside $[0,1]$ without a branch-response derivation.
 
 ## Executable Toy Replay Fixture
 
-The first executable scaffold is [fe-silicate-segregation-toy.mjs](../../../scripts/mass-map/fe-silicate-segregation-toy.mjs) with mock input [fe-silicate-segregation-toy.json](../../../scripts/mass-map/fe-silicate-segregation-toy.json). Run it with:
+The first executable scaffold is [fe-silicate-segregation-toy.mjs](../../../scripts/mass-map/fe-silicate-segregation-toy.mjs) with finite-$\eta$ branch-assumption input [fe-silicate-segregation-toy.json](../../../scripts/mass-map/fe-silicate-segregation-toy.json). Run it with:
 
 ```bash
 node scripts/mass-map/fe-silicate-segregation-toy.mjs --pretty
@@ -653,9 +870,51 @@ y_{M,r}
 \mu_{M,0}^{\mathrm{sea}},
 $$
 
-where $\mu^{\mathrm{sea}}$ is generated from the coefficient model above. The fixture now derives $e_X^{\mathrm{sf}}$, $n_{\max,X,0}^{\mathrm{obl}}$, and $\Delta\ln n_{\max,X,r}^{\mathrm{obl}}$ from each material `packing_record` and step `packing_update`. It then tests the finite-difference sign $\mathcal{S}_{\mathrm{Fe/sil}}<0$ and records the packing, coherent-coupling, delay, strain, and pressure contributions. Its gates check the no-new-iron guardrail, standard-correction subtraction, matched density intervals, derived-model residual, dense-medium sign, transport threshold, null bounds, and a declared transmutation-leak failure injection.
+where $\mu^{\mathrm{sea}}$ is generated from the coefficient model above. The fixture now derives $e_X^{\mathrm{sf}}$, $n_{\max,X,0}^{\mathrm{obl}}$, and $\Delta\ln n_{\max,X,r}^{\mathrm{obl}}$ from each material `packing_record` and step `packing_update`, while the runner supplies the branch-normalized defaults $\nu_{\mathrm{pack},0}=1$, $V_*=1$, $z_*=12$, and $\phi_*=\pi/(3\sqrt{2})$. It then tests the finite-difference sign $\mathcal{S}_{\mathrm{Fe/sil}}<0$ and records the packing, coherent-coupling, delay, strain, and pressure contributions. Its gates check the no-new-iron guardrail, standard-correction subtraction, matched density intervals, derived-model residual, dense-medium sign, transport threshold, null bounds, and a declared transmutation-leak failure injection.
 
-The current mock packet is promotion-ready only as a toy scaffold. It becomes a real simulation target only after the remaining coefficient inputs are replaced by empirical or branch-derived pressure, temperature, phase, packing, covariance, transport, and null-sector records.
+The executable packing fields now use `oblate_envelope.deformation_branch` to derive $\xi_X$ from $\sqrt{1-\beta_X^2}$, `orientation_record.kind` for `single_axis` or `orthogonal_isotropic`, `lattice_cell.basis_family` for the principal-axis lattice, `lattice_cell.packing_fraction_target` to derive `cell_volume_factor`, and `contact_network.family` for `fcc_12` or `tetrahedral_4`. Direct scalar declarations of `exclusion_penalty` and `n_max_obl_ref` are not accepted inputs in the coefficient-derived path.
+
+The current finite-$\eta$ branch-assumption packet is promotion-ready only as a toy scaffold. It becomes a real simulation target only after the remaining coefficient inputs are replaced by empirical or branch-derived pressure, temperature, phase, packing, covariance, transport, and null-sector records.
+
+## Remaining Proof Obligations
+
+This thread leaves four priority items for the next theory-advancement pass:
+
+1. **Branch-speed certification.** Replace the finite-$\eta$ branch assumptions $\beta_{\mathrm{Fe}}=2/3$ and $\beta_{\mathrm{sil}}=1/2$ with a Noether-core return-map derivation or with certified intervals. If only intervals are available, propagate
+
+   $$
+   \left|
+   \xi_X-\sqrt{1-\beta_X^2}
+   \right|
+   \le
+   \epsilon_{\eta,X}
+   +
+   \epsilon_{\mathrm{LV},X}
+   $$
+
+   through $V_{\mathrm{env},X}$, $V_{\mathrm{cell},X}^{\mathrm{sf}}$, $e_X^{\mathrm{sf}}$, $n_{\max,X}^{\mathrm{obl}}$, and the final sign condition $\mathcal{S}_{\mathrm{Fe/sil}}<0$.
+
+2. **Support-function packing fraction derivation.** Replace the mock values $\phi_{\mathrm{Fe}}^{\mathrm{target}}\approx0.716$ and $\phi_{\mathrm{sil}}^{\mathrm{target}}\approx0.599$ with a branch argument or a rigorous bound from $\mathcal{O}_X$, $\mathcal{L}_X$, $\mathcal{K}_X$, wake clearance, and lattice clearance. Promotion requires $0 < \phi_X^{\mathrm{target}} \le \phi_*$ and a stated reason the Fe and silicate contact families are admissible in the same Noether-Sea state record.
+
+3. **Packing-compliance stiffness shares.** Derive or bound
+
+   $$
+   w_u
+   =
+   \frac{K_u^{(\mathcal B)}}{K_{\mathrm{pack}}^{(\mathcal B)}},
+   \qquad
+   w_{\phi}
+   =
+   \frac{K_{\phi}^{(\mathcal B)}}{K_{\mathrm{pack}}^{(\mathcal B)}},
+   \qquad
+   w_{\sigma}
+   =
+   \frac{K_{\sigma}^{(\mathcal B)}}{K_{\mathrm{pack}}^{(\mathcal B)}}
+   $$
+
+   from the branch Hessian or a finite-cell perturbation calculation. Until this is done, the replay may only use unit-bounded placeholders and must keep $w_u+w_{\phi}+w_{\sigma}\le1$ as a passive-response bound.
+
+4. **Material-state replacement.** Replace the remaining toy coefficient inputs $H_X$, $B_X$, $U_X$, $d_X$, $s_X$, $p_X$, and the step updates with a declared material-state fixture or empirical proxy after ordinary pressure, temperature, electronic, elastic, magnetic, and gravity corrections are subtracted. The no-new-iron guardrail $S_{\mathrm{Fe}}^{\mathrm{nuc}}=0$ must remain explicit.
 
 ## Promotion Reading
 
