@@ -63,6 +63,45 @@ The Fermi-Dirac regime has $\xi$ bounded away from zero. The envelope is oblate 
 
 This ratio is not yet a final derivation of spin-statistics. It is a geometric control variable for the proof program. A complete closure must show how stable 3D Noether-core configurations inherit the ordered-frame spinor proof and produce the fermionic exchange sign, and how the 2D coherent channel limit produces symmetric occupation at the observer level.
 
+## Effective Exchange-State Contract
+
+The standard vector-space structure sharpens what this chapter must recover. Once a single-excitation effective Hilbert chart $\mathcal{H}_\theta$ has been derived, the $N$-excitation observer-level comparison space is not an arbitrary list of labels. It is the tensor space $\mathcal{H}_\theta^{\otimes N}$, followed by an exchange projection. If $U_\sigma$ permutes the $N$ effective slots for $\sigma\in S_N$, the two standard projectors are
+$$
+P_+
+=
+\frac{1}{N!}
+\sum_{\sigma\in S_N}U_\sigma,
+\qquad
+P_-
+=
+\frac{1}{N!}
+\sum_{\sigma\in S_N}\operatorname{sgn}(\sigma)U_\sigma.
+$$
+The Bose-Einstein and Fermi-Dirac comparison spaces are therefore
+$$
+\mathcal{H}_{\theta,+}^{(N)}
+=
+P_+\mathcal{H}_\theta^{\otimes N},
+\qquad
+\mathcal{H}_{\theta,-}^{(N)}
+=
+P_-\mathcal{H}_\theta^{\otimes N}.
+$$
+The exchange rule is a statement about the effective quotient after inaccessible provenance has been compressed, not a claim that substrate identities disappear. Individual architrinos still retain path history and provenance; $P_\pm$ acts only after the apparatus and coarse-graining have made those labels unavailable to the observer-level state.
+
+The geometry hypothesis in this chapter can now be stated as a recovery residual. Let $\mathcal{E}_{N,\theta}$ be the effective $N$-assembly state extraction map, let $\mu_{\mathrm{3D}}$ be a retained ensemble of volumetric Noether-core configurations with $\xi\ge\xi_F$, and let $\mu_{\mathrm{2D}}$ be a retained ensemble of coherent planar-channel configurations with $\xi\le\xi_B$. The exchange closure target is
+$$
+\mathcal{R}_{\mathrm{ex}}(\theta)
+=
+\max\left(
+\frac{\|(I-P_-)\mathcal{E}_{N,\theta}(\mu_{\mathrm{3D}})\|_{\mathcal{H}^{(N)}_\theta}}{\varepsilon_-},
+\frac{\|(I-P_+)\mathcal{E}_{N,\theta}(\mu_{\mathrm{2D}})\|_{\mathcal{H}^{(N)}_\theta}}{\varepsilon_+},
+\frac{\|\mathcal{E}_{N,\theta}(\mu)-\mathcal{E}_{N,\theta}(\mu^{\mathrm{prov}})\|_{\mathrm{obs}}}{\varepsilon_{\mathrm{prov}}}
+\right)
+\le 1.
+$$
+Here $\mathcal{H}^{(N)}_\theta=\mathcal{H}_\theta^{\otimes N}$ and $\mu^{\mathrm{prov}}$ denotes the same retained physical ensemble after a swap of inaccessible provenance labels. The first two terms demand antisymmetric and symmetric state-space recovery in the proposed geometric regimes. The third term checks that the observer-level quotient is legitimate: swapping labels that the apparatus cannot access should not change the retained observable state beyond tolerance. If this residual fails, the proposed Fermi-Dirac or Bose-Einstein rule has been imposed as formal bookkeeping rather than derived from assembly geometry.
+
 ## Interfaces
 
 This chapter depends on:

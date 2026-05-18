@@ -80,6 +80,43 @@ The weight $W_{Ak}$ packages the inverse-square causal-wake factor, polarity sig
 
 In this expression, $\mathcal{C}_{Ak}(t)$ is the causal-root set for source branch $k$ acting on assembly $A$, and $\hat r_{Ak,j}$ is the $j$ component of the delayed line-of-action unit vector. The formula therefore preserves the primitive line-of-action law while naming the observer-level transverse projection.
 
+Electromagnetic field variables used in reaction chapters are effective observer/channel variables. They are not imported as substrate ontology. A reaction page that claims electromagnetic recovery should therefore pass an effective EM Gate residual,
+
+$$
+\mathcal{G}_{\mathrm{EM}}
+=
+\left(
+\Delta_{\mathrm{cont}},
+\Delta_E^{\mathrm{EM}},
+\Delta_{\mathbf{p}}^{\mathrm{EM}},
+\Delta_{\mathbf{J}}^{\mathrm{EM}},
+\Delta_{\mathrm{gauge}}
+\right),
+$$
+
+where the continuity component is
+
+$$
+\Delta_{\mathrm{cont}}
+\equiv
+\partial_t\rho_{\mathrm{eff}}
++
+\nabla\cdot\mathbf{J}_{\mathrm{eff}},
+$$
+
+and the gauge component requires every observer-level observable $\mathcal O$ used by the channel to obey
+
+$$
+\Delta_{\mathrm{gauge}}[\mathcal O,\chi]
+\equiv
+\mathcal O[A_{\mu}^{\mathrm{eff}}+\partial_\mu\chi]
+-
+\mathcal O[A_{\mu}^{\mathrm{eff}}]
+=0.
+$$
+
+The energy, momentum, and angular-momentum components are defined by the effective electromagnetic energy-momentum gate in [Radiation](../reactions/radiation.md). A channel passes only when these components vanish in the declared validated limit or when each nonzero term is assigned to a named photon, material, recoil, wake, or remnant row. This keeps Maxwell-level ledgers as recovery tests for channel bookkeeping rather than as primitive Noether-Sea dynamics.
+
 5. **Evaluate wake-strain trigger**
 Compute whether interaction forcing crosses the relevant mode boundary.
 - If below threshold: no mode-lock event, energy routes into transport/heating/scattering channels.

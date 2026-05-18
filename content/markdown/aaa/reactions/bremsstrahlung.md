@@ -275,6 +275,41 @@ $$
 
 Photon emission angle is therefore constrained by incident electron momentum, target potential geometry, and local wake transfer into planar mode plus recoil channel. For isolated heavy targets, momentum closure is dominated by $\Delta \mathbf{p}_{\mathrm{recoil}}$ with negligible recoil energy; medium momentum terms are reserved for explicit collective-excitation environments. This is the micro-level closure condition behind macroscopic angular spectra.
 
+The radiation-zone benchmark is stronger than total momentum balance. In the straight-line deceleration limit, with $\mathbf{v}\parallel\mathbf{a}$, $\beta=\|\mathbf{v}\|/c$, $\gamma=(1-\beta^2)^{-1/2}$, and $\theta$ the angle between the outgoing radiation direction and $\mathbf{v}$, the observer-level angular power target is
+
+$$
+\frac{dP_{\mathrm{br,std}}}{d\Omega}
+=
+\frac{q^2\|\mathbf{a}\|^2}{16\pi^2\epsilon_0c^3}
+\frac{\sin^2\theta}{(1-\beta\cos\theta)^5}.
+$$
+
+The corresponding total-power target is
+
+$$
+P_{\mathrm{br,std}}
+=
+\frac{q^2\gamma^6\|\mathbf{a}\|^2}{6\pi\epsilon_0c^3}.
+$$
+
+This supplies a channel-local radiation energy-momentum closure check:
+
+$$
+\Delta_{\mathrm{br,pow}}
+=
+\frac{\int_{t_i}^{t_f}P_{\mathrm{map}}(t)\,dt}
+{\int_{t_i}^{t_f}P_{\mathrm{br,std}}(t)\,dt}
+-1,
+\qquad
+\Delta_{\mathrm{br,ang}}(\theta)
+=
+\frac{(dP_{\mathrm{map}}/d\Omega)(\theta)}
+{(dP_{\mathrm{br,std}}/d\Omega)(\theta)}
+-1.
+$$
+
+In validated weak-field bremsstrahlung regimes, $\Delta_{\mathrm{br,pow}}\rightarrow0$ and $\Delta_{\mathrm{br,ang}}(\theta)\rightarrow0$ after screening, recoil, and form-factor corrections are applied through the same event record. The emitted photon ledger must also pass $\Delta_{\gamma,\mathrm{flux}}=0$ from [Radiation](radiation.md); otherwise a correct-looking photon spectrum has not closed the local energy-momentum route.
+
 ## Time Parameterization (Absolute vs Proper Time)
 
 Rate equations in this file are observer-level unless noted. For substrate-level $\mathbb{A}\mathbb{A}\mathbb{A}$ transport, convert via

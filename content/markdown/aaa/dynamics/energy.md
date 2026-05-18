@@ -659,3 +659,33 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, the hard inner cutoff **creates** a natural
 ### One-Line Rule
 
 If the model has a hard inner bound, **set the potential zero at that bound** and measure all energies outward from it.
+
+**Adiabatic branch invariant target.** On a certified branch chart for binary layer $a$, suppose the reduced cycle admits a canonical pair $(Q_a,\Pi_a)$ and a slowly varying branch parameter $\lambda(t)$, such as a local Noether-Sea response variable, shielding parameter, or neighboring-layer phase parameter. Define the rotational action
+$$
+I_a(\lambda)
+\equiv
+\frac{1}{2\pi}
+\oint_{\gamma_a(\lambda)}
+\Pi_a\,dQ_a.
+$$
+If the parameter changes slowly compared with the cycle period $T_a(\lambda)$,
+$$
+\epsilon_{\mathrm{ad},a}
+\equiv
+\max_{t\in W}
+\left(
+T_a(\lambda(t))\,
+\left\|\frac{d\lambda}{dt}\right\|\,
+\ell_{\lambda}^{-1}
+\right)
+\ll1,
+$$
+and the path remains inside the same causal-root ledger cell, the theorem target is
+$$
+\frac{dI_a}{dt}
+=
+O(\epsilon_{\mathrm{ad},a})
++
+\mathcal{R}_{\mathrm{branch},a}(t).
+$$
+Here $\ell_{\lambda}$ is the declared scale over which the reduced Hamiltonian changes appreciably, and $\mathcal{R}_{\mathrm{branch},a}$ records branch folds, omitted wake-history exchange, non-characteristic boundary leakage, or failure of the reduced symplectic chart. Thus the action variable is expected to drift only adiabatically between separator crossings, while a root-ledger transition may produce the discrete $\Delta I$ recorded above. This turns the $h$-like bookkeeping into a branch invariant target rather than an assumption that energy itself is quantized at the primitive level.

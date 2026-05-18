@@ -25,6 +25,62 @@ When standard non-relativistic, fixed-particle-number quantum mechanics uses a u
 
 That statement is licensed only after the action-to-envelope handoff supplies a controlled residual. The effective wavefunction chart must name the coarse fields, the phase-amplitude map, and the retained record window; it must pass the action-to-envelope residual $\mathcal{R}_{\mathrm{env}}\le\epsilon_{\mathrm{env}}$ in [Effective Lagrangian](../dynamics/effective-lagrangian.md#closure-interface-action-to-envelope-reduction), and any later update must pass the record-autonomy tests in [Measurement Ontology](measurement-ontology.md#what-makes-an-interaction-a-record). Otherwise $\psi$ remains a useful fitting envelope, not a promoted quantum closure.
 
+### Effective State-Vector Contract
+
+The standard state-vector formalism supplies a precise observer-level contract that the $\mathbb{A}\mathbb{A}\mathbb{A}$ reduction must recover, not an ontological replacement for architrino trajectories. For a declared effective chart $\theta=(M_\theta,\mathcal{Q},W,T)$, the comparison Hilbert space is
+$$
+\mathcal{H}_\theta=L^2(M_\theta,d\nu_\theta),
+\qquad
+\langle\psi|\phi\rangle_\theta
+=
+\int_{M_\theta}\psi^*(q)\phi(q)\,d\nu_\theta(q).
+$$
+The effective state is a normalized ray,
+$$
+\|\psi\|_\theta^2=1,
+\qquad
+\psi\sim\lambda\psi,\quad \lambda\in\mathbb{C}\setminus\{0\},
+$$
+because a constant nonzero complex rescaling does not change the record statistics after normalization. A spatially varying phase is different: it changes momentum, current, and interference data, so it cannot be quotiented away by the same rule.
+
+If a declared apparatus channel is represented by a self-adjoint effective operator $\hat O_\theta$ with orthonormal eigenstates $\{\phi_n\}$, then the standard comparison expansion is
+$$
+\psi=\sum_n a_n\phi_n,
+\qquad
+a_n=\langle\phi_n|\psi\rangle_\theta,
+\qquad
+\sum_n |a_n|^2=1.
+$$
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is to derive the chart, the inner product, the admissible operator, and the coefficients from the retained deterministic flow and apparatus kernel. If those objects are inserted independently of the record-forming dynamics, the formal Hilbert-space description has been assumed rather than recovered.
+
+### Density-Current Closure Target
+
+Born probability is only half of the effective wavefunction contract. Standard Schrödinger evolution also carries a local conservation law. For an effective single-assembly chart with mass parameter $m_{\mathrm{eff}}$ and action constant $\hbar_{\mathrm{eff}}$, define
+$$
+\rho_\psi(\mathbf{x},t)=|\psi(\mathbf{x},t)|^2,
+\qquad
+\mathbf{J}_\psi(\mathbf{x},t)
+=
+\frac{\hbar_{\mathrm{eff}}}{2m_{\mathrm{eff}}i}
+\left(\psi^*\nabla\psi-\psi\nabla\psi^*\right).
+$$
+The standard benchmark is
+$$
+\partial_t\rho_\psi+\nabla\cdot\mathbf{J}_\psi=0.
+$$
+This equation should be read as an effective continuity target, not as a claim that probability is a physical fluid. Let $\rho_{\mathrm{rec}}(\mathbf{x},t)$ and $\mathbf{J}_{\mathrm{rec}}(\mathbf{x},t)$ be the position density and record-facing flux obtained by pushing the same finite-window basin measure $\mu_{*,T}$ through the deterministic assembly flow and the declared position projection. A Born-current recovery should report
+$$
+\mathcal{R}_{\rho J}(W,T;\theta)
+=
+\max\left(
+\frac{\sup_{t\in T}\|\rho_{\mathrm{rec}}(\cdot,t)-\rho_\psi(\cdot,t)\|_{L^1(W)}}{\varepsilon_\rho},
+\frac{\|\partial_t\rho_{\mathrm{rec}}+\nabla\cdot\mathbf{J}_{\mathrm{rec}}\|_{\mathcal{D}'(W\times T)}}{\varepsilon_{\mathrm{cont}}},
+\frac{\sup_{t\in T}\|\mathbf{J}_{\mathrm{rec}}(\cdot,t)-\mathbf{J}_\psi(\cdot,t)\|_{W^{-1,1}(W)}}{\varepsilon_J}
+\right)
+\le 1.
+$$
+The first term checks Born density, the second checks local conservation for the derived record flow, and the third checks the standard probability-current benchmark. A model that matches $|\psi|^2$ only after allowing probability to disappear from one region and reappear elsewhere before a record has formed has not recovered Schrödinger continuity.
+
 The phrase "the system is in a superposition" is therefore not a standalone ontological claim in this chapter. It is an effective statement relative to a declared representation and record channel. If the preparation, apparatus kernel, retained coarse-graining, or access region changes, the apparent basis in which a branch expansion is written may change while the underlying assembly and causal-wake history do not. The substrate claim remains the same: one deterministic history is unfolding, while the effective wavefunction carries alternatives that have not yet become autonomous records.
 
 A path-integral description is useful as a comparison because it treats possible histories rather than only final pointer states. In this chapter that comparison stays epistemic: a history weight or event measure is an observer-level bookkeeping device unless it is tied to the same deterministic assembly flow, causal-wake path history, and record criterion used in [Measurement Ontology](measurement-ontology.md). This distinction matters most in black-hole and early-cosmology regimes, where no external measuring apparatus can be placed outside the whole system.
@@ -44,6 +100,36 @@ The receiver cannot intrinsically distinguish between the attractive pull of an 
 
 ### Measurement Back-Action and the $h$-Bracket
 Any attempt by a Physical Observer to resolve the microstate of an assembly requires an interaction (e.g., scattering a photon assembly modeled as a coaxial contra-rotating pro/anti planar pair). This interaction injects a discrete, minimum action increment (scaling with $h$) into the target assembly's causal history. This back-action continuously alters the boundary conditions of the state, placing a hard limit on simultaneously resolvable conjugate variables. The uncertainty principle brackets the physical action step associated with assembly transitions.
+
+The free Gaussian wavepacket is the simplest observer-level benchmark for this claim. In standard quantum mechanics, a Gaussian packet minimizes the position-momentum uncertainty product and then disperses under free Schrödinger evolution. The $\mathbb{A}\mathbb{A}\mathbb{A}$ closure target is therefore not merely to state $\Delta x\,\Delta p\ge\hbar/2$, but to recover the minimal packet as an effective envelope of deterministic path-history data:
+$$
+\Delta_x(t)\Delta_p(t)\ge\frac{\hbar_{\mathrm{eff}}}{2},
+\qquad
+\left|\Delta_x(0)\Delta_p(0)-\frac{\hbar_{\mathrm{eff}}}{2}\right|
+\le
+\varepsilon_{\mathrm{G}}.
+$$
+For a free retained chart, the same packet must move and spread with the standard effective kinematics,
+$$
+\left\|
+\frac{d}{dt}\langle\mathbf{x}\rangle_\theta(t)
+-
+\frac{\langle\mathbf{p}\rangle_\theta(t)}{m_{\mathrm{eff}}}
+\right\|
+\le
+\varepsilon_v,
+\qquad
+\sup_{t\in T}
+\frac{
+\left|
+\Delta_x^{2,\mathbb{A}\mathbb{A}\mathbb{A}}(t)
+-
+\Delta_x^{2,\mathrm{QM}}(t)
+\right|
+}{\varepsilon_{\mathrm{spread}}}
+\le 1.
+$$
+Here $\Delta_x^{2,\mathrm{QM}}(t)$ is the standard Gaussian spreading benchmark for the same initial covariance. If the derived envelope violates this bound in ordinary free-packet regimes, then the uncertainty explanation has remained qualitative rather than becoming a quantum closure.
 
 Weak probes sit below the record-forming part of this back-action. They may perturb the target and apparatus by a small amount, but they do not by themselves force the target across a separatrix or create a durable apparatus/environment asymmetry. In the notation of [Measurement Ontology](measurement-ontology.md#weak-probe-limit), the retained weak-probe window satisfies
 $$

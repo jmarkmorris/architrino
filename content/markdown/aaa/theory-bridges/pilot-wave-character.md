@@ -157,6 +157,114 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, quantization arises from a different but eq
 
 This is the wake-based analog of the Bohr-Sommerfeld quantization condition, derived from the self-consistency of the causal response loop rather than imposed as a boundary condition on an abstract wave.
 
+### Boundary Conditions and Spectral Quantization
+
+Standard bound-state quantization is not produced by integers alone. It is produced by normalizability, self-adjointness, and boundary matching. In one-dimensional comparison problems, finite jumps in $V(x)$ require
+$$
+[\psi]_{x=a}=0,
+\qquad
+[\psi']_{x=a}=0,
+$$
+while an attractive point potential carries the derivative jump
+$$
+[\psi']_{0}
+=
+-\frac{2mV_0}{\hbar^2}\psi(0).
+$$
+For three-dimensional central potentials, the radial substitution $\chi(r)=rR(r)$ leaves the self-adjoint boundary requirement
+$$
+\chi(0)=0
+$$
+for ordinary regular states. Equivalently, the radial Hamiltonian must make the boundary form vanish,
+$$
+\mathcal{B}_0[R,S]
+=
+\lim_{r\to0}
+r^2
+\left(
+S\frac{dR}{dr}
+-
+\frac{dS}{dr}R
+\right)
+=0
+$$
+for all admissible radial functions $R$ and $S$ in the effective domain.
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ analogue is not a literal wavefunction wall. It is a branch-domain condition on the assembly return map and causal-wake history. A candidate mode $\Gamma_n$ with return time $T_n$ must satisfy
+$$
+\mathcal{Q}_{\mathrm{bc}}(n)
+=
+\max\left(
+\frac{\operatorname{dist}(\mathcal{P}_{T_n}(\Gamma_n),\Gamma_n)}{\varepsilon_{\mathrm{return}}},
+\frac{|\Delta\varphi_n-2\pi q_n|}{\varepsilon_\varphi},
+\frac{|\Delta I_n-N_n h_{\mathrm{eff}}|}{\varepsilon_I},
+\frac{|\mathcal{B}_0^{\mathrm{eff}}|}{\varepsilon_{\mathrm{sa}}}
+\right)
+\le 1.
+$$
+Here $\mathcal{P}_{T_n}$ is the retained assembly return map, $\Delta\varphi_n$ is the closed-cycle phase return, $q_n\in\mathbb{Z}$ is the winding count, $\Delta I_n$ is the action returned through the mode, and $\mathcal{B}_0^{\mathrm{eff}}$ is the effective self-adjoint boundary residual after the coarse-grained chart has been extracted. This is the boundary-condition bridge: standard eigenvalue discreteness is recovered only when a native causal-wake mode also closes its return, phase, action, and effective-domain tests.
+
+Central potentials add a second comparison target. Standard quantum mechanics uses
+$$
+\hat{\mathbf{L}}=-i\hbar\,\mathbf{x}\times\nabla,
+\qquad
+[\hat L_i,\hat L_j]=i\hbar\,\epsilon_{ijk}\hat L_k,
+\qquad
+[\hat H,\hat L_i]=[\hat H,\hat L^2]=0
+$$
+for a central potential, allowing states to be labeled by $n,l,m$. The hydrogen benchmark is
+$$
+E_n^{\mathrm{QM}}=-\frac{\mathrm{Ry}}{n^2},
+\qquad
+l=0,\ldots,n-1,
+\qquad
+m=-l,\ldots,l,
+\qquad
+g_n=n^2.
+$$
+The effective atomic assembly closure should therefore report, for levels up to a declared $N$,
+$$
+\mathcal{R}_{\mathrm{H}}(N)
+=
+\max_{1\le n\le N}
+\left(
+\frac{|E_n^{\mathbb{A}\mathbb{A}\mathbb{A}}+\mathrm{Ry}_\theta/n^2|}{\varepsilon_E(n)},
+\frac{|g_n^{\mathbb{A}\mathbb{A}\mathbb{A}}-n^2|}{\varepsilon_g(n)}
+\right)
+\le 1,
+$$
+with fine-structure and Lamb-type splittings treated as later, smaller correction targets. The degeneracy test is important because ordinary central symmetry gives only the $2l+1$ angular degeneracy; hydrogen's $n^2$ pattern is a stronger Coulomb benchmark that a phase-locking story must reproduce rather than merely invoke.
+
+### Pointlike Idealizations and Running Couplings
+
+Pointlike effective potentials are useful only when their cutoff dependence is controlled. The two-dimensional attractive delta-potential comparison is the warning case. With dimensionless coupling $\tilde g=mg/\hbar^2$ and UV cutoff $\Lambda$, the bound-state energy scale can be written as
+$$
+E_B(\Lambda,\tilde g)
+=
+\frac{\Lambda^2}{2\left(e^{2\pi/\tilde g}-1\right)}.
+$$
+Keeping $E_B$ fixed while changing $\Lambda$ requires the coupling to run,
+$$
+\tilde g(\Lambda;E_B)
+=
+\frac{2\pi}{\log\!\left(1+\Lambda^2/(2E_B)\right)}.
+$$
+A pointlike comparison model is acceptable only if cutoff changes are compensated by the declared effective coupling:
+$$
+\mathcal{R}_{\mathrm{run}}(\Lambda_1,\Lambda_2)
+=
+\left|
+\frac{
+E_B(\Lambda_1,\tilde g(\Lambda_1))
+-
+E_B(\Lambda_2,\tilde g(\Lambda_2))
+}{E_B}
+\right|
+\le
+\varepsilon_{\mathrm{run}}.
+$$
+For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a caution about singular idealizations, not an imported ontology. Whenever a calculation uses a mollifier width $\eta$, a core cutoff $\epsilon_c$, a memory cutoff $\tau_{\min}$, or a point-source effective potential, the predicted spectrum, scattering response, or basin threshold must either be cutoff-independent inside tolerance or accompanied by a running effective parameter such as $\kappa_{\mathrm{eff}}(\Lambda)$. A spectrum that exists only at one arbitrary cutoff is a regularization artifact, not a recovered quantum level.
+
 ---
 
 ## The Phenomenological Mapping

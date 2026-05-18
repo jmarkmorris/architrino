@@ -202,6 +202,61 @@ The unresolved interval $\tau_{\mathrm{rec}}-\tau_{\mathrm{split}}$ is a validat
 
 Because this definition is windowed, it does not require a global decision procedure for every future trajectory question. The measurement claim is narrower: within a declared apparatus kernel, coarse-graining, access region, and record window, the coupled dynamics either reaches a recordable basin satisfying the residual tests or remains unresolved. Unbounded reachability questions for the same dynamical law belong to a separate theorem class and should not be treated as prerequisites for ordinary record formation.
 
+### Basin-Update Equation
+
+The standard projection rule can be retained as an effective update only after the physical record has already formed. Let $\mu_{0,\theta}$ be the preparation measure for a declared measurement channel $\theta=(\mathcal{K}_A,\mathcal{Q},W,T)$, and let
+$$
+\nu_{\tau_{\mathrm{rec}}}
+=
+\left(\Phi_{\tau_{\mathrm{rec}}-t_0}^{\mathrm{tot}}\right)_*\mu_{0,\theta}
+$$
+be the pushed-forward ensemble at the record time. If the completed record is the basin $B_k^{\mathrm{rec}}(\theta)$ and its measure is nonzero, then the native post-record update is conditionalization on the realized basin:
+$$
+\mu_{\theta,k}^{+}(B)
+=
+\frac{
+\nu_{\tau_{\mathrm{rec}}}\!\left(B\cap B_k^{\mathrm{rec}}(\theta)\right)
+}{
+\nu_{\tau_{\mathrm{rec}}}\!\left(B_k^{\mathrm{rec}}(\theta)\right)
+}.
+$$
+This is not a new stochastic law. It is the observer's effective ensemble after the deterministic apparatus-target flow has crossed the separatrix, locked the record, and passed the record-autonomy tests.
+
+Let $\mathcal{E}_\theta$ denote the effective wavefunction extraction map for the same retained chart. The wavefunction update is then a derived description,
+$$
+\psi_\theta^{-}
+=
+\mathcal{E}_\theta(\nu_{\tau_{\mathrm{split}}}),
+\qquad
+\psi_{\theta,k}^{+}
+=
+\mathcal{E}_\theta(\mu_{\theta,k}^{+}).
+$$
+For a non-degenerate operator benchmark with eigenstate $\phi_k$, the recovery target is
+$$
+\inf_{\alpha_k\in\mathbb{R}}
+\left\|
+\psi_{\theta,k}^{+}
+-
+e^{i\alpha_k}\phi_k
+\right\|_{\mathcal{H}_\theta}
+\le
+\varepsilon_{\mathrm{upd}}.
+$$
+For a degenerate outcome $\lambda$, with projector $\Pi_\lambda$, the corresponding target is
+$$
+\inf_{\alpha_\lambda\in\mathbb{R}}
+\left\|
+\psi_{\theta,\lambda}^{+}
+-
+e^{i\alpha_\lambda}
+\frac{\Pi_\lambda\psi_\theta^{-}}{\|\Pi_\lambda\psi_\theta^{-}\|_{\mathcal{H}_\theta}}
+\right\|_{\mathcal{H}_\theta}
+\le
+\varepsilon_{\mathrm{upd}},
+$$
+whenever the denominator is nonzero. This equation is the measurement-basin version of the textbook projection rule: first the coupled physical system selects and records a basin, then the observer-level wavefunction is updated to the corresponding effective eigenspace.
+
 ## What Makes an Interaction a Record
 
 Not every separatrix crossing is a measurement record. A record requires stability and amplifiability.

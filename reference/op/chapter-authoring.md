@@ -75,10 +75,6 @@ During the current core geometrical theory push, do not treat chapter coverage a
 - Mine YouTube videos and course playlists when transcripts, slides, or lecture notes can be reduced into concrete chapter material.
 - Mine David Kaiser's MIT OCW `STS.042J/8.225J` course sequence, especially Lecture 23, `The Birth of Particle Cosmology`, plus the surrounding late-course particle-cosmology lectures.
 - Mine David Tong's official lecture-note PDFs from [Teaching | David Tong](https://davidtong.org/teaching/):
-  - [Classical Dynamics](https://davidtong.org/pdfs/teaching/classical-dynamics/clas.pdf)
-  - [Vector Calculus](https://davidtong.org/pdfs/teaching/vector-calculus/vc.pdf)
-  - [Electromagnetism](https://davidtong.org/pdfs/teaching/electromagnetism/electro.pdf)
-  - [Quantum Mechanics](https://davidtong.org/pdfs/teaching/quantum-mechanics/qm.pdf)
   - [Topics in Quantum Mechanics](https://davidtong.org/pdfs/teaching/topics-in-quantum-mechanics/topicsinqm.pdf)
   - [Solid State Physics](https://davidtong.org/pdfs/teaching/solid-state-physics/solidstate.pdf)
   - [Quantum Hall Effect](https://davidtong.org/pdfs/teaching/quantum-hall-effect/qhe.pdf)
@@ -118,3 +114,7 @@ During the current core geometrical theory push, do not treat chapter coverage a
 | --- | --- |
 | Curt Jaimungal's long-form physicist interviews, source window January 1, 2025 through May 17, 2026 | May 17, 2026 |
 | David Tong, [Dynamics and Relativity](https://davidtong.org/pdfs/teaching/dynamics-and-relativity/dynrel.pdf) | May 18, 2026 |
+| David Tong, [Classical Dynamics](https://davidtong.org/pdfs/teaching/classical-dynamics/clas.pdf) | May 18, 2026 |
+| David Tong, [Vector Calculus](https://davidtong.org/pdfs/teaching/vector-calculus/vc.pdf) | May 18, 2026 |
+| David Tong, [Electromagnetism](https://davidtong.org/pdfs/teaching/electromagnetism/electro.pdf) | May 18, 2026 |
+| David Tong, [Quantum Mechanics](https://davidtong.org/pdfs/teaching/quantum-mechanics/qm.pdf) | May 18, 2026 |

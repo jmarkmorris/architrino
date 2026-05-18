@@ -447,3 +447,70 @@ Combined with causal-locus class constraints, this would give a quantitative sep
 - Overall: the causal-locus action-counting route is now partly formalized (theorem-level
   in the regularized regime), while mass mapping, asymptotic stability, and emergent
   metric closure remain open.
+
+**Branch return-map symplectic residual.** The scalar statistic can identify candidate stationary branch classes, but a stationary value of $\bar{\mathcal{A}}$ is not yet a Hamiltonian closure claim. On a retained branch chart $\mathfrak{B}$ with reduced section coordinates $z=(Q^a,\Pi_a)$, let
+$$
+\mathcal{P}_{\mathfrak{B}}:z_n\mapsto z_{n+1}
+$$
+be the one-cycle return map and let
+$$
+M_{\mathfrak{B}}(z)=D\mathcal{P}_{\mathfrak{B}}(z)
+$$
+be its linearized monodromy. If the reduced chart is genuinely inherited from a symmetry-preserving delayed action, then after the retained constraints and section condition are solved there must be a pulled-back symplectic form $\Omega_{\mathfrak{B}}$ for which
+$$
+\mathcal{R}_{\Omega}(\mathfrak{B})
+\equiv
+\sup_{z\in U}
+\left\|
+M_{\mathfrak{B}}(z)^T
+\Omega_{\mathfrak{B}}(z)
+M_{\mathfrak{B}}(z)
+-
+\Omega_{\mathfrak{B}}(\mathcal{P}_{\mathfrak{B}}(z))
+\right\|
+$$
+is small on the tested neighborhood $U$ of the branch. The companion phase-volume residual
+$$
+\mathcal{R}_{\mathrm{vol}}(\mathfrak{B})
+\equiv
+\sup_{z\in U}
+\left|
+\det M_{\mathfrak{B}}(z)-1
+\right|
+$$
+is weaker but easier to compute. The closure direction is therefore:
+$$
+\nabla_{\gamma}\bar{\mathcal{A}}=0
+\quad\text{within a winding class}
+\qquad
+\mathcal{R}_{\Omega}(\mathfrak{B})\le\epsilon_{\Omega}
+\qquad
+\lambda_{\mathrm{sec}}>0.
+$$
+The first condition marks a candidate branch class, the second tests whether the retained return map has the canonical structure expected of an action-derived conservative reduction, and the third checks local section persistence. A failure of $\mathcal{R}_{\Omega}$ does not falsify the Master EOM; it says that the scalar action-counting extremum has not yet been promoted to a reduced Hamiltonian branch certificate.
+
+**Hamilton-Jacobi branch phase target.** If a retained branch chart passes the action-derived return-map tests, one can ask for a Hamilton-Jacobi description of the same reduced motion. This is only a comparison target until the delayed action residual closes. Let $H_{\mathfrak{B}}(Q,\Pi,t)$ be the reduced Hamiltonian on the certified chart. A branch principal function $W_{\mathfrak{B}}(Q,t)$ should satisfy
+$$
+\mathcal{R}_{\mathrm{HJ}}(Q,t)
+\equiv
+\partial_t W_{\mathfrak{B}}(Q,t)
++
+H_{\mathfrak{B}}\!\left(Q,\partial_Q W_{\mathfrak{B}}(Q,t),t\right)
+$$
+with $\mathcal{R}_{\mathrm{HJ}}\to0$ on the retained window. The associated momentum reconstruction is
+$$
+\Pi_a=\partial_{Q^a}W_{\mathfrak{B}},
+$$
+and the first-order branch motion is
+$$
+\dot Q^a
+=
+\left.
+\frac{\partial H_{\mathfrak{B}}}{\partial \Pi_a}
+\right|_{\Pi=\partial_Q W_{\mathfrak{B}}}.
+$$
+For a time-independent reduced chart, the separated form
+$$
+W_{\mathfrak{B}}(Q,t)=W_{\mathfrak{B}}^{0}(Q)-E_{\mathfrak{B}}t
+$$
+turns the energy label $E_{\mathfrak{B}}$ into a branch-family parameter. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this would not replace the causal-root ledger; it would be a compact phase-function certificate that the retained ledger, wake-history charge, and reduced canonical coordinates are mutually consistent.

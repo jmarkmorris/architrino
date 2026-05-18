@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1178
+      "sections": 1179
     }
   },
   "tocRoot": {
@@ -4680,6 +4680,14 @@
                 "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
                 "markdownSection": "The 3D-to-2D Transition",
                 "sectionKey": "the 3d to 2d transition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Effective Exchange-State Contract",
+                "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
+                "markdownSection": "Effective Exchange-State Contract",
+                "sectionKey": "effective exchange state contract",
                 "headingLevel": 2
               },
               {

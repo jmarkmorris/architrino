@@ -3216,6 +3216,166 @@ Closure condition for this interface:
 - the same coarse-graining window that preserves validated dynamical invariants must recover the effective Schrödinger limit in the non-relativistic, weak-field, fixed-particle-number regime;
 - residual non-Markovian terms must be explicitly retained as correction operators, not absorbed into uncontrolled fitting.
 
+**Return-map symplectic residual for action-derived branch promotion.** When a replayable branch chart is promoted to an action-derived reduced Hamiltonian chart, the section return map must preserve the reduced symplectic structure. Let $z=(Q^a,\Pi_a)$ be local reduced coordinates after the retained root constraints and section condition have been solved, let
+$$
+\mathcal{P}_{\mathcal{S}}:z_n\mapsto z_{n+1},
+\qquad
+M_{\mathcal{S}}=D\mathcal{P}_{\mathcal{S}},
+$$
+and let $\Omega_{\mathcal{S}}$ be the pulled-back symplectic matrix on the reduced section. Define
+$$
+\mathcal{R}_{\Omega}
+\equiv
+\left\|
+M_{\mathcal{S}}^{T}\Omega_{\mathcal{S}}M_{\mathcal{S}}
+-
+\Omega_{\mathcal{S}}
+\right\|,
+\qquad
+\mathcal{R}_{\mathrm{vol}}
+\equiv
+\left|\det M_{\mathcal{S}}-1\right|.
+$$
+For an exact finite-dimensional Hamiltonian reduction, $\mathcal{R}_{\Omega}=0$ and therefore $\mathcal{R}_{\mathrm{vol}}=0$. For the delayed Master EOM these are not automatic consequences of a small orbit residual: they are closure diagnostics for the claim that the retained branch chart has captured the missing path-history degrees of freedom well enough to behave like a canonical return map. A nonzero $\mathcal{R}_{\Omega}$ means at least one of the following remains unresolved: omitted causal-root rows, window-boundary wake flux, an action-level residual, or a reduction that is not actually Hamiltonian. Thus a local master-equation closure claim still uses $\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)$ as defined above, while the stronger Hamiltonian claim must additionally report $\mathcal{R}_{\Omega}\le\epsilon_{\Omega}$.
+
+**Standard charged-particle comparison target.** In ordinary electromagnetic mechanics, a charged particle can be described by
+$$
+L_{\mathrm{EM}}
+=
+\frac{1}{2}m\|\dot{\mathbf r}\|^2
+-e\phi(\mathbf r,t)
++e\,\dot{\mathbf r}\cdot\mathbf A(\mathbf r,t),
+\qquad
+\mathbf p_{\mathrm{can}}
+=
+m\dot{\mathbf r}+e\mathbf A.
+$$
+The velocity-coupled one-form shifts canonical momentum and yields the effective Lorentz-force law. Under
+$$
+\phi\mapsto\phi-\partial_t\chi,
+\qquad
+\mathbf A\mapsto\mathbf A+\nabla\chi,
+$$
+the Lagrangian changes only by $e\,d\chi/dt$, so the effective equations are unchanged. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a comparison structure, not substrate ontology: the primitive kernel still contains only radial causal hits. The corresponding closure target is to extract an assembly-level effective one-form
+$$
+\mathcal{A}_{\mathrm{eff}}
+=
+A_a^{\mathrm{eff}}(Q,t)\,dQ^a-\phi_{\mathrm{eff}}(Q,t)\,dt
+$$
+from coarse-grained causal-root geometry, then show that the observer-level residual
+$$
+\mathcal{R}_{\mathrm{EM}}(W)
+=
+\int_W
+\left\|
+\mu_A\mathbf a_A(t)
+-
+e_A\left(
+\mathbf E_{\mathrm{eff}}(\mathbf X_A,t)
++\mathbf V_A(t)\times\mathbf B_{\mathrm{eff}}(\mathbf X_A,t)
+\right)
+\right\|dt
+$$
+vanishes in the stated approximation while the underlying branch ledger remains a sum of line-of-action contributions. Failure of this residual is a magnetic-emergence failure, not evidence for inserting an intrinsic cross-product term into the Master EOM.
+
+**Constrained branch-multiplier formulation.** On a fixed retained branch chart, the causal roots may be represented as constrained variables rather than solved away immediately. Let $s_{ij,\ell}(t)$ be the emission time assigned to retained row $\ell$ and define
+$$
+G_{ij,\ell}(t)
+\equiv
+r_{ij,\ell}(t)-c_f\big(t-s_{ij,\ell}(t)\big),
+\qquad
+r_{ij,\ell}(t)
+=
+\left\|
+\mathbf{x}_i(t)-\mathbf{x}_j(s_{ij,\ell}(t))
+\right\|.
+$$
+A branch-reduced constrained scaffold on a window $W$ has the form
+$$
+S_{\mathfrak{B}}^{(\eta)}
+=
+\int_W
+\left[
+\sum_i\frac{1}{2}\mu_{\text{arch}}\|\mathbf{v}_i(t)\|^2
+-
+\sum_{(i,j,\ell)\in\mathcal{R}^{\mathrm{act}}}
+\alpha_{ij}
+\frac{w_{ij,\ell}^{(\eta)}(t)}
+{r_{ij,\ell}(t)\,|J_{ij,\ell}(t)|}
++
+\sum_{(i,j,\ell)\in\mathcal{R}^{\mathrm{act}}}
+\lambda_{ij,\ell}(t)G_{ij,\ell}(t)
+\right]dt,
+$$
+where $\alpha_{ij}=\kappa\,\sigma_{ij}|q_iq_j|/c_f$, $w_{ij,\ell}^{(\eta)}$ carries the retained mollified branch weight and cutoff convention, and $\lambda_{ij,\ell}$ is a Lagrange multiplier for the causal-root constraint. Variation with respect to $\lambda_{ij,\ell}$ enforces $G_{ij,\ell}=0$. Variation with respect to the root variable gives the row equation
+$$
+0
+=
+\partial_{s_{ij,\ell}}
+\left[
+-
+\alpha_{ij}
+\frac{w_{ij,\ell}^{(\eta)}}{r_{ij,\ell}|J_{ij,\ell}|}
++
+\lambda_{ij,\ell}G_{ij,\ell}
+\right],
+$$
+provided the row has no explicit $\dot{s}_{ij,\ell}$ dependence after the chosen reduction. Variation with respect to the receiver position exposes the constraint contribution
+$$
+\delta_{\mathbf{x}_i}
+\int_W\lambda_{ij,\ell}G_{ij,\ell}\,dt
+=
+\int_W
+\lambda_{ij,\ell}(t)\,
+\hat{\mathbf r}_{ij,\ell}(t)\cdot\delta\mathbf{x}_i(t)\,dt.
+$$
+Thus the multiplier term is not a new substrate force. It is the finite-dimensional record of the work required to keep the retained branch row on the causal-root surface while the surrounding path history is varied. The unconstrained branch action is recovered only when these multiplier contributions are either solved into the same invariant action-level counterterm used above, converted into legitimate boundary wake-history terms, or shown to vanish in the branch-summed residual:
+$$
+\mathcal{R}_{\lambda,i}(W)
+\equiv
+\int_W
+\left\|
+\sum_{\ell:\,o_\ell=i}
+\lambda_\ell(t)\hat{\mathbf r}_\ell(t)
+-
+\sum_j\kappa\,\sigma_{ij}|q_iq_j|
+\mathbf{C}_{ij}^{(\eta)}(t)
+\right\|dt
+\longrightarrow0.
+$$
+Here $o_\ell$ denotes the receiver index of branch row $\ell$. This is the delayed-action analogue of ordinary holonomic constraint handling: one may solve constraints into generalized coordinates, or retain them with multipliers, but the multiplier ledger must not be hidden inside a claimed exact force law.
+
+**Noether history-functional balance target.** Let $S_{\mathfrak{B}}^{(\eta)}$ be a symmetry-preserving regularized action on a retained branch chart, and let a one-parameter transformation have infinitesimal generator $\boldsymbol{\xi}_i(t)$ on each worldline. If the action changes only by endpoint terms,
+$$
+\delta_{\xi}S_{\mathfrak{B}}^{(\eta)}
+=
+\left[
+B_{\xi}^{(\eta)}(t)
+\right]_{t_a}^{t_b}
+$$
+after the retained causal-root constraints, endpoint convention, and excluded self-coincidence convention are applied, then the corresponding history charge at a cut $t_\ast$ has the form
+$$
+Q_{\xi}^{(\eta)}(t_\ast)
+=
+\sum_i
+\mu_{\text{arch}}\mathbf{v}_i(t_\ast)\cdot\boldsymbol{\xi}_i(t_\ast)
++
+Q_{\xi,\mathrm{wake}}^{(\eta)}(t_\ast)
+-
+B_{\xi}^{(\eta)}(t_\ast).
+$$
+Its finite-window balance is
+$$
+\frac{dQ_{\xi}^{(\eta)}}{dt}
+=
+\sum_i
+\boldsymbol{\xi}_i(t)\cdot
+\mathbf{R}_i^{(\eta)}(t)
++
+\mathcal{B}_{\xi}^{(\eta)}(t),
+$$
+where $\mathbf{R}_i^{(\eta)}$ is the Euler residual of the same action and $\mathcal{B}_{\xi}^{(\eta)}$ collects leakage through finite memory endpoints, period cuts, omitted branch rows, and non-characteristic tail endpoints. Exact conservation follows only when both terms vanish. Time translation, spatial translation, and rotation are the special cases that produce energy, momentum, and angular momentum above. This is the delayed version of the standard symmetry-to-conservation statement, with the crucial difference that the conserved object is a particle-plus-wake history functional rather than an equal-time particle function.
+
 ---
 
 **End of Master Equation of Motion Document**

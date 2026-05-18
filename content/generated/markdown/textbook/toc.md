@@ -572,6 +572,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Fermi-Dirac Regime: 3D Exclusion](../../../markdown/aaa/quantum/quantum-statistics.md?section=Fermi-Dirac+Regime%3A+3D+Exclusion)
     - [Bose-Einstein Regime: 2D Coherence](../../../markdown/aaa/quantum/quantum-statistics.md?section=Bose-Einstein+Regime%3A+2D+Coherence)
     - [The 3D-to-2D Transition](../../../markdown/aaa/quantum/quantum-statistics.md?section=The+3D-to-2D+Transition)
+    - [Effective Exchange-State Contract](../../../markdown/aaa/quantum/quantum-statistics.md?section=Effective+Exchange-State+Contract)
     - [Interfaces](../../../markdown/aaa/quantum/quantum-statistics.md?section=Interfaces)
     - [Closure Targets](../../../markdown/aaa/quantum/quantum-statistics.md?section=Closure+Targets)
 - [Theory Bridges](../../../scenes/theory-bridges/theory_bridges.json)
