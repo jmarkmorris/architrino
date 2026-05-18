@@ -68,3 +68,7 @@ During the current core geometrical theory push, do not treat chapter coverage a
 | Phillip James Edwin Peebles, `10.1140--epjh--e2016-70034-0.pdf`, `Robert Dicke and the naissance of experimental gravity physics, 1957-1967` | May 18, 2026 |
 | Cormac O'Raifeartaigh, Brendan McCann, Werner Nahm, and Simon Mitton, `1402.0132.pdf`, `Einstein's steady-state theory: an abandoned model of the cosmos` | May 18, 2026 |
 | Justin Khoury, `1409.0012.pdf`, `An Alternative to Particle Dark Matter` | May 18, 2026 |
+| Lasha Berezhiani and Justin Khoury, `1506.07877.pdf`, `Dark Matter Superfluidity and Galactic Dynamics` | May 18, 2026 |
+| Lasha Berezhiani and Justin Khoury, `1507.01019.pdf`, `Theory of Dark Matter Superfluidity` | May 18, 2026 |
+| Justin Khoury, `1507.03013.pdf`, `A Dark Matter Superfluid` | May 18, 2026 |
+| Alexander Unzicker, `1510.0082v1.pdf`, `Robert Dicke's Momentous Error - A Comment on Rev.Mod.Phys. 29 (1957), p. 363` | May 18, 2026 |

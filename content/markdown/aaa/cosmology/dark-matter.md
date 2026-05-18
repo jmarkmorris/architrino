@@ -335,6 +335,84 @@ $$
 
 This residual is useful because it turns the cluster-versus-galaxy pressure into a falsifiable question. If the observed cluster temperature and lensing profiles require an $a_\star$ scale significantly above the galaxy radial-acceleration scale, that scale shift must be derived from environment-dependent Noether-Sea density, delay, stress, or neutral-assembly loading. If the same shift is inserted by hand, the branch has reproduced a comparison curve but not closed a native dark-sector mechanism.
 
+Berezhiani-Khoury superfluid dark matter sharpens the same comparison discipline. Its source-level claim is that one dark sector can be CDM-like in cosmology and clusters while producing a MOND-like galactic force through collective low-temperature behavior. In this chapter that signal is not an ontology import: the Noether Sea is not identified with a literal superfluid, and the comparison phonon is not added as a new $\mathbb{A}\mathbb{A}\mathbb{A}$ constituent. What survives is the environment split that any hybrid branch must explain from one shared medium-and-assembly record.
+
+For that comparison, introduce source-side observer coordinates for the effective condensate and normal fractions,
+
+$$
+\Theta_{\mathrm{cmp}}(E)
+\equiv
+\frac{T_{\mathrm{cmp}}(E)}{T_{c,\mathrm{cmp}}(E)},
+\qquad
+\zeta_{\mathrm{cond}}^{\mathrm{cmp}}(E)
+\leftrightarrow
+\max\!\left(0,1-\Theta_{\mathrm{cmp}}(E)^{3/2}\right),
+\qquad
+\zeta_{\mathrm{norm}}^{\mathrm{cmp}}(E)
+=
+1-\zeta_{\mathrm{cond}}^{\mathrm{cmp}}(E).
+$$
+
+Here $E$ is an observer-level environment class, such as spiral galaxies, pressure-supported dwarfs, clusters, or the cosmological background. The temperature ratio and fractions are comparison coordinates only. A native branch must instead derive their effective values from $\Pi_E\theta_{\mathrm{sea}}$, $\rho_A$, $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, and $\chi_{\text{sea}}(\mathbf{x},t)$:
+
+$$
+\zeta_{\mathrm{cond}}^{\mathrm{cmp}}(E)
+=
+Z_{\mathrm{cond}}\!\left(
+\Pi_E\theta_{\mathrm{sea}},
+\rho_A,
+\rho_{\text{core}}(\mathbf{x},t),
+n(\mathbf{x},t),
+\chi_{\text{sea}}(\mathbf{x},t)
+\right),
+\qquad
+\zeta_{\mathrm{norm}}^{\mathrm{cmp}}(E)
+=
+Z_{\mathrm{norm}}\!\left(
+\Pi_E\theta_{\mathrm{sea}},
+\rho_A,
+\rho_{\text{core}}(\mathbf{x},t),
+n(\mathbf{x},t),
+\chi_{\text{sea}}(\mathbf{x},t)
+\right).
+$$
+
+The comparison target is therefore not "make a superfluid." It is the stronger phase-environment closure: galaxy environments should project toward a large low-acceleration response coordinate, cluster environments should retain a substantial CDM-like or normal component, and the cosmological background should remain pressureless enough to preserve CMB loading and growth. The MOND-like part is fixed by the radial-acceleration relation and by the BTFR limit
+
+$$
+a_{\mathrm{obs}}(r)\simeq\sqrt{a_N(r)a_0^{\mathrm{MOND}}},
+\qquad
+v_c^4\simeq G_NM_ba_0^{\mathrm{MOND}}.
+$$
+
+A compact version of the closure residual is
+
+$$
+\begin{aligned}
+\mathcal{R}_{\mathrm{phase\ split}}(\theta_{\mathrm{sea}},\rho_A)
+=&
+\ d_{\mathrm{gal}}\!\left(
+D_{\mathrm{RAR/BTFR}}^{\mathrm{obs}},
+\mathcal{P}_{\mathrm{gal}}\!\left(\theta_{\mathrm{sea}},\rho_A,\zeta_{\mathrm{cond}}^{\mathrm{cmp}}\right)
+\right)
+\\
+&+
+d_{\mathrm{cos+cl}}\!\left(
+D_{\mathrm{cos+cl}}^{\mathrm{obs}},
+\mathcal{P}_{\mathrm{cos+cl}}\!\left(\theta_{\mathrm{sea}},\rho_A,\zeta_{\mathrm{norm}}^{\mathrm{cmp}}\right)
+\right)
+\\
+&+
+\mathcal{R}_{\mathrm{stable\ branch}}(\theta_{\mathrm{sea}})
++
+\lambda\,\mathcal{R}_{\mathrm{shared}}(\theta_{\mathrm{sea}}).
+\end{aligned}
+$$
+
+This residual records the Berezhiani-Khoury pressure in $\mathbb{A}\mathbb{A}\mathbb{A}$ terms. The same $\theta_{\mathrm{sea}}$ must pass the galaxy RAR/BTFR comparison, the cluster temperature/lensing comparison, and the cosmological CDM-like comparison. $\mathcal{R}_{\mathrm{stable\ branch}}$ is included because the source's MOND branch requires finite-temperature stabilization; the native analogue is that a low-acceleration Noether-Sea response branch must be dynamically stable, not only curve-fit successful.
+
+The source's observational signatures are retained as comparison hooks rather than canonized predictions. Substructure-lensing features associated with vortices, merger behavior controlled by an infall-speed versus sound-speed threshold, mixed cluster lensing peaks, and MOND-free globular clusters are useful only if the native branch supplies corresponding Noether-Sea or neutral-assembly variables. Without that native map, those signatures remain model-specific to the superfluid-DM comparison.
+
 ## Regime Map
 
 The hybrid baseline yields a unified regime architecture:
