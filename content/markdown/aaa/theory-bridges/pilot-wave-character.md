@@ -46,6 +46,28 @@ $Q$ depends on the global shape of $R$ (the amplitude of $\psi$), not on its loc
 
 If the initial particle distribution is $|\psi(\mathbf{Q}, t_0)|^2$ (the **quantum equilibrium hypothesis**), the guidance equation preserves this distribution for all future times ($|\psi|^2$-equivariance). All statistical predictions of standard QM—including the Born rule—follow as theorems, not axioms, once equilibrium is assumed.
 
+The lesson for $\mathbb{A}\mathbb{A}\mathbb{A}$ is structural rather than ontological. The useful part of the Bohmian comparison is not the separate pilot wave; it is the contract among a deterministic flow, an invariant or transported measure, and the observer-level record statistics. Let $\Phi_{t-t_0}$ denote the retained deterministic causal-wake flow on a resolved state space $\Gamma_{\eta,h}$ with mollifier scale $\eta$ and retained path-history depth $h$. If $\mu_0$ is the preparation measure, then
+$$
+\mu_t
+=
+(\Phi_{t-t_0})_*\mu_0
+$$
+is the only admissible source of outcome weights in the corresponding $\mathbb{A}\mathbb{A}\mathbb{A}$ channel. For an extracted effective wavefunction $\psi_{\mathrm{eff}}$ and a declared record-channel partition $\{B_k^\theta(t)\}$ of $\Gamma_{\eta,h}$, the Born comparison is therefore the residual
+$$
+\Delta_{\mathrm{Born}}^\theta(t)
+=
+\max_k
+\frac{
+\left|
+\mu_t(B_k^\theta(t))
+-
+\int_{\Omega_k^\theta(t)}
+|\psi_{\mathrm{eff}}(q,t)|^2\,dq
+\right|
+}{\varepsilon_k}.
+$$
+The closure target is $\Delta_{\mathrm{Born}}^\theta(t)\le1$ over the declared record window, with the same $\mu_t$ also generating the apparatus frequencies and thermodynamic summaries. This is the causal-wake analogue of equivariance: Born weights must be preserved or approached by the native deterministic state and basin map, not inserted as an observer-side probability rule.
+
 ### Ontological Inventory
 
 dBB theory has **two ontological categories**:

@@ -76,3 +76,11 @@ During the current core geometrical theory push, do not treat chapter coverage a
 | Ralph A. Alpher and Robert Herman, `162774b0.pdf`, `Evolution of the Universe` | May 18, 2026 |
 | Cormac O'Raifeartaigh, Michael O'Keeffe, Werner Nahm, and Simon Mitton, `1701.07261.pdf`, `Einstein's 1917 Static Model of the Universe: A Centennial Review` | May 18, 2026 |
 | Cormac O'Raifeartaigh, Michael O'Keeffe, Werner Nahm, and Simon Mitton, `1711.06890.pdf`, `One Hundred Years of the Cosmological Constant: from 'Superfluous Stunt' to Dark Energy` | May 18, 2026 |
+| Jean Bricmont and Sheldon Goldstein, `1804.03401.pdf`, `Diagnosing the Trouble With Quantum Mechanics` | May 18, 2026 |
+| Cormac O'Raifeartaigh and Simon Mitton, `1804.06768.pdf`, `Interrogating the legend of Einstein's "biggest blunder"` | May 18, 2026 |
+| Elisa G. M. Ferreira, Guilherme Franzmann, Justin Khoury, and Robert Brandenberger, `1810.09474.pdf`, `Unified Superfluid Dark Sector` | May 18, 2026 |
+| Roger Blandford, David Meier, and Anthony Readhead, `1812.06025.pdf`, `Relativistic Jets in Active Galactic Nuclei` | May 18, 2026 |
+| Lasha Berezhiani and Justin Khoury, `1812.09332.pdf`, `Emergent long-range interactions in Bose-Einstein Condensates` | May 18, 2026 |
+| Alexander Blum and Dieter Brill, `1905.05988v1.pdf`, `Tokyo Wheeler or the Epistemic Preconditions of the Renaissance of Relativity` | May 18, 2026 |
+| R. H. Dicke, P. J. E. Peebles, P. G. Roll, and D. T. Wilkinson, `1965ApJ___142__414D.pdf`, `Cosmic Black-Body Radiation` | May 18, 2026 |
+| A. A. Penzias and R. W. Wilson, `1965ApJ___142__419P.pdf`, `A Measurement of Excess Antenna Temperature at 4080 Mc/s` | May 18, 2026 |

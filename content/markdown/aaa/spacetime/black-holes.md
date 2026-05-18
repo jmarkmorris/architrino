@@ -619,6 +619,93 @@ $$
 
 where $\theta_j$ is the opening angle, $\eta_j$ is the observer-level jet-to-ambient density ratio, and $\mathcal{A}_{\mathrm{NS}}$ is the local Noether-Sea anisotropy and loading state mapped to effective magnetic-like collimation. In a black-hole branch, spin-powered extraction, disk-powered extraction, hot-corona loading, and supercritical accretion are comparison mechanisms until the native horizon-interface ledger shows which terms actually supply $\dot E_{\mathrm{out}}$ and $\dot{\mathbf{J}}_{\mathrm{out}}$. A model fails this selection packet if it produces a horizon recycling source but leaves the launch-speed scale, angular-momentum drain, or collimation angle unrelated to the same boundary data.
 
+AGN jets sharpen this packet because the same source class ties near-hole launching to large-scale environmental work. The observer-level review signal is not "spin alone makes a jet." Powerful radio jets appear to require a rotating compact object plus a strongly loaded disk or inflow state that can sustain large-scale ordered stress; lower-power or differently loaded systems may stay radio quiet, form weak steady jets, or degrade into plumes. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this becomes a release-channel selector rather than a new ontology. Let
+
+$$
+\Theta_{\mathrm{AGN}}(t)
+=
+\left(
+M,\mathbf{J},
+\dot M_{\mathrm{in}}(R_{\inf},t),
+\dot M_{\mathrm{acc}}(R_{\mathrm{launch}},t),
+\Phi_{\mathrm{eff}}^{\mathrm{obs}}(t),
+\mathcal{A}_{\mathrm{NS}}(R,t),
+\Sigma_{\mathrm{wind}}(R,t),
+\mathcal{B}_{H}(t)
+\right),
+$$
+
+where $R_{\inf}$ is the observer-level black-hole influence scale, $\Phi_{\mathrm{eff}}^{\mathrm{obs}}$ is the standard magnetic-flux comparison diagnostic rather than substrate field ontology, $\mathcal{A}_{\mathrm{NS}}$ is the mapped Noether-Sea anisotropy and loading state, and $\Sigma_{\mathrm{wind}}$ records disk-wind or sheath confinement. The local selector must then produce one channel record
+
+$$
+\Pi_{\mathrm{AGN}}[\Theta_{\mathrm{AGN}}]
+\mapsto
+\left(
+\dot E_j,\dot{\mathbf{P}}_j,\dot{\mathbf{J}}_j,
+\Gamma_j,\theta_j,
+\sigma_j(R),
+f_p(R),
+R_{\mathrm{ACZ}},
+R_{\mathrm{diss}},
+\mathcal{H}_{\mathrm{shock}},
+\mathcal{S}_{\mathrm{rad}},
+\mathcal{F}_{\mathrm{fb}}
+\right).
+$$
+
+Here $\Gamma_j$ is the observer-level bulk Lorentz factor, $\sigma_j$ is the observer-level magnetization comparison ratio, $f_p$ is the proton or baryon loading fraction, $R_{\mathrm{ACZ}}$ is the acceleration-and-collimation-zone scale, $R_{\mathrm{diss}}$ is the main dissipation radius or family of radii, $\mathcal{H}_{\mathrm{shock}}$ records recollimation shocks, hot spots, bow shocks, and Mach-disk-like structures, $\mathcal{S}_{\mathrm{rad}}$ records the synchrotron, Compton, hadronic, pair-cascade, cosmic-ray, and neutrino channels retained by the comparison, and $\mathcal{F}_{\mathrm{fb}}$ records environmental heating, cavity, cocoon, bubble, and duty-cycle effects. The native burden is that these outputs come from one horizon-interface, disk-interface, wind, and Noether-Sea loading record, not from separate fitted stories for launch, radio emission, gamma emission, and galaxy feedback.
+
+A compact AGN-jet residual can therefore be written as
+
+$$
+\begin{aligned}
+\mathcal{R}_{\mathrm{AGN\,jet}}(\theta)
+=&
+w_{\mathrm{launch}}\,
+d_{\mathrm{launch}}\!\left[
+\Pi_{\mathrm{AGN}}(\Theta_{\mathrm{AGN}}),
+\left(M,\mathbf{J},\dot M_{\mathrm{in}},\Phi_{\mathrm{eff}}^{\mathrm{obs}},\mathcal{A}_{\mathrm{NS}}\right)
+\right]
+\\
+&+
+w_{\mathrm{coll}}\,
+d_{\mathrm{coll}}\!\left(
+\theta_j,\frac{R_{\mathrm{ACZ}}}{R_{\inf}},\Sigma_{\mathrm{wind}},\mathcal{A}_{\mathrm{NS}}
+\right)
+\\
+&+
+w_{\mathrm{load}}\,
+d_{\mathrm{load}}\!\left(
+\sigma_j(R),f_p(R),\Gamma_j,\eta_j
+\right)
+\\
+&+
+w_{\mathrm{shock}}\,
+d_{\mathrm{shock}}\!\left(
+\mathcal{H}_{\mathrm{shock}},
+\{\text{recollimation},\text{hot spot},\text{bow/Mach structure}\}
+\right)
+\\
+&+
+w_{\mathrm{rad}}\,
+d_{\mathrm{rad}}\!\left(
+\mathcal{S}_{\mathrm{rad}},
+\{\text{radio},\text{X-ray},\gamma,\nu,E_{p,\max}\}
+\right)
+\\
+&+
+w_{\mathrm{fb}}\,
+d_{\mathrm{fb}}\!\left(
+\mathcal{F}_{\mathrm{fb}},
+\{T_{\mathrm{engine}},T_{\mathrm{rad}},D_{\mathrm{duty}},E_{\mathrm{cocoon}},E_{\mathrm{bubble}}\}
+\right).
+\end{aligned}
+$$
+
+The pass condition $\mathcal{R}_{\mathrm{AGN\,jet}}(\theta)\le\epsilon_{\mathrm{AGN\,jet}}$ is a benchmark on release-channel closure. It captures six source signals at once. First, black-hole spin is necessary-looking but insufficient unless the disk, inflow, and surrounding Noether-Sea loading sustain the ordered stress needed for launch. Second, collimation over radii from near $R_{\mathrm{launch}}$ toward $R_{\inf}$ must be attributed either to disk wind, sheath, gas pressure, or the mapped anisotropy state $\mathcal{A}_{\mathrm{NS}}$, not to an unspecified funnel. Third, high-power jets may become proton-dominated or baryon-loaded enough that $f_p$ controls cosmic-ray, neutrino, and hadronic cascade channels. Fourth, FR-I and FR-II behavior must be separated by the same propagation record: weak or disrupted jets dissipate near the black-hole/galaxy transition and become plumes or bubbles, while powerful jets keep relativistic kinetic power to terminal hot spots. Fifth, shocks, reconnection-like comparison regions, pair production, and pair cascades are radiation-channel benchmarks, not independent sources of free energy. Sixth, source age and environment matter: a jet engine, lobe, cocoon, and duty cycle must all close the same energy, momentum, angular-momentum, provenance, and medium-update ledger.
+
+This residual also states a useful failure mode. A model that matches a near-hole jet image but cannot account for hot spots, lobes, cosmic-ray or neutrino limits, and environmental heating has not closed the AGN release channel. Conversely, a model that fits large radio lobes while leaving launch selection unrelated to spin, accretion, wind/sheath confinement, and $\mathcal{A}_{\mathrm{NS}}$ has only fit the downstream plume. The whole point of the AGN packet is to force the release selector to connect the black-hole branch, disk-interface branch, propagation branch, radiation branch, and feedback branch with one declared state record.
+
 ## Relation to Dark Energy and Expansion History
 
 The black-hole chapter does not identify dark energy with black holes by definition. The baseline dark-energy mechanism in $\mathbb{A}\mathbb{A}\mathbb{A}$ remains Noether-Sea medium relaxation, as developed in [../cosmology/dark-energy.md](../cosmology/dark-energy.md). Black holes enter that story only if strong-field recycling makes a measurable contribution to the slowly varying outer-binary tension sector.
@@ -687,6 +774,8 @@ The black-hole program in $\mathbb{A}\mathbb{A}\mathbb{A}$ earns credibility onl
 - **Population coupling test:** any claimed cosmological black-hole coupling must survive hidden-accretion and merger-systematics analysis and fit consistently with the late-time expansion history.
 - **History accounting:** any black-hole source term must be compatible with plausible compact-object formation and feeding histories; one cannot simply posit a present-day population effect while ignoring the route by which the population was produced.
 - **Release-channel discrimination:** if jets, diffuse outflows, and dark-sector release are all allowed in principle, the framework must eventually state which environments prefer which channels and what observer-level signatures distinguish them.
+- **AGN jet closure:** for supermassive systems, the same release selector must connect spin, disk/inflow loading, observer-level magnetic-flux diagnostics, disk-wind or sheath confinement, jet composition, collimation scale, shocks or hot spots, radiation channels, cosmic-ray/neutrino bounds, and environmental work.
+- **Source-age dependence:** engine lifetime, lobe radiative lifetime, duty cycle, FR-I/FR-II morphology, and high-redshift source abundance must enter the source accounting as history variables rather than as static labels.
 - **No free energy:** recycling cannot function as perpetual creation. Any outward channel must be accounted for as redistribution from infalling matter, radiation, or pre-existing medium energy.
 - **Cross-module closure:** the same strong-field constitutive map must remain compatible with [../cosmology/dark-energy.md](../cosmology/dark-energy.md), [../cosmology/CMB.md](../cosmology/CMB.md), and [../cosmology/dark-matter.md](../cosmology/dark-matter.md).
 

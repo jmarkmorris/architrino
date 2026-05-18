@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1194
+      "sections": 1195
     }
   },
   "tocRoot": {
@@ -10275,6 +10275,14 @@
                 "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
                 "markdownSection": "Renormalization Era: Warnings Reframed",
                 "sectionKey": "renormalization era warnings reframed",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Wheeler's Tokyo Program: Particles, Fields, and Direct Action",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Wheeler's Tokyo Program: Particles, Fields, and Direct Action",
+                "sectionKey": "wheeler s tokyo program particles fields and direct action",
                 "headingLevel": 2
               },
               {

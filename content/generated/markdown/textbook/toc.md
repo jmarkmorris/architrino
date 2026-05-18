@@ -1254,6 +1254,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Einstein's 1917 Static World: Closure Before Validation](../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md?section=Einstein%27s+1917+Static+World%3A+Closure+Before+Validation)
     - [Copenhagen: Multistability Lost to Epistemic Minimalism](../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md?section=Copenhagen%3A+Multistability+Lost+to+Epistemic+Minimalism)
     - [Renormalization Era: Warnings Reframed](../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md?section=Renormalization+Era%3A+Warnings+Reframed)
+    - [Wheeler's Tokyo Program: Particles, Fields, and Direct Action](../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md?section=Wheeler%27s+Tokyo+Program%3A+Particles%2C+Fields%2C+and+Direct+Action)
     - [Einstein's Abandoned Steady-State Cosmology](../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md?section=Einstein%27s+Abandoned+Steady-State+Cosmology)
     - [Precision Cosmology: Parameters into Story](../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md?section=Precision+Cosmology%3A+Parameters+into+Story)
     - [Recurrent Narrative Filters](../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md?section=Recurrent+Narrative+Filters)

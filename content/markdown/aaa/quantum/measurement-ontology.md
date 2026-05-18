@@ -607,17 +607,34 @@ Thus "collapse" is not an extra physical law. It is the observer's forced update
 
 Different measurement types correspond to different apparatus couplings, but the ontology is the same.
 
+The channel definition must say what the apparatus actively does, not merely name the standard observable. For a declared apparatus kernel $\mathcal{K}_A$, let
+$$
+\pi_{\mathcal{K}_A}:
+\Gamma_{\mathrm{tot}}
+\longrightarrow
+\mathcal{R}_{\mathcal{K}_A}
+$$
+be the record map from the coupled target-apparatus-environment state to the retained record classes. A claimed observable label $O$ is admissible in this chapter only after it has been represented by a family of record basins
+$$
+B_k^{O,\mathcal{K}_A}
+=
+\pi_{\mathcal{K}_A}^{-1}(R_k)
+\cap
+\{\mathbf{1}_{\mathrm{rec}}(k;\theta)=1\}.
+$$
+This condition keeps the Bricmont-Goldstein/Bohmian warning in native form: a channel may reveal a position-like record, but spin-, momentum-, phase-, and energy-like labels are often apparatus-defined outcomes of an interaction. They need not be primitive properties carried unchanged into the apparatus. The deterministic substrate may still contain velocities, angular-momentum ledgers, phases, and causal-wake histories; the measurement claim is narrower, namely that the chosen apparatus kernel maps the coupled flow into a persistent record with the advertised observer-level statistics.
+
 ### Position-like measurements
 
 The apparatus couples to spatial localization or arrival geometry. The record is a site-selective apparatus response such as a screen hit or detector cell trigger.
 
 ### Momentum- or phase-like measurements
 
-The apparatus couples to a resonance band, interference geometry, or transport mode. The record is a stable branch in the apparatus-sensitive phase channel.
+The apparatus couples to a resonance band, interference geometry, transport mode, or late-time arrival geometry. The record is a stable branch in the apparatus-sensitive phase channel. A time-of-flight or far-field momentum record, for example, is a record of the later apparatus position or transport branch calibrated back to a momentum variable; it is not automatically a direct reading of the target's initial substrate velocity.
 
 ### Spin / discrete-outcome measurements
 
-The apparatus couples to a discrete assembly orientation or topological branch. The record is a branch-specific amplification, for example one of two detector channels.
+The apparatus couples to a discrete assembly orientation, angular-momentum response channel, or topological branch. The record is a branch-specific amplification, for example one of two detector channels.
 
 In this language, "spin up" and "spin down" are not tiny literal arrows hidden inside the particle. They are the two stable branch labels selected by the apparatus relative to its chosen measurement axis.
 

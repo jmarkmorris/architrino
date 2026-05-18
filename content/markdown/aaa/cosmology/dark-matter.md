@@ -411,6 +411,126 @@ $$
 
 This residual records the Berezhiani-Khoury pressure in $\mathbb{A}\mathbb{A}\mathbb{A}$ terms. The same $\theta_{\mathrm{sea}}$ must pass the galaxy RAR/BTFR comparison, the cluster temperature/lensing comparison, and the cosmological CDM-like comparison. $\mathcal{R}_{\mathrm{stable\ branch}}$ is included because the source's MOND branch requires finite-temperature stabilization; the native analogue is that a low-acceleration Noether-Sea response branch must be dynamically stable, not only curve-fit successful.
 
+Ferreira-Franzmann-Khoury-Brandenberger unified-superfluid dark-sector models add a sharper comparison target: late-time acceleration can be driven by the same dark substance if that substance has two distinguishable states whose relative phase is coupled by a Josephson/Rabi interaction. In this chapter that is comparison language, not substrate ontology. The Noether Sea is not identified with a literal superfluid, and the phase variables are not introduced as new $\mathbb{A}\mathbb{A}\mathbb{A}$ constituents. What survives is a one-record discipline: the same dark-sector state must carry CDM-like loading, state conversion, late-time acceleration, and the growth history.
+
+Introduce comparison coordinates for two dark-sector populations,
+
+$$
+\eta_1^{\mathrm{cmp}}+\eta_2^{\mathrm{cmp}}=1,
+\qquad
+\varphi_{\mathrm{rel}}^{\mathrm{cmp}}(t)
+=
+\varphi_2^{\mathrm{cmp}}-\varphi_1^{\mathrm{cmp}}+\Delta E\,t,
+$$
+
+and the source-side phase-coupling potential
+
+$$
+V_J^{\mathrm{cmp}}(t)
+=
+M_J^4
+\cos^2\!\left(
+\frac{\varphi_{\mathrm{rel}}^{\mathrm{cmp}}(t)}{2f_J}
+\right).
+$$
+
+The native branch must derive these comparison coordinates from a medium-and-assembly projection, not fit them independently:
+
+$$
+\left(
+\eta_1^{\mathrm{cmp}},
+\eta_2^{\mathrm{cmp}},
+\varphi_{\mathrm{rel}}^{\mathrm{cmp}},
+M_J,
+\Delta E,
+f_J
+\right)
+=
+\mathcal{J}_{\mathrm{dark}}\!\left(
+\Pi_{\mathrm{cos}}\theta_{\mathrm{sea}},
+\rho_A,
+\rho_{\text{core}}(\mathbf{x},t),
+n(\mathbf{x},t),
+\chi_{\text{sea}}(\mathbf{x},t)
+\right).
+$$
+
+The conversion discipline can be recorded in source-term form,
+
+$$
+\dot N_1+3H_{\mathrm{eff}}^\theta N_1
+=
+-Q_J^\theta,
+\qquad
+\dot N_2+3H_{\mathrm{eff}}^\theta N_2
+=
+Q_J^\theta,
+\qquad
+Q_J^\theta
+\sim
+\Delta E\,\partial_{\varphi_{\mathrm{rel}}}V_J^{\mathrm{cmp}},
+$$
+
+so that the total dark-sector count $N_1+N_2$ is conserved while the relative population can evolve. The comparison background equation then becomes
+
+$$
+2\dot H_{\mathrm{eff}}^\theta
++3\left(H_{\mathrm{eff}}^\theta\right)^2
+\simeq
+\frac{V_J^{\mathrm{cmp}}(t)}{M_{\mathrm{Pl}}^2},
+$$
+
+as a source-side benchmark for late-time acceleration without adding an independent dark-energy fluid. A native $\mathbb{A}\mathbb{A}\mathbb{A}$ branch may pass this benchmark only if the right-hand side is reconstructed from $\theta_{\mathrm{sea}}$ and $\rho_A$ through $\mathcal{J}_{\mathrm{dark}}$.
+
+The same source also supplies a perturbation-discipline lesson. Unified dark-sector models often fail when the component that imitates dark energy develops too large an adiabatic sound speed and corrupts the matter power spectrum. The comparison therefore imposes the linear pressurelessness condition
+
+$$
+c_{s,\mathrm{lin}}^{2,\theta}(a,k)
+\ll
+1
+$$
+
+over the CMB and large-scale-structure regime, while allowing nonlinear galaxy-scale medium response to depart from pressureless CDM. Growth must be tested with both the growth factor $D(z)$ and the growth rate
+
+$$
+f_{\mathrm{grow}}(z)
+\equiv
+\frac{d\ln D}{d\ln a}
+=
+-\frac{d\ln D}{d\ln(1+z)}.
+$$
+
+The paper's numerical examples show why this matters: the background history and growth factor can remain close to $\Lambda\mathrm{CDM}$ while the late-time growth rate deviates more strongly. The $\mathbb{A}\mathbb{A}\mathbb{A}$ residual should therefore not stop at an $H(z)$ fit:
+
+$$
+\begin{aligned}
+\mathcal{R}_{\mathrm{2state}}(\theta_{\mathrm{sea}},\rho_A)
+=&
+\ d_H\!\left(
+2\dot H_{\mathrm{eff}}^\theta
++3\left(H_{\mathrm{eff}}^\theta\right)^2,
+\frac{V_J^{\mathrm{cmp}}}{M_{\mathrm{Pl}}^2}
+\right)
+\\
+&+
+d_Q\!\left(
+\dot N_1+3H_{\mathrm{eff}}^\theta N_1+Q_J^\theta,
+\dot N_2+3H_{\mathrm{eff}}^\theta N_2-Q_J^\theta
+\right)
+\\
+&+
+d_c\!\left(c_{s,\mathrm{lin}}^{2,\theta},c_{s,\max}^2\right)
++
+d_D\!\left(D^\theta,D^{\mathrm{obs}}\right)
++
+d_f\!\left(f_{\mathrm{grow}}^\theta,f_{\mathrm{grow}}^{\mathrm{obs}}\right)
++
+\lambda\,\mathcal{R}_{\mathrm{shared}}(\theta_{\mathrm{sea}}).
+\end{aligned}
+$$
+
+This residual is the safe promoted signal from the two-state dark-sector comparison. It tests whether one shared Noether-Sea and neutral-assembly record can supply effective acceleration, conserve the total dark-sector count while allowing internal conversion, keep the linear sound speed low, and reproduce growth observations without assigning separate medium histories to dark matter and dark energy.
+
 The source's observational signatures are retained as comparison hooks rather than canonized predictions. Substructure-lensing features associated with vortices, merger behavior controlled by an infall-speed versus sound-speed threshold, mixed cluster lensing peaks, and MOND-free globular clusters are useful only if the native branch supplies corresponding Noether-Sea or neutral-assembly variables. Without that native map, those signatures remain model-specific to the superfluid-DM comparison.
 
 ## Regime Map
