@@ -20,13 +20,6 @@
 - what does it mean to exchange color?
     - is this weak personality charges exchanging in a gluon vortex?
 
-### David Tong
-- should be able to get a lot of mappings.  focus on the mappings.
-- this might be a good candidate cut and paste the text or an image and adding text and highlight on the screen.
-- Depends if blogging or vlogging.  Need to do both eventually.
-- this could be cool since he writes so well apparently
-- I can also leverage his tables of contents for new ideas to vlog or blog about.
-
 ### the CMB
 - see anton’s video talking about the cmb
     - clearly says cmb is from quantum fluctuations
