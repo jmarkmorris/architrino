@@ -116,6 +116,81 @@ s_I,s_M,s_O;\,
 \right)_q.
 $$
 
+The moving-branch extraction starts with a primitive drift band
+$$
+\mathcal{D}_{\beta}=\{\,0\le v/c_f\le\beta_{\max}<1\,\}.
+$$
+All causal roots in the branch ledger are solved with $c_f$. A dressed observer-channel speed is declared only after the branch exists:
+$$
+c_\star=c_f
+\quad\text{for primitive branch charts},
+\qquad
+c_\star=c_{\text{eff}}(\mathbf{x},t)
+\quad\text{for Noether-Sea dressed clock/ruler closure},
+$$
+with $c_\star=c_\gamma(\mathbf{x},t)$ reserved for photon synchronization. The corresponding observer-channel variables are
+$$
+\beta_\star=\frac{v}{c_\star},
+\qquad
+\gamma_\star(v)=\frac{1}{\sqrt{1-\beta_\star^2}}.
+$$
+
+For the same admitted branch $q$, extract semiaxes from the cycle-averaged tri-binary shape tensor
+$$
+Q_{ab}^{(q)}(v)
+=
+\frac{1}{M_q}
+\left\langle
+\sum_i m_i\,r_{i,a}r_{i,b}
+\right\rangle_{\mathrm{cyc},q},
+\qquad
+M_q=\sum_i m_i.
+$$
+With drift direction $\hat{\mathbf e}_{\parallel}$ and transverse projector $P_{\perp}^{ab}=\delta^{ab}-\hat e_{\parallel}^{a}\hat e_{\parallel}^{b}$,
+$$
+a_{\parallel,q}(v)
+=
+\sqrt{\hat e_{\parallel}^{a}Q_{ab}^{(q)}(v)\hat e_{\parallel}^{b}},
+\qquad
+a_{\perp,q}(v)
+=
+\sqrt{\frac{1}{2}P_{\perp}^{ab}Q_{ab}^{(q)}(v)}.
+$$
+The clock period must be extracted from a declared layer or composite phase on that same branch ledger:
+$$
+T_q(v)
+=
+\frac{2\pi}{\langle\dot{\theta}_{\mathrm{clk},q}\rangle_{\mathrm{cyc}}},
+\qquad
+T_0=T_q(0).
+$$
+
+The dynamics-side Lorentz residuals are
+$$
+R_{\parallel}^{(q)}(v)
+\equiv
+\frac{a_{\parallel,q}(v)}{a_{\perp,q}(v)}
+-
+\frac{1}{\gamma_\star(v)},
+\qquad
+R_T^{(q)}(v)
+\equiv
+\frac{T_q(v)}{T_0}
+-
+\gamma_\star(v).
+$$
+Moving tri-binary contraction and clock retuning are accepted only as theorem targets when, for every retained drift speed,
+$$
+\left|R_{\parallel}^{(q)}(v)\right|
+\le
+C_{\parallel}\epsilon_{\mathrm{LV}}\beta_\star^2,
+\qquad
+\left|R_T^{(q)}(v)\right|
+\le
+C_T\epsilon_{\mathrm{LV}}\beta_\star^2.
+$$
+Preferred-frame leakage then has to be reported as branch-sourced terms, for example $\Delta_{\mathrm{tw,PF}}^{(q)}$, orientation sidebands in $R_{\parallel}^{(q)}$, or clock sidebands in $R_T^{(q)}$. This extraction fails if the branch loses a Jacobian floor, an inactive-root gap, finite memory depth, or stability margin; if a separator crossing is treated as smooth drift; if $c_f$ is reused as $c_\star$ without a dressing map; or if weak-field PPN coefficients are tuned to hide a moving-assembly residual.
+
 A one-$h$ closed-cycle action transaction is a candidate map between stable branch states,
 $$
 B_q(v)\longrightarrow B_{q'}(v+\Delta v),
@@ -1516,6 +1591,47 @@ with the mechanical increments already written above. Therefore a terminal branc
 
 The Master Equation now fixes the normalized delayed-interior kernel and its energy, momentum, and angular-momentum wake-history boundary increments. The terminal-alignment proof therefore no longer needs to invent the Noether terms; it must pull those increments back to the finite terminal branch chart, evaluate the resulting $\Delta E_b^{\mathrm{wake}}$, $\Delta\mathbf{p}_b^{\mathrm{wake}}$, and $\Delta\mathbf{J}_b^{\mathrm{wake}}$, and prove that the mechanical plus wake ledger closes on the same rows that pass the force-residual and root-ledger tests. Until that branch-summed evaluation passes, the terminal rows remain a diagnostic action packet rather than a solved terminal $(m,n)$ selection.
 
+The concrete terminal-chart conservation test is the pullback of the Master Equation charges to $\mathcal{B}_{\mathrm{term}}(\lambda)$. Each retained row must emit
+$$
+\left(
+j_b,o_b,\tau_b,\ell(j_b),\ell(o_b),t_{0,b},t_b,\Delta_b,
+r_b,\hat{\mathbf r}_b,g_b,u_b,J_b,
+K_{b,\mathrm{eff}}^{(\eta)},
+\partial_{t_b}\mathcal{K}_{b,\mathrm{eff}}^{(\eta)},
+\nabla_{\mathbf{x}_{o_b}(t_b)}\mathcal{K}_{b,\mathrm{eff}}^{(\eta)}
+\right),
+$$
+using the action-level causal scalar
+$$
+g_b(t_b,t_{0,b})
+=
+t_b-t_{0,b}
+-
+\frac{r_b(t_b,t_{0,b})}{c_f}.
+$$
+The chart then reports the endpoint totals
+$$
+\mathcal{E}_{\mathrm{term}}^{(\eta)}
+=
+K_{\mu,\lambda}
++
+E_{\mathrm{wake,eff},\lambda}^{(\eta)},
+\qquad
+\boldsymbol{\mathcal{P}}_{\mathrm{term}}^{(\eta)}
+=
+\mathbf{P}_{\mathrm{mech},\lambda}
++
+\mathbf{P}_{\mathrm{wake,eff},\lambda}^{(\eta)},
+$$
+$$
+\boldsymbol{\mathcal{J}}_{\mathrm{term}}^{(\eta)}
+=
+\mathbf{J}_{\mathrm{mech},\lambda}
++
+\mathbf{J}_{\mathrm{wake,eff},\lambda}^{(\eta)}.
+$$
+The terminal label is conserved only when the increments of all three totals vanish within the declared branch tolerance, after subtracting the Euler-residual and endpoint-leakage terms. The projected action increment $\Delta I_{\mathrm{ME}}$ and any torque integral remain numerical diagnostics until these three totals close on the same $\mathcal{B}_{\mathrm{term}}(\lambda)$ rows.
+
 This scaffold identifies the smallest missing dynamics. The delayed equations must enumerate $\Lambda_{\theta}^{\mathrm{loc}}$ and derive the edge maps $\mathcal{E}_{\nu}^{\pm}$ from the terminal aligned branch. [Dyadic Resonance Lock](dyadic-resonance-lock.md) supplies the candidate integer phase lattice, and [Binary Dynamics](binary-dynamics.md#self-hit-definition-and-diagnostics) supplies the self-hit and partner-hit root vocabulary, but neither document yet computes the terminal aligned edge projections from the full three-layer dynamics.
 
 The local-horizon coefficient requires the area-normalized terminal density
@@ -1584,7 +1700,7 @@ $$
 $$
 with transverse radius $R_\perp$ and longitudinal radius $R_\parallel$.
 
-Adopt a kinematic contraction law (to be validated by dynamics):
+Use the kinematic contraction law as a theorem target to be derived from branch dynamics:
 $$
 \beta_\star = \frac{v_{\text{trans}}}{c_\star}, \quad \gamma_\star = \frac{1}{\sqrt{1-\beta_\star^2}}, \quad R_\parallel = \frac{R_\perp}{\gamma_\star}.
 $$
@@ -1593,7 +1709,7 @@ As $\beta_\star \to 1$, $R_\parallel \to 0$ and the envelope collapses toward a 
 $$
 c_\star^2 = v_{\text{trans}}^2 + v_\parallel^2 \quad \Rightarrow \quad v_\parallel = c_\star\sqrt{1-\beta_\star^2}.
 $$
-Mapping causal speed to closure length gives $R_\parallel = R_\perp (v_\parallel/c_\star) = R_\perp\sqrt{1-\beta_\star^2} = R_\perp/\gamma_\star$, recovering the ellipsoid law from the triangle geometry.
+Mapping causal speed to closure length gives $R_\parallel = R_\perp (v_\parallel/c_\star) = R_\perp\sqrt{1-\beta_\star^2} = R_\perp/\gamma_\star$, which is the triangle form of the ellipsoid theorem target rather than a completed recovery.
 
 **Impact on delay locking:** The round-trip delay $\Delta t_{\text{rt}}$ is the time between an outer-binary architrino’s emission and the moment its wake returns to influence that same architrino, approximating the inner+middle as a compact core at the center. For a ray at polar angle $\theta$ relative to the $z$-axis, the intersection radius with the ellipsoid is
 $$

@@ -1586,26 +1586,83 @@ J^\star = 1-\beta^\star \cos\xi^\star = 0.
 $$
 So each new circular self branch is born directly on a Jacobian-null boundary: branch creation and null-separatrix contact are the same event in the uniform circular toy model.
 
-For large winding index, the tangency points lie near the poles of $\tan\xi$, so if
-$$
-\xi_m^\star \in \left(\left(m+\frac{1}{2}\right)\pi-\varepsilon,\ \left(m+\frac{1}{2}\right)\pi\right),
-$$
-then
-$$
-\xi_m^\star
-=
-\left(m+\frac{1}{2}\right)\pi + O\!\left(\frac{1}{m}\right),
-\qquad
-\beta_m^\star
-=
-\left(m+\frac{1}{2}\right)\pi + O\!\left(\frac{1}{m}\right).
-$$
-Consequently the number of admissible self branches below speed $\beta$ grows only linearly:
-$$
-N_{\text{self}}(\beta)=\frac{\beta}{\pi}+O(1),
-\qquad \beta\to\infty.
-$$
-This branch-count law is enough to control the combinatorics of the circular self-hit sum even before one has a full closed-form force series.
+> **Theorem Target (Signed higher-winding circular branch birth).**
+> The circular distance equation should be read branchwise as
+> $$
+> g_{\beta,s}(\xi)\equiv s\sin\xi-\frac{\xi}{\beta}=0,
+> \qquad
+> s=\operatorname{sign}(\sin\xi)\in\{+1,-1\}.
+> $$
+> For each higher half-winding $n\ge 1$, set
+> $$
+> I_n=\left(n\pi,\left(n+\frac{1}{2}\right)\pi\right),
+> \qquad
+> s_n=(-1)^n,
+> $$
+> and let $\xi_n^\star\in I_n$ be the unique positive solution of
+> $$
+> \tan\xi_n^\star=\xi_n^\star.
+> $$
+> The signed branch-birth speed is
+> $$
+> \beta_n^\star
+> =
+> s_n\sec\xi_n^\star
+> =
+> |\sec\xi_n^\star|
+> =
+> \sqrt{1+(\xi_n^\star)^2}.
+> $$
+> If
+> $$
+> a_n=\left(n+\frac{1}{2}\right)\pi,
+> $$
+> then
+> $$
+> \xi_n^\star=a_n-\frac{1}{a_n}+O(a_n^{-3}),
+> \qquad
+> \beta_n^\star=a_n-\frac{1}{2a_n}+O(a_n^{-3}).
+> $$
+> For $\beta=\beta_n^\star+\mu$ with $0<\mu\ll 1$, the two newly active roots satisfy
+> $$
+> \xi_{n,\pm}(\beta)
+> =
+> \xi_n^\star
+> \pm
+> \sqrt{\frac{2\mu}{\beta_n^\star}}
+> +O(\mu),
+> $$
+> and their force-law Jacobians have opposite signs:
+> $$
+> J_{n,\pm}
+> =
+> 1-\beta s_n\cos\xi_{n,\pm}
+> =
+> \pm\,\xi_n^\star
+> \sqrt{\frac{2\mu}{\beta_n^\star}}
+> +O(\mu).
+> $$
+> Thus a higher-winding fold creates a signed root pair on a Jacobian-null boundary. Since $r_{n,\pm}\to 2R\xi_n^\star/\beta_n^\star\neq0$, the master-equation force-law weight scales as
+> $$
+> \frac{1}{r_{n,\pm}^2|J_{n,\pm}|}
+> =
+> O(\mu^{-1/2}).
+> $$
+> The causal-action coarea weight is a separate collapse factor:
+> $$
+> g_{\beta,s_n}'(\xi_{n,\pm})
+> =
+> s_n\cos\xi_{n,\pm}-\frac{1}{\beta}
+> =
+> -\frac{J_{n,\pm}}{\beta},
+> $$
+> so the action-counting density carries an additional $|g_{\beta,s_n}'|^{-1}$ and scales as $O(\mu^{-1})$ at fixed nonzero $r_n^\star$. The coarea factor does not replace the force-law Jacobian weight; it is an additional measure factor from collapsing the causal-action integral onto the circular causal roots.
+>
+> Consequently the circular self-hit combinatorics remain linearly bounded in $\beta$. A one-sign subchart has
+> $$
+> N_{\text{self}}^{(+)}(\beta)=\frac{\beta}{\pi}+O(1),
+> $$
+> while the full signed $|\sin\xi|$ chart has the same no-proliferation form with the convention-dependent leading constant.
 
 > **Benchmark Proposition (Circular branch-count bound).**
 > In the symmetric circular benchmark, if the speed ratio obeys
@@ -1653,6 +1710,87 @@ This is the right playground to:
 - Derive a condition for equilibrium between self‑repulsion and an imposed centripetal requirement,
 - Define $R_\text{min}(v)$ and in particular the extremal radius / speed.
 
+The same circular chart also gives a branchwise force decomposition. On the positive-sine self-hit subchart, every active root satisfies
+$$
+\sin\xi=\frac{\xi}{\beta},
+\qquad
+r=2R\sin\xi=2R\frac{\xi}{\beta},
+\qquad
+J=1-\beta\cos\xi=1-\xi\cot\xi.
+$$
+Resolving the line-of-action direction into the instantaneous circular frame gives
+$$
+\hat{\mathbf{r}}(\xi)=\sin\xi\,\mathbf{e}_r+\cos\xi\,\mathbf{e}_\theta.
+$$
+With
+$$
+C=\frac{\kappa q^2}{4R^2},
+$$
+the branchwise self-hit projections are therefore
+$$
+a_r(\xi)=C\,\frac{\beta}{\xi |J|},
+\qquad
+a_\theta(\xi)=C\,\frac{\beta^2\cos\xi}{\xi^2 |J|}.
+$$
+Thus the radial projection is outward on every active self root, while the tangential projection is controlled entirely by the sign of $\cos\xi$.
+
+The branch sheets have the following one-sign structure:
+
+| Sheet | Root status for $\sin\xi=\xi/\beta$ | Radial projection | Tangential projection |
+| --- | --- | --- | --- |
+| Negative sine lobes | No roots, because $\xi/\beta>0$ | Inactive | Inactive |
+| First positive lobe | One nonzero root for $\beta>1$ | Outward | Forward for $\cos\xi>0$, backward for $\cos\xi<0$ |
+| Higher positive left sheets | One root after birth from a Jacobian-null fold | Outward | Forward |
+| Higher positive right sheets | Paired root after the same birth | Outward | Backward |
+
+For large $\beta$, away from arbitrarily small Jacobian-null birth windows, the signed circular self-hit sums obey
+$$
+A_r(\beta)=\sum_{\xi_n}a_r(\xi_n)
+=
+\frac{C}{\pi}\log\beta+O(C),
+$$
+and
+$$
+A_\theta(\beta)=\sum_{\xi_n}a_\theta(\xi_n)
+=
+-\frac{C\beta}{12}+O(C\log\beta).
+$$
+The corresponding absolute tangential activity is
+$$
+\sum_{\xi_n}|a_\theta(\xi_n)|
+=
+\frac{C\beta}{6}+O(C\log\beta).
+$$
+The full signed $|\sin\xi|$ circular chart uses $s=\operatorname{sign}(\sin\xi)$ and
+$$
+s\sin\xi=\frac{\xi}{\beta},
+\qquad
+J=1-\beta s\cos\xi,
+\qquad
+\hat{\mathbf{r}}(\xi)=|\sin\xi|\,\mathbf{e}_r+s\cos\xi\,\mathbf{e}_\theta.
+$$
+Thus the full signed-chart projections are
+$$
+a_r^{|\sin|}(\xi)=C\,\frac{\beta}{\xi |J|},
+\qquad
+a_\theta^{|\sin|}(\xi)=C\,\frac{\beta^2s\cos\xi}{\xi^2 |J|}.
+$$
+The radial contribution is still outward on every active self root. The tangential contribution is forward on each left sheet and backward on each right sheet, independent of the sine-lobe sign. In the full signed chart, the order-$\beta$ signed tangential terms cancel pairwise between adjacent sheets, giving the bound
+$$
+A_r^{|\sin|}(\beta)=\frac{2C}{\pi}\log\beta+O(C),
+\qquad
+A_\theta^{|\sin|}(\beta)=O(C),
+$$
+again away from arbitrarily small Jacobian-null birth windows. The absolute tangential activity remains large:
+$$
+\sum_{\xi_n}|a_\theta^{|\sin|}(\xi_n)|
+=
+\frac{C\beta}{3}+O(C\log\beta).
+$$
+Pure circular self-hit is therefore not tangentially neutral branchwise. It supplies outward radial support and large cancelling forward/backward tangential activity; on the positive-sine subchart alone the signed large-$\beta$ residue is backward and order $\beta$, while on the full signed chart the linear signed terms cancel to a bounded remainder. This corrects the stronger blanket statement that self branches are always positive-tangential, without by itself proving or disproving full binary closure.
+
+The circular self-hit and partner-hit formulas are kernel benchmarks. They are not the Noether-core model. The Noether-core model is the six-body tri-binary branch chart containing self, partner, and inter-layer causal roots, with hierarchy averaging only where justified by separated scales and certified branch data.
+
 ---
 
 #### Maximum‑curvature binary (inner binary idealization)
@@ -1678,16 +1816,16 @@ Analytic expectations:
   - That gives us a **pair of algebraic conditions** in $R$ and $\omega$ (or equivalently $R$ and $v$).
   - Solving those algebraic conditions (perhaps numerically) defines a maximum‑curvature solution family.
 
-However, the circular benchmark also already exposes a serious obstruction in the bare two-body kernel. In the symmetric isolated binary, every active partner branch contributes a positive tangential component, and every active self branch also contributes a positive tangential component. Therefore the branchwise tangential sum is strictly positive whenever any branch is active. Within the bare circular two-body ansatz, exact constant-speed closure cannot come from cancellation among the delayed branches alone.
+However, the circular benchmark still exposes a serious obstruction in the bare two-body kernel. In the symmetric isolated binary, every active partner branch contributes a positive tangential component. The self sector is different: the circular self-hit branch table above gives outward radial support, while the tangential projection changes sign by sheet; on the full signed chart its order-$\beta$ signed tangential terms cancel to a bounded remainder, with order-$\beta$ absolute tangential activity still present. Therefore the former blanket self-branch positive-tangential claim is too strong. Exact constant-speed closure of the bare circular two-body ansatz is not ruled out by a branchwise sign argument alone; it requires the actual signed partner-plus-self tangential sum to vanish on a certified branch chart.
 
 This sharpens the maximum-curvature program into a concrete fork:
 
-- either the isolated two-body MCB does **not** exist as an exact constant-speed circular orbit of the bare kernel, or
-- closure requires additional structure beyond the bare circular two-body ansatz, such as medium coupling, genuine tri-binary multi-body locking, or a more subtle non-circular periodic balance.
+- either the certified signed branch sum fails to cancel the partner drive, so the isolated two-body MCB does **not** exist as an exact constant-speed circular orbit of the bare kernel, or
+- an algebraic cancellation exists, after which stability still requires a separate delay-operator proof and may require additional structure beyond the bare circular two-body ansatz, such as medium coupling, genuine tri-binary multi-body locking, or a more subtle non-circular periodic balance.
 
 So:
 
-- Analytically: we can reduce the existence question to algebraic conditions and asymptotic expansions, and in the bare circular ansatz we can already identify the tangential no-cancellation obstruction.
+- Analytically: we can reduce the existence question to algebraic conditions and asymptotic expansions, and in the bare circular ansatz we can identify the partner-positive/self-signed tangential balance that any closure certificate must satisfy.
 - Dynamically: the stability question remains separate from the algebraic construction and requires numerical analysis of attractivity versus fine-tuned orbit families.
 
 The expected answer for the bare two-body kernel is instability, not robust attraction. Existence of a circular or maximum-curvature solution would only solve the algebraic balance conditions
@@ -1711,11 +1849,11 @@ $$
 is an unstable mode.
 
 > **Target Proposition (MCB transverse stability diagnostic).**
-> For any candidate bare two-body maximum-curvature binary, compute the linearized delay operator on radial and tangential perturbations. The null-separatrix self-hit wall may stabilize or block the radial collapse channel, but the sign-definite tangential partner contribution generically leaves a transverse unstable direction unless an additional medium, tri-binary, or multi-body locking mechanism cancels it. Thus a bare MCB should be treated as a saddle-type organizing orbit in
+> For any candidate bare two-body maximum-curvature binary, compute the linearized delay operator on radial and tangential perturbations. The null-separatrix self-hit wall may stabilize or block the radial collapse channel; partner branches supply sign-definite forward drive, while circular self branches supply outward radial support and a signed tangential channel whose full signed-chart linear terms cancel only after summing adjacent sheets. Thus a bare MCB should be treated as an uncertified organizing orbit in
 > $$
 > (R,v)
 > $$
-> space, not as the stable particle assembly itself.
+> space until the net signed tangential balance and transverse eigenvalues are certified.
 
 This is the intended dynamical interpretation. Stable particles in the present architecture are tri-binary assemblies; a bare MCB, if it exists, is a high-curvature component or limiting scaffold whose instability explains why additional locking structure is needed.
 
@@ -1972,15 +2110,14 @@ That’s analytically tractable and important for:
 Several formerly open checks are now footholds rather than blank targets:
 
 1. **Partner-only circular orbit with causal delay ($v<c_f$)** now has explicit radial and tangential components, including the positive tangential-drive obstruction for a bare constant-speed circle.
-2. **Uniform circular self-hit ($v>c_f$)** now has principal-root onset asymptotics and a Jacobian-wall scaling near $v=c_f$.
+2. **Uniform circular self-hit ($v>c_f$)** now has principal-root onset asymptotics, signed higher-winding branch birth, branchwise radial/tangential projections, and large-$\beta$ self-hit estimates.
 3. **Variable-pitch spiral benchmarks** now expose the branch-chart and Jacobian data that a maximum-curvature binary certificate must report.
 
 The remaining analytic targets are sharper:
 
-1. extend the circular self-hit formulas to signed higher-winding branch sheets and inactive-root gaps;
-2. build the maximum-curvature branch certificate from active roots, Jacobian floors, return residuals, and radial/tangential balance;
-3. coarse-grain the master equation around a homogeneous Noether Sea and extract the linear response and dispersion relation $\omega(k)$;
-4. prove which regularized energy diagnostic is actually induced by a symmetry-preserving action-level regularization.
+1. build the maximum-curvature branch certificate from active roots, Jacobian floors, return residuals, and radial/tangential balance;
+2. coarse-grain the master equation around a homogeneous Noether Sea and extract the linear response and dispersion relation $\omega(k)$;
+3. prove which regularized energy diagnostic is actually induced by a symmetry-preserving action-level regularization.
 
 These targets keep the bridge between the formal law and the broader closure program mathematical: a branch chart, a conserved charge, or a response equation must be supplied before a stability or mass claim is promoted.
 
@@ -2777,6 +2914,80 @@ $$
 while the source-end gradient is the opposite. Therefore a global spatial translation or rotation of both endpoints changes no interior action density, and a step translation or step rotation across $t_\ast$ exposes exactly the boundary increments above. The characteristic endpoint condition $D_{ij}R_{+}=0$, together with endpoint clearance, is the local reason these increments are wake-history boundary terms rather than a hidden extra receiver force.
 
 This closes the local kernel-normalization and Noether-increment definition for the delayed-interior characteristic-tail repair. It does not by itself certify any proposed branch, terminal label, or tri-binary attractor: a branch chart must still show vanishing Euler residual, finite memory depth, positive Jacobian floors, and closure of $K_{\mu}+E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, and $\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$ over the same retained branch set.
+
+**Branch-chart conservation pullback.** Let $\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)$ be a retained branch chart with active causal-root rows $\mathcal{R}^{\mathrm{act}}$, positive inactive-root gaps, positive Jacobian floor, finite memory depth, and declared endpoint convention. For a time cut $t_\ast$, define the chart-restricted crossing domain
+$$
+X_{ij}^{\mathfrak{B}}(t_\ast)
+\equiv
+X_{ij}(t_\ast)
+\cap
+\{(t_1,t_0): (i,j,t_1,t_0)\ \text{lies on a retained row of }\mathcal{R}^{\mathrm{act}}\},
+$$
+with trivial self-coincidence excluded when $i=j$. The pulled-back wake-history charges are the same Noether boundary terms above, restricted to $X_{ij}^{\mathfrak{B}}(t_\ast)$:
+$$
+E_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)}(t_\ast)
+=
+\frac{1}{2}\sum_{i,j}
+\int_{X_{ij}^{\mathfrak{B}}(t_\ast)}
+\partial_{t_1}
+\mathcal{K}_{ij,\mathrm{eff}}^{(\eta)}(t_1,t_0)
+\,dt_0\,dt_1,
+$$
+$$
+\mathbf{P}_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)}(t_\ast)
+=
+-\frac{1}{2}\sum_{i,j}
+\int_{X_{ij}^{\mathfrak{B}}(t_\ast)}
+\nabla_{\mathbf{x}_i(t_1)}
+\mathcal{K}_{ij,\mathrm{eff}}^{(\eta)}(t_1,t_0)
+\,dt_0\,dt_1,
+$$
+and
+$$
+\mathbf{J}_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)}(t_\ast)
+=
+-\frac{1}{2}\sum_{i,j}
+\int_{X_{ij}^{\mathfrak{B}}(t_\ast)}
+\mathbf{x}_i(t_1)\times
+\nabla_{\mathbf{x}_i(t_1)}
+\mathcal{K}_{ij,\mathrm{eff}}^{(\eta)}(t_1,t_0)
+\,dt_0\,dt_1.
+$$
+The matching mechanical charges on the same chart are
+$$
+K_{\mu,\mathfrak{B}}(t)=\sum_{i\in\mathfrak{B}}\frac{1}{2}\mu_{\text{arch}}\|\mathbf{v}_i(t)\|^2,
+\qquad
+\mathbf{P}_{\mathrm{mech},\mathfrak{B}}(t)=\sum_{i\in\mathfrak{B}}\mu_{\text{arch}}\mathbf{v}_i(t),
+$$
+$$
+\mathbf{J}_{\mathrm{mech},\mathfrak{B}}(t)
+=
+\sum_{i\in\mathfrak{B}}
+\mathbf{x}_i(t)\times\mu_{\text{arch}}\mathbf{v}_i(t).
+$$
+For a retained window $W=[t_a,t_b]$, the branch-chart conservation test is
+$$
+\Delta_W\left(K_{\mu,\mathfrak{B}}+E_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)}\right)
+=
+\int_W\sum_i\mathbf{v}_i(t)\cdot\mathbf{R}_{i,\mathrm{eff},\mathfrak{B}}^{(\eta)}(t)\,dt
++
+\int_W\mathcal{B}_{E,\mathfrak{B}}^{(\eta)}(t)\,dt,
+$$
+$$
+\Delta_W\left(\mathbf{P}_{\mathrm{mech},\mathfrak{B}}+\mathbf{P}_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)}\right)
+=
+\int_W\sum_i\mathbf{R}_{i,\mathrm{eff},\mathfrak{B}}^{(\eta)}(t)\,dt
++
+\int_W\boldsymbol{\mathcal{B}}_{P,\mathfrak{B}}^{(\eta)}(t)\,dt,
+$$
+$$
+\Delta_W\left(\mathbf{J}_{\mathrm{mech},\mathfrak{B}}+\mathbf{J}_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)}\right)
+=
+\int_W\sum_i\mathbf{x}_i(t)\times\mathbf{R}_{i,\mathrm{eff},\mathfrak{B}}^{(\eta)}(t)\,dt
++
+\int_W\boldsymbol{\mathcal{B}}_{J,\mathfrak{B}}^{(\eta)}(t)\,dt.
+$$
+The theorem-level branch claim requires the three residual balances to converge to zero with $\epsilon_{\mathrm{var}}^{(\eta)}(W)\to0$, vanishing declared endpoint or period-cut leakage, stable branch floors, and the same retained row set in the force residuals and in the three wake-history charges. A work-integral reconstruction $U(t)$ or a projected torque increment is only a numerical diagnostic unless it is derived from this same action kernel, endpoint convention, and retained branch chart.
 
 Self‑interaction ($i=j$) is included by adding $S_{ii}$ with the same kernel, but explicitly excluding the trivial coincidence $t'=t$ (no instantaneous self‑push at the moment of emission). Self‑hit corresponds to nontrivial roots $t_0<t$ where the worldline re‑intersects its own causal isochrons, which are captured naturally by the same double‑integral structure.
 

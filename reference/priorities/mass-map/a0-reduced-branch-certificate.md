@@ -115,6 +115,14 @@ and while retaining a positive non-symmetry Floquet gap?
 
 Until that question is answered, $\zeta(A_0)$, $E_{\text{internal}}(A_0)$, and $\mathcal{M}_{\text{sea}}^{ab}$ remain downstream quantities, not objects to fit.
 
+## Master-Equation Handoff Boundary
+
+The master-equation side may supply a certified branch-chart object $\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)$ for an $A_0$ candidate, but this packet may consume it only as Tier 0 / Tier 1 branch-certificate input. The allowed content is finite active roots, inactive-root gaps, the Jacobian floor, memory depth, returned-section residuals, and section stability, together with the same root-ledger refinement controls used by the master-equation chart.
+
+Those inputs may populate `branch_label`, `z_lambda`, `root_ledger`, `residuals`, `Delta_k`, `stability`, and `certificate_gates`. They do not populate `energy_ledger`, `far_field_shielding`, `medium_response`, or `mass_summary`. In particular, $\mathfrak{B}$ does not supply $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, $\mathcal{L}_{\text{aniso}}$, $\mathcal{M}_{\text{sea}}^{ab}$, or any particle-facing mass comparison.
+
+Handoff falsifier: if a reported Tier 2 or Tier 3 quantity changes under root-ledger refinement, inactive-gap refinement, memory-depth extension, or controlled $\eta$ refinement while the branch label and quotient row are held fixed, the mass-map packet must treat the downstream extraction as blocked until the branch certificate is refined.
+
 ## Scope
 
 This packet owns:

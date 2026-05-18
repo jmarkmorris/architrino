@@ -62,6 +62,12 @@ O(\Phi_s\omega_2)
 $$
 If this condition fails, the consumer must refine $\Gamma$ before computing outcome weights.
 
+### Master-Equation Handoff Boundary
+
+When a quantum consumer imports a certified master-equation branch chart, the allowed input is the retained branch data needed to define $\Gamma_{\mathrm{wake}}$, $C_{\eta,h}$, and the finite-$\eta$ evolution map. In particular, $\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)$ may supply active root branches, inactive-root gaps, the Jacobian floor, the certified memory depth, returned-section residuals, and the section-stability margin.
+
+This handoff does not supply the measure-theoretic objects of the quantum packet. The invariant or metastable measure $\mu_*$, the basin partition $\mathcal{P}=\{B_i\}$, the record windows $W_i$, detector kernels, and Born-rule recovery target remain downstream quantum objects. If a claimed weight changes when the upstream branch chart is refined at fixed recorded setup, the defect is a transfer-operator handoff failure rather than a new probability rule.
+
 ## Transfer Operator Interpretation
 
 The common transfer-operator form is:
@@ -430,6 +436,7 @@ This normal form does not prove the dyadic lock; it states the minimum basin-mea
 | --- | --- |
 | State space | Declare $\Gamma=\Gamma_{\mathrm{asm}}\times\Gamma_{\mathrm{wake}}\times\Gamma_{\mathrm{sea}}\times\Gamma_{\mathrm{reg}}\times U$ or a justified refinement. |
 | Coarse-graining | Declare $C_{\eta,h}$, the retained history variables, and the consumer statistic $O$ whose error is bounded by $\varepsilon_C$. |
+| Master-equation input | If used, consume $\mathfrak{B}$ only as certified causal-wake branch data for $\Gamma_{\mathrm{wake}}$ and the finite-$\eta$ flow or return map. |
 | Transfer operator | Declare deterministic pushforward, reduced Markov kernel, or return-map operator; this packet uses deterministic pushforward as the base interpretation. |
 | Kernel | If a kernel is reduced, derive the unresolved-variable measure $d\nu$ from material, apparatus, or Noether-Sea dynamics. |
 | Basin partition | Define $\mathcal{P}=\{B_i\}$ as pullbacks of outcome windows, and define separatrices $\Sigma_{ij}$. |

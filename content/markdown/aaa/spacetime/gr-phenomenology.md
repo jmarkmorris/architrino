@@ -137,6 +137,38 @@ The effective metric subclass must also reproduce the standard 1PN orbital corre
 
 must all be reproduced by the same $(\gamma_{\text{eff}},\beta_{\text{eff}},\alpha_i)$ package already used for light and clock observables.
 
+For the classical weak-field suite, the comparison record can be made explicit. On an observation window $W$, let $\theta_W$ denote the retained Noether-Sea state, source assembly record, observer clock/ruler state, signal-channel data, boundary wake data, and the ADM/Cartan projection
+$$
+\theta_W
+\longmapsto
+\left(
+N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij},
+\Phi_{\text{eff}},
+\chi_{\text{sea}}
+\right).
+$$
+The observable residual bundle is then
+$$
+\mathbf{r}_{\mathrm{GR}}(\theta_W)
+=
+\begin{pmatrix}
+R_{\mathrm{red}}\\
+R_{\mathrm{Shap}}\\
+R_{\mathrm{lens}}\\
+R_{\mathrm{acc}}\\
+R_{\mathrm{1PN}}\\
+\alpha_1\\
+\alpha_2\\
+\alpha_3
+\end{pmatrix},
+\qquad
+R_{\mathrm{acc}}
+=
+\frac{\left\|\frac{d^2\mathbf{x}}{dt^2}+\nabla\Phi_{\text{eff}}\right\|_W}
+{\left\|\nabla\Phi_{\text{eff}}\right\|_W+\varepsilon}.
+$$
+The redshift, Shapiro, lensing, acceleration, 1PN, and preferred-frame rows are acceptable only when they are projections of this same $\theta_W$. If any row requires replacing $N$, $u^i_{\text{sea}}$, $e^a{}_i$, $\gamma_{ij}$, $\Phi_{\text{eff}}$, $\chi_{\text{sea}}$, or the boundary/noise record, the phenomenology pass has become a set of separate fits rather than a GR recovery.
+
 ### Low-Energy Quantum-Gravity EFT Benchmark
 
 The classical weak-field observables above do not exhaust the recovery gate. Standard low-energy effective-field-theory calculations treat GR as a valid long-distance theory and separate unknown high-energy local terms from calculable infrared behavior. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not take the quantized metric as microscopic ontology, but it must recover the same long-distance observer-level data product where the expansion is controlled.

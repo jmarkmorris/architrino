@@ -1,6 +1,6 @@
 # Proper Time and Time Dilation
 
-**Goal:** Derive the relation between **absolute time** $t$ (used by the $\mathbb{U}_{\text{now}}$ universe-state perspective in the Euclidean void) and the **proper time** $\tau$ measured by physical clocks built from tri‑binary assemblies, and show how GR‑like time dilation and gravitational redshift arise as effective behavior.
+**Goal:** Define the theorem targets relating **absolute time** $t$ (used by the $\mathbb{U}_{\text{now}}$ universe-state perspective in the Euclidean void) to the **proper time** $\tau$ measured by physical clocks built from tri-binary assemblies, and state how GR-like time dilation and gravitational redshift must arise as effective behavior if the clock map closes.
 
 This chapter is the canonical home for proper time, observer clocks, clock slowing, and the clock map from absolute time $t$ to measured proper time $\tau$. Foundation and ontology pages should point here once the discussion becomes a clock law, frequency extraction, observer-clock comparison, or Lorentz/GR time-dilation recovery.
 
@@ -55,6 +55,45 @@ $$
 where $\omega(\text{state})$ is the instantaneous internal oscillation frequency in the actual kinematic and environmental state.
 
 The central problem is to compute $\omega(\mathbf{v},n,\chi_{\text{sea}},\Phi_{\text{eff}})$ from the master dynamics.
+
+### Moving-Branch Clock Retuning Target
+
+The homogeneous moving-clock extraction is independent from weak-field PPN matching. Primitive branch calculations solve causal roots with $c_f$:
+$$
+\left\|\mathbf{x}_{o}(t)-\mathbf{x}_{j}(t_0)\right\|
+=
+c_f(t-t_0).
+$$
+The dressed observer-channel speed $c_\star$ is declared only after the clock/ruler channel is chosen: $c_\star=c_f$ for a primitive branch scan and usually $c_\star=c_{\text{eff}}(\mathbf{x})$ for a Noether-Sea dressed clock comparison. Thus
+$$
+\beta_\star=\frac{v}{c_\star},
+\qquad
+\gamma_\star(v)=\frac{1}{\sqrt{1-\beta_\star^2}}.
+$$
+
+For an admitted moving tri-binary branch $q$ on a drift band $0\le v/c_f\le\beta_{\max}<1$, choose one clock phase $\theta_{\mathrm{clk},q}$ from the same causal-root ledger used for the branch's geometry. The extracted period is
+$$
+T_q(v)
+=
+\frac{2\pi}{\langle\dot{\theta}_{\mathrm{clk},q}\rangle_{\mathrm{cyc}}},
+\qquad
+T_0=T_q(0),
+$$
+and the clock residual is
+$$
+R_T^{(q)}(v)
+\equiv
+\frac{T_q(v)}{T_0}
+-
+\gamma_\star(v).
+$$
+The moving-clock theorem target is
+$$
+\left|R_T^{(q)}(v)\right|
+\le
+C_T\epsilon_{\text{LV}}\beta_\star^2
+$$
+uniformly on the drift band, with any surviving preferred-frame sideband reported as a branch-sourced leakage term. This packet fails if the clock phase and ruler geometry come from different branch ledgers, if the residual is suppressed only by fitting a PPN coefficient after the fact, or if $c_f$ is silently identified with $c_\star$ without a dressing map.
 
 ### Noether-Sea Core Cadence
 

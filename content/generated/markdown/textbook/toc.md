@@ -920,6 +920,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
       - [Tier 0 / Tier 1 Campaign Packet](../../../markdown/aaa/validation/simulations/run-protocols.md?section=Tier+0+%2F+Tier+1+Campaign+Packet)
       - [Run Protocol: Absolute-Frame + $\mathbb{U}_{\text{now}}$ Logging](../../../markdown/aaa/validation/simulations/run-protocols.md?section=Run+Protocol%3A+Absolute-Frame+%2B+%24%5Cmathbb%7BU%7D_%7B%5Ctext%7Bnow%7D%7D%24+Logging)
     - [A0 Branch Certificate Protocol](../../../scenes/validation/sim_a0_branch_certificate_protocol.json)
+      - [Master-Equation Handoff Boundary](../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md?section=Master-Equation+Handoff+Boundary)
       - [Certificate Packet Schema](../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md?section=Certificate+Packet+Schema)
       - [Tier 0: Algebraic Branch Search](../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md?section=Tier+0%3A+Algebraic+Branch+Search)
       - [Tier 1: η>0 Continuation](../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md?section=Tier+1%3A+%24%5Ceta%3E0%24+Continuation)

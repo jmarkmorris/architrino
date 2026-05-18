@@ -90,6 +90,47 @@ Here $N$ is the clock-rate or lapse channel, $u^i_{\text{sea}}$ is medium drift,
 
 This form is the common handoff surface for clock redshift, Shapiro delay, lensing, geodesic motion, photon synchronization, and preferred-frame tests. A scalar speed map alone is therefore not enough for closure: it can support a first Shapiro-delay intuition, but the full PPN burden requires the lapse, drift, and spatial-compliance channels together.
 
+The retained weak-field coefficient map should therefore be expressed at the ADM/Cartan level before observable projections are evaluated. With
+$$
+\delta n\equiv n-1,\qquad
+\delta\chi\equiv\frac{\chi_{\text{sea}}}{\chi_{\text{sea}}(\infty)}-1,
+\qquad
+\varphi\equiv\frac{\Phi_{\text{eff}}}{c_0^2},
+$$
+and with $\sigma_{ij}$ the retained Noether-Sea stress projection, the minimal coefficient scaffold is
+$$
+N
+=
+1
++A_N^n\delta n
++A_N^\chi\delta\chi
++A_N^\Phi\varphi
++Q_N(\delta n,\delta\chi,\varphi,\sigma)
++O(c_0^{-6},\epsilon_{\mathrm{LV}}),
+$$
+$$
+\gamma_{ij}
+=
+h_{ij}
+\left(
+1
++A_\gamma^n\delta n
++A_\gamma^\chi\delta\chi
++A_\gamma^\Phi\varphi
+\right)
++A_{\gamma,\mathrm{tf}}\sigma^{\mathrm{tf}}_{ij}
++O(c_0^{-4},\epsilon_{\mathrm{LV}}),
+$$
+$$
+u^i_{\text{sea}}
+=
+B^i{}_j w^j\frac{U}{c_0^2}
++O(c_0^{-5},\epsilon_{\mathrm{LV}}),
+\qquad
+\gamma_{ij}=\delta_{ab}e^a{}_i e^b{}_j.
+$$
+Here $w^i$ is the medium drift relative to the comparison frame and $U$ is the positive PPN potential. These are not new substrate fields. They are coefficient rows for the observer-level reconstruction. Redshift, Shapiro delay, lensing, weak-field acceleration, and preferred-frame residuals must read from these rows as one shared constitutive record.
+
 A practical consistency check is that those channels must be projections of one shared record of the Noether Sea and the Physical Observer, not independently tuned descriptions. For an observation window $W$, let $\theta$ collect the retained Noether-Sea state, source assemblies, observer clock/ruler state, signal-channel record, apparatus calibration, and boundary wake data. Let
 $$
 \Pi_{\mathrm{clk}}\theta,\qquad
@@ -457,13 +498,13 @@ $$
 
 This is the concrete first-order realization of
 $$
-(h_{ij},n,\chi_{\text{sea}},\text{stress},\Phi_N)
+(h_{ij},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{stress})
 \mapsto
-(N,u^i_{\text{sea}},\gamma_{ij})
+(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij})
 \mapsto
 g^{\text{eff}}_{\mu\nu},
 $$
-with $\gamma_{\text{eff}}$ the observable refraction/space-curvature coefficient to be fitted from Shapiro-delay data. Implementation of the corresponding one-way delay integral is given in [ppn-parameters](./ppn-parameters.md#explicit-weak-field-noether-sea-delay-map-ppn-gamma).
+with $\gamma_{\text{eff}}$ the observer-level refraction/spatial-compliance coefficient extracted from the same constitutive record whose Shapiro-delay and lensing projections are tested in [ppn-parameters](./ppn-parameters.md#explicit-weak-field-noether-sea-delay-map-ppn-gamma).
 
 ## Closure Program Interface (metric constitutive map)
 
@@ -484,7 +525,7 @@ Distribute proof obligations as:
 
 Minimal closure condition:
 1. Eikonal path-time extremals in the refractive picture match null geodesics of $g^{\text{eff}}_{\mu\nu}$ in weak field.
-2. The same $N$, $u^i_{\text{sea}}$, and $\gamma_{ij}$ coefficients predict Shapiro delay, lensing, redshift, and preferred-frame residuals without re-fitting per observable.
+2. The same $N$, $u^i_{\text{sea}}$, $e^a{}_i$, and $\gamma_{ij}$ coefficients predict Shapiro delay, lensing, redshift, weak-field acceleration, and preferred-frame residuals without re-fitting per observable.
 3. The long-distance GR-EFT correction to weak gravity is recovered from the same constitutive record, without treating the effective metric as microscopic ontology.
 
 ## Weak-Field Geodesic Handoff (ADM Constitutive Subclass)

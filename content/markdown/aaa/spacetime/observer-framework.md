@@ -200,6 +200,24 @@ N^{\mathrm{env}}_{AB}(t,t').
 $$
 The same decomposition should be reused across weak-probe, interferometric, and precision-gravity comparisons. If a proposed measurement model must retune the unresolved boundary covariance separately for each branch or observable, the observer-level closure has failed rather than discovered a new ontology.
 
+For weak-field GR comparisons, the observer record should carry the whole channel bundle at once:
+$$
+\Theta_{\mathrm{weak}}^{(O,W)}
+=
+\left(
+N_{\text{sea}}|_{\Omega,W},
+O_W,
+\mathcal{B}_{\partial\Omega}^{(O)}(W),
+\widehat{\mathcal{B}}_{\partial\Omega}(W),
+\mu_{\Omega,\theta},
+N^{\mathrm{bw}}_{AB},
+N^{\mathrm{det}}_{AB},
+N^{\mathrm{env}}_{AB},
+\Pi_{\mathrm{ADM}}
+\right),
+$$
+where $\Pi_{\mathrm{ADM}}$ is the observer-level projection to $(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij},\Phi_{\text{eff}},\chi_{\text{sea}})$. Redshift, Shapiro delay, lensing, weak-field acceleration, and preferred-frame residuals must be read from $\Theta_{\mathrm{weak}}^{(O,W)}$ with the same covariance and boundary-data model. A channel-specific replacement of $\mu_{\Omega,\theta}$, $N^{\mathrm{bw}}_{AB}$, or $\Pi_{\mathrm{ADM}}$ is therefore a retuning residual, not an improved observer model.
+
 The same declared-measure discipline applies to observer-level probability tables and ensemble summaries. For a Physical Observer record $\theta$, observation window $W$, readout channel $Y_A$, and event set $B$, the probability assigned to that readout should be a pushforward of the conditional measure already tied to retained boundary data:
 $$
 P_{\Omega,\theta,W}(Y_A\in B)

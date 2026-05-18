@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1175
+      "sections": 1176
     }
   },
   "tocRoot": {
@@ -7539,6 +7539,14 @@
                 "scenePath": "content/scenes/validation/sim_a0_branch_certificate_protocol.json",
                 "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
                 "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Master-Equation Handoff Boundary",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
+                    "markdownSection": "Master-Equation Handoff Boundary",
+                    "sectionKey": "master equation handoff boundary",
+                    "headingLevel": 2
+                  },
                   {
                     "kind": "markdown-section",
                     "title": "Certificate Packet Schema",

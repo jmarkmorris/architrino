@@ -232,10 +232,10 @@ Use this table to close the constitutive loop against modern benchmarks.
 | Channel | Model estimator | GR/PPN target | Closure requirement |
 | --- | --- | --- | --- |
 | Time nonlinearity | $\beta_{\text{PPN}}$ from $g_{00}$ expansion | $\beta_{\text{PPN}}=1$ | Residual inside ledger tolerance |
-| Space curvature/refraction | $\gamma_{\text{eff}}$ from Shapiro estimator | $\gamma_{\text{PPN}}=1$ | Residual inside ledger tolerance |
+| Space curvature/refraction | $\gamma_{\text{eff}}$ from the shared spatial-compliance row, with Shapiro and lensing as projections | $\gamma_{\text{PPN}}=1$ | Residual inside ledger tolerance |
 | Preferred-frame leakage | $(\alpha_1,\alpha_2,\alpha_3)$ from $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ | all $\approx 0$ | No significant nonzero leakage |
 | Newtonian limit | $\mathbf{a}=-\nabla\Phi_{\text{eff}}$ (weak field) | exact leading-order recovery | No constitutive contradiction |
-| Cross-observable consistency | same constitutive coefficients across delay, redshift, precession, lensing | single-parameter-set closure | No per-observable re-fit |
+| Cross-observable consistency | same constitutive coefficients across delay, redshift, precession, lensing, acceleration, and preferred-frame tests | single-parameter-set closure | No per-observable re-fit |
 
 Numeric pass/fail thresholds are taken from [validation/constraint-ledger.md](../validation/constraint-ledger.md).
 
@@ -258,6 +258,83 @@ Cross-chapter integration:
 - constitutive map source: [spacetime/emergent-metric.md](./emergent-metric.md)
 - clock-law coefficient extraction: [spacetime/proper-time-and-time-dilation.md](./proper-time-and-time-dilation.md)
 - threshold enforcement: [validation/constraint-ledger.md](../validation/constraint-ledger.md)
+
+### ADM/Cartan Extraction Equations
+
+The PPN vector must be extracted from the same ADM/Cartan fields used by the effective metric map, not from observable-specific fits. With $x^0=c_0t$, the line element
+$$
+ds_{\rm eff}^2
+=
+-N^2c_0^2dt^2
++
+\gamma_{ij}
+\left(dx^i-u^i_{\text{sea}}dt\right)
+\left(dx^j-u^j_{\text{sea}}dt\right)
+$$
+gives the observer-sector metric components
+$$
+g_{00}^{\mathrm{eff}}
+=
+-N^2+\frac{\gamma_{ij}u^i_{\text{sea}}u^j_{\text{sea}}}{c_0^2},
+\qquad
+g_{0i}^{\mathrm{eff}}
+=
+-\frac{\gamma_{ij}u^j_{\text{sea}}}{c_0},
+\qquad
+g_{ij}^{\mathrm{eff}}=\gamma_{ij}.
+$$
+
+In the local medium-rest weak-field row, write
+$$
+N
+=
+1-\frac{U_{\Phi}}{c_0^2}
++C_2\frac{U_{\Phi}^2}{c_0^4}
++O(c_0^{-6},\epsilon_{\mathrm{LV}}),
+$$
+and extract
+$$
+\gamma_{\mathrm{PPN}}
+=
+\frac{c_0^2}{2U_{\Phi}}
+\left(
+\frac{h^{ij}\gamma_{ij}}{3}-1
+\right)
++O(U_{\Phi}/c_0^2,\epsilon_{\mathrm{LV}}),
+\qquad
+\beta_{\mathrm{PPN}}-1=C_2-\frac12.
+$$
+The preferred-frame coefficients are the retained drift coefficients in $g_{0i}^{\mathrm{eff}}$ and $g_{00}^{\mathrm{eff}}$ under the $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ expansion above, with
+$$
+\alpha_1=\Xi_1,\qquad
+\alpha_2=\Xi_2,\qquad
+\alpha_3=\Xi_1-\Xi_2-\Xi_3.
+$$
+
+For a declared observation window $W$, the shared weak-field residual can be recorded as
+$$
+\mathbf{r}_{\mathrm{weak}}(\theta;W)
+=
+\begin{pmatrix}
+R_{\mathrm{red}}\\
+R_{\mathrm{Shap}}\\
+R_{\mathrm{lens}}\\
+R_{\mathrm{acc}}\\
+\gamma_{\mathrm{PPN}}-1\\
+\beta_{\mathrm{PPN}}-1\\
+\alpha_1\\
+\alpha_2\\
+\alpha_3
+\end{pmatrix},
+$$
+with
+$$
+R_{\mathrm{acc}}
+=
+\frac{\left\|\frac{d^2\mathbf{x}}{dt^2}+\nabla\Phi_{\text{eff}}\right\|_W}
+{\left\|\nabla\Phi_{\text{eff}}\right\|_W+\varepsilon}.
+$$
+The other residuals are the redshift, Shapiro, and lensing differences computed from the same $\theta$ and the forward projection below. This strengthens the existing decision layer; it is not a separate gate.
 
 ### Numeric Closure Pipeline and Global Objective
 
