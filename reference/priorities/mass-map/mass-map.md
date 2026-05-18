@@ -154,7 +154,7 @@ Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate sli
 ## Program Notes
 
 - For scorecard purposes, this is the main Parameter Closure + Mass Formulas bucket.
-- If the goal is the fastest score lift, pair this workstream with [chapter-authoring](../../op/chapter-authoring.md) for Parameter Closure + Coverage.
+- If the goal is the fastest score lift, pair this workstream with [chapter-authoring](../chapter-authoring/chapter-authoring.md) for Parameter Closure + Coverage.
 - Keep the constants question attached to the mass map only when it sharpens the derivation. Otherwise it belongs in background notes, not in the active deliverable.
 
 ## Concrete Deliverables

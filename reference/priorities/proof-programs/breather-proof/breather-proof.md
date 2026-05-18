@@ -489,7 +489,7 @@ Only after all five rows are verified on the same certified domain does the cond
 
 - [master-equation-closure](../../master-equation-closure/master-equation-closure.md)
 - [simulations](../../simulations/simulations.md)
-- [chapter-authoring](../../../op/chapter-authoring.md)
+- [chapter-authoring](../../chapter-authoring/chapter-authoring.md)
 
 ## Related AAA Notes
 
