@@ -82,6 +82,80 @@ r_{\mathrm{growth}}
 $$
 and $r_{\mathrm{BBN}}$ should retain D/H, $Y_p$, lithium, $\eta$, and $\Delta N_{\text{eff}}$ rows. These are data-product coordinates, not ontology claims. They make the shared packet check luminosity distance, BAO rulers, blackbody preservation, CMB lensing, growth, and BBN yield recovery before any medium-state interpretation is promoted.
 
+The source-mined empirical packet should retain the following benchmark families without turning them into separate gates:
+
+| Family | Required packet content | Shared-state overlap |
+| --- | --- | --- |
+| `CMB_PLANCK_LAMBDA` | Planck/LAMBDA frequency-map and component-separation provenance, TT/TE/EE spectra, likelihood choice, CMB lensing map or bandpower provenance, foreground and beam nuisance context | `theta_star`, `r_d`, `omega_b`, `omega_c`, `tau`, `A_s`, `n_s`, `CMB_lensing`, `blackbody` |
+| `CMB_ACT` | ACT DR6 high-$\ell$ spectra or likelihood rows, ACT lensing bandpowers, covariance, foreground model context | `CMB_lensing`, `small_scale_damping`, `foreground_context`, `growth_projection` |
+| `BAO_DESI` | DESI tracer label, effective redshift, isotropic or anisotropic BAO vector, covariance, likelihood or chain provenance | `r_d`, `D_M`, `D_H`, `D_V`, `H_eff`, `theta_acoustic` |
+| `SN_SH0ES_PANTHEON` | Pantheon+ light-curve and covariance provenance, redshift convention, calibration/standardization context, Cepheid/SN ladder anchor context, local $H_0$ row when used | `D_L`, `H_eff_ladder`, `clock_endpoint`, `path_history`, `calibration_context` |
+| `WL_RSD_DES` | DES weak-lensing/clustering data vector, shear calibration, photo-$z$ calibration, covariance, DESI RSD rows when present | `S_8`, `f_sigma_8`, `CMB_lensing`, `growth_response`, `medium_coupling` |
+| `EUCLID_PUBLIC` | Public release identifier, image/catalogue/mask/photo-$z$ readiness products, covariance readiness note | `mask_context`, `photo_z_context`, `shape_context`, `future_growth_projection` |
+
+As of 2026-05-19, `EUCLID_PUBLIC` is a readiness row, not a cosmology-constraint row. A packet may use Euclid Q1-style products to test mask, catalogue, image, spectroscopy, and photo-$z$ bookkeeping, but it must not count Euclid as a successful weak-lensing or clustering cosmology residual until a public cosmology release supplies the relevant data vector and covariance.
+
+For empirical packets, the BAO row should use the explicit anisotropic/isotropic vector
+
+$$
+\mathbf r_{\mathrm{BAO},i}
+=
+\mathbf C_{\mathrm{BAO},i}^{-1/2}
+\left[
+\begin{pmatrix}
+D_M^\theta(z_i)/r_d^\theta\\
+D_H^\theta(z_i)/r_d^\theta\\
+D_V^\theta(z_i)/r_d^\theta
+\end{pmatrix}_{\!\mathrm{kept}}
+-
+\begin{pmatrix}
+(D_M/r_d)_i^{\mathrm{obs}}\\
+(D_H/r_d)_i^{\mathrm{obs}}\\
+(D_V/r_d)_i^{\mathrm{obs}}
+\end{pmatrix}_{\!\mathrm{kept}}
+\right],
+$$
+
+where `kept` means the subset reported by the survey bin. This avoids pretending that isotropic BAO bins contain independent radial and transverse information. The SN/local-ladder row should analogously keep the distance-modulus and local-slope rows separate:
+
+$$
+\mathbf r_{\mathrm{SN/H_0}}
+=
+\left(
+\mathbf C_\mu^{-1/2}
+\left[
+\boldsymbol\mu^\theta-\boldsymbol\mu^{\mathrm{obs}}
+\right],
+\frac{H_{\mathrm{eff,ladder}}^\theta-H_{0,\mathrm{ladder}}^{\mathrm{obs}}}{\sigma_{H_0}},
+\frac{\Delta_{\mathrm{cal}}^\theta}{\sigma_{\mathrm{cal}}}
+\right).
+$$
+
+The CMB row should preserve spectra and lensing as separate but overlapping checks:
+
+$$
+\mathbf r_{\mathrm{CMB}}
+=
+\left(
+\mathbf C_{\ell}^{-1/2}
+\left[
+\mathbf C_{\ell,\mathrm{TTTEEE}}^\theta
+-
+\mathbf C_{\ell,\mathrm{TTTEEE}}^{\mathrm{obs}}
+\right],
+\mathbf C_{\phi\phi}^{-1/2}
+\left[
+\mathbf C_{L}^{\phi\phi,\theta}
+-
+\mathbf C_{L}^{\phi\phi,\mathrm{obs}}
+\right],
+\frac{\theta_*^\theta-\theta_*^{\mathrm{obs}}}{\sigma_{\theta_*}},
+\frac{\Delta T_{\mathrm{bb}}^\theta}{\epsilon_{\mathrm{bb}}}
+\right).
+$$
+
+The overlap key `CMB_lensing` must appear in both CMB and growth-facing projections whenever lensing is used. Otherwise a packet can accidentally fit CMB spectra with one projection and weak-lensing or clustering with another, which is exactly the split-ontology failure this protocol is meant to catch.
+
 Dark-sector comparison packets should also retain the linear/nonlinear split exposed by scalar-fluid and MOND-like hybrid models:
 
 $$

@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1223
+      "sections": 1225
     }
   },
   "tocRoot": {
@@ -2320,6 +2320,14 @@
                     "markdownPath": "content/markdown/aaa/spacetime/ppn-parameters.md",
                     "markdownSection": "Weak-Field Constraint Table (Decision Layer)",
                     "sectionKey": "weak field constraint table decision layer",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Source-Mined Benchmark Bound Vector",
+                    "markdownPath": "content/markdown/aaa/spacetime/ppn-parameters.md",
+                    "markdownSection": "Source-Mined Benchmark Bound Vector",
+                    "sectionKey": "source mined benchmark bound vector",
                     "headingLevel": 2
                   },
                   {
@@ -7859,6 +7867,14 @@
                     "markdownPath": "content/markdown/aaa/validation/simulations/run-protocols.md",
                     "markdownSection": "Cosmology Shared-Residual Protocol",
                     "sectionKey": "cosmology shared residual protocol",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Public Gravitational-Wave Benchmark Protocol",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/run-protocols.md",
+                    "markdownSection": "Public Gravitational-Wave Benchmark Protocol",
+                    "sectionKey": "public gravitational wave benchmark protocol",
                     "headingLevel": 2
                   },
                   {

@@ -80,7 +80,7 @@ For $S_8$:
 
 ## DESI-Era Data-Product Gate
 
-The 2025 DESI first-three-year BAO results strengthen the comparison pressure for time-varying dark-energy fits when BAO measurements are combined with CMB, supernova, and weak-lensing data. As of April 2026, DESI has completed the observations for its originally planned five-year survey, but the first dark-energy results from the full five-year dataset are expected in 2027. This is a data-product signal, not an ontology claim. The useful requirement is to preserve the separable observables: BAO distances, supernova residual handling, CMB anchoring, weak-lensing growth, and $f\sigma_8$ growth.
+The 2025 DESI first-three-year BAO results strengthen the comparison pressure for time-varying dark-energy fits when BAO measurements are combined with CMB, supernova, and weak-lensing data. DESI has also released first-three-year BAO cosmology chains and supporting products in advance of the full public DR2 catalogue, and as of April 2026 DESI has completed the observations for its originally planned five-year survey. The first dark-energy results from the full five-year dataset are expected in 2027. These are data-product signals, not ontology claims. The useful requirement is to preserve the separable observables: BAO distances, supernova residual handling, CMB anchoring, weak-lensing growth, and $f\sigma_8$ growth.
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ question is whether one Noether-Sea medium history can satisfy
 $$
@@ -96,6 +96,40 @@ $$
 without assigning separate medium states to each inference pipeline. If the preferred $w(a)$ trend requires one state for distance data and another for growth, the cosmology branch has only hidden the tension.
 
 This is the local form of the shared calibration gate in [Dark Energy](dark-energy.md#inference-dependency-and-calibration-gates). The sets $\mathcal{C}_{H_0}$, $\mathcal{C}_{S_8}$, $\mathcal{C}_{\mathrm{BAO/SN/CMB}}$, and $\mathcal{C}_{\mathrm{growth}}$ should be read as constraints on projections of one $\theta_{\mathrm{sea}}$, not as independent fit islands. A low distance residual paired with an incompatible growth projection is therefore not a win for the medium-relaxation interpretation; it is evidence that the interpretation has not yet closed.
+
+The current benchmark family can be summarized as a residual-contract table:
+
+| Observable pressure | Typical data-product comparison | $\mathbb{A}\mathbb{A}\mathbb{A}$ reading |
+| --- | --- | --- |
+| Early CMB inference | Planck-like base-LambdaCDM inference gives $H_0$ near $67.4\ \mathrm{km\,s^{-1}\,Mpc^{-1}}$ and $\sigma_8$ near $0.81$; ACT DR6 supplies an independent high-resolution spectra and lensing comparison. | The CMB row constrains the effective acoustic, thermalization, damping, and lensing transfer map, not a primitive expanding void. |
+| Local distance ladder | SH0ES/Pantheon+-style Cepheid/SN ladders give a local coefficient near $73\ \mathrm{km\,s^{-1}\,Mpc^{-1}}$ with about percent-level uncertainty. | The local coefficient is $H_{\mathrm{eff,ladder}}$, the slope of the corrected redshift-transfer map after source, endpoint, launch, calibration, and path-history terms are separated. |
+| BAO standard ruler | DESI BAO rows report $D_M/r_d$, $D_H/r_d$, or $D_V/r_d$ by tracer and effective redshift, with CMB, SN, and weak-lensing combinations testing $w_0w_a$-style extensions. | BAO constrains the joint pair $(D^\theta(z),r_d^\theta)$; changing the sound-ruler calibration for CMB while changing the propagation map for BAO is a shared-state failure. |
+| Late growth | DES Year-3 3$\times$2pt weak-lensing and clustering analyses give an $S_8$ value below the Planck-inferred value, while RSD and lensing rows probe $f\sigma_8$ and growth response. | $S_8$ is a growth projection of $\theta_{\mathrm{sea}}$. It must remain compatible with CMB lensing and BAO distances, not merely lower the late-time amplitude. |
+| Euclid readiness | Euclid Q1 is public but not a cosmology release; major public cosmology products depend on later releases. | Current Euclid use is packet-readiness: masks, catalogues, spectroscopy, photo-$z$, and future covariance shape. It is not yet a public $S_8$ or BAO residual row. |
+
+This table fixes the claim level. The benchmark values are observer-level comparison coordinates in LambdaCDM-era pipelines. They are useful because they force the medium-relaxation proposal to match early spectra, low-redshift slopes, standard rulers, and late growth with one shared state; they are not direct measurements of substrate expansion.
+
+The corresponding DESI-era distance-growth score should keep the BAO ruler visible:
+
+$$
+\mathcal{R}_{\mathrm{DESI}\text{-}\mathrm{era}}(\theta_{\mathrm{sea}})
+=
+\mathcal{R}_{\mathrm{CMB}}(\theta_{\mathrm{sea}})
++\sum_i
+\left\|
+\mathbf C_{\mathrm{BAO},i}^{-1/2}
+\left[
+\mathbf b_{\mathrm{BAO}}^\theta(z_i)
+-
+\mathbf b_{\mathrm{BAO}}^{\mathrm{obs}}(z_i)
+\right]
+\right\|^2
++\mathcal{R}_{\mathrm{SN/H_0}}(\theta_{\mathrm{sea}})
++\mathcal{R}_{\mathrm{growth}}(\theta_{\mathrm{sea}})
++\lambda_{\mathrm{split}}\mathcal{P}_{\mathrm{proj}}.
+$$
+
+Here $\mathbf b_{\mathrm{BAO}}(z_i)$ contains the reported subset of $D_M/r_d$, $D_H/r_d$, and $D_V/r_d$ for each tracer bin. The last term is not optional bookkeeping. It prevents a branch from fitting a DESI-like distance trend, a Planck-like CMB anchor, and a DES-like growth amplitude by using three incompatible Noether-Sea projections.
 
 ## Dipole and Bulk-Flow Diagnostic
 

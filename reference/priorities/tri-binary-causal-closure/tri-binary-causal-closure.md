@@ -14,6 +14,7 @@
 1. `photon_qed_gate` — Build the three photon/QED stress-test packets for kinematics and optics, polarization and spin, and vertices and transitions. Status: `pending`. Depends on: none.
 2. `residual_routing_event_ledger` — Advance the promoted residual-to-channel contract into worked sector cases for radiation, transport, weak reactions, nuclear binding, measurement records, and strong-field release. Status: `worked-cases-pending`. Depends on: none.
 3. `radiation_gate_c_benchmarks` — Build the radiation Gate C benchmark ledger for atomic transitions, bremsstrahlung, synchrotron, Compton-like scattering, pair channels, and blackbody recovery. Status: `pending`. Depends on: `photon_qed_gate`, `residual_routing_event_ledger`.
+4. `lorentz_residual_packet` — Export moving-assembly deformation, clock retuning, and two-way signal timing into RMS/PPN/SME-style residual rows. Status: `pending`. Depends on: none.
 
 ## Completed State
 
@@ -46,6 +47,44 @@ Completed map-cleanup items are recorded in `Completed State` above. The live pr
 | `photon_qed_gate` | [rest-mass-proper-time-relativity-synthesis.md](rest-mass-proper-time-relativity-synthesis.md) | [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md), [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md), and downstream Standard Model closure material. | Photon gates A-C are separated into kinematics/optics, polarization/spin, and vertices/transitions with explicit null-test burdens before deployment. |
 | `residual_routing_event_ledger` | [residual-routing-event-ledger.md](residual-routing-event-ledger.md) | [reaction-ledger](../../../content/markdown/aaa/validation/reaction-ledger.md), [reaction-cosmology-provenance-ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md), [energy](../../../content/markdown/aaa/dynamics/energy.md), and [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) | A named residual routes through admissible channels into a complete $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ event ledger before any transition, radiation event, measurement record, reaction, transport excitation, or strong-field release is promoted. |
 | `radiation_gate_c_benchmarks` | [radiation-gate-c-benchmarks.md](radiation-gate-c-benchmarks.md) | [radiation](../../../content/markdown/aaa/reactions/radiation.md), [atomic-transition-radiation](../../../content/markdown/aaa/reactions/atomic-transition-radiation.md), [bremsstrahlung](../../../content/markdown/aaa/reactions/bremsstrahlung.md), [synchrotron](../../../content/markdown/aaa/reactions/synchrotron.md), and [reaction-ledger](../../../content/markdown/aaa/validation/reaction-ledger.md) | One closure-residual event ledger recovers the benchmark electromagnetic/QED-like channels without per-observable retuning and without bypassing photon Gate A/B. |
+| `lorentz_residual_packet` | [lorentz-invariance-test-suite.md](../cross-theory-mapping/lorentz-invariance-test-suite.md) | [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [ppn-parameters](../../../content/markdown/aaa/spacetime/ppn-parameters.md) | A single tri-binary branch record produces $\xi$, $\omega_{\text{clk}}/\omega_0$, $\Delta_{\mathrm{tw}}$, $(R_{\mathrm{MM}},R_{\mathrm{KT}},R_{\mathrm{IS}})$, and $(\alpha_1,\alpha_2,\alpha_3)$ without separately tuned clock, ruler, photon, or preferred-frame coefficients. |
+
+## Lorentz-Test Residual Interface
+
+The Living Reviews and SME source family sharpens the tri-binary relativity burden. A branch that visually produces the Lorentz envelope ratio is insufficient unless the same causal-root ledger also retunes clocks and closed signal paths. The export object for this workstream is
+$$
+\mathcal{E}_{\mathrm{tri\text{-}Lor}}^{(q)}(\beta)
+=
+\left(
+\xi^{(q)}(\beta)-\gamma^{-1},
+\frac{\omega_{\text{clk}}^{(q)}(\beta)}{\omega_0}-\gamma^{-1},
+\Delta_{\mathrm{tw}}^{(q)}(\beta,\hat{\mathbf n}),
+R_{\mathrm{MM}}^{(q)},
+R_{\mathrm{KT}}^{(q)},
+R_{\mathrm{IS}}^{(q)}
+\right),
+$$
+where $q$ labels the retained tri-binary branch class. The first two entries test moving-assembly deformation and clock retuning; the third tests two-way synchronization; the final three entries are the RMS decomposition that prevents a Michelson-Morley-only cancellation from being mistaken for full Lorentz closure.
+
+The residual packet must carry its provenance:
+$$
+q\mapsto
+\left(
+\mathcal{A}_{q},
+\nu_J^{(q)},
+h_{\mathrm{mem}}^{(q)},
+\mathcal{R}_{\mathrm{tr}}^{(q)},
+\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}
+\right),
+$$
+with active root ledger $\mathcal{A}_{q}$, Jacobian floor $\nu_J^{(q)}$, memory depth $h_{\mathrm{mem}}^{(q)}$, root-transport residual $\mathcal{R}_{\mathrm{tr}}^{(q)}$, and the event ledger $\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}$. A Lorentz residual below bound is not promotable if the branch identity changes between the clock, ruler, and signal rows.
+
+Failure modes:
+
+- `tri_lorentz.branch_split`: $\xi$ closes on one branch while $\omega_{\text{clk}}/\omega_0$ or $\Delta_{\mathrm{tw}}$ closes on another branch.
+- `tri_lorentz.mm_only`: the two-way orientation residual cancels but $R_{\mathrm{KT}}$ or $R_{\mathrm{IS}}$ remains nonzero.
+- `tri_lorentz.photon_gate_split`: photon Gate A requires a $c_\gamma$ or $\chi_\gamma$ row not derived from the same branch record.
+- `tri_lorentz.ppn_leakage`: the branch exports nonzero $(\alpha_1,\alpha_2,\alpha_3)$ above the PPN preferred-frame bounds.
 
 ## Related Priorities
 

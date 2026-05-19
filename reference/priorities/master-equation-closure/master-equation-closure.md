@@ -14,6 +14,7 @@
 1. `circular_asymptotics` — Extend higher-winding and large-$\beta$ circular self-force asymptotics. Status: `in_progress`; the branchwise large-$\beta$ self-hit estimates, derivative-sensitive residual packet, high-speed circular obstruction, sampled finite-band branch table, executable outward-rounded interval support certificate, trig-free residual backend, checked root-bracket rows, complete finite-band inactive-gap ledger, theorem-readiness matrix, interval-certificate packet, and Jacobian-null finite-crossing criteria now advance the self-hit side, but the theorem-grade bare-kernel circular MCB verdict remains open until the large-$\beta$ tail remainder constants are closed. Depends on: none.
 2. `spiral_branch_chart_test` — Certify whether any admissible variable-pitch spiral roots realize negative weighted tangential drive with positive Jacobian floors and finite memory depth, using the promoted variable-pitch formulas, radial-turn inequality, and weighted tangential obstruction test. Status: `next`. Depends on: `circular_asymptotics`.
 3. `lorentz_gr_bridge` — Close the Lorentz and weak-field GR bridge from the coarse-grained delayed medium. Status: `pending`. Depends on: `spiral_branch_chart_test`.
+4. `lorentz_test_residual_handoff` — Export RMS, PPN, and SME-style residual rows from the Lorentz/GR bridge packet. Status: `pending`. Depends on: `lorentz_gr_bridge`.
 
 ## Scope
 
@@ -895,7 +896,7 @@ Keep the maximum-curvature-wall question tied to both tracks. The Jacobian-null 
 - Derive the constitutive closure from the coarse-grained medium itself rather than postulating it:
   - take the continuum limit of the $\eta$-regularized delayed action and effective medium Lagrangian seriously;
   - compute the relevant continuum stress-strain or equivalent constitutive variables of the causal medium;
-  - derive the PPN numbers $\gamma$, $\beta$, and $\alpha_i$ to Cassini / LLR precision;
+  - derive the PPN numbers $\gamma$, $\beta$, and $\alpha_i$ to the Will benchmark rows: $|\gamma_{\mathrm{PPN}}-1|\le2.3\times10^{-5}$, $|\beta_{\mathrm{PPN}}-1|\le8\times10^{-5}$, $|\alpha_1|\le4\times10^{-5}$, $|\alpha_2|\le2\times10^{-9}$, and $|\alpha_3|\le4\times10^{-20}$;
   - recover the weak-field targets $\gamma_{\mathrm{eff}} = 1$, $\beta_{\mathrm{eff}} = 1$, and vanishing preferred-frame coefficients $\alpha_1$, $\alpha_2$, $\alpha_3$;
   - and show Shapiro delay and light-bending equivalence to GR at the advertised $10^{-5}$ level.
 
@@ -990,6 +991,83 @@ $$
 Preferred-frame leakage may also appear as clock/shape sidebands, drift-dependent channel splitting $c_{\text{eff}}-c_f$, photon-channel splitting $c_\gamma-c_{\text{eff}}$, or weak-field coefficients $(\alpha_1,\alpha_2,\alpha_3)$ after metric dressing. Those downstream leakage terms may falsify the bridge, but they do not define the moving-assembly extraction.
 
 Failure modes for this packet are concrete: no stable translated attractor on the drift band, loss of Jacobian floor or inactive-root gaps, unbounded memory depth, branch transition treated as smooth drift, residuals above the leakage bounds, a clock period and ruler semiaxis extracted from different branch ledgers, identification of $c_f$ with $c_\star$ without a dressing map, or Lorentz agreement obtained only by tuning a PPN coefficient or per-observable clock/ruler rule after the moving branch has been extracted.
+
+## RMS/SME Residual Handoff
+
+The Lorentz test suite consumes the moving-assembly packet through residual rows, not through a declaration that the observer sector is Lorentzian. For the same retained branch $q$, define
+$$
+\mathbf{R}_{\mathrm{RMS}}^{(q)}
+=
+\begin{pmatrix}
+R_{\mathrm{MM}}^{(q)}\\
+R_{\mathrm{KT}}^{(q)}\\
+R_{\mathrm{IS}}^{(q)}
+\end{pmatrix}
+=
+\begin{pmatrix}
+\bar\delta^{(q)}-\bar\beta^{(q)}\\
+\bar\beta^{(q)}-\bar\alpha^{(q)}\\
+\bar\alpha^{(q)}
+\end{pmatrix},
+$$
+where the barred coefficients are offsets from the special-relativistic Robertson-Mansouri-Sexl values in the homogeneous drift expansion. The theorem target is
+$$
+\mathbf{R}_{\mathrm{RMS}}^{(q)}=\mathbf{0}+O(\epsilon_{\mathrm{LV}})
+$$
+with the same branch also satisfying the two-way residual bound
+$$
+\sup_{\beta,\hat{\mathbf n}}
+\left|\Delta_{\mathrm{tw}}^{(q)}(\beta,\hat{\mathbf n})\right|
+\lesssim10^{-18}
+$$
+when projected into direct photon-sector cavity observables.
+
+The weak-field metric export is the PPN vector
+$$
+\mathbf{p}_{\mathrm{PPN}}^{(q)}
+=
+\begin{pmatrix}
+\gamma_{\mathrm{PPN}}^{(q)}-1\\
+\beta_{\mathrm{PPN}}^{(q)}-1\\
+\alpha_1^{(q)}\\
+\alpha_2^{(q)}\\
+\alpha_3^{(q)}
+\end{pmatrix},
+$$
+which must be normalized against
+$$
+\mathbf{b}_{\mathrm{Will}}
+=
+\begin{pmatrix}
+2.3\times10^{-5}\\
+8\times10^{-5}\\
+4\times10^{-5}\\
+2\times10^{-9}\\
+4\times10^{-20}
+\end{pmatrix}.
+$$
+The bridge passes the source-mined weak-field row only if
+$$
+\left\|
+\operatorname{diag}(\mathbf{b}_{\mathrm{Will}})^{-1}
+\mathbf{p}_{\mathrm{PPN}}^{(q)}
+\right\|_\infty
+\le1.
+$$
+
+The SME-style export is a comparison projection:
+$$
+\mathbf{R}_{\mathrm{SME}}^{(q)}
+=
+\left(
+\tilde\kappa_{e-}^{(q)},
+\tilde\kappa_{o+}^{(q)},
+\tilde\kappa_{\mathrm{tr}}^{(q)},
+\bar{s}^{\mu\nu(q)},
+\mathbf{c}_{\mathrm{matter}}^{(q)}
+\right).
+$$
+These rows are not added to the substrate law. They are the coefficient-space shadow cast by the branch into the standard Sun-centered frame used by SME data tables. A successful master-equation bridge should report them even when every entry is consistent with zero, because absent rows are indistinguishable from untested leakage.
 
 ## Lorentz/GR Bridge Contract
 
@@ -1146,7 +1224,8 @@ Interface falsifier. If a downstream basin weight, shielding coefficient, or res
 
 ## Empirical Stakes
 
-- The absolute-time and Euclidean-void ontology survives only if the exact compensation works at modern Lorentz-violation bounds below $10^{-17}$.
+- The absolute-time and Euclidean-void ontology survives only if the exact compensation works at the relevant modern Lorentz-violation bound for each channel.
+- The source-mined bounds are channel-specific: two-way photon orientation tests reach the $10^{-18}$ scale, while PPN preferred-frame rows range from $4\times10^{-5}$ for $\alpha_1$ to $4\times10^{-20}$ for $\alpha_3$.
 - If the contraction or clock-slowing law requires ad hoc tuning of $\kappa$, $\eta$, or axial-structure-specific detail, the bridge fails.
 - Match GR in the weak field first, then let strong-field deviations emerge as predictions rather than assertions.
 

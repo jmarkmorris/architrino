@@ -10,10 +10,12 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, gravitational waves are not fundamental ri
 
 ## Task Queue
 
-1. `waveform_phase_gate` — Recover inspiral phase evolution from a source ledger and propagation map. Status: `draft`.
-2. `speed_bound_gate` — Bound the effective gravitational-wave speed against photon-channel timing where applicable. Status: `draft`.
-3. `polarization_gate` — Classify tensor-like effective polarizations and forbid unsupported extra modes. Status: `draft`.
-4. `ringdown_handoff` — Connect merger/ringdown records to strong-field closure. Status: `draft`.
+1. `waveform_phase_gate` — Recover inspiral phase evolution from a source ledger and propagation map against versioned GWOSC strain and LVK parameter-estimation records. Status: `draft`.
+2. `event_energy_ledger` — Close source masses, remnant mass, radiated energy, recoil, detector strain, and waveform-model nuisance rows for benchmark compact-binary events. Status: `draft`.
+3. `speed_bound_gate` — Bound the effective gravitational-wave speed against photon-channel timing where applicable, with intrinsic source-emission lag carried as a nuisance row rather than hidden in propagation. Status: `draft`.
+4. `waveform_provenance_contract` — Require every benchmark waveform comparison to name catalog, event version, detectors, strain file format, sampling rate, data-quality masks, parameter-estimation release, waveform family, calibration notes, and artifact hashes. Status: `draft`.
+5. `polarization_gate` — Classify tensor-like effective polarizations and forbid unsupported extra modes. Status: `draft`.
+6. `ringdown_handoff` — Connect merger/ringdown records to strong-field closure without importing a GR metric ontology. Status: `draft`.
 
 ## Closure Objects
 
@@ -21,6 +23,68 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, gravitational waves are not fundamental ri
 - Effective wave map: $\mathcal{W}_{\mathrm{grav}}[\mathcal{M}_{\mathrm{sea}}^{ab},\Gamma_{\mathrm{src}},\mathcal{H}]$.
 - Benchmark variables: chirp mass $\mathcal{M}_c$, strain $h(t)$, phase $\phi(t)$, luminosity distance $D_L$, and speed residual $\Delta v/c$.
 - Polarization acceptance record.
+- Public-data provenance row:
+  $$
+  \mathcal{P}_{\mathrm{GW}}
+  =
+  (\mathsf{catalog},\mathsf{event\_version},\mathsf{detectors},\mathsf{GPS},
+  \mathsf{strain\_files},f_s,\mathsf{dqmask},\mathsf{injmask},
+  \mathsf{PE\_release},\mathsf{waveform\_family},\mathsf{calibration},\mathsf{hashes}).
+  $$
+- Detector residual vector for an event $e$:
+  $$
+  \mathcal{R}_{\mathrm{GW}}(e)
+  =
+  \big(
+  R_h(e),R_\phi(e),R_E(e),R_J(e),R_{\mathrm{sky}}(e),
+  R_{c_g}(e),R_{\mathrm{prov}}(e)
+  \big),
+  $$
+  where $R_{\mathrm{prov}}=0$ only when the public strain, parameter-estimation samples, waveform family, detector timing, data-quality masks, and calibration notes are all versioned before fitting.
+
+The minimum waveform residual is
+$$
+R_h(e)
+=
+\min_{\theta,\nu}
+\frac{
+\left(\sum_{d\in\mathcal{D}_e}\|W_d[h^{\mathbb{A}\mathbb{A}\mathbb{A}}_d(t;\theta,\nu)-h^{\mathrm{PE}}_d(t)]\|_2^2\right)^{1/2}
+}{
+\left(\sum_{d\in\mathcal{D}_e}\|W_d h^{\mathrm{PE}}_d(t)\|_2^2\right)^{1/2}+\varepsilon_0
+},
+$$
+with detector index $d$, declared whitening/windowing map $W_d$, theory parameters $\theta$, and nuisance record $\nu$. The phase residual $R_\phi$ is the same comparison after projecting to the unwrapped inspiral-merger phase on the declared frequency window.
+
+The energy-accounting residual is
+$$
+R_E(e)
+=
+\frac{
+\left|M_{1,\mathrm{src}}+M_{2,\mathrm{src}}-M_{f,\mathrm{src}}-E_{\mathrm{rad}}/c_\gamma^2\right|
+}{
+M_{1,\mathrm{src}}+M_{2,\mathrm{src}}+\varepsilon_0
+},
+$$
+with posterior uncertainty propagated from the same PE release. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a claim that the Euclidean void carries metric ripples; it is a conservation-ledger test for whether the effective gravitational disturbance, remnant, recoil, heat or ejecta channels, and detector readout close one event record.
+
+For multimessenger events, define
+$$
+R_{c_g}(e)
+=
+\frac{\Delta t_{\mathrm{obs}}-\Delta t_{\mathrm{src}}}{D_L/c_\gamma},
+\qquad
+\Delta t_{\mathrm{obs}}=t_\gamma-t_{\mathrm{GW}},
+$$
+and compare the allowed interval for $R_{c_g}$ with the LVK photon-channel speed bound. The intrinsic source delay $\Delta t_{\mathrm{src}}$ is a nuisance variable constrained by the source model; setting it to zero without a row in $\mathcal{P}_{\mathrm{GW}}$ is hidden tuning.
+
+## Public Benchmark Rows
+
+| Benchmark | Source signal | $\mathbb{A}\mathbb{A}\mathbb{A}$ closure artifact |
+| --- | --- | --- |
+| `GW150914-v3` / first binary-black-hole merger | Public H1 and L1 strain are released around GPS `1126259462` in HDF5, GWF, and text formats at `4096 Hz` and `16384 Hz`. The event page records source-frame component masses near `36.2` and `29.1` $M_\odot$, final mass near `62.3` $M_\odot$, luminosity distance near `420` Mpc, radiated energy near `3.0 M_\odot c^2`, and an L1-to-H1 arrival offset of about `6.9 ms`. The public tutorial waveform uses SXS:BBH:0305 rescaled to detector-frame total mass `74.6 M_\odot` with amplitude and phase adjusted for agreement. | Use as the first `event_energy_ledger` and `ringdown_handoff` row. The benchmark must close $R_h$, $R_\phi$, $R_E$, detector timing, and waveform provenance without treating the SXS/GR waveform as an unexplained ontology import. |
+| `GW170817-v3` / binary-neutron-star inspiral | The event occurred at GPS `1187008882.43`, was observed by H1, L1, and V1, has public cleaned strain products, and requires long-window analysis because the inspiral remains in band for more than `32 s`. The GWTC-1 detail row reports network SNR about `33`, chirp mass `1.186 M_\odot`, luminosity distance near `40` Mpc, and waveform family `IMRPhenomPv2NRT_lowSpin_prior`; GWOSC notes the L1 instrumental glitch, cleaning, and frequency restrictions for the released data. | Use as the first `speed_bound_gate` and long-inspiral phase row. The packet must carry the glitch-removal provenance, analysis band, three-detector timing, PE waveform family, and source-emission lag nuisance before comparing $R_{c_g}$ or $R_\phi$. |
+| `GW170817` + `GRB 170817A` | LVK/Fermi/INTEGRAL report a GRB delay of $(+1.74\pm0.05)\,\mathrm{s}$ after the gravitational-wave merger time and a fractional speed-difference interval from about $-3\times10^{-15}$ to $+7\times10^{-16}$. | The photon/gravity channel comparison must share the Lorentz/effective-metric closure map. A separate gravity-channel speed is allowed only as a falsifiable residual, not as a free sector parameter. |
+| `GWTC-4.0` O4a catalog | The current GWOSC catalog API exposes `129` GWTC-4.0 O4a events, strain files, event versions, detectors, PE records, data-quality and injection masks, and release notes. The documentation records 4096-second calibrated strain products at `16384 Hz`, down-sampled `4096 Hz` products, channel names, PE posterior-sample releases, and reweighted PE lifecycle rows. | Use as the scalable `waveform_provenance_contract`: benchmark packets must preserve event version and PE lifecycle, not collapse all catalog rows into one best-fit waveform table. |
 
 ## Promotion Map
 
@@ -36,3 +100,5 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, gravitational waves are not fundamental ri
 - `gw.energy_ledger_gap`: source energy and angular momentum loss do not balance the emitted disturbance and remnant.
 - `gw.speed_split`: gravitational-wave and photon timing require incompatible causal-speed maps.
 - `gw.extra_mode`: unsupported scalar or vector modes appear in regimes where observations require tensor-like behavior.
+- `gw.provenance_gap`: a waveform comparison omits catalog version, strain provenance, detector calibration, data-quality masks, PE release, waveform family, or artifact hashes.
+- `gw.source_lag_tuning`: a multimessenger speed comparison absorbs the photon/gravity timing offset into an undeclared source-emission lag.

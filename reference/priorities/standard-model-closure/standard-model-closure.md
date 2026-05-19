@@ -31,6 +31,42 @@ The hydrogen boundary question is now a staged standard-model-to-atomic bridge. 
 
 The Higgs discovery benchmark is a required Standard Model-facing recovery target, not evidence for primitive Higgs ontology in $\mathbb{A}\mathbb{A}\mathbb{A}$. The acceptance target is a shared scalar residual combining ATLAS mass, inclusive signal strength, channel-rate compatibility, and excluded-scalar-window pressure. The benchmark fails if the native scalar mode is fit only by mass, if production and branching channels require independent tuning, or if extra scalar strength survives in search windows where ATLAS reports no accepted resonance.
 
+## Current PDG Benchmark Contract
+
+The current Particle Data Group source family is a downstream recovery surface, not an input ledger for branch selection. The active benchmark source is the 2025 PDG API / pdgLive release, cited by PDG as S. Navas et al. (Particle Data Group), Phys. Rev. D 110, 030001 (2024) and 2025 update, with data release timestamp `2025-11-26 19:33:17 PST`. The 2024 Review chapters remain the review-level source for uncertainty conventions, QCD running, electroweak-fit interpretation, CKM/PMNS context, and statistics practice.
+
+The Standard Model closure residual should carry at least these observer-facing rows:
+
+| Sector | PDG benchmark row | Closure use | Input prohibition |
+| --- | --- | --- | --- |
+| Charged leptons | $m_e=0.51099895000\pm0.00000000015\,\mathrm{MeV}$, $m_\mu=105.6583755\pm0.0000023\,\mathrm{MeV}$, $m_\tau=1776.93\pm0.09\,\mathrm{MeV}$; $\tau_\mu=(2.1969811\pm0.0000022)\times10^{-6}\,\mathrm{s}$, $\tau_\tau=(2.903\pm0.005)\times10^{-13}\,\mathrm{s}$ | Mass hierarchy, weak-decay clock, and charged-lepton lifetime checks. | Do not tune $A_0$, shielding, or weak-corridor constants to charged-lepton masses or lifetimes. |
+| Light hadrons | $m_p=938.27208816\pm0.00000029\,\mathrm{MeV}$, $m_n=939.5654205\pm0.0000005\,\mathrm{MeV}$, $m_{\pi^\pm}=139.57039\pm0.00018\,\mathrm{MeV}$, $m_{\pi^0}=134.9768\pm0.0005\,\mathrm{MeV}$, $m_{K^\pm}=493.677\pm0.015\,\mathrm{MeV}$ | Hadronic confinement, residual nuclear-force, isospin-splitting, and decay-threshold checks. | Do not use hadron masses to choose quark geometry or confinement energetics before the native branch ledger is fixed. |
+| Quarks | $\overline m_u(2\,\mathrm{GeV})=2.16\pm0.07\,\mathrm{MeV}$, $\overline m_d(2\,\mathrm{GeV})=4.70\pm0.07\,\mathrm{MeV}$, $\overline m_s(2\,\mathrm{GeV})=93.5\pm0.8\,\mathrm{MeV}$, $\overline m_c(\overline m_c)=1.2730\pm0.0046\,\mathrm{GeV}$, $\overline m_b(\overline m_b)=4.183\pm0.007\,\mathrm{GeV}$, $m_t^{\mathrm{direct}}=172.56\pm0.31\,\mathrm{GeV}$ | Quark mass-basis geometry, flavor hierarchy, confinement-scale, and top-loop electroweak checks. | Do not treat scheme-dependent quark masses as primitive rest-assembly masses; the scheme and scale are part of the benchmark row. |
+| Electroweak bosons and scalar | $M_W=80.3692\pm0.0133\,\mathrm{GeV}$, $\Gamma_W=2.14\pm0.05\,\mathrm{GeV}$, $M_Z=91.1880\pm0.0020\,\mathrm{GeV}$, $\Gamma_Z=2.4955\pm0.0023\,\mathrm{GeV}$, $M_H=125.20\pm0.11\,\mathrm{GeV}$, $\Gamma_H=3.7^{+1.9}_{-1.4}\,\mathrm{MeV}$ | Weak-corridor mass, neutral-current line shape, scalar-response, and branching-width checks. | Do not fit $W/Z/H$ masses independently from the same weak-exposure, recoupling, and scalar-response map. |
+| QCD running | $\alpha_s(M_Z^2)=0.1180\pm0.0009$ in the 2024 QCD review world-average discussion; the 2024 electroweak fit gives $\alpha_s(M_Z)=0.1187\pm0.0017$ for the global electroweak fit. | Strong-sector running, confinement energetics, and electroweak fit covariance checks. | Do not use one scalar $\alpha_s$ target without declaring whether it is the QCD world average or the electroweak-fit extraction. |
+| Flavor and neutrino | CKM first-row unitarity check $|V_{ud}|^2+|V_{us}|^2+|V_{ub}|^2=0.9984\pm0.0007$ with a reported $2.3\sigma$ tension in the 2024 CKM review; 2025 neutrino rows include $\sin^2\theta_{12}=0.307\pm0.012$, $\sin^2\theta_{13}=0.0216\pm0.0006$, $\delta_{\mathrm{CP}}=1.21^{+0.19}_{-0.22}\pi$, and $\Delta m_{21}^2=(7.50\pm0.19)\times10^{-5}\,\mathrm{eV}^2$ | Unified weak-exposure, CKM/PMNS overlap, CP-phase, and neutrino mass-difference checks. | Do not let overlap-integral kernels see CKM/PMNS entries until the exposure measure, basis states, and normalization have been fixed. |
+
+The compact residual object is
+
+$$
+\mathcal{R}_{\mathrm{PDG}}(\Theta)
+=
+\left(
+\frac{\mathbf{m}_{\mathrm{obs}}-\mathbf{m}_{\mathrm{map}}(\Theta)}
+{\boldsymbol{\sigma}_{m}},
+\frac{\boldsymbol{\Gamma}_{\mathrm{obs}}-\boldsymbol{\Gamma}_{\mathrm{map}}(\Theta)}
+{\boldsymbol{\sigma}_{\Gamma}},
+\frac{\mathbf{V}_{\mathrm{CKM,obs}}-\mathbf{V}_{\mathrm{CKM,map}}(\Theta)}
+{\boldsymbol{\sigma}_{\mathrm{CKM}}},
+\frac{\mathbf{U}_{\mathrm{PMNS,obs}}-\mathbf{U}_{\mathrm{PMNS,map}}(\Theta)}
+{\boldsymbol{\sigma}_{\mathrm{PMNS}}},
+\frac{\alpha_s^{\mathrm{obs}}-\alpha_s^{\mathrm{map}}(\Theta)}
+{\sigma_{\alpha_s}}
+\right).
+$$
+
+Here $\Theta$ denotes already-declared $\mathbb{A}\mathbb{A}\mathbb{A}$ branch, shielding, exposure, and medium-response data. A benchmark row with a PDG scale factor, asymmetric uncertainty, confidence limit, or mixed statistical/systematic uncertainty must carry that convention into the likelihood or residual definition rather than being symmetrized silently. The 2024 statistics review gives the matching convention for fit reporting: likelihood or $\chi^2$ combinations should state nuisance parameters, covariance/correlation structure, limits and confidence levels, and whether a quoted one-standard-deviation interval comes from $\Delta\chi^2=1$ rather than a literal $68.3\%$ probability statement.
+
 ## Hydrogen Boundary Closure Object
 
 The current scaffold separates three objects that must not be collapsed:
