@@ -50,6 +50,60 @@ $$
 
 in a homogeneous isotropic Noether-Sea cell. Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice. The tensor version is the sharper target because it carries direction dependence, gradient response, and the distinction between primitive wake speed and observer-facing effective signal speed. Until the internal ledger, shielding coefficient, and medium-response tensor are derived from stable assembly closure, this remains a roadmap formula rather than a theorem.
 
+Superfluid-vacuum and Nambu-Jona-Lasinio-style comparisons add a useful caution: an excitation gap can look like a rest-energy term without being the ontology of mass. For an accepted assembly branch $A$, the native analogue would be a branch gap
+$$
+\Delta_A^\theta
+=
+E_{\mathrm{first\,exc}}^\theta(A)
+-
+E_{\mathrm{branch}}^\theta(A),
+$$
+computed from the same causal ledger, shielding, and Noether-Sea response record as the mass map. A compact comparison residual is
+$$
+\mathcal{R}_{\mathrm{gap}\to m}(A;\theta)
+=
+\frac{
+\left|
+\Delta_A^\theta
+-
+M_{\mathrm{sh}}(A;\theta)c_{\text{eff}}^2
+\right|
+}{\epsilon_{\Delta}}
++
+\frac{
+\left\|
+\partial_{\theta_{\mathrm{sea}}}\Delta_A^\theta
+-
+\partial_{\theta_{\mathrm{sea}}}\!\left[M_{\mathrm{sh}}(A;\theta)c_{\text{eff}}^2\right]
+\right\|
+}{\epsilon_{\mathrm{env}}}.
+$$
+If this residual is small, the gap comparison supports the mass-map thesis. If it is small only after choosing a separate gap for each particle species, the comparison has merely renamed the observed mass table.
+
+##### Sector Exposure Quotient
+
+The scalar shielding factor $\zeta(A)$ is the mass-facing specialization of a more general sector exposure map. A stable assembly can carry far more internal ledger structure than any one observer-level sector is allowed to see. The mass map therefore cannot promote a hidden internal energy, phase, polarity, or branch label as an external response until the sector projection and quotient have been declared.
+
+Let $\mathcal{L}_A\in\mathfrak{L}_A$ be the emitted or retained ledger of an accepted assembly or branch family $A$. The ledger is derived from the accepted branch ledger, causal-wake history, cycle averages, energy entries, multipole entries, polarity/provenance labels, phase labels, and angular-momentum entries required by the sector under test. For a sector $S$, define a sector projection $\Pi_S$ to the retained sector-visible ledger and a quotient $Q_S$ that removes only declared gauge choices, branch-preserving relabelings, hidden internal rotations, canceled pro/anti structure, or unobservable frame choices that do not change the sector benchmark. The visible response is
+$$
+\mathcal{E}_S(A)
+=
+Q_S[\Pi_S\mathcal{L}_A].
+$$
+
+For the isotropic mass-facing scalar sector, $\zeta(A)$ is the scalar summary of $\mathcal{E}_0(A)$. If anisotropic leakage survives, the sector must report a tensor exposure instead of hiding that residue inside $\zeta(A)$.
+
+An exposure map is admissible only when the source ledger has branch-ledger provenance, $\Pi_S$ is idempotent on the retained sector data, $Q_S$ does not identify benchmark-distinct ledgers, and the discarded residue is below the declared tolerance. A useful reader-facing error contract is
+$$
+\epsilon_S
+=
+\epsilon_{S,\mathrm{leak}}
++\epsilon_{S,Q}
++\epsilon_{S,\mathrm{gauge}}
++\epsilon_{S,\mathrm{rec}}.
+$$
+Any discarded channel above tolerance blocks promotion of the sector response. It cannot be absorbed into shielding, fitted by the benchmark, or left as an unnamed hidden variable.
+
 #### The Noether Core as a Causal Knot
 
 A Noether core can be read as a causal knot: not a material knot in space, but a stable closure of delayed path-history relations. The inner, middle, and outer binaries continually exchange partner-hit, self-hit, and inter-layer wakes. When those returns close with stable phase and integer ledger structure, the assembly traps geometric history in a localized causal circuit.
@@ -69,7 +123,7 @@ Apparent inertial mass is expected to arise from a connected stack of effects:
   $$
   m_{\text{apparent}}c_{\text{eff}}^2 \sim \zeta(A)\,E_{\text{internal}}(A).
   $$
-- **Generational Hierarchy:** Heavier generations (Gen II, Gen III) have **reduced shielding** because outer binaries are missing. With fewer layers, more of the inner high-energy core is exposed, increasing $\zeta$ and thus the apparent mass.
+- **Generational Hierarchy:** Heavier generations (Gen II, Gen III) have **reduced shielding** because outer or middle shielding tiers are depleted on the branch lifetime window. With fewer coherent support layers, more of the inner high-energy core is exposed, increasing $\zeta$ and thus the apparent mass. This is a shielding-coherence statement, not a deletion of the H/M/L axial frame that carries color and electroweak bookkeeping.
 
 ##### Medium-Dressed Inertial Response
 - **The Medium:** The Noether Sea is not empty space; it is a dynamic population of neutral tri-binary assemblies. Moving or accelerating an assembly changes how its internal causal ledger closes relative to this medium.
@@ -96,7 +150,7 @@ It is crucial to clarify what is **fundamental** versus what is **emergent**:
 | Concept | Status in $\mathbb{A}\mathbb{A}\mathbb{A}$ |
 |:--------|:-------------------------------|
 | **Architrino Position/Velocity** | Fundamental (substrate level) |
-| **Architrino Charge ($\epsilon = e/6$)** | Fundamental |
+| **Architrino polarity bookkeeping unit ($\epsilon=|e|/6$)** | Fundamental at the polarity-bookkeeping layer; observer-level electric charge is assembly-level inventory |
 | **Noether Sea State** | Emergent density, compliance, drift, and clock-response fields |
 | **Inertial Mass ($m$)** | **Emergent** (shielded internal energy + medium-dressed response) |
 | **Gravitational Mass** | **Emergent** (Noether-Sea gradient response) |
@@ -120,9 +174,83 @@ The mass thesis must keep the particle categories separate. The photon channel i
 #### Comparison to Standard Model
 In the Standard Model, mass arises via the **Higgs Mechanism**: particles acquire mass by coupling to a background Higgs field (a scalar condensate with vacuum expectation value $v \approx 246$ GeV).
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Higgs-sector comparison is an effective matching problem, not yet a derived replacement. The working expectation is that Standard Model mass parameters and Yukawa couplings would be reinterpreted as effective summaries of assembly geometry, shielding, and Noether-Sea response. The 125 GeV Higgs mode may eventually be modeled as a collective excitation of this medium, but that identification is a theorem target, not an established result.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Higgs-sector comparison is an effective matching problem, not yet a derived replacement. The working expectation is that Standard Model mass parameters and Yukawa couplings would be reinterpreted as effective summaries of assembly geometry, shielding, and Noether-Sea response. The benchmark is a neutral scalar-compatible resonance near $125$ GeV with signal-strength normalization near the Standard Model expectation. Exact date-stamped masses, uncertainties, and signal-strength entries belong in validation and parameter ledgers; modeling the resonance as a collective medium excitation is a theorem target, not an established result.
 
-For the electroweak medium interpretation behind this replacement, see [Emergence of U(1)/SU(2)](../../../../markdown/aaa/interactions/gauge-structure-emergence.md).
+For the electroweak medium interpretation behind this replacement, see [Gauge Structure Emergence](../../../../markdown/aaa/interactions/gauge-structure-emergence.md).
+
+#### Higgs and Yukawa Matching Residual
+
+A mass fit alone does not recover the Higgs sector. The same record must also explain why the scalar channel couples to massive assemblies with strengths that, at the effective Standard Model level, are summarized by Yukawa parameters. Let $\varphi$ be a normalized radial perturbation of the local Noether-Sea scalar mode, with $\varphi=0$ on the weak homogeneous branch. The effective scalar coupling to an assembly $A$ should be the response derivative of the same shielding map:
+$$
+g_{H,A}^{\mathrm{eff}}(\theta)
+\equiv
+\left.
+\frac{\partial M_{\mathrm{sh}}(A;\theta,\varphi)}
+{\partial \varphi}
+\right|_{\varphi=0},
+\qquad
+M_{\mathrm{sh}}(A;\theta,0)=M_{\mathrm{sh}}(A;\theta).
+$$
+
+If $v_{\mathrm{EW}}^{\mathrm{eff}}(\theta)$ is the electroweak normalization extracted from the same Noether-Sea order-parameter proxy used in the gauge-sector bridge, the Standard Model Yukawa summary is recovered only as
+$$
+y_f^{\mathrm{eff}}(\theta)
+=
+\sqrt{2}\,\frac{M_{\mathrm{sh}}(A_f;\theta)}{v_{\mathrm{EW}}^{\mathrm{eff}}(\theta)}
+$$
+after $M_{\mathrm{sh}}$, $v_{\mathrm{EW}}^{\mathrm{eff}}$, and the scalar coupling derivative are all fixed by one shared record. A compact benchmark residual is
+$$
+\mathcal{R}_{\mathrm{Higgs\,match}}(\theta)
+=
+\mathcal{R}_{\mathrm{gen\,mass}}(\theta)
++
+\sum_{f\in\mathfrak{F}_{H}}
+\left[
+\frac{
+g_{H,A_f}^{\mathrm{eff}}(\theta)
+-M_{\mathrm{sh}}(A_f;\theta)/v_{\mathrm{EW}}^{\mathrm{eff}}(\theta)
+}{\sigma_{Hf}}
+\right]^2
++
+\left[
+\frac{
+M_H^{\mathrm{breath}}(\theta)-M_H^{\mathrm{obs}}
+}{\sigma_H}
+\right]^2.
+$$
+
+Here $\mathfrak{F}_{H}$ is the set of fermion channels with measured Higgs-coupling information, $M_H^{\mathrm{obs}}$ is the observed scalar resonance near $125$ GeV, and $M_H^{\mathrm{breath}}(\theta)$ is the predicted radial Noether-Sea breathing-mode mass on the same branch. The benchmark fails if Yukawa-like numbers are inserted as independent per-particle constants, if $v_{\mathrm{EW}}^{\mathrm{eff}}$ is fitted separately from the gauge-sector normalization, or if the $125$ GeV scalar match uses a different Noether-Sea record than the inertial-mass map.
+
+The date-stamped LHC scalar validation surface makes the residual sharper than a single mass entry. Let $M_H^{\mathrm{ledger}}$, $\sigma_H^{\mathrm{ledger}}$, $\mu_H^{\mathrm{ledger}}$, and $\sigma_{\mu_H}^{\mathrm{ledger}}$ denote the current parameter-ledger entries for the scalar mass and production-and-branching normalization, with ATLAS and CMS treated as independent benchmark rows; the mass entry is expected to remain near $125$ GeV. A candidate scalar branch must recover the mass, rate normalization, channel pattern, and absence of broad additional scalar signals in the excluded windows:
+$$
+\mathcal{R}_{\mathrm{Higgs\,validation}}(\theta)
+=
+\left[
+\frac{
+M_H^{\mathrm{breath}}(\theta)-M_H^{\mathrm{ledger}}
+}{
+\sigma_H^{\mathrm{ledger}}
+}
+\right]^2
++
+\left[
+\frac{
+\mu_H^{\mathrm{eff}}(\theta)-\mu_H^{\mathrm{ledger}}
+}{
+\sigma_{\mu_H}^{\mathrm{ledger}}
+}
+\right]^2
++
+\sum_{c\in\{ZZ^{(*)}4\ell,\gamma\gamma,WW^{(*)}\ell\nu\ell\nu\}}
+\left[
+\frac{
+Z_c^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)-Z_c^{\mathrm{ledger}}
+}{\sigma_{Z_c}^{\mathrm{ledger}}}
+\right]^2
++
+\mathcal{R}_{\mathrm{excluded\,scalar}}(\theta).
+$$
+Here $\mu_H^{\mathrm{eff}}$ is the observer-level production-and-branching normalization, and $Z_c$ records the channel significance or equivalent likelihood contribution for the high-resolution $ZZ^{(*)}\to4\ell$, $\gamma\gamma$, and $WW^{(*)}$ channels. The $\gamma\gamma$ channel also protects the scalar-vs-vector distinction: it supports a spin-$0$-compatible comparison and rules against treating the Higgs benchmark as another photon or massive-vector corridor.
 
 #### Naturalness Comparison: QCD Running
 
@@ -286,7 +414,7 @@ The canonical chapter should carry this interface but not the detailed simulatio
 #### Potential Falsifications
 - **If $\zeta(A)E_{\text{internal}}(A)$ cannot reproduce $m(A)c_{\text{eff}}^2$ after the response tensor is fixed:** The shielding-based mass map is wrong.
 - **If the medium response behaves like dissipative drag in stable atoms:** The stability condition fails; the model is incompatible with chemistry.
-- **If generational masses don't scale with shielding:** The "missing binary" explanation for the hierarchy is wrong.
+- **If generational masses do not scale with shielding coherence:** The shielding-depletion explanation for the hierarchy is wrong.
 
 ---
 
@@ -356,16 +484,16 @@ Standard Model “generations” are interpreted as **excitation states** of the
   - Fully shielded H core.
 
 - **Gen‑II (first excitation)**
-  - Only [H, M] assembled coherently.
-  - L‑binary is **unassembled** (or transient): the outer shield is absent, exposing more of the H/M structure.
+  - [H, M] remain coherently assembled as shielding support.
+  - L‑tier support is depleted, unassembled, or transient on the branch lifetime window, exposing more of the H/M structure.
 
 - **Gen‑III (second excitation)**
-  - Only [H] assembled.
-  - M and L cannot maintain coherent orbits at that energy; the H self‑hit core is effectively naked.
+  - H remains coherently assembled as shielding support.
+  - M and L support are depleted on the branch lifetime window; the H self-hit core is effectively naked.
 
-We treat these as **different assembly states**, not dissociation products in time. Heavier generations require energy input to form and relax back via W/Z/$\gamma$/$\nu$ emission.
+We treat these as **different assembly states**, not ordinary dissociation products in time. Heavier generations require energy input to form and relax back via W/Z/$\gamma$/$\nu$ emission, but the depletion signal still has to propagate to the weakly bound axial layer through causal wakes and relocking cycles before the branch opens its reaction corridor.
 
-In this section, color is defined on **Gen‑I** Noether cores; higher generations inherit the same color structure via their remaining axes (H only, or H+M).
+In this section, color is defined on the ordered axial frame $\{D_H,D_M,D_L\}$, not on the count of shielding tiers that remain coherent. Higher generations inherit the same color triplet through this metastable H/M/L axial record even when one or more shielding tiers are depleted. This separation is required because top and bottom quarks must remain color triplets while carrying Generation-III mass and lifetime behavior.
 
 ##### Braid orientation: matter vs antimatter
 
@@ -538,11 +666,17 @@ We must not over‑predict.
 - If **both** families were independently stable and long‑lived for the same down‑flavor, we’d have extra down‑like quarks beyond d/s/b. That is not observed.
 - Therefore, the dynamics must:
 
-  1. Select one family per flavor (e.g. d uses Family II, s uses Family I), or
+  1. Select exactly one family for each realized down-type branch over a declared stability window, or
   2. Make one family metastable/short‑lived only at high energies, or
   3. Contextually select families inside hadrons (baryon environment determines which pattern survives).
 
-##### Rigorous low-energy selection criterion
+The shared branch-selection rule is therefore:
+$$
+F_\star(q,\mathcal{B})\in\{I,II\},\qquad q\in\{d,s,b\},
+$$
+where $\mathcal{B}$ denotes the local branch context: generation tier, hadron boundary conditions, effective forcing window, and Noether-Sea environment. Once $F_\star$ is selected, its three H/M/L permutations form the red/green/blue triplet for that down-type quark. The other family is a competing branch sector, not an additional observed species.
+
+##### Rigorous low-energy branch-selection criterion
 
 Fix one down flavor and let $\Omega_I,\Omega_{II}$ be the Family I/II constrained sectors of the full 9-axis baryon network phase space (after quotienting axis-label gauge redundancy).
 
@@ -672,6 +806,35 @@ for the standard SU(3) structure constants in this basis.
 
 **Proof.** Each element of $\mathcal{B}$ is Hermitian and traceless, and there are eight linearly independent such matrices. Under the basis identification above, $\mathcal{B}$ maps one-to-one to the Gell-Mann basis $\{\lambda_a/2\}_{a=1}^8$, whose commutator algebra is $\mathfrak{su}(3)$. Therefore the axis-exceptionality generators close under commutator with the same structure constants.
 
+##### Eightfold-way recovery residual
+
+The historical Eightfold Way lesson is useful here only as an algebraic recovery target: $SU(3)$ first classified hadrons by triplet, conjugate-triplet, and adjoint/octet representations before supplying the underlying strong-sector dynamics. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, that means the axis-exceptionality construction must recover the representation bookkeeping while keeping the Noether core as the ontology.
+
+The branch condition is:
+$$
+\mathcal{H}^{\text{color}}_q\cong 3,\qquad
+\mathcal{H}^{\text{color}}_{\bar q}\cong \bar 3,\qquad
+\mathrm{span}_{\mathbb{R}}\mathcal{B}\cong 8_{\mathrm{adj}},
+$$
+with the observable closed sectors assembled through the usual singlet-containing products
+$$
+3\otimes\bar 3=1\oplus 8,\qquad
+3\otimes 3\otimes 3\supset 1.
+$$
+This does not identify the Eightfold Way flavor octets with color itself. It says that any successful color branch must reproduce the same algebraic fact that eight traceless generators organize an octet-class residual, while native confinement and color-singlet closure still come from axis exceptionality, braid closure, and Noether-Sea energetics.
+
+Symmetry breaking is then tested as a residual, not promoted to a second color rule. Let $M_{\mathrm{obs}}$ be the observed hadron mass vector for a chosen baryon or meson octet, and let $M_{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)$ be the mass vector predicted after projecting a closed color-singlet assembly onto its flavor and axial-layer labels. The admissible branch must support a decomposition
+$$
+M_{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)=m_0\mathbf{1}+\alpha T_8+\beta D_8+\Delta_{\mathrm{axis}}(\theta),
+$$
+where $T_8$ and $D_8$ denote the two octet-breaking directions available to the adjoint classification, and $\Delta_{\mathrm{axis}}(\theta)$ is the native correction from H/M/L regime differences, axial-layer family selection, and braid energy. The recovery residual is
+$$
+\mathcal{R}_{8}
+=\min_{m_0,\alpha,\beta,\theta}
+\left\|M_{\mathrm{obs}}-\left(m_0\mathbf{1}+\alpha T_8+\beta D_8+\Delta_{\mathrm{axis}}(\theta)\right)\right\|.
+$$
+A branch fails this Eightfold-way check if $\mathcal{R}_{8}$ can be made small only by fitting unrelated parameters separately for baryons, mesons, and color confinement, or if $\Delta_{\mathrm{axis}}$ erases the triplet/conjugate-triplet and adjoint structure above. The source signal to preserve is therefore narrow: algebraic classification and Gell-Mann-Okubo-style mass splitting are recovery constraints on the emergent branch, not evidence that the classification algebra is the underlying medium.
+
 ##### Example: H↔M axis-swap generator
 
 The infinitesimal H↔M mixer is
@@ -708,7 +871,7 @@ In tri‑binary geometry:
 
   - Quark 1 (u): exceptional on H → $|u_H\rangle$
   - Quark 2 (u): exceptional on M → $|u_M\rangle$
-  - Quark 3 (d): exceptional on L → $|d_L\rangle$
+  - Quark 3 (d): exceptional on L within the selected down-type family $F_\star$ → $|d_L;F_\star\rangle$
 
 At large distances, axis‑dependent multipoles from each regime cancel:
 
@@ -730,7 +893,7 @@ Heuristic:
 
 We will exploit:
 
-- Down‑quark Family I vs II patterns,
+- the selected down‑quark Family-I or Family-II sector,
 - Axis‑overlap geometry (L‑L, L‑M interactions),
 
 to derive nucleon–nucleon potentials and binding energies in the nuclear section. Here we just note:
@@ -751,6 +914,24 @@ E_{\mathrm{closed}}(L)\to E_{\infty}<\infty
 $$
 and vanishing far-field color flux.
 
+The Wilson-loop benchmark is the observer-level gauge-theory diagnostic for the same distinction. For a rectangular loop $C_{R,T}$ in the fundamental color representation, the strong-sector branch should recover
+$$
+\left\langle W(C_{R,T})\right\rangle_{\theta}
+\sim
+\exp\!\left[-\sigma_{\mathrm{eff}}(\theta)\,R\,T+\mathcal{O}(R+T)\right]
+$$
+in the confining window, while non-confining or screened limits must show the corresponding perimeter-law or string-breaking behavior. This target is not a claim that the lattice Wilson loop is fundamental ontology; it is the tested gauge-invariant way to compare open color-corridor energy with QCD.
+
+The same branch must also provide a closed-sector mass-gap diagnostic. For a pair of gauge-invariant closed color probes separated by $R$,
+$$
+\left\langle \mathcal{O}_{\mathrm{closed}}(0)\mathcal{O}_{\mathrm{closed}}(R)\right\rangle_{\theta}
+\sim
+\exp\!\left[-M_{\mathrm{gap}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)R\right],
+\qquad
+M_{\mathrm{gap}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)>0.
+$$
+This is the mass-gap recovery target for closed strong-sector braids, separate from the open-string tension target.
+
 This energy law is a closure target, not a restatement of QCD in native vocabulary. The observer-level benchmarks to preserve are the static-potential string tension, the absence of asymptotic free color charge, a finite pure-gauge mass gap, and the hadron-spectrum constraints currently organized by QCD and lattice calculations. A useful confinement residual is
 $$
 \mathcal{R}_{\mathrm{conf}}(\theta)
@@ -769,7 +950,7 @@ This chapter therefore carries:
 
 Primary topology spine: [dynamics/causal-action-functional.md](../../../../markdown/aaa/dynamics/causal-action-functional.md).
 
-#### Summary and Next Steps
+#### Summary and Interfaces
 
 - A **Noether core / tri‑binary** is a three-axis $(H,M,L)$, six-site axial structure: the minimal unit that carries conserved charges via its internal symmetries.
 - **Colorless** charged leptons have identical axial patterns on all three axes, while neutrinos are colorless near-photon pro/anti neutral pairs; neither route supplies quark-like axis exceptionality.
@@ -778,13 +959,7 @@ Primary topology spine: [dynamics/causal-action-functional.md](../../../../markd
   - Down‑type: either (two P−, one P+) or (two Pm, one P−) families.
 - Color = which axis (H,M,L) is exceptional. This yields a natural triplet color space $\mathbb{C}^3$ on which SU(3) acts via charge‑preserving, det‑1 reconfigurations of axis exceptionality and phase.
 - **Baryon color singlets** = closed 9‑axis braids; **flux tubes** = open braids in the Noether Sea with linear energy cost per unit length → confinement.
-- Down‑quark pattern families, H/M/L regime differences, and braid orientation will feed into:
-  - Neutrino oscillation modeling,
-  - Proton–neutron mass/moment differences,
-  - Nuclear forces,
-  - QCD phase transition and early‑universe thermodynamics.
-
-This draft keeps the full mechanism set explicit and marks where future derivations and simulations will test and potentially falsify the construction.
+- Down‑quark pattern families, H/M/L regime differences, and braid orientation are downstream interfaces for neutrino oscillation modeling, proton-neutron mass and moment differences, residual nuclear forces, and QCD phase-transition or early-universe thermodynamics. Those applications must inherit the same color-exceptionality and confinement ledger rather than introducing separate color rules.
 
 ### Electron
 
@@ -796,16 +971,108 @@ This chapter is a placeholder for the electron assembly in $\mathbb{A}\mathbb{A}
 
 The electron is treated as a stable charged fermion assembly with net charge $-e$, persistent identity, and a fully assembled lower-energy configuration relative to the heavier charged lepton excitations. In the current corpus it is the Generation-I charged-lepton reference case for [Nested Binaries and the Noether Core](../../../../markdown/aaa/spacetime/noether-core.md), [Particle Masses: Emergent Inertia in the Noether Sea](../../../../markdown/aaa/assemblies/particle-masses.md), and [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md).
 
+#### Axial Inventory and Generation Core
+
+The electron uses the charged-fermion axial-layer rule in its lowest shielding-coherence class. The $e^-$ branch has a pro-tri-binary Noether core with full inner/middle/outer shielding support and a six-site axial inventory of $6E$. The $e^+$ branch is the charge-conjugate anti-core with axial inventory $6P$. In both cases the charged lepton is a color singlet: the axial layer carries electric and weak bookkeeping, not color-axis exceptionality.
+
+The generation-core record is therefore not a new charge pattern. It is the shielding-coherence class of the same charged-lepton axial inventory:
+
+$$
+\mathsf{s}_{\mathrm{sh}}(e)=(1,1,1),
+\qquad
+\text{axial inventory}(e^-)=6E,
+\qquad
+\text{axial inventory}(e^+)=6P.
+$$
+
+This framing keeps lepton universality disciplined. The charged-lepton side of universality says that $e$, $\mu$, and $\tau$ share the same six-site charged-lepton axial pattern and weak-coupling-triad bookkeeping. Their mass hierarchy and lifetime differences must come from shielding coherence, internal causal history, and medium response, not from changing the electric-charge inventory or adding lepton-specific gauge couplings.
+
+#### Assembly and Detection Map
+
+The electron is not treated as a literal cloud of ontic probability. It is a coherent fermion assembly: a Noether core plus axial layer whose internal causal ledger remains localized enough to preserve identity, charge bookkeeping, and spin-statistical behavior. The cloud-like object used in ordinary atomic language is an effective detection map for where that coherent assembly can resolve a record under a declared nuclear, apparatus, and Noether-Sea environment.
+
+A compact local target is
+
+$$
+\mathcal{D}_e^{(\ell)}(\mathbf{x}\mid \Theta_{\mathrm{atom}})
+=
+\Pi_{\mathrm{det}}\!\left[
+\mathcal{B}_e,\,
+\mathcal{A}_{\mathrm{nuc}},\,
+\theta_{\mathrm{sea}}^{(\ell)},\,
+\mathcal{W}_{\mathrm{causal}}^{(\ell)}
+\right](\mathbf{x}),
+$$
+
+where $\mathcal{D}_e^{(\ell)}$ is the observer-level electron detection map at coarse window $\ell$, $\mathcal{B}_e$ is the realized electron-envelope branch, $\mathcal{A}_{\mathrm{nuc}}$ is the nuclear assembly ledger, $\theta_{\mathrm{sea}}^{(\ell)}$ is the local Noether-Sea state record, and $\mathcal{W}_{\mathrm{causal}}^{(\ell)}$ is the retained causal-wake history. This map is not the electron itself. It is the statistical readout obtained after unresolved branch data, apparatus coupling, and local medium response have been projected into an observer-level record.
+
+#### Near-Lossless Atomic Motion
+
+The Euclidean void contributes no viscous resistance. In stable atomic regimes, the electron assembly moves through its resonance envelope by reversible retuning of its internal causal ledger and local Noether-Sea coupling. Ordinary drag would be a separate transport failure: excitation, radiation-like action shedding, heating, or branch transition. The same distinction is required in [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md), where stable transport must remain below the threshold that opens dissipative ledgers.
+
+Atomic orbitals are therefore recovery targets for coherent electron resonance, not primitive probability blobs. The immediate derivation burden is to show that the same branch data $\mathcal{B}_e$ and medium record $\theta_{\mathrm{sea}}^{(\ell)}$ recover the observer-level orbital labels, spectral gaps, and detection statistics described in [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md) and [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md).
+
+#### Minimum Closure Variables
+
+An electron-level calculation should not begin with a fitted orbital probability density. The minimum native variables are:
+
+- the electron internal branch record $\mathcal{B}_e$, including Noether-core geometry and axial-layer state;
+- the nuclear source ledger $\mathcal{A}_{\mathrm{nuc}}$ and its causal-wake envelope;
+- the local Noether-Sea record $\theta_{\mathrm{sea}}^{(\ell)}$, including density, delay, cadence, and medium-response data at the chosen atomic window;
+- the apparatus or environmental projection $\Pi_{\mathrm{det}}$ that turns the branch ensemble into a finite record;
+- the transport residual that separates reversible retuning from excitation, radiation-like transport, heating, or branch transition.
+
+#### Weak-Reaction Provenance
+
+In weak reactions the electron is an outgoing or incoming charged assembly whose axial inventory and Noether-core provenance must be accounted for explicitly. For a beta-family channel such as $d\to u\,e^-\,\bar\nu_e$, the $W^-$ corridor records the charged weak-coupling-triad transaction. It does not by itself identify the full source of the outgoing electron core and $6E$ axial inventory.
+
+A closed event record must therefore state:
+
+- which incoming assembly, local Noether-Sea content, or recruited neutral core material supplies the electron's Noether-core provenance;
+- how the $6E$ axial inventory is routed without violating charge, energy, momentum, angular momentum, or identity bookkeeping;
+- how the associated antineutrino branch inherits the neutral near-photon weak ledger rather than a charged-fermion axial layer;
+- and whether the observer-level beta rate and nuclear form factors are recovered without redefining the weak-coupling-triad exposure domain.
+
+This is a derivation target, not a completed beta-reaction proof. The point of the electron chapter is to keep the electron branch available as a concrete provenance endpoint for the shared reaction ledger.
+
+#### Precision Validation Gates
+
+The electron is also the precision anchor for charged-lepton compositeness limits. The same response maps used for mass and shielding must pass the `g-2` and form-factor gates without per-lepton tuning:
+
+$$
+a_\ell^{\text{model}}
+=
+a_\ell^{\text{SM,ref}}
++\mathcal{C}_\ell\,(m_\ell R_L)^2
++O(R_L^4),
+$$
+
+and, in natural units,
+
+$$
+F(s)=1-\frac{sR_L^2}{4},
+\qquad
+\sigma_{\text{model}}(e^+e^-\to\mu^+\mu^-;s)
+=
+\sigma_{\text{SM}}(s)\,|F(s)|^2.
+$$
+
+For the electron branch, the gate is conservative: any finite-size or Noether-Sea response correction large enough to explain a heavier-lepton magnetic-moment residual must still leave $a_e$, precision scattering, and lepton-pair production within their observed limits. If the same $R_L$, shielding map, and response projection cannot serve $e$, $\mu$, and $\tau$, the charged-lepton universality claim has not closed.
+
 #### Related Chapters
 
 - [noether-core.md](../../../../markdown/aaa/spacetime/noether-core.md)
 - [particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md)
 - [quantum-number-mapping.md](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md)
 - [muon-tau.md](../../../../markdown/aaa/assemblies/fermions/muon-tau.md)
+- [weak-mixing-ckm.md](../../../../markdown/aaa/theory-bridges/weak-mixing-ckm.md)
+- [reaction-ledger.md](../../../../markdown/aaa/validation/reaction-ledger.md)
+- [atomic-structure.md](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md)
+- [wavefunction-ontology.md](../../../../markdown/aaa/quantum/wavefunction-ontology.md)
 
 #### Status
 
-This page was previously empty. It now exists as a non-blank stub so the scene renders while the full derivation is authored.
+This page now records the electron ontology target needed by the atomic, quantum, weak-reaction, and precision-lepton chapters. It remains a derivation target until the branch record, medium response, reaction provenance, and detection projection are computed from the master equation rather than inserted as fitted effective data.
 
 ### Neutrinos
 
@@ -856,7 +1123,7 @@ This keeps the strong intuition - neutrinos live close to photons in assembly sp
 
 #### PMNS closure program (primary lepton integration)
 
-Use a three-mode internal phase Hamiltonian:
+Use a three-mode internal phase operator with mass-squared-response units:
 $$
 H_{\mathrm{geo}}=
 \begin{pmatrix}
@@ -867,11 +1134,13 @@ H_{\mathrm{geo}}=
 $$
 with $(\epsilon_i,\Omega_{ij},\phi_{ij})$ derived from near-planar pro/anti core-pair geometry, residual internal-binary exposure, and Noether-Sea coupling.
 
-Diagonalization defines the mixing matrix:
+Here $H_{\mathrm{geo}}$ is the operator that supplies the relativistic propagation phase, not an ordinary energy Hamiltonian. In natural units, $\epsilon_i$ and $\Omega_{ij}$ carry mass-squared-response units. Diagonalization defines the mixing matrix and the effective mass-squared-response eigenvalues:
 $$
 H_{\mathrm{geo}}=U_{\mathrm{PMNS}}\Lambda U_{\mathrm{PMNS}}^\dagger,\qquad
+\Lambda=\operatorname{diag}(\lambda_1,\lambda_2,\lambda_3),\qquad
 |\nu_\alpha\rangle=\sum_i U_{\alpha i}|\nu_i\rangle.
 $$
+Thus $\lambda_i$ is not an energy eigenvalue; it is the geometric counterpart of a mass-squared propagation response, and $\Delta\lambda_{ij}=\lambda_i-\lambda_j$.
 
 Vacuum oscillation probabilities follow:
 $$
@@ -884,18 +1153,30 @@ $$
 \Delta_{ij}=\frac{\Delta\lambda_{ij}L}{4E}.
 $$
 
+The two-basis distinction is part of the recovery target, not optional notation. Weak reactions create and detect flavor-basis states $|\nu_\alpha\rangle$, while propagation follows the eigenbasis $|\nu_i\rangle$ of $H_{\mathrm{geo}}$. In the two-state limit this reduces to the benchmark form
+$$
+P_{\nu_e\to\nu_\mu}(L,E)
+=
+\sin^2(2\theta)\,
+\sin^2\!\left(\frac{\Delta\lambda\,L}{4E}\right),
+$$
+using the same mass-squared-response eigenvalue gap convention as the three-flavor equation above. Any later conversion to ordinary mass language is a comparison-layer unit map; it must not replace the geometric eigenvalue derivation.
+
 Matter correction enters through the medium state:
 $$
-H_{\mathrm{eff}}=H_{\mathrm{geo}}+V_{\mathrm{sea}}(\rho_{\mathrm{sea}}).
+H_{\mathrm{eff}}=H_{\mathrm{geo}}+V_{\mathrm{sea}}(n(\mathbf{x},t)),
+\qquad
+n(\mathbf{x},t)\equiv\frac{\rho_{\text{core}}(\mathbf{x},t)}{\rho_{\text{core},0}}.
 $$
+The matter term must be normalized to the same mass-squared-response units as $H_{\mathrm{geo}}$ before the $\Delta\lambda L/(4E)$ phase formula is used.
 
-Closure criterion for this chapter: one near-photon geometric Hamiltonian family must reproduce PMNS angles/phases and the observed $L/E$ pattern without introducing unconstrained flavor-specific ad hoc terms. For the electroweak-angle side of the same lepton sector, see [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md); for validation targets, see [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md).
+Closure criterion for this chapter: one near-photon geometric phase-operator family must reproduce PMNS angles/phases and the observed $L/E$ pattern without introducing unconstrained flavor-specific ad hoc terms. For the electroweak-angle side of the same lepton sector, see [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md); for validation targets, see [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md).
 
 #### Empirical Decision Gates
 
 The neutral-lepton branch should be revised only by observable gates, not by importing a sterile-neutrino or Majorana interpretation as doctrine.
 
-- **Absolute mass gate:** the eigenvalues of $H_{\mathrm{geo}}$ must remain compatible with oscillation splittings, direct kinematic bounds, and cosmological bounds on $\sum_i m_i$. If future data force the lightest neutrino mass close to zero, the near-photon Hamiltonian should explain that as a boundary or shielding limit of the neutral core-pair spectrum rather than as an added parameter.
+- **Absolute mass gate:** the eigenvalues of $H_{\mathrm{geo}}$ must remain compatible with oscillation splittings, direct kinematic bounds, and cosmological bounds on $\sum_i m_i$. If future data force the lightest neutrino mass close to zero, the near-photon phase operator should explain that as a boundary or shielding limit of the neutral core-pair spectrum rather than as an added parameter.
 - **Dirac/Majorana gate:** a confirmed neutrinoless double-beta signal would require a lepton-number-violating reaction provenance channel. A null result instead tightens the allowed Majorana-like coupling or sterile-branch mixing, but does not by itself prove the current Dirac-like geometry.
 - **Right-handed or sterile branch gate:** a $\nu_R$-like branch may be added only if the weak-coupling-triad exposure, anomaly bookkeeping, PMNS map, and reaction provenance all remain compatible. Such a branch must be an $SU(2)$ singlet with $Y=0$ in observer-level bookkeeping and must not become a hidden patch for unrelated dark-sector mass.
 - **Dark-sector gate:** a neutral-lepton dark-matter interpretation is admissible only if the candidate branch supplies cosmological stability, abundance, and free-streaming behavior while preserving BBN, CMB, and structure-formation constraints.
@@ -906,7 +1187,7 @@ m_{\mathrm{lightest}}\to 0,
 \qquad
 \sum_i m_i \approx 0.06\,\mathrm{eV},
 $$
-paired with a suppressed neutrinoless double-beta rate and a sterile or right-handed branch only if the same branch also closes the dark-sector abundance and free-streaming gates. In this chapter those values are discriminator targets: convergence toward them would pressure the near-photon Hamiltonian toward a boundary or shielding limit, while a measured larger mass sum, incompatible neutrinoless double-beta signal, or detected sterile branch with the wrong coupling pattern would force revision of the neutral-lepton geometry.
+paired with a suppressed neutrinoless double-beta rate and a sterile or right-handed branch only if the same branch also closes the dark-sector abundance and free-streaming gates. In this chapter those values are discriminator targets: convergence toward them would pressure the near-photon phase operator toward a boundary or shielding limit, while a measured larger mass sum, incompatible neutrinoless double-beta signal, or detected sterile branch with the wrong coupling pattern would force revision of the neutral-lepton geometry.
 
 ### Quantum Number Mapping
 
@@ -1028,10 +1309,38 @@ For charged leptons and quarks, every charged-fermion axial layer consists of 6 
 
 For neutrinos, the same triad language should be read as an effective weak-channel projection of the near-photon pro/anti core pair, not as a literal inventory of six bound axial sites.
 
-**Which three are active? (hypothesis)**
-- In translation, either the forward or rearward hemisphere could be more exposed. We currently favor the **forward three sites**: the leading side is not in its own wake, while the trailing side sits in that wake and slipstream, which likely damps docking by a $W$ corridor. This needs simulation to confirm the exposure asymmetry.
+**Weak-coupling exposure diagnostic (hypothesis)**
+For an assembly $A$ with propagation direction $\hat{\mathbf p}$, the exposed triad should be selected by an operator rather than by a raw verbal claim. Let $\mathcal{S}_{\mathrm{ax}}(A)$ be the six polar sites and let $w_a(A,\hat{\mathbf p})$ be the local $W$-corridor docking weight of site $a$. Define
+$$
+\mathcal{T}_{\mathrm{WCT}}(A,\hat{\mathbf p})
+=
+\operatorname*{arg\,max}_{\substack{S\subset\mathcal{S}_{\mathrm{ax}}(A)\\ |S|=3}}
+\sum_{a\in S}w_a(A,\hat{\mathbf p}),
+$$
+and the exposure margin
+$$
+\Delta_{\mathrm{WCT}}(A,\hat{\mathbf p})
+=
+\sum_{a\in\mathcal{T}_{\mathrm{WCT}}}w_a(A,\hat{\mathbf p})
+-
+\sum_{a\notin\mathcal{T}_{\mathrm{WCT}}}w_a(A,\hat{\mathbf p}).
+$$
+The diagnostic is
+$$
+\mathcal{E}_{\mathrm{WCT}}(A,\hat{\mathbf p})
+=
+\left(\mathcal{T}_{\mathrm{WCT}}(A,\hat{\mathbf p}),\Delta_{\mathrm{WCT}}(A,\hat{\mathbf p})\right).
+$$
 
-**Weak Isospin ($T_3$)** is defined by the polarity of this **weak-coupling triad**:
+The current forward-triad hypothesis is the branch where $\mathcal{T}_{\mathrm{WCT}}$ selects the three leading sites and $\Delta_{\mathrm{WCT}}>0$. It fails if a simulation finds that trailing-site coupling dominates over the branch window,
+$$
+\sum_{a\in\mathcal{T}_{\mathrm{trail}}}w_a(A,\hat{\mathbf p})
+\ge
+\sum_{a\in\mathcal{T}_{\mathrm{lead}}}w_a(A,\hat{\mathbf p}),
+$$
+because then the active weak-coupling triad has been assigned to the wrong exposed domain.
+
+Once $\mathcal{E}_{\mathrm{WCT}}$ selects an exposed triad with positive margin, **Weak Isospin ($T_3$)** is defined by the polarity of that **weak-coupling triad**:
 *   **$T_3 = +1/2$ (Up-State):** The weak-coupling triad contains maximal **Positrinos** (relative to the baseline).
 *   **$T_3 = -1/2$ (Down-State):** The weak-coupling triad contains maximal **Electrinos**.
 
@@ -1068,12 +1377,38 @@ Using a single symbol $Y$ for hypercharge, $Q = T_3 + Y/2$:
 *   $d$: $T_3 (-1/2) + Y/2 (+1/6) = -1/3$.
 *   Geometric insight: hypercharge lives on the three complementary polar sites plus any core offset; the weak-coupling triad sets $T_3$.
 
-##### Chirality (Why Right-Handed = 0?)
+##### Sector exposure and left/right asymmetry
+
+The useful distinction is that `left-handed` does not mean "all weak effects exist" while `right-handed` means "no electroweak contact exists." It means the exposed weak-coupling-triad part of the ledger is available only in the left-handed channel.
+
+At the effective Standard Model level, the photon reads electric charge $Q$, the charged $W^\pm$ corridor changes weak isospin, and the neutral $Z^0$ corridor reads a mixture of weak isospin and electric charge:
+$$
+g_Z\left(T_3-Q\sin^2\theta_W\right).
+$$
+For right-handed charged fermions, the weak-coupling triad is hidden and the $SU(2)_L$ label is a singlet, so $T_3^{(R)}=0$. The neutral-current handle does not vanish automatically; it reduces to the electric/hypercharge-side term
+$$
+g_Z\left(-Q\sin^2\theta_W\right).
+$$
+This is why a right-handed electron can still have a neutral weak coupling, while a charged-current reaction such as $e^-_R\to\nu$ is blocked. A sterile right-handed neutrino candidate would have $T_3=0$ and $Q=0$, so this leading neutral-current handle would also be absent.
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the sector exposure map is:
+
+| Sector | Geometry read by the channel | Left/right behavior |
+| --- | --- | --- |
+| Electromagnetic | axial electric bookkeeping $Q$ | mostly left/right symmetric |
+| Strong | color as axis exceptionality | vector-like; mostly left/right symmetric |
+| Charged weak $W^\pm$ | exposed weak-coupling triad, changing $T_3$ | strongly left-selective; blocked when the triad is hidden |
+| Neutral weak $Z^0$ | neutral electroweak phase/bookkeeping mixture of $T_3$ and $Q$ | both sides for charged fermions, but with different weights |
+| Higgs/scalar | derivative of the mass-response map under radial Noether-Sea perturbation | controlled by shielding and mass response, not by a charge swap |
+
+This table is a bridge statement, not a proof. The closure burden is to derive one assembly record whose projections recover all five readouts without redefining the exposed domain from sector to sector.
+
+##### Charged-current chirality (Why right-handed charged-current coupling is zero)
 Why can't a Right-Handed Electron ($e^-_R$) turn into a Neutrino?
 *   **Geometric Mechanism:** Chirality is the alignment of the particle's **Spin** with its **Momentum**.
 *   **Lock-out:** In the "Right-Handed" configuration, the **weak-coupling triad** is geometrically rotated *into the wake* of the particle or shielded by the binary arms.
-*   **Result:** The $W$ boson (which has its own helicity) cannot physically "dock" with the weak-coupling triad to perform the swap. It bounces off.
-*   Therefore, $e^-_R$ has no accessible weak-coupling triad. $T_3 = 0$.
+*   **Result:** The $W$ boson (which has its own helicity) cannot physically "dock" with the weak-coupling triad to perform the swap.
+*   Therefore, $e^-_R$ has no accessible charged-current weak-coupling triad. For the charged-current $SU(2)_L$ channel, $T_3^{(R)} = 0$.
 
 ---
 
@@ -1121,22 +1456,37 @@ Gluons are the axis-reconfiguration carriers of this sector.
 - **Timescale separation:** color reconfiguration along the shared corridor is faster than typical environmental disturbance, so small kicks relax before the singlet decoheres.
 - **Isolation:** color flux remains trapped inside the corridor or braid, so external probes see only the color-singlet composite.
 
-##### Why is the Proton Stable?
+##### Bound-State Proton Stability
 The Proton ($uud$) consists of two $+2/3$ quarks and one $-1/3$ quark.
 *   **Coulomb Repulsion:** The two $u$ quarks repel electrically.
 *   **Strong Attraction:** Color-singlet closure forces the three quarks into a shared strong-sector braid whose tension overwhelms the electric repulsion.
 *   **Pauli Exclusion:** Since the quarks occupy different color sectors, they are distinguishable quantum states, allowing them to share the same spatial ground-state assembly.
 
+This paragraph explains ordinary bound-state stability inside the nucleon. It is not yet a derivation of proton-decay exclusion or topological baryon conservation. The stronger claim belongs to the closed-braid program in [Color Charge and Strong Confinement](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md): the color-singlet 9-axis braid must make baryon-number-violating rupture either impossible on the admitted branch or suppressed beyond current null-result limits. A local recovery target is therefore
+$$
+\tau_p^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta;\mathcal{C}_{\Delta B\ne0})
+>
+\tau_p^{\mathrm{null}}(\mathcal{C}_{\Delta B\ne0})
+$$
+for every tested baryon-violating channel $\mathcal{C}_{\Delta B\ne0}$, while the bound-state proton calculation separately recovers the observed charged color-singlet ground state.
+
 ---
 
-#### Gauge Group Coverage: $SU(3)_c \times SU(2)_L \times U(1)_Y$
+#### Gauge Representation Bookkeeping: $SU(3)_c \times SU(2)_L \times U(1)_Y$
 
-The full SM gauge group is captured geometrically as:
+At the representation and charge-bookkeeping layer, the current dictionary recovers the Standard Model labels as:
 
 - **$SU(3)_c$ (color):** axis-exceptionality of the Noether core plus axial layer. Quarks occupy the triplet basis $|q_H\rangle, |q_M\rangle, |q_L\rangle$ (conventionally Red, Green, Blue), while charged leptons remain axis-uniform singlets and neutrinos remain singlets by the near-photon neutral-pair route. Gluons are axis-reconfiguration ribbons or corridor modes forming the octet.
 - **$SU(2)_L$ (weak isospin):** polarity of the **weak-coupling triad** (three exposed polar sites, or the effective near-photon weak projection for neutrinos). Left-handed fermions are doublets; right-handed fermions are singlets (weak-coupling triad hidden).
 - **$U(1)_Y$ (weak hypercharge):** net charge of the **Shielded Triad** (three hidden sites) plus core offset; mixes with $T_3$ to give electric charge via $Q = T_3 + Y/2$.
-- **Electromagnetism (U(1)_\mathrm{EM}):** photon is the post-mixing planar mode; $W^\pm$ and $Z$ are the chiral corridors moving weak-coupling-triad charge/phase (see assemblies/bosons/electroweak-bosons.md).
+- **Electromagnetism (U(1)_\mathrm{EM}):** photon is the post-mixing planar mode; $W^\pm$ and $Z$ are the chiral corridors moving weak-coupling-triad charge/phase; see [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md).
+
+This is not yet a derivation of local gauge dynamics. The remaining closure targets are:
+
+- derive local corridor/wake update laws that act as the effective covariant derivative on assembly states,
+- recover normalized gauge kinetic terms for the emergent $SU(3)_c$, $SU(2)_L$, and $U(1)_Y$ fields,
+- derive coupling normalization and running for $g_s(\mu)$, $g(\mu)$, and $g'(\mu)$ from Noether-Sea dressing and assembly-scale response,
+- show that the same branch record recovers confinement, electroweak mixing, anomaly cancellation, and precision coupling residuals without adding sector-specific bookkeeping.
 
 **Notation:** We use $Q$ (electric), $T_3$ (weak isospin third component), and $Y$ (weak hypercharge). In this chapter we write weak hypercharge as $Y$ rather than $Y_w$. Relation: $Q = T_3 + Y/2$ for all fields.
 
@@ -1267,6 +1617,22 @@ e^c_L:(1,1,+2),
 $$
 the Standard-Model gauge anomalies cancel exactly.
 
+The pure color anomaly cancels before hypercharge is even used:
+$$
+\mathcal{A}_{[SU(3)_c]^3}
+=
+2A(3)+A(\bar 3)+A(\bar 3)
+=2-1-1=0,
+$$
+where the factor $2$ is the weak-doublet multiplicity of $q_L$ and $A(\bar 3)=-A(3)$.
+
+The non-perturbative $SU(2)$ Witten check also passes. One generation contains three quark doublets, one for each color, plus one lepton doublet:
+$$
+N_{2,\mathrm{Weyl}}=3+1=4,\qquad
+N_{2,\mathrm{Weyl}}\equiv0\pmod2.
+$$
+Thus the quark and lepton sectors are tied together by the same consistency condition: removing either $q_L$ or $\ell_L$ breaks the even-doublet requirement.
+
 With $T(3)=T(\bar 3)=\tfrac{1}{2}$ and $T(2)=\tfrac{1}{2}$, the mixed non-abelian anomalies are
 $$
 \mathcal{A}_{[SU(3)_c]^2U(1)_Y}
@@ -1335,15 +1701,39 @@ while adding $\nu_R$ (equivalently $\nu^c_L$ in left-chiral bookkeeping) restore
 
 #### The Generation Mechanism (Mass Hierarchy)
 
-For charged fermions and quarks, generations are defined by the **shedding of shielding binaries** from the Noether core. The axial layer remains constant.
+For charged fermions and quarks, generations are defined by the depletion of coherent shielding support in the nested Noether core. The axial layer remains a six-site gauge-facing record, so generation changes exposed mass response and lifetime without deleting the H/M/L axial frame that carries color and electroweak bookkeeping.
 
 Equivalently, the generation ladder can be read as a nested shielding hierarchy:
 
 - **Generation I:** full three-tier shielding, with inner binaries screened by outer ones,
-- **Generation II:** one shielding tier removed, exposing the deeper engine more directly,
-- **Generation III:** only the innermost engine remains exposed.
+- **Generation II:** outer shielding support depleted, exposing the deeper engine more directly,
+- **Generation III:** outer and middle shielding support depleted, leaving the innermost engine maximally exposed.
 
-This is stronger than the statement "fewer binaries means more mass." The outer binaries act as real shielding tiers for deeper core energy, so moving from Generation I to II to III is a progressive loss of energy screening.
+This is stronger than the statement "fewer binaries means more mass." The outer and middle binary tiers act as real shielding support for deeper core energy. At higher generation the depleted tier may be ablated, unassembled, or unable to remain phase locked on the branch lifetime window, but the gauge projection still reads the ordered H/M/L axial dyads until the assembly dissociates.
+
+##### Shielding Depletion and Axial Delay
+
+The useful separation is:
+
+$$
+\text{generation}=\text{shielding-coherence class},
+\qquad
+\text{color}=\text{exceptional-axis class}.
+$$
+
+Generation depletion therefore does not collapse a top or bottom quark to a one-color object. It changes how much support the H/M/L core hierarchy supplies to the axial layer. The weakly bound axial architrinos remain in the polar attachment layer, but their stability is controlled by delayed support from the shielding tiers.
+
+A minimal lifetime hook is the causal time for a shielding-tier failure to reach the weak-coupling triad and force relocking:
+
+$$
+\tau_{\mathrm{sh}\to\mathrm{ax}}(A)
+\gtrsim
+\frac{R_{\mathrm{tier}\to\mathrm{ax}}(A)}{c_f}
++
+N_{\mathrm{lock}}(A)T_{\mathrm{cycle}}(A).
+$$
+
+Here $R_{\mathrm{tier}\to\mathrm{ax}}$ is the relevant tier-to-axial separation, $c_f$ is the primitive wake speed, $T_{\mathrm{cycle}}$ is the local core-cycle time, and $N_{\mathrm{lock}}$ counts the relocking cycles needed before the axial layer either restabilizes or opens a reaction corridor. This is a closure target, not yet a computed lifetime formula, but it gives the generation program a native route from shielding loss to finite lifetimes.
 
 ##### Three-Generation Closure Benchmark
 
@@ -1372,6 +1762,17 @@ $$
 
 The generation program passes this benchmark only when $\mathcal R_{3\mathrm{gen}}(\theta)$ is below the declared tolerance using the same branch record. The first term checks that the family ladder really has a closed three-step structure; the representation term checks that electric charge, weak isospin, hypercharge, and color bookkeeping are preserved across generations; the CPT term keeps generation structure compatible with the effective fermion symmetry record; the mass term tests the shielding hierarchy against measured masses; and $\mathcal R_{\mathrm{null}}$ blocks mirror matter, superpartners, added gauge modes, or other unobserved channels. This does not identify generation with an external triality or exceptional-group action. It gives the current shielding thesis the same hard tests that make those comparison frameworks interesting.
 
+The CKM bridge uses the same $T_{\mathrm{gen}}$ and $\Pi_{\mathrm{gauge}}$ objects. Its extra demand is not a new generation ontology: the weak-basis to mass-basis overlap must be unitary and must reproduce CKM magnitudes and CP invariants while the representation residual remains below tolerance,
+$$
+\max_{a\in\{0,1,2\}}
+d_{\mathrm{rep}}\!\left(
+\Pi_{\mathrm{gauge}}T_{\mathrm{gen}}^aA,
+\Pi_{\mathrm{gauge}}A
+\right)
+\le \epsilon_{\mathrm{rep}}.
+$$
+This prevents a comparison framework from explaining mixing by altering charge, weak isospin, hypercharge, color, handed weak exposure, or by adding hidden partner branches.
+
 ###### Candidate Generation Operator
 
 The least risky way to make $T_{\mathrm{gen}}$ concrete is to define it first on the shielding quotient, not as a physical reaction. Let
@@ -1381,7 +1782,7 @@ $$
 (s_{\mathrm{in}},s_{\mathrm{mid}},s_{\mathrm{out}})
 \in\{0,1\}^3
 $$
-record which inner, middle, and outer shielding tiers remain active for the charged-fermion or quark branch $A$. The present generation thesis admits only the three quotient classes
+record which inner, middle, and outer shielding tiers remain coherently active as shielding support for the charged-fermion or quark branch $A$. The present generation thesis admits only the three quotient classes
 $$
 \mathfrak{G}_{\mathrm{sh}}
 =
@@ -1393,6 +1794,18 @@ T_{\mathrm{gen}}:
 (1,1,1)\mapsto(1,1,0)\mapsto(1,0,0)\mapsto(1,1,1),
 $$
 where the last arrow is a quotient-closure check, not a claim that an exposed Generation III assembly dynamically rebuilds the missing shielding tiers.
+
+The entries of $\mathsf{s}_{\mathrm{sh}}$ are shielding-coherence bits, not a deletion of the gauge-facing axial frame. Let the axial dyads be
+$$
+\mathcal{D}_{\mathrm{ax}}(A)=\{D_H,D_M,D_L\}.
+$$
+For quark branches the color label remains
+$$
+\mathrm{col}(A)
+=
+\operatorname{exceptional}\!\left(\mathcal{D}_{\mathrm{ax}}(A)\right),
+$$
+while $\mathsf{s}_{\mathrm{sh}}(A)$ controls exposed mass response and lifetime. A branch fails this separation if changing generation removes the three-color triplet structure before the assembly has left the quark sector.
 
 One explicit order residual is
 $$
@@ -1449,23 +1862,23 @@ with one shared $\theta$ and one shared $M_{\mathrm{sh}}$ across leptons, up-typ
 The explicit shared fitting packet lives in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md#generation-mass-fitting-packet), where $M_{\mathrm{sh}}$ is treated as a mass-response map rather than a new generation ontology.
 
 ##### Generation II (Muon, Charm, Strange)
-*   **Architecture:** Missing the **Outer Binary**.
-*   **Core:** **Bi-Binary** (Inner, Middle).
+*   **Architecture:** Outer shielding coherence depleted.
+*   **Core readout:** **Bi-binary shielding branch** (Inner, Middle coherently support the branch).
     *   Composition: 2P, 2E (4 architrinos).
 *   **Axial Layer:** 6 axial architrinos (unchanged).
-*   **Physics:** Without the outer binary tier, the high-energy inner binaries are more exposed to the Noether Sea, increasing the externally exposed response of the internal causal ledger. In the nested shielding picture, Generation II is the same core hierarchy viewed one level deeper.
+*   **Physics:** Without coherent outer shielding support, the high-energy inner binaries are more exposed to the Noether Sea, increasing the externally exposed response of the internal causal ledger. The H/M/L axial frame remains defined during the branch lifetime, so the generation change affects mass response and lifetime without changing the gauge representation.
 *   **Example: The Muon ($\mu^-$)**
     *   Core: Pro-Bi-Binary (4 architrinos).
     *   Axial Layer: 6E.
     *   Total Count: 10 architrinos.
 
 ##### Generation III (Tau, Top, Bottom)
-*   **Architecture:** Missing **Outer and Middle Binaries**.
-*   **Core:** **Uni-Binary** (Inner only).
+*   **Architecture:** Outer and middle shielding coherence depleted.
+*   **Core readout:** **Uni-binary shielding branch** (Inner coherently supports the branch).
     *   Composition: 1P, 1E (2 architrinos).
     *   *Note:* This is the bare high-energy engine, extremely unstable/reactive.
 *   **Axial Layer:** 6 axial architrinos (unchanged).
-*   **Physics:** Maximal exposure of the maximum-curvature regime. Highest Mass. Shortest lifetime. In the nested shielding picture, this is the innermost engine with essentially no outer energy screen remaining.
+*   **Physics:** Maximal exposure of the maximum-curvature regime. Highest mass. Shortest lifetime. In the nested shielding picture, this is the innermost engine with essentially no outer energy screen remaining, while the metastable axial dyads still carry charge, color, and weak-coupling bookkeeping until dissociation.
 *   **Example: The Top Quark ($t$)**
     *   Core: Pro-Uni-Binary (2 architrinos).
     *   Axial Layer: 5P, 1E.
@@ -1473,11 +1886,11 @@ The explicit shared fitting packet lives in [Particle Masses](../../../../markdo
 
 ##### Core Depletion, Axial Vortices, and Lifetime (plain view)
 
-- **What the binaries do:** Each binary carries a pair of axial vortices—think of them as rails that hold the six axial architrinos in place and share load into the Noether Sea.
-- **Gen I (tri-binary):** Three binaries = three vortex pairs → a stiff 3D scaffold that locks the axial layer, spreads stress, and shields the deeper core layers. Long-lived.
-- **Gen II (bi-binary):** One binary removed → one vortex pair gone. The remaining scaffold is weaker, and one shielding tier is lost, so small perturbations kick the core off its attractor more easily. Lifetime drops.
-- **Gen III (uni-binary):** Only one binary → a single vortex pair must hold all six charges. Stability margin is tiny, and almost no outer screening remains for the deepest core energy. Very short-lived.
-- **Takeaway:** Fewer binaries → fewer vortex rails → weaker topological confinement → faster dissociation.
+- **What the binaries do:** Each coherent shielding tier supplies axial-vortex support that helps hold the six axial architrinos in phase with the Noether core and shares load into the Noether Sea.
+- **Gen I (tri-binary):** Three coherent shielding tiers give a stiff 3D support scaffold that locks the axial layer, spreads stress, and shields the deeper core layers. Long-lived.
+- **Gen II (bi-binary shielding branch):** The outer support tier is depleted. The H/M/L axial frame persists as a delayed branch record, but small perturbations reach the weakly bound axial layer more easily after causal propagation and relocking cycles. Lifetime drops.
+- **Gen III (uni-binary shielding branch):** Outer and middle support are depleted. The axial layer is metastable around the exposed inner engine, almost no outer screening remains for the deepest core energy, and the reaction corridor opens quickly. Very short-lived.
+- **Takeaway:** Fewer coherent shielding tiers means higher exposed mass response and shorter lifetime, not fewer color states.
 
 ---
 
@@ -1575,7 +1988,7 @@ The table is sufficient. It connects the geometry to every parameter needed to c
 This chapter is a dictionary layer; the primary derivations live elsewhere. The closure interfaces are:
 
 - **Quark mixing (CKM):** weak-basis vs mass-basis overlap and holonomy closure in [theory-bridges/weak-mixing-ckm.md](../../../../markdown/aaa/theory-bridges/weak-mixing-ckm.md).
-- **Lepton mixing (PMNS):** near-photon pro/anti core-pair Hamiltonian and oscillation map in [assemblies/fermions/neutrinos.md](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
+- **Lepton mixing (PMNS):** near-photon pro/anti core-pair phase operator and oscillation map in [assemblies/fermions/neutrinos.md](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
 - **Topological spin/confinement closure:** bundle/topology and causal-locus invariants in [dynamics/causal-action-functional.md](../../../../markdown/aaa/dynamics/causal-action-functional.md) and [assemblies/fermions/color-charge-su3.md](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md).
 
 The weak-sector handoff now uses one shared exposure problem. The weak-coupling triad is not only the bookkeeping source of $T_3$; it is also the domain on which three later closure tasks must agree:
@@ -1605,13 +2018,13 @@ with tri-binary ordered-frame evolution transforming on the double cover so that
 
 This chapter fixes the geometry-to-quantum-number dictionary used by the observer-level electroweak closure map in [interactions/gauge-structure-emergence.md](../../../../markdown/aaa/interactions/gauge-structure-emergence.md).
 
-##### Weak mixing from six-pole geometry
+##### Weak mixing as a six-pole branch-increment hypothesis
 
-At bare geometric level (three active Weak-Coupling sites out of six total polar sites),
+The six-pole statement is retained here as a branch-increment hypothesis, not as a locally derived electroweak result. The candidate increment is
 $$
 \sin^2\theta_W^{\text{bare}}=\frac{1}{4}.
 $$
-The measurable value is represented as
+The proof burden is to derive this value from the axial-site quotient and then show how electroweak-scale dressing moves it to the measured value. Until that derivation is supplied, the measurable relation should be read as a recovery target,
 $$
 \sin^2\theta_W(m_Z)=\sin^2\theta_W^{\text{bare}}+\Delta_{\text{wake}}(m_Z),
 $$
@@ -1624,6 +2037,50 @@ $$
 e = 6\epsilon \sqrt{\kappa c_f}\,Z_e,
 $$
 with $Z_e$ fixed by canonical field normalization when mapping to observer-level kinetic terms.
+
+##### Inertial response and magnetic-moment interface
+
+Mass, inertial response, and magnetic moment are not additional quantum-number rows in this dictionary. A rigid-body inertia tensor is a useful comparison object because it maps angular velocity to angular momentum for a fixed mass distribution. The fermion assembly is not treated as that kind of rigid body. Its observer-level response is derived from trapped causal history, shielding, Noether-Sea coupling, and the orientation of the Noether core plus axial layer.
+
+For a fermion assembly $A$, write the local response maps as
+$$
+\delta p_i
+=
+\mathcal{M}^{\mathrm{resp}}_{ij}
+\!\left(A;\mathcal{H}_A,\mathcal{S}_A,\mathcal{N}_A,R_A\right)
+\delta v^j,
+\qquad
+\delta J_i
+=
+\mathcal{I}^{\mathrm{resp}}_{ij}
+\!\left(A;\mathcal{H}_A,\mathcal{S}_A,\mathcal{N}_A,R_A\right)
+\delta\Omega^j.
+$$
+
+The directional observer scalars are projections of these maps,
+$$
+m_A^{\mathrm{obs}}(\hat{\mathbf{u}})
+=
+\hat u^i\mathcal{M}^{\mathrm{resp}}_{ij}\hat u^j,
+\qquad
+I_A^{\mathrm{obs}}(\hat{\mathbf{n}})
+=
+\hat n^i\mathcal{I}^{\mathrm{resp}}_{ij}\hat n^j.
+$$
+Here $\mathcal{H}_A$ is the path-history/causal-root ledger, $\mathcal{S}_A$ is the shielding state, $\mathcal{N}_A$ is the local Noether-Sea state, and $R_A$ records assembly orientation. In an isotropic low-energy branch, $m_A^{\mathrm{obs}}$ reduces to the scalar mass used in Standard Model kinematics; away from that limit, the anisotropic response belongs to the medium-response map, not to a new quantum number.
+
+The lepton magnetic-moment correction below should be read through the same interface. The coefficient $\mathcal{C}_\ell$ is a channel projection of response data,
+$$
+\mathcal{C}_\ell
+=
+\mathcal{P}_\ell\!\left[
+\mathcal{M}^{\mathrm{resp}},
+\mathcal{I}^{\mathrm{resp}},
+\mathcal{V}_{\mathrm{NS}},
+R_\ell
+\right],
+$$
+where $\mathcal{P}_\ell$ denotes the observer-channel projection into the measured lepton magnetic-moment observable. This keeps magnetic moment tied to finite-size orientation response and Noether-Sea dressing without treating magnetic language as substrate ontology.
 
 ##### Lepton magnetic moments
 
@@ -1682,13 +2139,13 @@ The quark construction used here follows the same Noether-core-plus-axial split 
 - The **Noether core** is the neutral binary scaffold.
 - The **axial layer** is the six-site organization carrying the visible charge pattern.
 
-For matter quarks, the core is a **pro-core**. It is neutral in total charge and differs across generations only by shielding level:
+For matter quarks, the core is a **pro-core**. It is neutral in total charge and differs across generations by shielding-coherence level, not by changing the gauge-facing color frame:
 
-- **Generation I:** tri-binary core, 6 scaffold architrinos.
-- **Generation II:** bi-binary core, 4 scaffold architrinos.
-- **Generation III:** uni-binary core, 2 scaffold architrinos.
+- **Generation I:** tri-binary shielding branch, 6 coherent scaffold architrinos.
+- **Generation II:** bi-binary shielding branch, 4 coherent scaffold architrinos; the outer support tier is depleted on the branch lifetime window.
+- **Generation III:** uni-binary shielding branch, 2 coherent scaffold architrinos; the outer and middle support tiers are depleted on the branch lifetime window.
 
-The axial layer stays six sites wide in all three generations. Each site is occupied by either a positrino $(+\epsilon)$ or an electrino $(-\epsilon)$, with $\epsilon = |e|/6$.
+The axial layer stays six sites wide in all three generations. Each site is occupied by either a positrino $(+\epsilon)$ or an electrino $(-\epsilon)$, with $\epsilon = |e|/6$. The H/M/L axial dyads remain the branch-level record that color and electroweak bookkeeping read, even when one or more shielding tiers no longer supply coherent support.
 
 ##### Counting rule
 
@@ -1700,7 +2157,7 @@ with
 $$
 N_{\text{core}} \in \{6,4,2\}
 $$
-for Generations I, II, and III respectively. This gives:
+for Generations I, II, and III respectively. Here $N_{\text{core}}$ counts coherent shielding-scaffold architrinos in the promoted branch, not every transient residue of an ablated or relocking tier. This gives:
 
 - Generation I quark: 12 architrinos.
 - Generation II quark: 10 architrinos.
@@ -1714,12 +2171,12 @@ To describe color and axial geometry compactly, use the three core axes $(H,M,L)
 - $P^- = (-,-)$: an axis whose two polar sites are both electrino.
 - $P^{m} = (+,-)$ or $(-,+)$: a mixed axis with one positrino and one electrino.
 
-In the implementation picture currently favored in the repo, each axis contains:
+In the fully shielded implementation picture currently favored in the repo, each axis contains:
 
 - one neutral source binary, with one orbiting positrino and one orbiting electrino,
 - plus one polar dyad attached to that binary axis.
 
-The axis class labels $P^+$, $P^-$, and $P^{m}$ refer only to those one polar dyad. They do not mean that the underlying source binary stops being neutral.
+The axis class labels $P^+$, $P^-$, and $P^{m}$ refer only to those one polar dyad. They do not mean that the underlying source binary stops being neutral. In higher-generation branches, a depleted shielding tier may no longer act as a coherent source binary, but the polar dyad and its H/M/L branch label remain the gauge-facing color record until the quark branch dissociates.
 
 Colorless fermions keep the three axes equivalent. Quarks do not. A quark becomes color-charged when exactly one axis is exceptional relative to the other two.
 
@@ -1770,7 +2227,7 @@ The down-type sector admits two currently allowed axis-pattern families:
    (P^-,P^{m},P^{m}).
    $$
 
-Both families satisfy the same structural rule: two axes are in one class and one axis is exceptional. That common axis-exceptionality is what carries color. Which family is selected for a given stable down-type branch remains a model choice to be fixed by stronger dynamical closure.
+Both families satisfy the same structural rule: two axes are in one class and one axis is exceptional. That common axis-exceptionality is what carries color. They are therefore candidate sectors, not two independent low-energy species. For any realized down-type branch, a single selected family $F_\star\in\{I,II\}$ supplies the full red/green/blue color triplet over the declared stability window; the unselected family must be unstable, high-energy transient, or excluded by the hadron boundary conditions. The current corpus does not assign $d$, $s$, and $b$ to separate families as a settled rule.
 
 ##### Right-handed singlet bookkeeping
 
@@ -1932,11 +2389,11 @@ This should still be treated cautiously. The image supports a candidate mapping 
 | Flavor | Type | Generation | Core architecture | Core architrinos | Axial pattern | Net charge | Total architrinos | Axis template |
 | --- | --- | --- | --- | ---: | --- | ---: | ---: | --- |
 | $u$ | up-type | I | pro tri-binary | 6 | $5P,1E$ | $+2/3$ | 12 | permutations of $(P^{m},P^+,P^+)$ |
-| $d$ | down-type | I | pro tri-binary | 6 | $2P,4E$ | $-1/3$ | 12 | permutations of $(P^+,P^-,P^-)$ or $(P^-,P^{m},P^{m})$ |
+| $d$ | down-type | I | pro tri-binary | 6 | $2P,4E$ | $-1/3$ | 12 | selected family $F_\star$: permutations of $(P^+,P^-,P^-)$ if $F_\star=I$, or $(P^-,P^{m},P^{m})$ if $F_\star=II$ |
 | $c$ | up-type | II | pro bi-binary | 4 | $5P,1E$ | $+2/3$ | 10 | same up-type color template on a Generation-II core |
-| $s$ | down-type | II | pro bi-binary | 4 | $2P,4E$ | $-1/3$ | 10 | same down-type color template on a Generation-II core |
+| $s$ | down-type | II | pro bi-binary | 4 | $2P,4E$ | $-1/3$ | 10 | same selected-family rule on a Generation-II core |
 | $t$ | up-type | III | pro uni-binary | 2 | $5P,1E$ | $+2/3$ | 8 | same up-type color template on a Generation-III core |
-| $b$ | down-type | III | pro uni-binary | 2 | $2P,4E$ | $-1/3$ | 8 | same down-type color template on a Generation-III core |
+| $b$ | down-type | III | pro uni-binary | 2 | $2P,4E$ | $-1/3$ | 8 | same selected-family rule on a Generation-III core |
 
 ##### Flavor-by-flavor notes
 
@@ -1946,7 +2403,7 @@ The up quark is the ground-state up-type quark. It uses the full pro tri-binary 
 
 ###### Down quark
 
-The down quark is the ground-state down-type quark. It also uses the full pro tri-binary core, but with the $2P,4E$ axial layer. Its color structure comes from a single exceptional axis within either the $(P^+,P^-,P^-)$ or $(P^-,P^{m},P^{m})$ family.
+The down quark is the ground-state down-type quark. It also uses the full pro tri-binary core, but with the $2P,4E$ axial layer. Its color structure comes from a single exceptional axis within the selected Family-I or Family-II sector, not from both families appearing as independent down-like species.
 
 ###### Charm quark
 
@@ -1954,7 +2411,7 @@ The charm quark keeps the up-type axial pattern but sheds the outer shielding bi
 
 ###### Strange quark
 
-The strange quark is the Generation-II down-type partner of charm. It keeps the $2P,4E$ axial pattern but lives on a bi-binary core rather than a tri-binary core.
+The strange quark is the Generation-II down-type partner of charm. It keeps the $2P,4E$ axial pattern but lives on a bi-binary core rather than a tri-binary core, with the same selected-family branch rule applied after the shielding tier is fixed.
 
 ###### Top quark
 
@@ -1962,7 +2419,7 @@ The top quark is the most exposed up-type branch in the present catalog. It carr
 
 ###### Bottom quark
 
-The bottom quark is the Generation-III down-type branch. It carries the down-type $2P,4E$ axial pattern on a uni-binary core. Like the top quark, it is highly exposed compared with Generation-I quarks, though the down-type axial geometry remains distinct.
+The bottom quark is the Generation-III down-type branch. It carries the down-type $2P,4E$ axial pattern on a uni-binary core. Like the top quark, it is highly exposed compared with Generation-I quarks, though the down-type selected-family sector remains a separate branch-selection target.
 
 #### Color assignments
 
@@ -2040,7 +2497,7 @@ Family II:
 | Green | $(P^{m},P^-,P^{m})$ | M-axis exceptional |
 | Blue | $(P^{m},P^{m},P^-)$ | L-axis exceptional |
 
-These tables apply to $d$, and by generation lifting also to $s$ and $b$.
+These are candidate-sector tables. For any realized $d$, $s$, or $b$ branch, one selected family $F_\star$ supplies the three color states; the other family is not counted as an additional long-lived down-type particle. A branch that leaves both tables comparably stable in the same low-energy window over-predicts down-type species and fails the selection target.
 
 ##### Colorless composites
 
@@ -2080,6 +2537,7 @@ At the quark level, a pure gluon coupling is allowed to do the following:
 3. Preserve the total six-site axial inventory of each flavor class.
 4. Preserve electric charge.
 5. Preserve generation tier on the strong-interaction timescale.
+6. For down-type quarks, preserve the selected family sector $F_\star$ during pure strong reconfiguration.
 
 In practical terms, a gluon may change
 $$
@@ -2088,6 +2546,7 @@ $$
 |u_H\rangle \leftrightarrow |u_L\rangle,
 $$
 and likewise for down-type states, without changing $u \leftrightarrow d$ or Generation I $\leftrightarrow$ II $\leftrightarrow$ III. Strong couplings move quarks around inside color space; they do not perform weak flavor conversion.
+For down-type states this color motion is internal to the selected Family-I or Family-II sector. Pure gluon exchange may rotate H/M/L exceptionality, but it is not allowed to hop between Family I and Family II as a hidden flavor change.
 
 ##### Generator picture
 
@@ -2155,7 +2614,7 @@ That boundary matters. The current chapter is a canonical catalog, not a claim t
 
 ### Weak Mixing Angle
 
-This note records the current geometric interpretation of the weak mixing angle inside the assembly framework. Its purpose is to distinguish what is being used as a constrained geometric hypothesis from what is already measured electroweak phenomenology, and to keep the scaffold-frame versus axial-frame distinction explicit. It bridges the fermion-side geometry to [Electroweak Bosons: Photons, W/Z, and Higgs](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) and [Emergence of U(1)/SU(2)](../../../../markdown/aaa/interactions/gauge-structure-emergence.md).
+This note records the current geometric interpretation of the weak mixing angle inside the assembly framework. Its purpose is to distinguish what is being used as a constrained geometric hypothesis from what is already measured electroweak phenomenology, and to keep the scaffold-frame versus axial-frame distinction explicit. It bridges the fermion-side geometry to [Electroweak Bosons: Photons, W/Z, and Higgs](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) and [Gauge Structure Emergence](../../../../markdown/aaa/interactions/gauge-structure-emergence.md).
 
 #### Purpose
 
@@ -2166,13 +2625,13 @@ This note records a constrained geometric hypothesis for fermion assemblies in $
 - the **Noether core axes remain fixed** as the reference scaffold,
 - the **axial distribution** is allowed to rotate relative to that scaffold,
 - stable quark-like states may occupy a **discrete set of misalignment angles**,
-- the natural bare increment for those angles is identified with the existing six-pole electroweak value
+- the candidate branch increment for those angles is hypothesized, not derived here, to satisfy the existing six-pole electroweak value
 $$
-\sin^2\theta_W^{\text{bare}}=\frac14,
+\sin^2\theta_{\mathrm{inc}}=\frac14,
 $$
 so that
 $$
-\theta_W^{\text{bare}}=30^\circ.
+\theta_{\mathrm{inc}}=\frac{\pi}{6}=30^\circ.
 $$
 
 This is intentionally narrower than a claim that the H/M/L axes themselves tilt or precess into new orientations. The tri-binary scaffold remains the kinematic frame. What changes is the orientation of the **principal axial frame** and therefore the orientation of the **weak-coupling triad** relative to the fixed core frame.
@@ -2259,34 +2718,37 @@ M_{ij} = \sum_{a=1}^{6} q_a\,n_i^{(a)} n_j^{(a)},
 $$
 where $q_a\in\{+\epsilon,-\epsilon\}$ and $\mathbf{n}^{(a)}$ are the six polar-site directions measured in the core frame.
 
-The eigenvectors of $M_{ij}$ define the principal axial axes. For leptons, symmetry tends to force these axes to align with the core frame. For quarks, the asymmetry generically produces
+The eigenvectors of $M_{ij}$ define the principal axial axes. For leptons, symmetry tends to force these axes to align with the core frame. For quarks, the relevant residual is not a commutator with the identity tensor. It is the off-diagonal axial-tensor load measured in the core basis,
 $$
-[M,\delta] \neq 0
+\mathcal{R}_{\mathrm{off}}(M;\mathcal{F}_{\text{core}})
+=
+\sum_{i\ne j}|M_{ij}|^2.
 $$
-in the core basis, so the axial frame rotates to a nearby but distinct orientation.
+The axial-frame rotation target is $\mathcal{R}_{\mathrm{off}}>0$. If $\mathcal{R}_{\mathrm{off}}=0$ but the eigenvalues of $M_{ij}$ differ, the axial layer is anisotropic while still aligned with the core frame; that case should not be counted as a misalignment branch.
 
 The proposal is not that quarks can take arbitrary rotations. The proposal is that the admissible minima are **discrete**. In that sense this note is also an interface to [Weak Mixing and CKM](../../../../markdown/aaa/theory-bridges/weak-mixing-ckm.md), where the quark-sector overlap structure is pushed further.
 
 ---
 
-#### Bare Weinberg Increment as the Discrete Step
+#### Branch-Increment Hypothesis as the Discrete Step
 
-A useful existing hook in the current AAA notes is the six-pole weak-mixing statement
+A useful existing hook in the current $\mathbb{A}\mathbb{A}\mathbb{A}$ notes is the six-pole weak-mixing statement
 $$
-\sin^2\theta_W^{\text{bare}} = \frac14.
+\sin^2\theta_{\mathrm{inc}} = \frac14.
 $$
-This implies the bare geometric angle
+This implies the candidate geometric branch increment
 $$
-\theta_W^{\text{bare}} = 30^\circ.
+\theta_{\mathrm{inc}} = \frac{\pi}{6}=30^\circ.
 $$
 
-The present idea is to reuse this as a **axial-frame increment**, not as a claim that the observed electroweak angle and internal quark orientation are numerically identical in all environments.
+The present idea is to reuse this as an **axial-frame increment**, not as a claim that the observed electroweak angle and internal quark orientation are numerically identical in all environments. The symbol $\theta_W^{\text{bare}}$ should be treated only as a comparison label for this branch-increment hypothesis until the six-pole quotient and electroweak dressing calculation are derived.
 
 Define a discrete family of candidate equilibrium misalignment angles
 $$
-\alpha_n = n\,\theta_W^{\text{bare}} = n\times 30^\circ,
+\alpha_n = n\,\theta_{\mathrm{inc}} = n\frac{\pi}{6},
 \qquad n\in\mathbb{Z}.
 $$
+Equivalently, $\alpha_n=n\times30^\circ$ for reader-facing degree notation. In energy or action functionals below, $\alpha$ and $\theta_{\mathrm{inc}}$ are radians.
 
 Because an axial frame is an oriented triad and because many rotations are physically equivalent up to sign flips, pole relabelings, or color-phase shifts, the physically distinct set is expected to be much smaller than all integers. A practical first working set is
 $$
@@ -2414,9 +2876,9 @@ $$
 $$
 and that these stationary points are true minima for the stable branches.
 
-A simple toy realization is
+A simple toy realization, with $\alpha$ and $\theta_{\mathrm{inc}}$ measured in radians, is
 $$
-E_{\text{charge}}(\alpha)=A\sin^2\!\left(\frac{\alpha}{\theta_W^{\text{bare}}}\pi\right)+B\,f_{\text{type}}(\alpha),
+E_{\text{charge}}(\alpha)=A\sin^2\!\left(\frac{\alpha}{\theta_{\mathrm{inc}}}\pi\right)+B\,f_{\text{type}}(\alpha),
 $$
 where $f_{\text{type}}$ differs for up-type and down-type loading. This is not a derivation; it is just the minimal shape needed to encode discrete minima at multiples of the bare angle.
 
@@ -2431,13 +2893,13 @@ The useful theorem target is:
 3. minimize $E_{\text{eff}}(\alpha,\phi_c)$ on the quotient space,
 4. pass the surviving branches to the weak-coupling-triad exposure calculation.
 
-That handoff keeps the claim strong but scoped. The weak-mixing increment $\theta_W^{\text{bare}}=30^\circ$ is a candidate branch increment; the measured electroweak angle and CKM/PMNS matrices still require the exposure, overlap, and provenance gates to close.
+That handoff keeps the claim strong but scoped. The weak-mixing increment $\theta_{\mathrm{inc}}=30^\circ$ is a candidate branch increment; the measured electroweak angle and CKM/PMNS matrices still require the exposure, overlap, and provenance gates to close.
 
 ---
 
 #### Weak-Coupling Interpretation
 
-In the current AAA dictionary, the weak sector acts on the **weak-coupling triad**, the three more exposed polar sites. If the axial frame rotates relative to the core frame, then the weak-coupling triad need not sit in the same orientation as it does in the electron.
+In the current $\mathbb{A}\mathbb{A}\mathbb{A}$ dictionary, the weak sector acts on the **weak-coupling triad**, the three more exposed polar sites. If the axial frame rotates relative to the core frame, then the weak-coupling triad need not sit in the same orientation as it does in the electron.
 
 This gives a possible geometric interpretation of quark weak structure:
 
@@ -2473,7 +2935,7 @@ In this sense, color answers the question
 
 - which axis is exceptional?
 
-while the Weinberg-locked axial rotation answers
+while the branch-increment axial rotation answers
 
 - how far is the axial frame tilted away from the core reference frame?
 
@@ -2539,9 +3001,9 @@ The sharpened hypothesis is:
 - the **axial frame** may rotate relative to that fixed core,
 - the electron sits at the symmetric limit $\alpha=0$,
 - quarks occupy nonzero misalignment branches because their axial layers are both charge-imbalanced and axis-exceptional,
-- the stable branches may be quantized in increments of the existing bare electroweak angle
+- the stable branches may be quantized in increments of the branch-increment hypothesis
 $$
-\theta_W^{\text{bare}}=30^\circ,
+\theta_{\mathrm{inc}}=30^\circ,
 $$
 with color providing an independent exceptional-axis label.
 
@@ -2551,7 +3013,7 @@ In short: do not rotate the scaffold; rotate the axial frame. Then ask whether t
 
 **Scope:** Defines the geometric assemblies corresponding to the U(1), SU(2), and Scalar sectors.
 **Core Principle:** Bosons are discrete, propagating assemblies of architrinos organized into phase-locked modes.
-This chapter is the bosonic-side companion to [Emergence of U(1)/SU(2)](../../../../markdown/aaa/interactions/gauge-structure-emergence.md), [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md), and [Particle Masses: Emergent Inertia in the Noether Sea](../../../../markdown/aaa/assemblies/particle-masses.md).
+This chapter is the bosonic-side companion to [Gauge Structure Emergence](../../../../markdown/aaa/interactions/gauge-structure-emergence.md), [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md), and [Particle Masses: Emergent Inertia in the Noether Sea](../../../../markdown/aaa/assemblies/particle-masses.md).
 
 Spin labels in this chapter are downstream mapping targets, not completed derivations. The Higgs is treated as a scalar target because its candidate motion is radial, while the photon and weak corridors are treated as vector-mode targets because each carries a distinguished propagation or interaction axis together with transverse phase structure. The proof obligations for these labels sit in [Angular Momentum and Spin](../../../../markdown/aaa/theory-bridges/angular-momentum-and-spin.md).
 
@@ -2587,7 +3049,8 @@ A photon manifests as a **phase-locked planar-pair mode train** of delayed actio
 *   **Absorption (Planar-Mode Capture):**
     *   Absorption is not the annihilation of a quantum field operator.
     *   It is the **mechanical re-capture** of the planar mode by an internal binary in the target atom.
-    *   The mode train docks with the binary, transferring its angular momentum and re-binding the architrinos into the target's mass/energy inventory.
+    *   The mode train docks with the binary, transferring energy, momentum, transverse angular momentum, and path-history into the target's event ledger. In ordinary atomic or material absorption, this updates an existing target assembly or medium record; it does not by itself claim that the photon's constituent identities become a different Standard Model particle.
+    *   If a photon-side event produces different outgoing assemblies, it is a Gate C reaction or pair channel. That record must separately state which target or Noether-Sea content supplies the identity-routed inventory for the new assemblies.
 
 #### Environmental Coupling (Ambient Noether Sea)
 *   **Ambient Noether Sea:** The ambient Noether Sea is populated by neutral assemblies (Noether Cores).
@@ -2807,6 +3270,8 @@ $$
 
 The ideal-analyzer closure target is $(\eta_{\hat{\mathbf a}})_*d\nu_{\hat{\mathbf a}}=d\eta$. If this pushforward is biased, the deviation $P_{\text{pass}}(\rho)-\rho$ is a material calibration diagnostic rather than a new photon law. The concrete substrate proof still has to compute the return map and basin filtration from an analyzer assembly simulation.
 
+The same material-projector logic should govern ordinary surfaces. A metal, absorber, dielectric, or analyzer is not a passive wall for a photon object. It supplies a material return map whose electron-envelope, nuclear-source, bonding/lattice, and Noether-Sea records decide whether the incoming transverse ledger is coherently re-released, captured, scattered, routed into $B_{\mathrm{heat}}$, or retained as a bound excitation. Here $B_{\mathrm{heat}}$ is a declared heating channel in which captured action thermalizes through electron-envelope, bonding/lattice, and Noether-Sea ensemble updates rather than disappearing into untracked heat. In this framing a reflected photon is an outgoing coaxial contra-rotating pro/anti planar pair with a new path-history ledger, while an absorbed photon has no remaining free planar-pair identity even though its energy, momentum, transverse angular momentum, and medium update remain in the event record. That statement covers surface capture, heating, bound excitation, and coherent re-release. It should not be read as a shortcut for pair production, photoproduction, or any other channel with different outgoing Standard Model assemblies; those channels need their own identity-routing rows. This is a Gate C surface-routing target, not a completed proof of reflectivity, opacity, or blackbody behavior.
+
 The polarization-pair no-signaling test is part of the same gate. For entangled photon preparations with analyzer settings $\alpha,\beta$, the completed ledger must recover setting-independent local marginals:
 
 $$
@@ -2844,6 +3309,16 @@ W and Z bosons are not fundamental particles in the sense of eternal objects; th
     *   **Function:** Transports energy, momentum, and phase *without* net charge flux.
     *   **Bookkeeping:** A neutral corridor enabling re-phasing and mode exchange.
 
+#### Weak-Corridor Provenance
+
+The weak corridor is an event record, not a permanent container that owns the outgoing fermion inventory. Its provenance rows must identify which architrinos participate, which neutral Noether cores supply the scaffold, which payload moves through the corridor, and where the balancing recoil is stored.
+
+| Corridor event | Participating architrinos | Neutral Noether-core provenance | Corridor payload | Required ledger closure |
+| --- | --- | --- | --- | --- |
+| Charged lepton current, $\nu_L \leftrightarrow e^-_L$ | The exposed weak-coupling triad on the left-channel ledger changes between active $3P$ and active $3E$; the shielded triad remains part of the assembly bookkeeping. | The incoming and outgoing lepton assemblies retain or relock their own neutral core provenance; the corridor does not manufacture a new Noether core. | The charged-corridor payload has magnitude $6\epsilon$: $W^-$ carries $-6\epsilon$ and $W^+$ carries $+6\epsilon$. Absorbing $W^-$ can drive $3P\to3E$, while emitting $W^-$ balances a source-side $3E\to3P$ change; $W^+$ supplies the inverse bookkeeping. | Energy, momentum, spin/angular momentum, axial polarity, path-history, and Noether-Sea recoil must close across the source assembly, target assembly or decay products, corridor, and ambient Noether Sea. |
+| Quark charged current, $d_L \leftrightarrow u_L$ within a CKM-weighted weak basis | The active quark weak-coupling triad changes $3E\leftrightarrow3P$ while color axis-exceptionality and generation bookkeeping remain separate ledgers. | Source and product quark Noether cores provide the neutral scaffold and color record; CKM weighting belongs to overlap between weak basis and mass/branch basis, not to a new corridor inventory. | The corridor transports the compensating $\pm 6\epsilon$ payload for the active-triad swap and carries the energy-momentum needed for the branch transition. | Charge/polarity, baryon number, color-singlet embedding, spin/angular momentum, energy, momentum, and Noether-Sea recoil must all be accounted for in the full reaction ledger. |
+| Neutral current, $Z^0$ exchange | The weak-coupling-triad and shielded-triad records are read or rephased without a $3P\leftrightarrow3E$ swap. | The participating assemblies keep their neutral Noether-core provenance; no charged axial inventory is imported from the corridor. | No net charge payload; the corridor carries energy, momentum, phase, and vector angular-momentum transfer. | The event must close energy, momentum, spin/angular momentum, phase, wake, and Noether-Sea recoil while preserving electric charge and axial inventory. |
+
 #### Massless Photon Versus Massive Weak Corridor
 
 The photon and the weak corridors are both spin-$1$ channels at the observer level, but they solve different closure problems. A photon is the clean massless branch: its coaxial contra-rotating pro/anti planar-pair closure carries phase, momentum, and transverse helicity, but it does not form a stable volumetric assembly with a proper-time cycle. In the effective relativistic limit this appears as the null relation $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$. In special-relativity language, the null channel has zero proper-time accumulation; a photon is not assigned a comoving clock because no photon rest frame exists.
@@ -2861,28 +3336,68 @@ The distinction between photon helicity and massive-vector spin should remain ex
     *   **Chirality:** Allowed couplings follow from the **Path-History Geometry**. The corridor's internal spiral must match the phase structure of the target's nested binaries. "Wrong-handed" targets present a phase mismatch, preventing the tether from locking on.
 *   **Absorption:** The corridor is re-captured by a target binary, integrating its payload and updating the target's internal mode energy.
 
+#### Low-Energy Four-Fermi Limit
+
+At energies far below the $W$ corridor scale, the resolved corridor may be contracted to a current-current comparison operator. The recovery target is
+$$
+\mathcal{L}_{\mathrm{weak}}^{\mathrm{low}}
+=
+-\frac{4G_F}{\sqrt 2}\,
+J_+^\mu J^-_\mu,
+\qquad
+G_F=\frac{1}{\sqrt 2\,v_{\mathrm{EW}}^2}.
+$$
+This is not a new substrate interaction. It is the low-energy observer limit of the same charged-corridor event after the finite-width mediator has been integrated out. The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is therefore to derive the corridor stiffness or electroweak scale $v_{\mathrm{EW}}$ from Noether-Sea response and then recover $G_F$, beta rates, and charged-current branching fractions without fitting a separate contact coupling.
+
 #### Effective Mass Scales
 *   **Apparent Energy:** The "Mass" ($M_W \approx 80$ GeV, $M_Z \approx 91$ GeV) is not a rest mass of a solid object. It is the **Apparent Confinement Energy** of the corridor at the moment of creation.
-*   **Environment Dependence:**
-    *   Because it is a dynamic bundle, its effective width (mass) depends on the electromagnetic environment (ambient Noether-Sea density).
-    *   **Prediction:** Changing assembly environments (e.g., extreme plasma density) may shift the apparent mass peaks and widths by altering the tethering stiffness of the ambient Noether Sea, without invoking new fields.
+*   **Environment Dependence as a bounded closure target:**
+    *   Because a $W/Z$ corridor is a dynamic bundle, its effective width and peak position may depend on Noether-Sea density, compliance, drift, and tethering stiffness only through the same medium-response record that recovers ordinary electroweak precision behavior.
+    *   In calibrated collider and weak laboratory conditions, any predicted shift $\delta M_{W/Z}$ or width change must remain below the applicable precision bounds before the model can claim a new environmental effect.
+    *   The safe prediction is therefore an extreme-density closure target: in plasma, compact-object, or strong-gradient Noether-Sea regimes, a derived corridor-stiffness change may shift apparent weak-boson peaks or widths, but only after the weak homogeneous branch has proven the shift is negligible in existing precision tests.
 
 ---
 
-### The Higgs Boson ($H$): The Noether-Sea Breathing Mode
+### The Higgs Boson ($H$): Scalar Noether-Sea Benchmark
 
-The Higgs is not a propagating assembly *through* the ambient medium; it is a resonance *of* the Noether-Sea structure.
+The Higgs comparison is modeled here as a candidate resonance of the Noether-Sea structure rather than as a propagating assembly *through* the ambient medium. That identification remains a closure target until the same branch record predicts the observed scalar mass, channel rates, and coupling pattern.
 
 #### Geometric Structure
 *   **The Substrate:** The Noether Sea is a coupled population of neutral tri-binary units ($1P, 1E$).
-*   **Scalar Excitation:** The Higgs is a **Radial Breathing Mode** ($r \to r + \delta r$) of these Noether-Sea units.
+*   **Scalar Target:** The candidate Higgs channel is a **radial breathing mode** ($r \to r + \delta r$) of these Noether-Sea units.
 *   **Spin-$0$:** The oscillation is purely radial (scalar), possessing no vector orientation.
 
 #### Mass-Channel Matching
 *   **The Cause:** Massive particles (Quarks, W/Z) have complex 3D geometries that distort the local Noether-Sea arrangement.
 *   **The Effect:** They physically displace or distort the surrounding Noether-Sea nodes.
 *   **The Response:** This distortion changes the medium-dressed response of shielded internal causal history. The observer-facing inertial mass channel is the effective response, not ordinary dissipative drag.
-*   **The Boson:** If the Noether Sea is driven hard enough (e.g., at LHC), this radial ringing mode can be excited independently. Identifying that resonance with the Higgs Boson ($125$ GeV) remains an effective matching target.
+*   **The Boson:** If the Noether Sea is driven hard enough, as in LHC-scale collisions, this radial ringing mode could be excited independently. Identifying that resonance with the observed Higgs boson remains an effective matching target anchored by the neutral scalar resonance near $125$ GeV; exact date-stamped values and uncertainties belong in validation and parameter ledgers rather than static chapter prose.
+
+The local proof obligation is a derivative test, not a new primitive field. If $\varphi$ parameterizes the radial Noether-Sea breathing displacement, the effective scalar coupling to an assembly $A$ is the change in the same mass-response map used by [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md#higgs-and-yukawa-matching-residual):
+$$
+g_{H,A}^{\mathrm{eff}}(\theta)
+=
+\left.
+\frac{\partial M_{\mathrm{sh}}(A;\theta,\varphi)}
+{\partial \varphi}
+\right|_{\varphi=0}.
+$$
+The Higgs comparison closes only if this derivative reproduces the observed Higgs-coupling pattern while the radial mode's own resonance scale gives $M_H^{\mathrm{breath}}\approx 125$ GeV on the same Noether-Sea branch. The scalar mode is therefore a shared medium-response benchmark, not a license to add independent Yukawa parameters or a separate mass-generating substance.
+
+At the electroweak-boson level, the scalar benchmark is also a channel ledger. For collider energy $s$, decay channel $c$, detector category $k$, and production route $p\in\{\mathrm{ggF},\mathrm{VBF},WH/ZH,t\bar tH\}$, the observer-level event-count target has the schematic form
+$$
+N_{s,c,k}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)
+=
+\mathcal{L}_s
+\sum_p
+\sigma_p^{\mathbb{A}\mathbb{A}\mathbb{A}}(s;\theta)
+\,B_c^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)
+\,A_{s,c,k,p}
+\,\varepsilon_{s,c,k,p}
++
+B_{s,c,k}.
+$$
+The relevant high-resolution channels include $H\to ZZ^{(*)}\to4\ell$, $H\to\gamma\gamma$, and $H\to WW^{(*)}$. The $\gamma\gamma$ channel is especially important for this chapter because it disfavors a spin-$1$ assignment while keeping the photon channel itself a separate transverse planar-pair ledger.
 
 ---
 
@@ -2897,6 +3412,7 @@ The Higgs is not a propagating assembly *through* the ambient medium; it is a re
 
 ### Pair production (note)
 
+- This note covers photon-triggered conversion, not ordinary atomic or material absorption. Consuming the incoming photon means closing the free planar-pair ledger; it does not automatically mean that the outgoing fermion identities are inherited from the photon constituents.
 - A neutral Noether Pair should be treated as the local source architecture for spontaneous pro-anti fermion pair production. With sufficient energy input, a pair-conversion mode can unpack that neutral pair into a fermion and antifermion while returning the Noether-core bookkeeping to overall neutrality.
 - In this framing, the key point is not limited to the electron channel. A Noether Pair can furnish the neutral core content needed for any pro-anti fermion pair, provided the supplied energy and axial-bookkeeping conditions match the target pair.
 - In photon-photon pair production, the photons supply the energy; the Sea contributes the neutral Noether Pair, and the axial excess arranges into the outgoing pro/anti fermion inventories. Electric bookkeeping and architrino counts stay balanced because the Noether-pair source remains neutral after the conversion bookkeeping closes.
@@ -2995,14 +3511,16 @@ A gluon is a propagating disturbance in the Noether-Sea assembly network that re
 
 Why are there 8 gluons?
 
-- **The permutations:** we have 3 color basis states, equivalently the three exceptional-axis sectors $(H,M,L)$. A gluon represents a transition between them, such as $R\bar{G}$ or $B\bar{R}$.
+- **The basis:** we have 3 color basis states, equivalently the three exceptional-axis sectors $(H,M,L)$.
 - **The matrix:** there are $3 \times 3 = 9$ possible couplings, corresponding to $U(3)$ before the singlet is removed.
+- **Off-diagonal color-changing modes:** six generators move or mix exceptionality between distinct axis sectors: $(HM),(HL),(ML)$, each with two Hermitian components. These are the color-changing corridor modes analogous to entries such as $R\bar{G}$ or $B\bar{R}$.
+- **Diagonal traceless modes:** two additional generators are neutral in net color change but still act nontrivially on relative H/M/L color phase and weighting. They are the diagonal traceless directions $H_1$ and $H_2$ described in [Color Charge and SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md#generator-basis-from-axis-operations).
 - **The singlet removal:** the equal superposition
   $$
   \frac{R\bar{R}+G\bar{G}+B\bar{B}}{\sqrt{3}}
   $$
   is totally symmetric. It carries no net color change and does not interact as an open color mode.
-- **The octet:** removing this one singlet leaves 8 physical traceless modes, the familiar gluon octet of QCD.
+- **The octet:** removing this one singlet leaves 8 traceless modes: six off-diagonal color-changing generators plus two diagonal traceless generators, the familiar gluon octet of QCD.
 
 #### Gluon Spin (Vector Nature)
 
@@ -3020,13 +3538,13 @@ Quarks are confined because an open color corridor stores energy in the surround
 
 #### Energy Density Calculation
 
-- **Noether-Sea alignment scale:** the confinement scaffold uses a candidate coherence length $L_{vac}$, provisionally of order $1\;\mathrm{fm}$, rather than a discretization scale of the Euclidean void.
-- **Cost of ordering:** forcing a line of ambient Noether-Sea cores to align with an open color corridor costs an energy $E_{vac}$ per coherence length.
+- **Noether-Sea coherence scale:** the confinement scaffold uses a candidate coherence length $L_{\mathrm{coh}}$, provisionally of order $1\;\mathrm{fm}$, rather than a discretization scale of the Euclidean void.
+- **Cost of coherent ordering:** forcing a line of ambient Noether-Sea cores to align with an open color corridor costs an energy $E_{\mathrm{coh}}$ per coherence length.
 - **String tension ($\sigma$):**
   $$
-  \sigma \sim \frac{E_{vac}}{L_{vac}}.
+  \sigma \sim \frac{E_{\mathrm{coh}}}{L_{\mathrm{coh}}}.
   $$
-  If $E_{vac}\sim 1\;\mathrm{GeV}$ and $L_{vac}\sim 1\;\mathrm{fm}$, then
+  If $E_{\mathrm{coh}}\sim 1\;\mathrm{GeV}$ and $L_{\mathrm{coh}}\sim 1\;\mathrm{fm}$, then
   $$
   \sigma \sim 1\;\mathrm{GeV/fm}.
   $$
@@ -3040,6 +3558,14 @@ The validation gate is therefore:
 - **No free color:** an isolated color sector must exceed the free-color bound rather than becoming a long-lived asymptotic object.
 - **Mass-gap recovery:** closed pure strong-sector braids must have a finite lowest excitation scale instead of a continuum of arbitrarily soft color modes.
 - **Shared record:** the same Noether-Sea state variables must control tension, screening, and closed-braid excitation energy; otherwise the model has only matched separate QCD-looking observables by retuning.
+
+The compact gauge-invariant diagnostic is inherited from the Wilson-loop test in [Color Charge and SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md#closure-interface-confinement-energy-scaling):
+$$
+\left\langle W(C_{R,T})\right\rangle_{\theta}
+\sim
+\exp[-\sigma_{\mathrm{eff}}(\theta)RT]
+$$
+in the confining window. At the assembly level, this says that an open color corridor must accumulate energy proportional to the swept corridor area in the comparison geometry, while a closed singlet branch avoids that open-sector cost. A gluon-corridor story that cannot be read through this gauge-invariant diagnostic has not yet recovered QCD confinement.
 
 #### The Color Singlet (White)
 
@@ -3104,7 +3630,7 @@ The strong interaction in $\mathbb{A}\mathbb{A}\mathbb{A}$ is the **elastic resp
 ### The Pions ($\pi^+, \pi^-, \pi^0$): The Nuclear Exchange Packet
 
 **Standard Model Role:**
-Pions are the lightest hadrons ($\sim 140$ MeV). They act as the carriers of the **residual strong force** (nuclear force) that binds protons and neutrons into atomic nuclei. At the Standard Model level, their spin-0 bosonic role means they can be created and absorbed in great numbers without satisfying the fermionic Pauli occupancy restriction.
+Pions are the lightest hadrons ($\sim 140$ MeV). They act as the carriers of the **residual strong force** (nuclear force) that binds protons and neutrons into atomic nuclei. At the Standard Model level, their spin-0 bosonic role means they can be populated and absorbed in great numbers without satisfying the fermionic Pauli occupancy restriction.
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, that bosonic-statistics statement is a downstream target of [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/quantum-statistics.md) and [Angular Momentum and Spin](../../../../markdown/aaa/theory-bridges/angular-momentum-and-spin.md). The pion section may use the observer-level boson label, but it does not independently derive Pauli exclusion or spin-statistics closure.
 
@@ -3116,8 +3642,8 @@ A pion is a **two‑core (quark + antiquark) assembly**: one Generation‑I quar
 
 **Dynamical Role:**
 In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Instead, they exchange pions by transiently polarizing the local Noether Sea between them.
-*   **Mechanism:** A proton interacts with the Noether Sea, associating a local tri-binary into a transient $u\bar{d}$ assembly (a $\pi^+$), sustained by the binding-energy deficit of the nucleus. The proton effectively "hands off" its charge state to this transient assembly, becoming a neutron, while the pion propagates to the neighbor. The local Noether-Sea configuration relaxes once the loop dissociates or re-associates into the surrounding nuclear assemblies.
-*   **Topology:** The pion serves as a **detached flux loop** transporting axial-layer charge and phase orientation between the larger tri-core baryon assemblies. It is the "bucket brigade" of the nuclear binding energy.
+*   **Mechanism:** A proton interacts with the Noether Sea, associating a local tri-binary into a transient $u\bar{d}$ assembly (a $\pi^+$), sustained by the binding-energy deficit of the nucleus. The proton effectively "hands off" its charge state to this transient assembly, becoming a neutron, while the effective pion-like loop spans the neighboring baryon record. The local Noether-Sea configuration relaxes once the loop dissociates or re-associates into the surrounding nuclear assemblies.
+*   **Topology:** The pion serves as an **effective flux loop** transporting axial-layer charge and phase orientation between the larger tri-core baryon assemblies. It is the "bucket brigade" of the nuclear binding energy.
 
 **The Yukawa Mechanism (Assembly Tension):**
 *   **Range vs. mass:** The force range scales as $R \sim \hbar/mc$ because heavier assemblies (higher internal curvature) expose stronger Noether-Sea response and decohere over shorter distances. The pion’s low mass/low curvature lets the binding signal span a femtometer.
@@ -3125,6 +3651,11 @@ In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Inst
 *   **In-medium stabilization:** Inside nuclei, pions are not point projectiles but a **delocalized shared axial layer**. Rapid $p\!\leftrightarrow\!n$ exchange via these loops makes the neutron stable in-medium—the time-averaged state is a coupled multi-body assembly, akin to a strong-force chemical bond.
 *   **Geometric bound:** A pion flux tube that stretches beyond a critical length $L_c$ pays more tension energy than the medium needs to rupture by dissociation. Its unusually low curvature keeps $L_c$ large, explaining the long nuclear-range reach.
 *   **Mass suppression as alignment:** The $q$ and $\bar q$ axes are phase-locked so their externally exposed Noether-Sea response nearly cancels - geometrically the assembly follows an almost null-like path through the medium, keeping its effective mass small.
+
+**Free vs. in-medium pion records:**
+- **Free charged pions:** The measured $\pi^\pm$ lifetime belongs to weak-reaction provenance. A free $\pi^-$ primarily routes through a weak corridor such as $\pi^-\to\mu^-+\bar\nu_\mu$; the charge-conjugate channel applies to $\pi^+$. This lifetime is not the timescale of residual strong exchange inside a nucleus.
+- **In-medium residual strong exchange:** Nuclear binding uses transient, off-shell, effective pion-like flux loops inside the coupled nucleon and Noether-Sea environment. The loop is a residual-strong exchange record that closes through baryon retuning, recoil, and medium response; it should not be pictured as a free pion with its weak lifetime traveling between nucleons.
+- **Neutral pion route:** The $\pi^0\to\gamma\gamma$ channel is a rapid Gate C radiative reaction. The inverse axial pairing makes a two-photon output channel available, but the event still has to carry incoming meson identity, outgoing photon Gate A/B ledgers, recoil or medium terms when present, and energy-momentum-angular-momentum closure. It is not a simple disappearance of inverse cores.
 
 ---
 
@@ -3134,7 +3665,7 @@ In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Inst
 Kaons are the lightest mesons containing a **strange quark** (Generation II). They are critical because they exhibit **CP violation** (matter-antimatter asymmetry) and, in Standard Model language, decay relatively slowly via the Weak interaction. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, that means the assembly dissociates only through comparatively weak reaction corridors, proving that "flavor" is not conserved in weak processes.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
-A Kaon connects a **Generation I core** (Tri-binary, e.g., $u$ or $d$) with a **Generation II core** (Bi-binary, $s$); this is the mesonic-side version of the generation-bridging problem treated more abstractly in [Weak Mixing and CKM](../../../../markdown/aaa/theory-bridges/weak-mixing-ckm.md).
+A Kaon connects a **Generation I core** (tri-binary, e.g., $u$ or a selected $d$ branch) with a selected **Generation II shielding branch** (bi-binary, observer-level $s$); this is the mesonic-side version of the generation-bridging problem treated more abstractly in [Weak Mixing and CKM](../../../../markdown/aaa/theory-bridges/weak-mixing-ckm.md). The down-type family-selection target is upstream of this meson shorthand: the kaon label assumes the relevant $d$ or $s$ branch has already survived the branch-selection criterion, rather than adding another observed down-type species.
 
 *   **Structure:** $u\bar{s}$ ($K^+$), $d\bar{s}$ ($K^0$), etc.
 *   **Shielding Mismatch / Geometric torsion ($\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$):** The Gen I core presents a tri-binary boundary ($S^1\!\times\!S^1\!\times\!S^1$); the Gen II core presents a bi-binary boundary ($S^1\!\times\!S^1$). Connecting these mismatched boundaries forces the flux manifold to twist. The induced torsion breaks reflection symmetry along the tube: unlike the pion (net $\int \tau\,ds=0$), the kaon carries non-zero twist charge $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ that sets the CP-odd asymmetry and keeps the tube from relaxing to a straight, cancellation-friendly lock.
@@ -3145,12 +3676,14 @@ A Kaon connects a **Generation I core** (Tri-binary, e.g., $u$ or $d$) with a **
 Kaons are the primary laboratory for observing how Generation I stability breaks down into Generation II instability. Their oscillation ($K^0 \leftrightarrow \bar{K}^0$) implies the ability of the assembly to effectively invert its internal chirality via a transient polarization of the surrounding Noether-Sea assembly network. The corkscrew twist keeps the quark and antiquark **weak-coupling triads** from locking into a neutralizing plane; that persistent misalignment is the $\mathbb{A}\mathbb{A}\mathbb{A}$ analogue of the CKM weak phase for $s\!\to\! d$ transitions. When torsion energy pushes the system out of its local minimum, the stability criterion triggers the flip.
 
 #### CP/phase hook (Kaons)
-- The Gen-I (tri-binary) ↔ Gen-II (bi-binary) shielding mismatch introduces a flux **twist phase**. Denote it $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$, defined as the relative axial rotation needed to mate the exposed Gen-II ring to a tri-binary slot.
+- The Gen-I (tri-binary) ↔ selected Gen-II (bi-binary) shielding mismatch introduces a flux **twist phase**. Denote it $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$, defined as the relative axial rotation needed to mate the exposed Gen-II ring to a tri-binary slot.
 - $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ is the geometric analogue of the SM weak phase that enters $s\to d$ transitions (e.g., the CKM combination relevant to $\epsilon_K$). $\mathbb{A}\mathbb{A}\mathbb{A}$ predicts CP violation magnitude tracks the size of this twist; setting $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}\to 0$ would suppress $K^0$–$\bar K^0$ mixing. In practice, $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ would be estimated by the twist angle (or integer twist count) required to align a Gen-II bi-binary ring onto a tri-binary docking site—and the residual unaligned portion is the torque that drives the oscillatory flip.
 
-#### Virtual exchange cookbook ($\mathbb{A}\mathbb{A}\mathbb{A}$ strings)
-- **Nuclear charge swap:** $p(uud)\;\otimes\;\pi^-(d\bar u)\ \rightarrow\ n(udd)$ with the flux tube handed from the proton’s $u$ core to the meson’s $\bar u$, leaving a $d$ core behind; the reverse absorption hands the flux back from the meson’s $d$ core to the nucleon’s $u$. All reactants/products are temporary polarizations of the Noether Sea that relax once the exchange completes.
-- **Kaon oscillation:** $K^0(d\otimes\bar s)\ \leftrightarrow\ \bar K^0(\bar d\otimes s)$ corresponds to flipping the core/anti-core while keeping the same flux line; the twist phase $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ controls the rate/asymmetry of this flip.
+#### Transient/effective exchange records ($\mathbb{A}\mathbb{A}\mathbb{A}$ strings)
+- **Nuclear charge swap:** $p(uud)\;\otimes\;\pi^-(d\bar u)\ \rightarrow\ n(udd)$ is an in-medium residual-strong exchange record. The effective pion-like flux loop carries axial-layer charge and phase between coupled baryon assemblies, while the full event ledger keeps baryon identities, recoil, and medium response explicit. The loop relaxes or re-associates into the surrounding nuclear assembly once the charge-state handoff closes; it is not a free pion propagation story.
+- **Free pion weak dissociation:** A detached charged pion has its own weak lifetime and must route through a weak-corridor event ledger, for example $\pi^-\to\mu^-+\bar\nu_\mu$. That free weak record should be kept separate from the in-medium residual-strong exchange loop used in nuclear binding.
+- **Neutral pion two-photon route:** $\pi^0\to\gamma+\gamma$ is a photon Gate C reaction. The inverse $q\bar q$ axial pairing opens a fast radiative reconfiguration channel, but the two outgoing photon assemblies must inherit Gate A kinematics and Gate B transverse ledgers, with conservation and identity routing closed in the same event record.
+- **Kaon oscillation:** $K^0(d\otimes\bar s)\ \leftrightarrow\ \bar K^0(\bar d\otimes s)$ corresponds to a transient weak-sector reconfiguration between selected down-type shielding branches while preserving the meson-level flux record. The twist phase $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ controls the rate/asymmetry of this flip as a derivation target.
 
 ---
 
@@ -3207,7 +3740,7 @@ Rows that mention spin alignment are shorthand targets for the downstream angula
 In the Architrino framework, these ephemeral particles are **intermediate assembly states**:
 
 1.  **Pions** are the **delocalized binding medium** of the nucleus; nucleons continuously exchange charge and phase via pion loops, blurring individual boundaries.
-2.  **Kaons** represent the **coupling interface** between different shielding generations (Gen I $\leftrightarrow$ Gen II).
+2.  **Kaons** represent the **coupling interface** between selected down-type shielding branches across generations (Gen I $\leftrightarrow$ Gen II).
 3.  **Resonances ($\rho, \Delta$)** are **excited rotational/vibrational modes** of the fundamental stable assemblies.
 
 They are "ephemeral" because they are not topological attractors in the ambient Noether Sea like the proton or electron; they are high-energy transients that must dissociate to reach the minimum-energy geometric lock.
@@ -3215,7 +3748,7 @@ They are "ephemeral" because they are not topological attractors in the ambient 
 ---
 
 #### Lifetime vs. geometry ($\mathbb{A}\mathbb{A}\mathbb{A}$ intuition)
-- **Pions:** Charged $\pi^\pm$ associate as geometrically *non-inverse* cores ($u$ vs. $\bar d$ or $d$ vs. $\bar u$); their axis matrices cannot cancel pairwise, so annihilation is forbidden and dissociation must open a weak $W^\pm$ corridor → longer lifetime. Neutral $\pi^0$ pairs exact inverse matrices ($u\otimes\bar u$ or $d\otimes\bar d$); axis-wise cancellation lets the cores annihilate electromagnetically → very short lifetime. Anti-aligned spins and relaxed flux also make the $\rho\to\pi\pi$ drop steep, keeping ground-state pions light.
+- **Pions:** Free charged $\pi^\pm$ associate as geometrically *non-inverse* cores ($u$ vs. $\bar d$ or $d$ vs. $\bar u$); their axis matrices do not expose the fast inverse-pair radiative route, so dissociation must open a weak $W^\pm$ corridor, giving the longer free lifetime. In nuclei, residual strong exchange is an in-medium effective flux-loop record, not the free weak lifetime. Neutral $\pi^0$ pairs exact inverse matrices ($u\otimes\bar u$ or $d\otimes\bar d$); axis-wise cancellation opens the rapid Gate C route $\pi^0\to\gamma\gamma$. Anti-aligned spins and relaxed flux also make the $\rho\to\pi\pi$ drop steep, keeping ground-state pions light.
 - **Kaons:** Gen-I/Gen-II shielding mismatch introduces a flux twist/phase that couples weakly to flavor; the partial mismatch aligns with their longer weak-scale lifetime and CP-violating oscillations.
 - **Delta baryons:** Parallel spins on all three cores raise rotational energy and flux tension; the configuration sheds a pion almost immediately ($\sim10^{-24}$ s) to fall back to the mixed-spin nucleon.
 - **Rho mesons:** Candidate spin-1 alignment/tight flux stores energy; rapid strong dissociation to two pions releases that flux tension.
@@ -3223,7 +3756,7 @@ They are "ephemeral" because they are not topological attractors in the ambient 
 **Reading SM quantum numbers inside $\mathbb{A}\mathbb{A}\mathbb{A}$**
 - **Charge $Q$:** Sum axis decorations; each axis with `+` contributes +1/3 e, `-` contributes −1/3 e, `0` contributes 0. Anti-core flips signs. Meson pairs cancel most axes; tri-core permutations give $p=+1$, $n=0$.
 - **Baryon number $B$:** +1/3 per matter core, −1/3 per anti-core. Mesons sum to 0; baryons sum to 1.
-- **Strangeness $S$ (and heavier flavors):** Tag from shielding generation: a Gen‑II core gives $S=-1$; an anti‑Gen‑II core $S=+1$ (analogous tags for charm, etc.).
+- **Strangeness $S$ (and heavier flavors):** Observer-level flavor tags are assigned after branch selection: a selected strange shielding branch gives $S=-1$, and its anti-branch gives $S=+1$. This does not assert that every down-type axial family is an additional observed species.
 - **Isospin $I_3$:** Swap $u\leftrightarrow d$ within the shared axis ordering; each swap flips $I_3$ by 1/2. The $\pi/\rho$ triplets and $K$ doublet follow directly.
 - **Spin/parity $J^P$:** Provisional bridge from core spin alignment + flux mode. Spin‑0 mesons = anti‑aligned cores (pseudoscalar, $0^-$); spin‑1 $\rho$ = aligned cores or tighter flux ($1^-$); $\Delta$ = all three spins parallel ($3/2^+$). Parity tracks whether the flux/axis pattern inverts (odd for these mesons, even for ground-state tri-cores).
 - **Lifetime / width:** Depth of the stability basin or steepness of the unstable manifold. Inverse axis pairs (π^0) or over‑twist (ρ, Δ, kaon torsion) dissociate fast; non-inverse pairs that require a weak corridor (π±, $K$) live longer.
@@ -3257,6 +3790,7 @@ The table packs both the Standard Model quark makeup and the Architrino Assembly
 * Each matrix lists the three tri-binary axes; the ordering is arbitrary, but all constituents in the same row use the **same** ordering.
 * Axis strings are **3×1 column matrices**: $\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]$ `+` = positrino pair, `-` = electrino pair, `0` = mixed positrino/electrino.
 * When two patterns are allowed, they appear as a **3×2 matrix** whose columns are the options: $\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$.
+* Down-type rows with two matrix columns are branch-selection placeholders for candidate axial families with the same total inventory. They should not be read as two simultaneous observed species; a physical meson row assumes the declared $d$, $s$, or heavier down-type branch has already passed the single-family branch-selection target.
 * Color comes from which binary is the exception, not from a fixed physical orientation.
 * Color neutrality comes from superposing/permuting which axis is exceptional—no fixed axis per baryon.
 
@@ -3278,8 +3812,8 @@ $u:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\;\otimes\;\bar u:\le
 | --- | --- | --- | --- | --- | --- |
 | Proton (p) | $p$ | baryon | $uud$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Color-neutral tri-core, ground state. |
 | Neutron (n) | $n$ | baryon | $udd$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Tri-core with net charge 0, stable. |
-| Pion + | $\pi^{+}$ | meson | $u\bar d$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Non-inverse cores → no axis-wise annihilation; must dissociate via a $W^+$ corridor (longer lifetime). |
-| Pion 0 | $\pi^{0}$ | meson | $(u\bar u - d\bar d)/\sqrt{2}$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ (or $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$) | Isospin-triplet superposition; inverse matrices enable EM annihilation $\to$ very short lifetime. |
+| Pion + | $\pi^{+}$ | meson | $u\bar d$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Non-inverse cores lack the fast inverse-pair radiative route; free dissociation uses a $W^+$ corridor, while in-medium exchange is residual strong. |
+| Pion 0 | $\pi^{0}$ | meson | $(u\bar u - d\bar d)/\sqrt{2}$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ (or $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$) | Isospin-triplet superposition; inverse matrices open the Gate C two-photon route $\pi^0\to\gamma\gamma$ and a very short lifetime. |
 | Pion - | $\pi^{-}$ | meson | $d\bar u$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ | Mirror of $\pi^+$: non-inverse cores, weak $W^-$ dissociation corridor. |
 | Kaon + | $K^{+}$ | meson | $u\bar s$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar s\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Gen-I↔Gen-II bridge; torsion phase $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ drives CP/oscillation. |
 | Kaon 0 | $K^{0}$ | meson | $d\bar s$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar s\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Neutral kaon oscillations set by torsion energy. |

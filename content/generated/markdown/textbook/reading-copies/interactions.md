@@ -21,11 +21,11 @@ At assembly level, these terms refer to substrate dynamics in absolute time:
 - **Nucleation:** relocking/reorganization of existing substrate content (with provenance-preserving architrino bookkeeping), not creation ex nihilo.
 - **Planar-mode nucleation (photon channels):** lock-in to a stable coaxial contra-rotating pro/anti planar-pair mode carrying Gate A energy-momentum data and Gate B transverse-ledger data.
 - **Corridor-mode nucleation (weak channels):** lock-in to corridor-type interaction modes used for $W^\pm/Z$ channel bookkeeping.
-- **Pair nucleation:** local substrate recruitment/reconfiguration into $e^+e^-$ assemblies under threshold-satisfying two-photon forcing, constrained to recover standard kinematic and rate limits in validated regimes.
+- **Pair nucleation:** local substrate recruitment/reconfiguration into $e^+e^-$ assemblies under threshold-satisfying two-photon forcing, constrained to recover standard kinematic and rate limits in validated regimes. The incoming photon ledgers close at the vertex; the outgoing charged-assembly identities require identity-routed substrate content rather than relabeling the photon constituents.
 
 Observer-level equations remain the operational layer. Assembly-level language is accepted only when it preserves threshold, cross-section, timing, and conservation closure against standard phenomenology.
 
-### Low-Energy SM Assemblies in the Noether Sea
+### Low-Energy Standard Model Assemblies in the Noether Sea
 
 This section is the canonical stepwise map for low-energy Standard Model channels interpreted in $\mathbb{A}\mathbb{A}\mathbb{A}$ language.
 
@@ -53,9 +53,71 @@ Represent each incoming participant as an assembly state tuple:
 Path history is part of identity bookkeeping in absolute time.
 
 4. **Characterize local medium state**
-Specify Noether-Sea state variables used by mapping:
-$(\rho_{\text{core}}, n, \chi_{\text{sea}}, \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{core}}, \Phi, T_{\mathrm{eff}}, J_{\mathrm{loc}})$.
+Specify Noether-Sea state variables used by mapping, with arguments suppressed only when the local context is clear:
+$(\rho_{\text{core}}(\mathbf{x},t), n(\mathbf{x},t), \chi_{\text{sea}}(\mathbf{x},t), \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{core}}, \Phi_{\text{eff}}, T_{\mathrm{eff}}, J_{\mathrm{loc}})$.
 These variables are mapping handles, not replacement observables.
+
+Magnetic-like observer language belongs at this mapping layer. It is not a substrate force law and is not imported from rotating-frame coordinates. At substrate level each primitive hit remains line-of-action; the magnetic-like transverse channel is the part of the delayed-branch sum that survives after projection perpendicular to the assembly drift and after Noether-Sea anisotropy/vorticity dressing.
+
+For an assembly $A$ with $\|\mathbf{v}_A\|>0$, define
+$$
+\Pi_{\perp}^{ij}(A)
+=
+\delta^{ij}-\hat v_A^i\hat v_A^j,
+\qquad
+\hat{\mathbf{v}}_A=\frac{\mathbf{v}_A}{\|\mathbf{v}_A\|}.
+$$
+
+A minimal transverse-channel map is
+$$
+F_{\perp,A}^{i}(t)
+=
+\Pi_{\perp}^{ij}(A)
+\sum_{k}\sum_{t_0\in\mathcal{C}_{Ak}(t)}
+W_{Ak}\!\left(t;t_0,\mathcal{V}_{\mathrm{NS}},R_A\right)
+\hat r_{Ak,j}(t;t_0).
+$$
+
+The weight $W_{Ak}$ packages the inverse-square causal-wake factor, polarity sign, causal Jacobian, and local Noether-Sea anisotropy/vorticity response. This equation is the allowed bridge to magnetic-like language: transverse force is recovered as a projected consequence of delayed branch geometry plus medium response, not as an independent $\mathbf{v}\times\mathbf{B}$ substrate term.
+
+In this expression, $\mathcal{C}_{Ak}(t)$ is the causal-root set for source branch $k$ acting on assembly $A$, and $\hat r_{Ak,j}$ is the $j$ component of the delayed line-of-action unit vector. The formula therefore preserves the primitive line-of-action law while naming the observer-level transverse projection.
+
+Electromagnetic field variables used in reaction chapters are effective observer/channel variables. They are not imported as substrate ontology. A reaction page that claims electromagnetic recovery should therefore pass an effective EM Gate residual,
+
+$$
+\mathcal{G}_{\mathrm{EM}}
+=
+\left(
+\Delta_{\mathrm{cont}},
+\Delta_E^{\mathrm{EM}},
+\Delta_{\mathbf{p}}^{\mathrm{EM}},
+\Delta_{\mathbf{J}}^{\mathrm{EM}},
+\Delta_{\mathrm{gauge}}
+\right),
+$$
+
+where the continuity component is
+
+$$
+\Delta_{\mathrm{cont}}
+\equiv
+\partial_t\rho_{\mathrm{eff}}
++
+\nabla\cdot\mathbf{J}_{\mathrm{eff}},
+$$
+
+and the gauge component requires every observer-level observable $\mathcal O$ used by the channel to obey
+
+$$
+\Delta_{\mathrm{gauge}}[\mathcal O,\chi]
+\equiv
+\mathcal O[A_{\mu}^{\mathrm{eff}}+\partial_\mu\chi]
+-
+\mathcal O[A_{\mu}^{\mathrm{eff}}]
+=0.
+$$
+
+The energy, momentum, and angular-momentum components are defined by the effective electromagnetic energy-momentum gate in [Radiation](../../../../markdown/aaa/reactions/radiation.md). A channel passes only when these components vanish in the declared validated limit or when each nonzero term is assigned to a named photon, material, recoil, wake, or remnant row. This keeps Maxwell-level ledgers as recovery tests for channel bookkeeping rather than as primitive Noether-Sea dynamics.
 
 5. **Evaluate wake-strain trigger**
 Compute whether interaction forcing crosses the relevant mode boundary.
@@ -127,7 +189,7 @@ Observer channels:
 - pair channel: $\gamma + \gamma \rightarrow e^+ + e^-$.
 
 Step map:
-1. Directional magnetic state $B$ is represented as effective Noether-Sea anisotropy/vorticity map $\mathcal{V}_{\mathrm{NS}}$ together with the delayed branch geometry and Jacobian weighting that generate observer-level transverse forcing.
+1. Directional magnetic state $B$ is represented as observer shorthand for the effective Noether-Sea anisotropy/vorticity map $\mathcal{V}_{\mathrm{NS}}$ together with the delayed branch geometry and Jacobian weighting that generate observer-level transverse forcing.
 2. Curved charged-assembly transport drives repeated planar-mode opportunities.
 3. Emitted photons propagate and may enter pair threshold windows in dense radiation zones.
 4. Pair nucleation relocks local substrate content into $e^+e^-$ assemblies with provenance updates.
@@ -211,6 +273,14 @@ $$
 \mathrm{BR}_{\mathrm{map}} \rightarrow \mathrm{BR}_{\mathrm{PDG}}
 $$
 
+For low-energy charged weak processes the same mapping must also recover the contracted current-current limit
+$$
+\mathcal{L}_{\mathrm{map}}^{\mathrm{low}}
+\rightarrow
+-\frac{4G_F}{\sqrt 2}\,J_+^\mu J^-_\mu,
+$$
+with $G_F$ supplied by the electroweak corridor scale rather than by an independent contact parameter. This keeps corridor-mode bookkeeping tied to measured beta-decay and muon-decay limits while leaving the finite $W^\pm$ channel as the higher-energy provenance record.
+
 $$
 \sum Q_{\mathrm{in}}=\sum Q_{\mathrm{out}},
 \qquad
@@ -261,47 +331,79 @@ If these are not maintained, standard QED/SM transport language is authoritative
 - [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md)
 - [Synchrotron](../../../../markdown/aaa/reactions/synchrotron.md)
 
-## Emergence of U(1)/SU(2)
+## Gauge Structure Emergence
 
-This chapter is a working emergence map from Noether-Sea substrate language to observer-level electroweak bookkeeping. It is not the formal symmetry theorem chapter; its role is to explain how Noether-Sea structure, effective fields, symmetry deformations, and measurement-facing quantities are being interpreted on the dynamics side before exact closure is finished.
+This chapter is a working emergence map from Noether-Sea and assembly language to observer-level gauge bookkeeping. It is not the formal symmetry theorem chapter; its role is to explain how Noether-Sea structure, effective fields, symmetry deformations, and measurement-facing quantities are interpreted before exact closure is finished. The target is the low-energy Standard Model gauge record, including $U(1)_Y$, $SU(2)_L$, $SU(3)_c$, electroweak mixing, charge bookkeeping, and null results for non-baseline channels.
 
-### The Physical Substrate: From Vacuum Language to Noether Sea
+### Physical Medium: From Vacuum Language to Noether Sea
 
-In standard QFT, the vacuum is a complex state of harmonic oscillators with zero point energy. In the Architrino Assembly Architecture, we reject this abstraction in favor of a physical definition.
+In standard QFT, the vacuum is represented by quantum fields and their ground-state structure. In $\mathbb{A}\mathbb{A}\mathbb{A}$, that language is retained only as an observer-level comparison. The physical medium is the Noether Sea, while the fixed container remains the Euclidean void.
 
-**Definition: The Noether Sea**
-The Noether Sea is not empty space. It is a [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md) filled with a dense, permeating medium of coupled, neutral tri-binary assemblies ([spacetime assemblies](../../../../markdown/aaa/spacetime/spacetime-assemblies.md)).
-*   **Occupancy:** Non-zero occupancy of pro/anti binaries.
-*   **Net Properties:** Global charge $\sum q = 0$, global spin $\sum S = 0$.
-*   **Substrate:** This medium defines the local permeability $\mu_0$ and permittivity $\epsilon_0$ of space. These are not fundamental constants but derived measures of the medium's "stiffness" (resistance to polarization) and "density."
+In this chapter, the Noether Sea means the dense, permeating medium of coupled, neutral tri-binary assemblies occupying the [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md); see [Spacetime Assemblies](../../../../markdown/aaa/spacetime/spacetime-assemblies.md). It is not empty space and is not the Euclidean void itself.
+
+- **Occupancy:** Nonzero occupancy of pro/anti Noether-core assemblies.
+- **Net properties:** Balanced charge and angular-momentum bookkeeping at the medium scale, schematically $\sum q = 0$ and $\sum S = 0$ over neutral coarse windows.
+- **Medium response:** This medium is the working source for the effective local permeability $\mu_0$ and permittivity $\epsilon_0$ read by observer-level electrodynamics. These are not fundamental constants of the void but derived measures of Noether-Sea response, including resistance to polarization and density-like occupation.
 
 One useful assembly-level picture is that long-lived Noether-Sea units arise when complementary pro/anti cores pair in anti-parallel fashion so that exposed axial circulation is mutually plugged rather than left open. In that reading, Noether-Sea transparency is not emptiness but a successful cancellation strategy: the medium remains quiet because its local pole leakage is internally routed and its large-scale moments stay near zero.
 
-### The "Field" Illusion
+### Field Language as Effective Bookkeeping
 
-Standard Model fields are often treated as fundamental entities. Here, we posit that fields are **emergent bookkeeping tools** describing the state of the Noether Sea.
+Standard Model fields are often treated as fundamental entities. Here, field language is an **effective bookkeeping tool** for Noether-Sea and assembly state, not a second substrate ontology.
 
-**The $\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$) vs. The Physical Observer (PO)**
-*   **$\mathbb{U}_{\text{now}}$ View:** Sees only point-like architrinos ($\pm |e/6|$) and their discrete potential emissions $\Phi$. There are no continuous "gauge fields," only the summation of causal potential wakes.
-*   **PO View (Emergent):** Lacking the resolution to see individual architrinos, the Physical Observer measures the **collective potential gradient** $\nabla \Phi$ at a point.
-    *   **$\vec{E}$ and $\vec{B}$ fields** are statistical averages of Jacobian-weighted causal-flux density and circulation/vorticity in the Noether Sea.
-    *   **Gauge Potentials ($A_\mu$):** These correspond to local **twists, strains, or density gradients** in the Noether-Sea assembly network.
+The relevant distinction is between the $\mathbb{U}_{\text{now}}$ universe-state perspective and the Physical Observer.
+
+- **Complete-state view:** The $\mathbb{U}_{\text{now}}$ universe-state perspective records architrinos with polarity bookkeeping labels $q=\pm\epsilon$ and their causal-wake histories. There are no primitive continuous gauge fields, only effective potential summaries reconstructed from causal-wake contributions.
+- **Physical Observer view:** A Physical Observer lacks direct resolution of individual architrinos and instead measures collective observables such as the effective potential gradient $\nabla\Phi$ at a point.
+  - **$\vec{E}$ and $\vec{B}$ fields** are statistical averages of Jacobian-weighted causal-flux density and circulation/vorticity in the Noether Sea.
+  - **Gauge potentials ($A_\mu$)** correspond to local twists, strains, or density gradients in the Noether-Sea assembly network.
 
 ### Symmetry Groups as Geometric Deformations
 
-We map the abstract gauge groups of the Standard Model to physical deformations of the tri-binary medium:
+We map the abstract gauge groups of the Standard Model to physical deformations of the Noether Sea and its tri-binary assemblies:
 
 1.  **U(1) (Electromagnetism):**
     *   *SM View:* Phase rotation of the complex field.
-    *   *Architrino View:* A variation in the **potential density** or polarization alignment of the Noether Sea. A particle moving through this gradient experiences a delayed line-of-action force whose transverse and velocity-dependent observer-level pieces arise from branch geometry, causal delay, and Jacobian flux bunching.
+    *   *$\mathbb{A}\mathbb{A}\mathbb{A}$ View:* A variation in the **potential density** or polarization alignment of the Noether Sea. A particle moving through this gradient experiences a delayed line-of-action force whose transverse and velocity-dependent observer-level pieces arise from branch geometry, causal delay, and Jacobian flux bunching.
 
 2.  **SU(2) (Weak Interaction):**
     *   *SM View:* Non-Abelian rotation in isospin space.
-    *   *Architrino View:* A **chiral twist** or structural strain in the tri-binary assemblies. Because the assemblies have internal handedness (spiral structure), deformations obey non-commutative geometry (order of operations matters), mirroring the non-Abelian nature of SU(2).
+    *   *$\mathbb{A}\mathbb{A}\mathbb{A}$ View:* A **chiral twist** or structural strain in the tri-binary assemblies. Because the assemblies have internal handedness, deformations can be order-dependent, mirroring the non-Abelian nature of $SU(2)$ at the effective level.
+
+The emergence claim in this chapter is therefore a mapping target with four required parts. The mechanism is delayed causal-wake coupling through Noether-Sea and axial-layer deformation. The mapping is from closure labels, axial inventories, exposed weak-coupling triads, and medium-response variables to the observer-level symbols $U(1)_Y$, $SU(2)_L$, $g_1$, $g_2$, $\theta_W$, and the charge table. The regime is the low-energy observer sector where stable assemblies, weak gradients, and resolved apparatus records make the coarse variables meaningful. The breakdown occurs at root-ledger changes, unstable axial inventories, unresolved Noether-Sea updates, or any branch that predicts extra low-energy partners or transport modes.
+
+A compact reader-facing residual for this map is
+$$
+\mathcal{R}_{\mathrm{EW\text{-}map}}(\theta)
+=
+d_Q(Q_\theta,Q_{\mathrm{SM}})
++d_{\mathrm{mix}}\!\left((g_1,g_2,\theta_W)_\theta,(g_1,g_2,\theta_W)_{\mathrm{obs}}\right)
++d_{\mathrm{chiral}}(W_\theta,W_{\mathrm{obs}})
++\mathcal{R}_{\mathrm{null}}(\theta).
+$$
+Here $\theta$ is the retained Noether-Sea and assembly branch record, $d_Q$ measures charge-table mismatch, $d_{\mathrm{mix}}$ measures electroweak-coupling and weak-mixing mismatch, $d_{\mathrm{chiral}}$ measures failure of the weak-coupling-triad exposure record to recover observed handedness, and $\mathcal{R}_{\mathrm{null}}$ penalizes any added low-energy channel that is not observed. This residual is not a new ontology; it names the observer-level recovery burden.
 
 ### Standard Model Recovery Discipline
 
 This working map starts from the measured low-energy pattern, not from a larger symmetry that must later be hidden. The durable observer-level target is the Standard Model gauge record: $U(1)_Y\times SU(2)_L\times SU(3)_c$, the charge relation $Q=T_3+Y/2$, the observed chiral weak couplings, the charge and generation tables, the running of $g_1,g_2,g_3$, and the absence of additional low-energy partners or transport modes above current bounds.
+
+The familiar running-coupling plot is a useful bridge for this target. It says that the effective $SU(3)_c$, $SU(2)_L$, and $U(1)_Y$ interaction strengths change with observer-level probe scale, with approximate high-scale convergence in many normalizations. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not treated as proof of grand-unified ontology. It is a pressure on the mapping: the same Noether-Sea medium response, axial-layer exposure, and color axis-exceptionality bookkeeping must generate the scale-dependent effective record discussed in [Gauge Symmetries](../../../../markdown/aaa/interactions/gauge-symmetries.md#running-coupling-bridge), while the same branch record keeps non-baseline channels absent.
+
+There is a second consistency pressure that is just as important as the charge table. The Standard Model is a chiral gauge theory, so the low-energy fermion collection must cancel gauge anomalies and the $SU(2)$ Witten obstruction as a set. In this working emergence map, anomaly cancellation is read as a recovery condition on the assembly dictionary:
+$$
+\mathcal{A}_{\mathrm{SM}}^{\mathbb{A}\mathbb{A}\mathbb{A}}
+=
+\left(
+\mathcal{A}_{[SU(3)_c]^3},
+N_{2,\mathrm{Weyl}}\bmod2,
+\mathcal{A}_{[SU(3)_c]^2U(1)_Y},
+\mathcal{A}_{[SU(2)_L]^2U(1)_Y},
+\mathcal{A}_{[U(1)_Y]^3},
+\mathcal{A}_{[\mathrm{grav}]^2U(1)_Y}
+\right)
+=(0,0,0,0,0,0).
+$$
+This does not make the Standard Model variables substrate ontology. It says that any accepted Noether-Sea and axial-layer branch must project to the same anomaly-free effective gauge record; otherwise the branch cannot be the observer-level Standard Model limit.
 
 From the $\mathbb{A}\mathbb{A}\mathbb{A}$ side, that means the Noether-Sea and assembly variables must first reproduce the known gauge bookkeeping. Larger group unification, supersymmetric partner bookkeeping, or extra-dimensional geometry may be useful comparison languages, but none of them is native ontology here. They become relevant only if a branch record derives the Standard Model pattern and also explains why every added observable channel is absent without using a separate suppression parameter for each failed prediction.
 
@@ -312,37 +414,51 @@ The local closure discipline is therefore:
 3. keep weak chirality, CKM/PMNS overlap, and weak-reaction provenance tied to the same exposed weak-coupling-triad domain;
 4. pass the null-result residual in [Failure Criteria](../../../../markdown/aaa/validation/failure-criteria.md#null-result-residual-for-added-channels) for any predicted non-baseline channel.
 
-### The Higgs Mechanism & VEV Reinterpretation
+Single-medium source-of-interactions models are useful here only as a mode-taxonomy warning. They show how one ground-state medium picture can try to generate scalar, vector, and tensor bosons as collective excitations, but they also show the closure burden this creates. For a candidate observer-level boson channel $b$, define the comparison record
+$$
+\mathcal{M}_b^\theta
+=
+\left(
+J_b^\theta,\,
+P_b^\theta,\,
+m_b^\theta,\,
+\omega_b^\theta(k),\,
+\mathcal{C}_b^\theta
+\right),
+$$
+where $J_b^\theta$ is the recovered spin label, $P_b^\theta$ the parity or transverse/longitudinal projector record when applicable, $m_b^\theta$ the mass or gap, $\omega_b^\theta(k)$ the dispersion, and $\mathcal{C}_b^\theta$ the coupling ledger to fermion, photon, weak, color, or gravitational channels. A collective-mode interpretation is admissible only when one Noether-Sea and assembly branch supplies $\mathcal{M}_b^\theta$ while also suppressing unobserved scalar, vector, tensor, mirror, or hidden channels. Otherwise "boson as excitation" is an analogy, not gauge-structure emergence.
 
-The common "God Particle" narrative is replaced by a Noether-Sea medium-response comparison.
+### Higgs Mechanism and VEV Reinterpretation
 
-*   **The VEV (Vacuum Expectation Value):** This is simply the **equilibrium density** of the Noether Sea. It is non-zero because the void is populated.
-*   **Symmetry Breaking:** The electroweak phase transition is modeled as a **phase-change closure target**. As the universe cooled, the high-energy, chaotic plasma of architrinos must relax into the stable, coupled tri-binary medium inferred today, but the order parameter and transition dynamics still have to be derived.
-*   **Mass as medium-dressed response:** A fermion assembly moving or accelerating through the Noether Sea must relock its internal causal ledger against the surrounding medium.
-    *   Photon channels propagate as coherent planar-mode transport through the sea rather than as massive bodies.
-    *   Massive assemblies expose more shielded internal causal history to external probes. The measured inertial response is not ordinary dissipative drag; see [Particle Masses: Emergent Inertia in the Noether Sea](../../../../markdown/aaa/assemblies/particle-masses.md).
+The popular particle-centered Higgs narrative is replaced by a Noether-Sea medium-response comparison.
+
+- **VEV (vacuum expectation value):** The VEV is interpreted as an equilibrium density or order-parameter proxy for the Noether Sea. It is nonzero because medium contents occupy the void, not because the void has its own density; the exact order parameter and conversion to observer-level electroweak normalization remain closure targets.
+- **Symmetry breaking:** Electroweak phase transition language is treated as a phase-change closure target. The high-energy plasma record must relax into the stable, coupled Noether Sea inferred today, but the order parameter and transition dynamics still have to be derived.
+- **Mass as medium-dressed response:** A fermion assembly moving or accelerating through the Noether Sea must relock its internal causal ledger against the surrounding medium.
+  - Photon channels propagate as coherent planar-mode transport through the sea rather than as massive bodies.
+  - Massive assemblies expose more shielded internal causal history to external probes. The measured inertial response is not ordinary dissipative drag; see [Particle Masses: Emergent Inertia in the Noether Sea](../../../../markdown/aaa/assemblies/particle-masses.md).
 
 ### Resolving the Unruh Ambiguity
 
 General Relativity predicts that an accelerating observer sees a thermal bath of particles (Unruh radiation), while an inertial observer sees a vacuum. This creates an ontological paradox: do the particles exist or not?
 
-**The Architrino Resolution:**
-*   **Objective Existence:** To the $\mathbb{U}_{\text{now}}$ universe-state perspective, particles (assemblies) either exist or they don't. Their existence is not frame-dependent.
-*   **Acceleration-conditioned detector response:** The "warm bath" detected by the accelerating Physical Observer is an effective response of the detector's assembly state to accelerated coupling with the Noether Sea.
-*   **Mechanism:** Acceleration through the medium ($\vec{a} \neq 0$) changes the rate and geometry of coupling with background binaries (Noether cores). The altered coupling manifests as thermal energy ("radiation") in the detector. The "particles" seen are detector excitations, not frame-dependent ontic creation.
+**The $\mathbb{A}\mathbb{A}\mathbb{A}$ resolution:**
+- **Objective existence:** To the $\mathbb{U}_{\text{now}}$ universe-state perspective, assemblies have a definite substrate status. Their existence is not frame-dependent.
+- **Acceleration-conditioned detector response:** The warm bath detected by the accelerating Physical Observer is an effective response of the detector's assembly state to accelerated coupling with the Noether Sea.
+- **Mechanism:** Acceleration through the medium ($\vec{a} \neq 0$) changes the rate and geometry of coupling with background binaries (Noether cores). The altered coupling manifests as thermal energy in the detector. The particles inferred by the detector are detector excitations, not frame-dependent ontic creation.
 
 ### Quantization from Stability (Selection Rules)
 
-Why are charges quantized in units of e/3?
+Why do observer-level electric charges appear in units of $e/3$?
 *   The Standard Model asserts this; $\mathbb{A}\mathbb{A}\mathbb{A}$ treats it as a stability-selection closure target grounded in six-site axial bookkeeping.
-*   **Stability Selection:** The $\mathbb{U}_{\text{now}}$ universe-state perspective sees that arbitrary clusters of $|e/6|$ charges are likely unstable. They either collapse (self-hit singularity) or fly apart.
+*   **Stability Selection:** The $\mathbb{U}_{\text{now}}$ universe-state perspective sees that arbitrary clusters of $\epsilon$ polarity units are likely unstable. They either collapse into an unstable self-hit branch or disperse.
 *   **The Survivors:** Specific geometric configurations (the six-pole axial patterns) are candidate stable resonances where attractive and repulsive forces balance via the tri-binary structure. The local combinatorics reproduce the observed charge set; dynamical exclusion of non-SM stable assemblies remains part of the closure burden.
 
-**SM Charge Quantization ($\mathbb{A}\mathbb{A}\mathbb{A}$: Six e/6 Axial Architrinos)**
+**SM Charge Quantization ($\mathbb{A}\mathbb{A}\mathbb{A}$: Six $\epsilon$ Axial Architrinos)**
 
-| split | electrinos | positrinos | net fermion charge |
+| split | Electrinos | Positrinos | net observer-level charge |
 |:-----:|:----------:|:----------:|:------------------:|
-| (−:+) |   (−e/6)   |   (+e/6)   |        (e)         |
+| polarity label |   $-\epsilon$   |   $+\epsilon$   |        units of $|e|$         |
 |     6:0     |         6         |         0         |           −1           |
 |     5:1     |         5         |         1         |          −2/3          |
 |     4:2     |         4         |         2         |          −1/3          |
@@ -351,32 +467,73 @@ Why are charges quantized in units of e/3?
 |     1:5     |         1         |         5         |          +2/3          |
 |     0:6     |         0         |         6         |           +1           |
 
-The tri-binary’s six polar regions demand six axial architrinos per fermion assembly; sweeping all electrino:positrino splits across those poles yields exactly the SM charge set with no extras.
+Under the six-site axial-layer hypothesis, sweeping all Electrino:Positrino splits across the polar sites yields exactly the Standard Model charge values listed below and no other total charge values within that fixed six-site inventory. Dynamical exclusion of non-Standard-Model stable assemblies remains a separate closure burden.
 
-#### Combinatorial Proof (Six $\pm e/6$ Slots)
+#### Combinatorial Proof (Six $\pm\epsilon$ Slots)
 
-**Proposition.** If a fermion axial layer has exactly six polar sites, each occupied by either $+e/6$ or $-e/6$, then the total charge can only be
+**Proposition.** If a fermion axial layer has exactly six polar sites, each occupied by either $+\epsilon$ or $-\epsilon$, then the observer-level charge can only be
 $$
-\{-e,-2e/3,-e/3,0,+e/3,+2e/3,+e\}.
+\{-|e|,-2|e|/3,-|e|/3,0,+|e|/3,+2|e|/3,+|e|\}.
 $$
 
-**Proof.** Let $N_+$ be the number of $+e/6$ slots and $N_-$ the number of $-e/6$ slots. Then
+**Proof.** Let $N_+$ be the number of $+\epsilon$ slots and $N_-$ the number of $-\epsilon$ slots. Then
 $$
 N_+ + N_- = 6,\qquad N_+,N_- \in \{0,1,\dots,6\}.
 $$
 The net observer-level charge carried by the axial layer is
 $$
-Q=\frac{e}{6}(N_+ - N_-).
+Q=\epsilon(N_+ - N_-).
 $$
 Using $N_-=6-N_+$,
 $$
-Q=\frac{e}{6}(2N_+ - 6)=\frac{e}{3}(N_+ - 3).
+Q=\epsilon(2N_+ - 6)=\frac{|e|}{3}(N_+ - 3).
 $$
 Since $N_+$ is an integer from $0$ to $6$, $(N_+-3)\in\{-3,-2,-1,0,1,2,3\}$, so
 $$
-Q\in\left\{-e,-\frac{2e}{3},-\frac{e}{3},0,\frac{e}{3},\frac{2e}{3},e\right\}.
+Q\in\left\{-|e|,-\frac{2|e|}{3},-\frac{|e|}{3},0,\frac{|e|}{3},\frac{2|e|}{3},|e|\right\}.
 $$
 No other values are possible. Different permutations with the same $(N_+,N_-)$ have identical total $Q$; they only change micro-geometry, not net charge.
+
+#### Loop-Phase Quantization Target
+
+Dirac's 1931 monopole argument is useful here as an observer-level gauge-potential lesson, not as a claim that magnetic poles are $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology. The comparison target is the global phase condition: a local effective potential may be chart-dependent, but the phase accumulated around a closed loop must be single-valued modulo $2\pi$. For any observer-level loop $\gamma$ and spanning surface $S$ in a declared gauge-topology benchmark, the effective connection reconstructed from the wake/action ledger should therefore obey
+$$
+\Theta_\gamma(Q)
+=
+\frac{Q}{\hbar}\oint_\gamma A_{\mathrm{eff}}\cdot d\ell
+=
+\frac{Q}{\hbar}\int_S F_{\mathrm{eff}}
+$$
+with the physical ambiguity only
+$$
+\Theta_\gamma(Q)-2\pi N_\gamma \to 0,\qquad N_\gamma\in\mathbb{Z}.
+$$
+The six-site axial bookkeeping must make this a charge-compatibility condition, not a separately imposed monopole postulate. A compact residual for the allowed axial-layer charge set is
+$$
+\mathcal{R}_{\mathrm{loop}\text{-}Q}
+=
+\max_{Q\in\{-|e|,-2|e|/3,-|e|/3,0,|e|/3,2|e|/3,|e|\}}
+\inf_{N_\gamma\in\mathbb{Z}}
+\left|
+\frac{Q}{\hbar}\int_S F_{\mathrm{eff}}
+-2\pi N_\gamma
+\right|.
+$$
+This residual belongs to the observer-level recovery map. It passes only when the same Noether-Sea and axial-layer branch record that supplies local electromagnetic force and phase transport also yields $\mathcal{R}_{\mathrm{loop}\text{-}Q}\le\varepsilon_{\mathrm{loop}\text{-}Q}$ for the benchmark loop family. If a branch recovers the charge table locally but cannot make closed-loop phase globally consistent, the six-site quantization proof is only combinatorial and has not yet recovered the gauge-topological content of charge quantization.
+
+A magnetic-charge comparison branch must also separate formation from capture. In observer-level language a magnetically charged compact object can form with charge or later capture charged defects. The $\mathbb{A}\mathbb{A}\mathbb{A}$ gauge map should not import either story as ontology, but it can retain the provenance distinction as a residual on the effective flux record:
+$$
+Q_{m,\mathrm{eff}}^\theta(t)
+=
+Q_{m,\mathrm{form}}^\theta
++
+\int_{t_{\mathrm{form}}}^{t}
+\Gamma_{m,\mathrm{cap}}^\theta(t')\,dt'
+-
+\int_{t_{\mathrm{form}}}^{t}
+\Gamma_{m,\mathrm{loss}}^\theta(t')\,dt'.
+$$
+The loop-phase target above then requires the same branch record to support both the effective magnetic-flux label and the allowed electric axial-layer charge set. A compact object that solves a monopole-abundance problem by hiding charge in an untracked capture channel has not recovered gauge structure; it has moved the charge ledger outside the derivation.
 
 ### Observer-Level Electroweak Closure Map (Working)
 
@@ -482,9 +639,9 @@ For $R_L\sim 10^{-19}\,\text{m}$, this predicts negligible deviations at both $\
 This chapter provides a minimal theorem-backed bridge from architrino/assembly dynamics to the effective gauge symmetry structure used elsewhere.
 
 Interface chapters:
-- Electroweak emergence narrative: [gauge-structure-emergence](../../../../markdown/aaa/interactions/gauge-structure-emergence.md)
-- Color SU(3) algebra closure: [color-charge-su3](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md)
-- Variational substrate: [effective-lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md)
+- Electroweak emergence narrative: [Gauge Structure Emergence](../../../../markdown/aaa/interactions/gauge-structure-emergence.md)
+- Color $SU(3)$ algebra closure: [Color Charge SU3](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md)
+- Variational substrate: [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md)
 
 ### Regularized Setting
 
@@ -495,6 +652,8 @@ Assume:
 - **(G2)** Action density depends on $\Psi$ only through $\Psi$, $\partial_\mu\Psi$, and symmetry-compatible contractions.
 - **(G3)** Color axis-exceptionality space is $\mathcal{H}^{\text{color}}\cong\mathbb{C}^3$.
 - **(G4)** Weak-coupling triad is a local two-state channel at each point (effective doublet sector).
+
+The fields in this section are effective observer-level variables. They are admitted because they encode tested continuity, phase, and scattering records; they are not primitive contents of the Euclidean void.
 
 ### Standard Model Recovery Gate
 
@@ -538,6 +697,93 @@ $$
 $$
 
 with $\mathcal{R}_{\mathrm{null}}$ defined in [Failure Criteria](../../../../markdown/aaa/validation/failure-criteria.md#null-result-residual-for-added-channels). Thus larger group unification, supersymmetry, Kaluza-Klein-style geometry, and similar constructions remain comparison frameworks unless an $\mathbb{A}\mathbb{A}\mathbb{A}$ branch record recovers the observed gauge sector while also suppressing every added observable channel from the same shared state variables.
+
+#### Gauge Redundancy and Anomaly Ledger
+
+The effective gauge variables are redundant coordinates on an observer-level record. In the bridge theory, a gauge transformation must move within one physical equivalence class rather than between two distinct substrate states:
+$$
+A_\mu\sim A_\mu+\partial_\mu\alpha,\qquad
+W_\mu\sim U W_\mu U^{-1}+\frac{i}{g_2}U\partial_\mu U^{-1},
+\qquad
+G_\mu\sim V G_\mu V^{-1}+\frac{i}{g_3}V\partial_\mu V^{-1}.
+$$
+This is why the chapter treats $A_\mu,W_\mu,G_\mu$ as effective connections. The substrate burden is not to find primitive gauge fields, but to recover one gauge-invariant record of forces, phases, holonomies, and charge ledgers from causal-wake and assembly histories.
+
+Global symmetries and gauge redundancies have different tests. For a genuine global transformation $\delta\Psi=\epsilon X(\Psi)$, the regularized effective action gives a Noether current through
+$$
+\delta S_{\mathrm{eff}}
+=
+-\int d^4x\,\epsilon(x)\,\partial_\mu J^\mu,
+\qquad
+\partial_\mu J^\mu=0
+$$
+on solutions. In the quantum/effective bridge this becomes a Ward-identity recovery target for the coarse-grained generating functional. A local gauge redundancy, by contrast, is acceptable only if the unphysical directions are quotiented out and no anomalous gauge variation remains.
+
+The anomaly ledger for a candidate branch record $\theta$ is therefore
+$$
+\mathcal{A}_{\mathrm{gauge}}(\theta)
+=
+\left(
+\mathcal{A}_{[SU(3)_c]^3},
+N_{2,\mathrm{Weyl}}\bmod 2,
+\mathcal{A}_{[SU(3)_c]^2U(1)_Y},
+\mathcal{A}_{[SU(2)_L]^2U(1)_Y},
+\mathcal{A}_{[U(1)_Y]^3},
+\mathcal{A}_{[\mathrm{grav}]^2U(1)_Y}
+\right)_\theta .
+$$
+For the Standard Model recovery gate this vector must equal
+$$
+\mathcal{A}_{\mathrm{gauge}}(\theta)=(0,0,0,0,0,0).
+$$
+The second entry is the non-perturbative $SU(2)$ Witten check: the number of left-handed $SU(2)$ doublets must be even. Global anomalies that are part of known physics, such as axial-current violation and pion-to-photon anomaly matching, may be retained as observer-level recovery targets, but a gauge anomaly is a consistency failure rather than an optional correction.
+
+#### Running-Coupling Bridge
+
+The standard high-energy plot of $U(1)_Y$, $SU(2)_L$, and $SU(3)_c$ interaction strengths is read here as a scale-dependent effective gauge record, not as evidence that three substrate fields literally merge. The $SU(3)_c$ curve tests how color axis-exceptionality transport is exposed at short causal-wake and assembly scales. The $SU(2)_L$ curve tests the exposed weak-coupling-triad channel. The $U(1)_Y$ curve tests the hypercharge/electromagnetic bookkeeping before electroweak mixing. A candidate branch record must therefore output the running vector
+
+$$
+\mathbf{g}_{\mathbb{A}\mathbb{A}\mathbb{A}}(\mu;\theta)
+=
+\bigl(
+g_1(\mu;\theta),
+g_2(\mu;\theta),
+g_3(\mu;\theta),
+\theta_W(\mu;\theta)
+\bigr),
+$$
+
+where $\mu$ is the observer-level probe scale and $\theta$ is the retained branch and constitutive record. The term $d_{\mathrm{run}}$ measures the distance between this output and the observed running record across a declared scale window; it is not permission to fit each sector independently at one reference energy.
+
+Near-convergence at high scale may be tracked as a comparison diagnostic by
+
+$$
+\Delta_{\mathrm{meet}}(\theta)
+=
+\inf_{\mu\in W_{\mathrm{run}}}
+\max_{i,j\in\{1,2,3\}}
+\left|
+\alpha_i^{\mathbb{A}\mathbb{A}\mathbb{A}}(\mu;\theta)
+-
+\alpha_j^{\mathbb{A}\mathbb{A}\mathbb{A}}(\mu;\theta)
+\right|,
+\qquad
+\alpha_i^{\mathbb{A}\mathbb{A}\mathbb{A}}(\mu;\theta)
+=
+\frac{g_i^2(\mu;\theta)}{4\pi}.
+$$
+
+This diagnostic is subordinate to $d_{\mathrm{run}}$ and $\mathcal{R}_{\mathrm{null}}$. A small $\Delta_{\mathrm{meet}}$ does not promote a grand-unified container unless the same branch record recovers the observed low-energy gauge record, reproduces the scale dependence, and explains the absence of mirror matter, superpartners, proton-instability channels, extra gauge bosons, hidden transport modes, and other non-baseline outputs in the tested regime.
+
+For a proposed symmetry container $C$, a compact audit form is
+$$
+\mathcal{R}_{\mathrm{container}}(\theta;C)
+=
+w_g\mathcal{R}_{\mathrm{gauge}}(\theta)
++w_f\mathcal{R}_{\mathrm{fact}}(\theta)
++w_0\mathcal{R}_{\mathrm{null}}^{\mathrm{op}}(\theta),
+$$
+where $\mathcal{R}_{\mathrm{fact}}$ measures failure of the recovered observer-level scattering and gauge sector to factor into the validated spacetime and internal-gauge records once those effective records exist. The container is only comparison language unless one shared $\theta$ drives all terms below tolerance; in particular, $\mathcal{R}_{\mathrm{null}}^{\mathrm{op}}=0$ must follow from the accepted branch family rather than from sector-specific hiding parameters.
 
 The same filter applies to especially elegant symmetry containers, including grand-unified and exceptional-group embeddings. It is not enough for a larger algebra to contain $U(1)_Y\times SU(2)_L\times SU(3)_c$ or to organize one generation of fermions. The promoted record must also explain why mirror matter, superpartners, proton-instability channels, extra gauge bosons, hidden transport modes, and other non-baseline outputs are absent in the tested regime. If those absences require separate masses, thresholds, compactification choices, or sector-specific suppressions, the construction remains a comparison framework rather than an $\mathbb{A}\mathbb{A}\mathbb{A}$ gauge closure.
 
@@ -603,6 +849,25 @@ $$
 \frac{q_{\mathrm{eff}}}{\hbar}\Phi_B
 \right|.
 $$
+When the benchmark is evaluated as a concrete interferometer packet, the force-free and phase requirements should be checked together rather than fitted separately. For a branch record $\theta$, one compact validation residual is
+$$
+\mathcal{V}_{\mathrm{AB}}(\theta)
+=
+w_F\sum_{a=1}^{2}\int_{\gamma_a}
+\left\|\mathbf{F}_{\mathrm{eff}}(\theta)\right\|^2\,ds
++
+w_\phi
+\inf_{N\in\mathbb{Z}}
+\left|
+\Delta\phi_{\mathrm{AB}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)
+-
+\frac{q_{\mathrm{eff}}}{\hbar}\Phi_B
+-
+2\pi N
+\right|,
+$$
+with $w_F$ and $w_\phi$ fixed by the declared interferometer tolerance. The benchmark passes only when $\mathcal{V}_{\mathrm{AB}}(\theta)\le\varepsilon_{\mathrm{AB}}$ for the same wake/action ledger, so a model cannot trade a hidden local force for phase recovery or tune the phase apart from the local electromagnetic-force record.
+
 The U(1) closure passes this benchmark only if $\Delta_{\mathrm{AB}}$ remains below the declared interferometric tolerance while the same effective connection also preserves charge continuity and ordinary electromagnetic force recovery. If the phase recovery requires a local force on the arms, a separate phase fit, or a literal promotion of $A_\mu$ to substrate ontology, this gauge bridge has failed at the AB gate.
 
 #### Global Gauge-Topology Completion Target
@@ -625,7 +890,26 @@ $$
 $$
 Here $F_{\mathrm{eff}}$ is the observer-level curvature recovered from the same effective gauge record used for force and phase transport. The integer $N$ records the allowed $2\pi$ ambiguity of the phase, not an independent hidden sector.
 
-The global gauge-topology target passes only if $\Delta_{\mathrm{gauge,glob}}$ stays below tolerance while charge continuity, local force recovery, AB holonomy, and flux/charge compatibility are all read from one shared record. It fails if a chart-dependent potential must be promoted to ontology, if the topological charge is inserted separately from the wake/action ledger, or if the same sector requires different Noether-Sea variables for force, phase, and charge recovery.
+A compact sector check inside the same target is useful when the benchmark includes disconnected flux sectors or instanton-like sectors rather than a single loop. Let $\mathcal{C}_{\mathrm{top}}$ be the declared family of observer-level gauge-topology sectors, and let $\mathcal{O}_{\mathrm{SM}}(s)$ be the corresponding Standard Model comparison record for sector $s$. The same wake/action ledger may define
+$$
+\Delta_{\mathrm{sector}}(\theta)
+=
+\sup_{s\in\mathcal{C}_{\mathrm{top}}}
+\left[
+\inf_{n_s\in\mathbb{Z}}
+\left|
+\mathcal{Q}^{\mathbb{A}\mathbb{A}\mathbb{A}}_{\mathrm{wake}}(s;\theta)-n_s
+\right|
++
+d_{\mathrm{obs}}\!\left(
+\mathcal{O}_\theta(s),
+\mathcal{O}_{\mathrm{SM}}(s)
+\right)
+\right].
+$$
+Here $\mathcal{Q}^{\mathbb{A}\mathbb{A}\mathbb{A}}_{\mathrm{wake}}$ is only the sector label extracted from the retained causal-wake/action record. It is not an independent topological charge assigned after the effective gauge description has already been fitted.
+
+The global gauge-topology target passes only if $\Delta_{\mathrm{gauge,glob}}$ and any declared $\Delta_{\mathrm{sector}}$ stay below tolerance while charge continuity, local force recovery, AB holonomy, and flux/charge compatibility are all read from one shared record. It fails if a chart-dependent potential must be promoted to ontology, if the topological charge is inserted separately from the wake/action ledger, or if the same sector requires different Noether-Sea variables for force, phase, and charge recovery.
 
 ### SU(2) Weak Sector
 

@@ -23,7 +23,7 @@ At assembly level, these terms refer to substrate dynamics in absolute time:
 
 Observer-level equations remain the operational layer. Assembly-level language is accepted only when it preserves threshold, cross-section, timing, and conservation closure against standard phenomenology.
 
-## Low-Energy SM Assemblies in the Noether Sea
+## Low-Energy Standard Model Assemblies in the Noether Sea
 
 This section is the canonical stepwise map for low-energy Standard Model channels interpreted in $\mathbb{A}\mathbb{A}\mathbb{A}$ language.
 
@@ -51,8 +51,8 @@ Represent each incoming participant as an assembly state tuple:
 Path history is part of identity bookkeeping in absolute time.
 
 4. **Characterize local medium state**
-Specify Noether-Sea state variables used by mapping:
-$(\rho_{\text{core}}, n, \chi_{\text{sea}}, \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{core}}, \Phi, T_{\mathrm{eff}}, J_{\mathrm{loc}})$.
+Specify Noether-Sea state variables used by mapping, with arguments suppressed only when the local context is clear:
+$(\rho_{\text{core}}(\mathbf{x},t), n(\mathbf{x},t), \chi_{\text{sea}}(\mathbf{x},t), \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{core}}, \Phi_{\text{eff}}, T_{\mathrm{eff}}, J_{\mathrm{loc}})$.
 These variables are mapping handles, not replacement observables.
 
 Magnetic-like observer language belongs at this mapping layer. It is not a substrate force law and is not imported from rotating-frame coordinates. At substrate level each primitive hit remains line-of-action; the magnetic-like transverse channel is the part of the delayed-branch sum that survives after projection perpendicular to the assembly drift and after Noether-Sea anisotropy/vorticity dressing.

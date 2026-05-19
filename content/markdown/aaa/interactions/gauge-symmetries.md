@@ -3,9 +3,9 @@
 This chapter provides a minimal theorem-backed bridge from architrino/assembly dynamics to the effective gauge symmetry structure used elsewhere.
 
 Interface chapters:
-- Electroweak emergence narrative: [gauge-structure-emergence](./gauge-structure-emergence.md)
-- Color SU(3) algebra closure: [color-charge-su3](../assemblies/fermions/color-charge-su3.md)
-- Variational substrate: [effective-lagrangian](../dynamics/effective-lagrangian.md)
+- Electroweak emergence narrative: [Gauge Structure Emergence](./gauge-structure-emergence.md)
+- Color $SU(3)$ algebra closure: [Color Charge SU3](../assemblies/fermions/color-charge-su3.md)
+- Variational substrate: [Effective Lagrangian](../dynamics/effective-lagrangian.md)
 
 ## Regularized Setting
 
@@ -16,6 +16,8 @@ Assume:
 - **(G2)** Action density depends on $\Psi$ only through $\Psi$, $\partial_\mu\Psi$, and symmetry-compatible contractions.
 - **(G3)** Color axis-exceptionality space is $\mathcal{H}^{\text{color}}\cong\mathbb{C}^3$.
 - **(G4)** Weak-coupling triad is a local two-state channel at each point (effective doublet sector).
+
+The fields in this section are effective observer-level variables. They are admitted because they encode tested continuity, phase, and scattering records; they are not primitive contents of the Euclidean void.
 
 ## Standard Model Recovery Gate
 

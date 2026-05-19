@@ -1284,7 +1284,7 @@
     },
     {
       "id": "dynamics__emergence_of_u_1_su_2",
-      "name": "Emergence of U(1)/SU(2)",
+      "name": "Gauge Structure Emergence",
       "path": "content/scenes/interactions/emergence_of_u_1_su_2.json",
       "nodeType": "scene"
     },
@@ -2472,7 +2472,7 @@
     },
     {
       "id": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
-      "name": "Emergence of U(1)/SU(2)",
+      "name": "Gauge Structure Emergence",
       "path": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
       "nodeType": "markdown_doc"
     },
@@ -4891,7 +4891,7 @@
       "nodeId": "scene:content/scenes/interactions/emergence_of_u_1_su_2.json",
       "nodeType": "scene",
       "id": "dynamics__emergence_of_u_1_su_2",
-      "name": "Emergence of U(1)/SU(2)",
+      "name": "Gauge Structure Emergence",
       "path": "content/scenes/interactions/emergence_of_u_1_su_2.json",
       "searchTarget": "content/scenes/interactions/emergence_of_u_1_su_2.json",
       "implicit": false
@@ -6619,7 +6619,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/interactions/gauge-structure-emergence.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
-      "name": "Emergence of U(1)/SU(2)",
+      "name": "Gauge Structure Emergence",
       "path": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
       "searchTarget": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
       "implicit": false

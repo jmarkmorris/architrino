@@ -1,28 +1,29 @@
-# Emergence of U(1)/SU(2)
+# Gauge Structure Emergence
 
-This chapter is a working emergence map from Noether-Sea substrate language to observer-level electroweak bookkeeping. It is not the formal symmetry theorem chapter; its role is to explain how Noether-Sea structure, effective fields, symmetry deformations, and measurement-facing quantities are being interpreted on the dynamics side before exact closure is finished.
+This chapter is a working emergence map from Noether-Sea and assembly language to observer-level gauge bookkeeping. It is not the formal symmetry theorem chapter; its role is to explain how Noether-Sea structure, effective fields, symmetry deformations, and measurement-facing quantities are interpreted before exact closure is finished. The target is the low-energy Standard Model gauge record, including $U(1)_Y$, $SU(2)_L$, $SU(3)_c$, electroweak mixing, charge bookkeeping, and null results for non-baseline channels.
 
-## The Physical Substrate: From Vacuum Language to Noether Sea
+## Physical Medium: From Vacuum Language to Noether Sea
 
-In standard QFT, the vacuum is a complex state of harmonic oscillators with zero point energy. In $\mathbb{A}\mathbb{A}\mathbb{A}$, we reject this abstraction in favor of a physical definition.
+In standard QFT, the vacuum is represented by quantum fields and their ground-state structure. In $\mathbb{A}\mathbb{A}\mathbb{A}$, that language is retained only as an observer-level comparison. The physical medium is the Noether Sea, while the fixed container remains the Euclidean void.
 
-**Definition: The Noether Sea**
-The Noether Sea is not empty space and is not the Euclidean void itself. It is the dense, permeating medium of coupled, neutral tri-binary assemblies occupying the [Euclidean void](../foundations/euclidean-void.md); see [spacetime assemblies](../spacetime/spacetime-assemblies.md).
-*   **Occupancy:** Non-zero occupancy of pro/anti binaries.
-*   **Net Properties:** Global charge $\sum q = 0$, global spin $\sum S = 0$.
-*   **Medium response:** This medium is the working source for the effective local permeability $\mu_0$ and permittivity $\epsilon_0$ read by observer-level electrodynamics. These are not fundamental constants of the void but derived measures of Noether-Sea response, including resistance to polarization and density-like occupation.
+In this chapter, the Noether Sea means the dense, permeating medium of coupled, neutral tri-binary assemblies occupying the [Euclidean void](../foundations/euclidean-void.md); see [Spacetime Assemblies](../spacetime/spacetime-assemblies.md). It is not empty space and is not the Euclidean void itself.
+
+- **Occupancy:** Nonzero occupancy of pro/anti Noether-core assemblies.
+- **Net properties:** Balanced charge and angular-momentum bookkeeping at the medium scale, schematically $\sum q = 0$ and $\sum S = 0$ over neutral coarse windows.
+- **Medium response:** This medium is the working source for the effective local permeability $\mu_0$ and permittivity $\epsilon_0$ read by observer-level electrodynamics. These are not fundamental constants of the void but derived measures of Noether-Sea response, including resistance to polarization and density-like occupation.
 
 One useful assembly-level picture is that long-lived Noether-Sea units arise when complementary pro/anti cores pair in anti-parallel fashion so that exposed axial circulation is mutually plugged rather than left open. In that reading, Noether-Sea transparency is not emptiness but a successful cancellation strategy: the medium remains quiet because its local pole leakage is internally routed and its large-scale moments stay near zero.
 
-## The "Field" Illusion
+## Field Language as Effective Bookkeeping
 
 Standard Model fields are often treated as fundamental entities. Here, field language is an **effective bookkeeping tool** for Noether-Sea and assembly state, not a second substrate ontology.
 
-**The $\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$) vs. The Physical Observer (PO)**
-*   **$\mathbb{U}_{\text{now}}$ View:** Sees architrinos with polarity bookkeeping labels $q=\pm\epsilon$ and their continuous causal-wake histories. There are no primitive continuous "gauge fields," only effective potential summaries reconstructed from causal wake contributions.
-*   **PO View (Emergent):** Lacking the resolution to see individual architrinos, the Physical Observer measures the **collective potential gradient** $\nabla \Phi$ at a point.
-    *   **$\vec{E}$ and $\vec{B}$ fields** are statistical averages of Jacobian-weighted causal-flux density and circulation/vorticity in the Noether Sea.
-    *   **Gauge Potentials ($A_\mu$):** These correspond to local **twists, strains, or density gradients** in the Noether-Sea assembly network.
+The relevant distinction is between the $\mathbb{U}_{\text{now}}$ universe-state perspective and the Physical Observer.
+
+- **Complete-state view:** The $\mathbb{U}_{\text{now}}$ universe-state perspective records architrinos with polarity bookkeeping labels $q=\pm\epsilon$ and their causal-wake histories. There are no primitive continuous gauge fields, only effective potential summaries reconstructed from causal-wake contributions.
+- **Physical Observer view:** A Physical Observer lacks direct resolution of individual architrinos and instead measures collective observables such as the effective potential gradient $\nabla\Phi$ at a point.
+  - **$\vec{E}$ and $\vec{B}$ fields** are statistical averages of Jacobian-weighted causal-flux density and circulation/vorticity in the Noether Sea.
+  - **Gauge potentials ($A_\mu$)** correspond to local twists, strains, or density gradients in the Noether-Sea assembly network.
 
 ## Symmetry Groups as Geometric Deformations
 
@@ -30,13 +31,24 @@ We map the abstract gauge groups of the Standard Model to physical deformations 
 
 1.  **U(1) (Electromagnetism):**
     *   *SM View:* Phase rotation of the complex field.
-    *   *Architrino View:* A variation in the **potential density** or polarization alignment of the Noether Sea. A particle moving through this gradient experiences a delayed line-of-action force whose transverse and velocity-dependent observer-level pieces arise from branch geometry, causal delay, and Jacobian flux bunching.
+    *   *$\mathbb{A}\mathbb{A}\mathbb{A}$ View:* A variation in the **potential density** or polarization alignment of the Noether Sea. A particle moving through this gradient experiences a delayed line-of-action force whose transverse and velocity-dependent observer-level pieces arise from branch geometry, causal delay, and Jacobian flux bunching.
 
 2.  **SU(2) (Weak Interaction):**
     *   *SM View:* Non-Abelian rotation in isospin space.
-    *   *Architrino View:* A **chiral twist** or structural strain in the tri-binary assemblies. Because the assemblies have internal handedness (spiral structure), deformations obey non-commutative geometry (order of operations matters), mirroring the non-Abelian nature of SU(2).
+    *   *$\mathbb{A}\mathbb{A}\mathbb{A}$ View:* A **chiral twist** or structural strain in the tri-binary assemblies. Because the assemblies have internal handedness, deformations can be order-dependent, mirroring the non-Abelian nature of $SU(2)$ at the effective level.
 
 The emergence claim in this chapter is therefore a mapping target with four required parts. The mechanism is delayed causal-wake coupling through Noether-Sea and axial-layer deformation. The mapping is from closure labels, axial inventories, exposed weak-coupling triads, and medium-response variables to the observer-level symbols $U(1)_Y$, $SU(2)_L$, $g_1$, $g_2$, $\theta_W$, and the charge table. The regime is the low-energy observer sector where stable assemblies, weak gradients, and resolved apparatus records make the coarse variables meaningful. The breakdown occurs at root-ledger changes, unstable axial inventories, unresolved Noether-Sea updates, or any branch that predicts extra low-energy partners or transport modes.
+
+A compact reader-facing residual for this map is
+$$
+\mathcal{R}_{\mathrm{EW\text{-}map}}(\theta)
+=
+d_Q(Q_\theta,Q_{\mathrm{SM}})
++d_{\mathrm{mix}}\!\left((g_1,g_2,\theta_W)_\theta,(g_1,g_2,\theta_W)_{\mathrm{obs}}\right)
++d_{\mathrm{chiral}}(W_\theta,W_{\mathrm{obs}})
++\mathcal{R}_{\mathrm{null}}(\theta).
+$$
+Here $\theta$ is the retained Noether-Sea and assembly branch record, $d_Q$ measures charge-table mismatch, $d_{\mathrm{mix}}$ measures electroweak-coupling and weak-mixing mismatch, $d_{\mathrm{chiral}}$ measures failure of the weak-coupling-triad exposure record to recover observed handedness, and $\mathcal{R}_{\mathrm{null}}$ penalizes any added low-energy channel that is not observed. This residual is not a new ontology; it names the observer-level recovery burden.
 
 ## Standard Model Recovery Discipline
 
@@ -69,7 +81,7 @@ The local closure discipline is therefore:
 3. keep weak chirality, CKM/PMNS overlap, and weak-reaction provenance tied to the same exposed weak-coupling-triad domain;
 4. pass the null-result residual in [Failure Criteria](../validation/failure-criteria.md#null-result-residual-for-added-channels) for any predicted non-baseline channel.
 
-Superfluid-source-of-interactions models are useful here only as a mode-taxonomy warning. They show how one ground-state medium picture can try to generate scalar, vector, and tensor bosons as collective excitations, but they also show the closure burden this creates. For a candidate observer-level boson channel $b$, define the comparison record
+Single-medium source-of-interactions models are useful here only as a mode-taxonomy warning. They show how one ground-state medium picture can try to generate scalar, vector, and tensor bosons as collective excitations, but they also show the closure burden this creates. For a candidate observer-level boson channel $b$, define the comparison record
 $$
 \mathcal{M}_b^\theta
 =
@@ -83,30 +95,30 @@ m_b^\theta,\,
 $$
 where $J_b^\theta$ is the recovered spin label, $P_b^\theta$ the parity or transverse/longitudinal projector record when applicable, $m_b^\theta$ the mass or gap, $\omega_b^\theta(k)$ the dispersion, and $\mathcal{C}_b^\theta$ the coupling ledger to fermion, photon, weak, color, or gravitational channels. A collective-mode interpretation is admissible only when one Noether-Sea and assembly branch supplies $\mathcal{M}_b^\theta$ while also suppressing unobserved scalar, vector, tensor, mirror, or hidden channels. Otherwise "boson as excitation" is an analogy, not gauge-structure emergence.
 
-## The Higgs Mechanism & VEV Reinterpretation
+## Higgs Mechanism and VEV Reinterpretation
 
-The common "God Particle" narrative is replaced by a Noether-Sea medium-response comparison.
+The popular particle-centered Higgs narrative is replaced by a Noether-Sea medium-response comparison.
 
-*   **The VEV (Vacuum Expectation Value):** This is interpreted as an **equilibrium density or order-parameter proxy** for the Noether Sea. It is non-zero because medium contents occupy the void, not because the void has its own density; the exact order parameter and conversion to observer-level electroweak normalization remain closure targets.
-*   **Symmetry Breaking:** The electroweak phase transition is modeled as a **phase-change closure target**. As the universe cooled, the high-energy, chaotic plasma of architrinos must relax into the stable, coupled Noether Sea inferred today, but the order parameter and transition dynamics still have to be derived.
-*   **Mass as medium-dressed response:** A fermion assembly moving or accelerating through the Noether Sea must relock its internal causal ledger against the surrounding medium.
-    *   Photon channels propagate as coherent planar-mode transport through the sea rather than as massive bodies.
-    *   Massive assemblies expose more shielded internal causal history to external probes. The measured inertial response is not ordinary dissipative drag; see [Particle Masses: Emergent Inertia in the Noether Sea](../assemblies/particle-masses.md).
+- **VEV (vacuum expectation value):** The VEV is interpreted as an equilibrium density or order-parameter proxy for the Noether Sea. It is nonzero because medium contents occupy the void, not because the void has its own density; the exact order parameter and conversion to observer-level electroweak normalization remain closure targets.
+- **Symmetry breaking:** Electroweak phase transition language is treated as a phase-change closure target. The high-energy plasma record must relax into the stable, coupled Noether Sea inferred today, but the order parameter and transition dynamics still have to be derived.
+- **Mass as medium-dressed response:** A fermion assembly moving or accelerating through the Noether Sea must relock its internal causal ledger against the surrounding medium.
+  - Photon channels propagate as coherent planar-mode transport through the sea rather than as massive bodies.
+  - Massive assemblies expose more shielded internal causal history to external probes. The measured inertial response is not ordinary dissipative drag; see [Particle Masses: Emergent Inertia in the Noether Sea](../assemblies/particle-masses.md).
 
 ## Resolving the Unruh Ambiguity
 
 General Relativity predicts that an accelerating observer sees a thermal bath of particles (Unruh radiation), while an inertial observer sees a vacuum. This creates an ontological paradox: do the particles exist or not?
 
-**The Architrino Resolution:**
-*   **Objective Existence:** To the $\mathbb{U}_{\text{now}}$ universe-state perspective, particles (assemblies) either exist or they don't. Their existence is not frame-dependent.
-*   **Acceleration-conditioned detector response:** The "warm bath" detected by the accelerating Physical Observer is an effective response of the detector's assembly state to accelerated coupling with the Noether Sea.
-*   **Mechanism:** Acceleration through the medium ($\vec{a} \neq 0$) changes the rate and geometry of coupling with background binaries (Noether cores). The altered coupling manifests as thermal energy ("radiation") in the detector. The "particles" seen are detector excitations, not frame-dependent ontic creation.
+**The $\mathbb{A}\mathbb{A}\mathbb{A}$ resolution:**
+- **Objective existence:** To the $\mathbb{U}_{\text{now}}$ universe-state perspective, assemblies have a definite substrate status. Their existence is not frame-dependent.
+- **Acceleration-conditioned detector response:** The warm bath detected by the accelerating Physical Observer is an effective response of the detector's assembly state to accelerated coupling with the Noether Sea.
+- **Mechanism:** Acceleration through the medium ($\vec{a} \neq 0$) changes the rate and geometry of coupling with background binaries (Noether cores). The altered coupling manifests as thermal energy in the detector. The particles inferred by the detector are detector excitations, not frame-dependent ontic creation.
 
 ## Quantization from Stability (Selection Rules)
 
 Why do observer-level electric charges appear in units of $e/3$?
 *   The Standard Model asserts this; $\mathbb{A}\mathbb{A}\mathbb{A}$ treats it as a stability-selection closure target grounded in six-site axial bookkeeping.
-*   **Stability Selection:** The $\mathbb{U}_{\text{now}}$ universe-state perspective sees that arbitrary clusters of $\epsilon$ polarity units are likely unstable. They either collapse (self-hit singularity) or fly apart.
+*   **Stability Selection:** The $\mathbb{U}_{\text{now}}$ universe-state perspective sees that arbitrary clusters of $\epsilon$ polarity units are likely unstable. They either collapse into an unstable self-hit branch or disperse.
 *   **The Survivors:** Specific geometric configurations (the six-pole axial patterns) are candidate stable resonances where attractive and repulsive forces balance via the tri-binary structure. The local combinatorics reproduce the observed charge set; dynamical exclusion of non-SM stable assemblies remains part of the closure burden.
 
 **SM Charge Quantization ($\mathbb{A}\mathbb{A}\mathbb{A}$: Six $\epsilon$ Axial Architrinos)**

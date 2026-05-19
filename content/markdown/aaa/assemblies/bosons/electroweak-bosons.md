@@ -2,7 +2,7 @@
 
 **Scope:** Defines the geometric assemblies corresponding to the U(1), SU(2), and Scalar sectors.
 **Core Principle:** Bosons are discrete, propagating assemblies of architrinos organized into phase-locked modes.
-This chapter is the bosonic-side companion to [Emergence of U(1)/SU(2)](../../interactions/gauge-structure-emergence.md), [Weak Mixing Angle](../fermions/weak-mixing-angle.md), and [Particle Masses: Emergent Inertia in the Noether Sea](../particle-masses.md).
+This chapter is the bosonic-side companion to [Gauge Structure Emergence](../../interactions/gauge-structure-emergence.md), [Weak Mixing Angle](../fermions/weak-mixing-angle.md), and [Particle Masses: Emergent Inertia in the Noether Sea](../particle-masses.md).
 
 Spin labels in this chapter are downstream mapping targets, not completed derivations. The Higgs is treated as a scalar target because its candidate motion is radial, while the photon and weak corridors are treated as vector-mode targets because each carries a distinguished propagation or interaction axis together with transverse phase structure. The proof obligations for these labels sit in [Angular Momentum and Spin](../../theory-bridges/angular-momentum-and-spin.md).
 
