@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1195
+      "sections": 1196
     }
   },
   "tocRoot": {
@@ -895,10 +895,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Potential Energy and Net Potential",
+                "title": "Potential Energy and Causal-Wake Potential",
                 "markdownPath": "content/markdown/aaa/dynamics/energy.md",
-                "markdownSection": "Potential Energy and Net Potential",
-                "sectionKey": "potential energy and net potential",
+                "markdownSection": "Potential Energy and Causal-Wake Potential",
+                "sectionKey": "potential energy and causal wake potential",
                 "headingLevel": 2
               },
               {
@@ -1009,10 +1009,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Spiral Binary Symmetry-Breaking Point ($v = c_f$)",
+                "title": "Spiral Binary Symmetry-Breaking Point ($\\|\\mathbf{v}\\| = c_f$)",
                 "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
-                "markdownSection": "Spiral Binary Symmetry-Breaking Point ($v = c_f$)",
-                "sectionKey": "spiral binary symmetry breaking point v c f",
+                "markdownSection": "Spiral Binary Symmetry-Breaking Point ($\\|\\mathbf{v}\\| = c_f$)",
+                "sectionKey": "spiral binary symmetry breaking point mathbf v c f",
                 "headingLevel": 2
               },
               {
@@ -1067,18 +1067,18 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Relation to the Causal Closure Workstream",
+                "title": "Relation to Causal Closure",
                 "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Relation to the Causal Closure Workstream",
-                "sectionKey": "relation to the causal closure workstream",
+                "markdownSection": "Relation to Causal Closure",
+                "sectionKey": "relation to causal closure",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Publication Status and Claim Scope",
+                "title": "Claim Scope",
                 "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Publication Status and Claim Scope",
-                "sectionKey": "publication status and claim scope",
+                "markdownSection": "Claim Scope",
+                "sectionKey": "claim scope",
                 "headingLevel": 2
               },
               {
@@ -1451,6 +1451,14 @@
                 "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
                 "markdownSection": "Closure Extension: Spin Bundle and Confinement Energy Law",
                 "sectionKey": "closure extension spin bundle and confinement energy law",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Reduced Branch-Certificate Targets",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Reduced Branch-Certificate Targets",
+                "sectionKey": "reduced branch certificate targets",
                 "headingLevel": 2
               },
               {

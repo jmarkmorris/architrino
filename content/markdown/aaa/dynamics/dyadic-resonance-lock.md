@@ -1,14 +1,16 @@
 # Dyadic Resonance Lock
 
-This document studies resonance lock for the nested Outer, Middle, and Inner binaries. The goal is to identify the relationship between frequency, tangential speed, and radius under a regime where the middle binary is pinned at the field speed and the three rings form an exact integer phase-locked cycle.
+This chapter studies resonance lock for the nested Outer, Middle, and Inner binaries. Its immediate goal is specific: identify the relationship between frequency, scalar tangential speed, and radius in a reduced branch where the middle binary is pinned at the field speed and the three rings form an exact integer phase-locked cycle.
 
 It should be read together with [Binary Dynamics](binary-dynamics.md), [Tri-Binary Dynamics](tri-binary-dynamics.md), [Mapping the Planck Scale](../theory-bridges/planck-scale-tri-binary-alignment.md), and [Noether Core](../spacetime/noether-core.md), which provide the assembly geometry and scale-setting context for the lock relations derived here.
 
-We work with branch labels $k\in\{O,M,I\}$. Here $r_k$ is the characteristic layer radius and $v_k$ is the tangential speed of one member of layer $k$ around that layer's center.
+The level distinctions matter throughout. Ontologically, the Outer, Middle, and Inner binaries are assembly layers built from architrino constituents. Dynamically, the reduced model replaces their full delayed causal-wake history by a finite-$\eta$ branch chart. Effectively, low-order multipoles and potentials are comparison summaries of that branch behavior. Inferentially, an integer lock is selected only after a cancellation score and a stability gap both favor it.
+
+This chapter keeps the field speed $c_f$ explicit rather than setting it to one. We work with branch labels $k\in\{O,M,I\}$. Here $r_k$ is the characteristic layer radius and $v_k=\|\mathbf{v}_k\|$ is the scalar tangential speed of one member of layer $k$ around that layer's center.
 
 ## Status and Assumptions
 
-The logic of this note is organized around one exact identity and four explicit assumptions.
+The logic of the chapter is organized around one exact identity and four explicit assumptions. This separation prevents a kinematic formula from being mistaken for a dynamical selection principle.
 
 ### Exact Kinematic Identity
 
@@ -32,7 +34,7 @@ $$
 
 Plain language: for any one ring, if we know any two of frequency, tangential speed, and radius, then the third is fixed.
 
-This identity is exact. It is not an assumption.
+This identity is exact. It is not an assumption, and it does not select a lock by itself.
 
 ### Assumption 1 (Middle-Pinned Closure)
 
@@ -43,7 +45,7 @@ v_M=c_f,
 \beta_M=1.
 $$
 
-This is the main regime assumption of the document.
+This is the main regime assumption of the chapter. The speed $c_f$ is the propagation speed of causal isochrons in the reduced dynamics, not an observer-level claim about an effective metric.
 It is not a claim that every Noether-core regime has the middle binary exactly at $c_f$; ordinary weak-stress operation may keep the middle layer only near the hinge scale, while the exact pinning here belongs to the reduced exterior/horizon-transition branch.
 
 ### Assumption 2 (Exact Integer Phase Closure)
@@ -69,7 +71,7 @@ Therefore $f_O:f_M:f_I = 1:m:n$, with $f_M=m f_O$ and $f_I=n f_O$.
 
 Plain language: after one outer revolution, the middle and inner rings have completed whole numbers of revolutions as well, so the three-ring pattern closes exactly.
 
-This is the reduced constant-frequency carrier model. In the full Noether-core closure problem, the simple phases $\theta_k=q_k\Omega t+\phi_k$ are replaced by integrated winding, causal-root, and frame-phase ledgers over the accepted branch chart.
+This is the reduced constant-frequency carrier model. It is a branch-level closure assumption, not a statement that the assembly has only three degrees of freedom. In the full Noether-core closure problem, the simple phases $\theta_k=q_k\Omega t+\phi_k$ are replaced by integrated winding, causal-root, and frame-phase ledgers over the accepted branch chart.
 
 ### Assumption 3 (Fixed Relative Phase Lock)
 
@@ -89,6 +91,7 @@ Plain language: the rings keep the same timing relationship cycle after cycle ra
 Among the admissible integer locks $(1:m:n)$, the physically selected lock is assumed to be the one that yields the strongest cycle-averaged cancellation of the relevant low-order causal-wake multipole or effective potential signal.
 
 This is a selection principle, not yet a theorem. Its role is to explain why one exact integer lock might be preferred over nearby commensurate alternatives.
+The admissible class must be declared before minimization: positive radii, $1 < m < n$, a fixed finite-$\eta$ branch chart, nonzero branch-Jacobian floors, and the speed bounds assigned to the exterior/horizon regime.
 
 A minimal test functional can be written before committing to a particular lock. Let $q_O=1$, $q_M=m$, and $q_I=n$, with phase variables $\theta_k=q_k\Omega t+\phi_k$. For a low-order truncation depth $L$, define
 $$
@@ -98,7 +101,8 @@ S_L(t)
 A_{k,a}(\beta_k,r_k,\eta,J)\,
 e^{ia(q_k\Omega t+\phi_k)}.
 $$
-The coefficients $A_{k,a}$ are not free fit parameters. They must be extracted from the same finite-$\eta$ branch-strength, branch-Jacobian, and far-field wake ledger used to test the candidate lock.
+The coefficients $A_{k,a}$ are not free fit parameters. They must be extracted from the same finite-$\eta$ branch-strength, branch-Jacobian, and causal-wake ledger used to test the candidate lock.
+They therefore belong to the dynamics of the causal-wake branch chart, even when the resulting signal is later summarized as an effective potential.
 The cycle-averaged cancellation score is
 $$
 C_L(m,n;\phi)
@@ -127,19 +131,22 @@ $$
 \le
 \text{sum of the other two}.
 $$
+The lemma is only a harmonic support statement. It shows where cancellation is possible; it does not show that the branch-derived amplitudes or the return-map stability actually select the dyadic lock.
 
 ### Non-Assumptions
 
-This document does **not** assume:
+This chapter does **not** assume:
 
 - common-speed closure $v_O=v_M=v_I$,
 - self-similar radii $r_M=r_O/s$, $r_I=r_O/s^2$,
 - or the specific frequency lock $1:2:4$ at the outset.
 
 Those are possible special cases or later outcomes, not starting axioms here.
-This note studies exact integer closure. Rational or self-similar locks can be compared only after clearing denominators or constructing a separate branch map.
+This chapter studies exact integer closure. Rational or self-similar locks can be compared only after clearing denominators or constructing a separate branch map.
 
 ## Immediate Consequences
+
+This section is pure algebra from the exact identity and the first two assumptions. It does not use the cancellation principle.
 
 From Assumptions 1-2 and the exact identity, the middle radius is fixed by the outer frequency:
 $$
@@ -178,14 +185,14 @@ $$
 r_I=\frac{\beta_I}{n\beta_O}\,r_O.
 $$
 
-These are the core radius relations of the note:
+These are the core radius relations of the chapter:
 $$
 r_M=\frac{r_O}{m\beta_O},
 \qquad
 r_I=\frac{\beta_I}{n\beta_O}\,r_O.
 $$
 
-They show that once the integer lock $(1:m:n)$ is fixed, the remaining geometry depends on the outer and inner speed factors $\beta_O$ and $\beta_I$.
+They show that once the integer lock $(1:m:n)$ is fixed, the remaining geometry depends on the outer and inner speed factors $\beta_O$ and $\beta_I$. Thus a frequency hierarchy is not yet a radius hierarchy.
 
 ## Proposition 1 (Exterior Integer Lock Formulas)
 
@@ -206,7 +213,7 @@ r_k=\frac{\beta_k c_f}{2\pi f_k}
 $$
 together with $\beta_M=1$, $f_M=m f_O$, and $f_I=n f_O$. $\square$
 
-The geometry is controlled by integer phase closure plus the middle-pinned condition.
+The geometry is controlled by integer phase closure plus the middle-pinned condition. The proposition makes no claim about which integer pair is dynamically preferred.
 
 ## Could $1{:}2{:}4$ Be a Solution?
 
@@ -250,7 +257,9 @@ The cancellation principle is the extra ingredient intended to select among the 
 
 ## Interpreting the Cancellation Principle
 
-The motivation for Assumption 4 is that a cycle-closing integer lock can support persistent superposition over repeated outer periods. If the phase organization is favorable, the low-order far-field or potential contribution can cancel more effectively over one full return cycle.
+The motivation for Assumption 4 is that a cycle-closing integer lock can support persistent superposition over repeated outer periods. If the phase organization is favorable, the low-order causal-wake multipole or effective potential contribution can cancel more effectively over one full return cycle.
+
+At the substrate level, the relevant quantity is exposed causal-wake leakage. At the effective level, the same organization may be reported as reduced low-order potential signal. At the inference level, the reduced model is allowed to select a lock only if the cancellation gap survives the declared truncation and stability tests.
 
 In that sense, the selection principle is closer to a resonance-and-superposition argument than to a bare numerology of integer ratios. The intuition is that a physically preferred lock should minimize exposed wake leakage and phase-slip variance subject to the delayed dynamics.
 
@@ -301,7 +310,7 @@ $$
 
 ## Reduced-Theorem Target
 
-The right theorem target is not "prove $1:2:4$ from kinematics alone." The stronger target is:
+The right theorem target is not "prove $1:2:4$ from kinematics alone." The stronger target is a proof route that keeps kinematics, branch dynamics, effective cancellation, and inference separate:
 
 1. classify the admissible integer locks $(1:m:n)$ under exact delayed phase closure,
 2. compute the corresponding radius relations under $\beta_M=1$,
