@@ -11,7 +11,7 @@
 
 ## Task Queue
 
-1. `mine_source_material` — Mine legacy and external source material only where it materially saves time. Status: `pending`. Depends on: `fill_thin_chapters`.
+1. `mine_source_material` — Mine legacy and external source material. Status: `pending`. 
 
 ## Scope
 
@@ -34,7 +34,6 @@ During the current core geometrical theory push, do not treat chapter coverage a
 - Mine old PowerPoint decks, cleaning them up only when migration into the web site or $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus is worthwhile.
 - Mine archived papers, arXiv-style papers, and local PDF paper collections for definitions, examples, derivation routes, and source leads.
 - Mine YouTube videos and course playlists when transcripts, slides, or lecture notes can be reduced into concrete chapter material.
-- Mine David Kaiser's MIT OCW `STS.042J/8.225J` course sequence, especially Lecture 23, `The Birth of Particle Cosmology`, plus the surrounding late-course particle-cosmology lectures.
 
 ## Candidate Source-Mining Backlog
 
