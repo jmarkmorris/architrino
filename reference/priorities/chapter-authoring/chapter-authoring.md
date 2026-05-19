@@ -44,7 +44,6 @@ Use this backlog as a triage surface, not as a requirement factory. A source ear
 | Source family | Mine first | $\mathbb{A}\mathbb{A}\mathbb{A}$ value | Priority destination |
 | --- | --- | --- | --- |
 | Particle Data Group, [Review of Particle Physics](https://pdg.lbl.gov/) and `pdgLive` | Current 2025 update plus the 2024 review tables; particle masses, widths, lifetimes, CKM/PMNS, neutrinos, QCD, electroweak fits, cosmological parameters, constants, and statistics reviews. | Replaces the already mined 2018 PDG snapshot with current benchmark values and uncertainty conventions. | [standard-model-closure](../standard-model-closure/standard-model-closure.md), [mass-map](../mass-map/mass-map.md), [validation-gates](../validation-gates/validation-gates.md) |
-| NIST/CODATA [fundamental constants](https://physics.nist.gov/cuu/Constants/) and uncertainty guides | 2022 CODATA constants; $G$, $\alpha$, $\hbar c$, particle mass ratios, SI conversion factors, and uncertainty notation. | Anchors parameter-scale closure and prevents informal constants from leaking into equations. | [mass-map](../mass-map/mass-map.md), [master-equation-closure](../master-equation-closure/master-equation-closure.md), [validation-gates](../validation-gates/validation-gates.md) |
 | Living Reviews / Clifford Will / SME-style Lorentz-test baselines | [The Confrontation between General Relativity and Experiment](https://link.springer.com/article/10.12942/lrr-2014-4), modern PPN tests, preferred-frame bounds, and [Data Tables for Lorentz and CPT Violation](https://physics.nmu.edu/~nrussell/research/datatables.htm). | Sharpens the Lorentz / GR bridge into concrete PPN, synchronization, clock-retuning, and leakage bounds. | [tri-binary-causal-closure](../tri-binary-causal-closure/tri-binary-causal-closure.md), [master-equation-closure](../master-equation-closure/master-equation-closure.md), [cross-theory-mapping](../cross-theory-mapping/cross-theory-mapping.md) |
 | GWOSC / LVK gravitational-wave public data | [GWOSC catalogs and APIs](https://gwosc.org/eventapi/), strain data, parameter-estimation releases, waveform tutorials, and event visualizations. | Gives strong-field, radiation, inspiral, ringdown, and energy-accounting benchmarks with open data. | [strong-field-closure](../strong-field-closure/strong-field-closure.md), [tri-binary-causal-closure](../tri-binary-causal-closure/tri-binary-causal-closure.md), [simulations](../simulations/simulations.md) |
 | CMB / BAO / low-redshift cosmology data | [Planck Legacy Archive maps](https://wiki.cosmos.esa.int/planck-legacy-archive/index.php/Maps), [NASA LAMBDA](https://lambda.gsfc.nasa.gov/), [DESI BAO cosmology products](https://data.desi.lbl.gov/doc/releases/dr1/vac/bao-cosmo-params/), ACT lensing and power-spectrum papers, SH0ES, Pantheon+, DES, and Euclid public releases when available. | Separates $\Lambda$CDM-era observer variables from $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology while preserving redshift, distance, transfer-function, and tension benchmarks. | [cosmology-closure](../cosmology-closure/cosmology-closure.md), [cross-theory-mapping](../cross-theory-mapping/cosmological-redshift-distance-ladder.md), [validation-gates](../validation-gates/validation-gates.md) |
@@ -83,7 +82,7 @@ Use this backlog as a triage surface, not as a requirement factory. A source ear
 
 ### Immediate Mining Order
 
-1. Current PDG plus NIST/CODATA: quickest way to refresh constants, particle values, units, and uncertainty conventions.
+1. Current PDG: quickest way to refresh particle values, electroweak fits, QCD rows, and uncertainty conventions after the constants benchmark contract.
 2. GWOSC, EHT, Planck/LAMBDA, and DESI: strongest open-data bridge for gravity, radiation, strong-field, and $\Lambda$CDM-era constraints.
 3. MIT 8.962, CERN Academic Training, TASI, PIRSA, and KITP: highest-yield derivation and source-lead reservoirs.
 4. Feynman Lectures, OpenStax, PhET, and public lecture material: use only for explanation, diagrams, and student-facing worked intuition.
@@ -92,6 +91,7 @@ Use this backlog as a triage surface, not as a requirement factory. A source ear
 
 | Source mined | Date mined |
 | --- | --- |
+| NIST/CODATA [Fundamental Physical Constants](https://physics.nist.gov/cuu/Constants/), 2022 CODATA adjustment complete listing, plus standard / relative standard uncertainty definitions | May 19, 2026 |
 | Curt Jaimungal's long-form physicist interviews, source window January 1, 2025 through May 17, 2026 | May 17, 2026 |
 | David Tong, [Dynamics and Relativity](https://davidtong.org/pdfs/teaching/dynamics-and-relativity/dynrel.pdf) | May 18, 2026 |
 | David Tong, [Classical Dynamics](https://davidtong.org/pdfs/teaching/classical-dynamics/clas.pdf) | May 18, 2026 |
