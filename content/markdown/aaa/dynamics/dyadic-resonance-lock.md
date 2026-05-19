@@ -335,6 +335,23 @@ Here $\mathcal{S}_{m,n}$ is a finite-$\eta$ reduced phase-amplitude branch chart
 
 If the minimizer turns out to be $(1,2,4)$, then the dyadic hierarchy would be a derived selection result rather than a starting assumption.
 
+### Recurrence Diagnostic
+
+The finite-$\eta$ return-map test should also reject transient near-locks. For a sampled returned-branch trajectory
+$$
+z_i=(\phi_i,a_i,\nu_i,\ell_i)\in\mathcal{S}_{m,n},
+$$
+define a recurrence matrix
+$$
+Q^{(\epsilon)}_{ij}
+=
+\mathbf{1}
+\left[
+d_{\mathcal{S}}(z_i,z_j)<\epsilon
+\right],
+$$
+where $d_{\mathcal{S}}$ is the declared branch-chart distance after quotienting the neutral symmetries in $G$. A candidate $1{:}2$ row, or a chained $1{:}2{:}4$ row, is recurrence-positive only if returned-section hits recur at the declared outer-period multiples, the recurrence period agrees with the winding and active-branch ledger, the recurrence structure persists under timestep, history-resolution, and $\eta$ refinement, and nearby trials that fail the non-symmetry Floquet gap do not pass this recurrence check.
+
 ## Ancillary Symmetry Check
 
 The older $\mathbb{Z}_3$ dipole-cancellation identity can still be kept as a separate symmetry test:

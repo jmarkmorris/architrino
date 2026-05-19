@@ -31,10 +31,6 @@ This file remains the deferred control surface for quantum closure. The sibling 
 
 Measurement-record formation consumes the shared [residual-routing event-ledger theorem](../tri-binary-causal-closure/residual-routing-event-ledger.md) only after the transfer-operator and invariant-measure objects are explicit enough to say which basin outcome becomes a physical apparatus record.
 
-## OpenAlex Baseline
-
-[openalex-baseline.md](openalex-baseline.md) records the May 18, 2026 OpenAlex review set for Bell-family tests, contextuality, decoherence, measure constraints, and pilot-wave comparison sources.
-
 ## Detailed Priority Files
 
 | File | Role | Primary promotion targets |

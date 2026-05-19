@@ -37,10 +37,6 @@ The priority is to descend to the architrino level. Before the corpus can give a
 
 Until that ledger is understood at the fundamental level, Bell's theorem should be treated as a severe observer-level test, not as the starting point for the ontology.
 
-## OpenAlex Baseline
-
-[openalex-baseline.md](openalex-baseline.md) records the May 18, 2026 OpenAlex review set for spin measurement, ordered-frame holonomy, photon angular momentum, and Bell-family constraints.
-
 ## Detailed Priority Files
 
 | File | Role | Primary promotion targets |

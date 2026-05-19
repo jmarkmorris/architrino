@@ -21,12 +21,6 @@ Keep dynamics, geometry, and mapping centered on [master-equation.md](../../../c
 
 This file remains the control surface for the workstream. No sibling detailed priority file is needed yet; if the program grows, the natural split is one action-kernel / Noether-boundary packet, one circular/spiral closure packet, and one Lorentz/GR bridge packet.
 
-## OpenAlex Baseline
-
-[openalex-baseline.md](openalex-baseline.md) records the May 18, 2026 source-mining baseline for this rank-1 workstream. The useful external backbone is functional differential equation theory for history-space well-posedness, state-dependent delay smoothness for active-root charts, direct-action electrodynamics for action-level conservation accounting, and Lorentz/PPN/preferred-frame tests for the bridge acceptance surface. The immediate corpus promotion from that pass is the state-dependent delay compatibility condition now added to [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md).
-
-The May 19, 2026 completion pass exhausted the active OpenAlex queue rows and sharpened three local proof burdens. Branch charts evolve on the compatibility manifold $\mathcal{X}_{\mathfrak{B}}=\{\phi:\dot{\phi}(0)=\mathcal{G}_{\mathfrak{B}}(\phi)\}$ rather than on arbitrary retained histories. Radiation/reaction claims must close the provenance residual $\mathcal{R}^{(\eta)}_{\mathrm{prov}}(W)$ using the same branch rows and Noether wake-history charge as the force residual. The Lorentz/GR bridge must report separated moving-assembly, two-way anisotropy, PPN, SME-style leakage, and high-energy channel residuals rather than collapsing them into one qualitative Lorentz-recovery statement.
-
 ## Promotion Map
 
 | Task | Detailed source | Primary promotion target | Promotion gate |
@@ -96,7 +90,7 @@ Status update. The branch-history packet below is now the required baseline for 
 
 ## Circular Derivative-Sensitive Branch-History Packet
 
-Purpose. This packet converts `circular_asymptotics` from a pointwise circular root count into a retained-history branch chart. It consumes the OpenAlex delayed-functional baseline by requiring every circular partner and self contribution to be classified as delayed-state, derivative-sensitive, or blocked by a Jacobian-null window before its force-balance residue is used.
+Purpose. This packet converts `circular_asymptotics` from a pointwise circular root count into a retained-history branch chart. It consumes the delayed-functional mining synthesis by requiring every circular partner and self contribution to be classified as delayed-state, derivative-sensitive, or blocked by a Jacobian-null window before its force-balance residue is used.
 
 History tube. Fix a symmetric circular two-body history $\Gamma_{\mathrm{circ}}(\beta)$ on a speed band $\mathcal{B}_{\beta}=[\beta_-,\beta_+]$ and memory horizon $h$. The retained circular chart is
 $$

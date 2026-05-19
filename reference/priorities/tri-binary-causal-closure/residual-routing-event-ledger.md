@@ -2,10 +2,6 @@
 
 This detailed priority file supports [Tri-Binary Causal Closure](tri-binary-causal-closure.md). It owns the shared proof grammar for transitions that route unresolved action into a physical channel while closing the same event ledger.
 
-## OpenAlex Baseline
-
-[residual-routing-openalex-baseline.md](residual-routing-openalex-baseline.md) records the May 18, 2026 OpenAlex review set for conservation, scattering-channel cuts, event generators, and detector/material ledgers.
-
 ## Core Theorem Target
 
 The common pattern is:

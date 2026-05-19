@@ -77,7 +77,7 @@ Radiation channel visibility also consumes the shared [exposure-quotient theorem
 
 ## Photon Attenuation Data Panel
 
-The OpenAlex photon cross-section row is routed here as a finite benchmark panel rather than left as a broad source-mining queue. A Gate C material event should eventually choose a small declared material/energy panel from photon attenuation data and test
+The photon cross-section source row is routed here as a finite benchmark panel rather than left as a broad source-mining queue. A Gate C material event should eventually choose a small declared material/energy panel from photon attenuation data and test
 $$
 I/I_0=\exp[-(\mu/\rho)x]
 $$
