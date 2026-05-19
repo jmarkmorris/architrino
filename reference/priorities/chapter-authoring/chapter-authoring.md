@@ -181,3 +181,9 @@ Use this backlog as a triage surface, not as a requirement factory. A source ear
 | K. P. Sinha and E. C. G. Sudarshan, `superfluid_1978_006.pdf`, `The Superfluid as a Source of All Interactions` | May 18, 2026 |
 | B. L. Hu, `spacetimecondensateHU.pdf`, `Can Spacetime be a Condensate?` | May 18, 2026 |
 | Jan Sieber, [Finding periodic orbits in state-dependent delay differential equations as roots of algebraic equations](https://arxiv.org/abs/1010.2391), arXiv v10 with journal reference DOI `10.3934/dcds.2012.32.2607` | May 18, 2026 |
+| K. Engelborghs, T. Luzyanina, K. J. in 't Hout, and D. Roose, [Collocation Methods for the Computation of Periodic Solutions of Delay Differential Equations](https://doi.org/10.1137/S1064827599363381) | May 19, 2026 |
+| Harvey Segur and Martin D. Kruskal, [Nonexistence of small-amplitude breather solutions in $\phi^4$ theory](https://doi.org/10.1103/PhysRevLett.58.747) | May 19, 2026 |
+| Kristian B. Dysthe and Karsten Trulsen, [Note on Breather Type Solutions of the NLS as Models for Freak-Waves](https://doi.org/10.1238/Physica.Topical.082a00048) | May 19, 2026 |
+| Bo-Ling Guo and Li-Ming Ling, [Rogue Wave, Breathers and Bright-Dark-Rogue Solutions for the Coupled Schrodinger Equations](https://doi.org/10.1088/0256-307X/28/11/110202) | May 19, 2026 |
+| David J. Kedziora, Adrian Ankiewicz, and Nail Akhmediev, [Second-order nonlinear Schrodinger equation breather solutions in the degenerate and rogue wave limits](https://doi.org/10.1103/PhysRevE.85.066601) | May 19, 2026 |
+| Jochen Denzler, [Nonpersistence of breather families for the perturbed sine Gordon equation](https://doi.org/10.1007/BF02108081) | May 19, 2026 |

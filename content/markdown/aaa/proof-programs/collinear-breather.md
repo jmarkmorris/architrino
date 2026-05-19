@@ -4647,6 +4647,14 @@ $$
 P_\eta.
 $$
 
+The negative-breather lesson is that even a formal expansion valid to all
+orders can miss a leakage channel outside the expansion scale. The collinear
+program therefore treats a small residual curve, a long-lived numerical trace,
+or a closed-looking ansatz as candidate evidence only. Promotion requires the
+existing certificate rows to close the leakage routes they control: the
+pre-ledger fold-layer budgets, coupled-corridor propagation, returned-sample
+preservation, and topology/self-map row on one certified domain.
+
 Before those five audit rows can be meaningful, the candidate must pass the named null-coordinate pre-ledger target from [Closed-Form Collinear Breather Ansatz](./closed-form-collinear-breather-ansatz.md#null-coordinate-causal-pre-ledger). Concretely, the proof must:
 
 1. produce one candidate cycle

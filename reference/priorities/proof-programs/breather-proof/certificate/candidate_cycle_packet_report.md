@@ -91,12 +91,15 @@ all five itinerary intervals, all four separator layers, both origin-layer
 events, and all ordered receiver-source arc-pair subblocks.
 
 The follow-on artifact now exists as `causal_ledger.json`, with its interval
-explanation in `causal_preledger_interval_report.md`. Each row classifies one
-ordered subblock and one null ledger as `empty` or `split_required`; no row is
-yet accepted as `simple_root` or `fold_layer`. The packet therefore remains
-uncertified because the current coarse mesh has blocking rows that require
-diagonal splits, separator-layer isolation, or receiver/source subrange splits
-before branch-chart certification.
+explanation in `causal_preledger_interval_report.md`. The first coarse pass
+rejected the five-arc mesh. The refined diagnostic artifact
+`mesh_refined_preledger_v1.json` then isolates the four field-speed separator
+layers and extracts six strict `simple_root` subrows. The follow-on
+`diagonal_exclusion_subledger.json` closes the monotone diagonal rows and the
+periodic endpoint contacts as empty rows. The packet still remains uncertified
+because the full partition is not accepted: `fold_layer_atlas.json` supplies
+kinematic fold data but no finite fold impulse ceiling, and parent-row boundary
+leftovers remain unresolved before branch-chart certification.
 
 ## Residual Obstruction
 
@@ -139,8 +142,11 @@ T_{\mathrm{cyc}},
 \Theta
 \right).
 $$
-The run rejects the present coarse mesh rather than the entire breather program.
-The next certificate step must either refine the mesh for this same candidate
-history and record the resulting new same-domain packet identity across every
-seed artifact, or deliberately replace the candidate template and restart the
-same-domain packet sequence.
+The refined run rejects the current partition rather than the entire breather
+program. It also proves that the template is not vacuous: the ledger now contains
+six strict simple-root subwindows with positive derivative, memory-depth,
+horizon, and sign margins, plus sixteen accepted diagonal-exclusion empty rows.
+The next certificate step must either bound the dual-mollified fold impulse on
+the four separator layers and finish the parent boundary partition, or
+deliberately replace the candidate template and restart the same-domain packet
+sequence.

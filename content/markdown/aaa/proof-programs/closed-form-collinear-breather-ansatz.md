@@ -11,6 +11,32 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ reduction. Standard nonlinear-wave breathers
 are comparison objects; they do not replace the causal-root ledger, fold-layer
 integrals, returned-history residuals, or Schauder-domain audit needed here.
 
+Negative breather results sharpen the same rule. In a nonintegrable wave
+equation, a formal expansion can be valid to all orders while the true dynamics
+still leak energy and fail to contain an exact localized periodic solution. The
+$\mathbb{A}\mathbb{A}\mathbb{A}$ consequence is not to import that radiation
+mechanism; it is to refuse promotion from formal closure alone. A candidate
+history remains approximate until fold-layer budgets, returned-history
+residuals, and the closed convex self-map audit are all certified on the same
+packet.
+
+The integrable and near-integrable nonlinear Schrodinger catalogs strengthen
+the terminology boundary. Their coherent profiles, Darboux constructions,
+rogue-wave limits, and degenerate-breather limits depend on equation classes
+and conservation structures not present in the delayed architrino law. They are
+useful only as a checklist for native certification: the ansatz must declare
+which variables are certificate coordinates, which limit or degeneration is
+being taken, and which separator or fold layer remains bounded in the causal-root
+ledger. A limit that exists only in the external equation is not an ansatz
+transfer.
+
+Perturbation nonpersistence results give the same refusal in another form. If a
+candidate survives only because an exact integrable symmetry or cancellation is
+kept intact, it is not a proof route for this certificate. The collinear program
+must show survival under the dual-mollified delayed law itself, with leakage
+channels closed by certificate rows rather than by analogy to a special wave
+equation.
+
 The same discipline applies to construction methods. A numerical enclosure,
 validated quadrature orbit, or interval-collocation solve is equivalent to a
 closed-form ansatz only if it produces the same finite candidate packet:
@@ -26,6 +52,15 @@ collinear certificate, a residual vector is therefore not just a numerical fit:
 it must record the projection/reconstruction convention, the local neighborhood
 where the reduction is meant to hold, and the regularity assumptions that make
 the returned history meaningful.
+
+Collocation adds a second discipline. The piecewise polynomial is a candidate
+representation of a periodic boundary-value problem, not a proof object by
+itself. A collocation packet must state the subinterval partition, polynomial
+degree, collocation nodes, period normalization, and section anchoring used to
+remove time-translation symmetry. Mesh-node superconvergence, meaning extra
+accuracy at selected nodes, is not assumed as a global bound; separator and
+origin layers need interval residual bounds on cells, not only small residuals
+at mesh points.
 
 The accepted output of this note is therefore a certificate packet
 $$

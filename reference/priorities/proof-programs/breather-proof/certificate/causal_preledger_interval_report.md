@@ -2,18 +2,18 @@
 
 ## Status
 
-This report runs the null-coordinate causal pre-ledger on packet `seed-doubled-four-arc-cosine-template-v0`.
-The result is a useful rejection of the current coarse mesh, not a rejection of the
-breather program. The current packet supplies certified empty rows, but it does
-not supply a complete finite pre-ledger because several overlapping rows have no
-strict simple-root or fold-layer margin on the present arc partition.
+This report records the refined null-coordinate pre-ledger attempt for packet `seed-doubled-four-arc-cosine-template-v0`. It now includes two additional certificate artifacts:
 
-The generated ledger is `causal_ledger.json` with status
-`preledger_rejected_split_required_rows`.
+- `diagonal_exclusion_subledger.json`
+- `fold_layer_atlas.json`
 
-## Null Coordinates And Lift Rule
+The diagonal-exclusion subledger closes the monotone same-interval rows and the periodically identified endpoint contact. The fold-layer atlas supplies the kinematic normal-form constants, exit floors, and itinerary parity rows for $\Sigma_1$ through $\Sigma_4$, but it does not supply the dual-mollified fold impulse ceiling. Therefore the ledger remains rejected before branch-chart certification.
 
-The range pass used
+The ledger status is `preledger_rejected_fold_impulse_and_boundary_leftovers_remaining`.
+
+## Refined Domain
+
+The range pass uses
 $$
 u(t)=c_f t-x(t),
 \qquad
@@ -28,120 +28,76 @@ x(t)=1.25\cos t,
 T_{\mathrm{cyc}}=2\pi.
 $$
 
-Rows whose source interval is later in phase order than the receiver interval
-were tested on the previous-period lift. Thus both null coordinates shift by
+The refined mesh splits the phase line into regular intervals $A_0,\ldots,A_4$ and separator-layer candidates $F_1,\ldots,F_4$. The separator layers are
 $$
--T_{\mathrm{cyc}}
+[\theta_{\Sigma_k}-0.0125,\theta_{\Sigma_k}+0.0125],
+\qquad k=1,\ldots,4.
 $$
-on that source row. Same-arc rows kept the same-period diagonal contact, because
-that contact must be split or excluded by a separate strict memory-depth row
-before branch-chart promotion.
-
-The derivative floors are
-$$
-J_u=1-\dot x(s)=1+1.25\sin s,
-\qquad
-J_w=1+\dot x(s)=1-1.25\sin s.
-$$
-On the current closed arc intervals, the relevant floor is zero whenever the row
-retains a field-speed separator endpoint for that ledger.
+The $w$ ledger has zero derivative at $\Sigma_1$ and $\Sigma_2$; the $u$ ledger has zero derivative at $\Sigma_3$ and $\Sigma_4$.
 
 ## Result Summary
 
 | Quantity | Value |
 | --- | ---: |
-| Total ledger rows | 50 |
-| Certified empty rows | 28 |
-| Certified simple-root rows | 0 |
-| Certified fold-layer rows | 0 |
-| Split-required rows | 22 |
-| Minimum certified empty gap $\gamma_{\mathrm{empty}}$ | 0.214297435588 |
+| Refined base rows | 162 |
+| Certified range-empty base rows | 116 |
+| Certified diagonal-exclusion empty rows | 16 |
+| Certified simple-root subrows | 6 |
+| Accepted fold-layer rows | 0 |
+| Split-required base rows | 30 |
+| Minimum range-empty gap $\gamma_{\mathrm{empty}}$ | 0.208212341788 |
+| Minimum simple-root derivative floor $\nu_{\mathrm{simple}}$ | 0.055761655527 |
+| Simple-root coverage gap $\gamma_{\mathrm{cov}}$ | 0.005 |
+| Minimum memory-depth margin $\gamma_\tau$ | 0.278626695826 |
+| Minimum horizon margin $\gamma_h$ | 4.197933629682 |
+| Minimum sign margin $\gamma_{\mathrm{sign}}$ | 0.278626695826 |
+| Minimum fold curvature floor $\alpha_{\Sigma}$ | 0.669228904575 |
+| Minimum fold exit floor $\nu_{\mathrm{exit},\Sigma}$ | 0.055761655527 |
 
-The accepted rows are only inactive complements. They have positive
-null-coordinate range gaps and root-count bound $[0,0]$. The pre-ledger fails
-because no active row is yet certified as `simple_root` or `fold_layer`.
+The branch chart remains unauthorized because accepted fold-layer rows require a finite $I^{\mathrm{fold}}_{\eta,\epsilon_c,\Sigma}$, and that ceiling is not yet evaluated.
 
-## Blocking Split Rows
+## Diagonal-Exclusion Subledger
 
-The current mesh has 22 blocking rows. The failure modes are:
+The diagonal-exclusion subledger accepts 16 rows as empty. On each accepted same-interval row, the selected null coordinate is strictly monotone, so $y(t)=y(s)$ implies $t=s$; the diagonal is excluded by the causal self-interaction convention. The periodic-boundary rows use the same argument at the periodically identified zero-depth endpoint $\theta=0\sim1$.
+
+This closes the purely kinematic diagonal blockers. No branch-chart row may be attached to these rows because their root-count bound is $[0,0]$.
+
+## Accepted Simple-Root Subrows
+
+| Row | Ledger | Receiver | Source | Receiver $\theta$ range | Source floor | Receiver floor | Memory depth | Sign margin |
+| --- | --- | --- | --- | --- | ---: | ---: | --- | ---: |
+| `S_u_A3_A2_1` | `u` | `A3` | `A2` | $[0.670709367399,0.83991638235]$ | 0.061926988065 | 0.055761655527 | $[0.281740312711,1.877903023959]$ | 0.281740312711 |
+| `S_u_A4_A2_2` | `u` | `A4` | `A2` | $[0.86491638235,0.957747116028]$ | 0.061926988065 | 0.061926988065 | $[2.034745625957,2.085251677498]$ | 2.034745625957 |
+| `S_u_A4_A3_3` | `u` | `A4` | `A3` | $[0.873898811563,0.957785341387]$ | 0.055761655527 | 0.110022164784 | $[0.278626695826,1.805406300616]$ | 0.278626695826 |
+| `S_w_A1_A0_4` | `w` | `A1` | `A0` | $[0.170709367399,0.33991638235]$ | 0.061926988065 | 0.055761655527 | $[0.281740312711,1.877903023959]$ | 0.281740312711 |
+| `S_w_A2_A0_5` | `w` | `A2` | `A0` | $[0.36491638235,0.457747116028]$ | 0.061926988065 | 0.061926988065 | $[2.034745625957,2.085251677498]$ | 2.034745625957 |
+| `S_w_A2_A1_6` | `w` | `A2` | `A1` | $[0.373898811563,0.457785341387]$ | 0.055761655527 | 0.110022164784 | $[0.278626695826,1.805406300616]$ | 0.278626695826 |
+
+These six rows retain strict source monotonicity, strict receiver monotonicity, a $0.005$ source-coverage margin in null-coordinate value, positive memory depth, positive horizon margin, and the correct $u$ or $w$ line-of-action sign. They are subrows of parent overlap rows; the parent boundary leftovers remain unresolved.
+
+## Fold-Layer Atlas
+
+| Event | Ledger | Interval | $\alpha_{\Sigma}$ | $\nu_{\mathrm{exit},\Sigma}$ | $\Delta N$ | $\Delta D$ | Impulse ceiling |
+| --- | --- | --- | ---: | ---: | ---: | ---: | --- |
+| $\Sigma_1$ | `w` | `F1` | 0.669228904575 | 0.055761655527 | 2 | 0 | `not_evaluated_missing_dual_mollified_acceleration_bound` |
+| $\Sigma_2$ | `w` | `F2` | 0.669228904575 | 0.055761655527 | -2 | 0 | `not_evaluated_missing_dual_mollified_acceleration_bound` |
+| $\Sigma_3$ | `u` | `F3` | 0.669228904575 | 0.055761655527 | 2 | 0 | `not_evaluated_missing_dual_mollified_acceleration_bound` |
+| $\Sigma_4$ | `u` | `F4` | 0.669228904575 | 0.055761655527 | -2 | 0 | `not_evaluated_missing_dual_mollified_acceleration_bound` |
+
+The kinematic fold rows pass the normal-form and parity checks: each listed layer has positive curvature floor, positive exit floor, even root-count jump, and zero signed-degree jump. They are still not accepted fold-layer rows because the required finite fold impulse ceiling has not been computed from the dual-mollified acceleration bound.
+
+## Remaining Blocking Classes
 
 | Failure reason | Rows |
 | --- | ---: |
-| `diagonal_contact_not_split` | 10 |
-| `range_overlap_not_strictly_covered` | 22 |
-| `zero_derivative_separator_not_isolated` | 16 |
-| `periodic_lift_boundary_contact_not_split` | 2 |
+| `range_overlap_requires_level_split` | 14 |
+| `fold_layer_impulse_ceiling_not_evaluated` | 16 |
 
-### $u$-ledger blocking rows
+The remaining blockers have two different meanings.
 
-| Row | Subblock | Primary failure | Separator evidence |
-| --- | --- | --- | --- |
-| `L_u_I0_I0` | `B_I0_I0` | `diagonal_contact_not_split` | none |
-| `L_u_I0_I4` | `B_I0_I4` | `zero_derivative_separator_not_isolated` | `source:Sigma_4` |
-| `L_u_I1_I0` | `B_I1_I0` | `range_overlap_not_strictly_covered` | none |
-| `L_u_I1_I1` | `B_I1_I1` | `diagonal_contact_not_split` | none |
-| `L_u_I2_I1` | `B_I2_I1` | `zero_derivative_separator_not_isolated` | `receiver:Sigma_3` |
-| `L_u_I2_I2` | `B_I2_I2` | `diagonal_contact_not_split` | `source:Sigma_3; receiver:Sigma_3` |
-| `L_u_I3_I2` | `B_I3_I2` | `zero_derivative_separator_not_isolated` | `source:Sigma_3; receiver:Sigma_3; receiver:Sigma_4` |
-| `L_u_I3_I3` | `B_I3_I3` | `diagonal_contact_not_split` | `source:Sigma_3; source:Sigma_4; receiver:Sigma_3; receiver:Sigma_4` |
-| `L_u_I4_I2` | `B_I4_I2` | `zero_derivative_separator_not_isolated` | `source:Sigma_3; receiver:Sigma_4` |
-| `L_u_I4_I3` | `B_I4_I3` | `zero_derivative_separator_not_isolated` | `source:Sigma_3; source:Sigma_4; receiver:Sigma_4` |
-| `L_u_I4_I4` | `B_I4_I4` | `diagonal_contact_not_split` | `source:Sigma_4; receiver:Sigma_4` |
+- `fold_layer_impulse_ceiling_not_evaluated`: the row touches a separator layer on the active fold ledger. The kinematic atlas is ready, but the finite impulse ceiling is absent, so the row stays fail-closed.
+- `range_overlap_requires_level_split`: the parent range-overlap rows have accepted simple-root interiors, but the boundary leftovers still need a final partition into empty, diagonal-excluded, simple-root, or fold-layer pieces.
 
-### $w$-ledger blocking rows
+## Technical Conclusion
 
-| Row | Subblock | Primary failure | Separator evidence |
-| --- | --- | --- | --- |
-| `L_w_I0_I0` | `B_I0_I0` | `diagonal_contact_not_split` | `source:Sigma_1; receiver:Sigma_1` |
-| `L_w_I0_I4` | `B_I0_I4` | `zero_derivative_separator_not_isolated` | `receiver:Sigma_1` |
-| `L_w_I1_I0` | `B_I1_I0` | `zero_derivative_separator_not_isolated` | `source:Sigma_1; receiver:Sigma_1; receiver:Sigma_2` |
-| `L_w_I1_I1` | `B_I1_I1` | `diagonal_contact_not_split` | `source:Sigma_1; source:Sigma_2; receiver:Sigma_1; receiver:Sigma_2` |
-| `L_w_I2_I0` | `B_I2_I0` | `zero_derivative_separator_not_isolated` | `source:Sigma_1; receiver:Sigma_2` |
-| `L_w_I2_I1` | `B_I2_I1` | `zero_derivative_separator_not_isolated` | `source:Sigma_1; source:Sigma_2; receiver:Sigma_2` |
-| `L_w_I2_I2` | `B_I2_I2` | `diagonal_contact_not_split` | `source:Sigma_2; receiver:Sigma_2` |
-| `L_w_I3_I2` | `B_I3_I2` | `zero_derivative_separator_not_isolated` | `source:Sigma_2` |
-| `L_w_I3_I3` | `B_I3_I3` | `diagonal_contact_not_split` | none |
-| `L_w_I4_I3` | `B_I4_I3` | `range_overlap_not_strictly_covered` | none |
-| `L_w_I4_I4` | `B_I4_I4` | `diagonal_contact_not_split` | none |
-
-## Mathematical Obstruction
-
-For an empty row the interval test proves
-$$
-\operatorname{dist}\!\left(Y_\alpha^y,Y_\beta^y\right)>0.
-$$
-The minimum such distance is
-$$
-\gamma_{\mathrm{empty}}=0.214297435588>0.
-$$
-Those rows are safe inactive complements.
-
-For a simple-root row, the current theorem target requires strict source and
-receiver monotonicity floors, strict source coverage of the receiver range,
-strict nonzero memory depth, and strict sign separation. The present mesh cannot
-supply those margins. Same-arc rows still contain the excluded diagonal
-$(s=t)$, separator-adjacent rows keep zero null-coordinate derivative floors,
-and several boundary-contact rows only overlap at an endpoint rather than inside
-a strictly covered interval.
-
-Therefore the branch chart must not be attempted from this ledger. The next
-mathematical operation is to replace the coarse five-arc mesh with a refined
-pre-ledger mesh that isolates the four separator layers and separates diagonal,
-periodic-boundary, inactive, and active source intervals before repeating the
-range pass.
-
-## Next Certificate Action
-
-The next packet should keep the same candidate history, period, section,
-parameter tuple, and representation unless the template is being replaced. Any
-mesh refinement changes the packet component $\Theta$, so the refined artifacts
-must record a new same-domain packet identity. The refinement must give one of
-two honest outcomes:
-
-1. a split mesh with strict simple-root rows away from every separator and away
-   from the excluded diagonal; or
-2. a bounded fold-layer atlas around `Sigma_1` through `Sigma_4` with
-   nonzero exit floors and parity data.
-
-Until one of those exists, `branch_chart.json` and `seed_chart_interval_report.md`
-remain blocked.
+The diagonal-exclusion work is complete and technically useful. The fold-layer atlas is also useful, but only as a kinematic atlas: it does not yet satisfy the full fold-layer alternative in the pre-ledger theorem target. The next proof step with the highest technical value is a fold impulse ceiling bound for the four separator layers. If that closes, the remaining parent boundary leftovers are a small finite partition problem; if it does not close, this cosine template remains rejected before branch-chart certification.

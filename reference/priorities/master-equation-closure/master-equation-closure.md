@@ -11,7 +11,7 @@
 
 ## Task Queue
 
-1. `circular_asymptotics` — Extend higher-winding and large-$\beta$ circular self-force asymptotics. Status: `in_progress`; the branchwise large-$\beta$ self-hit estimates, derivative-sensitive residual packet, high-speed circular obstruction, sampled finite-band branch table, and Jacobian-null finite-crossing criteria now advance the self-hit side, but the formal finite-band interval proof for the bare-kernel circular MCB verdict remains open. Depends on: none.
+1. `circular_asymptotics` — Extend higher-winding and large-$\beta$ circular self-force asymptotics. Status: `in_progress`; the branchwise large-$\beta$ self-hit estimates, derivative-sensitive residual packet, high-speed circular obstruction, sampled finite-band branch table, executable numerical certificate, interval-certificate packet, and Jacobian-null finite-crossing criteria now advance the self-hit side, but the directed-rounding interval proof for the bare-kernel circular MCB verdict remains open. Depends on: none.
 2. `spiral_branch_chart_test` — Certify whether any admissible variable-pitch spiral roots realize negative weighted tangential drive with positive Jacobian floors and finite memory depth, using the promoted variable-pitch formulas, radial-turn inequality, and weighted tangential obstruction test. Status: `next`. Depends on: `circular_asymptotics`.
 3. `lorentz_gr_bridge` — Close the Lorentz and weak-field GR bridge from the coarse-grained delayed medium. Status: `pending`. Depends on: `spiral_branch_chart_test`.
 
@@ -63,8 +63,8 @@ This completion does not certify a branch or terminal label. Downstream consumer
 - Circular self-branch count grows only linearly.
 - The circular self-hit sum is branchwise sign-resolved: radial self terms are outward, higher-winding tangential self terms are not sign-definite, the positive-sine subchart has a backward order-$\beta$ signed tangential residue, and the full signed $|\sin\xi|$ chart cancels the order-$\beta$ signed tangential terms to a bounded remainder while retaining order-$\beta$ absolute tangential activity.
 - Combining the exact partner branch with those self sums gives a high-speed circular obstruction outside Jacobian-null windows: for the equal-magnitude opposite-charge bare kernel, the net tangential residual is positive of order $C\beta$ on both the positive-sine and full signed self charts, and the net radial acceleration becomes outward for sufficiently large $\beta$ before any centripetal closure equation can be satisfied.
-- The sampled finite-band branch table through the first eight higher-winding birth bands finds no tangential-zero survivor after excluding $|J|<0.02$ windows; this is a certificate target, not yet a theorem-grade interval proof.
-- The symmetric isolated circular two-body ansatz has a partner-side tangential obstruction; after the high-speed obstruction and sampled finite-band table, only the formal finite-band interval certificate remains before a bare-kernel circular MCB no-go or existence theorem is promoted.
+- The sampled finite-band branch table through the first eight higher-winding birth bands finds no tangential-zero survivor after excluding $|J|<0.02$ windows; [circular_interval_certificate.py](circular_interval_certificate.py) reproduces the numerical target-margin pass, but this remains below theorem grade because it lacks directed rounding.
+- The symmetric isolated circular two-body ansatz has a partner-side tangential obstruction; after the high-speed obstruction, sampled finite-band table, executable numerical certificate, and interval-certificate packet, only the directed-rounding interval proof remains before a bare-kernel circular MCB no-go or existence theorem is promoted.
 
 ## Breather Certificate Routing Gate
 
@@ -83,11 +83,11 @@ Use the collinear-breather certificate as the smallest finite-root-ledger test f
 
 ## Circular Work Order
 
-Status update. The branch-history packet below is now the required baseline for `circular_asymptotics`. The high-speed residual computation, sampled finite-band branch table, and Jacobian-null finite-crossing criteria are recorded here. The remaining circular task is to convert the sampled finite-band table into a formal interval certificate or executable proof artifact.
+Status update. The branch-history packet below is now the required baseline for `circular_asymptotics`. The high-speed residual computation, sampled finite-band branch table, executable numerical certificate, interval-certificate packet, and Jacobian-null finite-crossing criteria are recorded here. The remaining circular task is to upgrade the executable artifact to a directed-rounding interval proof.
 
 1. Treat the self-hit side as partially advanced: preserve the branchwise large-$\beta$ estimates, distinguish the positive-sine subchart from the full signed $|\sin\xi|$ chart, keep radial self terms outward, and keep higher-winding tangential self terms branchwise rather than sign-definite.
 2. Preserve the exact partner branch asymptotics on the same retained history chart, reporting the branch ledger, Jacobian floor, inactive gaps, and root-transport residuals branch by branch.
-3. Convert the sampled finite-band circular table into an interval certificate, including the full partner/self signed sum rather than only the partner obstruction or only the self-sector cancellation.
+3. Upgrade the executable numerical certificate to a directed-rounding interval proof for the finite-band circular table, including the full partner/self signed sum rather than only the partner obstruction or only the self-sector cancellation.
 4. Apply the finite-crossing criteria below to every Jacobian-null birth window; keep any failed window out of the theorem statement.
 5. Prove either the formal finite-band bare-kernel circular MCB no-go theorem or an existence theorem; do not treat the Jacobian-null wall as circular closure.
 6. Push the isolated binary to non-circular periodic-orbit closure after the circular verdict is classified.
@@ -315,7 +315,57 @@ Sampled branch table. The table records the lowest sampled value of each normali
 
 Residual consequence. Since exact constant-speed circular closure requires the tangential residual to vanish before the radial balance can be tuned against $R_{\mathrm{cent}}$, the sampled finite-band table supports the bare-kernel circular no-go route: no finite-band tangential candidate survived the branch count, Jacobian-window exclusion, and partner/self signed-sum test. The radial residual still changes sign in some bands before the centripetal term is imposed, so the radial row is not the leading obstruction. The leading obstruction remains $\Theta_{|\sin|}>0$ and $\Theta_+>0$ on every sampled component.
 
-Formalization target. Promote this table to theorem grade by replacing the sampled minima with interval lower bounds
+## Finite-Band Interval-Certificate Packet
+
+Claim level. This packet specifies the formal interval certificate required to promote the sampled branch table. It is not itself the proof artifact, because theorem-grade promotion requires verified root enclosures and directed-rounding interval bounds for every retained branch. Its value is that the proof obligation is now finite, explicit, and checkable.
+
+Executable status. [circular_interval_certificate.py](circular_interval_certificate.py) is now the local reproducibility artifact, with output captured in [circular-interval-certificate-report.md](circular-interval-certificate-report.md). It passes the finite-band numerical target margins for all eight listed bands:
+$$
+\Theta_{|\sin|}^{\mathrm{sample}}\ge\delta_m,
+\qquad
+\Theta_{+}^{\mathrm{sample}}\ge\delta_m^+.
+$$
+It is deliberately labeled a numerical support certificate, not a theorem-grade interval proof, because it uses ordinary floating arithmetic and sample minima rather than directed-rounding root enclosures and interval lower bounds. The promotion blocker is now narrow: replace the floating root solver and sampled residual minima with directed interval enclosures, then attach the analytic high-speed tail remainder.
+
+Certificate domain. For each finite band $m=0,\ldots,7$, set
+$$
+I_m^\varepsilon
+=
+(\beta_m^\star,\beta_{m+1}^\star)
+\setminus
+\mathcal{N}_{J,\varepsilon},
+\qquad
+\varepsilon=0.02,
+$$
+with $\beta_0^\star=1$ and $\beta_9^\star$ unused unless the table is extended. The candidate high-speed handoff is
+$$
+\beta_{\mathrm{tail}}=\beta_8^\star=26.684798.
+$$
+The interval proof may use this handoff only if it also proves an explicit tail lower bound for $\beta\ge\beta_{\mathrm{tail}}$ from the large-$\beta$ asymptotic estimates with a declared remainder.
+
+Root-enclosure obligation. On each component of $I_m^\varepsilon$, the proof artifact must enclose every active root in an interval
+$$
+\Xi_{\alpha,k}
+=
+[\underline{\xi}_{\alpha,k},\overline{\xi}_{\alpha,k}]
+$$
+such that
+$$
+0\in F_\alpha(\beta,\Xi_{\alpha,k}),
+\qquad
+0\notin \partial_\xi F_\alpha(\beta,\Xi_{\alpha,k}),
+\qquad
+|J_\alpha(\beta,\Xi_{\alpha,k})|\ge\varepsilon.
+$$
+The inactive complements must satisfy a positive interval gap
+$$
+\inf_{\mathcal{G}^{\mathrm{inact}}_{\mathrm{circ}}}|F_\alpha|
+\ge
+g_{m,\alpha}>0.
+$$
+This prevents the certificate from proving positivity for an incomplete root ledger.
+
+Interval residual obligation. Replace each sampled minimum in the finite-band table with certified interval lower bounds
 $$
 \Theta_{|\sin|}(\beta)\ge\delta_m>0,
 \qquad
@@ -325,7 +375,20 @@ on each component of
 $$
 (\beta_m^\star,\beta_{m+1}^\star)\setminus\mathcal{N}_{J,\varepsilon}.
 $$
-If those interval bounds pass and the high-speed asymptotic tail is attached with an explicit threshold $\beta_{\mathrm{tail}}$, the bare-kernel circular MCB no-go theorem can be promoted for the equal-magnitude circular ansatz.
+The sampled table suggests the following conservative target margins for the proof artifact:
+
+| Band | $\delta_m$ target for $\Theta_{|\sin|}$ | $\delta_m^+$ target for $\Theta_+$ | Required proof status |
+| --- | ---: | ---: | --- |
+| 0 | $0.45$ | $0.45$ | Root enclosure near the principal self branch must exclude the $\beta=1$ Jacobian window. |
+| 1 | $1.00$ | $0.80$ | Negative-sine pair is included only in $\Theta_{|\sin|}$. |
+| 2 | $1.60$ | $1.35$ | First positive higher-winding pair enters $\Theta_+$. |
+| 3 | $2.30$ | $1.80$ | No positive-sine birth in this band; carry the same positive-sine ledger. |
+| 4 | $2.90$ | $2.35$ | Second positive higher-winding pair enters $\Theta_+$. |
+| 5 | $3.50$ | $2.80$ | No positive-sine birth in this band; carry the same positive-sine ledger. |
+| 6 | $4.10$ | $3.30$ | Third positive higher-winding pair enters $\Theta_+$. |
+| 7 | $4.80$ | $3.80$ | Tail handoff must be attached after $\beta_8^\star$. |
+
+Promotion rule. If the executable certificate proves all target margins, proves inactive gaps, and attaches the large-$\beta$ tail with a stated $\beta_{\mathrm{tail}}$, then the equal-magnitude bare circular ansatz has no tangential-zero branch chart outside $\mathcal{N}_{J,\varepsilon}$. At that point the reader-facing master-equation chapter may promote a finite-band circular no-go proposition. If any margin fails, the failed interval becomes the only surviving finite-band circular candidate and must be re-evaluated with smaller Jacobian windows or exact interval root refinement.
 
 ## Circular Jacobian-Null Finite-Crossing Packet
 

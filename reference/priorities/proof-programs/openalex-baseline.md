@@ -185,8 +185,25 @@ packet ready for the null-coordinate pre-ledger.
   present proof-program bottleneck is earlier: one candidate cycle, projection
   and reconstruction data, a same-domain pre-ledger, branch-chart margins, and
   returned-history residuals.
-- NLS, rogue-wave, and sine-Gordon breathers are not promoted as physical
-  analogues. They are useful for terminology discipline and failure pressure.
+- The collocation paper's software architecture, benchmark examples, and
+  implementation-specific convergence orders are not promoted as AAA claims.
+  The useful source signal is narrower: a collocation candidate must declare
+  its piecewise polynomial representation, collocation nodes, section anchoring,
+  and adaptive mesh policy before its residuals can feed the seed-chart packet.
+- The $\phi^4$ nonexistence paper's specific Klein-Gordon equation, perturbation
+  expansion, and radiation-rate calculation are not imported into AAA
+  dynamics. Its useful signal is the proof standard: formal all-orders closure
+  and approximate long-lived oscillation are insufficient unless the relevant
+  leakage channels are closed by the native delayed-system certificate rows.
+- The NLS and coupled-NLS breather sources are exhausted as terminology and
+  failure-pressure comparators. Their Darboux constructions, explicit coherent
+  profiles, rogue-wave limits, and degenerate-breather limits are not promoted.
+  The useful source signal is the native requirement to declare candidate
+  variables, limiting procedures, and separator/fold budgets inside the delayed
+  architrino certificate.
+- The perturbed sine-Gordon nonpersistence source is exhausted as planar-bridge
+  pressure. It supports treating tangential leakage, gauge-reset discontinuity,
+  and perturbation survival as real certificate burdens rather than prose gaps.
 - Direct-action electrodynamics is not promoted into the current proof program.
   It belongs to potential/action comparison only after the breather certificate
   has a candidate or after the potential/action workstream selects that lane.
@@ -196,11 +213,24 @@ packet ready for the null-coordinate pre-ledger.
 | Source | Date exhausted | Corpus outcome |
 | --- | --- | --- |
 | Jan Sieber, [Finding periodic orbits in state-dependent delay differential equations as roots of algebraic equations](https://arxiv.org/abs/1010.2391), arXiv v10 with journal reference DOI `10.3934/dcds.2012.32.2607` | May 18, 2026 | Promoted the projection/reconstruction and local-regularity burden into the closed-form ansatz chapter and seed-chart packet. Retained the finite residual vector as a candidate-construction target; rejected Hopf and branching applications for this pass as downstream of candidate-cycle production. |
+| K. Engelborghs, T. Luzyanina, K. J. in 't Hout, and D. Roose, [Collocation Methods for the Computation of Periodic Solutions of Delay Differential Equations](https://doi.org/10.1137/S1064827599363381) | May 19, 2026 | Promoted the collocation-method burden into the candidate packet: piecewise polynomial metadata, collocation nodes, section anchoring, and mesh adaptation policy must be declared before collocation residuals count as seed-chart evidence. Rejected implementation-specific convergence orders and software details for this pass. |
+| Harvey Segur and Martin D. Kruskal, [Nonexistence of small-amplitude breather solutions in $\phi^4$ theory](https://doi.org/10.1103/PhysRevLett.58.747) | May 19, 2026 | Promoted the negative-breather proof standard into the ansatz and collinear-breather chapters: formal all-orders closure, small residuals, and long-lived approximate oscillations are candidate evidence only until native fold-layer, returned-history, corridor, and self-map certificate rows close the relevant leakage channels. Rejected the source's specific Klein-Gordon radiation mechanism as non-native to the delayed architrino system. |
+| Kristian B. Dysthe and Karsten Trulsen, [Note on Breather Type Solutions of the NLS as Models for Freak-Waves](https://doi.org/10.1238/Physica.Topical.082a00048) | May 19, 2026 | Exhausted as terminology pressure: NLS breathers and freak-wave models remain comparison objects only. Promoted the requirement that AAA `breather` candidates declare native certificate coordinates and bounded separator/fold layers before any coherent-profile analogy can matter. |
+| Bo-Ling Guo and Li-Ming Ling, [Rogue Wave, Breathers and Bright-Dark-Rogue Solutions for the Coupled Schrodinger Equations](https://doi.org/10.1088/0256-307X/28/11/110202) | May 19, 2026 | Exhausted as integrability pressure: Darboux-built rogue-wave and breather solutions are not imported into AAA dynamics. Promoted the rule that explicit external solution families supply only a negative checklist unless their variables, constraints, and residuals are rebuilt in the delayed architrino certificate. |
+| David J. Kedziora, Adrian Ankiewicz, and Nail Akhmediev, [Second-order nonlinear Schrodinger equation breather solutions in the degenerate and rogue wave limits](https://doi.org/10.1103/PhysRevE.85.066601) | May 19, 2026 | Exhausted as limit-discipline pressure: degenerate and rogue-wave limits remain external comparison mathematics. Promoted the native requirement that any candidate degeneration identify the active certificate variables, limiting procedure, and bounded fold/separator transit on the same causal-root ledger. |
+| Jochen Denzler, [Nonpersistence of breather families for the perturbed sine Gordon equation](https://doi.org/10.1007/BF02108081) | May 19, 2026 | Exhausted as planar-bridge obstruction pressure: special-equation breather persistence cannot be assumed after perturbation. Promoted the planar requirement that tangential leakage, gauge-reset discontinuity, separator/fold transit, and perturbation survival be certified rather than inherited by analogy. |
 
 ## Next Corpus Use
 
-The safe corpus-level use is already narrow: add a short discipline note to the
-closed-form ansatz chapter and keep the seed-chart packet's candidate route
-explicitly finite-residual based. Do not add a new validation gate; the existing
-seed-chart gate is enough. The advancement is to make the candidate generator
-mathematically sharper, not to expand the gate set.
+The safe corpus-level use from the completed finite-residual, collocation,
+negative-breather, NLS/rogue-wave, degenerate-limit, and sine-Gordon
+nonpersistence sources has been applied: the closed-form ansatz chapter,
+collinear-breather chapter, planar-bridge chapter, and seed-chart packet now
+state the projection/reconstruction burden, local-regularity burden,
+collocation metadata, mesh-adaptation policy, failure standard for formal
+all-orders candidates, comparison-only rule for external breather catalogs, and
+planar perturbation-survival burden. Do not add a new validation gate; the
+existing seed-chart and finite-certificate rows are enough. The advancement is
+to make the candidate generator and planar bridge mathematically sharper, not
+to expand the gate set. The next unmined source in this lane is
+[`The rigidity of sine-gordon breathers`](https://openalex.org/W2124427712).

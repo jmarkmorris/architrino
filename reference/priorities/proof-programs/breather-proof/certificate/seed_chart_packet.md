@@ -335,6 +335,7 @@ targets can be tested on the same mesh.
 | `period` | $T_{\mathrm{cyc}}$ and section anchor |
 | `symmetry` | Signed-sheet convention, origin crossings, and periodic identification |
 | `basis` | Piecewise interpolation, collocation, quadrature, or fold-adapted fractional basis data |
+| `collocation_meta` | For collocation routes: subinterval partition, polynomial degree, collocation nodes, period normalization, and the section-anchoring row; otherwise `null` with a construction-route note |
 | `arcs` | Ordered interval list with speed class, endpoint data, separator events, and origin-layer flags |
 | `samples` | Values of $x$, $\dot x$, optional $\ddot x$, and local basis residuals on the mesh |
 | `evaluation_enclosures` | Interval evaluation rules for $x$, $\dot x$, $\ddot x$, $u$, $w$, and the needed range bounds |
@@ -362,6 +363,7 @@ and by its active itinerary interval. Separator neighborhoods must be refined mo
 | `arc_membership` | The itinerary arc or fold layer containing each node |
 | `subblocks` | Receiver-source subblock partition used by `causal_ledger.json` |
 | `mesh_widths` | Maximum ordinary, separator-layer, and origin-layer mesh widths |
+| `adaptation_policy` | Uniform, separator-refined, residual-equidistributed, or hybrid mesh policy, with the reason each separator and origin layer receives its declared refinement |
 | `sample_tolerances` | The local $\epsilon_x$, $\epsilon_v$, $\epsilon_{\mathrm{EOM}}$, $\epsilon_{\mathrm{range}}$, and $\epsilon_J$ budgets |
 | `endpoint_policy` | Periodic endpoint identification, excluded diagonal rule, and fold-layer boundary convention |
 
