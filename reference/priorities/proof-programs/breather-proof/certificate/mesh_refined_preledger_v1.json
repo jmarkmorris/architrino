@@ -2,7 +2,7 @@
   "schema": "breather-refined-preledger-mesh-v1",
   "candidate_packet_id": "seed-doubled-four-arc-cosine-template-v0",
   "refinement_id": "preledger-separator-level-split-v1",
-  "status": "diagnostic_refinement_rejected_before_branch_chart",
+  "status": "diagnostic_refinement_rejected_fold_impulse_and_fold_adjacent_parent_leftovers",
   "parent_mesh": "mesh.json",
   "refinement_parameters": {
     "separator_radius_theta": 0.0125,
@@ -304,6 +304,6 @@
     "diagonal_contact_rows": 0,
     "fold_layer_rows_requiring_impulse_ceiling": 16,
     "periodic_boundary_contact_rows": 0,
-    "parent_range_rows_with_boundary_leftovers": 14
+    "parent_range_rows_with_boundary_leftovers": 6
   }
 }

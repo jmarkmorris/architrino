@@ -2,7 +2,7 @@
   "schema": "breather-causal-ledger-refined-v2",
   "packet_id": "seed-doubled-four-arc-cosine-template-v0",
   "refinement_id": "preledger-separator-level-split-v1",
-  "status": "preledger_rejected_fold_impulse_and_boundary_leftovers_remaining",
+  "status": "preledger_rejected_fold_impulse_and_fold_adjacent_parent_leftovers_remaining",
   "theorem_target": "Null-Coordinate Causal Pre-Ledger",
   "packet_identity_refs": {
     "candidate_history": "phi_cyc.json:packet_identity",
@@ -26,22 +26,22 @@
   },
   "summary": {
     "base_rows": 162,
-    "certified_empty_base_rows": 132,
+    "certified_empty_base_rows": 140,
     "certified_range_empty_base_rows": 116,
-    "certified_diagonal_exclusion_empty_rows": 16,
+    "certified_diagonal_exclusion_empty_rows": 24,
     "certified_simple_root_subrows": 6,
     "accepted_fold_layer_rows": 0,
-    "split_required_base_rows": 30,
+    "split_required_base_rows": 22,
     "unresolved_diagonal_contact_rows": 0,
     "unresolved_fold_layer_rows": 16,
     "unresolved_periodic_boundary_rows": 0,
-    "unresolved_range_split_parent_rows": 14,
+    "unresolved_range_split_parent_rows": 6,
     "branch_chart_authorized": false
   },
   "global_margins": {
     "gamma_empty_range": 0.208212341788,
     "gamma_inact_range": 0.208212341788,
-    "diagonal_exclusion_empty_rows": 16,
+    "diagonal_exclusion_empty_rows": 24,
     "nu_simple": 0.055761655527,
     "gamma_cov": 0.005,
     "gamma_tau": 0.278626695826,
@@ -53,39 +53,8 @@
     "pass": false
   },
   "blocking_summary": {
-    "reason": "The diagonal-exclusion subledger closes the purely kinematic diagonal and periodic endpoint rows. The fold-layer atlas supplies curvature, exit, and parity data but cannot promote fold rows because the dual-mollified fold impulse ceiling is missing. Six parent range-overlap boundary leftovers also remain unresolved.",
-    "split_required_base_row_ids": [
-      "R_u_F1_A0",
-      "R_u_A1_F1",
-      "R_u_F2_A1",
-      "R_u_A2_F2",
-      "R_u_F3_A2",
-      "R_u_F3_F3",
-      "R_u_A3_A2",
-      "R_u_A3_F3",
-      "R_u_F4_A2",
-      "R_u_F4_A3",
-      "R_u_F4_F4",
-      "R_u_A4_A2",
-      "R_u_A4_F3",
-      "R_u_A4_A3",
-      "R_u_A4_F4",
-      "R_w_F1_A0",
-      "R_w_F1_F1",
-      "R_w_A1_A0",
-      "R_w_A1_F1",
-      "R_w_F2_A0",
-      "R_w_F2_A1",
-      "R_w_F2_F2",
-      "R_w_A2_A0",
-      "R_w_A2_F1",
-      "R_w_A2_A1",
-      "R_w_A2_F2",
-      "R_w_F3_A2",
-      "R_w_A3_F3",
-      "R_w_F4_A3",
-      "R_w_A4_F4"
-    ]
+    "fold_layer_impulse_ceiling_not_evaluated": 16,
+    "range_overlap_requires_level_split": 6
   },
   "intervals": [
     {
@@ -551,22 +520,23 @@
         -1.25,
         0.022608305629
       ],
-      "status": "split_required",
-      "empty_method": null,
+      "status": "empty",
+      "empty_method": "monotone_adjacent_boundary_exclusion",
       "range_gap": 0,
       "receiver_monotone_floor": 1.938073011935,
       "monotone_floor": 1,
       "jacobian_floor": 1,
-      "root_count_bound": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
       "root_sign": null,
       "memory_depth_range": null,
       "separator_event": null,
-      "diagonal_exclusion_ref": null,
+      "diagonal_exclusion_ref": "diagonal_exclusion_subledger.json:R_u_F1_A0",
       "fold_layer_atlas_ref": null,
-      "failure_code": "range_overlap_requires_level_split",
-      "failure_reasons": [
-        "range_overlap_requires_level_split"
-      ]
+      "failure_code": "",
+      "failure_reasons": []
     },
     {
       "row_id": "R_u_F1_F1",
@@ -890,22 +860,23 @@
         0.022608305629,
         0.336606129764
       ],
-      "status": "split_required",
-      "empty_method": null,
+      "status": "empty",
+      "empty_method": "monotone_adjacent_boundary_exclusion",
       "range_gap": 0,
       "receiver_monotone_floor": 2.055761655527,
       "monotone_floor": 1.938073011935,
       "jacobian_floor": 1.938073011935,
-      "root_count_bound": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
       "root_sign": null,
       "memory_depth_range": null,
       "separator_event": null,
-      "diagonal_exclusion_ref": null,
+      "diagonal_exclusion_ref": "diagonal_exclusion_subledger.json:R_u_A1_F1",
       "fold_layer_atlas_ref": null,
-      "failure_code": "range_overlap_requires_level_split",
-      "failure_reasons": [
-        "range_overlap_requires_level_split"
-      ]
+      "failure_code": "",
+      "failure_reasons": []
     },
     {
       "row_id": "R_u_A1_A1",
@@ -1229,22 +1200,23 @@
         0.336606129764,
         2.804986523826
       ],
-      "status": "split_required",
-      "empty_method": null,
+      "status": "empty",
+      "empty_method": "monotone_adjacent_boundary_exclusion",
       "range_gap": 0,
       "receiver_monotone_floor": 1.938073011935,
       "monotone_floor": 2.055761655527,
       "jacobian_floor": 2.055761655527,
-      "root_count_bound": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
       "root_sign": null,
       "memory_depth_range": null,
       "separator_event": null,
-      "diagonal_exclusion_ref": null,
+      "diagonal_exclusion_ref": "diagonal_exclusion_subledger.json:R_u_F2_A1",
       "fold_layer_atlas_ref": null,
-      "failure_code": "range_overlap_requires_level_split",
-      "failure_reasons": [
-        "range_overlap_requires_level_split"
-      ]
+      "failure_code": "",
+      "failure_reasons": []
     },
     {
       "row_id": "R_u_F2_F2",
@@ -1568,22 +1540,23 @@
         2.804986523826,
         3.118984347961
       ],
-      "status": "split_required",
-      "empty_method": null,
+      "status": "empty",
+      "empty_method": "monotone_adjacent_boundary_exclusion",
       "range_gap": 0,
       "receiver_monotone_floor": 0.061926988065,
       "monotone_floor": 1.938073011935,
       "jacobian_floor": 1.938073011935,
-      "root_count_bound": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
       "root_sign": null,
       "memory_depth_range": null,
       "separator_event": null,
-      "diagonal_exclusion_ref": null,
+      "diagonal_exclusion_ref": "diagonal_exclusion_subledger.json:R_u_A2_F2",
       "fold_layer_atlas_ref": null,
-      "failure_code": "range_overlap_requires_level_split",
-      "failure_reasons": [
-        "range_overlap_requires_level_split"
-      ]
+      "failure_code": "",
+      "failure_reasons": []
     },
     {
       "row_id": "R_u_A2_A2",
@@ -4655,22 +4628,23 @@
         1.466690155901,
         3.164200959219
       ],
-      "status": "split_required",
-      "empty_method": null,
+      "status": "empty",
+      "empty_method": "monotone_adjacent_boundary_exclusion",
       "range_gap": 0,
       "receiver_monotone_floor": 1.938073011935,
       "monotone_floor": 0.061926988065,
       "jacobian_floor": 0.061926988065,
-      "root_count_bound": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
       "root_sign": null,
       "memory_depth_range": null,
       "separator_event": null,
-      "diagonal_exclusion_ref": null,
+      "diagonal_exclusion_ref": "diagonal_exclusion_subledger.json:R_w_F3_A2",
       "fold_layer_atlas_ref": null,
-      "failure_code": "range_overlap_requires_level_split",
-      "failure_reasons": [
-        "range_overlap_requires_level_split"
-      ]
+      "failure_code": "",
+      "failure_reasons": []
     },
     {
       "row_id": "R_w_F3_F3",
@@ -4994,22 +4968,23 @@
         3.164200959219,
         3.478198783354
       ],
-      "status": "split_required",
-      "empty_method": null,
+      "status": "empty",
+      "empty_method": "monotone_adjacent_boundary_exclusion",
       "range_gap": 0,
       "receiver_monotone_floor": 2.055761655527,
       "monotone_floor": 1.938073011935,
       "jacobian_floor": 1.938073011935,
-      "root_count_bound": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
       "root_sign": null,
       "memory_depth_range": null,
       "separator_event": null,
-      "diagonal_exclusion_ref": null,
+      "diagonal_exclusion_ref": "diagonal_exclusion_subledger.json:R_w_A3_F3",
       "fold_layer_atlas_ref": null,
-      "failure_code": "range_overlap_requires_level_split",
-      "failure_reasons": [
-        "range_overlap_requires_level_split"
-      ]
+      "failure_code": "",
+      "failure_reasons": []
     },
     {
       "row_id": "R_w_A3_A3",
@@ -5333,22 +5308,23 @@
         3.478198783354,
         5.946579177416
       ],
-      "status": "split_required",
-      "empty_method": null,
+      "status": "empty",
+      "empty_method": "monotone_adjacent_boundary_exclusion",
       "range_gap": 0,
       "receiver_monotone_floor": 1.938073011935,
       "monotone_floor": 2.055761655527,
       "jacobian_floor": 2.055761655527,
-      "root_count_bound": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
       "root_sign": null,
       "memory_depth_range": null,
       "separator_event": null,
-      "diagonal_exclusion_ref": null,
+      "diagonal_exclusion_ref": "diagonal_exclusion_subledger.json:R_w_F4_A3",
       "fold_layer_atlas_ref": null,
-      "failure_code": "range_overlap_requires_level_split",
-      "failure_reasons": [
-        "range_overlap_requires_level_split"
-      ]
+      "failure_code": "",
+      "failure_reasons": []
     },
     {
       "row_id": "R_w_F4_F4",
@@ -5672,22 +5648,23 @@
         5.946579177416,
         6.260577001551
       ],
-      "status": "split_required",
-      "empty_method": null,
+      "status": "empty",
+      "empty_method": "monotone_adjacent_boundary_exclusion",
       "range_gap": 0,
       "receiver_monotone_floor": 1,
       "monotone_floor": 1.938073011935,
       "jacobian_floor": 1.938073011935,
-      "root_count_bound": null,
+      "root_count_bound": [
+        0,
+        0
+      ],
       "root_sign": null,
       "memory_depth_range": null,
       "separator_event": null,
-      "diagonal_exclusion_ref": null,
+      "diagonal_exclusion_ref": "diagonal_exclusion_subledger.json:R_w_A4_F4",
       "fold_layer_atlas_ref": null,
-      "failure_code": "range_overlap_requires_level_split",
-      "failure_reasons": [
-        "range_overlap_requires_level_split"
-      ]
+      "failure_code": "",
+      "failure_reasons": []
     },
     {
       "row_id": "R_w_A4_A4",

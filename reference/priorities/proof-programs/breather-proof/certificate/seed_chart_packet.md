@@ -321,6 +321,24 @@ only promotes `candidate data absent` to a finite candidate packet whose
 residuals, pre-ledger rows, branch chart, fold atlas, and returned-sample
 targets can be tested on the same mesh.
 
+For continuation or bifurcation-generated candidates, the branch parameter,
+continuation step, and branch status are construction notes only. The accepted
+object is one frozen coefficient vector
+$$
+\mathbf a
+$$
+and, when interval methods are used, one coefficient box
+$$
+X
+$$
+satisfying
+$$
+K(X)\subset \operatorname{int}(X)
+$$
+on the declared packet identity. Bifurcation labels, curve membership, or
+monodromy multipliers do not waive the null-coordinate pre-ledger, branch
+chart, fold atlas, or returned-sample rows.
+
 ## Candidate Cycle Schema
 
 `phi_cyc.json` should use this top-level shape:
@@ -336,6 +354,7 @@ targets can be tested on the same mesh.
 | `symmetry` | Signed-sheet convention, origin crossings, and periodic identification |
 | `basis` | Piecewise interpolation, collocation, quadrature, or fold-adapted fractional basis data |
 | `collocation_meta` | For collocation routes: subinterval partition, polynomial degree, collocation nodes, period normalization, and the section-anchoring row; otherwise `null` with a construction-route note |
+| `solution_manifold_compatibility` | Endpoint compatibility for the first-order state $Y=(x,u)$, including $\dot X(0)=U(0)$, $\dot U(0)=F_\eta(\Phi)$, and the tangent constraint consumed by the monodromy row |
 | `arcs` | Ordered interval list with speed class, endpoint data, separator events, and origin-layer flags |
 | `samples` | Values of $x$, $\dot x$, optional $\ddot x$, and local basis residuals on the mesh |
 | `evaluation_enclosures` | Interval evaluation rules for $x$, $\dot x$, $\ddot x$, $u$, $w$, and the needed range bounds |

@@ -7,9 +7,9 @@ This report records the refined null-coordinate pre-ledger attempt for packet `s
 - `diagonal_exclusion_subledger.json`
 - `fold_layer_atlas.json`
 
-The diagonal-exclusion subledger closes the monotone same-interval rows and the periodically identified endpoint contact. The fold-layer atlas supplies the kinematic normal-form constants, exit floors, and itinerary parity rows for $\Sigma_1$ through $\Sigma_4$, but it does not supply the dual-mollified fold impulse ceiling. Therefore the ledger remains rejected before branch-chart certification.
+The diagonal-exclusion subledger closes the monotone same-interval rows, the periodically identified endpoint contact, and eight adjacent interval endpoint contacts. The fold-layer atlas supplies the kinematic normal-form constants, exit floors, and itinerary parity rows for $\Sigma_1$ through $\Sigma_4$, but it does not supply the dual-mollified fold impulse ceiling. Therefore the ledger remains rejected before branch-chart certification.
 
-The ledger status is `preledger_rejected_fold_impulse_and_boundary_leftovers_remaining`.
+The ledger status is `preledger_rejected_fold_impulse_and_fold_adjacent_parent_leftovers_remaining`.
 
 ## Refined Domain
 
@@ -41,10 +41,10 @@ The $w$ ledger has zero derivative at $\Sigma_1$ and $\Sigma_2$; the $u$ ledger 
 | --- | ---: |
 | Refined base rows | 162 |
 | Certified range-empty base rows | 116 |
-| Certified diagonal-exclusion empty rows | 16 |
+| Certified diagonal-exclusion empty rows | 24 |
 | Certified simple-root subrows | 6 |
 | Accepted fold-layer rows | 0 |
-| Split-required base rows | 30 |
+| Split-required base rows | 22 |
 | Minimum range-empty gap $\gamma_{\mathrm{empty}}$ | 0.208212341788 |
 | Minimum simple-root derivative floor $\nu_{\mathrm{simple}}$ | 0.055761655527 |
 | Simple-root coverage gap $\gamma_{\mathrm{cov}}$ | 0.005 |
@@ -58,7 +58,7 @@ The branch chart remains unauthorized because accepted fold-layer rows require a
 
 ## Diagonal-Exclusion Subledger
 
-The diagonal-exclusion subledger accepts 16 rows as empty. On each accepted same-interval row, the selected null coordinate is strictly monotone, so $y(t)=y(s)$ implies $t=s$; the diagonal is excluded by the causal self-interaction convention. The periodic-boundary rows use the same argument at the periodically identified zero-depth endpoint $\theta=0\sim1$.
+The diagonal-exclusion subledger accepts 24 rows as empty. On each accepted same-interval row, the selected null coordinate is strictly monotone, so $y(t)=y(s)$ implies $t=s$; the diagonal is excluded by the causal self-interaction convention. The periodic-boundary rows use the same argument at the periodically identified zero-depth endpoint $\theta=0\sim1$. The adjacent-boundary rows close because the selected null-coordinate ranges touch only at a shared interval endpoint; strict monotonicity gives no off-endpoint crossing, and the endpoint has zero memory depth.
 
 This closes the purely kinematic diagonal blockers. No branch-chart row may be attached to these rows because their root-count bound is $[0,0]$.
 
@@ -73,7 +73,7 @@ This closes the purely kinematic diagonal blockers. No branch-chart row may be a
 | `S_w_A2_A0_5` | `w` | `A2` | `A0` | $[0.36491638235,0.457747116028]$ | 0.061926988065 | 0.061926988065 | $[2.034745625957,2.085251677498]$ | 2.034745625957 |
 | `S_w_A2_A1_6` | `w` | `A2` | `A1` | $[0.373898811563,0.457785341387]$ | 0.055761655527 | 0.110022164784 | $[0.278626695826,1.805406300616]$ | 0.278626695826 |
 
-These six rows retain strict source monotonicity, strict receiver monotonicity, a $0.005$ source-coverage margin in null-coordinate value, positive memory depth, positive horizon margin, and the correct $u$ or $w$ line-of-action sign. They are subrows of parent overlap rows; the parent boundary leftovers remain unresolved.
+These six rows retain strict source monotonicity, strict receiver monotonicity, a $0.005$ source-coverage margin in null-coordinate value, positive memory depth, positive horizon margin, and the correct $u$ or $w$ line-of-action sign. They are subrows of parent overlap rows; the six remaining parent boundary leftovers are fold-adjacent and remain unresolved.
 
 ## Fold-Layer Atlas
 
@@ -90,14 +90,14 @@ The kinematic fold rows pass the normal-form and parity checks: each listed laye
 
 | Failure reason | Rows |
 | --- | ---: |
-| `range_overlap_requires_level_split` | 14 |
 | `fold_layer_impulse_ceiling_not_evaluated` | 16 |
+| `range_overlap_requires_level_split` | 6 |
 
 The remaining blockers have two different meanings.
 
 - `fold_layer_impulse_ceiling_not_evaluated`: the row touches a separator layer on the active fold ledger. The kinematic atlas is ready, but the finite impulse ceiling is absent, so the row stays fail-closed.
-- `range_overlap_requires_level_split`: the parent range-overlap rows have accepted simple-root interiors, but the boundary leftovers still need a final partition into empty, diagonal-excluded, simple-root, or fold-layer pieces.
+- `range_overlap_requires_level_split`: the remaining parent range-overlap rows have accepted simple-root interiors, but their boundary leftovers are adjacent to active fold layers and cannot be promoted without the fold-layer alternative.
 
 ## Technical Conclusion
 
-The diagonal-exclusion work is complete and technically useful. The fold-layer atlas is also useful, but only as a kinematic atlas: it does not yet satisfy the full fold-layer alternative in the pre-ledger theorem target. The next proof step with the highest technical value is a fold impulse ceiling bound for the four separator layers. If that closes, the remaining parent boundary leftovers are a small finite partition problem; if it does not close, this cosine template remains rejected before branch-chart certification.
+The diagonal-exclusion work is complete and technically useful. The fold-layer atlas is also useful, but only as a kinematic atlas: it does not yet satisfy the full fold-layer alternative in the pre-ledger theorem target. The next proof step with the highest technical value is a fold impulse ceiling bound for the four separator layers. If that closes, the six fold-adjacent parent boundary leftovers become a small finite promotion problem; if it does not close, this cosine template remains rejected before branch-chart certification.

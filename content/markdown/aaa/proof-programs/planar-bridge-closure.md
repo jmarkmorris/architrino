@@ -161,6 +161,14 @@ the symmetry-breaking perturbation is present. If the required cancellation
 exists only in a comparison equation, the planar bridge fails rather than being
 rescued by analogy.
 
+Rigidity comparisons sharpen this into a transport criterion. A collinear fixed
+point is not planar evidence unless the planar packet proves its own branch
+chart, continuous gauge reset, bounded fold/separator transit, and radial
+leakage budget with strict margins. If those rows close only because the line
+removes tangential escape or because an external integrable equation supplies
+cancellations, the correct conclusion is non-transport rather than inherited
+stability.
+
 Let
 $$
 I_{\mathrm{turn}}=[t_a,t_b]

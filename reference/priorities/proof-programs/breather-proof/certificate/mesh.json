@@ -92,6 +92,6 @@
     "diagonal_exclusion_subledger": "diagonal_exclusion_subledger.json",
     "fold_layer_atlas": "fold_layer_atlas.json",
     "next_artifact": "fold_impulse_ceiling_bound",
-    "blocking_issue": "The refined diagnostic has six strict simple_root subrows and sixteen accepted diagonal-exclusion empty rows, but remains rejected as a full pre-ledger because fold-layer impulse ceilings and parent-row boundary leftovers remain unresolved."
+    "blocking_issue": "The refined diagnostic has six strict simple_root subrows and twenty-four accepted diagonal-exclusion empty rows, but remains rejected as a full pre-ledger because fold-layer impulse ceilings and six fold-adjacent parent-row boundary leftovers remain unresolved."
   }
 }

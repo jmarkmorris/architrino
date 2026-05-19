@@ -23,9 +23,9 @@ This file is the parent control surface for proof programs. The nested structure
 
 ## Nested Workstreams
 
-- [breather-proof](./breather-proof/breather-proof.md): active finite-certificate program for the 1D collinear breather. The candidate packet, refined pre-ledger diagnostic, diagonal-exclusion subledger, and kinematic fold-layer atlas now exist; the current executable blocker is the finite fold impulse ceiling and remaining parent-boundary partition required before any branch-chart certificate.
+- [breather-proof](./breather-proof/breather-proof.md): active finite-certificate program for the 1D collinear breather. The candidate packet, refined pre-ledger diagnostic, diagonal-exclusion subledger, and kinematic fold-layer atlas now exist; the current executable blocker is the finite fold impulse ceiling and six fold-adjacent parent-boundary leftovers required before any branch-chart certificate.
 - [planar-bridge-closure](./planar-bridge-closure/planar-bridge-closure.md): queued higher-dimensional bridge from the collinear program to the first planar delayed return map.
-- [openalex-baseline](./openalex-baseline.md): May 18, 2026 OpenAlex baseline for state-dependent delay equations, periodic-orbit construction, breather terminology, and direct-action comparison. Its immediate effect is to sharpen candidate-cycle generation as a finite residual/collocation packet rather than to add a new validation gate.
+- [openalex-baseline](./openalex-baseline.md): May 18, 2026 OpenAlex baseline for state-dependent delay equations, periodic-orbit construction, breather terminology, and direct-action comparison. Its source mining is exhausted as of May 19, 2026. Its immediate effect is to sharpen candidate-cycle generation as a finite residual/collocation/continuation packet with solution-manifold compatibility, while keeping breather rigidity and direct-action electrodynamics as comparison-only pressure rather than new validation gates.
 
 ## Promotion Map
 

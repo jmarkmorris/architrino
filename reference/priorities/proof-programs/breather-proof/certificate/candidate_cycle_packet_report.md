@@ -145,8 +145,10 @@ $$
 The refined run rejects the current partition rather than the entire breather
 program. It also proves that the template is not vacuous: the ledger now contains
 six strict simple-root subwindows with positive derivative, memory-depth,
-horizon, and sign margins, plus sixteen accepted diagonal-exclusion empty rows.
+horizon, and sign margins, plus twenty-four accepted diagonal-exclusion empty
+rows.
 The next certificate step must either bound the dual-mollified fold impulse on
-the four separator layers and finish the parent boundary partition, or
+the four separator layers and finish the six fold-adjacent parent boundary
+leftovers, or
 deliberately replace the candidate template and restart the same-domain packet
 sequence.

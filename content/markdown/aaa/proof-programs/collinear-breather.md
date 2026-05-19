@@ -4396,7 +4396,7 @@ $$
 $$
 Finally, a direct returned-sample budget certificate gives the finite sampled preservation criterion immediately. If that direct route is not used, the residual-plus-sensitivity criterion implies the same returned-sample budget certificate. In either case the finite sampled preservation criterion gives the certificate inequalities after one return. Therefore the returned history lies in the certified set itself, proving the self-map inclusion.
 
-The finite self-map ledger has four rows. The first, second, and fourth rows produce the self-map certificate; the third row is a stability diagnostic that decides whether returned-sample preservation should be attempted by sensitivities or by boundary trapping. Adding the certified topology row below gives the full five-row Schauder-ready audit.
+The finite self-map ledger has five rows. The first, second, third, and fifth rows produce the self-map certificate and well-posed variational interpretation; the fourth row is a stability diagnostic that decides whether returned-sample preservation should be attempted by sensitivities or by boundary trapping. Adding the certified topology row below gives the full six-row Schauder-ready audit.
 
 1. **Seed-chart row.**
    Verify
@@ -4467,7 +4467,38 @@ The finite self-map ledger has four rows. The first, second, and fourth rows pro
    p_0
    $$
    in the coupled system, not separate local parameter choices.
-3. **Monodromy diagnostic row.**
+3. **Solution-manifold compatibility row.**
+   The section history must live on the compatible first-order history
+   manifold before any variational or monodromy row is interpreted. Write the
+   local first-order lift as
+   $$
+   Y=(X,U),
+   \qquad
+   \mathcal{H}_h^{(1)}=C^1([-h,0];\mathbb{R}^2),
+   $$
+   and define the admissible compatibility class
+   $$
+   \mathcal{X}_\eta
+   =
+   \left\{
+   \Phi=(X,U)\in\mathcal{H}_h^{(1)}
+   :
+   \dot X(0)=U(0),
+   \quad
+   \dot U(0)=F_\eta(\Phi)
+   \right\}.
+   $$
+   The candidate packet must report this endpoint row on the same packet
+   identity as the pre-ledger, branch chart, fold atlas, and returned samples.
+   The tangent row consumed by monodromy must satisfy
+   $$
+   \dot \Xi(0)=V(0),
+   \qquad
+   \dot V(0)=D F_\eta(\Phi)\Psi.
+   $$
+   Thus monodromy differentiates certified branch maps on compatible histories;
+   it is not a frozen-delay calculation on an arbitrary $C^1$ box.
+4. **Monodromy diagnostic row.**
    Compute an interval enclosure for the section-anchored linearized return map
    $$
    D P_\eta(\phi_{\mathrm{cyc}})
@@ -4505,7 +4536,7 @@ The finite self-map ledger has four rows. The first, second, and fourth rows pro
    Z_a(\theta)=\partial_{\alpha^a}\phi_{\mathrm{cyc}}(\theta;\alpha)
    $$
    must be classified as neutral, constrained by the section, or transverse. This prevents a harmless collective-coordinate drift from being mistaken for an unstable return direction, and it prevents a genuine transverse instability from being hidden inside a free parameter.
-4. **Returned-sample row.**
+5. **Returned-sample row.**
    Prefer the direct one-sided budget route when local sensitivities are large: prove
    $$
    E_{j,\pm}^{x},
@@ -4524,7 +4555,7 @@ The finite self-map ledger has four rows. The first, second, and fourth rows pro
    $$
    for every mesh index. This row supplies certificate preservation under one return.
 
-This ledger is deliberately finite. Passing the seed-chart, coupled-corridor, and returned-sample rows turns the domain-production burden into the self-map inclusion; the monodromy row identifies whether the returned-sample proof should use sensitivity control or boundary trapping. Failing any required row identifies the exact obstruction.
+This ledger is deliberately finite. Passing the seed-chart, coupled-corridor, solution-manifold compatibility, and returned-sample rows turns the domain-production burden into the self-map inclusion; the monodromy row identifies whether the returned-sample proof should use sensitivity control or boundary trapping. Failing any required row identifies the exact obstruction.
 
 ### Certified topology row
 
@@ -4622,13 +4653,14 @@ P_\eta
 $$
 on the certified domain.
 
-The full Schauder-ready audit therefore has five rows:
+The full Schauder-ready audit therefore has six rows:
 
 1. the seed-chart row;
 2. the coupled-corridor row;
-3. the monodromy diagnostic row;
-4. the returned-sample row;
-5. and the topology row
+3. the solution-manifold compatibility row;
+4. the monodromy diagnostic row;
+5. the returned-sample row;
+6. and the topology row
    $$
    u_{\mathrm{ret}}^{\mathrm{cert}}>0
    $$

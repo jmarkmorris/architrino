@@ -62,6 +62,13 @@ accuracy at selected nodes, is not assumed as a global bound; separator and
 origin layers need interval residual bounds on cells, not only small residuals
 at mesh points.
 
+Continuation and finite auxiliary ODE constructions are useful only at the
+candidate-source level. A continued branch point or auxiliary-system orbit must
+reconstruct to the declared signed history, period, mesh, separator layers, and
+causal-root ledger before it can feed the certificate. Nonuniform
+transition-layer behavior near separators must be bounded by interval cell
+estimates, not inferred from small residuals at isolated nodes.
+
 The accepted output of this note is therefore a certificate packet
 $$
 \mathfrak{C}_{\mathrm{ans}}

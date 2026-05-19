@@ -187,3 +187,15 @@ Use this backlog as a triage surface, not as a requirement factory. A source ear
 | Bo-Ling Guo and Li-Ming Ling, [Rogue Wave, Breathers and Bright-Dark-Rogue Solutions for the Coupled Schrodinger Equations](https://doi.org/10.1088/0256-307X/28/11/110202) | May 19, 2026 |
 | David J. Kedziora, Adrian Ankiewicz, and Nail Akhmediev, [Second-order nonlinear Schrodinger equation breather solutions in the degenerate and rogue wave limits](https://doi.org/10.1103/PhysRevE.85.066601) | May 19, 2026 |
 | Jochen Denzler, [Nonpersistence of breather families for the perturbed sine Gordon equation](https://doi.org/10.1007/BF02108081) | May 19, 2026 |
+| Ferenc Hartung, Tibor Krisztin, Hans-Otto Walther, and Jianhong Wu, [Functional Differential Equations with State-Dependent Delays: Theory and Applications](https://doi.org/10.1016/S1874-5725(06)80009-X) | May 19, 2026 |
+| Hans-Otto Walther, [The solution manifold and $C^1$-smoothness for differential equations with state-dependent delay](https://doi.org/10.1016/j.jde.2003.07.001) | May 19, 2026 |
+| John Mallet-Paret and Roger D. Nussbaum, [Boundary layer phenomena for differential-delay equations with state-dependent time lags, I.](https://doi.org/10.1007/BF00418497) | May 19, 2026 |
+| Kenneth L. Cooke and Wenzhang Huang, [On the problem of linearization for state-dependent delay differential equations](https://doi.org/10.1090/S0002-9939-96-03437-5) | May 19, 2026 |
+| Ovide Arino, Karl P. Hadeler, and Moulay Lhassan Hbid, [Existence of Periodic Solutions for Delay Differential Equations with State Dependent Delay](https://doi.org/10.1006/jdeq.1997.3378) | May 19, 2026 |
+| John Mallet-Paret and Roger D. Nussbaum, [Global continuation and asymptotic behaviour for periodic solutions of a differential-delay equation](https://doi.org/10.1007/BF01790539) | May 19, 2026 |
+| James L. Kaplan and James A. Yorke, [Ordinary differential equations which yield periodic solutions of differential delay equations](https://doi.org/10.1016/0022-247X(74)90162-0) | May 19, 2026 |
+| Ji-Huan He, [Periodic solutions and bifurcations of delay-differential equations](https://doi.org/10.1016/j.physleta.2005.08.014) | May 19, 2026 |
+| Björn Birnir, Henry P. McKean, and Alan Weinstein, [The rigidity of sine-gordon breathers](https://doi.org/10.1002/cpa.3160470803) | May 19, 2026 |
+| P. C. W. Davies, [A quantum theory of Wheeler-Feynman electrodynamics](https://doi.org/10.1017/S0305004100076751) | May 19, 2026 |
+| Jayme De Luca, [Variational principle for the Wheeler-Feynman electrodynamics](https://arxiv.org/abs/0901.1077), DOI `10.1063/1.3154509` | May 19, 2026 |
+| Jayme De Luca, A. R. Humphries, and Sávio B. Rodrigues, [Finite element boundary value integration of Wheeler-Feynman electrodynamics](https://doi.org/10.1016/j.cam.2012.02.039) | May 19, 2026 |
