@@ -12,8 +12,8 @@
 ## Task Queue
 
 1. `candidate_cycle_packet` — Produce `certificate/phi_cyc.json` and `certificate/mesh.json` for one candidate center history, preferably using the fold-adapted fractional basis near field-speed separators or an interval-collocation replacement with the same residual targets. Status: `drafted-template`; first finite velocity-class template exists, not EOM-solved or pre-ledger-certified. Depends on: none.
-2. `null_coordinate_preledger` — Produce `certificate/causal_ledger.json` and `certificate/causal_preledger_interval_report.md`, proving the named `Null-Coordinate Causal Pre-Ledger` theorem target or rejecting the candidate/itinerary before branch-chart certification. Status: `next`. Depends on: `candidate_cycle_packet`.
-3. `branch_chart_certificate` — Produce `certificate/branch_chart.json` and `certificate/seed_chart_interval_report.md`, including active branches, inactive complements, Jacobian floors, memory-depth ranges, and envelope constants. Status: `pending`. Depends on: `null_coordinate_preledger`.
+2. `null_coordinate_preledger` — Produce `certificate/causal_ledger.json` and `certificate/causal_preledger_interval_report.md`, proving the named `Null-Coordinate Causal Pre-Ledger` theorem target or rejecting the candidate/itinerary before branch-chart certification. Status: `fold-impulse-blocked`; the refined diagnostic has six strict simple-root subrows and twenty-four accepted diagonal-exclusion empty rows, but not a complete accepted partition. Depends on: `candidate_cycle_packet`.
+3. `branch_chart_certificate` — Produce `certificate/branch_chart.json` and `certificate/seed_chart_interval_report.md`, including active branches, inactive complements, Jacobian floors, memory-depth ranges, and envelope constants. Status: `blocked`; depends on a passed `null_coordinate_preledger`, including finite fold impulse ceilings and resolved fold-adjacent parent-row boundary leftovers. Depends on: `null_coordinate_preledger`.
 4. `coupled_corridor_certificate` — Produce `certificate/corridor_nonemptiness_report.md`, `certificate/parameters.json`, and the coupled-corridor interval report for one strict parameter tuple. Status: `pending`. Depends on: `branch_chart_certificate`.
 5. `monodromy_diagnostic` — Produce the section-anchored monodromy spectrum and route returned-sample preservation to sensitivities or boundary trapping. Status: `pending`. Depends on: `branch_chart_certificate`, `coupled_corridor_certificate`.
 6. `returned_sample_certificate` — Produce returned-sample residuals or boundary-trapping budgets on the certified mesh. Status: `pending`. Depends on: `branch_chart_certificate`, `coupled_corridor_certificate`, `monodromy_diagnostic`.
@@ -25,6 +25,7 @@
 - `master_equation_law` recorded the exact dual-mollified absolute-time evolution law in the master-equation stack; branch sums remain local simple-root reductions of that law.
 - `velocity_itinerary_verification` produced `certificate/itinerary.json` and `certificate/itinerary_parity_report.md`, giving the doubled four-arc generic itinerary a coarse parity pass before candidate-cycle generation.
 - `candidate_cycle_template_packet` produced `certificate/phi_cyc.json`, `certificate/mesh.json`, and `certificate/candidate_cycle_packet_report.md` for one finite cosine velocity-class template. This clears only `Candidate data absent`; EOM residuals, pre-ledger rows, branch-chart rows, returned-history residuals, and topology remain uncertified.
+- `preledger_refined_diagnostic` produced `certificate/mesh_refined_preledger_v1.json`, `certificate/diagonal_exclusion_subledger.json`, `certificate/fold_layer_atlas.json`, `certificate/causal_ledger.json`, and `certificate/causal_preledger_interval_report.md`. It rejects the current partition before branch-chart certification while preserving six strict simple-root subwindows, twenty-four accepted diagonal-exclusion empty rows, positive range-empty gaps, and kinematic fold normal-form data.
 
 ## Scope
 
@@ -146,6 +147,15 @@ $$
 $$
 with a sample mesh and coefficient table in the repository. What is still absent is a dynamics-solved or interval-certified candidate: the current template has not passed the null-coordinate pre-ledger, branch-chart certification, EOM residual evaluation, returned-sample preservation, or topology row. Therefore the proof cannot honestly be marked complete until that finite audit is run on the same packet identity and passes with strict margins.
 
+The refined pre-ledger diagnostic is now sharper than candidate absence. It
+isolates the four separator layers, certifies 116 range-empty base rows, accepts
+24 monotone diagonal-exclusion empty rows, and extracts six strict simple-root
+subrows with positive derivative, memory-depth, horizon, and sign margins. The
+fold-layer atlas supplies positive curvature floors, positive exit floors, and
+coarse parity data for all four separators. The diagnostic still rejects the
+current partition because it has not supplied finite fold impulse ceilings or a
+complete promotion of the six remaining fold-adjacent parent boundary leftovers.
+
 The first itinerary gate has a coarse parity pass for the doubled four-arc generic itinerary. This pass is necessary rather than sufficient: it verifies the separator-level fold arithmetic, but it does not yet certify active self-image roots, inactive-root gaps, Jacobian floors, or returned residuals. If the branch enumeration forces a different itinerary, this gate must be rerun.
 
 Its executable artifacts are:
@@ -153,7 +163,7 @@ Its executable artifacts are:
 - `certificate/itinerary.json`: velocity-class itinerary, arc labels, separator events, proposed fold events, and expected root-count jumps.
 - `certificate/itinerary_parity_report.md`: algebraic check that every separator event satisfies the even-jump law and signed-degree conservation, and that the closed-cycle branch ledger returns to itself.
 
-The next gate is the null-coordinate pre-ledger. This is now a named theorem target in [closed-form-collinear-breather-ansatz.md](../../../../content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md): before the current template or any later candidate can claim an active branch chart, the ordered arc-pair blocks must be reduced to certified empty blocks, simple-root blocks, and fold-layer blocks using
+The current gate remains the null-coordinate pre-ledger. This is now a named theorem target in [closed-form-collinear-breather-ansatz.md](../../../../content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md): before the current template or any later candidate can claim an active branch chart, the ordered arc-pair blocks must be reduced to certified empty blocks, simple-root blocks, and fold-layer blocks using
 $$
 u=c_f t-x,
 \qquad

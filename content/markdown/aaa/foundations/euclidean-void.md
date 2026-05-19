@@ -2,7 +2,9 @@
 
 This chapter is the canonical substrate-level specification for the Euclidean void in $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines the fixed spatial container, the Euclidean metric, the coordinate and operator conventions, and the boundary between the void itself and the Noether Sea that occupies it.
 
-The core distinction is simple: the Euclidean void is the fixed spatial container; the Noether Sea is physical content within that container; effective spacetime is an observer-level geometry reconstructed from assembly and wake behavior. This chapter owns the first of those three objects.
+The core distinction is simple: the Euclidean void is the fixed spatial container; the Noether Sea is physical content within that container; effective spacetime is an observer-level geometry reconstructed from assembly and wake behavior. The present chapter specifies the first of those three objects.
+
+The exposition follows that distinction. First the chapter fixes the substrate geometry. It then explains how coordinate charts, event identity, and spatial operators work inside that geometry. Finally it marks which claims belong instead to medium dynamics, effective metric closure, or observational inference.
 
 ## Core Concept
 
@@ -13,7 +15,7 @@ Space is **homogeneous** and **isotropic**:
 - Homogeneous: every location is equivalent.
 - Isotropic: every direction is equivalent.
 
-This implies that cosmological expansion, light bending, orbital precession, and other curvature-like observations must be recovered as dynamics of the Noether Sea and assemblies within the void, not as metric expansion or curvature of the void itself.
+These are claims about the container, not about the distribution of material contents. They imply that cosmological expansion, light bending, orbital precession, and other curvature-like observations must be recovered as dynamics of the Noether Sea and assemblies within the void, not as metric expansion or curvature of the void itself.
 
 ## Manifold and Metric
 
@@ -92,13 +94,13 @@ Topologically, the void is fixed as $\mathbb{R}^3$: contractible, simply connect
 
 ## Canonical Coordinates and Event Identity
 
-The Euclidean void does not contain pre-labeled axes or an intrinsic origin. Once a coordinate scaffold has been selected for calculation, the canonical spatial chart is a rigid Cartesian coordinate system
+Coordinate choices are calculational representations of fixed substrate locations. The Euclidean void does not contain pre-labeled axes or an intrinsic origin. Once a coordinate chart has been selected for calculation, the canonical spatial chart is a rigid Cartesian coordinate system
 $$
 \mathcal{C}=\{x,y,z\}
 $$
 on the Euclidean void.
 
-Unlike General Relativity, where coordinates may function as gauge labels under diffeomorphism invariance, a declared Cartesian chart in $\mathbb{A}\mathbb{A}\mathbb{A}$ names fixed spatial locations in the substrate. The chart is a scaffold for components and simulation addresses, not an extra ontological ingredient. Coordinate points do not move, curve, or stretch.
+Unlike General Relativity, where coordinates may function as gauge labels under diffeomorphism invariance, a declared Cartesian chart in $\mathbb{A}\mathbb{A}\mathbb{A}$ names fixed spatial locations in the substrate. The chart is a representation for components and simulation addresses, not an extra ontological ingredient. Coordinate points do not move, curve, or stretch.
 
 This gives fixed spatial identity:
 
@@ -108,7 +110,7 @@ This gives fixed spatial identity:
 
 This fixed identity is important for self-hit diagnostics, path-history bookkeeping, and simulations that must track where a wake was emitted and where it is later received.
 
-For a received wake contribution, the provenance record should preserve the source identity, emission time, emission location, receiver identity, reception time, and reception location:
+For a received wake contribution, the provenance record consists of the source identity, emission time, emission location, receiver identity, reception time, and reception location:
 $$
 (j,t_0,\mathbf{s}_j(t_0),o',t,\mathbf{s}_{o'}(t)).
 $$
@@ -116,11 +118,11 @@ The causal-root condition is then
 $$
 \|\mathbf{s}_{o'}(t)-\mathbf{s}_j(t_0)\|_h=c_f(t-t_0).
 $$
-This condition is invariant under Euclidean translations and rotations of the chosen coordinate scaffold. The scaffold may be changed for calculation, but the underlying void point where emission occurred is not moved by that relabeling.
+This condition is invariant under Euclidean translations and rotations of the chosen coordinate chart. The chart may be changed for calculation, but the underlying void point where emission occurred is not moved by that relabeling.
 
 ## Curvilinear Coordinates
 
-Cartesian coordinates are the natural chart once a scaffold has been chosen, but the same Euclidean geometry can be expressed in curvilinear coordinates for convenience.
+Cartesian coordinates are the natural default chart, but the same Euclidean geometry can be expressed in curvilinear coordinates for convenience.
 
 In spherical coordinates $(r,\theta,\phi)$ with $r\geq0$, $\theta\in[0,\pi]$, and $\phi\in[0,2\pi)$,
 $$
@@ -262,6 +264,8 @@ Any preferred-frame effect, anisotropy, or effective Lorentz behavior must arise
 
 ## Geodesics and Dynamics
 
+This section separates inertial motion in the container from dynamical curvature of a path. A geodesic of the Euclidean void is a straight spatial path in the fixed metric, not an observer-level spacetime geodesic.
+
 In the absence of forces, motion in the Euclidean void follows straight-line, constant-velocity paths:
 $$
 \mathbf{x}(t)=\mathbf{x}_0+\mathbf{v}_0 t.
@@ -295,7 +299,7 @@ Galilean coordinate behavior belongs to the absolute-timespace product structure
 
 ## Boundary With the Noether Sea
 
-The Euclidean void is not the Noether Sea.
+The boundary with the Noether Sea is an ontology boundary. The Euclidean void is not the Noether Sea, and neither should be identified with effective spacetime.
 
 The distinction is:
 
@@ -310,6 +314,7 @@ This gives a direct no-expanding-void criterion for cosmology. Effective cosmolo
 $$
 a_{\mathrm{eff}}(t)=\mathcal{A}[\theta_{\mathrm{sea}}(t),O(t)].
 $$
+Here $\theta_{\mathrm{sea}}(t)$ denotes the relevant Noether-Sea state variables, and $O(t)$ denotes observer records and calibration data. The formula is a schematic inference map, not a new substrate law.
 They must not be interpreted as
 $$
 h_{ij}(t)=a_{\mathrm{eff}}^2(t)\delta_{ij}
@@ -322,11 +327,13 @@ The Euclidean void is strictly empty of material substance. It is not a material
 
 Nevertheless, a coordinate location in the full universe should not be treated as relationally empty. Because architrinos continuously emit expanding causal isochrons, a location may lie on many geometrical wakes from historical architrino motion. These wakes do not fill the void as material contents; they form the delayed relational ledger through which later architrino intersections can be computed.
 
-In this precise sense, the void is a **Plenum of Potential**: materially empty, but relationally available to causal-wake history. The phrase does not add a new substance between the Euclidean void and the Noether Sea. It names the fact that an empty coordinate location can still lie within the superposed causal-wake history of the architrino population.
+In this precise sense, the void is a **Plenum of Potential**: materially empty, but relationally available to causal-wake history. The phrase is explanatory rather than ontological. It does not add a new substance between the Euclidean void and the Noether Sea, and it does not create a fourth layer alongside void, medium, and effective spacetime. It names the fact that an empty coordinate location can still lie within the superposed causal-wake history of the architrino population.
 
 Noether-Sea density and response variables belong to the medium layer, not the spatial substrate. For the medium ontology, see [Noether Sea](../spacetime/noether-sea.md). For medium assembly hypotheses, see [Spacetime Assemblies](../spacetime/spacetime-assemblies.md). For the metric bridge, see [Emergent Metric](../spacetime/emergent-metric.md). For cosmological translation, see [Cosmology Ontology](../cosmology/cosmology-ontology.md).
 
 ## Distinction From Curved Space
+
+The comparison with curved space preserves the operational success of curved-spacetime descriptions while relocating their status. In $\mathbb{A}\mathbb{A}\mathbb{A}$, curvature-like behavior is an effective metric or refractive-gravity reconstruction; it is not a property of the Euclidean void.
 
 | **Feature** | **Euclidean Void ($\mathbb{A}\mathbb{A}\mathbb{A}$)** | **Curved Space / GR Geometry** |
 |:---|:---|:---|

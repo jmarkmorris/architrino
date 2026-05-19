@@ -11,9 +11,11 @@ Absolute timespace is the formal, non-dynamical product background for all physi
 In $\mathbb{A}\mathbb{A}\mathbb{A}$:
 
 - Time and space are logically and mathematically separate at the kinematic level.
-- There is absolute simultaneity: all events with the same $t$ belong to the same global slice.
+- There is absolute simultaneity: all events with the same $t$ belong to the same simultaneity slice.
 - There is no fundamental 4D Lorentzian metric mixing temporal and spatial dimensions.
 - The background is non-dynamical: it does not respond to matter, energy, assemblies, or the Noether Sea.
+
+This separation fixes the chapter's sequence: first name the substrate datum, then identify the effective or inferential layer that reads it. The Euclidean void and absolute time are ontology. Clocks, rulers, metric tensors, and relativistic symmetries are treated as recovered behavior of assemblies and the Noether Sea; their detailed laws are closure targets when the derivation is not supplied locally.
 
 All curvature, expansion, clock dilation, and relativistic behavior must be recovered as effective descriptions of assemblies and Noether-Sea response within this fixed background.
 
@@ -58,9 +60,16 @@ $$
 \frac{dt}{ds}>0.
 $$
 
-There are no closed timelike curves, no backward-time propagation, and no fundamental reparametrization freedom that replaces the global time parameter.
+There are no closed timelike curves, no backward-time propagation, and no fundamental reparametrization freedom that replaces the absolute time parameter.
 
 > **Plain language:** Absolute timespace is a stack of Euclidean 3-spaces, one for each value of $t$. A worldline passes through one slice at each instant.
+
+On a fixed slice, the canonical universe-now notation is
+$$
+\mathbb{U}_{\text{now}} \equiv S(t).
+$$
+
+This denotes the complete ontic universe state on $\Sigma_t$: architrino positions, velocities, polarities, path-history and provenance bookkeeping, and self-hit history needed for deterministic evolution. It is not an observer's measurement record. Observer reconstructions sample or coarse-grain this state through assemblies and Noether-Sea coupling, which prevents absolute simultaneity from being confused with operationally synchronized clocks.
 
 ## Newton-Cartan Data
 
@@ -191,6 +200,8 @@ $$
 
 Forces cause accelerations in the Euclidean void. Time supplies the universal evolution parameter; it does not supply curvature, force, or clock dilation by itself.
 
+The same distinction applies to momentum and inertia: the kinematic variables live on the substrate, while the coefficients that make them measurable are effective assembly responses.
+
 The scalar $m$ in the low-velocity observer formula is not a primitive rigid-body constant of the substrate. A rigid-body inertia tensor is a useful foil: in ordinary mechanics it maps a fixed body's angular velocity to angular momentum after a mass distribution has already been supplied. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the corresponding observer-level inertial response must be derived from the assembly's trapped causal history, shielding state, coupling to the Noether Sea, and orientation.
 
 For a coarse-grained assembly $A$, the local linear response may be written as a pair of response maps
@@ -252,13 +263,15 @@ The Galilean group may be summarized as a semidirect product combining time tran
 
 Although Galilean boosts preserve the product foliation kinematically, the interaction law selects a preferred rest frame: the frame in which the wake speed $c_f$ is isotropic. This selects the rest structure for the dynamics, not a pre-labeled spatial origin or built-in axis orientation.
 
-This preferred frame is not curvature of the background. It is a dynamical consequence of finite-speed causal wake propagation and the medium/assembly dynamics built on top of the absolute timespace substrate.
+This preferred frame is not curvature of the background. It is a dynamical consequence of finite-speed causal wake propagation, Noether-Sea dynamics, and assembly dynamics built on top of the absolute timespace substrate.
 
 The observer-level task is therefore not to remove the absolute frame from the ontology. The task is to derive how physical clocks, rulers, and signals hide preferred-frame leakage to the required experimental precision. See [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md).
 
 ## Causal Wake Geometry
 
 Causality is defined by absolute temporal ordering plus finite wake propagation speed.
+
+Three related objects must be kept separate: temporal order, the filled reachability region, and actual causal-wake support. The Master Equation uses the last of these, not the whole filled region.
 
 For two events
 $$
@@ -283,19 +296,21 @@ $$
 \{(t,\mathbf{x}):t\geq t_0,\ \|\mathbf{x}-\mathbf{x}_0\|\leq c_f(t-t_0)\}.
 $$
 
-The equality surface is an expanding spatial sphere through the absolute-time stack, not a fundamental light cone of a Lorentzian metric. The filled region records causal order and finite-speed reachability. It is not filled by the single emitted wake at that time: in the exact Master Equation, a receiver is acted on only at boundary roots satisfying the equality condition above. With a mollifier, support is a narrow neighborhood of that boundary and is interpreted in the weak limit.
+The equality surface is an expanding causal isochron: at each later $t$ it appears as a spatial sphere in the Euclidean void, not as a fundamental light cone of a Lorentzian metric. The filled region records causal order and finite-speed reachability, but it is not the support of a single emitted wake. In the exact Master Equation, a receiver is acted on only at boundary roots satisfying the equality condition above. With a mollifier, support is a narrow neighborhood of that boundary and is interpreted in the weak limit.
 
 The causal wake geometry does not forbid a point architrino from having $\|\mathbf{v}\|>c_f$. It forbids backward-time influence. This separates kinematic freedom from dynamical stability: the Euclidean substrate places no kinematic speed limit on a point architrino, but that freedom does not imply that an assembly can be carried through the same regime intact.
 
-In effective wave language, causality is often diagnosed by front velocity rather than group or phase velocity. The substrate statement is sharper: the causal front is the first nonzero causal-wake support in absolute time. Observer-level group-speed, phase-speed, or packet-reshaping effects cannot override the support condition above; they are summaries of how an already causal wake record is sampled by assemblies.
+In observer-level wave language, causality is often diagnosed by front velocity rather than group or phase velocity. The substrate statement is sharper: the causal front is the first nonzero causal-wake support in absolute time. Observer-level group-speed, phase-speed, or packet-reshaping effects cannot override the support condition above; they are summaries of how an already causal wake record is sampled by assemblies.
 
-For standard-matter assemblies, the observer-level relativistic speed limit is a closure result of assembly structure and channel dressing, usually expressed with the declared local comparison speed $c_\star$ and with $c_0$ in the weak homogeneous observer branch. At the primitive branch level, as constituent architrino speeds approach the wake-speed threshold $c_f$, the constituents increasingly outrun the potential interactions that normally maintain internal closure, so the leading side of the assembly encounters a strongly asymmetric wake ledger while trailing structure remains tied to older path-history contributions. The result is severe mechanical deformation rather than a substrate-level prohibition. The observer "speed of light" limit for macroscopic assemblies is therefore a structural integrity barrier in the recovered observer branch: an assembly-level failure mode under extreme asymmetric delayed-root closure, not a curvature boundary or geometric wall in absolute timespace.
+For standard-matter assemblies, the observer-level relativistic speed limit is a closure result of assembly structure and channel dressing, usually expressed with the declared local comparison speed $c_\star$ and with $c_0$ in the weak homogeneous observer branch. This statement is effective, not ontological: it constrains the recovered observer branch rather than the admissible velocities of individual architrinos.
+
+At the primitive branch level, as constituent architrino speeds approach the wake-speed threshold $c_f$, the constituents increasingly outrun the potential interactions that normally maintain internal closure. The leading side of the assembly encounters a strongly asymmetric wake ledger while trailing structure remains tied to older path-history contributions. The result is severe mechanical deformation rather than a substrate-level prohibition. The observer "speed of light" limit for macroscopic assemblies is therefore a structural integrity barrier in the recovered observer branch: an assembly-level failure mode under extreme asymmetric delayed-root closure, not a curvature boundary or geometric wall in absolute timespace.
 
 ## Coordinates and Forbidden Transformations
 
 Allowed substrate coordinates preserve the product structure:
 
-- $t$ remains the global absolute time parameter.
+- $t$ remains the absolute time parameter.
 - Spatial coordinates may be Cartesian or curvilinear coordinates on $\Sigma_t$.
 - Spatial coordinate changes may rewrite $h_{ij}$ but do not curve the Euclidean void.
 
@@ -364,6 +379,8 @@ For well-posed dynamics on absolute timespace:
 These assumptions are not additional ontology. They are the analytic conditions needed for the master equation and simulation approximations to be well-defined on the product background.
 
 ## Relation to Relativistic Spacetime
+
+Relativistic spacetime remains the correct comparison target for recovered observer laws, but this chapter does not treat it as substrate ontology. The table therefore compares a fixed product background with a downstream effective description.
 
 | **Feature** | **Absolute Timespace** | **Relativistic Spacetime** |
 |:---|:---|:---|

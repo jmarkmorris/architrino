@@ -23,7 +23,7 @@ This chapter does not own:
 
 ## Dynamic Exclusion Zone
 
-The six architrinos within a Noether core are in rapid orbital motion. The superposition of their fluctuating potential wakes creates a region that is difficult for other architrinos or assemblies to penetrate without being strongly accelerated, deflected, or phase-disrupted.
+The six architrinos within a Noether core are in rapid orbital motion. The superposition of their fluctuating causal-wake contributions creates a region that is difficult for other architrinos or assemblies to penetrate without being strongly accelerated, deflected, or phase-disrupted.
 
 This region acts as a dynamic **exclusion zone**. It is not a solid object with a hard material surface. It is a coherent region of intense wake activity defined by the collective path history of the constituent architrinos.
 

@@ -47,14 +47,16 @@ S_\eta,
 \mathcal{G}_h,
 \Delta t,
 \eta,
+I_h^q,
 \mathcal{L}_{\mathrm{root}},
+\mathcal{T}_{\eta},
 \mathcal{R}_{\mathrm{branch}},
 \Pi_{\mathbb{U}_{\text{now}}},
 \mathcal{E}_{\mathrm{conv}},
 \mathcal{F}
 \big),
 $$
-where $\mathsf{id}$ fixes the run identifier and source commit, $S_\eta$ is the regularized state history, $\mathcal{G}_h$ is the spatial mesh and history mesh, $\Delta t$ is the absolute-time step, $\eta > 0$ is the causal-wake regularization width, $\mathcal{L}_{\mathrm{root}}$ is the causal-root ledger, $\mathcal{R}_{\mathrm{branch}}$ is the named branch-residual vector, $\Pi_{\mathbb{U}_{\text{now}}}$ is the provenance log, $\mathcal{E}_{\mathrm{conv}}$ is the convergence-measure vector, and $\mathcal{F}$ is the finite failure-code set.
+where $\mathsf{id}$ fixes the run identifier and source commit, $S_\eta$ is the regularized state history, $\mathcal{G}_h$ is the spatial mesh and history mesh, $\Delta t$ is the absolute-time step, $\eta > 0$ is the causal-wake regularization width, $I_h^q$ is the declared order-$q$ history interpolation operator, $\mathcal{L}_{\mathrm{root}}$ is the causal-root ledger, $\mathcal{T}_{\eta}$ is the finite-$\eta$ transition-record family when the run crosses fold, separator, or active-root status windows, $\mathcal{R}_{\mathrm{branch}}$ is the named branch-residual vector, $\Pi_{\mathbb{U}_{\text{now}}}$ is the provenance log, $\mathcal{E}_{\mathrm{conv}}$ is the convergence-measure vector, and $\mathcal{F}$ is the finite failure-code set.
 
 The regularized state history is
 $$
@@ -71,6 +73,28 @@ $$
 \mathcal{G}_h=(\Omega_h,\Delta x,\{x_k\}_{k=1}^{K},\Theta_h,\Delta h,\mathsf{bc}),
 $$
 where $\Omega_h\subset\mathbb{R}^3$ is the Euclidean-void computational domain, $\{x_k\}$ are the fixed $\mathbb{U}_{\text{now}}$ sample points, $\Theta_h\subset[-h,0]$ is the stored path-history mesh, $\Delta h$ is the history resolution, and $\mathsf{bc}$ records boundary conditions.
+
+The interpolation operator $I_h^q$ must be declared before delayed source states are evaluated. Its history-resolution diagnostic is
+$$
+E_{\mathrm{hist}}(S_\eta;\Delta h,\Delta h/2;W)
+=
+\frac{
+\left(\sum_{m\in W}\|I_{\Delta h/2}^qS_\eta(t_{\mathrm{emit},m})-I_{\Delta h}^qS_\eta(t_{\mathrm{emit},m})\|^2w_m\right)^{1/2}
+}{
+\left(\sum_{m\in W}\|I_{\Delta h/2}^qS_\eta(t_{\mathrm{emit},m})\|^2w_m\right)^{1/2}+\varepsilon_0
+}.
+$$
+When a nonsmooth state-dependent delay row appears, disappears, or crosses a fold-layer, the campaign must also emit a jump/transition ledger
+$$
+\mathcal{D}_{\mathrm{jump}}
+=
+\{(\xi_a,k_a,\ell_a,\xi_{\pi(a)},R_{\mathrm{jump},a})\},
+\qquad
+R_{\mathrm{jump},a}
+=
+\frac{|t_{0,\ell_a}(\xi_a)-\xi_{\pi(a)}|}
+{\max(\Delta t,\Delta h,\eta/c_f,\varepsilon_0)}.
+$$
 
 For each receiver-source pair $(i,j)$ at absolute time $t$, the root ledger is
 $$
@@ -161,7 +185,9 @@ p_{\mathrm{obs}},
 \epsilon_P,
 \epsilon_L,
 E_\eta,
-\Delta_{\eta,\mathrm{root}}
+\Delta_{\eta,\mathrm{root}},
+E_{\mathrm{hist}},
+E_{\mathrm{jump}}
 \big),
 $$
 with $\epsilon_H$, $\epsilon_P$, and $\epsilon_L$ denoting declared relative drifts of total energy, total momentum, and total angular momentum on the analysis window.
@@ -174,6 +200,17 @@ E_\eta(Y;\eta,\eta/2)
 {\|R(Y_{\eta/2})\|_{L^2(W,\{x_k\})}+\varepsilon_0},
 $$
 and the branch-regulator defect $\Delta_{\eta,\mathrm{root}}$ is the number of unmatched active root-ledger entries after matching $(i,j,\ell,\mathsf{class}_{\ell})$ between $\eta$ and $\eta/2$ runs.
+
+The history and jump components use the declared interpolation operator and transition ledger:
+$$
+E_{\mathrm{hist}}\le\tau_{\mathrm{hist}},
+\qquad
+E_{\mathrm{jump}}
+=
+\max_a R_{\mathrm{jump},a}
+\le\tau_{\mathrm{jump}}.
+$$
+Missing interpolation rows route to $\mathsf{artifact\_incomplete}$; unstable branch or jump identity routes to $\mathsf{branch\_root\_instability}$; unresolved interpolation convergence routes to $\mathsf{mesh\_nonconvergence}$.
 
 The failure-code set is
 $$
@@ -206,7 +243,8 @@ D_{\mathrm{space}},
 D_{\mathrm{cross}},
 D_{\mathrm{prov}},
 D_{\mathrm{cons}},
-D_{\eta}
+D_{\eta},
+D_{\mathrm{jump}}
 \big),
 $$
 where every component is a ratio whose passing threshold is $1$:
@@ -235,6 +273,7 @@ D_{\mathrm{hist}}
 \max\left(
 \frac{E_{\mathrm{rel}}(\Phi)}{0.02},
 \frac{E_{\mathrm{rel}}(\|\nabla\Phi\|)}{0.03},
+\frac{E_{\mathrm{hist}}}{\tau_{\mathrm{hist}}},
 \frac{D_W}{0.05},
 \frac{D_{JS}}{0.02}
 \right),
@@ -278,7 +317,11 @@ D_{\mathrm{cons}}
 \qquad
 D_{\eta}
 =
-\max_Y\frac{E_\eta(Y)}{\tau_{\eta,Y}}.
+\max_Y\frac{E_\eta(Y)}{\tau_{\eta,Y}},
+\qquad
+D_{\mathrm{jump}}
+=
+\frac{E_{\mathrm{jump}}}{\tau_{\mathrm{jump}}}.
 $$
 
 The executable Tier 1 acceptance predicate is
@@ -309,6 +352,7 @@ Failure routing is deterministic. The first violated row in the following order 
 | required artifact, source commit, pre-run tolerance, or hash is missing | $\mathsf{artifact\_incomplete}$ |
 | a promoted observable, tolerance, branch label, or regulator ladder is changed after output inspection | $\mathsf{hidden\_tuning}$ |
 | $R_0\notin\mathsf{Candidate}_{1}$ or active roots are unstable under root-ledger refinement | $\mathsf{branch\_root\_instability}$ |
+| $D_{\mathrm{jump}}>1$ or jump identities are unstable under refinement | $\mathsf{branch\_root\_instability}$ |
 | $D_{\mathrm{ref}}>1$, $D_{\mathrm{ord}}>1$, $D_{\mathrm{hist}}>1$, $D_{\mathrm{space}}>1$, or $D_{\mathrm{cross}}>1$ | $\mathsf{mesh\_nonconvergence}$ |
 | $D_{\mathrm{prov}}>1$ | $\mathsf{provenance\_discontinuity}$ |
 | $D_{\mathrm{cons}}>1$ | $\mathsf{conservation\_drift}$ |
@@ -492,6 +536,7 @@ $$
 \big(
 \mathsf{artifact\_hashes},
 \mathcal{L}_{\mathrm{root}}^{\mathrm{matched}},
+\mathcal{T}_{\eta},
 \mathcal{R}_{\mathrm{branch}},
 \mathcal{E}_{\mathrm{conv}},
 \mathcal{D}_{\mathrm{exec}},
@@ -499,6 +544,7 @@ $$
 \mathsf{promotion\_status}
 \big).
 $$
+where $\mathcal{T}_{\eta}$ is present whenever the run crosses a fold-layer, separator, or active-root status window. Proof packets may consume a transition-sensitive run only if the simulation handoff carries the same transition record required by the run protocol.
 It must state whether every expected active root was matched under $\Delta t$, $\Delta h$, and $\eta$ refinement, which residual component controls the verdict, and which artifact contains each value. A proof-program packet may cite a Tier 1 run only through this handoff; a plot, best-fit branch, or un-hashed table is not simulation support for a theorem target.
 
 ## Numerical Promotion Lemma

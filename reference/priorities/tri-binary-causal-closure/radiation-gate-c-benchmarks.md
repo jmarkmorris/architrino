@@ -36,6 +36,29 @@ $$
 
 The high-value theorem target is to derive the routing functional that decides when the residual retunes, when it becomes a coaxial contra-rotating pro/anti planar pair, and when it routes into non-radiative medium or reaction channels.
 
+For photon-producing routes, Gate C is the predicate
+$$
+\operatorname{GateC}_{\gamma}(\mathsf e)
+=
+\operatorname{Ledger}_{\gamma}(\mathsf e)
+\wedge
+\operatorname{Trans}_{\gamma}(\mathsf e)
+\wedge
+\operatorname{Bench}_{\gamma}(\mathsf e).
+$$
+Here $\operatorname{Ledger}_{\gamma}$ requires $\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)=\mathbf{0}$ after photon output, recoil, remnant, medium update, and provenance rows are included. The transversality row is
+$$
+\operatorname{Trans}_{\gamma}(\mathsf e)
+\Longleftrightarrow
+\left\|
+P_{\parallel,\hat{\mathbf{k}}}
+\Pi_{\gamma}\mathcal{L}_A(\mathsf e)
+\right\|_{\gamma}
+\le
+\epsilon_{\gamma,\parallel},
+$$
+so any longitudinal response must cancel, remain unexposed below tolerance, or route to a material or massive-vector channel rather than a free photon. $\operatorname{Bench}_{\gamma}$ is the benchmark recovery row for the selected event family: atomic transition, bremsstrahlung, synchrotron, Compton-like scattering, pair channel, or blackbody/thermal radiation.
+
 This packet is the first worked case for the shared [residual-routing event-ledger theorem](residual-routing-event-ledger.md). It owns the radiation-specific residual, channel list, benchmark recoveries, and failure modes; the shared packet owns the common routing and event-ledger contract.
 
 Radiation channel visibility also consumes the shared [exposure-quotient theorem](../mass-map/exposure-quotient-theorem.md). This packet owns the radiation-specific emission/absorption handoff; the shared exposure packet owns the projection/quotient rule that decides which internal residual route becomes a visible photon channel, material update, or non-radiative response.
@@ -51,6 +74,14 @@ Radiation channel visibility also consumes the shared [exposure-quotient theorem
 | Pair channels | Recover pair thresholds and provenance without unbalanced creation from nothing. | Pair production lacks source inventory, momentum ledger, or Noether-core recruitment. |
 | Compton-like scattering | Recover Compton shift, Thomson limit, and Klein-Nishina correction as one Gate C vertex. | Frequency change becomes untracked loss rather than closed recoil and photon provenance. |
 | Blackbody recovery | Recover Planck occupation, zero effective photon chemical potential, thermalization depth, and redshift handoff without retuning the Noether-Sea map. | CMB or thermal radiation requires per-observable photon loading. |
+
+## Photon Attenuation Data Panel
+
+The OpenAlex photon cross-section row is routed here as a finite benchmark panel rather than left as a broad source-mining queue. A Gate C material event should eventually choose a small declared material/energy panel from photon attenuation data and test
+$$
+I/I_0=\exp[-(\mu/\rho)x]
+$$
+alongside component routing for scattering, photoelectric absorption, pair or triplet production, recoil, remnant state, and medium update rows. The table values are benchmark targets only; they are not substrate ontology and they should not be mined exhaustively material by material before a concrete Gate C event family exists.
 
 ## Minimal Gate Functional
 

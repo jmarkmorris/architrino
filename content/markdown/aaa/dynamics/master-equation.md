@@ -10,7 +10,7 @@ The chapter is long because it plays several roles at once: foundational law, th
 
 ### Purpose and Scope
 
-This document presents the **Master Equation of Motion (EOM)** governing the lawful evolution of all architrinos in the Euclidean void + absolute time substrate. It is the microscopic dynamics input for later closure programs: particles, effective fields, spacetime, quantum behavior, and gravity must be recovered from this law only after the corresponding assembly, continuum, and validation burdens are met.
+This document presents the **Master Equation of Motion (EOM)** governing the lawful evolution of all architrinos in the Euclidean void and absolute time. It is the microscopic dynamics input for later closure programs: assemblies, effective continuum descriptions, observer-level geometry, quantum behavior, and gravity must be recovered from this law only after the corresponding assembly, coarse-graining, and validation burdens are met. The chapter keeps $c_f$ explicit in formulas; setting $c_f=1$ is a nondimensional convention, not a change in the causal law.
 
 The Master EOM is:
 
@@ -20,19 +20,29 @@ The Master EOM is:
 - **Causal**: All influences propagate at finite field speed $c_f$.
 - **Self-consistent**: Includes self-interaction (self-hit) when $\|\mathbf{v}\| > c_f$ at past emission times.
 
+The level distinction used throughout the chapter is:
+
+| Level | What is asserted here | What is not asserted here |
+| --- | --- | --- |
+| Substrate ontology | Architrinos move in absolute time through the Euclidean void and emit causal wakes. | No fundamental spacetime metric, continuum field substance, or observer reconstruction is assumed. |
+| Dynamics | Acceleration is the receiver-local sum over delayed causal-root hits. | A plotted orbit or numerical residual is not a proof unless its branch chart is certified. |
+| Effective description | Potentials, fields, one-forms, metrics, and wave functions may be reconstructed after coarse-graining. | Effective variables are not promoted to substrate ontology by their predictive usefulness. |
+| Inference and observation | A receiver or observer may infer source configurations from hit records and assembly responses. | Inference does not determine the full ontic history unless the missing path-history data are supplied. |
+
 ### Overview and Key Principle
 
 #### The Central Idea
 
-**Fundamental Principle:**
+**Receiver-local relevance principle:**
 
-> *Potential at all other points in time and space is irrelevant.*
+> The only substrate-level contributions to $\mathbf{a}_i(t)$ are causal wake intersections at the receiver event.
 
-At time $t$, the acceleration of architrino $i$ at position $\mathbf{x}_i(t)$ depends **only** on causal wake surfaces that **intersect its current location**. 
+At time $t$, the acceleration of architrino $i$ at position $\mathbf{x}_i(t)$ depends only on causal wake surfaces that intersect its current location.
 
-- **Not relevant**: Potential at other spatial locations $\mathbf{x} \neq \mathbf{x}_i(t)$
-- **Not relevant**: Potential at other times $t' \neq t$ (except as encoded in the causal history that arrives "now")
-- **Only relevant**: The **intersection events** (causal hits) where $\mathbf{x}_i(t)$ coincides with an expanding wake surface from some source at some past emission time $t_0 < t$
+- **Substrate event**: $\mathbf{x}_i(t)$ coincides with an expanding causal isochron emitted by some source at some past time $t_0<t$.
+- **Path-history input**: the source worldline determines which emission times solve the causal constraint.
+- **Effective reconstruction**: a potential or field value away from the receiver is useful only after one has declared a continuum or diagnostic representation.
+- **Inference layer**: source identity, distance, and emission velocity may be reconstructed from additional records, but they are not directly supplied by a single hit.
 
 This is an **event-local delayed interaction rule**: the acceleration is evaluated at the receiver event, but depends on path history through the delayed causal roots.
 
@@ -55,7 +65,7 @@ where:
 - $\mathbf{a}_{ij}(\text{causal history})$: Sum of all per-hit accelerations from source $j \neq i$ arriving at receiver $i$ at time $t$
 - $\mathbf{a}_{ii}(\text{self-hit})$: Sum of all self-hit acceleration contributions (architrino $i$ intersecting its own past emissions)
 
-(The per-hit acceleration $\mathbf{a}_{ij}(t; t_0)$ is defined rigorously in Section 2.1.1. The substrate law is acceleration-first. If a force-like bookkeeping symbol is desired, introduce one universal conversion constant $\mu_{\text{arch}}$ and define $\mathbf{F}_{ij} \equiv \mu_{\text{arch}} \mathbf{a}_{ij}$.)
+(The per-hit acceleration $\mathbf{a}_{ij}(t; t_0)$ is defined below in canonical form. The substrate law is acceleration-first. If a force-like bookkeeping symbol is desired, introduce one universal conversion constant $\mu_{\text{arch}}$ and define $\mathbf{F}_{ij} \equiv \mu_{\text{arch}} \mathbf{a}_{ij}$.)
 
 **Key insight:** Both terms have the same functional form: a radial inverse-square law modulated by the causal Jacobian $J_{ij}(t;t_0)$. They differ only in source identity ($j = i$ vs $j \neq i$).
 
@@ -142,11 +152,11 @@ $$
 \mathcal{G}^{\mathrm{inact}},
 \nu_J,
 h_{\mathrm{mem}},
-\mathcal{R}_{\mathrm{ret}},
+\mathcal{R}_{\mathrm{return}},
 \lambda_{\mathrm{sec}}
 \right).
 $$
-Here $\mathcal{R}^{\mathrm{act}}$ is the active causal-root set retained by the chart, $\mathcal{G}^{\mathrm{inact}}$ is the collection of inactive branch-gap functions, $\nu_J$ is the active-root Jacobian floor, $h_{\mathrm{mem}}$ is the required memory depth, $\mathcal{R}_{\mathrm{ret}}$ is the return residual on the section, and $\lambda_{\mathrm{sec}}$ is the transverse section-stability margin.
+Here $\mathcal{R}^{\mathrm{act}}$ is the active causal-root set retained by the chart, $\mathcal{G}^{\mathrm{inact}}$ is the collection of inactive branch-gap functions, $\nu_J$ is the active-root Jacobian floor, $h_{\mathrm{mem}}$ is the required memory depth, $\mathcal{R}_{\mathrm{return}}$ is the return residual on the section, and $\lambda_{\mathrm{sec}}$ is the transverse section-stability margin.
 
 The object is acceptable only when
 $$
@@ -156,7 +166,7 @@ $$
 \qquad
 0<h_{\mathrm{mem}}<h<\infty,
 \qquad
-\|\mathcal{R}_{\mathrm{ret}}\|\le\epsilon_{\mathrm{ret}},
+\|\mathcal{R}_{\mathrm{return}}\|\le\epsilon_{\mathrm{return}},
 $$
 and the section return is stable, for example
 $$
@@ -204,7 +214,7 @@ For proof work, branch sums should be derived from one regularized absolute-time
 $$
 h>0,
 $$
-a shell width
+a causal-wake-surface width
 $$
 \eta>0,
 $$
@@ -256,7 +266,7 @@ $$
 \epsilon^2.
 $$
 
-This equation is the certification-level law for the dual-mollified problem. The shell mollifier
+This equation is the certification-level law for the dual-mollified problem. The causal-surface mollifier
 $$
 \delta_\eta
 $$
@@ -270,7 +280,7 @@ caps the near-collision inverse-square amplitude. Branch-resolved formulas with 
 
 #### Regularized Energy Diagnostic for the Exact Charge
 
-For computation with finite shell width $\eta>0$, it is useful to introduce an $\eta$-regularized diagnostic for the same history-aware energy charge tracked by the exact nonlocal action. When one wants a quadratic kinetic bookkeeping proxy, use a single universal conversion constant $\mu_{\text{arch}}$ rather than particle-specific substrate masses. This smooth expression is used for numerical evaluation and convergence testing of the conserved quantity:
+For computation with finite causal-wake-surface width $\eta>0$, it is useful to introduce an $\eta$-regularized diagnostic for the same history-aware energy charge tracked by the exact nonlocal action. When one wants a quadratic kinetic bookkeeping proxy, use a single universal conversion constant $\mu_{\text{arch}}$ rather than particle-specific substrate masses. This smooth expression is used for numerical evaluation and convergence testing of the conserved quantity:
 $$
 E_{\text{tot}}^{(\eta)}(t)
 = \sum_i \frac{1}{2} \mu_{\text{arch}} \left\|\dot{\mathbf{x}}_i(t)\right\|^2
@@ -356,7 +366,7 @@ $D_{ij}(t)=\deg(F_t^{(ij)},I_t,0)$ is invariant.
 *Proof sketch:* In 1D, $D_{ij}$ is the oriented count of simple roots. Under a regular homotopy, roots move continuously and cannot appear/disappear in the interior without becoming critical, and cannot enter/leave through the boundary by (R1). Hence the oriented count is constant.
 
 **Proposition 2 (Sub-$c_f$ monotonic single-hit regime).**  
-If there exists $v_*<c_f$ such that $|\mathbf{v}_j(t_0)|\le v_*$ for all $t_0\in I_t$, then
+If there exists $v_*<c_f$ such that $\|\mathbf{v}_j(t_0)\|\le v_*$ for all $t_0\in I_t$, then
 $$
 \frac{dF_t^{(ij)}}{dt_0}
 \ge
@@ -383,16 +393,16 @@ between regular intervals.
 
 *Proof sketch:* Local normal form near a generic fold is equivalent to $u^2\pm\mu=0$, yielding either 0 or 2 simple roots. The two roots carry opposite Jacobian signs, so the degree is unchanged.
 
-This delay-map theorem pack is foundational rather than merely model-specific. It should eventually be promoted or mirrored into the foundations layer as the general fold-geometry reference for every delayed-root construction in the theory.
+This delay-map theorem pack is foundational rather than merely model-specific. Within this chapter it serves as the fold-geometry reference for delayed-root constructions: regular charts preserve signed degree, while branch creation or annihilation requires a Jacobian-degenerate fold.
 
 #### Single-Hit Regime (Unique $t_0$)
 
-In the **sub-field-speed regime** ($|\mathbf{v}_j(t_0)| < c_f$ locally), Proposition 2 applies, and the map is strictly monotone:
+In the **sub-field-speed regime** ($\|\mathbf{v}_j(t_0)\| < c_f$ locally), Proposition 2 applies, and the map is strictly monotone:
 
 $$
 \frac{dF_t^{(ij)}}{dt_0}
 \ge
-1-\frac{|\mathbf{v}_j(t_0)|}{c_f}
+1-\frac{\|\mathbf{v}_j(t_0)\|}{c_f}
 >0,
 $$
 
@@ -406,7 +416,7 @@ $$
 
 #### Multi-Hit Regime (Multiple $t_0$)
 
-In the **super-field-speed regime** ($|\mathbf{v}_j| > c_f$ at some past times), the delay map can fold when
+In the **super-field-speed regime** ($\|\mathbf{v}_j\| > c_f$ at some past times), the delay map can fold when
 $\hat{\mathbf{r}}_{ij}\cdot\mathbf{v}_j > c_f$, i.e. when $dF_t^{(ij)}/dt_0$ changes sign. Then $\mathcal{C}_{ij}(t)$ can contain multiple solutions:
 
 $$
@@ -570,7 +580,7 @@ $$
 \hat{\mathbf{r}}_{ij} = \frac{\mathbf{r}_{ij}}{r_{ij}} = \frac{\mathbf{x}_i(t) - \mathbf{x}_j(t_0)}{\|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\|}.
 $$
 
-**Charge sign factor:**
+**Polarity sign factor:**
 
 $$
 \sigma_{ij} = \mathrm{sign}(q_i q_j) = \begin{cases}
@@ -606,7 +616,7 @@ where $\mu_{\text{arch}}$ is a universal conversion constant used only for force
 where:
 
 - $\kappa$: universal coupling constant
-- $q_i, q_j$: charges of receiver and source ($\pm \epsilon$ for electrinos/positrinos)
+- $q_i, q_j$: intrinsic polarities of receiver and source ($\pm \epsilon$ for electrinos/positrinos)
 - $r_{ij}$: distance from emission point to reception point
 - $\hat{\mathbf{r}}_{ij}$: radial direction from emission to reception
 - $J_{ij}$: causal Jacobian controlling geometric bunching or dilation of the received wake flux
@@ -674,15 +684,15 @@ Because $r = c_f(t - t_0)$, $r = 0$ implies $\tau = t - t_0 = 0$. This case is e
 
 #### Superposition Principle
 
-The Master EOM is **linear in sources**:
+The Master EOM is **linear in source contributions** on a declared branch chart:
 
 $$
-\mathbf{F}_{\text{total}} = \sum_j \mathbf{F}_j.
+\mathbf{a}_{\text{total}}(t) = \sum_j \mathbf{a}_{j}(t).
 $$
 
-Potentials from distinct sources **superpose** without mutual interference. The total potential at any location is the linear sum of all individual contributions.
+The causal-wake distributions from distinct sources superpose without mutual interference, and the receiver sums the branch accelerations that actually intersect it. Effective potentials reconstructed from those wakes also superpose in the corresponding linear diagnostic or continuum limit, but the substrate law remains the receiver-local branch sum.
 
-**Consequence:** The problem of $N$ interacting architrinos reduces to solving $N$ coupled delay differential equations (DDEs), one per architrino, with each depending on the full history of all others.
+**Consequence:** The problem of $N$ interacting architrinos reduces to solving $N$ coupled delay differential equations (DDEs), one per architrino, with each depending on the retained history of all sources and on the certified active causal-root rows.
 
 ---
 
@@ -694,10 +704,10 @@ Potentials from distinct sources **superpose** without mutual interference. The 
 
 $\hat{\mathbf{r}}_{ij}$ points **from the source's historical position** $\mathbf{x}_j(t_0)$ **to the receiver's current position** $\mathbf{x}_i(t)$.
 
-**Sign of the force:**
+**Sign of the acceleration:**
 
-- **Like charges** ($\sigma_{ij} = +1$): Force along $+\hat{\mathbf{r}}_{ij}$ (repulsion; pushes receiver away from emission point)
-- **Unlike polarities** ($\sigma_{ij} = -1$): Force along $-\hat{\mathbf{r}}_{ij}$ (attraction; pulls receiver toward emission point)
+- **Like polarities** ($\sigma_{ij} = +1$): acceleration along $+\hat{\mathbf{r}}_{ij}$ (repulsion; pushes receiver away from emission point)
+- **Unlike polarities** ($\sigma_{ij} = -1$): acceleration along $-\hat{\mathbf{r}}_{ij}$ (attraction; pulls receiver toward emission point)
 
 **Two-body checks (stationary sources):**
 
@@ -723,10 +733,10 @@ All geometric normalization factors (e.g., $1/(4\pi)$ from spherical surface are
 **Dimensional analysis:**
 
 $$
-[\kappa] = \frac{[\text{Length}]^3}{[\text{Time}]^2 [\text{Charge}]^2}, \quad [\mathbf{F}] = \frac{[\text{Length}]}{[\text{Time}]^2}.
+[\kappa] = \frac{[\text{Length}]^3}{[\text{Time}]^2 [\text{Polarity}]^2}, \quad [\mathbf{a}] = \frac{[\text{Length}]}{[\text{Time}]^2}.
 $$
 
-In natural units with $c_f = 1$, $[\text{Length}] = [\text{Time}]$, and $\kappa$ has dimensions of $[\text{Length}]/[\text{Charge}]^2$.
+If the force-like bookkeeping variable $\mathbf{F}=\mu_{\text{arch}}\mathbf{a}$ is introduced, then $[\mathbf{F}]=[\mu_{\text{arch}}][\text{Length}]/[\text{Time}]^2$. In natural units with $c_f = 1$, $[\text{Length}] = [\text{Time}]$, and $\kappa$ has dimensions of $[\text{Length}]/[\text{Polarity}]^2$.
 
 #### Receiver Kinematics (Radial vs Orthogonal Components)
 
@@ -779,9 +789,9 @@ $$
 
 The **emitted potential pattern in space** is not speed independent: a moving source lays down successive wake surfaces from different points on its worldline. The **received** force magnitude is therefore not purely a function of $r_{ij}$. It is modulated by the causal Jacobian $\left|J_{ij}\right|^{-1}$, which measures how the source motion compresses or dilates the spacing of wake surfaces along the active branch.
 
-The receiver's velocity $\mathbf{v}_i(t)$ does **not** appear as a separate source-strength factor in $|\mathbf{F}_{ij}|$ itself (at fixed $r_{ij}$, $\hat{\mathbf{r}}_{ij}$, and $J_{ij}$). It influences:
+The receiver's velocity $\mathbf{v}_i(t)$ does **not** appear as a separate source-strength factor in $\|\mathbf{F}_{ij}\|$ itself (at fixed $r_{ij}$, $\hat{\mathbf{r}}_{ij}$, and $J_{ij}$). It influences:
 
-1. The **instantaneous power** through $\mathbf{F} \cdot \mathbf{v} = |\mathbf{F}| v_r$.
+1. The **instantaneous power** through $\mathbf{F} \cdot \mathbf{v} = \|\mathbf{F}\| v_r$.
 2. The **subsequent evolution of $r_{ij}$** (and thus future force magnitudes).
 3. Which delayed branches are actually sampled along the receiver worldline over time.
 
@@ -834,7 +844,7 @@ $$
 
 where $\mathcal{F}$ is a **causal functional**: it depends on the current state $\mathbf{X}_i(t)$ and the past states $\{\mathbf{X}_j(t') : t' < t\}$ of all architrinos (including $i$ itself for self-hits).
 
-#### Regularization (Mollified Shells, Finite $\eta$)
+#### Regularization (Mollified Causal Wake Surfaces, Finite $\eta$)
 
 The ideal model uses **surface-delta causal isochrons** in the emission-time integral. On a simple branch with a distance floor and a Jacobian floor, the delta collapses to a continuous receiver-time branch contribution; singular or impulse-like behavior arises only when branches hit collision support, lose transversality, accumulate, or are sampled as unresolved numerical events. One may treat the singular limit as a measure-valued branch law, or regularize by replacing the surface delta with a narrow wake surface of thickness $\eta > 0$:
 
@@ -918,7 +928,7 @@ $$
 4. Standard state-dependent DDE existence/uniqueness theory on Banach spaces applies, yielding a unique local $C^1$ solution and a maximal extension.
 5. Continuation follows from the same theorem: finite-time breakdown can occur only by leaving every bounded subset of the admissible set, i.e. via unbounded speed, vanishing separation on active support, transversality loss/root accumulation, or unbounded active branch-count growth.
 
-Therefore the regularized delayed dynamics are locally well-posed, with global existence whenever those failure modes are excluded. This conditional statement applies to the finite-$\eta$ regularized model; the ideal $\eta\to 0$ shell limit still requires separate control of root accumulation and Jacobian-degenerate branches. $\square$
+Therefore the regularized delayed dynamics are locally well-posed, with global existence whenever those failure modes are excluded. This conditional statement applies to the finite-$\eta$ regularized model; the ideal $\eta\to 0$ surface-delta limit still requires separate control of root accumulation and Jacobian-degenerate branches. $\square$
 
 #### Finite-Continuation Criterion for Global Comparisons
 
@@ -1025,15 +1035,15 @@ where $\sigma_{ii} = +1$ (like polarities repel), so each self-hit contributes a
 
 **Critical clarification:**
 
-Self-hit is **not** instantaneously tied to current velocity. An architrino that has **previously** exceeded $v > c_f$ and emitted wake surfaces can **later slow down** to $v < c_f$ and **still receive self-hits** from those earlier emissions.
+Self-hit is **not** instantaneously tied to current velocity. An architrino that has **previously** exceeded $\|\mathbf{v}\| > c_f$ and emitted wake surfaces can **later slow down** to $\|\mathbf{v}\| < c_f$ and **still receive self-hits** from those earlier emissions.
 
 **Scenario:**
 
-1. At time $t_1$: Architrino accelerates to $v > c_f$ and emits wake surfaces while in super-field-speed regime.
-2. At time $t_2 > t_1$: Architrino slows down to $v < c_f$ (e.g., due to partner attraction or external forces).
-3. At time $t_3 > t_2$: The architrino's trajectory curves such that it intersects one of the wake surfaces emitted at $t_1$ (when $v > c_f$).
+1. At time $t_1$: Architrino accelerates to $\|\mathbf{v}\| > c_f$ and emits wake surfaces while in super-field-speed regime.
+2. At time $t_2 > t_1$: Architrino slows down to $\|\mathbf{v}\| < c_f$ (e.g., due to partner attraction or external forces).
+3. At time $t_3 > t_2$: The architrino's trajectory curves such that it intersects one of the wake surfaces emitted at $t_1$ (when $\|\mathbf{v}\| > c_f$).
 
-**Result:** Self-hit occurs at $t_3$ even though current velocity $|\mathbf{v}(t_3)| < c_f$.
+**Result:** Self-hit occurs at $t_3$ even though current velocity $\|\mathbf{v}(t_3)\| < c_f$.
 
 **Implication:** Self-hit is a **path-history memory effect**. The architrino's current acceleration depends on **whether it ever exceeded $c_f$ in the past and curved**, not just on its instantaneous state.
 
@@ -1041,17 +1051,17 @@ Self-hit is **not** instantaneously tied to current velocity. An architrino that
 
 #### Self-Hit as Stabilization Mechanism
 
-**Role in binary formation:** Self-hit provides a **repulsive radial contribution** that opposes the attractive pull of opposite-charge partners. This competition produces:
+**Role in binary formation:** Self-hit provides a **repulsive radial contribution** that opposes the attractive pull of opposite-polarity partners. This competition produces:
 
 - **Maximum-curvature candidates**: the circular toy model identifies where a minimum-radius barrier must be analyzed.
 - **Null-separatrix protection**: the Jacobian-degenerate boundary $J=0$ acts as a geometric wall against collapse in the exact kernel.
 - **A closure test, not a closure proof**: the same $1/|J|$ amplification multiplies tangential as well as radial projections, so a Jacobian-null branch does not by itself prove vanishing tangential power or an exact locked orbit.
 
-**Connection to quantum behavior:** The non-Markovian memory and deterministic-but-complex self-hit dynamics are the **seed** of quantum-like phenomena:
+**Connection to quantum behavior:** At this chapter's claim level, non-Markovian memory and deterministic-but-complex self-hit dynamics are a candidate substrate mechanism for effective quantum-like behavior, not yet a derivation of the quantum formalism:
 
-- Pilot-wave guidance (self-interference creates effective "guiding field")
-- Discrete stable states (attractors in phase space)
-- Measurement uncertainty (informational ambiguity at receiver; see Section 3.4)
+- effective guidance by self-interference and causal-wake history,
+- discrete stable states as attractors in phase space,
+- measurement uncertainty as receiver-level informational ambiguity.
 
 An important open problem is to map the phase-space attractor landscape for self-hit binaries, including basin size for maximum-curvature orbits, escape conditions, and the existence of secondary attractors such as long-lived elliptical families.
 
@@ -1064,7 +1074,7 @@ An important open problem is to map the phase-space attractor landscape for self
 - Initial conditions: Both at rest, separated by distance $d_0$
 - No self-hits (speeds remain $< c_f$ if $d_0$ is not too small)
 
-**Symmetry:** By charge symmetry, both fall toward their common center of mass.
+**Symmetry:** By polarity symmetry, both fall toward their common center of mass.
 
 **Equations:** Radial coordinate $r(t) = \|\mathbf{x}_2(t) - \mathbf{x}_1(t)\|$ satisfies:
 
@@ -1090,14 +1100,14 @@ where the factor of 2 comes from the symmetry (each feels the same magnitude for
 
 **Result:** Net tangential power $T > 0$ → continuous acceleration → orbit tightens (spiral inward) → speed increases.
 
-**Conclusion within this circular benchmark:** No stable circular orbit appears in the sub-field-speed regime for isolated opposite-charge binaries.
+**Conclusion within this circular benchmark:** No stable circular orbit appears in the sub-field-speed regime for isolated opposite-polarity binaries.
 
 
 
 #### Maximum-Curvature Orbit (Self-Hit Stabilization)
 
 **Setup:**
-- Opposite-charge binary spirals inward (as in 8.2) until speed crosses $v = c_f$
+- Opposite-polarity binary spirals inward (as in 8.2) until speed crosses $\|\mathbf{v}\| = c_f$
 - Self-hits activate → repulsive outward force
 
 **Geometric definition (Null Separatrix):**
@@ -1146,8 +1156,8 @@ This null-separatrix is therefore an **amplitude wall** for the self branch. It 
 
 From the perspective of the receiving architrino, the information carried by an intersecting causal isochron is **limited**. The receiver only knows:
 
-1. The **net strength** of the potential at the point of intersection (through the acceleration magnitude $|\mathbf{F}|$).
-2. The **unoriented line of action** through its current position (the line along which the force points).
+1. The **net strength** of the potential at the point of intersection (through the acceleration magnitude $\|\mathbf{F}\|$ when force bookkeeping is used).
+2. The **unoriented line of action** through its current position (the line along which the acceleration points).
 
 The receiver does **not** have direct knowledge of:
 - The source's identity (which architrino $j$?)
@@ -1158,8 +1168,8 @@ The receiver does **not** have direct knowledge of:
 
 A particularly important ambiguity: the receiver cannot distinguish between:
 
-- A **negative potential** due to an Electrino (charge $-\epsilon$) on one side of the line of action, and
-- A **positive potential** due to a Positrino (charge $+\epsilon$) on the **opposite side** of the same line,
+- A **negative potential** due to an Electrino (polarity $-\epsilon$) on one side of the line of action, and
+- A **positive potential** due to a Positrino (polarity $+\epsilon$) on the **opposite side** of the same line,
 
 if the resulting radial acceleration is the same.
 
@@ -1169,7 +1179,7 @@ if the resulting radial acceleration is the same.
 
 #### Rest-Frame Recast (Useful Inference Device)
 
-Any single hit can be **equivalently described** with a **stationary emitter** ($|\mathbf{v}| = 0$) placed somewhere along the same unoriented line of action, with the emitter's actual speed at emission accounted for by an adjusted emission time and, if desired, a surrogate location along that line.
+Any single hit can be **equivalently described** with a **stationary emitter** ($\|\mathbf{v}\| = 0$) placed somewhere along the same unoriented line of action, with the emitter's actual speed at emission accounted for by an adjusted emission time and, if desired, a surrogate location along that line.
 
 **Key property:** The same emission law is preserved in this recast; the velocity dependence is transferred into the adjusted emission geometry and the matched Jacobian-weighted flux.
 
@@ -1183,11 +1193,11 @@ The ambiguity is compounded by **superposition**: The net potential at any insta
 
 #### Connection to Quantum Measurement Uncertainty
 
-This limited, unoriented, and source-ambiguous information at the hit level is a **key ingredient** for the emergence of effective quantum-like behavior and measurement uncertainty from deterministic micro-dynamics:
+This limited, unoriented, and source-ambiguous information at the hit level is a candidate bridge to effective quantum-like behavior and measurement uncertainty from deterministic micro-dynamics. The bridge remains a closure target until the coarse-grained state map and record-formation dynamics are derived:
 
-- **Wavefunction as potential distribution**: The "wavefunction" $\psi$ may be interpreted as a **coarse-grained representation** of the superposed wake-defined potential landscape.
-- **Measurement as interaction**: "Measurement" is simply a complex assembly interaction; the "outcome" is determined by which causal hits occur.
-- **Uncertainty**: Not fundamental indeterminacy, but **informational ambiguity** from the receiver's limited perspective.
+- **Wave function transition**: $\psi$ may be interpreted as a coarse-grained representation of the wake-defined potential landscape only after a density/phase map has been supplied.
+- **Measurement interaction**: an outcome is a record formed by assembly interactions and causal-hit history, not by adding a fundamental collapse postulate at this level.
+- **Uncertainty**: the native candidate mechanism is informational ambiguity at the receiver plus unresolved microstate sensitivity, not ontic randomness.
 
 ## Parameters and Numerical Implementation
 
@@ -1199,10 +1209,10 @@ The core parameters entering the Master Equation are:
 |:--------------|:-----------|:----------------------|:----------------|:------------|
 | Wake speed | $c_f$ | Set to 1 in natural units unless otherwise stated | $\mathrm{L}\,\mathrm{T}^{-1}$ | Propagation speed in the causal constraint |
 | Coupling constant | $\kappa$ | Universal coupling parameter | $\mathrm{L}^3\,\mathrm{T}^{-2}\,\mathrm{Q}^{-2}$ | Controls the strength of the inverse-square interaction |
-| Architrino charge unit | $\epsilon$ | $\lvert e \rvert / 6$ | $\mathrm{Q}$ | Fundamental charge magnitude |
-| Shell thickness (regularization) | $\eta$ | Positive regularization width used in analysis and simulation | $\mathrm{L}$ | Mollifies delta singularities |
+| Architrino polarity unit | $\epsilon$ | $\lvert e \rvert / 6$ | $\mathrm{Q}$ | Fundamental polarity magnitude |
+| Causal-wake-surface thickness (regularization) | $\eta$ | Positive regularization width used in analysis and simulation | $\mathrm{L}$ | Mollifies delta singularities |
 
-In this document, $c_f$ is treated primarily as a unit-setting convention, $\kappa$ as the universal coupling scale of the delayed interaction law, $\epsilon$ as the fundamental charge unit, and $\eta$ as a regularization parameter used only when a smooth surrogate of the exact shell dynamics is required.
+In this document, $c_f$ is treated primarily as a unit-setting convention, $\kappa$ as the universal coupling scale of the delayed interaction law, $\epsilon$ as the fundamental polarity unit, and $\eta$ as a regularization parameter used only when a smooth surrogate of the exact causal-wake dynamics is required.
 
 ### Numerical Implementation Notes
 
@@ -1289,19 +1299,18 @@ $$
 1. **Event-local at the receiver**: Only intersecting delayed causal wake surfaces contribute (no action-at-a-distance).
 2. **Non-Markovian**: Depends on full path history (self-hit memory).
 3. **Superposition**: Linear sum over all sources and causal roots.
-4. **Self-hit**: Repulsive self-interaction when $v > c_f$ at past emission times; persists even after slowing down.
-5. **Radial line of action with Jacobian flux weighting**: No magnetic or velocity-cross-product terms; all forces point along $\hat{\mathbf{r}}_{ij}$, with magnitude modulated by $\left|J_{ij}\right|^{-1}$.
+4. **Self-hit**: Repulsive self-interaction when $\|\mathbf{v}\| > c_f$ at past emission times; persists even after slowing down.
+5. **Radial line of action with Jacobian flux weighting**: No magnetic or velocity-cross-product terms; all per-hit accelerations point along $\hat{\mathbf{r}}_{ij}$, with magnitude modulated by $\left|J_{ij}\right|^{-1}$.
 
 #### Implications for Emergent Phenomena
 
-**From this single equation:**
+The equation supplies the microscopic input for later emergence claims, but it does not by itself prove those claims. The status split is:
 
-- **Stable binaries** form via self-hit stabilization at maximum curvature.
-- **Tri-binaries (Noether cores)** emerge as nested binary configurations.
-- **Particles** are tri-binary assemblies with axial layers.
-- **Quantum behavior** arises from non-Markovian memory + informational ambiguity.
-- **Spacetime curvature** emerges from Noether-Sea density gradients.
-- **Cosmological expansion** is local energy dissipation in the Noether Sea.
+- **Binary stabilization**: supported by self-hit barriers and circular/spiral benchmarks; exact stable branches still require certified branch charts and tangential-power closure.
+- **Tri-binaries and particle assemblies**: downstream assembly claims that must be derived from multi-body causal-root locking and hierarchy averaging.
+- **Quantum behavior**: an effective closure target based on non-Markovian memory, attractor basins, and receiver-level informational ambiguity.
+- **Observer-level geometry and gravity**: effective descriptions that must be recovered from Noether-Sea constitutive response and clock/ruler closure, not inserted into the substrate law.
+- **Cosmology**: an effective observer-side program tied to Noether-Sea evolution, transport, and clock-rate comparison; the Euclidean void itself is not claimed to expand.
 
 ---
 
@@ -1338,7 +1347,7 @@ The most tractable cases are the highly symmetric regimes in which closed forms 
 
 Assumptions:
 
-- All particles move slowly: $|\mathbf{v}_j| \ll c_f$,
+- All particles move slowly: $\|\mathbf{v}_j\| \ll c_f$,
 - Configuration changes on timescales long compared to light‑crossing time across the system,
 - No self‑hits (sub‑$c_f$ everywhere, weak curvature).
 
@@ -1387,13 +1396,13 @@ So: **analytic yes** (up to standard quadratures), and corrections doable.
 
 For the self-hit-capable reduced problem that goes beyond the sub-$c_f$ perturbative regime and sets up a return-map breather question, see [collinear-breather.md](../proof-programs/collinear-breather.md).
 
-For the local origin-crossing theorem program in that reduced note, the working 1D model is dual-mollified rather than merely shell-regularized: the shell mollifier $\delta_\eta$ still selects delayed roots, while a separate core mollifier $\epsilon_c$ is imposed on the inverse-square amplitude so the post-crossing local vector field remains finite. That dual-mollified local model is the one used for the first recapture lemmas there.
+For the local origin-crossing theorem program in that reduced note, the working 1D model is dual-mollified rather than merely causal-surface-regularized: the causal-surface mollifier $\delta_\eta$ still selects delayed roots, while a separate core mollifier $\epsilon_c$ is imposed on the inverse-square amplitude so the post-crossing local vector field remains finite. That dual-mollified local model is the one used for the first recapture lemmas there.
 
 ---
 
 #### Two‑body uniform circular orbit, sub‑$c_f$ (no self‑hit)
 
-Consider the symmetric opposite-charge circular ansatz
+Consider the symmetric opposite-polarity circular ansatz
 $$
 \mathbf{x}_1(t)=R(\cos\omega t,\sin\omega t,0),
 \qquad
@@ -1519,7 +1528,7 @@ Within the isolated partner-only circular ansatz, the tangential power is strict
 $$
 \mathbf{a}_{12}\cdot\mathbf{v}_1(t)=v\,a_\theta^{(\mathrm{part})}>0.
 $$
-Therefore an isolated opposite-charge binary cannot realize an exact constant-speed circular orbit from partner delay alone.
+Therefore an isolated opposite-polarity binary cannot realize an exact constant-speed circular orbit from partner delay alone.
 
 **Interpretation.**
 These are the exact partner-only circular formulas needed elsewhere in the chapter. They show that the delayed partner branch supplies the desired inward radial pull, but it also drives the motion forward along $\mathbf{e}_\theta$. The circular ansatz therefore spirals inward instead of closing unless some additional structure changes the tangential balance.
@@ -2156,9 +2165,9 @@ This is a theorem target, not a closure proof. It supplies the concrete falsific
 
 ---
 
-### Emergent‑field / continuum limits
+### Effective Continuum Limits
 
-There’s another class of “analytic solutions” that matter:
+Another class of analytic work appears only after coarse-graining the microscopic DDE:
 
 #### Homogeneous, isotropic Noether Sea
 
@@ -2170,18 +2179,18 @@ Assume:
 
 Then, at coarse‑grained level:
 
-- Symmetry dictates the net force on a test particle at rest is zero.
+- Symmetry dictates the net acceleration on a test architrino at rest is zero.
 - Small perturbations can be analyzed by linearizing around the homogeneous background.
 
 We can:
 
-- Derive an effective **wave equation** for small perturbations in density/potential,
-- Show that disturbances propagate at some emergent speed (likely tied to $c_f$ and medium properties),
-- Recover Maxwell‑like or acoustic‑like behavior analytically.
+- derive an effective wave equation for small perturbations in density or potential diagnostics,
+- show that disturbances propagate at an emergent channel speed tied to $c_f$ and medium response,
+- recover Maxwell-like or acoustic-like behavior as effective continuum behavior.
 
-These are field‑theory‑style analytic solutions (plane waves, Green’s functions) of the **coarse‑grained** equations, not of the micro DDEs. But they are derived from the master equation via continuum methods.
+These are field-theory-style analytic solutions (plane waves, Green's functions) of the **coarse-grained** equations, not of the micro DDEs. They are useful only when the continuum variables are explicitly derived from the master equation by a declared coarse-graining limit.
 
-That’s analytically tractable and important for:
+This regime is analytically tractable and important for:
 
 - Emergent electromagnetism,
 - Emergent metric propagation (gravitational‑wave analogues),
@@ -2223,7 +2232,7 @@ These targets keep the bridge between the formal law and the broader closure pro
 
 ### Energy, Lagrangian, and Hamiltonian Structure of the Architrino Dynamics
 
-In this section we outline how **energy** and **variational structure** are handled in the Architrino Assembly Architecture, given the Master Equation of Motion:
+In this section we outline how **energy** and **variational structure** are handled in $\mathbb{A}\mathbb{A}\mathbb{A}$, given the Master Equation of Motion:
 
 $$
 \frac{d^2 \mathbf{x}_i}{dt^2} =
@@ -2285,7 +2294,7 @@ Thus kinetic energy splits naturally into:
 
 With finite-speed causal wakes and path-history dependence, an instantaneous position-only potential is not fundamental. Time-translation symmetry of a symmetry-preserving nonlocal action model supplies the corresponding nonlocal Noether charge. The formulas in this subsection therefore belong to the action-derived delayed model, not to every regularized implementation of the Master Equation.
 
-For the dual-mollified local 1D model used later in [collinear-breather.md](../proof-programs/collinear-breather.md), the same conservation language should be read more carefully: the shell mollifier $\delta_\eta$ and core mollifier $\epsilon_c$ support a finite local vector field and a tractable return-map theorem program, but exact Noether-charge statements transfer automatically only if that dual mollification is itself derived from a time-translation-invariant action-level regularization of the causal kernel.
+For the dual-mollified local 1D model used later in [collinear-breather.md](../proof-programs/collinear-breather.md), the same conservation language should be read more carefully: the causal-surface mollifier $\delta_\eta$ and core mollifier $\epsilon_c$ support a finite local vector field and a tractable return-map theorem program, but exact Noether-charge statements transfer automatically only if that dual mollification is itself derived from a time-translation-invariant action-level regularization of the causal kernel.
 
 ##### Energy exchange per causal hit
 

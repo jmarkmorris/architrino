@@ -1,12 +1,12 @@
 # Foundational Ontology
 
-This chapter is the bedrock ontology note for $\mathbb{A}\mathbb{A}\mathbb{A}$. Its purpose is to state, in one place, what fundamentally exists, what is emergent, and what terminology has to remain fixed if the rest of the corpus is to stay coherent.
+This chapter states the bedrock ontology of $\mathbb{A}\mathbb{A}\mathbb{A}$. It identifies what exists at the substrate level, what emerges from assembly and medium behavior, and which terms must remain level-aware for the rest of the corpus to stay coherent.
 
 ---
 
 ## Purpose and Scope
 
-This document establishes the **ontological bedrock** of $\mathbb{A}\mathbb{A}\mathbb{A}$: what fundamentally exists, what is emergent, and what is operational. It defines:
+This document establishes the **ontological bedrock** of $\mathbb{A}\mathbb{A}\mathbb{A}$: what fundamentally exists, what is emergent, and what is operationally reconstructed by observers. It defines:
 
 1. **The Substrate** ([absolute time](./absolute-time.md), [Euclidean void](./euclidean-void.md), and [absolute timespace](./absolute-timespace.md))
 2. **The Fundamental Entity** ([architrino](./architrino.md): point transceiver of potential-bearing causal wakes)
@@ -15,7 +15,9 @@ This document establishes the **ontological bedrock** of $\mathbb{A}\mathbb{A}\m
 5. **Terminology Discipline** ([canonical level-aware terminology](../archie/terminology-usage.md))
 6. **Parameter Ledger** ([fundamental postulates vs derived quantities](../validation/parameter-ledger.md))
 
-All subsequent dynamical laws, assembly mappings, and emergent phenomena are **built upon** these foundations. Any contradiction or ambiguity here propagates through the entire $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus; therefore, this document is maintained with maximal rigor and clarity.
+All subsequent dynamical laws, assembly mappings, and emergent phenomena depend on these foundations. A contradiction or ambiguity at this level propagates through the entire $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus; therefore, this document is maintained with maximal rigor and clarity.
+
+The teaching order is controlled by four levels. Substrate ontology names absolute time, the Euclidean void, and architrino identities. Assembly and medium behavior names organized architrino configurations and the Noether Sea. Effective description names the metric, field, particle, and clock language reconstructed from those dynamics. Observer inference names the records available to embedded Physical Observers, not the complete state itself.
 
 Two category distinctions govern the rest of this hub. First, fundamental material is not the same as emergent matter: the architrino is primitive substance, while matter begins only as assembly-level behavior with mass, exclusion, and persistent organization. Second, substantive existence is not the same as relational structure: causal wakes are physically real dynamical geometry, but they are computable from architrino path history rather than an additional material ingredient in the void.
 
@@ -29,6 +31,8 @@ In this ontology hub, the key commitment is:
 
 > **Postulate 1 (Absolute Time):** Time is an absolute, universal, one-dimensional continuum $\mathbb{R}$ with fixed orientation, uniform advancement, frame-independent duration, non-dynamical status, and no substrate-level time dilation or relativity of simultaneity. Dynamics occur through finite-speed causal-wake propagation ($c_f$) in absolute time, with all interactions routed through path history rather than instantaneous action-at-a-distance or advanced effects; worldlines are parametrized directly by $t$.
 
+This is a substrate claim, not a claim about what embedded clocks report. Clock slowing, synchronization offsets, and proper-time readings belong to assembly and Noether-Sea dynamics at the observer-accessible level.
+
 For the argumentative case, see [Absolute Time Defense](./absolute-time-defense.md). For observer-level clocks and dilation, see [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md).
 
 ### Absolute Space (Euclidean Void)
@@ -39,7 +43,7 @@ In this ontology hub, the key commitment is:
 
 > **Postulate 2 (Euclidean Void):** Space is an absolute, static, flat, homogeneous, isotropic container $\mathbb{R}^3$ with fixed Euclidean metric $h_{ij}=\delta_{ij}$. Curvature-like observations arise from contents, wakes, and dynamics inside the void, not from curvature of the void itself.
 
-The Noether Sea is physical content within the void, not the void itself. For the medium branch, see [Noether Sea](../spacetime/noether-sea.md), [Spacetime Assemblies](../spacetime/spacetime-assemblies.md), and [Emergent Metric](../spacetime/emergent-metric.md).
+This is a container claim, not a denial that observers can reconstruct curved effective geometry. The Noether Sea is physical content within the void, not the void itself. For the medium branch, see [Noether Sea](../spacetime/noether-sea.md), [Spacetime Assemblies](../spacetime/spacetime-assemblies.md), and [Emergent Metric](../spacetime/emergent-metric.md).
 
 ### Absolute Timespace (The Product Structure)
 
@@ -49,6 +53,8 @@ In this ontology hub, the key commitment is:
 
 > **Postulate 3 (Absolute Timespace):** The background arena is the product manifold $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, equipped with the exact substrate clock form $dt$ and Euclidean spatial metric $h_{ij}=\delta_{ij}$, foliated by absolute-time slices $\Sigma_t$. The background is non-dynamical and non-curved; causality is ordered by $t$ and constrained by finite wake speed $c_f$. The product background preserves Galilean kinematic structure while the interaction law selects a preferred rest frame dynamically.
 
+The product notation packages the substrate clock and spatial container; it does not introduce a non-degenerate four-dimensional metric as primitive ontology. Relativistic spacetime language enters only after medium response, clock/ruler behavior, and signal reconstruction have been derived or modeled.
+
 For the factor-level specifications, see [Absolute Time](./absolute-time.md) and [Euclidean Void](./euclidean-void.md). For the observer-level metric bridge, see [Emergent Metric](../spacetime/emergent-metric.md).
 
 ---
@@ -57,7 +63,7 @@ For the factor-level specifications, see [Absolute Time](./absolute-time.md) and
 
 [Architrino](./architrino.md) is the canonical primitive-entity specification for $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines the architrino as a point transceiver in absolute timespace with definite polarity, persistent identity, continuous causal-wake emission, universal wake reception, and non-creation/non-destruction at the ontological level.
 
-The architrino is the sole primitive material substance of the theory. This does not make an isolated architrino a matter particle: rest mass, spatial exclusion, fermionic behavior, and particle species are downstream assembly properties. Its emitted causal wake is likewise not another substance. The wake is the relational dynamical geometry by which path history becomes delayed interaction.
+The architrino is the sole primitive material substance of the theory. This does not make an isolated architrino a matter particle: rest mass, spatial exclusion, fermionic behavior, and particle species are downstream assembly properties. Its intrinsic polarity is likewise not the full observer-level charge record. Electric, weak, color, and particle labels are effective bookkeeping to be recovered from assembly geometry and medium response. The emitted causal wake is not another substance. It is the relational dynamical geometry by which path history becomes delayed interaction.
 
 In this ontology hub, the key commitment is:
 
@@ -70,6 +76,8 @@ For the full primitive-entity page, see [Architrino](./architrino.md). For the r
 ## The Physical Medium (Noether Sea)
 
 [Noether Sea](../spacetime/noether-sea.md) is the canonical medium-ontology page. It defines the Noether Sea as the emergent physical medium formed by coupled neutral Noether-core assemblies occupying the Euclidean void.
+
+This section marks the first step away from primitive ontology. The Noether Sea is physically real content, but its variables are medium and assembly variables rather than new container geometry.
 
 In this ontology hub, the key commitment is:
 
@@ -87,9 +95,13 @@ The routing boundary is:
 
 [Observer Framework](../spacetime/observer-framework.md) is the canonical page for the $\mathbb{U}_{\text{now}}$ universe-state perspective, Physical Observers, the ontic/epistemic distinction, and absolute-versus-operational simultaneity.
 
+The complete ontic state is the absolute-time slice $\mathbb{U}_{\text{now}}\equiv S(t)$. A Physical Observer samples only a constrained record inside that state, using clocks, rulers, and signals whose behavior is itself produced by the same assembly and Noether-Sea dynamics.
+
 In this ontology hub, the key commitment is:
 
 > **Observer Commitment:** $\mathbb{A}\mathbb{A}\mathbb{A}$ distinguishes the complete ontic state on an absolute-time slice from the measurements available to embedded Physical Observers. Physical Observers are assemblies inside the Noether Sea, so their clocks, rulers, synchronization procedures, and records are dynamical outputs. Effective relativity and quantum state descriptions belong to this observer-accessible layer, not to the primitive substrate itself.
+
+The resulting observer descriptions can be indispensable without being final ontology. Effective metric reconstruction, wave function transition, and particle records are inferential summaries of accessible interactions, not replacements for the substrate and assembly account.
 
 The routing boundary is:
 
@@ -116,7 +128,7 @@ This ontology hub keeps only the global rule:
 
 The canonical parameter accounting lives in [Parameter Ledger](../validation/parameter-ledger.md). This ontology hub does not own tables of numerical inputs, closure targets, naturalness tests, or simulation regulators.
 
-The ontology-level distinction is:
+The ontology-level distinction is a level assignment, not a numerical claim:
 
 - substrate commitments belong to [Absolute Time](./absolute-time.md), [Euclidean Void](./euclidean-void.md), [Absolute Timespace](./absolute-timespace.md), and [Architrino](./architrino.md);
 - force-law parameters and regulators belong to [Master Equation](../dynamics/master-equation.md) and the validation ledger;

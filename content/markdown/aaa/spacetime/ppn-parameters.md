@@ -3,7 +3,7 @@
 This chapter is the canonical home for weak-field/PPN expansion details used by
 the spacetime constitutive map.
 
-### Canonical Symbols
+## Canonical Symbols
 
 - $n$: normalized Noether-core density, with $\rho_{\text{core}}=\rho_{\text{core},0}n$.
 - $\chi_{\text{sea}}$: Noether-Sea delay factor, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$.
@@ -13,23 +13,23 @@ the spacetime constitutive map.
 - $U\equiv -\Phi_N>0$: positive PPN expansion variable (default).
 - $U_{\Phi}\equiv -\Phi_{\text{eff}}>0$: constitutive-channel variant used when expanding directly in $\Phi_{\text{eff}}$.
 
-### Mapping to PPN Constraints
+## Mapping to PPN Constraints
 
-1. **Shapiro Delay**: Map the GR time-delay (longer path in curved space) to the Architrino time-delay (slower $c_{\text{eff}}$ in a dense medium).
+1. **Shapiro Delay**: Map the GR time-delay (longer path in curved space) to the $\mathbb{A}\mathbb{A}\mathbb{A}$ time-delay (slower $c_{\text{eff}}$ in a dense medium).
 2. **Light Bending**: Calculate the refraction of tri-binary signals through the Noether-Sea density gradient around the Sun.
 3. **Geodetic Precession**: Match the transport of an assembly's spin-orientation frame through the same weak-field effective metric used for clock, signal, and orbital tests.
 
 Here, geodetic precession means the de Sitter precession of a carried gyroscope: after the gyroscope moves through a weak gravitational field, its spin axis is rotated relative to a distant reference frame. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this should not be introduced as a separate torque law between angular momentum and a potential gradient. It is a closure target for the effective metric: the Noether-Sea-induced clock, ruler, and signal-response map must make transported assembly orientations precess by the same amount that GR predicts in the validated weak-field regime. Frame dragging from a rotating source is a separate test channel.
 
 
-### Testing the Euclidean Anchor (Shapiro Delay)
+## Testing the Euclidean Anchor (Shapiro Delay)
 
 1. **The Test**: Calculate travel time of a signal from Earth to a probe behind the Sun using the Euclidean straight-line anchor supplied by the $\mathbb{U}_{\text{now}}$ state record.
-2. **Architrino Model**: Signal follows a straight Euclidean line. Delay is caused by increased Noether-Sea response near the Sun, expressed by the Noether-Sea delay factor $\chi_{\text{sea}}$.
-3. **Comparison**: Contrast $\Delta t_{architrino}$ with the GR weak-field form.
+2. **$\mathbb{A}\mathbb{A}\mathbb{A}$ Model**: Signal follows a straight Euclidean line. Delay is caused by increased Noether-Sea response near the Sun, expressed by the Noether-Sea delay factor $\chi_{\text{sea}}$.
+3. **Comparison**: Contrast $\Delta t_{\text{arch}}$ with the GR weak-field form.
 4. **$\mathbb{U}_{\text{now}}$ Role**: $\mathbb{U}_{\text{now}}$ provides the "straight line" benchmark against which the "curved path" of GR is compared.
 
-### Explicit Weak-Field Noether-Sea Delay Map (PPN $\gamma$)
+## Explicit Weak-Field Noether-Sea Delay Map (PPN $\gamma$)
 
 Adopt a weak-field PPN-normalized Noether-Sea delay-factor ansatz for signal propagation in the Noether-core medium:
 $$
@@ -100,11 +100,11 @@ $$
 
 When this residual vanishes, Shapiro delay and gravitational clock redshift are using the same first-order Noether-Sea delay response. When it does not vanish, PPN delay, redshift, lensing, pressure-response, and cosmological redshift comparisons must carry the residual explicitly rather than refitting $\chi_{\text{sea}}$ per observable.
 
-### PPN Parameters and the Euclidean Anchor
+## PPN Parameters and the Euclidean Anchor
 
-#### Parameter $\gamma$ (Space Curvature / Refraction)
+### Parameter $\gamma$ (Space Curvature / Refraction)
 * **GR Context:** Measures the amount of space curvature produced by unit rest mass.
-* **Architrino Interpretation:** Measures the refractive response of the [Noether Sea](noether-sea.md). A massive body increases local assembly density, slowing the effective signal speed $c_{\text{eff}}(\mathbf{x})$ relative to the asymptotic observer speed $c_0$, while $c_f$ remains the primitive wake speed.
+* **$\mathbb{A}\mathbb{A}\mathbb{A}$ Interpretation:** Measures the refractive response of the [Noether Sea](noether-sea.md). A massive body increases local assembly density, slowing the effective signal speed $c_{\text{eff}}(\mathbf{x})$ relative to the asymptotic observer speed $c_0$, while $c_f$ remains the primitive wake speed.
 * **Observable:** Shapiro-delay coefficient in the explicit refractive integral above.
 
 The light-bending half-test makes the same point numerically. A lapse-only weak-field map gives the Newtonian-scale deflection
@@ -121,9 +121,9 @@ $$
 $$
 In the forward projection below, the missing half is precisely the $\gamma_{\text{eff}}$ spatial-compliance contribution. Therefore a constitutive map cannot claim PPN closure by matching Shapiro delay with a scalar delay factor while leaving the ruler/spatial-compliance row undefined.
 
-#### Parameter $\beta$ (Non-linearity of Gravity)
+### Parameter $\beta$ (Non-linearity of Gravity)
 * **GR Context:** Measures the non-linearity in the superposition of gravitational fields.
-* **Architrino Interpretation:** Captures second-order (in potential) clock/medium response from self-hit and Noether-Sea constitutive nonlinearity.
+* **$\mathbb{A}\mathbb{A}\mathbb{A}$ Interpretation:** Captures second-order (in potential) clock/medium response from self-hit and Noether-Sea constitutive nonlinearity.
 * **Explicit map from constitutive expansion:** Let $U\equiv-\Phi_N>0$ and expand the static clock law
 $$
 \frac{d\tau}{dt}\bigg|_{v=0}
@@ -162,7 +162,7 @@ $$
 $$
 * **Observable:** Perihelion precession and other 1PN nonlinear-potential tests.
 
-#### Exponential clock-law subclass (direct map)
+### Exponential clock-law subclass (direct map)
 
 If the constitutive clock channel is exactly
 $$
@@ -189,7 +189,7 @@ Here $\Omega\xi$ is the local clock-rate factor $d\tau/dt$ in this subclass. The
 The general $C_2(a,k)$ map above remains the umbrella constitutive form; the exponential channel is the closure-special case where it collapses to GR's $\beta=1$ exactly.
 When $\Phi_{\text{eff}}=\Phi_N+O(\Phi_N^2/c_0^2)$, one has $U_{\Phi}=U+O(U^2/c_0^2)$ at weak field.
 
-#### Preferred Frame Parameters ($\alpha_1, \alpha_2, \alpha_3$)
+### Preferred Frame Parameters ($\alpha_1, \alpha_2, \alpha_3$)
 * **Crucial test:** In the effective relativistic limit these must vanish (no measurable preferred-frame leakage).
 * **Constitutive leakage ansatz:** Let $\mathbf{w}$ be the medium drift velocity relative to the barycentric frame. Write the lowest-order drift terms as
 $$
@@ -218,7 +218,7 @@ $$
 \Xi_4(a,k)=2\alpha_3-\alpha_1=\Xi_1-2\Xi_2-2\Xi_3.
 $$
 
-### Zero-Leakage Conditions (Preferred-Frame Closure)
+## Zero-Leakage Conditions (Preferred-Frame Closure)
 
 The effective theory is preferred-frame safe iff all drift couplings vanish:
 $$
@@ -239,7 +239,7 @@ and no momentum-density coupling term $w^iV_i$ at the retained PN order.
 
 The coefficients $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ parameterize preferred-frame leakage terms in the weak-field constitutive expansion.
 
-### Preferred-Motion Null-Test Bundle
+## Preferred-Motion Null-Test Bundle
 
 Historical clock, interferometer, Zeeman-splitting, and gravimeter tests show how many different apparatus types can search for the same preferred-frame leakage without sharing the same dominant nuisance. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this becomes a bundle test on the same drift coefficients, not a set of independent knobs. For an apparatus channel $A$ with orientation $\hat{\mathbf{n}}_A(t)$ and laboratory velocity $\mathbf{w}(t)$ relative to the medium-rest comparison frame, write the leading fractional readout as
 $$
@@ -274,7 +274,7 @@ y_A^{\mathrm{obs}}-y_A^{\theta}
 $$
 The bundle fails if one clock or material channel requires a nonzero $\alpha_i$ that another channel excludes, or if the orientation/annual term is hidden in $\zeta_A$ rather than projected through $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$.
 
-### Weak-Field Constraint Table (Decision Layer)
+## Weak-Field Constraint Table (Decision Layer)
 
 Use this table to close the constitutive loop against modern benchmarks.
 
@@ -288,7 +288,7 @@ Use this table to close the constitutive loop against modern benchmarks.
 
 Numeric pass/fail thresholds are taken from [validation/constraint-ledger.md](../validation/constraint-ledger.md).
 
-### Closure Program Interface (observable decision layer)
+## Closure Program Interface (Observable Decision Layer)
 
 This chapter is the observable-side gate for the emergent-metric closure.
 
@@ -308,7 +308,7 @@ Cross-chapter integration:
 - clock-law coefficient extraction: [spacetime/proper-time-and-time-dilation.md](./proper-time-and-time-dilation.md)
 - threshold enforcement: [validation/constraint-ledger.md](../validation/constraint-ledger.md)
 
-### ADM/Cartan Extraction Equations
+## ADM/Cartan Extraction Equations
 
 The PPN vector must be extracted from the same ADM/Cartan fields used by the effective metric map, not from observable-specific fits. With $x^0=c_0t$, the line element
 $$
@@ -385,7 +385,7 @@ R_{\mathrm{acc}}
 $$
 The other residuals are the redshift, Shapiro, and lensing differences computed from the same $\theta$ and the forward projection below. This strengthens the existing decision layer; it is not a separate gate.
 
-### Numeric Closure Pipeline and Global Objective
+## Numeric Closure Pipeline and Global Objective
 
 To enforce cross-observable closure without parameter bloat, use a single constitutive vector and a fixed projection to the PPN decision manifold.
 
@@ -468,7 +468,7 @@ Forward-only evaluation rule:
 3. Predict macroscopic observables (Shapiro, precession, redshift, lensing) with this fixed parameter set.
 4. If any observable fails its ledger gate, reject the constitutive map; do not refit per observable.
 
-### Forward Observable Projection (Weak-Field Classical Set)
+## Forward Observable Projection (Weak-Field Classical Set)
 
 To force cross-observable closure in a single forward pass, define
 $$
@@ -539,7 +539,7 @@ $$
 $$
 For this spherically symmetric classical set, preferred-frame channels $(\Xi_1,\Xi_2,\Xi_3)$ decouple at leading order; they are constrained by dedicated drift/leakage observables.
 
-### Worked Solar-System Reference Projection (Synthetic Calibration Example)
+## Worked Solar-System Reference Projection (Synthetic Calibration Example)
 
 Use
 $$
@@ -620,7 +620,7 @@ $$
 $$
 the constitutive map fails this gate and must be replaced rather than re-fit per observable.
 
-### Real-Data Joint Likelihood (Benchmark Inputs)
+## Real-Data Joint Likelihood (Benchmark Inputs)
 
 Using the forward map above, define the joint likelihood
 $$
@@ -680,7 +680,7 @@ Interpretation for closure:
 2. Preferred-frame channels require additional drift-sensitive observables (LLR, pulsar timing, dedicated anisotropy tests) to close $(\Xi_1,\Xi_2,\Xi_3)$.
 3. The positive $\gamma_{\text{eff}}$-$C_2$ covariance defines the accepted trade-off direction when matching precession jointly with refractive observables.
 
-### Preferred-Frame Parameter Degeneracy Resolution (Augmented Likelihood)
+## Preferred-Frame Parameter Degeneracy Resolution (Augmented Likelihood)
 
 Define the preferred-frame constitutive vector
 $$

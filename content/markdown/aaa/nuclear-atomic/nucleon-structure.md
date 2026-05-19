@@ -344,6 +344,8 @@ where:
 - $\Delta E_{\text{Coul}}$ is the electromagnetic self-energy difference,
 - $\Delta E_{\text{flux}}$ is the strong-sector closure difference between the two tri-core assemblies.
 
+The lattice QCD plus QED neutron-proton benchmark is a downstream acceptance test for this decomposition, not an input to any one term. A promoted comparison must compute the down/up, electromagnetic, and flux rows from the same proton and neutron branch ledgers before comparing their sum with the observed splitting.
+
 This chapter does not yet fix those terms numerically. It fixes the decomposition that the later mass and nuclear chapters should use.
 
 ## Residual Strong Interaction Interface

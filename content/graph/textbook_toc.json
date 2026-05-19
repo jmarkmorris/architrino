@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1195
+      "sections": 1223
     }
   },
   "tocRoot": {
@@ -730,10 +730,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Step 1: Establishing the Origin (The Anchor Point)",
+                "title": "Step 1: Establishing the Origin",
                 "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-                "markdownSection": "Step 1: Establishing the Origin (The Anchor Point)",
-                "sectionKey": "step 1 establishing the origin the anchor point",
+                "markdownSection": "Step 1: Establishing the Origin",
+                "sectionKey": "step 1 establishing the origin",
                 "headingLevel": 2
               },
               {
@@ -762,10 +762,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Why None of This Is Required by the Universe",
+                "title": "Coordinate Frames Are Not Ontology",
                 "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-                "markdownSection": "Why None of This Is Required by the Universe",
-                "sectionKey": "why none of this is required by the universe",
+                "markdownSection": "Coordinate Frames Are Not Ontology",
+                "sectionKey": "coordinate frames are not ontology",
                 "headingLevel": 2
               },
               {
@@ -786,10 +786,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Operational vs. Fundamental Distinction",
+                "title": "Complete-State and Physical-Observer Access",
                 "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-                "markdownSection": "Operational vs. Fundamental Distinction",
-                "sectionKey": "operational vs fundamental distinction",
+                "markdownSection": "Complete-State and Physical-Observer Access",
+                "sectionKey": "complete state and physical observer access",
                 "headingLevel": 2
               }
             ]
@@ -895,10 +895,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Potential Energy and Net Potential",
+                "title": "Potential Energy and Causal-Wake Potential",
                 "markdownPath": "content/markdown/aaa/dynamics/energy.md",
-                "markdownSection": "Potential Energy and Net Potential",
-                "sectionKey": "potential energy and net potential",
+                "markdownSection": "Potential Energy and Causal-Wake Potential",
+                "sectionKey": "potential energy and causal wake potential",
                 "headingLevel": 2
               },
               {
@@ -1009,10 +1009,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Spiral Binary Symmetry-Breaking Point ($v = c_f$)",
+                "title": "Spiral Binary Symmetry-Breaking Point ($\\|\\mathbf{v}\\| = c_f$)",
                 "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
-                "markdownSection": "Spiral Binary Symmetry-Breaking Point ($v = c_f$)",
-                "sectionKey": "spiral binary symmetry breaking point v c f",
+                "markdownSection": "Spiral Binary Symmetry-Breaking Point ($\\|\\mathbf{v}\\| = c_f$)",
+                "sectionKey": "spiral binary symmetry breaking point mathbf v c f",
                 "headingLevel": 2
               },
               {
@@ -1067,18 +1067,18 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Relation to the Causal Closure Workstream",
+                "title": "Relation to Causal Closure",
                 "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Relation to the Causal Closure Workstream",
-                "sectionKey": "relation to the causal closure workstream",
+                "markdownSection": "Relation to Causal Closure",
+                "sectionKey": "relation to causal closure",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Publication Status and Claim Scope",
+                "title": "Claim Scope",
                 "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Publication Status and Claim Scope",
-                "sectionKey": "publication status and claim scope",
+                "markdownSection": "Claim Scope",
+                "sectionKey": "claim scope",
                 "headingLevel": 2
               },
               {
@@ -1455,6 +1455,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Reduced Branch-Certificate Targets",
+                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
+                "markdownSection": "Reduced Branch-Certificate Targets",
+                "sectionKey": "reduced branch certificate targets",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Summary and Status",
                 "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
                 "markdownSection": "Summary and Status",
@@ -1608,7 +1616,97 @@
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/spacetime/noether_core.json",
-            "markdownPath": "content/markdown/aaa/spacetime/noether-core.md"
+            "markdownPath": "content/markdown/aaa/spacetime/noether-core.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "The Hierarchy of Orbits",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core.md",
+                "markdownSection": "The Hierarchy of Orbits",
+                "sectionKey": "the hierarchy of orbits",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Noether Core: A Triply Nested Binary",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core.md",
+                "markdownSection": "The Noether Core: A Triply Nested Binary",
+                "sectionKey": "the noether core a triply nested binary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Properties of the Noether Core",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core.md",
+                "markdownSection": "Properties of the Noether Core",
+                "sectionKey": "properties of the noether core",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Integer Phase-Closure States",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core.md",
+                "markdownSection": "Integer Phase-Closure States",
+                "sectionKey": "integer phase closure states",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Cadence-Scale Retuning Hypothesis",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core.md",
+                "markdownSection": "Cadence-Scale Retuning Hypothesis",
+                "sectionKey": "cadence scale retuning hypothesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Rest-Level Scaling Curve",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core.md",
+                "markdownSection": "Rest-Level Scaling Curve",
+                "sectionKey": "rest level scaling curve",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Reduced Noether-Core Closure Label",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core.md",
+                "markdownSection": "Reduced Noether-Core Closure Label",
+                "sectionKey": "reduced noether core closure label",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Geometry and Exclusion Envelope",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core.md",
+                "markdownSection": "Geometry and Exclusion Envelope",
+                "sectionKey": "geometry and exclusion envelope",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Core Hierarchy and Fermion Generations",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core.md",
+                "markdownSection": "The Core Hierarchy and Fermion Generations",
+                "sectionKey": "the core hierarchy and fermion generations",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Tri-Binary Alignment and Planck-Scale Framing",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core.md",
+                "markdownSection": "Tri-Binary Alignment and Planck-Scale Framing",
+                "sectionKey": "tri binary alignment and planck scale framing",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Foundation for Fermions",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core.md",
+                "markdownSection": "The Foundation for Fermions",
+                "sectionKey": "the foundation for fermions",
+                "headingLevel": 2
+              }
+            ]
           },
           {
             "id": "spacetime__noether_core_geometry",
@@ -1758,6 +1856,14 @@
             "scenePath": "content/scenes/spacetime/medium_exclusion_volume.json",
             "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
             "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Molecular Occupancy Baseline",
+                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+                "markdownSection": "Molecular Occupancy Baseline",
+                "sectionKey": "molecular occupancy baseline",
+                "headingLevel": 2
+              },
               {
                 "kind": "markdown-section",
                 "title": "Levels of Excluded Volume",
@@ -2150,7 +2256,129 @@
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/spacetime/ppn_parameters.json",
-                "markdownPath": "content/markdown/aaa/spacetime/ppn-parameters.md"
+                "markdownPath": "content/markdown/aaa/spacetime/ppn-parameters.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Canonical Symbols",
+                    "markdownPath": "content/markdown/aaa/spacetime/ppn-parameters.md",
+                    "markdownSection": "Canonical Symbols",
+                    "sectionKey": "canonical symbols",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Mapping to PPN Constraints",
+                    "markdownPath": "content/markdown/aaa/spacetime/ppn-parameters.md",
+                    "markdownSection": "Mapping to PPN Constraints",
+                    "sectionKey": "mapping to ppn constraints",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Testing the Euclidean Anchor (Shapiro Delay)",
+                    "markdownPath": "content/markdown/aaa/spacetime/ppn-parameters.md",
+                    "markdownSection": "Testing the Euclidean Anchor (Shapiro Delay)",
+                    "sectionKey": "testing the euclidean anchor shapiro delay",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Explicit Weak-Field Noether-Sea Delay Map (PPN $\\gamma$)",
+                    "markdownPath": "content/markdown/aaa/spacetime/ppn-parameters.md",
+                    "markdownSection": "Explicit Weak-Field Noether-Sea Delay Map (PPN $\\gamma$)",
+                    "sectionKey": "explicit weak field noether sea delay map ppn gamma",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "PPN Parameters and the Euclidean Anchor",
+                    "markdownPath": "content/markdown/aaa/spacetime/ppn-parameters.md",
+                    "markdownSection": "PPN Parameters and the Euclidean Anchor",
+                    "sectionKey": "ppn parameters and the euclidean anchor",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Zero-Leakage Conditions (Preferred-Frame Closure)",
+                    "markdownPath": "content/markdown/aaa/spacetime/ppn-parameters.md",
+                    "markdownSection": "Zero-Leakage Conditions (Preferred-Frame Closure)",
+                    "sectionKey": "zero leakage conditions preferred frame closure",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Preferred-Motion Null-Test Bundle",
+                    "markdownPath": "content/markdown/aaa/spacetime/ppn-parameters.md",
+                    "markdownSection": "Preferred-Motion Null-Test Bundle",
+                    "sectionKey": "preferred motion null test bundle",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Weak-Field Constraint Table (Decision Layer)",
+                    "markdownPath": "content/markdown/aaa/spacetime/ppn-parameters.md",
+                    "markdownSection": "Weak-Field Constraint Table (Decision Layer)",
+                    "sectionKey": "weak field constraint table decision layer",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Closure Program Interface (Observable Decision Layer)",
+                    "markdownPath": "content/markdown/aaa/spacetime/ppn-parameters.md",
+                    "markdownSection": "Closure Program Interface (Observable Decision Layer)",
+                    "sectionKey": "closure program interface observable decision layer",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "ADM/Cartan Extraction Equations",
+                    "markdownPath": "content/markdown/aaa/spacetime/ppn-parameters.md",
+                    "markdownSection": "ADM/Cartan Extraction Equations",
+                    "sectionKey": "adm cartan extraction equations",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Numeric Closure Pipeline and Global Objective",
+                    "markdownPath": "content/markdown/aaa/spacetime/ppn-parameters.md",
+                    "markdownSection": "Numeric Closure Pipeline and Global Objective",
+                    "sectionKey": "numeric closure pipeline and global objective",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Forward Observable Projection (Weak-Field Classical Set)",
+                    "markdownPath": "content/markdown/aaa/spacetime/ppn-parameters.md",
+                    "markdownSection": "Forward Observable Projection (Weak-Field Classical Set)",
+                    "sectionKey": "forward observable projection weak field classical set",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Worked Solar-System Reference Projection (Synthetic Calibration Example)",
+                    "markdownPath": "content/markdown/aaa/spacetime/ppn-parameters.md",
+                    "markdownSection": "Worked Solar-System Reference Projection (Synthetic Calibration Example)",
+                    "sectionKey": "worked solar system reference projection synthetic calibration example",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Real-Data Joint Likelihood (Benchmark Inputs)",
+                    "markdownPath": "content/markdown/aaa/spacetime/ppn-parameters.md",
+                    "markdownSection": "Real-Data Joint Likelihood (Benchmark Inputs)",
+                    "sectionKey": "real data joint likelihood benchmark inputs",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Preferred-Frame Parameter Degeneracy Resolution (Augmented Likelihood)",
+                    "markdownPath": "content/markdown/aaa/spacetime/ppn-parameters.md",
+                    "markdownSection": "Preferred-Frame Parameter Degeneracy Resolution (Augmented Likelihood)",
+                    "sectionKey": "preferred frame parameter degeneracy resolution augmented likelihood",
+                    "headingLevel": 2
+                  }
+                ]
               },
               {
                 "id": "spacetime__general_relativity_observables",
@@ -3141,10 +3369,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Gauge Group Coverage: $SU(3)_c \\times SU(2)_L \\times U(1)_Y$",
+                    "title": "Gauge Representation Bookkeeping: $SU(3)_c \\times SU(2)_L \\times U(1)_Y$",
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md",
-                    "markdownSection": "Gauge Group Coverage: $SU(3)_c \\times SU(2)_L \\times U(1)_Y$",
-                    "sectionKey": "gauge group coverage su 3 c times su 2 l times u 1 y",
+                    "markdownSection": "Gauge Representation Bookkeeping: $SU(3)_c \\times SU(2)_L \\times U(1)_Y$",
+                    "sectionKey": "gauge representation bookkeeping su 3 c times su 2 l times u 1 y",
                     "headingLevel": 2
                   },
                   {
@@ -3319,10 +3547,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Bare Weinberg Increment as the Discrete Step",
+                    "title": "Branch-Increment Hypothesis as the Discrete Step",
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
-                    "markdownSection": "Bare Weinberg Increment as the Discrete Step",
-                    "sectionKey": "bare weinberg increment as the discrete step",
+                    "markdownSection": "Branch-Increment Hypothesis as the Discrete Step",
+                    "sectionKey": "branch increment hypothesis as the discrete step",
                     "headingLevel": 2
                   },
                   {

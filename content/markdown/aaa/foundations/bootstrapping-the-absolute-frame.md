@@ -1,16 +1,16 @@
 # Reconstructing a Coordinate Frame from Wake Geometry
 
-This chapter explains how a usable coordinate scaffold can be reconstructed from complete-state wake geometry rather than assumed from pre-labeled space. Its purpose is to show that the ontology contains enough invariant structure to define an absolute-frame coordinate scaffold from the $\mathbb{U}_{\text{now}}$ complete-state bookkeeping perspective, while keeping clear that the coordinate system itself is a mathematical and computational scaffold, not an extra ontological ingredient.
+This chapter explains how a usable coordinate frame can be reconstructed from complete-state wake geometry rather than assumed from pre-labeled space. The ontological data are architrino worldlines, source-tagged causal wakes, Euclidean distances on an absolute-time slice, and the path-history records needed to compare them. The coordinate frame reconstructed from those data is a mathematical and computational representation, not an additional constituent of the ontology.
 
 ## Overview
 
-Having established in the previous chapter that a stationary architrino can be identified through the concentric geometry of its spherically expanding causal wakes, the next task is to reconstruct a complete coordinate system. The Euclidean void provides no intrinsic markers: no origin point labeled "here," no arrows painted "this way," and no universal clock displaying "now = 0."
+Having established in the previous chapter that a stationary architrino can be identified through the concentric geometry of its spherically expanding causal wakes, the next task is to reconstruct a complete coordinate system. The Euclidean void provides no intrinsic markers: no origin point labeled "here," no arrows painted "this way," and no universal clock displaying "now = 0." Those absences are not defects in the ontology. They are why coordinate reconstruction must be treated as an inference from complete-state geometry rather than as a primitive label attached to the void.
 
-The conceptual sequence is: [Detecting the Absolute Frame](detecting-the-absolute-frame.md) identifies absolute rest, [Absolute Time Defense](absolute-time-defense.md) defends the global temporal ledger, and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md) explains how observer-level clocks arise once the coordinate scaffold is in place.
+The conceptual sequence is: [Detecting the Absolute Frame](detecting-the-absolute-frame.md) identifies absolute rest, [Absolute Time Defense](absolute-time-defense.md) defends the global temporal ledger, and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md) explains how observer-level clocks arise once the coordinate frame is in place.
 
-The coordinate system reconstructed here is a **mathematical and computational tool**: a scaffold used to state equations in components, run simulations, and compare descriptions. **The universe itself requires none of this.** Architrinos interact through their potential wakes according to invariant laws that can exhibit **meta-stable branching** at self-hit thresholds. The physics continues whether or not any Physical Observer labels the axes.
+The coordinate system reconstructed here is a mathematical and computational tool: a representation used to state equations in components, run simulations, and compare descriptions. The universe itself requires none of this. Architrinos interact through source-tagged causal wakes according to invariant laws that can exhibit deterministic multistability at self-hit thresholds. The physics continues whether or not any Physical Observer labels the axes.
 
-**This complete-state reconstruction is a mathematical existence proof demonstrating that a unique oriented basis can be defined after a nondegenerate ordered architrino tuple and parity convention are fixed from the $\mathbb{U}_{\text{now}}$ complete-state bookkeeping perspective. It is not an operational laboratory protocol for Physical Observers made of assemblies.**
+The claim is therefore limited. This complete-state reconstruction is a mathematical existence proof demonstrating that a unique oriented basis can be defined after a nondegenerate ordered architrino tuple and parity convention are fixed from the $\mathbb{U}_{\text{now}}$ complete-state bookkeeping perspective. It is not an operational laboratory protocol for Physical Observers made of assemblies.
 
 What follows is the systematic procedure by which the $\mathbb{U}_{\text{now}}$ complete-state bookkeeping perspective can reconstruct a complete, unambiguous coordinate frame from the raw geometric data of architrino positions and their causal wake patterns.
 
@@ -54,21 +54,23 @@ V=\mathbf{d}_3\cdot(\mathbf{d}_1\times\mathbf{d}_2)\ne0.
 $$
 The sign of $V$ selects a side of the already oriented plane. It does not by itself turn coordinate parity into a dynamical chirality claim.
 
-## Step 1: Establishing the Origin (The Anchor Point)
+This lemma is an existence claim at the complete-state level. It does not say that the Euclidean void contains an origin or preferred axes. It says that once a nondegenerate ordered tuple is selected, the Euclidean metric supplies enough invariant structure to construct a coordinate basis for calculation.
+
+## Step 1: Establishing the Origin
 
 **Architrino Required:** 1 (stationary)
 
 **Method:**
-Using the concentric causal-wake measurement described in the previous chapter, we identify an architrino whose outgoing potential wakes remain perfectly concentric over time. This architrino has **absolute velocity** $\mathbf{v}_{\text{abs}} = 0$ relative to the Euclidean void.
+Using the concentric causal-wake diagnostic described in the previous chapter, complete-state bookkeeping identifies an architrino whose outgoing source-tagged causal wakes remain perfectly concentric over time. This architrino has **absolute velocity** $\mathbf{v}_{\text{abs}} = 0$ relative to the Euclidean void.
 
 **What This Accomplishes:**
-This stationary architrino becomes our **origin** on the selected slice:
+This stationary architrino is assigned as the **origin** of the selected coordinate frame on the selected slice:
 $$
 \mathbf{x}_{\text{origin}}(t_\ast) = (0, 0, 0)
 $$
 
 **Degrees of Freedom Fixed:**
-- **Translation (3 DOFs)**: The coordinate origin is now locked to this architrino's absolute position in the void.
+- **Translation (3 DOFs)**: The coordinate origin is assigned to this architrino's absolute position in the Euclidean void.
 
 **What Remains Undefined:**
 - The **orientation** of the coordinate axes
@@ -76,14 +78,14 @@ $$
 - The **absolute time zero**
 
 **Why This Step Is Necessary:**
-Without an origin, position vectors cannot be represented in components. Every subsequent statement of "where" must be relative to some reference point. The concentric-wake criterion gives the complete-state reconstruction an **objective, observer-independent** method to select this point.
+Without an origin, position vectors cannot be represented in components. Every subsequent statement of "where" must be relative to some reference point. The concentric-wake criterion gives complete-state reconstruction a coordinate-independent method for selecting this point.
 
 ## Step 2: Defining the Primary Axis (First Direction)
 
 **Architrino Required:** 1 additional (total: 2)
 
 **Method:**
-Identify a second architrino (stationary or moving). Measure the displacement vector from the origin to this second architrino:
+Choose a second, non-coincident architrino (stationary or moving). From the complete-state record, compute the displacement vector from the origin to this second architrino:
 $$
 \mathbf{d}_1 = \mathbf{x}_2(t_\ast) - \mathbf{x}_{\text{origin}}(t_\ast)
 $$
@@ -94,10 +96,10 @@ $$
 $$
 
 **What This Accomplishes:**
-We have now fixed a **direction** in the void. This establishes the first spatial axis.
+This fixes one **direction** in the Euclidean void and establishes the first spatial axis of the scaffold.
 
 **Degrees of Freedom Fixed:**
-- **Rotation (2 DOFs)**: The pitch and yaw of the coordinate system are locked. The $\hat{\mathbf{x}}$-axis points from the origin toward architrino #2.
+- **Rotation (2 DOFs)**: Two continuous rotational freedoms are fixed. The $\hat{\mathbf{x}}$-axis points from the origin toward the second architrino.
 
 **What Remains Undefined:**
 - The **second and third axes** ($\hat{\mathbf{y}}$ and $\hat{\mathbf{z}}$)
@@ -105,10 +107,10 @@ We have now fixed a **direction** in the void. This establishes the first spatia
 - The **handedness** of the coordinate system
 
 **Why This Step Is Necessary:**
-To compute derivatives, projections, and vector components, we need at least one defined direction. The displacement vector between two architrinos provides this in a coordinate-free, objective manner.
+To compute derivatives, projections, and vector components, the coordinate frame needs at least one defined direction. The displacement vector between two architrinos provides this in a coordinate-independent manner.
 
 **Physical Note:**
-The choice of *which* architrino becomes #2 is arbitrary. Any non-coincident architrino will work. The physics is rotationally symmetric; the reconstruction is simply choosing a convenient north pole for the coordinate grid.
+The choice of *which* architrino becomes the second reference object is arbitrary. Any non-coincident architrino will work, because the Euclidean void is rotationally symmetric. The reconstruction chooses a reference direction for the coordinate grid; it does not identify a physically preferred direction.
 
 ## Step 3: Defining the Plane (Second Independent Direction)
 
@@ -138,21 +140,21 @@ $$
 This ensures $\hat{\mathbf{y}}$ is orthogonal to $\hat{\mathbf{x}}$ and lies in the plane defined by $\mathbf{d}_1$ and $\mathbf{d}_2$.
 
 **What This Accomplishes:**
-We have now defined a **plane** (the $xy$-plane) within the 3D void. Two orthogonal directions are locked.
+This defines a **plane** (the $xy$-plane) within the Euclidean void. Two orthogonal directions are now fixed.
 
 **Degrees of Freedom Fixed:**
-- **Rotation (1 DOF)**: The roll around the $\hat{\mathbf{x}}$-axis is locked. The coordinate system can no longer spin freely.
+- **Rotation (1 DOF)**: The remaining continuous rotation around the $\hat{\mathbf{x}}$-axis is fixed.
 
 **What Remains Undefined:**
 - The **third axis** ($\hat{\mathbf{z}}$), which must be perpendicular to the $xy$-plane
 - The **handedness** of the coordinate system
 
 **Why This Step Is Necessary:**
-To perform full 3D vector calculus, we need a second independent direction. The plane spanned by $\hat{\mathbf{x}}$ and $\hat{\mathbf{y}}$ is now unambiguously defined by the positions of three architrinos.
+To perform spatial vector calculus, the coordinate frame needs a second independent direction. The plane spanned by $\hat{\mathbf{x}}$ and $\hat{\mathbf{y}}$ is now unambiguously defined by the positions of three architrinos.
 
 ## Step 4: Resolving Handedness (Parity Convention)
 
-**Architrino Required:** 0 additional (if conventional) **or** 1 additional (if empirical)
+**Architrino Required:** 0 additional (if conventional) **or** 1 additional (if a side marker is used)
 
 Here **handedness** or **parity convention** is the geometric issue: choosing which side of the already-defined plane is positive $\hat{\mathbf{z}}$. This is only a coordinate-basis choice. It should not be identified with fermionic chirality, which is reserved for the dynamical handed precession order of emergent Noether cores.
 
@@ -175,10 +177,10 @@ No spatial orientation or parity choice remains undefined. Absolute time zero re
 **Degrees of Freedom Fixed:**
 - **Parity (1 discrete choice)**: We have chosen right-handed over left-handed coordinates.
 
-### Option B: Empirical Side Marker (Fourth Architrino)
+### Option B: Complete-State Side Marker (Fourth Architrino)
 
 **Method:**
-If we want a physical configuration to mark one side of the oriented plane, we examine a fourth architrino that is **not coplanar** with the first three.
+If the reconstruction uses a physical configuration to mark one side of the oriented plane, complete-state bookkeeping examines a fourth architrino that is **not coplanar** with the first three.
 
 Compute:
 $$
@@ -199,7 +201,7 @@ $$
 - If $V < 0$: The fourth architrino lies on the negative side. Set $\hat{\mathbf{z}} = -\hat{\mathbf{z}}_{\text{prelim}}$.
 
 **What This Accomplishes:**
-The fourth architrino now supplies a physical side marker for the chosen plane. The sign assignment still depends on the declared orientation convention; the configuration does not convert coordinate parity into a new dynamical handedness law.
+The fourth architrino supplies a complete-state side marker for the chosen plane. The sign assignment still depends on the declared orientation convention; the configuration does not convert coordinate parity into a new dynamical handedness law.
 
 **Special Condition on the Fourth Architrino:**
 It must be **non-coplanar** with the first three, so that it has a component perpendicular to the $xy$-plane.
@@ -207,9 +209,9 @@ It must be **non-coplanar** with the first three, so that it has a component per
 **Why This Might Be Preferred:**
 If a later assembly-level model supplies a persistent parity bias or handed precession order, a simulation may choose the coordinate parity convention that reports that marker with a declared positive sign. That alignment is a reporting convention, not a derivation of the marker. It keeps later labels consistently assigned while preserving the distinction between coordinate-basis parity and dynamical chirality in the Noether core.
 
-## Why None of This Is Required by the Universe
+## Coordinate Frames Are Not Ontology
 
-The Euclidean void has no preferred origin, no painted axes, and no intrinsic notion of clockwise versus counterclockwise. The physics proceeds **without any coordinate labels whatsoever**.
+The Euclidean void has no preferred origin, no intrinsic axis labels, and no substrate-level marker for clockwise versus counterclockwise. At the ontological level, architrinos move and interact through Euclidean separations, source-tagged causal wakes, and line-of-action hits. The physics proceeds without coordinate labels.
 
 The reconstruction procedure outlined here serves theory-building and simulation:
 - To write down the master equation in component form
@@ -217,9 +219,9 @@ The reconstruction procedure outlined here serves theory-building and simulation
 - To communicate results
 - To compare frames
 
-The laws of physics are **coordinate-invariant**. A left-handed coordinate system and a right-handed one produce identical predictions for measurable quantities, differing only in the coordinate signs assigned to pseudovectors and pseudoscalars.
+The coordinate-invariant content of the laws does not depend on the selected frame. A left-handed coordinate system and a right-handed one produce identical predictions for measurable quantities, differing only in the coordinate signs assigned to pseudovectors and pseudoscalars.
 
-The universe does not require the scaffold; the theory does, because the relevant relationships need a language in which they can be expressed.
+The universe does not require a coordinate frame; theory and simulation use one because the relevant relationships need a stable component language.
 
 ## Summary Table: Reconstruction Steps
 
@@ -229,11 +231,11 @@ The universe does not require the scaffold; the theory does, because the relevan
 | **2. Primary Axis** | +1 (non-coincident) | Define first spatial direction ($\hat{\mathbf{x}}$) | Rotation (2) | Second/third axes, roll, handedness | Displacement vector gives objective direction |
 | **3. Plane** | +1 (non-collinear) | Define second independent direction ($\hat{\mathbf{y}}$) and lock the $xy$-plane | Rotation (1) | Third axis, handedness | Gram-Schmidt ensures orthogonality |
 | **4A. Handedness (Conventional)** | 0 | Complete spatial basis via right-hand rule | Parity (1) | Absolute time zero | Mathematical convention ($\hat{\mathbf{z}} = \hat{\mathbf{x}} \times \hat{\mathbf{y}}$) |
-| **4B. Side Marker (Empirical)** | +1 (non-coplanar) | Choose a physical side marker for the oriented plane | Parity (1) | Absolute time zero | Scalar triple product resolves the reported $\pm\hat{\mathbf{z}}$ side |
+| **4B. Side Marker (Complete-State)** | +1 (non-coplanar) | Choose a physical side marker for the oriented plane | Parity (1) | Absolute time zero | Scalar triple product resolves the reported $\pm\hat{\mathbf{z}}$ side |
 
 **Total Architrinos:**
 - **Conventional approach**: 3
-- **Empirical approach**: 4
+- **Side-marker approach**: 4
 
 ## Categories of Calculation Served by Each Step
 
@@ -243,26 +245,28 @@ The universe does not require the scaffold; the theory does, because the relevan
 | **Velocity & Acceleration (Derivatives)** | ✓ | ✓ | ✓ | — |
 | **Scalar Products (Energies, Distances)** | ✓ | ✓ | ✓ | — |
 | **Vector Products (Angular Momentum, Torque)** | — | — | ✓ | ✓ |
-| **Pseudovectors (magnetic-like fields, helicity proxies)** | — | — | — | ✓ |
+| **Pseudovectors (magnetic-like effective fields, helicity proxies)** | — | — | — | ✓ |
 | **Weak-sector exposure records** | — | — | — | coordinate signs only |
 | **Simulation (Explicit Coordinates)** | ✓ | ✓ | ✓ | ✓ |
 | **Frame Transformations (Relativity)** | ✓ | ✓ | ✓ | ✓ |
 
-**Key Insight:**
-- Most calculations only require **orientation** (Steps 1-3).
-- **Handedness** matters when reporting cross-product, pseudovector, pseudoscalar, or parity-sensitive coordinate quantities. Weak-interaction handedness remains a separate dynamical closure target tied to Noether-core chirality, axial-frame exposure, and reaction provenance.
+**Key Point:**
+- Scalar and component calculations require the origin, primary axis, and plane construction (Steps 1-3); they do not require assigning coordinate parity.
+- Coordinate **handedness** matters when reporting cross-product, pseudovector, pseudoscalar, or parity-sensitive coordinate quantities. Weak-interaction handedness remains a separate dynamical closure target tied to Noether-core chirality, axial-frame exposure, and reaction provenance.
 
-## Operational vs. Fundamental Distinction
+## Complete-State and Physical-Observer Access
 
-**For the $\mathbb{U}_{\text{now}}$ complete-state bookkeeping perspective:**
-The complete-state reconstruction is straightforward. The simulation state has access to all architrino positions and can compute wake geometries exactly. The coordinate system is simply a data structure: an origin offset plus three orthonormal vectors.
+This final distinction separates substrate ontology, complete-state reconstruction, and effective observer inference. The substrate contains architrinos, causal wakes, absolute time, the Euclidean void, and contents of the Noether Sea. The coordinate frame is inferred from that complete record. Physical Observers access only effective records through assembly clocks, rulers, signals, and retained apparatus states.
 
-**For Physical Observers (assemblies):**
+**Complete-state reconstruction:**
+The $\mathbb{U}_{\text{now}}$ complete-state bookkeeping perspective has access to all architrino positions and can compute wake geometries exactly. The coordinate system is a data structure: an origin offset plus three orthonormal vectors.
+
+**Physical Observer access:**
 Physical Observers cannot directly measure the complete concentric wake geometry or identify an absolutely stationary architrino by this procedure. Their rulers and clocks are themselves assemblies, distorted by motion and coupling to the Noether Sea. They measure:
 - **Proper time** $\tau$, not absolute time $t$
 - **Effective coordinates** via local rulers
 - **Relative velocities** via Doppler shifts and aberration
 
-The reconstruction described here is a **foundational consistency proof**: it shows the theory has the mathematical structure necessary to define absolute rest and an absolute-frame coordinate scaffold **in principle** from complete ontic data. At accessible energies, the Lorentz-closure target is that moving-assembly deformation, clock/ruler retuning, and two-way signal synchronization bound preferred-frame leakage enough that Physical Observers cannot detect the absolute frame operationally, while the frame remains the ontological bedrock beneath the effective geometry.
+The reconstruction described here is a **foundational consistency proof**: it shows the theory has the mathematical structure necessary to define absolute rest and an absolute-frame coordinate system **in principle** from complete ontic data. It does not claim that an embedded observer can perform the reconstruction directly. At accessible energies, the Lorentz-closure target is that moving-assembly deformation, clock/ruler retuning, and two-way signal synchronization bound preferred-frame leakage enough that Physical Observers cannot detect the absolute frame operationally, while the frame remains the ontological background beneath the effective geometry.
 
 For the effective kinematic layer built on top of this scaffold, see [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) and [Emergent Metric](../spacetime/emergent-metric.md).

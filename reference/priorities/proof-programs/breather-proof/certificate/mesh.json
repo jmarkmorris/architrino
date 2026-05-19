@@ -86,9 +86,12 @@
     "fold_layer_boundary_convention": "Separator nodes are not simple-root branch-sum nodes."
   },
   "preledger_readiness": {
-    "status": "preledger_attempted_rejected_current_mesh",
+    "status": "preledger_diagonal_closed_fold_impulse_missing",
     "latest_artifact": "causal_ledger.json",
-    "next_artifact": "refined_mesh_or_fold_layer_atlas",
-    "blocking_issue": "The current coarse mesh has 22 split_required null-ledger rows; diagonal contacts, periodic-boundary contacts, and separator layers must be split or isolated before branch-chart certification."
+    "latest_refinement": "mesh_refined_preledger_v1.json",
+    "diagonal_exclusion_subledger": "diagonal_exclusion_subledger.json",
+    "fold_layer_atlas": "fold_layer_atlas.json",
+    "next_artifact": "fold_impulse_ceiling_bound",
+    "blocking_issue": "The refined diagnostic has six strict simple_root subrows and twenty-four accepted diagonal-exclusion empty rows, but remains rejected as a full pre-ledger because fold-layer impulse ceilings and six fold-adjacent parent-row boundary leftovers remain unresolved."
   }
 }

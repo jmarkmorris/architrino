@@ -11,22 +11,15 @@ Queried on May 18, 2026. OpenAlex citation counts are a sorting signal, not a cl
 
 ## Review Set
 
-| OpenAlex work | OA cites | Corpus use |
-| --- | ---: | --- |
-| [Higgs, broken symmetries and gauge-boson masses](https://openalex.org/W1996413343) | 4391 | Separates scalar-sector mass generation from primitive mass ontology; useful only as a comparison after $E_{\text{internal}}(A)$, $\zeta(A)$, and $\mathcal{M}_{\text{sea}}^{ab}$ are derived. |
-| [ATLAS Higgs discovery benchmark](https://openalex.org/W1858542512) | 10670 | Supplies the scalar mass and channel-pressure target already named in the Standard Model and mass-map queues. |
-| [CMS Higgs discovery benchmark](https://openalex.org/W2167727518) | 9937 | Independent scalar-channel benchmark for the same downstream acceptance target. |
-| [Wilson, quark confinement](https://openalex.org/W2172949211) | 4408 | Keeps quark and hadron mass checks tied to confinement structure rather than isolated constituent-mass fitting. |
-| [Ab initio light-hadron masses](https://openalex.org/W1968431963) | 710 | Review before any hadron hierarchy claim; the mass map must decide which hadronic mass parts are rest-ledger exposure versus confinement energy. |
-| [Neutron-proton mass difference from ab initio calculation](https://openalex.org/W2071360735) | 459 | First high-value isospin-splitting benchmark once the mass map has a charged assembly pair to compare. |
-| [Many-particle physics reference](https://openalex.org/W2071246696) | 4482 | Comparator for effective mass and medium response; useful for separating reversible medium-dressed inertia from dissipative transport. |
-| [Modern theory of nuclear forces](https://openalex.org/W2096487969) | 1849 | Connects mass-map outputs to nuclear binding and residual hadronic force constraints. |
+All selected rows in this review set were mined on May 19, 2026 and moved to the completed-mining ledger in [chapter-authoring](../chapter-authoring/chapter-authoring.md#mining-completed). The retained synthesis is below.
 
 ## Source Signals
 
 - Higgs-sector literature supplies a scalar response benchmark, not a primitive ontology for mass in $\mathbb{A}\mathbb{A}\mathbb{A}$.
+- ATLAS and CMS are independent LHC scalar-channel benchmarks. They enter only after the branch, shielding, and medium-response records are fixed, and they may not supply inputs to $A_0$, $\zeta(A)$, or $\mathcal{M}_{\text{sea}}^{ab}$.
 - Lattice and confinement literature makes hadron mass a combined test of internal ledger energy, color/topological exposure, and residual binding energy.
 - Many-body effective-mass literature is a warning: medium-modified response can mimic mass changes, so the mass map must keep $\zeta(A)$ distinct from $\mathcal{M}_{\text{sea}}^{ab}$.
+- Nuclear-force literature tests residual binding after nucleon ledgers exist; it is not native ontology for the mass map.
 
 ## Corpus Advancement Target
 

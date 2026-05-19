@@ -6,7 +6,7 @@ The opening establishes the three-layer distinction between observables, constit
 
 ## Scope and Purpose
 
-This chapter centralizes the black-hole story within the Architrino Assembly Architecture. Its purpose is to distinguish three levels that are often conflated in black-hole discussion:
+This chapter centralizes the black-hole story within $\mathbb{A}\mathbb{A}\mathbb{A}$. Its purpose is to distinguish three levels that are often conflated in black-hole discussion:
 
 - the **effective observational layer**, where black holes are compact objects constrained by lensing, dynamics, accretion phenomenology, horizon-scale imaging, and gravitational-wave data;
 - the **strong-field constitutive layer**, where tri-binary assemblies enter alignment, compression, and recycling regimes not encountered in ordinary weak-field gravity;
@@ -533,7 +533,7 @@ The working picture has four parts:
 - infalling assemblies are compressed toward maximal-curvature states;
 - energy is redistributed across inner, middle, and outer layers rather than lost from the ontology;
 - the horizon interface mediates which excitations remain trapped, which are delayed, and which can be re-expressed as outbound channels;
-- re-emergence may occur through jets, radiative outflows, dark-sector photon-like modes, or other medium excitations, depending on the local state of the core and interface.
+- re-emergence may occur through jets, radiative outflows, dark-sector photon-channel-adjacent modes, or other medium excitations, depending on the local state of the core and interface.
 
 This is the sense in which black holes are treated as recycling furnaces in the cosmology chapters. The claim is not that every specific ejecta channel has already been derived. The claim is that the interior is an energy-partition and reprocessing regime, not a terminal ontic sink.
 
@@ -607,7 +607,7 @@ For that reason, the framework uses a release-channel hierarchy:
 
 - **Constitutive claim:** infalling matter and radiation can be reprocessed into outward channels.
 - **Astrophysical channel claim:** some of those outward channels may become observable jets or winds.
-- **Dark-sector claim:** some channels may cross outward through the horizon interface as recycled dark-matter-like or dark-energy-like assemblies, or as dark-sector photon-like modes, before later converting into visible excitations, if they do so at all.
+- **Dark-sector claim:** some channels may cross outward through the horizon interface as recycled dark-matter-like or dark-energy-like assemblies, or as dark-sector photon-channel-adjacent modes, before later converting into visible excitations, if they do so at all.
 
 This hierarchy keeps the theory from overcommitting to a single morphology. A jet is evidence for organized outflow, not by itself proof that all recycling must emerge in collimated form.
 
@@ -627,7 +627,7 @@ Three working possibilities remain live:
 
 - **Dark-sector escape:** a released mode stays weakly coupled to visible matter after outward crossing and contributes mainly through gravitational or dark-sector signatures.
 - **Recycled dark assemblies:** the released content emerges as assembly populations that behave effectively like dark matter or dark energy after outward crossing, remaining weakly coupled to visible channels.
-- **Dark-sector photon-like escape with later conversion:** a released mode exits in an initially dark photon-channel-adjacent form and only farther from the horizon re-enters visible channels through dissipation, coupling, or geometric relaxation.
+- **Dark-sector photon-channel-adjacent escape with later conversion:** a released mode exits in an initially dark photon-channel-adjacent form and only farther from the horizon re-enters visible channels through dissipation, coupling, or geometric relaxation.
 
 ### Jet Production as a Selection Problem
 

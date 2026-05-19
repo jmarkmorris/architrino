@@ -298,6 +298,16 @@ W and Z bosons are not fundamental particles in the sense of eternal objects; th
     *   **Function:** Transports energy, momentum, and phase *without* net charge flux.
     *   **Bookkeeping:** A neutral corridor enabling re-phasing and mode exchange.
 
+### Weak-Corridor Provenance
+
+The weak corridor is an event record, not a permanent container that owns the outgoing fermion inventory. Its provenance rows must identify which architrinos participate, which neutral Noether cores supply the scaffold, which payload moves through the corridor, and where the balancing recoil is stored.
+
+| Corridor event | Participating architrinos | Neutral Noether-core provenance | Corridor payload | Required ledger closure |
+| --- | --- | --- | --- | --- |
+| Charged lepton current, $\nu_L \leftrightarrow e^-_L$ | The exposed weak-coupling triad on the left-channel ledger changes between active $3P$ and active $3E$; the shielded triad remains part of the assembly bookkeeping. | The incoming and outgoing lepton assemblies retain or relock their own neutral core provenance; the corridor does not manufacture a new Noether core. | The charged-corridor payload has magnitude $6\epsilon$: $W^-$ carries $-6\epsilon$ and $W^+$ carries $+6\epsilon$. Absorbing $W^-$ can drive $3P\to3E$, while emitting $W^-$ balances a source-side $3E\to3P$ change; $W^+$ supplies the inverse bookkeeping. | Energy, momentum, spin/angular momentum, axial polarity, path-history, and Noether-Sea recoil must close across the source assembly, target assembly or decay products, corridor, and ambient Noether Sea. |
+| Quark charged current, $d_L \leftrightarrow u_L$ within a CKM-weighted weak basis | The active quark weak-coupling triad changes $3E\leftrightarrow3P$ while color axis-exceptionality and generation bookkeeping remain separate ledgers. | Source and product quark Noether cores provide the neutral scaffold and color record; CKM weighting belongs to overlap between weak basis and mass/branch basis, not to a new corridor inventory. | The corridor transports the compensating $\pm 6\epsilon$ payload for the active-triad swap and carries the energy-momentum needed for the branch transition. | Charge/polarity, baryon number, color-singlet embedding, spin/angular momentum, energy, momentum, and Noether-Sea recoil must all be accounted for in the full reaction ledger. |
+| Neutral current, $Z^0$ exchange | The weak-coupling-triad and shielded-triad records are read or rephased without a $3P\leftrightarrow3E$ swap. | The participating assemblies keep their neutral Noether-core provenance; no charged axial inventory is imported from the corridor. | No net charge payload; the corridor carries energy, momentum, phase, and vector angular-momentum transfer. | The event must close energy, momentum, spin/angular momentum, phase, wake, and Noether-Sea recoil while preserving electric charge and axial inventory. |
+
 ### Massless Photon Versus Massive Weak Corridor
 
 The photon and the weak corridors are both spin-$1$ channels at the observer level, but they solve different closure problems. A photon is the clean massless branch: its coaxial contra-rotating pro/anti planar-pair closure carries phase, momentum, and transverse helicity, but it does not form a stable volumetric assembly with a proper-time cycle. In the effective relativistic limit this appears as the null relation $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$. In special-relativity language, the null channel has zero proper-time accumulation; a photon is not assigned a comoving clock because no photon rest frame exists.
@@ -330,9 +340,10 @@ This is not a new substrate interaction. It is the low-energy observer limit of 
 
 ### Effective Mass Scales
 *   **Apparent Energy:** The "Mass" ($M_W \approx 80$ GeV, $M_Z \approx 91$ GeV) is not a rest mass of a solid object. It is the **Apparent Confinement Energy** of the corridor at the moment of creation.
-*   **Environment Dependence:**
-    *   Because it is a dynamic bundle, its effective width (mass) depends on the electromagnetic environment (ambient Noether-Sea density).
-    *   **Prediction:** Changing assembly environments (e.g., extreme plasma density) may shift the apparent mass peaks and widths by altering the tethering stiffness of the ambient Noether Sea, without invoking new fields.
+*   **Environment Dependence as a bounded closure target:**
+    *   Because a $W/Z$ corridor is a dynamic bundle, its effective width and peak position may depend on Noether-Sea density, compliance, drift, and tethering stiffness only through the same medium-response record that recovers ordinary electroweak precision behavior.
+    *   In calibrated collider and weak laboratory conditions, any predicted shift $\delta M_{W/Z}$ or width change must remain below the applicable precision bounds before the model can claim a new environmental effect.
+    *   The safe prediction is therefore an extreme-density closure target: in plasma, compact-object, or strong-gradient Noether-Sea regimes, a derived corridor-stiffness change may shift apparent weak-boson peaks or widths, but only after the weak homogeneous branch has proven the shift is negligible in existing precision tests.
 
 ---
 
@@ -349,7 +360,7 @@ The Higgs comparison is modeled here as a candidate resonance of the Noether-Sea
 *   **The Cause:** Massive particles (Quarks, W/Z) have complex 3D geometries that distort the local Noether-Sea arrangement.
 *   **The Effect:** They physically displace or distort the surrounding Noether-Sea nodes.
 *   **The Response:** This distortion changes the medium-dressed response of shielded internal causal history. The observer-facing inertial mass channel is the effective response, not ordinary dissipative drag.
-*   **The Boson:** If the Noether Sea is driven hard enough, as in LHC-scale collisions, this radial ringing mode could be excited independently. Identifying that resonance with the observed Higgs boson remains an effective matching target anchored by the ATLAS value $126.0\pm0.4\text{ (stat)}\pm0.4\text{ (sys)}\,\mathrm{GeV}$.
+*   **The Boson:** If the Noether Sea is driven hard enough, as in LHC-scale collisions, this radial ringing mode could be excited independently. Identifying that resonance with the observed Higgs boson remains an effective matching target anchored by the neutral scalar resonance near $125$ GeV; exact date-stamped values and uncertainties belong in validation and parameter ledgers rather than static chapter prose.
 
 The local proof obligation is a derivative test, not a new primitive field. If $\varphi$ parameterizes the radial Noether-Sea breathing displacement, the effective scalar coupling to an assembly $A$ is the change in the same mass-response map used by [Particle Masses](../particle-masses.md#higgs-and-yukawa-matching-residual):
 $$

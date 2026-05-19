@@ -1,0 +1,309 @@
+{
+  "schema": "breather-refined-preledger-mesh-v1",
+  "candidate_packet_id": "seed-doubled-four-arc-cosine-template-v0",
+  "refinement_id": "preledger-separator-level-split-v1",
+  "status": "diagnostic_refinement_rejected_fold_impulse_and_fold_adjacent_parent_leftovers",
+  "parent_mesh": "mesh.json",
+  "refinement_parameters": {
+    "separator_radius_theta": 0.0125,
+    "simple_root_y_margin": 0.005,
+    "field_speed_c_f": 1,
+    "T_cyc": 6.28318530718,
+    "note": "This refinement isolates separator layers, records strict simple-root subwindows, and adds accepted diagonal-exclusion rows; it is not yet a complete accepted same-domain mesh because fold-layer impulse ceilings and parent-boundary rows remain unresolved."
+  },
+  "intervals": [
+    {
+      "interval_id": "A0",
+      "theta_range": [
+        0,
+        0.13508361765
+      ],
+      "type": "regular",
+      "parent_arc": "I0",
+      "velocity_class": "sub",
+      "order": 0,
+      "t_range": [
+        0,
+        0.848755401659
+      ]
+    },
+    {
+      "interval_id": "F1",
+      "theta_range": [
+        0.13508361765,
+        0.16008361765
+      ],
+      "type": "fold_layer_candidate",
+      "parent_arc": "Sigma_1",
+      "separator_event": "Sigma_1",
+      "fold_ledger": "w",
+      "order": 1,
+      "t_range": [
+        0.848755401659,
+        1.005835034339
+      ]
+    },
+    {
+      "interval_id": "A1",
+      "theta_range": [
+        0.16008361765,
+        0.33991638235
+      ],
+      "type": "regular",
+      "parent_arc": "I1",
+      "velocity_class": "super",
+      "order": 2,
+      "t_range": [
+        1.005835034339,
+        2.135757619251
+      ]
+    },
+    {
+      "interval_id": "F2",
+      "theta_range": [
+        0.33991638235,
+        0.36491638235
+      ],
+      "type": "fold_layer_candidate",
+      "parent_arc": "Sigma_2",
+      "separator_event": "Sigma_2",
+      "fold_ledger": "w",
+      "order": 3,
+      "t_range": [
+        2.135757619251,
+        2.292837251931
+      ]
+    },
+    {
+      "interval_id": "A2",
+      "theta_range": [
+        0.36491638235,
+        0.63508361765
+      ],
+      "type": "regular",
+      "parent_arc": "I2",
+      "velocity_class": "sub",
+      "order": 4,
+      "t_range": [
+        2.292837251931,
+        3.990348055249
+      ]
+    },
+    {
+      "interval_id": "F3",
+      "theta_range": [
+        0.63508361765,
+        0.66008361765
+      ],
+      "type": "fold_layer_candidate",
+      "parent_arc": "Sigma_3",
+      "separator_event": "Sigma_3",
+      "fold_ledger": "u",
+      "order": 5,
+      "t_range": [
+        3.990348055249,
+        4.147427687929
+      ]
+    },
+    {
+      "interval_id": "A3",
+      "theta_range": [
+        0.66008361765,
+        0.83991638235
+      ],
+      "type": "regular",
+      "parent_arc": "I3",
+      "velocity_class": "super",
+      "order": 6,
+      "t_range": [
+        4.147427687929,
+        5.277350272841
+      ]
+    },
+    {
+      "interval_id": "F4",
+      "theta_range": [
+        0.83991638235,
+        0.86491638235
+      ],
+      "type": "fold_layer_candidate",
+      "parent_arc": "Sigma_4",
+      "separator_event": "Sigma_4",
+      "fold_ledger": "u",
+      "order": 7,
+      "t_range": [
+        5.277350272841,
+        5.434429905521
+      ]
+    },
+    {
+      "interval_id": "A4",
+      "theta_range": [
+        0.86491638235,
+        1
+      ],
+      "type": "regular",
+      "parent_arc": "I4",
+      "velocity_class": "sub",
+      "order": 8,
+      "t_range": [
+        5.434429905521,
+        6.28318530718
+      ]
+    }
+  ],
+  "simple_root_windows": [
+    {
+      "row_id": "S_u_A3_A2_1",
+      "ledger": "u",
+      "receiver_interval": "A3",
+      "source_interval": "A2",
+      "receiver_theta_range": [
+        0.670709367399,
+        0.83991638235
+      ],
+      "source_theta_range": [
+        0.54103883344,
+        0.625869003963
+      ],
+      "receiver_range": [
+        4.608121368266,
+        4.811495151279
+      ],
+      "source_coverage_gap": 0.005,
+      "memory_depth_range": [
+        0.281740312711,
+        1.877903023959
+      ],
+      "gamma_sign": 0.281740312711
+    },
+    {
+      "row_id": "S_u_A4_A2_2",
+      "ledger": "u",
+      "receiver_interval": "A4",
+      "source_interval": "A2",
+      "receiver_theta_range": [
+        0.86491638235,
+        0.957747116028
+      ],
+      "source_theta_range": [
+        0.541076558044,
+        0.625869003963
+      ],
+      "receiver_range": [
+        4.608282809491,
+        4.811495151279
+      ],
+      "source_coverage_gap": 0.005,
+      "memory_depth_range": [
+        2.034745625957,
+        2.085251677498
+      ],
+      "gamma_sign": 2.034745625957
+    },
+    {
+      "row_id": "S_u_A4_A3_3",
+      "ledger": "u",
+      "receiver_interval": "A4",
+      "source_interval": "A3",
+      "receiver_theta_range": [
+        0.873898811563,
+        0.957785341387
+      ],
+      "source_theta_range": [
+        0.670446004355,
+        0.829553995645
+      ],
+      "receiver_range": [
+        4.613121368266,
+        4.811656592504
+      ],
+      "source_coverage_gap": 0.005,
+      "memory_depth_range": [
+        0.278626695826,
+        1.805406300616
+      ],
+      "gamma_sign": 0.278626695826
+    },
+    {
+      "row_id": "S_w_A1_A0_4",
+      "ledger": "w",
+      "receiver_interval": "A1",
+      "source_interval": "A0",
+      "receiver_theta_range": [
+        0.170709367399,
+        0.33991638235
+      ],
+      "source_theta_range": [
+        0.04103883344,
+        0.125869003963
+      ],
+      "receiver_range": [
+        1.466528714676,
+        1.669902497689
+      ],
+      "source_coverage_gap": 0.005,
+      "memory_depth_range": [
+        0.281740312711,
+        1.877903023959
+      ],
+      "gamma_sign": 0.281740312711
+    },
+    {
+      "row_id": "S_w_A2_A0_5",
+      "ledger": "w",
+      "receiver_interval": "A2",
+      "source_interval": "A0",
+      "receiver_theta_range": [
+        0.36491638235,
+        0.457747116028
+      ],
+      "source_theta_range": [
+        0.041076558044,
+        0.125869003963
+      ],
+      "receiver_range": [
+        1.466690155901,
+        1.669902497689
+      ],
+      "source_coverage_gap": 0.005,
+      "memory_depth_range": [
+        2.034745625957,
+        2.085251677498
+      ],
+      "gamma_sign": 2.034745625957
+    },
+    {
+      "row_id": "S_w_A2_A1_6",
+      "ledger": "w",
+      "receiver_interval": "A2",
+      "source_interval": "A1",
+      "receiver_theta_range": [
+        0.373898811563,
+        0.457785341387
+      ],
+      "source_theta_range": [
+        0.170446004355,
+        0.329553995645
+      ],
+      "receiver_range": [
+        1.471528714676,
+        1.670063938914
+      ],
+      "source_coverage_gap": 0.005,
+      "memory_depth_range": [
+        0.278626695826,
+        1.805406300616
+      ],
+      "gamma_sign": 0.278626695826
+    }
+  ],
+  "diagonal_exclusion_ref": "diagonal_exclusion_subledger.json",
+  "fold_layer_atlas_ref": "fold_layer_atlas.json",
+  "unresolved_partition_classes": {
+    "diagonal_contact_rows": 0,
+    "fold_layer_rows_requiring_impulse_ceiling": 16,
+    "periodic_boundary_contact_rows": 0,
+    "parent_range_rows_with_boundary_leftovers": 6
+  }
+}

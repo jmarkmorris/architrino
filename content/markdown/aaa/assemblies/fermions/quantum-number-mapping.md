@@ -118,10 +118,38 @@ For charged leptons and quarks, every charged-fermion axial layer consists of 6 
 
 For neutrinos, the same triad language should be read as an effective weak-channel projection of the near-photon pro/anti core pair, not as a literal inventory of six bound axial sites.
 
-**Which three are active? (hypothesis)**
-- In translation, either the forward or rearward hemisphere could be more exposed. We currently favor the **forward three sites**: the leading side is not in its own wake, while the trailing side sits in that wake and slipstream, which likely damps docking by a $W$ corridor. This needs simulation to confirm the exposure asymmetry.
+**Weak-coupling exposure diagnostic (hypothesis)**
+For an assembly $A$ with propagation direction $\hat{\mathbf p}$, the exposed triad should be selected by an operator rather than by a raw verbal claim. Let $\mathcal{S}_{\mathrm{ax}}(A)$ be the six polar sites and let $w_a(A,\hat{\mathbf p})$ be the local $W$-corridor docking weight of site $a$. Define
+$$
+\mathcal{T}_{\mathrm{WCT}}(A,\hat{\mathbf p})
+=
+\operatorname*{arg\,max}_{\substack{S\subset\mathcal{S}_{\mathrm{ax}}(A)\\ |S|=3}}
+\sum_{a\in S}w_a(A,\hat{\mathbf p}),
+$$
+and the exposure margin
+$$
+\Delta_{\mathrm{WCT}}(A,\hat{\mathbf p})
+=
+\sum_{a\in\mathcal{T}_{\mathrm{WCT}}}w_a(A,\hat{\mathbf p})
+-
+\sum_{a\notin\mathcal{T}_{\mathrm{WCT}}}w_a(A,\hat{\mathbf p}).
+$$
+The diagnostic is
+$$
+\mathcal{E}_{\mathrm{WCT}}(A,\hat{\mathbf p})
+=
+\left(\mathcal{T}_{\mathrm{WCT}}(A,\hat{\mathbf p}),\Delta_{\mathrm{WCT}}(A,\hat{\mathbf p})\right).
+$$
 
-**Weak Isospin ($T_3$)** is defined by the polarity of this **weak-coupling triad**:
+The current forward-triad hypothesis is the branch where $\mathcal{T}_{\mathrm{WCT}}$ selects the three leading sites and $\Delta_{\mathrm{WCT}}>0$. It fails if a simulation finds that trailing-site coupling dominates over the branch window,
+$$
+\sum_{a\in\mathcal{T}_{\mathrm{trail}}}w_a(A,\hat{\mathbf p})
+\ge
+\sum_{a\in\mathcal{T}_{\mathrm{lead}}}w_a(A,\hat{\mathbf p}),
+$$
+because then the active weak-coupling triad has been assigned to the wrong exposed domain.
+
+Once $\mathcal{E}_{\mathrm{WCT}}$ selects an exposed triad with positive margin, **Weak Isospin ($T_3$)** is defined by the polarity of that **weak-coupling triad**:
 *   **$T_3 = +1/2$ (Up-State):** The weak-coupling triad contains maximal **Positrinos** (relative to the baseline).
 *   **$T_3 = -1/2$ (Down-State):** The weak-coupling triad contains maximal **Electrinos**.
 
@@ -237,22 +265,37 @@ Gluons are the axis-reconfiguration carriers of this sector.
 - **Timescale separation:** color reconfiguration along the shared corridor is faster than typical environmental disturbance, so small kicks relax before the singlet decoheres.
 - **Isolation:** color flux remains trapped inside the corridor or braid, so external probes see only the color-singlet composite.
 
-### Why is the Proton Stable?
+### Bound-State Proton Stability
 The Proton ($uud$) consists of two $+2/3$ quarks and one $-1/3$ quark.
 *   **Coulomb Repulsion:** The two $u$ quarks repel electrically.
 *   **Strong Attraction:** Color-singlet closure forces the three quarks into a shared strong-sector braid whose tension overwhelms the electric repulsion.
 *   **Pauli Exclusion:** Since the quarks occupy different color sectors, they are distinguishable quantum states, allowing them to share the same spatial ground-state assembly.
 
+This paragraph explains ordinary bound-state stability inside the nucleon. It is not yet a derivation of proton-decay exclusion or topological baryon conservation. The stronger claim belongs to the closed-braid program in [Color Charge and Strong Confinement](./color-charge-su3.md): the color-singlet 9-axis braid must make baryon-number-violating rupture either impossible on the admitted branch or suppressed beyond current null-result limits. A local recovery target is therefore
+$$
+\tau_p^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta;\mathcal{C}_{\Delta B\ne0})
+>
+\tau_p^{\mathrm{null}}(\mathcal{C}_{\Delta B\ne0})
+$$
+for every tested baryon-violating channel $\mathcal{C}_{\Delta B\ne0}$, while the bound-state proton calculation separately recovers the observed charged color-singlet ground state.
+
 ---
 
-## Gauge Group Coverage: $SU(3)_c \times SU(2)_L \times U(1)_Y$
+## Gauge Representation Bookkeeping: $SU(3)_c \times SU(2)_L \times U(1)_Y$
 
-The full SM gauge group is captured geometrically as:
+At the representation and charge-bookkeeping layer, the current dictionary recovers the Standard Model labels as:
 
 - **$SU(3)_c$ (color):** axis-exceptionality of the Noether core plus axial layer. Quarks occupy the triplet basis $|q_H\rangle, |q_M\rangle, |q_L\rangle$ (conventionally Red, Green, Blue), while charged leptons remain axis-uniform singlets and neutrinos remain singlets by the near-photon neutral-pair route. Gluons are axis-reconfiguration ribbons or corridor modes forming the octet.
 - **$SU(2)_L$ (weak isospin):** polarity of the **weak-coupling triad** (three exposed polar sites, or the effective near-photon weak projection for neutrinos). Left-handed fermions are doublets; right-handed fermions are singlets (weak-coupling triad hidden).
 - **$U(1)_Y$ (weak hypercharge):** net charge of the **Shielded Triad** (three hidden sites) plus core offset; mixes with $T_3$ to give electric charge via $Q = T_3 + Y/2$.
-- **Electromagnetism (U(1)_\mathrm{EM}):** photon is the post-mixing planar mode; $W^\pm$ and $Z$ are the chiral corridors moving weak-coupling-triad charge/phase (see assemblies/bosons/electroweak-bosons.md).
+- **Electromagnetism (U(1)_\mathrm{EM}):** photon is the post-mixing planar mode; $W^\pm$ and $Z$ are the chiral corridors moving weak-coupling-triad charge/phase; see [Electroweak Bosons](../bosons/electroweak-bosons.md).
+
+This is not yet a derivation of local gauge dynamics. The remaining closure targets are:
+
+- derive local corridor/wake update laws that act as the effective covariant derivative on assembly states,
+- recover normalized gauge kinetic terms for the emergent $SU(3)_c$, $SU(2)_L$, and $U(1)_Y$ fields,
+- derive coupling normalization and running for $g_s(\mu)$, $g(\mu)$, and $g'(\mu)$ from Noether-Sea dressing and assembly-scale response,
+- show that the same branch record recovers confinement, electroweak mixing, anomaly cancellation, and precision coupling residuals without adding sector-specific bookkeeping.
 
 **Notation:** We use $Q$ (electric), $T_3$ (weak isospin third component), and $Y$ (weak hypercharge). In this chapter we write weak hypercharge as $Y$ rather than $Y_w$. Relation: $Q = T_3 + Y/2$ for all fields.
 
@@ -467,15 +510,39 @@ while adding $\nu_R$ (equivalently $\nu^c_L$ in left-chiral bookkeeping) restore
 
 ## The Generation Mechanism (Mass Hierarchy)
 
-For charged fermions and quarks, generations are defined by the **shedding of shielding binaries** from the Noether core. The axial layer remains constant.
+For charged fermions and quarks, generations are defined by the depletion of coherent shielding support in the nested Noether core. The axial layer remains a six-site gauge-facing record, so generation changes exposed mass response and lifetime without deleting the H/M/L axial frame that carries color and electroweak bookkeeping.
 
 Equivalently, the generation ladder can be read as a nested shielding hierarchy:
 
 - **Generation I:** full three-tier shielding, with inner binaries screened by outer ones,
-- **Generation II:** one shielding tier removed, exposing the deeper engine more directly,
-- **Generation III:** only the innermost engine remains exposed.
+- **Generation II:** outer shielding support depleted, exposing the deeper engine more directly,
+- **Generation III:** outer and middle shielding support depleted, leaving the innermost engine maximally exposed.
 
-This is stronger than the statement "fewer binaries means more mass." The outer binaries act as real shielding tiers for deeper core energy, so moving from Generation I to II to III is a progressive loss of energy screening.
+This is stronger than the statement "fewer binaries means more mass." The outer and middle binary tiers act as real shielding support for deeper core energy. At higher generation the depleted tier may be ablated, unassembled, or unable to remain phase locked on the branch lifetime window, but the gauge projection still reads the ordered H/M/L axial dyads until the assembly dissociates.
+
+### Shielding Depletion and Axial Delay
+
+The useful separation is:
+
+$$
+\text{generation}=\text{shielding-coherence class},
+\qquad
+\text{color}=\text{exceptional-axis class}.
+$$
+
+Generation depletion therefore does not collapse a top or bottom quark to a one-color object. It changes how much support the H/M/L core hierarchy supplies to the axial layer. The weakly bound axial architrinos remain in the polar attachment layer, but their stability is controlled by delayed support from the shielding tiers.
+
+A minimal lifetime hook is the causal time for a shielding-tier failure to reach the weak-coupling triad and force relocking:
+
+$$
+\tau_{\mathrm{sh}\to\mathrm{ax}}(A)
+\gtrsim
+\frac{R_{\mathrm{tier}\to\mathrm{ax}}(A)}{c_f}
++
+N_{\mathrm{lock}}(A)T_{\mathrm{cycle}}(A).
+$$
+
+Here $R_{\mathrm{tier}\to\mathrm{ax}}$ is the relevant tier-to-axial separation, $c_f$ is the primitive wake speed, $T_{\mathrm{cycle}}$ is the local core-cycle time, and $N_{\mathrm{lock}}$ counts the relocking cycles needed before the axial layer either restabilizes or opens a reaction corridor. This is a closure target, not yet a computed lifetime formula, but it gives the generation program a native route from shielding loss to finite lifetimes.
 
 ### Three-Generation Closure Benchmark
 
@@ -524,7 +591,7 @@ $$
 (s_{\mathrm{in}},s_{\mathrm{mid}},s_{\mathrm{out}})
 \in\{0,1\}^3
 $$
-record which inner, middle, and outer shielding tiers remain active for the charged-fermion or quark branch $A$. The present generation thesis admits only the three quotient classes
+record which inner, middle, and outer shielding tiers remain coherently active as shielding support for the charged-fermion or quark branch $A$. The present generation thesis admits only the three quotient classes
 $$
 \mathfrak{G}_{\mathrm{sh}}
 =
@@ -536,6 +603,18 @@ T_{\mathrm{gen}}:
 (1,1,1)\mapsto(1,1,0)\mapsto(1,0,0)\mapsto(1,1,1),
 $$
 where the last arrow is a quotient-closure check, not a claim that an exposed Generation III assembly dynamically rebuilds the missing shielding tiers.
+
+The entries of $\mathsf{s}_{\mathrm{sh}}$ are shielding-coherence bits, not a deletion of the gauge-facing axial frame. Let the axial dyads be
+$$
+\mathcal{D}_{\mathrm{ax}}(A)=\{D_H,D_M,D_L\}.
+$$
+For quark branches the color label remains
+$$
+\mathrm{col}(A)
+=
+\operatorname{exceptional}\!\left(\mathcal{D}_{\mathrm{ax}}(A)\right),
+$$
+while $\mathsf{s}_{\mathrm{sh}}(A)$ controls exposed mass response and lifetime. A branch fails this separation if changing generation removes the three-color triplet structure before the assembly has left the quark sector.
 
 One explicit order residual is
 $$
@@ -592,23 +671,23 @@ with one shared $\theta$ and one shared $M_{\mathrm{sh}}$ across leptons, up-typ
 The explicit shared fitting packet lives in [Particle Masses](../particle-masses.md#generation-mass-fitting-packet), where $M_{\mathrm{sh}}$ is treated as a mass-response map rather than a new generation ontology.
 
 ### Generation II (Muon, Charm, Strange)
-*   **Architecture:** Missing the **Outer Binary**.
-*   **Core:** **Bi-Binary** (Inner, Middle).
+*   **Architecture:** Outer shielding coherence depleted.
+*   **Core readout:** **Bi-binary shielding branch** (Inner, Middle coherently support the branch).
     *   Composition: 2P, 2E (4 architrinos).
 *   **Axial Layer:** 6 axial architrinos (unchanged).
-*   **Physics:** Without the outer binary tier, the high-energy inner binaries are more exposed to the Noether Sea, increasing the externally exposed response of the internal causal ledger. In the nested shielding picture, Generation II is the same core hierarchy viewed one level deeper.
+*   **Physics:** Without coherent outer shielding support, the high-energy inner binaries are more exposed to the Noether Sea, increasing the externally exposed response of the internal causal ledger. The H/M/L axial frame remains defined during the branch lifetime, so the generation change affects mass response and lifetime without changing the gauge representation.
 *   **Example: The Muon ($\mu^-$)**
     *   Core: Pro-Bi-Binary (4 architrinos).
     *   Axial Layer: 6E.
     *   Total Count: 10 architrinos.
 
 ### Generation III (Tau, Top, Bottom)
-*   **Architecture:** Missing **Outer and Middle Binaries**.
-*   **Core:** **Uni-Binary** (Inner only).
+*   **Architecture:** Outer and middle shielding coherence depleted.
+*   **Core readout:** **Uni-binary shielding branch** (Inner coherently supports the branch).
     *   Composition: 1P, 1E (2 architrinos).
     *   *Note:* This is the bare high-energy engine, extremely unstable/reactive.
 *   **Axial Layer:** 6 axial architrinos (unchanged).
-*   **Physics:** Maximal exposure of the maximum-curvature regime. Highest Mass. Shortest lifetime. In the nested shielding picture, this is the innermost engine with essentially no outer energy screen remaining.
+*   **Physics:** Maximal exposure of the maximum-curvature regime. Highest mass. Shortest lifetime. In the nested shielding picture, this is the innermost engine with essentially no outer energy screen remaining, while the metastable axial dyads still carry charge, color, and weak-coupling bookkeeping until dissociation.
 *   **Example: The Top Quark ($t$)**
     *   Core: Pro-Uni-Binary (2 architrinos).
     *   Axial Layer: 5P, 1E.
@@ -616,11 +695,11 @@ The explicit shared fitting packet lives in [Particle Masses](../particle-masses
 
 ### Core Depletion, Axial Vortices, and Lifetime (plain view)
 
-- **What the binaries do:** Each binary carries a pair of axial vortices—think of them as rails that hold the six axial architrinos in place and share load into the Noether Sea.
-- **Gen I (tri-binary):** Three binaries = three vortex pairs → a stiff 3D scaffold that locks the axial layer, spreads stress, and shields the deeper core layers. Long-lived.
-- **Gen II (bi-binary):** One binary removed → one vortex pair gone. The remaining scaffold is weaker, and one shielding tier is lost, so small perturbations kick the core off its attractor more easily. Lifetime drops.
-- **Gen III (uni-binary):** Only one binary → a single vortex pair must hold all six charges. Stability margin is tiny, and almost no outer screening remains for the deepest core energy. Very short-lived.
-- **Takeaway:** Fewer binaries → fewer vortex rails → weaker topological confinement → faster dissociation.
+- **What the binaries do:** Each coherent shielding tier supplies axial-vortex support that helps hold the six axial architrinos in phase with the Noether core and shares load into the Noether Sea.
+- **Gen I (tri-binary):** Three coherent shielding tiers give a stiff 3D support scaffold that locks the axial layer, spreads stress, and shields the deeper core layers. Long-lived.
+- **Gen II (bi-binary shielding branch):** The outer support tier is depleted. The H/M/L axial frame persists as a delayed branch record, but small perturbations reach the weakly bound axial layer more easily after causal propagation and relocking cycles. Lifetime drops.
+- **Gen III (uni-binary shielding branch):** Outer and middle support are depleted. The axial layer is metastable around the exposed inner engine, almost no outer screening remains for the deepest core energy, and the reaction corridor opens quickly. Very short-lived.
+- **Takeaway:** Fewer coherent shielding tiers means higher exposed mass response and shorter lifetime, not fewer color states.
 
 ---
 
@@ -718,7 +797,7 @@ The table is sufficient. It connects the geometry to every parameter needed to c
 This chapter is a dictionary layer; the primary derivations live elsewhere. The closure interfaces are:
 
 - **Quark mixing (CKM):** weak-basis vs mass-basis overlap and holonomy closure in [theory-bridges/weak-mixing-ckm.md](../../theory-bridges/weak-mixing-ckm.md).
-- **Lepton mixing (PMNS):** near-photon pro/anti core-pair Hamiltonian and oscillation map in [assemblies/fermions/neutrinos.md](./neutrinos.md).
+- **Lepton mixing (PMNS):** near-photon pro/anti core-pair phase operator and oscillation map in [assemblies/fermions/neutrinos.md](./neutrinos.md).
 - **Topological spin/confinement closure:** bundle/topology and causal-locus invariants in [dynamics/causal-action-functional.md](../../dynamics/causal-action-functional.md) and [assemblies/fermions/color-charge-su3.md](./color-charge-su3.md).
 
 The weak-sector handoff now uses one shared exposure problem. The weak-coupling triad is not only the bookkeeping source of $T_3$; it is also the domain on which three later closure tasks must agree:
@@ -748,13 +827,13 @@ with tri-binary ordered-frame evolution transforming on the double cover so that
 
 This chapter fixes the geometry-to-quantum-number dictionary used by the observer-level electroweak closure map in [interactions/gauge-structure-emergence.md](../../interactions/gauge-structure-emergence.md).
 
-### Weak mixing from six-pole geometry
+### Weak mixing as a six-pole branch-increment hypothesis
 
-At bare geometric level (three active Weak-Coupling sites out of six total polar sites),
+The six-pole statement is retained here as a branch-increment hypothesis, not as a locally derived electroweak result. The candidate increment is
 $$
 \sin^2\theta_W^{\text{bare}}=\frac{1}{4}.
 $$
-The measurable value is represented as
+The proof burden is to derive this value from the axial-site quotient and then show how electroweak-scale dressing moves it to the measured value. Until that derivation is supplied, the measurable relation should be read as a recovery target,
 $$
 \sin^2\theta_W(m_Z)=\sin^2\theta_W^{\text{bare}}+\Delta_{\text{wake}}(m_Z),
 $$

@@ -155,7 +155,9 @@ Required checks:
 4. no secular center drift after symmetry modes are removed;
 5. monodromy or finite-difference return-map estimate with symmetry modes quotiented;
 6. positive non-symmetry Floquet gap $\Delta_{\mathbf{k}}>0$;
-7. convergence under the standards in [Convergence Tests](convergence-tests.md).
+7. convergence under the standards in [Convergence Tests](convergence-tests.md);
+8. a Floquet or monodromy report stating whether the state-dependent delay derivative term was included in the variational operator;
+9. `transition_records.json` whenever the run crosses a fold-layer, separator, or active-root status transition.
 
 Tier 1 passes only if the same branch remains stable before any $\eta\to0^+$ extrapolation.
 

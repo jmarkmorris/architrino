@@ -6,14 +6,18 @@ The opening fixes the ontological picture and the canonical symbols first. The l
 
 ## Absolute Frame vs. Effective Geometry
 
+The spacetime branch keeps two descriptions separate. The absolute frame is the fixed bookkeeping structure of absolute time and Euclidean position; it supplies the substrate coordinates in which architrino path histories and Noether-Sea state are recorded. Effective geometry is the observer-level metric reconstructed from clocks, rulers, signal propagation, and medium response.
+
+The bridge is therefore constitutive rather than ontological. A successful metric map must explain how the same Noether-Sea record produces lapse, spatial-compliance, drift, and signal-delay channels without treating the Euclidean void itself as curved.
+
 ## Ontological Picture
 
 - **Substrate**: A fixed Euclidean 3D void with absolute time $t$. A chosen chart $(x,y,z)$ represents fixed void locations; the labels never move or curve.
 - **Medium**: The [Noether Sea](noether-sea.md), a pervasive medium of coupled pro/anti Noether cores (tri-binary assemblies). The bridge term *spacetime medium* is used when translating toward effective spacetime language.
 - **$\mathbb{U}_{\text{now}}$ universe-state perspective**: Complete-state bookkeeping on the absolute-time slice, carrying:
   - The full architrino microstate $S(t)$,
-  - The instantaneous state of the Noether Sea (density $\rho_{\text{core}}(x,t)$, alignment, stress),
-  - The effective potential field $\Phi_{\text{eff}}(x,t)$ and its gradients.
+  - The instantaneous state of the Noether Sea (density $\rho_{\text{core}}(\mathbf{x},t)$, alignment, stress),
+  - The effective potential field $\Phi_{\text{eff}}(\mathbf{x},t)$ and its gradients.
 
 From this bookkeeping perspective, there is only:
 - Flat Euclidean geometry $h_{ij}=\delta_{ij}$,
@@ -23,24 +27,24 @@ From this bookkeeping perspective, there is only:
 
 Use the following symbols consistently across spacetime chapters:
 
-- $n(x,t)$: normalized Noether-core density.
-- $\rho_{\text{core}}(x,t)=\rho_{\text{core},0}\,n(x,t)$: physical core density.
-- $\chi_{\text{sea}}(x,t)=c_f/c_{\text{eff}}(x,t)$: Noether-Sea delay factor.
+- $n(\mathbf{x},t)$: normalized Noether-core density.
+- $\rho_{\text{core}}(\mathbf{x},t)=\rho_{\text{core},0}\,n(\mathbf{x},t)$: physical core density.
+- $\chi_{\text{sea}}(\mathbf{x},t)=c_f/c_{\text{eff}}(\mathbf{x},t)$: Noether-Sea delay factor.
 - $c_0\equiv c_{\text{eff}}(\infty)$: asymptotic homogeneous observer-channel speed used in weak-field metric comparisons.
-- $\Phi_{\text{eff}}(x,t)$: constitutive potential inferred from the clock channel.
-- $\Phi_N(x,t)$: Newtonian benchmark potential used for weak-field matching.
+- $\Phi_{\text{eff}}(\mathbf{x},t)$: constitutive potential inferred from the clock channel.
+- $\Phi_N(\mathbf{x},t)$: Newtonian benchmark potential used for weak-field matching.
 - $U\equiv -\Phi_N>0$: positive weak-field PPN potential variable.
-- $N(x,t)$: observer-level lapse or clock-rate field reconstructed from Noether-Sea state.
-- $u^i_{\text{sea}}(x,t)$: Noether-Sea drift field in the observer-level bookkeeping map.
-- $e^a{}_i(x,t)$: spatial frame field carrying Noether-Sea compliance and orientation response.
-- $\gamma_{ij}(x,t)=\delta_{ab}e^a{}_i e^b{}_j$: observer-level spatial compliance metric.
+- $N(\mathbf{x},t)$: observer-level lapse or clock-rate field reconstructed from Noether-Sea state.
+- $u^i_{\text{sea}}(\mathbf{x},t)$: Noether-Sea drift field in the observer-level bookkeeping map.
+- $e^a{}_i(\mathbf{x},t)$: spatial frame field carrying Noether-Sea compliance and orientation response.
+- $\gamma_{ij}(\mathbf{x},t)=\delta_{ab}e^a{}_i e^b{}_j$: observer-level spatial compliance metric.
 
 ## What “Metric” Means Here
 
 - **Effective metric $g^{\text{eff}}_{\mu\nu}(x)$** is *not* a fundamental property of the void. It is a derived description of:
   - How assembly-based clocks tick,
   - How assembly-based rulers measure distances,
-  - How signals (tri-binary photons, GWs) propagate through the Noether Sea.
+  - How photon-channel packets and gravitational-wave channels propagate through the Noether Sea.
 
 We define $g^{\text{eff}}_{\mu\nu}$ operationally:
 

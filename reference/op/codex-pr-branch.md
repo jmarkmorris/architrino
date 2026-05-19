@@ -6,19 +6,33 @@ This document defines the standard repo process for ending a work session, publi
 
 ## Branch Naming Convention
 
-The active branch series for this repo is currently the periodic table sequence.
+The active branch series for this repo is currently the periodic table sequence. The periodic-table sequence ends at `codex/oganesson` (Oganesson, element 118). When a branch series is exhausted, continue with the next series in [Branch Series Rollover Order](#branch-series-rollover-order) rather than reusing retired branch names.
 
-- Working branches should therefore use `codex/<element-name>` by default.
-- If a short topic suffix materially improves clarity, use `codex/<element-name>-<topic>`.
-- Advance the sequence one element at a time.
-- Keep the element prefix canonical even when using a topic suffix.
-- Do not invent an unrelated branch name unless there is an explicit reason to step outside the element sequence.
-- After `codex/hydrogen`, the next standard branch is `codex/helium`, then `codex/lithium`, and so on.
-- When rolling over to the next branch, explicitly tell the operator/developer which element was chosen and include a short factual blurb about that element.
+- Working branches should use `codex/<series-item-name>` by default.
+- While the active series is the periodic table, working branches should use `codex/<element-name>` by default.
+- If a short topic suffix materially improves clarity, use `codex/<series-item-name>-<topic>`.
+- Advance the active sequence one item at a time.
+- Keep the series item prefix canonical even when using a topic suffix.
+- Do not invent an unrelated branch name unless there is an explicit reason to step outside the active sequence.
+- After `codex/hydrogen`, the next standard branch is `codex/helium`, then `codex/lithium`, and so on through `codex/oganesson`.
+- After `codex/oganesson`, the next standard branch is `codex/mercury`.
+- When rolling over to the next branch, explicitly tell the operator/developer which series item was chosen and include a short factual blurb about that item.
 - The blurb should be a short paragraph, not just the branch name by itself.
-- The blurb should identify the element name, symbol, and atomic number, then give one or two concise factual notes.
+- For an element branch, the blurb should identify the element name, symbol, and atomic number, then give one or two concise factual notes.
+- For a non-element branch, the blurb should identify the canonical item name, the active series, the item's place in that sequence, and one or two concise factual notes.
 
 This keeps the branch series ordered, memorable, and easy to reason about during rollover.
+
+## Branch Series Rollover Order
+
+Use these branch-name series in order. Finish one series before advancing to the next.
+
+1. Periodic table elements. Use canonical element names in atomic-number order: `codex/hydrogen` through `codex/oganesson`.
+2. Planets in our solar system. Use the eight IAU planets in order from the Sun: `codex/mercury`, `codex/venus`, `codex/earth`, `codex/mars`, `codex/jupiter`, `codex/saturn`, `codex/uranus`, `codex/neptune`. Dwarf planets are excluded unless the operator/developer explicitly adds them.
+3. Moons in our solar system. Before cutting the first moon branch, add or update a committed moon registry so the exact sequence is frozen for branch use. Use commonly known natural moons of the eight IAU planets, capped at 10 moons per planet; Mercury and Venus contribute none unless future project policy explicitly changes. Default ordering should be parent body from the Sun outward, then a curated common-recognition order for that planet's moons. Use lowercase hyphenated names.
+4. Minerals and gemstones. Before cutting the first mineral or gemstone branch, add or update a committed registry of exactly 48 curated mineral or gemstone names. Prefer common, memorable, broadly recognized names over exhaustive mineralogical coverage. Use lowercase hyphenated names and avoid commercial or trademark-only names unless explicitly approved.
+5. Space missions and probes. Before cutting the first mission or probe branch, add or update a committed registry limited to missions and probes that were publicly marketed as named missions to a general audience. Prefer widely recognized spacecraft, probes, rovers, landers, orbiters, telescopes, and sample-return missions. Exclude internal-only project codes, instruments without a public mission identity, launch vehicles by themselves, and duplicate variants of the same mission name. Default ordering should be launch date, then canonical mission or probe name in lowercase hyphenated form.
+6. Dog or cat breeds. Before cutting the first breed branch, add or update a committed registry of exactly 44 breed names: 36 commonly known dog breeds followed by 8 commonly known cat breeds. Use lowercase hyphenated names. Prefer recognizable breed names over exhaustive registry coverage.
 
 ## Principles
 
@@ -177,7 +191,7 @@ This is the normal branch-to-PR path for active implementation work.
 
 ### 1. Start from an explicit working branch
 
-- If beginning from `main`, create the next `codex/<element-name>` or `codex/<element-name>-<topic>` branch in the periodic-table sequence.
+- If beginning from `main`, create the next `codex/<series-item-name>` or `codex/<series-item-name>-<topic>` branch in the active branch series.
 - If beginning from `main`, first fast-forward local `main` to `origin/main` while checked out on `main`.
 - If continuing a live branch with an open PR, remain on that branch.
 - Do not create a new working branch merely because `origin/main` moved. A fetch alone is not enough.
@@ -188,7 +202,7 @@ Commands:
 git checkout main
 git fetch origin
 git merge --ff-only origin/main
-git checkout -b codex/<element-name>
+git checkout -b codex/<series-item-name>
 ```
 
 ### 2. Develop, validate, commit, and push
@@ -468,8 +482,9 @@ After the previous PR is merged and the previous branch is retired, start the ne
 
 ### 1. Create the next branch from current `main`
 
-- Use the next element in the periodic-table sequence.
-- An optional `-<topic>` suffix is allowed when it materially improves clarity, but the element prefix should still advance in order.
+- Use the next item in the active branch series.
+- The active series is currently the periodic table; after `codex/oganesson`, advance to the planets sequence with `codex/mercury`.
+- An optional `-<topic>` suffix is allowed when it materially improves clarity, but the series item prefix should still advance in order.
 - Create the branch only after local `main` has been fast-forwarded and verified against `origin/main`.
 - Create the branch first, then publish it. Do not try to create and push it in parallel.
 - Stay on `main` for the synchronization commands, then cut the branch immediately from that checked-out `main`.
@@ -484,7 +499,7 @@ git fetch origin
 git merge --ff-only origin/main
 git rev-parse --short main
 git rev-parse --short origin/main
-git checkout -b codex/<next-element>
+git checkout -b codex/<next-series-item>
 ```
 
 ### 2. Publish the next branch immediately
@@ -494,7 +509,7 @@ git checkout -b codex/<next-element>
 Command:
 
 ```bash
-git push -u origin codex/<next-element>
+git push -u origin codex/<next-series-item>
 ```
 
 This makes the next branch the new canonical branch in the series.
@@ -503,7 +518,7 @@ This makes the next branch the new canonical branch in the series.
 
 - All new commits for the next unit of work should land there.
 - Open the next PR only when the branch has a coherent reviewable unit.
-- In the operator/developer-facing rollover response, include the element paragraph required by [Final Response Requirements](#final-response-requirements).
+- In the operator/developer-facing rollover response, include the series-item paragraph required by [Final Response Requirements](#final-response-requirements).
 - That paragraph should appear after the new branch has been created and published, so the explanation refers to the actual canonical branch now in use.
 
 Commands:
@@ -563,7 +578,8 @@ Stop and resolve deliberately rather than pushing ahead if any of these are true
 - the branch contains commits authored after the PR merge time and you have not yet recovered them onto a safe branch,
 - `git fetch origin` succeeded but local `main` was not actually fast-forwarded and verified,
 - local `main` cannot fast-forward to `origin/main`,
-- the next branch name breaks the periodic-table sequence without an explicit reason,
+- the next branch name breaks the active branch sequence without an explicit reason,
+- a branch series is exhausted and the next configured series has not been selected or frozen as required,
 - or the next branch would depend on unmerged work that is not meant to stay coupled.
 
 ## Final Response Requirements
@@ -572,8 +588,8 @@ When this procedure is executed, the final response should not stop at generic g
 
 - Summarize the branch/PR outcome, cleanup state, and next-branch rollover state clearly enough that the operator/developer can verify the procedure actually completed.
 - If a new branch was created, include the exact new branch name and whether it was published to `origin`.
-- If a new branch was created from the periodic-table sequence, include one substantive paragraph about the element named by that branch.
-- That element paragraph should include, when applicable and known:
+- If a new branch was created from a named branch series, include one substantive paragraph about the item named by that branch.
+- For a periodic-table branch, that element paragraph should include, when applicable and known:
   - the atomic number,
   - the chemical symbol,
   - the broad classification such as noble gas, alkali metal, alkaline earth metal, transition metal, halogen, lanthanide, actinide, metalloid, or nonmetal,
@@ -581,7 +597,8 @@ When this procedure is executed, the final response should not stop at generic g
   - the usual electron-orbital configuration or shell/orbital description,
   - common ion or oxidation states,
   - and a few physically or chemically distinctive traits that help identify the element.
-- The element paragraph should be detailed enough to be informative, not just a one-line gloss.
+- For a non-element branch, the paragraph should identify the item name, the active series, the item's place or ordering rule in that series, and a few distinctive facts that make the item memorable.
+- The branch-item paragraph should be detailed enough to be informative, not just a one-line gloss.
 
 ## Expected Outcome
 

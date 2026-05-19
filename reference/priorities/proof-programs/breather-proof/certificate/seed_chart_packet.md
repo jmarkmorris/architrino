@@ -247,7 +247,13 @@ supplies the pre-ledger inputs, branch-chart inputs, and residual targets withou
 The candidate cycle may come from a closed-form ansatz, direct quadrature,
 simulation-assisted fitting, continuation, or interval collocation. These routes
 are equivalent at this gate only if they produce one finite residual problem on
-the same packet identity. Let
+the same packet identity. The finite reduction must also record the map data
+that make a root meaningful: the projection from an admissible history into the
+finite coefficient vector, the reconstruction/evaluation map from that vector
+back into the declared history space, and the local neighborhood and regularity
+assumptions under which the reduction is being used. A least-squares trace or
+mesh residual without those data is candidate-search evidence, not a
+seed-chart packet. Let
 $$
 \mathbf a
 =
@@ -315,6 +321,24 @@ only promotes `candidate data absent` to a finite candidate packet whose
 residuals, pre-ledger rows, branch chart, fold atlas, and returned-sample
 targets can be tested on the same mesh.
 
+For continuation or bifurcation-generated candidates, the branch parameter,
+continuation step, and branch status are construction notes only. The accepted
+object is one frozen coefficient vector
+$$
+\mathbf a
+$$
+and, when interval methods are used, one coefficient box
+$$
+X
+$$
+satisfying
+$$
+K(X)\subset \operatorname{int}(X)
+$$
+on the declared packet identity. Bifurcation labels, curve membership, or
+monodromy multipliers do not waive the null-coordinate pre-ledger, branch
+chart, fold atlas, or returned-sample rows.
+
 ## Candidate Cycle Schema
 
 `phi_cyc.json` should use this top-level shape:
@@ -329,6 +353,8 @@ targets can be tested on the same mesh.
 | `period` | $T_{\mathrm{cyc}}$ and section anchor |
 | `symmetry` | Signed-sheet convention, origin crossings, and periodic identification |
 | `basis` | Piecewise interpolation, collocation, quadrature, or fold-adapted fractional basis data |
+| `collocation_meta` | For collocation routes: subinterval partition, polynomial degree, collocation nodes, period normalization, and the section-anchoring row; otherwise `null` with a construction-route note |
+| `solution_manifold_compatibility` | Endpoint compatibility for the first-order state $Y=(x,u)$, including $\dot X(0)=U(0)$, $\dot U(0)=F_\eta(\Phi)$, and the tangent constraint consumed by the monodromy row |
 | `arcs` | Ordered interval list with speed class, endpoint data, separator events, and origin-layer flags |
 | `samples` | Values of $x$, $\dot x$, optional $\ddot x$, and local basis residuals on the mesh |
 | `evaluation_enclosures` | Interval evaluation rules for $x$, $\dot x$, $\ddot x$, $u$, $w$, and the needed range bounds |
@@ -356,6 +382,7 @@ and by its active itinerary interval. Separator neighborhoods must be refined mo
 | `arc_membership` | The itinerary arc or fold layer containing each node |
 | `subblocks` | Receiver-source subblock partition used by `causal_ledger.json` |
 | `mesh_widths` | Maximum ordinary, separator-layer, and origin-layer mesh widths |
+| `adaptation_policy` | Uniform, separator-refined, residual-equidistributed, or hybrid mesh policy, with the reason each separator and origin layer receives its declared refinement |
 | `sample_tolerances` | The local $\epsilon_x$, $\epsilon_v$, $\epsilon_{\mathrm{EOM}}$, $\epsilon_{\mathrm{range}}$, and $\epsilon_J$ budgets |
 | `endpoint_policy` | Periodic endpoint identification, excluded diagonal rule, and fold-layer boundary convention |
 

@@ -11,13 +11,13 @@ This note records a constrained geometric hypothesis for fermion assemblies in $
 - the **Noether core axes remain fixed** as the reference scaffold,
 - the **axial distribution** is allowed to rotate relative to that scaffold,
 - stable quark-like states may occupy a **discrete set of misalignment angles**,
-- the natural bare increment for those angles is identified with the existing six-pole electroweak value
+- the candidate branch increment for those angles is hypothesized, not derived here, to satisfy the existing six-pole electroweak value
 $$
-\sin^2\theta_W^{\text{bare}}=\frac14,
+\sin^2\theta_{\mathrm{inc}}=\frac14,
 $$
 so that
 $$
-\theta_W^{\text{bare}}=30^\circ.
+\theta_{\mathrm{inc}}=\frac{\pi}{6}=30^\circ.
 $$
 
 This is intentionally narrower than a claim that the H/M/L axes themselves tilt or precess into new orientations. The tri-binary scaffold remains the kinematic frame. What changes is the orientation of the **principal axial frame** and therefore the orientation of the **weak-coupling triad** relative to the fixed core frame.
@@ -104,34 +104,37 @@ M_{ij} = \sum_{a=1}^{6} q_a\,n_i^{(a)} n_j^{(a)},
 $$
 where $q_a\in\{+\epsilon,-\epsilon\}$ and $\mathbf{n}^{(a)}$ are the six polar-site directions measured in the core frame.
 
-The eigenvectors of $M_{ij}$ define the principal axial axes. For leptons, symmetry tends to force these axes to align with the core frame. For quarks, the asymmetry generically produces
+The eigenvectors of $M_{ij}$ define the principal axial axes. For leptons, symmetry tends to force these axes to align with the core frame. For quarks, the relevant residual is not a commutator with the identity tensor. It is the off-diagonal axial-tensor load measured in the core basis,
 $$
-[M,\delta] \neq 0
+\mathcal{R}_{\mathrm{off}}(M;\mathcal{F}_{\text{core}})
+=
+\sum_{i\ne j}|M_{ij}|^2.
 $$
-in the core basis, so the axial frame rotates to a nearby but distinct orientation.
+The axial-frame rotation target is $\mathcal{R}_{\mathrm{off}}>0$. If $\mathcal{R}_{\mathrm{off}}=0$ but the eigenvalues of $M_{ij}$ differ, the axial layer is anisotropic while still aligned with the core frame; that case should not be counted as a misalignment branch.
 
 The proposal is not that quarks can take arbitrary rotations. The proposal is that the admissible minima are **discrete**. In that sense this note is also an interface to [Weak Mixing and CKM](../../theory-bridges/weak-mixing-ckm.md), where the quark-sector overlap structure is pushed further.
 
 ---
 
-## Bare Weinberg Increment as the Discrete Step
+## Branch-Increment Hypothesis as the Discrete Step
 
-A useful existing hook in the current AAA notes is the six-pole weak-mixing statement
+A useful existing hook in the current $\mathbb{A}\mathbb{A}\mathbb{A}$ notes is the six-pole weak-mixing statement
 $$
-\sin^2\theta_W^{\text{bare}} = \frac14.
+\sin^2\theta_{\mathrm{inc}} = \frac14.
 $$
-This implies the bare geometric angle
+This implies the candidate geometric branch increment
 $$
-\theta_W^{\text{bare}} = 30^\circ.
+\theta_{\mathrm{inc}} = \frac{\pi}{6}=30^\circ.
 $$
 
-The present idea is to reuse this as a **axial-frame increment**, not as a claim that the observed electroweak angle and internal quark orientation are numerically identical in all environments.
+The present idea is to reuse this as an **axial-frame increment**, not as a claim that the observed electroweak angle and internal quark orientation are numerically identical in all environments. The symbol $\theta_W^{\text{bare}}$ should be treated only as a comparison label for this branch-increment hypothesis until the six-pole quotient and electroweak dressing calculation are derived.
 
 Define a discrete family of candidate equilibrium misalignment angles
 $$
-\alpha_n = n\,\theta_W^{\text{bare}} = n\times 30^\circ,
+\alpha_n = n\,\theta_{\mathrm{inc}} = n\frac{\pi}{6},
 \qquad n\in\mathbb{Z}.
 $$
+Equivalently, $\alpha_n=n\times30^\circ$ for reader-facing degree notation. In energy or action functionals below, $\alpha$ and $\theta_{\mathrm{inc}}$ are radians.
 
 Because an axial frame is an oriented triad and because many rotations are physically equivalent up to sign flips, pole relabelings, or color-phase shifts, the physically distinct set is expected to be much smaller than all integers. A practical first working set is
 $$
@@ -259,9 +262,9 @@ $$
 $$
 and that these stationary points are true minima for the stable branches.
 
-A simple toy realization is
+A simple toy realization, with $\alpha$ and $\theta_{\mathrm{inc}}$ measured in radians, is
 $$
-E_{\text{charge}}(\alpha)=A\sin^2\!\left(\frac{\alpha}{\theta_W^{\text{bare}}}\pi\right)+B\,f_{\text{type}}(\alpha),
+E_{\text{charge}}(\alpha)=A\sin^2\!\left(\frac{\alpha}{\theta_{\mathrm{inc}}}\pi\right)+B\,f_{\text{type}}(\alpha),
 $$
 where $f_{\text{type}}$ differs for up-type and down-type loading. This is not a derivation; it is just the minimal shape needed to encode discrete minima at multiples of the bare angle.
 
@@ -276,13 +279,13 @@ The useful theorem target is:
 3. minimize $E_{\text{eff}}(\alpha,\phi_c)$ on the quotient space,
 4. pass the surviving branches to the weak-coupling-triad exposure calculation.
 
-That handoff keeps the claim strong but scoped. The weak-mixing increment $\theta_W^{\text{bare}}=30^\circ$ is a candidate branch increment; the measured electroweak angle and CKM/PMNS matrices still require the exposure, overlap, and provenance gates to close.
+That handoff keeps the claim strong but scoped. The weak-mixing increment $\theta_{\mathrm{inc}}=30^\circ$ is a candidate branch increment; the measured electroweak angle and CKM/PMNS matrices still require the exposure, overlap, and provenance gates to close.
 
 ---
 
 ## Weak-Coupling Interpretation
 
-In the current AAA dictionary, the weak sector acts on the **weak-coupling triad**, the three more exposed polar sites. If the axial frame rotates relative to the core frame, then the weak-coupling triad need not sit in the same orientation as it does in the electron.
+In the current $\mathbb{A}\mathbb{A}\mathbb{A}$ dictionary, the weak sector acts on the **weak-coupling triad**, the three more exposed polar sites. If the axial frame rotates relative to the core frame, then the weak-coupling triad need not sit in the same orientation as it does in the electron.
 
 This gives a possible geometric interpretation of quark weak structure:
 
@@ -318,7 +321,7 @@ In this sense, color answers the question
 
 - which axis is exceptional?
 
-while the Weinberg-locked axial rotation answers
+while the branch-increment axial rotation answers
 
 - how far is the axial frame tilted away from the core reference frame?
 
@@ -384,9 +387,9 @@ The sharpened hypothesis is:
 - the **axial frame** may rotate relative to that fixed core,
 - the electron sits at the symmetric limit $\alpha=0$,
 - quarks occupy nonzero misalignment branches because their axial layers are both charge-imbalanced and axis-exceptional,
-- the stable branches may be quantized in increments of the existing bare electroweak angle
+- the stable branches may be quantized in increments of the branch-increment hypothesis
 $$
-\theta_W^{\text{bare}}=30^\circ,
+\theta_{\mathrm{inc}}=30^\circ,
 $$
 with color providing an independent exceptional-axis label.
 

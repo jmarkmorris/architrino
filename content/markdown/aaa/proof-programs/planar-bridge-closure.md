@@ -153,6 +153,22 @@ the putative bound state. In the planar bridge, the corresponding failure
 channel is tangential leakage. The first radial-turnaround theorem should
 therefore be written as an integrated budget, not only as a pointwise slogan.
 
+Nonpersistence and degenerate-breather comparisons make this burden stricter. A
+planar bridge is not allowed to inherit stability from a line or from an
+integrable breather family. The theorem must show that tangential leakage,
+gauge-reset discontinuity, and separator or fold transit remain bounded after
+the symmetry-breaking perturbation is present. If the required cancellation
+exists only in a comparison equation, the planar bridge fails rather than being
+rescued by analogy.
+
+Rigidity comparisons sharpen this into a transport criterion. A collinear fixed
+point is not planar evidence unless the planar packet proves its own branch
+chart, continuous gauge reset, bounded fold/separator transit, and radial
+leakage budget with strict margins. If those rows close only because the line
+removes tangential escape or because an external integrable equation supplies
+cancellations, the correct conclusion is non-transport rather than inherited
+stability.
+
 Let
 $$
 I_{\mathrm{turn}}=[t_a,t_b]

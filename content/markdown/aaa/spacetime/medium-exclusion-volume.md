@@ -1,8 +1,8 @@
 # Medium Exclusion Volume
 
-This chapter visualizes volumes and exclusion in the universe. It complements [Condensed Matter](../nuclear-atomic/condensed-matter.md), [Molecular Geometry](../nuclear-atomic/molecular-geometry.md), [Spacetime Assemblies](./spacetime-assemblies.md), and [Gravitational Waves](./gravitational-waves.md) by asking how ordinary exclusion boundaries coexist with deeper medium-level propagation.
+This chapter analyzes volume exclusion across ordinary matter and medium-level propagation. It complements [Condensed Matter](../nuclear-atomic/condensed-matter.md), [Molecular Geometry](../nuclear-atomic/molecular-geometry.md), [Spacetime Assemblies](./spacetime-assemblies.md), and [Gravitational Waves](./gravitational-waves.md) by asking how ordinary exclusion boundaries coexist with deeper Noether-Sea response.
 
-When chemists talk about the **van der Waals (VdW) volume** of a molecule, they mean the space excluded by its electron cloud — the “hard sphere” a molecule presents to its neighbors. This is estimated from atomic van der Waals radii (Bondi, 1964) and corrected for bond overlaps. For example:
+When chemists use the **van der Waals (VdW) volume** of a molecule, they mean the space excluded by its electron cloud: the effective hard-core volume a molecule presents to its neighbors. This is estimated from atomic van der Waals radii (Bondi, 1964) and corrected for bond overlaps. For example:
 
 | Molecule    | Formula | VdW Volume (Å³) |
 | ----------- | ------- | --------------- |
@@ -12,6 +12,8 @@ When chemists talk about the **van der Waals (VdW) volume** of a molecule, they 
 | Water       | H₂O     | 55              |
 
 *(1 Å³ = 10⁻²⁴ cm³)*
+
+## Molecular Occupancy Baseline
 
 ### How much volume do gas molecules actually occupy in air?
 
@@ -48,7 +50,7 @@ Notes:
 - At STP (0°C, 1 atm), total density is about $2.69 \times 10^{19}$ per $\mathrm{cm}^3$; scale species accordingly.
 - Despite these high number densities, the “hard-core” geometric occupancy is only ~0.08–0.1% of the volume (see VdW estimate above). In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, ordinary molecular exclusion occupies only a small fraction of the available Euclidean volume, while deeper Noether-Sea implementation layers remain available for medium-level propagation.
 
-This gives a **geometric baseline** for how much space a molecule excludes. But in real matter, things are more flexible.
+This gives a **geometric baseline** for how much space a molecule excludes. In real matter, the effective boundary is also affected by bonding, compression, temperature, pressure, and the channel being probed.
 
 The kinetic baseline is not just occupied volume; it is also the collision length compared with the scale being probed. For a dilute molecular species with number density $n_m$ and effective hard-core diameter $d_m$, the order-of-magnitude mean free path is
 $$
@@ -100,8 +102,8 @@ A low $\phi_{\mathrm{VdW}}$ or high $\mathrm{Kn}_m$ may explain molecular sparsi
 3. **Macroscopic Boundaries (everyday examples)**
 
    * *Air–water boundary*: photons (visible light) mostly pass through, but molecules from one side can’t enter the other without surface disruption.
-   * *Air–skin boundary*: oxygen molecules don’t pass freely — they’re excluded by cellular membranes unless aided by proteins.
-   * *Metal–skin boundary*: copper atoms in a wire don’t diffuse into your body, but photons (infrared heat, visible light reflections) cross that boundary easily.
+   * *Air–skin boundary*: oxygen molecules do not pass freely; they are excluded by cellular membranes unless aided by proteins.
+   * *Metal–skin boundary*: copper atoms in a wire do not freely diffuse into biological tissue, but photons (infrared heat, visible light reflections) cross that boundary easily.
 
 4. **Temperature & Pressure Effects**
 
@@ -132,7 +134,7 @@ Maximally packed van der Waals volumes define exclusion domains for ordinary ato
 ## Background Timespace vs. Implemented Medium
 
 - Background: the mathematical arena in this project is absolute timespace (one global time × Euclidean 3-space). It is fixed, non-dynamical, and does not curve.
-- Implemented “spacetime”: the effective medium that carries corridors and supports propagation is realized by coherent assembly architecture at scales far smaller than molecules (a Noether-Sea implementation layer, or in bridge prose a spacetime medium layer, not a separate field inventory). Their microstructure can modulate effective propagation, boundaries, and coherence without altering the background kinematics.
+- Implemented “spacetime”: the effective medium that carries corridors and supports propagation is realized by coherent assembly architecture at scales far smaller than molecules (a Noether-Sea implementation layer, or in bridge prose a spacetime medium layer, not a separate substrate inventory). Its microstructure can modulate effective propagation, boundaries, and coherence without altering the background kinematics.
 
 This is the same implementation layer developed in [Emergent Metric](./emergent-metric.md) and [Spacetime Assemblies](./spacetime-assemblies.md).
 
@@ -140,8 +142,8 @@ This is the same implementation layer developed in [Emergent Metric](./emergent-
 
 * **At the molecular level**: van der Waals volume defines exclusion for atoms and molecules.
 * **At the material level**: boundaries (air–water, skin–air, skin–metal) are just large-scale manifestations of those exclusions.
-* **At the cosmic level**: photons, neutrinos, dark matter, and gravitational waves sail straight through, almost oblivious to the walls that matter erects.
+* **At the cosmic level**: photons, neutrinos, dark matter candidates, and gravitational waves can propagate through ordinary matter with coupling mechanisms that are not determined by molecular hard-core exclusion alone.
 
-In other words, the van der Waals volume is a “no-go zone” mainly for **ordinary fermionic matter**. Other observer-level channels and effective fields interact with matter through different coupling mechanisms, so molecular exclusion alone does not determine their propagation.
+In other words, the van der Waals volume is an exclusion region mainly for **ordinary fermionic matter**. Other observer-level channels and effective fields interact with matter through different coupling mechanisms, so molecular exclusion alone does not determine their propagation.
 
 ---
