@@ -30,7 +30,7 @@ During the current core geometrical theory push, do not treat chapter coverage a
 
 ## Source Mining Feeds
 
-- Mine material from WordPress and other prior blog material where it materially saves time.
+- Mine material from WordPress and other prior social material (twitter).
 - Mine old PowerPoint decks, cleaning them up only when migration into the web site or $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus is worthwhile.
 - Mine archived papers, arXiv-style papers, and local PDF paper collections for definitions, examples, derivation routes, and source leads.
 - Mine YouTube videos and course playlists when transcripts, slides, or lecture notes can be reduced into concrete chapter material.
@@ -180,3 +180,4 @@ Use this backlog as a triage surface, not as a requirement factory. A source ear
 | K. P. Sinha, C. Sivaram, and E. C. G. Sudarshan, `superfluid_1976_001.pdf`, `Aether as a Superfluid State of Particle-Antiparticle Pairs` | May 18, 2026 |
 | K. P. Sinha and E. C. G. Sudarshan, `superfluid_1978_006.pdf`, `The Superfluid as a Source of All Interactions` | May 18, 2026 |
 | B. L. Hu, `spacetimecondensateHU.pdf`, `Can Spacetime be a Condensate?` | May 18, 2026 |
+| Jan Sieber, [Finding periodic orbits in state-dependent delay differential equations as roots of algebraic equations](https://arxiv.org/abs/1010.2391), arXiv v10 with journal reference DOI `10.3934/dcds.2012.32.2607` | May 18, 2026 |

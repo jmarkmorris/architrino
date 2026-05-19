@@ -179,11 +179,23 @@ packet ready for the null-coordinate pre-ledger.
 - Broad OpenAlex full-text searches were rejected because citation sorting
   surfaced high-citation works with weak lexical overlap rather than subject
   relevance.
+- The source's Hopf-bifurcation application and suggested branching extensions
+  are rejected for the current mining pass. They are useful evidence that
+  finite algebraic reductions can transfer bifurcation machinery, but the
+  present proof-program bottleneck is earlier: one candidate cycle, projection
+  and reconstruction data, a same-domain pre-ledger, branch-chart margins, and
+  returned-history residuals.
 - NLS, rogue-wave, and sine-Gordon breathers are not promoted as physical
   analogues. They are useful for terminology discipline and failure pressure.
 - Direct-action electrodynamics is not promoted into the current proof program.
   It belongs to potential/action comparison only after the breather certificate
   has a candidate or after the potential/action workstream selects that lane.
+
+## Completed Source Mining
+
+| Source | Date exhausted | Corpus outcome |
+| --- | --- | --- |
+| Jan Sieber, [Finding periodic orbits in state-dependent delay differential equations as roots of algebraic equations](https://arxiv.org/abs/1010.2391), arXiv v10 with journal reference DOI `10.3934/dcds.2012.32.2607` | May 18, 2026 | Promoted the projection/reconstruction and local-regularity burden into the closed-form ansatz chapter and seed-chart packet. Retained the finite residual vector as a candidate-construction target; rejected Hopf and branching applications for this pass as downstream of candidate-cycle production. |
 
 ## Next Corpus Use
 

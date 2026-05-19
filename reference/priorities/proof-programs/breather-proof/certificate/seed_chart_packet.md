@@ -247,7 +247,13 @@ supplies the pre-ledger inputs, branch-chart inputs, and residual targets withou
 The candidate cycle may come from a closed-form ansatz, direct quadrature,
 simulation-assisted fitting, continuation, or interval collocation. These routes
 are equivalent at this gate only if they produce one finite residual problem on
-the same packet identity. Let
+the same packet identity. The finite reduction must also record the map data
+that make a root meaningful: the projection from an admissible history into the
+finite coefficient vector, the reconstruction/evaluation map from that vector
+back into the declared history space, and the local neighborhood and regularity
+assumptions under which the reduction is being used. A least-squares trace or
+mesh residual without those data is candidate-search evidence, not a
+seed-chart packet. Let
 $$
 \mathbf a
 =

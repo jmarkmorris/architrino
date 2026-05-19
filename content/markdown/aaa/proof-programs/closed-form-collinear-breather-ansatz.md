@@ -18,6 +18,15 @@ period, section/symmetry chart, representation coefficients, mesh, residual
 targets, causal pre-ledger inputs, and branch-chart inputs on one certified
 domain.
 
+The state-dependent-delay periodic-orbit literature gives the methodological
+reason for this rule. A periodic boundary-value problem can be reduced locally
+to algebraic root finding only when the finite vector is tied to a projection
+from histories and a reconstruction back into the history space. For this
+collinear certificate, a residual vector is therefore not just a numerical fit:
+it must record the projection/reconstruction convention, the local neighborhood
+where the reduction is meant to hold, and the regularity assumptions that make
+the returned history meaningful.
+
 The accepted output of this note is therefore a certificate packet
 $$
 \mathfrak{C}_{\mathrm{ans}}
