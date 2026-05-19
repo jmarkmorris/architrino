@@ -201,6 +201,30 @@ For high-energy scattering language, the differential yield is tracked with $d\s
 
 Baseline takeaway: these equations are the standard observer-level scaffold that $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping is built to recover in its low-energy continuum limit. The wake-shock model does not replace the validated formulas; it supplies the proposed closure-residual provenance that must reduce to them before any Noether-Sea-dependent deviation is treated as physical.
 
+#### Shock-Cooling Ledger in Outflows
+
+Jet and outflow shocks require an additional branch check before a continuum component is identified as bremsstrahlung or free-free emission. In dense radiative shocks, such as many young-stellar-object working surfaces, the total cooling function $\Lambda(T_s)$ is usually dominated by line cooling, recombination, molecular, or other channel rows over part of the temperature range. Bremsstrahlung is retained only for the part of the emissivity budget that the local plasma state actually assigns to free-free emission.
+
+For a post-shock cell, use the observer-level cooling estimate
+
+$$
+t_{\mathrm{cool}}
+=
+\frac{(n_e+n_H)k_B T_s}
+{(\gamma_{\mathrm{gas}}-1)n_e n_H\Lambda(T_s)}
+$$
+
+and compare it to the flow time $t_{\mathrm{dyn}}\sim \ell_j/v_j$. The free-free branch is promoted when its fractional cooling contribution
+
+$$
+f_{\mathrm{ff}}
+=
+\frac{\Lambda_{\mathrm{ff}}(T_s,n_e,n_i,Z)}
+{\Lambda(T_s)}
+$$
+
+is above the channel-inclusion threshold for the modeled zone. Otherwise the same shock residual should remain in the line, molecular, heat, recoil, or medium-excitation rows rather than being silently folded into bremsstrahlung. This is an observer-level plasma diagnostic. The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is to derive which event records feed $\Lambda_{\mathrm{ff}}$ and which feed the competing channels while preserving the shared energy ledger.
+
 ### Core Channels (Inclusion Rule)
 
 This chapter uses a dominant-channel rule: include reactions/channels that contribute at least about 1% in the relevant regime. Where PDG branching ratios are defined, this is a `BR > 1%` rule; where transport channels are not tabulated by PDG branching, use contribution to modeled emissivity/opacity.
@@ -276,6 +300,41 @@ $$
 $$
 
 Photon emission angle is therefore constrained by incident electron momentum, target potential geometry, and local wake transfer into planar mode plus recoil channel. For isolated heavy targets, momentum closure is dominated by $\Delta \mathbf{p}_{\mathrm{recoil}}$ with negligible recoil energy; medium momentum terms are reserved for explicit collective-excitation environments. This is the micro-level closure condition behind macroscopic angular spectra.
+
+The radiation-zone benchmark is stronger than total momentum balance. In the straight-line deceleration limit, with $\mathbf{v}\parallel\mathbf{a}$, $\beta=\|\mathbf{v}\|/c$, $\gamma=(1-\beta^2)^{-1/2}$, and $\theta$ the angle between the outgoing radiation direction and $\mathbf{v}$, the observer-level angular power target is
+
+$$
+\frac{dP_{\mathrm{br,std}}}{d\Omega}
+=
+\frac{q^2\|\mathbf{a}\|^2}{16\pi^2\epsilon_0c^3}
+\frac{\sin^2\theta}{(1-\beta\cos\theta)^5}.
+$$
+
+The corresponding total-power target is
+
+$$
+P_{\mathrm{br,std}}
+=
+\frac{q^2\gamma^6\|\mathbf{a}\|^2}{6\pi\epsilon_0c^3}.
+$$
+
+This supplies a channel-local radiation energy-momentum closure check:
+
+$$
+\Delta_{\mathrm{br,pow}}
+=
+\frac{\int_{t_i}^{t_f}P_{\mathrm{map}}(t)\,dt}
+{\int_{t_i}^{t_f}P_{\mathrm{br,std}}(t)\,dt}
+-1,
+\qquad
+\Delta_{\mathrm{br,ang}}(\theta)
+=
+\frac{(dP_{\mathrm{map}}/d\Omega)(\theta)}
+{(dP_{\mathrm{br,std}}/d\Omega)(\theta)}
+-1.
+$$
+
+In validated weak-field bremsstrahlung regimes, $\Delta_{\mathrm{br,pow}}\rightarrow0$ and $\Delta_{\mathrm{br,ang}}(\theta)\rightarrow0$ after screening, recoil, and form-factor corrections are applied through the same event record. The emitted photon ledger must also pass $\Delta_{\gamma,\mathrm{flux}}=0$ from [Radiation](../../../../markdown/aaa/reactions/radiation.md); otherwise a correct-looking photon spectrum has not closed the local energy-momentum route.
 
 ### Time Parameterization (Absolute vs Proper Time)
 
@@ -383,7 +442,7 @@ Terminology in this chapter follows [mode-taxonomy.md](../../../../markdown/aaa/
 
 A relativistic electron or positron with Lorentz factor $\gamma$ moving in magnetic field $B$ emits synchrotron radiation with characteristic frequency scaling as $\nu_c \propto \gamma^2 B$. If emitted photons are energetic enough and target photons or fields are dense enough, pair production channels open; the new pairs then radiate again, building a multi-generation cascade.
 
-Cascade development is controlled by competition among radiative cooling, pair creation, advection, and escape. In compact high-field zones, this feedback can strongly increase pair loading and opacity.
+Cascade development is controlled by competition among radiative cooling, pair production, advection, and escape. In compact high-field zones, this feedback can strongly increase pair loading and opacity.
 
 This is the observer-level mechanism. The $\mathbb{A}\mathbb{A}\mathbb{A}$ layer below does not replace these formulas; it asks which Noether-core velocity deformation, anisotropic Noether-Sea state, and closure residual must be present for the same photon output to occur.
 
@@ -459,7 +518,7 @@ These break structures are testable against broadband SEDs in AGN jets, GRBs, an
 This chapter uses a dominant-channel rule: include reactions/channels that contribute at least about 1% in the relevant regime. Where PDG branching ratios are defined, this is a `BR > 1%` rule; where transport channels are not tabulated by PDG branching, use contribution to modeled emissivity/opacity.
 
 - $e^\pm + B \rightarrow e^\pm + \gamma_{\mathrm{syn}}$ (effective synchrotron emission channel).
-- $\gamma + \gamma \rightarrow e^+ + e^-$ (Breit-Wheeler two-photon interaction / photon-photon annihilation channel in dense radiation fields, distinct from Schwinger vacuum pair production).
+- $\gamma + \gamma \rightarrow e^+ + e^-$ (Breit-Wheeler two-photon interaction / photon-photon pair-production channel in dense radiation fields, distinct from Schwinger vacuum pair production).
 - Secondary-loop channel: newly produced $e^\pm$ re-enter synchrotron emission, closing the cascade.
 
 Secondary channels below the 1% contribution level are treated as corrections unless a specific regime elevates them.
@@ -566,6 +625,55 @@ This record is a derivation target. It must recover $\nu_c\propto\gamma^2B$, $P_
 
 - Pair threshold closure: enforce $s = (k_1+k_2)^2 \ge 4m_e^2c^4$ for $\gamma\gamma \rightarrow e^+e^-$, where $k^\mu_i$ are photon 4-momenta. In the head-on collision frame this reduces to $E_1 E_2 \ge (m_e c^2)^2$; for general angle $\theta_{12}$ between photon directions, $E_1 E_2 (1-\cos\theta_{12}) \ge 2(m_e c^2)^2$. Breit-Wheeler cross-section peak occurs at $s \sim 10 m_e^2 c^4$ and must be reproduced in validated cascade limits.
 - Frequency closure: recover $\nu_c = (3/2)\gamma^2(eB/2\pi m_e c)\sin\alpha$ and the ensemble scaling $\nu_c\propto\gamma^2B$ in uniform-field, weak homogeneous limits.
+- Jet-shock polarization closure: in resolved AGN or microquasar working surfaces, shock compression should rotate the observer-level synchrotron polarization basis consistently with the effective $B_{\mathrm{eff}}$ geometry inferred from $\mathcal{V}_{\mathrm{NS}}$. For a declared knot or hot-spot region $K$, a useful residual is
+$$
+\Delta_{\mathrm{pol}}^{K}
+=
+\left\langle
+\sin^2\!\left[
+\psi_{\mathrm{syn}}(\mathbf{x})
+-
+\psi_{B,\mathrm{eff}}^{\perp}(\mathbf{x})
+\right]
+\right\rangle_{\mathbf{x}\in K}^{1/2},
+$$
+where $\psi_{\mathrm{syn}}$ is the synthetic linear-polarization angle and $\psi_{B,\mathrm{eff}}^{\perp}$ is the projected field-compression basis expected for the observer-level shock model. The target is not a new free-photon polarization proof; it is a source-scale Gate B consumer. Persistent knot-scale misalignment after Faraday rotation, beam averaging, and turbulent depolarization are accounted for would falsify the directional $B_{\mathrm{eff}}\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ map in that regime.
+- Radiation-zone closure: for the local transverse-acceleration segment with $\mathbf{v}\cdot\mathbf{a}_\perp=0$, axes chosen so $\mathbf{v}$ lies along $z$ and $\mathbf{a}_\perp$ along $x$, and $\beta=\|\mathbf{v}\|/c$, recover the angular target
+
+$$
+\frac{dP_{\perp,\mathrm{std}}}{d\Omega}
+=
+\frac{q^2\|\mathbf{a}_\perp\|^2}{16\pi^2\epsilon_0c^3}
+\frac{1}{(1-\beta\cos\theta)^3}
+\left[
+1
+-
+\frac{\sin^2\theta\cos^2\phi}
+{\gamma^2(1-\beta\cos\theta)^2}
+\right],
+$$
+
+and the total-power target
+
+$$
+P_{\perp,\mathrm{std}}
+=
+\frac{q^2\gamma^4\|\mathbf{a}_\perp\|^2}{6\pi\epsilon_0c^3}.
+$$
+
+The channel residual is
+
+$$
+\Delta_{\mathrm{syn,rad}}
+=
+\left(
+\frac{P_{\mathrm{map}}}{P_{\perp,\mathrm{std}}}-1,
+\frac{\nu_{\gamma}^{\mathrm{out}}}{\nu_c}-1,
+\Delta_{\gamma,\mathrm{flux}}
+\right),
+$$
+
+with $\Delta_{\gamma,\mathrm{flux}}$ inherited from [Radiation](../../../../markdown/aaa/reactions/radiation.md). In validated weak homogeneous limits, all components must tend to zero without retuning the $B\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ map.
 - Rate closure: recover standard synchrotron and Breit-Wheeler limits in validated regimes.
 - Timing closure: in weak-gravity astrophysical limits, $\Gamma_{\mathrm{eff}} \rightarrow \gamma_{\mathrm{SR}}$ so cooling breaks are preserved. This is an effective closure target for the clock law, not an assumption that substrate time is observer proper time.
 - Polarization closure: recover observer-level synchrotron polarization geometry from directional $B$ mapping; in uniform-field limits, failure to recover linear polarization fractions $\Pi \approx 70\%-75\%$ falsifies the geometric mapping (Rybicki and Lightman 1979, Sec. 6.3; observational confirmation in radio pulsars and synchrotron nebulae typically shows $\Pi_{\mathrm{obs}} \sim 0.3$-0.7 after depolarization from field disorder and Faraday rotation).
@@ -583,6 +691,31 @@ This record is a derivation target. It must recover $\nu_c\propto\gamma^2B$, $P_
 - Polarization signatures tracing magnetic-field geometry and turbulence level.
 - Pair-opacity features and spectral softening at high energies in compact sources.
 - Strong coupling to inverse Compton and bremsstrahlung channels in dense radiation or matter environments.
+
+#### Jet and Outflow Source Benchmarks
+
+Relativistic AGN and microquasar jets are the cleanest source-scale benchmark for this chapter because their resolved knots, hot spots, lobes, and broadband continua force the same model to reproduce morphology, spectra, and polarization together. In standard source language, the relevant flow variables are the jet speed $v_j$, Lorentz factor $\gamma_j$, density ratio $\eta_j=\rho_j/\rho_a$, Mach number $M_j$, effective magnetic amplitude $B_{\mathrm{eff}}$, electron distribution $N_e(\gamma)$, and source size $L$. In this chapter they remain observer-level comparison variables reconstructed from the event and medium record, not substrate objects added to the Euclidean void.
+
+For a resolved radio/X-ray jet region $\Omega_j$, the minimal synthetic synchrotron packet is
+
+$$
+\mathcal{J}_{\mathrm{syn}}(\Omega_j)
+=
+\left(
+I_{\nu}^{\mathrm{syn}},
+I_{\nu}^{\mathrm{IC}},
+\Pi_{\nu},
+\psi_{\nu},
+\nu_{\mathrm{br}},
+\tau_{\mathrm{syn}},
+\tau_{\mathrm{esc}},
+\Delta_{\mathrm{pol}}^{K}
+\right),
+$$
+
+where $I_{\nu}^{\mathrm{syn}}$ and $I_{\nu}^{\mathrm{IC}}$ are the synthetic synchrotron and inverse-Compton maps, $\Pi_{\nu}$ and $\psi_{\nu}$ are the linear-polarization fraction and angle, $\nu_{\mathrm{br}}$ is the cooling-break frequency, and $\Delta_{\mathrm{pol}}^{K}$ is evaluated on knots or shock-compressed regions. A source model passes this benchmark only if the same electron transport, $B_{\mathrm{eff}}\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ map, and photon event ledger recover both the radio synchrotron and X-ray inverse-Compton morphology without separately tuning the field map for each band.
+
+This source packet also disciplines composition claims. The observed synchrotron continuum proves the presence of relativistic charged leptons and an ordered effective magnetic component, but it does not by itself decide whether the bulk jet is electron-proton, electron-positron, or mixed. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, composition is therefore a downstream identity-routing and inertia-loading problem, not a result that can be read directly from the synchrotron channel alone.
 
 ### Standard Interpretation vs $\mathbb{A}\mathbb{A}\mathbb{A}$ Interpretation
 
@@ -602,7 +735,7 @@ This file uses the following provisional mapping targets.
 
 - **Synchrotron emission (provisional):** a charged tri-binary assembly in curved transport through $\mathcal{V}_{\mathrm{NS}}$ develops a Noether-core velocity deformation. Gradient forcing $G_{\text{grad}}$ and causal-branch Jacobian bunching can leave $\mathcal{R}_{\Theta}^{\mathrm{syn}}$ after ordinary adiabatic retuning fails; when the associated wake-strain state crosses the inherited planar-mode threshold, a photon assembly nucleates and carries away energy-momentum. This nucleation threshold must be derivable from wake-strain eigenvalue conditions in simulations; hand-tuning the threshold to match observed $P_{\mathrm{syn}}(\gamma,B)$ or $\nu_c\propto\gamma^2B$ constitutes a fit, not a derivation. The mapping succeeds only if the threshold emerges naturally from the architrino master equation applied to curved charged-assembly trajectories in anisotropic Noether-Sea states.
 - **Magnetic field ontology (provisional Option B):** observer-level $B$ is currently treated as the effective coarse-grained directional (vector/tensor) vorticity-anisotropy state of the Noether Sea, $B \leftrightarrow \mathcal{V}_{\mathrm{NS}}$, rather than as a separate fundamental void field (Option A). This is a mapping option, not settled ontology. Charged-assembly curvature is therefore interpreted provisionally as transport through an anisotropic Noether-Sea state with explicit directionality. In validated limits, this mapping must: (i) derive the effective Lorentz-force law $\mathbf{F}_{\mathrm{eff}} = q(\mathbf{v}/c) \times \mathbf{B}_{\mathrm{eff}}$ from anisotropic Noether-Sea transport together with the Jacobian-weighted geometry of delayed causal flux, rather than by postulating a primitive cross-product force term; (specifically, show that vorticity-tensor gradients $\partial_i \mathcal{V}^j_{\mathrm{NS}}$ produce perpendicular deflection under boost); (ii) reproduce Maxwell-level electromagnetic-wave propagation (dispersion relation $\omega = ck$ for photon modes in uniform $\mathcal{V}_{\mathrm{NS}}$); (iii) recover synchrotron polarization geometry ($\mathbf{E}_\gamma \perp \mathbf{B}_{\mathrm{eff}}$, $\mathbf{E}_\gamma \perp \mathbf{v}$ in observer frame) from directional emission rules in the Noether-Sea anisotropy basis, while inheriting photon helicity and analyzer statistics from Gate B rather than deriving them locally. **Falsification criterion:** if simulations with anisotropic Noether-Sea states fail to produce the factor-of-$\gamma^2$ frequency scaling in $\nu_c$ (tested via swept $B$-field and $\gamma$ at fixed pitch angle), or if polarization vectors misalign with standard geometry by $>15^\circ$ systematically, Option B is ruled out and the theory must revert to treating $\mathbf{B}$ as a separate substrate field (Option A) or propose a new mapping.
-- **Pair production mapping (provisional):** $\gamma+\gamma\rightarrow e^+ + e^-$ is treated as nucleation of charged assemblies from local Noether-Sea energy-density concentration triggered by overlap of two coaxial contra-rotating pro/anti planar-pair photon assemblies above threshold, not ex nihilo creation. The nucleation threshold must map to the standard kinematic condition $s\ge 4m_e^2$, and the effective rate must asymptotically reproduce the Breit-Wheeler cross-section in the relativistic limit used by cascade modeling. Operational constraint: pair-channel cross-section $\sigma_{\gamma\gamma}(s)$ computed from this nucleation picture must reproduce
+- **Pair production mapping (provisional):** $\gamma+\gamma\rightarrow e^+ + e^-$ is treated as nucleation of charged assemblies from local Noether-Sea energy-density concentration triggered by overlap of two coaxial contra-rotating pro/anti planar-pair photon assemblies above threshold, not ex nihilo creation. The incoming photon assemblies supply energy, momentum, and trigger geometry, not new architrino identities; the recruited Noether-Sea content must supply the identity-routed inventory. The nucleation threshold must map to the standard kinematic condition $s\ge 4m_e^2$, and the effective rate must asymptotically reproduce the Breit-Wheeler cross-section in the relativistic limit used by cascade modeling. Operational constraint: pair-channel cross-section $\sigma_{\gamma\gamma}(s)$ computed from this nucleation picture must reproduce
 $$
 \sigma_{\gamma\gamma} = \frac{\pi r_e^2}{2}\left(1-\beta^2\right)\left[\left(3-\beta^4\right)\ln\left(\frac{1+\beta}{1-\beta}\right) - 2\beta(2-\beta^2)\right]
 $$
@@ -622,9 +755,11 @@ The channel-local curvature object is therefore the Noether-core velocity deform
 
 This chapter uses the nucleation interpretation (not creation from nothing): pair channels reorganize substrate content into new charged assemblies. In this ontology, each architrino has provenance and identity through path history in absolute time; interaction channels redistribute and relock existing constituents rather than instantiate new substrate entities.
 
+Thus, when this channel says the incoming photons are consumed, it means their free planar-pair ledgers terminate at the vertex and their energy-momentum and Gate B handoffs enter the event record. It does not mean the outgoing $e^+e^-$ worldlines are simply the photon constituents under new labels. The charged-pair inventories must be supplied by identity-routed local substrate content.
+
 Operationally, pair production is modeled as association of neutral local substrate content (Noether-Sea cores)[^architrino-count] into a charged $e^+e^-$ assembly pair when incident photon energy and geometry satisfy the pair threshold window. The incoming photon energy supplies the separation and association work required for charged-state lock-in.
 
-The bookkeeping requirement is therefore threefold: global architrino conservation, path-history-consistent provenance through reaction channels, and local energy-momentum conservation at the interaction zone.
+The bookkeeping requirement is therefore threefold: identity-routed global architrino conservation, path-history-consistent provenance through reaction channels, and local energy-momentum conservation at the interaction zone.
 
 Any additional dependence of pair yield on local Noether-Sea state beyond standard kinematic threshold conditions is treated here as a mapping/simulation goal, not as an asserted observational deviation.
 
@@ -661,6 +796,32 @@ $$
 Here $\mathcal{T}(\nu,z_{\mathrm{em}}\rightarrow z_{\mathrm{obs}})$ is the cumulative transfer function including absorption (for example, $e^{-\tau_{\gamma\gamma}(\nu,z)}$ for pair production on extragalactic background light) and any intervening scattering. For nearby sources ($z \ll 1$), $\mathcal{T} \approx 1$.
 
 with $1+z \equiv (1+z_{\mathrm{em}})/(1+z_{\mathrm{obs}})$. In standard-limit regimes, this must reduce to conventional transport results used in high-energy astrophysics.
+
+When the path includes plasma or conducting material, the transfer function must carry the same response rows used by [Radiation](../../../../markdown/aaa/reactions/radiation.md). In an effective plasma comparison,
+
+$$
+\epsilon_{\mathrm{eff}}(\omega)
+\approx
+\epsilon_0\left(1-\frac{\omega_p^2}{\omega^2}\right),
+\qquad
+\omega_p^2=\frac{n_{\mathrm{car}}q^2}{m\epsilon_0}.
+$$
+
+For $\omega>\omega_p$, the transparent branch must recover
+
+$$
+\omega^2=\omega_p^2+c^2k^2,
+$$
+
+while $\omega<\omega_p$ is an evanescent or reflected transport row with $k=i\kappa_{\mathrm{ev}}$ rather than a lost photon ledger. Absorbing conductors use $k=k_1+ik_2$ and add an attenuation factor schematically of the form
+
+$$
+\mathcal{T}_{\mathrm{abs}}(\omega)
+=
+\exp\!\left[-2\int_{\mathrm{path}}k_2(\omega,s)\,ds\right].
+$$
+
+If $\epsilon_{\mathrm{eff}}(\omega)=0$ produces a longitudinal plasma oscillation, the cascade record routes it into medium excitation or plasmon-like content. It is not counted as a free photon branch and it cannot repair a failed Gate B no-longitudinal-mode check.
 
 #### Absolute-Time vs Proper-Time Bookkeeping (Provisional)
 
@@ -726,4 +887,4 @@ Cosmology-facing provenance across synchrotron, pair production, bremsstrahlung,
 
 If derivations show (i) no measurable deviations in any tested regime, (ii) no reduction in parameter count relative to standard plasma/QED models, and (iii) no new consistency constraints that eliminate existing fine-tuning, then the $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretation provides only ontological vocabulary change without explanatory gain. In that case, standard transport remains the preferred description for cascade phenomenology, and the $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping is demoted to an optional interpretive layer rather than a foundational claim.
 
-[^architrino-count]: Architrino-count conservation: each recruited Noether-Sea core contributes $(N_{\mathrm{arch}})_{\mathrm{core}}$ architrinos; net photon + core content must exactly balance final $e^+ + e^-$ architrino count. Explicit provenance tracking through pair events is a simulation deliverable, not an assertion in this chapter.
+[^architrino-count]: Architrino-count conservation: each recruited Noether-Sea core contributes $(N_{\mathrm{arch}})_{\mathrm{core}}$ architrinos; named core content must exactly balance final $e^+ + e^-$ architrino count, and the event record must route the participating identities rather than assigning them to the photon channel. Explicit provenance tracking through pair events is a simulation deliverable, not an assertion in this chapter.

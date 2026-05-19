@@ -410,6 +410,36 @@ The portable theorem ladder should therefore look as follows.
 
 This is the abstract endpoint once no quotient gauge reset is being used. In any reduced or gauge-fixed planar setting, the same fixed-point statement first gives a relative breather in the quotient variables. An absolute periodic trajectory in the fixed Euclidean void requires an additional zero-holonomy reconstruction condition. The real work is not the formal Schauder step itself, but the geometric production and certification of the tame self-map domain on which Schauder is allowed to act.
 
+#### Collective-coordinate and zero-mode bookkeeping
+
+Higher-dimensional transport must also separate genuine deformation directions from neutral collective coordinates. For a candidate cycle
+$$
+\mathbf{X}_{\mathrm{cyc}}(t;\alpha),
+$$
+with finite parameters
+$$
+\alpha^a,
+$$
+define the tangent histories
+$$
+Z_a(\theta)\equiv
+\partial_{\alpha^a}\mathbf{X}_{\mathrm{cyc}}(\theta;\alpha).
+$$
+Each
+$$
+Z_a
+$$
+must be assigned to one of three roles before the monodromy or Floquet data are used:
+
+- removed by section or gauge fixing, such as time translation or rigid rotation;
+- retained as a physical collective coordinate whose return is tested by a zero-holonomy or phase-closure equation;
+- transverse to the branch and therefore part of the stability or returned-sample certificate.
+
+This is the master-equation analogue of moduli and zero-mode bookkeeping in soliton theory, but it remains an $\mathbb{A}\mathbb{A}\mathbb{A}$ certificate rule. It does not add supersymmetry or gauge-theory ontology. Its concrete use is to prevent neutral drift from contaminating the finite certificate: the return-map derivative should be interpreted on the quotient chart, while any retained collective coordinate must satisfy its own closure residual
+$$
+\mathcal{H}_a(\Phi_{\mathrm{cyc}})=0.
+$$
+
 ### Immediate Geometric Research Burdens
 
 The first master-equation work should now concentrate on four concrete questions.
@@ -9847,7 +9877,60 @@ $$
 x_{c_f}=1.
 $$
 
-This is the cleanest way to formalize the intuition that the partner-only inbound fall from infinity reaches field speed at a distinguished radius.
+This is the cleanest way to formalize the intuition that the partner-only inbound fall from infinity reaches field speed at a distinguished radius. In the bookkeeping convention just displayed, setting $x_{c_f}=1$ fixes the dimensionless combination
+$$
+\frac{\kappa\epsilon^2}{\mu_{\text{arch}}c_f^2}=1.
+$$
+If one also chooses reduced units with $c_f=1$, $\epsilon=1$, and $\mu_{\text{arch}}=1$, then the local benchmark has $\kappa=1$. This is a unit convention for the partner-only hinge estimate, not a physical derivation of the coupling. An acceleration-first normalization that omits the quadratic bookkeeping constant must declare its convention separately, because numerical factors in the hinge relation then shift.
+
+The partner-only benchmark should also not be read as a crossing formula at the origin. The same zeroth-order energy estimate gives
+$$
+u^2
+\approx
+\frac{\kappa\epsilon^2}{\mu_{\text{arch}}x},
+$$
+so it predicts $|u|\to\infty$ as $x\to0^+$. The hinge marks where the reduced partner-only model has reached the self-hit-capable regime and should hand off to the delayed root ledger rather than being extrapolated through the origin.
+
+### Prepared Held-Release Benchmark
+
+A useful initial-data test fixes the pre-release history explicitly. Let a right-hand Positrino and left-hand Electrino be held at
+$$
+x_2(t)=+x_0,\qquad x_1(t)=-x_0,\qquad x_0 > 0,
+$$
+with zero velocity for a holding interval long enough that the stationary partner wakes have reached the opposite side before release:
+$$
+T_{\mathrm{hold}}\ge \frac{2x_0}{c_f}.
+$$
+Set the release time to $t=0$. During the held interval the holding constraint cancels the stationary partner attraction, and a stationary architrino has no nontrivial self-hit root.
+
+For the right-hand coordinate after release, while the partner emission time still lies in the held history, the partner source position is fixed at $-x_0$ and the partner Jacobian is $1$. The reduced equation is the ordinary initial-value problem
+$$
+\ddot x(t)
+=
+-\frac{\kappa\epsilon^2}{(x(t)+x_0)^2},
+\qquad
+x(0)=x_0,\qquad
+\dot x(0)=0.
+$$
+In particular,
+$$
+\ddot x(0)
+=
+-\frac{\kappa\epsilon^2}{4x_0^2}.
+$$
+This ODE segment remains valid until the first post-release partner emission reaches the right-hand receiver. If $t_\ast$ denotes that handoff time, then
+$$
+x(t_\ast)+x_0=c_f t_\ast.
+$$
+After that time the partner root samples the moving history and must be solved as a delayed emission time $t_e < t$:
+$$
+x(t)+x(t_e)=c_f(t-t_e),
+$$
+with exterior-branch partner Jacobian
+$$
+J_p(t;t_e)=1+\frac{\dot x(t_e)}{c_f}.
+$$
+Thus the held-release benchmark supplies a simple ODE start, but it does not remove the delayed partner-root problem once the receiver begins sampling post-release history.
 
 ### Partner-Hit and Self-Hit Root Equations
 
@@ -13985,7 +14068,7 @@ $$
 $$
 Finally, a direct returned-sample budget certificate gives the finite sampled preservation criterion immediately. If that direct route is not used, the residual-plus-sensitivity criterion implies the same returned-sample budget certificate. In either case the finite sampled preservation criterion gives the certificate inequalities after one return. Therefore the returned history lies in the certified set itself, proving the self-map inclusion.
 
-The finite self-map ledger has four rows. The first, second, and fourth rows produce the self-map certificate; the third row is a stability diagnostic that decides whether returned-sample preservation should be attempted by sensitivities or by boundary trapping. Adding the certified topology row below gives the full five-row Schauder-ready audit.
+The finite self-map ledger has five rows. The first, second, third, and fifth rows produce the self-map certificate and well-posed variational interpretation; the fourth row is a stability diagnostic that decides whether returned-sample preservation should be attempted by sensitivities or by boundary trapping. Adding the certified topology row below gives the full six-row Schauder-ready audit.
 
 1. **Seed-chart row.**
    Verify
@@ -14056,7 +14139,38 @@ The finite self-map ledger has four rows. The first, second, and fourth rows pro
    p_0
    $$
    in the coupled system, not separate local parameter choices.
-3. **Monodromy diagnostic row.**
+3. **Solution-manifold compatibility row.**
+   The section history must live on the compatible first-order history
+   manifold before any variational or monodromy row is interpreted. Write the
+   local first-order lift as
+   $$
+   Y=(X,U),
+   \qquad
+   \mathcal{H}_h^{(1)}=C^1([-h,0];\mathbb{R}^2),
+   $$
+   and define the admissible compatibility class
+   $$
+   \mathcal{X}_\eta
+   =
+   \left\{
+   \Phi=(X,U)\in\mathcal{H}_h^{(1)}
+   :
+   \dot X(0)=U(0),
+   \quad
+   \dot U(0)=F_\eta(\Phi)
+   \right\}.
+   $$
+   The candidate packet must report this endpoint row on the same packet
+   identity as the pre-ledger, branch chart, fold atlas, and returned samples.
+   The tangent row consumed by monodromy must satisfy
+   $$
+   \dot \Xi(0)=V(0),
+   \qquad
+   \dot V(0)=D F_\eta(\Phi)\Psi.
+   $$
+   Thus monodromy differentiates certified branch maps on compatible histories;
+   it is not a frozen-delay calculation on an arbitrary $C^1$ box.
+4. **Monodromy diagnostic row.**
    Compute an interval enclosure for the section-anchored linearized return map
    $$
    D P_\eta(\phi_{\mathrm{cyc}})
@@ -14080,7 +14194,21 @@ The finite self-map ledger has four rows. The first, second, and fourth rows pro
    L_j^v,
    $$
    this row authorizes the residual-plus-sensitivity route. Schauder itself does not require linear stability; this row is a proof-strategy selector for the finite preservation audit.
-4. **Returned-sample row.**
+
+   The same row must also report the zero-mode quotient used for interpretation. Let
+   $$
+   Z_{\mathrm{time}}(\theta)=\dot\phi_{\mathrm{cyc}}(\theta)
+   $$
+   denote the infinitesimal time-shift direction before section anchoring. If additional ansatz or certificate parameters
+   $$
+   \alpha^a
+   $$
+   are carried, their tangent rows
+   $$
+   Z_a(\theta)=\partial_{\alpha^a}\phi_{\mathrm{cyc}}(\theta;\alpha)
+   $$
+   must be classified as neutral, constrained by the section, or transverse. This prevents a harmless collective-coordinate drift from being mistaken for an unstable return direction, and it prevents a genuine transverse instability from being hidden inside a free parameter.
+5. **Returned-sample row.**
    Prefer the direct one-sided budget route when local sensitivities are large: prove
    $$
    E_{j,\pm}^{x},
@@ -14099,7 +14227,7 @@ The finite self-map ledger has four rows. The first, second, and fourth rows pro
    $$
    for every mesh index. This row supplies certificate preservation under one return.
 
-This ledger is deliberately finite. Passing the seed-chart, coupled-corridor, and returned-sample rows turns the domain-production burden into the self-map inclusion; the monodromy row identifies whether the returned-sample proof should use sensitivity control or boundary trapping. Failing any required row identifies the exact obstruction.
+This ledger is deliberately finite. Passing the seed-chart, coupled-corridor, solution-manifold compatibility, and returned-sample rows turns the domain-production burden into the self-map inclusion; the monodromy row identifies whether the returned-sample proof should use sensitivity control or boundary trapping. Failing any required row identifies the exact obstruction.
 
 #### Certified topology row
 
@@ -14197,13 +14325,14 @@ P_\eta
 $$
 on the certified domain.
 
-The full Schauder-ready audit therefore has five rows:
+The full Schauder-ready audit therefore has six rows:
 
 1. the seed-chart row;
 2. the coupled-corridor row;
-3. the monodromy diagnostic row;
-4. the returned-sample row;
-5. and the topology row
+3. the solution-manifold compatibility row;
+4. the monodromy diagnostic row;
+5. the returned-sample row;
+6. and the topology row
    $$
    u_{\mathrm{ret}}^{\mathrm{cert}}>0
    $$
@@ -14221,6 +14350,14 @@ defined against the dual-mollified absolute-time law, and finite certificate dat
 $$
 P_\eta.
 $$
+
+The negative-breather lesson is that even a formal expansion valid to all
+orders can miss a leakage channel outside the expansion scale. The collinear
+program therefore treats a small residual curve, a long-lived numerical trace,
+or a closed-looking ansatz as candidate evidence only. Promotion requires the
+existing certificate rows to close the leakage routes they control: the
+pre-ledger fold-layer budgets, coupled-corridor propagation, returned-sample
+preservation, and topology/self-map row on one certified domain.
 
 Before those five audit rows can be meaningful, the candidate must pass the named null-coordinate pre-ledger target from [Closed-Form Collinear Breather Ansatz](../../../../markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md#null-coordinate-causal-pre-ledger). Concretely, the proof must:
 
@@ -20017,6 +20154,71 @@ This note starts a parallel ansatz program for the 1D collinear breather. It doe
 
 This program is optional for the existence proof. The proof does not need an elementary closed-form orbit; it needs one candidate certified cycle and a finite certificate for the return map on a closed convex tame domain.
 
+The external breather literature supplies useful terminology pressure but not a
+mechanism that can be imported into this proof. In this chapter, `breather`
+means a bounded delayed return-map fixed point in the collinear
+$\mathbb{A}\mathbb{A}\mathbb{A}$ reduction. Standard nonlinear-wave breathers
+are comparison objects; they do not replace the causal-root ledger, fold-layer
+integrals, returned-history residuals, or Schauder-domain audit needed here.
+
+Negative breather results sharpen the same rule. In a nonintegrable wave
+equation, a formal expansion can be valid to all orders while the true dynamics
+still leak energy and fail to contain an exact localized periodic solution. The
+$\mathbb{A}\mathbb{A}\mathbb{A}$ consequence is not to import that radiation
+mechanism; it is to refuse promotion from formal closure alone. A candidate
+history remains approximate until fold-layer budgets, returned-history
+residuals, and the closed convex self-map audit are all certified on the same
+packet.
+
+The integrable and near-integrable nonlinear Schrodinger catalogs strengthen
+the terminology boundary. Their coherent profiles, Darboux constructions,
+rogue-wave limits, and degenerate-breather limits depend on equation classes
+and conservation structures not present in the delayed architrino law. They are
+useful only as a checklist for native certification: the ansatz must declare
+which variables are certificate coordinates, which limit or degeneration is
+being taken, and which separator or fold layer remains bounded in the causal-root
+ledger. A limit that exists only in the external equation is not an ansatz
+transfer.
+
+Perturbation nonpersistence results give the same refusal in another form. If a
+candidate survives only because an exact integrable symmetry or cancellation is
+kept intact, it is not a proof route for this certificate. The collinear program
+must show survival under the dual-mollified delayed law itself, with leakage
+channels closed by certificate rows rather than by analogy to a special wave
+equation.
+
+The same discipline applies to construction methods. A numerical enclosure,
+validated quadrature orbit, or interval-collocation solve is equivalent to a
+closed-form ansatz only if it produces the same finite candidate packet:
+period, section/symmetry chart, representation coefficients, mesh, residual
+targets, causal pre-ledger inputs, and branch-chart inputs on one certified
+domain.
+
+The state-dependent-delay periodic-orbit literature gives the methodological
+reason for this rule. A periodic boundary-value problem can be reduced locally
+to algebraic root finding only when the finite vector is tied to a projection
+from histories and a reconstruction back into the history space. For this
+collinear certificate, a residual vector is therefore not just a numerical fit:
+it must record the projection/reconstruction convention, the local neighborhood
+where the reduction is meant to hold, and the regularity assumptions that make
+the returned history meaningful.
+
+Collocation adds a second discipline. The piecewise polynomial is a candidate
+representation of a periodic boundary-value problem, not a proof object by
+itself. A collocation packet must state the subinterval partition, polynomial
+degree, collocation nodes, period normalization, and section anchoring used to
+remove time-translation symmetry. Mesh-node superconvergence, meaning extra
+accuracy at selected nodes, is not assumed as a global bound; separator and
+origin layers need interval residual bounds on cells, not only small residuals
+at mesh points.
+
+Continuation and finite auxiliary ODE constructions are useful only at the
+candidate-source level. A continued branch point or auxiliary-system orbit must
+reconstruct to the declared signed history, period, mesh, separator layers, and
+causal-root ledger before it can feed the certificate. Nonuniform
+transition-layer behavior near separators must be bounded by interval cell
+estimates, not inferred from small residuals at isolated nodes.
+
 The accepted output of this note is therefore a certificate packet
 $$
 \mathfrak{C}_{\mathrm{ans}}
@@ -21201,34 +21403,47 @@ A candidate ansatz packet must produce:
    x,
    $$
    together with the paired branch-label rule;
-6. a null-coordinate causal pre-ledger in
+6. a neutral-coordinate audit identifying every continuous freedom that leaves the same physical certificate unchanged. At minimum this includes the removed time-shift freedom, any declared reflection or relabeling symmetry, and any ansatz parameter whose first variation is tangent to the candidate branch rather than transverse to it. In finite form, if
+   $$
+   \alpha^a
+   $$
+   are ansatz coordinates and
+   $$
+   Z_a(\theta)\equiv \frac{\partial \phi_{\mathrm{cyc}}(\theta;\alpha)}{\partial \alpha^a},
+   $$
+   then the certificate must classify each
+   $$
+   Z_a
+   $$
+   as section-fixed, symmetry-neutral, or genuinely deforming before monodromy or residual rows are interpreted;
+7. a null-coordinate causal pre-ledger in
    $$
    u=c_f t-x,
    \qquad
    w=c_f t+x,
    $$
    marking empty, candidate nonempty, and fold-split self-image blocks before interval root solving;
-7. a certificate mesh
+8. a certificate mesh
    $$
    \{\theta_j\}_{j=0}^{N}
    \subset[-h,0];
    $$
-8. algebraic, Lienard phase quadrature, fractionally augmented Chebyshev or cubic
+9. algebraic, Lienard phase quadrature, fractionally augmented Chebyshev or cubic
    $$
    C^1,
    $$
    or other interval-validated formulas for each arc;
-9. separator impulse laws at every
+10. separator impulse laws at every
    $$
    |\dot x|=c_f
    $$
    event, including the fold normal-form constants and finite impulse bounds;
-10. a bifurcation-parameter sweep over
+11. a bifurcation-parameter sweep over
    $$
    (\eta,\epsilon_c,V_{\max})
    $$
    or a justified lower-dimensional slice, identifying the region where the itinerary is admissible, the required roots exist, inactive-root gaps are positive, and fold impulses are finite;
-11. returned-history residuals
+12. returned-history residuals
    $$
    R_j^x,
    \qquad
@@ -21649,6 +21864,101 @@ The proof burden splits into two parts:
 
 This makes tangential control subordinate but essential. Tangential dynamics do not supply a separate closure theorem; they must be bounded tightly enough to prevent centrifugal leakage from destroying the radial return.
 
+#### Radial leakage-budget target
+
+The external breather comparison adds one useful discipline: a formal oscillatory
+ansatz is not enough when a nonintegrable system can leak energy or drift out of
+the putative bound state. In the planar bridge, the corresponding failure
+channel is tangential leakage. The first radial-turnaround theorem should
+therefore be written as an integrated budget, not only as a pointwise slogan.
+
+Nonpersistence and degenerate-breather comparisons make this burden stricter. A
+planar bridge is not allowed to inherit stability from a line or from an
+integrable breather family. The theorem must show that tangential leakage,
+gauge-reset discontinuity, and separator or fold transit remain bounded after
+the symmetry-breaking perturbation is present. If the required cancellation
+exists only in a comparison equation, the planar bridge fails rather than being
+rescued by analogy.
+
+Rigidity comparisons sharpen this into a transport criterion. A collinear fixed
+point is not planar evidence unless the planar packet proves its own branch
+chart, continuous gauge reset, bounded fold/separator transit, and radial
+leakage budget with strict margins. If those rows close only because the line
+removes tangential escape or because an external integrable equation supplies
+cancellations, the correct conclusion is non-transport rather than inherited
+stability.
+
+Let
+$$
+I_{\mathrm{turn}}=[t_a,t_b]
+$$
+be the first candidate outward-to-inward turnaround window in the reduced
+planar history, with
+$$
+\dot\rho(t_a)>0.
+$$
+Write the net radial acceleration from the delayed master equation as
+$$
+a_r(t)=\mathbf a(t)\cdot\hat{\mathbf e}_r(t),
+$$
+so that
+$$
+\ddot\rho(t)=a_r(t)+\frac{u_\theta^2(t)}{\rho(t)}.
+$$
+Define the inward delayed budget and tangential leakage budget by
+$$
+B_{\mathrm{in}}
+\equiv
+\int_{t_a}^{t_b}[-a_r(t)]_+\,dt,
+\qquad
+B_\theta
+\equiv
+\int_{t_a}^{t_b}\frac{u_\theta^2(t)}{\rho(t)}\,dt.
+$$
+Let
+$$
+E_{\mathrm{fold}},
+\qquad
+E_{\mathrm{branch}},
+\qquad
+E_{\mathrm{gauge}}
+$$
+denote certified upper bounds for unresolved fold-layer impulse, delayed-branch
+classification error, and section/gauge-reset error on the same controlled
+window. The first useful planar recapture certificate is the strict inequality
+$$
+B_{\mathrm{in}}
+-
+B_\theta
+-
+E_{\mathrm{fold}}
+-
+E_{\mathrm{branch}}
+-
+E_{\mathrm{gauge}}
+\ge
+\dot\rho(t_a)+\gamma_{\mathrm{turn}},
+\qquad
+\gamma_{\mathrm{turn}}>0.
+$$
+This implies
+$$
+\dot\rho(t_b)\le -\gamma_{\mathrm{turn}}
+$$
+under the certified error budget. If the inequality cannot be made strict on
+any admissible seed packet, the planar bridge fails for a precise reason:
+centrifugal leakage and uncertified branch/fold uncertainty outrun radial
+recapture before the return map can close.
+
+This budget also fixes what the later gauge-continuity row must provide. The
+return event must satisfy a transverse crossing margin
+$$
+|\dot\rho(T_{\mathrm{ret}})|\ge\nu_{\mathrm{ret}}>0,
+$$
+and the compensating rotation angle must have a bounded sensitivity on the same
+history box. Otherwise the gauge-reset map can lose continuity even if the
+radial budget itself turns the orbit around.
+
 ### Tame-Envelope and Gauge Closure
 
 The eventual return theorem needs a closed domain on which a fixed-point or continuation argument can act. The desired envelope should control at least:
@@ -21664,6 +21974,16 @@ The closure target is:
 > The one-cycle return map sends a convex tame envelope of reduced planar histories into itself.
 
 The gauge-reset operator must be included in that statement. After one excursion, the returned history must be rotated back into the section gauge. That step is continuous only if the return event is quantitatively transverse; otherwise the return time and the compensating rotation angle need not vary continuously with the incoming history.
+
+The planar bridge should therefore treat the phase, rotation, and section-time variables as collective coordinates rather than as ordinary stability directions. If
+$$
+\alpha=(t_0,\psi,\rho_\ast,\ldots)
+$$
+records the finite chart data of a candidate reduced cycle, then the tangent rows
+$$
+Z_a(\theta)=\partial_{\alpha^a}\mathbf r_{\mathrm{cyc}}(\theta;\alpha)
+$$
+must be classified before the return spectrum is interpreted. The rotation and time rows are removed by gauge and section choices; any remaining geometric row must either close by a holonomy residual or enter the transverse stability certificate. This finite zero-mode ledger is the clean way to state what the planar proof means by "the same cycle" after one excursion.
 
 This is the exact higher-dimensional replacement for the collinear tame-class closure. If it succeeds, the abstract fixed-point capstone from [Master-Equation Breather Program](../../../../markdown/aaa/proof-programs/master-equation-breather.md) becomes actionable rather than aspirational.
 
@@ -21691,7 +22011,10 @@ The next sequence should be short and disciplined.
 1. Define the reduced planar history space, seed packet, and quantitative section transversality.
 2. Prove local sectorized cone control and short-time branch regularity on the first excursion slab.
 3. Prove a bounded caustic-transit theorem for the first planar fold tube.
-4. Prove a radial-turnaround inequality in which inward delayed forcing beats centrifugal leakage.
+4. Prove the radial leakage-budget inequality in which inward delayed forcing beats centrifugal leakage, fold uncertainty, branch uncertainty, and gauge-reset error with a strict
+   $$
+   \gamma_{\mathrm{turn}}>0.
+   $$
 5. Assemble these ingredients into a tame-envelope return theorem with continuous gauge reset.
 
 That order matters. Without a transverse seed packet, the return map is not well-defined. Without local cone control, the branch atlas is not stable enough to transport. Without bounded fold transit, the self-hit mechanism is not mathematically usable. Without a radial-turnaround inequality, no planar breather can exist.

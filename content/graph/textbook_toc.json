@@ -2934,10 +2934,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Low-Energy SM Assemblies in the Noether Sea",
+                "title": "Low-Energy Standard Model Assemblies in the Noether Sea",
                 "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
-                "markdownSection": "Low-Energy SM Assemblies in the Noether Sea",
-                "sectionKey": "low energy sm assemblies in the noether sea",
+                "markdownSection": "Low-Energy Standard Model Assemblies in the Noether Sea",
+                "sectionKey": "low energy standard model assemblies in the noether sea",
                 "headingLevel": 2
               },
               {
@@ -2984,7 +2984,7 @@
           },
           {
             "id": "interactions__emergence_of_u_1_su_2",
-            "title": "Emergence of U(1)/SU(2)",
+            "title": "Gauge Structure Emergence",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/interactions/emergence_of_u_1_su_2.json",
@@ -2992,18 +2992,18 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "The Physical Substrate: From Vacuum Language to Noether Sea",
+                "title": "Physical Medium: From Vacuum Language to Noether Sea",
                 "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
-                "markdownSection": "The Physical Substrate: From Vacuum Language to Noether Sea",
-                "sectionKey": "the physical substrate from vacuum language to noether sea",
+                "markdownSection": "Physical Medium: From Vacuum Language to Noether Sea",
+                "sectionKey": "physical medium from vacuum language to noether sea",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "The \"Field\" Illusion",
+                "title": "Field Language as Effective Bookkeeping",
                 "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
-                "markdownSection": "The \"Field\" Illusion",
-                "sectionKey": "the field illusion",
+                "markdownSection": "Field Language as Effective Bookkeeping",
+                "sectionKey": "field language as effective bookkeeping",
                 "headingLevel": 2
               },
               {
@@ -3024,10 +3024,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "The Higgs Mechanism & VEV Reinterpretation",
+                "title": "Higgs Mechanism and VEV Reinterpretation",
                 "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
-                "markdownSection": "The Higgs Mechanism & VEV Reinterpretation",
-                "sectionKey": "the higgs mechanism vev reinterpretation",
+                "markdownSection": "Higgs Mechanism and VEV Reinterpretation",
+                "sectionKey": "higgs mechanism and vev reinterpretation",
                 "headingLevel": 2
               },
               {

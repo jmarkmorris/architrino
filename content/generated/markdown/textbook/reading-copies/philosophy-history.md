@@ -90,6 +90,8 @@ Major thinkers and schools include scientific realists, constructive empiricists
 
 Realism takes explanation and convergence seriously. It holds that good theories succeed because they latch onto structures that are actually there. Anti-realism takes underdetermination seriously. It holds that multiple incompatible stories can often save the same appearances, so theory success alone does not settle what exists. What the subject gets right is that both pressures are real. Science would be impossible if theoretical posits were never trustworthy, but it would be reckless if formal success automatically conferred ontology.
 
+Constructive empiricism gives the anti-realist side its sharpest useful form: accepting a theory can mean accepting its empirical adequacy across observable phenomena without treating every unobservable posit as literally discovered. In this chapter that view functions as a comparison pressure, not as a governing doctrine. It preserves the warning that successful models are selective representations while leaving room for disciplined ontology when a hidden structure becomes derivationally necessary, falsifiable, and reusable across independent records.
+
 For $\mathbb{A}\mathbb{A}\mathbb{A}$ the crucial commitment is layered realism. Substrate ontology is treated realistically because the whole program aims to identify the mechanism that produces effective laws. Higher-level descriptions, however, must be assessed more cautiously. A field variable, fitted cosmological sector, or information-theoretic summary may be real as an effective structure without being fundamental in the same sense as the substrate.
 
 #### Internal Tensions
@@ -127,6 +129,8 @@ Major thinkers and schools include Bertrand Russell, early and later Wittgenstei
 The core commitment is that scientific language must be answerable to logical discipline and use-context alike. Formal reconstruction clarifies what follows from what. Attention to language-games and practice clarifies how terms actually function in inquiry. What the subject gets right is that conceptual precision is not cosmetic. If one uses "vacuum" to mean both absence of matter and an actively structured sector, or "information" to mean both physical distinguishability and epistemic content, one has already loaded ontology into language before argument begins.
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$ this means that every central term must be role-stabilized. "Assembly" must not collapse into mere aggregate. "Causal delayed interaction" must not be confused with signaling folklore. "Emergent metric" must not be equated with merely approximate geometry unless the derivation really warrants that step. The substance-and-structure distinction developed in [Substance, Structure, and the Plenum of Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md) is one example of this discipline: architrinos, wakes, void, medium, and effective fields must not be treated as interchangeable names for the same object. Analytic hygiene is therefore a real part of theory construction.
+
+The same discipline applies to borderline classifications. A finite observation record can fail to locate a boundary without making the boundary ontologically indeterminate. If the native dynamics define a basin or separatrix, the first question is whether the declared Physical Observer access map and tolerance can distinguish the side of the boundary. In that case the ambiguity belongs to measurement access, not to the ontology, unless the model also shows that the proposed basin boundary is absent, unstable, or irrelevant to the observed transition.
 
 #### Internal Tensions
 
@@ -352,6 +356,8 @@ where $D$ is the data product, $A_{\mathrm{inst}}$ records apparatus and selecti
 
 The data product in this record is always a finite observation record. In practice $D$ should be read as $D_{W,\epsilon}$: measurements gathered over a declared observation window $W$ with an uncertainty or tolerance vector $\epsilon$. Densities, exact symmetries, zero-mass claims, continuum fields, and limiting parameters enter the review only after the finite record has been passed through $A_{\mathrm{inst}}$, $K_{\mathrm{cal}}$, and $M_{\mathrm{eff}}$. This prevents an exact effective variable from being mistaken for the raw observable that originally constrained it.
 
+Probability assignments require the same kind of material warrant. A probability measure used in theory choice, measurement closure, or validation is admissible only after the relevant sampling process, invariant measure, apparatus channel, or empirical pipeline has been stated. Indifference over labels is not enough. If two different measures are used for prediction, thermodynamic cost, and ontological interpretation, then the inference record has split and the promoted interpretation has not yet earned closure.
+
 A staged discovery review can use the same record before an interpretation is treated as settled. Let $\theta$ denote the candidate claim and let $R_i(\theta)$ be the retained residual tests extracted from $R_{\mathrm{fail}}$, with tolerances $\epsilon_i$ fixed before the announcement standard is applied. The claim is mature only when
 
 $$
@@ -364,6 +370,32 @@ $$
 $$
 
 Intermediate stages may therefore be reported as live analysis, failed alarms, revised calibrations, or submitted-but-unaccepted claims without pretending that the final interpretation followed immediately from a single reading. The important discipline is that each stage states which part of the inference record has changed and which residuals still block promotion.
+
+A criticism carries weight in this record only when it names the coordinate it changes or the residual it activates. A worry that applies equally to every possible observation, calibration, model, or ontology, while leaving every coordinate and every $R_i$ unchanged, is not a promoted failure condition. It may motivate caution or a comparison run, but it cannot reject $\theta$ until it changes the record:
+
+$$
+\left[
+\exists C\in
+\left\{
+D,\;
+A_{\mathrm{inst}},\;
+K_{\mathrm{cal}},\;
+M_{\mathrm{eff}},\;
+O_{\mathrm{ont}},\;
+R_{\mathrm{fail}}
+\right\}
+:\Delta C\ne 0
+\right]
+\quad\text{or}\quad
+\left[
+\exists i:
+\frac{\left|R_i(D,A_{\mathrm{inst}},K_{\mathrm{cal}},M_{\mathrm{eff}},O_{\mathrm{ont}};\theta)\right|}
+{\epsilon_i}
+>1
+\right],
+$$
+
+where $\Delta C$ denotes a declared change to the corresponding coordinate of the inference record.
 
 Large heterogeneous correlation systems sharpen this rule rather than replacing it. A predictor may map the preserved data, apparatus assumptions, and calibration record to a useful forecast,
 
@@ -378,6 +410,32 @@ $$
 $$
 
 and a nonempty residual pattern $R_{\mathrm{fail}}$ that could reject that interpretation. High predictive accuracy therefore improves the status of $M_{\mathrm{eff}}$ but does not, by itself, promote $O_{\mathrm{ont}}$ into settled ontology.
+
+The same discipline applies to theory-guided quantities. Let $D_{W,\epsilon}$ be the finite data product over window $W$ with tolerance vector $\epsilon$, and let $\widehat D_\theta$ be the data predicted by candidate record $\theta$. Ordinary observational fit first requires
+
+$$
+\Delta_{\mathrm{obs}}(\theta)
+=
+\max_i
+\frac{|D_i-\widehat D_{\theta,i}|}{\epsilon_i}
+\le 1.
+$$
+
+For any ontological component $o\in O_{\mathrm{ont}}$ promoted by $\theta$, fit alone is not enough. The promoted component must have observable leverage or derivational necessity under the same apparatus and calibration record:
+
+$$
+\operatorname{promote}(o;\theta)=1
+\Longrightarrow
+\left[
+\exists j:\frac{\partial \widehat D_{\theta,j}}{\partial o}\ne 0
+\right]
+\ \lor\
+\left[
+o\ \text{is required to derive the retained } M_{\mathrm{eff}}
+\right].
+$$
+
+If neither condition holds, the component may remain a comparison device, coordinate choice, or calculational convenience, but it has not earned ontology. This rule preserves the empirical-adequacy warning without adopting blanket anti-realism: hidden structure can be promoted, but only when it changes the recoverable record or is indispensable to deriving the effective machinery being retained.
 
 #### Internal Tensions
 
@@ -712,6 +770,24 @@ From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, these crisis-axes matte
 
 That is the standard the chapter should keep in view. The crisis only matters if it sharpens ontology and sharpens tests. For $\mathbb{A}\mathbb{A}\mathbb{A}$, resolution would mean recovering established effective success, reducing multiple tensions by common mechanism, exposing clear failure conditions, and explaining why prior frameworks worked as well as they did. Anything weaker would risk replacing one rhetorical overreach with another.
 
+#### Empirical Establishment Discipline
+
+The history of experimental gravity adds a methodological constraint to the crisis map. General relativity did not become secure because one elegant argument or one celebrated measurement was persuasive by itself. It became secure because redshift, light bending, Shapiro timing, orbital precession, equivalence tests, frame-dragging, binary-pulsar timing, gravitational waves, and CMB-era cosmology formed a mutually constraining network with different instruments and different nuisance channels.
+
+The corresponding standard for $\mathbb{A}\mathbb{A}\mathbb{A}$ is a cross-check score rather than a single showcase prediction:
+$$
+\mathcal{S}_{\mathrm{est}}
+=
+N_{\mathrm{ind}}
+-
+N_{\mathrm{free}}
+-
+N_{\mathrm{shared\ nuisance}}
+-
+N_{\mathrm{posthoc}},
+$$
+where $N_{\mathrm{ind}}$ counts independent successful benchmark families, $N_{\mathrm{free}}$ counts unconstrained parameters, $N_{\mathrm{shared\ nuisance}}$ counts nuisance assumptions reused across supposedly independent rows, and $N_{\mathrm{posthoc}}$ counts repairs introduced after seeing the target data. The formula is not a universal philosophy of science. It is a working discipline for this corpus: a substrate claim should not be treated as established until its effective successes outnumber its adjustable and nuisance-dependent supports across multiple measurement families.
+
 ---
 
 ### Progress vs. Time
@@ -833,6 +909,8 @@ There is also a second unresolved layer. Even if one grants that outcome fixatio
 Standard repairs include Copenhagen-style operationalism, decoherence-based effective classicality, objective collapse models, pilot-wave theories, and branching ontologies. Each captures something important. Operationalism preserves laboratory discipline. Decoherence explains branch isolation. Collapse models supply an explicit selection rule. Pilot-wave approaches retain definite microstates. Many-Worlds preserves unitary evolution.
 
 Yet the repairs remain incomplete because each resolves one pressure by relocating another. Operationalism lowers the ontological demand rather than meeting it. Decoherence explains effective classicality without by itself selecting one realized outcome. Collapse models add new dynamics that remain empirically unsettled. Pilot-wave theories retain hidden structure but still face the question of how measurement statistics and effective collapse are best understood. Branching ontologies preserve the mathematics at the price of multiplying realized structure in a way many physicists regard as explanatorily heavy. The dispute persists because no repair has closed mechanism, record, and statistics in one broadly accepted account.
+
+Branching accounts also face a representation discipline that is easy to understate. A formal decomposition of the wavefunction can change under a different effective basis, while the recorded laboratory probabilities stay fixed. A serious ontology cannot treat a zero coefficient, a basis component, or a branch label as a direct existence criterion unless the same claim survives the apparatus, record, and probability-map tests.
 
 #### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -1078,11 +1156,11 @@ The long-term relevance is likely permanent as a caution against treating succes
 
 The tension emerges because the vacuum in modern physics is no longer simple emptiness. It carries fluctuations, boundary effects, state structure, effective energy assignments, symmetry-breaking roles, and, in gravitational contexts, metric behavior that determines clock rates, propagation, and free motion. The category pressure is therefore straightforward: once empty space is allowed to bend, slow signals, store energy, or condition inertial and gravitational behavior, the descriptive burden placed on "emptiness" becomes unusually high.
 
-This pressure is intensified by a historical asymmetry. General relativity formalized gravitation geometrically, and that achievement was genuine. But the stronger cultural conclusion often drawn from that success is that one must not ask what, if anything, physically underwrites the effective geometry. The result is an ontological selectivity: large amounts of structure are granted to spacetime in mathematical form, while composition questions are sometimes treated as though they were residues of a discredited ether picture rather than legitimate requests for substrate clarification.
+This pressure is intensified by a historical asymmetry. General relativity formalized gravitation geometrically, and that achievement was genuine. But the stronger cultural conclusion often drawn from that success is that one must not ask what, if anything, physically underwrites the effective geometry. The result is an ontological selectivity: large amounts of structure are granted to spacetime in mathematical form, while composition questions are sometimes treated as though they were residues of a discredited older medium picture rather than legitimate requests for substrate clarification.
 
 #### What Current Physics Gets Right
 
-Current physics gets right that vacuum-state structure is empirically and mathematically consequential. Casimir-type effects, spontaneous symmetry breaking frameworks, effective background behavior, and quantum-state distinctions are not artifacts of bad notation. General relativity also gets right that what observers treat as spacetime structure governs measurable redshift, lensing, delay, and orbital behavior. These successes show that the background cannot be treated as physically idle. Whatever else is true, the vacuum or spacetime sector strongly conditions observable phenomena.
+Current physics gets right that vacuum-state structure is empirically and mathematically consequential. Casimir-type effects, dynamical boundary-response experiments, vacuum-induced phase shifts, spontaneous symmetry breaking frameworks, effective background behavior, and quantum-state distinctions are not artifacts of bad notation. The retained data product is the measured dependence of forces, phases, excitations, and detector records on boundary conditions and vacuum-state preparation, not a settled ontology of emptiness. General relativity also gets right that what observers treat as spacetime structure governs measurable redshift, lensing, delay, and orbital behavior. These successes show that the background cannot be treated as physically idle. Whatever else is true, the vacuum or spacetime sector strongly conditions observable phenomena.
 
 #### What Remains Unresolved
 
@@ -1096,7 +1174,7 @@ Standard repairs include treating vacuum properties as field-theoretic state str
 
 #### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The theory distinguishes the fixed Euclidean void from the physical medium that occupies it. In that vocabulary, the void is the geometric container, the Noether Sea is the constitutive medium whose organized state is summarized as spacetime behavior at the observer level, and matter assemblies are higher-order organizations within the same constitutive world. The companion bridge [Substance, Structure, and the Plenum of Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md) adds the further distinction between primitive architrino substance and causal wake structure. This does not recover an older ether by simple relabeling. It instead proposes a disciplined separation between geometry, occupancy, dynamical medium response, causal wake history, and effective observer-level metric behavior. Transition relevance is high because this crisis exposes a recurring hesitation in modern physics: admitting effective structure while refusing the corresponding substrate language.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The theory distinguishes the fixed Euclidean void from the physical medium that occupies it. In that vocabulary, the void is the geometric container, the Noether Sea is the constitutive medium whose organized state is summarized as spacetime behavior at the observer level, and matter assemblies are higher-order organizations within the same constitutive world. The companion bridge [Substance, Structure, and the Plenum of Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md) adds the further distinction between primitive architrino substance and causal wake structure. This does not recover an older medium theory by simple relabeling. It instead proposes a disciplined separation between geometry, occupancy, dynamical medium response, causal wake history, and effective observer-level metric behavior. Transition relevance is high because this crisis exposes a recurring hesitation in modern physics: admitting effective structure while refusing the corresponding substrate language.
 
 #### What Would Count As Resolution
 
@@ -1909,8 +1987,8 @@ S=\int d^4x\; \left(\frac{1}{2}\partial_\mu\phi\,\partial^\mu\phi
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\phi(x)$ is a coarse-grained effective field describing collective wake and assembly behavior in the architrino/Noether-Sea system. Creation/annihilation operators encode observer-level association, dissociation, repartitioning, and normal-mode changes of assemblies, not ontic birth or death of architrinos and not fundamental quanta of a continuous field. For the underlying substance-structure distinction, see [Substance, Structure, and the Plenum of Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md).
 
-**What Still Works:** Quantum Field Theory (QFT) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of tri-binary assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
+**What Still Works:** Quantum Field Theory (QFT) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model. Its precision comparisons with experiment, renormalized perturbation methods, lattice calculations where applicable, effective actions, and operator language are benchmark successes that any replacement must recover in the regimes where practitioners currently use them. That success does not by itself settle the ontology of continuum fields, vacuum structure, or creation and annihilation operators; it fixes a recovery burden.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, field operators, vacuum summaries, particle-number changes, symmetries, and couplings are treated as effective descriptors of assembly association, dissociation, normal-mode changes, axial-layer states, and medium-level interaction rules rather than primitive ontology.
 **Transition Relevance:** Transition relevance is high because this is still the language in which laboratory data, precision fits, and most cross-framework calculations are reported.
 **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 
@@ -1989,7 +2067,7 @@ $$
  - \frac{1}{4}F_{\mu\nu}F^{\mu\nu}, \quad
 \text{where } D_\mu = \partial_\mu + ieA_\mu.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The U(1) gauge symmetry encodes invariance under a global phase associated with architrino polarity and net charge routing. $A_\mu$ is the effective continuum potential generated by architrino wakes; photons are coaxial contra-rotating pro/anti planar pairs whose mode trains mediate interaction between charged tri-binaries (electrons/positrons). The concrete repo-side treatment lives in [Electroweak Bosons: Photons, W/Z, and Higgs](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) and [Emergence of U(1)/SU(2)](../../../../markdown/aaa/interactions/gauge-structure-emergence.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The U(1) gauge symmetry encodes invariance under a global phase associated with architrino polarity and net charge routing. $A_\mu$ is the effective continuum potential generated by architrino wakes; photons are coaxial contra-rotating pro/anti planar pairs whose mode trains mediate interaction between charged tri-binaries (electrons/positrons). The concrete repo-side treatment lives in [Electroweak Bosons: Photons, W/Z, and Higgs](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) and [Gauge Structure Emergence](../../../../markdown/aaa/interactions/gauge-structure-emergence.md).
 Historically, the Liénard-Wiechert moving-source potentials already pointed in this direction by showing that electromagnetic potentials depend on source motion and causal delay. In the present program they matter as an early effective hint that $A_\mu$ should be read as a compressed summary of source-history transport rather than as a primitive object detached from the moving charges that generate it.
 
 **What Still Works:** Quantum Electrodynamics (QED) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
@@ -2870,6 +2948,27 @@ $$
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the state objects, ensemble quantities, and interpretive claims in this entry are reclassified as inferential or effective descriptions over definite substrate histories and assembly statistics.
 **Transition Relevance:** Transition relevance is high because these formalisms still govern how quantum, thermal, and information-theoretic results are computed and compared.
 **Long-Term Relevance:** Long-term relevance is as a stable effective or inferential language, not as final ontology, provided the same successful predictions are retained.
+
+---
+
+#### Transactional Interpretation
+
+**Theory Name:** Transactional Interpretation. **Short Name:** Transactional Interpretation. **Layer Bucket:** Epistemic / Effective Observation Theories.
+
+**Summary:** The transactional family treats quantum measurement as an emitter-absorber process in which outcome-bearing events arise from a completed exchange rather than from an observer-imposed projection.
+
+**Conceptual View:** Its strongest comparative point is the distinction between ordinary correlating interaction and an interaction that is eligible to become a record. In that sense it presses on the same question as the measurement problem: what physical condition turns a formal branch, correlation, or amplitude into an outcome-bearing event?
+
+**Key Equation:** In standard notation, the comparison target is the projection-like record object
+$$
+P_a=|a\rangle\langle a|.
+$$
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ does not import transactional ontology, indeterministic actualization, or claims that quantum possibilities form a deeper non-spacetime substrate. It keeps the useful pressure as a record-formation benchmark: a candidate outcome must be produced by assembly-apparatus dynamics, satisfy conservation and event-ledger closure, persist as a record, and recover the Born weights from basin measures rather than from a projection postulate.
+
+**What Still Works:** Transactional Interpretation usefully refuses to let "measurement" mean any arbitrary interaction and keeps attention on emission, absorption, conservation, and record production.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, offer/confirmation language, claims about real possibilities, and retrocausal readings are comparison devices, not substrate terms. The native objects are assemblies, causal wakes, apparatus kernels, record basins, and effective observer descriptions.
+**Transition Relevance:** Transition relevance is moderate to high because the interpretation highlights the measurement-cut problem in a form that can sharpen $\mathbb{A}\mathbb{A}\mathbb{A}$ record criteria without changing the ontology.
+**Long-Term Relevance:** Long-term relevance is as a comparison framework for measurement and Born-rule closure, not as doctrine.
 
 ---
 
@@ -5636,7 +5735,14 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 ##### 1. Concept Summary
 
-Steady State Cosmology is a theory in the cosmic history alternative domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
+Steady State Cosmology is a theory in the cosmic history alternative domain. It tried to combine an expanding comparison history with constant large-scale matter density, usually by adding some continuous source of matter. Einstein's unpublished 1931 attempt is the sharp failure prototype: with dust-like matter, constant density and nonzero expansion require an explicit source term, but the source was not present in the field equations. In effective notation the pressure is
+$$
+\dot{\rho}_{m,\mathrm{eff}}
++3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}
+=
+\mathcal{S}_{m,\mathrm{eff}},
+$$
+so $\dot{\rho}_{m,\mathrm{eff}}=0$ and $H_{\mathrm{eff}}\ne0$ require $\mathcal{S}_{m,\mathrm{eff}}=3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}$. Without that term, the nontrivial constant-density branch is not closed.
 
 ##### 2. Ontological Commitments
 
@@ -5644,7 +5750,7 @@ Steady State Cosmology carries specific ontological commitments even when it is 
 
 ##### 3. What This Concept Gets Right
 
-Steady State Cosmology still gets something limited but important right: it preserved a real empirical pressure or explanatory demand even though its central ontology failed. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
+Steady State Cosmology still gets something limited but important right: it preserved the demand that cosmology account for source, density, and history rather than simply accept a singular global story. Its durable value for $\mathbb{A}\mathbb{A}\mathbb{A}$ is now mainly negative and diagnostic. It shows that an exponential or de Sitter-like effective scale factor is not enough; the continuity equation, source provenance, and observational evolution record must close together.
 
 ##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -5660,11 +5766,11 @@ In a mature stack only the empirically successful large-scale summaries survive,
 
 ##### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Steady State Cosmology is that its explanatory core could not survive broader empirical scrutiny even though some motivating pressure was legitimate. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Steady State Cosmology is that its explanatory core could not survive broader empirical scrutiny and its source accounting was often underdetermined. Einstein's failed version exposes the mathematical core of the problem: assigning energy to the geometric comparison term does not by itself create matter, and a constant-density expanding branch needs a source equation with a physical ledger. Later steady-state variants made that source more explicit, but the model family still failed the observed-evolution tests.
 
 ##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to explain which empirical pressure the older concept was trying to answer and show how that pressure is handled without reviving the failed ontology. That closure target is what turns comparison into actual reduction rather than a verbal promise.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to retain the conservation discipline while rejecting the failed ontology. Any fixed-void cosmology that uses recycling, medium loading, or recurring assembly production must derive $\mathcal{S}_{m,\mathrm{eff}}$ from the absolute record $S(t)$ and then pass CMB, galaxy-evolution, BBN, redshift, growth, and lensing comparisons. The source term is admissible only as a projection of assembly and Noether-Sea histories, never as matter produced by the Euclidean void.
 
 ---
 
@@ -7446,11 +7552,11 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to state explicitly 
 
 ##### 1. Concept Summary
 
-Entropy is a quantity in the state counting and irreversibility domain. It was built to provide a mathematically controlled description of the phenomena grouped within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
+Entropy is a quantity in the state counting and irreversibility domain. It was built to provide a mathematically controlled description of heat exchange, state counting, unresolved records, and access-region bookkeeping, but those uses are not one undifferentiated object. In the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
 ##### 2. Ontological Commitments
 
-Entropy carries specific ontological commitments even when it is presented as "just mathematics." It typically treats state counting and irreversibility as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
+Entropy carries specific ontological commitments even when it is presented as "just mathematics." It typically treats state counting and irreversibility as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. The commitment changes with the entropy concept: Clausius entropy presupposes a reversible-process comparison class, Boltzmann entropy presupposes a macrostate partition, Gibbs/Shannon entropy presupposes a probability distribution over unresolved alternatives, and horizon or record entropy presupposes an access boundary or durable record channel. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, generally enters through statistics, uncertainty, or effective fitting rather than as primitive ontology.
 
 ##### 3. What This Concept Gets Right
 
@@ -7465,6 +7571,8 @@ $$
 S_{\mathcal{Q},W}(t)=k_B\log \mu\!\left(\Gamma_{\mathcal{Q},W(t)}\right).
 $$
 The expression does useful work only after the finite measure, coarse-graining, and boundary conditions are declared. In an unbounded cosmology or a source-and-sink medium history, the relevant arrow is not "entropy of the universe" as a bare phrase; it is the balance between production, boundary flux, and record/coarse-graining residuals in the retained window.
+
+This distinction also protects the thermodynamic comparison from a common overreach. The Clausius definition $dS=\delta Q_{\mathrm{rev}}/T$ is licensed only in a regime where the reversible path comparison is well-defined; Boltzmann and Gibbs/Shannon entropies then supply different statistical summaries rather than competing ontologies. A resource or available-energy reading is retained when the apparatus, reference resources, and allowed manipulations are physical parts of the record, not when "information" is treated as a disembodied cause.
 
 ##### 5. Transition-Period Relevance
 
@@ -7556,7 +7664,7 @@ The Laws of Thermodynamics gets a great deal right operationally: it is part of 
 
 In the neutral comparative stack, The Laws of Thermodynamics sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Recovered as Effective Limit**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-The second-law comparison is therefore strongest for finite, thermally mixed, or otherwise well-specified effective systems. It becomes weaker when extrapolated to the whole cosmological medium unless the candidate model supplies the flux and access terms:
+The second-law comparison is therefore strongest for finite, thermally mixed, or otherwise well-specified effective systems. It should be read as a process and reliability constraint before it is compressed into the derivative statement that entropy never decreases. If the process law is not available in a claimed regime, then the corresponding Clausius entropy may not be well-defined there. The comparison becomes weaker when extrapolated to the whole cosmological medium unless the candidate model supplies the flux and access terms:
 $$
 \frac{dS_{\mathcal{Q},W}}{dt}
 =
@@ -8072,8 +8180,11 @@ Another recurring pattern is failure to revisit earlier assumption sets after la
 | 1887-1904 (Michelson-Morley + Lorentz) | Null aether-wind result, dynamical contraction/time slowdown models | Emergent Lorentz symmetry from matter-medium interaction | "Undetectable medium = dispensable medium" became the decisive simplification |
 | 1905 (Special Relativity) | Full Lorentz covariance of inertial laws | Could have been read as effective symmetry of assemblies in one substrate | Principle-theory victory reclassified kinematic effects as fundamental spacetime structure |
 | 1915-1920 (General Relativity) | Metric dynamics with exceptional predictive power | Metric as coarse-grained constitutive field of deeper medium state | Geometrization succeeded so strongly that "geometry is fundamental" became default |
+| 1917 (Einstein World) | Boundary-condition pressure at spatial infinity, Machian relativity-of-inertia aims, and the first relativistic global cosmology | Global geometry could have been held as a closure hypothesis requiring observation, stability, and source/boundary residual tests | Logical consistency and aesthetic closedness could outrun empirical comparison and perturbative stability analysis |
 | 1924-1930 (de Broglie, pilot-wave, early quantum debates) | Deterministic alternatives existed, wave-particle dual structure observed | Deterministic microstate + contextual readout + basin selection | Copenhagen operationalism treated ontology as unnecessary overhead |
 | 1930s-1950s (QFT vacuum, renormalization) | Vacuum structure, divergence control, effective computational rules | Divergences as signs of missing microstructure and finite substrate scales | Renormalization success normalized continuum ontology plus parameter absorption |
+| 1941-1954 (Wheeler's particles-first to fields-first turn) | Wheeler-Feynman direct-action electrodynamics, Machian inertia pressure, liaison/light-ray reconstruction attempts, EIH point-particle motion, and geon-style nonsingular field configurations | A constituent-first program could have asked whether field-like and inertial behavior are derived summaries of causal interaction records rather than primitive continua | The failed liaison-action program and the success of GR/QED redirected pressure toward fields-first formalism before a delayed causal-wake ontology was available |
+| 1960s-1970s (Wheeler's collapse and law-without-law turn) | Gravitational-collapse singularity pressure, black-hole no-hair compression, and Wheeler's claim that baryon and lepton conservation lose operational content in collapse | Lawfulness could have been treated as an emergent closure whose conservation records survive only where the accessible exterior variables still carry the needed provenance | Collapse and no-hair results redirected Wheeler from lawlike geometrodynamics toward law-without-law, participatory cosmology, and universe-evolution language |
 | 1964-1982 (Bell + Aspect era) | Nonlocal correlations experimentally robust | Absolute-time nonlocal substrate dynamics without signaling | The discourse framed options as "local realism dead" rather than "which nonlocal ontology?" |
 | 1970s-1990s (SM success + naturalness programs) | Precision particle physics with many free parameters | Assembly geometry as origin of masses/charges/mixing patterns | Parameter-fit pragmatism displaced geometric micro-construction programs |
 | 1998-2010s (Dark energy and precision cosmology) | Accelerated expansion inferred from distance-redshift data | Medium-relaxation / clock-comparison interpretation in fixed void | $\Lambda$ as baseline closure model hardened into ontology, not just effective fit |
@@ -8196,6 +8307,60 @@ The long-term relevance of this episode is permanent process guidance. Recovery 
 
 ---
 
+### Einstein's 1917 Static World: Closure Before Validation
+
+#### Overview
+
+**Episode:** Einstein's 1917 Static World: Closure Before Validation. **Short Name:** Einstein World. **Period:** 1916-1931, from the boundary-condition debates after general relativity through the later abandonment of the static model. The near-miss thesis is methodological: Einstein's first relativistic cosmology converted a real closure pressure into a logically consistent global geometry, but the model was not promoted through observation, perturbative stability, and explicit boundary/source ledger tests before being treated as a candidate world-picture.
+
+#### Where The Opening Appeared
+
+What physics already had was a sharp problem. Planetary and local relativistic solutions could use asymptotic conditions, but a model of the universe as a whole could not simply appeal to a flat metric at spatial infinity without reintroducing an external reference structure. Einstein's Machian pressure for the relativity of inertia made this issue especially acute: if inertia was to be conditioned by matter rather than by space on its own, then the global boundary condition was not a minor technical detail. It was part of the meaning of the theory.
+
+Einstein's answer was to remove spatial infinity by using a closed, static, homogeneous model with nonzero mean density and an added cosmological constant term. In the 1917 calculation, the new term supplied the mathematical support needed for static equilibrium, yielding the familiar relation among mean density, curvature radius, and $\lambda$. The opening, from the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, was not that the Einstein World was the right cosmology. It was that a global geometry should have remained visibly conditional on the closure work it performs: the same model element that solves a boundary problem must also survive empirical comparison, perturbative stability, and a declared source/boundary ledger.
+
+#### What Current Physics Still Gets Right
+
+What still works from the Einstein World episode is substantial. The model inaugurated relativistic cosmology as a concrete mathematical discipline, made the boundary-condition problem impossible to ignore, and showed that global assumptions about matter distribution, curvature, and field equations are coupled. The later de Sitter, Friedmann, Lemaître, Eddington, Hubble, and Einstein-de Sitter developments did not erase that achievement. They turned it into a live comparison sequence in which static, empty, and time-varying cosmologies had to face observation and internal consistency.
+
+The review also makes Einstein's local rationality clear. In 1917 the extragalactic scale was not settled, the observed universe was often identified with the Milky Way, and the static assumption was a defensible approximation to the known stellar system. His reluctance to publish a radius estimate was likely tied to distrust of mean-density estimates rather than indifference to data. The cautionary point is therefore narrower: logical consistency inside the field equations is not yet enough to license a global world-picture.
+
+#### Where Interpretation Locked In
+
+The narrative lock-in was the promotion of formal closure before validation closure. Closed spatial geometry eliminated the need for boundary conditions at infinity, and $\lambda$ made a static matter-filled solution possible, but the model's physical status depended on additional tests that were not carried through in the 1917 memoir. The cosmological constant was also doing ambiguous work: it was allowed by the equations, but its physical interpretation shifted among mathematical support, negative-pressure or negative-density language, and later integration-constant language.
+
+The de Sitter, Friedmann, and Lemaître responses exposed the weakness of treating the static solution as privileged. De Sitter showed that the same modified equations admitted a rival matter-free comparison solution with redshift-relevant behavior. Friedmann and Lemaître showed that non-static solutions were mathematically natural, and Lemaître tied the dynamics to nebular redshift evidence. Einstein's eventual abandonment of the static world after Hubble-era evidence and Eddington's instability analysis illustrates the methodological correction: a candidate cosmology must lose authority when observation and stability fail, even if the original closure motivation was serious.
+
+#### What Was Left Unfinished
+
+What was occluded was an explicit promotion rule for global cosmological models. The 1917 episode contains three separable obligations that should not be merged: a boundary obligation, a stability obligation, and an observational obligation. A model may solve one and fail the others. For a candidate effective cosmological branch $\theta$ over an observation window $W$, the lesson can be stated as a residual discipline:
+$$
+\mathcal{R}_{\mathrm{cos}}(\theta;W)
+=
+\mathcal{R}_{\mathrm{obs}}(\theta;W)
++\mathcal{R}_{\mathrm{stab}}(\theta;W)
++\mathcal{R}_{\mathrm{src/bdy}}(\theta;W).
+$$
+Here $\mathcal{R}_{\mathrm{obs}}$ measures mismatch to the declared astronomical data packet, $\mathcal{R}_{\mathrm{stab}}$ measures growth of admissible perturbations around the branch, and $\mathcal{R}_{\mathrm{src/bdy}}$ measures whether boundary fluxes and source terms close one shared ledger rather than being inserted independently. In continuity form, the last term has the schematic structure
+$$
+\mathcal{R}_{\mathrm{src/bdy}}(\theta;W)
+=
+\frac{\left\|\partial_t Q_\theta+\nabla\cdot \mathbf{F}_\theta-\mathcal{S}_\theta\right\|_W}{\epsilon_Q},
+$$
+where $Q_\theta$ is the retained effective quantity, $\mathbf{F}_\theta$ is its boundary flux, $\mathcal{S}_\theta$ is its declared source, and $\epsilon_Q$ is the tolerance fixed by the comparison packet. A global geometry, medium interpretation, or effective scale-factor story should not be promoted unless the three terms are simultaneously small under one branch record.
+
+#### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
+
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **cautionary and directly useful as method**. It does not support importing Einstein's static closed universe, nor does it justify treating $\lambda$ as a disguised proof of Noether-Sea dynamics. It supports a stricter rule: whenever $\mathbb{A}\mathbb{A}\mathbb{A}$ proposes an effective cosmological history in a fixed Euclidean void, the history must distinguish observer-level variables such as $a(t)$ and $H(t)$ from substrate claims about assemblies and the Noether Sea, and it must carry observation, stability, and source/boundary residuals together.
+
+Transition relevance is high because emergent cosmologies are especially vulnerable to the same failure mode. A model can be mathematically elegant, philosophically attractive, and still be under-validated. The Einstein World warns that a closure device should remain a closure device until it survives the full residual check.
+
+#### Recovery Target
+
+The long-term relevance of this episode is permanent process control for cosmology. Recovery would require every proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmological branch to state its effective observables, perturbation class, and source/boundary ledger before the branch is used ontologically. A fixed-void medium account must therefore show, on one branch record, how redshift, CMB, BBN, growth, lensing, and clock-rate comparisons remain compatible while $\mathcal{R}_{\mathrm{obs}}$, $\mathcal{R}_{\mathrm{stab}}$, and $\mathcal{R}_{\mathrm{src/bdy}}$ remain below their declared tolerances.
+
+---
+
 ### Copenhagen: Multistability Lost to Epistemic Minimalism
 
 #### Overview
@@ -8261,6 +8426,107 @@ The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly supportive**. Tra
 #### Recovery Target
 
 The long-term relevance of this episode is permanent until a deeper microtheory derives field-like low-energy behavior without making continuum infinity primitive. Recovery would require showing how renormalized success emerges from finite substrate organization and why the old formalism was such an effective approximation over the domains where it triumphed.
+
+---
+
+### Wheeler's Tokyo Program: Particles, Fields, and Direct Action
+
+#### Overview
+
+**Episode:** Wheeler's Tokyo Program: Particles, Fields, and Direct Action. **Short Name:** Wheeler Tokyo Near Miss. **Period:** roughly 1941-1954, from Wheeler-Feynman direct-action electrodynamics through Wheeler's 1953 Tokyo lecture and the 1954 turn toward geon-style field configurations. The near-miss thesis is that Wheeler's path briefly held together several $\mathbb{A}\mathbb{A}\mathbb{A}$-adjacent pressures: particles before fields, inertia from cosmic interaction, light-ray relational data before spacetime reconstruction, and a demand that particle masses not enter as arbitrary primitive constants.
+
+#### Where The Opening Appeared
+
+What physics already had was unusually rich. Wheeler-Feynman electrodynamics had shown that a field-mediated interaction could be reformulated as direct interparticle action under strong boundary assumptions. Wheeler then tried to extend that style of thinking to gravity by replacing independent spacetime and field variables with world lines connected by light-ray relations, which he called liaisons. In the simplest historical notation, a liaison composition such as
+$$
+\alpha'=\alpha^{-}(\gamma^{+}(\beta^{+}(\alpha)))
+$$
+was meant to recover a geometrical relation from world lines and causal light-ray contact alone. The important opening was not the success of this formula as a theory. It was the attempt to make geometry and field structure answer to observable interparticle connection data rather than treating them as the first layer of ontology.
+
+The Tokyo lecture added a second opening: inertia and mass were treated as effects that should be generated by interaction rather than inserted by hand. Wheeler's Machian comparison used the condition
+$$
+\frac{G}{c^2}\sum_k\frac{m_k}{r_k}\sim 1
+$$
+as a proof-of-principle scale statement for inertia from cosmic matter, while the field-generated-mass discussion pressed the same question locally for elementary particles. From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, the safe lesson is not that Wheeler's formulas should be imported. It is that mass and inertia were already being forced into the form of a ledger problem: if a particle has an exposed inertial response, the response should be derived from its interaction history and the surrounding universe record.
+
+#### What Current Physics Still Gets Right
+
+What still works from the victorious path is substantial. Wheeler-Feynman theory did not replace field theory as the standard route to QED, and Wheeler's liaison action for gravity was not produced. Renormalized QED, GR field equations, and later particle physics achieved far stronger calculational control than the speculative particles-first route. The geon program itself did not become the accepted structure of elementary particles, but it helped redirect attention to exact solutions, strong-field questions, gravitational radiation, and the physical problem pressure that made general relativity a live part of mid-century physics again.
+
+#### Where Interpretation Locked In
+
+The narrative lock-in was the return from particles-first reconstruction to fields-first formalism. That return was rational. Direct action required difficult boundary assumptions, liaison theory lacked a working action, point singularities carried unresolved mass and stability problems, and renormalized field theory was becoming more effective. Wheeler's own sequence shows the pressure clearly: first fields were to be derived from particles, then particles became singularities of fields, then particles were pursued as nonsingular field configurations.
+
+Blum and Furlan's 2022 reconstruction of Wheeler's later turn adds a sharper collapse episode to the same historical arc. Wheeler moved from daringly lawlike geometrodynamics toward "law without law" after black-hole collapse appeared to erase the operational meaning of baryon and lepton conservation, while no-hair results compressed the source's detailed particle history into only mass, charge, and angular momentum. The safe lesson for $\mathbb{A}\mathbb{A}\mathbb{A}$ is contextual rather than doctrinal: Wheeler's crisis marks a real recovery target, namely to show how conservation-law provenance passes through collapse, is coarse-grained into exterior observables, or is explicitly lost as an effective descriptor without making lawfulness itself primitive magic.
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ caution is that this historical failure should not be overread. It did not show that every constituent-first or path-history ontology is impossible. It showed that Wheeler lacked a finite delayed causal-wake microdynamics with explicit assembly states, a causal-root ledger, and a mass-map derivation. Without those objects, the particles-first program had no stable mathematical carrier.
+
+#### What Was Left Unfinished
+
+What was occluded was a controlled comparison between direct interaction, effective field language, and finite constituent dynamics. In the present corpus, the useful closure target is a direct-action comparison residual over a declared window $W$:
+$$
+\mathcal{R}_{\mathrm{DA}}(W)
+=
+\frac{\left\|\Delta\mathbf{p}_{\mathrm{wake}}(W)-\Delta\mathbf{p}_{\mathrm{eff}}(W)\right\|}{p_W}
++\frac{\left\|\mathcal{P}_{\mathrm{wake}}(W)-\mathcal{P}_{\mathrm{field}}(W)\right\|}{P_W}
++\frac{\left|m_{\mathrm{resp}}(W)-m_{\mathrm{obs}}(W)\right|}{m_W}.
+$$
+Here $\Delta\mathbf{p}_{\mathrm{wake}}$ is the impulse accumulated from finite-speed causal-wake hits, $\Delta\mathbf{p}_{\mathrm{eff}}$ is the corresponding impulse in the effective field description being recovered, $\mathcal{P}_{\mathrm{wake}}$ and $\mathcal{P}_{\mathrm{field}}$ are matched provenance records for where the interaction content enters and exits the calculation, and $m_{\mathrm{resp}}$ is the externally exposed inertial response derived from path history, shielding, and Noether-Sea coupling. A Wheeler-style near miss becomes live only if all three terms are small without adding instantaneous action, non-causal branch content, or independent mass constants.
+
+The later collapse crisis adds a companion requirement: no-hair coarse-graining must not be mistaken for literal source erasure unless the derivation says so. A recovery account has to identify which incoming assembly records remain available to exterior effective variables, which are hidden behind the collapse boundary, and which conservation labels were only valid at the pre-collapse effective layer. That is the concrete historical pressure behind Wheeler's law-without-law language: if lawfulness is emergent closure, the corpus must specify the closure map rather than simply deny Wheeler's worry.
+
+#### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
+
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **partially supportive and strongly cautionary**. It is supportive because Wheeler's search exposed exactly the right pressure points: field variables may be effective summaries, mass should not be an unexplained insert, and observable light-ray relations can carry more primitive relational data than a finished metric presentation suggests. It is cautionary because Wheeler's route also shows how quickly a constituent-first program collapses if it cannot supply a working action, stability mechanism, and particle-category map.
+
+Transition relevance is high. The project should not inherit Wheeler's particles-first language naively, nor should it accept the fields-first reversal as final. The disciplined middle position is to treat architrino assemblies and causal wakes as substrate ontology, while treating continuum fields, metric variables, and standard particle labels as recovered observer-level summaries until their derivations close.
+
+#### Recovery Target
+
+The long-term relevance of this episode is permanent until the field/particle distinction is closed at the constitutive level. Recovery would require deriving effective fields from causal-wake superposition, deriving inertial response from trapped internal causal history and Noether-Sea coupling, and replacing singular point-particle idealization with finite stable assembly branches that still reproduce the tested point-particle and field-theory limits. Wheeler's historical sequence then becomes a near-miss benchmark: $\mathbb{A}\mathbb{A}\mathbb{A}$ succeeds only if it can keep the particles-first pressure without losing the field-level successes that Wheeler eventually had to recover.
+
+---
+
+### Einstein's Abandoned Steady-State Cosmology
+
+#### Overview
+
+**Episode:** Einstein's Abandoned Steady-State Cosmology. **Short Name:** Einstein Steady-State Manuscript. **Period:** early 1931, after Hubble's redshift-distance evidence and before Einstein's published evolving cosmologies. The near-miss thesis is cautionary: Einstein tried to preserve a constant-density expanding universe by associating a cosmological-constant term with a source of matter, but the model failed because the source was not actually present in the equations.
+
+#### Where The Opening Appeared
+
+What physics already had was unusually concentrated: Hubble's approximately linear redshift-distance relation, the instability of Einstein's static model, de Sitter-style exponential expansion, and the cosmological constant as a mathematical term in the field equations. The opening was to ask whether apparent expansion could be modeled while avoiding a one-time global origin and preserving a large-scale statistical steadiness. In modern comparison language, the relevant effective branch is
+$$
+a_{\mathrm{eff}}(t)=a_0e^{H_*t},
+\qquad
+\dot{\rho}_{m,\mathrm{eff}}=0.
+$$
+The mathematical pressure is immediate. With no source term, dust continuity gives
+$$
+\dot{\rho}_{m,\mathrm{eff}}
++3H_*\rho_{m,\mathrm{eff}}=0,
+$$
+so a nonzero constant density requires a provenance source $\mathcal{S}_{m,\mathrm{eff}}=3H_*\rho_{m,\mathrm{eff}}$.
+
+#### What Current Physics Still Gets Right
+
+The later rejection of steady-state cosmology was empirically and mathematically justified. Galaxy-evolution evidence and the CMB made an unevolving cosmic population untenable, and the missing source term in Einstein's manuscript was a real closure failure rather than an editorial inconvenience. The valid retained content is not the steady-state universe. It is the conservation lesson: if an effective density is held constant while the comparison volume grows, the source term and its physical ledger must be explicit.
+
+#### Where Interpretation Locked In
+
+The historical lock-in around this episode is two-sided. Einstein's preference for an unchanging large-scale universe initially made the constant-density option attractive, even after redshift evidence favored dynamical models. Later, once steady-state cosmology failed observationally, the useful mathematical warning could be hidden under the broader rejection of the model family. Both moves can obscure the layer distinction between an effective scale-factor curve, a source equation, and substrate ontology.
+
+#### What Was Left Unfinished
+
+What was occluded was a disciplined source-provenance analysis. A cosmological constant, dark-energy-like stress, or medium tension can alter an effective expansion history without automatically producing matter. Conversely, recurring assembly association, dissociation, black-hole recycling, or Noether-Sea exchange can source effective matter only if the ledger closes in absolute time. The unfinished target is therefore not "revive steady state"; it is "never allow a fitted expansion history to smuggle in unaccounted source terms."
+
+#### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
+
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **cautionary but useful**. The Euclidean void does not supply matter or energy. The Noether Sea may carry medium-state dynamics that project into $a_{\mathrm{eff}}(t)$, $H_{\mathrm{eff}}(t)$, and $\rho_{\mathrm{DE,eff}}$, but any effective matter source must be derived from assembly and medium histories inside $S(t)$. This episode therefore sharpens the fixed-void cosmology discipline rather than weakening it.
+
+#### Recovery Target
+
+Recovery would require a sourced effective continuity theorem: for every proposed constant-density, recycling, or matter-loading branch, derive $\mathcal{S}_{m,\mathrm{eff}}$ from a declared absolute record and prove that the same record also feeds redshift, CMB, BBN, growth, and lensing comparisons. If the source term is inserted only to maintain a preferred history, the branch fails in the same structural way as the abandoned steady-state attempt.
 
 ---
 
@@ -9568,21 +9834,21 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **What Problem They Were Trying To Solve:** He sought a deeper deterministic layer beneath quantum statistics that could restore ontological continuity without losing empirical agreement.
 
-**What They Got Right:** He correctly insisted that deterministic substrate options remain logically and physically viable and worth explicit construction.
+**What They Got Right:** He correctly insisted that deterministic substrate options remain logically and physically viable and worth explicit construction. He also kept the empirical burden in view: a deeper account cannot merely reinterpret measurement language, but must recover the Standard Model, GR, quantum statistics, and strong-field thermodynamics at benchmark precision.
 
-**What They Got Wrong or Overstated:** Cellular-automaton discretization is one possible route but may be too restrictive relative to continuous causal field/assembly dynamics.
+**What They Got Wrong or Overstated:** Cellular-automaton discretization, integer-only physical metaphysics, and measurement-independence denial are route-specific commitments rather than consequences of deterministic physics itself. They are too restrictive relative to continuous causal wake and assembly dynamics.
 
-**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly aligned with mechanistic divergence.
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly aligned with mechanistic divergence and validation discipline, but not with cellular-automaton ontology or superdeterministic Bell closure.
 
-**Transition Relevance**: 't Hooft is highly useful in transition for legitimizing deterministic reduction agendas and for defining test criteria against standard quantum closure.
+**Transition Relevance**: 't Hooft is highly useful in transition for legitimizing deterministic reduction agendas and for defining test criteria against standard quantum closure, especially Born-rule recovery, Bell/no-signaling constraints, Standard Model parameter recovery, and black-hole thermodynamics.
 
 **Long-Term Relevance**: Long-term relevance is high as deterministic-program ancestor, with specific CA machinery optional.
 
 **Core Belief**: Quantum behavior can emerge from deeper deterministic dynamics, potentially represented by discrete update structures.
 
-**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ shares deterministic ambition but uses continuous delayed interaction dynamics with emergent discreteness at assembly scales rather than fundamental CA update tables.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ shares deterministic ambition but uses continuous delayed interaction dynamics with emergent discreteness at assembly scales rather than fundamental cellular-automaton update tables.
 
-**Legacy Shift**: 't Hooft's deterministic challenge is retained and broadened into explicit substrate field-assembly ontology.
+**Legacy Shift**: 't Hooft's deterministic challenge is retained and broadened into explicit causal-wake and assembly ontology, while his cellular-automaton and superdeterministic routes remain comparison material rather than imported doctrine.
 
 ---
 
@@ -9597,19 +9863,19 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **What Problem They Were Trying To Solve:** He sought to explain novelty, becoming, and relational coherence without reducing reality to static inert building blocks.
 
-**What They Got Right:** Whitehead correctly stressed relational structure and the inadequacy of naive static metaphysics for dynamic physical phenomena.
+**What They Got Right:** Whitehead correctly stressed relational structure and the inadequacy of naive static metaphysics for dynamic physical phenomena. His relativity critique also usefully exposed the measurement-circularity risk in any theory that lets the geometry used by rulers and clocks merge too quickly with the gravitational process being measured.
 
-**What They Got Wrong or Overstated:** He overstated process primacy and experiential language at the foundational level, where $\mathbb{A}\mathbb{A}\mathbb{A}$ posits stable substrate entities with evolving configurations.
+**What They Got Wrong or Overstated:** He overstated process primacy and experiential language at the foundational level, where $\mathbb{A}\mathbb{A}\mathbb{A}$ posits stable substrate entities with evolving configurations. His alternative relativity remains a comparison framework, not a doctrine to import; empirical GR, PPN, clock, ruler, and signal benchmarks still control metric closure.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially retained and inverted.
 
-**Transition Relevance**: Whitehead is useful in transition for avoiding rigid mechanistic caricatures and preserving relational analysis during substrate reinterpretation.
+**Transition Relevance**: Whitehead is useful in transition for avoiding rigid mechanistic caricatures and preserving relational analysis during substrate reinterpretation. The strongest technical bridge is his ruler-calibration pressure: an emergent-metric account must recover clock, ruler, and signal behavior from one coherent observer-level record rather than by switching calibration assumptions between comparisons.
 
 **Long-Term Relevance**: Long-term relevance is moderate as conceptual supplement and low as primary ontology.
 
 **Core Belief**: Reality is fundamentally processual and relational, with enduring substances treated as abstractions over event structure.
 
-**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves relational emphasis but reverses ontological order, making stable substrate entities primary and process derivative through lawful path-history reconfiguration.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves relational emphasis but reverses ontological order, making stable substrate entities primary and process derivative through lawful path-history reconfiguration. It relocates Whitehead's metric worry into a constitutive recovery demand: effective geometry is legitimate only when the same record of the Noether Sea and the Physical Observer produces the relevant clocks, rulers, signal paths, and gravitational benchmarks.
 
 **Legacy Shift**: Whitehead remains a relational critic of simplistic substance talk, while final ontology returns to entity-first realism.
 
@@ -10424,6 +10690,64 @@ The long-term relevance of this subject is secure as an **effective description 
 
 ---
 
+### Thermodynamic Cost of Computation
+
+#### Overview
+
+**Subject:** Thermodynamic Cost of Computation. **Short Name:** Computation Cost. The core question is whether a logical operation, such as bit erasure, carries a thermodynamic cost merely because of its logical form. The central claim of the strongest information-theoretic reading is that logical irreversibility directly fixes a minimum heat or entropy cost. The safer physical reading is narrower: computation becomes thermodynamic only through an implemented device, a declared state space, a success criterion, and a heat/work ledger.
+
+This subject matters because it sits exactly where information language can either discipline physics or overrun it. A bit is not a free-floating entity. It is a stable physical distinction maintained by an apparatus, a material substrate, a reference convention, and a readout channel. Any claim about the heat cost of changing that distinction must therefore identify the physical operation that carries the distinction, not only the abstract truth table being implemented.
+
+#### Historical Motivation
+
+The historical pressure came from Maxwell-demon and Szilard-engine discussions, from molecular-scale computation, and from Landauer-style attempts to connect logical irreversibility with thermodynamic dissipation. The core question was practical as well as foundational: how low can the heat cost of computing be driven, and does information theory itself supply the lower bound?
+
+The durable insight is that state discrimination, memory reset, and error suppression are not thermodynamically neutral. A reliable bit requires physical separation of alternatives, protection against thermal fluctuations, and a record channel that can be reused. The overstatement appears when the logical description is allowed to replace the device-level analysis. The fact that a formula resembles a Shannon entropy does not by itself make it a thermodynamic entropy.
+
+#### Core Commitments
+
+The primary commitment of this subject, in its careful form, is implementation dependence. A logical operation is a label on a class of physical processes, not a process by itself. The relevant physical question is what work, heat, boundary exchange, and fluctuation suppression are required for a specific device to complete the operation with a declared probability of success.
+
+For a declared operation step $s$, let $\Omega_s$ be the accessible pre-operation state region, let $\Omega_s^{\mathrm{ok}}$ be the subset whose trajectories complete the intended operation inside the record window, and let $\mu_{\Theta_s}$ be the same physical measure used by the apparatus, boundary, and thermodynamic ledger. The completion probability is then
+
+$$
+p_s =
+\frac{\mu_{\Theta_s}(\Omega_s^{\mathrm{ok}})}
+{\mu_{\Theta_s}(\Omega_s)}.
+$$
+
+A physical lower-bound claim must be stated against that record, for example as a device-level entropy accounting condition
+
+$$
+\Delta S_{\mathrm{env},s}
++
+\Delta S_{\mathrm{target},s}
++
+\Delta S_{\mathrm{boundary},s}
+\ge
+k_B\log(1/p_s)-\epsilon_s.
+$$
+
+The symbols do not define a new law. They express the burden: the same record that defines success must also supply the entropy, work, heat, and boundary terms used to claim a cost.
+
+#### Internal Tensions
+
+What this subject gets right is that reliable symbolic update has physical cost. The cost may appear as heat dumped to an environment, work needed to confine a state, apparatus dissipation, error-correction overhead, or boundary exchange. In all cases, the cost belongs to the physical channel by which the distinction is maintained and changed.
+
+What it gets wrong or overstates, when careless, is the inference from logical irreversibility to a universal device-independent cost. The Shannon expression for uncertainty over symbols is not automatically a Clausius, Boltzmann, Gibbs, or device entropy. A Maxwell-demon analysis that counts the target molecule while idealizing away the partition, actuator, sensor, memory, and suppressed fluctuations has not closed the thermodynamic ledger. It has selected one part of the physical record and treated the rest as free.
+
+#### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
+
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **aligned as a constraint and corrective as ontology**. The framework should preserve the thermodynamic pressure: records, measurement, memory reset, and computation require physical work and entropy accounting. It should not promote bit logic, Shannon entropy, or computational description into substrate ontology.
+
+The native test is same-record closure. If a computation or measurement story uses one ensemble for logical-state probabilities, a second ensemble for heat, and a third apparatus story for completion reliability, it has hidden a split record. The valid target is one physical record that tracks the implemented state distinction, the basin in which the operation completes, apparatus fluctuations, boundary exchange, and heat/work accounting together.
+
+#### What Survives
+
+The long-term relevance of this subject is as a **thermodynamic constraint on records and computation**, not as informational ontology. What survives is the demand that bits, measurements, and erasures be paid for by real physical channels. What should not survive is the shortcut from logical form to physical cost without declaring the implementation. In a mature $\mathbb{A}\mathbb{A}\mathbb{A}$ account, information-processing bounds become tests of record formation, basin reliability, and same-record entropy bookkeeping.
+
+---
+
 ### Computation as Ontology
 
 #### Overview
@@ -10485,6 +10809,8 @@ What this subject gets right is decisive. It keeps open the possibility that fin
 #### Internal Tensions
 
 The main overstatement arises when discreteness is too quickly equated with digitality. A discrete substrate need not behave like a register of symbolic bits, and it need not inherit the semantic baggage of computer architecture. Likewise, a graph is not yet a physical ontology unless one can say what its nodes and links are, how delayed influence propagates through them, and why effective symmetries arise. The subject therefore risks replacing one abstraction with another if its combinatorial objects are left physically underinterpreted.
+
+The same caution applies to deterministic cellular-automaton programs. A reversible local update rule can be a useful comparison model because it forces the theory to state a microstate, an update law, and a recovery burden. It does not follow that the physical substrate is a literal grid, a register, or an integer-only state table. To become physics rather than representation, such a model must identify the entities being updated, the medium through which influence propagates, the conservation ledgers it preserves, and the route by which quantum statistics, Standard Model parameters, GR-like behavior, and strong-field thermodynamics are recovered.
 
 Another tension concerns empirical recovery. Many discrete programs excel at conceptual resistance to the continuum, but fewer provide a compelling, fully worked derivation of the observed low-energy world. What they get wrong or overstate is sometimes not the discrete hypothesis itself, but the ease with which metric behavior, quantum statistics, relativistic invariance, and cosmological structure are supposed to descend from a chosen microscopic scaffold. Discreteness is a direction of repair, not a completed ontology.
 
@@ -10551,6 +10877,14 @@ This distinction matters because advanced science increasingly depends on numeri
 The historical motivation came from the explosive growth of computational science. Many systems of interest became too nonlinear, multiscale, or data-rich for closed-form treatment. At the same time, computability theory, complexity analysis, and numerical analysis made it obvious that not every well-defined problem is tractable, stable, or decidable in the same way. The core question thus became whether computational constraint is merely an epistemic fact about us or a clue to the architecture of reality. The central claim of stronger positions is that the boundary of computability tracks the boundary of the physically real.
 
 Major thinkers and programs include Turing-style computability analysis, complexity theory, numerical physics, simulation-heavy sciences, and debates around digital realism. What this subject inherits from them is not one doctrine but a landscape of distinctions: exact versus approximate solution, tractable versus intractable prediction, simulation versus explanation, and representational fidelity versus ontological identity. Those distinctions are exactly what a replacement ontology must keep in view.
+
+A precise version of the same pressure appears in Turing-complete dynamical systems. Suppose a formal model has a state space $\Gamma$, an evolution map $\Phi_t$, a computable encoding $E(M,w)\in\Gamma$ of a Turing machine $M$ with input $w$, and a target open set $O\subset\Gamma$. If the construction makes
+$$
+\exists t\ge 0:\Phi_t(E(M,w))\in O
+\quad\Longleftrightarrow\quad
+M(w)\ \text{halts},
+$$
+then no general algorithm can decide that reachability question for every encoded input. The retained lesson is methodological rather than ontological: a lawful deterministic model may contain questions that outrun algorithmic decision, but that does not make the physical substrate identical to computation or turn computability limits into the substance of the world.
 
 #### Core Commitments
 

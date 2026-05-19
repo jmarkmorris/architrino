@@ -172,7 +172,7 @@ In the Standard Model, mass arises via the **Higgs Mechanism**: particles acquir
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Higgs-sector comparison is an effective matching problem, not yet a derived replacement. The working expectation is that Standard Model mass parameters and Yukawa couplings would be reinterpreted as effective summaries of assembly geometry, shielding, and Noether-Sea response. The benchmark is a neutral scalar-compatible resonance near $125$ GeV with signal-strength normalization near the Standard Model expectation. Exact date-stamped masses, uncertainties, and signal-strength entries belong in validation and parameter ledgers; modeling the resonance as a collective medium excitation is a theorem target, not an established result.
 
-For the electroweak medium interpretation behind this replacement, see [Emergence of U(1)/SU(2)](../interactions/gauge-structure-emergence.md).
+For the electroweak medium interpretation behind this replacement, see [Gauge Structure Emergence](../interactions/gauge-structure-emergence.md).
 
 ### Higgs and Yukawa Matching Residual
 

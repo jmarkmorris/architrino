@@ -44,7 +44,7 @@
     },
     {
       "id": "emergence_of_u_1_su_2",
-      "label": "Emergence of U(1)/SU(2)",
+      "label": "Gauge Structure Emergence",
       "radius": 2.688,
       "color": "#3a5f9f",
       "position": [
@@ -55,7 +55,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Emergence of U(1)/SU(2)",
+      "labelTitle": "Gauge Structure Emergence",
       "labelBadge": "doc",
       "fixedPosition": true
     },
