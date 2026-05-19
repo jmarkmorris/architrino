@@ -63,17 +63,17 @@ Standard Model “generations” are interpreted as **excitation states** of the
   - All three binaries assembled: [H, M, L].  
   - Fully shielded H core.
 
-- **Gen‑II (first excitation)**  
-  - Only [H, M] assembled coherently.  
-  - L‑binary is **unassembled** (or transient): the outer shield is absent, exposing more of the H/M structure.
+- **Gen‑II (first excitation)**
+  - [H, M] remain coherently assembled as shielding support.
+  - L‑tier support is depleted, unassembled, or transient on the branch lifetime window, exposing more of the H/M structure.
 
-- **Gen‑III (second excitation)**  
-  - Only [H] assembled.  
-  - M and L cannot maintain coherent orbits at that energy; the H self‑hit core is effectively naked.
+- **Gen‑III (second excitation)**
+  - H remains coherently assembled as shielding support.
+  - M and L support are depleted on the branch lifetime window; the H self-hit core is effectively naked.
 
-We treat these as **different assembly states**, not dissociation products in time. Heavier generations require energy input to form and relax back via W/Z/$\gamma$/$\nu$ emission.
+We treat these as **different assembly states**, not ordinary dissociation products in time. Heavier generations require energy input to form and relax back via W/Z/$\gamma$/$\nu$ emission, but the depletion signal still has to propagate to the weakly bound axial layer through causal wakes and relocking cycles before the branch opens its reaction corridor.
 
-In this section, color is defined on **Gen‑I** Noether cores; higher generations inherit the same color structure via their remaining axes (H only, or H+M).
+In this section, color is defined on the ordered axial frame $\{D_H,D_M,D_L\}$, not on the count of shielding tiers that remain coherent. Higher generations inherit the same color triplet through this metastable H/M/L axial record even when one or more shielding tiers are depleted. This separation is required because top and bottom quarks must remain color triplets while carrying Generation-III mass and lifetime behavior.
 
 
 
@@ -256,11 +256,17 @@ We must not over‑predict.
 - If **both** families were independently stable and long‑lived for the same down‑flavor, we’d have extra down‑like quarks beyond d/s/b. That is not observed.
 - Therefore, the dynamics must:
 
-  1. Select one family per flavor (e.g. d uses Family II, s uses Family I), or  
+  1. Select exactly one family for each realized down-type branch over a declared stability window, or
   2. Make one family metastable/short‑lived only at high energies, or  
   3. Contextually select families inside hadrons (baryon environment determines which pattern survives).
 
-### Rigorous low-energy selection criterion
+The shared branch-selection rule is therefore:
+$$
+F_\star(q,\mathcal{B})\in\{I,II\},\qquad q\in\{d,s,b\},
+$$
+where $\mathcal{B}$ denotes the local branch context: generation tier, hadron boundary conditions, effective forcing window, and Noether-Sea environment. Once $F_\star$ is selected, its three H/M/L permutations form the red/green/blue triplet for that down-type quark. The other family is a competing branch sector, not an additional observed species.
+
+### Rigorous low-energy branch-selection criterion
 
 Fix one down flavor and let $\Omega_I,\Omega_{II}$ be the Family I/II constrained sectors of the full 9-axis baryon network phase space (after quotienting axis-label gauge redundancy).
 
@@ -459,7 +465,7 @@ In tri‑binary geometry:
 
   - Quark 1 (u): exceptional on H → $|u_H\rangle$  
   - Quark 2 (u): exceptional on M → $|u_M\rangle$  
-  - Quark 3 (d): exceptional on L → $|d_L\rangle$
+  - Quark 3 (d): exceptional on L within the selected down-type family $F_\star$ → $|d_L;F_\star\rangle$
 
 At large distances, axis‑dependent multipoles from each regime cancel:
 
@@ -482,7 +488,7 @@ Heuristic:
 
 We will exploit:
 
-- Down‑quark Family I vs II patterns,  
+- the selected down‑quark Family-I or Family-II sector,
 - Axis‑overlap geometry (L‑L, L‑M interactions),  
 
 to derive nucleon–nucleon potentials and binding energies in the nuclear section. Here we just note:

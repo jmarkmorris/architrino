@@ -119,7 +119,7 @@ Apparent inertial mass is expected to arise from a connected stack of effects:
   $$
   m_{\text{apparent}}c_{\text{eff}}^2 \sim \zeta(A)\,E_{\text{internal}}(A).
   $$
-- **Generational Hierarchy:** Heavier generations (Gen II, Gen III) have **reduced shielding** because outer binaries are missing. With fewer layers, more of the inner high-energy core is exposed, increasing $\zeta$ and thus the apparent mass.
+- **Generational Hierarchy:** Heavier generations (Gen II, Gen III) have **reduced shielding** because outer or middle shielding tiers are depleted on the branch lifetime window. With fewer coherent support layers, more of the inner high-energy core is exposed, increasing $\zeta$ and thus the apparent mass. This is a shielding-coherence statement, not a deletion of the H/M/L axial frame that carries color and electroweak bookkeeping.
 
 #### Medium-Dressed Inertial Response
 - **The Medium:** The Noether Sea is not empty space; it is a dynamic population of neutral tri-binary assemblies. Moving or accelerating an assembly changes how its internal causal ledger closes relative to this medium.
@@ -170,7 +170,7 @@ The mass thesis must keep the particle categories separate. The photon channel i
 ### Comparison to Standard Model
 In the Standard Model, mass arises via the **Higgs Mechanism**: particles acquire mass by coupling to a background Higgs field (a scalar condensate with vacuum expectation value $v \approx 246$ GeV).
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Higgs-sector comparison is an effective matching problem, not yet a derived replacement. The working expectation is that Standard Model mass parameters and Yukawa couplings would be reinterpreted as effective summaries of assembly geometry, shielding, and Noether-Sea response. The ATLAS discovery benchmark is a neutral scalar-compatible resonance at $126.0\pm0.4\text{ (stat)}\pm0.4\text{ (sys)}\,\mathrm{GeV}$ with signal-strength normalization near the Standard Model expectation. Modeling that resonance as a collective medium excitation is a theorem target, not an established result.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Higgs-sector comparison is an effective matching problem, not yet a derived replacement. The working expectation is that Standard Model mass parameters and Yukawa couplings would be reinterpreted as effective summaries of assembly geometry, shielding, and Noether-Sea response. The benchmark is a neutral scalar-compatible resonance near $125$ GeV with signal-strength normalization near the Standard Model expectation. Exact date-stamped masses, uncertainties, and signal-strength entries belong in validation and parameter ledgers; modeling the resonance as a collective medium excitation is a theorem target, not an established result.
 
 For the electroweak medium interpretation behind this replacement, see [Emergence of U(1)/SU(2)](../interactions/gauge-structure-emergence.md).
 
@@ -217,29 +217,31 @@ $$
 
 Here $\mathfrak{F}_{H}$ is the set of fermion channels with measured Higgs-coupling information, $M_H^{\mathrm{obs}}$ is the observed scalar resonance near $125$ GeV, and $M_H^{\mathrm{breath}}(\theta)$ is the predicted radial Noether-Sea breathing-mode mass on the same branch. The benchmark fails if Yukawa-like numbers are inserted as independent per-particle constants, if $v_{\mathrm{EW}}^{\mathrm{eff}}$ is fitted separately from the gauge-sector normalization, or if the $125$ GeV scalar match uses a different Noether-Sea record than the inertial-mass map.
 
-The ATLAS discovery surface makes the residual sharper than a single mass entry. A candidate scalar branch must recover the mass, rate normalization, channel pattern, and absence of broad additional scalar signals in the excluded windows:
+The date-stamped LHC scalar validation surface makes the residual sharper than a single mass entry. Let $M_H^{\mathrm{ledger}}$, $\sigma_H^{\mathrm{ledger}}$, $\mu_H^{\mathrm{ledger}}$, and $\sigma_{\mu_H}^{\mathrm{ledger}}$ denote the current parameter-ledger entries for the scalar mass and production-and-branching normalization, with ATLAS and CMS treated as independent benchmark rows; the mass entry is expected to remain near $125$ GeV. A candidate scalar branch must recover the mass, rate normalization, channel pattern, and absence of broad additional scalar signals in the excluded windows:
 $$
-\mathcal{R}_{\mathrm{ATLAS}\text{-}H}(\theta)
+\mathcal{R}_{\mathrm{Higgs\,validation}}(\theta)
 =
 \left[
 \frac{
-M_H^{\mathrm{breath}}(\theta)-126.0\,\mathrm{GeV}
+M_H^{\mathrm{breath}}(\theta)-M_H^{\mathrm{ledger}}
 }{
-\sqrt{0.4^2+0.4^2}\,\mathrm{GeV}
+\sigma_H^{\mathrm{ledger}}
 }
 \right]^2
 +
 \left[
 \frac{
-\mu_H^{\mathrm{eff}}(\theta)-1.4
-}{0.3}
+\mu_H^{\mathrm{eff}}(\theta)-\mu_H^{\mathrm{ledger}}
+}{
+\sigma_{\mu_H}^{\mathrm{ledger}}
+}
 \right]^2
 +
 \sum_{c\in\{ZZ^{(*)}4\ell,\gamma\gamma,WW^{(*)}\ell\nu\ell\nu\}}
 \left[
 \frac{
-Z_c^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)-Z_c^{\mathrm{ATLAS}}
-}{\sigma_{Z_c}}
+Z_c^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)-Z_c^{\mathrm{ledger}}
+}{\sigma_{Z_c}^{\mathrm{ledger}}}
 \right]^2
 +
 \mathcal{R}_{\mathrm{excluded\,scalar}}(\theta).
@@ -408,6 +410,6 @@ The canonical chapter should carry this interface but not the detailed simulatio
 ### Potential Falsifications
 - **If $\zeta(A)E_{\text{internal}}(A)$ cannot reproduce $m(A)c_{\text{eff}}^2$ after the response tensor is fixed:** The shielding-based mass map is wrong.
 - **If the medium response behaves like dissipative drag in stable atoms:** The stability condition fails; the model is incompatible with chemistry.
-- **If generational masses don't scale with shielding:** The "missing binary" explanation for the hierarchy is wrong.
+- **If generational masses do not scale with shielding coherence:** The shielding-depletion explanation for the hierarchy is wrong.
 
 ---

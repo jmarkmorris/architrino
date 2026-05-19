@@ -25,6 +25,8 @@ This file remains the control surface for the workstream. No sibling detailed pr
 
 [openalex-baseline.md](openalex-baseline.md) records the May 18, 2026 source-mining baseline for this rank-1 workstream. The useful external backbone is functional differential equation theory for history-space well-posedness, state-dependent delay smoothness for active-root charts, direct-action electrodynamics for action-level conservation accounting, and Lorentz/PPN/preferred-frame tests for the bridge acceptance surface. The immediate corpus promotion from that pass is the state-dependent delay compatibility condition now added to [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md).
 
+The May 19, 2026 completion pass exhausted the active OpenAlex queue rows and sharpened three local proof burdens. Branch charts evolve on the compatibility manifold $\mathcal{X}_{\mathfrak{B}}=\{\phi:\dot{\phi}(0)=\mathcal{G}_{\mathfrak{B}}(\phi)\}$ rather than on arbitrary retained histories. Radiation/reaction claims must close the provenance residual $\mathcal{R}^{(\eta)}_{\mathrm{prov}}(W)$ using the same branch rows and Noether wake-history charge as the force residual. The Lorentz/GR bridge must report separated moving-assembly, two-way anisotropy, PPN, SME-style leakage, and high-energy channel residuals rather than collapsing them into one qualitative Lorentz-recovery statement.
+
 ## Promotion Map
 
 | Task | Detailed source | Primary promotion target | Promotion gate |

@@ -210,7 +210,13 @@ $$
 \epsilon_{S,\mathrm{leak}},
 $$
 
-with $\|\cdot\|_{S,\mathrm{leak}}$ declared by the sector packet. The leakage norm must include every discarded channel that can change the sector benchmark: anisotropic scalar residue for mass-facing exposure, longitudinal residue for vector exposure, gauge-breaking residue for gauge-facing exposure, and hidden-sector remainder for quotient-sensitive sectors.
+with $\|\cdot\|_{S,\mathrm{leak}}$ declared by the sector packet. The leakage norm must include every discarded channel that can change the sector benchmark: anisotropic scalar residue for mass-facing exposure, longitudinal residue for vector exposure, gauge-breaking residue for gauge-facing exposure, regional boundary or gluing residue, and hidden-sector remainder for quotient-sensitive sectors.
+
+When smooth symmetry methods apply, sector-visible coordinates may be expressed as invariant functions $I_\alpha(\Pi_S\mathcal{L}_A)$. For a declared infinitesimal generator $X_\xi$, the local invariant test is
+$$
+X_\xi^{(k)}I_\alpha=0
+$$
+on the retained jet or finite-order ledger variables used by the sector packet. This is a derivation workflow for invariant exposure variables, not a replacement for branch-ledger provenance.
 
 The quotient condition is that the sector benchmark-recovery map $\mathcal{B}_S:\mathfrak{V}_S\to\mathfrak{B}_S$ factors through $Q_S$ up to declared tolerance:
 
@@ -225,7 +231,7 @@ d_{\mathfrak{B}_S}\!\left(
 \epsilon_{S,Q}.
 $$
 
-For every declared gauge or relabeling action $g\in G_S$, the quotient must be invariant on the exposed ledger:
+For every declared gauge, relabeling, residual-copy, or boundary-preserving action $g\in G_S$, the quotient must be invariant on the exposed ledger:
 
 $$
 d_{\mathfrak{V}_S/\!\sim_S}\!\left(

@@ -3,9 +3,9 @@
 This chapter provides a conditional closure chain from the emergent-metric weak-field map to testable gravitational-wave observables. It is one branch of the observational closure stack summarized in [GR Phenomenology](./gr-phenomenology.md) and constrained by [Constraint Ledger](../validation/constraint-ledger.md).
 
 Interface chapters:
-- Effective metric map: [emergent-metric](./emergent-metric.md)
-- PPN closure and refractive weak field: [ppn-parameters](./ppn-parameters.md)
-- Phenomenology summary: [gr-phenomenology](./gr-phenomenology.md)
+- Effective metric map: [Emergent Metric](./emergent-metric.md)
+- PPN closure and refractive weak field: [PPN Parameters](./ppn-parameters.md)
+- Phenomenology summary: [General Relativity Observables](./gr-phenomenology.md)
 
 ## Weak-Field Setup
 
@@ -124,7 +124,7 @@ with the associated beam variance, chromaticity residual, and packet time-dilati
 
 ## Polarization Content
 
-In the repo-wide spin taxonomy, this is the effective **spin-2 / tensor** channel: the wave is not a scalar breathing mode or a single-axis vector mode, but a transverse-traceless deformation carrying quadrupolar shape data.
+In the project spin taxonomy, this is the effective **spin-2 / tensor** channel: the wave is not a scalar breathing mode or a single-axis vector mode, but a transverse-traceless deformation carrying quadrupolar shape data.
 
 **Conditional Lemma 2 (two-mode TT closure in isotropic limit).**
 If the low-energy constitutive response is parity-even and isotropic, residual gauge constraints leave exactly two propagating tensor modes:

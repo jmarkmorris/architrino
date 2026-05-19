@@ -11,20 +11,14 @@ Queried on May 18, 2026. This baseline supports the shared exposure theorem by r
 
 ## Review Set
 
-| OpenAlex work | OA cites | Corpus use |
-| --- | ---: | --- |
-| [Noether, invariant variational problems](https://openalex.org/W4237111979) | 490 | Conservation and symmetry source for deciding which ledger entries are physical. |
-| [Marsden-Weinstein symplectic reduction](https://openalex.org/W2047062138) | 1458 | Direct comparator for quotienting by symmetry while preserving observables. |
-| [Faddeev-Popov Yang-Mills gauge fixing](https://openalex.org/W2026169595) | 1937 | Gauge-redundancy pressure for sector quotients. |
-| [Gribov non-Abelian gauge quantization](https://openalex.org/W1514487823) | 1770 | Warning that quotient choices can carry copy/branch defects. |
-| [Olver, Lie groups and differential equations](https://openalex.org/W1573927207) | 6121 | Practical symmetry-method reference for deriving invariant sector variables. |
-| [Quasilocal Yang-Mills degrees of freedom](https://openalex.org/W2980045264) | 32 | Modern local-observable comparator for gauge-sector exposure. |
+All selected rows in this review set were mined on May 19, 2026 and moved to the completed-mining ledger in [chapter-authoring](../chapter-authoring/chapter-authoring.md#mining-completed). The retained synthesis is below.
 
 ## Source Signals
 
 - Projection and quotient are separate operations. The theorem should first choose the sector-retained ledger $\Pi_S\mathcal{L}_A$, then quotient only declared redundancies.
 - Gauge-copy and reduction literature warns against hiding physical residue inside a quotient.
 - Noether and Lie-group sources reinforce that exposure maps should preserve the benchmark-bearing invariant, not merely simplify notation.
+- Regional exposure can carry boundary or gluing residue. That residue belongs in the leakage diagnostic; it is not a reason to identify benchmark-distinct sector records.
 
 ## Corpus Advancement Target
 

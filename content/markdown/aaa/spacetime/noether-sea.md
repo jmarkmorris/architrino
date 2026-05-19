@@ -569,7 +569,7 @@ p_{\sigma,X}
 \mathcal R_{\mathrm{coh},X}.
 $$
 
-Here $\Sigma_{\mathrm{sea},X}^{ab}$ is the trace-free anisotropic medium-response tensor seen by channel $X$ and vanishes in the isotropic weak limit. In the segmented fixture this is the computable update
+Here $\Sigma_{\mathrm{sea},X}^{ab}$ is the trace-free anisotropic medium-response tensor seen by channel $X$ and vanishes in the isotropic weak limit. In a segmented calculation this is the computable update
 
 $$
 \alpha_{\mathrm{prop},X,j}

@@ -23,46 +23,19 @@ Citation counts below are OpenAlex `cited_by_count` values at query time. They a
 
 ### State-Dependent Delay Baseline
 
-| OpenAlex work | Publication | Year | Cited by | Relevance to $\mathbb{A}\mathbb{A}\mathbb{A}$ |
-| --- | --- | ---: | ---: | --- |
-| [W1535375949](https://openalex.org/W1535375949) | Hartung, Krisztin, Walther, and Wu, state-dependent delay theory and applications chapter | 2006 | 312 | Closest broad survey baseline for treating active causal roots as history-dependent functional objects rather than one-time algebraic solves. |
-| [W1988906184](https://openalex.org/W1988906184) | Walther, solution manifold and $C^1$ smoothness for state-dependent delay equations | 2003 | 166 | Direct support for the branch-chart requirement that root offsets and Jacobian data vary smoothly on a retained history tube. |
-| [W2149899468](https://openalex.org/W2149899468) | Cooke and Huang, linearization for state-dependent delay equations | 1996 | 110 | Supports separating equilibrium/periodic-branch stability from the raw presence of a state-dependent delay. |
-| [W2021908089](https://openalex.org/W2021908089) | Arino, Hadeler, and Hbid, periodic solutions for state-dependent delay equations | 1998 | 80 | Baseline for treating periodic branch closure as a functional-dynamical result, not as a plotted recurrence. |
-| [W4243174912](https://openalex.org/W4243174912) | Hartung, linearized stability in periodic functional differential equations with state-dependent delays | 2004 | 71 | Supports the current Tier 1 insistence on Floquet and monodromy diagnostics after one-period residuals pass. |
+All selected rows in this lane were mined on May 19, 2026 and moved to the completed-mining ledger in [chapter-authoring](../chapter-authoring/chapter-authoring.md#mining-completed). The retained synthesis is below.
 
 ### Numerical And Regularization Baseline
 
-| OpenAlex work | Publication | Year | Cited by | Relevance to $\mathbb{A}\mathbb{A}\mathbb{A}$ |
-| --- | --- | ---: | ---: | --- |
-| [W1550341792](https://openalex.org/W1550341792) | Bellen and Zennaro, numerical methods for delay differential equations | 2003 | 972 | General numerical baseline for interpolation, history mesh, discontinuity handling, and convergence discipline. |
-| [W2040890176](https://openalex.org/W2040890176) | Guglielmi and Hairer, Radau IIA methods for stiff delay differential equations | 2001 | 130 | Relevant to stiff finite-$\eta$ continuations and cross-integrator checks. |
-| [W1996995731](https://openalex.org/W1996995731) | Shampine, residual-control solvers for ODEs and DDEs | 2004 | 110 | Supports residual-controlled integration as an implementation baseline, but $\mathbb{A}\mathbb{A}\mathbb{A}$ promotion still requires root-ledger and provenance artifacts. |
-| [W2070252545](https://openalex.org/W2070252545) | Bellen, Maset, Zennaro, and Guglielmi, causal-delay functional differential equation numerics survey | 2009 | 55 | Supports the existing convergence split into temporal, history, spatial, cross-integrator, and regulator rows. |
-| [W2006380387](https://openalex.org/W2006380387) | Feldstein and Neves, high-order methods for state-dependent delay equations with nonsmooth solutions | 1984 | 53 | The key signal is that high-order accuracy requires locating propagated derivative-jump points, not merely shrinking $\Delta t$. |
+All selected rows in this lane were mined on May 19, 2026 and moved to the completed-mining ledger in [chapter-authoring](../chapter-authoring/chapter-authoring.md#mining-completed). The retained synthesis is below.
 
 ### Neutral And Transition-Layer Baseline
 
-| OpenAlex work | Publication | Year | Cited by | Relevance to $\mathbb{A}\mathbb{A}\mathbb{A}$ |
-| --- | --- | ---: | ---: | --- |
-| [W1987026304](https://openalex.org/W1987026304) | Bellen and Guglielmi, neutral state-dependent delay solution methods | 2008 | 36 | Important because the paper explicitly names two-body classical electrodynamics as a source of neutral state-dependent delay problems. |
-| [W1973333950](https://openalex.org/W1973333950) | Fusco and Guglielmi, regularization of discontinuous equations for neutral state-dependent delay systems | 2011 | 27 | Strongest direct baseline for continuation through derivative-discontinuity points by declaring the regularization and limiting branch behavior. |
-| [W1965225890](https://openalex.org/W1965225890) | Guglielmi and Hairer, asymptotic expansions for regularized state-dependent neutral delay equations | 2012 | 14 | Supplies the useful warning that a singularly perturbed regularization can converge to different classical or weak branch behavior depending on transition dynamics. |
-| [W2126019919](https://openalex.org/W2126019919) | Guglielmi and Hairer, numerical approaches for state-dependent neutral delay equations with discontinuities | 2011 | 13 | Supports making each fold-layer or separator transition a declared finite-$\eta$ route, not an unreported solver event. |
+All selected rows in this lane were mined on May 19, 2026 and moved to the completed-mining ledger in [chapter-authoring](../chapter-authoring/chapter-authoring.md#mining-completed). The retained synthesis is below.
 
 ### Shared-Reference Roots
 
-The shared-reference aggregation over the top state-dependent delay works found a concentrated core of foundational sources. The $\mathbb{A}\mathbb{A}\mathbb{A}$-relevant ones are:
-
-| OpenAlex work | Publication | Year | Cited by | Relevance to $\mathbb{A}\mathbb{A}\mathbb{A}$ |
-| --- | --- | ---: | ---: | --- |
-| [W1607633954](https://openalex.org/W1607633954) | Hale and Verduyn Lunel, introduction to functional differential equations | 1993 | 5673 | General history-space and semigroup baseline. |
-| [W1937028141](https://openalex.org/W1937028141) | Diekmann, van Gils, Verduyn Lunel, and Walther, delay-equation analysis monograph | 1995 | 916 | Broad nonlinear/history-space reference baseline. |
-| [W1973972204](https://openalex.org/W1973972204) | R. D. Driver, one-dimensional two-body classical electrodynamics | 1963 | 133 | Closest historical evidence that finite-propagation two-body electrodynamics naturally produces state-dependent delay dynamics requiring initial histories. |
-| [W14240986](https://openalex.org/W14240986) | R. D. Driver, neutral functional-differential system from a two-body electrodynamics problem | 1963 | 92 | Confirms that derivative-sensitive delayed equations are not an artificial numerical corner case for the current priority. |
-| [W2759818069](https://openalex.org/W2759818069) | Mallet-Paret and Nussbaum, boundary-layer phenomena for state-dependent time lags I | 1992 | 120 | Baseline for treating transition layers as real mathematical objects rather than solver noise. |
-| [W1786847840](https://openalex.org/W1786847840) | Mallet-Paret and Nussbaum, boundary-layer phenomena II | 1996 | 51 | Same transition-layer baseline, useful for asymptotic discipline. |
-| [W2063052140](https://openalex.org/W2063052140) | Mallet-Paret and Nussbaum, boundary-layer phenomena III | 2003 | 49 | Same transition-layer baseline, useful for deeper follow-up if fold-layer asymptotics become the live bottleneck. |
+All selected rows in this lane were mined on May 19, 2026 and moved to the completed-mining ledger in [chapter-authoring](../chapter-authoring/chapter-authoring.md#mining-completed). The retained synthesis is below.
 
 ## Source Signals And Outcomes
 
@@ -96,6 +69,8 @@ $$
 I_*,
 \mathcal{L}_{\mathrm{root}}|_{I_*},
 \mathsf{status}_{\eta,*},
+\mathsf{regularization}_{\eta,*},
+\mathsf{window\_scale}_{\eta,*},
 \mathcal{Y}_{\eta,*},
 \mathcal{E}_{\mathrm{trans},*}
 \big),
@@ -120,13 +95,36 @@ and every root-ledger row in $I_*$ keeps source identity, branch class, and stat
 
 This is a simulation-level criterion, not an analytic theorem. Its value is that it prevents the current $A_0$ corrected branch-equation attempt from treating a fold-layer, separator, or derivative-sensitive transition as a successful one-period correction unless the transition itself survives the regulator ladder.
 
+The numerical-methods mining adds a history-interpolation diagnostic for delayed source states:
+$$
+E_{\mathrm{hist}}(S_\eta;\Delta h,\Delta h/2;W)
+=
+\frac{
+\left(\sum_{m\in W}\|I_{\Delta h/2}^qS_\eta(t_{\mathrm{emit},m})-I_{\Delta h}^qS_\eta(t_{\mathrm{emit},m})\|^2w_m\right)^{1/2}
+}{
+\left(\sum_{m\in W}\|I_{\Delta h/2}^qS_\eta(t_{\mathrm{emit},m})\|^2w_m\right)^{1/2}+\varepsilon_0
+}.
+$$
+For nonsmooth state-dependent delay windows, add a jump/transition ledger
+$$
+\mathcal{D}_{\mathrm{jump}}
+=
+\{(\xi_a,k_a,\ell_a,\xi_{\pi(a)},R_{\mathrm{jump},a})\},
+\qquad
+R_{\mathrm{jump},a}
+=
+\frac{|t_{0,\ell_a}(\xi_a)-\xi_{\pi(a)}|}
+{\max(\Delta t,\Delta h,\eta/c_f,\varepsilon_0)}.
+$$
+Missing interpolation or jump rows route to `artifact_incomplete`; unstable branch or jump identity routes to `branch_root_instability`; unresolved interpolation convergence routes to `mesh_nonconvergence`.
+
 ## Initial $\mathbb{A}\mathbb{A}\mathbb{A}$ Linkages
 
 | Target | Linkage | Status |
 | --- | --- | --- |
-| [well-posedness-and-regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md) | Add finite-$\eta$ branch-transition discipline for fold-layer, separator, and active-root status changes. | Edited now. |
-| [convergence-tests](../../../content/markdown/aaa/validation/simulations/convergence-tests.md) | Existing convergence rows already match the OpenAlex numerical baseline; a future edit may add `transition` rows if this diagnostic becomes machine-output. | No edit needed now. |
-| [run-protocols](../../../content/markdown/aaa/validation/simulations/run-protocols.md) | Existing Tier 0 / Tier 1 packet already names root ledger, branch residuals, convergence table, regulator ladder, failure report, and hashes. | No edit needed now. |
+| [well-posedness-and-regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md) | Add finite-$\eta$ branch-transition discipline for fold-layer, separator, active-root status changes, regularization routes, window scales, and jump-location rows. | Edited now. |
+| [convergence-tests](../../../content/markdown/aaa/validation/simulations/convergence-tests.md) | Add declared history interpolation, jump residuals, cross-integrator branch-identity discipline, and transition-window convergence rows. | Edited now. |
+| [run-protocols](../../../content/markdown/aaa/validation/simulations/run-protocols.md) | Add `history_interpolation.json`, conditional `transition_records.json`, and stricter cross-integrator report contents to the Tier 1 packet. | Edited now. |
 | [collinear-breather](../../../content/markdown/aaa/proof-programs/collinear-breather.md) | Fold-layer and branch-chart material already has the right proof vocabulary; use this OpenAlex baseline if a simulation packet starts consuming those rows. | Follow-up only if a run is selected. |
 | [master-equation-closure baseline](../master-equation-closure/openalex-baseline.md) | Rank-1 baseline already captured state-dependent delay compatibility. This simulations baseline is the numerical/regularization counterpart. | Cross-workstream linkage established. |
 

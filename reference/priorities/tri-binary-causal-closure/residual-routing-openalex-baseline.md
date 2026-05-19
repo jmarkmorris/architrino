@@ -11,14 +11,7 @@ Queried on May 18, 2026. This baseline supports the residual-routing theorem by 
 
 ## Review Set
 
-| OpenAlex work | OA cites | Corpus use |
-| --- | ---: | --- |
-| [Noether, invariant variational problems](https://openalex.org/W4237111979) | 490 | Conservation source for ledger rows. |
-| [Cutkosky, discontinuities of Feynman amplitudes](https://openalex.org/W2056443041) | 1194 | Comparator for turning hidden internal structure into explicit channel cuts and output states. |
-| [PYTHIA 8.2 event generator](https://openalex.org/W2125102738) | 5175 | Practical event-record model for outgoing inventories, conservation, and provenance. |
-| [PYTHIA 8.3 guide](https://openalex.org/W4308821586) | 794 | Updated event-generation reference for multi-stage event structure. |
-| [SHERPA event generation](https://openalex.org/W2016801295) | 2024 | Alternate event-generator comparator for channel routing. |
-| [Recent developments in Geant4](https://openalex.org/W1990869665) | 3982 | Detector and material-routing comparator. |
+All selected rows in this review set were mined on May 19, 2026 and moved to the completed-mining ledger in [chapter-authoring](../chapter-authoring/chapter-authoring.md#mining-completed). The retained pressure is now owned by the event-ledger theorem packet.
 
 ## Source Signals
 

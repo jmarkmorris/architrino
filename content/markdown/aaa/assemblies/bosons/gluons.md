@@ -66,14 +66,16 @@ A gluon is a propagating disturbance in the Noether-Sea assembly network that re
 
 Why are there 8 gluons?
 
-- **The permutations:** we have 3 color basis states, equivalently the three exceptional-axis sectors $(H,M,L)$. A gluon represents a transition between them, such as $R\bar{G}$ or $B\bar{R}$.
+- **The basis:** we have 3 color basis states, equivalently the three exceptional-axis sectors $(H,M,L)$.
 - **The matrix:** there are $3 \times 3 = 9$ possible couplings, corresponding to $U(3)$ before the singlet is removed.
+- **Off-diagonal color-changing modes:** six generators move or mix exceptionality between distinct axis sectors: $(HM),(HL),(ML)$, each with two Hermitian components. These are the color-changing corridor modes analogous to entries such as $R\bar{G}$ or $B\bar{R}$.
+- **Diagonal traceless modes:** two additional generators are neutral in net color change but still act nontrivially on relative H/M/L color phase and weighting. They are the diagonal traceless directions $H_1$ and $H_2$ described in [Color Charge and SU(3)](../fermions/color-charge-su3.md#generator-basis-from-axis-operations).
 - **The singlet removal:** the equal superposition
   $$
   \frac{R\bar{R}+G\bar{G}+B\bar{B}}{\sqrt{3}}
   $$
   is totally symmetric. It carries no net color change and does not interact as an open color mode.
-- **The octet:** removing this one singlet leaves 8 physical traceless modes, the familiar gluon octet of QCD.
+- **The octet:** removing this one singlet leaves 8 traceless modes: six off-diagonal color-changing generators plus two diagonal traceless generators, the familiar gluon octet of QCD.
 
 ### Gluon Spin (Vector Nature)
 
@@ -91,13 +93,13 @@ Quarks are confined because an open color corridor stores energy in the surround
 
 ### Energy Density Calculation
 
-- **Noether-Sea alignment scale:** the confinement scaffold uses a candidate coherence length $L_{vac}$, provisionally of order $1\;\mathrm{fm}$, rather than a discretization scale of the Euclidean void.
-- **Cost of ordering:** forcing a line of ambient Noether-Sea cores to align with an open color corridor costs an energy $E_{vac}$ per coherence length.
+- **Noether-Sea coherence scale:** the confinement scaffold uses a candidate coherence length $L_{\mathrm{coh}}$, provisionally of order $1\;\mathrm{fm}$, rather than a discretization scale of the Euclidean void.
+- **Cost of coherent ordering:** forcing a line of ambient Noether-Sea cores to align with an open color corridor costs an energy $E_{\mathrm{coh}}$ per coherence length.
 - **String tension ($\sigma$):**
   $$
-  \sigma \sim \frac{E_{vac}}{L_{vac}}.
+  \sigma \sim \frac{E_{\mathrm{coh}}}{L_{\mathrm{coh}}}.
   $$
-  If $E_{vac}\sim 1\;\mathrm{GeV}$ and $L_{vac}\sim 1\;\mathrm{fm}$, then
+  If $E_{\mathrm{coh}}\sim 1\;\mathrm{GeV}$ and $L_{\mathrm{coh}}\sim 1\;\mathrm{fm}$, then
   $$
   \sigma \sim 1\;\mathrm{GeV/fm}.
   $$

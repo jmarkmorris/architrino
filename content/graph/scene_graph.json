@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 496,
+      "nodes": 497,
       "edges": 1239,
       "scenes": 320,
       "markdownIndexes": 0,
-      "markdownDocs": 176,
+      "markdownDocs": 177,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2540,6 +2540,12 @@
       "id": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
       "name": "Crisis in Physics",
       "path": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+      "name": "Geometry and Ontology",
+      "path": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -6715,6 +6721,15 @@
       "name": "Crisis in Physics",
       "path": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+      "name": "Geometry and Ontology",
+      "path": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
       "implicit": false
     },
     {

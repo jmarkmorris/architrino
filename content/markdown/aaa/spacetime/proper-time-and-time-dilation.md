@@ -14,7 +14,7 @@ that reproduces, in the appropriate regime,
 $$
 \frac{d\tau}{dt} \approx \sqrt{1+\frac{2\Phi_N}{c_0^2} - \frac{v^2}{c_0^2}}
 $$
-and generalizes to strong‑field / high‑velocity conditions.
+and generalizes to strong-field and high-velocity conditions.
 
 Notation convention used in this chapter: $n(\mathbf{x})\equiv \rho_{\text{core}}(\mathbf{x})/\rho_{\text{core},0}$ is the canonical medium-density variable.
 The Noether-Sea delay factor is $\chi_{\text{sea}}(\mathbf{x})\equiv c_f/c_{\text{eff}}(\mathbf{x})$; use it for refractive-delay language so $n$ remains reserved for density.
@@ -26,27 +26,27 @@ The clock-law derivation imports the [transverse causal budget lemma](../dynamic
 
 ### Absolute Time vs Proper Time
 
-- **Absolute time $t$** 
- - Fundamental evolution parameter of the architrino universe. 
- - Global, universal, non‑dynamical; used by the $\mathbb{U}_{\text{now}}$ universe-state perspective (simulation clock). 
- - All worldlines are parametrized directly by $t$.
+- **Absolute time $t$**
+  - Fundamental evolution parameter for the complete architrino dynamics.
+  - Global, universal, non-dynamical; used by the $\mathbb{U}_{\text{now}}$ universe-state perspective (simulation clock).
+  - All worldlines are parametrized directly by $t$.
 
-- **Proper time $\tau$** 
- - Time read by a **physical clock**: a bound tri‑binary assembly (e.g., atomic transition, binary oscillation) interacting with the Noether Sea. 
- - Encodes how many internal oscillation cycles occur per unit $dt$.
+- **Proper time $\tau$**
+  - Time read by a **physical clock**: a bound tri-binary assembly, such as an atomic transition or binary oscillation, interacting with the Noether Sea.
+  - Encodes how many internal oscillation cycles occur per unit $dt$.
 
 The fundamental claim is:
 
-> Time “dilation” is not a change in the rate of $t$; it is a change in how fast internal dynamics of assemblies proceed **relative to** $t$, due to motion and medium coupling.
+> Time dilation is not a change in the rate of $t$; it is a change in how fast internal dynamics of assemblies proceed **relative to** $t$, due to motion and medium coupling.
 
 ### Clocks as Dynamical Systems
 
 A clock is any assembly with a **stable, countable internal cycle**:
 
-- Minimal model: a tri‑binary Noether core where one binary (typically the middle) serves as the “pendulum.”
+- Minimal model: a tri-binary Noether core where one binary, typically the middle layer, supplies the counted cycle.
 - Base frequency $\omega_0$ (or period $T_0 = 2\pi/\omega_0$) is defined for:
- - Clock **at rest** in the absolute frame,
- - In a region of homogeneous Noether-Sea density $n=1$ and negligible external gradients.
+  - Clock **at rest** in the absolute frame.
+  - In a region of homogeneous Noether-Sea density $n=1$ and negligible external gradients.
 
 Proper time is then defined operationally as:
 $$

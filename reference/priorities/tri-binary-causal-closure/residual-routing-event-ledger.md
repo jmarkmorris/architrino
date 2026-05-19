@@ -131,6 +131,20 @@ $$
 
 For $E$, $\mathbf{p}$, and $\mathbf{J}$ this is ordinary scalar or vector balance. For $\mathrm{pol}$, $\mathrm{arch}$, and $\mathrm{path}$ it is equality in the relevant finite inventory or provenance ledger. For $\mathrm{med}$ and $\mathrm{rem}$ it states that the recorded Noether-Sea update and post-event remnant state equal the updates computed from the same residual route. A sector-local row may refine the contract, but it may not replace these shared rows or hide a residual in $\Delta q_r^{\mathrm{upd}}$.
 
+For proof bookkeeping, split the row set as
+$$
+\mathfrak{R}_S
+=
+\mathfrak{R}^{\mathrm{sym}}_S
+\cup
+\mathfrak{R}^{\mathrm{inventory}}_S
+\cup
+\mathfrak{R}^{\mathrm{state}}_S.
+$$
+The symmetry rows carry derived conservation obligations when the required action and symmetry map exist. Inventory rows carry polarity, architrino count, source identity, and path-history equality. State rows carry Noether-Sea updates, material records, detector hits, and remnant updates. Every row still satisfies $\Delta_r(\mathsf e)=0$, but the proof burden differs by row class.
+
+Event-generator records are useful only as ledger comparators: they motivate explicit identity, status, provenance, four-momentum, production or history, and reproducibility fields. Detector and material-routing comparators motivate hit/scoring rows, secondary-channel rows, material updates, and validation metadata. None of these software conventions is imported as substrate ontology.
+
 ## Required Contract
 
 | Field | Required content |
@@ -237,7 +251,7 @@ Each consumer packet should instantiate the same predicate factors instead of ad
 
 | Consumer event class | Residual input | Typical selected channels | Required local rows beyond the shared ledger | Promotion diagnostic |
 | --- | --- | --- | --- | --- |
-| Radiation | $\mathcal{R}_{\Theta}$ from driven assembly, causal-root data, local angular-momentum data, $\rho_{\text{core}}(\mathbf{x},t)$, and $\chi_{\text{sea}}(\mathbf{x},t)$ | Retuning, photon output, recoil, medium update, non-radiative remnant, reaction | Planar-mode gate data, photon provenance, polarization / angular-momentum handoff, benchmark radiation limit | Fail if photon output, recoil, remnant, or medium update is used as untracked loss. |
+| Radiation | $\mathcal{R}_{\Theta}$ from driven assembly, causal-root data, local angular-momentum data, $\rho_{\text{core}}(\mathbf{x},t)$, and $\chi_{\text{sea}}(\mathbf{x},t)$ | Retuning, photon output, recoil, medium update, non-radiative remnant, reaction | Planar-mode gate data, photon provenance, polarization / angular-momentum handoff, $\operatorname{GateC}_{\gamma}$, benchmark radiation limit | Fail if photon output, recoil, remnant, or medium update is used as untracked loss. |
 | Transport excitation | $\mathcal{R}_{\text{tr}}$ from medium response, reversible inertia, causal-wake strain, and local material state | Reversible retuning, bound excitation, dissipative heating, radiation, branch transition | Material state update, transport threshold, medium-carried momentum, retained excitation | Fail if ordinary dissipative drag is substituted for the mass or inertia mechanism. |
 | Reaction | Sector reaction residual from assembly inventory, weak or nuclear corridor data, and causal-wake provenance | Product assemblies, recoil, radiation, medium update, remnant, bound-state change | Charge / polarity rows, architrino inventory, Noether-core provenance, weak-corridor or nuclear-configuration rows | Fail if products appear without source inventory, path-history, or recoil accounting. |
 | Measurement record | Basin residual after transfer-operator or return-map evolution and apparatus coupling | Apparatus record, recoil, medium update, remnant branch, branch transition | Record stability, apparatus state, detector kernel provenance, no-signaling benchmark rows | Fail if an outcome label is assigned without a stable physical record and ledger closure. |

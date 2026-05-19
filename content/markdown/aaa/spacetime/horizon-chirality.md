@@ -55,7 +55,7 @@ So when this note isolates `pro/anti`, it is **not** doing so because the larger
 
 The matter sector then becomes the special case. In the current intuition, what we call ordinary matter may be the regime where pro-core and anti-core encounters act as a kind of geometric can-opener for one another, making fast reconfiguration channels available. In that reading, the standard word "annihilation" is too blunt. The deeper process is a **reaction** or **reconfiguration event** in which the coupled structures open, exchange, and re-express their content through new channels rather than vanishing into nothing.
 
-That broader matter/reaction thesis deserves its own dedicated treatment elsewhere. Inside this chapter, its role is narrower: it reminds us that horizon chirality should be developed inside a theory that is broadly pro/anti balanced, with the dramatic visible asymmetries appearing only in certain reaction channels or assembly sectors.
+That broader matter/reaction thesis belongs with reaction-channel provenance and fermion assembly structure. Inside this chapter, its role is narrower: it reminds us that horizon chirality should be developed inside a theory that is broadly pro/anti balanced, with the dramatic visible asymmetries appearing only in certain reaction channels or assembly sectors.
 
 ## Working Dictionary
 
@@ -75,7 +75,7 @@ The horizon question becomes clearer when compared against the main assembly sec
 
 | Sector | Pro/anti organization | Dimensional character | Why it matters here |
 | --- | --- | --- | --- |
-| Noether Sea | broadly balanced pro/anti medium | mainly 3D distributed medium | background reminder that AAA does not predict a large universal imbalance |
+| Noether Sea | broadly balanced pro/anti medium | mainly 3D distributed medium | background reminder that $\mathbb{A}\mathbb{A}\mathbb{A}$ does not predict a large universal imbalance |
 | Photon channel | coaxial contra-rotating pro/anti planar pair | planar / propagating pair | shows that opposite branch pairing is natural in flat planar states |
 | Higgs-like cluster | `2+2` pro/anti cluster | 3D coupled cluster | shows balanced multi-core organization without collapsing to one sign |
 | Ordinary matter reaction channels | pro/anti encounters can open rapid reconfiguration channels | mixed 3D and reaction geometry | the place where asymmetry becomes dynamically important rather than globally dominant |

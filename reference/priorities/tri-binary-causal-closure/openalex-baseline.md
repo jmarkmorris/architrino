@@ -11,22 +11,14 @@ Queried on May 18, 2026. This baseline targets photon/QED stress tests, radiatio
 
 ## Review Set
 
-| OpenAlex work | OA cites | Corpus use |
-| --- | ---: | --- |
-| [Feynman, space-time approach to QED](https://openalex.org/W2081796865) | 1613 | Comparator for vertex accounting and transition amplitudes after native causal-wake events are specified. |
-| [Dyson, radiation-theory synthesis](https://openalex.org/W2227286462) | 1371 | Historical bridge for QED consistency demands without importing field ontology. |
-| [Ward identity in QED](https://openalex.org/W2093390414) | 835 | Forces the photon/QED gate to state a native conservation or transversality identity, not only a qualitative radiation story. |
-| [Takahashi generalized Ward identity](https://openalex.org/W2033551171) | 549 | Extends the same identity pressure to generalized vertices and dressed propagators. |
-| [Photon cross sections and attenuation coefficients](https://openalex.org/W54778000) | 593 | Practical benchmark set for Compton-like scattering and absorption ledgers. |
-| [PYTHIA 8.2 event generator](https://openalex.org/W2125102738) | 5175 | Event-ledger comparator for complete outgoing inventories and conservation bookkeeping. |
-| [Recent developments in Geant4](https://openalex.org/W1990869665) | 3982 | Detector/material routing comparator for photon, recoil, and secondary-channel accounting. |
-| [Planck 2018 CMB results](https://openalex.org/W3098899650) | 1625 | Radiation closure must eventually preserve blackbody and CMB transfer constraints. |
+All row-level tri-binary review-set sources were mined or routed on May 19, 2026 and moved to the completed-mining ledger in [chapter-authoring](../chapter-authoring/chapter-authoring.md#mining-completed). The photon cross-section row remains useful as a numerical XCOM-style benchmark source, but it now belongs to the finite benchmark panel in [radiation Gate C benchmarks](radiation-gate-c-benchmarks.md), not to this OpenAlex review queue.
 
 ## Source Signals
 
 - Ward/Takahashi identities suggest the photon gate needs a native identity of the form "unphysical longitudinal response cancels or is not exposed." In local notation this should become a transversality and ledger-closure condition, not a copied gauge postulate.
 - Photon cross-section and detector-simulation references require event outputs to include recoil, material update, remnant state, and provenance rows.
 - CMB/blackbody recovery links radiation Gate C to cosmology; radiation closure cannot be local-only if it changes spectral transport.
+- Feynman and Dyson are row-level exhausted as QED consistency comparators. Ward and Takahashi are now exhausted at row level because [radiation-gate-c-benchmarks](radiation-gate-c-benchmarks.md) carries the Gate C transversality predicate. PYTHIA, Geant4, and Planck rows are also removed from this tri-binary review queue because the relevant retained pressure is now owned by residual-routing, detector/material routing, or cosmology validation surfaces.
 
 ## Corpus Advancement Target
 

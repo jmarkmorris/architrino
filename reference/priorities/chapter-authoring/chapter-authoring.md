@@ -199,3 +199,64 @@ Use this backlog as a triage surface, not as a requirement factory. A source ear
 | P. C. W. Davies, [A quantum theory of Wheeler-Feynman electrodynamics](https://doi.org/10.1017/S0305004100076751) | May 19, 2026 |
 | Jayme De Luca, [Variational principle for the Wheeler-Feynman electrodynamics](https://arxiv.org/abs/0901.1077), DOI `10.1063/1.3154509` | May 19, 2026 |
 | Jayme De Luca, A. R. Humphries, and Sávio B. Rodrigues, [Finite element boundary value integration of Wheeler-Feynman electrodynamics](https://doi.org/10.1016/j.cam.2012.02.039) | May 19, 2026 |
+| Jack K. Hale, [Theory of Functional Differential Equations](https://doi.org/10.1007/978-1-4612-9892-2) | May 19, 2026 |
+| Jack K. Hale and Sjoerd M. Verduyn Lunel, [Introduction to Functional Differential Equations](https://doi.org/10.1007/978-1-4612-4342-7) | May 19, 2026 |
+| V. Kolmanovskii and A. Myshkis, [Introduction to the Theory and Applications of Functional Differential Equations](https://doi.org/10.1007/978-94-017-1965-0) | May 19, 2026 |
+| Alfredo Bellen and Marino Zennaro, [Numerical Methods for Delay Differential Equations](https://doi.org/10.1093/acprof:oso/9780198506546.001.0001) | May 19, 2026 |
+| R. D. Driver, [Ordinary and Delay Differential Equations](https://doi.org/10.1007/978-1-4684-9467-9) | May 19, 2026 |
+| Jack K. Hale and Sjoerd M. Verduyn Lunel, [Strong stabilization of neutral functional differential equations](https://doi.org/10.1093/imamci/19.1_and_2.5) | May 19, 2026 |
+| John A. Wheeler and Richard P. Feynman, [Interaction with the Absorber as the Mechanism of Radiation](https://doi.org/10.1103/RevModPhys.17.157) | May 19, 2026 |
+| John A. Wheeler and Richard P. Feynman, [Classical Electrodynamics in Terms of Direct Interparticle Action](https://doi.org/10.1103/RevModPhys.21.425) | May 19, 2026 |
+| Fred Hoyle and Jayant V. Narlikar, [Cosmology and action-at-a-distance electrodynamics](https://www.osti.gov/biblio/27874) | May 19, 2026 |
+| Edward H. Kerner, [Hamiltonian Formulation of Action-at-a-Distance in Electrodynamics](https://openalex.org/W2065112792) | May 19, 2026 |
+| Gary Andersen and Hans C. von Baeyer, [Almost Circular Orbits in Classical Action-at-a-Distance Electrodynamics](https://doi.org/10.1103/PhysRevD.5.802) | May 19, 2026 |
+| Gary Andersen and Hans C. von Baeyer, [Solutions of the Two-Body Problem in Classical Action-at-a-Distance Electrodynamics: Straight-Line Motion](https://openalex.org/W1973687901) | May 19, 2026 |
+| Clifford M. Will, [The Confrontation between General Relativity and Experiment](https://link.springer.com/article/10.12942/lrr-2014-4) | May 19, 2026 |
+| Don Colladay and V. Alan Kostelecky, [Lorentz-Violating Extension of the Standard Model](https://arxiv.org/abs/hep-ph/9809521) | May 19, 2026 |
+| Bruno Bertotti, Luciano Iess, and Paolo Tortora, [A test of general relativity using radio links with the Cassini spacecraft](https://doi.org/10.1038/nature01997) | May 19, 2026 |
+| V. Alan Kostelecky, [Gravity, Lorentz Violation, and the Standard Model](https://arxiv.org/abs/hep-th/0312310) | May 19, 2026 |
+| Sidney Coleman and Sheldon L. Glashow, [High-Energy Tests of Lorentz Invariance](https://arxiv.org/abs/hep-ph/9812418) | May 19, 2026 |
+| Carlos Barcelo, Stefano Liberati, and Matt Visser, [Analogue Gravity](https://arxiv.org/abs/gr-qc/0505065) | May 19, 2026 |
+| David Mattingly, [Modern Tests of Lorentz Invariance](https://link.springer.com/article/10.12942/lrr-2005-5) | May 19, 2026 |
+| Reza Mansouri and Roman U. Sexl, [A test theory of special relativity: I. Simultaneity and clock synchronization](https://doi.org/10.1007/BF00762634) | May 19, 2026 |
+| Holger Muller, Sven Herrmann, Claus Braxmaier, Stephan Schiller, and Achim Peters, [Modern Michelson-Morley experiment using cryogenic optical resonators](https://arxiv.org/abs/physics/0305117) | May 19, 2026 |
+| S. Herrmann, A. Senger, K. Mohle, M. Nagel, E. Kovalchuk, and A. Peters, [Rotating optical cavity experiment testing Lorentz invariance at the 10^{-17} level](https://arxiv.org/abs/1002.1284) | May 19, 2026 |
+| Ferenc Hartung, [Linearized stability in periodic functional differential equations with state-dependent delays](https://doi.org/10.1016/j.cam.2004.04.006) | May 19, 2026 |
+| Nicola Guglielmi and Ernst Hairer, [Implementing Radau IIA methods for stiff delay differential equations](https://doi.org/10.1007/s006070170013) | May 19, 2026 |
+| L. F. Shampine, [Solving ODEs and DDEs with residual control](https://doi.org/10.1016/j.apnum.2004.07.003) | May 19, 2026 |
+| Alfredo Bellen, Stefano Maset, Marino Zennaro, and Nicola Guglielmi, [2009 Acta Numerica causal-delay FDE numerics survey](https://doi.org/10.1017/S0962492906390010) | May 19, 2026 |
+| Alan Feldstein and Kenneth W. Neves, [High Order Methods for State-Dependent Delay Differential Equations with Nonsmooth Solutions](https://doi.org/10.1137/0721055) | May 19, 2026 |
+| Alfredo Bellen and Nicola Guglielmi, [Solving neutral delay differential equations with state-dependent delays](https://www.sciencedirect.com/science/article/pii/S0377042708001568) | May 19, 2026 |
+| Davide Fusco and Nicola Guglielmi, [A regularization for discontinuous differential equations in state-dependent delay problems](https://www.sciencedirect.com/science/article/pii/S0022039610004638) | May 19, 2026 |
+| Nicola Guglielmi and Ernst Hairer, [Asymptotic expansions for regularized state-dependent neutral delay equations](https://doi.org/10.1137/100801238) | May 19, 2026 |
+| Nicola Guglielmi and Ernst Hairer, [Numerical approaches for state-dependent neutral delay equations with discontinuities](https://www.unige.ch/~hairer/preprints/paper-gh.pdf) | May 19, 2026 |
+| Odo Diekmann, Stephan A. van Gils, Sjoerd M. Verduyn Lunel, and Hans-Otto Walther, [Delay Equations](https://doi.org/10.1007/978-1-4612-4206-2) | May 19, 2026 |
+| R. D. Driver, [A two-body problem of classical electrodynamics: the one-dimensional case](https://doi.org/10.1016/0003-4916(63)90227-6) | May 19, 2026 |
+| R. D. Driver, [A functional-differential system of neutral type arising in a two-body problem of classical electrodynamics](https://openalex.org/W14240986) | May 19, 2026 |
+| John Mallet-Paret and Roger D. Nussbaum, [Boundary layer phenomena for differential-delay equations with state dependent time lags: II.](https://doi.org/10.1515/crll.1996.477.129) | May 19, 2026 |
+| John Mallet-Paret and Roger D. Nussbaum, [Boundary layer phenomena for differential-delay equations with state-dependent time lags: III](https://doi.org/10.1016/S0022-0396(02)00088-8) | May 19, 2026 |
+| Peter W. Higgs, [Broken Symmetries and the Masses of Gauge Bosons](https://doi.org/10.1103/PhysRevLett.13.508) | May 19, 2026 |
+| ATLAS Collaboration, [Observation of a new particle in the search for the Standard Model Higgs boson with the ATLAS detector at the LHC](https://arxiv.org/abs/1207.7214) | May 19, 2026 |
+| CMS Collaboration, [Observation of a new boson at a mass of 125 GeV with the CMS experiment at the LHC](https://arxiv.org/abs/1207.7235) | May 19, 2026 |
+| K. G. Wilson, [Confinement of quarks](https://doi.org/10.1103/PhysRevD.10.2445) | May 19, 2026 |
+| S. Durr et al., [Ab-initio Determination of Light Hadron Masses](https://arxiv.org/abs/0906.3599) | May 19, 2026 |
+| Sz. Borsanyi et al., [Ab initio calculation of the neutron-proton mass difference](https://arxiv.org/abs/1406.4088) | May 19, 2026 |
+| Alexander L. Fetter and John Dirk Walecka, [Quantum Theory of Many-Particle Systems](https://books.google.com/books/about/Quantum_Theory_of_Many_particle_Systems.html?id=0wekf1s83b0C) | May 19, 2026 |
+| E. Epelbaum, H.-W. Hammer, and Ulf-G. Meissner, [Modern Theory of Nuclear Forces](https://doi.org/10.1103/RevModPhys.81.1773) | May 19, 2026 |
+| Emmy Noether and M. A. Tavel, [Invariant Variation Problems](https://arxiv.org/abs/physics/0503066), English translation of Noether 1918 | May 19, 2026 |
+| Jerrold E. Marsden and Alan Weinstein, [Reduction of symplectic manifolds with symmetry](https://doi.org/10.1016/0034-4877(74)90021-4) | May 19, 2026 |
+| L. D. Faddeev and V. N. Popov, [Feynman diagrams for the Yang-Mills field](https://doi.org/10.1016/0370-2693(67)90067-6) | May 19, 2026 |
+| V. N. Gribov, [Quantization of non-Abelian gauge theories](https://doi.org/10.1016/0550-3213(78)90175-X) | May 19, 2026 |
+| Peter J. Olver, [Applications of Lie Groups to Differential Equations](https://doi.org/10.1007/978-1-4612-4350-2) | May 19, 2026 |
+| Henrique Gomes and Aldo Riello, [The quasilocal degrees of freedom of Yang-Mills theory](https://arxiv.org/abs/1910.04222) | May 19, 2026 |
+| OpenAlex tri-binary Review Set row: Richard P. Feynman, [Space-Time Approach to Quantum Electrodynamics](https://openalex.org/W2081796865) | May 19, 2026 |
+| OpenAlex tri-binary Review Set row: Freeman Dyson, [The Radiation Theories of Tomonaga, Schwinger, and Feynman](https://openalex.org/W2227286462) | May 19, 2026 |
+| OpenAlex tri-binary Review Set row: J. C. Ward, [An Identity in Quantum Electrodynamics](https://openalex.org/W2093390414) | May 19, 2026 |
+| OpenAlex tri-binary Review Set row: Y. Takahashi, [On the Generalized Ward Identity](https://openalex.org/W2033551171) | May 19, 2026 |
+| OpenAlex tri-binary Review Set row: [Photon cross sections and attenuation coefficients](https://openalex.org/W54778000) | May 19, 2026 |
+| OpenAlex tri-binary Review Set row: Torbjörn Sjöstrand et al., [An Introduction to PYTHIA 8.2](https://openalex.org/W2125102738) | May 19, 2026 |
+| OpenAlex tri-binary Review Set row: J. Allison et al., [Recent developments in Geant4](https://openalex.org/W1990869665) | May 19, 2026 |
+| OpenAlex tri-binary Review Set row: Planck Collaboration, [Planck 2018 CMB results](https://openalex.org/W3098899650) | May 19, 2026 |
+| OpenAlex residual-routing Review Set row: R. E. Cutkosky, [Singularities and Discontinuities of Feynman Amplitudes](https://openalex.org/W2056443041) | May 19, 2026 |
+| OpenAlex residual-routing Review Set row: Christian Bierlich et al., [A comprehensive guide to the physics and usage of PYTHIA 8.3](https://openalex.org/W4308821586) | May 19, 2026 |
+| OpenAlex residual-routing Review Set row: T. Gleisberg et al., [Event generation with SHERPA 1.1](https://openalex.org/W2016801295) | May 19, 2026 |

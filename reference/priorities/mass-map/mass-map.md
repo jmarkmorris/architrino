@@ -28,6 +28,18 @@ This file is the workstream control surface for mass-side integration. It should
 
 [openalex-baseline.md](openalex-baseline.md) records the May 18, 2026 OpenAlex review set for mass generation, Higgs-sector scalar benchmarks, hadron masses, effective mass, and medium-response constraints.
 
+The May 19, 2026 completion pass exhausted that review set as an active queue. Its import rule is now explicit: every external mass benchmark must declare which tuple slot it tests,
+$$
+\left(
+E_{\text{internal}}(A),
+\zeta(A),
+\mathcal{M}_{\text{sea}}^{ab},
+m_{\text{obs}}(A),
+\Delta_{\text{hier}}(A)
+\right),
+$$
+and none may be used as input to the $A_0$ branch, shielding coefficient, or medium-response tensor before closure. Higgs, ATLAS, and CMS test scalar response; Wilson confinement, light-hadron masses, and neutron-proton splitting test confinement and hadron mass decomposition; many-particle effective-mass theory tests medium response; nuclear-force reviews test residual binding.
+
 ## Detailed Priority Files
 
 | File | Role | Target AAA notes |

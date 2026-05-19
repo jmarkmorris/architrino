@@ -1,6 +1,6 @@
 # Singularity Resolution
 
-This section frames how architrino assemblies avoid singularities and how strong-field behavior should be interpreted in the tri-binary architecture. It is the canonical strong-field bridge for [Nested Binaries and the Noether Core](noether-core.md), [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md), and [Black Holes](./black-holes.md).
+This chapter frames how architrino assemblies avoid singularities and how strong-field behavior should be interpreted in the tri-binary architecture. It is the canonical strong-field bridge for [Nested Binaries and the Noether Core](noether-core.md), [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md), and [Black Holes](./black-holes.md).
 
 ## Canonical Strong-Field Alignment Condition
 
@@ -159,4 +159,4 @@ In strong-field conditions (e.g., near an event horizon), the **outer binary fre
 
 One preserved intuition, to be read only as a heuristic, is that this alignment limit may correspond to a temporary **planar horizon state** rather than to the final interior shape. In that picture, the horizon is the point of strongest flattening, while deeper interior self-hit pressure can reopen the suppressed polar degree of freedom so the core returns to a finite 3D configuration instead of terminating in a zero-volume endpoint. This is compatible with the maximum-curvature replacement logic, but it is not yet a derived mechanism; compare [Horizon Chirality and Planar Spin](./horizon-chirality.md).
 
-**Rule of thumb:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (tri-binary coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale.
+**Mapping rule:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (tri-binary coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale.

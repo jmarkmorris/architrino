@@ -36,6 +36,28 @@ D_{JS}\equiv \mathrm{JSD}(P_A\|P_B),
 $$
 where $W_1$ is 1-Wasserstein distance and JSD is Jensen-Shannon divergence.
 
+For delayed source-state interpolation, the run must declare an order-$q$ history interpolation operator $I_h^q$. On a fixed analysis window $W$, define
+$$
+E_{\mathrm{hist}}(S_\eta;\Delta h,\Delta h/2;W)
+=
+\frac{
+\left(\sum_{m\in W}\|I_{\Delta h/2}^qS_\eta(t_{\mathrm{emit},m})-I_{\Delta h}^qS_\eta(t_{\mathrm{emit},m})\|^2w_m\right)^{1/2}
+}{
+\left(\sum_{m\in W}\|I_{\Delta h/2}^qS_\eta(t_{\mathrm{emit},m})\|^2w_m\right)^{1/2}+\varepsilon_0
+}.
+$$
+For nonsmooth state-dependent delay windows, define the jump residual rows
+$$
+\mathcal{D}_{\mathrm{jump}}
+=
+\{(\xi_a,k_a,\ell_a,\xi_{\pi(a)},R_{\mathrm{jump},a})\},
+\qquad
+R_{\mathrm{jump},a}
+=
+\frac{|t_{0,\ell_a}(\xi_a)-\xi_{\pi(a)}|}
+{\max(\Delta t,\Delta h,\eta/c_f,\varepsilon_0)}.
+$$
+
 ### Required refinements with pass/fail thresholds
 
 1. Temporal refinement ($\Delta t$ and $\Delta t/2$, plus $\Delta t/4$ for order check):
@@ -50,6 +72,7 @@ Require $p_{\mathrm{obs}}\ge 0.8$ for at least one primary field channel ($\Phi$
 2. History-resolution refinement (history step halved or interpolation order increased):
 - Pass if $E_{\mathrm{rel}}(\Phi)\le 0.02$, $E_{\mathrm{rel}}(\|\nabla\Phi\|)\le 0.03$.
 - Provenance stability mandatory: $D_W\le 0.05$ and $D_{JS}\le 0.02$.
+- Delayed-source interpolation stability mandatory whenever delayed states are evaluated from stored history: $E_{\mathrm{hist}}\le\tau_{\mathrm{hist}}$ with $\tau_{\mathrm{hist}}$ declared before the run.
 
 3. Spatial refinement (grid/particle resolution increase):
 - Pass if $E_{\mathrm{rel}}(\Phi\text{-map})\le 0.03$ and $E_{\mathrm{rel}}(\nabla\Phi\text{-map})\le 0.05$.
@@ -58,6 +81,7 @@ Require $p_{\mathrm{obs}}\ge 0.8$ for at least one primary field channel ($\Phi$
 4. Cross-integrator validation (e.g., symplectic vs RK with matched resolution):
 - Pass if $E_{\mathrm{rel}}(\Phi)\le 0.03$, $E_{\mathrm{rel}}(\|\nabla\Phi\|)\le 0.05$.
 - Provenance agreement must satisfy $D_W\le 0.08$ and $D_{JS}\le 0.03$.
+- The cross-integrator report must name solver family, interpolation policy, solver residual controls, and event/restart handling. If the compared runs select different active-root identities or transition statuses, the claim fails even if observable plots are close.
 
 5. Continuum moment refinement when a run promotes a coarse PDE, kinetic moment, or Noether-Sea transport equation:
 - Pass if the retained density/current channel satisfies
@@ -82,7 +106,7 @@ Require $p_{\mathrm{obs}}\ge 0.8$ for at least one primary field channel ($\Phi$
 
 ### Machine-checkable convergence output
 
-Every promoted claim must emit `convergence_table.csv` with one row for each required gate: temporal refinement, history-resolution refinement, spatial refinement, cross-integrator validation, regulator ladder when used, and negative control. Each row records the two run identifiers being compared, the restricted observable channel, $E_{\mathrm{rel}}(\Phi)$, $E_{\mathrm{rel}}(\|\nabla\Phi\|)$, $D_W$, $D_{JS}$, $p_{\mathrm{obs}}$, active-root mismatch, self-hit or stability-window shift, pass/fail status, and failure code.
+Every promoted claim must emit `convergence_table.csv` with one row for each required gate: temporal refinement, history-resolution refinement, history-interpolation refinement when delayed states are reconstructed from stored history, spatial refinement, cross-integrator validation, regulator ladder when used, transition-window refinement when a fold-layer or active-root status transition is claimed, and negative control. Each row records the two run identifiers being compared, the restricted observable channel, $E_{\mathrm{rel}}(\Phi)$, $E_{\mathrm{rel}}(\|\nabla\Phi\|)$, $D_W$, $D_{JS}$, $E_{\mathrm{hist}}$ when applicable, $p_{\mathrm{obs}}$, active-root mismatch, self-hit or stability-window shift, transition-window status, pass/fail status, and failure code.
 
 For continuum or stochastic promotions, append rows for `moment-closure`, `distribution-moments`, `diffusion-tensor`, `causal-response`, and `fluctuation-dissipation` when those channels are claimed. These rows must include the artifact hash of the direct event-root run and the artifact hash of the reduced continuum or stochastic run being compared.
 

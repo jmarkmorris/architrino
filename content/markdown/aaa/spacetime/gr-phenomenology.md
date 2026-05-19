@@ -297,7 +297,7 @@ $$
 \left|\frac{v_{\mathrm{GW}}-c_0}{c_0}\right| \ll 1.
 $$
 
-In repo terms, gravitational waves are propagating collective disturbances of the Noether Sea. Their speed, dispersion, and polarization content must remain consistent with current timing bounds and detector-mode constraints. Any large medium-dispersion signature or unsuppressed scalar/vector/longitudinal response in already-tested bands is excluded. A cosmological-scale finite-range response must therefore decouple from the weak-field gravitational-wave channel through the same constitutive coefficient record, not through an observational-channel-specific patch.
+In this framework, gravitational waves are propagating collective disturbances of the Noether Sea. Their speed, dispersion, and polarization content must remain consistent with current timing bounds and detector-mode constraints. Any large medium-dispersion signature or unsuppressed scalar/vector/longitudinal response in already-tested bands is excluded. A cosmological-scale finite-range response must therefore decouple from the weak-field gravitational-wave channel through the same constitutive coefficient record, not through an observational-channel-specific patch.
 
 ## Strong-Field Regime
 

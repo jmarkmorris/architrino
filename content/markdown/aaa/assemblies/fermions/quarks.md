@@ -17,13 +17,13 @@ The quark construction used here follows the same Noether-core-plus-axial split 
 - The **Noether core** is the neutral binary scaffold.
 - The **axial layer** is the six-site organization carrying the visible charge pattern.
 
-For matter quarks, the core is a **pro-core**. It is neutral in total charge and differs across generations only by shielding level:
+For matter quarks, the core is a **pro-core**. It is neutral in total charge and differs across generations by shielding-coherence level, not by changing the gauge-facing color frame:
 
-- **Generation I:** tri-binary core, 6 scaffold architrinos.
-- **Generation II:** bi-binary core, 4 scaffold architrinos.
-- **Generation III:** uni-binary core, 2 scaffold architrinos.
+- **Generation I:** tri-binary shielding branch, 6 coherent scaffold architrinos.
+- **Generation II:** bi-binary shielding branch, 4 coherent scaffold architrinos; the outer support tier is depleted on the branch lifetime window.
+- **Generation III:** uni-binary shielding branch, 2 coherent scaffold architrinos; the outer and middle support tiers are depleted on the branch lifetime window.
 
-The axial layer stays six sites wide in all three generations. Each site is occupied by either a positrino $(+\epsilon)$ or an electrino $(-\epsilon)$, with $\epsilon = |e|/6$.
+The axial layer stays six sites wide in all three generations. Each site is occupied by either a positrino $(+\epsilon)$ or an electrino $(-\epsilon)$, with $\epsilon = |e|/6$. The H/M/L axial dyads remain the branch-level record that color and electroweak bookkeeping read, even when one or more shielding tiers no longer supply coherent support.
 
 ### Counting rule
 
@@ -35,7 +35,7 @@ with
 $$
 N_{\text{core}} \in \{6,4,2\}
 $$
-for Generations I, II, and III respectively. This gives:
+for Generations I, II, and III respectively. Here $N_{\text{core}}$ counts coherent shielding-scaffold architrinos in the promoted branch, not every transient residue of an ablated or relocking tier. This gives:
 
 - Generation I quark: 12 architrinos.
 - Generation II quark: 10 architrinos.
@@ -49,12 +49,12 @@ To describe color and axial geometry compactly, use the three core axes $(H,M,L)
 - $P^- = (-,-)$: an axis whose two polar sites are both electrino.
 - $P^{m} = (+,-)$ or $(-,+)$: a mixed axis with one positrino and one electrino.
 
-In the implementation picture currently favored in the repo, each axis contains:
+In the fully shielded implementation picture currently favored in the repo, each axis contains:
 
 - one neutral source binary, with one orbiting positrino and one orbiting electrino,
 - plus one polar dyad attached to that binary axis.
 
-The axis class labels $P^+$, $P^-$, and $P^{m}$ refer only to those one polar dyad. They do not mean that the underlying source binary stops being neutral.
+The axis class labels $P^+$, $P^-$, and $P^{m}$ refer only to those one polar dyad. They do not mean that the underlying source binary stops being neutral. In higher-generation branches, a depleted shielding tier may no longer act as a coherent source binary, but the polar dyad and its H/M/L branch label remain the gauge-facing color record until the quark branch dissociates.
 
 Colorless fermions keep the three axes equivalent. Quarks do not. A quark becomes color-charged when exactly one axis is exceptional relative to the other two.
 
@@ -105,7 +105,7 @@ The down-type sector admits two currently allowed axis-pattern families:
    (P^-,P^{m},P^{m}).
    $$
 
-Both families satisfy the same structural rule: two axes are in one class and one axis is exceptional. That common axis-exceptionality is what carries color. Which family is selected for a given stable down-type branch remains a model choice to be fixed by stronger dynamical closure.
+Both families satisfy the same structural rule: two axes are in one class and one axis is exceptional. That common axis-exceptionality is what carries color. They are therefore candidate sectors, not two independent low-energy species. For any realized down-type branch, a single selected family $F_\star\in\{I,II\}$ supplies the full red/green/blue color triplet over the declared stability window; the unselected family must be unstable, high-energy transient, or excluded by the hadron boundary conditions. The current corpus does not assign $d$, $s$, and $b$ to separate families as a settled rule.
 
 ### Right-handed singlet bookkeeping
 
@@ -267,11 +267,11 @@ This should still be treated cautiously. The image supports a candidate mapping 
 | Flavor | Type | Generation | Core architecture | Core architrinos | Axial pattern | Net charge | Total architrinos | Axis template |
 | --- | --- | --- | --- | ---: | --- | ---: | ---: | --- |
 | $u$ | up-type | I | pro tri-binary | 6 | $5P,1E$ | $+2/3$ | 12 | permutations of $(P^{m},P^+,P^+)$ |
-| $d$ | down-type | I | pro tri-binary | 6 | $2P,4E$ | $-1/3$ | 12 | permutations of $(P^+,P^-,P^-)$ or $(P^-,P^{m},P^{m})$ |
+| $d$ | down-type | I | pro tri-binary | 6 | $2P,4E$ | $-1/3$ | 12 | selected family $F_\star$: permutations of $(P^+,P^-,P^-)$ if $F_\star=I$, or $(P^-,P^{m},P^{m})$ if $F_\star=II$ |
 | $c$ | up-type | II | pro bi-binary | 4 | $5P,1E$ | $+2/3$ | 10 | same up-type color template on a Generation-II core |
-| $s$ | down-type | II | pro bi-binary | 4 | $2P,4E$ | $-1/3$ | 10 | same down-type color template on a Generation-II core |
+| $s$ | down-type | II | pro bi-binary | 4 | $2P,4E$ | $-1/3$ | 10 | same selected-family rule on a Generation-II core |
 | $t$ | up-type | III | pro uni-binary | 2 | $5P,1E$ | $+2/3$ | 8 | same up-type color template on a Generation-III core |
-| $b$ | down-type | III | pro uni-binary | 2 | $2P,4E$ | $-1/3$ | 8 | same down-type color template on a Generation-III core |
+| $b$ | down-type | III | pro uni-binary | 2 | $2P,4E$ | $-1/3$ | 8 | same selected-family rule on a Generation-III core |
 
 ### Flavor-by-flavor notes
 
@@ -281,7 +281,7 @@ The up quark is the ground-state up-type quark. It uses the full pro tri-binary 
 
 #### Down quark
 
-The down quark is the ground-state down-type quark. It also uses the full pro tri-binary core, but with the $2P,4E$ axial layer. Its color structure comes from a single exceptional axis within either the $(P^+,P^-,P^-)$ or $(P^-,P^{m},P^{m})$ family.
+The down quark is the ground-state down-type quark. It also uses the full pro tri-binary core, but with the $2P,4E$ axial layer. Its color structure comes from a single exceptional axis within the selected Family-I or Family-II sector, not from both families appearing as independent down-like species.
 
 #### Charm quark
 
@@ -289,7 +289,7 @@ The charm quark keeps the up-type axial pattern but sheds the outer shielding bi
 
 #### Strange quark
 
-The strange quark is the Generation-II down-type partner of charm. It keeps the $2P,4E$ axial pattern but lives on a bi-binary core rather than a tri-binary core.
+The strange quark is the Generation-II down-type partner of charm. It keeps the $2P,4E$ axial pattern but lives on a bi-binary core rather than a tri-binary core, with the same selected-family branch rule applied after the shielding tier is fixed.
 
 #### Top quark
 
@@ -297,7 +297,7 @@ The top quark is the most exposed up-type branch in the present catalog. It carr
 
 #### Bottom quark
 
-The bottom quark is the Generation-III down-type branch. It carries the down-type $2P,4E$ axial pattern on a uni-binary core. Like the top quark, it is highly exposed compared with Generation-I quarks, though the down-type axial geometry remains distinct.
+The bottom quark is the Generation-III down-type branch. It carries the down-type $2P,4E$ axial pattern on a uni-binary core. Like the top quark, it is highly exposed compared with Generation-I quarks, though the down-type selected-family sector remains a separate branch-selection target.
 
 ## Color assignments
 
@@ -375,7 +375,7 @@ Family II:
 | Green | $(P^{m},P^-,P^{m})$ | M-axis exceptional |
 | Blue | $(P^{m},P^{m},P^-)$ | L-axis exceptional |
 
-These tables apply to $d$, and by generation lifting also to $s$ and $b$.
+These are candidate-sector tables. For any realized $d$, $s$, or $b$ branch, one selected family $F_\star$ supplies the three color states; the other family is not counted as an additional long-lived down-type particle. A branch that leaves both tables comparably stable in the same low-energy window over-predicts down-type species and fails the selection target.
 
 ### Colorless composites
 
@@ -415,6 +415,7 @@ At the quark level, a pure gluon coupling is allowed to do the following:
 3. Preserve the total six-site axial inventory of each flavor class.
 4. Preserve electric charge.
 5. Preserve generation tier on the strong-interaction timescale.
+6. For down-type quarks, preserve the selected family sector $F_\star$ during pure strong reconfiguration.
 
 In practical terms, a gluon may change
 $$
@@ -423,6 +424,7 @@ $$
 |u_H\rangle \leftrightarrow |u_L\rangle,
 $$
 and likewise for down-type states, without changing $u \leftrightarrow d$ or Generation I $\leftrightarrow$ II $\leftrightarrow$ III. Strong couplings move quarks around inside color space; they do not perform weak flavor conversion.
+For down-type states this color motion is internal to the selected Family-I or Family-II sector. Pure gluon exchange may rotate H/M/L exceptionality, but it is not allowed to hop between Family I and Family II as a hidden flavor change.
 
 ### Generator picture
 

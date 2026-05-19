@@ -80,11 +80,13 @@ Detailed explanation (impulses vs smooth pushes):
     I_*,
     \mathcal{L}_{\mathrm{root}}|_{I_*},
     \mathsf{status}_{\eta,*},
+    \mathsf{regularization}_{\eta,*},
+    \mathsf{window\_scale}_{\eta,*},
     \mathcal{Y}_{\eta,*},
     \mathcal{E}_{\mathrm{trans},*}
     \big),
     $$
-    where $\mathsf{status}_{\eta,*}$ is the retained branch status, chosen from the existing simple-root, fold-layer, inactive-gap, or rejected statuses, and $\mathcal{Y}_{\eta,*}$ is the set of observables promoted through that window.
+    where $\mathsf{status}_{\eta,*}$ is the retained branch status, chosen from the existing simple-root, fold-layer, inactive-gap, or rejected statuses, $\mathsf{regularization}_{\eta,*}$ names the finite-$\eta$ route used through the window, $\mathsf{window\_scale}_{\eta,*}$ records the declared transition scaling, and $\mathcal{Y}_{\eta,*}$ is the set of observables promoted through that window.
   - For each promoted observable $Y\in\mathcal{Y}_{\eta,*}$, define
     $$
     E_{\mathrm{trans}}(Y;\eta,\eta/2;I_*)
@@ -101,6 +103,18 @@ Detailed explanation (impulses vs smooth pushes):
     $$
     and every root-ledger row in $I_*$ keeps source identity, branch class, and status metadata under the same matching rule used by $\Delta_{\eta,\mathrm{root}}$.
   - If the branch status flips under $\eta$ refinement, route the run to $\mathsf{branch\_root\_instability}$. If the status is stable but the promoted transition observables fail the tolerance, route it to $\mathsf{regulator\_dependence}$. If the transition record is missing, route it to $\mathsf{artifact\_incomplete}$.
+  - For nonsmooth windows, the transition record must include jump-location rows
+    $$
+    \mathcal{D}_{\mathrm{jump}}
+    =
+    \{(\xi_a,k_a,\ell_a,\xi_{\pi(a)},R_{\mathrm{jump},a})\},
+    \qquad
+    R_{\mathrm{jump},a}
+    =
+    \frac{|t_{0,\ell_a}(\xi_a)-\xi_{\pi(a)}|}
+    {\max(\Delta t,\Delta h,\eta/c_f,\varepsilon_0)}.
+    $$
+    Unstable jump identity routes to $\mathsf{branch\_root\_instability}$; unresolved jump or interpolation convergence routes to $\mathsf{mesh\_nonconvergence}$.
 
 - Energetic consistency:
   - On resolved intervals, the work–energy relation holds with $\Phi_\eta$; as $\eta\to 0$, interval integrals converge to the impulsive model.
