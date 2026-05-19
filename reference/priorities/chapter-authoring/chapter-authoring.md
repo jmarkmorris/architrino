@@ -31,23 +31,15 @@ During the current core geometrical theory push, do not treat chapter coverage a
 ## Source Mining Feeds
 
 - Mine material from WordPress and other prior social material (twitter).
-- Mine old PowerPoint decks, cleaning them up only when migration into the web site or $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus is worthwhile.
-- Mine archived papers, arXiv-style papers, and local PDF paper collections for definitions, examples, derivation routes, and source leads.
+- Mine old PowerPoint decks.
+- Mine arXiv-style papers for definitions, examples, derivation routes, and source leads.
 - Mine YouTube videos and course playlists when transcripts, slides, or lecture notes can be reduced into concrete chapter material.
 
 ## Candidate Source-Mining Backlog
 
 Use this backlog as a triage surface, not as a requirement factory. A source earns mining time only when it can yield at least one concrete artifact: a numerical benchmark, derivation route, worked example, source lead, canonical table or figure, visual explanation, or reader-facing bridge for the active $\mathbb{A}\mathbb{A}\mathbb{A}$ theory stack.
 
-### Tier 1: Closure Benchmarks And Numerical Anchors
-
-All Tier 1 source families have been mined and moved to the completed mining list.
-
-### Tier 2: Derivation, Proof, And Theory-Bridge Sources
-
-All Tier 2 source families have been mined and moved to the completed mining list.
-
-### Tier 3: Video And Seminar Archives
+### Video And Seminar Archives
 
 | Source family | Mine first | $\mathbb{A}\mathbb{A}\mathbb{A}$ value | Mining rule |
 | --- | --- | --- | --- |
@@ -57,21 +49,10 @@ All Tier 2 source families have been mined and moved to the completed mining lis
 | CERN videos and public detector lectures | Detector walkthroughs, event reconstruction, trigger systems, Standard Model lectures, and open-data tutorials. | High value for end-to-end measurement provenance: collision, detector response, reconstruction, particle ID, uncertainty. | Prefer official slides and open-data notebooks over popular summaries. |
 | Sean Carroll, Quanta, Royal Institution, and similar long-form interviews/lectures | Episodes with primary researchers on black holes, cosmology tensions, quantum foundations, amplitudes, and Standard Model anomalies. | Mostly explanatory and source-lead value, not closure evidence. | Mine only when transcripts are available and the episode points to papers, equations, or clear reader explanations. |
 
-### Tier 4: Image, Diagram, And Data Mining
-
-| Source family | Mine first | $\mathbb{A}\mathbb{A}\mathbb{A}$ value | Mining rule |
-| --- | --- | --- | --- |
-| CMB maps and spectra | Planck component maps, CMB lensing maps, temperature/polarization power spectra, WMAP comparison images, and likelihood documentation. | Visual bridge for effective cosmological variables, transfer functions, redshift, and observer-level $\Lambda$CDM summaries. | Preserve data provenance and avoid decorative use. |
-| Collider event displays | [CERN Open Data CMS event display](https://opendata.cern.ch/visualise/events/CMS), ATLAS/CMS public images, event-selection tutorials, and detector-slice diagrams. | Explains Standard Model reconstruction and measurement without relying on cartoon particle language. | Use as provenance diagrams; record collision channel, visible objects, and reconstruction variables. |
-| Gravitational-wave visual products | GWOSC waveform plots, spectrograms, sky-localization maps, parameter-corner plots, and public notebooks. | Direct visual bridge for radiation, inspiral, merger, ringdown, and parameter inference. | Mine alongside the underlying event metadata, not as standalone illustrations. |
-| EHT imagery and visibility-domain products | M87* and Sgr A* images, polarization maps, visibility amplitudes, closure phases, and reconstruction comparison figures. | Strong-field visual benchmark for compact-object shadows, plasma environment, and observer reconstruction. | Separate measured image products from GR model interpretation. |
-| Large-scale structure visuals | SDSS/DESI galaxy maps, BAO summary plots, weak-lensing maps, supernova Hubble diagrams, and distance-ladder diagrams. | Helps readers see which cosmological quantities are observations, which are fitted model variables, and which are $\mathbb{A}\mathbb{A}\mathbb{A}$ translation targets. | Mine source data and caption logic; do not treat survey-map aesthetics as evidence. |
-| Educational simulations and public-domain teaching diagrams | [PhET simulations](https://phet.colorado.edu/?lang=en), OpenStax figures, Feynman Lectures diagrams, and MIT OCW public-domain NASA/mission images. | Supports chapter explanations for waves, interference, relativity, fields, and measurement. | Use for explanatory scaffolding only; verify license before reusing an image. |
 
 ### Immediate Mining Order
 
 1. PIRSA, KITP, IAS / Cornell / Simons, and CERN public detector videos: mine transcript/slide pairs only when the source yields a named equation, theorem target, benchmark, source lead, or detector-provenance example.
-2. Feynman Lectures, OpenStax, PhET, and public lecture material: use only for explanation, diagrams, and student-facing worked intuition.
 
 ## Mining Completed
 
