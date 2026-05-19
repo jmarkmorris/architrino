@@ -173,10 +173,20 @@ class IntervalChartResult:
     max_theta_width: float
     max_beta_width: float
     min_j_floor: float
+    excluded_unstable_ledger_subintervals: int
+    excluded_jacobian_subintervals: int
 
     @property
     def passed_target(self) -> bool:
         return self.interval_lower >= self.target
+
+
+@dataclass(frozen=True)
+class ThetaIntervalResult:
+    value: Interval | None
+    active_rows: int
+    min_j_floor: float
+    excluded_reason: str | None = None
 
 
 def bisect_root(f: Callable[[float], float], lo: float, hi: float, *, steps: int = 90) -> float:
@@ -384,23 +394,33 @@ def self_tangential_interval(beta: Interval, root: SelfRootInterval) -> tuple[In
     return numerator.div(denominator), jacobian_abs.lo
 
 
-def theta_interval(beta_lo: float, beta_hi: float, *, full_signed: bool) -> tuple[Interval, int, float] | None:
+def theta_interval(beta_lo: float, beta_hi: float, *, full_signed: bool) -> ThetaIntervalResult:
     beta = outward(beta_lo, beta_hi)
     total = partner_tangential_interval(beta)
     min_j_floor = POS_INF
     roots = self_root_intervals(beta_lo, beta_hi, full_signed=full_signed)
     if roots is None:
-        return None
+        return ThetaIntervalResult(
+            value=None,
+            active_rows=0,
+            min_j_floor=0.0,
+            excluded_reason="unstable_root_ledger",
+        )
 
     for root in roots:
         result = self_tangential_interval(beta, root)
         if result is None:
-            return None
+            return ThetaIntervalResult(
+                value=None,
+                active_rows=len(roots),
+                min_j_floor=0.0,
+                excluded_reason="jacobian_floor_or_zero_denominator",
+            )
         contribution, j_floor = result
         total = total.add(contribution)
         min_j_floor = min(min_j_floor, j_floor)
 
-    return total, len(roots), min_j_floor
+    return ThetaIntervalResult(value=total, active_rows=len(roots), min_j_floor=min_j_floor)
 
 
 def interval_scan_band(
@@ -419,6 +439,8 @@ def interval_scan_band(
     step = (stop - start) / subintervals
     certified = 0
     excluded = 0
+    excluded_unstable_ledger = 0
+    excluded_jacobian = 0
     lower = POS_INF
     upper_at_lower = POS_INF
     beta_at_lower = Interval(start, start)
@@ -431,20 +453,24 @@ def interval_scan_band(
         beta_lo = start + step * i
         beta_hi = start + step * (i + 1)
         result = theta_interval(beta_lo, beta_hi, full_signed=full_signed)
-        if result is None:
+        if result.value is None:
             excluded += 1
+            if result.excluded_reason == "unstable_root_ledger":
+                excluded_unstable_ledger += 1
+            else:
+                excluded_jacobian += 1
             continue
 
-        value, active_rows, j_floor = result
+        value = result.value
         certified += 1
         max_theta_width = max(max_theta_width, value.width)
         max_beta_width = max(max_beta_width, beta_hi - beta_lo)
-        min_j_floor = min(min_j_floor, j_floor)
+        min_j_floor = min(min_j_floor, result.min_j_floor)
         if value.lo < lower:
             lower = value.lo
             upper_at_lower = value.hi
             beta_at_lower = outward(beta_lo, beta_hi)
-            active_at_lower = active_rows
+            active_at_lower = result.active_rows
 
     if certified == 0:
         raise RuntimeError(f"band {band} / {chart} has no certified interval subintervals")
@@ -462,6 +488,8 @@ def interval_scan_band(
         max_theta_width=max_theta_width,
         max_beta_width=max_beta_width,
         min_j_floor=min_j_floor,
+        excluded_unstable_ledger_subintervals=excluded_unstable_ledger,
+        excluded_jacobian_subintervals=excluded_jacobian,
     )
 
 
@@ -479,6 +507,8 @@ def interval_chart_json(result: IntervalChartResult) -> dict:
         "max_theta_width": result.max_theta_width,
         "max_beta_width": result.max_beta_width,
         "min_j_floor": result.min_j_floor,
+        "excluded_unstable_ledger_subintervals": result.excluded_unstable_ledger_subintervals,
+        "excluded_jacobian_subintervals": result.excluded_jacobian_subintervals,
         "passed_target": result.passed_target,
     }
 
@@ -499,6 +529,79 @@ def tail_obstruction_summary(beta_tail: float) -> dict:
             "from the branchwise large-beta estimates before using the "
             "asymptotic obstruction as a theorem-grade tail proof."
         ),
+    }
+
+
+def theorem_readiness(*, numeric_passed: bool, interval_passed: bool, bands: list[dict]) -> dict:
+    excluded_unstable = sum(
+        chart["excluded_unstable_ledger_subintervals"]
+        for band in bands
+        for chart in (band["full_signed_interval"], band["positive_sine_interval"])
+    )
+    excluded_jacobian = sum(
+        chart["excluded_jacobian_subintervals"]
+        for band in bands
+        for chart in (band["full_signed_interval"], band["positive_sine_interval"])
+    )
+    obligations = [
+        {
+            "obligation": "finite_sample_targets",
+            "status": "passed" if numeric_passed else "failed",
+            "technical_value": "Keeps the original dense numerical scan as a regression witness.",
+        },
+        {
+            "obligation": "finite_interval_targets",
+            "status": "passed" if interval_passed else "failed",
+            "technical_value": "Provides outward-rounded lower bounds on every certified finite-band subinterval.",
+        },
+        {
+            "obligation": "stable_active_root_ledger",
+            "status": "passed" if excluded_unstable == 0 else "blocked",
+            "technical_value": (
+                "Certified subintervals have stable endpoint branch labels; "
+                "birth or Jacobian-window subintervals are excluded from the "
+                "constant-speed theorem domain."
+            ),
+            "excluded_unstable_ledger_subintervals": excluded_unstable,
+            "excluded_jacobian_subintervals": excluded_jacobian,
+        },
+        {
+            "obligation": "portable_directed_elementary_functions",
+            "status": "blocked",
+            "technical_value": (
+                "The current backend pads ordinary libm sin/cos endpoint calls. "
+                "The theorem-grade artifact still needs checked range reduction "
+                "or a directed elementary-function implementation."
+            ),
+        },
+        {
+            "obligation": "explicit_inactive_gap_rows",
+            "status": "blocked",
+            "technical_value": (
+                "The runner now accounts for stable active ledgers and excluded "
+                "birth/Jacobian subintervals, but it does not yet emit positive "
+                "gap rows for every inactive complement, including the excluded "
+                "principal self-coincidence endpoint."
+            ),
+        },
+        {
+            "obligation": "closed_large_beta_tail_remainder",
+            "status": "blocked",
+            "technical_value": (
+                "The linear tail margins are reported, but the O(log beta) and "
+                "O(1) constants are not bounded, so the infinite tail is not closed."
+            ),
+        },
+    ]
+    theorem_grade = all(item["status"] == "passed" for item in obligations)
+    first_failed = next(
+        (item["obligation"] for item in obligations if item["status"] != "passed"),
+        None,
+    )
+    return {
+        "theorem_grade": theorem_grade,
+        "first_nonpassing_obligation": first_failed,
+        "obligations": obligations,
     }
 
 
@@ -561,10 +664,16 @@ def build_certificate(samples: int, subintervals: int) -> dict:
             }
         )
 
+    readiness = theorem_readiness(
+        numeric_passed=all_passed,
+        interval_passed=all_interval_passed,
+        bands=bands,
+    )
+
     return {
         "artifact": "circular_interval_certificate.py",
         "claim_level": "finite-band outward-rounded interval support certificate",
-        "theorem_grade": False,
+        "theorem_grade": readiness["theorem_grade"],
         "directed_rounding": True,
         "directed_rounding_scope": (
             "Arithmetic operations use math.nextafter outward rounding; sin/cos "
@@ -578,6 +687,7 @@ def build_certificate(samples: int, subintervals: int) -> dict:
         "all_numeric_targets_passed": all_passed,
         "all_interval_targets_passed": all_interval_passed,
         "tail_obstruction": tail_obstruction_summary(thresholds[-1]),
+        "theorem_readiness": readiness,
         "promotion_blocker": (
             "The finite-band targets now pass an outward-rounded interval support "
             "scan outside uncertified |J| windows. Theorem promotion still "
@@ -633,10 +743,10 @@ def emit_markdown(certificate: dict) -> str:
     lines.extend(
         [
             "",
-            "## Interval Band Results",
-            "",
-            "| Band | Full signed interval lower | Full target | Positive-sine interval lower | Positive target | Excluded subintervals full/+ | Verdict |",
-            "| --- | ---: | ---: | ---: | ---: | ---: | --- |",
+        "## Interval Band Results",
+        "",
+        "| Band | Full signed interval lower | Full target | Positive-sine interval lower | Positive target | Excluded subintervals full/+ | Unstable ledger full/+ | Jacobian full/+ | Verdict |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |",
         ]
     )
     for band in certificate["bands"]:
@@ -644,7 +754,7 @@ def emit_markdown(certificate: dict) -> str:
         positive = band["positive_sine_interval"]
         verdict = "pass" if full["passed_target"] and positive["passed_target"] else "fail"
         lines.append(
-            "| {band} | {full_lower:.6f} | {full_target:.3f} | {pos_lower:.6f} | {pos_target:.3f} | {full_excl}/{pos_excl} | {verdict} |".format(
+            "| {band} | {full_lower:.6f} | {full_target:.3f} | {pos_lower:.6f} | {pos_target:.3f} | {full_excl}/{pos_excl} | {full_unstable}/{pos_unstable} | {full_jacobian}/{pos_jacobian} | {verdict} |".format(
                 band=band["band"],
                 full_lower=full["interval_lower"],
                 full_target=full["target"],
@@ -652,12 +762,35 @@ def emit_markdown(certificate: dict) -> str:
                 pos_target=positive["target"],
                 full_excl=full["excluded_subintervals"],
                 pos_excl=positive["excluded_subintervals"],
+                full_unstable=full["excluded_unstable_ledger_subintervals"],
+                pos_unstable=positive["excluded_unstable_ledger_subintervals"],
+                full_jacobian=full["excluded_jacobian_subintervals"],
+                pos_jacobian=positive["excluded_jacobian_subintervals"],
                 verdict=verdict,
             )
         )
     tail = certificate["tail_obstruction"]
     lines.extend(
         [
+            "",
+            "## Proof Obligation Matrix",
+            "",
+            "| Obligation | Status | Technical value |",
+            "| --- | --- | --- |",
+        ]
+    )
+    for obligation in certificate["theorem_readiness"]["obligations"]:
+        lines.append(
+            "| {obligation} | `{status}` | {technical_value} |".format(
+                obligation=obligation["obligation"],
+                status=obligation["status"],
+                technical_value=obligation["technical_value"],
+            )
+        )
+    lines.extend(
+        [
+            "",
+            f"First nonpassing obligation: `{certificate['theorem_readiness']['first_nonpassing_obligation']}`.",
             "",
             "## Tail Scaffold",
             "",
@@ -683,6 +816,11 @@ def main(argv: Iterable[str] | None = None) -> int:
     parser.add_argument("--samples", type=int, default=SAMPLES_PER_BAND)
     parser.add_argument("--subintervals", type=int, default=INTERVAL_SUBINTERVALS_PER_BAND)
     parser.add_argument("--format", choices=["json", "markdown"], default="json")
+    parser.add_argument(
+        "--require-theorem-grade",
+        action="store_true",
+        help="Exit nonzero unless all theorem-grade proof obligations are passed.",
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
 
     certificate = build_certificate(args.samples, args.subintervals)
@@ -690,6 +828,8 @@ def main(argv: Iterable[str] | None = None) -> int:
         print(emit_markdown(certificate))
     else:
         print(json.dumps(certificate, indent=2, sort_keys=True))
+    if args.require_theorem_grade and not certificate["theorem_grade"]:
+        return 2
     return 0 if certificate["all_numeric_targets_passed"] and certificate["all_interval_targets_passed"] else 1
 
 

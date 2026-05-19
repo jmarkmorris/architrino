@@ -32,16 +32,29 @@ The artifact passes the finite-band numerical and outward-rounded interval targe
 
 ## Interval Band Results
 
-| Band | Full signed interval lower | Full target | Positive-sine interval lower | Positive target | Excluded subintervals full/+ | Verdict |
-| --- | ---: | ---: | ---: | ---: | ---: | --- |
-| 0 | 0.952097 | 0.450 | 0.952097 | 0.450 | 5/5 | pass |
-| 1 | 2.168139 | 1.000 | 1.703530 | 0.800 | 1/0 | pass |
-| 2 | 3.385853 | 1.600 | 2.897432 | 1.350 | 1/1 | pass |
-| 3 | 4.628537 | 2.300 | 3.754940 | 1.800 | 1/0 | pass |
-| 4 | 5.882599 | 2.900 | 4.870851 | 2.350 | 1/1 | pass |
-| 5 | 7.142687 | 3.500 | 5.786376 | 2.800 | 1/0 | pass |
-| 6 | 8.406350 | 4.100 | 6.870962 | 3.300 | 1/1 | pass |
-| 7 | 9.672295 | 4.800 | 7.813243 | 3.800 | 1/0 | pass |
+| Band | Full signed interval lower | Full target | Positive-sine interval lower | Positive target | Excluded subintervals full/+ | Unstable ledger full/+ | Jacobian full/+ | Verdict |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| 0 | 0.952097 | 0.450 | 0.952097 | 0.450 | 5/5 | 0/0 | 5/5 | pass |
+| 1 | 2.168139 | 1.000 | 1.703530 | 0.800 | 1/0 | 0/0 | 1/0 | pass |
+| 2 | 3.385853 | 1.600 | 2.897432 | 1.350 | 1/1 | 0/0 | 1/1 | pass |
+| 3 | 4.628537 | 2.300 | 3.754940 | 1.800 | 1/0 | 0/0 | 1/0 | pass |
+| 4 | 5.882599 | 2.900 | 4.870851 | 2.350 | 1/1 | 0/0 | 1/1 | pass |
+| 5 | 7.142687 | 3.500 | 5.786376 | 2.800 | 1/0 | 0/0 | 1/0 | pass |
+| 6 | 8.406350 | 4.100 | 6.870962 | 3.300 | 1/1 | 0/0 | 1/1 | pass |
+| 7 | 9.672295 | 4.800 | 7.813243 | 3.800 | 1/0 | 0/0 | 1/0 | pass |
+
+## Proof Obligation Matrix
+
+| Obligation | Status | Technical value |
+| --- | --- | --- |
+| finite_sample_targets | `passed` | Keeps the original dense numerical scan as a regression witness. |
+| finite_interval_targets | `passed` | Provides outward-rounded lower bounds on every certified finite-band subinterval. |
+| stable_active_root_ledger | `passed` | Certified subintervals have stable endpoint branch labels; birth or Jacobian-window subintervals are excluded from the constant-speed theorem domain. |
+| portable_directed_elementary_functions | `blocked` | The current backend pads ordinary libm sin/cos endpoint calls. The theorem-grade artifact still needs checked range reduction or a directed elementary-function implementation. |
+| explicit_inactive_gap_rows | `blocked` | The runner now accounts for stable active ledgers and excluded birth/Jacobian subintervals, but it does not yet emit positive gap rows for every inactive complement, including the excluded principal self-coincidence endpoint. |
+| closed_large_beta_tail_remainder | `blocked` | The linear tail margins are reported, but the O(log beta) and O(1) constants are not bounded, so the infinite tail is not closed. |
+
+First nonpassing obligation: `portable_directed_elementary_functions`.
 
 ## Tail Scaffold
 
