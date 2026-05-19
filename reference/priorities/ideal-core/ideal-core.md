@@ -3,18 +3,18 @@
 ## LLM Instructions
 
 - Keep `Task Queue` ordered as the current Ideal Core app work queue, with the most important active item first.
-- Keep this priority file app-facing: runtime access, visualization requirements, lesson flow, controls, charts, and acceptance gates.
+- Keep this priority file app-facing: runtime access, visualization requirements, lesson flow, controls, charts, and acceptance gates. Its task queue is app-local and is not part of the global theory priority score table unless the operator/developer explicitly selects Ideal Core work.
 - Use [../ellipsoid/ideal-core.md](../ellipsoid/ideal-core.md) as the earlier design brief for the Noether-core instrument and central spherical viewing model.
 - Use [../../../content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md](../../../content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md) as the current theory bridge for Lorentz-factor quantization, return-cycle closure, and Lorentz spheroid geometry.
 - Do not treat the app as proof by itself; use it to make the candidate geometry, equations, and closure defects visible.
 
 ## Workstream Metadata
 
-- Kind: `priority`
-- Rank: `1`
-- Value: `9.40`
-- Cost: `5.0`
-- ROI: `1.88`
+- Kind: `app-priority`
+- Rank: `unranked`
+- Value: `app-local`
+- Cost: `app-local`
+- ROI: `app-local`
 - Status: `active`
 
 ## Access

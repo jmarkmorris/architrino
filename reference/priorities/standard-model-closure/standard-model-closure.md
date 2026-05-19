@@ -3,10 +3,10 @@
 ## Workstream Metadata
 
 - Kind: `priority`
-- Rank: `11`
-- Value: `18.69`
+- Rank: `12`
+- Value: `18.27`
 - Cost: `6.2`
-- ROI: `3.01`
+- ROI: `2.95`
 - Status: `tolerance-rule-scaffolded`
 
 ## Task Queue
