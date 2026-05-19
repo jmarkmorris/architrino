@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1229
+      "sections": 1230
     }
   },
   "tocRoot": {
@@ -8069,6 +8069,14 @@
                 "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
                 "markdownSection": "Assessment Table",
                 "sectionKey": "assessment table",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "2026-05-19 Assessment Notes",
+                "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
+                "markdownSection": "2026-05-19 Assessment Notes",
+                "sectionKey": "2026 05 19 assessment notes",
                 "headingLevel": 2
               },
               {
