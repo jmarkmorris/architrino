@@ -11,7 +11,7 @@
 
 ## Task Queue
 
-1. `circular_asymptotics` — Extend higher-winding and large-$\beta$ circular self-force asymptotics. Status: `in_progress`; the branchwise large-$\beta$ self-hit estimates, derivative-sensitive residual packet, high-speed circular obstruction, sampled finite-band branch table, executable outward-rounded interval support certificate, trig-free residual backend, checked root-bracket rows, theorem-readiness matrix, interval-certificate packet, and Jacobian-null finite-crossing criteria now advance the self-hit side, but the theorem-grade bare-kernel circular MCB verdict remains open until the complete inactive-gap ledger and large-$\beta$ tail remainder constants are closed. Depends on: none.
+1. `circular_asymptotics` — Extend higher-winding and large-$\beta$ circular self-force asymptotics. Status: `in_progress`; the branchwise large-$\beta$ self-hit estimates, derivative-sensitive residual packet, high-speed circular obstruction, sampled finite-band branch table, executable outward-rounded interval support certificate, trig-free residual backend, checked root-bracket rows, complete finite-band inactive-gap ledger, theorem-readiness matrix, interval-certificate packet, and Jacobian-null finite-crossing criteria now advance the self-hit side, but the theorem-grade bare-kernel circular MCB verdict remains open until the large-$\beta$ tail remainder constants are closed. Depends on: none.
 2. `spiral_branch_chart_test` — Certify whether any admissible variable-pitch spiral roots realize negative weighted tangential drive with positive Jacobian floors and finite memory depth, using the promoted variable-pitch formulas, radial-turn inequality, and weighted tangential obstruction test. Status: `next`. Depends on: `circular_asymptotics`.
 3. `lorentz_gr_bridge` — Close the Lorentz and weak-field GR bridge from the coarse-grained delayed medium. Status: `pending`. Depends on: `spiral_branch_chart_test`.
 
@@ -64,7 +64,7 @@ This completion does not certify a branch or terminal label. Downstream consumer
 - The circular self-hit sum is branchwise sign-resolved: radial self terms are outward, higher-winding tangential self terms are not sign-definite, the positive-sine subchart has a backward order-$\beta$ signed tangential residue, and the full signed $|\sin\xi|$ chart cancels the order-$\beta$ signed tangential terms to a bounded remainder while retaining order-$\beta$ absolute tangential activity.
 - Combining the exact partner branch with those self sums gives a high-speed circular obstruction outside Jacobian-null windows: for the equal-magnitude opposite-charge bare kernel, the net tangential residual is positive of order $C\beta$ on both the positive-sine and full signed self charts, and the net radial acceleration becomes outward for sufficiently large $\beta$ before any centripetal closure equation can be satisfied.
 - The sampled finite-band branch table through the first eight higher-winding birth bands finds no tangential-zero survivor after excluding $|J|<0.02$ windows; [circular_interval_certificate.py](circular_interval_certificate.py) now reproduces the numerical target-margin pass and an outward-rounded finite-band interval support pass.
-- The symmetric isolated circular two-body ansatz has a partner-side tangential obstruction; after the high-speed obstruction, sampled finite-band table, executable interval support certificate, and interval-certificate packet, the finite interval targets, stable active-root ledger, trig-free residual backend, and checked root-bracket rows pass. The remaining blockers before a bare-kernel circular MCB no-go or existence theorem are the complete inactive-gap ledger and closed analytic tail remainder constants.
+- The symmetric isolated circular two-body ansatz has a partner-side tangential obstruction; after the high-speed obstruction, sampled finite-band table, executable interval support certificate, and interval-certificate packet, the finite interval targets, stable active-root ledger, trig-free residual backend, checked root-bracket rows, and complete finite-band inactive-gap ledger pass. The remaining blocker before a bare-kernel circular MCB no-go or existence theorem is the closed analytic tail remainder constant package.
 
 ## Breather Certificate Routing Gate
 
@@ -83,13 +83,13 @@ Use the collinear-breather certificate as the smallest finite-root-ledger test f
 
 ## Circular Work Order
 
-Status update. The branch-history packet below is now the required baseline for `circular_asymptotics`. The high-speed residual computation, sampled finite-band branch table, executable outward-rounded interval support certificate, trig-free residual backend, checked root-bracket rows, theorem-readiness matrix, interval-certificate packet, and Jacobian-null finite-crossing criteria are recorded here. The remaining circular task is to convert the support certificate into a theorem-grade proof by closing the complete inactive-gap ledger and large-$\beta$ tail obligations.
+Status update. The branch-history packet below is now the required baseline for `circular_asymptotics`. The high-speed residual computation, sampled finite-band branch table, executable outward-rounded interval support certificate, trig-free residual backend, checked root-bracket rows, complete finite-band inactive-gap ledger, theorem-readiness matrix, interval-certificate packet, and Jacobian-null finite-crossing criteria are recorded here. The remaining circular task is to convert the support certificate into a theorem-grade proof by closing the large-$\beta$ analytic tail obligation.
 
 1. Treat the self-hit side as partially advanced: preserve the branchwise large-$\beta$ estimates, distinguish the positive-sine subchart from the full signed $|\sin\xi|$ chart, keep radial self terms outward, and keep higher-winding tangential self terms branchwise rather than sign-definite.
 2. Preserve the exact partner branch asymptotics on the same retained history chart, reporting the branch ledger, Jacobian floor, inactive gaps, and root-transport residuals branch by branch.
-3. Preserve the checked root-bracket inclusion rows for every active branch enclosure, then complete the inactive-gap ledger for no-root lobe complements and the declared principal self-coincidence endpoint.
+3. Preserve the checked root-bracket inclusion rows and complete finite-band inactive-gap ledger for every active branch enclosure, no-root lobe complement, and the declared principal self-coincidence endpoint.
 4. Apply the finite-crossing criteria below to every Jacobian-null birth window; keep any failed window out of the theorem statement.
-5. Prove either the formal finite-band bare-kernel circular MCB no-go theorem or an existence theorem; do not treat the Jacobian-null wall as circular closure.
+5. Close the large-$\beta$ tail remainder constants, then prove either the formal bare-kernel circular MCB no-go theorem or an existence theorem; do not treat the Jacobian-null wall as circular closure.
 6. Push the isolated binary to non-circular periodic-orbit closure after the circular verdict is classified.
 
 ## Circular Derivative-Sensitive Branch-History Packet
@@ -317,7 +317,7 @@ Residual consequence. Since exact constant-speed circular closure requires the t
 
 ## Finite-Band Interval-Certificate Packet
 
-Claim level. This packet specifies the formal interval certificate required to promote the sampled branch table. The executable artifact now supplies a finite-band outward-rounded interval support certificate with a trig-free active-root residual backend and checked root-bracket rows for every certified active row. It is still not theorem-grade because theorem promotion requires a complete inactive-gap ledger and a closed large-$\beta$ tail remainder. Its value is that the remaining proof obligation is finite, explicit, and checkable.
+Claim level. This packet specifies the formal interval certificate required to promote the sampled branch table. The executable artifact now supplies a finite-band outward-rounded interval support certificate with a trig-free active-root residual backend, checked root-bracket rows for every certified active row, and a complete finite-band inactive-gap ledger. It is still not theorem-grade because theorem promotion requires a closed large-$\beta$ tail remainder. Its value is that the remaining proof obligation is explicit and isolated.
 
 Executable status. [circular_interval_certificate.py](circular_interval_certificate.py) is now the local reproducibility artifact, with output captured in [circular-interval-certificate-report.md](circular-interval-certificate-report.md). It passes the finite-band numerical target margins, outward-rounded interval support margins, and stable active-root ledger checks for all eight listed bands:
 $$
@@ -331,7 +331,7 @@ $$
 \qquad
 \Theta_{+}^{\mathrm{int}}\ge\delta_m^+,
 $$
-using `math.nextafter` outward arithmetic, the active-root identities $\sin\xi_p=\sqrt{1-(\xi_p/\beta)^2}$ for the partner row and $\cos y=\pm\sqrt{1-((k\pi+y)/\beta)^2}$ for self rows, and subinterval exclusion whenever an active row cannot certify $|J|\ge0.02$. For every certified active root, the runner also emits a monotone interval row proving the bracket sign change and a nonzero derivative floor on the same beta subinterval. The theorem-readiness mode deliberately exits nonzero unless every theorem-grade obligation is closed. It remains a support certificate rather than a theorem-grade proof because the complete inactive complement ledger and the high-speed tail remainder are not yet closed.
+using `math.nextafter` outward arithmetic, the active-root identities $\sin\xi_p=\sqrt{1-(\xi_p/\beta)^2}$ for the partner row and $\cos y=\pm\sqrt{1-((k\pi+y)/\beta)^2}$ for self rows, and subinterval exclusion whenever an active row cannot certify $|J|\ge0.02$. For every certified active root, the runner also emits a monotone interval row proving the bracket sign change and a nonzero derivative floor on the same beta subinterval. It then emits finite-band inactive-gap rows for active complements, no-root lobe domains, and the declared $\xi=0$ self-coincidence endpoint exclusion. The theorem-readiness mode deliberately exits nonzero unless every theorem-grade obligation is closed. It remains a support certificate rather than a theorem-grade proof because the high-speed tail remainder is not yet closed.
 
 Certificate domain. For each finite band $m=0,\ldots,7$, set
 $$
@@ -418,14 +418,45 @@ Theorem-readiness matrix. The current executable classifies the proof obligation
 | Stable active-root ledger | Passed | Certified subintervals keep stable endpoint branch labels; birth and Jacobian windows are excluded from the constant-speed theorem domain. |
 | Trig-free residual interval backend | Passed | The interval residual path uses algebraic root-ratio identities and square-root intervals rather than padded libm sin/cos endpoint calls. |
 | Checked root-bracket inclusion | Passed | Every certified active partner/self root enclosure has a monotone sign-changing bracket row and a nonzero derivative floor on the same beta subinterval. |
-| Explicit inactive-gap rows | Blocked | Active-complement gap constants are emitted from the checked bracket margins, but no-root lobe complements and the declared principal endpoint exclusion still need a complete ledger. |
+| Explicit inactive-gap rows | Passed | The finite-band runner emits active-complement gaps, no-root lobe gaps, and the declared principal self-coincidence endpoint exclusion for every certified chart row. |
 | Closed large-$\beta$ tail remainder | Blocked | The linear tail margins and admissible $K_{\log},K_0$ budgets are reported, but the branchwise $O(\log\beta)$ and $O(1)$ constants are not yet derived. |
 
 Tail scaffold. At $\beta_{\mathrm{tail}}=\beta_8^\star=26.684798$, the positive-sine asymptotic linear coefficient is $4/\pi^2-1/12=0.321951401236$ and the full-signed coefficient is $4/\pi^2=0.405284734569$. The corresponding linear margins at the handoff are $8.591208$ and $10.814941$. The executable now emits admissible positive-sine budget rows: $K_{\log}=0$ allows $K_0<8.591208$, $K_{\log}=0.5$ allows $K_0<6.949161$, $K_{\log}=1$ allows $K_0<5.307114$, and $K_{\log}=2$ allows $K_0<2.023020$ at the handoff. The full-signed chart has $K_0<10.814941$ at the same handoff. These budgets are not yet a closed proof because the branchwise $O(\log\beta)$ and $O(1)$ remainders still need explicit derived constants.
 
-Inactive-gap rows. The executable now emits active-complement gap constants from the checked bracket margins for each finite-band chart. The default run reports positive lower bounds between $2.580747\times10^{-11}$ and $2.098537\times10^{-9}$ on the active-root bracket complements. These are not yet a complete inactive-gap proof: the remaining proof obligation is to partition the no-root lobe domains and record a separate declared exclusion for the $\xi=0$ self-coincidence endpoint, which is not used as an active self-force row.
+Inactive-gap rows. The executable now emits complete finite-band inactive-gap rows for each certified chart. The default run reports positive active-complement lower bounds between $2.580747\times10^{-11}$ and $2.098537\times10^{-9}$, positive no-root lobe lower bounds between $3.744780\times10^{-10}$ and $2.120456\times10^{-9}$ wherever a no-root lobe domain exists, and an explicit declared exclusion for the $\xi=0$ self-coincidence endpoint, which is not used as an active self-force row.
 
-Promotion rule. If the executable certificate proves all target margins, completes the inactive-gap ledger, and attaches the large-$\beta$ tail with a stated $\beta_{\mathrm{tail}}$ and closed remainder, then the equal-magnitude bare circular ansatz has no tangential-zero branch chart outside $\mathcal{N}_{J,\varepsilon}$. At that point the reader-facing master-equation chapter may promote a finite-band circular no-go proposition. If any margin fails, the failed interval becomes the only surviving finite-band circular candidate and must be re-evaluated with smaller Jacobian windows or exact interval root refinement.
+Tail remainder priority capture. The remaining high-value proof packet is a branchwise tail constant derivation, not another finite-band checker. The proof must bound the positive-sine self-tail remainder by explicit constants $K_{\log},K_0$ with $K_{\log}\log\beta_{\mathrm{tail}}+K_0<8.591208140575$, and bound the full signed tail by $K_0<10.814941315726$, using the same active-root asymptotics and Jacobian-window exclusions as the finite certificate. A successful packet should update [circular_interval_certificate.py](circular_interval_certificate.py) so `--require-theorem-grade` fails only if the derived tail constants violate those budgets.
+
+Continuation prompt captured for the next technical pass:
+
+```text
+Cody, use the AAA corpus advancement skill in self-running exploration mode.
+
+Context:
+- The circular interval certificate now passes finite sample targets, outward-rounded finite interval targets, stable active-root ledgers, the trig-free residual backend, checked root-bracket inclusion, and complete finite-band inactive-gap rows.
+- The theorem-grade guard still fails only at `closed_large_beta_tail_remainder`.
+
+Task:
+- Derive explicit branchwise large-$\beta$ tail remainder constants for the positive-sine and full signed circular self charts.
+- Use the existing budgets at $\beta_{\mathrm{tail}}=\beta_8^\star=26.684798$: positive-sine requires $K_{\log}\log\beta_{\mathrm{tail}}+K_0<8.591208140575$ and full signed requires $K_0<10.814941315726$.
+- If the constants close, update `circular_interval_certificate.py`, regenerate `circular-interval-certificate-report.md`, and update this priority file. If they do not close, record the exact inequality that fails and the next mathematical route.
+
+Scope:
+- `reference/priorities/master-equation-closure/circular_interval_certificate.py`
+- `reference/priorities/master-equation-closure/circular-interval-certificate-report.md`
+- `reference/priorities/master-equation-closure/master-equation-closure.md`
+
+Constraints:
+- Preserve TeX exactly.
+- Use canonical AAA terminology.
+- Do not promote theorem-grade unless the tail constants are derived and the executable guard passes.
+- Edit authority: direct edit batch authorized.
+
+Expected output:
+- A tail proof packet with constants, validation output, and either theorem-grade promotion or a precise remaining analytic blocker.
+```
+
+Promotion rule. If the executable certificate proves all target margins and attaches the large-$\beta$ tail with a stated $\beta_{\mathrm{tail}}$ and closed remainder, then the equal-magnitude bare circular ansatz has no tangential-zero branch chart outside $\mathcal{N}_{J,\varepsilon}$. At that point the reader-facing master-equation chapter may promote a finite-band circular no-go proposition. If any margin fails, the failed interval becomes the only surviving finite-band circular candidate and must be re-evaluated with smaller Jacobian windows, exact interval root refinement, or a later tail handoff.
 
 ## Circular Jacobian-Null Finite-Crossing Packet
 

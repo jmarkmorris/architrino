@@ -1,35 +1,35 @@
 # Detecting the Absolute Frame
 
-This chapter isolates the complete-state diagnostic problem of identifying absolute rest inside a theory with Euclidean void and absolute time. Its purpose is to show that the preferred frame is not a purely metaphysical declaration but something that, at least in principle, is encoded in the source-tagged geometry of causal wakes available to complete-state bookkeeping.
+This chapter isolates the complete-state diagnostic problem of identifying absolute rest in $\mathbb{A}\mathbb{A}\mathbb{A}$, whose substrate is absolute time together with the Euclidean void. Its purpose is to show that the preferred frame is not a purely metaphysical declaration: at the ontological level, it is encoded in the source-tagged geometry of causal wakes available to complete-state bookkeeping.
 
 ## Overview
 
-This chapter isolates the conceptual question that has to be answered before any coordinate construction can begin: can the architrino framework identify **absolute rest** from its own physics, without assuming a pre-labeled grid? The answer in this framework is yes, from the $\mathbb{U}_{\text{now}}$ universe-state perspective. The complete-state diagnostic is the **concentricity of source-tagged causal isochrons** emitted by a stationary architrino.
+This chapter answers the question that must be settled before any coordinate construction can begin: can the architrino framework identify **absolute rest** from its own physics, without assuming a pre-labeled grid? The answer in this framework is yes, but the answer belongs first to the $\mathbb{U}_{\text{now}}$ universe-state perspective. The complete-state diagnostic is the **concentricity of source-tagged causal isochrons** emitted by a stationary architrino.
 
-This argument sits between [Euclidean Void](euclidean-void.md), which states the underlying substrate, and [Reconstructing a Coordinate Frame from Wake Geometry](bootstrapping-the-absolute-frame.md), which turns the preferred-rest diagnostic into a usable coordinate scaffold. Its operational shielding claims also connect directly to [Absolute Time Defense](absolute-time-defense.md) and [Lorentz Kinematics](../spacetime/lorentz-kinematics.md).
+This argument sits between [Euclidean Void](euclidean-void.md), which states the underlying substrate, and [Reconstructing a Coordinate Frame from Wake Geometry](bootstrapping-the-absolute-frame.md), which turns the preferred-rest diagnostic into a usable coordinate frame. Its operational shielding claims also connect directly to [Absolute Time Defense](absolute-time-defense.md) and [Lorentz Kinematics](../spacetime/lorentz-kinematics.md).
 
 ## The Fundamental Challenge
 
-The architrino theory posits an **Euclidean 3D void** and **absolute time** as the fundamental substrate. However, these are not pre-labeled with coordinates. Unlike a laboratory bench with meter sticks and clocks, the void has no inherent origin, no painted grid lines, no axis arrows, and no universal clock reading "t = 0."
+The architrino theory posits the **Euclidean void** and **absolute time** as the fundamental substrate. These are ontological commitments, not coordinate labels. Unlike a laboratory bench with meter sticks and clocks, the void has no inherent origin, no painted grid lines, no axis arrows, and no universal clock reading "t = 0."
 
 This presents an apparent paradox:
-- We claim architrinos have **definite positions** $\mathbf{x}(t)$ and **definite velocities** $\mathbf{v}(t)$ in absolute space and time.
-- Yet absolute space is **translationally and rotationally invariant**: the physics is identical at any location, any orientation, and any moment.
+- We claim architrinos have **definite positions** $\mathbf{x}(t)$ and **definite velocities** $\mathbf{v}(t)$ in the Euclidean void as indexed by absolute time.
+- Yet the Euclidean void is **translationally and rotationally invariant**: the physics is identical at any location, any orientation, and any moment.
 - How can the theory internally distinguish absolute rest ($\mathbf{v} = \mathbf{0}$) from absolute motion ($\mathbf{v} \neq \mathbf{0}$) without reference coordinates?
 
-This is not merely a philosophical puzzle. It is a **practical requirement** for the theory's internal consistency. If the theory cannot, even in principle, extract a preferred rest condition from intrinsic physics, then claims about absolute velocity lack complete-state content.
+This is not merely a philosophical puzzle. It is a **practical requirement** for the theory's internal consistency. If the theory cannot, even in principle, extract a preferred rest condition from intrinsic physics, then claims about absolute velocity lack complete-state content and become only an imposed coordinate convention.
 
 ## Detecting Absolute Rest: The Causal Wake Diagnostic
 
 ### The Key Physical Mechanism
 
-The resolution exploits the theory's **finite wake-speed** postulate: architrino-emitted causal wakes propagate at speed $c_f$ **relative to the Euclidean void**, not relative to the source's subsequent motion. This single postulate creates a **dynamically preferred frame** available to complete-state reconstruction through purely geometric relationships.
+The diagnostic rests on the theory's **finite wake-speed** postulate: architrino-emitted causal wakes propagate at speed $c_f$ **relative to the Euclidean void**, not relative to the source's subsequent motion. This postulate creates a **dynamically preferred frame** available to complete-state reconstruction through purely geometric relationships.
 
 ### The Nature of Causal Wakes
 
-Each architrino continuously emits potential-bearing structure as **expanding causal isochrons**. A single emission at time $t_0$ produces a causal wake surface expanding at speed $c_f$ from the emission point. This is not a discrete shell or particle; it is a **continuous potential distribution** that grows radially from its origin. At any given absolute time, that emitted isochron has radius $r = c_f \Delta t$ centered on the point where it was emitted.
+Each architrino continuously emits potential-bearing structure as **expanding causal isochrons**. A single emission at time $t_0$ produces a causal wake surface expanding at speed $c_f$ from the emission point. This is not a discrete shell or particle; it is a **potential-bearing distribution** supported on the emitted wake surface. At any given absolute time, that emitted isochron has radius $r = c_f \Delta t$ centered on the point where it was emitted.
 
-The crucial point is that this expanding causal isochron carries information about the **absolute location** where the architrino was when it emitted that portion of the potential-bearing wake. The isochron does not follow where the architrino goes afterward. It simply continues expanding from its birth point in the void.
+The crucial point is that this expanding causal isochron carries source-tagged information about the **absolute location** where the architrino was when it emitted that portion of the potential-bearing wake. The isochron does not follow where the architrino goes afterward. It continues expanding from its emission point in the Euclidean void.
 
 ### The Concentricity Test
 
@@ -37,7 +37,7 @@ Consider a $\mathbb{U}_{\text{now}}$ universe-state perspective with access to c
 1. The complete path history of any architrino,
 2. The source identity and provenance of each emitted causal isochron,
 3. The geometric centers of all emitted and expanding causal wake surfaces,
-4. All outgoing potential wakes it has emitted.
+4. The absolute emission times associated with those wake surfaces.
 
 **The Diagnostic Signature:** An architrino at **absolute rest** ($\mathbf{v} = \mathbf{0}$) exhibits a unique geometric property. It remains at the **exact center** of every source-tagged expanding causal isochron it has ever emitted during the rest interval.
 
@@ -54,7 +54,7 @@ Consider a $\mathbb{U}_{\text{now}}$ universe-state perspective with access to c
 - The first causal isochron remains centered on $\mathbf{x}_0$ with radius $c_f \Delta t$.
 - Subsequent causal isochrons are centered on displaced positions along the trajectory.
 - The emitted centers are **non-coincident**; the source-tagged wake stream is **non-concentric**.
-- The architrino lies closer to the expanding wake front in its direction of motion, producing a Doppler-like geometry in the absolute frame.
+- The architrino lies closer to the expanding wake front in its direction of motion, producing the geometric asymmetry that later appears as Doppler-like structure at the observer level.
 
 ### The Complete-State Diagnostic Procedure
 
@@ -63,8 +63,8 @@ Consider a $\mathbb{U}_{\text{now}}$ universe-state perspective with access to c
 **Step 2:** Test for spatial coincidence of these centers.
 
 **Result:**
-- **All centers coincident** -> $\mathbf{v}_{\text{abs}} = \mathbf{0}$ on that interval (absolute rest)
-- **Centers form a trajectory** -> $\mathbf{v}_{\text{abs}} \neq \mathbf{0}$; for a uniform segment, the displacement vector $\Delta \mathbf{x}$ per unit time $\Delta t$ yields the absolute velocity: $\mathbf{v}_{\text{abs}} = \Delta \mathbf{x} / \Delta t$
+- **All centers coincident** means $\mathbf{v}_{\text{abs}} = \mathbf{0}$ on that interval (absolute rest).
+- **Centers form a trajectory** means $\mathbf{v}_{\text{abs}} \neq \mathbf{0}$; for a uniform segment, the displacement vector $\Delta \mathbf{x}$ per unit time $\Delta t$ yields the absolute velocity: $\mathbf{v}_{\text{abs}} = \Delta \mathbf{x} / \Delta t$.
 
 **Coordinate-Free Invariant:** For a target architrino $a$ and emission interval $I$, define the source-tagged center set
 $$
@@ -76,6 +76,8 @@ D_a(I)=\sup_{s,u\in I}\|\mathbf{x}_a(s)-\mathbf{x}_a(u)\|.
 $$
 
 With exact complete-state access and source-independent propagation at $c_f$, $D_a(I)=0$ if and only if $\mathbf{x}_a(s)$ is constant on $I$, so $\mathbf{v}_a(s)=\mathbf{0}$ almost everywhere on that interval. For uniform motion, $D_a([t_0,t_0+T])=\|\mathbf{v}_a\|T$. This is a **coordinate-free** geometric diagnostic. It does not compare position to some external grid. It checks an **intrinsic relational property**: whether the source-tagged centers of emitted causal isochrons occupy the same point in the Euclidean void.
+
+This distinction fixes the level of the claim. Ontologically, the preferred frame is defined by the propagation law in the Euclidean void. Inference-wise, the concentricity test reconstructs that rest condition from source-tagged wake records. At the effective observer level, the same fact need not be directly measurable, because assemblies use clocks, rulers, and signal channels that must themselves satisfy Lorentz-recovery closure.
 
 ## Connections to Core Dynamics
 
@@ -97,7 +99,7 @@ The master equation demands **explicit positions** $\mathbf{x}_i(t)$ to compute:
 - Separation distance $r_{ij}$ between architrinos $i$ and $j$
 - Path-history positions (where was architrino $j$ when the wake contribution currently reaching $i$ was emitted?)
 
-The concentric-wake diagnostic demonstrates that $\mathbf{x}_i(t)$ is physically meaningful and definable within complete-state reconstruction. Stationarity can be identified without circular reference to pre-existing coordinates.
+The concentric-wake diagnostic demonstrates that $\mathbf{x}_i(t)$ is physically meaningful within complete-state reconstruction. Stationarity can be identified without circular reference to pre-existing coordinate labels; coordinates enter afterward as a convenient representation of the already-defined rest condition.
 
 ### Foundational Validation (Ch. 7)
 
@@ -105,14 +107,14 @@ This complete-state diagnostic serves as a **consistency test**:
 - Can the theory self-consistently define its own reference frame from intrinsic physics alone?
 - **Yes**: through geometric properties of continuous wake dynamics.
 
-This prevents the theory from being stranded without empirical content or operational meaning.
+This prevents the preferred-frame claim from being empty inside the formal ontology. Direct empirical access remains a separate issue: it depends on the moving-assembly and photon-channel closures that determine whether Physical Observers can detect any preferred-frame leakage.
 
 ## Ontological Clarifications
 
 ### What Is Physically Real vs. What Is Convention
 
 **Ontologically fundamental (physically real):**
-- **Absolute space and time**: The substrate in which all architrino dynamics occur
+- **Euclidean void and absolute time**: The substrate in which all architrino dynamics occur
 - **Absolute velocity**: Physically meaningful and detectable to complete-state reconstruction via source-tagged wake concentricity
 - **Causal wakes**: continuous potential-bearing structures propagating through the void
 - **Geometric relationships**: Concentricity and displacement are objective, observer-independent properties
@@ -130,7 +132,7 @@ The concentric-wake diagnostic requires access to full microdynamics: something 
 - **Effective coordinates** via local rulers
 - **Relative velocities** via Doppler shifts and aberration
 
-Assembly-based measuring devices are themselves distorted by motion and coupling to the Noether-Sea medium. At accessible energies and weak Noether-Sea density gradients, the Lorentz-recovery target is that moving assemblies contract, retune their internal periods, and synchronize photon channels so that preferred-frame signatures remain below experimental detection thresholds. The absolute frame exists as the ontological foundation, but emergent effective geometry shields it from direct operational observation only if that moving-assembly closure is derived, not merely assumed.
+Assembly-based measuring devices are themselves distorted by motion and coupling to the Noether Sea. At accessible energies and weak Noether-Sea density gradients, the Lorentz-recovery target is that moving assemblies contract, retune their internal periods, and synchronize photon channels so that preferred-frame signatures remain below experimental detection thresholds. The absolute frame exists as the ontological foundation, but emergent effective geometry shields it from direct operational observation only if that moving-assembly closure is derived, not merely assumed.
 
 ### The Source-Independence Assumption
 
@@ -143,10 +145,10 @@ This is analogous to **acoustic waves** in air: once a speaker emits sound, that
 
 ### Relationalism vs. Substantivalism
 
-- **Relationalism** (Leibniz, Mach): space is merely relations between objects; absolute space is meaningless
-- **Substantivalism** (Newton, this theory): space is a real container with intrinsic structure, existing independent of matter
+- **Relationalism** (Leibniz, Mach): spatial facts are merely relations between objects; no independent Euclidean-void container is meaningful
+- **Substantivalism** (Newton, this theory): the Euclidean void is a real container with intrinsic structure, existing independent of matter
 
-The architrino framework is **substantivalist**, but it avoids the idea that the void comes with pre-painted coordinates. Instead, **causal-wake dynamics** reveal the structure that matters.
+In the terminology of this chapter, the substantival claim is the reality of the Euclidean void and absolute time, not the existence of a preferred coordinate chart. The architrino framework is therefore **substantivalist**, but it avoids the idea that the void comes with pre-painted coordinates. Instead, **causal-wake dynamics** reveal the structure that matters.
 
 ### Neo-Lorentzian Character
 
@@ -156,7 +158,7 @@ This places the theory in the tradition of **Lorentz Ether Theory**:
 - A preferred frame exists but must be operationally hidden at low energies by the moving-assembly closure ladder
 
 **Key distinctions from classical LET:**
-- The medium is not a continuous classical ether; it is a discrete sea of tri-binary assemblies
+- The medium is not a continuous classical ether; it is the Noether Sea, an assembly medium rather than a coordinate grid
 - The preferred frame is hidden by emergent effective geometry
 - The framework states explicit closure targets and failure criteria for where symmetry-breaking signatures would appear
 
@@ -167,8 +169,8 @@ This places the theory in the tradition of **Lorentz Ether Theory**:
 **The Answer:** **Yes**, by testing the **concentricity** of source-tagged outgoing causal isochrons.
 
 **Detection signatures:**
-- Absolute rest -> all source-tagged wake centers spatially coincident
-- Absolute motion -> wake centers form a displacement trajectory; for uniform segments, velocity $\mathbf{v}_{\text{abs}} = \Delta \mathbf{x} / \Delta t$
+- Absolute rest means all source-tagged wake centers are spatially coincident.
+- Absolute motion means wake centers form a displacement trajectory; for uniform segments, velocity $\mathbf{v}_{\text{abs}} = \Delta \mathbf{x} / \Delta t$.
 
 **Why this works:**
 - Wake speed $c_f$ is isotropic in the void's rest frame
@@ -176,7 +178,7 @@ This places the theory in the tradition of **Lorentz Ether Theory**:
 - Concentricity is a coordinate-free geometric invariant of source-tagged continuous potential distributions
 
 **Theoretical implications:**
-- Absolute space and time have complete-state diagnostic content
+- The Euclidean void and absolute time have complete-state diagnostic content
 - The theory can identify a preferred rest condition from intrinsic physics alone
 - Operational Lorentz invariance is compatible with fundamental absolute structure
 

@@ -15,10 +15,9 @@ The output now has two layers:
 The interval layer uses nextafter-directed arithmetic and, for residual
 evaluation at active roots, replaces trigonometric endpoint calls with the
 algebraic root-ratio identities from the circular branch equations. It also
-emits checked root-bracket rows for every certified active root. It remains
-below theorem grade because the complete inactive-gap ledger and the
-large-beta tail are recorded as proof obligations rather than closed analytic
-remainders.
+emits checked root-bracket rows and complete finite-band inactive-gap rows. It
+remains below theorem grade because the large-beta tail is recorded as a proof
+obligation rather than a closed analytic remainder.
 """
 
 from __future__ import annotations
@@ -677,6 +676,119 @@ def root_bracket_scan_band(
     }
 
 
+def chart_allows_self_lobe(k: int, *, full_signed: bool) -> bool:
+    return full_signed or k % 2 == 0
+
+
+def self_lobe_domain_upper(beta: float, k: int) -> float | None:
+    upper = min(PI, beta - k * PI)
+    if upper <= 0.0:
+        return None
+    return upper
+
+
+def self_lobe_max_residual_upper(beta: float, k: int) -> float | None:
+    upper = self_lobe_domain_upper(beta, k)
+    if upper is None:
+        return None
+    peak = math.acos(1.0 / beta)
+    y = peak if peak <= upper else upper
+    value = math.sin(y) - (k * PI + y) / beta
+    return up(value + TRIG_CHECK_PAD)
+
+
+def inactive_gap_scan_band(
+    *,
+    band: int,
+    lo: float,
+    hi: float,
+    full_signed: bool,
+    subintervals: int,
+) -> dict:
+    chart = "full_signed" if full_signed else "positive_sine"
+    span = hi - lo
+    start = lo + max(span * 1e-9, 1e-8)
+    stop = hi - max(span * 1e-9, 1e-8)
+    step = (stop - start) / subintervals
+    certified = 0
+    excluded = 0
+    failed_rows = 0
+    active_complement_rows = 0
+    no_root_lobe_rows = 0
+    principal_endpoint_rows = 0
+    min_active_gap = POS_INF
+    min_no_root_lobe_gap = POS_INF
+
+    for i in range(subintervals):
+        beta_lo = start + step * i
+        beta_hi = start + step * (i + 1)
+        theta_result = theta_interval(beta_lo, beta_hi, full_signed=full_signed)
+        if theta_result.value is None:
+            excluded += 1
+            continue
+
+        beta = outward(beta_lo, beta_hi)
+        roots = self_root_intervals(beta_lo, beta_hi, full_signed=full_signed)
+        if roots is None:
+            failed_rows += 1
+            continue
+
+        certified += 1
+        active_lobes = {root.lobe for root in roots}
+        checks = [partner_root_bracket_check(beta)]
+        checks.extend(self_root_bracket_check(beta, root) for root in roots)
+        for check in checks:
+            active_complement_rows += 1
+            min_active_gap = min(min_active_gap, check["sign_margin"])
+            if not check["passed"]:
+                failed_rows += 1
+
+        if 0 in active_lobes:
+            principal_endpoint_rows += 1
+
+        max_lobe = int(beta.hi / PI) + 1
+        for k in range(max_lobe + 1):
+            if not chart_allows_self_lobe(k, full_signed=full_signed):
+                continue
+            if k in active_lobes:
+                continue
+            max_residual = self_lobe_max_residual_upper(beta.hi, k)
+            if max_residual is None:
+                continue
+            no_root_lobe_rows += 1
+            gap = down(-max_residual)
+            min_no_root_lobe_gap = min(min_no_root_lobe_gap, gap)
+            if gap <= 0.0:
+                failed_rows += 1
+
+    no_root_lobe_gap = finite_or_none(min_no_root_lobe_gap)
+    active_gap = finite_or_none(min_active_gap)
+    principal_endpoint_exclusion_passed = principal_endpoint_rows == certified
+    passed = (
+        certified > 0
+        and failed_rows == 0
+        and active_gap is not None
+        and active_gap > 0.0
+        and (no_root_lobe_gap is None or no_root_lobe_gap > 0.0)
+        and principal_endpoint_exclusion_passed
+    )
+    return {
+        "band": band,
+        "chart": chart,
+        "claim_level": "complete inactive-gap ledger with declared self-coincidence endpoint exclusion",
+        "certified_subintervals": certified,
+        "excluded_subintervals": excluded,
+        "active_complement_rows": active_complement_rows,
+        "no_root_lobe_rows": no_root_lobe_rows,
+        "principal_endpoint_rows": principal_endpoint_rows,
+        "failed_inactive_gap_rows": failed_rows,
+        "active_complement_gap_lower_bound": active_gap,
+        "no_root_lobe_gap_lower_bound": no_root_lobe_gap,
+        "principal_endpoint_exclusion_passed": principal_endpoint_exclusion_passed,
+        "passed": passed,
+    }
+
+
 def interval_chart_json(result: IntervalChartResult) -> dict:
     return {
         "chart": result.chart,
@@ -743,12 +855,12 @@ def tail_obstruction_summary(beta_tail: float) -> dict:
 def inactive_gap_summary(bands: list[dict]) -> dict:
     rows = []
     for band in bands:
-        for chart_key, bracket_key in (
-            ("full_signed_interval", "full_signed_root_brackets"),
-            ("positive_sine_interval", "positive_sine_root_brackets"),
+        for chart_key, inactive_key in (
+            ("full_signed_interval", "full_signed_inactive_gaps"),
+            ("positive_sine_interval", "positive_sine_inactive_gaps"),
         ):
             chart = band[chart_key]
-            brackets = band[bracket_key]
+            inactive = band[inactive_key]
             rows.append(
                 {
                     "band": band["band"],
@@ -759,36 +871,39 @@ def inactive_gap_summary(bands: list[dict]) -> dict:
                     "excluded_unstable_ledger_subintervals": chart[
                         "excluded_unstable_ledger_subintervals"
                     ],
-                    "active_complement_gap_lower_bound": brackets[
-                        "min_bracket_sign_margin"
+                    "active_complement_gap_lower_bound": inactive[
+                        "active_complement_gap_lower_bound"
                     ],
+                    "no_root_lobe_gap_lower_bound": inactive["no_root_lobe_gap_lower_bound"],
+                    "active_complement_rows": inactive["active_complement_rows"],
+                    "no_root_lobe_rows": inactive["no_root_lobe_rows"],
+                    "principal_endpoint_exclusion_passed": inactive[
+                        "principal_endpoint_exclusion_passed"
+                    ],
+                    "failed_inactive_gap_rows": inactive["failed_inactive_gap_rows"],
                     "status": (
-                        "active_complement_gap_constant_emitted"
-                        if brackets["passed"]
-                        else "active_complement_gap_blocked"
+                        "complete_inactive_gap_ledger_passed"
+                        if inactive["passed"]
+                        else "complete_inactive_gap_ledger_blocked"
                     ),
                 }
             )
-    positive_rows = [
-        row
-        for row in rows
-        if row["active_complement_gap_lower_bound"] is not None
-        and row["active_complement_gap_lower_bound"] > 0.0
-    ]
+    complete_rows = [row for row in rows if row["status"] == "complete_inactive_gap_ledger_passed"]
     return {
         "claim_level": (
-            "active-complement gap constants emitted; complete inactive-ledger "
-            "proof still blocked"
+            "complete finite-band inactive-gap ledger with declared self-coincidence endpoint exclusion"
         ),
         "structural_rows_emitted": True,
-        "active_complement_gap_constants_emitted": len(positive_rows) == len(rows),
-        "complete_inactive_gap_ledger": False,
+        "active_complement_gap_constants_emitted": len(complete_rows) == len(rows),
+        "no_root_lobe_gap_constants_emitted": len(complete_rows) == len(rows),
+        "complete_inactive_gap_ledger": len(complete_rows) == len(rows),
         "principal_endpoint_exclusion": "xi=0 self-coincidence endpoint is declared separately and not used as an active self-force row",
         "rows": rows,
         "remaining_obligation": (
-            "Promote the active-complement constants to a complete inactive "
-            "ledger by partitioning no-root lobe domains and recording a "
-            "separate principal self-coincidence endpoint exclusion."
+            "None for the finite-band executable ledger: active-root "
+            "complements, no-root lobe domains, and the principal "
+            "self-coincidence endpoint exclusion are now represented. "
+            "The infinite tail remains a separate analytic obligation."
         ),
     }
 
@@ -862,9 +977,9 @@ def theorem_readiness(
             if inactive_gaps["complete_inactive_gap_ledger"]
             else "blocked",
             "technical_value": (
-                "Active-complement gap constants are emitted from the checked "
-                "bracket margins, but no-root lobe complements and the declared "
-                "principal endpoint exclusion still need a complete ledger."
+                "The finite-band runner emits active-complement gaps, no-root "
+                "lobe gaps, and the declared principal self-coincidence endpoint "
+                "exclusion for every certified chart row."
             ),
         },
         {
@@ -945,6 +1060,20 @@ def build_certificate(samples: int, subintervals: int) -> dict:
             full_signed=False,
             subintervals=subintervals,
         )
+        full_inactive_gaps = inactive_gap_scan_band(
+            band=band,
+            lo=lo,
+            hi=hi,
+            full_signed=True,
+            subintervals=subintervals,
+        )
+        positive_inactive_gaps = inactive_gap_scan_band(
+            band=band,
+            lo=lo,
+            hi=hi,
+            full_signed=False,
+            subintervals=subintervals,
+        )
         all_passed = all_passed and full.passed_target and positive.passed_target
         all_interval_passed = (
             all_interval_passed
@@ -961,6 +1090,8 @@ def build_certificate(samples: int, subintervals: int) -> dict:
                 "positive_sine_interval": interval_chart_json(positive_interval),
                 "full_signed_root_brackets": full_root_brackets,
                 "positive_sine_root_brackets": positive_root_brackets,
+                "full_signed_inactive_gaps": full_inactive_gaps,
+                "positive_sine_inactive_gaps": positive_inactive_gaps,
             }
         )
 
@@ -996,9 +1127,9 @@ def build_certificate(samples: int, subintervals: int) -> dict:
         "promotion_blocker": (
             "The finite-band targets now pass an outward-rounded interval support "
             "scan outside uncertified |J| windows using a trig-free residual "
-            "backend and checked root-bracket rows. Theorem promotion still "
-            "requires a complete inactive-gap ledger and a closed analytic "
-            "large-beta tail remainder."
+            "backend, checked root-bracket rows, and a complete finite-band "
+            "inactive-gap ledger. Theorem promotion still requires a closed "
+            "analytic large-beta tail remainder."
         ),
         "fold_thresholds": thresholds,
         "bands": bands,
@@ -1024,7 +1155,7 @@ def emit_markdown(certificate: dict) -> str:
         f"- Numeric targets passed: `{str(certificate['all_numeric_targets_passed']).lower()}`.",
         f"- Interval targets passed: `{str(certificate['all_interval_targets_passed']).lower()}`.",
         "",
-        "The artifact passes the finite-band numerical and outward-rounded interval target margins outside uncertified `|J|` windows. The active-root residual backend is trig-free, using the circular root equations to replace trigonometric endpoint calls, and every certified active root now has a checked root-bracket row. It still does not promote the circular no-go theorem by itself: theorem promotion requires a complete inactive-gap ledger and a closed analytic high-speed tail remainder.",
+        "The artifact passes the finite-band numerical and outward-rounded interval target margins outside uncertified `|J|` windows. The active-root residual backend is trig-free, using the circular root equations to replace trigonometric endpoint calls; every certified active root has a checked root-bracket row; and the finite-band inactive-gap ledger now covers active complements, no-root lobe domains, and the declared self-coincidence endpoint exclusion. It still does not promote the circular no-go theorem by itself: theorem promotion requires a closed analytic high-speed tail remainder.",
         "",
         "## Sampled Band Results",
         "",
@@ -1156,25 +1287,29 @@ def emit_markdown(certificate: dict) -> str:
             f"- Claim level: `{certificate['inactive_gap_summary']['claim_level']}`.",
             f"- Structural rows emitted: `{str(certificate['inactive_gap_summary']['structural_rows_emitted']).lower()}`.",
             f"- Active-complement gap constants emitted: `{str(certificate['inactive_gap_summary']['active_complement_gap_constants_emitted']).lower()}`.",
+            f"- No-root lobe gap constants emitted: `{str(certificate['inactive_gap_summary']['no_root_lobe_gap_constants_emitted']).lower()}`.",
             f"- Complete inactive-gap ledger: `{str(certificate['inactive_gap_summary']['complete_inactive_gap_ledger']).lower()}`.",
             f"- Principal endpoint exclusion: {certificate['inactive_gap_summary']['principal_endpoint_exclusion']}.",
             "",
             certificate["inactive_gap_summary"]["remaining_obligation"],
             "",
-            "| Band | Chart | Active rows at minimum | Certified subintervals | Active-complement gap lower bound | Jacobian exclusions | Unstable ledger exclusions | Status |",
-            "| --- | --- | ---: | ---: | ---: | ---: | ---: | --- |",
+            "| Band | Chart | Active rows at minimum | Certified subintervals | Active-complement gap lower bound | No-root lobe gap lower bound | No-root lobe rows | Principal endpoint | Status |",
+            "| --- | --- | ---: | ---: | ---: | ---: | ---: | --- | --- |",
         ]
     )
     for row in certificate["inactive_gap_summary"]["rows"]:
+        no_root_gap = row["no_root_lobe_gap_lower_bound"]
+        no_root_gap_text = "n/a" if no_root_gap is None else f"{no_root_gap:.6e}"
         lines.append(
-            "| {band} | {chart} | {active_rows} | {certified} | {gap:.6e} | {jacobian} | {unstable} | `{status}` |".format(
+            "| {band} | {chart} | {active_rows} | {certified} | {gap:.6e} | {no_root_gap} | {no_root_rows} | `{endpoint}` | `{status}` |".format(
                 band=row["band"],
                 chart=row["chart"],
                 active_rows=row["active_rows_at_minimum"],
                 certified=row["certified_subintervals"],
                 gap=row["active_complement_gap_lower_bound"],
-                jacobian=row["excluded_jacobian_subintervals"],
-                unstable=row["excluded_unstable_ledger_subintervals"],
+                no_root_gap=no_root_gap_text,
+                no_root_rows=row["no_root_lobe_rows"],
+                endpoint=str(row["principal_endpoint_exclusion_passed"]).lower(),
                 status=row["status"],
             )
         )

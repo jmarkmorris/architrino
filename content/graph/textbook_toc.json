@@ -730,10 +730,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Step 1: Establishing the Origin (The Anchor Point)",
+                "title": "Step 1: Establishing the Origin",
                 "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-                "markdownSection": "Step 1: Establishing the Origin (The Anchor Point)",
-                "sectionKey": "step 1 establishing the origin the anchor point",
+                "markdownSection": "Step 1: Establishing the Origin",
+                "sectionKey": "step 1 establishing the origin",
                 "headingLevel": 2
               },
               {
@@ -762,10 +762,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Why None of This Is Required by the Universe",
+                "title": "Coordinate Frames Are Not Ontology",
                 "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-                "markdownSection": "Why None of This Is Required by the Universe",
-                "sectionKey": "why none of this is required by the universe",
+                "markdownSection": "Coordinate Frames Are Not Ontology",
+                "sectionKey": "coordinate frames are not ontology",
                 "headingLevel": 2
               },
               {
@@ -786,10 +786,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Operational vs. Fundamental Distinction",
+                "title": "Complete-State and Physical-Observer Access",
                 "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-                "markdownSection": "Operational vs. Fundamental Distinction",
-                "sectionKey": "operational vs fundamental distinction",
+                "markdownSection": "Complete-State and Physical-Observer Access",
+                "sectionKey": "complete state and physical observer access",
                 "headingLevel": 2
               }
             ]
