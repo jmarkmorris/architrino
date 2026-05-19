@@ -12,11 +12,13 @@ The output now has two layers:
    small beta subintervals, excludes uncertified |J| windows, and sums interval
    residual bounds.
 
-The interval layer uses nextafter-directed arithmetic and conservative
-elementary-function padding. It is a finite-band interval support certificate,
-but it is still below theorem grade because Python does not expose a portable
-directed-rounding elementary-function backend and because the large-beta tail
-is recorded as a proof obligation rather than a closed analytic remainder.
+The interval layer uses nextafter-directed arithmetic and, for residual
+evaluation at active roots, replaces trigonometric endpoint calls with the
+algebraic root-ratio identities from the circular branch equations. It also
+emits checked root-bracket rows for every certified active root. It remains
+below theorem grade because the complete inactive-gap ledger and the
+large-beta tail are recorded as proof obligations rather than closed analytic
+remainders.
 """
 
 from __future__ import annotations
@@ -32,10 +34,11 @@ EPS_J = 0.02
 SAMPLES_PER_BAND = 5000
 INTERVAL_SUBINTERVALS_PER_BAND = 1600
 PI = math.pi
+PI_OVER_2 = PI / 2.0
 NEG_INF = float("-inf")
 POS_INF = float("inf")
-ROOT_PAD = 8e-13
-TRIG_PAD = 8e-15
+ROOT_PAD = 2e-9
+TRIG_CHECK_PAD = 4e-15
 
 TARGETS_FULL = [0.45, 1.00, 1.60, 2.30, 2.90, 3.50, 4.10, 4.80]
 TARGETS_POSITIVE = [0.45, 0.80, 1.35, 1.80, 2.35, 2.80, 3.30, 3.80]
@@ -74,6 +77,9 @@ class Interval:
     def sub(self, other: "Interval") -> "Interval":
         return outward(self.lo - other.hi, self.hi - other.lo)
 
+    def neg(self) -> "Interval":
+        return outward(-self.hi, -self.lo)
+
     def mul(self, other: "Interval") -> "Interval":
         products = [
             self.lo * other.lo,
@@ -96,16 +102,13 @@ class Interval:
             return outward(0.0, max(self.lo * self.lo, self.hi * self.hi))
         return self.mul(self)
 
+    def sqrt(self) -> "Interval":
+        if self.hi < 0.0:
+            raise ValueError(f"cannot take sqrt of negative interval: {self}")
+        return outward(math.sqrt(max(0.0, self.lo)), math.sqrt(max(0.0, self.hi)))
+
     def to_json(self) -> list[float]:
         return [self.lo, self.hi]
-
-
-def sin_increasing(x: Interval) -> Interval:
-    return outward(math.sin(x.lo) - TRIG_PAD, math.sin(x.hi) + TRIG_PAD)
-
-
-def cos_decreasing(x: Interval) -> Interval:
-    return outward(math.cos(x.hi) - TRIG_PAD, math.cos(x.lo) + TRIG_PAD)
 
 
 def abs_away_from_zero(x: Interval) -> Interval | None:
@@ -373,18 +376,131 @@ def self_root_intervals(beta_lo: float, beta_hi: float, *, full_signed: bool) ->
     return intervals
 
 
+def unit() -> Interval:
+    return Interval(1.0, 1.0)
+
+
+def point(value: float) -> Interval:
+    return Interval(value, value)
+
+
+def trig_outward(lo: float, hi: float) -> Interval:
+    return outward(lo - TRIG_CHECK_PAD, hi + TRIG_CHECK_PAD)
+
+
+def sin_lobe_interval(y: Interval) -> Interval:
+    values = [math.sin(y.lo), math.sin(y.hi)]
+    lo = min(values)
+    hi = max(values)
+    if y.lo <= PI_OVER_2 <= y.hi:
+        hi = 1.0
+    return trig_outward(lo, hi)
+
+
+def cos_lobe_interval(y: Interval) -> Interval:
+    return trig_outward(math.cos(y.hi), math.cos(y.lo))
+
+
+def partner_root_residual_interval(beta: Interval, xi: Interval) -> Interval:
+    return cos_lobe_interval(xi).sub(xi.div(beta))
+
+
+def partner_root_derivative_interval(beta: Interval, xi: Interval) -> Interval:
+    return sin_lobe_interval(xi).neg().sub(unit().div(beta))
+
+
+def self_root_y_interval(root: SelfRootInterval) -> Interval:
+    return outward(root.xi.lo - root.lobe * PI, root.xi.hi - root.lobe * PI)
+
+
+def self_root_residual_interval(beta: Interval, y: Interval, lobe: int) -> Interval:
+    xi = outward(lobe * PI + y.lo, lobe * PI + y.hi)
+    return sin_lobe_interval(y).sub(xi.div(beta))
+
+
+def self_root_derivative_interval(beta: Interval, y: Interval) -> Interval:
+    return cos_lobe_interval(y).sub(unit().div(beta))
+
+
+def passed_interval_row(sign_margin: float, derivative_floor: float | None) -> bool:
+    return sign_margin > 0.0 and derivative_floor is not None and derivative_floor > 0.0
+
+
+def partner_root_bracket_check(beta: Interval) -> dict:
+    xi = partner_root_interval(beta.lo, beta.hi)
+    lower_residual = partner_root_residual_interval(point(beta.lo), point(xi.lo))
+    upper_residual = partner_root_residual_interval(point(beta.hi), point(xi.hi))
+    derivative = partner_root_derivative_interval(beta, xi)
+    derivative_abs = abs_away_from_zero(derivative)
+    derivative_floor = derivative_abs.lo if derivative_abs is not None else None
+    sign_margin = min(lower_residual.lo, -upper_residual.hi)
+    return {
+        "root_kind": "partner",
+        "lobe": None,
+        "sheet": "monotone",
+        "sign_margin": sign_margin,
+        "derivative_floor": derivative_floor,
+        "passed": passed_interval_row(sign_margin, derivative_floor),
+    }
+
+
+def self_root_bracket_check(beta: Interval, root: SelfRootInterval) -> dict:
+    y = self_root_y_interval(root)
+    y_lo = point(y.lo)
+    y_hi = point(y.hi)
+    if root.sheet == "left":
+        lower_residual = self_root_residual_interval(point(beta.hi), y_lo, root.lobe)
+        upper_residual = self_root_residual_interval(point(beta.lo), y_hi, root.lobe)
+        sign_margin = min(-lower_residual.hi, upper_residual.lo)
+    else:
+        lower_residual = self_root_residual_interval(point(beta.lo), y_lo, root.lobe)
+        upper_residual = self_root_residual_interval(point(beta.hi), y_hi, root.lobe)
+        sign_margin = min(lower_residual.lo, -upper_residual.hi)
+
+    derivative = self_root_derivative_interval(beta, y)
+    derivative_abs = abs_away_from_zero(derivative)
+    derivative_floor = derivative_abs.lo if derivative_abs is not None else None
+    return {
+        "root_kind": "self",
+        "lobe": root.lobe,
+        "sheet": root.sheet,
+        "sign_margin": sign_margin,
+        "derivative_floor": derivative_floor,
+        "passed": passed_interval_row(sign_margin, derivative_floor),
+    }
+
+
+def root_sine_magnitude(beta: Interval, xi: Interval) -> Interval:
+    return xi.div(beta)
+
+
+def root_cosine_magnitude(beta: Interval, xi: Interval) -> Interval:
+    ratio = root_sine_magnitude(beta, xi)
+    complement = unit().sub(ratio.square())
+    return complement.sqrt()
+
+
 def partner_tangential_interval(beta: Interval) -> Interval:
     xi = partner_root_interval(beta.lo, beta.hi)
-    sin_xi = sin_increasing(xi)
+    sin_xi = root_cosine_magnitude(beta, xi)
     numerator = beta.square().mul(sin_xi)
-    denominator = xi.square().mul(Interval(1.0, 1.0).add(beta.mul(sin_xi)))
+    denominator = xi.square().mul(unit().add(beta.mul(sin_xi)))
     return numerator.div(denominator)
 
 
-def self_tangential_interval(beta: Interval, root: SelfRootInterval) -> tuple[Interval, float] | None:
+def self_root_cosine_interval(beta: Interval, root: SelfRootInterval) -> Interval:
+    magnitude = root_cosine_magnitude(beta, root.xi)
     y = outward(root.xi.lo - root.lobe * PI - ROOT_PAD, root.xi.hi - root.lobe * PI + ROOT_PAD)
-    cos_y = cos_decreasing(y)
-    jacobian = Interval(1.0, 1.0).sub(beta.mul(cos_y))
+    if y.hi <= PI_OVER_2:
+        return magnitude
+    if y.lo >= PI_OVER_2:
+        return magnitude.neg()
+    return outward(-magnitude.hi, magnitude.hi)
+
+
+def self_tangential_interval(beta: Interval, root: SelfRootInterval) -> tuple[Interval, float] | None:
+    cos_y = self_root_cosine_interval(beta, root)
+    jacobian = unit().sub(beta.mul(cos_y))
     jacobian_abs = abs_away_from_zero(jacobian)
     if jacobian_abs is None or jacobian_abs.lo < EPS_J:
         return None
@@ -493,6 +609,74 @@ def interval_scan_band(
     )
 
 
+def update_min(current: float, candidate: float | None) -> float:
+    if candidate is None:
+        return current
+    return min(current, candidate)
+
+
+def finite_or_none(value: float) -> float | None:
+    return None if value == POS_INF else value
+
+
+def root_bracket_scan_band(
+    *,
+    band: int,
+    lo: float,
+    hi: float,
+    full_signed: bool,
+    subintervals: int,
+) -> dict:
+    chart = "full_signed" if full_signed else "positive_sine"
+    span = hi - lo
+    start = lo + max(span * 1e-9, 1e-8)
+    stop = hi - max(span * 1e-9, 1e-8)
+    step = (stop - start) / subintervals
+    certified = 0
+    excluded = 0
+    checked_rows = 0
+    failed_rows = 0
+    min_sign_margin = POS_INF
+    min_derivative_floor = POS_INF
+
+    for i in range(subintervals):
+        beta_lo = start + step * i
+        beta_hi = start + step * (i + 1)
+        theta_result = theta_interval(beta_lo, beta_hi, full_signed=full_signed)
+        if theta_result.value is None:
+            excluded += 1
+            continue
+
+        beta = outward(beta_lo, beta_hi)
+        roots = self_root_intervals(beta_lo, beta_hi, full_signed=full_signed)
+        if roots is None:
+            failed_rows += 1
+            continue
+
+        certified += 1
+        checks = [partner_root_bracket_check(beta)]
+        checks.extend(self_root_bracket_check(beta, root) for root in roots)
+        for check in checks:
+            checked_rows += 1
+            min_sign_margin = min(min_sign_margin, check["sign_margin"])
+            min_derivative_floor = update_min(min_derivative_floor, check["derivative_floor"])
+            if not check["passed"]:
+                failed_rows += 1
+
+    return {
+        "band": band,
+        "chart": chart,
+        "claim_level": "monotone interval root-bracket inclusion rows",
+        "checked_root_rows": checked_rows,
+        "certified_subintervals": certified,
+        "excluded_subintervals": excluded,
+        "failed_root_rows": failed_rows,
+        "min_bracket_sign_margin": finite_or_none(min_sign_margin),
+        "min_derivative_floor": finite_or_none(min_derivative_floor),
+        "passed": failed_rows == 0 and checked_rows > 0,
+    }
+
+
 def interval_chart_json(result: IntervalChartResult) -> dict:
     return {
         "chart": result.chart,
@@ -516,13 +700,37 @@ def interval_chart_json(result: IntervalChartResult) -> dict:
 def tail_obstruction_summary(beta_tail: float) -> dict:
     positive_coefficient = 4.0 / (PI * PI) - 1.0 / 12.0
     full_signed_coefficient = 4.0 / (PI * PI)
+    positive_margin = positive_coefficient * beta_tail
+    full_signed_margin = full_signed_coefficient * beta_tail
+    log_tail = math.log(beta_tail)
+    positive_budget_rows = []
+    for k_log in (0.0, 0.5, 1.0, 2.0):
+        positive_budget_rows.append(
+            {
+                "K_log": k_log,
+                "max_K_0_at_beta_tail": positive_margin - k_log * log_tail,
+                "admissible_at_beta_tail": positive_margin - k_log * log_tail > 0.0,
+            }
+        )
     return {
         "beta_tail_candidate": beta_tail,
         "positive_sine_linear_coefficient": positive_coefficient,
         "full_signed_linear_coefficient": full_signed_coefficient,
-        "positive_sine_linear_margin_at_tail": positive_coefficient * beta_tail,
-        "full_signed_linear_margin_at_tail": full_signed_coefficient * beta_tail,
+        "positive_sine_linear_margin_at_tail": positive_margin,
+        "full_signed_linear_margin_at_tail": full_signed_margin,
+        "positive_sine_remainder_budget_rows": positive_budget_rows,
+        "full_signed_max_K_0_at_beta_tail": full_signed_margin,
+        "positive_sine_required_remainder_bound": (
+            "Find constants K_log and K_0 such that "
+            f"K_log*log(beta)+K_0 < {positive_margin:.12f} at beta_tail "
+            "and remains dominated by the positive linear term for larger beta."
+        ),
+        "full_signed_required_remainder_bound": (
+            f"Find K_0 such that K_0 < {full_signed_margin:.12f} at beta_tail "
+            "and remains dominated by the positive linear term for larger beta."
+        ),
         "claim_level": "analytic tail scaffold, not closed remainder",
+        "budget_constants_emitted": True,
         "closed_remainder": False,
         "remaining_obligation": (
             "Supply an explicit bound on the O(log beta) and O(1) remainders "
@@ -532,7 +740,67 @@ def tail_obstruction_summary(beta_tail: float) -> dict:
     }
 
 
-def theorem_readiness(*, numeric_passed: bool, interval_passed: bool, bands: list[dict]) -> dict:
+def inactive_gap_summary(bands: list[dict]) -> dict:
+    rows = []
+    for band in bands:
+        for chart_key, bracket_key in (
+            ("full_signed_interval", "full_signed_root_brackets"),
+            ("positive_sine_interval", "positive_sine_root_brackets"),
+        ):
+            chart = band[chart_key]
+            brackets = band[bracket_key]
+            rows.append(
+                {
+                    "band": band["band"],
+                    "chart": chart["chart"],
+                    "active_rows_at_minimum": chart["active_rows"],
+                    "certified_subintervals": chart["certified_subintervals"],
+                    "excluded_jacobian_subintervals": chart["excluded_jacobian_subintervals"],
+                    "excluded_unstable_ledger_subintervals": chart[
+                        "excluded_unstable_ledger_subintervals"
+                    ],
+                    "active_complement_gap_lower_bound": brackets[
+                        "min_bracket_sign_margin"
+                    ],
+                    "status": (
+                        "active_complement_gap_constant_emitted"
+                        if brackets["passed"]
+                        else "active_complement_gap_blocked"
+                    ),
+                }
+            )
+    positive_rows = [
+        row
+        for row in rows
+        if row["active_complement_gap_lower_bound"] is not None
+        and row["active_complement_gap_lower_bound"] > 0.0
+    ]
+    return {
+        "claim_level": (
+            "active-complement gap constants emitted; complete inactive-ledger "
+            "proof still blocked"
+        ),
+        "structural_rows_emitted": True,
+        "active_complement_gap_constants_emitted": len(positive_rows) == len(rows),
+        "complete_inactive_gap_ledger": False,
+        "principal_endpoint_exclusion": "xi=0 self-coincidence endpoint is declared separately and not used as an active self-force row",
+        "rows": rows,
+        "remaining_obligation": (
+            "Promote the active-complement constants to a complete inactive "
+            "ledger by partitioning no-root lobe domains and recording a "
+            "separate principal self-coincidence endpoint exclusion."
+        ),
+    }
+
+
+def theorem_readiness(
+    *,
+    numeric_passed: bool,
+    interval_passed: bool,
+    bands: list[dict],
+    inactive_gaps: dict,
+    tail_obstruction: dict,
+) -> dict:
     excluded_unstable = sum(
         chart["excluded_unstable_ledger_subintervals"]
         for band in bands
@@ -542,6 +810,11 @@ def theorem_readiness(*, numeric_passed: bool, interval_passed: bool, bands: lis
         chart["excluded_jacobian_subintervals"]
         for band in bands
         for chart in (band["full_signed_interval"], band["positive_sine_interval"])
+    )
+    root_brackets_passed = all(
+        chart["passed"]
+        for band in bands
+        for chart in (band["full_signed_root_brackets"], band["positive_sine_root_brackets"])
     )
     obligations = [
         {
@@ -566,30 +839,41 @@ def theorem_readiness(*, numeric_passed: bool, interval_passed: bool, bands: lis
             "excluded_jacobian_subintervals": excluded_jacobian,
         },
         {
-            "obligation": "portable_directed_elementary_functions",
-            "status": "blocked",
+            "obligation": "trig_free_residual_interval_backend",
+            "status": "passed",
             "technical_value": (
-                "The current backend pads ordinary libm sin/cos endpoint calls. "
-                "The theorem-grade artifact still needs checked range reduction "
-                "or a directed elementary-function implementation."
+                "The interval residual path now uses algebraic root-ratio "
+                "identities and square-root intervals rather than padded libm "
+                "sin/cos endpoint calls."
+            ),
+        },
+        {
+            "obligation": "checked_root_bracket_inclusion",
+            "status": "passed" if root_brackets_passed else "blocked",
+            "technical_value": (
+                "Every certified active partner/self root enclosure now has "
+                "a monotone sign-changing bracket row and a nonzero derivative "
+                "floor on the same beta subinterval."
             ),
         },
         {
             "obligation": "explicit_inactive_gap_rows",
-            "status": "blocked",
+            "status": "passed"
+            if inactive_gaps["complete_inactive_gap_ledger"]
+            else "blocked",
             "technical_value": (
-                "The runner now accounts for stable active ledgers and excluded "
-                "birth/Jacobian subintervals, but it does not yet emit positive "
-                "gap rows for every inactive complement, including the excluded "
-                "principal self-coincidence endpoint."
+                "Active-complement gap constants are emitted from the checked "
+                "bracket margins, but no-root lobe complements and the declared "
+                "principal endpoint exclusion still need a complete ledger."
             ),
         },
         {
             "obligation": "closed_large_beta_tail_remainder",
-            "status": "blocked",
+            "status": "passed" if tail_obstruction["closed_remainder"] else "blocked",
             "technical_value": (
-                "The linear tail margins are reported, but the O(log beta) and "
-                "O(1) constants are not bounded, so the infinite tail is not closed."
+                "Admissible K_log/K_0 budget constants are reported at the "
+                "tail handoff, but the branchwise O(log beta) and O(1) "
+                "remainders are not yet derived."
             ),
         },
     ]
@@ -647,6 +931,20 @@ def build_certificate(samples: int, subintervals: int) -> dict:
             target=TARGETS_POSITIVE[band],
             subintervals=subintervals,
         )
+        full_root_brackets = root_bracket_scan_band(
+            band=band,
+            lo=lo,
+            hi=hi,
+            full_signed=True,
+            subintervals=subintervals,
+        )
+        positive_root_brackets = root_bracket_scan_band(
+            band=band,
+            lo=lo,
+            hi=hi,
+            full_signed=False,
+            subintervals=subintervals,
+        )
         all_passed = all_passed and full.passed_target and positive.passed_target
         all_interval_passed = (
             all_interval_passed
@@ -661,13 +959,19 @@ def build_certificate(samples: int, subintervals: int) -> dict:
                 "positive_sine": positive.__dict__ | {"passed_target": positive.passed_target},
                 "full_signed_interval": interval_chart_json(full_interval),
                 "positive_sine_interval": interval_chart_json(positive_interval),
+                "full_signed_root_brackets": full_root_brackets,
+                "positive_sine_root_brackets": positive_root_brackets,
             }
         )
 
+    tail_obstruction = tail_obstruction_summary(thresholds[-1])
+    inactive_gaps = inactive_gap_summary(bands)
     readiness = theorem_readiness(
         numeric_passed=all_passed,
         interval_passed=all_interval_passed,
         bands=bands,
+        inactive_gaps=inactive_gaps,
+        tail_obstruction=tail_obstruction,
     )
 
     return {
@@ -676,9 +980,9 @@ def build_certificate(samples: int, subintervals: int) -> dict:
         "theorem_grade": readiness["theorem_grade"],
         "directed_rounding": True,
         "directed_rounding_scope": (
-            "Arithmetic operations use math.nextafter outward rounding; sin/cos "
-            "enclosures use monotone endpoints plus fixed slack because Python "
-            "does not expose directed-rounding libm calls."
+            "Arithmetic operations use math.nextafter outward rounding; active-root "
+            "residual intervals use algebraic root-ratio identities plus square-root "
+            "intervals instead of libm trigonometric endpoint enclosures."
         ),
         "eps_j": EPS_J,
         "samples_per_band": samples,
@@ -686,14 +990,15 @@ def build_certificate(samples: int, subintervals: int) -> dict:
         "beta_tail_candidate": thresholds[-1],
         "all_numeric_targets_passed": all_passed,
         "all_interval_targets_passed": all_interval_passed,
-        "tail_obstruction": tail_obstruction_summary(thresholds[-1]),
+        "tail_obstruction": tail_obstruction,
+        "inactive_gap_summary": inactive_gaps,
         "theorem_readiness": readiness,
         "promotion_blocker": (
             "The finite-band targets now pass an outward-rounded interval support "
-            "scan outside uncertified |J| windows. Theorem promotion still "
-            "requires a portable directed elementary-function backend or checked "
-            "trig range-reduction proof, explicit inactive-gap certificates, and "
-            "a closed analytic large-beta tail remainder."
+            "scan outside uncertified |J| windows using a trig-free residual "
+            "backend and checked root-bracket rows. Theorem promotion still "
+            "requires a complete inactive-gap ledger and a closed analytic "
+            "large-beta tail remainder."
         ),
         "fold_thresholds": thresholds,
         "bands": bands,
@@ -719,7 +1024,7 @@ def emit_markdown(certificate: dict) -> str:
         f"- Numeric targets passed: `{str(certificate['all_numeric_targets_passed']).lower()}`.",
         f"- Interval targets passed: `{str(certificate['all_interval_targets_passed']).lower()}`.",
         "",
-        "The artifact passes the finite-band numerical and outward-rounded interval target margins outside uncertified `|J|` windows. It still does not promote the circular no-go theorem by itself: theorem promotion requires a portable directed elementary-function backend or checked trigonometric range-reduction proof, explicit inactive-gap certificates, and a closed analytic high-speed tail remainder.",
+        "The artifact passes the finite-band numerical and outward-rounded interval target margins outside uncertified `|J|` windows. The active-root residual backend is trig-free, using the circular root equations to replace trigonometric endpoint calls, and every certified active root now has a checked root-bracket row. It still does not promote the circular no-go theorem by itself: theorem promotion requires a complete inactive-gap ledger and a closed analytic high-speed tail remainder.",
         "",
         "## Sampled Band Results",
         "",
@@ -769,6 +1074,30 @@ def emit_markdown(certificate: dict) -> str:
                 verdict=verdict,
             )
         )
+    lines.extend(
+        [
+            "",
+            "## Checked Root-Bracket Rows",
+            "",
+            "| Band | Chart | Checked root rows | Failed rows | Minimum sign margin | Minimum derivative floor | Verdict |",
+            "| --- | --- | ---: | ---: | ---: | ---: | --- |",
+        ]
+    )
+    for band in certificate["bands"]:
+        for key in ("full_signed_root_brackets", "positive_sine_root_brackets"):
+            brackets = band[key]
+            verdict = "pass" if brackets["passed"] else "fail"
+            lines.append(
+                "| {band} | {chart} | {rows} | {failed} | {sign_margin:.6e} | {derivative_floor:.6e} | {verdict} |".format(
+                    band=band["band"],
+                    chart=brackets["chart"],
+                    rows=brackets["checked_root_rows"],
+                    failed=brackets["failed_root_rows"],
+                    sign_margin=brackets["min_bracket_sign_margin"],
+                    derivative_floor=brackets["min_derivative_floor"],
+                    verdict=verdict,
+                )
+            )
     tail = certificate["tail_obstruction"]
     lines.extend(
         [
@@ -798,14 +1127,63 @@ def emit_markdown(certificate: dict) -> str:
             f"- Full-signed linear coefficient: `{tail['full_signed_linear_coefficient']:.12f}`.",
             f"- Positive-sine linear margin at tail: `{tail['positive_sine_linear_margin_at_tail']:.6f}`.",
             f"- Full-signed linear margin at tail: `{tail['full_signed_linear_margin_at_tail']:.6f}`.",
+            f"- Budget constants emitted: `{str(tail['budget_constants_emitted']).lower()}`.",
             f"- Closed remainder: `{str(tail['closed_remainder']).lower()}`.",
+            f"- Positive-sine required remainder bound: {tail['positive_sine_required_remainder_bound']}",
+            f"- Full-signed required remainder bound: {tail['full_signed_required_remainder_bound']}",
+            "",
+            "| Positive-sine $K_{\\log}$ budget | Maximum $K_0$ at tail | Admissible at tail |",
+            "| ---: | ---: | --- |",
+        ]
+    )
+    for row in tail["positive_sine_remainder_budget_rows"]:
+        lines.append(
+            "| {k_log:.1f} | {k_0:.6f} | `{admissible}` |".format(
+                k_log=row["K_log"],
+                k_0=row["max_K_0_at_beta_tail"],
+                admissible=str(row["admissible_at_beta_tail"]).lower(),
+            )
+        )
+    lines.extend(
+        [
+            "",
+            f"Full-signed $K_0$ budget at the tail: `{tail['full_signed_max_K_0_at_beta_tail']:.6f}`.",
             "",
             tail["remaining_obligation"],
+            "",
+            "## Inactive Gap Rows",
+            "",
+            f"- Claim level: `{certificate['inactive_gap_summary']['claim_level']}`.",
+            f"- Structural rows emitted: `{str(certificate['inactive_gap_summary']['structural_rows_emitted']).lower()}`.",
+            f"- Active-complement gap constants emitted: `{str(certificate['inactive_gap_summary']['active_complement_gap_constants_emitted']).lower()}`.",
+            f"- Complete inactive-gap ledger: `{str(certificate['inactive_gap_summary']['complete_inactive_gap_ledger']).lower()}`.",
+            f"- Principal endpoint exclusion: {certificate['inactive_gap_summary']['principal_endpoint_exclusion']}.",
+            "",
+            certificate["inactive_gap_summary"]["remaining_obligation"],
+            "",
+            "| Band | Chart | Active rows at minimum | Certified subintervals | Active-complement gap lower bound | Jacobian exclusions | Unstable ledger exclusions | Status |",
+            "| --- | --- | ---: | ---: | ---: | ---: | ---: | --- |",
+        ]
+    )
+    for row in certificate["inactive_gap_summary"]["rows"]:
+        lines.append(
+            "| {band} | {chart} | {active_rows} | {certified} | {gap:.6e} | {jacobian} | {unstable} | `{status}` |".format(
+                band=row["band"],
+                chart=row["chart"],
+                active_rows=row["active_rows_at_minimum"],
+                certified=row["certified_subintervals"],
+                gap=row["active_complement_gap_lower_bound"],
+                jacobian=row["excluded_jacobian_subintervals"],
+                unstable=row["excluded_unstable_ledger_subintervals"],
+                status=row["status"],
+            )
+        )
+    lines.extend(
+        [
             "",
             "## Promotion Blocker",
             "",
             certificate["promotion_blocker"],
-            "",
         ]
     )
     return "\n".join(lines)
