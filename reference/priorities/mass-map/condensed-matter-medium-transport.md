@@ -52,6 +52,47 @@ The gate separates:
 | $\mathcal{R}_{\text{tr}}\approx\mathcal{R}_{\text{tr},*}$ | onset of medium excitation, action shedding, or branch instability. |
 | $\mathcal{R}_{\text{tr}}>\mathcal{R}_{\text{tr},*}$ | dissipative transport, radiation, or structural transition must be logged. |
 
+## Tier 2 Source-Mining Addendum
+
+The condensed-matter, analogue-gravity, and topological-defect source family sharpens this packet in three concrete ways.
+
+| Source signal | Extracted structure | Use in this packet |
+| --- | --- | --- |
+| Analogue gravity in flowing media: [Barcelo/Liberati/Visser](https://arxiv.org/abs/gr-qc/0505065) and [Visser acoustic black holes](https://arxiv.org/abs/gr-qc/9712010) | Linear perturbations see an effective metric algebraically determined by density, flow velocity, and signal speed, while the underlying medium obeys its own non-Einstein dynamics. | Treat $g_{\mu\nu}^{\text{eff}}$ and $\mathcal{M}_{\text{sea}}^{ab}$ as constitutive readouts of one Noether-Sea state record, not as independent metric or drag laws. |
+| Volovik-style emergent-medium examples: [Induced Gravity in Superfluid $^3$He](https://arxiv.org/abs/cond-mat/9806010) and [field theory in $^3$He](https://arxiv.org/abs/cond-mat/9812381) | Gap nodes, order-parameter textures, and quasiparticle spectra can generate effective gauge/metric behavior only after the condensed-matter order parameter is specified. | Use emergent-medium language only when the Noether-core branch record, orientation record, and stability gap are explicit. Do not import unsupported `superfluid` language into the Noether Sea. |
+| Topological defects and vortices: [Mermin](https://doi.org/10.1103/RevModPhys.51.591), [Kosterlitz-Thouless](https://doi.org/10.1088/0022-3719/6/7/010), and superconducting vortex-pair tests such as [Beasley/Mooij/Orlando](https://doi.org/10.1103/PhysRevLett.42.1165) | Defect stability is controlled by an order-parameter target space, winding or homotopy class, stiffness, and a critical unbinding or branch-opening threshold. | Admit a topological or vortex-like transport claim only as a branch-transition or effective-material recovery target, never as a generic Noether-Sea drag term. |
+
+The safe topological-defect test is therefore not a new medium ontology. It is an admissibility condition for any claimed defect channel. A source-level order-parameter comparison must exhibit a projection from the retained branch record to an effective target space,
+
+$$
+\pi:\Theta_{\mathrm{sea}}\longrightarrow Q\in\mathcal{Q},
+$$
+
+and a loop or surface invariant such as
+
+$$
+\mathcal{I}_\gamma
+=
+\left[Q|_\gamma\right]\in\pi_1(\mathcal{Q}),
+\qquad
+\nu_\gamma
+=
+\frac{1}{2\pi}\oint_\gamma d\varphi
+\in\mathbb Z.
+$$
+
+The invariant may change only when the relevant material or Noether-Sea branch ceases to be the same branch. In this packet the conservative routing rule is
+
+$$
+\Delta\mathcal{I}_\gamma\ne0
+\quad\Longrightarrow\quad
+\Delta_{\mathbf{k}}\to0
+\quad\text{or}\quad
+\mathcal{R}_{\text{tr}}\ge\mathcal{R}_{\text{tr},*}.
+$$
+
+Thus a defect, vortex, dislocation, edge mode, or quantized transport analogy can sharpen the threshold test, but it cannot become a hidden dissipative force below the critical surface.
+
 ## Promotion Targets
 
 | Target $\mathbb{A}\mathbb{A}\mathbb{A}$ file | Promotion condition |

@@ -44,6 +44,186 @@ This file remains the control surface for deferred cosmology closure. No sibling
 
 The goal is to expose exactly where $\mathbb{A}\mathbb{A}\mathbb{A}$ matches, replaces, or diverges from each component.
 
+## Tier 2 Lecture-Note Interfaces
+
+TASI and Les Houches lecture-note material sharpens this priority into a set of equation-level benchmark interfaces. These are comparison contracts, not ontology imports. The native closure question is whether one Noether-Sea and neutral-assembly record can project into all of them without changing state variables between observables.
+
+### Inflation and CMB Transfer
+
+For an inflation-like high-curvature release record $\theta$, keep the slow-roll dictionary as a comparison projection:
+$$
+\varepsilon_\theta
+=
+-\frac{d\ln H_\theta}{dN_\theta},
+\qquad
+\eta_\theta
+=
+\varepsilon_\theta
+-
+\frac{1}{2\varepsilon_\theta}
+\frac{d\varepsilon_\theta}{dN_\theta},
+$$
+with $a_\theta$, $H_\theta$, and $N_\theta$ read as effective observer variables. The scalar/tensor comparison output is
+$$
+\Delta_{\mathrm{s}}^{2,\theta}(k)
+=
+\left.
+\frac{H_\theta^2}
+{8\pi^2M_{\mathrm{pl}}^2\varepsilon_\theta}
+\right|_{k=a_\theta H_\theta},
+\qquad
+\Delta_{\mathrm{t}}^{2,\theta}(k)
+=
+\left.
+\frac{2H_\theta^2}
+{\pi^2M_{\mathrm{pl}}^2}
+\right|_{k=a_\theta H_\theta},
+\qquad
+r^\theta\approx16\varepsilon_\theta.
+$$
+The CMB-facing transfer contract should then compute
+$$
+C_\ell^{XY,\theta}
+=
+\frac{2}{\pi}
+\int k^2\,dk\,
+P_\theta(k)\,
+\Delta_{X\ell}^\theta(k)
+\Delta_{Y\ell}^\theta(k),
+\qquad
+\Delta_{X\ell}^\theta(k)
+=
+\int_0^{\tau_0^\theta}
+S_X^\theta(k,\tau)
+P_{X\ell}^\theta(k[\tau_0^\theta-\tau])\,d\tau.
+$$
+The source and projection terms are observer-level transfer functions. The closure burden is to derive the effective source record from Noether-Sea thermalization, path-history propagation, acoustic calibration, and perturbation seeding rather than importing an inflaton field.
+
+### Component Perturbations and Matter Power
+
+For each comparison component $x$, use the linear state packet
+$$
+\mathbf{y}_x^\theta(k,z)
+=
+\left(
+\delta_x^\theta,\,
+\theta_x^\theta,\,
+\sigma_x^\theta,\,
+\delta p_x^\theta
+\right),
+\qquad
+\mathbf{y}_x^\theta
+=
+\mathsf{T}_x^\theta(k,z;\theta_{\mathrm{sea}})
+\mathbf{y}_{\mathrm{init}}^\theta.
+$$
+The adiabatic benchmark relation is
+$$
+\frac{\delta\rho_x^\theta}
+{\bar\rho_x^\theta+\bar p_x^\theta}
+=
+\frac{\delta\rho_y^\theta}
+{\bar\rho_y^\theta+\bar p_y^\theta},
+\qquad
+\delta_b^\theta
+=
+\delta_{\mathrm{dm}}^\theta
+=
+\frac{3}{4}\delta_\nu^\theta
+=
+\frac{3}{4}\delta_\gamma^\theta.
+$$
+Isocurvature is allowed only as a declared source component that remains visible in the same CMB, BBN, and $P(k,z)$ residual packet. The matter spectrum benchmark remains
+$$
+P^\theta(k,z)
+=
+P_{\mathrm{seed}}^\theta(k)
+T_\theta^2(k)
+D_\theta^2(z),
+$$
+with equality-scale, BAO, neutrino/free-streaming, and nonlinear corrections carried by the same $\theta_{\mathrm{sea}}$.
+
+### Dark-Sector Production and Free Streaming
+
+For any thermal, freeze-in, sterile-neutrino, compact-object, or neutral-assembly comparison branch, preserve the production equation rather than only the final abundance. The thermal freeze-out benchmark is
+$$
+\frac{dn_X^\theta}{dt}
++3H_\theta n_X^\theta
+=
+-\langle\sigma v\rangle_\theta
+\left[
+\left(n_X^\theta\right)^2
+-
+\left(n_{X,\mathrm{eq}}^\theta\right)^2
+\right],
+$$
+with
+$$
+x_f^\theta
+\equiv
+\frac{m_X^\theta}{T_f^\theta},
+\qquad
+\Omega_X^\theta h_\theta^2
+\propto
+\frac{x_f^\theta}
+{g_\ast^{1/2}\langle\sigma v\rangle_\theta}.
+$$
+The neutrino / warm-component suppression benchmark is
+$$
+f_\nu^\theta
+\equiv
+\frac{\Omega_\nu^\theta}{\Omega_m^\theta}
+\approx
+\frac{\Sigma m_\nu^\theta}
+{94\,\mathrm{eV}\,\Omega_m^\theta h_\theta^2},
+\qquad
+\frac{\Delta P_\delta^\theta}{P_\delta^\theta}
+\approx
+-8f_\nu^\theta,
+$$
+and the warm free-streaming benchmark is
+$$
+\lambda_{\mathrm{FS}}^\theta
+=
+\int_0^{t_{\mathrm{eq}}^\theta}
+\frac{v^\theta(t)}{a_\theta(t)}\,dt
+\approx
+1.2\,\mathrm{Mpc}
+\left(\frac{1\,\mathrm{keV}}{m_s^\theta}\right)
+\left(\frac{\langle p/T\rangle_\theta}{3.15}\right).
+$$
+The production channel must therefore expose abundance, momentum distribution, free-streaming scale, and any injection or relativistic-species contribution together.
+
+### BBN Weak-Rate Interface
+
+The BBN side of the same record must compute weak conversion and relativistic-species loading:
+$$
+H_{\mathrm{eff,BBN}}^\theta
+\propto
+\left(
+\rho_\gamma^\theta
++\rho_{e^\pm}^\theta
++\rho_{\nu_\alpha}^\theta
++\rho_{\nu_s}^\theta
++\cdots
+\right)^{1/2},
+\qquad
+N_{\text{eff}}^\theta
+=
+\frac{\rho_{\mathrm{rel}}^\theta-\rho_\gamma^\theta}
+{\rho_{\nu,1}^\theta}.
+$$
+The neutron fraction target is
+$$
+\frac{n_n^\theta}{n_p^\theta}
+\approx
+\exp\!\left(
+-\frac{\Delta m_{np}c_0^2}{k_BT}
+-\xi_{\nu_e}^\theta
+\right),
+$$
+with $\xi_{\nu_e}^\theta$ included only for declared neutrino-sector asymmetry. This interface should be consumed by [BBN-constraints](../../../content/markdown/aaa/cosmology/BBN-constraints.md), [structure-formation](../../../content/markdown/aaa/cosmology/structure-formation.md), and [inflation-model](../../../content/markdown/aaa/cosmology/inflation-model.md) as the shared pre-BBN / BBN / CMB handoff.
+
 ## Source-Mined Benchmark Contracts
 
 The CMB / BAO / low-redshift source family should now be treated as a contract over observable residual coordinates rather than as a loose narrative comparison. The shared medium-state candidate is

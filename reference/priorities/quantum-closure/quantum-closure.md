@@ -83,6 +83,74 @@ Quantum closure does not define angular momentum, spin, helicity, or Bell correl
 7. Photon Gate B is a separate vector-channel ledger: transverse projector, helicity $\pm1$, material analyzer projector, invariant unresolved-material measure, analyzer coupling, Malus' law, no longitudinal free photon mode, and no-signaling polarization statistics. Photon-polarization Bell tests use the polarization angle law, not the spin-$\tfrac{1}{2}$ singlet curve.
 8. Only after those packets exist may this workstream derive pair provenance, compute Bell correlations, and decide whether the substrate response passes the Bell / CHSH / Tsirelson gate.
 
+## Tier 2 Lecture-Note Benchmark Interfaces
+
+The TASI / Les Houches high-energy lecture-note family supplies benchmark equations for quantum closure, but these are stress tests and comparison interfaces. They should not be promoted as substrate ontology until the delayed assembly dynamics, detector kernels, and event ledgers derive the corresponding objects.
+
+### Neutrino Flavor Transition Target
+
+The neutrino oscillation packet gives a clean finite-baseline transition benchmark for the transfer-operator program. A derived assembly-level flavor ledger should be able to project to
+$$
+P(\nu_\alpha\to\nu_\beta)
+=
+\delta_{\alpha\beta}
+-4\sum_{i>j}
+\mathrm{Re}
+\left(
+U_{\alpha i}^\ast U_{\beta i}
+U_{\alpha j}U_{\beta j}^\ast
+\right)
+\sin^2\!\left(
+\frac{\Delta m_{ij}^2L}{4E}
+\right)
++2\sum_{i>j}
+\mathrm{Im}
+\left(
+U_{\alpha i}^\ast U_{\beta i}
+U_{\alpha j}U_{\beta j}^\ast
+\right)
+\sin\!\left(
+\frac{\Delta m_{ij}^2L}{2E}
+\right).
+$$
+This is an observer-level probability surface. The native proof burden is to identify the assembly provenance variables, phase-history record, detector response, and invariant measure whose pushforward yields this transition surface without treating flavor labels as primitive switches.
+
+### Scattering-Amplitude Locality and Factorization
+
+The amplitudes benchmark says that local tree-level scattering has only the allowed simple factorization singularities. The minimal four-point target is
+$$
+\lim_{s\to0}s\,A_4
+=
+A_3A_3,
+$$
+with no unphysical $1/s^2$ pole in the same channel. For $\mathbb{A}\mathbb{A}\mathbb{A}$, this becomes an event-ledger and transient-assembly test: any effective scattering amplitude derived from causal-wake dynamics must factor through admissible intermediate assemblies, conserve the reaction ledger, and avoid spurious singular channels introduced by an over-compressed coarse-graining.
+
+### EFT / SMEFT Matching Target
+
+The effective-field-theory benchmark compresses unresolved heavy structure into local operators:
+$$
+\mathcal{L}_{\mathrm{eff}}
+=
+\mathcal{L}_{d\le4}
++
+\sum_i
+\frac{C_i\,O_i}
+{\Lambda^{d_i-4}}.
+$$
+In this workstream, the coefficients $C_i$ are not free metaphysical parameters. They are observer-level summaries to be matched against assembly branch data, wake exchange, and Noether-Sea response. The useful closure target is a matching map
+$$
+\mathcal{M}_{\mathbb{A}\mathbb{A}\mathbb{A}\to\mathrm{EFT}}:
+\left(
+\Pi_{\mathrm{branch}},\,
+\Pi_{\mathrm{wake}},\,
+\Pi_{\mathrm{detector}},\,
+\theta_{\mathrm{sea}}
+\right)
+\longmapsto
+\{C_i(\mu)\},
+$$
+followed by a unitarity and breakdown-scale check. If the inferred EFT coefficients grow past the scale where amplitudes violate unitarity, the comparison has located the effective description's failure surface, not a new substrate law.
+
 ## Bell Final-Gate Dependency Map
 
 This map controls when [bell-theorem.md](../../../content/markdown/aaa/theory-bridges/bell-theorem.md) may be rebuilt. Bell is a downstream hard test of the angular-momentum, spin, photon, and measurement-response program, not the starting point for the ontology. No closure claim should be made unless the detector-response kernels exist as derived objects.

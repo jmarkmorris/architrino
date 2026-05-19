@@ -31,6 +31,94 @@ The hydrogen boundary question is now a staged standard-model-to-atomic bridge. 
 
 The Higgs discovery benchmark is a required Standard Model-facing recovery target, not evidence for primitive Higgs ontology in $\mathbb{A}\mathbb{A}\mathbb{A}$. The acceptance target is a shared scalar residual combining ATLAS mass, inclusive signal strength, channel-rate compatibility, and excluded-scalar-window pressure. The benchmark fails if the native scalar mode is fit only by mass, if production and branching channels require independent tuning, or if extra scalar strength survives in search windows where ATLAS reports no accepted resonance.
 
+## CERN Collider-Provenance Benchmark
+
+The Tier 2 CERN Academic Training / CERN Yellow Report source family adds a detector-provenance pressure that mass and width rows do not capture by themselves. The recurring collider pattern is not "a particle appears in the detector." It is an inference chain from incoming beam state, pileup, hard reaction, detector response, reconstruction, calibration, and statistical fit into observer-level quantities. This pressure belongs in the Standard Model closure residual as observer provenance, not as substrate ontology.
+
+Source-mined records for this benchmark include the CERN Academic Training lecture collection, the Academic Training `Particle detectors` lectures, the Academic Training `Standard Model physics at the LHC` record, the CERN Yellow Reports: School Proceedings archive, the 2019 ESHEP `LHC Run-2 and future prospects` lecture, the 2019 ESHEP `Cosmology and dark matter` lecture, the 2023 ESHEP `Flavour physics and CP violation` lecture, the ATLAS jet and missing transverse momentum reconstruction note, the ATLAS Higgs discovery record, and the ATLAS VBF photon plus missing-transverse-momentum invisible-Higgs search.
+
+The first detector-provenance record to attach to a Standard Model benchmark is
+
+$$
+\mathcal{D}_{\mathrm{LHC}}
+=
+\left(
+B_{\mathrm{beam}},
+\mathcal{P}_{\mathrm{pileup}},
+\mathcal{O}_{\mathrm{reco}},
+\mathbf{p}_T^{\mathrm{miss}},
+\mathcal{V}_{\mathrm{prim/sec}},
+\mathcal{C}_{\mathrm{cal}},
+\mathcal{U}_{\mathrm{syst}}
+\right).
+$$
+
+Here $B_{\mathrm{beam}}$ records beam species and $\sqrt{s}$, $\mathcal{P}_{\mathrm{pileup}}$ records additional interactions and primary-vertex assignment, $\mathcal{O}_{\mathrm{reco}}$ is the reconstructed object set, $\mathbf{p}_T^{\mathrm{miss}}$ is the transverse imbalance, $\mathcal{V}_{\mathrm{prim/sec}}$ records primary and displaced secondary vertices, $\mathcal{C}_{\mathrm{cal}}$ records calibrations, and $\mathcal{U}_{\mathrm{syst}}$ records nuisance parameters and systematic uncertainties. This is a provenance object for observer evidence. It is not a replacement for the event ledger $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$.
+
+The reconstructed object set should be treated as
+
+$$
+\mathcal{O}_{\mathrm{reco}}
+=
+\left\{
+e,\mu,\gamma,\tau_h,
+h^\pm,h^0,
+j,
+T_{b/c}(j)
+\right\},
+$$
+
+where $h^\pm$ and $h^0$ are charged and neutral hadron candidates, $j$ denotes a reconstructed jet, and $T_{b/c}(j)$ is a heavy-flavor tag on a jet rather than a directly observed quark. The shared missing-transverse-momentum convention is the closure equation
+
+$$
+\mathbf{p}_T^{\mathrm{miss}}
+=
+-
+\left(
+\sum_{o\in\mathcal{O}_{\mathrm{hard}}}
+\mathbf{p}_{T,o}
++
+\mathbf{p}_T^{\mathrm{soft}}
+\right),
+\qquad
+E_T^{\mathrm{miss}}
+=
+\left\|\mathbf{p}_T^{\mathrm{miss}}\right\|.
+$$
+
+The soft term must be tied to the primary event vertex and pileup rejection convention before it is compared to neutrino, invisible-Higgs, dark-sector, or detector-mismeasurement hypotheses. The immediate Standard Model closure use is a detector-aware residual
+
+$$
+\mathcal{R}_{\mathrm{SM,det}}(\Theta)
+=
+\left(
+\mathcal{R}_{\mathrm{masses}},
+\mathcal{R}_{\mathrm{widths}},
+\mathcal{R}_{\mathrm{rates}},
+\mathcal{R}_{\mathrm{objects}},
+\mathcal{R}_{\mathrm{miss}},
+\mathcal{R}_{\mathrm{tags}},
+\mathcal{R}_{\mathrm{limits}}
+\right),
+$$
+
+where $\mathcal{R}_{\mathrm{objects}}$ compares reconstructed lepton, photon, hadron, jet, and vertex channels; $\mathcal{R}_{\mathrm{miss}}$ compares missing-transverse-momentum distributions and their soft-term conventions; $\mathcal{R}_{\mathrm{tags}}$ compares heavy-flavor inference from impact parameters, secondary vertices, decay lengths, and semileptonic signatures; and $\mathcal{R}_{\mathrm{limits}}$ records excluded windows or upper limits such as invisible-Higgs branching bounds.
+
+| CERN source signal | Closure use | Failure condition |
+| --- | --- | --- |
+| Particle-flow reconstruction combines tracks and calorimeter clusters into charged hadrons, neutral hadrons, electrons, photons, and muons. | The event ledger must distinguish visible reconstructed objects from invisible or unclustered balance terms. | A reaction map treats a reconstructed particle-flow candidate list as the ontic product list. |
+| Jets and $E_T^{\mathrm{miss}}$ summarize hadronic final states and transverse imbalance, with pileup and soft-term corrections. | Missing momentum becomes a provenance equation and nuisance-sensitive residual, not a free invisible-sector input. | Neutrino, dark-matter, or invisible-Higgs claims absorb detector imbalance without the object and soft-term ledger. |
+| Heavy-flavor tags infer $b$ or $c$ jets from displaced secondary vertices, large impact parameters, hadron mass, and semileptonic decays. | Flavor closure must predict a branch that survives reconstruction and tagging efficiencies. | A quark-flavor claim is treated as directly observed rather than tag-calibrated. |
+| Higgs searches combine $\gamma\gamma$, $ZZ^{(*)}4\ell$, $WW^{(*)}\ell\nu\ell\nu$, heavy-fermion channels, and excluded windows. | The scalar-boson acceptance target remains one coupled production, branching, mass, and limit residual. | The scalar mode is fit only by mass or only by one clean channel. |
+| VBF photon plus missing-transverse-momentum events use a photon, forward jets, and transverse imbalance to test $Z\gamma$ production and invisible or partially invisible Higgs channels. | Invisible or dark-sector branches must close through visible recoil objects plus $\mathbf{p}_T^{\mathrm{miss}}$. | An invisible channel is asserted without recoil, trigger, forward-jet, and statistical-limit provenance. |
+
+New failure modes:
+
+- `sm.detector_ontology_blend`: reconstructed detector objects are treated as substrate products.
+- `sm.missing_momentum_free_sink`: $\mathbf{p}_T^{\mathrm{miss}}$ is used as an unbalanced energy sink rather than a calibrated transverse-balance residual.
+- `sm.flavor_tag_direct_observation`: a $b$ or $c$ tag is treated as direct quark observation rather than vertex/track/lifetime inference.
+- `sm.scalar_mass_only_fit`: Higgs recovery uses $M_H$ without coupled production, branching, excluded-window, and detector-provenance rows.
+
 ## Current PDG Benchmark Contract
 
 The current Particle Data Group source family is a downstream recovery surface, not an input ledger for branch selection. The active benchmark source is the 2025 PDG API / pdgLive release, cited by PDG as S. Navas et al. (Particle Data Group), Phys. Rev. D 110, 030001 (2024) and 2025 update, with data release timestamp `2025-11-26 19:33:17 PST`. The 2024 Review chapters remain the review-level source for uncertainty conventions, QCD running, electroweak-fit interpretation, CKM/PMNS context, and statistics practice.

@@ -188,6 +188,25 @@ $$
 $$
 with $a$ ranging over the retained density, momentum, energy, cadence, and orientation moments. This residual is the guardrail against closing the Noether Sea by naming a fluid-like equation while hiding unresolved causal-wake memory in fitted coefficients.
 
+Analogue-gravity comparisons sharpen this point. In an ordinary acoustic medium, the effective metric seen by small sound perturbations is fixed by medium density, flow, and sound speed, for example schematically
+$$
+(g_{\mathrm{ac}})_{\mu\nu}
+\propto
+\frac{\rho_0}{c_s}
+\begin{pmatrix}
+-(c_s^2-\|\mathbf{u}_{\mathrm{fluid}}\|^2) & -u_{\mathrm{fluid},j} \\
+-u_{\mathrm{fluid},i} & h_{ij}
+\end{pmatrix}.
+$$
+The comparison is useful because it keeps the levels separated: the perturbation metric is a constitutive readout, while the underlying medium still obeys its own dynamics. The Noether-Sea target has the same form of obligation,
+$$
+g_{\mu\nu}^{\mathrm{eff}}
+=
+\mathcal{G}_{\mu\nu}\!\left[\Theta_{\mathrm{sea}}\right]
++\mathcal{R}_{\mathrm{metric}},
+$$
+where $\mathcal{G}_{\mu\nu}$ must be derived from the retained density, flow, cadence, orientation, strain, and causal-wake records. A metric row that fits clock, signal, pressure, or lensing behavior with separate coefficients for each observable is not yet a Noether-Sea constitutive law.
+
 Hu's stochastic-gravity comparison sharpens the next rung above moment closure. Mean-field variables are not enough; fluctuations and correlations carry information about the mesoscopic state. Let $\delta T_A^{\mathrm{eff}}$ denote observer-level stress, cadence, or response-channel fluctuations induced by a branch record $\theta$, and let $C_{AB}^{\theta}(x,y)$ be the corresponding two-point correlation:
 $$
 C_{AB}^{\theta}(x,y)

@@ -166,6 +166,40 @@ $$
 
 This is the first falsifiable scaling law for dense metallic lattices: high pressure should not indefinitely increase $n$ through the scalar density channel. Once $s_n$ is small, residual response must show up through $\lambda$, $\xi$, $S_{ij}^{\mathrm{dev}}$, $\mathcal{M}_{\text{sea}}^{ab}$, transport thresholding, or an explicit branch transition.
 
+## Defect and Criticality Guardrail
+
+The Tier 2 defect and vortex sources sharpen the meaning of "explicit branch transition." In ordered media, a defect claim is not justified by disturbed geometry alone. It requires an effective order-parameter map and an invariant, such as a winding number or homotopy class, that is stable while the branch gap remains open.
+
+For the pressure-modulus packet, the branch-preserving regime therefore has the constraint
+
+$$
+\Delta\mathcal{I}_{\mathrm{def}}=0,
+\qquad
+s_n>0,
+\qquad
+\Delta_{\mathbf{k}}>0,
+$$
+
+where $\mathcal{I}_{\mathrm{def}}$ is any declared effective defect or topological label extracted from the branch record. If a replay requires
+
+$$
+\Delta\mathcal{I}_{\mathrm{def}}\ne0
+$$
+
+while still claiming the same smooth branch, the modulus fit has absorbed a structural transition. The admissible routing is
+
+$$
+\Delta\mathcal{I}_{\mathrm{def}}\ne0
+\quad\Longrightarrow\quad
+s_n\to0
+\quad\text{or}\quad
+\Delta_{\mathbf{k}}\to0
+\quad\text{or}\quad
+\mathcal{R}_{\text{tr}}\ge\mathcal{R}_{\text{tr},*}.
+$$
+
+This rule protects $K_{\mathrm{pack}}$ from being fitted through irreversible vortex-like unbinding, dislocation motion, defect creation, heating, or action shedding. Those channels may be real material responses, but they belong in transport routing or a branch-transition replay rather than in the reversible pressure modulus.
+
 ## Envelope-Stiffness Modulus
 
 Let the branch envelope variables be a log-coordinate vector

@@ -8,6 +8,104 @@ Gravitational waves in GR are propagating metric perturbations. Compact-binary d
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, gravitational waves are not fundamental ripples of the Euclidean void. They must be effective propagating disturbances in the Noether-Sea / effective-metric response, with source energy and angular momentum closed through the event ledger. Their speed and polarization content must also share the Lorentz and effective metric gates.
 
+## MIT 8.962 Radiation Scaffold
+
+The MIT 8.962 typed notes sharpen the minimum wave-recovery burden. Lecture 15 starts from the linearized equation $\Box \bar{h}_{\alpha\beta}=-16\pi G T_{\alpha\beta}$ and solves it by Green-function superposition with finite propagation delay (`https://web.mit.edu/sahughes/www/8.962/lec15.pdf`). Lecture 16 separates the gauge-invariant transverse-traceless part, shows that freely falling detectors respond through geodesic deviation, and gives the quadrupole amplitude formula (`https://web.mit.edu/sahughes/www/8.962/lec16.pdf`). Lecture 17 gives the scale-separated wave-energy tensor and the quadrupole power formula (`https://web.mit.edu/sahughes/www/8.962/lec17.pdf`). The safe extraction is a benchmark packet: the Noether-Sea disturbance must recover the same TT strain, tidal detector response, causal-delay source map, and quadratic energy flux without treating the effective metric perturbation as substrate ontology.
+
+For a benchmark source record $\theta$, define the causal-delay time
+$$
+t_c(\mathbf{x},\mathbf{x}')
+=
+t-\frac{\|\mathbf{x}-\mathbf{x}'\|}{c_0},
+$$
+and the linearized comparison field
+$$
+\bar{h}_{\mu\nu}^{\mathrm{bench}}(t,\mathbf{x})
+=
+\frac{4G_{\mathrm{eff}}}{c_0^4}
+\int
+\frac{
+T_{\mu\nu}^{\mathrm{eff}}\!\left(t_c,\mathbf{x}'\right)
+}{
+\|\mathbf{x}-\mathbf{x}'\|
+}
+d^3x'.
+$$
+The corresponding source-map residual is
+$$
+R_{\mathrm{lin}}(\theta)
+=
+\frac{
+\left\|
+\Box \bar{h}_{\mu\nu}^{\mathrm{eff}}
++16\pi G_{\mathrm{eff}}T_{\mu\nu}^{\mathrm{eff}}/c_0^4
+\right\|_W
+}{
+\left\|16\pi G_{\mathrm{eff}}T_{\mu\nu}^{\mathrm{eff}}/c_0^4\right\|_W+\varepsilon
+}.
+$$
+This row fails if the waveform is fit by an unversioned template while the Noether-Sea source ledger cannot reproduce the finite-delay field.
+
+The TT and detector rows are
+$$
+h_{ij}^{TT,\mathrm{bench}}
+=
+\frac{2G_{\mathrm{eff}}}{R c_0^4}
+\frac{d^2 I_{kl}}{dt^2}
+P_{ij,kl}^{TT},
+$$
+$$
+R_{\mathrm{tide}}(\theta)
+=
+\frac{
+\left\|
+\frac{d^2Y^i}{dt^2}
+-\frac{1}{2}
+\frac{d^2 h_{ij}^{TT,\mathrm{eff}}}{dt^2}Y^j
+\right\|_W
+}{
+\left\|
+\frac{1}{2}
+\frac{d^2 h_{ij}^{TT,\mathrm{eff}}}{dt^2}Y^j
+\right\|_W+\varepsilon
+}.
+$$
+Here $P_{ij,kl}^{TT}$ is the transverse-traceless projector relative to the propagation direction, $R$ is the source distance in the comparison region, and $Y^i$ is the detector separation vector. This keeps the detector benchmark tied to relative tidal motion rather than coordinate motion.
+
+The energy row must be quadratic in wave amplitude after scale separation:
+$$
+T_{\alpha\beta}^{\mathrm{GW,bench}}
+=
+\frac{c_0^4}{32\pi G_{\mathrm{eff}}}
+\left\langle
+\nabla_{\alpha}h_{ij}^{TT}
+\nabla_{\beta}h_{ij}^{TT}
+\right\rangle,
+$$
+$$
+P_{\mathrm{quad}}^{\mathrm{bench}}
+=
+\frac{G_{\mathrm{eff}}}{5c_0^5}
+\left\langle
+\frac{d^3 I_{ij}}{dt^3}
+\frac{d^3 I_{ij}}{dt^3}
+\right\rangle.
+$$
+The gravitational-wave event ledger must therefore contain a local energy-flux row
+$$
+R_{\mathrm{flux}}(e)
+=
+\frac{
+\left|
+E_{\mathrm{rad}}^{\mathcal{L}}
+-\int_{\partial W} T_{\alpha\beta}^{\mathrm{GW,eff}} n^\alpha \xi^\beta dA\,dt
+\right|
+}{
+E_{\mathrm{rad}}^{\mathcal{L}}+\varepsilon
+},
+$$
+where $E_{\mathrm{rad}}^{\mathcal{L}}$ is the energy assigned by the same $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ event record. This row is the MIT-derived localization discipline: wave energy is meaningful after a wavelength/background scale separation and must be ledgered as a quadratic effective disturbance.
+
 ## Task Queue
 
 1. `waveform_phase_gate` — Recover inspiral phase evolution from a source ledger and propagation map against versioned GWOSC strain and LVK parameter-estimation records. Status: `draft`.
@@ -23,6 +121,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, gravitational waves are not fundamental ri
 - Effective wave map: $\mathcal{W}_{\mathrm{grav}}[\mathcal{M}_{\mathrm{sea}}^{ab},\Gamma_{\mathrm{src}},\mathcal{H}]$.
 - Benchmark variables: chirp mass $\mathcal{M}_c$, strain $h(t)$, phase $\phi(t)$, luminosity distance $D_L$, and speed residual $\Delta v/c$.
 - Polarization acceptance record.
+- MIT-derived radiation residuals: $R_{\mathrm{lin}}$, $R_{\mathrm{tide}}$, $R_{\mathrm{flux}}$, and $P_{\mathrm{quad}}^{\mathrm{bench}}$ from the same source and propagation record.
 - Public-data provenance row:
   $$
   \mathcal{P}_{\mathrm{GW}}
@@ -102,3 +201,6 @@ and compare the allowed interval for $R_{c_g}$ with the LVK photon-channel speed
 - `gw.extra_mode`: unsupported scalar or vector modes appear in regimes where observations require tensor-like behavior.
 - `gw.provenance_gap`: a waveform comparison omits catalog version, strain provenance, detector calibration, data-quality masks, PE release, waveform family, or artifact hashes.
 - `gw.source_lag_tuning`: a multimessenger speed comparison absorbs the photon/gravity timing offset into an undeclared source-emission lag.
+- `gw.gauge_radiation_confusion`: coordinate or gauge artifacts are counted as radiative strain without a TT/tidal detector row.
+- `gw.quadrupole_power_gap`: inspiral energy loss is fit while the effective quadrupole power and event ledger disagree.
+- `gw.isaacson_average_gap`: wave energy is claimed without a declared wavelength/background scale separation and finite averaging window.

@@ -75,6 +75,69 @@ The scalar/tensor gate should be read as a closure burden on the high-curvature 
 
 Smoothness is a separate benchmark from scalar amplitude and tensor suppression. Inflationary language is often credited with explaining why the early effective record has low gravitational free-mode content, while generic strong-field collapse is expected to develop complicated anisotropic curvature. In this framework that pressure becomes a medium-history constraint, not an inflaton ontology. The high-curvature release channel must therefore deliver the CMB-facing smoothness residual defined in [CMB](./CMB.md) using the same Noether-Sea variables that supply $\left(A_s^{\theta},n_s^{\theta},\alpha_s^{\theta},r^{\theta}\right)$.
 
+### Slow-Roll Comparison Dictionary
+
+The standard slow-roll formulas are useful here as a compact benchmark dictionary, but the entries are comparison variables. Let a candidate high-curvature release record $\theta$ define effective observer variables $a_\theta$, $H_\theta$, and $N_\theta\equiv\ln a_\theta$ through the redshift, clock-rate, and transfer map. They do not describe expansion of the Euclidean void. The first comparison slow-roll coordinate is
+$$
+\varepsilon_\theta
+\equiv
+-\frac{d\ln H_\theta}{dN_\theta},
+\qquad
+\varepsilon_\theta<1
+$$
+for an inflation-like effective interval, and the second coordinate is
+$$
+\eta_\theta
+\equiv
+\varepsilon_\theta
+-
+\frac{1}{2\varepsilon_\theta}
+\frac{d\varepsilon_\theta}{dN_\theta}.
+$$
+If a branch introduces an effective potential surrogate $V_\theta(\varphi)$ for comparison with single-field models, it must also expose
+$$
+\epsilon_{v,\theta}
+\equiv
+\frac{M_{\mathrm{pl}}^2}{2}
+\left(\frac{V_{\theta,\varphi}}{V_\theta}\right)^2,
+\qquad
+\eta_{v,\theta}
+\equiv
+M_{\mathrm{pl}}^2
+\frac{V_{\theta,\varphi\varphi}}{V_\theta},
+$$
+with $\varepsilon_\theta\approx\epsilon_{v,\theta}$ and $\eta_\theta\approx\eta_{v,\theta}-\epsilon_{v,\theta}$ only in the effective slow-roll limit. These are not new substrate fields; they are a way to test whether the release record lands in the same observable region as slow-roll inflation.
+
+At the comparison horizon-crossing surface $k=a_\theta H_\theta$, the scalar and tensor amplitudes become
+$$
+\Delta_{\mathrm{s}}^{2,\theta}(k)
+=
+\left.
+\frac{H_\theta^2}
+{8\pi^2M_{\mathrm{pl}}^2\varepsilon_\theta}
+\right|_{k=a_\theta H_\theta},
+\qquad
+\Delta_{\mathrm{t}}^{2,\theta}(k)
+=
+\left.
+\frac{2H_\theta^2}
+{\pi^2M_{\mathrm{pl}}^2}
+\right|_{k=a_\theta H_\theta},
+$$
+so that
+$$
+n_s^\theta-1
+=
+\frac{d\ln \Delta_{\mathrm{s}}^{2,\theta}}{d\ln k},
+\qquad
+r^\theta
+=
+\frac{\Delta_{\mathrm{t}}^{2,\theta}}{\Delta_{\mathrm{s}}^{2,\theta}}
+\approx
+16\varepsilon_\theta.
+$$
+A branch that claims a slow-roll-like scalar/tensor match should therefore supply $\{\varepsilon_\theta,\eta_\theta,N_\theta,\Delta_{\mathrm{s}}^{2,\theta},\Delta_{\mathrm{t}}^{2,\theta},n_s^\theta,r^\theta\}$ from one high-curvature release record. If it also predicts a bispectrum, the single-field slow-roll comparison target is $f_{\mathrm{NL}}^\theta=O(\varepsilon_\theta,\eta_\theta)$; a large non-Gaussian residual requires an explicit additional interaction, branch, or source-measure record.
+
 Eternal-inflation and landscape language add no ontology by themselves. They become useful only when they nominate data products that can be tested without assuming the multiverse interpretation. Two examples are the effective spatial-curvature channel and localized CMB residuals. For a candidate high-curvature release record $\theta$, define a comparison-only residual
 $$
 \mathcal{R}_{\mathrm{EI}}(\theta)

@@ -28,6 +28,16 @@ The case pressures the mass map and effective metric at the same time. $\mathbb{
 - Exposure quotient: sector-visible mass response from internal assembly ledgers.
 - Effective metric response: $\mathcal{M}_{\mathrm{sea}}^{ab}\to g_{\mu\nu}^{\text{eff}}$.
 - PPN coefficient: $\gamma_{\text{PPN}}$ consistency with Shapiro delay.
+- MIT weak-field metric scaffold:
+  $$
+  ds_{\mathrm{eff}}^2
+  =
+  -\left(1+\frac{2\Phi_{\mathrm{eff}}}{c_0^2}\right)c_0^2dt^2
+  +
+  \left(1-\frac{2\gamma_{\mathrm{eff}}\Phi_{\mathrm{eff}}}{c_0^2}\right)d\ell^2
+  +O(c_0^{-4}),
+  $$
+  with one shared $\Phi_{\mathrm{eff}}$ and $\gamma_{\mathrm{eff}}$ for deflection, Shapiro delay, and Newtonian acceleration.
 - Strong-field shadow/ring response:
   $$
   \mathcal{B}_{\mathrm{shadow}}(\Theta_{\mathrm{map}})
@@ -43,6 +53,67 @@ The case pressures the mass map and effective metric at the same time. $\mathbb{
   \right),
   $$
   where $D_{\mathrm{ring}}$ is the bright-ring diameter, $\delta_{\mathrm{sh}}$ is the fractional deviation from the comparison shadow diameter when an independent mass-to-distance prior is available, $C_{\mathrm{dep}}$ is the central brightness-depression contrast, $f_w$ is the fractional ring width, and the last three entries retain visibility-domain amplitudes and closure quantities.
+
+## MIT 8.962 Weak-Field Deflection Scaffold
+
+Lecture 12 identifies the Newtonian correspondence $h_{00}=-2\Phi_N$ and fixes the field equation against $\nabla^2\Phi_N=4\pi G\rho$ (`https://web.mit.edu/sahughes/www/8.962/lec12.pdf`). Lecture 14 supplies the weak-field static line element with matching time and spatial potential coefficients (`https://web.mit.edu/sahughes/www/8.962/lec14.pdf`). For this priority packet, the source-mined requirement is that light bending and time delay are not independent curve fits: both must come from the same effective potential, spatial compliance coefficient, photon-channel delay factor, and exposed mass map.
+
+For an unperturbed comparison ray $\Gamma_0$ with tangent $\hat{\mathbf{k}}$, define the perpendicular gradient
+$$
+\nabla_\perp^i
+=
+\left(\delta^{ij}-\hat{k}^i\hat{k}^j\right)\partial_j.
+$$
+The weak-field deflection target is
+$$
+\alpha_\theta^i
+=
+\frac{1+\gamma_{\mathrm{eff}}}{c_0^2}
+\int_{\Gamma_0}
+2\nabla_\perp^i\Phi_{\mathrm{eff}}(\mathbf{x})\,ds
++O(c_0^{-4}),
+$$
+which reduces to $4GM/(b c_0^2)$ for a point-mass comparison when $\gamma_{\mathrm{eff}}=1$. The paired path-time row is
+$$
+\Delta t_\theta
+=
+\frac{1}{c_0}
+\int_{\Gamma_0}
+\left[
+\bar{\chi}_{\text{sea}}(\mathbf{x})-1
+\right]ds,
+\qquad
+\bar{\chi}_{\text{sea}}
+=
+1-(1+\gamma_{\mathrm{eff}})
+\frac{\Phi_{\mathrm{eff}}}{c_0^2}
++O(c_0^{-4}).
+$$
+The shear and convergence rows use the transverse Hessian and projected Laplacian of the same $\Phi_{\mathrm{eff}}$ rather than a separately fitted mass surface:
+$$
+\mathcal{H}_{\perp,ij}^{\theta}
+=
+\nabla_{\perp i}\nabla_{\perp j}\Phi_{\mathrm{eff}},
+\qquad
+\kappa_\theta
+\propto
+\int_{\Gamma_0}\Delta_\perp\Phi_{\mathrm{eff}}\,ds.
+$$
+
+The first closure residual for this file is therefore
+$$
+\mathcal{R}_{\mathrm{lens\text{-}Shap}}(\theta)
+=
+w_\alpha
+\frac{\|\boldsymbol{\alpha}_\theta-\boldsymbol{\alpha}_{\mathrm{obs}}\|}{\sigma_\alpha+\varepsilon}
++
+w_t
+\frac{|\Delta t_\theta-\Delta t_{\mathrm{obs}}|}{\sigma_t+\varepsilon}
++
+w_\gamma
+\left|\gamma_{\mathrm{lens}}(\theta)-\gamma_{\mathrm{Shap}}(\theta)\right|.
+$$
+This residual is low-maintenance because it strengthens the existing `deflection_integral` and `shear_time_delay_join` tasks rather than adding a new gate. It also protects the mass-map program: $\Phi_{\mathrm{eff}}$ must be computed from exposed response, shielding, and Noether-Sea coupling, not from a primitive mass substance inserted only for lensing.
 
 ## Strong-Field Shadow Benchmark
 
@@ -83,3 +154,4 @@ This benchmark should be promoted only with an image-vs-model separation:
 - `lensing.shadow_scale_split`: weak-field mass-to-distance inference and horizon-scale ring/shadow diameter require inconsistent effective metric records.
 - `lensing.image_visibility_split`: reconstructed image features look acceptable while visibility amplitudes, closure phases, closure amplitudes, or visibility minima fail.
 - `lensing.plasma_geometry_confusion`: source emissivity, scattering, or Faraday terms are used to tune the compact lensing diameter instead of only the allowed brightness, width, polarization, and variability channels.
+- `lensing.path_integral_split`: deflection, shear, convergence, and path-time delay are computed from different $\Phi_{\mathrm{eff}}$, $\gamma_{\mathrm{eff}}$, $\chi_{\text{sea}}$, or exposure-map records.

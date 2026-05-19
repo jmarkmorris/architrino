@@ -86,6 +86,49 @@ Black-hole entropy and Page-curve recovery are high-value downstream consistency
 - State the Page-curve-compatible information-preservation requirement for those release channels.
 - Extract at least one discriminating observable relative to GR-like strong-field behavior.
 
+### MIT 8.962 Compact-Source Scaffold
+
+The MIT 8.962 sequence gives this workstream a controlled strong-field benchmark ladder without turning GR into substrate ontology. The OCW lecture summaries route compact sources through TOV stellar structure, Buchdahl compactness, black-hole horizons, black-hole orbits, light rings, post-Newtonian expansion, perturbation theory, and numerical relativity (`https://ocw.mit.edu/courses/8-962-general-relativity-spring-2020/pages/lecture-summaries/`). Hughes's typed-note index mirrors that ladder through compact sources, black holes, orbits, Kerr, post-Newtonian expansion, perturbation theory, and numerical integration (`https://web.mit.edu/sahughes/www/8.962/index.html`). The safe priority extraction is that the native horizon-interface program should pass the compact-star predecessor branch before claiming a black-hole departure.
+
+Add the compact-source residual to `observer_predictions`:
+$$
+\mathcal{R}_{\mathrm{compact}}(\theta)
+=
+w_{\mathrm{TOV}}R_{\mathrm{TOV}}
++w_{\mathrm{ext}}R_{\mathrm{ext}}
++w_{\mathrm{Buch}}R_{\mathrm{Buch}}
++w_{\mathrm{LR}}R_{\mathrm{LR}}
++w_{\mathrm{ISCO}}R_{\mathrm{ISCO}}
++w_{\mathrm{PN}}R_{\mathrm{PN}}.
+$$
+The terms have narrow meanings:
+
+| Term | Benchmark role | Native closure use |
+| --- | --- | --- |
+| $R_{\mathrm{TOV}}$ | Recover the pressure, density, mass-function, and hydrostatic-balance profile for an effective compact fluid branch. | Tests whether $\Theta_{\mathrm{NS}}(r)$ is a stable non-horizon predecessor rather than a hand-drawn density profile. |
+| $R_{\mathrm{ext}}$ | Match the exterior Schwarzschild comparison outside a spherical source when no strong-field departure is asserted. | Separates exterior effective metric recovery from horizon-interface ontology. |
+| $R_{\mathrm{Buch}}$ | Track the comparison compactness limit $2GM/(R_*c_0^2)<8/9$ for ordinary isotropic-fluid assumptions. | Flags when the branch exits compact-star assumptions and must move to a native horizon-interface or anisotropic-medium model. |
+| $R_{\mathrm{LR}}$ | Recover the Schwarzschild comparison light ring $r_{\mathrm{ph}}=3GM/c_0^2$ where that exterior applies. | Connects strong-field lensing and EHT ring/shadow rows to the same branch record. |
+| $R_{\mathrm{ISCO}}$ | Recover the nonrotating comparison ISCO $r_{\mathrm{ISCO}}=6GM/c_0^2$ for massive test-body orbits. | Keeps disk, inspiral, and ringdown handoffs tied to a common exterior effective metric. |
+| $R_{\mathrm{PN}}$ | Match post-Newtonian exterior expansion before numerical or perturbative strong-field comparisons are invoked. | Prevents a strong-field fit from breaking the weak-field/1PN recovery already owned by GR phenomenology. |
+
+This packet consumes the existing embedded boundary variables rather than adding a new validation gate. A branch may differ from GR-like behavior only after the residual names which assumption has failed: isotropic fluid, exterior vacuum comparison, spherical symmetry, stationary exterior, photon-path transfer, or event-ledger release accounting. Otherwise the departure is only a missing benchmark row.
+
+The compact-source predecessor also strengthens the horizon-interface label ensemble. For a candidate horizon branch $\theta_H$, require a predecessor sequence $\{\theta_{*,n}\}$ with
+$$
+\theta_{*,n}
+=
+\left(
+R_{*,n},
+M_n,
+P_n(r),
+\rho_n(r),
+\Theta_{\mathrm{NS},n}(r),
+\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(\Omega_r,n)}
+\right)
+$$
+such that $\mathcal{R}_{\mathrm{compact}}(\theta_{*,n})\le\epsilon_{\mathrm{compact}}$ until a declared exit surface $g_H(\theta_{*,n})=0$ is reached. The native horizon-interface condition $F_H=0$ then inherits finite boundary wake data, Noether-Sea state, and event-ledger rows from the predecessor sequence rather than beginning as a disconnected black-hole hypothesis.
+
 ### Event Horizon Telescope Benchmark Packet
 
 The EHT source family supplies a compact quantitative benchmark for the `observer_predictions` and `discriminating_observable` tasks. The safe extraction is not "a black-hole picture proves the native ontology." It is that a viable strong-field branch must reproduce a stable lensing/ring scale while separating that scale from variable plasma emission, polarization transport, visibility-domain reconstruction choices, and jet-base environment.

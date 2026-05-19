@@ -242,6 +242,43 @@ $$
 
 where $\Delta N_s$ is the changed phonon occupation in the effective branch description. A coherent recoil-free or elastic event has $\Delta N_s=0$ for the relevant phonon channels and must route momentum through the whole branch or boundary record. This is the material analogue of distinguishing reversible retuning from heating.
 
+## Order-Parameter Defects and Critical Transport
+
+Defect and vortex language is useful only when a material branch supplies an effective order-parameter record. Let
+$$
+Q:\Omega\setminus D\longrightarrow\mathcal{Q}
+$$
+be an observer-level order-parameter map for a material region with defect set $D$ and target space $\mathcal{Q}$. A loop $\gamma$ around a line defect may then carry a homotopy label
+$$
+\mathcal{I}_\gamma
+=
+\left[Q|_\gamma\right]\in\pi_1(\mathcal{Q}),
+$$
+or, in a phase-like branch,
+$$
+\nu_\gamma
+=
+\frac{1}{2\pi}\oint_\gamma d\varphi
+\in\mathbb Z.
+$$
+These are recovery or comparison objects. They do not replace the architrino, causal-wake, or Noether-Sea branch records that must generate the effective material description.
+
+The transport consequence is a gap rule. A stable branch may deform, strain, or retune without changing its defect label while the relevant stability gap remains open:
+$$
+\Delta_{\mathbf{k}}>0
+\quad\Longrightarrow\quad
+\Delta\mathcal{I}_\gamma=0
+$$
+for branch-preserving perturbations. If a material event changes the topological label, creates a vortex or dislocation, unbinds a defect pair, or opens an edge mode, the event has crossed a branch threshold. In the condensed-matter closure target that means
+$$
+\Delta\mathcal{I}_\gamma\ne0
+\quad\Longrightarrow\quad
+\Delta_{\mathbf{k}}\to0
+\quad\text{or}\quad
+\mathcal{R}_{\text{tr}}\ge\mathcal{R}_{\text{tr},*}.
+$$
+Below that threshold the response remains reversible retuning or coherent transport. Above it, the energy and momentum ledger must route the event through lattice excitation, surface transport, heating, radiation-like shedding, boundary exchange, or structural transition.
+
 ## Hall and Topological Response Benchmarks
 
 Hall response is a high-value comparison because it separates ordinary transport loss from transverse, nondissipative response. The classical Hall branch supplies the baseline tensor target

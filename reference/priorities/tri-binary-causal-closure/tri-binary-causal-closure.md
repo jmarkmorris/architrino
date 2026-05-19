@@ -86,6 +86,111 @@ Failure modes:
 - `tri_lorentz.photon_gate_split`: photon Gate A requires a $c_\gamma$ or $\chi_\gamma$ row not derived from the same branch record.
 - `tri_lorentz.ppn_leakage`: the branch exports nonzero $(\alpha_1,\alpha_2,\alpha_3)$ above the PPN preferred-frame bounds.
 
+## MIT 8.962 GR Recovery Interface
+
+The MIT 8.962 source family supplies a compact recovery scaffold for the effective-metric branch. Lecture 12 derives the Einstein tensor from the contracted Bianchi identity, uses $\nabla_\mu T^{\mu\nu}=0$ as the source-side conservation law, fixes the Newtonian limit through $h_{00}=-2\Phi_N$, and obtains $G_{\mu\nu}=8\pi G T_{\mu\nu}$ from $\nabla^2\Phi_N=4\pi G\rho$ (`https://web.mit.edu/sahughes/www/8.962/lec12.pdf`). Lecture 13 gives the parallel action check from
+$$
+S_{\mathrm{EH}}=
+\frac{1}{16\pi G}
+\int d^4x\,\sqrt{-g}\,R,
+$$
+with matter variation defining $T_{\mu\nu}$ (`https://web.mit.edu/sahughes/www/8.962/lec13.pdf`). The safe extraction is not GR ontology. It is a benchmark interface: one tri-binary branch record must project to an effective curvature/source pair whose weak-field and conservation residuals close together.
+
+For a retained branch class $q$, define the GR-recovery export
+$$
+\theta_{\mathrm{GR}}^{(q)}
+=
+\left(
+\theta_W^{(q)},
+g_{\mu\nu}^{\mathrm{eff}},
+T_{\mu\nu}^{\mathrm{eff}},
+\nabla^{\mathrm{eff}},
+\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}
+\right),
+$$
+where $\theta_W^{(q)}$ is the same weak-field record used by the Lorentz residual packet. The source-side conservation and Newtonian-limit rows are
+$$
+R_{\mathrm{div}T}^{(q)}
+=
+\frac{
+\left\|\nabla^{\mathrm{eff}}_{\mu}T_{\mathrm{eff}}^{\mu\nu}\right\|_W
+}{
+\left\|T_{\mathrm{eff}}\right\|_W/L_W+\varepsilon
+},
+\qquad
+R_{\mathrm{Pois}}^{(q)}
+=
+\frac{
+\left\|\Delta\Phi_{\mathrm{eff}}-4\pi G_{\mathrm{eff}}\rho_{\mathrm{exp}}\right\|_W
+}{
+\left\|4\pi G_{\mathrm{eff}}\rho_{\mathrm{exp}}\right\|_W+\varepsilon
+}.
+$$
+Here $\rho_{\mathrm{exp}}$ is the externally exposed mass-energy response after shielding and Noether-Sea coupling, not raw internal ledger energy. The curvature/source residual is
+$$
+R_{\mathrm{EFE}}^{(q)}
+=
+\frac{
+\left\|G_{\mu\nu}(g_{\mathrm{eff}})-8\pi G_{\mathrm{eff}}T_{\mu\nu}^{\mathrm{eff}}\right\|_W
+}{
+\left\|8\pi G_{\mathrm{eff}}T_{\mu\nu}^{\mathrm{eff}}\right\|_W+\varepsilon
+}.
+$$
+This row is observer-level: $g_{\mu\nu}^{\mathrm{eff}}$ is the emergent metric comparison object, while the substrate remains absolute time plus Euclidean void plus Noether Sea.
+
+The action check is a separate closure target because the same effective equation can otherwise be copied as a fit. Let
+$$
+I_{\mathrm{eff}}^{(q)}[\theta]
+=
+\int_W d^4x\,\sqrt{-g_{\mathrm{eff}}}
+\left(
+\frac{R(g_{\mathrm{eff}})}{16\pi G_{\mathrm{eff}}}
++\mathcal{L}_{\mathrm{matter}}^{\mathrm{eff}}
++\mathcal{L}_{\mathrm{sea}}^{\mathrm{res}}
+\right).
+$$
+The variational residual
+$$
+R_{\mathrm{var}}^{(q)}
+=
+\frac{
+\left\|
+\frac{\delta I_{\mathrm{eff}}^{(q)}}{\delta g_{\mathrm{eff}}^{\mu\nu}}
+\right\|_W
+}{
+\left\|T_{\mu\nu}^{\mathrm{eff}}\right\|_W+\varepsilon
+}
+$$
+must vanish in the GR-matching regime without using $\mathcal{L}_{\mathrm{sea}}^{\mathrm{res}}$ as a hidden sink. A nonzero residual is acceptable only when it is routed into the event ledger or declared as a falsifiable departure.
+
+MIT 8.286 and 8.962 cosmology material adds the homogeneous-continuum version of the same burden. The Robertson-Walker and Friedmann equations are effective observer variables, not expansion of the Euclidean void. A cosmology-facing branch record must supply
+$$
+H_{\theta}^{2}
+=
+\frac{8\pi G_{\mathrm{eff}}}{3}\rho_{\theta}
+-\frac{k c_0^2}{a_{\theta}^{2}}
++R_{H,\theta},
+$$
+$$
+\dot{\rho}_{\theta}
+=
+-3H_{\theta}
+\left(
+\rho_{\theta}+\frac{p_{\theta}}{c_0^2}
+\right)
++R_{\rho,\theta},
+$$
+$$
+\frac{\ddot{a}_{\theta}}{a_{\theta}}
+=
+-\frac{4\pi G_{\mathrm{eff}}}{3}
+\left(
+\rho_{\theta}+\frac{3p_{\theta}}{c_0^2}
+\right)
++R_{a,\theta}.
+$$
+The pass condition is not exact FLRW ontology; it is that $(R_{H,\theta},R_{\rho,\theta},R_{a,\theta})$ are either below tolerance in the benchmark regime or are routed to named Noether-Sea evolution, clock-rate, redshift, and CMB rows. This records the Guth/Hughes cosmology signal while preserving the canon rule that $a(t)$ and $H(t)$ are effective observer variables.
+
 ## Related Priorities
 
 - [proof-programs](../proof-programs/proof-programs.md)

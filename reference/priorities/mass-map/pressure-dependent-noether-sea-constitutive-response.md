@@ -26,6 +26,38 @@ This priority packet is a report and derivation scaffold, not reader-facing cano
 - [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md) and [Condensed Matter and Medium Transport](condensed-matter-medium-transport.md) already separate reversible medium-dressed inertial response from dissipative resistance through $\mathcal{R}_{\text{tr}}$, and carry the Earth-core iron guardrail that ordinary planetary differentiation has no iron-nucleus source term.
 - [Noether-Core Scaling and Packing Scaffold](../dyadic-lock/noether-core-scaling-and-packing.md) supplies the current priority-side packing estimate, including packing-limited center density and oblate-envelope support-function contact conditions.
 
+## External Source-Mining Constraints
+
+The Tier 2 condensed-matter and analogue-gravity sources do not add a new pressure ontology. They constrain how the candidate law may be written.
+
+1. Analogue-gravity reviews and Visser's acoustic-metric derivation show that an effective metric for perturbations can be a constitutive object built algebraically from medium density, flow, and signal speed. The pressure packet should mirror this discipline: $n$, $\chi_{\text{sea}}$, $c_{\text{eff}}$, $\Gamma_N$, $S_{ij}$, and $\mathcal{M}_{\text{sea}}^{ab}$ must come from one local pressure-state record, not from observable-local coefficient rows.
+2. Volovik-style $^3$He-A examples are useful only because they carry explicit gap nodes, quasiparticle spectra, and order-parameter textures. The Noether-Sea pressure law may use emergent-medium comparison language only when the Noether-core branch record and stability gaps are declared.
+3. Topological-defect and vortex-unbinding sources convert pressure-induced structural changes into a threshold statement: a winding, defect, dislocation, edge, or branch invariant can change only when the effective order-parameter map is declared and the branch passes through a gap-closing or transport-threshold event.
+
+The last point adds a guardrail to the pressure law. Let $\mathcal{I}_{\mathrm{def}}$ denote any retained effective defect or topological branch label extracted from a declared projection of $\theta_{\mathrm{sea}}$ or $\mathcal{B}_{\mathrm{lat}}$. A smooth branch-preserving pressure replay must keep
+
+$$
+\Delta\mathcal{I}_{\mathrm{def}}=0.
+$$
+
+If a pressure step requires
+
+$$
+\Delta\mathcal{I}_{\mathrm{def}}\ne0,
+$$
+
+then the row is no longer a smooth constitutive perturbation. It must be routed as a branch transition, defect creation/annihilation, or transport-threshold event:
+
+$$
+\Delta\mathcal{I}_{\mathrm{def}}\ne0
+\quad\Longrightarrow\quad
+\Delta_{\mathbf{k}}\to0
+\quad\text{or}\quad
+\mathcal{R}_{\text{tr}}\ge\mathcal{R}_{\text{tr},*}.
+$$
+
+This keeps Noether-Sea response separate from ordinary dissipative drag and prevents pressure coefficients from hiding a topological or structural phase change.
+
 ## Claim Map
 
 | Bucket | Candidate claim |

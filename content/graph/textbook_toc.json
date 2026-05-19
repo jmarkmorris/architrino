@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1225
+      "sections": 1229
     }
   },
   "tocRoot": {
@@ -3032,6 +3032,22 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Gauge-Covariance Recovery Target",
+                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+                "markdownSection": "Gauge-Covariance Recovery Target",
+                "sectionKey": "gauge covariance recovery target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Scattering-Amplitude Comparison Target",
+                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+                "markdownSection": "Scattering-Amplitude Comparison Target",
+                "sectionKey": "scattering amplitude comparison target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Higgs Mechanism and VEV Reinterpretation",
                 "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
                 "markdownSection": "Higgs Mechanism and VEV Reinterpretation",
@@ -4238,6 +4254,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Order-Parameter Defects and Critical Transport",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
+                "markdownSection": "Order-Parameter Defects and Critical Transport",
+                "sectionKey": "order parameter defects and critical transport",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Hall and Topological Response Benchmarks",
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
                 "markdownSection": "Hall and Topological Response Benchmarks",
@@ -5047,6 +5071,14 @@
                 "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
                 "markdownSection": "QFT Locality Residual",
                 "sectionKey": "qft locality residual",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Scattering-Amplitude Factorization Guardrail",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+                "markdownSection": "Scattering-Amplitude Factorization Guardrail",
+                "sectionKey": "scattering amplitude factorization guardrail",
                 "headingLevel": 2
               },
               {

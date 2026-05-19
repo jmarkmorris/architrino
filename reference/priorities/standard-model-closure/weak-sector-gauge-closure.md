@@ -156,6 +156,58 @@ $$
 
 The neutrino benchmark is a mixing and mass-difference target. Absolute-mass rows remain separate limits: $m_{\nu_e}^{\mathrm{eff}}<0.8\,\mathrm{eV}$ at $90\%$ CL, $m_{\nu_\mu}^{\mathrm{eff}}<0.19\,\mathrm{MeV}$ at $90\%$ CL, and $m_{\nu_\tau}^{\mathrm{eff}}<18.2\,\mathrm{MeV}$ at $95\%$ CL in the current PDG rows.
 
+## CERN Weak, Higgs, and Flavor Event Burdens
+
+The CERN Academic Training / Yellow Report source family sharpens this packet by showing how weak, Higgs, and flavor claims enter as reconstructed event signatures. The weak-sector closure object must therefore expose not only a mass or mixing number, but also the observer channel by which that number is inferred.
+
+The minimal observer weak-signature record is
+
+$$
+\mathcal{S}_W^{\mathrm{obs}}
+=
+\left(
+\ell,
+\mathbf{p}_T^{\mathrm{miss}},
+j_{\mathrm{VBF}},
+j_{\mathrm{ISR}},
+T_{b/c}(j),
+\mathcal{V}_{\mathrm{sec}},
+m_{\mathrm{inv}},
+m_T,
+\mathcal{C}_{\mathrm{fit}}
+\right),
+$$
+
+where $\ell$ is a reconstructed charged lepton, $\mathbf{p}_T^{\mathrm{miss}}$ is the missing-transverse-momentum vector, $j_{\mathrm{VBF}}$ and $j_{\mathrm{ISR}}$ are vector-boson-fusion and initial-state-radiation jet roles when used, $T_{b/c}(j)$ is heavy-flavor tagging, $\mathcal{V}_{\mathrm{sec}}$ is displaced-vertex information, $m_{\mathrm{inv}}$ and $m_T$ are invariant or transverse masses, and $\mathcal{C}_{\mathrm{fit}}$ is the profile-likelihood, nuisance, or limit convention. These are detector and inference variables; the native burden is to map them back to weak exposure, corridor provenance, overlap measures, and event-ledger closure.
+
+| CERN source signal | Weak-sector burden | Failure condition |
+| --- | --- | --- |
+| Missing transverse momentum is reconstructed as a negative transverse vector sum over identified objects plus a soft term. | Neutrino and invisible-channel rows must include the object list, soft term, pileup convention, and recoil terms before assigning a weak or dark-sector branch. | $\mathbf{p}_T^{\mathrm{miss}}$ is treated as direct evidence for an unobserved assembly without detector-balance provenance. |
+| VBF photon plus missing-transverse-momentum analyses use a photon and forward jets to measure $Z\gamma jj$ and bound invisible or partially invisible Higgs channels. | Higgs and weak neutral-current closure must handle visible recoil, forward-jet topology, missing momentum, and upper limits in one residual. | The weak/scalar map fits a visible channel while leaving invisible limits or recoil topology outside the same exposure grammar. |
+| Flavor and CP-violation lectures emphasize CKM structure, hadronic weak decays, neutral-meson mixing, and effective Hamiltonians. | CKM overlap integrals must predict hadronic weak-decay classes and CP phases, not only a static matrix magnitude. | The overlap kernel fits CKM entries without a decay-channel, mixing, or CP-violation provenance row. |
+| Heavy-flavor jets are inferred through displaced secondary vertices, impact parameters, hadron mass, and semileptonic signatures. | The flavor branch must survive detector tagging as a calibrated inference from lifetime and vertex geometry. | A heavy quark branch is declared observed without the tag-efficiency and mistag ledger. |
+| Neutrino lectures frame oscillation data as mass, mixing, flavor projection, and matter-effect phenomenology. | PMNS recovery must couple source reaction, propagation phase, detector flavor projection, and weak exposure in the same domain. | PMNS rows are imported as fit parameters without source and detector weak-reaction ledgers. |
+
+The heavy-flavor tag should be modeled as an observer inference functional
+
+$$
+T_{b/c}(j)
+=
+F_{\mathrm{tag}}
+\left(
+d_0,
+\mathcal{V}_{\mathrm{sec}},
+m_{\mathrm{SV}},
+L_{\mathrm{decay}},
+N_{\mathrm{trk}},
+\ell_{\mathrm{semi}},
+p_T,
+\eta
+\right),
+$$
+
+with calibration and mistag rates attached. Here $d_0$ is impact-parameter information, $\mathcal{V}_{\mathrm{sec}}$ is the secondary-vertex record, $m_{\mathrm{SV}}$ is secondary-vertex mass, $L_{\mathrm{decay}}$ is decay-length information, $N_{\mathrm{trk}}$ is track multiplicity, and $\ell_{\mathrm{semi}}$ records semileptonic signatures. The native flavor closure target is not $T_{b/c}$ itself. It is a branch-provenance derivation whose observer projection reproduces $T_{b/c}$ and its calibration dependencies.
+
 ## Promotion Targets
 
 | Target $\mathbb{A}\mathbb{A}\mathbb{A}$ file | Promotion condition |
