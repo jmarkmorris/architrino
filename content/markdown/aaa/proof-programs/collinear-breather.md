@@ -342,6 +342,66 @@ J=0.
 $$
 Therefore the exact field-speed head-on seed is a fail-closed separator test. It can be studied only through the dual-mollified finite-history integral with declared shell width, core scale, emission cadence if used, and memory horizon. If that regularized limit fails to converge, the result is not a failed simulation detail; it means that exact field-speed inbound history is not a lawful seed for the collinear breather certificate without dephasing, curvature, held-release preparation, or another branch-certified regularization mechanism.
 
+The finite-history calculation can still be stated exactly before the origin caustic. For the right Positrino, define
+$$
+\Delta(t)\equiv 2(x_0-c_ft),
+\qquad
+g\equiv\kappa\epsilon^2.
+$$
+The same-source continuum contributes
+$$
+a_R^{\mathrm{self}}(t;H,\eta,\epsilon_c)
+=
+-g\,\delta_\eta(0)
+\int_0^H
+\frac{du}{c_f^2u^2+\epsilon_c^2}
+=
+-\frac{g\,\delta_\eta(0)}{c_f\epsilon_c}
+\arctan\!\left(\frac{c_fH}{\epsilon_c}\right),
+$$
+while the off-shell partner tail contributes
+$$
+a_R^{\mathrm{partner}}(t;H,\eta,\epsilon_c)
+=
+-g\,\delta_\eta(\Delta(t))
+\int_0^H
+\frac{du}{(\Delta(t)+c_fu)^2+\epsilon_c^2}.
+$$
+Equivalently,
+$$
+a_R^{\mathrm{partner}}
+=
+-\frac{g\,\delta_\eta(\Delta(t))}{c_f\epsilon_c}
+\left[
+\arctan\!\left(\frac{\Delta(t)+c_fH}{\epsilon_c}\right)
+-
+\arctan\!\left(\frac{\Delta(t)}{\epsilon_c}\right)
+\right].
+$$
+Thus the infinite-history limit is finite for fixed $\eta$ and $\epsilon_c$,
+$$
+a_R^{\mathrm{self}}(\infty,\eta,\epsilon_c)
+=
+-\frac{\pi g\,\delta_\eta(0)}{2c_f\epsilon_c},
+$$
+but it is not regulator independent. For any centered mollifier with $\delta(0)>0$ and
+$$
+\delta_\eta(y)=\eta^{-1}\delta(y/\eta),
+$$
+the same-source continuum scales as
+$$
+-\frac{\pi g\,\delta(0)}{2c_f\eta\epsilon_c}
+$$
+as $\eta,\epsilon_c\to0$. For the compact polynomial shell candidate
+$$
+\delta(z)=\frac{15}{16}(1-z^2)^2
+$$
+on $|z|\le1$ and zero outside, this becomes
+$$
+-\frac{15\pi g}{32c_f\eta\epsilon_c}.
+$$
+At $t=0$ with $x_0=1$, this compact shell also sets the partner term exactly to zero whenever $\eta<2x_0$, because the partner support has not reached the receiver. The theory consequence is sharper than "the partner wake is in flight": an exact affine $v=c_f$ inbound history produces a regulator-dependent self-continuum acceleration before the partner wake can contribute. A lawful candidate must therefore break the exact continuum by preparation or branch geometry before the simple-root certificate can begin.
+
 ## Prepared Held-Release Benchmark
 
 A useful initial-data test fixes the pre-release history explicitly. Let a right-hand Positrino and left-hand Electrino be held at

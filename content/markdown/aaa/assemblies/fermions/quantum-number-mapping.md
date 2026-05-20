@@ -759,6 +759,8 @@ This is a closure target, not a completed proof. The tri-binary Noether core has
 
 The target is that a $2\pi$ spatial rotation returns the visible ordered frame but transports the history-lifted state to the opposite sheet, while a $4\pi$ rotation restores the full state. If this lift exists, it supplies the geometric route to spin-$\tfrac{1}{2}$ behavior through the $SU(2)\to SO(3)$ double cover. If the history lift closes after $2\pi$, the ordered-core route does not derive fermion spinor behavior.
 
+The stronger obstruction is that visible $SO(3)$ return plus conserved $\mathbf J$ is still insufficient. The spin row needs quotient-surviving active-root parity: at least one retained non-gauge history row must be odd after $2\pi$ and restored after $4\pi$, while gauge-control and angular-momentum residuals remain below tolerance.
+
 ### Angular momentum notation bridge
 
 Standard quantum notation separates three closely related quantities. Orbital angular momentum $\mathbf{L}$ belongs to motion around a center or to an orbital degree of freedom. Spin angular momentum $\mathbf{S}$ belongs to the internal representation carried by a particle or excitation. Total angular momentum is the conserved combination $\mathbf{J}=\mathbf{L}+\mathbf{S}$ after the relevant observer-level coarse-graining. Helicity is the projection of spin, or of the relevant angular-momentum generator for a field mode, along the momentum or propagation direction.

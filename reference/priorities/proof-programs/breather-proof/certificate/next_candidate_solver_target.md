@@ -219,6 +219,17 @@ leaving `preledger_pass=false` and `branch_chart_authorized=false`. A live fresh
 candidate must replace that diagnostic matrix with $B=DC(\mathbf a_0)$ and the
 true signed gap derivative matrix $A$ for one frozen packet identity.
 
+The next step toward that replacement is now available:
+`gap_opening_live_fold_shear_result.seed_cosine_residuals.v0.json` uses actual
+$C^1$ first-half arc bumps with
+$$
+H(\theta+1/2)=-H(\theta)
+$$
+and finds a strict finite witness for the residual collars in a fixed-period
+local shear subspace. The successor solver should seed its fold-adapted
+collocation search with this direction, then add the full structural equations
+and interval bounds on the same new packet identity.
+
 ## Null-Coordinate Pre-Ledger Acceptance Targets
 
 Before any branch-chart construction, the successor packet must run the null-coordinate pre-ledger on its own frozen identity and record:

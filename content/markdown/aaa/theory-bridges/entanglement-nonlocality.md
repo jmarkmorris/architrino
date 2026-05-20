@@ -308,6 +308,27 @@ and an admissible model must make this marginal independent of $\hat{\mathbf m}_
 
 The correlations become visible only when outcomes from both sides are **compared** (via a classical, sub-$c_f$ communication channel). This is precisely the no-signaling structure observed experimentally.
 
+For binary outcomes this structure can be isolated without adding a new assumption. A normalized no-signaling joint record law has the form
+
+$$
+P(a,b|x,y)
+=
+\frac14
+\left[
+1
++
+a\,m_A(x)
++
+b\,m_B(y)
++
+ab\,C(x,y)
+\right],
+\qquad
+a,b\in\{-1,+1\},
+$$
+
+with $1+a\,m_A(x)+b\,m_B(y)+ab\,C(x,y)\ge0$. The local channels $m_A$ and $m_B$ carry only local settings; the only setting-pair term is the correlation channel $C(x,y)$. A product-screened pair provenance gives $C_{\mathrm{prod}}(x,y)=\int A_x(\Pi)B_y(\Pi)d\rho_{\mathrm{src}}(\Pi)$, so the live nonlocality question is whether $\mathbb{A}\mathbb{A}\mathbb{A}$ can derive a non-product $C(x,y)$ while preserving the local marginals.
+
 This can be recorded as a screenable marginal residual. For settings $\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B$ and outcomes $a,b$, define
 $$
 \Delta_{\mathrm{screen}}

@@ -47,9 +47,11 @@
 - `fresh_fold_collocation_solver_surface` produced `certificate/fresh_fold_collocation_solver_surface.md`, recording that no runnable breather-specific fresh-candidate solver or pre-ledger generator exists yet and specifying the minimum lawful successor artifact set plus the finite gap-opening linearization.
 - `null_coordinate_separation_direction_lemma` produced `certificate/null_coordinate_separation_direction_lemma.md`, converting parent-complement repair into a finite separation-direction problem on the fresh collocation candidate.
 - `gap_opening_feasibility_scanner` produced `scripts/proof-programs/null-coordinate-gap-opening-scanner.mjs`, `certificate/gap_opening_feasibility_input.seed_cosine_diagnostic_demo.v0.json`, `certificate/gap_opening_feasibility_result.seed_cosine_diagnostic_demo.v0.json`, and `certificate/gap_opening_feasibility_report.seed_cosine_diagnostic_demo.v0.md`. It emits a strict tangent witness for a declared diagnostic endpoint-shear matrix while keeping `preledger_pass=false`, `updates_live_ledger=false`, and `branch_chart_authorized=false`.
+- `live_fold_shear_gap_opening` produced `scripts/proof-programs/fold-shear-gap-matrix-builder.mjs`, `certificate/gap_opening_live_fold_shear_input.seed_cosine_residuals.v0.json`, `certificate/gap_opening_live_fold_shear_result.seed_cosine_residuals.v0.json`, and `certificate/gap_opening_live_fold_shear_report.seed_cosine_residuals.v0.md`. It replaces the independent diagnostic columns with actual $C^1$ first-half arc bumps extended by half-period antisymmetry and emits a strict finite witness for the residual source-above-receiver gaps.
 - `aaa_corpus_recommendation_handoff` produced `certificate/aaa_corpus_recommendation_handoff.md`, recording the scoped AAA edits that promoted the null-coordinate pre-ledger as a candidate-falsification gate, kept rejected-packet operational detail priority-only, and deferred any enlarged regular-boundary theorem pending Op discussion.
 - `regular_boundary_user_facing_recommendation` produced `certificate/regular_boundary_user_facing_recommendation.md`, recording that current AAA prose should not name regular-boundary coverage as accepted doctrine; the existing generic same-packet complement predicate is the safe public surface until a finite inclusion/domination theorem exists.
 - `field_speed_head_on_inflight_wake_test_case` produced `scripts/proof-programs/field-speed-head-on-root-audit.mjs`, `certificate/field_speed_head_on_inflight_wake_input.v0.json`, `certificate/field_speed_head_on_inflight_wake_result.v0.json`, `certificate/field_speed_head_on_inflight_wake_test_case.md`, and `certificate/field_speed_head_on_inflight_wake_report.v0.md`. It records the operator-proposed $x_L=-1$, $x_R=+1$, $|v|=c_f$ head-on seed as a fail-closed caustic/root-degeneracy test: partner wake is still in flight at $t=0$, same-source roots form a continuum with $J=0$, and no candidate or branch chart is authorized before a dual-mollified finite-history run.
+- `field_speed_head_on_finite_history` produced `scripts/proof-programs/field-speed-head-on-finite-history.mjs`, `certificate/field_speed_head_on_finite_history_input.v0.json`, `certificate/field_speed_head_on_finite_history_result.v0.json`, and `certificate/field_speed_head_on_finite_history_report.v0.md`. It gives the closed-form finite-history acceleration for the exact affine field-speed seed under an explicit compact shell: the infinite-history limit is finite for fixed $\eta,\epsilon_c$, the partner shell is exactly zero at the audit time, and the same-source continuum diverges like $1/(\eta\epsilon_c)$ as regulators are removed. The formula-level result was promoted into Collinear Breather; numeric fixture rows remain priority-side.
 
 ## Scope
 
@@ -124,10 +126,11 @@ rather than to a mismatched tame-subclass / macro-envelope pair.
 - Use `certificate/next_candidate_solver_target.md` as the current solver target for the next candidate packet.
 - Use `certificate/fresh_fold_collocation_solver_surface.md` as the implementation contract for the missing fresh-candidate solver or manual artifact instantiation.
 - Use `certificate/null_coordinate_separation_direction_lemma.md` as the constructive proof route for opening parent-complement gaps by changing the candidate history.
-- Use `scripts/proof-programs/null-coordinate-gap-opening-scanner.mjs` and `certificate/gap_opening_feasibility_result.seed_cosine_diagnostic_demo.v0.json` as the diagnostic proof aid for the tangent-space condition $B\xi=0$, $A\xi\ge\kappa\mathbf{1}$. Replace the diagnostic endpoint-shear matrix with a true fresh-candidate Jacobian before making any candidate claim.
+- Use `scripts/proof-programs/null-coordinate-gap-opening-scanner.mjs`, `scripts/proof-programs/fold-shear-gap-matrix-builder.mjs`, and `certificate/gap_opening_live_fold_shear_result.seed_cosine_residuals.v0.json` as the current proof aid for the tangent-space condition $B\xi=0$, $A\xi\ge\kappa\mathbf{1}$. The live local fold-shear matrix is a constructive seed direction; a full fresh-candidate Jacobian and interval pre-ledger are still required before making any candidate claim.
 - Use `certificate/aaa_corpus_recommendation_handoff.md` as the audit trail for the scoped AAA edit batch that has now been applied.
 - Use `certificate/regular_boundary_user_facing_recommendation.md` as the current documentation decision for the regular-boundary question: no named AAA theorem now, with only a possible future same-packet wording micro-edit in `collinear-breather.md`.
 - Use `certificate/field_speed_head_on_inflight_wake_test_case.md` and `certificate/field_speed_head_on_inflight_wake_result.v0.json` as the current boundary-case audit for exact field-speed head-on history. It is a useful separator-caustic test, not a candidate cycle. Any continuation must run the dual-mollified finite-history integral before using the case for force, recapture, or branch-chart claims.
+- Use `certificate/field_speed_head_on_finite_history_report.v0.md` as the current theory-success marker for the exact field-speed boundary case. It proves that fixed-regulator infinite history saturates while the zero-regulator self-continuum diverges, so the next lawful candidate must dephase, curve, hold-release, or otherwise branch-certify the preparation before using the head-on seed.
 - Use `certificate/fold_interval_constants_attempt.json`, `certificate/fold_mollifier_kernel_candidate.md`, `certificate/fold_row_tube_coverage_attempt.md`, and `certificate/fold_row_consumption_attempt.md` as the historical rejected attempt package: they preserve the earlier rejection route and exact candidate mollifier norm while keeping `branch_chart_authorized=false`.
 - The accepted proof artifact is a pass/fail finite audit on one candidate
 $$
@@ -235,11 +238,29 @@ $$
 $$
 for the declared matrix while refusing pre-ledger, live-ledger, and branch-chart
 claims.
+The live fold-shear matrix then replaces the independent diagnostic columns with
+actual $C^1$ first-half arc bumps on $A_0,A_1,A_2$, extended by
+$$
+H(\theta+1/2)=-H(\theta).
+$$
+For the source-above-receiver residual-gap orientation, the scanner finds
+$$
+(b_T,h_{A0},h_{A1},h_{A2})
+=
+(0,\ 0.433491813815,\ -0.556350501775,\ -1)
+$$
+with finite observed margin
+$$
+\min_m\left((A\xi)_m-\kappa_m\right)=0.0920789718365,
+$$
+after subtracting the recorded residual overlap depths.
+This is a true candidate-history direction in the local shear subspace, not just
+a gate requirement.
 The minimum lawful next attempt is therefore a new same-packet artifact set,
 generated or manually instantiated under one fresh identity, whose first
 acceptance row is again the null-coordinate pre-ledger and whose search surface
-replaces the diagnostic matrix with the true fresh-candidate structural
-Jacobian and signed gap derivatives before branch-chart work.
+carries this live shear into the true fresh-candidate structural Jacobian and
+signed gap derivatives before branch-chart work.
 
 The sub-field-speed comparison lane now has a concrete action-generated
 baseline rather than a prescribed-path ansatz. The held-source release segment

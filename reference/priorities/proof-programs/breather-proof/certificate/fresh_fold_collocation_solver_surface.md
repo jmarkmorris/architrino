@@ -116,6 +116,15 @@ independent endpoint-shear columns to verify the finite success marker without
 claiming a live candidate, interval certificate, pre-ledger pass, or branch-chart
 authorization.
 
+The first non-toy local matrix is now recorded in
+`gap_opening_live_fold_shear_input.seed_cosine_residuals.v0.json` and
+`gap_opening_live_fold_shear_result.seed_cosine_residuals.v0.json`. It replaces
+the independent residual-collar columns with actual $C^1$ arc bumps on
+$A_0,A_1,A_2$, extended by half-period antisymmetry. The emitted witness opens
+the declared source-above-receiver residual gaps with positive finite margin,
+while still leaving the full fresh-candidate structural Jacobian, dynamic
+residuals, and interval pre-ledger as future same-packet work.
+
 ## Pre-Ledger Stop Condition
 
 Stop before branch-chart construction unless every pre-ledger row satisfies

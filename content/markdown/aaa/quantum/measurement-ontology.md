@@ -774,11 +774,11 @@ $$
 =
 dp_{+}
 -
-\frac{1}{2\pi}
+\rho_{\hat{\mathbf m}}^{\mathrm{rec}}(\theta_{\mathrm{rec}})
 d\theta_{\mathrm{rec}}
 $$
 
-is only a comparison target after $\psi(Z)$ and $p_+(Z;\hat{\mathbf m})$ are derived from the apparatus model.
+is only a comparison target after $\psi(Z)$ and $p_+(Z;\hat{\mathbf m})$ are derived from the apparatus model. Equivalently, the reduced Stern-Gerlach record coordinate is the invariant-measure coordinate $u_{\hat{\mathbf m}}(\theta_{\mathrm{rec}})=\int_0^{\theta_{\mathrm{rec}}}\rho_{\hat{\mathbf m}}^{\mathrm{rec}}(s)\,ds$, not necessarily the raw phase $\theta_{\mathrm{rec}}/(2\pi)$. The raw phase appears only in the calibrated constant-phase-speed limit.
 
 This is a single-core measurement statement. Bell-pair response and photon-polarization correlations additionally require the pair-provenance ledger and photon Gate B; they should not be treated as closed by the measurement ontology alone.
 

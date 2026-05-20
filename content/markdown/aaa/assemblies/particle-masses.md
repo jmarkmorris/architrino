@@ -236,6 +236,95 @@ $$
 $$
 Any discarded channel above tolerance blocks promotion of the sector response. It cannot be absorbed into shielding, fitted by the benchmark, or left as an unnamed hidden variable.
 
+#### Scalar Mass-Trace Composition
+
+The current mass map can now be stated as a composition chain rather than a single shielding slogan. The scalar exposed source descends through the mass-facing quotient,
+
+$$
+M_0^{\mathrm{src}}(A)
+=
+\overline{\mathcal{B}}_0(\mathcal{E}_0(A))
+=
+\zeta(A)E_{\text{internal}}(A),
+$$
+
+and the same source is then inserted into the exposed inertial-response tensor through the reversible symmetric medium response. To first order around a weak homogeneous reference cell, the scalar trace has the form
+
+$$
+m_{\mathrm{tr}}(A)
+=
+\alpha_{\mathrm{m}}
+\frac{1}{c_{\text{eff},0}^{2}}
+\left[
+M_{0}^{\mathrm{src}}(A)(1+\delta\mathcal{M}_{0})
++
+\frac{1}{3}
+E_{\text{internal}}(A)
+\mathcal{Z}_{\mathrm{tf},ab}(A)
+\delta\mathcal{M}_{\mathrm{tf}}^{ab}
+\right]
++
+\mathcal{R}_{\mathrm{chain}}.
+$$
+
+Here $\delta\mathcal{M}_{0}$ is the trace part of the reversible medium-response perturbation, $\delta\mathcal{M}_{\mathrm{tf}}^{ab}$ is its trace-free part, and $\mathcal{R}_{\mathrm{chain}}$ holds terms that have not yet been derived from a branch record. This formula is stronger than the scalar roadmap relation because it names the only first-order places where scalar mass can change: the quotient-visible source, the trace medium response, and the trace-free exposure / trace-free medium contraction.
+
+The quotient test must therefore apply to the whole composed trace, not only to $M_0^{\mathrm{src}}(A)$. If two restored representatives are identified by the scalar quotient, write $\Delta_dF=F[d_1]-F[d_2]$. The first-order trace defect is
+
+$$
+\Delta_{\mathrm{tr}}(d_1,d_2)
+=
+(1+\delta\mathcal{M}_0)\Delta_dM_0^{\mathrm{src}}
++
+\frac{1}{3}
+\delta\mathcal{M}_{\mathrm{tf}}^{ab}
+\Delta_d
+\left(
+E_{\text{internal}}\mathcal{Z}_{\mathrm{tf},ab}
+\right).
+$$
+
+For scalar mass to be quotient-visible, this defect must remain below the declared trace tolerance. A scalar source can pass its no-hidden-handle test while the composed tensor trace still fails; in that case the discarded label is invisible in the homogeneous scalar source but mass-visible in anisotropic or pressure-sensitive response.
+
+The pressure specialization has the same discipline. For a branch-preserving pressure perturbation,
+
+$$
+\delta_Pm_{\mathrm{tr}}(A)
+=
+\alpha_{\mathrm{m}}
+\frac{1}{c_{\text{eff},0}^{2}}
+\left[
+\delta_PM_{0}^{\mathrm{src}}(A)
++
+M_{0}^{\mathrm{src}}(A)\,\delta_P\delta\mathcal{M}_{0}
++
+\frac{1}{3}
+E_{\text{internal}}(A)
+\mathcal{Z}_{\mathrm{tf},ab}(A)
+\delta_P\delta\mathcal{M}_{\mathrm{tf}}^{ab}
+\right]
++
+\mathcal{R}_{P}.
+$$
+
+Thus pressure cannot improve a mass prediction by adding a hidden scalar row. It must either change the quotient-visible source, change the shared reversible medium-response tensor, or leave the scalar trace unchanged to first order. In a density-only pressure channel with packing headroom $s_n$ and density modulus $K_{\mathrm{pack}}$, the corresponding limit is
+
+$$
+\left.
+\frac{\partial m_{\mathrm{tr}}}{\partial P}
+\right|_{n\text{-only}}
+\propto
+\frac{s_n}{K_{\mathrm{pack}}},
+\qquad
+\lim_{s_n\to0^+}
+\left.
+\frac{\partial m_{\mathrm{tr}}}{\partial P}
+\right|_{n\text{-only}}
+=0.
+$$
+
+This does not mean dense matter stops responding to pressure. It means the scalar density channel stops carrying that response when packing headroom closes; any remaining response must appear in exposed-source drift, envelope ratios $\lambda$ and $\xi$, trace-free strain, reversible wake/contact stiffness, tensor response, or a threshold/branch event.
+
 ### The Noether Core as a Causal Knot
 
 A Noether core can be read as a causal knot: not a material knot in space, but a stable closure of delayed path-history relations. The inner, middle, and outer binaries continually exchange partner-hit, self-hit, and inter-layer wakes. When those returns close with stable phase and integer ledger structure, the assembly traps geometric history in a localized causal circuit.

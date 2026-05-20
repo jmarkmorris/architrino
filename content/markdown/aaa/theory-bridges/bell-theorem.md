@@ -260,7 +260,81 @@ P(a\mid \hat{m}_A,\hat{m}'_B)
 \right|,
 $$
 
-with the analogous $\Delta_{\mathrm{NS}}^{B}$ obtained by exchanging the detector labels. Both must vanish within tolerance. Correlation recovery is the third guardrail:
+with the analogous $\Delta_{\mathrm{NS}}^{B}$ obtained by exchanging the detector labels. Both must vanish within tolerance.
+
+For binary records, no-signaling has a useful finite-channel decomposition. Any normalized law for $a,b\in\{-1,+1\}$ can be written in Walsh form as
+
+$$
+P(a,b|x,y)
+=
+\frac14
+\left[
+1
++
+a\,m_A(x,y)
++
+b\,m_B(x,y)
++
+ab\,C(x,y)
+\right],
+$$
+
+where
+
+$$
+m_A=\sum_{a,b}aP(a,b|x,y),
+\qquad
+m_B=\sum_{a,b}bP(a,b|x,y),
+\qquad
+C=\sum_{a,b}abP(a,b|x,y).
+$$
+
+No-signaling is exactly the condition that the local channels reduce to $m_A(x)$ and $m_B(y)$. The only term then allowed to carry both settings without operational signaling is the correlation channel:
+
+$$
+P(a,b|x,y)
+=
+\frac14
+\left[
+1
++
+a\,m_A(x)
++
+b\,m_B(y)
++
+ab\,C(x,y)
+\right],
+$$
+
+with positivity condition
+
+$$
+1+a\,m_A(x)+b\,m_B(y)+ab\,C(x,y)\ge0.
+$$
+
+For the singlet target,
+
+$$
+m_A(x)=0,
+\qquad
+m_B(y)=0,
+\qquad
+C(x,y)=-\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B.
+$$
+
+Product-screened response is the special subclass
+
+$$
+C_{\mathrm{prod}}(x,y)
+=
+\int
+A_x(\Pi)B_y(\Pi)\,
+d\rho_{\mathrm{src}}(\Pi).
+$$
+
+Thus the non-product burden is sharply located: a successful pair-provenance account must derive a correlation channel $C(x,y)$ that is not reducible to $C_{\mathrm{prod}}(x,y)$, while keeping $m_A$ and $m_B$ local and preserving positivity.
+
+Correlation recovery is the third guardrail:
 
 $$
 \Delta_{\mathrm{Bell}}

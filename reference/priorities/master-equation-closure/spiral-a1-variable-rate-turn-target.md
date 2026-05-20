@@ -1,12 +1,14 @@
 # Spiral A1 Variable-Rate Turn Target
 
-Status. Priority proof packet and promoted local continuation target for
+Status. Consumed priority proof packet and promoted local continuation target for
 `spiral_branch_chart_test`. This packet consumes
 [spiral-a1-kinematic-gamma-closure](spiral-a1-kinematic-gamma-closure.md),
 [spiral-a1-tangential-compatibility-no-go](spiral-a1-tangential-compatibility-no-go.md),
 [spiral-a1-current-interval-rows](spiral-a1-current-interval-rows.json), and
 [spiral-a1-interval-report](spiral-a1-interval-report.md). It turns the
 constant-$\Omega$ A1 rejection into a concrete local angular-rate condition.
+The follow-on finite-memory time-law equations are recorded in
+[spiral-a1-nonconstant-time-law-chart](spiral-a1-nonconstant-time-law-chart.md).
 
 Claim level. Constructive turn-center continuation condition, not an existence
 certificate for a nonconstant-time-law orbit. The same retained A1 branch chart

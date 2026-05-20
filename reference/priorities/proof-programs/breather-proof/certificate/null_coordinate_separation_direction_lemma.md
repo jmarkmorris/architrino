@@ -207,6 +207,54 @@ $$
 $$
 Thus a small local shear can open a $u$ collar while closing or weakening a nearby $w$ collar, or conversely. The finite feasibility problem is valuable exactly because it tests whether all residual collars can be opened simultaneously while remaining tangent to the structural constraints.
 
+## Half-Period Fold-Shear Corollary
+
+The first live local matrix uses three actual $C^1$ first-half arc bumps
+$$
+\psi_j(\theta)
+=
+\sin^2\!\left(\pi\frac{\theta-L_j}{R_j-L_j}\right),
+\qquad
+A_j=[L_j,R_j],
+$$
+on
+$$
+A_0=[0,\sigma_1],
+\qquad
+A_1=[\sigma_1,\sigma_2],
+\qquad
+A_2=[\sigma_2,1/2],
+$$
+extended by half-period antisymmetry,
+$$
+H(\theta+1/2)=-H(\theta).
+$$
+With fixed period tangent $\delta T=0$,
+$$
+\delta w=H,
+\qquad
+\delta u=-H.
+$$
+Therefore each second-half `u` residual collar is the half-period mirror of a
+first-half `w` derivative calculation. The residual-collar matrix is no longer
+one independent actuator per collar: it tests whether one symmetry-preserving
+first-half shear opens all listed first- and second-half collars together.
+
+For the rejected cosine residuals, the source-above-receiver signed matrix built
+from these three live bumps has the strict witness
+$$
+(b_T,h_{A0},h_{A1},h_{A2})
+=
+(0,\ 0.433491813815,\ -0.556350501775,\ -1),
+$$
+with observed finite margin
+$$
+\min_m\left((A\xi)_m-\kappa_m\right)=0.0920789718365,
+$$
+after subtracting the recorded residual overlap depths $\kappa_m$.
+This is not a pre-ledger pass. It is a constructive seed direction for the next
+fresh fold-collocation candidate.
+
 ## Executable Feasibility Scanner
 
 The finite criterion now has a fail-closed executable proof aid:

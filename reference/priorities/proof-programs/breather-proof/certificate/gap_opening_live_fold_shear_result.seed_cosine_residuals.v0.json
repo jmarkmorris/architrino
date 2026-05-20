@@ -1,0 +1,132 @@
+{
+  "schema": "aaa-proof/null-coordinate-gap-opening-scan-result/v1",
+  "input_schema": "aaa-proof/null-coordinate-gap-opening-scan/v1",
+  "packet_id": "seed-cosine-live-fold-shear-matrix-v0",
+  "packet_identity": {
+    "source_packet": "seed-doubled-four-arc-cosine-template-v0",
+    "matrix_status": "live_local_tangent_matrix_not_full_candidate",
+    "basis_model": "half_period_antisymmetric_c1_arc_bumps"
+  },
+  "source": "Residual parent-complement collars from the rejected cosine packet, evaluated against actual half-period-antisymmetric C1 shear basis functions on A0, A1, and A2.",
+  "status": "feasible",
+  "theory_success_marker": "strict_null_coordinate_gap_opening_tangent_witness",
+  "method": "nullspace_perceptron_strict_witness",
+  "claim_level": "strict tangent-space gap-opening witness for declared finite matrix",
+  "branch_chart_authorized": false,
+  "preledger_pass": false,
+  "nullity": 3,
+  "variable_count": 4,
+  "structural_constraint_count": 1,
+  "gap_constraint_count": 11,
+  "tolerance": 1e-9,
+  "normalization": "||xi||_inf <= 1",
+  "xi_infinity_norm": 1,
+  "updates_live_ledger": false,
+  "B_xi_residual_verified_zero_with_tolerance": true,
+  "B_xi_residual_certified_zero": false,
+  "rank_B_certified": false,
+  "kappa_observed_after_required_margin": 0.0920789718365,
+  "max_structural_residual": 0,
+  "min_gap_value_after_required_margin": 0.0920789718365,
+  "witness": {
+    "b_T": 0,
+    "h_A0": 0.433491813815,
+    "h_A1": -0.556350501775,
+    "h_A2": -1
+  },
+  "diagnostic_candidate": null,
+  "structural_rows": [
+    {
+      "id": "fixed_period_tangent",
+      "residual": 0
+    }
+  ],
+  "gap_rows": [
+    {
+      "id": "R_w_A1_A0_receiver_left",
+      "value_after_required_margin": 0.0920789718375,
+      "required_margin": 0.0049999999989998,
+      "collar_id": "R_w_A1_A0/receiver_left",
+      "ledger": "w"
+    },
+    {
+      "id": "R_w_A1_A0_source_left",
+      "value_after_required_margin": 0.274977190211,
+      "required_margin": 1.33182354034034e-12,
+      "collar_id": "R_w_A1_A0/source_left",
+      "ledger": "w"
+    },
+    {
+      "id": "R_w_A2_A0_receiver_right",
+      "value_after_required_margin": 0.638021709141,
+      "required_margin": 0.0049999999989998,
+      "collar_id": "R_w_A2_A0/receiver_right",
+      "ledger": "w"
+    },
+    {
+      "id": "R_w_A2_A1_receiver_left",
+      "value_after_required_margin": 0.168431886875,
+      "required_margin": 0.00483855877600003,
+      "collar_id": "R_w_A2_A1/receiver_left",
+      "ledger": "w"
+    },
+    {
+      "id": "R_w_A2_A1_receiver_right",
+      "value_after_required_margin": 0.587054970171,
+      "required_margin": 0.00500000000099998,
+      "collar_id": "R_w_A2_A1/receiver_right",
+      "ledger": "w"
+    },
+    {
+      "id": "R_u_A3_A2_receiver_left",
+      "value_after_required_margin": 0.0920789718365,
+      "required_margin": 0.005,
+      "collar_id": "R_u_A3_A2/receiver_left",
+      "ledger": "u"
+    },
+    {
+      "id": "R_u_A3_A2_source_left",
+      "value_after_required_margin": 0.274977190211,
+      "required_margin": 1.33182354034034e-12,
+      "collar_id": "R_u_A3_A2/source_left",
+      "ledger": "u"
+    },
+    {
+      "id": "R_u_A4_A2_receiver_right",
+      "value_after_required_margin": 0.63802170914,
+      "required_margin": 0.005,
+      "collar_id": "R_u_A4_A2/receiver_right",
+      "ledger": "u"
+    },
+    {
+      "id": "R_u_A4_A2_source_right",
+      "value_after_required_margin": 0.699256678295,
+      "required_margin": 2.42e-13,
+      "collar_id": "R_u_A4_A2/source_right",
+      "ledger": "u"
+    },
+    {
+      "id": "R_u_A4_A3_receiver_left",
+      "value_after_required_margin": 0.168431886875,
+      "required_margin": 0.004838558776,
+      "collar_id": "R_u_A4_A3/receiver_left",
+      "ledger": "u"
+    },
+    {
+      "id": "R_u_A4_A3_receiver_right",
+      "value_after_required_margin": 0.587054970172,
+      "required_margin": 0.005,
+      "collar_id": "R_u_A4_A3/receiver_right",
+      "ledger": "u"
+    }
+  ],
+  "iterations": 2,
+  "projected_margin": 0.535758605073,
+  "note": null,
+  "limitations": [
+    "The scanner certifies only the declared finite tangent matrix, not a passed pre-ledger.",
+    "A feasible witness must still be integrated into a fresh same-packet candidate and interval-validated.",
+    "An inconclusive result is not a proof that no gap-opening direction exists."
+  ],
+  "input_path": "/Users/markmorris/vibe/architrino/reference/priorities/proof-programs/breather-proof/certificate/gap_opening_live_fold_shear_input.seed_cosine_residuals.v0.json"
+}

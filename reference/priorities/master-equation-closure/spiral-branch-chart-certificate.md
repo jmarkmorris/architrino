@@ -386,11 +386,18 @@ and retains the $P_1,P_2,P_3,S_1$ chart. These rows are priority-packet evidence
 | [spiral-a1-kinematic-gamma-closure](spiral-a1-kinematic-gamma-closure.md) | Exact prescribed-history radial balance row. | Uses the constant-$\Omega$ A1 kinematics to derive $B_r(C_{\mathrm{A1}};0)=(a_{\mathrm{A1}}-1)\Gamma$ and $\Gamma\in[0.007531050241046427,\ 0.007531144882881889]$, passing radial turn. |
 | [spiral-a1-tangential-compatibility-no-go](spiral-a1-tangential-compatibility-no-go.md) | Exact prescribed-history tangential compatibility no-go. | The constant-$\Omega$ A1 history requires $T_0(C_{\mathrm{A1}})=0$ at $\theta_\ast=0$, but the retained chart gives $T_0(C_{\mathrm{A1}})\in[-0.007585901776635041,\ -0.007585740886803276]$. |
 | [spiral-a1-variable-rate-turn-target](spiral-a1-variable-rate-turn-target.md) | Constructive local continuation target. | Combines the A1 radial and tangential rows to derive $\ddot\theta(0)/\dot\theta(0)^2\in[-1.0072833846320208,\ -1.007249363114164]$ for any same-turn variable-angular-rate continuation before recomputing the delayed-root chart for the nonconstant time law. |
+| [spiral-a1-nonconstant-time-law-chart](spiral-a1-nonconstant-time-law-chart.md) | Finite-memory nonconstant time-law equation. | Replaces the constant-rate delay $\Delta$ by $H(\Delta)=\omega_\ast\int_{-\Delta}^{0}d\phi/\dot\theta(\phi)$, derives the source-speed Jacobian factor, and shows that simple one-parameter continuations either lose the old roots or require negative $\Gamma$ through the radial row. |
 | [spiral-a1-current-interval-rows](spiral-a1-current-interval-rows.json) and [spiral-a1-interval-report](spiral-a1-interval-report.md) | Executable A1 sidecar and report. | Structural rows, root transport, dependency status, radial turn, and weighted tangential drive pass; theorem grade is `true` because the exact tangential compatibility row certifies failure of the prescribed constant-$\Omega$ history. |
 | [spiral-a1-corpus-recommendation](spiral-a1-corpus-recommendation.md) and [spiral-a1-user-facing-doc-recommendations](spiral-a1-user-facing-doc-recommendations.md) | Earlier corpus promotion packets, now superseded by the kinematic-balance no-go promotion. | These packets recorded the prior tangential-pass/radial-blocked benchmark. The current reader-facing state is the scoped constant-$\Omega$ kinematic-balance no-go in `content/markdown/aaa`. |
 | [spiral-a1-post-benchmark-user-facing-doc-recommendations](spiral-a1-post-benchmark-user-facing-doc-recommendations.md) | Post-benchmark user-facing recommendation packet. | Promotes the matching analytic-footholds roadmap alignment into `content/markdown/aaa`, keeping broader stability and maximum-curvature consumer prose blocked until radial turn and returned-section controls close. |
 
 ## Acceptance Ledger
+
+The nonconstant A1 follow-on does not add an acceptance row. It changes the
+candidate history: the delayed-root equation itself becomes
+$\Lambda_{P/S}=H/b_\ast$, with
+$H=\omega_\ast\int d\theta/\dot\theta$. Any future variable-rate packet must
+reuse the rows below after selecting a complete time law on the memory window.
 
 The first executable certificate passes only if every row below is supplied.
 
