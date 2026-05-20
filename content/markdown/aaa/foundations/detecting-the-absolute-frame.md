@@ -116,7 +116,7 @@ This prevents the preferred-frame claim from being empty inside the formal ontol
 **Ontologically fundamental (physically real):**
 - **Euclidean void and absolute time**: The substrate in which all architrino dynamics occur
 - **Absolute velocity**: Physically meaningful and detectable to complete-state reconstruction via source-tagged wake concentricity
-- **Causal wakes**: continuous potential-bearing structures propagating through the void
+- **Causal wakes**: continuous source-dependent, potential-bearing causal records propagating through the void
 - **Geometric relationships**: Concentricity and displacement are objective, observer-independent properties
 
 **Conventional (mathematical scaffolding):**

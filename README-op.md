@@ -52,6 +52,7 @@ This file is Cody's living feedback backlog for improving operator/developer wor
 - [ ] Convert repeated discussion loops into a theorem target, simulation target, or explicit rejection note.
 - [ ] Treat canon edits as policy changes and discuss them before broad corpus updates.
 - [ ] Keep the active priority surface small enough that completed tasks can be removed and renumbered immediately.
+- [ ] After updating priority buckets, mark each new packet as promoted, deferred, or priority-only with its corpus target and blocker.
 - [ ] After large theory pushes, run one consolidation pass to eliminate duplicated labels and stale TODOs.
 
 ## Resolved

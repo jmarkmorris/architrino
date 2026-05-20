@@ -1,37 +1,7 @@
 ### kinetic energy - do we need to track electrino and positrino separately? we may as well? reduce later.
 
 ### potential energy (of attraction). (of repulsion).
-- track positive and negative separately
-
-### the CMB
-    - cmb is from quantum fluctuations
-        - so that means spacetime reacting in a way that only varies 1 in 100,000
-        - perhaps it is a natural process where  two dark photons or spacetime Noether cores react?
-        - or could it be electrons and protons in free space combining and emitting excess energy as photons?
-        - research the specific frequencies detected and the deduction about the emitted frequency and emission process.
-- how large is a pixel in cmb observations
-    - 1 million ly (chatgpt)
-    - 1.4 million light-years across (gemini)
-    - 1.5 M ly (copilot)
-    - Given the large area represented by each CMB pixel in the current universe compared to typical galaxy sizes, it's likely that a very high percentage of CMB pixels would contain at least one galaxy, and probably many more.
-    - it is believed that a significant portion of CMB pixels, likely tens of percent or more, contain at least one galaxy.
-    - Studies indicate that approximately 10% to 20% of CMB pixels in the highest-resolution maps may correspond to regions that contain galaxies.
-- what is the typical distance range for neighbor galaxies
-    - Major galaxies
-        - Milky Way and Andromeda: These two large spiral galaxies are about 2.5 million light-years apart.
-        - For major galaxies: 2 to 3 million light-years
-        - Larger Galaxies: In more dense environments, such as galaxy clusters, the distance between galaxies can be much smaller, often in the range of tens of thousands of light-years. In the core of clusters, galaxies can be separated by as little as 20,000 to 50,000 light-years.
-        - Field Galaxies: In less dense regions of space, like the cosmic voids, the distances can be significantly larger, often exceeding several million light-years between neighboring galaxies.
-    - Dwarf galaxies
-        - Sagittarius Dwarf Elliptical Galaxy: This dwarf galaxy is located about 70,000 light-years from the Milky Way.
-        - Magellanic Clouds: These two dwarf galaxies are orbiting the Milky Way and are about 160,000 and 200,000 light-years away, respectively.
-        - For satellite and dwarf galaxies orbiting a major galaxy: 25,000 to 500,000 light-years
-        - Dwarf Galaxies and Satellite Galaxies: In our local group, dwarf galaxies can be found as close as about 30,000 light-years from larger galaxies like the Milky Way. For example, the Large and Small Magellanic Clouds are satellite galaxies located roughly 160,000 and 200,000 light-years away, respectively.
-- black hole jet end to end lengths
-    - Most jets are significantly shorter than Porphyrion's extreme case of 23 million light-years.
-    - Large, impressive jets might range from tens of thousands to a few million light-years in length.
-    - Typical Length: Many jets from SMBHs in active galactic nuclei (AGNs) can extend from about 10,000 light-years to over 100,000 light-years. For instance, the jets from the Milky Way's central black hole, Sagittarius A*, are relatively short compared to those from more powerful AGNs.
-    - Extreme Cases: In powerful AGNs like quasars, jets can reach lengths of several million light-years. For example, the jet from the quasar 3C 273 is estimated to extend around 2 million light-years.
+- track positive and negative separately?
 
 ### study orbital mechanics - Carleton University. Is it the same math?  Not really because they usually have one mass orbiting another, not in a circle.  But on the other hand they do orbit the center of mass.
 - if they are ignoring path history, then it is not interesting at the limit, but might still be good to know.
@@ -43,8 +13,6 @@
 ### is a dirac sphere stream really a scalar field?
 - each point on a dirac sphere does contain directional vector information by nature of the local curvature of the dirac sphere identifying the radii towards the emission point, but not the actual point, because the sphere may be been modulated by the velocity of the emitter.
 - Potential insight: I question whether potential is a scalar. At any action point on a Dirac potential sphere, the information contained is both the value of the potential and the vector direction from the emitter. Note that it is not possible to calculate the radii to the emitter because the emitter's velocity factors into the initial Dirac delta potential emission.
-
----
 
 A scalar field is a field that assigns one value to each point, like temperature in a room. It has magnitude but no direction. In quantum field theory, a scalar field’s quanta are spin-0 particles. In general relativity, scalar fields can be matter sources or extra gravity degrees of freedom, but GR’s core gravitational field is the metric tensor, not a scalar.
 

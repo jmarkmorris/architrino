@@ -710,3 +710,50 @@ m\in\{-\ell,\ldots,\ell\}.
 $$
 
 Those labels describe the effective electron-assembly envelope around the nucleus. They should not be read as the internal Noether-core spinor ledger of the electron itself.
+
+The sharper recovery target is a residual on the declared envelope extractor. For an electron assembly branch $\mathcal B_e$, local Noether-Sea record $\theta_{\mathrm{sea}}^{(\ell)}$, central-potential approximation $V_{\mathrm{eff}}$, and record window $W$, write
+
+$$
+\Psi_{\mathrm{env}}
+=
+\mathcal E_{\mathrm{orb}}
+\left(
+\mathcal B_e,
+\theta_{\mathrm{sea}}^{(\ell)},
+V_{\mathrm{eff}},
+W
+\right).
+$$
+
+The extractor must first pass restartability, central-chart, record-channel, and normalization checks, collected as $\mathcal R_{\mathrm{env}}$. Only then should the angular labels be tested by
+
+$$
+\mathcal R_{\mathrm{orb}}
+=
+\left(
+\mathcal R_{\mathrm{env}},
+\Delta_{2\pi},
+\Delta_{\Omega},
+\Delta_{\ell m},
+\Delta_{\mathrm{int}}
+\right),
+$$
+
+where
+
+$$
+\Delta_{2\pi}
+=
+\sup_{r,\theta,\phi}
+\frac{
+\left|
+\Psi_{\mathrm{env}}(r,\theta,\phi+2\pi)
+-
+\Psi_{\mathrm{env}}(r,\theta,\phi)
+\right|
+}{
+\left\|\Psi_{\mathrm{env}}\right\|+\varepsilon_{\Psi}
+}
+$$
+
+tests azimuthal single-valuedness, $\Delta_{\Omega}$ tests the angular operator against $\ell(\ell+1)$ and $m$, $\Delta_{\ell m}$ enforces $\ell\in\mathbb N_0$, $m\in\mathbb Z$, and $|m|\le\ell$, and $\Delta_{\mathrm{int}}$ checks that the observer-level orbital envelope has not been mistaken for the internal Noether-core spin ledger. The orbital row is promotable only when all five residuals pass for the same envelope branch.

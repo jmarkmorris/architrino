@@ -1269,7 +1269,7 @@ The first Tier 0 implementation packet is complete enough for handoff. The curre
 
 The fold-layer-locked one-period Tier 1 attempt is now also complete as a fail-closed diagnostic. It preserves the two locked self-root fold-layer keys in $\mathcal{R}_{\text{lock}}$, runs the under-cap retained-step budget, emits one-period residual ledgers, and refuses accepted-history output. Its direct residual failure and residual-balance no-go make the compact circular / elliptic carrier chart inadequate as a closed branch equation.
 
-The active next implementation packet is now the periodic residual-balanced carrier-correction runner. It should consume `a0-tier1-residual-balance-ledger/v1`, keep the locked fold-layer row as $\mathcal{R}_{\text{lock}}$, and implement the smallest branch-native correction equation that can be rerun without particle benchmarks:
+The periodic residual-balanced carrier-correction bridge is now implemented far enough to falsify the scalar no-omitted-mode correction as a closed branch. The next implementation packet is no longer the bridge itself. It is the richer branch-native basis route that can decide whether the compact fixture needs root-key / projection-resolved interaction weights or should be rejected as a compact-chart branch:
 $$
 \mathbf{d}_\ell''(t)
 =
@@ -1281,18 +1281,121 @@ Q_\ell\Pi_\ell
 \alpha_\rho B_\rho(t)
 \right).
 $$
-The runner must first test the mean solvability condition for this periodic boundary-value problem. If the projected forcing is not closed by a periodic $\mathbf{d}_\ell(t)$ after symmetry, translation, phase-origin, radius, and plane-orientation modes are removed, the next result should be a stronger no-go for the compact fixture rather than a promoted branch.
+The completed bridge already tests the mean solvability condition, emits a rerun packet when the retained correction basis is executable, and keeps accepted-history output blocked. Since the corrected rerun still fails the one-period ledgers, the next result should be a stronger no-go for the compact fixture unless a refined branch-native basis reduces the same residual surface without changing the branch label.
 
-The next pass should produce:
+The remaining branch-equation handoff should now produce:
 
-1. a mean-solvability and Fourier-mode scanner for $\mathbf{d}_\ell(t)$ using only branch-native residual data;
-2. an explicit decision on whether the scalar relation basis must be replaced by the basis $B_{\rho,\ell,\sigma,\mu,\nu}(t)$ resolved by root branch key and projection channel;
-3. a corrected fold-layer-locked one-period attempt, if the correction basis is executable;
-4. one-period residual ledgers for state return, root closure, phase closure, speed ordering, energy-like speed balance, drift, lock stability, and correction residual $R_{\text{corr}}$;
-5. quotient-row identity carried through the corrected branch row before accepted-history emission;
-6. monodromy / $\Delta_{\mathbf{k}}$ and $\eta$-ladder continuation only after the corrected one-period residuals pass;
-7. finite envelope-Hessian extraction only after the same corrected branch passes, with $k_R$, $k_\xi$, $k_{R\xi}$, $c_R$, and $c_\xi$ emitted as branch evidence rather than toy stiffnesses;
-8. confirmation that accepted-history output remains blocked until one-period residual closure, no secular center drift, positive $\Delta_{\mathbf{k}}$, quotient-row identity, and branch persistence across the declared $\eta$ ladder are all present.
+1. an explicit equality-constrained replacement for the scalar relation basis by $B_{\rho,\ell,\sigma,\mu,\nu}(t)$ resolved by relation class, receiver layer, polarity, root branch key, and radial / tangential projection channel;
+2. a proof that the refined basis preserves pro/anti symmetry, quotient-equivalent root sharing, the locked fold-layer keys in $\mathcal{R}_{\text{lock}}$, and benchmark exclusion;
+3. a rerun packet or no-go ledger for the refined basis, using the same state-return, root-closure, phase-closure, speed-ordering, energy-like speed, drift, lock-stability, and correction residuals;
+4. quotient-row identity carried through the corrected branch row before accepted-history emission;
+5. monodromy / $\Delta_{\mathbf{k}}$ and $\eta$-ladder continuation only after the corrected one-period residuals pass;
+6. finite envelope-Hessian extraction only after the same corrected branch passes, with $k_R$, $k_\xi$, $k_{R\xi}$, $c_R$, and $c_\xi$ emitted as branch evidence rather than toy stiffnesses;
+7. confirmation that accepted-history output remains blocked until one-period residual closure, no secular center drift, positive $\Delta_{\mathbf{k}}$, quotient-row identity, and branch persistence across the declared $\eta$ ladder are all present.
+
+Scanner implementation note, May 20, 2026:
+
+```text
+node scripts/mass-map/a0-tier1-carrier-correction-scanner.mjs --intake /tmp/a0-tier1-fold-layer-locked-one-period-attempt-impl-v2.json --pretty --out /tmp/a0-tier1-carrier-correction-scanner.json
+```
+
+The fold-layer one-period runner now adds `sampled_forcing` to `a0-tier1-residual-balance-ledger/v1` when it can compute the residual-balance normal equation. The scanner consumes only that sampled branch-native forcing. For each layer it tests
+$$
+\int_0^{T_{\mathbf{k}}}Q_\ell\mathbf{g}_\ell(t)\,dt=\mathbf{0}
+$$
+by a relative mean residual, omits declared chart modes from the correction basis, and emits retained Fourier coefficients
+$$
+\widehat{\mathbf{d}}_{\ell,m}
+=
+-
+\frac{\widehat{\mathbf{g}}_{\ell,m}}{(2\pi m/T_{\mathbf{k}})^2},
+\qquad m\ne0.
+$$
+If `sampled_forcing.period` or `sampled_forcing.samples[].layers.{I,M,O}.residual_forcing` is absent, the scanner returns `blocked_sampled_forcing_missing` with the missing field names. If the mean forcing is above tolerance it returns `blocked_mean_solvability_failed`; if omitted chart modes dominate the resolved nonzero forcing it returns `blocked_chart_mode_dominated`; otherwise it returns `fourier_carrier_correction_candidate`. This candidate status authorizes only a corrected one-period rerun. It is not an accepted-history row and does not compute root closure, quotient monodromy, $\Delta_{\mathbf{k}}$, or eta-ladder persistence.
+
+Carrier-correction chart-policy result, May 20, 2026:
+
+```text
+node scripts/mass-map/a0-tier1-carrier-correction-scanner.mjs --intake /tmp/a0-tier1-fold-layer-locked-one-period-attempt-codex-review.json --pretty --out /tmp/a0-tier1-carrier-correction-scanner-codex-review-default.json
+
+node scripts/mass-map/a0-tier1-carrier-correction-scanner.mjs --intake /tmp/a0-tier1-fold-layer-locked-one-period-attempt-codex-review.json --omit-modes none --pretty --out /tmp/a0-tier1-carrier-correction-scanner-codex-review-omit-none.json
+```
+
+The regenerated fold-layer attempt artifact `/tmp/a0-tier1-fold-layer-locked-one-period-attempt-codex-review.json` makes the carrier-correction decision chart-policy sensitive. With the default chart policy, mode `1` is omitted as part of the reduced branch coordinate $z_\Lambda$. The scanner returns `blocked_chart_mode_dominated` with one blocked row. The `O`-layer omitted-chart-mode energy fraction is `0.9997697101092003`, and its correction residual is `0.9998848484246575`, while the `I` and `M` layers remain Fourier correction candidates with mean residuals `0.005469226331224925` and `0.003874878104606083`.
+
+With `--omit-modes none`, the same sampled forcing returns `fourier_carrier_correction_candidate` with one candidate row and all three layers candidate. The layer mean residuals are `I: 0.005469226331224925`, `M: 0.003874878104606083`, and `O: 0.001470074064399575`; the correction residuals equal these mean residuals.
+
+**Chart-mode projection criterion.** For each layer $\ell$, let $\mathcal{C}_\ell$ be the omitted chart subspace spanned by the declared Fourier modes already represented in the reduced chart $z_\Lambda$, and let $\mathcal{C}_\ell^\perp$ be the retained correction complement used for $\mathbf{d}_\ell(t)$. If $P_{\mathcal{C}_\ell}$ denotes the $L^2([0,T_{\mathbf{k}}])$ projection onto $\mathcal{C}_\ell$, then the layer-projected sampled forcing must be split as
+$$
+Q_\ell\mathbf{g}_\ell
+=
+P_{\mathcal{C}_\ell}Q_\ell\mathbf{g}_\ell
++
+\left(1-P_{\mathcal{C}_\ell}\right)Q_\ell\mathbf{g}_\ell,
+$$
+where only the retained term $\left(1-P_{\mathcal{C}_\ell}\right)Q_\ell\mathbf{g}_\ell\in\mathcal{C}_\ell^\perp$ may feed $\mathbf{d}_\ell(t)$. If
+$$
+\|P_{\mathcal{C}_\ell}Q_\ell\mathbf{g}_\ell\|_{L^2}
+>
+\tau_{\mathrm{chart}}
+\left\|
+\left(1-P_{\mathcal{C}_\ell}\right)Q_\ell\mathbf{g}_\ell
+\right\|_{L^2},
+$$
+for the declared chart-dominance tolerance $\tau_{\mathrm{chart}}$, the forcing is a chart update or branch-split signal, not an admissible retained correction mode. If the retained forcing satisfies the mean-solvability condition and remains below the declared correction tolerance, it may feed a corrected one-period rerun.
+
+On the May 20, 2026 scanner artifacts, the default chart policy puts mode `1` in $\mathcal{C}_O$ and the `O` layer is chart dominated: the omitted-chart-mode energy fraction is `0.9997697101092003`, with correction residual `0.9998848484246575`. Under `--omit-modes none`, $\mathcal{C}_\ell=\{0\}$ for the scanner run, so all three retained forcings are treated as Fourier correction candidates with mean residuals `I: 0.005469226331224925`, `M: 0.003874878104606083`, and `O: 0.001470074064399575`.
+
+Mathematical implication: the non-circular correction is not simply blocked. It is chart-policy sensitive. If mode `1` is treated as part of $z_\Lambda$, the `O`-layer forcing is mostly chart motion and cannot be added as a retained correction $\mathbf{d}_O(t)$ without hiding a changed branch chart inside the correction term. If no mode is omitted, the same sampled forcing passes as a Fourier correction candidate. That status authorizes only a corrected one-period rerun with fresh causal-root solving and residual ledgers; it is not accepted history and does not establish quotient-row identity, monodromy, $\Delta_{\mathbf{k}}$, or eta-ladder persistence.
+
+Correction-packet emitter note, May 20, 2026:
+
+```text
+node scripts/mass-map/a0-tier1-carrier-correction-packet.mjs --scanner /tmp/a0-tier1-carrier-correction-scanner-final-omit-none.json --pretty --out /tmp/a0-tier1-carrier-correction-packet-final-omit-none.json
+```
+
+The packet emitter consumes `a0-tier1-carrier-correction-scanner/v1` and emits only `a0-tier1-carrier-correction-packet/v1` rerun-input candidates. On the default scanner artifact it returns `blocked_source_row_not_candidate` because the source row is `blocked_chart_mode_dominated`. On the `--omit-modes none` scanner artifact it returns `correction_packet_ready` for row `1`, with eight retained correction modes for each of the `I`, `M`, and `O` layers. The packet still sets `accepted_history_boundary: false`; it is a bridge into a corrected one-period attempt, not a branch certificate.
+
+Waveform replay note, May 20, 2026:
+
+```text
+node scripts/mass-map/a0-tier1-carrier-correction-waveform-replay.mjs --packet /tmp/a0-tier1-carrier-correction-packet-final-omit-none.json --pretty --out /tmp/a0-tier1-carrier-correction-waveform-replay-final-omit-none.json
+```
+
+The waveform replay consumes `a0-tier1-carrier-correction-packet/v1`, verifies the retained coefficient identity $\widehat{\mathbf{d}}_{\ell,m}=-\widehat{\mathbf{g}}_{\ell,m}/(2\pi m/T_{\mathbf{k}})^2$, reconstructs $\mathbf{d}_\ell(t)$, $\mathbf{d}_\ell'(t)$, and $\mathbf{d}_\ell''(t)$ on the replay grid, and applies the center-preserving body placement rule
+$$
+\delta \mathbf{s}_{\ell,+}=+\frac12\mathbf{d}_\ell,
+\qquad
+\delta \mathbf{s}_{\ell,-}=-\frac12\mathbf{d}_\ell,
+$$
+with the same signs for velocity and acceleration corrections. The default-policy packet remains blocked as `blocked_source_row_not_ready`. The `--omit-modes none` packet returns `waveform_replay_ready` for row `1`, with `64` samples, eight retained modes per layer, zero coefficient-identity relative error in all layers, and body update records for `I+`, `I-`, `M+`, `M-`, `O+`, and `O-`. This waveform replay is still only a corrected-rerun input check; it does not solve delayed roots on the corrected carrier and does not certify accepted history.
+
+Corrected one-period rerun note, May 20, 2026:
+
+```text
+node scripts/mass-map/a0-tier1-fold-layer-locked-one-period-attempt.mjs --intake /tmp/a0-tier1-one-period-continuation-prototype-codex-review.json --source /tmp/a0-tier1-continuation-source-prototype-codex-review.json --correction-packet /tmp/a0-tier1-carrier-correction-packet-final-omit-none.json --pretty --out /tmp/a0-tier1-fold-layer-locked-one-period-attempt-corrected-omit-none.json
+```
+
+The one-period runner now has a reusable retained Fourier correction evaluator and a `--correction-packet` rerun path. For the `--omit-modes none` packet, row `1` reaches `correction_context_ready`, carries eight retained modes for each of `I`, `M`, and `O`, applies the center-preserving body updates to the initial state, path-history lookup, direct acceleration, emitted samples, and residual-balance source lookup, and reports `corrected_integrator_present: true`. The corrected artifact still sets `accepted_history_boundary: false`.
+
+The corrected run is a controlled negative result, not an accepted branch. Its status is `failed_direct_one_period_residuals`. It improves several direct diagnostics relative to the uncorrected run:
+
+- maximum direct root residual drops from about `42.67` to about `23.49`;
+- maximum speed-ordering residual drops from about `29.93` to about `3.05`;
+- energy-like speed residual drops from about `26.68` to about `0.131`;
+- center drift passes, with maximum center drift about $8.96\times10^{-17}$.
+
+The remaining blockers are decisive:
+
+- $R_{\text{state}}\approx1.008$ still fails against tolerance `0.02`;
+- maximum direct root residual $\approx23.49$ still fails against tolerance $10^{-6}$;
+- speed ordering still fails against tolerance `0.02`;
+- residual balance worsens from about `0.755` to about `0.993`;
+- quotient monodromy, $\Delta_{\mathbf{k}}$, and the $\eta$ ladder remain not computed because the corrected one-period residuals did not pass.
+
+Fail-closed control: feeding the runner the default-policy blocked correction packet produces `blocked_packet_fields_missing` for row `1`, with neither the direct nor corrected integrator marked present. The corrected path therefore does not silently fall back to the uncorrected carrier.
+
+Mathematical implication: the no-omitted-mode scalar Fourier correction removes the bulk center drift and improves the scale of some one-period residuals, but it does not close the compact $A_0$ branch equation. Since the residual-balance ledger worsens after this correction, the next branch-native move is not another scalar relation-weight fit. The basis must split the active causal-root ledger into $B_{\rho,\ell,\sigma,\mu,\nu}(t)$, with equality constraints declared before fitting, or the compact fixture should be recorded as a stronger corrected-carrier no-go.
 
 ## Promotion Rule
 

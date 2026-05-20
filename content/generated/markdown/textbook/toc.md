@@ -133,6 +133,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
   - [Tri-Binary Dynamics](../../../scenes/dynamics/tri_binary_dynamics.json)
     - [Relation to Causal Closure](../../../markdown/aaa/dynamics/tri-binary-dynamics.md?section=Relation+to+Causal+Closure)
     - [Claim Scope](../../../markdown/aaa/dynamics/tri-binary-dynamics.md?section=Claim+Scope)
+    - [Causal-Closure Certificate Target](../../../markdown/aaa/dynamics/tri-binary-dynamics.md?section=Causal-Closure+Certificate+Target)
     - [Substrate and Effective Levels](../../../markdown/aaa/dynamics/tri-binary-dynamics.md?section=Substrate+and+Effective+Levels)
     - [Speed Hierarchy](../../../markdown/aaa/dynamics/tri-binary-dynamics.md?section=Speed+Hierarchy)
     - [Multi-Scale Layer Locking](../../../markdown/aaa/dynamics/tri-binary-dynamics.md?section=Multi-Scale+Layer+Locking)

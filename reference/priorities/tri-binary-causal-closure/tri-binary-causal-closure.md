@@ -4,23 +4,28 @@
 
 - Kind: `priority`
 - Rank: `5`
-- Value: `30.07`
+- Value: `28.86`
 - Cost: `5.4`
-- ROI: `5.57`
+- ROI: `5.34`
 - Status: `active-development`
 
 ## Task Queue
 
-1. `photon_qed_gate` — Build the three photon/QED stress-test packets for kinematics and optics, polarization and spin, and vertices and transitions. Status: `pending`. Depends on: none.
-2. `residual_routing_event_ledger` — Advance the promoted residual-to-channel contract into worked sector cases for radiation, transport, weak reactions, nuclear binding, measurement records, and strong-field release. Status: `worked-cases-pending`. Depends on: none.
-3. `radiation_gate_c_benchmarks` — Build the radiation Gate C benchmark ledger for atomic transitions, bremsstrahlung, synchrotron, Compton-like scattering, pair channels, and blackbody recovery. Status: `pending`. Depends on: `photon_qed_gate`, `residual_routing_event_ledger`.
-4. `lorentz_residual_packet` — Export moving-assembly deformation, clock retuning, and two-way signal timing into RMS/PPN/SME-style residual rows. Status: `pending`. Depends on: none.
+1. `photon_gate_a_kinematics` — Derive the massless coaxial contra-rotating pro/anti planar pair branch, axial-delay closure, finite-phase condition, nondispersion row, and no-rest-clock row. Status: `scaffolded-branch-unproved`. Depends on: `planar-bridge-closure`.
+2. `photon_gate_b_polarization` — Derive the transverse ledger, helicity, exactly two free photon modes, Malus' law, squared-amplitude rule, and no-signaling handoff. Status: `handoff-active`. Depends on: `angular-momentum-spin`.
+3. `photon_gate_c_vertices` — Map emission, absorption, pair production, Compton-like scattering, transition rates, and effective $\alpha$ into allowed ledger surgery between massive Noether cores and coaxial contra-rotating pro/anti planar pairs. Status: `vertex-schema-scaffolded; population-blocked`. Depends on: `photon_gate_a_kinematics`, `photon_gate_b_polarization`, `residual_routing_event_ledger`.
+4. `residual_routing_event_ledger` — Extend the promoted residual-to-channel contract beyond the radiation worked case into transport, weak reactions, nuclear binding, measurement records, and strong-field release. Status: `radiation-worked-case-scaffolded; other-sectors-pending`. Depends on: concrete sector residuals becoming available.
+5. `radiation_gate_c_benchmarks` — Populate the radiation Gate C benchmark row vector for atomic transitions, bremsstrahlung, synchrotron, Compton-like scattering, pair channels, and blackbody recovery. Status: `benchmark-vector-scaffolded; atomic-row-targeted; continuum-and-thermal-rows-unpopulated`. Depends on: `photon_gate_a_kinematics`, `photon_gate_b_polarization`, `photon_gate_c_vertices`; consumes: `residual_routing_event_ledger`.
+6. `lorentz_residual_packet` — Populate the existing moving-assembly deformation, clock-retuning, two-way signal, RMS, PPN, and SME-style residual rows from one closed branch record. Status: `schema-complete-population-blocked`. Depends on: `spiral_branch_chart_test`, `lorentz_gr_bridge`.
 
 ## Completed State
 
-- `tri_binary_dependency_map` completed the proof-dependency map and deployment handoff table.
+- `tri_binary_dependency_map` completed the proof-dependency map scaffold and deployment handoff table; the theorem burdens in that map remain open.
 - `continuity_pass` walked the synthesis against the dependency map, especially shielding, momentum skew, and transverse-budget root-finding jumps.
 - `deployment_handoff` routed unresolved synthesis claims through theorem-roadmap tags and priority-table handoff rows before deployment.
+- `residual_routing_event_ledger` promoted the shared event-ledger grammar into a first radiation worked-case scaffold; non-radiation sector cases remain open.
+- `lorentz_test_residual_handoff` completed the RMS/PPN/SME residual-export schema in `master-equation-closure`; numerical population remains blocked until the Lorentz/GR bridge supplies one shared branch artifact.
+- `shared_branch_certificate_contract` promoted the shared causal-closure certificate target into [Tri-Binary Dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md); population remains blocked until a retained branch supplies the clock, ruler, signal, metric, mass-response, sector, and event-ledger rows together.
 
 ## Scope
 
@@ -44,10 +49,12 @@ Completed map-cleanup items are recorded in `Completed State` above. The live pr
 
 | Task | Detailed file | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
-| `photon_qed_gate` | [rest-mass-proper-time-relativity-synthesis.md](rest-mass-proper-time-relativity-synthesis.md) | [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md), [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md), and downstream Standard Model closure material. | Photon gates A-C are separated into kinematics/optics, polarization/spin, and vertices/transitions with explicit null-test burdens before deployment. |
+| `photon_gate_a_kinematics` | [rest-mass-proper-time-relativity-synthesis.md](rest-mass-proper-time-relativity-synthesis.md) | [planar-bridge-closure](../../../content/markdown/aaa/proof-programs/planar-bridge-closure.md), [radiation](../../../content/markdown/aaa/reactions/radiation.md), and downstream photon transport material. | The massless branch must derive $c_\gamma$, $d$, $\delta_\gamma$, the finite-phase condition, no rest proper-time branch, and nondispersion before photons are used as empirical measuring devices. |
+| `photon_gate_b_polarization` | [rest-mass-proper-time-relativity-synthesis.md](rest-mass-proper-time-relativity-synthesis.md) | [angular-momentum-spin](../angular-momentum-spin/angular-momentum-spin.md), [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md), and [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md). | The transverse ledger must recover helicity, Malus' law, squared-amplitude capture, and no-signaling without repairing a failed Gate A branch. |
+| `photon_gate_c_vertices` | [rest-mass-proper-time-relativity-synthesis.md](rest-mass-proper-time-relativity-synthesis.md) and [radiation-gate-c-benchmarks.md](radiation-gate-c-benchmarks.md) | [standard-model-closure](../standard-model-closure/standard-model-closure.md), [reaction-ledger](../../../content/markdown/aaa/validation/reaction-ledger.md), and downstream QED-like transition material. | Emission, absorption, pair production, Compton-like scattering, transition rates, and $\alpha$ must be event-ledger transitions between massive assemblies and coaxial contra-rotating pro/anti planar pairs, not independent fit rules. |
 | `residual_routing_event_ledger` | [residual-routing-event-ledger.md](residual-routing-event-ledger.md) | [reaction-ledger](../../../content/markdown/aaa/validation/reaction-ledger.md), [reaction-cosmology-provenance-ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md), [energy](../../../content/markdown/aaa/dynamics/energy.md), and [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) | A named residual routes through admissible channels into a complete $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ event ledger before any transition, radiation event, measurement record, reaction, transport excitation, or strong-field release is promoted. |
-| `radiation_gate_c_benchmarks` | [radiation-gate-c-benchmarks.md](radiation-gate-c-benchmarks.md) | [radiation](../../../content/markdown/aaa/reactions/radiation.md), [atomic-transition-radiation](../../../content/markdown/aaa/reactions/atomic-transition-radiation.md), [bremsstrahlung](../../../content/markdown/aaa/reactions/bremsstrahlung.md), [synchrotron](../../../content/markdown/aaa/reactions/synchrotron.md), and [reaction-ledger](../../../content/markdown/aaa/validation/reaction-ledger.md) | One closure-residual event ledger recovers the benchmark electromagnetic/QED-like channels without per-observable retuning and without bypassing photon Gate A/B. |
-| `lorentz_residual_packet` | [lorentz-invariance-test-suite.md](../cross-theory-mapping/lorentz-invariance-test-suite.md) | [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [ppn-parameters](../../../content/markdown/aaa/spacetime/ppn-parameters.md) | A single tri-binary branch record produces $\xi$, $\omega_{\text{clk}}/\omega_0$, $\Delta_{\mathrm{tw}}$, $(R_{\mathrm{MM}},R_{\mathrm{KT}},R_{\mathrm{IS}})$, and $(\alpha_1,\alpha_2,\alpha_3)$ without separately tuned clock, ruler, photon, or preferred-frame coefficients. |
+| `radiation_gate_c_benchmarks` | [radiation-gate-c-benchmarks.md](radiation-gate-c-benchmarks.md) | [radiation](../../../content/markdown/aaa/reactions/radiation.md), [atomic-transition-radiation](../../../content/markdown/aaa/reactions/atomic-transition-radiation.md), [bremsstrahlung](../../../content/markdown/aaa/reactions/bremsstrahlung.md), [synchrotron](../../../content/markdown/aaa/reactions/synchrotron.md), and [reaction-ledger](../../../content/markdown/aaa/validation/reaction-ledger.md) | One normalized Gate C residual row vector must recover each benchmark electromagnetic/QED-like channel without per-observable retuning and without bypassing photon Gate A/B. |
+| `lorentz_residual_packet` | [lorentz-invariance-test-suite.md](../cross-theory-mapping/lorentz-invariance-test-suite.md) and [lorentz-test-residual-handoff](../master-equation-closure/lorentz-test-residual-handoff.md) | [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [ppn-parameters](../../../content/markdown/aaa/spacetime/ppn-parameters.md) | A single tri-binary branch record must populate $\xi$, $\omega_{\text{clk}}/\omega_0$, $\Delta_{\mathrm{tw}}$, $(R_{\mathrm{MM}},R_{\mathrm{KT}},R_{\mathrm{IS}})$, $(\alpha_1,\alpha_2,\alpha_3)$, and SME-style projection rows without separately tuned clock, ruler, photon, metric, or preferred-frame coefficients. |
 
 ## Lorentz-Test Residual Interface
 
@@ -191,6 +198,108 @@ $$
 $$
 The pass condition is not exact FLRW ontology; it is that $(R_{H,\theta},R_{\rho,\theta},R_{a,\theta})$ are either below tolerance in the benchmark regime or are routed to named Noether-Sea evolution, clock-rate, redshift, and CMB rows. This records the Guth/Hughes cosmology signal while preserving the canon rule that $a(t)$ and $H(t)$ are effective observer variables.
 
+## Shared Branch Certificate Contract
+
+The Lorentz packet, GR-recovery packet, photon-gate rows, and residual-routing event ledger should not become independent fits. The shared branch certificate is the packaging contract that forces those rows to come from one retained causal-root branch. It is not a new validation gate; it is the branch-provenance object that existing gates consume.
+
+For a retained branch class $q$ over a test window $W$, define
+$$
+\mathcal{C}_{\mathrm{tri}}^{(q)}(W)
+=
+\left(
+q,
+W,
+\mathcal{D}_{\beta},
+c_f,
+c_{\text{eff}},
+c_\gamma,
+c_0,
+\mathcal{G}_{A,q},
+\mathcal{A}_q,
+\nu_J^{(q)},
+g_{\mathrm{inactive}}^{(q)},
+h_{\mathrm{mem}}^{(q)},
+\Delta_{\mathbf{k}}^{(q)},
+\mathcal{D}_{\beta,q}^{\mathrm{mov}},
+T_q(\mathbf{w}),
+\mathcal{M}_{\mathrm{sea},q}^{ab},
+\mathcal{R}_{\mathrm{Lor},q},
+\theta_{\mathrm{GR}}^{(q)},
+\mathfrak{S}^{(q)}(W),
+\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}
+\right).
+$$
+Here $\mathcal{D}_{\beta}$ is the drift band; $c_f$, $c_{\text{eff}}$, $c_\gamma$, and $c_0$ are the primitive wake, dressed signal, photon-channel, and asymptotic observer speeds with their identifications explicitly declared; $\mathcal{G}_{A,q}$ is the finite closure graph for the assembly; $\mathcal{A}_q$ is the active causal-root ledger; $\nu_J^{(q)}$ is the branch-Jacobian floor; $g_{\mathrm{inactive}}^{(q)}$ is the minimum inactive-root gap; $h_{\mathrm{mem}}^{(q)}$ is the finite memory depth; $\Delta_{\mathbf{k}}^{(q)}$ is the Floquet or branch-stability gap; $\mathcal{D}_{\beta,q}^{\mathrm{mov}}$ and $T_q(\mathbf{w})$ are the moving deformation and branch-period rows; $\mathcal{M}_{\mathrm{sea},q}^{ab}$ is the medium-dressed mass-response tensor; $\mathcal{R}_{\mathrm{Lor},q}$ is the Lorentz residual record; $\theta_{\mathrm{GR}}^{(q)}$ is the effective-metric recovery export; $\mathfrak{S}^{(q)}(W)$ lists any sector rows active in the window, including photon Gate A/B/C rows when radiation is part of the event; and $\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}$ is the row-indexed event ledger.
+
+The mass-response row is inherited from the rest-mass synthesis:
+$$
+\mathcal{M}_{\mathrm{sea},q}^{ab}
+=
+\frac{1}{E_{\mathrm{internal}}}
+\left.
+\frac{\partial p_{\mathrm{int}}^{a}}{\partial V_{\mathrm{cm}}^{b}}
+\right|_{\mathbf{V}_{\mathrm{cm}}=\mathbf{0},q},
+\qquad
+\mathcal{M}_{\mathrm{sea},q}^{ab}
+\longrightarrow
+\frac{h^{ab}}{c_{\text{eff}}^2}
+$$
+in a homogeneous isotropic Noether-Sea cell. If this limit fails or leaves unsuppressed composition-dependent or direction-dependent residue, the scalar rest-mass readout $m_0(A)\to\alpha\zeta(A)E_{\mathrm{internal}}(A)/c_{\text{eff}}^2$ is only a fitted average rather than a branch consequence.
+
+The branch-identity residual is
+$$
+d_{\mathcal{A}}^{(q)}
+=
+d_{\mathcal{A}}\!\left(
+\mathcal{A}_{\mathrm{clk}}^{(q)},
+\mathcal{A}_{\mathrm{rul}}^{(q)}
+\right)
++
+d_{\mathcal{A}}\!\left(
+\mathcal{A}_{\mathrm{rul}}^{(q)},
+\mathcal{A}_{\mathrm{sig}}^{(q)}
+\right)
++
+d_{\mathcal{A}}\!\left(
+\mathcal{A}_{\mathrm{sig}}^{(q)},
+\mathcal{A}_{\mathrm{event}}^{(q)}
+\right),
+$$
+where $d_{\mathcal{A}}=0$ only when the branch label, active root counts, separator events, memory-depth record, and provenance rows match. A successful Lorentz-looking square root does not pass the certificate if $d_{\mathcal{A}}^{(q)}$ is nonzero.
+
+On windows with positive gaps
+$$
+\nu_J^{(q)}\ge \nu_{\min}>0,\qquad
+g_{\mathrm{inactive}}^{(q)}\ge g_{\min}>0,\qquad
+h_{\mathrm{mem}}^{(q)}\le h_{\max}<\infty,\qquad
+\Delta_{\mathbf{k}}^{(q)}\ge \Delta_{\min}>0,
+$$
+the normalized closure residual is
+$$
+\mathcal{U}_{\mathrm{tri}}^{(q)}(W)
+=
+\max\left(
+\frac{d_{\mathcal{A}}^{(q)}}{\epsilon_{\mathcal{A}}},
+\frac{\left\|\mathcal{R}_{\mathrm{Lor},q}\right\|_W}{\epsilon_{\mathrm{LV}}},
+\frac{\left\|\mathcal{M}_{\mathrm{sea},q}^{ab}-h^{ab}/c_{\text{eff}}^2\right\|_W}{\epsilon_{\mathrm{mass}}},
+\frac{R_{\mathrm{div}T}^{(q)}+R_{\mathrm{Pois}}^{(q)}+R_{\mathrm{EFE}}^{(q)}+R_{\mathrm{var}}^{(q)}}{\epsilon_{\mathrm{GR}}},
+\sup_{S\in\mathfrak{S}^{(q)}(W)}
+\frac{\left\|\mathcal{R}_{S}^{(q)}\right\|_W}{\epsilon_S},
+\frac{\left\|\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}\right\|_W}{\epsilon_{\mathrm{led}}}
+\right).
+$$
+The certificate is promotable only when the gap inequalities hold and $\mathcal{U}_{\mathrm{tri}}^{(q)}(W)\le1$ without retuning clock, ruler, photon, metric, or event-ledger coefficients between rows.
+
+Failure modes:
+
+- `certificate.finite_branch_failure`: the clock, ruler, signal, metric, photon, or event rows no longer share one branch label and causal-root ledger, or the Jacobian floor, inactive-root gap, finite-memory bound, or declared separator chart fails.
+- `certificate.stability_gap_failure`: integer closure holds but $\Delta_{\mathbf{k}}^{(q)}\le0$ in the promoted benchmark regime.
+- `certificate.mass_dressing_failure`: $\mathcal{M}_{\mathrm{sea},q}^{ab}$ fails to reduce to $h^{ab}/c_{\text{eff}}^2$ in the homogeneous isotropic limit or leaves unsuppressed composition-dependent or direction-dependent residue.
+- `certificate.clock_not_branch_period`: the clock ratio is asserted without phase return, causal-root ledger return, and positive stability gap on the same branch.
+- `residual.speed_conflation`: $c_f$, $c_{\text{eff}}$, $c_\gamma$, and locally measured light speed are identified without the required Noether-Sea dressing map.
+- `residual.observable_refit`: the normalized closure residual is made acceptable only by changing coefficients between clock, ruler, photon, metric, mass-response, or event rows.
+- `event.ledger_residual`: a residual is hidden as recoil, medium update, radiation, remnant state, or product inventory instead of closing $\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}$.
+
 ## Related Priorities
 
 - [proof-programs](../proof-programs/proof-programs.md)
@@ -201,6 +310,7 @@ The pass condition is not exact FLRW ontology; it is that $(R_{H,\theta},R_{\rho
 - [simulations](../simulations/simulations.md)
 - [strong-field-closure](../strong-field-closure/strong-field-closure.md)
 - [standard-model-closure](../standard-model-closure/standard-model-closure.md)
+- [cosmology-closure](../cosmology-closure/cosmology-closure.md)
 - [validation-gates](../validation-gates/validation-gates.md)
 
 ## Related AAA Notes

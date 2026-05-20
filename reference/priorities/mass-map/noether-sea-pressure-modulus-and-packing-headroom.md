@@ -342,6 +342,8 @@ $$
 
 The positive scalar $\kappa_{n,X}$ sets the magnitude while the branch Hessian and readout fix the direction. A replay that improves by choosing $\kappa_n^P$, $\kappa_\lambda^P$, and $\kappa_R^P$ outside this branch-derived form has introduced independent fit knobs. Such a fit is acceptable only as a failure diagnostic: the branch must split, change readout, or supply a different finite Hessian before the pressure row can be interpreted as a Noether-Sea response.
 
+The finite-branch source-status boundary in [Noether-Core Envelope Hessian Toy Branch](noether-core-envelope-hessian-toy-branch.md) also applies here: branch-derived pressure slopes remain blocked when the only upstream artifact is an $A_0$ scanner, Fourier carrier-correction packet, or waveform replay rather than accepted finite-branch Hessian output.
+
 ## Contact-Network Contribution
 
 Dense cells also carry contact or near-contact stiffness through the support-function network. Let each retained contact direction $\hat{\mathbf{k}}_{X,a}$ have weight $\omega_{X,a}$, spacing $D_{X,a}$, and gap stiffness $k_{X,a}^{\mathrm{gap}}$ measured as energy per squared length. A minimal positive contribution is

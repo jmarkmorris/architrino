@@ -24,6 +24,74 @@ The claims in this chapter define a canonical dynamics baseline. They do not yet
 
 The chapter should therefore be read as the stable dynamics layer beneath the causal-closure program. It preserves the mechanism and the diagnostic quantities while leaving the full theorem burden explicit.
 
+## Causal-Closure Certificate Target
+
+The rest-mass, Lorentz, photon, metric, and event-ledger rows should be populated by one retained branch record, not by separately tuned fits. For a retained tri-binary branch class $q$ over a test window $W$, the shared certificate target is
+
+$$
+\mathcal{C}_{\mathrm{tri}}^{(q)}(W)
+=
+\left(
+\mathcal{A}_q,
+\nu_J^{(q)},
+g_{\mathrm{inactive}}^{(q)},
+h_{\mathrm{mem}}^{(q)},
+\Delta_{\mathbf{k}}^{(q)},
+\mathcal{D}_{\beta,q}^{\mathrm{mov}},
+T_q(\mathbf{w}),
+\mathcal{M}_{\mathrm{sea},q}^{ab},
+\mathcal{R}_{\mathrm{Lor},q},
+\theta_{\mathrm{GR}}^{(q)},
+\mathfrak{S}^{(q)}(W),
+\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}
+\right).
+$$
+
+Here $\mathcal{A}_q$ is the active causal-root ledger, $\nu_J^{(q)}$ the active Jacobian floor, $g_{\mathrm{inactive}}^{(q)}$ the inactive-root gap, $h_{\mathrm{mem}}^{(q)}$ the finite memory depth, and $\Delta_{\mathbf{k}}^{(q)}$ the Floquet or branch-stability gap. The remaining rows record the moving deformation map, branch period, medium-dressed mass-response tensor, Lorentz residual, effective-metric recovery export, active sector residuals, and row-indexed event ledger.
+
+The branch identity check is
+
+$$
+d_{\mathcal{A}}^{(q)}
+=
+d_{\mathcal{A}}
+\left(
+\mathcal{A}_{\mathrm{clk}}^{(q)},
+\mathcal{A}_{\mathrm{rul}}^{(q)}
+\right)
++
+d_{\mathcal{A}}
+\left(
+\mathcal{A}_{\mathrm{rul}}^{(q)},
+\mathcal{A}_{\mathrm{sig}}^{(q)}
+\right)
++
+d_{\mathcal{A}}
+\left(
+\mathcal{A}_{\mathrm{sig}}^{(q)},
+\mathcal{A}_{\mathrm{event}}^{(q)}
+\right).
+$$
+
+The certificate can support promotion only if the branch floors and stability gap stay positive and the normalized closure residual
+
+$$
+\mathcal{U}_{\mathrm{tri}}^{(q)}(W)
+=
+\max\left(
+\frac{d_{\mathcal{A}}^{(q)}}{\epsilon_{\mathcal{A}}},
+\frac{\left\|\mathcal{R}_{\mathrm{Lor},q}\right\|_W}{\epsilon_{\mathrm{LV}}},
+\frac{\left\|\mathcal{M}_{\mathrm{sea},q}^{ab}-h^{ab}/c_{\text{eff}}^2\right\|_W}{\epsilon_{\mathrm{mass}}},
+\frac{R_{\mathrm{div}T}^{(q)}+R_{\mathrm{Pois}}^{(q)}+R_{\mathrm{EFE}}^{(q)}+R_{\mathrm{var}}^{(q)}}{\epsilon_{\mathrm{GR}}},
+\sup_{S\in\mathfrak{S}^{(q)}(W)}
+\frac{\left\|\mathcal{R}_S^{(q)}\right\|_W}{\epsilon_S},
+\frac{\left\|\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}\right\|_W}{\epsilon_{\mathrm{led}}}
+\right)
+\le1.
+$$
+
+This is a certificate target, not an additional force law. It prevents a Lorentz-looking deformation ratio, a mass-response average, a photon row, or a GR-like metric residual from being promoted unless the same causal-root branch supplies the clock, ruler, signal, metric, mass, sector, and event-ledger data.
+
 ## Substrate and Effective Levels
 
 Tri-binary dynamics uses four levels of description:

@@ -218,6 +218,16 @@ The five factors have fixed meanings:
 
 This predicate is the shared event-ledger contract. Radiation, transport excitation, reaction, measurement record, branch transition, and strong-field release are different choices of $\mathcal{R}$, $\{B_i\}$, $Y_{\mathsf e}$, and $\mathfrak{R}^{\mathrm{local}}_S$, not different promotion grammars.
 
+## Branch-Certificate Coupling Rule
+
+When a sector event belongs to a retained tri-binary branch class $q$, the event record $\theta_{\mathsf e}$ must extend into the shared branch certificate $\mathcal{C}_{\mathrm{tri}}^{(q)}(W)$ from [Tri-Binary Causal Closure](tri-binary-causal-closure.md). This does not add a sixth promotion factor. It binds $\operatorname{Replay}_S$, $\operatorname{Compat}_S$, and $\operatorname{Ledger}_S$ to the same finite closure graph, active causal-root ledger, branch-Jacobian floor, inactive-root gap, finite memory depth, stability gap, speed-convention row, and Noether-Sea response record used by the Lorentz and effective-metric rows.
+
+Equivalently, for every promoted event there must be an embedding
+$$
+\iota_{\mathsf e}:\theta_{\mathsf e}\hookrightarrow\mathcal{C}_{\mathrm{tri}}^{(q)}(W)
+$$
+that preserves $(X,\mathcal{R},I_{\mathsf e},Y_{\mathsf e})$, every ledger row $\Delta_r(\mathsf e)$, and the branch provenance carried by $\mathcal{H}$. A channel route that closes $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ only after changing the branch label, speed convention, medium response, remnant state, or unrecorded separator history is a failed route rather than a promoted event.
+
 ## Residual-Routing Promotion Lemma
 
 Fix a sector $S$ with acceptance set $\mathcal{C}_S$, and let $\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ denote the cross-sector acceptance intersection from [Validation Gates](../validation-gates/validation-gates.md). A candidate event $\mathsf e=(X,I_{\mathsf e},Y_{\mathsf e})$ is promotable as a sector event if the following five conditions hold:

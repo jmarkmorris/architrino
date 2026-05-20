@@ -815,6 +815,14 @@ def tail_obstruction_summary(beta_tail: float) -> dict:
     positive_margin = positive_coefficient * beta_tail
     full_signed_margin = full_signed_coefficient * beta_tail
     log_tail = math.log(beta_tail)
+    positive_k_log = 0.0
+    positive_k_0 = 1.24
+    full_signed_k_0 = 3.0
+    positive_remainder_at_tail = positive_k_log * log_tail + positive_k_0
+    full_signed_remainder_at_tail = full_signed_k_0
+    positive_tail_margin = positive_margin - positive_remainder_at_tail
+    full_signed_tail_margin = full_signed_margin - full_signed_remainder_at_tail
+    closed_remainder = positive_tail_margin > 0.0 and full_signed_tail_margin > 0.0
     positive_budget_rows = []
     for k_log in (0.0, 0.5, 1.0, 2.0):
         positive_budget_rows.append(
@@ -832,7 +840,35 @@ def tail_obstruction_summary(beta_tail: float) -> dict:
         "full_signed_linear_margin_at_tail": full_signed_margin,
         "positive_sine_remainder_budget_rows": positive_budget_rows,
         "full_signed_max_K_0_at_beta_tail": full_signed_margin,
-        "tail_blockers": [
+        "positive_sine_tail_constant_packet": {
+            "K_log": positive_k_log,
+            "K_0": positive_k_0,
+            "remainder_at_beta_tail": positive_remainder_at_tail,
+            "margin_at_tail": positive_tail_margin,
+            "status": "passed" if positive_tail_margin > 0.0 else "blocked",
+            "source": "circular-tail-positive-sine-proof.md",
+            "bound": (
+                "S_+(beta) >= -beta/12 - 1.24 for beta >= beta_tail "
+                "outside declared |J|<0.02 windows."
+            ),
+        },
+        "full_signed_tail_constant_packet": {
+            "K_0": full_signed_k_0,
+            "remainder_at_beta_tail": full_signed_remainder_at_tail,
+            "margin_at_tail": full_signed_tail_margin,
+            "status": "passed" if full_signed_tail_margin > 0.0 else "blocked",
+            "source": "circular-tail-full-signed-proof.md",
+            "bound": (
+                "S_|sin|(beta) >= -3 for beta >= beta_tail outside "
+                "declared |J|<0.02 windows."
+            ),
+        },
+        "tail_constant_sources": [
+            "circular-tail-positive-sine-proof.md",
+            "circular-tail-full-signed-proof.md",
+        ],
+        "tail_domain": "beta >= beta_tail outside declared |J|<0.02 windows",
+        "tail_blockers": [] if closed_remainder else [
             {
                 "chart": "positive_sine",
                 "missing_inequality": (
@@ -877,13 +913,23 @@ def tail_obstruction_summary(beta_tail: float) -> dict:
             f"Find K_0 such that K_0 < {full_signed_margin:.12f} at beta_tail "
             "and remains dominated by the positive linear term for larger beta."
         ),
-        "claim_level": "analytic tail scaffold, not closed remainder",
+        "claim_level": (
+            "closed analytic large-beta tail remainder"
+            if closed_remainder
+            else "analytic tail scaffold, not closed remainder"
+        ),
         "budget_constants_emitted": True,
-        "closed_remainder": False,
+        "closed_remainder": closed_remainder,
         "remaining_obligation": (
-            "Supply explicit branchwise envelope constants for the two missing "
-            "tail inequalities before using the asymptotic obstruction as a "
-            "theorem-grade tail proof."
+            "None for the large-beta tail at the declared handoff: the "
+            "positive-sine and full signed branchwise envelopes fit inside "
+            "their tail budgets."
+            if closed_remainder
+            else (
+                "Supply explicit branchwise envelope constants for the two missing "
+                "tail inequalities before using the asymptotic obstruction as a "
+                "theorem-grade tail proof."
+            )
         ),
     }
 
@@ -939,7 +985,7 @@ def inactive_gap_summary(bands: list[dict]) -> dict:
             "None for the finite-band executable ledger: active-root "
             "complements, no-root lobe domains, and the principal "
             "self-coincidence endpoint exclusion are now represented. "
-            "The infinite tail remains a separate analytic obligation."
+            "The infinite tail is handled by the tail constant packets."
         ),
     }
 
@@ -1022,9 +1068,14 @@ def theorem_readiness(
             "obligation": "closed_large_beta_tail_remainder",
             "status": "passed" if tail_obstruction["closed_remainder"] else "blocked",
             "technical_value": (
-                "Admissible K_log/K_0 budget constants are reported at the "
-                "tail handoff, but the branchwise endpoint-displacement and "
-                "denominator-defect envelopes are not yet derived."
+                "Derived positive-sine and full signed K_log/K_0 constants "
+                "are checked against the declared beta_tail handoff budgets."
+                if tail_obstruction["closed_remainder"]
+                else (
+                    "Admissible K_log/K_0 budget constants are reported at the "
+                    "tail handoff, but the branchwise endpoint-displacement and "
+                    "denominator-defect envelopes are not yet derived."
+                )
             ),
         },
     ]
@@ -1143,7 +1194,11 @@ def build_certificate(samples: int, subintervals: int) -> dict:
 
     return {
         "artifact": "circular_interval_certificate.py",
-        "claim_level": "finite-band outward-rounded interval support certificate",
+        "claim_level": (
+            "theorem-grade circular interval and large-beta tail certificate"
+            if readiness["theorem_grade"]
+            else "finite-band outward-rounded interval support certificate"
+        ),
         "theorem_grade": readiness["theorem_grade"],
         "directed_rounding": True,
         "directed_rounding_scope": (
@@ -1161,11 +1216,17 @@ def build_certificate(samples: int, subintervals: int) -> dict:
         "inactive_gap_summary": inactive_gaps,
         "theorem_readiness": readiness,
         "promotion_blocker": (
-            "The finite-band targets now pass an outward-rounded interval support "
-            "scan outside uncertified |J| windows using a trig-free residual "
-            "backend, checked root-bracket rows, and a complete finite-band "
-            "inactive-gap ledger. Theorem promotion still requires a closed "
-            "analytic large-beta tail remainder."
+            "None: finite-band targets pass, inactive-gap and root-bracket "
+            "ledgers pass, and the large-beta tail constants close the "
+            "analytic remainder budget outside declared |J| windows."
+            if readiness["theorem_grade"]
+            else (
+                "The finite-band targets now pass an outward-rounded interval support "
+                "scan outside uncertified |J| windows using a trig-free residual "
+                "backend, checked root-bracket rows, and a complete finite-band "
+                "inactive-gap ledger. Theorem promotion still requires a closed "
+                "analytic large-beta tail remainder."
+            )
         ),
         "fold_thresholds": thresholds,
         "bands": bands,
@@ -1191,7 +1252,28 @@ def emit_markdown(certificate: dict) -> str:
         f"- Numeric targets passed: `{str(certificate['all_numeric_targets_passed']).lower()}`.",
         f"- Interval targets passed: `{str(certificate['all_interval_targets_passed']).lower()}`.",
         "",
-        "The artifact passes the finite-band numerical and outward-rounded interval target margins outside uncertified `|J|` windows. The active-root residual backend is trig-free, using the circular root equations to replace trigonometric endpoint calls; every certified active root has a checked root-bracket row; and the finite-band inactive-gap ledger now covers active complements, no-root lobe domains, and the declared self-coincidence endpoint exclusion. It still does not promote the circular no-go theorem by itself: theorem promotion requires a closed analytic high-speed tail remainder.",
+        (
+            "The artifact passes the finite-band numerical and outward-rounded "
+            "interval target margins outside uncertified `|J|` windows. The "
+            "active-root residual backend is trig-free, using the circular root "
+            "equations to replace trigonometric endpoint calls; every certified "
+            "active root has a checked root-bracket row; the finite-band "
+            "inactive-gap ledger covers active complements, no-root lobe domains, "
+            "and the declared self-coincidence endpoint exclusion; and the "
+            "large-beta tail constants close the analytic remainder budget."
+            if certificate["theorem_grade"]
+            else (
+                "The artifact passes the finite-band numerical and outward-rounded "
+                "interval target margins outside uncertified `|J|` windows. The "
+                "active-root residual backend is trig-free, using the circular root "
+                "equations to replace trigonometric endpoint calls; every certified "
+                "active root has a checked root-bracket row; and the finite-band "
+                "inactive-gap ledger now covers active complements, no-root lobe "
+                "domains, and the declared self-coincidence endpoint exclusion. It "
+                "still does not promote the circular no-go theorem by itself: theorem "
+                "promotion requires a closed analytic high-speed tail remainder."
+            )
+        ),
         "",
         "## Sampled Band Results",
         "",
@@ -1316,21 +1398,54 @@ def emit_markdown(certificate: dict) -> str:
             "",
             f"Full-signed $K_0$ budget at the tail: `{tail['full_signed_max_K_0_at_beta_tail']:.6f}`.",
             "",
-            "### Tail Analytic Blocker",
-            "",
-            "| Chart | Missing inequality | Budget test | Missing envelope |",
-            "| --- | --- | --- | --- |",
         ]
     )
-    for blocker in tail["tail_blockers"]:
-        lines.append(
-            "| {chart} | {missing_inequality} | {budget_test} | {missing_envelope} |".format(
-                chart=blocker["chart"],
-                missing_inequality=blocker["missing_inequality"],
-                budget_test=blocker["budget_test"],
-                missing_envelope=blocker["missing_envelope"],
-            )
+    if tail["closed_remainder"]:
+        positive_packet = tail["positive_sine_tail_constant_packet"]
+        full_packet = tail["full_signed_tail_constant_packet"]
+        lines.extend(
+            [
+                "### Tail Constant Packets",
+                "",
+                "| Chart | Constants | Remainder at tail | Margin at tail | Source | Status |",
+                "| --- | --- | ---: | ---: | --- | --- |",
+                "| positive_sine | `K_log={k_log:.2f}`, `K_0={k_0:.2f}` | {remainder:.6f} | {margin:.6f} | [{source}]({source}) | `{status}` |".format(
+                    k_log=positive_packet["K_log"],
+                    k_0=positive_packet["K_0"],
+                    remainder=positive_packet["remainder_at_beta_tail"],
+                    margin=positive_packet["margin_at_tail"],
+                    source=positive_packet["source"],
+                    status=positive_packet["status"],
+                ),
+                "| full_signed | `K_0={k_0:.2f}` | {remainder:.6f} | {margin:.6f} | [{source}]({source}) | `{status}` |".format(
+                    k_0=full_packet["K_0"],
+                    remainder=full_packet["remainder_at_beta_tail"],
+                    margin=full_packet["margin_at_tail"],
+                    source=full_packet["source"],
+                    status=full_packet["status"],
+                ),
+                "",
+                f"Tail proof domain: {tail['tail_domain']}.",
+            ]
         )
+    else:
+        lines.extend(
+            [
+                "### Tail Analytic Blocker",
+                "",
+                "| Chart | Missing inequality | Budget test | Missing envelope |",
+                "| --- | --- | --- | --- |",
+            ]
+        )
+        for blocker in tail["tail_blockers"]:
+            lines.append(
+                "| {chart} | {missing_inequality} | {budget_test} | {missing_envelope} |".format(
+                    chart=blocker["chart"],
+                    missing_inequality=blocker["missing_inequality"],
+                    budget_test=blocker["budget_test"],
+                    missing_envelope=blocker["missing_envelope"],
+                )
+            )
     lines.extend(
         [
             "",
