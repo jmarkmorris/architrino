@@ -43,7 +43,8 @@
 - `fixed_cosine_refinement_rescue_test` produced `certificate/fixed_cosine_refinement_rescue_test.md`, rejecting mesh-only rescue of the fixed cosine candidate because residual equality collars are structural under the current contract.
 - `next_candidate_solver_target` produced `certificate/next_candidate_solver_target.md`, defining the next executable target as a fresh fold-adapted collocation candidate whose null-coordinate pre-ledger must pass before any branch chart is built.
 - `fresh_fold_collocation_solver_surface` produced `certificate/fresh_fold_collocation_solver_surface.md`, recording that no runnable breather-specific fresh-candidate solver or pre-ledger generator exists yet and specifying the minimum lawful successor artifact set.
-- `aaa_corpus_recommendation_handoff` produced `certificate/aaa_corpus_recommendation_handoff.md`, recording scoped recommendations for later AAA edits: promote the null-coordinate pre-ledger as a candidate-falsification gate, keep rejected-packet operational detail priority-only, and defer any enlarged regular-boundary theorem pending Op discussion.
+- `aaa_corpus_recommendation_handoff` produced `certificate/aaa_corpus_recommendation_handoff.md`, recording the scoped AAA edits that promoted the null-coordinate pre-ledger as a candidate-falsification gate, kept rejected-packet operational detail priority-only, and deferred any enlarged regular-boundary theorem pending Op discussion.
+- `regular_boundary_user_facing_recommendation` produced `certificate/regular_boundary_user_facing_recommendation.md`, recording that current AAA prose should not name regular-boundary coverage as accepted doctrine; the existing generic same-packet complement predicate is the safe public surface until a finite inclusion/domination theorem exists.
 
 ## Scope
 
@@ -115,7 +116,8 @@ rather than to a mismatched tame-subclass / macro-envelope pair.
 - Use `certificate/fixed_cosine_refinement_rescue_test.md` as the no-go for mesh-only rescue of the same cosine candidate.
 - Use `certificate/next_candidate_solver_target.md` as the current solver target for the next candidate packet.
 - Use `certificate/fresh_fold_collocation_solver_surface.md` as the implementation contract for the missing fresh-candidate solver or manual artifact instantiation.
-- Use `certificate/aaa_corpus_recommendation_handoff.md` as the corpus recommendation packet when applying a later scoped AAA edit batch.
+- Use `certificate/aaa_corpus_recommendation_handoff.md` as the audit trail for the scoped AAA edit batch that has now been applied.
+- Use `certificate/regular_boundary_user_facing_recommendation.md` as the current documentation decision for the regular-boundary question: no named AAA theorem now, with only a possible future same-packet wording micro-edit in `collinear-breather.md`.
 - Use `certificate/fold_interval_constants_attempt.json`, `certificate/fold_mollifier_kernel_candidate.md`, `certificate/fold_row_tube_coverage_attempt.md`, and `certificate/fold_row_consumption_attempt.md` as the historical rejected attempt package: they preserve the earlier rejection route and exact candidate mollifier norm while keeping `branch_chart_authorized=false`.
 - The accepted proof artifact is a pass/fail finite audit on one candidate
 $$
@@ -199,10 +201,18 @@ a solved candidate. No breather-specific generator exists yet for the fresh
 fold-adapted collocation packet. The minimum lawful next attempt is therefore a
 new same-packet artifact set, generated or manually instantiated under one fresh
 identity, whose first acceptance row is again the null-coordinate pre-ledger.
-This is also the point at which the AAA corpus can be updated safely at a high
-level: the pre-ledger should be described as a candidate-falsification gate, but
-the rejected cosine packet's row tables, hashes, and parent-strip history remain
-priority-only operational data.
+The AAA corpus has now been updated safely at a high level: the pre-ledger is
+described as a candidate-falsification gate, while the rejected cosine packet's
+row tables, hashes, and parent-strip history remain priority-only operational
+data.
+
+The regular-boundary documentation decision is now explicit. User-facing AAA
+prose should not name regular-boundary coverage as an accepted theorem until a
+finite same-packet family, exact inclusion proof, domination inequality,
+ownership rule, and non-core complement closure are supplied. The current
+generic same-packet complement-predicate wording is therefore the right public
+surface; a later low-risk wording cleanup may align `collinear-breather.md` with
+the ansatz document by adding `same-packet` to its accepted-complement phrase.
 
 The current packet is now summarized in `certificate/pass_fail_ledger.md`. The fold-ceiling calculation has an accepted fixed-parameter fallback in `certificate/fold_full_interval_constants_certificate.json`, recording
 $$

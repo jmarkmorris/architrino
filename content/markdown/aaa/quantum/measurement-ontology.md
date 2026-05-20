@@ -665,7 +665,72 @@ For fermion spin-$\tfrac{1}{2}$, the standard Stern-Gerlach recovery target is a
 
 The spin operator is therefore a compact generator of the recovered record statistics and basis rotations, not a new substrate degree of freedom. Its eigenlabels are licensed only when the apparatus kernel maps the Noether-core spin ledger into stable basin records with the standard half-angle probabilities.
 
-The Stern-Gerlach-like specialization is developed in [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response). In that channel, the apparatus potential-gradient geometry couples to the full Noether-core spin ledger, including layer phases, frequencies, active causal-root branches, self-hit history, and causal-wake angular momentum. The two recorded outcomes are basin resolutions after a finite interaction time. The derived kernels are deterministic pullbacks of the record-forming basins. In the reduced spinor-record chart, the concrete separatrix and unbiased record-phase measure recover the spin-$\tfrac{1}{2}$ half-angle probabilities. The Master-Equation origin of the external apparatus terms is now explicit: the angular impulse is the core-centered torque of delayed apparatus cross-root hits, and the record-phase measure is the invariant measure of the locked apparatus record cycle. The remaining substrate closure target is to derive the effective spinor coordinate and verify when the record cycle and apparatus impulse reduce to the ideal chart.
+The Stern-Gerlach-like specialization is developed in [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response). In that channel, the apparatus potential-gradient geometry couples to the full Noether-core spin ledger, including layer phases, frequencies, active causal-root branches, self-hit history, and causal-wake angular momentum. The two recorded outcomes are basin resolutions after a finite interaction time. The derived kernels are deterministic pullbacks of the record-forming basins. In the reduced spinor-record chart, the concrete separatrix and unbiased record-phase measure supply the comparison target for spin-$\tfrac{1}{2}$ half-angle probabilities. The Master-Equation origin of the external apparatus terms is now explicit: the angular impulse is the core-centered torque of delayed apparatus cross-root hits, and the record-phase measure is the invariant measure of the locked apparatus record cycle. The remaining substrate closure target is to derive the effective spinor coordinate and verify when the record cycle and apparatus impulse reduce to the ideal chart.
+
+For an apparatus axis $\hat{\mathbf m}$, let $Z_0\in\mathcal Z_{\hat{\mathbf m}}^{\mathrm{SG}}$ be the incoming target-plus-apparatus state, let $\Phi_{T_{\mathrm{int}}}^{\hat{\mathbf m}}$ be the finite interaction map, let $G_{\mathrm{rec}}$ be the successful-record gate, and let $\Sigma_{\hat{\mathbf m}}^{\mathrm{SG}}$ be the signed separatrix functional. The lifted plus basin is
+
+$$
+B_{+}^{\mathrm{lift}}(\hat{\mathbf m})
+=
+\left\{
+Z_0:
+G_{\mathrm{rec}}
+\left(
+\Phi_{T_{\mathrm{int}}}^{\hat{\mathbf m}}(Z_0)
+\right)=1,
+\quad
+\Sigma_{\hat{\mathbf m}}^{\mathrm{SG}}
+\left(
+\Phi_{T_{\mathrm{int}}}^{\hat{\mathbf m}}(Z_0)
+\right)>0
+\right\}.
+$$
+
+The lifted plus probability is the pullback measure
+
+$$
+P_{+}^{\mathrm{lift}}(\hat{\mathbf m})
+=
+\int_{\mathcal Z_{\hat{\mathbf m}}^{\mathrm{SG}}}
+\mathbf 1_{B_{+}^{\mathrm{lift}}(\hat{\mathbf m})}(Z_0)
+\,d\mu_{\hat{\mathbf m}}^{\mathrm{in}}(Z_0).
+$$
+
+The half-angle law is then a consistency residual, not an inserted record rule:
+
+$$
+\Delta_{\mathrm{half}}^{\mathrm{lift}}
+=
+\left|
+P_{+}^{\mathrm{lift}}(\hat{\mathbf m})
+-
+\cos^2\left(
+\frac{\alpha(Z_0,\hat{\mathbf m})}{2}
+\right)_{\mu}
+\right|.
+$$
+
+Here $(\cdot)_{\mu}$ means the comparison is averaged using the derived effective spinor coordinate and incoming measure. The full substrate normal is
+
+$$
+\mathcal N_{\hat{\mathbf m}}^{\mathrm{SG}}(Z,t)
+=
+D_Z
+\Sigma_{\hat{\mathbf m}}^{\mathrm{SG}}(Z(t)).
+$$
+
+The reduced normal
+
+$$
+\mathcal N_{\hat{\mathbf m}}^{\mathrm{SG,red}}
+=
+dp_{+}
+-
+\frac{1}{2\pi}
+d\theta_{\mathrm{rec}}
+$$
+
+is only a comparison target after $\psi(Z)$ and $p_+(Z;\hat{\mathbf m})$ are derived from the apparatus model.
 
 This is a single-core measurement statement. Bell-pair response and photon-polarization correlations additionally require the pair-provenance ledger and photon Gate B; they should not be treated as closed by the measurement ontology alone.
 

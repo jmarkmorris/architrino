@@ -26,17 +26,17 @@ At the current level of the theory, the compact mass-map roadmap formula is an e
 $$
 m_{\text{inertial}}(A)
 \approx
-\alpha\,\frac{\zeta(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2}.
+\alpha_{\mathrm{m}}\,\frac{\zeta(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2}.
 $$
 
-This is the clean scalar form of the thesis. It says that the observer-facing inertial mass is controlled by the shielded part of the internal assembly ledger, with $\alpha$ fixed once by a reference assembly in the regime where the effective low-energy closure is being matched.
+This is the clean scalar form of the thesis. It says that the observer-facing inertial mass is controlled by the shielded part of the internal assembly ledger, with $\alpha_{\mathrm{m}}$ fixed once by a reference assembly in the regime where the effective low-energy closure is being matched. Here $\alpha_{\mathrm{m}}$ denotes the single mass-normalization constant for the declared weak homogeneous regime; it is not the fine-structure constant and not a per-particle fit parameter.
 
 The scalar form is not the whole derivation. In a resolved Noether-Sea environment, the denominator $c_{\text{eff}}^2$ is the isotropic weak-field limit of a medium-response tensor:
 
 $$
 p_{\text{int}}^a
 \approx
-\alpha\,\zeta(A)E_{\text{internal}}(A)\,
+\alpha_{\mathrm{m}}\,\zeta(A)E_{\text{internal}}(A)\,
 \mathcal{M}_{\text{sea}}^{ab}V_{\text{cm},b},
 \qquad
 \mathcal{M}_{\text{sea}}^{ab}
@@ -257,7 +257,7 @@ The mass program in $\mathbb{A}\mathbb{A}\mathbb{A}$ should meet an analogous na
 $$
 m_{\text{inertial}}(A)
 \approx
-\alpha\,\frac{\zeta(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2},
+\alpha_{\mathrm{m}}\,\frac{\zeta(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2},
 $$
 
 but a derivation in which $\zeta(A)$ is fixed by the same root ledger, shielding geometry, and Noether-Sea response that also preserves stability and equivalence-principle behavior. If $\zeta(A)$ has to be tuned independently for each particle family, the analogy to QCD naturalness fails and the hierarchy has only been renamed.
@@ -392,9 +392,11 @@ The minimal $A_0$ output contract is:
 | Shielding extraction | far-field wake coefficients, the naive constituent sum, preliminary $\zeta(A_0)$, and residual leakage $\mathcal{L}_{\text{aniso}}$ | turns shielding from a symbolic term into an extracted geometric response |
 | Medium response | the homogeneous baseline for $\mathcal{M}_{\text{sea}}^{ab}$, plus acceleration and gradient probes | connects inertial response, gravitational response, and equivalence-principle tests |
 
-The detailed simulation-facing schema is the $A_0$ branch certificate packet: `metadata`, `sea_cell`, `branch_label`, `state_vector`, `closure_system`, `root_ledger`, `term_classification`, `residuals`, `stability`, `group_velocity_anisotropy`, `energy_ledger`, `far_field_shielding`, `medium_response`, `mass_summary`, `certificate_gates`, and `failure_code`. The canonical chapter names this interface so the mass thesis has a concrete handoff; the detailed protocol belongs in [$A_0$ Branch Certificate Protocol](../validation/simulations/a0-branch-certificate-protocol.md).
+The detailed simulation-facing schema is the $A_0$ branch certificate packet: `metadata`, `sea_cell`, `branch_label`, `z_lambda`, conditional `branch_chart_revision`, `state_vector`, `closure_system`, `root_ledger`, `term_classification`, `residuals`, `stability`, `group_velocity_anisotropy`, `energy_ledger`, `far_field_shielding`, `medium_response`, `mass_summary`, `certificate_gates`, and `failure_code`. The canonical chapter names this interface so the mass thesis has a concrete handoff; the detailed protocol belongs in [$A_0$ Branch Certificate Protocol](../validation/simulations/a0-branch-certificate-protocol.md).
 
 The accepted $A_0$ branch must have small closure residuals over at least one closed cycle, a positive non-symmetry Floquet gap, no secular drift after symmetry modes are removed, a group-velocity anisotropy diagnostic that remains separate from shielding leakage, and a shielding estimate stable under increasing far-field extraction radius and angular resolution. No observed particle mass, charged-lepton ratio, electron radius, or measured $\alpha$ value should be used as an input to this gate.
+
+Current compact-carrier diagnostics have reached a finite-coordinate no-go for the compact branch chart tested so far. That result is a branch-certificate status blocker, not a mass result: $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, $\mathcal{M}_{\text{sea}}^{ab}$, and the baseline mass prediction remain unavailable until a predeclared branch-chart revision and an accepted branch packet pass the same gates above. Even if a branch-chart checker clears a revised coordinate, the clearance authorizes only a Tier 1 rerun candidate; it does not accept the branch, supply accepted $A_0$ history, or make the downstream mass-facing quantities available.
 
 The canonical chapter should carry this interface but not the detailed simulation protocol. Its role is to state the mass thesis, define the terms, and make clear which derivations remain open; implementation details belong with the simulation and proof-program material once the $A_0$ state vector and output schema are formalized.
 

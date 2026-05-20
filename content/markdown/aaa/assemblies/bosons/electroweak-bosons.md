@@ -130,7 +130,69 @@ P_{\perp}^{ab}
 h^{ab}-\hat{e}^a\hat{e}^b.
 $$
 
-Gate B must show that the planar-pair ledger lives in the image of $P_{\perp}$ and has no accepted free longitudinal component. A longitudinal or mixed-axis vector channel belongs to a massive corridor, a medium-bound recoupling, or a Gate A failure mode; it is not an additional free photon polarization.
+Let $P_{\parallel}^{ab}=\hat{e}^a\hat{e}^b$ be the complementary longitudinal projector. Gate B must show that the planar-pair ledger lives in the image of $P_{\perp}$ and has no accepted free longitudinal component. A longitudinal or mixed-axis vector channel belongs to a massive corridor, a medium-bound recoupling, or a Gate A failure mode; it is not an additional free photon polarization.
+
+The substrate closure target starts from the planar-pair amplitude rather than from a preselected polarization vector:
+
+$$
+\mathbf a_{\gamma}^{\mathrm{sub}}
+=
+\mathbf a_{\mathrm{pro}}
++
+\mathbf a_{\mathrm{anti}}
++
+\mathbf a_{\mathrm{wake}},
+\qquad
+\mathbf a_{\perp}^{\mathrm{sub}}
+=
+P_{\perp}
+\mathbf a_{\gamma}^{\mathrm{sub}},
+\qquad
+\mathbf a_{\parallel}^{\mathrm{sub}}
+=
+P_{\parallel}
+\mathbf a_{\gamma}^{\mathrm{sub}}.
+$$
+
+The first two substrate residuals check static charge-like cancellation and longitudinal leakage:
+
+$$
+\Delta_Q^\gamma
+=
+\frac{
+\left|
+q_{\mathrm{pro}}^{\mathrm{eff}}
++
+q_{\mathrm{anti}}^{\mathrm{eff}}
+\right|
+}{
+\left|
+q_{\mathrm{pro}}^{\mathrm{eff}}
+\right|
++
+\left|
+q_{\mathrm{anti}}^{\mathrm{eff}}
+\right|
++
+\varepsilon_Q
+},
+\qquad
+\Delta_{\parallel}^{\mathrm{sub}}
+=
+\frac{
+\left\|
+\mathbf a_{\parallel}^{\mathrm{sub}}
+\right\|
+}{
+\left\|
+\mathbf a_{\gamma}^{\mathrm{sub}}
+\right\|
++
+\varepsilon_{\mathrm{amp}}
+}.
+$$
+
+A free photon branch requires small $\Delta_Q^\gamma$, nonzero $\mathbf a_{\perp}^{\mathrm{sub}}$, and small $\Delta_{\parallel}^{\mathrm{sub}}$ in the same Gate A event window. These are closure conditions on the coaxial contra-rotating pro/anti planar pair, not independent postulates about a photon field.
 
 Choose transverse axes $(\hat{\mathbf{u}},\hat{\mathbf{v}})$ and write the effective polarization ledger as
 
@@ -150,14 +212,46 @@ $$
 \frac{1}{\sqrt{2}}
 \left(\hat{\mathbf{u}}\pm i\hat{\mathbf{v}}\right),
 \qquad
-J_{\gamma,\parallel}
-=
-\lambda_{\text{hel}}\hbar,
-\quad
-\lambda_{\text{hel}}\in\{+1,-1\}.
+\lambda_{\mathrm{hel}}\in\{+1,-1\}.
 $$
 
-The pro/anti planar pair must therefore explain both cancellation of static charge-like exposure and survival of a transverse oscillatory action signature. The surviving signature is the photon-side spin-$1$ ledger; it is not a scalar breathing mode, not an ordered-core spinor, and not a massive-vector longitudinal mode.
+The pro/anti planar pair must therefore explain both cancellation of static charge-like exposure and survival of a transverse oscillatory action signature. The surviving signature is the photon-side spin-$1$ ledger; it is not a scalar breathing mode, not an ordered-core spinor, and not a massive-vector longitudinal mode. The helicity ledger is the residual target
+
+$$
+\mathbf J_{\gamma}^{\mathrm{sub}}
+=
+\mathbf J_{\mathrm{pro}}
++
+\mathbf J_{\mathrm{anti}}
++
+\mathbf J_{\mathrm{wake}}
++
+\mathbf J_{\mathrm{src,rem}},
+$$
+
+with
+
+$$
+\Delta_{\mathrm{hel}}^\gamma
+=
+\left|
+\frac{
+\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}
+}{\hbar}
+-
+\lambda_{\mathrm{hel}}
+\right|
++
+\frac{
+\left\|
+P_{\perp}\mathbf J_{\gamma}^{\mathrm{sub}}
+\right\|
+}{
+\hbar+\varepsilon_J
+}.
+$$
+
+A clean free branch must route $\mathbf J_{\mathrm{src,rem}}$ outside the photon ledger or show that it vanishes. Only after Gate A and the event-balance rows pass may the target be summarized by $\mathbf J_{\gamma}^{\mathrm{sub}}\approx\lambda_{\mathrm{hel}}\hbar\hat{\mathbf e}$.
 
 An analyzer is an assembly whose capture geometry selects an allowed transverse ledger direction $\hat{\mathbf{a}}=P_{\perp}\hat{\mathbf{a}}$. For a linearly polarized incoming axis $\hat{\mathbf{e}}_\gamma$, the closure target is
 

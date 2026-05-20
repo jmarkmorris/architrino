@@ -158,7 +158,7 @@ The hydrodynamic comparison also has a domain warning: quantizing the coarse var
 
 The kinetic-theory lesson is that hydrodynamic variables are the slow variables associated with conserved quantities. For the Noether Sea, the candidate slow state is
 $$
-\Theta_{\mathrm{sea}}
+\mathcal{N}_{\mathrm{sea}}
 =
 \left(
 \rho_{\text{core}},
@@ -168,16 +168,16 @@ e_{\mathrm{sea}},
 f_N
 \right),
 $$
-where $e_{\mathrm{sea}}$ is the retained medium energy density and $\boldsymbol\theta_{\mathrm{sea}}$ packages the declared orientation, delay, and envelope variables. The moment-closure residual is
+where $e_{\mathrm{sea}}$ is the retained medium energy density and $\boldsymbol\theta_{\mathrm{sea}}$ packages the declared orientation, delay, and envelope variables as a reduced projection of the full state. The moment-closure residual is
 $$
 \mathcal R_{\mathrm{mom}}
 =
 \max_a
 \frac{
 \left\|
-\partial_t M_a[\Theta_{\mathrm{sea}}]
-+\nabla\cdot J_a[\Theta_{\mathrm{sea}}]
--S_a[\Theta_{\mathrm{sea}}]
+\partial_t M_a[\mathcal{N}_{\mathrm{sea}}]
++\nabla\cdot J_a[\mathcal{N}_{\mathrm{sea}}]
+-S_a[\mathcal{N}_{\mathrm{sea}}]
 \right\|
 }{
 \left\|\partial_t M_a\right\|
@@ -202,7 +202,7 @@ The comparison is useful because it keeps the levels separated: the perturbation
 $$
 g_{\mu\nu}^{\mathrm{eff}}
 =
-\mathcal{G}_{\mu\nu}\!\left[\Theta_{\mathrm{sea}}\right]
+\mathcal{G}_{\mu\nu}\!\left[\mathcal{N}_{\mathrm{sea}}\right]
 +\mathcal{R}_{\mathrm{metric}},
 $$
 where $\mathcal{G}_{\mu\nu}$ must be derived from the retained density, flow, cadence, orientation, strain, and causal-wake records. A metric row that fits clock, signal, pressure, or lensing behavior with separate coefficients for each observable is not yet a Noether-Sea constitutive law.
@@ -223,7 +223,7 @@ $$
 \frac{
 \left\|
 C_{\mathrm{obs}}^{(n)}-
-\Pi_{\mathrm{corr}}^{(n)}[\mu_{\Omega,\theta},\Theta_{\mathrm{sea}},\mathcal{H}_{\Omega}^{W}]
+\Pi_{\mathrm{corr}}^{(n)}[\mu_{\Omega,\theta},\mathcal{N}_{\mathrm{sea}},\mathcal{H}_{\Omega}^{W}]
 \right\|
 }{\epsilon_n},
 \qquad
@@ -240,7 +240,7 @@ $$
 \delta X_B(\omega,\mathbf{k})
 +R_A^{\chi},
 $$
-where $X_B$ are declared perturbations of $\Theta_{\mathrm{sea}}$ and $Y_A$ are observer-channel readouts such as delay factor, stress, cadence, or clock response. Causality requires the time-domain kernel to have delayed support only, which becomes an analyticity and dispersion check in frequency space. The practical residual is
+where $X_B$ are declared perturbations of $\mathcal{N}_{\mathrm{sea}}$ and $Y_A$ are observer-channel readouts such as delay factor, stress, cadence, or clock response. Causality requires the time-domain kernel to have delayed support only, which becomes an analyticity and dispersion check in frequency space. The practical residual is
 $$
 \mathcal R_{\mathrm{KK}}(\chi_{AB})
 =

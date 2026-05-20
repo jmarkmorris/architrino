@@ -105,6 +105,54 @@ $$
 
 componentwise across the tuple. Nonzero physical recoil, medium heating, remnant excitation, outgoing product energy, or photon output is allowed only as a named term inside $Y_{\mathsf e}$; it is not allowed as an implicit loss.
 
+For a radiative event with a candidate free photon branch, the angular-momentum component should expose the photon-specific event balance. Let the event window be labeled by superscript $0$, and let $\mathbf J_{\mathrm{src}}^-$ and $\mathbf J_{\mathrm{src}}^+$ be the source angular-momentum ledger before and after the event. Define
+
+$$
+\Delta\mathbf J_{\mathrm{src}}^{0}
+=
+\mathbf J_{\mathrm{src}}^-
+-
+\mathbf J_{\mathrm{src}}^+.
+$$
+
+The photon event row is
+
+$$
+\Delta\mathbf J_{\mathrm{src}}^{0}
+=
+\mathbf J_{\gamma}^{\mathrm{sub}}
++
+\mathbf J_{\mathrm{recoil}}^{0}
++
+\mathbf J_{\mathrm{wake}}^{0}
++
+\mathbf J_{\mathrm{handoff}}^{0}.
+$$
+
+The normalized event-balance residual is
+
+$$
+\Delta_{\mathrm{bal}}^\gamma
+=
+\frac{
+\left\|
+\Delta\mathbf J_{\mathrm{src}}^{0}
+-
+\mathbf J_{\gamma}^{\mathrm{sub}}
+-
+\mathbf J_{\mathrm{recoil}}^{0}
+-
+\mathbf J_{\mathrm{wake}}^{0}
+-
+\mathbf J_{\mathrm{handoff}}^{0}
+\right\|
+}{
+1+\left\|\Delta\mathbf J_{\mathrm{src}}^{0}\right\|
+}.
+$$
+
+The denominator is understood in the normalized angular-momentum units of the event ledger. Missing source, recoil, wake, or handoff rows keep the photon record provisional even when the outgoing photon substrate ledger is algebraically clean.
+
 ### Provenance-Preserving Polarity Inventory
 
 Count conservation is not enough for reaction closure. Since the ontic architrino set $\mathcal{A}$ is fixed, every serious reaction record must route identity-labeled architrinos through the event after expanding the input and output state to include any explicitly recruited or returned Noether-Sea content.

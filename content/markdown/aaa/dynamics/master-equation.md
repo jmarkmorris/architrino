@@ -2186,6 +2186,34 @@ r_\ast\dot\theta_\ast^2
 $$
 This is a theorem target, not a closure proof. It supplies the concrete falsification gate: enumerate the admissible partner and self roots on a variable-pitch candidate, certify their Jacobian floors, and test both the radial turn inequality and the weighted tangential sum. If all admissible roots keep the weighted tangential sum nonnegative on every candidate turn corridor, the bare isolated spiral does not beat the circular obstruction.
 
+For a retained chart at a turn center, the radial row can be normalized by the common force factor, but that normalization separates the branch sum from the independent force ratio. In the equal-magnitude opposite-polarity case, one may write
+$$
+\Gamma\equiv\frac{r_\ast^3\Omega^2}{\kappa q_1^2},
+\qquad
+B_r(\theta_\ast)
+=
+-\sum_{\mathrm{part}}
+\frac{1+\rho_p\cos\Delta_p}{\Lambda_p^3|J_{12,p}|}
++
+\sum_{\mathrm{self}}
+\frac{1-\rho_s\cos\Delta_s}{\Lambda_s^3|J_{11,s}|},
+$$
+so the normalized turn row is
+$$
+\Gamma+B_r(\theta_\ast)>0.
+$$
+The retained branch chart fixes $B_r$ only. It does not determine $\Gamma$ from $b_\ast=\Omega r_\ast/c_f$, from the delayed-root offsets, or from a branch-sum threshold. A branch certificate must therefore either supply an independently derived force-ratio interval or report the radial row as blocked.
+
+A fixed retained-chart benchmark illustrates the split. For the $a=0.204$, $b_\ast=7/2$ variable-pitch spiral on $I_\ast=[-\pi/6,\pi/6]$, the retained $3+1$ chart has certified active-root, inactive-gap, Jacobian-floor, finite-memory, and root-transport rows. Its weighted tangential row is strictly negative:
+$$
+D_T(I_\ast)\in[-0.0015572472070875527,-0.00023480430280344085].
+$$
+The same chart is still not a closed isolated spiral certificate, because the radial branch row only supplies
+$$
+B_r(0)\in[-0.005994791326773983,-0.005994715991872956],
+$$
+and the normalized radial condition still requires an independently derived interval for $\Gamma$. Thus this benchmark passes the tangential-drive test while leaving radial turn blocked.
+
 ---
 
 ### Effective Continuum Limits
@@ -2227,11 +2255,11 @@ Several formerly open checks are now footholds rather than blank targets:
 
 1. **Partner-only circular orbit with causal delay ($v<c_f$)** now has explicit radial and tangential components, including the positive tangential-drive obstruction for a bare constant-speed circle.
 2. **Uniform circular self-hit ($v>c_f$)** now has principal-root onset asymptotics, signed higher-winding branch birth, branchwise radial/tangential projections, and large-$\beta$ self-hit estimates.
-3. **Variable-pitch spiral benchmarks** now expose the branch-chart and Jacobian data that a maximum-curvature binary certificate must report.
+3. **Variable-pitch spiral retained-chart benchmarks** now expose the branch-chart and Jacobian data that a maximum-curvature binary certificate must report. The fixed A1 chart is a partial certificate rather than a closure result: active-root, inactive-gap, Jacobian-floor, finite-memory, and root-transport rows are certified, and the weighted tangential row is negative, while radial turn remains blocked until an independent $\Gamma$ interval is supplied.
 
 The remaining analytic targets are sharper:
 
-1. build the maximum-curvature branch certificate from active roots, Jacobian floors, return residuals, and radial/tangential balance;
+1. build the maximum-curvature branch certificate from active roots, inactive gaps, Jacobian floors, finite memory, root transport, returned-section residuals, radial/tangential balance, and the independent force-ratio row;
 2. coarse-grain the master equation around a homogeneous Noether Sea and extract the linear response and dispersion relation $\omega(k)$;
 3. prove which regularized energy diagnostic is actually induced by a symmetry-preserving action-level regularization.
 

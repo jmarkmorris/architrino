@@ -38,7 +38,7 @@ $$
 \{\mathbf R_A\},
 \mathcal B_{e,1},\ldots,\mathcal B_{e,N},
 \mathcal B_{\mathrm{bond}},
-\Theta_{\mathrm{sea}}^{(\ell)}
+\mathcal{N}_{\mathrm{sea}}^{(\ell)}
 \right).
 $$
 

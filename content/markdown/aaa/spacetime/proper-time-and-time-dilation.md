@@ -14,7 +14,7 @@ $$
 \Omega_{\mathcal A}
 \left(
 \mathbf{w},
-\Theta_{\mathrm{sea}},
+\mathcal{N}_{\mathrm{sea}},
 R_{\mathcal A},
 H_{\mathcal A}
 \right)
@@ -26,7 +26,7 @@ d\tau_{\mathcal A}
 =
 \frac{d\varphi_{\mathcal A}}{\Omega_{\mathcal A}^{(0)}}.
 $$
-Here $\varphi_{\mathcal A}$ is the counted clock phase, $\Omega_{\mathcal A}^{(0)}$ is its rest-branch reference rate, $\Theta_{\mathrm{sea}}$ is the retained Noether-Sea state, $R_{\mathcal A}$ is the clock geometry/orientation record, $H_{\mathcal A}$ is the relevant path-history ledger, and $\mathbf{w}$ is the clock drift relative to local Noether-Sea flow. A broad expression such as $d\tau/dt=F(\mathbf{v},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{clock geometry})$ is only a shorthand after this phase channel has been declared.
+Here $\varphi_{\mathcal A}$ is the counted clock phase, $\Omega_{\mathcal A}^{(0)}$ is its rest-branch reference rate, $\mathcal{N}_{\mathrm{sea}}$ is the retained Noether-Sea state, $R_{\mathcal A}$ is the clock geometry/orientation record, $H_{\mathcal A}$ is the relevant path-history ledger, and $\mathbf{w}$ is the clock drift relative to local Noether-Sea flow. A broad expression such as $d\tau/dt=F(\mathbf{v},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{clock geometry})$ is only a shorthand after this phase channel has been declared.
 
 The target is to reproduce, in the appropriate regime,
 $$

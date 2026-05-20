@@ -37,6 +37,18 @@ The exclusion is not a hard material wall. It is a path-history and wake-geometr
 
 At the effective quantum level, that obstruction must appear as antisymmetric exchange bookkeeping and Pauli exclusion. At the assembly level, it is the candidate inability of two volumetric Noether-core envelopes to occupy the same state without losing stable nested-binary identity. The exchange sign still has to come from the ordered-frame spinor proof, not from volume exclusion alone.
 
+The blocker can be stated directly. Fermionic exchange-sign recovery cannot be credited to the 3D exclusion envelope until the same ordered-core program supplies a retained non-gauge row $r_\star$ with
+
+$$
+\Pi_{W,r_\star}^{2\pi}=1,
+\qquad
+\Pi_{W,r_\star}^{4\pi}=0,
+\qquad
+\Delta_{\mathrm{gc}}(r_\star)\le\varepsilon_{\mathrm{gc}},
+$$
+
+and with the corresponding angular-momentum residuals below tolerance. Without that row, volumetric exclusion may explain why same-state packing is dynamically costly, but it does not yet derive the antisymmetric exchange phase used by the observer-level fermion chart.
+
 ## Bose-Einstein Regime: 2D Coherence
 
 Bose-Einstein behavior corresponds to the regime where the relevant orbital support has been oblated toward an effectively two-dimensional structure. The key transition is not merely that the Noether-core envelope is somewhat flattened. Ordinary Noether cores are already oblate. The statistical transition occurs when oblation becomes strong enough that the active orbital support no longer behaves as a closed 3D exclusion volume.

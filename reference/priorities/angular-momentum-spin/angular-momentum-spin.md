@@ -91,7 +91,6 @@ This projection does not derive spin. It states the detector variables that any 
 
 | File | Role | Primary promotion targets |
 | --- | --- | --- |
-| [aaa-corpus-change-recommendations-2026-05-20.md](aaa-corpus-change-recommendations-2026-05-20.md) | Captures team-agent recommendations for a guarded AAA corpus edit batch: core spinor/gauge-control residuals, photon Gate B event ledgers, Stern-Gerlach/Bell guardrails, and downstream spinor-consumer blockers. | [angular-momentum-and-spin](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md), [electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md), [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md), [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md), [entanglement-nonlocality](../../../content/markdown/aaa/theory-bridges/entanglement-nonlocality.md), [quantum-statistics](../../../content/markdown/aaa/quantum/quantum-statistics.md), [weak-mixing-ckm](../../../content/markdown/aaa/theory-bridges/weak-mixing-ckm.md), and [horizon-chirality](../../../content/markdown/aaa/spacetime/horizon-chirality.md) |
 | [team-agent-progress-2026-05-20.md](team-agent-progress-2026-05-20.md) | Integrates the team-agent pass into one conservation-pullback interface, minimal-branch certificate row set, spinor return-table object, and photon/measurement/Bell residual vector. | This priority bucket, [angular-momentum-and-spin](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md) after a populated certificate exists |
 | [core-angular-momentum-ledger.md](core-angular-momentum-ledger.md) | Preserves the corpus audit, delayed Noether-core angular-momentum scaffold, active-root bookkeeping, torque functional, linearized transaction ledger, and open closure targets. | [angular-momentum-and-spin](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md), [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md), [causal-action-functional](../../../content/markdown/aaa/dynamics/causal-action-functional.md) |
 | [fundamental-ledger-branch-chart-packet.md](fundamental-ledger-branch-chart-packet.md) | Converts the conserved angular-momentum and tri-binary partition scaffold into a replayable branch-chart evaluation object with root, phase, wake, vector, scalar, energy, and stability residuals. | [angular-momentum-and-spin](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md), [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md), [causal-action-functional](../../../content/markdown/aaa/dynamics/causal-action-functional.md) |
@@ -527,18 +526,18 @@ The toy reduction recovers $P_{+}=p_{+}$, but the physical row remains blocked u
 
 These diagnostics advance the proof stack by naming exact residuals and pass/fail/blocking cases. None is ready for reader-facing promotion because each still depends on native retained rows that have not yet been produced.
 
-## AAA Corpus Change Recommendations 2026-05-20
+## AAA Corpus Promotion 2026-05-20
 
-[aaa-corpus-change-recommendations-2026-05-20.md](aaa-corpus-change-recommendations-2026-05-20.md) records the first team-agent recommendation packet aimed at `content/markdown/aaa`. The packet recommends a guarded corpus edit batch rather than a proof-result promotion.
+The accepted team-agent recommendation packet was promoted directly into `content/markdown/aaa` and the temporary recommendation file was removed. The promotion is guarded: it adds theorem-target residuals, closure contracts, and blocker language rather than claiming completed spinor, photon, Stern-Gerlach, Bell, weak-handedness, or branch-selection proofs.
 
-The safe promotion layer is:
+The promoted layer is:
 
 - `angular-momentum-and-spin.md`: mark the minimal four-substep branch as a conditional certificate, add the row-local causal-writhe spinor extractor, and add the gauge-control residual that blocks coordinate artifacts.
 - `electroweak-bosons.md`, `mode-taxonomy.md`, and `reaction-ledger.md`: add photon Gate B substrate, helicity, and event-balance residuals while keeping physical Gate B blocked until source, recoil, wake, handoff, and material analyzer rows pass.
 - `measurement-ontology.md`, `bell-theorem.md`, and `entanglement-nonlocality.md`: replace reduced/product-compressed statements with lifted apparatus, pair-provenance, joint-record, and full singlet-joint-law targets.
 - `quantum-statistics.md`, `weak-mixing-ckm.md`, and `horizon-chirality.md`: inherit the same spinor/gauge-control blocker so exchange sign, weak exposure, and horizon chirality do not consume an unproven spinor row.
 
-The packet explicitly blocks promotion of physical branch selection for the minimal branch, photon symbolic equalities as completed Gate B physics, the pair-source relative-phase certificate, and weak left/right exposure from terminal axial sign alone.
+The remaining priority burden is unchanged for the hard proof rows: physical branch selection for the minimal branch, photon symbolic equalities as completed Gate B physics, the pair-source relative-phase certificate, and weak left/right exposure from terminal axial sign alone all remain deferred with blockers.
 
 ## Promotion Map
 

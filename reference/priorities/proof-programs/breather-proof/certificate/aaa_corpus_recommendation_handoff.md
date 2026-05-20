@@ -18,10 +18,10 @@ The rejected cosine packet is not a reader-facing theorem. It is useful as evide
 
 | Claim | Bucket | Corpus status |
 | --- | --- | --- |
-| Branch-chart construction is unauthorized until the null-coordinate pre-ledger closes with no `split_required` rows. | Derivation/closure target | Safe high-level corpus update. |
-| A fixed candidate with intrinsic positive-width null-coordinate overlap cannot be rescued by mesh-only refinement. | Derivation/closure target | Safe as a general warning; keep cosine details priority-only. |
-| The accepted fixed-parameter fold constants from the rejected packet remain diagnostics, not proof-row promotion. | Effective summary supporting a closure target | Safe if stated without artifact detail. |
-| A fresh fold-adapted collocation candidate is the next executable route. | Derivation/closure target | Safe as a proof-program direction, not as a solved candidate. |
+| Branch-chart construction is unauthorized until the null-coordinate pre-ledger closes with no `split_required` rows. | Derivation/closure target | Promoted into `closed-form-collinear-breather-ansatz.md`, `collinear-breather.md`, and `master-equation-breather.md`. |
+| A fixed candidate with intrinsic positive-width null-coordinate overlap cannot be rescued by mesh-only refinement. | Derivation/closure target | Promoted as a high-level warning in the proof-program documents; detailed row data remains priority-only. |
+| The accepted fixed-parameter fold constants from the rejected packet remain diagnostics, not proof-row promotion. | Effective summary supporting a closure target | Promoted without artifact detail. |
+| A fresh fold-adapted collocation candidate is the next executable route. | Derivation/closure target | Promoted as proof-program direction, not as a solved candidate. |
 | An enlarged regular-boundary coverage theorem could consume residual equality cores adjacent to folds. | Speculation / discussion-required theorem expansion | Defer; requires Op discussion before canonization. |
 
 ## Recommended AAA Edits
@@ -29,7 +29,7 @@ The rejected cosine packet is not a reader-facing theorem. It is useful as evide
 | Target | Recommendation | Risk | Promotion decision |
 | --- | --- | --- | --- |
 | `content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md`, `## Status` | Add a short status paragraph: the first cosine velocity-class packet failed at the parent-complement part of the null-coordinate pre-ledger; its subrow and fold-constant data are diagnostic only and do not authorize branch-chart construction. | Low | Promote now as scoped status prose if Op requests the edit batch. |
-| `content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md`, `Target Theorem (Null-Coordinate Causal Pre-Ledger)` | Add an explicit parent-complement acceptance predicate: after accepted simple-root and fold-layer rows are removed, every leftover strip must have strict range separation, endpoint-excluded singleton contact, exact fold-layer coverage, or an accepted same-packet regular-boundary theorem. Positive-width overlap or residual equality core rejects the packet before branch-chart work. | Medium | Promote now as theorem-target clarification; avoid naming priority files. |
+| `content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md`, `Target Theorem (Null-Coordinate Causal Pre-Ledger)` | Add an explicit parent-complement acceptance predicate: after accepted simple-root and fold-layer rows are removed, every leftover strip must have strict range separation, endpoint-excluded singleton contact, exact fold-layer coverage, or another already accepted same-packet complement predicate. Positive-width overlap or residual equality core rejects the packet before branch-chart work. | Medium | Promoted as theorem-target clarification; avoids naming priority files. |
 | `content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md`, `## Immediate Derivation Tasks` | Replace the generic rejection wording with the live direction: instantiate a fresh fold-adapted piecewise collocation candidate, run the null-coordinate pre-ledger first, and only then consider active branch-chart certification. | Low | Promote now as scoped proof-program direction. |
 | `content/markdown/aaa/proof-programs/collinear-breather.md`, `### Remaining blockers before Schauder` | Add a concise update that the current obstruction is not lack of an elementary closed form but failure of the first candidate at parent-complement pre-ledger closure; the next admissible route is a fresh fold-adapted collocation candidate whose pre-ledger passes before seed-chart rows begin. | Low | Promote now as status clarification. |
 | `content/markdown/aaa/proof-programs/collinear-breather.md`, negative-breather lesson under `### Remaining blockers before Schauder` | Add the internal lesson that formal candidate data plus partial diagnostics remain candidate evidence while parent-complement equality cores remain. | Low | Promote now as a reader-facing falsification principle. |
@@ -50,14 +50,18 @@ Do not promote the following into `content/markdown/aaa` in the next edit batch:
 
 The enlarged regular-boundary theorem would be a real canon/theory decision because it expands the fold-layer coverage domain beyond exact `F*` row rectangles. It should be discussed before appearing as doctrine.
 
-## Corpus Edit Readiness
+## Corpus Edit Status
 
-The safe edit batch is ready as a recommendation, not yet applied in this pass. The edits should be short, theorem-program-level, and self-contained inside the AAA documents. They must not link to `reference/priorities`.
+The safe edit batch has been applied to:
 
-Suggested batch size: the three files named above.
+- `content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md`
+- `content/markdown/aaa/proof-programs/collinear-breather.md`
+- `content/markdown/aaa/proof-programs/master-equation-breather.md`
 
-Expected outcome: the reader-facing corpus will state the live proof-program gate more sharply without importing the rejected priority packet's operational detail.
+The edits are short, theorem-program-level, and self-contained inside the AAA documents. They do not link to `reference/priorities`.
+
+The reader-facing corpus now states the live proof-program gate more sharply without importing the rejected priority packet's operational detail.
 
 ## Capture Decision
 
-This handoff is priority-only. Its high-level recommendations are `promote now` candidates for a later AAA edit batch; detailed certificate data remain priority-only; the enlarged regular-boundary theorem is deferred with blocker: Op discussion and a same-packet inclusion/domination proof route.
+This handoff is priority-only as an audit trail. Its high-level recommendations have been promoted into the three proof-program documents; detailed certificate data remain priority-only; the enlarged regular-boundary theorem is deferred with blocker: Op discussion and a same-packet inclusion/domination proof route.

@@ -5,7 +5,7 @@
 - Workstream: [Noether-Core Stability and First Mass Map](mass-map.md)
 - Source packet: [$A_0$ Branch-Chart Revision Contract](a0-branch-chart-revision-contract.md)
 - Claim level: priority-side corpus recommendation packet
-- Promotion decision: defer authored AAA edits until an edit-batch pass is explicitly selected; no mass, energy, shielding, or medium-response claim is ready for promotion.
+- Promotion decision: first validation-facing AAA edit batch promoted on May 20, 2026; particle-facing and energy-facing edits remain recommendations only. No mass, energy, shielding, or medium-response claim is ready for promotion.
 
 ## Source Signal
 
@@ -34,6 +34,7 @@ This is a derivation / closure negative result. It is not an $A_0$ attractor, no
 - Priority: high
 - Claim bucket: derivation / closure target
 - Risk: medium
+- Batch status: promoted into the target document on May 20, 2026 as a Tier 1 branch-chart revision checkpoint.
 - Recommended change: add a branch-chart revision checkpoint to the Tier 1 protocol. The checkpoint should state that a compact $z_\Lambda$ row, raw root-key split, or coarse observation-phase split may fail closed before another corrected rerun. A revised $z_\Lambda^\star$ or finer $\mu^\star$ may seed a rerun only when the coordinate is declared before fitting and passes source-field, symmetry, equality, locked-key, degrees-of-freedom, held-out residual, and benchmark-exclusion checks.
 - Current blocker: do not state the inner harmonic coordinate as accepted. The current checker rejects it.
 
@@ -43,6 +44,7 @@ This is a derivation / closure negative result. It is not an $A_0$ attractor, no
 - Priority: high
 - Claim bucket: derivation / closure target
 - Risk: high
+- Batch status: promoted into the target document on May 20, 2026 as a Reference Attractor Gate clarification.
 - Recommended change: refine the Reference Attractor Gate to distinguish a checker-cleared revised coordinate from an accepted attractor. The text should keep $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, and $\mathcal{M}_{\text{sea}}^{ab}$ unavailable until Tier 1, Tier 2, and Tier 3 gates pass.
 - Current blocker: the checker did not clear a rerun candidate, so no mass-facing quantity should be added.
 
@@ -52,6 +54,7 @@ This is a derivation / closure negative result. It is not an $A_0$ attractor, no
 - Priority: medium
 - Claim bucket: derivation / closure target
 - Risk: medium
+- Batch status: promoted into the target document on May 20, 2026 as a carrier-chart caveat.
 - Recommended change: strengthen the carrier-chart caveat. Circular or elliptic carriers and raw root-key residual bases are diagnostic charts; an accepted branch needs a branch-native coordinate declared before fitting and stable under root-ledger transport.
 - Current blocker: do not name modes $\{4,5,7\}$ or guard mode `6` as physical branch structure.
 
@@ -61,6 +64,7 @@ This is a derivation / closure negative result. It is not an $A_0$ attractor, no
 - Priority: medium
 - Claim bucket: validation criterion
 - Risk: medium
+- Batch status: promoted into the target document on May 20, 2026 as a generic revised branch-coordinate model-selection gate.
 - Recommended change: add a generic model-selection row for revised branch coordinates. The row should require predeclared coordinate source fields, a held-out residual or phase-origin check, a design-matrix guard, and branch identity under refinement.
 - Current blocker: keep the row generic rather than $A_0$-mode-specific.
 
@@ -70,6 +74,7 @@ This is a derivation / closure negative result. It is not an $A_0$ attractor, no
 - Priority: medium
 - Claim bucket: effective summary / validation interpretation
 - Risk: low
+- Batch status: promoted into the target document on May 20, 2026 as a compact-coordinate failure and checker-boundary note.
 - Recommended change: add a short status note that Tier 0 readiness and compact-coordinate failure do not imply an attractor. A checker can authorize only a rerun path, not accepted history.
 - Current blocker: no accepted revised coordinate exists.
 
@@ -79,6 +84,7 @@ This is a derivation / closure negative result. It is not an $A_0$ attractor, no
 - Priority: medium
 - Claim bucket: effective summary guarded by derivation target
 - Risk: medium
+- Batch status: promoted into the target document on May 20, 2026 as an energy-handoff caveat.
 - Recommended change: sharpen the $A_0$ handoff so apparent energy accounting cannot consume compact no-go outputs. The product $\zeta(A_0)E_{\text{internal}}(A_0)$ remains an energy-accounting target until a revised branch passes and Tier 2 shielding extraction exists.
 - Current blocker: no branch, shielding, or energy ledger has passed.
 
@@ -93,12 +99,10 @@ Do not edit authored AAA prose to claim any of the following:
 - locked fold-layer keys are active self branches;
 - the compact-coordinate no-go falsifies the broader $A_0$ program.
 
-## Recommended Next Edit Batch
+## Next User-Facing Documentation Recommendations
 
-If this recommendation packet is selected for authored corpus work, the safest first batch is:
+The validation-facing batch, Particle Masses Reference Attractor Gate, Tri-Binary Dynamics carrier caveat, and Energy handoff caveat now carry the fail-closed branch-chart revision semantics.
 
-1. [A0 Branch Certificate Protocol](../../../content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md)
-2. [Convergence Tests](../../../content/markdown/aaa/validation/simulations/convergence-tests.md)
-3. [A0 Tier 0 Result Interpretation](../../../content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md)
+No further $A_0$ branch-chart user-facing prose change is recommended from this packet until a revised coordinate passes the pre-rerun checker or a later branch, shielding, energy, or medium-response artifact exists. Further work should return to the branch-chart derivation, simulation runner, or a separate non-$A_0$ mass-map notation packet rather than adding more corpus caveats.
 
-The particle-facing and energy-facing pages should wait until the validation pages carry the fail-closed branch-chart revision semantics.
+The current blocker is unchanged: no revised branch coordinate has passed the pre-rerun checker, no accepted $A_0$ history exists, and no downstream shielding, energy, or medium-response output has passed.

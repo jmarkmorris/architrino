@@ -316,7 +316,39 @@ $$
 
 That summary is necessary, but it is not the mechanism. The substrate question is how the total angular-momentum functional is conserved while the daughter Noether cores redistribute action across inner, middle, and outer binaries, including self-action and causal-wake terms. The statement $\mathbf{J}_A=-\mathbf{J}_B$ is only the coarse ledger result of that deeper process.
 
-**Measurement geometry.** When detector $A$ measures along axis $\hat{m}_A$, the apparatus does not read a tiny arrow. It drives the local assembly through a finite-time coupling process whose outcome depends on the full spin ledger: ordered binary-plane geometry, phase, active causal wakes, local Noether-Sea state, and the apparatus potential. The Stern-Gerlach-like scaffold in [Angular Momentum and Spin](./angular-momentum-and-spin.md#stern-gerlach-like-measurement-response) formulates this as apparatus potential-gradient coupling, basin-boundary crossing, angular-momentum exchange, and wake / Noether-Sea recoil. A correct theory must derive how that coupling produces the two observed outcomes called spin-up and spin-down along $\hat{m}_A$.
+A source-level pair-provenance record should therefore replace the generic $\lambda$ placeholder before any Bell calculation is called physical. For a singlet-like source, write
+
+$$
+P_{\mathrm{src}}^{\mathrm{sing}}
+=
+\left(
+B_{\mathrm{parent}}^-,
+W_{\mathrm{src}},
+t_0,
+t_{\mathrm{sep}},
+\Sigma_{\mathrm{src}},
+\mu_{\mathrm{src}},
+\Gamma_{\mathrm{src}}^{\mathrm{loc}}
+\right),
+$$
+
+where $B_{\mathrm{parent}}^-$ is the pre-fragmentation parent branch, $W_{\mathrm{src}}$ is the source event window, $t_{\mathrm{sep}}$ is the separation time, $\Sigma_{\mathrm{src}}$ is the source separatrix or accepted branch condition, $\mu_{\mathrm{src}}$ is the source-side measure, and $\Gamma_{\mathrm{src}}^{\mathrm{loc}}$ records local source geometry. The retained pair-provenance distribution is
+
+$$
+\rho_{\mathrm{src}}
+\left(
+\Pi_{AB}^{\mathrm{sing}}
+\middle|
+P_{\mathrm{src}}^{\mathrm{sing}}
+\right)
+=
+C_{\mathrm{pair}*}^{\mathrm{sing}}
+\mu_{\mathrm{src}}.
+$$
+
+Here $\Pi_{AB}^{\mathrm{sing}}$ is the daughter-pair provenance record and $C_{\mathrm{pair}*}^{\mathrm{sing}}$ is the singlet-pair construction or conditioning map. Later detector settings are excluded fields of $P_{\mathrm{src}}^{\mathrm{sing}}$; if they enter this source record, the model has moved into measurement-independence failure rather than Bell closure.
+
+**Measurement geometry.** When detector $A$ measures along axis $\hat{\mathbf m}_A$, the apparatus does not read a tiny arrow. It drives the local assembly through a finite-time coupling process whose outcome depends on the full spin ledger: ordered binary-plane geometry, phase, active causal wakes, local Noether-Sea state, and the apparatus potential. The Stern-Gerlach-like scaffold in [Angular Momentum and Spin](./angular-momentum-and-spin.md#stern-gerlach-like-measurement-response) formulates this as apparatus potential-gradient coupling, basin-boundary crossing, angular-momentum exchange, and wake / Noether-Sea recoil. A correct theory must derive how that coupling produces the two observed outcomes called spin-up and spin-down along $\hat{\mathbf m}_A$.
 
 **Why this is not action at a distance.** No usable signal, energy, or causal wake is allowed to pass from one detector to the other during spacelike-separated measurement. The Bell-level difficulty is therefore not solved by adding a signal. It must be solved by showing that the full pair provenance and each local measurement interaction do not compress into the factorizable local-response model that Bell excludes.
 
@@ -325,18 +357,42 @@ That summary is necessary, but it is not the mechanism. The substrate question i
 The central quantitative test is whether the $\mathbb{A}\mathbb{A}\mathbb{A}$ hidden-variable structure reproduces the singlet correlation:
 
 $$
-E(\hat{m}_A, \hat{m}_B) = -\cos\theta_{AB}.
+E(\hat{\mathbf m}_A, \hat{\mathbf m}_B) = -\cos\theta_{AB}.
 $$
 
-**Classical-axis failure mode.** Suppose each daughter merely carries an opposite internal angular-momentum direction $\hat{n}$, distributed uniformly over the unit sphere. For a given $\hat{n}$, let detector $A$ return $a=+1$ if $\hat{m}_A\cdot\hat{n}>0$ and $a=-1$ otherwise.
-
-With this deterministic assignment and the constraint $\hat{n}_A = -\hat{n}_B = \hat{n}$, the naive correlation function is:
+**Classical-axis failure mode.** Suppose each daughter merely carries an opposite internal angular-momentum direction, distributed uniformly over the unit sphere:
 
 $$
-E_{\text{naive}}(\theta_{AB}) = -1 + \frac{2\theta_{AB}}{\pi},
+\hat{\mathbf n}_A=-\hat{\mathbf n}_B.
 $$
 
-which is **linear** in $\theta_{AB}$ and does not violate the CHSH bound. This is the well-known failure of all local hidden-variable models with sharp basin boundaries.
+The deterministic local response
+
+$$
+A(\hat{\mathbf m}_A,\hat{\mathbf n}_A)
+=
+\operatorname{sgn}
+\left(
+\hat{\mathbf m}_A\cdot\hat{\mathbf n}_A
+\right),
+\qquad
+B(\hat{\mathbf m}_B,\hat{\mathbf n}_B)
+=
+\operatorname{sgn}
+\left(
+\hat{\mathbf m}_B\cdot\hat{\mathbf n}_B
+\right)
+$$
+
+gives the conserved-opposite-axis correlation
+
+$$
+E_{\mathrm{axis}}(\theta)
+=
+-1+\frac{2\theta}{\pi},
+$$
+
+which is **linear** in $\theta$ and does not violate the CHSH bound. This is the well-known failure of all local hidden-variable models with sharp basin boundaries.
 
 This calculation is important because it shows what not to claim. Angular-momentum conservation at creation is not enough if it is reduced to preassigned opposite local axes. Simple smoothing of a local axis response is also not automatically enough; it must be checked against the full correlation function.
 

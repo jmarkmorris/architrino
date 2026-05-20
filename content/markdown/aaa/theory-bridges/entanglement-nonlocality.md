@@ -140,23 +140,45 @@ $$
 
 where $\mathcal{H}_A$ and $\mathcal{H}_B$ are the path-history data carried by the two daughter assemblies, $\Delta\Theta_{AB}^{\text{bin/wake}}$ records their correlated binary-orientation and wake-phase relations, and $\mathsf{Cons}_{AB}$ records the conservation constraints inherited from the source event. This is not an additional force or influence. It is the candidate hidden-variable domain over which the Bell closure must integrate.
 
-Let $K_A$ and $K_B$ be the two local apparatus-response kernels. For spin tests, their one-wing limits must agree with the Stern-Gerlach kernels derived in [Angular Momentum and Spin](./angular-momentum-and-spin.md). The observer-level joint response target is
+Let $K_{ab}^{AB}$ be the joint-record response kernel induced by the pair-provenance record and the two local apparatus interactions. For spin tests, its one-wing limits must agree with the Stern-Gerlach kernels derived in [Angular Momentum and Spin](./angular-momentum-and-spin.md). If $\Pi_{AB}^{\mathrm{sing}}$ is the singlet-like pair-provenance record, $P_{\mathrm{src}}^{\mathrm{sing}}$ is the source record, and $\zeta_A,\zeta_B$ collect unresolved local apparatus and Noether-Sea microstates, the observer-level joint response target is
 
 $$
-\begin{aligned}
-P_{AB}^{\text{test}}(a,b \,|\, \hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
+P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
 =
 \int
-&K_A(a \,|\, \hat{\mathbf{m}}_A;Z_A,\zeta_A,\lambda_{AB}^{\text{prov}})
-K_B(b \,|\, \hat{\mathbf{m}}_B;Z_B,\zeta_B,\lambda_{AB}^{\text{prov}})
-\\
-&d\nu_A(Z_A,\zeta_A \,|\, \hat{\mathbf{m}}_A,\lambda_{AB}^{\text{prov}})
-d\nu_B(Z_B,\zeta_B \,|\, \hat{\mathbf{m}}_B,\lambda_{AB}^{\text{prov}})
-d\rho_{AB}^{\text{prov}}(\lambda_{AB}^{\text{prov}}).
-\end{aligned}
+K_{ab}^{AB}
+\left(
+\hat{\mathbf m}_A,
+\hat{\mathbf m}_B;
+\Pi_{AB}^{\mathrm{sing}},
+\zeta_A,
+\zeta_B
+\right)
+d\nu_{A,\hat{\mathbf m}_A}(\zeta_A)
+d\nu_{B,\hat{\mathbf m}_B}(\zeta_B)
+d\rho_{\mathrm{src}}
+\left(
+\Pi_{AB}^{\mathrm{sing}}
+\middle|
+P_{\mathrm{src}}^{\mathrm{sing}}
+\right).
 $$
 
-Here $Z_A$ and $Z_B$ are the local incoming ledger coordinates at the two detectors, while $\zeta_A$ and $\zeta_B$ collect the unresolved apparatus and local Noether-Sea microstates. Writing this integral does not pass the Bell gate. It names the diagnostic object: the derived kernels and provenance measure must reproduce the tested Bell correlations while preserving no-signaling and measurement independence, and they must identify exactly which provenance or response compression prevents reduction to Bell's factorized form. If the expression reduces to an ordinary measurement-independent Bell-local hidden-variable integral, the Bell gate fails.
+Writing this integral does not pass the Bell gate. It names the diagnostic object: the derived joint-record kernel and provenance measure must reproduce the tested Bell correlations while preserving no-signaling and measurement independence, and they must identify exactly which provenance or response compression prevents reduction to Bell's factorized form. Product form belongs only as a failure audit:
+
+$$
+\Delta_{\mathrm{prod}}
+=
+\inf_{K_A,K_B}
+\sup_{a,b,\hat{\mathbf m}_A,\hat{\mathbf m}_B}
+\left|
+P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+-
+\int K_AK_B\,d\mu_{AB}^{\mathrm{rec}}
+\right|.
+$$
+
+If $\Delta_{\mathrm{prod}}$ vanishes in the completed record table, the expression has reduced to an ordinary measurement-independent Bell-local hidden-variable integral and the Bell gate fails.
 
 The diagnostic must also exclude a hidden slide into measurement-independence denial. For the pair-provenance measure, define
 
@@ -223,15 +245,18 @@ Temporal-nonlocality and retrocausal interpretations remain useful only as compa
 
 ### No-Signaling: Why Correlations Cannot Transmit Information
 
-Any accepted Bell closure in the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework must preserve no-signaling for a precise structural reason. The marginal probability of obtaining outcome $a$ at detector $A$ is:
+Any accepted Bell closure in the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework must preserve no-signaling for a precise structural reason. The marginal probability of obtaining outcome $a$ at detector $A$ is computed from the joint-record law:
 
 $$
-P(a \,|\, \hat{\mathbf{m}}_A) = \int P(a \,|\, \hat{\mathbf{m}}_A, \lambda)\, \rho(\lambda)\, d\lambda,
+P(a|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+=
+\sum_b
+P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B),
 $$
 
-where $\rho(\lambda)$ is the distribution over hidden variables as accessible to the Physical Observer. This marginal is independent of $\hat{\mathbf{m}}_B$ because:
+and an admissible model must make this marginal independent of $\hat{\mathbf m}_B$. This independence is required because:
 
-1. The hidden-variable distribution $\rho(\lambda)$ is set at the source event and does not depend on the distant setting $\hat{\mathbf{m}}_B$,
+1. The source-provenance distribution is set at the source event and does not depend on the distant setting $\hat{\mathbf m}_B$,
 2. No causal wake from the $B$-measurement apparatus reaches $A$ before $A$'s measurement (assuming spacelike separation in the emergent metric),
 3. The local dynamics at $A$ are fully determined by $A$'s microstate plus the local Noether Sea—no input from the distant setting.
 
@@ -320,11 +345,31 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Boh
 **Failure Modes:**
 - If an experiment demonstrates **signaling** via entanglement (information transfer without a sub-$c_f$ channel), the mechanism fails.
 - If a Bell test with verified measurement independence and closed loopholes produces correlations **exceeding** the Tsirelson bound ($|S| = 2\sqrt{2}$), the quantum formalism itself would be violated, requiring revision at both levels.
-- If the pair-provenance ledger plus local apparatus-response maps fail to reproduce the $\cos^2(\theta/2)$ correlation function for spin-singlet pairs from the hidden-variable geometry, the specific Bell-closure mechanism is falsified, though the general ontological framework may admit repair.
+- If the pair-provenance ledger plus local apparatus-response maps fail to reproduce the full spin-singlet joint law from the hidden-variable geometry, the specific Bell-closure mechanism is falsified, though the general ontological framework may admit repair.
 
 **Bell Closure Gate:**
 - Simulate a minimal correlated-pair source event (e.g., a parent assembly fragmenting into two daughter tri-binaries) under the Master Equation and extract the joint outcome statistics as a function of relative measurement angle.
-- Derive the hidden-variable distribution $\rho(\lambda)$ for a spin-singlet-like source event from the conservation constraints and verify that it reproduces $P(a, b | \hat{\mathbf{m}}_A, \hat{\mathbf{m}}_B) = \frac{1}{2}\sin^2\!\bigl(\tfrac{\theta_{AB}}{2}\bigr)$.
+- Derive the source-provenance distribution for a spin-singlet-like source event from the conservation constraints and verify the full joint law
+  $$
+  P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+  =
+  \frac14
+  \left(
+  1-ab\,\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B
+  \right),
+  \qquad
+  a,b\in\{-1,+1\},
+  $$
+  which yields
+  $$
+  E_{\mathrm{SG}}
+  \left(
+  \hat{\mathbf m}_A,
+  \hat{\mathbf m}_B
+  \right)
+  =
+  -\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B.
+  $$
 - Investigate whether the non-separability of $\lambda$ can be given a precise geometric characterization in terms of correlated binary-plane orientations and wake-phase offsets.
 
 The philosophy-facing framing of this problem lives in [Crisis in Physics](../philosophy-history/crisis-in-physics.md), especially its Bell and measurement sections.

@@ -119,6 +119,8 @@ without first solving the return-map fixed point abstractly. A numerical enclosu
 
 The governing law for that certification is the dual-mollified absolute-time integral law from [collinear-breather.md](./collinear-breather.md). Branch-sum formulas inside this note are working reductions on finite simple-root charts, not replacements for the integral law through separator layers or causal folds.
 
+The first explicit velocity-class packet has sharpened this status without proving a breather. A fixed cosine candidate fails at the parent-complement part of the null-coordinate pre-ledger: after the accepted simple-root windows and fold-layer diagnostics are removed, residual equality cores remain in the parent complements. Those diagnostics are useful, but they do not authorize branch-chart construction. The next candidate source must therefore be a fresh fold-adapted collocation packet, or an equivalent certified construction, whose null-coordinate pre-ledger passes before any active branch chart is built.
+
 ## Variables and Speed Classes
 
 Work in the same reflection-symmetric 1D reduction as the main note:
@@ -879,6 +881,12 @@ The interval validator should therefore start from a causal pre-ledger with thre
 > assigning each subblock one of three certified statuses:
 > empty, simple-root, or fold-layer. Empty subblocks contain no self-image roots. Simple-root subblocks carry interval enclosures for the root count, root sign, source Jacobian floor, memory-depth range, and contribution sign. Fold-layer subblocks are excluded from branch-sum reduction until the dual-mollified fold certificate supplies a parity-preserving incoming-to-outgoing transition.
 >
+> The finite partition must also consume the parent-complement strips left after accepted simple-root and fold-layer subblocks have been removed. A parent-complement strip
+> $$
+> B
+> $$
+> is accepted only if it has strict null-coordinate range separation, endpoint-excluded singleton contact under the declared boundary convention, exact certified fold-layer coverage, or another already accepted same-packet complement predicate. Positive-width null-coordinate overlap, a residual equality core, or an uncertified endpoint-scale gap rejects the candidate before branch-chart certification.
+>
 > Completing this theorem target is the first seed-chart gate. If
 > $$
 > \mathcal{L}_{\mathcal{K}}
@@ -1350,6 +1358,8 @@ $$
 $$
 does not advance to branch-chart certification while any ordered block remains unresolved.
 
+The same acceptance rule applies to parent complements. After accepted simple-root and fold-layer subrows are removed from a parent block, every leftover parent-complement strip must be accepted by strict null-coordinate range separation, endpoint-excluded singleton contact under the declared boundary convention, exact fold-layer coverage, or another already accepted same-packet complement predicate. Any positive-width overlap, residual equality core, or uncertified endpoint-scale gap rejects the packet before branch-chart work.
+
 At a separator row, a single visible simple root adjacent to the fold is not enough to pass the pre-ledger. The fold-layer certificate must also account for any opposite-degree branch that is temporarily carried by the excluded diagonal
 $$
 s=t
@@ -1524,13 +1534,14 @@ $$
    (N,M)
    $$
    used for action bookkeeping, distinguishing it from the raw simple-root counts whenever fold pairs are grouped into one active channel.
-9. If the pre-ledger or self-image table fails to close with strict finite margins, reject the current itinerary/candidate packet before attempting quadrature or collocation residuals.
-10. If the self-image table closes, convert it into
+9. If the pre-ledger or self-image table fails to close with strict finite margins, reject the current itinerary/candidate packet before attempting quadrature or collocation residuals. A fixed candidate whose parent-complement ranges retain positive-width overlap is not rescued by mesh refinement alone.
+10. If the current candidate fails at that gate, instantiate a fresh fold-adapted piecewise collocation candidate, with the same-packet null-coordinate pre-ledger as its first acceptance row.
+11. If the self-image table closes, convert it into
    $$
    \mathcal{B}_{\mathrm{act}},
    $$
    inactive branch complements, Jacobian floors, separation margins, and memory-depth bounds.
-11. If the self-image table closes topologically but does not close algebraically, build a piecewise fractionally augmented Chebyshev or cubic
+12. If the self-image table closes topologically but does not close algebraically, build a piecewise fractionally augmented Chebyshev or cubic
    $$
    C^1
    $$
@@ -1539,17 +1550,17 @@ $$
    \phi_{\mathrm{cyc}}
    $$
    and certify the finite active branches numerically by interval validation.
-12. Sweep
+13. Sweep
    $$
    (\eta,\epsilon_c,V_{\max})
    $$
    or a justified lower-dimensional slice to locate the itinerary-admissible parameter region before attempting the full corridor certificate.
-13. Build the first certificate packet
+14. Build the first certificate packet
    $$
    \mathfrak{C}_{\mathrm{ans}}
    $$
    and compute its returned section residuals.
-14. If the residuals have strict slack, compute the finite certificate data and test the five audit rows in [collinear-breather.md](./collinear-breather.md).
+15. If the residuals have strict slack, compute the finite certificate data and test the five audit rows in [collinear-breather.md](./collinear-breather.md).
 
 ## Provisional Assessment
 
@@ -1565,4 +1576,4 @@ $$
 $$
 and certify the finite active branches numerically.
 
-The first doubled-itinerary affine check has a sharper conclusion: the apparent odd simple-root births at the first and third separators are separator fold rows with one opposite-degree branch carried by the excluded diagonal, not completed branch-chart rows. The next concrete calculation is therefore to certify the death-side separators with the same fold normal form while tracking the excluded diagonal, then fill the ordered self-image table with strict range gaps, Jacobian floors, memory-depth ranges, and inactive complements. The accepted output is the finite audit packet, not an elegant formula.
+The first doubled-itinerary affine check has a sharper conclusion: the apparent odd simple-root births at the first and third separators are separator fold rows with one opposite-degree branch carried by the excluded diagonal, not completed branch-chart rows. The first fixed candidate also shows that parent-complement equality cores can remain after useful subrow and fold diagnostics are extracted. The next concrete calculation is therefore not another branch chart on that fixed candidate, but a fresh fold-adapted collocation packet whose null-coordinate pre-ledger consumes every ordered row before any branch-chart, residual, or corridor work begins. The accepted output is the finite audit packet, not an elegant formula.

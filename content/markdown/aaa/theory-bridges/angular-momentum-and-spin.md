@@ -1125,6 +1125,18 @@ $$
 
 The clean four-substep branch is energy-closed only when $\Delta E_{\text{mismatch}}=0$. If $\omega_{\text{tx}}<\omega_{\ast}$, the branch cannot retain positive outer, middle, and inner increments without drawing energy from a root reconfiguration or the wake/internal ledger. If $\omega_{\text{tx}}>\omega_{\ast}$, the surplus must be routed into wake recoil, transport, or another admissible branch. This is a useful failure condition, not a defect of the scaffold: a low-frequency outer hit cannot be promoted into a positive inner self-hit retune for free.
 
+Equivalently, the branch certificate carries the signed energy residual
+
+$$
+\mathcal R_E^{B_{\min}}
+=
+\left(
+\omega_\ast-\omega_{\text{tx}}
+\right)\hbar.
+$$
+
+The minimal four-substep branch is therefore a conditional certificate, not a branch-selection theorem. In the fixed-normal, no-retained-wake chart, the scalar and vector rows close by the declared assumptions. The root replay, phase lock, torque consistency, tail-wake pullback, section stability, and nonzero energy mismatch rows still have to be populated from a retained branch chart before the branch can be treated as a physical selected outcome.
+
 The conservation result for this branch is therefore explicit:
 
 $$
@@ -1162,6 +1174,25 @@ For branches outside this minimal certificate, the open equations are:
 3. Derive the hinge map that decides whether the middle layer stays on $R_M\omega_M=c_f$ or crosses the separator and returns.
 4. Derive the inner self-hit map that fixes $b$, $\Delta N_{\text{self}}$, and $\Delta E_{I,\text{root}}$.
 5. Derive the wake recoil equations that fix $w$, $\Delta E_{\text{wake}}$, and any transverse vector balance when layer normals precess.
+
+The smallest useful branch-selection comparator keeps the minimal certificate next to a possible retained wake/recoil competitor:
+
+$$
+\mathfrak K_{\min,\mathrm{wr}}
+=
+\left(
+B_{\min}^-,
+\Gamma_{\min},
+W_{\min},
+\mathfrak a_{\min},
+\mathfrak a_{\mathrm{wr}},
+\Theta_{\min,\mathrm{wr}},
+\mathcal R_{\mathrm{cmp}},
+\mathcal V_{\mathrm{cmp}}
+\right).
+$$
+
+Here $\mathfrak a_{\mathrm{wr}}$ is not assumed to exist. It must be emitted by the finite branch machinery as a retained wake or recoil candidate with row lineage, quotient, energy, phase, stability, and route data. Until both sides of $\mathfrak K_{\min,\mathrm{wr}}$ carry populated residuals, any claim of $\operatorname{Sel}_{B,N}=\mathfrak a_{\min}$ remains deferred.
 
 ## Ordered-Core Spinor Target
 
@@ -1286,6 +1317,88 @@ $$
 $$
 
 where the entries record, respectively, phase-branch parity, emission-order parity, component-resolved causal-writhe parity, and row-sourced chirality parity. A nontrivial spinor-support candidate must exhibit at least one non-gauge retained row with $\epsilon_{r}^{2\pi}=1$ while the doubled path restores the lifted history, $\epsilon_{r}^{4\pi}=0$, and the angular-momentum residual remains below tolerance. A visible ordered-frame loop by itself gives only ordinary $SO(3)$ closure. A nonzero angular-momentum residual is a conservation failure, not evidence for a spinor sheet.
+
+The row-local causal-writhe version of this support test uses a lifted retained row
+
+$$
+\widetilde r(s)
+=
+\left(
+t_{0,r}(s),
+k_r(s),
+\mathcal E_r(s),
+\Xi_r(s),
+\mathcal C_r(s)
+\right),
+\qquad
+\Xi_r
+=
+\left(
+\xi_{r,H},
+\xi_{r,M},
+\xi_{r,L}
+\right),
+$$
+
+where $s\in[0,2]$ traces one visible $2\pi$ loop followed by its doubled path. The row-local parity extractor is
+
+$$
+\Pi_{W,r}^{2\pi}
+=
+W_r(1)-W_r(0)
+\pmod 2,
+\qquad
+\Pi_{W,r}^{4\pi}
+=
+W_r(2)-W_r(0)
+\pmod 2.
+$$
+
+A retained row $r_\star$ can support the spinor lift only if
+
+$$
+\Pi_{W,r_\star}^{2\pi}=1,
+\qquad
+\Pi_{W,r_\star}^{4\pi}=0,
+\qquad
+\Delta_{\Pi_W}(r_\star)\le\varepsilon_{\Pi_W}.
+$$
+
+This is still a proof obligation. The present corpus has the extractor and control conditions, but it does not yet contain a populated retained row that passes them.
+
+The same test needs an explicit gauge control so that coordinate relabeling is not mistaken for spinor support:
+
+$$
+\Delta_{\mathrm{gc}}(r)
+=
+\Delta_{\mathrm{rig}}(r)
++
+\Delta_{\mathrm{flip}}(r)
++
+\Delta_{\mathrm{phys}}(r)
++
+\Delta_{\mathrm{quot}}(r)
++
+\Delta_{\mathrm{dbl}}(r)
++
+\Delta_{\mathbf J}(r).
+$$
+
+The null rigid row must return ordinary closure,
+
+$$
+\Pi_{W,r,\mathrm{rig}}^{2\pi}=0,
+\qquad
+\Pi_{W,r,\mathrm{rig}}^{4\pi}=0.
+$$
+
+If an allowed branch-preserving gauge probe $g\in G_{\mathrm{gauge}}$ changes the proposed parity,
+
+$$
+\delta_g\Pi_{W,r}^{2\pi}=1,
+$$
+
+then the parity is a gauge artifact, not spinor support. A passed spinor row must keep $\Delta_{\mathrm{gc}}(r)\le\varepsilon_{\mathrm{gc}}$ and must also keep the $2\pi$ and $4\pi$ angular-momentum residuals below tolerance.
 
 The Lorentz-sector extension is a separate but connected theorem target. Once the relativistic observer sector has been recovered, the same ordered Noether-core frame must admit an effective spinor response compatible with the double cover
 

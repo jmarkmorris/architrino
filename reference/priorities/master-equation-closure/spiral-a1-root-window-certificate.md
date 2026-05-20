@@ -301,13 +301,13 @@ Jacobian-floor, self-coincidence, and finite-memory rows above certify the
 retained $P_1,P_2,P_3,S_1$ chart at priority-packet level under the displayed
 finite-cover arithmetic.
 
-Repository verdict: `proof_target_until_runner_or_sidecar_integration`. The
-runner and current generated reports still own VP-1 constants and do not emit
-these A1 rows. A coordinator can port this packet and the companion A1 drive
-interval rows into an executable sidecar without changing authored AAA prose.
+Repository verdict: `sidecar_integrated_radial_blocked`. The runner now supports
+the A1 candidate path, and [spiral-a1-current-interval-rows](spiral-a1-current-interval-rows.json)
+consumes these retained-root rows together with the companion A1 drive and
+root-transport rows. The remaining theorem-grade blocker is the independent
+$\Gamma$ interval for radial turn.
 
-Promotion decision: priority-only. The A1 retained root chart is a concrete
-certificate artifact for `spiral_branch_chart_test`, but it is not ready for
-reader-facing corpus promotion as a closure result until the executable
-certificate consumes the A1 rows, root transport is emitted on the same chart,
-and the radial force-ratio row is resolved.
+Promotion decision: priority-only for closure, sidecar-promoted for structure.
+The A1 retained root chart is now a concrete sidecar-consumed artifact for
+`spiral_branch_chart_test`, but it is not ready for reader-facing corpus
+promotion as a closure result until the radial force-ratio row is resolved.

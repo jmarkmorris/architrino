@@ -134,6 +134,8 @@ The inner binary is therefore self-hit and history-supported, the middle binary 
 
 This is why ordinary circular or elliptic orbit language is limited. A circular carrier can expose useful geometry and a separable layer ansatz can diagnose missing forces, but a tangential residual in that ansatz does not by itself settle the tri-binary problem. In a coupled lock, inter-layer wakes, self-hit roots, and near-separator branch changes can supply phase corrections that are absent from a single isolated two-body chart.
 
+The same distinction applies to compact tri-binary carriers. A finite-coordinate no-go for one compact carrier rejects that branch chart and its declared coordinates; it does not falsify the $A_0$ branch program. Raw root-key splits, observation-phase bins, and fitted residual bases remain diagnostic unless they belong to a branch-native coordinate declared before fitting. A checker-cleared coordinate may seed only a rerun candidate; it is not physical branch structure until the same branch identity survives root-ledger transport, residual checks, and stability continuation.
+
 The perturbation status should therefore be sorted before simplification:
 
 | Perturbation class | Dynamics role |

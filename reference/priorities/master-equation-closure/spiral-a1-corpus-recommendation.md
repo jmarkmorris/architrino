@@ -1,8 +1,8 @@
 # Spiral A1 Corpus Recommendation
 
-Status. Recommendation-only packet for `spiral_branch_chart_test`. This file decides what, if anything, from the VP-1 $\Gamma$ blocker and the A1 partial interval certificate should be recommended for later `content/markdown/aaa` edits. It does not edit authored corpus prose.
+Status. Promotion packet for `spiral_branch_chart_test`. This file records the completed promotion of the generic $\Gamma$ normalization and the fixed A1 tangential-pass/radial-blocked benchmark into `content/markdown/aaa`, while preserving the remaining A1 rows that are priority-only.
 
-Claim level. Corpus recommendation, not a theorem-grade branch certificate. The current certificate picture is clear enough to keep the VP-1 and A1 numeric candidate material priority-only while recommending one generic normalization clarification for the Master EOM spiral section.
+Claim level. Corpus promotion record, not a theorem-grade branch certificate. The current certificate picture is clear enough to promote A1 only as a bounded retained-chart benchmark: tangential drive passes, radial turn remains blocked by the missing independent $\Gamma$ interval.
 
 ## Source Picture
 
@@ -48,24 +48,24 @@ $$
 D_T(C_{\mathrm{A1}};I_\ast)
 \in[-0.0015572472070875527,-0.00023480430280344085].
 $$
-Those rows are still priority-only because the repository runner and sidecar have not consumed the A1 constants, root transport is not emitted on the same A1 chart, and no accepted $\Gamma$ interval resolves the radial turn.
+Those rows are now consumed by [spiral-a1-current-interval-rows](spiral-a1-current-interval-rows.json) and [spiral-a1-interval-report](spiral-a1-interval-report.md), including the same-chart root-transport row. They still do not make A1 a closed isolated spiral because no accepted $\Gamma$ interval resolves the radial turn.
 
 ## Candidate Corpus Destinations
 
 | Destination | Recommendation | Reason |
 | --- | --- | --- |
-| [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md), variable-pitch spiral section | Recommend one generic normalization clarification after the radial-turn inequality, but do not name VP-1 or A1 yet. | The current section gives the radial equation but not the normalized force-ratio warning exposed by the VP-1 blocker. This clarification is generally useful and does not overpromote a candidate. |
-| [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md), analytic footholds list | Defer. | A1 has a partial priority-packet interval certificate, but it is not yet a repository theorem-grade branch chart because sidecar integration, root transport, and $\Gamma$ remain unresolved. |
+| [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md), variable-pitch spiral section | Promoted the generic normalization clarification after the radial-turn inequality, without naming VP-1 or A1. | The prior section gave the radial equation but not the normalized force-ratio warning exposed by the VP-1 blocker. This clarification is generally useful and does not overpromote a candidate. |
+| [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md), variable-pitch spiral section | Promoted a short A1 worked benchmark, explicitly labeled tangential-pass/radial-blocked. | Sidecar integration and root transport close the non-radial blocker. The remaining blocker is exactly the independent $\Gamma$ interval already explained by the promoted normalization paragraph. |
 | [dyadic-lock](../dyadic-lock/dyadic-lock.md) | Defer. | The promotion map already names dyadic lock as a possible destination after an admissible variable-pitch candidate reports all interval rows. A1 has not reached that level because radial turn remains blocked. |
 | Validation-gate or closure-ledger files | Do not add a new gate. | The existing `spiral_branch_chart_test` already owns the tested observable: negative weighted tangential drive with positive Jacobian floors, finite memory, and radial-turn status. A new gate would duplicate existing obligations. |
 
-## Exact Recommended Addition
+## Promoted Addition
 
-Recommended destination: [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md), immediately after the current paragraph ending:
+Promoted destination: [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md), immediately after the paragraph ending:
 
 > If all admissible roots keep the weighted tangential sum nonnegative on every candidate turn corridor, the bare isolated spiral does not beat the circular obstruction.
 
-Recommended addition:
+Promoted addition:
 
 ```markdown
 For a retained chart at a turn center, the radial row can be normalized by the common force factor, but that normalization separates the branch sum from the independent force ratio. In the equal-magnitude opposite-polarity case, one may write
@@ -87,7 +87,27 @@ $$
 The retained branch chart fixes $B_r$ only. It does not determine $\Gamma$ from $b_\ast=\Omega r_\ast/c_f$, from the delayed-root offsets, or from a branch-sum threshold. A branch certificate must therefore either supply an independently derived force-ratio interval or report the radial row as blocked.
 ```
 
-This is the only content addition I recommend from the current material. It is a derivation/closure-target clarification, not a VP-1 result announcement. It preserves the current theorem-target status of the variable-pitch spiral section and avoids importing priority-only candidate bookkeeping into reader-facing prose.
+This was the first content addition promoted from the current material. It is a derivation/closure-target clarification, not a VP-1 or A1 result announcement. It preserves the current theorem-target status of the variable-pitch spiral section and avoids importing priority-only candidate bookkeeping into reader-facing prose.
+
+## Promoted A1 Benchmark Addition
+
+Promoted destination: [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md), immediately after the normalized radial-row clarification.
+
+Promoted addition:
+
+```markdown
+A fixed retained-chart benchmark illustrates the split. For the $a=0.204$, $b_\ast=7/2$ variable-pitch spiral on $I_\ast=[-\pi/6,\pi/6]$, the retained $3+1$ chart has certified active-root, inactive-gap, Jacobian-floor, finite-memory, and root-transport rows. Its weighted tangential row is strictly negative:
+$$
+D_T(I_\ast)\in[-0.0015572472070875527,-0.00023480430280344085].
+$$
+The same chart is still not a closed isolated spiral certificate, because the radial branch row only supplies
+$$
+B_r(0)\in[-0.005994791326773983,-0.005994715991872956],
+$$
+and the normalized radial condition still requires an independently derived interval for $\Gamma$. Thus this benchmark passes the tangential-drive test while leaving radial turn blocked.
+```
+
+This is a derivation/closure-target benchmark, not an ontology edit and not a closure result. It records a replayable partial certificate under the existing `spiral_branch_chart_test` rather than creating a new gate.
 
 ## Blockers To Immediate Promotion
 
@@ -100,8 +120,7 @@ VP-1 blockers:
 
 A1 blockers:
 
-- The A1 active-root, inactive-gap, Jacobian-floor, self-coincidence, finite-memory, radial-threshold, and tangential-drive rows are priority-packet rows, not yet runner-emitted theorem-grade sidecar rows.
-- The A1 root-transport row has not been emitted on the same retained chart.
+- The A1 active-root, inactive-gap, Jacobian-floor, self-coincidence, finite-memory, root-transport, radial-threshold, and tangential-drive rows are now sidecar-consumed rows, but only the tangential row is a passing drive row.
 - The radial branch interval is only a threshold report; no accepted $\Gamma$ interval exists in the normalization $\Gamma=r_\ast^3\Omega^2/(\kappa q_1^2)$.
 - The strict negative tangential interval proves only the weighted tangential row for this retained chart. It does not by itself prove a passing bare isolated spiral certificate.
 - The $a\approx0.235$ branch-transition warning shows that negative sampled drive farther along the continuation can belong to a different chart, so sampled sign alone must not be generalized.
@@ -110,18 +129,18 @@ A1 blockers:
 
 | Signal | Bucket | Classification |
 | --- | --- | --- |
-| $\Gamma$ non-identifiability from VP-1 kinematics | Derivation/closure target | Ready to recommend as a generic Master EOM clarification. It states a necessary certificate condition without choosing a force-ratio convention. |
+| $\Gamma$ non-identifiability from VP-1 kinematics | Derivation/closure target | Promoted as a generic Master EOM clarification. It states a necessary certificate condition without choosing a force-ratio convention. |
 | VP-1 structural interval rows plus certified positive tangential interval | Effective summary and derivation/closure target | Keep priority-only until the radial row is resolved or the corpus needs a carefully bounded worked example of a failed local tangential row. |
-| A1 retained-root packet plus strict negative tangential interval | Derivation/closure target | Priority-only partial certificate. It should drive runner or sidecar integration on the fixed $a_{\mathrm{A1}}=0.204$ chart, not corpus prose yet. |
+| A1 retained-root packet plus strict negative tangential interval | Derivation/closure target | Sidecar-consumed partial certificate. It has been promoted as a scoped corpus benchmark stating tangential pass and radial block, but not as a closure claim. |
 | Any claim that A1 is a passing spiral candidate | Speculation if stated now | Block until active-root, inactive-gap, Jacobian-floor, memory, radial, tangential, and $\Gamma$ interval rows are certified. |
 | Any new ontology from VP-1 or A1 | Ontology | None. These packets test the delayed Master EOM branch chart; they do not add substrate entities or new project terminology. |
 
 ## Promotion Decision
 
-Promote now: none in this packet, because the current stopping point is a corpus-change recommendation rather than an authored `content/markdown/aaa` edit.
+Promoted now: the generic normalized radial-row clarification, the scoped A1 tangential-pass/radial-blocked benchmark, and the corresponding analytic-footholds roadmap alignment in [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md).
 
-Recommend for parent edit review: the generic normalized radial-row clarification above in [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md).
+Deferred from authored corpus prose: VP-1 numeric status, VP-1 sidecar details, the $\Gamma$ source-audit trail, A1 sampled sign-reversal numbers, and any statement that A1 is a passing bare isolated spiral.
 
-Keep priority-only: VP-1 numeric status, VP-1 sidecar details, the $\Gamma$ source-audit trail, the A1 retained-chart interval rows, and all A1 sampled sign-reversal numbers.
+Reason: the generic clarification protects the theorem target from circular force-ratio inference, and the A1 benchmark is replayable as a partial certificate. The independent $\Gamma$ force-ratio row still blocks any closure claim.
 
-Next certificate target: port the fixed $a_{\mathrm{A1}}=0.204$ root-window, radial-threshold, and tangential interval rows into a typed runner sidecar; emit root transport on the same chart; and keep $\Gamma$ as an independent radial-turn row, not as a continuation knob.
+Next certificate target: decide the A1 radial row by supplying an accepted $\Gamma$ interval or by proving that no accepted force-ratio interval can satisfy the threshold. Keep $\Gamma$ as an independent radial-turn row, not as a continuation knob.

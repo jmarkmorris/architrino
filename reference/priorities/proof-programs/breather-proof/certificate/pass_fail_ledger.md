@@ -103,7 +103,8 @@ SHA-256 values were observed during this pass for the existing artifacts.
 | `fixed_cosine_refinement_rescue_test.md` | `rejected` rescue test | `0b33765cd6b50622336c0d75bb1e919b19a01b68279ea1736ddca2a0fe651e68` | Shows mesh-only/simple-root refinement is not a plausible rescue for the fixed cosine null-coordinate geometry; residual equality collars remain structural. |
 | `next_candidate_solver_target.md` | `accepted` as next solver target | `34ebe2b4fe26533f464af6b3194dca2cb9a1f72e3ead5b94f7c66327c3cdd96e` | Defines the next executable target as a fresh fold-adapted collocation candidate with the null-coordinate pre-ledger as the first acceptance row. |
 | `fresh_fold_collocation_solver_surface.md` | `accepted` as solver-surface audit | `4a71a8732c48e8207f997463e730eac65f92b4189c6b8c08934765f21ddb41e7` | Records that no runnable breather-specific fresh-candidate solver or pre-ledger generator exists yet and specifies the minimum lawful same-packet successor artifact set. |
-| `aaa_corpus_recommendation_handoff.md` | `accepted` as corpus recommendation handoff | `0d4a26f80b2df54b66573d8829579c1c35f60a34a078744acf9df11d949e6aaf` | Recommends scoped AAA updates that state the null-coordinate pre-ledger as a candidate-falsification gate while keeping detailed rejected-packet data priority-only. |
+| `aaa_corpus_recommendation_handoff.md` | `accepted` as promoted corpus handoff | `82369034df58a41b6983edf1a5042fd788ff55b9ebe791ac1b60ccf25a0b6408` | Records that scoped AAA updates promoted the null-coordinate pre-ledger as a candidate-falsification gate while keeping detailed rejected-packet data priority-only. |
+| `regular_boundary_user_facing_recommendation.md` | `accepted` as user-facing corpus recommendation | `b7e4f09b90463fd04cf6726b5b3c03cbc8d468c5aa883d9d1b4928f560b34a26` | Recommends no named regular-boundary theorem in AAA now; the current generic same-packet complement predicate is sufficient until a same-packet inclusion/domination theorem exists. |
 | `fold_row_consumption_attempt.md` | `rejected` historical row-consumption attempt | `51c766cb2f733a0a39aa65701194c27be9de1f4f2535a821413f85540c3f32cd` | Records that the earlier rejected interval attempt consumed zero rows before the accepted full-interval fallback certificate existed. |
 
 ## Absent Required Artifacts
@@ -263,6 +264,7 @@ Next certificate action:
 1. Use `fresh_fold_collocation_solver_surface.md` and `next_candidate_solver_target.md` to implement or manually instantiate a fresh fold-adapted collocation candidate for `doubled_four_arc_generic`; do not attempt another mesh-only rescue of the rejected cosine packet.
 2. Run itinerary parity and the null-coordinate pre-ledger on the new packet identity before any branch-chart work.
 3. Only after every pre-ledger row is `empty`, `simple_root`, or bounded `fold_layer` may `branch_chart.json` be produced.
-4. Use `aaa_corpus_recommendation_handoff.md` as the corpus-edit recommendation packet; promote only the high-level falsification-gate principle, not the detailed rejected-packet inventory.
+4. The high-level falsification-gate principle has been promoted into the three proof-program AAA documents; keep the detailed rejected-packet inventory priority-only.
+5. `regular_boundary_user_facing_recommendation.md` records the user-facing documentation decision: do not name regular-boundary coverage as accepted doctrine until a finite same-packet inclusion/domination theorem exists.
 
 The current cosine template is rejected before branch-chart certification even though the finite fixed-parameter fold ceiling is available.

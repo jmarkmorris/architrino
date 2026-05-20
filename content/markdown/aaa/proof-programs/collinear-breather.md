@@ -4679,13 +4679,17 @@ $$
 P_\eta.
 $$
 
+The first explicit velocity-class packet has moved the obstruction from candidate absence to candidate falsification. A fixed cosine candidate supplies useful null-coordinate and fold-layer diagnostics, but it fails at the parent-complement part of the pre-ledger: after accepted simple-root windows and fold-layer diagnostics are removed, some parent complements still carry equality cores or non-strict null-coordinate overlap. The next admissible route is therefore a fresh fold-adapted collocation candidate, or an equivalent certified construction, whose pre-ledger closes before any seed-chart or branch-chart row begins.
+
 The negative-breather lesson is that even a formal expansion valid to all
 orders can miss a leakage channel outside the expansion scale. The collinear
 program therefore treats a small residual curve, a long-lived numerical trace,
 or a closed-looking ansatz as candidate evidence only. Promotion requires the
 existing certificate rows to close the leakage routes they control: the
 pre-ledger fold-layer budgets, coupled-corridor propagation, returned-sample
-preservation, and topology/self-map row on one certified domain.
+preservation, and topology/self-map row on one certified domain. The same rule
+applies internally: partial diagnostics remain candidate evidence while
+parent-complement equality cores remain unresolved.
 
 Before those five audit rows can be meaningful, the candidate must pass the named null-coordinate pre-ledger target from [Closed-Form Collinear Breather Ansatz](./closed-form-collinear-breather-ansatz.md#null-coordinate-causal-pre-ledger). Concretely, the proof must:
 
@@ -4706,7 +4710,7 @@ Before those five audit rows can be meaningful, the candidate must pass the name
    \qquad
    w=c_f t+x
    $$
-   to classify every ordered arc-pair block as empty, simple-root, or fold-layer. If this finite pre-ledger cannot be certified with strict gaps, derivative floors, and fold-layer bounds, the candidate or itinerary fails before the seed-cycle margin ledger is attempted;
+   to classify every ordered arc-pair block as empty, simple-root, or fold-layer. After accepted simple-root and fold-layer subblocks are removed, the remaining parent-complement strips must also be consumed by strict range separation, endpoint-excluded singleton contact under the declared boundary convention, exact fold-layer coverage, or another already accepted complement predicate. If this finite pre-ledger cannot be certified with strict gaps, derivative floors, fold-layer bounds, and consumed parent complements, the candidate or itinerary fails before the seed-cycle margin ledger is attempted;
 3. verify the seed-cycle margin ledger
    $$
    \nu_{\mathrm{seed}}>0,
@@ -10304,6 +10308,7 @@ The scaffold is now coherent enough to freeze as a proof program, but the follow
 - **Partner-root inequality, not equality.** As the trajectory brakes after the crossing, the true partner distance can only become smaller than the leading linear prediction, which strengthens the partner force. So the partner-root estimate should be used as an upper bound on $r_p(t)$ and therefore a lower bound on $A_p^{\rho}(t)$, not as an exact identity on the nonlinear window.
 - **Inner rebound region.** The theorem program still packages the actual near-center reversal into the admissible history class. That is acceptable for the current reduced problem, but it means the hardest local dynamics near the inner rebound is not yet derived from first principles here.
 - **Root multiplicity control.** The branch sums defining $A_p$, $A_s^{\text{out}}$, and $A_s^{\text{in}}$ are only tame if the number of active roots stays controlled. The regularized model softens each branch contribution, but it does not by itself prevent root proliferation from defeating the envelope bounds.
+- **Candidate-packet falsification.** A rejected candidate packet may preserve useful diagnostics, such as strict subrows, fold normal forms, or range gaps, but those diagnostics do not promote the packet into a branch chart. Once a pre-ledger leaves a positive-width parent-complement overlap, a residual equality core, or an uncertified endpoint-scale gap, the same packet cannot feed the corridor, monodromy, returned-sample, topology, or Schauder rows.
 - **Compactness is conditional.** The added acceleration bound is the right first step toward precompactness in $C^1$, but a later fixed-point theorem will still need the exact topology and continuity properties of the return map to be verified rather than assumed.
 - **Continuity through the crossing.** The theorem uses a history class in which velocity is continuous through $t=0$, but the dual-mollified acceleration can still develop a very sharp gradient near the origin. Any Banach-space formulation must therefore keep enough Lipschitz-velocity, or weak acceleration, control near the boundary of the history interval that the delayed integrals remain well behaved at the crossing.
 

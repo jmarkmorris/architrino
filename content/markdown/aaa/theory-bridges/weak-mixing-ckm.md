@@ -169,6 +169,21 @@ d_{\Sigma}\!\left(
 $$
 The last term records right-handed charged-current leakage in the hard-gate model, or its declared smooth replacement if later simulations soften the exposure function. The weak sector may consume the spinor ledger only when this residual stays below tolerance using the same $\theta$ that also supplies the CKM overlap and beta-reaction provenance record.
 
+That consumer condition inherits the row-local spinor blocker from the angular-momentum ledger. The exposure class $\Sigma_{\mathrm{spin}}^{(h)}(\theta;W)$ may be used in the weak-coupling-triad residual only if the same branch record also supplies a passed causal-writhe and gauge-control row:
+
+$$
+\Delta_{\Pi_W}(\theta;W)\le\varepsilon_{\Pi_W},
+\qquad
+\Delta_{\mathrm{gc}}(\theta;W)\le\varepsilon_{\mathrm{gc}},
+\qquad
+\Delta_{\mathbf J}^{2\pi},
+\Delta_{\mathbf J}^{4\pi}
+\le
+\varepsilon_{\mathbf J}.
+$$
+
+If these rows are missing, the weak exposure model remains a validation target for handedness, not an independent derivation of left/right selection.
+
 The beta gate is open only when $h=L$, $\lvert\Sigma_{\mathrm{WCT}}^{(L)}\rvert=3$, and the exposed sites have the down-state inventory $A_{\Sigma}=3E$. The right-handed channel is blocked at this finite-state level:
 $$
 \mathcal{W}_{-}^{du}\lvert d_R;c,\alpha\rangle=0,
