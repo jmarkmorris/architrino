@@ -1,14 +1,16 @@
 # Tri-Binary Dynamics
 
-This chapter formulates tri-binary dynamics by extending the two-body delayed causal-wake system to a coupled three-binary Noether core. Its focus is the branch geometry, high-speed response, gradient response, and diagnostic quantities needed to assess stability, alignment, and effective observer reconstruction.
+This chapter formulates tri-binary dynamics by extending the two-body delayed causal-wake system to a coupled three-binary Noether core. Its focus is the branch geometry, high-speed response, gradient response, and diagnostic quantities needed to assess stability and alignment in absolute substrate time.
 
-It should be read together with [Binary Dynamics](binary-dynamics.md), [Dyadic Resonance Lock](dyadic-resonance-lock.md), [Mapping the Planck Scale](../theory-bridges/planck-scale-tri-binary-alignment.md), [Noether Core](../spacetime/noether-core.md), [Noether Core Geometry](../spacetime/noether-core-geometry.md), and [Emergent Metric](../spacetime/emergent-metric.md), since those notes supply the binary precursor, lock structure, alignment target, assembly carrier, exclusion-envelope geometry, and effective geometric bridge.
+It should be read together with [Binary Dynamics](binary-dynamics.md), [Dyadic Resonance Lock](dyadic-resonance-lock.md), [Mapping the Planck Scale](../theory-bridges/planck-scale-tri-binary-alignment.md), [Noether Core](../spacetime/noether-core.md), and [Noether Core Geometry](../spacetime/noether-core-geometry.md), since those notes supply the binary precursor, lock structure, alignment target, assembly carrier, and exclusion-envelope geometry.
 
 This chapter is the canonical dynamics home for coupled three-binary speed regimes, alignment behavior, and assembly-stability mechanisms. Primitive architrino ontology supplies the transceivers, polarities, causal wakes, and causal-root law; coupled stability mechanisms belong here and in [Binary Dynamics](binary-dynamics.md).
 
 ## Relation to Causal Closure
 
-This chapter owns the dynamics baseline: the Noether-core roles, speed-regime conventions, delay-envelope geometry, gradient response, local clock diagnostics, and stability tests that define the tri-binary mechanism. It does not try to close the full rest-mass, proper-time, photon, or relativistic-limit proof program.
+This chapter owns the dynamics baseline: the Noether-core roles, speed-regime conventions, delay-envelope geometry, gradient response, local cycle-period diagnostics, and stability tests that define the tri-binary mechanism. It does not try to close the full rest-mass, photon, or observer-inference proof program.
+
+Proper time $\tau$ does not exist at this layer. The EOM is integrated exclusively over absolute substrate time $t$. A tri-binary branch may output absolute periods, causal-root ledgers, deformation tensors, and stability residuals; later observer-inference chapters may translate those outputs into clock, ruler, signal, and effective-geometry language.
 
 The stronger causal-closure program uses the mechanism defined here as an input. In this chapter, those stronger claims are included only where they clarify the dynamics baseline, and they are marked as reconstruction targets rather than completed theorems.
 
@@ -18,15 +20,15 @@ The claims in this chapter define a canonical dynamics baseline. They do not yet
 
 | Class | Treatment in this chapter |
 | --- | --- |
-| Dynamics baseline | Noether-core roles, speed-regime conventions, delay-envelope geometry, spiral-helical motion, clock diagnostics, and stability tests. |
-| Reconstruction target | Mass response, proper time, observer-level metric data, photon-channel behavior, and weak-field matching as quantities to be derived from the dynamics. |
-| Open proof burden | Tri-binary minimality, shielding extraction, momentum-skew derivation, Floquet stability, photon closure, equivalence-principle residual bounds, and ADM/Cartan closure. |
+| Dynamics baseline | Noether-core roles, speed-regime conventions, delay-envelope geometry, spiral-helical motion, cycle-period diagnostics, and stability tests. |
+| Reconstruction target | Mass response, photon-channel behavior, observer-inference exports, and weak-field matching inputs as quantities to be derived from the dynamics before downstream interpretation. |
+| Open proof burden | Tri-binary minimality, shielding extraction, momentum-skew derivation, Floquet stability, photon closure, equivalence-principle export bounds, and downstream observer-geometry closure. |
 
 The chapter should therefore be read as the stable dynamics layer beneath the causal-closure program. It preserves the mechanism and the diagnostic quantities while leaving the full theorem burden explicit.
 
 ## Causal-Closure Certificate Target
 
-The rest-mass, Lorentz, photon, metric, and event-ledger rows should be populated by one retained branch record, not by separately tuned fits. For a retained tri-binary branch class $q$ over a test window $W$, the shared certificate target is
+The rest-mass, moving-deformation, photon, observer-export, and event-ledger rows should be populated by one retained branch record, not by separately tuned fits. For a retained tri-binary branch class $q$ over a test window $W$, the shared certificate target is
 
 $$
 \mathcal{C}_{\mathrm{tri}}^{(q)}(W)
@@ -40,14 +42,14 @@ h_{\mathrm{mem}}^{(q)},
 \mathcal{D}_{\beta,q}^{\mathrm{mov}},
 T_q(\mathbf{w}),
 \mathcal{M}_{\mathrm{sea},q}^{ab},
-\mathcal{R}_{\mathrm{Lor},q},
-\theta_{\mathrm{GR}}^{(q)},
+\mathcal{R}_{\mathrm{mov},q},
+\theta_{\mathrm{obs}}^{(q)},
 \mathfrak{S}^{(q)}(W),
 \mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}
 \right).
 $$
 
-Here $\mathcal{A}_q$ is the active causal-root ledger, $\nu_J^{(q)}$ the active Jacobian floor, $g_{\mathrm{inactive}}^{(q)}$ the inactive-root gap, $h_{\mathrm{mem}}^{(q)}$ the finite memory depth, and $\Delta_{\mathbf{k}}^{(q)}$ the Floquet or branch-stability gap. The remaining rows record the moving deformation map, branch period, medium-dressed mass-response tensor, Lorentz residual, effective-metric recovery export, active sector residuals, and row-indexed event ledger. The Lorentz residual row is the shared record developed in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#emergent-kinematics-from-delay-anisotropy), with its clock component constrained by the moving-branch clock target in [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md#moving-branch-clock-retuning-target).
+Here $\mathcal{A}_q$ is the active causal-root ledger, $\nu_J^{(q)}$ the active Jacobian floor, $g_{\mathrm{inactive}}^{(q)}$ the inactive-root gap, $h_{\mathrm{mem}}^{(q)}$ the finite memory depth, and $\Delta_{\mathbf{k}}^{(q)}$ the Floquet or branch-stability gap. The remaining rows record the moving deformation map, absolute branch period, medium-dressed mass-response tensor, moving-branch residual, observer-export packet, active sector residuals, and row-indexed event ledger. The observer-export packet is not an effective metric or clock law; it is the branch-certified data that later observer-inference chapters must consume.
 
 The branch identity check is
 
@@ -56,13 +58,13 @@ d_{\mathcal{A}}^{(q)}
 =
 d_{\mathcal{A}}
 \left(
-\mathcal{A}_{\mathrm{clk}}^{(q)},
-\mathcal{A}_{\mathrm{rul}}^{(q)}
+\mathcal{A}_{\mathrm{per}}^{(q)},
+\mathcal{A}_{\mathrm{env}}^{(q)}
 \right)
 +
 d_{\mathcal{A}}
 \left(
-\mathcal{A}_{\mathrm{rul}}^{(q)},
+\mathcal{A}_{\mathrm{env}}^{(q)},
 \mathcal{A}_{\mathrm{sig}}^{(q)}
 \right)
 +
@@ -80,7 +82,7 @@ $$
 =
 \max\left(
 \frac{d_{\mathcal{A}}^{(q)}}{\epsilon_{\mathcal{A}}},
-\frac{\left\|\mathcal{R}_{\mathrm{Lor},q}\right\|_W}{\epsilon_{\mathrm{LV}}},
+\frac{\left\|\mathcal{R}_{\mathrm{mov},q}\right\|_W}{\epsilon_{\mathrm{mov}}},
 \frac{\left\|\mathcal{M}_{\mathrm{sea},q}^{ab}-h^{ab}/c_{\text{eff}}^2\right\|_W}{\epsilon_{\mathrm{mass}}},
 \frac{R_{\mathrm{div}T}^{(q)}+R_{\mathrm{Pois}}^{(q)}+R_{\mathrm{EFE}}^{(q)}+R_{\mathrm{var}}^{(q)}}{\epsilon_{\mathrm{GR}}},
 \sup_{S\in\mathfrak{S}^{(q)}(W)}
@@ -90,7 +92,7 @@ $$
 \le1.
 $$
 
-This is a certificate target, not an additional force law. It prevents a Lorentz-looking deformation ratio, a mass-response average, a photon row, or a GR-like metric residual from being promoted unless the same causal-root branch supplies the clock, ruler, signal, metric, mass, sector, and event-ledger data.
+This is a certificate target, not an additional force law. It prevents a moving-deformation ratio, a mass-response average, a photon row, or an observer-export residual from being promoted unless the same causal-root branch supplies the period, envelope, signal, observer-export, mass, sector, and event-ledger data.
 
 ## Substrate and Effective Levels
 
@@ -100,10 +102,10 @@ Tri-binary dynamics uses four levels of description:
 | --- | --- |
 | Substrate ontology | Euclidean void, absolute substrate time $t$, architrinos, causal wakes, and causal-root branch structure. |
 | Assembly dynamics | Noether cores, three coupled binary layers, self-hit multiplicity, shielding, phase closure, and root-ledger transitions. |
-| Effective physics | Rest mass, proper time, photon propagation, Lorentz kinematics, geodesics, and horizon behavior as reconstructed by assembly-built observers. |
+| Observer-inference exports | Rest mass, photon propagation, reconstructed kinematics, geodesics, and horizon behavior as later reconstructed by assembly-built observers. |
 | Inference and closure status | Mathematical closures that remain to be derived before effective claims can be treated as proved rather than reconstructed. |
 
-The distinction matters because the Euclidean void is not being curved at the substrate level. Curvature, geodesic motion, lapse, and horizon language enter as observer-level bookkeeping reconstructed from Noether-Sea state variables and assembly response.
+The distinction matters because the Euclidean void is not being curved at the substrate level. Curvature, geodesic motion, lapse, and horizon language enter only as observer-level bookkeeping reconstructed downstream from Noether-Sea state variables and assembly response.
 
 ## Speed Hierarchy
 
@@ -112,11 +114,11 @@ Several speed symbols must remain separated:
 | Symbol or phrase | Meaning |
 | --- | --- |
 | $c_f$ | Primitive wake propagation speed in the substrate. |
-| $c_{\text{eff}}(\mathbf{x},t)$ | Noether-Sea dressed assembly-channel propagation speed used for clock/ruler closure and observer-sector metric comparisons. |
+| $c_{\text{eff}}(\mathbf{x},t)$ | Noether-Sea dressed assembly-channel propagation speed used only after a downstream observer-channel map has been declared. |
 | $c_\gamma(\mathbf{x},t)$ | Local photon-channel speed; equality with $c_{\text{eff}}(\mathbf{x},t)$ is a photon-channel closure target for the working observer-level photon branch, not a definition. |
-| Locally measured light speed | The operational speed reconstructed by assembly clocks, rulers, and photon synchronization. |
+| Locally measured light speed | The operational speed reconstructed downstream from assembly periods, rulers, and photon synchronization. |
 
-The primitive speed $c_f$ is used for wake-intersection and self-hit geometry. The effective speed $c_{\text{eff}}$ is used for Noether-Sea dressed closure and observer-level comparisons. These are not interchangeable. Any diagnostic that moves from primitive wake geometry to observer-level clocks, rulers, or photons must declare its dressing map.
+The primitive speed $c_f$ is used for wake-intersection and self-hit geometry. The effective speed $c_{\text{eff}}$ belongs to Noether-Sea dressed closure and observer-level comparisons. These are not interchangeable. Any diagnostic that moves from primitive wake geometry to observer-level periods, rulers, or photons must declare its dressing map outside the primitive branch calculation.
 
 ## Multi-Scale Layer Locking
 
@@ -164,15 +166,15 @@ A resting Noether core is modeled as a nested, phase-locked tri-binary structure
 
 The spiral-helical picture is not decorative. A causal wake sent between partners, or between the inner, middle, and outer layers, must now reach a receiver that has moved during the wake's travel time. The internal phase geometry must therefore retune its pitch, radius, tilt, and timing to preserve the same closure ledger. In dynamics language, bulk velocity is encoded as internal geometry.
 
-This is the common mechanical basis for three later effective readouts:
+This is the common mechanical basis for three later downstream readouts:
 
-- clock-rate change, because each completed internal cycle requires a different causal path;
+- branch-period stretch, because each completed internal cycle requires a different causal path in absolute time;
 - longitudinal ruler contraction, because inter-assembly spacing must retune for forward and backward exchange;
 - inertial response, because acceleration forces the internal causal ledger to re-close under a changing kinematic bias.
 
-## All-Layer Lorentz Branch Response
+## All-Layer Translating Branch Response
 
-The branch-quantized Lorentz response should be modeled at the tri-binary level before it is projected into clock or ruler language. A moving Noether core is not described by one outer radius alone. The hidden state includes all three layer radii, frequencies, characteristic speeds, axes, active causal roots, and wake exchange:
+A translating Noether core is not described by one outer radius alone. The hidden state includes all three layer radii, frequencies, characteristic speeds, axes, active causal roots, and wake exchange:
 $$
 B_q(v)
 =
@@ -188,26 +190,13 @@ $$
 
 The moving-branch extraction starts with a primitive drift band
 $$
-\mathcal{D}_{\beta}=\{\,0\le v/c_f\le\beta_{\max}<1\,\}.
+\mathcal{D}_{\beta_f}=\{\,0\le \|\mathbf{v}_{\text{trans}}\|/c_f\le\beta_{\max}<1\,\}.
 $$
-All causal roots in the branch ledger are solved with $c_f$. A dressed observer-channel speed is declared only after the branch exists:
-$$
-c_\star=c_f
-\quad\text{for primitive branch charts},
-\qquad
-c_\star=c_{\text{eff}}(\mathbf{x},t)
-\quad\text{for Noether-Sea dressed clock/ruler closure},
-$$
-with $c_\star=c_\gamma(\mathbf{x},t)$ reserved for photon synchronization. The corresponding observer-channel variables are
-$$
-\beta_\star=\frac{v}{c_\star},
-\qquad
-\gamma_\star(v)=\frac{1}{\sqrt{1-\beta_\star^2}}.
-$$
+All causal roots in the branch ledger are solved with $c_f$ and absolute time $t$. No dressed observer-channel speed is allowed inside this branch calculation.
 
 For the same admitted branch $q$, extract semiaxes from the cycle-averaged tri-binary shape tensor
 $$
-Q_{ab}^{(q)}(v)
+Q_{ab}^{(q)}(\mathbf{v}_{\text{trans}})
 =
 \frac{1}{M_q}
 \left\langle
@@ -216,54 +205,161 @@ Q_{ab}^{(q)}(v)
 \qquad
 M_q=\sum_i m_i.
 $$
-With drift direction $\hat{\mathbf e}_{\parallel}$ and transverse projector $P_{\perp}^{ab}=\delta^{ab}-\hat e_{\parallel}^{a}\hat e_{\parallel}^{b}$,
+With drift direction $\hat{\mathbf e}_{\parallel}$ and transverse projector $P_{\perp}^{ab}=\delta^{ab}-\hat e_{\parallel}^{a}\hat e_{\parallel}^{b}$, define
 $$
-a_{\parallel,q}(v)
+R_{\parallel,q}(\mathbf{v}_{\text{trans}})
 =
-\sqrt{\hat e_{\parallel}^{a}Q_{ab}^{(q)}(v)\hat e_{\parallel}^{b}},
+\sqrt{\hat e_{\parallel}^{a}Q_{ab}^{(q)}\hat e_{\parallel}^{b}},
 \qquad
-a_{\perp,q}(v)
+R_{\perp,q}(\mathbf{v}_{\text{trans}})
 =
-\sqrt{\frac{1}{2}P_{\perp}^{ab}Q_{ab}^{(q)}(v)}.
+\sqrt{\frac{1}{2}P_{\perp}^{ab}Q_{ab}^{(q)}}.
 $$
-The clock period must be extracted from a declared layer or composite phase on that same branch ledger:
+The physical branch period is extracted from a declared layer or composite phase on that same branch ledger:
 $$
-T_q(v)
+T_q(\mathbf{v}_{\text{trans}})
 =
-\frac{2\pi}{\langle\dot{\theta}_{\mathrm{clk},q}\rangle_{\mathrm{cyc}}},
+\frac{2\pi}{\langle\dot{\theta}_{q}\rangle_{\mathrm{cyc}}},
 \qquad
-T_0=T_q(0).
+T_{q,0}=T_q(\mathbf{0}),
 $$
+where the dot means $d/dt$ with respect to absolute substrate time.
 
-The dynamics-side Lorentz residuals are
+### Absolute Cycle-Stretch Theorem Target
+
+Let
 $$
-R_{\parallel}^{(q)}(v)
-\equiv
-\frac{a_{\parallel,q}(v)}{a_{\perp,q}(v)}
--
-\frac{1}{\gamma_\star(v)},
+N_{\text{hits},q}
+=
+\left(
+N_{\ell\rho}^{(q)}
+\right)_{\ell\in\{I,M,O\},\,\rho\in\{\mathrm{self},\mathrm{partner},\mathrm{inter}\}}
+\in\mathbb{N}^{m_q}
+$$
+be the integer ledger of causal roots required to complete one primitive branch rotation. Its total hit count is
+$$
+|N_{\text{hits},q}|_1
+=
+\sum_{\ell,\rho}N_{\ell\rho}^{(q)}.
+$$
+Preserving the same branch means preserving this integer ledger, the source identities of the roots, their emission-order classes, the positive Jacobian floor, and the phase-return condition over the whole cycle.
+Equivalently, let $\mathcal{H}_q$ be the ordered multiset of retained hit rows represented by $N_{\text{hits},q}$.
+
+For a retained transverse closure row $a$ with rest closure length $\ell_a>0$, a translating receiver must intercept the wake after both the internal closure displacement and the center translation have occurred. In the reduced orthogonal row,
+$$
+c_f^2\left(\Delta t_a\right)^2
+=
+\ell_a^2
++
+\|\mathbf{v}_{\text{trans}}\|^2\left(\Delta t_a\right)^2,
+$$
+so
+$$
+\Delta t_a(\mathbf{v}_{\text{trans}})
+=
+\frac{\ell_a}{\sqrt{c_f^2-\|\mathbf{v}_{\text{trans}}\|^2}}
+=
+\frac{\Delta t_a(\mathbf{0})}
+{\sqrt{1-\|\mathbf{v}_{\text{trans}}\|^2/c_f^2}}.
+$$
+Thus any retained ledger that requires nonzero transverse closure rows has a larger absolute-time delay per such row when $\mathbf{v}_{\text{trans}}\ne\mathbf{0}$, unless the internal geometry retunes. A branch-period decomposition has the schematic form
+$$
+T_q(\mathbf{v}_{\text{trans}})
+=
+\sum_{a\in \mathcal{H}_q}
+\Delta t_a(\mathbf{v}_{\text{trans}})
++
+\mathcal{R}_{\mathrm{phase},q},
+$$
+where $\mathcal{R}_{\mathrm{phase},q}$ records finite-memory, inter-layer, and phase-return corrections on the same retained branch chart. The theorem target is:
+$$
+N_{\text{hits},q}(\mathbf{v}_{\text{trans}})=N_{\text{hits},q}(\mathbf{0}),
+\quad
+\nu_J^{(q)}>0,
+\quad
+\Delta_{\mathbf{k}}^{(q)}>0
+\quad\Longrightarrow\quad
+T_q(\mathbf{v}_{\text{trans}})\ge T_{q,0},
+$$
+with strict inequality for nonzero translation unless a compensating shape retuning changes the relevant $\ell_a$ rows. This is an absolute-time period theorem target, not a statement about observer clock time.
+
+### Mechanical Oblation From the Jacobian
+
+The causal Jacobian is the dynamics-side mechanism behind the moving-source flux change that standard field language would otherwise hide inside a changing electric field. For a retained root row $a=(i,j,t_0)$,
+$$
+J_a
+=
+1-
+\frac{\mathbf{v}_j(t_0)\cdot\hat{\mathbf r}_{ij}(t;t_0)}{c_f},
 \qquad
-R_T^{(q)}(v)
-\equiv
-\frac{T_q(v)}{T_0}
+w_a
+=
+\frac{1}{r_a^2|J_a|}.
+$$
+The branch force contribution is proportional to $w_a\hat{\mathbf r}_a$. Decompose the source velocity into center translation plus internal motion,
+$$
+\mathbf{v}_j(t_0)
+=
+\mathbf{v}_{\text{trans}}
++
+\mathbf{u}_j(t_0).
+$$
+On a retained chart away from grazing, the translation part changes the received weight by
+$$
+|J_a|^{-1}
+=
+\left|
+1-
+\frac{\mathbf{v}_{\text{trans}}\cdot\hat{\mathbf r}_a}{c_f}
 -
-\gamma_\star(v).
+\frac{\mathbf{u}_j(t_0)\cdot\hat{\mathbf r}_a}{c_f}
+\right|^{-1}.
 $$
-Moving tri-binary contraction and clock retuning are accepted only as theorem targets when, for every retained drift speed,
+Cycle-paired longitudinal rows with $\hat{\mathbf r}_a=\pm\hat{\mathbf e}_{\parallel}$ acquire the symmetric translation weight
 $$
-\left|R_{\parallel}^{(q)}(v)\right|
-\le
-C_{\parallel}\epsilon_{\mathrm{LV}}\beta_\star^2,
+\frac12
+\left(
+\frac{1}{1-\beta_f}
++
+\frac{1}{1+\beta_f}
+\right)
+=
+\frac{1}{1-\beta_f^2},
 \qquad
-\left|R_T^{(q)}(v)\right|
-\le
-C_T\epsilon_{\mathrm{LV}}\beta_\star^2.
+\beta_f=\frac{\|\mathbf{v}_{\text{trans}}\|}{c_f},
 $$
-Preferred-frame leakage then has to be reported as branch-sourced terms, for example $\Delta_{\mathrm{tw,PF}}^{(q)}$, orientation sidebands in $R_{\parallel}^{(q)}$, or clock sidebands in $R_T^{(q)}$. This extraction fails if the branch loses a Jacobian floor, an inactive-root gap, finite memory depth, or stability margin; if a separator crossing is treated as smooth drift; if $c_f$ is reused as $c_\star$ without a dressing map; or if weak-field PPN coefficients are tuned to hide a moving-assembly residual.
+whereas ideal transverse rows with $\mathbf{v}_{\text{trans}}\cdot\hat{\mathbf r}_a=0$ do not receive this translation amplification at the same order. Therefore the same radial inverse-square law becomes anisotropic after the branch is translated:
+$$
+\langle w\rangle_{\parallel}
+-
+\langle w\rangle_{\perp}
+\sim
+\frac{1}{r^2}
+\left(
+\frac{1}{1-\beta_f^2}-1
+\right)
++\mathcal{R}_{u,J}.
+$$
+Here $\mathcal{R}_{u,J}$ records internal-motion, unequal-radius, finite-memory, and unpaired-row corrections.
+
+For attractive partner rows this larger longitudinal weight increases the cycle-averaged longitudinal restoring stiffness. If $K_{\parallel}^{(q)}$ and $K_{\perp}^{(q)}$ denote the Hessian projections of the retained branch potential reconstructed from the same Jacobian-weighted rows, the oblation target is
+$$
+K_{\parallel}^{(q)}
+>
+K_{\perp}^{(q)}
+\quad\Longrightarrow\quad
+\frac{R_{\parallel,q}}{R_{\perp,q}}
+\sim
+\sqrt{\frac{K_{\perp}^{(q)}}{K_{\parallel}^{(q)}}}
+<1.
+$$
+The physical squash into an oblate $R_{\parallel}<R_{\perp}$ branch is therefore not imported from a relativistic metric. It is the mechanical response to the $1/|J|$ wake-flux asymmetry created by translating the same causal-root ledger through the Euclidean void.
 
 A one-$h$ closed-cycle action transaction is a candidate map between stable branch states,
 $$
-B_q(v)\longrightarrow B_{q'}(v+\Delta v),
+B_q(\mathbf{v}_{\text{trans}})
+\longrightarrow
+B_{q'}(\mathbf{v}_{\text{trans}}+\Delta\mathbf{v}),
 $$
 subject to the all-layer action and energy ledgers
 $$
@@ -279,23 +375,7 @@ $$
 =
 \Delta E_{\text{coupl}}.
 $$
-Thus acceleration, absorption, or any accepted transaction can change all three $\omega_\ell$, all three $R_\ell$, and all three $s_\ell$. The outer binary is the leading envelope projector because it is the exposed boundary layer. The middle binary remains the separator-sensitive hinge, and the inner binary remains the self-hit/history-supported engine. Dropping the middle or inner layer is therefore a reduced observable model, not a proof of Lorentz closure.
-
-The dynamics-side extraction targets are:
-$$
-\gamma_{\mathrm{clk}}^{(q)}(v)=\frac{T_q(v)}{T_0},
-\qquad
-\gamma_{\mathrm{rul}}^{(q)}(v)=\frac{R_{\perp,q}(v)}{R_{\parallel,q}(v)},
-$$
-with Lorentz closure requiring
-$$
-\gamma_{\mathrm{clk}}^{(q)}(v)
-=
-\gamma_{\mathrm{rul}}^{(q)}(v)
-=
-\gamma_\star(v)+O(\epsilon_{\mathrm{LV}})
-$$
-after Noether-Sea dressing and hierarchy averaging on admitted stable branches. Any residual mismatch must be reported with its branch source: separator proximity, inter-layer resonance, Jacobian-floor loss, finite-memory cutoff, wake-ledger residue, or envelope-projection error.
+Thus acceleration, absorption, or any accepted transaction can change all three $\omega_\ell$, all three $R_\ell$, and all three $s_\ell$. The outer binary is the leading envelope projector because it is the exposed boundary layer. The middle binary remains the separator-sensitive hinge, and the inner binary remains the self-hit/history-supported engine. Dropping the middle or inner layer is therefore a reduced observable model, not a proof of translating-branch closure.
 
 ## Cadence-Scale Retuning Closure
 
@@ -392,81 +472,28 @@ $$
 \right).
 $$
 
-This map is falsifiable at the branch level. It fails if no admissible minimizer exists, if the minimizer crosses a separator while being treated as same-branch drift, if the middle hinge leaves its declared tolerance, if the envelope projection gives $\gamma_{\mathrm{rul}}$ without the matching $\gamma_{\mathrm{clk}}$, or if the wake-ledger residual is large enough to survive hierarchy averaging. These are not bookkeeping nuisances; they are the diagnostics that decide whether the same one-$h$ transaction can become the Noether-Sea cadence current used in cosmology.
+This map is falsifiable at the branch level. It fails if no admissible minimizer exists, if the minimizer crosses a separator while being treated as same-branch drift, if the middle hinge leaves its declared tolerance, if the envelope projection and branch-period stretch come from different retained ledgers, or if the wake-ledger residual is large enough to survive hierarchy averaging. These are not bookkeeping nuisances; they are the diagnostics that decide whether the same one-$h$ transaction can become the Noether-Sea cadence current used in cosmology.
 
 The first reduced validation model for this target is [Retuning-Map Toy Model](../validation/simulations/retuning-map-toy-model.md), with runtime script `scripts/tri-binary/retuning-map-toy-model.mjs`. That model solves the linearized constrained compliance problem and reports the induced $J_\nu$ estimate. It is a branch-bookkeeping scaffold, not delayed-dynamics validation.
 
-## Transverse Causal Budget Lemma
+## Observer-Inference Export Boundary
 
-Proper time $\tau$ is the cycle count of a stable Noether-core clock, not the absolute substrate time $t$ itself. The reusable dynamics target behind that clock law is the transverse causal budget lemma.
-
-Work in the local rest frame of the relevant medium or branch chart, and declare one causal speed $c_\star$ before forming the budget:
-
-| Use case | Declared speed |
-| --- | --- |
-| Primitive wake-intersection or self-hit branch chart | $c_\star=c_f$ |
-| Noether-Sea dressed assembly clock or ruler comparison | $c_\star=c_{\text{eff}}(\mathbf{x})$ |
-| Photon-channel synchronization or Gate A tests | $c_\star=c_\gamma(\mathbf{x})$ |
-
-These choices are not interchangeable. The primitive equation of motion uses $c_f$; observer-level clock, ruler, and photon comparisons must use the dressed speed appropriate to the channel being tested. The photon-channel identification $c_\gamma(\mathbf{x})\equiv c_{\text{eff}}(\mathbf{x})$ is therefore a closure target, not a notation shortcut.
-
-For a moving assembly with center-of-mass velocity $\mathbf{V}_{\text{cm}}$ relative to the declared local frame, define
-
+This dynamics chapter exports branch-certified substrate records, not observer geometry. The reusable export packet is
 $$
-\beta_\star
-=\frac{\|\mathbf{V}_{\text{cm}}\|}{c_\star}.
-$$
-
-The causal budget decomposes into an axial part used to keep pace with the translated receiver and a transverse part available for internal closure:
-
-$$
-c_{\parallel}=\|\mathbf{V}_{\text{cm}}\|,
-\qquad
-c_{\perp}
+\mathcal{E}_{q}^{\mathrm{obs}}
 =
-c_\star
-\sqrt{1-\frac{\|\mathbf{V}_{\text{cm}}\|^2}{c_\star^2}}.
+\left(
+N_{\text{hits},q},
+T_q,
+Q_{ab}^{(q)},
+K_{\parallel}^{(q)},
+K_{\perp}^{(q)},
+\nu_J^{(q)},
+\Delta_{\mathbf{k}}^{(q)},
+\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}
+\right).
 $$
-
-The lemma target is that a stable tri-binary clock preserving the same integer root-ledger branch extracts its clock-rate diagnostic from the remaining transverse budget:
-
-$$
-\frac{\Delta\tau}{\Delta t}
-=
-\frac{c_{\perp}}{c_\star}
-=
-\sqrt{1-\frac{\|\mathbf{V}_{\text{cm}}\|^2}{c_\star^2}},
-$$
-
-up to branch-change, leakage, anisotropy, gradient, and finite-stability residuals that must be measured by the Floquet and Cartan diagnostics below. In a homogeneous Noether-Sea clock/ruler cell this specializes to $c_\star=c_{\text{eff}}$, giving the usual effective dilation target. In a primitive branch scan the same algebra may be tested with $c_\star=c_f$, but that does not by itself prove the observer-level clock law.
-
-This is the causal-budget route to the standard effective dilation law. It is a derivation/closure target: moving assembly clocks tick more slowly because less transverse causal capacity remains for closing their internal tri-binary cycles. The same lemma is the local source for [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md), the operational compensation program in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md), photon Gate A in [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md#photon-closure-interface), and the ADM/Cartan reconstruction target below.
-
-## ADM/Cartan Reconstruction Target
-
-For observer-level comparison with effective geometry, tri-binary dynamics should reconstruct three local effective fields from Noether-Sea state variables and assembly response:
-
-$$
-N(\mathbf{x},t),
-\qquad
-u^i_{\text{sea}}(\mathbf{x},t),
-\qquad
-\gamma_{ij}(\mathbf{x},t)=\delta_{ab}e^a{}_i e^b{}_j.
-$$
-
-Here $N$ is the effective clock-rate or lapse field, $u^i_{\text{sea}}$ is medium drift, and $\gamma_{ij}$ is the spatial compliance metric. The observer-level bookkeeping metric target is
-
-$$
-ds_{\rm eff}^2
-=
--N^2c_0^2dt^2
-+
-\gamma_{ij}
-\left(dx^i-u^i_{\text{sea}}dt\right)
-\left(dx^j-u^j_{\text{sea}}dt\right).
-$$
-
-This metric is not substrate ontology. It is the effective clock, ruler, and null-path bookkeeping induced by the Noether-Sea state. The open reconstruction task is to show that the resulting connection reproduces Newtonian acceleration, redshift, Shapiro delay, lensing, and the required weak-field PPN coefficients while keeping torsion, nonmetricity, dispersion, birefringence, and preferred-frame residuals below observational limits.
+Every entry is computed in absolute time from the retained causal-root chart. Later observer-inference chapters may ask whether this packet recovers clock behavior, ruler behavior, photon synchronization, or effective geometry. Those are downstream recovery tests. They are not definitions, assumptions, or integration variables in tri-binary dynamics.
 
 ## Terminal Alignment Label-Count Target
 
@@ -1712,7 +1739,7 @@ $$
 \longrightarrow
 \frac{1}{4}
 $$
-in the equilibrium weak-field horizon-interface limit. This is the precise missing dynamics calculation. It fails if terminal alignment admits many inequivalent local labels with long-range constraints that restore volume or history-length scaling, if the observer quotient erases the labels needed for Page-compatible release accounting, or if the transfer rule must be retuned separately for entropy, flux, and ADM/Cartan recovery.
+in the equilibrium weak-field horizon-interface limit. This is the precise missing dynamics calculation. It fails if terminal alignment admits many inequivalent local labels with long-range constraints that restore volume or history-length scaling, if the observer quotient erases the labels needed for Page-compatible release accounting, or if the transfer rule must be retuned separately for entropy, flux, and downstream observer-geometry recovery.
 
 ## Dynamics-Side Roadmap
 
@@ -1721,11 +1748,11 @@ The dynamics chapter contributes the stable pieces needed by the larger theorem 
 1. Define the speed hierarchy and the causal-speed guardrails.
 2. Model the tri-binary Noether core as inner engine, middle fulcrum, and outer shielding/interface layer.
 3. Track how motion deforms the rest-state lock into braided spiral-helical geometry.
-4. Derive local clock diagnostics from the transverse causal budget lemma.
-5. Solve all-layer branch updates for one-$h$ transactions and extract the branch-indexed clock and ruler Lorentz factors.
+4. Derive local cycle-period diagnostics from the absolute cycle-stretch theorem target.
+5. Solve all-layer branch updates for one-$h$ transactions and extract the branch-indexed period-stretch and envelope-oblation records.
 6. Compute the terminal-alignment area-normalized label density $\bar{\alpha}_{\mathrm{align}}=s_{\mathrm{align}}/a_{\theta}$ from alignment-restricted closure labels, patch-area normalization, and edge wake compatibility.
-7. Output alignment, closure, Floquet, grazing, branch-residual, and Cartan reconstruction diagnostics.
-8. Keep mass, photon, equivalence-principle, and full GR matching claims at the level of reconstruction targets until their proof burdens close.
+7. Output alignment, closure, Floquet, grazing, branch-residual, and observer-export diagnostics.
+8. Keep mass, photon, equivalence-principle, and full observer-geometry matching claims outside the primitive dynamics layer until their proof burdens close.
 
 ## Working Hypotheses
 
@@ -1748,13 +1775,11 @@ To keep speed claims consistent across documents, all binary-speed statements sh
 
 **Notation guardrail:** "$\|\mathbf{v}\| < c_f$" or "$\|\mathbf{v}\| = c_f$" in role summaries refers to a component/regime statement, while $v_{\text{eff}} > c_f$ refers to the **combined in-plane effective motion** used in wake-geometry closure.
 
-**Geometry speed guardrail:** Use a declared causal speed $c_\star$ in envelope and closure diagnostics. For primitive architrino wake intersections, set $c_\star=c_f$. For observer-level Noether-Sea dressed closure, set $c_\star=c_{\text{eff}}(\mathbf{x})$. The corresponding kinematic parameter is
+**Geometry speed guardrail:** Primitive envelope and closure diagnostics use the causal speed $c_f$. Downstream observer-channel dressing is not part of this branch scan. The corresponding kinematic parameter is
 $$
-\beta_\star=\frac{v_{\text{trans}}}{c_\star},
-\qquad
-\gamma_\star=\frac{1}{\sqrt{1-\beta_\star^2}}.
+\beta_f=\frac{v_{\text{trans}}}{c_f}.
 $$
-Primitive dynamics scans and effective-metric comparisons must not mix $c_f$ and $c_{\text{eff}}$ in the same diagnostic without an explicit dressing map.
+Primitive dynamics scans must not mix $c_f$ and $c_{\text{eff}}$ in the same diagnostic. Any $c_{\text{eff}}$ comparison belongs to a downstream observer-channel map.
 
 ---
 
@@ -1762,7 +1787,7 @@ Primitive dynamics scans and effective-metric comparisons must not mix $c_f$ and
 
 ### A) High Group Velocity Geometry (Oblate Spheroid)
 
-**Assumption (testable):** The outer binary moving at translational speed $v_{\text{trans}}$ generates a causal interaction envelope that is oblate and flattens along the direction of motion as $v_{\text{trans}} \to c_\star$ for the declared diagnostic. Primitive branch charts set $c_\star=c_f$; observer-level closure sets $c_\star=c_{\text{eff}}(\mathbf{x})$ or the relevant photon-channel speed.
+**Assumption (testable):** The outer binary moving at translational speed $v_{\text{trans}}$ generates a causal interaction envelope that is oblate and flattens along the direction of motion as $v_{\text{trans}} \to c_f$ on the primitive branch chart.
 
 **Geometry:** Let the motion define the $z$-axis. Model the envelope as an ellipsoid
 $$
@@ -1772,20 +1797,22 @@ with transverse radius $R_\perp$ and longitudinal radius $R_\parallel$.
 
 Use the kinematic contraction law as a theorem target to be derived from branch dynamics:
 $$
-\beta_\star = \frac{v_{\text{trans}}}{c_\star}, \quad \gamma_\star = \frac{1}{\sqrt{1-\beta_\star^2}}, \quad R_\parallel = \frac{R_\perp}{\gamma_\star}.
+\beta_f = \frac{v_{\text{trans}}}{c_f},
+\qquad
+R_\parallel = R_\perp\sqrt{1-\beta_f^2}.
 $$
-As $\beta_\star \to 1$, $R_\parallel \to 0$ and the envelope collapses toward a disk.
-**Right-triangle link:** Treat $c_\star$ as the declared causal propagation speed and decompose it into orthogonal components: one leg is the group translation $v_{\text{trans}}$, the other leg is the longitudinal closure speed $v_\parallel$. Then
+As $\beta_f \to 1$, $R_\parallel \to 0$ and the envelope collapses toward a disk.
+**Right-triangle link:** Treat $c_f$ as the primitive causal propagation speed and decompose it into orthogonal components: one leg is the group translation $v_{\text{trans}}$, the other leg is the longitudinal closure speed $v_\parallel$. Then
 $$
-c_\star^2 = v_{\text{trans}}^2 + v_\parallel^2 \quad \Rightarrow \quad v_\parallel = c_\star\sqrt{1-\beta_\star^2}.
+c_f^2 = v_{\text{trans}}^2 + v_\parallel^2 \quad \Rightarrow \quad v_\parallel = c_f\sqrt{1-\beta_f^2}.
 $$
-Mapping causal speed to closure length gives $R_\parallel = R_\perp (v_\parallel/c_\star) = R_\perp\sqrt{1-\beta_\star^2} = R_\perp/\gamma_\star$, which is the triangle form of the ellipsoid theorem target rather than a completed recovery.
+Mapping causal speed to closure length gives $R_\parallel = R_\perp (v_\parallel/c_f) = R_\perp\sqrt{1-\beta_f^2}$, which is the triangle form of the ellipsoid theorem target rather than a completed recovery.
 
 **Impact on delay locking:** The round-trip delay $\Delta t_{\text{rt}}$ is the time between an outer-binary architrino’s emission and the moment its wake returns to influence that same architrino, approximating the inner+middle as a compact core at the center. For a ray at polar angle $\theta$ relative to the $z$-axis, the intersection radius with the ellipsoid is
 $$
 R(\theta) = \left(\frac{\sin^2\theta}{R_\perp^2} + \frac{\cos^2\theta}{R_\parallel^2}\right)^{-1/2}.
 $$
-Then $\Delta t_{\text{rt}}(\theta) \approx 2 R(\theta)/c_\star$, and the phase condition generalizes to
+Then $\Delta t_{\text{rt}}(\theta) \approx 2 R(\theta)/c_f$, and the phase condition generalizes to
 $$
 \Phi_n(\theta, \mathbf{v}_{\text{trans}}) = \omega_n\,\Delta t_{\text{rt}}(\theta) + \phi_{\text{geom}}(n).
 $$
@@ -1794,13 +1821,13 @@ $$
 **Exclusion volume (instantaneous):**
 $$
 V(v_{\text{trans}}) = \frac{4\pi}{3} R_\perp^2 R_\parallel
-= \frac{4\pi}{3} R_\perp^3 \sqrt{1-\left(\frac{v_{\text{trans}}}{c_\star}\right)^2}.
+= \frac{4\pi}{3} R_\perp^3 \sqrt{1-\left(\frac{v_{\text{trans}}}{c_f}\right)^2}.
 $$
 If the outer radius is infalling, treat $R_\perp = R_\perp(t)$ so
 $$
-V(t) = \frac{4\pi}{3} R_\perp(t)^3 \sqrt{1-\left(\frac{v_{\text{trans}}(t)}{c_\star}\right)^2}.
+V(t) = \frac{4\pi}{3} R_\perp(t)^3 \sqrt{1-\left(\frac{v_{\text{trans}}(t)}{c_f}\right)^2}.
 $$
-The primitive specialization sets $c_\star=c_f$ only after the branch chart is declared.
+This expression belongs to the primitive branch chart; downstream dressed-channel variants must be rebuilt from an explicit observer-inference map.
 
 ---
 
@@ -1827,26 +1854,24 @@ This union geometry sets packing and overlap limits by construction, rather than
 
 **Modeling at $v>0$:** Use the oblate envelope as a time-dependent exclusion region whose axis precesses. The exclusion volume becomes anisotropic and typically increases with precession cone angle.
 
-**As $v_{\text{trans}} \to c_\star$:** The envelope flattens toward a disk, so the exclusion volume becomes a thin, swept annulus dominated by the equatorial plane. This tends to amplify planar alignment constraints and reduce accessible 3D configurations.
+**As $v_{\text{trans}} \to c_f$:** The envelope flattens toward a disk, so the exclusion volume becomes a thin, swept annulus dominated by the equatorial plane. This tends to amplify planar alignment constraints and reduce accessible 3D configurations.
 At sufficiently high stress, this suggests the terminal-rung failure mode to test: further increases may fail to support a stable 3D mode and may force a planar aligned state.
 
 **Status:** This precession-expanded exclusion volume is not explicitly modeled in the current minimal system; treat results as lower bounds until the swept-volume effect is added.
 
-### D) Local Clock-Rate Diagnostic
+### D) Local Cycle-Period Diagnostic
 
-**Goal:** Define local clock-rate change as a geometric effect in the delay loop, not as distortion of substrate time or as a relativistic postulate.
+**Goal:** Define local cycle-period change as a geometric effect in the delay loop, not as distortion of substrate time or as a relativistic postulate.
 
 **Reference cadence:** Use a declared reference assembly cadence $T_0$; the terminal-alignment normalization may specialize this to the outer-binary Planck cadence $T_0=1/f_P$.
 
-The cadence $T_0$ is a reference assembly cadence, not the absolute substrate time itself. Absolute time $t$ remains the uniform ordering parameter for causal-hit evaluation. The local clock diagnostic compares assembly cycle counts to this reference cadence:
+The cadence $T_0$ is a reference assembly cadence, not the absolute substrate time itself. Absolute time $t$ remains the uniform ordering parameter for causal-hit evaluation. The local dynamics diagnostic compares assembly cycle counts to this reference cadence:
 $$
-N_{\text{clock}}(\mathbf{x})
+C_{\text{cyc}}(\mathbf{x})
 \equiv
-\frac{d\tau}{dt}
-=
 \frac{T_0}{T_{\text{local}}(\mathbf{x})}
 $$
-in the rest branch of the local Noether-Sea cell. This quantity is the dynamics-side precursor of the effective lapse field used in the emergent-metric construction.
+in the rest branch of the local Noether-Sea cell. This quantity is a dynamics-side period ratio, not a time coordinate.
 
 **Sector-delay diagnostic from delay geometry:** Define a reference round-trip delay $\Delta t_{\text{rt,ref}}$ and a local delay $\Delta t_{\text{rt}}(\theta, G_{\text{grad}})$. Then
 $$
@@ -1860,17 +1885,19 @@ measures how one sector's phase-closure period compares to the reference cadence
 $$
 T_{\text{local}}(\theta) = T_0 \, \alpha(\theta, G_{\text{grad}}).
 $$
-When $\alpha > 1$, local cycles are longer relative to $T_0$; when $\alpha < 1$, they are shorter. This sector-delay diagnostic becomes a proper-time clock law only after the accepted branch functional $T_q(v,G_{\text{grad}})$ is derived from the full cycle and matched to the transverse causal budget. It is not a rival definition of proper time and not a change in absolute time.
+When $\alpha > 1$, local cycles are longer relative to $T_0$; when $\alpha < 1$, they are shorter. This sector-delay diagnostic remains an absolute-time branch-period record. It can be exported downstream only after the accepted branch functional $T_q(v,G_{\text{grad}})$ is derived from the full cycle and matched to the retained causal-root ledger.
 
-**Geometric source of clock-rate shift:** The causal envelope shape sets $\Delta t_{\text{rt}}$. As the tri-binary tilts out of planar and loses energy, the envelope becomes less oblate (larger $R_\parallel/R_\perp$), increasing some path lengths and stretching $T_{\text{local}}$; as it flattens, $R_\parallel$ shrinks and the corresponding delays contract. Gradients ($G_{\text{grad}}$) further skew delays across the orbit.
+**Geometric source of period shift:** The causal envelope shape sets $\Delta t_{\text{rt}}$. As the tri-binary tilts out of planar and loses energy, the envelope becomes less oblate (larger $R_\parallel/R_\perp$), increasing some path lengths and stretching $T_{\text{local}}$; as it flattens, $R_\parallel$ shrinks and the corresponding delays contract. Gradients ($G_{\text{grad}}$) further skew delays across the orbit.
 
-**Lorentz beta in geometric form:** In Lorentz kinematics, $\beta = v/c$ and $\gamma = 1/\sqrt{1-\beta^2}$. For observer-level clock or ruler closure, use the declared channel speed $c_\star$ and define $\beta_\star = v_{\text{trans}}/c_\star$ and $\gamma_\star=1/\sqrt{1-\beta_\star^2}$; use $c_f$ only for a primitive branch-chart scan before Noether-Sea dressing. The oblate ellipsoid relation is
+**Primitive translation parameter:** For the branch scan, use
 $$
-R_\parallel = R_\perp \sqrt{1-\beta_\star^2} = \frac{R_\perp}{\gamma_\star}.
+\beta_f=\frac{v_{\text{trans}}}{c_f},
+\qquad
+R_\parallel = R_\perp \sqrt{1-\beta_f^2}.
 $$
-Geometrically, $\beta_\star$ is the axis-squash control for the declared channel: as $\beta_\star \to 1$, the causal envelope collapses along the motion axis, shrinking longitudinal path lengths and altering the delay.
+Geometrically, $\beta_f$ is the primitive axis-squash control: as $\beta_f \to 1$, the causal envelope collapses along the motion axis, shrinking longitudinal path lengths and altering the delay.
 
-**Where it enters phase closure:** In scans, treat the local clock as an effective frequency $\omega_n/\alpha$ inside $\Phi_n$ for the sector under consideration. Redshift follows because emitted periodicity inherits the local clock rate: longer causal loops (larger $\alpha$) yield lower observed frequency at fixed absolute-time reference.
+**Where it enters phase closure:** In scans, treat the local cycle frequency as $\omega_n/\alpha$ inside $\Phi_n$ for the sector under consideration. Longer causal loops (larger $\alpha$) yield lower cycle frequency at fixed absolute-time reference; any redshift interpretation belongs downstream.
 
 ---
 
@@ -1915,7 +1942,7 @@ Two nonlinear-dynamics diagnostics extend the standard alignment invariants and 
 $$
 \Delta_{\mathbf{k}} = 1 - \max_{i\notin G}\|\mu_i(\mathbf{k})\|.
 $$
-Track $\Delta_{\mathbf{k}}$ along scans in declared $\beta_\star = v_{\text{trans}}/c_\star$ and $G_{\text{grad}}$. Stable rungs have $\Delta_{\mathbf{k}}>0$; rung termination, separator clock-freeze, and gradient-driven failure should all coincide with $\Delta_{\mathbf{k}}\to 0^+$.
+Track $\Delta_{\mathbf{k}}$ along scans in declared $\beta_f = v_{\text{trans}}/c_f$ and $G_{\text{grad}}$. Stable rungs have $\Delta_{\mathbf{k}}>0$; rung termination, separator cycle-period divergence, and gradient-driven failure should all coincide with $\Delta_{\mathbf{k}}\to 0^+$.
 
 **Grazing-bifurcation diagnostics at the separator:** Near $\|\mathbf{v}\|=c_f$, the post-crossing trajectory deviation is predicted to scale as $\sqrt{t-t_*}$ along the eigenvector of the newly activated self-hit root when the crossing parameter satisfies $s(t)-1\sim \dot{s}(t_*)(t-t_*)$ with $\dot{s}(t_*)\ne0$. Two simulation tests follow:
 
@@ -1926,61 +1953,35 @@ These diagnostics belong here as observational quantities for the dynamics chapt
 
 ---
 
-## Metric and Connection Reconstruction Diagnostics
+## Observer-Export Diagnostics
 
-For comparison with the emergent-metric chapters, each dynamics scan should output the local Cartan data reconstructed from the Noether-core response:
+Each dynamics scan should output the substrate records needed by later reconstruction chapters without forming an effective line element in this file. The scan-level packet is
 $$
-N(\mathbf{x},t),\qquad
-u^i_{\text{sea}}(\mathbf{x},t),\qquad
-e^a{}_i(\mathbf{x},t),
-\qquad
-\gamma_{ij}=\delta_{ab}e^a{}_i e^b{}_j.
-$$
-The effective bookkeeping line element is
-$$
-ds_{\rm eff}^2
+\mathcal{D}_{\mathrm{tri}}(W)
 =
--N^2c_0^2dt^2
-+
-\gamma_{ij}
-\left(dx^i-u^i_{\text{sea}}dt\right)
-\left(dx^j-u^j_{\text{sea}}dt\right).
-$$
-The corresponding connection diagnostic is the Levi-Civita connection of $g^{\rm eff}_{\mu\nu}$ in the GR-matching regime, with any torsion or nonmetricity treated as a deviation observable:
-$$
-\Gamma^\mu{}_{\nu\rho}
-=
-\frac12 g_{\rm eff}^{\mu\sigma}
 \left(
-\partial_\nu g^{\rm eff}_{\rho\sigma}
-+
-\partial_\rho g^{\rm eff}_{\nu\sigma}
--
-\partial_\sigma g^{\rm eff}_{\nu\rho}
-\right).
+N_{\text{hits},q},
+T_q,
+Q_{ab}^{(q)},
+K_{\parallel}^{(q)},
+K_{\perp}^{(q)},
+\nu_J^{(q)},
+\Delta_{\mathbf{k}}^{(q)},
+G_{\text{grad}},
+\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}
+\right)_W.
 $$
-Simulation output should therefore include geodesic residuals
-$$
-\mathcal{R}^\mu
-=
-\frac{d^2x^\mu}{d\lambda^2}
-+
-\Gamma^\mu{}_{\nu\rho}
-\frac{dx^\nu}{d\lambda}
-\frac{dx^\rho}{d\lambda},
-$$
-evaluated on coarse-grained assembly trajectories and photon planar-mode rays.
+The spacetime and observer-inference chapters may convert this packet into lapse, ruler, signal, connection, and weak-field comparison variables. This chapter's obligation is narrower: certify that the packet comes from one retained causal-root branch chart in absolute time.
 
 ## Observables and Diagnostics (Summary)
 
 - Core invariants: $R_{\text{core}}$, $\omega_{\text{core}}$, phase offsets.
-- Ladder metrics: $R_{\text{out}}(t)$, $\omega_{\text{out}}(t)$, plateau stability.
-- Geometry metrics: anisotropy ratio $A = R_\parallel/R_\perp$, forward vs backward delay ratio.
-- Orientation metrics: inter-plane angles, precession cone angle.
-- Stability metrics: sign of $\partial \Phi_n/\partial r$, phase-closure residuals.
-- Gradient metric: $G_{\text{grad}}$ and its effect on stability thresholds.
-- Cartan reconstruction metrics: lapse $N$, drift $u^i_{\text{sea}}$, spatial compliance $\gamma_{ij}$, frame fields $e^a{}_i$, effective connection $\Gamma^\mu{}_{\nu\rho}$, and geodesic residual $\mathcal{R}^\mu$.
-- Weak-field matching metrics: Newtonian acceleration residual, redshift residual, Shapiro-delay residual, lensing residual, and extracted PPN coefficients $\gamma_{\rm PPN}$ and $\beta_{\rm PPN}$.
+- Ladder records: $R_{\text{out}}(t)$, $\omega_{\text{out}}(t)$, plateau stability.
+- Geometry records: anisotropy ratio $A = R_\parallel/R_\perp$, forward vs backward delay ratio.
+- Orientation records: inter-plane angles, precession cone angle.
+- Stability records: sign of $\partial \Phi_n/\partial r$, phase-closure residuals.
+- Gradient record: $G_{\text{grad}}$ and its effect on stability thresholds.
+- Observer-export records: $N_{\text{hits},q}$, $T_q$, $Q_{ab}^{(q)}$, $K_{\parallel}^{(q)}$, $K_{\perp}^{(q)}$, $\nu_J^{(q)}$, $\Delta_{\mathbf{k}}^{(q)}$, and $\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}$.
 
 ---
 
@@ -1993,58 +1994,17 @@ evaluated on coarse-grained assembly trajectories and photon planar-mode rays.
 
 ---
 
-## Equivalence Principle (Working Constraint)
+## Acceleration-Gradient Branch Comparison
 
-The current framework should treat the equivalence principle as a closure constraint rather than as already-derived microphysics. The requirement is local: a uniformly accelerated assembly and a stationary assembly placed in a matched Noether-Sea gradient should exhibit the same local delay-geometry diagnostics to the order probed by observer-built clocks and rulers.
-
-This is a separate burden from any Jacobson-style or thermodynamic recovery of the effective Einstein equation. Metric equation-of-state behavior can explain why a coarse Noether-Sea record produces GR-like observer geometry, but it does not by itself show that an assembly's inertial response under applied acceleration is the same local record as its response inside a Noether-Sea gradient.
-
-In current language, the comparison is:
-
-- **Gravity case:** the surrounding Noether Sea carries a local gradient that skews the assembly's delay structure.
-- **Acceleration case:** the assembly is externally driven, but the experienced delay pattern must reorganize so that the same local constitutive observables are recovered.
-
-The important point is that the comparison cannot be made by deforming the assembly alone. The ambient medium must participate. Otherwise the framework would fail to explain why locally constructed observers infer equivalence between gravitational and inertial response.
-
-The practical diagnostics are the same in both cases:
-
-- phase-closure residuals,
-- anisotropy ratios of the internal geometry,
-- clock-rate shifts,
-- stability thresholds for aligned and oblate states.
-
-Quantum phase tests provide a second diagnostic layer for the same equivalence-principle constraint. In a guided/free-fall atom interferometer, the retained observable is not a collapse signal but the fitted cubic-time phase coefficient after ordinary control phases have been removed:
+The local dynamics burden behind later equivalence-principle recovery is a substrate comparison, not an observer postulate. A uniformly accelerated assembly and a stationary assembly placed in a matched Noether-Sea gradient should output compatible delay-geometry records on the same kind of branch packet:
 $$
-\Delta\phi_{\mathrm{gf}}(T)
-=
-\widehat{\beta}_{T^3}T^3
-+\Delta\phi_{\mathrm{ctrl}}(T)
-+O(T^4).
+\mathcal{D}_{\mathrm{tri}}^{\mathrm{accel}}(W)
+\sim
+\mathcal{D}_{\mathrm{tri}}^{\mathrm{grad}}(W),
 $$
-The dynamics-facing closure target is that the same local constitutive record $\theta$ used for clock-rate shifts and weak-field gravity predicts this coefficient:
-$$
-\mathcal{R}_{T^3}(\theta)
-=
-\frac{
-\left|\widehat{\beta}_{T^3}-\beta_{T^3}^{\mathrm{eff}}(\theta)\right|
-}{\sigma_{T^3}}
-\le 1.
-$$
-This benchmark tests whether the acceleration-driven and gradient-driven descriptions preserve the same quantum phase bookkeeping in the weak-field laboratory regime. It does not test active self-gravity of the branch mass distribution, which belongs to massive-superposition validation rather than to this local equivalence-principle check.
+with the comparison made from phase-closure residuals, anisotropy ratios, branch-period records, stability thresholds, and cycle-averaged causal-work or phase-slip variance.
 
-For resonance questions, one additional diagnostic is worth tracking explicitly: a cycle-averaged causal-work or phase-slip variance. The working intuition is that non-commensurate drift samples the large-$1/|J|$ region irregularly, producing large cycle-to-cycle swings in delayed work, whereas a true lock should compress that variance and make the return map locally contractive.
-
-In connection language, the local equivalence-principle test is a first-jet matching condition. At a reference event $x_0$, compare the reconstructed Cartan data for an accelerated assembly in a homogeneous Noether-Sea cell with the data for a stationary assembly in a matched Noether-Sea gradient:
-$$
-\mathcal{J}_1(e,\omega)_{\rm accel}(x_0)
-=
-\mathcal{J}_1(e,\omega)_{\rm grad}(x_0)
-+
-O(L^2\nabla R_{\rm eff}),
-$$
-where $\mathcal{J}_1$ denotes the frame and connection through first order over a laboratory scale $L$. The residual is tidal: it depends on second gradients of the effective metric data and therefore cannot be removed by a local acceleration comparison.
-
-If those quantities cannot be matched between the gradient-driven and acceleration-driven cases in the local limit, then the observer-level recovery of the equivalence principle fails and the constitutive map must be revised.
+The ambient medium must participate in this comparison. Deforming the assembly alone is not enough, because the gradient-driven case changes the Noether-Sea response record while the accelerated case changes how the same retained causal-root ledger is transported through absolute time. The downstream observer-inference question is whether those exported packets recover the usual local equivalence behavior. This chapter only asks whether the substrate packets match before that translation.
 
 ---
 
@@ -2063,7 +2023,7 @@ Tri-binary minimality is a theorem target: the working claim is that three coupl
 - **Outer binary** (partner/exterior comparison role): typically $v < c_f$ with expansion/contraction modes; couples strongly to Noether-Sea gravitational/cosmological response.
 At the terminal-alignment interface, the three binaries are treated as a different regime where forward-sector components approach $c_f$ together; in self-hit interior comparison hypotheses, wake-closure can be described with combined $v_{\text{eff}} > c_f$ without requiring every component speed to exceed $c_f$.
 
-The stronger claim that this architecture supplies the basis for rest mass, proper time, photon behavior, and standard-model particle families remains a theorem burden for the broader causal-closure program.
+The stronger claim that this architecture supplies the basis for rest mass, observer clock behavior, photon behavior, and standard-model particle families remains a theorem burden for the broader causal-closure program.
 
 ### Hinge Equation Sketch
 

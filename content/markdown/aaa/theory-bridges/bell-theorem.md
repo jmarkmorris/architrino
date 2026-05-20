@@ -407,6 +407,97 @@ d\rho_{\mathrm{prov}}(\Pi).
 $$
 That form can preserve no-signaling and measurement independence while still staying inside the Bell-local bound. The validation harness records this as `bell.product_screening_collapse`, so pair provenance is useful only if the retained record law avoids this compression without introducing setting-dependent provenance or distant signaling.
 
+### Threshold-Pullback Product-Screening No-Go
+
+The one-wing threshold-pullback theorem target from [Angular Momentum and Spin](angular-momentum-and-spin.md#helicity-and-vector-modes) is not, by itself, a Bell solution. It proves how a deterministic basin kernel can reproduce a declared one-wing probability after pushing forward an invariant record-window measure. If two wings use independent copies of that construction over a setting-independent source measure, the result is exactly the Bell-local form.
+
+Let $x,y$ denote detector settings and let $\Pi$ denote the retained source or pair-provenance record. Suppose the two-wing kernel factorizes as
+
+$$
+K_{ab}^{\mathrm{prod}}(x,y;\Pi,\zeta_A,\zeta_B)
+=
+K_A^a(x;\Pi,\zeta_A)
+K_B^b(y;\Pi,\zeta_B),
+$$
+
+with $d\nu_{A,x}$, $d\nu_{B,y}$, and $d\rho_{\mathrm{src}}(\Pi)$ setting-independent in the Bell sense. After integrating unresolved local record variables, define
+
+$$
+p_A(a|x,\Pi)
+=
+\int K_A^a(x;\Pi,\zeta_A)\,d\nu_{A,x}(\zeta_A),
+\qquad
+p_B(b|y,\Pi)
+=
+\int K_B^b(y;\Pi,\zeta_B)\,d\nu_{B,y}(\zeta_B).
+$$
+
+Then the observed law becomes
+
+$$
+P(a,b|x,y)
+=
+\int
+p_A(a|x,\Pi)
+p_B(b|y,\Pi)
+d\rho_{\mathrm{src}}(\Pi).
+$$
+
+For $\pm1$ outcomes, set
+
+$$
+A_x(\Pi)=\sum_{a=\pm1}a\,p_A(a|x,\Pi),
+\qquad
+B_y(\Pi)=\sum_{b=\pm1}b\,p_B(b|y,\Pi),
+$$
+
+so $A_x(\Pi),B_y(\Pi)\in[-1,1]$. For each $\Pi$,
+
+$$
+\left|
+A_xB_y
++
+A_xB_{y'}
++
+A_{x'}B_y
+-
+A_{x'}B_{y'}
+\right|
+\le 2.
+$$
+
+Integrating over $d\rho_{\mathrm{src}}(\Pi)$ gives the CHSH bound $|S|\le2$. Therefore independent local threshold-pullback kernels can recover one-wing probabilities but cannot recover the singlet Bell law. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell packet must locate nonseparability in the derived joint response kernel, in a non-restartable pair-provenance compression, or in another explicitly stated structure that is not equivalent to the product form above, while still preserving measurement independence and no-signaling.
+
+The no-go is quantitative in the natural per-cell residual. If a candidate table is within $\Delta_{\mathrm{prod}}$ of a product-screened table for each outcome-setting cell, then each correlator differs by at most $4\Delta_{\mathrm{prod}}$, and the CHSH expression obeys
+
+$$
+|S|\le 2+16\Delta_{\mathrm{prod}}.
+$$
+
+At the CHSH-optimal singlet settings, a completed table within $\Delta_{\mathrm{joint}}^{\mathrm{sing}}$ of the singlet joint law must therefore satisfy
+
+$$
+\Delta_{\mathrm{prod}}
++
+\Delta_{\mathrm{joint}}^{\mathrm{sing}}
+\ge
+\frac{2\sqrt2-2}{16}
+=
+\frac{\sqrt2-1}{8}.
+$$
+
+Thus exact singlet recovery requires
+
+$$
+\Delta_{\mathrm{prod}}
+\ge
+\frac{\sqrt2-1}{8}
+\approx
+0.0518
+$$
+
+in this residual normalization. Driving the product-screening residual to zero and driving the singlet residual to zero are mutually incompatible closure targets.
+
 The candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ route lies in the finite-time measurement interaction of a full Noether-core ledger rather than in a preassigned spin label. The ingredients to derive are:
 
 1. **Angular-momentum ledger geometry**: the internal spin ledger includes ordered binary-plane geometry, binary frequencies, causal-root branches, and causal-wake angular momentum.

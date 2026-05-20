@@ -1,6 +1,6 @@
 # Dyadic Resonance Lock
 
-This chapter studies resonance lock for the nested Outer, Middle, and Inner binaries. Its immediate goal is specific: identify the relationship between frequency, scalar tangential speed, and radius in a reduced branch where the middle binary is pinned at the field speed and the three rings form an exact integer phase-locked cycle.
+This chapter studies resonance lock for the nested Outer, Middle, and Inner binaries. Its immediate goal is specific: identify the relationship between frequency, scalar tangential speed, and radius in a reduced branch where the middle binary caustic-grazes the field-speed hinge and the three rings form an exact integer phase-locked cycle.
 
 It should be read together with [Binary Dynamics](binary-dynamics.md), [Tri-Binary Dynamics](tri-binary-dynamics.md), [Mapping the Planck Scale](../theory-bridges/planck-scale-tri-binary-alignment.md), and [Noether Core](../spacetime/noether-core.md), which provide the assembly geometry and scale-setting context for the lock relations derived here.
 
@@ -36,17 +36,35 @@ Plain language: for any one ring, if we know any two of frequency, tangential sp
 
 This identity is exact. It is not an assumption, and it does not select a lock by itself.
 
-### Assumption 1 (Middle-Pinned Closure)
+### Assumption 1 (Middle Caustic-Grazing Closure)
 
-In the reduced exterior and horizon-transition branch studied here, the middle binary is pinned at the field speed:
+In the reduced exterior and horizon-transition branch studied here, the middle binary is not pinned exactly on an infinite-force surface. It is modeled as a caustic-grazing carrier whose cycle-averaged hinge value is the field speed:
 $$
-v_M=c_f,
+v_M^{\mathrm{car}}=c_f,
 \qquad
-\beta_M=1.
+\beta_M^{\mathrm{car}}=1.
 $$
+For compact notation, the algebra below writes $v_M=c_f$ and $\beta_M=1$ for this carrier value.
+
+The branch-level motion may have microscopic crossings
+$$
+v_M(t)=c_f+\delta v_M(t),
+\qquad
+\langle \delta v_M\rangle_W=0
+$$
+over the declared window $W$. Each regularized crossing of the $J=0$ boundary is a caustic transit with finite impulse
+$$
+\Delta\mathbf{v}_{M,n}
+=
+\int_{t_n^-}^{t_n^+}
+\mathbf{a}_M^{(\eta)}(t)\,dt,
+\qquad
+\left\|\Delta\mathbf{v}_{M,n}\right\|<\infty,
+$$
+rather than an infinite-force constraint. These impulse events are candidate mechanical origins for the discrete causal-root ledger steps used in the [energy bookkeeping](energy.md#self-hit-echo-and-discrete-steps-working-note).
 
 This is the main regime assumption of the chapter. The speed $c_f$ is the propagation speed of causal isochrons in the reduced dynamics, not an observer-level claim about an effective metric.
-It is not a claim that every Noether-core regime has the middle binary exactly at $c_f$; ordinary weak-stress operation may keep the middle layer only near the hinge scale, while the exact pinning here belongs to the reduced exterior/horizon-transition branch.
+It is not a claim that every Noether-core regime has the middle binary exactly at $c_f$; ordinary weak-stress operation may keep the middle layer only near the hinge scale, while the caustic-grazing carrier belongs to the reduced exterior/horizon-transition branch.
 
 ### Assumption 2 (Exact Integer Phase Closure)
 
@@ -148,7 +166,7 @@ This chapter studies exact integer closure. Rational or self-similar locks can b
 
 This section is pure algebra from the exact identity and the first two assumptions. It does not use the cancellation principle.
 
-From Assumptions 1-2 and the exact identity, the middle radius is fixed by the outer frequency:
+From Assumptions 1-2 and the exact identity, the middle carrier radius is fixed by the outer frequency:
 $$
 r_M=\frac{c_f}{2\pi f_M}
 =
@@ -211,9 +229,9 @@ $$
 $$
 r_k=\frac{\beta_k c_f}{2\pi f_k}
 $$
-together with $\beta_M=1$, $f_M=m f_O$, and $f_I=n f_O$. $\square$
+together with the carrier value $\beta_M=1$, $f_M=m f_O$, and $f_I=n f_O$. $\square$
 
-The geometry is controlled by integer phase closure plus the middle-pinned condition. The proposition makes no claim about which integer pair is dynamically preferred.
+The geometry is controlled by integer phase closure plus the middle caustic-grazing carrier condition. The proposition makes no claim about which integer pair is dynamically preferred.
 
 ## Could $1{:}2{:}4$ Be a Solution?
 

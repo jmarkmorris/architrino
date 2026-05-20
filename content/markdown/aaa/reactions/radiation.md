@@ -355,6 +355,55 @@ $$
 
 For Gate B, the $\mathcal Q=\mathbf J$ component is the transverse angular-momentum balance. Photon polarization, helicity, and analyzer handoff are therefore not detached labels; they are the photon-side component of one event-window conservation record.
 
+The event-window helicity projection is the $\hat{\mathbf e}$ component of that same balance. Define
+
+$$
+\mathbf B_{\gamma}^{0}
+=
+\Delta\mathbf J_{\mathrm{src}}^{0}
+-
+\mathbf J_{\gamma}^{\mathrm{sub}}
+-
+\mathbf J_{\mathrm{recoil}}^{0}
+-
+\mathbf J_{\mathrm{med}}^{0}
+-
+\mathbf J_{\mathrm{wake}}^{0}
+-
+\mathbf J_{\mathrm{handoff}}^{0}
+-
+\mathbf J_{\mathrm{rem}}^{0}.
+$$
+
+Then
+
+$$
+\lambda_{\mathrm{hel}}
+=
+\frac{\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}}{\hbar}
+=
+\frac{
+\hat{\mathbf e}\cdot
+\left(
+\Delta\mathbf J_{\mathrm{src}}^{0}
+-
+\mathbf J_{\mathrm{recoil}}^{0}
+-
+\mathbf J_{\mathrm{med}}^{0}
+-
+\mathbf J_{\mathrm{wake}}^{0}
+-
+\mathbf J_{\mathrm{handoff}}^{0}
+-
+\mathbf J_{\mathrm{rem}}^{0}
+\right)
+}{\hbar},
+\qquad
+\lambda_{\mathrm{hel}}\in\{+1,-1\},
+$$
+
+when $\mathbf B_{\gamma}^{0}=\mathbf 0$ and the photon substrate row has no transverse leakage. If the balance defect is nonzero, the projection error is bounded by $\|\mathbf B_{\gamma}^{0}\|/\hbar$.
+
 The common energy closure for the schema is
 
 $$

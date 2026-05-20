@@ -1,9 +1,10 @@
 # Spiral A1 Tangential Compatibility No-Go
 
-Status. Complete priority-only proof packet for exact prescribed-curve
-tangential compatibility of the A1 retained branch chart. This packet does not
-edit [spiral_branch_chart_certificate.py](spiral_branch_chart_certificate.py),
-the interval sidecar, generated reports, priority queues, or authored AAA prose.
+Status. Consumed proof packet for exact prescribed-curve tangential
+compatibility of the A1 retained branch chart. This packet is now consumed by
+[spiral_branch_chart_certificate.py](spiral_branch_chart_certificate.py), the
+A1 interval sidecar/report, the priority queue, and the authored A1 benchmark
+paragraph in [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md).
 
 Claim level. Interval no-go for the constant-$\Omega$ prescribed A1 history at
 the turn center $\theta_\ast=0$, under the same equal-magnitude isolated
@@ -197,25 +198,28 @@ diagnostic. It is weaker than exact prescribed-curve compatibility in the
 specific sense needed here: a closed prescribed branch at fixed angular rate
 needs $T_0(C_{\mathrm{A1}})=0$, not merely $D_T(I_\ast)<0$.
 
-The radial row remains a separate blocker:
+The radial row has been resolved by
+[spiral-a1-kinematic-gamma-closure](spiral-a1-kinematic-gamma-closure.md):
 $$
-B_r(0)\in[-0.005994791326773983,-0.005994715991872956],
+\Gamma\in[0.007531050241046427,\ 0.007531144882881889],
 $$
-with no accepted force-ratio interval for
+with
 $$
-\Gamma=\frac{r_\ast^3\Omega^2}{\kappa q_1^2}.
+B_r(C_{\mathrm{A1}};0)=(a_{\mathrm{A1}}-1)\Gamma.
 $$
-The tangential no-go does not use $\Gamma$ and therefore does not depend on the
-radial force-ratio decision.
+Thus the combined A1 verdict is no longer radial-blocked. The radial row passes
+for the prescribed constant-$\Omega$ history, and the exact tangential
+compatibility row supplies the theorem-grade rejection.
 
 ## Promotion Decision
 
-Priority-only. The mathematical result is strong enough to record as a proof
-packet, but this task explicitly excludes edits under `content/markdown/aaa`.
-If promoted later, the target update should distinguish:
+Promoted. The mathematical result is recorded as a proof packet and promoted
+into the A1 benchmark paragraph in `content/markdown/aaa`. The promoted wording
+distinguishes:
 
 1. negative weighted tangential drive, which A1 passes;
 2. exact prescribed-curve tangential compatibility at $\theta_\ast=0$, which
    A1 fails for constant $\Omega$;
 3. possible continuation to a variable-angular-rate or externally supplemented
-   history, which remains a separate proof target.
+   history, with the local variable-angular-rate target now stated separately in
+   [spiral-a1-variable-rate-turn-target](spiral-a1-variable-rate-turn-target.md).

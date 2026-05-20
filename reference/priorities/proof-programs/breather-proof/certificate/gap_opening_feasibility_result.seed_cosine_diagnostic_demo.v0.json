@@ -1,0 +1,133 @@
+{
+  "schema": "aaa-proof/null-coordinate-gap-opening-scan-result/v1",
+  "input_schema": "aaa-proof/null-coordinate-gap-opening-scan/v1",
+  "packet_id": "seed-cosine-diagnostic-demo-not-live",
+  "packet_identity": {
+    "source_packet": "seed-doubled-four-arc-cosine-template-v0",
+    "demo_status": "diagnostic_only_not_candidate",
+    "basis_model": "independent_endpoint_shear_columns"
+  },
+  "source": "Residual parent-complement collars from the rejected cosine packet, assembled only as a diagnostic endpoint-shear feasibility matrix.",
+  "status": "feasible",
+  "theory_success_marker": "strict_null_coordinate_gap_opening_tangent_witness",
+  "method": "nullspace_perceptron_strict_witness",
+  "claim_level": "strict tangent-space gap-opening witness for declared finite matrix",
+  "branch_chart_authorized": false,
+  "preledger_pass": false,
+  "nullity": 4,
+  "variable_count": 5,
+  "structural_constraint_count": 1,
+  "gap_constraint_count": 11,
+  "tolerance": 1e-9,
+  "normalization": "||xi||_inf <= 1",
+  "xi_infinity_norm": 1,
+  "updates_live_ledger": false,
+  "B_xi_residual_verified_zero_with_tolerance": true,
+  "B_xi_residual_certified_zero": false,
+  "rank_B_certified": false,
+  "kappa_observed_after_required_margin": 1,
+  "max_structural_residual": 0,
+  "min_gap_value_after_required_margin": 1,
+  "witness": {
+    "b_T": 0,
+    "h_w_A1": 1,
+    "h_w_A2": 1,
+    "h_u_A3": 1,
+    "h_u_A4": 1
+  },
+  "diagnostic_candidate": null,
+  "structural_rows": [
+    {
+      "id": "diagnostic_fixed_period",
+      "residual": 0
+    }
+  ],
+  "gap_rows": [
+    {
+      "id": "R_w_A1_A0_receiver_left",
+      "value_after_required_margin": 1,
+      "required_margin": 0,
+      "collar_id": "R_w_A1_A0/receiver_left",
+      "ledger": "w"
+    },
+    {
+      "id": "R_w_A1_A0_source_left",
+      "value_after_required_margin": 1,
+      "required_margin": 0,
+      "collar_id": "R_w_A1_A0/source_left",
+      "ledger": "w"
+    },
+    {
+      "id": "R_w_A2_A0_receiver_right",
+      "value_after_required_margin": 1,
+      "required_margin": 0,
+      "collar_id": "R_w_A2_A0/receiver_right",
+      "ledger": "w"
+    },
+    {
+      "id": "R_w_A2_A1_receiver_left",
+      "value_after_required_margin": 1,
+      "required_margin": 0,
+      "collar_id": "R_w_A2_A1/receiver_left",
+      "ledger": "w"
+    },
+    {
+      "id": "R_w_A2_A1_receiver_right",
+      "value_after_required_margin": 1,
+      "required_margin": 0,
+      "collar_id": "R_w_A2_A1/receiver_right",
+      "ledger": "w"
+    },
+    {
+      "id": "R_u_A3_A2_receiver_left",
+      "value_after_required_margin": 1,
+      "required_margin": 0,
+      "collar_id": "R_u_A3_A2/receiver_left",
+      "ledger": "u"
+    },
+    {
+      "id": "R_u_A3_A2_source_left",
+      "value_after_required_margin": 1,
+      "required_margin": 0,
+      "collar_id": "R_u_A3_A2/source_left",
+      "ledger": "u"
+    },
+    {
+      "id": "R_u_A4_A2_receiver_right",
+      "value_after_required_margin": 1,
+      "required_margin": 0,
+      "collar_id": "R_u_A4_A2/receiver_right",
+      "ledger": "u"
+    },
+    {
+      "id": "R_u_A4_A2_source_right",
+      "value_after_required_margin": 1,
+      "required_margin": 0,
+      "collar_id": "R_u_A4_A2/source_right",
+      "ledger": "u"
+    },
+    {
+      "id": "R_u_A4_A3_receiver_left",
+      "value_after_required_margin": 1,
+      "required_margin": 0,
+      "collar_id": "R_u_A4_A3/receiver_left",
+      "ledger": "u"
+    },
+    {
+      "id": "R_u_A4_A3_receiver_right",
+      "value_after_required_margin": 1,
+      "required_margin": 0,
+      "collar_id": "R_u_A4_A3/receiver_right",
+      "ledger": "u"
+    }
+  ],
+  "iterations": 4,
+  "projected_margin": 1,
+  "note": null,
+  "limitations": [
+    "The scanner certifies only the declared finite tangent matrix, not a passed pre-ledger.",
+    "A feasible witness must still be integrated into a fresh same-packet candidate and interval-validated.",
+    "An inconclusive result is not a proof that no gap-opening direction exists."
+  ],
+  "input_path": "/Users/markmorris/vibe/architrino/reference/priorities/proof-programs/breather-proof/certificate/gap_opening_feasibility_input.seed_cosine_diagnostic_demo.v0.json"
+}

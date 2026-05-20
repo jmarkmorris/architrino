@@ -1137,6 +1137,42 @@ $$
 
 The minimal four-substep branch is therefore a conditional certificate, not a branch-selection theorem. In the fixed-normal, no-retained-wake chart, the scalar and vector rows close by the declared assumptions. The root replay, phase lock, torque consistency, tail-wake pullback, section stability, and nonzero energy mismatch rows still have to be populated from a retained branch chart before the branch can be treated as a physical selected outcome.
 
+This exposes the reusable same retained-row conservation pullback. For a retained branch chart $B$ on record window $W$, force, torque, wake, and partition residuals are admissible in one angular-momentum certificate only when their row selectors coincide:
+
+$$
+\operatorname{rows}\!\left(\mathcal R_{\mathrm{force}}^B\right)
+=
+\operatorname{rows}\!\left(\mathcal R_{\mathrm{torque}}^B\right)
+=
+\operatorname{rows}\!\left(\mathcal R_{\mathrm{wake}}^B\right)
+=
+\operatorname{rows}\!\left(\mathcal R_{\mathrm{part}}^B\right)
+=
+\mathcal R_B^{\mathrm{act}}\big|_W.
+$$
+
+The same row set must also use the same regularization $\eta$, coupling tolerance $\epsilon_c$, endpoint convention, branch identity, and characteristic-tail kernel. Only then may the angular-momentum residual be evaluated as
+
+$$
+\mathcal R_{\mathbf J}^{B}
+=
+\frac{
+\left\|
+\Delta\mathbf J_{\mathrm{coupl}}
++
+\sum_{\ell}\Delta\mathbf L_{\mathrm{mech},\ell}^{B}
++
+\Delta\mathbf L_{\mathrm{tr}}^{B}
++
+\Delta\mathbf J_{\mathrm{wake},B}^{(\eta)}
+\right\|
+}{
+\left\|\Delta\mathbf J_{\mathrm{coupl}}\right\|+\epsilon_{\mathbf J}
+}.
+$$
+
+The first proof step is to differentiate $\mathbf J_{\mathrm{mech}}^B+\mathbf J_{\mathrm{wake}}^B$ on $W$ and match the torque sum to the normalized wake-history boundary increment emitted by the same regularized action kernel. If any term is evaluated on a different retained row set, endpoint convention, or characteristic-tail kernel, the scalar $\hbar$ partition is only a diagnostic partition, not a conserved angular-momentum certificate.
+
 The conservation result for this branch is therefore explicit:
 
 $$
@@ -1399,6 +1435,121 @@ $$
 $$
 
 then the parity is a gauge artifact, not spinor support. A passed spinor row must keep $\Delta_{\mathrm{gc}}(r)\le\varepsilon_{\mathrm{gc}}$ and must also keep the $2\pi$ and $4\pi$ angular-momentum residuals below tolerance.
+
+### Same-Record Spinor-Label Pullback
+
+The row-local condition becomes reusable when written as a pullback object. Let one retained branch record on window $W$ be
+
+$$
+\mathfrak R_\star(\theta;W)
+=
+\left(
+\theta_W,
+r_\star,
+\widetilde r_\star(s),
+\Gamma_{\mathrm{coupl}},
+\mathcal C_{\mathbf J}
+\right),
+\qquad s\in[0,2],
+$$
+
+where $\widetilde r_\star(s)$ is the lifted row path, $\Gamma_{\mathrm{coupl}}$ is the coupling record, and $\mathcal C_{\mathbf J}$ is the angular-momentum certificate data. The row is downstream-admissible only if
+
+$$
+\Pi_{W,r_\star}^{2\pi}=1,
+\qquad
+\Pi_{W,r_\star}^{4\pi}=0,
+$$
+
+$$
+\Delta_{\Pi_W}(r_\star)\le\varepsilon_{\Pi_W},
+\qquad
+\Delta_{\mathrm{gc}}(r_\star)\le\varepsilon_{\mathrm{gc}},
+\qquad
+\Delta_{\mathbf J}^{2\pi},
+\Delta_{\mathbf J}^{4\pi}\le\varepsilon_{\mathbf J}.
+$$
+
+All spinor, weak, exchange, and fermion-metric labels must then be pulled back from the same gauge-quotient class:
+
+$$
+\mathcal L_\star(\theta;W,r_\star)
+=
+\mathsf P
+\left(
+[\widetilde r_\star]_{G_{\mathrm{gauge}}},
+\theta_W
+\right),
+$$
+
+with consumer projections
+
+$$
+\mathcal L_\star
+\mapsto
+\left(
+s_{1/2},
+h_{\mathrm{eff}},
+\Sigma_{\mathrm{spin}}^{(L/R)},
+\epsilon_{\mathrm{ex}},
+\Pi_{\mathrm{weak}},
+\Pi_{\mathrm{matter}}
+\right).
+$$
+
+The fermionic exchange sign is therefore not an independent assignment:
+
+$$
+\epsilon_{\mathrm{ex}}(r_\star)
+=
+(-1)^{\Pi_{W,r_\star}^{2\pi}}
+=
+-1,
+\qquad
+\epsilon_{\mathrm{ex}}^{4\pi}
+=
+(-1)^{\Pi_{W,r_\star}^{4\pi}}
+=
++1.
+$$
+
+The same-record admissibility residual is
+
+$$
+\Delta_{\mathrm{pull}}(\theta;W,r_\star)
+=
+\Delta_{\Pi_W}(r_\star)
++
+\Delta_{\mathrm{gc}}(r_\star)
++
+\Delta_{\mathbf J}(r_\star)
++
+\sum_{c\in\{\mathrm{weak},\mathrm{ex},\mathrm{metric}\}}
+d_c\!\left(
+\lambda_c,
+\Pi_c\mathcal L_\star
+\right)
++
+\mathcal S_{\mathrm{retune}}(\theta).
+$$
+
+The pass condition is
+
+$$
+\Delta_{\mathrm{pull}}(\theta;W,r_\star)\le\varepsilon_{\mathrm{pull}},
+\qquad
+\mathcal S_{\mathrm{retune}}(\theta)=0.
+$$
+
+The first proof step is gauge-quotient factorization. For every allowed gauge probe $g$ and every consumer projection $\Pi_c$,
+
+$$
+\Pi_c\mathsf P(g\cdot\widetilde r_\star,\theta_W)
+=
+\Pi_c\mathsf P(\widetilde r_\star,\theta_W).
+$$
+
+If this identity fails, the consumer label is chart-dependent and cannot be promoted as spinor, weak, exchange, or metric evidence. This proposition remains a theorem target until a non-coplanar retained row with quotient witness, doubled-path restoration, and angular-momentum residuals is populated.
 
 The Lorentz-sector extension is a separate but connected theorem target. Once the relativistic observer sector has been recovered, the same ordered Noether-core frame must admit an effective spinor response compatible with the double cover
 
@@ -1961,7 +2112,7 @@ $$
 
 where $P_{\perp}$ projects transverse to the propagation axis. Linear polarization is then a real transverse-axis state, while circular polarization is a quarter-cycle phase relation between the two transverse axes. The scalar summary $\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}\approx\lambda_{\mathrm{hel}}\hbar$ is allowed only after Gate A, the substrate planar-pair rows, and the event-balance rows pass. The proof burden is to show that the coaxial contra-rotating pro/anti planar pair carries this spin-$1$ transverse ledger and not a scalar, spinor, or longitudinal free mode.
 
-The useful algebraic consequence is a projected event-balance target. For a finite radiative event window,
+The useful algebraic consequence is an event-window helicity projection lemma. For a finite radiative event window,
 
 $$
 \Delta\mathbf J_{\mathrm{src}}^{0}
@@ -1979,9 +2130,31 @@ $$
 \mathbf J_{\mathrm{rem}}^{0}.
 $$
 
-Projecting along $\hat{\mathbf e}$ gives
+Define the balance defect
 
 $$
+\mathbf B_{\gamma}^{0}
+=
+\Delta\mathbf J_{\mathrm{src}}^{0}
+-
+\mathbf J_{\gamma}^{\mathrm{sub}}
+-
+\mathbf J_{\mathrm{recoil}}^{0}
+-
+\mathbf J_{\mathrm{med}}^{0}
+-
+\mathbf J_{\mathrm{wake}}^{0}
+-
+\mathbf J_{\mathrm{handoff}}^{0}
+-
+\mathbf J_{\mathrm{rem}}^{0}
+$$
+
+and suppose the substrate row has no transverse spin leakage. If $\mathbf B_{\gamma}^{0}=\mathbf 0$, projecting along $\hat{\mathbf e}$ gives
+
+$$
+\lambda_{\mathrm{hel}}
+=
 \frac{\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}}{\hbar}
 =
 \frac{
@@ -1999,10 +2172,39 @@ $$
 -
 \mathbf J_{\mathrm{rem}}^{0}
 \right)
-}{\hbar}
+}{\hbar},
+\qquad
+\lambda_{\mathrm{hel}}\in\{+1,-1\}.
 $$
 
-whenever the event-balance residual vanishes. Thus photon helicity is not an isolated scalar assertion: it is the propagation-axis projection of the same source-depletion, recoil, wake, handoff, remnant, and photon substrate ledger.
+With a nonzero but small balance defect, the projection error is bounded by
+
+$$
+\left|
+\frac{\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}}{\hbar}
+-
+\frac{
+\hat{\mathbf e}\cdot
+\left(
+\Delta\mathbf J_{\mathrm{src}}^{0}
+-
+\mathbf J_{\mathrm{recoil}}^{0}
+-
+\mathbf J_{\mathrm{med}}^{0}
+-
+\mathbf J_{\mathrm{wake}}^{0}
+-
+\mathbf J_{\mathrm{handoff}}^{0}
+-
+\mathbf J_{\mathrm{rem}}^{0}
+\right)
+}{\hbar}
+\right|
+\le
+\frac{\|\mathbf B_{\gamma}^{0}\|}{\hbar}.
+$$
+
+Thus photon helicity is not an isolated scalar assertion: it is the propagation-axis projection of the same source-depletion, recoil, wake, handoff, remnant, and photon substrate ledger, with its error controlled by the event-window balance defect.
 
 Analyzer coupling belongs to the same Gate B ledger. The transverse projector is
 
@@ -2238,6 +2440,34 @@ $$
 $$
 
 Photon Gate B uses $\rho=\mu_{\text{pass}}(\hat{\mathbf a}\mid a_\perp)$. The Stern-Gerlach-like chart below uses the same structure with $\rho=p_{+}(\hat{\mathbf a},\hat{\mathbf m})$. Bell-pair work may consume this theorem target only after both one-wing kernels are tied to the same pair-provenance record and the resulting joint law avoids product screening while preserving measurement independence and no-signaling.
+
+The Bell limitation is quantitative. If two wings use independent threshold-pullback kernels over a setting-independent source measure, Fubini reduction turns them into one-wing response probabilities $p_A(a|x,\Pi)$ and $p_B(b|y,\Pi)$. The resulting law
+
+$$
+P(a,b|x,y)
+=
+\int p_A(a|x,\Pi)p_B(b|y,\Pi)\,d\rho_{\mathrm{src}}(\Pi)
+$$
+
+obeys the CHSH bound. If a product-screened approximation differs from the completed table by at most $\Delta_{\mathrm{prod}}$ per outcome-setting cell, then
+
+$$
+|S|\le 2+16\Delta_{\mathrm{prod}}.
+$$
+
+If the same table is within $\Delta_{\mathrm{joint}}^{\mathrm{sing}}$ of the singlet joint law at the CHSH-optimal settings, then
+
+$$
+\Delta_{\mathrm{prod}}
++
+\Delta_{\mathrm{joint}}^{\mathrm{sing}}
+\ge
+\frac{2\sqrt2-2}{16}
+=
+\frac{\sqrt2-1}{8}.
+$$
+
+Thus exact singlet recovery requires the product-screening residual to stay bounded away from zero; in this normalization $\Delta_{\mathrm{prod}}\ge(\sqrt2-1)/8\approx0.0518$. The one-wing threshold theorem can supply local probabilities, but it cannot be duplicated independently to make Bell correlations.
 
 The substrate origin of these reduced objects is the analyzer's own finite-time material dynamics. Let $\mathcal{P}_{\hat{\mathbf a}}$ denote the record-window section of fully specified analyzer states: a state lies in $\mathcal{P}_{\hat{\mathbf a}}$ when an incoming Gate A-admissible photon branch has reached the analyzer entrance with propagation axis $\hat{\mathbf e}$, the analyzer's macroscopic accepted axis is $\hat{\mathbf a}$, and the local Noether-Sea environment is within the calibrated operating band. Let $\sim_{\hat{\mathbf a}}$ identify material states that differ only by translations among equivalent capture sites or by record-cycle phase choices that preserve the same local pass/reject geometry. The unresolved analyzer microstate space is then the quotient
 

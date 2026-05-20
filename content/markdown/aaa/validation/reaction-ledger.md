@@ -192,6 +192,63 @@ $$
 \mathbf J_{\mathrm{rem}}^{0}.
 $$
 
+Define the corresponding balance defect by
+
+$$
+\mathbf B_{\gamma}^{0}
+=
+\Delta\mathbf J_{\mathrm{src}}^{0}
+-
+\mathbf J_{\gamma}^{\mathrm{sub}}
+-
+\mathbf J_{\mathrm{recoil}}^{0}
+-
+\mathbf J_{\mathrm{med}}^{0}
+-
+\mathbf J_{\mathrm{wake}}^{0}
+-
+\mathbf J_{\mathrm{handoff}}^{0}
+-
+\mathbf J_{\mathrm{rem}}^{0}.
+$$
+
+For a Gate B-admissible photon row, helicity is the projection
+
+$$
+\lambda_{\mathrm{hel}}
+=
+\frac{\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}}{\hbar},
+\qquad
+\lambda_{\mathrm{hel}}\in\{+1,-1\},
+$$
+
+and the event balance bounds the projection error:
+
+$$
+\left|
+\frac{\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}}{\hbar}
+-
+\frac{
+\hat{\mathbf e}\cdot
+\left(
+\Delta\mathbf J_{\mathrm{src}}^{0}
+-
+\mathbf J_{\mathrm{recoil}}^{0}
+-
+\mathbf J_{\mathrm{med}}^{0}
+-
+\mathbf J_{\mathrm{wake}}^{0}
+-
+\mathbf J_{\mathrm{handoff}}^{0}
+-
+\mathbf J_{\mathrm{rem}}^{0}
+\right)
+}{\hbar}
+\right|
+\le
+\frac{\|\mathbf B_{\gamma}^{0}\|}{\hbar}.
+$$
+
 The normalized event-balance residual is
 
 $$

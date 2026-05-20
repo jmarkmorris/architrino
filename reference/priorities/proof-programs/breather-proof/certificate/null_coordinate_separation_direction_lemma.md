@@ -69,6 +69,7 @@ $$
 \inf_{\theta_r\in R_k,\theta_s\in S_k}
 o_k\left[
 c_f\delta T(\theta_r-\theta_s)
++
 \sigma_k\bigl(H(\theta_r)-H(\theta_s)\bigr)
 \right]
 >0.
@@ -117,7 +118,7 @@ $$
 \inf_{\theta_r\in R_k,\theta_s\in S_k}
 o_k\left[
 c_f b_T(\theta_r-\theta_s)
-\,
++
 \sigma_k\sum_i b_i\bigl(\psi_i(\theta_r)-\psi_i(\theta_s)\bigr)
 \right]
 \ge
@@ -205,6 +206,38 @@ $$
 \delta w=b_n+c_f\theta\,\delta T.
 $$
 Thus a small local shear can open a $u$ collar while closing or weakening a nearby $w$ collar, or conversely. The finite feasibility problem is valuable exactly because it tests whether all residual collars can be opened simultaneously while remaining tangent to the structural constraints.
+
+## Executable Feasibility Scanner
+
+The finite criterion now has a fail-closed executable proof aid:
+[`null-coordinate-gap-opening-scanner.mjs`](../../../../../scripts/proof-programs/null-coordinate-gap-opening-scanner.mjs).
+Given a declared matrix for
+$$
+B\xi=0,
+\qquad
+A\xi\ge\kappa\mathbf{1},
+$$
+the scanner works in the computed nullspace of $B$ and reports `feasible` only
+when it emits an explicit witness with
+$$
+\|\xi\|_\infty\le1,
+\qquad
+\max_j |(B\xi)_j|\le\varepsilon_{\mathrm{tol}},
+\qquad
+\min_m\left((A\xi)_m-\kappa_m\right)>0.
+$$
+If it cannot find such a witness, the result is `inconclusive`, not a proof of
+infeasibility.
+
+The first diagnostic run uses
+`gap_opening_feasibility_input.seed_cosine_diagnostic_demo.v0.json` and records
+`gap_opening_feasibility_result.seed_cosine_diagnostic_demo.v0.json`. This run
+is intentionally not a live candidate packet: it uses independent endpoint-shear
+columns to verify the success-marker shape, leaves `branch_chart_authorized=false`,
+and does not update the live pre-ledger. Its value is that the next fresh
+fold-collocation candidate can now be tested by replacing the diagnostic matrix
+with the true structural Jacobian $B=DC(\mathbf a_0)$ and signed gap derivative
+matrix $A$.
 
 ## Why This Is Not Another Gate
 

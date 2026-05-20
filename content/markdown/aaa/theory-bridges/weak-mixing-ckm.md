@@ -169,6 +169,8 @@ d_{\Sigma}\!\left(
 $$
 The last term records right-handed charged-current leakage in the hard-gate model, or its declared smooth replacement if later simulations soften the exposure function. The weak sector may consume the spinor ledger only when this residual stays below tolerance using the same $\theta$ that also supplies the CKM overlap and beta-reaction provenance record.
 
+Equivalently, the handed exposure class must be the weak consumer projection $\Sigma_{\mathrm{spin}}^{(h)}(\theta;W)=\Pi_{\mathrm{weak}}\mathcal L_\star(\theta;W,r_\star)$ of the same retained spinor-label pullback record. It is not a separately selected handedness label that can be tuned after the CKM and beta-reaction rows have been chosen.
+
 That consumer condition inherits the row-local spinor blocker from the angular-momentum ledger. The exposure class $\Sigma_{\mathrm{spin}}^{(h)}(\theta;W)$ may be used in the weak-coupling-triad residual only if the same branch record also supplies a passed causal-writhe and gauge-control row:
 
 $$

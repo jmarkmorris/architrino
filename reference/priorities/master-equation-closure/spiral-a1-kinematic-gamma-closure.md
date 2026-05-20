@@ -1,6 +1,6 @@
 # Spiral A1 Kinematic Gamma Closure
 
-Status. Priority-only proof packet for the A1 `radial_turn` row. This packet consumes [spiral-a1-gamma-force-ratio-decision](spiral-a1-gamma-force-ratio-decision.md), [spiral-a1-drive-interval-target](spiral-a1-drive-interval-target.md), [spiral-a1-current-interval-rows](spiral-a1-current-interval-rows.json), and the variable-pitch spiral normalization in [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md). It does not edit the executable runner, sidecar, generated reports, priority queue, or authored AAA prose.
+Status. Consumed proof packet for the A1 `radial_turn` row. This packet consumes [spiral-a1-gamma-force-ratio-decision](spiral-a1-gamma-force-ratio-decision.md), [spiral-a1-drive-interval-target](spiral-a1-drive-interval-target.md), [spiral-a1-current-interval-rows](spiral-a1-current-interval-rows.json), and the variable-pitch spiral normalization in [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md). The executable runner, sidecar, generated A1 report, priority queue, and authored AAA prose now consume the interval derived here.
 
 Claim level. Exact radial-balance closure at $\theta_\ast=0$ for the prescribed constant-$\Omega$ A1 candidate history. The earlier A1 force-ratio packet remains correct as a chart-only no-go: the retained causal-root chart alone does not determine $\Gamma$. The additional datum used here is the candidate history's radial kinematics.
 
@@ -156,7 +156,7 @@ This proof packet supplies a concrete candidate source for a future non-blocked 
 | `decision_rule` | `passed iff Gamma^- + B_r^- > 0; certified_fail iff Gamma^+ + B_r^+ <= 0; otherwise blocked` |
 | `strict_margin` for `passed` | `0.001536258914272444` |
 
-No sidecar update is made here. The current executable A1 report remains unchanged until a separate integration step consumes this interval.
+Integration note. The sidecar and A1 interval report now consume this row. The table above records the row shape and interval source used by that integration.
 
 ## Claim Map And Promotion Decision
 
@@ -165,4 +165,4 @@ No sidecar update is made here. The current executable A1 report remains unchang
 - Effective summary: the retained A1 branch interval and constant-$\Omega$ A1 history imply a strict positive radial-turn margin in the accepted normalization.
 - Speculation: none promoted.
 
-Promotion decision. Priority-only for now because this task explicitly excludes edits to `content/markdown/aaa` and the executable runner. The likely reader-facing destination is the A1 benchmark paragraph in the variable-pitch spiral section of [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md), after sidecar/report integration or an explicit corpus-promotion task.
+Promotion decision. Promoted into the A1 benchmark paragraph in the variable-pitch spiral section of [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) and consumed by the A1 executable sidecar/report. The later tangential compatibility row rejects the prescribed constant-$\Omega$ history, so this packet is a radial-balance success marker rather than a standalone closed spiral certificate.

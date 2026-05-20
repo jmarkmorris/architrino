@@ -46,11 +46,65 @@ $$
 
 in a homogeneous isotropic Noether-Sea cell. Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice. The tensor version is the sharper target because it carries direction dependence, gradient response, and the distinction between primitive wake speed and observer-facing effective signal speed. Until the internal ledger, shielding coefficient, and medium-response tensor are derived from stable assembly closure, this remains a roadmap formula rather than a theorem.
 
+#### Exposed Inertial-Response Trace
+
+The scalar shielding coefficient $\zeta(A)$ should be read as the isotropic trace part of a larger exposed response. For an accepted assembly branch $A$, let $\mathcal{L}_A(\hat R)$ denote the mass-facing scalar angular far-field ledger over extraction direction $\hat R$, and let $\|\mathcal{L}_{\text{naive}}\|$ denote the corresponding unshielded constituent-sum norm. The trace-free exposed leakage is
+$$
+\mathcal{Z}_{\mathrm{tf}}^{ab}(A)
+=
+\frac{1}{4\pi\|\mathcal{L}_{\text{naive}}\|}
+\int_{S^2}
+\left(
+3\hat R^a\hat R^b-h^{ab}
+\right)
+\mathcal{L}_A(\hat R)\,d\Omega,
+\qquad
+h_{ab}\mathcal{Z}_{\mathrm{tf}}^{ab}(A)=0.
+$$
+The exposed-response tensor is therefore
+$$
+\mathcal{Z}_{A}^{ab}
+=
+\zeta(A)h^{ab}
++
+\mathcal{Z}_{\mathrm{tf}}^{ab}(A).
+$$
+
+For the scalar inertial readout, only the reversible symmetric part of the Noether-Sea response belongs in the mass trace. Define
+$$
+\mathcal{M}_{+}^{ab}
+\equiv
+\frac{1}{2}
+\left(
+\mathcal{M}_{\text{sea}}^{ab}
++
+\mathcal{M}_{\text{sea}}^{ba}
+\right),
+$$
+and set
+$$
+\mathsf{I}_{A}^{ab}
+=
+\frac{\alpha_{\mathrm{m}}E_{\text{internal}}(A)}{2}
+\left(
+\mathcal{Z}_{A}^{a}{}_{c}\mathcal{M}_{+}^{cb}
++
+\mathcal{Z}_{A}^{b}{}_{c}\mathcal{M}_{+}^{ca}
+\right).
+$$
+The scalar mass readout is the rotational trace
+$$
+m_{\mathrm{tr}}(A)
+\equiv
+\frac{1}{3}h_{ab}\mathsf{I}_{A}^{ab}.
+$$
+In the homogeneous isotropic limit this reduces to the roadmap scalar formula. Pure exposure anisotropy changes direction-dependent inertia without changing the scalar trace unless it contracts with a trace-free part of the medium response. Antisymmetric response residue belongs to orientation, transport, loss accounting, or branch transition, not to scalar rest mass.
+
 #### Reference-Normalized Mass Ratio
 
 Because $\alpha_{\mathrm{m}}$ is a single normalization for a declared weak homogeneous regime, the first nontrivial mass-map prediction is not an absolute mass. It is a reference-normalized ratio in which $\alpha_{\mathrm{m}}$ cancels.
 
-For two accepted assemblies $A$ and $B$ in the same homogeneous isotropic Noether-Sea response record, if both assemblies pass the same scalar exposure quotient and share the same low-energy response limit
+For two accepted assemblies $A$ and $B$ in the same homogeneous isotropic Noether-Sea response record, if both assemblies are evaluated through the same scalar exposure quotient and share the same low-energy response limit
 $$
 \mathcal{M}_{\text{sea}}^{ab}\to\frac{h^{ab}}{c_{\text{eff}}^2},
 $$
@@ -70,7 +124,26 @@ m_{\text{inertial}}(A_{\mathrm{ref}})
 {\zeta(A_{\mathrm{ref}})E_{\text{internal}}(A_{\mathrm{ref}})}.
 $$
 
-This ratio form is a sharper anti-fitting invariant than the absolute scalar formula. Changing $\alpha_{\mathrm{m}}$ cannot improve one particle without changing all particles in the same regime. Changing $\zeta(A)$ is admissible only when it is produced by the branch ledger and exposure quotient for $A$, not when it is selected from the observed mass table. In anisotropic or pressure-dependent cells, the scalar ratio must be replaced by the tensor response ratio along the declared probe direction; failure of that replacement is evidence that the scalar mass map is being used outside its regime.
+In anisotropic or pressure-dependent cells, the same anti-fitting principle must be stated directionally. Let $\mathsf{I}_{A}^{ab}$ be the exposed inertial-response tensor for $A$ and let $\hat v$ be a declared probe direction. The directional mass readout is
+
+$$
+m_{\hat v}(A)
+=
+\hat v_a\mathsf{I}_{A}^{ab}\hat v_b,
+$$
+
+so the tensor ratio target is
+
+$$
+\frac{m_{\hat v}(A)}{m_{\hat v}(B)}
+=
+\frac{\hat v_a\mathsf{I}_{A}^{ab}\hat v_b}
+{\hat v_a\mathsf{I}_{B}^{ab}\hat v_b}.
+$$
+
+In the reversible below-threshold regime, $\mathsf{I}_{A}^{ab}$ is built from the same branch-derived exposure, internal energy, and symmetric medium-response tensor for every channel in the declared response record. Thus $\alpha_{\mathrm{m}}$ still cancels from the ratio, but trace-free exposure and trace-free medium response no longer disappear unless the homogeneous isotropic limit has been proven.
+
+This ratio form is a sharper anti-fitting invariant than the absolute scalar formula. Changing $\alpha_{\mathrm{m}}$ cannot improve one particle without changing all particles in the same regime. Changing $\zeta(A)$ is admissible only when it is produced by the branch ledger and exposure quotient for $A$, not when it is selected from the observed mass table. Failure of the tensor replacement in anisotropic or pressure-dependent cells is evidence that the scalar mass map is being used outside its regime.
 
 Superfluid-vacuum and Nambu-Jona-Lasinio-style comparisons add a useful caution: an excitation gap can look like a rest-energy term without being the ontology of mass. For an accepted assembly branch $A$, the native analogue would be a branch gap
 $$
@@ -354,19 +427,41 @@ E_{\mathrm{sector}}(A_{f,a};\theta)
 $$
 Here $\zeta_{\mathrm{sh}}$ depends on the shielding class, $\alpha_{\mathrm{m}}$ is a single mass normalization for the declared weak homogeneous regime, and $E_{\mathrm{sector}}$ is zero for charged leptons while quark contributions must be derived from the same color/topology and strong-sector ledger used in the hadronic chapters. The allowed family dependence is therefore carried by axial inventory, color/topology, and internal-energy bookkeeping, not by changing the shielding law.
 
-The fitting residual is
+The first hierarchy residual should be ratio-first. It is evaluated only after the branch ledger, scalar exposure quotient, internal energy, sector term, and shared response record have emitted predicted values $M_{\mathrm{sh}}(A_c;\theta)$ without using the observed mass table. Let $c=(f,a)$ range over the nine generation channels, write $A_c=A_{f,a}$ and $m_c^{\mathrm{obs}}=m_{f,a}^{\mathrm{obs}}$, and fix a reference channel $c_{\mathrm{ref}}$ before evaluating the benchmark rather than choosing it to improve the residual. For quark channels, $m_c^{\mathrm{obs}}$ denotes the predeclared scheme-and-scale benchmark row with its covariance, not a scheme-free constituent mass. The ratio residual is
+$$
+\mathcal{R}_{\mathrm{gen\,ratio}}(\theta)
+=
+\sum_{c\ne c_{\mathrm{ref}}}
+\frac{
+\left[
+\log\frac{M_{\mathrm{sh}}(A_c;\theta)}
+{M_{\mathrm{sh}}(A_{c_{\mathrm{ref}}};\theta)}
+-
+\log\frac{m_c^{\mathrm{obs}}}
+{m_{c_{\mathrm{ref}}}^{\mathrm{obs}}}
+\right]^2
+}{\sigma_{c/c_{\mathrm{ref}}}^{2}}.
+$$
+The shared factor $\alpha_{\mathrm{m}}/c_{\mathrm{eff}}^2$ cancels inside each predicted ratio when the channels share one homogeneous weak-field response record. The displayed denominator is the diagonal approximation to the log-ratio covariance; a full comparison should replace it by the covariance matrix on the ratio vector when shared benchmark uncertainties matter. The absolute scale is therefore a separate reference calibration,
+$$
+\mathcal{R}_{\mathrm{gen\,scale}}(\theta)
+=
+\frac{
+\left[
+\log\!\left(
+\frac{M_{\mathrm{sh}}(A_{c_{\mathrm{ref}}};\theta)}
+{m_{c_{\mathrm{ref}}}^{\mathrm{obs}}}
+\right)
+\right]^2
+}{\sigma_{c_{\mathrm{ref}}}^{2}},
+$$
+and the combined benchmark residual is
 $$
 \mathcal{R}_{\mathrm{gen\,mass}}(\theta)
 =
-\sum_{f\in\{\ell,u,d\}}
-\sum_{a=0}^{2}
-\frac{
-\left[
-\log M_{\mathrm{sh}}(A_{f,a};\theta)
--
-\log m^{\mathrm{obs}}_{f,a}
-\right]^2
-}{\sigma_{f,a}^{2}}
+\mathcal{R}_{\mathrm{gen\,ratio}}(\theta)
++
+\mathcal{R}_{\mathrm{gen\,scale}}(\theta)
 +
 \lambda_{\mathrm{split}}
 \sum_{f}
@@ -376,7 +471,7 @@ $$
 +
 \mathcal{R}_{\mathrm{null}}^{\mathrm{op}}(\theta).
 $$
-Here $\theta_f$ denotes the record that would be used if family $f$ were fit separately, while $\theta_{\mathrm{shared}}$ is the one promoted record. The second term is the no-retuning guard: it penalizes any attempt to fit charged leptons, up-type quarks, and down-type quarks with different shielding maps or different medium-response coefficients. The null-result term prevents the fit from improving the observed masses by adding partner branches, extra gauge modes, or proton-instability channels that are not independently suppressed.
+Here $\theta_f$ denotes the record that would be used if family $f$ were fit separately, while $\theta_{\mathrm{shared}}$ is the one promoted record. The split term is the no-retuning guard: it penalizes any attempt to fit charged leptons, up-type quarks, and down-type quarks with different shielding maps or different medium-response coefficients. The null-result term prevents the fit from improving the observed masses by adding partner branches, extra gauge modes, or proton-instability channels that are not independently suppressed.
 
 The first benchmark is not exact mass prediction. It is monotone hierarchy and shared-map survival:
 $$

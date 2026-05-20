@@ -200,6 +200,25 @@ A\xi\ge\kappa\mathbf{1},
 $$
 where $B$ is the structural Jacobian plus neutral-coordinate fixing rows and $A$ is the signed parent-complement gap derivative matrix. This is a candidate-construction mechanism, not a certificate pass.
 
+The first proof aid for this condition is
+[`null-coordinate-gap-opening-scanner.mjs`](../../../../../scripts/proof-programs/null-coordinate-gap-opening-scanner.mjs).
+It accepts a declared finite matrix and reports a strict witness only when it
+finds
+$$
+\|\xi\|_\infty\le1,
+\qquad
+B\xi=0
+\quad\text{to tolerance},
+\qquad
+A\xi>\kappa.
+$$
+The diagnostic artifact
+`gap_opening_feasibility_result.seed_cosine_diagnostic_demo.v0.json` shows the
+success-marker shape on independent endpoint-shear columns, while explicitly
+leaving `preledger_pass=false` and `branch_chart_authorized=false`. A live fresh
+candidate must replace that diagnostic matrix with $B=DC(\mathbf a_0)$ and the
+true signed gap derivative matrix $A$ for one frozen packet identity.
+
 ## Null-Coordinate Pre-Ledger Acceptance Targets
 
 Before any branch-chart construction, the successor packet must run the null-coordinate pre-ledger on its own frozen identity and record:

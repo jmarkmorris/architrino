@@ -204,6 +204,28 @@ $$
 
 If $\Delta_{\mathrm{prod}}$ vanishes in the completed record table, the expression has reduced to an ordinary measurement-independent Bell-local hidden-variable integral and the Bell gate fails.
 
+The threshold-pullback warning is now sharp. A deterministic one-wing basin kernel can reproduce its local probability law after pushing forward an invariant record-window measure, but two independent one-wing kernels over a setting-independent source measure imply the usual CHSH bound. If
+
+$$
+K_{ab}^{AB}
+=
+K_A^a(\hat{\mathbf m}_A;\Pi,\zeta_A)
+K_B^b(\hat{\mathbf m}_B;\Pi,\zeta_B),
+$$
+
+then after integrating $\zeta_A,\zeta_B$ the model has
+
+$$
+P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+=
+\int
+p_A(a|\hat{\mathbf m}_A,\Pi)
+p_B(b|\hat{\mathbf m}_B,\Pi)
+d\rho_{\mathrm{src}}(\Pi),
+$$
+
+so the standard CHSH proof applies. The Bell task is therefore not to repeat the one-wing threshold theorem twice. It is to derive the non-product joint response or non-restartable provenance compression that survives this no-go while keeping the local marginals screenable.
+
 The diagnostic must also exclude a hidden slide into measurement-independence denial. For the pair-provenance measure, define
 
 $$

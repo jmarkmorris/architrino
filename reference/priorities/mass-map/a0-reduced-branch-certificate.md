@@ -1237,7 +1237,7 @@ The homogeneous inertial response target is
 $$
 p_{\text{int}}^a
 \approx
-\alpha\,\zeta(A_0)E_{\text{internal}}(A_0)\,
+\alpha_{\mathrm{m}}\,\zeta(A_0)E_{\text{internal}}(A_0)\,
 \mathcal{M}_{\text{sea}}^{ab}V_{\text{cm},b},
 \qquad
 \mathcal{M}_{\text{sea}}^{ab}

@@ -164,6 +164,33 @@ $$
 =0.
 $$
 
+Composed with the exposed inertial-response trace, this gives a density-channel vanishing invariant. In the branch-preserving reversible domain, hold the quotient-visible source $M_0^{\mathrm{src}}(A)=\zeta(A)E_{\text{internal}}(A)$ fixed to isolate the density-only channel. Since the pressure closure gives $\delta\mathcal{M}_0=2\,\delta\ln\chi_{\text{sea}}^{\mathrm{iso}}$ and the density contribution to $\delta\ln\chi_{\text{sea}}$ is $a_n\delta\ln n$, the scalar trace derivative satisfies
+
+$$
+\left.
+\frac{\partial m_{\mathrm{tr}}}{\partial P}
+\right|_{n\text{-only}}
+=
+2\alpha_{\mathrm{m}}
+\frac{M_0^{\mathrm{src}}(A)}{c_{\text{eff},0}^{2}}\,
+a_n
+\frac{s_n}{K_{\mathrm{pack}}}.
+$$
+
+Therefore
+
+$$
+\boxed{
+\lim_{s_n\to0^+}
+\left.
+\frac{\partial m_{\mathrm{tr}}}{\partial P}
+\right|_{n\text{-only}}
+=0.
+}
+$$
+
+This is not a claim that dense matter becomes pressure-inert. It says only that the scalar density channel cannot keep carrying pressure response after packing headroom closes. Any remaining mass-trace, signal-delay, strain, or transport response must route through exposed-source drift, $\lambda$, $\xi$, trace-free strain, $\mathcal{M}_{\text{sea}}^{ab}$, reversible wake/contact stiffness, or an explicit threshold or branch event.
+
 This is the first falsifiable scaling law for dense metallic lattices: high pressure should not indefinitely increase $n$ through the scalar density channel. Once $s_n$ is small, residual response must show up through $\lambda$, $\xi$, $S_{ij}^{\mathrm{dev}}$, $\mathcal{M}_{\text{sea}}^{ab}$, transport thresholding, or an explicit branch transition.
 
 ## Defect and Criticality Guardrail

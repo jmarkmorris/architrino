@@ -11,7 +11,7 @@
 
 ## Task Queue
 
-1. `candidate_cycle_packet` — Produce `certificate/phi_cyc.json` and `certificate/mesh.json` for one candidate center history, preferably using the fold-adapted fractional basis near field-speed separators or an interval-collocation replacement with the same residual targets. Status: `fresh-collocation-generator-needed`; first finite velocity-class template exists and is rejected at the parent-complement gate, and the successor solver surface is now specified but not implemented. Depends on: none.
+1. `candidate_cycle_packet` — Produce `certificate/phi_cyc.json` and `certificate/mesh.json` for one candidate center history, preferably using the fold-adapted fractional basis near field-speed separators or an interval-collocation replacement with the same residual targets. Status: `fresh-collocation-generator-needed`; first finite velocity-class template exists and is rejected at the parent-complement gate, the successor solver surface is specified, and the gap-opening feasibility scanner now exists as a proof aid, but no live fresh candidate generator exists yet. Depends on: none.
 2. `null_coordinate_preledger` — Produce `certificate/causal_ledger.json` and `certificate/causal_preledger_interval_report.md`, proving the named `Null-Coordinate Causal Pre-Ledger` theorem target or rejecting the candidate/itinerary before branch-chart certification. Status: `current-cosine-packet-rejected-parent-complement-gate`; the refined diagnostic has six strict simple-root subrows, twenty-four accepted diagonal-exclusion empty rows, and accepted fixed-parameter full-interval fold constants, but all attempted parent-complement closure routes fail and the live pre-ledger remains rejected. Depends on: `candidate_cycle_packet`.
 3. `branch_chart_certificate` — Produce `certificate/branch_chart.json` and `certificate/seed_chart_interval_report.md`, including active branches, inactive complements, Jacobian floors, memory-depth ranges, and envelope constants. Status: `blocked`; depends on a passed `null_coordinate_preledger`, including finite fold impulse ceilings and resolved fold-adjacent parent-row boundary leftovers. Depends on: `null_coordinate_preledger`.
 4. `coupled_corridor_certificate` — Produce `certificate/corridor_nonemptiness_report.md`, `certificate/parameters.json`, and the coupled-corridor interval report for one strict parameter tuple. Status: `pending`. Depends on: `branch_chart_certificate`.
@@ -46,8 +46,10 @@
 - `next_candidate_solver_target` produced `certificate/next_candidate_solver_target.md`, defining the next executable target as a fresh fold-adapted collocation candidate whose null-coordinate pre-ledger must pass before any branch chart is built, and now upgrading $H_{\mathrm{pc}}$ into a tangent-space gap-opening criterion.
 - `fresh_fold_collocation_solver_surface` produced `certificate/fresh_fold_collocation_solver_surface.md`, recording that no runnable breather-specific fresh-candidate solver or pre-ledger generator exists yet and specifying the minimum lawful successor artifact set plus the finite gap-opening linearization.
 - `null_coordinate_separation_direction_lemma` produced `certificate/null_coordinate_separation_direction_lemma.md`, converting parent-complement repair into a finite separation-direction problem on the fresh collocation candidate.
+- `gap_opening_feasibility_scanner` produced `scripts/proof-programs/null-coordinate-gap-opening-scanner.mjs`, `certificate/gap_opening_feasibility_input.seed_cosine_diagnostic_demo.v0.json`, `certificate/gap_opening_feasibility_result.seed_cosine_diagnostic_demo.v0.json`, and `certificate/gap_opening_feasibility_report.seed_cosine_diagnostic_demo.v0.md`. It emits a strict tangent witness for a declared diagnostic endpoint-shear matrix while keeping `preledger_pass=false`, `updates_live_ledger=false`, and `branch_chart_authorized=false`.
 - `aaa_corpus_recommendation_handoff` produced `certificate/aaa_corpus_recommendation_handoff.md`, recording the scoped AAA edits that promoted the null-coordinate pre-ledger as a candidate-falsification gate, kept rejected-packet operational detail priority-only, and deferred any enlarged regular-boundary theorem pending Op discussion.
 - `regular_boundary_user_facing_recommendation` produced `certificate/regular_boundary_user_facing_recommendation.md`, recording that current AAA prose should not name regular-boundary coverage as accepted doctrine; the existing generic same-packet complement predicate is the safe public surface until a finite inclusion/domination theorem exists.
+- `field_speed_head_on_inflight_wake_test_case` produced `scripts/proof-programs/field-speed-head-on-root-audit.mjs`, `certificate/field_speed_head_on_inflight_wake_input.v0.json`, `certificate/field_speed_head_on_inflight_wake_result.v0.json`, `certificate/field_speed_head_on_inflight_wake_test_case.md`, and `certificate/field_speed_head_on_inflight_wake_report.v0.md`. It records the operator-proposed $x_L=-1$, $x_R=+1$, $|v|=c_f$ head-on seed as a fail-closed caustic/root-degeneracy test: partner wake is still in flight at $t=0$, same-source roots form a continuum with $J=0$, and no candidate or branch chart is authorized before a dual-mollified finite-history run.
 
 ## Scope
 
@@ -122,17 +124,19 @@ rather than to a mismatched tame-subclass / macro-envelope pair.
 - Use `certificate/next_candidate_solver_target.md` as the current solver target for the next candidate packet.
 - Use `certificate/fresh_fold_collocation_solver_surface.md` as the implementation contract for the missing fresh-candidate solver or manual artifact instantiation.
 - Use `certificate/null_coordinate_separation_direction_lemma.md` as the constructive proof route for opening parent-complement gaps by changing the candidate history.
+- Use `scripts/proof-programs/null-coordinate-gap-opening-scanner.mjs` and `certificate/gap_opening_feasibility_result.seed_cosine_diagnostic_demo.v0.json` as the diagnostic proof aid for the tangent-space condition $B\xi=0$, $A\xi\ge\kappa\mathbf{1}$. Replace the diagnostic endpoint-shear matrix with a true fresh-candidate Jacobian before making any candidate claim.
 - Use `certificate/aaa_corpus_recommendation_handoff.md` as the audit trail for the scoped AAA edit batch that has now been applied.
 - Use `certificate/regular_boundary_user_facing_recommendation.md` as the current documentation decision for the regular-boundary question: no named AAA theorem now, with only a possible future same-packet wording micro-edit in `collinear-breather.md`.
+- Use `certificate/field_speed_head_on_inflight_wake_test_case.md` and `certificate/field_speed_head_on_inflight_wake_result.v0.json` as the current boundary-case audit for exact field-speed head-on history. It is a useful separator-caustic test, not a candidate cycle. Any continuation must run the dual-mollified finite-history integral before using the case for force, recapture, or branch-chart claims.
 - Use `certificate/fold_interval_constants_attempt.json`, `certificate/fold_mollifier_kernel_candidate.md`, `certificate/fold_row_tube_coverage_attempt.md`, and `certificate/fold_row_consumption_attempt.md` as the historical rejected attempt package: they preserve the earlier rejection route and exact candidate mollifier norm while keeping `branch_chart_authorized=false`.
 - The accepted proof artifact is a pass/fail finite audit on one candidate
 $$
 \phi_{\mathrm{cyc}},
 $$
 not a new roadmap.
-- The next executable packet must keep one packet identity tuple
+- The next executable packet must keep one fresh packet identity tuple
 $$
-\mathfrak{I}_{\mathrm{seed}}
+\mathfrak{I}_{\mathrm{next}}
 =
 \left(
 \mathcal{K},
@@ -204,12 +208,12 @@ partition still rejects, no complete parent row can be consumed, and the live
 
 The fresh-candidate lane has now advanced beyond a solver-surface conclusion.
 No breather-specific generator exists yet, but the parent-complement obstruction
-has a concrete finite-dimensional repair route. The fixed-history strict-collar
-lemma proves that mesh-only refinement cannot remove positive-width equality
-cores under strict simple-root coverage. The null-coordinate separation-direction
-lemma gives the constructive replacement: find a tangent direction on the
-structural collocation manifold that increases every signed parent-complement
-gap,
+has a concrete finite-dimensional repair route and an executable proof aid. The
+fixed-history strict-collar lemma proves that mesh-only refinement cannot remove
+positive-width equality cores under strict simple-root coverage. The
+null-coordinate separation-direction lemma gives the constructive replacement:
+find a tangent direction on the structural collocation manifold that increases
+every signed parent-complement gap,
 $$
 DC(\mathbf a_0)\xi=0,
 \qquad
@@ -217,10 +221,25 @@ D\delta_m(\mathbf a_0)\xi>0
 \quad
 \text{for every unresolved }m.
 $$
+The new gap-opening feasibility scanner implements the finite test
+$$
+B\xi=0,
+\qquad
+A\xi\ge\kappa\mathbf{1},
+\qquad
+\|\xi\|_\infty\le1,
+$$
+and the diagnostic endpoint-shear run emits the witness
+$$
+\xi=(0,1,1,1,1)
+$$
+for the declared matrix while refusing pre-ledger, live-ledger, and branch-chart
+claims.
 The minimum lawful next attempt is therefore a new same-packet artifact set,
 generated or manually instantiated under one fresh identity, whose first
 acceptance row is again the null-coordinate pre-ledger and whose search surface
-tests the finite gap-opening feasibility problem before branch-chart work.
+replaces the diagnostic matrix with the true fresh-candidate structural
+Jacobian and signed gap derivatives before branch-chart work.
 
 The sub-field-speed comparison lane now has a concrete action-generated
 baseline rather than a prescribed-path ansatz. The held-source release segment

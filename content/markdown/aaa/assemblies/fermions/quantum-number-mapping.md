@@ -212,6 +212,8 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the sector exposure map is:
 
 This table is a bridge statement, not a proof. The closure burden is to derive one assembly record whose projections recover all five readouts without redefining the exposed domain from sector to sector.
 
+Once handed weak exposure is claimed as derived, the exposed weak-coupling triad must be the weak consumer projection $\Pi_{\mathrm{weak}}\mathcal L_\star$ of the same retained spinor-label pullback record used for spinor closure, exchange sign, and matter response. Otherwise the table has only matched sector labels, not recovered one assembly record with consistent projections.
+
 ### Charged-current chirality (Why right-handed charged-current coupling is zero)
 Why can't a Right-Handed Electron ($e^-_R$) turn into a Neutrino?
 *   **Geometric Mechanism:** At the observer level, chirality is the weak-channel handedness label. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the charged-current blocker is weak-coupling-triad exposure, which may be consumed only after the ordered-core spinor/helicity ledger supplies the same branch record.

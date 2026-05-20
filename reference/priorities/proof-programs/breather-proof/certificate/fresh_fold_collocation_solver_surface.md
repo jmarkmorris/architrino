@@ -105,6 +105,17 @@ A\xi\ge\kappa\mathbf{1}
 $$
 for some strict margin vector $\kappa>0$. If feasible, $H_{\mathrm{pc}}$ has identified a tangent direction that opens every residual collar while preserving section, symmetry, separator, matching, fold-nondegeneracy, origin-placement, and neutral-coordinate constraints to first order. If infeasible, the solver should change the basis, candidate history, or itinerary rather than merely refine the same mesh.
 
+This linearization now has an executable diagnostic surface:
+[`null-coordinate-gap-opening-scanner.mjs`](../../../../../scripts/proof-programs/null-coordinate-gap-opening-scanner.mjs).
+The scanner takes declared $B$ and $A$ rows, computes a structural nullspace,
+and emits `feasible` only with an explicit normalized witness. The accompanying
+diagnostic files
+`gap_opening_feasibility_input.seed_cosine_diagnostic_demo.v0.json` and
+`gap_opening_feasibility_result.seed_cosine_diagnostic_demo.v0.json` use
+independent endpoint-shear columns to verify the finite success marker without
+claiming a live candidate, interval certificate, pre-ledger pass, or branch-chart
+authorization.
+
 ## Pre-Ledger Stop Condition
 
 Stop before branch-chart construction unless every pre-ledger row satisfies

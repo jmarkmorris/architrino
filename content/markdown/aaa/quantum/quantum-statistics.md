@@ -49,6 +49,8 @@ $$
 
 and with the corresponding angular-momentum residuals below tolerance. Without that row, volumetric exclusion may explain why same-state packing is dynamically costly, but it does not yet derive the antisymmetric exchange phase used by the observer-level fermion chart.
 
+In the pullback notation of [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md#same-record-spinor-label-pullback), the exchange sign must be consumed as $\epsilon_{\mathrm{ex}}(r_\star)=(-1)^{\Pi_{W,r_\star}^{2\pi}}$ from the same retained row that supplies spinor closure, gauge control, and angular-momentum balance. A separately selected exchange sign is only observer-level bookkeeping, not a derived spin-statistics mechanism.
+
 ## Bose-Einstein Regime: 2D Coherence
 
 Bose-Einstein behavior corresponds to the regime where the relevant orbital support has been oblated toward an effectively two-dimensional structure. The key transition is not merely that the Noether-core envelope is somewhat flattened. Ordinary Noether cores are already oblate. The statistical transition occurs when oblation becomes strong enough that the active orbital support no longer behaves as a closed 3D exclusion volume.
@@ -158,6 +160,8 @@ $$
 \le 1.
 $$
 Here $\mathcal{H}^{(N)}_\theta=\mathcal{H}_\theta^{\otimes N}$ and $\mu^{\mathrm{prov}}$ denotes the same retained physical ensemble after a swap of inaccessible provenance labels. The first two terms demand antisymmetric and symmetric state-space recovery in the proposed geometric regimes. The third term checks that the observer-level quotient is legitimate: swapping labels that the apparatus cannot access should not change the retained observable state beyond tolerance. If this residual fails, the proposed Fermi-Dirac or Bose-Einstein rule has been imposed as formal bookkeeping rather than derived from assembly geometry.
+
+For the fermionic branch, $\mathcal{R}_{\mathrm{ex}}$ is admissible only on records that also satisfy $\Delta_{\mathrm{pull}}(\theta;W,r_\star)\le\varepsilon_{\mathrm{pull}}$ with zero retune penalty in the same-record spinor-label pullback. This ties the effective exchange projection to the same non-gauge ordered-core row instead of allowing the antisymmetric projector to be fitted after the fact.
 
 ## Interfaces
 
