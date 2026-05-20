@@ -171,14 +171,20 @@ $$
 +
 \mathcal J_{\gamma}^{\perp}
 +
+\Delta \mathcal J_{\mathrm{recoil}}
++
 \Delta \mathcal J_{\mathrm{wake}}
 +
+\Delta \mathcal J_{\mathrm{handoff}}
++
 \Delta \mathcal J_{\mathrm{med}}
++
+\Delta \mathcal J_{\mathrm{rem}}
 =
 0.
 $$
 
-The photon term $\mathcal J_{\gamma}^{\perp}$ is a Gate B handoff. This page records that an emitted or absorbed photon assembly must carry the transverse angular-momentum ledger, polarization basis, helicity label where applicable, and no-longitudinal-mode status. It does not locally prove photon spin, Malus' law, or the squared-amplitude capture rule.
+The photon term $\mathcal J_{\gamma}^{\perp}$ is a Gate B handoff. Recoil, wake, material handoff, medium, and remnant rows are shown explicitly because a clean photon transverse ledger is not enough to close the event. This page records that an emitted or absorbed photon assembly must carry the transverse angular-momentum ledger, polarization basis, helicity label where applicable, accepted/rejected handoff where applicable, and no-longitudinal-mode status. It does not locally prove photon spin, Malus' law, or the squared-amplitude capture rule.
 
 The minimum event record is:
 
@@ -189,7 +195,7 @@ The minimum event record is:
 | Transition gap | $\Delta E_{a\to b}^{\mathrm{env}}$ and the clock/rate conversion used for observer comparison |
 | Channel decision | Planar-mode gate status, non-radiative alternatives, and whether $E_{\gamma,\min}$ is active in the chosen model |
 | Photon output or capture | $E_\gamma$, $\mathbf p_\gamma$, direction, phase frequency, local photon-channel speed $c_\gamma$, and Gate A null-branch status |
-| Polarization handoff | Transverse basis, helicity label where applicable, accepted/rejected capture channel, and Gate B closure status |
+| Polarization handoff | Transverse basis, helicity label where applicable, accepted/rejected capture channel, Gate B event-residual status, and closure status |
 | Recoil and medium terms | $\Delta E_{\mathrm{recoil}}$, $\Delta \mathbf p_{\mathrm{recoil}}$, $\Delta E_{\mathrm{med}}$, $\Delta \mathbf p_{\mathrm{med}}$, and any residual atomic excitation |
 | Path-history provenance | Source identities, emission times, active causal-root branches, branch Jacobians, and delayed wake history needed for deterministic replay |
 | Closure status | Baseline, provisional map, derivation target, failed map, or inherited gate |

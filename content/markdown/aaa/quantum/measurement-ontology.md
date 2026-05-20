@@ -696,6 +696,54 @@ P_{+}^{\mathrm{lift}}(\hat{\mathbf m})
 \,d\mu_{\hat{\mathbf m}}^{\mathrm{in}}(Z_0).
 $$
 
+The complementary recorded basin is
+
+$$
+B_{-}^{\mathrm{lift}}(\hat{\mathbf m})
+=
+\left\{
+Z_0:
+G_{\mathrm{rec}}
+\left(
+\Phi_{T_{\mathrm{int}}}^{\hat{\mathbf m}}(Z_0)
+\right)=1,
+\quad
+\Sigma_{\hat{\mathbf m}}^{\mathrm{SG}}
+\left(
+\Phi_{T_{\mathrm{int}}}^{\hat{\mathbf m}}(Z_0)
+\right)<0
+\right\},
+$$
+
+with
+
+$$
+P_{-}^{\mathrm{lift}}(\hat{\mathbf m})
+=
+\int_{\mathcal Z_{\hat{\mathbf m}}^{\mathrm{SG}}}
+\mathbf 1_{B_{-}^{\mathrm{lift}}(\hat{\mathbf m})}(Z_0)
+\,d\mu_{\hat{\mathbf m}}^{\mathrm{in}}(Z_0).
+$$
+
+The record-normalization residual is
+
+$$
+\Delta_{\mathrm{rec}}^{\mathrm{lift}}
+=
+\left|
+P_{+}^{\mathrm{lift}}(\hat{\mathbf m})
++
+P_{-}^{\mathrm{lift}}(\hat{\mathbf m})
+-
+\mu_{\hat{\mathbf m}}^{\mathrm{in}}
+\left(
+G_{\mathrm{rec}}\circ\Phi_{T_{\mathrm{int}}}^{\hat{\mathbf m}}=1
+\right)
+\right|.
+$$
+
+The ideal two-outcome Stern-Gerlach comparison requires $\Delta_{\mathrm{rec}}^{\mathrm{lift}}$ below tolerance before conditioning on successful records. A missing reject basin is not a harmless omission; it hides detector loss or failed record formation inside the plus-channel probability.
+
 The half-angle law is then a consistency residual, not an inserted record rule:
 
 $$

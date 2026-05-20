@@ -284,7 +284,7 @@ That does **not** automatically make them identical to weak-interaction chiralit
 - that branch then influences which side of the axial structure is forward-exposed versus wake-hidden;
 - the observer-level left/right distinction may therefore descend from the sign choice of the common axial angular momentum in the translating aligned state.
 
-In that reading, the horizon or near-horizon limit does not merely present two boundary-helicity states. It may also reveal the deepest geometric ancestor of a left/right spin distinction:
+In that reading, the horizon or near-horizon limit does not merely present two boundary-helicity states. It may also reveal a candidate upstream axial-lock variable for later left/right spin mapping:
 
 - `right-like`: net core axis aligned with translation;
 - `left-like`: net core axis anti-aligned with translation;
@@ -314,7 +314,7 @@ The current chapter mixes canonical inputs with stronger and weaker hypotheses. 
 | high translation speed biases orbital normals toward the translation axis | strong geometric argument in this chapter |
 | the two uniform planar rows are the most likely stable terminal horizon branches | strong working hypothesis |
 | the six mixed rows are transitional or frustrated rather than stable endpoint states | plausible but still open |
-| the axial sign $\hat J_{\text{net}} \parallel \pm \hat{\mathbf V}$ underlies a left/right spin distinction | live speculative hypothesis |
+| the axial sign $\hat J_{\text{net}} \parallel \pm \hat{\mathbf V}$ supplies a candidate upstream variable for a later left/right spin distinction | live speculative hypothesis requiring the same retained spinor/gauge-control and weak-exposure record |
 | `pro/anti`, `CW/CCW`, and `left/right` all become the same label in the terminal regime | not yet established |
 
 ## Mixed-Sign Planar States

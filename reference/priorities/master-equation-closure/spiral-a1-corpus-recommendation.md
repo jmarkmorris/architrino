@@ -1,6 +1,8 @@
 # Spiral A1 Corpus Recommendation
 
-Status. Promotion packet for `spiral_branch_chart_test`. This file records the completed promotion of the generic $\Gamma$ normalization and the fixed A1 tangential-pass/radial-blocked benchmark into `content/markdown/aaa`, while preserving the remaining A1 rows that are priority-only.
+Status. Superseded promotion packet for `spiral_branch_chart_test`. This file records the earlier promotion of the generic $\Gamma$ normalization and the fixed A1 tangential-pass/radial-blocked benchmark into `content/markdown/aaa`. It is superseded as the current A1 corpus state by [spiral-a1-kinematic-balance-corpus-recommendation](spiral-a1-kinematic-balance-corpus-recommendation.md), [spiral-a1-kinematic-gamma-closure](spiral-a1-kinematic-gamma-closure.md), and [spiral-a1-tangential-compatibility-no-go](spiral-a1-tangential-compatibility-no-go.md).
+
+Current status. The Master EOM corpus now treats A1 as a theorem-grade constant-$\Omega$ kinematic-balance no-go for the prescribed isolated two-body history: the prescribed radial kinematics fix $\Gamma$ and pass the radial turn, while the exact turn-center tangential residual excludes zero.
 
 Claim level. Corpus promotion record, not a theorem-grade branch certificate. The current certificate picture is clear enough to promote A1 only as a bounded retained-chart benchmark: tangential drive passes, radial turn remains blocked by the missing independent $\Gamma$ interval.
 

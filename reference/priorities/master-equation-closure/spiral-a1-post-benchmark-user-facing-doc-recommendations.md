@@ -1,6 +1,6 @@
 # Spiral A1 Post-Benchmark User-Facing Documentation Recommendations
 
-Status. Promoted recommendation packet after the A1 retained-chart benchmark paragraph was promoted into [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md). The recommended roadmap/status alignment has now also been promoted into authored corpus prose.
+Status. Superseded promoted recommendation packet after the A1 retained-chart benchmark paragraph was promoted into [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md). The recommended roadmap/status alignment was promoted into authored corpus prose, but it has since been replaced by the A1 constant-$\Omega$ kinematic-balance no-go after [spiral-a1-kinematic-gamma-closure](spiral-a1-kinematic-gamma-closure.md) and [spiral-a1-tangential-compatibility-no-go](spiral-a1-tangential-compatibility-no-go.md).
 
 Claim level. Documentation promotion record, not a branch certificate, not a $\Gamma$ proof route, and not a promotion of A1 as a closed isolated spiral.
 

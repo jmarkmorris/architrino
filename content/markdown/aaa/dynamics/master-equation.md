@@ -2204,15 +2204,18 @@ $$
 $$
 The retained branch chart fixes $B_r$ only. It does not determine $\Gamma$ from $b_\ast=\Omega r_\ast/c_f$, from the delayed-root offsets, or from a branch-sum threshold. A branch certificate must therefore either supply an independently derived force-ratio interval or report the radial row as blocked.
 
-A fixed retained-chart benchmark illustrates the split. For the $a=0.204$, $b_\ast=7/2$ variable-pitch spiral on $I_\ast=[-\pi/6,\pi/6]$, the retained $3+1$ chart has certified active-root, inactive-gap, Jacobian-floor, finite-memory, and root-transport rows. Its weighted tangential row is strictly negative:
+A fixed retained-chart benchmark illustrates a sharper prescribed-history failure. For the $a_{\mathrm{A1}}=0.204$, $b_\ast=7/2$ constant-$\Omega$ variable-pitch spiral on $I_\ast=[-\pi/6,\pi/6]$, the retained $3+1$ chart has certified active-root, inactive-gap, Jacobian-floor, finite-memory, and root-transport rows. Its exact radial kinematics at $\theta_\ast=0$ fix the force-ratio row by
 $$
-D_T(I_\ast)\in[-0.0015572472070875527,-0.00023480430280344085].
+B_r(C_{\mathrm{A1}};0)=(a_{\mathrm{A1}}-1)\Gamma,
+\qquad
+\Gamma\in[0.007531050241046427,\ 0.007531144882881889],
 $$
-The same chart is still not a closed isolated spiral certificate, because the radial branch row only supplies
+which strictly passes the minimum-turn inequality. The same prescribed history fails exact tangential compatibility at the turn center: constant $\Omega$ and $p(0)=0$ require the normalized pointwise tangential force sum $T_0(C_{\mathrm{A1}})$ to vanish, while the retained chart gives
 $$
-B_r(0)\in[-0.005994791326773983,-0.005994715991872956],
+T_0(C_{\mathrm{A1}})
+\in[-0.007585901776635041,\ -0.007585740886803276].
 $$
-and the normalized radial condition still requires an independently derived interval for $\Gamma$. Thus this benchmark passes the tangential-drive test while leaving radial turn blocked.
+Thus A1 is a constant-$\Omega$ kinematic-balance no-go for this prescribed isolated two-body history. It remains a replayable retained-chart benchmark, not a closed isolated spiral certificate and not a rejection of variable-angular-rate, medium-supplemented, tri-binary, or other non-circular histories.
 
 ---
 
@@ -2255,7 +2258,7 @@ Several formerly open checks are now footholds rather than blank targets:
 
 1. **Partner-only circular orbit with causal delay ($v<c_f$)** now has explicit radial and tangential components, including the positive tangential-drive obstruction for a bare constant-speed circle.
 2. **Uniform circular self-hit ($v>c_f$)** now has principal-root onset asymptotics, signed higher-winding branch birth, branchwise radial/tangential projections, and large-$\beta$ self-hit estimates.
-3. **Variable-pitch spiral retained-chart benchmarks** now expose the branch-chart and Jacobian data that a maximum-curvature binary certificate must report. The fixed A1 chart is a partial certificate rather than a closure result: active-root, inactive-gap, Jacobian-floor, finite-memory, and root-transport rows are certified, and the weighted tangential row is negative, while radial turn remains blocked until an independent $\Gamma$ interval is supplied.
+3. **Variable-pitch spiral retained-chart benchmarks** now expose both branch-chart rows and prescribed-history compatibility rows. The fixed A1 constant-$\Omega$ history has certified active-root, inactive-gap, Jacobian-floor, finite-memory, and root-transport rows; its exact radial kinematics fix $\Gamma$ in the accepted normalization and pass the minimum-turn inequality, while the exact turn-center tangential residual excludes zero. A1 is therefore a replayable constant-$\Omega$ kinematic-balance no-go for that prescribed isolated two-body history, not a closure result and not a global no-go for non-circular histories.
 
 The remaining analytic targets are sharper:
 

@@ -417,15 +417,78 @@ The candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ route lies in the finite-time mea
 
 4. **Pair provenance**: the two daughter ledgers come from one creation event and may retain relational constraints that are lost when one tries to split the state into two independent local packages.
 
-The quantitative closure target is therefore:
+The quantitative closure target is therefore the full singlet joint law, not only the correlation curve. For a Bell packet
 
 $$
-E(\hat{m}_A,\hat{m}_B)
-=\sum_{a,b=\pm1}ab\int P(a,b\,|\,\hat{m}_A,\hat{m}_B,\lambda)\rho(\lambda)\,d\lambda
-=-\cos\theta_{AB},
+\theta=
+\left(
+P_{\mathrm{src}}^{\mathrm{sing}},
+\mathcal{K}_A,
+\mathcal{K}_B,
+W,
+T
+\right),
 $$
 
-with marginal probabilities independent of the distant setting. The local Stern-Gerlach kernels are deterministic basin indicators derived from the architrino-level angular-momentum and measurement-response dynamics, not ready-made spin-projection rules. The remaining Bell-level task is to derive the preparation and pair-provenance measures that make those local kernels reproduce the observed correlation.
+let the derived joint response kernel satisfy
+
+$$
+K_{ab}^{\theta}
+\left(
+\hat{\mathbf m}_A,
+\hat{\mathbf m}_B;
+\Pi,
+\zeta_A,
+\zeta_B
+\right)\ge0,
+\qquad
+\sum_{a,b=\pm1}K_{ab}^{\theta}=1.
+$$
+
+The record law is
+
+$$
+P_{\theta}(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+=
+\int
+K_{ab}^{\theta}\,
+d\nu_{A,\hat{\mathbf m}_A}\,
+d\nu_{B,\hat{\mathbf m}_B}\,
+d\rho_{\mathrm{src}}
+\left(
+\Pi
+\middle|
+P_{\mathrm{src}}^{\mathrm{sing}}
+\right).
+$$
+
+The singlet residual is
+
+$$
+\Delta_{\mathrm{joint}}^{\mathrm{sing}}
+=
+\sup_{a,b,\hat{\mathbf m}_A,\hat{\mathbf m}_B}
+\left|
+P_{\theta}(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+-
+\frac14
+\left(
+1-ab\,\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B
+\right)
+\right|.
+$$
+
+If this residual is small, normalization, unbiased one-wing marginals, and the correlation
+
+$$
+E_\theta(\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+=
+\sum_{a,b=\pm1}ab\,P_{\theta}(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+=
+-\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B
+$$
+
+follow as consequences. The local Stern-Gerlach kernels are deterministic basin indicators derived from the architrino-level angular-momentum and measurement-response dynamics, not ready-made spin-projection rules. The remaining Bell-level task is to derive the preparation and pair-provenance measures that make those local kernels reproduce the joint law while preserving no-signaling and measurement independence and while failing the product-screened local reconstruction above.
 
 **Status:** This derivation is a **target**, not a completed result. The immediate prerequisite is the angular-momentum and spin program: derive how total angular momentum is conserved and redistributed in a changing-frequency Noether core, use the Master-Equation apparatus impulse and record-cycle invariant measure to realize $K_{\pm}^{\text{SG}}$, and then derive the pair-provenance measure for correlated cores. The single-core half-angle basin arithmetic and the external apparatus-term origins are now available in the reduced Stern-Gerlach chart, but this is not yet a Bell-pair correlation proof.
 
@@ -469,7 +532,7 @@ The existence of a global time parameter $t$ is essential for the internal consi
 **Resolution via absolute time.** In $\mathbb{A}\mathbb{A}\mathbb{A}$, the temporal ordering of all events is objective. Measurements at $A$ and $B$ occur at definite absolute times $t_A$ and $t_B$, with $t_A < t_B$, $t_A = t_B$, or $t_A > t_B$ as an objective fact. In all three cases the account is the same:
 
 1. At $t_0 < \min(t_A, t_B)$: the creation event establishes $\lambda$.
-2. At each measurement time: the local apparatus drives the local assembly across a basin boundary. The outcome is determined by $\lambda$ and the local setting.
+2. At each measurement time: the local apparatus drives the local assembly across a basin boundary. The one-wing basin crossing is local, but the validated observer-level law is the pushed-forward nonseparable pair-provenance response kernel, not a restartable product of two independent local hidden-variable packages.
 3. After both measurements: comparison of results (via sub-$c_f$ classical communication) reveals the correlations.
 
 No step may involve faster-than-$c_f$ signal transfer. The correlations are visible only upon comparison. The objective temporal ordering removes one frame-dependence puzzle, but it does not by itself solve Bell's theorem. The missing work is the lower-level derivation of the spin ledger and measurement-response kernel.

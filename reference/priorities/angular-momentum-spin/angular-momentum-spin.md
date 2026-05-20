@@ -539,6 +539,8 @@ The promoted layer is:
 
 The remaining priority burden is unchanged for the hard proof rows: physical branch selection for the minimal branch, photon symbolic equalities as completed Gate B physics, the pair-source relative-phase certificate, and weak left/right exposure from terminal axial sign alone all remain deferred with blockers.
 
+Continuation status: the follow-on team-agent edit batch was also promoted into `content/markdown/aaa`. It adds the same-record downstream admissibility rule, replaces stale scalar photon-helicity wording with the substrate/event-balance projection, promotes the event-balanced threshold-pullback theorem target for one-wing record channels, makes the Bell singlet joint law primary, and propagates the radiative source-depletion event-balance identity through reaction-facing photon records. This is a true proof-stack advance because the probability and helicity rows are now expressed as consequences of pushforward measure and source-depletion conservation identities, not as standalone gates. The remaining proof burden is to populate native retained branch rows, material analyzer dynamics, source relative-phase certificates, and concrete apparatus kernels.
+
 ## Promotion Map
 
 | Task | Detailed file | Primary promotion target | Promotion gate |

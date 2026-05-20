@@ -318,6 +318,7 @@ Every resolved radiation, sub-threshold shedding, photon-capture, or radiation-c
 | Required field | Required content | Closure role |
 | --- | --- | --- |
 | Source assembly | Identity and pre/post state of the driven assembly, photon assembly, or resolved local Noether-Sea excitation whose residual is being routed | Prevents treating radiation as free energy detached from an assembly or medium source |
+| Source depletion row | $\Delta\mathcal Q_{\mathrm{src}}^{0}=\mathcal Q_{\mathrm{src}}^{-}-\mathcal Q_{\mathrm{src}}^{+}$ for $\mathcal Q\in\{E,\mathbf p,\mathbf J\}$, with the source branch and event window named | Keeps photon output tied to what the driven source lost rather than to an isolated outgoing quantum |
 | Trigger geometry | Deceleration, curved transport, gradient crossing, photon overlap, capture geometry, or medium-relaxation geometry, including local $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, and $\chi_{\text{sea}}(\mathbf{x},t)$ when they affect the channel | Identifies why this event entered a retuning, excitation, planar-mode, or reaction basin |
 | $\delta\Theta_a$ | Phase-closure mismatch for each active layer $a\in\{I,M,O\}$, or an explicit reason the channel uses a reduced assembly ledger | Keeps the event tied to the closure-residual mechanism rather than to acceleration language alone |
 | $E_{\text{exc}}$ | Excess internal or medium excitation energy above the nearest stable rung before routing | Supplies the left side of the shedding ledger |
@@ -325,11 +326,34 @@ Every resolved radiation, sub-threshold shedding, photon-capture, or radiation-c
 | Recoil | $\Delta E_{\text{recoil}}$, $\Delta \mathbf{p}_{\text{recoil}}$, and the assembly or medium component receiving recoil | Closes local momentum and energy at the event vertex |
 | Medium excitation | $\Delta E_{\text{med}}$, $\Delta \mathbf{p}_{\text{med}}$, excitation type, and returned or retained Noether-Sea content | Prevents unresolved medium heating or turbulence from becoming an implicit loss term |
 | Polarization handoff | Gate B acceptance data when $E_\gamma\ne0$: transverse basis, analyzer or transport basis if present, helicity label, accepted/rejected capture channel, and transverse angular-momentum ledger | Records inherited photon Gate B requirements; it is not a local derivation of photon spin |
+| Photon Gate B event residual | $\mathcal R_{\gamma B}^{\mathrm{event}}$ or the channel-local equivalent naming source, recoil, medium, wake, handoff, remnant, helicity, and balance rows when $E_\gamma\ne0$ | Prevents a clean transverse ledger from being promoted before the event ledger closes |
 | Causal-wake ledger | Source identities, emission times, active causal-root branches, branch Jacobians, path-history provenance, and $\Delta \mathcal{J}_{\text{wake}}$ | Makes deterministic replay and angular-momentum balance depend on delayed wake history |
 | Identity routing | Bijection or equivalent route for participating architrino identities after named Noether-Sea reservoir terms are included | Prevents photon output, causal wakes, or unresolved medium terms from being treated as sources of new substrate identities |
 | Closure status | Baseline, provisional map, derivation target, failed map, or inherited gate, with any unresolved Gate A, Gate B, Gate C, reaction, or cosmology handoff named explicitly | Prevents a local channel record from being promoted to completed doctrine before its inherited gates close |
 
 For photon-capture records, $E_\gamma$ names the incoming, outgoing, shifted, or captured photon ledger; it is not an identity source for different outgoing assemblies unless the channel is explicitly a reaction or pair-production record. In those cases, the same schema must add the recruited target or Noether-Sea inventory to the identity-routing field.
+
+The event-balance lemma used by the schema is the source-depletion identity
+
+$$
+\Delta\mathcal Q_{\mathrm{src}}^{0}
+=
+\mathcal Q_{\gamma}^{\mathrm{sub}}
++
+\mathcal Q_{\mathrm{recoil}}^{0}
++
+\mathcal Q_{\mathrm{med}}^{0}
++
+\mathcal Q_{\mathrm{wake}}^{0}
++
+\mathcal Q_{\mathrm{handoff}}^{0}
++
+\mathcal Q_{\mathrm{rem}}^{0},
+\qquad
+\mathcal Q\in\{E,\mathbf p,\mathbf J\}.
+$$
+
+For Gate B, the $\mathcal Q=\mathbf J$ component is the transverse angular-momentum balance. Photon polarization, helicity, and analyzer handoff are therefore not detached labels; they are the photon-side component of one event-window conservation record.
 
 The common energy closure for the schema is
 

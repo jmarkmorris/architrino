@@ -1528,6 +1528,20 @@ $$
 
 Here $\Delta_{4\pi}$ measures failure of the $2\pi/4\pi$ ordered-core lift, $\Delta_{\mathrm{spin\,op}}$ measures failure to recover the spin-operator and Stern-Gerlach record algebra on the declared apparatus contexts, $\Delta_{\mathrm{WCT}}$ measures mismatch between the spinor/helicity ledger and the weak-coupling-triad exposure record, $\mathcal{R}_{\mathrm{matter}}$ measures failure of the fermion matter channel to project into the same Noether-Sea metric record, and $\Delta_{\mathrm{ctx}}$ is the apparatus-context residual from [Quantum Operator Mapping](quantum-operator-mapping.md#apparatus-context-guardrail). The residual passes only when all terms use the same $\theta$; otherwise the spin proof, weak handedness, and metric matter channel have been fitted by separate records rather than recovered as one closure.
 
+The $4\pi$ term is row-local. For a retained active-root row $r_\star$ on the same record window, the downstream consumer may use the spinor label only when
+
+$$
+\Pi_{W,r_\star}^{2\pi}=1,
+\qquad
+\Pi_{W,r_\star}^{4\pi}=0,
+\qquad
+\Delta_{\Pi_W}(r_\star)\le\varepsilon_{\Pi_W},
+\qquad
+\Delta_{\mathrm{gc}}(r_\star)\le\varepsilon_{\mathrm{gc}},
+$$
+
+with the associated angular-momentum residuals below tolerance on the same branch record. This is a reuse rule, not a new ontology: weak exposure, exchange statistics, and fermion metric compatibility may consume spin/helicity only from the retained row that also carries the causal-writhe parity, quotient, doubled-path, gauge-control, and angular-momentum data.
+
 This is a theorem target, not a completed proof. The causal-action functional adds a promising topological handle through causal writhe,
 
 $$
@@ -1874,7 +1888,7 @@ This taxonomy is a bridge, not a proof. It tells the corpus where to look for th
 
 Downstream chapters should use this bridge as a dictionary, not as a completed proof. The nucleon spin budget in [Nucleon Structure](../nuclear-atomic/nucleon-structure.md), the gluon vector-channel account in [Gluons and the Strong Force: Geometric Origins](../assemblies/bosons/gluons.md), the rho/Delta spin and Pauli discussions in [Transient Hadrons: Mesons and Δ Resonances](../assemblies/mesons/mesons.md), the exchange-statistics program in [Fermi-Dirac and Bose-Einstein Statistics](../quantum/quantum-statistics.md), atomic and molecular spin/exclusion language in [Atomic Structure](../nuclear-atomic/atomic-structure.md), [Atomic Spectra](../nuclear-atomic/atomic-spectra.md), and [Molecular Geometry](../nuclear-atomic/molecular-geometry.md), and photon/vector-mode language in [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md), [Mode Taxonomy](../interactions/mode-taxonomy.md), and [Particle Masses](../assemblies/particle-masses.md) all inherit the open single-core angular-momentum ledger and ordered-frame spinor closure target.
 
-Second-ring consumers inherit the same limitation. Photon records in [Reaction Ledger](../validation/reaction-ledger.md), [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md), [Bremsstrahlung](../reactions/bremsstrahlung.md), and [Synchrotron Cascades](../reactions/synchrotron.md), weak helicity selection in [Weak Mixing and CKM](./weak-mixing-ckm.md), Bell/CHSH response claims in [Bell's Theorem](./bell-theorem.md), Cesium hyperfine clock claims in [Architrino and SI Base Units](../validation/architrino-si-base-units.md), and boundary-helicity proxy language in [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md) may state observer-level labels and validation targets. They should not use those labels as independent derivations of spin, Pauli exclusion, spin-statistics closure, photon polarization, vector-mode spin, weak handedness, spin-measurement response, Bell correlations, or hyperfine spin coupling.
+Second-ring consumers inherit the same limitation. Photon records in [Reaction Ledger](../validation/reaction-ledger.md), [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md), [Bremsstrahlung](../reactions/bremsstrahlung.md), and [Synchrotron Cascades](../reactions/synchrotron.md), weak helicity selection in [Weak Mixing and CKM](./weak-mixing-ckm.md), Bell/CHSH response claims in [Bell's Theorem](./bell-theorem.md), Cesium hyperfine clock claims in [Architrino and SI Base Units](../validation/architrino-si-base-units.md), and boundary-helicity proxy language in [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md) may state observer-level labels and validation targets. They should not use those labels as independent derivations of spin, Pauli exclusion, spin-statistics closure, photon polarization, vector-mode spin, weak handedness, spin-measurement response, Bell correlations, or hyperfine spin coupling. The common discipline is same-record consumption: a downstream claim may use the spinor, helicity, or weak-handedness label only from the branch record that also carries the relevant angular-momentum, apparatus, event-balance, or exposure residuals.
 
 ## Helicity and Vector Modes
 
@@ -1909,17 +1923,86 @@ $$
 \left(\hat{\mathbf{u}}\pm i\hat{\mathbf{v}}\right)
 $$
 
-is the target bridge to helicity. A helicity eigenmode must satisfy
+is the target bridge to helicity. A helicity eigenmode must first be stated as a substrate angular-momentum ledger. Let
 
 $$
-J_{\gamma,\parallel}
+\mathbf J_{\gamma}^{\mathrm{sub}}
 =
-\lambda_{\text{hel}}\hbar,
-\qquad
-\lambda_{\text{hel}}\in\{+1,-1\},
+\mathbf J_{\mathrm{pro}}
++
+\mathbf J_{\mathrm{anti}}
++
+\mathbf J_{\gamma,\mathrm{wake}},
 $$
 
-where $J_{\gamma,\parallel}$ is the angular-momentum projection along $\hat{\mathbf{e}}$. Linear polarization is then a real transverse-axis state, while circular polarization is a quarter-cycle phase relation between the two transverse axes. The proof burden is to show that the coaxial contra-rotating pro/anti planar pair carries this spin-$1$ transverse ledger and not a scalar, spinor, or longitudinal free mode.
+where the terms are the photon-side pro/anti planar-pair and photon-carried wake contributions. Source remnant, recoil, material handoff, and unrelated medium rows belong to the event ledger, not inside the photon-only helicity vector. The helicity residual is
+
+$$
+\Delta_{\mathrm{hel}}^\gamma
+=
+\left|
+\frac{
+\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}
+}{\hbar}
+-
+\lambda_{\mathrm{hel}}
+\right|
++
+\frac{
+\left\|
+P_{\perp}\mathbf J_{\gamma}^{\mathrm{sub}}
+\right\|
+}{
+\hbar+\varepsilon_J
+},
+\qquad
+\lambda_{\mathrm{hel}}\in\{+1,-1\},
+$$
+
+where $P_{\perp}$ projects transverse to the propagation axis. Linear polarization is then a real transverse-axis state, while circular polarization is a quarter-cycle phase relation between the two transverse axes. The scalar summary $\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}\approx\lambda_{\mathrm{hel}}\hbar$ is allowed only after Gate A, the substrate planar-pair rows, and the event-balance rows pass. The proof burden is to show that the coaxial contra-rotating pro/anti planar pair carries this spin-$1$ transverse ledger and not a scalar, spinor, or longitudinal free mode.
+
+The useful algebraic consequence is a projected event-balance target. For a finite radiative event window,
+
+$$
+\Delta\mathbf J_{\mathrm{src}}^{0}
+=
+\mathbf J_{\gamma}^{\mathrm{sub}}
++
+\mathbf J_{\mathrm{recoil}}^{0}
++
+\mathbf J_{\mathrm{med}}^{0}
++
+\mathbf J_{\mathrm{wake}}^{0}
++
+\mathbf J_{\mathrm{handoff}}^{0}
++
+\mathbf J_{\mathrm{rem}}^{0}.
+$$
+
+Projecting along $\hat{\mathbf e}$ gives
+
+$$
+\frac{\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}}{\hbar}
+=
+\frac{
+\hat{\mathbf e}\cdot
+\left(
+\Delta\mathbf J_{\mathrm{src}}^{0}
+-
+\mathbf J_{\mathrm{recoil}}^{0}
+-
+\mathbf J_{\mathrm{med}}^{0}
+-
+\mathbf J_{\mathrm{wake}}^{0}
+-
+\mathbf J_{\mathrm{handoff}}^{0}
+-
+\mathbf J_{\mathrm{rem}}^{0}
+\right)
+}{\hbar}
+$$
+
+whenever the event-balance residual vanishes. Thus photon helicity is not an isolated scalar assertion: it is the propagation-axis projection of the same source-depletion, recoil, wake, handoff, remnant, and photon substrate ledger.
 
 Analyzer coupling belongs to the same Gate B ledger. The transverse projector is
 
@@ -2135,6 +2218,26 @@ H\!\left(\mu_{\text{pass}}-\eta\right)d\eta
 =
 \mu_{\text{pass}}(\hat{\mathbf a}\mid a_\perp).
 $$
+
+This is the reusable threshold-pullback theorem target for one-wing record channels. If a record window has an event-ledger residual below tolerance, an invariant unresolved-material measure $d\nu$, and a threshold coordinate $\eta:\Theta\to[0,1]$ with $\eta_*d\nu=d\eta$, then the deterministic kernel
+
+$$
+K_o(\rho,\zeta)=H\!\left(\rho-\eta(\zeta)\right)
+$$
+
+has the pushed-forward weight
+
+$$
+\int_{\Theta}K_o(\rho,\zeta)\,d\nu(\zeta)
+=
+\nu\!\left(\{\zeta:\eta(\zeta)<\rho\}\right)
+=
+\int_0^\rho d\eta
+=
+\rho.
+$$
+
+Photon Gate B uses $\rho=\mu_{\text{pass}}(\hat{\mathbf a}\mid a_\perp)$. The Stern-Gerlach-like chart below uses the same structure with $\rho=p_{+}(\hat{\mathbf a},\hat{\mathbf m})$. Bell-pair work may consume this theorem target only after both one-wing kernels are tied to the same pair-provenance record and the resulting joint law avoids product screening while preserving measurement independence and no-signaling.
 
 The substrate origin of these reduced objects is the analyzer's own finite-time material dynamics. Let $\mathcal{P}_{\hat{\mathbf a}}$ denote the record-window section of fully specified analyzer states: a state lies in $\mathcal{P}_{\hat{\mathbf a}}$ when an incoming Gate A-admissible photon branch has reached the analyzer entrance with propagation axis $\hat{\mathbf e}$, the analyzer's macroscopic accepted axis is $\hat{\mathbf a}$, and the local Noether-Sea environment is within the calibrated operating band. Let $\sim_{\hat{\mathbf a}}$ identify material states that differ only by translations among equivalent capture sites or by record-cycle phase choices that preserve the same local pass/reject geometry. The unresolved analyzer microstate space is then the quotient
 

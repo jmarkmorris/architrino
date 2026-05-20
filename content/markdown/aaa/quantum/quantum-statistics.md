@@ -177,8 +177,8 @@ The next proof steps are:
 
 1. Extract $\xi$ from simulated or analytic Noether-core orbit data.
 2. Identify the stability threshold separating volumetric exclusion from coherent 2D support.
-3. Derive how exchange of two 3D Noether-core assemblies produces fermionic antisymmetry at the effective level.
+3. Derive how exchange of two 3D Noether-core assemblies produces fermionic antisymmetry at the effective level, using the same retained non-gauge ordered-core row that passes the $2\pi/4\pi$ spinor, gauge-control, and angular-momentum checks in [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md#spinor-to-metric-compatibility-residual).
 4. Derive how phase-compatible 2D-supported channel excitations produce bosonic symmetric occupation.
 5. Check that mixed regimes do not create forbidden intermediate statistics for ordinary low-energy matter.
 
-Until those steps are complete, the claim should be treated as a precise geometry hypothesis: Fermi-Dirac statistics are expected to arise from 3D Noether-core exclusion plus the ordered-frame spinor exchange phase; Bose-Einstein statistics are expected to arise when Noether-core orbital support is oblated into an effectively 2D coherent channel.
+Until those steps are complete, the claim should be treated as a precise geometry hypothesis: Fermi-Dirac statistics are expected to arise from 3D Noether-core exclusion plus the ordered-frame spinor exchange phase on the same retained row; Bose-Einstein statistics are expected to arise when Noether-core orbital support is oblated into an effectively 2D coherent channel.

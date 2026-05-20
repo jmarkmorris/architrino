@@ -87,6 +87,24 @@ The parent-complement steering term should penalize any leftover fold-adjacent p
 - residual equality core after accepted simple-root windows are removed;
 - uncertified endpoint-scale gap.
 
+The first implementation should also expose the finite gap-opening linearization. Let
+$$
+C(\mathbf a)=0
+$$
+be the structural constraint system and let $\delta_m(\mathbf a)$ be the signed gap of unresolved parent complement $m$, positive when that complement has strict null-coordinate range separation. At a provisional collocation point $\mathbf a_0$, build
+$$
+B=DC(\mathbf a_0),
+\qquad
+A_{mn}=D\delta_m(\mathbf a_0)b_n
+$$
+for the chosen candidate basis directions $b_n$, including localized $C^1$ endpoint-shear directions on fold-adjacent regular arcs. The constructive test is the linear feasibility problem
+$$
+B\xi=0,
+\qquad
+A\xi\ge\kappa\mathbf{1}
+$$
+for some strict margin vector $\kappa>0$. If feasible, $H_{\mathrm{pc}}$ has identified a tangent direction that opens every residual collar while preserving section, symmetry, separator, matching, fold-nondegeneracy, origin-placement, and neutral-coordinate constraints to first order. If infeasible, the solver should change the basis, candidate history, or itinerary rather than merely refine the same mesh.
+
 ## Pre-Ledger Stop Condition
 
 Stop before branch-chart construction unless every pre-ledger row satisfies

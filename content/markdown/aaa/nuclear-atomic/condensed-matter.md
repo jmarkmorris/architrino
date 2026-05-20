@@ -52,7 +52,7 @@ Below the critical surface, the response belongs to the mass and inertia program
 $$
 p_{\text{int}}^a
 \approx
-\alpha\,\zeta(A)E_{\text{internal}}(A)\,
+\alpha_{\mathrm{m}}\,\zeta(A)E_{\text{internal}}(A)\,
 \mathcal{M}_{\text{sea}}^{ab}V_{\text{cm},b}.
 $$
 

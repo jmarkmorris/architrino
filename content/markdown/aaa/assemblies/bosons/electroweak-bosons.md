@@ -34,7 +34,7 @@ A photon manifests as a **phase-locked planar-pair mode train** of delayed actio
 *   **Photon-channel speed:** The planar (edge-on) orientation minimizes interaction with the ambient Noether-Sea assembly network. In weak homogeneous Noether-Sea conditions the local photon-channel speed $c_\gamma$ approaches the primitive wake speed $c_f$; in material media or strong Noether-Sea gradients, $c_\gamma < c_f$ is the observer-level transport summary.
 
 ### Interaction Rules: Capture and Release
-*   **Emission (Planar-Mode Release):** Driven by accelerated motion in the source binary. The accepted action ledger enters a stable planar-pair mode along a tangential vector.
+*   **Emission (Planar-Mode Release):** Driven when a source residual routes an accepted action ledger into planar-mode nucleation. Acceleration is a common trigger geometry, but the event record must still name source depletion, recoil, wake, handoff, medium, and remnant rows.
 *   **Absorption (Planar-Mode Capture):**
     *   Absorption is not the annihilation of a quantum field operator.
     *   It is the **mechanical re-capture** of the planar mode by an internal binary in the target atom.
@@ -46,7 +46,7 @@ A photon manifests as a **phase-locked planar-pair mode train** of delayed actio
 *   **Attenuation & Refraction:**
     *   As the photon train passes through regions of varying density (dielectric media or dense Noether Sea), the planar mode **re-couples** transiently with ambient assemblies.
     *   **Refraction:** This transient recoupling and delay response lowers the effective photon-channel speed $c_\gamma$ relative to its weak homogeneous value.
-    *   **Attenuation:** Incoherent scattering can "strip" units off the train, depleting the beam energy over distance (scattering) or absorbing it entirely (opacity).
+    *   **Attenuation:** Incoherent scattering routes parts of the packet ledger into scattering, capture, recoil, or medium rows, depleting the beam energy over distance or absorbing it entirely (opacity).
 
 ### Phenomenology
 *   **Energy-Frequency:** For a periodic source $\omega=2\pi\nu$, the closure target is the photon-channel relation $E_\gamma=h\nu$; the cycle being counted is the propagating planar-mode phase cycle, not a rest-state volumetric clock.
@@ -224,9 +224,7 @@ $$
 +
 \mathbf J_{\mathrm{anti}}
 +
-\mathbf J_{\mathrm{wake}}
-+
-\mathbf J_{\mathrm{src,rem}},
+\mathbf J_{\gamma,\mathrm{wake}},
 $$
 
 with
@@ -251,7 +249,7 @@ P_{\perp}\mathbf J_{\gamma}^{\mathrm{sub}}
 }.
 $$
 
-A clean free branch must route $\mathbf J_{\mathrm{src,rem}}$ outside the photon ledger or show that it vanishes. Only after Gate A and the event-balance rows pass may the target be summarized by $\mathbf J_{\gamma}^{\mathrm{sub}}\approx\lambda_{\mathrm{hel}}\hbar\hat{\mathbf e}$.
+A clean free branch must route source remnant, recoil, material handoff, and unrelated medium rows outside the photon-only ledger through the event-balance equation. Only after Gate A and the event-balance rows pass may the target be summarized by $\mathbf J_{\gamma}^{\mathrm{sub}}\approx\lambda_{\mathrm{hel}}\hbar\hat{\mathbf e}$. Reaction chapters consume this as the photon Gate B event residual, not as a source-free helicity proof.
 
 An analyzer is an assembly whose capture geometry selects an allowed transverse ledger direction $\hat{\mathbf{a}}=P_{\perp}\hat{\mathbf{a}}$. For a linearly polarized incoming axis $\hat{\mathbf{e}}_\gamma$, the closure target is
 

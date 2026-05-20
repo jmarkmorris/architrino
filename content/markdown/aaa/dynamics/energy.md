@@ -470,13 +470,13 @@ $$m_{\text{inertial}}(A) \equiv \frac{\|\mathbf{F}_{\text{ext}}\|}{\|\mathbf{a}_
 
 Because the external wake couples mainly to the **apparent energy**, not the full internal circulation, the scalar roadmap limit is:
 
-$$m_{\text{inertial}}(A) \approx \alpha\,\frac{\zeta(A)\,E_{\text{internal}}(A)}{c_{\text{eff}}^2}.$$
+$$m_{\text{inertial}}(A) \approx \alpha_{\mathrm{m}}\,\frac{\zeta(A)\,E_{\text{internal}}(A)}{c_{\text{eff}}^2}.$$
 
 The tensor handoff is more precise. For a small center-of-mass velocity $V_{\text{cm},b}$ through a declared Noether-Sea response record,
 $$
 p_{\text{int}}^{a}
 \approx
-\alpha\,\zeta(A)E_{\text{internal}}(A)\,
+\alpha_{\mathrm{m}}\,\zeta(A)E_{\text{internal}}(A)\,
 \mathcal{M}_{\text{sea}}^{ab}\,
 V_{\text{cm},b},
 $$
@@ -484,7 +484,65 @@ with homogeneous isotropic limit
 $$
 \mathcal{M}_{\text{sea}}^{ab}\to \frac{h^{ab}}{c_{\text{eff}}^2}.
 $$
-Only in that limit does the scalar mass formula above follow. Here $E_{\text{internal}}$ names the large internal energy circulation, while $\zeta(A)$ names the small external leakage that survives cancellation and Noether-Sea shielding. The formula therefore explains weak long-range gravitational and inertial footprints without making the internal energy small: ordinary probes couple to the leaked pattern, not to every internal exchange branch.
+A more complete first-order handoff keeps the scalar and trace-free exposure pieces visible. Write
+
+$$
+\mathcal{Z}_{A}^{ab}
+=
+\zeta(A)h^{ab}
++
+\mathcal{Z}_{\mathrm{tf}}^{ab}(A),
+\qquad
+h_{ab}\mathcal{Z}_{\mathrm{tf}}^{ab}(A)=0,
+$$
+
+and split the local medium response as
+
+$$
+\mathcal{M}_{\text{sea}}^{ab}
+=
+\frac{1}{c_{\text{eff},0}^{2}}
+\left[
+(1+\delta\mathcal{M}_{0})h^{ab}
++
+\delta\mathcal{M}_{\mathrm{tf}}^{ab}
+\right].
+$$
+
+Then the exposed inertial-response tensor is
+
+$$
+\mathsf{I}_{A}^{ab}
+=
+\frac{\alpha_{\mathrm{m}}E_{\text{internal}}(A)}{2}
+\left(
+\mathcal{Z}_{A}^{a}{}_{c}\mathcal{M}_{\text{sea}}^{cb}
++
+\mathcal{Z}_{A}^{b}{}_{c}\mathcal{M}_{\text{sea}}^{ca}
+\right),
+\qquad
+p_{\text{int}}^{a}
+\approx
+\mathsf{I}_{A}^{ab}V_{\text{cm},b}.
+$$
+
+Its rotational scalar trace is
+
+$$
+m_{\mathrm{tr}}(A)
+\equiv
+\frac{1}{3}h_{ab}\mathsf{I}_{A}^{ab}
+=
+\alpha_{\mathrm{m}}
+\frac{E_{\text{internal}}(A)}{c_{\text{eff},0}^{2}}
+\left[
+\zeta(A)(1+\delta\mathcal{M}_{0})
++
+\frac{1}{3}\mathcal{Z}_{\mathrm{tf},ab}(A)\delta\mathcal{M}_{\mathrm{tf}}^{ab}
+\right].
+$$
+
+Only in the homogeneous isotropic limit does the scalar mass formula above follow. The trace formula gives a stricter diagnostic: pure exposure anisotropy does not shift scalar mass in an isotropic medium, and pure trace-free medium response does not shift scalar mass for scalar exposure. A scalar mass shift from anisotropy appears only through the contraction $\mathcal{Z}_{\mathrm{tf},ab}\delta\mathcal{M}_{\mathrm{tf}}^{ab}$; otherwise the residue remains directional inertia in $\mathsf{I}_{A}^{ab}$. Here $E_{\text{internal}}$ names the large internal energy circulation, while $\zeta(A)$ names the small external leakage that survives cancellation and Noether-Sea shielding. The formula therefore explains weak long-range gravitational and inertial footprints without making the internal energy small: ordinary probes couple to the leaked pattern, not to every internal exchange branch.
 
 At the matter-to-medium interface, a Standard Model fermion assembly should therefore be treated as a localized source of exposed response, not as an unshielded transfer of all internal energy into the surrounding Noether Sea. For a coarse cell $\Omega_\ell$, the source supplied by stable matter assemblies can be written schematically as
 
@@ -513,7 +571,7 @@ $$
 
 with $\delta\theta_{\mathrm{sea}}^{(\ell)}$ projecting into $n$, $\chi_{\text{sea}}$, $\Gamma_N$, strain, orientation, cadence, and envelope-scale variables. In this language, saying that neighboring Noether cores absorb the exposed potential means that they retune their branch state. Depending on the accepted branch, that retuning may appear as higher cadence, changed strain, stronger alignment, envelope-scale shift, or altered coupling to nearby cores; it should not be compressed into a generic statement that the cores simply gain energy and expand.
 
-This is the same shielding-based logic developed more directly in [Particle Masses](../assemblies/particle-masses.md). The matching factor $\alpha$ should be fixed only after a calibration-free reference attractor has supplied $E_{\text{internal}}$, $\zeta$, and the medium-response map; it should not be fitted separately to each particle species.
+This is the same shielding-based logic developed more directly in [Particle Masses](../assemblies/particle-masses.md). The matching factor $\alpha_{\mathrm{m}}$ should be fixed only after a calibration-free reference attractor has supplied $E_{\text{internal}}$, $\zeta$, and the medium-response map; it should not be fitted separately to each particle species.
 
 Thermodynamic or entropic derivations of gravitational force are therefore comparison benchmarks for this chapter, not replacements for the mass mechanism. They may sharpen the observer-level equation-of-state target for gravity, but $m_{\text{inertial}}(A)$ is not closed until the same assembly ledger supplies its trapped internal causal history, shielding extraction, Noether-Sea response tensor, and acceleration response.
 

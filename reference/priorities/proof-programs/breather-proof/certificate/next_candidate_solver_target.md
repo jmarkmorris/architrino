@@ -172,6 +172,34 @@ Fold residuals are interval fold-contribution targets $I_{\Sigma_i,k}$, not bran
 
 The parent-complement steering term $H_{\mathrm{pc}}$ is not an acceptance theorem. It is a search objective that penalizes any fold-adjacent parent complement whose outward-rounded null-coordinate ranges have zero gap, positive-width overlap, or residual equality core after the proposed simple-root windows are removed.
 
+The stronger use of $H_{\mathrm{pc}}$ is a gap-opening perturbation criterion. Let
+$$
+C(\mathbf a)=0
+$$
+collect the structural constraints in the fresh fold-collocation packet, and for each unresolved parent complement $C_m=R_m\times S_m$ define a signed gap functional
+$$
+\delta_m(\mathbf a)
+=
+\inf_{\theta_s\in S_m} y_m(\theta_s;\mathbf a)
+-
+\sup_{\theta_r\in R_m} y_m(\theta_r;\mathbf a),
+$$
+or the opposite ordering, so that $\delta_m>0$ means strict null-coordinate separation. A provisional candidate $\mathbf a_0$ has a constructive parent-complement repair direction when there exists $\xi$ such that
+$$
+DC(\mathbf a_0)\xi=0,
+\qquad
+D\delta_m(\mathbf a_0)\xi\ge \kappa_m>0
+\quad
+\text{for every unresolved }m.
+$$
+Then, by the implicit-function theorem, a nearby structural solution curve opens those parent-complement gaps for sufficiently small positive parameter. In matrix form the solver should test
+$$
+B\xi=0,
+\qquad
+A\xi\ge\kappa\mathbf{1},
+$$
+where $B$ is the structural Jacobian plus neutral-coordinate fixing rows and $A$ is the signed parent-complement gap derivative matrix. This is a candidate-construction mechanism, not a certificate pass.
+
 ## Null-Coordinate Pre-Ledger Acceptance Targets
 
 Before any branch-chart construction, the successor packet must run the null-coordinate pre-ledger on its own frozen identity and record:

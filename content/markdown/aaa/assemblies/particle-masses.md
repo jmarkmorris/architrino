@@ -46,6 +46,32 @@ $$
 
 in a homogeneous isotropic Noether-Sea cell. Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice. The tensor version is the sharper target because it carries direction dependence, gradient response, and the distinction between primitive wake speed and observer-facing effective signal speed. Until the internal ledger, shielding coefficient, and medium-response tensor are derived from stable assembly closure, this remains a roadmap formula rather than a theorem.
 
+#### Reference-Normalized Mass Ratio
+
+Because $\alpha_{\mathrm{m}}$ is a single normalization for a declared weak homogeneous regime, the first nontrivial mass-map prediction is not an absolute mass. It is a reference-normalized ratio in which $\alpha_{\mathrm{m}}$ cancels.
+
+For two accepted assemblies $A$ and $B$ in the same homogeneous isotropic Noether-Sea response record, if both assemblies pass the same scalar exposure quotient and share the same low-energy response limit
+$$
+\mathcal{M}_{\text{sea}}^{ab}\to\frac{h^{ab}}{c_{\text{eff}}^2},
+$$
+then the scalar roadmap implies
+$$
+\frac{m_{\text{inertial}}(A)}{m_{\text{inertial}}(B)}
+\approx
+\frac{\zeta(A)E_{\text{internal}}(A)}
+{\zeta(B)E_{\text{internal}}(B)}.
+$$
+Equivalently, once a reference assembly $A_{\mathrm{ref}}$ fixes $\alpha_{\mathrm{m}}$ in that regime, every later scalar mass prediction must factor through
+$$
+m_{\text{inertial}}(A)
+\approx
+m_{\text{inertial}}(A_{\mathrm{ref}})
+\frac{\zeta(A)E_{\text{internal}}(A)}
+{\zeta(A_{\mathrm{ref}})E_{\text{internal}}(A_{\mathrm{ref}})}.
+$$
+
+This ratio form is a sharper anti-fitting invariant than the absolute scalar formula. Changing $\alpha_{\mathrm{m}}$ cannot improve one particle without changing all particles in the same regime. Changing $\zeta(A)$ is admissible only when it is produced by the branch ledger and exposure quotient for $A$, not when it is selected from the observed mass table. In anisotropic or pressure-dependent cells, the scalar ratio must be replaced by the tensor response ratio along the declared probe direction; failure of that replacement is evidence that the scalar mass map is being used outside its regime.
+
 Superfluid-vacuum and Nambu-Jona-Lasinio-style comparisons add a useful caution: an excitation gap can look like a rest-energy term without being the ontology of mass. For an accepted assembly branch $A$, the native analogue would be a branch gap
 $$
 \Delta_A^\theta
@@ -88,6 +114,43 @@ Q_S[\Pi_S\mathcal{L}_A].
 $$
 
 For the isotropic mass-facing scalar sector, $\zeta(A)$ is the scalar summary of $\mathcal{E}_0(A)$. If anisotropic leakage survives, the sector must report a tensor exposure instead of hiding that residue inside $\zeta(A)$.
+
+The useful factorization is that the mass-map numerator should pass through the same quotient. Let $\overline{\mathcal{B}}_0$ be the mass-facing recovery map from the scalar exposure quotient to the exposed source. Then the scalar roadmap numerator is
+
+$$
+M_0^{\mathrm{src}}(A)
+=
+\overline{\mathcal{B}}_0(\mathcal{E}_0(A))
+=
+\zeta(A)E_{\text{internal}}(A),
+$$
+
+so the inertial-mass target becomes
+
+$$
+m_{\text{inertial}}(A)
+\approx
+\alpha_{\mathrm{m}}\,
+\frac{M_0^{\mathrm{src}}(A)}{c_{\text{eff}}^2}.
+$$
+
+This is stronger than treating $\zeta(A)$ as an adjustable small coefficient. If two restored representatives $d_1$ and $d_2$ become the same scalar exposure after projection and quotient, then the exposed source must also agree up to the declared scalar-exposure tolerance:
+
+$$
+Q_0\Pi_0\mathcal{L}_A[d_1]
+=
+Q_0\Pi_0\mathcal{L}_A[d_2]
+\quad\Longrightarrow\quad
+\left|
+M_{0,d_1}^{\mathrm{src}}
+-
+M_{0,d_2}^{\mathrm{src}}
+\right|
+\le
+\epsilon_{0,\mathrm{handle}}E_{\text{internal}}(A).
+$$
+
+When this implication fails, the discarded label is not a hidden quotient label. It is a mass-visible branch selector, so the scalar exposure must retain that label, be promoted to an anisotropic or tensor exposure, or remain unpromoted.
 
 An exposure map is admissible only when the source ledger has branch-ledger provenance, $\Pi_S$ is idempotent on the retained sector data, $Q_S$ does not identify benchmark-distinct ledgers, and the discarded residue is below the declared tolerance. A useful reader-facing error contract is
 $$
@@ -165,7 +228,7 @@ It is crucial to clarify what is **fundamental** versus what is **emergent**:
 
 ### Mass-Channel Categories
 
-The mass thesis must keep the particle categories separate. The photon channel is treated as a massless planar-pair transport mode: it carries phase, momentum, and transverse helicity, but it does not have a rest-frame clock or a stable volumetric internal-energy ledger. This is a two-gate statement. Gate A must supply the null kinematic branch with no rest proper-time clock; Gate B must supply the transverse polarization/spin ledger, including helicity $\pm1$, analyzer coupling, Malus' law, and no physical longitudinal free photon mode. A longitudinal or mixed-axis vector component belongs to a different massive or medium-bound channel, not to the massless free photon branch. The $W/Z$ channels are different massive vector corridors whose apparent masses come from localized recoupling, longitudinal or mixed-axis structure, and medium-dressed Noether-Sea response. The Higgs comparison is different again: it concerns a scalar medium mode rather than a directed vector corridor. This category split depends on the angular-momentum and vector-mode closure program; it is not itself a derivation of photon helicity or massive-vector spin. For the electroweak version of this split, see [Electroweak Bosons](./bosons/electroweak-bosons.md), and for the spin ledger see [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md).
+The mass thesis must keep the particle categories separate. The photon channel is treated as a massless coaxial contra-rotating pro/anti planar-pair transport mode: it carries phase, momentum, source/event-ledger energy, and transverse helicity, but it does not have a rest-frame clock or a stable volumetric internal-energy ledger. This is a two-gate statement. Gate A must supply the null kinematic branch with no rest proper-time clock; Gate B must supply the transverse polarization/spin ledger, including helicity $\pm1$, analyzer coupling, Malus' law, and no physical longitudinal free photon mode. A longitudinal or mixed-axis vector component belongs to a different massive or medium-bound channel, not to the massless free photon branch. The $W/Z$ channels are different massive vector corridors whose apparent masses come from localized recoupling, longitudinal or mixed-axis structure, and medium-dressed Noether-Sea response. The Higgs comparison is different again: it concerns a scalar medium mode rather than a directed vector corridor. This category split depends on the angular-momentum and vector-mode closure program; it is not itself a derivation of photon helicity or massive-vector spin. For the electroweak version of this split, see [Electroweak Bosons](./bosons/electroweak-bosons.md), and for the spin ledger see [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md).
 
 ### Comparison to Standard Model
 In the Standard Model, mass arises via the **Higgs Mechanism**: particles acquire mass by coupling to a background Higgs field (a scalar condensate with vacuum expectation value $v \approx 246$ GeV).

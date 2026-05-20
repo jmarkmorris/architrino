@@ -296,6 +296,85 @@ $$
 |r|.
 $$
 
+### Sub-field-speed partner-only benchmark
+
+The sub-field comparison case must be generated from the force law, not prescribed as a future path. On the exterior affine partner chart above, fix initial data
+$$
+x(0)=x_0>0,
+\qquad
+\dot x(0)=c_f\beta_0,
+\qquad
+-1<\beta_0\le0,
+$$
+and evolve by
+$$
+\ddot x
+=
+-\frac{g}{4x^2}
+\left(1+\frac{\dot x}{c_f}\right).
+$$
+With
+$$
+\alpha=\frac{g}{4c_f^2},
+$$
+the exact phase invariant is
+$$
+\beta-\beta_0
+-\ln\!\left(\frac{1+\beta}{1+\beta_0}\right)
+=
+\alpha\left(\frac{1}{x}-\frac{1}{x_0}\right),
+\qquad
+\beta=\frac{\dot x}{c_f}.
+$$
+Equivalently, if
+$$
+S(x)=\beta_0-\ln(1+\beta_0)+\alpha\left(\frac{1}{x}-\frac{1}{x_0}\right),
+$$
+then the two analytic velocity branches are
+$$
+\beta_k(x)
+=
+-1-\operatorname{W}_k\!\left(-e^{-(S(x)+1)}\right).
+$$
+The inbound sub-field branch is
+$$
+\beta_{\mathrm{in}}(x)
+=
+-1-\operatorname{W}_0\!\left(-e^{-(S(x)+1)}\right),
+$$
+and satisfies $-1<\beta_{\mathrm{in}}(x)<0$ for every $x>0$ on the exterior chart. The outbound branch uses the other real Lambert branch when the same invariant is continued away from the core layer. The branch time is recovered by
+$$
+t-t_0
+=
+\int_x^{x_0}\frac{d\xi}{-c_f\,\beta_{\mathrm{in}}(\xi)}.
+$$
+
+This gives a controlled analytic baseline for a sub-field-speed breather search. The exterior partner branch does not reach
+$$
+|\dot x|=c_f
+$$
+at any finite $x>0$; the logarithm diverges as $\beta\to-1^+$. Therefore a finite-radius field-speed separator is not produced by this action-generated partner chart. It must come from a core-layer effect, finite shell width, nonaffine path history, a self-image contribution, or a different certified branch chart.
+
+The same branch also supplies an exact self-root exclusion test in the sharp-shell limit. If a candidate history satisfies
+$$
+|\dot x(t)|\le c_f-\sigma
+\qquad
+\text{on a stored interval}
+$$
+for some $\sigma>0$, then for all $s<t$ in that interval,
+$$
+|x(t)-x(s)|
+\le
+(c_f-\sigma)(t-s)
+<
+c_f(t-s).
+$$
+Thus the exact same-side self-hit equation has no nontrivial solution there. For finite shell width $\eta$, the possible self contribution is confined to the near-diagonal collar
+$$
+0<t-s\le \frac{\eta}{\sigma},
+$$
+and must be bounded from the dual-mollified integral law rather than inserted as an exact simple-root branch. This separates the analytic sub-field test from the field-speed fold program: the test asks whether partner attraction plus the finite-width self-collar can close a return without ever producing a true field-speed separator.
+
 ### Signed partner branch table
 
 The local affine partner calculation should now be kept as a table of certified branch data. Work on an exterior chart
@@ -1228,6 +1307,30 @@ $$
 
 Away from separators, ordinary Chebyshev, cubic, or other validated bases remain acceptable. The required standard is not polynomial purity; it is strict interval slack in the returned-history residuals and the branch-chart margins.
 
+The parent-complement obstruction gives the fresh collocation packet a concrete construction test, not merely another rejection condition. Let
+$$
+C(\mathbf a)=0
+$$
+denote the structural constraints of a candidate packet: section anchoring, symmetry, separator equations, $C^1$ matching, fold nondegeneracy, origin placement, and neutral-coordinate fixing. For each unresolved parent complement
+$$
+C_m=R_m\times S_m,
+$$
+choose a signed null-coordinate gap
+$$
+\delta_m(\mathbf a)
+$$
+that is positive exactly when the receiver and source ranges are strictly separated. A useful collocation basis must admit a tangent direction
+$$
+DC(\mathbf a_0)\xi=0,
+\qquad
+D\delta_m(\mathbf a_0)\xi>0
+$$
+for all unresolved complements at the provisional packet
+$$
+\mathbf a_0.
+$$
+Then a nearby structural candidate opens those gaps to first order, while already strict margins persist for sufficiently small deformation. This is the mathematical reason the next packet must change the null-coordinate geometry itself; refining the rejected cosine mesh cannot remove fixed-history equality collars.
+
 ## What Would Count as a Successful Closed-Form Candidate
 
 A closed-form candidate is successful only as a certificate generator. It is not a separate proof route.
@@ -1479,18 +1582,19 @@ $$
 
 ## Immediate Derivation Tasks
 
-1. Complete the signed partner branch table for affine and fixed-chart arcs, including the core-mollified force coefficient and validity margins.
-2. Compute the separator normal-form constants and fold-layer impulse bounds for every proposed
+1. Use the action-generated sub-field test case as the first analytic baseline: compare the held-source energy segment, the Lambert-$W$ exterior partner branch, and the finite-width self-collar before accepting any field-speed separator as dynamically produced.
+2. Complete the signed partner branch table for affine and fixed-chart arcs, including the core-mollified force coefficient and validity margins.
+3. Compute the separator normal-form constants and fold-layer impulse bounds for every proposed
    $$
    |\dot x|=c_f
    $$
    event.
-3. Use the doubled four-arc itinerary as the first admissible velocity-class itinerary
+4. Use the doubled four-arc itinerary as the first admissible velocity-class itinerary
    $$
    \mathcal{K}
    $$
    and key the arc partition to that itinerary rather than assuming the compressed four-arc graph by default.
-4. Choose the symmetry chart: apocenter-even in
+5. Choose the symmetry chart: apocenter-even in
    $$
    q
    $$
@@ -1499,7 +1603,7 @@ $$
    x,
    $$
    and record the paired branch-label rule.
-5. Build and discharge the theorem target `Null-Coordinate Causal Pre-Ledger` in
+6. Build and discharge the theorem target `Null-Coordinate Causal Pre-Ledger` in
    $$
    u=c_f t-x,
    \qquad

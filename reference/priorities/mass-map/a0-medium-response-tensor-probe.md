@@ -97,6 +97,79 @@ $$
 
 The certificate must bound $\mathcal{R}_{\mathrm{AG}}$ and must report whether any trace-free signal is sourced by branch strain, Noether-Sea delay anisotropy, or unresolved leakage. A null directional sector is admissible only when the trace-free projection is below the declared signal, birefringence, dispersion, and preferred-frame residual budgets.
 
+## Exposed Inertial-Response Trace Invariant
+
+The medium-response tensor is not consumed by the mass map by itself. The mass-facing object is the product of the exposed assembly pattern and the reversible symmetric medium response.
+
+For an angular scalar far-field ledger, extract the trace-free exposure moment
+
+$$
+\mathcal{Z}_{\mathrm{tf}}^{ab}(A_0)
+=
+\frac{1}{4\pi\|\mathcal{L}_{\text{naive}}\|}
+\int_{S^2}
+\left(
+3\hat R^a\hat R^b-h^{ab}
+\right)
+\mathcal{L}_{A_0}(\hat R)\,d\Omega,
+\qquad
+h_{ab}\mathcal{Z}_{\mathrm{tf}}^{ab}(A_0)=0,
+$$
+
+and define the total exposed-response tensor
+
+$$
+\mathcal{Z}_{A_0}^{ab}
+=
+\zeta(A_0)h^{ab}
++
+\mathcal{Z}_{\mathrm{tf}}^{ab}(A_0).
+$$
+
+With the response split above, the first-order inertial-response tensor is
+
+$$
+\mathsf{I}_{A_0}^{ab}
+=
+\frac{\alpha_{\mathrm{m}}E_{\text{internal}}(A_0)}{2}
+\left(
+\mathcal{Z}_{A_0}^{a}{}_{c}\mathcal{M}_{+}^{cb}
++
+\mathcal{Z}_{A_0}^{b}{}_{c}\mathcal{M}_{+}^{ca}
+\right),
+\qquad
+\mathcal{M}_{+}^{ab}
+\equiv
+\frac{1}{2}
+\left(
+\mathcal{M}_{\text{sea}}^{ab}
++
+\mathcal{M}_{\text{sea}}^{ba}
+\right).
+$$
+
+The scalar mass readout is its rotational trace:
+
+$$
+m_{\mathrm{tr}}(A_0)
+\equiv
+\frac{1}{3}h_{ab}\mathsf{I}_{A_0}^{ab}
+=
+\alpha_{\mathrm{m}}
+\frac{E_{\text{internal}}(A_0)}{c_{\text{eff},0}^{2}}
+\left[
+\zeta(A_0)(1+\delta\mathcal{M}_{0})
++
+\frac{1}{3}
+\mathcal{Z}_{\mathrm{tf},ab}(A_0)
+\delta\mathcal{M}_{\mathrm{tf}}^{ab}
+\right].
+$$
+
+This gives the probe a non-fitting invariant. In a homogeneous isotropic medium, $\delta\mathcal{M}_{0}=0$ and $\delta\mathcal{M}_{\mathrm{tf}}^{ab}=0$, so the roadmap scalar mass reduces to $\alpha_{\mathrm{m}}\zeta(A_0)E_{\text{internal}}(A_0)/c_{\text{eff},0}^{2}$. Pure exposure anisotropy changes direction-dependent inertia through $\mathsf{I}_{A_0}^{ab}$ but does not change the scalar trace unless a trace-free medium response is present. Conversely, pure trace-free medium response does not change scalar mass for scalar exposure. The scalar anisotropic correction is only the contraction $\mathcal{Z}_{\mathrm{tf},ab}\delta\mathcal{M}_{\mathrm{tf}}^{ab}/3$.
+
+Any antisymmetric response residue $\mathcal{M}_{-}^{ab}=(\mathcal{M}_{\text{sea}}^{ab}-\mathcal{M}_{\text{sea}}^{ba})/2$ drops out of the reversible quadratic kinetic scalar $V_{\text{cm},a}\mathsf{I}_{A_0}^{ab}V_{\text{cm},b}$. It therefore belongs to orientation, transport, or loss accounting rather than to scalar rest mass.
+
 ## Probe Families
 
 ### Acceleration Probe

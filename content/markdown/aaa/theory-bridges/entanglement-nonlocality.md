@@ -140,7 +140,15 @@ $$
 
 where $\mathcal{H}_A$ and $\mathcal{H}_B$ are the path-history data carried by the two daughter assemblies, $\Delta\Theta_{AB}^{\text{bin/wake}}$ records their correlated binary-orientation and wake-phase relations, and $\mathsf{Cons}_{AB}$ records the conservation constraints inherited from the source event. This is not an additional force or influence. It is the candidate hidden-variable domain over which the Bell closure must integrate.
 
-Let $K_{ab}^{AB}$ be the joint-record response kernel induced by the pair-provenance record and the two local apparatus interactions. For spin tests, its one-wing limits must agree with the Stern-Gerlach kernels derived in [Angular Momentum and Spin](./angular-momentum-and-spin.md). If $\Pi_{AB}^{\mathrm{sing}}$ is the singlet-like pair-provenance record, $P_{\mathrm{src}}^{\mathrm{sing}}$ is the source record, and $\zeta_A,\zeta_B$ collect unresolved local apparatus and Noether-Sea microstates, the observer-level joint response target is
+Let $K_{ab}^{AB}$ be the joint-record response kernel induced by the pair-provenance record and the two local apparatus interactions. For spin tests, its one-wing limits must agree with the Stern-Gerlach kernels derived in [Angular Momentum and Spin](./angular-momentum-and-spin.md), and the kernel must be a normalized record law:
+
+$$
+K_{ab}^{AB}\ge0,
+\qquad
+\sum_{a,b=\pm1}K_{ab}^{AB}=1.
+$$
+
+If $\Pi_{AB}^{\mathrm{sing}}$ is the singlet-like pair-provenance record, $P_{\mathrm{src}}^{\mathrm{sing}}$ is the source record, and $\zeta_A,\zeta_B$ collect unresolved local apparatus and Noether-Sea microstates, the observer-level joint response target is
 
 $$
 P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
@@ -164,7 +172,23 @@ P_{\mathrm{src}}^{\mathrm{sing}}
 \right).
 $$
 
-Writing this integral does not pass the Bell gate. It names the diagnostic object: the derived joint-record kernel and provenance measure must reproduce the tested Bell correlations while preserving no-signaling and measurement independence, and they must identify exactly which provenance or response compression prevents reduction to Bell's factorized form. Product form belongs only as a failure audit:
+Writing this integral does not pass the Bell gate. It names the diagnostic object: the derived joint-record kernel and provenance measure must reproduce the tested singlet joint law while preserving no-signaling and measurement independence, and they must identify exactly which provenance or response compression prevents reduction to Bell's factorized form. The compact singlet residual is
+
+$$
+\Delta_{\mathrm{joint}}^{\mathrm{sing}}
+=
+\sup_{a,b,\hat{\mathbf m}_A,\hat{\mathbf m}_B}
+\left|
+P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+-
+\frac14
+\left(
+1-ab\,\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B
+\right)
+\right|.
+$$
+
+This single target implies the unbiased marginals and the correlation $E=-\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B$ only after the record law is normalized. Product form belongs only as a failure audit:
 
 $$
 \Delta_{\mathrm{prod}}
@@ -233,7 +257,7 @@ The Bohmian comparison also gives a warning about where the proof burden sits. A
 
 The existence of absolute time $t$ is essential to the consistency of this picture. In the standard relativistic framework, the absence of a preferred foliation means that "which measurement happened first" is frame-dependent for spacelike-separated events. This makes it difficult to tell a coherent story about how correlations are maintained without invoking some form of action at a distance.
 
-In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, there is an objective temporal ordering. At any absolute time $t$, the complete microstate $\Gamma(t)$ is defined on a global simultaneity surface $\Sigma_t$. The correlations between $A$ and $B$ are **already present** in $\Gamma(t)$ for all $t > t_0$, carried in the respective internal configurations. The measurement at $A$ (occurring at some absolute time $t_A$) resolves $A$'s configuration into a definite basin; the measurement at $B$ (at $t_B$) does the same for $B$. Whether $t_A < t_B$ or $t_B < t_A$ is an objective fact, but it does not matter for the statistics: the correlations were fixed at $t_0$ and are simply **read out** at $t_A$ and $t_B$.
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, there is an objective temporal ordering. At any absolute time $t$, the complete microstate $\Gamma(t)$ is defined on a global simultaneity surface $\Sigma_t$. The shared source event fixes a nonseparable pair-provenance domain for $A$ and $B$, carried in their internal configurations and path histories for $t > t_0$. The measurement at $A$ (occurring at some absolute time $t_A$) resolves $A$'s configuration into a definite local basin; the measurement at $B$ (at $t_B$) does the same for $B$. Whether $t_A < t_B$ or $t_B < t_A$ is an objective fact, but it does not by itself solve Bell's theorem. The closure is earned only when the pushed-forward joint response kernel preserves no-signaling and measurement independence while failing product screening.
 
 This structure avoids the conceptual difficulties of standard nonlocality:
 
@@ -300,7 +324,7 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework supports a clean two-level interp
 
 **Epistemic level (Physical Observer).** The PO has access only to coarse-grained observables (effective fields, detector clicks). Unable to track the full microstate, the PO describes the system with a density matrix $\rho_{AB}$ that is non-separable. The PO interprets correlations as "entanglement" and the resolution of metastability as "collapse." These are accurate operational descriptions but do not reflect ontological indeterminacy or nonlocal influence.
 
-The persistent philosophical puzzles of entanglement—how can a measurement "here" instantaneously affect a system "there"?—are relocated by this reading rather than solved by assertion. There is no instantaneous effect. A successful Bell closure must show that pre-established correlations in definite hidden variables can be read out locally at each detector, with the comparison requiring ordinary sub-$c_f$ communication.
+The persistent philosophical puzzles of entanglement—how can a measurement "here" instantaneously affect a system "there"?—are relocated by this reading rather than solved by assertion. There is no instantaneous effect. A successful Bell closure must show that the pair-provenance domain and two local apparatus interactions push forward to the tested joint law, with the comparison requiring ordinary sub-$c_f$ communication.
 
 ---
 
@@ -326,7 +350,7 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Boh
 
 ## Observables and Falsifiability
 
-**Working closure route:** Ordinary entanglement correlations should be derived from deterministic, correlated hidden variables established at a shared source event, maintained through path-history structure, and read out locally at each detector without superluminal influence. Special black-hole entanglement can carry effective connected-geometry meaning at the horizon-interface level, but that is a separate strong-field case rather than a general rule for arbitrary entanglement.
+**Working closure route:** Ordinary entanglement correlations should be derived from a deterministic, nonseparable pair-provenance record established at a shared source event, maintained through path-history structure, and resolved by local detector kernels without superluminal influence. Special black-hole entanglement can carry effective connected-geometry meaning at the horizon-interface level, but that is a separate strong-field case rather than a general rule for arbitrary entanglement.
 
 **Assumptions:**
 - Complete microstate $\Gamma(t)$ is definite at all $t$.

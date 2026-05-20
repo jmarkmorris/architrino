@@ -214,9 +214,9 @@ This table is a bridge statement, not a proof. The closure burden is to derive o
 
 ### Charged-current chirality (Why right-handed charged-current coupling is zero)
 Why can't a Right-Handed Electron ($e^-_R$) turn into a Neutrino?
-*   **Geometric Mechanism:** Chirality is the alignment of the particle's **Spin** with its **Momentum**.
+*   **Geometric Mechanism:** At the observer level, chirality is the weak-channel handedness label. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the charged-current blocker is weak-coupling-triad exposure, which may be consumed only after the ordered-core spinor/helicity ledger supplies the same branch record.
 *   **Lock-out:** In the "Right-Handed" configuration, the **weak-coupling triad** is geometrically rotated *into the wake* of the particle or shielded by the binary arms.
-*   **Result:** The $W$ boson (which has its own helicity) cannot physically "dock" with the weak-coupling triad to perform the swap.
+*   **Result:** The charged $W$ corridor cannot physically "dock" with the weak-coupling triad in that hidden posture.
 *   Therefore, $e^-_R$ has no accessible charged-current weak-coupling triad. For the charged-current $SU(2)_L$ channel, $T_3^{(R)} = 0$.
 
 ---
@@ -745,7 +745,7 @@ This table consolidates the mapping between Abstract Standard Model Quantum Numb
 | **Weak Hypercharge** | $Y$ | $Y = 2(Q - T_3)$. | **Charge of the Shielded Triad.** The net charge of the 3 hidden polar sites plus any core offset. |
 | **Color Charge** | $C$ | Strong Force charge (Red, Green, Blue). | **Axis exceptionality.** The ordered-basis choice $|q_H\rangle$, $|q_M\rangle$, or $|q_L\rangle$ for which core axis is exceptional relative to the other two. |
 | **Spin** | $s$, $\mathbf{S}$; $\mathbf{J}$ for total angular momentum | Intrinsic angular-momentum representation. For a spin-$\tfrac{1}{2}$ fermion, $s=\tfrac{1}{2}$, $\mathbf{S}^2=s(s+1)\hbar^2$, and a chosen-axis projection is $m_s\hbar=\pm\tfrac{1}{2}\hbar$. | **Ordered-core spinor topology.** The tri-binary Noether core is modeled as an ordered non-coplanar frame whose internal phase changes sign under a $2\pi$ rotation and closes only after $4\pi$. Fermion spin-$\tfrac{1}{2}$ is therefore a closure target of the $SU(2)\to SO(3)$ double-cover map, not merely a literal mechanical orbit. |
-| **Chirality** | $L/R$ | Handedness (projection of spin on momentum). | **Weak-coupling-triad exposure.** <br>• **Left ($L$):** The spin projection relative to momentum exposes the weak-coupling triad to the ambient Noether Sea (interaction allowed).<br>• **Right ($R$):** The opposite spin projection relative to momentum rotates the weak-coupling triad into the particle's wake or shield (interaction blocked). |
+| **Chirality** | $L/R$ | Handedness (projection of spin on momentum). | **Weak-coupling-triad exposure.** <br>• **Left ($L$):** The same ordered-core spinor/exposure record exposes the weak-coupling triad to the ambient Noether Sea (interaction allowed).<br>• **Right ($R$):** The same record hides the weak-coupling triad in the particle's wake or shield (interaction blocked). Spin-projection language is observer-level shorthand until the $SU(2)\to SO(3)$ lift and $\Delta_{\mathrm{WCT}}$ row pass. |
 | **Generation** | I, II, III | Mass hierarchy (Flavor). | **Core Shielding Level.**<br>• **Gen I:** Tri-Binary (Full Shielding).<br>• **Gen II:** Bi-Binary (Partial Shielding).<br>• **Gen III:** Uni-Binary (Exposed Core). |
 | **Baryon/Lepton No.** | $B, L$ | Global matter labels. | **Sector tag + core orientation.** For elementary fermions, quark-like color-triplet assemblies carry $B=\pm 1/3,\ L=0$; lepton-like color-singlet assemblies carry $B=0,\ L=\pm 1$. The sign is set by pro-core vs anti-core orientation. |
 

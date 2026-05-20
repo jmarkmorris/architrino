@@ -52,7 +52,7 @@ $$
 =
 (\Phi_{t-t_0})_*\mu_0
 $$
-is the only admissible source of outcome weights in the corresponding $\mathbb{A}\mathbb{A}\mathbb{A}$ channel. For an extracted effective wavefunction $\psi_{\mathrm{eff}}$ and a declared record-channel partition $\{B_k^\theta(t)\}$ of $\Gamma_{\eta,h}$, the Born comparison is therefore the residual
+is the only admissible source of outcome weights in the corresponding $\mathbb{A}\mathbb{A}\mathbb{A}$ channel. For an extracted effective wavefunction $\psi_{\mathrm{eff}}$ and a declared completed-record partition $\{B_k^\theta(t)\}$ of $\Gamma_{\eta,h}$, after any record filter $\mathbf{1}_{\mathrm{rec}}(k;\theta)$ has been applied, the Born comparison is therefore the residual
 $$
 \Delta_{\mathrm{Born}}^\theta(t)
 =

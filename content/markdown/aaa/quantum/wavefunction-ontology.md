@@ -387,20 +387,32 @@ P_n(T)
 }.
 $$
 
-The closure target for this chapter is:
+Let $\mathcal{P}_\theta:\Gamma_{\text{eff}}^{(T)}\to\Omega_\theta$ be the effective record projection for apparatus context $\theta$, and let $\Omega_n^\theta=\mathcal{P}_\theta(B_n^{(T)})$ be the projected record region. The closure target for this chapter is:
 $$
 \Delta_{\mathrm{Born}}(T)
 =
 \sup_n
 \left|
-P_n(T)-\int_{B_n^{(T)}}|\psi_n|^2\,d\Gamma
+P_n(T)-\int_{\Omega_n^\theta}|\psi_\theta(q)|^2\,d\nu_\theta(q)
 \right|
 \le
 \varepsilon_{\mathrm{Born}}
 $$
 in the same regime where the envelope dynamics reduce to effective Schrödinger evolution.
 
+Equivalently, the native basin measure must push forward to the effective Hilbert-envelope density,
+
+$$
+(\mathcal{P}_\theta)_*\mu_{*,T}
+\approx
+|\psi_\theta(q)|^2d\nu_\theta(q),
+$$
+
+on the declared record regions. This keeps basin-space measures and effective wavefunction measures in their proper domains.
+
 This is the Born-rule basin-measure ledger. It should stay distinct from the spin-statistics / exchange ledger in [Fermi-Dirac and Bose-Einstein Statistics](./quantum-statistics.md), which asks why effective states are antisymmetric or symmetric in the first place. Photon-channel squared-amplitude capture is a special measurement-channel bridge in [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md), not a replacement for the basin-measure derivation.
+
+Spin and Bell records add stricter handoffs. Spin-$\tfrac{1}{2}$ probabilities consume the lifted Stern-Gerlach apparatus basins in [Measurement Ontology](measurement-ontology.md#spin--discrete-outcome-measurements), not an abstract eigenlabel by itself. Bell-pair probabilities consume the full joint response law from pair provenance, with measurement-independence, no-signaling, and product-screening audits before the correlation curve may be treated as recovered.
 
 ### Basin-Measure Necessity
 

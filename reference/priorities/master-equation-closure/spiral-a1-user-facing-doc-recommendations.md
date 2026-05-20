@@ -1,6 +1,6 @@
 # Spiral A1 User-Facing $\mathbb{A}\mathbb{A}\mathbb{A}$ Documentation Recommendations
 
-Status. Promoted recommendation packet after review of the approved radial-normalization clarification in [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md). The recommended A1 benchmark paragraph has now been promoted into authored corpus prose.
+Status. Superseded promoted recommendation packet after review of the approved radial-normalization clarification in [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md). The recommended A1 benchmark paragraph was promoted into authored corpus prose, but that paragraph has since been replaced by the A1 constant-$\Omega$ kinematic-balance no-go after [spiral-a1-kinematic-gamma-closure](spiral-a1-kinematic-gamma-closure.md) and [spiral-a1-tangential-compatibility-no-go](spiral-a1-tangential-compatibility-no-go.md).
 
 Claim level. Documentation promotion record, not a branch certificate and not a promotion of A1 as a closed isolated spiral.
 

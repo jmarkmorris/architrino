@@ -8,13 +8,7 @@ A physical qubit corresponds to the stable orientational states of a tri-binary 
 
 The computational basis states $|0\rangle$ and $|1\rangle$ are defined as the two meta-stable, minimal-energy topological alignments of $\hat{\mathbf{n}}_{\text{in}}$ and $\hat{\mathbf{n}}_{\text{out}}$ relative to the middle binary fulcrum $\hat{\mathbf{n}}_{\text{mid}}$. 
 
-The abstract Hilbert space $\mathcal{H}$ serves as an effective description of the continuous non-Markovian phase space $\Gamma$. The dynamics of the constituent architrinos are governed by the causal-action master equation:
-
-$$
-\mathbf{a}_i(t) = \kappa \sum_{j} \frac{\sigma_{ij} \epsilon^2}{\|\mathbf{r}_i(t) - \mathbf{r}_j(t_{\text{hist}})\|^2} \hat{\mathbf{u}}_{ij}
-$$
-
-where $t_{\text{hist}} = t - \|\mathbf{r}_i(t) - \mathbf{r}_j(t_{\text{hist}})\| / c_f$ defines the path-history intersection time. 
+The abstract Hilbert space $\mathcal{H}$ serves as an effective description of the continuous non-Markovian phase space $\Gamma$. The dynamics of the constituent architrinos are governed by the delayed, line-of-action, Jacobian-weighted causal-root sum defined in [Master Equation](../dynamics/master-equation.md). This page uses that law as the substrate dynamics and treats Hilbert operators as recovered record-channel maps, not as primitive generators.
 
 Superposition is not a linear combination of independent ontological branches. It is a bounded, precessional limit cycle in $\Gamma$. During superposition, the assembly continuously emits polarized potential along its causal wake, exploring multiple stable path-histories simultaneously without settling into a singular orientational attractor.
 
@@ -408,7 +402,7 @@ Entanglement-like behavior must separate newly established causal coupling from 
 
 Wavefunction collapse is formalized as a deterministic, non-linear relaxation process rather than a probabilistic axiom.
 
-The measurement apparatus acts as a massive, thermodynamically irreversible perturbation introduced into the local Noether Sea. This external energy gradient overwhelms the meta-stable precessional states (superpositions). Unable to maintain the delicate limit cycle against the massive influx of external causal wakes, the tri-binary assembly undergoes attractor relaxation, deterministically spiraling into the deepest available basin of attraction (the measured eigenstate).
+The measurement apparatus acts as a massive, thermodynamically irreversible perturbation introduced into the local Noether Sea. This external energy gradient overwhelms the meta-stable precessional states (superpositions). Unable to maintain the delicate limit cycle against the massive influx of external causal wakes, the tri-binary assembly undergoes attractor relaxation, deterministically entering a completed record basin. The effective eigenstate label is licensed only after the apparatus kernel maps that basin to a stable record channel.
 
 Decoherence is the continuous loss of path-history coherence due to unresolved fluctuations in the local Noether-Sea state. It is an artifact of treating the observer-level vacuum as empty or structureless rather than as the effective quiet limit of a dense medium whose assemblies are still dynamically active.
 

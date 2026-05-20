@@ -41,8 +41,11 @@
 - `cosine_packet_parent_gate_rejection` produced `certificate/cosine_packet_parent_gate_rejection.md`, recording that this cosine candidate packet is rejected before branch-chart certification while preserving its reusable fold-ceiling and pre-ledger diagnostics.
 - `next_candidate_refinement_handoff` produced `certificate/next_candidate_refinement_handoff.md`, opening the next finite candidate/refinement target and forbidding branch-chart construction on the rejected cosine packet.
 - `fixed_cosine_refinement_rescue_test` produced `certificate/fixed_cosine_refinement_rescue_test.md`, rejecting mesh-only rescue of the fixed cosine candidate because residual equality collars are structural under the current contract.
-- `next_candidate_solver_target` produced `certificate/next_candidate_solver_target.md`, defining the next executable target as a fresh fold-adapted collocation candidate whose null-coordinate pre-ledger must pass before any branch chart is built.
-- `fresh_fold_collocation_solver_surface` produced `certificate/fresh_fold_collocation_solver_surface.md`, recording that no runnable breather-specific fresh-candidate solver or pre-ledger generator exists yet and specifying the minimum lawful successor artifact set.
+- `fixed_history_strict_collar_persistence_lemma` produced `certificate/fixed_history_strict_collar_persistence_lemma.md`, proving that fixed-history mesh refinement cannot consume positive-width equality cores under strict simple-root coverage.
+- `sub_field_speed_action_test_case` produced `certificate/sub_field_speed_action_test_case.md`, promoting an action-generated sub-field-speed analytic baseline: the held-source segment has an exact field-speed criterion, the exterior delayed-partner branch has a Lambert-$W$ phase solution, and exact same-side self roots are excluded under a strict sub-field speed cap.
+- `next_candidate_solver_target` produced `certificate/next_candidate_solver_target.md`, defining the next executable target as a fresh fold-adapted collocation candidate whose null-coordinate pre-ledger must pass before any branch chart is built, and now upgrading $H_{\mathrm{pc}}$ into a tangent-space gap-opening criterion.
+- `fresh_fold_collocation_solver_surface` produced `certificate/fresh_fold_collocation_solver_surface.md`, recording that no runnable breather-specific fresh-candidate solver or pre-ledger generator exists yet and specifying the minimum lawful successor artifact set plus the finite gap-opening linearization.
+- `null_coordinate_separation_direction_lemma` produced `certificate/null_coordinate_separation_direction_lemma.md`, converting parent-complement repair into a finite separation-direction problem on the fresh collocation candidate.
 - `aaa_corpus_recommendation_handoff` produced `certificate/aaa_corpus_recommendation_handoff.md`, recording the scoped AAA edits that promoted the null-coordinate pre-ledger as a candidate-falsification gate, kept rejected-packet operational detail priority-only, and deferred any enlarged regular-boundary theorem pending Op discussion.
 - `regular_boundary_user_facing_recommendation` produced `certificate/regular_boundary_user_facing_recommendation.md`, recording that current AAA prose should not name regular-boundary coverage as accepted doctrine; the existing generic same-packet complement predicate is the safe public surface until a finite inclusion/domination theorem exists.
 
@@ -114,8 +117,11 @@ rather than to a mismatched tame-subclass / macro-envelope pair.
 - Use `certificate/cosine_packet_parent_gate_rejection.md` as the current terminal status for this cosine packet; do not build `branch_chart.json` for it.
 - Use `certificate/next_candidate_refinement_handoff.md` as the next executable handoff for a new candidate or refinement packet.
 - Use `certificate/fixed_cosine_refinement_rescue_test.md` as the no-go for mesh-only rescue of the same cosine candidate.
+- Use `certificate/fixed_history_strict_collar_persistence_lemma.md` as the local obstruction lemma explaining why fixed-history refinement leaves strict equality collars.
+- Use `certificate/sub_field_speed_action_test_case.md` as the action-generated comparison branch for testing whether a breather can remain strictly sub-field-speed; it is a success marker and analytic baseline, not a branch-chart authorization.
 - Use `certificate/next_candidate_solver_target.md` as the current solver target for the next candidate packet.
 - Use `certificate/fresh_fold_collocation_solver_surface.md` as the implementation contract for the missing fresh-candidate solver or manual artifact instantiation.
+- Use `certificate/null_coordinate_separation_direction_lemma.md` as the constructive proof route for opening parent-complement gaps by changing the candidate history.
 - Use `certificate/aaa_corpus_recommendation_handoff.md` as the audit trail for the scoped AAA edit batch that has now been applied.
 - Use `certificate/regular_boundary_user_facing_recommendation.md` as the current documentation decision for the regular-boundary question: no named AAA theorem now, with only a possible future same-packet wording micro-edit in `collinear-breather.md`.
 - Use `certificate/fold_interval_constants_attempt.json`, `certificate/fold_mollifier_kernel_candidate.md`, `certificate/fold_row_tube_coverage_attempt.md`, and `certificate/fold_row_consumption_attempt.md` as the historical rejected attempt package: they preserve the earlier rejection route and exact candidate mollifier norm while keeping `branch_chart_authorized=false`.
@@ -196,11 +202,42 @@ cores lack a finite same-packet inclusion and domination theorem. The live
 partition still rejects, no complete parent row can be consumed, and the live
 `causal_ledger.json` has not been rewritten.
 
-The fresh-candidate lane has now reached a solver-surface conclusion rather than
-a solved candidate. No breather-specific generator exists yet for the fresh
-fold-adapted collocation packet. The minimum lawful next attempt is therefore a
-new same-packet artifact set, generated or manually instantiated under one fresh
-identity, whose first acceptance row is again the null-coordinate pre-ledger.
+The fresh-candidate lane has now advanced beyond a solver-surface conclusion.
+No breather-specific generator exists yet, but the parent-complement obstruction
+has a concrete finite-dimensional repair route. The fixed-history strict-collar
+lemma proves that mesh-only refinement cannot remove positive-width equality
+cores under strict simple-root coverage. The null-coordinate separation-direction
+lemma gives the constructive replacement: find a tangent direction on the
+structural collocation manifold that increases every signed parent-complement
+gap,
+$$
+DC(\mathbf a_0)\xi=0,
+\qquad
+D\delta_m(\mathbf a_0)\xi>0
+\quad
+\text{for every unresolved }m.
+$$
+The minimum lawful next attempt is therefore a new same-packet artifact set,
+generated or manually instantiated under one fresh identity, whose first
+acceptance row is again the null-coordinate pre-ledger and whose search surface
+tests the finite gap-opening feasibility problem before branch-chart work.
+
+The sub-field-speed comparison lane now has a concrete action-generated
+baseline rather than a prescribed-path ansatz. The held-source release segment
+shows that, in normalized units $g=1$ and $c_f=1$, a release from $x_0=1.25$
+does not reach field speed before the moving-source handoff. The exterior
+affine delayed-partner branch then has the invariant
+$$
+\beta-\beta_0
+-\ln\!\left(\frac{1+\beta}{1+\beta_0}\right)
+=
+\frac{g}{4c_f^2}\left(\frac{1}{x}-\frac{1}{x_0}\right),
+$$
+so $\beta\to-1$ only at the origin-layer limit on that chart. This is a real
+theory advance because it changes the field-speed question from "choose a curve
+that crosses $c_f$" to "derive a crossing from terms beyond the affine
+sub-field partner chart, or certify a bounded sub-field return without such a
+crossing."
 The AAA corpus has now been updated safely at a high level: the pre-ledger is
 described as a candidate-falsification gate, while the rejected cosine packet's
 row tables, hashes, and parent-strip history remain priority-only operational
