@@ -2,7 +2,9 @@
 
 ## Scope
 
-This proof-policy packet decides whether the zero/touching parent-complement strips listed in `fold_parent_complement_partition_attempt.md` can be accepted under the existing parent-complement contract by an endpoint-aware exclusion, without changing that contract.
+This proof-policy packet decides whether the zero/touching parent-complement strips listed in `fold_parent_complement_partition_attempt.md` can be accepted under the original parent-complement contract by an endpoint-aware exclusion, without changing that contract.
+
+Supersession note: this packet remains the historical rejection under the original two-alternative contract. Route A was later approved in `fold_parent_endpoint_contract_extension.md`, which adds endpoint-excluded boundary complements as a third alternative. The later `w` and `u` endpoint-closure attempts still reject complete parent-row consumption because positive-width overlap remains.
 
 Sources read:
 
@@ -20,9 +22,9 @@ This packet does not edit `causal_ledger.json`, `fold_layer_atlas.json`, `branch
 
 ## Verdict
 
-Rejected as an accepted parent-complement closure policy under the existing contract.
+Rejected as an accepted parent-complement closure policy under the original contract.
 
-The zero/touching parent-complement strips cannot be accepted now by endpoint-aware exclusion without a contract change. The current parent-complement contract permits exactly two alternatives for each boundary complement $B$:
+The zero/touching parent-complement strips could not be accepted by endpoint-aware exclusion without a contract change. At the time of this packet, the parent-complement contract permitted exactly two alternatives for each boundary complement $B$:
 
 $$
 \Delta^y_B
@@ -43,7 +45,7 @@ $$
 I^{\mathrm{fold}}_{\eta,\epsilon_c,\Sigma}<\infty.
 $$
 
-Endpoint-touching exclusion is neither of those alternatives. Therefore the strips in `fold_parent_complement_partition_attempt.md` remain rejected as a live closure certificate, and the six parent rows remain blocked unless a future artifact records strict $\Delta^y_B>0$ values or exact accepted fold-family coverage for every strip.
+Endpoint-touching exclusion was neither of those alternatives. Therefore this packet rejected the strips in `fold_parent_complement_partition_attempt.md` as a live closure certificate under the original contract. The later Route A extension changes the contract, but the six parent rows still remain blocked because the endpoint-closure attempts do not accept every strip.
 
 ## Existing Alternatives
 
@@ -90,10 +92,10 @@ The parent-complement strips are a different proof class:
 - they are complements of regular parent rows after removing accepted simple-root subrows;
 - their contacts are endpoint contacts in null-coordinate range, not automatically same-interval diagonal contacts;
 - the parent rows carry positive memory-depth ranges for the accepted simple-root interiors;
-- the current parent-complement contract does not cite the diagonal-exclusion subledger as an acceptance method;
+- the original parent-complement contract did not cite the diagonal-exclusion subledger as an acceptance method;
 - the diagonal-exclusion subledger does not enumerate these parent-complement strips or assign them root-count bound $[0,0]$.
 
-Adjacent-boundary reasoning may be used as a model for a future proof pattern, but it is not a reusable certificate under the current parent-complement contract.
+Adjacent-boundary reasoning may be used as a model for a future proof pattern, but it was not a reusable certificate under the original parent-complement contract.
 
 ## Required Contract Change If Endpoint Exclusion Is Desired
 
@@ -115,11 +117,11 @@ For each boundary complement $B$, the complement may be accepted as endpoint-exc
 
 If the intended exclusion is instead topological, the contract must also specify whether the complement partition is closed, open, or half-open along shared simple-root and fold-layer boundaries. Without that topology clause, a zero/touching range intersection cannot be silently removed from a closed complement rectangle.
 
-For the present artifacts, this is discussion-required before use. It changes the parent-complement acceptance contract by adding a new accepted proof class.
+For the present artifacts at the time of this packet, this was discussion-required before use. The later `fold_parent_endpoint_contract_extension.md` supplies that contract change.
 
 ## Live Ledger Authorization
 
-No live ledger updates are authorized by this endpoint-policy packet.
+No live ledger updates are authorized by this historical endpoint-policy packet.
 
 | Artifact or state | Authorization |
 | --- | --- |
@@ -127,6 +129,6 @@ No live ledger updates are authorized by this endpoint-policy packet.
 | `fold_layer_atlas.json` | No update authorized. |
 | `branch_chart.json` | No creation or authorization. |
 | Pass/fail ledgers | No update authorized by this packet. |
-| Six parent rows | Remain blocked unless later closed by strict $\Delta^y_B>0$, exact accepted fold-family coverage, or an explicit future contract change. |
+| Six parent rows | Remain blocked unless later closed by strict $\Delta^y_B>0$, exact accepted fold-family coverage, endpoint-excluded complements under the later Route A contract, or another accepted closure theorem. |
 
-The correct current proof-policy state is fail-closed: endpoint-aware parent-complement exclusion is a plausible future discussion route, but it is not an accepted route under the existing two-alternative parent-complement contract.
+This packet's proof-policy state is fail-closed under the original two-alternative parent-complement contract. The current live blocker is no longer policy approval for endpoint exclusion; it is the positive-width overlap found by the later Route A closure attempts.

@@ -12,15 +12,15 @@
 ## Task Queue
 
 1. `fundamental_angular_momentum_ledger` — Promote the branch-resolved total-angular-momentum scaffold into a validated conserved functional for a Noether core whose binary frequencies change under momentum transfer, including self-hit branches, wake history, and the normalized delayed-interior characteristic-tail angular-momentum boundary increment now fixed by the Master-Equation action-kernel handoff. Status: `symbolic-certificate-instance-populated`; retained branch-chart root, wake, torque, and stability rows pending. Depends on: none.
-2. `tri_binary_partition_rule` — Derive the theorem-target equations that determine $\Delta I_{\text{inner}}$, $\Delta I_{\text{middle}}$, $\Delta I_{\text{outer}}$, and $\Delta I_{\text{wake}}$ for an accepted closed-cycle action transaction, including causal-wake angular momentum, root-ledger admissibility, phase-lock constraints, branch stability, and coupling geometry. Status: `finite-candidate-set-scaffolded`; evaluated retained candidate rows pending. Depends on: `fundamental_angular_momentum_ledger`.
+2. `tri_binary_partition_rule` — Derive the theorem-target equations that determine $\Delta I_{\text{inner}}$, $\Delta I_{\text{middle}}$, $\Delta I_{\text{outer}}$, and $\Delta I_{\text{wake}}$ for an accepted closed-cycle action transaction, including causal-wake angular momentum, root-ledger admissibility, phase-lock constraints, branch stability, and coupling geometry. Status: `minimal-candidate-instance-blocked`; retained root, phase, torque, wake, stability, energy-routing, and competing candidate rows pending. Depends on: `fundamental_angular_momentum_ledger`.
 3. `worked_three_layer_noether_transition` — Generalize explicit outer-coupled positive closed-cycle action transactions in a separated-scale Noether core. The minimal four-substep branch is solved and now has a symbolic certificate instance; non-minimal branch coefficients still need derivation or simulation fits. Status: `minimal-certificate-instance-populated`; non-minimal family pending. Depends on: `fundamental_angular_momentum_ledger`, `tri_binary_partition_rule`.
-4. `photon_planar_pair_transverse_ledger` — Derive photon Gate B for the coaxial contra-rotating pro/anti planar pair: transverse projector, helicity $\pm1$, analyzer coupling, Malus' law, no physical longitudinal free mode, and no-signaling polarization statistics. Status: `planar-pair-substrate-contract-populated`; populated Gate A planar-pair branch and material analyzer dynamics pending. Depends on: `fundamental_angular_momentum_ledger`; external prerequisite: photon Gate A kinematics in [electroweak-bosons.md](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md).
-5. `spinor_closure` — Connect the Noether-core angular-momentum ledger to the ordered-frame spinor closure target in [angular-momentum-and-spin.md](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md). Status: `noncoplanar-transport-certificate-scaffolded`; populated active-root support row pending. Depends on: `tri_binary_partition_rule`, `worked_three_layer_noether_transition`.
-6. `measurement_response` — Derive how a spin-measurement apparatus couples to the full Noether-core angular-momentum ledger rather than to an abstract preassigned spin label. Status: `sg-apparatus-substrate-contract-populated`; concrete apparatus model and effective spinor coordinate pending. Depends on: `spinor_closure`.
+4. `photon_planar_pair_transverse_ledger` — Derive photon Gate B for the coaxial contra-rotating pro/anti planar pair: transverse projector, helicity $\pm1$, analyzer coupling, Malus' law, no physical longitudinal free mode, and no-signaling polarization statistics. Status: `symbolic-planar-pair-instance-populated`; Gate A planar-pair branch, source/recoil/wake ledger, handoff row, and material analyzer dynamics pending. Depends on: `fundamental_angular_momentum_ledger`; external prerequisite: photon Gate A kinematics in [electroweak-bosons.md](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md).
+5. `spinor_closure` — Connect the Noether-core angular-momentum ledger to the ordered-frame spinor closure target in [angular-momentum-and-spin.md](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md). Status: `causal-writhe-extractor-scaffolded`; populated row-local causal-writhe support row pending. Depends on: `tri_binary_partition_rule`, `worked_three_layer_noether_transition`.
+6. `measurement_response` — Derive how a spin-measurement apparatus couples to the full Noether-core angular-momentum ledger rather than to an abstract preassigned spin label. Status: `sg-record-toy-model-populated`; substrate apparatus impulse, separatrix, effective spinor coordinate, and event recoil/wake ledger pending. Depends on: `spinor_closure`.
 7. `pair_provenance_measure` — Construct the singlet-like pair-provenance ledger and two local apparatus-response maps needed to test Bell correlations without reducing the model to preassigned opposite classical axes. Status: `source-model-packet-populated`; accepted source branch, daughter ledgers, and local response maps pending. Depends on: `measurement_response`, `spinor_closure`.
 8. `orbital_quantization_recovery` — Recover observer-level orbital angular-momentum quantization, including $2\pi$ azimuthal single-valuedness, $\ell\in\mathbb N_0$, and $m\in\{-\ell,\ldots,\ell\}$, from the effective envelope of an assembly in an external potential without conflating orbital labels with internal Noether-core spin. Status: `orbital-residual-packet-populated`; native envelope extraction pending. Depends on: `fundamental_angular_momentum_ledger`, `tri_binary_partition_rule`.
 9. `atomic_molecular_spin_revisit` — Revisit atomic and molecular spin once the quantum-level angular-momentum ledger is mature enough to distinguish internal rotational action, observer-level orbital quantum numbers, spin coupling, spin-orbit structure, hyperfine structure, molecular singlet/triplet states, and bonding/exclusion rules without importing them as unexplained quantum labels. Status: `pending`. Depends on: `spinor_closure`, `measurement_response`, `orbital_quantization_recovery`.
-10. `component_resolved_causal_writhe_bridge` — Test whether component-resolved causal-writhe data can distinguish pro/anti ordered cores, horizon planar signs, and weak left/right exposure without collapsing those labels prematurely. Status: `return-table-coupled`; proof/simulation pass pending. Depends on: `fundamental_angular_momentum_ledger`, `spinor_closure`, [weak-mixing-ckm.md](../../../content/markdown/aaa/theory-bridges/weak-mixing-ckm.md).
+10. `component_resolved_causal_writhe_bridge` — Test whether component-resolved causal-writhe data can distinguish pro/anti ordered cores, horizon planar signs, and weak left/right exposure without collapsing those labels prematurely. Status: `parity-extractor-scaffolded`; populated component row pending. Depends on: `fundamental_angular_momentum_ledger`, `spinor_closure`, [weak-mixing-ckm.md](../../../content/markdown/aaa/theory-bridges/weak-mixing-ckm.md).
 11. `bell_rebuild` — Rebuild [bell-theorem.md](../../../content/markdown/aaa/theory-bridges/bell-theorem.md) from the completed angular-momentum, measurement-response, pair-provenance, and photon-polarization derivations. Status: `bell-residual-handoff-scaffolded`; correlation proof pending. Depends on: `measurement_response`, `pair_provenance_measure`, `photon_planar_pair_transverse_ledger`, [quantum-closure bell gate](../quantum-closure/quantum-closure.md).
 
 ## Scope
@@ -96,17 +96,21 @@ This projection does not derive spin. It states the detector variables that any 
 | [fundamental-ledger-branch-chart-packet.md](fundamental-ledger-branch-chart-packet.md) | Converts the conserved angular-momentum and tri-binary partition scaffold into a replayable branch-chart evaluation object with root, phase, wake, vector, scalar, energy, and stability residuals. | [angular-momentum-and-spin](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md), [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md), [causal-action-functional](../../../content/markdown/aaa/dynamics/causal-action-functional.md) |
 | [branch-selection-law-packet.md](branch-selection-law-packet.md) | Defines the deterministic branch-selection residual law target, candidate post-branch set, lexicographic selection map, routed outcomes, tie cases, and minimal-branch calibration rows. | [angular-momentum-and-spin](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md) after a finite candidate set is evaluated |
 | [finite-branch-candidate-set-packet.md](finite-branch-candidate-set-packet.md) | Defines the finite retained generator output $\mathcal A_N(B^-,\Gamma_{\text{coupl}},W)$, local generator alphabet, row-lineage map, quotient deduplication, interval payload, and blocked/excluded audit trail upstream of branch selection. | [angular-momentum-and-spin](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md) after at least one retained finite candidate set is evaluated |
+| [minimal-candidate-set-instance.md](minimal-candidate-set-instance.md) | Instantiates the finite retained candidate-set format around the clean minimal four-substep branch, showing one reduced candidate blocked rather than forbidden while root, phase, torque, wake, stability, energy-routing, and competitor rows remain absent. | [angular-momentum-and-spin](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md) after the retained rows become evaluable |
 | [minimal-four-substep-certificate-instance.md](minimal-four-substep-certificate-instance.md) | Populates the solved outer-coupled four-substep certificate symbolically, including scalar/vector residuals, retune rows, energy-frequency residual, wake assumptions, blocked branch-chart rows, and final pass/fail conditions. | [angular-momentum-and-spin](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md) after retained branch-chart rows are populated |
 | [tri-binary-partition-and-spinor.md](tri-binary-partition-and-spinor.md) | Preserves the tri-binary partition theorem target, solved minimal transition, ordered Noether-core frame, spinor proof obligations, and component-resolved causal-writhe hypothesis. | [angular-momentum-and-spin](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md), [quantum-statistics](../../../content/markdown/aaa/quantum/quantum-statistics.md), [weak-mixing-ckm](../../../content/markdown/aaa/theory-bridges/weak-mixing-ckm.md), [horizon-chirality](../../../content/markdown/aaa/spacetime/horizon-chirality.md) |
 | [spinor-holonomy-return-table-packet.md](spinor-holonomy-return-table-packet.md) | Defines the concrete $2\pi$ / $4\pi$ ordered-frame return table for active roots, phase branches, component-resolved causal writhe, chirality branch entries, quotient decisions, and angular-momentum residuals. | [angular-momentum-and-spin](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md), [quantum-statistics](../../../content/markdown/aaa/quantum/quantum-statistics.md), [weak-mixing-ckm](../../../content/markdown/aaa/theory-bridges/weak-mixing-ckm.md), [horizon-chirality](../../../content/markdown/aaa/spacetime/horizon-chirality.md) |
 | [spinor-holonomy-control-table.md](spinor-holonomy-control-table.md) | Populates the rigid branch-preserving null table: if every non-gauge history row returns identically, the ordered frame has ordinary $SO(3)$ closure and $\eta_B^{\mathrm{table}}(\gamma_{2\pi})=0$. | [angular-momentum-and-spin](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md) after a nontrivial active-root support row is found |
 | [nontrivial-spinor-support-row-attempt.md](nontrivial-spinor-support-row-attempt.md) | Attempts the minimal retained $H$ self-hit support row and proves the current reduced fixed-normal data cannot certify $r_\star$ without non-coplanar branch-chart transport, row parity, quotient, and doubled-path data. | [angular-momentum-and-spin](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md) after a non-coplanar support row is populated |
 | [noncoplanar-spinor-transport-certificate.md](noncoplanar-spinor-transport-certificate.md) | Defines the non-coplanar transport certificate rows for a candidate $r_\star$: path, root continuation, phase branch, emission order, causal-writhe parity, chirality provenance, quotient witness, angular-momentum residual, and doubled-path restoration. | [angular-momentum-and-spin](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md) after a populated support row passes |
+| [causal-writhe-parity-extractor-packet.md](causal-writhe-parity-extractor-packet.md) | Turns the causal-writhe support row into a row-local extractor $\Pi_{W,r}$ with sheet-coordinate, component-return, gauge, quotient, doubled-path, and angular-momentum residuals. | [angular-momentum-and-spin](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md), [weak-mixing-ckm](../../../content/markdown/aaa/theory-bridges/weak-mixing-ckm.md), and [horizon-chirality](../../../content/markdown/aaa/spacetime/horizon-chirality.md) after a retained row is populated |
 | [photon-measurement-bell-gates.md](photon-measurement-bell-gates.md) | Preserves downstream consumer routing, photon Gate B dependencies, measurement-response focus areas, Bell placement, and near-term bridge work. | [electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md), [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md), [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md), [entanglement-nonlocality](../../../content/markdown/aaa/theory-bridges/entanglement-nonlocality.md) |
 | [photon-measurement-bell-gate-packet.md](photon-measurement-bell-gate-packet.md) | Turns Gate B, Stern-Gerlach-like measurement response, pair provenance, no-signaling, and Bell handoff into explicit ready / blocked residual gates. | [electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md), [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md), [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md), [entanglement-nonlocality](../../../content/markdown/aaa/theory-bridges/entanglement-nonlocality.md) |
 | [photon-planar-pair-ledger-substrate-packet.md](photon-planar-pair-ledger-substrate-packet.md) | Replaces the ideal transverse input with a substrate contract for the coaxial contra-rotating pro/anti planar pair: static cancellation, transverse survival, longitudinal exclusion, helicity ledger, event angular-momentum row, and analyzer handoff. | [electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md), [mode-taxonomy](../../../content/markdown/aaa/interactions/mode-taxonomy.md) after a populated planar-pair branch exists |
+| [planar-pair-symbolic-substrate-instance.md](planar-pair-symbolic-substrate-instance.md) | Populates the planar-pair substrate residuals symbolically: static cancellation, transverse survival, bridge-state, helicity, no-longitudinal-support, and event-ledger condition all have declared algebraic rows while physical Gate B remains blocked. | [electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md), [mode-taxonomy](../../../content/markdown/aaa/interactions/mode-taxonomy.md) after Gate A, source/recoil/wake, and material analyzer rows are native |
 | [ideal-analyzer-and-sg-residual-instance.md](ideal-analyzer-and-sg-residual-instance.md) | Populates the ideal algebraic residual rows for photon Gate B and the reduced Stern-Gerlach record chart while keeping planar-pair, material-map, spinor-coordinate, apparatus, pair-provenance, and Bell dependencies blocked. | [electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md), [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md), [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md) after substrate objects replace ideal inputs |
 | [sg-apparatus-substrate-response-packet.md](sg-apparatus-substrate-response-packet.md) | Replaces the reduced Stern-Gerlach assumption with apparatus substrate rows: incoming core ledger, apparatus field/wake input, branch-sum impulse, separatrix normal, record-cycle measure, plus/reject basins, and event recoil/wake ledgers. | [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) after a concrete apparatus model and effective spinor coordinate exist |
+| [sg-record-cycle-toy-model.md](sg-record-cycle-toy-model.md) | Isolates the record-cycle measure in a reduced Stern-Gerlach toy model on $S^1$, reproducing the supplied half-angle basin measure while leaving apparatus impulse, separatrix, effective spinor coordinate, and event ledger rows blocked. | [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) after substrate rows replace the supplied half-angle input |
 | [pair-provenance-source-model-packet.md](pair-provenance-source-model-packet.md) | Defines the first singlet-like source-model scaffold with retained pair provenance, two daughter ledgers, source angular-momentum balance, relative phase certificate, local response inputs, no-signaling residuals, and Bell correlation target. | [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md), [entanglement-nonlocality](../../../content/markdown/aaa/theory-bridges/entanglement-nonlocality.md) after source and apparatus rows are populated |
 | [orbital-quantization-recovery-packet.md](orbital-quantization-recovery-packet.md) | Recovers observer-level orbital labels from an effective central-potential envelope and separates $2\pi$ orbital single-valuedness from internal Noether-core spinor closure. | [angular-momentum-and-spin](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md), [atomic-structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md), [atomic-spectra](../../../content/markdown/aaa/nuclear-atomic/atomic-spectra.md) after native envelope extraction exists |
 
@@ -329,20 +333,111 @@ full separatrix normal $\mathcal N_{\hat{\mathbf m}}^{\mathrm{SG}}$, record-cycl
 
 All four packets are priority-only or deferred with blocker. The reader-facing corpus already contains the right theorem-target language for these rows; promotion should wait for populated branch, transport, planar-pair, or apparatus data.
 
+## Team-Agent Progress 2026-05-20 Fourth Continuation
+
+The fourth continuation pass populated one concrete or symbolic instance for each previously declared contract, without promoting any theorem-grade closure.
+
+[minimal-candidate-set-instance.md](minimal-candidate-set-instance.md) instantiates the finite retained candidate-set format around the solved reduced minimal branch:
+
+$$
+\mathcal A_{N,\min}
+=
+\{\mathfrak a_{\min}\},
+\qquad
+\mathfrak a_{\min}\in
+\mathcal A_{N,\min}^{\mathrm{blk}}.
+$$
+
+The scalar and vector rows inherited from the reduced four-substep certificate remain conditionally populated, but the candidate does not enter $\mathcal A_{N,\min}^{\mathrm{eval}}$. Root replay, phase lock, torque consistency, normalized causal-wake pullback, stability, energy routing, and non-minimal competitors remain missing retained rows. This preserves the crucial distinction between a blocked candidate and a forbidden transaction.
+
+[causal-writhe-parity-extractor-packet.md](causal-writhe-parity-extractor-packet.md) turns the spinor-support causal-writhe row into a row-local extractor:
+
+$$
+\Pi_{W,r}:
+\left\{\widetilde r(s)\right\}_{s\in[0,2]}
+\longrightarrow
+\mathbb Z_2,
+\qquad
+\Delta_{\Pi_W}(r)\le\varepsilon_{\Pi_W}.
+$$
+
+The packet requires a sheet coordinate, component return data, gauge controls, quotient witness, doubled-path restoration, and angular-momentum residual for the same retained row. The bucket still has no populated row-local sheet coordinate or causal-writhe ledger, so the spinor route is sharpened rather than closed.
+
+[planar-pair-symbolic-substrate-instance.md](planar-pair-symbolic-substrate-instance.md) applies the planar-pair substrate residual to a symbolic coaxial contra-rotating pro/anti planar pair:
+
+$$
+\mathbf a_{\mathrm{pro}}
++
+\mathbf a_{\mathrm{anti}}
++
+\mathbf a_{\mathrm{wake}}
+=
+A_\gamma
+\left(
+\hat{\mathbf u}
++
+i\lambda_{\mathrm{hel}}\hat{\mathbf v}
+\right).
+$$
+
+By declaration, the static exposure, transverse-survival, longitudinal-support, bridge-state, and helicity rows evaluate as
+
+$$
+\Delta_Q^\gamma=0,
+\qquad
+\Delta_{\mathrm{surv}}^\gamma=0,
+\qquad
+\Delta_{\parallel}^{\mathrm{sub}}=0,
+\qquad
+\Delta_{\epsilon}^{\gamma}=0,
+\qquad
+\Delta_{\mathrm{hel}}^\gamma=0.
+$$
+
+The event row remains a condition on source, recoil, and wake angular momentum, and the physical Gate B branch remains blocked until Gate A, material analyzer dynamics, and handoff rows are native rather than declared.
+
+[sg-record-cycle-toy-model.md](sg-record-cycle-toy-model.md) isolates the record-cycle measure row in a reduced Stern-Gerlach-like chart:
+
+$$
+d\nu_{\mathrm{toy}}
+=
+\frac{d\theta_{\mathrm{rec}}}{2\pi},
+\qquad
+B_{+}^{\mathrm{toy}}
+=
+[0,2\pi p_{+}),
+\qquad
+p_{+}
+=
+\cos^2\left(\frac{\alpha}{2}\right).
+$$
+
+It gives
+
+$$
+\nu_{\mathrm{toy}}(B_{+}^{\mathrm{toy}})=p_{+},
+\qquad
+\Delta_{\mathrm{half}}^{\mathrm{toy}}=0,
+$$
+
+only after the half-angle basin size is supplied. The toy model therefore records the measure algebra but leaves the substrate apparatus impulse, separatrix, incoming core ledger, apparatus field/wake input, effective spinor coordinate, event recoil/wake ledger, pair provenance, and Bell rows blocked.
+
+All four additions are priority-only or deferred with blocker. They should guide the next branch-chart, spinor-row, photon-substrate, and apparatus-model runs; they do not yet justify reader-facing promotion beyond the already accepted theorem-target language.
+
 ## Promotion Map
 
 | Task | Detailed file | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
 | `fundamental_angular_momentum_ledger` | [core-angular-momentum-ledger.md](core-angular-momentum-ledger.md) | [angular-momentum-and-spin](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md) | The branch-resolved total-angular-momentum functional is derived or validated for changing-frequency Noether cores, including wake history, self-hit branches, and the same Noether boundary increments used by the accepted Master-Equation action kernel. |
-| `tri_binary_partition_rule` | [finite-branch-candidate-set-packet.md](finite-branch-candidate-set-packet.md) | [angular-momentum-and-spin](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md) and [energy](../../../content/markdown/aaa/dynamics/energy.md) | The partition equations determine $\Delta I_{\text{inner}}$, $\Delta I_{\text{middle}}$, $\Delta I_{\text{outer}}$, and $\Delta I_{\text{wake}}$ from conservation, root-ledger admissibility, phase-lock constraints, branch stability, coupling geometry, finite retained candidate enumeration, and deterministic branch selection. |
+| `tri_binary_partition_rule` | [minimal-candidate-set-instance.md](minimal-candidate-set-instance.md) | [angular-momentum-and-spin](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md) and [energy](../../../content/markdown/aaa/dynamics/energy.md) | The partition equations determine $\Delta I_{\text{inner}}$, $\Delta I_{\text{middle}}$, $\Delta I_{\text{outer}}$, and $\Delta I_{\text{wake}}$ from conservation, root-ledger admissibility, phase-lock constraints, branch stability, coupling geometry, finite retained candidate enumeration, and deterministic branch selection; the current minimal instance must move from blocked to evaluable. |
 | `worked_three_layer_noether_transition` | [tri-binary-partition-and-spinor.md](tri-binary-partition-and-spinor.md) | [angular-momentum-and-spin](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md) | The solved minimal four-substep branch is generalized or explicitly bounded as a reduced-chart diagnostic. |
-| `photon_planar_pair_transverse_ledger` | [photon-planar-pair-ledger-substrate-packet.md](photon-planar-pair-ledger-substrate-packet.md) | [electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md) and [mode-taxonomy](../../../content/markdown/aaa/interactions/mode-taxonomy.md) | Photon Gate B derives transverse support, helicity, analyzer coupling, Malus statistics, no free longitudinal mode, and no-signaling from the planar-pair ledger and material analyzer dynamics. |
-| `spinor_closure` | [noncoplanar-spinor-transport-certificate.md](noncoplanar-spinor-transport-certificate.md) | [angular-momentum-and-spin](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md) and [quantum-statistics](../../../content/markdown/aaa/quantum/quantum-statistics.md) | The ordered Noether-core frame proves or falsifies nontrivial $2\pi$ history lift and $4\pi$ restoration by finding a retained non-gauge active-root support row. |
-| `measurement_response` | [sg-apparatus-substrate-response-packet.md](sg-apparatus-substrate-response-packet.md) | [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) | Concrete apparatus coupling evaluates the Stern-Gerlach-like response kernels from the full Noether-core ledger rather than a preassigned spin label. |
+| `photon_planar_pair_transverse_ledger` | [planar-pair-symbolic-substrate-instance.md](planar-pair-symbolic-substrate-instance.md) | [electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md) and [mode-taxonomy](../../../content/markdown/aaa/interactions/mode-taxonomy.md) | Photon Gate B derives transverse support, helicity, analyzer coupling, Malus statistics, no free longitudinal mode, and no-signaling from a native planar-pair ledger, source/recoil/wake event row, and material analyzer dynamics rather than declared symbolic rows. |
+| `spinor_closure` | [causal-writhe-parity-extractor-packet.md](causal-writhe-parity-extractor-packet.md) | [angular-momentum-and-spin](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md) and [quantum-statistics](../../../content/markdown/aaa/quantum/quantum-statistics.md) | The ordered Noether-core frame proves or falsifies nontrivial $2\pi$ history lift and $4\pi$ restoration by finding a retained non-gauge active-root support row whose row-local causal-writhe parity extractor passes. |
+| `measurement_response` | [sg-record-cycle-toy-model.md](sg-record-cycle-toy-model.md) | [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) | Concrete apparatus coupling evaluates the Stern-Gerlach-like response kernels from the full Noether-core ledger rather than a preassigned spin label or supplied half-angle basin measure. |
 | `pair_provenance_measure` | [pair-provenance-source-model-packet.md](pair-provenance-source-model-packet.md) | [entanglement-nonlocality](../../../content/markdown/aaa/theory-bridges/entanglement-nonlocality.md) and [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md) | The singlet-like pair-provenance ledger and local response maps are explicit enough to compute Bell correlations without reducing the pair to preassigned opposite classical axes. |
 | `orbital_quantization_recovery` | [orbital-quantization-recovery-packet.md](orbital-quantization-recovery-packet.md) | [angular-momentum-and-spin](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md) and [atomic-structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md) | Observer-level orbital quantum numbers are recovered from effective envelopes without conflating orbital labels with internal Noether-core spin. |
 | `atomic_molecular_spin_revisit` | [photon-measurement-bell-gates.md](photon-measurement-bell-gates.md) | [atomic-spectra](../../../content/markdown/aaa/nuclear-atomic/atomic-spectra.md) and [molecular-geometry](../../../content/markdown/aaa/nuclear-atomic/molecular-geometry.md) | Atomic and molecular spin labels are revisited only after single-core spinor closure and measurement-response closure are reusable. |
-| `component_resolved_causal_writhe_bridge` | [tri-binary-partition-and-spinor.md](tri-binary-partition-and-spinor.md) | [weak-mixing-ckm](../../../content/markdown/aaa/theory-bridges/weak-mixing-ckm.md) and [horizon-chirality](../../../content/markdown/aaa/spacetime/horizon-chirality.md) | Component-resolved causal-writhe data distinguish pro/anti ordered cores, horizon planar signs, and weak left/right exposure without collapsing the labels prematurely. |
+| `component_resolved_causal_writhe_bridge` | [causal-writhe-parity-extractor-packet.md](causal-writhe-parity-extractor-packet.md) | [weak-mixing-ckm](../../../content/markdown/aaa/theory-bridges/weak-mixing-ckm.md) and [horizon-chirality](../../../content/markdown/aaa/spacetime/horizon-chirality.md) | Component-resolved causal-writhe data distinguish pro/anti ordered cores, horizon planar signs, and weak left/right exposure without collapsing the labels prematurely; the current extractor must be populated on a retained row before promotion. |
 | `bell_rebuild` | [photon-measurement-bell-gates.md](photon-measurement-bell-gates.md) | [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md) | Bell is rebuilt only after angular-momentum, measurement-response, pair-provenance, photon-polarization, no-signaling, and correlation calculations have passed or failed with explicit diagnostics. |
 
 ## Related Priorities

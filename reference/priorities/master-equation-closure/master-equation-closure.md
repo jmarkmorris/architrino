@@ -11,7 +11,7 @@
 
 ## Task Queue
 
-1. `spiral_branch_chart_test` — Certify whether any admissible variable-pitch spiral roots realize negative weighted tangential drive with positive Jacobian floors and finite memory depth, using the promoted variable-pitch formulas, radial-turn inequality, and weighted tangential obstruction test. Status: `active`; the `circular_asymptotics` dependency is satisfied, VP-1 has passed structural interval rows for the fixed $3+1$ root chart, and the tangential-drive row is outward-certified as a VP-1 failure with $\mathcal{D}_T(I_\ast)\ge0.036446308644655666$. The remaining blocker is a declared strict $\Gamma$ row for radial turn. Depends on: none.
+1. `spiral_branch_chart_test` — Certify whether any admissible variable-pitch spiral roots realize negative weighted tangential drive with positive Jacobian floors and finite memory depth, using the promoted variable-pitch formulas, radial-turn inequality, and weighted tangential obstruction test. Status: `active`; the `circular_asymptotics` dependency is satisfied, VP-1 has passed structural interval rows for the fixed $3+1$ root chart, and the tangential-drive row is outward-certified as a VP-1 failure with $\mathcal{D}_T(I_\ast)\ge0.036446308644655666$. The radial branch interval is $B_r(0)\in[-0.27143260470972164,-0.27143255629407625]$; the remaining blocker is a declared strict $\Gamma$ interval for radial turn. Depends on: none.
 2. `lorentz_gr_bridge` — Close the Lorentz and weak-field GR bridge from the coarse-grained delayed medium. Status: `pending`. Depends on: `spiral_branch_chart_test`.
 3. `lorentz_test_residual_handoff` — Export RMS, PPN, and SME-style residual rows from the Lorentz/GR bridge packet. Status: `pending`. Depends on: `lorentz_gr_bridge`.
 

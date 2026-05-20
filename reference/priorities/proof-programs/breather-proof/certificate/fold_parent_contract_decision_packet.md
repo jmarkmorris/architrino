@@ -4,7 +4,7 @@
 
 This packet records the decision point reached after the accepted fixed-parameter fold constants and the rejected parent-complement closure attempts for packet `seed-doubled-four-arc-cosine-template-v0` and refinement `preledger-separator-level-split-v1`.
 
-It is a discussion packet, not a contract edit. It does not edit `fold_parent_boundary_complement_packet.md`, `causal_ledger.json`, `fold_layer_atlas.json`, or `branch_chart.json`.
+It is retained as a decision record, not as the live contract edit. Route A was subsequently approved and recorded in `fold_parent_endpoint_contract_extension.md` and `fold_parent_boundary_complement_packet.md`. This packet does not edit `causal_ledger.json`, `fold_layer_atlas.json`, or `branch_chart.json`.
 
 ## Source Results
 
@@ -19,6 +19,14 @@ The two already accepted parent-complement alternatives do not close those strip
 - `fold_parent_fold_family_membership_attempt.md` rejects exact fold-family membership for all 20 strips, because every strip remains a regular-parent subrectangle and none is exactly one of the accepted fold-layer row rectangles.
 
 Therefore no live pre-ledger update is authorized.
+
+The approved Route A follow-up is now recorded separately:
+
+- `fold_parent_endpoint_contract_extension.md` adds endpoint-excluded boundary complements as a third accepted contract alternative.
+- `fold_parent_endpoint_w_closure_attempt.md` locally accepts four singleton endpoint-contact `w` strips, but rejects complete `w` closure because five strips have positive-width null-coordinate overlap and one has no accepted outward-rounded gap.
+- `fold_parent_endpoint_u_closure_attempt.md` locally accepts three singleton endpoint-contact `u` strips, but rejects complete `u` closure because seven strips have positive-width or endpoint-scale positive overlap and one has no accepted outward-rounded gap.
+
+Thus the proof-policy question answered by this packet is no longer the active blocker. The active blocker is a mathematical closure problem for the remaining positive-width overlap strips.
 
 ## Decision Surface
 
@@ -69,7 +77,7 @@ This route is more mathematical work than Route A, but it may avoid treating end
 
 ### Route C: keep the contract unchanged and reject this packet
 
-This route preserves the current two-alternative parent-complement contract. Since strict range-empty closure and exact fold-family membership both fail for the 20 strips, the current cosine packet remains rejected before branch-chart certification.
+This route preserves the original two-alternative parent-complement contract. Since strict range-empty closure and exact fold-family membership both fail for the 20 strips, the current cosine packet remains rejected before branch-chart certification.
 
 The next proof-program step would be a new candidate packet or a new refinement strategy whose parent complements satisfy the existing alternatives:
 
@@ -85,9 +93,9 @@ $$
 
 This is the most conservative proof-policy route, but it discards the progress made by the accepted fixed-parameter fold constants for this packet unless a later refinement recovers the parent rows.
 
-## Current Recommendation
+## Follow-Up Recommendation
 
-Discuss Route A before editing the contract. The endpoint-touching strips are exactly the kind of geometry the diagonal-exclusion subledger already handles in simpler rows, but the parent-complement packet does not currently authorize that proof class. If Route A is approved, the next implementation packet should add the third alternative to the parent-complement contract and then attempt a closure certificate for all 20 strips. If Route A is rejected, Route C is cleaner than adding a broad regular-boundary fold-coverage theorem without stronger evidence.
+Route A has now been approved and attempted. The next implementation packet should not try another pure endpoint-exclusion pass on the same 20-strip partition. It should either refine the positive-width overlap strips into smaller certified pieces or develop a regular-boundary fold-coverage theorem with a concrete row-consumption rule.
 
 ## Live State
 
@@ -96,9 +104,10 @@ Discuss Route A before editing the contract. The endpoint-touching strips are ex
 | Fixed-parameter fold constants | Accepted for the 16 fold rows. |
 | Strict parent-complement gaps | Rejected for the natural 20-strip partition. |
 | Exact fold-family membership | Rejected for all 20 strips. |
-| Endpoint-exclusion parent alternative | Not part of the current contract. |
+| Endpoint-exclusion parent alternative | Added to the current parent-complement contract. |
+| Endpoint closure attempts | Locally accept seven singleton-contact strips, but reject complete parent-row consumption because positive-width overlap remains. |
 | `causal_ledger.json` | Rejected; no update authorized. |
 | `fold_layer_atlas.json` | Not updated. |
 | `branch_chart.json` | Unauthorized and absent. |
 
-The next action is an operator proof-policy decision, not a live-ledger edit.
+The next action is a parent-complement closure proof for the positive-width overlap strips, not a live-ledger edit.

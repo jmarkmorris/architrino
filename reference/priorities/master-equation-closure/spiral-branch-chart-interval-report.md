@@ -36,7 +36,7 @@ The executable reports a replayable VP-1 branch ledger. It promotes only typed i
 | inactive_gaps | `passed` | spiral-vp1-interval-root-gap-proof.md |
 | jacobian_floor | `passed` | spiral-vp1-interval-root-gap-proof.md |
 | partner_active_roots | `passed` | spiral-vp1-interval-root-gap-proof.md |
-| radial_turn | `blocked` | spiral-vp1-drive-verdict-proof.md |
+| radial_turn | `blocked` | spiral_branch_chart_certificate.py radial branch interval evaluator |
 | root_transport | `passed` | spiral-vp1-root-transport-interval-proof.md |
 | self_active_roots | `passed` | spiral-vp1-interval-root-gap-proof.md |
 | self_coincidence_clearance | `passed` | spiral-vp1-inactive-memory-proof.md |
@@ -101,6 +101,18 @@ The normalized radial-turn row is `$\Gamma+\mathrm{branch\_sum}>0$`.
 | Branch sum at $\theta_\ast=0$ | `-0.271432580502` |
 | Required $\Gamma$ threshold | `0.271432580502` |
 
+### Radial Branch-Sum Interval
+
+| Field | Value |
+| --- | ---: |
+| Status | `threshold_interval_reported` |
+| Branch-sum lower | `-0.271432604710` |
+| Branch-sum upper | `-0.271432556294` |
+| Pass threshold $-B_r^-$ | `0.271432604710` |
+| Fail threshold $-B_r^+$ | `0.271432556294` |
+| Minimum active $|J|$ lower bound | `1.740787357806` |
+| Max root interval width | `2.000000165481e-08` |
+
 ## Weighted Tangential Drive
 
 The VP-1 pass condition is $\mathcal{D}_T(I_\ast)\le-\varepsilon_T$ with $\varepsilon_T>0$.
@@ -148,7 +160,7 @@ The sampled complement has positive gaps outside declared root tubes, but this r
 | self_coincidence_clearance | `passed` | spiral-vp1-inactive-memory-proof.md | The excluded self-coincidence row has |F_s|/Delta >= 0.6794678492... on 0<Delta<1/2. |
 | finite_memory | `passed` | spiral-vp1-inactive-memory-proof.md | The retained tubes obey 6.92 < B_mem^VP1 = 7.8221162806... < 4*pi. |
 | root_transport | `passed` | spiral-vp1-root-transport-interval-proof.md | Root transport is an analytic-pass dependency row once active tubes, nonzero partial_Delta F, partial_Delta F=-J/b(theta), and matching velocity projections are certified. |
-| radial_turn | `blocked` | spiral-vp1-drive-verdict-proof.md | The branch sum gives Gamma_turn=0.271432580502..., but no strict force-ratio Gamma is declared for an interval pass or fail row. |
+| radial_turn | `blocked` | spiral_branch_chart_certificate.py radial branch interval evaluator | The outward retained-chart branch interval is B_r(0) in [-0.27143260470972164,-0.27143255629407625]. No strict force-ratio Gamma interval is declared, so the row remains blocked. |
 | tangential_drive | `certified_fail` | spiral_branch_chart_certificate.py --tangential-interval-slabs 256 | A 256-slab outward interval pointwise-sum evaluation on the retained P_1,P_2,P_3,S_1 chart proves T(theta)>=0.06960732213899794 and D_T(I_*)>=0.036446308644655666, so VP-1 is certified as failing the negative tangential-drive row. |
 | dependency_status | `passed` | circular-interval-certificate-report.md | The theorem-grade circular interval and large-beta tail certificate is available as the VP-1 dependency handoff. |
 

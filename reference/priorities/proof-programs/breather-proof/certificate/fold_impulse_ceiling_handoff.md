@@ -31,7 +31,7 @@ The current follow-on artifacts narrow this handoff without accepting the live p
 - `fold_impulse_constants.json` records diagnostic finite constants for $\Sigma_1,\ldots,\Sigma_4$ under `status=diagnostic_bound_not_interval_certified`.
 - `fold_row_consumption_report.md` maps exactly which 16 fold rows and 6 parent rows would be consumed after accepted finite constants and parent-complement closure.
 - `fold_interval_constants_contract.md` defines the accepted-constants contract for the mollifier or direct quadrature route, coupling convention, row-tube projections, source slices, row enclosures, and separator aggregates.
-- `fold_parent_boundary_complement_packet.md` defines the accepted alternatives for the six parent boundary complements: strict range-empty gaps or coverage by accepted fold-layer rows.
+- `fold_parent_boundary_complement_packet.md` defines the accepted alternatives for the six parent boundary complements: strict range-empty gaps, coverage by accepted fold-layer rows, or endpoint-excluded complements.
 - `fold_mollifier_coupling_audit.md` resolves the packet coupling convention as $g=1.0=\Gamma=\kappa\epsilon^2$ while rejecting accepted constants without a certified mollifier norm or direct quadrature route.
 - `fold_interval_constants_attempt.json` is the current rejected interval attempt; it preserves finite diagnostic values but marks every fold row and separator non-accepted.
 - `fold_row_consumption_attempt.md` records the resulting row state: zero rows consumed, `causal_ledger.json` still rejected, and `branch_chart.json` unauthorized.
@@ -42,11 +42,13 @@ The current follow-on artifacts narrow this handoff without accepting the live p
 - `fold_parent_after_full_interval_status.md` records the post-constants state: the sixteen fold rows are fold-ceiling-ready, but the six parent boundary complements still block the pre-ledger.
 - `fold_parent_w_complement_closure_attempt.md` and `fold_parent_u_complement_closure_attempt.md` reject immediate parent-side consumption because the artifacts did not name disjoint boundary-complement intervals, strict complement gaps, or exact fold-family memberships.
 - `fold_parent_complement_partition_attempt.md` names the natural boundary strips and rejects strict range-empty closure because the null-coordinate ranges are zero/touching rather than strictly separated.
-- `fold_parent_endpoint_exclusion_legality.md` rejects endpoint-touching exclusion under the current two-alternative parent-complement contract.
+- `fold_parent_endpoint_exclusion_legality.md` rejects endpoint-touching exclusion under the original two-alternative parent-complement contract.
 - `fold_parent_fold_family_membership_attempt.md` rejects exact accepted fold-family membership for all 20 named parent-complement strips.
-- `fold_parent_contract_decision_packet.md` records the resulting proof-policy fork: add a third endpoint-exclusion alternative, add a regular-boundary fold-coverage theorem, or keep the current contract and reject this packet.
+- `fold_parent_contract_decision_packet.md` records the proof-policy fork that led to the Route A endpoint-exclusion update.
+- `fold_parent_endpoint_contract_extension.md` records the approved third endpoint-exclusion alternative now added to the parent-complement contract.
+- `fold_parent_endpoint_w_closure_attempt.md` and `fold_parent_endpoint_u_closure_attempt.md` reject complete Route A parent-complement closure: seven singleton endpoint-contact strips are locally endpoint-excludable, but the remaining strips have positive-width or uncertified endpoint-scale null-coordinate overlap.
 
-These artifacts do not edit `causal_ledger.json`, do not authorize `branch_chart.json`, and do not promote any row in the live ledger. The remaining gap for a passed pre-ledger is now a proof-policy decision about the parent-complement contract plus any follow-on closure certificate. A sharper row-tube/source-slice route or direct quadrature route remains valuable, but it is no longer the immediate fixed-parameter blocker.
+These artifacts do not edit `causal_ledger.json`, do not authorize `branch_chart.json`, and do not promote any row in the live ledger. The remaining gap for a passed pre-ledger is now a parent-complement closure proof for the positive-width overlap strips. Endpoint policy no longer blocks singleton-contact strips, and a sharper row-tube/source-slice route or direct quadrature route remains valuable, but neither is the immediate fixed-parameter blocker.
 
 ## Theorem Target
 
@@ -92,7 +94,7 @@ These artifacts do not edit `causal_ledger.json`, do not authorize `branch_chart
 > \qquad
 > \Delta D_\Sigma=0.
 > $$
-> Suppose also that each of the six parent range-overlap rows is partitioned into its already accepted simple-root subrow plus fold-adjacent boundary complements, and each complement is either range-empty with a positive gap or is covered by one of the accepted fold-layer alternatives above.
+> Suppose also that each of the six parent range-overlap rows is partitioned into its already accepted simple-root subrow plus fold-adjacent boundary complements, and each complement is range-empty with a positive gap, covered by one of the accepted fold-layer alternatives above, or endpoint-excluded by the approved finite-contact alternative.
 >
 > Then the current refined null-coordinate pre-ledger has no remaining `split_required` rows. The 16 rows touching separator layers are accepted as `fold_layer`, the 6 strict simple-root subrows retain their existing margins, and the later branch chart is authorized to refine only the accepted simple-root rows. Fold-layer rows enter only through the certified fold-event atlas and the dual-mollified fold integral, not through simple-root branch-sum formulas.
 
@@ -150,10 +152,11 @@ $$
 \qquad
 \Delta D_\Sigma=0.
 $$
-The missing data are exactly the finite values of
+The finite values of
 $$
-I^{\mathrm{fold}}_{\eta,\epsilon_c,\Sigma}.
+I^{\mathrm{fold}}_{\eta,\epsilon_c,\Sigma}
 $$
+now exist in `fold_full_interval_constants_certificate.json`. The remaining missing data are accepted parent-complement certificates for every fold-adjacent parent strip, especially the strips where the endpoint-exclusion attempts found positive-width null-coordinate overlap rather than finite endpoint contact.
 
 | Separator | Ledger | Layer | $\theta_\Sigma$ | $t_\Sigma$ | $\alpha_{\Sigma}$ | $\nu_{\mathrm{exit},\Sigma}$ | $\Delta N_\Sigma$ | $\Delta D_\Sigma$ | Rows touching layer |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
@@ -462,11 +465,11 @@ Any fold-layer leakage into a simple-root branch chart rejects the seed chart ev
 
 ## Immediate Next Artifact
 
-The next action is not a live-ledger edit. Use `fold_parent_contract_decision_packet.md` to decide the parent-complement proof policy:
+The next action is not a live-ledger edit. Use `fold_parent_endpoint_w_closure_attempt.md` and `fold_parent_endpoint_u_closure_attempt.md` as the current blockers for the parent-complement closure proof:
 
-1. add a third endpoint-exclusion alternative and then attempt an endpoint-contact closure certificate;
-2. add a regular-boundary fold-coverage theorem and then attempt a coverage certificate; or
-3. keep the current two-alternative contract unchanged and reject this packet before branch-chart certification.
+1. split the positive-width overlap strips into a finer certified complement subdivision and test whether the pieces are strict-empty, endpoint-excluded, or additional simple-root subrows; or
+2. add a regular-boundary fold-coverage theorem with an explicit row-consumption rule for the remaining overlap strips; or
+3. reject this candidate packet before branch-chart certification if neither route closes all six parent rows.
 
 Only after an approved route closes every named parent-complement strip should a separate live ledger update rewrite the 16 fold rows and 6 parent rows from `split_required` to accepted rows.
 

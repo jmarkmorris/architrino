@@ -7,12 +7,12 @@ uses only the Python standard library.
 
 The artifact has one narrow job: make the VP-1 branch ledger replayable. It
 reports active partner/self roots, Jacobian floors, active-count stability,
-finite-memory status, the radial-turn branch-sum threshold, a weighted
+finite-memory status, the radial-turn branch-sum threshold interval, a weighted
 ``D_T(I_*)`` quadrature estimate, and the remaining blockers for theorem-grade
-interval promotion. The runner does not mark the priority item complete: VP-1
-has a positive sampled tangential-drive integral and the inactive-gap and
-root-transport rows are still sampled/blocker rows rather than full interval
-proofs.
+interval promotion. The runner does not mark the priority item complete unless
+typed sidecar rows resolve the full proof matrix; the current VP-1 sidecar has
+structural interval rows and a certified tangential-drive failure, but the
+radial force-ratio Gamma row remains blocked.
 """
 
 from __future__ import annotations
@@ -48,6 +48,9 @@ POS_INF = float("inf")
 TRIG_CHECK_PAD = 8.0e-15
 TANGENTIAL_ROOT_PAD = 1.0e-8
 TANGENTIAL_ROOT_PAD_MAX = 5.0e-2
+RADIAL_ROOT_PAD = 1.0e-8
+GAMMA_NORMALIZATION = "Gamma = r_*^3 Omega^2/(kappa q_1^2)"
+RADIAL_BRANCH_INTERVAL_REFERENCE = (-0.27143260470972164, -0.27143255629407625)
 
 ACTIVE_BRANCH_WINDOWS = [
     {"label": "P_1", "kind": "partner", "window": (2.48, 2.52)},
@@ -318,6 +321,23 @@ def tangential_contribution_interval(
         jacobian_row,
         abs_jacobian,
     )
+
+
+def radial_contribution_interval(
+    kind: str,
+    theta: Interval,
+    delta: Interval,
+) -> tuple[Interval | None, Interval, Interval | None]:
+    rho_row = rho_interval(theta, delta)
+    lambda_row = lambda_interval(kind, theta, delta)
+    jacobian_row = jacobian_interval(kind, theta, delta)
+    abs_jacobian = abs_away_from_zero(jacobian_row)
+    if abs_jacobian is None:
+        return None, jacobian_row, None
+    denominator = lambda_row * lambda_row * lambda_row * abs_jacobian
+    if kind == "partner":
+        return (-(1.0 + rho_row * cos_interval(delta)) / denominator, jacobian_row, abs_jacobian)
+    return ((1.0 - rho_row * cos_interval(delta)) / denominator, jacobian_row, abs_jacobian)
 
 
 def weight(theta: float) -> float:
@@ -593,13 +613,98 @@ def finite_memory_summary(max_active_delta: float) -> dict:
     }
 
 
-def radial_turn_summary(*, delta_steps: int) -> dict:
+def radial_branch_interval_certificate(*, root_pad: float) -> dict:
+    theta_interval = Interval(THETA_STAR, THETA_STAR)
+    branch_sum_interval = Interval(0.0, 0.0)
+    min_active_j_abs = math.inf
+    max_root_interval_width = 0.0
+    max_root_pad = 0.0
+    branch_rows: list[dict] = []
+
+    try:
+        for branch in ACTIVE_BRANCH_WINDOWS:
+            label = branch["label"]
+            kind = branch["kind"]
+            window = branch["window"]
+            enclosure = verified_root_enclosure(
+                kind=kind,
+                theta_interval=theta_interval,
+                theta_samples=(THETA_STAR, THETA_STAR, THETA_STAR),
+                window=window,
+                root_pad=root_pad,
+            )
+            delta_interval = enclosure["delta_interval"]
+            contribution, jacobian_row, abs_jacobian = radial_contribution_interval(
+                kind,
+                theta_interval,
+                delta_interval,
+            )
+            if contribution is None or abs_jacobian is None:
+                raise RuntimeError(f"active Jacobian interval touched zero for {label}")
+            branch_sum_interval = branch_sum_interval + contribution
+            min_active_j_abs = min(min_active_j_abs, abs_jacobian.lo)
+            max_root_interval_width = max(
+                max_root_interval_width,
+                delta_interval.width,
+            )
+            max_root_pad = max(max_root_pad, enclosure["root_pad"])
+            branch_rows.append(
+                {
+                    "label": label,
+                    "kind": kind,
+                    "window": list(window),
+                    "delta_interval": delta_interval.to_json(),
+                    "radial_contribution_interval": contribution.to_json(),
+                    "jacobian_interval": jacobian_row.to_json(),
+                }
+            )
+    except RuntimeError as exc:
+        return {
+            "evaluated": True,
+            "status": "blocked",
+            "root_pad": root_pad,
+            "error": str(exc),
+        }
+
+    return {
+        "evaluated": True,
+        "status": "threshold_interval_reported",
+        "evidence_kind": "outward_radial_branch_sum_interval",
+        "elementary_bound_backend": (
+            "nextafter-directed double interval arithmetic with trigonometric "
+            "critical-point enclosures"
+        ),
+        "active_labels": [branch["label"] for branch in ACTIVE_BRANCH_WINDOWS],
+        "theta_star": THETA_STAR,
+        "root_pad_initial": root_pad,
+        "max_root_pad": max_root_pad,
+        "max_root_interval_width": max_root_interval_width,
+        "min_active_j_abs_lower": min_active_j_abs,
+        "root_boundary_sign_verified": True,
+        "branch_sum_interval": branch_sum_interval.to_json(),
+        "gamma_pass_threshold": -branch_sum_interval.lo,
+        "gamma_fail_threshold": -branch_sum_interval.hi,
+        "decision_rule": (
+            "with Gamma in [Gamma^-, Gamma^+], pass if Gamma^- + B_r^- > 0; "
+            "certify fail if Gamma^+ + B_r^+ <= 0; otherwise block"
+        ),
+        "branches": branch_rows,
+        "summary": (
+            "Outward evaluation reports the retained-chart radial branch-sum "
+            "interval at theta*=0; no force-ratio Gamma is selected by this row."
+        ),
+    }
+
+
+def radial_turn_summary(*, delta_steps: int, root_pad: float) -> dict:
     rows = build_root_rows(THETA_STAR, delta_steps=delta_steps)
     branch_sum = sum(row.radial_contribution for row in rows)
+    branch_interval = radial_branch_interval_certificate(root_pad=root_pad)
     gamma_threshold = max(0.0, -branch_sum)
     return {
         "theta_star": THETA_STAR,
         "branch_sum": branch_sum,
+        "branch_interval": branch_interval,
         "gamma_threshold": gamma_threshold,
         "condition": "Gamma + branch_sum > 0",
         "rows": [row.to_json() for row in rows],
@@ -1058,7 +1163,12 @@ def numeric_pair(value: object) -> tuple[float, float] | None:
     if (
         not isinstance(value, list)
         or len(value) != 2
-        or not all(isinstance(item, (int, float)) for item in value)
+        or not all(
+            isinstance(item, (int, float))
+            and not isinstance(item, bool)
+            and math.isfinite(float(item))
+            for item in value
+        )
     ):
         return None
     lo = float(value[0])
@@ -1078,19 +1188,47 @@ def validate_radial_turn_row(row: IntervalProofRow) -> list[str]:
     gamma_interval = numeric_pair(data.get("gamma_interval"))
     branch_interval = numeric_pair(data.get("branch_sum_interval"))
     gamma_source = data.get("gamma_source")
+    gamma_normalization = data.get("gamma_normalization")
+    active_labels = data.get("active_labels")
+    theta_star = data.get("theta_star")
+    min_j = data.get("min_active_j_abs_lower")
     if gamma_interval is None:
         errors.append("radial_turn drive row requires numeric gamma_interval=[Gamma^-, Gamma^+]")
     if branch_interval is None:
         errors.append("radial_turn drive row requires numeric branch_sum_interval=[B_r^-, B_r^+]")
     if not isinstance(gamma_source, str) or not gamma_source:
         errors.append("radial_turn drive row requires a gamma_source")
+    if gamma_normalization != GAMMA_NORMALIZATION:
+        errors.append(
+            f"radial_turn drive row requires gamma_normalization={GAMMA_NORMALIZATION!r}"
+        )
+    if active_labels != [branch["label"] for branch in ACTIVE_BRANCH_WINDOWS]:
+        errors.append("radial_turn drive row active_labels do not match P_1,P_2,P_3,S_1")
+    if not isinstance(theta_star, (int, float)) or not close_enough(float(theta_star), THETA_STAR):
+        errors.append("radial_turn drive row requires theta_star=0.0")
+    if data.get("root_boundary_sign_verified") is not True:
+        errors.append("radial_turn drive row requires root_boundary_sign_verified=true")
+    if not isinstance(min_j, (int, float)) or isinstance(min_j, bool) or not math.isfinite(float(min_j)) or float(min_j) <= 0.0:
+        errors.append("radial_turn drive row requires min_active_j_abs_lower > 0")
     if errors:
         return errors
 
     gamma_lo, gamma_hi = gamma_interval
     branch_lo, branch_hi = branch_interval
+    ref_lo, ref_hi = RADIAL_BRANCH_INTERVAL_REFERENCE
+    if branch_lo > ref_lo or branch_hi < ref_hi:
+        errors.append(
+            "radial_turn branch_sum_interval must be no narrower than the retained-chart reference interval"
+        )
     pass_margin = gamma_lo + branch_lo
     fail_margin = gamma_hi + branch_hi
+    strict_margin = data.get("strict_margin")
+    if (
+        not isinstance(strict_margin, (int, float))
+        or isinstance(strict_margin, bool)
+        or not math.isfinite(float(strict_margin))
+    ):
+        errors.append("radial_turn drive row requires numeric strict_margin")
     if row.status == "passed" and pass_margin <= 0.0:
         errors.append(
             "radial_turn status passed requires Gamma^- + B_r^- > 0"
@@ -1099,6 +1237,18 @@ def validate_radial_turn_row(row: IntervalProofRow) -> list[str]:
         errors.append(
             "radial_turn status certified_fail requires Gamma^+ + B_r^+ <= 0"
         )
+    if (
+        row.status == "passed"
+        and isinstance(strict_margin, (int, float))
+        and not close_enough(float(strict_margin), pass_margin)
+    ):
+        errors.append("radial_turn passed strict_margin must equal Gamma^- + B_r^-")
+    if (
+        row.status == "certified_fail"
+        and isinstance(strict_margin, (int, float))
+        and not close_enough(float(strict_margin), fail_margin)
+    ):
+        errors.append("radial_turn certified_fail strict_margin must equal Gamma^+ + B_r^+")
     return errors
 
 
@@ -1433,7 +1583,10 @@ def build_certificate(args: argparse.Namespace) -> dict:
         delta_steps=args.delta_steps,
     )
     finite_memory = finite_memory_summary(active_chart["max_active_delta"])
-    radial_turn = radial_turn_summary(delta_steps=args.delta_steps)
+    radial_turn = radial_turn_summary(
+        delta_steps=args.delta_steps,
+        root_pad=args.radial_root_pad,
+    )
     tangential_drive = tangential_drive_summary(
         quadrature_intervals=args.quadrature_intervals,
         delta_steps=args.delta_steps,
@@ -1673,6 +1826,29 @@ def emit_markdown(certificate: dict) -> str:
             f"| Branch sum at $\\theta_\\ast=0$ | `{radial['branch_sum']:.12f}` |",
             f"| Required $\\Gamma$ threshold | `{radial['gamma_threshold']:.12f}` |",
             "",
+        ]
+    )
+    radial_interval = radial.get("branch_interval", {})
+    if radial_interval.get("evaluated"):
+        branch_sum_interval = radial_interval.get("branch_sum_interval", [math.nan, math.nan])
+        lines.extend(
+            [
+                "### Radial Branch-Sum Interval",
+                "",
+                "| Field | Value |",
+                "| --- | ---: |",
+                f"| Status | `{radial_interval['status']}` |",
+                f"| Branch-sum lower | `{branch_sum_interval[0]:.12f}` |",
+                f"| Branch-sum upper | `{branch_sum_interval[1]:.12f}` |",
+                f"| Pass threshold $-B_r^-$ | `{radial_interval.get('gamma_pass_threshold', float('nan')):.12f}` |",
+                f"| Fail threshold $-B_r^+$ | `{radial_interval.get('gamma_fail_threshold', float('nan')):.12f}` |",
+                f"| Minimum active $|J|$ lower bound | `{radial_interval.get('min_active_j_abs_lower', float('nan')):.12f}` |",
+                f"| Max root interval width | `{radial_interval.get('max_root_interval_width', float('nan')):.12e}` |",
+                "",
+            ]
+        )
+    lines.extend(
+        [
             "## Weighted Tangential Drive",
             "",
             "The VP-1 pass condition is $\\mathcal{D}_T(I_\\ast)\\le-\\varepsilon_T$ with $\\varepsilon_T>0$.",
@@ -1810,6 +1986,12 @@ def main(argv: Iterable[str] | None = None) -> int:
         type=float,
         default=TANGENTIAL_ROOT_PAD,
         help="Initial Delta padding used by the tangential interval evaluator.",
+    )
+    parser.add_argument(
+        "--radial-root-pad",
+        type=float,
+        default=RADIAL_ROOT_PAD,
+        help="Initial Delta padding used by the radial branch-sum interval evaluator.",
     )
     parser.add_argument("--format", choices=["json", "markdown"], default="json")
     parser.add_argument(

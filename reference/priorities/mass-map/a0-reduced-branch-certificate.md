@@ -1404,9 +1404,43 @@ The runner now also emits `a0-tier1-refined-residual-basis-ledger/v1` as `residu
 - locked fold-layer keys excluded from the active basis;
 - benchmark inputs excluded.
 
-On `/tmp/a0-tier1-fold-layer-locked-one-period-attempt-corrected-omit-none-v2.json`, the refined ledger reports `30` equality-constrained basis groups, `30` raw root-key classes, `144` equations, and `16` sample buckets. It reduces the corrected residual-balance relative residual from about `0.993` to about `0.426`, but this still fails the declared `0.02` tolerance. The status is therefore `refined_basis_no_go`, not a correction-packet pass.
+On `/tmp/a0-tier1-fold-layer-locked-one-period-attempt-corrected-omit-none-v4.json`, the quotient-equivalent refined ledger reports `30` equality-constrained basis groups, `30` raw root-key classes, `144` equations, and `16` sample buckets. It reduces the corrected residual-balance relative residual from about `0.993` to about `0.426`, but this still fails the declared `0.02` tolerance. The status is therefore `refined_basis_no_go`, not a correction-packet pass.
 
-Mathematical implication: the no-omitted-mode scalar Fourier correction removes the bulk center drift and improves the scale of some one-period residuals, but it does not close the compact $A_0$ branch equation. The first equality-constrained split of the active causal-root ledger into $B_{\rho,\ell,\sigma,\mu,\nu}(t)$ improves residual balance but still fails by more than an order of magnitude. The next branch-native move is no longer another scalar relation-weight fit; it is either a stricter compact-fixture no-go under these equality constraints or a declared branch-chart revision that changes the admissible equality classes before any further corrected rerun.
+The same v3 artifact also emits `residual_ledgers.refined_root_key_residual_balance`. This second ledger keeps the current raw key
+`receiver|source|relation|status`
+as the provisional $\mu$ coordinate in the solved basis. It reports `60` root-key-resolved basis groups, `30` raw root-key classes, `144` equations, and relative residual `0.4262791397038621`. Splitting the quotient-equivalent classes by the current raw root key therefore gives no material improvement and still fails the declared tolerance by a factor of about `21.3`.
+
+The v4 artifact then tests the smallest branch-coordinate revision suggested by the residual localization: `residual_ledgers.refined_i_receiver_phase_bin_residual_balance`. This ledger keeps the root-key-resolved $\mu$ columns and splits only receiver-layer `I` by two observation-phase bins,
+$$
+b(t)=\left\lfloor 2\,\frac{t\bmod T_{\mathbf{k}}}{T_{\mathbf{k}}}\right\rfloor.
+$$
+It reports `80` basis groups and relative residual `0.3500173344435869`. This improves the residual but still fails the `0.02` tolerance by a factor of about `17.5`. The layer residuals remain concentrated in `I`: the root-key-resolved test gives approximate layer residuals `I: 0.4305`, `M: 0.0802`, and `O: 0.00338`; the two-bin `I` split improves only the `I` residual to about `0.3534`.
+
+Mathematical implication: the no-omitted-mode scalar Fourier correction removes the bulk center drift and improves the scale of some one-period residuals, but it does not close the compact $A_0$ branch equation. The equality-constrained split, the raw-root-key $\mu$ split, and the first `I`-receiver observation-phase split all improve residual balance over scalar relation weights, but all fail by more than an order of magnitude. The next branch-native move is no longer another scalar relation-weight fit, same-artifact root-key split, or coarse two-bin `I` phase split; it is a declared branch-chart revision that supplies a finite coordinate finer than the current raw key and two-bin phase coordinate, or a non-root-key mode in $z_\Lambda$, before any further corrected rerun.
+
+Compact-fixture no-go decision, May 20, 2026:
+
+The decision for the current branch chart is the stricter no-go under the finite root-key coordinate and first coarse `I`-receiver observation-phase coordinate currently present in the artifact. The quotient-equivalent ledger records `basis_resolution.basis_mode: quotient_equivalent_root_class`; the second ledger records `basis_resolution.basis_mode: root_key_resolved`; the third records `basis_resolution.basis_mode: i_receiver_root_key_phase_bin`. The current active causal-root ledger has no finer finite root-branch coordinate than `receiver|source|relation|status` repeated across the `16` observation buckets, and using that raw key as $\mu$ does not reduce the residual. A two-bin `I` observation-phase split reduces the residual only to about `0.350`.
+
+The no-go statement is therefore:
+
+**Compact finite-coordinate no-go.** For the corrected compact $A_0$ carrier, the locked fold-layer routing $K_L$, benchmark exclusion, radial / tangential projection splitting, the current finite raw-root-key coordinate
+`receiver|source|relation|status`, and the coarse two-bin `I` observation-phase coordinate,
+no branch-native refined weight vector closes the residual-balance surface below tolerance. Numerically,
+$$
+\frac{\left\|\mathbf{a}_{\mathrm{carrier}}-\sum_{\rho,\ell,\sigma,\mu,\nu}\beta_{\rho,\ell,\sigma,\mu,\nu}B_{\rho,\ell,\sigma,\mu,\nu}\right\|_2}
+{\|\mathbf{a}_{\mathrm{carrier}}\|_2}
+\approx0.3500173344
+>0.02.
+$$
+This proves a compact-fixture no-go for the current finite coordinate tests. It does not prove that every imaginable $A_0$ branch chart fails; a further corrected rerun is admissible only after an upstream branch-chart revision supplies a new finite coordinate $\mu$ beyond the current raw key and coarse `I` phase bin, or declares a non-root-key branch-chart mode in $z_\Lambda$ without violating locked-key exclusion, quotient-row identity, and benchmark exclusion.
+
+The next branch-chart packet must therefore answer the equality question before code reruns:
+
+1. Does the revised chart introduce a distinct finite root-branch coordinate $\mu$ not already represented by `receiver|source|relation|status` or by the two-bin `I` observation-phase split?
+2. If not, which non-root-key mode in $z_\Lambda$ is missing from the compact carrier?
+3. Which equality constraints survive after the new coordinate or mode is declared?
+4. Which residual or invariant would falsify the revision as overfitting rather than branch geometry?
 
 ## Promotion Rule
 

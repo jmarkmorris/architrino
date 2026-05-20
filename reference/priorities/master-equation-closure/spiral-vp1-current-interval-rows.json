@@ -123,12 +123,29 @@
     },
     "radial_turn": {
       "status": "blocked",
-      "source": "spiral-vp1-drive-verdict-proof.md",
-      "claim_level": "threshold reported, force ratio undeclared",
+      "source": "spiral_branch_chart_certificate.py radial branch interval evaluator",
+      "claim_level": "outward radial branch interval reported, force ratio undeclared",
       "data": {
+        "evidence_kind": "radial_threshold_interval_reported",
         "branch_sum": -0.27143258050217867,
+        "branch_sum_interval": [
+          -0.27143260470972164,
+          -0.27143255629407625
+        ],
         "gamma_threshold": 0.27143258050217867,
-        "summary": "The branch sum gives Gamma_turn=0.271432580502..., but no strict force-ratio Gamma is declared for an interval pass or fail row."
+        "gamma_pass_threshold": 0.27143260470972164,
+        "gamma_fail_threshold": 0.27143255629407625,
+        "active_labels": [
+          "P_1",
+          "P_2",
+          "P_3",
+          "S_1"
+        ],
+        "root_boundary_sign_verified": true,
+        "min_active_j_abs_lower": 1.7407873578063426,
+        "max_root_interval_width": 2.000000165480742e-8,
+        "decision_rule": "with Gamma in [Gamma^-, Gamma^+], pass if Gamma^- + B_r^- > 0; certify fail if Gamma^+ + B_r^+ <= 0; otherwise block",
+        "summary": "The outward retained-chart branch interval is B_r(0) in [-0.27143260470972164,-0.27143255629407625]. No strict force-ratio Gamma interval is declared, so the row remains blocked."
       }
     },
     "tangential_drive": {
