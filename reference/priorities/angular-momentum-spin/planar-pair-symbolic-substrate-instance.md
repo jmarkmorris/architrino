@@ -2,7 +2,7 @@
 
 Status. Priority instance for `photon_planar_pair_transverse_ledger`, downstream of [photon-planar-pair-ledger-substrate-packet.md](photon-planar-pair-ledger-substrate-packet.md) and [ideal-analyzer-and-sg-residual-instance.md](ideal-analyzer-and-sg-residual-instance.md). This file instantiates the planar-pair substrate residuals in a symbolic branch with declared cancellation, transverse survival, bridge state, and helicity rows. It is priority material only.
 
-Claim level. Symbolic substrate rows populated by declaration. The packet shows the algebraic row shape needed for a coaxial contra-rotating pro/anti planar pair to feed photon Gate B. It does not prove a Gate A photon branch, source recoil, wake ledger, material analyzer dynamics, or no-signaling polarization theorem.
+Claim level. Symbolic substrate rows populated by declaration. The packet shows the algebraic row format needed for a coaxial contra-rotating pro/anti planar pair to feed photon Gate B. It does not prove a Gate A photon branch, source recoil, wake ledger, material analyzer dynamics, or no-signaling polarization theorem.
 
 Promotion decision. Defer with blocker. The symbolic rows are useful as a target instance, but reader-facing promotion should wait until a Gate A-admissible planar-pair branch and material analyzer response provide the same quantities from the native ledger.
 

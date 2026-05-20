@@ -48,8 +48,11 @@ The current follow-on artifacts narrow this handoff without accepting the live p
 - `fold_parent_endpoint_contract_extension.md` records the approved third endpoint-exclusion alternative now added to the parent-complement contract.
 - `fold_parent_endpoint_w_closure_attempt.md` and `fold_parent_endpoint_u_closure_attempt.md` reject complete Route A parent-complement closure: seven singleton endpoint-contact strips are locally endpoint-excludable, but the remaining strips have positive-width or uncertified endpoint-scale null-coordinate overlap.
 - `fold_parent_w_positive_overlap_subdivision_attempt.md` and `fold_parent_u_positive_overlap_subdivision_attempt.md` split the residual overlap strips by inverse null-coordinate thresholds, but still reject parent-row consumption because equality cores or uncertified endpoint-scale gaps remain.
+- `fold_parent_regular_boundary_w_probe.md`, `fold_parent_regular_boundary_u_probe.md`, `fold_parent_regular_boundary_contract_probe.md`, and `fold_parent_regular_boundary_coverage_attempt.md` reject current-contract regular-boundary coverage because the packet lacks exact inclusion, same-packet domination, topology ownership, and non-core strict-gap fields.
+- `cosine_packet_parent_gate_rejection.md` records the terminal certificate status for this cosine packet: rejected before branch-chart certification at the parent-complement gate.
+- `next_candidate_refinement_handoff.md` opens the next candidate/refinement target and states that the rejected cosine packet must not proceed to branch-chart construction.
 
-These artifacts do not edit `causal_ledger.json`, do not authorize `branch_chart.json`, and do not promote any row in the live ledger. The remaining gap for a passed pre-ledger is now either a regular-boundary fold-coverage theorem for the residual equality cores or rejection of this cosine packet. Endpoint policy and finer threshold subdivision no longer provide the immediate route, and a sharper row-tube/source-slice route or direct quadrature route remains valuable but is not the immediate fixed-parameter blocker.
+These artifacts do not edit `causal_ledger.json`, do not authorize `branch_chart.json`, and do not promote any row in the live ledger. The current cosine packet is rejected before branch-chart certification. Endpoint policy, finer threshold subdivision, and current-contract regular-boundary coverage no longer provide a live route, and a sharper row-tube/source-slice route or direct quadrature route remains valuable only for a later packet or enlarged theorem.
 
 ## Theorem Target
 
@@ -466,13 +469,13 @@ Any fold-layer leakage into a simple-root branch chart rejects the seed chart ev
 
 ## Immediate Next Artifact
 
-The next action is not a live-ledger edit. Use `fold_parent_w_positive_overlap_subdivision_attempt.md` and `fold_parent_u_positive_overlap_subdivision_attempt.md` as the current blockers for the parent-complement closure proof:
+The next action is not a live-ledger edit. Use `next_candidate_refinement_handoff.md` as the current forward handoff:
 
-1. add a regular-boundary fold-coverage theorem with an explicit row-consumption rule for the residual equality cores; or
-2. reject this candidate packet before branch-chart certification if regular-boundary coverage is not adopted or fails.
+1. open a new candidate or refinement target before attempting another branch-chart route; or
+2. if a later packet proposes an enlarged regular-boundary theorem, require finite same-packet inclusion, domination, topology ownership, and non-core strict-gap fields before any live pre-ledger rewrite.
 
-Only after an approved route closes every named parent-complement strip should a separate live ledger update rewrite the 16 fold rows and 6 parent rows from `split_required` to accepted rows.
+Only after a future packet closes every pre-ledger row should a separate live ledger update rewrite rows from `split_required` to accepted rows.
 
-Until those artifacts exist, the correct status remains:
+For this cosine packet, the correct status remains:
 
 `branch_chart_authorized: false`

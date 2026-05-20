@@ -26,7 +26,7 @@ The approved Route A follow-up is now recorded separately:
 - `fold_parent_endpoint_w_closure_attempt.md` locally accepts four singleton endpoint-contact `w` strips, but rejects complete `w` closure because five strips have positive-width null-coordinate overlap and one has no accepted outward-rounded gap.
 - `fold_parent_endpoint_u_closure_attempt.md` locally accepts three singleton endpoint-contact `u` strips, but rejects complete `u` closure because seven strips have positive-width or endpoint-scale positive overlap and one has no accepted outward-rounded gap.
 
-Thus the proof-policy question answered by this packet is no longer the active blocker. After the later endpoint and threshold-subdivision attempts, the active blocker is regular-boundary fold coverage for residual equality cores, or packet rejection.
+Thus the proof-policy question answered by this packet is no longer the active blocker. Later endpoint, threshold-subdivision, and regular-boundary attempts all reject complete parent-row consumption, and `cosine_packet_parent_gate_rejection.md` records this cosine packet as rejected before branch-chart certification.
 
 ## Decision Surface
 
@@ -93,9 +93,9 @@ $$
 
 This is the most conservative proof-policy route, but it discards the progress made by the accepted fixed-parameter fold constants for this packet unless a later refinement recovers the parent rows.
 
-## Follow-Up Recommendation
+## Follow-Up Result
 
-Route A has now been approved and attempted, and the follow-up finer threshold subdivision has also been attempted. The next implementation packet should not try another pure endpoint-exclusion or threshold-subdivision pass on the same 20-strip partition. The remaining live route is a regular-boundary fold-coverage theorem with a concrete row-consumption rule, otherwise this cosine packet should be rejected before branch-chart certification.
+Route A has now been approved and attempted, the follow-up finer threshold subdivision has been attempted, and current-contract regular-boundary coverage has been attempted. None consumes the six parent rows. The next implementation packet should not try another pure endpoint-exclusion, threshold-subdivision, or current-contract separator-family coverage pass on the same 20-strip partition. The proof-program target should move to a new candidate/refinement packet, unless a later task explicitly supplies an enlarged regular-boundary theorem with same-packet inclusion and domination fields.
 
 ## Live State
 
@@ -107,8 +107,10 @@ Route A has now been approved and attempted, and the follow-up finer threshold s
 | Endpoint-exclusion parent alternative | Added to the current parent-complement contract. |
 | Endpoint closure attempts | Locally accept seven singleton-contact strips, but reject complete parent-row consumption because positive-width overlap remains. |
 | Positive-overlap subdivision attempts | Reject complete parent-row consumption because residual equality cores or uncertified endpoint-scale gaps remain. |
+| Regular-boundary coverage attempt | Rejected because exact inclusion, same-packet domination, topology ownership, and non-core strict-gap fields are absent. |
+| Current cosine packet | Rejected before branch-chart certification. |
 | `causal_ledger.json` | Rejected; no update authorized. |
 | `fold_layer_atlas.json` | Not updated. |
 | `branch_chart.json` | Unauthorized and absent. |
 
-The next action is regular-boundary fold coverage for the residual equality cores, or packet rejection; it is not a live-ledger edit.
+The next action is a new candidate/refinement packet, not a live-ledger edit.

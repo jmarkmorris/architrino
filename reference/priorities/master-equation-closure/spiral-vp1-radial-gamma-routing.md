@@ -62,6 +62,8 @@ For a theorem-grade VP-1 rejection by radial-turn failure instead, the same row 
 
 - Accepted normalization exists: $\Gamma=r_\ast^3\Omega^2/(\kappa q_1^2)$.
 - Accepted VP-1 force-ratio value or interval does not exist in the searched material.
+- [spiral-vp1-gamma-source-audit](spiral-vp1-gamma-source-audit.md) repeats the source search at sidecar-admissibility level and rejects $b_\ast$, branch thresholds, synthetic fixtures, fold-ceiling constants, mass-map packets, and unrelated $\Gamma$ symbols as legal VP-1 force-ratio sources.
+- [spiral-vp1-gamma-dimensional-closure](spiral-vp1-gamma-dimensional-closure.md) proves the kinematic root chart leaves the independent scale ratio $\Gamma=b_\ast^2c_f^2r_\ast/(\kappa q_1^2)$, so the value cannot be recovered from VP-1 root data alone.
 - The runner and sidecar should not infer $\Gamma$ from $b_\ast$ or from the sampled branch threshold.
 - The next unblock is an operator or derivation decision that supplies $[\Gamma^-,\Gamma^+]$ in the accepted normalization and proves one strict radial-turn inequality against the outward branch interval.
 

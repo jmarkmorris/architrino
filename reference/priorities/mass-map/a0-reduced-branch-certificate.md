@@ -1442,6 +1442,8 @@ The next branch-chart packet must therefore answer the equality question before 
 3. Which equality constraints survive after the new coordinate or mode is declared?
 4. Which residual or invariant would falsify the revision as overfitting rather than branch geometry?
 
+The operational contract for answering those questions is now [the $A_0$ Branch-Chart Revision Contract](a0-branch-chart-revision-contract.md). It selects the non-root-key inner-layer harmonic deformation coordinate $\mathcal{H}_I$ as the first Type B candidate for $z_\Lambda^\star$, with primary modes $\{4,5,7\}$, guard mode $\{6\}$, a Nyquist guard for `m=8`, held-out residual checks, locked-key exclusion, and benchmark exclusion before another corrected one-period rerun is admissible.
+
 ## Promotion Rule
 
 An $A_0$ branch may move from `derive_first_attractor_family` into `derive_zeta` only when a certificate packet reports:
